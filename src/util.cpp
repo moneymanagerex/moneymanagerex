@@ -239,6 +239,7 @@ const wxString mmGetDateForDisplay(const wxDateTime &dt)
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString &sDateMask)
 {
     wxString mask = sDateMask;
+    const wxDateTime today = date;
     mask.Replace("%Y%m%d", "%Y %m %d");
     if (date_formats_regex().count(mask) == 0) return false;
 
@@ -247,12 +248,8 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
     //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
     //skip dot if present in pattern but not in date string 
     const wxString separator = mask.Mid(2,1);
-    if (pattern.Matches(sDate) && sDate.Contains(separator))
-    {
-        date.ParseFormat(sDate, mask, wxDateTime::Today());
-        return date.IsValid();
-    }
-    return false;
+    date.ParseFormat(sDate, mask, today);
+    return (pattern.Matches(sDate) && sDate.Contains(separator));
 }
 
 const wxDateTime mmGetStorageStringAsDate(const wxString& str)

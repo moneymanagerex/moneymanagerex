@@ -7,9 +7,6 @@
 [submodule "3rd/LuaGlue"]
 	path = 3rd/LuaGlue
 	url = https://github.com/moneymanagerex/LuaGlue.git
-[submodule "3rd/Chart.js"]
-	path = 3rd/Chart.js
-	url = https://github.com/Regaddi/Chart.js.git
 [submodule "3rd/cgitemplate"]
 	path = 3rd/cgitemplate
 	url = https://github.com/moneymanagerex/html-template.git
@@ -25,3 +22,6 @@
 [submodule "3rd/anvil"]
 	path = 3rd/anvil
 	url = https://github.com/moneymanagerex/anvil.git
+[submodule "3rd/Chart.js"]
+	path = 3rd/Chart.js
+	url = https://github.com/Regaddi/Chart.js

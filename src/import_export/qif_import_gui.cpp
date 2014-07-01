@@ -515,23 +515,23 @@ void mmQIFImportDialog::refreshTabs(int tabs)
 void mmQIFImportDialog::parseDate(const wxString &dateStr, std::map<wxString, wxString> &date_formats_temp)
 {
     if (date_formats_temp.size() == 1) return;
+    wxArrayString invalidMask;
     const std::map<wxString, wxString> date_formats = date_formats_temp;
     for (const auto& date_mask : date_formats)
     {
-        const wxString mask = m_userDefinedDateMask ? m_dateFormatStr : date_mask.first;
-        wxDateTime dtdt;
-        if (mmParseDisplayStringToDate(dtdt, dateStr, mask) && !m_userDefinedDateMask)
+        const wxString mask = date_mask.first;
+        wxDateTime dtdt = m_today;
+        if (mmParseDisplayStringToDate(dtdt, dateStr, mask))
             m_date_parsing_stat[mask] ++;
         else {
-            date_formats_temp.erase(mask);
-            if (date_formats_temp.size() == 0) {
-                date_formats_temp["%Y-%m-%d"] = "YYYY-MM-DD";
-                m_date_parsing_stat["%Y-%m-%d"] = 999;
-            }
-            //wxLogDebug("Deleted mask %s for date %s -- %i -----------------", mask, dateStr, int(date_formats_temp.size()));
+            invalidMask.Add(mask);
         }
+    }
 
-        if (m_userDefinedDateMask) break;
+    if (invalidMask.size() < date_formats_temp.size())
+    {
+        for (const auto &i : invalidMask)
+            date_formats_temp.erase(i);
     }
 }
 
@@ -539,7 +539,6 @@ void mmQIFImportDialog::getDateMask()
 {
     //Check parsing results
     int i = 0;
-    wxString label = "";
     for (const auto& d : m_date_parsing_stat)
     {
         if (d.second > i)
@@ -548,12 +547,11 @@ void mmQIFImportDialog::getDateMask()
             if (!m_userDefinedDateMask)
             {
                 m_dateFormatStr = d.first;
-                label = date_formats_map().at(m_dateFormatStr);
             }
         }
-        wxLogDebug("%i \t%s \t%i", i++, date_formats_map().at(m_dateFormatStr), d.second);
+        wxLogDebug("%s \t%i", date_formats_map().at(m_dateFormatStr), d.second);
     }
-    choiceDateFormat_->SetStringSelection(label);
+    choiceDateFormat_->SetStringSelection(date_formats_map().at(m_dateFormatStr));
 }
 
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
