@@ -24,4 +24,4 @@
 	url = https://github.com/moneymanagerex/anvil.git
 [submodule "3rd/Chart.js"]
 	path = 3rd/Chart.js
-	url = https://github.com/Regaddi/Chart.js
+	url = https://github.com/Regaddi/Chart.js.git
