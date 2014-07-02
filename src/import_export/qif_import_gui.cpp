@@ -281,6 +281,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     m_QIFaccounts.clear();
     m_QIFpayeeNames.clear();
     m_QIFcategoryNames.clear();
+    m_QIFcategoryNames[_("Unknown")] = std::make_pair(-1, -1);
     m_date_parsing_stat.clear();
 
     wxFileInputStream input(m_FileNameStr);
@@ -787,13 +788,19 @@ bool mmQIFImportDialog::createTransaction(/*in*/ const std::map <int, wxString> 
         return false;
 
     if (t.find(CategorySplit) == t.end()) {
-        const wxString categStr = (t.find(Category) == t.end() ? "" : t[Category]);
-        if (categStr.empty())
-            return false;
-
-        trx->CATEGID = (t.find(Category) == t.end() ? -1 : m_QIFcategoryNames[t[Category]].first);
-        if (trx->CATEGID == -1) return false;
-        trx->SUBCATEGID = (t.find(Category) == t.end() ? -1 : m_QIFcategoryNames[t[Category]].second);
+        wxString categStr = (t.find(Category) == t.end() ? "" : t[Category]);
+        if (categStr.empty()) {
+            categStr = _("Unknown");
+            trx->CATEGID = (m_QIFcategoryNames[categStr].first);
+            trx->SUBCATEGID = -1;
+        }
+        else
+        {
+            trx->CATEGID = (m_QIFcategoryNames[categStr].first);
+            if (trx->CATEGID < 1)
+                return false;
+            trx->SUBCATEGID = (t.find(Category) == t.end() ? -1 : m_QIFcategoryNames[t[Category]].second);
+        }
     }
     else
     {
