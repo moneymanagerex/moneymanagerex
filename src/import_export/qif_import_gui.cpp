@@ -434,21 +434,21 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             data.push_back(wxVariant(map.find(AccountName) != map.end()
                 && !map.at(AccountName).empty() ? map.at(AccountName) : m_accountNameStr));
 
-            data.push_back(wxVariant(map.find(Date) == map.end() ? "" : map.at(Date)));
-            data.push_back(wxVariant(map.find(TransNumber) == map.end() ? "" : map.at(TransNumber)));
-            const wxString type = (map.find(TrxType) == map.end() ? "" : map.at(TrxType));
+            data.push_back(wxVariant(map.find(Date) != map.end() ? map.at(Date) : ""));
+            data.push_back(wxVariant(map.find(TransNumber) != map.end() ? map.at(TransNumber) : ""));
+            const wxString type = (map.find(TrxType) != map.end() ? map.at(TrxType) : "");
             if (type == Model_Checking::all_type()[Model_Checking::TRANSFER])
-                data.push_back(wxVariant(map.find(ToAccountName) == map.end() ? "" : map.at(ToAccountName)));
+                data.push_back(wxVariant(map.find(ToAccountName) != map.end() ? map.at(ToAccountName) : ""));
             else
-                data.push_back(wxVariant(map.find(Payee) == map.end() ? "" : map.at(Payee)));
-            data.push_back(wxVariant(map.find(TrxType) == map.end() ? "" : map.at(TrxType)));
-            if (map.find(CategorySplit) == map.end())
-                data.push_back(wxVariant(map.find(Category) == map.end() ? "" : map.at(Category)));
-            else
+                data.push_back(wxVariant(map.find(Payee) != map.end() ? map.at(Payee) : ""));
+            data.push_back(wxVariant(map.find(TrxType) != map.end() ? map.at(TrxType) : ""));
+            if (map.find(CategorySplit) != map.end())
                 data.push_back(wxVariant(map.at(CategorySplit)));
+            else
+                data.push_back(wxVariant(map.find(Category) != map.end() ? map.at(Category) : ""));
 
-            data.push_back(wxVariant(map.find(Amount) == map.end() ? "" : map.at(Amount)));
-            data.push_back(wxVariant(map.find(Memo) == map.end() ? "" : map.at(Memo)));
+            data.push_back(wxVariant(map.find(Amount) != map.end() ? map.at(Amount) : ""));
+            data.push_back(wxVariant(map.find(Memo) != map.end() ? map.at(Memo) : ""));
 
             dataListBox_->AppendItem(data, (wxUIntPtr) num++);
         }
@@ -757,7 +757,7 @@ bool mmQIFImportDialog::createTransaction(/*in*/ const std::map <int, wxString> 
     , /*out*/ Model_Checking::Data* &trx)
 {
     auto t = i;
-    wxString dateStr = (t.find(Date) == t.end() ? "" : t[Date]);
+    wxString dateStr = (t.find(Date) != t.end() ? t[Date] : "");
     dateStr.Replace(" ", "");
     wxDateTime dtdt;
     if (dtdt.ParseFormat(dateStr, m_dateFormatStr, m_today))
@@ -765,30 +765,30 @@ bool mmQIFImportDialog::createTransaction(/*in*/ const std::map <int, wxString> 
     else
         return false;
 
-    wxString accountName = (t.find(AccountName) == t.end() ? m_accountNameStr : t[AccountName]);
+    wxString accountName = (t.find(AccountName) != t.end() ? t[AccountName] : m_accountNameStr);
     if (accountName.empty()) accountName = m_accountNameStr;
     int accountID = m_QIFaccountsID.at(accountName);
     if (accountID == -1)
         return false;
     trx->ACCOUNTID = (accountID);
-    trx->TOACCOUNTID = (t.find(ToAccountName) == t.end() ? -1 : (m_QIFaccountsID.find(t[ToAccountName]) == m_QIFaccountsID.end() ? -1 : m_QIFaccountsID[t[ToAccountName]]));
-    trx->PAYEEID = (t.find(Payee) == t.end() ? -1 : m_QIFpayeeNames[t.at(Payee)]); //TODO: transfer?
-    trx->TRANSACTIONNUMBER = (t.find(TransNumber) == t.end() ? "" : t[TransNumber]);
-    trx->NOTES = (t.find(Memo) == t.end() ? "" : t[Memo]);
+    trx->TOACCOUNTID = (t.find(ToAccountName) != t.end() ? (m_QIFaccountsID.find(t[ToAccountName]) != m_QIFaccountsID.end() ? m_QIFaccountsID[t[ToAccountName]] : -1) : -1);
+    trx->PAYEEID = (t.find(Payee) != t.end() ? m_QIFpayeeNames[t.at(Payee)] : -1); //TODO: transfer?
+    trx->TRANSACTIONNUMBER = (t.find(TransNumber) != t.end() ? t[TransNumber] : "");
+    trx->NOTES = (t.find(Memo) != t.end() ? t[Memo] : "");
     trx->STATUS = "";
     trx->FOLLOWUPID = -1;
     double amt;
-    if (!wxString(t.find(Amount) == t.end() ? "" : t[Amount]).ToDouble(&amt))
+    if (!wxString(t.find(Amount) != t.end() ? t[Amount] : "").ToDouble(&amt))
         return false;
     trx->TRANSAMOUNT = fabs(amt);
     trx->TOTRANSAMOUNT = amt;
 
-    trx->TRANSCODE = (t.find(TrxType) == t.end() ? "" : t[TrxType]);
+    trx->TRANSCODE = (t.find(TrxType) != t.end() ? t[TrxType] : "");
     if (trx->TRANSCODE.empty())
         return false;
 
-    if (t.find(CategorySplit) == t.end()) {
-        wxString categStr = (t.find(Category) == t.end() ? "" : t[Category]);
+    if (t.find(Category) != t.end()) {
+        wxString categStr = (t[Category]);
         if (categStr.empty()) {
             categStr = _("Unknown");
             trx->CATEGID = (m_QIFcategoryNames[categStr].first);
@@ -806,7 +806,7 @@ bool mmQIFImportDialog::createTransaction(/*in*/ const std::map <int, wxString> 
     {
         Model_Splittransaction::Data_Set split;
         wxStringTokenizer token(t[CategorySplit], "\n");
-        wxStringTokenizer amtToken(t.find(AmountSplit) == t.end() ? "" : t[AmountSplit], "\n");
+        wxStringTokenizer amtToken(t.find(AmountSplit) != t.end() ? t[AmountSplit] : "", "\n");
         while (token.HasMoreTokens()) {
             const wxString c = token.GetNextToken();
             if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end()) return false;
