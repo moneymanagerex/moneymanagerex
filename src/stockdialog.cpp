@@ -260,23 +260,7 @@ void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
 
     if (!stockSymbol.IsEmpty())
     {
-        // Use Google for stock quotes
         wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::DEFSTOCKURL);
-        //wxString paddedURL = "\"" + stockURL + "\"";
-        //wxString httpString = wxString::Format(paddedURL, stockSymbol);
-        //wxExecute(_T("explorer ") + httpString, wxEXEC_ASYNC, nullptr );
-
-        int yahooSite = stockURL.Find("yahoo");
-        if ( yahooSite != wxNOT_FOUND )
-        {
-            int hasSuffix = stockSymbol.Find(".");
-            if ( hasSuffix == wxNOT_FOUND)
-            {
-                wxString stockSuffix = Model_Infotable::instance().GetStringInfo("HTTP_YAHOO_SUFFIX", "");
-                if (! stockSuffix.IsEmpty() )
-                    stockSymbol << stockSuffix;
-            }
-        }
         wxString httpString = wxString::Format(stockURL, stockSymbol);
         wxLaunchDefaultBrowser(httpString);
     }
