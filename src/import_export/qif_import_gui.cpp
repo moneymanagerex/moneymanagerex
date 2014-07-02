@@ -689,6 +689,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         btnOK_->Enable(false);
         progressDlg.Destroy();
         trx_data_set.clear();
+        vQIF_trxs_.clear();
     }
     else
     {
@@ -696,8 +697,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
     }
     wxMessageDialog(this, sMsg, _("QIF Import"), wxOK | wxICON_WARNING).ShowModal();
     *log_field_ << sMsg << "\n";
-
-    vQIF_trxs_.clear();
+    
     refreshTabs(2 + 4 + 8);
 }
 
