@@ -43,10 +43,7 @@ public:
         , long style);
 
     wxString OnGetItemText(long item, long column) const;
-    int get_last_imported_acc()
-    {
-        return m_firstReferencedAccountID;
-    }
+    int get_last_imported_acc();
 
 private:
     mmQIFImport* qif_api;
@@ -107,8 +104,6 @@ private:
     wxCheckBox* accountCheckBox_;
     wxChoice* accountDropDown_;
     wxButton* btnOK_;
-
-    int m_firstReferencedAccountID; //The first available account in the QIF file
 
     enum EColumn
     {
