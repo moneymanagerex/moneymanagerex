@@ -54,6 +54,7 @@ private:
     void fillControls();
     void OnFileSearch(wxCommandEvent& event);
     void OnCheckboxClick(wxCommandEvent& /*event*/);
+    void OnAccountChanged(wxCommandEvent& /*event*/);
     void OnDateMaskChange(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnCancel(wxCommandEvent& event);

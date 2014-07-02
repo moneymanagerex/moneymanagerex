@@ -37,6 +37,7 @@ BEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
     EVT_BUTTON(wxID_OK, mmQIFImportDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
     EVT_CLOSE(mmQIFImportDialog::OnQuit)
+    EVT_CHOICE(wxID_ANY, OnAccountChanged)
 END_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
@@ -598,11 +599,20 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
         wxStringClientData* data_obj = (wxStringClientData*) accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
         if (data_obj)
             m_accountNameStr = data_obj->GetData();
+        refreshTabs(1);
     }
     else {
         accountDropDown_->Enable(false);
         accountCheckBox_->SetValue(false);
     }
+}
+
+void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& /*event*/)
+{
+    wxStringClientData* data_obj = (wxStringClientData*) accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
+    if (data_obj)
+        m_accountNameStr = data_obj->GetData();
+    refreshTabs(1);
 }
 
 void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
