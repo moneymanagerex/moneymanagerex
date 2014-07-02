@@ -245,11 +245,15 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
 
     const wxString regex = date_formats_regex().at(mask);
     wxRegEx pattern(regex);
-    //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
     //skip dot if present in pattern but not in date string 
     const wxString separator = mask.Mid(2,1);
     date.ParseFormat(sDate, mask, today);
-    return (pattern.Matches(sDate) && sDate.Contains(separator));
+    if (pattern.Matches(sDate) && sDate.Contains(separator))
+        return true;
+    else {
+        //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
+        return false;
+    }
 }
 
 const wxDateTime mmGetStorageStringAsDate(const wxString& str)
@@ -324,8 +328,8 @@ const std::map<wxString,wxString> date_formats_map()
 
 const std::map<wxString,wxString> date_formats_regex()
 {
-    const wxString dd = "(((0[1-9])|([1-2][0-9])|(3[0-1]))|([1-9]))";
-    const wxString mm = "(((0[1-9])|(1[0-2]))|([1-9]))";
+    const wxString dd = "((([0 ][1-9])|([1-2][0-9])|(3[0-1]))|([1-9]))";
+    const wxString mm = "((([0 ][1-9])|(1[0-2]))|([1-9]))";
     const wxString yy = "([0-9]{2})";
     const wxString yyyy = "(((19)|([2]([0]{1})))([0-9]{2}))";
     std::map<wxString, wxString> date_regex;
