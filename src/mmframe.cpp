@@ -1893,6 +1893,12 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
         this->GetEventHandler()->AddPendingEvent(evt);
     }
+    else
+    {
+        wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
+        GetEventHandler()->AddPendingEvent(ev);
+    }
+
 }
 //----------------------------------------------------------------------------
 

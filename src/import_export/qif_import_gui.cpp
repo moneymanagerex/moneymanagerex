@@ -41,8 +41,7 @@ BEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
 END_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
-: m_firstReferencedAccountID(-1)
-, m_userDefinedDateMask(false)
+: m_userDefinedDateMask(false)
 , choiceDateFormat_()
 , dataListBox_()
 , accListBox_()
@@ -665,6 +664,15 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
                 else
                     trx_data_set.push_back(*trx);
             }
+            else
+            {
+                wxString t = "";
+                for (const auto&i : entry)
+                    t << i.second << "|";
+                t.RemoveLast(1);
+
+                *log_field_ << _("Error") + wxString::Format("\n( %s )\n", t);
+            }
             ++count;
         }
 
@@ -748,9 +756,10 @@ bool mmQIFImportDialog::createTransaction(/*in*/ const std::map <int, wxString> 
     , /*out*/ Model_Checking::Data* &trx)
 {
     auto t = i;
-    const wxString date = (t.find(Date) == t.end() ? "" : t[Date]);
+    wxString dateStr = (t.find(Date) == t.end() ? "" : t[Date]);
+    dateStr.Replace(" ", "");
     wxDateTime dtdt;
-    if (dtdt.ParseFormat(date, m_dateFormatStr, m_today))
+    if (dtdt.ParseFormat(dateStr, m_dateFormatStr, m_today))
         trx->TRANSDATE = dtdt.FormatISODate();
     else
         return false;
@@ -758,7 +767,8 @@ bool mmQIFImportDialog::createTransaction(/*in*/ const std::map <int, wxString> 
     wxString accountName = (t.find(AccountName) == t.end() ? m_accountNameStr : t[AccountName]);
     if (accountName.empty()) accountName = m_accountNameStr;
     int accountID = m_QIFaccountsID.at(accountName);
-    if (accountID == -1) return false;
+    if (accountID == -1)
+        return false;
     trx->ACCOUNTID = (accountID);
     trx->TOACCOUNTID = (t.find(ToAccountName) == t.end() ? -1 : (m_QIFaccountsID.find(t[ToAccountName]) == m_QIFaccountsID.end() ? -1 : m_QIFaccountsID[t[ToAccountName]]));
     trx->PAYEEID = (t.find(Payee) == t.end() ? -1 : m_QIFpayeeNames[t.at(Payee)]); //TODO: transfer?
@@ -767,16 +777,19 @@ bool mmQIFImportDialog::createTransaction(/*in*/ const std::map <int, wxString> 
     trx->STATUS = "";
     trx->FOLLOWUPID = -1;
     double amt;
-    if (!wxString(t.find(Amount) == t.end() ? "" : t[Amount]).ToDouble(&amt)) return false;
+    if (!wxString(t.find(Amount) == t.end() ? "" : t[Amount]).ToDouble(&amt))
+        return false;
     trx->TRANSAMOUNT = fabs(amt);
     trx->TOTRANSAMOUNT = amt;
 
     trx->TRANSCODE = (t.find(TrxType) == t.end() ? "" : t[TrxType]);
-    if (trx->TRANSCODE.empty()) return false;
+    if (trx->TRANSCODE.empty())
+        return false;
 
     if (t.find(CategorySplit) == t.end()) {
         const wxString categStr = (t.find(Category) == t.end() ? "" : t[Category]);
-        if (categStr.empty()) return false;
+        if (categStr.empty())
+            return false;
 
         trx->CATEGID = (t.find(Category) == t.end() ? -1 : m_QIFcategoryNames[t[Category]].first);
         if (trx->CATEGID == -1) return false;
@@ -944,5 +957,13 @@ void mmQIFImportDialog::getOrCreateCategories()
         if (s) subcategID = s->SUBCATEGID;
         m_QIFcategoryNames[item.first] = std::make_pair(categID, subcategID);
     }
+}
 
+int mmQIFImportDialog::get_last_imported_acc()
+{
+    int accID = -1;
+    Model_Account::Data * acc = Model_Account::instance().get(m_accountNameStr);
+    if (acc)
+        accID = acc->ACCOUNTID;
+    return accID;
 }
