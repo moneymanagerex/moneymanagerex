@@ -1018,6 +1018,7 @@ void mmGUIFrame::OnItemMenu(wxTreeEvent& event)
         showTreePopupMenu(id, event.GetPoint());
     else
         wxMessageBox(_("MMEX has been opened without an active database."), _("MMEX: Menu Popup Error"), wxOK | wxICON_EXCLAMATION);
+    event.Skip();
 }
 //----------------------------------------------------------------------------
 
