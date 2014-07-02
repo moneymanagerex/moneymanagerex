@@ -1210,7 +1210,7 @@ void mmUnivCSVDialog::update_preview()
                             text << inQuotes(amount, delimit);
                             break;
                         case UNIV_CSV_CATEGORY:
-                            text << inQuotes(category->CATEGNAME, delimit);
+                            text << inQuotes(category ? category->CATEGNAME : "", delimit);
                             break;
                         case UNIV_CSV_SUBCATEGORY:
                             text << inQuotes(sub_category ? sub_category->SUBCATEGNAME : "", delimit);
