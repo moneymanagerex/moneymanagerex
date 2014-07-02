@@ -127,8 +127,12 @@ wxDate Model_Checking::TRANSDATE(const Data& r)
 
 Model_Checking::TYPE Model_Checking::type(const Data* r)
 {
-    for (const auto& t : TYPE_CHOICES) if (r->TRANSCODE.CmpNoCase(t.second) == 0) return t.first;
-
+    if (r) {
+        for (const auto& t : TYPE_CHOICES) {
+            if (r->TRANSCODE.CmpNoCase(t.second) == 0)
+                return t.first;
+        }
+    }
     return WITHDRAWAL;
 }
 

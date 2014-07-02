@@ -76,10 +76,11 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , category_changed_(false)
     , skip_amount_init_(false)
 {
-    if (transaction_id_)
-    {
-        transaction_ = Model_Checking::instance().get(transaction_id_);
-        for (const auto& item : Model_Checking::splittransaction(transaction_)) m_local_splits.push_back(item);
+
+    transaction_ = Model_Checking::instance().get(transaction_id_);
+    if (transaction_) {
+        for (const auto& item : Model_Checking::splittransaction(transaction_))
+            m_local_splits.push_back(item);
         m_transfer = Model_Checking::type(transaction_) == Model_Checking::TRANSFER;
     }
     else
