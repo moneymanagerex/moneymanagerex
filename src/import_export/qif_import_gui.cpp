@@ -754,7 +754,7 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Data_Set &to, Model_Ch
 }
 
 bool mmQIFImportDialog::createTransaction(/*in*/ const std::map <int, wxString> &i
-    , /*out*/ Model_Checking::Data* &trx)
+    , /*out*/ Model_Checking::Data* trx)
 {
     auto t = i;
     wxString dateStr = (t.find(Date) != t.end() ? t[Date] : "");
@@ -974,3 +974,4 @@ int mmQIFImportDialog::get_last_imported_acc()
         accID = acc->ACCOUNTID;
     return accID;
 }
+
