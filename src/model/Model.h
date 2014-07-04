@@ -138,15 +138,25 @@ public:
         return r->id();
     }
 
-    template<class DATA_SET>
     /**
     * Save all Data record memory instances contained
     * in the record list (Data_Set) to the database.
     */
-    int save(DATA_SET& rows)
+    template<class DATA>
+    int save(std::vector<DATA>& rows)
     {
         this->Begin();
         for (auto& r : rows) this->save(&r);
+        this->Commit();
+
+        return rows.size();
+    }
+
+    template<class DATA>
+    int save(std::vector<DATA*>& rows)
+    {
+        this->Begin();
+        for (auto& r : rows) this->save(r);
         this->Commit();
 
         return rows.size();

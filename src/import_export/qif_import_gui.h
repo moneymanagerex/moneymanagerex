@@ -65,9 +65,9 @@ private:
     void compliteTransaction(std::map <int, wxString> &trx, const wxString &accName);
     bool compliteTransaction(/*in*/ const std::map <int, wxString> &i
         , /*out*/ Model_Checking::Data* trx);
-    bool mergeTransferPair(Model_Checking::Data_Set &to, Model_Checking::Data_Set &from);
-    void appendTransfers(Model_Checking::Data_Set &destination, Model_Checking::Data_Set &target);
-    void joinSplit(Model_Checking::Data_Set &destination, std::vector <Model_Splittransaction::Data_Set> &target);
+    bool mergeTransferPair(Model_Checking::Cache& to, Model_Checking::Cache& from);
+    void appendTransfers(Model_Checking::Cache &destination, Model_Checking::Cache &target);
+    void joinSplit(Model_Checking::Cache &destination, std::vector <Model_Splittransaction::Cache> &target);
     void saveSplit();
     void getDateMask();
     void refreshTabs(int tabs = 15);
@@ -80,7 +80,7 @@ private:
     std::map <wxString, int> m_QIFaccountsID;
     std::map <wxString, int> m_QIFpayeeNames;
     std::map <wxString, std::pair<int, int> > m_QIFcategoryNames;
-    std::vector <Model_Splittransaction::Data_Set> m_splitDataSets;
+    std::vector <Model_Splittransaction::Cache> m_splitDataSets;
 
     wxString m_accountNameStr;
     wxString m_dateFormatStr;
