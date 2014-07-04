@@ -440,7 +440,7 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
                     sql = textdata;
                 else if (f.EndsWith(".lua"))
                     lua = textdata;
-                else if (f.StartsWith("description"))
+                else if (f.EndsWith(".txt") || f.EndsWith(".html"))
                     txt << textdata;
                 else if (f.EndsWith(".htt"))
                     htt << textdata;
@@ -548,14 +548,14 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
     viewControls(false);
     m_selectedItemID = event.GetItem();
-
     if (!m_selectedItemID) return;
 
     wxNotebook* editors_notebook = (wxNotebook*) FindWindow(ID_NOTEBOOK);
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData)
     {
-        for (size_t n = editors_notebook->GetPageCount() - 1; n >= 1; n--) editors_notebook->DeletePage(n);
+        for (size_t n = editors_notebook->GetPageCount() - 1; n >= 1; n--)
+            editors_notebook->DeletePage(n);
         showHelp();
         return;
     }
@@ -592,9 +592,12 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         SqlScriptText->SetLexerSql();
         LuaScriptText->ChangeValue(report->LUACONTENT);
         LuaScriptText->SetLexerLua();
-        descriptionText->ChangeValue(report->DESCRIPTION);
+        wxString description = report->DESCRIPTION;
+        descriptionText->ChangeValue(description);
+        if (!description.Contains("<!DOCTYPE html"))
+            description.Replace("\n", "<BR>\n");
 
-        m_outputHTML->SetPage(report->DESCRIPTION, "");
+        m_outputHTML->SetPage(description, "");
 
         if (m_sqlListBox) m_sqlListBox->DeleteAllItems();
         if (m_sqlListBox) m_sqlListBox->DeleteAllColumns();

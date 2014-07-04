@@ -74,12 +74,12 @@ wxString htmlWidgetStocks::getHTMLText()
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
-        output = "<table class ='table'><col style='width:50%'><col style='width:25%'><col style='width:25%'><thead><tr class='active'><th>";
+        output = "<table class ='sortable table'><col style='width:50%'><col style='width:25%'><col style='width:25%'><thead><tr class='active'><th>\n";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
-        output += "</th><th class = 'text-right'>" + _("Total");
-        output += wxString::Format("<a id='%s_label' onclick='toggleTable(\"%s\");' href='#'>[-]</a>"
+        output += "</th><th class = 'text-right'>" + _("Total") + "</th>";
+        output += wxString::Format("<th class='sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#'>[-]</a></th>\n"
             , "INVEST", "INVEST");
-        output += "</th></tr></thead><tbody id='INVEST'>";
+        output += "</tr></thead><tbody id='INVEST'>\n";
         const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
         wxString body = "";
         for (const auto& account : accounts)
@@ -87,11 +87,13 @@ wxString htmlWidgetStocks::getHTMLText()
             if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
             if (Model_Account::status(account) != Model_Account::OPEN) continue;
             body += "<tr>";
-            body += wxString::Format("<td><a href='stock:%i'>%s</a></td>"
+            body += wxString::Format("<td><a href='stock:%i'>%s</a></td>\n"
                 , account.ACCOUNTID, account.ACCOUNTNAME);
-            body += wxString::Format("<td class = 'money'>%s</td>"
+            body += wxString::Format("<td class = 'money' sorttable_customkey='%f'>%s</td>\n"
+                , stockStats[account.ACCOUNTID].first
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
-            body += wxString::Format("<td class = 'money'>%s</td>"
+            body += wxString::Format("<td colspan='2' class = 'money' sorttable_customkey='%f'>%s</td>"
+                , stockStats[account.ACCOUNTID].second
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].second, &account));
             body += "</tr>";
         }
@@ -100,7 +102,7 @@ wxString htmlWidgetStocks::getHTMLText()
         output += "</tbody><tfoot><tr class = 'total'><td>" + _("Total:") + "</td>";
         output += wxString::Format("<td class ='money'>%s</td>"
             , Model_Currency::toCurrency(grand_gain_lost_));
-        output += wxString::Format("<td class ='money'>%s</td></tr></tfoot></table>"
+        output += wxString::Format("<td colspan='2' class ='money'>%s</td></tr></tfoot></table>"
             , Model_Currency::toCurrency(grand_total_));
         if (body.empty()) output.clear();
     }
@@ -346,21 +348,21 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
     {   
         const wxString idStr = "BILLS_AND_DEPOSITS";
 
-        output = "<table class='table'><thead><tr class='active'><th>";
-        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>", title_);
+        output = "<table class='table'>\n<thead>\n<tr class='active'><th>";
+        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>\n", title_);
         output += wxString::Format("<th class='text-right'>%i <a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n"
             , int(bd_days.size()), idStr, idStr);
-        output += "</thead>";
+        output += "</thead>\n";
 
-        output += wxString::Format("<tbody id='%s'>", idStr);
-        output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th><th class='text-right'>%s</th><th class='text-right'>%s</th></tr>"
+        output += wxString::Format("<tbody id='%s'>\n", idStr);
+        output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th><th class='text-right'>%s</th><th class='text-right'>%s</th></tr>\n"
             , _("Payee"), _("Amount"), _("Days"));
 
         for (const auto& item : bd_days)
         {
             output += wxString::Format("<tr %s>\n", std::get<0>(item) < 0 ? "class='danger'" : "");
             output += "<td>" + std::get<1>(item) +"</td>"; //payee
-            output += wxString::Format("<td class='money'>%s</td>"
+            output += wxString::Format("<td class='money'>%s</td>\n"
                 , Model_Account::toCurrency(std::get<3>(item), std::get<4>(item)));
             output += "<td  class='money'>" + std::get<2>(item) + "</td></tr>\n";
         }
@@ -661,16 +663,16 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     bool type_is_bank = (type == Model_Account::CHECKING);
     double tReconciled = 0;
     const wxString idStr = (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO");
-    wxString output = "<table class = 'table'>";
-    output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">";
+    wxString output = "<table class = 'sortable table'>\n";
+    output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
     output += "<thead><tr><th>";
     output += (type_is_bank ? _("Bank Account") : _("Term Account"));
-    output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>";
-    output += "<th class = 'text-right'>" + _("Balance");
-    output += wxString::Format("<a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
+    output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
+    output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";
+    output += wxString::Format("<th class='sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th>\n"
         , idStr, idStr);
-    output += "</th></tr></thead>";
-    output += wxString::Format("<tbody id = '%s'>", idStr);
+    output += "</tr></thead>\n";
+    output += wxString::Format("<tbody id = '%s'>\n", idStr);
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
@@ -690,16 +692,16 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
             (vAccts_ == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
-            body += wxString::Format("<td><a href=\"acct:%i\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
-            body += wxString::Format("<td class = 'money'>%s</td>", Model_Currency::toCurrency(reconciledBal, currency));
-            body += wxString::Format("<td class = 'money'>%s</td>", Model_Currency::toCurrency(bal, currency));
+            body += wxString::Format("<td><a href=\"acct:%i\">%s</a></td>\n", account.ACCOUNTID, account.ACCOUNTNAME);
+            body += wxString::Format("<td class = 'money' sorttable_customkey='%f'>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
+            body += wxString::Format("<td class = 'money' sorttable_customkey='%f' colspan='2'>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));
             body += "</tr>\n";
         }
     }
     output += body;
-    output += "</tbody><tfoot><tr class ='total'><td>" + _("Total:") + "</td>";
-    output += "<td class ='money'>" + Model_Currency::toCurrency(tReconciled) + "</td>";
-    output += "<td class ='money'>" + Model_Currency::toCurrency(tBalance) + "</td></tr></tfoot></table>";
+    output += "</tbody><tfoot><tr class ='total'><td>" + _("Total:") + "</td>\n";
+    output += "<td class ='money'>" + Model_Currency::toCurrency(tReconciled) + "</td>\n";
+    output += "<td class ='money' colspan='2'>" + Model_Currency::toCurrency(tBalance) + "</td></tr></tfoot></table>\n";
     if (body.empty()) output.clear();
 
     return output;
