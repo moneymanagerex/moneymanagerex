@@ -5,10 +5,12 @@
     <meta http - equiv = "Content-Type" content = "text/html" />
     <title>Home Page</title>
     <script src = "Chart.js"></script>
+    <script src="sorttable.js"></script>
     <link href = "master.css" rel = "stylesheet" />
       <style>
-        table {
-        font-size: 100%;
+        /* Sortable tables */
+          table.sortable thead {
+          cursor: default;
         }
       </style>
 </head>
