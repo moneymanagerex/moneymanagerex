@@ -61,7 +61,13 @@
         <files>Chart.js</files>
     </data-files>
 
-	<data-files cond="PLATFORM_MACOSX=='1'">
+    <data-files>
+      <install-to>$(respath)</install-to>
+      <srcdir>$(SRCDIR)/3rd/sorttable.js</srcdir>
+      <files>sorttable.js</files>
+    </data-files>
+      
+    <data-files cond="PLATFORM_MACOSX=='1'">
 	    <install-to>$(DATADIR)/..</install-to>
         <srcdir>$(SRCDIR)/resources</srcdir>
         <files>Info.plist</files>
@@ -186,13 +192,19 @@
         <files>master.css</files>
     </data-files>
 
-        <data-files>
+    <data-files>
         <install-to>$(PREFIX)/mmex/res</install-to>
             <srcdir>$(SRCDIR)/3rd/Chart.js</srcdir>
         <files>Chart.js</files>
     </data-files>
 
-    <!-- doc -> mmex/help -->
+    <data-files>
+      <install-to>$(PREFIX)/mmex/res</install-to>
+      <srcdir>$(SRCDIR)/3rd/sorttable.js</srcdir>
+      <files>sorttable.js</files>
+    </data-files>
+
+      <!-- doc -> mmex/help -->
 
     <data-files>
         <install-to>$(PREFIX)/mmex/help</install-to>
