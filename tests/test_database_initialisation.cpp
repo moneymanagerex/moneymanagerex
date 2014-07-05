@@ -84,13 +84,15 @@ void Test_DatabaseInitialisation::Financial_Year_Date_Range()
 {
     wxDateTime starting_date(wxDateTime::Today());
 
-    // Set date to start of financial year.
+    // Set date to start of current financial year.
     int month = starting_date.GetMonth();
-    if (month > 6)
+    if (month > wxDateTime::Jun)
     {
-        starting_date.Subtract(wxDateSpan::Months(month - 6));
+        starting_date.Subtract(wxDateSpan::Months(month - wxDateTime::Jul));
     }
-    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(6 - month));
+    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
+
+    // readjust day to beginning of the month
     starting_date.Subtract(wxDateSpan::Days(starting_date.GetDay() - 1));
 
     // Now for the tests:
@@ -103,7 +105,7 @@ void Test_DatabaseInitialisation::Financial_Year_Date_Range()
     CPPUNIT_ASSERT_EQUAL(starting_date.FormatISODate(), last_financial_year.start_date().FormatISODate());
 
     mmLastYear last_year;
-    starting_date.Add(wxDateSpan::Months(6));
+    starting_date.Add(wxDateSpan::Months(6)).Subtract(wxDateSpan::Year());
     CPPUNIT_ASSERT_EQUAL(starting_date.FormatISODate(), last_year.start_date().FormatISODate());
 }
 
@@ -208,11 +210,13 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
 
     // Advance or retard the date to the beginning of that financial year.
     int month = starting_date.GetMonth();
-    if (month > 6)
+    if (month > wxDateTime::Jun)
     {
-        starting_date.Subtract(wxDateSpan::Months(month - 6));
+        starting_date.Subtract(wxDateSpan::Months(month - wxDateTime::Jul));
     }
-    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(6 - month));
+    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
+
+    // readjust day to beginning of the month
     starting_date.Subtract(wxDateSpan::Days(starting_date.GetDay() - 1));
 
     wxDateTime trans_date = starting_date;
