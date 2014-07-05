@@ -9,7 +9,7 @@
     <link href = "master.css" rel = "stylesheet" />
       <style>
         /* Sortable tables */
-          table.sortable thead {
+        table.sortable thead {
           cursor: default;
         }
       </style>
