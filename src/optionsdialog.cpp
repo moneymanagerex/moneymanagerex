@@ -617,7 +617,7 @@ void mmOptionsDialog::CreateControls()
     itemStaticTextURL->SetFont(staticBoxFontSetting);
     othersPanelSizer->Add(itemStaticTextURL, g_flags);
 
-    wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::DEFSTOCKURL);
+    wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::weblink::DefStockUrl);
     wxTextCtrl* itemTextCtrURL = new wxTextCtrl(othersPanel
         , ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL, stockURL);
     othersPanelSizer->Add(itemTextCtrURL, wxSizerFlags(g_flagsExpand).Proportion(0));

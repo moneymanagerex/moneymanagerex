@@ -57,7 +57,6 @@ const int mmex::MIN_DATAVERSION = 2;
 const wxString mmex::DATAVERSION = "2";
 const wxString mmex::DEFDATEFORMAT =  "%Y-%m-%d"; //ISO 8601
 const wxString mmex::DEFDELIMTER = ",";
-const wxString mmex::DEFSTOCKURL = mmex::weblink::DefStockUrl;
 
 const wxString mmex::getProgramName()
 {

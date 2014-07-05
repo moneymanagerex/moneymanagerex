@@ -33,7 +33,6 @@ extern const wxString DATAVERSION;
 
 extern const wxString DEFDATEFORMAT;
 extern const wxString DEFDELIMTER;
-extern const wxString DEFSTOCKURL;
 
 /*
         Uses for titles, reports, etc.
@@ -74,9 +73,9 @@ extern const wxString VIEW_TRANS_LAST_3MONTHS_STR;
 extern const wxString VIEW_TRANS_LAST_12MONTHS_STR;  
 extern const wxString VIEW_TRANS_CURRENT_YEAR_STR;   
 
-extern const wxString  VIEW_ACCOUNTS_ALL_STR;       
-extern const wxString  VIEW_ACCOUNTS_OPEN_STR;      
-extern const wxString  VIEW_ACCOUNTS_FAVORITES_STR; 
+extern const wxString VIEW_ACCOUNTS_ALL_STR;       
+extern const wxString VIEW_ACCOUNTS_OPEN_STR;      
+extern const wxString VIEW_ACCOUNTS_FAVORITES_STR; 
 
 extern const wxString LANGUAGE_PARAMETER;
 extern const wxString INIDB_USE_TRANSACTION_SOUND;
