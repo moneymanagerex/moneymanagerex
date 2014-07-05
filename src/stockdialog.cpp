@@ -260,7 +260,7 @@ void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
 
     if (!stockSymbol.IsEmpty())
     {
-        wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::DEFSTOCKURL);
+        wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::weblink::DefStockUrl);
         wxString httpString = wxString::Format(stockURL, stockSymbol);
         wxLaunchDefaultBrowser(httpString);
     }
