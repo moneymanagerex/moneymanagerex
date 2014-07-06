@@ -127,6 +127,7 @@
 #include "../resources/saveas.xpm"
 #include "../resources/user_edit.xpm"
 #include "../resources/wrench.xpm"
+#include "../resources/accounttree.xpm"
 
 //----------------------------------------------------------------------------
 
@@ -147,6 +148,7 @@ EVT_MENU(MENU_NEWACCT, mmGUIFrame::OnNewAccount)
 EVT_MENU(MENU_ACCTLIST, mmGUIFrame::OnAccountList)
 EVT_MENU(MENU_ACCTEDIT, mmGUIFrame::OnEditAccount)
 EVT_MENU(MENU_ACCTDELETE, mmGUIFrame::OnDeleteAccount)
+EVT_MENU(MENU_ACCOUNT_REALLOCATE, mmGUIFrame::OnReallocateAccount)
 EVT_MENU(MENU_ORGCATEGS, mmGUIFrame::OnOrgCategories)
 EVT_MENU(MENU_ORGPAYEE, mmGUIFrame::OnOrgPayees)
 EVT_MENU(wxID_PREFERENCES, mmGUIFrame::OnOptions)
@@ -1230,7 +1232,7 @@ void mmGUIFrame::createHelpPage()
 
 void mmGUIFrame::createMenu()
 {
-    wxBitmap toolBarBitmaps[10];
+    wxBitmap toolBarBitmaps[11];
     toolBarBitmaps[0] = wxBitmap(new_xpm);
     toolBarBitmaps[1] = wxBitmap(open_xpm);
     toolBarBitmaps[2] = wxBitmap(save_xpm);
@@ -1241,6 +1243,7 @@ void mmGUIFrame::createMenu()
     toolBarBitmaps[7] = wxBitmap(printsetup_xpm);
     toolBarBitmaps[8] = wxBitmap(edit_account_xpm);
     toolBarBitmaps[9] = wxBitmap(delete_account_xpm);
+    toolBarBitmaps[10] = wxBitmap(accounttree_xpm);
 
     wxMenu *menu_file = new wxMenu;
 
@@ -1353,6 +1356,11 @@ void mmGUIFrame::createMenu()
         , _("&Delete Account"), _("Delete Account from database"));
     menuItemAcctDelete->SetBitmap(toolBarBitmaps[9]);
     menuAccounts->Append(menuItemAcctDelete);
+
+    wxMenuItem* menuItemReallocateAcct = new wxMenuItem(menuAccounts, MENU_ACCOUNT_REALLOCATE
+        , _("&Reallocate Account"), _("Change the account type of an account."));
+    menuItemReallocateAcct->SetBitmap(toolBarBitmaps[10]);
+    menuAccounts->Append(menuItemReallocateAcct);
 
     menuAccounts->Append(menuItemAcctList);
     menuAccounts->Append(menuItemAcctEdit);
@@ -2417,6 +2425,46 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
     OnAccountList(evt);
 }
 //----------------------------------------------------------------------------
+
+void mmGUIFrame::OnReallocateAccount(wxCommandEvent& event)
+{
+    const auto &accounts = Model_Account::instance().all();
+    if (accounts.empty())
+    {
+        wxMessageBox(_("No account available to relocate!"), _("Account Reallocation"), wxOK | wxICON_WARNING);
+        return;
+    }
+
+    // Remove all investment type accounts
+    wxArrayString choices;
+    for (const auto & item : accounts)
+    {
+        if (item.ACCOUNTTYPE != Model_Account::all_type()[Model_Account::INVESTMENT])
+            choices.Add(item.ACCOUNTNAME);
+    }
+
+    mmSingleChoiceDialog account_choice(this, _("Choose Account to Relocate"), _("Account Reallocation"), choices);
+    if (account_choice.ShowModal() == wxID_OK)
+    {
+        Model_Account::Data* account = Model_Account::instance().get(account_choice.GetStringSelection());
+
+        // Remove investment type from reallocation list
+        wxArrayString types = Model_Account::instance().all_type();
+        types.Remove(Model_Account::all_type()[Model_Account::INVESTMENT]);
+
+        mmSingleChoiceDialog type_choice(this, _("Choose the new type for this account"), _("Account Reallocation"), types);
+        if (type_choice.ShowModal() == wxID_OK)
+        {
+            account->ACCOUNTTYPE = type_choice.GetStringSelection();
+            Model_Account::instance().save(account);
+
+            updateNavTreeControl();
+            setHomePageActive(false);   // ensure that home page gets recreated.
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+            OnAccountList(evt);
+        }
+    }
+}
 
 void mmGUIFrame::OnViewToolbar(wxCommandEvent &event)
 {
