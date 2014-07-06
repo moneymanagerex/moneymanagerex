@@ -79,8 +79,8 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 {
 
     transaction_ = Model_Checking::instance().get(transaction_id_);
-    wxASSERT(transaction_ && transaction_->TRANSID == transaction_id_);
     if (transaction_) {
+        wxASSERT(transaction_->TRANSID == transaction_id_);
         for (const auto& item : Model_Checking::splittransaction(transaction_))
             m_local_splits.push_back(item);
         m_transfer = Model_Checking::type(transaction_) == Model_Checking::TRANSFER;
