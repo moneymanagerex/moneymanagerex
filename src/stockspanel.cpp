@@ -698,7 +698,8 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     }
     if (site.Right(1).Contains("+")) site.RemoveLast(1);
 
-    //Sample : http://finance.yahoo.com/d/quotes.csv?s=SBER.ME+GAZP.ME&f=sl1n&e=.csv
+    //Sample: http://finance.yahoo.com/d/quotes.csv?s=SBER.ME+GAZP.ME&f=sl1c4n&e=.csv
+    //Sample CSV: "SBER.ME",85.49,"RUB","SBERBANK"
     site = wxString::Format(mmex::weblink::YahooQuotes, site);
 
     refresh_button_->SetBitmapLabel(wxBitmap(wxImage(led_yellow_xpm).Scale(16,16)));
@@ -713,7 +714,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     }
 
     //--//
-    wxString StockSymbolWithSuffix, sName;
+    wxString StockSymbolWithSuffix, sName, StockQuoteCurrency;
     double dPrice = 0.0;
 
     wxStringTokenizer tkz(sOutput, "\r\n");
@@ -721,31 +722,29 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     {
         const wxString csvline = tkz.GetNextToken();
         StockSymbolWithSuffix = "";
-        wxRegEx pattern("\"([^\"]+)\",([^,][0-9.]+),\"([^\"]*)\"");
+        StockQuoteCurrency = "";
+        wxRegEx pattern("\"([^\"]+)\",([^,][0-9.]+),\"([^\"]*)\",\"([^\"]*)\"");
         if (pattern.Matches(csvline))
         {
             StockSymbolWithSuffix = pattern.GetMatch(csvline, 1);
             pattern.GetMatch(csvline, 2).ToDouble(&dPrice);
-            sName = pattern.GetMatch(csvline, 3);
+            StockQuoteCurrency = pattern.GetMatch(csvline, 3);
+            sName = pattern.GetMatch(csvline, 4);
         }
 
         bool updated = !StockSymbolWithSuffix.IsEmpty();
 
-        //**** HACK HACK HACK
-        // Note:
-        // 1. If the share is a UK share (e.g. HSBA.L), its downloaded value in pence
-        // 2. If the share is not a UK share (e.g. 0005.HK) while we are using UK Yahoo finance, we do not need
-        //    to modify the price
+        /* HACK FOR GBP
+        http://sourceforge.net/p/moneymanagerex/bugs/414/
+        http://sourceforge.net/p/moneymanagerex/bugs/360/
+        1. If the share has GBp as currency, its downloaded value in pence
+        2. If the share has another currency, we don't need to modify the price
+        */
 
-        //// UK finance apparently downloads values in pence
-        //if (!yahoo_->Server_.CmpNoCase("uk.finance.yahoo.com"))
-        //    dPrice = dPrice / 100;
-        //// ------------------
         if (updated && dPrice > 0)
         {
-            //HACK seems outdated http://sourceforge.net/p/moneymanagerex/bugs/360/
-            //if(StockSymbolWithSuffix.EndsWith(".L"))
-            //    dPrice = dPrice / 100;
+            if (StockQuoteCurrency == "GBp")
+                dPrice = dPrice / 100;
             stocks_data[StockSymbolWithSuffix].first = dPrice;
             stocks_data[StockSymbolWithSuffix].second = sName;
             sError << wxString::Format(_("%s\t -> %s\n")
