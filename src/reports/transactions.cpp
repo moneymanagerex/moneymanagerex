@@ -150,13 +150,16 @@ wxString mmReportTransactions::getHTMLText()
 
         // Get the exchange rate for the account
         Model_Account::Data* account = Model_Account::instance().get(transaction.ACCOUNTID);
-        const Model_Currency::Data* currency = Model_Account::currency(account);
-        if (currency)
+        if (account)
         {
+            double convRate = 1;
+            const Model_Currency::Data* currency = Model_Account::currency(account);
+            if (currency)
+                convRate = currency->BASECONVRATE;
             int accountId = transaction.ACCOUNTID;
             if (transDialog_->getAccountCheckBox())
                 accountId = transDialog_->getAccountID();
-            double amount = Model_Checking::balance(transaction, accountId) * currency->BASECONVRATE;
+            double amount = Model_Checking::balance(transaction, accountId) * convRate;
             hb.addCurrencyCell(amount);
             total += amount;
         }
@@ -185,7 +188,7 @@ wxString mmReportTransactions::getHTMLText()
 void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
 {
     const auto splits = Model_Splittransaction::instance().get_all();
-    for (const auto& tran : Model_Checking::instance().all())
+    for (const auto& tran : Model_Checking::instance().all()) //TODO: find_or should be faster
     {
         if (!dlg->checkAll(tran, refAccountID_)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);

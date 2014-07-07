@@ -772,13 +772,14 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, cons
 {
     bool ok = true;
     //wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(), getToDateControl().GetDateOnly().FormatISODate());
-    if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID)) ok = false;
-    else if (getDateRangeCheckBox()
-        && !Model_Checking::TRANSDATE(tran)
-            .IsBetween(getFromDateCtrl().GetDateOnly()
-            , getToDateControl().GetDateOnly()
-        )
-    ) ok = false;
+    if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID))
+        ok = false;
+    else if 
+    (   getDateRangeCheckBox()
+        && !Model_Checking::TRANSDATE(tran).IsBetween(
+            getFromDateCtrl().GetDateOnly(), getToDateControl().GetDateOnly())
+    )
+        ok = false;
     else if (!checkPayee(tran)) ok = false;
     else if (!checkCategory(tran)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
