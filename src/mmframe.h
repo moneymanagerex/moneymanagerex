@@ -130,6 +130,7 @@ private:
     /* Homepage panel logic */
 
     void cleanup();
+    void resetNavTreeControl();
     void cleanupNavTreeControl(wxTreeItemId& item);
     wxSizer* cleanupHomePanel(bool new_sizer = true);
     bool openFile(const wxString& fileName, bool openingNew, const wxString &password = "");

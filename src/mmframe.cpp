@@ -311,8 +311,18 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     }
     else
     {
-        if (!openFile(dbpath.GetFullPath(), false))
+        if (openFile(dbpath.GetFullPath(), false))
+        {
+            updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+            setHomePageActive(false);
+            createHomePage();
+        }
+        else
+        {
+            resetNavTreeControl();
+            cleanupHomePanel();
             showBeginAppDialog(true);
+        }
     }
 
     const wxAcceleratorEntry entries [] =
@@ -374,7 +384,13 @@ void mmGUIFrame::ShutdownDatabase()
         delete m_update_callback_hook;
         m_db.reset();
     }
+}
 
+void mmGUIFrame::resetNavTreeControl()
+{
+    wxTreeItemId root = navTreeCtrl_->GetRootItem();
+    cleanupNavTreeControl(root);
+    navTreeCtrl_->DeleteAllItems();
 }
 
 void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
@@ -1699,15 +1715,8 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
         menuEnableItems(true);
         menuPrintingEnable(false);
         autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
-
-        updateNavTreeControl();
-
-        setHomePageActive(false);
-        /* Currency Options might have changed so refresh */
-        wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
-        GetEventHandler()->AddPendingEvent(ev);
-
     }
+    else return false;
 
     return true;
 }
@@ -1868,7 +1877,15 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
     }
 
     password_.clear();
-    openFile(newFileName.GetFullPath(), false, new_password);
+    if (openFile(newFileName.GetFullPath(), false, new_password))
+    {
+        updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+        setHomePageActive(false);
+
+        /* Create the home page, and set navigation to root item */
+        wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
+        GetEventHandler()->AddPendingEvent(ev);
+    }
 }
 //----------------------------------------------------------------------------
 
@@ -2570,7 +2587,11 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 {
     wxASSERT(homePanel_);
 
-    if (panelCurrent_) delete panelCurrent_;
+    if (panelCurrent_)
+    {
+        delete panelCurrent_;
+        panelCurrent_ = nullptr;
+    }
     homePanel_->DestroyChildren();
     homePanel_->SetSizer(new_sizer ? new wxBoxSizer(wxHORIZONTAL) : 0);
 
@@ -2583,15 +2604,21 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
     autoRepeatTransactionsTimer_.Stop();
 
     // Ensure database is in a steady state first
-    if (m_db && !activeHomePage_)
+    //if (m_db && !activeHomePage_)
+    //{
+    //    createHomePage();
+    //}
+
+    if (openFile(dbFileName, newDatabase))
     {
+        updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+        setHomePageActive(false);
         createHomePage();
     }
-
-    if (!openFile(dbFileName, newDatabase))
+    else
     {
-        createHomePage();
-        updateNavTreeControl();
+        resetNavTreeControl();
+        cleanupHomePanel();
         showBeginAppDialog(true);
     }
 }
@@ -2657,8 +2684,6 @@ void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
         wxMessageBox(wxString::Format(_("File %s not found"), file_name), _("Error"), wxOK | wxICON_ERROR);
         recentFiles_->RemoveFileFromHistory(fileNum);
     }
-    setHomePageActive(false);
-    createHomePage();
 }
 //----------------------------------------------------------------------------
 
