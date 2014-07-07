@@ -57,13 +57,13 @@ void Test_Date_Range::setUp()
 
     // Set date to the beginning of a financial year. Assume 1st July.
     int month = m_start_date->GetMonth();
-    if (month > 6)
+    if (month > wxDateTime::Jun)
     {
-        m_start_date->Subtract(wxDateSpan::Months(month - 6));
+        m_start_date->Subtract(wxDateSpan::Months(month - wxDateTime::Jul));
     }
     else
     {
-        m_start_date->Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(6 - month));
+        m_start_date->Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
     }
 
     // Correction to 1st July from start date: Today
@@ -79,18 +79,29 @@ void Test_Date_Range::tearDown()
 
 void Test_Date_Range::Last_Year()
 {
-    mmLastYear last_year;
+    int month = m_start_date->GetMonth();
     m_start_date->Add(wxDateSpan::Months(6)).Subtract(wxDateSpan::Year());
-    CPPUNIT_ASSERT_EQUAL(m_start_date->FormatISODate(), last_year.start_date().FormatISODate());
+    if (month > wxDateTime::Jun)
+    {
+        m_start_date->Subtract(wxDateSpan::Year());
+    }
 
+    mmLastYear last_year;
+    CPPUNIT_ASSERT_EQUAL(m_start_date->FormatISODate(), last_year.start_date().FormatISODate());
     m_start_date->Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
     CPPUNIT_ASSERT_EQUAL(m_start_date->FormatISODate(), last_year.end_date().FormatISODate());
 }
 
 void Test_Date_Range::Current_Year()
 {
-    mmCurrentYear current_year;
+    int month = m_start_date->GetMonth();
     m_start_date->Add(wxDateSpan::Months(6));
+    if (month > wxDateTime::Jun)
+    {
+        m_start_date->Subtract(wxDateSpan::Year());
+    }
+
+    mmCurrentYear current_year;
     CPPUNIT_ASSERT_EQUAL(m_start_date->FormatISODate(), current_year.start_date().FormatISODate());
 
     m_start_date->Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
@@ -99,8 +110,14 @@ void Test_Date_Range::Current_Year()
 
 void Test_Date_Range::Current_Year_To_Date()
 {
-    mmCurrentYearToDate current_year_to_date;
+    int month = m_start_date->GetMonth();
     m_start_date->Add(wxDateSpan::Months(6));
+    if (month > wxDateTime::Jun)
+    {
+        m_start_date->Subtract(wxDateSpan::Year());
+    }
+
+    mmCurrentYearToDate current_year_to_date;
     CPPUNIT_ASSERT_EQUAL(m_start_date->FormatISODate(), current_year_to_date.start_date().FormatISODate());
 
     wxDateTime today(wxDateTime::Today());
@@ -109,8 +126,14 @@ void Test_Date_Range::Current_Year_To_Date()
 
 void Test_Date_Range::Last_Financial_Year()
 {
-    mmLastFinancialYear last_financial_year(1, 7);
+    int month = m_start_date->GetMonth();
     m_start_date->Subtract(wxDateSpan::Year());
+    if (month < wxDateTime::Jul)
+    {
+        m_start_date->Subtract(wxDateSpan::Year());
+    }
+
+    mmLastFinancialYear last_financial_year(1, 7);
     CPPUNIT_ASSERT_EQUAL(m_start_date->FormatISODate(), last_financial_year.start_date().FormatISODate());
 
     m_start_date->Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());

@@ -201,6 +201,7 @@ private:
     void OnAccountList(wxCommandEvent& event);
     void OnEditAccount(wxCommandEvent& event);
     void OnDeleteAccount(wxCommandEvent& event);
+    void OnReallocateAccount(wxCommandEvent& event);
 
     void OnOrgCategories(wxCommandEvent& event);
     void OnOrgPayees(wxCommandEvent& event);
@@ -299,6 +300,7 @@ private:
         MENU_PAYEE_RELOCATION,
         MENU_CONVERT_ENC_DB,
         MENU_ONLINE_UPD_CURRENCY_RATE,
+        MENU_ACCOUNT_REALLOCATE,
 
         //
         MENU_TREEPOPUP_NEW,
