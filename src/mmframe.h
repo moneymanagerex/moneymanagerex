@@ -96,8 +96,8 @@ private:
     wxSharedPtr<wxSQLite3Database> m_db;
 
     /* Currently open file name */
-    wxString fileName_;
-    wxString password_;
+    wxString m_filename;
+    wxString m_password;
 
     int gotoAccountID_;
     int gotoTransID_;
@@ -155,7 +155,7 @@ private:
     void createControls();
     void saveSettings();
     void menuEnableItems(bool enable);
-    void updateNavTreeControl(bool expandTermAccounts = false);
+    void updateNavTreeControl();
     void updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting);
     void updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categsOverTime);
     void updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCategs);
