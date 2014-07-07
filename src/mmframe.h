@@ -96,8 +96,8 @@ private:
     wxSharedPtr<wxSQLite3Database> m_db;
 
     /* Currently open file name */
-    wxString fileName_;
-    wxString password_;
+    wxString m_filename;
+    wxString m_password;
 
     int gotoAccountID_;
     int gotoTransID_;
@@ -130,6 +130,7 @@ private:
     /* Homepage panel logic */
 
     void cleanup();
+    void resetNavTreeControl();
     void cleanupNavTreeControl(wxTreeItemId& item);
     wxSizer* cleanupHomePanel(bool new_sizer = true);
     bool openFile(const wxString& fileName, bool openingNew, const wxString &password = "");
@@ -154,7 +155,7 @@ private:
     void createControls();
     void saveSettings();
     void menuEnableItems(bool enable);
-    void updateNavTreeControl(bool expandTermAccounts = false);
+    void updateNavTreeControl();
     void updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting);
     void updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categsOverTime);
     void updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCategs);
@@ -169,6 +170,7 @@ private:
     void OnNew(wxCommandEvent& event);
     void OnOpen(wxCommandEvent& event);
     void OnConvertEncryptedDB(wxCommandEvent& event);
+    void OnChangeEncryptPassword(wxCommandEvent& event);
     void OnSaveAs(wxCommandEvent& event);
     void OnExportToCSV(wxCommandEvent& event);
     void OnExportToQIF(wxCommandEvent& event);
@@ -299,6 +301,7 @@ private:
         MENU_CATEGORY_RELOCATION,
         MENU_PAYEE_RELOCATION,
         MENU_CONVERT_ENC_DB,
+        MENU_CHANGE_ENCRYPT_PASSWORD,
         MENU_ONLINE_UPD_CURRENCY_RATE,
         MENU_ACCOUNT_REALLOCATE,
 
