@@ -136,7 +136,7 @@ const wxString mmex::weblink::BugReport = "http://bugreport.moneymanagerex.org";
 const wxString mmex::weblink::Donate = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";
 const wxString mmex::weblink::Twitter = "https://twitter.com/MoneyManagerEx";
 const wxString mmex::weblink::Facebook = "http://www.facebook.com/pages/Money-Manager-Ex/242286559144586";
-const wxString mmex::weblink::YahooQuotes = "http://download.finance.yahoo.com/d/quotes.csv?s=%s&f=sl1n&e=.csv";
+const wxString mmex::weblink::YahooQuotes = "http://download.finance.yahoo.com/d/quotes.csv?s=%s&f=sl1c4n&e=.csv";
 
 // Will display the stock page when using Looks up the current value
 const wxString mmex::weblink::DefStockUrl = "http://finance.yahoo.com/echarts?s=%s";
