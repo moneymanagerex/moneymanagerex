@@ -139,6 +139,7 @@ EVT_MENU(MENU_NEW, mmGUIFrame::OnNew)
 EVT_MENU(MENU_OPEN, mmGUIFrame::OnOpen)
 EVT_MENU(MENU_SAVE_AS, mmGUIFrame::OnSaveAs)
 EVT_MENU(MENU_CONVERT_ENC_DB, mmGUIFrame::OnConvertEncryptedDB)
+EVT_MENU(MENU_CHANGE_ENCRYPT_PASSWORD, mmGUIFrame::OnChangeEncryptPassword)
 EVT_MENU(MENU_EXPORT_CSV, mmGUIFrame::OnExportToCSV)
 EVT_MENU(MENU_EXPORT_QIF, mmGUIFrame::OnExportToQIF)
 EVT_MENU(MENU_IMPORT_QIF, mmGUIFrame::OnImportQIF)
@@ -1459,6 +1460,13 @@ void mmGUIFrame::createMenu()
     menuItemConvertDB->SetBitmap(wxBitmap(encrypt_db_xpm));
     menuTools->Append(menuItemConvertDB);
 
+    wxMenuItem* menuItemChangeEncryptPassword = new wxMenuItem(menuTools, MENU_CHANGE_ENCRYPT_PASSWORD
+        , _("Change Encrypted &Password")
+        , _("Change the password of an encrypted database"));
+    menuItemChangeEncryptPassword->Enable(false);
+    //menuItemChangeEncryptPassword->SetBitmap(wxBitmap(encrypt_db_xpm));
+    menuTools->Append(menuItemChangeEncryptPassword);
+
     // Help Menu
     wxMenu *menuHelp = new wxMenu;
 
@@ -1710,12 +1718,18 @@ void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
 
 bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxString &password)
 {
+    menuBar_->FindItem(MENU_CHANGE_ENCRYPT_PASSWORD)->Enable(false);
     if (createDataStore(fileName, password, openingNew))
     {
         recentFiles_->AddFileToHistory(fileName);
         menuEnableItems(true);
         menuPrintingEnable(false);
         autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
+
+        if (m_db->IsEncrypted())
+        {
+            menuBar_->FindItem(MENU_CHANGE_ENCRYPT_PASSWORD)->Enable(true);
+        }
     }
     else return false;
 
@@ -1805,6 +1819,32 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
     db.Close();
 
     mmShowErrorMessage(this, _("Converted DB!"), _("MMEX message"));
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
+{
+    wxString password_change_heading = _("MMEX: Encryption Password Change");
+    wxString password_message = wxString::Format(_("New password for database\n\n%s"), m_filename);
+
+    wxString new_password = wxGetPasswordFromUser(password_message, password_change_heading);
+    if (new_password.IsEmpty())
+    {
+        wxMessageBox(_("New password must not be empty."), password_change_heading, wxOK | wxICON_WARNING);
+    }
+    else
+    {
+        wxString confirm_password = wxGetPasswordFromUser(_("Please confirm new password"), password_change_heading);
+        if (!confirm_password.IsEmpty() && (new_password == confirm_password))
+        {
+            m_db->ReKey(confirm_password);
+            wxMessageBox(_("Password change completed."), password_change_heading);
+        }
+        else
+        {
+            wxMessageBox(_("Confirm password failed."), password_change_heading);
+        }
+    }
 }
 //----------------------------------------------------------------------------
 
