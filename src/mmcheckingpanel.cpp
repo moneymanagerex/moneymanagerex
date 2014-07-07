@@ -209,6 +209,7 @@ void mmCheckingPanel::filterTable()
     filteredBalance_ = 0.0;
 
     const auto splits = Model_Splittransaction::instance().get_all();
+    const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
     for (const auto& tran : Model_Account::transaction(this->m_account))
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
@@ -239,8 +240,8 @@ void mmCheckingPanel::filterTable()
         full_tran.AMOUNT = transaction_amount;
         filteredBalance_ += transaction_amount;
 
-		if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), full_tran.TRANSID))
-			full_tran.NOTES = full_tran.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
+        if (attachments.count(full_tran.TRANSID))
+            full_tran.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
 
         this->m_trans.push_back(full_tran);
     }
