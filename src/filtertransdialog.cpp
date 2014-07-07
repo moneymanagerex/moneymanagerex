@@ -693,15 +693,14 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 
 bool mmFilterTransactionsDialog::checkPayee(const Model_Checking::Data &tran)
 {
-    bool ok = Model_Checking::type(tran) != Model_Checking::TRANSFER;
-    if (ok && payeeCheckBox_->IsChecked())
+    if (payeeCheckBox_->IsChecked() && Model_Checking::type(tran) != Model_Checking::TRANSFER)
     {
         const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
         if (payee)
             return cbPayee_->GetValue().Lower() == (payee->PAYEENAME).Lower();
         return false;
     }
-    return ok;
+    return true;
 }
 
 bool mmFilterTransactionsDialog::checkPayee(const Model_Billsdeposits::Data &tran)
