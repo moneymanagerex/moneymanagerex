@@ -49,15 +49,13 @@ public:
         {
             long transID = -1;
             sData.ToLong(&transID);
-            if (transID > 0)
+            const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
+            if (transaction)
             {
-                const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
-                if (transaction)
-                {
-                    int account_id = transaction->ACCOUNTID;
-                    frame->setGotoAccountID(account_id, transID);
-                    const Model_Account::Data* account = Model_Account::instance().get(account_id);
+                const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
+                if (account) {
                     frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+                    frame->setGotoAccountID(transaction->ACCOUNTID, transID);
                     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
                     frame->GetEventHandler()->AddPendingEvent(evt);
                 }
