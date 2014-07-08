@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
+ *          AUTO GENERATED at 2014-07-08 16:16:51.263048.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -176,9 +176,9 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         {
             view_ = view;
         
-            INFOID = q.GetInt("INFOID");
-            INFONAME = q.GetString("INFONAME");
-            INFOVALUE = q.GetString("INFOVALUE");
+            INFOID = q.GetInt(0); // INFOID
+            INFONAME = q.GetString(1); // INFONAME
+            INFOVALUE = q.GetString(2); // INFOVALUE
         }
 
         Data& operator=(const Data& other)

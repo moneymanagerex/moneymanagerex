@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
+ *          AUTO GENERATED at 2014-07-08 16:16:51.263048.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -250,17 +250,17 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         {
             view_ = view;
         
-            CURRENCYID = q.GetInt("CURRENCYID");
-            CURRENCYNAME = q.GetString("CURRENCYNAME");
-            PFX_SYMBOL = q.GetString("PFX_SYMBOL");
-            SFX_SYMBOL = q.GetString("SFX_SYMBOL");
-            DECIMAL_POINT = q.GetString("DECIMAL_POINT");
-            GROUP_SEPARATOR = q.GetString("GROUP_SEPARATOR");
-            UNIT_NAME = q.GetString("UNIT_NAME");
-            CENT_NAME = q.GetString("CENT_NAME");
-            SCALE = q.GetInt("SCALE");
-            BASECONVRATE = q.GetDouble("BASECONVRATE");
-            CURRENCY_SYMBOL = q.GetString("CURRENCY_SYMBOL");
+            CURRENCYID = q.GetInt(0); // CURRENCYID
+            CURRENCYNAME = q.GetString(1); // CURRENCYNAME
+            PFX_SYMBOL = q.GetString(2); // PFX_SYMBOL
+            SFX_SYMBOL = q.GetString(3); // SFX_SYMBOL
+            DECIMAL_POINT = q.GetString(4); // DECIMAL_POINT
+            GROUP_SEPARATOR = q.GetString(5); // GROUP_SEPARATOR
+            UNIT_NAME = q.GetString(6); // UNIT_NAME
+            CENT_NAME = q.GetString(7); // CENT_NAME
+            SCALE = q.GetInt(8); // SCALE
+            BASECONVRATE = q.GetDouble(9); // BASECONVRATE
+            CURRENCY_SYMBOL = q.GetString(10); // CURRENCY_SYMBOL
         }
 
         Data& operator=(const Data& other)

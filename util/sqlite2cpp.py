@@ -279,7 +279,7 @@ struct DB_Table_%s : public DB_Table
         for field in self._fields:
             func = base_data_types_function[field['type']]
             s += '''
-            %s = q.%s("%s");''' % (field['name'], func, field['name'])
+            %s = q.%s(%d); // %s''' % (field['name'], func, field['cid'], field['name'])
 
         s += '''
         }

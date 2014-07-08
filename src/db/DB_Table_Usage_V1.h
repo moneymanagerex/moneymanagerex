@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
+ *          AUTO GENERATED at 2014-07-08 16:16:51.263048.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -176,9 +176,9 @@ struct DB_Table_USAGE_V1 : public DB_Table
         {
             view_ = view;
         
-            USAGEID = q.GetInt("USAGEID");
-            USAGEDATE = q.GetString("USAGEDATE");
-            JSONCONTENT = q.GetString("JSONCONTENT");
+            USAGEID = q.GetInt(0); // USAGEID
+            USAGEDATE = q.GetString(1); // USAGEDATE
+            JSONCONTENT = q.GetString(2); // JSONCONTENT
         }
 
         Data& operator=(const Data& other)

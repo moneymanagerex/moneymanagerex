@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
+ *          AUTO GENERATED at 2014-07-08 16:16:51.263048.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -177,9 +177,9 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         {
             view_ = view;
         
-            SUBCATEGID = q.GetInt("SUBCATEGID");
-            SUBCATEGNAME = q.GetString("SUBCATEGNAME");
-            CATEGID = q.GetInt("CATEGID");
+            SUBCATEGID = q.GetInt(0); // SUBCATEGID
+            SUBCATEGNAME = q.GetString(1); // SUBCATEGNAME
+            CATEGID = q.GetInt(2); // CATEGID
         }
 
         Data& operator=(const Data& other)

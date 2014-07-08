@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
+ *          AUTO GENERATED at 2014-07-08 16:16:51.263048.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -254,17 +254,17 @@ struct DB_Table_STOCK_V1 : public DB_Table
         {
             view_ = view;
         
-            STOCKID = q.GetInt("STOCKID");
-            HELDAT = q.GetInt("HELDAT");
-            PURCHASEDATE = q.GetString("PURCHASEDATE");
-            STOCKNAME = q.GetString("STOCKNAME");
-            SYMBOL = q.GetString("SYMBOL");
-            NUMSHARES = q.GetDouble("NUMSHARES");
-            PURCHASEPRICE = q.GetDouble("PURCHASEPRICE");
-            NOTES = q.GetString("NOTES");
-            CURRENTPRICE = q.GetDouble("CURRENTPRICE");
-            VALUE = q.GetDouble("VALUE");
-            COMMISSION = q.GetDouble("COMMISSION");
+            STOCKID = q.GetInt(0); // STOCKID
+            HELDAT = q.GetInt(1); // HELDAT
+            PURCHASEDATE = q.GetString(2); // PURCHASEDATE
+            STOCKNAME = q.GetString(3); // STOCKNAME
+            SYMBOL = q.GetString(4); // SYMBOL
+            NUMSHARES = q.GetDouble(5); // NUMSHARES
+            PURCHASEPRICE = q.GetDouble(6); // PURCHASEPRICE
+            NOTES = q.GetString(7); // NOTES
+            CURRENTPRICE = q.GetDouble(8); // CURRENTPRICE
+            VALUE = q.GetDouble(9); // VALUE
+            COMMISSION = q.GetDouble(10); // COMMISSION
         }
 
         Data& operator=(const Data& other)
