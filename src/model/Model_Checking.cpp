@@ -143,15 +143,16 @@ Model_Checking::TYPE Model_Checking::type(const Data& r)
 
 Model_Checking::STATUS_ENUM Model_Checking::status(const Data* r)
 {
-    if (r->STATUS.CmpNoCase(all_status()[NONE]) == 0)
-        return NONE;
-    else if (r->STATUS.CmpNoCase(all_status()[RECONCILED]) == 0 || r->STATUS.CmpNoCase("R") == 0)
+    for (const auto & s : STATUS_ENUM_CHOICES)
+        if (r->STATUS.CmpNoCase(s.second) == 0) return s.first;
+
+    if (r->STATUS.CmpNoCase("R") == 0)
         return RECONCILED;
-    else if (r->STATUS.CmpNoCase(all_status()[VOID_]) == 0 || r->STATUS.CmpNoCase("V") == 0)
+    else if (r->STATUS.CmpNoCase("V") == 0)
         return VOID_;
-    else if (r->STATUS.CmpNoCase(all_status()[FOLLOWUP]) == 0 || r->STATUS.CmpNoCase("F") == 0)
+    else if (r->STATUS.CmpNoCase("F") == 0)
         return FOLLOWUP;
-    else if (r->STATUS.CmpNoCase(all_status()[DUPLICATE_]) == 0 || r->STATUS.CmpNoCase("D") == 0)
+    else if (r->STATUS.CmpNoCase("D") == 0)
         return DUPLICATE_;
     else
         return NONE;
