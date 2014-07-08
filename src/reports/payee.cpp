@@ -207,7 +207,8 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
 
         double convRate = acc_conv_rates[trx.ACCOUNTID];
 
-        Model_Splittransaction::Data_Set splits = all_splits.at(trx.id());
+        Model_Splittransaction::Data_Set splits;
+        if (all_splits.count(trx.id())) splits = all_splits.at(trx.id());
         if (splits.empty())
         {
             if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
