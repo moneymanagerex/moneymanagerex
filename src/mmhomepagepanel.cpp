@@ -766,11 +766,9 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
 //* Assets *//
 const wxString mmHomePagePanel::displayAssets(double& tBalance)
 {
-    wxString output = "";
-
     double asset_balance = Model_Asset::instance().balance();
     tBalance += asset_balance;
-    output = "<table class = 'table'><tfoot><tr class = \"total\">";
+    wxString output = "<table class = 'table'><tfoot><tr class = \"total\">";
     output += wxString::Format("<td><a href = \"Assets:\">%s</a></td>", _("Assets"));
     output += wxString::Format("<td class = 'money'>%s</td></tr>", Model_Currency::toCurrency(asset_balance));
     output += "</tfoot></table>";
