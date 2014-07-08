@@ -189,6 +189,7 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
     }
 
     const auto &transactions = Model_Checking::instance().all();
+    const auto all_splits = Model_Splittransaction::instance().get_all();
     for (const auto & trx: transactions)
     {
         if (Model_Checking::status(trx) == Model_Checking::VOID_) continue;
@@ -206,7 +207,7 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
 
         double convRate = acc_conv_rates[trx.ACCOUNTID];
 
-        Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(trx);
+        Model_Splittransaction::Data_Set splits = all_splits.at(trx.id());
         if (splits.empty())
         {
             if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
