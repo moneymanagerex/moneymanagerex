@@ -691,9 +691,10 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
     event.Skip();
 }
 
-bool mmFilterTransactionsDialog::checkPayee(const Model_Checking::Data &tran)
+template<class MODEL, class DATA>
+bool mmFilterTransactionsDialog::checkPayee(const DATA &tran)
 {
-    if (payeeCheckBox_->IsChecked() && Model_Checking::type(tran) != Model_Checking::TRANSFER)
+    if (payeeCheckBox_->IsChecked() && MODEL::type(tran) != MODEL::TRANSFER)
     {
         const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
         if (payee)
@@ -703,24 +704,12 @@ bool mmFilterTransactionsDialog::checkPayee(const Model_Checking::Data &tran)
     return true;
 }
 
-bool mmFilterTransactionsDialog::checkPayee(const Model_Billsdeposits::Data &tran)
-{
-    bool ok = Model_Billsdeposits::type(tran) != Model_Billsdeposits::TRANSFER;
-    if (ok && payeeCheckBox_->IsChecked())
-    {
-        const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
-        if (payee)
-            return cbPayee_->GetValue().Lower() == (payee->PAYEENAME).Lower();
-        return false;
-    }
-    return ok;
-}
-
-bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
+template<class MODEL, class DATA>
+bool mmFilterTransactionsDialog::checkCategory(const DATA& tran)
 {
     if (categoryCheckBox_->IsChecked())
     {
-        if (Model_Checking::splittransaction(tran).empty())
+        if (MODEL::splittransaction(tran).empty())
         {
             if (categID_ != tran.CATEGID) return false;
             if (subcategID_ != tran.SUBCATEGID && !bSimilarCategoryStatus_) return false;
@@ -728,33 +717,7 @@ bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
         else
         {
             bool bMatching = false;
-            for (const auto &split : Model_Checking::splittransaction(tran))
-            {
-                if (split.CATEGID != categID_) continue;
-                if (split.SUBCATEGID != subcategID_ && !bSimilarCategoryStatus_) continue;
-
-                bMatching = true;
-                break;
-            }
-            if (!bMatching) return false;
-        }
-    }
-    return true;
-}
-
-bool mmFilterTransactionsDialog::checkCategory(const Model_Billsdeposits::Data &tran)
-{
-    if (categoryCheckBox_->IsChecked())
-    {
-        if (Model_Billsdeposits::splittransaction(tran).empty())
-        {
-            if (categID_ != tran.CATEGID) return false;
-            if (subcategID_ != tran.SUBCATEGID && !bSimilarCategoryStatus_) return false;
-        }
-        else
-        {
-            bool bMatching = false;
-            for (const auto &split : Model_Billsdeposits::splittransaction(tran))
+            for (const auto &split : MODEL::splittransaction(tran))
             {
                 if (split.CATEGID != categID_) continue;
                 if (split.SUBCATEGID != subcategID_ && !bSimilarCategoryStatus_) continue;
@@ -780,8 +743,8 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, cons
             getFromDateCtrl().GetDateOnly(), getToDateControl().GetDateOnly())
     )
         ok = false;
-    else if (!checkPayee(tran)) ok = false;
-    else if (!checkCategory(tran)) ok = false;
+    else if (!checkPayee<Model_Checking>(tran)) ok = false;
+    else if (!checkCategory<Model_Checking>(tran)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
@@ -800,8 +763,8 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran)
             , getToDateControl().GetDateOnly()
         )
     ) ok = false;
-    else if (!checkPayee(tran)) ok = false;
-    else if (!checkCategory(tran)) ok = false;
+    else if (!checkPayee<Model_Billsdeposits>(tran)) ok = false;
+    else if (!checkCategory<Model_Billsdeposits>(tran)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, true)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;

@@ -96,10 +96,10 @@ private:
     double getAmountMax();
     double getAmountMin();
 
-    bool checkPayee(const Model_Checking::Data &tran);
-    bool checkPayee(const Model_Billsdeposits::Data &tran);
-    bool checkCategory(const Model_Checking::Data &tran);
-    bool checkCategory(const Model_Billsdeposits::Data &tran);
+    template<class MODEL, class DATA = typename MODEL::DATA>
+    bool checkPayee(const DATA &tran);
+    template<class MODEL, class DATA = typename MODEL::Data>
+    bool checkCategory(const DATA& tran);
 
     wxString getStatus() const;
 
