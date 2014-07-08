@@ -45,6 +45,11 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
     try
     {
         db->Open(dbpath, password);
+        // Ensure that an existing mmex database is not encrypted.
+        if ((db->IsOpen()) && (db->TableExists("INFOTABLE_V1")))
+        {
+            db->ExecuteQuery("select * from INFOTABLE_V1;");
+        }
     }
     catch (const wxSQLite3Exception& e)
     {
@@ -66,7 +71,7 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
     s << "\n" << wxString::Format("\n%s\n\n", dbpath);
     if (err == SQLITE_CANTOPEN)
     {
-        s << _("Can't open file") <<"\n" << _("You must specify path to another database file") << "\n";
+        s << _("Can't open file") << "\n" << _("You must specify path to another database file") << "\n";
     }
     else if (err == SQLITE_NOTADB)
     {
@@ -74,18 +79,12 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
     }
     else
     {
-        s << "\n" << _("Error") << "\n" << err << "\n";
+        s << _("Error") << "\n" << err << "\n" << errStr << "\n";
     }
 
-    wxSafeShowMessage(_("Database::open: %s"), s);
+    wxMessageDialog msgDlg(nullptr, s, _("Opening MMEX Database - Error"), wxOK | wxICON_ERROR);
+    msgDlg.ShowModal();
 
-    s << errStr << "\n\n" << _("Continue ?");
-
-    wxMessageDialog msgDlg(nullptr, s, _("Error"), wxYES_NO|wxICON_ERROR);
-    if (msgDlg.ShowModal() == wxID_NO)
-    {
-        exit(err);
-    }
     return db; // return a nullptr database pointer
 }
 
