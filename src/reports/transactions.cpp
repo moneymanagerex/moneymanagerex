@@ -196,7 +196,7 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
         if (transDialog_->getCategoryCheckBox() && full_tran.has_split()) {
             full_tran.CATEGNAME.clear();
             full_tran.TRANSAMOUNT = 0;
-            for (const auto& split : Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(full_tran.TRANSID)))
+            for (const auto& split : full_tran.m_splits)
             {
                 const wxString split_info = wxString::Format("%s = %s | "
                     , Model_Category::full_name(split.CATEGID, split.SUBCATEGID)
