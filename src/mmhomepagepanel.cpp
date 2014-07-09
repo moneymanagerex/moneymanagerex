@@ -223,6 +223,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     //Temporary map
     std::map<std::pair<int /*category*/, int /*sub category*/>, double> stat;
 
+    const auto splits = Model_Splittransaction::instance().get_all();
     const auto &transactions = Model_Checking::instance().find(
             Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
             , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
@@ -232,7 +233,9 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     for (const auto &trx : transactions)
     {
         bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
-        if (Model_Checking::splittransaction(trx).empty())
+        const auto it = splits.find(trx.TRANSID);
+
+        if (it == splits.end())
         {
             std::pair<int, int> category = std::make_pair(trx.CATEGID, trx.SUBCATEGID);
             if (withdrawal)
@@ -242,8 +245,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         }
         else
         {
-            const auto &splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(trx.TRANSID));
-            for (const auto& entry : splits)
+            for (const auto& entry : it->second)
             {
                 std::pair<int, int> category = std::make_pair(entry.CATEGID, entry.SUBCATEGID);
                 double val = entry.SPLITTRANSAMOUNT
