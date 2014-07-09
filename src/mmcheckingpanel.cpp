@@ -1377,12 +1377,12 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
     if (Model_Checking::type(copy) != Model_Checking::TRANSFER) copy->ACCOUNTID = m_cp->m_AccountID;
     int transactionID = Model_Checking::instance().save(copy);
 
-    Model_Splittransaction::Data_Set copy_split;
+    Model_Splittransaction::Cache copy_split;
     for (const auto& split_item : Model_Checking::splittransaction(tran))
     {
         Model_Splittransaction::Data *copy_split_item = Model_Splittransaction::instance().clone(&split_item);
         copy_split_item->TRANSID = transactionID;
-        copy_split.push_back(*copy_split_item);
+        copy_split.push_back(copy_split_item);
     }
     Model_Splittransaction::instance().save(copy_split);
 
