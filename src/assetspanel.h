@@ -47,11 +47,10 @@ private:
     virtual int OnGetItemImage(long item) const;
 
     void OnMouseRightClick(wxMouseEvent& event);
-    void OnMouseLeftClick(wxMouseEvent& event);
+    void OnListLeftClick(wxMouseEvent& event);
     void OnListItemActivated(wxListEvent& event);
     void OnListKeyDown(wxListEvent& event);
     void OnListItemSelected(wxListEvent& event);
-    void OnListItemDeselected(wxListEvent& event);
     void OnColClick(wxListEvent& event);
     void OnEndLabelEdit(wxListEvent& event);
     void OnItemResize(wxListEvent& event);
