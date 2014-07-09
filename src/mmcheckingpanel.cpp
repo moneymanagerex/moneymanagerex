@@ -71,7 +71,6 @@ END_EVENT_TABLE()
 BEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
 
     EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
-    EVT_LIST_ITEM_DESELECTED(wxID_ANY, TransactionListCtrl::OnListItemDeselected)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
     EVT_RIGHT_DOWN(TransactionListCtrl::OnMouseRightClick)
     EVT_LEFT_DOWN(TransactionListCtrl::OnListLeftClick)
@@ -899,6 +898,8 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
 
     initViewTransactionsHeader();
     initFilterSettings();
+    if (m_listCtrlAccount->m_selectedIndex > -1)
+        m_listCtrlAccount->SetItemState(m_listCtrlAccount->m_selectedIndex, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
     m_listCtrlAccount->m_selectedIndex = -1;
     RefreshList();
     showTips();
@@ -1005,15 +1006,6 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void TransactionListCtrl::OnListItemDeselected(wxListEvent& /*event*/)
-{
-//    long deselected = event.GetIndex();
-
-    m_selectedIndex = -1;
-    m_cp->updateExtraTransactionData(m_selectedIndex);
-
-}
-
 void TransactionListCtrl::OnItemResize(wxListEvent& event)
 {
     int i = event.GetColumn();
@@ -1024,16 +1016,20 @@ void TransactionListCtrl::OnItemResize(wxListEvent& event)
 
 void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
 {
-    if (m_selectedIndex > -1)
+    int Flags = wxLIST_HITTEST_ONITEM;
+    long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
+    if (index == -1)
     {
-        if (GetItemState(m_selectedIndex, wxLIST_STATE_SELECTED) == 0)
-            m_cp->updateExtraTransactionData(-1);
+        m_selectedIndex = -1;
+        m_cp->updateExtraTransactionData(m_selectedIndex);
     }
     event.Skip();
 }
 
 void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
+    if (m_selectedIndex > -1)
+        SetItemState(m_selectedIndex, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
     int Flags = wxLIST_HITTEST_ONITEM;
     m_selectedIndex = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
@@ -1042,6 +1038,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         SetItemState(m_selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(m_selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
     }
+    m_cp->updateExtraTransactionData(m_selectedIndex);
 
     bool hide_menu_item = (m_selectedIndex < 0);
     bool type_transfer = false;
