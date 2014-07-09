@@ -146,7 +146,12 @@ public:
     int save(std::vector<DATA>& rows)
     {
         this->Begin();
-        for (auto& r : rows) this->save(&r);
+        for (auto& r : rows) 
+        {
+            if (r.id() < 0) 
+                wxLogError("Incorrect function call to save %s", r.to_json().c_str());
+            this->save(&r);
+        }
         this->Commit();
 
         return rows.size();
