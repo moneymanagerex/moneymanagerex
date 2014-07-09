@@ -46,7 +46,6 @@ enum {
 BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   StocksListCtrl::OnListItemActivated)
     EVT_LIST_ITEM_SELECTED(wxID_ANY,    StocksListCtrl::OnListItemSelected)
-    EVT_LIST_ITEM_DESELECTED(wxID_ANY,  StocksListCtrl::OnListItemDeselected)
     EVT_LIST_COL_END_DRAG(wxID_ANY,     StocksListCtrl::OnItemResize)
     EVT_LIST_COL_CLICK(wxID_ANY,        StocksListCtrl::OnColClick)
     EVT_LIST_KEY_DOWN(wxID_ANY,         StocksListCtrl::OnListKeyDown)
@@ -55,7 +54,8 @@ BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
     EVT_MENU(MENU_TREEPOPUP_DELETE,  StocksListCtrl::OnDeleteStocks)
     EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, StocksListCtrl::OnOrganizeAttachments)
     EVT_RIGHT_DOWN(StocksListCtrl::OnMouseRightClick)
-END_EVENT_TABLE()
+    EVT_LEFT_DOWN(StocksListCtrl::OnListLeftClick)
+    END_EVENT_TABLE()
 
 StocksListCtrl::~StocksListCtrl()
 {
@@ -112,6 +112,8 @@ void StocksListCtrl::OnItemResize(wxListEvent& event)
 
 void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
+    if (m_selected_row > -1)
+        SetItemState(m_selected_row, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
     int Flags = wxLIST_HITTEST_ONITEM;
     m_selected_row = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
@@ -120,6 +122,7 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
         SetItemState(m_selected_row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(m_selected_row, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
     }
+    stock_panel_->OnListItemSelected(m_selected_row);
 
     bool hide_menu_item = (m_selected_row < 0);
 
@@ -135,7 +138,6 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.Enable(MENU_TREEPOPUP_DELETE, !hide_menu_item);
     menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, !hide_menu_item);
 
-    stock_panel_->enableEditDeleteButtons(!hide_menu_item);
     PopupMenu(&menu, event.GetPosition());
 
     this->SetFocus();
@@ -180,10 +182,16 @@ void mmStocksPanel::OnListItemSelected(int selectedIndex)
     enableEditDeleteButtons(selectedIndex >= 0);
 }
 
-void StocksListCtrl::OnListItemDeselected(wxListEvent& /*event*/)
+void StocksListCtrl::OnListLeftClick(wxMouseEvent& event)
 {
-    m_selected_row = -1;
-    stock_panel_->OnListItemSelected(m_selected_row);
+    int Flags = wxLIST_HITTEST_ONITEM;
+    long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
+    if (index == -1)
+    {
+        m_selected_row = -1;
+        stock_panel_->OnListItemSelected(m_selected_row);
+    }
+    event.Skip();
 }
 
 int StocksListCtrl::OnGetItemImage(long item) const

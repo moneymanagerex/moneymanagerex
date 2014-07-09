@@ -85,8 +85,8 @@ END_EVENT_TABLE()
 BEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   billsDepositsListCtrl::OnListItemActivated)
     EVT_RIGHT_DOWN(billsDepositsListCtrl::OnItemRightClick)
-    EVT_LIST_ITEM_SELECTED(wxID_ANY,    billsDepositsListCtrl::OnListItemSelected)
-    EVT_LIST_ITEM_DESELECTED(wxID_ANY,    billsDepositsListCtrl::OnListItemDeselected)
+    EVT_LEFT_DOWN(billsDepositsListCtrl::OnListLeftClick)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY, billsDepositsListCtrl::OnListItemSelected)
     EVT_LIST_COL_END_DRAG(wxID_ANY, billsDepositsListCtrl::OnItemResize)
     EVT_LIST_COL_CLICK(wxID_ANY, billsDepositsListCtrl::OnColClick)
 
@@ -408,6 +408,8 @@ void billsDepositsListCtrl::OnItemResize(wxListEvent& event)
 
 void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
 {
+    if (m_selected_row > -1)
+        SetItemState(m_selected_row, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
     int Flags = wxLIST_HITTEST_ONITEM;
     m_selected_row = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
@@ -416,6 +418,7 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
         SetItemState(m_selected_row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(m_selected_row, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
     }
+    cp_->updateBottomPanelData(m_selected_row);
     bool item_active = (m_selected_row >= 0);
     wxMenu menu;
     menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _("Enter next Occurrence..."));
@@ -434,7 +437,6 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     menu.Enable(MENU_TREEPOPUP_DELETE, item_active);
 	menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, item_active);
 
-    cp_->enableEditDeleteButtons(item_active);
     PopupMenu(&menu, event.GetPosition());
     this->SetFocus();
 }
@@ -532,10 +534,16 @@ void billsDepositsListCtrl::OnListItemSelected(wxListEvent& event)
     cp_->updateBottomPanelData(m_selected_row);
 }
 
-void billsDepositsListCtrl::OnListItemDeselected(wxListEvent& /*event*/)
+void billsDepositsListCtrl::OnListLeftClick(wxMouseEvent& event)
 {
-    m_selected_row = -1;
-    cp_->updateBottomPanelData(m_selected_row);
+    int Flags = wxLIST_HITTEST_ONITEM;
+    long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
+    if (index == -1)
+    {
+        m_selected_row = -1;
+        cp_->updateBottomPanelData(m_selected_row);
+    }
+    event.Skip();
 }
 
 int billsDepositsListCtrl::OnGetItemImage(long item) const
