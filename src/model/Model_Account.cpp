@@ -106,6 +106,8 @@ bool Model_Account::remove(int id)
         Model_Checking::instance().remove(r.TRANSID);
     for (const auto& r: Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(id), Model_Billsdeposits::TOACCOUNTID(id)))
         Model_Billsdeposits::instance().remove(r.BDID);
+    for (const auto& r: Model_Stock::instance().find(Model_Stock::HELDAT(id)))
+        Model_Stock::instance().remove(r.STOCKID);
     this->Commit();
 
     return this->remove(id, db_);
