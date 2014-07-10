@@ -100,6 +100,9 @@ public:
     static wxArrayString all_type();
     static wxArrayString all_status();
 
+private:
+    bool extra_index(); 
+
 public:
     /**
     Initialize the global Model_Checking table on initial call.

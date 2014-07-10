@@ -61,6 +61,22 @@ wxArrayString Model_Checking::all_status()
     return status;
 }
 
+bool Model_Checking::extra_index()
+{
+    try
+    {
+        for (int i = 1; i <= 100; ++i)
+            db_->ExecuteUpdate(wxString::Format("CREATE INDEX IF NOT EXISTS IDX_CHECKINGACCOUNT_ACCOUNT_%d ON CHECKINGACCOUNT_V1 (ACCOUNTID, TOACCOUNTID) WHERE ACCOUNTID = %d OR TOACCOUNTID = %d", i, i, i));
+    }
+    catch(const wxSQLite3Exception &e) 
+    { 
+        wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
+        return false;
+    }
+
+    return true;
+}
+
 /**
 * Initialize the global Model_Checking table.
 * Reset the Model_Checking table or create the table if it does not exist.
@@ -71,6 +87,7 @@ Model_Checking& Model_Checking::instance(wxSQLite3Database* db)
     ins.db_ = db;
     ins.destroy_cache();
     ins.ensure(db);
+    ins.extra_index();
 
     return ins;
 }
