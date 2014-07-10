@@ -12,6 +12,12 @@
 
 
     <set var="BUILDING_LIB" overwrite="0">0</set>
+    
+    <!--
+        Needed to build on Linux:
+        http://ubuntuforums.org/showthread.php?t=1054717
+    -->
+    <set var="LIBS">-ldl</set>
 
     <set var="CPP_DEFAULT_VALUE">
         <if cond="FORMAT=='borland'">
