@@ -87,12 +87,12 @@ wxString htmlWidgetStocks::getHTMLText()
             if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
             if (Model_Account::status(account) != Model_Account::OPEN) continue;
             body += "<tr>";
-            body += wxString::Format("<td><a href='stock:%i'>%s</a></td>\n"
-                , account.ACCOUNTID, account.ACCOUNTNAME);
-            body += wxString::Format("<td class = 'money' sorttable_customkey='%f'>%s</td>\n"
+            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%i'>%s</a></td>\n"
+                , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
+            body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
                 , stockStats[account.ACCOUNTID].first
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
-            body += wxString::Format("<td colspan='2' class = 'money' sorttable_customkey='%f'>%s</td>"
+            body += wxString::Format("<td colspan='2' class='money' sorttable_customkey='%f'>%s</td>"
                 , stockStats[account.ACCOUNTID].second
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].second, &account));
             body += "</tr>";
@@ -100,9 +100,9 @@ wxString htmlWidgetStocks::getHTMLText()
 
         output += body;
         output += "</tbody><tfoot><tr class = 'total'><td>" + _("Total:") + "</td>";
-        output += wxString::Format("<td class ='money'>%s</td>"
+        output += wxString::Format("<td class='money'>%s</td>"
             , Model_Currency::toCurrency(grand_gain_lost_));
-        output += wxString::Format("<td colspan='2' class ='money'>%s</td></tr></tfoot></table>"
+        output += wxString::Format("<td colspan='2' class='money'>%s</td></tr></tfoot></table>"
             , Model_Currency::toCurrency(grand_total_));
         if (body.empty()) output.clear();
     }
@@ -704,16 +704,17 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
             (vAccts_ == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
-            body += wxString::Format("<td><a href=\"acct:%i\">%s</a></td>\n", account.ACCOUNTID, account.ACCOUNTNAME);
-            body += wxString::Format("<td class = 'money' sorttable_customkey='%f'>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
-            body += wxString::Format("<td class = 'money' sorttable_customkey='%f' colspan='2'>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));
+            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='acct:%i'>%s</a></td>\n"
+                , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
+            body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
+            body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2'>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));
             body += "</tr>\n";
         }
     }
     output += body;
     output += "</tbody><tfoot><tr class ='total'><td>" + _("Total:") + "</td>\n";
-    output += "<td class ='money'>" + Model_Currency::toCurrency(tReconciled) + "</td>\n";
-    output += "<td class ='money' colspan='2'>" + Model_Currency::toCurrency(tBalance) + "</td></tr></tfoot></table>\n";
+    output += "<td class='money'>" + Model_Currency::toCurrency(tReconciled) + "</td>\n";
+    output += "<td class='money' colspan='2'>" + Model_Currency::toCurrency(tBalance) + "</td></tr></tfoot></table>\n";
     if (body.empty()) output.clear();
 
     return output;
@@ -772,7 +773,7 @@ const wxString mmHomePagePanel::displayAssets(double& tBalance)
     tBalance += asset_balance;
     wxString output = "<table class = 'table'><tfoot><tr class = \"total\">";
     output += wxString::Format("<td><a href = \"Assets:\">%s</a></td>", _("Assets"));
-    output += wxString::Format("<td class = 'money'>%s</td></tr>", Model_Currency::toCurrency(asset_balance));
+    output += wxString::Format("<td class='money'>%s</td></tr>", Model_Currency::toCurrency(asset_balance));
     output += "</tfoot></table>";
 
     return output;
