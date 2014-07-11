@@ -152,7 +152,7 @@ bool OnInitImpl(mmGUIApp* app)
     mmIniOptions::instance().loadOptions();
 
     /* Was App Maximized? */
-    bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", false);
+    bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", true);
 
     //Get System screen size
 #ifdef _MSC_VER
