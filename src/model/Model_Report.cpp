@@ -23,6 +23,10 @@
 #include "LuaGlue/LuaGlue.h"
 #include "sqlite3.h"
 
+#if defined (__WXMSW__)
+    #include <wx/msw/registry.h>
+#endif
+
 static const wxString HTT_CONTEINER =
 "<!DOCTYPE html>\n"
 "<html>\n"
@@ -307,6 +311,19 @@ void Model_Report::prepareTempFolder()
         }
         wxLogDebug("Coping file: %s to %s", sourceFile, tempFile);
     }
+}
+
+bool Model_Report::WindowsUpdateRegistry()
+{
+#if defined (__WXMSW__)
+    wxRegKey Key(wxRegKey::HKCU, "Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION");
+    if (Key.Create(true) && Key.SetValue("mmex.exe", 9000))
+        return true;
+    else
+        return false;
+#else
+    return true;
+#endif 
 }
 
 void Model_Report::outputReportFile(const wxString& str)

@@ -52,6 +52,7 @@ public:
     bool getColumns(const wxString& sql, std::vector<std::pair<wxString, int> > &colHeaders);
     void getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString>> &sqlTableInfo);
     static void prepareTempFolder();
+    static bool WindowsUpdateRegistry();
     static void outputReportFile(const wxString& str);
 };
 

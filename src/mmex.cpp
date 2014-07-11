@@ -126,6 +126,7 @@ bool OnInitImpl(mmGUIApp* app)
     app->getLocale().Init(wxLANGUAGE_ENGLISH);
 
     Model_Report::prepareTempFolder();
+    Model_Report::WindowsUpdateRegistry();
 
     /* Initialize Image Handlers */
     wxInitAllImageHandlers();
@@ -151,7 +152,7 @@ bool OnInitImpl(mmGUIApp* app)
     mmIniOptions::instance().loadOptions();
 
     /* Was App Maximized? */
-    bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", false);
+    bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", true);
 
     //Get System screen size
 #ifdef _MSC_VER
