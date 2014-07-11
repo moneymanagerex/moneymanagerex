@@ -126,6 +126,7 @@ bool OnInitImpl(mmGUIApp* app)
     app->getLocale().Init(wxLANGUAGE_ENGLISH);
 
     Model_Report::prepareTempFolder();
+    Model_Report::WindowsUpdateRegistry();
 
     /* Initialize Image Handlers */
     wxInitAllImageHandlers();
