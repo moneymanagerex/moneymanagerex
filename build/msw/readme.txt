@@ -17,7 +17,7 @@ WARNING: all files in this directory generated from bakefile's scripts (..\bakef
 	*** Prerequisites ***
 
 
-1. Install wxWidgets 2.9.4 and above in a directory like C:\wxWidgets-2.9.4
+1. Install wxWidgets 3.0.0 and above in a directory like C:\wxWidgets-3.0.1
    and then create an environment variable WXWIN to point to that directory.
 
 2. Follow the instructions given by WxWidgets install on how to build it.
@@ -62,7 +62,7 @@ WARNING: all files in this directory generated from bakefile's scripts (..\bakef
     Use the pre built files in the mmex/build/msw-vc-2012e directory.
     To use this directory, continue...
     
-1. Ensure Prerequisites are complete with a build of wxWidgets 2.9.4 or greater
+1. Ensure Prerequisites are complete with a build of wxWidgets 3.0.1 or greater
    using "Unicode Release" and/or "Unicode Debug" depending on preferences below.
 
 2  Open the project file mmex/build/msw-vc-2012e/mmex.sln.

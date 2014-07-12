@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 1. Required Libraries
 -------------------------------------------------------------------------------
-- wxWidgets >= 2.9.4 (www.wxwidgets.org)
+- wxWidgets >= 3.0.1 (www.wxwidgets.org)
 - GNU GetText
 
 Prepackaged Libraries

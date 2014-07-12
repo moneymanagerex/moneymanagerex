@@ -28,11 +28,6 @@ cd ~/build
 
 tar czf mmex_$MMEX_VERSION.orig.tar.gz  mmex-$MMEX_VERSION
 cd  mmex-$MMEX_VERSION
-cp setup/linux/debian/remove_tests.diff patch.diff
-patch -p0 < patch.diff
-rm patch.diff
-
-./bootstrap
 
 # -s, --single              set package class to single
 # -e, --email <address>     use <address> as the maintainer e-mail address
