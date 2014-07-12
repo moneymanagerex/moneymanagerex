@@ -1,0 +1,130 @@
+diff --git a/build/bakefiles/Bakefiles.bkgen b/build/bakefiles/Bakefiles.bkgen
+index 0642eb0..f16a9b5 100644
+--- a/build/bakefiles/Bakefiles.bkgen
++++ b/build/bakefiles/Bakefiles.bkgen
+@@ -11,7 +11,6 @@
+ 
+     <input>
+         mmex.bkl
+-        mmex_tests.bkl
+         ../../po/*.bkl
+         ../../setup/win/*.bkl
+     </input>
+@@ -28,7 +27,7 @@
+         gnu
+     </add-formats>
+ 
+-    <add-formats files="mmex.bkl,mmex_tests.bkl">
++    <add-formats files="mmex.bkl">
+         msvs2008prj
+     </add-formats>
+ 
+@@ -57,23 +56,6 @@
+         -DMSVS_PLATFORMS=win32,win64
+     </add-flags>
+ 
+-    <add-flags files="mmex_tests.bkl" formats="autoconf">
+-        -o../../tests/Makefile.in
+-    </add-flags>
+-
+-    <add-flags files="mmex_tests.bkl" formats="mingw">
+-        -o../msw_tests/makefile.gcc
+-    </add-flags>
+-
+-    <add-flags files="mmex_tests.bkl" formats="msvc">
+-        -o../msw_tests/makefile.vc
+-    </add-flags>
+-
+-    <add-flags files="mmex_tests.bkl" formats="msvs2008prj">
+-        -o../msw_tests/mmex_tests.sln
+-        -DMSVS_PLATFORMS=win32,win64
+-    </add-flags>
+-
+     <!-- Format specific settings -->
+ 
+     <add-flags formats="autoconf">
+@@ -90,16 +72,8 @@
+         -DOPTIONS_FILE=config.gcc
+     </add-flags>
+ 
+-    <add-flags files="mmex_tests.bkl" formats="mingw">
+-        -DOPTIONS_FILE=../config.gcc  -DWRITE_OPTIONS_FILE=0
+-    </add-flags>
+-
+     <add-flags files="mmex.bkl" formats="msvc">
+         -DOPTIONS_FILE=config.vc
+     </add-flags>
+ 
+-    <add-flags files="mmex_tests.bkl" formats="msvc">
+-        -DOPTIONS_FILE=../config.vc  -DWRITE_OPTIONS_FILE=0
+-    </add-flags>
+-
+ </bakefile-gen>
+diff --git a/build/bakefiles/common.bkl b/build/bakefiles/common.bkl
+index cb86c47..64b9ebf 100644
+--- a/build/bakefiles/common.bkl
++++ b/build/bakefiles/common.bkl
+@@ -161,7 +161,7 @@
+     </template>
+ 
+ 
+-    <!-- common part of mmex and mmex_tests -->
++    <!-- common part of mmex -->
+ 
+     <template id="mmex_common" template="wx,lib_path_x64_hack,compiler_common">
+ 
+diff --git a/build/bakefiles/config.bkl b/build/bakefiles/config.bkl
+index 7f35700..908f9bb 100644
+--- a/build/bakefiles/config.bkl
++++ b/build/bakefiles/config.bkl
+@@ -407,23 +407,6 @@ compiled .lib files and setup.h under the lib/ toplevel directory.
+         </description>
+     </option>
+ 
+-    <!-- unit tests support: -->
+-    <option name="CPPUNIT_CFLAGS">
+-        <default-value></default-value>
+-        <description>
+-Compiler flags needed to compile test suite in tests directory. If you want
+-to run the tests, set it so that the compiler can find CppUnit headers.
+-        </description>
+-    </option>
+-
+-    <option name="CPPUNIT_LIBS">
+-        <default-value></default-value>
+-        <description>
+-Linker flags needed to link test suite in tests directory. If you want
+-to run the tests, include CppUnit library here.
+-        </description>
+-    </option>
+-
+ 
+     <!-- ================================================================== -->
+     <!--                             Autoconf                               -->
+diff --git a/build/bakefiles/mmex.bkl b/build/bakefiles/mmex.bkl
+index 276cdba..6bb827d 100644
+--- a/build/bakefiles/mmex.bkl
++++ b/build/bakefiles/mmex.bkl
+@@ -316,22 +316,4 @@
+ 
+     </subproject>
+ 
+-    <!-- unit tests target (not dependency of 'all'): -->
+-
+-    <subproject id="test">
+-        <target>all</target>
+-        <installable>no</installable>
+-
+-        <dir cond="FORMAT=='autoconf'">$(SRCDIR)/tests</dir>
+-        <dir cond="FORMAT!='autoconf'">tests</dir>
+-
+-    </subproject>
+-
+-    <action id="dmg" cond="PLATFORM_MACOSX=='1'">
+-	<command>touch mmex.app</command>
+-	<command>hdiutil create tmp.dmg -ov -volname "MMEX" -fs HFS+ -srcfolder "mmex.app"</command>
+-	<command>hdiutil convert tmp.dmg -format UDZO -o MMEX.dmg</command>
+-	<command>rm tmp.dmg</command>
+-    </action>
+-
+ </makefile>
