@@ -15,7 +15,7 @@ Prerequisites
    wxWidgets    http://www.wxwidgets.org/downloads/
    Source code  https://github.com/moneymanagerex/moneymanagerex
    
-2. Create environment variables for wxWidgets. (See below)
+2. Create environment variables for wxWidgets. (See table below)
 -----------------------------------------------------------------------------------
 
 Optional software installation:
@@ -74,7 +74,8 @@ Note: wxWidgets must be built using MS VC++ 2013e, to ensure a successful build.
 5. Locate and Run the batch file: update_mmex_build_files.bat
    location: moneymanagerex\setup\win\update_mmex_build_files.bat
 
-   This will allow MS VC++ 2013e IDE to run mmex.exe successfully.
+   The IDE build locations will be updated with the required support files to
+   successfully run MMEX within the MS VC++ 2013e IDE.
 
 Windows Configuration
 =====================
@@ -94,5 +95,66 @@ Advanced system settings        (Located on left navigation panel)
 System Properties       (Dialog) ---> Advanced  (Tab)
 Environment Variables   (Button)
 
+------------------------------------------------------------------------------------
+
+Obtaining the Source Code from https://github.com
+=================================================
+This can be done in 2 ways.
+1. Directly from https://github.com/moneymanagerex/moneymanagerex and using the 
+   Download Zip link
+2. Using tools such as Git for Windows or TortoiseGit.
+   For this you will need to create an account on GitHub if you don't have one.
+   Using this option allows the user to contribute source code changes directly.   
+
+Downloading source code using GitHub and TortoiseGit
+====================================================
+1. Install GitHub for Windows and/or Git
+   Both versions have a Git implementation which is required for TortoiseGit. 
+
+2. Install TortoiseGit.
+   TortoiseGit will need the location of Git if it cannot determine where it is.
+
+3. Create a directory/folder where the MMEX repository will reside.
+
+4. Using Windows Explorer, right-mouse-click on your new folder and
+   use the TortoiseGit Commmand:
+   Git Clone...
+   
+   Dialog box info:
+   URL: https://github.com/moneymanagerex/moneymanagerex.git
+   Directory: This will be automatically provided by TortoiseGit
+   Check Box Select: Recursive
+   Select button: OK
+   
+   This will now download the repository to your machine, including all submodules
+   used by moneymanagerex.
+   
+Using GitHub to submit changes.
+===============================
+For this you will need your active GitHub account.
+
+1. Using the GitHub MoneyManagerEx page, via your Internet Web browser,
+   Select the option: Fork
+
+   This will create a copy of the repository to your own local account.
+  
+2. Change the settings of your local MMEX repository as follows:
+   Use the TortoiseGit Commmand:
+   Settings...
+  
+3. In the dialog navigation tree, select: Git -> Remote
+   You should see a remote location: **origin**
+   Select it to reveal the URL as set up above.
+
+4. Add a new remote location: upstream
+   This will point to the same URL
+   
+5. Change the URL for origin to your username:
+   origin: https://github.com/YOUR_GITHUB_USERNAME/moneymanagerex.git
+   upstream: https://github.com/moneymanagerex/moneymanagerex.git    
+
+Using Git terminology, you will now be able to pull changes from upstream,
+and push the changes to your origin repository on Github. Using the web interface,
+you can now create a pull request. This will submit your proposed changes to MMEX.
 ------------------------------------------------------------------------------------
 End of File.
