@@ -144,12 +144,21 @@ wxDate Model_Checking::TRANSDATE(const Data& r)
 
 Model_Checking::TYPE Model_Checking::type(const Data* r)
 {
-    if (r) {
-        for (const auto& t : TYPE_CHOICES) {
-            if (r->TRANSCODE.CmpNoCase(t.second) == 0)
-                return t.first;
+    if (!r) return WITHDRAWAL;
+    static std::map<wxString, TYPE> cache;
+    const auto it = cache.find(r->TRANSCODE);
+    if (it != cache.end()) return it->second;
+
+    for (const auto& t : TYPE_CHOICES) 
+    {
+        if (r->TRANSCODE.CmpNoCase(t.second) == 0)
+        {
+            cache.insert(std::make_pair(r->TRANSCODE, t.first));
+            return t.first;
         }
     }
+
+    cache.insert(std::make_pair(r->TRANSCODE, WITHDRAWAL));
     return WITHDRAWAL;
 }
 
@@ -160,19 +169,27 @@ Model_Checking::TYPE Model_Checking::type(const Data& r)
 
 Model_Checking::STATUS_ENUM Model_Checking::status(const Data* r)
 {
-    for (const auto & s : STATUS_ENUM_CHOICES)
-        if (r->STATUS.CmpNoCase(s.second) == 0) return s.first;
+    static std::map<wxString, STATUS_ENUM> cache;
+    const auto it = cache.find(r->STATUS);
+    if (it != cache.end()) return it->second;
 
-    if (r->STATUS.CmpNoCase("R") == 0)
-        return RECONCILED;
-    else if (r->STATUS.CmpNoCase("V") == 0)
-        return VOID_;
-    else if (r->STATUS.CmpNoCase("F") == 0)
-        return FOLLOWUP;
-    else if (r->STATUS.CmpNoCase("D") == 0)
-        return DUPLICATE_;
-    else
-        return NONE;
+    for (const auto & s : STATUS_ENUM_CHOICES)
+    {
+        if (r->STATUS.CmpNoCase(s.second) == 0) 
+        {
+            cache.insert(std::make_pair(r->STATUS, s.first));
+            return s.first;
+        }
+    }
+
+    STATUS_ENUM ret = NONE;
+    if (r->STATUS.CmpNoCase("R") == 0) ret = RECONCILED;
+    else if (r->STATUS.CmpNoCase("V") == 0) ret = VOID_;
+    else if (r->STATUS.CmpNoCase("F") == 0) ret = FOLLOWUP;
+    else if (r->STATUS.CmpNoCase("D") == 0) ret = DUPLICATE_;
+    cache.insert(std::make_pair(r->STATUS, ret));
+
+    return ret;
 }
 
 Model_Checking::STATUS_ENUM Model_Checking::status(const Data& r)
