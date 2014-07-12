@@ -10,7 +10,7 @@
 #
 
 # Specify system Architecture  ("i386" or "amd64")
-ARCHITECTURE="i386"
+ARCHITECTURE="amd64"
 
 # Specify the build version of mmex
 MMEX_VERSION="1.1.0"
@@ -28,9 +28,6 @@ cd ~/build
 
 tar czf mmex_$MMEX_VERSION.orig.tar.gz  mmex-$MMEX_VERSION
 cd  mmex-$MMEX_VERSION
-cp setup/linux/debian/remove_tests.diff patch.diff
-patch -p0 < patch.diff
-rm patch.diff
 
 ./bootstrap
 
