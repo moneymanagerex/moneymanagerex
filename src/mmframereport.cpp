@@ -298,9 +298,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
         wxTreeItemId item = navTreeCtrl_->AppendItem(no_group ? reports : group
             , wxGetTranslation(record.REPORTNAME), 8, 8);
-        navTreeCtrl_->SetItemData(item, new mmTreeItemData(
-            wxString::Format("grm:%i/%s/%s", r->REPORTID, r->GROUPNAME, r->REPORTNAME)
-            , new mmGeneralReport(r)));
+        navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
     }
 }
 
