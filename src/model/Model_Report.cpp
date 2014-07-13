@@ -439,3 +439,14 @@ wxString Model_Report::getTemplate(const wxString& sql)
     }
     return wxString::Format(HTT_CONTEINER, header, body);
 }
+
+Model_Report::Data* Model_Report::get(const wxString& name)
+{
+    Data* report = this->get_one(REPORTNAME(name));
+    if (report) return report;
+
+    Data_Set items = this->find(REPORTNAME(name));
+    if (!items.empty()) report = this->get(items[0].id(), this->db_);
+    return report;
+}
+

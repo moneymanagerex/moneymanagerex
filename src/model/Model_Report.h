@@ -24,6 +24,8 @@
 
 class Model_Report : public Model<DB_Table_REPORT_V1>
 {
+public:
+    using Model<DB_Table_REPORT_V1>::get;
 
 public:
     Model_Report(); 
@@ -54,6 +56,9 @@ public:
     static void prepareTempFolder();
     static bool WindowsUpdateRegistry();
     static void outputReportFile(const wxString& str);
+
+public:
+    Data* get(const wxString& name);
 };
 
 #endif // 

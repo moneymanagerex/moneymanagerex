@@ -385,8 +385,8 @@ void mmGeneralReportManager::importReport()
     wxFileName fn(reportFileName);
     const wxString basename = fn.FileName(reportFileName).GetName();
 
-    const auto &reports = Model_Report::instance().find(Model_Report::REPORTNAME(basename));
-    if (!reports.empty())
+    auto report = Model_Report::instance().get(basename);
+    if (report)
     {
         mmShowErrorMessage(this, _("Report with same name exists"), _("General Report Manager"));
         return;
@@ -395,7 +395,6 @@ void mmGeneralReportManager::importReport()
     {
         wxString sql, lua, htt, txt;
         openZipFile(reportFileName, htt, sql, lua, txt);
-        Model_Report::Data *report = 0;
         report = Model_Report::instance().create();
         report->GROUPNAME = m_selectedGroup;
         report->REPORTNAME = basename;
