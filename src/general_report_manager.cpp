@@ -388,14 +388,16 @@ void mmGeneralReportManager::importReport()
     auto report = Model_Report::instance().get(basename);
     if (report)
     {
-        mmShowErrorMessage(this, _("Report with same name exists"), _("General Report Manager"));
+        wxMessageDialog msgDlg(this, wxString::Format("%s %s?", _("Report with same name exists"), _("update")) , _("General Report Manager")
+        , wxYES_NO | wxNO_DEFAULT | wxCANCEL);
+        if (msgDlg.ShowModal() != wxID_YES)
         return;
     }
-    else
+
+    if (!report) report = Model_Report::instance().create();
     {
         wxString sql, lua, htt, txt;
         openZipFile(reportFileName, htt, sql, lua, txt);
-        report = Model_Report::instance().create();
         report->GROUPNAME = m_selectedGroup;
         report->REPORTNAME = basename;
         report->SQLCONTENT = sql;
@@ -712,10 +714,9 @@ void mmGeneralReportManager::newReport(int sample)
         group_name = m_selectedGroup;
     }
 
-    int i = Model_Report::instance().all().size();
-    wxString report_name = _("New Report");
-    while (!Model_Report::instance().find(Model_Report::REPORTNAME(report_name)).empty())
-        report_name = wxString::Format(_("New Report %i"), ++i);
+    wxDateTime now = wxDateTime::Now();
+    wxString report_name = wxString::Format(_("New Report %s"), now.Format("%Y%m%d%H%M%S"));
+
     wxString sqlContent, luaContent, httContent, description;
     switch (sample) {
     case ID_NEW_EMPTY:
