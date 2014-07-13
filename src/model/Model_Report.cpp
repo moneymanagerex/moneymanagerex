@@ -317,7 +317,7 @@ bool Model_Report::WindowsUpdateRegistry()
 {
 #if defined (__WXMSW__)
     wxRegKey Key(wxRegKey::HKCU, "Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION");
-    if (Key.Create(false) && Key.SetValue("mmex.exe", 9000))
+    if (Key.Create(true) && !Key.HasValue("mmex.exe") && Key.SetValue("mmex.exe", 9000))
         return true;
     else
         return false;
