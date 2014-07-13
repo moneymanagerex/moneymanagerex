@@ -121,12 +121,12 @@ bool mmGeneralReportManager::Create(wxWindow* parent
 void mmGeneralReportManager::fillControls()
 {
     viewControls(false);
-    m_treeCtrl->SetEvtHandlerEnabled(false);
+    SetEvtHandlerEnabled(false);
+    m_treeCtrl->Freeze();
     m_treeCtrl->DeleteAllItems();
     m_rootItem = m_treeCtrl->AddRoot(_("Reports"));
     m_selectedItemID = m_rootItem;
     m_treeCtrl->SetItemBold(m_rootItem, true);
-    m_treeCtrl->SetFocus();
     Model_Report::Data_Set records = Model_Report::instance().all();
     std::sort(records.begin(), records.end(), SorterByREPORTNAME());
     std::stable_sort(records.begin(), records.end(), SorterByGROUPNAME());
@@ -150,9 +150,13 @@ void mmGeneralReportManager::fillControls()
         }
     }
     m_treeCtrl->ExpandAll();
-    m_treeCtrl->SetEvtHandlerEnabled(true);
     m_treeCtrl->SelectItem(m_selectedItemID);
-
+    m_treeCtrl->Thaw();
+    SetEvtHandlerEnabled(true);
+    m_treeCtrl->SetFocus();
+    wxTreeEvent evt(wxEVT_TREE_SEL_CHANGED, ID_REPORT_LIST);
+    evt.SetItem(m_selectedItemID);
+    OnSelChanged(evt);
 }
 
 void mmGeneralReportManager::CreateControls()
@@ -563,17 +567,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     int id = iData->get_report_id();
     m_selectedGroup = iData->get_group_name();
     Model_Report::Data * report = Model_Report::instance().get(id);
-    if (!report)
-    {
-        for (size_t n = editors_notebook->GetPageCount() - 1; n >= 1; n--) editors_notebook->DeletePage(n);
-        wxString repList = "<table cellspacing='2' width='90%'>";
-        repList += "<tr bgcolor='#D5D6DE'><td>" + _("Name") + "</td><td>" + _("Description") + "</tr>";
-        for (const auto& rep: Model_Report::instance().find(Model_Report::GROUPNAME(m_selectedGroup)))
-            repList += "<tr><td width='30%' nowrap>" + rep.REPORTNAME + "</td><td>" + rep.DESCRIPTION + "</td></tr>";
-        repList += "</table>";
-        m_outputHTML->SetPage(repList, "");
-    }
-    else
+    if (report)
     {
         m_selectedReportID = report->REPORTID;
         createEditorTab(editors_notebook, ID_DESCRIPTION);
@@ -594,7 +588,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         LuaScriptText->SetLexerLua();
         wxString description = report->DESCRIPTION;
         descriptionText->ChangeValue(description);
-        if (!description.Contains("<!DOCTYPE html"))
+        if (!description.Contains("<!DOCTYPE html") && !description.Contains("</"))
             description.Replace("\n", "<BR>\n");
 
         m_outputHTML->SetPage(description, "");
