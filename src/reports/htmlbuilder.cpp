@@ -53,6 +53,10 @@ static const char HTML[] =
     "</style>\n"
     "</head>\n"
     "<body>\n";
+static const wxString DIV_CONTAINER = "<div class='container'>\n";
+static const wxString DIV_ROW = "<div class='row'>\n";
+static const wxString DIV_COL8 = "<div class='col-xs-2'></div>\n<div class='col-xs-8'>\n";
+static const wxString DIV_END = "</div>";
 static const wxString TABLE_START = "<table class='table'>\n";
 static const wxString SORTTABLE_START = "<table class='sortable table'>\n";
 static const wxString TABLE_END = "</table>\n";
@@ -62,32 +66,26 @@ static const wxString TBODY_START = "<tbody>\n";
 static const wxString TBODY_END = "</tbody>\n";
 static const wxString TFOOT_START = "<tfoot>\n";
 static const wxString TFOOT_END = "</tfoot>\n";
-static const wxString TABLE_ROW = "<tr>\n";
-static const wxString TOTAL_TABLE_ROW = "<tr class='success'>\n";
-static const wxString TABLE_ROW_END = "</tr>\n";
-static const wxString TABLE_CELL = "<td %s>";
-static const wxString MONEY_CELL = "<td class='money'>";
+static const wxString TABLE_ROW = "  <tr>\n";
+static const wxString TOTAL_TABLE_ROW = "  <tr class='success'>\n";
+static const wxString TABLE_ROW_END = "  </tr>\n";
+static const wxString TABLE_CELL = "    <td %s>";
+static const wxString MONEY_CELL = "    <td class='money'>";
 static const wxString TABLE_CELL_END = "</td>\n";
 static const wxString TABLE_CELL_LINK = "<a href=\"%s\">%s</a>\n";
 static const wxString TABLE_HEADER = "<th %s>";
+static const wxString HEADER = "<h%i>%s</h%i>";
 static const wxString TABLE_HEADER_END = "</th>\n";
-static const wxString HEADER = "<font size=\"%i\"><b>%s</b></font><br>\n";
 static const wxString HEADER_ITALIC = "<font size=\"%i\"><i>%s</i></font>\n";
-static const wxString PARAGRAPH = "<p><font size=\"%d\">%s</font></p>\n";
 static const wxString LINK = "<a href=\"%s\">%s</a>\n";
-static const wxString BI = "<b><i>%s</i></b>";
-static const wxString BOLD = "<b>%s</b>";
-static const wxString ITALIC = "<i>%s</i>";
-static const wxString FONT = "<font size=\"%i\" color=\"%s\">";
-static const wxString FONT_END = "</font>";
 static const wxString HOR_LINE = "<hr size=\"%i\">\n";
-static const wxString IMAGE = "<img src=\"%s\" border=\"0\">";
+static const wxString IMAGE = "<img src=\"%s\" border=\"0\">\n";
 static const wxString BR = "<br>\n";
 static const wxString NBSP = "&nbsp;";
 static const wxString CENTER = "<center>\n";
 static const wxString CENTER_END = "</center>\n";
-static const wxString TABLE_CELL_SPAN = "<td colspan=\"%i\" >";
-static const wxString TABLE_CELL_RIGHT = "<td style='text-align: right'>";
+static const wxString TABLE_CELL_SPAN = "    <td colspan=\"%i\" >";
+static const wxString TABLE_CELL_RIGHT = "    <td style='text-align: right'>";
 
 }
 
@@ -123,21 +121,12 @@ void mmHTMLBuilder::init()
 
 void mmHTMLBuilder::addHeader(int level, const wxString& header)
 {
-    int header_font_size = level + font_size_;
-    if (header_font_size > 7) header_font_size = 7;
-    html_+= wxString::Format(tags::HEADER, header_font_size, header);
-}
-
-void mmHTMLBuilder::addHeaderItalic(int level, const wxString& header)
-{
-    int header_font_size = level + font_size_;
-    if (header_font_size > 7) header_font_size = 7;
-    html_+= wxString::Format(tags::HEADER_ITALIC, header_font_size, header);
+    html_+= wxString::Format(tags::HEADER, level, header, level);
 }
 
 void mmHTMLBuilder::addDateNow()
 {
-    addHeaderItalic(1, today_.todays_date);
+    addHeader(3, today_.todays_date);
     addLineBreak();
 }
 
@@ -254,8 +243,12 @@ void mmHTMLBuilder::addTableCell(const wxString& value)
 
 void mmHTMLBuilder::addTableCellMonth(int month)
 {
-    if (month >= 0 && month < 12)
-        this->addTableCell(wxGetTranslation(wxDateTime::GetMonthName((wxDateTime::Month)month)));
+    if (month >= 0 && month < 12) {
+        wxString f = wxString::Format("sorttable_customkey = '%i'", (wxDateTime::Month)month);
+        html_ += wxString::Format(tags::TABLE_CELL, f);
+        html_ += wxGetTranslation(wxDateTime::GetMonthName((wxDateTime::Month)month));
+        this->endTableCell();
+    }
     else
         this->addTableCell("");
 }
@@ -281,7 +274,7 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startYear, const wxDate
     {
         todaysDate << _("Over Time");
     }
-    this->addHeaderItalic(1, todaysDate);
+    this->addHeader(3, todaysDate);
     this->addLineBreak();
     this->addLineBreak();
 }
@@ -297,11 +290,27 @@ void mmHTMLBuilder::addTableRow(const wxString& label, double data)
 void mmHTMLBuilder::end()
 {
     html_+= tags::END;
-};
+}
+void mmHTMLBuilder::addDivContainer()
+{
+    html_ += tags::DIV_CONTAINER;
+}
+void mmHTMLBuilder::addDivRow()
+{
+    html_ += tags::DIV_ROW;
+}
+void mmHTMLBuilder::addDivCol8()
+{
+    html_ += tags::DIV_COL8;
+}
+void mmHTMLBuilder::endDiv()
+{
+    html_ += tags::DIV_END;
+}
 void mmHTMLBuilder::endTable()
 {
     html_+= tags::TABLE_END;
-};
+}
 void mmHTMLBuilder::endThead()
 {
     html_ += tags::THEAD_END;
@@ -328,10 +337,6 @@ void mmHTMLBuilder::endTableRow()
     html_+= tags::TABLE_ROW_END;
 }
 
-void mmHTMLBuilder::addParaText(const wxString& text)
-{
-    html_+= wxString::Format(tags::PARAGRAPH, font_size_, text);
-}
 void mmHTMLBuilder::addText(const wxString& text)
 {
     html_+= text;

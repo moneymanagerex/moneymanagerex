@@ -43,7 +43,6 @@ public:
 
     /** Create an HTML header and returns as a wxString */
     void addHeader(int level, const wxString& header);
-    void addHeaderItalic(int level, const wxString& header);
     void addDateNow();
 
     /** Create an HTML Image tag */
@@ -86,13 +85,16 @@ public:
     void endThead();
     void endTbody();
     void endTfoot();
+    void addDivContainer();
+    void addDivRow();
+    void addDivCol8();
+    void endDiv();
     void startTableRow();
     void startTotalTableRow();
     //void startTableRow(const wxString& custom_color);
     void endTableRow();
 
-    /** Create an HTML paragrapth */
-    void addParaText(const wxString& text);
+    /** append an HTML text */
     void addText(const wxString& text);
 
     /** Create an HTML line break */

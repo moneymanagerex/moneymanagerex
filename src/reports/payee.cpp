@@ -122,9 +122,12 @@ wxString mmReportPayeeExpenses::getHTMLText()
 
     mmHTMLBuilder hb;
     hb.init();
+    hb.addDivContainer();
     hb.addHeader(2, title_);
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
 
+    hb.addDivRow();
+    hb.addDivCol8();
     // Add the graph
     mmGraphPie gg;
     hb.addImage(gg.getOutputFileName());
@@ -160,6 +163,9 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.endTfoot();
 
     hb.endTable();
+    hb.endDiv();
+    hb.endDiv();
+    hb.endDiv();
     hb.end();
 
     gg.init(valueList_);

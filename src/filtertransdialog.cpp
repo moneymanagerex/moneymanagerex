@@ -793,13 +793,13 @@ void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
 void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
 {
     hb.addHorizontalLine();
-    hb.addHeaderItalic(1, _("Filtering Details: "));
+    hb.addHeader(3, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
     wxString filterDetails = to_json();
     filterDetails.Replace(",\n", "<br>");
     filterDetails.replace(0, 1, ' ');
     filterDetails.RemoveLast(1);
-    hb.addParaText(filterDetails);
+    hb.addText(filterDetails);
 }
 
 wxString mmFilterTransactionsDialog::to_json()
