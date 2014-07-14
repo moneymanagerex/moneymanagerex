@@ -96,14 +96,14 @@ wxString mmReportCashFlow::getHTMLText_i()
     hb.addDateNow();
     hb.addLineBreak();
 
-    hb.startCenter();
-
-    hb.startTable("65%");
+    hb.startTable();
+    hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Date"));
     hb.addTableHeaderCell(_("Total"), true);
     hb.addTableHeaderCell(_("Difference"), true);
     hb.endTableRow();
+    hb.endThead();
 
     double tInitialBalance = 0.0;
     std::map<wxDateTime, double> daily_balance;
@@ -338,6 +338,7 @@ wxString mmReportCashFlow::getHTMLText_i()
     bool initialMonths = true;
     int displayYear    = wxDateTime::Now().GetYear();
 
+    hb.startTbody();
     for (int idx = 0; idx < (int)forecastOver12Months.size(); idx++)
     {
 		wxDateTime dtEnd = cashflowreporttype_ == 0 ? wxDateTime::Now().Add(wxDateSpan::Months(idx)): wxDateTime::Now().Add(wxDateSpan::Days(idx));
@@ -368,14 +369,12 @@ wxString mmReportCashFlow::getHTMLText_i()
             displayYear  = dtEnd.GetYear();
         }
 
-        if (addSeparator) hb.addRowSeparator(3);
-
         wxString dtStr ; 
         //dtStr << mmGetNiceShortMonthName(dtEnd.GetMonth()) << " " << dtEnd.GetYear();
         dtStr << mmGetDateForDisplay(dtEnd); 
 
         hb.startTableRow();
-        hb.addTableCell(dtStr, false, true);
+        hb.addTableCell(dtStr);
         hb.addMoneyCell(balance);
         hb.addMoneyCell(diff);
         hb.endTableRow();
@@ -389,12 +388,10 @@ wxString mmReportCashFlow::getHTMLText_i()
             if (dtEnd.IsSameDate(dtLMD))
                 addSeparatorAfter = true;
         }
-        if (addSeparatorAfter) hb.addRowSeparator(3);
     }
+    hb.endTbody();
 
-    hb.addRowSeparator(3);
     hb.endTable();
-    hb.endCenter();
     hb.end();
 
     return hb.getHTMLText();

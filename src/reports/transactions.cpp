@@ -45,36 +45,6 @@ mmReportTransactions::~mmReportTransactions()
 
 wxString mmReportTransactions::getHTMLText()
 {
-    switch (sortColumn_)
-    {
-    case ACCOUNT:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByACCOUNTNAME());
-        break;
-    case PAYEE:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByPAYEENAME());
-        break;
-    case STATUS:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterBySTATUS());
-        break;
-    case CATEGORY:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByCATEGNAME());
-        break;
-    case TYPE:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSCODE());
-        break;
-    case AMOUNT:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSAMOUNT());
-        break;
-    case NUMBER:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSACTIONNUMBER());
-        break;
-    case NOTE:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByNOTES());
-        break;
-    default: // DATE
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
-    }
-
     mmHTMLBuilder hb;
     hb.init();
 
@@ -88,48 +58,24 @@ wxString mmReportTransactions::getHTMLText()
     hb.addDateNow();
     hb.addLineBreak();
 
-    hb.startTable();
-    hb.startTable("95%");
+    hb.startSortTable();
 
+    hb.startThead();
     // Display the data Headings
     hb.startTableRow();
-    if(DATE == sortColumn_)
-        hb.addTableHeaderCell(_("Date"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", DATE), _("Date"));
-    if(ACCOUNT == sortColumn_)
-        hb.addTableHeaderCell(_("Account"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", ACCOUNT), _("Account"));
-    if(PAYEE == sortColumn_)
-        hb.addTableHeaderCell(_("Payee"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE), _("Payee"));
-    if(STATUS == sortColumn_)
-        hb.addTableHeaderCell(_("Status"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", STATUS), _("Status"));
-    if(CATEGORY == sortColumn_)
-        hb.addTableHeaderCell(_("Category"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", CATEGORY), _("Category"));
-    if(TYPE == sortColumn_)
-        hb.addTableHeaderCell(_("Type"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", TYPE), _("Type"));
-    if(AMOUNT == sortColumn_)
-        hb.addTableHeaderCell(_("Amount"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", AMOUNT), _("Amount"), true);
-    if(NUMBER == sortColumn_)
-        hb.addTableHeaderCell(_("Number"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", NUMBER), _("Number"));
-    if(NOTE == sortColumn_)
-        hb.addTableHeaderCell(_("Notes"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", NOTE), _("Notes"));
+    hb.addTableHeaderCell(_("Date"));
+    hb.addTableHeaderCell(_("Account"));
+    hb.addTableHeaderCell(_("Payee"));
+    hb.addTableHeaderCell(_("Status"));
+    hb.addTableHeaderCell(_("Category"));
+    hb.addTableHeaderCell(_("Type"));
+    hb.addTableHeaderCell(_("Number"));
+    hb.addTableHeaderCell(_("Notes"));
+    hb.addTableHeaderCell(_("Amount"), true);
     hb.endTableRow();
+    hb.endThead();
+
+    hb.startTbody();
 
     // Display the data for each row
     double total = 0;
@@ -137,17 +83,13 @@ wxString mmReportTransactions::getHTMLText()
     {
         hb.startTableRow();
         hb.addTableCell(mmGetDateForDisplay(mmGetStorageStringAsDate(transaction.TRANSDATE)));
-
         hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID), transaction.ACCOUNTNAME);
-
         hb.addTableCell(transaction.PAYEENAME);
-
         hb.addTableCell(transaction.STATUS);
-
-        hb.addTableCell(transaction.CATEGNAME, false, true);
-
+        hb.addTableCell(transaction.CATEGNAME);
         hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
-
+        hb.addTableCell(transaction.TRANSACTIONNUMBER);
+        hb.addTableCell(transaction.NOTES);
         // Get the exchange rate for the account
         Model_Account::Data* account = Model_Account::instance().get(transaction.ACCOUNTID);
         if (account)
@@ -166,17 +108,14 @@ wxString mmReportTransactions::getHTMLText()
         else
             hb.addTableCell("");
 
-        hb.addTableCell(transaction.TRANSACTIONNUMBER);
-        hb.addTableCell(transaction.NOTES, false, true);
         hb.endTableRow();
     }
+    hb.endTbody();
 
     // display the total balance.
-    hb.addRowSeparator(9);
-    hb.addTotalRow(_("Total Amount: "), 7, total);
+    hb.addTotalRow(_("Total Amount: "), 9, total);
 
     hb.endTable();
-    hb.endCenter();
 
     transDialog_->getDescription(hb);
 

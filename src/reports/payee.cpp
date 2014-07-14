@@ -124,32 +124,22 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.init();
     hb.addHeader(2, title_);
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
-    hb.startCenter();
 
     // Add the graph
     mmGraphPie gg;
     hb.addImage(gg.getOutputFileName());
 
-    hb.startTable("75%");
+    hb.startSortTable();
+    hb.startThead();
     hb.startTableRow();
-    if(PAYEE_SORT_BY_NAME == sortColumn_)
         hb.addTableHeaderCell(_("Payee"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_NAME), _("Payee"));
-    if(PAYEE_SORT_BY_INCOME == sortColumn_)
         hb.addTableHeaderCell(_("Incomes"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_INCOME), _("Incomes"), true);
-    if(PAYEE_SORT_BY_EXPENSE == sortColumn_)
         hb.addTableHeaderCell(_("Expenses"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_EXPENSE), _("Expenses"), true);
-    if(PAYEE_SORT_BY_DIFF == sortColumn_)
         hb.addTableHeaderCell(_("Difference"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_DIFF), _("Difference"), true);
     hb.endTableRow();
+    hb.endThead();
 
+    hb.startTbody();
     for (const auto& entry : data_)
     {
         hb.startTableRow();
@@ -159,16 +149,17 @@ wxString mmReportPayeeExpenses::getHTMLText()
         hb.addMoneyCell(entry.incomes + entry.expenses);
         hb.endTableRow();
     }
+    hb.endTbody();
 
-    hb.addRowSeparator(4);
+    hb.startTfoot();
     std::vector <double> totals;
     totals.push_back(positiveTotal_);
     totals.push_back(negativeTotal_);
     totals.push_back(positiveTotal_ + negativeTotal_);
     hb.addTotalRow(_("Total:"), 3, totals);
+    hb.endTfoot();
 
     hb.endTable();
-    hb.endCenter();
     hb.end();
 
     gg.init(valueList_);

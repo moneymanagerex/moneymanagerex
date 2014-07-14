@@ -131,10 +131,9 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.init();
     hb.addHeader(2, title_);
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), with_date_);
-    hb.startCenter();
 
     // Add the graph
-    hb.startTable("100%");
+    hb.startTable();
     hb.startTableRow();
     hb.startTableCell("50%");
     mmGraphPie ggtotal;
@@ -151,27 +150,23 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.endTableRow();
     hb.endTable();
 
-    hb.startTable("60%");
+    hb.startTable();
+
+    hb.startThead();
     hb.startTableRow();
-    if(CATEGORY_SORT_BY_NAME == sortColumn_)
-        hb.addTableHeaderCell(_("Category"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", CATEGORY_SORT_BY_NAME), _("Category"));
-
-    if(CATEGORY_SORT_BY_AMOUNT == sortColumn_)
-        hb.addTableHeaderCell(_("Amount"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", CATEGORY_SORT_BY_AMOUNT), _("Amount"), true);
-
+    hb.addTableHeaderCell(_("Category"));
+    hb.addTableHeaderCell(_("Amount"), true);
     hb.addTableHeaderCell(_("Total"), true);
     hb.endTableRow();
+    hb.endThead();
 
+    hb.startTbody();
     int group = 0;
     for (const auto& entry : sortedData)
     {
         group++;
         hb.startTableRow();
-        hb.addTableCell(entry.name, false, true);
+        hb.addTableCell(entry.name);
         hb.addMoneyCell(entry.amount);
         if (group_counter[entry.categs] > 1)
             hb.addTableCell("");
@@ -183,26 +178,27 @@ wxString mmReportCategoryExpenses::getHTMLText()
         {
             group = 0;
             hb.startTableRow();
-            hb.addTableCell(_("Category Total: "), false, true, true, "GRAY");
+            hb.addTableCell(_("Category Total: "));
             hb.addTableCell("");
-            hb.addMoneyCell(group_total[entry.categs], "GRAY");
+            hb.addMoneyCell(group_total[entry.categs]);
             hb.endTableRow();
         }
         if (group_counter[entry.categs] == 1 || group == 0) {
-            hb.addRowSeparator(3);
 			group = 0;
 		}
     }
+    hb.endTbody();
 
+    hb.startTfoot();
     if (type_ == NONE)
     {
         hb.addTotalRow(_("Total Expenses: "), 3, group_total[-1]);
         hb.addTotalRow(_("Total Income: "), 3, group_total[-2]);
     }
     hb.addTotalRow(_("Grand Total: "), 3, group_total[-1] + group_total[-2]);
+    hb.endTfoot();
 
     hb.endTable();
-    hb.endCenter();
     hb.end();
 
     return hb.getHTMLText();
