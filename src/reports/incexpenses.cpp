@@ -45,10 +45,6 @@ wxString mmReportIncomeExpenses::title() const
 
 wxString mmReportIncomeExpenses::getHTMLText()
 {
-    mmHTMLBuilder hb;
-    hb.init();
-    hb.addHeader(2, this->title());
-    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
     wxString headerMsg = _("Accounts: ");
     if (accountArray_ == nullptr)
     {
@@ -71,7 +67,13 @@ wxString mmReportIncomeExpenses::getHTMLText()
             arrIdx++;
         }
     }
-    hb.addHeader(1, headerMsg);
+    mmHTMLBuilder hb;
+    hb.init();
+    hb.addDivContainer();
+    hb.addDivContainer();
+    hb.addHeader(2, this->title());
+    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
+    hb.addHeader(3, headerMsg);
     hb.addLineBreak();
 
     std::pair<double, double> income_expemses_rair;
@@ -95,6 +97,8 @@ wxString mmReportIncomeExpenses::getHTMLText()
             income_expemses_rair.second += transaction.TRANSAMOUNT * convRate;
     }
 
+    hb.addDivRow();
+    hb.addDivCol8();
     hb.startTable();
 
     hb.startTableRow();
@@ -126,6 +130,9 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.endTableRow();
     hb.endTable();
 
+    hb.endDiv();
+    hb.endDiv();
+    hb.endDiv();
     hb.end();
     return hb.getHTMLText();
 }
@@ -148,10 +155,6 @@ mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 wxString mmReportIncomeExpensesMonthly::getHTMLText()
 {
     //FIXME: runing twice
-    mmHTMLBuilder hb;
-    hb.init();
-    hb.addHeader(2, this->title());
-    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
     wxString headerMsg = _("Accounts: ");
     if (accountArray_ == nullptr)
     {
@@ -174,8 +177,16 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             arrIdx++;
         }
     }
-    hb.addHeader(1, headerMsg);
+
+    mmHTMLBuilder hb;
+    hb.init();
+    hb.addDivContainer();
+    hb.addHeader(2, this->title());
+    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
+    hb.addHeader(3, headerMsg);
     hb.addLineBreak();
+    hb.addDivRow();
+    hb.addDivCol8();
 
     hb.addHorizontalLine();
     hb.startSortTable();
@@ -238,6 +249,9 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.addTotalRow(_("Total:"), 5, data);
 
     hb.endTable();
+    hb.endDiv();
+    hb.endDiv();
+    hb.endDiv(); 
     hb.end();
 
     return hb.getHTMLText();

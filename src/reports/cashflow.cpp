@@ -54,9 +54,10 @@ wxString mmReportCashFlow::getHTMLText_i()
 {
     mmHTMLBuilder hb;
     hb.init();
+    hb.addDivContainer();
+
     int years = cashflowreporttype_ == 0 ? 10: 1;// Monthly for 10 years or Daily for 1 year
 
-    
     wxString headerMsg = wxString::Format (_("Cash Flow Forecast for %i Years Ahead"), years);
     hb.addHeader(2, headerMsg );
     headerMsg = _("Accounts: ");
@@ -96,6 +97,8 @@ wxString mmReportCashFlow::getHTMLText_i()
     hb.addDateNow();
     hb.addLineBreak();
 
+    hb.addDivRow();
+    hb.addDivCol8();
     hb.startTable();
     hb.startThead();
     hb.startTableRow();
@@ -392,6 +395,9 @@ wxString mmReportCashFlow::getHTMLText_i()
     hb.endTbody();
 
     hb.endTable();
+    hb.endDiv();
+    hb.endDiv();
+    hb.endDiv();
     hb.end();
 
     return hb.getHTMLText();

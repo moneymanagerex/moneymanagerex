@@ -79,8 +79,8 @@ void mmAboutDialog::InitControls()
     html.Replace("======================================\n", "");
     html.Replace("\n", "<br>");
     html << "<br><hr>" << "\n";
-    hb.addHeader(3, "Money Manager Ex");
-    hb.addParaText(html);
+    hb.addHeader(1, "Money Manager Ex");
+    hb.addText(html);
     hb.addLineBreak();
     hb.addTableCellLink(mmex::weblink::WebSite, _("Website"));
     hb.addLineBreak();
@@ -128,7 +128,7 @@ void mmAboutDialog::InitControls()
 
         if (line.StartsWith("-------------"))
         {
-            hb.addParaText(data[part]);
+            hb.addText(data[part]);
             hb.end();
             data[part] = hb.getHTMLText();
             ++part;

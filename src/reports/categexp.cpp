@@ -129,19 +129,20 @@ wxString mmReportCategoryExpenses::getHTMLText()
 
     mmHTMLBuilder hb;
     hb.init();
+    hb.addDivContainer();
     hb.addHeader(2, title_);
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), with_date_);
 
     // Add the graph
     hb.startTable();
     hb.startTableRow();
-    hb.startTableCell("50%");
+    hb.startTableCell();
     mmGraphPie ggtotal;
     hb.addImage(ggtotal.getOutputFileName());
     ggtotal.init(valueListTotals_);
     ggtotal.Generate(_("Categories"));
     hb.endTableCell();
-    hb.startTableCell("50%");
+    hb.startTableCell();
     mmGraphPie gg;
     hb.addImage(gg.getOutputFileName());
     gg.init(valueList_);
@@ -150,6 +151,8 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.endTableRow();
     hb.endTable();
 
+    hb.addDivRow();
+    hb.addDivCol8();
     hb.startTable();
 
     hb.startThead();
@@ -199,6 +202,9 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.endTfoot();
 
     hb.endTable();
+    hb.endDiv();
+    hb.endDiv();
+    hb.endDiv();
     hb.end();
 
     return hb.getHTMLText();

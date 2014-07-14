@@ -92,6 +92,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
     mmHTMLBuilder hb;
     hb.init();
+    hb.addDivContainer();
     wxString headerStartupMsg;
     if (mmIniOptions::instance().budgetSummaryWithoutCategories_)
         headerStartupMsg = _("Budget Categories for ");
@@ -102,6 +103,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
     double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
 
+    hb.addDivRow();
+    hb.addDivCol8();
     hb.startTable();
     hb.startThead();
     hb.startTableRow();
@@ -210,6 +213,9 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.endTfoot();
 
     hb.endTable();
+    hb.endDiv();
+    hb.endDiv();
+    hb.endDiv();
     hb.end();
     return hb.getHTMLText();
 }
