@@ -45,7 +45,7 @@ private:
 
     enum menu_items
     {
-        MENU_DEFINE_CATEGORY = 0,
+        MENU_DEFINE_CATEGORY = 1,
         NENU_NEW_PAYEE,
         NENU_EDIT_PAYEE,
         MENU_DELETE_PAYEE,
