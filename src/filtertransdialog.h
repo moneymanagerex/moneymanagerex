@@ -43,8 +43,8 @@ public:
 
     virtual int ShowModal();
 
-    bool checkAll(const Model_Checking::Data &tran, const int accountID);
-    bool checkAll(const Model_Billsdeposits::Data &tran);
+    bool checkAll(const Model_Checking::Data &tran, const int accountID, const std::map<int, Model_Splittransaction::Data_Set>& splits);
+    bool checkAll(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& splits);
     void getDescription(mmHTMLBuilder &hb);
     bool somethingSelected();
     void setAccountToolTip(const wxString& tip) const;
@@ -99,7 +99,7 @@ private:
     template<class MODEL, class DATA = typename MODEL::DATA>
     bool checkPayee(const DATA &tran);
     template<class MODEL, class DATA = typename MODEL::Data>
-    bool checkCategory(const DATA& tran);
+    bool checkCategory(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set>& splits);
 
     wxString getStatus() const;
 

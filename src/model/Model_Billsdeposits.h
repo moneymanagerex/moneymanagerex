@@ -29,6 +29,7 @@ class Model_Billsdeposits : public Model<DB_Table_BILLSDEPOSITS_V1>
 {
 public:
     using Model<DB_Table_BILLSDEPOSITS_V1>::remove;
+    typedef Model_Budgetsplittransaction::Data_Set Split_Data_Set;
 
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
