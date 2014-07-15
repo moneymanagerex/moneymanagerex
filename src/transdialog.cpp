@@ -682,7 +682,10 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         cbAccount_->SetValue(account->ACCOUNTNAME);
     }
 
-    textAmount_->Calculate(currency);
+    if (object_in_focus_ == textAmount_->GetId())
+        textAmount_->SelectAll();
+    else
+        textAmount_->Calculate(currency);
 
     if (advancedToTransAmountSet_)
         toTextAmount_->Calculate(currency);
