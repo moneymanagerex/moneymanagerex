@@ -154,7 +154,7 @@ public:
         for (auto& r : rows) 
         {
             if (r.id() < 0) 
-                wxLogError("Incorrect function call to save %s", r.to_json().c_str());
+                wxSafeShowMessage("Incorrect function call to save", r.to_json().c_str());
             this->save(&r);
         }
         this->Commit();

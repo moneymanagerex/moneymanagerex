@@ -390,7 +390,12 @@ struct DB_Table_%s : public DB_Table
             return view_->remove(this, db);
         }
 
-        void destroy() { delete this; }
+        void destroy() 
+        { 
+            if (this->id() < 0)
+                wxSafeShowMessage("unsaved object", this->to_json());
+            delete this; 
+        }
     };
 ''' % (self._table.upper(), self._table.upper())
         s +='''
