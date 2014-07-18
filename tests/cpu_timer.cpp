@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
 #include "cpu_timer.h"
+#include "defined_test_selection.h"
 #include <iostream>
 //----------------------------------------------------------------------------
 
@@ -27,5 +28,7 @@ CpuTimer::CpuTimer(const wxString& msg)
 
 CpuTimer::~CpuTimer()
 {
+#ifdef MMEX_TESTS_DISPLAY_TIMING
     std::cout << wxString::Format("\n    %.5ld ms for: %s", m_start.Time(), m_message.c_str()).char_str();
+#endif
 }
