@@ -55,10 +55,9 @@ Test_DatabaseInitialisation::~Test_DatabaseInitialisation()
     s_instance_count--;
     if (s_instance_count < 1)
     {
-        //wxRemoveFile(m_test_db_filename);
         TestFrameBase base_frame(m_this_instance);
         base_frame.Show();
-        wxMessageBox("Database files created for this test have not been deleted."
+        wxMessageBox("Test database files: test_mmex_db*.* have not been deleted."
             , "Test: DatabaseInitialisation", wxOK | wxICON_WARNING, &base_frame);
     }
 }
@@ -441,203 +440,86 @@ void Test_DatabaseInitialisation::Add_Repeat_Transaction_Entries()
     m_test_db.Commit();
 }
 
-void Test_DatabaseInitialisation::Backup_Database()
+void Test_DatabaseInitialisation::Database_Encryption_Password_test_db()
 {
     wxString encryption_password = "test_db";
-    wxString target_encrypted_backup_filename = "test_mmex_db_encrypted_backup.emb";
-    wxString target_backup_filename = "test_mmex_db_non-encrypted_backup.mmb";
+    wxString target_encrypted_filename = "test_mmex_db_encrypted.emb";
 
-    // Backup the existing database - with and without encryption.
-    m_test_db.Backup(target_encrypted_backup_filename, encryption_password);
-    m_test_db.Backup(target_backup_filename);
+    // Backup the existing database - with encryption.
+    if (m_test_db.IsOpen())
+    {
+        m_test_db.Backup(target_encrypted_filename, encryption_password);
+    }
+    else
+    {
+        CPPUNIT_FAIL("Test Database is not open to back it up.");
+    }
 
     bool file_ok = false;
     wxSQLite3Database protected_test_db;
     if (!protected_test_db.IsOpen())
     {
-        protected_test_db.Open(target_encrypted_backup_filename, encryption_password);
-        if (protected_test_db.IsEncrypted())
+        // Open database using correct password.
+        protected_test_db.Open(target_encrypted_filename, encryption_password);
+        if (protected_test_db.IsOpen() && protected_test_db.IsEncrypted())
         {
-            try
+            try // access to the database
             {
-                // Test the access to the database
+                protected_test_db.TableExists("INFOTABLE_V1");
                 protected_test_db.ExecuteQuery("select * from infotable_v1;");
                 file_ok = true;
             }
-            catch (...) { file_ok = false; }
+            catch (...)
+            {
+                file_ok = false;
+            }
         }
         protected_test_db.Close();
     }
     CPPUNIT_ASSERT(file_ok == true);
 
-    file_ok = false;
+    file_ok = true;
     if (!protected_test_db.IsOpen())
     {
-        protected_test_db.Open(target_encrypted_backup_filename);
-        if (!protected_test_db.IsEncrypted())
+        // Open database using no password should fail.
+        protected_test_db.Open(target_encrypted_filename);
+        if (protected_test_db.IsOpen() && !protected_test_db.IsEncrypted())
         {
-            try
+            try // access to the database
             {
-                // Test the access to the database
+                protected_test_db.TableExists("INFOTABLE_V1");
                 protected_test_db.ExecuteQuery("select * from infotable_v1;");
                 file_ok = true;
             }
-            catch (...) { file_ok = false; }
+            catch (...)
+            {
+                file_ok = false;
+            }
         }
         protected_test_db.Close();
     }
     CPPUNIT_ASSERT(file_ok == false);
 
-
-    file_ok = false;
-    wxSQLite3Database non_protected_test_db;
-    if (!non_protected_test_db.IsOpen())
-    {
-        non_protected_test_db.Open(target_backup_filename);
-        if (!protected_test_db.IsEncrypted())
-        {
-            try
-            {
-                // Test the access to the database
-                non_protected_test_db.ExecuteQuery("select * from infotable_v1;");
-                file_ok = true;
-            }
-            catch (...) { file_ok = false; }
-        }
-        non_protected_test_db.Close();
-    }
-    CPPUNIT_ASSERT(file_ok == true);
-
-    file_ok = false;
-    if (!non_protected_test_db.IsOpen())
-    {
-        non_protected_test_db.Open(target_backup_filename, encryption_password);
-        if (!protected_test_db.IsEncrypted())
-        {
-            try
-            {
-                // Test the access to the database
-                non_protected_test_db.ExecuteQuery("select * from infotable_v1;");
-                file_ok = true;
-            }
-            catch (...) { file_ok = false; }
-        }
-    }
-    CPPUNIT_ASSERT(file_ok == false);
-}
-
-void Test_DatabaseInitialisation::Change_Database_Password()
-{
-    wxString encryption_password = "correct_password";
-    wxString encrypted_database_filename = "test_mmex_db_correct_encrypted_database.emb";
-
-    // Create a backup of the main database and encrypt it
-    // This ensures we have a proper database to work with.
-    m_test_db.Backup(encrypted_database_filename, encryption_password);
-
-    // Open the encrypted database.
-    wxSQLite3Database protected_test_db;
+    file_ok = true;
     if (!protected_test_db.IsOpen())
     {
-        // Open the encrypted database
-        protected_test_db.Open(encrypted_database_filename, encryption_password);
-
-        if (protected_test_db.IsEncrypted())
+        // Open database using wrong password should fail.
+        protected_test_db.Open(target_encrypted_filename, "wrong_password");
+        if (protected_test_db.IsOpen() && protected_test_db.IsEncrypted())
         {
-            bool password_changed = false;
-            
-            // Test incorrect password
-            // Reopen it with a duplicate.
-            wxSQLite3Database protected_test_db_duplicate;
-            try
+            try // access to the database.
             {
-                protected_test_db_duplicate.Open(encrypted_database_filename, "incorrect_password");
-                if (protected_test_db_duplicate.IsOpen())
-                {
-                    protected_test_db_duplicate.ExecuteQuery("select * from infotable_v1;");
-                    protected_test_db_duplicate.ReKey("new_password");
-                    password_changed = true;
-                }
-            }
-            catch (...)
-            { 
-                password_changed = false;
-            }
-
-            protected_test_db_duplicate.Close();
-            CPPUNIT_ASSERT(password_changed == false);
-
-            // Test correct password
-            try
-            {
-                protected_test_db_duplicate.Open(encrypted_database_filename, "correct_password");
-                if (protected_test_db_duplicate.IsOpen())
-                {
-                    protected_test_db_duplicate.ExecuteQuery("select * from infotable_v1;");
-                    protected_test_db_duplicate.ReKey("new_password");
-                    password_changed = true;
-                }
+                protected_test_db.TableExists("INFOTABLE_V1");
+                protected_test_db.ExecuteQuery("select * from infotable_v1;");
+                file_ok = true;
             }
             catch (...)
             {
-                password_changed = false;
+                file_ok = false;
             }
-
-            protected_test_db_duplicate.Close();
-            CPPUNIT_ASSERT(password_changed == true);
         }
         protected_test_db.Close();
-
-        if (!protected_test_db.IsOpen())
-        {
-            protected_test_db.Open(encrypted_database_filename, "new_password");
-            bool password_change_successful;
-            try
-            {
-                protected_test_db.ExecuteQuery("select * from infotable_v1");
-                password_change_successful = true;
-            }
-            catch (...) { password_change_successful = false; }
-            CPPUNIT_ASSERT(password_change_successful == true);
-        }
     }
-
-    // change the password back, because the file is not deleted at the start of the testing.
-    protected_test_db.ReKey(encryption_password);
-    protected_test_db.Close();
-}
-
-void Test_DatabaseInitialisation::Failed_Password_Change_Attempt()
-{
-    wxString encryption_password = "test_db";
-    wxString encrypted_database_filename = "test_mmex_db_encrypted_backup.emb";
-
-    TestFrameBase base_frame(m_this_instance);
-    base_frame.Show();
-    wxPasswordEntryDialog password_entry(&base_frame, "Please provide a new password:", "Test Password Change: " + encryption_password);
-
-    bool old_password_correct = false;
-    if (password_entry.ShowModal() == wxID_OK)
-    {
-        wxString password_from_user = password_entry.GetValue();
-        wxSQLite3Database protected_test_db;
-        try
-        {
-            protected_test_db.Open(encrypted_database_filename, password_from_user);
-            protected_test_db.ExecuteQuery("select * from infotable_v1;");  // Will throw exception if opened incorrectly.
-            old_password_correct = true;
-        }
-        catch (...)
-        {
-            /* Expected errors: Do Nothing */
-        }
-        protected_test_db.Close();
-
-        if (old_password_correct)
-        {
-            wxMessageBox("Correct password supplied.\n\nPassword Change: Will be successful", "Test Password Change", wxOK | wxICON_INFORMATION, &base_frame);
-        }
-        else wxMessageBox("Password Change will cause problems", "Test Password Change", wxOK | wxICON_WARNING, &base_frame);
-    }
+    CPPUNIT_ASSERT(file_ok == false);
 }
 //--------------------------------------------------------------------------

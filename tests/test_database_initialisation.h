@@ -33,9 +33,7 @@ class Test_DatabaseInitialisation : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST(Add_Category_Entries);
     CPPUNIT_TEST(Add_Transaction_Entries);
     CPPUNIT_TEST(Add_Repeat_Transaction_Entries);
-    CPPUNIT_TEST(Backup_Database);
-    CPPUNIT_TEST(Change_Database_Password);
-    CPPUNIT_TEST(Failed_Password_Change_Attempt);
+    CPPUNIT_TEST(Database_Encryption_Password_test_db);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -61,8 +59,6 @@ private:
     void Add_Category_Entries();
     void Add_Transaction_Entries();
     void Add_Repeat_Transaction_Entries();
-    void Backup_Database();
-    void Change_Database_Password();
-    void Failed_Password_Change_Attempt();
+    void Database_Encryption_Password_test_db();
 };
 //----------------------------------------------------------------------------

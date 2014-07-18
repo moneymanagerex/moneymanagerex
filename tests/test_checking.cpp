@@ -162,11 +162,13 @@ void Test_Checking::Add_Transactions()
 
     // Advance or retard the date to the beginning of that financial year.
     int month = starting_date.GetMonth();
-    if (month > 6)
+    if (month > wxDateTime::Jun)
     {
-        starting_date.Subtract(wxDateSpan::Months(month - 6));
+        starting_date.Subtract(wxDateSpan::Months(month - wxDateTime::Jul));
     }
-    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(6 - month));
+    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
+
+    // readjust day to beginning of the month
     starting_date.Subtract(wxDateSpan::Days(starting_date.GetDay() - 1));
 
     // Set all data to memory first, then save to database at end.
