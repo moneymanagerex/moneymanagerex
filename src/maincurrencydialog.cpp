@@ -337,7 +337,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
 {
     wxString base_symbol = "";
     wxString msg = "";
-    wxString site = "http://download.finance.yahoo.com/d/quotes.csv?s=%s&f=sl1n&e=.csv";
+    wxString site = mmex::weblink::YahooQuotes;
     bool ok = true;
 
     Model_Currency::Data * base_currency = Model_Currency::GetBaseCurrency();
@@ -384,12 +384,12 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
         {
             wxString csvline = tkz.GetNextToken();
 
-            wxRegEx pattern("\"(...)...=X\",([^,][0-9.]+),\"([^\"]*)\"");
+            wxRegEx pattern("\"(...)...=X\",([^,][0-9.]+),\"([^\"]*)\",\"([^\"]*)\"");
             if (pattern.Matches(csvline))
             {
                 CurrencySymbol = pattern.GetMatch(csvline, 1);
                 pattern.GetMatch(csvline, 2).ToDouble(&dRate);
-                sName = pattern.GetMatch(csvline, 3);
+                sName = pattern.GetMatch(csvline, 4);
                 currency_data[CurrencySymbol] = std::make_pair(dRate, sName);
             }
         }

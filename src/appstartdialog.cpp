@@ -180,8 +180,7 @@ void mmAppStartDialog::OnButtonAppstartHelpClick( wxCommandEvent& /*event*/ )
 
 void mmAppStartDialog::OnButtonAppstartWebsiteClick( wxCommandEvent& /*event*/ )
 {
-    wxString url = mmex::getProgramWebSite();
-    wxLaunchDefaultBrowser(url);
+    wxLaunchDefaultBrowser(mmex::weblink::WebSite);
 }
 
 void mmAppStartDialog::OnButtonAppstartLastDatabaseClick( wxCommandEvent& /*event*/ )

@@ -62,8 +62,13 @@ public:
 protected:
     static wxDate to_date(const wxString& str_date)
     {
+        static std::map<wxString, wxDate> cache;
+        const auto it = cache.find(str_date);
+        if (it != cache.end()) return it->second;
+
         wxDate date = wxDateTime::Today();
         date.ParseISODate(str_date); // the date in ISO 8601 format "YYYY-MM-DD".
+        cache.insert(std::make_pair(str_date, date));
         return date;
     }
 public:
@@ -138,15 +143,30 @@ public:
         return r->id();
     }
 
-    template<class DATA_SET>
     /**
     * Save all Data record memory instances contained
     * in the record list (Data_Set) to the database.
     */
-    int save(DATA_SET& rows)
+    template<class DATA>
+    int save(std::vector<DATA>& rows)
     {
         this->Begin();
-        for (auto& r : rows) this->save(&r);
+        for (auto& r : rows) 
+        {
+            //if (r.id() < 0) 
+            //    wxSafeShowMessage("Incorrect function call to save", r.to_json().c_str());
+            this->save(&r);
+        }
+        this->Commit();
+
+        return rows.size();
+    }
+
+    template<class DATA>
+    int save(std::vector<DATA*>& rows)
+    {
+        this->Begin();
+        for (auto& r : rows) this->save(r);
         this->Commit();
 
         return rows.size();

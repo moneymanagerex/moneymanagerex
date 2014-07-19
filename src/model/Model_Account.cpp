@@ -107,6 +107,8 @@ bool Model_Account::remove(int id)
         Model_Checking::instance().remove(r.TRANSID);
     for (const auto& r: Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(id), Model_Billsdeposits::TOACCOUNTID(id)))
         Model_Billsdeposits::instance().remove(r.BDID);
+    for (const auto& r: Model_Stock::instance().find(Model_Stock::HELDAT(id)))
+        Model_Stock::instance().remove(r.STOCKID);
     this->Commit();
 
     return this->remove(id, db_);
@@ -265,10 +267,4 @@ bool Model_Account::is_used(const Model_Currency::Data& c)
 int Model_Account::checking_account_num()
 {
     return Model_Account::instance().find(ACCOUNTTYPE(all_type()[CHECKING])).size();
-}
-
-bool Model_Account::hasActiveTermAccount()
-{
-    return !Model_Account::instance().find(ACCOUNTTYPE(all_type()[TERM])
-        , DB_Table_ACCOUNTLIST_V1::STATUS(all_status()[OPEN])).empty(); 
 }

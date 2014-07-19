@@ -41,7 +41,7 @@ private:
 
     enum menu_items
     {
-		MENU_NEW_ATTACHMENT = 0,
+		MENU_NEW_ATTACHMENT = 1,
 		MENU_OPEN_ATTACHMENT,
         MENU_EDIT_ATTACHMENT,
         MENU_DELETE_ATTACHMENT,

@@ -10,23 +10,24 @@
 #
 
 # Specify system Architecture  ("i386" or "amd64")
-ARCHITECTURE="i386"
+ARCHITECTURE="amd64"
 
 # Specify the build version of mmex
-MMEX_VERSION="1.1.0.0"
+MMEX_VERSION="1.1.0"
 
 EMAIL="moneymanagerex@gmail.com"
 
 cd ../../..
 PWD=`pwd`
+mkdir -p ~/build
 rsync -rCh $PWD/ ~/build/mmex-$MMEX_VERSION/
 
+cd ~/build/mmex-$MMEX_VERSION/
+patch -p1 < setup/linux/cleanup.patch
 cd ~/build
+
 tar czf mmex_$MMEX_VERSION.orig.tar.gz  mmex-$MMEX_VERSION
 cd  mmex-$MMEX_VERSION
-cp setup/linux/debian/remove_tests.diff patch.diff
-patch -p0 < patch.diff
-rm patch.diff
 
 ./bootstrap
 
@@ -50,10 +51,10 @@ sed -e 's/<insert long description, indented with spaces>/Money Manager Ex (MMEX
   The design goals are to concentrate on simplicity and\
  user friendliness - something one can use everyday./g' debian/control > debian/control.tmp
 mv debian/control.tmp debian/control 
-sed -e 's%<insert the upstream URL, if relevant>%https://sourceforge.net/projects/moneymanagerex%g' debian/control > debian/control.tmp
+sed -e 's%<insert the upstream URL, if relevant>%http://moneymanagerex.org%g' debian/control > debian/control.tmp
 mv debian/control.tmp debian/control 
 #
-sed -e 's%<url://example.com>%https://sourceforge.net/projects/moneymanagerex%g' debian/copyright > debian/copyright.tmp
+sed -e 's%<url://example.com>%http://moneymanagerex.org%g' debian/copyright > debian/copyright.tmp
 mv debian/copyright.tmp debian/copyright
 
 sed -e 's%<put author.s name and email here>%Madhan Kanagavel%g' debian/copyright > debian/copyright.tmp

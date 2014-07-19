@@ -33,7 +33,6 @@ extern const wxString DATAVERSION;
 
 extern const wxString DEFDATEFORMAT;
 extern const wxString DEFDELIMTER;
-extern const wxString DEFSTOCKURL;
 
 /*
         Uses for titles, reports, etc.
@@ -43,16 +42,26 @@ const wxString getProgramName();
 const wxString getTitleProgramVersion();
 const wxString getProgramVersion();
 const wxString getProgramCopyright();
-const wxString getProgramWebSite();
-const wxString getProgramWebSiteRSS();
-const wxString getProgramUpdateWebSite();
-const wxString getProgramForum();
-const wxString getProgramWiki();
-const wxString getProgramBugReport();
-const wxString getProgramDonateSite();
-const wxString getProgramTwitterSite();
-const wxString getProgramFacebookSite();
 const wxString getProgramDescription();
+
+namespace weblink
+{
+    const wxString addReferralToURL(const wxString& BaseURL, const wxString& CampSource);
+    extern const wxString WebSite;
+    extern const wxString Update;
+    extern const wxString UsageStats;
+    extern const wxString Download;
+    extern const wxString News;
+    extern const wxString NewsRSS;
+    extern const wxString Forum;
+    extern const wxString Wiki;
+    extern const wxString BugReport;
+    extern const wxString Donate;
+    extern const wxString Twitter;
+    extern const wxString Facebook;
+    extern const wxString YahooQuotes;
+    extern const wxString DefStockUrl;
+} // namespace weblink
 } // namespace mmex
 
 extern const wxString VIEW_TRANS_ALL_STR;            
@@ -65,9 +74,9 @@ extern const wxString VIEW_TRANS_LAST_3MONTHS_STR;
 extern const wxString VIEW_TRANS_LAST_12MONTHS_STR;  
 extern const wxString VIEW_TRANS_CURRENT_YEAR_STR;   
 
-extern const wxString  VIEW_ACCOUNTS_ALL_STR;       
-extern const wxString  VIEW_ACCOUNTS_OPEN_STR;      
-extern const wxString  VIEW_ACCOUNTS_FAVORITES_STR; 
+extern const wxString VIEW_ACCOUNTS_ALL_STR;       
+extern const wxString VIEW_ACCOUNTS_OPEN_STR;      
+extern const wxString VIEW_ACCOUNTS_FAVORITES_STR; 
 
 extern const wxString LANGUAGE_PARAMETER;
 extern const wxString INIDB_USE_TRANSACTION_SOUND;

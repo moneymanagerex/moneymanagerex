@@ -66,13 +66,13 @@ private:
     virtual int OnGetItemImage(long item) const;
 
     void OnMouseRightClick(wxMouseEvent& event);
+    void OnListLeftClick(wxMouseEvent& event);
     void OnListItemActivated(wxListEvent& event);
     void OnColClick(wxListEvent& event);
     void OnMarkTransaction(wxCommandEvent& event);
     void OnMarkAllTransactions(wxCommandEvent& event);
     void OnListKeyDown(wxListEvent& event);
     void OnListItemSelected(wxListEvent& event);
-    void OnListItemDeselected(wxListEvent& event);
     void OnItemResize(wxListEvent& event);
 
     mmStocksPanel* stock_panel_;

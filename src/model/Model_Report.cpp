@@ -23,6 +23,10 @@
 #include "LuaGlue/LuaGlue.h"
 #include "sqlite3.h"
 
+#if defined (__WXMSW__)
+    #include <wx/msw/registry.h>
+#endif
+
 static const wxString HTT_CONTEINER =
 "<!DOCTYPE html>\n"
 "<html>\n"
@@ -31,6 +35,7 @@ static const wxString HTT_CONTEINER =
 "    <meta http - equiv = \"Content-Type\" content = \"text/html\" />\n"
 "    <title><TMPL_VAR REPORTNAME></title>\n"
 "    <script src = \"Chart.js\"></script>\n"
+"    <script src = \"sorttable.js\"></script>\n"
 "    <link href = \"master.css\" rel = \"stylesheet\" />\n"
 "</head>\n"
 "<body>\n"
@@ -308,6 +313,19 @@ void Model_Report::prepareTempFolder()
     }
 }
 
+bool Model_Report::WindowsUpdateRegistry()
+{
+#if defined (__WXMSW__)
+    wxRegKey Key(wxRegKey::HKCU, "Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION");
+    if (Key.Create(true) && !Key.HasValue("mmex.exe") && Key.SetValue("mmex.exe", 9000))
+        return true;
+    else
+        return false;
+#else
+    return true;
+#endif 
+}
+
 void Model_Report::outputReportFile(const wxString& str)
 {
     wxFileOutputStream index_output(mmex::getReportIndex());
@@ -421,3 +439,14 @@ wxString Model_Report::getTemplate(const wxString& sql)
     }
     return wxString::Format(HTT_CONTEINER, header, body);
 }
+
+Model_Report::Data* Model_Report::get(const wxString& name)
+{
+    Data* report = this->get_one(REPORTNAME(name));
+    if (report) return report;
+
+    Data_Set items = this->find(REPORTNAME(name));
+    if (!items.empty()) report = this->get(items[0].id(), this->db_);
+    return report;
+}
+

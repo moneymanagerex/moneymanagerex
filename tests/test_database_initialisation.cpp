@@ -206,6 +206,21 @@ void Test_DatabaseInitialisation::Add_Category_Entries()
 
 void Test_DatabaseInitialisation::Add_Stock_Entries(const wxDateTime& starting_date)
 {
+    CpuTimer Start("Transaction Entries");
+    // Set date 3 years ago from today.
+    wxDateTime starting_date(wxDateTime::Today().Subtract(wxDateSpan::Years(3)));
+
+    // Advance or retard the date to the beginning of that financial year.
+    int month = starting_date.GetMonth();
+    if (month > wxDateTime::Jun)
+    {
+        starting_date.Subtract(wxDateSpan::Months(month - wxDateTime::Jul));
+    }
+    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
+
+    // readjust day to beginning of the month
+    starting_date.Subtract(wxDateSpan::Days(starting_date.GetDay() - 1));
+
     wxDateTime trans_date = starting_date;
     // Using Stocks to handle Shares
     int stock_ABC_Account_id = m_dbmodel->Get_account_id("ABC Corporation");

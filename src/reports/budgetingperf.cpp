@@ -38,7 +38,7 @@ void mmReportBudgetingPerformance::DisplayEstimateMonths(mmHTMLBuilder& hb, doub
     for (int yidx = 0; yidx < 12; yidx++)
     {
         // Set the estimate for each month
-        hb.addMoneyCell(estimated / 12, false);
+        hb.addMoneyCell(estimated / 12);
     }
 }
 
@@ -51,11 +51,11 @@ void mmReportBudgetingPerformance::DisplayActualMonths(mmHTMLBuilder& hb, double
 
         if (actualMonthVal < est)
         {
-            hb.addMoneyCell(actualMonthVal, wxString("RED"));
+            hb.addMoneyCell(actualMonthVal);
         }
         else
         {
-            hb.addMoneyCell(actualMonthVal, false);
+            hb.addMoneyCell(actualMonthVal);
         }
     }
 }
@@ -122,9 +122,8 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     hb.addHeader(2, _("Budget Performance for ") + headingStr );
     hb.DisplayDateHeading(yearBegin, yearEnd);
 
-    hb.startCenter();
-
-    hb.startTable();
+    hb.startSortTable();
+    hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Category"));
     hb.addTableHeaderCell(_("Type"));
@@ -133,12 +132,14 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     {
         int m = startMonth + yidx;
         if (m >= 12) m -= 12;
-        hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(wxDateTime::Month(m), wxDateTime::Name_Abbr)));
+        hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(wxDateTime::Month(m), wxDateTime::Name_Abbr)), true);
     }
-    hb.addTableHeaderCell(_("Overall"));
-    hb.addTableHeaderCell(_("%"));
+    hb.addTableHeaderCell(_("Overall"), true);
+    hb.addTableHeaderCell(_("%"), true);
     hb.endTableRow();
+    hb.endThead();
 
+    hb.startTbody();
     for (const Model_Category::Data& category : allCategories)
     {
         // Set the estimated amount for the year
@@ -151,18 +152,18 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         if ((estimated != 0.0) || (actual != 0.0))
         {
             hb.startTableRow();
-            hb.addTableCell(category.CATEGNAME, false, true);
+            hb.addTableCell(category.CATEGNAME);
             hb.addTableCell(_("Estimated"));
 
             DisplayEstimateMonths(hb, estimated);
 
-            hb.addMoneyCell(estimated, false);
+            hb.addMoneyCell(estimated);
             hb.addTableCell("-");
             hb.endTableRow();
 
             // actual stuff
             hb.startTableRow();
-            hb.addTableCell(category.CATEGNAME, false, true);
+            hb.addTableCell(category.CATEGNAME);
             hb.addTableCell(_("Actual"));
 
             DisplayActualMonths(hb, estimated, categoryStats[category.CATEGID][-1]);
@@ -170,11 +171,11 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             // year end
             if(actual < estimated)
             {
-                hb.addMoneyCell(actual, wxString("RED"));
+                hb.addMoneyCell(actual);
             }
             else
             {
-                hb.addMoneyCell(actual, false);
+                hb.addMoneyCell(actual);
             }
 
             if (((estimated < 0) && (actual < 0)) ||
@@ -189,8 +190,6 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             }
 
             hb.endTableRow();
-
-            hb.addRowSeparator(16);
         }
 
         for (const Model_Subcategory::Data& subcategory : allSubcategories)
@@ -206,30 +205,23 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             if ((estimated != 0.0) || (actual != 0.0))
             {
                 hb.startTableRow();
-                hb.addTableCell(category.CATEGNAME + ": " + subcategory.SUBCATEGNAME, false, true);
+                hb.addTableCell(category.CATEGNAME + ": " + subcategory.SUBCATEGNAME);
                 hb.addTableCell(_("Estimated"));
 
                 DisplayEstimateMonths(hb, estimated);
 
-                hb.addMoneyCell(estimated, false);
+                hb.addMoneyCell(estimated);
                 hb.addTableCell("-");
                 hb.endTableRow();
 
                 hb.startTableRow();
-                hb.addTableCell(category.CATEGNAME + ": " + subcategory.SUBCATEGNAME, false, true);
+                hb.addTableCell(category.CATEGNAME + ": " + subcategory.SUBCATEGNAME);
                 hb.addTableCell(_("Actual"));
 
                 DisplayActualMonths(hb, estimated, categoryStats[category.CATEGID][subcategory.SUBCATEGID]);
 
                 // year end
-                if(actual < estimated)
-                {
-                    hb.addMoneyCell(actual, wxString("RED"));
-                }
-                else
-                {
-                    hb.addMoneyCell(actual, false);
-                }
+                hb.addMoneyCell(actual);
 
                 if (((estimated < 0) && (actual < 0)) ||
                     ((estimated > 0) && (actual > 0)))
@@ -243,14 +235,12 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                 }
 
                 hb.endTableRow();
-                hb.addRowSeparator(16);
             }
         }
     }
+    hb.endTbody();
 
     hb.endTable();
-    hb.endCenter();
-
     hb.end();
     return hb.getHTMLText();
 }

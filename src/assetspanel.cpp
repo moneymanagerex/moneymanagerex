@@ -41,12 +41,11 @@
 BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   mmAssetsListCtrl::OnListItemActivated)
     EVT_LIST_ITEM_SELECTED(wxID_ANY,    mmAssetsListCtrl::OnListItemSelected)
-    EVT_LIST_ITEM_DESELECTED(wxID_ANY,  mmAssetsListCtrl::OnListItemDeselected)
     EVT_LIST_COL_END_DRAG(wxID_ANY,     mmAssetsListCtrl::OnItemResize)
     EVT_LIST_COL_CLICK(wxID_ANY,        mmAssetsListCtrl::OnColClick)
     EVT_LIST_END_LABEL_EDIT(wxID_ANY,   mmAssetsListCtrl::OnEndLabelEdit)
     EVT_RIGHT_DOWN(mmAssetsListCtrl::OnMouseRightClick)
-    EVT_LEFT_DOWN(mmAssetsListCtrl::OnMouseLeftClick)
+    EVT_LEFT_DOWN(mmAssetsListCtrl::OnListLeftClick)
 
     EVT_MENU(MENU_TREEPOPUP_NEW,    mmAssetsListCtrl::OnNewAsset)
     EVT_MENU(MENU_TREEPOPUP_EDIT,   mmAssetsListCtrl::OnEditAsset)
@@ -78,6 +77,17 @@ void mmAssetsListCtrl::OnItemResize(wxListEvent& event)
 
 void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
+    if (m_selected_row > -1)
+        SetItemState(m_selected_row, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+    int Flags = wxLIST_HITTEST_ONITEM;
+    m_selected_row = HitTest(wxPoint(event.m_x, event.m_y), Flags);
+
+    if (m_selected_row >= 0)
+    {
+        SetItemState(m_selected_row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        SetItemState(m_selected_row, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+    }
+    m_panel->updateExtraAssetData(m_selected_row);
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW, _("&New Asset"));
     menu.AppendSeparator();
@@ -97,9 +107,15 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
     PopupMenu(&menu, event.GetPosition());
 }
 
-void mmAssetsListCtrl::OnMouseLeftClick(wxMouseEvent& event)
+void mmAssetsListCtrl::OnListLeftClick(wxMouseEvent& event)
 {
-    m_selected_row = -1;
+    int Flags = wxLIST_HITTEST_ONITEM;
+    long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
+    if (index == -1)
+    {
+        m_selected_row = -1;
+        m_panel->updateExtraAssetData(m_selected_row);
+    }
     event.Skip();
 }
 
@@ -111,12 +127,6 @@ wxString mmAssetsListCtrl::OnGetItemText(long item, long column) const
 void mmAssetsListCtrl::OnListItemSelected(wxListEvent& event)
 {
     m_selected_row = event.GetIndex();
-    m_panel->updateExtraAssetData(m_selected_row);
-}
-
-void mmAssetsListCtrl::OnListItemDeselected(wxListEvent& /*event*/)
-{
-    m_selected_row = -1;
     m_panel->updateExtraAssetData(m_selected_row);
 }
 
@@ -463,7 +473,7 @@ void mmAssetsPanel::CreateControls()
 
 	wxBitmapButton* attachment_button_ = new wxBitmapButton(assets_panel
 		, wxID_FILE, wxBitmap(attachment_xpm), wxDefaultPosition,
-		wxSize(itemButton7->GetSize().GetY(), itemButton7->GetSize().GetY()));
+		wxSize(30, itemButton7->GetSize().GetY()));
 	attachment_button_->SetToolTip(_("Open attachments"));
 	itemBoxSizer5->Add(attachment_button_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
 	attachment_button_->Enable(false);

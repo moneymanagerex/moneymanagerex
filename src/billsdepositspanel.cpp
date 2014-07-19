@@ -85,8 +85,8 @@ END_EVENT_TABLE()
 BEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   billsDepositsListCtrl::OnListItemActivated)
     EVT_RIGHT_DOWN(billsDepositsListCtrl::OnItemRightClick)
-    EVT_LIST_ITEM_SELECTED(wxID_ANY,    billsDepositsListCtrl::OnListItemSelected)
-    EVT_LIST_ITEM_DESELECTED(wxID_ANY,    billsDepositsListCtrl::OnListItemDeselected)
+    EVT_LEFT_DOWN(billsDepositsListCtrl::OnListLeftClick)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY, billsDepositsListCtrl::OnListItemSelected)
     EVT_LIST_COL_END_DRAG(wxID_ANY, billsDepositsListCtrl::OnItemResize)
     EVT_LIST_COL_CLICK(wxID_ANY, billsDepositsListCtrl::OnColClick)
 
@@ -292,7 +292,7 @@ void mmBillsDepositsPanel::CreateControls()
 
 	wxBitmapButton* btnAttachment_ = new wxBitmapButton(itemPanel12, wxID_FILE
 		, wxBitmap(attachment_xpm), wxDefaultPosition
-		, wxSize(itemButton8->GetSize().GetY(), itemButton8->GetSize().GetY()));
+		, wxSize(30, itemButton8->GetSize().GetY()));
 	btnAttachment_->SetToolTip(_("Open attachments"));
 	itemBoxSizer5->Add(btnAttachment_, g_flags);
 	btnAttachment_->Enable(false);
@@ -320,11 +320,12 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
     listCtrlAccount_->SetColumn(listCtrlAccount_->m_selected_col, item);
 
     bills_.clear();
+    const auto splits = Model_Budgetsplittransaction::instance().get_all();
 
     for (const Model_Billsdeposits::Data& data
         : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
-        if (transFilterActive_ && !transFilterDlg_->checkAll(data))
+        if (transFilterActive_ && !transFilterDlg_->checkAll(data, splits))
             continue;
 
         Model_Billsdeposits::Full_Data r(data);
@@ -408,6 +409,8 @@ void billsDepositsListCtrl::OnItemResize(wxListEvent& event)
 
 void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
 {
+    if (m_selected_row > -1)
+        SetItemState(m_selected_row, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
     int Flags = wxLIST_HITTEST_ONITEM;
     m_selected_row = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
@@ -416,6 +419,7 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
         SetItemState(m_selected_row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(m_selected_row, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
     }
+    cp_->updateBottomPanelData(m_selected_row);
     bool item_active = (m_selected_row >= 0);
     wxMenu menu;
     menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _("Enter next Occurrence..."));
@@ -434,7 +438,6 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     menu.Enable(MENU_TREEPOPUP_DELETE, item_active);
 	menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, item_active);
 
-    cp_->enableEditDeleteButtons(item_active);
     PopupMenu(&menu, event.GetPosition());
     this->SetFocus();
 }
@@ -532,10 +535,16 @@ void billsDepositsListCtrl::OnListItemSelected(wxListEvent& event)
     cp_->updateBottomPanelData(m_selected_row);
 }
 
-void billsDepositsListCtrl::OnListItemDeselected(wxListEvent& /*event*/)
+void billsDepositsListCtrl::OnListLeftClick(wxMouseEvent& event)
 {
-    m_selected_row = -1;
-    cp_->updateBottomPanelData(m_selected_row);
+    int Flags = wxLIST_HITTEST_ONITEM;
+    long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
+    if (index == -1)
+    {
+        m_selected_row = -1;
+        cp_->updateBottomPanelData(m_selected_row);
+    }
+    event.Skip();
 }
 
 int billsDepositsListCtrl::OnGetItemImage(long item) const

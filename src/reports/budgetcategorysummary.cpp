@@ -92,6 +92,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
     mmHTMLBuilder hb;
     hb.init();
+    hb.addDivContainer();
     wxString headerStartupMsg;
     if (mmIniOptions::instance().budgetSummaryWithoutCategories_)
         headerStartupMsg = _("Budget Categories for ");
@@ -102,9 +103,10 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
     double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
 
-    hb.startCenter();
-
-    hb.startTable("65%");
+    hb.addDivRow();
+    hb.addDivCol8();
+    hb.startTable();
+    hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Category"));
     hb.addTableHeaderCell(_("Sub Category"));
@@ -113,6 +115,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.addTableHeaderCell(_("Estimated"), true);
     hb.addTableHeaderCell(_("Actual"), true);
     hb.endTableRow();
+    hb.endThead();
 
     int categID = -1;
     double catTotalsAmt = 0.0, catTotalsEstimated = 0.0, catTotalsActual = 0.0;
@@ -147,12 +150,12 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         {
             double amt = budgetAmt[category.second.first][category.second.second];
             hb.startTableRow();
-            hb.addTableCell(category.first, false, true);
-            hb.addTableCell(wxEmptyString, false, true);
-            hb.addMoneyCell(amt, false);
-            hb.addTableCell(wxGetTranslation(Model_Budget::all_period()[budgetPeriod[category.second.first][category.second.second]]), false, true);
-            hb.addMoneyCell(estimated, false);
-            hb.addMoneyCell(actual, actualAmountColour(amt, actual, estimated));
+            hb.addTableCell(category.first);
+            hb.addTableCell(wxEmptyString);
+            hb.addMoneyCell(amt);
+            hb.addTableCell(wxGetTranslation(Model_Budget::all_period()[budgetPeriod[category.second.first][category.second.second]]));
+            hb.addMoneyCell(estimated);
+            hb.addMoneyCell(actual);
             hb.endTableRow();
         }
 
@@ -162,22 +165,19 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         if (categID != category.second.first 
             || category.second.second == Model_Category::all_categories().rbegin()->second.second)
         {
-            if (mmIniOptions::instance().budgetSummaryWithoutCategories_) {
-                hb.addRowSeparator(6);
-            }
+
             // Category, Sub Category, Period, Amount, Estimated, Actual
             hb.startTableRow();
             Model_Category::Data *c = Model_Category::instance().get(categID);
             wxString categName = "";
             if (c) categName = c->CATEGNAME;
-            hb.addTableCell(categName, false, true, true, "blue");
-            hb.addTableCell(wxEmptyString, false, true, true, "blue");
-            hb.addTableCell(wxEmptyString, true, false, true, "blue");
-            hb.addTableCell(wxEmptyString, false, true, true, "blue");
-            hb.addMoneyCell(catTotalsEstimated, wxString("blue"));
-            hb.addMoneyCell(catTotalsActual, this->actualAmountColour(catTotalsAmt, catTotalsActual, catTotalsEstimated, true));
+            hb.addTableCell(categName);
+            hb.addTableCell(wxEmptyString);
+            hb.addTableCell(wxEmptyString);
+            hb.addTableCell(wxEmptyString);
+            hb.addMoneyCell(catTotalsEstimated);
+            hb.addMoneyCell(catTotalsActual);
             hb.endTableRow();
-            hb.addRowSeparator(6);
 
             catTotalsAmt = catTotalsEstimated = catTotalsActual = 0.0;
 
@@ -186,36 +186,36 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     }
 
     hb.endTable();
-    hb.endCenter();
 
     double difIncome = estIncome - actIncome;
     double difExpense = estExpenses - actExpenses;
 
     //Summary of Estimated Vs Actual totals
-    hb.addLineBreak();
-    hb.startCenter();
-    hb.startTable("55%");
-    hb.startTableRow();
-    hb.addTableCell(_("Estimated Income:"), true, true);
-    hb.addMoneyCell(estIncome, false);
-    hb.addTableCell(_("Actual Income:"), true, true);
-    hb.addMoneyCell(actIncome, false);
-    hb.addTableCell(_("Difference Income:"), true, true);
-    hb.addMoneyCell(difIncome, false);
+    hb.startTfoot();
+    hb.startTable();
+    hb.startTotalTableRow();
+    hb.addTableCell(_("Estimated Income:"));
+    hb.addMoneyCell(estIncome);
+    hb.addTableCell(_("Actual Income:"));
+    hb.addMoneyCell(actIncome);
+    hb.addTableCell(_("Difference Income:"));
+    hb.addMoneyCell(difIncome);
     hb.endTableRow();
 
-    hb.startTableRow();
-    hb.addTableCell(_("Estimated Expenses:"), true, true);
-    hb.addMoneyCell(estExpenses, false);
-    hb.addTableCell(_("Actual Expenses:"), true, true);
-    hb.addMoneyCell(actExpenses, false);
-    hb.addTableCell(_("Difference Expenses:"), true, true);
-    hb.addMoneyCell(difExpense, false);
+    hb.startTotalTableRow();
+    hb.addTableCell(_("Estimated Expenses:"));
+    hb.addMoneyCell(estExpenses);
+    hb.addTableCell(_("Actual Expenses:"));
+    hb.addMoneyCell(actExpenses);
+    hb.addTableCell(_("Difference Expenses:"));
+    hb.addMoneyCell(difExpense);
     hb.endTableRow();
-    hb.addRowSeparator(6);
+    hb.endTfoot();
+
     hb.endTable();
-    hb.endCenter();
-
+    hb.endDiv();
+    hb.endDiv();
+    hb.endDiv();
     hb.end();
     return hb.getHTMLText();
 }

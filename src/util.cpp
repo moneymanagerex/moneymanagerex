@@ -131,8 +131,9 @@ const wxString mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool forced_sho
     return lang;
 }
 
-const wxString inQuotes(wxString label, wxString& delimiter)
+const wxString inQuotes(const wxString& l, const wxString& delimiter)
 {
+    wxString label = l;
     if (label.Contains(delimiter) || label.Contains("\""))
     {
         label.Replace("\"","\"\"", true);
@@ -242,20 +243,21 @@ const wxString mmGetDateForDisplay(const wxDateTime &dt)
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString &sDateMask)
 {
     wxString mask = sDateMask;
+    const wxDateTime today = date;
     mask.Replace("%Y%m%d", "%Y %m %d");
     if (date_formats_regex().count(mask) == 0) return false;
 
     const wxString regex = date_formats_regex().at(mask);
     wxRegEx pattern(regex);
-    //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
     //skip dot if present in pattern but not in date string 
     const wxString separator = mask.Mid(2,1);
+    date.ParseFormat(sDate, mask, today);
     if (pattern.Matches(sDate) && sDate.Contains(separator))
-    {
-        date.ParseFormat(sDate, mask, wxDateTime::Today());
-        return date.IsValid();
+        return true;
+    else {
+        //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
+        return false;
     }
-    return false;
 }
 
 const wxDateTime mmGetStorageStringAsDate(const wxString& str)
@@ -330,8 +332,8 @@ const std::map<wxString,wxString> date_formats_map()
 
 const std::map<wxString,wxString> date_formats_regex()
 {
-    const wxString dd = "(((0[1-9])|([1-2][0-9])|(3[0-1]))|([1-9]))";
-    const wxString mm = "(((0[1-9])|(1[0-2]))|([1-9]))";
+    const wxString dd = "((([0 ][1-9])|([1-2][0-9])|(3[0-1]))|([1-9]))";
+    const wxString mm = "((([0 ][1-9])|(1[0-2]))|([1-9]))";
     const wxString yy = "([0-9]{2})";
     const wxString yyyy = "(((19)|([2]([0]{1})))([0-9]{2}))";
     std::map<wxString, wxString> date_regex;
@@ -467,7 +469,7 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
     NewVersion = "error";
 
     wxString page;
-    int err_code = site_content(mmex::getProgramUpdateWebSite(), page);
+    int err_code = site_content(mmex::weblink::Update, page);
     if (err_code != wxURL_NOERR || page.Find("Unstable") == wxNOT_FOUND)
     {
         if (bSilent)
@@ -583,7 +585,6 @@ void checkUpdates(const bool& bSilent)
 
     if (IsUpdateAvailable(bSilent, NewVersion) && NewVersion != "error")
     {
-        wxString urlDownload = mmex::getProgramWebSite() + "/download";
         wxString msgStr = wxString() << _("New version of MMEX is available") << "\n\n"
             << _("Your current version is: ") << mmex::getProgramVersion() << "\n"
             << _("New version is: ") << NewVersion << "\n\n"
@@ -591,7 +592,7 @@ void checkUpdates(const bool& bSilent)
         int DowloadResponse = wxMessageBox(msgStr,
             _("MMEX Update Check"), wxICON_EXCLAMATION | wxYES | wxNO);
         if (DowloadResponse == wxYES)
-            wxLaunchDefaultBrowser(urlDownload);
+            wxLaunchDefaultBrowser(mmex::weblink::Download);
     }
     else if (!bSilent && NewVersion != "error")
     {
