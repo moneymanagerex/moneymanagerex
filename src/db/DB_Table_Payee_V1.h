@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
+ *          AUTO GENERATED at 2014-07-19 16:51:27.822000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -187,10 +187,10 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         {
             view_ = view;
         
-            PAYEEID = q.GetInt("PAYEEID");
-            PAYEENAME = q.GetString("PAYEENAME");
-            CATEGID = q.GetInt("CATEGID");
-            SUBCATEGID = q.GetInt("SUBCATEGID");
+            PAYEEID = q.GetInt(0); // PAYEEID
+            PAYEENAME = q.GetString(1); // PAYEENAME
+            CATEGID = q.GetInt(2); // CATEGID
+            SUBCATEGID = q.GetInt(3); // SUBCATEGID
         }
 
         Data& operator=(const Data& other)
@@ -283,7 +283,12 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             return view_->remove(this, db);
         }
 
-        void destroy() { delete this; }
+        void destroy()
+        {
+            //if (this->id() < 0)
+            //    wxSafeShowMessage("unsaved object", this->to_json());
+            delete this;
+        }
     };
 
     enum
