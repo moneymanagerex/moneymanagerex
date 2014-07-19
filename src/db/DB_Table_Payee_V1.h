@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-07-17 08:09:16.462003.
+ *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -283,11 +283,11 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             return view_->remove(this, db);
         }
 
-        void destroy() 
-        { 
-            if (this->id() < 0)
-                wxSafeShowMessage("unsaved object", this->to_json());
-            delete this; 
+        void destroy()
+        {
+            //if (this->id() < 0)
+            //    wxSafeShowMessage("unsaved object", this->to_json());
+            delete this;
         }
     };
 
