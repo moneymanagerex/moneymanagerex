@@ -157,8 +157,8 @@ void Test_Checking::Set_UP_Database_conditions()
 void Test_Checking::Add_Transactions()
 {
     CpuTimer Start("Add_Transactions");
-    // Set date 3 years ago from today.
-    wxDateTime starting_date(wxDateTime::Today().Subtract(wxDateSpan::Years(3)));
+    // Set date 1 years ago from today.
+    wxDateTime starting_date(wxDateTime::Today().Subtract(wxDateSpan::Years(1)));
 
     // Advance or retard the date to the beginning of that financial year.
     int month = starting_date.GetMonth();

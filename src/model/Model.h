@@ -153,8 +153,8 @@ public:
         this->Begin();
         for (auto& r : rows) 
         {
-            if (r.id() < 0) 
-                wxSafeShowMessage("Incorrect function call to save", r.to_json().c_str());
+            //if (r.id() < 0) 
+            //    wxSafeShowMessage("Incorrect function call to save", r.to_json().c_str());
             this->save(&r);
         }
         this->Commit();
