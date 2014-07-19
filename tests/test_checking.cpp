@@ -26,6 +26,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "test_checking.h"
 #include "transdialog.h"
 #include "mmcheckingpanel.h"
+#include "model/Model_Category.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -111,18 +112,8 @@ void Test_Checking::Set_UP_Database_conditions()
     m_dbmodel->Add_Investment_Account("Acme Corporation", 0, "Shares");
     m_dbmodel->Add_Term_Account("Insurance Policies");
 
-    // Add Payees
-    m_dbmodel->Add_Payee("Supermarket", "Food", "Groceries");
-    m_dbmodel->Add_Payee("Aldi", "Food", "Groceries");
-    m_dbmodel->Add_Payee("Coles", "Food", "Groceries");
-    m_dbmodel->Add_Payee("Woolworths", "Food", "Groceries");
-    m_dbmodel->Add_Payee("Peter", "Income", "Salary");
-    m_dbmodel->Add_Payee("Mary", "Income", "Salary");
-    m_dbmodel->Add_Payee("Bank - NAB");
-    m_dbmodel->Add_Payee("Bank - ANZ");
-    m_dbmodel->Add_Payee("Government Authorities");
-    m_dbmodel->Add_Payee("Utility Provider");
-    m_dbmodel->Add_Payee("Cash - Miscellaneous");
+    int initial_category_list_size = Model_Category::instance().all().size();
+    int initial_subcategory_list_size = Model_Subcategory::instance().all().size();
 
     // Category structure: "Family Home"
     int cat_id = m_dbmodel->Add_Category("Home");
@@ -132,7 +123,7 @@ void Test_Checking::Set_UP_Database_conditions()
     m_dbmodel->Add_Subcategory(cat_id, "Gas");
     m_dbmodel->Add_Subcategory(cat_id, "Phone/Internet");
     m_dbmodel->Add_Subcategory(cat_id, "Insurance");
-    m_dbmodel->Add_Subcategory(cat_id, "Loan Repayments");
+    m_dbmodel->Add_Subcategory(cat_id, "Loan Repayment");
     m_dbmodel->Add_Subcategory(cat_id, "Loan Offset");
     m_dbmodel->Add_Subcategory(cat_id, "Loan Interest");
 
@@ -143,7 +134,7 @@ void Test_Checking::Set_UP_Database_conditions()
 
     // Category structure: "Personal Loan"
     cat_id = m_dbmodel->Add_Category("Personal Loan");
-    m_dbmodel->Add_Subcategory(cat_id, "Repayments");
+    m_dbmodel->Add_Subcategory(cat_id, "Repayment");
     m_dbmodel->Add_Subcategory(cat_id, "Offset");
     m_dbmodel->Add_Subcategory(cat_id, "Interest");
 
@@ -151,22 +142,49 @@ void Test_Checking::Set_UP_Database_conditions()
     m_dbmodel->Add_Subcategory(cat_id, "Tax");
     m_dbmodel->Add_Subcategory(cat_id, "Bank Interest");
 
+    // Add Payees
+    m_dbmodel->Add_Payee("Supermarket", "Food", "Groceries");
+    m_dbmodel->Add_Payee("Aldi", "Food", "Groceries");
+    m_dbmodel->Add_Payee("Coles", "Food", "Groceries");
+    m_dbmodel->Add_Payee("Woolworths", "Food", "Groceries");
+    m_dbmodel->Add_Payee("Peter", "Income", "Salary");
+    m_dbmodel->Add_Payee("Mary", "Income", "Salary");
+    m_dbmodel->Add_Payee("Bank - NAB", "Income", "Bank Interest");
+    m_dbmodel->Add_Payee("Bank - ANZ", "Personal Loan", "Repayment");
+    m_dbmodel->Add_Payee("Government Authorities", "Home", "General Rates");
+    m_dbmodel->Add_Payee("Utility Provider", "Home", "Electricity");
+    m_dbmodel->Add_Payee("Cash - Miscellaneous");
+
     m_test_db.Commit();
+
+    Model_Account::Data_Set account_list = Model_Account::instance().all();
+    CPPUNIT_ASSERT(account_list.size() == 11);
+
+    Model_Category::Data_Set category_list = Model_Category::instance().all();
+    CPPUNIT_ASSERT(category_list.size() == initial_category_list_size + 3);
+
+    Model_Subcategory::Data_Set subcategory_list = Model_Subcategory::instance().all();
+    CPPUNIT_ASSERT(subcategory_list.size() == initial_subcategory_list_size + 16);
+
+    Model_Payee::Data_Set payee_list = Model_Payee::instance().all();
+    CPPUNIT_ASSERT(payee_list.size() == 11);
 }
 
 void Test_Checking::Add_Transactions()
 {
     CpuTimer Start("Add_Transactions");
-    // Set date 3 years ago from today.
-    wxDateTime starting_date(wxDateTime::Today().Subtract(wxDateSpan::Years(3)));
+    // Set date 1 years ago from today.
+    wxDateTime starting_date(wxDateTime::Today().Subtract(wxDateSpan::Years(1)));
 
     // Advance or retard the date to the beginning of that financial year.
     int month = starting_date.GetMonth();
-    if (month > 6)
+    if (month > wxDateTime::Jun)
     {
-        starting_date.Subtract(wxDateSpan::Months(month - 6));
+        starting_date.Subtract(wxDateSpan::Months(month - wxDateTime::Jul));
     }
-    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(6 - month));
+    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
+
+    // readjust day to beginning of the month
     starting_date.Subtract(wxDateSpan::Days(starting_date.GetDay() - 1));
 
     // Set all data to memory first, then save to database at end.
@@ -174,11 +192,22 @@ void Test_Checking::Add_Transactions()
 
     wxDateTime trans_date = starting_date;
 
+    int transaction_list_size = Model_Checking::instance().all().size();
+    CPPUNIT_ASSERT(transaction_list_size == 0);
+
+    int current_split_transaction_list_size = Model_Splittransaction::instance().all().size();
+    int split_transaction_list_size = 0;
+    CPPUNIT_ASSERT(current_split_transaction_list_size == split_transaction_list_size);
+
     // Setting up a personal loan
     int personal_loan_id = m_dbmodel->Add_Trans_Transfer("ANZ - Personal Loan", trans_date, "ANZ - Cheque", 10000, "Transfer");
     Model_Checking::Data* personal_loan = Model_Checking::instance().get(personal_loan_id);
     personal_loan->NOTES = "Initialise $10,000 Personal loan from ANZ -Bank";
     Model_Checking::instance().save(personal_loan);
+
+    int current_transaction_list_size = Model_Checking::instance().all().size();
+    CPPUNIT_ASSERT(current_transaction_list_size == transaction_list_size + 1);
+    transaction_list_size = current_transaction_list_size;
 
     // Create transactions for a single month. These are repeated untill current month.
     int month_count = 0;
@@ -204,7 +233,6 @@ void Test_Checking::Add_Transactions()
         //--------------------------------------------------------------------
 
         trans_date = starting_date;
-
         m_dbmodel->Add_Trans_Withdrawal("NAB - Savings", trans_date.Add(wxDateSpan::Days(1)), "Aldi", 50, "Food", "Groceries");
         m_dbmodel->Add_Trans_Withdrawal("NAB - Savings", trans_date.Add(wxDateSpan::Days(2)), "Coles", 30, "Food", "Groceries");
         m_dbmodel->Add_Trans_Withdrawal("NAB - Savings", trans_date.Add(wxDateSpan::Days(3)), "Woolworths", 40, "Food", "Groceries");
@@ -221,15 +249,19 @@ void Test_Checking::Add_Transactions()
         trans_date = starting_date;
         m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date.Add(wxDateSpan::Days(1)), "Wallet - Peter", 70, "Transfer");
         m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Mary", 80, "Transfer");
+        m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Utility Provider", 200, "Home", "Electricity");
 
         m_dbmodel->Add_Trans_Withdrawal("Wallet - Peter", trans_date.Add(wxDateSpan::Days(7)), "Cash - Miscellaneous", 70, "Miscellaneous");
         m_dbmodel->Add_Trans_Withdrawal("Wallet - Mary", trans_date, "Cash - Miscellaneous", 80, "Miscellaneous");
+        m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Government Authorities", 250, "Home", "Water Rates");
 
         m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Peter", 70, "Transfer");
         m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Mary", 100, "Transfer");
+        m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Government Authorities", 2200, "Home", "General Rates");
 
         m_dbmodel->Add_Trans_Withdrawal("Wallet - Peter", trans_date.Add(wxDateSpan::Days(7)), "Cash - Miscellaneous", 70, "Miscellaneous");
         m_dbmodel->Add_Trans_Withdrawal("Wallet - Mary", trans_date, "Cash - Miscellaneous", 100, "Miscellaneous");
+        m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Utility Provider", 50, "Home", "Gas");
 
         m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Peter", 60, "Transfer");
         m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Mary", 90, "Transfer");
@@ -243,44 +275,6 @@ void Test_Checking::Add_Transactions()
         m_dbmodel->Add_Trans_Split(split_id, 30, "Leisure", "Video Rental");
         m_dbmodel->Add_Trans_Split(split_id, 20, "Miscellaneous");
         m_dbmodel->Add_Trans_Split(split_id, 40, "Healthcare", "Health");
-
-        trans_date = starting_date;
-        // Quarterley Transactions
-        if ((trans_date.GetMonth() == 3) || (trans_date.GetMonth() == 6) || (trans_date.GetMonth() == 9) || (trans_date.GetMonth() == 12))  // December
-        {
-            m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Government Authorities", 250, "Home", "Water Rates");
-        }
-
-        trans_date = starting_date;
-        // Yearly Transactions - 1
-        if ((trans_date.GetMonth() == 6))
-        {
-            m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date.Add(wxDateSpan::Days(14)), "Utility Provider", 400, "Home", "Electricity");
-            m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Utility Provider", 700, "Home", "Gas");
-        }
-
-        trans_date = starting_date;
-        // Yearly Transactions - 2
-        if ((trans_date.GetMonth() == 12))
-        {
-            m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date.Add(wxDateSpan::Days(14)), "Utility Provider", 200, "Home", "Electricity");
-            m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Utility Provider", 50, "Home", "Gas");
-        }
-
-        trans_date = starting_date;
-        // Yearly Transactions - 3
-        if ((trans_date.GetMonth() == 8))   // August
-        {
-            m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date.Add(wxDateSpan::Days(12)), "Government Authorities", 2200, "Home", "General Rates");
-        }
-
-        trans_date = starting_date;
-        // Six Monthly Transactions - 1
-        if ((trans_date.GetMonth() == 3) || (trans_date.GetMonth() == 9)) // March & September
-        {
-            m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date.Add(wxDateSpan::Days(14)), "Utility Provider", 300, "Home", "Electricity");
-            m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Utility Provider", 400, "Home", "Gas");
-        }
         //--------------------------------------------------------------------
 
         // End of Month Transactions
@@ -288,13 +282,13 @@ void Test_Checking::Add_Transactions()
         trans_date.SetToLastMonthDay();
 
         m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "ANZ - Mastercard", 625.0, "Mastercard", "Repayment");
-        m_dbmodel->Add_Trans_Withdrawal("NAB - Savings", trans_date, "Bank - NAB", 3500, "Home", "Loan Repayments");
+        m_dbmodel->Add_Trans_Withdrawal("NAB - Savings", trans_date, "Bank - NAB", 3500, "Home", "Loan Repayment");
         m_dbmodel->Add_Trans_Deposit("Home Loan", trans_date, "Bank - NAB", 3500, "Home", "Loan Offset");
         m_dbmodel->Add_Trans_Withdrawal("Home Loan", trans_date, "Bank - NAB", 500, "Home", "Loan Interest");
 
         m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Utility Provider", 150, "Home", "Phone/Internet");
 
-        m_dbmodel->Add_Trans_Withdrawal("NAB - Savings", trans_date, "Bank - ANZ", 180, "Personal Loan", "Repayments");
+        m_dbmodel->Add_Trans_Withdrawal("NAB - Savings", trans_date, "Bank - ANZ", 180, "Personal Loan", "Repayment");
         m_dbmodel->Add_Trans_Deposit("ANZ - Personal Loan", trans_date, "Bank - ANZ", 180, "Personal Loan", "Offset");
         m_dbmodel->Add_Trans_Withdrawal("ANZ - Personal Loan", trans_date, "Bank - ANZ", ((10000 - (180 * month_count)) * 0.20) / 12, "Personal Loan", "Interest");
 
@@ -305,9 +299,49 @@ void Test_Checking::Add_Transactions()
 
         // Set start of next month transactions
         starting_date.Add(wxDateSpan::Month());
+
+        current_transaction_list_size = Model_Checking::instance().all().size();
+        CPPUNIT_ASSERT(current_transaction_list_size == transaction_list_size + 50);
+        transaction_list_size = current_transaction_list_size;
+
+        current_split_transaction_list_size = Model_Splittransaction::instance().all().size();
+        CPPUNIT_ASSERT(current_split_transaction_list_size == split_transaction_list_size + 5);
+        split_transaction_list_size = current_split_transaction_list_size;
     }
     // Finalise the database entries.
     m_test_db.Commit();
+
+    Model_Account::Data_Set account_list = Model_Account::instance().all();
+    CPPUNIT_ASSERT(account_list.size() == 11);
+
+    Model_Splittransaction::Data_Set split_transaction_list = Model_Splittransaction::instance().all();
+    Model_Splittransaction::Data split_entry = split_transaction_list[0];
+
+    int mary_account_id = Model_Account::instance().get("Wallet - Mary")->ACCOUNTID;
+    Model_Checking::Data_Set items = Model_Checking::instance().find(Model_Account::ACCOUNTID(mary_account_id), Model_Checking::CATEGID(-1), Model_Checking::SUBCATEGID(-1));
+    Model_Checking::Data entry = items[0];
+
+    Model_Splittransaction::Data_Set single_split_transaction = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(entry.id()));
+    CPPUNIT_ASSERT(single_split_transaction.size() == 3);
+
+    int cache_size = Model_Splittransaction::instance().cache_.size();
+    CPPUNIT_ASSERT(cache_size > 0);
+
+    Model_Splittransaction::instance().destroy_cache();
+
+    cache_size = Model_Splittransaction::instance().cache_.size();
+    CPPUNIT_ASSERT(cache_size == 0);
+
+
+    mary_account_id = Model_Account::instance().get("Wallet - Mary")->ACCOUNTID;
+    items = Model_Checking::instance().find(Model_Account::ACCOUNTID(mary_account_id), Model_Checking::CATEGID(-1), Model_Checking::SUBCATEGID(-1));
+    entry = items[0];
+
+    single_split_transaction = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(entry.id()));
+    CPPUNIT_ASSERT(single_split_transaction.size() == 3);
+
+    cache_size = Model_Splittransaction::instance().cache_.size();
+    CPPUNIT_ASSERT(cache_size == 0);
 }
 
 void Test_Checking::Transaction_Dialog_Messages()
@@ -373,6 +407,14 @@ void Test_Checking::Transaction_New_Edit()
     TestFrameBase* user_request = new TestFrameBase(m_base_frame);
     user_request->Show();
 
+    Model_Checking::instance().destroy_cache();
+    int trans_cache_size = Model_Checking::instance().cache_.size();
+    CPPUNIT_ASSERT(trans_cache_size == 0);
+
+    Model_Splittransaction::instance().destroy_cache();
+    int split_trans_cache_size = Model_Splittransaction::instance().cache_.size();
+    CPPUNIT_ASSERT(split_trans_cache_size == 0);
+
     int account_id = m_dbmodel->Get_account_id("NAB - Savings");
     bool testing = true;
     int test_count = 0;
@@ -415,6 +457,10 @@ void Test_Checking::Transaction_New_Edit()
             }
         }
     }
+
+    split_trans_cache_size = Model_Splittransaction::instance().cache_.size();
+    trans_cache_size = Model_Checking::instance().cache_.size();
+    CPPUNIT_ASSERT(trans_cache_size > 0);
 }
 
 void Test_Checking::Account_View_Savings()

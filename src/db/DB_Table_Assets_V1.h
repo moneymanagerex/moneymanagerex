@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
+ *          AUTO GENERATED at 2014-07-19 16:51:27.822000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -223,14 +223,14 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         {
             view_ = view;
         
-            ASSETID = q.GetInt("ASSETID");
-            STARTDATE = q.GetString("STARTDATE");
-            ASSETNAME = q.GetString("ASSETNAME");
-            VALUE = q.GetDouble("VALUE");
-            VALUECHANGE = q.GetString("VALUECHANGE");
-            NOTES = q.GetString("NOTES");
-            VALUECHANGERATE = q.GetDouble("VALUECHANGERATE");
-            ASSETTYPE = q.GetString("ASSETTYPE");
+            ASSETID = q.GetInt(0); // ASSETID
+            STARTDATE = q.GetString(1); // STARTDATE
+            ASSETNAME = q.GetString(2); // ASSETNAME
+            VALUE = q.GetDouble(3); // VALUE
+            VALUECHANGE = q.GetString(4); // VALUECHANGE
+            NOTES = q.GetString(5); // NOTES
+            VALUECHANGERATE = q.GetDouble(6); // VALUECHANGERATE
+            ASSETTYPE = q.GetString(7); // ASSETTYPE
         }
 
         Data& operator=(const Data& other)
@@ -355,7 +355,12 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             return view_->remove(this, db);
         }
 
-        void destroy() { delete this; }
+        void destroy()
+        {
+            //if (this->id() < 0)
+            //    wxSafeShowMessage("unsaved object", this->to_json());
+            delete this;
+        }
     };
 
     enum

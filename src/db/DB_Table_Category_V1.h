@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
+ *          AUTO GENERATED at 2014-07-19 16:51:27.822000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -167,8 +167,8 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             view_ = view;
         
-            CATEGID = q.GetInt("CATEGID");
-            CATEGNAME = q.GetString("CATEGNAME");
+            CATEGID = q.GetInt(0); // CATEGID
+            CATEGNAME = q.GetString(1); // CATEGNAME
         }
 
         Data& operator=(const Data& other)
@@ -245,7 +245,12 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
             return view_->remove(this, db);
         }
 
-        void destroy() { delete this; }
+        void destroy()
+        {
+            //if (this->id() < 0)
+            //    wxSafeShowMessage("unsaved object", this->to_json());
+            delete this;
+        }
     };
 
     enum
