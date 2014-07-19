@@ -33,8 +33,6 @@ class Test_Checking : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST(Transaction_New_Edit);
     CPPUNIT_TEST(Account_View_Savings);
     CPPUNIT_TEST(Account_View_Mary);
-    CPPUNIT_TEST(Account_View_Savings);
-    CPPUNIT_TEST(Account_View_Mary);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -58,8 +56,6 @@ private:
     void Add_Transactions();
     void Transaction_Dialog_Messages();
     void Transaction_New_Edit();
-    /* The destructor call: wxGetApp().m_frame->SetCheckingAccountPageInactive();
-    has been disabled for the testing environment.*/
     void Account_View_Savings();
     void Account_View_Mary();
 };
