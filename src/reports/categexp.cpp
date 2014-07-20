@@ -30,8 +30,7 @@
 
 mmReportCategoryExpenses::mmReportCategoryExpenses
 (mmDateRange* date_range, const wxString& title, int type)
-: mmPrintableBase(CATEGORY_SORT_BY_NAME)
-, date_range_(date_range)
+: date_range_(date_range)
 , title_(title)
 , type_(type)
 , ignoreFutureDate_(mmIniOptions::instance().ignoreFutureTransactions_)
@@ -106,16 +105,6 @@ wxString mmReportCategoryExpenses::getHTMLText()
 {
     // Data is presorted by name
     std::vector<data_holder> sortedData(data_);
-    if (CATEGORY_SORT_BY_AMOUNT == sortColumn_)
-    {
-        std::stable_sort(sortedData.begin(), sortedData.end()
-            , [] (const data_holder& x, const data_holder& y)
-            {
-                if (x.amount != y.amount) return x.amount < y.amount;
-                else return x.name < y.name;
-            }
-        );
-    }
 
     std::map <int, int> group_counter;
     std::map <int, double> group_total;
