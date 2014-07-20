@@ -66,9 +66,6 @@ public:
     /** Add a Table header cell */
     void addTableHeaderCell(const wxString& value, const bool& numeric = false);
 
-    /** Add a Table header cell link */
-    void addTableHeaderCellLink(const wxString& href, const wxString& value, const bool& numeric = false);
-
     void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency());
     void addMoneyCell(double amount);
     void addTableCellMonth(int month);

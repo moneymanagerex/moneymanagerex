@@ -26,14 +26,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <algorithm>
 
-#define PAYEE_SORT_BY_NAME      1
-#define PAYEE_SORT_BY_INCOME    2
-#define PAYEE_SORT_BY_EXPENSE   3
-#define PAYEE_SORT_BY_DIFF      4
-
 mmReportPayeeExpenses::mmReportPayeeExpenses(const wxString& title, mmDateRange* date_range)
-: mmPrintableBase(PAYEE_SORT_BY_NAME)
-    , title_(title)
+    : title_(title)
     , date_range_(date_range)
     , positiveTotal_(0.0)
     , negativeTotal_(0.0)
@@ -81,45 +75,6 @@ void  mmReportPayeeExpenses::RefreshData()
 
 wxString mmReportPayeeExpenses::getHTMLText()
 {
-    switch (sortColumn_)
-    {
-    case PAYEE_SORT_BY_NAME:
-        std::stable_sort(data_.begin(), data_.end()
-            , [] (const data_holder& x, const data_holder& y)
-            {
-                return x.name < y.name;
-            }
-        );
-        break;
-    case PAYEE_SORT_BY_INCOME:
-        std::stable_sort(data_.begin(), data_.end()
-            , [] (const data_holder& x, const data_holder& y)
-            {
-                if (x.incomes != y.incomes) return x.incomes < y.incomes;
-                else return x.name < y.name;
-            }
-        );
-        break;
-    case PAYEE_SORT_BY_EXPENSE:
-        std::stable_sort(data_.begin(), data_.end()
-            , [] (const data_holder& x, const data_holder& y)
-            {
-                if (x.expenses != y.expenses) return x.expenses < y.expenses;
-                else return x.name < y.name;
-            }
-        );
-        break;
-    default:
-        sortColumn_ = PAYEE_SORT_BY_DIFF;
-        std::stable_sort(data_.begin(), data_.end()
-            , [] (const data_holder& x, const data_holder& y)
-            {
-                if (x.expenses+x.incomes != y.expenses+y.incomes) return x.expenses+x.incomes < y.expenses+y.incomes;
-                else return x.name < y.name;
-            }
-        );
-    }
-
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();

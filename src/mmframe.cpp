@@ -2047,7 +2047,6 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     if (dlg->ShowModal() == wxID_OK)
     {
         mmReportTransactions* rs = new mmReportTransactions(dlg->getAccountID(), dlg);
-        rs->setSortColumn(dlg->getSortColumn());
         createReportsPage(rs, true);
         setNavTreeSection(_("Reports"));
     }

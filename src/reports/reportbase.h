@@ -31,15 +31,8 @@ class mmPrintableBase
 public:
     virtual ~mmPrintableBase() {}
     virtual wxString getHTMLText() = 0;
-	void setSortColumn(const int sort_by) { sortColumn_ = sort_by; }
     virtual void RefreshData() {}
     virtual wxString title() const { return "mmPrintableBase"; }
-
-public:
-    explicit mmPrintableBase(int sort_column = 0): sortColumn_(sort_column) {}
-
-protected:
-	int sortColumn_;
 };
 
 class mmGeneralReport : public mmPrintableBase

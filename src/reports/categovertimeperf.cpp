@@ -31,8 +31,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 
 mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance(mmDateRange* date_range)
-    : mmPrintableBase(CATEGORY_SORT_BY_NAME)
-    , date_range_(date_range)
+    : date_range_(date_range)
     , title_(_("Category Income/Expenses: %s"))
 {
 }
@@ -92,40 +91,6 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
             }
             data.push_back(line);
         }
-    }
-
-    if (CATEGORY_SORT_BY_OVERALL == sortColumn_)
-    {
-        std::stable_sort(data.begin(), data.end()
-                , [] (const data_holder& x, const data_holder& y)
-                {
-                    if (x.overall != y.overall) return x.overall < y.overall;
-                    else return x.name < y.name;
-                }
-        );
-    }
-    else if (sortColumn_ >= CATEGORY_SORT_BY_PERIOD && sortColumn_ < CATEGORY_SORT_BY_PERIOD + MONTHS_IN_PERIOD)
-    {
-        for (auto& entry : data)
-            entry.month = entry.period[sortColumn_ - CATEGORY_SORT_BY_PERIOD];
-
-        std::stable_sort(data.begin(), data.end()
-                , [] (const data_holder& x, const data_holder& y)
-                {
-                    if (x.month != y.month) return x.month < y.month;
-                    else return x.name < y.name;
-                }
-        );
-    }
-    else
-    {
-        sortColumn_ = CATEGORY_SORT_BY_NAME;
-        std::stable_sort(data.begin(), data.end()
-            , [] (const data_holder& x, const data_holder& y)
-            {
-                return x.name < y.name;
-            }
-        );
     }
 
     mmHTMLBuilder hb;
