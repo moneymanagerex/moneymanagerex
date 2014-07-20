@@ -122,34 +122,27 @@ wxString mmReportPayeeExpenses::getHTMLText()
 
     mmHTMLBuilder hb;
     hb.init();
+    hb.addDivContainer();
     hb.addHeader(2, title_);
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
-    hb.startCenter();
 
+    hb.addDivRow();
+    hb.addDivCol8();
     // Add the graph
     mmGraphPie gg;
     hb.addImage(gg.getOutputFileName());
 
-    hb.startTable("75%");
+    hb.startSortTable();
+    hb.startThead();
     hb.startTableRow();
-    if(PAYEE_SORT_BY_NAME == sortColumn_)
         hb.addTableHeaderCell(_("Payee"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_NAME), _("Payee"));
-    if(PAYEE_SORT_BY_INCOME == sortColumn_)
         hb.addTableHeaderCell(_("Incomes"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_INCOME), _("Incomes"), true);
-    if(PAYEE_SORT_BY_EXPENSE == sortColumn_)
         hb.addTableHeaderCell(_("Expenses"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_EXPENSE), _("Expenses"), true);
-    if(PAYEE_SORT_BY_DIFF == sortColumn_)
         hb.addTableHeaderCell(_("Difference"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_DIFF), _("Difference"), true);
     hb.endTableRow();
+    hb.endThead();
 
+    hb.startTbody();
     for (const auto& entry : data_)
     {
         hb.startTableRow();
@@ -159,16 +152,20 @@ wxString mmReportPayeeExpenses::getHTMLText()
         hb.addMoneyCell(entry.incomes + entry.expenses);
         hb.endTableRow();
     }
+    hb.endTbody();
 
-    hb.addRowSeparator(4);
+    hb.startTfoot();
     std::vector <double> totals;
     totals.push_back(positiveTotal_);
     totals.push_back(negativeTotal_);
     totals.push_back(positiveTotal_ + negativeTotal_);
     hb.addTotalRow(_("Total:"), 3, totals);
+    hb.endTfoot();
 
     hb.endTable();
-    hb.endCenter();
+    hb.endDiv();
+    hb.endDiv();
+    hb.endDiv();
     hb.end();
 
     gg.init(valueList_);
@@ -189,6 +186,7 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
     }
 
     const auto &transactions = Model_Checking::instance().all();
+    const auto all_splits = Model_Splittransaction::instance().get_all();
     for (const auto & trx: transactions)
     {
         if (Model_Checking::status(trx) == Model_Checking::VOID_) continue;
@@ -206,7 +204,8 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
 
         double convRate = acc_conv_rates[trx.ACCOUNTID];
 
-        Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(trx);
+        Model_Splittransaction::Data_Set splits;
+        if (all_splits.count(trx.id())) splits = all_splits.at(trx.id());
         if (splits.empty())
         {
             if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
