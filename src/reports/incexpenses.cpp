@@ -45,10 +45,6 @@ wxString mmReportIncomeExpenses::title() const
 
 wxString mmReportIncomeExpenses::getHTMLText()
 {
-    mmHTMLBuilder hb;
-    hb.init();
-    hb.addHeader(2, this->title());
-    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
     wxString headerMsg = _("Accounts: ");
     if (accountArray_ == nullptr)
     {
@@ -71,9 +67,14 @@ wxString mmReportIncomeExpenses::getHTMLText()
             arrIdx++;
         }
     }
-    hb.addHeader(1, headerMsg);
+    mmHTMLBuilder hb;
+    hb.init();
+    hb.addDivContainer();
+    hb.addDivContainer();
+    hb.addHeader(2, this->title());
+    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
+    hb.addHeader(3, headerMsg);
     hb.addLineBreak();
-    hb.startCenter();
 
     std::pair<double, double> income_expemses_rair;
     for (const auto& transaction : Model_Checking::instance().find(
@@ -96,8 +97,9 @@ wxString mmReportIncomeExpenses::getHTMLText()
             income_expemses_rair.second += transaction.TRANSAMOUNT * convRate;
     }
 
-    hb.startTable("75%");
-    hb.addTableHeaderRow("", 2);
+    hb.addDivRow();
+    hb.addDivCol8();
+    hb.startTable();
 
     hb.startTableRow();
     hb.startTableCell();
@@ -108,27 +110,29 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.endTableCell();
 
     hb.startTableCell();
-    hb.startTable("95%");
+    hb.startTable();
+    hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Type"));
     hb.addTableHeaderCell(_("Amount"), true);
     hb.endTableRow();
+    hb.endThead();
 
     hb.startTableRow();
     hb.addTableRow(_("Income:"), income_expemses_rair.first);
     hb.addTableRow(_("Expenses:"), income_expemses_rair.second);
 
-    hb.addRowSeparator(2);
     hb.addTotalRow(_("Difference:"), 2, income_expemses_rair.first - income_expemses_rair.second);
 
     hb.endTable();
 
     hb.endTableCell();
     hb.endTableRow();
-    hb.addRowSeparator(2);
     hb.endTable();
 
-    hb.endCenter();
+    hb.endDiv();
+    hb.endDiv();
+    hb.endDiv();
     hb.end();
     return hb.getHTMLText();
 }
@@ -151,10 +155,6 @@ mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 wxString mmReportIncomeExpensesMonthly::getHTMLText()
 {
     //FIXME: runing twice
-    mmHTMLBuilder hb;
-    hb.init();
-    hb.addHeader(2, this->title());
-    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
     wxString headerMsg = _("Accounts: ");
     if (accountArray_ == nullptr)
     {
@@ -177,12 +177,20 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             arrIdx++;
         }
     }
-    hb.addHeader(1, headerMsg);
+
+    mmHTMLBuilder hb;
+    hb.init();
+    hb.addDivContainer();
+    hb.addHeader(2, this->title());
+    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
+    hb.addHeader(3, headerMsg);
     hb.addLineBreak();
-    hb.startCenter();
+    hb.addDivRow();
+    hb.addDivCol8();
 
     hb.addHorizontalLine();
-    hb.startTable("75%");
+    hb.startSortTable();
+    hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Year"));
     hb.addTableHeaderCell(_("Month"));
@@ -190,7 +198,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.addTableHeaderCell(_("Expenses"), true);
     hb.addTableHeaderCell(_("Difference"), true);
     hb.endTableRow();
-
+    hb.endThead();
     wxLogDebug("from %s till %s", date_range_->start_date().FormatISODate(), date_range_->end_date().FormatISODate());
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     for (const auto& transaction : Model_Checking::instance().find(
@@ -217,6 +225,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
     double total_expenses = 0.0;
     double total_income = 0.0;
+    hb.startTbody();
     for (const auto &stats : incomeExpensesStats)
     {
         total_expenses += stats.second.second;
@@ -230,17 +239,19 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         hb.addMoneyCell(stats.second.first - stats.second.second);
         hb.endTableRow();
     }
+    hb.endTbody();
 
     std::vector<double> data;
     data.push_back(total_income);
     data.push_back(total_expenses);
     data.push_back(total_income - total_expenses);
 
-    hb.addRowSeparator(5);
     hb.addTotalRow(_("Total:"), 5, data);
 
     hb.endTable();
-    hb.endCenter();
+    hb.endDiv();
+    hb.endDiv();
+    hb.endDiv(); 
     hb.end();
 
     return hb.getHTMLText();

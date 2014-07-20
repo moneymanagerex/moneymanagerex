@@ -123,25 +123,17 @@ wxString mmReportSummary::getHTMLText()
     hb.addDateNow();
     hb.addLineBreak();
 
-    hb.startCenter();
-
-    hb.startTable("50%");
+    hb.startTable();
     hb.startTableRow();
-    if(SUMMARY_SORT_BY_NAME == sortColumn_)
         hb.addTableHeaderCell(_("Account Name"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", SUMMARY_SORT_BY_NAME), _("Account Name"));
-    if(SUMMARY_SORT_BY_BALANCE == sortColumn_)
         hb.addTableHeaderCell(_("Balance"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", SUMMARY_SORT_BY_BALANCE), _("Balance"), true);
     hb.endTableRow();
 
     /* Checking */
     for (const auto& entry : sortedDataChecking)
     {
         hb.startTableRow();
-        hb.addTableCellLink(entry.link, entry.name, false, true);
+        hb.addTableCellLink(entry.link, entry.name);
         hb.addMoneyCell(entry.balance);
         hb.endTableRow();
     }
@@ -150,7 +142,7 @@ wxString mmReportSummary::getHTMLText()
     hb.addTotalRow(_("Bank Accounts Total:"), 2, tBalance_);
     hb.endTableRow();
 
-    hb.addRowSeparator(2);
+    //hb.addRowSeparator(2);
 
     /* Terms */
     for (const auto& entry : sortedDataTerm)
@@ -166,26 +158,25 @@ wxString mmReportSummary::getHTMLText()
         hb.startTableRow();
         hb.addTotalRow(_("Term Accounts Total:"), 2, tTBalance_);
         hb.endTableRow();
-        hb.addRowSeparator(2);
+        //hb.addRowSeparator(2);
     }
 
     hb.startTableRow();
     hb.addTableCell(_("Stocks Total:"));
     hb.addMoneyCell(stockBalance_);
     hb.endTableRow();
-    hb.addRowSeparator(2);
+    //hb.addRowSeparator(2);
 
     hb.startTableRow();
     hb.addTableCellLink("Assets:", _("Assets"), false, true);
     hb.addMoneyCell(asset_balance_);
     hb.endTableRow();
 
-    hb.addRowSeparator(2);
+    //hb.addRowSeparator(2);
 
     hb.addTotalRow(_("Total Balance on all Accounts"), 2, totalBalance_);
     hb.endTable();
 
-    hb.endCenter();
     hb.end();
 
     return hb.getHTMLText();
@@ -216,9 +207,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.addDateNow();
     hb.addLineBreak();
 
-    hb.startCenter();
-
-    hb.startTable("90%");
+    hb.startTable();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Date"));
     hb.addTableHeaderCell(_("Bank Account"), true);
@@ -320,21 +309,20 @@ wxString mmReportSummaryByDate::getHTMLText()
 
     for (i=totBalanceData.size()-6; i>=0; i-=6)
     {
-        if (!datePrec.IsEmpty() && datePrec.Right(4) != totBalanceData[i].Right(4))
-            hb.addRowSeparator(6);
+        //if (!datePrec.IsEmpty() && datePrec.Right(4) != totBalanceData[i].Right(4))
+        //TODO:    hb.addRowSeparator(6);
         hb.startTableRow();
-        hb.addTableCell(totBalanceData[i], false, true);
-        hb.addTableCell(totBalanceData[i+1], true);
-        hb.addTableCell(totBalanceData[i+2], true);
-        hb.addTableCell(totBalanceData[i+3], true);
-        hb.addTableCell(totBalanceData[i+4], true);
-        hb.addTableCell(totBalanceData[i+5], true, false, true);
+        hb.addTableCell(totBalanceData[i]);
+        hb.addTableCell(totBalanceData[i+1]);
+        hb.addTableCell(totBalanceData[i+2]);
+        hb.addTableCell(totBalanceData[i+3]);
+        hb.addTableCell(totBalanceData[i+4]);
+        hb.addTableCell(totBalanceData[i+5]);
         hb.endTableRow();
         datePrec = totBalanceData[i];
     }
 
     hb.endTable();
-    hb.endCenter();
     hb.end();
 
     return hb.getHTMLText();
