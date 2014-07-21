@@ -61,36 +61,57 @@
         <files>Chart.js</files>
     </data-files>
 
-	<data-files cond="PLATFORM_MACOSX=='1'">
-	    <install-to>$(DATADIR)/..</install-to>
+    <data-files>
+      <install-to>$(respath)</install-to>
+      <srcdir>$(SRCDIR)/3rd/sorttable.js</srcdir>
+      <files>sorttable.js</files>
+    </data-files>
+
+    <set var="plistfiles">
+        <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex</if>
+        <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/..</if>
+    </set>
+
+    <data-files>
+        <install-to>$(plistfiles)</install-to>
         <srcdir>$(SRCDIR)/resources</srcdir>
         <files>Info.plist</files>
     </data-files>
-    
-    <data-files cond="PLATFORM_MACOSX=='1'">
-	    <install-to>$(DATADIR)</install-to>
-        <srcdir>$(SRCDIR)/doc</srcdir>
-        <files>version.txt contrib.txt license.txt</files>
+
+    <set var="txtfiles">
+        <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex</if>
+        <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)</if>
+    </set>
+
+    <data-files>
+       <install-to>$(txtfiles)</install-to>
+       <srcdir>$(SRCDIR)/doc</srcdir>
+       <files>version.txt contrib.txt license.txt</files>
     </data-files>
 
-	<data-files cond="PLATFORM_MACOSX=='1'">
-	    <install-to>$(DATADIR)/../Resources</install-to>
-		<srcdir>$(SRCDIR)/graphics</srcdir>
-		<files>mmex.icns mmdb.icns</files>
-	</data-files>
+    <set var="graphicsfiles">
+        <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex</if>
+        <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/../Resources</if>
+    </set>
+
+    <data-files>
+        <install-to>$(graphicsfiles)</install-to>
+        <srcdir>$(SRCDIR)/graphics</srcdir>
+        <files>mmex.icns mmdb.icns</files>
+    </data-files>
 
     <set var="popath">
         <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex/po/en</if>
         <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/po/en</if>
     </set>
 
-	<data-files>
+    <data-files>
         <install-to>$(popath)</install-to>
         <srcdir>$(SRCDIR)/po</srcdir>
         <files>*.mo</files>
     </data-files>
 
-	<data-files>
+    <data-files>
         <install-to>$(DATADIR)/doc/mmex</install-to>
             <srcdir>$(SRCDIR)/doc</srcdir>
         <files>*.txt</files>
@@ -165,7 +186,7 @@
     <data-files>
         <install-to>$(PREFIX)/mmex</install-to>
         <srcdir>$(SRCDIR)/doc</srcdir>
-        <files>*.txt</files>
+        <files>version.txt contrib.txt license.txt</files>
     </data-files>
 
         <data-files>
@@ -186,13 +207,19 @@
         <files>master.css</files>
     </data-files>
 
-        <data-files>
+    <data-files>
         <install-to>$(PREFIX)/mmex/res</install-to>
             <srcdir>$(SRCDIR)/3rd/Chart.js</srcdir>
         <files>Chart.js</files>
     </data-files>
 
-    <!-- doc -> mmex/help -->
+    <data-files>
+      <install-to>$(PREFIX)/mmex/res</install-to>
+      <srcdir>$(SRCDIR)/3rd/sorttable.js</srcdir>
+      <files>sorttable.js</files>
+    </data-files>
+
+      <!-- doc -> mmex/help -->
 
     <data-files>
         <install-to>$(PREFIX)/mmex/help</install-to>
@@ -303,23 +330,5 @@
         </target>
 
     </subproject>
-
-    <!-- unit tests target (not dependency of 'all'): -->
-
-    <subproject id="test">
-        <target>all</target>
-        <installable>no</installable>
-
-        <dir cond="FORMAT=='autoconf'">$(SRCDIR)/tests</dir>
-        <dir cond="FORMAT!='autoconf'">tests</dir>
-
-    </subproject>
-
-    <action id="dmg" cond="PLATFORM_MACOSX=='1'">
-	<command>touch mmex.app</command>
-	<command>hdiutil create tmp.dmg -ov -volname "MMEX" -fs HFS+ -srcfolder "mmex.app"</command>
-	<command>hdiutil convert tmp.dmg -format UDZO -o MMEX.dmg</command>
-	<command>rm tmp.dmg</command>
-    </action>
 
 </makefile>

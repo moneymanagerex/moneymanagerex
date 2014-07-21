@@ -47,7 +47,6 @@ enum {
 BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   StocksListCtrl::OnListItemActivated)
     EVT_LIST_ITEM_SELECTED(wxID_ANY,    StocksListCtrl::OnListItemSelected)
-    EVT_LIST_ITEM_DESELECTED(wxID_ANY,  StocksListCtrl::OnListItemDeselected)
     EVT_LIST_COL_END_DRAG(wxID_ANY,     StocksListCtrl::OnItemResize)
     EVT_LIST_COL_CLICK(wxID_ANY,        StocksListCtrl::OnColClick)
     EVT_LIST_KEY_DOWN(wxID_ANY,         StocksListCtrl::OnListKeyDown)
@@ -56,7 +55,8 @@ BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
     EVT_MENU(MENU_TREEPOPUP_DELETE,  StocksListCtrl::OnDeleteStocks)
     EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, StocksListCtrl::OnOrganizeAttachments)
     EVT_RIGHT_DOWN(StocksListCtrl::OnMouseRightClick)
-END_EVENT_TABLE()
+    EVT_LEFT_DOWN(StocksListCtrl::OnListLeftClick)
+    END_EVENT_TABLE()
 
 StocksListCtrl::~StocksListCtrl()
 {
@@ -114,6 +114,8 @@ void StocksListCtrl::OnItemResize(wxListEvent& event)
 
 void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
+    if (m_selected_row > -1)
+        SetItemState(m_selected_row, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
     int Flags = wxLIST_HITTEST_ONITEM;
     m_selected_row = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
@@ -122,6 +124,7 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
         SetItemState(m_selected_row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(m_selected_row, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
     }
+    stock_panel_->OnListItemSelected(m_selected_row);
 
     bool hide_menu_item = (m_selected_row < 0);
 
@@ -137,7 +140,6 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.Enable(MENU_TREEPOPUP_DELETE, !hide_menu_item);
     menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, !hide_menu_item);
 
-    stock_panel_->enableEditDeleteButtons(!hide_menu_item);
     PopupMenu(&menu, event.GetPosition());
 
     this->SetFocus();
@@ -183,10 +185,16 @@ void mmStocksPanel::OnListItemSelected(int selectedIndex)
     enableEditDeleteButtons(selectedIndex >= 0);
 }
 
-void StocksListCtrl::OnListItemDeselected(wxListEvent& /*event*/)
+void StocksListCtrl::OnListLeftClick(wxMouseEvent& event)
 {
-    m_selected_row = -1;
-    stock_panel_->OnListItemSelected(m_selected_row);
+    int Flags = wxLIST_HITTEST_ONITEM;
+    long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
+    if (index == -1)
+    {
+        m_selected_row = -1;
+        stock_panel_->OnListItemSelected(m_selected_row);
+    }
+    event.Skip();
 }
 
 int StocksListCtrl::OnGetItemImage(long item) const
@@ -479,13 +487,13 @@ void mmStocksPanel::CreateControls()
 
     attachment_button_ = new wxBitmapButton(BottomPanel
         , wxID_FILE, wxBitmap(attachment_xpm), wxDefaultPosition
-        , wxSize(bMove->GetSize().GetY(), bMove->GetSize().GetY()));
+        , wxSize(30, bMove->GetSize().GetY()));
     attachment_button_->SetToolTip(_("Open attachments"));
     BoxSizerHBottom->Add(attachment_button_, g_flags);
     attachment_button_->Enable(false);
 
     refresh_button_ = new wxBitmapButton(BottomPanel
-        , wxID_REFRESH, wxBitmap (led_off_xpm), wxDefaultPosition, wxSize(bMove->GetSize().GetY(), bMove->GetSize().GetY()));
+        , wxID_REFRESH, wxBitmap (led_off_xpm), wxDefaultPosition, wxSize(30, bMove->GetSize().GetY()));
     refresh_button_->SetLabelText(_("Refresh"));
     refresh_button_->SetToolTip(_("Refresh Stock Prices from Yahoo"));
     BoxSizerHBottom->Add(refresh_button_, g_flags);
@@ -701,9 +709,9 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     }
     if (site.Right(1).Contains("+")) site.RemoveLast(1);
 
-    //Sample : http://finance.yahoo.com/d/quotes.csv?s=SBER.ME+GAZP.ME&f=sl1n&e=.csv
-    site = wxString::Format("http://download.finance.yahoo.com/d/quotes.csv?s=%s&f=sl1n&e=.csv"
-        , site);
+    //Sample: http://finance.yahoo.com/d/quotes.csv?s=SBER.ME+GAZP.ME&f=sl1c4n&e=.csv
+    //Sample CSV: "SBER.ME",85.49,"RUB","SBERBANK"
+    site = wxString::Format(mmex::weblink::YahooQuotes, site);
 
     refresh_button_->SetBitmapLabel(wxBitmap(wxImage(led_yellow_xpm).Scale(16,16)));
     stock_details_->SetLabel(_("Connecting..."));
@@ -717,7 +725,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     }
 
     //--//
-    wxString StockSymbolWithSuffix, sName;
+    wxString StockSymbolWithSuffix, sName, StockQuoteCurrency;
     double dPrice = 0.0;
 
     wxStringTokenizer tkz(sOutput, "\r\n");
@@ -725,31 +733,29 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     {
         const wxString csvline = tkz.GetNextToken();
         StockSymbolWithSuffix = "";
-        wxRegEx pattern("\"([^\"]+)\",([^,][0-9.]+),\"([^\"]*)\"");
+        StockQuoteCurrency = "";
+        wxRegEx pattern("\"([^\"]+)\",([^,][0-9.]+),\"([^\"]*)\",\"([^\"]*)\"");
         if (pattern.Matches(csvline))
         {
             StockSymbolWithSuffix = pattern.GetMatch(csvline, 1);
             pattern.GetMatch(csvline, 2).ToDouble(&dPrice);
-            sName = pattern.GetMatch(csvline, 3);
+            StockQuoteCurrency = pattern.GetMatch(csvline, 3);
+            sName = pattern.GetMatch(csvline, 4);
         }
 
         bool updated = !StockSymbolWithSuffix.IsEmpty();
 
-        //**** HACK HACK HACK
-        // Note:
-        // 1. If the share is a UK share (e.g. HSBA.L), its downloaded value in pence
-        // 2. If the share is not a UK share (e.g. 0005.HK) while we are using UK Yahoo finance, we do not need
-        //    to modify the price
+        /* HACK FOR GBP
+        http://sourceforge.net/p/moneymanagerex/bugs/414/
+        http://sourceforge.net/p/moneymanagerex/bugs/360/
+        1. If the share has GBp as currency, its downloaded value in pence
+        2. If the share has another currency, we don't need to modify the price
+        */
 
-        //// UK finance apparently downloads values in pence
-        //if (!yahoo_->Server_.CmpNoCase("uk.finance.yahoo.com"))
-        //    dPrice = dPrice / 100;
-        //// ------------------
         if (updated && dPrice > 0)
         {
-            //HACK seems outdated http://sourceforge.net/p/moneymanagerex/bugs/360/
-            //if(StockSymbolWithSuffix.EndsWith(".L"))
-            //    dPrice = dPrice / 100;
+            if (StockQuoteCurrency == "GBp")
+                dPrice = dPrice / 100;
             stocks_data[StockSymbolWithSuffix].first = dPrice;
             stocks_data[StockSymbolWithSuffix].second = sName;
             sError << wxString::Format(_("%s\t -> %s\n")

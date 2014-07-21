@@ -125,6 +125,9 @@ bool OnInitImpl(mmGUIApp* app)
     /* Setting Locale causes unexpected problems, so default to English Locale */
     app->getLocale().Init(wxLANGUAGE_ENGLISH);
 
+    Model_Report::prepareTempFolder();
+    Model_Report::WindowsUpdateRegistry();
+
     /* Initialize Image Handlers */
     wxInitAllImageHandlers();
 
@@ -149,7 +152,7 @@ bool OnInitImpl(mmGUIApp* app)
     mmIniOptions::instance().loadOptions();
 
     /* Was App Maximized? */
-    bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", false);
+    bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", true);
 
     //Get System screen size
 #ifdef _MSC_VER
@@ -180,9 +183,6 @@ bool OnInitImpl(mmGUIApp* app)
     // success: wxApp::OnRun() will be called which will enter the main message
     // loop and the application will run. If we returned FALSE here, the
     // application would exit immediately.
-    if (ok) {
-        Model_Report::prepareTempFolder();
-    }
 
     return ok;
 }

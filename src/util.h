@@ -125,7 +125,7 @@ const wxString mmGetNiceDateSimpleString(const wxDateTime &dt);
 const std::map<wxString,wxString> date_formats_map();
 const std::map<wxString,wxString> date_formats_regex();
 
-const wxString inQuotes(wxString label, wxString& delimiter);
+const wxString inQuotes(const wxString& label, const wxString& delimiter);
 
 void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 

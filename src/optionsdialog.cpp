@@ -85,7 +85,7 @@ BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmOptionsDialog::OnOk)
     //EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnApply)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmOptionsDialog::OnCurrency)
-    EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnDateFormatChanged)
+    EVT_CHOICE(ID_DIALOG_OPTIONS_WXCHOICE_DATE, mmOptionsDialog::OnDateFormatChanged)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, mmOptionsDialog::OnLanguageChanged)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, mmOptionsDialog::OnAttachmentsButton)
     EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 9, mmOptionsDialog::OnAttachmentsMenu)
@@ -239,28 +239,23 @@ void mmOptionsDialog::CreateControls()
     // Date Format Settings
     wxStaticBox* dateFormatStaticBox = new wxStaticBox(generalPanel, wxID_STATIC, _("Date Format"));
     dateFormatStaticBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* dateFormatStaticBoxSizer = new wxStaticBoxSizer(dateFormatStaticBox, wxVERTICAL);
-    wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 5);
+    wxStaticBoxSizer* dateFormatStaticBoxSizer = new wxStaticBoxSizer(dateFormatStaticBox, wxHORIZONTAL);
     generalPanelSizer->Add(dateFormatStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-    dateFormatStaticBoxSizer->Add(flex_sizer);
 
-    choiceDateFormat_ = new wxChoice(generalPanel, wxID_STATIC);
+    choiceDateFormat_ = new wxChoice(generalPanel, ID_DIALOG_OPTIONS_WXCHOICE_DATE);
     for (const auto& i : date_formats_map())
     {
         choiceDateFormat_->Append(i.second, new wxStringClientData(i.first));
         if (dateFormat_ == i.first) choiceDateFormat_->SetStringSelection(i.second);
     }
-    flex_sizer->Add(choiceDateFormat_, g_flags);
+    dateFormatStaticBoxSizer->Add(choiceDateFormat_, g_flags);
     choiceDateFormat_->SetToolTip(_("Specify the date format for display"));
-
-    wxButton* setFormatButton = new wxButton(generalPanel, wxID_APPLY, _("Set"));
-    flex_sizer->Add(setFormatButton, g_flags);
 
     sampleDateText_ = new wxStaticText(generalPanel, wxID_STATIC,
         "redefined elsewhere");
-    flex_sizer->Add(new wxStaticText(generalPanel, wxID_STATIC,
-        _("New date format sample:")), g_flags);
-    flex_sizer->Add(sampleDateText_, g_flags);
+    dateFormatStaticBoxSizer->Add(new wxStaticText(generalPanel, wxID_STATIC,
+        _("New date format sample:")), wxSizerFlags(g_flags).Border(wxLEFT, 15));
+    dateFormatStaticBoxSizer->Add(sampleDateText_, wxSizerFlags(g_flags).Border(wxLEFT, 5));
     sampleDateText_->SetLabel(wxDateTime::Now().Format(dateFormat_));
 
     // Financial Year Settings
@@ -408,7 +403,7 @@ void mmOptionsDialog::CreateControls()
 
     wxCheckBox* expandStocksCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_STOCKS_TREE
         , _("Stock Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    expandStocksCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_STOCK_TREE", false));
+    expandStocksCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_STOCKS_TREE", false));
     expandStocksCheckBox->SetToolTip(_("Expand Stocks Accounts in Trew View when tree is refreshed"));
     navTreeOptionsStaticBoxSizer->Add(expandStocksCheckBox, g_flags);
 
@@ -448,7 +443,7 @@ void mmOptionsDialog::CreateControls()
     wxStaticBoxSizer* userColourSettingStBoxSizer = new wxStaticBoxSizer(userColourSettingStBox, wxHORIZONTAL);
     viewsPanelSizer->Add(userColourSettingStBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    int size_x = baseCurrencyButton->GetSize().GetY();
+    int size_x = 30;
     UDFCB1_ = new wxButton(viewsPanel, wxID_HIGHEST + 11
         , _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB1_->SetBackgroundColour(mmColors::userDefColor1);
@@ -622,7 +617,7 @@ void mmOptionsDialog::CreateControls()
     itemStaticTextURL->SetFont(staticBoxFontSetting);
     othersPanelSizer->Add(itemStaticTextURL, g_flags);
 
-    wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::DEFSTOCKURL);
+    wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::weblink::DefStockUrl);
     wxTextCtrl* itemTextCtrURL = new wxTextCtrl(othersPanel
         , ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL, stockURL);
     othersPanelSizer->Add(itemTextCtrURL, wxSizerFlags(g_flagsExpand).Proportion(0));

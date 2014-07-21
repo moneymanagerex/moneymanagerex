@@ -691,9 +691,10 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
     event.Skip();
 }
 
-bool mmFilterTransactionsDialog::checkPayee(const Model_Checking::Data &tran)
+template<class MODEL, class DATA>
+bool mmFilterTransactionsDialog::checkPayee(const DATA &tran)
 {
-    bool ok = Model_Checking::type(tran) != Model_Checking::TRANSFER;
+    bool ok = MODEL::type(tran) != MODEL::TRANSFER;
     if (ok && payeeCheckBox_->IsChecked())
     {
         const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
@@ -704,24 +705,13 @@ bool mmFilterTransactionsDialog::checkPayee(const Model_Checking::Data &tran)
     return ok;
 }
 
-bool mmFilterTransactionsDialog::checkPayee(const Model_Billsdeposits::Data &tran)
-{
-    bool ok = Model_Billsdeposits::type(tran) != Model_Billsdeposits::TRANSFER;
-    if (ok && payeeCheckBox_->IsChecked())
-    {
-        const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
-        if (payee)
-            return cbPayee_->GetValue().Lower() == (payee->PAYEENAME).Lower();
-        return false;
-    }
-    return ok;
-}
-
-bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
+template<class MODEL, class DATA>
+bool mmFilterTransactionsDialog::checkCategory(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits)
 {
     if (categoryCheckBox_->IsChecked())
     {
-        if (Model_Checking::splittransaction(tran).empty())
+        const auto it = splits.find(tran.id());
+        if (it == splits.end())
         {
             if (categID_ != tran.CATEGID) return false;
             if (subcategID_ != tran.SUBCATEGID && !bSimilarCategoryStatus_) return false;
@@ -729,7 +719,7 @@ bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
         else
         {
             bool bMatching = false;
-            for (const auto &split : Model_Checking::splittransaction(tran))
+            for (const auto &split : it->second)
             {
                 if (split.CATEGID != categID_) continue;
                 if (split.SUBCATEGID != subcategID_ && !bSimilarCategoryStatus_) continue;
@@ -743,54 +733,29 @@ bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
     return true;
 }
 
-bool mmFilterTransactionsDialog::checkCategory(const Model_Billsdeposits::Data &tran)
-{
-    if (categoryCheckBox_->IsChecked())
-    {
-        if (Model_Billsdeposits::splittransaction(tran).empty())
-        {
-            if (categID_ != tran.CATEGID) return false;
-            if (subcategID_ != tran.SUBCATEGID && !bSimilarCategoryStatus_) return false;
-        }
-        else
-        {
-            bool bMatching = false;
-            for (const auto &split : Model_Billsdeposits::splittransaction(tran))
-            {
-                if (split.CATEGID != categID_) continue;
-                if (split.SUBCATEGID != subcategID_ && !bSimilarCategoryStatus_) continue;
-
-                bMatching = true;
-                break;
-            }
-            if (!bMatching) return false;
-        }
-    }
-    return true;
-}
-
-bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, const int accountID)
+bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, const int accountID, const std::map<int, Model_Splittransaction::Data_Set>& splits)
 {
     bool ok = true;
     //wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(), getToDateControl().GetDateOnly().FormatISODate());
-    if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID)) ok = false;
-    else if (getDateRangeCheckBox()
-        && !Model_Checking::TRANSDATE(tran)
-            .IsBetween(getFromDateCtrl().GetDateOnly()
-            , getToDateControl().GetDateOnly()
-        )
-    ) ok = false;
-    else if (!checkPayee(tran)) ok = false;
-    else if (!checkCategory(tran)) ok = false;
+    if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID))
+        ok = false;
+    else if 
+    (   getDateRangeCheckBox()
+        && !Model_Checking::TRANSDATE(tran).IsBetween(
+            getFromDateCtrl().GetDateOnly(), getToDateControl().GetDateOnly())
+    )
+        ok = false;
+    else if (!checkPayee<Model_Checking>(tran)) ok = false;
+    else if (!checkCategory<Model_Checking>(tran, splits)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
     else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;
-    else if (getNotesCheckBox() && !tran.NOTES.Lower().Matches(getNotes().Lower())) ok = false;
+    else if (getNotesCheckBox() && !tran.NOTES.Lower().Contains(getNotes().Lower())) ok = false;
     return ok;
 }
-bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran)
+bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& splits)
 {
     bool ok = true;
     if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID)) ok = false;
@@ -800,14 +765,14 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran)
             , getToDateControl().GetDateOnly()
         )
     ) ok = false;
-    else if (!checkPayee(tran)) ok = false;
-    else if (!checkCategory(tran)) ok = false;
+    else if (!checkPayee<Model_Billsdeposits>(tran)) ok = false;
+    else if (!checkCategory<Model_Billsdeposits>(tran, splits)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, true)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
     else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;
-    else if (getNotesCheckBox() && !tran.NOTES.Lower().Matches(getNotes().Lower())) ok = false;
+    else if (getNotesCheckBox() && !tran.NOTES.Lower().Contains(getNotes().Lower())) ok = false;
     return ok;
 }
 
@@ -830,13 +795,13 @@ void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
 void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
 {
     hb.addHorizontalLine();
-    hb.addHeaderItalic(1, _("Filtering Details: "));
+    hb.addHeader(3, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
     wxString filterDetails = to_json();
     filterDetails.Replace(",\n", "<br>");
     filterDetails.replace(0, 1, ' ');
     filterDetails.RemoveLast(1);
-    hb.addParaText(filterDetails);
+    hb.addText(filterDetails);
 }
 
 wxString mmFilterTransactionsDialog::to_json()

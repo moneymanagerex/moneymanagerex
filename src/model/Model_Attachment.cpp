@@ -94,3 +94,16 @@ wxString Model_Attachment::reftype_desc(const int& RefTypeEnum)
 	wxString reftype_desc = item.second;
 	return reftype_desc;
 }
+
+/** Return a dataset with attachments linked to a specific type*/
+std::map<int, Model_Attachment::Data_Set> Model_Attachment::get_all(REFTYPE reftype)
+{
+    std::map<int, Model_Attachment::Data_Set> data;
+    wxString reftype_desc = Model_Attachment::reftype_desc(reftype);
+    for (const auto & attachment : this->find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(reftype_desc)))
+    {
+        data[attachment.REFID].push_back(attachment);
+    }
+
+    return data;
+}

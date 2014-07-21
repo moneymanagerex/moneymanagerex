@@ -75,11 +75,14 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_category_init_(false)
     , category_changed_(false)
     , skip_amount_init_(false)
+    , transaction_(0)
 {
-    if (transaction_id_)
-    {
-        transaction_ = Model_Checking::instance().get(transaction_id_);
-        for (const auto& item : Model_Checking::splittransaction(transaction_)) m_local_splits.push_back(item);
+
+    transaction_ = Model_Checking::instance().get(transaction_id_);
+    if (transaction_) {
+        wxASSERT(transaction_->TRANSID == transaction_id_);
+        for (const auto& item : Model_Checking::splittransaction(transaction_))
+            m_local_splits.push_back(item);
         m_transfer = Model_Checking::type(transaction_) == Model_Checking::TRANSFER;
     }
     else
@@ -679,7 +682,10 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         cbAccount_->SetValue(account->ACCOUNTNAME);
     }
 
-    textAmount_->Calculate(currency);
+    if (object_in_focus_ == textAmount_->GetId())
+        textAmount_->SelectAll();
+    else
+        textAmount_->Calculate(currency);
 
     if (advancedToTransAmountSet_)
         toTextAmount_->Calculate(currency);

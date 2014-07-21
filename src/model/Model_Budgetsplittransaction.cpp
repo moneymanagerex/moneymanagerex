@@ -54,3 +54,14 @@ double Model_Budgetsplittransaction::get_total(const Data_Set& rows)
 
     return total;
 }
+
+std::map<int, Model_Budgetsplittransaction::Data_Set> Model_Budgetsplittransaction::get_all()
+{
+    std::map<int, Model_Budgetsplittransaction::Data_Set> data;
+    for (const auto & split : instance().all())
+    {
+        data[split.TRANSID].push_back(split);
+    }
+
+    return data;
+}

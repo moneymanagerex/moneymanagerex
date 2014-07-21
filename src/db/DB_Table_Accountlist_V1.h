@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
+ *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -268,19 +268,19 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         {
             view_ = view;
         
-            ACCOUNTID = q.GetInt("ACCOUNTID");
-            ACCOUNTNAME = q.GetString("ACCOUNTNAME");
-            ACCOUNTTYPE = q.GetString("ACCOUNTTYPE");
-            ACCOUNTNUM = q.GetString("ACCOUNTNUM");
-            STATUS = q.GetString("STATUS");
-            NOTES = q.GetString("NOTES");
-            HELDAT = q.GetString("HELDAT");
-            WEBSITE = q.GetString("WEBSITE");
-            CONTACTINFO = q.GetString("CONTACTINFO");
-            ACCESSINFO = q.GetString("ACCESSINFO");
-            INITIALBAL = q.GetDouble("INITIALBAL");
-            FAVORITEACCT = q.GetString("FAVORITEACCT");
-            CURRENCYID = q.GetInt("CURRENCYID");
+            ACCOUNTID = q.GetInt(0); // ACCOUNTID
+            ACCOUNTNAME = q.GetString(1); // ACCOUNTNAME
+            ACCOUNTTYPE = q.GetString(2); // ACCOUNTTYPE
+            ACCOUNTNUM = q.GetString(3); // ACCOUNTNUM
+            STATUS = q.GetString(4); // STATUS
+            NOTES = q.GetString(5); // NOTES
+            HELDAT = q.GetString(6); // HELDAT
+            WEBSITE = q.GetString(7); // WEBSITE
+            CONTACTINFO = q.GetString(8); // CONTACTINFO
+            ACCESSINFO = q.GetString(9); // ACCESSINFO
+            INITIALBAL = q.GetDouble(10); // INITIALBAL
+            FAVORITEACCT = q.GetString(11); // FAVORITEACCT
+            CURRENCYID = q.GetInt(12); // CURRENCYID
         }
 
         Data& operator=(const Data& other)
@@ -445,7 +445,12 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             return view_->remove(this, db);
         }
 
-        void destroy() { delete this; }
+        void destroy()
+        {
+            //if (this->id() < 0)
+            //    wxSafeShowMessage("unsaved object", this->to_json());
+            delete this;
+        }
     };
 
     enum

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
+ *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -284,20 +284,20 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         {
             view_ = view;
         
-            TRANSID = q.GetInt("TRANSID");
-            ACCOUNTID = q.GetInt("ACCOUNTID");
-            TOACCOUNTID = q.GetInt("TOACCOUNTID");
-            PAYEEID = q.GetInt("PAYEEID");
-            TRANSCODE = q.GetString("TRANSCODE");
-            TRANSAMOUNT = q.GetDouble("TRANSAMOUNT");
-            STATUS = q.GetString("STATUS");
-            TRANSACTIONNUMBER = q.GetString("TRANSACTIONNUMBER");
-            NOTES = q.GetString("NOTES");
-            CATEGID = q.GetInt("CATEGID");
-            SUBCATEGID = q.GetInt("SUBCATEGID");
-            TRANSDATE = q.GetString("TRANSDATE");
-            FOLLOWUPID = q.GetInt("FOLLOWUPID");
-            TOTRANSAMOUNT = q.GetDouble("TOTRANSAMOUNT");
+            TRANSID = q.GetInt(0); // TRANSID
+            ACCOUNTID = q.GetInt(1); // ACCOUNTID
+            TOACCOUNTID = q.GetInt(2); // TOACCOUNTID
+            PAYEEID = q.GetInt(3); // PAYEEID
+            TRANSCODE = q.GetString(4); // TRANSCODE
+            TRANSAMOUNT = q.GetDouble(5); // TRANSAMOUNT
+            STATUS = q.GetString(6); // STATUS
+            TRANSACTIONNUMBER = q.GetString(7); // TRANSACTIONNUMBER
+            NOTES = q.GetString(8); // NOTES
+            CATEGID = q.GetInt(9); // CATEGID
+            SUBCATEGID = q.GetInt(10); // SUBCATEGID
+            TRANSDATE = q.GetString(11); // TRANSDATE
+            FOLLOWUPID = q.GetInt(12); // FOLLOWUPID
+            TOTRANSAMOUNT = q.GetDouble(13); // TOTRANSAMOUNT
         }
 
         Data& operator=(const Data& other)
@@ -470,7 +470,12 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             return view_->remove(this, db);
         }
 
-        void destroy() { delete this; }
+        void destroy()
+        {
+            //if (this->id() < 0)
+            //    wxSafeShowMessage("unsaved object", this->to_json());
+            delete this;
+        }
     };
 
     enum

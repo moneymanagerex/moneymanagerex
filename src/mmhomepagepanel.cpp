@@ -43,11 +43,6 @@ Copyright (C) 2014 Nikolay
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
 #include "cajun/json/writer.h"
-
-#if defined (__WXMSW__)
-    #include <wx/msw/registry.h>
-#endif
-
 class htmlWidgetStocks
 {
 public:
@@ -84,12 +79,12 @@ wxString htmlWidgetStocks::getHTMLText()
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
-        output = "<table class ='table'><col style='width:50%'><col style='width:25%'><col style='width:25%'><thead><tr class='active'><th>";
+        output = "<table class ='sortable table'><col style='width:50%'><col style='width:25%'><col style='width:25%'><thead><tr class='active'><th>\n";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
-        output += "</th><th class = 'text-right'>" + _("Total");
-        output += wxString::Format("<a id='%s_label' onclick='toggleTable(\"%s\"); ' href='#'>[-]</a>"
+        output += "</th><th class = 'text-right'>" + _("Total") + "</th>";
+        output += wxString::Format("<th nowrap class='sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#'>[-]</a></th>\n"
             , "INVEST", "INVEST");
-        output += "</th></tr></thead><tbody id='INVEST'>";
+        output += "</tr></thead><tbody id='INVEST'>\n";
         const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
         wxString body = "";
         for (const auto& account : accounts)
@@ -97,20 +92,22 @@ wxString htmlWidgetStocks::getHTMLText()
             if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
             if (Model_Account::status(account) != Model_Account::OPEN) continue;
             body += "<tr>";
-            body += wxString::Format("<td><a href=\"stock:%d\">%s</a></td>"
-                , account.ACCOUNTID, account.ACCOUNTNAME);
-            body += wxString::Format("<td class = 'money'>%s</td>"
+            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%i'>%s</a></td>\n"
+                , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
+            body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
+                , stockStats[account.ACCOUNTID].first
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
-            body += wxString::Format("<td class = 'money'>%s</td>"
+            body += wxString::Format("<td colspan='2' class='money' sorttable_customkey='%f'>%s</td>"
+                , stockStats[account.ACCOUNTID].second
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].second, &account));
             body += "</tr>";
         }
 
         output += body;
         output += "</tbody><tfoot><tr class = 'total'><td>" + _("Total:") + "</td>";
-        output += wxString::Format("<td class ='money'>%s</td>"
+        output += wxString::Format("<td class='money'>%s</td>"
             , Model_Currency::toCurrency(grand_gain_lost_));
-        output += wxString::Format("<td class ='money'>%s</td></tr></tfoot></table>"
+        output += wxString::Format("<td colspan='2' class='money'>%s</td></tr></tfoot></table>"
             , Model_Currency::toCurrency(grand_total_));
         if (body.empty()) output.clear();
     }
@@ -185,24 +182,34 @@ htmlWidgetTop7Categories::~htmlWidgetTop7Categories()
 
 wxString htmlWidgetTop7Categories::getHTMLText()
 {
-    const wxString idStr = "TOP_CATEGORIES";
-
-    wxString output = "<table class = 'table'><thead><tr class='active'><th>\n";
-    output += title_ + wxString::Format("</th><th class='text-right'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#'>[-]</a></th></tr></thead>\n", idStr, idStr);
-    output += wxString::Format("<tbody id='%s'>", idStr);
-    output += "<tr style='background-color: #d8ebf0'><td>";
-    output += _("Category") + "</td><td class='text-right'>" + _("Summary") + "</td></tr>";
     std::vector<std::pair<wxString, double> > topCategoryStats;
     getTopCategoryStats(topCategoryStats, date_range_);
+    wxString output = "";
+    
+    if (!topCategoryStats.empty()) {
+        const wxString idStr = "TOP_CATEGORIES";
+        output += "<table class = 'table' ><tr class='active'><th>\n";
+        output += title_ + wxString::Format("</th><th nowrap class='text-right'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n", idStr, idStr);
+        output += "<tr><td style='padding:0px; padding-left:0px; padding-right:0px; line-height:0; width:100%; ' colspan='2'>\n";
+        output += wxString::Format("<table class = 'sortable table' id='%s'>", idStr);
+        output += "<thead>";
+        output += "<tr><th>";
+        output += _("Category") + "</th><th class='text-right'>" + _("Summary") + "</th></tr>";
+        output += "</thead>\n";
+        output += "<tboby>\n";
 
-    for (const auto& i : topCategoryStats)
-    {
-        output += "<tr>";
-        output += wxString::Format("<td>%s</td>", (i.first.IsEmpty() ? "..." : i.first));
-        output += wxString::Format("<td class='money'>%s</td>", Model_Currency::toCurrency(i.second));
-        output += "</tr>";
+        for (const auto& i : topCategoryStats)
+        {
+            output += "<tr>";
+            output += wxString::Format("<td>%s</td>", (i.first.IsEmpty() ? "..." : i.first));
+            output += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>"
+                , i.second
+                , Model_Currency::toCurrency(i.second));
+            output += "</tr>";
+        }
+        output += "</tbody></table>\n";
+        output += "</td></tr></table>\n";
     }
-    output += "</tbody></table>\n";
 
     return output;
 }
@@ -221,6 +228,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     //Temporary map
     std::map<std::pair<int /*category*/, int /*sub category*/>, double> stat;
 
+    const auto splits = Model_Splittransaction::instance().get_all();
     const auto &transactions = Model_Checking::instance().find(
             Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
             , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
@@ -230,7 +238,9 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     for (const auto &trx : transactions)
     {
         bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
-        if (Model_Checking::splittransaction(trx).empty())
+        const auto it = splits.find(trx.TRANSID);
+
+        if (it == splits.end())
         {
             std::pair<int, int> category = std::make_pair(trx.CATEGID, trx.SUBCATEGID);
             if (withdrawal)
@@ -240,8 +250,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         }
         else
         {
-            const auto &splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(trx.TRANSID));
-            for (const auto& entry : splits)
+            for (const auto& entry : it->second)
             {
                 std::pair<int, int> category = std::make_pair(entry.CATEGID, entry.SUBCATEGID);
                 double val = entry.SPLITTRANSAMOUNT
@@ -356,21 +365,21 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
     {   
         const wxString idStr = "BILLS_AND_DEPOSITS";
 
-        output = "<table class='table'><thead><tr class='active'><th>";
-        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>", title_);
-        output += wxString::Format("<th class='text-right'>%i <a id='%s_label' onclick='toggleTable(\"%s\"); ' href='#'>[-]</a></th></tr>\n"
+        output = "<table class='table'>\n<thead>\n<tr class='active'><th>";
+        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>\n", title_);
+        output += wxString::Format("<th nowrap class='text-right'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n"
             , int(bd_days.size()), idStr, idStr);
-        output += "</thead>";
+        output += "</thead>\n";
 
-        output += wxString::Format("<tbody id='%s'>", idStr);
-        output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th><th class='text-right'>%s</th><th class='text-right'>%s</th></tr>"
+        output += wxString::Format("<tbody id='%s'>\n", idStr);
+        output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th><th class='text-right'>%s</th><th class='text-right'>%s</th></tr>\n"
             , _("Payee"), _("Amount"), _("Days"));
 
         for (const auto& item : bd_days)
         {
             output += wxString::Format("<tr %s>\n", std::get<0>(item) < 0 ? "class='danger'" : "");
             output += "<td>" + std::get<1>(item) +"</td>"; //payee
-            output += wxString::Format("<td class='money'>%s</td>"
+            output += wxString::Format("<td class='money'>%s</td>\n"
                 , Model_Account::toCurrency(std::get<3>(item), std::get<4>(item)));
             output += "<td  class='money'>" + std::get<2>(item) + "</td></tr>\n";
         }
@@ -401,14 +410,14 @@ public:
         if (uri.StartsWith("assets:", &sData))
         {
             frame->setNavTreeSection(_("Assets"));
-            //wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-            //frame->GetEventHandler()->AddPendingEvent(evt);
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
+            frame->GetEventHandler()->AddPendingEvent(evt);
         }
         else if (uri.StartsWith("billsdeposits:", &sData))
         {
             frame->setNavTreeSection(_("Repeating Transactions"));
-            //wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-            //frame->GetEventHandler()->AddPendingEvent(evt);
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
+            frame->GetEventHandler()->AddPendingEvent(evt);
         }
         else if (uri.StartsWith("acct:", &sData))
         {
@@ -418,8 +427,8 @@ public:
             if (account) {
                 frame->setGotoAccountID(id);
                 frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                //wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-                //frame->GetEventHandler()->AddPendingEvent(evt);
+                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+                frame->GetEventHandler()->AddPendingEvent(evt);
             }
         }
         else if (uri.StartsWith("stock:", &sData))
@@ -430,8 +439,8 @@ public:
             if (account) {
                 frame->setGotoAccountID(id);
                 frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                //wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
-                //frame->GetEventHandler()->AddPendingEvent(evt);
+                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
+                frame->GetEventHandler()->AddPendingEvent(evt);
             }
         }
 
@@ -487,7 +496,6 @@ bool mmHomePagePanel::Create(wxWindow *parent
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    WindowsUpdateRegistry();
     getTemplate();
     getData();
     fillData();
@@ -544,12 +552,10 @@ void mmHomePagePanel::getData()
     m_frames["ACCOUNTS_INFO"] = displayAccounts(tBalance, accountStats);
     m_frames["CARD_ACCOUNTS_INFO"] = displayAccounts(cardBalance, accountStats, Model_Account::CREDIT_CARD);
     tBalance += cardBalance;
-    if (Model_Account::hasActiveTermAccount())
-    {
-        double termBalance = 0.0;
-        m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
-        tBalance += termBalance;
-    }
+
+    double termBalance = 0.0;
+    m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
+    tBalance += termBalance;
 
     //Stocks
     wxString stocks = "";
@@ -585,19 +591,6 @@ const wxString mmHomePagePanel::getToggles()
         , !Model_Setting::instance().GetBoolSetting("EXPAND_TERM_TREE", false)
         , !Model_Setting::instance().GetBoolSetting("EXPAND_STOCKS_TREE", false));
     return json;
-}
-
-const bool mmHomePagePanel::WindowsUpdateRegistry()
-{
-    #if defined (__WXMSW__)
-        wxRegKey Key(wxRegKey::HKCU, "Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION");
-        if (Key.Create(true) && Key.SetValue("mmex.exe", 9000))
-            return true;
-        else
-            return false;
-    #else
-        return true;
-    #endif 
 }
 
 void mmHomePagePanel::fillData()
@@ -678,8 +671,8 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
          credit_card = type == Model_Account::CREDIT_CARD;
     double tReconciled = 0;
     const wxString idStr = (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO");
-    wxString output = "<table class = 'table'>";
-    output += "<col style='width:50%'><col style='width:25%'><col style='width:25%'>";
+    wxString output = "<table class = 'sortable table'>\n";
+    output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
     output += "<thead><tr><th>";
     if (type_is_bank && !credit_card)
         output += _("Bank Account");
@@ -688,12 +681,12 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     else if (!type_is_bank)
         output += _("Term account");
 
-    output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>";
-    output += "<th class = 'text-right'>" + _("Balance");
-    output += wxString::Format("<a id='%s_label' onclick='toggleTable(\"%s\");' href='#' title='Toggle the table'>[-]</a>"
+    output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
+    output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";
+    output += wxString::Format("<th nowrap class='sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th>\n"
         , idStr, idStr);
-    output += "</th></tr></thead>";
-    output += wxString::Format("<tbody id = '%s'>", idStr);
+    output += "</tr></thead>\n";
+    output += wxString::Format("<tbody id = '%s'>\n", idStr);
 
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
@@ -714,16 +707,17 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
             (vAccts_ == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
-            body += wxString::Format("<td><a href=\"acct:%i\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
-            body += wxString::Format("<td class = 'money'>%s</td>", Model_Currency::toCurrency(reconciledBal, currency));
-            body += wxString::Format("<td class = 'money'>%s</td>", Model_Currency::toCurrency(bal, currency));
+            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='acct:%i'>%s</a></td>\n"
+                , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
+            body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
+            body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2'>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));
             body += "</tr>\n";
         }
     }
     output += body;
-    output += "</tbody><tfoot><tr class ='total'><td>" + _("Total:") + "</td>";
-    output += "<td class ='money'>" + Model_Currency::toCurrency(tReconciled) + "</td>";
-    output += "<td class ='money'>" + Model_Currency::toCurrency(tBalance) + "</td></tr></tfoot></table>";
+    output += "</tbody><tfoot><tr class ='total'><td>" + _("Total:") + "</td>\n";
+    output += "<td class='money'>" + Model_Currency::toCurrency(tReconciled) + "</td>\n";
+    output += "<td class='money' colspan='2'>" + Model_Currency::toCurrency(tBalance) + "</td></tr></tfoot></table>\n";
     if (body.empty()) output.clear();
 
     return output;
@@ -749,9 +743,12 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     // Compute chart spacing and interval (chart forced to start at zero)
     double steps = 10.0;
     double scaleStepWidth = ceil(std::max(tIncome, tExpenses) / steps);
-    double s = (pow(10, ceil(log10(scaleStepWidth)) - 1));
-    if (s >= 0.1)
-        scaleStepWidth = ceil(scaleStepWidth / s)*s;
+    if (scaleStepWidth <= 1.0)
+        scaleStepWidth = 1.0;
+    else {
+        double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
+        if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
+    }
 
     o["0"] = json::String(wxString::Format(_("Income vs Expenses: %s"), date_range_->title()).ToStdString());
     o["1"] = json::String(_("Type").ToStdString());
@@ -781,6 +778,10 @@ const wxString mmHomePagePanel::displayAssets(double& tBalance)
 
     double asset_balance = Model_Asset::instance().balance();
     tBalance += asset_balance;
+    wxString output = "<table class = 'table'><tfoot><tr class = \"total\">";
+    output += wxString::Format("<td><a href = \"Assets:\">%s</a></td>", _("Assets"));
+    output += wxString::Format("<td class='money'>%s</td></tr>", Model_Currency::toCurrency(asset_balance));
+    output += "</tfoot></table>";
 
     o["NAME"] = json::String(_("Assets").ToStdString());
     o["VALUE"] = json::String(Model_Currency::toCurrency(asset_balance).ToStdString());
@@ -858,7 +859,7 @@ const wxString mmHomePagePanel::displayWebsiteNews()
 const bool mmHomePagePanel::getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 {
     wxString RssContent;
-    if (site_content(mmex::getProgramWebSiteRSS(), RssContent) != wxURL_NOERR)
+    if (site_content(mmex::weblink::NewsRSS, RssContent) != wxURL_NOERR)
         return false;
 
     wxStringInputStream RssContentStream(RssContent);

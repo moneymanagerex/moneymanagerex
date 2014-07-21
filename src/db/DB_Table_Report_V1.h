@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
+ *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -212,13 +212,13 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             view_ = view;
         
-            REPORTID = q.GetInt("REPORTID");
-            REPORTNAME = q.GetString("REPORTNAME");
-            GROUPNAME = q.GetString("GROUPNAME");
-            SQLCONTENT = q.GetString("SQLCONTENT");
-            LUACONTENT = q.GetString("LUACONTENT");
-            TEMPLATECONTENT = q.GetString("TEMPLATECONTENT");
-            DESCRIPTION = q.GetString("DESCRIPTION");
+            REPORTID = q.GetInt(0); // REPORTID
+            REPORTNAME = q.GetString(1); // REPORTNAME
+            GROUPNAME = q.GetString(2); // GROUPNAME
+            SQLCONTENT = q.GetString(3); // SQLCONTENT
+            LUACONTENT = q.GetString(4); // LUACONTENT
+            TEMPLATECONTENT = q.GetString(5); // TEMPLATECONTENT
+            DESCRIPTION = q.GetString(6); // DESCRIPTION
         }
 
         Data& operator=(const Data& other)
@@ -335,7 +335,12 @@ struct DB_Table_REPORT_V1 : public DB_Table
             return view_->remove(this, db);
         }
 
-        void destroy() { delete this; }
+        void destroy()
+        {
+            //if (this->id() < 0)
+            //    wxSafeShowMessage("unsaved object", this->to_json());
+            delete this;
+        }
     };
 
     enum

@@ -120,13 +120,13 @@ bool mmGeneralReportManager::Create(wxWindow* parent
 
 void mmGeneralReportManager::fillControls()
 {
+    Freeze();
     viewControls(false);
-    m_treeCtrl->SetEvtHandlerEnabled(false);
+    SetEvtHandlerEnabled(false);
     m_treeCtrl->DeleteAllItems();
     m_rootItem = m_treeCtrl->AddRoot(_("Reports"));
     m_selectedItemID = m_rootItem;
     m_treeCtrl->SetItemBold(m_rootItem, true);
-    m_treeCtrl->SetFocus();
     Model_Report::Data_Set records = Model_Report::instance().all();
     std::sort(records.begin(), records.end(), SorterByREPORTNAME());
     std::stable_sort(records.begin(), records.end(), SorterByGROUPNAME());
@@ -150,9 +150,14 @@ void mmGeneralReportManager::fillControls()
         }
     }
     m_treeCtrl->ExpandAll();
-    m_treeCtrl->SetEvtHandlerEnabled(true);
     m_treeCtrl->SelectItem(m_selectedItemID);
-
+    SetEvtHandlerEnabled(true);
+    m_treeCtrl->SetFocus();
+    Thaw();
+    //Show help page or report detailes (bugs:#421)
+    wxTreeEvent evt(wxEVT_TREE_SEL_CHANGED, ID_REPORT_LIST);
+    evt.SetItem(m_selectedItemID);
+    OnSelChanged(evt);
 }
 
 void mmGeneralReportManager::CreateControls()
@@ -383,34 +388,38 @@ void mmGeneralReportManager::importReport()
     if (reportFileName.empty()) return;
 
     wxFileName fn(reportFileName);
-    const wxString basename = fn.FileName(reportFileName).GetName();
+    wxString sql, lua, htt, txt, reportName;
+    openZipFile(reportFileName, htt, sql, lua, txt, reportName);
 
-    const auto &reports = Model_Report::instance().find(Model_Report::REPORTNAME(basename));
-    if (!reports.empty())
+    reportName = fn.FileName(reportFileName).GetName();
+    bool ok = true;
+    while (ok)
     {
-        mmShowErrorMessage(this, _("Report with same name exists"), _("General Report Manager"));
-        return;
+        Model_Report::Data *report = Model_Report::instance().get(reportName);
+        if (report) {
+            reportName = wxGetTextFromUser(_("Report with same name exists")
+                , _("General Report Manager"), reportName);
+            if (reportName.empty())
+                return;
+        }
+        else
+            ok = false;
     }
-    else
-    {
-        wxString sql, lua, htt, txt;
-        openZipFile(reportFileName, htt, sql, lua, txt);
-        Model_Report::Data *report = 0;
-        report = Model_Report::instance().create();
-        report->GROUPNAME = m_selectedGroup;
-        report->REPORTNAME = basename;
-        report->SQLCONTENT = sql;
-        report->LUACONTENT = lua;
-        report->TEMPLATECONTENT = htt;
-        report->DESCRIPTION = txt;
-        m_selectedReportID = Model_Report::instance().save(report);
-    }
+
+    Model_Report::Data *report = Model_Report::instance().create();
+    report->GROUPNAME = m_selectedGroup;
+    report->REPORTNAME = reportName;
+    report->SQLCONTENT = sql;
+    report->LUACONTENT = lua;
+    report->TEMPLATECONTENT = htt;
+    report->DESCRIPTION = txt;
+    m_selectedReportID = Model_Report::instance().save(report);
 
     fillControls();
 }
 
 bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
-    , wxString &htt, wxString &sql, wxString &lua, wxString &txt)
+    , wxString &htt, wxString &sql, wxString &lua, wxString &txt, wxString &reportName)
 {
     if (!reportFileName.empty())
     {
@@ -440,7 +449,7 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
                     sql = textdata;
                 else if (f.EndsWith(".lua"))
                     lua = textdata;
-                else if (f.StartsWith("description"))
+                else if (f.EndsWith(".txt") || f.EndsWith(".html"))
                     txt << textdata;
                 else if (f.EndsWith(".htt"))
                     htt << textdata;
@@ -548,14 +557,14 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
     viewControls(false);
     m_selectedItemID = event.GetItem();
-
     if (!m_selectedItemID) return;
 
     wxNotebook* editors_notebook = (wxNotebook*) FindWindow(ID_NOTEBOOK);
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData)
     {
-        for (size_t n = editors_notebook->GetPageCount() - 1; n >= 1; n--) editors_notebook->DeletePage(n);
+        for (size_t n = editors_notebook->GetPageCount() - 1; n >= 1; n--)
+            editors_notebook->DeletePage(n);
         showHelp();
         return;
     }
@@ -563,17 +572,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     int id = iData->get_report_id();
     m_selectedGroup = iData->get_group_name();
     Model_Report::Data * report = Model_Report::instance().get(id);
-    if (!report)
-    {
-        for (size_t n = editors_notebook->GetPageCount() - 1; n >= 1; n--) editors_notebook->DeletePage(n);
-        wxString repList = "<table cellspacing='2' width='90%'>";
-        repList += "<tr bgcolor='#D5D6DE'><td>" + _("Name") + "</td><td>" + _("Description") + "</tr>";
-        for (const auto& rep: Model_Report::instance().find(Model_Report::GROUPNAME(m_selectedGroup)))
-            repList += "<tr><td width='30%' nowrap>" + rep.REPORTNAME + "</td><td>" + rep.DESCRIPTION + "</td></tr>";
-        repList += "</table>";
-        m_outputHTML->SetPage(repList, "");
-    }
-    else
+    if (report)
     {
         m_selectedReportID = report->REPORTID;
         createEditorTab(editors_notebook, ID_DESCRIPTION);
@@ -592,9 +591,12 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         SqlScriptText->SetLexerSql();
         LuaScriptText->ChangeValue(report->LUACONTENT);
         LuaScriptText->SetLexerLua();
-        descriptionText->ChangeValue(report->DESCRIPTION);
+        wxString description = report->DESCRIPTION;
+        descriptionText->ChangeValue(description);
+        if (!description.Contains("<!DOCTYPE html"))
+            description.Replace("\n", "<BR>\n");
 
-        m_outputHTML->SetPage(report->DESCRIPTION, "");
+        m_outputHTML->SetPage(description, "");
 
         if (m_sqlListBox) m_sqlListBox->DeleteAllItems();
         if (m_sqlListBox) m_sqlListBox->DeleteAllColumns();
@@ -710,10 +712,9 @@ void mmGeneralReportManager::newReport(int sample)
         group_name = m_selectedGroup;
     }
 
-    int i = Model_Report::instance().all().size();
-    wxString report_name = _("New Report");
-    while (!Model_Report::instance().find(Model_Report::REPORTNAME(report_name)).empty())
-        report_name = wxString::Format(_("New Report %i"), ++i);
+    wxDateTime now = wxDateTime::Now();
+    wxString report_name = wxString::Format(_("New Report %s"), now.Format("%Y%m%d%H%M%S"));
+
     wxString sqlContent, luaContent, httContent, description;
     switch (sample) {
     case ID_NEW_EMPTY:
