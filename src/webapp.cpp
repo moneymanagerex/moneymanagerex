@@ -38,7 +38,9 @@ const wxString mmWebApp::getApiExpectedVersion()
 //Internal constants
 const wxString mmWebApp::getUrl()
 {
-    return Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
+    wxString Url = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
+    Url.Replace("https://", "http://");
+    return Url;
 }
 
 const wxString mmWebApp::getGuid()
