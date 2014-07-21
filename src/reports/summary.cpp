@@ -216,9 +216,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.addDateNow();
     hb.addLineBreak();
 
-    hb.startCenter();
-
-    hb.startTable("90%");
+    hb.startTable();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Date"));
     hb.addTableHeaderCell(_("Bank Account"), true);
@@ -265,7 +263,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     while (date.IsLaterThan(dateStart))
         date -= span;
     dateStart = date;
-//dateStart.Set(31,wxDateTime::Dec,2013);
+    //dateStart.Set(31,wxDateTime::Dec,2013);
 
     i = 0;
     for (const auto& acctMap: balanceMapVec)
@@ -320,21 +318,20 @@ wxString mmReportSummaryByDate::getHTMLText()
 
     for (i=totBalanceData.size()-6; i>=0; i-=6)
     {
-        if (!datePrec.IsEmpty() && datePrec.Right(4) != totBalanceData[i].Right(4))
-            hb.addRowSeparator(6);
+        //if (!datePrec.IsEmpty() && datePrec.Right(4) != totBalanceData[i].Right(4))
+            //TODO:    hb.addRowSeparator(6);
         hb.startTableRow();
-        hb.addTableCell(totBalanceData[i], false, true);
-        hb.addTableCell(totBalanceData[i+1], true);
-        hb.addTableCell(totBalanceData[i+2], true);
-        hb.addTableCell(totBalanceData[i+3], true);
-        hb.addTableCell(totBalanceData[i+4], true);
-        hb.addTableCell(totBalanceData[i+5], true, false, true);
+        hb.addTableCell(totBalanceData[i]);
+        hb.addTableCell(totBalanceData[i+1]);
+        hb.addTableCell(totBalanceData[i+2]);
+        hb.addTableCell(totBalanceData[i+3]);
+        hb.addTableCell(totBalanceData[i+4]);
+        hb.addTableCell(totBalanceData[i+5]);
         hb.endTableRow();
         datePrec = totBalanceData[i];
     }
 
     hb.endTable();
-    hb.endCenter();
     hb.end();
 
     return hb.getHTMLText();

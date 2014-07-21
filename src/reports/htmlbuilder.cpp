@@ -210,7 +210,7 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool& numeri
     html_+= tags::TABLE_HEADER_END;
 }
 
-void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency, int width, int precision)
+void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency)
 {
     wxString s = Model_Currency::toCurrency(amount, currency);
     wxString f = wxString::Format("class='money' sorttable_customkey = '%f'", amount);

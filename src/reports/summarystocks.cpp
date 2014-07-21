@@ -181,7 +181,7 @@ wxString mmReportSummaryStocks::getHTMLText()
     hb.addHeader(2, _("Summary of Stocks"));
     hb.addDateNow();
 
-    hb.startTable("95%");
+    hb.startTable();
     for (const auto& acct : stocks_)
     {
         const Model_Account::Data* account = Model_Account::instance().get(acct.id);
@@ -194,30 +194,29 @@ wxString mmReportSummaryStocks::getHTMLText()
         for (const auto& entry : acct.data)
         {
             hb.startTableRow();
-            hb.addTableCell(entry.name, false, true);
+            hb.addTableCell(entry.name);
             hb.addTableCell(entry.symbol);
             hb.addTableCell(entry.date);
-            hb.addTableCell(Model_Account::toString(entry.qty, account, 4), true);
-            hb.addCurrencyCell(entry.purchase, currency, -1, 4);
-            hb.addCurrencyCell(entry.current, currency, -1, 4);
-            hb.addCurrencyCell(entry.commission, currency, -1, 4);
+            hb.addTableCell(Model_Account::toString(entry.qty, account, 4));
+            hb.addCurrencyCell(entry.purchase, currency);
+            hb.addCurrencyCell(entry.current, currency);
+            hb.addCurrencyCell(entry.commission, currency);
             hb.addCurrencyCell(entry.gainloss, currency);
             hb.addCurrencyCell(entry.value, currency);
             hb.endTableRow();
         }
 
-        hb.addRowSeparator(9);
+        //TODO: hb.addRowSeparator(9);
         hb.addTotalRow(_("Total:"), 8, acct.gainloss);
         hb.addTotalRow("", 9, acct.total);
     }
 
-    hb.addRowSeparator(9);
+    //TODO: hb.addRowSeparator(9);
     hb.addTotalRow(_("Grand Total:"), 8, gain_loss_sum_total_);
     hb.addTotalRow("", 9, stockBalance_);
     hb.endTableRow();
     hb.endTable();
 
-    hb.endCenter();
     hb.end();
     return hb.getHTMLText();
 }
@@ -225,42 +224,15 @@ wxString mmReportSummaryStocks::getHTMLText()
 void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb) 
 {
     hb.startTableRow();
-    if(STOCK_SORT_BY_NAME == sortColumn_)
-        hb.addTableHeaderCell(_("Name"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", STOCK_SORT_BY_NAME), _("Name"));
-    if(STOCK_SORT_BY_SYMBOL == sortColumn_)
-        hb.addTableHeaderCell(_("Symbol"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", STOCK_SORT_BY_SYMBOL), _("Symbol"));
-    if(STOCK_SORT_BY_DATE == sortColumn_)
-        hb.addTableHeaderCell(_("Purchase Date"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", STOCK_SORT_BY_DATE), _("Purchase Date"));
-    if(STOCK_SORT_BY_QTY == sortColumn_)
-        hb.addTableHeaderCell(_("Quantity"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", STOCK_SORT_BY_QTY), _("Quantity"), true);
-    if(STOCK_SORT_BY_PUR_PRICE == sortColumn_)
-        hb.addTableHeaderCell(_("Purchase Price"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", STOCK_SORT_BY_PUR_PRICE), _("Purchase Price"), true);
-    if(STOCK_SORT_BY_CUR_PRICE == sortColumn_)
-        hb.addTableHeaderCell(_("Current Price"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", STOCK_SORT_BY_CUR_PRICE), _("Current Price"), true);
-    if(STOCK_SORT_BY_COMMISSION == sortColumn_)
-        hb.addTableHeaderCell(_("Commission"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", STOCK_SORT_BY_COMMISSION), _("Commission"), true);
-    if(STOCK_SORT_BY_GAIN_LOSS == sortColumn_)
-        hb.addTableHeaderCell(_("Gain/Loss"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", STOCK_SORT_BY_GAIN_LOSS), _("Gain/Loss"), true);
-    if(STOCK_SORT_BY_VALUE == sortColumn_)
-        hb.addTableHeaderCell(_("Value"), true);
-    else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", STOCK_SORT_BY_VALUE), _("Value"), true);
+    hb.addTableHeaderCell(_("Name"));
+    hb.addTableHeaderCell(_("Symbol"));
+    hb.addTableHeaderCell(_("Purchase Date"));
+    hb.addTableHeaderCell(_("Quantity"), true);
+    hb.addTableHeaderCell(_("Purchase Price"), true);
+    hb.addTableHeaderCell(_("Current Price"), true);
+    hb.addTableHeaderCell(_("Commission"), true);
+    hb.addTableHeaderCell(_("Gain/Loss"), true);
+    hb.addTableHeaderCell(_("Value"), true);
     hb.endTableRow();
 }
 
@@ -287,7 +259,7 @@ wxString mmReportChartStocks::getHTMLText()
         {
             Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
             if (account)
-                hb.addHeaderItalic(4, account->ACCOUNTNAME);
+                hb.addHeader(1, account->ACCOUNTNAME);
         }
 
         prevDt = wxInvalidDateTime;
@@ -305,13 +277,8 @@ wxString mmReportChartStocks::getHTMLText()
             mmGraphHistoryStocks gg;
             gg.init(aData, index);
             gg.Generate("");
-            hb.startCenter();
             hb.addImage(gg.getOutputFileName());
-            hb.endCenter();
-
-            hb.startCenter();
             hb.addHeader(1, stock.STOCKNAME);
-            hb.endCenter();
         }
 
         aData.clear();
