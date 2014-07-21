@@ -9,13 +9,13 @@
 
 ; Copyright (C) 2006 Madhan Kanagavel
 ; Copyright (C) 2009 VaDiM
-; Copyright (C) 2011-2012 Stefano Giorgio
+; Copyright (C) 2011-2014 Stefano Giorgio
 ; Copyright (C) 2013 James Higley
 
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
-#define MyAppVersion "1.1.0-rc1"
-#define MyAppPublisher "CodeLathe, LLC"
+#define MyAppVersion "1.1.0-RC3"
+#define MyAppPublisher "Money Manager EX"
 #define MyAppURL "http://www.moneymanagerex.org"
 
 ; Set this value to a nul string for release version
@@ -26,8 +26,8 @@
 ; Local definitions specifically designed for my setup 
 #define my_svn_path "..\.."
 #define my_output_root "..\..\mmex_release"
-#define my_output_path "\mmex_1.1.0-rc2_x64_portable\MoneyManagerEx"
-#define my_output_filename "mmex_1.1.0-rc2_x64_setup"
+#define my_output_path "\mmex_1.1.0-rc3_x64_portable\MoneyManagerEx"
+#define my_output_filename "mmex_1.1.0-rc3_x64_setup"
 
 ;===============================================================================
 
@@ -59,6 +59,14 @@ OutputBaseFilename={#my_output_filename}
 SetupIconFile={#my_svn_path}\resources\mmex.ico
 Compression=lzma/Max
 SolidCompression=true
+VersionInfoVersion=1.1.0.3
+VersionInfoCompany=Money Manager EX
+VersionInfoDescription=Money Management Software
+VersionInfoTextVersion=1.1.0.3
+VersionInfoCopyright=2014 - Money Manager EX
+VersionInfoProductName=mmex
+VersionInfoProductVersion=1.1.0.3
+VersionInfoProductTextVersion=1.1.0.3
 ArchitecturesAllowed=x64 
 ArchitecturesInstallIn64BitMode=x64 
 
@@ -166,6 +174,7 @@ Source: {#my_svn_path}\resources\mmex.ico; DestDir: {app}\res; Flags: ignorevers
 Source: {#my_svn_path}\resources\master.css; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\resources\home_page.htt; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\3rd\Chart.js\Chart.js; DestDir: {app}\res; Flags: ignoreversion; 
+Source: {#my_svn_path}\3rd\sorttable.js\sorttable.js; DestDir: {app}\res; Flags: ignoreversion; 
 
 ; MMEX Root files - language dependant
 Source: {#my_svn_path}\README.TXT; DestDir: {app}; Flags: ignoreversion; Components: program; Languages: english; 

@@ -178,7 +178,6 @@ private:
     void OnListLeftClick(wxMouseEvent& event);
     void OnItemResize(wxListEvent& event);
     void OnListItemSelected(wxListEvent& event);
-    void OnListItemDeselected(wxListEvent& event);
     void OnListItemActivated(wxListEvent& event);
     void OnMarkTransaction(wxCommandEvent& event);
     void OnShowChbClick(wxCommandEvent& /*event*/);

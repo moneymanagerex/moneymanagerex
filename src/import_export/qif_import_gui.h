@@ -43,10 +43,7 @@ public:
         , long style);
 
     wxString OnGetItemText(long item, long column) const;
-    int get_last_imported_acc()
-    {
-        return m_firstReferencedAccountID;
-    }
+    int get_last_imported_acc();
 
 private:
     mmQIFImport* qif_api;
@@ -54,6 +51,7 @@ private:
     void fillControls();
     void OnFileSearch(wxCommandEvent& event);
     void OnCheckboxClick(wxCommandEvent& /*event*/);
+    void OnAccountChanged(wxCommandEvent& /*event*/);
     void OnDateMaskChange(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnCancel(wxCommandEvent& event);
@@ -65,11 +63,11 @@ private:
     void getOrCreatePayees();
     void getOrCreateCategories();
     void compliteTransaction(std::map <int, wxString> &trx, const wxString &accName);
-    bool createTransaction(/*in*/ const std::map <int, wxString> &i
-        , /*out*/ Model_Checking::Data* &trx);
-    bool mergeTransferPair(Model_Checking::Data_Set &to, Model_Checking::Data_Set &from);
-    void appendTransfers(Model_Checking::Data_Set &destination, Model_Checking::Data_Set &target);
-    void joinSplit(Model_Checking::Data_Set &destination, std::vector <Model_Splittransaction::Data_Set> &target);
+    bool compliteTransaction(/*in*/ const std::map <int, wxString> &i
+        , /*out*/ Model_Checking::Data* trx);
+    bool mergeTransferPair(Model_Checking::Cache& to, Model_Checking::Cache& from);
+    void appendTransfers(Model_Checking::Cache &destination, Model_Checking::Cache &target);
+    void joinSplit(Model_Checking::Cache &destination, std::vector <Model_Splittransaction::Cache> &target);
     void saveSplit();
     void getDateMask();
     void refreshTabs(int tabs = 15);
@@ -82,7 +80,7 @@ private:
     std::map <wxString, int> m_QIFaccountsID;
     std::map <wxString, int> m_QIFpayeeNames;
     std::map <wxString, std::pair<int, int> > m_QIFcategoryNames;
-    std::vector <Model_Splittransaction::Data_Set> m_splitDataSets;
+    std::vector <Model_Splittransaction::Cache> m_splitDataSets;
 
     wxString m_accountNameStr;
     wxString m_dateFormatStr;
@@ -106,8 +104,6 @@ private:
     wxCheckBox* accountCheckBox_;
     wxChoice* accountDropDown_;
     wxButton* btnOK_;
-
-    int m_firstReferencedAccountID; //The first available account in the QIF file
 
     enum EColumn
     {

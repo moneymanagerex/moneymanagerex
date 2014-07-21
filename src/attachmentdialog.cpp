@@ -229,8 +229,8 @@ void mmAttachmentDialog::EditAttachment()
 
 void mmAttachmentDialog::DeleteAttachment()
 {
-	Model_Attachment::Data *attachments = Model_Attachment::instance().get(m_attachment_id);
-    if (attachments)
+	Model_Attachment::Data *attachment = Model_Attachment::instance().get(m_attachment_id);
+    if (attachment)
     {
 		int DeleteResponse = wxMessageBox(
 			_("Do you really want to delete this attachment?")
@@ -238,8 +238,8 @@ void mmAttachmentDialog::DeleteAttachment()
 			, wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
 		if (DeleteResponse == wxYES)
 		{
-            wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + m_PathSep + attachments->REFTYPE;
-			if (mmAttachmentManage::DeleteAttachment(AttachmentsFolder + m_PathSep + attachments->FILENAME))
+            wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + m_PathSep + attachment->REFTYPE;
+			if (mmAttachmentManage::DeleteAttachment(AttachmentsFolder + m_PathSep + attachment->FILENAME))
 			{
 				Model_Attachment::instance().remove(m_attachment_id);
 			}
@@ -304,9 +304,9 @@ void mmAttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
 
 void mmAttachmentDialog::OnListItemActivated(wxDataViewEvent& event)
 {
-	Model_Attachment::Data *attachments = Model_Attachment::instance().get(m_attachment_id);
+	Model_Attachment::Data *attachment = Model_Attachment::instance().get(m_attachment_id);
     wxString attachmentFilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting())
-        + m_PathSep + attachments->REFTYPE + m_PathSep + attachments->FILENAME;
+        + m_PathSep + attachment->REFTYPE + m_PathSep + attachment->FILENAME;
 
 	mmAttachmentManage::OpenAttachment(attachmentFilePath);
 }

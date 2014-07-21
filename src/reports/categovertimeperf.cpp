@@ -135,52 +135,46 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     hb.addDateNow();
     hb.addLineBreak();
 
-    hb.startCenter();
-    hb.startTable();
+    hb.startSortTable();
 
     //Add header
+    hb.startThead();
     hb.startTableRow();
-    if(CATEGORY_SORT_BY_NAME == sortColumn_)
-        hb.addTableHeaderCell(_("Category"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", CATEGORY_SORT_BY_NAME), _("Category"));
+    hb.addTableHeaderCell(_("Category"));
     wxDateTime start_date = date_range_->start_date();
     for (int i = 0; i < MONTHS_IN_PERIOD; i++)
     {
-        const int sort = CATEGORY_SORT_BY_PERIOD + i;
         wxDateTime d = wxDateTime(start_date).Add(wxDateSpan::Months(i));
-        if(sort == sortColumn_)
-            hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth(), wxDateTime::Name_Abbr))
-                + wxString::Format("<br>%i", d.GetYear()));
-        else
-            hb.addTableHeaderCellLink(wxString::Format("sort:%d", sort),
-                wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth(), wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()));
+        hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth(), wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()), true);
     }
-    if(CATEGORY_SORT_BY_OVERALL == sortColumn_)
-        hb.addTableHeaderCell(_("Overall"));
-    else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", CATEGORY_SORT_BY_OVERALL), _("Overall"));
+    hb.addTableHeaderCell(_("Overall"), true);
     hb.endTableRow();
-
+    hb.endThead();
+    
+    hb.startTbody();
     //Begin of table
     for (const auto& entry : data)
     {
-        hb.startTableRow();
-        hb.addTableCell(entry.name);
-        for (int i = 0; i < MONTHS_IN_PERIOD; i++)
-            hb.addMoneyCell(entry.period[i]);
-        hb.addMoneyCell(entry.overall);
-        hb.endTableRow();
+        if (entry.overall != 0.0) {
+            hb.startTableRow();
+            hb.addTableCell(entry.name);
+            for (int i = 0; i < MONTHS_IN_PERIOD; i++)
+                hb.addMoneyCell(entry.period[i]);
+            hb.addMoneyCell(entry.overall);
+            hb.endTableRow();
+        }
     }
-    hb.addRowSeparator(MONTHS_IN_PERIOD+2);
+    hb.endTbody();
+
     //Totals
+    hb.startTfoot();
     std::map<int, wxString> totalLabels;
     totalLabels[INCOME] = _("Incomes");
     totalLabels[EXPENSES] = _("Expenses");
     totalLabels[TOTAL] = _("Total");
     for (const auto& print_totals : totals)
     {
-        hb.startTableRow();
+        hb.startTotalTableRow();
         hb.addTableCell(totalLabels[print_totals.first]);
         double overall = 0;
         for (const auto& range : totals[print_totals.first])
@@ -192,9 +186,8 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         hb.addMoneyCell(overall);
         hb.endTableRow();
     }
-    hb.addRowSeparator(MONTHS_IN_PERIOD+2);
+    hb.endTfoot();
     hb.endTable();
-    hb.endCenter();
     hb.end();
     return hb.getHTMLText();
 }

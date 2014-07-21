@@ -442,6 +442,7 @@ wxTreeItemId mmGUIFrame::getTreeItemfor(const wxTreeItemId& itemID, const wxStri
 //----------------------------------------------------------------------------
 bool mmGUIFrame::setAccountInSection(const wxString& sectionName, const wxString& accountName)
 {
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
     bool accountNotFound = true;
     wxTreeItemId rootItem = getTreeItemfor(navTreeCtrl_->GetRootItem(), sectionName);
     if (rootItem.IsOk() && navTreeCtrl_->ItemHasChildren(rootItem))
@@ -452,25 +453,28 @@ bool mmGUIFrame::setAccountInSection(const wxString& sectionName, const wxString
         {
             // Set the NavTreeCtrl and prevent any event code being executed for now.
             navTreeCtrl_->SelectItem(accountItem);
-            processPendingEvents();
+            //processPendingEvents();
             accountNotFound = false;
         }
     }
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
     return accountNotFound;
 }
 
 //----------------------------------------------------------------------------
 bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 {
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
     bool accountNotFound = true;
     wxTreeItemId rootItem = getTreeItemfor(navTreeCtrl_->GetRootItem(), sectionName);
     if (rootItem.IsOk())
     {
         // Set the NavTreeCtrl and prevent any event code being executed for now.
         navTreeCtrl_->SelectItem(rootItem);
-        processPendingEvents();
+        //processPendingEvents();
         accountNotFound = false;
     }
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
     return accountNotFound;
 }
 
@@ -727,36 +731,25 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
     navTreeCtrl_->SetItemBold(accounts, true);
 
+    wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), 12, 12);
+    navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
+    navTreeCtrl_->SetItemBold(termAccount, true);
     wxTreeItemId cardAccounts = navTreeCtrl_->AppendItem(root, _("Credit Card Accounts"), 9, 9);
     navTreeCtrl_->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
     navTreeCtrl_->SetItemBold(cardAccounts, true);
-
-    wxTreeItemId termAccount;
-    if (Model_Account::hasActiveTermAccount())
-    {
-        //  Positioning for new type of accounts: Term Accounts
-        termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), 12, 12);
-        navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
-        navTreeCtrl_->SetItemBold(termAccount, true);
-    }
-
-    wxTreeItemId stocks;
-    stocks = navTreeCtrl_->AppendItem(root, _("Stocks"), 15, 15);
+    wxTreeItemId stocks = navTreeCtrl_->AppendItem(root, _("Stocks"), 15, 15);
     navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
     navTreeCtrl_->SetItemBold(stocks, true);
 
-    wxTreeItemId assets;
-    assets = navTreeCtrl_->AppendItem(root, _("Assets"), 7, 7);
+    wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), 7, 7);
     navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
     navTreeCtrl_->SetItemBold(assets, true);
 
-    wxTreeItemId bills;
-    bills = navTreeCtrl_->AppendItem(root, _("Repeating Transactions"), 2, 2);
+    wxTreeItemId bills = navTreeCtrl_->AppendItem(root, _("Repeating Transactions"), 2, 2);
     navTreeCtrl_->SetItemData(bills, new mmTreeItemData("Bills & Deposits"));
     navTreeCtrl_->SetItemBold(bills, true);
 
-    wxTreeItemId budgeting;
-    budgeting = navTreeCtrl_->AppendItem(root, _("Budget Setup"), 3, 3);
+    wxTreeItemId budgeting = navTreeCtrl_->AppendItem(root, _("Budget Setup"), 3, 3);
     navTreeCtrl_->SetItemData(budgeting, new mmTreeItemData("Budgeting"));
     navTreeCtrl_->SetItemBold(budgeting, true);
 
@@ -828,6 +821,10 @@ void mmGUIFrame::updateNavTreeControl()
 
     if (mmIniOptions::instance().expandStocksTree_)
         navTreeCtrl_->Expand(stocks);
+
+    if (!navTreeCtrl_->ItemHasChildren(accounts)) navTreeCtrl_->Delete(accounts);
+    if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
+    if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
 
     navTreeCtrl_->Connect(wxID_ANY, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 }
@@ -1126,7 +1123,7 @@ void mmGUIFrame::OnViewAllAccounts(wxCommandEvent&)
 
     //Set view ALL & Refresh Navigation Panel
     Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
-    mmGUIFrame::updateNavTreeControl();
+    updateNavTreeControl();
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
@@ -1141,7 +1138,7 @@ void mmGUIFrame::OnViewFavoriteAccounts(wxCommandEvent&)
 
     //Set view Favorites & Refresh Navigation Panel
     Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_FAVORITES_STR);
-    mmGUIFrame::updateNavTreeControl();
+    updateNavTreeControl();
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
@@ -1155,7 +1152,7 @@ void mmGUIFrame::OnViewOpenAccounts(wxCommandEvent&)
 
     //Set view Open & Refresh Navigation Panel
     Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_OPEN_STR);
-    mmGUIFrame::updateNavTreeControl();
+    updateNavTreeControl();
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
@@ -1197,7 +1194,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
 void mmGUIFrame::createHomePage()
 {
-    if (!activeHomePage_) {
+    if (!activeHomePage_ || 1 == 1) {
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmHomePagePanel(
             homePanel_, this,
@@ -1210,7 +1207,7 @@ void mmGUIFrame::createHomePage()
     }
     else
     {
-        //TODO: refresh html only
+        //TODO: refresh html only and remove 1=1 in IF
         //panelCurrent_->BuildPage();
     }
     homePanel_->Layout();
@@ -1958,6 +1955,12 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
         this->GetEventHandler()->AddPendingEvent(evt);
     }
+    else
+    {
+        wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
+        GetEventHandler()->AddPendingEvent(ev);
+    }
+
 }
 //----------------------------------------------------------------------------
 
@@ -1996,37 +1999,10 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
 
     if (wizard->acctID_ != -1)
     {
-        bool firstTermAccount = !Model_Account::hasActiveTermAccount();
         Model_Account::Data* account = Model_Account::instance().get(wizard->acctID_);
         mmNewAcctDialog dlg(account, this);
         dlg.ShowModal();
-        if (dlg.termAccountActivated())
-        {
-            updateNavTreeControl();
-            menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Check(true);
-            if (firstTermAccount)
-            {
-                /***************Message to display *************************
-                    Term Account views have been temporarly turned on.
-                    To maintain this view, change the defaults by using:
-
-                    Tools -> Options
-                    View Options
-
-                    This message will not be displayed in future.
-                    ************************************************************/
-                wxString msgStr;
-                msgStr << _("Term Account views have been temporarly turned on.") << "\n"
-                    << _("To maintain this view, change the defaults by using:\n\nTools -> Options\nView Options")
-                    << "\n\n"
-                    << _("This message will not be displayed in future.");
-                wxMessageBox(msgStr, _("Initial Term Account Activation"), wxOK | wxICON_INFORMATION);
-            }
-        }
-        else
-        {
-            updateNavTreeControl();
-        }
+        updateNavTreeControl();
     }
 
     wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
@@ -2135,6 +2111,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
         mmReportTransactions* rs = new mmReportTransactions(dlg->getAccountID(), dlg);
         rs->setSortColumn(dlg->getSortColumn());
         createReportsPage(rs, true);
+        setNavTreeSection(_("Reports"));
     }
 }
 
@@ -2196,22 +2173,19 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnReportIssues(wxCommandEvent& /*event*/)
 {
-    wxString url = mmex::getProgramForum();
-    wxLaunchDefaultBrowser(url);
+    wxLaunchDefaultBrowser(mmex::weblink::Forum);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 {
-    wxString url = mmex::getProgramWebSite()+"/news";
-    wxLaunchDefaultBrowser(url);
+    wxLaunchDefaultBrowser(mmex::weblink::News);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnFacebook(wxCommandEvent& /*event*/)
 {
-    wxString url = mmex::getProgramFacebookSite();
-    wxLaunchDefaultBrowser(url);
+    wxLaunchDefaultBrowser(mmex::weblink::Facebook);
 }
 
 //----------------------------------------------------------------------------
@@ -2431,7 +2405,7 @@ void mmGUIFrame::OnCurrency(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
 {
-    const auto &accounts = Model_Account::instance().all();
+    const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
     if (accounts.empty())
     {
         wxMessageBox(_("No account available to edit!"), _("Accounts"), wxOK | wxICON_WARNING);
@@ -2455,7 +2429,7 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
 {
-    const auto &accounts = Model_Account::instance().all();
+    const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
     if (accounts.empty())
     {
         wxMessageBox(_("No account available to delete!"), _("Accounts"), wxOK | wxICON_WARNING);

@@ -43,26 +43,25 @@ public:
 
     /** Create an HTML header and returns as a wxString */
     void addHeader(int level, const wxString& header);
-    void addHeaderItalic(int level, const wxString& header);
     void addDateNow();
 
     /** Create an HTML Image tag */
     void addImage(const wxString& src);
 
     /** Start a table element */
-    void startTable(const wxString& width = "0"
-                                            , const wxString& valign = "left", const wxString& border = "0");
-
-    /** Add a special row that is a separator, cols is the number of columns the row has to spread along */
-    void addRowSeparator(int cols);
-
-    /** Add a special row that will format total values */
-    void addTotalRow(const wxString& caption, int cols, const wxString& value, const bool color = true);
-    void addTotalRow(const wxString& caption, int cols, double value, const bool color = true);
+    void startTable();
+    void startSortTable();
+    void startThead();
+    void startTbody();
+    void startTfoot();
 
     /** Add a special row that will format total values */
-    void addTotalRow(const wxString& caption, int cols, const std::vector<wxString>& data, const bool color = true);
-    void addTotalRow(const wxString& caption, int cols, const std::vector<double>& data, const bool color = true);
+    void addTotalRow(const wxString& caption, int cols, const wxString& value);
+    void addTotalRow(const wxString& caption, int cols, double value);
+
+    /** Add a special row that will format total values */
+    void addTotalRow(const wxString& caption, int cols, const std::vector<wxString>& data);
+    void addTotalRow(const wxString& caption, int cols, const std::vector<double>& data);
 
     /** Add a Table header cell */
     void addTableHeaderCell(const wxString& value, const bool& numeric = false);
@@ -70,42 +69,32 @@ public:
     /** Add a Table header cell link */
     void addTableHeaderCellLink(const wxString& href, const wxString& value, const bool& numeric = false);
 
-    /** Add a Table header row */
-    void addTableHeaderRow(const wxString& value, int cols = 0);
-
-    /** Add a Table header row with link */
-    void addTableHeaderRowLink(const wxString& href, const wxString& value, int cols = 0);
-
-    void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency(), int width=-1, int precision=-1);
-    void addMoneyCell(double amount, bool color = true, int width=-1, int precision=-1);
-    void addMoneyCell(double amount, const wxString& color, int width=-1, int precision=-1);
+    void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency());
+    void addMoneyCell(double amount);
     void addTableCellMonth(int month);
 
     /** Add a Cell value */
     void addTableCell(const wxDateTime& date);
-    void addTableCell(const wxString& value
-                      , const bool& numeric = false
-                              , const bool& italic = false
-                                      , const bool& bold = false
-                                              , const wxString& fontColor = ""
-                                                      , int width=-1);
+    void addTableCell(const wxString& value);
 
     /** Add a Cell value */
-    void addTableCellLink(const wxString& href, const wxString& value
-                          , const bool& numeric = false
-                                  , const bool& italic = false
-                                          , const bool& bold = false
-                                                  , const wxString& fontColor = ""
-                                                         , int width=-1);
+    void addTableCellLink(const wxString& href, const wxString& value);
 
     void end();
     void endTable();
+    void endThead();
+    void endTbody();
+    void endTfoot();
+    void addDivContainer();
+    void addDivRow();
+    void addDivCol8();
+    void endDiv();
     void startTableRow();
-    void startTableRow(const wxString& custom_color);
+    void startTotalTableRow();
+    //void startTableRow(const wxString& custom_color);
     void endTableRow();
 
-    /** Create an HTML paragrapth */
-    void addParaText(const wxString& text);
+    /** append an HTML text */
     void addText(const wxString& text);
 
     /** Create an HTML line break */
@@ -116,17 +105,8 @@ public:
     /** Starts a table cell (use only if want to nest other elements inside */
     void startTableCell(const wxString& width = "0");
     void endTableCell();
-    void bold_italic(const wxString& value);
-    void bold(const wxString& value);
-    void italic(const wxString& value);
-    void font_settings(int size, const wxString& color = "");
-    void font_end();
-    int font_size();
-    /** Centers the content from this point on */
-    void startCenter();
-    void endCenter();
+
     const wxString getHTMLText() const;
-    wxString getHTMLinTableWraper(bool indent = false);
 
     void addTableRow(const wxString& label, double data);
     void addTableRowBold(const wxString& label, double data);
@@ -135,18 +115,7 @@ private:
     wxString html_;
 
     int font_size_;
-    struct color_
-    {
-        wxString color0;
-        wxString color1;
-        wxString bgcolor;
-        wxString text;
-        wxString table_header;
-        wxString link;
-        wxString vlink;
-        wxString alink;
-        bool bgswitch;
-    } color_;
+
     struct today_
     {
         wxDateTime date;

@@ -50,7 +50,6 @@ mmNewAcctDialog::mmNewAcctDialog( )
 mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
     : m_account(account)
     , m_currencyID(-1)
-    , m_termAccount(false)
     , m_textAccountName()
     , m_notesCtrl()
     , m_itemInitValue()
@@ -328,11 +327,6 @@ void mmNewAcctDialog::OnAttachments(wxCommandEvent& /*event*/)
 	dlg.ShowModal();
 }
 
-bool mmNewAcctDialog::termAccountActivated()
-{
-    return m_termAccount;
-}
-
 void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 {
     wxString acctName = m_textAccountName->GetValue().Trim();
@@ -355,8 +349,6 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 
     m_account->ACCOUNTNAME = acctName;
     m_account->ACCOUNTTYPE = Model_Account::all_type()[acctType];
-    if (acctType == Model_Account::TERM)
-        this->m_termAccount = true;
 
     wxTextCtrl* textCtrlAcctNumber = (wxTextCtrl*)FindWindow(ID_ACCTNUMBER);
     wxTextCtrl* textCtrlHeldAt = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT);

@@ -23,6 +23,7 @@
 #include "reports/htmlbuilder.h"
 #include "mmex.h"
 #include "mmframe.h"
+#include "transdialog.h"
 #include "paths.h"
 #include "webserver.h"
 #include "model/Model_Account.h"
@@ -48,18 +49,33 @@ public:
         if (uri.StartsWith("trxid:", &sData))
         {
             long transID = -1;
-            sData.ToLong(&transID);
-            if (transID > 0)
-            {
+            if (sData.ToLong(&transID)) {
                 const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
                 if (transaction)
                 {
-                    int account_id = transaction->ACCOUNTID;
-                    frame->setGotoAccountID(account_id, transID);
-                    const Model_Account::Data* account = Model_Account::instance().get(account_id);
-                    frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-                    frame->GetEventHandler()->AddPendingEvent(evt);
+                    const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
+                    if (account) {
+                        frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+                        frame->setGotoAccountID(transaction->ACCOUNTID, transID);
+                        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+                        frame->GetEventHandler()->AddPendingEvent(evt);
+                    }
+                }
+            }
+        }
+        else if (uri.StartsWith("trx:", &sData))
+        {
+            long transID = -1;
+            if (sData.ToLong(&transID)) {
+                const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
+                if (transaction)
+                {
+                    mmTransDialog dlg(nullptr, -1, transID);
+                    if (dlg.ShowModal() == wxID_OK)
+                    {
+                        m_reportPanel->rb_->getHTMLText();
+                    }
+                    m_reportPanel->browser_->LoadURL(getURL(mmex::getReportIndex()));
                 }
             }
         }
@@ -157,6 +173,7 @@ void mmReportsPanel::CreateControls()
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trxid")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "sort")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trx")));
 
     itemBoxSizer2->Add(browser_, 1, wxGROW|wxALL, 1);
 }

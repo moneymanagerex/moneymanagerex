@@ -27,6 +27,7 @@ class Model_Checking : public Model<DB_Table_CHECKINGACCOUNT_V1>
 {
 public:
     using Model<DB_Table_CHECKINGACCOUNT_V1>::remove;
+    typedef Model_Splittransaction::Data_Set Split_Data_Set;
 
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };

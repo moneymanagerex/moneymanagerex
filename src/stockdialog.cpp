@@ -147,7 +147,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Date")), flags);
 
     dpc_ = new wxDatePickerCtrl( itemPanel5, ID_DPC_STOCK_PDATE,
-        wxDefaultDateTime, wxDefaultPosition, wxSize(120, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+        wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     itemFlexGridSizer6->Add(dpc_, flags);
     dpc_->SetToolTip(_("Specify the purchase date of the stock investment"));
     //
@@ -323,23 +323,7 @@ void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
 
     if (!stockSymbol.IsEmpty())
     {
-        // Use Google for stock quotes
-        wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::DEFSTOCKURL);
-        //wxString paddedURL = "\"" + stockURL + "\"";
-        //wxString httpString = wxString::Format(paddedURL, stockSymbol);
-        //wxExecute(_T("explorer ") + httpString, wxEXEC_ASYNC, nullptr );
-
-        int yahooSite = stockURL.Find("yahoo");
-        if ( yahooSite != wxNOT_FOUND )
-        {
-            int hasSuffix = stockSymbol.Find(".");
-            if ( hasSuffix == wxNOT_FOUND)
-            {
-                wxString stockSuffix = Model_Infotable::instance().GetStringInfo("HTTP_YAHOO_SUFFIX", "");
-                if (! stockSuffix.IsEmpty() )
-                    stockSymbol << stockSuffix;
-            }
-        }
+        wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::weblink::DefStockUrl);
         wxString httpString = wxString::Format(stockURL, stockSymbol);
         wxLaunchDefaultBrowser(httpString);
     }

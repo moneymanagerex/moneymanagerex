@@ -287,6 +287,7 @@ bool Model_Category::is_used(int id, int sub_id)
 bool Model_Category::has_income(int id, int sub_id)
 {
     double sum = 0.0;
+    auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& tran: Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id)))
     {
         switch (Model_Checking::type(tran))
@@ -301,7 +302,7 @@ bool Model_Category::has_income(int id, int sub_id)
             break;
         }
 
-        for (const auto& split: Model_Checking::splittransaction(tran))
+        for (const auto& split: splits[tran.id()])
         {
             switch (Model_Checking::type(tran))
             {
@@ -355,6 +356,7 @@ void Model_Category::getCategoryStats(
     }
     //Calculations
     const wxDate today = date_range->today();
+    auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& transaction: Model_Checking::instance().find(Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
         if (ignoreFuture)
@@ -392,8 +394,7 @@ void Model_Category::getCategoryStats(
         }
         else
         {
-            const auto &split = Model_Checking::splittransaction(transaction);
-            for (const auto& entry: split)
+            for (const auto& entry: splits[transaction.id()])
             {
                 categoryStats[entry.CATEGID][entry.SUBCATEGID][idx] += entry.SPLITTRANSAMOUNT 
                     * convRate * (Model_Checking::balance(transaction) < 0 ? -1 : 1);

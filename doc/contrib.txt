@@ -7,8 +7,10 @@ Pat              [omalleypat]
 Gabriele         [gabriele-v]
 =======================================
 ##What's new
+- Home Page updated
 - General Report Manager replaced Custom Reports
 - Attachments management
+- Embeded Webserver
 
 =======================================
 ##Translations
@@ -112,6 +114,7 @@ http://www.famfamfam.com/lab/icons/silk
 ---------------------------------------
 ##Sponsors
 2014
+CodeLathe LLC
 Geoff Mulhall
 Fabio Toffolo	
 Bruce McLendon
@@ -121,6 +124,9 @@ Pascal Fürhoff
 Panos Sapikas
 Jean-François GATEAU
 Janos Horvath
+Sasa Mrvos
+Douglas R Taylor
+Xiaoyun Wang
 
 2013
 CodeLathe LLC
