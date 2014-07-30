@@ -51,8 +51,8 @@ public:
     virtual ~AbstractChart() {}
 
     void SetBackground( const wxColour& colour );
-    void SetFillColour( const wxColour& colour, int style = wxSOLID );
-    void SetStrokeColour( const wxColour& colour, int width = 1, int style = wxSOLID );
+    void SetFillColour(const wxColour& colour, int style = wxPENSTYLE_SOLID);
+    void SetStrokeColour(const wxColour& colour, int width = 1, int style = wxPENSTYLE_SOLID);
 
     void ClearFillColour();
     void ClearStrokeColour();

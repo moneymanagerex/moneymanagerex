@@ -23,6 +23,7 @@
 #include <vector>
 #include "model/Model_Currency.h"
 #include "html_template.h"
+#include "util.h"
 
 class mmHTMLBuilder
 {
@@ -69,6 +70,8 @@ public:
     void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency());
     void addMoneyCell(double amount);
     void addTableCellMonth(int month);
+    void addColorMarker(const wxString& color);
+    const wxString getColor(int i);
 
     /** Add a Cell value */
     void addTableCell(const wxDateTime& date);
@@ -107,6 +110,8 @@ public:
 
     void addTableRow(const wxString& label, double data);
     void addTableRowBold(const wxString& label, double data);
+
+    void addPieChart(std::vector<ValueTrio>& valueList);
 
 private:
     wxString html_;
