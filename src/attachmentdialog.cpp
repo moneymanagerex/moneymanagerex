@@ -179,11 +179,10 @@ void mmAttachmentDialog::AddAttachment()
 		, _("Organize Attachments: Add Attachment"), attachmentFileName);
 
     wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
-	wxString attachmentNumberString = Model_Attachment::LastAttachmentFileName(m_RefType, m_RefId);
-	attachmentNumberString = attachmentNumberString.SubString(attachmentNumberString.Find("Attach")+6, attachmentNumberString.Find(".")-1);
-	int attachmentNumber = wxAtoi(attachmentNumberString);
+    int attachmentLastNumber = Model_Attachment::LastAttachmentNumber(m_RefType, m_RefId);
 
-	wxString importedFileName = m_RefType + "_" + wxString::Format("%i", m_RefId) + "_Attach" + wxString::Format("%i", attachmentNumber+1) + "." + attachmentFileExtension;
+    wxString importedFileName = m_RefType + "_" + wxString::Format("%i", m_RefId) + "_Attach"
+        + wxString::Format("%i", attachmentLastNumber + 1) + "." + attachmentFileExtension;
 
 	if (mmAttachmentManage::CopyAttachment(attachmentFilePath, AttachmentsFolder + m_PathSep + m_RefType + m_PathSep + importedFileName))
 	{

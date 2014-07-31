@@ -56,8 +56,8 @@ public:
 	/** Return the number of attachments linked to a specific object */
 	static int NrAttachments(const wxString& RefType, const int RefId);
 
-	/** Return the last attachment file name linked to a specific object */
-	static wxString LastAttachmentFileName(const wxString& RefType, const int RefId);
+	/** Return the last attachment number linked to a specific object */
+    static int LastAttachmentNumber(const wxString& RefType, const int RefId);
 
 	/** Return the description of the choice reftype */
 	static wxString reftype_desc(const int& RefTypeEnum);
