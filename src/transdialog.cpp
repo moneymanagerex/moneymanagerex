@@ -246,11 +246,11 @@ void mmTransDialog::dataToControls()
         if (!m_transfer)
         {
             if (transaction_->TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
-                payee_label_->SetLabel(_("Payee"));
+                payee_label_->SetLabelText(_("Payee"));
             else
-                payee_label_->SetLabel(_("From"));
+                payee_label_->SetLabelText(_("From"));
 
-            account_label_->SetLabel(_("Account"));
+            account_label_->SetLabelText(_("Account"));
             transaction_->TOACCOUNTID = -1;
             cbPayee_->Insert(Model_Payee::instance().all_payee_names(), 0);
             cbPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
@@ -273,7 +273,7 @@ void mmTransDialog::dataToControls()
                 {
                     transaction_->SUBCATEGID = -1;
                     transaction_->CATEGID = categs.begin()->CATEGID;
-                    bCategory_->SetLabel(Model_Category::full_name(transaction_->CATEGID, -1));
+                    bCategory_->SetLabelText(Model_Category::full_name(transaction_->CATEGID, -1));
                 }
             }
 
@@ -284,9 +284,9 @@ void mmTransDialog::dataToControls()
 
             cbPayee_->AutoComplete(Model_Account::instance().all_checking_account_names());
 
-            payee_label_->SetLabel(_("To"));
+            payee_label_->SetLabelText(_("To"));
             transaction_->PAYEEID = -1;
-            account_label_->SetLabel(_("From"));
+            account_label_->SetLabelText(_("From"));
             cbAccount_->Enable(true);
         }
         skip_payee_init_ = true;
@@ -312,7 +312,7 @@ void mmTransDialog::dataToControls()
             if (fullCategoryName.IsEmpty()) fullCategoryName = _("Select Category");
         }
 
-        bCategory_->SetLabel(fullCategoryName);
+        bCategory_->SetLabelText(fullCategoryName);
         cSplit_->SetValue(has_split);
         skip_category_init_ = true;
     }
@@ -741,7 +741,7 @@ void mmTransDialog::OnDateChanged(wxDateEvent& event)
     wxDateTime date = dpc_->GetValue();
     if (event.GetDate().IsValid())
     {
-        itemStaticTextWeek_->SetLabel(wxGetTranslation(date.GetWeekDayName(date.GetWeekDay())));
+        itemStaticTextWeek_->SetLabelText(wxGetTranslation(date.GetWeekDayName(date.GetWeekDay())));
         transaction_->TRANSDATE = date.FormatISODate();
     }
 }
@@ -834,7 +834,7 @@ void mmTransDialog::setCategoryForPayee(const Model_Payee::Data *payee)
 
             transaction_->CATEGID = payee->CATEGID;
             transaction_->SUBCATEGID = payee->SUBCATEGID;
-            bCategory_->SetLabel(fullCategoryName);
+            bCategory_->SetLabelText(fullCategoryName);
             wxLogDebug("Category: %s", bCategory_->GetLabel());
         }
     }
@@ -945,7 +945,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
         {
             transaction_->CATEGID = dlg.getCategId();
             transaction_->SUBCATEGID = dlg.getSubCategId();
-            bCategory_->SetLabel(dlg.getFullCategName());
+            bCategory_->SetLabelText(dlg.getFullCategName());
             categUpdated_ = true;
         }
     }

@@ -90,7 +90,7 @@ void relocateCategoryDialog::CreateControls()
     m_buttonSource = new wxButton(this, wxID_CLEAR, _("Source Category"), wxDefaultPosition, wxSize(200, -1));
     Model_Category::Data* category = Model_Category::instance().get(m_sourceCatID);
     if (category)
-        m_buttonSource->SetLabel(Model_Category::full_name(m_sourceCatID, m_sourceSubCatID));
+        m_buttonSource->SetLabelText(Model_Category::full_name(m_sourceCatID, m_sourceSubCatID));
 
     m_buttonDest = new wxButton(this, wxID_NEW, _("Destination Category"), wxDefaultPosition, wxSize(200, -1));
     wxStaticLine* lineBottom = new wxStaticLine(this, wxID_STATIC);
@@ -136,7 +136,7 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
         Model_Category::Data* category = Model_Category::instance().get(m_sourceCatID);
         Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(m_sourceSubCatID);
 
-        m_buttonSource->SetLabel(Model_Category::full_name(category, sub_category));
+        m_buttonSource->SetLabelText(Model_Category::full_name(category, sub_category));
     }
     sourceCat.Destroy();
 }
@@ -150,7 +150,7 @@ void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
     {
         m_destCatID    = destCat.getCategId();
         m_destSubCatID = destCat.getSubCategId();
-        m_buttonDest->SetLabel(Model_Category::full_name(m_destCatID, m_destSubCatID));
+        m_buttonDest->SetLabelText(Model_Category::full_name(m_destCatID, m_destSubCatID));
     }
 }
 

@@ -221,7 +221,7 @@ void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
 void SplitTransactionDialog::UpdateSplitTotal()
 {
     double total = Model_Splittransaction::get_total(this->m_local_splits);
-    transAmount_->SetLabel(Model_Currency::toCurrency(total));
+    transAmount_->SetLabelText(Model_Currency::toCurrency(total));
 }
 
 void SplitTransactionDialog::EditEntry(int index)

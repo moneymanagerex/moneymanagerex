@@ -256,7 +256,7 @@ void mmOptionsDialog::CreateControls()
     dateFormatStaticBoxSizer->Add(new wxStaticText(generalPanel, wxID_STATIC,
         _("New date format sample:")), wxSizerFlags(g_flags).Border(wxLEFT, 15));
     dateFormatStaticBoxSizer->Add(sampleDateText_, wxSizerFlags(g_flags).Border(wxLEFT, 5));
-    sampleDateText_->SetLabel(wxDateTime::Now().Format(dateFormat_));
+    sampleDateText_->SetLabelText(wxDateTime::Now().Format(dateFormat_));
 
     // Financial Year Settings
     wxStaticBox* financialYearStaticBox = new wxStaticBox(generalPanel, wxID_ANY, _("Financial Year"));
@@ -868,7 +868,7 @@ void mmOptionsDialog::OnLanguageChanged(wxCommandEvent& /*event*/)
 
     wxButton *btn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
     wxASSERT(btn);
-    btn->SetLabel(lang.Left(1).Upper() + lang.SubString(1,lang.Len()));
+    btn->SetLabelText(lang.Left(1).Upper() + lang.SubString(1, lang.Len()));
 }
 
 void mmOptionsDialog::OnCurrency(wxCommandEvent& /*event*/)
@@ -879,7 +879,7 @@ void mmOptionsDialog::OnCurrency(wxCommandEvent& /*event*/)
     {
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID);
         wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
-        bn->SetLabel(currency->CURRENCYNAME);
+        bn->SetLabelText(currency->CURRENCYNAME);
         currencyId_ = currencyID;
 
         wxMessageDialog msgDlg(this, _("Remember to update currency rate"), _("Important note"));
@@ -894,7 +894,7 @@ void mmOptionsDialog::OnDateFormatChanged(wxCommandEvent& /*event*/)
     {
         dateFormat_ = data->GetData();
         mmOptions::instance().dateFormat_ = dateFormat_;
-        sampleDateText_->SetLabel(wxDateTime::Now().Format(dateFormat_));
+        sampleDateText_->SetLabelText(wxDateTime::Now().Format(dateFormat_));
     }
     else
         return;
@@ -984,7 +984,7 @@ void mmOptionsDialog::OnAttachmentsPathChanged(wxCommandEvent& event)
     wxString AttachmentsFolder = mmex::getPathAttachment(att->GetValue());
 
     wxStaticText* text = (wxStaticText*)FindWindow(ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT);
-    text->SetLabel(_("Real path:") + "\n" + AttachmentsFolder);
+    text->SetLabelText(_("Real path:") + "\n" + AttachmentsFolder);
 }
 
 void mmOptionsDialog::OnAttachmentsSubfolderChanged(wxCommandEvent& event)
