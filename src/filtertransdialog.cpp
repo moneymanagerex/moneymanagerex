@@ -481,7 +481,7 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
         Model_Category::Data* category = Model_Category::instance().get(categID_);
         Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
 
-        btnCategory_->SetLabel(Model_Category::full_name(category, sub_category));
+        btnCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
     }
 }
 
@@ -943,7 +943,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
         if (sub_category)
             subcategID_ = sub_category->SUBCATEGID;
     }
-    btnCategory_->SetLabel(Model_Category::full_name(categID_, subcategID_));
+    btnCategory_->SetLabelText(Model_Category::full_name(categID_, subcategID_));
 
     //Status
     statusCheckBox_->SetValue(!wxString(json::String(o["STATUS"])).empty());

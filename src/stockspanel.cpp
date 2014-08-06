@@ -606,7 +606,7 @@ void mmStocksPanel::updateHeader()
     std::pair<double, double> investment_balance;
     if (account)
     {
-        header_text_->SetLabel(GetPanelTitle(*account));
+        header_text_->SetLabelText(GetPanelTitle(*account));
         //Get Init Value of the account
         initVal = account->INITIALBAL;
         investment_balance = Model_Account::investment_balance(account);
@@ -631,7 +631,7 @@ void mmStocksPanel::updateHeader()
         lbl << diffStr << "  ( " << Model_Currency::toString(diffPercents, m_currency, 2) << " %)";
     }
 
-    header_total_->SetLabel(lbl);
+    header_total_->SetLabelText(lbl);
 }
 
 void mmStocksPanel::OnDeleteStocks(wxCommandEvent& event)
@@ -665,16 +665,16 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
     if (onlineQuoteRefresh(sError))
     {
         const wxString header = _("Stock prices successfully updated");
-        stock_details_->SetLabel(header);
-        stock_details_short_->SetLabel(wxString::Format(_("Last updated %s"), strLastUpdate_));
+        stock_details_->SetLabelText(header);
+        stock_details_short_->SetLabelText(wxString::Format(_("Last updated %s"), strLastUpdate_));
         wxMessageDialog msgDlg(this, sError, header);
         msgDlg.ShowModal();
     }
     else
     {
         refresh_button_->SetBitmapLabel(wxBitmap(wxImage(led_red_xpm).Scale(16,16)));
-        stock_details_->SetLabel(sError);
-        stock_details_short_->SetLabel(_("Error"));
+        stock_details_->SetLabelText(sError);
+        stock_details_short_->SetLabelText(_("Error"));
         mmShowErrorMessage(this, sError, _("Error"));
     }
 }
@@ -711,7 +711,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     site = wxString::Format(mmex::weblink::YahooQuotes, site);
 
     refresh_button_->SetBitmapLabel(wxBitmap(wxImage(led_yellow_xpm).Scale(16,16)));
-    stock_details_->SetLabel(_("Connecting..."));
+    stock_details_->SetLabelText(_("Connecting..."));
     wxString sOutput;
 
     int err_code = site_content(site, sOutput);
@@ -796,7 +796,7 @@ void mmStocksPanel::updateExtraStocksData(int selectedIndex)
     if (selectedIndex >= 0)
     {
         const wxString additionInfo = listCtrlAccount_->getStockInfo(selectedIndex);
-        stock_details_->SetLabel(additionInfo);
+        stock_details_->SetLabelText(additionInfo);
     }
 }
 
@@ -844,7 +844,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     if (m_stocks[selectedIndex].SYMBOL != "")
         miniInfo << "\t" << _("Symbol: ") << m_stocks[selectedIndex].SYMBOL << "\t\t";
     miniInfo << _ ("Total:") << " (" << stocktotalnumShares << ") ";
-    stock_panel_->stock_details_short_->SetLabel(miniInfo);
+    stock_panel_->stock_details_short_->SetLabelText(miniInfo);
 
     wxString additionInfo = "";
     //Selected share info
@@ -873,8 +873,8 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
     attachment_button_->Enable(en);
     if (!en)
     {
-        stock_details_->SetLabel(STOCKTIPS[rand() % sizeof(STOCKTIPS) / sizeof(wxString)]);
-        stock_details_short_->SetLabel(wxString::Format(_("Last updated %s"), strLastUpdate_));
+        stock_details_->SetLabelText(STOCKTIPS[rand() % sizeof(STOCKTIPS) / sizeof(wxString)]);
+        stock_details_short_->SetLabelText(wxString::Format(_("Last updated %s"), strLastUpdate_));
     }
 }
 
