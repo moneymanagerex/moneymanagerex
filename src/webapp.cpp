@@ -412,7 +412,7 @@ bool mmWebApp::WebApp_DownloadNewTransaction(wxString& NewTransactionJSON)
 {
 	int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getDownloadNewTransactionParameter(), NewTransactionJSON);
 
-	if (NewTransactionJSON != "null" && ErrorCode == 0)
+    if (NewTransactionJSON != "null" && !NewTransactionJSON.IsEmpty() && ErrorCode == 0)
 		return true;
 	else
 		return false;
