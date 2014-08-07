@@ -44,10 +44,9 @@ protected:
 
 private:
     // structure for sorting of data
-    struct data_holder { wxString name; double amount; int categs; };
+    struct data_holder { wxString color;  wxString name; double amount; int categs; };
     std::vector<data_holder> data_;
-    std::vector<ValuePair> valueList_;
-    std::vector<ValuePair> valueListTotals_;
+    std::vector<ValueTrio> valueList_;
     bool with_date_;
 };
 
