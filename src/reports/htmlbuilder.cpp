@@ -418,7 +418,7 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
         "var ctx = document.getElementById('%s').getContext('2d');\n"
         "var reportChart = new Chart(ctx).Pie(data, options);\n"
         "</script>\n";
-    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", x, y, id));
+    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
     this->addText(wxString::Format(js, data, id));
 }
 
