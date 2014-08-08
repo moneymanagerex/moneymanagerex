@@ -24,7 +24,6 @@ Copyright (C) 2014 Nikolay
 
 #include "html_template.h"
 #include "billsdepositspanel.h"
-#include "reports/mmgraphincexpensesmonth.h"
 #include <algorithm>
 
 #include "model/Model_Setting.h"
