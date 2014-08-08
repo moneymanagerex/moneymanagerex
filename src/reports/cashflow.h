@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "reportbase.h"
 #include <vector>
+#include "util.h"
 
 class mmReportCashFlow : public mmPrintableBaseSpecificAccounts
 {
@@ -32,6 +33,7 @@ public:
 
 protected:
     wxString getHTMLText_i();
+    void getStats(double& tInitialBalance, std::vector<ValueTrio>& forecastOver12Months);
     void activateTermAccounts();
     void activateBankAccounts();
 
