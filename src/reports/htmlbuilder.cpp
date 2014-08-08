@@ -143,7 +143,7 @@ void mmHTMLBuilder::addHeader(int level, const wxString& header)
 
 void mmHTMLBuilder::addDateNow()
 {
-    addHeader(3, today_.todays_date);
+    addHeader(4, today_.todays_date);
     addLineBreak();
 }
 
@@ -305,9 +305,7 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startYear, const wxDate
     {
         todaysDate << _("Over Time");
     }
-    this->addHeader(3, todaysDate);
-    this->addLineBreak();
-    this->addLineBreak();
+    this->addHeader(4, todaysDate);
 }
 
 void mmHTMLBuilder::addTableRow(const wxString& label, double data)
@@ -392,7 +390,7 @@ void mmHTMLBuilder::endTableCell()
     html_+= tags::TABLE_CELL_END;
 }
 
-void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id)
+void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int& x, const int& y)
 {
     static const wxString data_item =
         "{\n"
@@ -415,17 +413,97 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
     static const wxString js = "<script type='text/javascript'>\n"
         "var data = %s;\n"
         "var options = {\n"
-        "// animation : false,\n"
-        "animationEasing: 'easeOutQuint'\n"
+        "  animationEasing: 'easeOutQuint'\n"
         "};\n"
-        "// Get the context of the canvas element we want to select\n"
         "var ctx = document.getElementById('%s').getContext('2d');\n"
         "var reportChart = new Chart(ctx).Pie(data, options);\n"
         "</script>\n";
-    html_ += tags::TABLE_ROW;
-    this->addTableCell(wxString::Format("<canvas id='%s' width ='300' height='300'></canvas>", id));
+    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", x, y, id));
     this->addText(wxString::Format(js, data, id));
-    this->endTableCell();
+}
+
+void mmHTMLBuilder::addBarChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x, const int& y)
+{
+    static const wxString data_item =
+        "{\n"
+        "  fillColor : '%s',\n"
+        "  strokeColor : '%s',\n"
+        "  data : [%s],\n"
+        "},\n";
+    static const wxString js = "<script type='text/javascript'>\n"
+        "var data = {\n"
+        "  labels : [%s],\n"
+        "  datasets : [%s]\n"
+        "};\n"
+        "var options = {\n"
+        "  animationEasing: 'easeOutQuint',\n"
+        "  barValueSpacing : 10,\n"
+        "  scaleOverride : true,\n"
+        "  scaleStartValue : 0,\n"
+        "  scaleSteps : [10],\n"
+        "  scaleStepWidth : [%i]\n"
+        "};\n"
+        "var ctx = document.getElementById('%s').getContext('2d');\n"
+        "var reportChart = new Chart(ctx).Bar(data, options);\n"
+        "</script>\n";
+
+    double steps = 10.0;
+    double scaleStepWidth = 1;
+
+    wxString labels = wxEmptyString;
+    wxString values = "";
+
+    for (const auto& entry : data)
+    {
+        if (!entry.label.empty()) labels += wxString::Format("'%s',", entry.label);
+        values += wxString::Format(data_item, entry.color, entry.color, wxString::Format("%f", entry.amount));
+        scaleStepWidth = std::max(entry.amount, scaleStepWidth);
+    }
+    scaleStepWidth = ceil(scaleStepWidth / steps);
+    // Compute chart spacing and interval (chart forced to start at zero)
+    if (scaleStepWidth <= 1.0)
+        scaleStepWidth = 1.0;
+    else {
+        double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
+        if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
+    }
+
+    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
+    this->addText(wxString::Format(js, labels, values, (int)scaleStepWidth, id));
+}
+
+void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x, const int& y)
+{
+    static const wxString data_item =
+        "{\n"
+        "  'label' : '%s',\n"
+        "  'strokeColor' : 'rgba(0, 121, 234, 0.7)',\n"
+        "  'pointColor' : 'rgba(0, 121, 234, 0.7)',\n"
+        "  'pointStrokeColor' : '#fff',\n"
+        "  'data' : [%s],\n"
+        "},\n";
+
+    static const wxString js = "<script type='text/javascript'>\n"
+        "var data = {\n"
+        "  labels : [%s],\n"
+        "  datasets : [%s]\n"
+        "};\n"
+        "var ctx = document.getElementById('%s').getContext('2d');\n"
+        "var reportChart = new Chart(ctx).Line(data, {datasetFill: false, responsive: true});\n"
+        "</script>\n";
+
+    wxString labels = "";
+    wxString values = "";
+
+    for (const auto& entry : data)
+    {
+        labels += wxString::Format("'%s',", entry.label);
+        values += wxString::Format("%f,", entry.amount);
+    }
+
+    wxString datasets = wxString::Format(data_item, "LineChart", values);
+    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
+    this->addText(wxString::Format(js, labels, datasets, id));
 }
 
 const wxString mmHTMLBuilder::getHTMLText() const
