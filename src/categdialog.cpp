@@ -323,6 +323,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
 
     mmTreeItemCateg* iData
         = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
+    wxTreeItemId PreviousItem = m_treeCtrl->GetPrevVisible(selectedItemId_);
     int categID = iData->getCategData()->CATEGID;
     int subcategID = iData->getSubCategData()->SUBCATEGID;
 
@@ -377,6 +378,9 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
     sIndex.RemoveLast(1);
 
     Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", sSettings);
+
+    m_treeCtrl->SelectItem(PreviousItem);
+    selectedItemId_ = PreviousItem;
 }
 
 void mmCategDialog::OnBSelect(wxCommandEvent& /*event*/)

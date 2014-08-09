@@ -462,9 +462,9 @@ void mmBudgetingPanel::initVirtualListControl()
     act_amount = Model_Currency::toCurrency(actIncome);
     diff_amount = Model_Currency::toCurrency(estIncome - actIncome);
 
-    income_estimated_->SetLabel(est_amount);
-    income_actual_->SetLabel(act_amount);
-    income_diff_->SetLabel(diff_amount);
+    income_estimated_->SetLabelText(est_amount);
+    income_actual_->SetLabelText(act_amount);
+    income_diff_->SetLabelText(diff_amount);
 
     if (estExpenses < 0.0) estExpenses = -estExpenses;
     if (actExpenses < 0.0) actExpenses = -actExpenses;
@@ -472,9 +472,9 @@ void mmBudgetingPanel::initVirtualListControl()
     act_amount = Model_Currency::toCurrency(actExpenses);
     diff_amount = Model_Currency::toCurrency(estExpenses - actExpenses);
 
-    expenses_estimated_->SetLabel(est_amount);
-    expenses_actual_->SetLabel(act_amount);
-    expenses_diff_->SetLabel(diff_amount);
+    expenses_estimated_->SetLabelText(est_amount);
+    expenses_actual_->SetLabelText(act_amount);
+    expenses_diff_->SetLabelText(diff_amount);
     UpdateBudgetHeading();
 }
 

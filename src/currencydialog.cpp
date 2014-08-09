@@ -120,11 +120,11 @@ void mmCurrencyDialog::fillControls()
         dispAmount = wxString::Format(_("%s Converted to: %s")
             , Model_Currency::toCurrency(base_amount)
             , Model_Currency::toCurrency(amount, m_currency));
-        baseRateSample_->SetLabel(dispAmount);
+        baseRateSample_->SetLabelText(dispAmount);
         amount = 123456.78;
         dispAmount = wxString::Format(_("%.2f Shown As: %s"), amount
             , Model_Currency::toCurrency(amount, m_currency));
-        sampleText_->SetLabel(dispAmount);
+        sampleText_->SetLabelText(dispAmount);
 
         pfxTx_->SetValue(m_currency->PFX_SYMBOL);
         sfxTx_->SetValue(m_currency->SFX_SYMBOL);

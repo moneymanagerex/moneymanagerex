@@ -189,20 +189,20 @@ void mmBDDialog::dataToControls()
         toID_ = bill->TOACCOUNTID;
         accountID_ = bill->ACCOUNTID;
         Model_Account::Data* account = Model_Account::instance().get(accountID_);
-        itemAccountName_->SetLabel(account->ACCOUNTNAME);
+        itemAccountName_->SetLabelText(account->ACCOUNTNAME);
 
         for (const auto& item : Model_Billsdeposits::splittransaction(bill)) local_splits_.push_back(item);
 
         if (!local_splits_.empty())
         {
-            bCategory_->SetLabel(_("Split Category"));
+            bCategory_->SetLabelText(_("Split Category"));
             cSplit_->SetValue(true);
         }
         else
         {
             const Model_Category::Data* category = Model_Category::instance().get(categID_);
             const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
-            bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
+            bCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
         }
 
         textNotes_->SetValue(bill->NOTES);
@@ -223,8 +223,8 @@ void mmBDDialog::dataToControls()
             Model_Account::Data* to_account = Model_Account::instance().get(toID_);
 
             payeeID_ = account->ACCOUNTID;
-            bPayee_->SetLabel(account->ACCOUNTNAME);
-            bTo_->SetLabel(to_account->ACCOUNTNAME);
+            bPayee_->SetLabelText(account->ACCOUNTNAME);
+            bTo_->SetLabelText(to_account->ACCOUNTNAME);
 
             // When editing an advanced transaction record, we do not reset the toTransAmount_
             if ((edit_ || enterOccur_) && (toTransAmount_ != transAmount))
@@ -237,7 +237,7 @@ void mmBDDialog::dataToControls()
         {
             Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
             if (payee)
-                bPayee_->SetLabel(payee->PAYEENAME);
+                bPayee_->SetLabelText(payee->PAYEENAME);
         }
     }
 }
@@ -323,7 +323,7 @@ void mmBDDialog::CreateControls()
     if (accounts.size() == 1)
     {
         accountID_ = accounts.begin()->ACCOUNTID;
-        itemAccountName_->SetLabel(accounts.begin()->ACCOUNTNAME);
+        itemAccountName_->SetLabelText(accounts.begin()->ACCOUNTNAME);
         itemAccountName_->Enable(false);
     }
 
@@ -629,11 +629,11 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
                 toTextAmount_->SetValue(toAmount, account);
             }
             accountID_ = account->ACCOUNTID;
-            itemAccountName_->SetLabel(acctName);
+            itemAccountName_->SetLabelText(acctName);
             if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER)
             {
                 payeeID_ = account->ACCOUNTID;
-                bPayee_->SetLabel(acctName);
+                bPayee_->SetLabelText(acctName);
             }
         }
     }
@@ -650,8 +650,8 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
             wxString acctName = scd.GetStringSelection();
             Model_Account::Data* account = Model_Account::instance().get(acctName);
             payeeID_ = account->ACCOUNTID;
-            bPayee_->SetLabel(acctName);
-            itemAccountName_->SetLabel(acctName);
+            bPayee_->SetLabelText(acctName);
+            itemAccountName_->SetLabelText(acctName);
         }
     }
     else
@@ -664,7 +664,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
                 Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
                 if (payee)
                 {
-                    bPayee_->SetLabel(payee->PAYEENAME);
+                    bPayee_->SetLabelText(payee->PAYEENAME);
                     payeeUnknown_ = false;
                     // Only for new transactions: if user want to autofill last category used for payee.
                     // If this is a Split Transaction, ignore displaying last category for payee
@@ -675,7 +675,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
 
                         const Model_Category::Data* category = Model_Category::instance().get(categID_);
                         const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
-                        bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
+                        bCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
                     }
                 }
                 else
@@ -698,7 +698,7 @@ void mmBDDialog::OnTo(wxCommandEvent& /*event*/)
         wxString acctName = scd.GetStringSelection();
         Model_Account::Data* account = Model_Account::instance().get(acctName);
         toID_ = account->ACCOUNTID;
-        bTo_->SetLabel(acctName);
+        bTo_->SetLabelText(acctName);
     }
 }
 
@@ -719,7 +719,7 @@ void mmBDDialog::OnCategs(wxCommandEvent& /*event*/)
 
             const Model_Category::Data* category = Model_Category::instance().get(categID_);
             const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
-            bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
+            bCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
             categUpdated_ = true;
         }
     }
@@ -769,8 +769,8 @@ void mmBDDialog::updateControlsForTransType()
     {
         displayControlsForType(Model_Billsdeposits::WITHDRAWAL);
         SetTransferControls();
-        stp->SetLabel(_("Payee"));
-        st->SetLabel("");
+        stp->SetLabelText(_("Payee"));
+        st->SetLabelText("");
         bPayee_->SetToolTip(payeeWithdrawalTip_);
         if (payeeUnknown_)
         {
@@ -784,8 +784,8 @@ void mmBDDialog::updateControlsForTransType()
     {
         displayControlsForType(Model_Billsdeposits::DEPOSIT);
         SetTransferControls();
-        stp->SetLabel(_("From"));
-        st->SetLabel("");
+        stp->SetLabelText(_("From"));
+        st->SetLabelText("");
         bPayee_->SetToolTip(payeeDepositTip_);
         if (payeeUnknown_)
         {
@@ -800,21 +800,21 @@ void mmBDDialog::updateControlsForTransType()
         displayControlsForType(Model_Billsdeposits::TRANSFER, true);
         if (accountID_ < 0)
         {
-            bPayee_->SetLabel(_("Select From Account"));
+            bPayee_->SetLabelText(_("Select From Account"));
             payeeID_ = -1;
         }
         else
         {
-            bPayee_->SetLabel(itemAccountName_->GetLabel());
+            bPayee_->SetLabelText(itemAccountName_->GetLabel());
             payeeID_ = accountID_;
         }
 
         SetTransferControls(true);
         if (cAdvanced_->IsChecked()) SetAdvancedTransferControls(true);
 
-        stp->SetLabel(_("From"));
-        st->SetLabel(_("To"));
-        bTo_->SetLabel(_("Select To Account"));
+        stp->SetLabelText(_("From"));
+        st->SetLabelText(_("To"));
+        bTo_->SetLabelText(_("Select To Account"));
         toID_ = -1;
         payeeUnknown_ = true;
         prevType_ = Model_Billsdeposits::TRANSFER;
@@ -843,11 +843,11 @@ void mmBDDialog::resetPayeeString()
 
                 const Model_Category::Data* category = Model_Category::instance().get(categID_);
                 const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
-                bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
+                bCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
             }
         }
     }
-    bPayee_->SetLabel(payeeStr);
+    bPayee_->SetLabelText(payeeStr);
 }
 
 void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
@@ -1135,14 +1135,14 @@ void mmBDDialog::SetSplitControls(bool split)
 {
     if (split)
     {
-        bCategory_->SetLabel(_("Split Category"));
+        bCategory_->SetLabelText(_("Split Category"));
         textAmount_->Enable(false);
         textAmount_->SetValue(Model_Budgetsplittransaction::instance().get_total(local_splits_));
         activateSplitTransactionsDlg();
     }
     else
     {
-        bCategory_->SetLabel(_("Select Category"));
+        bCategory_->SetLabelText(_("Select Category"));
         textAmount_->Enable(true);
         textAmount_->SetValue(0.0);
         local_splits_.clear();
@@ -1298,36 +1298,36 @@ void mmBDDialog::setRepeatDetails()
     int repeats = itemRepeats_->GetSelection();
     if (repeats == 11)
     {
-        staticTextRepeats_->SetLabel( repeatLabelActivate );
-        staticTimesRepeat_->SetLabel( timeLabelDays);
+        staticTextRepeats_->SetLabelText(repeatLabelActivate);
+        staticTimesRepeat_->SetLabelText(timeLabelDays);
         toolTipsStr << _("Specify period in Days to activate.") << "\n" << _("Becomes blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else if (repeats == 12)
     {
-        staticTextRepeats_->SetLabel(repeatLabelActivate );
-        staticTimesRepeat_->SetLabel(timeLabelMonths);
+        staticTextRepeats_->SetLabelText(repeatLabelActivate);
+        staticTimesRepeat_->SetLabelText(timeLabelMonths);
         toolTipsStr << _("Specify period in Months to activate.") << "\n" << _("Becomes blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else if (repeats == 13)
     {
-        staticTextRepeats_->SetLabel(repeatLabelRepeats);
-        staticTimesRepeat_->SetLabel(timeLabelDays);
+        staticTextRepeats_->SetLabelText(repeatLabelRepeats);
+        staticTimesRepeat_->SetLabelText(timeLabelDays);
         toolTipsStr << _("Specify period in Days to activate.") << "\n" << _("Leave blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else if (repeats == 14)
     {
-        staticTextRepeats_->SetLabel(repeatLabelRepeats);
-        staticTimesRepeat_->SetLabel(timeLabelMonths);
+        staticTextRepeats_->SetLabelText(repeatLabelRepeats);
+        staticTimesRepeat_->SetLabelText(timeLabelMonths);
         toolTipsStr << _("Specify period in Months to activate.") << "\n" << _("Leave blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else
     {
-        staticTextRepeats_->SetLabel(repeatLabelRepeats);
-        staticTimesRepeat_->SetLabel( _("Times Repeated") );
+        staticTextRepeats_->SetLabelText(repeatLabelRepeats);
+        staticTimesRepeat_->SetLabelText(_("Times Repeated"));
         toolTipsStr << _("Specify the number of times this series repeats.") << "\n" << _("Leave blank if this series continues forever.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }

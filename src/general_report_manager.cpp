@@ -328,7 +328,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
     {
         m_sqlListBox->DeleteAllColumns();
         interval = wxGetUTCTimeMillis() - interval;
-        info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %ld ms")
+        info->SetLabelText(wxString::Format(_("Row(s) returned: %i  Duration: %ld ms")
             , (int) m_sqlQueryData.size(), interval.ToLong()));
 
         MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
@@ -351,7 +351,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
     }
     else
     {
-        info->SetLabel(_("SQL Syntax Error"));
+        info->SetLabelText(_("SQL Syntax Error"));
     }
 }
 
@@ -603,7 +603,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         wxButton* createTemplate = (wxButton*) FindWindow(wxID_NEW);
         if (createTemplate) createTemplate->Enable(false);
         wxStaticText *info = (wxStaticText*)FindWindow(wxID_INFO);
-        if (info) info->SetLabel("");
+        if (info) info->SetLabelText("");
 
         viewControls(true);
     }
