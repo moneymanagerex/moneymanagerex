@@ -19,21 +19,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "payee.h"
 
 #include "htmlbuilder.h"
-#include "mmgraphpie.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
 
 #include <algorithm>
 
-#define PAYEE_SORT_BY_NAME      1
-#define PAYEE_SORT_BY_INCOME    2
-#define PAYEE_SORT_BY_EXPENSE   3
-#define PAYEE_SORT_BY_DIFF      4
-
 mmReportPayeeExpenses::mmReportPayeeExpenses(const wxString& title, mmDateRange* date_range)
-: mmPrintableBase(PAYEE_SORT_BY_NAME)
-    , title_(title)
+    : title_(title)
     , date_range_(date_range)
     , positiveTotal_(0.0)
     , negativeTotal_(0.0)
@@ -57,6 +50,8 @@ void  mmReportPayeeExpenses::RefreshData()
         , mmIniOptions::instance().ignoreFutureTransactions_);
 
     data_holder line;
+    int i = 0;
+    mmHTMLBuilder hb;
     for (const auto& entry : payeeStats)
     {
         positiveTotal_ += entry.second.first;
@@ -67,59 +62,35 @@ void  mmReportPayeeExpenses::RefreshData()
             line.name = payee->PAYEENAME;
         line.incomes = entry.second.first;
         line.expenses = entry.second.second;
+        line.color = hb.getColor(i++);
         data_.push_back(line);
+    }
 
-        if (line.incomes + line.expenses < 0)
+    std::stable_sort(data_.begin(), data_.end()
+        , [](const data_holder& x, const data_holder& y)
         {
-            ValuePair vp;
-            vp.label = line.name;
-            vp.amount = line.incomes + line.expenses;
-            valueList_.push_back(vp);
+            if (x.expenses + x.incomes != y.expenses + y.incomes)
+                return x.expenses + x.incomes < y.expenses + y.incomes;
+            else
+                return x.name < y.name;
+        }
+    );
+    
+    for (const auto& entry : data_) {
+        if (entry.incomes + entry.expenses < 0)
+        {
+            ValueTrio vt;
+            vt.label = entry.name;
+            vt.amount = entry.incomes + entry.expenses;
+            vt.color = entry.color;
+            valueList_.push_back(vt);
         }
     }
+
 }
 
 wxString mmReportPayeeExpenses::getHTMLText()
 {
-    switch (sortColumn_)
-    {
-    case PAYEE_SORT_BY_NAME:
-        std::stable_sort(data_.begin(), data_.end()
-            , [] (const data_holder& x, const data_holder& y)
-            {
-                return x.name < y.name;
-            }
-        );
-        break;
-    case PAYEE_SORT_BY_INCOME:
-        std::stable_sort(data_.begin(), data_.end()
-            , [] (const data_holder& x, const data_holder& y)
-            {
-                if (x.incomes != y.incomes) return x.incomes < y.incomes;
-                else return x.name < y.name;
-            }
-        );
-        break;
-    case PAYEE_SORT_BY_EXPENSE:
-        std::stable_sort(data_.begin(), data_.end()
-            , [] (const data_holder& x, const data_holder& y)
-            {
-                if (x.expenses != y.expenses) return x.expenses < y.expenses;
-                else return x.name < y.name;
-            }
-        );
-        break;
-    default:
-        sortColumn_ = PAYEE_SORT_BY_DIFF;
-        std::stable_sort(data_.begin(), data_.end()
-            , [] (const data_holder& x, const data_holder& y)
-            {
-                if (x.expenses+x.incomes != y.expenses+y.incomes) return x.expenses+x.incomes < y.expenses+y.incomes;
-                else return x.name < y.name;
-            }
-        );
-    }
-
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
@@ -129,12 +100,12 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.addDivRow();
     hb.addDivCol8();
     // Add the graph
-    mmGraphPie gg;
-    hb.addImage(gg.getOutputFileName());
+    hb.addPieChart(valueList_, "Withdrawal");
 
     hb.startSortTable();
     hb.startThead();
     hb.startTableRow();
+        hb.addTableHeaderCell(" ", false, false);
         hb.addTableHeaderCell(_("Payee"));
         hb.addTableHeaderCell(_("Incomes"), true);
         hb.addTableHeaderCell(_("Expenses"), true);
@@ -146,6 +117,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     for (const auto& entry : data_)
     {
         hb.startTableRow();
+        hb.addColorMarker(entry.incomes + entry.expenses < 0 ? entry.color : "");
         hb.addTableCell(entry.name);
         hb.addMoneyCell(entry.incomes);
         hb.addMoneyCell(entry.expenses);
@@ -159,7 +131,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     totals.push_back(positiveTotal_);
     totals.push_back(negativeTotal_);
     totals.push_back(positiveTotal_ + negativeTotal_);
-    hb.addTotalRow(_("Total:"), 3, totals);
+    hb.addTotalRow(_("Total:"), 5, totals);
     hb.endTfoot();
 
     hb.endTable();
@@ -167,9 +139,6 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.endDiv();
     hb.endDiv();
     hb.end();
-
-    gg.init(valueList_);
-    gg.Generate(title_);
 
     return hb.getHTMLText();
 }

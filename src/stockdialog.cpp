@@ -101,7 +101,7 @@ void mmStockDialog::dataToControls()
     int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : 4;
     numShares_->SetValue(m_stock->NUMSHARES, precision);
     Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
-    valueInvestment_->SetLabel(Model_Account::toCurrency(m_stock->VALUE, account));
+    valueInvestment_->SetLabelText(Model_Account::toCurrency(m_stock->VALUE, account));
     purchasePrice_->SetValue(m_stock->PURCHASEPRICE, account, 4);
     currentPrice_->SetValue(m_stock->CURRENTPRICE, account, 4);
     commission_->SetValue(m_stock->COMMISSION, account, 4);

@@ -44,9 +44,9 @@ protected:
 
 private:
     // structure for sorting of data
-    struct data_holder { wxString name; double incomes; double expenses; };
+    struct data_holder { wxString color; wxString name; double incomes; double expenses; };
     std::vector<data_holder> data_;
-    std::vector<ValuePair> valueList_;
+    std::vector<ValueTrio> valueList_;
     double positiveTotal_;
     double negativeTotal_;
 };

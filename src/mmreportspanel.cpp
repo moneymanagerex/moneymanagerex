@@ -79,13 +79,6 @@ public:
                 }
             }
         }
-        else if (uri.StartsWith("sort:", &sData))
-        {
-            long sortColumn = -1;
-            sData.ToLong(&sortColumn);
-            m_reportPanel->rb_->setSortColumn(sortColumn);
-            m_reportPanel->browser_->SetPage(m_reportPanel->getReportText(), mmex::GetResourceDir().GetPath() + "/");
-        }
 
         return nullptr;
     }   
@@ -172,7 +165,6 @@ void mmReportsPanel::CreateControls()
     browser_ = wxWebView::New(this, wxID_ANY);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trxid")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "sort")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trx")));
 
     itemBoxSizer2->Add(browser_, 1, wxGROW|wxALL, 1);

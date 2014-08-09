@@ -127,7 +127,7 @@ void mmNewAcctDialog::fillControls()
 
     Model_Account::currency(m_account);
     wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY);
-    bn->SetLabel(Model_Account::currency(m_account)->CURRENCYNAME);
+    bn->SetLabelText(Model_Account::currency(m_account)->CURRENCYNAME);
     m_currencyID = m_account->CURRENCYID;
 
     double initBal = m_account->INITIALBAL;
@@ -314,7 +314,7 @@ void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
     {
         Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
         wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY);
-        bn->SetLabel(currency->CURRENCYNAME);
+        bn->SetLabelText(currency->CURRENCYNAME);
 
         if (this->m_account) m_account->CURRENCYID = currency->CURRENCYID;
     }

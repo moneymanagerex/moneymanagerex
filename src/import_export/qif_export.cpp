@@ -59,7 +59,7 @@ bool mmQIFExportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
 
 void mmQIFExportDialog::fillControls()
 {
-    bSelectedAccounts_->SetLabel(_("All"));
+    bSelectedAccounts_->SetLabelText(_("All"));
     bSelectedAccounts_->SetToolTip(_("All"));
 
     for (const auto& a : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
@@ -245,11 +245,11 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
     {
         int account_id = accounts_id_[selected_items[0]];
         const Model_Account::Data* account = Model_Account::instance().get(account_id);
-        if (account) bSelectedAccounts_->SetLabel(account->ACCOUNTNAME);
+        if (account) bSelectedAccounts_->SetLabelText(account->ACCOUNTNAME);
     }
     else if (selected_accounts_id_.GetCount() > 1)
     {
-        bSelectedAccounts_->SetLabel("...");
+        bSelectedAccounts_->SetLabelText("...");
         bSelectedAccounts_->SetToolTip(baloon);
     }
 

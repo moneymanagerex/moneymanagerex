@@ -292,7 +292,6 @@
     <ClCompile Include="..\..\src\categdialog.cpp" />
     <ClCompile Include="..\..\src\reports\categexp.cpp" />
     <ClCompile Include="..\..\src\reports\categovertimeperf.cpp" />
-    <ClCompile Include="..\..\src\reports\chart.cpp" />
     <ClCompile Include="..\..\src\constants.cpp" />
     <ClCompile Include="..\..\src\reports\summary.cpp" />
     <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
@@ -318,10 +317,6 @@
     <ClCompile Include="..\..\src\mmex.cpp" />
     <ClCompile Include="..\..\tests\mmex_tests.cpp" />
     <ClCompile Include="..\..\src\mmframe.cpp" />
-    <ClCompile Include="..\..\src\reports\mmgraphgenerator.cpp" />
-    <ClCompile Include="..\..\src\reports\mmgraphincexpensesmonth.cpp" />
-    <ClCompile Include="..\..\src\reports\mmgraphpie.cpp" />
-    <ClCompile Include="..\..\src\reports\mmgraphtopcategories.cpp" />
     <ClCompile Include="..\..\src\mmhelppanel.cpp" />
     <ClCompile Include="..\..\src\mmhomepagepanel.cpp" />
     <ClCompile Include="..\..\src\mmreportspanel.cpp" />
@@ -423,7 +418,6 @@
     <ClInclude Include="..\..\src\categdialog.h" />
     <ClInclude Include="..\..\src\reports\categexp.h" />
     <ClInclude Include="..\..\src\reports\categovertimeperf.h" />
-    <ClInclude Include="..\..\src\reports\chart.h" />
     <ClInclude Include="..\..\src\constants.h" />
     <ClInclude Include="..\..\src\reports\summary.h" />
     <ClInclude Include="..\..\src\reports\summarystocks.h" />
@@ -453,10 +447,6 @@
     <ClInclude Include="..\..\src\mmcombobox.h" />
     <ClInclude Include="..\..\src\mmex.h" />
     <ClInclude Include="..\..\src\mmframe.h" />
-    <ClInclude Include="..\..\src\reports\mmgraphgenerator.h" />
-    <ClInclude Include="..\..\src\reports\mmgraphincexpensesmonth.h" />
-    <ClInclude Include="..\..\src\reports\mmgraphpie.h" />
-    <ClInclude Include="..\..\src\reports\mmgraphtopcategories.h" />
     <ClInclude Include="..\..\src\mmhelppanel.h" />
     <ClInclude Include="..\..\src\mmhomepagepanel.h" />
     <ClInclude Include="..\..\src\mmpanelbase.h" />

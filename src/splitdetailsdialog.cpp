@@ -80,7 +80,7 @@ void SplitDetailDialog::DataToControls()
     const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(split_->SUBCATEGID);
     const wxString category_name = Model_Category::full_name(category, sub_category);
 
-    bCategory_->SetLabel(category_name);
+    bCategory_->SetLabelText(category_name);
 
     if (split_->SPLITTRANSAMOUNT)
         textAmount_->SetValue(fabs(split_->SPLITTRANSAMOUNT));
@@ -160,7 +160,7 @@ void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
         split_->CATEGID = dlg.getCategId();
         split_->SUBCATEGID = dlg.getSubCategId();
 
-        bCategory_->SetLabel(dlg.getFullCategName());
+        bCategory_->SetLabelText(dlg.getFullCategName());
     }
     DataToControls();
 }

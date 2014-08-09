@@ -86,6 +86,23 @@ static const wxString CENTER = "<center>\n";
 static const wxString CENTER_END = "</center>\n";
 static const wxString TABLE_CELL_SPAN = "    <td colspan=\"%i\" >";
 static const wxString TABLE_CELL_RIGHT = "    <td style='text-align: right'>";
+static const wxString COLORS [] = {
+    "rgba(0, 121, 234, 0.7)"
+    , "rgba(238, 42, 0, 0.7)"
+    , "rgba(247, 151, 49, 0.7)"
+    , "rgba(189, 127, 174, 0.7)"
+    , "rgba(255, 243, 171, 0.7)"
+    , "rgba(102, 204, 204, 0.7)"
+    , "rgba(0, 204, 204, 0.7)"
+    , "rgba(100, 145, 170, 0.7)"
+    , "rgba(232, 193, 69, 0.7)"
+    , "rgba(51, 153, 153, 0.7)"
+    , "rgba(210, 154, 247, 0.7)"
+    , "rgba(143, 234, 123, 0.7)"
+    , "rgba(255, 255, 59, 0.7)"
+    , "rgba(122, 179, 62, 0.7)"
+    , "rgba(66, 68, 63, 0.7)"
+    , "rgba(0, 102, 102, 0.7)"};
 
 }
 
@@ -126,7 +143,7 @@ void mmHTMLBuilder::addHeader(int level, const wxString& header)
 
 void mmHTMLBuilder::addDateNow()
 {
-    addHeader(3, today_.todays_date);
+    addHeader(4, today_.todays_date);
     addLineBreak();
 }
 
@@ -196,15 +213,14 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, const std::ve
 {
     std::vector<wxString> data_str;
     for (const auto& value: data)
-    {
         data_str.push_back(Model_Currency::toCurrency(value));
-    }
     this->addTotalRow(caption, cols, data_str);
 }
 
-void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool& numeric)
+void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool& numeric, const bool& sortable)
 {
-    wxString align = numeric ? "class='text-right'" : "class='text-left'";
+    wxString align = sortable ? "" : "class='sorttable_nosort'";
+    align += numeric ? " class='text-right'" : " class='text-left'";
     html_ += wxString::Format(tags::TABLE_HEADER, align);
     html_ += (value);
     html_+= tags::TABLE_HEADER_END;
@@ -222,6 +238,7 @@ void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* c
 void mmHTMLBuilder::addMoneyCell(double amount)
 {
     wxString s = Model_Currency::toString(amount);
+    s.Replace(" ", "&nbsp;");
     wxString f = wxString::Format( "class='money' sorttable_customkey = '%f'", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
     html_ += s;
@@ -239,6 +256,20 @@ void mmHTMLBuilder::addTableCell(const wxString& value)
     html_ += wxString::Format(tags::TABLE_CELL, "");
     html_ += value;
     this->endTableCell();
+}
+
+void mmHTMLBuilder::addColorMarker(const wxString& color)
+{
+    html_ += wxString::Format(tags::TABLE_CELL, wxString::Format("style='background-color:%s'", color));
+    html_ += " ";
+    this->endTableCell();
+}
+
+const wxString mmHTMLBuilder::getColor(int i)
+{
+    int c = i % (sizeof(tags::COLORS) / sizeof(wxString));
+    wxString color = tags::COLORS[c];
+    return color;
 }
 
 void mmHTMLBuilder::addTableCellMonth(int month)
@@ -274,9 +305,7 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startYear, const wxDate
     {
         todaysDate << _("Over Time");
     }
-    this->addHeader(3, todaysDate);
-    this->addLineBreak();
-    this->addLineBreak();
+    this->addHeader(4, todaysDate);
 }
 
 void mmHTMLBuilder::addTableRow(const wxString& label, double data)
@@ -359,6 +388,122 @@ void mmHTMLBuilder::startTableCell(const wxString& width)
 void mmHTMLBuilder::endTableCell()
 {
     html_+= tags::TABLE_CELL_END;
+}
+
+void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int& x, const int& y)
+{
+    static const wxString data_item =
+        "{\n"
+        "'color' : '%s',\n"
+        "'label' : '%s',\n"
+        "'labelAlign' : 'center',\n"
+        "'labelColor' : 'black',\n"
+        "'labelFontSize' : '12',\n"
+        "'value' : %f,\n"
+        "},\n";
+
+    wxString data ="[";
+    for (const auto& entry : valueList)
+    {
+        data += wxString::Format(data_item
+            , entry.color
+            , entry.label, entry.amount);
+    }
+    data += "]\n";
+    static const wxString js = "<script type='text/javascript'>\n"
+        "var data = %s;\n"
+        "var options = {\n"
+        "  animationEasing: 'easeOutQuint'\n"
+        "};\n"
+        "var ctx = document.getElementById('%s').getContext('2d');\n"
+        "var reportChart = new Chart(ctx).Pie(data, options);\n"
+        "</script>\n";
+    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
+    this->addText(wxString::Format(js, data, id));
+}
+
+void mmHTMLBuilder::addBarChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x, const int& y)
+{
+    static const wxString data_item =
+        "{\n"
+        "  fillColor : '%s',\n"
+        "  strokeColor : '%s',\n"
+        "  data : [%s],\n"
+        "},\n";
+    static const wxString js = "<script type='text/javascript'>\n"
+        "var data = {\n"
+        "  labels : [%s],\n"
+        "  datasets : [%s]\n"
+        "};\n"
+        "var options = {\n"
+        "  animationEasing: 'easeOutQuint',\n"
+        "  barValueSpacing : 10,\n"
+        "  scaleOverride : true,\n"
+        "  scaleStartValue : 0,\n"
+        "  scaleSteps : [10],\n"
+        "  scaleStepWidth : [%i]\n"
+        "};\n"
+        "var ctx = document.getElementById('%s').getContext('2d');\n"
+        "var reportChart = new Chart(ctx).Bar(data, options);\n"
+        "</script>\n";
+
+    double steps = 10.0;
+    double scaleStepWidth = 1;
+
+    wxString labels = wxEmptyString;
+    wxString values = "";
+
+    for (const auto& entry : data)
+    {
+        if (!entry.label.empty()) labels += wxString::Format("'%s',", entry.label);
+        values += wxString::Format(data_item, entry.color, entry.color, wxString::Format("%f", entry.amount));
+        scaleStepWidth = std::max(entry.amount, scaleStepWidth);
+    }
+    scaleStepWidth = ceil(scaleStepWidth / steps);
+    // Compute chart spacing and interval (chart forced to start at zero)
+    if (scaleStepWidth <= 1.0)
+        scaleStepWidth = 1.0;
+    else {
+        double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
+        if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
+    }
+
+    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
+    this->addText(wxString::Format(js, labels, values, (int)scaleStepWidth, id));
+}
+
+void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x, const int& y)
+{
+    static const wxString data_item =
+        "{\n"
+        "  'label' : '%s',\n"
+        "  'strokeColor' : 'rgba(0, 121, 234, 0.7)',\n"
+        "  'pointColor' : 'rgba(0, 121, 234, 0.7)',\n"
+        "  'pointStrokeColor' : '#fff',\n"
+        "  'data' : [%s],\n"
+        "},\n";
+
+    static const wxString js = "<script type='text/javascript'>\n"
+        "var data = {\n"
+        "  labels : [%s],\n"
+        "  datasets : [%s]\n"
+        "};\n"
+        "var ctx = document.getElementById('%s').getContext('2d');\n"
+        "var reportChart = new Chart(ctx).Line(data, {datasetFill: false, responsive: true});\n"
+        "</script>\n";
+
+    wxString labels = "";
+    wxString values = "";
+
+    for (const auto& entry : data)
+    {
+        labels += wxString::Format("'%s',", entry.label);
+        values += wxString::Format("%f,", entry.amount);
+    }
+
+    wxString datasets = wxString::Format(data_item, "LineChart", values);
+    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
+    this->addText(wxString::Format(js, labels, datasets, id));
 }
 
 const wxString mmHTMLBuilder::getHTMLText() const

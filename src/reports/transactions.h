@@ -32,8 +32,7 @@ public:
     mmReportTransactions(int refAccountID, mmFilterTransactionsDialog* transDialog);
 
     wxString getHTMLText();
-public:
-    enum SORT { DATE = 0, ACCOUNT, PAYEE, STATUS, CATEGORY, TYPE, AMOUNT, NUMBER, NOTE } sortby_;
+
 private:
     void Run(mmFilterTransactionsDialog* transDialog);
     Model_Checking::Full_Data_Set trans_;
