@@ -96,8 +96,8 @@ private:
     wxSharedPtr<wxSQLite3Database> m_db;
 
     /* Currently open file name */
-    wxString fileName_;
-    wxString password_;
+    wxString m_filename;
+    wxString m_password;
 
     int gotoAccountID_;
     int gotoTransID_;
