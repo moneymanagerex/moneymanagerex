@@ -205,14 +205,9 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_cashflow.obj \
 	mmex_tests_categexp.obj \
 	mmex_tests_categovertimeperf.obj \
-	mmex_tests_chart.obj \
 	mmex_tests_htmlbuilder.obj \
 	mmex_tests_incexpenses.obj \
 	mmex_tests_mmDateRange.obj \
-	mmex_tests_mmgraphgenerator.obj \
-	mmex_tests_mmgraphincexpensesmonth.obj \
-	mmex_tests_mmgraphpie.obj \
-	mmex_tests_mmgraphtopcategories.obj \
 	mmex_tests_payee.obj \
 	mmex_tests_reportbase.obj \
 	mmex_tests_transactions.obj \
@@ -930,9 +925,6 @@ mmex_tests_categexp.obj: ..\..\src\reports\categexp.cpp
 mmex_tests_categovertimeperf.obj: ..\..\src\reports\categovertimeperf.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\reports\categovertimeperf.cpp
 
-mmex_tests_chart.obj: ..\..\src\reports\chart.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\reports\chart.cpp
-
 mmex_tests_htmlbuilder.obj: ..\..\src\reports\htmlbuilder.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\reports\htmlbuilder.cpp
 
@@ -941,18 +933,6 @@ mmex_tests_incexpenses.obj: ..\..\src\reports\incexpenses.cpp
 
 mmex_tests_mmDateRange.obj: ..\..\src\reports\mmDateRange.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\reports\mmDateRange.cpp
-
-mmex_tests_mmgraphgenerator.obj: ..\..\src\reports\mmgraphgenerator.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\reports\mmgraphgenerator.cpp
-
-mmex_tests_mmgraphincexpensesmonth.obj: ..\..\src\reports\mmgraphincexpensesmonth.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\reports\mmgraphincexpensesmonth.cpp
-
-mmex_tests_mmgraphpie.obj: ..\..\src\reports\mmgraphpie.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\reports\mmgraphpie.cpp
-
-mmex_tests_mmgraphtopcategories.obj: ..\..\src\reports\mmgraphtopcategories.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\reports\mmgraphtopcategories.cpp
 
 mmex_tests_payee.obj: ..\..\src\reports\payee.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\reports\payee.cpp

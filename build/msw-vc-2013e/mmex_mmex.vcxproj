@@ -310,7 +310,6 @@
     <ClCompile Include="..\..\src\categdialog.cpp" />
     <ClCompile Include="..\..\src\reports\categexp.cpp" />
     <ClCompile Include="..\..\src\reports\categovertimeperf.cpp" />
-    <ClCompile Include="..\..\src\reports\chart.cpp" />
     <ClCompile Include="..\..\src\constants.cpp" />
     <ClCompile Include="..\..\src\currencydialog.cpp" />
     <ClCompile Include="..\..\src\dbwrapper.cpp" />
@@ -325,10 +324,6 @@
     <ClCompile Include="..\..\src\mmOption.cpp" />
     <ClCompile Include="..\..\src\mmcheckingpanel.cpp" />
     <ClCompile Include="..\..\src\mmex.cpp" />
-    <ClCompile Include="..\..\src\reports\mmgraphgenerator.cpp" />
-    <ClCompile Include="..\..\src\reports\mmgraphincexpensesmonth.cpp" />
-    <ClCompile Include="..\..\src\reports\mmgraphpie.cpp" />
-    <ClCompile Include="..\..\src\reports\mmgraphtopcategories.cpp" />
     <ClCompile Include="..\..\src\mmhelppanel.cpp" />
     <ClCompile Include="..\..\src\mmhomepagepanel.cpp" />
     <ClCompile Include="..\..\src\mmreportspanel.cpp" />
@@ -424,7 +419,6 @@
     <ClInclude Include="..\..\src\categdialog.h" />
     <ClInclude Include="..\..\src\reports\categexp.h" />
     <ClInclude Include="..\..\src\reports\categovertimeperf.h" />
-    <ClInclude Include="..\..\src\reports\chart.h" />
     <ClInclude Include="..\..\src\constants.h" />
     <ClInclude Include="..\..\src\currencydialog.h" />
     <ClInclude Include="..\..\src\dbwrapper.h" />
@@ -441,10 +435,6 @@
     <ClInclude Include="..\..\src\mmOption.h" />
     <ClInclude Include="..\..\src\mmcheckingpanel.h" />
     <ClInclude Include="..\..\src\mmex.h" />
-    <ClInclude Include="..\..\src\reports\mmgraphgenerator.h" />
-    <ClInclude Include="..\..\src\reports\mmgraphincexpensesmonth.h" />
-    <ClInclude Include="..\..\src\reports\mmgraphpie.h" />
-    <ClInclude Include="..\..\src\reports\mmgraphtopcategories.h" />
     <ClInclude Include="..\..\src\mmhelppanel.h" />
     <ClInclude Include="..\..\src\mmhomepagepanel.h" />
     <ClInclude Include="..\..\src\mmpanelbase.h" />
