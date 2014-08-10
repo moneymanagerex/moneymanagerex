@@ -126,6 +126,7 @@
 #include "../resources/saveas.xpm"
 #include "../resources/user_edit.xpm"
 #include "../resources/wrench.xpm"
+#include "../resources/accounttree.xpm"
 
 //----------------------------------------------------------------------------
 
@@ -137,6 +138,7 @@ EVT_MENU(MENU_NEW, mmGUIFrame::OnNew)
 EVT_MENU(MENU_OPEN, mmGUIFrame::OnOpen)
 EVT_MENU(MENU_SAVE_AS, mmGUIFrame::OnSaveAs)
 EVT_MENU(MENU_CONVERT_ENC_DB, mmGUIFrame::OnConvertEncryptedDB)
+EVT_MENU(MENU_CHANGE_ENCRYPT_PASSWORD, mmGUIFrame::OnChangeEncryptPassword)
 EVT_MENU(MENU_EXPORT_CSV, mmGUIFrame::OnExportToCSV)
 EVT_MENU(MENU_EXPORT_QIF, mmGUIFrame::OnExportToQIF)
 EVT_MENU(MENU_IMPORT_QIF, mmGUIFrame::OnImportQIF)
@@ -146,6 +148,7 @@ EVT_MENU(MENU_NEWACCT, mmGUIFrame::OnNewAccount)
 EVT_MENU(MENU_ACCTLIST, mmGUIFrame::OnAccountList)
 EVT_MENU(MENU_ACCTEDIT, mmGUIFrame::OnEditAccount)
 EVT_MENU(MENU_ACCTDELETE, mmGUIFrame::OnDeleteAccount)
+EVT_MENU(MENU_ACCOUNT_REALLOCATE, mmGUIFrame::OnReallocateAccount)
 EVT_MENU(MENU_ORGCATEGS, mmGUIFrame::OnOrgCategories)
 EVT_MENU(MENU_ORGPAYEE, mmGUIFrame::OnOrgPayees)
 EVT_MENU(wxID_PREFERENCES, mmGUIFrame::OnOptions)
@@ -354,7 +357,7 @@ void mmGUIFrame::cleanup()
 {
     autoRepeatTransactionsTimer_.Stop();
     delete recentFiles_;
-    if (!fileName_.IsEmpty()) // Exiting before file is opened
+    if (!m_filename.IsEmpty()) // Exiting before file is opened
         saveSettings();
 
     wxTreeItemId rootitem = navTreeCtrl_->GetRootItem();
@@ -367,7 +370,7 @@ void mmGUIFrame::cleanup()
     /// Update the database according to user requirements
     if (mmOptions::instance().databaseUpdated_ && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
     {
-        BackupDatabase(fileName_, true);
+        BackupDatabase(m_filename, true);
     }
 }
 
@@ -619,9 +622,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 void mmGUIFrame::saveSettings()
 {
     Model_Setting::instance().Begin();
-    if (!fileName_.IsEmpty())
+    if (!m_filename.IsEmpty())
     {
-        wxFileName fname(fileName_);
+        wxFileName fname(m_filename);
         Model_Setting::instance().Set("LASTFILENAME", fname.GetFullPath());
     }
     /* Aui Settings */
@@ -1231,7 +1234,7 @@ void mmGUIFrame::createHelpPage()
 
 void mmGUIFrame::createMenu()
 {
-    wxBitmap toolBarBitmaps[10];
+    wxBitmap toolBarBitmaps[11];
     toolBarBitmaps[0] = wxBitmap(new_xpm);
     toolBarBitmaps[1] = wxBitmap(open_xpm);
     toolBarBitmaps[2] = wxBitmap(save_xpm);
@@ -1242,6 +1245,7 @@ void mmGUIFrame::createMenu()
     toolBarBitmaps[7] = wxBitmap(printsetup_xpm);
     toolBarBitmaps[8] = wxBitmap(edit_account_xpm);
     toolBarBitmaps[9] = wxBitmap(delete_account_xpm);
+    toolBarBitmaps[10] = wxBitmap(accounttree_xpm);
 
     wxMenu *menu_file = new wxMenu;
 
@@ -1355,6 +1359,11 @@ void mmGUIFrame::createMenu()
     menuItemAcctDelete->SetBitmap(toolBarBitmaps[9]);
     menuAccounts->Append(menuItemAcctDelete);
 
+    wxMenuItem* menuItemReallocateAcct = new wxMenuItem(menuAccounts, MENU_ACCOUNT_REALLOCATE
+        , _("&Reallocate Account"), _("Change the account type of an account."));
+    menuItemReallocateAcct->SetBitmap(toolBarBitmaps[10]);
+    menuAccounts->Append(menuItemReallocateAcct);
+
     menuAccounts->Append(menuItemAcctList);
     menuAccounts->Append(menuItemAcctEdit);
 
@@ -1435,6 +1444,13 @@ void mmGUIFrame::createMenu()
         , _("Convert Encrypted DB to Non-Encrypted DB"));
     menuItemConvertDB->SetBitmap(wxBitmap(encrypt_db_xpm));
     menuTools->Append(menuItemConvertDB);
+
+    wxMenuItem* menuItemChangeEncryptPassword = new wxMenuItem(menuTools, MENU_CHANGE_ENCRYPT_PASSWORD
+        , _("Change Encrypted &Password")
+        , _("Change the password of an encrypted database"));
+    menuItemChangeEncryptPassword->Enable(false);
+    //menuItemChangeEncryptPassword->SetBitmap(wxBitmap(encrypt_db_xpm));
+    menuTools->Append(menuItemChangeEncryptPassword);
 
     // Help Menu
     wxMenu *menuHelp = new wxMenu;
@@ -1558,7 +1574,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         if (mmOptions::instance().databaseUpdated_ &&
             Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
         {
-            BackupDatabase(fileName_, true);
+            BackupDatabase(m_filename, true);
             mmOptions::instance().databaseUpdated_ = false;
         }
     }
@@ -1568,7 +1584,8 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
     bool passwordCheckPassed = true;
     if (checkExt.GetExt().Lower() == "emb" && wxFileName::FileExists(fileName))
     {
-        password = !pwd.empty() ? pwd : wxGetPasswordFromUser(_("Enter database's password"));
+        wxString password_message = wxString::Format(_("Please enter password for Database\n\n%s"), fileName);
+        password = !pwd.empty() ? pwd : wxGetPasswordFromUser(password_message, _("MMEX: Encrypted Database"));
         if (password.IsEmpty())
             passwordCheckPassed = false;
     }
@@ -1610,7 +1627,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             return false;
         }
 
-        password_ = password;
+        m_password = password;
     }
     else if (openingNew) // New Database
     {
@@ -1624,7 +1641,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         m_update_callback_hook = new UpdateCallbackHook();
         m_db->SetUpdateHook(m_update_callback_hook);
 
-        password_ = password;
+        m_password = password;
         InitializeModelTables();
 
         SetDataBaseParameters(fileName);
@@ -1671,26 +1688,32 @@ void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
 
     if (m_db)
     {
-        fileName_ = fileName;
+        m_filename = fileName;
         /* Set InfoTable Options into memory */
         mmOptions::instance().LoadInfotableOptions();
     }
     else
     {
-        fileName_.Clear();
-        password_.Clear();
+        m_filename.Clear();
+        m_password.Clear();
     }
 }
 //----------------------------------------------------------------------------
 
 bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxString &password)
 {
+    menuBar_->FindItem(MENU_CHANGE_ENCRYPT_PASSWORD)->Enable(false);
     if (createDataStore(fileName, password, openingNew))
     {
         recentFiles_->AddFileToHistory(fileName);
         menuEnableItems(true);
         menuPrintingEnable(false);
         autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
+
+        if (m_db->IsEncrypted())
+        {
+            menuBar_->FindItem(MENU_CHANGE_ENCRYPT_PASSWORD)->Enable(true);
+        }
     }
     else return false;
 
@@ -1752,7 +1775,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
     if (encFileName.empty())
         return;
 
-    wxString password = wxGetPasswordFromUser(_("Enter password for database"));
+    wxString password = wxGetPasswordFromUser(_("Enter password for database"), _("MMEX: Encrypted Database"));
     if (password.empty())
         return;
 
@@ -1783,11 +1806,37 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
+void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
+{
+    wxString password_change_heading = _("MMEX: Encryption Password Change");
+    wxString password_message = wxString::Format(_("New password for database\n\n%s"), m_filename);
+
+    wxString new_password = wxGetPasswordFromUser(password_message, password_change_heading);
+    if (new_password.IsEmpty())
+    {
+        wxMessageBox(_("New password must not be empty."), password_change_heading, wxOK | wxICON_WARNING);
+    }
+    else
+    {
+        wxString confirm_password = wxGetPasswordFromUser(_("Please confirm new password"), password_change_heading);
+        if (!confirm_password.IsEmpty() && (new_password == confirm_password))
+        {
+            m_db->ReKey(confirm_password);
+            wxMessageBox(_("Password change completed."), password_change_heading);
+        }
+        else
+        {
+            wxMessageBox(_("Confirm password failed."), password_change_heading);
+        }
+    }
+}
+//----------------------------------------------------------------------------
+
 void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
 {
     wxASSERT(m_db);
 
-    if (fileName_.empty())
+    if (m_filename.empty())
     {
         wxASSERT(false);
         return;
@@ -1811,7 +1860,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
     wxString ext = encrypt ? "emb" : "mmb";
     if (newFileName.GetExt().Lower() != ext) newFileName.SetExt(ext);
 
-    wxFileName oldFileName(fileName_); // opened db's file
+    wxFileName oldFileName(m_filename); // opened db's file
 
     if (newFileName == oldFileName) // on case-sensitive FS uses case-sensitive comparison
     {
@@ -1828,13 +1877,13 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
     {
         if (rekey)
         {
-            new_password = wxGetPasswordFromUser(_("Enter password for new database"));
+            new_password = wxGetPasswordFromUser(_("Enter password for new database"), _("MMEX: Encrypted Database"));
             if (new_password.empty())
                 return;
         }
         else
         {
-            new_password = password_;
+            new_password = m_password;
         }
     }
 
@@ -1847,12 +1896,12 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
     if (rekey) // encrypt or reset encryption
     {
         wxSQLite3Database dbx;
-        dbx.Open(newFileName.GetFullPath(), password_);
+        dbx.Open(newFileName.GetFullPath(), m_password);
         dbx.ReKey(new_password); // empty password resets encryption
         dbx.Close();
     }
 
-    password_.clear();
+    m_password.clear();
     if (openFile(newFileName.GetFullPath(), false, new_password))
     {
         updateNavTreeControl();
@@ -2395,6 +2444,46 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
+void mmGUIFrame::OnReallocateAccount(wxCommandEvent& event)
+{
+    const auto &accounts = Model_Account::instance().all();
+    if (accounts.empty())
+    {
+        wxMessageBox(_("No account available to reallocate!"), _("Account Reallocation"), wxOK | wxICON_WARNING);
+        return;
+    }
+
+    // Remove all investment type accounts
+    wxArrayString choices;
+    for (const auto & item : accounts)
+    {
+        if (item.ACCOUNTTYPE != Model_Account::all_type()[Model_Account::INVESTMENT])
+            choices.Add(item.ACCOUNTNAME);
+    }
+
+    mmSingleChoiceDialog account_choice(this, _("Choose account to reallocate account type"), _("Account Reallocation"), choices);
+    if (account_choice.ShowModal() == wxID_OK)
+    {
+        Model_Account::Data* account = Model_Account::instance().get(account_choice.GetStringSelection());
+
+        // Remove investment type from reallocation list
+        wxArrayString types = Model_Account::instance().all_type();
+        types.Remove(Model_Account::all_type()[Model_Account::INVESTMENT]);
+
+        mmSingleChoiceDialog type_choice(this, wxString::Format(_("Choose the new type for account: %s"), account->ACCOUNTNAME), _("Account Reallocation"), types);
+        if (type_choice.ShowModal() == wxID_OK)
+        {
+            account->ACCOUNTTYPE = type_choice.GetStringSelection();
+            Model_Account::instance().save(account);
+
+            updateNavTreeControl();
+            setHomePageActive(false);   // ensure that home page gets recreated.
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+            OnAccountList(evt);
+        }
+    }
+}
+
 void mmGUIFrame::OnViewToolbar(wxCommandEvent &event)
 {
     m_mgr.GetPane("toolbar").Show(event.IsChecked());
@@ -2514,12 +2603,6 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
 {
     autoRepeatTransactionsTimer_.Stop();
-
-    // Ensure database is in a steady state first
-    //if (m_db && !activeHomePage_)
-    //{
-    //    createHomePage();
-    //}
 
     if (openFile(dbFileName, newDatabase))
     {

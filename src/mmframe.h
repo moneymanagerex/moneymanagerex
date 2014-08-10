@@ -96,8 +96,8 @@ private:
     wxSharedPtr<wxSQLite3Database> m_db;
 
     /* Currently open file name */
-    wxString fileName_;
-    wxString password_;
+    wxString m_filename;
+    wxString m_password;
 
     int gotoAccountID_;
     int gotoTransID_;
@@ -170,6 +170,7 @@ private:
     void OnNew(wxCommandEvent& event);
     void OnOpen(wxCommandEvent& event);
     void OnConvertEncryptedDB(wxCommandEvent& event);
+    void OnChangeEncryptPassword(wxCommandEvent& event);
     void OnSaveAs(wxCommandEvent& event);
     void OnExportToCSV(wxCommandEvent& event);
     void OnExportToQIF(wxCommandEvent& event);
@@ -202,6 +203,7 @@ private:
     void OnAccountList(wxCommandEvent& event);
     void OnEditAccount(wxCommandEvent& event);
     void OnDeleteAccount(wxCommandEvent& event);
+    void OnReallocateAccount(wxCommandEvent& event);
 
     void OnOrgCategories(wxCommandEvent& event);
     void OnOrgPayees(wxCommandEvent& event);
@@ -298,7 +300,9 @@ private:
         MENU_CATEGORY_RELOCATION,
         MENU_PAYEE_RELOCATION,
         MENU_CONVERT_ENC_DB,
+        MENU_CHANGE_ENCRYPT_PASSWORD,
         MENU_ONLINE_UPD_CURRENCY_RATE,
+        MENU_ACCOUNT_REALLOCATE,
 
         //magic munber needed to fix [bugs:#408]
         ID_NAVTREECTRL = MENU_ONLINE_UPD_CURRENCY_RATE + 233,
