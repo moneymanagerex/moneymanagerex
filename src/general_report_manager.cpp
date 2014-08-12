@@ -46,9 +46,9 @@ private:
     wxString m_selectedGroup;
 };
 
-IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmGeneralReportManager, wxDialog);
 
-BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
+wxBEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_BUTTON(wxID_OPEN, mmGeneralReportManager::OnImportReportEvt)
     EVT_BUTTON(wxID_SAVE, mmGeneralReportManager::OnUpdateReport)
     EVT_BUTTON(wxID_SAVEAS, mmGeneralReportManager::OnExportReport)
@@ -60,7 +60,7 @@ BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_TREE_SEL_CHANGED(ID_REPORT_LIST, mmGeneralReportManager::OnSelChanged)
     EVT_TREE_ITEM_MENU(ID_REPORT_LIST, mmGeneralReportManager::OnItemRightClick)
     EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindowID winid)
     : mmListCtrl(parent, winid)

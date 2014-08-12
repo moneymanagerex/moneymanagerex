@@ -25,8 +25,8 @@
 
 class mmBudgetEntryDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmBudgetEntryDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmBudgetEntryDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmBudgetEntryDialog();

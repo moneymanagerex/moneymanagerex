@@ -517,7 +517,7 @@ void mmHomePagePanel::getTemplate()
     m_templateText.clear();
     const wxString template_path = mmex::getPathResource(mmex::HOME_PAGE_TEMPLATE);
     wxFileInputStream input(template_path);
-    wxTextInputStream text(input, wxT("\x09"), wxConvUTF8);
+    wxTextInputStream text(input, "\x09", wxConvUTF8);
     while (input.IsOk() && !input.Eof())
     {
         m_templateText += text.ReadLine() + "\n";

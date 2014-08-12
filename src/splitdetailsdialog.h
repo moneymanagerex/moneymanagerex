@@ -33,8 +33,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 class SplitDetailDialog: public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( SplitDetailDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(SplitDetailDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     /// Constructors

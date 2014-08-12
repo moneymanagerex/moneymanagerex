@@ -24,8 +24,8 @@
 
 class mmNewAcctDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmNewAcctDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmNewAcctDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmNewAcctDialog();

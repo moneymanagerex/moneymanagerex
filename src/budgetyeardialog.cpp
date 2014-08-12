@@ -22,14 +22,14 @@
 #include "paths.h"
 #include "model/Model_Budgetyear.h"
 
-IMPLEMENT_DYNAMIC_CLASS( mmBudgetYearDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetYearDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmBudgetYearDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmBudgetYearDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmBudgetYearDialog::OnOk)
     EVT_BUTTON(wxID_ADD, mmBudgetYearDialog::OnAdd)
     EVT_BUTTON(ID_ADD_MONTH, mmBudgetYearDialog::OnAddMonth)
     EVT_BUTTON(wxID_DELETE, mmBudgetYearDialog::OnDelete)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmBudgetYearDialog::mmBudgetYearDialog( )
 : m_listBox()

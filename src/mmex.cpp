@@ -33,12 +33,12 @@
 #include <wx/fs_filter.h>
 
 //----------------------------------------------------------------------------
-IMPLEMENT_APP(mmGUIApp)
+wxIMPLEMENT_APP(mmGUIApp);
 //----------------------------------------------------------------------------
 
 static const wxCmdLineEntryDesc g_cmdLineDesc [] =
 {
-    { wxCMD_LINE_PARAM, nullptr, nullptr, _("database file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+    { wxCMD_LINE_PARAM, nullptr, nullptr, wxT_2("database file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
     { wxCMD_LINE_NONE }
 };
 

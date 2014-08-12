@@ -203,10 +203,10 @@ int mmWebApp::WebApp_SendJson(wxString& Website, const wxString& JsonData, wxStr
     //Create multipart form
     wxString Boundary = "Custom_Boundary_MMEX_WebApp";
     wxString Text = wxEmptyString;
-    Text.Append(wxString::Format(_T("--%s\r\n"), Boundary));
-    Text.Append(wxString::Format(_T("Content-Disposition: form-data; name=\"%s\"\r\n\r\n"), "MMEX_Post"));
-    Text.Append(wxString::Format(_T("%s\r\n"), JsonData));
-    Text.Append(wxString::Format(_T("\r\n--%s--\r\n"), Boundary));
+    Text.Append(wxString::Format("--%s\r\n", Boundary));
+    Text.Append(wxString::Format("Content-Disposition: form-data; name=\"%s\"\r\n\r\n", "MMEX_Post"));
+    Text.Append(wxString::Format("%s\r\n", JsonData));
+    Text.Append(wxString::Format("\r\n--%s--\r\n", Boundary));
 
     http.SetPostText("multipart/form-data; boundary=" + Boundary, Text);
 

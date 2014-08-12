@@ -39,9 +39,9 @@
 #include <wx/valnum.h>
 
 
-IMPLEMENT_DYNAMIC_CLASS( mmBDDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmBDDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmBDDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmBDDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmBDDialog::OnOk)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmBDDialog::OnCategs)
     EVT_BUTTON(ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, mmBDDialog::OnAccountName)
@@ -64,7 +64,7 @@ BEGIN_EVENT_TABLE( mmBDDialog, wxDialog )
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBDDialog::OnsetNextRepeatDate)
     EVT_TEXT(ID_DIALOG_BD_TEXTCTRL_NUM_TIMES,mmBDDialog::OnPeriodChange)
     EVT_MENU(wxID_ANY, mmBDDialog::onNoteSelected)
-    END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 //const wxString REPEAT_TRANSACTIONS_MSGBOX_HEADING = _("Repeat Transaction - Auto Execution Checking");
 

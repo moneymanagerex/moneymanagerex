@@ -32,7 +32,7 @@ class mmGUIFrame;
 class budgetingListCtrl : public mmListCtrl
 {
     DECLARE_NO_COPY_CLASS(budgetingListCtrl)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
 public:
     budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id)
@@ -60,7 +60,7 @@ private:
 
 class mmBudgetingPanel : public mmPanelBase
 {
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmBudgetingPanel( int budgetYearID, wxWindow *parent, mmGUIFrame *frame,

@@ -37,7 +37,7 @@ private:
     wxWizardPageSimple* page1;
     void OnWizardCancel(wxWizardEvent& event);
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 //----------------------------------------------------------------------------
 
@@ -55,7 +55,7 @@ private:
     wxTextCtrl* itemUserName_;
     int currencyID_;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 //----------------------------------------------------------------------------

@@ -28,13 +28,13 @@
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Checking.h"
 
-IMPLEMENT_DYNAMIC_CLASS( relocateCategoryDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(relocateCategoryDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( relocateCategoryDialog, wxDialog )
+wxBEGIN_EVENT_TABLE(relocateCategoryDialog, wxDialog)
     EVT_BUTTON(wxID_CLEAR, relocateCategoryDialog::OnSelectSource)
     EVT_BUTTON(wxID_NEW, relocateCategoryDialog::OnSelectDest)
     EVT_BUTTON(wxID_OK, relocateCategoryDialog::OnOk)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 relocateCategoryDialog::relocateCategoryDialog( )
 {}

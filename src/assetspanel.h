@@ -25,7 +25,7 @@ class mmAssetsPanel;
 class mmAssetsListCtrl: public mmListCtrl
 {
     DECLARE_NO_COPY_CLASS(mmAssetsListCtrl)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
@@ -67,7 +67,7 @@ private:
 
 class mmAssetsPanel : public mmPanelBase
 {
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmAssetsPanel(wxWindow *parent);

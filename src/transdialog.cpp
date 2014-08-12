@@ -37,9 +37,9 @@
 #include "minimal_editor.h"
 #include "../resources/attachment.xpm"
 
-IMPLEMENT_DYNAMIC_CLASS( mmTransDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
+wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
@@ -53,7 +53,7 @@ BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_COMBOBOX(wxID_ANY, mmTransDialog::OnAccountOrPayeeUpdated)
     EVT_MENU(wxID_ANY, mmTransDialog::onNoteSelected)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmTransDialog::mmTransDialog(wxWindow* parent
     , int account_id
