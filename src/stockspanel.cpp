@@ -873,7 +873,7 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
     attachment_button_->Enable(en);
     if (!en)
     {
-        stock_details_->SetLabelText(STOCKTIPS[rand() % sizeof(STOCKTIPS) / sizeof(wxString)]);
+        stock_details_->SetLabelText(STOCKTIPS[rand() % (sizeof(STOCKTIPS) / sizeof(wxString))]);
         stock_details_short_->SetLabelText(wxString::Format(_("Last updated %s"), strLastUpdate_));
     }
 }
