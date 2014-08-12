@@ -22,7 +22,7 @@ MinimalEditor::MinimalEditor(wxWindow* parent, wxWindowID id)
     : wxStyledTextCtrl(parent, id)
     {
 		int font_size = this->GetFont().GetPointSize();
-        m_font = wxFont(font_size, wxSWISS, wxNORMAL, wxNORMAL, FALSE, "");
+        m_font = wxFont(font_size, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
     }
 bool MinimalEditor::SetFont(const wxFont& font)
     {

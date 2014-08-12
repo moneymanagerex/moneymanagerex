@@ -608,7 +608,7 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
 //----------------------------------------------------------------------------
 void mmCheckingPanel::showTips()
 {
-    info_panel_->SetLabelText(wxGetTranslation(TIPS[rand() % sizeof(TIPS) / sizeof(wxString)]));
+    info_panel_->SetLabelText(wxGetTranslation(TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]));
 }
 //----------------------------------------------------------------------------
 

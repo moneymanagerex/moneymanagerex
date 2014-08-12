@@ -399,7 +399,7 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
         "'labelAlign' : 'center',\n"
         "'labelColor' : 'black',\n"
         "'labelFontSize' : '12',\n"
-        "'value' : %f,\n"
+        "'value' : %.2f,\n"
         "},\n";
 
     wxString data ="[";
@@ -456,7 +456,7 @@ void mmHTMLBuilder::addBarChart(const std::vector<ValueTrio>& data, const wxStri
     for (const auto& entry : data)
     {
         if (!entry.label.empty()) labels += wxString::Format("'%s',", entry.label);
-        values += wxString::Format(data_item, entry.color, entry.color, wxString::Format("%f", entry.amount));
+        values += wxString::Format(data_item, entry.color, entry.color, wxString::Format("%.2f", entry.amount));
         scaleStepWidth = std::max(entry.amount, scaleStepWidth);
     }
     scaleStepWidth = ceil(scaleStepWidth / steps);
@@ -498,7 +498,7 @@ void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxStr
     for (const auto& entry : data)
     {
         labels += wxString::Format("'%s',", entry.label);
-        values += wxString::Format("%f,", entry.amount);
+        values += wxString::Format("%.2f,", entry.amount);
     }
 
     wxString datasets = wxString::Format(data_item, "LineChart", values);
