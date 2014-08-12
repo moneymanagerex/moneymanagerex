@@ -57,7 +57,6 @@ public:
     void startTfoot();
 
     /** Add a special row that will format total values */
-    void addTotalRow(const wxString& caption, int cols, const wxString& value);
     void addTotalRow(const wxString& caption, int cols, double value);
 
     /** Add a special row that will format total values */
@@ -113,7 +112,7 @@ public:
 
     void addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int& x = 300, const int& y = 300);
     void addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x = 256, const int& y = 640);
-    void addBarChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x = 312, const int& y = 256);
+    void addBarChart(const wxString & labels, const std::vector<ValueTrio>& data, const wxString& id, const int& x = 312, const int& y = 256);
 
 private:
     wxString html_;
