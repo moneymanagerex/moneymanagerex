@@ -30,9 +30,9 @@
 
 #include "csv_parser/csv_parser.hpp"
 
-IMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog)
+wxIMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog);
 
-BEGIN_EVENT_TABLE(mmUnivCSVDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(mmUnivCSVDialog, wxDialog)
     EVT_BUTTON(wxID_ADD, mmUnivCSVDialog::OnAdd)
     EVT_BUTTON(ID_UNIVCSVBUTTON_IMPORT, mmUnivCSVDialog::OnImport)
     EVT_BUTTON(ID_UNIVCSVBUTTON_EXPORT, mmUnivCSVDialog::OnExport)
@@ -47,7 +47,7 @@ BEGIN_EVENT_TABLE(mmUnivCSVDialog, wxDialog)
     EVT_LISTBOX(ID_LISTBOX, mmUnivCSVDialog::OnListBox)
     EVT_RADIOBOX(wxID_RADIO_BOX, mmUnivCSVDialog::OnCheckOrRadioBox)
     EVT_CHOICE(wxID_ANY, mmUnivCSVDialog::OnDateFormatChanged)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
 mmUnivCSVDialog::mmUnivCSVDialog()
@@ -1097,9 +1097,9 @@ void mmUnivCSVDialog::update_preview()
 
                 int col = 0;
                 wxString buf;
-                buf.Printf(_T("%d"), col);
+                buf.Printf("%d", col);
                 long itemIndex = m_list_ctrl_->InsertItem(row, buf, 0);
-                buf.Printf(_T("%d"), row + 1);
+                buf.Printf("%d", row + 1);
                 m_list_ctrl_->SetItem(itemIndex, col, buf);
                 while (tkz.HasMoreTokens())
                 {
@@ -1173,9 +1173,9 @@ void mmUnivCSVDialog::update_preview()
 
                 int col = 0;
                 wxString buf;
-                buf.Printf(_T("%d"), col);
+                buf.Printf("%d", col);
                 long itemIndex = m_list_ctrl_->InsertItem(row, buf, 0);
-                buf.Printf(_T("%d"), row + 1);
+                buf.Printf("%d", row + 1);
                 m_list_ctrl_->SetItem(itemIndex, col, buf);
 
                 Model_Category::Data* category = Model_Category::instance().get(pBankTransaction.CATEGID);

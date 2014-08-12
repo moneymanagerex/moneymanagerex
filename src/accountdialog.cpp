@@ -33,15 +33,15 @@
 #include "model/Model_Attachment.h"
 #include "../resources/attachment.xpm"
 
-IMPLEMENT_DYNAMIC_CLASS( mmNewAcctDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmNewAcctDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmNewAcctDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmNewAcctDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmNewAcctDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmNewAcctDialog::OnCancel)
     EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY, mmNewAcctDialog::OnCurrency)
 	EVT_BUTTON(wxID_FILE, mmNewAcctDialog::OnAttachments)
     EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 99, mmNewAcctDialog::OnCustonImage)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmNewAcctDialog::mmNewAcctDialog( )
 {

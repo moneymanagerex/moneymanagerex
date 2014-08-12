@@ -38,7 +38,7 @@ class mmStocksPanel;
 class StocksListCtrl: public mmListCtrl
 {
     DECLARE_NO_COPY_CLASS(StocksListCtrl)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
 public:
     StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
@@ -96,7 +96,7 @@ private:
 /* ------------------------------------------------------- */
 class mmStocksPanel : public mmPanelBase
 {
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmStocksPanel(

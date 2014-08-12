@@ -261,7 +261,7 @@ private:
     void ShutdownDatabase();
 
     // any class wishing to process wxWindows events must use this macro
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     enum
     {
         /* Main Menu  */

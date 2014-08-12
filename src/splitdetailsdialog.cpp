@@ -28,7 +28,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/valnum.h>
 
-IMPLEMENT_DYNAMIC_CLASS( SplitDetailDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(SplitDetailDialog, wxDialog);
 
 enum
 {
@@ -37,12 +37,12 @@ enum
     ID_TEXTCTRLAMOUNT,
 };
 
-BEGIN_EVENT_TABLE( SplitDetailDialog, wxDialog )
+wxBEGIN_EVENT_TABLE(SplitDetailDialog, wxDialog)
     EVT_BUTTON( ID_BUTTONCATEGORY, SplitDetailDialog::OnButtonCategoryClick )
     EVT_BUTTON( wxID_OK, SplitDetailDialog::OnButtonOKClick )
     EVT_BUTTON( wxID_CANCEL, SplitDetailDialog::OnCancel )
     EVT_TEXT_ENTER( ID_TEXTCTRLAMOUNT, SplitDetailDialog::onTextEntered )
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 SplitDetailDialog::SplitDetailDialog()
 {

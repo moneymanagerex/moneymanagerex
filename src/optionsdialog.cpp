@@ -79,9 +79,9 @@ class mmOtherSettingPanel: public mmSettingPanel
     // TODO
 };
 
-IMPLEMENT_DYNAMIC_CLASS( mmOptionsDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmOptionsDialog::OnOk)
     EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnApply)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmOptionsDialog::OnCurrency)
@@ -91,7 +91,7 @@ BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 9, mmOptionsDialog::OnAttachmentsMenu)
     EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, mmOptionsDialog::OnAttachmentsPathChanged)
     EVT_CHECKBOX(ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER, mmOptionsDialog::OnAttachmentsSubfolderChanged)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmOptionsDialog::mmOptionsDialog( )
 {

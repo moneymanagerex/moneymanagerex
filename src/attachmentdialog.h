@@ -25,8 +25,8 @@
 
 class mmAttachmentDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS(mmAttachmentDialog)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmAttachmentDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmAttachmentDialog(wxWindow* parent, const wxString& RefType, const int& RefId);

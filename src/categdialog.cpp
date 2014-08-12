@@ -29,9 +29,9 @@
 #include "model/Model_Infotable.h"
 #include "../resources/relocate_categories.xpm"
 
-IMPLEMENT_DYNAMIC_CLASS(mmCategDialog, wxDialog)
+wxIMPLEMENT_DYNAMIC_CLASS(mmCategDialog, wxDialog);
 
-BEGIN_EVENT_TABLE(mmCategDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(mmCategDialog, wxDialog)
     EVT_BUTTON(wxID_OK, mmCategDialog::OnBSelect)
     EVT_BUTTON(wxID_CANCEL, mmCategDialog::OnCancel)
     EVT_BUTTON(wxID_ADD, mmCategDialog::OnAdd)
@@ -42,7 +42,7 @@ BEGIN_EVENT_TABLE(mmCategDialog, wxDialog)
     EVT_TREE_ITEM_ACTIVATED(wxID_ANY,  mmCategDialog::OnDoubleClicked)
     EVT_TREE_ITEM_MENU(wxID_ANY, mmCategDialog::OnItemRightClick)
     EVT_MENU(wxID_ANY, mmCategDialog::OnMenuSelected)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmCategDialog::mmCategDialog( )
 : m_treeCtrl()

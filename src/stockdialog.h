@@ -27,8 +27,8 @@ class mmTextCtrl;
 
 class mmStockDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmStockDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmStockDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmStockDialog();

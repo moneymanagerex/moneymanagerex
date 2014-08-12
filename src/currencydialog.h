@@ -44,8 +44,8 @@ enum
 
 class mmCurrencyDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmCurrencyDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmCurrencyDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmCurrencyDialog();

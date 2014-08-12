@@ -24,14 +24,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
 
-IMPLEMENT_DYNAMIC_CLASS( mmQIFExportDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmQIFExportDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmQIFExportDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmQIFExportDialog, wxDialog)
     EVT_CHECKBOX(wxID_ANY, mmQIFExportDialog::OnCheckboxClick )
     EVT_BUTTON(wxID_OK, mmQIFExportDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmQIFExportDialog::OnCancel)
     EVT_CLOSE(mmQIFExportDialog::OnQuit)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmQIFExportDialog::mmQIFExportDialog(wxWindow* parent)
 {

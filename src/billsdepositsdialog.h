@@ -31,8 +31,8 @@ class wxDatePickerCtrl;
 
 class mmBDDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmBDDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmBDDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmBDDialog();

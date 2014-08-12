@@ -39,8 +39,8 @@ class wxStaticText;
 
 class SplitTransactionDialog: public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( SplitTransactionDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(SplitTransactionDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     /// Constructors

@@ -29,11 +29,11 @@
 #include <wx/combobox.h>
 #include <wx/valnum.h>
 
-IMPLEMENT_DYNAMIC_CLASS( mmCurrencyDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmCurrencyDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmCurrencyDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmCurrencyDialog, wxDialog )
     EVT_BUTTON(wxID_REFRESH, mmCurrencyDialog::OnUpdate)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmCurrencyDialog::mmCurrencyDialog()
 {

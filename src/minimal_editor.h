@@ -3,8 +3,8 @@
 
 class MinimalEditor : public wxStyledTextCtrl
 {
-    DECLARE_DYNAMIC_CLASS(MinimalEditor)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(MinimalEditor);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     MinimalEditor(){};

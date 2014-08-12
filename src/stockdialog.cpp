@@ -30,14 +30,14 @@
 #include "../resources/update_currency.xpm"
 #include "../resources/attachment.xpm"
 
-IMPLEMENT_DYNAMIC_CLASS( mmStockDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmStockDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmStockDialog, wxDialog )
+wxBEGIN_EVENT_TABLE(mmStockDialog, wxDialog)
     EVT_BUTTON(wxID_OK, mmStockDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmStockDialog::OnCancel)
     EVT_BUTTON(wxID_INDEX, mmStockDialog::OnStockPriceButton)
     EVT_BUTTON(wxID_FILE, mmStockDialog::OnAttachments)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmStockDialog::mmStockDialog( )
 {

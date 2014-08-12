@@ -28,8 +28,8 @@ class mmGUIApp;
 
 class mmOptionsDialog: public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmOptionsDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmOptionsDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmOptionsDialog( );

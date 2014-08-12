@@ -35,7 +35,7 @@ class mmGeneralReportManager;
 
 class sqlListCtrl : public mmListCtrl
 {
-    DECLARE_NO_COPY_CLASS(sqlListCtrl)
+    wxDECLARE_NO_COPY_CLASS(sqlListCtrl);
 public:
 
     sqlListCtrl(mmGeneralReportManager *grm, wxWindow *parent
@@ -47,8 +47,8 @@ private:
 
 class mmGeneralReportManager: public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmGeneralReportManager )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmGeneralReportManager);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     /// Constructors

@@ -68,16 +68,16 @@ static const wxString DATE_PRESETTINGS[] =
     VIEW_TRANS_CURRENT_YEAR_STR
 };
 
-IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmFilterTransactionsDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
     EVT_CHECKBOX(wxID_ANY,    mmFilterTransactionsDialog::OnCheckboxClick )
     EVT_BUTTON  (wxID_OK,     mmFilterTransactionsDialog::OnButtonokClick )
     EVT_BUTTON  (wxID_CANCEL, mmFilterTransactionsDialog::OnButtoncancelClick )
     EVT_BUTTON  (wxID_SAVE,   mmFilterTransactionsDialog::OnButtonSaveClick )
     EVT_BUTTON  (wxID_CLEAR,  mmFilterTransactionsDialog::OnButtonClearClick )
     EVT_MENU    (wxID_ANY,    mmFilterTransactionsDialog::datePresetMenuSelected )
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog( )
 {

@@ -23,12 +23,12 @@
 #include <constants.h>
 #include <wx/valnum.h>
 
-IMPLEMENT_DYNAMIC_CLASS( mmBudgetEntryDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetEntryDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmBudgetEntryDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmBudgetEntryDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmBudgetEntryDialog::OnOk)
     EVT_TEXT_ENTER(wxID_ANY, mmBudgetEntryDialog::OnOk)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmBudgetEntryDialog::mmBudgetEntryDialog()
 {
