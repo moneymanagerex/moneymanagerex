@@ -448,7 +448,7 @@ install: install_mmex
 	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\resources && copy /Y  master.css $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\res
-	( cd ..\..\3rd\Chart.js && copy /Y  Chart.js $(PREFIX)\mmex\res )
+	( cd ..\..\3rd\ChartNew.js && copy /Y  ChartNew.js $(PREFIX)\mmex\res )
 	( cd ..\..\3rd\sorttable.js && copy /Y  sorttable.js $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\help
 	( cd ..\..\doc\help && copy /Y  *.html $(PREFIX)\mmex\help )
@@ -462,7 +462,7 @@ uninstall: uninstall_mmex
 	-if exist $(PREFIX)\mmex\res\mmex.ico -del mmex.ico
 	-if exist $(PREFIX)\mmex\res\kaching.wav -del kaching.wav
 	-if exist $(PREFIX)\mmex\res\master.css -del master.css
-	-if exist $(PREFIX)\mmex\res\Chart.js -del Chart.js
+	-if exist $(PREFIX)\mmex\res\ChartNew.js -del ChartNew.js
 	-if exist $(PREFIX)\mmex\res\sorttable.js -del sorttable.js
 	-if exist $(PREFIX)\mmex\help\*.html -del *.html
 	-if exist $(PREFIX)\mmex\help\*.png -del *.png

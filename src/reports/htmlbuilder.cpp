@@ -42,9 +42,9 @@ static const char HTML[] =
     "<!DOCTYPE html PUBLIC \" -//W3C//DTD HTML 4.01//EN\">"
     "<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />"
     "<title>%s - Report</title>\n"
-    "<link href = \"master.css\" rel = \"stylesheet\" />\n"
-    "<script src = \"Chart.js\"></script>\n"
-    "<script src = \"sorttable.js\"></script>\n"
+    "<link href = 'master.css' rel = 'stylesheet' />\n"
+    "<script src = 'ChartNew.js'></script>\n"
+    "<script src = 'sorttable.js'></script>\n"
     "    <style>\n"
     "    /* Sortable tables */\n"
     "    table.sortable thead{\n"
@@ -175,21 +175,14 @@ void mmHTMLBuilder::startTfoot()
 }
 
 void mmHTMLBuilder::addTotalRow(const wxString& caption
-    , int cols, const wxString& value)
+    , int cols, double value)
 {
     this->startTotalTableRow();
     html_+= wxString::Format(tags::TABLE_CELL_SPAN, cols - 1);
     html_ += caption;
     this->endTableCell();
-    html_+= tags::TABLE_CELL_RIGHT;
-    html_ += value;
-    this->endTableCell();
+    this->addMoneyCell(value);
     this->endTableRow();
-}
-
-void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, double value)
-{
-    this->addTotalRow(caption, cols, Model_Currency::toCurrency(value));
 }
 
 void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
@@ -305,7 +298,7 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startYear, const wxDate
     {
         todaysDate << _("Over Time");
     }
-    this->addHeader(4, todaysDate);
+    this->addHeader(3, todaysDate);
 }
 
 void mmHTMLBuilder::addTableRow(const wxString& label, double data)
@@ -394,41 +387,38 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
 {
     static const wxString data_item =
         "{\n"
-        "'color' : '%s',\n"
-        "'label' : '%s',\n"
-        "'labelAlign' : 'center',\n"
-        "'labelColor' : 'black',\n"
-        "'labelFontSize' : '12',\n"
-        "'value' : %.2f,\n"
+        "value : %.2f,\n"
+        "color : '%s',\n"
+        "title : '%s',\n"
         "},\n";
-
-    wxString data ="[";
-    for (const auto& entry : valueList)
-    {
-        data += wxString::Format(data_item
-            , entry.color
-            , entry.label, entry.amount);
-    }
-    data += "]\n";
     static const wxString js = "<script type='text/javascript'>\n"
-        "var data = %s;\n"
+        "var data = [%s];\n"
         "var options = {\n"
-        "  animationEasing: 'easeOutQuint'\n"
+        "  annotateDisplay : true\n"
         "};\n"
         "var ctx = document.getElementById('%s').getContext('2d');\n"
         "var reportChart = new Chart(ctx).Pie(data, options);\n"
         "</script>\n";
+
+    wxString data ="";
+    for (const auto& entry : valueList)
+    {
+        data += wxString::Format(data_item
+            , entry.amount, entry.color
+            , entry.label );
+    }
     this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
     this->addText(wxString::Format(js, data, id));
 }
 
-void mmHTMLBuilder::addBarChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x, const int& y)
+void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueTrio>& data, const wxString& id, const int& x, const int& y)
 {
     static const wxString data_item =
         "{\n"
         "  fillColor : '%s',\n"
         "  strokeColor : '%s',\n"
         "  data : [%s],\n"
+        "  title : '%s',\n"
         "},\n";
     static const wxString js = "<script type='text/javascript'>\n"
         "var data = {\n"
@@ -436,9 +426,8 @@ void mmHTMLBuilder::addBarChart(const std::vector<ValueTrio>& data, const wxStri
         "  datasets : [%s]\n"
         "};\n"
         "var options = {\n"
-        "  animationEasing: 'easeOutQuint',\n"
-        "  barValueSpacing : 10,\n"
-        "  scaleOverride : true,\n"
+        "  scaleOverride: true,\n"
+        "  annotateDisplay : true,\n"
         "  scaleStartValue : 0,\n"
         "  scaleSteps : [10],\n"
         "  scaleStepWidth : [%i]\n"
@@ -450,13 +439,10 @@ void mmHTMLBuilder::addBarChart(const std::vector<ValueTrio>& data, const wxStri
     double steps = 10.0;
     double scaleStepWidth = 1;
 
-    wxString labels = wxEmptyString;
     wxString values = "";
-
     for (const auto& entry : data)
     {
-        if (!entry.label.empty()) labels += wxString::Format("'%s',", entry.label);
-        values += wxString::Format(data_item, entry.color, entry.color, wxString::Format("%.2f", entry.amount));
+        values += wxString::Format(data_item, entry.color, entry.color, wxString::Format("%.2f", entry.amount), entry.label);
         scaleStepWidth = std::max(entry.amount, scaleStepWidth);
     }
     scaleStepWidth = ceil(scaleStepWidth / steps);
