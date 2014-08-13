@@ -73,7 +73,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
     hb.addDateNow();
 
-    std::pair<double, double> income_expemses_rair;
+    std::pair<double, double> income_expenses_pair;
     for (const auto& transaction : Model_Checking::instance().find(
         Model_Checking::TRANSDATE(date_range_->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range_->end_date(), LESS_OR_EQUAL)
@@ -89,20 +89,20 @@ wxString mmReportIncomeExpenses::getHTMLText()
         if (account) convRate = Model_Account::currency(account)->BASECONVRATE;
 
         if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
-            income_expemses_rair.first += transaction.TRANSAMOUNT * convRate;
+            income_expenses_pair.first += transaction.TRANSAMOUNT * convRate;
         else if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
-            income_expemses_rair.second += transaction.TRANSAMOUNT * convRate;
+            income_expenses_pair.second += transaction.TRANSAMOUNT * convRate;
     }
 
     ValueTrio vt;
     std::vector<ValueTrio> valueList;
-    vt.amount = income_expemses_rair.first;
+    vt.amount = income_expenses_pair.first;
     vt.color = "rgba(151,187,205,0.5)";
-    vt.label = _("Income/Expenses");
+    vt.label = _("Income");
     valueList.push_back(vt);
-    vt.amount = income_expemses_rair.second;
+    vt.amount = income_expenses_pair.second;
     vt.color = "rgba(220,66,66,0.5)";
-    vt.label.clear();
+    vt.label = _("Expenses");
     valueList.push_back(vt);
 
     hb.addDivRow();
@@ -112,7 +112,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
         hb.startTableRow();
         {
             hb.startTableCell();
-            hb.addBarChart(valueList, "BarChart");
+            hb.addBarChart("''", valueList, "BarChart");
             hb.endTableCell();
 
             hb.startTableCell();
@@ -125,10 +125,10 @@ wxString mmReportIncomeExpenses::getHTMLText()
                 hb.endTableRow();
                 hb.endThead();
 
-                hb.addTableRow(_("Income:"), income_expemses_rair.first);
-                hb.addTableRow(_("Expenses:"), income_expemses_rair.second);
+                hb.addTableRow(_("Income:"), income_expenses_pair.first);
+                hb.addTableRow(_("Expenses:"), income_expenses_pair.second);
 
-                hb.addTotalRow(_("Difference:"), 2, income_expemses_rair.first - income_expemses_rair.second);
+                hb.addTotalRow(_("Difference:"), 2, income_expenses_pair.first - income_expenses_pair.second);
             }
             hb.endTable();
             hb.endTableCell();

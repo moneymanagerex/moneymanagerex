@@ -180,7 +180,7 @@ wxString htmlWidgetTop7Categories::getHTMLText()
         const wxString idStr = "TOP_CATEGORIES";
         output += "<table class = 'table' ><tr class='active'><th>\n";
         output += title_ + wxString::Format("</th><th nowrap class='text-right'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n", idStr, idStr);
-        output += "<tr><td style='padding:0px; padding-left:0px; padding-right:0px; line-height:0; width:100%; ' colspan='2'>\n";
+        output += "<tr><td style='padding:0px; padding-left:0px; padding-right:0px; width:100%; ' colspan='2'>\n";
         output += wxString::Format("<table class = 'sortable table' id='%s'>", idStr);
         output += "<thead>";
         output += "<tr><th>";
@@ -738,8 +738,8 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     o["7"] = json::String(_("Difference:").ToStdString());
     o["8"] = json::String(Model_Currency::toCurrency(tIncome - tExpenses).ToStdString());
     o["9"] = json::String(_("Income/Expenses").ToStdString());
-    o["10"] = json::Number(tIncome);
-    o["11"] = json::Number(tExpenses);
+    o["10"] = json::String(wxString::Format("%.2f", tIncome).ToStdString());
+    o["11"] = json::String(wxString::Format("%.2f", tExpenses).ToStdString());
     o["12"] = json::Number(steps);
     o["13"] = json::Number(scaleStepWidth);
 
