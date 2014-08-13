@@ -425,7 +425,6 @@
     <ClInclude Include="..\..\src\defs.h" />
     <ClInclude Include="..\..\src\import_export\export.h" />
     <ClInclude Include="..\..\src\filtertransdialog.h" />
-    <ClInclude Include="..\..\src\guiid.h" />
     <ClInclude Include="..\..\3rd\cgitemplate\html_template.h" />
     <ClInclude Include="..\..\src\reports\htmlbuilder.h" />
     <ClInclude Include="..\..\src\reports\incexpenses.h" />
