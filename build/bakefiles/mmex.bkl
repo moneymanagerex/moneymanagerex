@@ -57,6 +57,12 @@
 
 	<data-files>
 	    <install-to>$(respath)</install-to>
+        <srcdir>$(SRCDIR)/3rd/Chart.js</srcdir>
+        <files>Chart.js</files>
+    </data-files>
+	
+	<data-files>
+	    <install-to>$(respath)</install-to>
         <srcdir>$(SRCDIR)/3rd/ChartNew.js</srcdir>
         <files>ChartNew.js</files>
     </data-files>
@@ -207,6 +213,12 @@
         <files>master.css</files>
     </data-files>
 
+	<data-files>
+        <install-to>$(PREFIX)/mmex/res</install-to>
+            <srcdir>$(SRCDIR)/3rd/Chart.js</srcdir>
+        <files>Chart.js</files>
+    </data-files>
+	
     <data-files>
         <install-to>$(PREFIX)/mmex/res</install-to>
             <srcdir>$(SRCDIR)/3rd/ChartNew.js</srcdir>

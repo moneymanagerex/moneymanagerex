@@ -110,6 +110,7 @@ copy "..\..\resources\mmex.ico"        "%mmex_build_dir%\res"
 copy "..\..\resources\master.css"      "%mmex_build_dir%\res"
 copy "..\..\resources\home_page.htt"   "%mmex_build_dir%\res"
 copy "..\..\3rd\Chart.js\Chart.js"     "%mmex_build_dir%\res"
+copy "..\..\3rd\ChartNew.js\ChartNew.js"       "%mmex_build_dir%\res"
 copy "..\..\3rd\sorttable.js\sorttable.js"     "%mmex_build_dir%\res"
 @echo ------------------------------------------------------------------------
 @echo.
