@@ -105,6 +105,7 @@
 #include "../resources/delete_account.xpm"
 #include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
+#include "../resources/encrypt_db_edit.xpm"
 #include "../resources/exit.xpm"
 #include "../resources/facebook.xpm"
 #include "../resources/filter.xpm"
@@ -1448,9 +1449,10 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemChangeEncryptPassword = new wxMenuItem(menuTools, MENU_CHANGE_ENCRYPT_PASSWORD
         , _("Change Encrypted &Password")
         , _("Change the password of an encrypted database"));
-    menuItemChangeEncryptPassword->Enable(false);
-    //menuItemChangeEncryptPassword->SetBitmap(wxBitmap(encrypt_db_xpm));
+
+    menuItemChangeEncryptPassword->SetBitmap(wxBitmap(encrypt_db_edit_xpm));
     menuTools->Append(menuItemChangeEncryptPassword);
+    menuItemChangeEncryptPassword->Enable(false);
 
     // Help Menu
     wxMenu *menuHelp = new wxMenu;
