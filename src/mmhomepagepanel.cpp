@@ -69,10 +69,10 @@ wxString htmlWidgetStocks::getHTMLText()
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
-        output = "<table class ='sortable table'><col style='width:50%'><col style='width:25%'><col style='width:25%'><thead><tr class='active'><th>\n";
+        output = "<table class ='sortable table'><col style='width: 50%'><col style='width: 25%'><col style='width: 25%'><thead><tr class='active'><th>\n";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
-        output += "</th><th class = 'text-right'>" + _("Total") + "</th>";
-        output += wxString::Format("<th nowrap class='sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#'>[-]</a></th>\n"
+        output += "</th>\n<th class='text-right'>" + _("Total") + "</th>\n";
+        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#'>[-]</a></th>\n"
             , "INVEST", "INVEST");
         output += "</tr></thead><tbody id='INVEST'>\n";
         const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
@@ -179,8 +179,8 @@ wxString htmlWidgetTop7Categories::getHTMLText()
     if (!topCategoryStats.empty()) {
         const wxString idStr = "TOP_CATEGORIES";
         output += "<table class = 'table' ><tr class='active'><th>\n";
-        output += title_ + wxString::Format("</th><th nowrap class='text-right'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n", idStr, idStr);
-        output += "<tr><td style='padding:0px; padding-left:0px; padding-right:0px; width:100%; ' colspan='2'>\n";
+        output += title_ + wxString::Format("</th><th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n", idStr, idStr);
+        output += "<tr><td style='padding: 0px; padding-left: 0px; padding-right: 0px; width: 100%; ' colspan='2'>\n";
         output += wxString::Format("<table class = 'sortable table' id='%s'>", idStr);
         output += "<thead>";
         output += "<tr><th>";
@@ -357,12 +357,12 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         output = "<table class='table'>\n<thead>\n<tr class='active'><th>";
         output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>\n", title_);
-        output += wxString::Format("<th nowrap class='text-right'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n"
+        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n"
             , int(bd_days.size()), idStr, idStr);
         output += "</thead>\n";
 
         output += wxString::Format("<tbody id='%s'>\n", idStr);
-        output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th><th class='text-right'>%s</th><th class='text-right'>%s</th></tr>\n"
+        output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th>\n<th class='text-right'>%s</th>\n<th class='text-right'>%s</th></tr>\n"
             , _("Payee"), _("Amount"), _("Days"));
 
         for (const auto& item : bd_days)
@@ -662,7 +662,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     output += (type_is_bank ? _("Bank Account") : _("Term Account"));
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
     output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";
-    output += wxString::Format("<th nowrap class='sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th>\n"
+    output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th>\n"
         , idStr, idStr);
     output += "</tr></thead>\n";
     output += wxString::Format("<tbody id = '%s'>\n", idStr);

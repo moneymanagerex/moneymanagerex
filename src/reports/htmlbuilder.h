@@ -111,7 +111,7 @@ public:
     void addTableRowBold(const wxString& label, double data);
 
     void addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int& x = 300, const int& y = 300);
-    void addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x = 256, const int& y = 640);
+    void addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x = 640, const int& y = 256);
     void addBarChart(const wxString & labels, const std::vector<ValueTrio>& data, const wxString& id, const int& x = 312, const int& y = 256);
 
 private:

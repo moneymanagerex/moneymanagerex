@@ -475,8 +475,12 @@ void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxStr
         "  datasets : [%s]\n"
         "};\n"
         "var ctx = document.getElementById('%s').getContext('2d');\n"
-        "var reportChart = new Chart(ctx).Line(data, {datasetFill: false, responsive: true});\n"
+        "var reportChart = new Chart(ctx).Line(data, %s);\n"
         "</script>\n";
+    static const wxString opt =
+        "{datasetFill: false,\n"
+        " responsive: true,\n"
+        "pointDot :false}";
 
     wxString labels = "";
     wxString values = "";
@@ -489,7 +493,7 @@ void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxStr
 
     wxString datasets = wxString::Format(data_item, "LineChart", values);
     this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
-    this->addText(wxString::Format(js, labels, datasets, id));
+    this->addText(wxString::Format(js, labels, datasets, id, opt));
 }
 
 const wxString mmHTMLBuilder::getHTMLText() const
