@@ -350,9 +350,6 @@
     <ClInclude Include="..\..\src\filtertransdialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\guiid.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\maincurrencydialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
