@@ -220,6 +220,8 @@ install: install_mmex
 	(cd $(srcdir)/resources ; $(INSTALL_DATA)  kaching.wav mmex.ico master.css home_page.htt $(DESTDIR)$(respath))
 	$(INSTALL_DIR) $(DESTDIR)$(respath)
 	(cd $(srcdir)/3rd/Chart.js ; $(INSTALL_DATA)  Chart.js $(DESTDIR)$(respath))
+	$(INSTALL_DIR) $(DESTDIR)$(respath)
+	(cd $(srcdir)/3rd/ChartNew.js ; $(INSTALL_DATA)  ChartNew.js $(DESTDIR)$(respath))
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/..
 	(cd $(srcdir)/resources ; $(INSTALL_DATA)  Info.plist $(DESTDIR)$(datadir)/..)
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)
@@ -256,6 +258,7 @@ install: install_mmex
 uninstall: uninstall_mmex
 	(cd $(DESTDIR)$(respath) ; rm -f kaching.wav mmex.ico master.css home_page.htt)
 	(cd $(DESTDIR)$(respath) ; rm -f Chart.js)
+	(cd $(DESTDIR)$(respath) ; rm -f ChartNew.js)
 	(cd $(DESTDIR)$(datadir)/.. ; rm -f Info.plist)
 	(cd $(DESTDIR)$(datadir) ; rm -f version.txt contrib.txt license.txt)
 	(cd $(DESTDIR)$(datadir)/../Resources ; rm -f mmex.icns mmdb.icns)
