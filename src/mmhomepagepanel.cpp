@@ -178,27 +178,27 @@ wxString htmlWidgetTop7Categories::getHTMLText()
     
     if (!topCategoryStats.empty()) {
         const wxString idStr = "TOP_CATEGORIES";
-        output += "<table class = 'table' ><tr class='active'><th>\n";
+        output += "<table class = 'table'>\n<tr class='active'>\n<th>";
         output += title_ + wxString::Format("</th><th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n", idStr, idStr);
-        output += "<tr><td style='padding: 0px; padding-left: 0px; padding-right: 0px; width: 100%; ' colspan='2'>\n";
-        output += wxString::Format("<table class = 'sortable table' id='%s'>", idStr);
-        output += "<thead>";
+        output += "<tr><td style='padding: 0px; padding-left: 0px; padding-right: 0px; width: 100%;' colspan='2'>\n";
+        output += wxString::Format("<table class = 'sortable table' id='%s'>\n", idStr);
+        output += "<thead>\n";
         output += "<tr><th>";
-        output += _("Category") + "</th><th class='text-right'>" + _("Summary") + "</th></tr>";
+        output += _("Category") + "</th>\n<th class='text-right'>" + _("Summary") + "</th></tr>";
         output += "</thead>\n";
-        output += "<tboby>\n";
+        output += "<tbody>\n";
 
         for (const auto& i : topCategoryStats)
         {
             output += "<tr>";
             output += wxString::Format("<td>%s</td>", (i.first.IsEmpty() ? "..." : i.first));
-            output += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>"
+            output += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
                 , i.second
                 , Model_Currency::toCurrency(i.second));
             output += "</tr>";
         }
-        output += "</tbody></table>\n";
-        output += "</td></tr></table>\n";
+        output += "</tbody>\n</table>\n";
+        output += "</td></tr>\n</table>\n";
     }
 
     return output;
