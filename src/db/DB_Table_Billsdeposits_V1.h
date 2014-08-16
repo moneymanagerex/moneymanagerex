@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
+ *          AUTO GENERATED at 2014-08-15 22:02:43.980000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,7 +27,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::string to_json() const
+        std::wstring to_json() const
         {
             json::Array a;
             for (const auto & item: *this)
@@ -36,7 +36,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
                 item.to_json(o);
                 a.Insert(o);
             }
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(a, ss);
             return ss.str();
         }
@@ -68,7 +68,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE BILLSDEPOSITS_V1(BDID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL, TRANSAMOUNT numeric NOT NULL, STATUS TEXT, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, REPEATS integer, NEXTOCCURRENCEDATE TEXT, NUMOCCURRENCES integer )");
+				db->ExecuteUpdate("CREATE TABLE BILLSDEPOSITS_V1(BDID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL, TRANSAMOUNT numeric NOT NULL, STATUS TEXT, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, REPEATS integer, NEXTOCCURRENCEDATE TEXT, NUMOCCURRENCES integer )");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -432,30 +432,30 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         {
             json::Object o;
             this->to_json(o);
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
         
         int to_json(json::Object& o) const
         {
-            o["BDID"] = json::Number(this->BDID);
-            o["ACCOUNTID"] = json::Number(this->ACCOUNTID);
-            o["TOACCOUNTID"] = json::Number(this->TOACCOUNTID);
-            o["PAYEEID"] = json::Number(this->PAYEEID);
-            o["TRANSCODE"] = json::String(this->TRANSCODE.ToStdString());
-            o["TRANSAMOUNT"] = json::Number(this->TRANSAMOUNT);
-            o["STATUS"] = json::String(this->STATUS.ToStdString());
-            o["TRANSACTIONNUMBER"] = json::String(this->TRANSACTIONNUMBER.ToStdString());
-            o["NOTES"] = json::String(this->NOTES.ToStdString());
-            o["CATEGID"] = json::Number(this->CATEGID);
-            o["SUBCATEGID"] = json::Number(this->SUBCATEGID);
-            o["TRANSDATE"] = json::String(this->TRANSDATE.ToStdString());
-            o["FOLLOWUPID"] = json::Number(this->FOLLOWUPID);
-            o["TOTRANSAMOUNT"] = json::Number(this->TOTRANSAMOUNT);
-            o["REPEATS"] = json::Number(this->REPEATS);
-            o["NEXTOCCURRENCEDATE"] = json::String(this->NEXTOCCURRENCEDATE.ToStdString());
-            o["NUMOCCURRENCES"] = json::Number(this->NUMOCCURRENCES);
+            o[L"BDID"] = json::Number(this->BDID);
+            o[L"ACCOUNTID"] = json::Number(this->ACCOUNTID);
+            o[L"TOACCOUNTID"] = json::Number(this->TOACCOUNTID);
+            o[L"PAYEEID"] = json::Number(this->PAYEEID);
+            o[L"TRANSCODE"] = json::String(this->TRANSCODE.ToStdWstring());
+            o[L"TRANSAMOUNT"] = json::Number(this->TRANSAMOUNT);
+            o[L"STATUS"] = json::String(this->STATUS.ToStdWstring());
+            o[L"TRANSACTIONNUMBER"] = json::String(this->TRANSACTIONNUMBER.ToStdWstring());
+            o[L"NOTES"] = json::String(this->NOTES.ToStdWstring());
+            o[L"CATEGID"] = json::Number(this->CATEGID);
+            o[L"SUBCATEGID"] = json::Number(this->SUBCATEGID);
+            o[L"TRANSDATE"] = json::String(this->TRANSDATE.ToStdWstring());
+            o[L"FOLLOWUPID"] = json::Number(this->FOLLOWUPID);
+            o[L"TOTRANSAMOUNT"] = json::Number(this->TOTRANSAMOUNT);
+            o[L"REPEATS"] = json::Number(this->REPEATS);
+            o[L"NEXTOCCURRENCEDATE"] = json::String(this->NEXTOCCURRENCEDATE.ToStdWstring());
+            o[L"NUMOCCURRENCES"] = json::Number(this->NUMOCCURRENCES);
             return 0;
         }
         row_t to_row_t() const

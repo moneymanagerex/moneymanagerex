@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
+ *          AUTO GENERATED at 2014-08-15 22:02:43.980000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,7 +27,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::string to_json() const
+        std::wstring to_json() const
         {
             json::Array a;
             for (const auto & item: *this)
@@ -36,7 +36,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
                 item.to_json(o);
                 a.Insert(o);
             }
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(a, ss);
             return ss.str();
         }
@@ -68,7 +68,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE STOCK_V1(STOCKID integer primary key, HELDAT integer , PURCHASEDATE TEXT NOT NULL, STOCKNAME TEXT COLLATE NOCASE NOT NULL, SYMBOL TEXT, NUMSHARES numeric, PURCHASEPRICE numeric NOT NULL, NOTES TEXT, CURRENTPRICE numeric NOT NULL, VALUE numeric, COMMISSION numeric)");
+				db->ExecuteUpdate("CREATE TABLE STOCK_V1(STOCKID integer primary key, HELDAT integer , PURCHASEDATE TEXT NOT NULL, STOCKNAME TEXT COLLATE NOCASE NOT NULL, SYMBOL TEXT, NUMSHARES numeric, PURCHASEPRICE numeric NOT NULL, NOTES TEXT, CURRENTPRICE numeric NOT NULL, VALUE numeric, COMMISSION numeric)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -338,24 +338,24 @@ struct DB_Table_STOCK_V1 : public DB_Table
         {
             json::Object o;
             this->to_json(o);
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
         
         int to_json(json::Object& o) const
         {
-            o["STOCKID"] = json::Number(this->STOCKID);
-            o["HELDAT"] = json::Number(this->HELDAT);
-            o["PURCHASEDATE"] = json::String(this->PURCHASEDATE.ToStdString());
-            o["STOCKNAME"] = json::String(this->STOCKNAME.ToStdString());
-            o["SYMBOL"] = json::String(this->SYMBOL.ToStdString());
-            o["NUMSHARES"] = json::Number(this->NUMSHARES);
-            o["PURCHASEPRICE"] = json::Number(this->PURCHASEPRICE);
-            o["NOTES"] = json::String(this->NOTES.ToStdString());
-            o["CURRENTPRICE"] = json::Number(this->CURRENTPRICE);
-            o["VALUE"] = json::Number(this->VALUE);
-            o["COMMISSION"] = json::Number(this->COMMISSION);
+            o[L"STOCKID"] = json::Number(this->STOCKID);
+            o[L"HELDAT"] = json::Number(this->HELDAT);
+            o[L"PURCHASEDATE"] = json::String(this->PURCHASEDATE.ToStdWstring());
+            o[L"STOCKNAME"] = json::String(this->STOCKNAME.ToStdWstring());
+            o[L"SYMBOL"] = json::String(this->SYMBOL.ToStdWstring());
+            o[L"NUMSHARES"] = json::Number(this->NUMSHARES);
+            o[L"PURCHASEPRICE"] = json::Number(this->PURCHASEPRICE);
+            o[L"NOTES"] = json::String(this->NOTES.ToStdWstring());
+            o[L"CURRENTPRICE"] = json::Number(this->CURRENTPRICE);
+            o[L"VALUE"] = json::Number(this->VALUE);
+            o[L"COMMISSION"] = json::Number(this->COMMISSION);
             return 0;
         }
         row_t to_row_t() const

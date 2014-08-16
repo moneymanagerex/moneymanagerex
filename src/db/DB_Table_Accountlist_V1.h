@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
+ *          AUTO GENERATED at 2014-08-15 22:02:43.980000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,7 +27,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::string to_json() const
+        std::wstring to_json() const
         {
             json::Array a;
             for (const auto & item: *this)
@@ -36,7 +36,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
                 item.to_json(o);
                 a.Insert(o);
             }
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(a, ss);
             return ss.str();
         }
@@ -68,7 +68,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL , ACCOUNTNUM TEXT, STATUS TEXT NOT NULL, NOTES TEXT , HELDAT TEXT , WEBSITE TEXT , CONTACTINFO TEXT, ACCESSINFO TEXT , INITIALBAL numeric , FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL)");
+				db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL , ACCOUNTNUM TEXT, STATUS TEXT NOT NULL, NOTES TEXT , HELDAT TEXT , WEBSITE TEXT , CONTACTINFO TEXT, ACCESSINFO TEXT , INITIALBAL numeric , FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -364,26 +364,26 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         {
             json::Object o;
             this->to_json(o);
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
         
         int to_json(json::Object& o) const
         {
-            o["ACCOUNTID"] = json::Number(this->ACCOUNTID);
-            o["ACCOUNTNAME"] = json::String(this->ACCOUNTNAME.ToStdString());
-            o["ACCOUNTTYPE"] = json::String(this->ACCOUNTTYPE.ToStdString());
-            o["ACCOUNTNUM"] = json::String(this->ACCOUNTNUM.ToStdString());
-            o["STATUS"] = json::String(this->STATUS.ToStdString());
-            o["NOTES"] = json::String(this->NOTES.ToStdString());
-            o["HELDAT"] = json::String(this->HELDAT.ToStdString());
-            o["WEBSITE"] = json::String(this->WEBSITE.ToStdString());
-            o["CONTACTINFO"] = json::String(this->CONTACTINFO.ToStdString());
-            o["ACCESSINFO"] = json::String(this->ACCESSINFO.ToStdString());
-            o["INITIALBAL"] = json::Number(this->INITIALBAL);
-            o["FAVORITEACCT"] = json::String(this->FAVORITEACCT.ToStdString());
-            o["CURRENCYID"] = json::Number(this->CURRENCYID);
+            o[L"ACCOUNTID"] = json::Number(this->ACCOUNTID);
+            o[L"ACCOUNTNAME"] = json::String(this->ACCOUNTNAME.ToStdWstring());
+            o[L"ACCOUNTTYPE"] = json::String(this->ACCOUNTTYPE.ToStdWstring());
+            o[L"ACCOUNTNUM"] = json::String(this->ACCOUNTNUM.ToStdWstring());
+            o[L"STATUS"] = json::String(this->STATUS.ToStdWstring());
+            o[L"NOTES"] = json::String(this->NOTES.ToStdWstring());
+            o[L"HELDAT"] = json::String(this->HELDAT.ToStdWstring());
+            o[L"WEBSITE"] = json::String(this->WEBSITE.ToStdWstring());
+            o[L"CONTACTINFO"] = json::String(this->CONTACTINFO.ToStdWstring());
+            o[L"ACCESSINFO"] = json::String(this->ACCESSINFO.ToStdWstring());
+            o[L"INITIALBAL"] = json::Number(this->INITIALBAL);
+            o[L"FAVORITEACCT"] = json::String(this->FAVORITEACCT.ToStdWstring());
+            o[L"CURRENCYID"] = json::Number(this->CURRENCYID);
             return 0;
         }
         row_t to_row_t() const
