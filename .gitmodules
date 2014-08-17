@@ -28,3 +28,6 @@
 [submodule "3rd/sorttable.js"]
 	path = 3rd/sorttable.js
 	url = https://github.com/diepes/sorttable.js.git
+[submodule "3rd/ChartNew.js"]
+	path = 3rd/ChartNew.js
+	url = https://github.com/FVANCOP/ChartNew.js

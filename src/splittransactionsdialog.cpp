@@ -27,13 +27,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  * SplitTransactionDialog type definition
  */
 
-IMPLEMENT_DYNAMIC_CLASS( SplitTransactionDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(SplitTransactionDialog, wxDialog);
 
 /*!
  * SplitTransactionDialog event table definition
  */
 
- BEGIN_EVENT_TABLE(SplitTransactionDialog, wxDialog)
+ wxBEGIN_EVENT_TABLE(SplitTransactionDialog, wxDialog)
      EVT_BUTTON(wxID_ADD, SplitTransactionDialog::OnButtonAddClick)
      EVT_BUTTON(wxID_REMOVE, SplitTransactionDialog::OnButtonRemoveClick)
      EVT_BUTTON(wxID_EDIT, SplitTransactionDialog::OnButtonEditClick)
@@ -41,7 +41,7 @@ IMPLEMENT_DYNAMIC_CLASS( SplitTransactionDialog, wxDialog )
      EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, SplitTransactionDialog::OnListDblClick)
      EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, SplitTransactionDialog::OnListItemSelected)
      //EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, SplitTransactionDialog::OnItemRightClick)
- END_EVENT_TABLE()
+ wxEND_EVENT_TABLE()
 
 SplitTransactionDialog::SplitTransactionDialog( )
 {
@@ -221,7 +221,7 @@ void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
 void SplitTransactionDialog::UpdateSplitTotal()
 {
     double total = Model_Splittransaction::get_total(this->m_local_splits);
-    transAmount_->SetLabel(Model_Currency::toCurrency(total));
+    transAmount_->SetLabelText(Model_Currency::toCurrency(total));
 }
 
 void SplitTransactionDialog::EditEntry(int index)

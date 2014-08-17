@@ -40,8 +40,8 @@ private:
 
 class mmCategDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmCategDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmCategDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmCategDialog();

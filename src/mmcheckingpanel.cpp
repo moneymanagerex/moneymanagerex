@@ -536,21 +536,21 @@ void mmCheckingPanel::setAccountSummary()
     Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
 
     if (account)
-        header_text_->SetLabel(GetPanelTitle(*account));
+        header_text_->SetLabelText(GetPanelTitle(*account));
 
     bool show_displayed_balance_ = (transFilterActive_ || (currentView_ != VIEW_TRANS_ALL_STR));
     wxStaticText* header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1);
-    header->SetLabel(Model_Account::toCurrency(account_balance_, account));
+    header->SetLabelText(Model_Account::toCurrency(account_balance_, account));
     header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER2);
-    header->SetLabel(Model_Account::toCurrency(reconciled_balance_, account));
+    header->SetLabelText(Model_Account::toCurrency(reconciled_balance_, account));
     header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER3);
-    header->SetLabel(Model_Account::toCurrency(account_balance_ - reconciled_balance_, account));
+    header->SetLabelText(Model_Account::toCurrency(account_balance_ - reconciled_balance_, account));
     header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER4);
-    header->SetLabel(show_displayed_balance_
+    header->SetLabelText(show_displayed_balance_
         ? _("Displayed Bal: ")
         : "                                 ");
     header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER5);
-    header->SetLabel(show_displayed_balance_
+    header->SetLabelText(show_displayed_balance_
         ? Model_Account::toCurrency(filteredBalance_, account)
         : "                                 ");
 }
@@ -582,25 +582,25 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
         enableEditDeleteButtons(true);
         const Model_Checking::Data& tran = this->m_trans.at(selIndex);
         Model_Checking::Full_Data full_tran(tran);
-        info_panel_->SetLabel(tran.NOTES);
+        info_panel_->SetLabelText(tran.NOTES);
         wxString miniStr = full_tran.info();
 
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty())
         {
-            info_panel_mini_->SetLabel(miniStr.substr(0,miniStr.Find("\n")) + " ...");
+            info_panel_mini_->SetLabelText(miniStr.substr(0, miniStr.Find("\n")) + " ...");
             info_panel_mini_->SetToolTip(miniStr);
         }
         else
         {
-            info_panel_mini_->SetLabel(miniStr);
+            info_panel_mini_->SetLabelText(miniStr);
             info_panel_mini_->SetToolTip(miniStr);
         }
 
     }
     else
     {
-        info_panel_mini_->SetLabel("");
+        info_panel_mini_->SetLabelText("");
         enableEditDeleteButtons(false);
         showTips();
     }
@@ -608,7 +608,7 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
 //----------------------------------------------------------------------------
 void mmCheckingPanel::showTips()
 {
-    info_panel_->SetLabel(wxGetTranslation(TIPS[rand() % sizeof(TIPS) / sizeof(wxString)]));
+    info_panel_->SetLabelText(wxGetTranslation(TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]));
 }
 //----------------------------------------------------------------------------
 
@@ -660,7 +660,7 @@ void mmCheckingPanel::initViewTransactionsHeader()
     if (currentView_ < 0 || currentView_ >= (int)menu_labels().size()) currentView_ = def_view_selection;
 
     SetTransactionFilterState(currentView_ == VIEW_TRANS_ALL_STR);
-    stxtMainFilter_->SetLabel(wxGetTranslation(menu_labels()[currentView_]));
+    stxtMainFilter_->SetLabelText(wxGetTranslation(menu_labels()[currentView_]));
 }
 //----------------------------------------------------------------------------
 void mmCheckingPanel::initFilterSettings()
@@ -707,7 +707,7 @@ void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
     }
 
     currentView_ = MENU_VIEW_ALLTRANSACTIONS;
-    stxtMainFilter_->SetLabel(menu_labels()[currentView_]);
+    stxtMainFilter_->SetLabelText(menu_labels()[currentView_]);
     SetTransactionFilterState(true);
     initFilterSettings();
 
@@ -722,7 +722,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
     if (currentView_ == MENU_VIEW_ALLTRANSACTIONS)
         transFilterActive_ = false;
 
-    stxtMainFilter_->SetLabel(wxGetTranslation(menu_labels()[currentView_]));
+    stxtMainFilter_->SetLabelText(wxGetTranslation(menu_labels()[currentView_]));
     SetTransactionFilterState(currentView_ == VIEW_TRANS_ALL_STR);
 
     m_listCtrlAccount->m_selectedIndex = -1;

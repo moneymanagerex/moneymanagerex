@@ -24,7 +24,6 @@ Copyright (C) 2014 Nikolay
 
 #include "html_template.h"
 #include "billsdepositspanel.h"
-#include "reports/mmgraphincexpensesmonth.h"
 #include <algorithm>
 #include <cmath>
 
@@ -79,10 +78,10 @@ wxString htmlWidgetStocks::getHTMLText()
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
-        output = "<table class ='sortable table'><col style='width:50%'><col style='width:25%'><col style='width:25%'><thead><tr class='active'><th>\n";
+        output = "<table class ='sortable table'><col style='width: 50%'><col style='width: 25%'><col style='width: 25%'><thead><tr class='active'><th>\n";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
-        output += "</th><th class = 'text-right'>" + _("Total") + "</th>";
-        output += wxString::Format("<th nowrap class='sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#'>[-]</a></th>\n"
+        output += "</th>\n<th class='text-right'>" + _("Total") + "</th>\n";
+        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#'>[-]</a></th>\n"
             , "INVEST", "INVEST");
         output += "</tr></thead><tbody id='INVEST'>\n";
         const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
@@ -189,8 +188,8 @@ wxString htmlWidgetTop7Categories::getHTMLText()
     if (!topCategoryStats.empty()) {
         const wxString idStr = "TOP_CATEGORIES";
         output += "<table class = 'table' ><tr class='active'><th>\n";
-        output += title_ + wxString::Format("</th><th nowrap class='text-right'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n", idStr, idStr);
-        output += "<tr><td style='padding:0px; padding-left:0px; padding-right:0px; line-height:0; width:100%; ' colspan='2'>\n";
+        output += title_ + wxString::Format("</th><th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n", idStr, idStr);
+        output += "<tr><td style='padding: 0px; padding-left: 0px; padding-right: 0px; width: 100%; ' colspan='2'>\n";
         output += wxString::Format("<table class = 'sortable table' id='%s'>", idStr);
         output += "<thead>";
         output += "<tr><th>";
@@ -367,12 +366,12 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         output = "<table class='table'>\n<thead>\n<tr class='active'><th>";
         output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>\n", title_);
-        output += wxString::Format("<th nowrap class='text-right'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n"
+        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n"
             , int(bd_days.size()), idStr, idStr);
         output += "</thead>\n";
 
         output += wxString::Format("<tbody id='%s'>\n", idStr);
-        output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th><th class='text-right'>%s</th><th class='text-right'>%s</th></tr>\n"
+        output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th>\n<th class='text-right'>%s</th>\n<th class='text-right'>%s</th></tr>\n"
             , _("Payee"), _("Amount"), _("Days"));
 
         for (const auto& item : bd_days)
@@ -527,7 +526,7 @@ void mmHomePagePanel::getTemplate()
     m_templateText.clear();
     const wxString template_path = mmex::getPathResource(mmex::HOME_PAGE_TEMPLATE);
     wxFileInputStream input(template_path);
-    wxTextInputStream text(input, wxT("\x09"), wxConvUTF8);
+    wxTextInputStream text(input, "\x09", wxConvUTF8);
     while (input.IsOk() && !input.Eof())
     {
         m_templateText += text.ReadLine() + "\n";
@@ -673,7 +672,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     const wxString idStr = (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO");
     wxString output = "<table class = 'sortable table'>\n";
     output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
-    output += "<thead><tr><th>";
+    output += "<thead><tr><th nowrap>";
     if (type_is_bank && !credit_card)
         output += _("Bank Account");
     else if (type_is_bank && credit_card)
@@ -683,7 +682,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
 
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
     output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";
-    output += wxString::Format("<th nowrap class='sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th>\n"
+    output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th>\n"
         , idStr, idStr);
     output += "</tr></thead>\n";
     output += wxString::Format("<tbody id = '%s'>\n", idStr);
@@ -707,10 +706,10 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
             (vAccts_ == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
-            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='acct:%i'>%s</a></td>\n"
+            body += wxString::Format("<td sorttable_customkey='*%s*' nowrap><a href='acct:%i'>%s</a></td>\n"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
-            body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
-            body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2'>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));
+            body += wxString::Format("<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
+            body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));
             body += "</tr>\n";
         }
     }
@@ -760,8 +759,8 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     o["7"] = json::String(_("Difference:").ToStdString());
     o["8"] = json::String(Model_Currency::toCurrency(tIncome - tExpenses).ToStdString());
     o["9"] = json::String(_("Income/Expenses").ToStdString());
-    o["10"] = json::Number(tIncome);
-    o["11"] = json::Number(tExpenses);
+    o["10"] = json::String(wxString::Format("%.2f", tIncome).ToStdString());
+    o["11"] = json::String(wxString::Format("%.2f", tExpenses).ToStdString());
     o["12"] = json::Number(steps);
     o["13"] = json::Number(scaleStepWidth);
 

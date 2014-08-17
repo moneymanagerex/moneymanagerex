@@ -30,15 +30,15 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/reconciled.xpm"
 #include "../resources/void.xpm"
 
-IMPLEMENT_DYNAMIC_CLASS( mmQIFImportDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmQIFImportDialog, wxDialog);
 
-BEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
     EVT_CHECKBOX(wxID_ANY, mmQIFImportDialog::OnCheckboxClick )
     EVT_BUTTON(wxID_OK, mmQIFImportDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
     EVT_CHOICE(wxID_ANY, mmQIFImportDialog::OnAccountChanged)
     EVT_CLOSE(mmQIFImportDialog::OnQuit)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
 : m_userDefinedDateMask(false)

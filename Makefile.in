@@ -158,14 +158,9 @@ MMEX_OBJECTS =  \
 	mmex_cashflow.o \
 	mmex_categexp.o \
 	mmex_categovertimeperf.o \
-	mmex_chart.o \
 	mmex_htmlbuilder.o \
 	mmex_incexpenses.o \
 	mmex_mmDateRange.o \
-	mmex_mmgraphgenerator.o \
-	mmex_mmgraphincexpensesmonth.o \
-	mmex_mmgraphpie.o \
-	mmex_mmgraphtopcategories.o \
 	mmex_payee.o \
 	mmex_reportbase.o \
 	mmex_summary.o \
@@ -228,6 +223,8 @@ install: install_mmex
 	(cd $(srcdir)/resources ; $(INSTALL_DATA)  kaching.wav mmex.ico master.css home_page.htt $(DESTDIR)$(respath))
 	$(INSTALL_DIR) $(DESTDIR)$(respath)
 	(cd $(srcdir)/3rd/Chart.js ; $(INSTALL_DATA)  Chart.js $(DESTDIR)$(respath))
+	$(INSTALL_DIR) $(DESTDIR)$(respath)
+	(cd $(srcdir)/3rd/ChartNew.js ; $(INSTALL_DATA)  ChartNew.js $(DESTDIR)$(respath))
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/..
 	(cd $(srcdir)/resources ; $(INSTALL_DATA)  Info.plist $(DESTDIR)$(datadir)/..)
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)
@@ -264,6 +261,7 @@ install: install_mmex
 uninstall: uninstall_mmex
 	(cd $(DESTDIR)$(respath) ; rm -f kaching.wav mmex.ico master.css home_page.htt)
 	(cd $(DESTDIR)$(respath) ; rm -f Chart.js)
+	(cd $(DESTDIR)$(respath) ; rm -f ChartNew.js)
 	(cd $(DESTDIR)$(datadir)/.. ; rm -f Info.plist)
 	(cd $(DESTDIR)$(datadir) ; rm -f version.txt contrib.txt license.txt)
 	(cd $(DESTDIR)$(datadir)/../Resources ; rm -f mmex.icns mmdb.icns)
@@ -597,9 +595,6 @@ mmex_categexp.o: $(srcdir)/src/reports/categexp.cpp
 mmex_categovertimeperf.o: $(srcdir)/src/reports/categovertimeperf.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/categovertimeperf.cpp
 
-mmex_chart.o: $(srcdir)/src/reports/chart.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/chart.cpp
-
 mmex_htmlbuilder.o: $(srcdir)/src/reports/htmlbuilder.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/htmlbuilder.cpp
 
@@ -608,18 +603,6 @@ mmex_incexpenses.o: $(srcdir)/src/reports/incexpenses.cpp
 
 mmex_mmDateRange.o: $(srcdir)/src/reports/mmDateRange.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/mmDateRange.cpp
-
-mmex_mmgraphgenerator.o: $(srcdir)/src/reports/mmgraphgenerator.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/mmgraphgenerator.cpp
-
-mmex_mmgraphincexpensesmonth.o: $(srcdir)/src/reports/mmgraphincexpensesmonth.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/mmgraphincexpensesmonth.cpp
-
-mmex_mmgraphpie.o: $(srcdir)/src/reports/mmgraphpie.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/mmgraphpie.cpp
-
-mmex_mmgraphtopcategories.o: $(srcdir)/src/reports/mmgraphtopcategories.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/mmgraphtopcategories.cpp
 
 mmex_payee.o: $(srcdir)/src/reports/payee.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/payee.cpp

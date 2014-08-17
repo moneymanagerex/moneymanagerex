@@ -106,6 +106,7 @@
 #include "../resources/delete_account.xpm"
 #include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
+#include "../resources/encrypt_db_edit.xpm"
 #include "../resources/exit.xpm"
 #include "../resources/facebook.xpm"
 #include "../resources/filter.xpm"
@@ -1460,9 +1461,10 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemChangeEncryptPassword = new wxMenuItem(menuTools, MENU_CHANGE_ENCRYPT_PASSWORD
         , _("Change Encrypted &Password")
         , _("Change the password of an encrypted database"));
-    menuItemChangeEncryptPassword->Enable(false);
-    //menuItemChangeEncryptPassword->SetBitmap(wxBitmap(encrypt_db_xpm));
+
+    menuItemChangeEncryptPassword->SetBitmap(wxBitmap(encrypt_db_edit_xpm));
     menuTools->Append(menuItemChangeEncryptPassword);
+    menuItemChangeEncryptPassword->Enable(false);
 
     // Help Menu
     wxMenu *menuHelp = new wxMenu;
@@ -2109,7 +2111,6 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     if (dlg->ShowModal() == wxID_OK)
     {
         mmReportTransactions* rs = new mmReportTransactions(dlg->getAccountID(), dlg);
-        rs->setSortColumn(dlg->getSortColumn());
         createReportsPage(rs, true);
         setNavTreeSection(_("Reports"));
     }
@@ -2463,7 +2464,7 @@ void mmGUIFrame::OnReallocateAccount(wxCommandEvent& event)
     const auto &accounts = Model_Account::instance().all();
     if (accounts.empty())
     {
-        wxMessageBox(_("No account available to relocate!"), _("Account Reallocation"), wxOK | wxICON_WARNING);
+        wxMessageBox(_("No account available to reallocate!"), _("Account Reallocation"), wxOK | wxICON_WARNING);
         return;
     }
 
@@ -2475,7 +2476,7 @@ void mmGUIFrame::OnReallocateAccount(wxCommandEvent& event)
             choices.Add(item.ACCOUNTNAME);
     }
 
-    mmSingleChoiceDialog account_choice(this, _("Choose Account to Relocate"), _("Account Reallocation"), choices);
+    mmSingleChoiceDialog account_choice(this, _("Choose account to reallocate account type"), _("Account Reallocation"), choices);
     if (account_choice.ShowModal() == wxID_OK)
     {
         Model_Account::Data* account = Model_Account::instance().get(account_choice.GetStringSelection());
@@ -2484,7 +2485,7 @@ void mmGUIFrame::OnReallocateAccount(wxCommandEvent& event)
         wxArrayString types = Model_Account::instance().all_type();
         types.Remove(Model_Account::all_type()[Model_Account::INVESTMENT]);
 
-        mmSingleChoiceDialog type_choice(this, _("Choose the new type for this account"), _("Account Reallocation"), types);
+        mmSingleChoiceDialog type_choice(this, wxString::Format(_("Choose the new type for account: %s"), account->ACCOUNTNAME), _("Account Reallocation"), types);
         if (type_choice.ShowModal() == wxID_OK)
         {
             account->ACCOUNTTYPE = type_choice.GetStringSelection();

@@ -68,16 +68,16 @@ static const wxString DATE_PRESETTINGS[] =
     VIEW_TRANS_CURRENT_YEAR_STR
 };
 
-IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmFilterTransactionsDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
     EVT_CHECKBOX(wxID_ANY,    mmFilterTransactionsDialog::OnCheckboxClick )
     EVT_BUTTON  (wxID_OK,     mmFilterTransactionsDialog::OnButtonokClick )
     EVT_BUTTON  (wxID_CANCEL, mmFilterTransactionsDialog::OnButtoncancelClick )
     EVT_BUTTON  (wxID_SAVE,   mmFilterTransactionsDialog::OnButtonSaveClick )
     EVT_BUTTON  (wxID_CLEAR,  mmFilterTransactionsDialog::OnButtonClearClick )
     EVT_MENU    (wxID_ANY,    mmFilterTransactionsDialog::datePresetMenuSelected )
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog( )
 {
@@ -481,7 +481,7 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
         Model_Category::Data* category = Model_Category::instance().get(categID_);
         Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
 
-        btnCategory_->SetLabel(Model_Category::full_name(category, sub_category));
+        btnCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
     }
 }
 
@@ -694,15 +694,14 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::checkPayee(const DATA &tran)
 {
-    bool ok = MODEL::type(tran) != MODEL::TRANSFER;
-    if (ok && payeeCheckBox_->IsChecked())
+    if (MODEL::type(tran) != MODEL::TRANSFER && payeeCheckBox_->IsChecked())
     {
         const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
         if (payee)
             return cbPayee_->GetValue().Lower() == (payee->PAYEENAME).Lower();
         return false;
     }
-    return ok;
+    return true;
 }
 
 template<class MODEL, class DATA>
@@ -943,7 +942,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
         if (sub_category)
             subcategID_ = sub_category->SUBCATEGID;
     }
-    btnCategory_->SetLabel(Model_Category::full_name(categID_, subcategID_));
+    btnCategory_->SetLabelText(Model_Category::full_name(categID_, subcategID_));
 
     //Status
     statusCheckBox_->SetValue(!wxString(json::String(o["STATUS"])).empty());

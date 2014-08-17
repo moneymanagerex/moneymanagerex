@@ -173,7 +173,7 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
         if (currency)
         {
-            itemButtonCurrency_->SetLabel(currency->CURRENCYNAME);
+            itemButtonCurrency_->SetLabelText(currency->CURRENCYNAME);
             Model_Currency::instance().SetBaseCurrency(currency);
             currencyID_ = currency->CURRENCYID;
         }

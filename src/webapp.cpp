@@ -38,7 +38,9 @@ const wxString mmWebApp::getApiExpectedVersion()
 //Internal constants
 const wxString mmWebApp::getUrl()
 {
-    return Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
+    wxString Url = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
+    Url.Replace("https://", "http://");
+    return Url;
 }
 
 const wxString mmWebApp::getGuid()
@@ -198,7 +200,15 @@ int mmWebApp::WebApp_SendJson(wxString& Website, const wxString& JsonData, wxStr
 	wxString BaseServerAddress = Website.SubString(0, Website.Find("/")-1);
 	wxString PagePath = Website.SubString(Website.Find("/"), Website.Length());
 
-	http.SetPostText("application/x-www-form-urlencoded","MMEX_Post=" + JsonData);
+    //Create multipart form
+    wxString Boundary = "Custom_Boundary_MMEX_WebApp";
+    wxString Text = wxEmptyString;
+    Text.Append(wxString::Format("--%s\r\n", Boundary));
+    Text.Append(wxString::Format("Content-Disposition: form-data; name=\"%s\"\r\n\r\n", "MMEX_Post"));
+    Text.Append(wxString::Format("%s\r\n", JsonData));
+    Text.Append(wxString::Format("\r\n--%s--\r\n", Boundary));
+
+    http.SetPostText("multipart/form-data; boundary=" + Boundary, Text);
 
 	if (http.Connect(BaseServerAddress))
 	{
@@ -402,7 +412,7 @@ bool mmWebApp::WebApp_DownloadNewTransaction(wxString& NewTransactionJSON)
 {
 	int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getDownloadNewTransactionParameter(), NewTransactionJSON);
 
-	if (NewTransactionJSON != "null" && ErrorCode == 0)
+    if (NewTransactionJSON != "null" && !NewTransactionJSON.IsEmpty() && ErrorCode == 0)
 		return true;
 	else
 		return false;
@@ -468,23 +478,23 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 
 	//Search or insert Category
 	wxString CategoryName = wxString(json::String(jsonTransaction["Category"]));
-	if (CategoryName != "None")
+    if (CategoryName == "None" || CategoryName.IsEmpty())
+        CategoryName = _("Unknown");
+
+	const Model_Category::Data* Category = Model_Category::instance().get(CategoryName);
+	if (Category != nullptr)
+		CategoryID = Category->CATEGID;
+	else
 	{
-		const Model_Category::Data* Category = Model_Category::instance().get(CategoryName);
-		if (Category != nullptr)
-			CategoryID = Category->CATEGID;
-		else
-		{
-			Model_Category::Data* NewCategory = Model_Category::instance().create();
-			NewCategory->CATEGNAME = CategoryName;
-			int NewCategoryID = Model_Category::instance().save(NewCategory);
-			CategoryID = NewCategoryID;
-		}
+		Model_Category::Data* NewCategory = Model_Category::instance().create();
+		NewCategory->CATEGNAME = CategoryName;
+		int NewCategoryID = Model_Category::instance().save(NewCategory);
+		CategoryID = NewCategoryID;
 	}
 
 	//Search or insert SubCategory
 	wxString SubCategoryName = wxString(json::String(jsonTransaction["SubCategory"]));
-	if (SubCategoryName != "None")
+    if (SubCategoryName != "None" && !SubCategoryName.IsEmpty())
 	{
 		const Model_Subcategory::Data* SubCategory = Model_Subcategory::instance().get(SubCategoryName,CategoryID);
 		if (SubCategory != nullptr)
@@ -501,20 +511,20 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 
 	//Search or insert Payee
 	wxString PayeeName = wxString(json::String(jsonTransaction["Payee"]));
-	if (PayeeName != "None")
+    if (PayeeName == "None" || PayeeName.IsEmpty())
+        PayeeName = _("Unknown");
+
+	const Model_Payee::Data* Payee = Model_Payee::instance().get(PayeeName);
+	if (Payee != nullptr)
+		PayeeID = Payee->PAYEEID;
+	else
 	{
-		const Model_Payee::Data* Payee = Model_Payee::instance().get(PayeeName);
-		if (Payee != nullptr)
-			PayeeID = Payee->PAYEEID;
-		else
-		{
-			Model_Payee::Data* NewPayee = Model_Payee::instance().create();
-			NewPayee->PAYEENAME = PayeeName;
-			NewPayee->CATEGID = CategoryID;
-			NewPayee->SUBCATEGID = SubCategoryID;
-			int NewPayeeID = Model_Payee::instance().save(NewPayee);
-			PayeeID = NewPayeeID;
-		}
+		Model_Payee::Data* NewPayee = Model_Payee::instance().create();
+		NewPayee->PAYEENAME = PayeeName;
+		NewPayee->CATEGID = CategoryID;
+		NewPayee->SUBCATEGID = SubCategoryID;
+		int NewPayeeID = Model_Payee::instance().save(NewPayee);
+		PayeeID = NewPayeeID;
 	}
 
 	//Fix wrong number conversion from JSON

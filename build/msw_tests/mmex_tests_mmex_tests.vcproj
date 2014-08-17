@@ -553,10 +553,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\reports\chart.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\constants.cpp"
 				>
 			</File>
@@ -650,22 +646,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\mmframereport.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\mmgraphgenerator.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\mmgraphincexpensesmonth.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\mmgraphpie.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\mmgraphtopcategories.cpp"
 				>
 			</File>
 			<File
@@ -1079,10 +1059,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\reports\chart.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\constants.h"
 				>
 			</File>
@@ -1184,22 +1160,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\mmframe.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\mmgraphgenerator.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\mmgraphincexpensesmonth.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\mmgraphpie.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\mmgraphtopcategories.h"
 				>
 			</File>
 			<File

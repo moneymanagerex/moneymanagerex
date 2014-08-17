@@ -60,6 +60,12 @@
         <srcdir>$(SRCDIR)/3rd/Chart.js</srcdir>
         <files>Chart.js</files>
     </data-files>
+	
+	<data-files>
+	    <install-to>$(respath)</install-to>
+        <srcdir>$(SRCDIR)/3rd/ChartNew.js</srcdir>
+        <files>ChartNew.js</files>
+    </data-files>
 
     <data-files>
       <install-to>$(respath)</install-to>
@@ -207,10 +213,16 @@
         <files>master.css</files>
     </data-files>
 
-    <data-files>
+	<data-files>
         <install-to>$(PREFIX)/mmex/res</install-to>
             <srcdir>$(SRCDIR)/3rd/Chart.js</srcdir>
         <files>Chart.js</files>
+    </data-files>
+	
+    <data-files>
+        <install-to>$(PREFIX)/mmex/res</install-to>
+            <srcdir>$(SRCDIR)/3rd/ChartNew.js</srcdir>
+        <files>ChartNew.js</files>
     </data-files>
 
     <data-files>
@@ -330,5 +342,12 @@
         </target>
 
     </subproject>
+
+	<action id="dmg" cond="PLATFORM_MACOSX=='1'">
+	<command>touch mmex.app</command>
+	<command>hdiutil create tmp.dmg -ov -volname "MMEX" -fs HFS+ -srcfolder "mmex.app"</command>
+	<command>hdiutil convert tmp.dmg -format UDZO -o MMEX.dmg</command>
+	<command>rm tmp.dmg</command>
+	</action>
 
 </makefile>
