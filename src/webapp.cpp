@@ -426,7 +426,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	std::wstringstream jsonTransactionStream;
 
 	if (!(NewTransactionJSON.StartsWith("{") && NewTransactionJSON.EndsWith("}"))) NewTransactionJSON = "{}";
-	jsonTransactionStream << NewTransactionJSON.ToStdString();
+	jsonTransactionStream << NewTransactionJSON.ToStdWstring();
 	json::Reader::Read(jsonTransaction, jsonTransactionStream);
 
 	int AccountID = -1;

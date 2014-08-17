@@ -952,13 +952,13 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     //Type
     wxString type = wxString(json::String(o[L"TYPE"]));
     typeCheckBox_->SetValue(!type.empty());
-    cbTypeWithdrawal_->SetValue(type.Contains(L"W"));
+    cbTypeWithdrawal_->SetValue(type.Contains("W"));
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
-    cbTypeDeposit_->SetValue(type.Contains(L"D"));
+    cbTypeDeposit_->SetValue(type.Contains("D"));
     cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
-    cbTypeTransferTo_->SetValue(type.Contains(L"T"));
+    cbTypeTransferTo_->SetValue(type.Contains("T"));
     cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
-    cbTypeTransferFrom_->SetValue(type.Contains(L"F"));
+    cbTypeTransferFrom_->SetValue(type.Contains("F"));
     cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
 
     //Amounts
