@@ -25,7 +25,6 @@ BK_DEPS = @BK_DEPS@
 srcdir = @srcdir@
 bindir = @bindir@
 datadir = @datadir@
-LIBS = @LIBS@
 LDFLAGS_GUI = @LDFLAGS_GUI@
 AR = @AR@
 AROPTIONS = @AROPTIONS@
@@ -158,9 +157,11 @@ MMEX_OBJECTS =  \
 	mmex_cashflow.o \
 	mmex_categexp.o \
 	mmex_categovertimeperf.o \
+	mmex_chart.o \
 	mmex_htmlbuilder.o \
 	mmex_incexpenses.o \
 	mmex_mmDateRange.o \
+	mmex_mmgraphgenerator.o \
 	mmex_payee.o \
 	mmex_reportbase.o \
 	mmex_summary.o \
@@ -211,12 +212,18 @@ COND_PLATFORM_OS2_1___mmex___os2_emxbindcmd = $(NM) mmex$(EXEEXT) | if grep -q \
 @COND_PLATFORM_WIN32_1@__mmex___win32rc = mmex_resources_mmex_rc.o
 @COND_PLATFORM_MACOSX_0@respath = $(datadir)/mmex/res
 @COND_PLATFORM_MACOSX_1@respath = $(datadir)/res
+@COND_PLATFORM_MACOSX_0@plistfiles = $(datadir)/mmex
+@COND_PLATFORM_MACOSX_1@plistfiles = $(datadir)/..
+@COND_PLATFORM_MACOSX_0@txtfiles = $(datadir)/mmex
+@COND_PLATFORM_MACOSX_1@txtfiles = $(datadir)
+@COND_PLATFORM_MACOSX_0@graphicsfiles = $(datadir)/mmex
+@COND_PLATFORM_MACOSX_1@graphicsfiles = $(datadir)/../Resources
 @COND_PLATFORM_MACOSX_0@popath = $(datadir)/mmex/po/en
 @COND_PLATFORM_MACOSX_1@popath = $(datadir)/po/en
 
 ### Targets: ###
 
-all: $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) mmex$(EXEEXT)
+all: $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) mmex$(EXEEXT) po
 
 install: install_mmex
 	$(INSTALL_DIR) $(DESTDIR)$(respath)
@@ -225,12 +232,14 @@ install: install_mmex
 	(cd $(srcdir)/3rd/Chart.js ; $(INSTALL_DATA)  Chart.js $(DESTDIR)$(respath))
 	$(INSTALL_DIR) $(DESTDIR)$(respath)
 	(cd $(srcdir)/3rd/ChartNew.js ; $(INSTALL_DATA)  ChartNew.js $(DESTDIR)$(respath))
-	$(INSTALL_DIR) $(DESTDIR)$(datadir)/..
-	(cd $(srcdir)/resources ; $(INSTALL_DATA)  Info.plist $(DESTDIR)$(datadir)/..)
-	$(INSTALL_DIR) $(DESTDIR)$(datadir)
-	(cd $(srcdir)/doc ; $(INSTALL_DATA)  version.txt contrib.txt license.txt $(DESTDIR)$(datadir))
-	$(INSTALL_DIR) $(DESTDIR)$(datadir)/../Resources
-	(cd $(srcdir)/graphics ; $(INSTALL_DATA)  mmex.icns mmdb.icns $(DESTDIR)$(datadir)/../Resources)
+	$(INSTALL_DIR) $(DESTDIR)$(respath)
+	(cd $(srcdir)/3rd/sorttable.js ; $(INSTALL_DATA)  sorttable.js $(DESTDIR)$(respath))
+	$(INSTALL_DIR) $(DESTDIR)$(plistfiles)
+	(cd $(srcdir)/resources ; $(INSTALL_DATA)  Info.plist $(DESTDIR)$(plistfiles))
+	$(INSTALL_DIR) $(DESTDIR)$(txtfiles)
+	(cd $(srcdir)/doc ; $(INSTALL_DATA)  version.txt contrib.txt license.txt $(DESTDIR)$(txtfiles))
+	$(INSTALL_DIR) $(DESTDIR)$(graphicsfiles)
+	(cd $(srcdir)/graphics ; $(INSTALL_DATA)  mmex.icns mmdb.icns $(DESTDIR)$(graphicsfiles))
 	$(INSTALL_DIR) $(DESTDIR)$(popath)
 	(cd $(srcdir)/po ; $(INSTALL_DATA)  *.mo $(DESTDIR)$(popath))
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/doc/mmex
@@ -262,9 +271,10 @@ uninstall: uninstall_mmex
 	(cd $(DESTDIR)$(respath) ; rm -f kaching.wav mmex.ico master.css home_page.htt)
 	(cd $(DESTDIR)$(respath) ; rm -f Chart.js)
 	(cd $(DESTDIR)$(respath) ; rm -f ChartNew.js)
-	(cd $(DESTDIR)$(datadir)/.. ; rm -f Info.plist)
-	(cd $(DESTDIR)$(datadir) ; rm -f version.txt contrib.txt license.txt)
-	(cd $(DESTDIR)$(datadir)/../Resources ; rm -f mmex.icns mmdb.icns)
+	(cd $(DESTDIR)$(respath) ; rm -f sorttable.js)
+	(cd $(DESTDIR)$(plistfiles) ; rm -f Info.plist)
+	(cd $(DESTDIR)$(txtfiles) ; rm -f version.txt contrib.txt license.txt)
+	(cd $(DESTDIR)$(graphicsfiles) ; rm -f mmex.icns mmdb.icns)
 	(cd $(DESTDIR)$(popath) ; rm -f *.mo)
 	(cd $(DESTDIR)$(datadir)/doc/mmex ; rm -f *.txt)
 	(cd $(DESTDIR)$(datadir)/doc/mmex/help ; rm -f *.html *.png)
@@ -289,12 +299,10 @@ clean:
 	rm -f $(LIBPREFIX)lua$(LIBEXT)
 	rm -f mmex$(EXEEXT)
 	-(cd $(srcdir)/po && $(MAKE) clean)
-	-(cd $(srcdir)/tests && $(MAKE) clean)
 
 distclean: clean
 	rm -f config.cache config.log config.status bk-deps bk-make-pch shared-ld-sh Makefile
 	-(cd $(srcdir)/po && $(MAKE) distclean)
-	-(cd $(srcdir)/tests && $(MAKE) distclean)
 
 $(LIBPREFIX)wxsqlite$(LIBEXT): $(WXSQLITE_OBJECTS)
 	rm -f $@
@@ -307,7 +315,7 @@ $(LIBPREFIX)lua$(LIBEXT): $(LUA_OBJECTS)
 	$(RANLIB) $@
 
 mmex$(EXEEXT): $(MMEX_OBJECTS) $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) $(__mmex___win32rc)
-	$(CXX) -o $@ $(MMEX_OBJECTS) -L. -L.   $(LDFLAGS_GUI) $(LDFLAGS)  -lwxsqlite -llua $(WX_LIBS) $(LIBS)
+	$(CXX) -o $@ $(MMEX_OBJECTS) -L. -L.   $(LDFLAGS_GUI) $(LDFLAGS)  -lwxsqlite -llua $(WX_LIBS) -ldl
 	
 	$(__mmex___mac_setfilecmd)
 	$(__mmex___os2_emxbindcmd)
@@ -321,9 +329,6 @@ uninstall_mmex:
 
 po: 
 	(cd $(srcdir)/po && $(MAKE) all)
-
-test: 
-	(cd $(srcdir)/tests && $(MAKE) all)
 
 @COND_PLATFORM_MACOSX_1@dmg: 
 @COND_PLATFORM_MACOSX_1@	touch mmex.app
@@ -595,6 +600,9 @@ mmex_categexp.o: $(srcdir)/src/reports/categexp.cpp
 mmex_categovertimeperf.o: $(srcdir)/src/reports/categovertimeperf.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/categovertimeperf.cpp
 
+mmex_chart.o: $(srcdir)/src/reports/chart.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/chart.cpp
+
 mmex_htmlbuilder.o: $(srcdir)/src/reports/htmlbuilder.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/htmlbuilder.cpp
 
@@ -603,6 +611,9 @@ mmex_incexpenses.o: $(srcdir)/src/reports/incexpenses.cpp
 
 mmex_mmDateRange.o: $(srcdir)/src/reports/mmDateRange.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/mmDateRange.cpp
+
+mmex_mmgraphgenerator.o: $(srcdir)/src/reports/mmgraphgenerator.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/mmgraphgenerator.cpp
 
 mmex_payee.o: $(srcdir)/src/reports/payee.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/payee.cpp
@@ -710,4 +721,4 @@ mmex_resources_mmex_rc.o: $(srcdir)/resources/mmex.rc
 # Include dependency info, if present:
 @IF_GNU_MAKE@-include ./.deps/*.d
 
-.PHONY: all install uninstall clean distclean install_mmex uninstall_mmex po test
+.PHONY: all install uninstall clean distclean install_mmex uninstall_mmex po

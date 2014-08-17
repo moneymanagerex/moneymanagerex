@@ -309,6 +309,12 @@
     <ClCompile Include="..\..\src\model\Model_StockHistory.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\reports\chart.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\mmgraphgenerator.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">

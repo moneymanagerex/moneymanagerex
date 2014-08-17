@@ -369,6 +369,12 @@
     <ClCompile Include="..\..\src\reports\summarystocks.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\reports\chart.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\mmgraphgenerator.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -774,6 +780,12 @@
       <Filter>Header Files\reports</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\reports\summarystocks.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\chart.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\mmgraphgenerator.h">
       <Filter>Header Files\reports</Filter>
     </ClInclude>
   </ItemGroup>

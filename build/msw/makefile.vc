@@ -167,9 +167,11 @@ MMEX_OBJECTS =  \
 	mmex_cashflow.obj \
 	mmex_categexp.obj \
 	mmex_categovertimeperf.obj \
+	mmex_chart.obj \
 	mmex_htmlbuilder.obj \
 	mmex_incexpenses.obj \
 	mmex_mmDateRange.obj \
+	mmex_mmgraphgenerator.obj \
 	mmex_payee.obj \
 	mmex_reportbase.obj \
 	mmex_summary.obj \
@@ -443,7 +445,7 @@ all: test_for_selected_wxbuild wxsqlite.lib lua.lib mmex.exe sub_po
 
 install: install_mmex
 	-mkdir $(PREFIX)\mmex
-	( cd ..\..\doc && copy /Y  *.txt $(PREFIX)\mmex )
+	( cd ..\..\doc && copy /Y  version.txt contrib.txt license.txt $(PREFIX)\mmex )
 	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\resources && copy /Y  mmex.ico $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\res
@@ -452,7 +454,9 @@ install: install_mmex
 	( cd ..\..\resources && copy /Y  master.css $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\3rd\Chart.js && copy /Y  Chart.js $(PREFIX)\mmex\res )
+	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\3rd\ChartNew.js && copy /Y  ChartNew.js $(PREFIX)\mmex\res )
+	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\3rd\sorttable.js && copy /Y  sorttable.js $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\help
 	( cd ..\..\doc\help && copy /Y  *.html $(PREFIX)\mmex\help )
@@ -462,7 +466,9 @@ install: install_mmex
 	( cd ..\..\po && copy /Y  *.mo $(PREFIX)\mmex\po\en )
 
 uninstall: uninstall_mmex
-	-if exist $(PREFIX)\mmex\*.txt -del *.txt
+	-if exist $(PREFIX)\mmex\version.txt -del version.txt
+	-if exist $(PREFIX)\mmex\contrib.txt -del contrib.txt
+	-if exist $(PREFIX)\mmex\license.txt -del license.txt
 	-if exist $(PREFIX)\mmex\res\mmex.ico -del mmex.ico
 	-if exist $(PREFIX)\mmex\res\kaching.wav -del kaching.wav
 	-if exist $(PREFIX)\mmex\res\master.css -del master.css
@@ -486,9 +492,6 @@ clean:
 	$(MAKE) -f makefile.vc $(MAKEARGS) clean
 	cd "$(MAKEDIR)"
 	cd ..\..\setup\win
-	$(MAKE) -f makefile.vc $(MAKEARGS) clean
-	cd "$(MAKEDIR)"
-	cd tests
 	$(MAKE) -f makefile.vc $(MAKEARGS) clean
 	cd "$(MAKEDIR)"
 
@@ -537,11 +540,6 @@ sub_po:
 sub_setup: all
 	cd ..\..\setup\win
 	$(MAKE) -f makefile.vc $(MAKEARGS) APP_EXE_PATH="..\..\build\msw\mmex.exe" BUILD_OPTS="$(__setup_SHARED)$(__setup_UNICODE)$(__setup_DEBUG)-$(CPU_ARCH)" CPU_ARCH="$(CPU_ARCH)" CRT_DLLS="$(__setup_CRT_DLLS)" FORMAT="msvc" all
-	cd "$(MAKEDIR)"
-
-sub_test: 
-	cd tests
-	$(MAKE) -f makefile.vc $(MAKEARGS) all
 	cd "$(MAKEDIR)"
 
 wxsqlite_wxsqlite3.obj: ..\..\lib\wxsqlite3\src\wxsqlite3.cpp
@@ -808,6 +806,9 @@ mmex_categexp.obj: ..\..\src\reports\categexp.cpp
 mmex_categovertimeperf.obj: ..\..\src\reports\categovertimeperf.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\categovertimeperf.cpp
 
+mmex_chart.obj: ..\..\src\reports\chart.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\chart.cpp
+
 mmex_htmlbuilder.obj: ..\..\src\reports\htmlbuilder.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\htmlbuilder.cpp
 
@@ -816,6 +817,9 @@ mmex_incexpenses.obj: ..\..\src\reports\incexpenses.cpp
 
 mmex_mmDateRange.obj: ..\..\src\reports\mmDateRange.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmDateRange.cpp
+
+mmex_mmgraphgenerator.obj: ..\..\src\reports\mmgraphgenerator.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmgraphgenerator.cpp
 
 mmex_payee.obj: ..\..\src\reports\payee.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\payee.cpp

@@ -18,7 +18,6 @@ SETFILE = @SETFILE@
 PIC_FLAG = @PIC_FLAG@
 BK_DEPS = @BK_DEPS@
 srcdir = @srcdir@
-LIBS = @LIBS@
 AR = @AR@
 AROPTIONS = @AROPTIONS@
 RANLIB = @RANLIB@
@@ -206,9 +205,11 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_cashflow.o \
 	mmex_tests_categexp.o \
 	mmex_tests_categovertimeperf.o \
+	mmex_tests_chart.o \
 	mmex_tests_htmlbuilder.o \
 	mmex_tests_incexpenses.o \
 	mmex_tests_mmDateRange.o \
+	mmex_tests_mmgraphgenerator.o \
 	mmex_tests_payee.o \
 	mmex_tests_reportbase.o \
 	mmex_tests_summary.o \
@@ -308,7 +309,7 @@ $(LIBPREFIX)cppunit$(LIBEXT): $(CPPUNIT_OBJECTS)
 	$(RANLIB) $@
 
 mmex_tests$(EXEEXT): $(MMEX_TESTS_OBJECTS) $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) $(LIBPREFIX)cppunit$(LIBEXT) $(__mmex_tests___win32rc)
-	$(CXX) -o $@ $(MMEX_TESTS_OBJECTS) -L. -L. -L.    $(LDFLAGS)  -lwxsqlite -llua $(WX_LIBS) -lcppunit $(LIBS)
+	$(CXX) -o $@ $(MMEX_TESTS_OBJECTS) -L. -L. -L.    $(LDFLAGS)  -lwxsqlite -llua $(WX_LIBS) -lcppunit -ldl
 	
 	$(__mmex_tests___mac_setfilecmd)
 
@@ -726,6 +727,9 @@ mmex_tests_categexp.o: $(srcdir)/../src/reports/categexp.cpp
 mmex_tests_categovertimeperf.o: $(srcdir)/../src/reports/categovertimeperf.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/reports/categovertimeperf.cpp
 
+mmex_tests_chart.o: $(srcdir)/../src/reports/chart.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/reports/chart.cpp
+
 mmex_tests_htmlbuilder.o: $(srcdir)/../src/reports/htmlbuilder.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/reports/htmlbuilder.cpp
 
@@ -734,6 +738,9 @@ mmex_tests_incexpenses.o: $(srcdir)/../src/reports/incexpenses.cpp
 
 mmex_tests_mmDateRange.o: $(srcdir)/../src/reports/mmDateRange.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/reports/mmDateRange.cpp
+
+mmex_tests_mmgraphgenerator.o: $(srcdir)/../src/reports/mmgraphgenerator.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/reports/mmgraphgenerator.cpp
 
 mmex_tests_payee.o: $(srcdir)/../src/reports/payee.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/reports/payee.cpp

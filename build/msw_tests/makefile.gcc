@@ -196,9 +196,11 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_cashflow.o \
 	mmex_tests_categexp.o \
 	mmex_tests_categovertimeperf.o \
+	mmex_tests_chart.o \
 	mmex_tests_htmlbuilder.o \
 	mmex_tests_incexpenses.o \
 	mmex_tests_mmDateRange.o \
+	mmex_tests_mmgraphgenerator.o \
 	mmex_tests_payee.o \
 	mmex_tests_reportbase.o \
 	mmex_tests_summary.o \
@@ -825,6 +827,9 @@ mmex_tests_categexp.o: ../../src/reports/categexp.cpp
 mmex_tests_categovertimeperf.o: ../../src/reports/categovertimeperf.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_tests_chart.o: ../../src/reports/chart.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_tests_htmlbuilder.o: ../../src/reports/htmlbuilder.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
@@ -832,6 +837,9 @@ mmex_tests_incexpenses.o: ../../src/reports/incexpenses.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmDateRange.o: ../../src/reports/mmDateRange.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_mmgraphgenerator.o: ../../src/reports/mmgraphgenerator.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_payee.o: ../../src/reports/payee.cpp

@@ -174,15 +174,34 @@ void mmHTMLBuilder::startTfoot()
     html_ += tags::TFOOT_START;
 }
 
+//void mmHTMLBuilder::addTotalRow(const wxString& caption
+//    , int cols, double value)
+//{
+//    this->startTotalTableRow();
+//    html_+= wxString::Format(tags::TABLE_CELL_SPAN, cols - 1);
+//    html_ += caption;
+//    this->endTableCell();
+//    this->addMoneyCell(value);
+//    this->endTableRow();
+//}
+
 void mmHTMLBuilder::addTotalRow(const wxString& caption
-    , int cols, double value)
+    , int cols, const wxString& value)
 {
     this->startTotalTableRow();
-    html_+= wxString::Format(tags::TABLE_CELL_SPAN, cols - 1);
+    html_ += wxString::Format(tags::TABLE_CELL_SPAN, cols - 1);
     html_ += caption;
     this->endTableCell();
-    this->addMoneyCell(value);
+    html_ += tags::TABLE_CELL_RIGHT;
+    html_ += value;
+    this->endTableCell();
     this->endTableRow();
+}
+
+
+void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, double value)
+{
+    this->addTotalRow(caption, cols, Model_Currency::toCurrency(value));
 }
 
 void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols

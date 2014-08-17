@@ -317,6 +317,7 @@
     <ClCompile Include="..\..\src\import_export\export.cpp" />
     <ClCompile Include="..\..\src\filtertransdialog.cpp" />
     <ClCompile Include="..\..\3rd\cgitemplate\html_template.cpp" />
+    <ClCompile Include="..\..\src\reports\chart.cpp" />
     <ClCompile Include="..\..\src\reports\htmlbuilder.cpp" />
     <ClCompile Include="..\..\src\reports\incexpenses.cpp" />
     <ClCompile Include="..\..\src\maincurrencydialog.cpp" />
@@ -330,6 +331,7 @@
     <ClCompile Include="..\..\src\mmreportspanel.cpp" />
     <ClCompile Include="..\..\src\optionsdialog.cpp" />
     <ClCompile Include="..\..\src\paths.cpp" />
+    <ClCompile Include="..\..\src\reports\mmgraphgenerator.cpp" />
     <ClCompile Include="..\..\src\reports\payee.cpp" />
     <ClCompile Include="..\..\src\payeedialog.cpp" />
     <ClCompile Include="..\..\src\webapp.cpp" />

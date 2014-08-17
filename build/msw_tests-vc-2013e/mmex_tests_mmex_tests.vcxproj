@@ -293,6 +293,8 @@
     <ClCompile Include="..\..\src\reports\categexp.cpp" />
     <ClCompile Include="..\..\src\reports\categovertimeperf.cpp" />
     <ClCompile Include="..\..\src\constants.cpp" />
+    <ClCompile Include="..\..\src\reports\chart.cpp" />
+    <ClCompile Include="..\..\src\reports\mmgraphgenerator.cpp" />
     <ClCompile Include="..\..\src\reports\summary.cpp" />
     <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
     <ClCompile Include="..\..\tests\cpu_timer.cpp" />
@@ -419,6 +421,8 @@
     <ClInclude Include="..\..\src\reports\categexp.h" />
     <ClInclude Include="..\..\src\reports\categovertimeperf.h" />
     <ClInclude Include="..\..\src\constants.h" />
+    <ClInclude Include="..\..\src\reports\chart.h" />
+    <ClInclude Include="..\..\src\reports\mmgraphgenerator.h" />
     <ClInclude Include="..\..\src\reports\summary.h" />
     <ClInclude Include="..\..\src\reports\summarystocks.h" />
     <ClInclude Include="..\..\tests\cpu_timer.h" />

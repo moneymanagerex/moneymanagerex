@@ -57,6 +57,7 @@ public:
     void startTfoot();
 
     /** Add a special row that will format total values */
+    void addTotalRow(const wxString& caption, int cols, const wxString& value);
     void addTotalRow(const wxString& caption, int cols, double value);
 
     /** Add a special row that will format total values */
@@ -65,6 +66,9 @@ public:
 
     /** Add a Table header cell */
     void addTableHeaderCell(const wxString& value, const bool& numeric = false, const bool& sortable = true);
+
+    /** Add a Table header cell link */
+    void addTableHeaderCellLink(const wxString& href, const wxString& value, const bool& numeric = false);
 
     void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency());
     void addMoneyCell(double amount);
