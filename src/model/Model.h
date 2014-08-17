@@ -192,12 +192,12 @@ public:
     json::Object cache_to_json() const
     {
         json::Object o;
-        o["table"] = json::String(this->name().ToStdString());
-        o["cached"] = json::Number(this->cache_.size());
-        o["index_by_id"] = json::Number(this->index_by_id_.size());
-        o["hit"] = json::Number(this->hit_);
-        o["miss"] = json::Number(this->miss_);
-        o["skip"] = json::Number(this->skip_);
+        o[L"table"] = json::String(this->name().ToStdWstring());
+        o[L"cached"] = json::Number(this->cache_.size());
+        o[L"index_by_id"] = json::Number(this->index_by_id_.size());
+        o[L"hit"] = json::Number(this->hit_);
+        o[L"miss"] = json::Number(this->miss_);
+        o[L"skip"] = json::Number(this->skip_);
 
         return o;
     }
