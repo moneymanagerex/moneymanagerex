@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
+ *          AUTO GENERATED at 2014-08-15 22:02:43.980000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,7 +27,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::string to_json() const
+        std::wstring to_json() const
         {
             json::Array a;
             for (const auto & item: *this)
@@ -36,7 +36,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
                 item.to_json(o);
                 a.Insert(o);
             }
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(a, ss);
             return ss.str();
         }
@@ -68,7 +68,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE BUDGETYEAR_V1(BUDGETYEARID integer primary key, BUDGETYEARNAME TEXT NOT NULL UNIQUE)");
+				db->ExecuteUpdate("CREATE TABLE BUDGETYEAR_V1(BUDGETYEARID integer primary key, BUDGETYEARNAME TEXT NOT NULL UNIQUE)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -197,15 +197,15 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         {
             json::Object o;
             this->to_json(o);
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
         
         int to_json(json::Object& o) const
         {
-            o["BUDGETYEARID"] = json::Number(this->BUDGETYEARID);
-            o["BUDGETYEARNAME"] = json::String(this->BUDGETYEARNAME.ToStdString());
+            o[L"BUDGETYEARID"] = json::Number(this->BUDGETYEARID);
+            o[L"BUDGETYEARNAME"] = json::String(this->BUDGETYEARNAME.ToStdWstring());
             return 0;
         }
         row_t to_row_t() const

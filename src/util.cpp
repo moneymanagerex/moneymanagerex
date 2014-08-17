@@ -504,29 +504,29 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
     **************************************************************************/
 
     json::Object jsonVersion;
-    std::stringstream jsonVersionStream;
-    std::string platform = mmPlatformType().ToStdString();
-    std::string ReleaseType = "Stable";
+    std::wstringstream jsonVersionStream;
+    std::wstring platform = mmPlatformType().ToStdWstring();
+    std::wstring ReleaseType = L"Stable";
     wxString currentV = mmex::getProgramVersion();
     int rc = 0;
     int rc_C = 0;
 
     if (!(page.StartsWith("{") && page.EndsWith("}"))) page = "{}";
-    jsonVersionStream << page.ToStdString();
+    jsonVersionStream << page.ToStdWstring();
     json::Reader::Read(jsonVersion, jsonVersionStream);
 
     if (currentV.find("RC") != -1)
     {
-        ReleaseType = "Unstable";
-        rc = int(json::Number(jsonVersion[ReleaseType][platform]["RC"]));
+        ReleaseType = L"Unstable";
+        rc = int(json::Number(jsonVersion[ReleaseType][platform][L"RC"]));
 
         wxString rc_ver = currentV.SubString(currentV.find("RC") + 2, currentV.Length()).Trim();
         rc_C = wxAtoi(rc_ver);
     }
 
-    int major = int(json::Number(jsonVersion[ReleaseType][platform]["Major"]));
-    int minor = int(json::Number(jsonVersion[ReleaseType][platform]["Minor"]));
-    int patch = int(json::Number(jsonVersion[ReleaseType][platform]["Patch"]));
+    int major = int(json::Number(jsonVersion[ReleaseType][platform][L"Major"]));
+    int minor = int(json::Number(jsonVersion[ReleaseType][platform][L"Minor"]));
+    int patch = int(json::Number(jsonVersion[ReleaseType][platform][L"Patch"]));
 
     // get current version
     currentV = currentV.SubString(0, currentV.Find("-RC") - 1).Trim();

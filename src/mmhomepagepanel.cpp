@@ -706,7 +706,7 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
 {
     json::Object o;
     o.Clear();
-    std::stringstream ss;
+    std::wstringstream ss;
 
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
@@ -728,20 +728,20 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
         if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
     }
 
-    o["0"] = json::String(wxString::Format(_("Income vs Expenses: %s"), date_range_->title()).ToStdString());
-    o["1"] = json::String(_("Type").ToStdString());
-    o["2"] = json::String(_("Amount").ToStdString());
-    o["3"] = json::String(_("Income").ToStdString());
-    o["4"] = json::String(Model_Currency::toCurrency(tIncome).ToStdString());
-    o["5"] = json::String(_("Expenses").ToStdString());
-    o["6"] = json::String(Model_Currency::toCurrency(tExpenses).ToStdString());
-    o["7"] = json::String(_("Difference:").ToStdString());
-    o["8"] = json::String(Model_Currency::toCurrency(tIncome - tExpenses).ToStdString());
-    o["9"] = json::String(_("Income/Expenses").ToStdString());
-    o["10"] = json::String(wxString::Format("%.2f", tIncome).ToStdString());
-    o["11"] = json::String(wxString::Format("%.2f", tExpenses).ToStdString());
-    o["12"] = json::Number(steps);
-    o["13"] = json::Number(scaleStepWidth);
+    o[L"0"] = json::String(wxString::Format(_("Income vs Expenses: %s"), date_range_->title()).ToStdWstring());
+    o[L"1"] = json::String(_("Type").ToStdWstring());
+    o[L"2"] = json::String(_("Amount").ToStdWstring());
+    o[L"3"] = json::String(_("Income").ToStdWstring());
+    o[L"4"] = json::String(Model_Currency::toCurrency(tIncome).ToStdWstring());
+    o[L"5"] = json::String(_("Expenses").ToStdWstring());
+    o[L"6"] = json::String(Model_Currency::toCurrency(tExpenses).ToStdWstring());
+    o[L"7"] = json::String(_("Difference:").ToStdWstring());
+    o[L"8"] = json::String(Model_Currency::toCurrency(tIncome - tExpenses).ToStdWstring());
+    o[L"9"] = json::String(_("Income/Expenses").ToStdWstring());
+    o[L"10"] = json::String(wxString::Format("%.2f", tIncome).ToStdWstring());
+    o[L"11"] = json::String(wxString::Format("%.2f", tExpenses).ToStdWstring());
+    o[L"12"] = json::Number(steps);
+    o[L"13"] = json::Number(scaleStepWidth);
 
     json::Writer::Write(o, ss);
     return ss.str();
@@ -783,14 +783,14 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 {
     json::Object o;
     o.Clear();
-    std::stringstream ss;
+    std::wstringstream ss;
 
     const wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
     double asset_balance = Model_Asset::instance().balance();
     tBalance += asset_balance;
 
-    o["NAME"] = json::String(_("Grand Total:").ToStdString());
-    o["VALUE"] = json::String(tBalanceStr.ToStdString());
+    o[L"NAME"] = json::String(_("Grand Total:").ToStdWstring());
+    o[L"VALUE"] = json::String(tBalanceStr.ToStdWstring());
 
     json::Writer::Write(o, ss);
     return ss.str();

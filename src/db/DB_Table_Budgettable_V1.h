@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
+ *          AUTO GENERATED at 2014-08-15 22:02:43.980000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,7 +27,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::string to_json() const
+        std::wstring to_json() const
         {
             json::Array a;
             for (const auto & item: *this)
@@ -36,7 +36,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
                 item.to_json(o);
                 a.Insert(o);
             }
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(a, ss);
             return ss.str();
         }
@@ -68,7 +68,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE BUDGETTABLE_V1(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, SUBCATEGID integer, PERIOD TEXT NOT NULL, AMOUNT numeric NOT NULL)");
+				db->ExecuteUpdate("CREATE TABLE BUDGETTABLE_V1(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, SUBCATEGID integer, PERIOD TEXT NOT NULL, AMOUNT numeric NOT NULL)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -261,19 +261,19 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         {
             json::Object o;
             this->to_json(o);
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
         
         int to_json(json::Object& o) const
         {
-            o["BUDGETENTRYID"] = json::Number(this->BUDGETENTRYID);
-            o["BUDGETYEARID"] = json::Number(this->BUDGETYEARID);
-            o["CATEGID"] = json::Number(this->CATEGID);
-            o["SUBCATEGID"] = json::Number(this->SUBCATEGID);
-            o["PERIOD"] = json::String(this->PERIOD.ToStdString());
-            o["AMOUNT"] = json::Number(this->AMOUNT);
+            o[L"BUDGETENTRYID"] = json::Number(this->BUDGETENTRYID);
+            o[L"BUDGETYEARID"] = json::Number(this->BUDGETYEARID);
+            o[L"CATEGID"] = json::Number(this->CATEGID);
+            o[L"SUBCATEGID"] = json::Number(this->SUBCATEGID);
+            o[L"PERIOD"] = json::String(this->PERIOD.ToStdWstring());
+            o[L"AMOUNT"] = json::Number(this->AMOUNT);
             return 0;
         }
         row_t to_row_t() const

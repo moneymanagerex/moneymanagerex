@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
+ *          AUTO GENERATED at 2014-08-15 22:02:43.980000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,7 +27,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::string to_json() const
+        std::wstring to_json() const
         {
             json::Array a;
             for (const auto & item: *this)
@@ -36,7 +36,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
                 item.to_json(o);
                 a.Insert(o);
             }
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(a, ss);
             return ss.str();
         }
@@ -68,7 +68,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE PAYEE_V1(PAYEEID integer primary key, PAYEENAME TEXT COLLATE NOCASE NOT NULL UNIQUE, CATEGID integer, SUBCATEGID integer)");
+				db->ExecuteUpdate("CREATE TABLE PAYEE_V1(PAYEEID integer primary key, PAYEENAME TEXT COLLATE NOCASE NOT NULL UNIQUE, CATEGID integer, SUBCATEGID integer)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -229,17 +229,17 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         {
             json::Object o;
             this->to_json(o);
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
         
         int to_json(json::Object& o) const
         {
-            o["PAYEEID"] = json::Number(this->PAYEEID);
-            o["PAYEENAME"] = json::String(this->PAYEENAME.ToStdString());
-            o["CATEGID"] = json::Number(this->CATEGID);
-            o["SUBCATEGID"] = json::Number(this->SUBCATEGID);
+            o[L"PAYEEID"] = json::Number(this->PAYEEID);
+            o[L"PAYEENAME"] = json::String(this->PAYEENAME.ToStdWstring());
+            o[L"CATEGID"] = json::Number(this->CATEGID);
+            o[L"SUBCATEGID"] = json::Number(this->SUBCATEGID);
             return 0;
         }
         row_t to_row_t() const
