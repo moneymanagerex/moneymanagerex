@@ -214,7 +214,6 @@ bool mmWebApp::WebApp_UpdateAccount()
     json::Object jsonAccountList;
     std::wstringstream jsonAccountStream;
     wxString outputMessage;
-    int ErrorCode = 0;
 
     wxString UpdateAccountUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportAccount + "=true";
 
@@ -230,7 +229,7 @@ bool mmWebApp::WebApp_UpdateAccount()
     json::Writer::Write(jsonAccountList, jsonAccountStream);
     wxString AccountList = jsonAccountStream.str();
 
-    ErrorCode = mmWebApp::WebApp_SendJson(UpdateAccountUrl, AccountList, outputMessage);
+    int ErrorCode = mmWebApp::WebApp_SendJson(UpdateAccountUrl, AccountList, outputMessage);
 
     return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -250,10 +249,7 @@ bool mmWebApp::WebApp_UpdatePayee()
     int i = 0;
     json::Object jsonPayeeList;
     std::wstringstream jsonPayeeStream;
-    wxString outputMessage;
-    wxString DefCategoryName;
-    wxString DefSubCategoryName;
-    int ErrorCode = 0;
+    wxString outputMessage, DefCategoryName, DefSubCategoryName;
 
     wxString UpdatePayeeUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportPayee + "=true";
 
@@ -283,7 +279,7 @@ bool mmWebApp::WebApp_UpdatePayee()
     json::Writer::Write(jsonPayeeList, jsonPayeeStream);
     wxString PayeesList = jsonPayeeStream.str();
 
-    ErrorCode = mmWebApp::WebApp_SendJson(UpdatePayeeUrl, PayeesList, outputMessage);
+    int ErrorCode = mmWebApp::WebApp_SendJson(UpdatePayeeUrl, PayeesList, outputMessage);
 
     return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -303,9 +299,7 @@ bool mmWebApp::WebApp_UpdateCategory()
     int i = 0;
     json::Object jsonCategoryList;
     std::wstringstream jsonCategoryStream;
-    wxString outputMessage;
-    wxString SubCategoryName;
-    int ErrorCode = 0;
+    wxString outputMessage, SubCategoryName;
 
     wxString UpdateCategoryUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportCategory + "=true";
 
@@ -346,7 +340,7 @@ bool mmWebApp::WebApp_UpdateCategory()
     json::Writer::Write(jsonCategoryList, jsonCategoryStream);
     wxString CategoryList = jsonCategoryStream.str();
 
-    ErrorCode = mmWebApp::WebApp_SendJson(UpdateCategoryUrl, CategoryList, outputMessage);
+    int ErrorCode = mmWebApp::WebApp_SendJson(UpdateCategoryUrl, CategoryList, outputMessage);
 
     return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -537,8 +531,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON, int& TrPro
             else
             {
                 int AttachmentNr = 0;
-                wxString WebAppAttachmentName;
-                wxString DesktopAttachmentName;
+                wxString WebAppAttachmentName, DesktopAttachmentName;
                 wxArrayString AttachmentsArray;
                 wxStringTokenizer tkz1(NrOfAttachmentsString, (';'), wxTOKEN_RET_EMPTY_ALL);
                 while (tkz1.HasMoreTokens())
@@ -600,13 +593,13 @@ bool mmWebApp::WebApp_DeleteOneTransaction(int& WebAppTransactionId)
 //Download one attachment from WebApp
 wxString mmWebApp::WebApp_DownloadOneAttachment(wxString& AttachmentName, int& DesktopTransactionID, int& AttachmentNr)
 {
+    wxFileSystem fs;
+    wxFileSystem::AddHandler(new wxInternetFSHandler());
     wxString FileExtension = wxFileName(AttachmentName).GetExt().MakeLower();
     wxString FilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + wxFileName::GetPathSeparator()
         + Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     wxString FileName = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) + "_" + wxString::Format("%i", DesktopTransactionID)
         + "_Attach" + wxString::Format("%i", AttachmentNr) + "." + FileExtension;
-    wxFileSystem fs;
-    wxFileSystem::AddHandler(new wxInternetFSHandler());
 
     wxFSFile *file = fs.OpenFile(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadAttachments + "=" + AttachmentName);
     if (file != NULL)

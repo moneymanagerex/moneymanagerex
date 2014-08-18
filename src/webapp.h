@@ -63,44 +63,44 @@ static bool WebApp_DeleteOneTransaction(int& WebAppTransactionId);
 static wxString WebApp_DownloadOneAttachment(wxString& AttachmentName, int& DesktopTransactionID, int& AttachmentNr);
 
 public:
-	static bool returnResult(int& ErrorCode, wxString& outputMessage);
+    static bool returnResult(int& ErrorCode, wxString& outputMessage);
 
-	/** Return true if WebApp is enabled */
-	static bool WebApp_CheckEnabled();
+    /** Return true if WebApp is enabled */
+    static bool WebApp_CheckEnabled();
 
-	/** Return true if WebApp Guid is correct */
-	static bool WebApp_CheckGuid();
+    /** Return true if WebApp Guid is correct */
+    static bool WebApp_CheckGuid();
 
-	/** Return true if WebApp API Version is correct */
-	static bool WebApp_CheckApiVersion();
+    /** Return true if WebApp API Version is correct */
+    static bool WebApp_CheckApiVersion();
 
-	/** Update all accounts on WebApp */
-	static bool WebApp_UpdateAccount();
+    /** Update all accounts on WebApp */
+    static bool WebApp_UpdateAccount();
 
-	/** Update all payees on WebApp */
-	static bool WebApp_UpdatePayee();
+    /** Update all payees on WebApp */
+    static bool WebApp_UpdatePayee();
 
-	/** Update all categories on WebApp */
-	static bool WebApp_UpdateCategory();
+    /** Update all categories on WebApp */
+    static bool WebApp_UpdateCategory();
 
-	/** Return true if there are new transaction on WebApp */
-	static int WebApp_CheckNewTransaction();
+    /** Return true if there are new transaction on WebApp */
+    static int WebApp_CheckNewTransaction();
 
-	/** Download oldest new transaction JSON */
-	static bool WebApp_DownloadNewTransaction(wxString& NewTransactionJSON);
+    /** Download oldest new transaction JSON */
+    static bool WebApp_DownloadNewTransaction(wxString& NewTransactionJSON);
 
-	/** Insert transaction in MMEX desktop, returns transaction ID */
-	static int MMEX_InsertNewTransaction(wxString& NewTransactionJSON, int& TrProgressive);
+    /** Insert transaction in MMEX desktop, returns transaction ID */
+    static int MMEX_InsertNewTransaction(wxString& NewTransactionJSON, int& TrProgressive);
 
-	//FUNCTIONS CALLED IN MMEX TO UPDATE ON CHANGE
-	/** Update all payees on WebApp if enabled */
-	static bool MMEX_WebApp_UpdatePayee();
+    //FUNCTIONS CALLED IN MMEX TO UPDATE ON CHANGE
+    /** Update all payees on WebApp if enabled */
+    static bool MMEX_WebApp_UpdatePayee();
 
-	/** Update all accounts on WebApp if enabled */
-	static bool MMEX_WebApp_UpdateAccount();
+    /** Update all accounts on WebApp if enabled */
+    static bool MMEX_WebApp_UpdateAccount();
 
-	/** Update all categories on WebApp if enabled */
-	static bool MMEX_WebApp_UpdateCategory();
+    /** Update all categories on WebApp if enabled */
+    static bool MMEX_WebApp_UpdateCategory();
 };
 
 #endif // MM_EX_WEBAPP_H_
