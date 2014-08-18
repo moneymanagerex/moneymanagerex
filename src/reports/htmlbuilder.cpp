@@ -210,9 +210,11 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool& numeri
     html_+= tags::TABLE_HEADER_END;
 }
 
-void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency)
+void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency, int precision)
 {
-    wxString s = Model_Currency::toCurrency(amount, currency);
+    if (precision == -1)
+        precision = Model_Currency::precision(currency);
+    wxString s = Model_Currency::toCurrency(amount, currency, precision);
     wxString f = wxString::Format("class='money' sorttable_customkey = '%f'", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
     html_ += s;
@@ -234,9 +236,10 @@ void mmHTMLBuilder::addTableCell(const wxDateTime& date)
     this->addTableCell(date_str);
 }
 
-void mmHTMLBuilder::addTableCell(const wxString& value)
+void mmHTMLBuilder::addTableCell(const wxString& value, const bool& numeric)
 {
-    html_ += wxString::Format(tags::TABLE_CELL, "");
+    wxString align = numeric ? "class='text-right'" : "class='text-left'";
+    html_ += wxString::Format(tags::TABLE_CELL, align);
     html_ += value;
     this->endTableCell();
 }
