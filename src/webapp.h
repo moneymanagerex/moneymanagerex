@@ -22,31 +22,33 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include <wx/spinctrl.h>
 
+class wxString;
+//Parameters used in services.php
+namespace WebAppParam
+{
+    extern const wxString ServicesPage;
+    extern const wxString ApiExpectedVersion;
+    extern const wxString CheckGuid;
+    extern const wxString CheckApiVersion;
+    extern const wxString DeleteAccount;
+    extern const wxString ImportAccount;
+    extern const wxString DeletePayee;
+    extern const wxString ImportPayee;
+    extern const wxString DeleteCategory;
+    extern const wxString ImportCategory;
+    extern const wxString DeleteOneTransaction;
+    extern const wxString DownloadNewTransaction;
+    extern const wxString MessageSuccedeed;
+    extern const wxString MessageWrongGuid;
+}
+
 class mmWebApp
 {
 const static wxString getUrl();
 const static wxString getGuid();
-const static wxString getServicesPage();
-const static wxString getApiExpectedVersion();
-
-//Parameters used in services.php
-const static wxString getCheckGuidParameter();
-const static wxString getCheckApiVersionParameter();
-const static wxString getDeleteAccountParameter();
-const static wxString getImportAccountParameter();
-const static wxString getDeletePayeeParameter();
-const static wxString getImportPayeeParameter();
-const static wxString getDeleteCategoryParameter();
-const static wxString getImportCategoryParameter();
-const static wxString getDeleteOneTransactionParameter();
-const static wxString getDownloadNewTransactionParameter();
 
 /** Return services page URL with GUID inserted */
 const static wxString getServicesPageURL();
-
-//Return messages from WebApp
-const static wxString getMessageSucceeded();
-const static wxString getMessageWrongGuid();
 
 
 //Internal function

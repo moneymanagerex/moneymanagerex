@@ -30,10 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/protocol/http.h>
 
 //Expected WebAppVersion
-const wxString mmWebApp::getApiExpectedVersion()
-{
-	return "0.9.9";
-}
+const wxString WebAppParam::ApiExpectedVersion = "0.9.9";
 
 //Internal constants
 const wxString mmWebApp::getUrl()
@@ -48,83 +45,34 @@ const wxString mmWebApp::getGuid()
     return Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "");
 }
 
-const wxString mmWebApp::getServicesPage()
-{
-    return "services.php";
-}
+//Parameters used in services.php
+const wxString WebAppParam::ServicesPage           = "services.php";
+const wxString WebAppParam::CheckGuid              = "check_guid";
+const wxString WebAppParam::CheckApiVersion        = "check_api_version";
+const wxString WebAppParam::DeleteAccount          = "delete_bankaccount";
+const wxString WebAppParam::ImportAccount          = "import_bankaccount";
+const wxString WebAppParam::DeletePayee	           = "delete_payee";
+const wxString WebAppParam::ImportPayee            = "import_payee";
+const wxString WebAppParam::DeleteCategory	       = "delete_category";
+const wxString WebAppParam::ImportCategory         = "import_category";
+const wxString WebAppParam::DeleteOneTransaction   = "delete_group";
+const wxString WebAppParam::DownloadNewTransaction = "download_transaction";
+const wxString WebAppParam::MessageSuccedeed       = "Operation has succeeded";
+const wxString WebAppParam::MessageWrongGuid       = "Wrong GUID";
 
-const wxString mmWebApp::getCheckGuidParameter()
-{
-	return "check_guid";
-}
-
-const wxString mmWebApp::getCheckApiVersionParameter()
-{
-	return "check_api_version";
-}
-
-const wxString mmWebApp::getDeleteAccountParameter()
-{
-	return "delete_bankaccount";
-}
-
-const wxString mmWebApp::getImportAccountParameter()
-{
-    return "import_bankaccount";
-}
-
-const wxString mmWebApp::getDeletePayeeParameter()
-{
-	return "delete_payee";
-}
-
-const wxString mmWebApp::getImportPayeeParameter()
-{
-    return "import_payee";
-}
-
-const wxString mmWebApp::getDeleteCategoryParameter()
-{
-	return "delete_category";
-}
-
-const wxString mmWebApp::getImportCategoryParameter()
-{
-	return "import_category";
-}
-
-const wxString mmWebApp::getDeleteOneTransactionParameter()
-{
-	return "delete_group";
-}
-
-const wxString mmWebApp::getDownloadNewTransactionParameter()
-{
-    return "download_transaction";
-}
-
+// Return services page URL with GUID inserted
 const wxString mmWebApp::getServicesPageURL()
 {
-	return mmWebApp::getUrl() + "/" + mmWebApp::getServicesPage() + "?" + "guid=" + mmWebApp::getGuid();
+    return mmWebApp::getUrl() + "/" + WebAppParam::ServicesPage + "?" + "guid=" + mmWebApp::getGuid();
 }
 
 //Get WebApp Api version
 const wxString mmWebApp::WebApp_getApiVersion()
 {
 	wxString outputMessage;
-	site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getCheckApiVersionParameter(), outputMessage);
+    site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::CheckApiVersion, outputMessage);
 
 	return outputMessage;
-}
-
-const wxString mmWebApp::getMessageSucceeded()
-{
-    return "Operation has succeeded";
-}
-
-const wxString mmWebApp::getMessageWrongGuid()
-{
-    return "Wrong GUID";
 }
 
 
@@ -134,7 +82,7 @@ const wxString mmWebApp::getMessageWrongGuid()
 //Return function result
 bool mmWebApp::returnResult(int& ErrorCode, wxString& outputMessage)
 {
-	if (ErrorCode == 0 && outputMessage == mmWebApp::getMessageSucceeded())
+    if (ErrorCode == 0 && outputMessage == WebAppParam::MessageSuccedeed)
 		return true;
 	else
 		return false;
@@ -154,11 +102,11 @@ bool mmWebApp::WebApp_CheckEnabled()
 bool mmWebApp::WebApp_CheckGuid()
 {
 	wxString outputMessage;
-	site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getCheckGuidParameter(), outputMessage);
+    site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::CheckGuid, outputMessage);
 
-	if (outputMessage == mmWebApp::getMessageSucceeded())
+    if (outputMessage == WebAppParam::MessageSuccedeed)
 		return true;
-	else if (outputMessage == mmWebApp::getMessageWrongGuid())
+    else if (outputMessage == WebAppParam::MessageWrongGuid)
 	{
 		wxString msgStr = wxString() << _("Wrong WebApp GUID:") << "\n"
 			<< _("please check it in network options.") << "\n";
@@ -177,11 +125,11 @@ bool mmWebApp::WebApp_CheckGuid()
 //Check WebApp Api version
 bool mmWebApp::WebApp_CheckApiVersion()
 {
-	if (mmWebApp::WebApp_getApiVersion() != mmWebApp::getApiExpectedVersion())
+    if (mmWebApp::WebApp_getApiVersion() != WebAppParam::ApiExpectedVersion)
 	{
         wxString msgStr = _("Wrong WebApp API version:") + "\n"
             + wxString::Format(_("WebApp   API version -> %s"), mmWebApp::WebApp_getApiVersion()) + "\n"
-            + wxString::Format(_("Expected API version -> %s"), mmWebApp::getApiExpectedVersion()) + "\n";
+            + wxString::Format(_("Expected API version -> %s"), WebAppParam::ApiExpectedVersion) + "\n";
 		wxMessageBox(msgStr, _("Wrong WebApp API version"), wxICON_ERROR);
 		return false;
 	}
@@ -250,7 +198,7 @@ int mmWebApp::WebApp_SendJson(wxString& Website, const wxString& JsonData, wxStr
 bool mmWebApp::WebApp_DeleteAllAccount()
 {
 	wxString outputMessage;
-	int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getDeleteAccountParameter(), outputMessage);
+    int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteAccount, outputMessage);
 
 	return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -264,7 +212,7 @@ bool mmWebApp::WebApp_UpdateAccount()
 	wxString outputMessage;
 	int ErrorCode = 0;
 
-	wxString UpdateAccountUrl = mmWebApp::getServicesPageURL() + "&" + mmWebApp::getImportAccountParameter() + "=true";
+    wxString UpdateAccountUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportAccount + "=true";
 
 	mmWebApp::WebApp_DeleteAllAccount();
 
@@ -287,7 +235,7 @@ bool mmWebApp::WebApp_UpdateAccount()
 bool mmWebApp::WebApp_DeleteAllPayee()
 {
 	wxString outputMessage;
-	int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getDeletePayeeParameter(), outputMessage);
+    int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeletePayee, outputMessage);
 
 	return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -303,7 +251,7 @@ bool mmWebApp::WebApp_UpdatePayee()
 	wxString DefSubCategoryName;
 	int ErrorCode = 0;
 
-	wxString UpdatePayeeUrl = mmWebApp::getServicesPageURL() + "&" + mmWebApp::getImportPayeeParameter() + "=true";
+    wxString UpdatePayeeUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportPayee + "=true";
 
 	mmWebApp::WebApp_DeleteAllPayee();
 
@@ -340,7 +288,7 @@ bool mmWebApp::WebApp_UpdatePayee()
 bool mmWebApp::WebApp_DeleteAllCategory()
 {
 	wxString outputMessage;
-	int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getDeleteCategoryParameter(), outputMessage);
+    int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteCategory, outputMessage);
 
 	return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -355,7 +303,7 @@ bool mmWebApp::WebApp_UpdateCategory()
 	wxString SubCategoryName;
 	int ErrorCode = 0;
 
-	wxString UpdateCategoryUrl = mmWebApp::getServicesPageURL() + "&" + mmWebApp::getImportCategoryParameter() + "=true";
+    wxString UpdateCategoryUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportCategory + "=true";
 
 	mmWebApp::WebApp_DeleteAllCategory();
 
@@ -410,7 +358,7 @@ bool mmWebApp::WebApp_CheckNewTransaction()
 //Download new transactions
 bool mmWebApp::WebApp_DownloadNewTransaction(wxString& NewTransactionJSON)
 {
-	int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getDownloadNewTransactionParameter(), NewTransactionJSON);
+    int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadNewTransaction, NewTransactionJSON);
 
     if (NewTransactionJSON != "null" && !NewTransactionJSON.IsEmpty() && ErrorCode == 0)
 		return true;
@@ -561,7 +509,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 //Delete one transaction from WebApp
 bool mmWebApp::WebApp_DeleteOneTransaction(int& WebAppNewTransactionId)
 {
-	wxString DeleteOneTransactionUrl = mmWebApp::getServicesPageURL() + "&" + mmWebApp::getDeleteOneTransactionParameter() + "=" << WebAppNewTransactionId;
+    wxString DeleteOneTransactionUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteOneTransaction + "=" << WebAppNewTransactionId;
 
 	wxString outputMessage;
 	int ErrorCode = site_content(DeleteOneTransactionUrl, outputMessage);
