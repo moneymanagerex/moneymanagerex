@@ -17,9 +17,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 
+#include "attachmentdialog.h"
 #include "webapp.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Account.h"
+#include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Subcategory.h"
@@ -30,7 +32,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/protocol/http.h>
 
 //Expected WebAppVersion
-const wxString WebAppParam::ApiExpectedVersion = "0.9.9";
+const wxString WebAppParam::ApiExpectedVersion = "1.0.1";
 
 //Internal constants
 const wxString mmWebApp::getUrl()
@@ -57,6 +59,8 @@ const wxString WebAppParam::DeleteCategory	       = "delete_category";
 const wxString WebAppParam::ImportCategory         = "import_category";
 const wxString WebAppParam::DeleteOneTransaction   = "delete_group";
 const wxString WebAppParam::DownloadNewTransaction = "download_transaction";
+const wxString WebAppParam::DownloadAttachments    = "download_attachment";
+const wxString WebAppParam::DeleteAttachment       = "delete_attachment";
 const wxString WebAppParam::MessageSuccedeed       = "Operation has succeeded";
 const wxString WebAppParam::MessageWrongGuid       = "Wrong GUID";
 
@@ -369,7 +373,8 @@ bool mmWebApp::WebApp_DownloadNewTransaction(wxString& NewTransactionJSON)
 //Insert new transaction
 int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 {
-	int desktopNewTransactionId = 0;
+	int DeskNewTrID = 0;
+    boolean bDeleteTrWebApp = false;
 	json::Object jsonTransaction;
 	std::wstringstream jsonTransactionStream;
 
@@ -499,22 +504,112 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	desktopNewTransaction->FOLLOWUPID = -1;
 	desktopNewTransaction->TOTRANSAMOUNT = TransactionAmount;
 
-	desktopNewTransactionId = Model_Checking::instance().save(desktopNewTransaction);
+	DeskNewTrID = Model_Checking::instance().save(desktopNewTransaction);
 
-	if (desktopNewTransactionId > 0)
-		mmWebApp::WebApp_DeleteOneTransaction(WebAppTrID);
-	return desktopNewTransactionId;
+    if (DeskNewTrID > 0)
+    {
+        wxString NrOfAttachmentsString = wxString(json::String(jsonTransaction[L"Attachments"]));
+
+        if (!NrOfAttachmentsString.IsEmpty())
+        {
+            wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
+            if (AttachmentsFolder == wxEmptyString || !wxDirExists(AttachmentsFolder))
+            {
+                DeskNewTrID = Model_Checking::instance().remove(DeskNewTrID);
+
+                wxString msgStr = wxString() << _("Unable to download attachments from webapp.") << "\n"
+                    << _("Attachments folder not set or unaviable") << "\n" << "\n"
+                    << _("Transaction not downloaded: please set attachments folder or delete them from WebApp") << "\n";
+                wxMessageBox(msgStr, _("Attachment folder error"), wxICON_ERROR);
+            }
+            else
+            {
+                int AttachmentNr = 0;
+                wxString WebAppAttachmentName;
+                wxString DesktopAttachmentName;
+                wxArrayString AttachmentsArray;
+                wxStringTokenizer tkz1(NrOfAttachmentsString, (';'), wxTOKEN_RET_EMPTY_ALL);
+                while (tkz1.HasMoreTokens())
+                    {AttachmentsArray.Add(tkz1.GetNextToken());}
+                for (size_t i = 0; i < AttachmentsArray.GetCount(); i++)
+                {
+                    AttachmentNr++;
+                    WebAppAttachmentName = AttachmentsArray.Item(i);
+                    DesktopAttachmentName = WebApp_DownloadOneAttachment(WebAppAttachmentName, DeskNewTrID, AttachmentNr);
+                    if (DesktopAttachmentName != wxEmptyString)
+                    {
+                        Model_Attachment::Data* NewAttachment = Model_Attachment::instance().create();
+                            NewAttachment->REFTYPE = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+                            NewAttachment->REFID = DeskNewTrID;
+                            NewAttachment->DESCRIPTION = _("Attachment") + "_" << AttachmentNr;
+                            NewAttachment->FILENAME = DesktopAttachmentName;
+                        Model_Attachment::instance().save(NewAttachment);
+                    }
+                    else
+                    {
+                        DeskNewTrID = Model_Checking::instance().remove(DeskNewTrID);
+
+                        wxString msgStr = wxString() << _("Unable to download attachments from webapp.") << "\n"
+                            << _("Communication error") << "\n" << "\n"
+                            << _("Transaction not downloaded: please close and open MMEX to try re-download transaction") << "\n";
+                        wxMessageBox(msgStr, _("Attachment download error"), wxICON_ERROR);
+                        break;
+                    }
+
+                    WebAppAttachmentName = wxEmptyString;
+                    WebAppAttachmentName = wxEmptyString;
+                } //End loop throught attachments
+                bDeleteTrWebApp = true;
+            }
+        }
+        else //Transaction without attachments
+        {
+            bDeleteTrWebApp = true;
+        }
+    }
+
+    if (bDeleteTrWebApp)
+        WebApp_DeleteOneTransaction(WebAppTrID);
+	return DeskNewTrID;
 }
 
 //Delete one transaction from WebApp
-bool mmWebApp::WebApp_DeleteOneTransaction(int& WebAppNewTransactionId)
+bool mmWebApp::WebApp_DeleteOneTransaction(int& WebAppTransactionId)
 {
-    wxString DeleteOneTransactionUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteOneTransaction + "=" << WebAppNewTransactionId;
+    wxString DeleteOneTransactionUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteOneTransaction + "=" << WebAppTransactionId;
 
 	wxString outputMessage;
 	int ErrorCode = site_content(DeleteOneTransactionUrl, outputMessage);
 
 	return mmWebApp::returnResult(ErrorCode, outputMessage);
+}
+
+//Download one attachment from WebApp
+wxString mmWebApp::WebApp_DownloadOneAttachment(wxString& AttachmentName, int& DesktopTransactionID, int& AttachmentNr)
+{
+    wxString FileExtension = wxFileName(AttachmentName).GetExt().MakeLower();
+    wxString FilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + wxFileName::GetPathSeparator()
+        + Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    wxString FileName = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) + "_" + wxString::Format("%i", DesktopTransactionID)
+        + "_Attach" + wxString::Format("%i", AttachmentNr) + "." + FileExtension;
+    wxFileSystem fs;
+    wxFileSystem::AddHandler(new wxInternetFSHandler());
+
+    wxFSFile *file = fs.OpenFile(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadAttachments + "=" + AttachmentName);
+    if (file != NULL)
+    {
+        wxInputStream *in = file->GetStream();
+        if (in != NULL)
+        {
+            wxFileOutputStream output(FilePath + wxFileName::GetPathSeparator() + FileName);
+            output.Write(*file->GetStream());
+            output.Close();
+            delete in;
+            return FileName;
+        }
+    }
+
+    return wxEmptyString;
 }
 
 

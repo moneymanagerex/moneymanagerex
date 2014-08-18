@@ -38,6 +38,8 @@ namespace WebAppParam
     extern const wxString ImportCategory;
     extern const wxString DeleteOneTransaction;
     extern const wxString DownloadNewTransaction;
+    extern const wxString DownloadAttachments;
+    extern const wxString DeleteAttachment;
     extern const wxString MessageSuccedeed;
     extern const wxString MessageWrongGuid;
 }
@@ -57,8 +59,8 @@ static int WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString
 static bool WebApp_DeleteAllAccount();
 static bool WebApp_DeleteAllPayee();
 static bool WebApp_DeleteAllCategory();
-static bool WebApp_DeleteOneTransaction(int& WebAppNewTransactionId);
-
+static bool WebApp_DeleteOneTransaction(int& WebAppTransactionId);
+static wxString WebApp_DownloadOneAttachment(wxString& AttachmentName, int& DesktopTransactionID, int& AttachmentNr);
 
 public:
 	static bool returnResult(int& ErrorCode, wxString& outputMessage);
