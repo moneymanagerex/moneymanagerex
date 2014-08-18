@@ -84,13 +84,13 @@ public:
 	static bool WebApp_UpdateCategory();
 
 	/** Return true if there are new transaction on WebApp */
-	static bool WebApp_CheckNewTransaction();
+	static int WebApp_CheckNewTransaction();
 
 	/** Download oldest new transaction JSON */
 	static bool WebApp_DownloadNewTransaction(wxString& NewTransactionJSON);
 
 	/** Insert transaction in MMEX desktop, returns transaction ID */
-	static int MMEX_InsertNewTransaction(wxString& NewTransactionJSON);
+	static int MMEX_InsertNewTransaction(wxString& NewTransactionJSON, int& TrProgressive);
 
 	//FUNCTIONS CALLED IN MMEX TO UPDATE ON CHANGE
 	/** Update all payees on WebApp if enabled */
