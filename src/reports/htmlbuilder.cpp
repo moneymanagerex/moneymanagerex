@@ -67,6 +67,7 @@ static const wxString TBODY_END = "</tbody>\n";
 static const wxString TFOOT_START = "<tfoot>\n";
 static const wxString TFOOT_END = "</tfoot>\n";
 static const wxString TABLE_ROW = "  <tr>\n";
+static const wxString TABLE_ROW_BG = "  <tr %s>\n";
 static const wxString TOTAL_TABLE_ROW = "  <tr class='success'>\n";
 static const wxString TABLE_ROW_END = "  </tr>\n";
 static const wxString TABLE_CELL = "    <td %s>";
@@ -76,7 +77,6 @@ static const wxString TABLE_CELL_LINK = "<a href=\"%s\">%s</a>\n";
 static const wxString TABLE_HEADER = "<th %s>";
 static const wxString HEADER = "<h%i>%s</h%i>";
 static const wxString TABLE_HEADER_END = "</th>\n";
-static const wxString HEADER_ITALIC = "<font size=\"%i\"><i>%s</i></font>\n";
 static const wxString LINK = "<a href=\"%s\">%s</a>\n";
 static const wxString HOR_LINE = "<hr size=\"%i\">\n";
 static const wxString IMAGE = "<img src=\"%s\" border=\"0\">\n";
@@ -145,12 +145,6 @@ void mmHTMLBuilder::addDateNow()
 {
     addHeader(4, today_.todays_date);
     addLineBreak();
-}
-
-void mmHTMLBuilder::addImage(const wxString& src)
-{
-    if(!src.empty())
-        html_+= wxString::Format(tags::IMAGE, src);
 }
 
 void mmHTMLBuilder::startTable()
@@ -345,10 +339,16 @@ void mmHTMLBuilder::endTfoot()
 {
     html_ += tags::TFOOT_END;
 };
+
 void mmHTMLBuilder::startTableRow()
 {
     html_ += tags::TABLE_ROW;
 }
+void mmHTMLBuilder::startTableRow(const wxString& color)
+{
+    html_ += wxString::Format(tags::TABLE_ROW_BG, wxString::Format("style='background-color:%s'", color));
+}
+
 void mmHTMLBuilder::startTotalTableRow()
 {
     html_ += tags::TOTAL_TABLE_ROW;
@@ -479,7 +479,9 @@ void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxStr
         "</script>\n";
     static const wxString opt =
         "{datasetFill: false,\n"
-        " responsive: true,\n"
+        "inGraphDataShow : false,\n"
+        "annotateDisplay : true,\n"
+        "responsive: true,\n"
         "pointDot :false}";
 
     wxString labels = "";

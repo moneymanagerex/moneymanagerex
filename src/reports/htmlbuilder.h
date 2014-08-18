@@ -46,9 +46,6 @@ public:
     void addHeader(int level, const wxString& header);
     void addDateNow();
 
-    /** Create an HTML Image tag */
-    void addImage(const wxString& src);
-
     /** Start a table element */
     void startTable();
     void startSortTable();
@@ -89,6 +86,7 @@ public:
     void addDivCol8();
     void endDiv();
     void startTableRow();
+    void startTableRow(const wxString& color);
     void startTotalTableRow();
     //void startTableRow(const wxString& custom_color);
     void endTableRow();
@@ -112,7 +110,7 @@ public:
 
     void addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int& x = 300, const int& y = 300);
     void addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x = 640, const int& y = 256);
-    void addBarChart(const wxString & labels, const std::vector<ValueTrio>& data, const wxString& id, const int& x = 312, const int& y = 256);
+    void addBarChart(const wxString & labels, const std::vector<ValueTrio>& data, const wxString& id, const int& x = 192, const int& y = 256);
 
 private:
     wxString html_;
