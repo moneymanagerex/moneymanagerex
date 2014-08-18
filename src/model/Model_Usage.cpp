@@ -64,15 +64,15 @@ void Model_Usage::append_cache_usage(const json::Object& o)
     this->m_cache.Insert(o);
 }
 
-std::string Model_Usage::to_string() const
+std::wstring Model_Usage::to_string() const
 {
     json::Object o;
-    o["start"] = json::String(m_start.FormatISOCombined(' ').ToStdString());
-    o["end"] = json::String(wxDateTime::Now().FormatISOCombined(' ').ToStdString());
-    o["usage"] = a;
-    o["cache"] = m_cache;
+    o[L"start"] = json::String(m_start.FormatISOCombined(' ').ToStdWstring());
+    o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined(' ').ToStdWstring());
+    o[L"usage"] = a;
+    o[L"cache"] = m_cache;
 
-    std::stringstream ss;
+    std::wstringstream ss;
     json::Writer::Write(o, ss);
     return ss.str();
 }
@@ -151,15 +151,15 @@ bool Model_Usage::send(const Data* r)
 	url += wxString::Format("Resolution=%ix%i", Resolution.GetX(), Resolution.GetY());
 
 	//Start & End time
-    std::stringstream ss;
-    ss << r->JSONCONTENT.ToStdString();
+    std::wstringstream ss;
+    ss << r->JSONCONTENT.ToStdWstring();
     json::Object o;
     json::Reader::Read(o, ss);
 
     url += "&";
-    url += wxString::Format("Start_Time=%s", wxString(json::String(o["start"])));
+    url += wxString::Format("Start_Time=%s", wxString(json::String(o[L"start"])));
     url += "&";
-    url += wxString::Format("End_Time=%s", wxString(json::String(o["end"])));
+    url += wxString::Format("End_Time=%s", wxString(json::String(o[L"end"])));
 
     wxLogDebug(url);
     wxString dummy;

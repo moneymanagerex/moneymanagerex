@@ -48,7 +48,7 @@ public:
                 for (int i = 0; i < q.GetColumnCount(); ++i)
                 {
                     int column_type = q.GetColumnType(i);
-                    std::string column_name = q.GetColumnName(i).ToStdString();
+                    std::wstring column_name = q.GetColumnName(i).ToStdWstring();
                     switch (column_type)
                     {
                     case WXSQLITE_INTEGER:
@@ -58,10 +58,10 @@ public:
                         o[column_name] = json::Number(q.GetDouble(i));
                         break;
                     case WXSQLITE_TEXT:
-                        o[column_name] = json::String(q.GetString(i).ToStdString());
+                        o[column_name] = json::String(q.GetString(i).ToStdWstring());
                         break;
                     case WXSQLITE_BLOB:
-                        o[column_name] = json::String(q.GetString(i).ToStdString());
+                        o[column_name] = json::String(q.GetString(i).ToStdWstring());
                         break;
                     case WXSQLITE_NULL:
                     default:

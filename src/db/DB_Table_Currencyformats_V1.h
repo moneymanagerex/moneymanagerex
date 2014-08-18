@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
+ *          AUTO GENERATED at 2014-08-15 22:02:43.980000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,7 +27,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::string to_json() const
+        std::wstring to_json() const
         {
             json::Array a;
             for (const auto & item: *this)
@@ -36,7 +36,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
                 item.to_json(o);
                 a.Insert(o);
             }
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(a, ss);
             return ss.str();
         }
@@ -68,7 +68,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE CURRENCYFORMATS_V1(CURRENCYID integer primary key, CURRENCYNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, PFX_SYMBOL TEXT, SFX_SYMBOL TEXT, DECIMAL_POINT TEXT, GROUP_SEPARATOR TEXT, UNIT_NAME TEXT COLLATE NOCASE, CENT_NAME TEXT COLLATE NOCASE, SCALE integer, BASECONVRATE numeric, CURRENCY_SYMBOL TEXT COLLATE NOCASE NOT NULL UNIQUE)");
+				db->ExecuteUpdate("CREATE TABLE CURRENCYFORMATS_V1(CURRENCYID integer primary key, CURRENCYNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, PFX_SYMBOL TEXT, SFX_SYMBOL TEXT, DECIMAL_POINT TEXT, GROUP_SEPARATOR TEXT, UNIT_NAME TEXT COLLATE NOCASE, CENT_NAME TEXT COLLATE NOCASE, SCALE integer, BASECONVRATE numeric, CURRENCY_SYMBOL TEXT COLLATE NOCASE NOT NULL UNIQUE)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -334,24 +334,24 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         {
             json::Object o;
             this->to_json(o);
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
         
         int to_json(json::Object& o) const
         {
-            o["CURRENCYID"] = json::Number(this->CURRENCYID);
-            o["CURRENCYNAME"] = json::String(this->CURRENCYNAME.ToStdString());
-            o["PFX_SYMBOL"] = json::String(this->PFX_SYMBOL.ToStdString());
-            o["SFX_SYMBOL"] = json::String(this->SFX_SYMBOL.ToStdString());
-            o["DECIMAL_POINT"] = json::String(this->DECIMAL_POINT.ToStdString());
-            o["GROUP_SEPARATOR"] = json::String(this->GROUP_SEPARATOR.ToStdString());
-            o["UNIT_NAME"] = json::String(this->UNIT_NAME.ToStdString());
-            o["CENT_NAME"] = json::String(this->CENT_NAME.ToStdString());
-            o["SCALE"] = json::Number(this->SCALE);
-            o["BASECONVRATE"] = json::Number(this->BASECONVRATE);
-            o["CURRENCY_SYMBOL"] = json::String(this->CURRENCY_SYMBOL.ToStdString());
+            o[L"CURRENCYID"] = json::Number(this->CURRENCYID);
+            o[L"CURRENCYNAME"] = json::String(this->CURRENCYNAME.ToStdWstring());
+            o[L"PFX_SYMBOL"] = json::String(this->PFX_SYMBOL.ToStdWstring());
+            o[L"SFX_SYMBOL"] = json::String(this->SFX_SYMBOL.ToStdWstring());
+            o[L"DECIMAL_POINT"] = json::String(this->DECIMAL_POINT.ToStdWstring());
+            o[L"GROUP_SEPARATOR"] = json::String(this->GROUP_SEPARATOR.ToStdWstring());
+            o[L"UNIT_NAME"] = json::String(this->UNIT_NAME.ToStdWstring());
+            o[L"CENT_NAME"] = json::String(this->CENT_NAME.ToStdWstring());
+            o[L"SCALE"] = json::Number(this->SCALE);
+            o[L"BASECONVRATE"] = json::Number(this->BASECONVRATE);
+            o[L"CURRENCY_SYMBOL"] = json::String(this->CURRENCY_SYMBOL.ToStdWstring());
             return 0;
         }
         row_t to_row_t() const

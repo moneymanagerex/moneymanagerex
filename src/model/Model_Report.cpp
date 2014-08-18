@@ -225,10 +225,10 @@ wxString Model_Report::get_html(const Data* r)
             if ((colHeaders[item.first] == WXSQLITE_INTEGER || colHeaders[item.first] == WXSQLITE_FLOAT)
                 && wxString(item.second).ToDouble(&v))
             {
-                o[wxString(item.first).ToStdString()] = json::Number(v);
+                o[wxString(item.first).ToStdWstring()] = json::Number(v);
             }
             else
-                o[wxString(item.first).ToStdString()] = json::String(wxString(item.second).ToStdString());
+                o[wxString(item.first).ToStdWstring()] = json::String(wxString(item.second).ToStdWstring());
         }
         contents += row;
         jsoncontents.Insert(o);
@@ -265,7 +265,7 @@ wxString Model_Report::get_html(const Data* r)
 
     report(L"CONTENTS") = contents;
     {
-        std::stringstream ss;
+        std::wstringstream ss;
         json::Writer::Write(jsoncontents, ss);
         report(L"JSONCONTENTS") = wxString(ss.str());
     }

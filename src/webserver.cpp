@@ -53,12 +53,14 @@ static int ev_handler(struct mg_connection *conn, enum mg_event ev)
     {
         if (strcmp(conn->uri, "/account") == 0)
         {
-            mg_printf_data(conn, Model_Account::instance().all().to_json().c_str());
+            wxString str = Model_Account::instance().all().to_json().c_str();
+            mg_printf_data(conn, str);
             result = MG_TRUE;
         }
         else if (strcmp(conn->uri, "/payee") == 0)
         {
-            mg_printf_data(conn, Model_Payee::instance().all().to_json().c_str());
+            wxString str = Model_Payee::instance().all().to_json().c_str();
+            mg_printf_data(conn, str);
             result = MG_TRUE;
         }
         else
