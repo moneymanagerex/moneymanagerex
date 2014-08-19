@@ -89,7 +89,10 @@
 #include "mmHook.h"
 #include "util.h"
 #include <wx/fs_mem.h>
-
+#include <stack>
+#include "cajun/json/elements.h"
+#include "cajun/json/reader.h"
+#include "cajun/json/writer.h"
 //----------------------------------------------------------------------------
 /* Include XPM Support */
 
@@ -174,9 +177,6 @@ EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
 EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
 EVT_MENU(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinks)
-EVT_MENU(MENU_VIEW_BANKACCOUNTS, mmGUIFrame::OnViewBankAccounts)
-EVT_MENU(MENU_VIEW_TERMACCOUNTS, mmGUIFrame::OnViewTermAccounts)
-EVT_MENU(MENU_VIEW_STOCKACCOUNTS, mmGUIFrame::OnViewStockAccounts)
 EVT_MENU(MENU_VIEW_BUDGET_FINANCIAL_YEARS, mmGUIFrame::OnViewBudgetFinancialYears)
 EVT_MENU(MENU_VIEW_BUDGET_TRANSFER_TOTAL, mmGUIFrame::OnViewBudgetTransferTotal)
 EVT_MENU(MENU_VIEW_BUDGET_SETUP_SUMMARY, mmGUIFrame::OnViewBudgetSetupSummary)
@@ -246,8 +246,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 , toolBar_()
 , selectedItemData_()
 , helpFileIndex_(-1)
-, expandedReportNavTree_(true)
-, expandedBudgetingNavTree_(true)
 {
     // tell wxAuiManager to manage this frame
     m_mgr.SetManagedWindow(this);
@@ -763,16 +761,10 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SetItemData(help, new mmTreeItemData("Help"));
     navTreeCtrl_->SetItemBold(help, true);
 
-    /* Start Populating the dynamic data */
-    navTreeCtrl_->Expand(root);
-    if (expandedReportNavTree_)
-        navTreeCtrl_->Expand(reports);
-
     if (!m_db)
         return;
 
-    /* Load Nav Tree Control */
-
+    /* Start Populating the dynamic data */
     wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
     wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR || vAccts == VIEW_ACCOUNTS_OPEN_STR);
     if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
@@ -788,12 +780,14 @@ void mmGUIFrame::updateNavTreeControl()
         int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
         if (Model_Account::type(account) == Model_Account::INVESTMENT)
         {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
+            wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME
+                , selectedImage, selectedImage);
             navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
         }
         else if (Model_Account::type(account) == Model_Account::TERM)
         {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME, selectedImage, selectedImage);
+            wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME
+                , selectedImage, selectedImage);
             navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
         }
         else
@@ -803,20 +797,54 @@ void mmGUIFrame::updateNavTreeControl()
         }
     }
 
-    if (mmIniOptions::instance().expandBankTree_)
-        navTreeCtrl_->Expand(accounts);
-
-    if (mmIniOptions::instance().expandTermTree_)
-        navTreeCtrl_->Expand(termAccount);
-
-    if (mmIniOptions::instance().expandStocksTree_)
-        navTreeCtrl_->Expand(stocks);
-
+    loadNavTreeItemsStatus();
     if (!navTreeCtrl_->ItemHasChildren(accounts)) navTreeCtrl_->Delete(accounts);
     if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
     if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
-
     navTreeCtrl_->Connect(wxID_ANY, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
+}
+
+
+void mmGUIFrame::loadNavTreeItemsStatus()
+{
+    /* Load Nav Tree Control */
+    SetEvtHandlerEnabled(false);
+    wxTreeItemId root = navTreeCtrl_->GetRootItem();
+    navTreeCtrl_->Expand(root);
+
+    wxString str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
+    if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
+    std::stringstream ss;
+    ss << str.ToStdString();
+    json::Object o;
+    json::Reader::Read(o, ss);
+    wxLogDebug("read==========================================");
+    wxLogDebug("%s", str);
+
+    std::stack<wxTreeItemId> items;
+    if (navTreeCtrl_->GetRootItem().IsOk())
+        items.push(navTreeCtrl_->GetRootItem());
+
+    while (!items.empty())
+    {
+        wxTreeItemId next = items.top();
+        items.pop();
+
+        wxTreeItemIdValue cookie;
+        wxTreeItemId nextChild = navTreeCtrl_->GetFirstChild(next, cookie);
+        while (nextChild.IsOk())
+        {
+            if (navTreeCtrl_->HasChildren(nextChild)) items.push(nextChild);
+            nextChild = navTreeCtrl_->GetNextSibling(nextChild);
+        }
+
+        mmTreeItemData* iData =
+            dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(next));
+        if (iData && json::Boolean(o[iData->getString().ToStdString()]))
+            navTreeCtrl_->Expand(next);
+    };
+
+    SetEvtHandlerEnabled(true);
 }
 
 void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
@@ -824,11 +852,7 @@ void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
     mmTreeItemData* iData =
         dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
-
-    if (iData->getString() == "item@Reports")
-        expandedReportNavTree_ = true;
-    else if (iData->getString() == "item@Budgeting")
-        expandedBudgetingNavTree_ = true;
+    navTreeStateToJson();
 }
 //----------------------------------------------------------------------------
 
@@ -837,11 +861,42 @@ void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
     mmTreeItemData* iData =
         dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
+    navTreeStateToJson();
+}
 
-    if (iData->getString() == "item@Reports")
-        expandedReportNavTree_ = false;
-    else if (iData->getString() == "item@Budgeting")
-        expandedBudgetingNavTree_ = false;
+void mmGUIFrame::navTreeStateToJson()
+{
+    json::Object o;
+    o.Clear();
+
+    std::stack<wxTreeItemId> items;
+    if (navTreeCtrl_->GetRootItem().IsOk())
+        items.push(navTreeCtrl_->GetRootItem());
+
+    while (!items.empty())
+    {
+        wxTreeItemId next = items.top();
+        items.pop();
+
+        wxTreeItemIdValue cookie;
+        wxTreeItemId nextChild = navTreeCtrl_->GetFirstChild(next, cookie);
+        while (nextChild.IsOk())
+        {
+            if (navTreeCtrl_->HasChildren(nextChild)) items.push(nextChild);
+            nextChild = navTreeCtrl_->GetNextSibling(nextChild);
+        }
+
+        mmTreeItemData* iData =
+            dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(next));
+        if (iData && json::Boolean(navTreeCtrl_->IsExpanded(next)))
+            o[iData->getString().ToStdString()] = json::Boolean(navTreeCtrl_->IsExpanded(next));
+    };
+    std::stringstream ss;
+    json::Writer::Write(o, ss);
+    wxLogDebug("%s", ss.str());
+    wxLogDebug("==========================================");
+    Model_Infotable::instance().Set("NAV_TREE_STATUS", ss.str());
+
 }
 //----------------------------------------------------------------------------
 
@@ -1298,13 +1353,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemToolbar = new wxMenuItem(menuView, MENU_VIEW_TOOLBAR,
         _("&Toolbar"), _("Show/Hide the toolbar"), wxITEM_CHECK);
     wxMenuItem* menuItemLinks = new wxMenuItem(menuView, MENU_VIEW_LINKS,
-        _("&Navigation"), _("Show/Hide the Navigation tree control"), wxITEM_CHECK);
-    wxMenuItem* menuItemBankAccount = new wxMenuItem(menuView, MENU_VIEW_BANKACCOUNTS,
-        _("&Bank Accounts"), _("Expand Bank Accounts on navigation tree"), wxITEM_CHECK);
-    wxMenuItem* menuItemTermAccount = new wxMenuItem(menuView, MENU_VIEW_TERMACCOUNTS,
-        _("Term &Accounts"), _("Expand Term Accounts on navigation tree"), wxITEM_CHECK);
-    wxMenuItem* menuItemStockAccount = new wxMenuItem(menuView, MENU_VIEW_STOCKACCOUNTS,
-        _("&Stock Accounts"), _("Expand Stock Accounts on navigation tree"), wxITEM_CHECK);
+        _("&Navigation"), _("Show/Hide the Navigation tree control"), wxITEM_CHECK);;
     wxMenuItem* menuItemBudgetFinancialYears = new wxMenuItem(menuView, MENU_VIEW_BUDGET_FINANCIAL_YEARS,
         _("Budgets: As &Financial Years"), _("Display Budgets in Financial Year Format"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetTransferTotal = new wxMenuItem(menuView, MENU_VIEW_BUDGET_TRANSFER_TOTAL,
@@ -1319,10 +1368,6 @@ void mmGUIFrame::createMenu()
     //Add the menu items to the menu bar
     menuView->Append(menuItemToolbar);
     menuView->Append(menuItemLinks);
-    menuView->AppendSeparator();
-    menuView->Append(menuItemBankAccount);
-    menuView->Append(menuItemTermAccount);
-    menuView->Append(menuItemStockAccount);
     menuView->AppendSeparator();
 
     //    wxMenu* budgetingMenu = new wxMenu;
@@ -1505,9 +1550,6 @@ void mmGUIFrame::createMenu()
 
     SetMenuBar(menuBar_);
 
-    menuBar_->Check(MENU_VIEW_BANKACCOUNTS, mmIniOptions::instance().expandBankTree_);
-    menuBar_->Check(MENU_VIEW_TERMACCOUNTS, mmIniOptions::instance().expandTermTree_);
-    menuBar_->Check(MENU_VIEW_STOCKACCOUNTS, mmIniOptions::instance().expandStocksTree_);
     menuBar_->Check(MENU_VIEW_BUDGET_FINANCIAL_YEARS, mmIniOptions::instance().budgetFinancialYears_);
     menuBar_->Check(MENU_VIEW_BUDGET_TRANSFER_TOTAL, mmIniOptions::instance().budgetIncludeTransfers_);
     menuBar_->Check(MENU_VIEW_BUDGET_SETUP_SUMMARY, mmIniOptions::instance().budgetSetupWithoutSummaries_);
@@ -2124,9 +2166,6 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
     if (systemOptions.ShowModal() == wxID_OK)
     {
         //set the View Menu Option items the same as the options saved.
-        menuBar_->FindItem(MENU_VIEW_BANKACCOUNTS)->Check(mmIniOptions::instance().expandBankTree_);
-        menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Check(mmIniOptions::instance().expandTermTree_);
-        menuBar_->FindItem(MENU_VIEW_STOCKACCOUNTS)->Check(mmIniOptions::instance().expandStocksTree_);
         menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Check(mmIniOptions::instance().budgetFinancialYears_);
         menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Check(mmIniOptions::instance().budgetIncludeTransfers_);
         menuBar_->FindItem(MENU_VIEW_BUDGET_SETUP_SUMMARY)->Check(mmIniOptions::instance().budgetSetupWithoutSummaries_);
@@ -2511,19 +2550,16 @@ void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
 
 void mmGUIFrame::OnViewBankAccounts(wxCommandEvent &event)
 {
-    mmIniOptions::instance().expandBankTree_ = !mmIniOptions::instance().expandBankTree_;
     updateNavTreeControl();
 }
 
 void mmGUIFrame::OnViewTermAccounts(wxCommandEvent &event)
 {
-    mmIniOptions::instance().expandTermTree_ = !mmIniOptions::instance().expandTermTree_;
     updateNavTreeControl();
 }
 
 void mmGUIFrame::OnViewStockAccounts(wxCommandEvent &event)
 {
-    mmIniOptions::instance().expandStocksTree_ = !mmIniOptions::instance().expandStocksTree_;
     updateNavTreeControl();
 }
 
