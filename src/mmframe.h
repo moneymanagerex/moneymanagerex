@@ -35,9 +35,6 @@ enum
     MENU_GOTOACCOUNT,
     MENU_ASSETS,
 
-    MENU_VIEW_BANKACCOUNTS,
-    MENU_VIEW_TERMACCOUNTS,
-    MENU_VIEW_STOCKACCOUNTS,
     MENU_VIEW_BUDGET_FINANCIAL_YEARS,
     MENU_VIEW_BUDGET_SETUP_SUMMARY,
     MENU_VIEW_BUDGET_CATEGORY_SUMMARY,
@@ -153,6 +150,9 @@ private:
     void createBudgetingPage(int budgetYearID);
 
     void createControls();
+    /*Set nav tree items status from JSON data with stored in DB*/
+    void loadNavTreeItemsStatus();
+    /*save Settings LASTFILENAME AUIPERSPECTIVE SIZES*/
     void saveSettings();
     void menuEnableItems(bool enable);
     void updateNavTreeControl();
@@ -235,11 +235,9 @@ private:
     void OnViewFavoriteAccounts(wxCommandEvent& event);
     void OnViewOpenAccounts(wxCommandEvent& event);
 
-    bool expandedBudgetingNavTree_;
-    bool expandedReportNavTree_;
-
     void OnTreeItemExpanded(wxTreeEvent& event);
     void OnTreeItemCollapsed(wxTreeEvent& event);
+    void navTreeStateToJson();
 
     void processPendingEvents();
 
