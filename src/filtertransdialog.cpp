@@ -310,27 +310,6 @@ void mmFilterTransactionsDialog::CreateControls()
     notesEdit_ = new wxTextCtrl( itemPanel, wxID_ANY);
     itemPanelSizer->Add(notesEdit_, g_flagsExpand);
     //--End of Row --------------------------------------------------------
-    itemPanelSizer->Add(new wxStaticText(itemPanel, wxID_STATIC, _("Sort by")), g_flags);
-    wxArrayString sorterLabels;
-    sorterLabels.Add(wxTRANSLATE("Date"));
-    sorterLabels.Add(wxTRANSLATE("Account"));
-    sorterLabels.Add(wxTRANSLATE("Payee"));
-    sorterLabels.Add(wxTRANSLATE("Status"));
-    sorterLabels.Add(wxTRANSLATE("Category"));
-    sorterLabels.Add(wxTRANSLATE("Type"));
-    sorterLabels.Add(wxTRANSLATE("Amount"));
-    sorterLabels.Add(wxTRANSLATE("Number"));
-    sorterLabels.Add(wxTRANSLATE("Notes"));
-    sorterDropDown_ = new wxChoice(itemPanel
-        , wxID_ANY, wxDefaultPosition, wxSize(220, -1));
-    for (const auto& item : sorterLabels)
-    {
-        sorterDropDown_->Append(wxGetTranslation(item), new wxStringClientData(item));
-    }
-    sorterDropDown_->SetSelection(0);
-    itemPanelSizer->Add(sorterDropDown_, g_flagsExpand);
-
-    //--End of Row --------------------------------------------------------
 
     wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -624,7 +603,6 @@ void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
 void mmFilterTransactionsDialog::clearSettings()
 {
     settings_string_.Clear();
-    sorterDropDown_->SetSelection(0);
     dataToControls();
 }
 void mmFilterTransactionsDialog::datePresetMenuSelected( wxCommandEvent& event )
@@ -883,9 +861,6 @@ wxString mmFilterTransactionsDialog::to_json()
         if (!notes.empty()) o[L"NOTES"] = json::String(notes.ToStdWstring());
     }
 
-    wxStringClientData* obj = (wxStringClientData *) sorterDropDown_->GetClientObject(sorterDropDown_->GetSelection());
-    if (sorterDropDown_->GetSelection() && obj) o[L"SORTORDER"] = json::String(obj->GetData().ToStdWstring());
-
     std::wstringstream ss;
     json::Writer::Write(o, ss);
     return ss.str();
@@ -903,9 +878,6 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     //Label
     m_settingLabel->ChangeValue(wxString(json::String(o[L"LABEL"])));
     
-    //Sort order
-    sorterDropDown_->SetStringSelection(wxGetTranslation(wxString(json::String(o[L"SORTORDER"]))));
-
     //Account
     accountCheckBox_->SetValue(!wxString(json::String(o[L"ACCOUNT"])).empty());
     accountDropDown_->Enable(accountCheckBox_->IsChecked());
