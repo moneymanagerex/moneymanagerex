@@ -382,31 +382,6 @@ void mmOptionsDialog::CreateControls()
     choiceFontSize_->SetToolTip(_("Specify which font size is used on the report tables"));
     view_sizer1->Add(choiceFontSize_, g_flags);
 
-    // Navigation Tree Expansion Options
-    wxStaticBox* navTreeOptionsStaticBox = new wxStaticBox(viewsPanel
-        , wxID_STATIC, _("Navigation Tree Expansion Options"));
-    navTreeOptionsStaticBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* navTreeOptionsStaticBoxSizer = new wxStaticBoxSizer(navTreeOptionsStaticBox, wxVERTICAL);
-    viewsPanelSizer->Add(navTreeOptionsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-
-    wxCheckBox* expandBankCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_BANK_TREE
-        , _("Bank Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    expandBankCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_BANK_TREE",true));
-    expandBankCheckBox->SetToolTip(_("Expand Bank Accounts in Trew View when tree is refreshed"));
-    navTreeOptionsStaticBoxSizer->Add(expandBankCheckBox, g_flags);
-
-    wxCheckBox* expandTermCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_TERM_TREE
-        , _("Term Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    expandTermCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_TERM_TREE",false));
-    expandTermCheckBox->SetToolTip(_("Expand Term Accounts in Trew View when tree is refreshed"));
-    navTreeOptionsStaticBoxSizer->Add(expandTermCheckBox, g_flags);
-
-    wxCheckBox* expandStocksCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_STOCKS_TREE
-        , _("Stock Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    expandStocksCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_STOCKS_TREE", false));
-    expandStocksCheckBox->SetToolTip(_("Expand Stocks Accounts in Trew View when tree is refreshed"));
-    navTreeOptionsStaticBoxSizer->Add(expandStocksCheckBox, g_flags);
-
     // Budget options
     cbBudgetFinancialYears_ = new wxCheckBox(viewsPanel, wxID_STATIC, _("View Budgets as Financial Years")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
@@ -1086,18 +1061,6 @@ void mmOptionsDialog::SaveViewPanelSettings()
     int size = choiceFontSize_->GetCurrentSelection() + 1;
     mmIniOptions::instance().html_font_size_ = size;
     Model_Setting::instance().Set("HTMLFONTSIZE", size);
-
-    wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_BANK_TREE);
-    mmIniOptions::instance().expandBankTree_ = itemCheckBox->GetValue();
-    Model_Setting::instance().Set("EXPAND_BANK_TREE", itemCheckBox->GetValue() );
-
-    itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_TERM_TREE);
-    mmIniOptions::instance().expandTermTree_ = itemCheckBox->GetValue();
-    Model_Setting::instance().Set("EXPAND_TERM_TREE", itemCheckBox->GetValue() );
-
-    itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_STOCKS_TREE);
-    mmIniOptions::instance().expandStocksTree_ = itemCheckBox->GetValue();
-    Model_Setting::instance().Set("EXPAND_STOCKS_TREE", itemCheckBox->GetValue());
 
     mmIniOptions::instance().budgetFinancialYears_ = cbBudgetFinancialYears_->GetValue();
     Model_Setting::instance().Set(INIDB_BUDGET_FINANCIAL_YEARS, mmIniOptions::instance().budgetFinancialYears_);

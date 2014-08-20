@@ -50,7 +50,7 @@ private:
 public:
     void append(const json::Object& o);
     void append_cache_usage(const json::Object& o);
-    std::string to_string() const;
+    std::wstring to_string() const;
 
 public:
     static bool send();

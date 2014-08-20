@@ -85,7 +85,7 @@ struct DB_Table_%s : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::string to_json() const
+        std::wstring to_json() const
         {
             json::Array a;
             for (const auto & item: *this)
@@ -94,7 +94,7 @@ struct DB_Table_%s : public DB_Table
                 item.to_json(o);
                 a.Insert(o);
             }
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(a, ss);
             return ss.str();
         }
@@ -321,7 +321,7 @@ struct DB_Table_%s : public DB_Table
         {
             json::Object o;
             this->to_json(o);
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
@@ -333,10 +333,10 @@ struct DB_Table_%s : public DB_Table
             type = base_data_types_reverse[field['type']]
             if type == 'wxString':
                 s += '''
-            o["%s"] = json::String(this->%s.ToStdString());''' % (field['name'], field['name'])
+            o[L"%s"] = json::String(this->%s.ToStdWstring());''' % (field['name'], field['name'])
             else:
                 s += '''
-            o["%s"] = json::Number(this->%s);''' % (field['name'], field['name'])
+            o[L"%s"] = json::Number(this->%s);''' % (field['name'], field['name'])
             
         s +='''
             return 0;
