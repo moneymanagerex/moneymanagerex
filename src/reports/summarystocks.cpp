@@ -277,7 +277,9 @@ wxString mmReportChartStocks::getHTMLText()
             mmGraphHistoryStocks gg;
             gg.init(aData, index);
             gg.Generate("");
-            hb.addImage(gg.getOutputFileName());
+//TODO Fix
+// Removed so it will build
+//          hb.addImage(gg.getOutputFileName());
             hb.addHeader(1, stock.STOCKNAME);
         }
 
