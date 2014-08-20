@@ -814,8 +814,8 @@ void mmGUIFrame::loadNavTreeItemsStatus()
 
     wxString str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
     if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
-    std::stringstream ss;
-    ss << str.ToStdString();
+    std::wstringstream ss;
+    ss << str.ToStdWstring();
     json::Object o;
     json::Reader::Read(o, ss);
     wxLogDebug("read==========================================");
@@ -840,7 +840,7 @@ void mmGUIFrame::loadNavTreeItemsStatus()
 
         mmTreeItemData* iData =
             dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(next));
-        if (iData && json::Boolean(o[iData->getString().ToStdString()]))
+        if (iData && json::Boolean(o[iData->getString().ToStdWstring()]))
             navTreeCtrl_->Expand(next);
     };
 
@@ -889,9 +889,9 @@ void mmGUIFrame::navTreeStateToJson()
         mmTreeItemData* iData =
             dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(next));
         if (iData && json::Boolean(navTreeCtrl_->IsExpanded(next)))
-            o[iData->getString().ToStdString()] = json::Boolean(navTreeCtrl_->IsExpanded(next));
+            o[iData->getString().ToStdWstring()] = json::Boolean(navTreeCtrl_->IsExpanded(next));
     };
-    std::stringstream ss;
+    std::wstringstream ss;
     json::Writer::Write(o, ss);
     wxLogDebug("%s", ss.str());
     wxLogDebug("==========================================");
