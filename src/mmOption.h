@@ -52,10 +52,6 @@ public:
     int account_image_id(int account_id);
     int html_font_size_;
 
-    bool expandBankTree_;
-    bool expandTermTree_;
-    bool expandStocksTree_;
-
     bool budgetFinancialYears_;
     bool budgetIncludeTransfers_;
     bool budgetSetupWithoutSummaries_;
