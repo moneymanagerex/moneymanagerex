@@ -711,7 +711,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
 {
     bool bDeposit = transaction_->TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT];
 
-    if (transaction_->CATEGID > -1)
+    if (transaction_->CATEGID > -1 && m_local_splits.empty())
     {
         if (!textAmount_->GetDouble(transaction_->TRANSAMOUNT))
             transaction_->TRANSAMOUNT = 0;
@@ -720,6 +720,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
         split->SPLITTRANSAMOUNT = bDeposit ? transaction_->TRANSAMOUNT : transaction_->TRANSAMOUNT;
         split->CATEGID = transaction_->CATEGID;
         split->SUBCATEGID = transaction_->SUBCATEGID;
+        split->TRANSID = transaction_->TRANSID;
         m_local_splits.push_back(*split);
     }
 
@@ -731,6 +732,9 @@ void mmTransDialog::activateSplitTransactionsDlg()
         transaction_->SUBCATEGID = -1;
         skip_category_init_ = false;
         category_changed_ = dlg.isItemsChanged();
+        for (auto &split_item : m_local_splits)
+            split_item.TRANSID = transaction_->TRANSID;
+        Model_Splittransaction::instance().save(m_local_splits);
     }
 }
 
@@ -853,6 +857,14 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
     }
     else
     {
+        if (m_local_splits.size() > 1)
+        {
+            //Delete split items first (data protection)
+            cSplit_->SetValue(true);
+        }
+        else 
+        {
+
         if (m_local_splits.size() == 1)
         {
             transaction_->CATEGID = m_local_splits.begin()->CATEGID;
@@ -864,15 +876,14 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
                 transaction_->TRANSAMOUNT = -transaction_->TRANSAMOUNT;
                 transaction_type_->SetSelection(Model_Checking::WITHDRAWAL);
             }
-            m_local_splits.clear();
-        }
-        else if (m_local_splits.empty())
-        {
-            transaction_->TRANSAMOUNT = 0;
         }
         else
-            //Delete split items first (data protection)
-            cSplit_->SetValue(true);
+            transaction_->TRANSAMOUNT = 0;
+
+        for (const auto& item : Model_Checking::splittransaction(transaction_))
+            Model_Splittransaction::instance().remove(item.SPLITTRANSID);
+        }
+        m_local_splits.clear();
     }
     skip_category_init_ = false;
     dataToControls();
@@ -1039,7 +1050,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 		mmAttachmentManage::RelocateAllAttachments(RefType, old_transaction_id, transaction_id_);
 	}
 
-    //wxLogDebug(transaction_->to_json());      //Commented because cause debug crash if note contains % sign
+    wxLogDebug("%s", transaction_->to_json());
     EndModal(wxID_OK);
 }
 

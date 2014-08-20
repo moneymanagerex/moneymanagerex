@@ -55,7 +55,8 @@ SplitTransactionDialog::SplitTransactionDialog( wxWindow* parent
     , accountID_(accountID)
     , items_changed_(false)
 {
-    for (const auto &item : *m_splits) m_local_splits.push_back(item);
+    for (const auto &item : *m_splits)
+        m_local_splits.push_back(item);
 
     transType_ = transType;
     selectedIndex_ = -1;
