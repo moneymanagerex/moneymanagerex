@@ -502,35 +502,37 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             mmWebApp::WebApp_UpdateAccount();
             mmWebApp::WebApp_UpdatePayee();
             mmWebApp::WebApp_UpdateCategory();
-            if (mmWebApp::WebApp_CheckNewTransaction())
+
+            int NewTransactions = mmWebApp::WebApp_CheckNewTransaction();
+            if (NewTransactions > 0)
             {
                 wxString msgStr = wxString() << _("New transactions found on web app") << "\n" <<
-                    _("Do you want to downlaod them?");
+                    _("Do you want to download them?");
                 int NewTransactionResponse = wxMessageBox(msgStr, _("Download WebApp new transaction"), wxYES_NO);
                 if (NewTransactionResponse == wxYES)
                 {
-                    while (mmWebApp::WebApp_CheckNewTransaction())
+                    wxString NewTransactionJSON;
+                    if (mmWebApp::WebApp_DownloadNewTransaction(NewTransactionJSON))
                     {
-                        wxString NewTransactionJSON;
-                        if (mmWebApp::WebApp_DownloadNewTransaction(NewTransactionJSON))
+                        for (int i = 0; i < NewTransactions - 1; i++)
                         {
-                            int InsertedTransactionID = mmWebApp::MMEX_InsertNewTransaction(NewTransactionJSON);
+                            int InsertedTransactionID = mmWebApp::MMEX_InsertNewTransaction(NewTransactionJSON, i);
                             if (InsertedTransactionID > 0)
                             {
                                 mmTransDialog EditTransactionDialog(this, 1, InsertedTransactionID);
                                 EditTransactionDialog.ShowModal();
                             }
-                            else
+                            else if (InsertedTransactionID == 0)
                             {
                                 wxString msgStr = wxString() << _("Unable to insert transaction in MMEX database") << "\n";
                                 wxMessageBox(msgStr, _("WebApp communication error"), wxICON_ERROR);
                             }
                         }
-                        else
-                        {
-                            wxString msgStr = wxString() << _("Unable to download new transaction from WebApp") << "\n";
-                            wxMessageBox(msgStr, _("WebApp communication error"), wxICON_ERROR);
-                        }
+                    }
+                    else
+                    {
+                        wxString msgStr = wxString() << _("Unable to download new transaction from WebApp") << "\n";
+                        wxMessageBox(msgStr, _("WebApp communication error"), wxICON_ERROR);
                     }
                 }
                 else
