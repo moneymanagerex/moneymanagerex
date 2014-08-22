@@ -123,6 +123,11 @@ private:
 
     bool allowType(const wxString& typeState, bool sameAccount) const;
 
+    bool getPayeeCheckBox()
+    {
+        return payeeCheckBox_->IsChecked();
+    }
+
     bool getNumberCheckBox()
     {
         return transNumberCheckBox_->IsChecked();

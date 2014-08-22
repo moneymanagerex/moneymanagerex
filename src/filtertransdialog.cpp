@@ -490,7 +490,7 @@ bool mmFilterTransactionsDialog::somethingSelected()
     return
         getAccountCheckBox()
         || getDateRangeCheckBox()
-        || payeeCheckBox_->IsChecked()
+        || getPayeeCheckBox()
         || getCategoryCheckBox()
         || getStatusCheckBox()
         || getTypeCheckBox()
@@ -694,40 +694,33 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::checkPayee(const DATA &tran)
 {
-    if (MODEL::type(tran) != MODEL::TRANSFER && payeeCheckBox_->IsChecked())
-    {
-        const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
-        if (payee)
-            return cbPayee_->GetValue().Lower() == (payee->PAYEENAME).Lower();
-        return false;
-    }
-    return true;
+    const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
+    if (payee)
+        return cbPayee_->GetValue().Lower() == (payee->PAYEENAME).Lower();
+    return false;
 }
 
 template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::checkCategory(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits)
 {
-    if (categoryCheckBox_->IsChecked())
+    const auto it = splits.find(tran.id());
+    if (it == splits.end())
     {
-        const auto it = splits.find(tran.id());
-        if (it == splits.end())
+        if (categID_ != tran.CATEGID) return false;
+        if (subcategID_ != tran.SUBCATEGID && !bSimilarCategoryStatus_) return false;
+    }
+    else
+    {
+        bool bMatching = false;
+        for (const auto &split : it->second)
         {
-            if (categID_ != tran.CATEGID) return false;
-            if (subcategID_ != tran.SUBCATEGID && !bSimilarCategoryStatus_) return false;
-        }
-        else
-        {
-            bool bMatching = false;
-            for (const auto &split : it->second)
-            {
-                if (split.CATEGID != categID_) continue;
-                if (split.SUBCATEGID != subcategID_ && !bSimilarCategoryStatus_) continue;
+            if (split.CATEGID != categID_) continue;
+            if (split.SUBCATEGID != subcategID_ && !bSimilarCategoryStatus_) continue;
 
-                bMatching = true;
-                break;
-            }
-            if (!bMatching) return false;
+            bMatching = true;
+            break;
         }
+        if (!bMatching) return false;
     }
     return true;
 }
@@ -744,8 +737,8 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, cons
             getFromDateCtrl().GetDateOnly(), getToDateControl().GetDateOnly())
     )
         ok = false;
-    else if (!checkPayee<Model_Checking>(tran)) ok = false;
-    else if (!checkCategory<Model_Checking>(tran, splits)) ok = false;
+    else if (getPayeeCheckBox() && !checkPayee<Model_Checking>(tran)) ok = false;
+    else if (getCategoryCheckBox() && !checkCategory<Model_Checking>(tran, splits)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
@@ -764,8 +757,8 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran,
             , getToDateControl().GetDateOnly()
         )
     ) ok = false;
-    else if (!checkPayee<Model_Billsdeposits>(tran)) ok = false;
-    else if (!checkCategory<Model_Billsdeposits>(tran, splits)) ok = false;
+    else if (getPayeeCheckBox() && !checkPayee<Model_Billsdeposits>(tran)) ok = false;
+    else if (getCategoryCheckBox() && !checkCategory<Model_Billsdeposits>(tran, splits)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, true)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
