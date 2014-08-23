@@ -20,6 +20,7 @@
 #ifndef MM_EX_TRANSDIALOG_H_
 #define MM_EX_TRANSDIALOG_H_
 
+#include "splittransactionsdialog.h"
 #include "defs.h"
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Checking.h"
@@ -29,6 +30,25 @@
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
+
+struct transaction_data
+{
+    int TRANSID;
+    wxString TRANSDATE;
+    wxString STATUS;
+    int ACCOUNTID;
+    int TOACCOUNTID;
+    wxString TRANSCODE;
+    int CATEGID;
+    int SUBCATEGID;
+    double TRANSAMOUNT;
+    double TOTRANSAMOUNT;
+    int FOLLOWUPID;
+    wxString NOTES;
+    wxString TRANSACTIONNUMBER;
+    int PAYEEID;
+    std::vector<Split> local_splits;
+};
 
 class mmTransDialog : public wxDialog
 {
@@ -55,8 +75,8 @@ public:
 
     void SetDialogTitle(const wxString& title);
     int getAccountID() { return accountID_; }
-    int getToAccountID() { return transaction_->TOACCOUNTID; }
-    int getTransactionID() { return transaction_->TRANSID; }
+    int getToAccountID() { return m_trx_data.TOACCOUNTID; }
+    int getTransactionID() { return transaction_id_; }
 
 private:
     void CreateControls();
@@ -104,6 +124,7 @@ private:
     wxStaticText* payee_label_;
 
     bool m_transfer;
+    bool m_new_trx;
     bool categUpdated_;
     bool advancedToTransAmountSet_;
 
@@ -114,8 +135,8 @@ private:
     int object_in_focus_;
     wxString resetPayeeString(/*bool normal = true*/);
 
-    Model_Checking::Data * transaction_;
-    Model_Splittransaction::Data_Set m_local_splits;
+    transaction_data m_trx_data;
+
     int accountID_; //The transaction account ID //TODO: may be Model_Account ?
     int referenceAccountID_; // used for transfer transactions
     int transaction_id_; //The transaction ID. nullptr if new transaction

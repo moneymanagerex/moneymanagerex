@@ -336,7 +336,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
         if (account)
         {
             r.ACCOUNTNAME = account->ACCOUNTNAME;
-            if (Model_Billsdeposits::type(r) == Model_Billsdeposits::TRANSFER)
+            if (Model_Billsdeposits::type(r.TRANSCODE) == Model_Billsdeposits::TRANSFER)
             {
                 Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
                 if (to_account)
