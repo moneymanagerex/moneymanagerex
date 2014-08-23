@@ -378,7 +378,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON, int& TrPro
 {
     int DeskNewTrID = 0;
     std::wstring TrProgrStr = std::to_wstring(TrProgressive);
-    boolean bDeleteTrWebApp = false;
+    bool bDeleteTrWebApp = false;
     json::Object jsonTransaction;
     std::wstringstream jsonTransactionStream;
 

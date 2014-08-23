@@ -82,14 +82,14 @@ public:
     Record(){}
     ~Record(){}
     /* Access functions for LuaGlue (The required conversion between char and wchar_t is done through wxString.) */
-    std::string get(const char* index) { return wxString((*this)[wxString(index).ToStdWstring()]).ToStdString(); }
+    std::string get(const char* index) { return std::string(wxString((*this)[wxString(index).ToStdWstring()]).ToUTF8()); }
     void set(const char* index, const char * val)
     {
-        (*this)[wxString(index).ToStdWstring()] = wxString(val).ToStdWstring();
+        (*this)[wxString(index).ToStdWstring()] = wxString::FromUTF8(val).ToStdWstring();
     }
     std::string GetDir(const char * val)
     {
-        return mmex::getPathAttachment(wxString(val).ToStdWstring()).ToStdString();
+        return std::string(mmex::getPathAttachment(wxString::FromUTF8(val).ToStdWstring()).ToUTF8());
     }
 };
 
@@ -177,7 +177,7 @@ wxString Model_Report::get_html(const Data* r)
         end().open().glue();
 
     bool skip_lua = r->LUACONTENT.IsEmpty();
-    bool lua_status = state.doString(r->LUACONTENT.ToStdString());
+    bool lua_status = state.doString(std::string(r->LUACONTENT.ToUTF8()));
     if (!skip_lua && !lua_status)
     {
         error(L"ERROR") = wxString("failed to doString : ") + r->LUACONTENT + wxString(" err: ") + wxString(state.lastError());
