@@ -18,7 +18,7 @@ cls
 
 REM Set the variable: mmex_release_version
 REM to reflect the correct version.
-set mmex_release_version=mmex_1.1.0-rc3
+set mmex_release_version=mmex_1.1.0
 
 set mmex_system_name=MoneyManagerEX
 set mmex_build_location=..\..\build\msw-vc-2013e
@@ -110,6 +110,7 @@ copy "..\..\resources\mmex.ico"        "%mmex_build_dir%\res"
 copy "..\..\resources\master.css"      "%mmex_build_dir%\res"
 copy "..\..\resources\home_page.htt"   "%mmex_build_dir%\res"
 copy "..\..\3rd\Chart.js\Chart.js"     "%mmex_build_dir%\res"
+copy "..\..\3rd\ChartNew.js\ChartNew.js"       "%mmex_build_dir%\res"
 copy "..\..\3rd\sorttable.js\sorttable.js"     "%mmex_build_dir%\res"
 @echo ------------------------------------------------------------------------
 @echo.

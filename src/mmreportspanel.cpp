@@ -79,13 +79,6 @@ public:
                 }
             }
         }
-        else if (uri.StartsWith("sort:", &sData))
-        {
-            long sortColumn = -1;
-            sData.ToLong(&sortColumn);
-            m_reportPanel->rb_->setSortColumn(sortColumn);
-            m_reportPanel->browser_->SetPage(m_reportPanel->getReportText(), mmex::GetResourceDir().GetPath() + "/");
-        }
 
         return nullptr;
     }   
@@ -136,9 +129,9 @@ wxString mmReportsPanel::getReportText()
     if (rb_)
     {
         json::Object o;
-        o["module"] = json::String("Report");
-        o["name"] = json::String(rb_->title().ToStdString());
-        o["start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
+        o[L"module"] = json::String(L"Report");
+        o[L"name"] = json::String(rb_->title().ToStdWstring());
+        o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
 
         htmlreport_ = rb_->getHTMLText();
 
@@ -146,7 +139,7 @@ wxString mmReportsPanel::getReportText()
         wxTextOutputStream index_file(index_output);
         index_file << htmlreport_;
         index_output.Close();
-        o["end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
+        o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
         Model_Usage::instance().append(o);
     }
     return htmlreport_;
@@ -172,7 +165,6 @@ void mmReportsPanel::CreateControls()
     browser_ = wxWebView::New(this, wxID_ANY);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trxid")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "sort")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trx")));
 
     itemBoxSizer2->Add(browser_, 1, wxGROW|wxALL, 1);

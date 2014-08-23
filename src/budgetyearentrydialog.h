@@ -25,8 +25,8 @@ class wxSpinCtrl;
 
 class mmBudgetYearEntryDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmBudgetYearDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmBudgetYearDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmBudgetYearEntryDialog();

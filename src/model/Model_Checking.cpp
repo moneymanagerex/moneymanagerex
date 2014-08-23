@@ -372,8 +372,8 @@ void Model_Checking::getFrequentUsedNotes(const int account_id, std::vector<std:
     wxSQLite3ResultSet q1 = stmt.ExecuteQuery();
     while (q1.NextRow())
     {
-        wxString noteSTR = q1.GetString(wxT("NOTE"));
-        wxString notes = q1.GetString(wxT("NOTES"));
+        wxString noteSTR = q1.GetString("NOTE");
+        wxString notes = q1.GetString("NOTES");
         frequentNotes.push_back(std::make_pair(noteSTR, notes));
     }
 }

@@ -79,9 +79,9 @@ class mmOtherSettingPanel: public mmSettingPanel
     // TODO
 };
 
-IMPLEMENT_DYNAMIC_CLASS( mmOptionsDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmOptionsDialog::OnOk)
     //EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnApply)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmOptionsDialog::OnCurrency)
@@ -91,7 +91,7 @@ BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 9, mmOptionsDialog::OnAttachmentsMenu)
     EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, mmOptionsDialog::OnAttachmentsPathChanged)
     EVT_CHECKBOX(ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER, mmOptionsDialog::OnAttachmentsSubfolderChanged)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmOptionsDialog::mmOptionsDialog( )
 {
@@ -256,7 +256,7 @@ void mmOptionsDialog::CreateControls()
     dateFormatStaticBoxSizer->Add(new wxStaticText(generalPanel, wxID_STATIC,
         _("New date format sample:")), wxSizerFlags(g_flags).Border(wxLEFT, 15));
     dateFormatStaticBoxSizer->Add(sampleDateText_, wxSizerFlags(g_flags).Border(wxLEFT, 5));
-    sampleDateText_->SetLabel(wxDateTime::Now().Format(dateFormat_));
+    sampleDateText_->SetLabelText(wxDateTime::Now().Format(dateFormat_));
 
     // Financial Year Settings
     wxStaticBox* financialYearStaticBox = new wxStaticBox(generalPanel, wxID_ANY, _("Financial Year"));
@@ -381,31 +381,6 @@ void mmOptionsDialog::CreateControls()
 
     choiceFontSize_->SetToolTip(_("Specify which font size is used on the report tables"));
     view_sizer1->Add(choiceFontSize_, g_flags);
-
-    // Navigation Tree Expansion Options
-    wxStaticBox* navTreeOptionsStaticBox = new wxStaticBox(viewsPanel
-        , wxID_STATIC, _("Navigation Tree Expansion Options"));
-    navTreeOptionsStaticBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* navTreeOptionsStaticBoxSizer = new wxStaticBoxSizer(navTreeOptionsStaticBox, wxVERTICAL);
-    viewsPanelSizer->Add(navTreeOptionsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-
-    wxCheckBox* expandBankCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_BANK_TREE
-        , _("Bank Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    expandBankCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_BANK_TREE",true));
-    expandBankCheckBox->SetToolTip(_("Expand Bank Accounts in Trew View when tree is refreshed"));
-    navTreeOptionsStaticBoxSizer->Add(expandBankCheckBox, g_flags);
-
-    wxCheckBox* expandTermCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_TERM_TREE
-        , _("Term Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    expandTermCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_TERM_TREE",false));
-    expandTermCheckBox->SetToolTip(_("Expand Term Accounts in Trew View when tree is refreshed"));
-    navTreeOptionsStaticBoxSizer->Add(expandTermCheckBox, g_flags);
-
-    wxCheckBox* expandStocksCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_STOCKS_TREE
-        , _("Stock Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    expandStocksCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_STOCKS_TREE", false));
-    expandStocksCheckBox->SetToolTip(_("Expand Stocks Accounts in Trew View when tree is refreshed"));
-    navTreeOptionsStaticBoxSizer->Add(expandStocksCheckBox, g_flags);
 
     // Budget options
     cbBudgetFinancialYears_ = new wxCheckBox(viewsPanel, wxID_STATIC, _("View Budgets as Financial Years")
@@ -868,7 +843,7 @@ void mmOptionsDialog::OnLanguageChanged(wxCommandEvent& /*event*/)
 
     wxButton *btn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
     wxASSERT(btn);
-    btn->SetLabel(lang.Left(1).Upper() + lang.SubString(1,lang.Len()));
+    btn->SetLabelText(lang.Left(1).Upper() + lang.SubString(1, lang.Len()));
 }
 
 void mmOptionsDialog::OnCurrency(wxCommandEvent& /*event*/)
@@ -879,7 +854,7 @@ void mmOptionsDialog::OnCurrency(wxCommandEvent& /*event*/)
     {
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID);
         wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
-        bn->SetLabel(currency->CURRENCYNAME);
+        bn->SetLabelText(currency->CURRENCYNAME);
         currencyId_ = currencyID;
 
         wxMessageDialog msgDlg(this, _("Remember to update currency rate"), _("Important note"));
@@ -894,7 +869,7 @@ void mmOptionsDialog::OnDateFormatChanged(wxCommandEvent& /*event*/)
     {
         dateFormat_ = data->GetData();
         mmOptions::instance().dateFormat_ = dateFormat_;
-        sampleDateText_->SetLabel(wxDateTime::Now().Format(dateFormat_));
+        sampleDateText_->SetLabelText(wxDateTime::Now().Format(dateFormat_));
     }
     else
         return;
@@ -984,7 +959,7 @@ void mmOptionsDialog::OnAttachmentsPathChanged(wxCommandEvent& event)
     wxString AttachmentsFolder = mmex::getPathAttachment(att->GetValue());
 
     wxStaticText* text = (wxStaticText*)FindWindow(ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT);
-    text->SetLabel(_("Real path:") + "\n" + AttachmentsFolder);
+    text->SetLabelText(_("Real path:") + "\n" + AttachmentsFolder);
 }
 
 void mmOptionsDialog::OnAttachmentsSubfolderChanged(wxCommandEvent& event)
@@ -1086,18 +1061,6 @@ void mmOptionsDialog::SaveViewPanelSettings()
     int size = choiceFontSize_->GetCurrentSelection() + 1;
     mmIniOptions::instance().html_font_size_ = size;
     Model_Setting::instance().Set("HTMLFONTSIZE", size);
-
-    wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_BANK_TREE);
-    mmIniOptions::instance().expandBankTree_ = itemCheckBox->GetValue();
-    Model_Setting::instance().Set("EXPAND_BANK_TREE", itemCheckBox->GetValue() );
-
-    itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_TERM_TREE);
-    mmIniOptions::instance().expandTermTree_ = itemCheckBox->GetValue();
-    Model_Setting::instance().Set("EXPAND_TERM_TREE", itemCheckBox->GetValue() );
-
-    itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_STOCKS_TREE);
-    mmIniOptions::instance().expandStocksTree_ = itemCheckBox->GetValue();
-    Model_Setting::instance().Set("EXPAND_STOCKS_TREE", itemCheckBox->GetValue());
 
     mmIniOptions::instance().budgetFinancialYears_ = cbBudgetFinancialYears_->GetValue();
     Model_Setting::instance().Set(INIDB_BUDGET_FINANCIAL_YEARS, mmIniOptions::instance().budgetFinancialYears_);

@@ -30,15 +30,15 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/reconciled.xpm"
 #include "../resources/void.xpm"
 
-IMPLEMENT_DYNAMIC_CLASS( mmQIFImportDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmQIFImportDialog, wxDialog);
 
-BEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
     EVT_CHECKBOX(wxID_ANY, mmQIFImportDialog::OnCheckboxClick )
     EVT_BUTTON(wxID_OK, mmQIFImportDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
     EVT_CHOICE(wxID_ANY, mmQIFImportDialog::OnAccountChanged)
     EVT_CLOSE(mmQIFImportDialog::OnQuit)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
 : m_userDefinedDateMask(false)
@@ -404,7 +404,9 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
         }
     }
 
-    if (trx.find(Payee) != trx.end() && !isTransfer) {
+    if (!isTransfer) {
+        if (trx.find(Payee) == trx.end())
+            trx[Payee] = _("Unknown");
         if (m_QIFpayeeNames.find(trx[Payee]) == m_QIFpayeeNames.end()) {
             m_QIFpayeeNames[trx[Payee]] = -1;
         }
@@ -764,6 +766,15 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     , /*out*/ Model_Checking::Data* trx)
 {
     auto t = i;
+    bool transfer = t[TrxType] == Model_Checking::all_type()[Model_Checking::TRANSFER];
+    trx->TRANSCODE = (t.find(TrxType) != t.end() ? t[TrxType] : "");
+    if (trx->TRANSCODE.empty())
+        return false;
+
+    trx->PAYEEID = (t.find(Payee) != t.end() ? m_QIFpayeeNames[t.at(Payee)] : -1);
+    if (trx->PAYEEID == -1 && !transfer)
+        return false;
+
     wxString dateStr = (t.find(Date) != t.end() ? t[Date] : "");
     dateStr.Replace(" ", "");
     wxDateTime dtdt;
@@ -772,7 +783,6 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     else
         return false;
 
-    bool transfer = t[TrxType] == Model_Checking::all_type()[Model_Checking::TRANSFER];
     int accountID = -1;
     wxString accountName = (t.find(AccountName) != t.end() ? t[AccountName] : "");
     if ((accountName.empty() || accountCheckBox_->IsChecked()) && !transfer)
@@ -784,22 +794,17 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     trx->TOACCOUNTID = (t.find(ToAccountName) != t.end() ? (m_QIFaccountsID.find(t[ToAccountName]) != m_QIFaccountsID.end() ? m_QIFaccountsID[t[ToAccountName]] : -1) : -1);
     if (trx->ACCOUNTID == trx->TOACCOUNTID && transfer)
         return false;
-    trx->PAYEEID = (t.find(Payee) != t.end() ? m_QIFpayeeNames[t.at(Payee)] : -1); //TODO: transfer?
-    if (trx->PAYEEID == -1 && !transfer)
-        return false;
+
     trx->TRANSACTIONNUMBER = (t.find(TransNumber) != t.end() ? t[TransNumber] : "");
     trx->NOTES = (t.find(Memo) != t.end() ? t[Memo] : "");
     trx->STATUS = "";
     trx->FOLLOWUPID = -1;
     double amt;
-    if (!wxString(t.find(Amount) != t.end() ? t[Amount] : "").ToDouble(&amt))
+    const wxString value = t.find(Amount) != t.end() ? t[Amount] : "";
+    if (!Model_Currency::fromString(value, amt))
         return false;
     trx->TRANSAMOUNT = fabs(amt);
     trx->TOTRANSAMOUNT = amt;
-
-    trx->TRANSCODE = (t.find(TrxType) != t.end() ? t[TrxType] : "");
-    if (trx->TRANSCODE.empty())
-        return false;
 
     if (t.find(CategorySplit) != t.end()) {
         Model_Splittransaction::Cache split;

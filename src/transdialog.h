@@ -32,8 +32,8 @@ class mmTextCtrl;
 
 class mmTransDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmTransDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmTransDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmTransDialog() {}

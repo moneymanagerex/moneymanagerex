@@ -18,10 +18,10 @@
 
 #include "categexp.h"
 #include "budget.h"
+#include "htmlbuilder.h"
 
 #include "htmlbuilder.h"
 #include "mmOption.h"
-#include "mmgraphpie.h"
 #include <algorithm>
 #include "model/Model_Category.h"
 
@@ -30,8 +30,7 @@
 
 mmReportCategoryExpenses::mmReportCategoryExpenses
 (mmDateRange* date_range, const wxString& title, int type)
-: mmPrintableBase(CATEGORY_SORT_BY_NAME)
-, date_range_(date_range)
+: date_range_(date_range)
 , title_(title)
 , type_(type)
 , ignoreFutureDate_(mmIniOptions::instance().ignoreFutureTransactions_)
@@ -49,8 +48,7 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
 void  mmReportCategoryExpenses::RefreshData()
 {
     data_.clear();
-    valueList_.clear();
-    valueListTotals_.clear();
+    wxString color;
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , date_range_
@@ -58,25 +56,9 @@ void  mmReportCategoryExpenses::RefreshData()
         , false
         , with_date_);
 
-    for (const auto& entry : categoryStats)
-    {
-        wxString categName = "";
-        Model_Category::Data *category = Model_Category::instance().get(entry.first);
-        if (category) categName = category->CATEGNAME;
-
-        double categ_total = entry.second.at(-1).at(0);
-        for (const auto &subentry : entry.second)
-        {
-            double subcateg_total = subentry.second.at(0);
-            if ((type_ == GOES && subcateg_total > 0.0) || (type_ == COME && subcateg_total < 0.0) || (type_ == NONE && subcateg_total != 0.0))
-                valueList_.push_back({ Model_Category::full_name(entry.first, subentry.first), subcateg_total });
-            categ_total += subcateg_total;
-        }
-        if ((type_ == GOES && categ_total > 0.0) || (type_ == COME && categ_total < 0.0) || (type_ == NONE && categ_total != 0.0))
-            valueListTotals_.push_back({ categName, categ_total });
-    }
-
     data_holder line;
+    int i = 0;
+    mmHTMLBuilder hb;
     int groupID = 1;
     for (const auto& category : Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
@@ -85,7 +67,7 @@ void  mmReportCategoryExpenses::RefreshData()
         if (type_ == GOES && amt < 0.0) amt = 0;
         if (type_ == COME && amt > 0.0) amt = 0;
         if (amt != 0.0)
-            data_.push_back({ sCategName, amt, groupID });
+            data_.push_back({ hb.getColor(i++), sCategName, amt, groupID });
 
         auto subcategories = Model_Category::sub_category(category);
         std::stable_sort(subcategories.begin(), subcategories.end(), SorterBySUBCATEGNAME());
@@ -96,7 +78,7 @@ void  mmReportCategoryExpenses::RefreshData()
             if (type_ == GOES && amt < 0.0) amt = 0;
             if (type_ == COME && amt > 0.0) amt = 0;
             if (amt != 0.0)
-                data_.push_back({ sFullCategName, amt, groupID });
+                data_.push_back({ hb.getColor(i++), sFullCategName, amt, groupID });
         }
         groupID++;
     }
@@ -104,18 +86,9 @@ void  mmReportCategoryExpenses::RefreshData()
 
 wxString mmReportCategoryExpenses::getHTMLText()
 {
+    valueList_.clear();
     // Data is presorted by name
     std::vector<data_holder> sortedData(data_);
-    if (CATEGORY_SORT_BY_AMOUNT == sortColumn_)
-    {
-        std::stable_sort(sortedData.begin(), sortedData.end()
-            , [] (const data_holder& x, const data_holder& y)
-            {
-                if (x.amount != y.amount) return x.amount < y.amount;
-                else return x.name < y.name;
-            }
-        );
-    }
 
     std::map <int, int> group_counter;
     std::map <int, double> group_total;
@@ -125,7 +98,18 @@ wxString mmReportCategoryExpenses::getHTMLText()
         group_total[entry.categs] += entry.amount;
         group_total[-1] += entry.amount < 0 ? entry.amount : 0;
         group_total[-2] += entry.amount > 0 ? entry.amount : 0;
+        if (type_ != NONE) valueList_.push_back({ entry.color, entry.name, entry.amount });
     }
+
+    std::stable_sort(valueList_.begin(), valueList_.end()
+        , [](const ValueTrio& x, const ValueTrio& y)
+        {
+        if (x.amount != y.amount)
+                return fabs(x.amount) > fabs(y.amount);
+            else
+                return x.label < y.label;
+        }
+    );
 
     mmHTMLBuilder hb;
     hb.init();
@@ -133,30 +117,15 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.addHeader(2, title_);
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), with_date_);
 
-    // Add the graph
-    hb.startTable();
-    hb.startTableRow();
-    hb.startTableCell();
-    mmGraphPie ggtotal;
-    hb.addImage(ggtotal.getOutputFileName());
-    ggtotal.init(valueListTotals_);
-    ggtotal.Generate(_("Categories"));
-    hb.endTableCell();
-    hb.startTableCell();
-    mmGraphPie gg;
-    hb.addImage(gg.getOutputFileName());
-    gg.init(valueList_);
-    gg.Generate(_("Subcategories"));
-    hb.endTableCell();
-    hb.endTableRow();
-    hb.endTable();
-
     hb.addDivRow();
     hb.addDivCol8();
-    hb.startTable();
+    // Add the graph
+    if (type_ != NONE) hb.addPieChart(valueList_, "Categories");
 
+    hb.startTable();
     hb.startThead();
     hb.startTableRow();
+    if (type_ != NONE) hb.addTableHeaderCell(" ");
     hb.addTableHeaderCell(_("Category"));
     hb.addTableHeaderCell(_("Amount"), true);
     hb.addTableHeaderCell(_("Total"), true);
@@ -169,6 +138,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
     {
         group++;
         hb.startTableRow();
+        if (type_ != NONE) hb.addColorMarker(entry.color);
         hb.addTableCell(entry.name);
         hb.addMoneyCell(entry.amount);
         if (group_counter[entry.categs] > 1)
@@ -181,6 +151,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
         {
             group = 0;
             hb.startTableRow();
+            if (type_ != NONE) hb.addTableCell("");
             hb.addTableCell(_("Category Total: "));
             hb.addTableCell("");
             hb.addMoneyCell(group_total[entry.categs]);
@@ -192,13 +163,14 @@ wxString mmReportCategoryExpenses::getHTMLText()
     }
     hb.endTbody();
 
+    int span = (type_ != NONE) ? 4 : 3;
     hb.startTfoot();
     if (type_ == NONE)
     {
-        hb.addTotalRow(_("Total Expenses: "), 3, group_total[-1]);
-        hb.addTotalRow(_("Total Income: "), 3, group_total[-2]);
+        hb.addTotalRow(_("Total Expenses: "), span, group_total[-1]);
+        hb.addTotalRow(_("Total Income: "), span, group_total[-2]);
     }
-    hb.addTotalRow(_("Grand Total: "), 3, group_total[-1] + group_total[-2]);
+    hb.addTotalRow(_("Grand Total: "), span, group_total[-1] + group_total[-2]);
     hb.endTfoot();
 
     hb.endTable();

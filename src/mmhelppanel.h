@@ -27,7 +27,7 @@ class mmGUIFrame;
 
 class mmHelpPanel : public mmPanelBase
 {
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmHelpPanel(wxWindow *parent, mmGUIFrame* frame,

@@ -33,8 +33,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 class mmFilterTransactionsDialog: public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS(mmFilterTransactionsDialog)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmFilterTransactionsDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     /// Constructors
@@ -122,6 +122,11 @@ private:
     }
 
     bool allowType(const wxString& typeState, bool sameAccount) const;
+
+    bool getPayeeCheckBox()
+    {
+        return payeeCheckBox_->IsChecked();
+    }
 
     bool getNumberCheckBox()
     {

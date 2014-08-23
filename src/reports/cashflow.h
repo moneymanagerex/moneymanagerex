@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "reportbase.h"
 #include <vector>
+#include "util.h"
 
 class mmReportCashFlow : public mmPrintableBaseSpecificAccounts
 {
@@ -32,6 +33,7 @@ public:
 
 protected:
     wxString getHTMLText_i();
+    void getStats(double& tInitialBalance, std::vector<ValueTrio>& forecastVector);
     void activateTermAccounts();
     void activateBankAccounts();
 
@@ -47,7 +49,12 @@ protected:
 
     bool activeTermAccounts_;
     bool activeBankAccounts_;
-    int cashflowreporttype_;
+    int cashFlowReportType_;
+    enum { YEARLY = 0, DAILY };
+    static const int yearsNum_ = 10;
+    const wxDateTime today_;
+    int colorId_;
+
 };
 
 class mmReportCashFlowAllAccounts : public mmReportCashFlow

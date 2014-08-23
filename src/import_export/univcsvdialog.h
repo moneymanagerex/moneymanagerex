@@ -56,8 +56,8 @@
 
 class mmUnivCSVDialog: public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS(mmUnivCSVDialog)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmUnivCSVDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     /// Constructors

@@ -30,7 +30,7 @@ class mmDateRange;
 
 class mmHomePagePanel : public mmPanelBase
 {
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame,

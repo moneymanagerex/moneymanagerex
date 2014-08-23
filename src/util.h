@@ -30,7 +30,12 @@ struct ValuePair
     wxString label;
     double   amount;
 };
-
+struct ValueTrio
+{
+    wxString color;
+    wxString label;
+    double   amount;
+};
 class mmListBoxItem: public wxClientData
 {
 public:

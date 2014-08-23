@@ -33,9 +33,9 @@
 
 #include "../resources/magic_wand.xpm"
 
-IMPLEMENT_DYNAMIC_CLASS( mmPayeeDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmPayeeDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmPayeeDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmPayeeDialog, wxDialog )
     EVT_BUTTON(wxID_CANCEL, mmPayeeDialog::OnCancel)
     EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
     EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
@@ -45,7 +45,7 @@ BEGIN_EVENT_TABLE( mmPayeeDialog, wxDialog )
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmPayeeDialog::OnListItemSelected)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmPayeeDialog::OnItemRightClick)
     EVT_MENU_RANGE(MENU_DEFINE_CATEGORY, MENU_RELOCATE_PAYEE, mmPayeeDialog::OnMenuSelected)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 
 mmPayeeDialog::mmPayeeDialog(wxWindow *parent) :
