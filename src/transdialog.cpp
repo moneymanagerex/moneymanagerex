@@ -1012,6 +1012,22 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 	int old_transaction_id = transaction_id_;
     if (!validateData()) return;
 
+    // For a new transfer, if currency is different between accounts and user didn't set advanced then use the current currency conversion rate.
+    if ((transaction_id_ == 0) && (Model_Checking::type(transaction_) == Model_Checking::TRANSFER) && !advancedToTransAmountSet_)
+    {
+        int from_account_currency_id = Model_Account::instance().get(transaction_->ACCOUNTID)->CURRENCYID;
+        int to_account_currency_id = Model_Account::instance().get(transaction_->TOACCOUNTID)->CURRENCYID;
+        if (from_account_currency_id != to_account_currency_id)
+        {
+            Model_Currency::Data *from_account_currency = Model_Currency::instance().get(from_account_currency_id);
+            Model_Currency::Data *to_account_currency = Model_Currency::instance().get(to_account_currency_id);
+            if ((from_account_currency->BASECONVRATE > 0.0) && (to_account_currency->BASECONVRATE > 0.0))
+            {
+                transaction_->TOTRANSAMOUNT = transaction_->TRANSAMOUNT * from_account_currency->BASECONVRATE / to_account_currency->BASECONVRATE;
+            }
+        }
+    }
+
     transaction_->STATUS = "";
     wxStringClientData* status_obj = (wxStringClientData *) choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
     if (status_obj) transaction_->STATUS = Model_Checking::toShortStatus(status_obj->GetData());
