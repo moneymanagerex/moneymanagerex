@@ -250,7 +250,7 @@ bool mmWebApp::WebApp_UpdateAccount()
 {
 	int i = 0;
 	json::Object jsonAccountList;
-	std::stringstream jsonAccountStream;
+	std::wstringstream jsonAccountStream;
 	wxString outputMessage;
 	int ErrorCode = 0;
 
@@ -261,7 +261,7 @@ bool mmWebApp::WebApp_UpdateAccount()
 	for (const auto &Account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
 	{
 		if (Model_Account::type(Account) != Model_Account::INVESTMENT)
-			jsonAccountList["Accounts"][i]["AccountName"] = json::String(Account.ACCOUNTNAME.ToStdString());
+            jsonAccountList[L"Accounts"][i][L"AccountName"] = json::String(Account.ACCOUNTNAME.ToStdWstring());
 		i++;
 	}
 
@@ -287,7 +287,7 @@ bool mmWebApp::WebApp_UpdatePayee()
 {
 	int i = 0;
 	json::Object jsonPayeeList;
-	std::stringstream jsonPayeeStream;
+	std::wstringstream jsonPayeeStream;
 	wxString outputMessage;
 	wxString DefCategoryName;
 	wxString DefSubCategoryName;
@@ -311,9 +311,9 @@ bool mmWebApp::WebApp_UpdatePayee()
 		else
 			DefSubCategoryName = "None";
 		
-		jsonPayeeList["Payees"][i]["PayeeName"] = json::String(Payee.PAYEENAME.ToStdString());
-		jsonPayeeList["Payees"][i]["DefCateg"] = json::String(DefCategoryName.ToStdString());
-		jsonPayeeList["Payees"][i]["DefSubCateg"] = json::String(DefSubCategoryName.ToStdString());
+        jsonPayeeList[L"Payees"][i][L"PayeeName"] = json::String(Payee.PAYEENAME.ToStdWstring());
+        jsonPayeeList[L"Payees"][i][L"DefCateg"] = json::String(DefCategoryName.ToStdWstring());
+        jsonPayeeList[L"Payees"][i][L"DefSubCateg"] = json::String(DefSubCategoryName.ToStdWstring());
 
 		i++;
 	}
@@ -340,7 +340,7 @@ bool mmWebApp::WebApp_UpdateCategory()
 {
 	int i = 0;
 	json::Object jsonCategoryList;
-	std::stringstream jsonCategoryStream;
+	std::wstringstream jsonCategoryStream;
 	wxString outputMessage;
 	wxString SubCategoryName;
 	int ErrorCode = 0;
@@ -354,27 +354,27 @@ bool mmWebApp::WebApp_UpdateCategory()
 	{
 		bool FirstCategoryRun = true;
 		bool SubCategoryFound = false;
-		jsonCategoryList["Categories"][i]["CategoryName"] = json::String(category.CATEGNAME.ToStdString());
+        jsonCategoryList[L"Categories"][i][L"CategoryName"] = json::String(category.CATEGNAME.ToStdWstring());
 		for (const auto &sub_category : Model_Category::sub_category(category))
 		{
 			SubCategoryFound = true;
 			if (FirstCategoryRun == true)
 			{
-				jsonCategoryList["Categories"][i]["SubCategoryName"] = json::String(sub_category.SUBCATEGNAME.ToStdString());
+                jsonCategoryList[L"Categories"][i][L"SubCategoryName"] = json::String(sub_category.SUBCATEGNAME.ToStdWstring());
 				i++;
 				FirstCategoryRun = false;
 			}
 			else
 			{
-				jsonCategoryList["Categories"][i]["CategoryName"] = json::String(category.CATEGNAME.ToStdString());
-				jsonCategoryList["Categories"][i]["SubCategoryName"] = json::String(sub_category.SUBCATEGNAME.ToStdString());
+                jsonCategoryList[L"Categories"][i][L"CategoryName"] = json::String(category.CATEGNAME.ToStdWstring());
+                jsonCategoryList[L"Categories"][i][L"SubCategoryName"] = json::String(sub_category.SUBCATEGNAME.ToStdWstring());
 				i++;
 				FirstCategoryRun = false;
 			}
 		}
 
 		if (SubCategoryFound == false)
-			jsonCategoryList["Categories"][i]["SubCategoryName"] = json::String("None");
+			jsonCategoryList[L"Categories"][i][L"SubCategoryName"] = json::String(L"None");
 		else
 			i--;
 
@@ -413,10 +413,10 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 {
 	int desktopNewTransactionId = 0;
 	json::Object jsonTransaction;
-	std::stringstream jsonTransactionStream;
+	std::wstringstream jsonTransactionStream;
 
 	if (!(NewTransactionJSON.StartsWith("{") && NewTransactionJSON.EndsWith("}"))) NewTransactionJSON = "{}";
-	jsonTransactionStream << NewTransactionJSON.ToStdString();
+    jsonTransactionStream << NewTransactionJSON.ToStdWstring();
 	json::Reader::Read(jsonTransaction, jsonTransactionStream);
 
 	int AccountID = -1;
@@ -427,12 +427,12 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	wxString TrStatus;
 
 	//Search Account
-	wxString AccountName = wxString(json::String(jsonTransaction["Account"]));
+	wxString AccountName = wxString(json::String(jsonTransaction[L"Account"]));
 	const Model_Account::Data* Account = Model_Account::instance().get(AccountName);
 	if (Account != nullptr)
 	{
 		AccountID = Account->ACCOUNTID;
-		TrStatus = wxString(json::String(jsonTransaction["Status"]));
+		TrStatus = wxString(json::String(jsonTransaction[L"Status"]));
 	}
 	else
 	{
@@ -458,7 +458,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	}
 
 	//Search ToAccount
-	wxString ToAccountName = wxString(json::String(jsonTransaction["ToAccount"]));
+	wxString ToAccountName = wxString(json::String(jsonTransaction[L"ToAccount"]));
 	if (ToAccountName != "None")
 	{
 		const Model_Account::Data* ToAccount = Model_Account::instance().get(ToAccountName);
@@ -467,7 +467,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	}
 
 	//Search or insert Category
-	wxString CategoryName = wxString(json::String(jsonTransaction["Category"]));
+	wxString CategoryName = wxString(json::String(jsonTransaction[L"Category"]));
 	if (CategoryName != "None")
 	{
 		const Model_Category::Data* Category = Model_Category::instance().get(CategoryName);
@@ -483,7 +483,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	}
 
 	//Search or insert SubCategory
-	wxString SubCategoryName = wxString(json::String(jsonTransaction["SubCategory"]));
+	wxString SubCategoryName = wxString(json::String(jsonTransaction[L"SubCategory"]));
 	if (SubCategoryName != "None")
 	{
 		const Model_Subcategory::Data* SubCategory = Model_Subcategory::instance().get(SubCategoryName,CategoryID);
@@ -500,7 +500,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	}
 
 	//Search or insert Payee
-	wxString PayeeName = wxString(json::String(jsonTransaction["Payee"]));
+	wxString PayeeName = wxString(json::String(jsonTransaction[L"Payee"]));
 	if (PayeeName != "None")
 	{
 		const Model_Payee::Data* Payee = Model_Payee::instance().get(PayeeName);
@@ -518,18 +518,18 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	}
 
 	//Fix wrong number conversion from JSON
-	wxString jsonAmount = wxString(json::String(jsonTransaction["Amount"]));
+	wxString jsonAmount = wxString(json::String(jsonTransaction[L"Amount"]));
 		double TransactionAmount;
 		jsonAmount.ToDouble(&TransactionAmount);
-	int WebAppTrID = wxAtoi(wxString(json::String(jsonTransaction["ID"])));
+	int WebAppTrID = wxAtoi(wxString(json::String(jsonTransaction[L"ID"])));
 	
 
 	//Create New Transaction
     Model_Checking::Data * desktopNewTransaction;
     desktopNewTransaction = Model_Checking::instance().create();
-	desktopNewTransaction->TRANSDATE = wxString(json::String(jsonTransaction["Date"]));
+	desktopNewTransaction->TRANSDATE = wxString(json::String(jsonTransaction[L"Date"]));
 	desktopNewTransaction->STATUS = TrStatus;
-	desktopNewTransaction->TRANSCODE = wxString(json::String(jsonTransaction["Type"]));
+	desktopNewTransaction->TRANSCODE = wxString(json::String(jsonTransaction[L"Type"]));
 	desktopNewTransaction->TRANSAMOUNT = TransactionAmount;
 	desktopNewTransaction->ACCOUNTID = AccountID;
 	desktopNewTransaction->TOACCOUNTID = ToAccountID;
@@ -537,7 +537,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	desktopNewTransaction->CATEGID = CategoryID;
 	desktopNewTransaction->SUBCATEGID = SubCategoryID;
 	desktopNewTransaction->TRANSACTIONNUMBER = "";
-	desktopNewTransaction->NOTES = wxString(json::String(jsonTransaction["Notes"]));
+	desktopNewTransaction->NOTES = wxString(json::String(jsonTransaction[L"Notes"]));
 	desktopNewTransaction->FOLLOWUPID = -1;
 	desktopNewTransaction->TOTRANSAMOUNT = TransactionAmount;
 
