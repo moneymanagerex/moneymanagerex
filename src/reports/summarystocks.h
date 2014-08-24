@@ -21,7 +21,6 @@
 
 #include "reportbase.h"
 #include <vector>
-#include "../reports/chart.h"
 #include "mmDateRange.h"
 
 class mmHTMLBuilder;

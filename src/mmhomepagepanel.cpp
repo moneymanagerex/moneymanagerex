@@ -773,7 +773,7 @@ const wxString mmHomePagePanel::displayAssets(double& tBalance)
 {
     json::Object o;
     o.Clear();
-    std::stringstream ss;
+    std::wstringstream ss;
 
     double asset_balance = Model_Asset::instance().balance();
     tBalance += asset_balance;
@@ -782,8 +782,8 @@ const wxString mmHomePagePanel::displayAssets(double& tBalance)
     output += wxString::Format("<td class='money'>%s</td></tr>", Model_Currency::toCurrency(asset_balance));
     output += "</tfoot></table>";
 
-    o["NAME"] = json::String(_("Assets").ToStdString());
-    o["VALUE"] = json::String(Model_Currency::toCurrency(asset_balance).ToStdString());
+    o[L"NAME"] = json::String(_("Assets").ToStdWstring());
+    o[L"VALUE"] = json::String(Model_Currency::toCurrency(asset_balance).ToStdWstring());
 
     json::Writer::Write(o, ss);
     return ss.str();
@@ -793,14 +793,14 @@ const wxString mmHomePagePanel::getStatWidget()
 {
     json::Object o;
     o.Clear();
-    std::stringstream ss;
+    std::wstringstream ss;
 
-    o["NAME"] = json::String(_("Transaction Statistics").ToStdString());
+    o[L"NAME"] = json::String(_("Transaction Statistics").ToStdWstring());
     if (this->countFollowUp_ > 0)
     {
-        o[json::String(_("Follow Up On Transactions: ").ToStdString())] = json::Number(this->countFollowUp_);
+        o[json::String(_("Follow Up On Transactions: ").ToStdWstring())] = json::Number(this->countFollowUp_);
     }
-    o[json::String(_("Total Transactions: ").ToStdString())] = json::Number(this->total_transactions_);
+    o[json::String(_("Total Transactions: ").ToStdWstring())] = json::Number(this->total_transactions_);
 
     json::Writer::Write(o, ss);
     return ss.str();
