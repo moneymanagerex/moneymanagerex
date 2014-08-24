@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "Model_Attachment.h"
+#include <wx/string.h>
 
 const std::vector<std::pair<Model_Attachment::REFTYPE, wxString> > Model_Attachment::REFTYPE_CHOICES =
 {
@@ -75,16 +76,21 @@ int Model_Attachment::NrAttachments(const wxString& RefType, const int RefId)
 	return Model_Attachment::instance().find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(RefType), Model_Attachment::REFID(RefId)).size();
 }
 
-/** Return the last attachment file name linked to a specific object */
-wxString Model_Attachment::LastAttachmentFileName(const wxString& RefType, const int RefId)
+/** Return the last attachment number linked to a specific object */
+int Model_Attachment::LastAttachmentNumber(const wxString& RefType, const int RefId)
 {
-	wxString LastAttachmentFileName = RefType+"_0_Attach0.xxx";
-	for (auto &attachment : Model_Attachment::instance().all(COL_FILENAME))
+    int LastAttachmentNumber = 0;
+    Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, RefId);
+
+    for (auto &attachment : attachments)
 	{
-		if (attachment.REFTYPE.Lower().Matches(RefType.Lower().Append("*")) && attachment.REFID == RefId)
-			LastAttachmentFileName = attachment.FILENAME;
+        wxString FileName = attachment.FILENAME;
+        int AttachNumb = wxAtoi(FileName.SubString(FileName.Find("Attach") + 6, FileName.Find(".") - 1));
+        if (AttachNumb > LastAttachmentNumber)
+            LastAttachmentNumber = AttachNumb;
 	}
-	return LastAttachmentFileName;
+
+    return LastAttachmentNumber;
 }
 
 /** Return the description of the choice reftype */

@@ -23,6 +23,7 @@
 #include <vector>
 #include "model/Model_Currency.h"
 #include "html_template.h"
+#include "util.h"
 
 class mmHTMLBuilder
 {
@@ -45,9 +46,6 @@ public:
     void addHeader(int level, const wxString& header);
     void addDateNow();
 
-    /** Create an HTML Image tag */
-    void addImage(const wxString& src);
-
     /** Start a table element */
     void startTable();
     void startSortTable();
@@ -56,7 +54,6 @@ public:
     void startTfoot();
 
     /** Add a special row that will format total values */
-    void addTotalRow(const wxString& caption, int cols, const wxString& value);
     void addTotalRow(const wxString& caption, int cols, double value);
 
     /** Add a special row that will format total values */
@@ -64,14 +61,13 @@ public:
     void addTotalRow(const wxString& caption, int cols, const std::vector<double>& data);
 
     /** Add a Table header cell */
-    void addTableHeaderCell(const wxString& value, const bool& numeric = false);
-
-    /** Add a Table header cell link */
-    void addTableHeaderCellLink(const wxString& href, const wxString& value, const bool& numeric = false);
+    void addTableHeaderCell(const wxString& value, const bool& numeric = false, const bool& sortable = true);
 
     void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency(), int precision = -1);
     void addMoneyCell(double amount);
     void addTableCellMonth(int month);
+    void addColorMarker(const wxString& color);
+    const wxString getColor(int i);
 
     /** Add a Cell value */
     void addTableCell(const wxDateTime& date);
@@ -90,6 +86,7 @@ public:
     void addDivCol8();
     void endDiv();
     void startTableRow();
+    void startTableRow(const wxString& color);
     void startTotalTableRow();
     //void startTableRow(const wxString& custom_color);
     void endTableRow();
@@ -110,6 +107,10 @@ public:
 
     void addTableRow(const wxString& label, double data);
     void addTableRowBold(const wxString& label, double data);
+
+    void addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int& x = 300, const int& y = 300);
+    void addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x = 640, const int& y = 256);
+    void addBarChart(const wxString & labels, const std::vector<ValueTrio>& data, const wxString& id, const int& x = 192, const int& y = 256);
 
 private:
     wxString html_;

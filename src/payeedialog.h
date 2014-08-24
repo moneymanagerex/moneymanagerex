@@ -26,8 +26,8 @@
 
 class mmPayeeDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS(mmPayeeDialog)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmPayeeDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmPayeeDialog(wxWindow* parent);

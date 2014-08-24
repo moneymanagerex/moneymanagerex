@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http - equiv = "Content-Type" content = "text/html" />
     <title>Home Page</title>
-    <script src = "Chart.js"></script>
+    <script src = "ChartNew.js"></script>
+    <script src = "sorttable.js"></script>
     <link href = "master.css" rel = "stylesheet" />
 </head>
   <script>
@@ -134,23 +135,25 @@
           document.getElementById('ive_difference').innerHTML=ive_json['8'];
             <!-- Chart -->
             var data = {
-            labels : [ive_json[9]],
+            labels : [""],
             datasets : [
                 {
                     fillColor : "rgba(151,187,205,0.5)",
                     strokeColor : "rgba(151,187,205,1)",
                     data : [ive_json[10]],
+                    title : ive_json[3]
                 },
                 {
                     fillColor : "rgba(220,66,66,0.5)",
                     strokeColor : "rgba(220,220,220,1)",
                     data : [ive_json[11]],
+                    title : ive_json[5]
                 },
             ]
             };
             var options = {
                 animationEasing: "easeOutQuint",
-                barValueSpacing : 10,
+                annotateDisplay : true,
                 scaleOverride: true,
                 scaleStartValue: 0,
                 scaleSteps: [ive_json[12]],
@@ -214,10 +217,12 @@
   <script type="text/javascript">
     var elements= document.getElementsByClassName("money");
     for (var i = 0; i < elements.length; i++) {
-        elements[i].style.textAlign='right';
-        if (elements[i].innerHTML.indexOf("-") > -1) {
-            elements[i].style.color="#ff0000";
+        var element = elements[i];
+        element.style.textAlign='right';
+        if (element.innerHTML.indexOf("-") > -1) {
+            element.style.color="#ff0000";
         } 
+        element.innerHTML = element.innerHTML.replace(/\ /g, '&nbsp;');
     }
 </script>
 

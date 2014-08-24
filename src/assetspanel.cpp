@@ -551,7 +551,7 @@ int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
 
     double balance = 0.0;
     for (const auto& asset: this->m_assets) balance += Model_Asset::value(asset); 
-    header_text_->SetLabel(_("Total: ") + Model_Currency::toCurrency(balance)); // balance
+    header_text_->SetLabelText(_("Total: ") + Model_Currency::toCurrency(balance)); // balance
 
     int selected_item = 0;
     for (const auto& asset: this->m_assets)
@@ -622,13 +622,13 @@ void mmAssetsPanel::updateExtraAssetData(int selIndex)
         if (Model_Asset::rate(asset) != Model_Asset::RATE_NONE)
             miniInfo<< " = " << asset.VALUECHANGERATE<< "%";
 
-        st->SetLabel(asset.NOTES);
-        stm->SetLabel(miniInfo);
+        st->SetLabelText(asset.NOTES);
+        stm->SetLabelText(miniInfo);
     }
     else
     {
-        stm -> SetLabel("");
-        st->SetLabel(this->tips_);
+        stm->SetLabelText("");
+        st->SetLabelText(this->tips_);
         enableEditDeleteButtons(false);
     }
 }
@@ -669,13 +669,13 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     if (evt == 0)
     {
-        itemStaticTextMainFilter_->SetLabel(_("All"));
+        itemStaticTextMainFilter_->SetLabelText(_("All"));
         this->m_filter_type = Model_Asset::TYPE(-1);
     }
     else
     {
         this->m_filter_type = Model_Asset::TYPE(evt - 1);
-        itemStaticTextMainFilter_->SetLabel(wxGetTranslation(Model_Asset::all_type()[evt - 1]));
+        itemStaticTextMainFilter_->SetLabelText(wxGetTranslation(Model_Asset::all_type()[evt - 1]));
     }
 
     int trx_id = -1;

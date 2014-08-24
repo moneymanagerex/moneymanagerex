@@ -25,8 +25,8 @@ class wxCheckBox;
 
 class mmAppStartDialog: public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS(mmAppStartDialog)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmAppStartDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmAppStartDialog(wxWindow* parent);

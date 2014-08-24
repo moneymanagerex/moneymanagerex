@@ -698,8 +698,8 @@ void mmBillsDepositsPanel::updateBottomPanelData(int selIndex)
     {
         wxStaticText* st = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_DETAILS);
         wxStaticText* stm = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_MINI);
-        stm->SetLabel(Model_Category::full_name(bills_[selIndex].CATEGID, bills_[selIndex].SUBCATEGID));
-        st->SetLabel (bills_[selIndex].NOTES );
+        stm->SetLabelText(Model_Category::full_name(bills_[selIndex].CATEGID, bills_[selIndex].SUBCATEGID));
+        st->SetLabelText(bills_[selIndex].NOTES);
     }
 }
 
@@ -718,7 +718,7 @@ void mmBillsDepositsPanel::enableEditDeleteButtons(bool en)
 
     wxStaticText* st = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_DETAILS);
     wxStaticText* stm = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_MINI);
-    if (st) st->SetLabel(this->tips());
+    if (st) st->SetLabelText(this->tips());
     if (stm) stm->ClearBackground();
 }
 

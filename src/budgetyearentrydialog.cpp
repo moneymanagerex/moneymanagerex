@@ -23,11 +23,11 @@
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Budget.h"
 
-IMPLEMENT_DYNAMIC_CLASS( mmBudgetYearEntryDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetYearEntryDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmBudgetYearEntryDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmBudgetYearEntryDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmBudgetYearEntryDialog::OnOk)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmBudgetYearEntryDialog::mmBudgetYearEntryDialog() 
 {

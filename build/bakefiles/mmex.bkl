@@ -60,6 +60,12 @@
         <srcdir>$(SRCDIR)/3rd/Chart.js</srcdir>
         <files>Chart.js</files>
     </data-files>
+	
+	<data-files>
+	    <install-to>$(respath)</install-to>
+        <srcdir>$(SRCDIR)/3rd/ChartNew.js</srcdir>
+        <files>ChartNew.js</files>
+    </data-files>
 
     <data-files>
       <install-to>$(respath)</install-to>
@@ -117,45 +123,49 @@
         <files>*.txt</files>
     </data-files>
 
+    <set var="helppath">
+        <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/doc/mmex/help</if>
+        <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/help</if>
+    </set>
     <!-- data-files-tree generates wrong commands in bakefile v.0.2.8 -->
-	<data-files>
-        <install-to>$(DATADIR)/doc/mmex/help</install-to>
+    <data-files>
+        <install-to>$(helppath)</install-to>
         <srcdir>$(SRCDIR)/doc/help</srcdir>
             <files>*.html *.png</files>
     </data-files>
 
-	<data-files>
-        <install-to>$(DATADIR)/doc/mmex/help/german</install-to>
+    <data-files>
+        <install-to>$(helppath)/german</install-to>
         <srcdir>$(SRCDIR)/doc/help/german</srcdir>
         <files>*</files>
     </data-files>
-	<data-files>
-        <install-to>$(DATADIR)/doc/mmex/help/french</install-to>
+    <data-files>
+        <install-to>$(helppath)/french</install-to>
         <srcdir>$(SRCDIR)/doc/help/french</srcdir>
         <files>*</files>
     </data-files>
-	<data-files>
-        <install-to>$(DATADIR)/doc/mmex/help/hungarian</install-to>
+    <data-files>
+        <install-to>$(helppath)/hungarian</install-to>
         <srcdir>$(SRCDIR)/doc/help/hungarian</srcdir>
         <files>*</files>
     </data-files>
-	<data-files>
-        <install-to>$(DATADIR)/doc/mmex/help/italian</install-to>
+    <data-files>
+        <install-to>$(helppath)/italian</install-to>
         <srcdir>$(SRCDIR)/doc/help/italian</srcdir>
         <files>*</files>
     </data-files>
 	<data-files>
-        <install-to>$(DATADIR)/doc/mmex/help/polish</install-to>
+        <install-to>$(helppath)/polish</install-to>
         <srcdir>$(SRCDIR)/doc/help/polish</srcdir>
         <files>*</files>
     </data-files>
-	<data-files>
-        <install-to>$(DATADIR)/doc/mmex/help/russian</install-to>
+    <data-files>
+        <install-to>$(helppath)/russian</install-to>
         <srcdir>$(SRCDIR)/doc/help/russian</srcdir>
         <files>*</files>
     </data-files>
-	<data-files>
-        <install-to>$(DATADIR)/doc/mmex/help/spanish</install-to>
+    <data-files>
+        <install-to>$(helppath)/spanish</install-to>
         <srcdir>$(SRCDIR)/doc/help/spanish</srcdir>
         <files>*</files>
     </data-files>
@@ -207,10 +217,16 @@
         <files>master.css</files>
     </data-files>
 
-    <data-files>
+	<data-files>
         <install-to>$(PREFIX)/mmex/res</install-to>
             <srcdir>$(SRCDIR)/3rd/Chart.js</srcdir>
         <files>Chart.js</files>
+    </data-files>
+	
+    <data-files>
+        <install-to>$(PREFIX)/mmex/res</install-to>
+            <srcdir>$(SRCDIR)/3rd/ChartNew.js</srcdir>
+        <files>ChartNew.js</files>
     </data-files>
 
     <data-files>
@@ -330,5 +346,12 @@
         </target>
 
     </subproject>
+
+	<action id="dmg" cond="PLATFORM_MACOSX=='1'">
+	<command>touch mmex.app</command>
+	<command>hdiutil create tmp.dmg -ov -volname "MMEX" -fs HFS+ -srcfolder "mmex.app"</command>
+	<command>hdiutil convert tmp.dmg -format UDZO -o MMEX.dmg</command>
+	<command>rm tmp.dmg</command>
+	</action>
 
 </makefile>

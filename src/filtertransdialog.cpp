@@ -68,16 +68,16 @@ static const wxString DATE_PRESETTINGS[] =
     VIEW_TRANS_CURRENT_YEAR_STR
 };
 
-IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmFilterTransactionsDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
     EVT_CHECKBOX(wxID_ANY,    mmFilterTransactionsDialog::OnCheckboxClick )
     EVT_BUTTON  (wxID_OK,     mmFilterTransactionsDialog::OnButtonokClick )
     EVT_BUTTON  (wxID_CANCEL, mmFilterTransactionsDialog::OnButtoncancelClick )
     EVT_BUTTON  (wxID_SAVE,   mmFilterTransactionsDialog::OnButtonSaveClick )
     EVT_BUTTON  (wxID_CLEAR,  mmFilterTransactionsDialog::OnButtonClearClick )
     EVT_MENU    (wxID_ANY,    mmFilterTransactionsDialog::datePresetMenuSelected )
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog( )
 {
@@ -481,7 +481,7 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
         Model_Category::Data* category = Model_Category::instance().get(categID_);
         Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
 
-        btnCategory_->SetLabel(Model_Category::full_name(category, sub_category));
+        btnCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
     }
 }
 
@@ -490,7 +490,7 @@ bool mmFilterTransactionsDialog::somethingSelected()
     return
         getAccountCheckBox()
         || getDateRangeCheckBox()
-        || payeeCheckBox_->IsChecked()
+        || getPayeeCheckBox()
         || getCategoryCheckBox()
         || getStatusCheckBox()
         || getTypeCheckBox()
@@ -694,41 +694,33 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::checkPayee(const DATA &tran)
 {
-    bool ok = MODEL::type(tran) != MODEL::TRANSFER;
-    if (ok && payeeCheckBox_->IsChecked())
-    {
-        const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
-        if (payee)
-            return cbPayee_->GetValue().Lower() == (payee->PAYEENAME).Lower();
-        return false;
-    }
-    return ok;
+    const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
+    if (payee)
+        return cbPayee_->GetValue().Lower() == (payee->PAYEENAME).Lower();
+    return false;
 }
 
 template<class MODEL, class DATA>
 bool mmFilterTransactionsDialog::checkCategory(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits)
 {
-    if (categoryCheckBox_->IsChecked())
+    const auto it = splits.find(tran.id());
+    if (it == splits.end())
     {
-        const auto it = splits.find(tran.id());
-        if (it == splits.end())
+        if (categID_ != tran.CATEGID) return false;
+        if (subcategID_ != tran.SUBCATEGID && !bSimilarCategoryStatus_) return false;
+    }
+    else
+    {
+        bool bMatching = false;
+        for (const auto &split : it->second)
         {
-            if (categID_ != tran.CATEGID) return false;
-            if (subcategID_ != tran.SUBCATEGID && !bSimilarCategoryStatus_) return false;
-        }
-        else
-        {
-            bool bMatching = false;
-            for (const auto &split : it->second)
-            {
-                if (split.CATEGID != categID_) continue;
-                if (split.SUBCATEGID != subcategID_ && !bSimilarCategoryStatus_) continue;
+            if (split.CATEGID != categID_) continue;
+            if (split.SUBCATEGID != subcategID_ && !bSimilarCategoryStatus_) continue;
 
-                bMatching = true;
-                break;
-            }
-            if (!bMatching) return false;
+            bMatching = true;
+            break;
         }
+        if (!bMatching) return false;
     }
     return true;
 }
@@ -745,8 +737,8 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, cons
             getFromDateCtrl().GetDateOnly(), getToDateControl().GetDateOnly())
     )
         ok = false;
-    else if (!checkPayee<Model_Checking>(tran)) ok = false;
-    else if (!checkCategory<Model_Checking>(tran, splits)) ok = false;
+    else if (getPayeeCheckBox() && !checkPayee<Model_Checking>(tran)) ok = false;
+    else if (getCategoryCheckBox() && !checkCategory<Model_Checking>(tran, splits)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
@@ -765,8 +757,8 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran,
             , getToDateControl().GetDateOnly()
         )
     ) ok = false;
-    else if (!checkPayee<Model_Billsdeposits>(tran)) ok = false;
-    else if (!checkCategory<Model_Billsdeposits>(tran, splits)) ok = false;
+    else if (getPayeeCheckBox() && !checkPayee<Model_Billsdeposits>(tran)) ok = false;
+    else if (getCategoryCheckBox() && !checkCategory<Model_Billsdeposits>(tran, splits)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, true)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
@@ -809,16 +801,16 @@ wxString mmFilterTransactionsDialog::to_json()
     json::Object o;
     o.Clear();
     const wxString label = m_settingLabel->GetValue().Trim();
-    if (!label.empty()) o["LABEL"] = json::String(label.ToStdString());
+    if (!label.empty()) o[L"LABEL"] = json::String(label.ToStdWstring());
     if (accountCheckBox_->IsChecked())
     {
         const wxString acc = accountDropDown_->GetStringSelection();
-        if (!acc.empty()) o["ACCOUNT"] = json::String(acc.ToStdString());
+        if (!acc.empty()) o[L"ACCOUNT"] = json::String(acc.ToStdWstring());
     }
     if (dateRangeCheckBox_->IsChecked())
     {
-        o["DATE1"] = json::String(fromDateCtrl_->GetValue().FormatISODate().ToStdString());
-        o["DATE2"] = json::String(toDateControl_->GetValue().FormatISODate().ToStdString());
+        o[L"DATE1"] = json::String(fromDateCtrl_->GetValue().FormatISODate().ToStdWstring());
+        o[L"DATE2"] = json::String(toDateControl_->GetValue().FormatISODate().ToStdWstring());
     }
     if (payeeCheckBox_->IsChecked())
     {
@@ -829,16 +821,16 @@ wxString mmFilterTransactionsDialog::to_json()
         //Kubalíková ----> KubalГ­kovГЎ
         wxCharBuffer buffer = wxpayee.ToUTF8();
         std::string str_std(buffer.data(), strlen(buffer.data()));
-        std::string test = wxpayee.ToStdString();
+        std::wstring test = wxpayee.ToStdWstring();
         wxLogDebug("utf8: %s|to_chars %s|from_chars %s|std::string: %s"
             , wxpayee, str_std, wxString(str_std.c_str(), wxConvUTF8), test);
 
-        if (!test.empty()) o["PAYEE"] = json::String(test);
+        if (!test.empty()) o[L"PAYEE"] = json::String(test);
     }
     if (categoryCheckBox_->IsChecked())
     {
-        o["SIMILAR_YN"] = json::Boolean(bSimilarCategoryStatus_);
-        o["CATEGORY"] = json::String(btnCategory_->GetLabel().ToStdString());
+        o[L"SIMILAR_YN"] = json::Boolean(bSimilarCategoryStatus_);
+        o[L"CATEGORY"] = json::String(btnCategory_->GetLabel().ToStdWstring());
     }
     if (statusCheckBox_->IsChecked())
     {
@@ -846,7 +838,7 @@ wxString mmFilterTransactionsDialog::to_json()
         wxString status;
         if (0 <= item && item < (int)Model_Checking::all_status().size())
             status = Model_Checking::all_status()[item];
-        if (!status.empty()) o["STATUS"] = json::String(status.ToStdString());
+        if (!status.empty()) o[L"STATUS"] = json::String(status.ToStdWstring());
     }
     if (typeCheckBox_->IsChecked())
     {
@@ -855,7 +847,7 @@ wxString mmFilterTransactionsDialog::to_json()
             << (cbTypeDeposit_->GetValue() && typeCheckBox_->GetValue() ? "D" : "")
             << (cbTypeTransferTo_->GetValue() && typeCheckBox_->GetValue() ? "T" : "")
             << (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "");
-        if (!type.empty()) o["TYPE"] = json::String(type.ToStdString());
+        if (!type.empty()) o[L"TYPE"] = json::String(type.ToStdWstring());
     }
 
     if (amountRangeCheckBox_->IsChecked())
@@ -864,30 +856,30 @@ wxString mmFilterTransactionsDialog::to_json()
         {
             double amount_min;
             amountMinEdit_->GetDouble(amount_min);
-            o["AMOUNT_MIN"] = json::Number(amount_min);
+            o[L"AMOUNT_MIN"] = json::Number(amount_min);
         }
         if (!amountMaxEdit_->GetValue().empty())
         {
             double amount_max;
             amountMaxEdit_->GetDouble(amount_max);
-            o["AMOUNT_MAX"] = json::Number(amount_max);
+            o[L"AMOUNT_MAX"] = json::Number(amount_max);
         }
     }
     if (transNumberCheckBox_->IsChecked())
     {
         const wxString num = transNumberEdit_->GetValue();
-        if (!num.empty()) o["NUMBER"] = json::String(num.ToStdString());
+        if (!num.empty()) o[L"NUMBER"] = json::String(num.ToStdWstring());
     }
     if (notesCheckBox_->IsChecked())
     {
         const wxString notes = notesEdit_->GetValue();
-        if (!notes.empty()) o["NOTES"] = json::String(notes.ToStdString());
+        if (!notes.empty()) o[L"NOTES"] = json::String(notes.ToStdWstring());
     }
 
     wxStringClientData* obj = (wxStringClientData *) sorterDropDown_->GetClientObject(sorterDropDown_->GetSelection());
-    if (sorterDropDown_->GetSelection() && obj) o["SORTORDER"] = json::String(obj->GetData().ToStdString());
+    if (sorterDropDown_->GetSelection() && obj) o[L"SORTORDER"] = json::String(obj->GetData().ToStdWstring());
 
-    std::stringstream ss;
+    std::wstringstream ss;
     json::Writer::Write(o, ss);
     return ss.str();
 }
@@ -896,39 +888,39 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 {
     wxString str = data;
     if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
-    std::stringstream ss;
-    ss << str.ToStdString();
+    std::wstringstream ss;
+    ss << str.ToStdWstring();
     json::Object o;
     json::Reader::Read(o, ss);
     
     //Label
-    m_settingLabel->ChangeValue(wxString(json::String(o["LABEL"])));
+    m_settingLabel->ChangeValue(wxString(json::String(o[L"LABEL"])));
     
     //Sort order
-    sorterDropDown_->SetStringSelection(wxGetTranslation(wxString(json::String(o["SORTORDER"]))));
+    sorterDropDown_->SetStringSelection(wxGetTranslation(wxString(json::String(o[L"SORTORDER"]))));
 
     //Account
-    accountCheckBox_->SetValue(!wxString(json::String(o["ACCOUNT"])).empty());
+    accountCheckBox_->SetValue(!wxString(json::String(o[L"ACCOUNT"])).empty());
     accountDropDown_->Enable(accountCheckBox_->IsChecked());
-    accountDropDown_->SetStringSelection(wxString(json::String(o["ACCOUNT"])));
+    accountDropDown_->SetStringSelection(wxString(json::String(o[L"ACCOUNT"])));
 
     //Dates
-    dateRangeCheckBox_->SetValue(!wxString(json::String(o["DATE"])).empty() || !wxString(json::String(o["DATE2"])).empty());
+    dateRangeCheckBox_->SetValue(!wxString(json::String(o[L"DATE"])).empty() || !wxString(json::String(o[L"DATE2"])).empty());
     fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
-    fromDateCtrl_->SetValue(mmGetStorageStringAsDate(wxString(json::String(o["DATE1"]))));
+    fromDateCtrl_->SetValue(mmGetStorageStringAsDate(wxString(json::String(o[L"DATE1"]))));
     toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
-    toDateControl_->SetValue(mmGetStorageStringAsDate(wxString(json::String(o["DATE2"]))));
+    toDateControl_->SetValue(mmGetStorageStringAsDate(wxString(json::String(o[L"DATE2"]))));
 
     //Payee
-    payeeCheckBox_->SetValue(!wxString(json::String(o["PAYEE"])).empty());
+    payeeCheckBox_->SetValue(!wxString(json::String(o[L"PAYEE"])).empty());
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
-    cbPayee_->SetValue(wxString(json::String(o["PAYEE"])));
+    cbPayee_->SetValue(wxString(json::String(o[L"PAYEE"])));
 
     //Category
-    wxString value = wxString(json::String(o["CATEGORY"]));
+    wxString value = wxString(json::String(o[L"CATEGORY"]));
     categoryCheckBox_->SetValue(!value.empty());
     btnCategory_->Enable(categoryCheckBox_->IsChecked());
-    bSimilarCategoryStatus_ = json::Boolean(o["SIMILAR_YN"]);
+    bSimilarCategoryStatus_ = json::Boolean(o[L"SIMILAR_YN"]);
     similarCategCheckBox_->SetValue(bSimilarCategoryStatus_);
     similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
     wxStringTokenizer categ_token(value, ":", wxTOKEN_RET_EMPTY_ALL);
@@ -943,15 +935,15 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
         if (sub_category)
             subcategID_ = sub_category->SUBCATEGID;
     }
-    btnCategory_->SetLabel(Model_Category::full_name(categID_, subcategID_));
+    btnCategory_->SetLabelText(Model_Category::full_name(categID_, subcategID_));
 
     //Status
-    statusCheckBox_->SetValue(!wxString(json::String(o["STATUS"])).empty());
+    statusCheckBox_->SetValue(!wxString(json::String(o[L"STATUS"])).empty());
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
-    choiceStatus_->SetStringSelection(wxGetTranslation(wxString(json::String(o["STATUS"]))));
+    choiceStatus_->SetStringSelection(wxGetTranslation(wxString(json::String(o[L"STATUS"]))));
 
     //Type
-    wxString type = wxString(json::String(o["TYPE"]));
+    wxString type = wxString(json::String(o[L"TYPE"]));
     typeCheckBox_->SetValue(!type.empty());
     cbTypeWithdrawal_->SetValue(type.Contains("W"));
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
@@ -963,27 +955,27 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
 
     //Amounts
-    bool amt1 = 0.0 != json::Number(o["AMOUNT_MIN"]);
-    bool amt2 = 0.0 != json::Number(o["AMOUNT_MAX"]);
+    bool amt1 = 0.0 != json::Number(o[L"AMOUNT_MIN"]);
+    bool amt2 = 0.0 != json::Number(o[L"AMOUNT_MAX"]);
     amountRangeCheckBox_->SetValue(amt1 || amt2);
     amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
     amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
     if (amt1)
-        amountMinEdit_->SetValue(json::Number(o["AMOUNT_MIN"]));
+        amountMinEdit_->SetValue(json::Number(o[L"AMOUNT_MIN"]));
     else
         amountMinEdit_->ChangeValue("");
     if (amt2)
-        amountMaxEdit_->SetValue(json::Number(o["AMOUNT_MAX"]));
+        amountMaxEdit_->SetValue(json::Number(o[L"AMOUNT_MAX"]));
     else
         amountMaxEdit_->ChangeValue("");
 
     //Number
-    transNumberCheckBox_->SetValue(!wxString(json::String(o["NUMBER"])).empty());
+    transNumberCheckBox_->SetValue(!wxString(json::String(o[L"NUMBER"])).empty());
     transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
-    transNumberEdit_->ChangeValue(wxString(json::String(o["NUMBER"])));
+    transNumberEdit_->ChangeValue(wxString(json::String(o[L"NUMBER"])));
 
     //Notes
-    notesCheckBox_->SetValue(!wxString(json::String(o["NOTES"])).empty());
+    notesCheckBox_->SetValue(!wxString(json::String(o[L"NOTES"])).empty());
     notesEdit_->Enable(notesCheckBox_->IsChecked());
-    notesEdit_->ChangeValue(wxString(json::String(o["NOTES"])));
+    notesEdit_->ChangeValue(wxString(json::String(o[L"NOTES"])));
 }

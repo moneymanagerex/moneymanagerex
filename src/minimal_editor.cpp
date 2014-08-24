@@ -11,18 +11,18 @@ enum
     margin_id_fold,
 };
 
-IMPLEMENT_DYNAMIC_CLASS(MinimalEditor, wxStyledTextCtrl)
+wxIMPLEMENT_DYNAMIC_CLASS(MinimalEditor, wxStyledTextCtrl);
 
-BEGIN_EVENT_TABLE(MinimalEditor, wxStyledTextCtrl)
-EVT_STC_MARGINCLICK(wxID_ANY, MinimalEditor::OnMarginClick)
-EVT_STC_CHANGE(wxID_ANY, MinimalEditor::OnText)
-END_EVENT_TABLE()
+wxBEGIN_EVENT_TABLE(MinimalEditor, wxStyledTextCtrl)
+    EVT_STC_MARGINCLICK(wxID_ANY, MinimalEditor::OnMarginClick)
+    EVT_STC_CHANGE(wxID_ANY, MinimalEditor::OnText)
+wxEND_EVENT_TABLE()
 
 MinimalEditor::MinimalEditor(wxWindow* parent, wxWindowID id)
     : wxStyledTextCtrl(parent, id)
     {
 		int font_size = this->GetFont().GetPointSize();
-        m_font = wxFont(font_size, wxSWISS, wxNORMAL, wxNORMAL, FALSE, "");
+        m_font = wxFont(font_size, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
     }
 bool MinimalEditor::SetFont(const wxFont& font)
     {

@@ -26,10 +26,8 @@
 #include <algorithm>
 
 mmReportTransactions::mmReportTransactions(int refAccountID, mmFilterTransactionsDialog* transDialog)
-    : mmPrintableBase(DATE)
-    , refAccountID_(refAccountID)
+    : refAccountID_(refAccountID)
     , transDialog_(transDialog)
-    , sortby_(DATE)
     , ignoreDate_(false)
     , trans_()
 {

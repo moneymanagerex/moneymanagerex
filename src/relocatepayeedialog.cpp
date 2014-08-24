@@ -24,11 +24,11 @@
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Checking.h"
 
-IMPLEMENT_DYNAMIC_CLASS( relocatePayeeDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(relocatePayeeDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( relocatePayeeDialog, wxDialog )
+wxBEGIN_EVENT_TABLE(relocatePayeeDialog, wxDialog)
     EVT_BUTTON(wxID_OK, relocatePayeeDialog::OnOk)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 relocatePayeeDialog::relocatePayeeDialog( )
 : sourcePayeeID_(-1)

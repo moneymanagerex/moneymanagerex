@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
+ *          AUTO GENERATED at 2014-08-18 21:13:39.011000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,7 +27,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::string to_json() const
+        std::wstring to_json() const
         {
             json::Array a;
             for (const auto & item: *this)
@@ -36,7 +36,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
                 item.to_json(o);
                 a.Insert(o);
             }
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(a, ss);
             return ss.str();
         }
@@ -212,16 +212,16 @@ struct DB_Table_SETTING_V1 : public DB_Table
         {
             json::Object o;
             this->to_json(o);
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
         
         int to_json(json::Object& o) const
         {
-            o["SETTINGID"] = json::Number(this->SETTINGID);
-            o["SETTINGNAME"] = json::String(this->SETTINGNAME.ToStdString());
-            o["SETTINGVALUE"] = json::String(this->SETTINGVALUE.ToStdString());
+            o[L"SETTINGID"] = json::Number(this->SETTINGID);
+            o[L"SETTINGNAME"] = json::String(this->SETTINGNAME.ToStdWstring());
+            o[L"SETTINGVALUE"] = json::String(this->SETTINGVALUE.ToStdWstring());
             return 0;
         }
         row_t to_row_t() const

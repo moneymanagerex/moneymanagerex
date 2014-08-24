@@ -51,9 +51,6 @@ void mmOptions::LoadInfotableOptions()
 //----------------------------------------------------------------------------
 mmIniOptions::mmIniOptions()
 : html_font_size_(3)
-, expandBankTree_(true)
-, expandTermTree_(false)
-, expandStocksTree_(false)
 , budgetFinancialYears_(false)
 , budgetIncludeTransfers_(false)
 , budgetSetupWithoutSummaries_(false)
@@ -73,10 +70,6 @@ mmIniOptions& mmIniOptions::instance()
 void mmIniOptions::loadOptions()
 {
     html_font_size_   = Model_Setting::instance().GetIntSetting("HTMLFONTSIZE", 3);
-
-    expandBankTree_   = Model_Setting::instance().GetBoolSetting("EXPAND_BANK_TREE", true);
-    expandTermTree_   = Model_Setting::instance().GetBoolSetting("EXPAND_TERM_TREE", false);
-    expandStocksTree_ = Model_Setting::instance().GetBoolSetting("EXPAND_STOCKS_TREE", false);
 
     budgetFinancialYears_           = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
     budgetIncludeTransfers_         = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);

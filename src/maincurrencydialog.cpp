@@ -31,9 +31,9 @@
 
 #include "../resources/checkupdate.xpm"
 
-IMPLEMENT_DYNAMIC_CLASS(mmMainCurrencyDialog, wxDialog)
+wxIMPLEMENT_DYNAMIC_CLASS(mmMainCurrencyDialog, wxDialog);
 
-BEGIN_EVENT_TABLE(mmMainCurrencyDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(mmMainCurrencyDialog, wxDialog)
     EVT_BUTTON(wxID_ADD, mmMainCurrencyDialog::OnBtnAdd)
     EVT_BUTTON(wxID_EDIT, mmMainCurrencyDialog::OnBtnEdit)
     EVT_BUTTON(wxID_SELECTALL, mmMainCurrencyDialog::OnBtnSelect)
@@ -46,7 +46,7 @@ BEGIN_EVENT_TABLE(mmMainCurrencyDialog, wxDialog)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmMainCurrencyDialog::OnListItemSelected)
     EVT_DATAVIEW_ITEM_VALUE_CHANGED(wxID_ANY, mmMainCurrencyDialog::OnValueChanged)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmMainCurrencyDialog::OnItemRightClick)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmMainCurrencyDialog::mmMainCurrencyDialog(
     wxWindow* parent

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
+ *          AUTO GENERATED at 2014-08-18 21:13:39.011000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,7 +27,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::string to_json() const
+        std::wstring to_json() const
         {
             json::Array a;
             for (const auto & item: *this)
@@ -36,7 +36,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
                 item.to_json(o);
                 a.Insert(o);
             }
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(a, ss);
             return ss.str();
         }
@@ -246,18 +246,18 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         {
             json::Object o;
             this->to_json(o);
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
         
         int to_json(json::Object& o) const
         {
-            o["SPLITTRANSID"] = json::Number(this->SPLITTRANSID);
-            o["TRANSID"] = json::Number(this->TRANSID);
-            o["CATEGID"] = json::Number(this->CATEGID);
-            o["SUBCATEGID"] = json::Number(this->SUBCATEGID);
-            o["SPLITTRANSAMOUNT"] = json::Number(this->SPLITTRANSAMOUNT);
+            o[L"SPLITTRANSID"] = json::Number(this->SPLITTRANSID);
+            o[L"TRANSID"] = json::Number(this->TRANSID);
+            o[L"CATEGID"] = json::Number(this->CATEGID);
+            o[L"SUBCATEGID"] = json::Number(this->SUBCATEGID);
+            o[L"SPLITTRANSAMOUNT"] = json::Number(this->SPLITTRANSAMOUNT);
             return 0;
         }
         row_t to_row_t() const

@@ -167,14 +167,9 @@ MMEX_OBJECTS =  \
 	mmex_cashflow.obj \
 	mmex_categexp.obj \
 	mmex_categovertimeperf.obj \
-	mmex_chart.obj \
 	mmex_htmlbuilder.obj \
 	mmex_incexpenses.obj \
 	mmex_mmDateRange.obj \
-	mmex_mmgraphgenerator.obj \
-	mmex_mmgraphincexpensesmonth.obj \
-	mmex_mmgraphpie.obj \
-	mmex_mmgraphtopcategories.obj \
 	mmex_payee.obj \
 	mmex_reportbase.obj \
 	mmex_summary.obj \
@@ -457,6 +452,7 @@ install: install_mmex
 	( cd ..\..\resources && copy /Y  master.css $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\3rd\Chart.js && copy /Y  Chart.js $(PREFIX)\mmex\res )
+	( cd ..\..\3rd\ChartNew.js && copy /Y  ChartNew.js $(PREFIX)\mmex\res )
 	( cd ..\..\3rd\sorttable.js && copy /Y  sorttable.js $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\help
 	( cd ..\..\doc\help && copy /Y  *.html $(PREFIX)\mmex\help )
@@ -471,6 +467,7 @@ uninstall: uninstall_mmex
 	-if exist $(PREFIX)\mmex\res\kaching.wav -del kaching.wav
 	-if exist $(PREFIX)\mmex\res\master.css -del master.css
 	-if exist $(PREFIX)\mmex\res\Chart.js -del Chart.js
+	-if exist $(PREFIX)\mmex\res\ChartNew.js -del ChartNew.js
 	-if exist $(PREFIX)\mmex\res\sorttable.js -del sorttable.js
 	-if exist $(PREFIX)\mmex\help\*.html -del *.html
 	-if exist $(PREFIX)\mmex\help\*.png -del *.png
@@ -811,9 +808,6 @@ mmex_categexp.obj: ..\..\src\reports\categexp.cpp
 mmex_categovertimeperf.obj: ..\..\src\reports\categovertimeperf.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\categovertimeperf.cpp
 
-mmex_chart.obj: ..\..\src\reports\chart.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\chart.cpp
-
 mmex_htmlbuilder.obj: ..\..\src\reports\htmlbuilder.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\htmlbuilder.cpp
 
@@ -822,18 +816,6 @@ mmex_incexpenses.obj: ..\..\src\reports\incexpenses.cpp
 
 mmex_mmDateRange.obj: ..\..\src\reports\mmDateRange.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmDateRange.cpp
-
-mmex_mmgraphgenerator.obj: ..\..\src\reports\mmgraphgenerator.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmgraphgenerator.cpp
-
-mmex_mmgraphincexpensesmonth.obj: ..\..\src\reports\mmgraphincexpensesmonth.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmgraphincexpensesmonth.cpp
-
-mmex_mmgraphpie.obj: ..\..\src\reports\mmgraphpie.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmgraphpie.cpp
-
-mmex_mmgraphtopcategories.obj: ..\..\src\reports\mmgraphtopcategories.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmgraphtopcategories.cpp
 
 mmex_payee.obj: ..\..\src\reports\payee.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\payee.cpp

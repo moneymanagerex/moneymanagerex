@@ -24,8 +24,8 @@
 
 class relocateCategoryDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS(relocateCategoryDialog)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(relocateCategoryDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     relocateCategoryDialog();
