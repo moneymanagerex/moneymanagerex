@@ -69,13 +69,13 @@ public:
     /** Add a Table header cell link */
     void addTableHeaderCellLink(const wxString& href, const wxString& value, const bool& numeric = false);
 
-    void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency());
+    void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency(), int precision = -1);
     void addMoneyCell(double amount);
     void addTableCellMonth(int month);
 
     /** Add a Cell value */
     void addTableCell(const wxDateTime& date);
-    void addTableCell(const wxString& value);
+    void addTableCell(const wxString& value, const bool& numeric = false);
 
     /** Add a Cell value */
     void addTableCellLink(const wxString& href, const wxString& value);

@@ -21,7 +21,6 @@
 
 #include "reportbase.h"
 #include <vector>
-#include "../reports/mmgraphgenerator.h"
 #include "../reports/chart.h"
 #include "mmDateRange.h"
 
@@ -53,20 +52,6 @@ public:
 
 private:
     mmDateRange* dtRange_;
-};
-
-class mmGraphHistoryStocks : public mmGraphGenerator
-{
-public:
-    mmGraphHistoryStocks();
-    ~mmGraphHistoryStocks();
-
-    void init(std::vector<ChartData> aData, int indColor=0);
-    bool Generate(const wxString& chartTitle);
-
-private:
-    wxScopedPtr<GraphChart> chart;
-    wxString fileName;
 };
 
 #endif // _MM_EX_REPORTSUMMARYSTOCKS_H_
