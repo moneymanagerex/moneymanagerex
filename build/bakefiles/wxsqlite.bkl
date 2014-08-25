@@ -17,6 +17,7 @@
         <define>SQLITE_ENABLE_FTS3</define>
         <define>SQLITE_ENABLE_FTS3_PARENTHESIS</define>
         <define>SQLITE_HAS_CODEC</define>
+        <define>SQLITE_ENABLE_EXTFUNC</define>
         <define>SQLITE_ENABLE_COLUMN_METADATA</define>
 
         <define>WXSQLITE3_HAVE_CODEC</define>

@@ -41,17 +41,19 @@ WXSQLITE_CFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -DNOPCH \
 	-DSQLITE_CORE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS \
-	-DSQLITE_HAS_CODEC -DSQLITE_ENABLE_COLUMN_METADATA -DWXSQLITE3_HAVE_CODEC \
-	-DWXSQLITE3_HAVE_METADATA -I..\..\lib\wxsqlite3\sqlite3\secure\src \
-	-I..\..\lib\wxsqlite3\include $(CPPFLAGS) $(CFLAGS)
+	-DSQLITE_HAS_CODEC -DSQLITE_ENABLE_EXTFUNC -DSQLITE_ENABLE_COLUMN_METADATA \
+	-DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
+	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
+	$(CPPFLAGS) $(CFLAGS)
 WXSQLITE_CXXFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
 	$(__DEBUG_DEFINE_p) -DHAVE_W32API_H $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -DNOPCH \
 	-DSQLITE_CORE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS \
-	-DSQLITE_HAS_CODEC -DSQLITE_ENABLE_COLUMN_METADATA -DWXSQLITE3_HAVE_CODEC \
-	-DWXSQLITE3_HAVE_METADATA -I..\..\lib\wxsqlite3\sqlite3\secure\src \
-	-I..\..\lib\wxsqlite3\include $(CPPFLAGS) $(CXXFLAGS)
+	-DSQLITE_HAS_CODEC -DSQLITE_ENABLE_EXTFUNC -DSQLITE_ENABLE_COLUMN_METADATA \
+	-DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
+	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
+	$(CPPFLAGS) $(CXXFLAGS)
 WXSQLITE_OBJECTS =  \
 	wxsqlite_wxsqlite3.o \
 	wxsqlite_sqlite3secure.o
@@ -335,7 +337,7 @@ all: test_for_selected_wxbuild libwxsqlite.a liblua.a mmex.exe po
 
 install: install_mmex
 	-mkdir $(PREFIX)\mmex
-	( cd ..\..\doc && copy /Y  *.txt $(PREFIX)\mmex )
+	( cd ..\..\doc && copy /Y  version.txt contrib.txt license.txt $(PREFIX)\mmex )
 	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\resources && copy /Y  mmex.ico $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\res
@@ -344,7 +346,9 @@ install: install_mmex
 	( cd ..\..\resources && copy /Y  master.css $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\3rd\Chart.js && copy /Y  Chart.js $(PREFIX)\mmex\res )
+	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\3rd\ChartNew.js && copy /Y  ChartNew.js $(PREFIX)\mmex\res )
+	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\3rd\sorttable.js && copy /Y  sorttable.js $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\help
 	( cd ..\..\doc\help && copy /Y  *.html $(PREFIX)\mmex\help )
@@ -354,7 +358,9 @@ install: install_mmex
 	( cd ..\..\po && copy /Y  *.mo $(PREFIX)\mmex\po\en )
 
 uninstall: uninstall_mmex
-	-if exist $(PREFIX)\mmex\*.txt -del *.txt
+	-if exist $(PREFIX)\mmex\version.txt -del version.txt
+	-if exist $(PREFIX)\mmex\contrib.txt -del contrib.txt
+	-if exist $(PREFIX)\mmex\license.txt -del license.txt
 	-if exist $(PREFIX)\mmex\res\mmex.ico -del mmex.ico
 	-if exist $(PREFIX)\mmex\res\kaching.wav -del kaching.wav
 	-if exist $(PREFIX)\mmex\res\master.css -del master.css
@@ -373,7 +379,6 @@ clean:
 	-if exist mmex.exe del mmex.exe
 	$(MAKE) -C ..\..\po -f makefile.gcc $(MAKEARGS) clean
 	$(MAKE) -C ..\..\setup\win -f makefile.gcc $(MAKEARGS) clean
-	$(MAKE) -C tests -f makefile.gcc $(MAKEARGS) clean
 
 test_for_selected_wxbuild: 
 	@if not exist $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX)\wx\setup.h \
@@ -412,9 +417,6 @@ po:
 
 setup: all
 	$(MAKE) -C ..\..\setup\win -f makefile.gcc $(MAKEARGS) APP_EXE_PATH="..\..\build\msw\mmex.exe" BUILD_OPTS="$(__setup_SHARED)$(__setup_UNICODE)$(__setup_DEBUG)-x86" CPU_ARCH="x86" CRT_DLLS="$(MINGWDIR)\bin\libgcc_s_*.dll" FORMAT="mingw" all
-
-test: 
-	$(MAKE) -C tests -f makefile.gcc $(MAKEARGS) all
 
 wxsqlite_wxsqlite3.o: ../../lib/wxsqlite3/src/wxsqlite3.cpp
 	$(CXX) -c -o $@ $(WXSQLITE_CXXFLAGS) $(CPPDEPS) $<
@@ -791,7 +793,7 @@ mmex_csv_parser.o: ../../3rd/csv-parser/csv_parser.cpp
 mmex_resources_mmex_rc.o: ../../resources/mmex.rc
 	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_17_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_3) --include-dir ../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../lib/wxsqlite3/include --include-dir ../../lib/lua/src --include-dir ../../lib --include-dir ../../3rd --include-dir ../../3rd/LuaGlue/include --include-dir ../../3rd/cgitemplate --include-dir ../../3rd/csv-parser/include --include-dir ../../src --define NOPCH
 
-.PHONY: all install uninstall clean install_mmex uninstall_mmex po setup test
+.PHONY: all install uninstall clean install_mmex uninstall_mmex po setup
 
 
 SHELL := $(COMSPEC)
