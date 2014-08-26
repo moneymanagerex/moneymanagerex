@@ -28,9 +28,9 @@ Copyright (C) 2014 Gabriele-V
 
 #include <wx/mimetype.h>
 
-IMPLEMENT_DYNAMIC_CLASS( mmAttachmentDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmAttachmentDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmAttachmentDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmAttachmentDialog, wxDialog )
     EVT_BUTTON(wxID_CANCEL, mmAttachmentDialog::OnCancel)
     EVT_BUTTON(wxID_OK, mmAttachmentDialog::OnOk)
     EVT_BUTTON(wxID_APPLY, mmAttachmentDialog::OnMagicButton)
@@ -38,7 +38,7 @@ BEGIN_EVENT_TABLE( mmAttachmentDialog, wxDialog )
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmAttachmentDialog::OnItemRightClick)
 	EVT_MENU_RANGE(MENU_NEW_ATTACHMENT, MENU_DELETE_ATTACHMENT, mmAttachmentDialog::OnMenuSelected)
 	EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmAttachmentDialog::OnListItemActivated)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 
 mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefType, const int& RefId) :
@@ -179,11 +179,10 @@ void mmAttachmentDialog::AddAttachment()
 		, _("Organize Attachments: Add Attachment"), attachmentFileName);
 
     wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
-	wxString attachmentNumberString = Model_Attachment::LastAttachmentFileName(m_RefType, m_RefId);
-	attachmentNumberString = attachmentNumberString.SubString(attachmentNumberString.Find("Attach")+6, attachmentNumberString.Find(".")-1);
-	int attachmentNumber = wxAtoi(attachmentNumberString);
+    int attachmentLastNumber = Model_Attachment::LastAttachmentNumber(m_RefType, m_RefId);
 
-	wxString importedFileName = m_RefType + "_" + wxString::Format("%i", m_RefId) + "_Attach" + wxString::Format("%i", attachmentNumber+1) + "." + attachmentFileExtension;
+    wxString importedFileName = m_RefType + "_" + wxString::Format("%i", m_RefId) + "_Attach"
+        + wxString::Format("%i", attachmentLastNumber + 1) + "." + attachmentFileExtension;
 
 	if (mmAttachmentManage::CopyAttachment(attachmentFilePath, AttachmentsFolder + m_PathSep + m_RefType + m_PathSep + importedFileName))
 	{

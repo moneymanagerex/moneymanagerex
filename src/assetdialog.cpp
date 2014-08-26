@@ -26,15 +26,15 @@
 #include "../resources/attachment.xpm"
 #include <wx/valnum.h>
 
-IMPLEMENT_DYNAMIC_CLASS( mmAssetDialog, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmAssetDialog, wxDialog);
 
-BEGIN_EVENT_TABLE( mmAssetDialog, wxDialog )
+wxBEGIN_EVENT_TABLE( mmAssetDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmAssetDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmAssetDialog::OnCancel)
 	EVT_BUTTON(wxID_FILE, mmAssetDialog::OnAttachments)
     EVT_CHOICE(IDC_COMBO_TYPE, mmAssetDialog::OnChangeAppreciationType)
     EVT_CHILD_FOCUS(mmAssetDialog::changeFocus)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset)
     : m_asset(asset)

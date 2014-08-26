@@ -263,10 +263,6 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         ++i;
     }
 
-    //TODO: Set up as a permanent user option
-    if (expandedBudgetingNavTree_)
-        navTreeCtrl_->Expand(budgeting);
-
     ///////////////////////////////////////////////////////////////////
     wxTreeItemId cashFlow = navTreeCtrl_->AppendItem(reports, _("Cash Flow"), 4, 4);
     navTreeCtrl_->SetItemData(cashFlow, new mmTreeItemData("Cash Flow", new mmReportCashFlowAllAccounts()));
@@ -288,9 +284,12 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     wxTreeItemId transactionList = navTreeCtrl_->AppendItem(reports, _("Transaction Report"), 6, 6);
     navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));
 
-    ///////////////////////////////////////////////////////////////////
+    /*GRM Reports*/
+    //Sort by group name and report name
+    Model_Report::Data_Set records = Model_Report::instance().all();
+    std::sort(records.begin(), records.end(), SorterByREPORTNAME());
+    std::stable_sort(records.begin(), records.end(), SorterByGROUPNAME());
 
-    const auto &records = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
     wxTreeItemId group;
     wxString group_name;
     for (const auto& record : records)

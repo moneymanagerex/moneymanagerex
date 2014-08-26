@@ -127,6 +127,14 @@ Janos Horvath
 Sasa Mrvos
 Douglas R Taylor
 Xiaoyun Wang
+Ken Huband
+巩 固
+Matt Young
+Михаил Зайченко
+Adam Gallagher
+Jasmine Glaese
+Barry Plotkind
+Jiri Pitzmos
 
 2013
 CodeLathe LLC

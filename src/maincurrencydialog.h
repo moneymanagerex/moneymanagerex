@@ -25,8 +25,8 @@
 
 class mmMainCurrencyDialog: public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmMainCurrencyDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmMainCurrencyDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     /// Constructors

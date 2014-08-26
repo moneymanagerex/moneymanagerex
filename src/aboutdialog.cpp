@@ -26,11 +26,11 @@
 #include <wx/wxsqlite3.h>
 #include <wx/statline.h>
 
-IMPLEMENT_DYNAMIC_CLASS(mmAboutDialog, wxDialog)
+wxIMPLEMENT_DYNAMIC_CLASS(mmAboutDialog, wxDialog);
 
-BEGIN_EVENT_TABLE(mmAboutDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(mmAboutDialog, wxDialog)
     EVT_HTML_LINK_CLICKED(wxID_ANY, mmAboutDialog::OnLinkClicked)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmAboutDialog::mmAboutDialog(wxWindow* parent, const int& TabToOpen)
 : about_text_()

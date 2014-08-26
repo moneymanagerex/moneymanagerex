@@ -25,8 +25,8 @@
 
 class relocatePayeeDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS(relocatePayeeDialog)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(relocatePayeeDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     relocatePayeeDialog();

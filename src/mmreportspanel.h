@@ -24,7 +24,7 @@
 class mmGUIFrame;
 class mmReportsPanel : public mmPanelBase
 {
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmReportsPanel(mmPrintableBase* rb,

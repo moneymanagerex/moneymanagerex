@@ -27,9 +27,9 @@
 
 /*******************************************************/
 
-IMPLEMENT_DYNAMIC_CLASS(mmAppStartDialog, wxDialog)
+wxIMPLEMENT_DYNAMIC_CLASS(mmAppStartDialog, wxDialog);
 
-BEGIN_EVENT_TABLE(mmAppStartDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(mmAppStartDialog, wxDialog)
     EVT_BUTTON(wxID_NEW, mmAppStartDialog::OnButtonAppstartNewDatabaseClick)
     EVT_BUTTON(wxID_OPEN, mmAppStartDialog::OnButtonAppstartOpenDatabaseClick)
     EVT_BUTTON(wxID_HELP, mmAppStartDialog::OnButtonAppstartHelpClick)
@@ -37,7 +37,7 @@ BEGIN_EVENT_TABLE(mmAppStartDialog, wxDialog)
     EVT_BUTTON(wxID_FILE1, mmAppStartDialog::OnButtonAppstartLastDatabaseClick)
     EVT_BUTTON(wxID_EXIT, mmAppStartDialog::OnQuit)
     EVT_CLOSE(mmAppStartDialog::OnClose)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmAppStartDialog::mmAppStartDialog(wxWindow* parent)
     : itemCheckBox()

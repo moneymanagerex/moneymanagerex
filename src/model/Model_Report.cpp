@@ -34,7 +34,7 @@ static const wxString HTT_CONTEINER =
 "    <meta charset=\"UTF-8\" />\n"
 "    <meta http - equiv = \"Content-Type\" content = \"text/html\" />\n"
 "    <title><TMPL_VAR REPORTNAME></title>\n"
-"    <script src = \"Chart.js\"></script>\n"
+"    <script src = \"ChartNew.js\"></script>\n"
 "    <script src = \"sorttable.js\"></script>\n"
 "    <link href = \"master.css\" rel = \"stylesheet\" />\n"
 "</head>\n"
@@ -82,14 +82,14 @@ public:
     Record(){}
     ~Record(){}
     /* Access functions for LuaGlue (The required conversion between char and wchar_t is done through wxString.) */
-    std::string get(const char* index) { return wxString((*this)[wxString(index).ToStdWstring()]).ToStdString(); }
+    std::string get(const char* index) { return std::string(wxString((*this)[wxString(index).ToStdWstring()]).ToUTF8()); }
     void set(const char* index, const char * val)
     {
-        (*this)[wxString(index).ToStdWstring()] = wxString(val).ToStdWstring();
+        (*this)[wxString(index).ToStdWstring()] = wxString::FromUTF8(val).ToStdWstring();
     }
     std::string GetDir(const char * val)
     {
-        return mmex::getPathAttachment(wxString(val).ToStdWstring()).ToStdString();
+        return std::string(mmex::getPathAttachment(wxString::FromUTF8(val).ToStdWstring()).ToUTF8());
     }
 };
 
@@ -177,7 +177,7 @@ wxString Model_Report::get_html(const Data* r)
         end().open().glue();
 
     bool skip_lua = r->LUACONTENT.IsEmpty();
-    bool lua_status = state.doString(r->LUACONTENT.ToStdString());
+    bool lua_status = state.doString(std::string(r->LUACONTENT.ToUTF8()));
     if (!skip_lua && !lua_status)
     {
         error(L"ERROR") = wxString("failed to doString : ") + r->LUACONTENT + wxString(" err: ") + wxString(state.lastError());
@@ -225,10 +225,10 @@ wxString Model_Report::get_html(const Data* r)
             if ((colHeaders[item.first] == WXSQLITE_INTEGER || colHeaders[item.first] == WXSQLITE_FLOAT)
                 && wxString(item.second).ToDouble(&v))
             {
-                o[wxString(item.first).ToStdString()] = json::Number(v);
+                o[wxString(item.first).ToStdWstring()] = json::Number(v);
             }
             else
-                o[wxString(item.first).ToStdString()] = json::String(wxString(item.second).ToStdString());
+                o[wxString(item.first).ToStdWstring()] = json::String(wxString(item.second).ToStdWstring());
         }
         contents += row;
         jsoncontents.Insert(o);
@@ -265,7 +265,7 @@ wxString Model_Report::get_html(const Data* r)
 
     report(L"CONTENTS") = contents;
     {
-        std::stringstream ss;
+        std::wstringstream ss;
         json::Writer::Write(jsoncontents, ss);
         report(L"JSONCONTENTS") = wxString(ss.str());
     }

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-07-19 16:51:27.822000.
+ *          AUTO GENERATED at 2014-08-24 22:57:36.333000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,7 +27,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::string to_json() const
+        std::wstring to_json() const
         {
             json::Array a;
             for (const auto & item: *this)
@@ -36,7 +36,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
                 item.to_json(o);
                 a.Insert(o);
             }
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(a, ss);
             return ss.str();
         }
@@ -245,18 +245,18 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         {
             json::Object o;
             this->to_json(o);
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
         
         int to_json(json::Object& o) const
         {
-            o["HISTID"] = json::Number(this->HISTID);
-            o["STOCKID"] = json::Number(this->STOCKID);
-            o["DATE"] = json::String(this->DATE.ToStdString());
-            o["VALUE"] = json::Number(this->VALUE);
-            o["UPDTYPE"] = json::Number(this->UPDTYPE);
+            o[L"HISTID"] = json::Number(this->HISTID);
+            o[L"STOCKID"] = json::Number(this->STOCKID);
+            o[L"DATE"] = json::String(this->DATE.ToStdWstring());
+            o[L"VALUE"] = json::Number(this->VALUE);
+            o[L"UPDTYPE"] = json::Number(this->UPDTYPE);
             return 0;
         }
         row_t to_row_t() const

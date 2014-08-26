@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-07-19 11:11:33.988000.
+ *          AUTO GENERATED at 2014-08-18 21:13:39.011000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,7 +27,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::string to_json() const
+        std::wstring to_json() const
         {
             json::Array a;
             for (const auto & item: *this)
@@ -36,7 +36,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
                 item.to_json(o);
                 a.Insert(o);
             }
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(a, ss);
             return ss.str();
         }
@@ -386,27 +386,27 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         {
             json::Object o;
             this->to_json(o);
-            std::stringstream ss;
+            std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
         
         int to_json(json::Object& o) const
         {
-            o["TRANSID"] = json::Number(this->TRANSID);
-            o["ACCOUNTID"] = json::Number(this->ACCOUNTID);
-            o["TOACCOUNTID"] = json::Number(this->TOACCOUNTID);
-            o["PAYEEID"] = json::Number(this->PAYEEID);
-            o["TRANSCODE"] = json::String(this->TRANSCODE.ToStdString());
-            o["TRANSAMOUNT"] = json::Number(this->TRANSAMOUNT);
-            o["STATUS"] = json::String(this->STATUS.ToStdString());
-            o["TRANSACTIONNUMBER"] = json::String(this->TRANSACTIONNUMBER.ToStdString());
-            o["NOTES"] = json::String(this->NOTES.ToStdString());
-            o["CATEGID"] = json::Number(this->CATEGID);
-            o["SUBCATEGID"] = json::Number(this->SUBCATEGID);
-            o["TRANSDATE"] = json::String(this->TRANSDATE.ToStdString());
-            o["FOLLOWUPID"] = json::Number(this->FOLLOWUPID);
-            o["TOTRANSAMOUNT"] = json::Number(this->TOTRANSAMOUNT);
+            o[L"TRANSID"] = json::Number(this->TRANSID);
+            o[L"ACCOUNTID"] = json::Number(this->ACCOUNTID);
+            o[L"TOACCOUNTID"] = json::Number(this->TOACCOUNTID);
+            o[L"PAYEEID"] = json::Number(this->PAYEEID);
+            o[L"TRANSCODE"] = json::String(this->TRANSCODE.ToStdWstring());
+            o[L"TRANSAMOUNT"] = json::Number(this->TRANSAMOUNT);
+            o[L"STATUS"] = json::String(this->STATUS.ToStdWstring());
+            o[L"TRANSACTIONNUMBER"] = json::String(this->TRANSACTIONNUMBER.ToStdWstring());
+            o[L"NOTES"] = json::String(this->NOTES.ToStdWstring());
+            o[L"CATEGID"] = json::Number(this->CATEGID);
+            o[L"SUBCATEGID"] = json::Number(this->SUBCATEGID);
+            o[L"TRANSDATE"] = json::String(this->TRANSDATE.ToStdWstring());
+            o[L"FOLLOWUPID"] = json::Number(this->FOLLOWUPID);
+            o[L"TOTRANSAMOUNT"] = json::Number(this->TOTRANSAMOUNT);
             return 0;
         }
         row_t to_row_t() const

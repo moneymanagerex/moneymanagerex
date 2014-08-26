@@ -19,7 +19,6 @@
 #pragma once
 
 #include "util.h"
-#include "reports/mmgraphgenerator.h"
 #include <wx/listctrl.h>
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
@@ -102,7 +101,7 @@ class mmPanelBase : public wxPanel
 {
 public:
     mmPanelBase() {}
-    virtual ~mmPanelBase() {mmGraphGenerator::cleanup();}
+    virtual ~mmPanelBase() {}
 
 public:
     virtual wxString BuildPage() const { return "TBD"; }

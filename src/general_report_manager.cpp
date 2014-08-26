@@ -46,9 +46,9 @@ private:
     wxString m_selectedGroup;
 };
 
-IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
+wxIMPLEMENT_DYNAMIC_CLASS(mmGeneralReportManager, wxDialog);
 
-BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
+wxBEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_BUTTON(wxID_OPEN, mmGeneralReportManager::OnImportReportEvt)
     EVT_BUTTON(wxID_SAVE, mmGeneralReportManager::OnUpdateReport)
     EVT_BUTTON(wxID_SAVEAS, mmGeneralReportManager::OnExportReport)
@@ -60,7 +60,7 @@ BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_TREE_SEL_CHANGED(ID_REPORT_LIST, mmGeneralReportManager::OnSelChanged)
     EVT_TREE_ITEM_MENU(ID_REPORT_LIST, mmGeneralReportManager::OnItemRightClick)
     EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindowID winid)
     : mmListCtrl(parent, winid)
@@ -328,7 +328,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
     {
         m_sqlListBox->DeleteAllColumns();
         interval = wxGetUTCTimeMillis() - interval;
-        info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %ld ms")
+        info->SetLabelText(wxString::Format(_("Row(s) returned: %i  Duration: %ld ms")
             , (int) m_sqlQueryData.size(), interval.ToLong()));
 
         MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
@@ -351,7 +351,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
     }
     else
     {
-        info->SetLabel(_("SQL Syntax Error"));
+        info->SetLabelText(_("SQL Syntax Error"));
     }
 }
 
@@ -603,7 +603,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         wxButton* createTemplate = (wxButton*) FindWindow(wxID_NEW);
         if (createTemplate) createTemplate->Enable(false);
         wxStaticText *info = (wxStaticText*)FindWindow(wxID_INFO);
-        if (info) info->SetLabel("");
+        if (info) info->SetLabelText("");
 
         viewControls(true);
     }

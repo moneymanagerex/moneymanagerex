@@ -32,7 +32,7 @@ class mmBillsDepositsPanel;
 class billsDepositsListCtrl: public mmListCtrl
 {
     DECLARE_NO_COPY_CLASS(billsDepositsListCtrl)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
 public:
     billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
@@ -69,7 +69,7 @@ private:
 
 class mmBillsDepositsPanel : public mmPanelBase
 {
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmBillsDepositsPanel(

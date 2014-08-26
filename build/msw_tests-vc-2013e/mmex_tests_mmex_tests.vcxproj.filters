@@ -318,9 +318,6 @@
     <ClCompile Include="..\..\src\reports\categovertimeperf.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\reports\chart.cpp">
-      <Filter>Source Files\reports</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\reports\htmlbuilder.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
@@ -328,18 +325,6 @@
       <Filter>Source Files\reports</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\reports\mmDateRange.cpp">
-      <Filter>Source Files\reports</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\reports\mmgraphgenerator.cpp">
-      <Filter>Source Files\reports</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\reports\mmgraphincexpensesmonth.cpp">
-      <Filter>Source Files\reports</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\reports\mmgraphpie.cpp">
-      <Filter>Source Files\reports</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\reports\mmgraphtopcategories.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\reports\payee.cpp">
@@ -728,9 +713,6 @@
     <ClInclude Include="..\..\3rd\mongoose\mongoose.h">
       <Filter>Header Files\3rd</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\reports\chart.h">
-      <Filter>Header Files\reports</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\reports\htmlbuilder.h">
       <Filter>Header Files\reports</Filter>
     </ClInclude>
@@ -759,18 +741,6 @@
       <Filter>Header Files\reports</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\reports\incexpenses.h">
-      <Filter>Header Files\reports</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\reports\mmgraphgenerator.h">
-      <Filter>Header Files\reports</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\reports\mmgraphincexpensesmonth.h">
-      <Filter>Header Files\reports</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\reports\mmgraphpie.h">
-      <Filter>Header Files\reports</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\reports\mmgraphtopcategories.h">
       <Filter>Header Files\reports</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\reports\payee.h">

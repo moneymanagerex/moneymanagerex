@@ -19,17 +19,19 @@ WXSQLITE_CFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -DNOPCH \
 	-DSQLITE_CORE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS \
-	-DSQLITE_HAS_CODEC -DSQLITE_ENABLE_COLUMN_METADATA -DWXSQLITE3_HAVE_CODEC \
-	-DWXSQLITE3_HAVE_METADATA -I..\..\lib\wxsqlite3\sqlite3\secure\src \
-	-I..\..\lib\wxsqlite3\include $(CPPFLAGS) $(CFLAGS)
+	-DSQLITE_HAS_CODEC -DSQLITE_ENABLE_EXTFUNC -DSQLITE_ENABLE_COLUMN_METADATA \
+	-DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
+	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
+	$(CPPFLAGS) $(CFLAGS)
 WXSQLITE_CXXFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
 	$(__DEBUG_DEFINE_p) -DHAVE_W32API_H $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -DNOPCH \
 	-DSQLITE_CORE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS \
-	-DSQLITE_HAS_CODEC -DSQLITE_ENABLE_COLUMN_METADATA -DWXSQLITE3_HAVE_CODEC \
-	-DWXSQLITE3_HAVE_METADATA -I..\..\lib\wxsqlite3\sqlite3\secure\src \
-	-I..\..\lib\wxsqlite3\include $(CPPFLAGS) $(CXXFLAGS)
+	-DSQLITE_HAS_CODEC -DSQLITE_ENABLE_EXTFUNC -DSQLITE_ENABLE_COLUMN_METADATA \
+	-DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
+	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
+	$(CPPFLAGS) $(CXXFLAGS)
 WXSQLITE_OBJECTS =  \
 	wxsqlite_wxsqlite3.o \
 	wxsqlite_sqlite3secure.o
@@ -196,14 +198,9 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_cashflow.o \
 	mmex_tests_categexp.o \
 	mmex_tests_categovertimeperf.o \
-	mmex_tests_chart.o \
 	mmex_tests_htmlbuilder.o \
 	mmex_tests_incexpenses.o \
 	mmex_tests_mmDateRange.o \
-	mmex_tests_mmgraphgenerator.o \
-	mmex_tests_mmgraphincexpensesmonth.o \
-	mmex_tests_mmgraphpie.o \
-	mmex_tests_mmgraphtopcategories.o \
 	mmex_tests_payee.o \
 	mmex_tests_reportbase.o \
 	mmex_tests_summary.o \
@@ -830,9 +827,6 @@ mmex_tests_categexp.o: ../../src/reports/categexp.cpp
 mmex_tests_categovertimeperf.o: ../../src/reports/categovertimeperf.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_tests_chart.o: ../../src/reports/chart.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_tests_htmlbuilder.o: ../../src/reports/htmlbuilder.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
@@ -840,18 +834,6 @@ mmex_tests_incexpenses.o: ../../src/reports/incexpenses.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmDateRange.o: ../../src/reports/mmDateRange.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_tests_mmgraphgenerator.o: ../../src/reports/mmgraphgenerator.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_tests_mmgraphincexpensesmonth.o: ../../src/reports/mmgraphincexpensesmonth.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_tests_mmgraphpie.o: ../../src/reports/mmgraphpie.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_tests_mmgraphtopcategories.o: ../../src/reports/mmgraphtopcategories.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_payee.o: ../../src/reports/payee.cpp

@@ -151,7 +151,7 @@ private:
     };
 
     DECLARE_NO_COPY_CLASS(TransactionListCtrl)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
     mmCheckingPanel *m_cp;
 
@@ -258,7 +258,7 @@ private:
         items.Add(wxTRANSLATE("View Current Year"));
         return items;
     }
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     friend class TransactionListCtrl; // needs access to m_core, initdb_, ...
 
     wxButton* btnNew_;

@@ -27,8 +27,8 @@ class wxHtmlWindow;
 
 class mmAboutDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS(mmAboutDialog)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmAboutDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmAboutDialog() {}

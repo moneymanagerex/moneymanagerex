@@ -25,8 +25,8 @@ class wxDatePickerCtrl;
 
 class mmQIFExportDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmQIFExportDialog )
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(mmQIFExportDialog);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmQIFExportDialog() {}
