@@ -731,13 +731,13 @@ void mmGUIFrame::updateNavTreeControl()
     wxTreeItemId accounts = navTreeCtrl_->AppendItem(root, _("Bank Accounts"), 9, 9);
     navTreeCtrl_->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
     navTreeCtrl_->SetItemBold(accounts, true);
+    wxTreeItemId cardAccounts = navTreeCtrl_->AppendItem(root, _("Credit Card Accounts"), 9, 9);
+    navTreeCtrl_->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
+    navTreeCtrl_->SetItemBold(cardAccounts, true);
 
     wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), 12, 12);
     navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
     navTreeCtrl_->SetItemBold(termAccount, true);
-    wxTreeItemId cardAccounts = navTreeCtrl_->AppendItem(root, _("Credit Card Accounts"), 9, 9);
-    navTreeCtrl_->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
-    navTreeCtrl_->SetItemBold(cardAccounts, true);
     wxTreeItemId stocks = navTreeCtrl_->AppendItem(root, _("Stocks"), 15, 15);
     navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
     navTreeCtrl_->SetItemBold(stocks, true);
