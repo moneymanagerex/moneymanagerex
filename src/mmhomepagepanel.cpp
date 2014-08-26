@@ -669,16 +669,11 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     bool type_is_bank = type == Model_Account::CHECKING || type == Model_Account::CREDIT_CARD,
          credit_card = type == Model_Account::CREDIT_CARD;
     double tReconciled = 0;
-    const wxString idStr = (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO");
+    const wxString idStr = (type_is_bank ? (credit_card ? "CARD_ACCOUNTS_INFO" : "ACCOUNTS_INFO") : "TERM_ACCOUNTS_INFO");
     wxString output = "<table class = 'sortable table'>\n";
     output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
     output += "<thead><tr><th nowrap>";
-    if (type_is_bank && !credit_card)
-        output += _("Bank Account");
-    else if (type_is_bank && credit_card)
-        output += _("Credit Card Accounts");
-    else if (!type_is_bank)
-        output += _("Term account");
+    output += (type_is_bank ? (credit_card ? _("Credit Card Accounts") : _("Bank Account")) : _("Term Account"));
 
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
     output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";
