@@ -217,6 +217,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.addLineBreak();
 
     hb.startTable();
+    hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Date"));
     hb.addTableHeaderCell(_("Bank Account"), true);
@@ -225,6 +226,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.addTableHeaderCell(_("Stocks"), true);
     hb.addTableHeaderCell(_("Balance"), true);
     hb.endTableRow();
+    hb.endThead();
 
     for (const auto& account: Model_Account::instance().all())
     {
@@ -291,7 +293,7 @@ wxString mmReportSummaryByDate::getHTMLText()
             i++;
         }
 
-        totBalanceData.push_back(dateStart.FormatDate());
+        totBalanceData.push_back(dateStart.FormatISODate());
         for (j=0; j<5; j++)
             balancePerDay[j] = 0.0;
         for (j=0; j<4; j++)
@@ -316,20 +318,31 @@ wxString mmReportSummaryByDate::getHTMLText()
         dateStart += span;
     }
 
-    for (i=totBalanceData.size()-6; i>=0; i-=6)
+    hb.startTbody();
+    for (i = totBalanceData.size() - 6; i >= 0; i -= 6)
     {
-        //if (!datePrec.IsEmpty() && datePrec.Right(4) != totBalanceData[i].Right(4))
-            //TODO:    hb.addRowSeparator(6);
+        if (datePrec.Left(4) != totBalanceData[i].Left(4))
+        {
+            hb.startTotalTableRow();
+            hb.addTableCell(totBalanceData[i].Left(4));
+            hb.addTableCell("");
+            hb.addTableCell("");
+            hb.addTableCell("");
+            hb.addTableCell("");
+            hb.addTableCell("");
+            hb.endTableRow();
+        }
         hb.startTableRow();
-        hb.addTableCell(totBalanceData[i]);
-        hb.addTableCell(totBalanceData[i+1]);
-        hb.addTableCell(totBalanceData[i+2]);
-        hb.addTableCell(totBalanceData[i+3]);
-        hb.addTableCell(totBalanceData[i+4]);
-        hb.addTableCell(totBalanceData[i+5]);
+        hb.addTableCell(mmGetDateForDisplay(mmGetStorageStringAsDate(totBalanceData[i])));
+        hb.addTableCell(totBalanceData[i + 1], true);
+        hb.addTableCell(totBalanceData[i + 2], true);
+        hb.addTableCell(totBalanceData[i + 3], true);
+        hb.addTableCell(totBalanceData[i + 4], true);
+        hb.addTableCell(totBalanceData[i + 5], true);
         hb.endTableRow();
         datePrec = totBalanceData[i];
     }
+    hb.endTbody();
 
     hb.endTable();
     hb.end();
