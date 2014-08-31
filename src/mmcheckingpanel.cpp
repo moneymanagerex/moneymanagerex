@@ -212,14 +212,14 @@ void mmCheckingPanel::filterTable()
     for (const auto& tran : Model_Account::transaction(this->m_account))
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran) != Model_Checking::VOID_)
+        if (Model_Checking::status(tran.TRANSCODE) != Model_Checking::VOID_)
             account_balance_ += transaction_amount;
         else
         {
             if (!m_listCtrlAccount->showDeletedTransactions_)
                 continue;
         }
-        if (Model_Checking::status(tran) == Model_Checking::RECONCILED)
+        if (Model_Checking::status(tran.TRANSCODE) == Model_Checking::RECONCILED)
             reconciled_balance_ += transaction_amount;
 
         if (transFilterActive_)
@@ -258,7 +258,7 @@ void mmCheckingPanel::updateTable()
     for (const auto& tran : Model_Account::transaction(m_account))
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran) != Model_Checking::VOID_)
+        if (Model_Checking::status(tran.TRANSCODE) != Model_Checking::VOID_)
             account_balance_ += transaction_amount;
         reconciled_balance_ += Model_Checking::reconciled(tran, m_AccountID);
     }
@@ -856,12 +856,20 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
 void mmCheckingPanel::DisplaySplitCategories(int transID)
 {
     const Model_Checking::Data* tran = Model_Checking::instance().get(transID);
-    int transType = Model_Checking::type(tran);
+    int transType = Model_Checking::type(tran->TRANSCODE);
 
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
     auto splits = Model_Checking::splittransaction(transaction);
+    std::vector<Split> splt;
+    for (const auto& entry : splits) {
+        Split s;
+        s.CATEGID = entry.CATEGID;
+        s.SUBCATEGID = entry.SUBCATEGID;
+        s.SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
+        splt.push_back(s);
+    }
     SplitTransactionDialog splitTransDialog(this
-        , &splits
+        , splt
         , transType
         , m_AccountID);
 
@@ -1046,7 +1054,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     if (m_selectedIndex > -1)
     {
         const Model_Checking::Full_Data& tran = m_cp->m_trans.at(m_selectedIndex);
-        if (Model_Checking::type(tran) == Model_Checking::TRANSFER)
+        if (Model_Checking::type(tran.TRANSCODE) == Model_Checking::TRANSFER)
             type_transfer = true;
         if (tran.CATEGID > -1)
             have_category = true;
@@ -1374,7 +1382,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 
     Model_Checking::Data* copy = Model_Checking::instance().clone(tran); //TODO: this function can't clone split transactions
     if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISODate();
-    if (Model_Checking::type(copy) != Model_Checking::TRANSFER) copy->ACCOUNTID = m_cp->m_AccountID;
+    if (Model_Checking::type(copy->TRANSCODE) != Model_Checking::TRANSFER) copy->ACCOUNTID = m_cp->m_AccountID;
     int transactionID = Model_Checking::instance().save(copy);
 
     Model_Splittransaction::Cache copy_split;
