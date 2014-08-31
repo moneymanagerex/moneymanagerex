@@ -227,7 +227,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 
     for (const auto &trx : transactions)
     {
-        bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
+        bool withdrawal = Model_Checking::type(trx.TRANSCODE) == Model_Checking::WITHDRAWAL;
         const auto it = splits.find(trx.TRANSID);
 
         if (it == splits.end())
@@ -332,7 +332,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
             ? wxString::Format(_("%d days remaining"), daysRemaining) 
             : wxString::Format(_("%d days overdue!"), abs(daysRemaining)));
         wxString payeeStr = "";
-        if (Model_Billsdeposits::type(entry) == Model_Billsdeposits::TRANSFER)
+        if (Model_Billsdeposits::type(entry.TRANSCODE) == Model_Billsdeposits::TRANSFER)
         {   
             const Model_Account::Data *account = Model_Account::instance().get(entry.TOACCOUNTID);
             if (account) payeeStr = account->ACCOUNTNAME;
@@ -343,7 +343,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
             if (payee) payeeStr = payee->PAYEENAME;
         }   
         const auto *account = Model_Account::instance().get(entry.ACCOUNTID);
-        double amount = (Model_Billsdeposits::type(entry) == Model_Billsdeposits::DEPOSIT ? entry.TRANSAMOUNT : -entry.TRANSAMOUNT);
+        double amount = (Model_Billsdeposits::type(entry.TRANSCODE) == Model_Billsdeposits::DEPOSIT ? entry.TRANSAMOUNT : -entry.TRANSAMOUNT);
         bd_days.push_back(std::make_tuple(daysRemaining, payeeStr, daysRemainingStr, amount, account));
     }   
 
@@ -602,12 +602,12 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
         if (ignoreFuture && Model_Checking::TRANSDATE(trx).IsLaterThan(today))
             continue; //skip future dated transactions
 
-        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) this->countFollowUp_++;
+        if (Model_Checking::status(trx.STATUS) == Model_Checking::FOLLOWUP) this->countFollowUp_++;
 
         accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
         accountStats[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
 
-        if (Model_Checking::type(trx) == Model_Checking::TRANSFER)
+        if (Model_Checking::type(trx.TRANSCODE) == Model_Checking::TRANSFER)
         {
             accountStats[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
             accountStats[trx.TOACCOUNTID].second += Model_Checking::balance(trx, trx.TOACCOUNTID);
@@ -643,7 +643,7 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
         double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);
 
         int idx = pBankTransaction.ACCOUNTID;
-        if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
+        if (Model_Checking::type(pBankTransaction.TRANSCODE) == Model_Checking::DEPOSIT)
             incomeExpensesStats[idx].first += pBankTransaction.TRANSAMOUNT * convRate;
         else
             incomeExpensesStats[idx].second += pBankTransaction.TRANSAMOUNT * convRate;

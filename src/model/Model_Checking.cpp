@@ -125,65 +125,71 @@ wxDate Model_Checking::TRANSDATE(const Data& r)
     return Model::to_date(r.TRANSDATE);
 }
 
-Model_Checking::TYPE Model_Checking::type(const Data* r)
+Model_Checking::TYPE Model_Checking::type(const wxString& r)
 {
-    if (!r) return WITHDRAWAL;
+    if (r.empty()) return TYPE::WITHDRAWAL;
     static std::map<wxString, TYPE> cache;
-    const auto it = cache.find(r->TRANSCODE);
+    const auto it = cache.find(r);
     if (it != cache.end()) return it->second;
 
     for (const auto& t : TYPE_CHOICES) 
     {
-        if (r->TRANSCODE.CmpNoCase(t.second) == 0)
+        if (r.CmpNoCase(t.second) == 0)
         {
-            cache.insert(std::make_pair(r->TRANSCODE, t.first));
+            cache.insert(std::make_pair(r, t.first));
             return t.first;
         }
     }
 
-    cache.insert(std::make_pair(r->TRANSCODE, WITHDRAWAL));
-    return WITHDRAWAL;
+    cache.insert(std::make_pair(r, TYPE::WITHDRAWAL));
+    return TYPE::WITHDRAWAL;
 }
-
 Model_Checking::TYPE Model_Checking::type(const Data& r)
 {
-    return type(&r);
+    return type(r.TRANSCODE);
+}
+Model_Checking::TYPE Model_Checking::type(const Data* r)
+{
+    return type(r->TRANSCODE);
 }
 
-Model_Checking::STATUS_ENUM Model_Checking::status(const Data* r)
+Model_Checking::STATUS_ENUM Model_Checking::status(const wxString& r)
 {
     static std::map<wxString, STATUS_ENUM> cache;
-    const auto it = cache.find(r->STATUS);
+    const auto it = cache.find(r);
     if (it != cache.end()) return it->second;
 
     for (const auto & s : STATUS_ENUM_CHOICES)
     {
-        if (r->STATUS.CmpNoCase(s.second) == 0) 
+        if (r.CmpNoCase(s.second) == 0) 
         {
-            cache.insert(std::make_pair(r->STATUS, s.first));
+            cache.insert(std::make_pair(r, s.first));
             return s.first;
         }
     }
 
     STATUS_ENUM ret = NONE;
-    if (r->STATUS.CmpNoCase("R") == 0) ret = RECONCILED;
-    else if (r->STATUS.CmpNoCase("V") == 0) ret = VOID_;
-    else if (r->STATUS.CmpNoCase("F") == 0) ret = FOLLOWUP;
-    else if (r->STATUS.CmpNoCase("D") == 0) ret = DUPLICATE_;
-    cache.insert(std::make_pair(r->STATUS, ret));
+    if (r.CmpNoCase("R") == 0) ret = RECONCILED;
+    else if (r.CmpNoCase("V") == 0) ret = VOID_;
+    else if (r.CmpNoCase("F") == 0) ret = FOLLOWUP;
+    else if (r.CmpNoCase("D") == 0) ret = DUPLICATE_;
+    cache.insert(std::make_pair(r, ret));
 
     return ret;
 }
-
 Model_Checking::STATUS_ENUM Model_Checking::status(const Data& r)
 {
-    return status(&r);
+    return status(r.STATUS);
+}
+Model_Checking::STATUS_ENUM Model_Checking::status(const Data* r)
+{
+    return status(r->STATUS);
 }
 
 double Model_Checking::amount(const Data* r, int account_id)
 {
     double sum = 0;
-    switch (type(r))
+    switch (type(r->TRANSCODE))
     {
     case WITHDRAWAL:
         sum -= r->TRANSAMOUNT;
@@ -210,7 +216,7 @@ double Model_Checking::amount(const Data&r, int account_id)
 
 double Model_Checking::balance(const Data* r, int account_id)
 {
-    if (Model_Checking::status(r) == Model_Checking::VOID_) return 0;
+    if (Model_Checking::status(r->STATUS) == Model_Checking::VOID_) return 0;
     return amount(r, account_id);
 }
 
@@ -243,12 +249,21 @@ double Model_Checking::deposit(const Data& r, int account_id)
 
 double Model_Checking::reconciled(const Data* r, int account_id)
 {
-    return (Model_Checking::status(r) == Model_Checking::RECONCILED) ? balance(r, account_id) : 0;
+    return (Model_Checking::status(r->STATUS) == Model_Checking::RECONCILED) ? balance(r, account_id) : 0;
 }
 
 double Model_Checking::reconciled(const Data& r, int account_id)
 {
     return reconciled(&r, account_id);
+}
+
+bool Model_Checking::is_transfer(const wxString& r)
+{
+    return r == Model_Checking::all_type()[Model_Checking::TRANSFER];
+}
+bool Model_Checking::is_deposit(const wxString& r)
+{
+    return r == Model_Checking::all_type()[Model_Checking::DEPOSIT];
 }
 
 wxString Model_Checking::toShortStatus(const wxString& fullStatus)
@@ -268,7 +283,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUN
     const Model_Account::Data* from_account = Model_Account::instance().get(r.ACCOUNTID);
     if (from_account) this->ACCOUNTNAME = from_account->ACCOUNTNAME;
 
-    if (Model_Checking::TRANSFER == Model_Checking::type(this))
+    if (Model_Checking::TRANSFER == Model_Checking::type(this->TRANSCODE))
     {
         const Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
         if (to_account) this->TOACCOUNTNAME = to_account->ACCOUNTNAME;
@@ -301,7 +316,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r
     const Model_Account::Data* from_account = Model_Account::instance().get(r.ACCOUNTID);
     if (from_account) this->ACCOUNTNAME = from_account->ACCOUNTNAME;
 
-    if (Model_Checking::TRANSFER == Model_Checking::type(this))
+    if (Model_Checking::TRANSFER == Model_Checking::type(this->TRANSCODE))
     {
         const Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
         if (to_account) this->TOACCOUNTNAME = to_account->ACCOUNTNAME;
@@ -330,7 +345,7 @@ Model_Checking::Full_Data::~Full_Data()
 
 wxString Model_Checking::Full_Data::real_payee_name(int account_id) const
 {
-    if (Model_Checking::TRANSFER == Model_Checking::type(this))
+    if (Model_Checking::TRANSFER == Model_Checking::type(this->TRANSCODE))
     {
         return this->ACCOUNTID == account_id ? "> " + this->TOACCOUNTNAME : "< " + this->ACCOUNTNAME;
     }
