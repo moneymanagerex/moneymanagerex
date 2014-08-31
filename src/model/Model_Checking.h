@@ -131,8 +131,10 @@ public:
 public:
     static wxDate TRANSDATE(const Data* r);
     static wxDate TRANSDATE(const Data& r);
+    static TYPE type(const wxString& r);
     static TYPE type(const Data* r);
     static TYPE type(const Data& r);
+    static STATUS_ENUM status(const wxString& r);
     static STATUS_ENUM status(const Data* r);
     static STATUS_ENUM status(const Data& r);
     static double amount(const Data* r, int account_id = -1);
@@ -145,6 +147,8 @@ public:
     static double deposit(const Data& r, int account_id);
     static double reconciled(const Data* r, int account_id);
     static double reconciled(const Data& r, int account_id);
+    static bool is_transfer(const wxString& r);
+    static bool is_deposit(const wxString& r);
     static wxString toShortStatus(const wxString& fullStatus);
     static void getFrequentUsedNotes(const int account_id, std::vector<std::pair<wxString, wxString>> &frequentNotes);
 };

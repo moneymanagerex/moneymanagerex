@@ -559,13 +559,15 @@ void mmOptionsDialog::CreateControls()
     const wxFileName fn(LastDBPath);
     const wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
     const wxString subFolder = wxString::Format("MMEX_%s_Attachments", fn.FileName(LastDBPath).GetName());
-    const wxString cbAttachmentsSubfolder_desc = wxString::Format(_("Create and use '%s' subfolder"), subFolder);
+    const wxString cbAttachmentsSubfolder_desc = _("Create and use Attachments subfolder");
 
-    cbAttachmentsSubfolder_ = new wxCheckBox(attachmentPanel, ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER,
-        cbAttachmentsSubfolder_desc, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbAttachmentsSubfolder_ = new wxCheckBox(attachmentPanel, ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER
+        , cbAttachmentsSubfolder_desc, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbAttachmentsSubfolder_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSSUBFOLDER", true));
     attachmentStaticBoxSizer->Add(cbAttachmentsSubfolder_, g_flags);
-
+    attachmentStaticBoxSizer->Add(new wxStaticText(attachmentPanel
+        , wxID_STATIC, subFolder), g_flags);
+    
     attachmentStaticBoxSizer->AddSpacer(20);
 
     cbDeleteAttachments_ = new wxCheckBox(attachmentPanel, wxID_STATIC,

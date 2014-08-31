@@ -135,6 +135,9 @@ Adam Gallagher
 Jasmine Glaese
 Barry Plotkind
 Jiri Pitzmos
+Alain Scheidle
+Frédéric Vandendris
+Chris Butler
 
 2013
 CodeLathe LLC
