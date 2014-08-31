@@ -24,10 +24,32 @@
 #include <wx/spinbutt.h>
 #include <wx/dialog.h>
 #include "mmtextctrl.h"
+#include "splittransactionsdialog.h"
 #include "model/Model_Budgetsplittransaction.h"
 #include "model/Model_Billsdeposits.h"
 
 class wxDatePickerCtrl;
+struct bill_data
+{
+    int BDID;
+    wxString TRANSDATE = wxDateTime().Today().FormatISODate();
+    wxString STATUS = Model_Billsdeposits::all_status()[Model_Billsdeposits::NONE];;
+    int ACCOUNTID = 0;
+    int TOACCOUNTID = 0;
+    wxString TRANSCODE = Model_Billsdeposits::all_type()[Model_Billsdeposits::WITHDRAWAL];;
+    int CATEGID = -1;
+    int SUBCATEGID = -1;
+    double TRANSAMOUNT = 0;
+    double TOTRANSAMOUNT = 0;
+    int FOLLOWUPID = -1;
+    wxString NOTES;
+    wxString TRANSACTIONNUMBER;
+    int PAYEEID = -1;
+    std::vector<Split> local_splits;
+    int REPEATS;
+    int NUMOCCURRENCES;
+    wxString NEXTOCCURRENCEDATE;
+};
 
 class mmBDDialog : public wxDialog
 {
@@ -93,10 +115,12 @@ private:
     wxButton* itemAccountName_;
 
     bool edit_;
+    bool m_new_bill;
+    bool m_transfer;
     bool enterOccur_;
 
     wxDatePickerCtrl* dpc_;         // dpcTransDate_
-    wxDatePickerCtrl* dpcbd_;       // dpcNextOccDate_
+    wxDatePickerCtrl* dpcNextOccDate_;       // dpcNextOccDate_
     wxCalendarCtrl* calendarCtrl_;
     wxChoice* itemRepeats_;
     wxCheckBox* itemCheckBoxAutoExeUserAck_;
@@ -104,14 +128,9 @@ private:
     bool autoExecuteUserAck_;
     bool autoExecuteSilent_;
 
-    Model_Budgetsplittransaction::Data_Set local_splits_;
-    int categID_;
-    int subcategID_;
-    int payeeID_;
-    int accountID_; 
-    int toID_;
-    int bdID_;
-    double toTransAmount_;
+    bill_data m_bill_data;
+    std::vector<Split> local_splits;
+
     bool advancedToTransAmountSet_;
     bool categUpdated_;
 	bool skip_attachments_init_;
@@ -183,9 +202,7 @@ private:
         ID_PANEL_REPORTS_HTMLWINDOW,
         ID_PANEL_REPORTS_HEADER_PANEL,
         ID_PANEL_REPORTS_STATIC_HEADER,
-
     };
-
 };
 
 #endif

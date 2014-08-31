@@ -24,6 +24,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmtextctrl.h"
 #include "model/Model_Splittransaction.h"
 
+struct Split
+{
+    int CATEGID;
+    int SUBCATEGID;
+    double SPLITTRANSAMOUNT;
+};
+
 #ifndef wxCLOSE_BOX
 #define wxCLOSE_BOX 0x1000
 #endif
@@ -41,10 +48,11 @@ public:
     SplitDetailDialog();
     SplitDetailDialog( 
         wxWindow* parent
-        , Model_Splittransaction::Data* split
+        , Split &split
         , int transType
         , int accountID
     );
+    Split getResult() { return split_; }
 
 private:
     bool Create(wxWindow* parent);
@@ -57,7 +65,7 @@ private:
     void onTextEntered(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& /*event*/);
 
-    Model_Splittransaction::Data* split_;
+    Split split_;
 
     int transType_;
     int accountID_;
