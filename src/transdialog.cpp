@@ -79,7 +79,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     m_new_trx = transaction ? false : true;
     if (!m_new_trx) {
         wxASSERT(transaction->TRANSID == transaction_id_);
-        DB_Table_CHECKINGACCOUNT_V1::Data;
         m_trx_data.TRANSDATE = transaction->TRANSDATE;
         m_trx_data.STATUS = transaction->STATUS;
         m_trx_data.ACCOUNTID = transaction->ACCOUNTID;
