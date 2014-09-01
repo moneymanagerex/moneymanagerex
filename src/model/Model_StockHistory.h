@@ -48,14 +48,14 @@ public:
     static Model_StockHistory& instance();
 
 public:
-    Data* get(int stock_id, const wxDate& date);
+    Data* get(const wxString& symbol, const wxDate& date);
     static wxDate DATE(const Data& hist);
 
     static DB_Table_STOCKHISTORY_V1::DATE DATE(const wxDate& date, OP op = EQUAL);
     /**
     Adds or updates an element in stock history
     */
-    int addUpdate(int stockId, const wxDate& date, double price, UPDTYPE type);
+    int addUpdate(const wxString& symbol, const wxDate& date, double price, UPDTYPE type);
 };
 
 #endif // 

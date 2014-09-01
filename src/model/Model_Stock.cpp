@@ -72,7 +72,8 @@ double Model_Stock::value(const Data& r)
 bool Model_Stock::remove(int id)
 {
     this->Begin();
-    for (const auto& r: Model_StockHistory::instance().find(Model_StockHistory::STOCKID(id)))
+    Model_Stock::Data *data = this->get(id);
+    for (const auto& r : Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(data->SYMBOL)))
         Model_StockHistory::instance().remove(r.id());
     this->Commit();
 
@@ -85,7 +86,7 @@ Returns the last price date of a given stock
 wxString Model_Stock::lastPriceDate(const Self::Data* entity)
 {
     wxString dtStr = entity->PURCHASEDATE;
-    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(STOCKID(entity->id()));
+    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(SYMBOL(entity->SYMBOL));
 
     std::sort(histData.begin(), histData.end(), SorterByDATE());
     if (!histData.empty())
@@ -105,7 +106,7 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
     for (const auto & stock : stocks)
     {
         wxString precValueDate, nextValueDate;
-        Model_StockHistory::Data_Set stock_hist = Model_StockHistory::instance().find(STOCKID(stock.id()));
+        Model_StockHistory::Data_Set stock_hist = Model_StockHistory::instance().find(SYMBOL(stock.SYMBOL));
         std::stable_sort(stock_hist.begin(), stock_hist.end(), SorterByDATE());
         std::reverse(stock_hist.begin(), stock_hist.end());
 

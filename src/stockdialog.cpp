@@ -417,7 +417,8 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
         transID_ = stockID_;
 
     // update stock history table
-    Model_StockHistory::instance().addUpdate(transID_, priceDate_->GetValue(), cPrice, Model_StockHistory::MANUAL);
+    if (!m_stock->SYMBOL.IsEmpty())
+        Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, priceDate_->GetValue(), cPrice, Model_StockHistory::MANUAL);
 
     EndModal(wxID_OK);
 }
@@ -462,6 +463,9 @@ void mmStockDialog::OnListItemSelected(wxListEvent& event)
 
 void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
 {
+    if (m_stock->SYMBOL.IsEmpty())
+        return;
+
     bool canceledbyuser = false;
     wxString fileName = wxFileSelector(_("Choose CSV data file to import"), 
                 wxEmptyString, wxEmptyString, wxEmptyString, "*.csv", wxFD_FILE_MUST_EXIST);
@@ -531,7 +535,7 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
                 continue;
 
             data = Model_StockHistory::instance().create();
-            data->STOCKID = m_stock->id();
+            data->SYMBOL = m_stock->SYMBOL;
             data->DATE = dateStr;
             data->VALUE = price;
             data->UPDTYPE = 2;
@@ -577,6 +581,9 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
 
 void mmStockDialog::OnHistoryUpdateButton(wxCommandEvent& /*event*/)
 {
+    if (m_stock->SYMBOL.IsEmpty())
+        return;
+
     wxString listStr;
     wxDateTime dt;
     long i, histID;
@@ -586,7 +593,7 @@ void mmStockDialog::OnHistoryUpdateButton(wxCommandEvent& /*event*/)
     wxString currentPriceStr = currentPrice_->GetValue().Trim();
     if (!Model_Currency::fromString(currentPriceStr, dPrice, currency) || (dPrice < 0.0))
         return;
-    histID = Model_StockHistory::instance().addUpdate(m_stock->id(), priceDate_->GetValue(), dPrice, Model_StockHistory::MANUAL);
+    histID = Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, priceDate_->GetValue(), dPrice, Model_StockHistory::MANUAL);
 
     for (i=0; i<priceListBox_->GetItemCount(); i++)
     {
@@ -640,12 +647,16 @@ void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
 
 void mmStockDialog::showStockHistory()
 {
-    Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
     priceListBox_->DeleteAllItems();
-    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::STOCKID(stockID_));
+    if (m_stock->SYMBOL.IsEmpty())
+        return;
+
+    Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
+    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(m_stock->SYMBOL));
     std::stable_sort(histData.begin(), histData.end(), SorterByDATE());
     std::reverse(histData.begin(), histData.end());
-    histData.resize(300);
+    if (histData.size()>300)
+        histData.resize(300);
     if (!histData.empty())
     {
         int idx=0;
