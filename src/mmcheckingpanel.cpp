@@ -1056,7 +1056,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         const Model_Checking::Full_Data& tran = m_cp->m_trans.at(m_selectedIndex);
         if (Model_Checking::type(tran.TRANSCODE) == Model_Checking::TRANSFER)
             type_transfer = true;
-        if (tran.CATEGID > -1)
+        if (!tran.has_split())
             have_category = true;
     }
     wxMenu menu;
@@ -1604,11 +1604,11 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 //----------------------------------------------------------------------------
 void TransactionListCtrl::OnViewSplitTransaction(wxCommandEvent& /*event*/)
 {
-    if (m_selectedIndex < 0) return;
-
-    if (m_cp->m_trans[m_selectedIndex].CATEGID < 0)
-        m_cp->DisplaySplitCategories(m_cp->m_trans[m_selectedIndex].TRANSID);
-
+    if (m_selectedIndex > -1) {
+        const Model_Checking::Full_Data& tran = m_cp->m_trans.at(m_selectedIndex);
+        if (tran.has_split())
+            m_cp->DisplaySplitCategories(tran.TRANSID);
+    }
 }
 
 //----------------------------------------------------------------------------
