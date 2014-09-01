@@ -207,7 +207,7 @@ wxString mmReportChartStocks::getHTMLText()
     for (const auto& stock : Model_Stock::instance().all(Model_Stock::COL_HELDAT))
     {
         int dataCount = 0, freq = 1;
-        Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::STOCKID(stock.id()),
+        Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(stock.SYMBOL),
             Model_StockHistory::DATE(dtRange_->start_date(), GREATER_OR_EQUAL),
             Model_StockHistory::DATE(dtRange_->end_date(), LESS_OR_EQUAL));
         std::stable_sort(histData.begin(), histData.end(), SorterByDATE());

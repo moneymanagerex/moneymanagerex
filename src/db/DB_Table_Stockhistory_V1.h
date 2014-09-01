@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-08-24 22:57:36.333000.
+ *          AUTO GENERATED at 2014-08-26 16:48:20.104016.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE STOCKHISTORY_V1(HISTID integer primary key, STOCKID integer , DATE TEXT NOT NULL, VALUE numeric NOT NULL, UPDTYPE integer, UNIQUE(STOCKID, DATE))");
+				db->ExecuteUpdate("CREATE TABLE STOCKHISTORY_V1(HISTID integer primary key, SYMBOL TEXT NOT NULL , DATE TEXT NOT NULL, VALUE numeric NOT NULL, UPDTYPE integer, UNIQUE(SYMBOL, DATE))");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -86,7 +86,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_STOCKHISTORY_STOCKID ON STOCKHISTORY_V1(STOCKID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_STOCKHISTORY_SYMBOL ON STOCKHISTORY_V1(SYMBOL)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
@@ -102,10 +102,10 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         static wxString name() { return "HISTID"; } 
         explicit HISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct STOCKID : public DB_Column<int>
+    struct SYMBOL : public DB_Column<wxString>
     { 
-        static wxString name() { return "STOCKID"; } 
-        explicit STOCKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "SYMBOL"; } 
+        explicit SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct DATE : public DB_Column<wxString>
     { 
@@ -126,7 +126,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
     enum COLUMN
     {
         COL_HISTID = 0
-        , COL_STOCKID = 1
+        , COL_SYMBOL = 1
         , COL_DATE = 2
         , COL_VALUE = 3
         , COL_UPDTYPE = 4
@@ -138,7 +138,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         switch(col)
         {
             case COL_HISTID: return "HISTID";
-            case COL_STOCKID: return "STOCKID";
+            case COL_SYMBOL: return "SYMBOL";
             case COL_DATE: return "DATE";
             case COL_VALUE: return "VALUE";
             case COL_UPDTYPE: return "UPDTYPE";
@@ -152,7 +152,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
     static COLUMN name_to_column(const wxString& name)
     {
         if ("HISTID" == name) return COL_HISTID;
-        else if ("STOCKID" == name) return COL_STOCKID;
+        else if ("SYMBOL" == name) return COL_SYMBOL;
         else if ("DATE" == name) return COL_DATE;
         else if ("VALUE" == name) return COL_VALUE;
         else if ("UPDTYPE" == name) return COL_UPDTYPE;
@@ -168,7 +168,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         Self* view_;
     
         int HISTID;//  primay key
-        int STOCKID;
+        wxString SYMBOL;
         wxString DATE;
         double VALUE;
         int UPDTYPE;
@@ -188,7 +188,6 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
             view_ = view;
         
             HISTID = -1;
-            STOCKID = -1;
             VALUE = 0.0;
             UPDTYPE = -1;
         }
@@ -198,7 +197,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
             view_ = view;
         
             HISTID = q.GetInt(0); // HISTID
-            STOCKID = q.GetInt(1); // STOCKID
+            SYMBOL = q.GetString(1); // SYMBOL
             DATE = q.GetString(2); // DATE
             VALUE = q.GetDouble(3); // VALUE
             UPDTYPE = q.GetInt(4); // UPDTYPE
@@ -209,7 +208,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
             if (this == &other) return *this;
 
             HISTID = other.HISTID;
-            STOCKID = other.STOCKID;
+            SYMBOL = other.SYMBOL;
             DATE = other.DATE;
             VALUE = other.VALUE;
             UPDTYPE = other.UPDTYPE;
@@ -225,9 +224,9 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         {
             return this->HISTID == in.v_;
         }
-        bool match(const Self::STOCKID &in) const
+        bool match(const Self::SYMBOL &in) const
         {
-            return this->STOCKID == in.v_;
+            return this->SYMBOL.CmpNoCase(in.v_) == 0;
         }
         bool match(const Self::DATE &in) const
         {
@@ -253,7 +252,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         int to_json(json::Object& o) const
         {
             o[L"HISTID"] = json::Number(this->HISTID);
-            o[L"STOCKID"] = json::Number(this->STOCKID);
+            o[L"SYMBOL"] = json::String(this->SYMBOL.ToStdWstring());
             o[L"DATE"] = json::String(this->DATE.ToStdWstring());
             o[L"VALUE"] = json::Number(this->VALUE);
             o[L"UPDTYPE"] = json::Number(this->UPDTYPE);
@@ -263,7 +262,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         {
             row_t row;
             row(L"HISTID") = HISTID;
-            row(L"STOCKID") = STOCKID;
+            row(L"SYMBOL") = SYMBOL;
             row(L"DATE") = DATE;
             row(L"VALUE") = VALUE;
             row(L"UPDTYPE") = UPDTYPE;
@@ -272,7 +271,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         void to_template(html_template& t) const
         {
             t(L"HISTID") = HISTID;
-            t(L"STOCKID") = STOCKID;
+            t(L"SYMBOL") = SYMBOL;
             t(L"DATE") = DATE;
             t(L"VALUE") = VALUE;
             t(L"UPDTYPE") = UPDTYPE;
@@ -352,18 +351,18 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO STOCKHISTORY_V1(STOCKID, DATE, VALUE, UPDTYPE) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO STOCKHISTORY_V1(SYMBOL, DATE, VALUE, UPDTYPE) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE STOCKHISTORY_V1 SET STOCKID = ?, DATE = ?, VALUE = ?, UPDTYPE = ? WHERE HISTID = ?";
+            sql = "UPDATE STOCKHISTORY_V1 SET SYMBOL = ?, DATE = ?, VALUE = ?, UPDTYPE = ? WHERE HISTID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->STOCKID);
+            stmt.Bind(1, entity->SYMBOL);
             stmt.Bind(2, entity->DATE);
             stmt.Bind(3, entity->VALUE);
             stmt.Bind(4, entity->UPDTYPE);

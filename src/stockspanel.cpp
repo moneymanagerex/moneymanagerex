@@ -774,7 +774,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
         if (s.STOCKNAME.empty()) s.STOCKNAME = it->second.second;
         Model_Stock::instance().save(&s);
 
-        Model_StockHistory::instance().addUpdate(s.id(), wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
+        Model_StockHistory::instance().addUpdate(s.SYMBOL, wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
     }
 
     // Now refresh the display
