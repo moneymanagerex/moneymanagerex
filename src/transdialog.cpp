@@ -325,6 +325,8 @@ void mmTransDialog::dataToControls()
             for (const auto& entry : local_splits)
                 total += entry.SPLITTRANSAMOUNT;
             textAmount_->SetValue(total);
+            m_trx_data.CATEGID = -1;
+            m_trx_data.SUBCATEGID = -1;
         }
         else
         {
@@ -726,7 +728,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
 {
     bool bDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
 
-    if (m_trx_data.CATEGID > -1 && local_splits.empty())
+    if (local_splits.empty() && m_trx_data.CATEGID > -1)
     {
         if (!textAmount_->GetDouble(m_trx_data.TRANSAMOUNT))
             m_trx_data.TRANSAMOUNT = 0;
@@ -741,13 +743,13 @@ void mmTransDialog::activateSplitTransactionsDlg()
     if (dlg.ShowModal() == wxID_OK)
     {
         local_splits = dlg.getResult();
+    }
+
+    if (!local_splits.empty()) {
         double total = 0;
         for (const auto& entry : local_splits)
             total += entry.SPLITTRANSAMOUNT;
         m_trx_data.TRANSAMOUNT = total;
-        m_trx_data.CATEGID = -1;
-        m_trx_data.SUBCATEGID = -1;
-        skip_category_init_ = false;
         category_changed_ = dlg.isItemsChanged();
     }
 }
@@ -1048,12 +1050,9 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     trx->TOACCOUNTID = m_trx_data.TOACCOUNTID;
     trx->TOTRANSAMOUNT = m_trx_data.TOTRANSAMOUNT;
 
-    if (local_splits.empty())
-    {
-        trx->CATEGID = m_trx_data.CATEGID;
-        trx->SUBCATEGID = m_trx_data.SUBCATEGID;
-        trx->TRANSAMOUNT = m_trx_data.TRANSAMOUNT;
-    }
+    trx->CATEGID = m_trx_data.CATEGID;
+    trx->SUBCATEGID = m_trx_data.SUBCATEGID;
+    trx->TRANSAMOUNT = m_trx_data.TRANSAMOUNT;
 
     trx->NOTES = textNotes_->GetValue();
     trx->TRANSACTIONNUMBER = textNumber_->GetValue();
