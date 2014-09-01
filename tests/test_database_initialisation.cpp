@@ -234,15 +234,17 @@ void Test_DatabaseInitialisation::Add_Stock_Entries(const wxDateTime& starting_d
 
     // Setting up history for Telstra at start of a financial year
     trans_date = starting_date;
-    int stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 4.25, 0, 4.25, 0, "Telstra", "tls.ax");
+    wxString stock_symbol = "tls.ax";
+    double num_shares = 1000;
+    double share_value = 4.75;
+    int stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, num_shares, share_value, 0, share_value, 0, "Telstra", stock_symbol);
     trans_date.Add(wxDateSpan::Days(10));
 
-    double share_value = 4.75;
     double share_dif = 0.25;
     int share_cycle = 0;
     for (int i = 0; trans_date < wxDateTime::Today(); ++i)
     {
-        m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1000 * share_value, Model_StockHistory::MANUAL);
+        m_dbmodel->Add_StockHistory_Entry(stock_symbol, trans_date, num_shares * share_value, Model_StockHistory::MANUAL);
         if (share_cycle <= 15)
         {
             share_value += share_dif;
@@ -260,16 +262,18 @@ void Test_DatabaseInitialisation::Add_Stock_Entries(const wxDateTime& starting_d
 
     // Setting up history for AMP at start of a year
     trans_date = starting_date;
+    stock_symbol = "amp.ax";
+    num_shares = 750;
+    share_value = 2.75;
     trans_date.Add(wxDateSpan::Months(6));
-    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "AMP", "amp.ax");
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, num_shares, share_value, 0, share_value, 0, "AMP", stock_symbol);
     trans_date.Add(wxDateSpan::Days(15));
 
-    share_value = 2.75;
     share_dif = 0.25;
     share_cycle = 0;
     for (int i = 0; trans_date < wxDateTime::Today(); ++i)
     {
-        m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1000 * share_value, Model_StockHistory::MANUAL);
+        m_dbmodel->Add_StockHistory_Entry(stock_symbol, trans_date, num_shares * share_value, Model_StockHistory::MANUAL);
         if (share_cycle <= 10)
         {
             share_value += share_dif;
@@ -287,15 +291,17 @@ void Test_DatabaseInitialisation::Add_Stock_Entries(const wxDateTime& starting_d
 
     // Setting up history for IAG
     trans_date = wxDateTime::Today().Subtract(wxDateSpan::Year());
-    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 3.25, 0, 3.25, 0, "IAG", "iag.ax");
+    stock_symbol = "iag.ax";
+    num_shares = 500;
+    share_value = 3.75;
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, num_shares, share_value, 0, share_value, 0, "IAG", stock_symbol);
     trans_date = wxDateTime::Today().Subtract(wxDateSpan::Days(90));
 
-    share_value = 3.75;
     share_dif = 0.25;
     share_cycle = 0;
     for (int i = 0; i < 45; ++i)
     {
-        m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1000 * share_value, Model_StockHistory::ONLINE);
+        m_dbmodel->Add_StockHistory_Entry(stock_symbol, trans_date, num_shares * share_value, Model_StockHistory::ONLINE);
         if (share_cycle <= 5)
         {
             share_value += share_dif;
