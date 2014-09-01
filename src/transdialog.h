@@ -122,7 +122,7 @@ private:
     int accountID_; //The transaction account ID //TODO: may be Model_Account ?
     int referenceAccountID_; // used for transfer transactions
     int transaction_id_; //The transaction ID. nullptr if new transaction
-    std::vector<std::pair<wxString, wxString>> frequentNotes_;
+    std::vector<wxString> frequentNotes_;
 
     bool skip_date_init_;
     bool skip_account_init_;

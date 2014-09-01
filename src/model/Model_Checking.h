@@ -150,7 +150,7 @@ public:
     static bool is_transfer(const wxString& r);
     static bool is_deposit(const wxString& r);
     static wxString toShortStatus(const wxString& fullStatus);
-    static void getFrequentUsedNotes(const int account_id, std::vector<std::pair<wxString, wxString>> &frequentNotes);
+    static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes);
 };
 
 #endif // 
