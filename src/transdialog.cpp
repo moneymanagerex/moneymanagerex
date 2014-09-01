@@ -1053,6 +1053,22 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
         trx->CATEGID = m_trx_data.CATEGID;
         trx->SUBCATEGID = m_trx_data.SUBCATEGID;
         trx->TRANSAMOUNT = m_trx_data.TRANSAMOUNT;
+
+        // For a new transfer, if currency is different between accounts and user didn't set advanced then use the current currency conversion rate.
+        if (m_new_trx && (Model_Checking::type(trx) == Model_Checking::TRANSFER) && !advancedToTransAmountSet_)
+        {
+            int from_account_currency_id = Model_Account::instance().get(trx->ACCOUNTID)->CURRENCYID;
+            int to_account_currency_id = Model_Account::instance().get(trx->TOACCOUNTID)->CURRENCYID;
+            if (from_account_currency_id != to_account_currency_id)
+            {
+                Model_Currency::Data *from_account_currency = Model_Currency::instance().get(from_account_currency_id);
+                Model_Currency::Data *to_account_currency = Model_Currency::instance().get(to_account_currency_id);
+                if ((from_account_currency->BASECONVRATE > 0.0) && (to_account_currency->BASECONVRATE > 0.0))
+                {
+                    trx->TOTRANSAMOUNT = trx->TRANSAMOUNT * from_account_currency->BASECONVRATE / to_account_currency->BASECONVRATE;
+                }
+            }
+        }
     }
 
     trx->NOTES = textNotes_->GetValue();
