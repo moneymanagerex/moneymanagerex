@@ -50,7 +50,7 @@ SplitDetailDialog::SplitDetailDialog()
 
 SplitDetailDialog::SplitDetailDialog( 
     wxWindow* parent
-    , Model_Splittransaction::Data* split
+    , Split &split
     , int transType
     , int accountID)
     : split_(split)
@@ -76,14 +76,14 @@ bool SplitDetailDialog::Create(wxWindow* parent)
 
 void SplitDetailDialog::DataToControls()
 {
-    const Model_Category::Data* category = Model_Category::instance().get(split_->CATEGID);
-    const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(split_->SUBCATEGID);
+    const Model_Category::Data* category = Model_Category::instance().get(split_.CATEGID);
+    const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(split_.SUBCATEGID);
     const wxString category_name = Model_Category::full_name(category, sub_category);
 
     bCategory_->SetLabelText(category_name);
 
-    if (split_->SPLITTRANSAMOUNT)
-        textAmount_->SetValue(fabs(split_->SPLITTRANSAMOUNT));
+    if (split_.SPLITTRANSAMOUNT)
+        textAmount_->SetValue(fabs(split_.SPLITTRANSAMOUNT));
     textAmount_->SetFocus();
 }
 
@@ -113,19 +113,19 @@ void SplitDetailDialog::CreateControls()
     choiceType_ = new wxChoice(itemPanel7, ID_DIALOG_SPLTTRANS_TYPE
         , wxDefaultPosition, wxDefaultSize
         , 2, itemChoiceStrings);
-    choiceType_->SetSelection(split_->SPLITTRANSAMOUNT < 0 ? !transType_ : transType_);
+    choiceType_->SetSelection(split_.SPLITTRANSAMOUNT < 0 ? !transType_ : transType_);
     choiceType_->SetToolTip(_("Specify the type of transactions to be created."));
     controlSizer->Add(choiceType_, g_flags);
 
-    wxStaticText* staticTextAmount = new wxStaticText( itemPanel7, wxID_STATIC, _("Amount"));
+    wxStaticText* staticTextAmount = new wxStaticText(itemPanel7, wxID_STATIC, _("Amount"));
     controlSizer->Add(staticTextAmount, g_flags);
 
-    textAmount_ = new mmTextCtrl( itemPanel7, ID_TEXTCTRLAMOUNT, ""
-        , wxDefaultPosition, wxSize(110,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
+    textAmount_ = new mmTextCtrl(itemPanel7, ID_TEXTCTRLAMOUNT, ""
+        , wxDefaultPosition, wxSize(110, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
     controlSizer->Add(textAmount_, g_flags);
 
-    wxStaticText* staticTextCategory = new wxStaticText( itemPanel7, wxID_STATIC, _("Category"));
+    wxStaticText* staticTextCategory = new wxStaticText(itemPanel7, wxID_STATIC, _("Category"));
     controlSizer->Add(staticTextCategory, g_flags);
     bCategory_ = new wxButton( itemPanel7, ID_BUTTONCATEGORY, ""
         , wxDefaultPosition, wxSize(200, -1));
@@ -154,11 +154,11 @@ void SplitDetailDialog::CreateControls()
 void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
 {
     mmCategDialog dlg(this);
-    dlg.setTreeSelection(split_->CATEGID, split_->SUBCATEGID);
+    dlg.setTreeSelection(split_.CATEGID, split_.SUBCATEGID);
     if ( dlg.ShowModal() == wxID_OK )
     {
-        split_->CATEGID = dlg.getCategId();
-        split_->SUBCATEGID = dlg.getSubCategId();
+        split_.CATEGID = dlg.getCategId();
+        split_.SUBCATEGID = dlg.getSubCategId();
 
         bCategory_->SetLabelText(dlg.getFullCategName());
     }
@@ -177,7 +177,7 @@ void SplitDetailDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 
 void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
 {
-    if (split_->CATEGID == -1)
+    if (split_.CATEGID == -1)
     {
         mmMessageCategoryInvalid(bCategory_);
         return;
@@ -194,7 +194,7 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
         amount = -amount;
     }
 
-    split_->SPLITTRANSAMOUNT = amount;
+    split_.SPLITTRANSAMOUNT = amount;
     EndModal(wxID_OK);
 }
 

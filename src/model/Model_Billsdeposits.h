@@ -98,8 +98,10 @@ public:
     static wxDate TRANSDATE(const Data& r);
     static wxDate NEXTOCCURRENCEDATE(const Data* r);
     static wxDate NEXTOCCURRENCEDATE(const Data& r);
+    static TYPE type(const wxString& r);
     static TYPE type(const Data* r);
     static TYPE type(const Data& r);
+    static STATUS_ENUM status(const wxString& r);
     static STATUS_ENUM status(const Data* r);
     static STATUS_ENUM status(const Data& r);
     static wxString toShortStatus(const wxString& fullStatus);
