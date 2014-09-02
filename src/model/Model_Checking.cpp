@@ -261,9 +261,17 @@ bool Model_Checking::is_transfer(const wxString& r)
 {
     return r == Model_Checking::all_type()[Model_Checking::TRANSFER];
 }
+bool Model_Checking::is_transfer(const Data* r)
+{
+    return is_transfer(r->TRANSCODE);
+}
 bool Model_Checking::is_deposit(const wxString& r)
 {
     return r == Model_Checking::all_type()[Model_Checking::DEPOSIT];
+}
+bool Model_Checking::is_deposit(const Data* r)
+{
+    return is_deposit(r->TRANSCODE);
 }
 
 wxString Model_Checking::toShortStatus(const wxString& fullStatus)
@@ -368,27 +376,20 @@ wxString Model_Checking::Full_Data::info() const
     return info;
 }
 
-void Model_Checking::getFrequentUsedNotes(const int account_id, std::vector<std::pair<wxString, wxString>> &frequentNotes)
+void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes)
 {
-    const wxString sql = "select max (TRANSDATE) as TRANSDATE , count (notes) COUNT, "
-        "(case when accountid = ? then '1' else '2' end) as ACC "
-        ",replace(replace (substr (notes, 1, 30), x'0A', ' '), '&', '&&')||(case when length(notes)>30 then '...' else '' end) as NOTE, "
-        "notes as NOTES "
-        "from checkingaccount_v1 ca "
-        "where notes is not '' "
-        "and TRANSDATE< date ('now', '1 day', 'localtime') "
-        "group by rtrim (notes) "
-        "order by ACC, TRANSDATE desc, COUNT desc "
-        "limit 20 ";
-
     frequentNotes.clear();
-    wxSQLite3Statement stmt = Model_Checking::instance().db_->PrepareStatement(sql);
-    stmt.Bind(1, account_id);
-    wxSQLite3ResultSet q1 = stmt.ExecuteQuery();
-    while (q1.NextRow())
+    int max = 20;
+    const wxDateTime dt = wxDateTime::Today().Subtract(wxDateSpan::Months(3));
+    for (const auto& entry : instance().find(TRANSDATE(dt, GREATER_OR_EQUAL), NOTES("", GREATER)))
     {
-        wxString noteSTR = q1.GetString("NOTE");
-        wxString notes = q1.GetString("NOTES");
-        frequentNotes.push_back(std::make_pair(noteSTR, notes));
+        const wxString notes = entry.NOTES;
+        if (std::find(frequentNotes.begin(), frequentNotes.end(), notes) == frequentNotes.end())
+        {
+            frequentNotes.push_back(notes);
+            max--;
+        }
+        if (max < 1) break;
     }
+    std::stable_sort(frequentNotes.begin(), frequentNotes.end());
 }
