@@ -873,7 +873,7 @@ void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 void mmBDDialog::onNoteSelected(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_HIGHEST;
-    if (i > 0 && i <= frequentNotes_.size())
+    if (i > 0 && i <= (int)frequentNotes_.size())
         textNotes_->ChangeValue(frequentNotes_[i - 1]);
 }
 
