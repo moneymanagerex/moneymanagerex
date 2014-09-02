@@ -94,7 +94,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         m_trx_data.PAYEEID = transaction->PAYEEID;
 
         for (const auto& item : Model_Checking::splittransaction(transaction))
-            m_trx_data.local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
+            local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
         m_transfer = Model_Checking::type(transaction->TRANSCODE) == Model_Checking::TRANSFER;
     }
     else
@@ -283,7 +283,7 @@ void mmTransDialog::dataToControls()
             if (cSplit_->IsChecked())
             {
                 cSplit_->SetValue(false);
-                m_trx_data.local_splits.clear();
+                local_splits.clear();
             }
 
             if (!transaction_id_)
@@ -315,16 +315,18 @@ void mmTransDialog::dataToControls()
 
     if (!skip_category_init_)
     {
-        bool has_split = !m_trx_data.local_splits.empty();
+        bool has_split = !local_splits.empty();
         wxString fullCategoryName;
         bCategory_->UnsetToolTip();
         if (has_split)
         {
             fullCategoryName = _("Categories");
             double total = 0;
-            for (const auto& entry : m_trx_data.local_splits)
+            for (const auto& entry : local_splits)
                 total += entry.SPLITTRANSAMOUNT;
             textAmount_->SetValue(total);
+            m_trx_data.CATEGID = -1;
+            m_trx_data.SUBCATEGID = -1;
         }
         else
         {
@@ -338,7 +340,7 @@ void mmTransDialog::dataToControls()
         cSplit_->SetValue(has_split);
         skip_category_init_ = true;
     }
-    textAmount_->Enable(m_trx_data.local_splits.empty());
+    textAmount_->Enable(local_splits.empty());
     cSplit_->Enable(!m_transfer);
 
     //Notes & Transaction Number
@@ -635,7 +637,7 @@ bool mmTransDialog::validateData()
 
     if (cSplit_->IsChecked())
     {
-        if (m_trx_data.local_splits.empty())
+        if (local_splits.empty())
         {
             mmMessageCategoryInvalid(bCategory_);
             return false;
@@ -726,7 +728,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
 {
     bool bDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
 
-    if (m_trx_data.CATEGID > -1 && m_trx_data.local_splits.empty())
+    if (m_trx_data.CATEGID > -1 && local_splits.empty())
     {
         if (!textAmount_->GetDouble(m_trx_data.TRANSAMOUNT))
             m_trx_data.TRANSAMOUNT = 0;
@@ -734,20 +736,19 @@ void mmTransDialog::activateSplitTransactionsDlg()
         s.SPLITTRANSAMOUNT = bDeposit ? m_trx_data.TRANSAMOUNT : m_trx_data.TRANSAMOUNT;
         s.CATEGID = m_trx_data.CATEGID;
         s.SUBCATEGID = m_trx_data.SUBCATEGID;
-        m_trx_data.local_splits.push_back(s);
+        local_splits.push_back(s);
     }
 
-    SplitTransactionDialog dlg(this, m_trx_data.local_splits, transaction_type_->GetSelection(), accountID_);
+    SplitTransactionDialog dlg(this, local_splits, transaction_type_->GetSelection(), accountID_);
     if (dlg.ShowModal() == wxID_OK)
     {
-        m_trx_data.local_splits = dlg.getResult();
+        local_splits = dlg.getResult();
+    }
+    if (!local_splits.empty()) {
         double total = 0;
-        for (const auto& entry : m_trx_data.local_splits)
+        for (const auto& entry : local_splits)
             total += entry.SPLITTRANSAMOUNT;
         m_trx_data.TRANSAMOUNT = total;
-        m_trx_data.CATEGID = -1;
-        m_trx_data.SUBCATEGID = -1;
-        skip_category_init_ = false;
         category_changed_ = dlg.isItemsChanged();
     }
 }
@@ -846,7 +847,7 @@ void mmTransDialog::setCategoryForPayee(const Model_Payee::Data *payee)
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
     if (mmIniOptions::instance().transCategorySelectionNone_ != 0
-        && !categUpdated_ && m_trx_data.local_splits.empty() && transaction_id_ == 0)
+        && !categUpdated_ && local_splits.empty() && transaction_id_ == 0)
     {
         // if payee has memory of last category used then display last category for payee
         Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
@@ -871,18 +872,18 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
     }
     else
     {
-        if (m_trx_data.local_splits.size() > 1)
+        if (local_splits.size() > 1)
         {
             //Delete split items first (data protection)
             cSplit_->SetValue(true);
         }
         else
         {
-            if (m_trx_data.local_splits.size() == 1)
+            if (local_splits.size() == 1)
             {
-                m_trx_data.CATEGID = m_trx_data.local_splits.begin()->CATEGID;
-                m_trx_data.SUBCATEGID = m_trx_data.local_splits.begin()->SUBCATEGID;
-                m_trx_data.TRANSAMOUNT = m_trx_data.local_splits.begin()->SPLITTRANSAMOUNT;
+                m_trx_data.CATEGID = local_splits.begin()->CATEGID;
+                m_trx_data.SUBCATEGID = local_splits.begin()->SUBCATEGID;
+                m_trx_data.TRANSAMOUNT = local_splits.begin()->SPLITTRANSAMOUNT;
 
                 if (m_trx_data.TRANSAMOUNT < 0)
                 {
@@ -893,7 +894,7 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
             else
                 m_trx_data.TRANSAMOUNT = 0;
 
-            m_trx_data.local_splits.clear();
+            local_splits.clear();
         }
         skip_category_init_ = false;
         dataToControls();
@@ -1012,21 +1013,22 @@ void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 {
-    Model_Checking::getFrequentUsedNotes(accountID_, frequentNotes_);
+    Model_Checking::getFrequentUsedNotes(frequentNotes_);
     wxMenu menu;
-    for (int id = 0; id < (int)frequentNotes_.size(); id++)
-        menu.Append(id + 1, frequentNotes_[id].first);
-    if (frequentNotes_.size() > 0)
+    int id = wxID_HIGHEST;
+    for (const auto& entry : frequentNotes_) {
+        const wxString label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
+        menu.Append(++id, label);
+    }
+        if (!frequentNotes_.empty())
         PopupMenu(&menu);
 }
 
 void mmTransDialog::onNoteSelected(wxCommandEvent& event)
 {
-    int i = event.GetId();
-    if (i > 0)
-    {
-        textNotes_->ChangeValue(frequentNotes_[i - 1].second);
-    }
+    int i = event.GetId() - wxID_HIGHEST;
+    if (i > 0 && i <= frequentNotes_.size())
+        textNotes_->ChangeValue(frequentNotes_[i - 1]);
 }
 
 void mmTransDialog::OnOk(wxCommandEvent& event)
@@ -1048,37 +1050,33 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     trx->TOACCOUNTID = m_trx_data.TOACCOUNTID;
     trx->TOTRANSAMOUNT = m_trx_data.TOTRANSAMOUNT;
 
-    if (m_trx_data.local_splits.empty())
-    {
-        trx->CATEGID = m_trx_data.CATEGID;
-        trx->SUBCATEGID = m_trx_data.SUBCATEGID;
-        trx->TRANSAMOUNT = m_trx_data.TRANSAMOUNT;
-
-        // For a new transfer, if currency is different between accounts and user didn't set advanced then use the current currency conversion rate.
-        if (m_new_trx && (Model_Checking::type(trx) == Model_Checking::TRANSFER) && !advancedToTransAmountSet_)
-        {
-            int from_account_currency_id = Model_Account::instance().get(trx->ACCOUNTID)->CURRENCYID;
-            int to_account_currency_id = Model_Account::instance().get(trx->TOACCOUNTID)->CURRENCYID;
-            if (from_account_currency_id != to_account_currency_id)
-            {
-                Model_Currency::Data *from_account_currency = Model_Currency::instance().get(from_account_currency_id);
-                Model_Currency::Data *to_account_currency = Model_Currency::instance().get(to_account_currency_id);
-                if ((from_account_currency->BASECONVRATE > 0.0) && (to_account_currency->BASECONVRATE > 0.0))
-                {
-                    trx->TOTRANSAMOUNT = trx->TRANSAMOUNT * from_account_currency->BASECONVRATE / to_account_currency->BASECONVRATE;
-                }
-            }
-        }
-    }
-
+    trx->CATEGID = m_trx_data.CATEGID;
+    trx->SUBCATEGID = m_trx_data.SUBCATEGID;
+    trx->TRANSAMOUNT = m_trx_data.TRANSAMOUNT;
     trx->NOTES = textNotes_->GetValue();
     trx->TRANSACTIONNUMBER = textNumber_->GetValue();
     trx->FOLLOWUPID = m_trx_data.FOLLOWUPID;
 
+    // For a new transfer, if currency is different between accounts and user didn't set advanced then use the current currency conversion rate.
+    if (m_new_trx && (Model_Checking::is_transfer(trx)) && !advancedToTransAmountSet_)
+    {
+        int from_account_currency_id = Model_Account::instance().get(trx->ACCOUNTID)->CURRENCYID;
+        int to_account_currency_id = Model_Account::instance().get(trx->TOACCOUNTID)->CURRENCYID;
+        if (from_account_currency_id != to_account_currency_id)
+        {
+            Model_Currency::Data *from_account_currency = Model_Currency::instance().get(from_account_currency_id);
+            Model_Currency::Data *to_account_currency = Model_Currency::instance().get(to_account_currency_id);
+            if ((from_account_currency->BASECONVRATE > 0.0) && (to_account_currency->BASECONVRATE > 0.0))
+            {
+                trx->TOTRANSAMOUNT = trx->TRANSAMOUNT * from_account_currency->BASECONVRATE / to_account_currency->BASECONVRATE;
+            }
+        }
+    }
+
     transaction_id_ = Model_Checking::instance().save(trx);
 
     Model_Splittransaction::Data_Set splt;
-    for (const auto& entry : m_trx_data.local_splits) {
+    for (const auto& entry : local_splits) {
         Model_Splittransaction::Data *s = Model_Splittransaction::instance().create();
         s->CATEGID = entry.CATEGID;
         s->SUBCATEGID = entry.SUBCATEGID;
@@ -1182,7 +1180,7 @@ void mmTransDialog::setTooltips()
             cbPayee_->SetToolTip(_("Specify where the transaction is coming from"));
     }
 
-    if (this->m_trx_data.local_splits.empty())
+    if (this->local_splits.empty())
 		bCategory_->SetToolTip(_("Specify the category for this transaction"));
     else {
         const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
@@ -1191,7 +1189,7 @@ void mmTransDialog::setTooltips()
             currency = Model_Account::currency(account);
 
         wxString tt;
-        for (const auto& entry : m_trx_data.local_splits)
+        for (const auto& entry : local_splits)
             tt += wxString::Format("%s = %s\n"
                 , Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)
                 , Model_Currency::toCurrency(entry.SPLITTRANSAMOUNT, currency));

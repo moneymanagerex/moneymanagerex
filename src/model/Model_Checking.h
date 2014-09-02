@@ -148,9 +148,11 @@ public:
     static double reconciled(const Data* r, int account_id);
     static double reconciled(const Data& r, int account_id);
     static bool is_transfer(const wxString& r);
+    static bool is_transfer(const Data* r);
     static bool is_deposit(const wxString& r);
+    static bool is_deposit(const Data* r);
     static wxString toShortStatus(const wxString& fullStatus);
-    static void getFrequentUsedNotes(const int account_id, std::vector<std::pair<wxString, wxString>> &frequentNotes);
+    static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes);
 };
 
 #endif // 

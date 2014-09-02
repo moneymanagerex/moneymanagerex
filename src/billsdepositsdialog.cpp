@@ -858,19 +858,23 @@ void mmBDDialog::resetPayeeString()
 
 void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 {
-    Model_Checking::getFrequentUsedNotes(m_bill_data.ACCOUNTID, frequentNotes_);
+    Model_Checking::getFrequentUsedNotes(frequentNotes_);
     wxMenu menu;
-    for (int id = 0; id < (int)frequentNotes_.size(); id++)
-        menu.Append(id + 1, frequentNotes_[id].first);
-    if (frequentNotes_.size() > 0)
+    int id = wxID_HIGHEST;
+    for (const auto& entry : frequentNotes_) {
+        const wxString label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
+        menu.Append(++id, label);
+        
+    }
+        if (!frequentNotes_.empty())
         PopupMenu(&menu);
 }
 
 void mmBDDialog::onNoteSelected(wxCommandEvent& event)
 {
-    int i = event.GetId();
-    if (i > 0)
-        *textNotes_ << frequentNotes_[i - 1].second;
+    int i = event.GetId() - wxID_HIGHEST;
+    if (i > 0 && i <= frequentNotes_.size())
+        textNotes_->ChangeValue(frequentNotes_[i - 1]);
 }
 
 void mmBDDialog::OnOk(wxCommandEvent& /*event*/)

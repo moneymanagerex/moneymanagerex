@@ -135,7 +135,7 @@ private:
     bool categUpdated_;
 	bool skip_attachments_init_;
     int prevType_;
-    std::vector<std::pair<wxString, wxString>> frequentNotes_;
+    std::vector<wxString> frequentNotes_;
 
     wxString payeeDepositTip_;
     wxString payeeWithdrawalTip_;
