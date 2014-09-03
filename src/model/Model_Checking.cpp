@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "mmOption.h"
 #include "Model_Checking.h"
 #include "Model_Account.h"
 #include "Model_Payee.h"
@@ -392,4 +393,83 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes)
         if (max < 1) break;
     }
     std::stable_sort(frequentNotes.begin(), frequentNotes.end());
+}
+
+void Model_Checking::getEmptyTransaction(Data &data, int accountID)
+{
+    data.TRANSID = -1;
+    wxDateTime trx_date = wxDateTime::Today();
+    if (mmIniOptions::instance().transDateDefault_ != 0)
+    {
+        auto trans = instance().find(ACCOUNTID(accountID), TRANSDATE(trx_date, LESS_OR_EQUAL));
+        std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+        std::reverse(trans.begin(), trans.end());
+        if (!trans.empty())
+            trx_date = to_date(trans.begin()->TRANSDATE);
+    }
+
+    data.TRANSDATE = trx_date.FormatISODate();
+    data.ACCOUNTID = accountID;
+    data.STATUS = toShortStatus(all_status()[mmIniOptions::instance().transStatusReconciled_]);
+    data.TRANSCODE = all_type()[WITHDRAWAL];
+    data.CATEGID = -1;
+    data.SUBCATEGID = -1;
+    data.FOLLOWUPID = -1;
+    data.TRANSAMOUNT = 0;
+    data.TOTRANSAMOUNT = 0;
+    data.TRANSACTIONNUMBER = "";
+    if (mmIniOptions::instance().transPayeeSelectionNone_ != 0) 
+    {
+        auto transactions = instance().find(TRANSCODE(TRANSFER, NOT_EQUAL)
+            , ACCOUNTID(accountID, EQUAL), TRANSDATE(trx_date, LESS_OR_EQUAL));
+        std::stable_sort(transactions.begin(), transactions.end(), SorterByTRANSDATE());
+        std::reverse(transactions.begin(), transactions.end());
+        for (const auto &trx : transactions)
+        {
+            data.PAYEEID = trx.PAYEEID;
+            Model_Payee::Data * payee = Model_Payee::instance().get(trx.PAYEEID);
+
+            if (payee && mmIniOptions::instance().transCategorySelectionNone_)
+            {
+                data.CATEGID = payee->CATEGID;
+                data.SUBCATEGID = payee->SUBCATEGID;
+            }
+            break;
+        }
+    }
+}
+
+void Model_Checking::getTransactionData(Data &data, const Data* r)
+{
+    data.TRANSDATE = r->TRANSDATE;
+    data.STATUS = r->STATUS;
+    data.ACCOUNTID = r->ACCOUNTID;
+    data.TOACCOUNTID = r->TOACCOUNTID;
+    data.TRANSCODE = r->TRANSCODE;
+    data.CATEGID = r->CATEGID;
+    data.SUBCATEGID = r->SUBCATEGID;
+    data.TRANSAMOUNT = r->TRANSAMOUNT;
+    data.TOTRANSAMOUNT = r->TOTRANSAMOUNT;
+    data.FOLLOWUPID = r->FOLLOWUPID;
+    data.NOTES = r->NOTES;
+    data.TRANSACTIONNUMBER = r->TRANSACTIONNUMBER;
+    data.PAYEEID = r->PAYEEID;
+    data.TRANSID = r->TRANSID;
+}
+
+void Model_Checking::putDataToTransaction(Data *r, const Data &data)
+{
+    r->STATUS = data.STATUS;
+    r->TRANSCODE = data.TRANSCODE;
+    r->TRANSDATE = data.TRANSDATE;
+    r->PAYEEID = data.PAYEEID;
+    r->ACCOUNTID = data.ACCOUNTID;
+    r->TRANSAMOUNT = data.TRANSAMOUNT;
+    r->CATEGID = data.CATEGID;
+    r->SUBCATEGID = data.SUBCATEGID;
+    r->TOACCOUNTID = data.TOACCOUNTID;
+    r->TOTRANSAMOUNT = data.TOTRANSAMOUNT;
+    r->NOTES = data.NOTES;
+    r->TRANSACTIONNUMBER = data.TRANSACTIONNUMBER;
+    r->FOLLOWUPID = data.FOLLOWUPID;
 }

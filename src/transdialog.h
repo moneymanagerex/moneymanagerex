@@ -55,9 +55,9 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int getAccountID() { return accountID_; }
+    int getAccountID() { return m_trx_data.ACCOUNTID; }
     int getToAccountID() { return m_trx_data.TOACCOUNTID; }
-    int getTransactionID() { return transaction_id_; }
+    int getTransactionID() { return m_trx_data.TRANSID; }
 
 private:
     void CreateControls();
@@ -109,19 +109,13 @@ private:
     bool categUpdated_;
     bool advancedToTransAmountSet_;
 
-    // store the original currency rate for transaction editing
-    double  edit_currency_rate;
-    wxString amountNormalTip_;
-    wxString amountTransferTip_;
     int object_in_focus_;
-    wxString resetPayeeString(/*bool normal = true*/);
 
     DB_Table_CHECKINGACCOUNT_V1::Data m_trx_data;
     std::vector<Split> local_splits;
+    Model_Currency::Data *m_currency;
+    Model_Currency::Data *m_to_currency;
 
-    int accountID_; //The transaction account ID //TODO: may be Model_Account ?
-    int referenceAccountID_; // used for transfer transactions
-    int transaction_id_; //The transaction ID. nullptr if new transaction
     std::vector<wxString> frequentNotes_;
 
     bool skip_date_init_;

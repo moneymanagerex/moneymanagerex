@@ -621,7 +621,6 @@ void mmCheckingPanel::OnDeleteTransaction(wxCommandEvent& event)
 void mmCheckingPanel::OnNewTransaction(wxCommandEvent& event)
 {
    m_listCtrlAccount->OnNewTransaction(event);
-   mmPlayTransactionSound();
 }
 //----------------------------------------------------------------------------
 
@@ -1513,6 +1512,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
     mmTransDialog dlg(this, m_cp->m_AccountID, 0);
     if (dlg.ShowModal() == wxID_OK)
     {
+        m_cp->mmPlayTransactionSound();
         refreshVisualList(dlg.getTransactionID());
     }
 }
