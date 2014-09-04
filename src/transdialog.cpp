@@ -89,12 +89,16 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 
     Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
     m_currency = Model_Account::currency(acc);
-
     if (m_transfer) {
         Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
         m_to_currency = Model_Account::currency(to_acc);
-        advancedToTransAmountSet_ = (m_to_currency 
-            && (m_trx_data.TOTRANSAMOUNT != (m_trx_data.TRANSAMOUNT * m_to_currency->BASECONVRATE)));
+        if (m_to_currency) {
+            double amt = m_trx_data.TRANSAMOUNT * m_currency->BASECONVRATE;
+            double to_amt = m_trx_data.TOTRANSAMOUNT * m_to_currency->BASECONVRATE;
+            double diff = fabs(amt - to_amt);
+            advancedToTransAmountSet_ = diff > 0.2;
+            wxLogDebug("%.5f", diff);
+        }
     }
 
 
@@ -162,7 +166,8 @@ void mmTransDialog::dataToControls()
         if (m_transfer)
         {
             if (!advancedToTransAmountSet_)
-                m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT * (m_to_currency ? m_to_currency->BASECONVRATE : 1);
+                m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT 
+                    * (m_to_currency ? m_currency->BASECONVRATE / m_to_currency->BASECONVRATE : 1);
             toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT, m_currency);
         }
         else
