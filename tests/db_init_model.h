@@ -127,7 +127,7 @@ public:
         const wxString& stock_name = "", const wxString& stock_symbol = "", const wxString& notes = "");
 
     /** upd_type: ONLINE/MANUAL */ 
-    int Add_StockHistory_Entry(int stock_id, const wxDateTime& date, double value, int upd_type = Model_StockHistory::ONLINE);
+    int Add_StockHistory_Entry(const wxString& stock_symbol, const wxDateTime& date, double value, int upd_type = Model_StockHistory::ONLINE);
 
     void ShowMessage(wxString msg);
 

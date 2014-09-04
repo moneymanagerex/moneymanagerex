@@ -536,11 +536,11 @@ int DB_Init_Model::Add_Stock_Entry(int account_id, const wxDate& purchase_date, 
     return Model_Stock::instance().save(entry);
 }
 
-int DB_Init_Model::Add_StockHistory_Entry(int stock_id, const wxDateTime& date, double value, int upd_type)
+int DB_Init_Model::Add_StockHistory_Entry(const wxString& stock_symbol, const wxDateTime& date, double value, int upd_type)
 {
     Model_StockHistory::Data* entry = Model_StockHistory::instance().create();
     entry->DATE = date.FormatISODate();
-    entry->STOCKID = stock_id;
+    entry->SYMBOL = stock_symbol;
     entry->VALUE = value;
     entry->UPDTYPE = upd_type;
     return Model_StockHistory::instance().save(entry);
