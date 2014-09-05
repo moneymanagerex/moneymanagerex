@@ -20,6 +20,7 @@
 #ifndef MM_EX_TRANSDIALOG_H_
 #define MM_EX_TRANSDIALOG_H_
 
+#include "splittransactionsdialog.h"
 #include "defs.h"
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Checking.h"
@@ -55,8 +56,8 @@ public:
 
     void SetDialogTitle(const wxString& title);
     int getAccountID() { return accountID_; }
-    int getToAccountID() { return transaction_->TOACCOUNTID; }
-    int getTransactionID() { return transaction_->TRANSID; }
+    int getToAccountID() { return m_trx_data.TOACCOUNTID; }
+    int getTransactionID() { return transaction_id_; }
 
 private:
     void CreateControls();
@@ -104,6 +105,7 @@ private:
     wxStaticText* payee_label_;
 
     bool m_transfer;
+    bool m_new_trx;
     bool categUpdated_;
     bool advancedToTransAmountSet_;
 
@@ -114,12 +116,13 @@ private:
     int object_in_focus_;
     wxString resetPayeeString(/*bool normal = true*/);
 
-    Model_Checking::Data * transaction_;
-    Model_Splittransaction::Data_Set m_local_splits;
+    DB_Table_CHECKINGACCOUNT_V1::Data m_trx_data;
+    std::vector<Split> local_splits;
+
     int accountID_; //The transaction account ID //TODO: may be Model_Account ?
     int referenceAccountID_; // used for transfer transactions
     int transaction_id_; //The transaction ID. nullptr if new transaction
-    std::vector<std::pair<wxString, wxString>> frequentNotes_;
+    std::vector<wxString> frequentNotes_;
 
     bool skip_date_init_;
     bool skip_account_init_;
