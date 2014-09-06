@@ -445,10 +445,10 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
     m_dbmodel->Current_Payee_Expense_Stats("---------- Payee Expense: All Time Totals ----------", starting_date);
 
     m_dbmodel->Current_Category_Income_Stats("---------- Category Income: All Time Totals ----------", starting_date);
-    m_dbmodel->Current_Category_Income_Stats("---------- Category Income: All Time Totals ----------", starting_date);
+    m_dbmodel->Current_Category_Expense_Stats("---------- Category Expense: All Time Totals ----------", starting_date);
 
-    m_dbmodel->Current_Subcategory_Income_Stats("---------- Subcategory Expense: All Time Totals ----------", starting_date);
-    m_dbmodel->Current_Subcategory_Income_Stats("---------- Subcategory Expense: All Time Totals ----------", starting_date);
+    m_dbmodel->Current_Subcategory_Income_Stats("---------- Subcategory Income: All Time Totals ----------", starting_date);
+    m_dbmodel->Current_Subcategory_Expense_Stats("---------- Subcategory Expense: All Time Totals ----------", starting_date);
 
     m_dbmodel->Total_Payee_Stats(starting_date);
     m_dbmodel->Total_Category_Stats(starting_date);
