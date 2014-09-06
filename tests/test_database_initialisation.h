@@ -51,6 +51,8 @@ private:
     int m_this_instance;
     CommitCallbackHook* m_commit_hook;
 
+    void Add_Stock_Entries(const wxDateTime& starting_date);
+
 private:
     // Test cases
     void Financial_Year_Date_Range();
