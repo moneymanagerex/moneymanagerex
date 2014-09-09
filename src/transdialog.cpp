@@ -496,6 +496,7 @@ bool mmTransDialog::validateData()
         mmMessageAccountInvalid(cbAccount_);
         return false;
     }
+    m_trx_data.ACCOUNTID = account->ACCOUNTID;
 
     if (!m_transfer)
     {
@@ -638,7 +639,6 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         if (to_account)
         {
             m_to_currency = Model_Account::currency(to_account);
-            wxLogDebug("%s - %s", toAccountName, to_account->ACCOUNTNAME);
             cbPayee_->ChangeValue(to_account->ACCOUNTNAME);
         }
     }
