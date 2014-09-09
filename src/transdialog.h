@@ -20,7 +20,6 @@
 #ifndef MM_EX_TRANSDIALOG_H_
 #define MM_EX_TRANSDIALOG_H_
 
-#include "splittransactionsdialog.h"
 #include "defs.h"
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Checking.h"
@@ -107,7 +106,7 @@ private:
     bool m_transfer;
     bool m_new_trx;
     bool categUpdated_;
-    bool advancedToTransAmountSet_;
+    bool m_advanced;
 
     int object_in_focus_;
 

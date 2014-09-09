@@ -74,7 +74,7 @@ mmBDDialog::mmBDDialog( )
 mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
     : m_new_bill(!edit)
     , enterOccur_(enterOccur)
-    , advancedToTransAmountSet_(false)
+    , m_advanced(false)
     , payeeUnknown_(false)
     , autoExecuteUserAck_(false)
     , autoExecuteSilent_(false)
@@ -630,7 +630,7 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
             double amount = 0.0;
             textAmount_->GetDouble(amount);
             textAmount_->SetValue(amount, account);
-            if (advancedToTransAmountSet_)
+            if (m_advanced)
             {
                 double toAmount = 0.0;
                 toTextAmount_->GetDouble(toAmount);
@@ -929,7 +929,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
             return;
     }
 
-    if (advancedToTransAmountSet_)
+    if (m_advanced)
     {
         if (!toTextAmount_->checkValue(m_bill_data.TOTRANSAMOUNT))
         {
@@ -963,7 +963,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         m_bill_data.PAYEEID = -1;
     }
 
-    if (!advancedToTransAmountSet_ || m_bill_data.TOTRANSAMOUNT < 0)
+    if (!m_advanced || m_bill_data.TOTRANSAMOUNT < 0)
     {
         // if we are adding a new record and the user did not touch advanced dialog
         // we are going to use the transfer amount by calculating conversion rate.
@@ -1238,7 +1238,7 @@ void mmBDDialog::SetAdvancedTransferControls(bool advanced)
     if (advanced)
     {
         toTextAmount_->Enable();
-        advancedToTransAmountSet_ = true;
+        m_advanced = true;
         // Display the transfer amount in the toTextAmount control.
         if (m_bill_data.TOTRANSAMOUNT >= 0)
         {
@@ -1255,7 +1255,7 @@ void mmBDDialog::SetAdvancedTransferControls(bool advanced)
     else
     {
         toTextAmount_->Disable();
-        advancedToTransAmountSet_ = false;
+        m_advanced = false;
     }
 }
 
