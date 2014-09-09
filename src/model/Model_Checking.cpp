@@ -354,14 +354,15 @@ Model_Checking::Full_Data::~Full_Data()
 
 wxString Model_Checking::Full_Data::real_payee_name(int account_id) const
 {
-    if (Model_Checking::TRANSFER == Model_Checking::type(this->TRANSCODE))
+    if (TYPE::TRANSFER == type(this->TRANSCODE))
     {
-        return this->ACCOUNTID == account_id ? "> " + this->TOACCOUNTNAME : "< " + this->ACCOUNTNAME;
+        if (this->ACCOUNTID == account_id || account_id == -1)
+            return ("> " + this->TOACCOUNTNAME);
+        else
+            return ("< " + this->ACCOUNTNAME);
     }
-    else
-    {
-        return this->PAYEENAME;
-    }
+
+    return this->PAYEENAME;
 }
 
 bool Model_Checking::Full_Data::has_split() const
