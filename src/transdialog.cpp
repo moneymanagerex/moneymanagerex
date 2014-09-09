@@ -336,8 +336,8 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(choiceStatus_, g_flags);
 
     // Type --------------------------------------------
-    transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE,
-        wxDefaultPosition, wxSize(110, -1));
+    transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE
+        , wxDefaultPosition, wxSize(110, -1));
 
     for (const auto& i : Model_Checking::all_type())
     {
@@ -373,8 +373,8 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(amountSizer);
 
     // Account ---------------------------------------------
-    cbAccount_ = new wxComboBox(this, wxID_ANY, "",
-        wxDefaultPosition, wxSize(230, -1));
+    cbAccount_ = new wxComboBox(this, wxID_ANY, ""
+        , wxDefaultPosition, wxSize(230, -1));
 
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
     flex_sizer->Add(account_label_, g_flags);
@@ -469,12 +469,12 @@ void mmTransDialog::CreateControls()
     Center();
     this->SetSizer(box_sizer1);
 
-    cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED,
-        wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), nullptr, this);
-    textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
-    toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
+    cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED
+        , wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), nullptr, this);
+    textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
+    toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
     textNumber_->Connect(ID_DIALOG_TRANS_TEXTNUMBER, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
 
@@ -547,12 +547,12 @@ bool mmTransDialog::validateData()
             return false;
         }
         m_trx_data.TOACCOUNTID = to_account->ACCOUNTID;
+        
         if (m_advanced)
         {
             if (!toTextAmount_->checkValue(m_trx_data.TOTRANSAMOUNT, m_currency))
                 return false;
         }
-
         m_trx_data.PAYEEID = -1;
     }
 
@@ -831,7 +831,6 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
     if (cSplit_->IsChecked())
     {
         activateSplitTransactionsDlg();
-        dataToControls();
     }
     else
     {
@@ -845,6 +844,8 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
             categUpdated_ = true;
         }
     }
+    skip_amount_init_ = false;
+    dataToControls();
 }
 
 void mmTransDialog::OnAttachments(wxCommandEvent& /*event*/)
