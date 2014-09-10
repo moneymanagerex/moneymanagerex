@@ -32,8 +32,8 @@ public:
     /// Constructors
     mmMainCurrencyDialog( ) {}
 
-    mmMainCurrencyDialog(wxWindow* parent,
-                          bool bEnableSelect = true);
+    mmMainCurrencyDialog(wxWindow* parent
+        , int currencyID = -1, bool bEnableSelect = true);
 
     static bool Execute(wxWindow* parent, int& currencyID);
 

@@ -50,6 +50,7 @@ wxEND_EVENT_TABLE()
 
 mmMainCurrencyDialog::mmMainCurrencyDialog(
     wxWindow* parent
+    , int currencyID
     , bool bEnableSelect
 ) : currencyListBox_(),
     bEnableSelect_(bEnableSelect)
@@ -59,7 +60,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     ColName_[CURR_NAME]   = _("Name");
     ColName_[BASE_RATE]   = _("Base Rate");
 
-    currencyID_ = Model_Infotable::instance().GetBaseCurrencyId();
+    currencyID_ = currencyID == -1 ? Model_Infotable::instance().GetBaseCurrencyId() : currencyID;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Currency Dialog"), wxDefaultPosition, wxDefaultSize, style);
 }
@@ -260,7 +261,7 @@ bool mmMainCurrencyDialog::Execute(wxWindow* parent, int& currencyID)
 {
     bool result = false;
 
-    mmMainCurrencyDialog dlg(parent);
+    mmMainCurrencyDialog dlg(parent, currencyID);
     if (dlg.ShowModal() == wxID_OK)
     {
         currencyID = dlg.currencyID_;
