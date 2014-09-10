@@ -132,7 +132,8 @@ Model_Currency::Data* Model_Account::currency(const Data& r)
 
 const Model_Checking::Data_Set Model_Account::transaction(const Data*r )
 {
-    auto trans = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(r->ACCOUNTID), Model_Checking::TOACCOUNTID(r->ACCOUNTID));
+    auto trans = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(r->ACCOUNTID)
+        , Model_Checking::TOACCOUNTID(r->ACCOUNTID));
     std::sort(trans.begin(), trans.end());
     std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
 
@@ -157,9 +158,10 @@ const Model_Billsdeposits::Data_Set Model_Account::billsdeposits(const Data& r)
 wxDate Model_Account::last_date(const Data* r)
 {
     Model_Checking::Data_Set trans = transaction(r);
-    if (!trans.empty()) return Model_Checking::TRANSDATE(trans.back());
-        
-    return wxDateTime::Today();
+    if (!trans.empty())
+        return Model_Checking::TRANSDATE(trans.back());
+    else
+        return wxDateTime::Today();
 }
 
 wxDate Model_Account::last_date(const Data& r)

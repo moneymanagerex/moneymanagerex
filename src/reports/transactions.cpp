@@ -125,7 +125,7 @@ wxString mmReportTransactions::getHTMLText()
 void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
 {
     const auto splits = Model_Splittransaction::instance().get_all();
-    for (const auto& tran : Model_Checking::instance().all()) //TODO: find_or should be faster
+    for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
     {
         if (!dlg->checkAll(tran, refAccountID_, splits)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
@@ -149,4 +149,5 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
 
         trans_.push_back(full_tran);
     }
+    std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
 }

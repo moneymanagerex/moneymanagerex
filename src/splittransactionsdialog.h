@@ -19,7 +19,6 @@
 #ifndef MM_EX_SPLITTRANSACTIONDIALOG_H_
 #define MM_EX_SPLITTRANSACTIONDIALOG_H_
 
-#include "splitdetailsdialog.h"
 #include "defs.h"
 #include "model/Model_Checking.h"
 #include <wx/dataview.h>
