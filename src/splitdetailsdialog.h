@@ -24,13 +24,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmtextctrl.h"
 #include "model/Model_Splittransaction.h"
 
-struct Split
-{
-    int CATEGID;
-    int SUBCATEGID;
-    double SPLITTRANSAMOUNT;
-};
-
 #ifndef wxCLOSE_BOX
 #define wxCLOSE_BOX 0x1000
 #endif

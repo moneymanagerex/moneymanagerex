@@ -621,7 +621,6 @@ void mmCheckingPanel::OnDeleteTransaction(wxCommandEvent& event)
 void mmCheckingPanel::OnNewTransaction(wxCommandEvent& event)
 {
    m_listCtrlAccount->OnNewTransaction(event);
-   mmPlayTransactionSound();
 }
 //----------------------------------------------------------------------------
 
@@ -1017,7 +1016,7 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
 void TransactionListCtrl::OnItemResize(wxListEvent& event)
 {
     int i = event.GetColumn();
-    wxString parameter_name = wxString::Format("CHECK_COL%d_WIDTH", i);
+    const wxString parameter_name = wxString::Format("CHECK_COL%i_WIDTH", i);
     int current_width = GetColumnWidth(i);
     Model_Setting::instance().Set(parameter_name, current_width);
 }
@@ -1513,6 +1512,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
     mmTransDialog dlg(this, m_cp->m_AccountID, 0);
     if (dlg.ShowModal() == wxID_OK)
     {
+        m_cp->mmPlayTransactionSound();
         refreshVisualList(dlg.getTransactionID());
     }
 }

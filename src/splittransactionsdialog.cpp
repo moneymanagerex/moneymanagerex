@@ -17,10 +17,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "splittransactionsdialog.h"
+#include "splitdetailsdialog.h"
 #include "constants.h"
 #include "util.h"
 #include <wx/statline.h>
 #include "model/Model_Category.h"
+#include "model/Model_Account.h"
 
 /*!
  * SplitTransactionDialog type definition
