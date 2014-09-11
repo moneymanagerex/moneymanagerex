@@ -17,6 +17,8 @@
  ********************************************************/
 
 #include "Model_Splittransaction.h"
+#include "Model_Category.h"
+#include "Model_Subcategory.h"
 
 Model_Splittransaction::Model_Splittransaction()
 : Model<DB_Table_SPLITTRANSACTIONS_V1>()
@@ -48,6 +50,12 @@ Model_Splittransaction& Model_Splittransaction::instance()
 }
 
 double Model_Splittransaction::get_total(const Data_Set& rows)
+{
+    double total = 0.0;
+    for (auto& r : rows) total += r.SPLITTRANSAMOUNT;
+    return total;
+}
+double Model_Splittransaction::get_total(const std::vector<Split>& rows)
 {
     double total = 0.0;
     for (auto& r : rows) total += r.SPLITTRANSAMOUNT;
@@ -88,4 +96,14 @@ int Model_Splittransaction::update(const Data_Set& rows, int transactionID)
         instance().save(split_items);
     }
     return rows.size();
+}
+
+const wxString Model_Splittransaction::get_tooltip(const std::vector<Split>& rows, const Model_Currency::Data* currency)
+{
+    wxString split_tooltip = "";
+    for (const auto& entry : rows)
+        split_tooltip += wxString::Format("%s = %s\n"
+        , Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)
+        , Model_Currency::toCurrency(entry.SPLITTRANSAMOUNT, currency));
+    return split_tooltip;
 }

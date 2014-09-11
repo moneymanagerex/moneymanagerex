@@ -131,7 +131,7 @@ private:
     bill_data m_bill_data;
     std::vector<Split> local_splits;
 
-    bool advancedToTransAmountSet_;
+    bool m_advanced;
     bool categUpdated_;
 	bool skip_attachments_init_;
     int prevType_;
