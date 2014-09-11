@@ -268,89 +268,28 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
     Data* bill = get(bdID);
     if (bill)
     {
-        wxDateTime dtno = NEXTOCCURRENCEDATE(bill);
-        wxDateTime updateOccur = dtno;
-
         int repeats = bill->REPEATS;
-
         // DeMultiplex the Auto Executable fields.
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
-
         int numRepeats = bill->NUMOCCURRENCES;
+        const wxDateTime dtno = NEXTOCCURRENCEDATE(bill);
+        wxDateTime updateOccur = nextOccurDate(repeats, numRepeats, dtno);
+
         if (numRepeats != REPEAT_TYPE::REPEAT_INACTIVE)
         {
             if ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS) || (repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS))
-                --numRepeats;
+                numRepeats--;
         }
 
         if (repeats == REPEAT_TYPE::REPEAT_NONE)
-        {
             numRepeats = 0;
-        }
-        else if (repeats == REPEAT_TYPE::REPEAT_WEEKLY)
-        {
-            updateOccur = dtno.Add(wxTimeSpan::Week());
-        }
-        else if (repeats == REPEAT_TYPE::REPEAT_BI_WEEKLY)
-        {
-            updateOccur = dtno.Add(wxTimeSpan::Weeks(2));
-        }
-        else if (repeats == REPEAT_TYPE::REPEAT_MONTHLY)
-        {
-            updateOccur = dtno.Add(wxDateSpan::Month());
-        }
-        else if (repeats == REPEAT_TYPE::REPEAT_BI_MONTHLY)
-        {
-            updateOccur = dtno.Add(wxDateSpan::Months(2));
-        }
-        else if (repeats == REPEAT_TYPE::REPEAT_QUARTERLY)
-        {
-            updateOccur = dtno.Add(wxDateSpan::Months(3));
-        }
-        else if (repeats == REPEAT_TYPE::REPEAT_HALF_YEARLY)
-        {
-            updateOccur = dtno.Add(wxDateSpan::Months(6));
-        }
-        else if (repeats == REPEAT_TYPE::REPEAT_YEARLY)
-        {
-            updateOccur = dtno.Add(wxDateSpan::Year());
-        }
-        else if (repeats == REPEAT_TYPE::REPEAT_FOUR_MONTHLY)
-        {
-            updateOccur = dtno.Add(wxDateSpan::Months(4));
-        }
-        else if (repeats == REPEAT_TYPE::REPEAT_FOUR_WEEKLY)
-        {
-            updateOccur = dtno.Add(wxDateSpan::Weeks(4));
-        }
-        else if (repeats == REPEAT_TYPE::REPEAT_DAILY)
-        {
-            updateOccur = dtno.Add(wxDateSpan::Days(1));
-        }
-        else if ((repeats == REPEAT_TYPE::REPEAT_IN_X_DAYS) || (repeats == REPEAT_TYPE::REPEAT_IN_X_MONTHS))
+        else if ((repeats == REPEAT_TYPE::REPEAT_IN_X_DAYS)
+            || (repeats == REPEAT_TYPE::REPEAT_IN_X_MONTHS))
         {
             if (numRepeats != -1) numRepeats = -1;
-        }
-        else if (repeats == REPEAT_TYPE::REPEAT_EVERY_X_DAYS)
-        {
-            if (numRepeats > 0) updateOccur = dtno.Add(wxDateSpan::Days(numRepeats));
-        }
-        else if (repeats == REPEAT_TYPE::REPEAT_EVERY_X_MONTHS)
-        {
-            if (numRepeats > 0) updateOccur = dtno.Add(wxDateSpan::Months(numRepeats));
-        }
-        else if ((repeats == REPEAT_TYPE::REPEAT_MONTHLY_LAST_DAY) || (repeats == REPEAT_TYPE::REPEAT_MONTHLY_LAST_BUSINESS_DAY))
-        {
-            updateOccur = dtno.Add(wxDateSpan::Month());
-            updateOccur = updateOccur.SetToLastMonthDay(updateOccur.GetMonth(), updateOccur.GetYear());
-            if (repeats == REPEAT_TYPE::REPEAT_MONTHLY_LAST_BUSINESS_DAY) // last weekday of month
-            {
-                if (updateOccur.GetWeekDay() == wxDateTime::Sun || updateOccur.GetWeekDay() == wxDateTime::Sat)
-                    updateOccur.SetToPrevWeekDay(wxDateTime::Fri);
-            }
         }
 
         bill->NEXTOCCURRENCEDATE = updateOccur.FormatISODate();
@@ -360,4 +299,49 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
         if (bill->NUMOCCURRENCES == 0)
             remove(bdID);
     }
+}
+
+const wxDateTime Model_Billsdeposits::nextOccurDate(int repeatsType, int numRepeats, const wxDateTime& nextOccurDate)
+{
+    wxDateTime dt;
+    if (repeatsType == REPEAT_WEEKLY)
+        dt = nextOccurDate.Add(wxTimeSpan::Week());
+    else if (repeatsType == REPEAT_BI_WEEKLY)
+        dt = nextOccurDate.Add(wxTimeSpan::Weeks(2));
+    else if (repeatsType == REPEAT_MONTHLY)
+        dt = nextOccurDate.Add(wxDateSpan::Month());
+    else if (repeatsType == REPEAT_BI_MONTHLY)
+        dt = nextOccurDate.Add(wxDateSpan::Months(2));
+    else if (repeatsType == REPEAT_FOUR_MONTHLY)
+        dt = nextOccurDate.Add(wxDateSpan::Months(4));
+    else if (repeatsType == REPEAT_HALF_YEARLY)
+        dt = nextOccurDate.Add(wxDateSpan::Months(6));
+    else if (repeatsType == REPEAT_YEARLY)
+        dt = nextOccurDate.Add(wxDateSpan::Year());
+    else if (repeatsType == REPEAT_QUARTERLY)
+        dt = nextOccurDate.Add(wxDateSpan::Months(3));
+    else if (repeatsType == REPEAT_FOUR_WEEKLY)
+        dt = nextOccurDate.Add(wxDateSpan::Weeks(4));
+    else if (repeatsType == REPEAT_DAILY)
+        dt = nextOccurDate.Add(wxDateSpan::Days(1));
+    else if (repeatsType == REPEAT_IN_X_DAYS) // repeat in numRepeats Days (Once only)
+        dt = nextOccurDate.Add(wxDateSpan::Days(numRepeats));
+    else if (repeatsType == REPEAT_IN_X_MONTHS) // repeat in numRepeats Months (Once only)
+        dt = nextOccurDate.Add(wxDateSpan::Months(numRepeats));
+    else if (repeatsType == REPEAT_EVERY_X_DAYS) // repeat every numRepeats Days
+        dt = nextOccurDate.Add(wxDateSpan::Days(numRepeats));
+    else if (repeatsType == REPEAT_EVERY_X_MONTHS) // repeat every numRepeats Months
+        dt = nextOccurDate.Add(wxDateSpan::Months(numRepeats));
+    else if (repeatsType == REPEAT_MONTHLY_LAST_DAY
+        || REPEAT_MONTHLY_LAST_BUSINESS_DAY == repeatsType)
+    {
+        dt = nextOccurDate.Add(wxDateSpan::Month());
+        dt = dt.SetToLastMonthDay(dt.GetMonth(), dt.GetYear());
+        if (repeatsType == REPEAT_MONTHLY_LAST_BUSINESS_DAY) // last weekday of month
+        {
+            if (dt.GetWeekDay() == wxDateTime::Sun || dt.GetWeekDay() == wxDateTime::Sat)
+                dt.SetToPrevWeekDay(wxDateTime::Fri);
+        }
+    }
+    return dt;
 }
