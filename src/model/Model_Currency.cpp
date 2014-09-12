@@ -174,6 +174,8 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
 const wxString Model_Currency::fromString2Default(const wxString &s, const Data* currency)
 {
     wxString str = s;
+    str.Trim();
+    str.Replace(" ", "");
     if (currency)
     {
         if (!currency->GROUP_SEPARATOR.empty())
