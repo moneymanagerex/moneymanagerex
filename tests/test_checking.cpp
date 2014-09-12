@@ -161,10 +161,10 @@ void Test_Checking::Set_UP_Database_conditions()
     CPPUNIT_ASSERT(account_list.size() == 11);
 
     Model_Category::Data_Set category_list = Model_Category::instance().all();
-    CPPUNIT_ASSERT(category_list.size() == initial_category_list_size + 3);
+    CPPUNIT_ASSERT((int)category_list.size() == initial_category_list_size + 3);
 
     Model_Subcategory::Data_Set subcategory_list = Model_Subcategory::instance().all();
-    CPPUNIT_ASSERT(subcategory_list.size() == initial_subcategory_list_size + 16);
+    CPPUNIT_ASSERT((int)subcategory_list.size() == initial_subcategory_list_size + 16);
 
     Model_Payee::Data_Set payee_list = Model_Payee::instance().all();
     CPPUNIT_ASSERT(payee_list.size() == 11);
@@ -460,7 +460,10 @@ void Test_Checking::Transaction_New_Edit()
 
     split_trans_cache_size = Model_Splittransaction::instance().cache_.size();
     trans_cache_size = Model_Checking::instance().cache_.size();
-    CPPUNIT_ASSERT(trans_cache_size > 0);
+    if (test_count > 1)
+    {
+        CPPUNIT_ASSERT(trans_cache_size > 0);
+    }
 }
 
 void Test_Checking::Account_View_Savings()
