@@ -1366,7 +1366,8 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& event)
     mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, true);
     if (dlg.ShowModal() == wxID_OK)
     {
-        refreshVisualList(transaction_id);
+        m_selectedIndex = dlg.getTransactionID();
+        refreshVisualList(m_selectedIndex);
     }
     topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
 }
