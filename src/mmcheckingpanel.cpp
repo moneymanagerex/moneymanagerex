@@ -1360,9 +1360,16 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
 
 void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& event)
 {
-    this->OnCopy(event);
-    this->OnPaste(event);
-    this->OnEditTransaction(event);
+    if (m_selectedIndex < 0) return;
+
+    int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
+    mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, true);
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        m_selectedIndex = dlg.getTransactionID();
+        refreshVisualList(m_selectedIndex);
+    }
+    topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
 }
 
 void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))

@@ -43,6 +43,7 @@ public:
         wxWindow* parent
         , int account_id
         , int transaction_id
+        , bool duplicate = false
     );
 
     bool Create( wxWindow* parent

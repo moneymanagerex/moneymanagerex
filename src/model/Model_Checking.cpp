@@ -440,22 +440,25 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
     }
 }
 
-void Model_Checking::getTransactionData(Data &data, const Data* r)
+bool Model_Checking::getTransactionData(Data &data, const Data* r)
 {
-    data.TRANSDATE = r->TRANSDATE;
-    data.STATUS = r->STATUS;
-    data.ACCOUNTID = r->ACCOUNTID;
-    data.TOACCOUNTID = r->TOACCOUNTID;
-    data.TRANSCODE = r->TRANSCODE;
-    data.CATEGID = r->CATEGID;
-    data.SUBCATEGID = r->SUBCATEGID;
-    data.TRANSAMOUNT = r->TRANSAMOUNT;
-    data.TOTRANSAMOUNT = r->TOTRANSAMOUNT;
-    data.FOLLOWUPID = r->FOLLOWUPID;
-    data.NOTES = r->NOTES;
-    data.TRANSACTIONNUMBER = r->TRANSACTIONNUMBER;
-    data.PAYEEID = r->PAYEEID;
-    data.TRANSID = r->TRANSID;
+    if (r) {
+        data.TRANSDATE = r->TRANSDATE;
+        data.STATUS = r->STATUS;
+        data.ACCOUNTID = r->ACCOUNTID;
+        data.TOACCOUNTID = r->TOACCOUNTID;
+        data.TRANSCODE = r->TRANSCODE;
+        data.CATEGID = r->CATEGID;
+        data.SUBCATEGID = r->SUBCATEGID;
+        data.TRANSAMOUNT = r->TRANSAMOUNT;
+        data.TOTRANSAMOUNT = r->TOTRANSAMOUNT;
+        data.FOLLOWUPID = r->FOLLOWUPID;
+        data.NOTES = r->NOTES;
+        data.TRANSACTIONNUMBER = r->TRANSACTIONNUMBER;
+        data.PAYEEID = r->PAYEEID;
+        data.TRANSID = r->TRANSID;
+    }
+    return r ? true : false;
 }
 
 void Model_Checking::putDataToTransaction(Data *r, const Data &data)
