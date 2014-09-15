@@ -568,7 +568,7 @@ void mmBDDialog::CreateControls()
     box_sizer1->Add(textNotes_, g_flagsExpand);
 
     SetTransferControls();  // hide appropriate fields
-    prevType_ = Model_Billsdeposits::WITHDRAWAL;
+    //prevType_ = Model_Billsdeposits::WITHDRAWAL;
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
     ***********************************************************************************************/
@@ -785,6 +785,7 @@ void mmBDDialog::updateControlsForTransType()
             resetPayeeString();
         }
         prevType_ = Model_Billsdeposits::WITHDRAWAL;
+        m_transfer = false;
     }
     else if (transaction_type_->GetSelection() == Model_Billsdeposits::DEPOSIT)
     {
@@ -800,6 +801,7 @@ void mmBDDialog::updateControlsForTransType()
             resetPayeeString();
         }
         prevType_ = Model_Billsdeposits::DEPOSIT;
+        m_transfer = false;
     }
     else if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER)
     {
@@ -821,9 +823,13 @@ void mmBDDialog::updateControlsForTransType()
         stp->SetLabelText(_("From"));
         st->SetLabelText(_("To"));
         bTo_->SetLabelText(_("Select To Account"));
-        m_bill_data.TOACCOUNTID = -1;
-        payeeUnknown_ = true;
+        if (prevType_ != -1)
+        {
+            m_bill_data.TOACCOUNTID = -1;
+            payeeUnknown_ = true;
+        }
         prevType_ = Model_Billsdeposits::TRANSFER;
+        m_transfer = true;
     }
 }
 
@@ -945,7 +951,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         return;
     }
 
-    m_bill_data.TOACCOUNTID = -1;
+    //m_bill_data.TOACCOUNTID = -1;
     if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER)
     {
         if (m_bill_data.TOACCOUNTID == -1)
