@@ -89,7 +89,11 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     }
 
     Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
-    m_currency = Model_Account::currency(acc);
+    if (acc)
+        m_currency = Model_Account::currency(acc);
+    else
+        m_currency = Model_Currency::GetBaseCurrency();
+
     if (m_transfer) {
         Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
         m_to_currency = Model_Account::currency(to_acc);
@@ -165,7 +169,8 @@ void mmTransDialog::dataToControls()
         else
             toTextAmount_->ChangeValue("");
 
-        textAmount_->SetValue(m_trx_data.TRANSAMOUNT, m_currency);
+        if (m_trx_data.TRANSID != -1)
+            textAmount_->SetValue(m_trx_data.TRANSAMOUNT, m_currency);
         skip_amount_init_ = true;
     }
 
