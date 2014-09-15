@@ -57,6 +57,7 @@ wxEND_EVENT_TABLE()
 mmTransDialog::mmTransDialog(wxWindow* parent
     , int account_id
     , int transaction_id
+    , bool duplicate
 ) :
       m_currency(nullptr)
     , m_to_currency(nullptr)
@@ -74,8 +75,8 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_amount_init_(false)
 {
     Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);
-    m_new_trx = transaction ? false : true;
-    if (!m_new_trx) 
+    m_new_trx = !transaction || duplicate ? true : false;
+    if (!m_new_trx || duplicate) 
     {
         Model_Checking::getTransactionData(m_trx_data, transaction);
         for (const auto& item : Model_Checking::splittransaction(transaction))
@@ -164,8 +165,7 @@ void mmTransDialog::dataToControls()
         else
             toTextAmount_->ChangeValue("");
 
-        if (!m_new_trx)
-            textAmount_->SetValue(m_trx_data.TRANSAMOUNT, m_currency);
+        textAmount_->SetValue(m_trx_data.TRANSAMOUNT, m_currency);
         skip_amount_init_ = true;
     }
 

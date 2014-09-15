@@ -154,7 +154,7 @@ public:
     static wxString toShortStatus(const wxString& fullStatus);
     static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes);
     static void getEmptyTransaction(Data &data, int accountID);
-    static void getTransactionData(Data &data, const Data* r);
+    static bool getTransactionData(Data &data, const Data* r);
     static void putDataToTransaction(Data *r, const Data &data);
 };
 
