@@ -56,6 +56,7 @@ public:
         bool has_split() const;
 
         wxString info() const;
+        const wxString to_json();
     };
     typedef std::vector<Full_Data> Full_Data_Set;
 

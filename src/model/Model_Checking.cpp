@@ -477,3 +477,45 @@ void Model_Checking::putDataToTransaction(Data *r, const Data &data)
     r->TRANSACTIONNUMBER = data.TRANSACTIONNUMBER;
     r->FOLLOWUPID = data.FOLLOWUPID;
 }
+
+const wxString Model_Checking::Full_Data::to_json()
+{
+    json::Object o;
+    o[L"TRANSDATE"] = json::String(this->TRANSDATE.ToStdWstring());
+    o[L"ACCOUNTNAME"] = json::String(this->ACCOUNTNAME.ToStdWstring());
+    o[L"TRANSCODE"] = json::String(this->TRANSCODE.ToStdWstring());
+    o[L"TRANSAMOUNT"] = json::Number(this->TRANSAMOUNT);
+    if (is_transfer(this)) {
+        o[L"TOACCOUNTNAME"] = json::String(this->TOACCOUNTNAME.ToStdWstring());
+        o[L"TOTRANSAMOUNT"] = json::Number(this->TOTRANSAMOUNT);
+    }
+    else {
+        o[L"PAYEENAME"] = json::String(this->PAYEENAME.ToStdWstring());
+    }
+    o[L"STATUS"] = json::String(this->STATUS.ToStdWstring());
+    o[L"TRANSACTIONNUMBER"] = json::String(this->TRANSACTIONNUMBER.ToStdWstring());
+    o[L"NOTES"] = json::String(this->NOTES.ToStdWstring());
+
+    if (this->has_split())
+    {
+        int id = this->TRANSID;
+        Model_Splittransaction::Data_Set split
+            = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id));
+        json::Array a;
+        for (const auto & item : split)
+        {
+            json::Object s;
+            const std::wstring categ = Model_Category::full_name(item.CATEGID, item.SUBCATEGID).ToStdWstring();
+            s[categ] = json::Number(item.SPLITTRANSAMOUNT);
+            a.Insert(s);
+        }
+        o[L"CATEGS"] = json::Array(a);
+    }
+    else
+        o[L"CATEG"] = json::String(Model_Category::full_name(this->CATEGID, this->SUBCATEGID).ToStdWstring());
+
+    std::wstringstream ss;
+    json::Writer::Write(o, ss);
+
+    return ss.str();
+}

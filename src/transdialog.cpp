@@ -936,7 +936,9 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 		mmAttachmentManage::RelocateAllAttachments(RefType, old_transaction_id, m_trx_data.TRANSID);
 	}
 
-    wxLogDebug("%s", r->to_json());
+    const Model_Checking::Data& tran(*r);
+    Model_Checking::Full_Data trx(tran);
+    wxLogDebug("%s", trx.to_json());
     EndModal(wxID_OK);
 }
 
