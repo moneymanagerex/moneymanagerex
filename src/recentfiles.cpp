@@ -1,5 +1,5 @@
 /*************************************************************************
- Copyright (C) 2011,2012 Stefano Giorgio
+ Copyright (C) 2011..2014 Stefano Giorgio
  Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
@@ -20,7 +20,8 @@
 #include "recentfiles.h"
 #include "model/Model_Setting.h"
 
-mmFileHistory::mmFileHistory(size_t maxFiles, wxWindowID idBase): wxFileHistory(maxFiles, idBase)
+mmFileHistory::mmFileHistory(size_t maxFiles, wxWindowID idBase)
+    : wxFileHistory(maxFiles, idBase)
 {
 }
 
@@ -31,41 +32,43 @@ mmFileHistory::~mmFileHistory()
 
 void mmFileHistory::Clear()
 {
-    for (size_t i = 0; i < m_fileHistory.GetCount(); i++) this->RemoveFileFromHistory(i);
-    m_fileHistory.Clear();
+    int count = GetCount();
+    for (int i = 0; i < count; i++)
+    {
+        RemoveFileFromHistory(0);
+    }
 }
 
 void mmFileHistory::Load()
 {
-    m_fileHistory.Clear();
-
+    int fileCount = 1;
     wxString buf;
-    buf.Printf("RECENT_DB_%d", 1);
+    buf.Printf("RECENT_DB_%d", fileCount);
 
     wxString historyFile;
-    while (m_fileHistory.GetCount() < m_fileMaxFiles)
+    while (fileCount <= GetMaxFiles())
     {
         historyFile = Model_Setting::instance().GetStringSetting(buf, wxEmptyString);
-        if (historyFile.empty()) break;
-
-        m_fileHistory.Add(historyFile);
-
-        buf.Printf("RECENT_DB_%d", (int)m_fileHistory.GetCount()+1);
-        historyFile = wxEmptyString;
+        if (!historyFile.empty())
+        {
+            AddFileToHistory(historyFile);
+        }
+        buf.Printf("RECENT_DB_%d", GetMaxFiles() - fileCount);
+        fileCount++;
     }
-
-    AddFilesToMenu();
 }
 
 void mmFileHistory::Save()
 {
-    for (size_t i = 0; i < m_fileMaxFiles; i++)
+    Model_Setting::instance().Begin();
+    for (int i = 1; i < GetMaxFiles(); i++)
     {
         wxString buf;
-        buf.Printf("RECENT_DB_%d", (int)i+1);
-        if (i < m_fileHistory.GetCount())
-            Model_Setting::instance().Set(buf, m_fileHistory[i]);
+        buf.Printf("RECENT_DB_%d", i);
+        if (i < GetCount())
+            Model_Setting::instance().Set(buf, GetHistoryFile(i));
         else
             Model_Setting::instance().Set(buf, wxString(""));
     }
+    Model_Setting::instance().Commit();
 }
