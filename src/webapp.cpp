@@ -120,7 +120,8 @@ bool mmWebApp::WebApp_CheckGuid()
     else
     {
         wxString msgStr = wxString() << _("Unable to connect to WebApp:") << "\n"
-            << _("please check settings and / or internet connection.") << "\n";
+            << _("please check settings and / or internet connection.") << "\n\n"
+            << _("Error:\n") << outputMessage + "\n";
         wxMessageBox(msgStr, _("WebApp connection error"), wxICON_ERROR);
         return false;
     }
