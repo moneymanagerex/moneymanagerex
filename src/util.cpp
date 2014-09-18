@@ -475,9 +475,9 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
             if (page == wxEmptyString)
                 page = "Page not found";
 
-            wxString msgStr = wxString() << _("Unable to check for updates!") << "\n\n"
-                << _("Error code:") << "\n"
-                << page;
+            const wxString msgStr = wxString::Format("%s\n\n%s"
+                , _("Unable to check for updates!")
+                , wxString::Format(_("Error: %s"), "\n" + page));
             wxMessageBox(msgStr, _("MMEX Update Check"));
             return false;
         }
@@ -561,11 +561,9 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
     // define new version
     if (isUpdateAvailable)
     {
-        NewVersion = wxString() << major << "." << minor << "." << patch;
-        if (rc > 0)
-            NewVersion << "-RC" << rc;
-        else if (ReleaseType == "Unstable")
-            NewVersion << " Stable";
+        const wxString spec = rc > 0 ? wxString::Format("-RC%i", rc)
+            : (ReleaseType == "Unstable" ? " Stable" : "");
+        NewVersion = wxString::Format("%s.%s.%s%s", major, minor, patch, spec);
     }
     else
     {
@@ -581,9 +579,9 @@ void checkUpdates(const bool& bSilent)
 
     if (IsUpdateAvailable(bSilent, NewVersion) && NewVersion != "error")
     {
-        wxString msgStr = wxString() << _("New version of MMEX is available") << "\n\n"
-            << _("Your current version is: ") << mmex::getProgramVersion() << "\n"
-            << _("New version is: ") << NewVersion << "\n\n"
+        const wxString msgStr = wxString() << _("New version of MMEX is available") << "\n\n"
+            << wxString::Format(_("Your current version is: %s"), mmex::getProgramVersion()) << "\n"
+            << wxString::Format(_("New version is: %s"), NewVersion) << "\n\n"
             << _("Would you like to download it now ?");
         int DowloadResponse = wxMessageBox(msgStr,
             _("MMEX Update Check"), wxICON_EXCLAMATION | wxYES | wxNO);
@@ -592,7 +590,7 @@ void checkUpdates(const bool& bSilent)
     }
     else if (!bSilent && NewVersion != "error")
     {
-        wxString msgStr = wxString() << _("You already have the latest version") << " " << NewVersion;
+        const wxString msgStr = wxString::Format(_("You already have the latest version %s"), NewVersion);
         wxMessageBox(msgStr, _("MMEX Update Check"), wxICON_INFORMATION);
     }
 }

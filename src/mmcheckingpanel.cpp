@@ -212,14 +212,14 @@ void mmCheckingPanel::filterTable()
     for (const auto& tran : Model_Account::transaction(this->m_account))
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran.TRANSCODE) != Model_Checking::VOID_)
+        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
             account_balance_ += transaction_amount;
         else
         {
             if (!m_listCtrlAccount->showDeletedTransactions_)
                 continue;
         }
-        if (Model_Checking::status(tran.TRANSCODE) == Model_Checking::RECONCILED)
+        if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
             reconciled_balance_ += transaction_amount;
 
         if (transFilterActive_)
@@ -258,7 +258,7 @@ void mmCheckingPanel::updateTable()
     for (const auto& tran : Model_Account::transaction(m_account))
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran.TRANSCODE) != Model_Checking::VOID_)
+        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
             account_balance_ += transaction_amount;
         reconciled_balance_ += Model_Checking::reconciled(tran, m_AccountID);
     }

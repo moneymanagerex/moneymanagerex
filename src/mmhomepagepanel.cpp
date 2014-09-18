@@ -440,8 +440,9 @@ private:
     mmHomePagePanel *m_reportPanel;
 };
 
-BEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
-END_EVENT_TABLE()
+wxBEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
+    EVT_WEBVIEW_NAVIGATED(wxID_ANY, mmHomePagePanel::OnNavigated)
+wxEND_EVENT_TABLE()
 
 mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
     , wxWindowID winid
@@ -499,7 +500,6 @@ void mmHomePagePanel::CreateControls()
     this->SetSizer(itemBoxSizer2);
 
     browser_ = wxWebView::New(this, wxID_ANY);
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "assets")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "acct")));
@@ -796,3 +796,8 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
     return ss.str();
 }
 
+void mmHomePagePanel::OnNavigated(wxWebViewEvent& evt)
+{
+    const wxString s = evt.GetURL();
+    wxLogDebug("%s", s);
+}
