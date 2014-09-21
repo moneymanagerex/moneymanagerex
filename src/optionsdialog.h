@@ -124,6 +124,8 @@ private:
 
 	wxCheckBox* cbSendData_;
 
+    wxSpinCtrl *scNetworkTimeout_;
+
     int currencyId_;
     wxString dateFormat_;
     wxString currentLanguage_;
@@ -182,7 +184,8 @@ private:
 		ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER,
         ID_DIALOG_OPTIONS_ENABLE_WEB_SERVER,
         ID_DIALOG_OPTIONS_WEB_SERVER_PORT,
-		ID_DIALOG_OPTIONS_ALLOW_SEND_USAGE
+		ID_DIALOG_OPTIONS_ALLOW_SEND_USAGE,
+        ID_DIALOG_OPTIONS_NETWORK_TIMEOUT
     };
 };
 
