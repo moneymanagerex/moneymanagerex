@@ -187,7 +187,8 @@ int site_content(const wxString& sSite, wxString& sOutput)
     int err_code = url.GetError();
     if (err_code == wxURL_NOERR)
     {
-        url.GetProtocol().SetTimeout(10); // 10 secs
+        int networkTimeout = Model_Setting::instance().GetIntSetting("NETWORKTIMEOUT", 10); // default 10 secs
+        url.GetProtocol().SetTimeout(networkTimeout);
         wxInputStream* in_stream = url.GetInputStream();
         if (in_stream)
         {

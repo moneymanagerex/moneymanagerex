@@ -801,9 +801,28 @@ void mmOptionsDialog::CreateControls()
 
     usageStaticBoxSizer->Add(cbSendData_, g_flags);
 
-    networkPanel->SetSizer(networkPanelSizer);
+    // Communication timeout
+    networkPanelSizer->AddSpacer(15);
 
-   /**********************************************************************************************
+    wxStaticBox* timeoutStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Timeout"));
+    timeoutStaticBox->SetFont(staticBoxFontSetting);
+    wxStaticBoxSizer* timeoutStaticBoxSizer = new wxStaticBoxSizer(timeoutStaticBox, wxVERTICAL);
+    networkPanelSizer->Add(timeoutStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    int nTimeout = Model_Setting::instance().GetIntSetting("NETWORKTIMEOUT", 10);
+    scNetworkTimeout_ = new wxSpinCtrl(networkPanel, ID_DIALOG_OPTIONS_NETWORK_TIMEOUT,
+        wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 150, nTimeout);
+    scNetworkTimeout_->SetToolTip(_("Specify a network communication timeout value to use."));
+
+    wxFlexGridSizer* flex_sizer5 = new wxFlexGridSizer(0, 2, 0, 0);
+    flex_sizer5->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Seconds")), g_flags);
+    flex_sizer5->Add(scNetworkTimeout_, g_flags);
+
+    timeoutStaticBoxSizer->Add(flex_sizer5, g_flags);
+
+    networkPanel->SetSizer(networkPanelSizer);
+    
+    /**********************************************************************************************
     Setting up the notebook with the 5 pages
     **********************************************************************************************/
     newBook->SetImageList(m_imageList);
@@ -1166,6 +1185,8 @@ void mmOptionsDialog::SaveNetworkPanelSettings()
     Model_Setting::instance().Set("WEBSERVERPORT", scWebServerPort_->GetValue());
 
     Model_Setting::instance().Set("SENDUSAGESTATS", cbSendData_->GetValue());
+    
+    Model_Setting::instance().Set("NETWORKTIMEOUT", scNetworkTimeout_->GetValue());
 }
 
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)
