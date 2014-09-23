@@ -91,9 +91,13 @@ void mmStockDialog::dataToControls()
     numShares_->SetValue(m_stock->NUMSHARES, precision);
     Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
     valueInvestment_->SetLabelText(Model_Account::toCurrency(m_stock->VALUE, account));
-    purchasePrice_->SetValue(m_stock->PURCHASEPRICE, account, 4);
-    currentPrice_->SetValue(m_stock->CURRENTPRICE, account, 4);
-    commission_->SetValue(m_stock->COMMISSION, account, 4);
+    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+    if (account) currency = Model_Account::currency(account);
+    int currency_precision = Model_Currency::precision(currency);
+    if (currency_precision < 4) currency_precision = 4;
+    purchasePrice_->SetValue(m_stock->PURCHASEPRICE, account, currency_precision);
+    currentPrice_->SetValue(m_stock->CURRENTPRICE, account, currency_precision);
+    commission_->SetValue(m_stock->COMMISSION, account, currency_precision);
 }
 
 void mmStockDialog::fillControls()
@@ -350,6 +354,8 @@ void mmStockDialog::OnTextEntered(wxCommandEvent& event)
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
     if (account) currency = Model_Account::currency(account);
+    int currency_precision = Model_Currency::precision(currency);
+    if (currency_precision < 4) currency_precision = 4;
 
     if (event.GetId() == numShares_->GetId())
     {
@@ -357,14 +363,14 @@ void mmStockDialog::OnTextEntered(wxCommandEvent& event)
     }
     else if (event.GetId() == purchasePrice_->GetId())
     {
-        purchasePrice_->Calculate(currency, 4);
+        purchasePrice_->Calculate(currency, currency_precision);
     }
     else if (event.GetId() == currentPrice_->GetId())
     {
-        currentPrice_->Calculate(currency, 4);
+        currentPrice_->Calculate(currency, currency_precision);
     }
     else if (event.GetId() == commission_->GetId())
     {
-        commission_->Calculate(currency, 4);
+        commission_->Calculate(currency, currency_precision);
     }
 }
