@@ -1138,25 +1138,27 @@ void TransactionListCtrl::OnShowChbClick(wxCommandEvent& /*event*/)
 void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 {
     int evt = event.GetId();
+    wxString org_status = "";
     wxString status = "";
-    if (evt ==  MENU_TREEPOPUP_MARKRECONCILED)             status = "R";
+    if (evt == MENU_TREEPOPUP_MARKRECONCILED)              status = "R";
     else if (evt == MENU_TREEPOPUP_MARKUNRECONCILED)       status = "";
     else if (evt == MENU_TREEPOPUP_MARKVOID)               status = "V";
     else if (evt == MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP) status = "F";
     else if (evt == MENU_TREEPOPUP_MARKDUPLICATE)          status = "D";
     else wxASSERT(false);
 
-    bool bVoidTransaction = (status == "V");
-
     Model_Checking::Data *trx = Model_Checking::instance().get(m_cp->m_trans[m_selectedIndex].TRANSID);
     if (trx)
     {
+        org_status = trx->STATUS;
         m_cp->m_trans[m_selectedIndex].STATUS = status;
         trx->STATUS = status;
         Model_Checking::instance().save(trx);
     }
 
-    if ((m_cp->transFilterActive_ && m_cp->transFilterDlg_->getStatusCheckBox()) || bVoidTransaction)
+    bool bRefreshRequired = (status == "V") || (org_status == "V");
+
+    if ((m_cp->transFilterActive_ && m_cp->transFilterDlg_->getStatusCheckBox()) || bRefreshRequired)
     {
         refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
     }
