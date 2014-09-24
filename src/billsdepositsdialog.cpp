@@ -25,7 +25,6 @@
 #include "mmsinglechoicedialog.h"
 #include "paths.h"
 #include "payeedialog.h"
-#include "splittransactionsdialog.h"
 #include "util.h"
 #include "validators.h"
 
@@ -73,16 +72,9 @@ mmBDDialog::mmBDDialog( )
 }
 
 mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
-    : bdID_(bdID)
-    , edit_(edit)
+    : m_new_bill(!edit)
     , enterOccur_(enterOccur)
-    , categID_(-1)
-    , subcategID_(-1)
-    , payeeID_(-1)
-    , accountID_(-1)
-    , toID_(-1)
-    , toTransAmount_(0)
-    , advancedToTransAmountSet_(false)
+    , m_advanced(false)
     , payeeUnknown_(false)
     , autoExecuteUserAck_(false)
     , autoExecuteSilent_(false)
@@ -90,10 +82,39 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
 	, skip_attachments_init_(false)
     , prevType_(-1)
 {
+    const Model_Billsdeposits::Data* bill = Model_Billsdeposits::instance().get(bdID);
+    m_new_bill = bill ? false : true;
+
+    if (!m_new_bill)
+    {
+        m_bill_data.BDID = bdID;
+        m_bill_data.TRANSDATE = bill->TRANSDATE;
+        m_bill_data.ACCOUNTID = bill->ACCOUNTID;
+        m_bill_data.TOACCOUNTID = bill->TOACCOUNTID;
+        m_bill_data.PAYEEID = bill->PAYEEID;
+        m_bill_data.CATEGID = bill->CATEGID;
+        m_bill_data.SUBCATEGID = bill->SUBCATEGID;
+        m_bill_data.TOTRANSAMOUNT = bill->TOTRANSAMOUNT;
+        m_bill_data.TRANSAMOUNT = bill->TRANSAMOUNT;
+        m_bill_data.NEXTOCCURRENCEDATE = Model_Billsdeposits::NEXTOCCURRENCEDATE(bill).FormatISODate();
+        m_bill_data.REPEATS = bill->REPEATS;
+        m_bill_data.NUMOCCURRENCES = bill->NUMOCCURRENCES;
+        m_bill_data.NOTES = bill->NOTES;
+        m_bill_data.STATUS = bill->STATUS;
+        m_bill_data.TRANSACTIONNUMBER = bill->TRANSACTIONNUMBER;
+        m_bill_data.TRANSCODE = bill->TRANSCODE;
+        //
+        for (const auto& item : Model_Billsdeposits::splittransaction(bill))
+            m_bill_data.local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
+    }
+
+    m_transfer = (m_bill_data.TRANSCODE == Model_Billsdeposits::all_type()[Model_Billsdeposits::TRANSFER]);
+    //---------------------------------------------------
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY
         , _("New Repeating Transaction")
         , wxDefaultPosition, wxSize(500, 300), style);
+
 }
 
 bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
@@ -111,7 +132,7 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     /**********************************************************************************************
      Ament controls according to function settings
     ***********************************************************************************************/
-    if (edit_ || enterOccur_)
+    if (!m_new_bill || enterOccur_)
     {
         dataToControls();
         if (! enterOccur_)
@@ -123,7 +144,7 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
         {
             SetDialogHeader(_(" Enter Repeating Transaction"));
             transaction_type_->Disable();
-            dpcbd_->Disable();
+            dpcNextOccDate_->Disable();
             itemRepeats_->Disable();
             itemAccountName_->Disable();
             textAmount_->SetFocus();
@@ -142,103 +163,90 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
 
 void mmBDDialog::dataToControls()
 {
-    const Model_Billsdeposits::Data * bill = Model_Billsdeposits::instance().get(bdID_);
-    if (bill)
+
+    choiceStatus_->SetSelection(Model_Checking::status(m_bill_data.STATUS));
+    if (m_bill_data.NUMOCCURRENCES > 0)
+        textNumRepeats_->SetValue(wxString::Format("%d", m_bill_data.NUMOCCURRENCES));
+
+    wxDateTime dtno;
+    dtno.ParseDate(m_bill_data.NEXTOCCURRENCEDATE);
+    dpcNextOccDate_->SetValue(dtno);
+    dpc_->SetValue(dtno);
+    calendarCtrl_->SetDate(dtno);
+
+
+    // Have used repeatSel to multiplex auto repeat fields.
+    if (m_bill_data.REPEATS >= BD_REPEATS_MULTIPLEX_BASE)
     {
-        categID_ = bill->CATEGID;
-        subcategID_ = bill->SUBCATEGID;
+        m_bill_data.REPEATS -= BD_REPEATS_MULTIPLEX_BASE;
+        autoExecuteUserAck_ = true;
+        itemCheckBoxAutoExeUserAck_->SetValue(true);
+        itemCheckBoxAutoExeSilent_->Enable(true);
 
-        toTransAmount_ = bill->TOTRANSAMOUNT;
-
-        choiceStatus_->SetSelection(Model_Billsdeposits::status(bill));
-
-        if (bill->NUMOCCURRENCES > 0)
-            textNumRepeats_->SetValue(wxString::Format("%d", bill->NUMOCCURRENCES));
-
-        wxDateTime dtno = Model_Billsdeposits::NEXTOCCURRENCEDATE(bill);
-        dpcbd_->SetValue(dtno);
-        dpc_->SetValue(dtno);
-        calendarCtrl_->SetDate (dtno);
-
-        int repeatSel = bill->REPEATS;
-        // Have used repeatSel to multiplex auto repeat fields.
-        if (repeatSel >= BD_REPEATS_MULTIPLEX_BASE)
+        if (m_bill_data.REPEATS >= BD_REPEATS_MULTIPLEX_BASE)
         {
-            repeatSel -= BD_REPEATS_MULTIPLEX_BASE;
-            autoExecuteUserAck_ = true;
-            itemCheckBoxAutoExeUserAck_->SetValue(true);
-            itemCheckBoxAutoExeSilent_->Enable(true);
-
-            if (repeatSel >= BD_REPEATS_MULTIPLEX_BASE)
-            {
-                repeatSel -= BD_REPEATS_MULTIPLEX_BASE;
-                autoExecuteSilent_ = true;
-                itemCheckBoxAutoExeSilent_->SetValue(true);
-            }
+            m_bill_data.REPEATS -= BD_REPEATS_MULTIPLEX_BASE;
+            autoExecuteSilent_ = true;
+            itemCheckBoxAutoExeSilent_->SetValue(true);
         }
+    }
 
-        itemRepeats_->SetSelection(repeatSel);
-        setRepeatDetails();
-        if (repeatSel == 0) // if none
-            textNumRepeats_->SetValue("");
+    itemRepeats_->SetSelection(m_bill_data.REPEATS);
+    setRepeatDetails();
+    if (m_bill_data.REPEATS == 0) // if none
+        textNumRepeats_->SetValue("");
 
-        transaction_type_->SetSelection(Model_Billsdeposits::type(bill));
-        updateControlsForTransType();
+    transaction_type_->SetSelection(Model_Billsdeposits::type(m_bill_data.TRANSCODE));
+    updateControlsForTransType();
 
-        payeeID_ = bill->PAYEEID;
-        toID_ = bill->TOACCOUNTID;
-        accountID_ = bill->ACCOUNTID;
-        Model_Account::Data* account = Model_Account::instance().get(accountID_);
-        itemAccountName_->SetLabelText(account->ACCOUNTNAME);
+    Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
+    itemAccountName_->SetLabelText(account->ACCOUNTNAME);
 
-        for (const auto& item : Model_Billsdeposits::splittransaction(bill)) local_splits_.push_back(item);
+    if (!m_bill_data.local_splits.empty())
+    {
+        bCategory_->SetLabelText(_("Split Category"));
+        cSplit_->SetValue(true);
+    }
+    else
+    {
+        bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
+    }
 
-        if (!local_splits_.empty())
+    textNotes_->SetValue(m_bill_data.NOTES);
+    textNumber_->SetValue(m_bill_data.TRANSACTIONNUMBER);
+
+    double transAmount = m_bill_data.TRANSAMOUNT;
+
+    if (!m_bill_data.local_splits.empty())
+    {
+        m_bill_data.TRANSAMOUNT = 0;
+        for (const auto& entry : m_bill_data.local_splits)
+            m_bill_data.TRANSAMOUNT += entry.SPLITTRANSAMOUNT;
+        textAmount_->Enable(false);
+    }
+
+    textAmount_->SetValue(transAmount, account);
+
+    if (m_transfer) //TODO:Model_Billsdeposits::type(bill) == Model_Billsdeposits::TRANSFER
+    {
+        Model_Account::Data* to_account = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
+
+        m_bill_data.PAYEEID = -1;
+        bPayee_->SetLabelText(account->ACCOUNTNAME);
+        bTo_->SetLabelText(to_account->ACCOUNTNAME);
+
+        // When editing an advanced transaction record, we do not reset the m_bill_data.TOTRANSAMOUNT
+        if ((!m_new_bill || enterOccur_) && (m_bill_data.TOTRANSAMOUNT != transAmount))
         {
-            bCategory_->SetLabelText(_("Split Category"));
-            cSplit_->SetValue(true);
+            cAdvanced_->SetValue(true);
+            SetAdvancedTransferControls(true);
         }
-        else
-        {
-            const Model_Category::Data* category = Model_Category::instance().get(categID_);
-            const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
-            bCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
-        }
-
-        textNotes_->SetValue(bill->NOTES);
-        textNumber_->SetValue(bill->TRANSACTIONNUMBER);
-
-        double transAmount = bill->TRANSAMOUNT;
-
-        if (!local_splits_.empty())
-        {
-            transAmount = Model_Budgetsplittransaction::instance().get_total(local_splits_);
-            textAmount_->Enable(false);
-        }
-
-        textAmount_->SetValue(transAmount, account);
-
-        if (Model_Billsdeposits::type(bill) == Model_Billsdeposits::TRANSFER)
-        {
-            Model_Account::Data* to_account = Model_Account::instance().get(toID_);
-
-            payeeID_ = account->ACCOUNTID;
-            bPayee_->SetLabelText(account->ACCOUNTNAME);
-            bTo_->SetLabelText(to_account->ACCOUNTNAME);
-
-            // When editing an advanced transaction record, we do not reset the toTransAmount_
-            if ((edit_ || enterOccur_) && (toTransAmount_ != transAmount))
-            {
-                cAdvanced_->SetValue(true);
-                SetAdvancedTransferControls(true);
-            }
-        }
-        else
-        {
-            Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
-            if (payee)
-                bPayee_->SetLabelText(payee->PAYEENAME);
-        }
+    }
+    else
+    {
+        Model_Payee::Data* payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
+        if (payee)
+            bPayee_->SetLabelText(payee->PAYEENAME);
     }
 }
 
@@ -308,7 +316,7 @@ void mmBDDialog::CreateControls()
     /* Bills & Deposits Details */
     wxStaticBox* repeatDetailsStaticBox = new wxStaticBox(this, wxID_ANY, _("Repeating Transaction Details") );
     wxStaticBoxSizer* repeatDetailsStaticBoxSizer = new wxStaticBoxSizer(repeatDetailsStaticBox, wxHORIZONTAL);
-    repeatTransBoxSizer->Add(repeatDetailsStaticBoxSizer, 0, wxALIGN_CENTER|wxALL, 5);
+    repeatTransBoxSizer->Add(repeatDetailsStaticBoxSizer, 0, wxALIGN_CENTER | wxALL, 5);
 
     wxFlexGridSizer* itemFlexGridSizer5 = new wxFlexGridSizer(0, 2, 0, 0);
     repeatDetailsStaticBoxSizer->Add(itemFlexGridSizer5, g_flags);
@@ -322,7 +330,7 @@ void mmBDDialog::CreateControls()
     const auto &accounts = Model_Account::instance().all();
     if (accounts.size() == 1)
     {
-        accountID_ = accounts.begin()->ACCOUNTID;
+        m_bill_data.ACCOUNTID = accounts.begin()->ACCOUNTID;
         itemAccountName_->SetLabelText(accounts.begin()->ACCOUNTNAME);
         itemAccountName_->Enable(false);
     }
@@ -339,16 +347,16 @@ void mmBDDialog::CreateControls()
 #endif
 
     // Next Occur Date --------------------------------------------
-    dpcbd_ = new wxDatePickerCtrl( this, ID_DIALOG_BD_BUTTON_NEXTOCCUR, wxDefaultDateTime,
-                                   wxDefaultPosition, wxSize(110,-1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-    dpcbd_->SetToolTip(_("Specify the date of the next bill or deposit"));
+    dpcNextOccDate_ = new wxDatePickerCtrl( this, ID_DIALOG_BD_BUTTON_NEXTOCCUR, wxDefaultDateTime
+        , wxDefaultPosition, wxSize(110, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    dpcNextOccDate_->SetToolTip(_("Specify the date of the next bill or deposit"));
 
-    spinNextOccDate_ = new wxSpinButton( this, ID_DIALOG_BD_REPEAT_DATE_SPINNER,
-                                         wxDefaultPosition, spinCtrlSize,spinCtrlDirection|wxSP_ARROW_KEYS|wxSP_WRAP);
+    spinNextOccDate_ = new wxSpinButton( this, ID_DIALOG_BD_REPEAT_DATE_SPINNER
+        , wxDefaultPosition, spinCtrlSize, spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinNextOccDate_->SetToolTip(_("Retard or advance the date of the 'next occurrence"));
 
     wxBoxSizer* nextOccurDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    nextOccurDateBoxSizer->Add(dpcbd_, g_flags);
+    nextOccurDateBoxSizer->Add(dpcNextOccDate_, g_flags);
     nextOccurDateBoxSizer->Add(spinNextOccDate_, g_flags);
 
     itemFlexGridSizer5->Add(new wxStaticText( this, wxID_STATIC, _("Next Occurrence")), g_flags);
@@ -358,8 +366,8 @@ void mmBDDialog::CreateControls()
     staticTextRepeats_ = new wxStaticText( this, wxID_STATIC, _("Repeats") );
     itemFlexGridSizer5->Add(staticTextRepeats_, g_flags);
 
-    itemRepeats_ = new wxChoice( this, ID_DIALOG_BD_COMBOBOX_REPEATS,
-        wxDefaultPosition, wxSize(110, -1));
+    itemRepeats_ = new wxChoice( this, ID_DIALOG_BD_COMBOBOX_REPEATS
+        , wxDefaultPosition, wxSize(110, -1));
     size_t size = sizeof(BILLSDEPOSITS_REPEATS)/sizeof(wxString);
     for(size_t i = 0; i < size; ++i)
     if ( i <=10 || i>14)
@@ -560,7 +568,7 @@ void mmBDDialog::CreateControls()
     box_sizer1->Add(textNotes_, g_flagsExpand);
 
     SetTransferControls();  // hide appropriate fields
-    prevType_ = Model_Billsdeposits::WITHDRAWAL;
+    //prevType_ = Model_Billsdeposits::WITHDRAWAL;
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
     ***********************************************************************************************/
@@ -622,17 +630,17 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
             double amount = 0.0;
             textAmount_->GetDouble(amount);
             textAmount_->SetValue(amount, account);
-            if (advancedToTransAmountSet_)
+            if (m_advanced)
             {
                 double toAmount = 0.0;
                 toTextAmount_->GetDouble(toAmount);
                 toTextAmount_->SetValue(toAmount, account);
             }
-            accountID_ = account->ACCOUNTID;
+            m_bill_data.ACCOUNTID = account->ACCOUNTID;
             itemAccountName_->SetLabelText(acctName);
-            if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER)
+            if (m_transfer)
             {
-                payeeID_ = account->ACCOUNTID;
+                //m_bill_data.PAYEEID = account->ACCOUNTID;//TODO:??
                 bPayee_->SetLabelText(acctName);
             }
         }
@@ -641,48 +649,48 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
 
 void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
 {
-    if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER)
+    if (m_transfer)
     {
         mmSingleChoiceDialog scd(this, _("Account name"), _("Select Account")
             , Model_Account::instance().all_checking_account_names());
         if (scd.ShowModal() == wxID_OK)
         {
             wxString acctName = scd.GetStringSelection();
-            Model_Account::Data* account = Model_Account::instance().get(acctName);
-            payeeID_ = account->ACCOUNTID;
+            //Model_Account::Data* account = Model_Account::instance().get(acctName);
+            //m_bill_data.PAYEEID = account->ACCOUNTID;
             bPayee_->SetLabelText(acctName);
             itemAccountName_->SetLabelText(acctName);
         }
     }
     else
     {
-            mmPayeeDialog dlg(this);
+        mmPayeeDialog dlg(this);
 
-            if ( dlg.ShowModal() == wxID_OK )
+        if (dlg.ShowModal() == wxID_OK)
+        {
+            m_bill_data.PAYEEID = dlg.getPayeeId();
+            Model_Payee::Data* payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
+            if (payee)
             {
-                payeeID_ = dlg.getPayeeId();
-                Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
-                if (payee)
+                bPayee_->SetLabelText(payee->PAYEENAME);
+                payeeUnknown_ = false;
+                // Only for new transactions: if user want to autofill last category used for payee.
+                // If this is a Split Transaction, ignore displaying last category for payee
+                if (payee->CATEGID != -1 && m_bill_data.local_splits.empty() 
+                    && mmIniOptions::instance().transCategorySelectionNone_ == 1 
+                    && !categUpdated_ && m_bill_data.BDID == 0)
                 {
-                    bPayee_->SetLabelText(payee->PAYEENAME);
-                    payeeUnknown_ = false;
-                    // Only for new transactions: if user want to autofill last category used for payee.
-                    // If this is a Split Transaction, ignore displaying last category for payee
-                    if (payee->CATEGID != -1 && local_splits_.empty() && mmIniOptions::instance().transCategorySelectionNone_ == 1 && !categUpdated_ && bdID_ == 0)
-                    {
-                        categID_ = payee->CATEGID;
-                        subcategID_ = payee->SUBCATEGID;
+                    m_bill_data.CATEGID = payee->CATEGID;
+                    m_bill_data.SUBCATEGID = payee->SUBCATEGID;
 
-                        const Model_Category::Data* category = Model_Category::instance().get(categID_);
-                        const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
-                        bCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
-                    }
+                    bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
                 }
-                else
-                {
-                    payeeUnknown_ = true;
-                    resetPayeeString();
-                }
+            }
+            else
+            {
+                payeeUnknown_ = true;
+                resetPayeeString();
+            }
         }
     }
 }
@@ -697,7 +705,7 @@ void mmBDDialog::OnTo(wxCommandEvent& /*event*/)
     {
         wxString acctName = scd.GetStringSelection();
         Model_Account::Data* account = Model_Account::instance().get(acctName);
-        toID_ = account->ACCOUNTID;
+        m_bill_data.TOACCOUNTID = account->ACCOUNTID;
         bTo_->SetLabelText(acctName);
     }
 }
@@ -711,15 +719,13 @@ void mmBDDialog::OnCategs(wxCommandEvent& /*event*/)
     else
     {
         mmCategDialog dlg(this);
-        dlg.setTreeSelection(categID_, subcategID_);
+        dlg.setTreeSelection(m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
         if ( dlg.ShowModal() == wxID_OK )
         {
-            categID_ = dlg.getCategId();
-            subcategID_ = dlg.getSubCategId();
+            m_bill_data.CATEGID = dlg.getCategId();
+            m_bill_data.SUBCATEGID = dlg.getSubCategId();
 
-            const Model_Category::Data* category = Model_Category::instance().get(categID_);
-            const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
-            bCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
+            bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
             categUpdated_ = true;
         }
     }
@@ -751,12 +757,12 @@ void mmBDDialog::OnTransTypeChanged(wxCommandEvent& /*event*/)
 void mmBDDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
 	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
-	if (!bdID_ && !skip_attachments_init_)
+    if (!m_bill_data.BDID && !skip_attachments_init_)
 	{
-		mmAttachmentManage::DeleteAllAttachments(RefType, bdID_);
+		mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
 		skip_attachments_init_ = true;
 	}
-	mmAttachmentDialog dlg(this, RefType, bdID_);
+	mmAttachmentDialog dlg(this, RefType, m_bill_data.BDID);
 	dlg.ShowModal();
 }
 
@@ -774,11 +780,12 @@ void mmBDDialog::updateControlsForTransType()
         bPayee_->SetToolTip(payeeWithdrawalTip_);
         if (payeeUnknown_)
         {
-            payeeID_ = -1;
-            toID_ = -1;
+            m_bill_data.PAYEEID = -1;
+            m_bill_data.TOACCOUNTID = -1;
             resetPayeeString();
         }
         prevType_ = Model_Billsdeposits::WITHDRAWAL;
+        m_transfer = false;
     }
     else if (transaction_type_->GetSelection() == Model_Billsdeposits::DEPOSIT)
     {
@@ -789,24 +796,25 @@ void mmBDDialog::updateControlsForTransType()
         bPayee_->SetToolTip(payeeDepositTip_);
         if (payeeUnknown_)
         {
-            payeeID_ = -1;
-            toID_ = -1;
+            m_bill_data.PAYEEID = -1;
+            m_bill_data.TOACCOUNTID = -1;
             resetPayeeString();
         }
         prevType_ = Model_Billsdeposits::DEPOSIT;
+        m_transfer = false;
     }
     else if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER)
     {
         displayControlsForType(Model_Billsdeposits::TRANSFER, true);
-        if (accountID_ < 0)
+        if (m_bill_data.ACCOUNTID < 0)
         {
             bPayee_->SetLabelText(_("Select From Account"));
-            payeeID_ = -1;
+            m_bill_data.PAYEEID = -1;
         }
         else
         {
             bPayee_->SetLabelText(itemAccountName_->GetLabel());
-            payeeID_ = accountID_;
+            m_bill_data.PAYEEID = m_bill_data.ACCOUNTID;
         }
 
         SetTransferControls(true);
@@ -815,34 +823,38 @@ void mmBDDialog::updateControlsForTransType()
         stp->SetLabelText(_("From"));
         st->SetLabelText(_("To"));
         bTo_->SetLabelText(_("Select To Account"));
-        toID_ = -1;
-        payeeUnknown_ = true;
+        if (prevType_ != -1)
+        {
+            m_bill_data.TOACCOUNTID = -1;
+            payeeUnknown_ = true;
+        }
         prevType_ = Model_Billsdeposits::TRANSFER;
+        m_transfer = true;
     }
 }
 
 void mmBDDialog::resetPayeeString()
 {
     wxString payeeStr = _("Select Payee");
-    if (payeeID_ == -1)
+    if (m_bill_data.PAYEEID == -1)
     {
         const auto &filtd = Model_Payee::instance().FilterPayees("");
         if (filtd.size() == 1)
         {
             //only one payee present. Choose it
             payeeStr = filtd[0].PAYEENAME;
-            payeeID_ = filtd[0].PAYEEID;
+            m_bill_data.PAYEEID = filtd[0].PAYEEID;
             payeeUnknown_ = false;
 
             // Only for new transactions: if user want to autofill last category used for payee.
             // If this is a Split Transaction, ignore displaying last category for payee
-            if (filtd[0].CATEGID != -1 && local_splits_.empty() && mmIniOptions::instance().transCategorySelectionNone_ == 1 && !categUpdated_ && bdID_ == 0)
+            if (filtd[0].CATEGID != -1 && m_bill_data.local_splits.empty() && mmIniOptions::instance().transCategorySelectionNone_ == 1 && !categUpdated_ && m_bill_data.BDID == 0)
             {
-                categID_ = filtd[0].CATEGID;
-                subcategID_ = filtd[0].SUBCATEGID;
+                m_bill_data.CATEGID = filtd[0].CATEGID;
+                m_bill_data.SUBCATEGID = filtd[0].SUBCATEGID;
 
-                const Model_Category::Data* category = Model_Category::instance().get(categID_);
-                const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
+                const Model_Category::Data* category = Model_Category::instance().get(m_bill_data.CATEGID);
+                const Model_Subcategory::Data* sub_category = (m_bill_data.SUBCATEGID != -1 ? Model_Subcategory::instance().get(m_bill_data.SUBCATEGID) : 0);
                 bCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
             }
         }
@@ -852,24 +864,28 @@ void mmBDDialog::resetPayeeString()
 
 void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 {
-    Model_Checking::getFrequentUsedNotes(accountID_, frequentNotes_);
+    Model_Checking::getFrequentUsedNotes(frequentNotes_);
     wxMenu menu;
-    for (int id = 0; id < (int)frequentNotes_.size(); id++)
-        menu.Append(id + 1, frequentNotes_[id].first);
-    if (frequentNotes_.size() > 0)
+    int id = wxID_HIGHEST;
+    for (const auto& entry : frequentNotes_) {
+        const wxString label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
+        menu.Append(++id, label);
+        
+    }
+        if (!frequentNotes_.empty())
         PopupMenu(&menu);
 }
 
 void mmBDDialog::onNoteSelected(wxCommandEvent& event)
 {
-    int i = event.GetId();
-    if (i > 0)
-        *textNotes_ << frequentNotes_[i - 1].second;
+    int i = event.GetId() - wxID_HIGHEST;
+    if (i > 0 && i <= (int)frequentNotes_.size())
+        textNotes_->ChangeValue(frequentNotes_[i - 1]);
 }
 
 void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    if (payeeID_ == -1)
+    if (m_bill_data.PAYEEID == -1)
     {
         if (transaction_type_->GetSelection() != Model_Billsdeposits::TRANSFER)
             mmShowErrorMessageInvalid(this, _("Payee"));
@@ -880,7 +896,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
 
     if (cSplit_->GetValue())
     {
-        if (local_splits_.empty())
+        if (m_bill_data.local_splits.empty())
         {
             mmShowErrorMessageInvalid(this, _("Category"));
             return;
@@ -888,23 +904,26 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     }
     else
     {
-        if (categID_ == -1)
+        if (m_bill_data.CATEGID == -1)
         {
             mmShowErrorMessageInvalid(this, _("Category"));
             return;
         }
     }
 
-    double amount = 0;
     if (cSplit_->GetValue())
     {
-        amount = Model_Budgetsplittransaction::instance().get_total(local_splits_);
-        if (amount < 0.0)
+        m_bill_data.TRANSAMOUNT = 0;
+        for (const auto& entry : m_bill_data.local_splits)
+            m_bill_data.TRANSAMOUNT += entry.SPLITTRANSAMOUNT;
+
+        if (m_bill_data.TRANSAMOUNT < 0.0)
         {
             if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER) {
-                if (amount < 0)
-                    amount = - amount;
-            } else {
+                if (m_bill_data.TRANSAMOUNT < 0)
+                    m_bill_data.TRANSAMOUNT = -m_bill_data.TRANSAMOUNT;
+            }
+            else {
                 mmShowErrorMessageInvalid(this, _("Amount"));
                 return;
             }
@@ -912,87 +931,80 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     }
     else
     {
-        if (!textAmount_->checkValue(amount))
-        {
+        if (!textAmount_->checkValue(m_bill_data.TRANSAMOUNT))
             return;
-        }
     }
 
-    if (advancedToTransAmountSet_)
+    if (m_advanced)
     {
-        if (!toTextAmount_->checkValue(toTransAmount_))
+        if (!toTextAmount_->checkValue(m_bill_data.TOTRANSAMOUNT))
         {
             return;
         }
     }
     else
-        toTransAmount_ = amount;
+        m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
 
-    if ((transaction_type_->GetSelection() != Model_Billsdeposits::TRANSFER) && (accountID_ == -1))
+    if ((transaction_type_->GetSelection() != Model_Billsdeposits::TRANSFER) && (m_bill_data.ACCOUNTID == -1))
     {
         mmShowErrorMessageInvalid(this, _("Account"));
         return;
     }
 
-    int toAccountID = -1;
-    int fromAccountID = accountID_;
+    //m_bill_data.TOACCOUNTID = -1;
     if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER)
     {
-        if (toID_ == -1)
+        if (m_bill_data.TOACCOUNTID == -1)
         {
             mmShowErrorMessageInvalid(this, _("To Account"));
             return;
         }
 
-        if (payeeID_ == toID_)
+        if (m_bill_data.PAYEEID == m_bill_data.TOACCOUNTID)
         {
             mmShowErrorMessage(this, _("From and To Account cannot be the same."), _("Error"));
             return;
         }
 
-        fromAccountID = payeeID_;
-        toAccountID = toID_;
-        payeeID_ = -1;
+        m_bill_data.PAYEEID = -1;
     }
 
-    if (!advancedToTransAmountSet_ || toTransAmount_ < 0)
+    if (!m_advanced || m_bill_data.TOTRANSAMOUNT < 0)
     {
         // if we are adding a new record and the user did not touch advanced dialog
         // we are going to use the transfer amount by calculating conversion rate.
         // subsequent edits will not allow automatic update of the amount
-        if (!edit_)
+        if (m_new_bill)
         {
-            if(toAccountID != -1) 
+            if (m_bill_data.TOACCOUNTID != -1)
             {
-                Model_Account::Data* from_account = Model_Account::instance().get(fromAccountID);
-                Model_Account::Data* to_account = Model_Account::instance().get(toAccountID);
+                Model_Account::Data* from_account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
+                Model_Account::Data* to_account = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
 
                 Model_Currency::Data* from_currency = Model_Account::currency(from_account);
                 Model_Currency::Data* to_currency = Model_Account::currency(to_account);
 
-                double rateFrom = from_currency->BASECONVRATE; 
+                double rateFrom = from_currency->BASECONVRATE;
                 double rateTo = to_currency->BASECONVRATE;
 
-                double convToBaseFrom = rateFrom * amount;
-                toTransAmount_ = convToBaseFrom / rateTo;
-            } else {
-                toTransAmount_ = amount;
+                double convToBaseFrom = rateFrom * m_bill_data.TRANSAMOUNT;
+                m_bill_data.TOTRANSAMOUNT = convToBaseFrom / rateTo;
+            }
+            else {
+                m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
             }
         }
     }
 
-    wxString transNum = textNumber_->GetValue();
-    wxString notes = textNotes_->GetValue();
-
     // Multiplex Auto executable onto the repeat field of the database.
-    int repeats = itemRepeats_->GetSelection();
+    m_bill_data.REPEATS = itemRepeats_->GetSelection();
     if (autoExecuteUserAck_)
-        repeats += BD_REPEATS_MULTIPLEX_BASE;
+        m_bill_data.REPEATS += BD_REPEATS_MULTIPLEX_BASE;
     if (autoExecuteSilent_)
-        repeats += BD_REPEATS_MULTIPLEX_BASE;
+        m_bill_data.REPEATS += BD_REPEATS_MULTIPLEX_BASE;
 
     wxString numRepeatStr = textNumRepeats_->GetValue();
-    int numRepeats = -1;
+    m_bill_data.NUMOCCURRENCES = -1;
 
     if (!numRepeatStr.empty()) {
         long cnt = 0;
@@ -1000,99 +1012,80 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         {
             wxASSERT(std::numeric_limits<int>::min() <= cnt);
             wxASSERT(cnt <= std::numeric_limits<int>::max());
-            numRepeats = static_cast<int>(cnt);
+            m_bill_data.NUMOCCURRENCES = static_cast<int>(cnt);
         }
     }
 
-    wxString nextOccurDate = dpcbd_->GetValue().FormatISODate();
+    m_bill_data.NEXTOCCURRENCEDATE = dpcNextOccDate_->GetValue().FormatISODate();
 
-    wxString status = "";
-    wxStringClientData* status_obj = (wxStringClientData *)choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
-    if (status_obj) status = Model_Billsdeposits::toShortStatus(status_obj->GetData());
+    wxStringClientData* status_obj = (wxStringClientData *) choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
+    if (status_obj) m_bill_data.STATUS = Model_Billsdeposits::toShortStatus(status_obj->GetData());
 
-    wxString date1 = dpc_->GetValue().FormatISODate();
+    m_bill_data.TRANSDATE = dpc_->GetValue().FormatISODate();
+    m_bill_data.TRANSACTIONNUMBER = textNumber_->GetValue();
+    m_bill_data.NOTES = textNotes_->GetValue();
 
-    if (!edit_ && !enterOccur_)
+    if (!enterOccur_)
     {
-        Model_Billsdeposits::Data* bill = Model_Billsdeposits::instance().create();
-        bill->ACCOUNTID = fromAccountID;
-        bill->TOACCOUNTID = toAccountID;
-        bill->PAYEEID = payeeID_;
+        Model_Billsdeposits::Data* bill = Model_Billsdeposits::instance().get(m_bill_data.BDID);
+        if (m_new_bill)
+            bill = Model_Billsdeposits::instance().create();
+
+        bill->ACCOUNTID = m_bill_data.ACCOUNTID;
+        bill->TOACCOUNTID = m_bill_data.TOACCOUNTID;
+        bill->PAYEEID = m_bill_data.PAYEEID;
         bill->TRANSCODE = Model_Billsdeposits::all_type()[transaction_type_->GetSelection()];
-        bill->TRANSAMOUNT = amount;
-        bill->STATUS = status;
-        bill->TRANSACTIONNUMBER = transNum;
-        bill->NOTES = notes;
-        bill->CATEGID = categID_;
-        bill->SUBCATEGID = subcategID_;
-        bill->TRANSDATE = date1;
-        bill->TOTRANSAMOUNT = toTransAmount_;
-        bill->REPEATS = repeats;
-        bill->NEXTOCCURRENCEDATE = nextOccurDate;
-        bill->NUMOCCURRENCES = numRepeats;
+        bill->TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
+        bill->STATUS = m_bill_data.STATUS;
+        bill->TRANSACTIONNUMBER = m_bill_data.TRANSACTIONNUMBER;
+        bill->NOTES = m_bill_data.NOTES;
+        bill->CATEGID = m_bill_data.CATEGID;
+        bill->SUBCATEGID = m_bill_data.SUBCATEGID;
+        bill->TRANSDATE = m_bill_data.TRANSDATE;
+        bill->TOTRANSAMOUNT = m_bill_data.TOTRANSAMOUNT;
+        bill->REPEATS = m_bill_data.REPEATS;
+        bill->NEXTOCCURRENCEDATE = m_bill_data.NEXTOCCURRENCEDATE;
+        bill->NUMOCCURRENCES = m_bill_data.NUMOCCURRENCES;
 
         transID_ = Model_Billsdeposits::instance().save(bill);
 
-        for (auto &item : local_splits_) item.TRANSID = transID_;
-        Model_Budgetsplittransaction::instance().save(local_splits_);
-
-		wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
-		mmAttachmentManage::RelocateAllAttachments(RefType, 0, transID_);
-    }
-    else if (edit_)
-    {
-        Model_Billsdeposits::Data * bill = Model_Billsdeposits::instance().get(bdID_);
-        bill->ACCOUNTID = accountID_;
-        bill->TOACCOUNTID = toAccountID;
-        bill->PAYEEID = payeeID_;
-        bill->TRANSCODE = Model_Billsdeposits::all_type()[transaction_type_->GetSelection()];
-        bill->TRANSAMOUNT = amount;
-        bill->STATUS = status;
-        bill->TRANSACTIONNUMBER = transNum;
-        bill->NOTES = notes;
-        bill->CATEGID = categID_;
-        bill->SUBCATEGID = subcategID_;
-        bill->TRANSDATE = date1;
-        bill->TOTRANSAMOUNT = toTransAmount_;
-        bill->REPEATS = repeats;
-        bill->NEXTOCCURRENCEDATE = nextOccurDate;
-        bill->NUMOCCURRENCES = numRepeats;
-
-        transID_ = Model_Billsdeposits::instance().save(bill);
-
-        for (auto& item : Model_Billsdeposits::splittransaction(bill))
-            Model_Budgetsplittransaction::instance().remove(item.SPLITTRANSID);
-
-        for (auto &item : local_splits_)
-        {
-            item.SPLITTRANSID = -1;
-            item.TRANSID = transID_;
+        Model_Budgetsplittransaction::Data_Set splt;
+        for (const auto& entry : m_bill_data.local_splits) {
+            Model_Budgetsplittransaction::Data *s = Model_Budgetsplittransaction::instance().create();
+            s->CATEGID = entry.CATEGID;
+            s->SUBCATEGID = entry.SUBCATEGID;
+            s->SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
+            s->TRANSID = transID_;
+            splt.push_back(*s);
         }
-        Model_Budgetsplittransaction::instance().save(local_splits_);
+        Model_Budgetsplittransaction::instance().save(splt);
+
+        wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+        mmAttachmentManage::RelocateAllAttachments(RefType, 0, transID_);
     }
-    else if (enterOccur_)
+    else
     {
         // repeats now hold extra info. Need to get repeats from dialog selection
-        if ( (itemRepeats_->GetSelection() < 11) || (itemRepeats_->GetSelection() > 14) || (numRepeats > 0) )
+        if ((itemRepeats_->GetSelection() < 11) || (itemRepeats_->GetSelection() > 14) || (m_bill_data.REPEATS > 0))
         {
             Model_Checking::Data* tran = Model_Checking::instance().create();
-            tran->ACCOUNTID = fromAccountID;
-            tran->TOACCOUNTID = toAccountID;
-            tran->PAYEEID = payeeID_;
+            tran->ACCOUNTID = m_bill_data.ACCOUNTID;
+            tran->TOACCOUNTID = m_bill_data.TOACCOUNTID;
+            tran->PAYEEID = m_bill_data.PAYEEID;
             tran->TRANSCODE = Model_Billsdeposits::all_type()[transaction_type_->GetSelection()];
-            tran->TRANSAMOUNT = amount;
-            tran->STATUS = status;
-            tran->TRANSACTIONNUMBER = transNum;
-            tran->NOTES = notes;
-            tran->CATEGID = categID_;
-            tran->SUBCATEGID = subcategID_;
-            tran->TRANSDATE = date1;
-            tran->TOTRANSAMOUNT = toTransAmount_;
+            tran->TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
+            tran->STATUS = m_bill_data.STATUS;
+            tran->TRANSACTIONNUMBER = m_bill_data.TRANSACTIONNUMBER;
+            tran->NOTES = m_bill_data.NOTES;
+            tran->CATEGID = m_bill_data.CATEGID;
+            tran->SUBCATEGID = m_bill_data.SUBCATEGID;
+            tran->TRANSDATE = m_bill_data.TRANSDATE;
+            tran->TOTRANSAMOUNT = m_bill_data.TOTRANSAMOUNT;
 
             int transID = Model_Checking::instance().save(tran);
 
             Model_Splittransaction::Data_Set checking_splits;
-            for (auto &item : local_splits_)
+            for (auto &item : m_bill_data.local_splits)
             {
                 Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
                 split->TRANSID = transID;
@@ -1101,34 +1094,49 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
                 split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
                 checking_splits.push_back(*split);
             }
-            Model_Splittransaction::instance().save(checking_splits);
+            Model_Splittransaction::instance().update(checking_splits, transID);
         }
-        Model_Billsdeposits::instance().completeBDInSeries(bdID_);
+        Model_Billsdeposits::instance().completeBDInSeries(m_bill_data.BDID);
     }
     EndModal(wxID_OK);
 }
 
 void mmBDDialog::OnSplitChecked(wxCommandEvent& /*event*/)
 {
-    if (local_splits_.empty() && categID_ > -1)
+    if (cSplit_->IsChecked())
     {
-        bool bDeposit = transaction_type_->GetSelection() == Model_Billsdeposits::DEPOSIT;
-        double amount;
-        if (!textAmount_->GetDouble(amount))
-            amount = 0;
+        activateSplitTransactionsDlg();
+    }
+    else
+    {
+        if (m_bill_data.local_splits.size() > 1)
+        {
+            //Delete split items first (data protection)
+            cSplit_->SetValue(true);
+        }
+        else
+        {
+            if (m_bill_data.local_splits.size() == 1)
+            {
+                m_bill_data.CATEGID = m_bill_data.local_splits.begin()->CATEGID;
+                m_bill_data.SUBCATEGID = m_bill_data.local_splits.begin()->SUBCATEGID;
+                m_bill_data.TRANSAMOUNT = m_bill_data.local_splits.begin()->SPLITTRANSAMOUNT;
 
-        Model_Budgetsplittransaction::Data *split = Model_Budgetsplittransaction::instance().create();
-        split->CATEGID = categID_;
-        split->SUBCATEGID = subcategID_;
-        split->SPLITTRANSAMOUNT = bDeposit ? amount : amount;
-        local_splits_.push_back(*split);
+                if (m_bill_data.TRANSAMOUNT < 0)
+                {
+                    m_bill_data.TRANSAMOUNT = -m_bill_data.TRANSAMOUNT;
+                    transaction_type_->SetSelection(Model_Checking::WITHDRAWAL);
+                }
+            }
+            else
+                m_bill_data.TRANSAMOUNT = 0;
+
+            m_bill_data.local_splits.clear();
+        }
     }
 
-    categID_ = -1;
-    subcategID_ = -1;
-
-    bool state = cSplit_->GetValue();
-    SetSplitControls(state);
+    //bool state = cSplit_->IsChecked();
+    //SetSplitControls(state);
 }
 
 void mmBDDialog::SetSplitControls(bool split)
@@ -1137,15 +1145,19 @@ void mmBDDialog::SetSplitControls(bool split)
     {
         bCategory_->SetLabelText(_("Split Category"));
         textAmount_->Enable(false);
-        textAmount_->SetValue(Model_Budgetsplittransaction::instance().get_total(local_splits_));
-        activateSplitTransactionsDlg();
+        m_bill_data.TRANSAMOUNT = 0;
+        for (const auto& entry : m_bill_data.local_splits)
+            m_bill_data.TRANSAMOUNT += entry.SPLITTRANSAMOUNT;
+        m_bill_data.CATEGID = -1;
+        m_bill_data.SUBCATEGID = -1;
+        //activateSplitTransactionsDlg();
     }
     else
     {
         bCategory_->SetLabelText(_("Select Category"));
         textAmount_->Enable(true);
         textAmount_->SetValue(0.0);
-        local_splits_.clear();
+        m_bill_data.local_splits.clear();
     }
 }
 
@@ -1174,7 +1186,7 @@ void mmBDDialog::OnCalendarSelChanged(wxCalendarEvent& event)
     wxDateTime date = event.GetDate();
     if (!enterOccur_)
     {
-        dpcbd_->SetValue(date) ;
+        dpcNextOccDate_->SetValue(date) ;
         dpc_->SetValue(date) ;
     }
 }
@@ -1232,11 +1244,11 @@ void mmBDDialog::SetAdvancedTransferControls(bool advanced)
     if (advanced)
     {
         toTextAmount_->Enable();
-        advancedToTransAmountSet_ = true;
+        m_advanced = true;
         // Display the transfer amount in the toTextAmount control.
-        if (toTransAmount_ >= 0)
+        if (m_bill_data.TOTRANSAMOUNT >= 0)
         {
-            toTextAmount_->SetValue(toTransAmount_);
+            toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT);
         }
         else
         {
@@ -1249,7 +1261,7 @@ void mmBDDialog::SetAdvancedTransferControls(bool advanced)
     else
     {
         toTextAmount_->Disable();
-        advancedToTransAmountSet_ = false;
+        m_advanced = false;
     }
 }
 
@@ -1261,18 +1273,18 @@ void mmBDDialog::SetNewDate(wxDatePickerCtrl* dpc, bool forward)
     wxDateTime date = dpc->GetValue().Add(wxDateSpan::Days(day));
 
     dpc_->SetValue( date );
-    dpcbd_->SetValue( date );
+    dpcNextOccDate_->SetValue( date );
     calendarCtrl_->SetDate(date);
 }
 
 void mmBDDialog::OnNextOccurDateForward(wxSpinEvent& /*event*/)
 {
-    SetNewDate(dpcbd_);
+    SetNewDate(dpcNextOccDate_);
 }
 
 void mmBDDialog::OnNextOccurDateBack(wxSpinEvent& /*event*/)
 {
-    SetNewDate(dpcbd_, false);
+    SetNewDate(dpcNextOccDate_, false);
 }
 
 void mmBDDialog::OnTransDateForward(wxSpinEvent& /*event*/)
@@ -1344,7 +1356,7 @@ void mmBDDialog::OnsetNextRepeatDate(wxCommandEvent& /*event*/)
     if (valueStr.IsNumber())
     {
         int value = wxAtoi(valueStr);
-        wxDateTime  date = dpcbd_->GetValue();
+        wxDateTime  date = dpcNextOccDate_->GetValue();
 
         int repeats = itemRepeats_->GetSelection();
         if (repeats == 11)
@@ -1357,7 +1369,7 @@ void mmBDDialog::OnsetNextRepeatDate(wxCommandEvent& /*event*/)
         }
 
         dpc_->SetValue( date );
-        dpcbd_->SetValue( date );
+        dpcNextOccDate_->SetValue( date );
         calendarCtrl_->SetDate( date );
 
         bSetNextOccurDate_->Disable();
@@ -1373,39 +1385,38 @@ void mmBDDialog::OnPeriodChange(wxCommandEvent& /*event*/)
 
 void mmBDDialog::activateSplitTransactionsDlg()
 {
-    Model_Splittransaction::Data_Set checking_splits;
-    for (auto &item : local_splits_)
+    bool bDeposit = m_bill_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT];
+
+    if (m_bill_data.CATEGID > -1 && m_bill_data.local_splits.empty())
     {
-        Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
-        split->CATEGID = item.CATEGID;
-        split->SUBCATEGID = item.SUBCATEGID;
-        split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
-        checking_splits.push_back(*split);
+        if (!textAmount_->GetDouble(m_bill_data.TRANSAMOUNT))
+            m_bill_data.TRANSAMOUNT = 0;
+        Split s;
+        s.SPLITTRANSAMOUNT = bDeposit ? m_bill_data.TRANSAMOUNT : m_bill_data.TRANSAMOUNT;
+        s.CATEGID = m_bill_data.CATEGID;
+        s.SUBCATEGID = m_bill_data.SUBCATEGID;
+        m_bill_data.local_splits.push_back(s);
     }
 
-    SplitTransactionDialog dlg(this, &checking_splits, transaction_type_->GetSelection(), accountID_);
+    SplitTransactionDialog dlg(this, m_bill_data.local_splits, transaction_type_->GetSelection(), m_bill_data.ACCOUNTID);
     if (dlg.ShowModal() == wxID_OK)
     {
-        double amount = Model_Splittransaction::instance().get_total(checking_splits);
-        if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER && amount < 0) amount = -amount;
-        textAmount_->SetValue(amount);
-
-        local_splits_.clear();
-        for (auto &item : checking_splits)
-        {
-            Model_Budgetsplittransaction::Data *split = Model_Budgetsplittransaction::instance().create();
-            split->CATEGID = item.CATEGID;
-            split->SUBCATEGID = item.SUBCATEGID;
-            split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
-            local_splits_.push_back(*split);
-        }
+        m_bill_data.local_splits = dlg.getResult();
+        m_bill_data.TRANSAMOUNT = 0;
+        for (const auto& entry : m_bill_data.local_splits)
+            m_bill_data.TRANSAMOUNT += entry.SPLITTRANSAMOUNT;
+        m_bill_data.CATEGID = -1;
+        m_bill_data.SUBCATEGID = -1;
+        if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER && m_bill_data.TRANSAMOUNT < 0)
+            m_bill_data.TRANSAMOUNT = -m_bill_data.TRANSAMOUNT;
+        textAmount_->SetValue(m_bill_data.TRANSAMOUNT);
     }
 }
 
 void mmBDDialog::OnTextEntered(wxCommandEvent& event)
 {
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    Model_Account::Data *account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     if (account) currency = Model_Account::currency(account);
 
     if (event.GetId() == textAmount_->GetId())

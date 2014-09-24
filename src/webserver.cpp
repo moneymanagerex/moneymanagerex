@@ -88,7 +88,7 @@ wxThread::ExitCode WebServerThread::Entry()
     struct mg_server *server = mg_create_server(nullptr, ev_handler);
     mg_set_option(server, "listening_port", strPort.mb_str());
     mg_set_option(server, "document_root", wxFileName(mmex::getReportIndex()).GetPath().mb_str());
-    chdir(mg_get_option(server, "document_root"));
+    wxSetWorkingDirectory(mg_get_option(server, "document_root"));
 
     // Serve requests 
     while (IsAlive())

@@ -51,6 +51,7 @@ protected:
     bool activeBankAccounts_;
     int cashFlowReportType_;
     enum { YEARLY = 0, DAILY };
+
     static const int yearsNum_ = 10;
     const wxDateTime today_;
     int colorId_;

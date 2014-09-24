@@ -242,8 +242,8 @@ private:
     void processPendingEvents();
 
     /* Recent Files */
-    mmFileHistory* recentFiles_;
-    wxMenu *menuRecentFiles_;
+    mmFileHistory* m_recentFiles;
+    wxMenu* m_menuRecentFiles;
 
     void OnRecentFiles(wxCommandEvent& event);
     void OnClearRecentFiles(wxCommandEvent& /*event*/);

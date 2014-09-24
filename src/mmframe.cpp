@@ -272,9 +272,9 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 #if wxUSE_STATUSBAR
     CreateStatusBar();
 #endif // wxUSE_STATUSBAR
-    recentFiles_ = new mmFileHistory(); // TODO Max files
-    recentFiles_->UseMenu(menuRecentFiles_);
-    recentFiles_->Load();
+    m_recentFiles = new mmFileHistory(); // TODO Max files
+    m_recentFiles->UseMenu(m_menuRecentFiles);
+    m_recentFiles->Load();
 
     // Load perspective
     wxString auiPerspective = Model_Setting::instance().GetStringSetting("AUIPERSPECTIVE", wxEmptyString);
@@ -356,7 +356,7 @@ mmGUIFrame::~mmGUIFrame()
 void mmGUIFrame::cleanup()
 {
     autoRepeatTransactionsTimer_.Stop();
-    delete recentFiles_;
+    delete m_recentFiles;
     if (!m_filename.IsEmpty()) // Exiting before file is opened
         saveSettings();
 
@@ -1328,8 +1328,8 @@ void mmGUIFrame::createMenu()
     menu_file->Append(menuItemSaveAs);
     menu_file->AppendSeparator();
 
-    menuRecentFiles_ = new wxMenu;
-    menu_file->Append(MENU_RECENT_FILES, _("&Recent Files..."), menuRecentFiles_);
+    m_menuRecentFiles = new wxMenu;
+    menu_file->Append(MENU_RECENT_FILES, _("&Recent Files..."), m_menuRecentFiles);
     wxMenuItem* menuClearRecentFiles = new wxMenuItem(menu_file, MENU_RECENT_FILES_CLEAR, _("&Clear Recent Files"));
     menuClearRecentFiles->SetBitmap(wxBitmap(clearlist_xpm));
     menu_file->Append(menuClearRecentFiles);
@@ -1762,7 +1762,7 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
     menuBar_->FindItem(MENU_CHANGE_ENCRYPT_PASSWORD)->Enable(false);
     if (createDataStore(fileName, password, openingNew))
     {
-        recentFiles_->AddFileToHistory(fileName);
+        m_recentFiles->AddFileToHistory(fileName);
         menuEnableItems(true);
         menuPrintingEnable(false);
         autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
@@ -2715,10 +2715,10 @@ void mmGUIFrame::BackupDatabase(const wxString& filename, bool updateRequired)
 
 void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
 {
-    int fileNum = event.GetId() - recentFiles_->GetBaseId();
+    int fileNum = event.GetId() - m_recentFiles->GetBaseId();
     if (fileNum == 0)
         return;
-    wxString file_name = recentFiles_->GetHistoryFile(fileNum);
+    wxString file_name = m_recentFiles->GetHistoryFile(fileNum);
     wxFileName file(file_name);
     if (file.FileExists())
     {
@@ -2728,14 +2728,15 @@ void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
     else
     {
         wxMessageBox(wxString::Format(_("File %s not found"), file_name), _("Error"), wxOK | wxICON_ERROR);
-        recentFiles_->RemoveFileFromHistory(fileNum);
+        m_recentFiles->RemoveFileFromHistory(fileNum);
     }
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnClearRecentFiles(wxCommandEvent& /*event*/)
 {
-    recentFiles_->Clear();
+    m_recentFiles->Clear();
+    m_recentFiles->AddFileToHistory(m_filename);
 }
 
 void mmGUIFrame::setGotoAccountID(int account_id, long transID)

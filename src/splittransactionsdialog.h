@@ -33,10 +33,6 @@ class wxStaticText;
 #define wxFIXED_MINSIZE 0
 #endif
 
-/*!
- * SplitTransactionDialog class declaration
- */
-
 class SplitTransactionDialog: public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(SplitTransactionDialog);
@@ -46,7 +42,7 @@ public:
     /// Constructors
     SplitTransactionDialog();
     SplitTransactionDialog(wxWindow* parent
-        , Model_Splittransaction::Data_Set* splits
+        , std::vector<Split>& split
         , int transType
         , int accountID);
 
@@ -58,7 +54,11 @@ public:
         const wxPoint& pos,
         const wxSize& size,
         long style);
+    std::vector<Split> getResult() { return m_splits; }
+    bool isItemsChanged(){ return items_changed_; }
+    void SetDisplaySplitCategories();
 
+private:
     /// Creates the controls and sizers
     void CreateControls();
 
@@ -79,12 +79,8 @@ public:
     wxDataViewListCtrl* lcSplit_;
     wxStaticText* transAmount_;
 
-    void SetDisplaySplitCategories();
-    bool isItemsChanged(){ return items_changed_; }
-
-private:
-    Model_Splittransaction::Data_Set* m_splits;
-    Model_Splittransaction::Data_Set m_local_splits;
+    std::vector<Split> m_splits;
+    std::vector<Split> m_local_splits;
     int transType_;
     int accountID_;
     bool items_changed_;

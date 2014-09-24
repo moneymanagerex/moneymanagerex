@@ -20,7 +20,15 @@
 #define MODEL_SPLITTRANSACTIONS_H
 
 #include "Model.h"
+#include "Model_Currency.h"
 #include "db/DB_Table_Splittransactions_V1.h"
+
+struct Split
+{
+    int CATEGID;
+    int SUBCATEGID;
+    double SPLITTRANSAMOUNT;
+};
 
 class Model_Splittransaction : public Model<DB_Table_SPLITTRANSACTIONS_V1>
 {
@@ -45,6 +53,8 @@ public:
 
 public:
     static double get_total(const Data_Set& rows);
+    static double get_total(const std::vector<Split>& local_splits);
+    static const wxString get_tooltip(const std::vector<Split>& local_splits, const Model_Currency::Data* currency);
     std::map<int, Model_Splittransaction::Data_Set> get_all();
     int update(const Data_Set& rows, int transactionID);
 };

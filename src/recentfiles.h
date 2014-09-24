@@ -1,5 +1,5 @@
 /*************************************************************************
- Copyright (C) 2011,2012 Stefano Giorgio
+ Copyright (C) 2011..2014 Stefano Giorgio
  Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
@@ -18,8 +18,7 @@
  *************************************************************************/
 #ifndef MM_EX_RECENTFILES_H_
 #define MM_EX_RECENTFILES_H_
-#include <wx/arrstr.h>
-#include "defs.h"
+
 #include <wx/filehistory.h>
 
 class mmFileHistory: public wxFileHistory
@@ -35,4 +34,3 @@ public:
 };
 
 #endif
-

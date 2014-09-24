@@ -77,14 +77,14 @@ public:
         // Base class handles the thousands seperator
         return /*Model_Currency::fromString(*/wxTextCtrl::GetValue()/*, currency_)*/;
     }
-    bool GetDouble(double &amount) const
+    bool GetDouble(double &amount, const Model_Currency::Data* currency = nullptr) const
     {
         wxString amountStr = this->GetValue().Trim();
-        return Model_Currency::fromString(amountStr, amount, currency_);
+        return Model_Currency::fromString(amountStr, amount, (currency ? currency : currency_));
     }
-    bool checkValue(double &amount)
+    bool checkValue(double &amount, const Model_Currency::Data* currency = nullptr)
     {
-        if (!GetDouble(amount) || amount < 0)
+        if (!GetDouble(amount, currency) || amount < 0)
         {
             wxRichToolTip tip(_("Invalid Amount."),
                 _("Please enter a positive or calculated value.")

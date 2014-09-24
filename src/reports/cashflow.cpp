@@ -89,54 +89,38 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
     // We now know the total balance on the account
     // Start by walking through the repeating transaction list
 
-    wxDateTime yearFromNow = today_.Add(wxDateSpan::Years(years));
+    const wxDateTime yearFromNow = today_.Add(wxDateSpan::Years(years));
     forecastVec fvec;
 
-    for (const auto& q1 : Model_Billsdeposits::instance().all())
+    for (const auto& entry : Model_Billsdeposits::instance().all())
     {
-        wxDateTime nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
+        wxDateTime nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(entry);
+        if (nextOccurDate > yearFromNow) continue;
 
-        int repeats = q1.REPEATS;
-        int numRepeats = q1.NUMOCCURRENCES;
-        wxString transType = q1.TRANSCODE;
-        double amt = q1.TRANSAMOUNT;
-        double toAmt = q1.TOTRANSAMOUNT;
+        int repeatsType = entry.REPEATS;
+        int numRepeats = entry.NUMOCCURRENCES;
+        double amt = entry.TRANSAMOUNT;
+        double toAmt = entry.TOTRANSAMOUNT;
 
         // DeMultiplex the Auto Executable fields from the db entry: REPEATS
-        if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
-            repeats -= BD_REPEATS_MULTIPLEX_BASE;
-        if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
-            repeats -= BD_REPEATS_MULTIPLEX_BASE;
+        if (repeatsType >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
+            repeatsType -= BD_REPEATS_MULTIPLEX_BASE;
+        if (repeatsType >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
+            repeatsType -= BD_REPEATS_MULTIPLEX_BASE;
 
-        bool processNumRepeats = false;
-        if (numRepeats != -1)
-            processNumRepeats = true;
+        bool processNumRepeats = numRepeats != -1 || repeatsType == 0;
+        if (repeatsType == 0) numRepeats = 1;
 
-        if (repeats == 0)
-        {
-            numRepeats = 1;
-            processNumRepeats = true;
-        }
+        int accountID = entry.ACCOUNTID;
+        int toAccountID = entry.TOACCOUNTID;
 
-        if (nextOccurDate > yearFromNow)
-            continue;
-
-        int accountID = q1.ACCOUNTID;
-        int toAccountID = q1.TOACCOUNTID;
-
-        bool isAccountFound = false;
         const Model_Account::Data* account = Model_Account::instance().get(accountID);
-        if (account)
-        {
-            isAccountFound = !(accountArray_ != nullptr && wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)); //linear search
-        }
+        bool isAccountFound = account && !(accountArray_ != nullptr 
+            && wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)); //linear search
 
-        bool isToAccountFound = false;
         const Model_Account::Data* to_account = Model_Account::instance().get(toAccountID);
-        if (to_account)
-        {
-            isToAccountFound = !(accountArray_ != nullptr && wxNOT_FOUND == accountArray_->Index(to_account->ACCOUNTNAME)); //linear search
-        }
+        bool isToAccountFound = to_account && !(accountArray_ != nullptr 
+            && wxNOT_FOUND == accountArray_->Index(to_account->ACCOUNTNAME)); //linear search
 
         if (!isAccountFound && !isToAccountFound) continue; // skip account
 
@@ -146,17 +130,13 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         // Process all possible repeating transactions for this BD
         while (1)
         {
-            if (nextOccurDate > yearFromNow)
-                break;
-
-            if (processNumRepeats)
-                numRepeats--;
+            if (nextOccurDate > yearFromNow) break;
 
             mmRepeatForecast rf;
             rf.date = nextOccurDate;
             rf.amount = 0.0;
 
-            switch (Model_Billsdeposits::type(q1))
+            switch (Model_Billsdeposits::type(entry))
             {
             case Model_Billsdeposits::WITHDRAWAL:
                 rf.amount = -amt * convRate;
@@ -176,103 +156,35 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
 
             fvec.push_back(rf);
 
-            if (processNumRepeats && (numRepeats <= 0))
-                break;
+            nextOccurDate = Model_Billsdeposits::instance().nextOccurDate(repeatsType, numRepeats, nextOccurDate);
 
-            //            nextOccurDate = nextOccurDate.Add(mmRepeat(repeats));
-
-            if (repeats == 1)
-            {
-                nextOccurDate = nextOccurDate.Add(wxTimeSpan::Week());
-            }
-            else if (repeats == 2)
-            {
-                nextOccurDate = nextOccurDate.Add(wxTimeSpan::Weeks(2));
-            }
-            else if (repeats == 3)
-            {
-                nextOccurDate = nextOccurDate.Add(wxDateSpan::Month());
-            }
-            else if (repeats == 4)
-            {
-                nextOccurDate = nextOccurDate.Add(wxDateSpan::Months(2));
-            }
-            else if (repeats == 5)
-            {
-                nextOccurDate = nextOccurDate.Add(wxDateSpan::Months(3));
-            }
-            else if (repeats == 6)
-            {
-                nextOccurDate = nextOccurDate.Add(wxDateSpan::Months(6));
-            }
-            else if (repeats == 7)
-            {
-                nextOccurDate = nextOccurDate.Add(wxDateSpan::Year());
-            }
-            else if (repeats == 8)
-            {
-                nextOccurDate = nextOccurDate.Add(wxDateSpan::Months(4));
-            }
-            else if (repeats == 9)
-            {
-                nextOccurDate = nextOccurDate.Add(wxDateSpan::Weeks(4));
-            }
-            else if (repeats == 10)
-            {
-                nextOccurDate = nextOccurDate.Add(wxDateSpan::Days(1));
-            }
-            else if (repeats == 11) // repeat in numRepeats Days (Once only)
+            if (processNumRepeats) numRepeats--;
+            if (repeatsType == Model_Billsdeposits::REPEAT_IN_X_DAYS) // repeat in numRepeats Days (Once only)
             {
                 if (numRepeats > 0)
-                {
-                    nextOccurDate = nextOccurDate.Add(wxDateSpan::Days(numRepeats));
                     numRepeats = -1;
-                }
-                else break;
+                else
+                    break;
             }
-            else if (repeats == 12) // repeat in numRepeats Months (Once only)
+            else if (repeatsType == Model_Billsdeposits::REPEAT_IN_X_MONTHS) // repeat in numRepeats Months (Once only)
             {
                 if (numRepeats > 0)
-                {
-                    nextOccurDate = nextOccurDate.Add(wxDateSpan::Months(numRepeats));
                     numRepeats = -1;
-                }
-                else break;
+                else 
+                    break;
             }
-            else if (repeats == 13) // repeat every numRepeats Days
-            {
-                if (numRepeats > 0)
-                {
-                    nextOccurDate = nextOccurDate.Add(wxDateSpan::Days(numRepeats));
-                }
-                else break;
-            }
-            else if (repeats == 14) // repeat every numRepeats Months
-            {
-                if (numRepeats > 0)
-                {
-                    nextOccurDate = nextOccurDate.Add(wxDateSpan::Months(numRepeats));
-                }
-                else break;
-            }
-            else if ((repeats == 15) || (repeats == 16))
-            {
-                nextOccurDate = nextOccurDate.Add(wxDateSpan::Month());
-                nextOccurDate = nextOccurDate.SetToLastMonthDay(nextOccurDate.GetMonth(), nextOccurDate.GetYear());
-                if (repeats == 16) // last weekday of month
-                {
-                    if (nextOccurDate.GetWeekDay() == wxDateTime::Sun || nextOccurDate.GetWeekDay() == wxDateTime::Sat)
-                        nextOccurDate.SetToPrevWeekDay(wxDateTime::Fri);
-                }
-            }
-            else break;
+            else if (repeatsType == Model_Billsdeposits::REPEAT_EVERY_X_DAYS) // repeat every numRepeats Days
+                numRepeats = entry.NUMOCCURRENCES;
+            else if (repeatsType == Model_Billsdeposits::REPEAT_EVERY_X_MONTHS) // repeat every numRepeats Months
+                numRepeats = entry.NUMOCCURRENCES;
         } // end while
     } //end query
 
     const wxDateTime& dtBegin = today_;
     for (int idx = 0; idx < (int) forecastVector.size(); idx++)
     {
-        wxDateTime dtEnd = cashFlowReportType_ == YEARLY ? dtBegin.Add(wxDateSpan::Months(idx)) : dtBegin.Add(wxDateSpan::Days(idx));
+        wxDateTime dtEnd = cashFlowReportType_ == YEARLY 
+            ? dtBegin.Add(wxDateSpan::Months(idx)) : dtBegin.Add(wxDateSpan::Days(idx));
 
         for (const auto& balance : fvec)
         {

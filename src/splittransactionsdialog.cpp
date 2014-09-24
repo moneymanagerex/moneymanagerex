@@ -17,11 +17,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "splittransactionsdialog.h"
-#include "constants.h"
 #include "splitdetailsdialog.h"
+#include "constants.h"
 #include "util.h"
 #include <wx/statline.h>
 #include "model/Model_Category.h"
+#include "model/Model_Account.h"
 
 /*!
  * SplitTransactionDialog type definition
@@ -48,14 +49,15 @@ SplitTransactionDialog::SplitTransactionDialog( )
 }
 
 SplitTransactionDialog::SplitTransactionDialog( wxWindow* parent
-    , Model_Splittransaction::Data_Set* splits 
+    , std::vector<Split>& split
     , int transType
     , int accountID)
-    : m_splits(splits)
+    : m_splits(split)
     , accountID_(accountID)
     , items_changed_(false)
 {
-    for (const auto &item : *m_splits) m_local_splits.push_back(item);
+    for (const auto &item : m_splits)
+        m_local_splits.push_back(item);
 
     transType_ = transType;
     selectedIndex_ = -1;
@@ -95,6 +97,7 @@ void SplitTransactionDialog::DataToControls()
     if (account) currency = Model_Account::currency(account);
 
     lcSplit_->DeleteAllItems();
+    int i = 0;
     for (const auto & entry : this->m_local_splits)
     {
         const Model_Category::Data* category = Model_Category::instance().get(entry.CATEGID);
@@ -103,7 +106,7 @@ void SplitTransactionDialog::DataToControls()
         wxVector<wxVariant> data;
         data.push_back(wxVariant(Model_Category::full_name(category, sub_category)));
         data.push_back(wxVariant(Model_Currency::toString(entry.SPLITTRANSAMOUNT, currency)));
-        lcSplit_->AppendItem(data, (wxUIntPtr)entry.SPLITTRANSID);
+        lcSplit_->AppendItem(data, (wxUIntPtr)i++);
         if (lcSplit_->GetItemCount()-1 == selectedIndex_) lcSplit_->SelectRow(selectedIndex_);
     }
     UpdateSplitTotal();
@@ -177,11 +180,12 @@ void SplitTransactionDialog::CreateControls()
 
 void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
 {
-    Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
+    Split split = {-1, -1, 0};
     SplitDetailDialog sdd(this, split, transType_, accountID_);
     if (sdd.ShowModal() == wxID_OK)
     {
-        this->m_local_splits.push_back(*split);
+
+        this->m_local_splits.push_back(sdd.getResult());
         items_changed_ = true;
     }
     DataToControls();
@@ -196,14 +200,17 @@ void SplitTransactionDialog::OnButtonEditClick( wxCommandEvent& /*event*/ )
 void SplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 {
     //Check total amount - should be positive
-    if (Model_Splittransaction::instance().get_total(this->m_local_splits) < 0) 
+    double total = 0;
+    for (const auto& entry : m_local_splits)
+        total += entry.SPLITTRANSAMOUNT;
+    if (total < 0)
     {
         mmShowErrorMessage(this, _("Invalid Total Amount"), _("Error"));
     }
     else
     {
         // finally 
-        this->m_splits->swap(this->m_local_splits);
+        m_splits.swap(m_local_splits);
         EndModal(wxID_OK);
     }
 }
@@ -220,17 +227,19 @@ void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
 
 void SplitTransactionDialog::UpdateSplitTotal()
 {
-    double total = Model_Splittransaction::get_total(this->m_local_splits);
+    double total = 0;
+    for (const auto& entry : m_local_splits)
+        total += entry.SPLITTRANSAMOUNT;
     transAmount_->SetLabelText(Model_Currency::toCurrency(total));
 }
 
 void SplitTransactionDialog::EditEntry(int index)
 {
     if (index < 0 || index >= (int)this->m_local_splits.size()) return;
-    Model_Splittransaction::Data& split = this->m_local_splits[index];
-    SplitDetailDialog sdd(this, &split, transType_, accountID_);
+    SplitDetailDialog sdd(this, m_local_splits[index], transType_, accountID_);
     if (sdd.ShowModal() == wxID_OK)
     {
+        m_local_splits[index] = sdd.getResult();
         items_changed_ = true;
         DataToControls();
         UpdateSplitTotal();

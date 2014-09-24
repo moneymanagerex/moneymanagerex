@@ -79,7 +79,7 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
     }
     else
     {
-        s << _("Error") << "\n" << err << "\n" << errStr << "\n";
+        s << wxString::Format(_("Error: %s"), wxString() << err << "\n" << errStr << "\n");
     }
 
     wxMessageDialog msgDlg(nullptr, s, _("Opening MMEX Database - Error"), wxOK | wxICON_ERROR);
