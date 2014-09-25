@@ -10,14 +10,11 @@ before_script:
 script:
   - ./configure && make -j4
 branches:
-  only:
-    - master
-    - develop
+  except:
+    - legacy
 notifications:
   recipients:
-    - moneymanagerex@googlegroups.com
-    - nikolay.akimov@gmail.com
-    - guanlisheng@gmail.com
+    - developers@moneymanagerex.org
   email:
     on_success: change
     on_failure: always

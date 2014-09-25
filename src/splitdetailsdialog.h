@@ -41,10 +41,11 @@ public:
     SplitDetailDialog();
     SplitDetailDialog( 
         wxWindow* parent
-        , Model_Splittransaction::Data* split
+        , Split &split
         , int transType
         , int accountID
     );
+    Split getResult() { return split_; }
 
 private:
     bool Create(wxWindow* parent);
@@ -57,7 +58,7 @@ private:
     void onTextEntered(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& /*event*/);
 
-    Model_Splittransaction::Data* split_;
+    Split split_;
 
     int transType_;
     int accountID_;

@@ -98,8 +98,10 @@ public:
     static wxDate TRANSDATE(const Data& r);
     static wxDate NEXTOCCURRENCEDATE(const Data* r);
     static wxDate NEXTOCCURRENCEDATE(const Data& r);
+    static TYPE type(const wxString& r);
     static TYPE type(const Data* r);
     static TYPE type(const Data& r);
+    static STATUS_ENUM status(const wxString& r);
     static STATUS_ENUM status(const Data* r);
     static STATUS_ENUM status(const Data& r);
     static wxString toShortStatus(const wxString& fullStatus);
@@ -136,6 +138,8 @@ public:
     static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data& r);
 
     void completeBDInSeries(int bdID);
+    const wxDateTime nextOccurDate(int type, int numRepeats, const wxDateTime& nextOccurDate);
+
 };
 
 #endif // 

@@ -212,14 +212,14 @@ void mmCheckingPanel::filterTable()
     for (const auto& tran : Model_Account::transaction(this->m_account))
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran) != Model_Checking::VOID_)
+        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
             account_balance_ += transaction_amount;
         else
         {
             if (!m_listCtrlAccount->showDeletedTransactions_)
                 continue;
         }
-        if (Model_Checking::status(tran) == Model_Checking::RECONCILED)
+        if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
             reconciled_balance_ += transaction_amount;
 
         if (transFilterActive_)
@@ -258,7 +258,7 @@ void mmCheckingPanel::updateTable()
     for (const auto& tran : Model_Account::transaction(m_account))
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran) != Model_Checking::VOID_)
+        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
             account_balance_ += transaction_amount;
         reconciled_balance_ += Model_Checking::reconciled(tran, m_AccountID);
     }
@@ -621,7 +621,6 @@ void mmCheckingPanel::OnDeleteTransaction(wxCommandEvent& event)
 void mmCheckingPanel::OnNewTransaction(wxCommandEvent& event)
 {
    m_listCtrlAccount->OnNewTransaction(event);
-   mmPlayTransactionSound();
 }
 //----------------------------------------------------------------------------
 
@@ -856,12 +855,20 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
 void mmCheckingPanel::DisplaySplitCategories(int transID)
 {
     const Model_Checking::Data* tran = Model_Checking::instance().get(transID);
-    int transType = Model_Checking::type(tran);
+    int transType = Model_Checking::type(tran->TRANSCODE);
 
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
     auto splits = Model_Checking::splittransaction(transaction);
+    std::vector<Split> splt;
+    for (const auto& entry : splits) {
+        Split s;
+        s.CATEGID = entry.CATEGID;
+        s.SUBCATEGID = entry.SUBCATEGID;
+        s.SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
+        splt.push_back(s);
+    }
     SplitTransactionDialog splitTransDialog(this
-        , &splits
+        , splt
         , transType
         , m_AccountID);
 
@@ -1009,7 +1016,7 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
 void TransactionListCtrl::OnItemResize(wxListEvent& event)
 {
     int i = event.GetColumn();
-    wxString parameter_name = wxString::Format("CHECK_COL%d_WIDTH", i);
+    const wxString parameter_name = wxString::Format("CHECK_COL%i_WIDTH", i);
     int current_width = GetColumnWidth(i);
     Model_Setting::instance().Set(parameter_name, current_width);
 }
@@ -1046,9 +1053,9 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     if (m_selectedIndex > -1)
     {
         const Model_Checking::Full_Data& tran = m_cp->m_trans.at(m_selectedIndex);
-        if (Model_Checking::type(tran) == Model_Checking::TRANSFER)
+        if (Model_Checking::type(tran.TRANSCODE) == Model_Checking::TRANSFER)
             type_transfer = true;
-        if (tran.CATEGID > -1)
+        if (!tran.has_split())
             have_category = true;
     }
     wxMenu menu;
@@ -1131,25 +1138,27 @@ void TransactionListCtrl::OnShowChbClick(wxCommandEvent& /*event*/)
 void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 {
     int evt = event.GetId();
+    wxString org_status = "";
     wxString status = "";
-    if (evt ==  MENU_TREEPOPUP_MARKRECONCILED)             status = "R";
+    if (evt == MENU_TREEPOPUP_MARKRECONCILED)              status = "R";
     else if (evt == MENU_TREEPOPUP_MARKUNRECONCILED)       status = "";
     else if (evt == MENU_TREEPOPUP_MARKVOID)               status = "V";
     else if (evt == MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP) status = "F";
     else if (evt == MENU_TREEPOPUP_MARKDUPLICATE)          status = "D";
     else wxASSERT(false);
 
-    bool bVoidTransaction = (status == "V");
-
     Model_Checking::Data *trx = Model_Checking::instance().get(m_cp->m_trans[m_selectedIndex].TRANSID);
     if (trx)
     {
+        org_status = trx->STATUS;
         m_cp->m_trans[m_selectedIndex].STATUS = status;
         trx->STATUS = status;
         Model_Checking::instance().save(trx);
     }
 
-    if ((m_cp->transFilterActive_ && m_cp->transFilterDlg_->getStatusCheckBox()) || bVoidTransaction)
+    bool bRefreshRequired = (status == "V") || (org_status == "V");
+
+    if ((m_cp->transFilterActive_ && m_cp->transFilterDlg_->getStatusCheckBox()) || bRefreshRequired)
     {
         refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
     }
@@ -1353,9 +1362,16 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
 
 void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& event)
 {
-    this->OnCopy(event);
-    this->OnPaste(event);
-    this->OnEditTransaction(event);
+    if (m_selectedIndex < 0) return;
+
+    int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
+    mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, true);
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        m_selectedIndex = dlg.getTransactionID();
+        refreshVisualList(m_selectedIndex);
+    }
+    topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
 }
 
 void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
@@ -1374,7 +1390,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 
     Model_Checking::Data* copy = Model_Checking::instance().clone(tran); //TODO: this function can't clone split transactions
     if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISODate();
-    if (Model_Checking::type(copy) != Model_Checking::TRANSFER) copy->ACCOUNTID = m_cp->m_AccountID;
+    if (Model_Checking::type(copy->TRANSCODE) != Model_Checking::TRANSFER) copy->ACCOUNTID = m_cp->m_AccountID;
     int transactionID = Model_Checking::instance().save(copy);
 
     Model_Splittransaction::Cache copy_split;
@@ -1505,6 +1521,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
     mmTransDialog dlg(this, m_cp->m_AccountID, 0);
     if (dlg.ShowModal() == wxID_OK)
     {
+        m_cp->mmPlayTransactionSound();
         refreshVisualList(dlg.getTransactionID());
     }
 }
@@ -1596,11 +1613,11 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 //----------------------------------------------------------------------------
 void TransactionListCtrl::OnViewSplitTransaction(wxCommandEvent& /*event*/)
 {
-    if (m_selectedIndex < 0) return;
-
-    if (m_cp->m_trans[m_selectedIndex].CATEGID < 0)
-        m_cp->DisplaySplitCategories(m_cp->m_trans[m_selectedIndex].TRANSID);
-
+    if (m_selectedIndex > -1) {
+        const Model_Checking::Full_Data& tran = m_cp->m_trans.at(m_selectedIndex);
+        if (tran.has_split())
+            m_cp->DisplaySplitCategories(tran.TRANSID);
+    }
 }
 
 //----------------------------------------------------------------------------

@@ -717,12 +717,13 @@ void mmQIFImportDialog::saveSplit()
         m_splitDataSets.pop_back();
     }
 }
-void mmQIFImportDialog::joinSplit(Model_Checking::Cache &destination, std::vector<Model_Splittransaction::Cache> &target)
+void mmQIFImportDialog::joinSplit(Model_Checking::Cache &destination
+    , std::vector<Model_Splittransaction::Cache> &target)
 {
     for (auto &item : destination)
     {
         if (item->CATEGID != -1) continue;
-        if (item->SUBCATEGID == -1) continue; //TODO:: may be std::find(...)
+        if (item->SUBCATEGID == -1) continue;
         for (auto &split_item : target.at(item->SUBCATEGID))
             split_item->TRANSID = item->TRANSID;
         item->SUBCATEGID = -1;
@@ -735,8 +736,6 @@ void mmQIFImportDialog::appendTransfers(Model_Checking::Cache &destination, Mode
         destination.push_back(target.back());
         target.pop_back();
     }
-    //for (const auto& t : target)
-    //    destination.push_back(t);
 }
 
 bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Checking::Cache& from)

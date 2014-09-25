@@ -50,6 +50,7 @@ wxEND_EVENT_TABLE()
 
 mmMainCurrencyDialog::mmMainCurrencyDialog(
     wxWindow* parent
+    , int currencyID
     , bool bEnableSelect
 ) : currencyListBox_(),
     bEnableSelect_(bEnableSelect)
@@ -59,7 +60,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     ColName_[CURR_NAME]   = _("Name");
     ColName_[BASE_RATE]   = _("Base Rate");
 
-    currencyID_ = Model_Infotable::instance().GetBaseCurrencyId();
+    currencyID_ = currencyID == -1 ? Model_Infotable::instance().GetBaseCurrencyId() : currencyID;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Currency Dialog"), wxDefaultPosition, wxDefaultSize, style);
 }
@@ -159,8 +160,10 @@ void mmMainCurrencyDialog::CreateControls()
         , wxID_ANY, wxDefaultPosition, wxSize(-1, 200)/*, wxDV_HORIZ_RULES, mmDoubleValidator(4)*/);
 
     currencyListBox_->AppendToggleColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
-    currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60);
-    currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 170);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60
+        , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 170
+        , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
     currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_EDITABLE, 80);
 
     itemBoxSizer3->Add(currencyListBox_, g_flagsExpand);
@@ -260,7 +263,7 @@ bool mmMainCurrencyDialog::Execute(wxWindow* parent, int& currencyID)
 {
     bool result = false;
 
-    mmMainCurrencyDialog dlg(parent);
+    mmMainCurrencyDialog dlg(parent, currencyID);
     if (dlg.ShowModal() == wxID_OK)
     {
         currencyID = dlg.currencyID_;
