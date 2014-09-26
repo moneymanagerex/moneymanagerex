@@ -26,6 +26,7 @@
 #include "model/Model_Account.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Usage.h"
 
 std::string event_to_name(enum mg_event ev)
 {
@@ -60,6 +61,12 @@ static int ev_handler(struct mg_connection *conn, enum mg_event ev)
         else if (strcmp(conn->uri, "/payee") == 0)
         {
             wxString str = Model_Payee::instance().all().to_json().c_str();
+            mg_printf_data(conn, str);
+            result = MG_TRUE;
+        }
+        else if (strcmp(conn->uri, "/usage") == 0)
+        {
+            wxString str = Model_Usage::instance().all().to_json().c_str();
             mg_printf_data(conn, str);
             result = MG_TRUE;
         }
