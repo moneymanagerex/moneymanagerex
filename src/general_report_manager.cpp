@@ -321,7 +321,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
 {
     MinimalEditor* sqlText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
     wxStaticText* info = (wxStaticText*) FindWindow(wxID_INFO);
-    const wxString &sql = sqlText->GetValue();
+    const wxString sql = sqlText->GetValue();
 
     wxLongLong interval = wxGetUTCTimeMillis();
     if (Model_Report::instance().getSqlQuery(sql, m_sqlQueryData))
