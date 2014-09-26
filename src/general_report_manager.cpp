@@ -392,21 +392,9 @@ void mmGeneralReportManager::importReport()
     openZipFile(reportFileName, htt, sql, lua, txt, reportName);
 
     reportName = fn.FileName(reportFileName).GetName();
-    bool ok = true;
-    while (ok)
-    {
-        Model_Report::Data *report = Model_Report::instance().get(reportName);
-        if (report) {
-            reportName = wxGetTextFromUser(_("Report with same name exists")
-                , _("General Report Manager"), reportName);
-            if (reportName.empty())
-                return;
-        }
-        else
-            ok = false;
-    }
+    Model_Report::Data *report = Model_Report::instance().get(reportName);
 
-    Model_Report::Data *report = Model_Report::instance().create();
+    if (!report) report = Model_Report::instance().create();
     report->GROUPNAME = m_selectedGroup;
     report->REPORTNAME = reportName;
     report->SQLCONTENT = sql;
