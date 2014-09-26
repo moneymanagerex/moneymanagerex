@@ -138,7 +138,7 @@ wxString Model_Report::get_html(const Data* r)
     {
         wxString sql = r->SQLCONTENT;
         sql.Trim();
-        if (sql.Last() != ';') sql += ';';
+        if (!sql.empty() && sql.Last() != ';') sql += ';';
         wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
         if (!stmt.IsReadOnly())
         {
