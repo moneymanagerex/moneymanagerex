@@ -20,6 +20,7 @@
 #include "relocatecategorydialog.h"
 #include "paths.h"
 #include "categdialog.h"
+#include "constants.h"
 #include "webapp.h"
 #include "wx/statline.h"
 #include "model/Model_Category.h"
@@ -78,9 +79,6 @@ bool relocateCategoryDialog::Create(wxWindow* parent
 
 void relocateCategoryDialog::CreateControls()
 {
-    wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Center();
-    flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Expand().Center();
     wxSize btnSize = wxSize(180,-1);
 
     wxStaticText* headerText = new wxStaticText(this, wxID_STATIC
@@ -100,26 +98,26 @@ void relocateCategoryDialog::CreateControls()
     wxBoxSizer* boxSizer = new wxBoxSizer(wxVERTICAL);
     wxFlexGridSizer* request_sizer = new wxFlexGridSizer(0, 2, 0, 0);
 
-    topSizer->Add(boxSizer, flags);
+    topSizer->Add(boxSizer, g_flags);
 
-    boxSizer->Add(headerText, flags);
-    boxSizer->Add(lineTop, flagsExpand);
+    boxSizer->Add(headerText, g_flags);
+    boxSizer->Add(lineTop, g_flagsExpand);
 
-    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Relocate:")), flags);
-    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("to:")), flags);
-    request_sizer->Add(m_buttonSource, flags);
-    request_sizer->Add(m_buttonDest, flags);
+    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Relocate:")), g_flags);
+    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("to:")), g_flags);
+    request_sizer->Add(m_buttonSource, g_flags);
+    request_sizer->Add(m_buttonDest, g_flags);
     boxSizer->Add(request_sizer);
 
-    boxSizer->Add(lineBottom, flagsExpand);
+    boxSizer->Add(lineBottom, g_flagsExpand);
 
     wxButton* okButton = new wxButton(this, wxID_OK, _("&OK "));
     wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("&Cancel "));
     cancelButton-> SetFocus();
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    buttonBoxSizer->Add(okButton, flags);
-    buttonBoxSizer->Add(cancelButton, flags);
-    boxSizer->Add(buttonBoxSizer, flags);
+    buttonBoxSizer->Add(okButton, g_flags);
+    buttonBoxSizer->Add(cancelButton, g_flags);
+    boxSizer->Add(buttonBoxSizer, g_flags);
 
     this->Fit();
 }

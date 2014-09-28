@@ -73,7 +73,7 @@ void correctEmptyFileExt(const wxString& ext, wxString & fileName)
 {
     wxFileName tempFileName(fileName);
     if (tempFileName.GetExt().IsEmpty())
-        fileName << "." << ext;
+        fileName += "." + ext;
 }
 
 /*

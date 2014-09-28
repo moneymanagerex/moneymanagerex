@@ -115,11 +115,10 @@ mmAddAccountPage2::mmAddAccountPage2(mmAddAccountWizard *parent)
     mainSizer->Add( new wxStaticText(this, wxID_ANY, _("Type of Account")), 0, wxALL, 5 );
     mainSizer->Add( itemChoiceType_, 0 /* No stretching*/, wxALL, 5 /* Border Size */);
 
-    wxString textMsg;
-    textMsg << "\n"
-            << _("Select the type of account you want to create:") << "\n\n"
+    wxString textMsg = "\n";
+    textMsg << _("Select the type of account you want to create:") << "\n\n"
             << _("General bank accounts cover a wide variety of account\ntypes like Checking, Savings and Credit card type accounts.");
-    mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, textMsg), 0, wxALL, 5);
 
     textMsg = "\n";
     textMsg << _("Investment accounts are specialized accounts that only\nhave stock/mutual fund investments associated with them.");

@@ -551,7 +551,7 @@ int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
 
     double balance = 0.0;
     for (const auto& asset: this->m_assets) balance += Model_Asset::value(asset); 
-    header_text_->SetLabelText(_("Total: ") + Model_Currency::toCurrency(balance)); // balance
+    header_text_->SetLabelText(wxString::Format(_("Total: %s"), Model_Currency::toCurrency(balance))); // balance
 
     int selected_item = 0;
     for (const auto& asset: this->m_assets)
@@ -617,10 +617,10 @@ void mmAssetsPanel::updateExtraAssetData(int selIndex)
     {
         const Model_Asset::Data& asset = this->m_assets[selIndex];
         enableEditDeleteButtons(true);
-        wxString miniInfo;
-        miniInfo << "\t" << _("Change in Value") << ": "<< wxGetTranslation(asset.VALUECHANGE);
-        if (Model_Asset::rate(asset) != Model_Asset::RATE_NONE)
-            miniInfo<< " = " << asset.VALUECHANGERATE<< "%";
+        wxString miniInfo = "\t";
+        miniInfo += wxString::Format(_("Change in Value: %s %s")
+            , wxGetTranslation(asset.VALUECHANGE)
+            , (Model_Asset::rate(asset) != Model_Asset::RATE_NONE) ? wxString::Format("= %.2f %", asset.VALUECHANGERATE) : "");
 
         st->SetLabelText(asset.NOTES);
         stm->SetLabelText(miniInfo);

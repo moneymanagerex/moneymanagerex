@@ -75,11 +75,11 @@ wxString mmReportBudget::AdjustYearValues(int& day, int& month, long year, wxStr
     if ((yearStr.length() < 5)) {
         if (mmIniOptions::instance().budgetFinancialYears_) {
             GetFinancialYearValues(day, month);
-            yearStr = wxString() << _("Financial Year: ") << yearStr << " - " << (year + 1);
+            yearStr = wxString::Format(_("Financial Year: %s - %i"), yearStr, (year + 1));
         } else
-            yearStr = wxString() << _("Year: ") << yearStr;
+            yearStr = wxString::Format(_("Year: %s"), yearStr);
     } else {
-        yearStr = wxString() << _("Month: ") << yearStr;
+        yearStr = wxString::Format(_("Month: %s"), yearStr);
     }
 
     return yearStr;
