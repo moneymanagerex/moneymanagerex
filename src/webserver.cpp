@@ -27,6 +27,7 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Usage.h"
+#include "route.h"
 
 std::string event_to_name(enum mg_event ev)
 {
@@ -52,26 +53,57 @@ static int ev_handler(struct mg_connection *conn, enum mg_event ev)
 
     if (ev == MG_REQUEST) 
     {
-        if (strcmp(conn->uri, "/account") == 0)
+        static route::Route route;
+        auto match = route.set(conn->uri);
+
+        if (match.test("/account"))
         {
             wxString str = Model_Account::instance().all().to_json().c_str();
             mg_printf_data(conn, str);
             result = MG_TRUE;
         }
-        else if (strcmp(conn->uri, "/payee") == 0)
+        else if (match.test("/account/:id"))
+        {
+            std::string id = match.get("id");
+            Model_Account::Data* account = 0;
+            if (wxString(id).IsNumber())
+                account = Model_Account::instance().get(std::stoi(id));
+            else
+                account = Model_Account::instance().get(id);
+
+            if (account)
+            {
+                mg_printf_data(conn, account->to_json().c_str());
+                result = MG_TRUE;
+            }
+        }
+        else if (match.test("/payee"))
         {
             wxString str = Model_Payee::instance().all().to_json().c_str();
             mg_printf_data(conn, str);
             result = MG_TRUE;
         }
-        else if (strcmp(conn->uri, "/usage") == 0)
+        else if (match.test("/payee/:id"))
+        {
+            std::string id = match.get("id");
+            Model_Payee::Data* payee = 0;
+            if (wxString(id).IsNumber())
+                payee = Model_Payee::instance().get(std::stoi(id));
+            else
+                payee = Model_Payee::instance().get(id);
+            
+            if (payee)
+            {
+                mg_printf_data(conn, payee->to_json().c_str());
+                result = MG_TRUE;
+            }
+        }
+        else if (match.test("/usage"))
         {
             wxString str = Model_Usage::instance().all().to_json().c_str();
             mg_printf_data(conn, str);
             result = MG_TRUE;
         }
-        else
-            result = MG_FALSE;
     } 
 
     return result;

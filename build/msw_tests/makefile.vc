@@ -140,8 +140,8 @@ MMEX_TESTS_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
 	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd /I..\..\3rd\LuaGlue\include \
-	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include /I..\..\src /DNOPCH \
-	/D_CONSOLE /I..\..\src /I..\..\lib\cppunit\include \
+	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include /I..\..\3rd\route \
+	/I..\..\src /DNOPCH /D_CONSOLE /I..\..\src /I..\..\lib\cppunit\include \
 	/DwxIMPLEMENT_WXWIN_MAIN= $(CPPFLAGS) $(CFLAGS)
 MMEX_TESTS_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
@@ -150,8 +150,8 @@ MMEX_TESTS_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
 	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd /I..\..\3rd\LuaGlue\include \
-	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include /I..\..\src /DNOPCH \
-	/D_CONSOLE /I..\..\src /I..\..\lib\cppunit\include \
+	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include /I..\..\3rd\route \
+	/I..\..\src /DNOPCH /D_CONSOLE /I..\..\src /I..\..\lib\cppunit\include \
 	/DwxIMPLEMENT_WXWIN_MAIN= /EHsc /GR $(__mmex_tests_CL_FLAGS) $(CPPFLAGS) \
 	$(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
@@ -240,6 +240,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_html_template.obj \
 	mmex_tests_mongoose.obj \
 	mmex_tests_csv_parser.obj \
+	mmex_tests_route.obj \
 	mmex_tests_cpu_timer.obj \
 	mmex_tests_db_init_model.obj \
 	mmex_tests_framebase_tests.obj \
@@ -1026,6 +1027,9 @@ mmex_tests_mongoose.obj: ..\..\3rd\mongoose\mongoose.c
 mmex_tests_csv_parser.obj: ..\..\3rd\csv-parser\csv_parser.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\3rd\csv-parser\csv_parser.cpp
 
+mmex_tests_route.obj: ..\..\3rd\route\route.cc
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\3rd\route\route.cc
+
 mmex_tests_cpu_timer.obj: ..\..\tests\cpu_timer.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\tests\cpu_timer.cpp
 
@@ -1075,5 +1079,5 @@ mmex_tests_test_stocks.obj: ..\..\tests\test_stocks.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\tests\test_stocks.cpp
 
 mmex_tests_mmex_tests.res: ..\..\tests\mmex_tests.rc
-	rc /fo$@  /d WIN32 $(____WX_SHARED_47_p_1) $(__WXUNICODE_DEFINE_p_3) $(__WXDEBUG_DEFINE_p_3) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_3)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_56_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\3rd /i ..\..\3rd\LuaGlue\include /i ..\..\3rd\cgitemplate /i ..\..\3rd\csv-parser\include /i ..\..\src /d NOPCH /d _CONSOLE /i ..\..\src /i ..\..\lib\cppunit\include /d wxIMPLEMENT_WXWIN_MAIN= ..\..\tests\mmex_tests.rc
+	rc /fo$@  /d WIN32 $(____WX_SHARED_47_p_1) $(__WXUNICODE_DEFINE_p_3) $(__WXDEBUG_DEFINE_p_3) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_3)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_56_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\3rd /i ..\..\3rd\LuaGlue\include /i ..\..\3rd\cgitemplate /i ..\..\3rd\csv-parser\include /i ..\..\3rd\route /i ..\..\src /d NOPCH /d _CONSOLE /i ..\..\src /i ..\..\lib\cppunit\include /d wxIMPLEMENT_WXWIN_MAIN= ..\..\tests\mmex_tests.rc
 
