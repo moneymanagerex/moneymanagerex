@@ -93,12 +93,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\LuaGlue\include;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\route;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS /Zi %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\LuaGlue\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\LuaGlue\include;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\route;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -112,11 +112,11 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\LuaGlue\include;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\route;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1 /DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(Platform)\$(Configuration)\wxsqlite.lib;$(Platform)\$(Configuration)\lua.lib;wxmsw30u_core.lib;wxmsw30u_qa.lib;wxbase30u_net.lib;wxmsw30u_html.lib;wxbase30u_xml.lib;wxmsw30u_aui.lib;wxmsw30u_adv.lib;wxmsw30u_webview.lib;wxmsw30u_stc.lib;wxbase30u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxscintilla.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/SAFESEH:NO /DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF /SUBSYSTEM:WINDOWS,5.1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>$(Platform)\$(Configuration)\wxsqlite.lib;$(Platform)\$(Configuration)\lua.lib;wxmsw30u_core.lib;wxmsw30u_qa.lib;wxbase30u_net.lib;wxmsw30u_html.lib;wxbase30u_xml.lib;wxmsw30u_aui.lib;wxmsw30u_adv.lib;wxmsw30u_stc.lib;wxscintilla.lib;wxmsw30u_webview.lib;wxbase30u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(Platform)\$(Configuration)\mmex.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -135,12 +135,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\LuaGlue\include;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\route;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\LuaGlue\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\LuaGlue\include;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\route;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -156,11 +156,11 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\LuaGlue\include;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\route;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(Platform)\$(Configuration)\wxsqlite.lib;$(Platform)\$(Configuration)\lua.lib;wxmsw30ud_core.lib;wxmsw30ud_qa.lib;wxbase30ud_net.lib;wxmsw30ud_html.lib;wxbase30ud_xml.lib;wxmsw30ud_aui.lib;wxmsw30ud_adv.lib;wxmsw30ud_webview.lib;wxmsw30ud_stc.lib;wxbase30ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxscintillad.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/SAFESEH:NO  /SUBSYSTEM:WINDOWS,5.1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>$(Platform)\$(Configuration)\wxsqlite.lib;$(Platform)\$(Configuration)\lua.lib;wxmsw30ud_core.lib;wxmsw30ud_qa.lib;wxbase30ud_net.lib;wxmsw30ud_html.lib;wxbase30ud_xml.lib;wxmsw30ud_aui.lib;wxmsw30ud_adv.lib;wxmsw30ud_stc.lib;wxscintillad.lib;wxmsw30ud_webview.lib;wxbase30ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(Platform)\$(Configuration)\mmex.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -180,12 +180,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\LuaGlue\include;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\route;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS /Zi %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\LuaGlue\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\LuaGlue\include;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\route;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -199,11 +199,11 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\LuaGlue\include;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\route;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/SAFESEH:NO /DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(Platform)\$(Configuration)\wxsqlite.lib;$(Platform)\$(Configuration)\lua.lib;wxmsw30u_core.lib;wxmsw30u_qa.lib;wxbase30u_net.lib;wxmsw30u_html.lib;wxbase30u_xml.lib;wxmsw30u_aui.lib;wxmsw30u_adv.lib;wxmsw30u_webview.lib;wxmsw30u_stc.lib;wxbase30u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxscintilla.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/SAFESEH:NO /DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF /SUBSYSTEM:WINDOWS,5.1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>$(Platform)\$(Configuration)\wxsqlite.lib;$(Platform)\$(Configuration)\lua.lib;wxmsw30u_core.lib;wxmsw30u_qa.lib;wxbase30u_net.lib;wxmsw30u_html.lib;wxbase30u_xml.lib;wxmsw30u_aui.lib;wxmsw30u_adv.lib;wxmsw30u_stc.lib;wxscintilla.lib;wxmsw30u_webview.lib;wxbase30u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(Platform)\$(Configuration)\mmex.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_x64_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -222,12 +222,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\cgitemplate..\..\3rd\LuaGlue\include;;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\LuaGlue\include;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\route;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\LuaGlue\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\LuaGlue\include;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\route;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -243,11 +243,11 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd;..\..\3rd\LuaGlue\include;..\..\3rd\cgitemplate;..\..\3rd\csv-parser\include;..\..\3rd\route;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(Platform)\$(Configuration)\wxsqlite.lib;$(Platform)\$(Configuration)\lua.lib;wxmsw30ud_core.lib;wxmsw30ud_qa.lib;wxbase30ud_net.lib;wxmsw30ud_html.lib;wxbase30ud_xml.lib;wxmsw30ud_aui.lib;wxmsw30ud_adv.lib;wxmsw30ud_webview.lib;wxmsw30ud_stc.lib;wxbase30ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxscintillad.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/SAFESEH:NO  /SUBSYSTEM:WINDOWS,5.1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>$(Platform)\$(Configuration)\wxsqlite.lib;$(Platform)\$(Configuration)\lua.lib;wxmsw30ud_core.lib;wxmsw30ud_qa.lib;wxbase30ud_net.lib;wxmsw30ud_html.lib;wxbase30ud_xml.lib;wxmsw30ud_aui.lib;wxmsw30ud_adv.lib;wxmsw30ud_stc.lib;wxscintillad.lib;wxmsw30ud_webview.lib;wxbase30ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(Platform)\$(Configuration)\mmex.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_x64_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -265,22 +265,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\3rd\csv-parser\csv_parser.cpp" />
-    <ClCompile Include="..\..\3rd\mongoose\mongoose.c" />
-    <ClCompile Include="..\..\src\aboutdialog.cpp" />
-    <ClCompile Include="..\..\src\accountdialog.cpp" />
-    <ClCompile Include="..\..\src\appstartdialog.cpp" />
-    <ClCompile Include="..\..\src\assetdialog.cpp" />
-    <ClCompile Include="..\..\src\assetspanel.cpp" />
-    <ClCompile Include="..\..\src\attachmentdialog.cpp" />
-    <ClCompile Include="..\..\src\billsdepositsdialog.cpp" />
-    <ClCompile Include="..\..\src\billsdepositspanel.cpp" />
-    <ClCompile Include="..\..\src\general_report_manager.cpp" />
-    <ClCompile Include="..\..\src\images_list.cpp" />
-    <ClCompile Include="..\..\src\import_export\qif_import.cpp" />
-    <ClCompile Include="..\..\src\minimal_editor.cpp" />
-    <ClCompile Include="..\..\src\mmframe.cpp" />
-    <ClCompile Include="..\..\src\mmframereport.cpp" />
     <ClCompile Include="..\..\src\model\Model_Account.cpp" />
     <ClCompile Include="..\..\src\model\Model_Asset.cpp" />
     <ClCompile Include="..\..\src\model\Model_Attachment.cpp" />
@@ -299,6 +283,14 @@
     <ClCompile Include="..\..\src\model\Model_Stock.cpp" />
     <ClCompile Include="..\..\src\model\Model_Subcategory.cpp" />
     <ClCompile Include="..\..\src\model\Model_Usage.cpp" />
+    <ClCompile Include="..\..\src\aboutdialog.cpp" />
+    <ClCompile Include="..\..\src\accountdialog.cpp" />
+    <ClCompile Include="..\..\src\appstartdialog.cpp" />
+    <ClCompile Include="..\..\src\assetdialog.cpp" />
+    <ClCompile Include="..\..\src\assetspanel.cpp" />
+    <ClCompile Include="..\..\src\attachmentdialog.cpp" />
+    <ClCompile Include="..\..\src\billsdepositsdialog.cpp" />
+    <ClCompile Include="..\..\src\billsdepositspanel.cpp" />
     <ClCompile Include="..\..\src\reports\budget.cpp" />
     <ClCompile Include="..\..\src\reports\budgetcategorysummary.cpp" />
     <ClCompile Include="..\..\src\budgetentrydialog.cpp" />
@@ -311,35 +303,42 @@
     <ClCompile Include="..\..\src\reports\categexp.cpp" />
     <ClCompile Include="..\..\src\reports\categovertimeperf.cpp" />
     <ClCompile Include="..\..\src\constants.cpp" />
+    <ClCompile Include="..\..\3rd\csv-parser\csv_parser.cpp" />
     <ClCompile Include="..\..\src\currencydialog.cpp" />
     <ClCompile Include="..\..\src\dbwrapper.cpp" />
     <ClCompile Include="..\..\src\import_export\export.cpp" />
     <ClCompile Include="..\..\src\filtertransdialog.cpp" />
+    <ClCompile Include="..\..\src\general_report_manager.cpp" />
     <ClCompile Include="..\..\3rd\cgitemplate\html_template.cpp" />
     <ClCompile Include="..\..\src\reports\htmlbuilder.cpp" />
+    <ClCompile Include="..\..\src\images_list.cpp" />
     <ClCompile Include="..\..\src\reports\incexpenses.cpp" />
     <ClCompile Include="..\..\src\maincurrencydialog.cpp" />
+    <ClCompile Include="..\..\src\minimal_editor.cpp" />
     <ClCompile Include="..\..\src\mmCalculator.cpp" />
     <ClCompile Include="..\..\src\reports\mmDateRange.cpp" />
     <ClCompile Include="..\..\src\mmOption.cpp" />
     <ClCompile Include="..\..\src\mmcheckingpanel.cpp" />
     <ClCompile Include="..\..\src\mmex.cpp" />
+    <ClCompile Include="..\..\src\mmframe.cpp" />
+    <ClCompile Include="..\..\src\mmframereport.cpp" />
     <ClCompile Include="..\..\src\mmhelppanel.cpp" />
     <ClCompile Include="..\..\src\mmhomepagepanel.cpp" />
     <ClCompile Include="..\..\src\mmreportspanel.cpp" />
+    <ClCompile Include="..\..\3rd\mongoose\mongoose.c" />
     <ClCompile Include="..\..\src\optionsdialog.cpp" />
     <ClCompile Include="..\..\src\paths.cpp" />
     <ClCompile Include="..\..\src\reports\payee.cpp" />
     <ClCompile Include="..\..\src\payeedialog.cpp" />
-    <ClCompile Include="..\..\src\webapp.cpp" />
-    <ClCompile Include="..\..\src\webserver.cpp" />
     <ClCompile Include="..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_export.cpp" />
+    <ClCompile Include="..\..\src\import_export\qif_import.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_import_gui.cpp" />
     <ClCompile Include="..\..\src\recentfiles.cpp" />
     <ClCompile Include="..\..\src\relocatecategorydialog.cpp" />
     <ClCompile Include="..\..\src\relocatepayeedialog.cpp" />
     <ClCompile Include="..\..\src\reports\reportbase.cpp" />
+    <ClCompile Include="..\..\3rd\route\route.cc" />
     <ClCompile Include="..\..\src\splitdetailsdialog.cpp" />
     <ClCompile Include="..\..\src\splittransactionsdialog.cpp" />
     <ClCompile Include="..\..\src\stockdialog.cpp" />
@@ -348,12 +347,12 @@
     <ClCompile Include="..\..\src\transdialog.cpp" />
     <ClCompile Include="..\..\src\import_export\univcsvdialog.cpp" />
     <ClCompile Include="..\..\src\util.cpp" />
+    <ClCompile Include="..\..\src\webapp.cpp" />
+    <ClCompile Include="..\..\src\webserver.cpp" />
     <ClCompile Include="..\..\src\wizard_newaccount.cpp" />
     <ClCompile Include="..\..\src\wizard_newdb.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\3rd\mongoose\mongoose.h" />
-    <ClInclude Include="..\..\src\attachmentdialog.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Assets_V1.h" />
@@ -373,15 +372,6 @@
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Usage_V1.h" />
-    <ClInclude Include="..\..\src\general_report_manager.h" />
-    <ClInclude Include="..\..\src\images_list.h" />
-    <ClInclude Include="..\..\src\import_export\qif_import.h" />
-    <ClInclude Include="..\..\src\minimal_editor.h" />
-    <ClInclude Include="..\..\src\mmcombobox.h" />
-    <ClInclude Include="..\..\src\mmframe.h" />
-    <ClInclude Include="..\..\src\mmHook.h" />
-    <ClInclude Include="..\..\src\mmsinglechoicedialog.h" />
-    <ClInclude Include="..\..\src\mmTips.h" />
     <ClInclude Include="..\..\src\model\Model.h" />
     <ClInclude Include="..\..\src\model\Model_Account.h" />
     <ClInclude Include="..\..\src\model\Model_Asset.h" />
@@ -400,14 +390,15 @@
     <ClInclude Include="..\..\src\model\Model_Splittransaction.h" />
     <ClInclude Include="..\..\src\model\Model_Stock.h" />
     <ClInclude Include="..\..\src\model\Model_Subcategory.h" />
+    <ClInclude Include="..\..\src\model\Model_Usage.h" />
     <ClInclude Include="..\..\src\aboutdialog.h" />
     <ClInclude Include="..\..\src\accountdialog.h" />
     <ClInclude Include="..\..\src\appstartdialog.h" />
     <ClInclude Include="..\..\src\assetdialog.h" />
     <ClInclude Include="..\..\src\assetspanel.h" />
+    <ClInclude Include="..\..\src\attachmentdialog.h" />
     <ClInclude Include="..\..\src\billsdepositsdialog.h" />
     <ClInclude Include="..\..\src\billsdepositspanel.h" />
-    <ClInclude Include="..\..\src\model\Model_Usage.h" />
     <ClInclude Include="..\..\src\reports\budget.h" />
     <ClInclude Include="..\..\src\reports\budgetcategorysummary.h" />
     <ClInclude Include="..\..\src\budgetentrydialog.h" />
@@ -425,26 +416,36 @@
     <ClInclude Include="..\..\src\defs.h" />
     <ClInclude Include="..\..\src\import_export\export.h" />
     <ClInclude Include="..\..\src\filtertransdialog.h" />
+    <ClInclude Include="..\..\src\general_report_manager.h" />
     <ClInclude Include="..\..\3rd\cgitemplate\html_template.h" />
     <ClInclude Include="..\..\src\reports\htmlbuilder.h" />
+    <ClInclude Include="..\..\src\images_list.h" />
     <ClInclude Include="..\..\src\reports\incexpenses.h" />
     <ClInclude Include="..\..\src\maincurrencydialog.h" />
+    <ClInclude Include="..\..\src\minimal_editor.h" />
     <ClInclude Include="..\..\src\mmCalculator.h" />
     <ClInclude Include="..\..\src\reports\mmDateRange.h" />
+    <ClInclude Include="..\..\src\mmHook.h" />
     <ClInclude Include="..\..\src\mmOption.h" />
+    <ClInclude Include="..\..\src\mmTips.h" />
     <ClInclude Include="..\..\src\mmcheckingpanel.h" />
+    <ClInclude Include="..\..\src\mmcombobox.h" />
     <ClInclude Include="..\..\src\mmex.h" />
+    <ClInclude Include="..\..\src\mmframe.h" />
     <ClInclude Include="..\..\src\mmhelppanel.h" />
     <ClInclude Include="..\..\src\mmhomepagepanel.h" />
     <ClInclude Include="..\..\src\mmpanelbase.h" />
     <ClInclude Include="..\..\src\mmreportspanel.h" />
+    <ClInclude Include="..\..\src\mmsinglechoicedialog.h" />
     <ClInclude Include="..\..\src\mmtextctrl.h" />
+    <ClInclude Include="..\..\3rd\mongoose\mongoose.h" />
     <ClInclude Include="..\..\src\optionsdialog.h" />
     <ClInclude Include="..\..\src\paths.h" />
     <ClInclude Include="..\..\src\reports\payee.h" />
     <ClInclude Include="..\..\src\payeedialog.h" />
     <ClInclude Include="..\..\src\platfdep.h" />
     <ClInclude Include="..\..\src\import_export\qif_export.h" />
+    <ClInclude Include="..\..\src\import_export\qif_import.h" />
     <ClInclude Include="..\..\src\import_export\qif_import_gui.h" />
     <ClInclude Include="..\..\src\recentfiles.h" />
     <ClInclude Include="..\..\src\relocatecategorydialog.h" />

@@ -239,8 +239,6 @@
     <ClCompile Include="..\..\lib\lua\src\lzio.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\lib\lua\src\dtoa_config.h" />
-    <ClInclude Include="..\..\lib\lua\src\fpconv.h" />
     <ClInclude Include="..\..\lib\lua\src\lapi.h" />
     <ClInclude Include="..\..\lib\lua\src\lauxlib.h" />
     <ClInclude Include="..\..\lib\lua\src\lcode.h" />
@@ -265,7 +263,6 @@
     <ClInclude Include="..\..\lib\lua\src\lundump.h" />
     <ClInclude Include="..\..\lib\lua\src\lvm.h" />
     <ClInclude Include="..\..\lib\lua\src\lzio.h" />
-    <ClInclude Include="..\..\lib\lua\src\strbuf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

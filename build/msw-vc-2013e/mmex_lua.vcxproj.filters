@@ -115,12 +115,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\lib\lua\src\dtoa_config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\lib\lua\src\fpconv.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\lib\lua\src\lapi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -191,9 +185,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\lib\lua\src\lzio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\lib\lua\src\strbuf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
