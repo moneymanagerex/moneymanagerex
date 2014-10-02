@@ -98,7 +98,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
         m_to_currency = Model_Account::currency(to_acc);
         if (m_to_currency) {
-            m_advanced = !m_new_trx && m_transfer && (m_currency->CURRENCYID != m_to_currency->CURRENCYID);
+            m_advanced = !m_new_trx && (m_currency->CURRENCYID != m_to_currency->CURRENCYID || m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
         }
     }
 
