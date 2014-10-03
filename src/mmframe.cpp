@@ -218,6 +218,7 @@ EVT_TIMER(AUTO_REPEAT_TRANSACTIONS_TIMER_ID, mmGUIFrame::OnAutoRepeatTransaction
 /* Recent Files */
 EVT_MENU_RANGE(wxID_FILE1, wxID_FILE9, mmGUIFrame::OnRecentFiles)
 EVT_MENU(MENU_RECENT_FILES_CLEAR, mmGUIFrame::OnClearRecentFiles)
+EVT_MENU(MENU_VIEW_TOGGLE_FULLSCREEN, mmGUIFrame::OnToggleFullScreen)
 
 EVT_CLOSE(mmGUIFrame::OnClose)
 
@@ -251,6 +252,10 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     m_mgr.SetManagedWindow(this);
     SetIcon(mmex::getProgramIcon());
     SetMinSize(wxSize(480, 275));
+
+    // Initialize code to turn on Mac OS X Fullscreen capabilities (Lion and up only)
+    // code is a noop for all other systems
+    EnableFullScreenView(true);
 
     // decide if we need to show app start dialog
     bool from_scratch = false;
@@ -1366,6 +1371,8 @@ void mmGUIFrame::createMenu()
         _("Budget Summary: Include &Categories"), _("Include the categories in the Budget Category Summary"), wxITEM_CHECK);
     wxMenuItem* menuItemIgnoreFutureTransactions = new wxMenuItem(menuView, MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS,
         _("Ignore F&uture Transactions"), _("Ignore Future transactions"), wxITEM_CHECK);
+     wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN,
+         _("Toggle Fullscreen\tF11"), _("Toggle Fullscreen"), wxITEM_CHECK);
 
     //Add the menu items to the menu bar
     menuView->Append(menuItemToolbar);
@@ -1386,6 +1393,8 @@ void mmGUIFrame::createMenu()
     menuView->Append(menuItemBudgetCategorySummary);
     menuView->AppendSeparator();
     menuView->Append(menuItemIgnoreFutureTransactions);
+    menuView->AppendSeparator();
+    menuView->Append(menuItemToggleFullscreen);
 
     wxMenu *menuAccounts = new wxMenu;
 
@@ -2732,6 +2741,11 @@ void mmGUIFrame::setGotoAccountID(int account_id, long transID)
 {
     gotoAccountID_ = account_id;
     gotoTransID_ = transID;
+}
+
+void mmGUIFrame::OnToggleFullScreen(wxCommandEvent& WXUNUSED(event))
+{
+   ShowFullScreen(!IsFullScreen());
 }
 
 void mmGUIFrame::OnClose(wxCloseEvent&)
