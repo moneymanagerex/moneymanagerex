@@ -1,7 +1,7 @@
 # Compiled Object files
 *.slo
 *.lo
-*.o
+*.o*
 *.obj
 
 # Compiled Dynamic libraries
@@ -45,3 +45,21 @@ makefile
 /build/msw_tests-vc-2013e/test_*.emb
 *.patch
 *.zip
+
+#autoconf
+config.log
+config.status
+shared-ld-sh
+bk-deps
+
+#dist
+*.dmg
+/build/macosx/dmg/
+
+#backups & tmp file
+*~
+*.bak
+*.swp
+
+*.d
+
