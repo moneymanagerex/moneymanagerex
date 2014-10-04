@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="500"
+   height="400"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="dmg-background.svg"
+   inkscape:export-filename="/media/sf_Projects/moneymanagerex/build/macosx/dmg-background.png"
+   inkscape:export-xdpi="71.946663"
+   inkscape:export-ydpi="71.946663">
+  <title
+     id="title3119">MoneyManagerEX</title>
+  <defs
+     id="defs4">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4109">
+      <stop
+         style="stop-color:#5cab30;stop-opacity:1;"
+         offset="0"
+         id="stop4111" />
+      <stop
+         style="stop-color:#5cab30;stop-opacity:0;"
+         offset="1"
+         id="stop4113" />
+    </linearGradient>
+    <linearGradient
+       y2="84.874962"
+       x2="182.68535"
+       y1="279.71509"
+       x1="182.68535"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient3966"
+       xlink:href="#linearGradient3924"
+       inkscape:collect="always" />
+    <linearGradient
+       y2="10.959585"
+       x2="180.74648"
+       y1="353.00354"
+       x1="180.74648"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient3964"
+       xlink:href="#linearGradient3905"
+       inkscape:collect="always" />
+    <linearGradient
+       y2="11.779408"
+       x2="180.49806"
+       y1="353.25195"
+       x1="180.49806"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient3962"
+       xlink:href="#linearGradient3881"
+       inkscape:collect="always" />
+    <linearGradient
+       y2="11.895205"
+       x2="180.91829"
+       y1="352.83173"
+       x1="180.91829"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient3960"
+       xlink:href="#linearGradient3895"
+       inkscape:collect="always" />
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="84.874962"
+       x2="182.68535"
+       y1="279.71509"
+       x1="182.68535"
+       id="linearGradient3930"
+       xlink:href="#linearGradient3924"
+       inkscape:collect="always" />
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="10.959585"
+       x2="180.74648"
+       y1="353.00354"
+       x1="180.74648"
+       id="linearGradient3911"
+       xlink:href="#linearGradient3905"
+       inkscape:collect="always" />
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="11.895205"
+       x2="180.91829"
+       y1="352.83173"
+       x1="180.91829"
+       id="linearGradient3901"
+       xlink:href="#linearGradient3895"
+       inkscape:collect="always" />
+    <linearGradient
+       y2="11.779408"
+       x2="180.49806"
+       y1="353.25195"
+       x1="180.49806"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient3893"
+       xlink:href="#linearGradient3881"
+       inkscape:collect="always" />
+    <linearGradient
+       id="linearGradient3881">
+      <stop
+         id="stop3883"
+         offset="0"
+         style="stop-color:#4aa035;stop-opacity:1;" />
+      <stop
+         id="stop3885"
+         offset="1"
+         style="stop-color:#f8fad2;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3895">
+      <stop
+         id="stop3897"
+         offset="0"
+         style="stop-color:#256c32;stop-opacity:1;" />
+      <stop
+         id="stop3899"
+         offset="1"
+         style="stop-color:#4eb133;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3905">
+      <stop
+         id="stop3907"
+         offset="0"
+         style="stop-color:#49a035;stop-opacity:1;" />
+      <stop
+         id="stop3909"
+         offset="1"
+         style="stop-color:#8cc625;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3924">
+      <stop
+         id="stop3926"
+         offset="0"
+         style="stop-color:#284c27;stop-opacity:1;" />
+      <stop
+         id="stop3928"
+         offset="1"
+         style="stop-color:#2e5b2c;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3895"
+       id="linearGradient3157"
+       gradientUnits="userSpaceOnUse"
+       x1="180.91829"
+       y1="352.83173"
+       x2="180.91829"
+       y2="11.895205" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3881"
+       id="linearGradient3159"
+       gradientUnits="userSpaceOnUse"
+       x1="180.49806"
+       y1="353.25195"
+       x2="180.49806"
+       y2="11.779408" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3905"
+       id="linearGradient3161"
+       gradientUnits="userSpaceOnUse"
+       x1="180.74648"
+       y1="353.00354"
+       x2="180.74648"
+       y2="10.959585" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3924"
+       id="linearGradient3163"
+       gradientUnits="userSpaceOnUse"
+       x1="182.68535"
+       y1="279.71509"
+       x2="182.68535"
+       y2="84.874962" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4109"
+       id="linearGradient4115"
+       x1="235.78525"
+       y1="225.21515"
+       x2="186.23798"
+       y2="225.21515"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-28.070176,652.3598)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.2153846"
+     inkscape:cx="257.923"
+     inkscape:cy="196.41642"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1231"
+     inkscape:window-height="776"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:snap-midpoints="true"
+     showguides="false"
+     inkscape:snap-bbox="false"
+     inkscape:snap-nodes="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4097"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>MoneyManagerEX</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>JMC</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title />
+          </cc:Agent>
+        </dc:rights>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="background" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-652.3598)">
+    <rect
+       style="fill:#e6e6e6;fill-opacity:1"
+       id="rect3148"
+       width="625.88025"
+       height="499.11972"
+       x="-61.886276"
+       y="603.1521"
+       inkscape:export-xdpi="72.040001"
+       inkscape:export-ydpi="72.040001"
+       inkscape:export-filename="/media/sf_Projects/moneymanagerex/build/macosx/dmg-background.png" />
+    <g
+       id="g3973"
+       transform="translate(-0.85250322,427.41517)">
+      <path
+         transform="matrix(0.37481698,0,0,0.37481698,-3.7481692,227.6896)"
+         d="M 351.5,182.25 C 351.5,276.55262 275.05262,353 180.75,353 86.447379,353 10,276.55262 10,182.25 10,87.947379 86.447379,11.5 180.75,11.5 c 94.30262,0 170.75,76.447379 170.75,170.75 z"
+         sodipodi:ry="170.75"
+         sodipodi:rx="170.75"
+         sodipodi:cy="182.25"
+         sodipodi:cx="180.75"
+         id="path3879"
+         style="fill:url(#linearGradient3157);fill-opacity:1;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:type="arc"
+         style="fill:url(#linearGradient3159);fill-opacity:1;stroke:none"
+         id="path3889"
+         sodipodi:cx="180.75"
+         sodipodi:cy="182.25"
+         sodipodi:rx="170.75"
+         sodipodi:ry="170.75"
+         d="M 351.5,182.25 C 351.5,276.55262 275.05262,353 180.75,353 86.447379,353 10,276.55262 10,182.25 10,87.947379 86.447379,11.5 180.75,11.5 c 94.30262,0 170.75,76.447379 170.75,170.75 z"
+         transform="matrix(0.35743416,0,0,0.35743416,-0.60622514,230.85762)" />
+      <path
+         sodipodi:type="arc"
+         style="fill:url(#linearGradient3161);fill-opacity:1;stroke:none"
+         id="path3903"
+         sodipodi:cx="180.75"
+         sodipodi:cy="182.25"
+         sodipodi:rx="170.75"
+         sodipodi:ry="170.75"
+         d="M 351.5,182.25 C 351.5,276.55262 275.05262,353 180.75,353 86.447379,353 10,276.55262 10,182.25 10,87.947379 86.447379,11.5 180.75,11.5 c 94.30262,0 170.75,76.447379 170.75,170.75 z"
+         transform="matrix(0.3378785,0,0,0.3378785,2.928462,234.42164)" />
+      <g
+         id="text3913"
+         style="font-size:13.14225578px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
+         transform="matrix(0.35786444,0,0,0.38464775,-2.7826082,229.21739)">
+        <path
+           sodipodi:nodetypes="ccssscccsccsccccssssccccsssscccccsssccssscc"
+           inkscape:connector-curvature="0"
+           id="path3918"
+           transform="scale(1.0367459,0.9645565)"
+           d="m 172,85 0,13.28125 c -15.31597,0.468778 -27.33609,3.57744 -36.21875,11.28125 -9.55493,8.28686 -13.40626,20.28945 -13.40625,35.5625 -1e-5,12.13301 4.19589,22.10799 10.4375,28.53125 6.24166,6.42331 15.67635,12.72996 30.40625,15.78125 L 172,191.25 l 0,44.09375 c -5.32532,-0.91406 -9.67517,-2.69521 -13.25,-5.53125 -5.57765,-4.42495 -8.28133,-13.2033 -8.8125,-21.625 l -31.8125,0 c 0.9296,16.70061 5.43356,32.46415 15.6875,41.28125 8.77607,7.54631 22.7747,11.9115 38.1875,13.0625 L 172,280 l 17,0 0,-17.4375 c 14.8881,-1.01688 27.8768,-4.27382 36.1875,-12.28125 10.52649,-10.14237 13.625,-23.18709 13.625,-39.03125 0,-12.27558 -4.17659,-21.00917 -10.25,-27.75 -6.14443,-6.81964 -12.17333,-12.07776 -27.84375,-16.34375 -5.02516,-1.36801 -8.62755,-2.30034 -11.71875,-3.0625 l 0,-38.90625 c 10.2914,2.53328 14.99086,9.02018 15.78125,21.125 l 31.90625,0 c -1.2e-4,-8.13607 -1.42565,-15.23366 -4,-21.40625 -2.60533,-6.24685 -7.74658,-13.09743 -11.5625,-16.5625 -3.88692,-3.52955 -8.21788,-5.79892 -13.75,-7.28125 -3.31238,-0.88755 -11.08929,-1.88905 -15.125,-2.5 -0.88232,-0.133571 -1.99502,-0.221897 -3.25,-0.28125 L 189,85 z m 0,39.15625 0,36.125 c -5.58102,-1.28494 -8.13676,-2.18063 -11,-4.25 -3.8854,-2.80812 -5.78125,-7.13405 -5.78125,-12.84375 0,-5.85222 0.30027,-10.4669 4.78125,-13.9375 3.60947,-2.7956 6.94036,-4.49855 12,-5.09375 z m 17,70.71875 c 6.10266,1.51703 8.91559,2.93882 12.21875,5.6875 4.11679,3.42573 5.81174,9.11888 5.59375,14.5625 -0.21799,5.44362 -2.0851,11.66369 -7.375,15.40625 -3.54833,2.51042 -6.2318,4.18827 -10.4375,5 z"
+           style="font-size:206.52116394px;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:url(#linearGradient3163);fill-opacity:1;font-family:FreeSans;-inkscape-font-specification:FreeSans Bold" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#5cab30;fill-opacity:1;stroke:none;font-family:Helvetica CY;-inkscape-font-specification:Helvetica CY Bold"
+       x="151.75273"
+       y="743.2049"
+       id="text3144"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3146"
+         x="151.75273"
+         y="743.2049"
+         style="font-size:48px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Oswald;-inkscape-font-specification:Oswald">Money Manager EX</tspan></text>
+    <rect
+       style="fill:#b3b3b3;fill-opacity:1"
+       id="rect3167"
+       width="432.98245"
+       height="100.00002"
+       x="33.948669"
+       y="827.3598"
+       ry="8.4415588" />
+    <rect
+       style="opacity:0.98999999;fill:url(#linearGradient4115);fill-opacity:1"
+       id="rect4099"
+       width="105.56805"
+       height="20.167482"
+       x="161.65353"
+       y="867.61572" />
+    <g
+       id="g4123"
+       transform="translate(-27.368421,0.70175439)">
+      <path
+         inkscape:transform-center-x="-12.573554"
+         transform="matrix(1,0,0,0.69131768,0,722.05186)"
+         d="m 370.23513,224.96617 -37.86717,21.52427 -37.57415,22.0318 0.29303,-43.55607 -0.29303,-43.55607 37.57415,22.03181 z"
+         inkscape:randomized="0"
+         inkscape:rounded="0"
+         inkscape:flatsided="false"
+         sodipodi:arg2="1.0471976"
+         sodipodi:arg1="0"
+         sodipodi:r2="24.85408"
+         sodipodi:r1="50.294216"
+         sodipodi:cy="224.96617"
+         sodipodi:cx="319.94092"
+         sodipodi:sides="3"
+         id="path4121"
+         style="opacity:0.98999999;fill:#5cab30;fill-opacity:1"
+         sodipodi:type="star" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:extra-condensed;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Oswald;-inkscape-font-specification:Oswald Bold Ultra-Condensed"
+       x="66.805557"
+       y="820.34589"
+       id="text3034"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         x="66.805557"
+         y="820.34589"
+         id="tspan3038"
+         style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Oswald;-inkscape-font-specification:Oswald">Drag the app onto the Applications Link</tspan></text>
+  </g>
+</svg>
