@@ -767,15 +767,10 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
 const wxString mmHomePagePanel::displayAssets(double& tBalance)
 {
     json::Object o;
-    o.Clear();
     std::wstringstream ss;
 
     double asset_balance = Model_Asset::instance().balance();
     tBalance += asset_balance;
-    wxString output = "<table class = 'table'><tfoot><tr class = \"total\">";
-    output += wxString::Format("<td><a href = \"Assets:\">%s</a></td>", _("Assets"));
-    output += wxString::Format("<td class='money'>%s</td></tr>", Model_Currency::toCurrency(asset_balance));
-    output += "</tfoot></table>";
 
     o[L"NAME"] = json::String(_("Assets").ToStdWstring());
     o[L"VALUE"] = json::String(Model_Currency::toCurrency(asset_balance).ToStdWstring());
@@ -787,7 +782,6 @@ const wxString mmHomePagePanel::displayAssets(double& tBalance)
 const wxString mmHomePagePanel::getStatWidget()
 {
     json::Object o;
-    o.Clear();
     std::wstringstream ss;
 
     o[L"NAME"] = json::String(_("Transaction Statistics").ToStdWstring());
@@ -804,12 +798,9 @@ const wxString mmHomePagePanel::getStatWidget()
 const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 {
     json::Object o;
-    o.Clear();
     std::wstringstream ss;
 
     const wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
-    double asset_balance = Model_Asset::instance().balance();
-    tBalance += asset_balance;
 
     o[L"NAME"] = json::String(_("Grand Total:").ToStdWstring());
     o[L"VALUE"] = json::String(tBalanceStr.ToStdWstring());
