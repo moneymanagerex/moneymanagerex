@@ -590,7 +590,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
                 int transID = Model_Checking::instance().save(tran);
 
-                Model_Splittransaction::Data_Set checking_splits;
+                Model_Splittransaction::Cache checking_splits;
                 for (const auto &item : Model_Billsdeposits::splittransaction(q1))
                 {
                     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
@@ -598,7 +598,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     split->CATEGID = item.CATEGID;
                     split->SUBCATEGID = item.SUBCATEGID;
                     split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
-                    checking_splits.push_back(*split);
+                    checking_splits.push_back(split);
                 }
                 Model_Splittransaction::instance().save(checking_splits);
             }
@@ -2029,8 +2029,6 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 {
-    wxLogDebug("OnQuit(wxCommandEvent& WXUNUSED(event)");
-    //    this->Destroy();
     Close(TRUE);
 }
 //----------------------------------------------------------------------------
