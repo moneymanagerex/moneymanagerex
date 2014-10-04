@@ -67,6 +67,7 @@
 #include "import_export/univcsvdialog.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Stock.h"
+#include "model/Model_StockHistory.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Budgetyear.h"
@@ -730,11 +731,13 @@ void mmGUIFrame::updateNavTreeControl()
     wxTreeItemId accounts = navTreeCtrl_->AppendItem(root, _("Bank Accounts"), 9, 9);
     navTreeCtrl_->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
     navTreeCtrl_->SetItemBold(accounts, true);
+    wxTreeItemId cardAccounts = navTreeCtrl_->AppendItem(root, _("Credit Card Accounts"), 9, 9);
+    navTreeCtrl_->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
+    navTreeCtrl_->SetItemBold(cardAccounts, true);
 
     wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), 12, 12);
     navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
     navTreeCtrl_->SetItemBold(termAccount, true);
-
     wxTreeItemId stocks = navTreeCtrl_->AppendItem(root, _("Stocks"), 15, 15);
     navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
     navTreeCtrl_->SetItemBold(stocks, true);
@@ -792,6 +795,11 @@ void mmGUIFrame::updateNavTreeControl()
                 , selectedImage, selectedImage);
             navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
         }
+        else if (Model_Account::type(account) == Model_Account::CREDIT_CARD)
+        {
+            wxTreeItemId tacct = navTreeCtrl_->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+        }
         else
         {
             wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
@@ -801,6 +809,7 @@ void mmGUIFrame::updateNavTreeControl()
 
     loadNavTreeItemsStatus();
     if (!navTreeCtrl_->ItemHasChildren(accounts)) navTreeCtrl_->Delete(accounts);
+    if (!navTreeCtrl_->ItemHasChildren(cardAccounts)) navTreeCtrl_->Delete(cardAccounts);
     if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
     if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
     navTreeCtrl_->Connect(wxID_ANY, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
@@ -1127,9 +1136,10 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         else
         if (iData->getString() == "item@Bank Accounts" ||
             iData->getString() == "item@Term Accounts" ||
+            iData->getString() == "item@Credit Card Accounts" ||
             iData->getString() == "item@Stocks")
         {
-            // Create for Bank Term & Stock Accounts
+            // Create for Bank Credit Card Term & Stock Accounts
             wxMenu menu;
             menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account"));
             menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account"));
@@ -1137,7 +1147,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List (Home)"));
             menu.AppendSeparator();
 
-            // Create only for Bank Accounts
+            // Create only for Bank & Credit Card Accounts
             if ((iData->getString() != "item@Term Accounts") && (iData->getString() != "item@Stocks"))
             {
                 wxMenu *exportTo = new wxMenu;
@@ -1596,6 +1606,7 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Infotable::instance(m_db.get()));
     m_all_models.push_back(&Model_Asset::instance(m_db.get()));
     m_all_models.push_back(&Model_Stock::instance(m_db.get()));
+    m_all_models.push_back(&Model_StockHistory::instance(m_db.get()));
     m_all_models.push_back(&Model_Account::instance(m_db.get()));
     m_all_models.push_back(&Model_Payee::instance(m_db.get()));
     m_all_models.push_back(&Model_Checking::instance(m_db.get()));

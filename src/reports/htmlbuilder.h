@@ -63,15 +63,15 @@ public:
     /** Add a Table header cell */
     void addTableHeaderCell(const wxString& value, const bool& numeric = false, const bool& sortable = true);
 
-    void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency());
-    void addMoneyCell(double amount);
+    void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency(), int precision = -1);
+    void addMoneyCell(double amount, int precision = -1);
     void addTableCellMonth(int month);
     void addColorMarker(const wxString& color);
     const wxString getColor(int i);
 
     /** Add a Cell value */
     void addTableCell(const wxDateTime& date);
-    void addTableCell(const wxString& value);
+    void addTableCell(const wxString& value, const bool& numeric = false);
 
     /** Add a Cell value */
     void addTableCellLink(const wxString& href, const wxString& value);
@@ -109,7 +109,7 @@ public:
     void addTableRowBold(const wxString& label, double data);
 
     void addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int& x = 300, const int& y = 300);
-    void addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x = 640, const int& y = 256);
+    void addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& index, const int& x = 640, const int& y = 256, bool pointDot = false, bool showGridLines = true, bool datasetFill = false);
     void addBarChart(const wxString & labels, const std::vector<ValueTrio>& data, const wxString& id, const int& x = 192, const int& y = 256);
 
 private:

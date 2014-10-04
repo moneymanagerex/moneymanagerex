@@ -48,9 +48,14 @@ public:
     void OnCancel(wxCommandEvent& event);
 	void OnAttachments(wxCommandEvent& event);
     void OnStockPriceButton(wxCommandEvent& event);
-
+    void OnHistoryImportButton(wxCommandEvent& event);
+    void OnHistoryUpdateButton(wxCommandEvent& event);
+    void OnHistoryDeleteButton(wxCommandEvent& event);
+    void OnListItemSelected(wxListEvent& event);
+    
     void fillControls();
     void dataToControls();
+    void showStockHistory();
     int transID_;
     Model_Stock::Data* m_stock;
 
@@ -66,9 +71,12 @@ private:
     mmTextCtrl* purchasePrice_;
     mmTextCtrl* notes_;
     mmTextCtrl* currentPrice_;
+    wxDatePickerCtrl* priceDate_;
+
     wxStaticText* valueInvestment_;
     mmTextCtrl* commission_;
 	wxBitmapButton* bAttachments_;
+    wxListCtrl* priceListBox_;
 
     bool edit_;
     int accountID_;
@@ -85,6 +93,7 @@ private:
         ID_STATIC_STOCK_VALUE,
         ID_TEXTCTRL_STOCK_COMMISSION,
         ID_DIALOG_STOCKS,
+        ID_DPC_CP_PDATE,
     };
 };
 

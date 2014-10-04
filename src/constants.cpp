@@ -130,6 +130,7 @@ const wxString mmex::weblink::Update = "http://www.moneymanagerex.org/version.ht
 const wxString mmex::weblink::UsageStats = "http://usagestats.moneymanagerex.org/API/main_stats_v1.php";
 const wxString mmex::weblink::Download = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/download", "Download");
 const wxString mmex::weblink::News = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/news", "News");
+const wxString mmex::weblink::NewsRSS = "http://www.moneymanagerex.org/news?format=feed";
 const wxString mmex::weblink::Forum = mmex::weblink::addReferralToURL("http://forum.moneymanagerex.org", "Forum");
 const wxString mmex::weblink::Wiki = "http://wiki.moneymanagerex.org";
 const wxString mmex::weblink::BugReport = "http://bugreport.moneymanagerex.org";

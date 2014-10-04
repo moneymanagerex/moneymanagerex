@@ -465,6 +465,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\Model_StockHistory.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model_Subcategory.cpp"
 				>
 			</File>
@@ -713,6 +717,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\reports\summary.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\reports\summarystocks.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\reports\transactions.cpp"
 				>
 			</File>
@@ -819,6 +831,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\db\DB_Table_Stockhistory_V1.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\db\DB_Table_Subcategory_V1.h"
 				>
 			</File>
@@ -892,6 +908,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\Model_Stock.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\Model_StockHistory.h"
 				>
 			</File>
 			<File
@@ -1164,6 +1184,14 @@
 			</File>
 			<File
 				RelativePath="..\..\src\stockspanel.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\reports\summary.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\reports\summarystocks.h"
 				>
 			</File>
 			<File

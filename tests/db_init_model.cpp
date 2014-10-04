@@ -80,6 +80,7 @@ void DB_Init_Model::Init_Model_Tables(wxSQLite3Database* test_db)
 
     Model_Asset::instance(test_db);
     Model_Stock::instance(test_db);
+    Model_StockHistory::instance(test_db);
     Model_Attachment::instance(test_db);
 }
 
@@ -124,6 +125,7 @@ void DB_Init_Model::Init_Model_Stocks(wxSQLite3Database* test_db)
     Model_Currency::instance(test_db);
     Model_Account::instance(test_db);
     Model_Stock::instance(test_db);
+    Model_StockHistory::instance(test_db);
     Model_Attachment::instance(test_db);
 }
 
@@ -532,6 +534,16 @@ int DB_Init_Model::Add_Stock_Entry(int account_id, const wxDate& purchase_date, 
     entry->CURRENTPRICE = current_price == 0 ? purchase_price : current_price;
     entry->VALUE = value == 0 ? purchase_price * num_shares : value;
     return Model_Stock::instance().save(entry);
+}
+
+int DB_Init_Model::Add_StockHistory_Entry(const wxString& stock_symbol, const wxDateTime& date, double value, int upd_type)
+{
+    Model_StockHistory::Data* entry = Model_StockHistory::instance().create();
+    entry->DATE = date.FormatISODate();
+    entry->SYMBOL = stock_symbol;
+    entry->VALUE = value;
+    entry->UPDTYPE = upd_type;
+    return Model_StockHistory::instance().save(entry);
 }
 
 void DB_Init_Model::ShowMessage(wxString msg)

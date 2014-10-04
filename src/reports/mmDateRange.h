@@ -135,4 +135,10 @@ public:
     mmSpecifiedRange(wxDateTime& start, wxDateTime& end);
 };
 
+class mmLast365Days: public mmDateRange
+{
+public:
+    mmLast365Days();
+};
+
 #endif // MM_EX_DATE_RANGE_H_

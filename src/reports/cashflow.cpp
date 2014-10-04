@@ -73,8 +73,8 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         }
         else
         {
-            if (!activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM) continue;
-            if (!activeBankAccounts_ && Model_Account::type(account) == Model_Account::CHECKING) continue;
+            if (! activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM) continue;
+            if (! activeBankAccounts_ && (Model_Account::type(account) == Model_Account::CHECKING || Model_Account::type(account) == Model_Account::CREDIT_CARD)) continue;
         }
 
         const Model_Currency::Data* currency = Model_Account::currency(account);

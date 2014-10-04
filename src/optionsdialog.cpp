@@ -83,7 +83,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmOptionsDialog::OnOk)
-    EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnApply)
+    //EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnApply)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmOptionsDialog::OnCurrency)
     EVT_CHOICE(ID_DIALOG_OPTIONS_WXCHOICE_DATE, mmOptionsDialog::OnDateFormatChanged)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, mmOptionsDialog::OnLanguageChanged)

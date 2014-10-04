@@ -52,6 +52,7 @@ namespace weblink
     extern const wxString UsageStats;
     extern const wxString Download;
     extern const wxString News;
+    extern const wxString NewsRSS;
     extern const wxString Forum;
     extern const wxString Wiki;
     extern const wxString BugReport;

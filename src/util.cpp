@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <wx/sstream.h>
+
 #include "util.h"
 #include "mmex.h"
 #include "paths.h"
@@ -25,6 +27,8 @@
 #include <wx/richtooltip.h>
 #include <wx/sstream.h>
 
+#include "validators.h"
+#include "model/Model_Currency.h"
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
@@ -598,3 +602,85 @@ void checkUpdates(const bool& bSilent)
         wxMessageBox(msgStr, _("MMEX Update Check"), wxICON_INFORMATION);
     }
 }
+
+#if 1
+// ----------------------------------------------------------------------------
+// mmCalcValidator
+// Same as previous, but substitute dec char according to currency configuration
+// ----------------------------------------------------------------------------
+
+IMPLEMENT_DYNAMIC_CLASS(mmCalcValidator, wxTextValidator)
+BEGIN_EVENT_TABLE(mmCalcValidator, wxTextValidator)
+EVT_CHAR(mmCalcValidator::OnChar)
+END_EVENT_TABLE()
+
+mmCalcValidator::mmCalcValidator() : wxTextValidator(wxFILTER_INCLUDE_CHAR_LIST)
+{
+    wxArrayString list;
+    wxString valid_chars(" 1234567890.,(/+-*)");
+    size_t len = valid_chars.Length();
+    for (size_t i=0; i<len; i++) {
+        list.Add(wxString(valid_chars.GetChar(i)));
+    }
+    SetIncludes(list);
+    const Model_Currency::Data *base_currency = Model_Currency::instance().GetBaseCurrency();
+    decChar = base_currency->DECIMAL_POINT[0];
+}
+
+void mmCalcValidator::OnChar(wxKeyEvent& event)
+{
+    if (!m_validatorWindow)
+    {
+        event.Skip();
+        return;
+    }
+
+    int keyCode = event.GetKeyCode();
+
+    // we don't filter special keys and delete
+    if (keyCode < WXK_SPACE || keyCode == WXK_DELETE || keyCode >= WXK_START)
+    {
+        event.Skip();
+        return;
+    }
+
+    wxString str((wxUniChar)keyCode, 1);
+    if (!wxIsdigit(str[0]) && str != '+' && str != '-' && str != '.' && str != ',')
+    {
+        if ( !wxValidator::IsSilent() )
+            wxBell();
+
+        // eat message
+        return;
+    }
+    // only if it's a wxTextCtrl
+    if (!m_validatorWindow || !wxDynamicCast(m_validatorWindow, wxTextCtrl))
+    {
+        event.Skip();
+        return;
+    }
+    // if decimal point, check if it's already in the string
+    if (str == '.' || str == ',')
+    {
+        wxString value = ((wxTextCtrl*)m_validatorWindow)->GetValue();
+        size_t ind = value.rfind(decChar);
+        if (ind < value.Length())
+        {
+            // check if after last decimal point there is an operation char (+-/*)
+            if (value.find('+', ind+1) >= value.Length() && value.find('-', ind+1) >= value.Length() &&
+                value.find('*', ind+1) >= value.Length() && value.find('/', ind+1) >= value.Length())
+                return;
+        }
+        if (str != decChar)
+        {
+#ifdef _MSC_VER
+            wxChar vk = decChar == '.' ? 0x6e : 0xbc;
+            keybd_event(vk,0xb3,0 , 0);
+            keybd_event(vk,0xb3, KEYEVENTF_KEYUP,0);
+            return;
+#endif
+        }
+    }
+    event.Skip();
+}
+#endif

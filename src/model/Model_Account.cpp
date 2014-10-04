@@ -29,7 +29,8 @@ const std::vector<std::pair<Model_Account::TYPE, wxString> > Model_Account::TYPE
 {
     std::make_pair(Model_Account::CHECKING, wxTRANSLATE("Checking")),
     std::make_pair(Model_Account::TERM, wxTRANSLATE("Term")),
-    std::make_pair(Model_Account::INVESTMENT, wxTRANSLATE("Investment"))
+    std::make_pair(Model_Account::INVESTMENT, wxTRANSLATE("Investment")),
+    std::make_pair(Model_Account::CREDIT_CARD, wxTRANSLATE("Credit Card"))
 };
 
 Model_Account::Model_Account()
@@ -205,14 +206,14 @@ wxString Model_Account::toCurrency(double value, const Data* r)
     return Model_Currency::toCurrency(value, currency(r));
 }    
 
-wxString Model_Account::toString(double value, const Data* r)
+wxString Model_Account::toString(double value, const Data* r, int precision)
 {
-    return Model_Currency::toString(value, currency(r));
+    return Model_Currency::toString(value, currency(r), precision);
 }
 
-wxString Model_Account::toString(double value, const Data& r)
+wxString Model_Account::toString(double value, const Data& r, int precision)
 {
-    return toString(value, &r);
+    return toString(value, &r, precision);
 }
 
 Model_Account::STATUS Model_Account::status(const Data* account)
@@ -233,6 +234,8 @@ Model_Account::TYPE Model_Account::type(const Data* account)
         return CHECKING;
     else if (account->ACCOUNTTYPE.CmpNoCase(all_type()[TERM]) == 0)
         return TERM;
+    else if (account->ACCOUNTTYPE.CmpNoCase(all_type()[CREDIT_CARD]) == 0)
+        return CREDIT_CARD;
     else
         return INVESTMENT;
 }

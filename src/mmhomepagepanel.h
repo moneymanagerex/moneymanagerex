@@ -67,6 +67,7 @@ private:
     void getTemplate();
     void getData();
     void fillData();
+    const wxString displayWebsiteNews();
     const wxString displayAssets(double& tBalance);
     const wxString displayIncomeVsExpenses();
     const wxString getStatWidget();
@@ -79,6 +80,15 @@ private:
     void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
         , mmDateRange* date_range) const;
     int countFollowUp_, total_transactions_;
+
+    struct WebsiteNews
+    {
+        wxDateTime Date;
+        wxString Title;
+        wxString Link;
+        wxString Description;
+    };
+    const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
 };
 
 #endif

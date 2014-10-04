@@ -32,7 +32,7 @@ public:
     using Model<DB_Table_ACCOUNTLIST_V1>::get;
 
     enum STATUS { OPEN = 0, CLOSED };
-    enum TYPE { CHECKING = 0, TERM, INVESTMENT };
+    enum TYPE { CHECKING = 0, TERM, INVESTMENT, CREDIT_CARD };
 
     static const std::vector<std::pair<STATUS, wxString> > STATUS_CHOICES;
     static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
@@ -88,8 +88,8 @@ public:
     static std::pair<double, double> investment_balance(const Data& r);
     static wxString toCurrency(double value, const Data* r);
 
-    static wxString toString(double value, const Data* r);
-    static wxString toString(double value, const Data& r);
+    static wxString toString(double value, const Data* r, int precision = 2);
+    static wxString toString(double value, const Data& r, int precision = 2);
 
     static STATUS status(const Data* account);
     static STATUS status(const Data& account);

@@ -232,27 +232,90 @@ void Test_DatabaseInitialisation::Add_Stock_Entries(const wxDateTime& starting_d
     // Setting up a stock portfolio
     int stock_Yahoo_Finance_id = m_dbmodel->Get_account_id("Yahoo Finance");
 
-    // Setting up Telstra at start of a financial year
+    // Setting up history for Telstra at start of a financial year
     trans_date = starting_date;
     wxString stock_symbol = "tls.ax";
     double num_shares = 1000;
     double share_value = 4.75;
     int stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, num_shares, share_value, 0, share_value, 0, "Telstra", stock_symbol);
+    trans_date.Add(wxDateSpan::Days(10));
 
-    // Setting up AMP at start of a year
+    double share_dif = 0.25;
+    int share_cycle = 0;
+    for (int i = 0; trans_date < wxDateTime::Today(); ++i)
+    {
+        m_dbmodel->Add_StockHistory_Entry(stock_symbol, trans_date, num_shares * share_value, Model_StockHistory::MANUAL);
+        if (share_cycle <= 15)
+        {
+            share_value += share_dif;
+            ++share_cycle;
+            if (share_cycle == 15) share_cycle = 35;
+        }
+        else
+        {
+            share_value -= share_dif;
+            --share_cycle;
+            if (share_cycle == 25) share_cycle = 0;
+        }
+        trans_date.Add(wxDateSpan::Days(7));
+    }
+
+    // Setting up history for AMP at start of a year
     trans_date = starting_date;
     stock_symbol = "amp.ax";
     num_shares = 750;
     share_value = 2.75;
     trans_date.Add(wxDateSpan::Months(6));
     stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, num_shares, share_value, 0, share_value, 0, "AMP", stock_symbol);
+    trans_date.Add(wxDateSpan::Days(15));
 
-    // Setting up IAG
+    share_dif = 0.25;
+    share_cycle = 0;
+    for (int i = 0; trans_date < wxDateTime::Today(); ++i)
+    {
+        m_dbmodel->Add_StockHistory_Entry(stock_symbol, trans_date, num_shares * share_value, Model_StockHistory::MANUAL);
+        if (share_cycle <= 10)
+        {
+            share_value += share_dif;
+            ++share_cycle;
+            if (share_cycle == 10) share_cycle = 25;
+        }
+        else
+        {
+            share_value -= share_dif;
+            --share_cycle;
+            if (share_cycle == 20) share_cycle = 0;
+        }
+        trans_date.Add(wxDateSpan::Days(3));
+    }
+
+    // Setting up history for IAG
     trans_date = wxDateTime::Today().Subtract(wxDateSpan::Year());
     stock_symbol = "iag.ax";
     num_shares = 500;
     share_value = 3.75;
     stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, num_shares, share_value, 0, share_value, 0, "IAG", stock_symbol);
+    trans_date = wxDateTime::Today().Subtract(wxDateSpan::Days(90));
+
+    share_dif = 0.25;
+    share_cycle = 0;
+    for (int i = 0; i < 45; ++i)
+    {
+        m_dbmodel->Add_StockHistory_Entry(stock_symbol, trans_date, num_shares * share_value, Model_StockHistory::ONLINE);
+        if (share_cycle <= 5)
+        {
+            share_value += share_dif;
+            ++share_cycle;
+            if (share_cycle == 5) share_cycle = 10;
+        }
+        else
+        {
+            share_value -= share_dif;
+            --share_cycle;
+            if (share_cycle == 5) share_cycle = 0;
+        }
+        trans_date.Add(wxDateSpan::Days(2));
+    }
 }
 
 void Test_DatabaseInitialisation::Add_Transaction_Entries()
@@ -445,10 +508,10 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
     m_dbmodel->Current_Payee_Expense_Stats("---------- Payee Expense: All Time Totals ----------", starting_date);
 
     m_dbmodel->Current_Category_Income_Stats("---------- Category Income: All Time Totals ----------", starting_date);
-    m_dbmodel->Current_Category_Expense_Stats("---------- Category Expense: All Time Totals ----------", starting_date);
+    m_dbmodel->Current_Category_Income_Stats("---------- Category Income: All Time Totals ----------", starting_date);
 
-    m_dbmodel->Current_Subcategory_Income_Stats("---------- Subcategory Income: All Time Totals ----------", starting_date);
-    m_dbmodel->Current_Subcategory_Expense_Stats("---------- Subcategory Expense: All Time Totals ----------", starting_date);
+    m_dbmodel->Current_Subcategory_Income_Stats("---------- Subcategory Expense: All Time Totals ----------", starting_date);
+    m_dbmodel->Current_Subcategory_Income_Stats("---------- Subcategory Expense: All Time Totals ----------", starting_date);
 
     m_dbmodel->Total_Payee_Stats(starting_date);
     m_dbmodel->Total_Category_Stats(starting_date);

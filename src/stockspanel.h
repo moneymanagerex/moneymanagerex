@@ -84,6 +84,7 @@ private:
         COL_VALUE,
         COL_GAIN_LOSS,
         COL_CURRENT,
+        COL_PRICEDATE,
         COL_NOTES,
         COL_MAX, // number of columns
     };

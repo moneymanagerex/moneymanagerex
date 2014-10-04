@@ -213,18 +213,22 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool& numeri
     html_+= tags::TABLE_HEADER_END;
 }
 
-void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency)
+void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency, int precision)
 {
-    wxString s = Model_Currency::toCurrency(amount, currency);
+    if (precision == -1)
+        precision = Model_Currency::precision(currency);
+    wxString s = Model_Currency::toCurrency(amount, currency, precision);
     wxString f = wxString::Format("class='money' sorttable_customkey = '%f'", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
     html_ += s;
     this->endTableCell();
 }
 
-void mmHTMLBuilder::addMoneyCell(double amount)
+void mmHTMLBuilder::addMoneyCell(double amount, int precision)
 {
-    wxString s = Model_Currency::toString(amount);
+    if (precision == -1)
+        precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
+    wxString s = Model_Currency::toString(amount, Model_Currency::GetBaseCurrency(), precision);
     s.Replace(" ", "&nbsp;");
     wxString f = wxString::Format( "class='money' sorttable_customkey = '%f'", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
@@ -238,9 +242,10 @@ void mmHTMLBuilder::addTableCell(const wxDateTime& date)
     this->addTableCell(date_str);
 }
 
-void mmHTMLBuilder::addTableCell(const wxString& value)
+void mmHTMLBuilder::addTableCell(const wxString& value, const bool& numeric)
 {
-    html_ += wxString::Format(tags::TABLE_CELL, "");
+    wxString align = numeric ? "class='text-right'" : "class='text-left'";
+    html_ += wxString::Format(tags::TABLE_CELL, align);
     html_ += value;
     this->endTableCell();
 }
@@ -458,13 +463,14 @@ void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueT
     this->addText(wxString::Format(js, labels, values, (int)scaleStepWidth, id));
 }
 
-void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& x, const int& y)
+void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& index, const int& x, const int& y, bool pointDot, bool showGridLines, bool datasetFill)
 {
     static const wxString data_item =
         "{\n"
         "  'label' : '%s',\n"
-        "  'strokeColor' : 'rgba(0, 121, 234, 0.7)',\n"
-        "  'pointColor' : 'rgba(0, 121, 234, 0.7)',\n"
+        "  'fillColor' : '%s',\n"
+        "  'strokeColor' : '%s',\n"
+        "  'pointColor' : '%s',\n"
         "  'pointStrokeColor' : '#fff',\n"
         "  'data' : [%s],\n"
         "},\n";
@@ -478,11 +484,12 @@ void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxStr
         "var reportChart = new Chart(ctx).Line(data, %s);\n"
         "</script>\n";
     static const wxString opt =
-        "{datasetFill: false,\n"
+        "{datasetFill: %s,\n"
         "inGraphDataShow : false,\n"
         "annotateDisplay : true,\n"
         "responsive: true,\n"
-        "pointDot :false}";
+        "pointDot :%s,\n"
+        "showGridLines: %s}";
 
     wxString labels = "";
     wxString values = "";
@@ -493,9 +500,10 @@ void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxStr
         values += wxString::Format("%.2f,", entry.amount);
     }
 
-    wxString datasets = wxString::Format(data_item, "LineChart", values);
+    wxString datasets = wxString::Format(data_item, "LineChart", getColor(index), getColor(index), getColor(index), values);
     this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
-    this->addText(wxString::Format(js, labels, datasets, id, opt));
+    this->addText(wxString::Format(js, labels, datasets, id,
+        wxString::Format(opt, datasetFill ? "true" : "false", pointDot ? "true" : "false", showGridLines ? "true" : "false")));
 }
 
 const wxString mmHTMLBuilder::getHTMLText() const

@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "Model_Stock.h"
+#include "Model_StockHistory.h"
 
 Model_Stock::Model_Stock()
 : Model<DB_Table_STOCK_V1>()
@@ -67,3 +68,97 @@ double Model_Stock::value(const Data& r)
     return value(&r);
 }
 
+/** Remove the Data record from memory and the database. */
+bool Model_Stock::remove(int id)
+{
+    this->Begin();
+    Model_Stock::Data *data = this->get(id);
+    for (const auto& r : Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(data->SYMBOL)))
+        Model_StockHistory::instance().remove(r.id());
+    this->Commit();
+
+    return this->remove(id, db_);
+}
+
+/**
+Returns the last price date of a given stock
+*/
+wxString Model_Stock::lastPriceDate(const Self::Data* entity)
+{
+    wxString dtStr = entity->PURCHASEDATE;
+    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(SYMBOL(entity->SYMBOL));
+
+    std::sort(histData.begin(), histData.end(), SorterByDATE());
+    if (!histData.empty())
+        dtStr = histData.back().DATE;
+
+    return dtStr;
+}
+
+/**
+Returns the total stock balance at a given date
+*/
+double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const wxDate& date)
+{
+    std::map<int, double> totBalance;
+
+    Data_Set stocks = this->instance().find(HELDAT(account->id()));
+    for (const auto & stock : stocks)
+    {
+        wxString precValueDate, nextValueDate;
+        Model_StockHistory::Data_Set stock_hist = Model_StockHistory::instance().find(SYMBOL(stock.SYMBOL));
+        std::stable_sort(stock_hist.begin(), stock_hist.end(), SorterByDATE());
+        std::reverse(stock_hist.begin(), stock_hist.end());
+
+        double valueAtDate = 0.0,  precValue = 0.0, nextValue = 0.0;
+
+        for (const auto & hist : stock_hist)
+        {
+            // test for the date requested
+            if (hist.DATE == date.FormatISODate())
+            {
+                valueAtDate = hist.VALUE;
+                break;
+            }
+            // if not found, search for previous and next date
+            if (precValue == 0.0 && hist.DATE < date.FormatISODate())
+            {
+                precValue = hist.VALUE;
+                precValueDate = hist.DATE;
+            }
+            if (hist.DATE > date.FormatISODate())
+            {
+                nextValue = hist.VALUE;
+                nextValueDate = hist.DATE;
+            }
+            // end conditions: prec value assigned and price date < requested date
+            if (precValue != 0.0 && hist.DATE < date.FormatISODate())
+                break;
+        }
+        if (valueAtDate == 0.0)
+        {
+            //  if previous not found but if the given date is after purchase date, takes purchase price
+            if (precValue == 0.0 && date >= PURCHASEDATE(stock))
+            {
+                precValue = stock.PURCHASEPRICE;
+                precValueDate = stock.PURCHASEDATE;
+            }
+            //  if next not found and the accoung is open, takes previous date
+            if (nextValue == 0.0 && Model_Account::status(account) == Model_Account::OPEN)
+            {
+                nextValue = precValue;
+                nextValueDate = precValueDate;
+            }
+            if (precValue > 0.0 && nextValue > 0.0 && precValueDate >= stock.PURCHASEDATE && nextValueDate >= stock.PURCHASEDATE)
+                valueAtDate = precValue;
+        }
+
+        totBalance[stock.id()] += stock.NUMSHARES * valueAtDate;
+    }
+
+    double balance = 0.0;
+    for (const auto& it : totBalance)
+        balance += it.second;
+
+    return balance;
+}

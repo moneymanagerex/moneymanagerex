@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 // Validators -----------------------------------------------------
+#if 0
 class mmCalcValidator : public wxTextValidator
 {
 public:
@@ -44,3 +45,23 @@ public:
     }
 };
 */
+#else
+class mmCalcValidator : public wxTextValidator
+{
+public:
+    mmCalcValidator();
+    virtual ~mmCalcValidator(){}
+
+    virtual wxObject *Clone() const { return new mmCalcValidator(*this); }
+
+    // Filter keystrokes
+    void OnChar(wxKeyEvent& event);
+
+protected:
+    wxChar decChar;
+private:
+    wxDECLARE_NO_ASSIGN_CLASS(mmCalcValidator);
+    DECLARE_DYNAMIC_CLASS(mmCalcValidator)
+    DECLARE_EVENT_TABLE()
+};
+#endif

@@ -7,12 +7,6 @@
     <script src = "ChartNew.js"></script>
     <script src = "sorttable.js"></script>
     <link href = "master.css" rel = "stylesheet" />
-      <style>
-        /* Sortable tables */
-        table.sortable thead {
-          cursor: default;
-        }
-      </style>
 </head>
   <script>
     function toggleTable(id) {
@@ -28,12 +22,24 @@
             label.innerHTML = "[+]"
         }
     }
+    function createTableRowContent(rowObject, data, cellType){
+      var rowContent = document.createElement(cellType);
+      var cell = document.createTextNode(data);
+
+      rowContent.appendChild(cell);
+      rowObject.appendChild(rowContent);
+    }
+    function createTableData(rowObject, data){
+      createTableRowContent(rowObject, data, 'td');
+    }
+
   </script>
   <body>
+<!--Website News-->
+<TMPL_VAR WEBSITE_NEWS>
 
 <table class = "table-bordered" width="98%">
 <tr valign="top"><td width="50%">
-  <!-- GRAND_TOTAL -->
   <table class ='table'>
     <tfoot>
       <tr class ='success' style ='font-weight:bold'>
@@ -47,15 +53,29 @@
       document.getElementById('grand_name').innerHTML=grand_json['NAME'];
       document.getElementById('grand_value').innerHTML=grand_json['VALUE'];
   </script>
- 
 <!--Accounts-->
 <TMPL_VAR ACCOUNTS_INFO>
+<TMPL_VAR CARD_ACCOUNTS_INFO>
 <TMPL_VAR TERM_ACCOUNTS_INFO>
 
 <!--Stocks-->
 <TMPL_VAR STOCKS_INFO>
 <!--Assets-->
-<TMPL_VAR ASSETS_INFO>
+  <table class = 'table'>
+    <tfoot>
+      <tr class = 'total'>
+        <td>
+          <a href = 'Assets:' id='assets_name'></a>
+        </td>
+        <td class = 'money' id='assets_value'></td>
+      </tr>
+    </tfoot>
+  </table>
+  <script>
+    var assets_json = <TMPL_VAR ASSETS_INFO>;
+    document.getElementById('assets_name').innerHTML=assets_json['NAME'];
+    document.getElementById('assets_value').innerHTML=assets_json['VALUE'];
+  </script>
 
 </td>
 <td>
@@ -64,7 +84,7 @@
   <table class = 'table'>
     <thead>
       <tr class='active'>
-          <th id="ive_name">Income vs Expenses</th>
+          <th id="ive_name">#</th> <!--Income vs Expenses-->
           <th></th>
         </tr>
       </thead>
@@ -151,7 +171,32 @@
 <TMPL_VAR TOP_CATEGORIES>
 
 <!--Transaction Statistics -->
-<TMPL_VAR STATISTICS>
+  <table class = 'table'>
+    <thead>
+      <tr class = 'active'>
+        <th id='stat_name'>Transaction Statistics</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id ='stats'>  
+    </tbody>
+  </table>
+<script>
+  var stats_json = <TMPL_VAR STATISTICS>;
+  var tbody = document.getElementById('stats');
+  tbody.innerHTML = "";
+  for(var obj in stats_json){
+    if (obj != 'NAME') {
+    var row = document.createElement('tr');
+    createTableData(row, obj);
+    createTableData(row, stats_json[obj]);
+    tbody.appendChild(row);  
+    }else{
+      document.getElementById('stat_name').innerHTML = stats_json[obj];
+    }
+  }
+</script>
+<!--Transaction Statistics end-->
 
 </td>
 </tr>
@@ -168,8 +213,8 @@
       if (toggle_json['INVEST'] && document.getElementById('INVEST'))
         {toggleTable('INVEST')};
     </script>
- 
-<script type="text/javascript">
+
+  <script type="text/javascript">
     var elements= document.getElementsByClassName("money");
     for (var i = 0; i < elements.length; i++) {
         var element = elements[i];

@@ -175,6 +175,8 @@ MMEX_OBJECTS =  \
 	mmex_mmDateRange.obj \
 	mmex_payee.obj \
 	mmex_reportbase.obj \
+	mmex_summary.obj \
+	mmex_summarystocks.obj \
 	mmex_transactions.obj \
 	mmex_platfdep.obj \
 	mmex_export.obj \
@@ -198,6 +200,7 @@ MMEX_OBJECTS =  \
 	mmex_Model_Setting.obj \
 	mmex_Model_Splittransaction.obj \
 	mmex_Model_Stock.obj \
+	mmex_Model_StockHistory.obj \
 	mmex_Model_Subcategory.obj \
 	mmex_Model_Usage.obj \
 	mmex_html_template.obj \
@@ -820,6 +823,12 @@ mmex_payee.obj: ..\..\src\reports\payee.cpp
 mmex_reportbase.obj: ..\..\src\reports\reportbase.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\reportbase.cpp
 
+mmex_summary.obj: ..\..\src\reports\summary.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\summary.cpp
+
+mmex_summarystocks.obj: ..\..\src\reports\summarystocks.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\summarystocks.cpp
+
 mmex_transactions.obj: ..\..\src\reports\transactions.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\transactions.cpp
 
@@ -888,6 +897,9 @@ mmex_Model_Splittransaction.obj: ..\..\src\model\Model_Splittransaction.cpp
 
 mmex_Model_Stock.obj: ..\..\src\model\Model_Stock.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Stock.cpp
+
+mmex_Model_StockHistory.obj: ..\..\src\model\Model_StockHistory.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_StockHistory.cpp
 
 mmex_Model_Subcategory.obj: ..\..\src\model\Model_Subcategory.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Subcategory.cpp
