@@ -331,6 +331,8 @@
     <ClCompile Include="..\..\src\paths.cpp" />
     <ClCompile Include="..\..\src\reports\payee.cpp" />
     <ClCompile Include="..\..\src\payeedialog.cpp" />
+    <ClCompile Include="..\..\src\reports\summary.cpp" />
+    <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
     <ClCompile Include="..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_export.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_import.cpp" />

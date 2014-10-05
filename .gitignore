@@ -43,6 +43,8 @@ makefile
 # Extra files used for testing
 /build/msw_tests-vc-2013e/test_*.mmb
 /build/msw_tests-vc-2013e/test_*.emb
+/build/msw_tests-vc-2013e/test_*.txt
+/build/msw_tests-vc-2013e/test_*.sql
 *.patch
 *.zip
 
