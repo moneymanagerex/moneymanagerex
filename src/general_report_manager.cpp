@@ -321,14 +321,15 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
 {
     MinimalEditor* sqlText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
     wxStaticText* info = (wxStaticText*) FindWindow(wxID_INFO);
-    const wxString sql = sqlText->GetValue();
+    const wxString& sql = sqlText ? sqlText->GetValue() : "";
 
     wxLongLong interval = wxGetUTCTimeMillis();
-    if (Model_Report::instance().getSqlQuery(sql, m_sqlQueryData))
+    wxString sql_error;
+    if (Model_Report::instance().getSqlQuery(sql, sql_error, m_sqlQueryData))
     {
         m_sqlListBox->DeleteAllColumns();
         interval = wxGetUTCTimeMillis() - interval;
-        info->SetLabelText(wxString::Format(_("Row(s) returned: %i  Duration: %ld ms")
+        if (info) info->SetLabelText(wxString::Format(_("Row(s) returned: %i  Duration: %ld ms")
             , (int) m_sqlQueryData.size(), interval.ToLong()));
 
         MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
@@ -351,23 +352,26 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
     }
     else
     {
-        info->SetLabelText(_("SQL Syntax Error"));
+        if (info) info->SetLabelText(_("SQL Syntax Error"));
+        m_outputHTML->SetPage(sql_error, "");
+        wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
+        if (n) n->SetSelection(ID_TAB_OUT);
     }
 }
 
 void mmGeneralReportManager::OnNewTemplate(wxCommandEvent& event)
 {
     MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
-    if (!templateText->GetValue().empty()) return;
+    if (!templateText || !templateText->GetValue().empty()) return;
     MinimalEditor* sqlText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
 
     wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
-    n->SetSelection(ID_TAB_HTT);
+    if (n) n->SetSelection(ID_TAB_HTT);
 
-    templateText->ChangeValue(Model_Report::instance().getTemplate(sqlText->GetValue()));
+    templateText->ChangeValue(Model_Report::instance().getTemplate(sqlText ? sqlText->GetValue() : ""));
 
     wxButton* b = (wxButton*) FindWindow(wxID_NEW);
-    b->Enable(false);
+    if (b) b->Enable(false);
 
     wxCommandEvent evt;
     OnUpdateReport(evt);
@@ -486,7 +490,7 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
     if (report)
     {
         wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
-        n->SetSelection(ID_TAB_OUT);
+        if (n) n->SetSelection(ID_TAB_OUT);
         m_outputHTML->ClearBackground();
 
         mmGeneralReport gr(report); //TODO: limit 500 line
