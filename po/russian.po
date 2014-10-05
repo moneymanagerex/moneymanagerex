@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-05 12:57+0100\n"
-"PO-Revision-Date: 2014-10-05 12:57+0100\n"
+"POT-Creation-Date: 2014-10-05 19:49+0300\n"
+"PO-Revision-Date: 2014-10-05 19:50+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -371,7 +371,6 @@ msgid "% Rate"
 msgstr "% изменения"
 
 #: src/assetdialog.cpp:171
-#, fuzzy, c-format
 msgid "Enter the rate at which the asset changes its value in % per year"
 msgstr "Введите ежегодное изменение стоимости имущества в %"
 
@@ -2958,11 +2957,11 @@ msgstr "Игнорировать предстоящий транзакции"
 
 #: src/mmframe.cpp:1378
 msgid "Toggle Fullscreen\tF11"
-msgstr ""
+msgstr "На весь экран\tF11"
 
 #: src/mmframe.cpp:1378
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "На весь экран"
 
 #: src/mmframe.cpp:1411
 msgid "Account &List"
@@ -5576,7 +5575,6 @@ msgstr ""
 "клавиша О переключит между Отель, Отдых, Одежда и т.д."
 
 #: src/mmTips.h:37
-#, fuzzy, c-format
 msgid ""
 "Tip to get out of debt: Pay yourself 10% first. Put this into an account "
 "that is hard to touch. Make sure it is a chore to get the money out (you "
