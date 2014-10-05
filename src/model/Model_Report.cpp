@@ -136,10 +136,7 @@ wxString Model_Report::get_html(const Data* r)
     int columnCount = 0;
     try
     {
-        wxString sql = r->SQLCONTENT;
-        sql.Trim();
-        if (!sql.empty() && sql.Last() != ';') sql += ';';
-        wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
+        wxSQLite3Statement stmt = this->db_->PrepareStatement(r->SQLCONTENT);
         if (!stmt.IsReadOnly())
         {
             return wxString::Format(_("The SQL script:\n%s \nwill modify database! aborted!"), r->SQLCONTENT);
@@ -370,24 +367,21 @@ bool Model_Report::getColumns(const wxString& sql, std::vector<std::pair<wxStrin
     return true;
 }
 
-bool Model_Report::getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData)
+bool Model_Report::getSqlQuery(/*in*/ const wxString& sql, /*out*/ wxString& error, std::vector <std::vector <wxString> > &sqlQueryData)
 {
     wxSQLite3ResultSet q;
     int columnCount = 0;
     try
     {
-        wxString temp = sql;
-        temp.Trim();
-        if (temp.Last() != ';') temp += ';';
-        wxLogDebug(temp);
-        wxSQLite3Statement stmt = this->db_->PrepareStatement(temp);
+        wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
         if (!stmt.IsReadOnly())
             return false;
-        wxSQLite3ResultSet q = stmt.ExecuteQuery();
+        q = stmt.ExecuteQuery();
         columnCount = q.GetColumnCount();
     }
-    catch (const wxSQLite3Exception& /*e*/)
+    catch (const wxSQLite3Exception& e)
     {
+        error = e.GetMessage();
         return false;
     }
 
