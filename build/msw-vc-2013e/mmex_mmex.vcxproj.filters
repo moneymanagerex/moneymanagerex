@@ -303,14 +303,14 @@
     <ClCompile Include="..\..\src\model\Model_StockHistory.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\3rd\route\route.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\reports\summary.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\reports\summarystocks.cpp">
       <Filter>Source Files\reports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\route\route.cc">
+      <Filter>Source Files\3d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -664,6 +664,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\reports\summarystocks.h">
       <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\route\route.h">
+      <Filter>Header Files\3d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
