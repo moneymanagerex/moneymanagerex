@@ -31,9 +31,6 @@
 #include <wx/richtooltip.h>
 #include <wx/sstream.h>
 
-int titleTextWidth   = 200; // Determines width of Headings Textbox.
-int sourceTextHeight = 200; // Determines height of Source Textbox.
-
 class MyTreeItemData : public wxTreeItemData
 {
 public:
@@ -177,7 +174,7 @@ void mmGeneralReportManager::CreateControls()
     long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS;
 #endif
     m_treeCtrl = new wxTreeCtrl(this, ID_REPORT_LIST
-        , wxDefaultPosition, wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags);
+        , wxDefaultPosition, wxSize(200, 200), treeCtrlFlags);
 
     wxBoxSizer* reportTreeSizer = new wxBoxSizer(wxVERTICAL);
     reportTreeSizer->Add(m_treeCtrl, g_flagsExpand);
