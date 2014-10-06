@@ -1,6 +1,5 @@
 language: objective-c
 compiler:
-  - gcc
   - clang
   
 before_install:
@@ -25,5 +24,4 @@ notifications:
     on_success: change
     on_failure: always
 os:
-  - linux
   - osx
