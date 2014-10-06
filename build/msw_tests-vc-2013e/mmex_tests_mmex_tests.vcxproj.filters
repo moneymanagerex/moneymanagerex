@@ -369,6 +369,9 @@
     <ClCompile Include="..\..\src\reports\summarystocks.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\3rd\route\route.cc">
+      <Filter>Source Files\3d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -775,6 +778,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\reports\summarystocks.h">
       <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\route\route.h">
+      <Filter>Header Files\3rd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
