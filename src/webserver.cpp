@@ -23,9 +23,22 @@
 #include "paths.h"
 #include "mongoose/mongoose.h"
 #include "singleton.h"
+#include "model/Model_Asset.h"
+#include "model/Model_Stock.h"
+#include "model/Model_StockHistory.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Setting.h"
+#include "model/Model_Budgetyear.h"
 #include "model/Model_Account.h"
 #include "model/Model_Payee.h"
-#include "model/Model_Setting.h"
+#include "model/Model_Checking.h"
+#include "model/Model_Category.h"
+#include "model/Model_Subcategory.h"
+#include "model/Model_Billsdeposits.h"
+#include "model/Model_Splittransaction.h"
+#include "model/Model_Budget.h"
+#include "model/Model_Report.h"
+#include "model/Model_Attachment.h"
 #include "model/Model_Usage.h"
 #include "route/route.h"
 
@@ -101,6 +114,18 @@ static int ev_handler(struct mg_connection *conn, enum mg_event ev)
         else if (match.test("/usage"))
         {
             wxString str = Model_Usage::instance().all().to_json().c_str();
+            mg_printf_data(conn, str);
+            result = MG_TRUE;
+        }
+        else if (match.test("/asset"))
+        {
+            wxString str = Model_Asset::instance().all().to_json().c_str();
+            mg_printf_data(conn, str);
+            result = MG_TRUE;
+        }
+        else if (match.test("/category"))
+        {
+            wxString str = Model_Category::instance().all().to_json().c_str();
             mg_printf_data(conn, str);
             result = MG_TRUE;
         }
