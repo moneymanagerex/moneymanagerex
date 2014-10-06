@@ -4,12 +4,8 @@ compiler:
   
 before_install:
   - echo $TRAVIS_OS_NAME
-  # LINUX
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo add-apt update; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo add-apt install webkitgtk-3.0; fi
-  # OSX
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install wxwidgets; fi
+  - brew update
+  - brew install wxwidgets
 before_script:
   - travis_retry ./configure
 script:
