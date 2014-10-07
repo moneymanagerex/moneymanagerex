@@ -360,6 +360,9 @@
     <ClCompile Include="..\..\src\mmframereport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\3rd\route\route.cc">
+      <Filter>Source Files\3d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -754,6 +757,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\import_export\univcsvdialog.h">
       <Filter>Header Files\import_export</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\route\route.h">
+      <Filter>Header Files\3rd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
