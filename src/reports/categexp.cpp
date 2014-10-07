@@ -73,7 +73,7 @@ void  mmReportCategoryExpenses::RefreshData()
         std::stable_sort(subcategories.begin(), subcategories.end(), SorterBySUBCATEGNAME());
         for (const auto& sub_category : subcategories)
         {
-            wxString sFullCategName = Model_Category::full_name(category.CATEGID, sub_category.SUBCATEGID);
+            const wxString& sFullCategName = Model_Category::full_name(category.CATEGID, sub_category.SUBCATEGID);
             amt = categoryStats[category.CATEGID][sub_category.SUBCATEGID][0];
             if (type_ == GOES && amt < 0.0) amt = 0;
             if (type_ == COME && amt > 0.0) amt = 0;

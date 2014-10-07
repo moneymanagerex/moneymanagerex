@@ -377,9 +377,10 @@ void Model_Category::getCategoryStats(
         int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
         int categID = transaction.CATEGID;
 
-        if (categID > -1)
+        const Model_Checking::Full_Data full_tran(transaction, splits);
+        if (!full_tran.has_split())
         {
-            if (Model_Checking::type(transaction) != Model_Checking::TRANSFER)
+            if (!Model_Checking::is_transfer(&transaction))
             {
                 categoryStats[categID][transaction.SUBCATEGID][idx] += Model_Checking::balance(transaction) * convRate;
             }
