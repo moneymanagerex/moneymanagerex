@@ -62,7 +62,7 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     , accountID_(accountID)
     , skip_attachments_init_(false)
 {
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
+    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     wxString heading = _("New Stock Investment");
     if (edit_) heading = _("Edit Stock Investment");
     Create(parent, wxID_ANY, heading, wxDefaultPosition, wxSize(400, 300), style);
