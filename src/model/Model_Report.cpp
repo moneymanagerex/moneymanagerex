@@ -379,11 +379,10 @@ bool Model_Report::getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <
         wxString temp = sql;
         temp.Trim();
         if (temp.Last() != ';') temp += ';';
-        wxLogDebug(temp);
         wxSQLite3Statement stmt = this->db_->PrepareStatement(temp);
         if (!stmt.IsReadOnly())
             return false;
-        wxSQLite3ResultSet q = stmt.ExecuteQuery();
+        q = stmt.ExecuteQuery();
         columnCount = q.GetColumnCount();
     }
     catch (const wxSQLite3Exception& /*e*/)
