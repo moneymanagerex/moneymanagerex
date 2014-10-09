@@ -64,6 +64,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , categUpdated_(false)
     , m_transfer(false)
     , m_advanced(false)
+    , m_duplicate(duplicate)
     , skip_account_init_(false)
     , skip_payee_init_(false)
     , skip_status_init_(false)
@@ -75,8 +76,8 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_amount_init_(false)
 {
     Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);
-    m_new_trx = !transaction || duplicate ? true : false;
-    if (!m_new_trx || duplicate) 
+    m_new_trx = !transaction || m_duplicate ? true : false;
+    if (!m_new_trx || m_duplicate)
     {
         Model_Checking::getTransactionData(m_trx_data, transaction);
         for (const auto& item : Model_Checking::splittransaction(transaction))
@@ -122,7 +123,8 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     GetSizer()->SetSizeHints(this);
 
     SetIcon(mmex::getProgramIcon());
-    SetDialogTitle(m_new_trx ? _("New Transaction") : _("Edit Transaction"));
+    m_duplicate ? SetDialogTitle(_("Duplicate Transaction"))
+                : SetDialogTitle(m_new_trx ? _("New Transaction") : _("Edit Transaction"));
 
     Centre();
     Fit();
@@ -232,7 +234,7 @@ void mmTransDialog::dataToControls()
                 local_splits.clear();
             }
 
-            if (m_new_trx)
+            if (m_new_trx && !m_duplicate)
             {
                 const auto &categs = Model_Category::instance().find(Model_Category::CATEGNAME(wxGetTranslation("Transfer")));
                 if (!categs.empty())
