@@ -550,16 +550,50 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
     }
 }
 
+bool mmUnivCSVDialog::validateData()
+{
+    if (dt_.Trim().IsEmpty() || amount_.Trim().IsEmpty() || type_.Trim().IsEmpty())
+        return false;
+
+    if (payeeID_ == -1) {
+        Model_Payee::Data* payee = Model_Payee::instance().get(_("Unknown"));
+        if (payee)
+            payeeID_ = payee->PAYEEID;
+        else
+        {
+            Model_Payee::Data *p = Model_Payee::instance().create();
+            p->PAYEENAME = _("Unknown");
+            p->CATEGID = -1;
+            p->SUBCATEGID = -1;
+            payeeID_ = Model_Payee::instance().save(p);
+            const wxString& sMsg = wxString::Format(_("Added payee: %s"), p->PAYEENAME);
+            log_field_->AppendText(wxString() << sMsg << "\n");
+        }
+    }
+
+    if (categID_ == -1) {
+        Model_Category::Data* categ = Model_Category::instance().get(_("Unknown"));
+        if (categ)
+            categID_ = categ->CATEGID;
+        else
+        {
+            Model_Category::Data *c = Model_Category::instance().create();
+            c->CATEGNAME = _("Unknown");
+            categID_ = Model_Category::instance().save(c);
+        }
+    }
+
+    return true;
+}
+
 void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 {
     // date, amount, payee are required
-    if (!isIndexPresent(UNIV_CSV_DATE) ||
-        !isIndexPresent(UNIV_CSV_PAYEE) ||
-        (!isIndexPresent(UNIV_CSV_AMOUNT) && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) ||
-        !isIndexPresent(UNIV_CSV_DEPOSIT))))
+    if (!isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT) 
+        && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) || !isIndexPresent(UNIV_CSV_DEPOSIT))))
     {
-         wxMessageBox(_("Incorrect fields specified for CSV import! Requires at least Date, Amount and Payee."),
-                      _("Universal CSV Import"), wxOK|wxICON_WARNING);
+         wxMessageBox(_("Incorrect fields specified for CSV import! Requires at least Date and Amount.")
+             , _("Universal CSV Import"), wxOK | wxICON_WARNING);
          return;
     }
 
@@ -658,48 +692,37 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                     }
                 }
 
-                if (dt_.Trim().IsEmpty() || payeeID_ == -1 ||
-                    amount_.Trim().IsEmpty() ||  type_.Trim().IsEmpty())
-                {
+                if (!validateData()) {
                     log << wxString::Format(_("Line: %i"), countNumTotal)
-                        << _(" One of the following fields: Date, Payee, Amount, Type is missing, skipping") << endl;
+                        << _(" One of the following fields: Date, Amount, Type is missing, skipping") << endl;
                     *log_field_ << wxString::Format(_("Line: %i"), countNumTotal)
-                        << _(" One of the following fields: Date, Payee, Amount, Type is missing, skipping") << "\n";
+                        << _(" One of the following fields: Date, Amount, Type is missing, skipping") << "\n";
+
                     continue;
                 }
 
-                if (categID_ == -1)
-                {
-                    Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
-                    if (payee)
-                    {
-                        categID_ = payee->CATEGID;
-                        subCategID_ = payee->SUBCATEGID;
-                    }
-                }
+                wxString status = "F";
+                int toAccountID = -1;
 
-               wxString status = "F";
-               int toAccountID = -1;
+                Model_Checking::Data *pTransaction = Model_Checking::instance().create();
+                pTransaction->TRANSDATE = dtdt_.FormatISODate();
+                pTransaction->ACCOUNTID = fromAccountID_;
+                pTransaction->TOACCOUNTID = toAccountID;
+                pTransaction->PAYEEID = payeeID_;
+                pTransaction->TRANSCODE = type_;
+                pTransaction->TRANSAMOUNT = val_;
+                pTransaction->TOTRANSAMOUNT = 0.0;
+                pTransaction->CATEGID = categID_;
+                pTransaction->SUBCATEGID = subCategID_;
+                pTransaction->STATUS = status;
+                pTransaction->TRANSACTIONNUMBER = transNum_;
+                pTransaction->NOTES = notes_;
 
-               Model_Checking::Data *pTransaction = Model_Checking::instance().create();
-               pTransaction->TRANSDATE = dtdt_.FormatISODate();
-               pTransaction->ACCOUNTID = fromAccountID_;
-               pTransaction->TOACCOUNTID = toAccountID;
-               pTransaction->PAYEEID = payeeID_;
-               pTransaction->TRANSCODE = type_;
-               pTransaction->TRANSAMOUNT = val_;
-               pTransaction->TOTRANSAMOUNT = 0.0;
-               pTransaction->CATEGID = categID_;
-               pTransaction->SUBCATEGID = subCategID_;
-               pTransaction->STATUS = status;
-               pTransaction->TRANSACTIONNUMBER = transNum_;
-               pTransaction->NOTES = notes_;
+                Model_Checking::instance().save(pTransaction);
 
-               Model_Checking::instance().save(pTransaction);
-
-               countImported++;
-               log << wxString::Format(_("Line : %i imported OK."), countNumTotal) << endl;
-               *log_field_ << wxString::Format(_("Line : %i imported OK."), countNumTotal) << "\n";
+                countImported++;
+                log << wxString::Format(_("Line : %i imported OK."), countNumTotal) << endl;
+                *log_field_ << wxString::Format(_("Line : %i imported OK."), countNumTotal) << "\n";
             }
 
             progressDlg.Update(100);
@@ -718,16 +741,16 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 canceledbyuser = true;
 
             if (countImported > 0)
-                msg << _ ("Imported transactions have been flagged so you can review them.");
+                msg << _("Imported transactions have been flagged so you can review them.");
 
             // Since all database transactions are only in memory,
             if (!canceledbyuser)
             {
                 // we need to save them to the database.
                 Model_Checking::instance().Commit();
-				mmWebApp::MMEX_WebApp_UpdateAccount();
-				mmWebApp::MMEX_WebApp_UpdatePayee();
-				mmWebApp::MMEX_WebApp_UpdateCategory();
+                mmWebApp::MMEX_WebApp_UpdateAccount();
+                mmWebApp::MMEX_WebApp_UpdatePayee();
+                mmWebApp::MMEX_WebApp_UpdateCategory();
                 importSuccessful_ = true;
                 msg << _("Transactions saved to database in account: ") << acctName;
             }
@@ -735,177 +758,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             {
                 // and discard the database changes.
                 Model_Checking::instance().Rollback();
-                msg  << _("Imported transactions discarded by user!");
-            }
-
-            *log_field_ << msg;
-
-            outputLog.Close();
-        }
-    }
-
-    if (!canceledbyuser) Close();
-}
-
-void mmUnivCSVDialog::OnImport2(wxCommandEvent& /*event*/)
-{
-    // date, amount, payee are required
-    if (!isIndexPresent(UNIV_CSV_DATE) ||
-        !isIndexPresent(UNIV_CSV_PAYEE) ||
-        (!isIndexPresent(UNIV_CSV_AMOUNT) && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) ||
-        !isIndexPresent(UNIV_CSV_DEPOSIT))))
-    {
-         wxMessageBox(_("Incorrect fields specified for CSV import! Requires at least Date, Amount and Payee."),
-                      _("Universal CSV Import"), wxOK|wxICON_WARNING);
-         return;
-    }
-
-    bool canceledbyuser = false;
-    wxString acctName = m_choice_account_->GetStringSelection();
-    Model_Account::Data* from_account = Model_Account::instance().get(acctName);
-
-    if (from_account)
-    {
-        fromAccountID_ = from_account->ACCOUNTID;
-        wxString fileName = m_text_ctrl_->GetValue();
-        wxFileName csv_file(fileName);
-        if (fileName.IsEmpty() || !csv_file.FileExists())
-        {
-            return;
-        }
-        else
-        {
-            csv_parser file_parser;
-            file_parser.init(fileName.ToStdString().c_str());
-            /* Here we tell the parser how to parse the file */
-            /*
-            file_parser.set_enclosed_char(enclosure_char, ENCLOSURE_OPTIONAL);
-            file_parser.set_field_term_char(field_terminator);
-            file_parser.set_line_term_char(line_terminator);
-            */
-
-            wxFileName logFile = mmex::GetLogDir(true);
-            logFile.SetFullName(fileName);
-            logFile.SetExt("txt");
-
-            wxFileOutputStream outputLog(logFile.GetFullPath());
-            wxTextOutputStream log(outputLog);
-
-            /* date, payeename, amount(+/-), Number, status, category : subcategory, notes */
-            
-            int countNumTotal = 0;
-            int countImported = 0;
-
-            wxProgressDialog progressDlg(_("Universal CSV Import"),
-                _("Transactions imported from CSV: "), 100,
-                nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
-            Model_Checking::instance().Begin();
-
-            while (file_parser.has_more_rows())
-            {
-                dt_.clear();
-                payee_.clear();
-                type_.clear();
-                amount_.clear();
-                categ_.clear();
-                subcateg_.clear();
-                transNum_.clear();
-                notes_.clear();
-                payeeID_ = -1;
-                categID_ = -1;
-                subCategID_ = -1;
-                val_ = 0.0;
-
-                csv_row row = file_parser.get_row();
-                if (row.size() < csvFieldOrder_.size())
-                {
-                    log << wxString::Format(_("Line: %i"), countNumTotal)
-                        << _(" file contains insufficient number of tokens") << endl;
-                    *log_field_ << wxString::Format(_("Line: %i"), countNumTotal)
-                        << _(" file contains insufficient number of tokens") << "\n";
-                    continue;
-                }
-
-                for (size_t i = 0; i < csvFieldOrder_.size(); ++i)
-                {
-                    parseToken(csvFieldOrder_[i], wxString(row[i]));
-                }
-
-                if (dt_.Trim().IsEmpty() || payeeID_ == -1 ||
-                    amount_.Trim().IsEmpty() ||  type_.Trim().IsEmpty())
-                {
-                    log << wxString::Format(_("Line: %i"), countNumTotal)
-                        << _(" One of the following fields: Date, Payee, Amount, Type is missing, skipping") << endl;
-                    *log_field_ << wxString::Format(_("Line: %i"), countNumTotal)
-                        << _(" One of the following fields: Date, Payee, Amount, Type is missing, skipping") << "\n";
-                    continue;
-                }
-
-                if (categID_ == -1)
-                {
-                    Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
-                    if (payee)
-                    {
-                        categID_ = payee->CATEGID;
-                        subCategID_ = payee->SUBCATEGID;
-                    }
-                }
-
-               wxString status = "F";
-               int toAccountID = -1;
-
-               Model_Checking::Data *pTransaction = Model_Checking::instance().create();
-               pTransaction->TRANSDATE = dtdt_.FormatISODate();
-               pTransaction->ACCOUNTID = fromAccountID_;
-               pTransaction->TOACCOUNTID = toAccountID;
-               pTransaction->PAYEEID = payeeID_;
-               pTransaction->TRANSCODE = type_;
-               pTransaction->TRANSAMOUNT = val_;
-               pTransaction->TOTRANSAMOUNT = 0.0;
-               pTransaction->CATEGID = categID_;
-               pTransaction->SUBCATEGID = subCategID_;
-               pTransaction->STATUS = status;
-               pTransaction->TRANSACTIONNUMBER = transNum_;
-               pTransaction->NOTES = notes_;
-
-               Model_Checking::instance().save(pTransaction);
-
-               countImported++;
-               log << wxString::Format(_("Line : %i imported OK."), countNumTotal) << endl;
-               *log_field_ << wxString::Format(_("Line : %i imported OK."), countNumTotal) << "\n";
-            }
-
-            wxString msg = wxString::Format(_("Total Lines : %i"), countNumTotal);
-            msg << "\n";
-            msg << wxString::Format(_("Total Imported : %ld"), countImported);
-            msg << "\n\n";
-            msg << wxString::Format(_("Log file written to : %s"), logFile.GetFullPath());
-            msg << "\n\n";
-
-            wxString confirmMsg = msg + _("Please confirm saving...");
-            if (!canceledbyuser && wxMessageBox(confirmMsg
-                , _("Importing CSV"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxCANCEL)
-                canceledbyuser = true;
-
-            if (countImported > 0)
-                msg << _ ("Imported transactions have been flagged so you can review them.");
-
-            // Since all database transactions are only in memory,
-            if (!canceledbyuser)
-            {
-                // we need to save them to the database.
-                Model_Checking::instance().Commit();
-				mmWebApp::MMEX_WebApp_UpdateAccount();
-				mmWebApp::MMEX_WebApp_UpdatePayee();
-				mmWebApp::MMEX_WebApp_UpdateCategory();
-                importSuccessful_ = true;
-                msg << _("Transactions saved to database in account: ") << acctName;
-            }
-            else
-            {
-                // and discard the database changes.
-                Model_Checking::instance().Rollback();
-                msg  << _("Imported transactions discarded by user!");
+                msg << _("Imported transactions discarded by user!");
             }
 
             *log_field_ << msg;
@@ -1407,9 +1260,9 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token)
 {
     wxString token = orig_token;
     if (token.Trim().IsEmpty()) return;
-    Model_Payee::Data* payee = 0;
-    Model_Category::Data* category = 0;
-    Model_Subcategory::Data* sub_category = 0;
+    Model_Payee::Data* payee = nullptr;
+    Model_Category::Data* category = nullptr;
+    Model_Subcategory::Data* sub_category = nullptr;
 
     switch (index)
     {
