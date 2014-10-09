@@ -106,6 +106,7 @@ private:
 
     bool m_transfer;
     bool m_new_trx;
+    bool m_duplicate;
     bool categUpdated_;
     bool m_advanced;
 
