@@ -144,8 +144,8 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void OnAdd(wxCommandEvent& event);
+    bool validateData();
     void OnImport(wxCommandEvent& event);
-    void OnImport2(wxCommandEvent& event);
     void OnExport(wxCommandEvent& event);
     void OnRemove(wxCommandEvent& event);
     bool isIndexPresent(int index) const;
