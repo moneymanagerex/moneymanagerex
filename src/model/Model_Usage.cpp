@@ -161,10 +161,10 @@ bool Model_Usage::send(const Data* r)
     url += "&";
     url += wxString::Format("End_Time=%s", wxString(json::String(o[L"end"])));
 
-    wxLogDebug(url);
+    wxLogDebug("%s", url);
     wxString dummy;
     int sendResult = site_content(url,  dummy);
-    wxLogDebug(dummy);
+    wxLogDebug("%s", dummy);
     
     if (sendResult == wxURL_NOERR)
         return true;
