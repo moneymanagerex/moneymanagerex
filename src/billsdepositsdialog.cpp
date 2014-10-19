@@ -885,6 +885,12 @@ void mmBDDialog::onNoteSelected(wxCommandEvent& event)
 
 void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
 {
+    if (m_bill_data.ACCOUNTID == 0)
+    {
+        mmShowErrorMessageInvalid(this, _("Account"));
+        return;
+    }
+
     if (m_bill_data.PAYEEID == -1)
     {
         if (transaction_type_->GetSelection() != Model_Billsdeposits::TRANSFER)
