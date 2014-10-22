@@ -1210,8 +1210,11 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
     }
     else
     {
-        for (auto& tran: m_cp->m_trans)
+        for (auto& tran : m_cp->m_trans)
+        {
+            tran.NOTES.Replace(mmAttachmentManage::GetAttachmentNoteSign(), wxEmptyString, true);
             tran.STATUS = status;
+        }
         Model_Checking::instance().save(m_cp->m_trans);
     }
 
