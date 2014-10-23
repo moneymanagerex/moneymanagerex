@@ -159,7 +159,7 @@ wxString mmex::getPathResource(EResFile f)
 }
 //----------------------------------------------------------------------------
 
-wxString mmex::getPathShared(ESharedFile f)
+const wxString mmex::getPathShared(ESharedFile f)
 {
     static const wxString files[SHARED_FILES_MAX] = {
       "po"
@@ -174,7 +174,7 @@ wxString mmex::getPathShared(ESharedFile f)
 }
 //----------------------------------------------------------------------------
 
-wxString mmex::getPathUser(EUserFile f)
+const wxString mmex::getPathUser(EUserFile f)
 {
     static const wxString files[USER_FILES_MAX] = {
       getSettingsFileName(),
@@ -190,7 +190,11 @@ wxString mmex::getPathUser(EUserFile f)
 }
 //----------------------------------------------------------------------------
 
-wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
+/*
+  This function transforms mnemonic pathes to real one
+  For example %USERPROFILE%\MyBudget will be transformed to C:\Users\James\MyBudget
+*/
+const wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
 {
 	if (attachmentsFolder == wxEmptyString)
 		return wxEmptyString;
@@ -198,24 +202,23 @@ wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
     wxString AttachmentsFolder = attachmentsFolder;
     const wxString sep = wxFileName::GetPathSeparator();
     const wxString LastDBPath = Model_Setting::instance().getLastDbPath();
-    const wxFileName fn(LastDBPath);
-    const wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
-    const wxString LastDBFolder = fn.FileName(LastDBPath).GetPath();
-	const wxString UserFolder = mmex::GetUserDir(false).GetPath();
-    const wxString subFolder = wxString::Format("%sMMEX_%s_Attachments", sep, LastDBFileName);
+    const wxString& LastDBFolder = wxFileName::FileName(LastDBPath).GetPath() + sep;
+    const wxString& UserFolder = mmex::GetUserDir(false).GetPath() + sep;
 
-	if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_USERPROFILE))
-		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_USERPROFILE, wxGetHomeDir() + sep);
-    else if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_DOCUMENTS))
-        AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_DOCUMENTS, wxStandardPaths::Get().GetDocumentsDir() + sep);
-    else if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_DATABASE))
-		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_DATABASE, LastDBFolder + sep);
-    else if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_APPDATA))
-		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_APPDATA, UserFolder + sep);
-    if (AttachmentsFolder.EndsWith(sep))
-		AttachmentsFolder = AttachmentsFolder.RemoveLast(1);
+    if (attachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_USERPROFILE, &AttachmentsFolder))
+		AttachmentsFolder.Prepend(wxGetHomeDir() + sep);
+    else if (attachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_DOCUMENTS, &AttachmentsFolder))
+        AttachmentsFolder.Prepend(wxStandardPaths::Get().GetDocumentsDir() + sep);
+    else if (attachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_DATABASE, &AttachmentsFolder))
+        AttachmentsFolder.Prepend(LastDBFolder);
+    else if (attachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_APPDATA, &AttachmentsFolder))
+        AttachmentsFolder.Prepend(UserFolder);
+    
+    if (AttachmentsFolder.Last() == sep)
+        AttachmentsFolder.RemoveLast(1);
 	if (Model_Infotable::instance().GetBoolInfo("ATTACHMENTSSUBFOLDER", true))
-		AttachmentsFolder += subFolder;
+        AttachmentsFolder += wxString::Format("%sMMEX_%s_Attachments", sep, wxFileName::FileName(LastDBPath).GetName());
+
     return AttachmentsFolder;
 }
 
