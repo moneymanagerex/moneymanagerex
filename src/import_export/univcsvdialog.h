@@ -92,7 +92,6 @@ private:
         UNIV_CSV_DONTCARE,
         UNIV_CSV_WITHDRAWAL,
         UNIV_CSV_DEPOSIT,
-        UNIV_CSV_TOAMOUNT,
         UNIV_CSV_BALANCE,
         UNIV_CSV_LAST
     };
@@ -110,7 +109,7 @@ private:
     wxListCtrl* m_list_ctrl_; //preview
     wxTextCtrl* m_text_ctrl_;
     wxTextCtrl* log_field_;
-    wxTextCtrl* textDelimiter4;
+    wxTextCtrl* m_textDelimiter;
 
     std::map<int, wxString> CSVFieldName_;
 
@@ -132,6 +131,7 @@ private:
 
     int fromAccountID_;
     bool importSuccessful_;
+    int m_oject_in_focus;
 
     /// Creation
     bool Create(wxWindow* parent,
@@ -144,14 +144,13 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void OnAdd(wxCommandEvent& event);
+    bool validateData();
     void OnImport(wxCommandEvent& event);
-    void OnImport2(wxCommandEvent& event);
     void OnExport(wxCommandEvent& event);
     void OnRemove(wxCommandEvent& event);
     bool isIndexPresent(int index) const;
     const wxString getCSVFieldName(int index) const;
     void parseToken(int index, const wxString& token);
-    void OnLoad(wxCommandEvent& event);
     void OnSave(wxCommandEvent& event);
     void OnMoveUp(wxCommandEvent& event);
     void OnMoveDown(wxCommandEvent& event);
@@ -164,11 +163,18 @@ private:
     void OnFileNameEntered(wxCommandEvent& event);
     void OnFileNameChanged(wxCommandEvent& event);
     void OnDateFormatChanged(wxCommandEvent& event);
+    void changeFocus(wxChildFocusEvent& event);
 
+    void OnLoad();
     void update_preview();
+    void initDelimiter();
+    void initDateMask();
 
     wxBitmap GetBitmapResource(const wxString& name);
     wxIcon GetIconResource(const wxString& name);
     const bool ShowToolTips();
+    void OnSettingsSelected(wxCommandEvent& event);
+    wxString GetStoredSettings(int id);
+    void SetSettings(const wxString &data);
 };
 #endif
