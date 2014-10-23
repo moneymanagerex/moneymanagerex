@@ -339,6 +339,8 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
+    /* Load Colors from Database */
+    mmLoadColorsFromDatabase();
 }
 //----------------------------------------------------------------------------
 
@@ -2678,6 +2680,8 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
         cleanupHomePanel();
         showBeginAppDialog(true);
     }
+    /* Load Colors from Database */
+    mmLoadColorsFromDatabase();
 }
 //----------------------------------------------------------------------------
 
@@ -2729,7 +2733,7 @@ void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
     int fileNum = event.GetId() - m_recentFiles->GetBaseId();
     if (fileNum == 0)
         return;
-    wxString file_name = m_recentFiles->GetHistoryFile(fileNum);
+    const wxString file_name = m_recentFiles->GetHistoryFile(fileNum);
     wxFileName file(file_name);
     if (file.FileExists())
     {
