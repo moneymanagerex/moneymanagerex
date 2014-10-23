@@ -19,8 +19,10 @@
 
 #include "htmlbuilder.h"
 #include "util.h"
+#include "paths.h"
 #include "mmOption.h"
 #include "constants.h"
+#include "attachmentdialog.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
 
@@ -524,10 +526,13 @@ mm_html_template::mm_html_template(const wxString& arg_template): html_template(
 
 void mm_html_template::load_context()
 {
-    (*this)(L"TODAY") = wxDateTime::Today().FormatDate();
-    for (const auto &r: Model_Infotable::instance().all())
+    for (const auto &r : Model_Infotable::instance().all())
+    {
         (*this)(r.INFONAME.ToStdWstring()) = r.INFOVALUE;
+    }
     (*this)(L"INFOTABLE") = Model_Infotable::to_loop_t();
+    (*this)(L"TODAY") = wxDateTime::Today().FormatDate();
+    //TODO: Print Time
 
     const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
     if (currency) currency->to_template(*this);
