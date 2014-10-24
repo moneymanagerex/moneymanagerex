@@ -214,10 +214,10 @@ const wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
     else if (attachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_APPDATA, &AttachmentsFolder))
         AttachmentsFolder.Prepend(UserFolder);
     
-    if (AttachmentsFolder.Last() == sep)
-        AttachmentsFolder.RemoveLast(1);
+    if (AttachmentsFolder.Last() != sep)
+        AttachmentsFolder.Append(sep);
 	if (Model_Infotable::instance().GetBoolInfo("ATTACHMENTSSUBFOLDER", true))
-        AttachmentsFolder += wxString::Format("%sMMEX_%s_Attachments", sep, wxFileName::FileName(LastDBPath).GetName());
+        AttachmentsFolder += wxString::Format("MMEX_%s_Attachments%s", wxFileName::FileName(LastDBPath).GetName(), sep);
 
     return AttachmentsFolder;
 }

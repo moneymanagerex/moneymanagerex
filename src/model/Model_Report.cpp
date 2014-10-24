@@ -271,7 +271,13 @@ wxString Model_Report::get_html(const Data* r)
         std::wstringstream ss;
         json::Writer::Write(jsoncontents, ss);
         report(L"JSONCONTENTS") = wxString(ss.str());
-        report(L"ATTACHMENTSFOLDER") = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
+        auto p = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
+        //javascript does not handle backslashs
+        p.Replace("\\", "\\\\");
+        report(L"ATTACHMENTSFOLDER") = p;
+        auto s = wxString(wxFileName::GetPathSeparator());
+        s.Replace("\\", "\\\\");
+        report(L"FILESEPARATOR") = s;
         wxLogDebug("Attachments folder:%s", mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()));
     }
     report(L"ERRORS") = errors;
