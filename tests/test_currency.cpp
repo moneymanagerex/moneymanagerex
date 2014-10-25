@@ -113,7 +113,7 @@ void Test_Currency::TwoDigitPrecision()
     CPPUNIT_ASSERT(value == "NT$12.345,12 - MOD");
 
     value = currency.fromString2Default("NT$12.345,1234 - MOD", taiwan_record);
-    CPPUNIT_ASSERT(value == "NT$12345.1234 - MOD");
+    CPPUNIT_ASSERT(value == "NT$12345.1234-MOD");
 
     value = currency.fromString2Default("12.345,1234", taiwan_record);
     CPPUNIT_ASSERT(value == "12345.1234");
