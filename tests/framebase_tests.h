@@ -34,7 +34,8 @@ public:
     */
     TestFrameBase(wxWindow* parent, int size_x, int size_y);
     ~TestFrameBase();
-
+    
+    /** Constructor used to create the instruction page*/
     TestFrameBase(wxWindow* parent, const wxString& heading = "Test: User Action Request");
     void Show_InfoBarMessage(const wxString& info_message);
 
