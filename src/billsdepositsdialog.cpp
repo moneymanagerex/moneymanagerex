@@ -894,10 +894,15 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     if (m_bill_data.PAYEEID == -1)
     {
         if (transaction_type_->GetSelection() != Model_Billsdeposits::TRANSFER)
+        {
             mmShowErrorMessageInvalid(this, _("Payee"));
-        else
+            return;
+        }
+        else if (m_bill_data.TOACCOUNTID < 0)
+        {
             mmShowErrorMessageInvalid(this, _("From Account"));
-        return;
+            return;
+        }
     }
 
     if (cSplit_->GetValue())
