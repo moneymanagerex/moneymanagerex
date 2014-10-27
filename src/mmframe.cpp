@@ -341,8 +341,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
-    /* Load Colors from Database */
-    mmLoadColorsFromDatabase();
 }
 //----------------------------------------------------------------------------
 
