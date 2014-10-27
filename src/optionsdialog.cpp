@@ -271,6 +271,7 @@ void mmOptionsDialog::CreateControls()
 
     wxSpinCtrl *textFPSDay = new wxSpinCtrl(generalPanel, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 31, day);
+    textFPSDay->SetValue(day);
     textFPSDay->SetToolTip(_("Specify Day for start of financial year"));
 
     financialYearStaticBoxSizerGrid->Add(textFPSDay, g_flags);
@@ -678,6 +679,7 @@ void mmOptionsDialog::CreateControls()
     int max = Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4);
     scMax_files_ = new wxSpinCtrl(othersPanel, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 999, max);
+    scMax_files_->SetValue(max);
     scMax_files_->SetToolTip(_("Specify max number of backup files"));
 
     wxFlexGridSizer* flex_sizer2 = new wxFlexGridSizer(0,2,0,0);
@@ -750,6 +752,7 @@ void mmOptionsDialog::CreateControls()
     int proxyPort = Model_Setting::instance().GetIntSetting("PROXYPORT", 0);
     scProxyPort_ = new wxSpinCtrl(networkPanel, wxID_ANY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 65535, proxyPort);
+    scProxyPort_->SetValue(proxyPort);
     scProxyPort_->SetToolTip(_("Specify proxy port number"));
 
     wxFlexGridSizer* flex_sizer3 = new wxFlexGridSizer(0, 4, 0, 0);
@@ -776,6 +779,7 @@ void mmOptionsDialog::CreateControls()
     int webserverPort = Model_Setting::instance().GetIntSetting("WEBSERVERPORT", 8080);
     scWebServerPort_ = new wxSpinCtrl(networkPanel, ID_DIALOG_OPTIONS_WEB_SERVER_PORT,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 65535, webserverPort);
+    scWebServerPort_->SetValue(webserverPort);
     scWebServerPort_->SetToolTip(_("Specify web server port number"));
 
     wxFlexGridSizer* flex_sizer4 = new wxFlexGridSizer(0, 4, 0, 0);
@@ -812,6 +816,7 @@ void mmOptionsDialog::CreateControls()
     int nTimeout = Model_Setting::instance().GetIntSetting("NETWORKTIMEOUT", 10);
     scNetworkTimeout_ = new wxSpinCtrl(networkPanel, ID_DIALOG_OPTIONS_NETWORK_TIMEOUT,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 150, nTimeout);
+    scNetworkTimeout_->SetValue(nTimeout);
     scNetworkTimeout_->SetToolTip(_("Specify a network communication timeout value to use."));
 
     wxFlexGridSizer* flex_sizer5 = new wxFlexGridSizer(0, 2, 0, 0);

@@ -293,7 +293,7 @@ void mmStockDialog::CreateControls()
     wxListItem col2;
     col2.SetId(2);
     col2.SetText( _("Diff.") );
-    col2.SetWidth(50);
+    col2.SetWidth(80);
     priceListBox_->InsertColumn(2, col2);
 }
 
