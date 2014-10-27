@@ -23,6 +23,7 @@
 #include "paths.h"
 #include "constants.h"
 #include "singleton.h"
+#include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include <wx/richtooltip.h>
 #include <wx/sstream.h>
@@ -147,13 +148,13 @@ const wxString inQuotes(const wxString& l, const wxString& delimiter)
 
 void mmLoadColorsFromDatabase()
 {
-    mmColors::userDefColor1   = Model_Setting::instance().GetColourSetting("USER_COLOR1", wxColour(255,0,0));
-    mmColors::userDefColor2   = Model_Setting::instance().GetColourSetting("USER_COLOR2", wxColour(255,165,0));
-    mmColors::userDefColor3   = Model_Setting::instance().GetColourSetting("USER_COLOR3", wxColour(255,255,0));
-    mmColors::userDefColor4   = Model_Setting::instance().GetColourSetting("USER_COLOR4", wxColour(0,255,0));
-    mmColors::userDefColor5   = Model_Setting::instance().GetColourSetting("USER_COLOR5", wxColour(0,255,255));
-    mmColors::userDefColor6   = Model_Setting::instance().GetColourSetting("USER_COLOR6", wxColour(0,0,255));
-    mmColors::userDefColor7   = Model_Setting::instance().GetColourSetting("USER_COLOR7", wxColour(0,0,128));
+    mmColors::userDefColor1 = Model_Infotable::instance().GetColourSetting("USER_COLOR1", wxColour(255, 0, 0));
+    mmColors::userDefColor2 = Model_Infotable::instance().GetColourSetting("USER_COLOR2", wxColour(255, 165, 0));
+    mmColors::userDefColor3 = Model_Infotable::instance().GetColourSetting("USER_COLOR3", wxColour(255, 255, 0));
+    mmColors::userDefColor4 = Model_Infotable::instance().GetColourSetting("USER_COLOR4", wxColour(0, 255, 0));
+    mmColors::userDefColor5 = Model_Infotable::instance().GetColourSetting("USER_COLOR5", wxColour(0, 255, 255));
+    mmColors::userDefColor6 = Model_Infotable::instance().GetColourSetting("USER_COLOR6", wxColour(0, 0, 255));
+    mmColors::userDefColor7 = Model_Infotable::instance().GetColourSetting("USER_COLOR7", wxColour(0, 0, 128));
 }
 
 /* Set the default colors */

@@ -1009,25 +1009,6 @@ void mmOptionsDialog::OnAttachmentsSubfolderChanged(wxCommandEvent& event)
     mmOptionsDialog::OnAttachmentsPathChanged(event);
 }
 
-void mmOptionsDialog::SaveViewAccountOptions()
-{
-    int selection = choiceVisible_->GetSelection();
-    int row_id_ = 0;
-    wxArrayString viewAcct = viewAccountStrings(false, wxEmptyString, row_id_);
-    Model_Setting::instance().Set("VIEWACCOUNTS", viewAcct[selection]);
-}
-
-void mmOptionsDialog::SaveViewTransactionOptions()
-{
-    wxString visible = VIEW_TRANS_ALL_STR;
-    wxStringClientData* visible_obj = (wxStringClientData *)choiceTransVisible_->GetClientObject(choiceTransVisible_->GetSelection());
-    if (visible_obj)
-    {
-        visible = visible_obj->GetData();
-    }
-    Model_Setting::instance().Set("VIEWTRANSACTIONS", visible);
-}
-
 void mmOptionsDialog::SaveFinancialYearStart()
 {
     //Save Financial Year Start Day
@@ -1061,9 +1042,10 @@ void mmOptionsDialog::SaveStocksUrl()
 /// Saves the updated System Options to the appropriate databases.
 void mmOptionsDialog::SaveNewSystemSettings()
 {
-    // initialize database saves -------------------------------------------------------------
+    // initialize databases saves -------------------------------------------------------------
     
     Model_Setting::instance().Begin();
+    Model_Infotable::instance().Begin();
 
     // Save all the details for all the panels
     SaveGeneralPanelSettings();
@@ -1072,8 +1054,9 @@ void mmOptionsDialog::SaveNewSystemSettings()
     SaveOthersPanelSettings();
     SaveNetworkPanelSettings();
 
-    // finalise database saves ---------------------------------------------------------------
+    // finalise databases saves ---------------------------------------------------------------
     Model_Setting::instance().Commit();
+    Model_Infotable::instance().Commit();
 }
 
 void mmOptionsDialog::SaveGeneralPanelSettings()
@@ -1096,8 +1079,18 @@ void mmOptionsDialog::SaveGeneralPanelSettings()
 
 void mmOptionsDialog::SaveViewPanelSettings()
 {
-    SaveViewAccountOptions();
-    SaveViewTransactionOptions();
+    int selection = choiceVisible_->GetSelection();
+    int row_id_ = 0;
+    wxArrayString viewAcct = viewAccountStrings(false, wxEmptyString, row_id_);
+    Model_Setting::instance().Set("VIEWACCOUNTS", viewAcct[selection]);
+
+    wxString visible = VIEW_TRANS_ALL_STR;
+    wxStringClientData* visible_obj = (wxStringClientData *) choiceTransVisible_->GetClientObject(choiceTransVisible_->GetSelection());
+    if (visible_obj)
+    {
+        visible = visible_obj->GetData();
+    }
+    Model_Setting::instance().Set("VIEWTRANSACTIONS", visible);
 
     int size = choiceFontSize_->GetCurrentSelection() + 1;
     mmIniOptions::instance().html_font_size_ = size;
@@ -1126,13 +1119,13 @@ void mmOptionsDialog::SaveViewPanelSettings()
     mmColors::userDefColor6 = UDFCB6_->GetBackgroundColour();
     mmColors::userDefColor7 = UDFCB7_->GetBackgroundColour();
 
-    Model_Setting::instance().Set("USER_COLOR1", mmColors::userDefColor1);
-    Model_Setting::instance().Set("USER_COLOR2", mmColors::userDefColor2);
-    Model_Setting::instance().Set("USER_COLOR3", mmColors::userDefColor3);
-    Model_Setting::instance().Set("USER_COLOR4", mmColors::userDefColor4);
-    Model_Setting::instance().Set("USER_COLOR5", mmColors::userDefColor5);
-    Model_Setting::instance().Set("USER_COLOR6", mmColors::userDefColor6);
-    Model_Setting::instance().Set("USER_COLOR7", mmColors::userDefColor7);
+    Model_Infotable::instance().Set("USER_COLOR1", mmColors::userDefColor1);
+    Model_Infotable::instance().Set("USER_COLOR2", mmColors::userDefColor2);
+    Model_Infotable::instance().Set("USER_COLOR3", mmColors::userDefColor3);
+    Model_Infotable::instance().Set("USER_COLOR4", mmColors::userDefColor4);
+    Model_Infotable::instance().Set("USER_COLOR5", mmColors::userDefColor5);
+    Model_Infotable::instance().Set("USER_COLOR6", mmColors::userDefColor6);
+    Model_Infotable::instance().Set("USER_COLOR7", mmColors::userDefColor7);
 }
 
 void mmOptionsDialog::SaveAttachmentPanelSettings()

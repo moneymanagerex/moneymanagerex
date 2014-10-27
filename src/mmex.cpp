@@ -145,9 +145,6 @@ bool OnInitImpl(mmGUIApp* app)
     /* Force setting MMEX language parameter if it has not been set. */
     mmSelectLanguage(app, 0, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
 
-    /* Load Colors from Database */
-    mmLoadColorsFromDatabase();
-
     /* Load MMEX Custom Settings */
     mmIniOptions::instance().loadOptions();
 
