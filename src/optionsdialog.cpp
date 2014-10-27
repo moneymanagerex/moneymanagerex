@@ -737,7 +737,7 @@ void mmOptionsDialog::CreateControls()
     WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
 
     // Proxy Settings
-    networkPanelSizer->AddSpacer(15);
+    //networkPanelSizer->AddSpacer(15);
 
     wxStaticBox* proxyStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Proxy Settings"));
     proxyStaticBox->SetFont(staticBoxFontSetting);
@@ -764,41 +764,40 @@ void mmOptionsDialog::CreateControls()
     proxyStaticBoxSizer->Add(flex_sizer3, g_flags);
 
     // Web Server Settings
-    networkPanelSizer->AddSpacer(15);
+    //networkPanelSizer->AddSpacer(15);
 
     wxStaticBox* webserverStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Web Server"));
     webserverStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* webserverStaticBoxSizer = new wxStaticBoxSizer(webserverStaticBox, wxVERTICAL);
     networkPanelSizer->Add(webserverStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    cbWebServerCheckBox_ = new wxCheckBox(networkPanel, ID_DIALOG_OPTIONS_ENABLE_WEB_SERVER
+    cbWebServerCheckBox_ = new wxCheckBox(networkPanel, wxID_ANY
         , _("Enable"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbWebServerCheckBox_->SetValue(GetIniDatabaseCheckboxValue("ENABLEWEBSERVER", true));
     cbWebServerCheckBox_->SetToolTip(_("Enable internal web server when MMEX Starts."));
 
     int webserverPort = Model_Setting::instance().GetIntSetting("WEBSERVERPORT", 8080);
-    scWebServerPort_ = new wxSpinCtrl(networkPanel, ID_DIALOG_OPTIONS_WEB_SERVER_PORT,
+    scWebServerPort_ = new wxSpinCtrl(networkPanel, wxID_ANY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 65535, webserverPort);
     scWebServerPort_->SetValue(webserverPort);
     scWebServerPort_->SetToolTip(_("Specify web server port number"));
 
     wxFlexGridSizer* flex_sizer4 = new wxFlexGridSizer(0, 4, 0, 0);
     flex_sizer4->Add(cbWebServerCheckBox_, g_flags);
-    flex_sizer4->AddSpacer(45);
     flex_sizer4->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Port")), g_flags);
     flex_sizer4->Add(scWebServerPort_, g_flags);
 
     webserverStaticBoxSizer->Add(flex_sizer4, g_flags);
 
     //Usage data send
-    networkPanelSizer->AddSpacer(15);
+    //networkPanelSizer->AddSpacer(15);
 
     wxStaticBox* usageStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Usage statistics"));
     usageStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* usageStaticBoxSizer = new wxStaticBoxSizer(usageStaticBox, wxVERTICAL);
     networkPanelSizer->Add(usageStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    cbSendData_ = new wxCheckBox(networkPanel, ID_DIALOG_OPTIONS_ALLOW_SEND_USAGE
+    cbSendData_ = new wxCheckBox(networkPanel, wxID_ANY
         , _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbSendData_->SetValue(GetIniDatabaseCheckboxValue("SENDUSAGESTATS", true));
     cbSendData_->SetToolTip(_("Enable to help us sending anonymous data about MMEX usage."));
@@ -806,7 +805,7 @@ void mmOptionsDialog::CreateControls()
     usageStaticBoxSizer->Add(cbSendData_, g_flags);
 
     // Communication timeout
-    networkPanelSizer->AddSpacer(15);
+    //networkPanelSizer->AddSpacer(15);
 
     wxStaticBox* timeoutStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Timeout"));
     timeoutStaticBox->SetFont(staticBoxFontSetting);
@@ -814,7 +813,7 @@ void mmOptionsDialog::CreateControls()
     networkPanelSizer->Add(timeoutStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     int nTimeout = Model_Setting::instance().GetIntSetting("NETWORKTIMEOUT", 10);
-    scNetworkTimeout_ = new wxSpinCtrl(networkPanel, ID_DIALOG_OPTIONS_NETWORK_TIMEOUT,
+    scNetworkTimeout_ = new wxSpinCtrl(networkPanel, wxID_ANY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 150, nTimeout);
     scNetworkTimeout_->SetValue(nTimeout);
     scNetworkTimeout_->SetToolTip(_("Specify a network communication timeout value to use."));
@@ -824,6 +823,32 @@ void mmOptionsDialog::CreateControls()
     flex_sizer5->Add(scNetworkTimeout_, g_flags);
 
     timeoutStaticBoxSizer->Add(flex_sizer5, g_flags);
+
+    //Updates check
+    //networkPanelSizer->AddSpacer(15);
+
+    wxStaticBox* updateStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Updates"));
+    updateStaticBox->SetFont(staticBoxFontSetting);
+    wxStaticBoxSizer* updateStaticBoxSizer = new wxStaticBoxSizer(updateStaticBox, wxVERTICAL);
+    networkPanelSizer->Add(updateStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    cbCheckUpdate_ = new wxCheckBox(networkPanel, wxID_ANY
+        , _("Check for updates at StartUp"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbCheckUpdate_->SetValue(GetIniDatabaseCheckboxValue("UPDATECHECK", true));
+    cbCheckUpdate_->SetToolTip(_("Enable to automatically check if new MMEX version is available at StartUp"));
+    updateStaticBoxSizer->Add(cbCheckUpdate_, g_flags);
+
+    wxFlexGridSizer* UpdateSourceStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 0);
+    updateStaticBoxSizer->Add(UpdateSourceStaticBoxSizerGrid, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    wxArrayString UpdatesType_;
+    UpdatesType_.Add(_("Stable"));
+    UpdatesType_.Add(_("Unstable"));
+    wxChoice* updatesTypeChoice = new wxChoice(networkPanel, ID_DIALOG_OPTIONS_UPDATES_SOURCE_TYPE
+        , wxDefaultPosition, wxSize(150, -1), UpdatesType_);
+    updatesTypeChoice->SetSelection(Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0));
+    UpdateSourceStaticBoxSizerGrid->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Updates source:")), g_flags);
+    UpdateSourceStaticBoxSizerGrid->Add(updatesTypeChoice, g_flags);
 
     networkPanel->SetSizer(networkPanelSizer);
     
@@ -1192,6 +1217,10 @@ void mmOptionsDialog::SaveNetworkPanelSettings()
     Model_Setting::instance().Set("SENDUSAGESTATS", cbSendData_->GetValue());
     
     Model_Setting::instance().Set("NETWORKTIMEOUT", scNetworkTimeout_->GetValue());
+
+    Model_Setting::instance().Set("UPDATECHECK", cbCheckUpdate_->GetValue());
+    wxChoice* itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_UPDATES_SOURCE_TYPE);
+    Model_Setting::instance().Set("UPDATESOURCE", itemChoice->GetSelection());
 }
 
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)

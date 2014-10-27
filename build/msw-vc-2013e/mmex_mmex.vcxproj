@@ -329,6 +329,7 @@
     <ClCompile Include="..\..\3rd\mongoose\mongoose.c" />
     <ClCompile Include="..\..\src\optionsdialog.cpp" />
     <ClCompile Include="..\..\src\paths.cpp" />
+    <ClCompile Include="..\..\src\reports\myusage.cpp" />
     <ClCompile Include="..\..\src\reports\payee.cpp" />
     <ClCompile Include="..\..\src\payeedialog.cpp" />
     <ClCompile Include="..\..\src\reports\summary.cpp" />
@@ -447,6 +448,7 @@
     <ClInclude Include="..\..\3rd\mongoose\mongoose.h" />
     <ClInclude Include="..\..\src\optionsdialog.h" />
     <ClInclude Include="..\..\src\paths.h" />
+    <ClInclude Include="..\..\src\reports\myusage.h" />
     <ClInclude Include="..\..\src\reports\payee.h" />
     <ClInclude Include="..\..\src\payeedialog.h" />
     <ClInclude Include="..\..\src\platfdep.h" />

@@ -13,9 +13,9 @@
 ARCHITECTURE="amd64"
 
 # Specify the build version of mmex
-MMEX_VERSION="1.1.0"
+MMEX_VERSION="1.2.0"
 
-EMAIL="moneymanagerex@gmail.com"
+EMAIL="moneymanagerex@moneymanagerex.com"
 
 cd ../../..
 PWD=`pwd`

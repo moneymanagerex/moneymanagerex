@@ -44,6 +44,18 @@ const wxString getProgramVersion();
 const wxString getProgramCopyright();
 const wxString getProgramDescription();
 
+namespace version
+{
+    extern const int Major;
+    extern const int Minor;
+    extern const int Patch;
+    extern const int Alpha;
+    extern const int Beta;
+    extern const int RC;
+    extern const wxString generateProgramVersion
+        (const int& Major, const int& Minor, const int& Patch, const int& Alpha, const int& Beta, const int& RC);
+}
+
 namespace weblink
 {
     const wxString addReferralToURL(const wxString& BaseURL, const wxString& CampSource);
