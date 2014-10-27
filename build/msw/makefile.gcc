@@ -166,6 +166,7 @@ MMEX_OBJECTS =  \
 	mmex_htmlbuilder.o \
 	mmex_incexpenses.o \
 	mmex_mmDateRange.o \
+	mmex_myusage.o \
 	mmex_payee.o \
 	mmex_reportbase.o \
 	mmex_summary.o \
@@ -690,6 +691,9 @@ mmex_incexpenses.o: ../../src/reports/incexpenses.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmDateRange.o: ../../src/reports/mmDateRange.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_myusage.o: ../../src/reports/myusage.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_payee.o: ../../src/reports/payee.cpp

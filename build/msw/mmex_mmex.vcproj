@@ -649,6 +649,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\reports\myusage.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\optionsdialog.cpp"
 				>
 			</File>
@@ -1112,6 +1116,10 @@
 			</File>
 			<File
 				RelativePath="..\..\3rd\mongoose\mongoose.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\reports\myusage.h"
 				>
 			</File>
 			<File

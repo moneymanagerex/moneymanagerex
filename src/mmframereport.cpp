@@ -32,6 +32,7 @@
 #include "reports/transactions.h"
 #include "reports/summary.h"
 #include "reports/summarystocks.h"
+#include "reports/myusage.h"
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Report.h"
 
@@ -284,28 +285,13 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     wxTreeItemId transactionList = navTreeCtrl_->AppendItem(reports, _("Transaction Report"), 6, 6);
     navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));
 
-    /*GRM Reports*/
-    //Sort by group name and report name
-    Model_Report::Data_Set records = Model_Report::instance().all();
-    std::sort(records.begin(), records.end(), SorterByREPORTNAME());
-    std::stable_sort(records.begin(), records.end(), SorterByGROUPNAME());
+    //////////////////////////////////////////////////////////////////
+    wxTreeItemId myusage = navTreeCtrl_->AppendItem(reports, _("My Usage Report"), 4, 4);
+    navTreeCtrl_->SetItemData(myusage, new mmTreeItemData("My Usage Report", new mmReportMyUsage()));
 
-    wxTreeItemId group;
-    wxString group_name;
-    for (const auto& record : records)
-    {
-        bool no_group = record.GROUPNAME.empty();
-        if (group_name != record.GROUPNAME && !no_group)
-        {
-            group = navTreeCtrl_->AppendItem(reports, wxGetTranslation(record.GROUPNAME), 8, 8);
-            navTreeCtrl_->SetItemData(group, new mmTreeItemData(record.GROUPNAME, 0));
-            group_name = record.GROUPNAME;
-        }
-        Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
-        wxTreeItemId item = navTreeCtrl_->AppendItem(no_group ? reports : group
-            , wxGetTranslation(record.REPORTNAME), 8, 8);
-        navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
-    }
+    wxTreeItemId myusagelast30days = navTreeCtrl_->AppendItem(myusage, _("Last 30 Days"), 4, 4);
+    navTreeCtrl_->SetItemData(myusagelast30days, new mmTreeItemData("My Usage Reprt - Last 30 Days",
+        new mmReportMyUsage(new mmLast30Days())));
 
     //////////////////////////////////////////////////////////////////
 
@@ -334,6 +320,29 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         new mmReportChartStocks()));
 
     //////////////////////////////////////////////////////////////////
+
+    /*GRM Reports*/
+    //Sort by group name and report name
+    Model_Report::Data_Set records = Model_Report::instance().all();
+    std::sort(records.begin(), records.end(), SorterByREPORTNAME());
+    std::stable_sort(records.begin(), records.end(), SorterByGROUPNAME());
+
+    wxTreeItemId group;
+    wxString group_name;
+    for (const auto& record : records)
+    {
+        bool no_group = record.GROUPNAME.empty();
+        if (group_name != record.GROUPNAME && !no_group)
+        {
+            group = navTreeCtrl_->AppendItem(reports, wxGetTranslation(record.GROUPNAME), 8, 8);
+            navTreeCtrl_->SetItemData(group, new mmTreeItemData(record.GROUPNAME, 0));
+            group_name = record.GROUPNAME;
+        }
+        Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
+        wxTreeItemId item = navTreeCtrl_->AppendItem(no_group ? reports : group
+            , wxGetTranslation(record.REPORTNAME), 8, 8);
+        navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
+    }
 
 }
 

@@ -173,6 +173,7 @@ MMEX_OBJECTS =  \
 	mmex_htmlbuilder.obj \
 	mmex_incexpenses.obj \
 	mmex_mmDateRange.obj \
+	mmex_myusage.obj \
 	mmex_payee.obj \
 	mmex_reportbase.obj \
 	mmex_summary.obj \
@@ -816,6 +817,9 @@ mmex_incexpenses.obj: ..\..\src\reports\incexpenses.cpp
 
 mmex_mmDateRange.obj: ..\..\src\reports\mmDateRange.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmDateRange.cpp
+
+mmex_myusage.obj: ..\..\src\reports\myusage.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\myusage.cpp
 
 mmex_payee.obj: ..\..\src\reports\payee.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\payee.cpp

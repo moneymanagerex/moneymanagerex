@@ -210,6 +210,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_htmlbuilder.o \
 	mmex_tests_incexpenses.o \
 	mmex_tests_mmDateRange.o \
+	mmex_tests_myusage.o \
 	mmex_tests_payee.o \
 	mmex_tests_reportbase.o \
 	mmex_tests_summary.o \
@@ -736,6 +737,9 @@ mmex_tests_incexpenses.o: $(srcdir)/../src/reports/incexpenses.cpp
 
 mmex_tests_mmDateRange.o: $(srcdir)/../src/reports/mmDateRange.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/reports/mmDateRange.cpp
+
+mmex_tests_myusage.o: $(srcdir)/../src/reports/myusage.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/reports/myusage.cpp
 
 mmex_tests_payee.o: $(srcdir)/../src/reports/payee.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/reports/payee.cpp
