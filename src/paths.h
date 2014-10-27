@@ -41,12 +41,12 @@ wxString getPathResource(EResFile f);
 const wxIcon& getProgramIcon();
 
 enum ESharedFile { LANG_DIR = 0, SHARED_FILES_MAX };
-wxString getPathShared(ESharedFile f);
+const wxString getPathShared(ESharedFile f);
 
 enum EUserFile { SETTINGS = 0, DIRECTORY, USER_FILES_MAX };
-wxString getPathUser(EUserFile f);
+const wxString getPathUser(EUserFile f);
 
-wxString getPathAttachment(const wxString &AttachmentsFolder);
+const wxString getPathAttachment(const wxString &AttachmentsFolder);
 bool isPortableMode();
 const wxString getReportIndex();
 

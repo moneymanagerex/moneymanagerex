@@ -19,6 +19,7 @@
 #include "Model_Report.h"
 #include "paths.h"
 #include "platfdep.h"
+#include "attachmentdialog.h"
 #include "reports/htmlbuilder.h"
 #include "LuaGlue/LuaGlue.h"
 #include "sqlite3.h"
@@ -83,14 +84,13 @@ public:
     Record(){}
     ~Record(){}
     /* Access functions for LuaGlue (The required conversion between char and wchar_t is done through wxString.) */
-    std::string get(const char* index) { return std::string(wxString((*this)[wxString(index).ToStdWstring()]).ToUTF8()); }
+    std::string get(const char* index)
+    { 
+        return std::string(wxString((*this)[wxString(index).ToStdWstring()]).ToUTF8());
+    }
     void set(const char* index, const char * val)
     {
         (*this)[wxString(index).ToStdWstring()] = wxString::FromUTF8(val).ToStdWstring();
-    }
-    std::string GetDir(const char * val)
-    {
-        return std::string(mmex::getPathAttachment(wxString::FromUTF8(val).ToStdWstring()).ToUTF8());
     }
 };
 
@@ -176,7 +176,6 @@ wxString Model_Report::get_html(const Data* r)
         ctor("new").
         method("get", &Record::get).
         method("set", &Record::set).
-        method("GetDir", &Record::GetDir).
         end().open().glue();
 
     bool skip_lua = r->LUACONTENT.IsEmpty();
@@ -271,6 +270,13 @@ wxString Model_Report::get_html(const Data* r)
         std::wstringstream ss;
         json::Writer::Write(jsoncontents, ss);
         report(L"JSONCONTENTS") = wxString(ss.str());
+        auto p = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
+        //javascript does not handle backslashs
+        p.Replace("\\", "\\\\");
+        report(L"ATTACHMENTSFOLDER") = p;
+        auto s = wxString(wxFileName::GetPathSeparator());
+        s.Replace("\\", "\\\\");
+        report(L"FILESEPARATOR") = s;
     }
     report(L"ERRORS") = errors;
 
@@ -295,7 +301,7 @@ wxString Model_Report::get_html(const Data* r)
 void Model_Report::prepareTempFolder()
 {
     const wxString tempDir = wxFileName(mmex::getReportIndex()).GetPathWithSep();
-    const wxString resDir = mmex::GetResourceDir().GetPathWithSep();
+    const wxString& resDir = mmex::GetResourceDir().GetPathWithSep();
     wxString tempFile;
     wxFileName::Mkdir(tempDir, 511, wxPATH_MKDIR_FULL);
     wxArrayString filesArray;
@@ -416,7 +422,7 @@ void Model_Report::getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString
         const wxString table_name = qTables.GetAsString(1);
 
         // Get a list of the table columns
-        wxString sql = wxString::Format(sqlColumns, table_name);
+        const wxString& sql = wxString::Format(sqlColumns, table_name);
         wxSQLite3Statement stmtColumns = this->db_->PrepareStatement(sql);
         wxSQLite3ResultSet qColumns = stmtColumns.ExecuteQuery();
         wxArrayString column_names;
