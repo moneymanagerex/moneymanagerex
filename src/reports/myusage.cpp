@@ -67,12 +67,12 @@ const char *usage_template = R"(
 
 mmReportMyUsage::mmReportMyUsage(mmDateRange* date_range)
 : m_date_range(date_range)
-, m_title(_("My Usage Report"))
+, mmPrintableBase("My Usage Report", _("My Usage Report"))
 {
     if (m_date_range)
     {
-        this->m_title += " - ";
-        this->m_title += m_date_range->title();
+        this->m_title += _(" - ") + m_date_range->title();
+        this->m_local_title += " - " + m_date_range->local_title();
     }
 }
 
@@ -83,7 +83,7 @@ wxString mmReportMyUsage::getHTMLText()
 {
     Model_Usage::Data_Set all_usage;
 
-    if (m_date_range)
+    if (m_date_range && m_date_range->is_with_date())
         all_usage = Model_Usage::instance().find(Model_Usage::USAGEDATE(m_date_range->start_date().FormatISODate(), GREATER_OR_EQUAL)
                     , Model_Usage::USAGEDATE(m_date_range->end_date().FormatISODate(), LESS_OR_EQUAL));
     else
@@ -106,7 +106,7 @@ wxString mmReportMyUsage::getHTMLText()
     }
 
     mm_html_template report(usage_template);
-    report(L"REPORTNAME") = m_title;
+    report(L"REPORTNAME") = this->local_title();
     report(L"CONTENTS") = contents;
     report(L"GRAND") = wxString::Format("%ld", all_usage.size());
 

@@ -29,10 +29,16 @@ class wxArrayString;
 class mmPrintableBase
 {
 public:
+    mmPrintableBase(): m_title("mmPrintableBase"), m_local_title(_("mmPrintableBase")){}
+    mmPrintableBase(const wxString& title, const wxString& local_title): m_title(title), m_local_title(local_title) {}
     virtual ~mmPrintableBase() {}
     virtual wxString getHTMLText() = 0;
     virtual void RefreshData() {}
-    virtual wxString title() const { return "mmPrintableBase"; }
+    virtual wxString title() const { return m_title; }
+    virtual wxString local_title() const { return m_local_title; }
+protected:
+    wxString m_title;
+    wxString m_local_title; // after wxGetTranslation or _()
 };
 
 class mmGeneralReport : public mmPrintableBase

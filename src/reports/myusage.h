@@ -30,6 +30,5 @@ public:
     virtual wxString getHTMLText();
 
 private:
-    mmDateRange* m_date_range;
-    wxString m_title;
+    const mmDateRange* m_date_range;
 };

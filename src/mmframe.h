@@ -58,6 +58,7 @@ class CommitCallbackHook;
 class UpdateCallbackHook;
 class ModelBase;
 class mmGUIApp;
+class mmDateRange;
 //----------------------------------------------------------------------------
 
 class mmGUIFrame : public wxFrame
@@ -93,6 +94,7 @@ public:
 
 private:
     std::vector<const ModelBase*> m_all_models;
+    std::vector<mmDateRange*> m_all_date_ranges;
 private:
     /* handles to SQLite Database */
     wxSharedPtr<wxSQLite3Database> m_db;

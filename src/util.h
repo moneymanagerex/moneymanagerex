@@ -73,6 +73,13 @@ public:
         , stringData_("report@" + string)
         , report_(report)
     {}
+    mmTreeItemData(mmPrintableBase* report)
+        : id_(0)
+        , isString_(true)
+        , isBudgetingNode_(false)
+        , stringData_("report@" + report->title())
+        , report_(report)
+    {}
     mmTreeItemData(const wxString& string)
         : id_(0)
         , isString_(true)

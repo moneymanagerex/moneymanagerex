@@ -25,10 +25,16 @@ mmDateRange::mmDateRange()
     start_date_ = today_;
     end_date_ = today_;
     title_ = "Date Range";
+    local_title_ = _("Date Range");
 }
 
 mmDateRange::~mmDateRange()
 {
+}
+
+void mmDateRange::destroy()
+{
+    delete this;
 }
 
 const wxDateTime mmDateRange::start_date() const
@@ -56,12 +62,18 @@ const wxString mmDateRange::title() const
     return title_;
 }
 
+const wxString mmDateRange::local_title() const
+{
+    return local_title_;
+}
+
 mmCurrentMonth::mmCurrentMonth()
 : mmDateRange()
 {
     this->start_date_ = wxDateTime(today_).SetDay(1);
     this->end_date_ = today_.GetLastMonthDay();
-    this->title_ = _("Current Month");
+    this->title_ = "Current Month";
+    this->local_title_ = _("Current Month");
 }
 
 mmToday::mmToday()
@@ -69,7 +81,8 @@ mmToday::mmToday()
 {
     this->start_date_ = today_;
     this->end_date_ = today_;
-    this->title_ = _("Today");
+    this->title_ = "Today";
+    this->local_title_ = _("Today");
 }
 
 mmCurrentMonthToDate::mmCurrentMonthToDate()
@@ -77,7 +90,8 @@ mmCurrentMonthToDate::mmCurrentMonthToDate()
 {
     this->start_date_ = wxDateTime(today_).SetDay(1);
     // no change to end_date_
-    this->title_ = _("Current Month to Date");
+    this->title_ = "Current Month to Date";
+    this->local_title_ = "Current Month to Date";
 }
 
 mmLastMonth::mmLastMonth()
@@ -85,7 +99,8 @@ mmLastMonth::mmLastMonth()
 {
     this->start_date_.Subtract(wxDateSpan::Months(1)).SetDay(1);
     this->end_date_ = wxDateTime(this->start_date_).GetLastMonthDay();
-    this->title_ = _("Last Month");
+    this->title_ = "Last Month";
+    this->local_title_ = _("Last Month");
 }
 
 mmLast30Days::mmLast30Days()
@@ -95,7 +110,8 @@ mmLast30Days::mmLast30Days()
         .Subtract(wxDateSpan::Months(1))
         .Add(wxDateSpan::Days(1));
     // no change to end_date_
-    this->title_ = _("Last 30 Days");
+    this->title_ = "Last 30 Days";
+    this->local_title_ = _("Last 30 Days");
 }
 
 mmLast90Days::mmLast90Days()
@@ -105,7 +121,8 @@ mmLast90Days::mmLast90Days()
         .Subtract(wxDateSpan::Months(3))
         .Add(wxDateSpan::Days(1));
     // no change to end_date_
-    this->title_ = _("Last 90 Days");
+    this->title_ = "Last 90 Days";
+    this->local_title_ = _("Last 90 Days");
 }
 
 mmLast3Months::mmLast3Months()
@@ -115,7 +132,8 @@ mmLast3Months::mmLast3Months()
     this->start_date_ = wxDateTime(end_date_).SetDay(1)
         .Add(wxDateSpan::Months(1))
         .Subtract(wxDateSpan::Months(3));
-    this->title_ = _("Last 3 Months");
+    this->title_ = "Last 3 Months";
+    this->local_title_ = _("Last 3 Months");
 }
 
 mmLast12Months::mmLast12Months()
@@ -125,7 +143,8 @@ mmLast12Months::mmLast12Months()
     this->start_date_ = wxDateTime(end_date_).SetDay(1)
         .Add(wxDateSpan::Months(1))
         .Subtract(wxDateSpan::Years(1));
-    this->title_ = _("Last 12 Months");
+    this->title_ = "Last 12 Months";
+    this->local_title_ = _("Last 12 Months");
 }
 
 mmCurrentYear::mmCurrentYear()
@@ -133,7 +152,8 @@ mmCurrentYear::mmCurrentYear()
 {
     this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan);
     this->end_date_ = wxDateTime(start_date_).SetMonth(wxDateTime::Dec).SetDay(31);
-    this->title_ = _("Current Year");
+    this->title_ = "Current Year";
+    this->local_title_ = _("Current Year");
 }
 
 mmCurrentYearToDate::mmCurrentYearToDate()
@@ -141,7 +161,8 @@ mmCurrentYearToDate::mmCurrentYearToDate()
 {
     this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan);
     // no change to end_date_
-    this->title_ = _("Current Year to Date");
+    this->title_ = "Current Year to Date";
+    this->local_title_ = _("Current Year to Date");
 }
 
 mmLastYear::mmLastYear()
@@ -149,7 +170,8 @@ mmLastYear::mmLastYear()
 {
     this->start_date_.Subtract(wxDateSpan::Years(1)).SetDay(1).SetMonth(wxDateTime::Jan);
     this->end_date_ = wxDateTime(start_date_).SetMonth(wxDateTime::Dec).SetDay(31);
-    this->title_ = _("Last Year");
+    this->title_ = "Last Year";
+    this->local_title_ = _("Last Year");
 }
 
 mmCurrentFinancialYear::mmCurrentFinancialYear(const int day, const int month)
@@ -169,7 +191,8 @@ mmCurrentFinancialYear::mmCurrentFinancialYear(const int day, const int month)
     
     this->end_date_ = this->start_date_;
     this->end_date_.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
-    this->title_ = _("Current Financial Year");
+    this->title_ = "Current Financial Year";
+    this->local_title_ = _("Current Financial Year");
 }
 
 mmCurrentFinancialYearToDate::mmCurrentFinancialYearToDate(const int day, const int month)
@@ -179,7 +202,8 @@ mmCurrentFinancialYearToDate::mmCurrentFinancialYearToDate(const int day, const 
     this->start_date_ = current_financial_year.start_date();
     // no change to end_date_
 
-    this->title_ = _("Current Financial Year to Date");
+    this->title_ = "Current Financial Year to Date";
+    this->local_title_ = _("Current Financial Year to Date");
 }
 
 mmLastFinancialYear::mmLastFinancialYear(const int day, const int month)
@@ -189,13 +213,15 @@ mmLastFinancialYear::mmLastFinancialYear(const int day, const int month)
     this->start_date_ = current_financial_year.start_date().Subtract(wxDateSpan::Year());
     this->end_date_ = current_financial_year.end_date().Subtract(wxDateSpan::Year());
 
-    this->title_ = _("Last Financial Year");
+    this->title_ = "Last Financial Year";
+    this->local_title_ = _("Last Financial Year");
 }
 
 mmAllTime::mmAllTime()
 : mmDateRange()
 {
-    this->title_ = _("Over Time");
+    this->title_ = "Over Time";
+    this->local_title_ = _("Over Time");
     this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan).SetYear(1);
     this->end_date_.SetYear(9999);
 }
@@ -217,5 +243,6 @@ mmLast365Days::mmLast365Days() : mmDateRange()
 {
     this->start_date_ = wxDateTime(end_date_).Subtract(wxDateSpan::Months(12)).Add(wxDateSpan::Days(1));
     // no change to end_date_
-    this->title_ = _("Last 365 Days");
+    this->title_ = "Last 365 Days";
+    this->local_title_ = _("Last 365 Days");
 }

@@ -286,12 +286,15 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));
 
     //////////////////////////////////////////////////////////////////
-    wxTreeItemId myusage = navTreeCtrl_->AppendItem(reports, _("My Usage Report"), 4, 4);
-    navTreeCtrl_->SetItemData(myusage, new mmTreeItemData("My Usage Report", new mmReportMyUsage()));
+    wxTreeItemId myusage = navTreeCtrl_->AppendItem(reports, _("My Usable Report"), 4, 4);
+    navTreeCtrl_->SetItemData(myusage, new mmTreeItemData(new mmReportMyUsage()));
 
-    wxTreeItemId myusagelast30days = navTreeCtrl_->AppendItem(myusage, _("Last 30 Days"), 4, 4);
-    navTreeCtrl_->SetItemData(myusagelast30days, new mmTreeItemData("My Usage Reprt - Last 30 Days",
-        new mmReportMyUsage(new mmLast30Days())));
+    for (const auto & date_range : this->m_all_date_ranges)
+    {
+        mmReportMyUsage* sub_mysuage_report = new mmReportMyUsage(date_range);
+        wxTreeItemId sub_mysuage = navTreeCtrl_->AppendItem(myusage, sub_mysuage_report->local_title(), 4, 4);
+        navTreeCtrl_->SetItemData(sub_mysuage, new mmTreeItemData(sub_mysuage_report));
+    }
 
     //////////////////////////////////////////////////////////////////
 

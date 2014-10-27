@@ -357,6 +357,8 @@ mmGUIFrame::~mmGUIFrame()
         model->show_statistics();
         Model_Usage::instance().append_cache_usage(model->cache_to_json());
     }
+    std::for_each(m_all_date_ranges.begin(), m_all_date_ranges.end(), std::mem_fun(&mmDateRange::destroy));
+    m_all_date_ranges.clear();
 }
 //----------------------------------------------------------------------------
 
@@ -1633,6 +1635,26 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Budget::instance(m_db.get()));
     m_all_models.push_back(&Model_Report::instance(m_db.get()));
     m_all_models.push_back(&Model_Attachment::instance(m_db.get()));
+
+    m_all_date_ranges.push_back(new mmCurrentMonth());
+    m_all_date_ranges.push_back(new mmCurrentMonthToDate());
+    m_all_date_ranges.push_back(new mmLastMonth());
+    m_all_date_ranges.push_back(new mmLast30Days());
+    m_all_date_ranges.push_back(new mmLast90Days());
+    m_all_date_ranges.push_back(new mmLast3Months());
+    m_all_date_ranges.push_back(new mmLast12Months());
+    m_all_date_ranges.push_back(new mmCurrentYear());
+    m_all_date_ranges.push_back(new mmCurrentYearToDate());
+    m_all_date_ranges.push_back(new mmLastYear());
+
+    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
+
+    m_all_date_ranges.push_back(new mmCurrentFinancialYear(day, month));
+    m_all_date_ranges.push_back(new mmCurrentFinancialYearToDate(day, month));
+    m_all_date_ranges.push_back(new mmLastFinancialYear(day, month));
+    m_all_date_ranges.push_back(new mmAllTime());
+    m_all_date_ranges.push_back(new mmLast365Days());
 }
 
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)

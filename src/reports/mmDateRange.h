@@ -27,15 +27,18 @@ protected:
     const wxDateTime today_;
     wxDateTime start_date_, end_date_;
     wxString title_;
+    wxString local_title_;
 
 public:
     mmDateRange();
     virtual ~mmDateRange();
+    void destroy();
     const virtual wxDateTime start_date() const;
     const virtual wxDateTime end_date() const;
     const virtual wxDateTime today() const;
     const virtual bool is_with_date() const;
     const virtual wxString title() const;
+    const virtual wxString local_title() const;
 };
 
 class mmCurrentMonth: public mmDateRange
