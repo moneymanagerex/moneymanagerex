@@ -96,7 +96,7 @@ wxString mmReportMyUsage::getHTMLText()
     }
 
     loop_t contents;
-    for (auto it = usage_by_day.begin(); it != usage_by_day.end(); ++ it)
+    for (auto it = usage_by_day.rbegin(); it != usage_by_day.rend(); ++ it)
     {
         row_t r;
         r(L"USAGEDATE") = it->first;
