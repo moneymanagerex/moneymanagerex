@@ -29,27 +29,6 @@
 #include "model/Model_Billsdeposits.h"
 
 class wxDatePickerCtrl;
-struct bill_data
-{
-    int BDID;
-    wxString TRANSDATE = wxDateTime().Today().FormatISODate();
-    wxString STATUS = Model_Billsdeposits::all_status()[Model_Billsdeposits::NONE];;
-    int ACCOUNTID = 0;
-    int TOACCOUNTID = 0;
-    wxString TRANSCODE = Model_Billsdeposits::all_type()[Model_Billsdeposits::WITHDRAWAL];;
-    int CATEGID = -1;
-    int SUBCATEGID = -1;
-    double TRANSAMOUNT = 0;
-    double TOTRANSAMOUNT = 0;
-    int FOLLOWUPID = -1;
-    wxString NOTES;
-    wxString TRANSACTIONNUMBER;
-    int PAYEEID = -1;
-    std::vector<Split> local_splits;
-    int REPEATS;
-    int NUMOCCURRENCES;
-    wxString NEXTOCCURRENCEDATE;
-};
 
 class mmBDDialog : public wxDialog
 {
@@ -128,7 +107,7 @@ private:
     bool autoExecuteUserAck_;
     bool autoExecuteSilent_;
 
-    bill_data m_bill_data;
+    Model_Billsdeposits::Bill_Data m_bill_data;
     std::vector<Split> local_splits;
 
     bool m_advanced;

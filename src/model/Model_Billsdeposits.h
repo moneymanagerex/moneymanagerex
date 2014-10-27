@@ -21,6 +21,7 @@
 
 #include "Model.h"
 #include "db/DB_Table_Billsdeposits_V1.h"
+#include "model/Model_Splittransaction.h"
 #include "Model_Budgetsplittransaction.h"
 
 const int BD_REPEATS_MULTIPLEX_BASE = 100;
@@ -63,6 +64,29 @@ public:
     ~Model_Billsdeposits();
 
 public:
+    /** Pre-initialised data structure*/
+    struct Bill_Data
+    {
+        int BDID = 0;
+        wxString TRANSDATE = wxDateTime().Today().FormatISODate();
+        wxString STATUS = Model_Billsdeposits::all_status()[Model_Billsdeposits::NONE];;
+        int ACCOUNTID = -1;
+        int TOACCOUNTID = -1;
+        wxString TRANSCODE = Model_Billsdeposits::all_type()[Model_Billsdeposits::WITHDRAWAL];;
+        int CATEGID = -1;
+        int SUBCATEGID = -1;
+        double TRANSAMOUNT = 0;
+        double TOTRANSAMOUNT = 0;
+        int FOLLOWUPID = -1;
+        wxString NOTES;
+        wxString TRANSACTIONNUMBER;
+        int PAYEEID = -1;
+        std::vector<Split> local_splits;
+        int REPEATS;
+        int NUMOCCURRENCES;
+        wxString NEXTOCCURRENCEDATE;
+    };
+
     struct Full_Data : public Data
     {
         Full_Data(): Data(0)

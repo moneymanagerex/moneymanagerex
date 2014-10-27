@@ -75,7 +75,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
     : m_new_bill(!edit)
     , enterOccur_(enterOccur)
     , m_advanced(false)
-    , payeeUnknown_(false)
+    , payeeUnknown_(true)
     , autoExecuteUserAck_(false)
     , autoExecuteSilent_(false)
     , categUpdated_(false)
@@ -163,7 +163,8 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
 
 void mmBDDialog::dataToControls()
 {
-
+    if (m_bill_data.PAYEEID > 0)
+        payeeUnknown_ = false;
     choiceStatus_->SetSelection(Model_Checking::status(m_bill_data.STATUS));
     if (m_bill_data.NUMOCCURRENCES > 0)
         textNumRepeats_->SetValue(wxString::Format("%d", m_bill_data.NUMOCCURRENCES));
@@ -660,6 +661,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
             //m_bill_data.PAYEEID = account->ACCOUNTID;
             bPayee_->SetLabelText(acctName);
             itemAccountName_->SetLabelText(acctName);
+            m_bill_data.ACCOUNTID = Model_Account::instance().get(acctName)->id();
         }
     }
     else
@@ -810,6 +812,7 @@ void mmBDDialog::updateControlsForTransType()
         {
             bPayee_->SetLabelText(_("Select From Account"));
             m_bill_data.PAYEEID = -1;
+            payeeUnknown_ = true;
         }
         else
         {
@@ -894,10 +897,15 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     if (m_bill_data.PAYEEID == -1)
     {
         if (transaction_type_->GetSelection() != Model_Billsdeposits::TRANSFER)
+        {
             mmShowErrorMessageInvalid(this, _("Payee"));
-        else
+            return;
+        }
+        else if (m_bill_data.TOACCOUNTID < 0)
+        {
             mmShowErrorMessageInvalid(this, _("From Account"));
-        return;
+            return;
+        }
     }
 
     if (cSplit_->GetValue())

@@ -347,6 +347,7 @@
     <ClCompile Include="..\..\tests\test_database_initialisation.cpp" />
     <ClCompile Include="..\..\tests\test_date_range.cpp" />
     <ClCompile Include="..\..\tests\test_filtertrans_dialog.cpp" />
+    <ClCompile Include="..\..\tests\test_options_dialog.cpp" />
     <ClCompile Include="..\..\tests\test_relocate_category.cpp" />
     <ClCompile Include="..\..\tests\test_relocate_payee.cpp" />
     <ClCompile Include="..\..\tests\test_stocks.cpp" />
@@ -484,6 +485,7 @@
     <ClInclude Include="..\..\tests\test_database_initialisation.h" />
     <ClInclude Include="..\..\tests\test_date_range.h" />
     <ClInclude Include="..\..\tests\test_filtertrans_dialog.h" />
+    <ClInclude Include="..\..\tests\test_options_dialog.h" />
     <ClInclude Include="..\..\tests\test_relocate_category.h" />
     <ClInclude Include="..\..\tests\test_relocate_payee.h" />
     <ClInclude Include="..\..\tests\test_stocks.h" />

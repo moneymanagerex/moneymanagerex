@@ -372,6 +372,9 @@
     <ClCompile Include="..\..\3rd\route\route.cc">
       <Filter>Source Files\3d</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\tests\test_options_dialog.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -781,6 +784,9 @@
     </ClInclude>
     <ClInclude Include="..\..\3rd\route\route.h">
       <Filter>Header Files\3rd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tests\test_options_dialog.h">
+      <Filter>Test Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
