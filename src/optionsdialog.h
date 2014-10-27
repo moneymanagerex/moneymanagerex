@@ -67,8 +67,6 @@ private:
 
 	void OnAttachmentsButton(wxCommandEvent& event);
 
-    void SaveViewAccountOptions();
-    void SaveViewTransactionOptions();
     void SaveFinancialYearStart();
     void SaveStocksUrl();
     void OnAttachmentsMenu(wxCommandEvent& event);

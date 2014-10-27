@@ -89,20 +89,28 @@ void Model_Infotable::Set(const wxString& key, const wxString& value)
     }
 }
 
+void Model_Infotable::Set(const wxString& key, const wxColour& value)
+{
+    this->Set(key, wxString::Format("%d,%d,%d", value.Red(), value.Green(), value.Blue()));
+}
+
 // Getter
 bool Model_Infotable::GetBoolInfo(const wxString& key, bool default_value)
 {
-    wxString value = this->GetStringInfo(key, "");
-    if (value == "1" || value.CmpNoCase("TRUE") == 0) return true;
-    if (value == "0" || value.CmpNoCase("FALSE") == 0) return false;
-
-    return default_value; 
+    const wxString value = this->GetStringInfo(key, "");
+    if (value == "1" || value.CmpNoCase("TRUE") == 0)
+        return true;
+    else if (value == "0" || value.CmpNoCase("FALSE") == 0)
+        return false;
+    else
+        return default_value;
 }
 
 int Model_Infotable::GetIntInfo(const wxString& key, int default_value)
 {
-    wxString value = this->GetStringInfo(key, "");
-    if (!value.IsEmpty() && value.IsNumber()) return wxAtoi(value);
+    const wxString value = this->GetStringInfo(key, "");
+    if (!value.IsEmpty() && value.IsNumber())
+        return wxAtoi(value);
 
     return default_value;
 }
@@ -110,14 +118,36 @@ int Model_Infotable::GetIntInfo(const wxString& key, int default_value)
 wxString Model_Infotable::GetStringInfo(const wxString& key, const wxString& default_value)
 {
     Data* info = this->get_one(INFONAME(key));
-    if (!info) // not cached
+    if (info)
+        return info->INFOVALUE;
+    else // not cached
     {
         Data_Set items = this->find(INFONAME(key));
-        if (!items.empty()) return items[0].INFOVALUE;
+        if (!items.empty())
+            return items[0].INFOVALUE;
     }
-    else
+
+    return default_value;
+}
+
+const wxColour Model_Infotable::GetColourSetting(const wxString& key, const wxColour& default_value)
+{
+    const wxString value = this->GetStringInfo(key, "");
+    if (!value.IsEmpty())
     {
-        return info->INFOVALUE;
+        wxRegEx pattern("([0-9]{1,3}),([0-9]{1,3}),([0-9]{1,3})");
+        if (pattern.Matches(value))
+        {
+            const wxString red = pattern.GetMatch(value, 1);
+            const wxString green = pattern.GetMatch(value, 2);
+            const wxString blue = pattern.GetMatch(value, 3);
+
+            return wxColour(wxAtoi(red), wxAtoi(green), wxAtoi(blue));
+        }
+        else
+        {
+            return wxColor(value);
+        }
     }
 
     return default_value;
