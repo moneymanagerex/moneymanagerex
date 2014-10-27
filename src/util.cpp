@@ -547,7 +547,8 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
                 isUpdateAvailable = true;
             else if (patch == mmex::version::Patch && ReleaseType == L"Unstable")
             {
-                if (alpha == 0 && beta == 0 && rc == 0)
+                if ((mmex::version::Alpha != 0 || mmex::version::Beta != 0 || mmex::version::RC != 0)
+                    && alpha == 0 && beta == 0 && rc == 0)
                     isUpdateAvailable = true;
                 if (alpha > mmex::version::Alpha)
                     isUpdateAvailable = true;
@@ -564,13 +565,9 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
 
     // define new version
     if (isUpdateAvailable)
-    {
         NewVersion = mmex::version::generateProgramVersion(major, minor, patch, alpha, beta, rc);
-    }
     else
-    {
         NewVersion = mmex::getProgramVersion();
-    }
 
     return isUpdateAvailable;
 }

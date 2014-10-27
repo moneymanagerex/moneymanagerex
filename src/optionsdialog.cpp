@@ -737,8 +737,6 @@ void mmOptionsDialog::CreateControls()
     WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
 
     // Proxy Settings
-    //networkPanelSizer->AddSpacer(15);
-
     wxStaticBox* proxyStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Proxy Settings"));
     proxyStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* proxyStaticBoxSizer = new wxStaticBoxSizer(proxyStaticBox, wxVERTICAL);
@@ -764,8 +762,6 @@ void mmOptionsDialog::CreateControls()
     proxyStaticBoxSizer->Add(flex_sizer3, g_flags);
 
     // Web Server Settings
-    //networkPanelSizer->AddSpacer(15);
-
     wxStaticBox* webserverStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Web Server"));
     webserverStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* webserverStaticBoxSizer = new wxStaticBoxSizer(webserverStaticBox, wxVERTICAL);
@@ -790,8 +786,6 @@ void mmOptionsDialog::CreateControls()
     webserverStaticBoxSizer->Add(flex_sizer4, g_flags);
 
     //Usage data send
-    //networkPanelSizer->AddSpacer(15);
-
     wxStaticBox* usageStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Usage statistics"));
     usageStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* usageStaticBoxSizer = new wxStaticBoxSizer(usageStaticBox, wxVERTICAL);
@@ -805,8 +799,6 @@ void mmOptionsDialog::CreateControls()
     usageStaticBoxSizer->Add(cbSendData_, g_flags);
 
     // Communication timeout
-    //networkPanelSizer->AddSpacer(15);
-
     wxStaticBox* timeoutStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Timeout"));
     timeoutStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* timeoutStaticBoxSizer = new wxStaticBoxSizer(timeoutStaticBox, wxVERTICAL);
@@ -825,8 +817,6 @@ void mmOptionsDialog::CreateControls()
     timeoutStaticBoxSizer->Add(flex_sizer5, g_flags);
 
     //Updates check
-    //networkPanelSizer->AddSpacer(15);
-
     wxStaticBox* updateStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Updates"));
     updateStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* updateStaticBoxSizer = new wxStaticBoxSizer(updateStaticBox, wxVERTICAL);
