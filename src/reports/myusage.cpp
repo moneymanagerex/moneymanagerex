@@ -34,34 +34,73 @@ const char *usage_template = R"(
     <link href = "master.css" rel = "stylesheet" />
 </head>
 <body>
+
 <div class = "container">
 <h3><TMPL_VAR REPORTNAME></h3>
 <TMPL_VAR TODAY><hr>
 <div class = "row">
 <div class = "col-xs-2"></div>
 <div class = "col-xs-8">
+
+<canvas id="mycanvas" height="400" width="600"></canvas>
+<script>
+    var LineData = {
+    labels: [
+            <TMPL_LOOP NAME=CONTENTS>
+                <TMPL_IF NAME=__LAST__>
+                    "<TMPL_VAR USAGEDATE>"
+                <TMPL_ELSE>
+                    "<TMPL_VAR USAGEDATE>",
+                </TMPL_IF>
+            </TMPL_LOOP>
+            ],
+    datasets: [
+        {
+            fillColor : 'rgba(129, 172, 123, 0.5)',
+            strokeColor : 'rgba(129, 172, 123, 1)',
+            pointColor : 'rgba(129, 172, 123, 1)', 
+            pointStrokeColor : "#fff",
+            data : [
+                    <TMPL_LOOP NAME=CONTENTS>
+                        <TMPL_IF NAME=__LAST__>
+                            <TMPL_VAR FREQUENCY>
+                        <TMPL_ELSE>
+                            <TMPL_VAR FREQUENCY>,
+                        </TMPL_IF>
+                    </TMPL_LOOP>
+                    ],
+            title : "FREQUENCY"
+        }
+        ]
+    }
+    var opts= { annotateDisplay : true };
+
+    window.onload = function() {
+        var myBar = new Chart(document.getElementById("mycanvas").getContext("2d")).Line(LineData,opts);
+    }
+</script>
+
 <table class = "table">
-<thead>
-    <tr>
-        <th>USAGEDATE</th>
-        <th>FREQUENCY</th>
-    </tr>
-</thead>
-<tbody>
-    <TMPL_LOOP NAME=CONTENTS>
+    <thead>
         <tr>
-        <td><TMPL_VAR "USAGEDATE"></td>
-        <td><TMPL_VAR "FREQUENCY"></td>
+            <th>USAGEDATE</th>
+            <th>FREQUENCY</th>
         </tr>
-    </TMPL_LOOP>
-    <tr>
-        <td>Grand Total</td>
-        <td><TMPL_VAR "GRAND"></td>
-    </tr>
-</tbody>
+    </thead>
+    <tbody>
+        <TMPL_LOOP NAME=CONTENTS>
+            <tr>
+            <td><TMPL_VAR "USAGEDATE"></td>
+            <td><TMPL_VAR "FREQUENCY"></td>
+            </tr>
+        </TMPL_LOOP>
+        <tr>
+            <td>Grand Total</td>
+            <td><TMPL_VAR "GRAND"></td>
+        </tr>
+    </tbody>
 </table>
-</div>
-</body>
+</div></div></div></body>
 </html>
 )";
 
@@ -96,7 +135,7 @@ wxString mmReportMyUsage::getHTMLText()
     }
 
     loop_t contents;
-    for (auto it = usage_by_day.rbegin(); it != usage_by_day.rend(); ++ it)
+    for (auto it = usage_by_day.begin(); it != usage_by_day.end(); ++ it)
     {
         row_t r;
         r(L"USAGEDATE") = it->first;
