@@ -271,6 +271,7 @@ void mmOptionsDialog::CreateControls()
 
     wxSpinCtrl *textFPSDay = new wxSpinCtrl(generalPanel, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 31, day);
+    textFPSDay->SetValue(day);
     textFPSDay->SetToolTip(_("Specify Day for start of financial year"));
 
     financialYearStaticBoxSizerGrid->Add(textFPSDay, g_flags);
