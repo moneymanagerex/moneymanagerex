@@ -14,7 +14,7 @@
 
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
-#define MyAppVersion "1.1.0"
+#define MyAppVersion "1.2.0"
 #define MyAppPublisher "Money Manager EX"
 #define MyAppURL "http://www.moneymanagerex.org"
 
@@ -26,8 +26,8 @@
 ; Local definitions specifically designed for my setup 
 #define my_svn_path "..\.."
 #define my_output_root "..\..\mmex_release"
-#define my_output_path "\mmex_1.1.0_x64_portable\MoneyManagerEx"
-#define my_output_filename "mmex_1.1.0_x64_setup"
+#define my_output_path "\mmex_1.2.0_x64_portable\MoneyManagerEx"
+#define my_output_filename "mmex_1.2.0_x64_setup"
 
 ;===============================================================================
 
@@ -59,14 +59,14 @@ OutputBaseFilename={#my_output_filename}
 SetupIconFile={#my_svn_path}\resources\mmex.ico
 Compression=lzma/Max
 SolidCompression=true
-VersionInfoVersion=1.1.0.0
+VersionInfoVersion=1.2.0.0
 VersionInfoCompany=Money Manager EX
 VersionInfoDescription=Money Management Software
-VersionInfoTextVersion=1.1.0.0
+VersionInfoTextVersion=1.2.0.0
 VersionInfoCopyright=2014 - Money Manager EX
 VersionInfoProductName=mmex
-VersionInfoProductVersion=1.1.0.0
-VersionInfoProductTextVersion=1.1.0.0
+VersionInfoProductVersion=1.2.0.0
+VersionInfoProductTextVersion=1.2.0.0
 ArchitecturesAllowed=x64 
 ArchitecturesInstallIn64BitMode=x64 
 
