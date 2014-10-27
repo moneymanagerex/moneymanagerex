@@ -779,6 +779,7 @@ void mmOptionsDialog::CreateControls()
     int webserverPort = Model_Setting::instance().GetIntSetting("WEBSERVERPORT", 8080);
     scWebServerPort_ = new wxSpinCtrl(networkPanel, ID_DIALOG_OPTIONS_WEB_SERVER_PORT,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 65535, webserverPort);
+    scWebServerPort_->SetValue(webserverPort);
     scWebServerPort_->SetToolTip(_("Specify web server port number"));
 
     wxFlexGridSizer* flex_sizer4 = new wxFlexGridSizer(0, 4, 0, 0);
