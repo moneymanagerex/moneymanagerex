@@ -420,9 +420,20 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
     else
         transID_ = stockID_;
 
-    // update stock history table
+    // update stock history table and stock items price/values with same symbol code
     if (!m_stock->SYMBOL.IsEmpty())
-        Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, priceDate_->GetValue(), cPrice, Model_StockHistory::MANUAL);
+    {
+        for (auto st : Model_Stock::instance().find(Model_Stock::SYMBOL(m_stock->SYMBOL)))
+        {
+            if (st.STOCKID != m_stock->STOCKID)
+            {
+                st.CURRENTPRICE = m_stock->CURRENTPRICE;
+                st.VALUE = st.CURRENTPRICE * st.NUMSHARES;
+                Model_Stock::instance().save(&st);
+            }
+            Model_StockHistory::instance().addUpdate(st.SYMBOL, priceDate_->GetValue(), st.CURRENTPRICE, Model_StockHistory::MANUAL);
+        }
+    }
 
     EndModal(wxID_OK);
 }
