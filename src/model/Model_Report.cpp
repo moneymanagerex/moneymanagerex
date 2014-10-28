@@ -27,54 +27,55 @@
     #include <wx/msw/registry.h>
 #endif
 
-static const wxString HTT_CONTEINER =
-"<!DOCTYPE html>\n"
-"<html>\n"
-"<head>\n"
-"    <meta charset=\"UTF-8\" />\n"
-"    <meta http - equiv = \"Content-Type\" content = \"text/html\" />\n"
-"    <title><TMPL_VAR REPORTNAME></title>\n"
-"    <script src = \"ChartNew.js\"></script>\n"
-"    <script src = \"sorttable.js\"></script>\n"
-"    <link href = \"master.css\" rel = \"stylesheet\" />\n"
-"</head>\n"
-"<body>\n"
-"<div class = \"container\">\n"
-"<h3><TMPL_VAR REPORTNAME></h3>\n"
-"<TMPL_VAR TODAY><hr>\n"
-"<div class = \"row\">\n"
-"<div class = \"col-xs-2\"></div>\n"
-"<div class = \"col-xs-8\">\n"
-"<table class = \"table\">\n"
-"<thead>\n"
-"    <tr>\n"
-"%s"
-"    </tr>\n"
-"</thead>\n"
-"<tbody>\n"
-"    <TMPL_LOOP NAME=CONTENTS>\n"
-"        <tr>\n"
-"%s"
-"        </tr>\n"
-"    </TMPL_LOOP>\n"
-"</tbody>\n"
-"</table>\n"
-"</div>\n"
-"<TMPL_LOOP ERRORS>\n"
-"    <hr>\n"
-"    <TMPL_VAR ERROR>\n"
-"</TMPL_LOOP>\n"
-"</div>\n"
-"</div>\n"
-"</body>\n"
-"<script>\n"
-"<!--Format numbers-->\n"
-"    function currency(n) { n = parseFloat(n); return isNaN(n) ? 0 : n.toFixed(2); }\n"
-"    var elements = document.getElementsByClassName(\"money, text-right\");\n"
-"    for (var i = 0; i < elements.length; i++)\n"
-"        { elements[i].innerHTML = \"<TMPL_VAR PFX_SYMBOL>\" + currency(elements[i].innerHTML) + \"<TMPL_VAR SFX_SYMBOL>\"; }\n"
-"</script>\n"
-"</html>\n";
+static const char *HTT_CONTEINER = R"(
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http - equiv = "Content-Type" content = "text/html">
+    <title><TMPL_VAR REPORTNAME></title>
+    <script src = "ChartNew.js"></script>
+    <script src = "sorttable.js"></script>
+    <link href = "master.css" rel = "stylesheet">
+</head>
+<body>
+<div class = "container">
+<h3><TMPL_VAR REPORTNAME></h3>
+<TMPL_VAR TODAY><hr>
+<div class = "row">
+<div class = "col-xs-2"></div>
+<div class = "col-xs-8">
+<table class = "table">
+<thead>
+    <tr>
+%s
+    </tr>
+</thead>
+<tbody>
+    <TMPL_LOOP NAME=CONTENTS>
+        <tr>
+%s
+        </tr>
+    </TMPL_LOOP>
+</tbody>
+
+</table>
+</div>
+<TMPL_LOOP ERRORS>
+    <TMPL_VAR ERROR>
+</TMPL_LOOP>"
+</div>
+</div>
+</body>
+<script>
+<!--Format numbers-->
+    function currency(n) { n = parseFloat(n); return isNaN(n) ? 0 : n.toFixed(2); }
+    var elements = document.getElementsByClassName("money, text-right");
+    for (var i = 0; i < elements.length; i++)
+        { elements[i].innerHTML = "<TMPL_VAR PFX_SYMBOL>" + currency(elements[i].innerHTML) + "<TMPL_VAR SFX_SYMBOL>"; }
+</script>
+</html>
+)";
 
 class Record : public std::map<std::wstring, std::wstring>
 {
