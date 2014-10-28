@@ -42,7 +42,7 @@ Priority: optional
 Architecture: $ARCHITECTURE
 Depends: libc6 (>= 2.13-38)
 Installed-Size: 9400
-Maintainer: MoneyManagerEx <moneymanagerex@moneymanagerex.com>
+Maintainer: MoneyManagerEx <moneymanagerex@moneymanagerex.org>
 Description: Simple to use financial management software
  Money  Manager  Ex (MMEX) is a free, open-source,
  cross-platform, easy-to-use personal finance software.

@@ -1,7 +1,7 @@
 # Chinese translations for MMEX package.
 # Copyright (C) 2014 THE MMEX'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the MMEX package.
-# Guan Lisheng <moneymanagerex@moneymanagerex.com>, 2014.
+# Guan Lisheng <moneymanagerex@moneymanagerex.org>, 2014.
 #
 msgid ""
 msgstr ""

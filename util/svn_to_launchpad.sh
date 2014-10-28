@@ -1,5 +1,5 @@
 #!/bin/bash
-EMAIL="moneymanagerex@moneymanagerex.com"
+EMAIL="moneymanagerex@moneymanagerex.org"
 PPA_N=1
 StableSvnList="http://svn.code.sf.net/p/moneymanagerex/code/tags/releases/"
 
