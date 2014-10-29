@@ -17,10 +17,12 @@
  ********************************************************/
 
 #include "Model_Report.h"
+#include "constants.h"
 #include "paths.h"
 #include "platfdep.h"
 #include "attachmentdialog.h"
 #include "reports/htmlbuilder.h"
+#include "model/Model_Setting.h"
 #include "LuaGlue/LuaGlue.h"
 #include "sqlite3.h"
 
@@ -277,6 +279,7 @@ wxString Model_Report::get_html(const Data* r)
         auto s = wxString(wxFileName::GetPathSeparator());
         s.Replace("\\", "\\\\");
         report(L"FILESEPARATOR") = s;
+        report(L"LANGUAGE") = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
     }
     report(L"ERRORS") = errors;
 
