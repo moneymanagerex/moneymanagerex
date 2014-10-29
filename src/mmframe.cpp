@@ -308,7 +308,8 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     }
 
     //Check for new version at startup
-    checkUpdates(true);
+    if (Model_Setting::instance().GetBoolSetting("UPDATECHECK", true))
+        checkUpdates(true);
 
     //Show appstart
     if (from_scratch || !dbpath.IsOk())

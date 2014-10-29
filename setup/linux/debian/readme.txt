@@ -35,7 +35,7 @@ svn checkout http://svn.code.sf.net/p/moneymanagerex/code/trunk mmex
 #     Modify 3rd/cgitemplate/html_template.h
 #         Add line "#include <cstddef>"
 #     Modify "setup/linux/debian/build.sh"
-#         Specify version of mmex ("1.1.0.0")
+#         Specify version of mmex ("1.2.0.0")
 #         Specify system Architecture  ("i386" or "amd64")
 
 # Build mmex

@@ -312,6 +312,9 @@
     <ClCompile Include="..\..\3rd\route\route.cc">
       <Filter>Source Files\3d</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\reports\myusage.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -667,6 +670,9 @@
     </ClInclude>
     <ClInclude Include="..\..\3rd\route\route.h">
       <Filter>Header Files\3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\myusage.h">
+      <Filter>Header Files\reports</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

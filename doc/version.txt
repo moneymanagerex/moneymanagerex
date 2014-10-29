@@ -1,5 +1,24 @@
 Version History of Money Manager Ex
 
+1.1.1 (October 6, 2014)
+- Full UTF-8 and wide characters support in GRM and LUA
+- Full integration with WebApp @ http:\\webapp.moneymanagerex.org
+- Added "unknown" payee\category in QIF, CSV and WebApp import
+- Navigation panel status saving
+- New JS pie charts on report
+- Added option to reallocate account type
+- Added option to change password of encrypted DB
+- Added timeout option for web-calls
+- Fix for '&' sign in notes (bug #441)
+- Fix new transaction with no payee in list (bug #450)
+- Fix deletion of two categories (bug #452)
+- Fix override categories in home page (bugs #447 #444)
+- Fix transaction filter transfers and payees (bugs #453 #457)
+- Fix for trasnfer between accoutn with different currencies (bugs #462 #472)
+- Fix cashflow report (bug #481)
+- Fix space in amount(bug #493)
+- Fix wrong beahviour of splitted and new transactions
+
 1.1.0 (August 1, 2014)
 - Reports
 - Web Server
