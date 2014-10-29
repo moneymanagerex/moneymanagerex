@@ -178,6 +178,7 @@ private:
     void OnOpen(wxCommandEvent& event);
     void OnConvertEncryptedDB(wxCommandEvent& event);
     void OnChangeEncryptPassword(wxCommandEvent& event);
+    void OnVacuumDB(wxCommandEvent& event);
     void OnSaveAs(wxCommandEvent& event);
     void OnExportToCSV(wxCommandEvent& event);
     void OnExportToQIF(wxCommandEvent& event);
@@ -306,6 +307,7 @@ private:
         MENU_PAYEE_RELOCATION,
         MENU_CONVERT_ENC_DB,
         MENU_CHANGE_ENCRYPT_PASSWORD,
+        MENU_DB_VACUUM,
         MENU_ONLINE_UPD_CURRENCY_RATE,
         MENU_ACCOUNT_REALLOCATE,
 
