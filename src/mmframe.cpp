@@ -142,8 +142,6 @@ BEGIN_EVENT_TABLE(mmGUIFrame, wxFrame)
 EVT_MENU(MENU_NEW, mmGUIFrame::OnNew)
 EVT_MENU(MENU_OPEN, mmGUIFrame::OnOpen)
 EVT_MENU(MENU_SAVE_AS, mmGUIFrame::OnSaveAs)
-EVT_MENU(MENU_CONVERT_ENC_DB, mmGUIFrame::OnConvertEncryptedDB)
-EVT_MENU(MENU_CHANGE_ENCRYPT_PASSWORD, mmGUIFrame::OnChangeEncryptPassword)
 EVT_MENU(MENU_EXPORT_CSV, mmGUIFrame::OnExportToCSV)
 EVT_MENU(MENU_EXPORT_QIF, mmGUIFrame::OnExportToQIF)
 EVT_MENU(MENU_IMPORT_QIF, mmGUIFrame::OnImportQIF)
@@ -169,6 +167,9 @@ EVT_MENU(wxID_PRINT, mmGUIFrame::OnPrintPage)
 EVT_MENU(MENU_SHOW_APPSTART, mmGUIFrame::OnShowAppStartDialog)
 EVT_MENU(MENU_EXPORT_HTML, mmGUIFrame::OnExportToHtml)
 EVT_MENU(MENU_BILLSDEPOSITS, mmGUIFrame::OnBillsDeposits)
+EVT_MENU(MENU_CONVERT_ENC_DB, mmGUIFrame::OnConvertEncryptedDB)
+EVT_MENU(MENU_CHANGE_ENCRYPT_PASSWORD, mmGUIFrame::OnChangeEncryptPassword)
+EVT_MENU(MENU_DB_VACUUM, mmGUIFrame::OnVacuumDB)
 
 EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
 EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
@@ -1513,18 +1514,23 @@ void mmGUIFrame::createMenu()
 
     menuTools->AppendSeparator();
 
+    wxMenu *menuDatabase = new wxMenu;
     wxMenuItem* menuItemConvertDB = new wxMenuItem(menuTools, MENU_CONVERT_ENC_DB
         , _("Convert Encrypted &DB")
         , _("Convert Encrypted DB to Non-Encrypted DB"));
     menuItemConvertDB->SetBitmap(wxBitmap(encrypt_db_xpm));
-    menuTools->Append(menuItemConvertDB);
-
     wxMenuItem* menuItemChangeEncryptPassword = new wxMenuItem(menuTools, MENU_CHANGE_ENCRYPT_PASSWORD
         , _("Change Encrypted &Password")
         , _("Change the password of an encrypted database"));
-
     menuItemChangeEncryptPassword->SetBitmap(wxBitmap(encrypt_db_edit_xpm));
-    menuTools->Append(menuItemChangeEncryptPassword);
+    wxMenuItem* menuItemVacuumDB = new wxMenuItem(menuTools, MENU_DB_VACUUM
+        , _("Optimize &Database")
+        , _("Optimize database space and performance"));
+    menuDatabase->Append(menuItemConvertDB);
+    menuDatabase->Append(menuItemChangeEncryptPassword);
+    menuDatabase->Append(menuItemVacuumDB);
+    menuTools->AppendSubMenu(menuDatabase, _("Database")
+        , _("Database management"));
     menuItemChangeEncryptPassword->Enable(false);
 
     // Help Menu
@@ -1921,6 +1927,22 @@ void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
         {
             wxMessageBox(_("Confirm password failed."), password_change_heading);
         }
+    }
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
+{
+    wxMessageDialog msgDlg(this
+        , wxString::Format("%s\n\n%s",_("Make sure you have a backup of DB before optimize it"),_("Do you want to proceed?"))
+        , _("DB Optimization"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+    if (msgDlg.ShowModal() == wxID_YES)
+    {
+        const wxString SizeBefore = wxFileName(m_filename).GetHumanReadableSize();
+        m_db->Vacuum();
+        const wxString SizeAfter = wxFileName(m_filename).GetHumanReadableSize();
+        wxMessageBox(wxString::Format("%s\n\n%s: %s\n%s: %s\n", _("Database Optimization Completed!"), _("Size before"), SizeBefore, _("Size after"), SizeAfter),
+            _("DB Optimization"));
     }
 }
 //----------------------------------------------------------------------------
