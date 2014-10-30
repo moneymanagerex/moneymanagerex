@@ -36,6 +36,86 @@
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Report.h"
 
+const char *group_report_template = R"(
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http - equiv = "Content-Type" content = "text/html" />
+    <title><TMPL_VAR REPORTNAME></title>
+    <script src = "ChartNew.js"></script>
+    <script src = "sorttable.js"></script>
+    <link href = "master.css" rel = "stylesheet" />
+</head>
+<body>
+
+<div class = "container">
+<h3><TMPL_VAR REPORTNAME></h3>
+<TMPL_VAR TODAY><hr>
+<div class = "row">
+<div class = "col-xs-2"></div>
+<div class = "col-xs-8">
+
+<table class = "table">
+    <thead>
+        <tr>
+            <th>REPORTID</th>
+            <th>REPORTNAME</th>
+        </tr>
+    </thead>
+    <tbody>
+        <TMPL_LOOP NAME=CONTENTS>
+            <tr>
+            <td><TMPL_VAR REPORTID></td>
+            <td><TMPL_VAR REPORTNAME></td>
+            </tr>
+        </TMPL_LOOP>
+    </tbody>
+</table>
+</div></div></div></body>
+</html>
+)";
+
+class mmGeneralGroupReport : public mmPrintableBase
+{
+public:
+    mmGeneralGroupReport(const wxString& groupname): mmPrintableBase("mmGeneralGroupReport", _("mmGeneralGroupReport")), m_group_name(groupname)
+    {
+        m_sub_reports = Model_Report::instance().find(Model_Report::GROUPNAME(groupname));
+    }
+
+    wxString getHTMLText()
+    {
+        loop_t contents;
+        for (const auto & report : m_sub_reports)
+            contents += report.to_row_t();
+
+        mm_html_template report(group_report_template);
+        report(L"REPORTNAME") = this->local_title() + " For " + this->m_group_name;
+        report(L"CONTENTS") = contents;
+
+        wxString out = wxEmptyString;
+        try 
+        {
+            out = report.Process();
+        }
+        catch (const syntax_ex& e)
+        {
+            out = e.what();
+        }
+        catch (...)
+        {
+            // TODO
+        }
+
+        Model_Report::outputReportFile(out);
+        return out;
+    }
+private:
+    wxString m_group_name;
+    Model_Report::Data_Set m_sub_reports;
+};
+
 void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting)
 {
 
@@ -338,7 +418,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         if (group_name != record.GROUPNAME && !no_group)
         {
             group = navTreeCtrl_->AppendItem(reports, wxGetTranslation(record.GROUPNAME), 4, 4);
-            navTreeCtrl_->SetItemData(group, new mmTreeItemData(record.GROUPNAME, 0));
+            navTreeCtrl_->SetItemData(group, new mmTreeItemData(record.GROUPNAME, new mmGeneralGroupReport(record.GROUPNAME)));
             group_name = record.GROUPNAME;
         }
         Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
