@@ -337,7 +337,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         bool no_group = record.GROUPNAME.empty();
         if (group_name != record.GROUPNAME && !no_group)
         {
-            group = navTreeCtrl_->AppendItem(reports, wxGetTranslation(record.GROUPNAME), 8, 8);
+            group = navTreeCtrl_->AppendItem(reports, wxGetTranslation(record.GROUPNAME), 4, 4);
             navTreeCtrl_->SetItemData(group, new mmTreeItemData(record.GROUPNAME, 0));
             group_name = record.GROUPNAME;
         }
