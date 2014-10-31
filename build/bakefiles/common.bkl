@@ -176,7 +176,6 @@
         <include>$(SRCDIR)/3rd/LuaGlue/include</include>
         <include>$(SRCDIR)/3rd/cgitemplate</include>
         <include>$(SRCDIR)/3rd/csv-parser/include</include>
-        <include>$(SRCDIR)/3rd/route</include>
         <include>$(SRCDIR)/src</include>
 
         <!-- disable precompiled headers for wxWidgets -->
@@ -198,7 +197,6 @@
         <headers>$(fileList( [ '3rd/cgitemplate/html_template.h', '3rd/mongoose/*.h' ] ))</headers>
         <sources>$(fileList( [ '3rd/cgitemplate/html_template.cpp', '3rd/mongoose/*.c' ] ))</sources>
         <sources>$(fileList( [ '3rd/csv-parser/*.cpp' ] ))</sources>
-        <sources>$(fileList( [ '3rd/route/route.cc' ] ))</sources>
 
 
         <!-- Microsoft compilers only, enable PDB for Release build -->

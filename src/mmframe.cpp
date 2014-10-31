@@ -137,7 +137,7 @@
 int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds
 //----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(mmGUIFrame, wxFrame)
+wxBEGIN_EVENT_TABLE(mmGUIFrame, wxFrame)
 EVT_MENU(MENU_NEW, mmGUIFrame::OnNew)
 EVT_MENU(MENU_OPEN, mmGUIFrame::OnOpen)
 EVT_MENU(MENU_SAVE_AS, mmGUIFrame::OnSaveAs)
@@ -218,12 +218,9 @@ EVT_TIMER(AUTO_REPEAT_TRANSACTIONS_TIMER_ID, mmGUIFrame::OnAutoRepeatTransaction
 /* Recent Files */
 EVT_MENU_RANGE(wxID_FILE1, wxID_FILE9, mmGUIFrame::OnRecentFiles)
 EVT_MENU(MENU_RECENT_FILES_CLEAR, mmGUIFrame::OnClearRecentFiles)
-#if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
-EVT_MENU(MENU_VIEW_TOGGLE_FULLSCREEN, mmGUIFrame::OnToggleFullScreen)
-#endif
 EVT_CLOSE(mmGUIFrame::OnClose)
 
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
 mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
@@ -1373,21 +1370,9 @@ void mmGUIFrame::createMenu()
         _("Budget Summary: Include &Categories"), _("Include the categories in the Budget Category Summary"), wxITEM_CHECK);
     wxMenuItem* menuItemIgnoreFutureTransactions = new wxMenuItem(menuView, MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS,
         _("Ignore F&uture Transactions"), _("Ignore Future transactions"), wxITEM_CHECK);
-#if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
-     wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN,
-         _("Toggle Fullscreen\tF11"), _("Toggle Fullscreen"), wxITEM_CHECK);
-#endif
     //Add the menu items to the menu bar
     menuView->Append(menuItemToolbar);
     menuView->Append(menuItemLinks);
-    menuView->AppendSeparator();
-
-    //    wxMenu* budgetingMenu = new wxMenu;
-    //    budgetingMenu->Append(menuItemBudgetFinancialYears);
-    //    budgetingMenu->AppendSeparator();
-    //    budgetingMenu->Append(menuItemBudgetSetupWithoutSummary);
-    //    budgetingMenu->Append(menuItemBudgetCategorySummary);
-    //    menuView->AppendSubMenu(budgetingMenu,_("Budget..."));
 
     menuView->Append(menuItemBudgetFinancialYears);
     menuView->Append(menuItemBudgetTransferTotal);
@@ -1396,10 +1381,7 @@ void mmGUIFrame::createMenu()
     menuView->Append(menuItemBudgetCategorySummary);
     menuView->AppendSeparator();
     menuView->Append(menuItemIgnoreFutureTransactions);
-#if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
-    menuView->AppendSeparator();
-    menuView->Append(menuItemToggleFullscreen);
-#endif
+
     wxMenu *menuAccounts = new wxMenu;
 
     wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
@@ -2748,13 +2730,6 @@ void mmGUIFrame::setGotoAccountID(int account_id, long transID)
     gotoAccountID_ = account_id;
     gotoTransID_ = transID;
 }
-
-#if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
-void mmGUIFrame::OnToggleFullScreen(wxCommandEvent& WXUNUSED(event))
-{
-   ShowFullScreen(!IsFullScreen());
-}
-#endif
 
 void mmGUIFrame::OnClose(wxCloseEvent&)
 {

@@ -40,9 +40,6 @@ enum
     MENU_VIEW_BUDGET_CATEGORY_SUMMARY,
     MENU_VIEW_BUDGET_TRANSFER_TOTAL,
     MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS,
-#if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
-    MENU_VIEW_TOGGLE_FULLSCREEN, 
-#endif
     ID_MMEX_MAX,
 };
 
@@ -86,9 +83,6 @@ public:
     void SetCheckingAccountPageInactive();
     void SetBudgetingPageInactive();
     void menuPrintingEnable(bool enable);
-#if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
-    void OnToggleFullScreen(wxCommandEvent& WXUNUSED(event));
-#endif
     void OnClose(wxCloseEvent&);
 
 private:
