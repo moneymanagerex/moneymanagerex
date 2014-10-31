@@ -218,7 +218,6 @@ EVT_TIMER(AUTO_REPEAT_TRANSACTIONS_TIMER_ID, mmGUIFrame::OnAutoRepeatTransaction
 /* Recent Files */
 EVT_MENU_RANGE(wxID_FILE1, wxID_FILE9, mmGUIFrame::OnRecentFiles)
 EVT_MENU(MENU_RECENT_FILES_CLEAR, mmGUIFrame::OnClearRecentFiles)
-EVT_MENU(MENU_VIEW_TOGGLE_FULLSCREEN, mmGUIFrame::OnToggleFullScreen)
 EVT_CLOSE(mmGUIFrame::OnClose)
 
 wxEND_EVENT_TABLE()
@@ -1382,11 +1381,7 @@ void mmGUIFrame::createMenu()
     menuView->Append(menuItemBudgetCategorySummary);
     menuView->AppendSeparator();
     menuView->Append(menuItemIgnoreFutureTransactions);
-#if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
-    wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN,
-        _("Toggle Fullscreen\tF11"), _("Toggle Fullscreen"), wxITEM_CHECK);    menuView->AppendSeparator();
-    menuView->Append(menuItemToggleFullscreen);
-#endif
+
     wxMenu *menuAccounts = new wxMenu;
 
     wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
@@ -2734,13 +2729,6 @@ void mmGUIFrame::setGotoAccountID(int account_id, long transID)
 {
     gotoAccountID_ = account_id;
     gotoTransID_ = transID;
-}
-
-void mmGUIFrame::OnToggleFullScreen(wxCommandEvent& WXUNUSED(event))
-{
-#if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
-   this->ShowFullScreen(!IsFullScreen());
-#endif
 }
 
 void mmGUIFrame::OnClose(wxCloseEvent&)
