@@ -666,7 +666,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
     }
     else
     {
-        mmPayeeDialog dlg(this);
+        mmPayeeDialog dlg(this,true);
 
         if (dlg.ShowModal() == wxID_OK)
         {
