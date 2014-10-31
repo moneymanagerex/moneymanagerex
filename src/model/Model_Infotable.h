@@ -49,12 +49,14 @@ public:
     void Set(const wxString& key, int value);
     void Set(const wxString& key, const wxDateTime& date);
     void Set(const wxString& key, const wxString& value);
+    void Set(const wxString& key, const wxColour& value);
 
 public:
     // Getter
     bool GetBoolInfo(const wxString& key, bool default_value);
     int GetIntInfo(const wxString& key, int default_value);
     wxString GetStringInfo(const wxString& key, const wxString& default_value);
+    const wxColour GetColourSetting(const wxString& key, const wxColour& default_value = wxColour(255, 255, 255));
 
     int GetBaseCurrencyId();
     void SetBaseCurrencyID(int currency_id);

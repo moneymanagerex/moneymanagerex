@@ -105,29 +105,6 @@ int Model_Setting::GetIntSetting(const wxString& key, int default_value)
     return default_value;
 }
 
-wxColour Model_Setting::GetColourSetting(const wxString& key, const wxColour& default_value)
-{
-    wxString value = this->GetStringSetting(key, "");
-    if (!value.IsEmpty())
-    {
-        wxRegEx pattern("([0-9]{1,3}),([0-9]{1,3}),([0-9]{1,3})");
-        if (pattern.Matches(value))
-        {
-            wxString red = pattern.GetMatch(value, 1);
-            wxString green = pattern.GetMatch(value, 2);
-            wxString blue = pattern.GetMatch(value, 3);
-
-            return wxColour(wxAtoi(red), wxAtoi(green), wxAtoi(blue));
-        }
-        else
-        {
-            return wxColor(value);
-        }
-    }
-
-    return default_value;
-}
-
 wxString Model_Setting::GetStringSetting(const wxString& key, const wxString& default_value)
 {
     Data* setting = this->get_one(SETTINGNAME(key));

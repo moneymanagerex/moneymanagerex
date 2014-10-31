@@ -43,6 +43,14 @@ public:
     * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Setting& instance();
+    void Begin()
+    {
+        this->db_->Begin();
+    }
+    void Commit()
+    {
+        this->db_->Commit();
+    }
 
 public:
     // Setter
@@ -56,7 +64,6 @@ public:
     bool GetBoolSetting(const wxString& key, bool default_value);
     int GetIntSetting(const wxString& key, int default_value);
 
-    wxColour GetColourSetting(const wxString& key, const wxColour& default_value = wxColour(255, 255, 255));
     wxString GetStringSetting(const wxString& key, const wxString& default_value);
     wxString getLastDbPath();
 
