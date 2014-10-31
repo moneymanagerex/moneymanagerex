@@ -291,17 +291,9 @@ void mmPayeeDialog::DefineDefaultCategory()
             refreshRequested_ = true;
             Model_Payee::instance().save(payee);
 			mmWebApp::MMEX_WebApp_UpdatePayee();
-        }
-        else
-        {
-            payee->CATEGID = -1;
-            payee->SUBCATEGID = -1;
-            refreshRequested_ = true;
-            Model_Payee::instance().save(payee);
-			mmWebApp::MMEX_WebApp_UpdatePayee();
+            fillControls();
         }
     }
-    fillControls();
 }
 
 void mmPayeeDialog::OnOrganizeAttachments()
