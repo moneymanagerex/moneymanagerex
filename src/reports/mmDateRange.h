@@ -27,7 +27,6 @@ protected:
     const wxDateTime today_;
     wxDateTime start_date_, end_date_;
     wxString title_;
-    wxString local_title_;
 
 public:
     mmDateRange();
