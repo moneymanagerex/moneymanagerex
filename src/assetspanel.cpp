@@ -348,7 +348,8 @@ bool mmAssetsPanel::Create(wxWindow *parent
         m_listCtrlAssets->EnsureVisible(this->m_assets.size() - 1);
 
     this->windowsFreezeThaw();
-
+    GetSizer()->Fit(this);
+    GetSizer()->SetSizeHints(this);
     return true;
 }
 
@@ -617,10 +618,10 @@ void mmAssetsPanel::updateExtraAssetData(int selIndex)
     {
         const Model_Asset::Data& asset = this->m_assets[selIndex];
         enableEditDeleteButtons(true);
-        wxString miniInfo = "\t";
-        miniInfo += wxString::Format(_("Change in Value: %s %s")
-            , wxGetTranslation(asset.VALUECHANGE)
-            , (Model_Asset::rate(asset) != Model_Asset::RATE_NONE) ? wxString::Format("= %.2f %", asset.VALUECHANGERATE) : "");
+        const auto& change_rate = (Model_Asset::rate(asset) != Model_Asset::RATE_NONE)
+            ? wxString::Format("%.2f %%", asset.VALUECHANGERATE) : "";
+        const wxString& miniInfo = " " + wxString::Format(_("Change in Value: %s %s")
+            , wxGetTranslation(asset.VALUECHANGE), change_rate);
 
         st->SetLabelText(asset.NOTES);
         stm->SetLabelText(miniInfo);
