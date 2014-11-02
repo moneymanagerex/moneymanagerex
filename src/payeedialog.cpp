@@ -43,16 +43,18 @@ wxBEGIN_EVENT_TABLE( mmPayeeDialog, wxDialog )
     EVT_DATAVIEW_ITEM_VALUE_CHANGED(wxID_ANY, mmPayeeDialog::OnDataChanged)
     EVT_DATAVIEW_ITEM_EDITING_STARTED(wxID_ANY, mmPayeeDialog::OnDataEditStart)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmPayeeDialog::OnListItemSelected)
+    EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmPayeeDialog::OnListItemActivated)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmPayeeDialog::OnItemRightClick)
     EVT_MENU_RANGE(MENU_DEFINE_CATEGORY, MENU_RELOCATE_PAYEE, mmPayeeDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
 
-mmPayeeDialog::mmPayeeDialog(wxWindow *parent) :
+mmPayeeDialog::mmPayeeDialog(wxWindow *parent, const bool& payee_choose) :
     m_payee_id(-1)
     , m_maskTextCtrl()
     , payeeListBox_()
     , m_payee_rename(-1)
+    , m_payee_choose(payee_choose)
     , refreshRequested_(false)
 #ifdef _DEBUG
     , debug_(true)
@@ -196,6 +198,12 @@ void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
         m_payee_id = (int)payeeListBox_->GetItemData(item);
 }
 
+void mmPayeeDialog::OnListItemActivated(wxDataViewEvent& event)
+{
+    if (m_payee_id > 0 && m_payee_choose)
+        EndModal(wxID_OK);
+}
+
 void mmPayeeDialog::AddPayee()
 {
     const wxString name = wxGetTextFromUser(_("Enter the name for the new payee:")
@@ -283,17 +291,9 @@ void mmPayeeDialog::DefineDefaultCategory()
             refreshRequested_ = true;
             Model_Payee::instance().save(payee);
 			mmWebApp::MMEX_WebApp_UpdatePayee();
-        }
-        else
-        {
-            payee->CATEGID = -1;
-            payee->SUBCATEGID = -1;
-            refreshRequested_ = true;
-            Model_Payee::instance().save(payee);
-			mmWebApp::MMEX_WebApp_UpdatePayee();
+            fillControls();
         }
     }
-    fillControls();
 }
 
 void mmPayeeDialog::OnOrganizeAttachments()
@@ -333,8 +333,8 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
     switch(id)
     {
         case MENU_DEFINE_CATEGORY: DefineDefaultCategory() ; break;
-        case NENU_NEW_PAYEE: AddPayee(); break;
-        case NENU_EDIT_PAYEE: EditPayee(); break;
+        case MENU_NEW_PAYEE: AddPayee(); break;
+        case MENU_EDIT_PAYEE: EditPayee(); break;
         case MENU_DELETE_PAYEE: DeletePayee(); break;
 		case MENU_ORGANIZE_ATTACHMENTS: OnOrganizeAttachments(); break;
         case MENU_RELOCATE_PAYEE: OnPayeeRelocate(); break;
@@ -361,9 +361,9 @@ void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
     if (!payee) mainMenu->Enable(MENU_DEFINE_CATEGORY, false);
     mainMenu->AppendSeparator();
 
-    mainMenu->Append(new wxMenuItem(mainMenu, NENU_NEW_PAYEE, _("&Add ")));
-    mainMenu->Append(new wxMenuItem(mainMenu, NENU_EDIT_PAYEE, _("&Edit ")));
-    if (!payee) mainMenu->Enable(NENU_EDIT_PAYEE, false);
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_NEW_PAYEE, _("&Add ")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_EDIT_PAYEE, _("&Edit ")));
+    if (!payee) mainMenu->Enable(MENU_EDIT_PAYEE, false);
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_PAYEE, _("&Remove ")));
     if (!payee || Model_Payee::is_used(m_payee_id)) mainMenu->Enable(MENU_DELETE_PAYEE, false);
     mainMenu->AppendSeparator();
