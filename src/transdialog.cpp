@@ -500,7 +500,7 @@ bool mmTransDialog::validateData()
     Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
     if (!account || Model_Account::type(account) == Model_Account::INVESTMENT)
     {
-        mmMessageAccountInvalid(cbAccount_);
+        mmMessageAccountInvalid((wxWindow*)cbAccount_);
         return false;
     }
     m_trx_data.ACCOUNTID = account->ACCOUNTID;
@@ -510,7 +510,7 @@ bool mmTransDialog::validateData()
         wxString payee_name = cbPayee_->GetValue();
         if (payee_name.IsEmpty())
         {
-            mmMessagePayeeInvalid(cbPayee_);
+            mmMessagePayeeInvalid((wxWindow*)cbPayee_);
             return false;
         }
 
@@ -550,7 +550,7 @@ bool mmTransDialog::validateData()
         Model_Account::Data *to_account = Model_Account::instance().get(cbPayee_->GetValue());
         if (!to_account || to_account->ACCOUNTID == m_trx_data.ACCOUNTID || Model_Account::type(to_account) == Model_Account::INVESTMENT)
         {
-            mmMessageAccountInvalid(cbPayee_, true);
+            mmMessageAccountInvalid((wxWindow*)cbPayee_, true);
             return false;
         }
         m_trx_data.TOACCOUNTID = to_account->ACCOUNTID;
@@ -567,7 +567,7 @@ bool mmTransDialog::validateData()
     {
         if (local_splits.empty())
         {
-            mmMessageCategoryInvalid(bCategory_);
+            mmMessageCategoryInvalid((wxWindow*)bCategory_);
             return false;
         }
     }
@@ -577,7 +577,7 @@ bool mmTransDialog::validateData()
         Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(m_trx_data.SUBCATEGID);
         if (!category || !(subcategory || m_trx_data.SUBCATEGID < 0))
         {
-            mmMessageCategoryInvalid(bCategory_);
+            mmMessageCategoryInvalid((wxWindow*)bCategory_);
             return false;
         }
     }

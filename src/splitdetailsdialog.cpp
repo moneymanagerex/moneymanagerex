@@ -179,7 +179,7 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
 {
     if (split_.CATEGID == -1)
     {
-        mmMessageCategoryInvalid(bCategory_);
+        mmMessageCategoryInvalid((wxWindow*)bCategory_);
         return;
     }
 

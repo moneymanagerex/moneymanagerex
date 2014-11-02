@@ -106,7 +106,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow 
 , cp_(cp)
 {
     // load the global variables
-    m_selected_col = Model_Setting::instance().GetIntSetting("BD_SORT_COL", 4);
+    m_selected_col = Model_Setting::instance().GetIntSetting("BD_SORT_COL", 0);
     m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
 }
 
@@ -141,11 +141,11 @@ mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid,
 , listCtrlAccount_()
 , transFilterDlg_(0)
 {
-    ColName_[COL_PAYEE] = _("Payee");
+    ColName_[COL_DUE_DATE] = _("Next Due Date");
     ColName_[COL_ACCOUNT] = _("Account");
+    ColName_[COL_PAYEE] = _("Payee");
     ColName_[COL_TYPE] = _("Type");
     ColName_[COL_AMOUNT] = _("Amount");
-    ColName_[COL_DUE_DATE] = _("Next Due Date");
     ColName_[COL_FREQUENCY] = _("Frequency");
     ColName_[COL_DAYS] = _("Remaining Days");
     ColName_[COL_NOTES] = _("Notes");
@@ -241,13 +241,13 @@ void mmBillsDepositsPanel::CreateControls()
     for (const auto&column : ColName_)
     {
         wxListItem itemCol;
-        if (column.first == 4) itemCol.SetImage(4);
+        if (column.first == COL_DUE_DATE) itemCol.SetImage(4);
         itemCol.SetText(column.second);
         listCtrlAccount_->InsertColumn(column.first, column.second
-            , (column.first == 4 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT));
+            , (column.first == COL_DUE_DATE ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT));
 
-        int col_x = Model_Setting::instance().GetIntSetting(
-            wxString::Format("BD_COL%d_WIDTH", column.first), (column.first > 0 ? - 2 : 150));
+        int col_x = Model_Setting::instance().GetIntSetting(wxString::Format("BD_COL%d_WIDTH", column.first)
+            , (column.first > 0 ? - 2 : 150));
         listCtrlAccount_->SetColumnWidth(column.first, col_x);
     }
 
@@ -493,7 +493,7 @@ wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Data* ite
 
     wxString text = wxGetTranslation(BILLSDEPOSITS_REPEATS[repeats]);
     if (repeats > 10 && repeats < 15)
-        text = wxString::Format(text, (wxString() << item->NUMOCCURRENCES));
+        text = wxString::Format(text, wxString::Format("%d", item->NUMOCCURRENCES));
     return text;
 }
 

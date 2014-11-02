@@ -126,11 +126,11 @@ private:
 
     enum EColumn
     {
-        COL_PAYEE = 0,
+        COL_DUE_DATE = 0,
         COL_ACCOUNT,
+        COL_PAYEE,
         COL_TYPE,
         COL_AMOUNT,
-        COL_DUE_DATE,
         COL_FREQUENCY,
         COL_DAYS,
         COL_NOTES,
