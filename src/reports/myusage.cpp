@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Usage.h"
 #include "reports/mmDateRange.h"
 #include "reports/htmlbuilder.h"
-#include "Model/Model_Report.h"
+#include "model/Model_Report.h"
 
 const char *usage_template = R"(
 <!DOCTYPE html>
