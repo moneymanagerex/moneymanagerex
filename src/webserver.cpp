@@ -40,7 +40,6 @@
 #include "model/Model_Report.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_Usage.h"
-#include "route/route.h"
 
 std::string event_to_name(enum mg_event ev)
 {
@@ -66,69 +65,26 @@ static int ev_handler(struct mg_connection *conn, enum mg_event ev)
 
     if (ev == MG_REQUEST) 
     {
-        static route::Route route;
-        auto match = route.set(conn->uri);
-
-        if (match.test("/account"))
+        if (strcmp(conn->uri, "/account") == 0)
         {
-            wxString str = Model_Account::instance().all().to_json().c_str();
+            const wxString& str = Model_Account::instance().all().to_json().c_str();
             mg_printf_data(conn, str);
             result = MG_TRUE;
         }
-        else if (match.test("/account/:id"))
+        else if (strcmp(conn->uri, "/payee") == 0)
         {
-            std::string id = match.get("id");
-            Model_Account::Data* account = 0;
-            if (wxString(id).IsNumber())
-                account = Model_Account::instance().get(std::stoi(id));
-            else
-                account = Model_Account::instance().get(id);
-
-            if (account)
-            {
-                mg_printf_data(conn, account->to_json().c_str());
-                result = MG_TRUE;
-            }
-        }
-        else if (match.test("/payee"))
-        {
-            wxString str = Model_Payee::instance().all().to_json().c_str();
+            const wxString& str = Model_Payee::instance().all().to_json().c_str();
             mg_printf_data(conn, str);
             result = MG_TRUE;
         }
-        else if (match.test("/payee/:id"))
+        else if (strcmp(conn->uri, "/usage") == 0)
         {
-            std::string id = match.get("id");
-            Model_Payee::Data* payee = 0;
-            if (wxString(id).IsNumber())
-                payee = Model_Payee::instance().get(std::stoi(id));
-            else
-                payee = Model_Payee::instance().get(id);
-            
-            if (payee)
-            {
-                mg_printf_data(conn, payee->to_json().c_str());
-                result = MG_TRUE;
-            }
-        }
-        else if (match.test("/usage"))
-        {
-            wxString str = Model_Usage::instance().all().to_json().c_str();
+            const wxString& str = Model_Usage::instance().all().to_json().c_str();
             mg_printf_data(conn, str);
             result = MG_TRUE;
         }
-        else if (match.test("/asset"))
-        {
-            wxString str = Model_Asset::instance().all().to_json().c_str();
-            mg_printf_data(conn, str);
-            result = MG_TRUE;
-        }
-        else if (match.test("/category"))
-        {
-            wxString str = Model_Category::instance().all().to_json().c_str();
-            mg_printf_data(conn, str);
-            result = MG_TRUE;
-        }
+        else
+            result = MG_FALSE;
     } 
 
     return result;
@@ -146,7 +102,7 @@ wxThread::ExitCode WebServerThread::Entry()
 {
     // Get user setting
     int webserverPort = Model_Setting::instance().GetIntSetting("WEBSERVERPORT", 8080);
-    wxString strPort = wxString::Format("%d", webserverPort);
+    const wxString& strPort = wxString::Format("%d", webserverPort);
 
     // Create and configure the server
     struct mg_server *server = mg_create_server(nullptr, ev_handler);
