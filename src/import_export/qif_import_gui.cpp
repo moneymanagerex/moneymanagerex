@@ -42,21 +42,21 @@ wxEND_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
 : m_userDefinedDateMask(false)
-, choiceDateFormat_()
-, dataListBox_()
-, accListBox_()
-, payeeListBox_()
-, categoryListBox_()
-, button_search_()
-, file_name_ctrl_()
-, log_field_()
-, dateFromCheckBox_()
-, dateToCheckBox_()
-, fromDateCtrl_()
-, toDateCtrl_()
-, accountCheckBox_()
-, accountDropDown_()
-, btnOK_()
+, choiceDateFormat_(nullptr)
+, dataListBox_(nullptr)
+, accListBox_(nullptr)
+, payeeListBox_(nullptr)
+, categoryListBox_(nullptr)
+, button_search_(nullptr)
+, file_name_ctrl_(nullptr)
+, log_field_(nullptr)
+, dateFromCheckBox_(nullptr)
+, dateToCheckBox_(nullptr)
+, fromDateCtrl_(nullptr)
+, toDateCtrl_(nullptr)
+, accountCheckBox_(nullptr)
+, accountDropDown_(nullptr)
+, btnOK_(nullptr)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("QIF Import"), wxDefaultPosition, wxSize(500, 300), style);
@@ -298,11 +298,9 @@ bool mmQIFImportDialog::mmReadQIFFile()
     while (input.IsOk() && !input.Eof())
     {
         ++numLines;
-
         const wxString lineStr = text.ReadLine();
         if (lineStr.Length() == 0)
             continue;
-        const qifLineType lineType = mmQIFImport::lineType(lineStr);
 
         if (numLines % 100 == 0)
         {
@@ -311,7 +309,14 @@ bool mmQIFImportDialog::mmReadQIFFile()
                 , numLines, interval.ToLong())))
                 break;
         }
+        if (numLines <= 50)
+        {
+            *log_field_ << wxString::Format(_("Line %i \t %s\n"), numLines, lineStr);
+            if (numLines == 50)
+                *log_field_ << "-------------------------------------- 8< --------------------------------------\n";
+        }
 
+        const qifLineType lineType = mmQIFImport::lineType(lineStr);
         const auto data = mmQIFImport::getLineData(lineStr);
         if (lineType == EOTLT)
         {
@@ -329,17 +334,14 @@ bool mmQIFImportDialog::mmReadQIFFile()
             trx.clear();
             continue;
         }
-
-        if (trx[lineType].empty())
-            trx[lineType] = data;
-        else
-            trx[lineType] += "\n" + data;
-        
-        if (numLines <= 50)
+        //Parse Categories
+        wxStringTokenizer token(trx[CategorySplit], "\n");
+        while (token.HasMoreTokens())
         {
-            *log_field_ << wxString::Format(_("Line %i \t %s\n"), numLines, lineStr);
-            if (numLines == 50)
-                *log_field_ << "-------------------------------------- 8< --------------------------------------\n";
+            wxString c = token.GetNextToken();
+            qif_api->getFinancistoProject(c);
+            if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end())
+                m_QIFcategoryNames[c] = std::make_pair(-1, -1);
         }
 
         //Parse date format
@@ -348,6 +350,12 @@ bool mmQIFImportDialog::mmReadQIFFile()
         {
             parseDate(data, date_formats_temp);
         }
+
+        if (trx[lineType].empty())
+            trx[lineType] = data;
+        else
+            trx[lineType] += "\n" + data;
+
     }
     log_field_->ScrollLines(log_field_->GetNumberOfLines());
 
@@ -373,6 +381,20 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
     }
     trx[AccountName] = accountName;
 
+    if (trx.find(CategorySplit) != trx.end())
+    {
+        //TODO:Dublicate code
+        wxStringTokenizer token(trx[CategorySplit], "\n");
+        while (token.HasMoreTokens())
+        {
+            wxString c = token.GetNextToken();
+            const wxString project = qif_api->getFinancistoProject(c);
+            if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end())
+                m_QIFcategoryNames[c] = std::make_pair(-1, -1);
+            if (!project.empty())
+                trx[TransNumber] += project + "\n"; //TODO: trx number or notes
+        }
+    }
     if (trx.find(Category) != trx.end())
     {
         if (trx[Category].Mid(0,1) == "[" && trx[Category].Last() == ']')
@@ -391,17 +413,6 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
         //Add the full Category name if missing to the map with undefind category ID and Subcategory ID
         if (m_QIFcategoryNames.find(trx[Category]) == m_QIFcategoryNames.end())
             m_QIFcategoryNames[trx[Category]] = std::make_pair(-1, -1);
-    }
-    else if (trx.find(CategorySplit) != trx.end())
-    {
-        wxStringTokenizer token(trx[CategorySplit], "\n");
-        while (token.HasMoreTokens())
-        {
-            wxString c = token.GetNextToken();
-            c = qif_api->getFinancistoProject(c);
-            if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end())
-                m_QIFcategoryNames[c] = std::make_pair(-1, -1);
-        }
     }
 
     if (!isTransfer) {
@@ -445,10 +456,15 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             else
                 data.push_back(wxVariant(map.find(Payee) != map.end() ? map.at(Payee) : ""));
             data.push_back(wxVariant(map.find(TrxType) != map.end() ? map.at(TrxType) : ""));
-            if (map.find(CategorySplit) != map.end())
-                data.push_back(wxVariant(map.at(CategorySplit)));
+            
+            wxString category;
+            if (map.find(CategorySplit) != map.end()) {
+                category = map.at(CategorySplit);
+                category.Prepend("*").Replace("\n", "|");
+            }
             else
-                data.push_back(wxVariant(map.find(Category) != map.end() ? map.at(Category) : ""));
+                category = (map.find(Category) != map.end() ? map.at(Category) : "");
+            data.push_back(wxVariant(category));
 
             data.push_back(wxVariant(map.find(Amount) != map.end() ? map.at(Amount) : ""));
             data.push_back(wxVariant(map.find(Memo) != map.end() ? map.at(Memo) : ""));
@@ -812,13 +828,15 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
         while (token.HasMoreTokens()) {
             const wxString c = token.GetNextToken();
             if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end()) return false;
+            int categID = m_QIFcategoryNames[c].first;
+            if (categID <= 0) return false;
             Model_Splittransaction::Data* s = Model_Splittransaction::instance().create();
-            s->CATEGID = m_QIFcategoryNames[c].first;
-            if (s->CATEGID <= 0) return false;
+            s->CATEGID = categID;
             s->SUBCATEGID = m_QIFcategoryNames[c].second;
             double amount;
-            amtToken.GetNextToken().ToDouble(&amount);
-            s->SPLITTRANSAMOUNT = (trx->TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT] ? amount : -amount);
+            const wxString& amt = Model_Currency::fromString2Default(amtToken.GetNextToken());
+            amt.ToDouble(&amount);
+            s->SPLITTRANSAMOUNT = (Model_Checking::is_deposit(trx) ? amount : -amount);
             s->TRANSID = trx->TRANSID;
             split.push_back(s);
         }
