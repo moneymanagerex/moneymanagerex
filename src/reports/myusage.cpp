@@ -29,20 +29,24 @@ const char *usage_template = R"(
     <meta charset="UTF-8" />
     <meta http - equiv = "Content-Type" content = "text/html" />
     <title><TMPL_VAR REPORTNAME></title>
-    <script src = "ChartNew.js"></script>
+    <script src = "Chart.js"></script>
     <script src = "sorttable.js"></script>
     <link href = "master.css" rel = "stylesheet" />
+    <style>
+        canvas {max-height: 400px; min-height: 100px;}
+    </style>
 </head>
 <body>
 
 <div class = "container">
 <h3><TMPL_VAR REPORTNAME></h3>
 <TMPL_VAR TODAY><hr>
-<div class = "row">
-<div class = "col-xs-2"></div>
-<div class = "col-xs-8">
 
-<canvas id="mycanvas" height="400" width="600"></canvas>
+<div class = "row">
+<div class = "col-xs-1"></div>
+<div class = "col-xs-10">
+
+<canvas id="mycanvas" height="200" width="600"></canvas>
 <script>
     var LineData = {
     labels: [
@@ -73,13 +77,14 @@ const char *usage_template = R"(
         }
         ]
     }
-    var opts= { annotateDisplay : true };
+    var opts= { annotateDisplay : true, responsive : true };
 
     window.onload = function() {
         var myBar = new Chart(document.getElementById("mycanvas").getContext("2d")).Line(LineData,opts);
     }
 </script>
-
+<div class = "col-xs-4"></div>
+<div class = "col-xs-4">
 <table class = "table">
     <thead>
         <tr>
@@ -100,7 +105,7 @@ const char *usage_template = R"(
         </tr>
     </tbody>
 </table>
-</div></div></div></body>
+</div></div></div></div></body>
 </html>
 )";
 
@@ -147,7 +152,7 @@ wxString mmReportMyUsage::getHTMLText()
     mm_html_template report(usage_template);
     report(L"REPORTNAME") = this->local_title();
     report(L"CONTENTS") = contents;
-    report(L"GRAND") = wxString::Format("%ld", all_usage.size());
+    report(L"GRAND") = wxString::Format("%ld", (long)all_usage.size());
 
     wxString out = wxEmptyString;
     try 
