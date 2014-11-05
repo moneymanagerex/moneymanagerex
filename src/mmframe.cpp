@@ -334,6 +334,8 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
             cleanupHomePanel();
             showBeginAppDialog(true);
         }
+        /* Load Colors from Database */
+        mmLoadColorsFromDatabase();
     }
 
     const wxAcceleratorEntry entries [] =
