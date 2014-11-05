@@ -73,16 +73,16 @@ const wxString BILLSDEPOSITS_REPEATS[] =
 };
 
 /*******************************************************/
-BEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)
-    EVT_BUTTON(wxID_NEW,         mmBillsDepositsPanel::OnNewBDSeries)
-    EVT_BUTTON(wxID_EDIT,        mmBillsDepositsPanel::OnEditBDSeries)
-    EVT_BUTTON(wxID_DELETE,      mmBillsDepositsPanel::OnDeleteBDSeries)
+wxBEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)
+    EVT_BUTTON(wxID_NEW, mmBillsDepositsPanel::OnNewBDSeries)
+    EVT_BUTTON(wxID_EDIT, mmBillsDepositsPanel::OnEditBDSeries)
+    EVT_BUTTON(wxID_DELETE, mmBillsDepositsPanel::OnDeleteBDSeries)
     EVT_BUTTON(wxID_PASTE, mmBillsDepositsPanel::OnEnterBDTransaction)
-    EVT_BUTTON(wxID_IGNORE,  mmBillsDepositsPanel::OnSkipBDTransaction)
+    EVT_BUTTON(wxID_IGNORE, mmBillsDepositsPanel::OnSkipBDTransaction)
 	EVT_BUTTON(wxID_FILE, mmBillsDepositsPanel::OnOpenAttachment)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 /*******************************************************/
-BEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
+wxBEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   billsDepositsListCtrl::OnListItemActivated)
     EVT_RIGHT_DOWN(billsDepositsListCtrl::OnItemRightClick)
     EVT_LEFT_DOWN(billsDepositsListCtrl::OnListLeftClick)
@@ -98,7 +98,7 @@ BEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
 	EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, billsDepositsListCtrl::OnOrganizeAttachments)
 
     EVT_LIST_KEY_DOWN(wxID_ANY,   billsDepositsListCtrl::OnListKeyDown)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 /*******************************************************/
 
 billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow *parent, wxWindowID winid)
@@ -137,9 +137,10 @@ void billsDepositsListCtrl::OnColClick(wxListEvent& event)
 
 mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size, long style, const wxString& name)
-: m_imageList()
-, listCtrlAccount_()
-, transFilterDlg_(0)
+    : m_imageList(nullptr)
+    , listCtrlAccount_(nullptr)
+    , transFilterDlg_(nullptr)
+    , bitmapTransFilter_(nullptr)
 {
     ColName_[COL_DUE_DATE] = _("Next Due Date");
     ColName_[COL_ACCOUNT] = _("Account");
@@ -156,9 +157,9 @@ mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid,
     Create(parent, winid, pos, size, style, name);
 }
 
-bool mmBillsDepositsPanel::Create( wxWindow *parent,
-            wxWindowID winid, const wxPoint& pos,
-            const wxSize& size,long style, const wxString& name  )
+bool mmBillsDepositsPanel::Create(wxWindow *parent
+    , wxWindowID winid, const wxPoint& pos
+    , const wxSize& size, long style, const wxString& name)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
@@ -196,9 +197,9 @@ void mmBillsDepositsPanel::CreateControls()
     this->SetSizer(itemBoxSizer9);
 
     /* ---------------------- */
-    wxPanel* headerPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition,
-        wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL );
-    itemBoxSizer9->Add(headerPanel, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
+        , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    itemBoxSizer9->Add(headerPanel, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
@@ -214,8 +215,10 @@ void mmBillsDepositsPanel::CreateControls()
     wxBitmap itemStaticBitmap(rightarrow_xpm);
     bitmapTransFilter_ = new wxStaticBitmap( headerPanel, wxID_ANY, itemStaticBitmap);
     itemBoxSizerHHeader2->Add(bitmapTransFilter_, 0, wxALL, 1);
-    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
-    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
+    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
+        , wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
+    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
+        , wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
 
     itemBoxSizerHHeader2->AddSpacer(5);
     wxStaticText* statTextTransFilter_ = new wxStaticText( headerPanel, wxID_ANY
@@ -238,13 +241,13 @@ void mmBillsDepositsPanel::CreateControls()
     listCtrlAccount_ = new billsDepositsListCtrl(this, itemSplitterWindowBillsDeposit);
 
     listCtrlAccount_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
-    for (const auto&column : ColName_)
+    for (const auto& column : ColName_)
     {
         wxListItem itemCol;
-        if (column.first == COL_DUE_DATE) itemCol.SetImage(4);
         itemCol.SetText(column.second);
         listCtrlAccount_->InsertColumn(column.first, column.second
-            , (column.first == COL_DUE_DATE ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT));
+            , (column.first == COL_DUE_DATE) || (column.first == COL_AMOUNT)
+                ?  wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT);
 
         int col_x = Model_Setting::instance().GetIntSetting(wxString::Format("BD_COL%d_WIDTH", column.first)
             , (column.first > 0 ? - 2 : 150));
@@ -303,7 +306,7 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizer5->Add(itemStaticText444, 1, wxGROW|wxTOP, 12);
 
     //Infobar
-    wxStaticText* text = new wxStaticText( itemPanel12, ID_PANEL_BD_STATIC_DETAILS, ""
+    wxStaticText* text = new wxStaticText(itemPanel12, ID_PANEL_BD_STATIC_DETAILS, ""
         , wxPoint(-1, -1), wxSize(200, -1), wxNO_BORDER | wxTE_MULTILINE | wxTE_WORDWRAP | wxST_NO_AUTORESIZE);
     itemBoxSizer4->Add(text, 1, wxGROW | wxLEFT | wxRIGHT, 14);
 

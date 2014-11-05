@@ -123,6 +123,8 @@ private:
 
     void displayControlsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced = false);
     void resetPayeeString();
+    void setTooltips();
+    void setCategoryLabel();
     void OnAdvanceChecked(wxCommandEvent& event);
     void SetTransferControls(bool transfers = false);
     void SetAdvancedTransferControls(bool advanced = false);

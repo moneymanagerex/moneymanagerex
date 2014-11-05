@@ -201,32 +201,20 @@ void mmBDDialog::dataToControls()
     Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     bAccount_->SetLabelText(account->ACCOUNTNAME);
 
-    if (!m_bill_data.local_splits.empty())
-    {
-        bCategory_->SetLabelText(_("Split Category"));
-        cSplit_->SetValue(true);
-    }
-    else
-    {
-        bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
-    }
+    setCategoryLabel();
+    cSplit_->SetValue(!m_bill_data.local_splits.empty());
 
     textNotes_->SetValue(m_bill_data.NOTES);
     textNumber_->SetValue(m_bill_data.TRANSACTIONNUMBER);
 
-    double transAmount = m_bill_data.TRANSAMOUNT;
-
     if (!m_bill_data.local_splits.empty())
-    {
-        m_bill_data.TRANSAMOUNT = 0;
-        for (const auto& entry : m_bill_data.local_splits)
-            m_bill_data.TRANSAMOUNT += entry.SPLITTRANSAMOUNT;
-        textAmount_->Enable(false);
-    }
+        m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
 
-    textAmount_->SetValue(transAmount, account);
+    textAmount_->Enable(m_bill_data.local_splits.empty());
 
-    if (m_transfer) //TODO:Model_Billsdeposits::type(bill) == Model_Billsdeposits::TRANSFER
+    textAmount_->SetValue(m_bill_data.TRANSAMOUNT, account);
+
+    if (m_transfer)
     {
         m_bill_data.PAYEEID = -1;
         Model_Account::Data* to_account = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
@@ -234,7 +222,7 @@ void mmBDDialog::dataToControls()
             bPayee_->SetLabelText(to_account->ACCOUNTNAME);
 
         // When editing an advanced transaction record, we do not reset the m_bill_data.TOTRANSAMOUNT
-        if ((!m_new_bill || enterOccur_) && (m_bill_data.TOTRANSAMOUNT != transAmount))
+        if ((!m_new_bill || enterOccur_) && (m_bill_data.TOTRANSAMOUNT != m_bill_data.TRANSAMOUNT))
         {
             cAdvanced_->SetValue(true);
             SetAdvancedTransferControls(true);
@@ -246,6 +234,7 @@ void mmBDDialog::dataToControls()
         if (payee)
             bPayee_->SetLabelText(payee->PAYEENAME);
     }
+    setTooltips();
 }
 
 void mmBDDialog::SetDialogHeader(const wxString& header)
@@ -705,15 +694,15 @@ void mmBDDialog::OnCategs(wxCommandEvent& /*event*/)
     {
         mmCategDialog dlg(this);
         dlg.setTreeSelection(m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
-        if ( dlg.ShowModal() == wxID_OK )
+        if (dlg.ShowModal() == wxID_OK)
         {
             m_bill_data.CATEGID = dlg.getCategId();
             m_bill_data.SUBCATEGID = dlg.getSubCategId();
 
-            bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
             categUpdated_ = true;
         }
     }
+    setCategoryLabel();
 }
 
 void mmBDDialog::displayControlsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced)
@@ -899,7 +888,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
     }
 
-    if (cSplit_->GetValue())
+    if (cSplit_->IsChecked())
     {
         if (m_bill_data.local_splits.empty())
         {
@@ -916,11 +905,9 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         }
     }
 
-    if (cSplit_->GetValue())
+    if (cSplit_->IsChecked())
     {
-        m_bill_data.TRANSAMOUNT = 0;
-        for (const auto& entry : m_bill_data.local_splits)
-            m_bill_data.TRANSAMOUNT += entry.SPLITTRANSAMOUNT;
+        m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
 
         if (m_bill_data.TRANSAMOUNT < 0.0)
         {
@@ -1026,10 +1013,9 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
             s->CATEGID = entry.CATEGID;
             s->SUBCATEGID = entry.SUBCATEGID;
             s->SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
-            s->TRANSID = transID_;
             splt.push_back(*s);
         }
-        Model_Budgetsplittransaction::instance().save(splt);
+        Model_Budgetsplittransaction::instance().update(splt, transID_);
 
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, transID_);
@@ -1105,27 +1091,23 @@ void mmBDDialog::OnSplitChecked(wxCommandEvent& /*event*/)
             m_bill_data.local_splits.clear();
         }
     }
-
-    //bool state = cSplit_->IsChecked();
-    //SetSplitControls(state);
+    textAmount_->Enable(m_bill_data.local_splits.empty());
+    setCategoryLabel();
 }
 
 void mmBDDialog::SetSplitControls(bool split)
 {
     if (split)
     {
-        bCategory_->SetLabelText(_("Split Category"));
         textAmount_->Enable(false);
         m_bill_data.TRANSAMOUNT = 0;
         for (const auto& entry : m_bill_data.local_splits)
             m_bill_data.TRANSAMOUNT += entry.SPLITTRANSAMOUNT;
         m_bill_data.CATEGID = -1;
         m_bill_data.SUBCATEGID = -1;
-        //activateSplitTransactionsDlg();
     }
     else
     {
-        bCategory_->SetLabelText(_("Select Category"));
         textAmount_->Enable(true);
         textAmount_->SetValue(0.0);
         m_bill_data.local_splits.clear();
@@ -1353,7 +1335,7 @@ void mmBDDialog::OnPeriodChange(wxCommandEvent& /*event*/)
 
 void mmBDDialog::activateSplitTransactionsDlg()
 {
-    bool bDeposit = m_bill_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT];
+    bool bDeposit = (m_bill_data.TRANSCODE == Model_Billsdeposits::all_type()[Model_Checking::DEPOSIT]);
 
     if (m_bill_data.CATEGID > -1 && m_bill_data.local_splits.empty())
     {
@@ -1379,6 +1361,8 @@ void mmBDDialog::activateSplitTransactionsDlg()
             m_bill_data.TRANSAMOUNT = -m_bill_data.TRANSAMOUNT;
         textAmount_->SetValue(m_bill_data.TRANSAMOUNT);
     }
+    textAmount_->Enable(m_bill_data.local_splits.empty());
+    setCategoryLabel();
 }
 
 void mmBDDialog::OnTextEntered(wxCommandEvent& event)
@@ -1397,3 +1381,39 @@ void mmBDDialog::OnTextEntered(wxCommandEvent& event)
     }
 }
 
+void mmBDDialog::setTooltips()
+{
+    bCategory_->UnsetToolTip();
+    if (this->m_bill_data.local_splits.empty())
+        bCategory_->SetToolTip(_("Specify the category for this transaction"));
+    else {
+        const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
+        const Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
+        if (account)
+            currency = Model_Account::currency(account);
+
+        bCategory_->SetToolTip(Model_Splittransaction::get_tooltip(m_bill_data.local_splits, currency));
+    }
+}
+
+void mmBDDialog::setCategoryLabel()
+{
+    bool has_split = !m_bill_data.local_splits.empty();
+    wxString fullCategoryName;
+    bCategory_->UnsetToolTip();
+    if (has_split)
+    {
+        fullCategoryName = _("Categories");
+        textAmount_->SetValue(Model_Splittransaction::get_total(m_bill_data.local_splits));
+        m_bill_data.CATEGID = -1;
+        m_bill_data.SUBCATEGID = -1;
+    }
+    else
+    {
+        fullCategoryName = Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
+        if (fullCategoryName.IsEmpty()) fullCategoryName = _("Select Category");
+    }
+
+    bCategory_->SetLabelText(fullCategoryName);
+    setTooltips();
+}

@@ -65,3 +65,29 @@ std::map<int, Model_Budgetsplittransaction::Data_Set> Model_Budgetsplittransacti
 
     return data;
 }
+
+int Model_Budgetsplittransaction::update(const Data_Set& rows, int transactionID)
+{
+
+    Data_Set split = instance().find(TRANSID(transactionID));
+    for (const auto& split_item : split)
+    {
+        instance().remove(split_item.SPLITTRANSID);
+    }
+
+    if (!rows.empty())
+    {
+        Data_Set split_items;
+        for (const auto &item : rows)
+        {
+            Data *split_item = instance().create();
+            split_item->TRANSID = transactionID;
+            split_item->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
+            split_item->CATEGID = item.CATEGID;
+            split_item->SUBCATEGID = item.SUBCATEGID;
+            split_items.push_back(*split_item);
+        }
+        instance().save(split_items);
+    }
+    return rows.size();
+}
