@@ -397,11 +397,11 @@ void mmShowErrorMessage(wxWindow *parent
 
 void mmShowErrorMessageInvalid(wxWindow *parent, const wxString &message)
 {
-    wxString msg = wxString::Format(_("Entry %s is invalid"), message);
+    const wxString& msg = wxString::Format(_("Entry %s is invalid"), message);
     mmShowErrorMessage(parent, msg, _("Invalid Entry"));
 }
 
-void mmMessageCategoryInvalid(wxButton *button)
+void mmMessageCategoryInvalid(wxWindow *button)
 {
     wxRichToolTip tip(_("Invalid Category"),
         _("Please use this button for category selection\nor use the 'Split' checkbox for multiple categories.")
@@ -410,40 +410,37 @@ void mmMessageCategoryInvalid(wxButton *button)
     tip.ShowFor(button);
 }
 
-void mmMessageAccountInvalid(wxComboBox *comboBox, bool transfer)
+void mmMessageAccountInvalid(wxWindow *object, bool transfer)
 {
-    const wxString errorHeader = _("Invalid Account");
+    const wxString& errorHeader = _("Invalid Account");
     wxString errorMessage;
     if (!transfer)
-    {
         errorMessage = _("Please select the account for this transaction.");
-    }
     else
-    {
         errorMessage = _("Please specify which account the transfer is going to.");
-    }
+
     wxString errorTips = _("Selection can be made by using the dropdown button.");
     errorMessage = errorMessage + "\n\n" + errorTips + "\n";
 
     wxRichToolTip tip(errorHeader, errorMessage);
     tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor((wxWindow*) comboBox);
+    tip.ShowFor(object);
 }
 
-void mmMessagePayeeInvalid(wxComboBox *comboBox)
+void mmMessagePayeeInvalid(wxWindow *object)
 {
-    const wxString errorHeader = _("Invalid Payee");
-    const wxString errorMessage = (_("Please type in a new payee,\nor make a selection using the dropdown button.")
+    const wxString& errorHeader = _("Invalid Payee");
+    const wxString& errorMessage = (_("Please type in a new payee,\nor make a selection using the dropdown button.")
         + "\n");
     wxRichToolTip tip(errorHeader, errorMessage);
     tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor((wxWindow*)comboBox);
+    tip.ShowFor(object);
 }
 
 void mmMessageNameInvalid(wxTextCtrl *textBox)
 {
-    const wxString errorHeader = _("Invalid Name");
-    const wxString errorMessage = (_("Please type in a non empty name.")
+    const wxString& errorHeader = _("Invalid Name");
+    const wxString& errorMessage = (_("Please type in a non empty name.")
         + "\n");
     wxRichToolTip tip(errorHeader, errorMessage);
     tip.SetIcon(wxICON_WARNING);

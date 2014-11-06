@@ -123,9 +123,9 @@ private:
 
 void mmShowErrorMessageInvalid(wxWindow *parent, const wxString &message);
 void mmShowErrorMessage(wxWindow *parent, const wxString &message, const wxString &messageheader);
-void mmMessageCategoryInvalid(wxButton *button);
-void mmMessageAccountInvalid(wxComboBox *comboBox, bool transfer = false);
-void mmMessagePayeeInvalid(wxComboBox *comboBox);
+void mmMessageCategoryInvalid(wxWindow *button);
+void mmMessageAccountInvalid(wxWindow *object, bool transfer = false);
+void mmMessagePayeeInvalid(wxWindow *object);
 void mmMessageNameInvalid(wxTextCtrl *textBox);
 
 const wxString mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool forced_show_dlg, bool save_setting = true);
