@@ -636,7 +636,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
     else
     {
         m_bill_data.TOACCOUNTID = -1;
-        mmPayeeDialog dlg(this, true);
+        mmPayeeDialog dlg(this,true);
 
         if (dlg.ShowModal() == wxID_OK)
         {
