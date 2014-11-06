@@ -1097,18 +1097,15 @@ void mmBDDialog::OnSplitChecked(wxCommandEvent& /*event*/)
 
 void mmBDDialog::SetSplitControls(bool split)
 {
+    textAmount_->Enable(!split);
     if (split)
     {
-        textAmount_->Enable(false);
-        m_bill_data.TRANSAMOUNT = 0;
-        for (const auto& entry : m_bill_data.local_splits)
-            m_bill_data.TRANSAMOUNT += entry.SPLITTRANSAMOUNT;
+        m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
         m_bill_data.CATEGID = -1;
         m_bill_data.SUBCATEGID = -1;
     }
     else
     {
-        textAmount_->Enable(true);
         textAmount_->SetValue(0.0);
         m_bill_data.local_splits.clear();
     }
@@ -1262,21 +1259,24 @@ void mmBDDialog::setRepeatDetails()
     {
         staticTextRepeats_->SetLabelText(repeatLabelActivate);
         staticTimesRepeat_->SetLabelText(timeLabelDays);
-        const auto& toolTipsStr = _("Specify period in Days to activate.") + "\n" + _("Becomes blank when not active.");
+        const auto& toolTipsStr = _("Specify period in Days to activate.") 
+            + "\n" + _("Becomes blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else if (repeats == 12)
     {
         staticTextRepeats_->SetLabelText(repeatLabelActivate);
         staticTimesRepeat_->SetLabelText(timeLabelMonths);
-        const auto& toolTipsStr = _("Specify period in Months to activate.") + "\n" + _("Becomes blank when not active.");
+        const auto& toolTipsStr = _("Specify period in Months to activate.") 
+            + "\n" + _("Becomes blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else if (repeats == 13)
     {
         staticTextRepeats_->SetLabelText(repeatLabelRepeats);
         staticTimesRepeat_->SetLabelText(timeLabelDays);
-        const auto& toolTipsStr = _("Specify period in Days to activate.") + "\n" + _("Leave blank when not active.");
+        const auto& toolTipsStr = _("Specify period in Days to activate.") 
+            + "\n" + _("Leave blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else if (repeats == 14)
@@ -1290,7 +1290,8 @@ void mmBDDialog::setRepeatDetails()
     {
         staticTextRepeats_->SetLabelText(repeatLabelRepeats);
         staticTimesRepeat_->SetLabelText(_("Times Repeated"));
-        const auto& toolTipsStr = _("Specify the number of times this series repeats.") + "\n" + _("Leave blank if this series continues forever.");
+        const auto& toolTipsStr = _("Specify the number of times this series repeats.") 
+            + "\n" + _("Leave blank if this series continues forever.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
 }
@@ -1348,13 +1349,12 @@ void mmBDDialog::activateSplitTransactionsDlg()
         m_bill_data.local_splits.push_back(s);
     }
 
-    SplitTransactionDialog dlg(this, m_bill_data.local_splits, transaction_type_->GetSelection(), m_bill_data.ACCOUNTID);
+    SplitTransactionDialog dlg(this, m_bill_data.local_splits
+        , transaction_type_->GetSelection(), m_bill_data.ACCOUNTID);
     if (dlg.ShowModal() == wxID_OK)
     {
         m_bill_data.local_splits = dlg.getResult();
-        m_bill_data.TRANSAMOUNT = 0;
-        for (const auto& entry : m_bill_data.local_splits)
-            m_bill_data.TRANSAMOUNT += entry.SPLITTRANSAMOUNT;
+        m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
         m_bill_data.CATEGID = -1;
         m_bill_data.SUBCATEGID = -1;
         if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER && m_bill_data.TRANSAMOUNT < 0)

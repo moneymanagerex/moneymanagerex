@@ -260,7 +260,7 @@ void mmBillsDepositsPanel::CreateControls()
     itemSplitterWindowBillsDeposit->SplitHorizontally(listCtrlAccount_, itemPanel12);
     itemSplitterWindowBillsDeposit->SetMinimumPaneSize(100);
     itemSplitterWindowBillsDeposit->SetSashGravity(1.0);
-    itemBoxSizer9->Add(itemSplitterWindowBillsDeposit, 1, wxGROW|wxALL, 1);
+    itemBoxSizer9->Add(itemSplitterWindowBillsDeposit, 1, wxGROW | wxALL, 1);
 
     wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
     itemPanel12->SetSizer(itemBoxSizer4);
