@@ -157,7 +157,9 @@ void MinimalEditor::SetLexerLua() //https://code.google.com/p/wxamcl/source/brow
 
 void MinimalEditor::SetLexerHtml()
 {
+    static const wxString templatewords = "TMPL_VAR TMPL_LOOP TMPL_IF __FIRST__ __LAST_ __COUNT__ __COUNTER__ __TOTAL__ __ODD__ __EVEN__ __INNER__ ";
     SetLexer(wxSTC_LEX_HTML);
+    SetKeyWords(0, templatewords);
     SetMarginWidth(margin_id_lineno, 32);
     StyleSetForeground(wxSTC_STYLE_LINENUMBER, wxColour(75, 75, 75));
     StyleSetBackground(wxSTC_STYLE_LINENUMBER, wxColour(220, 220, 220));
