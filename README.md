@@ -26,4 +26,5 @@ MS Windows: XP, Vista, 7, 8, 8.1.
 Unixes: almost any Unix workstation with GTK+ 2.0 and above.
 Mac: Mac OS 8.6/9.x (eg. Classic) or Mac OS X 10.x.
 
-You can open the database file (both regular and encrypted) with [wxSqlitePlus](https://github.com/moneymanagerex/wxSqlitePlus)
+#### Tips: 
+you can open the database file (both regular and encrypted) with [wxSqlitePlus](https://github.com/moneymanagerex/wxSqlitePlus)
