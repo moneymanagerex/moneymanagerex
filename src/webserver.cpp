@@ -61,33 +61,8 @@ static int ev_handler(struct mg_connection *conn, enum mg_event ev)
 {
     wxLogDebug("%s, RUI: %s, TYPE: %s", conn->request_method, conn->uri, event_to_name(ev));
     if (ev == MG_AUTH) return MG_TRUE;
-    int result = MG_FALSE;
 
-    if (ev == MG_REQUEST) 
-    {
-        if (strcmp(conn->uri, "/account") == 0)
-        {
-            const wxString& str = Model_Account::instance().all().to_json().c_str();
-            mg_printf_data(conn, str);
-            result = MG_TRUE;
-        }
-        else if (strcmp(conn->uri, "/payee") == 0)
-        {
-            const wxString& str = Model_Payee::instance().all().to_json().c_str();
-            mg_printf_data(conn, str);
-            result = MG_TRUE;
-        }
-        else if (strcmp(conn->uri, "/usage") == 0)
-        {
-            const wxString& str = Model_Usage::instance().all().to_json().c_str();
-            mg_printf_data(conn, str);
-            result = MG_TRUE;
-        }
-        else
-            result = MG_FALSE;
-    } 
-
-    return result;
+    return MG_FALSE;
 }
 
 WebServerThread::WebServerThread(): wxThread()
