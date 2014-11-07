@@ -14,8 +14,9 @@ and user-friendliness - something one can use everyday.
 
 
 ### MMEX is mainly written in C++11 and built on:
-1. [wxWidgets](http://wxwidgets.org/) 3.0 or higher
+1. [wxWidgets](http://wxwidgets.org/) 3.0+
 2. [wxSqlite3](https://github.com/moneymanagerex/wxsqlite3)
+3. [SQLite3](http://sqlite.org/)
 3. [Chart.JS](https://github.com/nnnick/Chart.js)
 4. [html-template](https://github.com/moneymanagerex/html-template)
 
