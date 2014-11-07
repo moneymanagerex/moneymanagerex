@@ -20,11 +20,10 @@ and user-friendliness - something one can use everyday.
 4. [html-template](https://github.com/moneymanagerex/html-template)
 
 ### Supported platforms:
-MS Windows: XP, Vista, 7, 8, 8.1.
+        MS Windows: XP, Vista, 7, 8, 8.1.
         Unicode builds: x86, x64, ia64 versions available.
-
-Unixes: almost any Unix workstation with GTK+ 2.0 and above.
-Mac: Mac OS 8.6/9.x (eg. Classic) or Mac OS X 10.x.
+        Unixes: almost any Unix workstation with GTK+ 2.0 and above.
+        Mac: Mac OS 8.6/9.x (eg. Classic) or Mac OS X 10.x.
 
 #### Tips: 
 you can open the database file (both regular and encrypted) with [wxSqlitePlus](https://github.com/moneymanagerex/wxSqlitePlus)
