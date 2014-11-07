@@ -123,6 +123,8 @@ private:
 private:
     wxImageList* m_imageList;
     billsDepositsListCtrl* listCtrlAccount_;
+    wxStaticText* m_infoText;
+    wxStaticText* m_infoTextMini;
 
     enum EColumn
     {

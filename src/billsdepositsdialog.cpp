@@ -739,7 +739,7 @@ void mmBDDialog::OnAttachments(wxCommandEvent& /*event*/)
 void mmBDDialog::updateControlsForTransType()
 {
     wxStaticText* accountLabel = (wxStaticText*) FindWindow(ID_DIALOG_TRANS_STATIC_ACCOUNT);
-    wxStaticText* stp = (wxStaticText*)FindWindow(ID_DIALOG_TRANS_STATIC_PAYEE);
+    wxStaticText* stp = (wxStaticText*) FindWindow(ID_DIALOG_TRANS_STATIC_PAYEE);
 
     if (transaction_type_->GetSelection() == Model_Billsdeposits::WITHDRAWAL)
     {
