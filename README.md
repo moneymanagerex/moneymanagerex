@@ -21,7 +21,7 @@ and user-friendliness - something one can use everyday.
 
 ### Supported platforms:
 1. MS Windows: XP, Vista, 7, 8, 8.1.
-2. Unicode builds: x86, x64, ia64 versions available.
+    Unicode builds: x86, x64, ia64 versions available.
 3. Unixes: almost any Unix workstation with GTK+ 2.0 and above.
 4. Mac: Mac OS 8.6/9.x (eg. Classic) or Mac OS X 10.x.
 
