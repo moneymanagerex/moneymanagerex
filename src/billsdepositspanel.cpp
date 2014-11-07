@@ -46,8 +46,6 @@ enum
     MENU_POPUP_BD_ENTER_OCCUR,
     MENU_POPUP_BD_SKIP_OCCUR,
 	MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
-    ID_PANEL_BD_STATIC_MINI,
-    ID_PANEL_BD_STATIC_DETAILS
 };
 
 const wxString BILLSDEPOSITS_REPEATS[] =
@@ -135,12 +133,14 @@ void billsDepositsListCtrl::OnColClick(wxListEvent& event)
     refreshVisualList(cp_->initVirtualListControl(id));
 }
 
-mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid,
-    const wxPoint& pos, const wxSize& size, long style, const wxString& name)
+mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid
+    , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
     : m_imageList(nullptr)
     , listCtrlAccount_(nullptr)
     , transFilterDlg_(nullptr)
     , bitmapTransFilter_(nullptr)
+    , m_infoTextMini(nullptr)
+    , m_infoText(nullptr)
 {
     ColName_[COL_DUE_DATE] = _("Next Due Date");
     ColName_[COL_ACCOUNT] = _("Account");
@@ -213,7 +213,7 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
     wxBitmap itemStaticBitmap(rightarrow_xpm);
-    bitmapTransFilter_ = new wxStaticBitmap( headerPanel, wxID_ANY, itemStaticBitmap);
+    bitmapTransFilter_ = new wxStaticBitmap(headerPanel, wxID_ANY, itemStaticBitmap);
     itemBoxSizerHHeader2->Add(bitmapTransFilter_, 0, wxALL, 1);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
@@ -221,7 +221,7 @@ void mmBillsDepositsPanel::CreateControls()
         , wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
 
     itemBoxSizerHHeader2->AddSpacer(5);
-    wxStaticText* statTextTransFilter_ = new wxStaticText( headerPanel, wxID_ANY
+    wxStaticText* statTextTransFilter_ = new wxStaticText(headerPanel, wxID_ANY
         , _("Transaction Filter"));
     itemBoxSizerHHeader2->Add(statTextTransFilter_, 0, wxALIGN_CENTER_VERTICAL, 0);
 
@@ -231,7 +231,7 @@ void mmBillsDepositsPanel::CreateControls()
         , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
     wxSize imageSize(16, 16);
-    m_imageList = new wxImageList( imageSize.GetWidth(), imageSize.GetHeight() );
+    m_imageList = new wxImageList(imageSize.GetWidth(), imageSize.GetHeight());
     m_imageList->Add(wxBitmap(wxImage(error_xpm).Scale(16, 16)));
     m_imageList->Add(wxBitmap(wxImage(rt_exec_auto_xpm).Scale(16, 16)));
     m_imageList->Add(wxBitmap(wxImage(rt_exec_user_xpm).Scale(16, 16)));
@@ -254,46 +254,45 @@ void mmBillsDepositsPanel::CreateControls()
         listCtrlAccount_->SetColumnWidth(column.first, col_x);
     }
 
-    wxPanel* itemPanel12 = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY
+    wxPanel* bdPanel = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
 
-    itemSplitterWindowBillsDeposit->SplitHorizontally(listCtrlAccount_, itemPanel12);
+    itemSplitterWindowBillsDeposit->SplitHorizontally(listCtrlAccount_, bdPanel);
     itemSplitterWindowBillsDeposit->SetMinimumPaneSize(100);
     itemSplitterWindowBillsDeposit->SetSashGravity(1.0);
     itemBoxSizer9->Add(itemSplitterWindowBillsDeposit, 1, wxGROW | wxALL, 1);
 
     wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
-    itemPanel12->SetSizer(itemBoxSizer4);
+    bdPanel->SetSizer(itemBoxSizer4);
 
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer4->Add(itemBoxSizer5, g_flags);
 
-    wxButton* itemButton6 = new wxButton( itemPanel12, wxID_NEW, _("&New "));
-    itemButton6->SetToolTip(_("New Bills & Deposit Series"));
-    itemBoxSizer5->Add(itemButton6, g_flags);
+    wxButton* itemButtonNew = new wxButton(bdPanel, wxID_NEW, _("&New "));
+    itemButtonNew->SetToolTip(_("New Bills & Deposit Series"));
+    itemBoxSizer5->Add(itemButtonNew, g_flags);
 
-    wxButton* itemButton81 = new wxButton( itemPanel12, wxID_EDIT, _("&Edit "));
+    wxButton* itemButton81 = new wxButton(bdPanel, wxID_EDIT, _("&Edit "));
     itemButton81->SetToolTip(_("Edit Bills & Deposit Series"));
     itemBoxSizer5->Add(itemButton81, g_flags);
     itemButton81->Enable(false);
 
-    wxButton* itemButton7 = new wxButton( itemPanel12, wxID_DELETE, _("&Delete "));
+    wxButton* itemButton7 = new wxButton(bdPanel, wxID_DELETE, _("&Delete "));
     itemButton7->SetToolTip(_("Delete Bills & Deposit Series"));
     itemBoxSizer5->Add(itemButton7, g_flags);
     itemButton7->Enable(false);
 
-    wxButton* itemButton8 = new wxButton( itemPanel12, wxID_PASTE, _("En&ter"),
-        wxDefaultPosition, wxDefaultSize, 0 );
+    wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _("En&ter"));
     itemButton8->SetToolTip(_("Enter Next Bills & Deposit Occurrence"));
     itemBoxSizer5->Add(itemButton8, g_flags);
     itemButton8->Enable(false);
 
-    wxButton* buttonSkipTrans = new wxButton( itemPanel12, wxID_IGNORE, _("&Skip"));
+    wxButton* buttonSkipTrans = new wxButton(bdPanel, wxID_IGNORE, _("&Skip"));
     buttonSkipTrans->SetToolTip(_("Skip Next Bills & Deposit Occurrence"));
     itemBoxSizer5->Add(buttonSkipTrans, g_flags);
     buttonSkipTrans->Enable(false);
 
-	wxBitmapButton* btnAttachment_ = new wxBitmapButton(itemPanel12, wxID_FILE
+	wxBitmapButton* btnAttachment_ = new wxBitmapButton(bdPanel, wxID_FILE
 		, wxBitmap(attachment_xpm), wxDefaultPosition
 		, wxSize(30, itemButton8->GetSize().GetY()));
 	btnAttachment_->SetToolTip(_("Open attachments"));
@@ -301,14 +300,13 @@ void mmBillsDepositsPanel::CreateControls()
 	btnAttachment_->Enable(false);
 
     //Infobar-mini
-    wxStaticText* itemStaticText444 = new wxStaticText(itemPanel12
-        , ID_PANEL_BD_STATIC_MINI, "", wxDefaultPosition, wxDefaultSize, 0);
-    itemBoxSizer5->Add(itemStaticText444, 1, wxGROW|wxTOP, 12);
+    m_infoTextMini = new wxStaticText(bdPanel, wxID_STATIC, "");
+    itemBoxSizer5->Add(m_infoTextMini, 1, wxGROW | wxTOP, 12);
 
     //Infobar
-    wxStaticText* text = new wxStaticText(itemPanel12, ID_PANEL_BD_STATIC_DETAILS, ""
+    m_infoText = new wxStaticText(bdPanel, wxID_ANY, ""
         , wxPoint(-1, -1), wxSize(200, -1), wxNO_BORDER | wxTE_MULTILINE | wxTE_WORDWRAP | wxST_NO_AUTORESIZE);
-    itemBoxSizer4->Add(text, 1, wxGROW | wxLEFT | wxRIGHT, 14);
+    itemBoxSizer4->Add(m_infoText, 1, wxGROW | wxLEFT | wxRIGHT, 14);
 
     mmBillsDepositsPanel::updateBottomPanelData(-1);
 }
@@ -323,7 +321,6 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
     listCtrlAccount_->SetColumn(listCtrlAccount_->m_selected_col, item);
 
     bills_.clear();
-    const auto splits = Model_Budgetsplittransaction::instance().get_all();
 
     for (const Model_Billsdeposits::Data& data
         : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
@@ -667,7 +664,7 @@ void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 	if (m_selected_row == -1) return;
 
 	int RefId = cp_->bills_[m_selected_row].BDID;
-	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+	const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
 
 	mmAttachmentDialog dlg(this, RefType, RefId);
 	dlg.ShowModal();
@@ -679,7 +676,7 @@ void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& event)
 {
 	if (m_selected_row == -1) return;
 	int RefId = cp_->bills_[m_selected_row].BDID;
-	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+	const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
 
 	mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
 	refreshVisualList(cp_->initVirtualListControl(RefId));
@@ -699,10 +696,8 @@ void mmBillsDepositsPanel::updateBottomPanelData(int selIndex)
     enableEditDeleteButtons(selIndex >= 0);
     if (selIndex != -1)
     {
-        wxStaticText* st = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_DETAILS);
-        wxStaticText* stm = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_MINI);
-        stm->SetLabelText(Model_Category::full_name(bills_[selIndex].CATEGID, bills_[selIndex].SUBCATEGID));
-        st->SetLabelText(bills_[selIndex].NOTES);
+        m_infoTextMini->SetLabelText(Model_Category::full_name(bills_[selIndex].CATEGID, bills_[selIndex].SUBCATEGID));
+        m_infoText->SetLabelText(bills_[selIndex].NOTES);
     }
 }
 
@@ -719,10 +714,8 @@ void mmBillsDepositsPanel::enableEditDeleteButtons(bool en)
     if (bS) bS->Enable(en);
 	if (bA) bA->Enable(en);
 
-    wxStaticText* st = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_DETAILS);
-    wxStaticText* stm = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_MINI);
-    if (st) st->SetLabelText(this->tips());
-    if (stm) stm->ClearBackground();
+    m_infoText->SetLabelText(this->tips());
+    m_infoTextMini->ClearBackground();
 }
 
 void mmBillsDepositsPanel::sortTable()

@@ -252,7 +252,7 @@ bool Model_Billsdeposits::allowExecution()
 
 int Model_Billsdeposits::daysRemaining(const Data* r)
 {
-    wxDate nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(r);
+    const wxDate& nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(r);
     wxTimeSpan ts = nextOccurDate.Subtract(wxDateTime::Now());
     int daysRemaining = ts.GetDays();
     int minutesRemaining = ts.GetMinutes();
