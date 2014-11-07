@@ -1063,6 +1063,13 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
 
         transID_ = Model_Billsdeposits::instance().save(bill);
 
+        // Remove prior data
+        Model_Budgetsplittransaction::Data_Set old_items = Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(transID_));
+        for (const auto& split_item : old_items)
+        {
+            Model_Budgetsplittransaction::instance().remove(split_item.SPLITTRANSID);
+        }
+
         Model_Budgetsplittransaction::Data_Set splt;
         for (const auto& entry : m_bill_data.local_splits) {
             Model_Budgetsplittransaction::Data *s = Model_Budgetsplittransaction::instance().create();
