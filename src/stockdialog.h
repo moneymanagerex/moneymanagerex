@@ -49,7 +49,8 @@ public:
 	void OnAttachments(wxCommandEvent& event);
     void OnStockPriceButton(wxCommandEvent& event);
     void OnHistoryImportButton(wxCommandEvent& event);
-    void OnHistoryUpdateButton(wxCommandEvent& event);
+    void OnHistoryDownloadButton(wxCommandEvent& event);
+    void OnHistoryAddButton(wxCommandEvent& event);
     void OnHistoryDeleteButton(wxCommandEvent& event);
     void OnListItemSelected(wxListEvent& event);
     
@@ -94,6 +95,9 @@ private:
         ID_TEXTCTRL_STOCK_COMMISSION,
         ID_DIALOG_STOCKS,
         ID_DPC_CP_PDATE,
+        ID_BUTTON_IMPORT,
+        ID_BUTTON_ADD,
+        ID_BUTTON_DOWNLOAD
     };
 };
 

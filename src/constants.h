@@ -72,6 +72,7 @@ namespace weblink
     extern const wxString Twitter;
     extern const wxString Facebook;
     extern const wxString YahooQuotes;
+    extern const wxString YahooQuotesHistory;
     extern const wxString DefStockUrl;
 } // namespace weblink
 } // namespace mmex
