@@ -23,7 +23,7 @@ and user-friendliness - something one can use everyday.
 1. MS Windows: XP, Vista, 7, 8, 8.1.
     Unicode builds: x86, x64, ia64 versions available.
 3. Unixes: almost any Unix workstation with GTK+ 2.0 and above.
-4. Mac: Mac OS 8.6/9.x (eg. Classic) or Mac OS X 10.x.
+4. Mac: OS X 10.8 or higher.
 
 #### Tips: 
 you can open the database file (both regular and encrypted) with [wxSqlitePlus](https://github.com/moneymanagerex/wxSqlitePlus)
