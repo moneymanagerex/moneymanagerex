@@ -26,4 +26,6 @@ and user-friendliness - something one can use everyday.
 4. Mac: OS X 10.8 or higher.
 
 #### Tips: 
-Wou can open the database file (both regular and encrypted) directly with [wxSqlitePlus](https://github.com/moneymanagerex/wxSqlitePlus)
+1. We can open database file (both regular and encrypted) directly with [wxSqlitePlus](https://github.com/moneymanagerex/wxSqlitePlus)
+2. We can download dozen of cool reports from [general report] (https://github.com/moneymanagerex/general-reports)
+
