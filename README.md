@@ -13,14 +13,17 @@ and user-friendliness - something one can use everyday.
 [![Ohloh](http://www.ohloh.net/p/moneymanagerex/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/moneymanagerex)
 
 
-## MMEX is mainly written with C++11 and built on:
-    1. [wxWidgets](http://wxwidgets.org/) 3.0 or higher
-    2. [wxSqlite3](https://github.com/moneymanagerex/wxsqlite3)
-    3. [Chart.JS](https://github.com/nnnick/Chart.js)
+### MMEX is mainly written with C++11 and built on:
+1. [wxWidgets](http://wxwidgets.org/) 3.0 or higher
+2. [wxSqlite3](https://github.com/moneymanagerex/wxsqlite3)
+3. [Chart.JS](https://github.com/nnnick/Chart.js)
+4. [html-template](https://github.com/moneymanagerex/html-template)
 
-## Supported platforms:
+### Supported platforms:
 MS Windows: XP, Vista, 7, 8, 8.1.
         Unicode builds: x86, x64, ia64 versions available.
 
 Unixes: almost any Unix workstation with GTK+ 2.0 and above.
 Mac: Mac OS 8.6/9.x (eg. Classic) or Mac OS X 10.x.
+
+You can open the database file (both regular and encrypted) with [wxSqlitePlus](https://github.com/moneymanagerex/wxSqlitePlus)
