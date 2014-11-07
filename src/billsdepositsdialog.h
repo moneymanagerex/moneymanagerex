@@ -60,7 +60,7 @@ private:
     void OnCategs(wxCommandEvent& event);
     void OnPayee(wxCommandEvent& event);
     void OnTo(wxCommandEvent& event);
-    void OnTransTypeChanged(wxCommandEvent& event);
+    void OnTypeChanged(wxCommandEvent& event);
 	void OnAttachments(wxCommandEvent& event);
 
     void OnDateChanged(wxDateEvent& event);

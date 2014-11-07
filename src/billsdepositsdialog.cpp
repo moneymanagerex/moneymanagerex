@@ -47,7 +47,7 @@ wxBEGIN_EVENT_TABLE( mmBDDialog, wxDialog )
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONPAYEE, mmBDDialog::OnPayee)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTO, mmBDDialog::OnTo)
 	EVT_BUTTON(wxID_FILE, mmBDDialog::OnAttachments)
-    EVT_CHOICE(wxID_VIEW_DETAILS, mmBDDialog::OnTransTypeChanged)
+    EVT_CHOICE(wxID_VIEW_DETAILS, mmBDDialog::OnTypeChanged)
     EVT_SPIN_UP(ID_DIALOG_TRANS_DATE_SPINNER,mmBDDialog::OnTransDateForward)
     EVT_SPIN_DOWN(ID_DIALOG_TRANS_DATE_SPINNER,mmBDDialog::OnTransDateBack)
     EVT_SPIN_UP(ID_DIALOG_BD_REPEAT_DATE_SPINNER,mmBDDialog::OnNextOccurDateForward)
@@ -719,7 +719,7 @@ void mmBDDialog::displayControlsForType(Model_Billsdeposits::TYPE transType, boo
     }
 }
 
-void mmBDDialog::OnTransTypeChanged(wxCommandEvent& /*event*/)
+void mmBDDialog::OnTypeChanged(wxCommandEvent& /*event*/)
 {
     updateControlsForTransType();
 }
@@ -771,7 +771,7 @@ void mmBDDialog::updateControlsForTransType()
         prevType_ = Model_Billsdeposits::DEPOSIT;
         m_transfer = false;
     }
-    else if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER)
+    else //transfer
     {
         displayControlsForType(Model_Billsdeposits::TRANSFER, true);
         if (m_bill_data.ACCOUNTID < 0)
@@ -1106,9 +1106,10 @@ void mmBDDialog::SetSplitControls(bool split)
     }
     else
     {
-        textAmount_->SetValue(0.0);
+        textAmount_->Clear();
         m_bill_data.local_splits.clear();
     }
+    setCategoryLabel();
 }
 
 void mmBDDialog::OnAutoExecutionUserAckChecked(wxCommandEvent& /*event*/)

@@ -35,7 +35,7 @@ class billsDepositsListCtrl: public mmListCtrl
     wxDECLARE_EVENT_TABLE();
 
 public:
-    billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
+    billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow *parent, wxWindowID winid = wxID_ANY);
     ~billsDepositsListCtrl();
 
     void OnNewBDSeries(wxCommandEvent& event);
@@ -64,7 +64,7 @@ private:
 
     void refreshVisualList(int selected_index = -1);
 
-    mmBillsDepositsPanel* cp_;
+    mmBillsDepositsPanel* m_bdp;
 };
 
 class mmBillsDepositsPanel : public mmPanelBase
