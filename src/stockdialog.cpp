@@ -305,6 +305,15 @@ void mmStockDialog::CreateControls()
     col2.SetText( _("Diff.") );
     col2.SetWidth(80);
     priceListBox_->InsertColumn(2, col2);
+
+    //Disable history buttons on new stocks
+    if (!edit_)
+    {
+        itemButtonDownload->Enable(false);
+        itemButtonImport->Enable(false);
+        itemButtonDel->Enable(false);
+        itemButtonUpd->Enable(false);
+    }
 }
 
 
@@ -631,7 +640,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 
     int nrPrices = (int) wxGetNumberFromUser(_("Specify how many stock history prices download from purchase date"),
         wxString::Format(_("Number of %s:"), FreqStrs.Item(freq).Lower()),_("Stock History Update"),
-        0L, 0L, 9999L, this, wxDefaultPosition);
+        1L, 1L, 9999L, this, wxDefaultPosition);
 
     if (nrPrices <= 0)
     {
@@ -711,7 +720,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
                 data->SYMBOL = m_stock->SYMBOL;
                 data->DATE = dateStr;
                 data->VALUE = dPrice;
-                data->UPDTYPE = 2;
+                data->UPDTYPE = Model_StockHistory::ONLINE;
                 Model_StockHistory::instance().save(data);
             }
         }
