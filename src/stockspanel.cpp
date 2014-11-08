@@ -782,7 +782,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     refresh_button_->SetBitmapLabel(wxBitmap(wxImage(led_green_xpm).Scale(16,16)));
 
     strLastUpdate_.Printf(_("%s on %s"), LastRefreshDT_.FormatTime()
-        , LastRefreshDT_.FormatDate());
+        , mmGetDateForDisplay(LastRefreshDT_));
     Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
 
     return true;
