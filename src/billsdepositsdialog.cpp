@@ -510,24 +510,33 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(bCategory_, g_flags);
 
     // Number ---------------------------------------------
-    textNumber_ = new wxTextCtrl( transactionPanel, ID_DIALOG_TRANS_TEXTNUMBER, "",
-                                  wxDefaultPosition, wxSize(225, -1));
+    textNumber_ = new wxTextCtrl( transactionPanel, ID_DIALOG_TRANS_TEXTNUMBER, ""
+        , wxDefaultPosition, wxSize(225, -1));
     textNumber_->SetToolTip(_("Specify any associated check number or transaction number"));
 
     transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Number")), g_flags);
     transPanelSizer->Add(textNumber_, g_flags);
 
     // Notes ---------------------------------------------
-    textNotes_ = new wxTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTNOTES, "",
-                                 wxDefaultPosition, wxSize(225, 80), wxTE_MULTILINE );
+    textNotes_ = new wxTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTNOTES, ""
+        , wxDefaultPosition, wxSize(225, 80), wxTE_MULTILINE);
     textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
 
-    transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Notes")), g_flags);
-    wxButton* bFrequentUsedNotes = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "...",
-        wxDefaultPosition, wxSize(40, -1));
+    transPanelSizer->Add(new wxStaticText(transactionPanel, wxID_STATIC, _("Notes")), g_flags);
+    wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
+    transPanelSizer->Add(RightAlign_sizer, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+
+    bAttachments_ = new wxBitmapButton(transactionPanel, wxID_FILE
+        , wxBitmap(attachment_xpm), wxDefaultPosition
+        , wxSize(bSetNextOccurDate_->GetSize().GetY(), bSetNextOccurDate_->GetSize().GetY()));
+    bAttachments_->SetToolTip(_("Organize attachments of this repeating transaction"));
+
+    wxButton* bFrequentUsedNotes = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "..."
+        , wxDefaultPosition, wxSize(40, -1));
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmBDDialog::OnFrequentUsedNotes), nullptr, this);
-    transPanelSizer->Add(bFrequentUsedNotes, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+    RightAlign_sizer->Add(bAttachments_, wxSizerFlags().Border(wxRIGHT, 5));
+    RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
     box_sizer1->Add(textNotes_, g_flagsExpand);
 
     SetTransferControls();  // hide appropriate fields
@@ -538,12 +547,6 @@ void mmBDDialog::CreateControls()
     wxPanel* buttonsPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     wxBoxSizer* buttonsPanelSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonsPanel->SetSizer(buttonsPanelSizer);
-
-    bAttachments_ = new wxBitmapButton(buttonsPanel, wxID_FILE
-        , wxBitmap(attachment_xpm), wxDefaultPosition
-        , wxSize(bSetNextOccurDate_->GetSize().GetY(), bSetNextOccurDate_->GetSize().GetY()));
-    bAttachments_->SetToolTip(_("Organize attachments of this repeating transaction"));
-    buttonsPanelSizer->Add(bAttachments_, g_flags);
 
     wxButton* okButton = new wxButton(buttonsPanel, wxID_OK, _("&OK "));
     buttonsPanelSizer->Add(okButton, g_flags);
