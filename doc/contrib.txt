@@ -150,6 +150,10 @@ Franciscus Johannes van der Loo
 Michel Aroichane
 Carl Bolling
 Alain Rouault
+David Tomlin
+Sergio M. Aranda
+Petr Prikryl
+Marco Secchi
 
 2013
 CodeLathe LLC
