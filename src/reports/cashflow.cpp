@@ -30,12 +30,12 @@ static const wxString COLORS [] = {
 };
 
 mmReportCashFlow::mmReportCashFlow(int cashflowreporttype)
-: mmPrintableBaseSpecificAccounts(_("Cash Flow"))
-, activeTermAccounts_(false)
-, activeBankAccounts_(false)
-, cashFlowReportType_(cashflowreporttype)
-, today_(wxDateTime::Today())
-, colorId_(0)
+    : mmPrintableBaseSpecificAccounts(_("Cash Flow"))
+    , activeTermAccounts_(false)
+    , activeBankAccounts_(false)
+    , cashFlowReportType_(cashflowreporttype)
+    , today_(wxDateTime::Today())
+    , colorId_(0)
 {}
 
 mmReportCashFlow::~mmReportCashFlow()
@@ -109,7 +109,11 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             repeatsType -= BD_REPEATS_MULTIPLEX_BASE;
 
         bool processNumRepeats = numRepeats != -1 || repeatsType == 0;
-        if (repeatsType == 0) numRepeats = 1;
+        if (repeatsType == 0)
+        {
+            numRepeats = 1;
+            processNumRepeats = true;
+        }
 
         int accountID = entry.ACCOUNTID;
         int toAccountID = entry.TOACCOUNTID;
@@ -131,6 +135,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         while (1)
         {
             if (nextOccurDate > yearFromNow) break;
+            if (processNumRepeats) numRepeats--;
 
             mmRepeatForecast rf;
             rf.date = nextOccurDate;
@@ -155,6 +160,9 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             }
 
             fvec.push_back(rf);
+
+            if (processNumRepeats && (numRepeats <= 0)) 
+                break;
 
             nextOccurDate = Model_Billsdeposits::instance().nextOccurDate(repeatsType, numRepeats, nextOccurDate);
 
