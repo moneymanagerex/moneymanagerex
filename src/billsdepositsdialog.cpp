@@ -450,9 +450,9 @@ void mmBDDialog::CreateControls()
     amountNormalTip_   = _("Specify the amount for this transaction");
     amountTransferTip_ = _("Specify the amount to be transfered");
 
-    wxStaticText* staticTextAmount = new wxStaticText( transactionPanel, wxID_STATIC, _("Amount"));
+    wxStaticText* staticTextAmount = new wxStaticText(transactionPanel, wxID_STATIC, _("Amount"));
 
-    textAmount_ = new mmTextCtrl( transactionPanel, ID_DIALOG_TRANS_TEXTAMOUNT, ""
+    textAmount_ = new mmTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator());
     textAmount_->SetToolTip(amountNormalTip_);
@@ -476,14 +476,14 @@ void mmBDDialog::CreateControls()
     // Account ------------------------------------------------
     transPanelSizer->Add(new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account")), g_flags);
     bAccount_ = new wxButton(transactionPanel, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, _("Select Account")
-        , wxDefaultPosition, wxSize(225, -1));
+        , wxDefaultPosition, wxSize(230, -1));
     bAccount_->SetToolTip(_("Specify the Account that will own the repeating transaction"));
     transPanelSizer->Add(bAccount_, g_flags);
     // Payee ------------------------------------------------
     wxStaticText* staticTextPayee = new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
 
     bPayee_ = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTONPAYEE, _("Select Payee")
-        , wxDefaultPosition, wxSize(225, -1), 0);
+        , wxDefaultPosition, wxSize(230, -1), 0);
     payeeWithdrawalTip_ = _("Specify where the transaction is going to");
 
     bPayee_->SetToolTip(payeeWithdrawalTip_);
@@ -503,28 +503,22 @@ void mmBDDialog::CreateControls()
     // Category ---------------------------------------------
     wxStaticText* staticTextCategory = new wxStaticText( transactionPanel, wxID_STATIC, _("Category"));
     bCategory_ = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTONCATEGS, _("Select Category")
-        , wxDefaultPosition, wxSize(225, -1), 0);
+        , wxDefaultPosition, wxSize(230, -1), 0);
     //bCategory_->SetToolTip(_("Specify the category for this transaction"));
 
     transPanelSizer->Add(staticTextCategory, g_flags);
     transPanelSizer->Add(bCategory_, g_flags);
 
     // Number ---------------------------------------------
-    textNumber_ = new wxTextCtrl( transactionPanel, ID_DIALOG_TRANS_TEXTNUMBER, ""
-        , wxDefaultPosition, wxSize(225, -1));
+    textNumber_ = new wxTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTNUMBER, ""
+        , wxDefaultPosition, wxSize(230, -1));
     textNumber_->SetToolTip(_("Specify any associated check number or transaction number"));
 
-    transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Number")), g_flags);
+    transPanelSizer->Add(new wxStaticText(transactionPanel, wxID_STATIC, _("Number")), g_flags);
     transPanelSizer->Add(textNumber_, g_flags);
 
     // Notes ---------------------------------------------
-    textNotes_ = new wxTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTNOTES, ""
-        , wxDefaultPosition, wxSize(225, 80), wxTE_MULTILINE);
-    textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
-
     transPanelSizer->Add(new wxStaticText(transactionPanel, wxID_STATIC, _("Notes")), g_flags);
-    wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
-    transPanelSizer->Add(RightAlign_sizer, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
 
     bAttachments_ = new wxBitmapButton(transactionPanel, wxID_FILE
         , wxBitmap(attachment_xpm), wxDefaultPosition
@@ -532,12 +526,21 @@ void mmBDDialog::CreateControls()
     bAttachments_->SetToolTip(_("Organize attachments of this repeating transaction"));
 
     wxButton* bFrequentUsedNotes = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "..."
-        , wxDefaultPosition, wxSize(40, -1));
+        , wxDefaultPosition, wxSize(bAttachments_->GetSize().GetX(), -1));
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
-    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmBDDialog::OnFrequentUsedNotes), nullptr, this);
-    RightAlign_sizer->Add(bAttachments_, wxSizerFlags().Border(wxRIGHT, 5));
-    RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
-    box_sizer1->Add(textNotes_, g_flagsExpand);
+    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
+        , wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmBDDialog::OnFrequentUsedNotes), nullptr, this);
+
+    wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
+    RightAlign_sizer->Add(bAttachments_, g_flags);
+    RightAlign_sizer->Add(bFrequentUsedNotes, g_flags);
+
+    textNotes_ = new wxTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTNOTES, ""
+        , wxDefaultPosition, wxSize(225, 80), wxTE_MULTILINE);
+    textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
+
+    transPanelSizer->Add(RightAlign_sizer, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT).Border(wxALL, 0));
+    box_sizer1->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxTOP, 5));
 
     SetTransferControls();  // hide appropriate fields
     //prevType_ = Model_Billsdeposits::WITHDRAWAL;
