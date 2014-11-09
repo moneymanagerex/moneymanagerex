@@ -591,10 +591,17 @@ void mmBDDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
 {
+    const auto& accounts = Model_Account::instance().all_checking_account_names();
     mmSingleChoiceDialog scd(this
         , _("Choose Bank Account or Term Account")
         , _("Select Account")
-        , Model_Account::instance().all_checking_account_names());
+        , accounts);
+
+    if (!accounts.empty()) {
+        Model_Account::Data *acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
+        const wxString acc_name = acc ? acc->ACCOUNTNAME : "";
+        scd.SetSelection(accounts.Index(acc_name) != wxNOT_FOUND ? accounts.Index(acc_name) : 0);
+    }
 
     if (scd.ShowModal() == wxID_OK)
     {
