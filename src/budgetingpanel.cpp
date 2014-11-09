@@ -55,6 +55,13 @@ enum
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF,
 };
 
+static const wxString VIEW_ALL = wxTRANSLATE("View All Budget Categories");
+static const wxString VIEW_NON_ZERO = wxTRANSLATE("View Non-Zero Budget Categories");
+static const wxString VIEW_PLANNED = wxTRANSLATE("View Planned Budget Categories");
+static const wxString VIEW_INCOME = wxTRANSLATE("View Income Budget Categories");
+static const wxString VIEW_EXPENSE = wxTRANSLATE("View Expense Budget Categories");
+static const wxString VIEW_SUMM = wxTRANSLATE("View Budget Category Summary");
+
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
     EVT_LEFT_DOWN(mmBudgetingPanel::OnMouseLeftDown)
@@ -67,10 +74,10 @@ wxBEGIN_EVENT_TABLE(budgetingListCtrl, wxListCtrl)
     EVT_LIST_COL_END_DRAG(wxID_ANY, budgetingListCtrl::OnItemResize)
 wxEND_EVENT_TABLE()
 /*******************************************************/
-mmBudgetingPanel::mmBudgetingPanel(int budgetYearID,
-    wxWindow *parent, mmGUIFrame* frame, wxWindowID winid,
-    const wxPoint& pos, const wxSize& size,
-    long style,const wxString& name)
+mmBudgetingPanel::mmBudgetingPanel(int budgetYearID
+    , wxWindow *parent, mmGUIFrame* frame, wxWindowID winid
+    , const wxPoint& pos, const wxSize& size
+    , long style,const wxString& name)
     : m_imageList(nullptr)
     , listCtrlBudget_(nullptr)
     , budgetYearID_(budgetYearID)
@@ -122,17 +129,17 @@ void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
 {
     int evt =  event.GetId();
     if (evt ==  MENU_VIEW_ALLBUDGETENTRIES)
-        currentView_ = wxTRANSLATE("View All Budget Categories");
+        currentView_ = VIEW_ALL;
     else if (evt == MENU_VIEW_NONZEROBUDGETENTRIES)
-        currentView_ = wxTRANSLATE("View Non-Zero Budget Categories");
+        currentView_ = VIEW_NON_ZERO;
     else if (evt == MENU_VIEW_PLANNEDBUDGETENTRIES)
-        currentView_ = wxTRANSLATE("View Planned Budget Categories");
+        currentView_ = VIEW_PLANNED;
     else if (evt == MENU_VIEW_INCOMEBUDGETENTRIES)
-        currentView_ = wxTRANSLATE("View Income Budget Categories");
+        currentView_ = VIEW_INCOME;
     else if (evt == MENU_VIEW_EXPENSEBUDGETENTRIES)
-        currentView_ = wxTRANSLATE("View Expense Budget Categories");
+        currentView_ = VIEW_EXPENSE;
     else if (evt == MENU_VIEW_SUMMARYBUDGETENTRIES)
-        currentView_ = wxTRANSLATE("View Budget Category Summary");
+        currentView_ = VIEW_SUMM;
     else
         wxASSERT(false);
 
@@ -157,13 +164,13 @@ void mmBudgetingPanel::OnMouseLeftDown(wxMouseEvent& event)
         case ID_PANEL_BUDGETENTRY_STATIC_BITMAP_VIEW :
         {
             wxMenu menu;
-            menu.Append(MENU_VIEW_ALLBUDGETENTRIES, _("View All Budget Categories"));
-            menu.Append(MENU_VIEW_PLANNEDBUDGETENTRIES, _("View Planned Budget Categories"));
-            menu.Append(MENU_VIEW_NONZEROBUDGETENTRIES, _("View Non-Zero Budget Categories"));
-            menu.Append(MENU_VIEW_INCOMEBUDGETENTRIES, _("View Income Budget Categories"));
-            menu.Append(MENU_VIEW_EXPENSEBUDGETENTRIES, _("View Expense Budget Categories"));
+            menu.Append(MENU_VIEW_ALLBUDGETENTRIES, wxGetTranslation(VIEW_ALL));
+            menu.Append(MENU_VIEW_PLANNEDBUDGETENTRIES, wxGetTranslation(VIEW_PLANNED));
+            menu.Append(MENU_VIEW_NONZEROBUDGETENTRIES, wxGetTranslation(VIEW_NON_ZERO));
+            menu.Append(MENU_VIEW_INCOMEBUDGETENTRIES, wxGetTranslation(VIEW_INCOME));
+            menu.Append(MENU_VIEW_EXPENSEBUDGETENTRIES, wxGetTranslation(VIEW_EXPENSE));
             menu.AppendSeparator();
-            menu.Append(MENU_VIEW_SUMMARYBUDGETENTRIES, _("View Budget Category Summary"));
+            menu.Append(MENU_VIEW_SUMMARYBUDGETENTRIES, wxGetTranslation(VIEW_SUMM));
             PopupMenu(&menu, event.GetPosition());
             break;
         }
@@ -322,15 +329,15 @@ bool mmBudgetingPanel::DisplayEntryAllowed(int categoryID, int subcategoryID)
         estimated = getEstimate(categoryID, subcategoryID);
     }
 
-    if (currentView_ == "View Non-Zero Budget Categories")
+    if (currentView_ == VIEW_NON_ZERO)
         result = ((estimated != 0.0) || (actual != 0.0));
-    else if (currentView_ == "View Income Budget Categories")
+    else if (currentView_ == VIEW_INCOME)
         result = ((estimated > 0.0) || (actual > 0.0));
-    else if (currentView_ == "View Planned Budget Categories")
+    else if (currentView_ == VIEW_PLANNED)
         result = (estimated != 0.0);
-    else if (currentView_ == "View Expense Budget Categories")
+    else if (currentView_ == VIEW_EXPENSE)
         result = ((estimated < 0.0) || (actual < 0.0));
-    else if (currentView_ == "View Budget Category Summary")
+    else if (currentView_ == VIEW_SUMM)
         result = ((categoryID < 0.0));
     else
         result = true;
@@ -357,8 +364,8 @@ void mmBudgetingPanel::initVirtualListControl()
         evaluateTransfer = true;
     }
 
-    currentView_ = Model_Infotable::instance().GetStringInfo("BUDGET_FILTER", "View All Budget Categories");
-    wxString budgetYearStr = Model_Budgetyear::instance().Get(budgetYearID_);
+    currentView_ = Model_Infotable::instance().GetStringInfo("BUDGET_FILTER", VIEW_ALL);
+    const wxString budgetYearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     long year = 0;
     budgetYearStr.ToLong(&year);
     wxDateTime dtBegin(1, wxDateTime::Jan, year);
@@ -393,7 +400,7 @@ void mmBudgetingPanel::initVirtualListControl()
             estIncome += estimated;
 
         double actual = 0;
-        if (currentView_ != "View Planned Budget Categories" || estimated != 0)
+        if (currentView_ != VIEW_PLANNED || estimated != 0)
         {
             actual = categoryStats_[category.CATEGID][-1][0];
             if (actual < 0)
@@ -426,7 +433,7 @@ void mmBudgetingPanel::initVirtualListControl()
                 estIncome += estimated;
 
             actual = 0;
-            if (currentView_ != "View Planned Budget Categories" || estimated != 0)
+            if (currentView_ != VIEW_PLANNED || estimated != 0)
             {
                 actual = categoryStats_[category.CATEGID][subcategory.SUBCATEGID][0];
                 if (actual < 0)
@@ -612,7 +619,7 @@ wxString budgetingListCtrl::OnGetItemText(long item, long column) const
 wxListItemAttr* budgetingListCtrl::OnGetItemAttr(long item) const
 {
     if ((cp_->GetTransID(item) < 0) &&
-        (cp_->GetCurrentView() != "View Budget Category Summary") )
+        (cp_->GetCurrentView() != VIEW_SUMM))
     {
         return (wxListItemAttr *)&attr3_;
     }
