@@ -170,15 +170,15 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
         auto billsdeposits = Model_Billsdeposits::instance()
             .find(Model_Billsdeposits::CATEGID(m_sourceCatID)
                 , Model_Billsdeposits::SUBCATEGID(m_sourceSubCatID));
+        auto budget = Model_Budget::instance()
+            .find(Model_Budget::CATEGID(m_sourceCatID)
+            , Model_Budget::SUBCATEGID(m_sourceSubCatID));
         auto budget_split = Model_Budgetsplittransaction::instance()
             .find(Model_Budgetsplittransaction::CATEGID(m_sourceCatID)
             , Model_Budgetsplittransaction::SUBCATEGID(m_sourceSubCatID));
         auto payees = Model_Payee::instance()
             .find(Model_Payee::CATEGID(m_sourceCatID)
-            ,Model_Payee::SUBCATEGID(m_sourceSubCatID));
-        auto budget = Model_Budget::instance()
-            .find(Model_Budget::CATEGID(m_sourceCatID)
-            ,Model_Budget::SUBCATEGID(m_sourceSubCatID));
+            , Model_Payee::SUBCATEGID(m_sourceSubCatID));
 
         wxString msgStr = wxString()
             <<_("Please Confirm:")
@@ -216,13 +216,6 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
             }
             m_changedRecords += Model_Splittransaction::instance().save(checking_split);
 
-            for (auto &entry : budget_split)
-            {
-                entry.CATEGID = m_destCatID;
-                entry.SUBCATEGID = m_destSubCatID;
-            }
-            m_changedRecords += Model_Budgetsplittransaction::instance().save(budget_split);
-
             for (auto &entry : payees)
             {
                 entry.CATEGID = m_destCatID;
@@ -231,12 +224,18 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
             m_changedRecords += Model_Payee::instance().save(payees);
 			mmWebApp::MMEX_WebApp_UpdatePayee();
 
-            for (auto &entry : budget)
+            for (auto &entry : budget_split)
             {
                 entry.CATEGID = m_destCatID;
                 entry.SUBCATEGID = m_destSubCatID;
             }
-            m_changedRecords += Model_Budget::instance().save(budget);
+            m_changedRecords += Model_Budgetsplittransaction::instance().save(budget_split);
+
+            for (auto &entry : budget)
+            {
+                Model_Budget::instance().remove(entry.BUDGETENTRYID);
+                m_changedRecords++;
+            }
 
             EndModal(wxID_OK);
         }

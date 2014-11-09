@@ -342,6 +342,7 @@ bool mmBudgetingPanel::DisplayEntryAllowed(int categoryID, int subcategoryID)
     else
         result = true;
 
+    wxLogDebug("%s : actual: %.2f | estimated: %.2f", Model_Category::full_name(categoryID, subcategoryID), actual, estimated);
     return result;
 }
 
