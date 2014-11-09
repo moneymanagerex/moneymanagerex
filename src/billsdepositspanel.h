@@ -35,7 +35,7 @@ class billsDepositsListCtrl: public mmListCtrl
     wxDECLARE_EVENT_TABLE();
 
 public:
-    billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
+    billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow *parent, wxWindowID winid = wxID_ANY);
     ~billsDepositsListCtrl();
 
     void OnNewBDSeries(wxCommandEvent& event);
@@ -64,7 +64,7 @@ private:
 
     void refreshVisualList(int selected_index = -1);
 
-    mmBillsDepositsPanel* cp_;
+    mmBillsDepositsPanel* m_bdp;
 };
 
 class mmBillsDepositsPanel : public mmPanelBase
@@ -123,14 +123,16 @@ private:
 private:
     wxImageList* m_imageList;
     billsDepositsListCtrl* listCtrlAccount_;
+    wxStaticText* m_infoText;
+    wxStaticText* m_infoTextMini;
 
     enum EColumn
     {
-        COL_PAYEE = 0,
+        COL_DUE_DATE = 0,
         COL_ACCOUNT,
+        COL_PAYEE,
         COL_TYPE,
         COL_AMOUNT,
-        COL_DUE_DATE,
         COL_FREQUENCY,
         COL_DAYS,
         COL_NOTES,

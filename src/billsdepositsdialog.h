@@ -60,7 +60,7 @@ private:
     void OnCategs(wxCommandEvent& event);
     void OnPayee(wxCommandEvent& event);
     void OnTo(wxCommandEvent& event);
-    void OnTransTypeChanged(wxCommandEvent& event);
+    void OnTypeChanged(wxCommandEvent& event);
 	void OnAttachments(wxCommandEvent& event);
 
     void OnDateChanged(wxDateEvent& event);
@@ -83,7 +83,7 @@ private:
     wxTextCtrl* textNumRepeats_;
     wxButton* bCategory_;
     wxButton* bPayee_;
-    wxButton* bTo_;
+    wxButton* bAccount_;
 	wxButton* bAttachments_;
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
@@ -91,7 +91,6 @@ private:
 
     wxChoice* choiceStatus_;
     wxChoice* transaction_type_;
-    wxButton* itemAccountName_;
 
     bool edit_;
     bool m_new_bill;
@@ -116,7 +115,6 @@ private:
     int prevType_;
     std::vector<wxString> frequentNotes_;
 
-    wxString payeeDepositTip_;
     wxString payeeWithdrawalTip_;
     wxString amountNormalTip_;
     wxString amountTransferTip_;
@@ -125,6 +123,8 @@ private:
 
     void displayControlsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced = false);
     void resetPayeeString();
+    void setTooltips();
+    void setCategoryLabel();
     void OnAdvanceChecked(wxCommandEvent& event);
     void SetTransferControls(bool transfers = false);
     void SetAdvancedTransferControls(bool advanced = false);
@@ -151,7 +151,7 @@ private:
     {
         ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 200,
         ID_DIALOG_TRANS_BUTTONCATEGS,
-        ID_DIALOG_TRANS_STATIC_FROM,
+        ID_DIALOG_TRANS_STATIC_ACCOUNT,
         ID_DIALOG_TRANS_TEXTNUMBER,
         ID_DIALOG_TRANS_BUTTONDATE,
         ID_DIALOG_TRANS_TEXTNOTES,
