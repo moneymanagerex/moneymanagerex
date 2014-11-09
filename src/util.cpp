@@ -395,6 +395,13 @@ void mmShowErrorMessage(wxWindow *parent
     msgDlg.ShowModal();
 }
 
+void mmShowWarningMessage(wxWindow *parent
+    , const wxString &message, const wxString &messageheader)
+{
+    wxMessageDialog msgDlg(parent, message, messageheader, wxOK | wxICON_WARNING);
+    msgDlg.ShowModal();
+}
+
 void mmShowErrorMessageInvalid(wxWindow *parent, const wxString &message)
 {
     wxString msg = wxString::Format(_("Entry %s is invalid"), message);

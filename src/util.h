@@ -123,6 +123,7 @@ private:
 
 void mmShowErrorMessageInvalid(wxWindow *parent, const wxString &message);
 void mmShowErrorMessage(wxWindow *parent, const wxString &message, const wxString &messageheader);
+void mmShowWarningMessage(wxWindow *parent, const wxString &message, const wxString &messageheader);
 void mmMessageCategoryInvalid(wxButton *button);
 void mmMessageAccountInvalid(wxComboBox *comboBox, bool transfer = false);
 void mmMessagePayeeInvalid(wxComboBox *comboBox);
