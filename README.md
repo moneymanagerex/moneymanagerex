@@ -11,6 +11,7 @@ and user-friendliness - something one can use everyday.
 
 [![Build Status](https://secure.travis-ci.org/moneymanagerex/moneymanagerex.png)](http://travis-ci.org/moneymanagerex/moneymanagerex)
 [![Ohloh](http://www.ohloh.net/p/moneymanagerex/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/moneymanagerex)
+[![bountysource](https://www.bountysource.com/badge/team?team_id=10686&style=bounties_received)](https://www.bountysource.com/teams/money-manager-ex)
 
 
 ### MMEX is mainly written in C++11 and built on:
