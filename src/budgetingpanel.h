@@ -16,8 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_BUDGETINGPANEL_H_
-#define MM_EX_BUDGETINGPANEL_H_
+#pragma once
 
 #include "mmpanelbase.h"
 #include "util.h"
@@ -63,12 +62,13 @@ class mmBudgetingPanel : public mmPanelBase
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmBudgetingPanel( int budgetYearID, wxWindow *parent, mmGUIFrame *frame,
-                      wxWindowID winid = wxID_ANY,
-                      const wxPoint& pos = wxDefaultPosition,
-                      const wxSize& size = wxDefaultSize,
-                      long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                      const wxString& name = wxPanelNameStr );
+    mmBudgetingPanel(int budgetYearID
+        , wxWindow *parent, mmGUIFrame *frame
+        , wxWindowID winid = wxID_ANY
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxTAB_TRAVERSAL | wxNO_BORDER
+        , const wxString& name = wxPanelNameStr);
     ~mmBudgetingPanel();
 
     /* updates the checking panel data */
@@ -118,11 +118,11 @@ private:
     wxStaticText* expenses_actual_;
     wxStaticText* expenses_diff_;
 
-    bool Create( wxWindow *parent, wxWindowID winid,
-                 const wxPoint& pos = wxDefaultPosition,
-                 const wxSize& size = wxDefaultSize,
-                 long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                 const wxString& name = wxPanelNameStr);
+    bool Create(wxWindow *parent, wxWindowID winid
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxTAB_TRAVERSAL | wxNO_BORDER
+        , const wxString& name = wxPanelNameStr);
 
     void CreateControls();
     void sortTable();
@@ -133,8 +133,6 @@ private:
 
     /* Event handlers for Buttons */
     void OnViewPopupSelected(wxCommandEvent& event);
-    void OnMouseLeftDown( wxMouseEvent& event );
+    void OnMouseLeftDown(wxMouseEvent& event);
 };
-
-#endif
 

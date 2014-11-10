@@ -71,18 +71,18 @@ bool mmBudgetEntryDialog::Create(wxWindow* parent
 
 void mmBudgetEntryDialog::fillControls()
 {
-    m_choiceItem->SetSelection(Model_Budget::period(budgetEntry_));
-
     double amt = budgetEntry_->AMOUNT;
-    if (amt < 0.0)
-    {
+    int period = Model_Budget::period(budgetEntry_);
+    m_choiceItem->SetSelection(period);
+    if (period == Model_Budget::NONE && amt == 0.0)
+        m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
+
+    if (amt <= 0.0)
         m_choiceType->SetSelection(DEF_TYPE_EXPENSE);
-        amt = -amt;
-    }
     else
         m_choiceType->SetSelection(DEF_TYPE_INCOME);
-    
-    m_textAmount->SetValue(amt);
+
+    m_textAmount->SetValue(fabs(amt));
 }
 
 void mmBudgetEntryDialog::CreateControls()
@@ -110,9 +110,9 @@ void mmBudgetEntryDialog::CreateControls()
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, category->CATEGNAME), wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
     // only add the subcategory if it exists.
     if (budgetEntry_->SUBCATEGID >= 0) {
-        wxStaticText* itemTextSubCatTag = new wxStaticText( itemPanel7, wxID_STATIC
+        wxStaticText* itemTextSubCatTag = new wxStaticText(itemPanel7, wxID_STATIC
             , _("Sub Category: "));
-        wxStaticText* itemTextSubCatName = new wxStaticText( itemPanel7, wxID_STATIC
+        wxStaticText* itemTextSubCatName = new wxStaticText(itemPanel7, wxID_STATIC
             , sub_category->SUBCATEGNAME);
         
         itemGridSizer2->Add(itemTextSubCatTag, g_flags);
@@ -132,7 +132,6 @@ void mmBudgetEntryDialog::CreateControls()
     m_choiceType = new wxChoice(itemPanel7, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, itemTypeStrings);
     itemGridSizer2->Add(m_choiceType, g_flagsExpand);
-    m_choiceType->SetSelection(DEF_TYPE_EXPENSE);
     m_choiceType->SetToolTip(_("Specify whether this category is an income or an expense category"));
 
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Frequency:")), g_flags);
@@ -140,7 +139,6 @@ void mmBudgetEntryDialog::CreateControls()
     m_choiceItem = new wxChoice(itemPanel7, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, Model_Budget::all_period());
     itemGridSizer2->Add(m_choiceItem, g_flagsExpand);
-    m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
     m_choiceItem->SetToolTip(_("Specify the frequency of the expense or deposit"));
     m_choiceItem->Connect(wxID_ANY, wxEVT_CHAR, wxKeyEventHandler(mmBudgetEntryDialog::onChoiceChar), nullptr, this);
 
@@ -169,14 +167,10 @@ void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
 {
     int typeSelection = m_choiceType->GetSelection();    
     wxString period = Model_Budget::PERIOD_ENUM_CHOICES[m_choiceItem->GetSelection()].second;
-    wxString displayAmtString = m_textAmount->GetValue().Trim(); //TODO: simplification needed
     double amt = 0.0;
-    if (!Model_Currency::fromString(displayAmtString, amt, Model_Currency::GetBaseCurrency()) || amt < 0)
-    {
-        wxMessageDialog msgDlg(this, _("Invalid Amount Entered "), _("Error"), wxOK | wxICON_ERROR);
-        msgDlg.ShowModal();
+
+    if (!m_textAmount->checkValue(amt))
         return;
-    }
 
     if (period == Model_Budget::PERIOD_ENUM_CHOICES[Model_Budget::NONE].second && amt > 0) {
         m_choiceItem->SetFocus();
