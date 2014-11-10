@@ -21,7 +21,7 @@ and user-friendliness - something one can use everyday.
 4. [html-template](https://github.com/moneymanagerex/html-template)
 
 ### Supported platforms:
-1. MS Windows: XP, Vista, 7, 8, 8.1.
+1. MS Windows: Vista, 7, 8, 8.1.
     Unicode builds: x86, x64, ia64 versions available.
 3. Unixes: almost any Unix workstation with GTK+ 2.0 and above.
 4. Mac: OS X 10.8 or higher.
