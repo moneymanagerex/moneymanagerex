@@ -53,6 +53,7 @@ public:
     void OnHistoryAddButton(wxCommandEvent& event);
     void OnHistoryDeleteButton(wxCommandEvent& event);
     void OnListItemSelected(wxListEvent& event);
+    void onFocusChange(wxChildFocusEvent& event);
     
     void fillControls();
     void dataToControls();
