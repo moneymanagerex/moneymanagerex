@@ -15,34 +15,35 @@
  ********************************************************/
 
 #include "assetspanel.h"
-#include <wx/srchctrl.h>
 #include "assetdialog.h"
-#include "constants.h"
 #include "attachmentdialog.h"
-#include "model/Model_Setting.h"
+#include "constants.h"
 #include "model/Model_Asset.h"
-#include "model/Model_Currency.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_Currency.h"
+#include "model/Model_Setting.h"
+#include <wx/srchctrl.h>
 
-#include "../resources/rightarrow.xpm"
-#include "../resources/house.xpm"
-#include "../resources/car.xpm"
-#include "../resources/clock.xpm"
 #include "../resources/art.xpm"
 #include "../resources/assets.xpm"
+#include "../resources/attachment.xpm"
+#include "../resources/car.xpm"
+#include "../resources/clock.xpm"
 #include "../resources/coin.xpm"
+#include "../resources/downarrow.xpm"
+#include "../resources/house.xpm"
+#include "../resources/rightarrow.xpm"
 #include "../resources/rubik_cube.xpm"
 #include "../resources/uparrow.xpm"
-#include "../resources/downarrow.xpm"
-#include "../resources/attachment.xpm"
 
 /*******************************************************/
 
-BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
+wxBEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   mmAssetsListCtrl::OnListItemActivated)
     EVT_LIST_ITEM_SELECTED(wxID_ANY,    mmAssetsListCtrl::OnListItemSelected)
     EVT_LIST_COL_END_DRAG(wxID_ANY,     mmAssetsListCtrl::OnItemResize)
     EVT_LIST_COL_CLICK(wxID_ANY,        mmAssetsListCtrl::OnColClick)
+    EVT_LIST_COL_RIGHT_CLICK(wxID_ANY,  mmAssetsListCtrl::OnColRightClick)
     EVT_LIST_END_LABEL_EDIT(wxID_ANY,   mmAssetsListCtrl::OnEndLabelEdit)
     EVT_RIGHT_DOWN(mmAssetsListCtrl::OnMouseRightClick)
     EVT_LEFT_DOWN(mmAssetsListCtrl::OnListLeftClick)
@@ -53,8 +54,12 @@ BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_MENU(MENU_ON_DUPLICATE_TRANSACTION, mmAssetsListCtrl::OnDuplicateAsset)
 	EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, mmAssetsListCtrl::OnOrganizeAttachments)
 
+    EVT_MENU(MENU_HEADER_HIDE, mmAssetsListCtrl::OnHeaderHide)
+    EVT_MENU(MENU_HEADER_SORT, mmAssetsListCtrl::OnHeaderSort)
+    EVT_MENU(MENU_HEADER_RESET, mmAssetsListCtrl::OnHeaderReset)
+
     EVT_LIST_KEY_DOWN(wxID_ANY, mmAssetsListCtrl::OnListKeyDown)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 /*******************************************************/
 
 mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid)
@@ -71,7 +76,7 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
 void mmAssetsListCtrl::OnItemResize(wxListEvent& event)
 {
     int i = event.GetColumn();
-    int width = this->GetColumnWidth(i);
+    int width = event.GetItem().GetWidth();
     Model_Setting::instance().Set(wxString::Format("ASSETS_COL%d_WIDTH", i), width);
 }
 
@@ -272,16 +277,21 @@ bool mmAssetsListCtrl::EditAsset(Model_Asset::Data* pEntry)
 
 void mmAssetsListCtrl::OnColClick(wxListEvent& event)
 {
-    if (0 > event.GetColumn() || event.GetColumn() >= m_panel->col_max()) return;
+    int ColumnNr;
+    if (event.GetId() != MENU_HEADER_SORT)
+         ColumnNr = event.GetColumn();
+    else
+         ColumnNr = ColumnHeaderNr;
+    if (0 > ColumnNr || ColumnNr >= m_panel->col_max() || ColumnNr == 0) return;
 
-    if (m_selected_col == event.GetColumn()) m_asc = !m_asc;
+    if (m_selected_col == ColumnNr) m_asc = !m_asc;
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
     item.SetImage(-1);
     SetColumn(m_selected_col, item);
 
-    m_selected_col = event.GetColumn();
+    m_selected_col = ColumnNr;
 
     item.SetImage(m_asc ? 8 : 7);
     SetColumn(m_selected_col, item);
@@ -303,6 +313,48 @@ void mmAssetsListCtrl::OnEndLabelEdit(wxListEvent& event)
     Model_Asset::instance().save(asset);
     RefreshItems(event.GetIndex(), event.GetIndex());
 }
+
+void mmAssetsListCtrl::OnColRightClick(wxListEvent& event)
+{
+    ColumnHeaderNr = event.GetColumn();
+    if (0 > ColumnHeaderNr || ColumnHeaderNr >= m_panel->col_max()) return;
+    wxMenu menu;
+    menu.Append(MENU_HEADER_HIDE, _("Hide column"));
+    menu.Append(MENU_HEADER_SORT, _("Order by this column"));
+    menu.Append(MENU_HEADER_RESET, _("Reset columns size"));
+    PopupMenu(&menu);
+    this->SetFocus();
+}
+
+void mmAssetsListCtrl::OnHeaderHide(wxCommandEvent& event)
+{
+    mmAssetsListCtrl::SetColumnWidth(ColumnHeaderNr, 0);
+    const wxString parameter_name = wxString::Format("ASSETS_COL%i_WIDTH", ColumnHeaderNr);
+    Model_Setting::instance().Set(parameter_name, 0);
+}
+
+void mmAssetsListCtrl::OnHeaderSort(wxCommandEvent& event)
+{
+    wxListEvent e;
+    e.SetId(MENU_HEADER_SORT);
+    mmAssetsListCtrl::OnColClick(e);
+}
+
+void mmAssetsListCtrl::OnHeaderReset(wxCommandEvent& event)
+{
+    wxString parameter_name;
+    for (int i = 0; i < m_panel->col_max(); i++)
+    {
+        mmAssetsListCtrl::SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER);
+        parameter_name = wxString::Format("ASSETS_COL%i_WIDTH", i);
+        Model_Setting::instance().Set(parameter_name, mmAssetsListCtrl::GetColumnWidth(i));
+    }
+    wxListEvent e;
+    e.SetId(MENU_HEADER_SORT);
+    ColumnHeaderNr = m_panel->col_sort();
+    mmAssetsListCtrl::OnColClick(e);
+}
+
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
     EVT_BUTTON(wxID_NEW, mmAssetsPanel::OnNewAsset)
@@ -394,55 +446,46 @@ void mmAssetsPanel::CreateControls()
     wxSize imageSize(16, 16);
     m_imageList.reset(new wxImageList(imageSize.GetWidth(), imageSize.GetHeight()));
     //TODO: Provide better icons
-    m_imageList->Add(wxBitmap(wxImage(house_xpm).Scale(16, 16)));           // Property
-    m_imageList->Add(wxBitmap(wxImage(car_xpm).Scale(16, 16)));             // Automobile
-    m_imageList->Add(wxBitmap(wxImage(clock_xpm).Scale(16, 16)));           // Household Object
-    m_imageList->Add(wxBitmap(wxImage(art_xpm).Scale(16, 16)));             // Art
-    m_imageList->Add(wxBitmap(wxImage(assets_xpm).Scale(16, 16)));      // Jewellery
-    m_imageList->Add(wxBitmap(wxImage(coin_xpm).Scale(16, 16)));    // Cash
-    m_imageList->Add(wxBitmap(wxImage(rubik_cube_xpm).Scale(16, 16)));          // Other
+    m_imageList->Add(wxBitmap(wxImage(house_xpm).Scale(16, 16)));
+    m_imageList->Add(wxBitmap(wxImage(car_xpm).Scale(16, 16)));
+    m_imageList->Add(wxBitmap(wxImage(clock_xpm).Scale(16, 16)));
+    m_imageList->Add(wxBitmap(wxImage(art_xpm).Scale(16, 16)));
+    m_imageList->Add(wxBitmap(wxImage(assets_xpm).Scale(16, 16)));
+    m_imageList->Add(wxBitmap(wxImage(coin_xpm).Scale(16, 16)));
+    m_imageList->Add(wxBitmap(wxImage(rubik_cube_xpm).Scale(16, 16)));
     m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(16, 16)));
     m_imageList->Add(wxBitmap(wxImage(downarrow_xpm).Scale(16, 16)));
 
     m_listCtrlAssets->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
-    m_listCtrlAssets->InsertColumn(COL_NAME, _("Name"));
 
-    wxListItem itemCol;
-    itemCol.SetImage(-1);
-    itemCol.SetAlign(wxLIST_FORMAT_LEFT);
-    itemCol.SetText(_("Type"));
-    m_listCtrlAssets->InsertColumn(COL_TYPE, itemCol);
+    m_listCtrlAssets->InsertColumn(COL_ICON, " ", wxLIST_FORMAT_LEFT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", COL_ICON), 25));
 
-    itemCol.SetAlign(wxLIST_FORMAT_RIGHT);
-    itemCol.SetText(_("Initial Value"));
-    m_listCtrlAssets->InsertColumn(COL_VALUE_INITIAL, itemCol);
+    m_listCtrlAssets->InsertColumn(COL_ID, _("ID"), wxLIST_FORMAT_RIGHT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", COL_ID),
+        wxLIST_AUTOSIZE_USEHEADER));
 
-    itemCol.SetAlign(wxLIST_FORMAT_RIGHT);
-    itemCol.SetText(_("Current Value"));
-    m_listCtrlAssets->InsertColumn(COL_VALUE_CURRENT, itemCol);
+    m_listCtrlAssets->InsertColumn(COL_NAME, _("Name"), wxLIST_FORMAT_LEFT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", COL_NAME), 150));
 
-    itemCol.SetAlign(wxLIST_FORMAT_RIGHT);
-    itemCol.SetText(_("Date"));
-    m_listCtrlAssets->InsertColumn(COL_DATE, itemCol);
+    m_listCtrlAssets->InsertColumn(COL_TYPE, _("Type"), wxLIST_FORMAT_LEFT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", COL_TYPE),
+        wxLIST_AUTOSIZE_USEHEADER));
 
-    itemCol.SetAlign(wxLIST_FORMAT_LEFT);
-    itemCol.SetText(_("Notes"));
-    m_listCtrlAssets->InsertColumn(COL_NOTES, itemCol);
+    m_listCtrlAssets->InsertColumn(COL_VALUE_INITIAL, _("Initial Value"), wxLIST_FORMAT_RIGHT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", COL_VALUE_INITIAL),
+        wxLIST_AUTOSIZE_USEHEADER));
 
-    /* See if we can get data from inidb */
-    int col0 = Model_Setting::instance().GetIntSetting("ASSETS_COL0_WIDTH", 150);
-    int col1 = Model_Setting::instance().GetIntSetting("ASSETS_COL1_WIDTH", -2);
-    int col2 = Model_Setting::instance().GetIntSetting("ASSETS_COL2_WIDTH", -2);
-    int col3 = Model_Setting::instance().GetIntSetting("ASSETS_COL3_WIDTH", -2);
-    int col4 = Model_Setting::instance().GetIntSetting("ASSETS_COL4_WIDTH", -2);
-    int col5 = Model_Setting::instance().GetIntSetting("ASSETS_COL5_WIDTH", 450);
+    m_listCtrlAssets->InsertColumn(COL_VALUE_CURRENT, _("Current Value"), wxLIST_FORMAT_RIGHT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", COL_VALUE_CURRENT),
+        wxLIST_AUTOSIZE_USEHEADER));
 
-    m_listCtrlAssets->SetColumnWidth(COL_NAME, col0);
-    m_listCtrlAssets->SetColumnWidth(COL_DATE, col1);
-    m_listCtrlAssets->SetColumnWidth(COL_TYPE, col2);
-    m_listCtrlAssets->SetColumnWidth(COL_VALUE_INITIAL, col3);
-    m_listCtrlAssets->SetColumnWidth(COL_VALUE_CURRENT, col4);
-    m_listCtrlAssets->SetColumnWidth(COL_NOTES, col5);
+    m_listCtrlAssets->InsertColumn(COL_DATE, _("Date"), wxLIST_FORMAT_RIGHT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", COL_DATE),
+        wxLIST_AUTOSIZE_USEHEADER));
+
+    m_listCtrlAssets->InsertColumn(COL_NOTES, _("Notes"), wxLIST_FORMAT_LEFT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", COL_NOTES), 450));
 
     wxPanel* assets_panel = new wxPanel(itemSplitterWindow10, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
@@ -505,6 +548,9 @@ void mmAssetsPanel::sortTable()
     std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterBySTARTDATE());
     switch (this->m_listCtrlAssets->m_selected_col)
     {
+    case COL_ID:
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETID());
+        break;
     case COL_NAME:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETNAME());
         break;
@@ -588,6 +634,10 @@ wxString mmAssetsPanel::getItem(long item, long column)
     const Model_Asset::Data& asset = this->m_assets[item];
     switch (column)
     {
+    case COL_ICON:
+        return " ";
+    case COL_ID:
+        return wxString::Format("%i", asset.ASSETID).Trim();
     case COL_NAME:
         return asset.ASSETNAME;
     case COL_TYPE:

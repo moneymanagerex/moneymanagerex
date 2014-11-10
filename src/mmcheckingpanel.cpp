@@ -172,6 +172,9 @@ void mmCheckingPanel::sortTable()
     std::sort(this->m_trans.begin(), this->m_trans.end());
     switch (m_listCtrlAccount->g_sortcol)
     {
+    case TransactionListCtrl::COL_ID:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(),SorterByTRANSID());
+        break;
     case TransactionListCtrl::COL_NUMBER:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByNUMBER());
         break;
@@ -988,7 +991,7 @@ void TransactionListCtrl::createColumns(mmListCtrl &lst)
 {
     lst.InsertColumn(COL_IMGSTATUS, " ", wxLIST_FORMAT_LEFT
         , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_IMGSTATUS), 25));
-    lst.InsertColumn(COL_ID, _("ID"), wxLIST_FORMAT_LEFT
+    lst.InsertColumn(COL_ID, _("ID"), wxLIST_FORMAT_RIGHT
         , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_ID), wxLIST_AUTOSIZE));
     lst.InsertColumn(COL_DATE, _("Date"), wxLIST_FORMAT_LEFT
         , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_DATE), 112));
