@@ -38,7 +38,7 @@
 
 IMPLEMENT_DYNAMIC_CLASS(mmStockDialog, wxDialog)
 
-wxBEGIN_EVENT_TABLE( mmStockDialog, wxDialog )
+wxBEGIN_EVENT_TABLE(mmStockDialog, wxDialog)
     EVT_BUTTON(wxID_OK, mmStockDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmStockDialog::OnCancel)
     EVT_BUTTON(wxID_INDEX, mmStockDialog::OnStockPriceButton)
@@ -63,7 +63,7 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     , accountID_(accountID)
     , skip_attachments_init_(false)
 {
-    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(400, 300), style);
     if (edit_)
         this->SetTitle(_("Edit Stock Investment"));
@@ -654,6 +654,16 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
     {
         mmShowErrorMessageInvalid(this, FreqStrs[freq]);
         return;
+    }
+    else
+    {
+        switch (freq)
+        {
+        case DAILY: EndDate = wxDate(StartDate).Add(wxDateSpan::Days(nrPrices)); break;
+        case WEEKLY: EndDate = wxDate(StartDate).Add(wxDateSpan::Weeks(nrPrices)); break;
+        case MONTHLY: EndDate = wxDate(StartDate).Add(wxDateSpan::Months(nrPrices)); break;
+        default: break;
+        }
     }
 
     if (EndDate > wxDate::Today())
