@@ -45,7 +45,7 @@ wxBEGIN_EVENT_TABLE(mmStockDialog, wxDialog)
     EVT_BUTTON(wxID_FILE, mmStockDialog::OnAttachments)
     EVT_BUTTON(ID_BUTTON_IMPORT, mmStockDialog::OnHistoryImportButton)
     EVT_BUTTON(ID_BUTTON_DOWNLOAD, mmStockDialog::OnHistoryDownloadButton)
-    EVT_BUTTON(ID_BUTTON_ADD, mmStockDialog::OnHistoryAddButton)
+    EVT_BUTTON(wxID_ADD, mmStockDialog::OnHistoryAddButton)
     EVT_BUTTON(wxID_DELETE, mmStockDialog::OnHistoryDeleteButton)
     EVT_CHILD_FOCUS(mmStockDialog::onFocusChange)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, mmStockDialog::OnListItemSelected)
@@ -63,12 +63,10 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     , accountID_(accountID)
     , skip_attachments_init_(false)
 {
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
+    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(400, 300), style);
     if (edit_)
-        this->SetTitle(_("Edit Stock Investment"));
-    else
-        this->SetTitle(_("New Stock Investment"));
+        this->SetTitle(edit_ ? _("Edit Stock Investment") : _("New Stock Investment"));
 }
 
 bool mmStockDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
@@ -128,11 +126,8 @@ void mmStockDialog::fillControls()
 
 void mmStockDialog::CreateControls()
 {
-    wxBoxSizer* fullBoxSizer = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(fullBoxSizer);
-
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    fullBoxSizer->Add(mainBoxSizer);
+    this->SetSizer(mainBoxSizer);
 
     wxBoxSizer* leftBoxSizer = new wxBoxSizer(wxVERTICAL);
     mainBoxSizer->Add(leftBoxSizer, g_flags);
@@ -281,7 +276,7 @@ void mmStockDialog::CreateControls()
 
     //History Buttons
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    historyStaticBoxSizer->Add(buttons_panel, wxSizerFlags(g_flagsExpand).Proportion(0));
+    historyStaticBoxSizer->Add(buttons_panel, wxSizerFlags(g_flags).Centre());
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
@@ -293,7 +288,7 @@ void mmStockDialog::CreateControls()
     buttonImport->SetToolTip(_("Import Stock Price history (CSV Format)"));
     wxButton* buttonDel = new wxButton(buttons_panel, wxID_DELETE, _("&Delete "));
     buttonDel->SetToolTip(_("Delete selected Stock Price"));
-    wxButton* buttonUpd = new wxButton(buttons_panel, ID_BUTTON_ADD, _("&Add"));
+    wxButton* buttonUpd = new wxButton(buttons_panel, wxID_ADD, _("&Add "));
     buttonUpd->SetToolTip(_("Add Stock Price to history"));
     buttons_sizer->Add(buttonDownload, g_flags);
     buttons_sizer->Add(buttonImport, g_flags);
@@ -310,19 +305,16 @@ void mmStockDialog::CreateControls()
     }
 
     //OK & Cancel buttons
-    wxPanel* itemPanel27 = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    fullBoxSizer->Add(itemPanel27, wxSizerFlags(g_flags).Centre());
+    wxStdDialogButtonSizer*  buttonsOK_CANCEL_sizer = new wxStdDialogButtonSizer;
+    leftBoxSizer->Add(buttonsOK_CANCEL_sizer, wxSizerFlags(g_flags).Centre());
 
-    wxBoxSizer* itemBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
-    itemPanel27->SetSizer(itemBoxSizer28);
-
-    wxButton* itemButtonOK = new wxButton(itemPanel27, wxID_OK);
-    wxButton* itemButton30 = new wxButton(itemPanel27, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButtonOK = new wxButton(this, wxID_OK);
+    wxButton* itemButton30 = new wxButton(this, wxID_CANCEL, _("&Cancel "));
 
     if (edit_)
         itemButton30->SetFocus();
-    itemBoxSizer28->Add(itemButtonOK, g_flags);
-    itemBoxSizer28->Add(itemButton30, g_flags);
+    buttonsOK_CANCEL_sizer->Add(itemButtonOK, g_flags);
+    buttonsOK_CANCEL_sizer->Add(itemButton30, g_flags);
 }
 
 

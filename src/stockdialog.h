@@ -97,7 +97,6 @@ private:
         ID_DIALOG_STOCKS,
         ID_DPC_CP_PDATE,
         ID_BUTTON_IMPORT,
-        ID_BUTTON_ADD,
         ID_BUTTON_DOWNLOAD
     };
 };
