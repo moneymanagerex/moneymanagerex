@@ -184,7 +184,7 @@ void mmNewAcctDialog::CreateControls()
     m_itemInitValue->Connect(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE, wxEVT_COMMAND_TEXT_ENTER,
         wxCommandEventHandler(mmNewAcctDialog::OnTextEntered), nullptr, this);
 
-    grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Currency:")), g_flags);
+    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Currency:")), g_flags);
 
     wxString currName = _("Select Currency");
     Model_Currency::Data* base_currency = Model_Currency::GetBaseCurrency();
