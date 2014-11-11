@@ -166,7 +166,7 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer->Add(itemChoice61, g_flagsExpand);
     itemChoice61->SetSelection(0);
 
-    grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Account Status:")), g_flags);
+    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Account Status:")), g_flags);
 
     wxChoice* itemChoice6 = new wxChoice( this, ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
     for(const auto& status: Model_Account::all_status())
