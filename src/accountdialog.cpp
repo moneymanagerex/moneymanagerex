@@ -385,7 +385,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
 {
     wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY);
-    ev.SetEventObject( this );
+    ev.SetEventObject(this);
 
     //Skip all images before custom images
     int k = 18;
