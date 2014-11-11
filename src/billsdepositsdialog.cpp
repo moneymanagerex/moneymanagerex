@@ -42,6 +42,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmBDDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE( mmBDDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmBDDialog::OnOk)
+    EVT_BUTTON(wxID_CANCEL, mmBDDialog::OnCancel)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmBDDialog::OnCategs)
     EVT_BUTTON(ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, mmBDDialog::OnAccountName)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONPAYEE, mmBDDialog::OnPayee)
@@ -63,6 +64,7 @@ wxBEGIN_EVENT_TABLE( mmBDDialog, wxDialog )
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBDDialog::OnsetNextRepeatDate)
     EVT_TEXT(ID_DIALOG_BD_TEXTCTRL_NUM_TIMES,mmBDDialog::OnPeriodChange)
     EVT_MENU(wxID_ANY, mmBDDialog::onNoteSelected)
+    EVT_CLOSE(mmBDDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
 //const wxString REPEAT_TRANSACTIONS_MSGBOX_HEADING = _("Repeat Transaction - Auto Execution Checking");
@@ -79,7 +81,6 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
     , autoExecuteUserAck_(false)
     , autoExecuteSilent_(false)
     , categUpdated_(false)
-	, skip_attachments_init_(false)
     , prevType_(-1)
 {
     const Model_Billsdeposits::Data* bill = Model_Billsdeposits::instance().get(bdID);
@@ -584,8 +585,19 @@ void mmBDDialog::CreateControls()
     }
 }
 
+void mmBDDialog::OnQuit(wxCloseEvent& /*event*/)
+{
+    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+    if (!m_bill_data.BDID)
+        mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
+    EndModal(wxID_CANCEL);
+}
+
 void mmBDDialog::OnCancel(wxCommandEvent& /*event*/)
 {
+    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+    if (!m_bill_data.BDID)
+        mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
     EndModal(wxID_CANCEL);
 }
 
@@ -739,12 +751,7 @@ void mmBDDialog::OnTypeChanged(wxCommandEvent& /*event*/)
 
 void mmBDDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
-    if (!m_bill_data.BDID && !skip_attachments_init_)
-	{
-		mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
-		skip_attachments_init_ = true;
-	}
+	const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
 	mmAttachmentDialog dlg(this, RefType, m_bill_data.BDID);
 	dlg.ShowModal();
 }
