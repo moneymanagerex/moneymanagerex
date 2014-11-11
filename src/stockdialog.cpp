@@ -33,6 +33,7 @@
 wxIMPLEMENT_DYNAMIC_CLASS(mmStockDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmStockDialog, wxDialog)
+    EVT_CLOSE(mmStockDialog::OnQuit)
     EVT_BUTTON(wxID_OK, mmStockDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmStockDialog::OnCancel)
     EVT_BUTTON(wxID_INDEX, mmStockDialog::OnStockPriceButton)
@@ -49,7 +50,16 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     : m_stock(stock)
     , edit_(stock ? true: false)
     , accountID_(accountID)
-    , skip_attachments_init_(false)
+    , stockName_(nullptr)
+    , stockSymbol_(nullptr)
+    , dpc_(nullptr)
+    , numShares_(nullptr)
+    , purchasePrice_(nullptr)
+    , notes_(nullptr)
+    , currentPrice_(nullptr)
+    , valueInvestment_(nullptr)
+    , commission_(nullptr)
+    , bAttachments_(nullptr)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     wxString heading = _("New Stock Investment");
@@ -102,7 +112,6 @@ void mmStockDialog::dataToControls()
 
 void mmStockDialog::fillControls()
 {
-
 }
 
 void mmStockDialog::CreateControls()
@@ -149,8 +158,8 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(symbol, flags);
     symbol->SetFont(this->GetFont().Bold());
 
-    stockSymbol_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL,
-        "", wxDefaultPosition, wxSize(150, -1), 0 );
+    stockSymbol_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL
+        , "", wxDefaultPosition, wxSize(150, -1), 0 );
     itemFlexGridSizer6->Add(stockSymbol_, flags);
     stockSymbol_->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
@@ -234,9 +243,19 @@ void mmStockDialog::CreateControls()
 
 }
 
+void mmStockDialog::OnQuit(wxCloseEvent& /*event*/)
+{
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+    if (stockID_ <= 0)
+        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+    EndModal(wxID_CANCEL);
+}
 
 void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
 {
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+    if (stockID_ <= 0)
+        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
 }
 
@@ -247,12 +266,6 @@ void mmStockDialog::OnAttachments(wxCommandEvent& /*event*/)
 
     if (RefId < 0)
         RefId = 0;
-
-    if (RefId == 0 && !skip_attachments_init_)
-    {
-        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
-        skip_attachments_init_ = true;
-    }
 
     mmAttachmentDialog dlg(this, RefType, RefId);
     dlg.ShowModal();
@@ -278,48 +291,38 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
         mmShowErrorMessageInvalid(this, _("Held At"));
         return;
     }
-    wxString pdate = dpc_->GetValue().FormatISODate();
-    wxString heldAt = account->ACCOUNTNAME; 
 
-    wxString stockName = stockName_->GetValue();
-    wxString stockSymbol = stockSymbol_->GetValue();
-    wxString notes       = notes_->GetValue();
-
-    wxString numSharesStr = numShares_->GetValue().Trim();
-    double numShares = 0;
-    if (!wxNumberFormatter::FromString(numSharesStr, &numShares) || numShares < 0)
-    {
-        mmShowErrorMessage(this, _("Invalid number of shares entered "), _("Error"));
+    const wxString& stockSymbol = stockSymbol_->GetValue();
+    if (stockSymbol.empty()) {
+        mmShowErrorMessageInvalid(this, _("Symbol"));
         return;
     }
+
 
     Model_Currency::Data *currency = Model_Account::currency(account);
+    const wxString& pdate = dpc_->GetValue().FormatISODate();
+    const wxString& stockName = stockName_->GetValue();
+    const wxString& notes = notes_->GetValue();
 
-    wxString pPriceStr = purchasePrice_->GetValue().Trim();
-    double pPrice;
-    if (!Model_Currency::fromString(pPriceStr, pPrice, currency) || pPrice < 0)
-    {
-        mmShowErrorMessage(this, _("Invalid purchase price entered "), _("Error"));
+    double numShares = 0;
+    if (!numShares_->checkValue(numShares, currency))
         return;
-    }
 
-    wxString currentPriceStr = currentPrice_->GetValue().Trim();
+    double pPrice;
+    if (!purchasePrice_->checkValue(pPrice, currency))
+        return;
+
     double cPrice;
-    if (!Model_Currency::fromString(currentPriceStr, cPrice, currency) || cPrice < 0)
+    if (!currentPrice_->GetDouble(cPrice, currency))
     {
         // we assume current price = purchase price
         cPrice = pPrice;
     }
 
-    wxString commissionStr = commission_->GetValue().Trim();
-    double commission;
-    if (!Model_Currency::fromString(commissionStr, commission, currency) || commission < 0)
-    {
-        mmShowErrorMessage(this, _("Invalid commission entered "), _("Error"));
-        return;
-    }
+    double commission = 0;
+    commission_->GetDouble(commission);
 
-    double cValue = cPrice * numShares;
+    double cValue = cPrice * numShares; //TODO: what about commision?
 
     if (!m_stock) m_stock = Model_Stock::instance().create();
 
@@ -340,7 +343,7 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
     if (!edit_)
     {
         transID_ = m_stock->STOCKID;
-        wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, transID_);
     }
     else
