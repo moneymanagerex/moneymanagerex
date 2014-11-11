@@ -342,7 +342,6 @@
     <ClCompile Include="..\..\src\relocatecategorydialog.cpp" />
     <ClCompile Include="..\..\src\relocatepayeedialog.cpp" />
     <ClCompile Include="..\..\src\reports\reportbase.cpp" />
-    <ClCompile Include="..\..\3rd\route\route.cc" />
     <ClCompile Include="..\..\src\splitdetailsdialog.cpp" />
     <ClCompile Include="..\..\src\splittransactionsdialog.cpp" />
     <ClCompile Include="..\..\src\stockdialog.cpp" />
