@@ -81,7 +81,7 @@ void mmAttachmentDialog::do_create(wxWindow* parent)
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
 
 	wxString WindowTitle;
-	if (m_RefId != 0)
+	if (m_RefId > 0)
 		WindowTitle = wxString::Format(_("Organize Attachments | %s %i"), m_RefType, m_RefId);
 	else
 		WindowTitle = wxString::Format(_("Organize Attachments | New %s"), m_RefType);

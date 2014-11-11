@@ -34,6 +34,7 @@ wxBEGIN_EVENT_TABLE( mmAssetDialog, wxDialog )
 	EVT_BUTTON(wxID_FILE, mmAssetDialog::OnAttachments)
     EVT_CHOICE(IDC_COMBO_TYPE, mmAssetDialog::OnChangeAppreciationType)
     EVT_CHILD_FOCUS(mmAssetDialog::changeFocus)
+    EVT_CLOSE(mmAssetDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
 mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset)
@@ -46,7 +47,6 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset)
     , m_assetType()
     , m_valueChange()
     , m_valueChangeRateLabel()
-	, skip_attachments_init_(false)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("New/Edit Asset"), wxDefaultPosition, wxSize(400, 300), style);
@@ -275,24 +275,31 @@ void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
     if (assetRichText)
         return;
     else
+    {
+        const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+        if (!this->m_asset)
+            mmAttachmentManage::DeleteAllAttachments(RefType, 0);
         EndModal(wxID_CANCEL);
+    }
+}
+
+void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
+{
+    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+    if (!this->m_asset)
+        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+    EndModal(wxID_CANCEL);
 }
 
 void mmAssetDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+	const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
 	int RefId;
 	
 	if (!this->m_asset)
 		RefId = 0;
 	else
 		RefId= m_asset->ASSETID;
-
-	if (RefId == 0 && !skip_attachments_init_)
-	{
-		mmAttachmentManage::DeleteAllAttachments(RefType, 0);
-		skip_attachments_init_ = true;
-	}
 
 	mmAttachmentDialog dlg(this, RefType, RefId);
 	dlg.ShowModal();
