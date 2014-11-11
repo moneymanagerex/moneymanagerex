@@ -39,6 +39,7 @@
 IMPLEMENT_DYNAMIC_CLASS(mmStockDialog, wxDialog)
 
 wxBEGIN_EVENT_TABLE(mmStockDialog, wxDialog)
+    EVT_CLOSE(mmStockDialog::OnQuit)
     EVT_BUTTON(wxID_SAVE, mmStockDialog::OnSave)
     EVT_BUTTON(wxID_CANCEL, mmStockDialog::OnCancel)
     EVT_BUTTON(wxID_INDEX, mmStockDialog::OnStockPriceButton)
@@ -61,7 +62,6 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     : m_stock(stock)
     , edit_(stock ? true: false)
     , accountID_(accountID)
-    , skip_attachments_init_(false)
     , stockName_(nullptr)
     , stockSymbol_(nullptr)
     , dpc_(nullptr)
@@ -144,7 +144,6 @@ void mmStockDialog::updateControls()
     buttonDel->Enable(edit_);
     wxBitmapButton* buttonAdd = (wxBitmapButton*) FindWindow(wxID_ADD);
     buttonAdd->Enable(edit_);
-    bAttachments_->Enable(edit_);
 
     stockSymbol_->SetValue(stockSymbol_->GetValue().Upper());
 }
@@ -330,9 +329,19 @@ void mmStockDialog::CreateControls()
     buttonsOK_CANCEL_sizer->Add(itemButton30, g_flags);
 }
 
+void mmStockDialog::OnQuit(wxCloseEvent& /*event*/)
+{
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+    if (stockID_ <= 0)
+        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+    EndModal(wxID_CANCEL);
+}
 
 void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
 {
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+    if (stockID_ <= 0)
+        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
 }
 
@@ -343,12 +352,6 @@ void mmStockDialog::OnAttachments(wxCommandEvent& /*event*/)
 
     if (RefId < 0)
         RefId = 0;
-
-    if (RefId == 0 && !skip_attachments_init_)
-    {
-        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
-        skip_attachments_init_ = true;
-    }
 
     mmAttachmentDialog dlg(this, RefType, RefId);
     dlg.ShowModal();

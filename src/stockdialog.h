@@ -44,6 +44,7 @@ public:
 
     void CreateControls();
 
+    void OnQuit(wxCloseEvent& event);
     void OnSave(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
 	void OnAttachments(wxCommandEvent& event);
@@ -80,7 +81,6 @@ private:
 
     bool edit_;
     int accountID_;
-	bool skip_attachments_init_;
 
     enum
     {
