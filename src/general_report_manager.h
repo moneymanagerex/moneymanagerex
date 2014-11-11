@@ -146,38 +146,76 @@ static const wxString SAMPLE_ASSETS_LUA =
 static const wxString SAMPLE_ASSETS_SQL =
 "SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES, VALUECHANGE, VALUECHANGERATE FROM ASSETS_V1;";
 
-static const wxString SAMPLE_ASSETS_HTT =
-"<!DOCTYPE html>"
-"<h3>Assets</h3>\n"
-"<TMPL_VAR TODAY><hr>\n"
-"<table cellspacing=\"1\" width=\"95%\">\n"
-"    <tr bgcolor='#d5d6de'>\n"
-"        <td>STARTDATE</td>\n"
-"        <td>ASSETNAME</td>\n"
-"        <td>ASSETTYPE</td>\n"
-"        <td>VALUE</td>\n"
-"        <td>NOTES</td>\n"
-"    </tr>\n"
-"    <TMPL_LOOP NAME=CONTENTS>\n"
-"    <TMPL_IF __ODD__>\n"
-"        <tr>\n"
-"    <TMPL_ELSE>\n"
-"        <tr bgcolor='#E1EDFB'>\n"
-"    </TMPL_IF>\n"
-"        <td><TMPL_VAR STARTDATE></td>\n"
-"        <td><TMPL_VAR ASSETNAME></td>\n"
-"        <td><TMPL_VAR ASSETTYPE></td>\n"
-"        <td nowrap align='right'><TMPL_VAR VALUE></td>\n"
-"        <td><TMPL_VAR NOTES></td>\n"
-"    </tr>\n"
-"    </TMPL_LOOP>\n"
-"    <tr>\n"
-"        <td colspan=3>Total Assets: </td>\n"
-"        <td nowrap align='right'><TMPL_VAR ASSET_BALANCE></td>\n"
-"        <td></td>"
-"    </tr>\n"
-"</table>\n"
-"<TMPL_LOOP ERRORS>\n"
-"    <hr>"
-"    <TMPL_VAR ERROR>\n"
-"</TMPL_LOOP>";
+static const wxString SAMPLE_ASSETS_HTT = R"(<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http - equiv = "Content-Type" content = "text/html" />
+    <title><TMPL_VAR REPORTNAME></title>
+    <script src = "sorttable.js"></script>
+    <link href="master.css" rel="stylesheet">
+</head>
+<body>
+<div class = "container">
+<h3><TMPL_VAR REPORTNAME></h3>
+<TMPL_VAR TODAY><hr>
+<div class = "row">
+<div class = "col-xs-2"></div>
+<div class = "col-xs-8">
+<table class="table sortable">
+<thead>
+    <tr>
+        <th>STARTDATE</th>
+        <th>ASSETNAME</th>
+        <th>ASSETTYPE</th>
+        <th>VALUE</th>
+        <th>NOTES</th>
+    </tr>
+</thead>
+<tbody>
+    <TMPL_LOOP NAME=CONTENTS>
+        <tr>
+        <td><TMPL_VAR STARTDATE></td>
+        <td><TMPL_VAR ASSETNAME></td>
+        <td><TMPL_VAR ASSETTYPE></td>
+        <td class="money" sorttable_customkey="<TMPL_VAR VALUE>"><TMPL_VAR VALUE></td>
+        <td><TMPL_VAR NOTES></td>
+    </tr>
+    </TMPL_LOOP>
+</tbody>
+<tfoot>
+    <tr class="total">
+        <td colspan=3>Total Assets: </td>
+        <td class="money"><TMPL_VAR ASSET_BALANCE></td>
+        <td></td>
+    </tr>
+</tfoot>
+</table>
+</div></div></div>
+<TMPL_LOOP ERRORS>
+    <hr>    <TMPL_VAR ERROR>
+</TMPL_LOOP>
+
+</body>
+<script>
+    <!-- Format double to base currency -->
+    function currency(n) {
+        n = parseFloat(n);
+        n =  isNaN(n) ? 0 : n.toFixed(2);
+        var out = n.toString().replace(".", "|");
+        out = out.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "<TMPL_VAR GROUP_SEPARATOR>");
+        out = out.replace("|", "<TMPL_VAR DECIMAL_POINT>");
+        return out;
+    }
+    var elements= document.getElementsByClassName("money");
+    for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        element.style.textAlign='right';
+        if (element.innerHTML.indexOf("-") > -1) {
+            element.style.color="#ff0000";
+        } 
+        element.innerHTML = '<TMPL_VAR PFX_SYMBOL>' + currency(element.innerHTML) +'<TMPL_VAR SFX_SYMBOL>';
+    }
+</script>
+</html>
+)";
