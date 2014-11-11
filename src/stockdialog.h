@@ -55,7 +55,7 @@ public:
     void OnListItemSelected(wxListEvent& event);
     void onFocusChange(wxChildFocusEvent& event);
     
-    void fillControls();
+    void updateControls();
     void dataToControls();
     void showStockHistory();
     Model_Stock::Data* m_stock;

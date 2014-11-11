@@ -91,8 +91,8 @@ bool mmStockDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
     SetIcon(mmex::getProgramIcon());
 
-    fillControls();
     if (edit_) dataToControls();
+    updateControls();
 
     Centre();
     return TRUE;
@@ -121,10 +121,9 @@ void mmStockDialog::dataToControls()
     commission_->SetValue(m_stock->COMMISSION, account, currency_precision);
     
     showStockHistory();
-    fillControls();
 }
 
-void mmStockDialog::fillControls()
+void mmStockDialog::updateControls()
 {
     this->SetTitle(edit_ ? _("Edit Stock Investment") : _("New Stock Investment"));
     Model_Account::Data* account = Model_Account::instance().get(accountID_);
@@ -173,17 +172,14 @@ void mmStockDialog::CreateControls()
     stockName_ = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCKNAME, "");
     itemFlexGridSizer6->Add(stockName_, g_flagsExpand);
     stockName_->SetToolTip(_("Enter the stock company name"));
-    if (!edit_)
-        stockName_->SetFocus();
 
     //Date
-    itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Date")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Date")), g_flags);
 
     dpc_ = new wxDatePickerCtrl(itemPanel5, ID_DPC_STOCK_PDATE
         , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     itemFlexGridSizer6->Add(dpc_, g_flags);
     dpc_->SetToolTip(_("Specify the purchase date of the stock investment"));
-    //
 
     //Symbol
     wxStaticText* symbol = new wxStaticText(itemPanel5, wxID_STATIC, _("Symbol"));
@@ -399,8 +395,8 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
         
     Model_Currency::Data *currency = Model_Account::currency(account);
     const wxString& pdate = dpc_->GetValue().FormatISODate();
-    const wxString& stockName   = stockName_->GetValue();
-    const wxString& notes       = notes_->GetValue();
+    const wxString& stockName = stockName_->GetValue();
+    const wxString& notes = notes_->GetValue();
 
     double numShares = 0;
     if (!numShares_->checkValue(numShares, currency))
@@ -454,7 +450,7 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
     }
 
     edit_ = true;
-    fillControls();
+    updateControls();
 }
 
 void mmStockDialog::OnTextEntered(wxCommandEvent& event)
@@ -503,8 +499,8 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
         return;
 
     bool canceledbyuser = false;
-    const wxString fileName = wxFileSelector(_("Choose CSV data file to import"), 
-                wxEmptyString, wxEmptyString, wxEmptyString, "*.csv", wxFD_FILE_MUST_EXIST);
+    const wxString fileName = wxFileSelector(_("Choose CSV data file to import")
+        , wxEmptyString, wxEmptyString, wxEmptyString, "*.csv", wxFD_FILE_MUST_EXIST);
     Model_Account::Data *account = Model_Account::instance().get(m_stock->HELDAT);
     Model_Currency::Data *currency = Model_Account::currency(account);
 
@@ -516,9 +512,9 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
         wxTextFile tFile(fileName);
         if (!tFile.Open())
             return;
-        wxProgressDialog* progressDlg = new wxProgressDialog(_("Stock History CSV Import"),
-            _("Quotes imported from CSV: "), tFile.GetLineCount(),
-            NULL, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
+        wxProgressDialog* progressDlg = new wxProgressDialog(_("Stock History CSV Import")
+            , _("Quotes imported from CSV: "), tFile.GetLineCount()
+            , NULL, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
         long countNumTotal = 0;
         long countImported = 0;
         double price;
@@ -853,6 +849,6 @@ void mmStockDialog::showStockHistory()
 
 void mmStockDialog::onFocusChange(wxChildFocusEvent& event)
 {
-    fillControls();
+    updateControls();
     event.Skip();
 }
