@@ -31,6 +31,3 @@
 [submodule "3rd/ChartNew.js"]
 	path = 3rd/ChartNew.js
 	url = https://github.com/FVANCOP/ChartNew.js
-[submodule "3rd/route"]
-	path = 3rd/route
-	url = https://github.com/moneymanagerex/route.git
