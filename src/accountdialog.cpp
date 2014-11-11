@@ -36,7 +36,7 @@
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmNewAcctDialog, wxDialog);
 
-wxBEGIN_EVENT_TABLE( mmNewAcctDialog, wxDialog )
+wxBEGIN_EVENT_TABLE(mmNewAcctDialog, wxDialog)
     EVT_BUTTON(wxID_OK, mmNewAcctDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmNewAcctDialog::OnCancel)
     EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY, mmNewAcctDialog::OnCurrency)
