@@ -623,7 +623,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
         return;
 
     const wxDateTime& StartDate = Model_Stock::PURCHASEDATE(m_stock);
-    wxDateTime EndDate = priceDate_->GetValue();
+    wxDateTime EndDate = wxDate::Today();
     const wxTimeSpan time = EndDate - StartDate;
     long intervalMonths = EndDate.GetMonth() - StartDate.GetMonth()
         + 12 * (EndDate.GetYear() - StartDate.GetYear())
