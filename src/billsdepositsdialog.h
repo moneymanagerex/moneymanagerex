@@ -55,6 +55,7 @@ private:
     void CreateControls();
 
     // utility functions
+    void OnQuit(wxCloseEvent& event);
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnCategs(wxCommandEvent& event);
@@ -111,7 +112,6 @@ private:
 
     bool m_advanced;
     bool categUpdated_;
-	bool skip_attachments_init_;
     int prevType_;
     std::vector<wxString> frequentNotes_;
 

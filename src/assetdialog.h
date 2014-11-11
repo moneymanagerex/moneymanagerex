@@ -48,9 +48,9 @@ private:
     void onTextEntered(wxCommandEvent& event);
     void dataToControls();
     void changeFocus(wxChildFocusEvent& event);
+    void OnQuit(wxCloseEvent& event);
 
     bool assetRichText;
-	bool skip_attachments_init_;
 
     mmTextCtrl* m_assetName;
     wxDatePickerCtrl* m_dpc;
