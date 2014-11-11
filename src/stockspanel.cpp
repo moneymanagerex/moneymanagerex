@@ -45,14 +45,14 @@ enum {
 /*******************************************************/
 
 wxBEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
-    EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   StocksListCtrl::OnListItemActivated)
-    EVT_LIST_ITEM_SELECTED(wxID_ANY,    StocksListCtrl::OnListItemSelected)
-    EVT_LIST_COL_END_DRAG(wxID_ANY,     StocksListCtrl::OnItemResize)
-    EVT_LIST_COL_CLICK(wxID_ANY,        StocksListCtrl::OnColClick)
-    EVT_LIST_KEY_DOWN(wxID_ANY,         StocksListCtrl::OnListKeyDown)
-    EVT_MENU(MENU_TREEPOPUP_NEW,     StocksListCtrl::OnNewStocks)
-    EVT_MENU(MENU_TREEPOPUP_EDIT,    StocksListCtrl::OnEditStocks)
-    EVT_MENU(MENU_TREEPOPUP_DELETE,  StocksListCtrl::OnDeleteStocks)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, StocksListCtrl::OnListItemActivated)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY, StocksListCtrl::OnListItemSelected)
+    EVT_LIST_COL_END_DRAG(wxID_ANY, StocksListCtrl::OnItemResize)
+    EVT_LIST_COL_CLICK(wxID_ANY, StocksListCtrl::OnColClick)
+    EVT_LIST_KEY_DOWN(wxID_ANY, StocksListCtrl::OnListKeyDown)
+    EVT_MENU(MENU_TREEPOPUP_NEW, StocksListCtrl::OnNewStocks)
+    EVT_MENU(MENU_TREEPOPUP_EDIT, StocksListCtrl::OnEditStocks)
+    EVT_MENU(MENU_TREEPOPUP_DELETE, StocksListCtrl::OnDeleteStocks)
     EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, StocksListCtrl::OnOrganizeAttachments)
     EVT_RIGHT_DOWN(StocksListCtrl::OnMouseRightClick)
     EVT_LEFT_DOWN(StocksListCtrl::OnListLeftClick)
@@ -223,10 +223,11 @@ void StocksListCtrl::OnListKeyDown(wxListEvent& event)
 
 void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
 {
-    mmStockDialog dlg(this, 0, stock_panel_->accountID_);
-    if (dlg.ShowModal() == wxID_OK)
+    mmStockDialog dlg(this, nullptr, stock_panel_->accountID_);
+    dlg.ShowModal();
+    if (Model_Stock::instance().get(dlg.stockID_))
     {
-        doRefreshItems(dlg.transID_);
+        doRefreshItems(dlg.stockID_);
     }
 }
 
@@ -881,8 +882,6 @@ void mmStocksPanel::call_dialog(int selectedIndex)
 {
     Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
     mmStockDialog dlg(this, stock, accountID_);
-    if (dlg.ShowModal() == wxID_OK)
-    {
-        listCtrlAccount_->doRefreshItems(dlg.transID_);
-    }
+    dlg.ShowModal();
+    listCtrlAccount_->doRefreshItems(dlg.stockID_);
 }
