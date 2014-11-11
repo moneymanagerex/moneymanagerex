@@ -263,7 +263,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
 
 	if (OldAssetId < 0)
 	{
-		wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+		const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
 		mmAttachmentManage::RelocateAllAttachments(RefType, 0, NewAssetId);
 	}
 
@@ -276,7 +276,7 @@ void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
         return;
     else
     {
-        const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
         if (!this->m_asset)
             mmAttachmentManage::DeleteAllAttachments(RefType, 0);
         EndModal(wxID_CANCEL);
@@ -285,7 +285,7 @@ void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
 {
-    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
     if (!this->m_asset)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
@@ -293,7 +293,7 @@ void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmAssetDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-	const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+	const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
 	int RefId;
 	
 	if (!this->m_asset)

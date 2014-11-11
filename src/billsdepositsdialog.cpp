@@ -587,7 +587,7 @@ void mmBDDialog::CreateControls()
 
 void mmBDDialog::OnQuit(wxCloseEvent& /*event*/)
 {
-    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
     if (!m_bill_data.BDID)
         mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
     EndModal(wxID_CANCEL);
@@ -595,7 +595,7 @@ void mmBDDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmBDDialog::OnCancel(wxCommandEvent& /*event*/)
 {
-    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
     if (!m_bill_data.BDID)
         mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
     EndModal(wxID_CANCEL);
@@ -751,7 +751,7 @@ void mmBDDialog::OnTypeChanged(wxCommandEvent& /*event*/)
 
 void mmBDDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-	const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+	const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
 	mmAttachmentDialog dlg(this, RefType, m_bill_data.BDID);
 	dlg.ShowModal();
 }
