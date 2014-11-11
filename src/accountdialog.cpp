@@ -195,7 +195,7 @@ void mmNewAcctDialog::CreateControls()
         ID_DIALOG_NEWACCT_BUTTON_CURRENCY, currName );
     grid_sizer->Add(itemButton71, g_flagsExpand);
 
-    wxCheckBox* itemCheckBox10 = new wxCheckBox( this
+    wxCheckBox* itemCheckBox10 = new wxCheckBox(this
         , ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT
         , _("Favorite Account"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     itemCheckBox10->SetValue(TRUE);
