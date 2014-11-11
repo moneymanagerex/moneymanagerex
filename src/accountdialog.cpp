@@ -264,7 +264,7 @@ void mmNewAcctDialog::CreateControls()
     wxBoxSizer* itemBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel27->SetSizer(itemBoxSizer28);
 
-    m_bitmapButtons = new wxBitmapButton( itemPanel27
+    m_bitmapButtons = new wxBitmapButton(itemPanel27
         , wxID_STATIC, wxNullBitmap, wxDefaultPosition
         , wxSize(m_textAccountName->GetSize().GetHeight(), m_textAccountName->GetSize().GetHeight()));
     m_bitmapButtons->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
