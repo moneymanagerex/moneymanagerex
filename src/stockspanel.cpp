@@ -226,7 +226,7 @@ void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
     mmStockDialog dlg(this, 0, stock_panel_->accountID_);
     if (dlg.ShowModal() == wxID_OK)
     {
-        doRefreshItems(dlg.transID_);
+        doRefreshItems(dlg.stockID_);
     }
 }
 
@@ -883,6 +883,6 @@ void mmStocksPanel::call_dialog(int selectedIndex)
     mmStockDialog dlg(this, stock, accountID_);
     if (dlg.ShowModal() == wxID_OK)
     {
-        listCtrlAccount_->doRefreshItems(dlg.transID_);
+        listCtrlAccount_->doRefreshItems(dlg.stockID_);
     }
 }

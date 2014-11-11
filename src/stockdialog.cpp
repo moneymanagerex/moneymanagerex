@@ -39,7 +39,7 @@
 IMPLEMENT_DYNAMIC_CLASS(mmStockDialog, wxDialog)
 
 wxBEGIN_EVENT_TABLE(mmStockDialog, wxDialog)
-    EVT_BUTTON(wxID_OK, mmStockDialog::OnOk)
+    EVT_BUTTON(wxID_SAVE, mmStockDialog::OnSave)
     EVT_BUTTON(wxID_CANCEL, mmStockDialog::OnCancel)
     EVT_BUTTON(wxID_INDEX, mmStockDialog::OnStockPriceButton)
     EVT_BUTTON(wxID_FILE, mmStockDialog::OnAttachments)
@@ -62,11 +62,21 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     , edit_(stock ? true: false)
     , accountID_(accountID)
     , skip_attachments_init_(false)
+    , stockName_(nullptr)
+    , stockSymbol_(nullptr)
+    , dpc_(nullptr)
+    , numShares_(nullptr)
+    , purchasePrice_(nullptr)
+    , notes_(nullptr)
+    , currentPrice_(nullptr)
+    , priceDate_(nullptr)
+    , valueInvestment_(nullptr)
+    , commission_(nullptr)
+    , bAttachments_(nullptr)
+    , priceListBox_(nullptr)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(400, 300), style);
-    if (edit_)
-        this->SetTitle(edit_ ? _("Edit Stock Investment") : _("New Stock Investment"));
 }
 
 bool mmStockDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
@@ -111,10 +121,12 @@ void mmStockDialog::dataToControls()
     commission_->SetValue(m_stock->COMMISSION, account, currency_precision);
     
     showStockHistory();
+    fillControls();
 }
 
 void mmStockDialog::fillControls()
 {
+    this->SetTitle(edit_ ? _("Edit Stock Investment") : _("New Stock Investment"));
     Model_Account::Data* account = Model_Account::instance().get(accountID_);
     Model_Currency::Data *currency = Model_Account::currency(account);
 
@@ -122,6 +134,20 @@ void mmStockDialog::fillControls()
     numShares_->GetDouble(numShares, currency);
     currentPrice_->GetDouble(pPrice, currency);
     valueInvestment_->SetLabelText(Model_Account::toCurrency(numShares*pPrice, account));
+
+    //Disable history buttons on new stocks
+
+    wxBitmapButton* buttonDownload = (wxBitmapButton*) FindWindow(ID_BUTTON_DOWNLOAD);
+    buttonDownload->Enable(edit_);
+    wxBitmapButton* buttonImport = (wxBitmapButton*) FindWindow(ID_BUTTON_IMPORT);
+    buttonImport->Enable(edit_);
+    wxBitmapButton* buttonDel = (wxBitmapButton*) FindWindow(wxID_DELETE);
+    buttonDel->Enable(edit_);
+    wxBitmapButton* buttonAdd = (wxBitmapButton*) FindWindow(wxID_ADD);
+    buttonAdd->Enable(edit_);
+    bAttachments_->Enable(edit_);
+
+    stockSymbol_->SetValue(stockSymbol_->GetValue().Upper());
 }
 
 void mmStockDialog::CreateControls()
@@ -288,28 +314,19 @@ void mmStockDialog::CreateControls()
     buttonImport->SetToolTip(_("Import Stock Price history (CSV Format)"));
     wxButton* buttonDel = new wxButton(buttons_panel, wxID_DELETE, _("&Delete "));
     buttonDel->SetToolTip(_("Delete selected Stock Price"));
-    wxButton* buttonUpd = new wxButton(buttons_panel, wxID_ADD, _("&Add "));
-    buttonUpd->SetToolTip(_("Add Stock Price to history"));
+    wxButton* buttonAdd = new wxButton(buttons_panel, wxID_ADD, _("&Add "));
+    buttonAdd->SetToolTip(_("Add Stock Price to history"));
     buttons_sizer->Add(buttonDownload, g_flags);
     buttons_sizer->Add(buttonImport, g_flags);
     buttons_sizer->Add(buttonDel, g_flags);
-    buttons_sizer->Add(buttonUpd, g_flags);
-
-    //Disable history buttons on new stocks
-    if (!edit_)
-    {
-        buttonDownload->Enable(false);
-        buttonImport->Enable(false);
-        buttonDel->Enable(false);
-        buttonUpd->Enable(false);
-    }
+    buttons_sizer->Add(buttonAdd, g_flags);
 
     //OK & Cancel buttons
     wxStdDialogButtonSizer*  buttonsOK_CANCEL_sizer = new wxStdDialogButtonSizer;
     leftBoxSizer->Add(buttonsOK_CANCEL_sizer, wxSizerFlags(g_flags).Centre());
 
-    wxButton* itemButtonOK = new wxButton(this, wxID_OK);
-    wxButton* itemButton30 = new wxButton(this, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButtonOK = new wxButton(this, wxID_SAVE, _("&Save "));
+    wxButton* itemButton30 = new wxButton(this, wxID_CANCEL, _("&Close "));
 
     if (edit_)
         itemButton30->SetFocus();
@@ -353,7 +370,7 @@ void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
     }
 }
 
-void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
+void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
 {
     if (priceListBox_->GetItemCount())
     {
@@ -373,11 +390,16 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
         mmShowErrorMessageInvalid(this, _("Held At"));
         return;
     }
+    
+    const wxString& stockSymbol = stockSymbol_->GetValue();
+    if (stockSymbol.empty()) {
+        mmShowErrorMessageInvalid(this, _("Symbol"));
+        return;
+    }
+        
     Model_Currency::Data *currency = Model_Account::currency(account);
     const wxString& pdate = dpc_->GetValue().FormatISODate();
-
     const wxString& stockName   = stockName_->GetValue();
-    const wxString& stockSymbol = stockSymbol_->GetValue();
     const wxString& notes       = notes_->GetValue();
 
     double numShares = 0;
@@ -414,16 +436,7 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
     m_stock->COMMISSION = commission;
     if (edit_) m_stock->STOCKID = stockID_;
 
-    Model_Stock::instance().save(m_stock);
-
-    if (!edit_)
-    {
-        transID_ = m_stock->STOCKID;
-        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
-        mmAttachmentManage::RelocateAllAttachments(RefType, 0, transID_);
-    }
-    else
-        transID_ = stockID_;
+    stockID_ = Model_Stock::instance().save(m_stock);
 
     // update stock history table and stock items price/values with same symbol code
     if (!m_stock->SYMBOL.IsEmpty())
@@ -440,7 +453,8 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
         }
     }
 
-    EndModal(wxID_OK);
+    edit_ = true;
+    fillControls();
 }
 
 void mmStockDialog::OnTextEntered(wxCommandEvent& event)

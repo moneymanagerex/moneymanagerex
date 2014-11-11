@@ -44,7 +44,7 @@ public:
 
     void CreateControls();
 
-    void OnOk(wxCommandEvent& event);
+    void OnSave(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
 	void OnAttachments(wxCommandEvent& event);
     void OnStockPriceButton(wxCommandEvent& event);
@@ -58,13 +58,11 @@ public:
     void fillControls();
     void dataToControls();
     void showStockHistory();
-    int transID_;
     Model_Stock::Data* m_stock;
+    int stockID_;
 
 private:
     void OnTextEntered(wxCommandEvent& event);
-
-    int stockID_;
 
     mmTextCtrl* stockName_;
     mmTextCtrl* stockSymbol_;
