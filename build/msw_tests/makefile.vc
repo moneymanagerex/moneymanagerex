@@ -1027,9 +1027,6 @@ mmex_tests_mongoose.obj: ..\..\3rd\mongoose\mongoose.c
 mmex_tests_csv_parser.obj: ..\..\3rd\csv-parser\csv_parser.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\3rd\csv-parser\csv_parser.cpp
 
-mmex_tests_route.obj: ..\..\3rd\route\route.cc
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\3rd\route\route.cc
-
 mmex_tests_cpu_timer.obj: ..\..\tests\cpu_timer.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\tests\cpu_timer.cpp
 

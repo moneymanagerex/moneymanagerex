@@ -824,9 +824,6 @@ mmex_tests_mongoose.o: $(srcdir)/../3rd/mongoose/mongoose.c
 mmex_tests_csv_parser.o: $(srcdir)/../3rd/csv-parser/csv_parser.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../3rd/csv-parser/csv_parser.cpp
 
-mmex_tests_route.o: $(srcdir)/../3rd/route/route.cc
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../3rd/route/route.cc
-
 mmex_tests_cpu_timer.o: $(srcdir)/../tests/cpu_timer.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../tests/cpu_timer.cpp
 
