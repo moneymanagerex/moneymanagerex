@@ -641,9 +641,6 @@
     <ClInclude Include="..\..\src\import_export\univcsvdialog.h">
       <Filter>Header Files\import_export</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\3rd\route\route.h">
-      <Filter>Header Files\3d</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\resources\mmex.rc">
