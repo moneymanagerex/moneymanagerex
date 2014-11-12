@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2012, 2013 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -35,7 +36,7 @@
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmNewAcctDialog, wxDialog);
 
-wxBEGIN_EVENT_TABLE( mmNewAcctDialog, wxDialog )
+wxBEGIN_EVENT_TABLE(mmNewAcctDialog, wxDialog)
     EVT_BUTTON(wxID_OK, mmNewAcctDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmNewAcctDialog::OnCancel)
     EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY, mmNewAcctDialog::OnCurrency)
@@ -77,7 +78,7 @@ bool mmNewAcctDialog::Create(wxWindow* parent
     , const wxSize& size
     , long style)
 {
-    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
+    SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
@@ -165,7 +166,7 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer->Add(itemChoice61, g_flagsExpand);
     itemChoice61->SetSelection(0);
 
-    grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Account Status:")), g_flags);
+    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Account Status:")), g_flags);
 
     wxChoice* itemChoice6 = new wxChoice( this, ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
     for(const auto& status: Model_Account::all_status())
@@ -183,7 +184,7 @@ void mmNewAcctDialog::CreateControls()
     m_itemInitValue->Connect(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE, wxEVT_COMMAND_TEXT_ENTER,
         wxCommandEventHandler(mmNewAcctDialog::OnTextEntered), nullptr, this);
 
-    grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Currency:")), g_flags);
+    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Currency:")), g_flags);
 
     wxString currName = _("Select Currency");
     Model_Currency::Data* base_currency = Model_Currency::GetBaseCurrency();
@@ -194,7 +195,7 @@ void mmNewAcctDialog::CreateControls()
         ID_DIALOG_NEWACCT_BUTTON_CURRENCY, currName );
     grid_sizer->Add(itemButton71, g_flagsExpand);
 
-    wxCheckBox* itemCheckBox10 = new wxCheckBox( this
+    wxCheckBox* itemCheckBox10 = new wxCheckBox(this
         , ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT
         , _("Favorite Account"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     itemCheckBox10->SetValue(TRUE);
@@ -257,13 +258,13 @@ void mmNewAcctDialog::CreateControls()
     itemBoxSizer3->Add(acc_notebook);
 
     //Buttons
-    wxPanel* itemPanel27 = new wxPanel( this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+    wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer3->Add(itemPanel27, g_flags);
 
     wxBoxSizer* itemBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel27->SetSizer(itemBoxSizer28);
 
-    m_bitmapButtons = new wxBitmapButton( itemPanel27
+    m_bitmapButtons = new wxBitmapButton(itemPanel27
         , wxID_STATIC, wxNullBitmap, wxDefaultPosition
         , wxSize(m_textAccountName->GetSize().GetHeight(), m_textAccountName->GetSize().GetHeight()));
     m_bitmapButtons->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
@@ -384,7 +385,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
 {
     wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY);
-    ev.SetEventObject( this );
+    ev.SetEventObject(this);
 
     //Skip all images before custom images
     int k = 18;
