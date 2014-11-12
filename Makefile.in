@@ -194,7 +194,6 @@ MMEX_OBJECTS =  \
 	mmex_html_template.o \
 	mmex_mongoose.o \
 	mmex_csv_parser.o \
-	mmex_route.o \
 	$(__mmex___win32rc)
 
 ### Conditionally set variables: ###
