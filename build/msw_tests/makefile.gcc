@@ -133,7 +133,7 @@ MMEX_TESTS_CFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
 	-I..\..\lib\lua\src -I..\..\lib -I..\..\3rd -I..\..\3rd\LuaGlue\include \
-	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include -I..\..\3rd\route \
+	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include \
 	-I..\..\src -DNOPCH -I..\..\src -I..\..\lib\cppunit\include \
 	-DwxIMPLEMENT_WXWIN_MAIN= $(CPPFLAGS) $(CFLAGS)
 MMEX_TESTS_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
@@ -142,7 +142,7 @@ MMEX_TESTS_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
 	-I..\..\lib\lua\src -I..\..\lib -I..\..\3rd -I..\..\3rd\LuaGlue\include \
-	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include -I..\..\3rd\route \
+	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include \
 	-I..\..\src -DNOPCH -I..\..\src -I..\..\lib\cppunit\include \
 	-DwxIMPLEMENT_WXWIN_MAIN= $(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
@@ -235,7 +235,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_html_template.o \
 	mmex_tests_mongoose.o \
 	mmex_tests_csv_parser.o \
-	mmex_tests_route.o \
 	mmex_tests_cpu_timer.o \
 	mmex_tests_db_init_model.o \
 	mmex_tests_framebase_tests.o \
@@ -940,9 +939,6 @@ mmex_tests_mongoose.o: ../../3rd/mongoose/mongoose.c
 mmex_tests_csv_parser.o: ../../3rd/csv-parser/csv_parser.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_tests_route.o: ../../3rd/route/route.cc
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_tests_cpu_timer.o: ../../tests/cpu_timer.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
@@ -992,7 +988,7 @@ mmex_tests_test_stocks.o: ../../tests/test_stocks.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests_rc.o: ../../tests/mmex_tests.rc
-	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_27_p_1) $(__WXUNICODE_DEFINE_p_3) $(__WXDEBUG_DEFINE_p_3) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../lib/wxsqlite3/include --include-dir ../../lib/lua/src --include-dir ../../lib --include-dir ../../3rd --include-dir ../../3rd/LuaGlue/include --include-dir ../../3rd/cgitemplate --include-dir ../../3rd/csv-parser/include --include-dir ../../3rd/route --include-dir ../../src --define NOPCH --include-dir ../../src --include-dir ../../lib/cppunit/include --define wxIMPLEMENT_WXWIN_MAIN=
+	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_27_p_1) $(__WXUNICODE_DEFINE_p_3) $(__WXDEBUG_DEFINE_p_3) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../lib/wxsqlite3/include --include-dir ../../lib/lua/src --include-dir ../../lib --include-dir ../../3rd --include-dir ../../3rd/LuaGlue/include --include-dir ../../3rd/cgitemplate --include-dir ../../3rd/csv-parser/include --include-dir ../../src --define NOPCH --include-dir ../../src --include-dir ../../lib/cppunit/include --define wxIMPLEMENT_WXWIN_MAIN=
 
 .PHONY: all install uninstall clean check
 
