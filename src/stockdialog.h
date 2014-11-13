@@ -44,7 +44,8 @@ public:
 
     void CreateControls();
 
-    void OnOk(wxCommandEvent& event);
+    void OnQuit(wxCloseEvent& event);
+    void OnSave(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
 	void OnAttachments(wxCommandEvent& event);
     void OnStockPriceButton(wxCommandEvent& event);
@@ -53,17 +54,16 @@ public:
     void OnHistoryAddButton(wxCommandEvent& event);
     void OnHistoryDeleteButton(wxCommandEvent& event);
     void OnListItemSelected(wxListEvent& event);
+    void onFocusChange(wxChildFocusEvent& event);
     
-    void fillControls();
+    void updateControls();
     void dataToControls();
     void showStockHistory();
-    int transID_;
     Model_Stock::Data* m_stock;
+    int stockID_;
 
 private:
     void OnTextEntered(wxCommandEvent& event);
-
-    int stockID_;
 
     mmTextCtrl* stockName_;
     mmTextCtrl* stockSymbol_;
@@ -81,7 +81,6 @@ private:
 
     bool edit_;
     int accountID_;
-	bool skip_attachments_init_;
 
     enum
     {
@@ -96,7 +95,6 @@ private:
         ID_DIALOG_STOCKS,
         ID_DPC_CP_PDATE,
         ID_BUTTON_IMPORT,
-        ID_BUTTON_ADD,
         ID_BUTTON_DOWNLOAD
     };
 };

@@ -620,8 +620,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
             /* date, payeename, amount(+/-), Number, status, category : subcategory, notes */
             
-            int countNumTotal = 0;
-            int countImported = 0;
+            long countNumTotal = 0;
+            long countImported = 0;
 
             wxProgressDialog progressDlg(_("Universal CSV Import")
                 , _("Transactions imported from CSV: "), 100
@@ -662,9 +662,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 int numTokens = (int)tkz.CountTokens();
                 if (numTokens < (int)csvFieldOrder_.size())
                 {
-                    log << wxString::Format(_("Line: %i"), countNumTotal)
+                    log << wxString::Format(_("Line: %ld"), countNumTotal)
                         << _(" file contains insufficient number of tokens") << endl;
-                    *log_field_ << wxString::Format(_("Line: %i"), countNumTotal)
+                    *log_field_ << wxString::Format(_("Line: %ld"), countNumTotal)
                         << _(" file contains insufficient number of tokens") << "\n";
                     continue;
                 }
@@ -685,9 +685,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 }
 
                 if (!validateData()) {
-                    log << wxString::Format(_("Line: %i"), countNumTotal)
+                    log << wxString::Format(_("Line: %ld"), countNumTotal)
                         << _(" One of the following fields: Date, Amount, Type is missing, skipping") << endl;
-                    *log_field_ << wxString::Format(_("Line: %i"), countNumTotal)
+                    *log_field_ << wxString::Format(_("Line: %ld"), countNumTotal)
                         << _(" One of the following fields: Date, Amount, Type is missing, skipping") << "\n";
 
                     continue;
@@ -713,14 +713,14 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 Model_Checking::instance().save(pTransaction);
 
                 countImported++;
-                log << wxString::Format(_("Line : %i imported OK."), countNumTotal) << endl;
-                *log_field_ << wxString::Format(_("Line : %i imported OK."), countNumTotal) << "\n";
+                log << wxString::Format(_("Line : %ld imported OK."), countNumTotal) << endl;
+                *log_field_ << wxString::Format(_("Line : %ld imported OK."), countNumTotal) << "\n";
             }
 
             progressDlg.Update(100);
             progressDlg.Destroy();
 
-            wxString msg = wxString::Format(_("Total Lines : %i"), countNumTotal);
+            wxString msg = wxString::Format(_("Total Lines : %ld"), countNumTotal);
             msg << "\n";
             msg << wxString::Format(_("Total Imported : %ld"), countImported);
             msg << "\n\n";

@@ -70,7 +70,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_status_init_(false)
     , skip_date_init_(false)
     , skip_notes_init_(false)
-	, skip_attachments_init_(false)
     , skip_category_init_(false)
     , category_changed_(false)
     , skip_amount_init_(false)
@@ -857,12 +856,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
 
 void mmTransDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-	if (m_new_trx && !skip_attachments_init_)
-	{
-		mmAttachmentManage::DeleteAllAttachments(RefType, m_trx_data.TRANSID);
-		skip_attachments_init_ = true;
-	}
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 	mmAttachmentDialog dlg(this, RefType, m_trx_data.TRANSID);
 	dlg.ShowModal();
 }
@@ -934,7 +928,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 
 	if (!old_transaction_id)
 	{
-		wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+		const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 		mmAttachmentManage::RelocateAllAttachments(RefType, old_transaction_id, m_trx_data.TRANSID);
 	}
 
@@ -953,6 +947,9 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
     if (object_in_focus_ == textNotes_->GetId()) return;
 #endif
 
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    if (m_new_trx)
+        mmAttachmentManage::DeleteAllAttachments(RefType, m_trx_data.TRANSID);
     EndModal(wxID_CANCEL);
 }
 
@@ -1008,5 +1005,8 @@ void mmTransDialog::setTooltips()
 
 void mmTransDialog::OnQuit(wxCloseEvent& /*event*/)
 {
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    if (m_new_trx)
+        mmAttachmentManage::DeleteAllAttachments(RefType, m_trx_data.TRANSID);
     EndModal(wxID_CANCEL);
 }
