@@ -30,8 +30,7 @@
     #include <wx/msw/registry.h>
 #endif
 
-static const char *HTT_CONTEINER = R"(
-<!DOCTYPE html>
+static const char *HTT_CONTEINER = R"(<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -71,11 +70,24 @@ static const char *HTT_CONTEINER = R"(
 </div>
 </body>
 <script>
-<!--Format numbers-->
-    function currency(n) { n = parseFloat(n); return isNaN(n) ? 0 : n.toFixed(2); }
-    var elements = document.getElementsByClassName("money, text-right");
-    for (var i = 0; i < elements.length; i++)
-        { elements[i].innerHTML = "<TMPL_VAR PFX_SYMBOL>" + currency(elements[i].innerHTML) + "<TMPL_VAR SFX_SYMBOL>"; }
+    <!-- Format double to base currency -->
+    function currency(n) {
+        n = parseFloat(n);
+        n =  isNaN(n) ? 0 : n.toFixed(2);
+        var out = n.toString().replace(".", "|");
+        out = out.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "<TMPL_VAR GROUP_SEPARATOR>");
+        out = out.replace("|", "<TMPL_VAR DECIMAL_POINT>");
+        return out;
+    }
+    var elements= document.getElementsByClassName("money");
+    for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        element.style.textAlign='right';
+        if (element.innerHTML.indexOf("-") > -1) {
+            element.style.color="#ff0000";
+        } 
+        element.innerHTML = '<TMPL_VAR PFX_SYMBOL>' + currency(element.innerHTML) +'<TMPL_VAR SFX_SYMBOL>';
+    }
 </script>
 </html>
 )";
@@ -445,7 +457,7 @@ wxString Model_Report::getTemplate(const wxString& sql)
     {
         header += wxString::Format("        <th>%s</th>\n", col.first);
         if (col.second == WXSQLITE_FLOAT)
-            body += wxString::Format("        <td class = \"money, text-right\"><TMPL_VAR \"%s\"></td>\n", col.first);
+            body += wxString::Format("        <td class = \"money\"><TMPL_VAR \"%s\"></td>\n", col.first);
         else if (col.second == WXSQLITE_INTEGER)
             body += wxString::Format("        <td class = \"text-right\"><TMPL_VAR \"%s\"></td>\n", col.first);
         else
