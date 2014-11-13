@@ -2107,24 +2107,15 @@ void mmGUIFrame::OnAccountList(wxCommandEvent& /*event*/)
 void mmGUIFrame::refreshPanelData(bool catUpdate)
 {
     if (activeHomePage_)
-    {
         createHomePage();
-    }
     else if (activeCheckingAccountPage_)
-    {
         checkingAccountPage_->RefreshList();
-    }
+    else if (activeBudgetingPage_)
+        budgetingPage_->RefreshList();
     else
     {
         mmBillsDepositsPanel* billsdeposits_panel = dynamic_cast<mmBillsDepositsPanel*>(panelCurrent_);
-        if (billsdeposits_panel)
-        {
-            billsdeposits_panel->RefreshList();
-        }
-        else if (catUpdate && activeBudgetingPage_)
-        {
-            budgetingPage_->RefreshList();
-        }
+        if (billsdeposits_panel) billsdeposits_panel->RefreshList();
     }
 }
 
