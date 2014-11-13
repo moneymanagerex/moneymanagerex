@@ -45,15 +45,15 @@ wxBEGIN_EVENT_TABLE(mmCategDialog, wxDialog)
 wxEND_EVENT_TABLE()
 
 mmCategDialog::mmCategDialog( )
-: m_treeCtrl()
-, m_textCtrl()
-, m_buttonAdd()
-, m_buttonEdit()
-, m_buttonSelect()
-, m_buttonDelete()
-, m_buttonRelocate()
-, m_cbExpand()
-, m_cbShowAll()
+: m_treeCtrl(nullptr)
+, m_textCtrl(nullptr)
+, m_buttonAdd(nullptr)
+, m_buttonEdit(nullptr)
+, m_buttonSelect(nullptr)
+, m_buttonDelete(nullptr)
+, m_buttonRelocate(nullptr)
+, m_cbExpand(nullptr)
+, m_cbShowAll(nullptr)
 {
     // Initialize fields in constructor
     categID_ = -1;
@@ -245,7 +245,7 @@ void mmCategDialog::CreateControls()
 
 void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
 {
-    wxString text = wxGetTextFromUser(_("Enter the name for the new category:")
+    const wxString& text = wxGetTextFromUser(_("Enter the name for the new category:")
         , _("Add Category"), m_textCtrl->GetValue());
     if (text.IsEmpty())
         return;
@@ -295,6 +295,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         wxTreeItemId tid = m_treeCtrl->AppendItem(selectedItemId_, text);
         m_treeCtrl->SetItemData(tid, new mmTreeItemCateg(*iData->getCategData(), *subcategory));
         m_treeCtrl->Expand(selectedItemId_);
+        refreshRequested_ = true;
         return;
     }
 
@@ -334,21 +335,20 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
             return;
         }
         else
-        {
             Model_Category::instance().remove(categID);
-        }
-    } else {
+    } 
+    else 
+    {
         if (Model_Category::is_used(categID, subcategID))
         {
             showCategDialogDeleteError(_("Sub-Category in use."), false);
             return;
         }
         else
-        {
             Model_Subcategory::instance().remove(subcategID);
-        }
     }
 
+    refreshRequested_ = true;
     m_treeCtrl->Delete(selectedItemId_);
 
     //Clear categories associated with payees
@@ -460,9 +460,9 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     if (selectedItemId_ == root_ || !selectedItemId_ )
         return;
 
-    wxString old_name = m_treeCtrl->GetItemText(selectedItemId_);
-    wxString msg = wxString::Format(_("Enter a new name for %s"), old_name);
-    wxString text = wxGetTextFromUser(msg
+    const wxString& old_name = m_treeCtrl->GetItemText(selectedItemId_);
+    const wxString& msg = wxString::Format(_("Enter a new name for %s"), old_name);
+    const wxString text = wxGetTextFromUser(msg
         , _("Edit Category"), m_textCtrl->GetValue());
     if (text.IsEmpty())
         return;
