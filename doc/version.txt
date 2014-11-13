@@ -1,5 +1,17 @@
 Version History of Money Manager Ex
 
+1.1.2 (November 16, 2014)
+- Repeating transaction dialog restyling
+- Added transaction filter to repeating transactions panel
+- Added more keywords into GRM
+- Fix CashFlow crash
+- Fix for repeating transactions with split categories
+- Fix PayPal QIF import (bug #543)
+- Fix stock update date format (bug #545)
+- Fix budget for substituted category (bug #546)
+- Fix category removal error on budget panel (bug #551)
+- Translations update
+
 1.1.1 (November 1, 2014)
 - Full UTF-8 and wide characters support in GRM and LUA
 - Full integration with WebApp @ http:\\webapp.moneymanagerex.org

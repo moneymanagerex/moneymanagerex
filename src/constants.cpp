@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
  For Internet Format for update checking read in util.cpp
  *************************************************************************/
-const wxString MMEX_VERSION = "1.1.1";
+const wxString MMEX_VERSION = "1.1.2";
 
 //#define MMEX_BUILD_TYPE_RELEASE_CANDIDATE
 const int MMEX_VERSION_DEVELOPMENT_COUNT = 3;
