@@ -284,7 +284,7 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
          ColumnNr = ColumnHeaderNr;
     if (0 > ColumnNr || ColumnNr >= m_panel->col_max() || ColumnNr == 0) return;
 
-    if (m_selected_col == ColumnNr) m_asc = !m_asc;
+	if (m_selected_col == ColumnNr && event.GetId() != MENU_HEADER_SORT) m_asc = !m_asc;
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
@@ -352,6 +352,7 @@ void mmAssetsListCtrl::OnHeaderReset(wxCommandEvent& event)
     wxListEvent e;
     e.SetId(MENU_HEADER_SORT);
     ColumnHeaderNr = m_panel->col_sort();
+	m_asc = true;
     mmAssetsListCtrl::OnColClick(e);
 }
 
