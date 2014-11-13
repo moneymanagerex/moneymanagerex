@@ -321,12 +321,12 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
     listCtrlAccount_->SetColumn(listCtrlAccount_->m_selected_col, item);
 
     bills_.clear();
-
+    const auto split = Model_Budgetsplittransaction::instance().get_all();
     for (const Model_Billsdeposits::Data& data
         : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
-        //TODO: if (transFilterActive_ && !transFilterDlg_->checkAll(data))
-            //    continue;
+        if (transFilterActive_ && !transFilterDlg_->checkAll(data, split))
+            continue;
 
         Model_Billsdeposits::Full_Data r(data);
 
