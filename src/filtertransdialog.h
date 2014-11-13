@@ -43,8 +43,8 @@ public:
 
     virtual int ShowModal();
 
-    bool checkAll(const Model_Checking::Data &tran, const int accountID, const std::map<int, Model_Splittransaction::Data_Set>& splits);
-    bool checkAll(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& splits);
+    bool checkAll(const Model_Checking::Data &tran, const int accountID, const std::map<int, Model_Splittransaction::Data_Set>& split);
+    bool checkAll(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& split);
     void getDescription(mmHTMLBuilder &hb);
     bool somethingSelected();
     void setAccountToolTip(const wxString& tip) const;
