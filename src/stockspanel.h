@@ -53,6 +53,7 @@ public:
     void OnOpenAttachment(wxCommandEvent& event);
     long get_selectedIndex() { return m_selected_row; }
     int getColumnsNumber() { return ColName_.size(); }
+    int col_sort() { return COL_DATE; }
     wxString getStockInfo(int selectedIndex) const;
     /* Helper Functions/data */
     Model_Stock::Data_Set m_stocks;
@@ -60,7 +61,6 @@ public:
     int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);
 
 private:
-    void save_column_width(int width);
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;
     virtual int OnGetItemImage(long item) const;
@@ -75,16 +75,30 @@ private:
     void OnListItemSelected(wxListEvent& event);
     void OnItemResize(wxListEvent& event);
 
+    /* Headers Right Click*/
+    int ColumnHeaderNr;
+    void OnColRightClick(wxListEvent& event);
+    void OnHeaderHide(wxCommandEvent& event);
+    void OnHeaderSort(wxCommandEvent& event);
+    void OnHeaderReset(wxCommandEvent& event);
+
+
     mmStocksPanel* stock_panel_;
     enum EColumn
     {
-        COL_DATE = 0,
+        COL_ICON = 0,
+        COL_ID,
+        COL_DATE,
         COL_NAME,
+        COL_SYMBOL,
         COL_NUMBER,
+        COL_PRICE,
         COL_VALUE,
         COL_GAIN_LOSS,
         COL_CURRENT,
+        COL_CURRVALUE,
         COL_PRICEDATE,
+        COL_COMMISSION,
         COL_NOTES,
         COL_MAX, // number of columns
     };

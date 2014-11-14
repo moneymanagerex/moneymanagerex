@@ -1278,6 +1278,7 @@ void TransactionListCtrl::OnHeaderReset(wxCommandEvent& event)
     wxListEvent e;
     e.SetId(MENU_HEADER_SORT);
     ColumnHeaderNr = COL_DEF_SORT;
+	m_asc = true;
     TransactionListCtrl::OnColClick(e);
 }
 
@@ -1297,7 +1298,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     /* Clear previous column image */
     setColumnImage(m_sortCol, -1);
 
-    if (g_sortcol == ColumnNr) m_asc = !m_asc; // toggle sort order
+	if (g_sortcol == ColumnNr && event.GetId() != MENU_HEADER_SORT) m_asc = !m_asc; // toggle sort order
     g_asc = m_asc;
 
     m_sortCol = toEColumn(ColumnNr);

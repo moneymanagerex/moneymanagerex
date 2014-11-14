@@ -43,8 +43,8 @@ public:
     void OnDeleteBDSeries(wxCommandEvent& event);
     void OnEnterBDTransaction(wxCommandEvent& event);
     void OnSkipBDTransaction(wxCommandEvent& event);
-	void OnOpenAttachment(wxCommandEvent& event);
-	void OnOrganizeAttachments(wxCommandEvent& event);
+    void OnOpenAttachment(wxCommandEvent& event);
+    void OnOrganizeAttachments(wxCommandEvent& event);
     void RefreshList();
 
 private:
@@ -61,6 +61,11 @@ private:
     void OnListItemSelected(wxListEvent& event);
     void OnItemResize(wxListEvent& event);
     void OnColClick(wxListEvent& event);
+    void OnColRightClick(wxListEvent& event);
+    void OnHeaderHide(wxCommandEvent& event);
+    void OnHeaderSort(wxCommandEvent& event);
+    void OnHeaderReset(wxCommandEvent& event);
+    int ColumnHeaderNr;
 
     void refreshVisualList(int selected_index = -1);
 
@@ -92,6 +97,7 @@ public:
     wxString getItem(long item, long column);
     void RefreshList();
     int getColumnsNumber() { return ColName_.size(); }
+    int col_sort() { return COL_DUE_DATE; }
 
     static wxString GetFrequency(const Model_Billsdeposits::Data* item);
     static wxString GetRemainingDays(const Model_Billsdeposits::Data* item);
@@ -113,7 +119,7 @@ private:
 
     void OnEnterBDTransaction(wxCommandEvent& event);
     void OnSkipBDTransaction(wxCommandEvent& event);
-	void OnOpenAttachment(wxCommandEvent& event);
+    void OnOpenAttachment(wxCommandEvent& event);
 
     void OnViewPopupSelected(wxCommandEvent& event);
 
@@ -128,13 +134,20 @@ private:
 
     enum EColumn
     {
-        COL_DUE_DATE = 0,
+        COL_ICON = 0,
+        COL_ID,
+        COL_DUE_DATE,
         COL_ACCOUNT,
         COL_PAYEE,
+        COL_STATUS,
+        COL_CATEGORY,
         COL_TYPE,
         COL_AMOUNT,
         COL_FREQUENCY,
+        COL_REPEATS,
+        COL_AUTO,
         COL_DAYS,
+        COL_NUMBER,
         COL_NOTES,
         COL_MAX, // number of columns
     };
