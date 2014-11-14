@@ -52,6 +52,11 @@ public:
 
 private:
     void OnItemResize(wxListEvent& event);
+    void OnColRightClick(wxListEvent& event);
+    void OnHeaderHide(wxCommandEvent& event);
+    void OnHeaderSort(wxCommandEvent& event);
+    void OnHeaderReset(wxCommandEvent& event);
+    int ColumnHeaderNr;
     wxListItemAttr attr3_; // style3
     mmBudgetingPanel* cp_;
     long selectedIndex_;
@@ -73,7 +78,7 @@ public:
 
     /* updates the checking panel data */
     void initVirtualListControl();
-    void save_column_width(int width);
+    int col_max() { return COL_MAX; }
 
     /* Getter for Virtual List Control */
     wxString getItem(long item, long column);
@@ -134,5 +139,17 @@ private:
     /* Event handlers for Buttons */
     void OnViewPopupSelected(wxCommandEvent& event);
     void OnMouseLeftDown(wxMouseEvent& event);
+
+    enum EColumn
+    {
+        COL_ICON = 0,
+        COL_CATEGORY,
+        COL_SUBCATEGORY,
+        COL_FREQUENCY,
+        COL_AMOUNT,
+        COL_ESTIMATED,
+        COL_ACTUAL,
+        COL_MAX, // number of columns
+    };
 };
 

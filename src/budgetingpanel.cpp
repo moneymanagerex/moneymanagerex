@@ -53,6 +53,9 @@ enum
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_EST,
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_ACT,
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF,
+    MENU_HEADER_HIDE,
+    MENU_HEADER_SORT,
+    MENU_HEADER_RESET,
 };
 
 static const wxString VIEW_ALL = wxTRANSLATE("View All Budget Categories");
@@ -72,6 +75,9 @@ wxBEGIN_EVENT_TABLE(budgetingListCtrl, wxListCtrl)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, budgetingListCtrl::OnListItemSelected)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, budgetingListCtrl::OnListItemActivated)
     EVT_LIST_COL_END_DRAG(wxID_ANY, budgetingListCtrl::OnItemResize)
+    EVT_LIST_COL_RIGHT_CLICK(wxID_ANY, budgetingListCtrl::OnColRightClick)
+    EVT_MENU(MENU_HEADER_HIDE, budgetingListCtrl::OnHeaderHide)
+    EVT_MENU(MENU_HEADER_RESET, budgetingListCtrl::OnHeaderReset)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 mmBudgetingPanel::mmBudgetingPanel(int budgetYearID
@@ -117,12 +123,6 @@ mmBudgetingPanel::~mmBudgetingPanel()
 {
     if (m_imageList) delete m_imageList;
     m_frame->SetBudgetingPageInactive();
-}
-
-void mmBudgetingPanel::save_column_width(int width)
-{
-    int col_x = listCtrlBudget_->GetColumnWidth(width);
-    Model_Setting::instance().Set(wxString::Format("BUDGET_COL%d_WIDTH", width), col_x);
 }
 
 void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
@@ -292,17 +292,18 @@ void mmBudgetingPanel::CreateControls()
     listCtrlBudget_ = new budgetingListCtrl(this, this, wxID_ANY);
 
     listCtrlBudget_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
-    listCtrlBudget_->InsertColumn(0, _("Category"));
-    listCtrlBudget_->InsertColumn(1, _("Sub Category"));
-    listCtrlBudget_->InsertColumn(2, _("Frequency"));
-    listCtrlBudget_->InsertColumn(3, _("Amount"), wxLIST_FORMAT_RIGHT);
-    listCtrlBudget_->InsertColumn(4, _("Estimated"), wxLIST_FORMAT_RIGHT);
-    listCtrlBudget_->InsertColumn(5, _("Actual"), wxLIST_FORMAT_RIGHT);
+    listCtrlBudget_->InsertColumn(COL_ICON, (" "));
+    listCtrlBudget_->InsertColumn(COL_CATEGORY, _("Category"));
+    listCtrlBudget_->InsertColumn(COL_SUBCATEGORY, _("Sub Category"));
+    listCtrlBudget_->InsertColumn(COL_FREQUENCY, _("Frequency"));
+    listCtrlBudget_->InsertColumn(COL_AMOUNT, _("Amount"), wxLIST_FORMAT_RIGHT);
+    listCtrlBudget_->InsertColumn(COL_ESTIMATED, _("Estimated"), wxLIST_FORMAT_RIGHT);
+    listCtrlBudget_->InsertColumn(COL_ACTUAL, _("Actual"), wxLIST_FORMAT_RIGHT);
 
     /* Get data from inidb */
     for (int i = 0; i < listCtrlBudget_->GetColumnCount(); ++i)
     {
-        int col = Model_Setting::instance().GetIntSetting(wxString::Format("BUDGET_COL%d_WIDTH", i), 80);
+        int col = Model_Setting::instance().GetIntSetting(wxString::Format("BUDGET_COL%d_WIDTH", i), wxLIST_AUTOSIZE_USEHEADER);
         listCtrlBudget_->SetColumnWidth(i, col);
     }
     itemBoxSizer2->Add(listCtrlBudget_, 1, wxGROW | wxALL, 1);
@@ -310,6 +311,7 @@ void mmBudgetingPanel::CreateControls()
 
 void mmBudgetingPanel::sortTable()
 {
+    //TODO: Sort budget panel
 }
 
 bool mmBudgetingPanel::DisplayEntryAllowed(int categoryID, int subcategoryID)
@@ -511,7 +513,40 @@ void mmBudgetingPanel::DisplayBudgetingDetails(int budgetYearID)
 /*******************************************************/
 void budgetingListCtrl::OnItemResize(wxListEvent& event)
 {
-    cp_->save_column_width(event.GetColumn());
+    int i = event.GetColumn();
+    int width = event.GetItem().GetWidth();
+    Model_Setting::instance().Set(wxString::Format("BUDGET_COL%d_WIDTH", i), width);
+}
+
+void budgetingListCtrl::OnColRightClick(wxListEvent& event)
+{
+    ColumnHeaderNr = event.GetColumn();
+    if (0 >= ColumnHeaderNr || ColumnHeaderNr > cp_->col_max()) return;
+    wxMenu menu;
+    menu.Append(MENU_HEADER_HIDE, _("Hide column"));
+    //menu.Append(MENU_HEADER_SORT, _("Order by this column"));
+    menu.Append(MENU_HEADER_RESET, _("Reset columns size"));
+    PopupMenu(&menu);
+    this->SetFocus();
+}
+
+void budgetingListCtrl::OnHeaderHide(wxCommandEvent& event)
+{
+    budgetingListCtrl::SetColumnWidth(ColumnHeaderNr, 0);
+    const wxString parameter_name = wxString::Format("BUDGET_COL%i_WIDTH", ColumnHeaderNr);
+    Model_Setting::instance().Set(parameter_name, 0);
+}
+void budgetingListCtrl::OnHeaderReset(wxCommandEvent& event)
+{
+    wxString parameter_name;
+    for (int i = 0; i < cp_->col_max(); i++)
+    {
+        budgetingListCtrl::SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER);
+        if (i == (cp_->col_max()-1))
+            budgetingListCtrl::SetColumnWidth(i, 100);
+        parameter_name = wxString::Format("BUDGET_COL%i_WIDTH", i);
+        Model_Setting::instance().Set(parameter_name, budgetingListCtrl::GetColumnWidth(i));
+    }
 }
 
 void budgetingListCtrl::OnListItemSelected(wxListEvent& event)
@@ -521,68 +556,77 @@ void budgetingListCtrl::OnListItemSelected(wxListEvent& event)
 
 wxString mmBudgetingPanel::getItem(long item, long column)
 {
-    wxString text = "";
-    if (column == 0)
+    switch (column)
+    {
+    case COL_ICON:
+        return " ";
+    case COL_CATEGORY:
     {
         if (budget_[item].first < 0)
         {
             Model_Category::Data* category = Model_Category::instance().get(budget_[item].second);
-            if(category) text = category->CATEGNAME;
+            if (category) return category->CATEGNAME;
         }
         else
         {
             Model_Category::Data* category = Model_Category::instance().get(budget_[item].first);
-            if (category) text = category->CATEGNAME;
+            if (category) return category->CATEGNAME;
         }
+        return wxEmptyString;
     }
-    if (column == 1)
+    case COL_SUBCATEGORY:
     {
         if (budget_[item].first >= 0)
         {
             Model_Subcategory::Data* subcategory = Model_Subcategory::instance().get(budget_[item].second);
-            if (subcategory) text = subcategory->SUBCATEGNAME;
+            if (subcategory) return subcategory->SUBCATEGNAME;
         }
+        return wxEmptyString;
     }
-    if (column == 2)
+    case COL_FREQUENCY:
     {
         if (budget_[item].first >= 0)
-            text = Model_Budget::all_period()[budgetPeriod_[budget_[item].first][budget_[item].second]];
+            return Model_Budget::all_period()[budgetPeriod_[budget_[item].first][budget_[item].second]];
+        return wxEmptyString;
     }
-    if (column == 3)
+    case COL_AMOUNT:
     {
         if (budget_[item].first >= 0)
         {
             double amt = budgetAmt_[budget_[item].first][budget_[item].second];
-            text = Model_Currency::toCurrency(amt);
+            return Model_Currency::toCurrency(amt);
         }
+        return wxEmptyString;
     }
-    if (column == 4)
+    case COL_ESTIMATED:
     {
         if (budget_[item].first < 0)
         {
             double estimated = budgetTotals_[budget_[item].second].first;
-            text = Model_Currency::toCurrency(estimated);
+            return Model_Currency::toCurrency(estimated);
         }
         else
         {
             double estimated = getEstimate(budget_[item].first, budget_[item].second);
-            text = Model_Currency::toCurrency(estimated);
+            return Model_Currency::toCurrency(estimated);
         }
     }
-    if (column == 5)
+    case COL_ACTUAL:
     {
         if (budget_[item].first < 0)
         {
             double actual = budgetTotals_[budget_[item].second].second;
-            text = Model_Currency::toCurrency(actual);
+            return Model_Currency::toCurrency(actual);
         }
         else
         {
             double actual = categoryStats_[budget_[item].first][budget_[item].second][0];
-            text = Model_Currency::toCurrency(actual);
+            return Model_Currency::toCurrency(actual);
         }
     }
-    return text;
+    default:
+        return wxEmptyString;
+    }
 }
 
 int budgetingListCtrl::OnGetItemImage(long item) const
