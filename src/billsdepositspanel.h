@@ -22,6 +22,7 @@
 #include "filtertransdialog.h"
 #include "mmpanelbase.h"
 #include "util.h"
+#include "constants.h"
 #include "model/Model_Billsdeposits.h"
 #include <vector>
 
@@ -72,13 +73,12 @@ class mmBillsDepositsPanel : public mmPanelBase
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmBillsDepositsPanel(
-        wxWindow *parent,
-        wxWindowID winid = wxID_ANY,
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxDefaultSize,
-        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = wxPanelNameStr
+    mmBillsDepositsPanel(wxWindow *parent
+        , wxWindowID winid = mmID_BILLS
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxTAB_TRAVERSAL | wxNO_BORDER
+        , const wxString& name = wxPanelNameStr
     );
     ~mmBillsDepositsPanel();
 

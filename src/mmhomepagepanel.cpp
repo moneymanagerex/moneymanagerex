@@ -460,17 +460,15 @@ mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
     , const wxString& name)
     : m_frame(frame)
     , countFollowUp_(0)
-    , date_range_(0)
-    , browser_(0)
+    , date_range_(nullptr)
+    , browser_(nullptr)
 {
     Create(parent, winid, pos, size, style, name);
-    m_frame->setHomePageActive(false);
     m_frame->menuPrintingEnable(true);
 }
 
 mmHomePagePanel::~mmHomePagePanel()
 {
-    m_frame->setHomePageActive(false);
     m_frame->menuPrintingEnable(false);
     if (date_range_)
         delete date_range_;

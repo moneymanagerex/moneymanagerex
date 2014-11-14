@@ -793,7 +793,7 @@ void mmOptionsDialog::CreateControls()
 
     cbSendData_ = new wxCheckBox(networkPanel, wxID_ANY
         , _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cbSendData_->SetValue(GetIniDatabaseCheckboxValue("SENDUSAGESTATS", true));
+	cbSendData_->SetValue(GetIniDatabaseCheckboxValue(INIDB_SEND_USAGE_STATS, true));
     cbSendData_->SetToolTip(_("Enable to help us sending anonymous data about MMEX usage."));
 
     usageStaticBoxSizer->Add(cbSendData_, g_flags);
@@ -1197,7 +1197,7 @@ void mmOptionsDialog::SaveNetworkPanelSettings()
     Model_Setting::instance().Set("ENABLEWEBSERVER", cbWebServerCheckBox_->GetValue());
     Model_Setting::instance().Set("WEBSERVERPORT", scWebServerPort_->GetValue());
 
-    Model_Setting::instance().Set("SENDUSAGESTATS", cbSendData_->GetValue());
+	Model_Setting::instance().Set(INIDB_SEND_USAGE_STATS, cbSendData_->GetValue());
     
     Model_Setting::instance().Set("NETWORKTIMEOUT", scNetworkTimeout_->GetValue());
 

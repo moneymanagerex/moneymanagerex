@@ -15,8 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
-#ifndef MM_EX_CONSTANTS_H_
-#define MM_EX_CONSTANTS_H_
+#pragma once
 
 #include "defs.h"
 //----------------------------------------------------------------------------
@@ -94,6 +93,7 @@ extern const wxString VIEW_ACCOUNTS_FAVORITES_STR;
 extern const wxString LANGUAGE_PARAMETER;
 extern const wxString INIDB_USE_TRANSACTION_SOUND;
 extern const wxString INIDB_USE_ORG_DATE_COPYPASTE;
+extern const wxString INIDB_SEND_USAGE_STATS;
 
 extern const wxString INIDB_BUDGET_FINANCIAL_YEARS;
 extern const wxString INIDB_BUDGET_INCLUDE_TRANSFERS;
@@ -106,5 +106,27 @@ extern const wxString ATTACHMENTS_FOLDER_DATABASE;
 extern const wxString ATTACHMENTS_FOLDER_USERPROFILE;
 extern const wxString ATTACHMENTS_FOLDER_APPDATA;
 
-#endif // MM_EX_CONSTANTS_H_
-//----------------------------------------------------------------------------
+enum id
+{
+	mmID_HOMEPAGE = wxID_HIGHEST + 1,
+	mmID_BILLS,
+	mmID_STOCKS,
+	mmID_ASSETS,
+	mmID_BUDGET,
+    mmID_REPORTS,
+	mmID_CHECKING,
+
+	MENU_BILLSDEPOSITS,
+	MENU_STOCKS,
+	MENU_GOTOACCOUNT,
+	MENU_ASSETS,
+	MENU_VIEW_BUDGET_FINANCIAL_YEARS,
+	MENU_VIEW_BUDGET_SETUP_SUMMARY,
+	MENU_VIEW_BUDGET_CATEGORY_SUMMARY,
+	MENU_VIEW_BUDGET_TRANSFER_TOTAL,
+	MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS,
+	MENU_VIEW_TOGGLE_FULLSCREEN,
+	ID_MMEX_MAX,
+
+};
+

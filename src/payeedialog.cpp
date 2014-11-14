@@ -1,5 +1,6 @@
 /*******************************************************
- Copyright (C) 2006 Madhan Kanagavel
+Copyright (C) 2006 Madhan Kanagavel
+Copyright (C) 2012 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -35,7 +36,7 @@
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmPayeeDialog, wxDialog);
 
-wxBEGIN_EVENT_TABLE( mmPayeeDialog, wxDialog )
+wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
     EVT_BUTTON(wxID_CANCEL, mmPayeeDialog::OnCancel)
     EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
     EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
@@ -218,6 +219,7 @@ void mmPayeeDialog::AddPayee()
         m_payee_id = Model_Payee::instance().save(payee);
 		mmWebApp::MMEX_WebApp_UpdatePayee();
         m_payee_id = payee->PAYEEID;
+		refreshRequested_ = true;
     }
     else
     {
@@ -245,6 +247,7 @@ void mmPayeeDialog::EditPayee()
             m_payee_id = Model_Payee::instance().save(payee);
 			mmWebApp::MMEX_WebApp_UpdatePayee();
             m_payee_id = payee->PAYEEID;
+			refreshRequested_ = true;
         }
         else
         {
@@ -273,7 +276,8 @@ void mmPayeeDialog::DeletePayee()
 		else
 			mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), m_payee_id);
         m_payee_id = -1;
-        fillControls();
+		refreshRequested_ = true;
+		fillControls();
     }
 }
 
@@ -302,6 +306,7 @@ void mmPayeeDialog::OnOrganizeAttachments()
 
 	mmAttachmentDialog dlg(this, RefType, m_payee_id);
 	dlg.ShowModal();
+	refreshRequested_ = true;
 }
 
 void mmPayeeDialog::OnPayeeRelocate()

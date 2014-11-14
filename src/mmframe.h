@@ -28,21 +28,7 @@ Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 #include <wx/toolbar.h>
 #include <vector>
 #include "mmOption.h"
-enum
-{
-    MENU_BILLSDEPOSITS = wxID_HIGHEST +1,
-    MENU_STOCKS,
-    MENU_GOTOACCOUNT,
-    MENU_ASSETS,
-
-    MENU_VIEW_BUDGET_FINANCIAL_YEARS,
-    MENU_VIEW_BUDGET_SETUP_SUMMARY,
-    MENU_VIEW_BUDGET_CATEGORY_SUMMARY,
-    MENU_VIEW_BUDGET_TRANSFER_TOTAL,
-    MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS,
-    MENU_VIEW_TOGGLE_FULLSCREEN, 
-    ID_MMEX_MAX,
-};
+#include "constants.h"
 
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
@@ -68,7 +54,7 @@ public:
     mmGUIApp *m_app;
 public:
     void setGotoAccountID(int account_id, long transID = -1);
-    void setHomePageActive(bool active = true);
+    //void setHomePageActive(bool active = true);
     bool financialYearIsDifferent()
     {
         return (mmOptions::instance().financialYearStartDayString_   != "1" ||
@@ -82,7 +68,6 @@ public:
 
     void setAccountNavTreeSection(const wxString& accountName);
     bool setNavTreeSection(const wxString &sectionName);
-    void SetCheckingAccountPageInactive();
     void SetBudgetingPageInactive();
     void menuPrintingEnable(bool enable);
     void OnToggleFullScreen(wxCommandEvent& WXUNUSED(event));
@@ -102,8 +87,8 @@ private:
     int gotoAccountID_;
     int gotoTransID_;
 
-    /* Update home page details only if it is being displayed */
-    bool activeHomePage_;
+    /* There are 2 kinds of reports */
+    bool activeTransactionReport_;
 
     /* Repeat Transactions automatic processing delay */
     wxTimer autoRepeatTransactionsTimer_;
@@ -138,18 +123,17 @@ private:
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
     void createMenu();
     void CreateToolBar();
+    /* Update home page details only if it is being displayed */
     void createHomePage();
     void createReportsPage(mmPrintableBase* rb, bool cleanup);
     void createHelpPage();
-    void refreshPanelData(bool catUpdate = true);
+    void refreshPanelData();
 
     mmCheckingPanel* checkingAccountPage_;
-    bool activeCheckingAccountPage_;
     void createCheckingAccountPage(int accountID);
     void createStocksAccountPage(int accountID);
 
     mmBudgetingPanel* budgetingPage_;
-    bool activeBudgetingPage_;
     void createBudgetingPage(int budgetYearID);
 
     void createControls();

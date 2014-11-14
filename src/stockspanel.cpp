@@ -20,7 +20,6 @@
 #include "stockspanel.h"
 #include "stockdialog.h"
 #include "attachmentdialog.h"
-#include "constants.h"
 #include "util.h"
 #include "mmsinglechoicedialog.h"
 #include "model/Model_Setting.h"
@@ -377,12 +376,12 @@ BEGIN_EVENT_TABLE(mmStocksPanel, wxPanel)
     EVT_BUTTON(wxID_REFRESH,     mmStocksPanel::OnRefreshQuotes)
 END_EVENT_TABLE()
 /*******************************************************/
-mmStocksPanel::mmStocksPanel(int accountID,
-                             wxWindow *parent,
-                             wxWindowID winid, const wxPoint& pos, const wxSize& size, long style,
-                             const wxString& name)
-: accountID_(accountID)
-, m_currency()
+mmStocksPanel::mmStocksPanel(int accountID
+    , wxWindow *parent
+    , wxWindowID winid, const wxPoint& pos, const wxSize& size, long style
+    , const wxString& name)
+    : accountID_(accountID)
+    , m_currency()
 {
     Create(parent, winid, pos, size, style, name);
 }
