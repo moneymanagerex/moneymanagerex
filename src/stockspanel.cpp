@@ -40,6 +40,9 @@ enum {
     MENU_TREEPOPUP_DELETE,
     MENU_TREEPOPUP_NEW,
     MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
+    MENU_HEADER_HIDE,
+    MENU_HEADER_SORT,
+    MENU_HEADER_RESET,
 };
 
 /*******************************************************/
@@ -49,6 +52,10 @@ wxBEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, StocksListCtrl::OnListItemSelected)
     EVT_LIST_COL_END_DRAG(wxID_ANY, StocksListCtrl::OnItemResize)
     EVT_LIST_COL_CLICK(wxID_ANY, StocksListCtrl::OnColClick)
+    EVT_LIST_COL_RIGHT_CLICK(wxID_ANY, StocksListCtrl::OnColRightClick)
+    EVT_MENU(MENU_HEADER_HIDE, StocksListCtrl::OnHeaderHide)
+    EVT_MENU(MENU_HEADER_SORT, StocksListCtrl::OnHeaderSort)
+    EVT_MENU(MENU_HEADER_RESET, StocksListCtrl::OnHeaderReset)
     EVT_LIST_KEY_DOWN(wxID_ANY, StocksListCtrl::OnListKeyDown)
     EVT_MENU(MENU_TREEPOPUP_NEW, StocksListCtrl::OnNewStocks)
     EVT_MENU(MENU_TREEPOPUP_EDIT, StocksListCtrl::OnEditStocks)
@@ -68,13 +75,19 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     , stock_panel_(cp)
     , m_imageList(0)
 {
+    ColName_[COL_ICON]      =  (" ");
+    ColName_[COL_ID]        = _("ID");
     ColName_[COL_DATE]      = _("Purchase Date");
     ColName_[COL_NAME]      = _("Share Name");
+    ColName_[COL_SYMBOL]    = _("Share Symbol");
     ColName_[COL_NUMBER]    = _("Number of Shares");
-    ColName_[COL_VALUE]     = _("Value");
+    ColName_[COL_PRICE]     = _("Unit Price");
+    ColName_[COL_VALUE]     = _("Total Value");
     ColName_[COL_GAIN_LOSS] = _("Gain/Loss");
-    ColName_[COL_CURRENT]   = _("Current");
+    ColName_[COL_CURRENT]   = _("Curr. unit price");
+    ColName_[COL_CURRVALUE] = _("Curr. total value");
     ColName_[COL_PRICEDATE] = _("Price Date");
+    ColName_[COL_COMMISSION]= _("Commission");
     ColName_[COL_NOTES]     = _("Notes");
 
     wxSize imageSize(16, 16);
@@ -90,14 +103,15 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     for (const auto&column : ColName_)
     {
         itemCol.SetText(column.second);
-        InsertColumn(column.first, column.second, (column.first<2 || column.first>5 ? wxLIST_FORMAT_LEFT : wxLIST_FORMAT_RIGHT));
+        InsertColumn(column.first, column.second, (column.first == 1 || column.first<4 || column.first>10 || column.first == 12
+            ? wxLIST_FORMAT_LEFT : wxLIST_FORMAT_RIGHT));
 
-        int col_x = Model_Setting::instance().GetIntSetting(wxString::Format("STOCKS_COL%d_WIDTH", column.first), -2);
+        int col_x = Model_Setting::instance().GetIntSetting(wxString::Format("STOCKS_COL%d_WIDTH", column.first), wxLIST_AUTOSIZE_USEHEADER);
         SetColumnWidth(column.first, col_x);
     }
 
     // load the global variables
-    m_selected_col = Model_Setting::instance().GetIntSetting("STOCKS_SORT_COL", 0);
+    m_selected_col = Model_Setting::instance().GetIntSetting("STOCKS_SORT_COL", col_sort());
     m_asc = Model_Setting::instance().GetBoolSetting("STOCKS_ASC", true);
 
     initVirtualListControl(-1, m_selected_col, m_asc);
@@ -109,7 +123,8 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
 void StocksListCtrl::OnItemResize(wxListEvent& event)
 {
     int i = event.GetColumn();
-    save_column_width(i);
+    int width = event.GetItem().GetWidth();
+    Model_Setting::instance().Set(wxString::Format("STOCKS_COL%d_WIDTH", i), width);
 }
 
 void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
@@ -147,17 +162,22 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
 wxString StocksListCtrl::OnGetItemText(long item, long column) const
 {
+    if (column == COL_ID)           return wxString::Format("%i", m_stocks[item].STOCKID).Trim();
     if (column == COL_DATE)         return mmGetDateForDisplay(mmGetStorageStringAsDate(m_stocks[item].PURCHASEDATE));
     if (column == COL_NAME)         return m_stocks[item].STOCKNAME;
+    if (column == COL_SYMBOL)       return m_stocks[item].SYMBOL;
     if (column == COL_NUMBER)
     {
         int precision = m_stocks[item].NUMSHARES == floor(m_stocks[item].NUMSHARES) ? 0 : 4;
         return Model_Currency::toString(m_stocks[item].NUMSHARES, stock_panel_->m_currency, precision);
     }
-    if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item), stock_panel_->m_currency /*, 4*/);
+    if (column == COL_PRICE)        return Model_Currency::toString(m_stocks[item].PURCHASEPRICE, stock_panel_->m_currency);
     if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].VALUE, stock_panel_->m_currency);
-    if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE, stock_panel_->m_currency, 4);
+    if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item), stock_panel_->m_currency /*, 4*/);
+    if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE, stock_panel_->m_currency /*, 4*/);
+    if (column == COL_CURRVALUE)    return Model_Currency::toString(m_stocks[item].CURRENTPRICE*m_stocks[item].NUMSHARES, stock_panel_->m_currency /*, 4*/);
     if (column == COL_PRICEDATE)    return mmGetDateForDisplay(mmGetStorageStringAsDate(Model_Stock::instance().lastPriceDate(&m_stocks[item])));
+    if (column == COL_COMMISSION)   return Model_Currency::toString(m_stocks[item].COMMISSION, stock_panel_->m_currency);
     if (column == COL_NOTES)
     {
         wxString full_notes = m_stocks[item].NOTES;
@@ -166,7 +186,7 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
         return full_notes;
     }
 
-    return "";
+    return wxEmptyString;
 }
 
 double StocksListCtrl::getGainLoss(long item) const
@@ -324,16 +344,21 @@ void mmStocksPanel::OnListItemActivated(int selectedIndex)
 
 void StocksListCtrl::OnColClick(wxListEvent& event)
 {
-    if(0 > event.GetColumn() || event.GetColumn() >= getColumnsNumber()) return;
+    int ColumnNr;
+    if (event.GetId() != MENU_HEADER_SORT)
+        ColumnNr = event.GetColumn();
+    else
+        ColumnNr = ColumnHeaderNr;
+    if (0 >= ColumnNr || ColumnNr >= getColumnsNumber()) return;
 
-    if (m_selected_col == event.GetColumn()) m_asc = !m_asc;
+    if (m_selected_col == ColumnNr && event.GetId() != MENU_HEADER_SORT) m_asc = !m_asc;
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
     item.SetImage(-1);
     SetColumn(m_selected_col, item);
 
-    m_selected_col = event.GetColumn();
+    m_selected_col = ColumnNr;
 
     Model_Setting::instance().Set("STOCKS_ASC", m_asc);
     Model_Setting::instance().Set("STOCKS_SORT_COL", m_selected_col);
@@ -342,6 +367,48 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
     if (m_selected_row>=0) trx_id = m_stocks[m_selected_row].STOCKID;
     doRefreshItems(trx_id);
     stock_panel_->OnListItemSelected(-1);
+}
+
+void StocksListCtrl::OnColRightClick(wxListEvent& event)
+{
+    ColumnHeaderNr = event.GetColumn();
+    if (0 > ColumnHeaderNr || ColumnHeaderNr >= getColumnsNumber()) return;
+    wxMenu menu;
+    menu.Append(MENU_HEADER_HIDE, _("Hide column"));
+    menu.Append(MENU_HEADER_SORT, _("Order by this column"));
+    menu.Append(MENU_HEADER_RESET, _("Reset columns size"));
+    PopupMenu(&menu);
+    this->SetFocus();
+}
+
+void StocksListCtrl::OnHeaderHide(wxCommandEvent& event)
+{
+    StocksListCtrl::SetColumnWidth(ColumnHeaderNr, 0);
+    const wxString parameter_name = wxString::Format("STOCKS_COL%i_WIDTH", ColumnHeaderNr);
+    Model_Setting::instance().Set(parameter_name, 0);
+}
+
+void StocksListCtrl::OnHeaderSort(wxCommandEvent& event)
+{
+    wxListEvent e;
+    e.SetId(MENU_HEADER_SORT);
+    StocksListCtrl::OnColClick(e);
+}
+
+void StocksListCtrl::OnHeaderReset(wxCommandEvent& event)
+{
+    wxString parameter_name;
+    for (int i = 0; i < getColumnsNumber(); i++)
+         {
+        StocksListCtrl::SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER);
+        parameter_name = wxString::Format("STOCKS_COL%i_WIDTH", i);
+        Model_Setting::instance().Set(parameter_name, StocksListCtrl::GetColumnWidth(i));
+        }
+    wxListEvent e;
+    e.SetId(MENU_HEADER_SORT);
+    ColumnHeaderNr = col_sort();
+    m_asc = true;
+    StocksListCtrl::OnColClick(e);
 }
 
 void StocksListCtrl::doRefreshItems(int trx_id)
@@ -413,13 +480,6 @@ bool mmStocksPanel::Create(wxWindow *parent
 
 mmStocksPanel::~mmStocksPanel()
 {
-}
-
-void StocksListCtrl::save_column_width(int width)
-{
-    int i = width;
-    int col_x = GetColumnWidth(i);
-    Model_Setting::instance().Set(wxString::Format("STOCKS_COL%d_WIDTH", i),col_x);
 }
 
 void mmStocksPanel::CreateControls()
@@ -515,14 +575,23 @@ void StocksListCtrl::sortTable()
     std::sort(m_stocks.begin(), m_stocks.end());
     switch (m_selected_col)
     {
+    case StocksListCtrl::COL_ID:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKID());
+        break;
     case StocksListCtrl::COL_DATE:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEDATE());
         break;
     case StocksListCtrl::COL_NAME:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKNAME());
         break;
+    case StocksListCtrl::COL_SYMBOL:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySYMBOL());
+        break;
     case StocksListCtrl::COL_NUMBER:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNUMSHARES());
+        break;
+    case StocksListCtrl::COL_PRICE:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEPRICE());
         break;
     case StocksListCtrl::COL_VALUE:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByVALUE());
@@ -538,6 +607,21 @@ void StocksListCtrl::sortTable()
         break;
     case StocksListCtrl::COL_CURRENT:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCURRENTPRICE());
+        break;
+    case StocksListCtrl::COL_CURRVALUE:
+        std::stable_sort(m_stocks.begin(), m_stocks.end()
+            , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
+        {
+            double valueX = x.CURRENTPRICE * x.NUMSHARES;
+            double valueY = y.CURRENTPRICE * y.NUMSHARES;
+            return valueX < valueY;
+        });
+        break;
+    case StocksListCtrl::COL_PRICEDATE:
+        //TODO
+        break;
+    case StocksListCtrl::COL_COMMISSION:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCOMMISSION());
         break;
     case StocksListCtrl::COL_NOTES:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNOTES());
