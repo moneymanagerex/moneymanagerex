@@ -24,32 +24,32 @@
 class mmGUIFrame;
 class mmReportsPanel : public mmPanelBase
 {
-	wxDECLARE_EVENT_TABLE();
+    wxDECLARE_EVENT_TABLE();
 
 public:
-	mmReportsPanel(mmPrintableBase* rb,
-		bool cleanupReport,
-		wxWindow *parent,
-		mmGUIFrame *frame,
-		wxWindowID winid = wxID_ANY,
-		const wxPoint& pos = wxDefaultPosition,
-		const wxSize& size = wxDefaultSize,
-		long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-		const wxString& name = wxPanelNameStr);
-	~mmReportsPanel();
+    mmReportsPanel(mmPrintableBase* rb,
+        bool cleanupReport,
+        wxWindow *parent,
+        mmGUIFrame *frame,
+        wxWindowID winid = wxID_ANY,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = wxPanelNameStr);
+    ~mmReportsPanel();
 
-	bool Create(wxWindow *parent, wxWindowID winid,
-		const wxPoint& pos = wxDefaultPosition,
-		const wxSize& size = wxDefaultSize,
-		long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-		const wxString& name = wxPanelNameStr);
+    bool Create(wxWindow *parent, wxWindowID winid,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = wxPanelNameStr);
 
-	void CreateControls();
-	void sortTable() {}
+    void CreateControls();
+    void sortTable() {}
 
-	void saveReportText();
-	wxString getReportText() const { return htmlreport_; }
-	mmPrintableBase* getPrintableBase() { return rb_; }
+    void saveReportText();
+    wxString getReportText() const { return htmlreport_; }
+    mmPrintableBase* getPrintableBase() { return rb_; }
     void PrintPage();
 
 protected:

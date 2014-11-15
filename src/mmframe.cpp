@@ -302,10 +302,10 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     m_mgr.Update();
 
     // Show license agreement at first open
-	if (Model_Setting::instance().GetStringSetting(INIDB_SEND_USAGE_STATS, "") == "")
+    if (Model_Setting::instance().GetStringSetting(INIDB_SEND_USAGE_STATS, "") == "")
     {
         mmAboutDialog(this, 4).ShowModal();
-		Model_Setting::instance().Set(INIDB_SEND_USAGE_STATS, "TRUE");
+        Model_Setting::instance().Set(INIDB_SEND_USAGE_STATS, "TRUE");
     }
 
     //Check for new version at startup
@@ -2117,9 +2117,9 @@ void mmGUIFrame::refreshPanelData(wxCommandEvent& /*event*/)
 }
 void mmGUIFrame::refreshPanelData()
 {
-	int id = panelCurrent_->GetId();
+    int id = panelCurrent_->GetId();
     wxLogDebug("Panel ID: %d", id);
-	if (id == mmID_HOMEPAGE) //6000
+    if (id == mmID_HOMEPAGE) //6000
         createHomePage();
     else if (id == mmID_CHECKING)
         checkingAccountPage_->RefreshList();
@@ -2419,7 +2419,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     json::Object o;
     o[L"module"] = json::String(L"Checking Panel");
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
-	if (panelCurrent_->GetId() == mmID_CHECKING)
+    if (panelCurrent_->GetId() == mmID_CHECKING)
     {
         checkingAccountPage_->DisplayAccountDetails(accountID);
     }
