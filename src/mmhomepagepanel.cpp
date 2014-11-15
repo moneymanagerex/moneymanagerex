@@ -449,8 +449,8 @@ private:
     mmHomePagePanel *m_reportPanel;
 };
 
-BEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
-END_EVENT_TABLE()
+wxBEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
+wxEND_EVENT_TABLE()
 
 mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
     , wxWindowID winid
@@ -493,11 +493,16 @@ bool mmHomePagePanel::Create(wxWindow *parent
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
+    createHTML();
+
+    return TRUE;
+}
+
+void  mmHomePagePanel::createHTML()
+{
     getTemplate();
     getData();
     fillData();
-
-    return TRUE;
 }
 
 void mmHomePagePanel::CreateControls()
@@ -505,7 +510,7 @@ void mmHomePagePanel::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
-    browser_ = wxWebView::New(this, wxID_ANY);
+    browser_ = wxWebView::New(this, wxID_ABOUT);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "assets")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));

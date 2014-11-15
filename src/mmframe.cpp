@@ -1251,21 +1251,22 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 void mmGUIFrame::createHomePage() //TODO: may be initCurrentPanel ?
 {
     int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
-    /*if (id == mmID_HOMEPAGE)
+    wxLogDebug("Panel ID:%d", id);
+    if (id == mmID_HOMEPAGE)
     {
-        //TODO: refresh html only
-        cleanupHomePanel();
-        //panelCurrent_->BuildPage();
+        mmHomePagePanel* home_page = (mmHomePagePanel*)panelCurrent_;
+        home_page->createHTML();
+        wxWebView* browser = (wxWebView*)panelCurrent_->GetWindowChild(wxID_ABOUT);
+        browser->LoadURL(getURL(mmex::getReportIndex()));
     }
-    else*/
+    else
     {
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmHomePagePanel(
-            homePanel_, this,
-            mmID_HOMEPAGE,
-            wxDefaultPosition,
-            wxDefaultSize,
-            wxNO_BORDER | wxTAB_TRAVERSAL);
+            homePanel_, this
+            , mmID_HOMEPAGE
+            , wxDefaultPosition, wxDefaultSize
+            , wxNO_BORDER | wxTAB_TRAVERSAL);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     }
     homePanel_->Layout();
@@ -2672,7 +2673,7 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
         panelCurrent_ = nullptr;
     }
     homePanel_->DestroyChildren();
-    homePanel_->SetSizer(new_sizer ? new wxBoxSizer(wxHORIZONTAL) : 0);
+    homePanel_->SetSizer(new_sizer ? new wxBoxSizer(wxHORIZONTAL) : nullptr);
 
     return homePanel_->GetSizer();
 }
