@@ -215,10 +215,10 @@ class mmCheckingPanel : public mmPanelBase
 {
 public:
 
-    mmCheckingPanel(
-        int accountID,
-        wxWindow *parent,
-        mmGUIFrame *frame
+    mmCheckingPanel(wxWindow *parent
+        , mmGUIFrame *frame
+        , int accountID
+        , int id = wxID_ANY
     );
 
     ~mmCheckingPanel();

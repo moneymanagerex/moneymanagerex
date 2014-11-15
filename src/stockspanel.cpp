@@ -21,6 +21,7 @@
 #include "stockdialog.h"
 #include "attachmentdialog.h"
 #include "util.h"
+#include "constants.h"
 #include "mmsinglechoicedialog.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"

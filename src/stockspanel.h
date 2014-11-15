@@ -20,7 +20,6 @@
 #define MM_EX_STOCKSPANEL_H_
 
 #include "mmpanelbase.h"
-#include "constants.h"
 #include <wx/tglbtn.h>
 #include "model/Model_Stock.h"
 #include "model/Model_Currency.h"
@@ -104,7 +103,7 @@ public:
     mmStocksPanel(
         int accountID,
         wxWindow *parent,
-        wxWindowID winid = mmID_STOCKS,
+        wxWindowID winid = wxID_ANY,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,

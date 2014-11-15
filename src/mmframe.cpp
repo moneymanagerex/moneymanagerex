@@ -1235,8 +1235,8 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     {
         wxSizer *sizer = cleanupHomePanel();
 
-        budgetingPage_ = new mmBudgetingPanel(budgetYearID,
-            homePanel_, this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        budgetingPage_ = new mmBudgetingPanel(budgetYearID
+            , homePanel_, this, mmID_BUDGET, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         panelCurrent_ = budgetingPage_;
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
@@ -1248,25 +1248,24 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::createHomePage() //TODO: may be initCurrentPanel ?
+void mmGUIFrame::createHomePage()
 {
     int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
-    wxLogDebug("Panel ID:%d", id);
     if (id == mmID_HOMEPAGE)
     {
         mmHomePagePanel* home_page = (mmHomePagePanel*)panelCurrent_;
         home_page->createHTML();
-        wxWebView* browser = (wxWebView*)panelCurrent_->GetWindowChild(wxID_ABOUT);
+        wxWebView* browser = (wxWebView*)panelCurrent_->FindWindowById(mmID_BROWSER);
         browser->LoadURL(getURL(mmex::getReportIndex()));
     }
     else
     {
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmHomePagePanel(
-            homePanel_, this
-            , mmID_HOMEPAGE
+        panelCurrent_ = new mmHomePagePanel(homePanel_
+            , this, mmID_HOMEPAGE
             , wxDefaultPosition, wxDefaultSize
-            , wxNO_BORDER | wxTAB_TRAVERSAL);
+            , wxNO_BORDER | wxTAB_TRAVERSAL
+        );
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     }
     homePanel_->Layout();
@@ -1277,16 +1276,27 @@ void mmGUIFrame::createHomePage() //TODO: may be initCurrentPanel ?
 void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 {
     if (!rs) return;
-    wxSizer *sizer = cleanupHomePanel();
+    //int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
+    //if (id == mmID_REPORTS)
+    {
+        //mmReportsPanel* rp = (mmReportsPanel*)panelCurrent_;
+        /*rp->getReportText(); //TODO: recreate thtml
+        wxWebView* browser = (wxWebView*)panelCurrent_->FindWindowById(mmID_BROWSER);
+        if (browser) browser->LoadURL(getURL(mmex::getReportIndex()));
+    }
+    else
+    {*/
+        wxSizer *sizer = cleanupHomePanel();
 
-    rs->RefreshData();
-    panelCurrent_ = new mmReportsPanel(rs, cleanup, homePanel_, this, mmID_REPORTS
-        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+        rs->RefreshData();
+        panelCurrent_ = new mmReportsPanel(rs
+            , cleanup, homePanel_, this, mmID_REPORTS
+            , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
 
-    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+    }
 
     homePanel_->Layout();
-    wxLogDebug("%s | %s", rs->local_title(), rs->title());
     menuPrintingEnable(true);
 }
 //----------------------------------------------------------------------------
@@ -1295,7 +1305,7 @@ void mmGUIFrame::createHelpPage()
 {
     wxSizer *sizer = cleanupHomePanel();
 
-    panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_STATIC
+    panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
 
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
@@ -1393,8 +1403,9 @@ void mmGUIFrame::createMenu()
     menuView->AppendSeparator();
     menuView->Append(menuItemIgnoreFutureTransactions);
 #if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
-    wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN,
-        _("Toggle Fullscreen\tF11"), _("Toggle Fullscreen"), wxITEM_CHECK);    menuView->AppendSeparator();
+    wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN
+        , _("Toggle Fullscreen\tF11"), _("Toggle Fullscreen"), wxITEM_CHECK);
+    menuView->AppendSeparator();
     menuView->Append(menuItemToggleFullscreen);
 #endif
     wxMenu *menuAccounts = new wxMenu;
@@ -2099,6 +2110,7 @@ void mmGUIFrame::OnAccountList(wxCommandEvent& /*event*/)
 void mmGUIFrame::refreshPanelData()
 {
 	int id = panelCurrent_->GetId();
+    wxLogDebug("Panel ID: %d", id);
 	if (id == mmID_HOMEPAGE) //6000
         createHomePage();
     else if (id == mmID_CHECKING)
@@ -2115,7 +2127,7 @@ void mmGUIFrame::refreshPanelData()
         if (activeTransactionReport_)
         {
             //mmReportsPanel* rp = dynamic_cast<mmReportsPanel*>(panelCurrent_);
-            //TODO: Refrash the Page
+            //TODO: Refresh the Page
         }
         else
         {
@@ -2379,8 +2391,8 @@ void mmGUIFrame::OnBillsDeposits(wxCommandEvent& WXUNUSED(event))
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     wxSizer *sizer = cleanupHomePanel();
 
-    panelCurrent_ = new mmBillsDepositsPanel(homePanel_, wxID_STATIC,
-        wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    panelCurrent_ = new mmBillsDepositsPanel(homePanel_, mmID_BILLS
+        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
 
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
@@ -2404,8 +2416,8 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     {
         wxSizer *sizer = cleanupHomePanel();
 
-        checkingAccountPage_ = new mmCheckingPanel(
-            accountID, homePanel_, this);
+        checkingAccountPage_ = new mmCheckingPanel(homePanel_
+            , this, accountID, mmID_CHECKING);
         panelCurrent_ = checkingAccountPage_;
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
@@ -2427,7 +2439,7 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
 
     wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmStocksPanel(accountID, homePanel_);
+    panelCurrent_ = new mmStocksPanel(accountID, homePanel_, mmID_STOCKS);
 
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();

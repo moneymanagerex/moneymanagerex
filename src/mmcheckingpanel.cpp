@@ -109,10 +109,10 @@ wxEND_EVENT_TABLE();
 
 //----------------------------------------------------------------------------
 
-mmCheckingPanel::mmCheckingPanel(
-    int accountID
-    , wxWindow *parent
+mmCheckingPanel::mmCheckingPanel(wxWindow *parent
     , mmGUIFrame *frame
+    , int accountID
+    , int id
     )
     : filteredBalance_(0.0)
     , m_listCtrlAccount()

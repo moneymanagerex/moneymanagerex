@@ -86,17 +86,17 @@ private:
     mmReportsPanel *m_reportPanel;
 };
 
-BEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
-END_EVENT_TABLE()
+wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
+wxEND_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
-        mmPrintableBase* rb, bool cleanupReport, wxWindow *parent, mmGUIFrame* frame,
-        wxWindowID winid, const wxPoint& pos,
-        const wxSize& size, long style,
-        const wxString& name )
-: rb_(rb)
-, cleanup_(cleanupReport)
-, m_frame(frame)
+    mmPrintableBase* rb, bool cleanupReport, wxWindow *parent, mmGUIFrame* frame,
+    wxWindowID winid, const wxPoint& pos,
+    const wxSize& size, long style,
+    const wxString& name )
+    : rb_(rb)
+    , cleanup_(cleanupReport)
+    , m_frame(frame)
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -162,7 +162,7 @@ void mmReportsPanel::CreateControls()
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, 0, wxALL, 1);
 
-    browser_ = wxWebView::New(this, wxID_ANY);
+    browser_ = wxWebView::New(this, mmID_BROWSER);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trxid")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trx")));
