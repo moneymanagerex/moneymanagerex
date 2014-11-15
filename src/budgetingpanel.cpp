@@ -116,7 +116,6 @@ bool mmBudgetingPanel::Create(wxWindow *parent
 mmBudgetingPanel::~mmBudgetingPanel()
 {
     if (m_imageList) delete m_imageList;
-    m_frame->SetBudgetingPageInactive();
 }
 
 void mmBudgetingPanel::save_column_width(int width)

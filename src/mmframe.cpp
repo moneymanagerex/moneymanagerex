@@ -241,7 +241,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , billsDepositsPanel_(nullptr)
     //, stockPanel_(nullptr)
     , homePanel_(nullptr)
-    , activeTransactionReport_(false)
+    , activeReport_(false)
     , panelCurrent_(nullptr)
     , navTreeCtrl_(nullptr)
     , menuBar_(nullptr)
@@ -926,6 +926,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     selectedItemData_ = iData;
     if (!iData) return;
 
+    activeReport_ = false;
     if (!iData->isStringData())
     {
         if (iData->isBudgetingNode())
@@ -1007,7 +1008,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             delete evt;
             return;
         }
-        activeTransactionReport_ = false;
+        activeReport_ = true;
         createReportsPage(iData->get_report(), false);
     }
 }
@@ -1220,11 +1221,6 @@ void mmGUIFrame::OnViewOpenAccounts(wxCommandEvent&)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::SetBudgetingPageInactive()
-{
-}
-//----------------------------------------------------------------------------
-
 void mmGUIFrame::createBudgetingPage(int budgetYearID)
 {
     json::Object o;
@@ -1243,8 +1239,8 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
         panelCurrent_ = budgetingPage_;
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        homePanel_->Layout();
     }
-    homePanel_->Layout();
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
     menuPrintingEnable(true);
@@ -1270,8 +1266,8 @@ void mmGUIFrame::createHomePage()
             , wxNO_BORDER | wxTAB_TRAVERSAL
         );
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        homePanel_->Layout();
     }
-    homePanel_->Layout();
     navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
 }
 //----------------------------------------------------------------------------
@@ -2135,12 +2131,7 @@ void mmGUIFrame::refreshPanelData()
         budgetingPage_->RefreshList();
     else if (id == mmID_REPORTS)
     {
-        if (activeTransactionReport_)
-        {
-            //mmReportsPanel* rp = dynamic_cast<mmReportsPanel*>(panelCurrent_);
-            //TODO: Refresh the Page
-        }
-        else
+        if (activeReport_) //TODO: budget reports and transaction report
         {
             mmReportsPanel* rp = dynamic_cast<mmReportsPanel*>(panelCurrent_);
             if (rp) createReportsPage(rp->getPrintableBase(), false);
@@ -2217,7 +2208,6 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
         mmReportTransactions* rs = new mmReportTransactions(dlg->getAccountID(), dlg);
         createReportsPage(rs, true);
         setNavTreeSection(_("Reports"));
-        activeTransactionReport_ = true;
     }
 }
 
@@ -2457,7 +2447,7 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
     o[L"module"] = json::String(L"Stock Panel");
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
 
-    //TODO: Refrash Panel
+    //TODO: Refresh Panel
     {
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmStocksPanel(accountID, homePanel_, mmID_STOCKS);

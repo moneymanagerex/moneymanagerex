@@ -56,7 +56,6 @@ public:
     mmGUIApp *m_app;
 public:
     void setGotoAccountID(int account_id, long transID = -1);
-    //void setHomePageActive(bool active = true);
     bool financialYearIsDifferent()
     {
         return (mmOptions::instance().financialYearStartDayString_   != "1" ||
@@ -70,7 +69,6 @@ public:
 
     void setAccountNavTreeSection(const wxString& accountName);
     bool setNavTreeSection(const wxString &sectionName);
-    void SetBudgetingPageInactive();
     void menuPrintingEnable(bool enable);
     void OnToggleFullScreen(wxCommandEvent& WXUNUSED(event));
     void OnClose(wxCloseEvent&);
@@ -90,7 +88,7 @@ private:
     int gotoTransID_;
 
     /* There are 2 kinds of reports */
-    bool activeTransactionReport_;
+    bool activeReport_;
 
     /* Repeat Transactions automatic processing delay */
     wxTimer autoRepeatTransactionsTimer_;
