@@ -293,6 +293,8 @@
     <ClCompile Include="..\..\src\reports\categexp.cpp" />
     <ClCompile Include="..\..\src\reports\categovertimeperf.cpp" />
     <ClCompile Include="..\..\src\constants.cpp" />
+    <ClCompile Include="..\..\src\reports\mmDateRange.cpp" />
+    <ClCompile Include="..\..\src\reports\myusage.cpp" />
     <ClCompile Include="..\..\src\reports\summary.cpp" />
     <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
     <ClCompile Include="..\..\tests\cpu_timer.cpp" />
@@ -311,7 +313,6 @@
     <ClCompile Include="..\..\src\maincurrencydialog.cpp" />
     <ClCompile Include="..\..\src\minimal_editor.cpp" />
     <ClCompile Include="..\..\src\mmCalculator.cpp" />
-    <ClCompile Include="..\..\src\reports\mmDateRange.cpp" />
     <ClCompile Include="..\..\src\mmOption.cpp" />
     <ClCompile Include="..\..\src\mmcheckingpanel.cpp" />
     <ClCompile Include="..\..\src\mmex.cpp" />
@@ -420,6 +421,8 @@
     <ClInclude Include="..\..\src\reports\categexp.h" />
     <ClInclude Include="..\..\src\reports\categovertimeperf.h" />
     <ClInclude Include="..\..\src\constants.h" />
+    <ClInclude Include="..\..\src\reports\mmDateRange.h" />
+    <ClInclude Include="..\..\src\reports\myusage.h" />
     <ClInclude Include="..\..\src\reports\summary.h" />
     <ClInclude Include="..\..\src\reports\summarystocks.h" />
     <ClInclude Include="..\..\tests\cpu_timer.h" />
@@ -440,7 +443,6 @@
     <ClInclude Include="..\..\src\maincurrencydialog.h" />
     <ClInclude Include="..\..\src\minimal_editor.h" />
     <ClInclude Include="..\..\src\mmCalculator.h" />
-    <ClInclude Include="..\..\src\reports\mmDateRange.h" />
     <ClInclude Include="..\..\src\mmHook.h" />
     <ClInclude Include="..\..\src\mmOption.h" />
     <ClInclude Include="..\..\src\mmTips.h" />
