@@ -156,6 +156,7 @@ EVT_MENU(MENU_ORGCATEGS, mmGUIFrame::OnOrgCategories)
 EVT_MENU(MENU_ORGPAYEE, mmGUIFrame::OnOrgPayees)
 EVT_MENU(wxID_PREFERENCES, mmGUIFrame::OnOptions)
 EVT_MENU(wxID_NEW, mmGUIFrame::OnNewTransaction)
+EVT_MENU(wxID_REFRESH, mmGUIFrame::refreshPanelData)
 EVT_MENU(MENU_BUDGETSETUPDIALOG, mmGUIFrame::OnBudgetSetupDialog)
 EVT_MENU(wxID_HELP, mmGUIFrame::OnHelp)
 EVT_MENU(MENU_CHECKUPDATE, mmGUIFrame::OnCheckUpdate)
@@ -237,6 +238,8 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , gotoTransID_(-1)
     , checkingAccountPage_(nullptr)
     , budgetingPage_(nullptr)
+    , billsDepositsPanel_(nullptr)
+    //, stockPanel_(nullptr)
     , homePanel_(nullptr)
     , activeTransactionReport_(false)
     , panelCurrent_(nullptr)
@@ -334,6 +337,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     const wxAcceleratorEntry entries [] =
     {
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F9, wxID_NEW),
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F5, wxID_REFRESH),
     };
 
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
@@ -930,16 +934,15 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 
             wxTreeItemId idparent = navTreeCtrl_->GetItemParent(id);
             mmTreeItemData* iParentData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(idparent));
-            if (iParentData->getString() == "item@Budget Performance")
+            if (iParentData->getString() == "item@Budget Performance") //FIXME: this is report
             {
                 mmPrintableBase* rs = new mmReportBudgetingPerformance(year);
                 createReportsPage(rs, true);
             }
-            else if (iParentData->getString() == "item@Budget Setup Performance")
+            else if (iParentData->getString() == "item@Budget Setup Performance") //FIXME: this is report
             {
                 mmPrintableBase* rs = new mmReportBudgetCategorySummary(year);
                 createReportsPage(rs, true);
-                activeTransactionReport_ = true;
             }
             else
             {
@@ -1240,8 +1243,8 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
         panelCurrent_ = budgetingPage_;
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-        homePanel_->Layout();
     }
+    homePanel_->Layout();
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
     menuPrintingEnable(true);
@@ -1276,41 +1279,46 @@ void mmGUIFrame::createHomePage()
 void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 {
     if (!rs) return;
-    //int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
-    //if (id == mmID_REPORTS)
+    //rs->RefreshData(); //TODO: Real refresh needed
+    /*int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
+    if (id == mmID_REPORTS)
     {
-        //mmReportsPanel* rp = (mmReportsPanel*)panelCurrent_;
-        /*rp->getReportText(); //TODO: recreate thtml
+        mmReportsPanel* rp = (mmReportsPanel*)panelCurrent_;
+        rp->saveReportText();
         wxWebView* browser = (wxWebView*)panelCurrent_->FindWindowById(mmID_BROWSER);
         if (browser) browser->LoadURL(getURL(mmex::getReportIndex()));
     }
-    else
-    {*/
+    else*/
+    {
         wxSizer *sizer = cleanupHomePanel();
-
-        rs->RefreshData();
         panelCurrent_ = new mmReportsPanel(rs
             , cleanup, homePanel_, this, mmID_REPORTS
             , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        homePanel_->Layout();
     }
 
-    homePanel_->Layout();
     menuPrintingEnable(true);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::createHelpPage()
 {
-    wxSizer *sizer = cleanupHomePanel();
-
-    panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP
-        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-
-    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-
-    homePanel_->Layout();
+    int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
+    if (id == wxID_HELP)
+    {
+        mmHelpPanel* hp = (mmHelpPanel*)panelCurrent_;
+        hp->Refresh();
+    }
+    else
+    {
+        wxSizer *sizer = cleanupHomePanel();
+        panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP
+            , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        homePanel_->Layout();
+    }
     menuPrintingEnable(true);
 }
 //----------------------------------------------------------------------------
@@ -2107,6 +2115,10 @@ void mmGUIFrame::OnAccountList(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
+void mmGUIFrame::refreshPanelData(wxCommandEvent& /*event*/)
+{
+    refreshPanelData();
+}
 void mmGUIFrame::refreshPanelData()
 {
 	int id = panelCurrent_->GetId();
@@ -2115,15 +2127,14 @@ void mmGUIFrame::refreshPanelData()
         createHomePage();
     else if (id == mmID_CHECKING)
         checkingAccountPage_->RefreshList();
-	else if (id == mmID_BUDGET)
+    else if (id == mmID_ASSETS) 
+        { /*Nothing to do;*/ }
+    else if (id == mmID_BILLS)
+        billsDepositsPanel_->RefreshList();
+    else if (id == mmID_BUDGET)
         budgetingPage_->RefreshList();
-	else if (id == mmID_BILLS)
+    else if (id == mmID_REPORTS)
     {
-        mmBillsDepositsPanel* billsdeposits_panel = dynamic_cast<mmBillsDepositsPanel*>(panelCurrent_);
-        if (billsdeposits_panel) billsdeposits_panel->RefreshList();
-    }
-	else if (id == mmID_REPORTS)
-	{
         if (activeTransactionReport_)
         {
             //mmReportsPanel* rp = dynamic_cast<mmReportsPanel*>(panelCurrent_);
@@ -2135,10 +2146,9 @@ void mmGUIFrame::refreshPanelData()
             if (rp) createReportsPage(rp->getPrintableBase(), false);
         }
     }
-	else if (id == mmID_ASSETS)
-	{
-		//Nothing to do;
-	}
+    else if (id == wxID_HELP)
+        createHelpPage();
+
 }
 
 void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
@@ -2386,20 +2396,31 @@ void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnBillsDeposits(wxCommandEvent& WXUNUSED(event))
 {
+    createBillsDeposits();
+}
+void mmGUIFrame::createBillsDeposits()
+{
     json::Object o;
     o[L"module"] = json::String(L"Bills & Deposits Panel");
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
-    wxSizer *sizer = cleanupHomePanel();
+    if (panelCurrent_->GetId() == mmID_BILLS)
+    {
+        billsDepositsPanel_->RefreshList();
+    }
+    else
+    {
+        wxSizer *sizer = cleanupHomePanel();
+        billsDepositsPanel_ = new mmBillsDepositsPanel(homePanel_, mmID_BILLS
+            , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        panelCurrent_ = billsDepositsPanel_;
 
-    panelCurrent_ = new mmBillsDepositsPanel(homePanel_, mmID_BILLS
-        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
-    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-
-    homePanel_->Layout();
+        homePanel_->Layout();
+        Model_Usage::instance().append(o);
+        menuPrintingEnable(true);
+    }
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
-    Model_Usage::instance().append(o);
-    menuPrintingEnable(true);
 }
 //----------------------------------------------------------------------------
 
@@ -2415,11 +2436,9 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     else
     {
         wxSizer *sizer = cleanupHomePanel();
-
         checkingAccountPage_ = new mmCheckingPanel(homePanel_
             , this, accountID, mmID_CHECKING);
         panelCurrent_ = checkingAccountPage_;
-
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
     }
@@ -2438,11 +2457,13 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
     o[L"module"] = json::String(L"Stock Panel");
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
 
-    wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmStocksPanel(accountID, homePanel_, mmID_STOCKS);
-
-    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-    homePanel_->Layout();
+    //TODO: Refrash Panel
+    {
+        wxSizer *sizer = cleanupHomePanel();
+        panelCurrent_ = new mmStocksPanel(accountID, homePanel_, mmID_STOCKS);
+        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        homePanel_->Layout();
+    }
 
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
@@ -2654,7 +2675,6 @@ void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
         wxMessageBox(msgStr, _("Category Relocation Result"));
         refreshPanelData();
     }
-    homePanel_->Layout();
 }
 //----------------------------------------------------------------------------
 
@@ -2671,7 +2691,6 @@ void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
         wxMessageBox(msgStr, _("Payee Relocation Result"));
         refreshPanelData();
     }
-    homePanel_->Layout();
 }
 //----------------------------------------------------------------------------
 

@@ -47,8 +47,8 @@ public:
 	void CreateControls();
 	void sortTable() {}
 
-	wxString getReportText();
-	wxString BuildPage() const { return htmlreport_; }
+	void saveReportText();
+	wxString getReportText() const { return htmlreport_; }
 	mmPrintableBase* getPrintableBase() { return rb_; }
     void PrintPage();
 

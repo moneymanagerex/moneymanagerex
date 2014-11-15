@@ -36,7 +36,9 @@ class mmPrintableBase;
 class mmPanelBase;
 class mmTreeItemData;
 class mmCheckingPanel;
+class mmStockPanel;
 class mmBudgetingPanel;
+class mmBillsDepositsPanel;
 class mmFileHistory;
 class CommitCallbackHook;
 class UpdateCallbackHook;
@@ -131,7 +133,11 @@ private:
 
     mmCheckingPanel* checkingAccountPage_;
     void createCheckingAccountPage(int accountID);
+    //mmStocksPanel* stockPanel_;
     void createStocksAccountPage(int accountID);
+
+    mmBillsDepositsPanel* billsDepositsPanel_;
+    void createBillsDeposits();
 
     mmBudgetingPanel* budgetingPage_;
     void createBudgetingPage(int budgetYearID);
@@ -198,6 +204,7 @@ private:
     void OnCategoryRelocation(wxCommandEvent& event);
     void OnPayeeRelocation(wxCommandEvent& event);
     void OnNewTransaction(wxCommandEvent& event);
+    void refreshPanelData(wxCommandEvent& /*event*/);
 
     void OnOptions(wxCommandEvent& event);
     void OnBudgetSetupDialog(wxCommandEvent& event);

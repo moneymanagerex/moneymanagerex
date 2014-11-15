@@ -118,12 +118,12 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    getReportText();
+    saveReportText();
     browser_->LoadURL(getURL(mmex::getReportIndex()));
     return TRUE;
 }
 
-wxString mmReportsPanel::getReportText()
+void mmReportsPanel::saveReportText()
 {
     htmlreport_ = "coming soon..."; //TODO: ??
     if (rb_)
@@ -142,7 +142,6 @@ wxString mmReportsPanel::getReportText()
         o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
         Model_Usage::instance().append(o);
     }
-    return htmlreport_;
 }
 
 void mmReportsPanel::CreateControls()
