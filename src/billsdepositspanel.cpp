@@ -19,8 +19,8 @@
 #include "attachmentdialog.h"
 #include "billsdepositspanel.h"
 #include "billsdepositsdialog.h"
-#include "constants.h"
 #include "util.h"
+#include "constants.h"
 
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"

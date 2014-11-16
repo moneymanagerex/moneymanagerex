@@ -28,27 +28,28 @@ class mmReportsPanel : public mmPanelBase
 
 public:
     mmReportsPanel(mmPrintableBase* rb,
-                    bool cleanupReport,
-                    wxWindow *parent,
-                    mmGUIFrame *frame,
-                    wxWindowID winid = wxID_ANY,
-                    const wxPoint& pos = wxDefaultPosition,
-                    const wxSize& size = wxDefaultSize,
-                    long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                    const wxString& name = wxPanelNameStr );
+        bool cleanupReport,
+        wxWindow *parent,
+        mmGUIFrame *frame,
+        wxWindowID winid = wxID_ANY,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = wxPanelNameStr);
     ~mmReportsPanel();
 
-    bool Create( wxWindow *parent, wxWindowID winid,
-                 const wxPoint& pos = wxDefaultPosition,
-                 const wxSize& size = wxDefaultSize,
-                 long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                 const wxString& name = wxPanelNameStr);
+    bool Create(wxWindow *parent, wxWindowID winid,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = wxPanelNameStr);
 
     void CreateControls();
     void sortTable() {}
 
-    wxString getReportText();
-    wxString BuildPage() const { return htmlreport_; }
+    void saveReportText();
+    wxString getReportText() const { return htmlreport_; }
+    mmPrintableBase* getPrintableBase() { return rb_; }
     void PrintPage();
 
 protected:

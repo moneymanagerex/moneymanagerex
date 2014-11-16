@@ -148,7 +148,6 @@ public:
 
     int accountID_;
     Model_Currency::Data * m_currency;
-    StocksListCtrl* listCtrlAccount_;
     void updateExtraStocksData(int selIndex);
     wxStaticText* stock_details_short_;
     void updateHeader();
@@ -156,6 +155,7 @@ public:
     wxString BuildPage() const;
 
 private:
+    StocksListCtrl* listCtrlAccount_;
     wxStaticText* stock_details_;
     void call_dialog(int selectedIndex);
     void sortTable() {}

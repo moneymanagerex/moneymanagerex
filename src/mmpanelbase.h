@@ -112,7 +112,7 @@ public:
         htmlWindow->SetPage(BuildPage(), "");
         htmlWindow->Print();
     }
-    void windowsFreezeThaw()
+    void windowsFreezeThaw() //TODO: outdated?
     {
 #ifdef __WXGTK__
         return;
