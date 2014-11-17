@@ -118,11 +118,11 @@ Model_Billsdeposits::TYPE Model_Billsdeposits::type(const wxString& r)
 }
 Model_Billsdeposits::TYPE Model_Billsdeposits::type(const Data& r)
 {
-    return type(r.STATUS);
+    return type(r.TRANSCODE);
 }
 Model_Billsdeposits::TYPE Model_Billsdeposits::type(const Data* r)
 {
-    return type(r->STATUS);
+    return type(r->TRANSCODE);
 }
 Model_Billsdeposits::STATUS_ENUM Model_Billsdeposits::status(const wxString& r)
 {
