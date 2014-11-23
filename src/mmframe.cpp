@@ -724,6 +724,7 @@ void mmGUIFrame::createControls()
 void mmGUIFrame::updateNavTreeControl()
 {
     navTreeCtrl_->Freeze();
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
     wxTreeItemId root = navTreeCtrl_->GetRootItem();
     cleanupNavTreeControl(root);
     navTreeCtrl_->DeleteAllItems();
@@ -817,8 +818,10 @@ void mmGUIFrame::updateNavTreeControl()
     if (!navTreeCtrl_->ItemHasChildren(cardAccounts)) navTreeCtrl_->Delete(cardAccounts);
     if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
     if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
-    //TODO: Set selection status to previous stage; 
+
     navTreeCtrl_->EnsureVisible(root);
+    navTreeCtrl_->SelectItem(root);
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
     navTreeCtrl_->Thaw();
 }
 
@@ -921,10 +924,10 @@ void mmGUIFrame::navTreeStateToJson()
 void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 {
     menuPrintingEnable(false);
-    wxTreeItemId id = event.GetItem();
-    if (!id) return;
+    wxTreeItemId selectedItem = event.GetItem();
+    if (!selectedItem) return;
 
-    mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(id));
+    mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(selectedItem));
     selectedItemData_ = iData;
     if (!iData) return;
 
@@ -935,7 +938,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         {
             int year = iData->getData();
 
-            wxTreeItemId idparent = navTreeCtrl_->GetItemParent(id);
+            wxTreeItemId idparent = navTreeCtrl_->GetItemParent(selectedItem);
             mmTreeItemData* iParentData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(idparent));
             if (iParentData->getString() == "item@Budget Performance") //FIXME: this is report
             {
@@ -1089,18 +1092,19 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnItemMenu(wxTreeEvent& event)
 {
-    wxTreeItemId id = event.GetItem();
+    wxTreeItemId selectedItem = event.GetItem();
     if (menuBar_->FindItem(MENU_ORGCATEGS)->IsEnabled())
-        showTreePopupMenu(id, event.GetPoint());
+        showTreePopupMenu(selectedItem, event.GetPoint());
     else
-        wxMessageBox(_("MMEX has been opened without an active database."), _("MMEX: Menu Popup Error"), wxOK | wxICON_EXCLAMATION);
+        wxMessageBox(_("MMEX has been opened without an active database.")
+            , _("MMEX: Menu Popup Error"), wxOK | wxICON_EXCLAMATION);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnItemRightClick(wxTreeEvent& event)
 {
-    wxTreeItemId id = event.GetItem();
-    navTreeCtrl_->SelectItem(id);
+    wxTreeItemId selectedItem = event.GetItem();
+    navTreeCtrl_->SelectItem(selectedItem);
 }
 //----------------------------------------------------------------------------
 
@@ -1186,6 +1190,7 @@ void mmGUIFrame::OnViewAllAccounts(wxCommandEvent&)
     //Set view ALL & Refresh Navigation Panel
     Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
     updateNavTreeControl();
+    createHomePage();
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
@@ -1201,6 +1206,7 @@ void mmGUIFrame::OnViewFavoriteAccounts(wxCommandEvent&)
     //Set view Favorites & Refresh Navigation Panel
     Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_FAVORITES_STR);
     updateNavTreeControl();
+    createHomePage();
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
@@ -1214,7 +1220,7 @@ void mmGUIFrame::OnViewOpenAccounts(wxCommandEvent&)
 
     //Set view Open & Refresh Navigation Panel
     Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_OPEN_STR);
-    updateNavTreeControl();
+    createHomePage();
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
@@ -1232,6 +1238,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     }
     else
     {
+        homePanel_->Freeze();
         wxSizer *sizer = cleanupHomePanel();
 
         budgetingPage_ = new mmBudgetingPanel(budgetYearID
@@ -1240,6 +1247,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
+        homePanel_->Thaw();
     }
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
@@ -1257,6 +1265,7 @@ void mmGUIFrame::createHomePage()
     }
     else
     {
+        homePanel_->Freeze();
         wxSizer *sizer = cleanupHomePanel();
         homePage_ = new mmHomePagePanel(homePanel_
             , this, mmID_HOMEPAGE
@@ -1266,8 +1275,11 @@ void mmGUIFrame::createHomePage()
         panelCurrent_ = homePage_;
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
+        homePanel_->Thaw();
     }
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
     navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
 
@@ -1285,6 +1297,7 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
     }
     else*/
     {
+        homePanel_->Freeze();
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmReportsPanel(rs
             , cleanup, homePanel_, this, mmID_REPORTS
@@ -1292,6 +1305,7 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
+        homePanel_->Thaw();
     }
 
     menuPrintingEnable(true);
@@ -1308,11 +1322,13 @@ void mmGUIFrame::createHelpPage()
     }
     else
     {
+        homePanel_->Freeze();
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP
             , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
+        homePanel_->Thaw();
     }
     menuPrintingEnable(true);
 }
@@ -2097,14 +2113,13 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
         updateNavTreeControl();
     }
 
-    navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
+    createHomePage();
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnAccountList(wxCommandEvent& /*event*/)
 {
-    navTreeCtrl_->UnselectAll();
-    navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
+    createHomePage();
 }
 //----------------------------------------------------------------------------
 
@@ -2233,12 +2248,11 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Check(mmIniOptions::instance().ignoreFutureTransactions_);
         menuBar_->Refresh();
 
-        int messageIcon = wxOK | wxICON_INFORMATION;
-        wxString sysMsg = wxString() << _("MMEX Options have been updated.") << "\n\n";
-        wxMessageBox(sysMsg, _("MMEX Options"), messageIcon);
-
         updateNavTreeControl();
-        navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
+        createHomePage();
+
+        wxString sysMsg = wxString() << _("MMEX Options have been updated.") << "\n\n";
+        wxMessageBox(sysMsg, _("MMEX Options"), wxOK | wxICON_INFORMATION);
     }
 }
 //----------------------------------------------------------------------------
