@@ -835,12 +835,11 @@ void mmGUIFrame::loadNavTreeItemsStatus()
 
     wxString str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
     if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
+    wxLogDebug("%s", str);
     std::wstringstream ss;
     ss << str.ToStdWstring();
     json::Object o;
     json::Reader::Read(o, ss);
-    wxLogDebug("read==========================================");
-    wxLogDebug("%s", str);
 
     std::stack<wxTreeItemId> items;
     if (navTreeCtrl_->GetRootItem().IsOk())
