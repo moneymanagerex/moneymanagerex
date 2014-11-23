@@ -450,6 +450,7 @@ private:
 };
 
 wxBEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
+EVT_WEBVIEW_NAVIGATING(wxID_ANY, mmHomePagePanel::OnLinkClicked)
 wxEND_EVENT_TABLE()
 
 mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
@@ -897,4 +898,16 @@ const bool mmHomePagePanel::getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList
         return false;
 
     return true;
+}
+
+void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
+{
+    wxHtmlLinkInfo link_info = event.GetURL();
+    const wxString& url = link_info.GetHref();
+    if (url.StartsWith("http://www.moneymanagerex.org"))
+    {
+        wxLaunchDefaultBrowser(url);
+        event.Veto();
+    }
+
 }

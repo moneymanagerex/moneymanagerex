@@ -67,6 +67,7 @@ private:
     void getTemplate();
     void getData();
     void fillData();
+    void OnLinkClicked(wxWebViewEvent& event);
     const wxString displayWebsiteNews();
     const wxString displayAssets(double& tBalance);
     const wxString displayIncomeVsExpenses();
