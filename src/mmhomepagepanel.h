@@ -50,8 +50,7 @@ public:
 
     wxString BuildPage() const { return GetHomePageText(); }
     void PrintPage();
-    void OnNavigated(wxWebViewEvent& evt);
-    void  createHTML();
+    void createHTML();
 
 public:
     mmGUIFrame* m_frame;

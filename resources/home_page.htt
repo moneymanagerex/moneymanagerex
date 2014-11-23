@@ -65,7 +65,7 @@
     <tfoot>
       <tr class = 'total'>
         <td>
-          <a href = 'Assets:' id='assets_name'></a>
+          <a href = 'Assets:' id='assets_name' oncontextmenu='return false;'></a>
         </td>
         <td class = 'money' id='assets_value'></td>
       </tr>

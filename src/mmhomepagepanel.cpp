@@ -81,7 +81,7 @@ wxString htmlWidgetStocks::getHTMLText()
         output = "<table class ='sortable table'><col style='width: 50%'><col style='width: 25%'><col style='width: 25%'><thead><tr class='active'><th>\n";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
         output += "</th>\n<th class='text-right'>" + _("Total") + "</th>\n";
-        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#'>[-]</a></th>\n"
+        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#' oncontextmenu='return false;'>[-]</a></th>\n"
             , "INVEST", "INVEST");
         output += "</tr></thead><tbody id='INVEST'>\n";
         const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
@@ -91,7 +91,7 @@ wxString htmlWidgetStocks::getHTMLText()
             if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
             if (Model_Account::status(account) != Model_Account::OPEN) continue;
             body += "<tr>";
-            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%i'>%s</a></td>\n"
+            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%i' oncontextmenu='return false;'>%s</a></td>\n"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
             body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
                 , stockStats[account.ACCOUNTID].first
@@ -188,7 +188,7 @@ wxString htmlWidgetTop7Categories::getHTMLText()
     if (!topCategoryStats.empty()) {
         const wxString idStr = "TOP_CATEGORIES";
         output += "<table class = 'table'>\n<tr class='active'>\n<th>";
-        output += title_ + wxString::Format("</th><th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n", idStr, idStr);
+        output += title_ + wxString::Format("</th><th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#' oncontextmenu='return false;'>[-]</a></th></tr>\n", idStr, idStr);
         output += "<tr><td style='padding: 0px; padding-left: 0px; padding-right: 0px; width: 100%;' colspan='2'>\n";
         output += wxString::Format("<table class = 'sortable table' id='%s'>\n", idStr);
         output += "<thead>\n";
@@ -365,8 +365,8 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         const wxString idStr = "BILLS_AND_DEPOSITS";
 
         output = "<table class='table'>\n<thead>\n<tr class='active'><th>";
-        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>\n", title_);
-        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n"
+        output += wxString::Format("<a href=\"billsdeposits:\" oncontextmenu='return false;'>%s</a></th>\n<th></th>\n", title_);
+        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#' oncontextmenu='return false;'>[-]</a></th></tr>\n"
             , int(bd_days.size()), idStr, idStr);
         output += "</thead>\n";
 
@@ -681,7 +681,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
 
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
     output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";
-    output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th>\n"
+    output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#' oncontextmenu='return false;'>[-]</a></th>\n"
         , idStr, idStr);
     output += "</tr></thead>\n";
     output += wxString::Format("<tbody id = '%s'>\n", idStr);
@@ -705,7 +705,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
             (vAccts_ == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
-            body += wxString::Format("<td sorttable_customkey='*%s*' nowrap><a href='acct:%i'>%s</a></td>\n"
+            body += wxString::Format("<td sorttable_customkey='*%s*' nowrap><a href='acct:%i' oncontextmenu='return false;'>%s</a></td>\n"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
             body += wxString::Format("<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
             body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));
