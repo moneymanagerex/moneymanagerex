@@ -239,6 +239,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , checkingAccountPage_(nullptr)
     , budgetingPage_(nullptr)
     , billsDepositsPanel_(nullptr)
+    , homePage_(nullptr)
     //, stockPanel_(nullptr)
     , homePanel_(nullptr)
     , activeReport_(false)
@@ -704,6 +705,7 @@ void mmGUIFrame::createControls()
 #endif
 
     navTreeCtrl_->AssignImageList(navtree_images_list());
+    navTreeCtrl_->Connect(wxID_ANY, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 
     homePanel_ = new wxPanel(this, wxID_ANY,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTR_SINGLE | wxNO_BORDER);
@@ -721,7 +723,7 @@ void mmGUIFrame::createControls()
 
 void mmGUIFrame::updateNavTreeControl()
 {
-    navTreeCtrl_->Disconnect(wxEVT_TREE_SEL_CHANGED);
+    SetEvtHandlerEnabled(false);
     wxTreeItemId root = navTreeCtrl_->GetRootItem();
     cleanupNavTreeControl(root);
     navTreeCtrl_->DeleteAllItems();
@@ -817,7 +819,7 @@ void mmGUIFrame::updateNavTreeControl()
     if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
     //TODO: Set selection status to previous stage; 
     navTreeCtrl_->EnsureVisible(root);
-    navTreeCtrl_->Connect(wxID_ANY, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 
 
@@ -1079,8 +1081,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
                 Model_Account::instance().remove(account->ACCOUNTID);
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), account->ACCOUNTID);
                 updateNavTreeControl();
-                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
-                OnAccountList(evt);
+                createHomePage();
             }
         }
     }
@@ -1250,21 +1251,20 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 void mmGUIFrame::createHomePage()
 {
     int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
+    /* Update home page details only if it is being displayed */
     if (id == mmID_HOMEPAGE)
     {
-        mmHomePagePanel* home_page = (mmHomePagePanel*)panelCurrent_;
-        home_page->createHTML();
-        wxWebView* browser = (wxWebView*)panelCurrent_->FindWindowById(mmID_BROWSER);
-        browser->LoadURL(getURL(mmex::getReportIndex()));
+        homePage_->createHTML();
     }
     else
     {
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmHomePagePanel(homePanel_
+        homePage_ = new mmHomePagePanel(homePanel_
             , this, mmID_HOMEPAGE
             , wxDefaultPosition, wxDefaultSize
             , wxNO_BORDER | wxTAB_TRAVERSAL
         );
+        panelCurrent_ = homePage_;
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
     }
@@ -2053,8 +2053,7 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
     }
     else
     {
-        wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
-        GetEventHandler()->AddPendingEvent(ev);
+        refreshPanelData();
     }
 
 }
@@ -2099,8 +2098,7 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
         updateNavTreeControl();
     }
 
-    wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
-    GetEventHandler()->AddPendingEvent(ev);
+    refreshPanelData();
 }
 //----------------------------------------------------------------------------
 
@@ -2243,8 +2241,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         wxMessageBox(sysMsg, _("MMEX Options"), messageIcon);
 
         updateNavTreeControl();
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
-        OnAccountList(evt);
+        createHomePage();
     }
 }
 //----------------------------------------------------------------------------
@@ -2481,7 +2478,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     o[L"module"] = json::String(L"Asset Panel");
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmAssetsPanel(homePanel_);
+    panelCurrent_ = new mmAssetsPanel(homePanel_, mmID_ASSETS);
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
     menuPrintingEnable(true);
@@ -2546,8 +2543,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
         }
     }
     updateNavTreeControl();
-    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
-    OnAccountList(evt);
+    createHomePage();
 }
 //----------------------------------------------------------------------------
 
@@ -2584,7 +2580,7 @@ void mmGUIFrame::OnReallocateAccount(wxCommandEvent& event)
             Model_Account::instance().save(account);
 
             updateNavTreeControl();
-            createHomePage();
+            refreshPanelData();
         }
     }
 }

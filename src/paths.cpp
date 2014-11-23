@@ -230,7 +230,6 @@ const wxString mmex::getReportIndex()
         , mmex::GetAppName() + "_rep"
         , wxString(wxFILE_SEP_PATH));
     wxString index = wxString::Format("%sindex.html", tempDir);
-    wxLogDebug("%s", index);
     return index;
 }
 
