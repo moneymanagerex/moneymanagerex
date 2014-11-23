@@ -705,7 +705,7 @@ void mmGUIFrame::createControls()
 #endif
 
     navTreeCtrl_->AssignImageList(navtree_images_list());
-    navTreeCtrl_->Connect(wxID_ANY, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
+    navTreeCtrl_->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 
     homePanel_ = new wxPanel(this, wxID_ANY,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTR_SINGLE | wxNO_BORDER);
@@ -723,7 +723,7 @@ void mmGUIFrame::createControls()
 
 void mmGUIFrame::updateNavTreeControl()
 {
-    SetEvtHandlerEnabled(false);
+    navTreeCtrl_->Freeze();
     wxTreeItemId root = navTreeCtrl_->GetRootItem();
     cleanupNavTreeControl(root);
     navTreeCtrl_->DeleteAllItems();
@@ -819,7 +819,7 @@ void mmGUIFrame::updateNavTreeControl()
     if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
     //TODO: Set selection status to previous stage; 
     navTreeCtrl_->EnsureVisible(root);
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
+    navTreeCtrl_->Thaw();
 }
 
 
@@ -1056,7 +1056,6 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
             mmNewAcctDialog dlg(account, this);
             if (dlg.ShowModal() == wxID_OK)
             {
-                updateNavTreeControl();
                 refreshPanelData();
             }
         }
@@ -2098,13 +2097,13 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
         updateNavTreeControl();
     }
 
-    refreshPanelData();
+    navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnAccountList(wxCommandEvent& /*event*/)
 {
-    createHomePage();
+    navTreeCtrl_->UnselectAll();
     navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
 }
 //----------------------------------------------------------------------------
@@ -2190,7 +2189,6 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
     {
         mmBudgetYearDialog(this).ShowModal();
         updateNavTreeControl();
-        refreshPanelData();
     }
 }
 //----------------------------------------------------------------------------
@@ -2216,7 +2214,6 @@ void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
     mmGeneralReportManager dlg(this);
     dlg.ShowModal();
     updateNavTreeControl();
-    refreshPanelData();
 }
 
 //----------------------------------------------------------------------------
@@ -2241,7 +2238,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         wxMessageBox(sysMsg, _("MMEX Options"), messageIcon);
 
         updateNavTreeControl();
-        createHomePage();
+        navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
     }
 }
 //----------------------------------------------------------------------------
