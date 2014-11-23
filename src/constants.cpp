@@ -131,7 +131,7 @@ const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wx
 }
 
 const wxString mmex::weblink::WebSite = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org", "Website");
-const wxString mmex::weblink::Update = "http://www.moneymanagerex.org/version.html";
+const wxString mmex::weblink::Update = "http://www.moneymanagerex.org/version.php?Version=" + mmex::getProgramVersion();
 const wxString mmex::weblink::UsageStats = "http://usagestats.moneymanagerex.org/API/main_stats_v1.php";
 const wxString mmex::weblink::Download = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/download", "Download");
 const wxString mmex::weblink::News = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/news", "News");
@@ -162,6 +162,7 @@ const wxString mmex::weblink::DefStockUrl = "http://finance.yahoo.com/echarts?s=
 const wxString LANGUAGE_PARAMETER = "LANGUAGE";
 const wxString INIDB_USE_TRANSACTION_SOUND = "USETRANSSOUND";
 const wxString INIDB_USE_ORG_DATE_COPYPASTE = "USEORIGDATEONCOPYPASTE";
+const wxString INIDB_SEND_USAGE_STATS = "SENDUSAGESTATS";
 
 const wxString VIEW_TRANS_ALL_STR            = wxTRANSLATE("View All Transactions");
 const wxString VIEW_TRANS_TODAY_STR          = wxTRANSLATE("View Today");
@@ -173,9 +174,9 @@ const wxString VIEW_TRANS_LAST_3MONTHS_STR   = wxTRANSLATE("View Last 3 Months")
 const wxString VIEW_TRANS_LAST_12MONTHS_STR  = wxTRANSLATE("View Last 12 Months");
 const wxString VIEW_TRANS_CURRENT_YEAR_STR   = wxTRANSLATE("View Current Year");
 
-const wxString  VIEW_ACCOUNTS_ALL_STR       = "ALL";
-const wxString  VIEW_ACCOUNTS_OPEN_STR      = "Open";
-const wxString  VIEW_ACCOUNTS_FAVORITES_STR = "Favorites";
+const wxString VIEW_ACCOUNTS_ALL_STR       = "ALL";
+const wxString VIEW_ACCOUNTS_OPEN_STR      = "Open";
+const wxString VIEW_ACCOUNTS_FAVORITES_STR = "Favorites";
 
 const wxString INIDB_BUDGET_FINANCIAL_YEARS       = "BUDGET_FINANCIAL_YEARS";
 const wxString INIDB_BUDGET_INCLUDE_TRANSFERS     = "BUDGET_INCLUDE_TRANSFERS";

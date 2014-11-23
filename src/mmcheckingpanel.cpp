@@ -56,7 +56,7 @@
 #include <algorithm>
 //----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
+wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_BUTTON(wxID_NEW,         mmCheckingPanel::OnNewTransaction)
     EVT_BUTTON(wxID_EDIT,        mmCheckingPanel::OnEditTransaction)
     EVT_BUTTON(wxID_REMOVE,      mmCheckingPanel::OnDeleteTransaction)
@@ -65,10 +65,10 @@ BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_MENU_RANGE(wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS, wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS + menu_labels().size()
         , mmCheckingPanel::OnViewPopupSelected)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
+wxBEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
     EVT_RIGHT_DOWN(TransactionListCtrl::OnMouseRightClick)
@@ -105,14 +105,14 @@ BEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
 
     EVT_CHAR(TransactionListCtrl::OnChar)
 
-END_EVENT_TABLE();
+wxEND_EVENT_TABLE();
 
 //----------------------------------------------------------------------------
 
-mmCheckingPanel::mmCheckingPanel(
-    int accountID
-    , wxWindow *parent
+mmCheckingPanel::mmCheckingPanel(wxWindow *parent
     , mmGUIFrame *frame
+    , int accountID
+    , int id
     )
     : filteredBalance_(0.0)
     , m_listCtrlAccount()
@@ -124,7 +124,7 @@ mmCheckingPanel::mmCheckingPanel(
 {
     m_basecurrecyID = Model_Infotable::instance().GetBaseCurrencyId();
     long style = wxTAB_TRAVERSAL | wxNO_BORDER;
-    Create(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, style, wxPanelNameStr);
+    Create(parent, mmID_CHECKING, wxDefaultPosition, wxDefaultSize, style);
 }
 //----------------------------------------------------------------------------
 
@@ -135,9 +135,6 @@ mmCheckingPanel::mmCheckingPanel(
 mmCheckingPanel::~mmCheckingPanel()
 {
     if (transFilterDlg_) delete transFilterDlg_;
-
-    if (m_frame)
-        m_frame->SetCheckingAccountPageInactive();
 }
 
 bool mmCheckingPanel::Create(

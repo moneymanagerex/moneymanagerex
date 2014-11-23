@@ -1,5 +1,6 @@
 /*******************************************************
- Copyright (C) 2006 Madhan Kanagavel
+Copyright (C) 2006 Madhan Kanagavel
+Copyright (C) 2012 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -35,7 +36,7 @@
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmPayeeDialog, wxDialog);
 
-wxBEGIN_EVENT_TABLE( mmPayeeDialog, wxDialog )
+wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
     EVT_BUTTON(wxID_CANCEL, mmPayeeDialog::OnCancel)
     EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
     EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
@@ -177,7 +178,7 @@ void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)
         {
             payee->PAYEENAME = value;
             Model_Payee::instance().save(payee);
-			mmWebApp::MMEX_WebApp_UpdatePayee();
+            mmWebApp::MMEX_WebApp_UpdatePayee();
             refreshRequested_ = true;
         }
     }
@@ -216,8 +217,9 @@ void mmPayeeDialog::AddPayee()
         Model_Payee::Data *payee = Model_Payee::instance().create();
         payee->PAYEENAME = name;
         m_payee_id = Model_Payee::instance().save(payee);
-		mmWebApp::MMEX_WebApp_UpdatePayee();
+        mmWebApp::MMEX_WebApp_UpdatePayee();
         m_payee_id = payee->PAYEEID;
+        refreshRequested_ = true;
     }
     else
     {
@@ -243,8 +245,9 @@ void mmPayeeDialog::EditPayee()
         {
             payee->PAYEENAME = name;
             m_payee_id = Model_Payee::instance().save(payee);
-			mmWebApp::MMEX_WebApp_UpdatePayee();
+            mmWebApp::MMEX_WebApp_UpdatePayee();
             m_payee_id = payee->PAYEEID;
+            refreshRequested_ = true;
         }
         else
         {
@@ -270,9 +273,10 @@ void mmPayeeDialog::DeletePayee()
             wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
             return;
         }
-		else
-			mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), m_payee_id);
+        else
+            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), m_payee_id);
         m_payee_id = -1;
+        refreshRequested_ = true;
         fillControls();
     }
 }
@@ -290,7 +294,7 @@ void mmPayeeDialog::DefineDefaultCategory()
             payee->SUBCATEGID = dlg.getSubCategId();
             refreshRequested_ = true;
             Model_Payee::instance().save(payee);
-			mmWebApp::MMEX_WebApp_UpdatePayee();
+            mmWebApp::MMEX_WebApp_UpdatePayee();
             fillControls();
         }
     }
@@ -298,10 +302,11 @@ void mmPayeeDialog::DefineDefaultCategory()
 
 void mmPayeeDialog::OnOrganizeAttachments()
 {
-	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::PAYEE);
+    wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::PAYEE);
 
-	mmAttachmentDialog dlg(this, RefType, m_payee_id);
-	dlg.ShowModal();
+    mmAttachmentDialog dlg(this, RefType, m_payee_id);
+    dlg.ShowModal();
+    refreshRequested_ = true;
 }
 
 void mmPayeeDialog::OnPayeeRelocate()
@@ -336,7 +341,7 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
         case MENU_NEW_PAYEE: AddPayee(); break;
         case MENU_EDIT_PAYEE: EditPayee(); break;
         case MENU_DELETE_PAYEE: DeletePayee(); break;
-		case MENU_ORGANIZE_ATTACHMENTS: OnOrganizeAttachments(); break;
+        case MENU_ORGANIZE_ATTACHMENTS: OnOrganizeAttachments(); break;
         case MENU_RELOCATE_PAYEE: OnPayeeRelocate(); break;
         default: break;
     }
@@ -368,9 +373,9 @@ void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
     if (!payee || Model_Payee::is_used(m_payee_id)) mainMenu->Enable(MENU_DELETE_PAYEE, false);
     mainMenu->AppendSeparator();
 
-	mainMenu->Append(new wxMenuItem(mainMenu, MENU_ORGANIZE_ATTACHMENTS, _("&Organize Attachments")));
-	if (!payee) mainMenu->Enable(MENU_ORGANIZE_ATTACHMENTS, false);
-	mainMenu->AppendSeparator();
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_ORGANIZE_ATTACHMENTS, _("&Organize Attachments")));
+    if (!payee) mainMenu->Enable(MENU_ORGANIZE_ATTACHMENTS, false);
+    mainMenu->AppendSeparator();
 
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_RELOCATE_PAYEE, _("Relocate Payee")));
     //SetToolTip(_("Change all transactions using one Payee to another Payee"));

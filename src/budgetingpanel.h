@@ -35,10 +35,10 @@ class budgetingListCtrl : public mmListCtrl
 
 public:
     budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id)
-        : mmListCtrl(parent, id),
-          attr3_(mmColors::listAlternativeColor1, mmColors::listFutureDateColor, wxNullFont),
-          cp_(cp),
-          selectedIndex_(-1)
+        : mmListCtrl(parent, id)
+        , attr3_(mmColors::listAlternativeColor1, mmColors::listFutureDateColor, wxNullFont)
+        , cp_(cp)
+        , selectedIndex_(-1)
     {}
 
 public:
