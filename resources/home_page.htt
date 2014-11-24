@@ -210,8 +210,8 @@
         {toggleTable('ACCOUNTS_INFO')};
       if (!toggle_json['item@Term Accounts'] && document.getElementById('TERM_ACCOUNTS_INFO'))
         {toggleTable('TERM_ACCOUNTS_INFO')};
-      if (!toggle_json['item@Credit Card Accounts'] && document.getElementById('CREDIT_ACCOUNTS_INFO'))
-        {toggleTable('CREDIT_ACCOUNTS_INFO')};
+      if (!toggle_json['item@Credit Card Accounts'] && document.getElementById('CARD_ACCOUNTS_INFO'))
+        {toggleTable('CARD_ACCOUNTS_INFO')};
       if (!toggle_json['item@Stocks'] && document.getElementById('INVEST'))
         {toggleTable('INVEST')};
       if (!toggle_json['TOP_CATEGORIES'] && document.getElementById('TOP_CATEGORIES'))

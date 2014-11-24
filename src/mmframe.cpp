@@ -2432,12 +2432,14 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     }
     else
     {
+        homePanel_->Freeze();
         wxSizer *sizer = cleanupHomePanel();
         checkingAccountPage_ = new mmCheckingPanel(homePanel_
             , this, accountID, mmID_CHECKING);
         panelCurrent_ = checkingAccountPage_;
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
+        homePanel_->Thaw();
     }
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
@@ -2456,10 +2458,12 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
 
     //TODO: Refresh Panel
     {
+        homePanel_->Freeze();
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmStocksPanel(accountID, homePanel_, mmID_STOCKS);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
+        homePanel_->Thaw();
     }
 
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
@@ -2470,15 +2474,21 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
 
 void mmGUIFrame::OnGotoAccount(wxCommandEvent& WXUNUSED(event))
 {
-    if (gotoAccountID_ != -1)
-    {
+    bool proper_type = false;
+    Model_Account::Data *acc = Model_Account::instance().get(gotoAccountID_);
+    if (acc)
+        proper_type = Model_Account::type(acc) != Model_Account::INVESTMENT;
+    if (proper_type)
         createCheckingAccountPage(gotoAccountID_);
-    }
 }
 
 void mmGUIFrame::OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event))
 {
-    if (gotoAccountID_ != -1)
+    bool proper_type = false;
+    Model_Account::Data *acc = Model_Account::instance().get(gotoAccountID_);
+    if (acc)
+        proper_type = Model_Account::type(acc) == Model_Account::INVESTMENT;
+    if (proper_type)
         createStocksAccountPage(gotoAccountID_);
 }
 
@@ -2487,10 +2497,12 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     json::Object o;
     o[L"module"] = json::String(L"Asset Panel");
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
+    homePanel_->Freeze();
     wxSizer *sizer = cleanupHomePanel();
     panelCurrent_ = new mmAssetsPanel(homePanel_, mmID_ASSETS);
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
+    homePanel_->Thaw();
     menuPrintingEnable(true);
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
