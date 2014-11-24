@@ -723,7 +723,7 @@ void mmGUIFrame::createControls()
 
 void mmGUIFrame::updateNavTreeControl()
 {
-    navTreeCtrl_->Freeze();
+    windowsFreezeThaw(navTreeCtrl_);
     navTreeCtrl_->SetEvtHandlerEnabled(false);
     wxTreeItemId root = navTreeCtrl_->GetRootItem();
     cleanupNavTreeControl(root);
@@ -822,7 +822,7 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->EnsureVisible(root);
     navTreeCtrl_->SelectItem(root);
     navTreeCtrl_->SetEvtHandlerEnabled(true);
-    navTreeCtrl_->Thaw();
+    windowsFreezeThaw(navTreeCtrl_);
 }
 
 
@@ -1237,7 +1237,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     }
     else
     {
-        homePanel_->Freeze();
+        windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
 
         budgetingPage_ = new mmBudgetingPanel(budgetYearID
@@ -1246,7 +1246,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
-        homePanel_->Thaw();
+        windowsFreezeThaw(homePanel_);
     }
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
@@ -1264,7 +1264,7 @@ void mmGUIFrame::createHomePage()
     }
     else
     {
-        homePanel_->Freeze();
+        windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
         homePage_ = new mmHomePagePanel(homePanel_
             , this, mmID_HOMEPAGE
@@ -1274,7 +1274,7 @@ void mmGUIFrame::createHomePage()
         panelCurrent_ = homePage_;
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
-        homePanel_->Thaw();
+        windowsFreezeThaw(homePanel_);
     }
     navTreeCtrl_->SetEvtHandlerEnabled(false);
     navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
@@ -1296,7 +1296,7 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
     }
     else*/
     {
-        homePanel_->Freeze();
+        windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmReportsPanel(rs
             , cleanup, homePanel_, this, mmID_REPORTS
@@ -1304,7 +1304,7 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
-        homePanel_->Thaw();
+        windowsFreezeThaw(homePanel_);
     }
 
     menuPrintingEnable(true);
@@ -1321,13 +1321,13 @@ void mmGUIFrame::createHelpPage()
     }
     else
     {
-        homePanel_->Freeze();
+        windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP
             , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
-        homePanel_->Thaw();
+        windowsFreezeThaw(homePanel_);
     }
     menuPrintingEnable(true);
 }
@@ -2433,14 +2433,14 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     }
     else
     {
-        homePanel_->Freeze();
+        windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
         checkingAccountPage_ = new mmCheckingPanel(homePanel_
             , this, accountID, mmID_CHECKING);
         panelCurrent_ = checkingAccountPage_;
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
-        homePanel_->Thaw();
+        windowsFreezeThaw(homePanel_);
     }
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
@@ -2459,12 +2459,12 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
 
     //TODO: Refresh Panel
     {
-        homePanel_->Freeze();
+        windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmStocksPanel(accountID, homePanel_, mmID_STOCKS);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
-        homePanel_->Thaw();
+        windowsFreezeThaw(homePanel_);
     }
 
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
@@ -2498,12 +2498,12 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     json::Object o;
     o[L"module"] = json::String(L"Asset Panel");
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
-    homePanel_->Freeze();
+    windowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
     panelCurrent_ = new mmAssetsPanel(homePanel_, mmID_ASSETS);
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
-    homePanel_->Thaw();
+    windowsFreezeThaw(homePanel_);
     menuPrintingEnable(true);
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
