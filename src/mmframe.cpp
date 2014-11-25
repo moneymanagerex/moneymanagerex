@@ -1256,6 +1256,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
 void mmGUIFrame::createHomePage()
 {
+    navTreeCtrl_->SetEvtHandlerEnabled(false); //TODO: for all panels needed
     int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
     /* Update home page details only if it is being displayed */
     if (id == mmID_HOMEPAGE)
@@ -1278,6 +1279,7 @@ void mmGUIFrame::createHomePage()
     }
     navTreeCtrl_->SetEvtHandlerEnabled(false);
     navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
     navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
@@ -2669,6 +2671,8 @@ void mmGUIFrame::OnViewBudgetCategorySummary(wxCommandEvent &event)
 void mmGUIFrame::OnViewIgnoreFutureTransactions(wxCommandEvent &event)
 {
     mmIniOptions::instance().ignoreFutureTransactions_ = !mmIniOptions::instance().ignoreFutureTransactions_;
+    updateNavTreeControl();
+    createHomePage();
 }
 //----------------------------------------------------------------------------
 

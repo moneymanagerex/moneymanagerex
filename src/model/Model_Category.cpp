@@ -323,7 +323,7 @@ bool Model_Category::has_income(int id, int sub_id)
 
 void Model_Category::getCategoryStats(
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats
-        , mmDateRange* date_range, bool ignoreFuture
+        , mmDateRange* date_range, bool ignoreFuture //TODO: deprecated
         , bool group_by_month, bool with_date
         , std::map<int, std::map<int, double> > *budgetAmt)
 {
@@ -357,20 +357,11 @@ void Model_Category::getCategoryStats(
     //Calculations
     const wxDate today = date_range->today();
     auto splits = Model_Splittransaction::instance().get_all();
-    for (const auto& transaction: Model_Checking::instance().find(Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
+    for (const auto& transaction: Model_Checking::instance().find(
+        Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
+        , Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
+        , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)))
     {
-        if (ignoreFuture)
-        {
-            if (Model_Checking::TRANSDATE(transaction).IsLaterThan(today))
-                continue; //skip future dated transactions
-        }
-
-        if (with_date)
-        {
-            if (!Model_Checking::TRANSDATE(transaction).IsBetween(date_range->start_date(), date_range->end_date()))
-                continue; //skip
-        }
-
         // We got this far, get the currency conversion rate for this account
         double convRate = acc_conv_rates[transaction.ACCOUNTID];
         const wxDateTime &d = Model_Checking::TRANSDATE(transaction);

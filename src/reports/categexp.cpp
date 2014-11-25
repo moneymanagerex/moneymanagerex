@@ -86,6 +86,7 @@ void  mmReportCategoryExpenses::RefreshData()
 
 wxString mmReportCategoryExpenses::getHTMLText()
 {
+    RefreshData();
     valueList_.clear();
     // Data is presorted by name
     std::vector<data_holder> sortedData(data_);
@@ -120,7 +121,8 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.addDivRow();
     hb.addDivCol8();
     // Add the graph
-    if (type_ != NONE) hb.addPieChart(valueList_, "Categories");
+    if (type_ != NONE && !valueList_.empty())
+        hb.addPieChart(valueList_, "Categories");
 
     hb.startTable();
     hb.startThead();
