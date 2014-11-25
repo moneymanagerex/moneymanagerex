@@ -81,8 +81,8 @@ wxString htmlWidgetStocks::getHTMLText()
         output = "<table class ='sortable table'><col style='width: 50%'><col style='width: 25%'><col style='width: 25%'><thead><tr class='active'><th>\n";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
         output += "</th>\n<th class='text-right'>" + _("Total") + "</th>\n";
-        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#'>[-]</a></th>\n"
-            , "INVEST", "INVEST");
+        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#%s' oncontextmenu='return false;'>[-]</a></th>\n"
+            , "INVEST", "INVEST", "INVEST");
         output += "</tr></thead><tbody id='INVEST'>\n";
         const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
         wxString body = "";
@@ -91,7 +91,7 @@ wxString htmlWidgetStocks::getHTMLText()
             if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
             if (Model_Account::status(account) != Model_Account::OPEN) continue;
             body += "<tr>";
-            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%i'>%s</a></td>\n"
+            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%i' oncontextmenu='return false;'>%s</a></td>\n"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
             body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
                 , stockStats[account.ACCOUNTID].first
@@ -187,15 +187,18 @@ wxString htmlWidgetTop7Categories::getHTMLText()
     
     if (!topCategoryStats.empty()) {
         const wxString idStr = "TOP_CATEGORIES";
-        output += "<table class = 'table'>\n<tr class='active'>\n<th>";
-        output += title_ + wxString::Format("</th><th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n", idStr, idStr);
-        output += "<tr><td style='padding: 0px; padding-left: 0px; padding-right: 0px; width: 100%;' colspan='2'>\n";
-        output += wxString::Format("<table class = 'sortable table' id='%s'>\n", idStr);
-        output += "<thead>\n";
-        output += "<tr><th>";
-        output += _("Category") + "</th>\n<th class='text-right'>" + _("Summary") + "</th></tr>";
-        output += "</thead>\n";
-        output += "<tbody>\n";
+        static const wxString h = R"(<table class = 'table'>
+<tr class='active'>
+<th>%s</th>
+<th nowrap class='text-right sorttable_nosort'>
+<a id='%s_label' onclick='toggleTable("%s"); ' href='#%s' oncontextmenu='return false;'>[-]</a></th></tr>
+<tr><td style='padding: 0px; padding-left: 0px; padding-right: 0px; width: 100%%;' colspan='2'>
+<table class = 'sortable table' id='%s'>
+<thead>
+<tr><th>%s</th>
+<th class='text-right'>%s</th></tr>
+</thead><tbody>)";
+        output += wxString::Format(h, title_, idStr, idStr, idStr, idStr, _("Category"), _("Summary"));
 
         for (const auto& i : topCategoryStats)
         {
@@ -362,12 +365,12 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
     if (!bd_days.empty())
     {   
-        const wxString idStr = "BILLS_AND_DEPOSITS";
+        static const wxString idStr = "BILLS_AND_DEPOSITS";
 
         output = "<table class='table'>\n<thead>\n<tr class='active'><th>";
-        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>\n", title_);
-        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n"
-            , int(bd_days.size()), idStr, idStr);
+        output += wxString::Format("<a href=\"billsdeposits:\" oncontextmenu='return false;'>%s</a></th>\n<th></th>\n", title_);
+        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#%s' oncontextmenu='return false;'>[-]</a></th></tr>\n"
+            , int(bd_days.size()), idStr, idStr, idStr);
         output += "</thead>\n";
 
         output += wxString::Format("<tbody id='%s'>\n", idStr);
@@ -450,6 +453,7 @@ private:
 };
 
 wxBEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
+EVT_WEBVIEW_NAVIGATING(wxID_ANY, mmHomePagePanel::OnLinkClicked)
 wxEND_EVENT_TABLE()
 
 mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
@@ -541,6 +545,7 @@ void mmHomePagePanel::getData()
     m_frames["WEBSITE_NEWS"] = displayWebsiteNews();
 
     vAccts_ = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    date_range_->destroy();
     if (mmIniOptions::instance().ignoreFutureTransactions_)
         date_range_ = new mmCurrentMonthToDate;
     else
@@ -588,10 +593,7 @@ void mmHomePagePanel::getData()
 }
 const wxString mmHomePagePanel::getToggles()
 {
-    const wxString json = wxString::Format("{'ACCOUNTS_INFO':%i, 'TERM_ACCOUNTS_INFO':%i, 'INVEST':%i}"
-        , !Model_Setting::instance().GetBoolSetting("EXPAND_BANK_TREE", false)
-        , !Model_Setting::instance().GetBoolSetting("EXPAND_TERM_TREE", false)
-        , !Model_Setting::instance().GetBoolSetting("EXPAND_STOCKS_TREE", false));
+    const wxString json = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "{}");
     return json;
 }
 
@@ -680,8 +682,8 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
 
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
     output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";
-    output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th>\n"
-        , idStr, idStr);
+    output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#%s' oncontextmenu='return false;'>[-]</a></th>\n"
+        , idStr, idStr, idStr);
     output += "</tr></thead>\n";
     output += wxString::Format("<tbody id = '%s'>\n", idStr);
 
@@ -704,7 +706,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
             (vAccts_ == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
-            body += wxString::Format("<td sorttable_customkey='*%s*' nowrap><a href='acct:%i'>%s</a></td>\n"
+            body += wxString::Format("<td sorttable_customkey='*%s*' nowrap><a href='acct:%i' oncontextmenu='return false;'>%s</a></td>\n"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
             body += wxString::Format("<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
             body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));
@@ -896,4 +898,41 @@ const bool mmHomePagePanel::getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList
         return false;
 
     return true;
+}
+
+void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
+{
+    const wxString& url = event.GetURL();
+    if (url.StartsWith("http://www.moneymanagerex.org"))
+    {
+        wxLaunchDefaultBrowser(url);
+        event.Veto();
+    }
+    else if (url.Contains("#"))
+    {
+        wxString name = url.AfterLast('#');
+        wxLogDebug("%s", name);
+
+        //Read data from ini DB as JSON then convert it to json::Object
+        wxString str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
+        if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
+        std::wstringstream ss;
+        ss << str.ToStdWstring();
+        json::Object o;
+        json::Reader::Read(o, ss);
+        wxLogDebug("%s", str);
+
+        if (name == "TOP_CATEGORIES") {
+            bool entry = !json::Boolean(o[L"TOP_CATEGORIES"]);
+            o[L"TOP_CATEGORIES"] = json::Boolean(entry);
+        }
+
+        std::wstringstream wss;
+        json::Writer::Write(o, wss);
+        wxLogDebug("%s", wss.str());
+        wxLogDebug("==========================================");
+        Model_Infotable::instance().Set("NAV_TREE_STATUS", wss.str());
+
+    }
+
 }
