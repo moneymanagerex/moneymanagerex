@@ -126,6 +126,7 @@ void mmShowErrorMessage(wxWindow *parent, const wxString &message, const wxStrin
 void mmShowWarningMessage(wxWindow *parent, const wxString &message, const wxString &messageheader);
 void mmMessageCategoryInvalid(wxWindow *button);
 void mmMessageAccountInvalid(wxWindow *object, bool transfer = false);
+void mmMessageFileInvalid(wxWindow *object, bool open = false);
 void mmMessagePayeeInvalid(wxWindow *object);
 void mmMessageNameInvalid(wxTextCtrl *textBox);
 
