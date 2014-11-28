@@ -50,7 +50,7 @@ void  mmReportPayeeExpenses::RefreshData()
         , mmIniOptions::instance().ignoreFutureTransactions_);
 
     data_holder line;
-    int i = 0;
+
     mmHTMLBuilder hb;
     for (const auto& entry : payeeStats)
     {
@@ -58,11 +58,11 @@ void  mmReportPayeeExpenses::RefreshData()
         negativeTotal_ += entry.second.second;
 
         Model_Payee::Data* payee = Model_Payee::instance().get(entry.first);
-        if (payee)
-            line.name = payee->PAYEENAME;
+
+        line.name = payee ? payee->PAYEENAME : "";
         line.incomes = entry.second.first;
         line.expenses = entry.second.second;
-        line.color = hb.getColor(i++);
+        line.color = hb.getRandomColor((line.incomes + line.expenses) > 0);
         data_.push_back(line);
     }
 
@@ -77,17 +77,13 @@ void  mmReportPayeeExpenses::RefreshData()
         }
     );
     
-    //Show only withdrawal //TODO: better to change graph from Pie char to Bar
-    //or make green colors for deposits and red for withdrawals
+
     for (const auto& entry : data_) {
-        if (entry.incomes + entry.expenses < 0)
-        {
-            ValueTrio vt;
-            vt.label = entry.name;
-            vt.amount = entry.incomes + entry.expenses;
-            vt.color = entry.color;
-            valueList_.push_back(vt);
-        }
+        ValueTrio vt;
+        vt.label = entry.name;
+        vt.amount = fabs(entry.incomes + entry.expenses);
+        vt.color = entry.color;
+        valueList_.push_back(vt);
     }
 
 }
@@ -122,7 +118,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     for (const auto& entry : data_)
     {
         hb.startTableRow();
-        hb.addColorMarker(entry.incomes + entry.expenses < 0 ? entry.color : "");
+        hb.addColorMarker(entry.color);
         hb.addTableCell(entry.name);
         hb.addMoneyCell(entry.incomes);
         hb.addMoneyCell(entry.expenses);

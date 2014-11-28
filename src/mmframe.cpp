@@ -1231,6 +1231,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     json::Object o;
     o[L"module"] = json::String(L"Budget Panel");
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
     if (panelCurrent_->GetId() == mmID_BUDGET)
     {
         budgetingPage_->DisplayBudgetingDetails(budgetYearID);
@@ -1251,12 +1252,13 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
     menuPrintingEnable(true);
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::createHomePage()
 {
-    navTreeCtrl_->SetEvtHandlerEnabled(false); //TODO: for all panels needed
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
     int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
     /* Update home page details only if it is being displayed */
     if (id == mmID_HOMEPAGE)
@@ -1277,9 +1279,7 @@ void mmGUIFrame::createHomePage()
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
     }
-    navTreeCtrl_->SetEvtHandlerEnabled(false);
     navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
     navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
@@ -1287,7 +1287,8 @@ void mmGUIFrame::createHomePage()
 void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 {
     if (!rs) return;
-    //rs->RefreshData(); //TODO: Real refresh needed
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
+    //TODO: Real refresh needed
     /*int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
     if (id == mmID_REPORTS)
     {
@@ -1308,13 +1309,14 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
     }
-
     menuPrintingEnable(true);
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::createHelpPage()
 {
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
     int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
     if (id == wxID_HELP)
     {
@@ -1332,6 +1334,7 @@ void mmGUIFrame::createHelpPage()
         windowsFreezeThaw(homePanel_);
     }
     menuPrintingEnable(true);
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
 }
 //----------------------------------------------------------------------------
 

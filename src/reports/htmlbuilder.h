@@ -68,6 +68,7 @@ public:
     void addTableCellMonth(int month);
     void addColorMarker(const wxString& color);
     const wxString getColor(int i);
+    const wxString getRandomColor(bool positive);
 
     /** Add a Cell value */
     void addTableCell(const wxDateTime& date);

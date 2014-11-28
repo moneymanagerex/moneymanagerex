@@ -264,6 +264,16 @@ const wxString mmHTMLBuilder::getColor(int i)
     return color;
 }
 
+const wxString mmHTMLBuilder::getRandomColor(bool positive)
+{
+    int red = positive ? rand() % 20 : 235 + rand() % 20;
+    int green = rand() % 128;
+    int blue = positive ? 235 + rand() % 20 : rand() % 20;
+
+    const wxString& color = wxString::Format("rgba(%i, %i, %i, 0.7)", red, green, blue);
+    return color;
+}
+
 void mmHTMLBuilder::addTableCellMonth(int month)
 {
     if (month >= 0 && month < 12) {
