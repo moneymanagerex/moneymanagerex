@@ -2344,45 +2344,6 @@ void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
     if (!fileName.empty())
     {
         wxString htmlText = panelCurrent_->BuildPage();
-        int nLoc = htmlText.Find("memory:");
-        if (nLoc != wxNOT_FOUND)
-        {
-            // Create directory to store images
-            const wxFileName tempFileName(fileName);
-            const wxString path = tempFileName.GetPathWithSep();
-            const wxString dirName = tempFileName.GetName() + "_files";
-            if (!wxFileName::DirExists(path + dirName))
-                wxFileName::Mkdir(path + dirName);
-            // Construct text for new location
-            wxString newLocation = dirName + wxFileName::GetPathSeparator();
-            newLocation.Replace(" ", "%20"); // replace spaces in the name
-            // Output image files and update location
-            while (nLoc != wxNOT_FOUND)
-            {
-                // Get image name
-                nLoc = nLoc + 7;
-                wxString name = htmlText.Mid(nLoc);
-                nLoc = name.First("\"");
-                name = name.Left(nLoc);
-                // Store image file
-                wxFileSystem fs;
-                wxFSFile *pFile = fs.OpenFile("memory:" + name);
-                if (pFile)
-                {
-                    const wxString outputName = path + dirName + wxFileName::GetPathSeparator() + name;
-                    if (wxFileName::FileExists(outputName))
-                        wxRemoveFile(outputName);
-                    wxFileOutputStream output(outputName);
-                    output.Write(*pFile->GetStream());
-                    output.Close();
-                    delete pFile;
-                }
-                // Update location in html text
-                htmlText.Replace("memory:", newLocation, false);
-                // Get next item
-                nLoc = htmlText.Find("memory:");
-            }
-        }
         correctEmptyFileExt("html", fileName);
         wxFileOutputStream output(fileName);
         wxTextOutputStream text(output);
