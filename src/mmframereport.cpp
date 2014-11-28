@@ -366,7 +366,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));
 
     //////////////////////////////////////////////////////////////////
-    wxTreeItemId myusage = navTreeCtrl_->AppendItem(reports, _("My Usage Report"), 4, 4);
+    wxTreeItemId myusage = navTreeCtrl_->AppendItem(reports, _("My Usage"), 4, 4);
     navTreeCtrl_->SetItemData(myusage, new mmTreeItemData(new mmReportMyUsage()));
 
     for (const auto & date_range : this->m_all_date_ranges)
