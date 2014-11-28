@@ -1334,7 +1334,7 @@ void mmGUIFrame::createHelpPage()
         windowsFreezeThaw(homePanel_);
     }
     menuPrintingEnable(true);
-    navTreeCtrl_->SetEvtHandlerEnabled(false);
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
 
