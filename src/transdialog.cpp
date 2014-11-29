@@ -941,10 +941,11 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
 {
 #ifndef __WXMAC__
-    if (wxGetKeyState(wxKeyCode(WXK_RETURN))) return;
-    if (wxGetKeyState(wxKeyCode(WXK_ESCAPE))) return;
-    if (object_in_focus_ == bCategory_->GetId()) return;
-    if (object_in_focus_ == textNotes_->GetId()) return;
+    if (object_in_focus_ != itemButtonCancel_->GetId())
+    {
+        if (wxGetKeyState(wxKeyCode(WXK_ESCAPE))) itemButtonCancel_->SetFocus();
+        return;
+    }
 #endif
 
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);

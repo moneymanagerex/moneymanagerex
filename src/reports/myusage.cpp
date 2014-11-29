@@ -111,7 +111,7 @@ const char *usage_template = R"(
 
 mmReportMyUsage::mmReportMyUsage(mmDateRange* date_range)
 : m_date_range(date_range)
-, mmPrintableBase("My Usage Report", _("My Usage Report"))
+, mmPrintableBase("My Usage", _("My Usage"))
 {
     if (m_date_range)
     {

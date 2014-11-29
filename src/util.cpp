@@ -604,6 +604,18 @@ void checkUpdates(const bool& bSilent)
     }
 }
 
+void windowsFreezeThaw(wxWindow* w)
+{
+#ifdef __WXGTK__
+    return;
+#endif
+
+    if (w->IsFrozen())
+        w->Thaw();
+    else
+        w->Freeze();
+}
+
 #if 1
 // ----------------------------------------------------------------------------
 // mmCalcValidator

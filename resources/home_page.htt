@@ -65,7 +65,7 @@
     <tfoot>
       <tr class = 'total'>
         <td>
-          <a href = 'Assets:' id='assets_name'></a>
+          <a href = 'Assets:' id='assets_name' oncontextmenu='return false;'></a>
         </td>
         <td class = 'money' id='assets_value'></td>
       </tr>
@@ -205,13 +205,17 @@
 
   <script>
     var toggle_json = <TMPL_VAR TOGGLES>;
-      toggleTable('BILLS_AND_DEPOSITS');
-      if (toggle_json['ACCOUNTS_INFO'] && document.getElementById('ACCOUNTS_INFO'))
+      //toggleTable('BILLS_AND_DEPOSITS');
+      if (!toggle_json['item@Bank Accounts'] && document.getElementById('ACCOUNTS_INFO'))
         {toggleTable('ACCOUNTS_INFO')};
-      if (toggle_json['TERM_ACCOUNTS_INFO'] && document.getElementById('TERM_ACCOUNTS_INFO'))
+      if (!toggle_json['item@Term Accounts'] && document.getElementById('TERM_ACCOUNTS_INFO'))
         {toggleTable('TERM_ACCOUNTS_INFO')};
-      if (toggle_json['INVEST'] && document.getElementById('INVEST'))
+      if (!toggle_json['item@Credit Card Accounts'] && document.getElementById('CARD_ACCOUNTS_INFO'))
+        {toggleTable('CARD_ACCOUNTS_INFO')};
+      if (!toggle_json['item@Stocks'] && document.getElementById('INVEST'))
         {toggleTable('INVEST')};
+      if (!toggle_json['TOP_CATEGORIES'] && document.getElementById('TOP_CATEGORIES'))
+        {toggleTable('TOP_CATEGORIES')};
     </script>
 
   <script type="text/javascript">
