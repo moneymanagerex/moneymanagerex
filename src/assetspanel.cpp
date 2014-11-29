@@ -368,14 +368,14 @@ BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
 END_EVENT_TABLE()
 /*******************************************************/
 
-mmAssetsPanel::mmAssetsPanel(wxWindow *parent)
+mmAssetsPanel::mmAssetsPanel(wxWindow *parent, wxWindowID winid)
     : m_filter_type(Model_Asset::TYPE(-1))
     , m_listCtrlAssets()
     , itemStaticTextMainFilter_()
     , header_text_()
     , tips_()
 {
-    Create(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, wxPanelNameStr);
+    Create(parent, winid, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, wxPanelNameStr);
 }
 
 bool mmAssetsPanel::Create(wxWindow *parent

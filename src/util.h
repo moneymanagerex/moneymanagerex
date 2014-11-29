@@ -176,6 +176,7 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion);
 /*  Checks for new updates and return message boxes.
     Set bSilent to false to don't show messages for version already updated */
 void checkUpdates(const bool& bSilent);
+void windowsFreezeThaw(wxWindow* w);
 
 #endif // MM_EX_UTIL_H_
 //----------------------------------------------------------------------------

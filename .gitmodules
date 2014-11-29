@@ -31,3 +31,6 @@
 [submodule "3rd/ChartNew.js"]
 	path = 3rd/ChartNew.js
 	url = https://github.com/FVANCOP/ChartNew.js
+[submodule "3rd/ctpp"]
+	path = 3rd/ctpp
+	url = https://github.com/moneymanagerex/ctpp.git

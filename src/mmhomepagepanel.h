@@ -50,8 +50,7 @@ public:
 
     wxString BuildPage() const { return GetHomePageText(); }
     void PrintPage();
-    void OnNavigated(wxWebViewEvent& evt);
-    void  createHTML();
+    void createHTML();
 
 public:
     mmGUIFrame* m_frame;
@@ -68,6 +67,7 @@ private:
     void getTemplate();
     void getData();
     void fillData();
+    void OnLinkClicked(wxWebViewEvent& event);
     const wxString displayWebsiteNews();
     const wxString displayAssets(double& tBalance);
     const wxString displayIncomeVsExpenses();

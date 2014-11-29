@@ -34,6 +34,7 @@ Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 class wxSQLite3Database;
 class mmPrintableBase;
 class mmPanelBase;
+class mmHomePagePanel;
 class mmTreeItemData;
 class mmCheckingPanel;
 class mmStockPanel;
@@ -123,12 +124,12 @@ private:
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
     void createMenu();
     void CreateToolBar();
-    /* Update home page details only if it is being displayed */
-    void createHomePage();
     void createReportsPage(mmPrintableBase* rb, bool cleanup);
     void createHelpPage();
     void refreshPanelData();
 
+    mmHomePagePanel* homePage_;
+    void createHomePage();
     mmCheckingPanel* checkingAccountPage_;
     void createCheckingAccountPage(int accountID);
     //mmStocksPanel* stockPanel_;
