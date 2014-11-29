@@ -266,9 +266,9 @@ const wxString mmHTMLBuilder::getColor(int i)
 
 const wxString mmHTMLBuilder::getRandomColor(bool positive)
 {
-    int red = positive ? rand() % 20 : 235 + rand() % 20;
+    int red = positive ? rand() % 20 : 156 + rand() % 100;
     int green = rand() % 128;
-    int blue = positive ? 235 + rand() % 20 : rand() % 20;
+    int blue = positive ? 156 + rand() % 100 : rand() % 20;
 
     const wxString& color = wxString::Format("rgba(%i, %i, %i, 0.7)", red, green, blue);
     return color;

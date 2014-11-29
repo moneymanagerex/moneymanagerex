@@ -54,7 +54,7 @@ mmIniOptions::mmIniOptions()
 , budgetFinancialYears_(false)
 , budgetIncludeTransfers_(false)
 , budgetSetupWithoutSummaries_(false)
-, budgetSummaryWithoutCategories_(true)
+, budgetReportWithSummaries_(true)
 , ignoreFutureTransactions_(false)
 , transPayeeSelectionNone_(0)
 , transCategorySelectionNone_(0)
@@ -74,7 +74,7 @@ void mmIniOptions::loadOptions()
     budgetFinancialYears_           = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
     budgetIncludeTransfers_         = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
     budgetSetupWithoutSummaries_    = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, false);
-    budgetSummaryWithoutCategories_ = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true);
+    budgetReportWithSummaries_ = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true);
     ignoreFutureTransactions_       = Model_Setting::instance().GetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, false);
 
     // Read the preference as a string and convert to int
