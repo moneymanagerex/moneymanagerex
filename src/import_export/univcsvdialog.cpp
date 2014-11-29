@@ -144,7 +144,11 @@ void mmUnivCSVDialog::CreateControls()
     m_text_ctrl_->Connect(ID_FILE_NAME
         , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameEntered), nullptr, this);
 
-    wxButton* button_search = new wxButton(itemPanel6, wxID_SEARCH, _("&Search"));
+    const wxString& file_button_label = this->is_importer_ ? _("&Search") : _("File");
+    wxButton* button_search = new wxButton(itemPanel6, wxID_SEARCH, file_button_label);
+    const wxString& file_tooltip = this->is_importer_
+        ? _("Choose CSV data file to Import") : _("Choose CSV data file to Export");
+    button_search->SetToolTip(file_tooltip);
     itemBoxSizer7->Add(button_search, g_flags);
 
     // Predefined settings
@@ -580,8 +584,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
     if (!isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT) 
         && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) || !isIndexPresent(UNIV_CSV_DEPOSIT))))
     {
-         wxMessageBox(_("Incorrect fields specified for CSV import! Requires at least Date and Amount.")
-             , _("Universal CSV Import"), wxOK | wxICON_WARNING);
+        mmShowWarningMessage(this
+            , _("Incorrect fields specified for CSV import! Requires at least Date and Amount.")
+            , _("Universal CSV Import"));
          return;
     }
 
@@ -764,8 +769,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
     if (!isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT)
         && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) || !isIndexPresent(UNIV_CSV_DEPOSIT))))
     {
-        wxMessageBox(_("Incorrect fields specified for CSV import! Requires at least Date and Amount.")
-            , _("Universal CSV Import"), wxOK | wxICON_WARNING);
+        mmShowWarningMessage(this
+            ,_("Incorrect fields specified for CSV export! Requires at least Date and Amount.")
+            , _("Universal CSV Export"));
         return;
     }
 
