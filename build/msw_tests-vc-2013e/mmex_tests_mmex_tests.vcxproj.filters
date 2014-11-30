@@ -324,9 +324,6 @@
     <ClCompile Include="..\..\src\reports\incexpenses.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\reports\mmDateRange.cpp">
-      <Filter>Source Files\reports</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\reports\payee.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
@@ -371,6 +368,12 @@
     </ClCompile>
     <ClCompile Include="..\..\tests\test_options_dialog.cpp">
       <Filter>Test Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\mmDateRange.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\myusage.cpp">
+      <Filter>Source Files\reports</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -719,9 +722,6 @@
     <ClInclude Include="..\..\src\reports\htmlbuilder.h">
       <Filter>Header Files\reports</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\reports\mmDateRange.h">
-      <Filter>Header Files\reports</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\reports\reportbase.h">
       <Filter>Header Files\reports</Filter>
     </ClInclude>
@@ -781,6 +781,12 @@
     </ClInclude>
     <ClInclude Include="..\..\tests\test_options_dialog.h">
       <Filter>Test Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\mmDateRange.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\myusage.h">
+      <Filter>Header Files\reports</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

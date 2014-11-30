@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "test_assets.h"
 #include "assetspanel.h"
-
+#include "../src/constants.h"
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
 *****************************************************************************/
@@ -160,7 +160,7 @@ void Test_Asset::test_assetpanel()
     asset_frame->Show();
 
     // Create the panel under test
-    mmAssetsPanel* asset_panel = new mmAssetsPanel(asset_frame);
+    mmAssetsPanel* asset_panel = new mmAssetsPanel(asset_frame, mmID_ASSETS);
     asset_panel->Show();
 
     // Anchor the panel. Otherwise it will disappear.

@@ -756,7 +756,7 @@ void mmTransDialog::setCategoryForPayee(const Model_Payee::Data *payee)
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
     if (mmIniOptions::instance().transCategorySelectionNone_ != 0
-        && !categUpdated_ && local_splits.empty() && m_new_trx)
+        && !categUpdated_ && local_splits.empty() && m_new_trx && !m_duplicate)
     {
         // if payee has memory of last category used then display last category for payee
         Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
