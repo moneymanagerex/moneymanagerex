@@ -132,7 +132,6 @@ private:
     void createHomePage();
     mmCheckingPanel* checkingAccountPage_;
     void createCheckingAccountPage(int accountID);
-    //mmStocksPanel* stockPanel_;
     void createStocksAccountPage(int accountID);
 
     mmBillsDepositsPanel* billsDepositsPanel_;

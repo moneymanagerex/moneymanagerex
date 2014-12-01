@@ -240,7 +240,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , budgetingPage_(nullptr)
     , billsDepositsPanel_(nullptr)
     , homePage_(nullptr)
-    //, stockPanel_(nullptr)
     , homePanel_(nullptr)
     , activeReport_(false)
     , panelCurrent_(nullptr)
