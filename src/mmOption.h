@@ -55,7 +55,7 @@ public:
     bool budgetFinancialYears_;
     bool budgetIncludeTransfers_;
     bool budgetSetupWithoutSummaries_;
-    bool budgetSummaryWithoutCategories_;
+    bool budgetReportWithSummaries_;
     bool ignoreFutureTransactions_;
 
     int transPayeeSelectionNone_;

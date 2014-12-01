@@ -93,12 +93,10 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    wxString headerStartupMsg;
-    if (mmIniOptions::instance().budgetSummaryWithoutCategories_)
-        headerStartupMsg = _("Budget Categories for ");
-    else
-        headerStartupMsg = _("Budget Category Summary for ");
-    hb.addHeader(2, headerStartupMsg + headingStr + "<br>" + _("( Estimated Vs Actual )"));
+    bool amply = mmIniOptions::instance().budgetReportWithSummaries_;
+    const wxString& headerStartupMsg = amply ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
+
+    hb.addHeader(2, wxString::Format(headerStartupMsg,  headingStr + "<br>" + _("( Estimated Vs Actual )")));
     hb.DisplayDateHeading(yearBegin, yearEnd);
 
     double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
@@ -146,7 +144,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         catTotalsActual += actual;
         catTotalsEstimated += estimated;
         /***************************************************************************/
-        if (mmIniOptions::instance().budgetSummaryWithoutCategories_)
+        if (mmIniOptions::instance().budgetReportWithSummaries_)
         {
             double amt = budgetAmt[category.second.first][category.second.second];
             hb.startTableRow();

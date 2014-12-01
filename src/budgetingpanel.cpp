@@ -339,7 +339,7 @@ bool mmBudgetingPanel::DisplayEntryAllowed(int categoryID, int subcategoryID)
     else if (currentView_ == VIEW_EXPENSE)
         result = ((estimated < 0.0) || (actual < 0.0));
     else if (currentView_ == VIEW_SUMM)
-        result = ((categoryID < 0.0));
+        result = (categoryID < 0);
     else
         result = true;
 
@@ -460,7 +460,8 @@ void mmBudgetingPanel::initVirtualListControl()
         budgetTotals_[category.CATEGID].first = catTotalsEstimated;
         budgetTotals_[category.CATEGID].second = catTotalsActual;
 
-        if (mmIniOptions::instance().budgetSetupWithoutSummaries_ && DisplayEntryAllowed(-1, category.CATEGID))
+        if ((!mmIniOptions::instance().budgetSetupWithoutSummaries_ || currentView_ == VIEW_SUMM)
+            && DisplayEntryAllowed(-1, category.CATEGID))
         {
             std::pair <int, int> category_pair;
             category_pair.first = -1;

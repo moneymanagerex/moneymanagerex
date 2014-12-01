@@ -141,6 +141,7 @@ public:
     virtual wxString getHTMLText();
 protected:
 
+    void getStatistics(std::map<int, std::pair<double, double> >& incomeExpensesStats);
     mmDateRange* date_range_;
     int day_;
     int month_;

@@ -50,7 +50,7 @@ void  mmReportPayeeExpenses::RefreshData()
         , mmIniOptions::instance().ignoreFutureTransactions_);
 
     data_holder line;
-    int i = 0;
+
     mmHTMLBuilder hb;
     for (const auto& entry : payeeStats)
     {
@@ -58,14 +58,15 @@ void  mmReportPayeeExpenses::RefreshData()
         negativeTotal_ += entry.second.second;
 
         Model_Payee::Data* payee = Model_Payee::instance().get(entry.first);
-        if (payee)
-            line.name = payee->PAYEENAME;
+
+        line.name = payee ? payee->PAYEENAME : "";
         line.incomes = entry.second.first;
         line.expenses = entry.second.second;
-        line.color = hb.getColor(i++);
+        line.color = hb.getRandomColor((line.incomes + line.expenses) > 0);
         data_.push_back(line);
     }
 
+    //Order by expenses + deposits diff
     std::stable_sort(data_.begin(), data_.end()
         , [](const data_holder& x, const data_holder& y)
         {
@@ -76,21 +77,20 @@ void  mmReportPayeeExpenses::RefreshData()
         }
     );
     
+
     for (const auto& entry : data_) {
-        if (entry.incomes + entry.expenses < 0)
-        {
-            ValueTrio vt;
-            vt.label = entry.name;
-            vt.amount = entry.incomes + entry.expenses;
-            vt.color = entry.color;
-            valueList_.push_back(vt);
-        }
+        ValueTrio vt;
+        vt.label = entry.name;
+        vt.amount = fabs(entry.incomes + entry.expenses);
+        vt.color = entry.color;
+        valueList_.push_back(vt);
     }
 
 }
 
 wxString mmReportPayeeExpenses::getHTMLText()
 {
+    RefreshData();
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
@@ -100,7 +100,8 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.addDivRow();
     hb.addDivCol8();
     // Add the graph
-    hb.addPieChart(valueList_, "Withdrawal");
+    if (!valueList_.empty())
+        hb.addPieChart(valueList_, "Withdrawal");
 
     hb.startSortTable();
     hb.startThead();
@@ -117,7 +118,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     for (const auto& entry : data_)
     {
         hb.startTableRow();
-        hb.addColorMarker(entry.incomes + entry.expenses < 0 ? entry.color : "");
+        hb.addColorMarker(entry.color);
         hb.addTableCell(entry.name);
         hb.addMoneyCell(entry.incomes);
         hb.addMoneyCell(entry.expenses);
@@ -154,22 +155,15 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
         acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
     }
 
-    const auto &transactions = Model_Checking::instance().all();
+    const auto &transactions = Model_Checking::instance().find(
+        Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
+        , Model_Checking::TRANSDATE(date_range_->start_date(), GREATER_OR_EQUAL)
+        , Model_Checking::TRANSDATE(date_range_->end_date(), LESS_OR_EQUAL));
+    const wxDateTime today = date_range_->today();
     const auto all_splits = Model_Splittransaction::instance().get_all();
-    for (const auto & trx: transactions)
+    for (const auto& trx: transactions)
     {
-        if (Model_Checking::status(trx) == Model_Checking::VOID_) continue;
         if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue;
-
-        wxDateTime trx_date = Model_Checking::TRANSDATE(trx);
-        if (ignoreFuture)
-        {
-            if (trx_date.IsLaterThan(wxDateTime::Today()))
-                continue; //skip future dated transactions
-        }
-
-        if (!trx_date.IsBetween(date_range->start_date(), date_range->end_date()))
-            continue; //skip
 
         double convRate = acc_conv_rates[trx.ACCOUNTID];
 

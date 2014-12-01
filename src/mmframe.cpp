@@ -1230,6 +1230,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     json::Object o;
     o[L"module"] = json::String(L"Budget Panel");
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
     if (panelCurrent_->GetId() == mmID_BUDGET)
     {
         budgetingPage_->DisplayBudgetingDetails(budgetYearID);
@@ -1250,11 +1251,13 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
     menuPrintingEnable(true);
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::createHomePage()
 {
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
     int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
     /* Update home page details only if it is being displayed */
     if (id == mmID_HOMEPAGE)
@@ -1275,7 +1278,6 @@ void mmGUIFrame::createHomePage()
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
     }
-    navTreeCtrl_->SetEvtHandlerEnabled(false);
     navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
     navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
@@ -1284,7 +1286,8 @@ void mmGUIFrame::createHomePage()
 void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 {
     if (!rs) return;
-    //rs->RefreshData(); //TODO: Real refresh needed
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
+    //TODO: Real refresh needed
     /*int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
     if (id == mmID_REPORTS)
     {
@@ -1305,13 +1308,14 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
     }
-
     menuPrintingEnable(true);
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::createHelpPage()
 {
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
     int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
     if (id == wxID_HELP)
     {
@@ -1329,6 +1333,7 @@ void mmGUIFrame::createHelpPage()
         windowsFreezeThaw(homePanel_);
     }
     menuPrintingEnable(true);
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
 
@@ -1598,7 +1603,7 @@ void mmGUIFrame::createMenu()
     menuBar_->Check(MENU_VIEW_BUDGET_FINANCIAL_YEARS, mmIniOptions::instance().budgetFinancialYears_);
     menuBar_->Check(MENU_VIEW_BUDGET_TRANSFER_TOTAL, mmIniOptions::instance().budgetIncludeTransfers_);
     menuBar_->Check(MENU_VIEW_BUDGET_SETUP_SUMMARY, mmIniOptions::instance().budgetSetupWithoutSummaries_);
-    menuBar_->Check(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, mmIniOptions::instance().budgetSummaryWithoutCategories_);
+    menuBar_->Check(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, mmIniOptions::instance().budgetReportWithSummaries_);
     menuBar_->Check(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS, mmIniOptions::instance().ignoreFutureTransactions_);
 }
 //----------------------------------------------------------------------------
@@ -2243,7 +2248,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Check(mmIniOptions::instance().budgetFinancialYears_);
         menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Check(mmIniOptions::instance().budgetIncludeTransfers_);
         menuBar_->FindItem(MENU_VIEW_BUDGET_SETUP_SUMMARY)->Check(mmIniOptions::instance().budgetSetupWithoutSummaries_);
-        menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Check(mmIniOptions::instance().budgetSummaryWithoutCategories_);
+        menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Check(mmIniOptions::instance().budgetReportWithSummaries_);
         menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Check(mmIniOptions::instance().ignoreFutureTransactions_);
         menuBar_->Refresh();
 
@@ -2609,26 +2614,32 @@ void mmGUIFrame::OnViewStockAccounts(wxCommandEvent &event)
 void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent &event)
 {
     mmIniOptions::instance().budgetFinancialYears_ = !mmIniOptions::instance().budgetFinancialYears_;
+    refreshPanelData();
 }
 
 void mmGUIFrame::OnViewBudgetTransferTotal(wxCommandEvent &event)
 {
     mmIniOptions::instance().budgetIncludeTransfers_ = !mmIniOptions::instance().budgetIncludeTransfers_;
+    refreshPanelData();
 }
 
 void mmGUIFrame::OnViewBudgetSetupSummary(wxCommandEvent &event)
 {
     mmIniOptions::instance().budgetSetupWithoutSummaries_ = !mmIniOptions::instance().budgetSetupWithoutSummaries_;
+    refreshPanelData();
 }
 
 void mmGUIFrame::OnViewBudgetCategorySummary(wxCommandEvent &event)
 {
-    mmIniOptions::instance().budgetSummaryWithoutCategories_ = !mmIniOptions::instance().budgetSummaryWithoutCategories_;
+    mmIniOptions::instance().budgetReportWithSummaries_ = !mmIniOptions::instance().budgetReportWithSummaries_;
+    refreshPanelData();
 }
 
 void mmGUIFrame::OnViewIgnoreFutureTransactions(wxCommandEvent &event)
 {
     mmIniOptions::instance().ignoreFutureTransactions_ = !mmIniOptions::instance().ignoreFutureTransactions_;
+    updateNavTreeControl();
+    createHomePage();
 }
 //----------------------------------------------------------------------------
 
