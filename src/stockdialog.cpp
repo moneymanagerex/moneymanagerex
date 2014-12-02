@@ -332,7 +332,7 @@ void mmStockDialog::CreateControls()
 void mmStockDialog::OnQuit(wxCloseEvent& /*event*/)
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
-    if (stockID_ <= 0)
+    if (!edit_)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
 }
@@ -436,6 +436,12 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
     if (edit_) m_stock->STOCKID = stockID_;
 
     stockID_ = Model_Stock::instance().save(m_stock);
+
+    if (!edit_)
+    {
+        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+        mmAttachmentManage::RelocateAllAttachments(RefType, 0, m_stock->STOCKID);
+    }
 
     // update stock history table and stock items price/values with same symbol code
     if (!m_stock->SYMBOL.IsEmpty())

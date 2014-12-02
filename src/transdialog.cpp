@@ -926,7 +926,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     }
     Model_Splittransaction::instance().update(splt, m_trx_data.TRANSID);
 
-	if (!old_transaction_id)
+    if (m_new_trx)
 	{
 		const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 		mmAttachmentManage::RelocateAllAttachments(RefType, old_transaction_id, m_trx_data.TRANSID);
