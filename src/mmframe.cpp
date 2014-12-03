@@ -112,6 +112,7 @@
 #include "../resources/encrypt_db_edit.xpm"
 #include "../resources/exit.xpm"
 #include "../resources/facebook.xpm"
+#include "../resources/google_play.xpm"
 #include "../resources/filter.xpm"
 #include "../resources/help.xpm"
 #include "../resources/house.xpm"
@@ -160,6 +161,7 @@ EVT_MENU(wxID_REFRESH, mmGUIFrame::refreshPanelData)
 EVT_MENU(MENU_BUDGETSETUPDIALOG, mmGUIFrame::OnBudgetSetupDialog)
 EVT_MENU(wxID_HELP, mmGUIFrame::OnHelp)
 EVT_MENU(MENU_CHECKUPDATE, mmGUIFrame::OnCheckUpdate)
+EVT_MENU(MENU_GOOGLEPLAY, mmGUIFrame::OnGooglePlay)
 EVT_MENU(MENU_REPORTISSUES, mmGUIFrame::OnReportIssues)
 EVT_MENU(MENU_ANNOUNCEMENTMAILING, mmGUIFrame::OnBeNotified)
 EVT_MENU(MENU_FACEBOOK, mmGUIFrame::OnFacebook)
@@ -1569,6 +1571,12 @@ void mmGUIFrame::createMenu()
     menuItemCheck->SetBitmap(wxBitmap(checkupdate_xpm));
     menuHelp->Append(menuItemCheck);
 
+    wxMenuItem* menuGooglePlay = new wxMenuItem(menuTools, MENU_GOOGLEPLAY
+        , _("Get Android Version")
+        , _("Run this program in your Android smart phone or tablet"));
+    menuGooglePlay->SetBitmap(wxBitmap(google_play));
+    menuHelp->Append(menuGooglePlay);
+
     wxMenuItem* menuItemReportIssues = new wxMenuItem(menuTools, MENU_REPORTISSUES
         , _("Visit MMEX Forum")
         , _("Visit the MMEX forum. See existing user comments, or report new issues with the software."));
@@ -2272,6 +2280,12 @@ void mmGUIFrame::OnHelp(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
 {
     checkUpdates(false);
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnGooglePlay(wxCommandEvent& /*event*/)
+{
+    wxLaunchDefaultBrowser(mmex::weblink::GooglePlay);
 }
 //----------------------------------------------------------------------------
 

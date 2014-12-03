@@ -73,6 +73,7 @@ namespace weblink
     extern const wxString YahooQuotes;
     extern const wxString YahooQuotesHistory;
     extern const wxString DefStockUrl;
+    extern const wxString GooglePlay;
 } // namespace weblink
 } // namespace mmex
 

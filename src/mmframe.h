@@ -213,6 +213,7 @@ private:
     void OnHelp(wxCommandEvent& event);
     void OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event));
     void OnCheckUpdate(wxCommandEvent& event);
+    void OnGooglePlay(wxCommandEvent& event);
     void OnReportIssues(wxCommandEvent& event);
     void OnBeNotified(wxCommandEvent& event);
     void OnFacebook(wxCommandEvent& event);
@@ -270,6 +271,7 @@ private:
         MENU_ORGPAYEE,
         MENU_BUDGETSETUPDIALOG,
         MENU_CHECKUPDATE,
+        MENU_GOOGLEPLAY,
         MENU_IMPORT,
         MENU_IMPORT_UNIVCSV,
         MENU_REPORTISSUES,
