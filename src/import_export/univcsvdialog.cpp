@@ -124,32 +124,32 @@ void mmUnivCSVDialog::CreateControls()
     wxBoxSizer* itemBoxSizer11 = new wxBoxSizer(wxVERTICAL);
     itemBoxSizer1->Add(itemBoxSizer11, 5, wxGROW | wxALL, 5);
 
-    wxButton* button_search = nullptr;
-    if (this->is_importer_)
-    {
-        //file to import, file path and search button
-        wxPanel* itemPanel6 = new wxPanel(this
-            , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-        itemBoxSizer2->Add(itemPanel6, 0, wxEXPAND | wxALL, 1);
+    //file to import, file path and search button
+    wxPanel* itemPanel6 = new wxPanel(this
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    itemBoxSizer2->Add(itemPanel6, 0, wxEXPAND | wxALL, 1);
 
-        wxBoxSizer* itemBoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
-        itemPanel6->SetSizer(itemBoxSizer7);
+    wxBoxSizer* itemBoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
+    itemPanel6->SetSizer(itemBoxSizer7);
 
-        wxStaticText* itemStaticText5 = new wxStaticText(itemPanel6, wxID_ANY, _("File Name:"));
-        itemBoxSizer7->Add(itemStaticText5, g_flags);
-        itemStaticText5->SetFont(staticBoxFontSetting);
+    wxStaticText* itemStaticText5 = new wxStaticText(itemPanel6, wxID_ANY, _("File Name:"));
+    itemBoxSizer7->Add(itemStaticText5, g_flags);
+    itemStaticText5->SetFont(staticBoxFontSetting);
 
-        m_text_ctrl_ = new wxTextCtrl(itemPanel6
-            , ID_FILE_NAME, wxEmptyString, wxDefaultPosition, wxSize(300, -1), wxTE_PROCESS_ENTER);
-        itemBoxSizer7->Add(m_text_ctrl_, 1, wxALL | wxGROW, 5);
-        m_text_ctrl_->Connect(ID_FILE_NAME
-            , wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameChanged), nullptr, this);
-        m_text_ctrl_->Connect(ID_FILE_NAME
-            , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameEntered), nullptr, this);
+    m_text_ctrl_ = new wxTextCtrl(itemPanel6
+        , ID_FILE_NAME, wxEmptyString, wxDefaultPosition, wxSize(300, -1), wxTE_PROCESS_ENTER);
+    itemBoxSizer7->Add(m_text_ctrl_, 1, wxALL | wxGROW, 5);
+    m_text_ctrl_->Connect(ID_FILE_NAME
+        , wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameChanged), nullptr, this);
+    m_text_ctrl_->Connect(ID_FILE_NAME
+        , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameEntered), nullptr, this);
 
-        button_search = new wxButton(itemPanel6, wxID_SEARCH, _("&Search"));
-        itemBoxSizer7->Add(button_search, g_flags);
-    }
+    const wxString& file_button_label = this->is_importer_ ? _("&Search") : _("File");
+    wxButton* button_search = new wxButton(itemPanel6, wxID_SEARCH, file_button_label);
+    const wxString& file_tooltip = this->is_importer_
+        ? _("Choose CSV data file to Import") : _("Choose CSV data file to Export");
+    button_search->SetToolTip(file_tooltip);
+    itemBoxSizer7->Add(button_search, g_flags);
 
     // Predefined settings
     wxPanel* itemPanel67 = new wxPanel(this
@@ -580,26 +580,28 @@ bool mmUnivCSVDialog::validateData()
 
 void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 {
-    // date, amount, payee are required
+    // date and amount are required
     if (!isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT) 
         && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) || !isIndexPresent(UNIV_CSV_DEPOSIT))))
     {
-         wxMessageBox(_("Incorrect fields specified for CSV import! Requires at least Date and Amount.")
-             , _("Universal CSV Import"), wxOK | wxICON_WARNING);
+        mmShowWarningMessage(this
+            , _("Incorrect fields specified for CSV import! Requires at least Date and Amount.")
+            , _("Universal CSV Import"));
          return;
     }
 
     bool canceledbyuser = false;
-    wxString acctName = m_choice_account_->GetStringSelection();
+    const wxString acctName = m_choice_account_->GetStringSelection();
     Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
     if (from_account)
     {
         fromAccountID_ = from_account->ACCOUNTID;
-        wxString fileName = m_text_ctrl_->GetValue();
+        const wxString fileName = m_text_ctrl_->GetValue();
         wxFileName csv_file(fileName);
         if (fileName.IsEmpty() || !csv_file.FileExists())
         {
+            mmMessageFileInvalid(m_text_ctrl_);
             return;
         }
         else
@@ -607,8 +609,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             wxTextFile tFile(fileName);
             if (!tFile.Open())
             {
-                 wxMessageBox(_("Unable to open file."), _("Universal CSV Import"), wxOK|wxICON_WARNING);
-                 return;
+                mmMessageFileInvalid(m_text_ctrl_, true);
+                return;
             }
 
             wxFileName logFile = mmex::GetLogDir(true);
@@ -631,7 +633,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             wxString line;
             for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
             {
-                const wxString progressMsg = wxString::Format(_("Transactions imported from CSV\nto account %s : %i")
+                const wxString progressMsg = wxString::Format(_("Transactions imported from CSV\nto account %s : %ld")
                     , "'" + acctName + "'", countImported);
                 if (!progressDlg.Pulse(progressMsg))
                 {
@@ -718,7 +720,6 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             }
 
             progressDlg.Update(100);
-            progressDlg.Destroy();
 
             wxString msg = wxString::Format(_("Total Lines : %ld"), countNumTotal);
             msg << "\n";
@@ -764,20 +765,34 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
 void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
 {
+    // date and amount are required
+    if (!isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT)
+        && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) || !isIndexPresent(UNIV_CSV_DEPOSIT))))
+    {
+        mmShowWarningMessage(this
+            ,_("Incorrect fields specified for CSV export! Requires at least Date and Amount.")
+            , _("Universal CSV Export"));
+        return;
+    }
+
     auto &delimit = this->delimit_;
+    const wxString fileName = m_text_ctrl_->GetValue();
+    if (fileName.IsEmpty())
+    {
+        mmMessageFileInvalid(m_text_ctrl_);
+        return;
+    }
+    wxFileName csv_file(fileName);
+    if (csv_file.Exists()) {
+        if (wxMessageBox(_("Overwrite?"), _("File exists."), wxYES_NO | wxICON_WARNING) != wxYES)
+            return;
+    }
     const wxString &acctName = m_choice_account_->GetStringSelection();
     Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
-    if(from_account)
+    if (from_account)
     {
         int fromAccountID = from_account->ACCOUNTID;
-        wxString chooseExt;
-        chooseExt << _("CSV Files") << " (*.csv)|*.csv;*.CSV";
-        wxString fileName = wxFileSelector(_("Choose CSV data file to Export"),
-                            wxEmptyString, wxEmptyString, wxEmptyString, chooseExt, wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-        if (fileName.empty()) return;
-
-        correctEmptyFileExt("csv",fileName);
 
         wxFileOutputStream output(fileName);
         wxTextOutputStream text(output);
@@ -888,7 +903,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
         }
 
         wxString msg = wxString::Format(wxTRANSLATE("Transactions exported: %ld"), numRecords);
-        mmShowErrorMessage(this, wxGetTranslation(msg), _("Export to CSV"));
+        mmShowWarningMessage(this, wxGetTranslation(msg), _("Export to CSV"));
     }
 }
 
@@ -1159,30 +1174,38 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& /*event*/)
 void mmUnivCSVDialog::OnSearch(wxCommandEvent& /*event*/)
 {
     wxString fileName = m_text_ctrl_->GetValue();
+    const wxString& header = this->is_importer_
+        ? _("Choose CSV data file to import") : _("Choose CSV data file to Export");
+    long flags = this->is_importer_ ? wxFD_FILE_MUST_EXIST | wxFD_OPEN : wxFD_SAVE;
+    const wxString chooseExt = wxString() << _("CSV Files") << " (*.csv)|*.csv;*.CSV";
 
-    fileName = wxFileSelector(_("Choose CSV data file to import"),
-            wxEmptyString, fileName, wxEmptyString, "*.csv", wxFD_FILE_MUST_EXIST);
+    if (!this->is_importer_) correctEmptyFileExt("csv", fileName);
+
+    fileName = wxFileSelector(header
+        , fileName, wxEmptyString, chooseExt, "*.csv", flags);
 
     if (!fileName.IsEmpty())
     {
         m_text_ctrl_->SetValue(fileName);
 
-        wxTextFile tFile(fileName);
-        if (!tFile.Open())
-        {
-             *log_field_ << _("Unable to open file.") << "\n";
-             return;
-        }
+        if (this->is_importer_) {
+            wxTextFile tFile(fileName);
+            if (!tFile.Open())
+            {
+                *log_field_ << _("Unable to open file.") << "\n";
+                return;
+            }
 
-        wxString line;
-        size_t count = 0;
-        for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
-        {
-            *log_field_ << line << "\n";
-            if (++ count >= 10) break;
+            wxString line;
+            size_t count = 0;
+            for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
+            {
+                *log_field_ << line << "\n";
+                if (++count >= 10) break;
+            }
+            *log_field_ << "\n";
+            this->update_preview();
         }
-        *log_field_ << "\n";
-        this->update_preview();
     }
 }
 

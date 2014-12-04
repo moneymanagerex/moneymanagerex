@@ -417,6 +417,19 @@ void mmMessageCategoryInvalid(wxWindow *button)
     tip.ShowFor(button);
 }
 
+void mmMessageFileInvalid(wxWindow *object, bool open)
+{
+    const wxString& errorHeader = open ? _("Unable to open file.") : _("File name is empty.");
+    wxString errorMessage = _("Please select the file for this operation.");
+
+    const wxString errorTips = _("Selection can be made by using Search button.");
+    errorMessage = errorMessage + "\n\n" + errorTips + "\n";
+
+    wxRichToolTip tip(errorHeader, errorMessage);
+    tip.SetIcon(wxICON_WARNING);
+    tip.ShowFor(object);
+}
+
 void mmMessageAccountInvalid(wxWindow *object, bool transfer)
 {
     const wxString& errorHeader = _("Invalid Account");
