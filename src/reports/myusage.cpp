@@ -110,18 +110,18 @@ const char *usage_template = R"(
 )";
 
 mmReportMyUsage::mmReportMyUsage(mmDateRange* date_range)
-: m_date_range(date_range)
-, mmPrintableBase("My Usage", _("My Usage"))
+: mmPrintableBase("My Usage", _("My Usage"))
 {
-    if (m_date_range)
-    {
-        this->m_title += _(" - ") + m_date_range->title();
-        this->m_local_title += " - " + m_date_range->local_title();
-    }
+    this->m_date_range = date_range;
 }
 
 mmReportMyUsage::~mmReportMyUsage()
 {}
+
+bool mmReportMyUsage::has_date_range()
+{
+    return true;
+}
 
 wxString mmReportMyUsage::getHTMLText()
 {

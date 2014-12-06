@@ -369,13 +369,6 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     wxTreeItemId myusage = navTreeCtrl_->AppendItem(reports, _("My Usage"), 4, 4);
     navTreeCtrl_->SetItemData(myusage, new mmTreeItemData(new mmReportMyUsage()));
 
-    for (const auto & date_range : this->m_all_date_ranges)
-    {
-        mmReportMyUsage* sub_mysuage_report = new mmReportMyUsage(date_range);
-        wxTreeItemId sub_mysuage = navTreeCtrl_->AppendItem(myusage, date_range->local_title(), 4, 4);
-        navTreeCtrl_->SetItemData(sub_mysuage, new mmTreeItemData(sub_mysuage_report));
-    }
-
     //////////////////////////////////////////////////////////////////
 
     wxTreeItemId stocksReportSummary = navTreeCtrl_->AppendItem(reports, _("Stocks Report"), 4, 4);

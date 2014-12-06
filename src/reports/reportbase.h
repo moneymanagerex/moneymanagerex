@@ -24,21 +24,26 @@
 #include "model/Model_Report.h"
 class wxString;
 class wxArrayString;
+class mmDateRange;
 //----------------------------------------------------------------------------
 
 class mmPrintableBase
 {
 public:
-    mmPrintableBase(): m_title("mmPrintableBase"), m_local_title(_("mmPrintableBase")){}
-    mmPrintableBase(const wxString& title, const wxString& local_title): m_title(title), m_local_title(local_title) {}
+    mmPrintableBase(): m_title("mmPrintableBase"), m_local_title(_("mmPrintableBase")), m_date_range(nullptr) {}
+    mmPrintableBase(const wxString& title, const wxString& local_title): m_title(title), m_local_title(local_title), m_date_range(nullptr) {}
     virtual ~mmPrintableBase() {}
     virtual wxString getHTMLText() = 0;
     virtual void RefreshData() {}
-    virtual wxString title() const { return m_title; }
-    virtual wxString local_title() const { return m_local_title; }
+    virtual wxString title() const;
+    virtual wxString local_title() const;
+    virtual bool has_date_range() { return false;}
+public:
+    void date_range(const mmDateRange* date_range) { this->m_date_range = date_range; }
 protected:
     wxString m_title;
     wxString m_local_title; // after wxGetTranslation or _()
+    const mmDateRange* m_date_range;
 };
 
 class mmGeneralReport : public mmPrintableBase

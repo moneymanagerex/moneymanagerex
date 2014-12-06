@@ -86,7 +86,13 @@ private:
     mmReportsPanel *m_reportPanel;
 };
 
+enum
+{
+    ID_CHOICE_DATE_RANGE = wxID_HIGHEST + 1,
+};
+
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
+    EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
 wxEND_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
@@ -95,9 +101,30 @@ mmReportsPanel::mmReportsPanel(
     const wxSize& size, long style,
     const wxString& name )
     : rb_(rb)
+    , m_date_ranges(nullptr)
     , cleanup_(cleanupReport)
     , m_frame(frame)
 {
+    m_all_date_ranges.push_back(new mmCurrentMonth());
+    m_all_date_ranges.push_back(new mmCurrentMonthToDate());
+    m_all_date_ranges.push_back(new mmLastMonth());
+    m_all_date_ranges.push_back(new mmLast30Days());
+    m_all_date_ranges.push_back(new mmLast90Days());
+    m_all_date_ranges.push_back(new mmLast3Months());
+    m_all_date_ranges.push_back(new mmLast12Months());
+    m_all_date_ranges.push_back(new mmCurrentYear());
+    m_all_date_ranges.push_back(new mmCurrentYearToDate());
+    m_all_date_ranges.push_back(new mmLastYear());
+
+    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
+
+    m_all_date_ranges.push_back(new mmCurrentFinancialYear(day, month));
+    m_all_date_ranges.push_back(new mmCurrentFinancialYearToDate(day, month));
+    m_all_date_ranges.push_back(new mmLastFinancialYear(day, month));
+    m_all_date_ranges.push_back(new mmAllTime());
+    m_all_date_ranges.push_back(new mmLast365Days());
+
     Create(parent, winid, pos, size, style, name);
 }
 
@@ -105,6 +132,8 @@ mmReportsPanel::~mmReportsPanel()
 {
     if (cleanup_ && rb_)
         delete rb_;
+    std::for_each(m_all_date_ranges.begin(), m_all_date_ranges.end(), std::mem_fun(&mmDateRange::destroy));
+    m_all_date_ranges.clear();
 }
 
 bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
@@ -125,7 +154,6 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
 
 void mmReportsPanel::saveReportText()
 {
-    htmlreport_ = "coming soon..."; //TODO: ??
     if (rb_)
     {
         json::Object o;
@@ -133,11 +161,14 @@ void mmReportsPanel::saveReportText()
         o[L"name"] = json::String(rb_->title().ToStdWstring());
         o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
 
-        htmlreport_ = rb_->getHTMLText();
+        if (this->m_date_ranges)
+            rb_->date_range((mmDateRange*)this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
+
+        wxString html = rb_->getHTMLText();
 
         wxFileOutputStream index_output(mmex::getReportIndex());
         wxTextOutputStream index_file(index_output);
-        index_file << htmlreport_;
+        index_file << html;
         index_output.Close();
         o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
         Model_Usage::instance().append(o);
@@ -153,13 +184,26 @@ void mmReportsPanel::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer2->Add(itemPanel3, 0, wxGROW|wxALL, 5);
 
-    wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
-    itemPanel3->SetSizer(itemBoxSizerVHeader);
+    wxBoxSizer* itemBoxSizerHeader = new wxBoxSizer(wxHORIZONTAL);
+    itemPanel3->SetSizer(itemBoxSizerHeader);
 
     wxStaticText* itemStaticText9 = new wxStaticText(itemPanel3
         , wxID_ANY, _("REPORTS"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizerVHeader->Add(itemStaticText9, 0, wxALL, 1);
+    itemBoxSizerHeader->Add(itemStaticText9, 0, wxALL, 1);
+
+    if (rb_ && rb_->has_date_range())
+    {
+        m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE);
+
+        for (const auto & date_range: m_all_date_ranges)
+        {
+            m_date_ranges->Append(date_range->local_title(), date_range);
+        }
+        m_date_ranges->SetSelection(0);
+
+        itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
+    }
 
     browser_ = wxWebView::New(this, mmID_BROWSER);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
@@ -172,4 +216,10 @@ void mmReportsPanel::CreateControls()
 void mmReportsPanel::PrintPage()
 {
     browser_->Print();
+}
+
+void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
+{
+    this->saveReportText();
+    browser_->LoadURL(getURL(mmex::getReportIndex()));
 }

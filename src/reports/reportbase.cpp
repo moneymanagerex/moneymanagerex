@@ -18,7 +18,24 @@
 
 #include "reportbase.h"
 #include "mmex.h"
+#include "mmDateRange.h"
 #include "model/Model_Account.h"
+
+wxString mmPrintableBase::title() const
+{
+    if (!m_date_range) 
+        return m_title; 
+    else 
+        return m_title + " - " + m_date_range->title();
+}
+
+wxString mmPrintableBase::local_title() const
+{
+    if (!m_date_range) 
+        return m_local_title; 
+    else 
+        return m_local_title + _(" - ") + m_date_range->local_title();
+}
 
 mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
 : mmPrintableBase()

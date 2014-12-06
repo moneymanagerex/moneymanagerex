@@ -22,6 +22,7 @@
 #include "mmpanelbase.h"
 #include "reports/reportbase.h"
 class mmGUIFrame;
+class mmDateRange;
 class mmReportsPanel : public mmPanelBase
 {
     wxDECLARE_EVENT_TABLE();
@@ -48,11 +49,15 @@ public:
     void sortTable() {}
 
     void saveReportText();
-    wxString getReportText() const { return htmlreport_; }
     mmPrintableBase* getPrintableBase() { return rb_; }
     void PrintPage();
 
+public:
+    void OnDateRangeChanged(wxCommandEvent& event);
+
 protected:
+    std::vector<mmDateRange*> m_all_date_ranges;
+    wxChoice* m_date_ranges;
     wxWebView * browser_;
     mmPrintableBase* rb_;
 

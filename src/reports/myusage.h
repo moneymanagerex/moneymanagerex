@@ -27,8 +27,6 @@ public:
     explicit mmReportMyUsage(mmDateRange* date_range = 0);
     virtual ~mmReportMyUsage();
 
+    virtual bool has_date_range();
     virtual wxString getHTMLText();
-
-private:
-    const mmDateRange* m_date_range;
 };
