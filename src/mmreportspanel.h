@@ -58,6 +58,7 @@ public:
 protected:
     std::vector<mmDateRange*> m_all_date_ranges;
     wxChoice* m_date_ranges;
+    wxDatePickerCtrl *m_start_date, *m_end_date;
     wxWebView * browser_;
     mmPrintableBase* rb_;
 

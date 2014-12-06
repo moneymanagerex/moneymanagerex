@@ -203,6 +203,17 @@ void mmReportsPanel::CreateControls()
         m_date_ranges->SetSelection(0);
 
         itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
+        const mmDateRange* date_range = *m_all_date_ranges.begin();
+        m_start_date = new wxDatePickerCtrl(itemPanel3, wxID_ANY);
+        m_start_date->SetValue(date_range->start_date());
+        m_start_date->Enable(false);
+
+        m_end_date = new wxDatePickerCtrl(itemPanel3, wxID_ANY);
+        m_end_date->SetValue(date_range->end_date());
+        m_end_date->Enable(false);
+
+        itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
+        itemBoxSizerHeader->Add(m_end_date, 0, wxALL, 1);
     }
 
     browser_ = wxWebView::New(this, mmID_BROWSER);
@@ -220,6 +231,9 @@ void mmReportsPanel::PrintPage()
 
 void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
 {
+    const mmDateRange* date_range = (mmDateRange*)this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection());
+    this->m_start_date->SetValue(date_range->start_date());
+    this->m_end_date->SetValue(date_range->end_date());
     this->saveReportText();
     browser_->LoadURL(getURL(mmex::getReportIndex()));
 }
