@@ -156,13 +156,13 @@ void mmReportsPanel::saveReportText()
 {
     if (rb_)
     {
+        if (this->m_date_ranges)
+            rb_->date_range((mmDateRange*)this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
+
         json::Object o;
         o[L"module"] = json::String(L"Report");
         o[L"name"] = json::String(rb_->title().ToStdWstring());
         o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
-
-        if (this->m_date_ranges)
-            rb_->date_range((mmDateRange*)this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
 
         wxString html = rb_->getHTMLText();
 
