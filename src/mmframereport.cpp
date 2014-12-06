@@ -118,7 +118,11 @@ private:
 
 void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting)
 {
+    //////////////////////////////////////////////////////////////////
+    wxTreeItemId myusage = navTreeCtrl_->AppendItem(reports, _("My Usage"), 4, 4);
+    navTreeCtrl_->SetItemData(myusage, new mmTreeItemData(new mmReportMyUsage()));
 
+    //////////////////////////////////////////////////////////////////
     wxTreeItemId reportsSummary = navTreeCtrl_->AppendItem(reports, _("Monthly Summary of Accounts"), 4, 4);
     navTreeCtrl_->SetItemData(reportsSummary, new mmTreeItemData("Monthly Summary of Accounts"
         , new mmReportSummaryByDate(this, 0)));
@@ -364,10 +368,6 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
 
     wxTreeItemId transactionList = navTreeCtrl_->AppendItem(reports, _("Transaction Report"), 6, 6);
     navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));
-
-    //////////////////////////////////////////////////////////////////
-    wxTreeItemId myusage = navTreeCtrl_->AppendItem(reports, _("My Usage"), 4, 4);
-    navTreeCtrl_->SetItemData(myusage, new mmTreeItemData(new mmReportMyUsage()));
 
     //////////////////////////////////////////////////////////////////
 
