@@ -38,7 +38,7 @@ wxString mmPrintableBase::local_title() const
 }
 
 mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
-: mmPrintableBase()
+: mmPrintableBase(report->REPORTNAME, wxGetTranslation(report->REPORTNAME))
 , m_report(report)
 {
 }
