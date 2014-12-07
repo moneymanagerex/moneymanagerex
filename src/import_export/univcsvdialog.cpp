@@ -547,11 +547,10 @@ bool mmUnivCSVDialog::validateData()
     if (dt_.Trim().IsEmpty() || amount_.Trim().IsEmpty() || type_.Trim().IsEmpty())
         return false;
 
-    if (payeeID_ == -1) {
-        Model_Payee::Data* payee = Model_Payee::instance().get(_("Unknown"));
-        if (payee)
-            payeeID_ = payee->PAYEEID;
-        else
+    Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+    if (!payee) {
+        Model_Payee::Data* u = Model_Payee::instance().get(_("Unknown"));
+        if (!u)
         {
             Model_Payee::Data *p = Model_Payee::instance().create();
             p->PAYEENAME = _("Unknown");
@@ -562,8 +561,16 @@ bool mmUnivCSVDialog::validateData()
             log_field_->AppendText(wxString() << sMsg << "\n");
         }
     }
+    else
+    {
+        if (categID_ < 0){
+            categID_ = payee->CATEGID;
+            subCategID_ = payee->SUBCATEGID;
+        }
+    }
 
-    if (categID_ == -1) {
+    if (categID_ == -1) //The category name is missing in SCV file and not assigned for the payee
+    {
         Model_Category::Data* categ = Model_Category::instance().get(_("Unknown"));
         if (categ)
             categID_ = categ->CATEGID;
