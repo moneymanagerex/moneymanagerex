@@ -579,7 +579,7 @@ mmex_util.o: $(srcdir)/src/util.cpp
 mmex_webapp.o: $(srcdir)/src/webapp.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/webapp.cpp
 
-mmex_webapp.o: $(srcdir)/src/webappdialog.cpp
+mmex_webappdialog.o: $(srcdir)/src/webappdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/webappdialog.cpp
 	
 mmex_webserver.o: $(srcdir)/src/webserver.cpp
