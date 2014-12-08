@@ -55,7 +55,7 @@ public:
     mmGeneralReportManager( ) {}
     virtual ~mmGeneralReportManager();
 
-    mmGeneralReportManager(wxWindow* parent);
+    mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db);
     wxString OnGetItemText(long item, long column) const;
 
 private:
@@ -90,8 +90,13 @@ private:
     void createOutputTab(wxNotebook* notebook, int type);
     void showHelp();
 
+    bool getColumns(const wxString& sql, std::vector<std::pair<wxString, int> > &colHeaders);
+    void getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString>> &sqlTableInfo);
+    bool getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData);
+    wxString getTemplate(const wxString& sql);
     std::vector <std::vector <wxString> > m_sqlQueryData;
 
+    wxSQLite3Database* m_db;
     wxWebView* m_outputHTML;
 
     wxButton* m_buttonOpen;

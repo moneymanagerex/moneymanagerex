@@ -2217,7 +2217,7 @@ void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
 {
     if (!m_db) return;
 
-    mmGeneralReportManager dlg(this);
+    mmGeneralReportManager dlg(this, m_db.get());
     dlg.ShowModal();
     updateNavTreeControl();
     createHomePage(); //FIXME: refreshPanelData() crash if GRM opened then closed;

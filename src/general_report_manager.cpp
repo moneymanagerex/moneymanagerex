@@ -120,6 +120,68 @@ static const wxString SAMPLE_ASSETS_HTT = R"(
 </html>
 )";
 
+static const char *HTT_CONTEINER = R"(<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http - equiv = "Content-Type" content = "text/html">
+    <title><TMPL_VAR REPORTNAME></title>
+    <script src = "ChartNew.js"></script>
+    <script src = "sorttable.js"></script>
+    <link href = "master.css" rel = "stylesheet">
+</head>
+<body>
+<div class = "container">
+<h3><TMPL_VAR REPORTNAME></h3>
+<TMPL_VAR TODAY><hr>
+<div class = "row">
+<div class = "col-xs-2"></div>
+<div class = "col-xs-8">
+<table class = "table">
+<thead>
+    <tr>
+%s
+    </tr>
+</thead>
+<tbody>
+    <TMPL_LOOP NAME=CONTENTS>
+        <tr>
+%s
+        </tr>
+    </TMPL_LOOP>
+</tbody>
+
+</table>
+</div>
+<TMPL_LOOP ERRORS>
+    <TMPL_VAR ERROR>
+</TMPL_LOOP>
+</div>
+</div>
+</body>
+<script>
+    <!-- Format double to base currency -->
+    function currency(n) {
+        n = parseFloat(n);
+        n =  isNaN(n) ? 0 : n.toFixed(2);
+        var out = n.toString().replace(".", "|");
+        out = out.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "<TMPL_VAR GROUP_SEPARATOR>");
+        out = out.replace("|", "<TMPL_VAR DECIMAL_POINT>");
+        return out;
+    }
+    var elements= document.getElementsByClassName("money");
+    for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        element.style.textAlign='right';
+        if (element.innerHTML.indexOf("-") > -1) {
+            element.style.color="#ff0000";
+        } 
+        element.innerHTML = '<TMPL_VAR PFX_SYMBOL>' + currency(element.innerHTML) +'<TMPL_VAR SFX_SYMBOL>';
+    }
+</script>
+</html>
+)";
+
 class MyTreeItemData : public wxTreeItemData
 {
 public:
@@ -154,8 +216,9 @@ sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindow
 {
 }
 
-mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
+mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db)
     : m_buttonOpen()
+    , m_db(db)
     , m_buttonSave()
     , m_buttonSaveAs()
     , m_buttonRun()
@@ -386,7 +449,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 
         // Populate database view
         std::vector<std::pair<wxString, wxArrayString>> sqlTableInfo;
-        Model_Report::instance().getSqlTableInfo(sqlTableInfo);
+        this->getSqlTableInfo(sqlTableInfo);
         wxTreeItemId root_id = dbView->AddRoot("Tables");
         for (const auto& t : sqlTableInfo)
         {
@@ -411,7 +474,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
     const wxString sql = selected_sql.empty() ? sqlText->GetValue() : selected_sql;
 
     wxLongLong interval = wxGetUTCTimeMillis();
-    if (Model_Report::instance().getSqlQuery(sql, m_sqlQueryData))
+    if (this->getSqlQuery(sql, m_sqlQueryData))
     {
         m_sqlListBox->DeleteAllColumns();
         interval = wxGetUTCTimeMillis() - interval;
@@ -420,7 +483,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
 
         MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
         std::vector<std::pair<wxString, int> > colHeaders;
-        bool colsOK = Model_Report::instance().getColumns(sql, colHeaders);
+        bool colsOK = this->getColumns(sql, colHeaders);
         wxButton* b = (wxButton*) FindWindow(wxID_NEW);
         b->Enable(colsOK && templateText->GetValue().empty());
         int pos = 0;
@@ -451,7 +514,7 @@ void mmGeneralReportManager::OnNewTemplate(wxCommandEvent& event)
     wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
     n->SetSelection(ID_TAB_HTT);
 
-    templateText->ChangeValue(Model_Report::instance().getTemplate(sqlText->GetValue()));
+    templateText->ChangeValue(this->getTemplate(sqlText->GetValue()));
 
     wxButton* b = (wxButton*) FindWindow(wxID_NEW);
     b->Enable(false);
@@ -876,3 +939,107 @@ void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
 {
     EndModal(wxID_OK);
 }
+
+bool mmGeneralReportManager::getColumns(const wxString& sql, std::vector<std::pair<wxString, int> > &colHeaders)
+{
+    wxSQLite3Statement stmt;
+    wxSQLite3ResultSet q;
+    int columnCount = 0;
+    try
+    {
+        stmt = this->m_db->PrepareStatement(sql);
+        if (!stmt.IsReadOnly())
+            return false;
+        q = stmt.ExecuteQuery();
+        columnCount = q.GetColumnCount();
+    }
+    catch (const wxSQLite3Exception& /*e*/)
+    {
+        return false;
+    }
+
+    for (int i = 0; i < columnCount; ++i)
+    {
+        std::pair<wxString, int> col_and_type;
+        col_and_type.second = q.GetColumnType(i);
+        col_and_type.first = q.GetColumnName(i);
+
+        colHeaders.push_back(col_and_type);
+    }
+    return true;
+}
+
+void mmGeneralReportManager::getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString>> &sqlTableInfo)
+{
+    const wxString sqlTables = "SELECT type, name FROM sqlite_master WHERE type = 'table' or type = 'view' ORDER BY type, name";
+    const wxString sqlColumns = "PRAGMA table_info(%s);";
+    sqlTableInfo.clear();
+
+    // Get a list of the database tables
+    wxSQLite3Statement stmtTables = this->m_db->PrepareStatement(sqlTables);
+    wxSQLite3ResultSet qTables = stmtTables.ExecuteQuery();
+    while (qTables.NextRow())
+    {
+        const wxString table_name = qTables.GetAsString(1);
+
+        // Get a list of the table columns
+        const wxString& sql = wxString::Format(sqlColumns, table_name);
+        wxSQLite3Statement stmtColumns = this->m_db->PrepareStatement(sql);
+        wxSQLite3ResultSet qColumns = stmtColumns.ExecuteQuery();
+        wxArrayString column_names;
+        while (qColumns.NextRow())
+            column_names.push_back(qColumns.GetAsString(1));
+
+        sqlTableInfo.push_back(std::make_pair(table_name, column_names));
+    }
+}
+
+bool mmGeneralReportManager::getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData)
+{
+    wxSQLite3ResultSet q;
+    int columnCount = 0;
+    try
+    {
+        wxString temp = sql;
+        temp.Trim();
+        if (temp.Last() != ';') temp += ';';
+        wxSQLite3Statement stmt = this->m_db->PrepareStatement(temp);
+        if (!stmt.IsReadOnly())
+            return false;
+        q = stmt.ExecuteQuery();
+        columnCount = q.GetColumnCount();
+    }
+    catch (const wxSQLite3Exception& /*e*/)
+    {
+        return false;
+    }
+
+    sqlQueryData.clear();
+    while (q.NextRow())
+    {
+        std::vector<wxString> row;
+        for (int i = 0; i < columnCount; ++i)
+            row.push_back(q.GetAsString(i));
+        sqlQueryData.push_back(row);
+    }
+    return true;
+}
+
+wxString mmGeneralReportManager::getTemplate(const wxString& sql)
+{
+    wxString body, header;
+    std::vector<std::pair<wxString, int> > colHeaders;
+    this->getColumns(sql, colHeaders);
+    for (const auto& col : colHeaders)
+    {
+        header += wxString::Format("        <th>%s</th>\n", col.first);
+        if (col.second == WXSQLITE_FLOAT)
+            body += wxString::Format("        <td class = \"money\"><TMPL_VAR \"%s\"></td>\n", col.first);
+        else if (col.second == WXSQLITE_INTEGER)
+            body += wxString::Format("        <td class = \"text-right\"><TMPL_VAR \"%s\"></td>\n", col.first);
+        else
+            body += wxString::Format("        <td><TMPL_VAR \"%s\"></td>\n", col.first);
+    }
+    return wxString::Format(HTT_CONTEINER, header, body);
+}
+
