@@ -42,7 +42,7 @@ const char *usage_template = R"(
 <h3><TMPL_VAR REPORTNAME>
 
 <select id="chart-type" onchange='onChartChange(this)'>
-    <option value="line">Line Chart</option>
+    <option value="line" selected>Line Chart</option>
     <option value="bar">Bar Chart</option>
 </select>
 </h3>
