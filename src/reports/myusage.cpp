@@ -39,7 +39,13 @@ const char *usage_template = R"(
 <body>
 
 <div class = "container">
-<h3><TMPL_VAR REPORTNAME></h3>
+<h3><TMPL_VAR REPORTNAME>
+
+<select id="chart-type" onchange='onChartChange(this)'>
+    <option value="line">Line Chart</option>
+    <option value="bar">Bar Chart</option>
+</select>
+</h3>
 <TMPL_VAR TODAY><hr>
 
 <div class = "row">
@@ -48,7 +54,7 @@ const char *usage_template = R"(
 
 <canvas id="mycanvas" height="200" width="600"></canvas>
 <script>
-    var LineData = {
+    var data = {
     labels: [
             <TMPL_LOOP NAME=CONTENTS>
                 <TMPL_IF NAME=__LAST__>
@@ -80,8 +86,19 @@ const char *usage_template = R"(
     var opts= { annotateDisplay : true, responsive : true };
 
     window.onload = function() {
-        var myBar = new Chart(document.getElementById("mycanvas").getContext("2d")).Line(LineData,opts);
+        var myBar = new Chart(document.getElementById("mycanvas").getContext("2d")).Line(data,opts);
     }
+
+    function onChartChange(select){
+        var value = select.value;
+        if (value == "line") {
+           new Chart(document.getElementById("mycanvas").getContext("2d")).Line(data,opts); 
+        }
+        else if (value == "bar") {
+           new Chart(document.getElementById("mycanvas").getContext("2d")).Bar(data,opts);
+        }
+    }
+
 </script>
 <div class = "col-xs-4"></div>
 <div class = "col-xs-4">
