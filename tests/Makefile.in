@@ -198,6 +198,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_transdialog.o \
 	mmex_tests_util.o \
 	mmex_tests_webapp.o \
+	mmex_tests_webappdialog.o \
 	mmex_tests_webserver.o \
 	mmex_tests_wizard_newaccount.o \
 	mmex_tests_wizard_newdb.o \
@@ -701,6 +702,9 @@ mmex_tests_util.o: $(srcdir)/../src/util.cpp
 mmex_tests_webapp.o: $(srcdir)/../src/webapp.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/webapp.cpp
 
+mmex_tests_webappdialog.o: $(srcdir)/../src/webappdialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/webappdialog.cpp
+	
 mmex_tests_webserver.o: $(srcdir)/../src/webserver.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/webserver.cpp
 

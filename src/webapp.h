@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "defs.h"
 #include <wx/spinctrl.h>
+#include <vector>
 
 class wxString;
 //Parameters used in services.php
@@ -52,17 +53,33 @@ const static wxString getGuid();
 /** Return services page URL with GUID inserted */
 const static wxString getServicesPageURL();
 
-
 //Internal function
 const static wxString WebApp_getApiVersion();
 static int WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString& Output);
 static bool WebApp_DeleteAllAccount();
 static bool WebApp_DeleteAllPayee();
 static bool WebApp_DeleteAllCategory();
-static bool WebApp_DeleteOneTransaction(int& WebAppTransactionId);
-static wxString WebApp_DownloadOneAttachment(wxString& AttachmentName, int& DesktopTransactionID, int& AttachmentNr);
+static wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, const int& DesktopTransactionID, const int& AttachmentNr);
 
 public:
+    /*WebApp transaction Structure*/
+    struct webtran_holder
+    {
+        int ID;
+        wxDateTime Date;
+        wxString Account;
+        wxString ToAccount;
+        wxString Status;
+        wxString Type;
+        wxString Payee;
+        wxString Category;
+        wxString SubCategory;
+        double Amount;
+        wxString Notes;
+        wxString Attachments;
+    };
+    typedef std::vector<webtran_holder> WebTranVector;
+
     static bool returnResult(int& ErrorCode, wxString& outputMessage);
 
     /** Return true if WebApp is enabled */
@@ -83,14 +100,17 @@ public:
     /** Update all categories on WebApp */
     static bool WebApp_UpdateCategory();
 
-    /** Return true if there are new transaction on WebApp */
-    static int WebApp_CheckNewTransaction();
-
-    /** Download oldest new transaction JSON */
-    static bool WebApp_DownloadNewTransaction(wxString& NewTransactionJSON);
+    /** Download new transaction */
+    static bool WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool& CheckOnly);
 
     /** Insert transaction in MMEX desktop, returns transaction ID */
-    static int MMEX_InsertNewTransaction(wxString& NewTransactionJSON, int& TrProgressive);
+    static int MMEX_InsertNewTransaction(webtran_holder& WebAppTrans);
+
+    /** Delete transaction from WebApp */
+    static bool WebApp_DeleteOneTransaction(const int& WebAppTransactionId);
+
+    /* Return attachment URL */
+    static wxString WebApp_GetAttachment(const wxString& AttachmentFileName);
 
     //FUNCTIONS CALLED IN MMEX TO UPDATE ON CHANGE
     /** Update all payees on WebApp if enabled */

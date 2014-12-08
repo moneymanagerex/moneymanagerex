@@ -356,6 +356,7 @@
     <ClCompile Include="..\..\src\import_export\univcsvdialog.cpp" />
     <ClCompile Include="..\..\src\util.cpp" />
     <ClCompile Include="..\..\src\webapp.cpp" />
+	<ClCompile Include="..\..\src\webappdialog.cpp" />
     <ClCompile Include="..\..\src\webserver.cpp" />
     <ClCompile Include="..\..\src\wizard_newaccount.cpp" />
     <ClCompile Include="..\..\src\wizard_newdb.cpp" />
@@ -495,6 +496,7 @@
     <ClInclude Include="..\..\src\util.h" />
     <ClInclude Include="..\..\src\validators.h" />
     <ClInclude Include="..\..\src\webapp.h" />
+	<ClInclude Include="..\..\src\webappdialog.h" />
     <ClInclude Include="..\..\src\webserver.h" />
     <ClInclude Include="..\..\src\wizard_newaccount.h" />
     <ClInclude Include="..\..\src\wizard_newdb.h" />

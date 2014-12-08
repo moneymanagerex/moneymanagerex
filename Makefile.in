@@ -152,6 +152,7 @@ MMEX_OBJECTS =  \
 	mmex_transdialog.o \
 	mmex_util.o \
 	mmex_webapp.o \
+	mmex_webappdialog.o \
 	mmex_webserver.o \
 	mmex_wizard_newaccount.o \
 	mmex_wizard_newdb.o \
@@ -578,6 +579,9 @@ mmex_util.o: $(srcdir)/src/util.cpp
 mmex_webapp.o: $(srcdir)/src/webapp.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/webapp.cpp
 
+mmex_webapp.o: $(srcdir)/src/webappdialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/webappdialog.cpp
+	
 mmex_webserver.o: $(srcdir)/src/webserver.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/webserver.cpp
 

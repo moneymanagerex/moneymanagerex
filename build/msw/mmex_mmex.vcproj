@@ -745,6 +745,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\webappdialog.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\webserver.cpp"
 				>
 			</File>
@@ -1220,6 +1224,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\webapp.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\webappdialog.h"
 				>
 			</File>
 			<File

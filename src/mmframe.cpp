@@ -85,6 +85,7 @@
 #include "search/Search.h"
 #include "transdialog.h"
 #include "webapp.h"
+#include "webappdialog.h"
 #include "wizard_newdb.h"
 #include "wizard_newaccount.h"
 #include "mmHook.h"
@@ -147,6 +148,7 @@ EVT_MENU(MENU_EXPORT_CSV, mmGUIFrame::OnExportToCSV)
 EVT_MENU(MENU_EXPORT_QIF, mmGUIFrame::OnExportToQIF)
 EVT_MENU(MENU_IMPORT_QIF, mmGUIFrame::OnImportQIF)
 EVT_MENU(MENU_IMPORT_UNIVCSV, mmGUIFrame::OnImportUniversalCSV)
+EVT_MENU(MENU_IMPORT_WEBAPP, mmGUIFrame::OnImportWebApp)
 EVT_MENU(wxID_EXIT, mmGUIFrame::OnQuit)
 EVT_MENU(MENU_NEWACCT, mmGUIFrame::OnNewAccount)
 EVT_MENU(MENU_ACCTLIST, mmGUIFrame::OnAccountList)
@@ -512,42 +514,13 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             mmWebApp::WebApp_UpdatePayee();
             mmWebApp::WebApp_UpdateCategory();
 
-            int NewTransactions = mmWebApp::WebApp_CheckNewTransaction();
-            if (NewTransactions > 0)
+            mmWebApp::WebTranVector dummy;
+            if (mmWebApp::WebApp_DownloadNewTransaction(dummy, true))
             {
-                wxString msgStr = wxString() << _("New transactions found on web app") << "\n" <<
-                    _("Do you want to download them?");
-                int NewTransactionResponse = wxMessageBox(msgStr, _("Download WebApp new transaction"), wxYES_NO);
-                if (NewTransactionResponse == wxYES)
-                {
-                    wxString NewTransactionJSON;
-                    if (mmWebApp::WebApp_DownloadNewTransaction(NewTransactionJSON))
-                    {
-                        for (int i = 0; i < NewTransactions - 1; i++)
-                        {
-                            int InsertedTransactionID = mmWebApp::MMEX_InsertNewTransaction(NewTransactionJSON, i);
-                            if (InsertedTransactionID > 0)
-                            {
-                                mmTransDialog EditTransactionDialog(this, 1, InsertedTransactionID);
-                                EditTransactionDialog.ShowModal();
-                            }
-                            else if (InsertedTransactionID == 0)
-                            {
-                                wxString msgStr = wxString() << _("Unable to insert transaction in MMEX database") << "\n";
-                                wxMessageBox(msgStr, _("WebApp communication error"), wxICON_ERROR);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        wxString msgStr = wxString() << _("Unable to download new transaction from WebApp") << "\n";
-                        wxMessageBox(msgStr, _("WebApp communication error"), wxICON_ERROR);
-                    }
-                }
-                else
-                {
-                    //Response NO
-                }
+                mmWebAppDialog dlg(this);
+                dlg.ShowModal();
+                if (dlg.getRefreshRequested())
+                    refreshPanelData();
             }
         }
     }
@@ -1381,9 +1354,9 @@ void mmGUIFrame::createMenu()
     menu_file->Append(MENU_EXPORT, _("&Export"), exportMenu);
 
     wxMenu* importMenu = new wxMenu;
-    importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV Files...")
-        , _("Import from any CSV file"));
+    importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV Files..."), _("Import from any CSV file"));
     importMenu->Append(MENU_IMPORT_QIF, _("&QIF Files..."), _("Import from QIF"));
+    importMenu->Append(MENU_IMPORT_WEBAPP, _("&WebApp..."), _("Import from WebApp"));
     menu_file->Append(MENU_IMPORT, _("&Import"), importMenu);
 
     menu_file->AppendSeparator();
@@ -2080,6 +2053,21 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
         createCheckingAccountPage(univCSVDialog.ImportedAccountID());
         if (account) setAccountNavTreeSection(account->ACCOUNTNAME);
+    }
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnImportWebApp(wxCommandEvent& /*event*/)
+{
+    if (mmWebApp::WebApp_CheckEnabled())
+    {
+        if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
+        {
+            mmWebAppDialog dlg(this);
+            dlg.ShowModal();
+            if (dlg.getRefreshRequested())
+                refreshPanelData();
+        }
     }
 }
 //----------------------------------------------------------------------------

@@ -168,6 +168,7 @@ private:
     void OnImportQFX(wxCommandEvent& event);
     void OnImportUniversalCSV(wxCommandEvent& event);
     void OnImportQIF(wxCommandEvent& event);
+    void OnImportWebApp(wxCommandEvent& event);
     void OnPrintPage(wxCommandEvent& WXUNUSED(event));
     void OnQuit(wxCommandEvent& event);
     void OnBillsDeposits(wxCommandEvent& event);
@@ -272,6 +273,7 @@ private:
         MENU_GOOGLEPLAY,
         MENU_IMPORT,
         MENU_IMPORT_UNIVCSV,
+        MENU_IMPORT_WEBAPP,
         MENU_REPORTISSUES,
         MENU_ANNOUNCEMENTMAILING,
         MENU_FACEBOOK,
