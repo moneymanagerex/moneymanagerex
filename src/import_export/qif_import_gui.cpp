@@ -335,13 +335,17 @@ bool mmQIFImportDialog::mmReadQIFFile()
             continue;
         }
         //Parse Categories
-        wxStringTokenizer token(trx[CategorySplit], "\n");
-        while (token.HasMoreTokens())
+        const wxString& s = trx.find(CategorySplit) != trx.end() ? trx[CategorySplit] : "";
+        if (!s.empty())
         {
-            wxString c = token.GetNextToken();
-            qif_api->getFinancistoProject(c);
-            if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end())
-                m_QIFcategoryNames[c] = std::make_pair(-1, -1);
+            wxStringTokenizer token(s, "\n");
+            while (token.HasMoreTokens())
+            {
+                wxString c = token.GetNextToken();
+                qif_api->getFinancistoProject(c);
+                if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end())
+                    m_QIFcategoryNames[c] = std::make_pair(-1, -1);
+            }
         }
 
         //Parse date format
@@ -781,10 +785,10 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     , /*out*/ Model_Checking::Data* trx)
 {
     auto t = i;
-    bool transfer = t[TrxType] == Model_Checking::all_type()[Model_Checking::TRANSFER];
     trx->TRANSCODE = (t.find(TrxType) != t.end() ? t[TrxType] : "");
     if (trx->TRANSCODE.empty())
         return false;
+    bool transfer = trx->TRANSCODE == Model_Checking::all_type()[Model_Checking::TRANSFER];
 
     trx->PAYEEID = (t.find(Payee) != t.end() ? m_QIFpayeeNames[t.at(Payee)] : -1);
     if (trx->PAYEEID == -1 && !transfer)
@@ -821,11 +825,13 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     trx->TRANSAMOUNT = fabs(amt);
     trx->TOTRANSAMOUNT = amt;
 
-    if (t.find(CategorySplit) != t.end()) {
+    if (t.find(CategorySplit) != t.end()) 
+    {
         Model_Splittransaction::Cache split;
         wxStringTokenizer token(t[CategorySplit], "\n");
         wxStringTokenizer amtToken(t.find(AmountSplit) != t.end() ? t[AmountSplit] : "", "\n");
-        while (token.HasMoreTokens()) {
+        while (token.HasMoreTokens()) 
+        {
             const wxString c = token.GetNextToken();
             if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end()) return false;
             int categID = m_QIFcategoryNames[c].first;
@@ -847,16 +853,15 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     {
         wxString categStr = (t.find(Category) != t.end()  ? t.at(Category) : "");
         if (categStr.empty()) {
-            categStr = _("Unknown");
-            trx->CATEGID = (m_QIFcategoryNames[categStr].first);
-            trx->SUBCATEGID = -1;
+            Model_Payee::Data* payee = Model_Payee::instance().get(trx->PAYEEID);
+            categStr = Model_Category::full_name(payee->CATEGID, payee->SUBCATEGID);
+            trx->CATEGID = payee->CATEGID;
+            trx->SUBCATEGID = payee->SUBCATEGID;
         }
-        else
-        {
-            trx->CATEGID = (m_QIFcategoryNames[categStr].first);
-            if (trx->CATEGID < 1)
-                return false;
-            trx->SUBCATEGID = (t.find(Category) == t.end() ? -1 : m_QIFcategoryNames[t[Category]].second);
+
+        if (trx->CATEGID < 0) {
+            trx->CATEGID = (m_QIFcategoryNames[_("Unknown")].first);
+            trx->SUBCATEGID = -1;
         }
     }
     return true;
