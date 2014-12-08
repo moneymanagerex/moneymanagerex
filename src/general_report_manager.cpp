@@ -31,19 +31,22 @@
 #include <wx/richtooltip.h>
 #include <wx/sstream.h>
 
-static const wxString SAMPLE_ASSETS_LUA =
-"local total_balance = 0\n"
-"function handle_record(record)\n"
-"\ttotal_balance = total_balance + record:get('VALUE');\n"
-"end\n\n"
-"function complete(result)\n"
-"\tresult:set('ASSET_BALANCE', total_balance);\n"
-"end\n";
+static const wxString SAMPLE_ASSETS_LUA = R"(
+local total_balance = 0
+function handle_record(record)
+    total_balance = total_balance + record:get('VALUE');
+end
 
-static const wxString SAMPLE_ASSETS_SQL =
-"SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES, VALUECHANGE, VALUECHANGERATE FROM ASSETS_V1;";
+function complete(result)
+    result:set('ASSET_BALANCE', total_balance);
+end
+)";
 
-static const wxString SAMPLE_ASSETS_HTT = R"(<!DOCTYPE html>
+static const wxString SAMPLE_ASSETS_SQL =R"(
+SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES, VALUECHANGE, VALUECHANGERATE FROM ASSETS_V1;)";
+
+static const wxString SAMPLE_ASSETS_HTT = R"(
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8" />
