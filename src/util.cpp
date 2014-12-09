@@ -219,6 +219,27 @@ int site_content(const wxString& sSite, wxString& sOutput)
     return err_code;
 }
 
+bool download_file(const wxString& site, const wxString& path)
+{
+    wxFileSystem fs;
+    wxFileSystem::AddHandler(new wxInternetFSHandler());
+    wxFSFile *file = fs.OpenFile(site);
+    if (file != NULL)
+    {
+        wxInputStream *in = file->GetStream();
+        if (in != NULL)
+        {
+            wxFileOutputStream output(path);
+            output.Write(*file->GetStream());
+            output.Close();
+            delete in;
+            return true;
+        }
+    }
+
+    return false;
+}
+
 //* Date Functions----------------------------------------------------------*//
 
 const wxString mmGetNiceDateSimpleString(const wxDateTime &dt)

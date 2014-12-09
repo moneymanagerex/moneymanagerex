@@ -334,6 +334,7 @@
     <ClCompile Include="..\..\src\payeedialog.cpp" />
     <ClCompile Include="..\..\src\reports\summary.cpp" />
     <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
+    <ClCompile Include="..\..\src\webappdialog.cpp" />
     <ClCompile Include="..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_export.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_import.cpp" />
@@ -471,6 +472,7 @@
     <ClInclude Include="..\..\src\util.h" />
     <ClInclude Include="..\..\src\validators.h" />
     <ClInclude Include="..\..\src\webapp.h" />
+    <ClInclude Include="..\..\src\webappdialog.h" />
     <ClInclude Include="..\..\src\webserver.h" />
     <ClInclude Include="..\..\src\wizard_newaccount.h" />
     <ClInclude Include="..\..\src\wizard_newdb.h" />

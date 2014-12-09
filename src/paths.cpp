@@ -222,6 +222,15 @@ const wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
     return AttachmentsFolder;
 }
 
+const wxString mmex::getTempFolder()
+{
+    return wxString::Format("%s%s%s%s"
+        , wxStandardPaths::Get().GetTempDir() //TODO: user dir more sequre
+        , wxString(wxFILE_SEP_PATH)
+        , mmex::GetAppName() + "_tmp"
+        , wxString(wxFILE_SEP_PATH));
+}
+
 const wxString mmex::getReportIndex()
 {
     const wxString tempDir = wxString::Format("%s%s%s%s"

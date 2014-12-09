@@ -166,6 +166,7 @@ public:
 //----------------------------------------------------------------------------
 
 int site_content(const wxString& site, wxString& output);
+bool download_file(const wxString& site, const wxString& path);
 
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 

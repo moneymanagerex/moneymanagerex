@@ -183,6 +183,9 @@
     <ClCompile Include="..\..\src\webapp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+	<ClCompile Include="..\..\src\webappdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\webserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -537,6 +540,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\webapp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+	<ClInclude Include="..\..\src\webappdialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\webserver.h">

@@ -234,6 +234,9 @@
     <ClCompile Include="..\..\src\webapp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+	<ClCompile Include="..\..\src\webappdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\3rd\csv-parser\csv_parser.cpp">
       <Filter>Source Files\3d</Filter>
     </ClCompile>
@@ -573,6 +576,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\webapp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+	<ClInclude Include="..\..\src\webappdialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\db\DB_Table_Attachment_V1.h">

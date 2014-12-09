@@ -253,25 +253,27 @@ wxString Model_Report::get_html(const Data* r)
 
 void Model_Report::prepareTempFolder()
 {
-    const wxString tempDir = wxFileName(mmex::getReportIndex()).GetPathWithSep();
+    const wxString& repDir = wxFileName(mmex::getReportIndex()).GetPathWithSep();
     const wxString& resDir = mmex::GetResourceDir().GetPathWithSep();
-    wxString tempFile;
+    const wxString& tempDir = mmex::getTempFolder();
+    wxString repFile;
+    wxFileName::Mkdir(repDir, 511, wxPATH_MKDIR_FULL);
     wxFileName::Mkdir(tempDir, 511, wxPATH_MKDIR_FULL);
     wxArrayString filesArray;
     wxDir::GetAllFiles(resDir, &filesArray);
     for (const auto& sourceFile : filesArray)
     {
-        tempFile = tempDir + wxFileName(sourceFile).GetFullName();
+        repFile = repDir + wxFileName(sourceFile).GetFullName();
         if (::wxFileExists(sourceFile))
         {
-            if (!::wxFileExists(tempFile)
-                || wxFileName(sourceFile).GetModificationTime() > wxFileName(tempFile).GetModificationTime())
+            if (!::wxFileExists(repFile)
+                || wxFileName(sourceFile).GetModificationTime() > wxFileName(repFile).GetModificationTime())
             {
-                if (!::wxCopyFile(sourceFile, tempFile))
+                if (!::wxCopyFile(sourceFile, repFile))
                     wxLogError("Could not copy %s !", sourceFile);
             }
         }
-        wxLogDebug("Coping file: %s to %s", sourceFile, tempFile);
+        wxLogDebug("Coping file: %s to %s", sourceFile, repFile);
     }
 }
 
