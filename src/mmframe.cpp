@@ -1259,12 +1259,18 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
 void mmGUIFrame::createHomePage()
 {
+    json::Object o;
+    o[L"module"] = json::String(L"Home Page");
+    o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
+
     navTreeCtrl_->SetEvtHandlerEnabled(false);
     int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
     /* Update home page details only if it is being displayed */
     if (id == mmID_HOMEPAGE)
     {
         homePage_->createHTML();
+        o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
+        Model_Usage::instance().append(o);
     }
     else
     {
@@ -1282,6 +1288,9 @@ void mmGUIFrame::createHomePage()
     }
     navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
     navTreeCtrl_->SetEvtHandlerEnabled(true);
+
+    o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
+    Model_Usage::instance().append(o);
 }
 //----------------------------------------------------------------------------
 
@@ -2374,10 +2383,10 @@ void mmGUIFrame::createBillsDeposits()
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
         homePanel_->Layout();
-        Model_Usage::instance().append(o);
         menuPrintingEnable(true);
     }
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
+    Model_Usage::instance().append(o);
 }
 //----------------------------------------------------------------------------
 
