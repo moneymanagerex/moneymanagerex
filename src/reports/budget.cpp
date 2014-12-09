@@ -21,7 +21,7 @@
 #include "mmframe.h"
 #include "htmlbuilder.h"
 
-mmReportBudget::mmReportBudget()
+mmReportBudget::mmReportBudget(): mmPrintableBase("mmReportBudget") 
 {}
 
 mmReportBudget::~mmReportBudget()

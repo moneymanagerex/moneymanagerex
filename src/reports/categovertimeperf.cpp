@@ -31,7 +31,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 
 mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance(mmDateRange* date_range)
-    : date_range_(date_range)
+    : mmPrintableBase("mmReportCategoryOverTimePerformance")
+    , date_range_(date_range)
     , title_(_("Category Income/Expenses: %s"))
 {
 }

@@ -40,7 +40,7 @@
 #define STOCK_SORT_BY_VALUE         9
 
 mmReportSummaryStocks::mmReportSummaryStocks()
-: mmPrintableBase()
+: mmPrintableBase("mmReportSummaryStocks")
 , gain_loss_sum_total_(0.0)
 , stockBalance_(0.0)
 {

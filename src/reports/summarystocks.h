@@ -45,7 +45,7 @@ class mmReportChartStocks : public mmPrintableBase
 {
 public:
     mmReportChartStocks(mmDateRange* date_range=new mmAllTime()) :
-        mmPrintableBase(), dtRange_(date_range) {}
+        mmPrintableBase("mmReportChartStocks"), dtRange_(date_range) {}
     ~mmReportChartStocks() { delete dtRange_; }
     wxString getHTMLText();
 

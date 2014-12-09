@@ -193,7 +193,7 @@ wxString mmReportSummary::getHTMLText()
 #endif
 
 mmReportSummaryByDate::mmReportSummaryByDate(mmGUIFrame* frame, int mode)
-: mmPrintableBase()
+: mmPrintableBase("mmReportSummaryByDate")
 , frame_(frame)
 , mode_(mode)
 {}

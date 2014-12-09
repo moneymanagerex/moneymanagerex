@@ -49,7 +49,8 @@ wxString mmGeneralReport::getHTMLText()
 }
 
 mmPrintableBaseSpecificAccounts::mmPrintableBaseSpecificAccounts(const wxString& report_name, int sort_column)
-: accountArray_(0)
+: mmPrintableBase(report_name)
+, accountArray_(0)
 , reportName_(report_name)
 {
 }

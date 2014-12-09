@@ -30,7 +30,8 @@
 
 mmReportCategoryExpenses::mmReportCategoryExpenses
 (mmDateRange* date_range, const wxString& title, int type)
-: date_range_(date_range)
+: mmPrintableBase("mmReportCategoryExpenses")
+, date_range_(date_range)
 , title_(title)
 , type_(type)
 , ignoreFutureDate_(mmIniOptions::instance().ignoreFutureTransactions_)

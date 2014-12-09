@@ -30,7 +30,7 @@ class mmDateRange;
 class mmPrintableBase
 {
 public:
-    mmPrintableBase(): m_title("mmPrintableBase"), m_local_title(_("mmPrintableBase")), m_date_range(nullptr) {}
+    mmPrintableBase(const wxString& title): m_title(title), m_local_title(wxGetTranslation(title)), m_date_range(nullptr) {}
     mmPrintableBase(const wxString& title, const wxString& local_title): m_title(title), m_local_title(local_title), m_date_range(nullptr) {}
     virtual ~mmPrintableBase() {}
     virtual wxString getHTMLText() = 0;

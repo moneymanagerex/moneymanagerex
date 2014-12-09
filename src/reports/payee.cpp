@@ -26,7 +26,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <algorithm>
 
 mmReportPayeeExpenses::mmReportPayeeExpenses(const wxString& title, mmDateRange* date_range)
-    : title_(title)
+    : mmPrintableBase(title)
+    , title_(title)
     , date_range_(date_range)
     , positiveTotal_(0.0)
     , negativeTotal_(0.0)
