@@ -1242,8 +1242,6 @@ void mmGUIFrame::createHomePage()
     if (id == mmID_HOMEPAGE)
     {
         homePage_->createHTML();
-        o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
-        Model_Usage::instance().append(o);
     }
     else
     {
