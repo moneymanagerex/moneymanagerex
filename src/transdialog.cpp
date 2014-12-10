@@ -31,9 +31,7 @@
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
 #include "model/Model_Attachment.h"
-#include <wx/valnum.h>
 #include <wx/numformatter.h>
-#include "minimal_editor.h"
 #include "../resources/attachment.xpm"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
@@ -58,8 +56,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , int account_id
     , int transaction_id
     , bool duplicate
-) :
-      m_currency(nullptr)
+) : m_currency(nullptr)
     , m_to_currency(nullptr)
     , categUpdated_(false)
     , m_transfer(false)
@@ -606,7 +603,6 @@ void mmTransDialog::OnDpcKillFocus(wxFocusEvent& event)
     }
     else
         event.Skip();
-
 }
 
 void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
@@ -743,7 +739,6 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
         dataToControls();
     }
 }
-
 
 void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
 {
