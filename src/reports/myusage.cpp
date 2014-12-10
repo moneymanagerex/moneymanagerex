@@ -21,6 +21,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "reports/mmDateRange.h"
 #include "reports/htmlbuilder.h"
 #include "model/Model_Report.h"
+#include "cajun/json/elements.h"
+#include "cajun/json/reader.h"
 
 const char *usage_template = R"(
 <!DOCTYPE html>
@@ -107,6 +109,7 @@ const char *usage_template = R"(
         <tr>
             <th>USAGEDATE</th>
             <th>FREQUENCY</th>
+            <th>Slow modules (>= 1 second)</th>
         </tr>
     </thead>
     <tbody>
@@ -114,6 +117,7 @@ const char *usage_template = R"(
             <tr>
             <td><TMPL_VAR "USAGEDATE"></td>
             <td><TMPL_VAR "FREQUENCY"></td>
+            <td><TMPL_VAR "SLOW"></td>
             </tr>
         </TMPL_LOOP>
         <tr>
@@ -149,11 +153,39 @@ wxString mmReportMyUsage::getHTMLText()
                     , Model_Usage::USAGEDATE(m_date_range->end_date().FormatISODate(), LESS_OR_EQUAL));
     else
         all_usage = Model_Usage::instance().all();
-    std::map<wxString, int> usage_by_day;
+    std::map<wxString, std::pair<int, wxString> > usage_by_day;
 
     for (const auto & usage : all_usage)
     {
-        usage_by_day[usage.USAGEDATE] += 1;
+        usage_by_day[usage.USAGEDATE].first += 1;
+
+        std::wstringstream ss ;
+        ss << usage.JSONCONTENT.ToStdWstring();
+        json::Object o;
+        json::Reader::Read(o, ss);
+        if (o.Find(L"usage") == o.End()) continue;
+        const json::Array& u = o[L"usage"];
+
+        for (json::Array::const_iterator it = u.Begin(); it != u.End(); ++it)
+        {
+            const json::Object& pobj = *it;
+
+            if (pobj.Find(L"module") == pobj.End()) continue;
+
+            wxString module = (wxString)((json::String)pobj[L"module"]).Value();
+            if (pobj.Find(L"name") != pobj.End())
+                module += (wxString)((json::String)pobj[L"name"]).Value();
+        
+            wxDateTime start, end;
+            start.ParseISOCombined((wxString)((json::String)pobj[L"start"]).Value());
+            end.ParseISOCombined((wxString)((json::String)pobj[L"end"]).Value());
+
+            long delta = end.Subtract(start).GetSeconds().ToLong();
+            if (delta < 1)
+                continue;
+
+            usage_by_day[usage.USAGEDATE].second += module + ";";
+        }
     }
 
     loop_t contents;
@@ -161,7 +193,8 @@ wxString mmReportMyUsage::getHTMLText()
     {
         row_t r;
         r(L"USAGEDATE") = it->first;
-        r(L"FREQUENCY") = wxString::Format("%d", it->second);
+        r(L"FREQUENCY") = wxString::Format("%d", it->second.first);
+        r(L"SLOW") = it->second.second;
 
         contents += r;
     }
