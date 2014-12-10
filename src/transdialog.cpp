@@ -91,12 +91,12 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     else
         m_currency = Model_Currency::GetBaseCurrency();
 
-    if (m_transfer) {
+    if (m_transfer) 
+    {
         Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
         m_to_currency = Model_Account::currency(to_acc);
-        if (m_to_currency) {
+        if (m_to_currency) 
             m_advanced = !m_new_trx && (m_currency->CURRENCYID != m_to_currency->CURRENCYID || m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
-        }
     }
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -629,7 +629,8 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
     if (!m_transfer)
     {
         Model_Payee::Data * payee = Model_Payee::instance().get(cbPayee_->GetValue());
-        if (payee) {
+        if (payee) 
+        {
             cbPayee_->ChangeValue(payee->PAYEENAME);
             setCategoryForPayee(payee);
         }
@@ -647,16 +648,17 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
 
     if (object_in_focus_ == textAmount_->GetId())
         textAmount_->SelectAll();
-    else {
-        if (textAmount_->Calculate(m_currency)) {
+    else 
+    {
+        if (textAmount_->Calculate(m_currency)) 
             textAmount_->GetDouble(m_trx_data.TRANSAMOUNT, m_currency);
-        }
         skip_amount_init_ = false;
     }
 
     if (m_advanced && object_in_focus_ == toTextAmount_->GetId())
         toTextAmount_->SelectAll();
-    else {
+    else 
+    {
         if (toTextAmount_->Calculate(m_currency))
             toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT, m_currency);
     }
@@ -685,7 +687,8 @@ void mmTransDialog::activateSplitTransactionsDlg()
     {
         local_splits = dlg.getResult();
     }
-    if (!local_splits.empty()) {
+    if (!local_splits.empty()) 
+    {
         m_trx_data.TRANSAMOUNT = Model_Splittransaction::get_total(local_splits);
         category_changed_ = dlg.isItemsChanged();
     }
@@ -858,7 +861,8 @@ void mmTransDialog::OnAttachments(wxCommandEvent& /*event*/)
 
 void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
-    if (object_in_focus_ == textAmount_->GetId()) {
+    if (object_in_focus_ == textAmount_->GetId()) 
+    {
         if (textAmount_->Calculate(m_currency))
             textAmount_->GetDouble(m_trx_data.TRANSAMOUNT, m_currency);
         skip_amount_init_ = false;
@@ -876,7 +880,8 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
     Model_Checking::getFrequentUsedNotes(frequentNotes_);
     wxMenu menu;
     int id = wxID_HIGHEST;
-    for (const auto& entry : frequentNotes_) {
+    for (const auto& entry : frequentNotes_) 
+    {
         const wxString label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
         menu.Append(++id, label);
     }
@@ -912,7 +917,8 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     m_trx_data.TRANSID = Model_Checking::instance().save(r);
 
     Model_Splittransaction::Data_Set splt;
-    for (const auto& entry : local_splits) {
+    for (const auto& entry : local_splits) 
+    {
         Model_Splittransaction::Data *s = Model_Splittransaction::instance().create();
         s->CATEGID = entry.CATEGID;
         s->SUBCATEGID = entry.SUBCATEGID;
