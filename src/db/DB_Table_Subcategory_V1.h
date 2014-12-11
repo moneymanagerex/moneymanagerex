@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-08-26 16:48:20.104016.
+ *          AUTO GENERATED at 2014-12-11 16:43:03.028067.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -243,6 +243,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         /** Save the record instance in memory to the database. */
         bool save(wxSQLite3Database* db)
         {
+            if (db && db->IsReadOnly()) return false;
             if (!view_ || !db) 
             {
                 wxLogError("can not save SUBCATEGORY_V1");

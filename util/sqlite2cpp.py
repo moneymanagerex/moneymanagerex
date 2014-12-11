@@ -369,6 +369,7 @@ struct DB_Table_%s : public DB_Table
         /** Save the record instance in memory to the database. */
         bool save(wxSQLite3Database* db)
         {
+            if (db && db->IsReadOnly()) return false;
             if (!view_ || !db) 
             {
                 wxLogError("can not save %s");
