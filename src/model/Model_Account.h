@@ -31,10 +31,10 @@ public:
     using Model<DB_Table_ACCOUNTLIST_V1>::remove;
     using Model<DB_Table_ACCOUNTLIST_V1>::get;
 
-    enum STATUS { OPEN = 0, CLOSED };
+    enum STATUS_ENUM { OPEN = 0, CLOSED };
     enum TYPE { CHECKING = 0, TERM, INVESTMENT, CREDIT_CARD };
 
-    static const std::vector<std::pair<STATUS, wxString> > STATUS_CHOICES;
+    static const std::vector<std::pair<STATUS_ENUM, wxString> > STATUS_CHOICES;
     static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
 
 public:
@@ -64,7 +64,7 @@ public:
     bool remove(int id);
 
 public:
-    wxArrayString all_checking_account_names();
+    wxArrayString all_checking_account_names(bool skip_closed = false);
 
     static wxArrayString all_status();
     static wxArrayString all_type();
@@ -91,8 +91,9 @@ public:
     static wxString toString(double value, const Data* r, int precision = 2);
     static wxString toString(double value, const Data& r, int precision = 2);
 
-    static STATUS status(const Data* account);
-    static STATUS status(const Data& account);
+    static STATUS_ENUM status(const Data* account);
+    static STATUS_ENUM status(const Data& account);
+    static DB_Table_ACCOUNTLIST_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL);
 
     static TYPE type(const Data* account);
     static TYPE type(const Data& account);
