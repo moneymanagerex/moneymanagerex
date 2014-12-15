@@ -171,6 +171,8 @@ wxString mmReportMyUsage::getHTMLText()
             const json::Object& pobj = *it;
 
             if (pobj.Find(L"module") == pobj.End()) continue;
+            if (pobj.Find(L"start") == pobj.End()) continue;
+            if (pobj.Find(L"end") == pobj.End()) continue;
 
             wxString module = (wxString)((json::String)pobj[L"module"]).Value();
             if (pobj.Find(L"name") != pobj.End())
