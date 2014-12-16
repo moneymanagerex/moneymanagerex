@@ -19,7 +19,7 @@
 #include "Model_Account.h"
 #include "Model_Stock.h"
 
-const std::vector<std::pair<Model_Account::STATUS, wxString> > Model_Account::STATUS_CHOICES =
+const std::vector<std::pair<Model_Account::STATUS_ENUM, wxString> > Model_Account::STATUS_CHOICES =
 {
     std::make_pair(Model_Account::OPEN, wxTRANSLATE("Open")),
     std::make_pair(Model_Account::CLOSED, wxTRANSLATE("Closed"))
@@ -63,12 +63,13 @@ Model_Account& Model_Account::instance()
     return Singleton<Model_Account>::instance();
 }
 
-wxArrayString Model_Account::all_checking_account_names()
+wxArrayString Model_Account::all_checking_account_names(bool skip_closed)
 {
     wxArrayString accounts;
     for (const auto &account : this->all(COL_ACCOUNTNAME))
     {
         if (type(account) == INVESTMENT) continue;
+        if (skip_closed && status(account) == CLOSED) continue;
         accounts.Add(account.ACCOUNTNAME);
     }
     return accounts;
@@ -216,16 +217,21 @@ wxString Model_Account::toString(double value, const Data& r, int precision)
     return toString(value, &r, precision);
 }
 
-Model_Account::STATUS Model_Account::status(const Data* account)
+Model_Account::STATUS_ENUM Model_Account::status(const Data* account)
 {
     if (account->STATUS.CmpNoCase(all_status()[OPEN]) == 0)
         return OPEN;
     return CLOSED;
 }
 
-Model_Account::STATUS Model_Account::status(const Data& account)
+Model_Account::STATUS_ENUM Model_Account::status(const Data& account)
 {
     return status(&account);
+}
+
+DB_Table_ACCOUNTLIST_V1::STATUS Model_Account::STATUS(STATUS_ENUM status, OP op)
+{
+    return DB_Table_ACCOUNTLIST_V1::STATUS(all_status()[status], op);
 }
 
 Model_Account::TYPE Model_Account::type(const Data* account)

@@ -176,10 +176,11 @@ void mmTransDialog::dataToControls()
     {
         cbAccount_->SetEvtHandlerEnabled(false);
         cbAccount_->Clear();
-        const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
+        const auto &accounts = Model_Account::instance().find(
+            Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
+            , Model_Account::STATUS(Model_Account::OPEN));
         for (const auto &account : accounts)
         {
-            if (Model_Account::type(account) == Model_Account::INVESTMENT) continue;
             cbAccount_->Append(account.ACCOUNTNAME);
             if (account.ACCOUNTID == m_trx_data.ACCOUNTID)
                 cbAccount_->ChangeValue(account.ACCOUNTNAME);
@@ -187,7 +188,7 @@ void mmTransDialog::dataToControls()
         cbAccount_->AutoComplete(Model_Account::instance().all_checking_account_names());
         if (accounts.size() == 1)
         {
-            cbAccount_->SetValue(accounts.begin()->ACCOUNTNAME);
+            cbAccount_->ChangeValue(accounts.begin()->ACCOUNTNAME);
             cbAccount_->Enable(false);
         }
         cbAccount_->SetEvtHandlerEnabled(true);
@@ -241,7 +242,7 @@ void mmTransDialog::dataToControls()
                 }
             }
 
-            cbPayee_->Insert(Model_Account::instance().all_checking_account_names(), 0);
+            cbPayee_->Insert(Model_Account::instance().all_checking_account_names(true), 0);
             Model_Account::Data *account = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
             if (account)
                 cbPayee_->ChangeValue(account->ACCOUNTNAME);
@@ -739,6 +740,7 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
         if (!m_transfer) m_trx_data.TOACCOUNTID = -1;
         if (m_transfer) m_trx_data.PAYEEID = -1;
         skip_payee_init_ = false;
+        skip_account_init_ = false;
         dataToControls();
     }
 }
