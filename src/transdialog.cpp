@@ -68,6 +68,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_date_init_(false)
     , skip_notes_init_(false)
     , skip_category_init_(false)
+    , skip_tooltips_init_(false)
     , category_changed_(false)
     , skip_amount_init_(false)
 {
@@ -291,7 +292,9 @@ void mmTransDialog::dataToControls()
         textNotes_->SetValue(m_trx_data.NOTES);
         skip_notes_init_ = true;
     }
-    setTooltips();
+
+    if (!skip_tooltips_init_)
+        setTooltips();
 }
 
 void mmTransDialog::CreateControls()
@@ -741,6 +744,7 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
         if (m_transfer) m_trx_data.PAYEEID = -1;
         skip_payee_init_ = false;
         skip_account_init_ = false;
+        skip_tooltips_init_ = false;
         dataToControls();
     }
 }
@@ -807,6 +811,7 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
         }
     }
     skip_category_init_ = false;
+    skip_tooltips_init_ = false;
     dataToControls();
 }
 
@@ -960,6 +965,7 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
 void mmTransDialog::setTooltips()
 {
     bCategory_->UnsetToolTip();
+    skip_tooltips_init_ = true;
     if (this->local_splits.empty())
         bCategory_->SetToolTip(_("Specify the category for this transaction"));
     else {
