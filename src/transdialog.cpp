@@ -856,6 +856,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
         }
     }
     skip_amount_init_ = false;
+    skip_tooltips_init_ = false;
     dataToControls();
 }
 
