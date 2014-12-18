@@ -97,7 +97,8 @@ public:
 	void OnOpenAttachment(wxCommandEvent& event);
     /// Displays the split categories for the selected transaction
     void OnViewSplitTransaction(wxCommandEvent& event);
-	void OnOrganizeAttachments(wxCommandEvent& event);
+    void OnOrganizeAttachments(wxCommandEvent& event);
+    void OnCreateReoccurance(wxCommandEvent& event);
     long m_selectedIndex;
     long m_selectedForCopy; //The transaction ID if selected for copy
     long m_selectedID; //Selected transaction ID
@@ -124,7 +125,8 @@ private:
         MENU_TREEPOPUP_DELETE_UNRECONCILED,
 
         MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES,
-		MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
+        MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
+        MENU_TREEPOPUP_CREATE_REOCCURANCE,
         MENU_SUBMENU_MARK_ALL,
 
         MENU_VIEW_,

@@ -37,6 +37,7 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Category.h"
 #include "model/Model_Attachment.h"
+#include "billsdepositsdialog.h"
 
 #include "../resources/reconciled.xpm"
 #include "../resources/unreconciled.xpm"
@@ -102,7 +103,7 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
 
     EVT_MENU(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, TransactionListCtrl::OnViewSplitTransaction)
     EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, TransactionListCtrl::OnOrganizeAttachments)
-
+    EVT_MENU(MENU_TREEPOPUP_CREATE_REOCCURANCE, TransactionListCtrl::OnCreateReoccurance)
     EVT_CHAR(TransactionListCtrl::OnChar)
 
 wxEND_EVENT_TABLE();
@@ -1102,6 +1103,9 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     if (hide_menu_item)
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
 
+    menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, _("Create Reoccuring T&ransaction"));
+    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
+
     menu.AppendSeparator();
 
     wxString menu_item_label = showDeletedTransactions_ ? _("Hide Deleted (Void)") : _("Show Deleted (Void)");
@@ -1700,6 +1704,19 @@ void TransactionListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     dlg.ShowModal();
 
 	refreshVisualList(RefId);
+}
+
+//----------------------------------------------------------------------------
+void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
+{
+    if (m_selectedIndex < 0) return;
+
+    mmBDDialog dlg(this, 0, false, false);
+    dlg.SetDialogParameters(m_cp->m_trans[m_selectedIndex]);
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        wxMessageBox(_("Reoccuring Transaction saved."));
+    }
 }
 
 //----------------------------------------------------------------------------

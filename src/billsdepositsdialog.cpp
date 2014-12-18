@@ -243,6 +243,54 @@ void mmBDDialog::SetDialogHeader(const wxString& header)
     this->SetTitle(header);
 }
 
+void mmBDDialog::SetDialogParameters(const Model_Checking::Full_Data& transaction)
+{
+    m_bill_data.ACCOUNTID = transaction.ACCOUNTID;
+    bAccount_->SetLabelText(transaction.ACCOUNTNAME);
+
+    m_bill_data.TRANSCODE = transaction.TRANSCODE;
+    transaction_type_->SetSelection(Model_Billsdeposits::type(transaction.TRANSCODE));
+    m_transfer = (m_bill_data.TRANSCODE == Model_Billsdeposits::all_type()[Model_Billsdeposits::TRANSFER]);
+    updateControlsForTransType();
+
+    m_bill_data.TRANSAMOUNT = transaction.TRANSAMOUNT;
+    textAmount_->SetValue(m_bill_data.TRANSAMOUNT);
+
+    if (m_transfer)
+    {
+        m_bill_data.TOACCOUNTID = transaction.TOACCOUNTID;
+        bPayee_->SetLabelText(transaction.TOACCOUNTNAME);
+
+        m_bill_data.TOTRANSAMOUNT = transaction.TOTRANSAMOUNT;
+        toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT);
+        if (m_bill_data.TOTRANSAMOUNT != m_bill_data.TRANSAMOUNT)
+        {
+            cAdvanced_->SetValue(true);
+            SetAdvancedTransferControls(true);
+        }
+    }
+    else
+    {
+        m_bill_data.PAYEEID = transaction.PAYEEID;
+        bPayee_->SetLabelText(transaction.PAYEENAME);
+    }
+
+    if (transaction.has_split())
+    {
+        //TODO: Implement this feature
+        wxMessageBox(_("Note: Split transactions not set"), _("Reoccuring Transaction Creation"));
+    }
+    else
+    {
+        m_bill_data.CATEGID = transaction.CATEGID;
+        m_bill_data.SUBCATEGID = transaction.SUBCATEGID;
+        setCategoryLabel();
+    }
+
+    m_bill_data.TRANSACTIONNUMBER = transaction.TRANSACTIONNUMBER;
+    m_bill_data.NOTES = transaction.NOTES;
+}
+
 void mmBDDialog::CreateControls()
 {
     const wxString BILLSDEPOSITS_REPEATS[] =
