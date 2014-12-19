@@ -126,6 +126,7 @@ private:
     bool skip_status_init_;
     bool skip_notes_init_;
     bool skip_category_init_;
+    bool skip_tooltips_init_;
     bool category_changed_;
 
     enum
