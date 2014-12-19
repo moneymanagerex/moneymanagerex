@@ -1,6 +1,27 @@
 Version History of Money Manager Ex
 
-1.1.1 (October 6, 2014)
+1.2.0 (tba)
+- New: Repeating transaction created from existing transaction
+- New: Introducing new account type - Credit Card
+- New: Monthly Summary of Accounts
+- New: Stock History Monitoring
+- New: My Usage Reports
+- New: MMEX News display on Home page
+- Fix: Many bug fixes
+
+1.1.2 (November 16, 2014)
+- Repeating transaction dialog restyling
+- Added transaction filter to repeating transactions panel
+- Added more keywords into GRM
+- Fix CashFlow crash
+- Fix for repeating transactions with split categories
+- Fix PayPal QIF import (bug #543)
+- Fix stock update date format (bug #545)
+- Fix budget for substituted category (bug #546)
+- Fix category removal error on budget panel (bug #551)
+- Translations update
+
+1.1.1 (November 1, 2014)
 - Full UTF-8 and wide characters support in GRM and LUA
 - Full integration with WebApp @ http:\\webapp.moneymanagerex.org
 - Added "unknown" payee\category in QIF, CSV and WebApp import
@@ -8,16 +29,18 @@ Version History of Money Manager Ex
 - New JS pie charts on report
 - Added option to reallocate account type
 - Added option to change password of encrypted DB
-- Added timeout option for web-calls
+- Added time-out option for web-calls
+- Added FullScreen support
+- Save transactions colours to database instead of local pc
 - Fix for '&' sign in notes (bug #441)
 - Fix new transaction with no payee in list (bug #450)
 - Fix deletion of two categories (bug #452)
 - Fix override categories in home page (bugs #447 #444)
 - Fix transaction filter transfers and payees (bugs #453 #457)
-- Fix for trasnfer between accoutn with different currencies (bugs #462 #472)
-- Fix cashflow report (bug #481)
+- Fix for transfer between account with different currencies (bugs #462 #472)
+- Fix cash flow report (bug #481)
 - Fix space in amount(bug #493)
-- Fix wrong beahviour of splitted and new transactions
+- Fix wrong behaviour of split and new transactions
 
 1.1.0 (August 1, 2014)
 - Reports
