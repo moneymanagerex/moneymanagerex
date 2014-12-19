@@ -393,18 +393,12 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
 
         Model_Billsdeposits::Full_Data r(data);
 
-        const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
-        if (payee) r.PAYEENAME = payee->PAYEENAME;
-        const Model_Account::Data* account = Model_Account::instance().get(r.ACCOUNTID);
-        if (account)
+        //Complete the Full_Data initialisation process.
+        r.ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
+        r.PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
+        if (Model_Billsdeposits::type(r.TRANSCODE) == Model_Billsdeposits::TRANSFER)
         {
-            r.ACCOUNTNAME = account->ACCOUNTNAME;
-            if (Model_Billsdeposits::type(r.TRANSCODE) == Model_Billsdeposits::TRANSFER)
-            {
-                Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
-                if (to_account)
-                    r.PAYEENAME = to_account->ACCOUNTNAME;
-            }
+            r.PAYEENAME = Model_Account::get_account_name(r.TOACCOUNTID);
         }
 
         if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), r.BDID))

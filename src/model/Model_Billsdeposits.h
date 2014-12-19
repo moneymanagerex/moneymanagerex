@@ -23,7 +23,7 @@
 #include "db/DB_Table_Billsdeposits_V1.h"
 #include "model/Model_Splittransaction.h"
 #include "Model_Budgetsplittransaction.h"
-
+#include "model/Model_Category.h"
 const int BD_REPEATS_MULTIPLEX_BASE = 100;
 
 class Model_Billsdeposits : public Model<DB_Table_BILLSDEPOSITS_V1>
@@ -92,7 +92,9 @@ public:
         Full_Data(): Data(0)
         {}
         explicit Full_Data(const Data& r): Data(r)
-        {}
+        {
+            CATEGNAME = Model_Category::full_name(r.CATEGID, r.SUBCATEGID);
+        }
         wxString ACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
