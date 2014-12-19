@@ -153,7 +153,7 @@ public:
     static bool is_deposit(const wxString& r);
     static bool is_deposit(const Data* r);
     static wxString toShortStatus(const wxString& fullStatus);
-    static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes);
+    static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int accountID = -1);
     static void getEmptyTransaction(Data &data, int accountID);
     static bool getTransactionData(Data &data, const Data* r);
     static void putDataToTransaction(Data *r, const Data &data);

@@ -905,12 +905,12 @@ void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
     wxMenu menu;
     int id = wxID_HIGHEST;
     for (const auto& entry : frequentNotes_) {
-        const wxString label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
+        const wxString& label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
         menu.Append(++id, label);
         
     }
         if (!frequentNotes_.empty())
-        PopupMenu(&menu);
+            PopupMenu(&menu);
 }
 
 void mmBDDialog::onNoteSelected(wxCommandEvent& event)

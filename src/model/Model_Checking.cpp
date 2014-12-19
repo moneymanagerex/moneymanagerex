@@ -378,21 +378,20 @@ wxString Model_Checking::Full_Data::info() const
     return info;
 }
 
-void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes)
+void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int accountID)
 {
     frequentNotes.clear();
     int max = 20;
-    const wxDateTime dt = wxDateTime::Today().Subtract(wxDateSpan::Months(3));
-    for (const auto& entry : instance().find(TRANSDATE(dt, GREATER_OR_EQUAL), NOTES("", GREATER)))
+    for (const auto& entry : instance().find(NOTES("", NOT_EQUAL)
+        , accountID > 0 ? ACCOUNTID(accountID) : ACCOUNTID(-1, NOT_EQUAL)))
     {
-        const wxString notes = entry.NOTES;
+        const wxString& notes = entry.NOTES;
         if (std::find(frequentNotes.begin(), frequentNotes.end(), notes) == frequentNotes.end())
-        {
             frequentNotes.push_back(notes);
-            max--;
-        }
-        if (max < 1) break;
     }
+    std::reverse(frequentNotes.begin(), frequentNotes.end());
+    if (frequentNotes.size() > max)
+        frequentNotes.erase(frequentNotes.begin() + max, frequentNotes.end());
     std::stable_sort(frequentNotes.begin(), frequentNotes.end());
 }
 
