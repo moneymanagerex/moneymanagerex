@@ -18,6 +18,7 @@
 
 #include "Model_Billsdeposits.h"
 #include "mmOption.h"
+#include "Model_Category.h"
 
 const std::vector<std::pair<Model_Billsdeposits::TYPE, wxString> > Model_Billsdeposits::TYPE_CHOICES =
 {
@@ -345,4 +346,12 @@ const wxDateTime Model_Billsdeposits::nextOccurDate(int repeatsType, int numRepe
     }
     wxLogDebug("init date: %s -> next date: %s", nextOccurDate.FormatISODate(), dt.FormatISODate());
     return dt;
+}
+
+Model_Billsdeposits::Full_Data::Full_Data()
+{}
+
+Model_Billsdeposits::Full_Data::Full_Data(const Data& r): Data(r)
+{
+    CATEGNAME = Model_Category::full_name(r.CATEGID, r.SUBCATEGID);
 }
