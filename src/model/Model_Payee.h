@@ -55,6 +55,7 @@ public:
     * Returns 0 when payee not found.
     */
     Data* get(const wxString& name);
+    static wxString get_payee_name(int payee_id);
 
     bool remove(int id);
 

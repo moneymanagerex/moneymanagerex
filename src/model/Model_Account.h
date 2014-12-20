@@ -59,7 +59,9 @@ public:
 public:
     /** Return the Data record for the given account name */
     Data* get(const wxString& name);
-    
+
+    static wxString get_account_name(int account_id);
+
     /** Remove the Data record from memory and the database. */
     bool remove(int id);
 

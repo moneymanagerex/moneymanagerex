@@ -100,6 +100,15 @@ Model_Account::Data* Model_Account::get(const wxString& name)
     return account;
 }
 
+wxString Model_Account::get_account_name(int account_id)
+{
+    Data* account = instance().get(account_id);
+    if (account)
+        return account->ACCOUNTNAME;
+    else
+        return _("Account Error");
+}
+
 /** Remove the Data record instance from memory and the database. */
 bool Model_Account::remove(int id)
 {

@@ -71,6 +71,15 @@ Model_Payee::Data* Model_Payee::get(const wxString& name)
     return payee;
 }
 
+wxString Model_Payee::get_payee_name(int payee_id)
+{
+    Data* payee = instance().get(payee_id);
+    if (payee)
+        return payee->PAYEENAME;
+    else
+        return _("Payee Error");
+}
+
 bool Model_Payee::remove(int id)
 {
     if (is_used(id)) return false;
