@@ -548,7 +548,8 @@ bool mmUnivCSVDialog::validateData()
         return false;
 
     Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
-    if (!payee) {
+    if (!payee) 
+    {
         Model_Payee::Data* u = Model_Payee::instance().get(_("Unknown"));
         if (!u)
         {
@@ -560,6 +561,8 @@ bool mmUnivCSVDialog::validateData()
             const wxString& sMsg = wxString::Format(_("Added payee: %s"), p->PAYEENAME);
             log_field_->AppendText(wxString() << sMsg << "\n");
         }
+        else
+            payeeID_ = u->PAYEEID;
     }
     else
     {
