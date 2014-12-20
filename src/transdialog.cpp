@@ -628,6 +628,7 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
     {
         m_currency = Model_Account::currency(account);
         cbAccount_->SetValue(account->ACCOUNTNAME);
+        m_trx_data.ACCOUNTID = account->ACCOUNTID;
     }
 
     if (!m_transfer)
@@ -647,6 +648,7 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         {
             m_to_currency = Model_Account::currency(to_account);
             cbPayee_->ChangeValue(to_account->ACCOUNTNAME);
+            m_trx_data.TOACCOUNTID = to_account->ACCOUNTID;
         }
     }
 
@@ -885,14 +887,15 @@ void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 {
-    Model_Checking::getFrequentUsedNotes(frequentNotes_);
+    Model_Checking::getFrequentUsedNotes(frequentNotes_, m_trx_data.ACCOUNTID);
     wxMenu menu;
     int id = wxID_HIGHEST;
     for (const auto& entry : frequentNotes_) 
     {
-        const wxString label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
+        const wxString& label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
         menu.Append(++id, label);
     }
+
     if (!frequentNotes_.empty())
         PopupMenu(&menu);
 }
