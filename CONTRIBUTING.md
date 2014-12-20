@@ -35,7 +35,18 @@ The following guidelines for contribution should be followed if you want to subm
 * If not done in commit messages (which you really should do) please reference and update your issue with the code changes. But _please do not close the issue yourself_.
 _Notice: You can [turn your previously filed issues into a pull-request here](http://issue2pr.herokuapp.com/)._
 * Even if you have write access to the repository, do not directly push or merge pull-requests. Let another team member review your pull request and approve.
-
+* Format your commit heading as follows:
+	* type(scope): description
+	* valid types: feat, fix, docs, style, refactor, perf, test, chore, revert
+	* scope: localise the change to a section.
+	* description: short title with total line not exceeding 72 characters. Additional information can be added as a second line if necessary.
+	* examples:
+	_style(general) clean-up,_
+	_fix(bug.xyz) effect of bug,_
+	_chore(release.update) updated release files,_
+	_doc(version) effect of update._
+	_feat(accounts) what new feature was added._
+	
 # Additional Resources
 
 * [General GitHub documentation](http://help.github.com/)
