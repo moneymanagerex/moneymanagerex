@@ -34,6 +34,12 @@
 #include "../resources/leds.xpm"
 #include "../resources/attachment.xpm"
 
+static const wxString STOCKTIPS[] = { 
+    _("Using MMEX it is possible to track stocks/mutual funds investments."),
+    _("To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."),
+    _("Sample of UK (HSBC HLDG) share: HSBA.L"),
+    _("If the Stock Name field is empty it will be filed when prices updated") };
+
 enum {
     IDC_PANEL_STOCKS_LISTCTRL = wxID_HIGHEST + 1900,
     MENU_TREEPOPUP_EDIT,
