@@ -393,14 +393,6 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
 
         Model_Billsdeposits::Full_Data r(data);
 
-        //Complete the Full_Data initialisation process.
-        r.ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
-        r.PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
-        if (Model_Billsdeposits::type(r.TRANSCODE) == Model_Billsdeposits::TRANSFER)
-        {
-            r.PAYEENAME = Model_Account::get_account_name(r.TOACCOUNTID);
-        }
-
         if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), r.BDID))
             r.NOTES = r.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         bills_.push_back(r);
