@@ -359,7 +359,7 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r): Data(r)
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
 
     PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
-    if (Model_Billsdeposits::type(r.TRANSCODE) == Model_Billsdeposits::TRANSFER)
+    if (Model_Billsdeposits::type(r) == Model_Billsdeposits::TRANSFER)
     {
         PAYEENAME = Model_Account::get_account_name(r.TOACCOUNTID);
     }
