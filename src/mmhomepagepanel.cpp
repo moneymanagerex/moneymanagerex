@@ -171,7 +171,7 @@ protected:
 htmlWidgetTop7Categories::htmlWidgetTop7Categories(mmDateRange* date_range)
     : date_range_(date_range)
 {
-    title_ = wxString::Format(_("Top Withdrawals: %s"), date_range_->title());
+    title_ = wxString::Format(_("Top Withdrawals: %s"), date_range_->local_title());
 }
 
 htmlWidgetTop7Categories::~htmlWidgetTop7Categories()
@@ -749,7 +749,7 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
         if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
     }
 
-    o[L"0"] = json::String(wxString::Format(_("Income vs Expenses: %s"), date_range_->title()).ToStdWstring());
+    o[L"0"] = json::String(wxString::Format(_("Income vs Expenses: %s"), date_range_->local_title()).ToStdWstring());
     o[L"1"] = json::String(_("Type").ToStdWstring());
     o[L"2"] = json::String(_("Amount").ToStdWstring());
     o[L"3"] = json::String(_("Income").ToStdWstring());

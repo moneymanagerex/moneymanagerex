@@ -172,10 +172,10 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
         return Model_Currency::toString(m_stocks[item].NUMSHARES, stock_panel_->m_currency, precision);
     }
     if (column == COL_PRICE)        return Model_Currency::toString(m_stocks[item].PURCHASEPRICE, stock_panel_->m_currency);
-    if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].VALUE, stock_panel_->m_currency);
-    if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item), stock_panel_->m_currency /*, 4*/);
-    if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE, stock_panel_->m_currency /*, 4*/);
-    if (column == COL_CURRVALUE)    return Model_Currency::toString(m_stocks[item].CURRENTPRICE*m_stocks[item].NUMSHARES, stock_panel_->m_currency /*, 4*/);
+    if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].VALUE, stock_panel_->m_currency, 4);
+    if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item), stock_panel_->m_currency);
+    if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE, stock_panel_->m_currency, 4);
+    if (column == COL_CURRVALUE)    return Model_Currency::toString(m_stocks[item].CURRENTPRICE*m_stocks[item].NUMSHARES, stock_panel_->m_currency);
     if (column == COL_PRICEDATE)    return mmGetDateForDisplay(mmGetStorageStringAsDate(Model_Stock::instance().lastPriceDate(&m_stocks[item])));
     if (column == COL_COMMISSION)   return Model_Currency::toString(m_stocks[item].COMMISSION, stock_panel_->m_currency);
     if (column == COL_NOTES)
@@ -915,10 +915,10 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     double stocktotalPercentage = (stockCurrentPrice / stockavgPurchasePrice - 1.0)*100.0;
     double stocktotalgainloss = stocktotalDifference * stocktotalnumShares;
 
-    const wxString& sPurchasePrice = Model_Currency::toCurrency(stockPurchasePrice);
-    const wxString& sAvgPurchasePrice = Model_Currency::toCurrency(stockavgPurchasePrice);
-    const wxString& sCurrentPrice = Model_Currency::toCurrency(stockCurrentPrice);
-    const wxString& sDifference = Model_Currency::toCurrency(stockDifference);
+    const wxString& sPurchasePrice = Model_Currency::toCurrency(stockPurchasePrice, stock_panel_->m_currency, 4);
+    const wxString& sAvgPurchasePrice = Model_Currency::toCurrency(stockavgPurchasePrice, stock_panel_->m_currency, 4);
+    const wxString& sCurrentPrice = Model_Currency::toCurrency(stockCurrentPrice, stock_panel_->m_currency, 4);
+    const wxString& sDifference = Model_Currency::toCurrency(stockDifference, stock_panel_->m_currency, 4);
     const wxString& sTotalDifference = Model_Currency::toCurrency(stocktotalDifference);
 
     wxString miniInfo = "";
@@ -957,7 +957,7 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
     attachment_button_->Enable(en);
     if (!en)
     {
-        stock_details_->SetLabelText(STOCKTIPS[rand() % (sizeof(STOCKTIPS) / sizeof(wxString))]);
+        stock_details_->SetLabelText(_(STOCKTIPS[rand() % (sizeof(STOCKTIPS) / sizeof(wxString))]));
         stock_details_short_->SetLabelText(wxString::Format(_("Last updated %s"), strLastUpdate_));
     }
 }
