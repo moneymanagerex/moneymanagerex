@@ -418,7 +418,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
                 else
                 {
                     if (curr_id < 0)
-                        msg << wxString::Format(_("%s\t: %s\n"), currency_symbol, _("Invalid Value "));
+                        msg << wxString::Format(_("%s\t: %s\n"), currency_symbol, _("Invalid value "));
                 }
             }
         }
