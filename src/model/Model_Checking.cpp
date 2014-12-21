@@ -289,18 +289,16 @@ Model_Checking::Full_Data::Full_Data() : Data(0), BALANCE(0), AMOUNT(0)
 Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUNT(0)
     , m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
 {
-    const Model_Account::Data* from_account = Model_Account::instance().get(r.ACCOUNTID);
-    if (from_account) this->ACCOUNTNAME = from_account->ACCOUNTNAME;
+    ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
 
-    if (Model_Checking::TRANSFER == Model_Checking::type(this->TRANSCODE))
+    if (Model_Checking::type(r) == Model_Checking::TRANSFER)
     {
-        const Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
-        if (to_account) this->TOACCOUNTNAME = to_account->ACCOUNTNAME;
+        TOACCOUNTNAME = Model_Account::get_account_name(r.TOACCOUNTID);
+        PAYEENAME = TOACCOUNTNAME;
     }
     else
     {
-        const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
-        if (payee) this->PAYEENAME = payee->PAYEENAME;
+        PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
     }
     
     if (!m_splits.empty())
@@ -322,18 +320,15 @@ Model_Checking::Full_Data::Full_Data(const Data& r
     const auto it = splits.find(this->id());
     if (it != splits.end()) m_splits = it->second;
 
-    const Model_Account::Data* from_account = Model_Account::instance().get(r.ACCOUNTID);
-    if (from_account) this->ACCOUNTNAME = from_account->ACCOUNTNAME;
-
-    if (Model_Checking::TRANSFER == Model_Checking::type(this->TRANSCODE))
+    ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
+    if (Model_Checking::type(r) == Model_Checking::TRANSFER)
     {
-        const Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
-        if (to_account) this->TOACCOUNTNAME = to_account->ACCOUNTNAME;
+        TOACCOUNTNAME = Model_Account::get_account_name(r.TOACCOUNTID);
+        PAYEENAME = TOACCOUNTNAME;
     }
     else
     {
-        const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
-        if (payee) this->PAYEENAME = payee->PAYEENAME;
+        PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
     }
     
     if (!m_splits.empty())
@@ -344,7 +339,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r
     }
     else
     {
-        this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID, r.SUBCATEGID);
+        CATEGNAME = Model_Category::full_name(r.CATEGID, r.SUBCATEGID);
     }
 }
 
