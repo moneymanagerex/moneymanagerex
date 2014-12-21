@@ -21,3 +21,19 @@ notifications:
     on_failure: always
 os:
   - osx
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "qf1zHUdR8Y+5o740amEijztWIfqK5F4YeALhFoGxuXeGBTUZGdTf6/OzLzMW9ecpB9TFjCRoFy3Ox+8HvWpm7W8jewTKzDGxgPJXE6azc0AyBqA7mepRnsOIvKKCwzB4fFmwEjD26VzC8Vs0cUPygN0sJeeP/DHIBldMa/qKWK8="
+
+addons:
+  coverity_scan:
+    project:
+      name: "moneymanagerex/moneymanagerex"
+      description: "Build submitted via Travis CI"
+    notification_email: guanlisheng@gmail.com
+    build_command_prepend: "./configure; make clean"
+    build_command:   "make -j 4"
+    branch_pattern: master 
