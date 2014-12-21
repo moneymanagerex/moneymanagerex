@@ -260,7 +260,7 @@ double Model_Checking::reconciled(const Data& r, int account_id)
 
 bool Model_Checking::is_transfer(const wxString& r)
 {
-    return r == Model_Checking::all_type()[Model_Checking::TRANSFER];
+    return type(r) == Model_Checking::TRANSFER;
 }
 bool Model_Checking::is_transfer(const Data* r)
 {
@@ -268,7 +268,7 @@ bool Model_Checking::is_transfer(const Data* r)
 }
 bool Model_Checking::is_deposit(const wxString& r)
 {
-    return r == Model_Checking::all_type()[Model_Checking::DEPOSIT];
+    return type(r) == Model_Checking::DEPOSIT;
 }
 bool Model_Checking::is_deposit(const Data* r)
 {
@@ -480,28 +480,17 @@ void Model_Checking::putDataToTransaction(Data *r, const Data &data)
 const wxString Model_Checking::Full_Data::to_json()
 {
     json::Object o;
-    o[L"TRANSDATE"] = json::String(this->TRANSDATE.ToStdWstring());
+    Model_Checking::Data::to_json(o);
     o[L"ACCOUNTNAME"] = json::String(this->ACCOUNTNAME.ToStdWstring());
-    o[L"TRANSCODE"] = json::String(this->TRANSCODE.ToStdWstring());
-    o[L"TRANSAMOUNT"] = json::Number(this->TRANSAMOUNT);
-    if (is_transfer(this)) {
+    if (is_transfer(this))
         o[L"TOACCOUNTNAME"] = json::String(this->TOACCOUNTNAME.ToStdWstring());
-        o[L"TOTRANSAMOUNT"] = json::Number(this->TOTRANSAMOUNT);
-    }
-    else {
+    else
         o[L"PAYEENAME"] = json::String(this->PAYEENAME.ToStdWstring());
-    }
-    o[L"STATUS"] = json::String(this->STATUS.ToStdWstring());
-    o[L"TRANSACTIONNUMBER"] = json::String(this->TRANSACTIONNUMBER.ToStdWstring());
-    o[L"NOTES"] = json::String(this->NOTES.ToStdWstring());
 
     if (this->has_split())
     {
-        int id = this->TRANSID;
-        Model_Splittransaction::Data_Set split
-            = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id));
         json::Array a;
-        for (const auto & item : split)
+        for (const auto & item : m_splits)
         {
             json::Object s;
             const std::wstring categ = Model_Category::full_name(item.CATEGID, item.SUBCATEGID).ToStdWstring();
