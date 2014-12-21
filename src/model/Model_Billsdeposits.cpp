@@ -19,6 +19,8 @@
 #include "Model_Billsdeposits.h"
 #include "mmOption.h"
 #include "Model_Category.h"
+#include "Model_Account.h"
+#include "Model_Payee.h"
 
 const std::vector<std::pair<Model_Billsdeposits::TYPE, wxString> > Model_Billsdeposits::TYPE_CHOICES =
 {
@@ -354,4 +356,11 @@ Model_Billsdeposits::Full_Data::Full_Data()
 Model_Billsdeposits::Full_Data::Full_Data(const Data& r): Data(r)
 {
     CATEGNAME = Model_Category::full_name(r.CATEGID, r.SUBCATEGID);
+    ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
+
+    PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
+    if (Model_Billsdeposits::type(r.TRANSCODE) == Model_Billsdeposits::TRANSFER)
+    {
+        PAYEENAME = Model_Account::get_account_name(r.TOACCOUNTID);
+    }
 }
