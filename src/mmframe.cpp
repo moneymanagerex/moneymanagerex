@@ -196,6 +196,7 @@ EVT_MENU(MENU_PAYEE_RELOCATION, mmGUIFrame::OnPayeeRelocation)
 EVT_UPDATE_UI(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbarUpdateUI)
 EVT_UPDATE_UI(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinksUpdateUI)
 EVT_MENU(MENU_TREEPOPUP_EDIT, mmGUIFrame::OnPopupEditAccount)
+EVT_MENU(MENU_TREEPOPUP_REALLOCATE, mmGUIFrame::OnPopupReallocateAccount)
 EVT_MENU(MENU_TREEPOPUP_DELETE, mmGUIFrame::OnPopupDeleteAccount)
 
 EVT_TREE_ITEM_MENU(wxID_ANY, mmGUIFrame::OnItemMenu)
@@ -1039,6 +1040,16 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
+void mmGUIFrame::OnPopupReallocateAccount(wxCommandEvent& /*event*/)
+{
+    if (selectedItemData_)
+    {
+        int account_id = selectedItemData_->getData();
+        ReallocateAccount(Model_Account::get_account_name(account_id));
+    }
+}
+//----------------------------------------------------------------------------
+
 void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
 {
     if (selectedItemData_)
@@ -1097,6 +1108,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 wxMenu menu;
                 //                  menu.Append(MENU_TREEPOPUP_GOTO, _("&Go To.."));
                 menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account"));
+                menu.Append(MENU_TREEPOPUP_REALLOCATE, _("&Reallocate Account"));
                 menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account"));
                 menu.AppendSeparator();
                 menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
@@ -2533,7 +2545,7 @@ void mmGUIFrame::OnReallocateAccount(wxCommandEvent& event)
         return;
     }
 
-    // Remove all investment type accounts
+    // Remove investment type accounts from account list
     wxArrayString choices;
     for (const auto & item : accounts)
     {
@@ -2544,14 +2556,21 @@ void mmGUIFrame::OnReallocateAccount(wxCommandEvent& event)
     mmSingleChoiceDialog account_choice(this, _("Choose account to reallocate account type"), _("Account Reallocation"), choices);
     if (account_choice.ShowModal() == wxID_OK)
     {
-        Model_Account::Data* account = Model_Account::instance().get(account_choice.GetStringSelection());
+        ReallocateAccount(account_choice.GetStringSelection());
+    }
+}
 
-        // Remove investment type from reallocation list
-        wxArrayString types = Model_Account::instance().all_type();
-        types.Remove(Model_Account::all_type()[Model_Account::INVESTMENT]);
+void mmGUIFrame::ReallocateAccount(const wxString& account_name)
+{
+    // Remove investment type from reallocation list
+    wxArrayString types = Model_Account::instance().all_type();
+    types.Remove(Model_Account::all_type()[Model_Account::INVESTMENT]);
 
-        mmSingleChoiceDialog type_choice(this, wxString::Format(_("Choose the new type for account: %s"), account->ACCOUNTNAME), _("Account Reallocation"), types);
-        if (type_choice.ShowModal() == wxID_OK)
+    mmSingleChoiceDialog type_choice(this, wxString::Format(_("Choose the new type for account: %s"), account_name), _("Account Reallocation"), types);
+    if (type_choice.ShowModal() == wxID_OK)
+    {
+        Model_Account::Data* account = Model_Account::instance().get(account_name);
+        if (account)
         {
             account->ACCOUNTTYPE = type_choice.GetStringSelection();
             Model_Account::instance().save(account);

@@ -223,6 +223,7 @@ private:
     void OnSelChanged(wxTreeEvent& event);
     void OnPopupDeleteAccount(wxCommandEvent& event);
     void OnPopupEditAccount(wxCommandEvent& event);
+    void OnPopupReallocateAccount(wxCommandEvent& event);
 
     void OnViewAllAccounts(wxCommandEvent& event);
     void OnViewFavoriteAccounts(wxCommandEvent& event);
@@ -233,6 +234,7 @@ private:
     void navTreeStateToJson();
 
     void processPendingEvents();
+    void ReallocateAccount(const wxString& account_name);
 
     /* Recent Files */
     mmFileHistory* m_recentFiles;
@@ -307,6 +309,7 @@ private:
         MENU_TREEPOPUP_EDIT,
         MENU_TREEPOPUP_MOVE,
         MENU_TREEPOPUP_DELETE,
+        MENU_TREEPOPUP_REALLOCATE,
 
         //
         MENU_TREEPOPUP_ACCOUNT_NEW,
