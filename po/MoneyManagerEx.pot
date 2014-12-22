@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-21 13:23+0300\n"
-"PO-Revision-Date: 2014-12-21 13:23+0300\n"
-"Last-Translator: mmex <developers@moneymanagerex.org>\n"
+"POT-Creation-Date: 2014-12-22 10:29+0300\n"
+"PO-Revision-Date: 2014-12-22 10:29+0300\n"
+"Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Money Manager Ex <moneymanagerex@moneymanagerex.org>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -2473,7 +2473,7 @@ msgid "%s\t: %s\n"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:421
-msgid "Invalid Value "
+msgid "Invalid value "
 msgstr ""
 
 #: src/maincurrencydialog.cpp:470
