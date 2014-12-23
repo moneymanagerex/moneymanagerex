@@ -29,7 +29,7 @@ class mmAttachmentDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmAttachmentDialog(wxWindow* parent, const wxString& RefType, const int& RefId);
+    mmAttachmentDialog(wxWindow* parent, const wxString& RefType, int RefId);
 
 private:
     enum cols
@@ -89,9 +89,9 @@ public:
 	static bool CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile);
 	static bool DeleteAttachment(const wxString& FileToDelete);
 	static bool OpenAttachment(const wxString& FileToOpen);
-	static bool DeleteAllAttachments(const wxString& RefType, const int& RefId);
-	static bool RelocateAllAttachments(const wxString& RefType, const int& OldRefId, const int& NewRefId);
-	static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, const int& RefId);
+	static bool DeleteAllAttachments(const wxString& RefType, int RefId);
+	static bool RelocateAllAttachments(const wxString& RefType, int OldRefId, int NewRefId);
+	static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int RefId);
 private:
     static wxString m_PathSep;
 };

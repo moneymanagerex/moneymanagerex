@@ -148,7 +148,7 @@ void mmWebAppDialog::OnListItemActivated(wxDataViewEvent& event)
     }
 }
 
-bool mmWebAppDialog::ImportWebTr(const int& WebTrID, const bool& open)
+bool mmWebAppDialog::ImportWebTr(int WebTrID, bool open)
 {
     mmWebApp::webtran_holder WebTrToImport;
     bool bFound = false;

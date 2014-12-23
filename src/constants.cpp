@@ -43,7 +43,7 @@ const int mmex::version::Alpha = 1;
 const int mmex::version::Beta  = 0;
 const int mmex::version::RC    = 0;
 
-const wxString mmex::version::generateProgramVersion(const int& Major, const int& Minor, const int& Patch, const int& Alpha, const int& Beta, const int& RC)
+const wxString mmex::version::generateProgramVersion(int Major, int Minor, int Patch, int Alpha, int Beta, int RC)
 {
     wxString Version = wxString::Format("%i.%i.%i", Major, Minor, Patch);
     if (Alpha > 0)

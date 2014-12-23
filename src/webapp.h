@@ -59,7 +59,7 @@ static int WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString
 static bool WebApp_DeleteAllAccount();
 static bool WebApp_DeleteAllPayee();
 static bool WebApp_DeleteAllCategory();
-static wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, const int& DesktopTransactionID, const int& AttachmentNr);
+static wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr);
 
 public:
     /*WebApp transaction Structure*/
@@ -107,7 +107,7 @@ public:
     static int MMEX_InsertNewTransaction(webtran_holder& WebAppTrans);
 
     /** Delete transaction from WebApp */
-    static bool WebApp_DeleteOneTransaction(const int& WebAppTransactionId);
+    static bool WebApp_DeleteOneTransaction(int WebAppTransactionId);
 
     /* Return attachment URL */
     static wxString WebApp_GetAttachment(const wxString& AttachmentFileName);

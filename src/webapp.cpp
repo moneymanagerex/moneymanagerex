@@ -593,7 +593,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
 }
 
 //Delete one transaction from WebApp
-bool mmWebApp::WebApp_DeleteOneTransaction(const int& WebAppTransactionId)
+bool mmWebApp::WebApp_DeleteOneTransaction(int WebAppTransactionId)
 {
     wxString DeleteOneTransactionUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteOneTransaction + "=" << WebAppTransactionId;
 
@@ -604,7 +604,7 @@ bool mmWebApp::WebApp_DeleteOneTransaction(const int& WebAppTransactionId)
 }
 
 //Download one attachment from WebApp
-wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, const int& DesktopTransactionID, const int& AttachmentNr)
+wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr)
 {
     wxString FileExtension = wxFileName(AttachmentName).GetExt().MakeLower();
     wxString FileName = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) + "_" + wxString::Format("%i", DesktopTransactionID)

@@ -52,7 +52,7 @@ namespace version
     extern const int Beta;
     extern const int RC;
     extern const wxString generateProgramVersion
-        (const int& Major, const int& Minor, const int& Patch, const int& Alpha, const int& Beta, const int& RC);
+        (int Major, int Minor, int Patch, int Alpha, int Beta, int RC);
 }
 
 namespace weblink

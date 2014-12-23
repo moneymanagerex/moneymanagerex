@@ -32,7 +32,7 @@ wxBEGIN_EVENT_TABLE(mmAboutDialog, wxDialog)
     EVT_HTML_LINK_CLICKED(wxID_ANY, mmAboutDialog::OnLinkClicked)
 wxEND_EVENT_TABLE()
 
-mmAboutDialog::mmAboutDialog(wxWindow* parent, const int& TabToOpen)
+mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen)
 : about_text_()
 , developers_text_()
 , artwork_text_()
@@ -52,7 +52,7 @@ bool mmAboutDialog::Create(wxWindow* parent
     , const wxPoint& pos
     , const wxSize& size
     , long style
-	, const int& TabToOpen
+	, int TabToOpen
     )
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
@@ -144,7 +144,7 @@ void mmAboutDialog::InitControls()
     if (data.GetCount() > 2) sponsors_text_->SetPage(data[2]);
 	if (data.GetCount() > 3) license_text_->SetPage(data[3]);
 }
-void mmAboutDialog::CreateControls(const int& TabToOpen)
+void mmAboutDialog::CreateControls(int TabToOpen)
 {
     wxSizerFlags flags;
     flags.Align(wxALIGN_CENTER).Border(wxALL, 5);
