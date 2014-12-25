@@ -23,23 +23,7 @@
 #include "paths.h"
 #include "mongoose/mongoose.h"
 #include "singleton.h"
-#include "model/Model_Asset.h"
-#include "model/Model_Stock.h"
-#include "model/Model_StockHistory.h"
-#include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
-#include "model/Model_Budgetyear.h"
-#include "model/Model_Account.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Category.h"
-#include "model/Model_Subcategory.h"
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_Splittransaction.h"
-#include "model/Model_Budget.h"
-#include "model/Model_Report.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Usage.h"
 
 std::string event_to_name(enum mg_event ev)
 {
