@@ -183,7 +183,7 @@
     <ClCompile Include="..\..\src\webapp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-	<ClCompile Include="..\..\src\webappdialog.cpp">
+    <ClCompile Include="..\..\src\webappdialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\webserver.cpp">
@@ -378,6 +378,21 @@
     <ClCompile Include="..\..\src\reports\myusage.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\mmOptionGeneralSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mmOptionAttachmentSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mmOptionMiscSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mmOptionNetSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mmOptionViewSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -542,7 +557,7 @@
     <ClInclude Include="..\..\src\webapp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-	<ClInclude Include="..\..\src\webappdialog.h">
+    <ClInclude Include="..\..\src\webappdialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\webserver.h">
@@ -793,6 +808,24 @@
     </ClInclude>
     <ClInclude Include="..\..\src\reports\myusage.h">
       <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mmOptionBaseSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mmOptionGeneralSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mmOptionAttachmentSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mmOptionMiscSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mmOptionNetSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mmOptionViewSettings.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
