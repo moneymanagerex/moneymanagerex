@@ -392,7 +392,7 @@ msgstr "Geben Sie an, mit wieviel % pro Jahr das Objekt seinen Wert ändert"
 
 #: src/assetdialog.cpp:183
 msgid "Organize attachments of this asset"
-msgstr "Beilage für diesen Vermögenswert verwalten"
+msgstr "Anhänge für diesen Vermögenswert verwalten"
 
 #: src/assetdialog.cpp:186
 msgid "Enter notes associated with this asset"
@@ -432,7 +432,7 @@ msgstr "Löschen des Vermögenswerts bestätigen"
 #: src/budgetingpanel.cpp:526 src/mmcheckingpanel.cpp:1248
 #: src/stockspanel.cpp:383
 msgid "Hide column"
-msgstr ""
+msgstr "Spalte verstecken"
 
 #: src/assetspanel.cpp:323 src/billsdepositspanel.cpp:155
 #: src/mmcheckingpanel.cpp:1249 src/stockspanel.cpp:384
@@ -443,7 +443,7 @@ msgstr ""
 #: src/budgetingpanel.cpp:528 src/mmcheckingpanel.cpp:1250
 #: src/stockspanel.cpp:385
 msgid "Reset columns size"
-msgstr ""
+msgstr "Spaltengröße zurücksetzen"
 
 #: src/assetspanel.cpp:394
 msgid ""
@@ -451,9 +451,9 @@ msgid ""
 "Each asset can have its value appreciate by a certain rate per year, "
 "depreciate by a certain rate per year, or not change in value. The total "
 "assets are added to your total financial worth."
-msgstr ""
-"MMEX können Sie das Anlagevermögen wie Autos, Häuser, Grundstücke und andere "
-"zu verfolgen. Jede Anlage kann ihren Wert durch eine bestimmte Rate pro Jahr "
+msgstr "Vermögenswerte werden zu Ihrem finanziellen Gesamtwert addiert"
+"mit MMEX können Sie das Anlagevermögen wie Autos, Häuser, Grundstücke und andere "
+"Anlagen verfolgen. Jede Anlage kann ihren Wert durch eine bestimmte Rate pro Jahr "
 "ändern."
 
 #: src/assetspanel.cpp:421 src/general_report_manager.cpp:658
@@ -528,7 +528,7 @@ msgstr "Vermögenswert löschen"
 #: src/assetspanel.cpp:522 src/billsdepositspanel.cpp:361
 #: src/mmcheckingpanel.cpp:502 src/stockspanel.cpp:558
 msgid "Open attachments"
-msgstr "Beilage öffnen"
+msgstr "Anhang öffnen"
 
 #: src/assetspanel.cpp:529 src/assetspanel.cpp:530 src/mmcheckingpanel.cpp:510
 msgid "Search"
@@ -537,7 +537,7 @@ msgstr "suchen"
 #: src/assetspanel.cpp:532
 msgid "Enter any string to find related assets"
 msgstr ""
-"Geben Sie eine beliebige Zeichenfolge, die entsprechenden Vermögenswerte zu "
+"Geben Sie eine beliebige Zeichenfolge ein, um die entsprechenden Vermögenswerte zu "
 "finden"
 
 #: src/assetspanel.cpp:602 src/stockspanel.cpp:715 src/stockspanel.cpp:933
@@ -565,15 +565,15 @@ msgstr "Datei"
 
 #: src/attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr "Beilagen Verzeichnis nicht definiert"
+msgstr "Anhangsverzeichnis nicht definiert"
 
 #: src/attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr "Bitte in Extras/Optionen/Beilagen setzen"
+msgstr "Bitte in Extras/Optionen/Anhängen setzen"
 
 #: src/attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr "Beilagenverzeichnis nicht definiert"
+msgstr "Anhangsverzeichnis nicht definiert"
 
 #: src/attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
@@ -585,17 +585,17 @@ msgstr "Bitte überprüfen ob das angegebene Verzeichnis stimmt"
 
 #: src/attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr "Beilagenverzeichnis fehlt"
+msgstr "Anhangsverzeichnis fehlt"
 
 #: src/attachmentdialog.cpp:85
 #, c-format
 msgid "Organize Attachments | %s %i"
-msgstr "Beilage verwalten | %s %i"
+msgstr "Anhänge verwalten | %s %i"
 
 #: src/attachmentdialog.cpp:87
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr "Beilage verwalten | New %s"
+msgstr "Anhänge verwalten | New %s"
 
 #: src/attachmentdialog.cpp:129 src/payeedialog.cpp:120
 msgid "Other tools"
@@ -603,31 +603,31 @@ msgstr "andere Tools"
 
 #: src/attachmentdialog.cpp:168
 msgid "Import attachment:"
-msgstr "Beilage importieren: "
+msgstr "Anhänge importieren: "
 
 #: src/attachmentdialog.cpp:178
 msgid "Enter a description for the new attachment:"
-msgstr "Geben Sie die Beschreibung für die neue Beilage ein: "
+msgstr "Geben Sie die Beschreibung für den neuen Anhang ein: "
 
 #: src/attachmentdialog.cpp:179
 msgid "Organize Attachments: Add Attachment"
-msgstr "Beilage verwalten: Beilage hinzufügen"
+msgstr "Anhänge verwalten: Anhang hinzufügen"
 
 #: src/attachmentdialog.cpp:215
 msgid "Modify the description for the attachment:"
-msgstr "ändern der Beilagen-Beschreibung "
+msgstr "ändern der Anhangsbeschreibung "
 
 #: src/attachmentdialog.cpp:216
 msgid "Organize Attachments: Edit Attachment"
-msgstr "Beilage verwalten: modifizieren"
+msgstr "Anhäge verwalten: modifizieren"
 
 #: src/attachmentdialog.cpp:235
 msgid "Do you really want to delete this attachment?"
-msgstr "Soll die Beilage wirklich gelöscht werden?"
+msgstr "Soll der Anhang wirklich gelöscht werden?"
 
 #: src/attachmentdialog.cpp:236
 msgid "Confirm Attachment Deletion"
-msgstr "Bestätigung der Löschung (Beilage)"
+msgstr "Bestätigung der Löschung (Anhang)"
 
 #: src/attachmentdialog.cpp:280 src/categdialog.cpp:222
 #: src/import_export/univcsvdialog.cpp:200 src/maincurrencydialog.cpp:179
@@ -638,7 +638,7 @@ msgstr "&hinzufügen"
 
 #: src/attachmentdialog.cpp:282
 msgid "&Open "
-msgstr "&öffnen"
+msgstr "&Öffnen"
 
 #: src/attachmentdialog.cpp:285 src/import_export/univcsvdialog.cpp:204
 #: src/maincurrencydialog.cpp:186 src/payeedialog.cpp:372
@@ -655,11 +655,11 @@ msgid ""
 "This directory and its files are automatically managed by Money Manager EX "
 "software."
 msgstr ""
-"Dieses Verzeichnis und die Files werden automatisch durch MMEX verwaltet."
+"Dieses Verzeichnis und die Dateien werden automatisch durch MMEX verwaltet."
 
 #: src/attachmentdialog.cpp:345
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr "Bitte dieses Verzeichnis und die Files nicht von Hand verändern."
+msgstr "Bitte dieses Verzeichnis und die Dateien nicht von Hand verändern."
 
 #: src/attachmentdialog.cpp:379 src/attachmentdialog.cpp:387
 msgid "Destination file already exist:"
@@ -667,7 +667,7 @@ msgstr "Zieldatei existiert bereits: "
 
 #: src/attachmentdialog.cpp:382
 msgid "File not found in attachments. Please delete or rename it."
-msgstr "File nicht gefunden in den Beilagen. Bitte löschen oder umbenennen."
+msgstr "Datei nicht gefunden in den Anhängen. Bitte löschen oder umbenennen."
 
 #: src/attachmentdialog.cpp:383 src/attachmentdialog.cpp:391
 msgid "Destination file already exist"
@@ -675,19 +675,19 @@ msgstr "Zieldatei existiert bereits"
 
 #: src/attachmentdialog.cpp:390
 msgid "File already found in attachments"
-msgstr "File gefunden in den Beilagen."
+msgstr "Datei gefunden in den Anhängen."
 
 #: src/attachmentdialog.cpp:433
 msgid "Attachment not found:"
-msgstr "Beilage nicht gefunden: "
+msgstr "Anhang nicht gefunden: "
 
 #: src/attachmentdialog.cpp:436
 msgid "Do you want to continue and delete attachment on database?"
-msgstr "Möchten Sie fortfahren und löschen Anlage auf Datenbank suchen?"
+msgstr "Möchten Sie fortfahren und den Anhang in der Datenbank löschen?"
 
 #: src/attachmentdialog.cpp:437
 msgid "Delete attachment failed"
-msgstr "Löschen der Beilage misslungen."
+msgstr "Löschen des Anhangs misslungen."
 
 #: src/attachmentdialog.cpp:450
 msgid "Unable to open file:"
@@ -826,11 +826,11 @@ msgstr "Datum der nächsten Zahlung oder Gutschrift angeben"
 
 #: src/billsdepositsdialog.cpp:378
 msgid "Retard or advance the date of the 'next occurrence"
-msgstr "Verzögern-oder voranzubringen des Datums des nächsten Auftretens"
+msgstr "Verzögern oder beschleunigen des Datums des nächsten Ereignisses"
 
 #: src/billsdepositsdialog.cpp:384
 msgid "Next Occurrence"
-msgstr "Nächster Termin"
+msgstr "Nächstes Ereignis"
 
 #: src/billsdepositsdialog.cpp:388 src/billsdepositsdialog.cpp:1319
 msgid "Repeats"
@@ -851,7 +851,7 @@ msgstr "Anzahl Wiederholungen"
 #: src/billsdepositsdialog.cpp:425
 msgid "Set to 'Auto Execute' on the 'Next Occurrence' date."
 msgstr ""
-"Legen Sie “Automatische Ausführung” fest im Datumfeld „Nächstes Ereignis“"
+"Legen Sie “Automatische Ausführung” fest im Datumsfeld „Nächstes Ereignis“"
 
 #: src/billsdepositsdialog.cpp:426
 msgid "Automatic Execution will require user acknowledgement."
@@ -871,7 +871,7 @@ msgstr "Datum der Buchung"
 
 #: src/billsdepositsdialog.cpp:453 src/transdialog.cpp:1011
 msgid "Retard or advance the date of the transaction"
-msgstr "Datum der Buchung zurück oder vor-setzen"
+msgstr "Datum der Buchung zurück oder vor verlegen"
 
 #: src/billsdepositsdialog.cpp:469 src/filtertransdialog.cpp:248
 #: src/transdialog.cpp:1012
@@ -908,7 +908,7 @@ msgstr "Betrag für diese Buchung"
 
 #: src/billsdepositsdialog.cpp:500
 msgid "Specify the amount to be transfered"
-msgstr "Geben Sie die zu übertragende Menge ein"
+msgstr "Geben Sie die zu übertragenden Betrag ein"
 
 #: src/billsdepositsdialog.cpp:502 src/billsdepositsdialog.cpp:987
 #: src/billsdepositspanel.cpp:208 src/budgetingpanel.cpp:298
@@ -941,7 +941,7 @@ msgstr "Konto wählen"
 #: src/billsdepositsdialog.cpp:529
 msgid "Specify the Account that will own the repeating transaction"
 msgstr ""
-"Geben Sie das Konto an, das die sich wiederholenden Buchung besitzen soll"
+"Geben Sie das Konto an, in dem die sich wiederholenden Buchung stattfinden soll"
 
 #: src/billsdepositsdialog.cpp:532 src/billsdepositsdialog.cpp:816
 #: src/billsdepositspanel.cpp:204 src/filtertransdialog.cpp:205
@@ -952,11 +952,11 @@ msgstr ""
 #: src/reports/transactions.cpp:67 src/transdialog.cpp:210
 #: src/transdialog.cpp:391 src/webappdialog.cpp:83
 msgid "Payee"
-msgstr "Zahlungsempfänger"
+msgstr "Zahlungsempfänger/Zahler"
 
 #: src/billsdepositsdialog.cpp:534 src/billsdepositsdialog.cpp:875
 msgid "Select Payee"
-msgstr "wählen"
+msgstr "wählen Zahlungsempfänger/Zahler "
 
 #: src/billsdepositsdialog.cpp:536
 msgid "Specify where the transaction is going to"
@@ -1167,7 +1167,7 @@ msgstr "Ein&gabe"
 
 #: src/billsdepositspanel.cpp:349
 msgid "Enter Next Bills & Deposit Occurrence"
-msgstr "Nächster Termin für wiederkehrende Zahlung & Gutschrift wählen "
+msgstr "Nächsten Termin für wiederkehrende Zahlung & Gutschrift wählen "
 
 #: src/billsdepositspanel.cpp:353
 msgid "&Skip"
@@ -1175,7 +1175,7 @@ msgstr "&überspringen"
 
 #: src/billsdepositspanel.cpp:354
 msgid "Skip Next Bills & Deposit Occurrence"
-msgstr "Nächster Termin für wiederkehrende Zahlung & Gutschrift überspringen"
+msgstr "Nächsten Termin für wiederkehrende Zahlung & Gutschrift überspringen"
 
 #: src/billsdepositspanel.cpp:473
 msgid "Enter next Occurrence..."
@@ -1489,7 +1489,7 @@ msgstr "Ausgewählte Kategorie für die Buchung benutzen"
 
 #: src/categdialog.cpp:248
 msgid "Enter the name for the new category:"
-msgstr "Geben Sie den Namen für das neue Zahlungsempfänger ein:"
+msgstr "Geben Sie den Namen für die neue Kategorie ein:"
 
 #: src/categdialog.cpp:249
 msgid "Add Category"
@@ -1511,7 +1511,7 @@ msgstr ""
 
 #: src/categdialog.cpp:260 src/categdialog.cpp:285 src/categdialog.cpp:303
 msgid "Organise Categories: Adding Error"
-msgstr "Kategorien verwalten: zufügen Fehler"
+msgstr "Kategorien verwalten: hinzufügen Fehler"
 
 #: src/categdialog.cpp:284 src/categdialog.cpp:496
 msgid "Sub Category with same name exists"
@@ -1526,8 +1526,8 @@ msgid ""
 "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
 msgstr ""
-"Tipp: Ändern Sie alle Transaktionen mit diesem Zahlungsempfänger an einen "
-"anderen Zahlungsempfänger \n"
+"Tipp: Ändern Sie alle Transaktionen mit dieser Kategorie in eine "
+"andere Kategorie \n"
 " mit dem Befehl \"zu verlagern\":"
 
 #: src/categdialog.cpp:313
@@ -1535,8 +1535,8 @@ msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
 msgstr ""
-"Tipp: Ändern Sie alle Transaktionen mit diesem Zahlungsempfänger an einen "
-"anderen Zahlungsempfänger \n"
+"Tipp: Ändern Sie alle Transaktionen mit dieser Kategorie in eine "
+"andere Kategorie \n"
 " mit dem Befehl \"zu verlagern\":"
 
 #: src/categdialog.cpp:315
@@ -1562,7 +1562,7 @@ msgstr "Geben Sie einen neuen Namen für %s ein"
 
 #: src/categdialog.cpp:466
 msgid "Edit Category"
-msgstr "Kategorie mutieren"
+msgstr "Kategorie editieren"
 
 #: src/categdialog.cpp:480 src/categdialog.cpp:497
 msgid "Organise Categories: Editing Error"
@@ -2091,11 +2091,11 @@ msgstr "CSV-Datei zum Exportieren auswählen"
 
 #: src/import_export/qif_export.cpp:283
 msgid "No Account available for export"
-msgstr "Kein Konto vorhanden füer den Export!"
+msgstr "Kein Konto vorhanden für den Export!"
 
 #: src/import_export/qif_export.cpp:287
 msgid "No Accounts selected for export"
-msgstr "Keine Konti vorhanden füer den Export"
+msgstr "Keine Konti vorhanden für den Export"
 
 #: src/import_export/qif_export.cpp:291
 msgid "File name is empty"
@@ -2211,7 +2211,7 @@ msgstr "Sollen alle  Buchungen importiert werden?"
 #: src/import_export/qif_import_gui.cpp:645
 msgid "All missing account, payees and categories will be created."
 msgstr ""
-"Alle fehlenden Konto, Zahlungsempfänger und Kategorien werden erstellt."
+"Alle fehlenden Konten, Zahlungsempfänger/Zahler und Kategorien werden erstellt."
 
 #: src/import_export/qif_import_gui.cpp:646
 msgid "Confirm Import"
@@ -3050,12 +3050,12 @@ msgstr "&Kategorien"
 
 #: src/mmframe.cpp:1467
 msgid "&Payees..."
-msgstr "&Zahlungsempfänger"
+msgstr "&Zahlungsempfänger/Zahler"
 
 #: src/mmframe.cpp:1468
 msgid "Reassign all payees to another payee"
 msgstr ""
-"Neu zuordnen aller Zahlungsempfänger an einen anderen Zahlungsempfänger"
+"Neu zuordnen aller Zahlungsempfänger/Zahler an einen anderen Zahlungsempfänger/Zahler"
 
 #: src/mmframe.cpp:1472
 msgid "Relocation of..."
@@ -3063,7 +3063,7 @@ msgstr "Umzug der ..."
 
 #: src/mmframe.cpp:1473
 msgid "Relocate Categories && Payees"
-msgstr "Top-Kategorien der l&etzten 30 Tage"
+msgstr "Umziehen von Kategorien && Empfänger/Zahler"
 
 #: src/mmframe.cpp:1478
 msgid "&Budget Setup"
@@ -3985,7 +3985,7 @@ msgstr "Basiswährung nicht definiert"
 #: src/model/Model_Payee.cpp:80
 #, fuzzy
 msgid "Payee Error"
-msgstr "Empfänger hinzufügen. Fehler %s"
+msgstr "Empfänger/Zahler hinzufügen. Fehler %s"
 
 #: src/model/Model_Report.cpp:98
 #, c-format
@@ -4502,7 +4502,7 @@ msgstr "Dropbox Ordner"
 
 #: src/optionsdialog.cpp:981
 msgid "Choose folder to set as attachments archive"
-msgstr "Wählen Sie den Ordner für die Beilagen archivieren"
+msgstr "Wählen Sie den Ordner um die Anhänge zu archivieren"
 
 #: src/payeedialog.cpp:68
 msgid "Default Category"
@@ -4514,7 +4514,7 @@ msgstr "suchen: "
 
 #: src/payeedialog.cpp:187 src/payeedialog.cpp:226 src/payeedialog.cpp:254
 msgid "Payee with same name exists"
-msgstr "Empfänger mit diesem Namen existiert bereits"
+msgstr "Empfänger/Zahler mit diesem Namen existiert bereits"
 
 #: src/payeedialog.cpp:188 src/payeedialog.cpp:211 src/payeedialog.cpp:226
 msgid "Organize Payees: Add Payee"
@@ -4522,19 +4522,19 @@ msgstr "Empfänger verwalten"
 
 #: src/payeedialog.cpp:210
 msgid "Enter the name for the new payee:"
-msgstr "Geben Sie den Namen für das neue Zahlungsempfänger ein:"
+msgstr "Geben Sie den Namen für das neue Zahlungsempfänger/Zahler ein:"
 
 #: src/payeedialog.cpp:237
 msgid "Modify the name for the payee:"
-msgstr "Geben Sie den Namen für den Zahlungsempfänger ein:"
+msgstr "Geben Sie den Namen für den Zahlungsempfänger/Zahler ein:"
 
 #: src/payeedialog.cpp:238 src/payeedialog.cpp:254
 msgid "Organize Payees: Edit Payee"
-msgstr "Empfänger verwalten: modifizieren"
+msgstr "Empfänger/Zahler verwalten: modifizieren"
 
 #: src/payeedialog.cpp:268
 msgid "Payee in use."
-msgstr "Empfänger wird gerade verwendet"
+msgstr "Empfänger/Zahler wird gerade verwendet"
 
 #: src/payeedialog.cpp:271
 msgid ""
@@ -4542,7 +4542,7 @@ msgid ""
 "using the relocate command:"
 msgstr ""
 "Tipp: Ändern Sie alle Transaktionen mit diesem Zahlungsempfänger an einen "
-"anderen Zahlungsempfänger \n"
+"anderen Zahlungsempfänger/Zahler \n"
 " mit dem Befehl \"zu verlagern\":"
 
 #: src/payeedialog.cpp:272
@@ -4551,7 +4551,7 @@ msgstr "Extras -> Umzug -> Zahlungsempfänger"
 
 #: src/payeedialog.cpp:273
 msgid "Organize Payees: Delete Error"
-msgstr "Empfänger verwalten, lösch Fehler"
+msgstr "Empfänger/Zahler verwalten, lösch Fehler"
 
 #: src/payeedialog.cpp:365
 msgid "Define Default Category"
@@ -4559,7 +4559,7 @@ msgstr "Standard Kategorie eingeben"
 
 #: src/payeedialog.cpp:380
 msgid "Relocate Payee"
-msgstr "Verwaltung der Empfänger "
+msgstr "Verwaltung der Empfänger/Zahler "
 
 #: src/relocatecategorydialog.cpp:57
 msgid "Relocate Category Dialog"
@@ -4571,11 +4571,11 @@ msgstr "Verschieben aller Kategorien von Quell zur Ziel Kategorie"
 
 #: src/relocatecategorydialog.cpp:88
 msgid "Source Category"
-msgstr "von Kategorie"
+msgstr "Quellkategorie"
 
 #: src/relocatecategorydialog.cpp:93
 msgid "Destination Category"
-msgstr "Empfänger Kategorie"
+msgstr "Zielkategorie"
 
 #: src/relocatecategorydialog.cpp:106 src/relocatepayeedialog.cpp:103
 msgid "Relocate:"
@@ -4634,12 +4634,12 @@ msgstr "Kategorie Umzug Bestätigung"
 
 #: src/relocatepayeedialog.cpp:49
 msgid "Relocate Payee Dialog"
-msgstr "Verwaltung der Empfänger anzeigen "
+msgstr "Verwaltung der Empfänger/Zahler anzeigen "
 
 #: src/relocatepayeedialog.cpp:77
 msgid "Relocate all source payees to the destination payee"
 msgstr ""
-"Verschieben aller Zahlungsempfänger (Quelle) zum (Ziel) Zahlungsempfänger"
+"Verschieben aller Zahlungsempfänger/Zahler (Quelle) zum (Ziel) Zahlungsempfänger/Zahler"
 
 #: src/relocatepayeedialog.cpp:137
 #, c-format
@@ -4648,13 +4648,13 @@ msgid ""
 "\n"
 "  to payee: %s"
 msgstr ""
-"Ändern aller Zahlungsempfänger von: %s \n"
+"Ändern aller Zahlungsempfänger/Zahler von: %s \n"
 "\n"
 " zu Empfänger %s"
 
 #: src/relocatepayeedialog.cpp:140
 msgid "Payee Relocation Confirmation"
-msgstr "Zahlungsempfänger Umzug Bestätigung"
+msgstr "Zahlungsempfänger/Zahler verschieben Bestätigung"
 
 #: src/reports/budgetcategorysummary.cpp:97
 #, fuzzy, c-format
@@ -4885,7 +4885,7 @@ msgstr "Monatlich"
 #: src/reports/summary.cpp:215
 #, fuzzy
 msgid "Yearly Report"
-msgstr "Zahlungsempfänger Bericht"
+msgstr "Zahlungsempfänger/Zahler Bericht"
 
 #: src/reports/summarystocks.cpp:95
 msgid "Summary of Stocks"
