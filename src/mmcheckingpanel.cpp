@@ -229,8 +229,8 @@ void mmCheckingPanel::filterTable()
 
         if (transFilterActive_)
         {
-            //TODO: if (!transFilterDlg_->checkAll(tran, m_AccountID))
-                //continue;
+            if (!transFilterDlg_->checkAll(tran, m_AccountID, splits))
+                continue;
         }
         else
         {
