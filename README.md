@@ -30,5 +30,5 @@ and user-friendliness - something one can use everyday.
 #### Tips: 
 1. We can open database file (both regular and encrypted) directly with [wxSqlitePlus](https://github.com/moneymanagerex/wxSqlitePlus)
 2. We can download dozen of cool reports from [general report] (https://github.com/moneymanagerex/general-reports)
-3. Start it if you feel it is helpful
+3. Star it if you feel it is helpful
 
