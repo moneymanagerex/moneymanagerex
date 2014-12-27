@@ -131,6 +131,7 @@ void Test_Options_Dialog::test_view_panel()
     wxMessageBox("Please Examine: mmOptionViewSettings Panel.\n\nContinue other tests ...",
         "Testing: Settings Panel", wxOK, wxTheApp->GetTopWindow());
     settings_panel->SaveSettings();
+    wxMessageBox("View Settings saved", "Option Settings Panel");
 }
 
 void Test_Options_Dialog::test_network_panel()
