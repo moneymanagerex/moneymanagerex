@@ -159,48 +159,8 @@ mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 		delete date_range_;
 }
 
-void mmReportIncomeExpensesMonthly::getStatistics(std::map<int, std::pair<double, double> >& incomeExpensesStats)
-{
-
-    // Init all the map values with 0.0
-    int min_year = date_range_->start_date().GetYear();
-    int min_month = date_range_->start_date().GetMonth();
-
-    for (int i = 0; i < 12; i++) {
-        int m = min_month + i;
-        if (m > 12) { m = 0; min_year++; }
-        int idx = min_year * 100 + i;
-        incomeExpensesStats[idx] = std::make_pair(0, 0);
-    }
-
-    for (const auto& transaction : Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(date_range_->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(date_range_->end_date(), LESS_OR_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
-    {
-        // We got this far, get the currency conversion rate for this account
-        Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
-        if (accountArray_)
-        {
-            if (wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)) continue;
-        }
-        double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);
-
-        int idx = (Model_Checking::TRANSDATE(transaction).GetYear() * 100
-            + (int)Model_Checking::TRANSDATE(transaction).GetMonth());
-
-        if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
-            incomeExpensesStats[idx].first += transaction.TRANSAMOUNT * convRate;
-        else if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
-            incomeExpensesStats[idx].second += transaction.TRANSAMOUNT * convRate;
-    }
-}
-
 wxString mmReportIncomeExpensesMonthly::getHTMLText()
 {
-    std::map<int, std::pair<double, double> > incomeExpensesStats;
-    getStatistics(incomeExpensesStats);
-
     wxString headerMsg = _("Accounts: ");
     if (accountArray_ == nullptr)
     {
@@ -224,6 +184,30 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         }
     }
 
+    std::map<int, std::pair<double, double> > incomeExpensesStats;
+    //TODO: init all the map values with 0.0
+    for (const auto& transaction : Model_Checking::instance().find(
+        Model_Checking::TRANSDATE(date_range_->start_date(), GREATER_OR_EQUAL)
+        , Model_Checking::TRANSDATE(date_range_->end_date(), LESS_OR_EQUAL)
+        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
+    {
+        // We got this far, get the currency conversion rate for this account
+        Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
+        if (accountArray_)
+        {
+            if (wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)) continue;
+        }
+        double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);
+
+        int idx = (Model_Checking::TRANSDATE(transaction).GetYear() * 100
+            + (int) Model_Checking::TRANSDATE(transaction).GetMonth());
+
+        if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
+            incomeExpensesStats[idx].first += transaction.TRANSAMOUNT * convRate;
+        else if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
+            incomeExpensesStats[idx].second += transaction.TRANSAMOUNT * convRate;
+    }
+
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
@@ -233,9 +217,6 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.addLineBreak();
     hb.addDivRow();
     hb.addDivCol8();
-    // TODO: Add the graph
-    /* if (!incomeExpensesStats.empty())
-        hb.addBiLineChart(valueList_, "xxxxxxx"); */
 
     hb.startSortTable();
     {
