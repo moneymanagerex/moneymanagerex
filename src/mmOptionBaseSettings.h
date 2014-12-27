@@ -1,7 +1,6 @@
 #pragma once
 
-#include <wx/panel.h>
-#include <wx/msgdlg.h> 
+#include "defs.h"
 
 class mmOptionSettingsBase : public wxPanel
 {
