@@ -148,6 +148,7 @@ void Test_Options_Dialog::test_network_panel()
     wxMessageBox("Please Examine: mmOptionNetSettings Panel.\n\nContinue other tests ...",
         "Testing: Settings Panel", wxOK, wxTheApp->GetTopWindow());
     settings_panel->SaveSettings();
+    //wxMessageBox("Network Settings saved", "Option Settings Panel");
 }
 
 void Test_Options_Dialog::test_misc_panel()
@@ -164,6 +165,7 @@ void Test_Options_Dialog::test_misc_panel()
     wxMessageBox("Please Examine: mmOptionMiscSettings Panel.\n\nContinue other tests ...",
         "Testing: Settings Panel", wxOK, wxTheApp->GetTopWindow());
     settings_panel->SaveSettings();
+    wxMessageBox("Misc Settings", "Option Settings Panel");
 }
 
 void Test_Options_Dialog::test_attachment_panel()
@@ -180,4 +182,5 @@ void Test_Options_Dialog::test_attachment_panel()
     wxMessageBox("Please Examine: mmOptionAttachmentSettings Panel.\n\nContinue other tests ...",
         "Testing: Settings Panel", wxOK, wxTheApp->GetTopWindow());
     settings_panel->SaveSettings();
+    //wxMessageBox("Attachment Settings", "Option Settings Panel");
 }

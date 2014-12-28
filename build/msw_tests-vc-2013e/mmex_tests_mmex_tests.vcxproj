@@ -255,6 +255,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\mmframereport.cpp" />
     <ClCompile Include="..\..\src\mmOptionAttachmentSettings.cpp" />
+    <ClCompile Include="..\..\src\mmOptionBaseSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionGeneralSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionMiscSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionNetSettings.cpp" />

@@ -36,7 +36,6 @@ private:
     void OnDateFormatChanged(wxCommandEvent& event);
     void OnLanguageChanged(wxCommandEvent& event);
 
-    bool GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState);
     void SaveFinancialYearStart();
 
 private:

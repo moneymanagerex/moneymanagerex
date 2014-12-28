@@ -51,10 +51,7 @@ void mmOptionGeneralSettings::Create(wxWindow *parent
 
     // Display Header Settings
     wxStaticBox* headerStaticBox = new wxStaticBox(this, wxID_STATIC, _("Display Heading"));
-    // Define the staticBox font and set it as wxFONTWEIGHT_BOLD
-    wxFont staticBoxFontSetting = headerStaticBox->GetFont();
-    staticBoxFontSetting.SetWeight(wxFONTWEIGHT_BOLD);
-    headerStaticBox->SetFont(staticBoxFontSetting);
+    SetBoldFont(headerStaticBox);
 
     wxStaticBoxSizer* headerStaticBoxSizer = new wxStaticBoxSizer(headerStaticBox, wxHORIZONTAL);
 
@@ -69,7 +66,7 @@ void mmOptionGeneralSettings::Create(wxWindow *parent
 
     // Language Settings
     wxStaticBox* languageStaticBox = new wxStaticBox(this, wxID_STATIC, _("Language"));
-    languageStaticBox->SetFont(staticBoxFontSetting);
+    SetBoldFont(languageStaticBox);
     wxStaticBoxSizer* languageStaticBoxSizer = new wxStaticBoxSizer(languageStaticBox, wxHORIZONTAL);
     generalPanelSizer->Add(languageStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
@@ -82,9 +79,9 @@ void mmOptionGeneralSettings::Create(wxWindow *parent
 
     // Currency Settings
     wxStaticBox* currencyStaticBox = new wxStaticBox(this, wxID_STATIC, _("Currency"));
-    currencyStaticBox->SetFont(staticBoxFontSetting);
+    SetBoldFont(currencyStaticBox);
     wxStaticBoxSizer* currencyStaticBoxSizer = new wxStaticBoxSizer(currencyStaticBox, wxHORIZONTAL);
-    currencyStaticBox->SetFont(staticBoxFontSetting);
+    SetBoldFont(currencyStaticBox);
     generalPanelSizer->Add(currencyStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     currencyStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC, _("Base Currency")), g_flags);
@@ -100,7 +97,7 @@ void mmOptionGeneralSettings::Create(wxWindow *parent
 
     // Date Format Settings
     wxStaticBox* dateFormatStaticBox = new wxStaticBox(this, wxID_STATIC, _("Date Format"));
-    dateFormatStaticBox->SetFont(staticBoxFontSetting);
+    SetBoldFont(dateFormatStaticBox);
     wxStaticBoxSizer* dateFormatStaticBoxSizer = new wxStaticBoxSizer(dateFormatStaticBox, wxHORIZONTAL);
     generalPanelSizer->Add(dateFormatStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
@@ -122,7 +119,7 @@ void mmOptionGeneralSettings::Create(wxWindow *parent
 
     // Financial Year Settings
     wxStaticBox* financialYearStaticBox = new wxStaticBox(this, wxID_ANY, _("Financial Year"));
-    financialYearStaticBox->SetFont(staticBoxFontSetting);
+    SetBoldFont(financialYearStaticBox);
     wxStaticBoxSizer* financialYearStaticBoxSizer = new wxStaticBoxSizer(financialYearStaticBox, wxVERTICAL);
     wxFlexGridSizer* financialYearStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 0);
     generalPanelSizer->Add(financialYearStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
@@ -164,12 +161,6 @@ void mmOptionGeneralSettings::Create(wxWindow *parent
     m_use_sound->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_TRANSACTION_SOUND, true));
     m_use_sound->SetToolTip(_("Select whether to use sounds when entering transactions"));
     generalPanelSizer->Add(m_use_sound, g_flags);
-}
-
-bool mmOptionGeneralSettings::GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState)
-{
-    bool result = Model_Setting::instance().GetBoolSetting(dbField, defaultState);
-    return result;
 }
 
 void mmOptionGeneralSettings::OnCurrency(wxCommandEvent& /*event*/)

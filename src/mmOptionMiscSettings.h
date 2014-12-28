@@ -29,4 +29,20 @@ private:
         , long style
         , const wxString &name);
 
+    void SaveStocksUrl();
+
+private:
+    wxSpinCtrl* m_max_files;
+
+    enum
+    {
+        ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4 = wxID_HIGHEST + 10,
+        ID_DIALOG_OPTIONS_CHK_BACKUP,
+        ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE,
+        ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL,
+        ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE,
+        ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY,
+        ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS,
+        ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE,
+    };
 };

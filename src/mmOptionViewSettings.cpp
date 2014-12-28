@@ -42,10 +42,7 @@ void mmOptionViewSettings::Create(wxWindow *parent
 
     // Account View Options
     wxStaticBox* accountStaticBox = new wxStaticBox(this, wxID_STATIC, _("View Options"));
-
-    wxFont staticBoxFontSetting = accountStaticBox->GetFont();
-    staticBoxFontSetting.SetWeight(wxFONTWEIGHT_BOLD);
-    accountStaticBox->SetFont(staticBoxFontSetting);
+    SetBoldFont(accountStaticBox);
 
     wxStaticBoxSizer* accountStaticBoxSizer = new wxStaticBoxSizer(accountStaticBox, wxVERTICAL);
     viewsPanelSizer->Add(accountStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
@@ -146,7 +143,7 @@ void mmOptionViewSettings::Create(wxWindow *parent
 
     // Colours settings
     wxStaticBox* userColourSettingStBox = new wxStaticBox(this, wxID_ANY, _("User Colors"));
-    userColourSettingStBox->SetFont(staticBoxFontSetting);
+    SetBoldFont(userColourSettingStBox);
     wxStaticBoxSizer* userColourSettingStBoxSizer = new wxStaticBoxSizer(userColourSettingStBox, wxHORIZONTAL);
     viewsPanelSizer->Add(userColourSettingStBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
@@ -219,12 +216,6 @@ wxArrayString mmOptionViewSettings::viewAccountStrings(bool translated, const wx
     }
 
     return itemChoiceViewAccountStrings;
-}
-
-bool mmOptionViewSettings::GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState)
-{
-    bool result = Model_Setting::instance().GetBoolSetting(dbField, defaultState);
-    return result;
 }
 
 void mmOptionViewSettings::OnNavTreeColorChanged(wxCommandEvent& event)

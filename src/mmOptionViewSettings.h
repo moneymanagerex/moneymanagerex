@@ -30,7 +30,6 @@ private:
         , const wxString &name);
 
     wxArrayString viewAccountStrings(bool translated, const wxString& input_string, int& row_id);
-    bool GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState);
     void OnNavTreeColorChanged(wxCommandEvent& event);
 
 private:
