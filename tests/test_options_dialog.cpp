@@ -137,7 +137,7 @@ void Test_Options_Dialog::test_view_panel()
 void Test_Options_Dialog::test_network_panel()
 {
     // Create a new frame anchored to the base frame.
-    TestFrameBase* settings_frame = new TestFrameBase(m_base_frame, 400, 550);
+    TestFrameBase* settings_frame = new TestFrameBase(m_base_frame, 400, 580);
     settings_frame->Show();
 
     // Create the panel under test
@@ -148,7 +148,7 @@ void Test_Options_Dialog::test_network_panel()
     wxMessageBox("Please Examine: mmOptionNetSettings Panel.\n\nContinue other tests ...",
         "Testing: Settings Panel", wxOK, wxTheApp->GetTopWindow());
     settings_panel->SaveSettings();
-    //wxMessageBox("Network Settings saved", "Option Settings Panel");
+    wxMessageBox("Network Settings saved", "Option Settings Panel");
 }
 
 void Test_Options_Dialog::test_misc_panel()
