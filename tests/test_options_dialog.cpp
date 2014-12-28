@@ -182,5 +182,5 @@ void Test_Options_Dialog::test_attachment_panel()
     wxMessageBox("Please Examine: mmOptionAttachmentSettings Panel.\n\nContinue other tests ...",
         "Testing: Settings Panel", wxOK, wxTheApp->GetTopWindow());
     settings_panel->SaveSettings();
-    //wxMessageBox("Attachment Settings", "Option Settings Panel");
+    wxMessageBox("Attachment Settings", "Option Settings Panel");
 }
