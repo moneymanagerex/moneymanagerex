@@ -100,14 +100,12 @@ MMEX_CFLAGS = -I$(srcdir)/lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/lib/wxsqlite3/include -I$(srcdir)/lib/lua/src -I$(srcdir)/lib \
 	-I$(srcdir)/3rd -I$(srcdir)/3rd/LuaGlue/include \
 	-I$(srcdir)/3rd/cgitemplate -I$(srcdir)/3rd/csv-parser/include \
-	-I$(srcdir)/src -DNOPCH $(WX_CFLAGS) $(PIC_FLAG) \
-	$(CPPFLAGS) $(CFLAGS)
+	-I$(srcdir)/src -DNOPCH $(WX_CFLAGS) $(PIC_FLAG) $(CPPFLAGS) $(CFLAGS)
 MMEX_CXXFLAGS = -I$(srcdir)/lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/lib/wxsqlite3/include -I$(srcdir)/lib/lua/src -I$(srcdir)/lib \
 	-I$(srcdir)/3rd -I$(srcdir)/3rd/LuaGlue/include \
 	-I$(srcdir)/3rd/cgitemplate -I$(srcdir)/3rd/csv-parser/include \
-	-I$(srcdir)/src -DNOPCH $(WX_CXXFLAGS) $(PIC_FLAG) \
-	$(CPPFLAGS) $(CXXFLAGS)
+	-I$(srcdir)/src -DNOPCH $(WX_CXXFLAGS) $(PIC_FLAG) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
 	mmex_aboutdialog.o \
 	mmex_accountdialog.o \
@@ -132,6 +130,12 @@ MMEX_OBJECTS =  \
 	mmex_minimal_editor.o \
 	mmex_mmCalculator.o \
 	mmex_mmOption.o \
+	mmex_mmOptionAttachmentSettings.o \
+	mmex_mmOptionBaseSettings.o \
+	mmex_mmOptionGeneralSettings.o \
+	mmex_mmOptionMiscSettings.o \
+	mmex_mmOptionNetSettings.o \
+	mmex_mmOptionViewSettings.o \
 	mmex_mmcheckingpanel.o \
 	mmex_mmex.o \
 	mmex_mmframe.o \
@@ -229,7 +233,7 @@ COND_PLATFORM_OS2_1___mmex___os2_emxbindcmd = $(NM) mmex$(EXEEXT) | if grep -q \
 
 ### Targets: ###
 
-all: $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) mmex$(EXEEXT)
+all: $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) mmex$(EXEEXT) po
 
 install: install_mmex
 	$(INSTALL_DIR) $(DESTDIR)$(respath)
@@ -519,6 +523,24 @@ mmex_mmCalculator.o: $(srcdir)/src/mmCalculator.cpp
 mmex_mmOption.o: $(srcdir)/src/mmOption.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmOption.cpp
 
+mmex_mmOptionAttachmentSettings.o: $(srcdir)/src/mmOptionAttachmentSettings.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmOptionAttachmentSettings.cpp
+
+mmex_mmOptionBaseSettings.o: $(srcdir)/src/mmOptionBaseSettings.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmOptionBaseSettings.cpp
+
+mmex_mmOptionGeneralSettings.o: $(srcdir)/src/mmOptionGeneralSettings.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmOptionGeneralSettings.cpp
+
+mmex_mmOptionMiscSettings.o: $(srcdir)/src/mmOptionMiscSettings.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmOptionMiscSettings.cpp
+
+mmex_mmOptionNetSettings.o: $(srcdir)/src/mmOptionNetSettings.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmOptionNetSettings.cpp
+
+mmex_mmOptionViewSettings.o: $(srcdir)/src/mmOptionViewSettings.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmOptionViewSettings.cpp
+
 mmex_mmcheckingpanel.o: $(srcdir)/src/mmcheckingpanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmcheckingpanel.cpp
 
@@ -581,7 +603,7 @@ mmex_webapp.o: $(srcdir)/src/webapp.cpp
 
 mmex_webappdialog.o: $(srcdir)/src/webappdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/webappdialog.cpp
-	
+
 mmex_webserver.o: $(srcdir)/src/webserver.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/webserver.cpp
 
@@ -721,7 +743,7 @@ mmex_csv_parser.o: $(srcdir)/3rd/csv-parser/csv_parser.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/3rd/csv-parser/csv_parser.cpp
 
 mmex_resources_mmex_rc.o: $(srcdir)/resources/mmex.rc
-	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/lib/wxsqlite3/include --include-dir $(srcdir)/lib/lua/src --include-dir $(srcdir)/lib --include-dir $(srcdir)/3rd --include-dir $(srcdir)/3rd/LuaGlue/include --include-dir $(srcdir)/3rd/cgitemplate --include-dir $(srcdir)/3rd/csv-parser/include --include-dir --include-dir $(srcdir)/src --define NOPCH
+	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/lib/wxsqlite3/include --include-dir $(srcdir)/lib/lua/src --include-dir $(srcdir)/lib --include-dir $(srcdir)/3rd --include-dir $(srcdir)/3rd/LuaGlue/include --include-dir $(srcdir)/3rd/cgitemplate --include-dir $(srcdir)/3rd/csv-parser/include --include-dir $(srcdir)/src --define NOPCH
 
 
 # Include dependency info, if present:

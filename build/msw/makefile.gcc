@@ -100,16 +100,16 @@ MMEX_CFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
 	-I..\..\lib\lua\src -I..\..\lib -I..\..\3rd -I..\..\3rd\LuaGlue\include \
-	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include \
-	-I..\..\src -DNOPCH $(CPPFLAGS) $(CFLAGS)
+	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include -I..\..\src -DNOPCH \
+	$(CPPFLAGS) $(CFLAGS)
 MMEX_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
 	-I..\..\lib\lua\src -I..\..\lib -I..\..\3rd -I..\..\3rd\LuaGlue\include \
-	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include \
-	-I..\..\src -DNOPCH $(CPPFLAGS) $(CXXFLAGS)
+	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include -I..\..\src -DNOPCH \
+	$(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
 	mmex_aboutdialog.o \
 	mmex_accountdialog.o \
@@ -134,6 +134,12 @@ MMEX_OBJECTS =  \
 	mmex_minimal_editor.o \
 	mmex_mmCalculator.o \
 	mmex_mmOption.o \
+	mmex_mmOptionAttachmentSettings.o \
+	mmex_mmOptionBaseSettings.o \
+	mmex_mmOptionGeneralSettings.o \
+	mmex_mmOptionMiscSettings.o \
+	mmex_mmOptionNetSettings.o \
+	mmex_mmOptionViewSettings.o \
 	mmex_mmcheckingpanel.o \
 	mmex_mmex.o \
 	mmex_mmframe.o \
@@ -597,6 +603,24 @@ mmex_mmCalculator.o: ../../src/mmCalculator.cpp
 mmex_mmOption.o: ../../src/mmOption.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_mmOptionAttachmentSettings.o: ../../src/mmOptionAttachmentSettings.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmOptionBaseSettings.o: ../../src/mmOptionBaseSettings.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmOptionGeneralSettings.o: ../../src/mmOptionGeneralSettings.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmOptionMiscSettings.o: ../../src/mmOptionMiscSettings.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmOptionNetSettings.o: ../../src/mmOptionNetSettings.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmOptionViewSettings.o: ../../src/mmOptionViewSettings.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_mmcheckingpanel.o: ../../src/mmcheckingpanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -658,7 +682,7 @@ mmex_webapp.o: ../../src/webapp.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_webappdialog.o: ../../src/webappdialog.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<	
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_webserver.o: ../../src/webserver.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<

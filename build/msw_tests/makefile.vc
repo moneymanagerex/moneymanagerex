@@ -140,8 +140,8 @@ MMEX_TESTS_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
 	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd /I..\..\3rd\LuaGlue\include \
-	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include \
-	/I..\..\src /DNOPCH /D_CONSOLE /I..\..\src /I..\..\lib\cppunit\include \
+	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include /I..\..\src /DNOPCH \
+	/D_CONSOLE /I..\..\src /I..\..\lib\cppunit\include \
 	/DwxIMPLEMENT_WXWIN_MAIN= $(CPPFLAGS) $(CFLAGS)
 MMEX_TESTS_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
@@ -150,8 +150,8 @@ MMEX_TESTS_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
 	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd /I..\..\3rd\LuaGlue\include \
-	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include \
-	/I..\..\src /DNOPCH /D_CONSOLE /I..\..\src /I..\..\lib\cppunit\include \
+	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include /I..\..\src /DNOPCH \
+	/D_CONSOLE /I..\..\src /I..\..\lib\cppunit\include \
 	/DwxIMPLEMENT_WXWIN_MAIN= /EHsc /GR $(__mmex_tests_CL_FLAGS) $(CPPFLAGS) \
 	$(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
@@ -178,6 +178,12 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_minimal_editor.obj \
 	mmex_tests_mmCalculator.obj \
 	mmex_tests_mmOption.obj \
+	mmex_tests_mmOptionAttachmentSettings.obj \
+	mmex_tests_mmOptionBaseSettings.obj \
+	mmex_tests_mmOptionGeneralSettings.obj \
+	mmex_tests_mmOptionMiscSettings.obj \
+	mmex_tests_mmOptionNetSettings.obj \
+	mmex_tests_mmOptionViewSettings.obj \
 	mmex_tests_mmcheckingpanel.obj \
 	mmex_tests_mmex.obj \
 	mmex_tests_mmframe.obj \
@@ -258,6 +264,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_test_database_initialisation.obj \
 	mmex_tests_test_date_range.obj \
 	mmex_tests_test_filtertrans_dialog.obj \
+	mmex_tests_test_options_dialog.obj \
 	mmex_tests_test_relocate_category.obj \
 	mmex_tests_test_relocate_payee.obj \
 	mmex_tests_test_stocks.obj
@@ -845,6 +852,24 @@ mmex_tests_mmCalculator.obj: ..\..\src\mmCalculator.cpp
 mmex_tests_mmOption.obj: ..\..\src\mmOption.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOption.cpp
 
+mmex_tests_mmOptionAttachmentSettings.obj: ..\..\src\mmOptionAttachmentSettings.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionAttachmentSettings.cpp
+
+mmex_tests_mmOptionBaseSettings.obj: ..\..\src\mmOptionBaseSettings.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionBaseSettings.cpp
+
+mmex_tests_mmOptionGeneralSettings.obj: ..\..\src\mmOptionGeneralSettings.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionGeneralSettings.cpp
+
+mmex_tests_mmOptionMiscSettings.obj: ..\..\src\mmOptionMiscSettings.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionMiscSettings.cpp
+
+mmex_tests_mmOptionNetSettings.obj: ..\..\src\mmOptionNetSettings.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionNetSettings.cpp
+
+mmex_tests_mmOptionViewSettings.obj: ..\..\src\mmOptionViewSettings.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionViewSettings.cpp
+
 mmex_tests_mmcheckingpanel.obj: ..\..\src\mmcheckingpanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmcheckingpanel.cpp
 
@@ -905,9 +930,9 @@ mmex_tests_util.obj: ..\..\src\util.cpp
 mmex_tests_webapp.obj: ..\..\src\webapp.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\webapp.cpp
 
-mmex_tests_webapp.obj: ..\..\src\webappdialog.cpp
+mmex_tests_webappdialog.obj: ..\..\src\webappdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\webappdialog.cpp
-	
+
 mmex_tests_webserver.obj: ..\..\src\webserver.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\webserver.cpp
 
@@ -1084,6 +1109,9 @@ mmex_tests_test_date_range.obj: ..\..\tests\test_date_range.cpp
 
 mmex_tests_test_filtertrans_dialog.obj: ..\..\tests\test_filtertrans_dialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\tests\test_filtertrans_dialog.cpp
+
+mmex_tests_test_options_dialog.obj: ..\..\tests\test_options_dialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\tests\test_options_dialog.cpp
 
 mmex_tests_test_relocate_category.obj: ..\..\tests\test_relocate_category.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\tests\test_relocate_category.cpp

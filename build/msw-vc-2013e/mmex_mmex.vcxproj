@@ -265,6 +265,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\mmOptionAttachmentSettings.cpp" />
+    <ClCompile Include="..\..\src\mmOptionBaseSettings.cpp" />
+    <ClCompile Include="..\..\src\mmOptionGeneralSettings.cpp" />
+    <ClCompile Include="..\..\src\mmOptionMiscSettings.cpp" />
+    <ClCompile Include="..\..\src\mmOptionNetSettings.cpp" />
+    <ClCompile Include="..\..\src\mmOptionViewSettings.cpp" />
     <ClCompile Include="..\..\src\model\Model_Account.cpp" />
     <ClCompile Include="..\..\src\model\Model_Asset.cpp" />
     <ClCompile Include="..\..\src\model\Model_Attachment.cpp" />
@@ -377,6 +383,12 @@
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Usage_V1.h" />
+    <ClInclude Include="..\..\src\mmOptionAttachmentSettings.h" />
+    <ClInclude Include="..\..\src\mmOptionBaseSettings.h" />
+    <ClInclude Include="..\..\src\mmOptionGeneralSettings.h" />
+    <ClInclude Include="..\..\src\mmOptionMiscSettings.h" />
+    <ClInclude Include="..\..\src\mmOptionNetSettings.h" />
+    <ClInclude Include="..\..\src\mmOptionViewSettings.h" />
     <ClInclude Include="..\..\src\model\Model.h" />
     <ClInclude Include="..\..\src\model\Model_Account.h" />
     <ClInclude Include="..\..\src\model\Model_Asset.h" />
