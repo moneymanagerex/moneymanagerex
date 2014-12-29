@@ -7,6 +7,7 @@ before_install:
   - brew update
   - brew install wxwidgets
   - brew install gettext
+  - brew link --force gettext
 before_script:
   - travis_retry ./configure
 script:
