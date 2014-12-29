@@ -1,10 +1,7 @@
 #include "mmOptionMiscSettings.h"
-#include "mmOption.h"
-#include "constants.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Checking.h"
 #include <wx/spinctrl.h>
+#include "mmOption.h"
+#include "model/Model_Checking.h"
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmOptionMiscSettings, wxPanel)
@@ -13,7 +10,6 @@ wxEND_EVENT_TABLE()
 
 mmOptionMiscSettings::mmOptionMiscSettings()
 {
-
 }
 
 mmOptionMiscSettings::mmOptionMiscSettings(wxWindow *parent
@@ -23,20 +19,14 @@ mmOptionMiscSettings::mmOptionMiscSettings(wxWindow *parent
     , long style, const wxString &name)
 {
     wxPanel::Create(parent, id, pos, size, style, name);
-    Create(parent, id, pos, size, style, name);
+    Create();
 }
 
 mmOptionMiscSettings::~mmOptionMiscSettings()
 {
-
 }
 
-void mmOptionMiscSettings::Create(wxWindow *parent
-    , wxWindowID id
-    , const wxPoint& pos
-    , const wxSize& size
-    , long style
-    , const wxString &name)
+void mmOptionMiscSettings::Create()
 {
     wxBoxSizer* othersPanelSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(othersPanelSizer);

@@ -96,31 +96,31 @@ void mmOptionsDialog::CreateControls()
     /*********************************************************************************************
      General Panel
     **********************************************************************************************/
-    mmOptionGeneralSettings* general_panel = new mmOptionGeneralSettings(m_notebook, wxID_ANY);
+    mmOptionGeneralSettings* general_panel = new mmOptionGeneralSettings(m_notebook, m_app);
     m_panel_list.push_back(general_panel);
 
     /*********************************************************************************************
      Views Panel
     **********************************************************************************************/
-    mmOptionViewSettings* views_panel = new mmOptionViewSettings(m_notebook, wxID_ANY);
+    mmOptionViewSettings* views_panel = new mmOptionViewSettings(m_notebook);
     m_panel_list.push_back(views_panel);
 
     /*********************************************************************************************
      Attachments Panel
     **********************************************************************************************/
-    mmOptionAttachmentSettings* attachment_panel = new mmOptionAttachmentSettings(m_notebook, wxID_ANY);
+    mmOptionAttachmentSettings* attachment_panel = new mmOptionAttachmentSettings(m_notebook);
     m_panel_list.push_back(attachment_panel);
 
     /*********************************************************************************************
     Network Panel
     **********************************************************************************************/
-    mmOptionNetSettings* network_panel = new mmOptionNetSettings(m_notebook, wxID_ANY);
+    mmOptionNetSettings* network_panel = new mmOptionNetSettings(m_notebook);
     m_panel_list.push_back(network_panel);
 
     /*********************************************************************************************
     Others Panel
     **********************************************************************************************/
-    mmOptionMiscSettings* others_panel = new mmOptionMiscSettings(m_notebook, wxID_ANY);
+    mmOptionMiscSettings* others_panel = new mmOptionMiscSettings(m_notebook);
     m_panel_list.push_back(others_panel);
 
     /**********************************************************************************************

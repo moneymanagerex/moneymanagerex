@@ -1,8 +1,5 @@
 #include "mmOptionNetSettings.h"
 #include <wx/spinctrl.h>
-#include "constants.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Setting.h"
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmOptionNetSettings, wxPanel)
@@ -11,7 +8,6 @@ wxEND_EVENT_TABLE()
 
 mmOptionNetSettings::mmOptionNetSettings()
 {
-
 }
 
 mmOptionNetSettings::mmOptionNetSettings(wxWindow *parent
@@ -21,20 +17,14 @@ mmOptionNetSettings::mmOptionNetSettings(wxWindow *parent
     , long style, const wxString &name)
 {
     wxPanel::Create(parent, id, pos, size, style, name);
-    Create(parent, id, pos, size, style, name);
+    Create();
 }
 
 mmOptionNetSettings::~mmOptionNetSettings()
 {
-
 }
 
-void mmOptionNetSettings::Create(wxWindow *parent
-    , wxWindowID id
-    , const wxPoint& pos
-    , const wxSize& size
-    , long style
-    , const wxString &name)
+void mmOptionNetSettings::Create()
 {
     wxBoxSizer* networkPanelSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(networkPanelSizer);

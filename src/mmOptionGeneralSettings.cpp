@@ -1,9 +1,6 @@
 #include "mmOptionGeneralSettings.h"
 #include <wx/spinctrl.h>
 #include "util.h"
-#include "constants.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Setting.h"
 #include "model/Model_Currency.h"
 #include "maincurrencydialog.h"
 
@@ -17,34 +14,27 @@ wxEND_EVENT_TABLE()
 
 mmOptionGeneralSettings::mmOptionGeneralSettings()
 {
-
 }
 
-mmOptionGeneralSettings::mmOptionGeneralSettings(wxWindow *parent
+mmOptionGeneralSettings::mmOptionGeneralSettings(wxWindow *parent, mmGUIApp* app
     , wxWindowID id
     , const wxPoint &pos
     , const wxSize &size
     , long style, const wxString &name)
 {
     wxPanel::Create(parent, id, pos, size, style, name);
-
+    m_app = app;
     m_currency_id = Model_Infotable::instance().GetBaseCurrencyId();
     m_date_format = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
 
-    Create(parent, id, pos, size, style, name);
+    Create();
 }
 
 mmOptionGeneralSettings::~mmOptionGeneralSettings()
 {
-
 }
 
-void mmOptionGeneralSettings::Create(wxWindow *parent
-    , wxWindowID id
-    , const wxPoint& pos
-    , const wxSize& size
-    , long style
-    , const wxString &name)
+void mmOptionGeneralSettings::Create()
 {
     wxBoxSizer* generalPanelSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(generalPanelSizer);

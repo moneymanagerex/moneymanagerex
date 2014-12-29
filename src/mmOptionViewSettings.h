@@ -22,12 +22,7 @@ public:
     virtual void SaveSettings();
 
 private:
-    void Create(wxWindow *parent
-        , wxWindowID id
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style
-        , const wxString &name);
+    void Create();
 
     wxArrayString viewAccountStrings(bool translated, const wxString& input_string, int& row_id);
     void OnNavTreeColorChanged(wxCommandEvent& event);
@@ -45,7 +40,6 @@ private:
     wxChoice* m_choice_visible;
     wxChoice* m_choice_trans_visible;
     wxChoice* m_choice_font_size;
-
 
     wxCheckBox* m_budget_financial_years;
     wxCheckBox* m_budget_include_transfers;

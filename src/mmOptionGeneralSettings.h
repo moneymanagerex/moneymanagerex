@@ -11,7 +11,7 @@ class mmOptionGeneralSettings : public mmOptionSettingsBase
 public:
     mmOptionGeneralSettings();
 
-    mmOptionGeneralSettings(wxWindow *parent
+    mmOptionGeneralSettings(wxWindow *parent, mmGUIApp* app
         , wxWindowID id = wxID_ANY
         , const wxPoint &pos = wxDefaultPosition
         , const wxSize &size = wxDefaultSize
@@ -24,14 +24,8 @@ public:
     virtual void SaveSettings();
 
 private:
-    void Create(wxWindow *parent
-        , wxWindowID id
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style
-        , const wxString &name);
+    void Create();
 
-    mmGUIApp* m_app;
     void OnCurrency(wxCommandEvent& event);
     void OnDateFormatChanged(wxCommandEvent& event);
     void OnLanguageChanged(wxCommandEvent& event);
@@ -39,6 +33,7 @@ private:
     void SaveFinancialYearStart();
 
 private:
+    mmGUIApp* m_app;
     wxChoice* m_date_format_choice;
     wxChoice* m_month_selection;
     wxStaticText* m_sample_date_text;

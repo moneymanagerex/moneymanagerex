@@ -1,5 +1,4 @@
 #include "mmOptionBaseSettings.h"
-#include "model/Model_Setting.h"
 
 wxControl* mmOptionSettingsBase::SetBoldFont(wxControl* control)
 {
@@ -10,7 +9,7 @@ wxControl* mmOptionSettingsBase::SetBoldFont(wxControl* control)
     return control;
 }
 
-bool mmOptionSettingsBase::GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState)
+bool mmOptionSettingsBase::GetIniDatabaseCheckboxValue(const wxString& dbField, bool defaultState)
 {
     bool result = Model_Setting::instance().GetBoolSetting(dbField, defaultState);
     return result;

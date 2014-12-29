@@ -1,10 +1,7 @@
 #include "mmOptionAttachmentSettings.h"
 #include "attachmentdialog.h"
 #include "util.h"
-#include "constants.h"
 #include "paths.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Setting.h"
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmOptionAttachmentSettings, wxPanel)
@@ -17,7 +14,6 @@ wxEND_EVENT_TABLE()
 
 mmOptionAttachmentSettings::mmOptionAttachmentSettings()
 {
-
 }
 
 mmOptionAttachmentSettings::mmOptionAttachmentSettings(wxWindow *parent
@@ -27,20 +23,14 @@ mmOptionAttachmentSettings::mmOptionAttachmentSettings(wxWindow *parent
     , long style, const wxString &name)
 {
     wxPanel::Create(parent, id, pos, size, style, name);
-    Create(parent, id, pos, size, style, name);
+    Create();
 }
 
 mmOptionAttachmentSettings::~mmOptionAttachmentSettings()
 {
-
 }
 
-void mmOptionAttachmentSettings::Create(wxWindow *parent
-    , wxWindowID id
-    , const wxPoint& pos
-    , const wxSize& size
-    , long style
-    , const wxString &name)
+void mmOptionAttachmentSettings::Create()
 {
     wxBoxSizer* attachmentPanelSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(attachmentPanelSizer);

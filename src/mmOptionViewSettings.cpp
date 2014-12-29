@@ -1,9 +1,6 @@
 #include "mmOptionViewSettings.h"
-#include "util.h"
-#include "constants.h"
 #include <wx/colordlg.h>
-#include "model/Model_Infotable.h"
-#include "model/Model_Setting.h"
+#include "util.h"
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmOptionViewSettings, wxPanel)
@@ -12,7 +9,6 @@ wxEND_EVENT_TABLE()
 
 mmOptionViewSettings::mmOptionViewSettings()
 {
-
 }
 
 mmOptionViewSettings::mmOptionViewSettings(wxWindow *parent
@@ -22,20 +18,14 @@ mmOptionViewSettings::mmOptionViewSettings(wxWindow *parent
     , long style, const wxString &name)
 {
     wxPanel::Create(parent, id, pos, size, style, name);
-    Create(parent, id, pos, size, style, name);
+    Create();
 }
 
 mmOptionViewSettings::~mmOptionViewSettings()
 {
-
 }
 
-void mmOptionViewSettings::Create(wxWindow *parent
-    , wxWindowID id
-    , const wxPoint& pos
-    , const wxSize& size
-    , long style
-    , const wxString &name)
+void mmOptionViewSettings::Create()
 {
     wxBoxSizer* viewsPanelSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(viewsPanelSizer);
@@ -51,17 +41,17 @@ void mmOptionViewSettings::Create(wxWindow *parent
 
     view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Accounts Visible")), g_flags);
 
-    int row_id_ = 0;
-    wxArrayString itemChoiceViewAccountTranslatedStrings = viewAccountStrings(true, wxEmptyString, row_id_);
+    int row_id = 0;
+    wxArrayString itemChoiceViewAccountTranslatedStrings = viewAccountStrings(true, wxEmptyString, row_id);
 
     m_choice_visible = new wxChoice(this, ID_DIALOG_OPTIONS_VIEW_ACCOUNTS
         , wxDefaultPosition, wxDefaultSize, itemChoiceViewAccountTranslatedStrings);
     view_sizer1->Add(m_choice_visible, g_flags);
 
     wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
-    row_id_ = 0;
-    wxArrayString itemChoiceViewAccountStrings = viewAccountStrings(false, vAccts, row_id_);
-    m_choice_visible->SetSelection(row_id_);
+    row_id = 0;
+    wxArrayString itemChoiceViewAccountStrings = viewAccountStrings(false, vAccts, row_id);
+    m_choice_visible->SetSelection(row_id);
 
     m_choice_visible->SetToolTip(_("Specify which accounts are visible"));
 
@@ -148,38 +138,31 @@ void mmOptionViewSettings::Create(wxWindow *parent
     viewsPanelSizer->Add(userColourSettingStBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     int size_x = 30;
-    m_UDFCB1 = new wxButton(this, wxID_HIGHEST + 11
-        , _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB1 = new wxButton(this, wxID_HIGHEST + 11, _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB1->SetBackgroundColour(mmColors::userDefColor1);
     userColourSettingStBoxSizer->Add(m_UDFCB1, g_flags);
 
-    m_UDFCB2 = new wxButton(this, wxID_HIGHEST + 22
-        , _("2"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB2 = new wxButton(this, wxID_HIGHEST + 22, _("2"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB2->SetBackgroundColour(mmColors::userDefColor2);
     userColourSettingStBoxSizer->Add(m_UDFCB2, g_flags);
 
-    m_UDFCB3 = new wxButton(this, wxID_HIGHEST + 33
-        , _("3"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB3 = new wxButton(this, wxID_HIGHEST + 33, _("3"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB3->SetBackgroundColour(mmColors::userDefColor3);
     userColourSettingStBoxSizer->Add(m_UDFCB3, g_flags);
 
-    m_UDFCB4 = new wxButton(this, wxID_HIGHEST + 44
-        , _("4"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB4 = new wxButton(this, wxID_HIGHEST + 44, _("4"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB4->SetBackgroundColour(mmColors::userDefColor4);
     userColourSettingStBoxSizer->Add(m_UDFCB4, g_flags);
 
-    m_UDFCB5 = new wxButton(this, wxID_HIGHEST + 55
-        , _("5"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB5 = new wxButton(this, wxID_HIGHEST + 55, _("5"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB5->SetBackgroundColour(mmColors::userDefColor5);
     userColourSettingStBoxSizer->Add(m_UDFCB5, g_flags);
 
-    m_UDFCB6 = new wxButton(this, wxID_HIGHEST + 66
-        , _("6"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB6 = new wxButton(this, wxID_HIGHEST + 66, _("6"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB6->SetBackgroundColour(mmColors::userDefColor6);
     userColourSettingStBoxSizer->Add(m_UDFCB6, g_flags);
 
-    m_UDFCB7 = new wxButton(this, wxID_HIGHEST + 77
-        , _("7"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB7 = new wxButton(this, wxID_HIGHEST + 77, _("7"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
     userColourSettingStBoxSizer->Add(m_UDFCB7, g_flags);
 
@@ -240,8 +223,8 @@ void mmOptionViewSettings::OnNavTreeColorChanged(wxCommandEvent& event)
 void mmOptionViewSettings::SaveSettings()
 {
     int selection = m_choice_visible->GetSelection();
-    int row_id_ = 0;
-    wxArrayString viewAcct = viewAccountStrings(false, wxEmptyString, row_id_);
+    int row_id = 0;
+    wxArrayString viewAcct = viewAccountStrings(false, wxEmptyString, row_id);
     Model_Setting::instance().Set("VIEWACCOUNTS", viewAcct[selection]);
 
     wxString visible = VIEW_TRANS_ALL_STR;
