@@ -9,5 +9,4 @@ public:
 
     wxControl* SetBoldFont(wxControl* control);
     bool GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState);
-
 };
