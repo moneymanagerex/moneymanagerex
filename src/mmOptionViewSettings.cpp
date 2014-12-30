@@ -48,7 +48,7 @@ void mmOptionViewSettings::Create()
         , wxDefaultPosition, wxDefaultSize, itemChoiceViewAccountTranslatedStrings);
     view_sizer1->Add(m_choice_visible, g_flags);
 
-    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    wxString vAccts = Model_Setting::instance().ViewAccounts();
     row_id = 0;
     wxArrayString itemChoiceViewAccountStrings = viewAccountStrings(false, vAccts, row_id);
     m_choice_visible->SetSelection(row_id);
@@ -75,7 +75,7 @@ void mmOptionViewSettings::Create()
 
     view_sizer1->Add(m_choice_trans_visible, g_flags);
 
-    wxString vTrans = Model_Setting::instance().GetStringSetting("VIEWTRANSACTIONS", VIEW_TRANS_ALL_STR);
+    wxString vTrans = Model_Setting::instance().ViewTransactions();
     m_choice_trans_visible->SetStringSelection(wxGetTranslation(vTrans));
     m_choice_trans_visible->SetToolTip(_("Specify which transactions are visible by default"));
 
@@ -95,7 +95,7 @@ void mmOptionViewSettings::Create()
     for (const auto &entry : itemChoiceFontSize)
         m_choice_font_size->Append(wxGetTranslation(entry));
 
-    int vFontSize = -1 + Model_Setting::instance().GetIntSetting("HTMLFONTSIZE", 3);
+    int vFontSize = -1 + Model_Setting::instance().HtmlFontSize();
     m_choice_font_size->SetSelection(vFontSize);
 
     m_choice_font_size->SetToolTip(_("Specify which font size is used on the report tables"));
@@ -104,31 +104,31 @@ void mmOptionViewSettings::Create()
     // Budget options
     m_budget_financial_years = new wxCheckBox(this, wxID_STATIC, _("View Budgets as Financial Years")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_financial_years->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_FINANCIAL_YEARS, false));
+    m_budget_financial_years->SetValue(Model_Setting::instance().BudgetFinancialYears());
     viewsPanelSizer->Add(m_budget_financial_years, g_flags);
 
     m_budget_include_transfers = new wxCheckBox(this, wxID_STATIC
         , _("View Budgets with 'transfer' transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_include_transfers->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_INCLUDE_TRANSFERS, false));
+    m_budget_include_transfers->SetValue(Model_Setting::instance().BudgetIncludeTransfers());
     viewsPanelSizer->Add(m_budget_include_transfers, g_flags);
 
     m_budget_setup_without_summary = new wxCheckBox(this, wxID_STATIC
         , _("View Budgets Setup Without Budget Summaries")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_setup_without_summary->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, false));
+    m_budget_setup_without_summary->SetValue(Model_Setting::instance().BudgetSetupWithoutSummary());
     viewsPanelSizer->Add(m_budget_setup_without_summary, g_flags);
 
     m_budget_summary_without_category = new wxCheckBox(this, wxID_STATIC
         , _("View Budget Summary Report without Categories")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_summary_without_category->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true));
+    m_budget_summary_without_category->SetValue(Model_Setting::instance().BudgetSummaryWithoutCategory());
     viewsPanelSizer->Add(m_budget_summary_without_category, g_flags);
 
     m_ignore_future_transactions = new wxCheckBox(this, wxID_STATIC
         , _("View Reports without Future Transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_ignore_future_transactions->SetValue(GetIniDatabaseCheckboxValue(INIDB_IGNORE_FUTURE_TRANSACTIONS, false));
+    m_ignore_future_transactions->SetValue(Model_Setting::instance().IgnoreFutureTransactions());
     viewsPanelSizer->Add(m_ignore_future_transactions, g_flags);
 
     // Colours settings
@@ -230,7 +230,7 @@ void mmOptionViewSettings::SaveSettings()
     int selection = m_choice_visible->GetSelection();
     int row_id = 0;
     wxArrayString viewAcct = viewAccountStrings(false, wxEmptyString, row_id);
-    Model_Setting::instance().Set("VIEWACCOUNTS", viewAcct[selection]);
+    Model_Setting::instance().SetViewAccounts(viewAcct[selection]);
 
     wxString visible = VIEW_TRANS_ALL_STR;
     wxStringClientData* visible_obj = (wxStringClientData *) m_choice_trans_visible->GetClientObject(m_choice_trans_visible->GetSelection());
@@ -238,26 +238,16 @@ void mmOptionViewSettings::SaveSettings()
     {
         visible = visible_obj->GetData();
     }
-    Model_Setting::instance().Set("VIEWTRANSACTIONS", visible);
+    Model_Setting::instance().SetViewTransactions(visible);
 
     int size = m_choice_font_size->GetCurrentSelection() + 1;
-    mmIniOptions::instance().html_font_size_ = size;
-    Model_Setting::instance().Set("HTMLFONTSIZE", size);
+    Model_Setting::instance().SetHtmlFontSize(size);
 
-    mmIniOptions::instance().budgetFinancialYears_ = m_budget_financial_years->GetValue();
-    Model_Setting::instance().Set(INIDB_BUDGET_FINANCIAL_YEARS, mmIniOptions::instance().budgetFinancialYears_);
-
-    mmIniOptions::instance().budgetIncludeTransfers_ = m_budget_include_transfers->GetValue();
-    Model_Setting::instance().Set(INIDB_BUDGET_INCLUDE_TRANSFERS, mmIniOptions::instance().budgetIncludeTransfers_);
-
-    mmIniOptions::instance().budgetSetupWithoutSummaries_ = m_budget_setup_without_summary->GetValue();
-    Model_Setting::instance().Set(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, mmIniOptions::instance().budgetSetupWithoutSummaries_);
-
-    mmIniOptions::instance().budgetReportWithSummaries_ = m_budget_summary_without_category->GetValue();
-    Model_Setting::instance().Set(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, mmIniOptions::instance().budgetReportWithSummaries_);
-
-    mmIniOptions::instance().ignoreFutureTransactions_ = m_ignore_future_transactions->GetValue();
-    Model_Setting::instance().Set(INIDB_IGNORE_FUTURE_TRANSACTIONS, mmIniOptions::instance().ignoreFutureTransactions_);
+    Model_Setting::instance().SetBudgetFinancialYears(m_budget_financial_years->GetValue());
+    Model_Setting::instance().SetBudgetIncludeTransfers(m_budget_include_transfers->GetValue());
+    Model_Setting::instance().SetBudgetSetupWithoutSummary(m_budget_setup_without_summary->GetValue());
+    Model_Setting::instance().SetBudgetSummaryWithoutCategory(m_budget_summary_without_category->GetValue());
+    Model_Setting::instance().SetIgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
 
     mmColors::userDefColor1 = m_UDFCB1->GetBackgroundColour();
     mmColors::userDefColor2 = m_UDFCB2->GetBackgroundColour();

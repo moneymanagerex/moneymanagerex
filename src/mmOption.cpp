@@ -69,13 +69,13 @@ mmIniOptions& mmIniOptions::instance()
 
 void mmIniOptions::loadOptions()
 {
-    html_font_size_   = Model_Setting::instance().GetIntSetting("HTMLFONTSIZE", 3);
+    html_font_size_   = Model_Setting::instance().HtmlFontSize();
 
-    budgetFinancialYears_           = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
-    budgetIncludeTransfers_         = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
-    budgetSetupWithoutSummaries_    = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, false);
-    budgetReportWithSummaries_ = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true);
-    ignoreFutureTransactions_       = Model_Setting::instance().GetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, false);
+    budgetFinancialYears_           = Model_Setting::instance().BudgetFinancialYears();
+    budgetIncludeTransfers_         = Model_Setting::instance().BudgetIncludeTransfers();
+    budgetSetupWithoutSummaries_    = Model_Setting::instance().BudgetSetupWithoutSummary();
+    budgetReportWithSummaries_      = Model_Setting::instance().BudgetSummaryWithoutCategory();
+    ignoreFutureTransactions_       = Model_Setting::instance().IgnoreFutureTransactions();
 
     // Read the preference as a string and convert to int
     transPayeeSelectionNone_ = Model_Setting::instance().GetIntSetting("TRANSACTION_PAYEE_NONE", 0);

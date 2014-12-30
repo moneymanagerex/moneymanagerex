@@ -656,7 +656,7 @@ void mmCheckingPanel::OnOpenAttachment(wxCommandEvent& event)
 
 void mmCheckingPanel::initViewTransactionsHeader()
 {
-    const wxString& def_view = Model_Setting::instance().GetStringSetting("VIEWTRANSACTIONS", VIEW_TRANS_ALL_STR);
+    const wxString& def_view = Model_Setting::instance().ViewTransactions();
     currentView_ = menu_labels().Index(Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view));
     if (currentView_ < 0 || currentView_ >= (int) menu_labels().size())
         currentView_ = menu_labels().Index(VIEW_TRANS_ALL_STR);
