@@ -178,6 +178,12 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_minimal_editor.o \
 	mmex_tests_mmCalculator.o \
 	mmex_tests_mmOption.o \
+	mmex_tests_mmOptionAttachmentSettings.o \
+	mmex_tests_mmOptionBaseSettings.o \
+	mmex_tests_mmOptionGeneralSettings.o \
+	mmex_tests_mmOptionMiscSettings.o \
+	mmex_tests_mmOptionNetSettings.o \
+	mmex_tests_mmOptionViewSettings.o \
 	mmex_tests_mmcheckingpanel.o \
 	mmex_tests_mmex.o \
 	mmex_tests_mmframe.o \
@@ -258,6 +264,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_test_database_initialisation.o \
 	mmex_tests_test_date_range.o \
 	mmex_tests_test_filtertrans_dialog.o \
+	mmex_tests_test_options_dialog.o \
 	mmex_tests_test_relocate_category.o \
 	mmex_tests_test_relocate_payee.o \
 	mmex_tests_test_stocks.o \
@@ -642,6 +649,24 @@ mmex_tests_mmCalculator.o: $(srcdir)/../src/mmCalculator.cpp
 mmex_tests_mmOption.o: $(srcdir)/../src/mmOption.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmOption.cpp
 
+mmex_tests_mmOptionAttachmentSettings.o: $(srcdir)/../src/mmOptionAttachmentSettings.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmOptionAttachmentSettings.cpp
+
+mmex_tests_mmOptionBaseSettings.o: $(srcdir)/../src/mmOptionBaseSettings.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmOptionBaseSettings.cpp
+
+mmex_tests_mmOptionGeneralSettings.o: $(srcdir)/../src/mmOptionGeneralSettings.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmOptionGeneralSettings.cpp
+
+mmex_tests_mmOptionMiscSettings.o: $(srcdir)/../src/mmOptionMiscSettings.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmOptionMiscSettings.cpp
+
+mmex_tests_mmOptionNetSettings.o: $(srcdir)/../src/mmOptionNetSettings.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmOptionNetSettings.cpp
+
+mmex_tests_mmOptionViewSettings.o: $(srcdir)/../src/mmOptionViewSettings.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmOptionViewSettings.cpp
+
 mmex_tests_mmcheckingpanel.o: $(srcdir)/../src/mmcheckingpanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmcheckingpanel.cpp
 
@@ -704,7 +729,7 @@ mmex_tests_webapp.o: $(srcdir)/../src/webapp.cpp
 
 mmex_tests_webappdialog.o: $(srcdir)/../src/webappdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/webappdialog.cpp
-	
+
 mmex_tests_webserver.o: $(srcdir)/../src/webserver.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/webserver.cpp
 
@@ -881,6 +906,9 @@ mmex_tests_test_date_range.o: $(srcdir)/../tests/test_date_range.cpp
 
 mmex_tests_test_filtertrans_dialog.o: $(srcdir)/../tests/test_filtertrans_dialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../tests/test_filtertrans_dialog.cpp
+
+mmex_tests_test_options_dialog.o: $(srcdir)/../tests/test_options_dialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../tests/test_options_dialog.cpp
 
 mmex_tests_test_relocate_category.o: $(srcdir)/../tests/test_relocate_category.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../tests/test_relocate_category.cpp

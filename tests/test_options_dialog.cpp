@@ -25,6 +25,11 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "test_options_dialog.h"
 #include "optionsdialog.h"
+#include "mmOptionGeneralSettings.h"
+#include "mmOptionMiscSettings.h"
+#include "mmOptionNetSettings.h"
+#include "mmOptionViewSettings.h"
+#include "mmOptionAttachmentSettings.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -92,4 +97,90 @@ void Test_Options_Dialog::test_dialog()
         CPPUNIT_ASSERT(mmOptions::instance().financialYearStartDayString_ == "1");
         CPPUNIT_ASSERT(mmOptions::instance().financialYearStartMonthString_ == "7");
     }
+}
+
+void Test_Options_Dialog::test_general_panel()
+{
+    // Create a new frame anchored to the base frame.
+    TestFrameBase* settings_frame = new TestFrameBase(m_base_frame, 400, 550);
+    settings_frame->Show();
+
+    // Create the panel under test
+    mmOptionSettingsBase* settings_panel = new mmOptionGeneralSettings(settings_frame, 0);
+    settings_panel->Show();
+
+    // Anchor the panel. Otherwise it will disappear.
+    wxMessageBox("Please Examine: mmOptionGeneralSettings Panel.\n\nContinue other tests ...",
+        "Testing: Settings Panel", wxOK, wxTheApp->GetTopWindow());
+
+    settings_panel->SaveSettings();
+    //wxMessageBox("General Settings saved", "Option Settings Panel");
+}
+
+void Test_Options_Dialog::test_view_panel()
+{
+    // Create a new frame anchored to the base frame.
+    TestFrameBase* settings_frame = new TestFrameBase(m_base_frame, 400, 550);
+    settings_frame->Show();
+
+    // Create the panel under test
+    mmOptionSettingsBase* settings_panel = new mmOptionViewSettings(settings_frame, wxID_ANY);
+    settings_panel->Show();
+
+    // Anchor the panel. Otherwise it will disappear.
+    wxMessageBox("Please Examine: mmOptionViewSettings Panel.\n\nContinue other tests ...",
+        "Testing: Settings Panel", wxOK, wxTheApp->GetTopWindow());
+    settings_panel->SaveSettings();
+    //wxMessageBox("View Settings saved", "Option Settings Panel");
+}
+
+void Test_Options_Dialog::test_network_panel()
+{
+    // Create a new frame anchored to the base frame.
+    TestFrameBase* settings_frame = new TestFrameBase(m_base_frame, 400, 580);
+    settings_frame->Show();
+
+    // Create the panel under test
+    mmOptionSettingsBase* settings_panel = new mmOptionNetSettings(settings_frame, wxID_ANY);
+    settings_panel->Show();
+
+    // Anchor the panel. Otherwise it will disappear.
+    wxMessageBox("Please Examine: mmOptionNetSettings Panel.\n\nContinue other tests ...",
+        "Testing: Settings Panel", wxOK, wxTheApp->GetTopWindow());
+    settings_panel->SaveSettings();
+    //wxMessageBox("Network Settings saved", "Option Settings Panel");
+}
+
+void Test_Options_Dialog::test_misc_panel()
+{
+    // Create a new frame anchored to the base frame.
+    TestFrameBase* settings_frame = new TestFrameBase(m_base_frame, 400, 550);
+    settings_frame->Show();
+
+    // Create the panel under test
+    mmOptionSettingsBase* settings_panel = new mmOptionMiscSettings(settings_frame, wxID_ANY);
+    settings_panel->Show();
+
+    // Anchor the panel. Otherwise it will disappear.
+    wxMessageBox("Please Examine: mmOptionMiscSettings Panel.\n\nContinue other tests ...",
+        "Testing: Settings Panel", wxOK, wxTheApp->GetTopWindow());
+    settings_panel->SaveSettings();
+    //wxMessageBox("Misc Settings", "Option Settings Panel");
+}
+
+void Test_Options_Dialog::test_attachment_panel()
+{
+    // Create a new frame anchored to the base frame.
+    TestFrameBase* settings_frame = new TestFrameBase(m_base_frame, 400, 550);
+    settings_frame->Show();
+
+    // Create the panel under test
+    mmOptionSettingsBase* settings_panel = new mmOptionAttachmentSettings(settings_frame, wxID_ANY);
+    settings_panel->Show();
+
+    // Anchor the panel. Otherwise it will disappear.
+    wxMessageBox("Please Examine: mmOptionAttachmentSettings Panel.\n\nContinue other tests ...",
+        "Testing: Settings Panel", wxOK, wxTheApp->GetTopWindow());
+    settings_panel->SaveSettings();
+    //wxMessageBox("Attachment Settings", "Option Settings Panel");
 }

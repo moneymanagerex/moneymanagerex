@@ -617,6 +617,30 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\mmOptionAttachmentSettings.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionBaseSettings.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionGeneralSettings.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionMiscSettings.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionNetSettings.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionViewSettings.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\mmcheckingpanel.cpp"
 				>
 			</File>
@@ -1068,6 +1092,30 @@
 			</File>
 			<File
 				RelativePath="..\..\src\mmOption.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionAttachmentSettings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionBaseSettings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionGeneralSettings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionMiscSettings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionNetSettings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionViewSettings.h"
 				>
 			</File>
 			<File

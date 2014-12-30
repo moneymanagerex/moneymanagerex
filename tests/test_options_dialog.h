@@ -28,6 +28,11 @@ class Test_Options_Dialog : public CPPUNIT_NS::TestFixture
 {
     CPPUNIT_TEST_SUITE( Test_Options_Dialog );
     CPPUNIT_TEST(test_dialog);
+    CPPUNIT_TEST(test_general_panel);
+    CPPUNIT_TEST(test_view_panel);
+    CPPUNIT_TEST(test_network_panel);
+    CPPUNIT_TEST(test_misc_panel);
+    CPPUNIT_TEST(test_attachment_panel);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -47,4 +52,9 @@ private:
 private:
     // Test cases
     void test_dialog();
+    void test_general_panel();
+    void test_view_panel();
+    void test_network_panel();
+    void test_misc_panel();
+    void test_attachment_panel();
 };

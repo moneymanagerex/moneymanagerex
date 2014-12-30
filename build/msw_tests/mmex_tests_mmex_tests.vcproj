@@ -629,6 +629,30 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\mmOptionAttachmentSettings.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionBaseSettings.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionGeneralSettings.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionMiscSettings.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionNetSettings.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionViewSettings.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\mmcheckingpanel.cpp"
 				>
 			</File>
@@ -774,6 +798,10 @@
 			</File>
 			<File
 				RelativePath="..\..\tests\test_filtertrans_dialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\tests\test_options_dialog.cpp"
 				>
 			</File>
 			<File
@@ -1151,6 +1179,30 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\mmOptionAttachmentSettings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionBaseSettings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionGeneralSettings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionMiscSettings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionNetSettings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmOptionViewSettings.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\mmTips.h"
 				>
 			</File>
@@ -1323,6 +1375,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\tests\test_options_dialog.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\tests\test_relocate_category.h"
 				>
 			</File>
@@ -1359,7 +1415,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\webapp.h"
+				RelativePath="..\..\src\webappdialog.h"
 				>
 			</File>
 			<File

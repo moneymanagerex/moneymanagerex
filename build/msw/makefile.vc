@@ -105,8 +105,8 @@ MMEX_CFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
 	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd /I..\..\3rd\LuaGlue\include \
-	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include \
-	/I..\..\src /DNOPCH /D_WINDOWS $(CPPFLAGS) $(CFLAGS)
+	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include /I..\..\src /DNOPCH \
+	/D_WINDOWS $(CPPFLAGS) $(CFLAGS)
 MMEX_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
 	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
@@ -114,9 +114,8 @@ MMEX_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
 	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd /I..\..\3rd\LuaGlue\include \
-	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include \
-	/I..\..\src /DNOPCH /D_WINDOWS /EHsc /GR $(__mmex_CL_FLAGS) $(CPPFLAGS) \
-	$(CXXFLAGS)
+	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include /I..\..\src /DNOPCH \
+	/D_WINDOWS /EHsc /GR $(__mmex_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
 	mmex_aboutdialog.obj \
 	mmex_accountdialog.obj \
@@ -141,6 +140,12 @@ MMEX_OBJECTS =  \
 	mmex_minimal_editor.obj \
 	mmex_mmCalculator.obj \
 	mmex_mmOption.obj \
+	mmex_mmOptionAttachmentSettings.obj \
+	mmex_mmOptionBaseSettings.obj \
+	mmex_mmOptionGeneralSettings.obj \
+	mmex_mmOptionMiscSettings.obj \
+	mmex_mmOptionNetSettings.obj \
+	mmex_mmOptionViewSettings.obj \
 	mmex_mmcheckingpanel.obj \
 	mmex_mmex.obj \
 	mmex_mmframe.obj \
@@ -722,6 +727,24 @@ mmex_mmCalculator.obj: ..\..\src\mmCalculator.cpp
 mmex_mmOption.obj: ..\..\src\mmOption.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOption.cpp
 
+mmex_mmOptionAttachmentSettings.obj: ..\..\src\mmOptionAttachmentSettings.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionAttachmentSettings.cpp
+
+mmex_mmOptionBaseSettings.obj: ..\..\src\mmOptionBaseSettings.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionBaseSettings.cpp
+
+mmex_mmOptionGeneralSettings.obj: ..\..\src\mmOptionGeneralSettings.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionGeneralSettings.cpp
+
+mmex_mmOptionMiscSettings.obj: ..\..\src\mmOptionMiscSettings.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionMiscSettings.cpp
+
+mmex_mmOptionNetSettings.obj: ..\..\src\mmOptionNetSettings.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionNetSettings.cpp
+
+mmex_mmOptionViewSettings.obj: ..\..\src\mmOptionViewSettings.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionViewSettings.cpp
+
 mmex_mmcheckingpanel.obj: ..\..\src\mmcheckingpanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmcheckingpanel.cpp
 
@@ -784,7 +807,7 @@ mmex_webapp.obj: ..\..\src\webapp.cpp
 
 mmex_webappdialog.obj: ..\..\src\webappdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\webappdialog.cpp
-	
+
 mmex_webserver.obj: ..\..\src\webserver.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\webserver.cpp
 

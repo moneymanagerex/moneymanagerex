@@ -133,18 +133,18 @@ MMEX_TESTS_CFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
 	-I..\..\lib\lua\src -I..\..\lib -I..\..\3rd -I..\..\3rd\LuaGlue\include \
-	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include \
-	-I..\..\src -DNOPCH -I..\..\src -I..\..\lib\cppunit\include \
-	-DwxIMPLEMENT_WXWIN_MAIN= $(CPPFLAGS) $(CFLAGS)
+	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include -I..\..\src -DNOPCH \
+	-I..\..\src -I..\..\lib\cppunit\include -DwxIMPLEMENT_WXWIN_MAIN= \
+	$(CPPFLAGS) $(CFLAGS)
 MMEX_TESTS_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
 	-I..\..\lib\lua\src -I..\..\lib -I..\..\3rd -I..\..\3rd\LuaGlue\include \
-	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include \
-	-I..\..\src -DNOPCH -I..\..\src -I..\..\lib\cppunit\include \
-	-DwxIMPLEMENT_WXWIN_MAIN= $(CPPFLAGS) $(CXXFLAGS)
+	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include -I..\..\src -DNOPCH \
+	-I..\..\src -I..\..\lib\cppunit\include -DwxIMPLEMENT_WXWIN_MAIN= \
+	$(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.o \
 	mmex_tests_accountdialog.o \
@@ -169,6 +169,12 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_minimal_editor.o \
 	mmex_tests_mmCalculator.o \
 	mmex_tests_mmOption.o \
+	mmex_tests_mmOptionAttachmentSettings.o \
+	mmex_tests_mmOptionBaseSettings.o \
+	mmex_tests_mmOptionGeneralSettings.o \
+	mmex_tests_mmOptionMiscSettings.o \
+	mmex_tests_mmOptionNetSettings.o \
+	mmex_tests_mmOptionViewSettings.o \
 	mmex_tests_mmcheckingpanel.o \
 	mmex_tests_mmex.o \
 	mmex_tests_mmframe.o \
@@ -249,6 +255,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_test_database_initialisation.o \
 	mmex_tests_test_date_range.o \
 	mmex_tests_test_filtertrans_dialog.o \
+	mmex_tests_test_options_dialog.o \
 	mmex_tests_test_relocate_category.o \
 	mmex_tests_test_relocate_payee.o \
 	mmex_tests_test_stocks.o \
@@ -742,6 +749,24 @@ mmex_tests_mmCalculator.o: ../../src/mmCalculator.cpp
 mmex_tests_mmOption.o: ../../src/mmOption.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_tests_mmOptionAttachmentSettings.o: ../../src/mmOptionAttachmentSettings.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_mmOptionBaseSettings.o: ../../src/mmOptionBaseSettings.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_mmOptionGeneralSettings.o: ../../src/mmOptionGeneralSettings.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_mmOptionMiscSettings.o: ../../src/mmOptionMiscSettings.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_mmOptionNetSettings.o: ../../src/mmOptionNetSettings.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_mmOptionViewSettings.o: ../../src/mmOptionViewSettings.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_tests_mmcheckingpanel.o: ../../src/mmcheckingpanel.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
@@ -980,6 +1005,9 @@ mmex_tests_test_date_range.o: ../../tests/test_date_range.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_test_filtertrans_dialog.o: ../../tests/test_filtertrans_dialog.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_test_options_dialog.o: ../../tests/test_options_dialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_test_relocate_category.o: ../../tests/test_relocate_category.cpp
