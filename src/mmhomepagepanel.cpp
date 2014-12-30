@@ -542,7 +542,10 @@ void mmHomePagePanel::getTemplate()
 
 void mmHomePagePanel::getData()
 {
-    m_frames["WEBSITE_NEWS"] = displayWebsiteNews();
+    if (Model_Setting::instance().DisplayInternetNews())
+    {
+        m_frames["WEBSITE_NEWS"] = displayWebsiteNews();
+    }
 
     vAccts_ = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
     date_range_->destroy();
