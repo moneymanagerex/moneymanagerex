@@ -107,6 +107,8 @@ extern const wxString ATTACHMENTS_FOLDER_DATABASE;
 extern const wxString ATTACHMENTS_FOLDER_USERPROFILE;
 extern const wxString ATTACHMENTS_FOLDER_APPDATA;
 
+extern const wxString INIDB_DISPLAY_INTERNET_NEWS;
+
 enum id
 {
     mmID_HOMEPAGE = wxID_HIGHEST + 1,

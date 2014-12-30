@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "Model_Setting.h"
+#include "constants.h"
 #include "paths.h"
 
 Model_Setting::Model_Setting()
@@ -154,4 +155,15 @@ row_t Model_Setting::to_row_t()
     for (const auto &r: instance().all())
         row(r.SETTINGNAME.ToStdWstring()) = r.SETTINGVALUE;
     return row;
+}
+
+bool Model_Setting::DisplayInternetNews()
+{
+    bool result = GetBoolSetting(INIDB_DISPLAY_INTERNET_NEWS, true);
+    return result;
+}
+
+void Model_Setting::SetDisplayInternetNews(bool display)
+{
+    Set(INIDB_DISPLAY_INTERNET_NEWS, display);
 }
