@@ -75,6 +75,30 @@ public:
 public:
     bool DisplayInternetNews();
     void SetDisplayInternetNews(bool display = true);
+
+    wxString ViewAccounts();
+    void SetViewAccounts(const wxString& value);
+
+    wxString ViewTransactions();
+    void SetViewTransactions(const wxString& value);
+
+    int HtmlFontSize();
+    void SetHtmlFontSize(const int& size);
+
+    bool BudgetFinancialYears();
+    void SetBudgetFinancialYears(bool value = false);
+
+    bool BudgetIncludeTransfers();
+    void SetBudgetIncludeTransfers(bool value = false);
+
+    bool BudgetSetupWithoutSummary();
+    void SetBudgetSetupWithoutSummary(bool value = false);
+
+    bool BudgetSummaryWithoutCategory();
+    void SetBudgetSummaryWithoutCategory(bool value = true);
+
+    bool IgnoreFutureTransactions();
+    void SetIgnoreFutureTransactions(bool value = false);
 };
 
 #endif // 

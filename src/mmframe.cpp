@@ -751,7 +751,7 @@ void mmGUIFrame::updateNavTreeControl()
         return;
 
     /* Start Populating the dynamic data */
-    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    wxString vAccts = Model_Setting::instance().ViewAccounts();
     wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR || vAccts == VIEW_ACCOUNTS_OPEN_STR);
     if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
         vAccts = VIEW_ACCOUNTS_ALL_STR;
@@ -1170,45 +1170,45 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 void mmGUIFrame::OnViewAllAccounts(wxCommandEvent&)
 {
     //Get current settings for view accounts
-    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    wxString vAccts = Model_Setting::instance().ViewAccounts();
 
     //Set view ALL & Refresh Navigation Panel
-    Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    Model_Setting::instance().SetViewAccounts(VIEW_ACCOUNTS_ALL_STR);
     updateNavTreeControl();
     createHomePage();
 
     //Restore settings
-    Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
-    vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    Model_Setting::instance().SetViewAccounts(vAccts);
+    vAccts = Model_Setting::instance().ViewAccounts();
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewFavoriteAccounts(wxCommandEvent&)
 {
     //Get current settings for view accounts
-    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    wxString vAccts = Model_Setting::instance().ViewAccounts();
 
     //Set view Favorites & Refresh Navigation Panel
-    Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_FAVORITES_STR);
+    Model_Setting::instance().SetViewAccounts(VIEW_ACCOUNTS_FAVORITES_STR);
     updateNavTreeControl();
     createHomePage();
 
     //Restore settings
-    Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
+    Model_Setting::instance().SetViewAccounts(vAccts);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewOpenAccounts(wxCommandEvent&)
 {
     //Get current settings for view accounts
-    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    wxString vAccts = Model_Setting::instance().ViewAccounts();
 
     //Set view Open & Refresh Navigation Panel
-    Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_OPEN_STR);
+    Model_Setting::instance().SetViewAccounts(VIEW_ACCOUNTS_OPEN_STR);
     createHomePage();
 
     //Restore settings
-    Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
+    Model_Setting::instance().SetViewAccounts(vAccts);
 }
 //----------------------------------------------------------------------------
 

@@ -18,6 +18,7 @@
 
 #include "Model_Setting.h"
 #include "constants.h"
+#include "mmOption.h"
 #include "paths.h"
 
 Model_Setting::Model_Setting()
@@ -156,14 +157,108 @@ row_t Model_Setting::to_row_t()
         row(r.SETTINGNAME.ToStdWstring()) = r.SETTINGVALUE;
     return row;
 }
-
+//-------------------------------------------------------------------
+//-------------------------------------------------------------------
 bool Model_Setting::DisplayInternetNews()
 {
-    bool result = GetBoolSetting(INIDB_DISPLAY_INTERNET_NEWS, true);
-    return result;
+    return GetBoolSetting(INIDB_DISPLAY_INTERNET_NEWS, true);
 }
 
 void Model_Setting::SetDisplayInternetNews(bool display)
 {
     Set(INIDB_DISPLAY_INTERNET_NEWS, display);
+}
+
+//-------------------------------------------------------------------
+wxString Model_Setting::ViewAccounts()
+{
+    return GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+}
+
+void Model_Setting::SetViewAccounts(const wxString& value)
+{
+    Set("VIEWACCOUNTS", value);
+}
+
+//-------------------------------------------------------------------
+wxString Model_Setting::ViewTransactions()
+{
+    return GetStringSetting("VIEWTRANSACTIONS", VIEW_TRANS_ALL_STR);
+}
+
+void Model_Setting::SetViewTransactions(const wxString& value)
+{
+    Set("VIEWTRANSACTIONS", value);
+}
+
+//-------------------------------------------------------------------
+int Model_Setting::HtmlFontSize()
+{
+    return GetIntSetting("HTMLFONTSIZE", 3);
+}
+
+void Model_Setting::SetHtmlFontSize(const int& size)
+{
+    Set("HTMLFONTSIZE", size);
+    mmIniOptions::instance().html_font_size_ = size;
+}
+
+//-------------------------------------------------------------------
+bool Model_Setting::BudgetFinancialYears()
+{
+    return GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
+}
+
+void Model_Setting::SetBudgetFinancialYears(bool value)
+{
+    Set(INIDB_BUDGET_FINANCIAL_YEARS, value);
+    mmIniOptions::instance().budgetFinancialYears_ = value;
+}
+
+//-------------------------------------------------------------------
+bool Model_Setting::BudgetIncludeTransfers()
+{
+    return GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
+}
+
+void Model_Setting::SetBudgetIncludeTransfers(bool value)
+{
+    Set(INIDB_BUDGET_INCLUDE_TRANSFERS, value);
+    mmIniOptions::instance().budgetIncludeTransfers_ = value;
+}
+
+//-------------------------------------------------------------------
+bool Model_Setting::BudgetSetupWithoutSummary()
+{
+    return GetBoolSetting(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, false);
+}
+
+void Model_Setting::SetBudgetSetupWithoutSummary(bool value)
+{
+    Set(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, value);
+    mmIniOptions::instance().budgetSetupWithoutSummaries_ = value;
+}
+
+//-------------------------------------------------------------------
+bool Model_Setting::BudgetSummaryWithoutCategory()
+{
+    return GetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true);
+}
+
+void Model_Setting::SetBudgetSummaryWithoutCategory(bool value)
+{
+    Set(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, value);
+    mmIniOptions::instance().budgetReportWithSummaries_ = value;
+}
+
+//-------------------------------------------------------------------
+bool Model_Setting::IgnoreFutureTransactions()
+{
+    return GetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, false);
+}
+
+void Model_Setting::SetIgnoreFutureTransactions(bool value)
+{
+    Set(INIDB_IGNORE_FUTURE_TRANSACTIONS, value);
+    mmIniOptions::instance().ignoreFutureTransactions_ = value;
 }
