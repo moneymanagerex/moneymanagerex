@@ -39,6 +39,8 @@ public:
 
     TransactionListCtrl(mmCheckingPanel *cp, wxWindow *parent
         , const wxWindowID id);
+    
+    ~TransactionListCtrl();
 
     void createColumns(mmListCtrl &lst);
     enum EIcons //m_imageList

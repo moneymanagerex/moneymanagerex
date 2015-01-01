@@ -73,6 +73,9 @@ public:
     static row_t to_row_t();
 
 public:
+    int CheckingColumnWidth(const int& column_number, int default_size = wxLIST_AUTOSIZE);
+    void SetCheckingColumnWidth(const int& column_number, int column_width);
+
     bool DisplayInternetNews();
     void SetDisplayInternetNews(bool display = true);
 
