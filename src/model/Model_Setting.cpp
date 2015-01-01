@@ -159,17 +159,6 @@ row_t Model_Setting::to_row_t()
 }
 //-------------------------------------------------------------------
 
-int Model_Setting::CheckingColumnWidth(const int& column_number, int default_size)
-{
-    return GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", column_number), default_size);
-}
-
-void Model_Setting::SetCheckingColumnWidth(const int& column_number, int column_width)
-{
-    Set(wxString::Format("CHECK_COL%i_WIDTH", column_number), column_width);
-}
-//-------------------------------------------------------------------
-
 bool Model_Setting::DisplayInternetNews()
 {
     return GetBoolSetting(INIDB_DISPLAY_INTERNET_NEWS, true);

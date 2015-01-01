@@ -186,7 +186,6 @@ private:
 
     void OnMouseRightClick(wxMouseEvent& event);
     void OnListLeftClick(wxMouseEvent& event);
-    void OnItemResize(wxListEvent& event);
     void OnListItemSelected(wxListEvent& event);
     void OnListItemActivated(wxListEvent& event);
     void OnMarkTransaction(wxCommandEvent& event);
@@ -200,6 +199,9 @@ private:
 
     /* Sort Columns */
     void OnColClick(wxListEvent& event);
+
+    int GetColumnWidthSetting(const int& column_number, int default_size = wxLIST_AUTOSIZE);
+    void SetColumnWidthSetting(const int& column_number, int column_width);
 
     /* Headers Right Click*/
     int ColumnHeaderNr;
