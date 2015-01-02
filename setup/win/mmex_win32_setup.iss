@@ -187,6 +187,7 @@ Source: {#my_svn_path}\po\croatian.mo; DestDir: {app}\po\en; Flags: ignoreversio
 Source: {#my_svn_path}\po\czech.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\czech; 
 Source: {#my_svn_path}\po\dutch.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\ducth; 
 Source: {#my_svn_path}\po\dutch_be.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\dutch_be; 
+Source: {#my_svn_path}\po\english.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\english; 
 Source: {#my_svn_path}\po\english.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: help; Languages: english; 
 Source: {#my_svn_path}\po\english-uk.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\english_uk; 
 Source: {#my_svn_path}\po\french.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\french; 
