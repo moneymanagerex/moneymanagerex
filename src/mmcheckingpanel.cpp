@@ -74,7 +74,6 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
     EVT_RIGHT_DOWN(TransactionListCtrl::OnMouseRightClick)
     EVT_LEFT_DOWN(TransactionListCtrl::OnListLeftClick)
-    EVT_LIST_COL_END_DRAG(wxID_ANY, TransactionListCtrl::OnItemResize)
     EVT_LIST_COL_CLICK(wxID_ANY, TransactionListCtrl::OnColClick)
     EVT_LIST_COL_RIGHT_CLICK(wxID_ANY, TransactionListCtrl::OnColRightClick)
     EVT_LIST_KEY_DOWN(wxID_ANY,  TransactionListCtrl::OnListKeyDown)
@@ -984,31 +983,41 @@ TransactionListCtrl::TransactionListCtrl(
     showDeletedTransactions_ = Model_Setting::instance().GetBoolSetting("SHOW_DELETED_TRANS", true);
 }
 
+TransactionListCtrl::~TransactionListCtrl()
+{
+    for (int column_number = 0; column_number < COL_MAX; ++column_number)
+    {
+        int column_width = GetColumnWidth(column_number);
+        if (GetColumnWidthSetting(column_number) != column_width)
+            SetColumnWidthSetting(column_number, column_width);
+    }
+}
+
 //----------------------------------------------------------------------------
 void TransactionListCtrl::createColumns(mmListCtrl &lst)
 {
     lst.InsertColumn(COL_IMGSTATUS, " ", wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_IMGSTATUS), 25));
+        , GetColumnWidthSetting(COL_IMGSTATUS, 25));
     lst.InsertColumn(COL_ID, _("ID"), wxLIST_FORMAT_RIGHT
-        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_ID), wxLIST_AUTOSIZE));
+        , GetColumnWidthSetting(COL_ID, wxLIST_AUTOSIZE));
     lst.InsertColumn(COL_DATE, _("Date"), wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_DATE), 112));
+        , GetColumnWidthSetting(COL_DATE, 112));
     lst.InsertColumn(COL_NUMBER, _("Number"), wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_NUMBER), 70));
+        , GetColumnWidthSetting(COL_NUMBER, 70));
     lst.InsertColumn(COL_PAYEE_STR, _("Payee"), wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_PAYEE_STR), 150));
+        , GetColumnWidthSetting(COL_PAYEE_STR, 150));
     lst.InsertColumn(COL_STATUS, _("Status"), wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_STATUS), wxLIST_AUTOSIZE_USEHEADER));
+        , GetColumnWidthSetting(COL_STATUS, wxLIST_AUTOSIZE_USEHEADER));
     lst.InsertColumn(COL_CATEGORY, _("Category"), wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_CATEGORY), 150));
+        , GetColumnWidthSetting(COL_CATEGORY, 150));
     lst.InsertColumn(COL_WITHDRAWAL, _("Withdrawal"), wxLIST_FORMAT_RIGHT
-        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_WITHDRAWAL), wxLIST_AUTOSIZE_USEHEADER));
+        , GetColumnWidthSetting(COL_WITHDRAWAL, wxLIST_AUTOSIZE_USEHEADER));
     lst.InsertColumn(COL_DEPOSIT, _("Deposit"), wxLIST_FORMAT_RIGHT
-        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_DEPOSIT), wxLIST_AUTOSIZE_USEHEADER));
+        , GetColumnWidthSetting(COL_DEPOSIT, wxLIST_AUTOSIZE_USEHEADER));
     lst.InsertColumn(COL_BALANCE, _("Balance"), wxLIST_FORMAT_RIGHT
-        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_BALANCE), wxLIST_AUTOSIZE_USEHEADER));
+        , GetColumnWidthSetting(COL_BALANCE, wxLIST_AUTOSIZE_USEHEADER));
     lst.InsertColumn(COL_NOTES, _("Notes"), wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_NOTES), 250));
+        , GetColumnWidthSetting(COL_NOTES, 250));
 }
 
 void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
@@ -1023,18 +1032,6 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
     m_selectedID = m_cp->m_trans[m_selectedIndex].TRANSID;
 }
 //----------------------------------------------------------------------------
-
-void TransactionListCtrl::OnItemResize(wxListEvent& event)
-{
-    int i = event.GetColumn();
-    const wxString parameter_name = wxString::Format("CHECK_COL%i_WIDTH", i);
-    /* 
-    On Windows there is a bug in GetColumnWidth():
-    http://www.nntp.perl.org/group/perl.wxperl.users/2007/06/msg4066.html
-    */
-    int current_width = event.GetItem().GetWidth();
-    Model_Setting::instance().Set(parameter_name, current_width);
-}
 
 void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
 {
@@ -1255,9 +1252,8 @@ void TransactionListCtrl::OnColRightClick(wxListEvent& event)
 
 void TransactionListCtrl::OnHeaderHide(wxCommandEvent& event)
 {
-    TransactionListCtrl::SetColumnWidth(ColumnHeaderNr, 0);
-    const wxString parameter_name = wxString::Format("CHECK_COL%i_WIDTH", ColumnHeaderNr);
-    Model_Setting::instance().Set(parameter_name, 0);
+    SetColumnWidth(ColumnHeaderNr, 0);
+    SetColumnWidthSetting(ColumnHeaderNr, 0);
 }
 
 void TransactionListCtrl::OnHeaderSort(wxCommandEvent& event)
@@ -1269,12 +1265,10 @@ void TransactionListCtrl::OnHeaderSort(wxCommandEvent& event)
 
 void TransactionListCtrl::OnHeaderReset(wxCommandEvent& event)
 {
-    wxString parameter_name;
     for (int i = 0; i < COL_MAX; i++)
     {
-        TransactionListCtrl::SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER);
-        parameter_name = wxString::Format("CHECK_COL%i_WIDTH", i);
-        Model_Setting::instance().Set(parameter_name, TransactionListCtrl::GetColumnWidth(i));
+        SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER);
+        SetColumnWidthSetting(i, TransactionListCtrl::GetColumnWidth(i));
     }
     wxListEvent e;
     e.SetId(MENU_HEADER_SORT);
@@ -1282,9 +1276,18 @@ void TransactionListCtrl::OnHeaderReset(wxCommandEvent& event)
 	m_asc = true;
     TransactionListCtrl::OnColClick(e);
 }
-
 //----------------------------------------------------------------------------
 
+int TransactionListCtrl::GetColumnWidthSetting(const int& column_number, int default_size)
+{
+    return Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", column_number), default_size);
+}
+
+void TransactionListCtrl::SetColumnWidthSetting(const int& column_number, int column_width)
+{
+    Model_Setting::instance().Set(wxString::Format("CHECK_COL%i_WIDTH", column_number), column_width);
+}
+//-------------------------------------------------------------------
 
 void TransactionListCtrl::OnColClick(wxListEvent& event)
 {

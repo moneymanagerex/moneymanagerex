@@ -158,7 +158,7 @@ row_t Model_Setting::to_row_t()
     return row;
 }
 //-------------------------------------------------------------------
-//-------------------------------------------------------------------
+
 bool Model_Setting::DisplayInternetNews()
 {
     return GetBoolSetting(INIDB_DISPLAY_INTERNET_NEWS, true);
