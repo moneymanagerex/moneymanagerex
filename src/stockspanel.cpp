@@ -769,7 +769,7 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
 /*** Trigger a quote download ***/
 bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
 {
-    if(listCtrlAccount_->m_stocks.size() < 1)
+    if(listCtrlAccount_->m_stocks.empty())
     {
         sError = _("Nothing to update");
         return false;
@@ -779,7 +779,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     std::map<wxString, std::pair<double, wxString> > stocks_data;
     wxString site = "";
 
-    for (const auto &stock : listCtrlAccount_->m_stocks)
+    for (const auto &stock : Model_Stock::instance().all())
     {
         const wxString symbol = stock.SYMBOL.Upper();
         if (!symbol.IsEmpty())
