@@ -245,14 +245,21 @@ DB_Table_ACCOUNTLIST_V1::STATUS Model_Account::STATUS(STATUS_ENUM status, OP op)
 
 Model_Account::TYPE Model_Account::type(const Data* account)
 {
-    if (account->ACCOUNTTYPE.CmpNoCase(all_type()[CHECKING]) == 0)
-        return CHECKING;
-    else if (account->ACCOUNTTYPE.CmpNoCase(all_type()[TERM]) == 0)
-        return TERM;
-    else if (account->ACCOUNTTYPE.CmpNoCase(all_type()[CREDIT_CARD]) == 0)
-        return CREDIT_CARD;
-    else
-        return INVESTMENT;
+    static std::map<wxString, TYPE> cache;
+    const auto it = cache.find(account->ACCOUNTTYPE);
+    if (it != cache.end()) return it->second;
+
+    for (const auto& t : TYPE_CHOICES) 
+    {
+        if (account->ACCOUNTTYPE.CmpNoCase(t.second) == 0)
+        {
+            cache.insert(std::make_pair(account->ACCOUNTTYPE, t.first));
+            return t.first;
+        }
+    }
+
+    cache.insert(std::make_pair(account->ACCOUNTTYPE, TYPE::CHECKING));
+    return TYPE::CHECKING;
 }
 
 Model_Account::TYPE Model_Account::type(const Data& account)
