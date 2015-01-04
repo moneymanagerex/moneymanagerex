@@ -120,7 +120,8 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
 void Model_Currency::SetBaseCurrency(Data* r)
 {
     init_currencies_ = false;
-    Model_Infotable::instance().SetBaseCurrencyID(r->CURRENCYID);
+    Model_Infotable::instance().SetBaseCurrency(r->CURRENCYID);
+    Model_Infotable::instance().SetBaseCurrency(r->CURRENCYNAME);
 }
 
 Model_Currency::Data* Model_Currency::GetCurrencyRecord(const wxString& currency_symbol)

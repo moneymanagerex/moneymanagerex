@@ -451,7 +451,7 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
         int baseCurrencyID = Model_Infotable::instance().GetBaseCurrencyId();
         if (baseCurrencyID != currencyID_)
         {
-            Model_Infotable::instance().SetBaseCurrencyID(currencyID_);
+            Model_Infotable::instance().SetBaseCurrency(currencyID_);
             fillControls();
         }
     }
