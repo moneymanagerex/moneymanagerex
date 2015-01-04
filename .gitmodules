@@ -34,3 +34,6 @@
 [submodule "3rd/ctpp"]
 	path = 3rd/ctpp
 	url = https://github.com/moneymanagerex/ctpp.git
+[submodule "database"]
+	path = database
+	url = https://github.com/moneymanagerex/database
