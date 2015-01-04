@@ -543,8 +543,10 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
         }
 
     ************
+    Alpha, Beta, RC = -1 means no Alpha\Beta\RC Available
+    Alpha, Beta, RC = 0 means Alpha\Beta\RC without version
     When a stable is released an no unstable is available yet,
-    insert in unstable the same version number of stable with Alpha\Beta\RC= 0
+    insert in unstable the same version number of stable with Alpha\Beta\RC= -1
     **************************************************************************/
 
     json::Object jsonVersion;
@@ -552,9 +554,9 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
     std::wstring platform = mmPlatformType().ToStdWstring();
     std::wstring ReleaseType = L"Stable";
 
-    int alpha = 0;
-    int beta = 0;
-    int rc = 0;
+    int alpha = -1;
+    int beta = -1;
+    int rc = -1;
 
     if (!(page.StartsWith("{") && page.EndsWith("}")))
         return false;
@@ -562,7 +564,7 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
     json::Reader::Read(jsonVersion, jsonVersionStream);
 
     if (Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 1
-        || mmex::version::Alpha != 0 || mmex::version::Beta != 0 || mmex::version::RC != 0)
+        || mmex::version::Alpha != -1 || mmex::version::Beta != -1 || mmex::version::RC != -1)
     {
         ReleaseType = L"Unstable";
         alpha = int(json::Number(jsonVersion[ReleaseType][platform][L"Alpha"]));
@@ -586,8 +588,8 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
                 isUpdateAvailable = true;
             else if (patch == mmex::version::Patch && ReleaseType == L"Unstable")
             {
-                if ((mmex::version::Alpha != 0 || mmex::version::Beta != 0 || mmex::version::RC != 0)
-                    && alpha == 0 && beta == 0 && rc == 0)
+                if ((mmex::version::Alpha != -1 || mmex::version::Beta != -1 || mmex::version::RC != -1)
+                    && alpha == -1 && beta == -1 && rc == -1)
                     isUpdateAvailable = true;
                 if (alpha > mmex::version::Alpha)
                     isUpdateAvailable = true;

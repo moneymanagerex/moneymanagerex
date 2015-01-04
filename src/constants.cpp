@@ -31,25 +31,32 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  3. PATCH version when you make backwards-compatible bug fixes.
  Ref: http://semver.org
 
- Alpha, Beta, RC  = 0 (Stable) won't add any suffix
- Alpha, Beta, RC != 0 (Unstable) will add correct suffix to version
+ Alpha, Beta, RC  = -1 (Stable) won't add any suffix
+ Alpha, Beta, RC  = 0 (Unstable) will add suffix to version without number
+ Alpha, Beta, RC  > 0 (Unstable) will add suffix to version with number
 
  For Internet Format for update checking read in util.cpp
  *************************************************************************/
 const int mmex::version::Major = 1;
 const int mmex::version::Minor = 2;
 const int mmex::version::Patch = 0;
-const int mmex::version::Alpha = 1;
-const int mmex::version::Beta  = 0;
-const int mmex::version::RC    = 0;
+const int mmex::version::Alpha = 0;
+const int mmex::version::Beta  = -1;
+const int mmex::version::RC    = -1;
 
 const wxString mmex::version::generateProgramVersion(int Major, int Minor, int Patch, int Alpha, int Beta, int RC)
 {
     wxString Version = wxString::Format("%i.%i.%i", Major, Minor, Patch);
-    if (Alpha > 0)
+    if (Alpha == 0)
+        Version.Append("-Alpha");
+    else if (Alpha > 0)
         Version.Append(wxString::Format("-Alpha.%i", Alpha));
+    if (Beta == 0)
+        Version.Append("-Beta");
     else if (Beta > 0)
         Version.Append(wxString::Format("-Beta.%i", Beta));
+    if (RC == 0)
+        Version.Append("-RC");
     else if (RC > 0)
         Version.Append(wxString::Format("-RC.%i", RC));
 
