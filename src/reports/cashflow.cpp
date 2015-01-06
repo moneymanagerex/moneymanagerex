@@ -164,7 +164,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             if (processNumRepeats && (numRepeats <= 0)) 
                 break;
 
-            nextOccurDate = Model_Billsdeposits::instance().nextOccurDate(repeatsType, numRepeats, nextOccurDate);
+            nextOccurDate = Model_Billsdeposits::nextOccurDate(repeatsType, numRepeats, nextOccurDate);
 
             if (processNumRepeats) numRepeats--;
             if (repeatsType == Model_Billsdeposits::REPEAT_IN_X_DAYS) // repeat in numRepeats Days (Once only)
