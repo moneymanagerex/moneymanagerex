@@ -569,7 +569,7 @@ wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data*
     if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
         repeats -= BD_REPEATS_MULTIPLEX_BASE;
 
-    int daysRemaining = Model_Billsdeposits::instance().daysRemaining(item);
+    int daysRemaining = Model_Billsdeposits::daysRemaining(item);
     wxString text = wxString::Format(_("%d days remaining"), daysRemaining);
 
     if (daysRemaining == 0)
@@ -627,7 +627,7 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
         bd_repeat_auto = true;
     }
 
-    int daysRemaining = Model_Billsdeposits::instance().daysRemaining(&m_bdp->bills_[item]);
+    int daysRemaining = Model_Billsdeposits::daysRemaining(&m_bdp->bills_[item]);
     wxString daysRemainingStr = wxString::Format(_("%d days remaining"), daysRemaining);
 
     if (daysRemaining == 0)

@@ -325,7 +325,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
     std::vector< std::tuple<int, wxString, wxString, double, const Model_Account::Data*> > bd_days;
     for (const auto& entry : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {   
-        int daysRemaining = Model_Billsdeposits::instance().daysRemaining(&entry);
+        int daysRemaining = Model_Billsdeposits::daysRemaining(&entry);
         if (daysRemaining > 14) 
             break; // Done searching for all to include
 
