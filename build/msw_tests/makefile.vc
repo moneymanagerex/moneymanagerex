@@ -208,6 +208,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_webserver.obj \
 	mmex_tests_wizard_newaccount.obj \
 	mmex_tests_wizard_newdb.obj \
+	mmex_tests_wizard_update.obj \
 	mmex_tests_budget.obj \
 	mmex_tests_budgetcategorysummary.obj \
 	mmex_tests_budgetingperf.obj \
@@ -942,6 +943,9 @@ mmex_tests_wizard_newaccount.obj: ..\..\src\wizard_newaccount.cpp
 mmex_tests_wizard_newdb.obj: ..\..\src\wizard_newdb.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\wizard_newdb.cpp
 
+mmex_tests_wizard_update.obj: ..\..\src\wizard_update.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\wizard_update.cpp
+	
 mmex_tests_budget.obj: ..\..\src\reports\budget.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\reports\budget.cpp
 

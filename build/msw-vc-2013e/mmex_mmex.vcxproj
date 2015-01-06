@@ -361,6 +361,7 @@
     <ClCompile Include="..\..\src\webserver.cpp" />
     <ClCompile Include="..\..\src\wizard_newaccount.cpp" />
     <ClCompile Include="..\..\src\wizard_newdb.cpp" />
+    <ClCompile Include="..\..\src\wizard_update.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\db\DB_Table.h" />
@@ -488,6 +489,7 @@
     <ClInclude Include="..\..\src\webserver.h" />
     <ClInclude Include="..\..\src\wizard_newaccount.h" />
     <ClInclude Include="..\..\src\wizard_newdb.h" />
+    <ClInclude Include="..\..\src\wizard_update.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\resources\mmex.rc" />

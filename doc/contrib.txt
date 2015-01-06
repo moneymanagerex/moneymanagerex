@@ -5,12 +5,6 @@ James            [siena123]
 Stefano          [stef145g]
 Pat              [omalleypat]
 Gabriele         [gabriele-v]
-=======================================
-##What's new
-- Home Page updated
-- General Report Manager replaced Custom Reports
-- Attachments management
-- Embeded Webserver
 
 =======================================
 ##Translations

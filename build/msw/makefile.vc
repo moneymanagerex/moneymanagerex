@@ -170,6 +170,7 @@ MMEX_OBJECTS =  \
 	mmex_webserver.obj \
 	mmex_wizard_newaccount.obj \
 	mmex_wizard_newdb.obj \
+	mmex_wizard_update.obj \
 	mmex_budget.obj \
 	mmex_budgetcategorysummary.obj \
 	mmex_budgetingperf.obj \
@@ -817,6 +818,9 @@ mmex_wizard_newaccount.obj: ..\..\src\wizard_newaccount.cpp
 mmex_wizard_newdb.obj: ..\..\src\wizard_newdb.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\wizard_newdb.cpp
 
+mmex_wizard_update.obj: ..\..\src\wizard_update.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\wizard_update.cpp
+	
 mmex_budget.obj: ..\..\src\reports\budget.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\budget.cpp
 
