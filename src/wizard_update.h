@@ -42,7 +42,7 @@ public:
 
 private:
     wxWizardPageSimple* page1;
-    void mmUpdateWizard::PageChanged(wxWizardEvent& /*event*/);
+    void PageChanged(wxWizardEvent& /*event*/);
 
     wxDECLARE_EVENT_TABLE();
 };
