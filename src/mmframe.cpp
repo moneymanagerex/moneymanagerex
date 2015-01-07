@@ -88,6 +88,7 @@
 #include "webappdialog.h"
 #include "wizard_newdb.h"
 #include "wizard_newaccount.h"
+#include "wizard_update.h"
 #include "mmHook.h"
 #include "util.h"
 #include <wx/fs_mem.h>
@@ -315,7 +316,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 
     //Check for new version at startup
     if (Model_Setting::instance().GetBoolSetting("UPDATECHECK", true))
-        checkUpdates(true);
+        mmUpdate::checkUpdates(true,this);
 
     //Show appstart
     if (from_scratch || !dbpath.IsOk())
@@ -2266,7 +2267,7 @@ void mmGUIFrame::OnHelp(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
 {
-    checkUpdates(false);
+    mmUpdate::checkUpdates(false, this);
 }
 //----------------------------------------------------------------------------
 

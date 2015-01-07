@@ -303,6 +303,7 @@
     <ClCompile Include="..\..\src\reports\myusage.cpp" />
     <ClCompile Include="..\..\src\reports\summary.cpp" />
     <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
+    <ClCompile Include="..\..\src\wizard_update.cpp" />
     <ClCompile Include="..\..\tests\cpu_timer.cpp" />
     <ClCompile Include="..\..\3rd\csv-parser\csv_parser.cpp" />
     <ClCompile Include="..\..\src\currencydialog.cpp" />
@@ -438,6 +439,7 @@
     <ClInclude Include="..\..\src\reports\myusage.h" />
     <ClInclude Include="..\..\src\reports\summary.h" />
     <ClInclude Include="..\..\src\reports\summarystocks.h" />
+    <ClInclude Include="..\..\src\wizard_update.h" />
     <ClInclude Include="..\..\tests\cpu_timer.h" />
     <ClInclude Include="..\..\src\currencydialog.h" />
     <ClInclude Include="..\..\tests\db_init_model.h" />

@@ -852,6 +852,10 @@
 				RelativePath="..\..\src\wizard_newdb.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\src\wizard_update.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1428,6 +1432,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\wizard_newdb.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\wizard_update.h"
 				>
 			</File>
 		</Filter>

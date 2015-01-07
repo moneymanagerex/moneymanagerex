@@ -208,6 +208,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_webserver.o \
 	mmex_tests_wizard_newaccount.o \
 	mmex_tests_wizard_newdb.o \
+	mmex_tests_wizard_update.o \
 	mmex_tests_budget.o \
 	mmex_tests_budgetcategorysummary.o \
 	mmex_tests_budgetingperf.o \
@@ -738,6 +739,9 @@ mmex_tests_wizard_newaccount.o: $(srcdir)/../src/wizard_newaccount.cpp
 
 mmex_tests_wizard_newdb.o: $(srcdir)/../src/wizard_newdb.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/wizard_newdb.cpp
+	
+mmex_tests_wizard_update.o: $(srcdir)/../src/wizard_update.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/wizard_update.cpp
 
 mmex_tests_budget.o: $(srcdir)/../src/reports/budget.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/reports/budget.cpp

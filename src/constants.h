@@ -60,6 +60,8 @@ namespace weblink
     const wxString addReferralToURL(const wxString& BaseURL, const wxString& CampSource);
     extern const wxString WebSite;
     extern const wxString Update;
+    extern const wxString UpdateLinks;
+    extern const wxString Changelog;
     extern const wxString UsageStats;
     extern const wxString Download;
     extern const wxString News;
