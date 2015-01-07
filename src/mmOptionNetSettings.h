@@ -2,6 +2,8 @@
 
 #include "mmOptionBaseSettings.h"
 
+class wxSpinCtrl;
+
 class mmOptionNetSettings : public mmOptionSettingsBase
 {
     wxDECLARE_EVENT_TABLE();
