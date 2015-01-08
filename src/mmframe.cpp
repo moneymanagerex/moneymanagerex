@@ -569,7 +569,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 tran->NOTES = q1.NOTES;
                 tran->CATEGID = q1.CATEGID;
                 tran->SUBCATEGID = q1.SUBCATEGID;
-                tran->TRANSDATE = q1.NEXTOCCURRENCEDATE;
+                tran->TRANSDATE = wxDate::Now().FormatISODate();
 
                 int transID = Model_Checking::instance().save(tran);
 

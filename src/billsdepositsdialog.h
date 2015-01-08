@@ -97,10 +97,10 @@ private:
     bool edit_;
     bool m_new_bill;
     bool m_transfer;
-    bool enterOccur_;
+    bool m_enter_occur;
 
-    wxDatePickerCtrl* m_payment_date;         // dpcTransDate_
-    wxDatePickerCtrl* m_due_date_next_occ;       // dpcNextOccDate_
+    wxDatePickerCtrl* m_payment_date;   // dpcTransDate     Stored in ::NEXTOCCURRENCEDATE
+    wxDatePickerCtrl* m_due_date;       // dpcNextOccDate   Stored in ::TRANSDATE
     wxCalendarCtrl* calendarCtrl_;
     wxChoice* itemRepeats_;
     wxCheckBox* itemCheckBoxAutoExeUserAck_;

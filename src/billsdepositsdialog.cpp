@@ -75,7 +75,7 @@ mmBDDialog::mmBDDialog( )
 
 mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
     : m_new_bill(!edit)
-    , enterOccur_(enterOccur)
+    , m_enter_occur(enterOccur)
     , m_advanced(false)
     , payeeUnknown_(true)
     , autoExecuteUserAck_(false)
@@ -133,10 +133,10 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     /**********************************************************************************************
      Ament controls according to function settings
     ***********************************************************************************************/
-    if (!m_new_bill || enterOccur_)
+    if (!m_new_bill || m_enter_occur)
     {
         dataToControls();
-        if (! enterOccur_)
+        if (!m_enter_occur)
         {
             SetDialogHeader(_(" Edit Repeating Transaction"));
             m_payment_date->Disable();
@@ -145,7 +145,7 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
         {
             SetDialogHeader(_(" Enter Repeating Transaction"));
             transaction_type_->Disable();
-            m_due_date_next_occ->Disable();
+            m_due_date->Disable();
             itemRepeats_->Disable();
             textAmount_->SetFocus();
             itemCheckBoxAutoExeSilent_->Disable();
@@ -169,13 +169,18 @@ void mmBDDialog::dataToControls()
     if (m_bill_data.NUMOCCURRENCES > 0)
         textNumRepeats_->SetValue(wxString::Format("%d", m_bill_data.NUMOCCURRENCES));
 
-    wxDateTime dtno;
-    dtno.ParseDate(m_bill_data.NEXTOCCURRENCEDATE);
-    m_payment_date->SetValue(dtno);
-    calendarCtrl_->SetDate(dtno);
-
-    dtno.ParseDate(m_bill_data.TRANSDATE);
-    m_due_date_next_occ->SetValue(dtno);
+    wxDateTime bill_date;
+    // Set the payment date
+    bill_date.ParseDate(m_bill_data.NEXTOCCURRENCEDATE);
+    m_payment_date->SetValue(bill_date);
+    if (m_enter_occur)
+    {
+        m_payment_date->SetValue(wxDateTime::Now());
+    }
+    calendarCtrl_->SetDate(bill_date);
+    // Set the due Date
+    bill_date.ParseDate(m_bill_data.TRANSDATE);
+    m_due_date->SetValue(bill_date);
 
     // Have used repeatSel to multiplex auto repeat fields.
     if (m_bill_data.REPEATS >= BD_REPEATS_MULTIPLEX_BASE)
@@ -225,7 +230,7 @@ void mmBDDialog::dataToControls()
             bPayee_->SetLabelText(to_account->ACCOUNTNAME);
 
         // When editing an advanced transaction record, we do not reset the m_bill_data.TOTRANSAMOUNT
-        if ((!m_new_bill || enterOccur_) && (m_bill_data.TOTRANSAMOUNT != m_bill_data.TRANSAMOUNT))
+        if ((!m_new_bill || m_enter_occur) && (m_bill_data.TOTRANSAMOUNT != m_bill_data.TRANSAMOUNT))
         {
             cAdvanced_->SetValue(true);
             SetAdvancedTransferControls(true);
@@ -364,27 +369,26 @@ void mmBDDialog::CreateControls()
     int interval = 0;
 #ifdef __WXMSW__
     wxSize spinCtrlSize = wxSize(18, 22);
-//    spinCtrlDirection = wxSP_HORIZONTAL;
     interval = 4;
 #else
     wxSize spinCtrlSize = wxSize(16,-1);
 #endif
 
     // Next Occur Date --------------------------------------------
-    m_due_date_next_occ = new wxDatePickerCtrl(this, ID_DIALOG_BD_BUTTON_NEXTOCCUR, wxDefaultDateTime
+    m_due_date = new wxDatePickerCtrl(this, ID_DIALOG_BD_BUTTON_NEXTOCCUR, wxDefaultDateTime
         , wxDefaultPosition, wxSize(110, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-    m_due_date_next_occ->SetToolTip(_("Specify the date of the next bill or deposit"));
+    m_due_date->SetToolTip(_("Specify the date of the next bill or deposit"));
 
     spinNextOccDate_ = new wxSpinButton( this, ID_DIALOG_BD_REPEAT_DATE_SPINNER
         , wxDefaultPosition, spinCtrlSize, spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinNextOccDate_->SetToolTip(_("Retard or advance the date of the 'next occurrence"));
 
-    wxBoxSizer* nextOccurDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    nextOccurDateBoxSizer->Add(m_due_date_next_occ, g_flags);
-    nextOccurDateBoxSizer->Add(spinNextOccDate_, g_flags);
+    wxBoxSizer* dueDateDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
+    dueDateDateBoxSizer->Add(m_due_date, g_flags);
+    dueDateDateBoxSizer->Add(spinNextOccDate_, g_flags);
 
     itemFlexGridSizer5->Add(new wxStaticText( this, wxID_STATIC, _("Due Date")), g_flags);
-    itemFlexGridSizer5->Add(nextOccurDateBoxSizer);
+    itemFlexGridSizer5->Add(dueDateDateBoxSizer);
 
     // Repeats --------------------------------------------
     staticTextRepeats_ = new wxStaticText( this, wxID_STATIC, _("Repeats") );
@@ -624,7 +628,7 @@ void mmBDDialog::CreateControls()
      Adjust controls according to function settings
     ***********************************************************************************************/
     resetPayeeString();
-    if (enterOccur_)
+    if (m_enter_occur)
     {
         spinNextOccDate_->Disable();
     }
@@ -1045,9 +1049,9 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     }
 
     m_bill_data.NEXTOCCURRENCEDATE = m_payment_date->GetValue().FormatISODate();
-    m_bill_data.TRANSDATE = m_due_date_next_occ->GetValue().FormatISODate();
+    m_bill_data.TRANSDATE = m_due_date->GetValue().FormatISODate();
     // Ensure that TRANDSATE is set correctly
-    if (m_payment_date->GetValue() > m_due_date_next_occ->GetValue())
+    if (m_payment_date->GetValue() > m_due_date->GetValue())
         m_bill_data.TRANSDATE = m_payment_date->GetValue().FormatISODate();
 
     wxStringClientData* status_obj = (wxStringClientData *) choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
@@ -1056,7 +1060,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     m_bill_data.TRANSACTIONNUMBER = textNumber_->GetValue();
     m_bill_data.NOTES = textNotes_->GetValue();
 
-    if (!enterOccur_)
+    if (!m_enter_occur)
     {
         Model_Billsdeposits::Data* bill = Model_Billsdeposits::instance().get(m_bill_data.BDID);
         if (m_new_bill)
@@ -1208,9 +1212,9 @@ void mmBDDialog::OnAutoExecutionSilentChecked(wxCommandEvent& /*event*/)
 void mmBDDialog::OnCalendarSelChanged(wxCalendarEvent& event)
 {
     wxDateTime date = event.GetDate();
-    if (!enterOccur_)
+    if (!m_enter_occur)
     {
-        m_due_date_next_occ->SetValue(date);
+        m_due_date->SetValue(date);
         m_payment_date->SetValue(date);
     }
 }
@@ -1295,18 +1299,18 @@ void mmBDDialog::SetNewDate(wxDatePickerCtrl* dpc, bool forward)
     wxDateTime date = dpc->GetValue().Add(wxDateSpan::Days(day));
 
     m_payment_date->SetValue(date);
-    m_due_date_next_occ->SetValue(date);
+    m_due_date->SetValue(date);
     calendarCtrl_->SetDate(date);
 }
 
 void mmBDDialog::OnNextOccurDateForward(wxSpinEvent& /*event*/)
 {
-    SetNewDate(m_due_date_next_occ);
+    SetNewDate(m_due_date);
 }
 
 void mmBDDialog::OnNextOccurDateBack(wxSpinEvent& /*event*/)
 {
-    SetNewDate(m_due_date_next_occ, false);
+    SetNewDate(m_due_date, false);
 }
 
 void mmBDDialog::OnTransDateForward(wxSpinEvent& /*event*/)
@@ -1381,7 +1385,7 @@ void mmBDDialog::OnsetNextRepeatDate(wxCommandEvent& /*event*/)
     if (valueStr.IsNumber())
     {
         int value = wxAtoi(valueStr);
-        wxDateTime  date = m_due_date_next_occ->GetValue();
+        wxDateTime  date = m_due_date->GetValue();
 
         int repeats = itemRepeats_->GetSelection();
         if (repeats == 11)
@@ -1394,7 +1398,7 @@ void mmBDDialog::OnsetNextRepeatDate(wxCommandEvent& /*event*/)
         }
 
         m_payment_date->SetValue(date);
-        m_due_date_next_occ->SetValue(date);
+        m_due_date->SetValue(date);
         calendarCtrl_->SetDate( date );
 
         bSetNextOccurDate_->Disable();
