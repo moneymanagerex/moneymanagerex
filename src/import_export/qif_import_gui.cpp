@@ -852,16 +852,26 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     else
     {
         wxString categStr = (t.find(Category) != t.end()  ? t.at(Category) : "");
-        if (categStr.empty()) {
+        if (categStr.empty())
+        {
             Model_Payee::Data* payee = Model_Payee::instance().get(trx->PAYEEID);
-            categStr = Model_Category::full_name(payee->CATEGID, payee->SUBCATEGID);
-            trx->CATEGID = payee->CATEGID;
-            trx->SUBCATEGID = payee->SUBCATEGID;
+            if (payee)
+            {
+                trx->CATEGID = payee->CATEGID;
+                trx->SUBCATEGID = payee->SUBCATEGID;
+            }
+            categStr = Model_Category::full_name(trx->CATEGID, trx->SUBCATEGID);
         }
 
-        if (trx->CATEGID < 0) {
+        if (categStr.empty())
+        {
             trx->CATEGID = (m_QIFcategoryNames[_("Unknown")].first);
             trx->SUBCATEGID = -1;
+        }
+        else
+        {
+            trx->CATEGID = (m_QIFcategoryNames[categStr].first);
+            trx->SUBCATEGID = (m_QIFcategoryNames[categStr].second);
         }
     }
     return true;
