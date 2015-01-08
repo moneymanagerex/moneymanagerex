@@ -72,11 +72,11 @@ double Model_Stock::value(const Data& r)
 bool Model_Stock::remove(int id)
 {
 /*
-    this->Begin();
+    this->Savepoint();
     Model_Stock::Data *data = this->get(id);
     for (const auto& r : Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(data->SYMBOL)))
         Model_StockHistory::instance().remove(r.id());
-    this->Commit();
+    this->ReleaseSavepoint();
 */
 
     return this->remove(id, db_);

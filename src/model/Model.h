@@ -47,17 +47,17 @@ public:
     virtual ~ModelBase() {};
 
 public:
-    void Begin()
+    void Savepoint()
     {
-        this->db_->Begin();
+        this->db_->Savepoint("MMEX");
     }
-    void Commit()
+    void ReleaseSavepoint()
     {
-        this->db_->Commit();
+        this->db_->ReleaseSavepoint("MMEX");
     }
     void Rollback()
     {
-        this->db_->Rollback();
+        this->db_->Rollback("MMEX");
     }
 protected:
     static wxDate to_date(const wxString& str_date)
@@ -150,14 +150,14 @@ public:
     template<class DATA>
     int save(std::vector<DATA>& rows)
     {
-        this->Begin();
+        this->Savepoint();
         for (auto& r : rows) 
         {
             if (r.id() < 0) 
                 wxLogDebug("Incorrect function call to save %s", r.to_json().c_str());
             this->save(&r);
         }
-        this->Commit();
+        this->ReleaseSavepoint();
 
         return rows.size();
     }
@@ -165,9 +165,9 @@ public:
     template<class DATA>
     int save(std::vector<DATA*>& rows)
     {
-        this->Begin();
+        this->Savepoint();
         for (auto& r : rows) this->save(r);
-        this->Commit();
+        this->ReleaseSavepoint();
 
         return rows.size();
     }

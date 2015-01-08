@@ -43,13 +43,17 @@ public:
     * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Setting& instance();
-    void Begin()
+    void Savepoint()
     {
-        this->db_->Begin();
+        this->db_->Savepoint("MMEX_Setting");
     }
-    void Commit()
+    void ReleaseSavepoint()
     {
-        this->db_->Commit();
+        this->db_->ReleaseSavepoint("MMEX_Setting");
+    }
+    void Rollback()
+    {
+        this->db_->Rollback("MMEX_Setting");
     }
 
 public:

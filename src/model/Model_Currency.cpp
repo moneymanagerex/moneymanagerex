@@ -73,7 +73,7 @@ wxArrayString Model_Currency::all_currency_symbols()
 
 void Model_Currency::initialize()
 {
-    this->Begin();
+    this->Savepoint();
     for (const auto& i : all_currencies_template())
     {
         Data *currency = this->create();
@@ -91,7 +91,7 @@ void Model_Currency::initialize()
 
         currency->save(this->db_);
     }
-    this->Commit();
+    this->ReleaseSavepoint();
 }
 
 // Getter

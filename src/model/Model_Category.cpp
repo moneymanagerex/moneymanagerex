@@ -209,7 +209,7 @@ void Model_Category::initialize()
         all_categoris.push_back(std::make_pair(wxTRANSLATE("Transfer"), sub_categories));
     }
 
-    this->Begin();
+    this->Savepoint();
     for (const auto& record : all_categoris)
     {
         Model_Category::Data* category = this->create();
@@ -223,7 +223,7 @@ void Model_Category::initialize()
             Model_Subcategory::instance().save(sub_category);
         }
     }
-    this->Commit();
+    this->ReleaseSavepoint();
 }
 
 Model_Category::Data* Model_Category::get(const wxString& name)

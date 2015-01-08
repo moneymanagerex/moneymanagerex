@@ -638,7 +638,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             wxProgressDialog progressDlg(_("Universal CSV Import")
                 , _("Transactions imported from CSV: "), 100
                 , nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
-            Model_Checking::instance().Begin();
+            Model_Checking::instance().Savepoint();
 
             wxString line;
             for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
@@ -750,7 +750,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             if (!canceledbyuser)
             {
                 // we need to save them to the database.
-                Model_Checking::instance().Commit();
+                Model_Checking::instance().ReleaseSavepoint();
                 mmWebApp::MMEX_WebApp_UpdateAccount();
                 mmWebApp::MMEX_WebApp_UpdatePayee();
                 mmWebApp::MMEX_WebApp_UpdateCategory();
