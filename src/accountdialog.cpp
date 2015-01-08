@@ -387,7 +387,7 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
     ev.SetEventObject( this );
 
     //Skip all images before custom images
-    int k = 18;
+    int k = 21;
     wxMenu* mainMenu = new wxMenu;
     wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST, _("Default Image"));
     menuItem->SetBitmap(m_imageList->GetBitmap(mmIniOptions::instance().account_image_id(this->m_account->ACCOUNTID)));
