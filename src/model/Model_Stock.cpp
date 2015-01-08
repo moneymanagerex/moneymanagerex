@@ -71,13 +71,15 @@ double Model_Stock::value(const Data& r)
 /** Remove the Data record from memory and the database. */
 bool Model_Stock::remove(int id)
 {
-/*
-    this->Savepoint();
     Model_Stock::Data *data = this->get(id);
-    for (const auto& r : Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(data->SYMBOL)))
-        Model_StockHistory::instance().remove(r.id());
-    this->ReleaseSavepoint();
-*/
+    const auto &stocks = Model_Stock::instance().find(Model_Stock::SYMBOL(data->SYMBOL));
+    if (stocks.size() == 1)
+    {
+        this->Savepoint();
+        for (const auto& r : Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(data->SYMBOL)))
+            Model_StockHistory::instance().remove(r.id());
+        this->ReleaseSavepoint();
+    }
 
     return this->remove(id, db_);
 }
