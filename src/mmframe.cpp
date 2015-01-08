@@ -1034,6 +1034,7 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
             mmNewAcctDialog dlg(account, this);
             if (dlg.ShowModal() == wxID_OK)
             {
+                updateNavTreeControl();
                 refreshPanelData();
             }
         }
