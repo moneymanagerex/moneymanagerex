@@ -199,7 +199,8 @@ mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid
 {
     ColName_[COL_ICON] = (" ");
     ColName_[COL_ID] = _("ID");
-    ColName_[COL_DUE_DATE] = _("Next Due Date");
+    ColName_[COL_PAYMENT_DATE] = _("Payment Date");
+    ColName_[COL_DUE_DATE] = _("Due Date");
     ColName_[COL_ACCOUNT] = _("Account");
     ColName_[COL_PAYEE] = _("Payee");
     ColName_[COL_STATUS] = _("Status");
@@ -209,7 +210,7 @@ mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid
     ColName_[COL_FREQUENCY] = _("Frequency");
     ColName_[COL_REPEATS] = _("Repetitions");
     ColName_[COL_AUTO] = _("Autorepeat");
-    ColName_[COL_DAYS] = _("Remaining Days");
+    ColName_[COL_DAYS] = _("Payment");
     ColName_[COL_NUMBER] = _("Number");
     ColName_[COL_NOTES] = _("Notes");
 
@@ -308,7 +309,7 @@ void mmBillsDepositsPanel::CreateControls()
         wxListItem itemCol;
         itemCol.SetText(column.second);
         listCtrlAccount_->InsertColumn(column.first, column.second
-            , (column.first == COL_DUE_DATE) || (column.first == COL_AMOUNT)
+            , (column.first == COL_PAYMENT_DATE) || (column.first == COL_AMOUNT)
                 || (column.first == COL_ID) || (column.first == COL_REPEATS)
                 ?  wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT);
 
@@ -497,8 +498,10 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     {
     case COL_ID:
         return wxString::Format("%i", bill.BDID).Trim();
-    case COL_DUE_DATE:
+    case COL_PAYMENT_DATE:
         return mmGetDateForDisplay(Model_Billsdeposits::NEXTOCCURRENCEDATE(bill));
+    case COL_DUE_DATE:
+        return mmGetDateForDisplay(Model_Billsdeposits::TRANSDATE(bill));
     case COL_ACCOUNT:
         return bill.ACCOUNTNAME;
     case COL_PAYEE:
@@ -569,7 +572,8 @@ wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data*
     if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
         repeats -= BD_REPEATS_MULTIPLEX_BASE;
 
-    int daysRemaining = Model_Billsdeposits::daysRemaining(item);
+    int daysRemaining = Model_Billsdeposits::daysPayment(item);
+    int daysOverdue = Model_Billsdeposits::daysOverdue(item);
     wxString text = wxString::Format(_("%d days remaining"), daysRemaining);
 
     if (daysRemaining == 0)
@@ -580,10 +584,18 @@ wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data*
 
     if (daysRemaining < 0)
     {
-        text = wxString::Format(_("%d days overdue!"), abs(daysRemaining));
+        text = wxString::Format(_("%d days delay!"), abs(daysRemaining));
         if (((repeats > 10) && (repeats < 15)) && (item->NUMOCCURRENCES < 0))
             text = _("Inactive");
     }
+
+    if (daysOverdue < 0)
+    {
+        text = wxString::Format(_("%d days overdue!"), abs(daysOverdue));
+        if (((repeats > 10) && (repeats < 15)) && (item->NUMOCCURRENCES < 0))
+            text = _("Inactive");
+    }
+
     return text;
 }
 
@@ -627,7 +639,7 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
         bd_repeat_auto = true;
     }
 
-    int daysRemaining = Model_Billsdeposits::daysRemaining(&m_bdp->bills_[item]);
+    int daysRemaining = Model_Billsdeposits::daysPayment(&m_bdp->bills_[item]);
     wxString daysRemainingStr = wxString::Format(_("%d days remaining"), daysRemaining);
 
     if (daysRemaining == 0)
@@ -789,8 +801,11 @@ void mmBillsDepositsPanel::sortTable()
     case COL_ID:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByBDID());
         break;
-    case COL_DUE_DATE:
+    case COL_PAYMENT_DATE:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByNEXTOCCURRENCEDATE());
+        break;
+    case COL_DUE_DATE:
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSDATE());
         break;
     case COL_ACCOUNT:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByACCOUNTNAME());

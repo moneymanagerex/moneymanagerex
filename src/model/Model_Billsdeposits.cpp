@@ -86,6 +86,11 @@ Model_Billsdeposits& Model_Billsdeposits::instance(wxSQLite3Database* db)
     return ins;
 }
 
+wxDate Model_Billsdeposits::TRANSDATE(const Data* r)
+{
+    return Model::to_date(r->TRANSDATE);
+}
+
 wxDate Model_Billsdeposits::TRANSDATE(const Data& r)
 {
     return Model::to_date(r.TRANSDATE);
@@ -227,7 +232,7 @@ void Model_Billsdeposits::decode_fields(const Data& q1)
         m_allowExecution = true;
     }
 
-    if (this->daysRemaining(&q1) < 1)
+    if (this->daysPayment(&q1) < 1)
     {
         m_requireExecution = true;
     }
@@ -253,10 +258,23 @@ bool Model_Billsdeposits::allowExecution()
     return m_allowExecution;
 }
 
-int Model_Billsdeposits::daysRemaining(const Data* r)
+int Model_Billsdeposits::daysPayment(const Data* r)
 {
-    const wxDate& nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(r);
-    wxTimeSpan ts = nextOccurDate.Subtract(wxDateTime::Now());
+    const wxDate& payment_date = Model_Billsdeposits::NEXTOCCURRENCEDATE(r);
+    wxTimeSpan ts = payment_date.Subtract(wxDateTime::Now());
+    int daysRemaining = ts.GetDays();
+    int minutesRemaining = ts.GetMinutes();
+
+    if (minutesRemaining > 0)
+        daysRemaining += 1;
+
+    return daysRemaining;
+}
+
+int Model_Billsdeposits::daysOverdue(const Data* r)
+{
+    const wxDate& overdue_date = Model_Billsdeposits::TRANSDATE(r);
+    wxTimeSpan ts = overdue_date.Subtract(wxDateTime::Now());
     int daysRemaining = ts.GetDays();
     int minutesRemaining = ts.GetMinutes();
 
@@ -278,8 +296,11 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
         int numRepeats = bill->NUMOCCURRENCES;
-        const wxDateTime& dtno = NEXTOCCURRENCEDATE(bill);
-        const wxDateTime& updateOccur = nextOccurDate(repeats, numRepeats, dtno);
+        const wxDateTime& payment_date_current = NEXTOCCURRENCEDATE(bill);
+        const wxDateTime& payment_date_update = nextOccurDate(repeats, numRepeats, payment_date_current);
+
+        const wxDateTime& due_date_current = TRANSDATE(bill);
+        const wxDateTime& due_date_update = nextOccurDate(repeats, numRepeats, due_date_current);
 
         if (numRepeats != REPEAT_TYPE::REPEAT_INACTIVE)
         {
@@ -295,7 +316,13 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
             if (numRepeats != -1) numRepeats = -1;
         }
 
-        bill->NEXTOCCURRENCEDATE = updateOccur.FormatISODate();
+        bill->NEXTOCCURRENCEDATE = payment_date_update.FormatISODate();
+        bill->TRANSDATE = due_date_update.FormatISODate();
+
+        // Ensure that TRANDSATE is set correctly
+        if (payment_date_current > due_date_current)
+            bill->TRANSDATE = payment_date_update.FormatISODate();
+
         bill->NUMOCCURRENCES = numRepeats;
         save(bill);
 

@@ -116,6 +116,7 @@ public:
     static Model_Billsdeposits& instance();
 
 public:
+    static wxDate TRANSDATE(const Data* r);
     static wxDate TRANSDATE(const Data& r);
     static wxDate NEXTOCCURRENCEDATE(const Data* r);
     static wxDate NEXTOCCURRENCEDATE(const Data& r);
@@ -137,7 +138,8 @@ public:
     bool requireExecution();
     bool allowExecution();
 
-    static int daysRemaining(const Data* r);
+    static int daysPayment(const Data* r);
+    static int daysOverdue(const Data* r);
 
 private:
     bool m_autoExecuteManual;

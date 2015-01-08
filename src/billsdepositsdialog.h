@@ -99,8 +99,8 @@ private:
     bool m_transfer;
     bool enterOccur_;
 
-    wxDatePickerCtrl* dpc_;         // dpcTransDate_
-    wxDatePickerCtrl* dpcNextOccDate_;       // dpcNextOccDate_
+    wxDatePickerCtrl* m_payment_date;         // dpcTransDate_
+    wxDatePickerCtrl* m_due_date_next_occ;       // dpcNextOccDate_
     wxCalendarCtrl* calendarCtrl_;
     wxChoice* itemRepeats_;
     wxCheckBox* itemCheckBoxAutoExeUserAck_;
