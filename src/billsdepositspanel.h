@@ -96,7 +96,7 @@ public:
     wxString getItem(long item, long column);
     void RefreshList();
     int getColumnsNumber() { return ColName_.size(); }
-    int col_sort() { return COL_DUE_DATE; }
+    int col_sort() { return COL_PAYMENT_DATE; }
 
     static wxString GetFrequency(const Model_Billsdeposits::Data* item);
     static wxString GetRemainingDays(const Model_Billsdeposits::Data* item);
@@ -135,6 +135,7 @@ private:
     {
         COL_ICON = 0,
         COL_ID,
+        COL_PAYMENT_DATE,
         COL_DUE_DATE,
         COL_ACCOUNT,
         COL_PAYEE,

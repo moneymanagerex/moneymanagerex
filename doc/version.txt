@@ -7,6 +7,8 @@ Version History of Money Manager Ex
 - New: Stock History Monitoring
 - New: My Usage Reports
 - New: MMEX News display on Home page
+- Change: Repeating transaction - 'Next Occur Date'
+          redefined as 'Payment Date' and 'Due Date'
 - Fix: Many bug fixes
 
 1.1.2 (November 16, 2014)

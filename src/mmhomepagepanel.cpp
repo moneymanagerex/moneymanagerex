@@ -325,8 +325,8 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
     std::vector< std::tuple<int, wxString, wxString, double, const Model_Account::Data*> > bd_days;
     for (const auto& entry : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {   
-        int daysRemaining = Model_Billsdeposits::daysRemaining(&entry);
-        if (daysRemaining > 14) 
+        int daysPayment = Model_Billsdeposits::daysPayment(&entry);
+        if (daysPayment > 14)
             break; // Done searching for all to include
 
         int repeats = entry.REPEATS;
@@ -336,13 +336,17 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
 
-        if (daysRemaining == 0 && repeats > 10 && repeats < 15 && entry.NUMOCCURRENCES < 0) {
+        if (daysPayment == 0 && repeats > 10 && repeats < 15 && entry.NUMOCCURRENCES < 0) {
             continue; // Inactive
         }
 
-        wxString daysRemainingStr = (daysRemaining > 0 
-            ? wxString::Format(_("%d days remaining"), daysRemaining) 
-            : wxString::Format(_("%d days overdue!"), abs(daysRemaining)));
+        int daysOverdue = Model_Billsdeposits::instance().daysOverdue(&entry);
+        wxString daysRemainingStr = (daysPayment > 0
+            ? wxString::Format(_("%d days remaining"), daysPayment)
+            : wxString::Format(_("%d days delay!"), abs(daysPayment)));
+        if (daysOverdue < 0)
+            daysRemainingStr = wxString::Format(_("%d days overdue!"), abs(daysOverdue));
+
         wxString payeeStr = "";
         if (Model_Billsdeposits::type(entry) == Model_Billsdeposits::TRANSFER)
         {   
@@ -356,7 +360,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         }   
         const auto *account = Model_Account::instance().get(entry.ACCOUNTID);
         double amount = (Model_Billsdeposits::type(entry) == Model_Billsdeposits::DEPOSIT ? entry.TRANSAMOUNT : -entry.TRANSAMOUNT);
-        bd_days.push_back(std::make_tuple(daysRemaining, payeeStr, daysRemainingStr, amount, account));
+        bd_days.push_back(std::make_tuple(daysPayment, payeeStr, daysRemainingStr, amount, account));
     }   
 
     //std::sort(bd_days.begin(), bd_days.end());
@@ -375,7 +379,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         output += wxString::Format("<tbody id='%s'>\n", idStr);
         output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th>\n<th class='text-right'>%s</th>\n<th class='text-right'>%s</th></tr>\n"
-            , _("Payee"), _("Amount"), _("Days"));
+            , _("Payee"), _("Amount"), _("Payment"));
 
         for (const auto& item : bd_days)
         {
