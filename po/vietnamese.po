@@ -3,18 +3,19 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-22 10:35+0300\n"
-"PO-Revision-Date: 2014-12-22 10:36+0300\n"
+"PO-Revision-Date: 2015-01-09 22:58+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
-"Language-Team: TheZeal Software\n"
-"Language: en_US\n"
+"Language-Team: mmex <developers@moneymanagerex.org>\n"
+"Language: vi_VN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-05-31 17:00+0000\n"
-"X-Generator: Poedit 1.6.10\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SearchPath-0: src\n"
 
 #: src/aboutdialog.cpp:42 src/aboutdialog.cpp:168
@@ -33,7 +34,7 @@ msgstr "Trang web:"
 
 #: src/aboutdialog.cpp:87
 msgid "Forum"
-msgstr ""
+msgstr "Diễn đàn"
 
 #: src/aboutdialog.cpp:89
 msgid "Wiki page"
