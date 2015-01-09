@@ -117,6 +117,8 @@ int mmIniOptions::account_image_id(int account_id)
         t = 3;
     else if (acctType == Model_Account::INVESTMENT)
         t = 6;
+    else if (acctType == Model_Account::CREDIT_CARD)
+        t = 9;
 
     selectedImage += t + s;
 

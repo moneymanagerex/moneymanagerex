@@ -13,6 +13,9 @@
 #include "../resources/savings_acc_closed.xpm"
 #include "../resources/term_acc_favorite.xpm"
 #include "../resources/term_acc_closed.xpm"
+#include "../resources/card_acc.xpm"
+#include "../resources/card_acc_closed.xpm"
+#include "../resources/card_acc_favorite.xpm"
 #include "../resources/stock_acc.xpm"
 #include "../resources/stock_acc_closed.xpm"
 #include "../resources/stock_acc_favorite.xpm"
@@ -59,6 +62,9 @@ wxImageList* navtree_images_list()
     imageList->Add(wxBitmap(wxImage(stock_acc_xpm).Scale(16, 16))); // used for: invest_account
     imageList->Add(wxBitmap(wxImage(stock_acc_favorite_xpm).Scale(16, 16))); //TODO: more icons
     imageList->Add(wxBitmap(wxImage(stock_acc_closed_xpm).Scale(16, 16)));
+    imageList->Add(wxBitmap(wxImage(card_acc_xpm).Scale(16, 16))); // used for: card_account
+    imageList->Add(wxBitmap(wxImage(card_acc_favorite_xpm).Scale(16, 16)));
+    imageList->Add(wxBitmap(wxImage(card_acc_closed_xpm).Scale(16, 16)));
     imageList->Add(wxBitmap(wxImage(money_dollar_xpm).Scale(16, 16)));
     imageList->Add(wxBitmap(wxImage(money_euro_xpm).Scale(16, 16))); //custom icons
     imageList->Add(wxBitmap(wxImage(flag_xpm).Scale(16, 16)));
