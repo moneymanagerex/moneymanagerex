@@ -112,14 +112,14 @@ wxString Model_Account::get_account_name(int account_id)
 /** Remove the Data record instance from memory and the database. */
 bool Model_Account::remove(int id)
 {
-    this->Begin();
+    this->Savepoint();
     for (const auto& r: Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(id), Model_Checking::TOACCOUNTID(id)))
         Model_Checking::instance().remove(r.TRANSID);
     for (const auto& r: Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(id), Model_Billsdeposits::TOACCOUNTID(id)))
         Model_Billsdeposits::instance().remove(r.BDID);
     for (const auto& r: Model_Stock::instance().find(Model_Stock::HELDAT(id)))
         Model_Stock::instance().remove(r.STOCKID);
-    this->Commit();
+    this->ReleaseSavepoint();
 
     return this->remove(id, db_);
 }

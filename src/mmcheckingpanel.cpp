@@ -738,7 +738,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
 void mmCheckingPanel::DeleteViewedTransactions()
 {
-    Model_Checking::instance().Begin();
+    Model_Checking::instance().Savepoint();
     for (const auto& tran: this->m_trans)
     {
         // remove also removes any split transactions
@@ -746,12 +746,12 @@ void mmCheckingPanel::DeleteViewedTransactions()
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
         if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
     }
-    Model_Checking::instance().Commit();
+    Model_Checking::instance().ReleaseSavepoint();
 }
 
 void mmCheckingPanel::DeleteFlaggedTransactions(const wxString& status)
 {
-    Model_Checking::instance().Begin();
+    Model_Checking::instance().Savepoint();
     for (const auto& tran: this->m_trans)
     {
         if (tran.STATUS == status)
@@ -762,7 +762,7 @@ void mmCheckingPanel::DeleteFlaggedTransactions(const wxString& status)
             if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
         }
     }
-    Model_Checking::instance().Commit();
+    Model_Checking::instance().ReleaseSavepoint();
 }
 
 void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)

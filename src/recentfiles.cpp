@@ -60,7 +60,7 @@ void mmFileHistory::Load()
 
 void mmFileHistory::Save()
 {
-    Model_Setting::instance().Begin();
+    Model_Setting::instance().Savepoint();
     for (int i = 1; i < GetMaxFiles(); i++)
     {
         wxString buf;
@@ -70,5 +70,5 @@ void mmFileHistory::Save()
         else
             Model_Setting::instance().Set(buf, wxString(""));
     }
-    Model_Setting::instance().Commit();
+    Model_Setting::instance().ReleaseSavepoint();
 }

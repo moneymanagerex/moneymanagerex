@@ -716,7 +716,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
     Model_StockHistory::Data *data;
 
     wxStringTokenizer tkz(CSVQuotes, "\r\n");
-    Model_StockHistory::instance().Begin();
+    Model_StockHistory::instance().Savepoint();
     while (tkz.HasMoreTokens())
     {
         wxStringTokenizer tkzSingleLine(tkz.GetNextToken(), ",");
@@ -747,7 +747,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
             }
         }
     }
-    Model_StockHistory::instance().Commit();
+    Model_StockHistory::instance().ReleaseSavepoint();
     showStockHistory();
 }
 
@@ -805,7 +805,7 @@ void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
         return;
 
     long item = -1;
-    Model_StockHistory::instance().Begin();
+    Model_StockHistory::instance().Savepoint();
     for (;;)
     {
         item = priceListBox_->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
@@ -814,7 +814,7 @@ void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
             break;
         Model_StockHistory::instance().remove((int) priceListBox_->GetItemData(item));
     }
-    Model_StockHistory::instance().Commit();
+    Model_StockHistory::instance().ReleaseSavepoint();
     showStockHistory();
 }
 

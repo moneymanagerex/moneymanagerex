@@ -602,7 +602,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         */
 void mmGUIFrame::saveSettings()
 {
-    Model_Setting::instance().Begin();
+    Model_Setting::instance().Savepoint();
     if (!m_filename.IsEmpty())
     {
         wxFileName fname(m_filename);
@@ -624,7 +624,7 @@ void mmGUIFrame::saveSettings()
     Model_Setting::instance().Set("SIZEW", value_w);
     Model_Setting::instance().Set("SIZEH", value_h);
     Model_Setting::instance().Set("ISMAXIMIZED", (bool)this->IsMaximized());
-    Model_Setting::instance().Commit();
+    Model_Setting::instance().ReleaseSavepoint();
 }
 //----------------------------------------------------------------------------
 

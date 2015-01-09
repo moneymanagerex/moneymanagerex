@@ -40,8 +40,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 const int mmex::version::Major = 1;
 const int mmex::version::Minor = 2;
 const int mmex::version::Patch = 0;
-const int mmex::version::Alpha = 0;
-const int mmex::version::Beta  = -1;
+const int mmex::version::Alpha = -1;
+const int mmex::version::Beta  = 0;
 const int mmex::version::RC    = -1;
 
 const wxString mmex::version::generateProgramVersion(int Major, int Minor, int Patch, int Alpha, int Beta, int RC)
