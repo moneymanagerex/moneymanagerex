@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-22 10:31+0300\n"
-"PO-Revision-Date: 2014-12-22 10:33+0300\n"
+"PO-Revision-Date: 2015-01-09 12:40+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-03-10 20:08+0000\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
@@ -377,7 +377,6 @@ msgid "% Rate"
 msgstr "% изменения"
 
 #: src/assetdialog.cpp:171
-#, fuzzy, c-format
 msgid "Enter the rate at which the asset changes its value in % per year"
 msgstr "Введите ежегодное изменение стоимости имущества в %"
 
@@ -706,11 +705,11 @@ msgstr "Планирование"
 
 #: src/billsdepositsdialog.cpp:281
 msgid "Note: Split transactions not set"
-msgstr ""
+msgstr "Заметка: нет разделённых транзакций"
 
 #: src/billsdepositsdialog.cpp:281
 msgid "Reoccuring Transaction Creation"
-msgstr ""
+msgstr "Создание периодической транзакции"
 
 #: src/billsdepositsdialog.cpp:298 src/billsdepositspanel.cpp:56
 #: src/filtertransdialog.cpp:49 src/model/Model_Asset.cpp:23
@@ -1090,11 +1089,11 @@ msgstr "Период"
 
 #: src/billsdepositspanel.cpp:210
 msgid "Repetitions"
-msgstr ""
+msgstr "Повторения"
 
 #: src/billsdepositspanel.cpp:211
 msgid "Autorepeat"
-msgstr ""
+msgstr "Автоповтор"
 
 #: src/billsdepositspanel.cpp:212
 msgid "Remaining Days"
@@ -1180,15 +1179,15 @@ msgstr "Удалить запланированную транзакцию..."
 
 #: src/billsdepositspanel.cpp:524
 msgid "Manual"
-msgstr ""
+msgstr "Вручную"
 
 #: src/billsdepositspanel.cpp:528
 msgid "Suggested"
-msgstr ""
+msgstr "Предложенный"
 
 #: src/billsdepositspanel.cpp:532
 msgid "Automated"
-msgstr ""
+msgstr "Автоматизированный"
 
 #: src/billsdepositspanel.cpp:573 src/billsdepositspanel.cpp:631
 #: src/mmhomepagepanel.cpp:344
@@ -2343,12 +2342,9 @@ msgid "Export File"
 msgstr "Экспорт файла"
 
 #: src/import_export/univcsvdialog.cpp:598
-#, fuzzy
 msgid ""
 "Incorrect fields specified for CSV import! Requires at least Date and Amount."
-msgstr ""
-"Указаны неверные поля для импорта из CSV! Обязательны дата, сумма и "
-"получатель."
+msgstr "Указаны неверные поля для импорта из CSV! Обязательны дата и сумма."
 
 #: src/import_export/univcsvdialog.cpp:599
 #: src/import_export/univcsvdialog.cpp:638
@@ -2361,13 +2357,13 @@ msgid "Transactions imported from CSV: "
 msgstr "Проводок импортировано из CSV:"
 
 #: src/import_export/univcsvdialog.cpp:646
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Transactions imported from CSV\n"
 "to account %s : %ld"
 msgstr ""
 "Проводок импортировано из CSV\n"
-"в счёт %s : %i"
+"в счёт %s : %ld"
 
 #: src/import_export/univcsvdialog.cpp:677
 #: src/import_export/univcsvdialog.cpp:679
@@ -2384,11 +2380,8 @@ msgstr "файл содержит неправильное количество 
 
 #: src/import_export/univcsvdialog.cpp:701
 #: src/import_export/univcsvdialog.cpp:703
-#, fuzzy
 msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr ""
-" Одно из полей (дата, получатель, тип проводки, количество строк) не "
-"заполнено, пропущено"
+msgstr " Одно из полей (дата, тип проводки, сумма) отсутсвует, пропущено"
 
 #: src/import_export/univcsvdialog.cpp:728
 #: src/import_export/univcsvdialog.cpp:729
@@ -2428,12 +2421,9 @@ msgid "Transactions saved to database in account: "
 msgstr "Проводки сохранены в счёт: "
 
 #: src/import_export/univcsvdialog.cpp:783
-#, fuzzy
 msgid ""
 "Incorrect fields specified for CSV export! Requires at least Date and Amount."
-msgstr ""
-"Указаны неверные поля для импорта из CSV! Обязательны дата, сумма и "
-"получатель."
+msgstr "Указаны неверные поля для импорта из CSV! Обязательны дата и сумма."
 
 #: src/import_export/univcsvdialog.cpp:784
 msgid "Universal CSV Export"
@@ -2611,7 +2601,6 @@ msgid "&View Split Categories"
 msgstr "Показать разделённые категории"
 
 #: src/mmcheckingpanel.cpp:1106
-#, fuzzy
 msgid "Create Reoccuring T&ransaction"
 msgstr "Планирование"
 
@@ -2719,9 +2708,8 @@ msgid "Select the destination Account "
 msgstr "Выберите счёт назначения "
 
 #: src/mmcheckingpanel.cpp:1718
-#, fuzzy
 msgid "Reoccuring Transaction saved."
-msgstr "Планирование"
+msgstr "Периодическая транзакция соханена."
 
 #: src/mmex.cpp:83
 msgid ""
@@ -2881,7 +2869,7 @@ msgstr "Импорт из QIF"
 
 #: src/mmframe.cpp:1366
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: src/mmframe.cpp:1366
 msgid "Import from WebApp"
@@ -3085,12 +3073,11 @@ msgstr "Оптимизировать базу данных"
 
 #: src/mmframe.cpp:1526
 msgid "Optimize database space and performance"
-msgstr ""
+msgstr "Оптимизация пространства базы данных"
 
 #: src/mmframe.cpp:1530
-#, fuzzy
 msgid "Database"
-msgstr "Новая база данных"
+msgstr "База данных"
 
 #: src/mmframe.cpp:1531
 msgid "Database management"
@@ -3126,7 +3113,7 @@ msgstr "Получить версию для Android"
 
 #: src/mmframe.cpp:1556
 msgid "Run this program in your Android smart phone or tablet"
-msgstr ""
+msgstr "Запустите эту программу в вашем Android смартфоне или планшете"
 
 #: src/mmframe.cpp:1561
 msgid "Visit MMEX Forum"
@@ -3301,21 +3288,19 @@ msgstr "Пароль не подтверждён."
 
 #: src/mmframe.cpp:1921
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr ""
+msgstr "Убедитесь, что у вас есть резервная копия БД перед ее оптимизацией"
 
 #: src/mmframe.cpp:1921
-#, fuzzy
 msgid "Do you want to proceed?"
-msgstr "Хотите загрузить?"
+msgstr "Вы хотите продолжить?"
 
 #: src/mmframe.cpp:1922 src/mmframe.cpp:1929
 msgid "DB Optimization"
 msgstr "Оптимизация базы данных"
 
 #: src/mmframe.cpp:1928
-#, fuzzy
 msgid "Database Optimization Completed!"
-msgstr "Данные внесены"
+msgstr "Оптимизация баз данных выполнена!"
 
 #: src/mmframe.cpp:1928
 msgid "Size before"
@@ -3409,14 +3394,12 @@ msgid "File %s not found"
 msgstr "Файл %s не найден"
 
 #: src/mmframereport.cpp:82
-#, fuzzy
 msgid "mmGeneralGroupReport"
 msgstr "Менеджер отчётов"
 
 #: src/mmframereport.cpp:122 src/reports/myusage.cpp:134
-#, fuzzy
 msgid "My Usage"
-msgstr "MMEX сообщение"
+msgstr "Статистика"
 
 #: src/mmframereport.cpp:126
 msgid "Monthly Summary of Accounts"
@@ -4384,19 +4367,17 @@ msgid "Seconds"
 msgstr "Сек."
 
 #: src/optionsdialog.cpp:820
-#, fuzzy
 msgid "Updates"
-msgstr "&Обновить"
+msgstr "Обновления"
 
 #: src/optionsdialog.cpp:826
-#, fuzzy
 msgid "Check for updates at StartUp"
-msgstr "П&роверить обновления"
+msgstr "Проверить наличие обновлений при запуске"
 
 #: src/optionsdialog.cpp:828
 msgid ""
 "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr ""
+msgstr "Автоматически проверить, если новая MMEX версия доступна при запуске"
 
 #: src/optionsdialog.cpp:835
 msgid "Stable"
@@ -4407,9 +4388,8 @@ msgid "Unstable"
 msgstr "Не стабильный"
 
 #: src/optionsdialog.cpp:840
-#, fuzzy
 msgid "Updates source:"
-msgstr "Обновить курсы валют"
+msgstr "Источник обновлений:"
 
 #: src/optionsdialog.cpp:850
 msgid "General"
@@ -4607,9 +4587,9 @@ msgid "Budget Categories for %s"
 msgstr "Бюджет на %s"
 
 #: src/reports/budgetcategorysummary.cpp:97
-#, fuzzy, c-format
+#, c-format
 msgid "Budget Category Summary for %s"
-msgstr "Итоги бюджета на "
+msgstr "Итоги бюджета на %s"
 
 #: src/reports/budgetcategorysummary.cpp:99
 msgid "( Estimated Vs Actual )"
@@ -4951,7 +4931,6 @@ msgid "Organize attachments of this stock"
 msgstr "Менеджер воложений для инвестиций"
 
 #: src/stockdialog.cpp:253
-#, fuzzy
 msgid "Display the web page for the specified Stock symbol"
 msgstr "Отобразит веб-страницу для выбранного тикера "
 
@@ -4960,9 +4939,8 @@ msgid "Enter notes associated with this investment"
 msgstr "Введите примечания, связанные с этими инвестициями"
 
 #: src/stockdialog.cpp:268
-#, fuzzy
 msgid "Stock History Options"
-msgstr "CSV импорт истории котировок"
+msgstr "Опции истории котировок"
 
 #: src/stockdialog.cpp:275
 msgid "Stock Price History"
@@ -4977,23 +4955,20 @@ msgid "Diff."
 msgstr "Разница"
 
 #: src/stockdialog.cpp:306
-#, fuzzy
 msgid "Download Stock Price history"
-msgstr "История котировок"
+msgstr "Загрузить историю котировок"
 
 #: src/stockdialog.cpp:309
 msgid "Import Stock Price history (CSV Format)"
 msgstr "Импорт истории котировок (CSV)"
 
 #: src/stockdialog.cpp:311
-#, fuzzy
 msgid "Delete selected Stock Price"
-msgstr "Удалить отмеченную транзакцию"
+msgstr "Удалить отмеченную котировку"
 
 #: src/stockdialog.cpp:313
-#, fuzzy
 msgid "Add Stock Price to history"
-msgstr "История котировок"
+msgstr "Добавить цену в историю котировок"
 
 #: src/stockdialog.cpp:389
 msgid "Held At"
@@ -5016,18 +4991,16 @@ msgid "Months"
 msgstr "Месяцев"
 
 #: src/stockdialog.cpp:648
-#, fuzzy
 msgid "Specify type frequency of stock history"
-msgstr "Выберите периодичность расхода или дохода"
+msgstr "Выберите период истории котировок"
 
 #: src/stockdialog.cpp:649 src/stockdialog.cpp:661
-#, fuzzy
 msgid "Stock History Update"
-msgstr "CSV импорт истории котировок"
+msgstr "Обновить историю котировок"
 
 #: src/stockdialog.cpp:660
 msgid "Specify how many stock history prices download from purchase date"
-msgstr ""
+msgstr "Укажите, сколько цен скачать с даты покупки"
 
 #: src/stockdialog.cpp:661
 #, c-format
@@ -5039,6 +5012,8 @@ msgid ""
 "End date is in the future\n"
 "Quotes will be updated until today"
 msgstr ""
+"Дата окончания в будущем\n"
+"Котировки будут обновляться до сегодняшнего дня"
 
 #: src/stockdialog.cpp:683 src/stockdialog.cpp:710
 msgid "Stock History Error"
@@ -5078,23 +5053,20 @@ msgid "Share Symbol"
 msgstr "Символы актива"
 
 #: src/stockspanel.cpp:90
-#, fuzzy
 msgid "Unit Price"
-msgstr "Текущая цена"
+msgstr "Цена"
 
 #: src/stockspanel.cpp:91
 msgid "Total Value"
 msgstr "Итоговое значение"
 
 #: src/stockspanel.cpp:93
-#, fuzzy
 msgid "Curr. unit price"
 msgstr "Текущая цена"
 
 #: src/stockspanel.cpp:94
-#, fuzzy
 msgid "Curr. total value"
-msgstr "Текущее значение"
+msgstr "Текущая сумма"
 
 #: src/stockspanel.cpp:153
 msgid "&New Stock Investment"
@@ -5433,14 +5405,12 @@ msgid "File name is empty."
 msgstr "Файл не указан."
 
 #: src/util.cpp:444
-#, fuzzy
 msgid "Please select the file for this operation."
-msgstr "Пожалуйста, выберите счёт для данной транзакции."
+msgstr "Пожалуйста, выберите файл для этой операции."
 
 #: src/util.cpp:446
-#, fuzzy
 msgid "Selection can be made by using Search button."
-msgstr "Выбор может быть сделан через выпадающее меню."
+msgstr "Выбор может быть сделан с помощью кнопки Поиск."
 
 #: src/util.cpp:456
 msgid "Invalid Account"
@@ -5637,9 +5607,8 @@ msgid "Attachment download error"
 msgstr "Ошибка загрузки вложения"
 
 #: src/webappdialog.cpp:54
-#, fuzzy
 msgid "Import WebApp transactions"
-msgstr "Импортирую составные транзакции"
+msgstr "Импортирую WebApp транзакции"
 
 #: src/webappdialog.cpp:97
 msgid "&Import all "
@@ -5923,7 +5892,6 @@ msgstr ""
 "клавиша О переключит между Отель, Отдых, Одежда и т.д."
 
 #: src/mmTips.h:37
-#, fuzzy, c-format
 msgid ""
 "Tip to get out of debt: Pay yourself 10% first. Put this into an account "
 "that is hard to touch. Make sure it is a chore to get the money out (you "
