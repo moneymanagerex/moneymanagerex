@@ -70,7 +70,7 @@ const wxSizerFlags g_flagsExpand = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_C
 
 //---------------------------------------------------------------------------
 const int mmex::MIN_DATAVERSION = 2;
-const wxString mmex::DATAVERSION = "2";
+const wxString mmex::DATAVERSION = "3";
 const wxString mmex::DEFDATEFORMAT =  "%Y-%m-%d"; //ISO 8601
 const wxString mmex::DEFDELIMTER = ",";
 
