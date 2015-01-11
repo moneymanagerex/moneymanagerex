@@ -1711,8 +1711,21 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         m_db->SetUpdateHook(m_update_callback_hook);
         InitializeModelTables();
 
-        // we need to check the db whether it is the right version
-        if (!Model_Infotable::instance().checkDBVersion())
+        // we need to check that the db is the correct version and apply any updates as necessary
+        if (Model_Infotable::instance().checkDBVersion())
+        {
+            // correction for version 2 databases and update to Version 3
+            if (Model_Infotable::instance().AtDatabaseVersion(2))
+            {
+                for (auto bill : Model_Billsdeposits::instance().all())
+                {
+                    bill.TRANSDATE = bill.NEXTOCCURRENCEDATE;
+                    Model_Billsdeposits::instance().save(&bill);
+                }
+                Model_Infotable::instance().SetDatabaseVersion("3");
+            }
+        }
+        else
         {
             wxString note = mmex::getProgramName() + _(" - No File opened ");
             this->SetTitle(note);
