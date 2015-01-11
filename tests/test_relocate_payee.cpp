@@ -71,7 +71,7 @@ void Test_Relocate_Payee::setUp()
 
 
     // Initialise some payees
-    Model_Payee::instance().Begin();
+    Model_Payee::instance().Savepoint();
     {
         Model_Payee::Data* payee = Model_Payee::instance().create();
         payee->PAYEENAME = "Workshop";
@@ -106,7 +106,7 @@ void Test_Relocate_Payee::setUp()
         bill_entry->PAYEEID = supermarket->id();
         Model_Billsdeposits::instance().save(bill_entry);
     }
-    Model_Payee::instance().Commit();
+    Model_Payee::instance().ReleaseSavepoint();
 }
 
 void Test_Relocate_Payee::tearDown()

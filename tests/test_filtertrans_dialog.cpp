@@ -75,7 +75,7 @@ void Test_FilterTrans_Dialog::setUp()
     m_dbmodel->Init_BaseCurrency();
 
     // set up entries in the database
-    Model_Checking::instance().Begin();
+    Model_Checking::instance().Savepoint();
     {
         CpuTimer Start("Entries");
         // Add some payees.
@@ -112,7 +112,7 @@ void Test_FilterTrans_Dialog::setUp()
         m_dbmodel->Add_Trans_Split(trans_id, 150, "Food", "Groceries");
         m_dbmodel->Add_Trans_Split(trans_id, 400, "Homeneeds", "Others");
     }
-    Model_Checking::instance().Commit();
+    Model_Checking::instance().ReleaseSavepoint();
 }
 
 void Test_FilterTrans_Dialog::tearDown()
