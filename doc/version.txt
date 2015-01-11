@@ -9,6 +9,8 @@ Version History of Money Manager Ex
 - New: MMEX News display on Home page
 - Change: Repeating transaction - 'Next Occur Date'
           redefined as 'Payment Date' and 'Due Date'
+- New: Database version updated to version 3 with
+       database correction for Repeating Transactions
 - Fix: Many bug fixes
 
 1.1.2 (November 16, 2014)
