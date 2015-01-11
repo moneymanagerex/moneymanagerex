@@ -74,6 +74,10 @@ public:
     void SetDatabaseVersion(const wxString& required_version);
 
     static loop_t to_loop_t();
+
+public:
+    wxString DateFormat();
+    void SetDateFormat(const wxString& date_format_mask);
 };
 
 #endif // 

@@ -18,6 +18,7 @@
 
 #include "Model_Infotable.h"
 #include "constants.h"
+#include "util.h"
 
 Model_Infotable::Model_Infotable()
 : Model<DB_Table_INFOTABLE_V1>()
@@ -44,7 +45,7 @@ Model_Infotable& Model_Infotable::instance(wxSQLite3Database* db)
         ins.Set("MMEXVERSION", mmex::getProgramVersion());
         ins.Set("DATAVERSION", mmex::DATAVERSION);
         ins.Set("CREATEDATE", wxDateTime::Now());
-        ins.Set("DATEFORMAT", mmex::DEFDATEFORMAT);
+        ins.SetDateFormat(mmex::DEFDATEFORMAT);
     }
 
     return ins;
@@ -203,3 +204,15 @@ loop_t Model_Infotable::to_loop_t()
         loop += r.to_row_t();
     return loop;
 }
+
+//-------------------------------------------------------------------
+wxString Model_Infotable::DateFormat()
+{
+    return GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
+}
+
+void Model_Infotable::SetDateFormat(const wxString& date_format_mask)
+{
+    Set("DATEFORMAT", date_format_mask);
+}
+

@@ -25,7 +25,7 @@ mmOptionGeneralSettings::mmOptionGeneralSettings(wxWindow *parent, mmGUIApp* app
     wxPanel::Create(parent, id, pos, size, style, name);
     m_app = app;
     m_currency_id = Model_Infotable::instance().GetBaseCurrencyId();
-    m_date_format = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
+    m_date_format = Model_Infotable::instance().DateFormat();
 
     Create();
 }
