@@ -402,7 +402,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
     initDelimiter();
     //CSV fields
     csvFieldOrder_.clear();
-    for (int i = 0; i < UNIV_CSV_LAST; i++)
+    for (int i = 0; i < 99; i++)
     {
         const std::wstring w = to_wstring(i);
         const wxString& value = wxString(json::String(o[w]));
@@ -421,6 +421,8 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
             }
             if (key > -1) csvFieldOrder_.push_back(key);
         }
+        else
+            break;
     }
     OnLoad();
     this->update_preview();
