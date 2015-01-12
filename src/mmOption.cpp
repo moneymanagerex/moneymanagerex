@@ -41,7 +41,7 @@ mmOptions& mmOptions::instance()
 //----------------------------------------------------------------------------
 void mmOptions::LoadInfotableOptions()
 {
-    dateFormat_ = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
+    dateFormat_ = Model_Infotable::instance().DateFormat();
     userNameString_ = Model_Infotable::instance().GetStringInfo("USERNAME", "");
 
     financialYearStartDayString_   = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");

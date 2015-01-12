@@ -77,7 +77,7 @@ void Test_Relocate_Category::setUp()
     int cat_id_insurance = Model_Category::instance().get("Insurance")->id();
     int subcat_id_auto = Model_Subcategory::instance().get("Auto", cat_id_insurance)->id();
 
-    Model_Checking::instance().Begin();
+    Model_Checking::instance().Savepoint();
     {
         // Set up the categories in the other tables.
         Model_Checking::Data* checking_entry = Model_Checking::instance().create();
@@ -111,7 +111,7 @@ void Test_Relocate_Category::setUp()
         payee_entry->SUBCATEGID = subcat_id_auto;
         Model_Payee::instance().save(payee_entry);
     }
-    Model_Checking::instance().Commit();
+    Model_Checking::instance().ReleaseSavepoint();
 }
 
 void Test_Relocate_Category::tearDown()

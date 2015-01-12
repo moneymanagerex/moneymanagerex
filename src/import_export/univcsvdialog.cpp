@@ -988,7 +988,7 @@ void mmUnivCSVDialog::update_preview()
     }
     else // exporter preview
     {
-        wxString date_format = Model_Setting::instance().GetStringSetting("DATEFORMAT", mmex::DEFDATEFORMAT);
+        wxString date_format = Model_Infotable::instance().DateFormat();
         wxString acctName = m_choice_account_->GetStringSelection();
         Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
