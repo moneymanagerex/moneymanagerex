@@ -2100,15 +2100,15 @@ msgstr "Parámetros"
 #: src/import_export/qif_import_gui.cpp:180
 #, fuzzy
 msgid "Log"
-msgstr ""
+msgstr "Log"
 
 #: src/import_export/qif_export.cpp:108
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: src/import_export/qif_export.cpp:108
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: src/import_export/qif_export.cpp:125 src/mmframe.cpp:2493
 #: src/mmframe.cpp:2497 src/mmframe.cpp:2516 src/mmframe.cpp:2520
@@ -2205,17 +2205,17 @@ msgstr "Por favor, espere"
 #: src/import_export/qif_export.cpp:385
 #, fuzzy
 msgid "Exporting"
-msgstr "&Exportar"
+msgstr "Exportando"
 
 #: src/import_export/qif_export.cpp:406
 #, fuzzy, c-format
 msgid "Exporting transaction %i"
-msgstr "Próximas transacciones"
+msgstr "Exportando transacción: %i"
 
 #: src/import_export/qif_export.cpp:457
 #, fuzzy, c-format
 msgid "Number of transactions exported: %ld"
-msgstr "Informe de transacciones"
+msgstr "Número de transacciones exportadas: %ld"
 
 #: src/import_export/qif_export.cpp:458 src/mmframe.cpp:1373
 msgid "Export to QIF"
@@ -2233,11 +2233,11 @@ msgstr "Formato de fecha"
 #: src/import_export/qif_import_gui.cpp:152
 #, fuzzy
 msgid "Filtering Details:"
-msgstr "Detalles de filtrado: "
+msgstr "Detalles de filtrado:"
 
 #: src/import_export/qif_import_gui.cpp:189
 msgid "Data"
-msgstr ""
+msgstr "Datos"
 
 #: src/import_export/qif_import_gui.cpp:284
 #: src/import_export/qif_import_gui.cpp:424
@@ -2254,32 +2254,32 @@ msgstr "Desconocido"
 #: src/import_export/qif_import_gui.cpp:290
 #, fuzzy
 msgid "Scanning"
-msgstr "Advertencia"
+msgstr "Explorando"
 
 #: src/import_export/qif_import_gui.cpp:308
 #, c-format
 msgid "Reading line %i, %ld ms"
-msgstr ""
+msgstr "Leyendo línea %i, %ld ms"
 
 #: src/import_export/qif_import_gui.cpp:314
 #, fuzzy, c-format
 msgid "Line %i \t %s\n"
-msgstr "Línea: "
+msgstr "Línea: %i \t %s\n"
 
 #: src/import_export/qif_import_gui.cpp:370
 #, fuzzy, c-format
 msgid "Number of lines read from QIF file: %i in %ld ms"
-msgstr "Informe de transacciones"
+msgstr "Número de líneas reidas desde el archivo QIF: %i en %ld ms"
 
 #: src/import_export/qif_import_gui.cpp:373
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "Presione el botón OK para continuar"
 
 #: src/import_export/qif_import_gui.cpp:497
 #: src/import_export/qif_import_gui.cpp:516
 #: src/import_export/qif_import_gui.cpp:533
 msgid "OK"
-msgstr "Aceptar"
+msgstr "OK"
 
 #: src/import_export/qif_import_gui.cpp:499
 #, fuzzy
@@ -2290,7 +2290,7 @@ msgstr "Advertencia"
 #: src/import_export/qif_import_gui.cpp:516
 #, fuzzy
 msgid "Missing"
-msgstr "Cuentas bancarias"
+msgstr "Desconocido"
 
 #: src/import_export/qif_import_gui.cpp:587
 #, fuzzy
@@ -2300,54 +2300,54 @@ msgstr "Seleccionar fichero de datos QIF para importar"
 #: src/import_export/qif_import_gui.cpp:644
 #, fuzzy
 msgid "Do you want to import all transaction ?"
-msgstr "¿Realmente quiere borrar todas las transacciones mostradas?"
+msgstr "¿Quiere importar todas las transacciones?"
 
 #: src/import_export/qif_import_gui.cpp:645
 msgid "All missing account, payees and categories will be created."
-msgstr ""
+msgstr "Todas las cuentas, beneficiarios y categorías desconocidas se crearán."
 
 #: src/import_export/qif_import_gui.cpp:646
 msgid "Confirm Import"
-msgstr ""
+msgstr "Confirme Importación"
 
 #: src/import_export/qif_import_gui.cpp:651
 #, fuzzy
 msgid "Importing"
-msgstr "Importando CSV"
+msgstr "Importando"
 
 #: src/import_export/qif_import_gui.cpp:653
 #, fuzzy
 msgid "Importing Accounts"
-msgstr "Importando tipo de cuenta: "
+msgstr "Importando Cuentas"
 
 #: src/import_export/qif_import_gui.cpp:660
 #, fuzzy
 msgid "Importing Payees"
-msgstr "Importando CSV"
+msgstr "Importando Beneficiarios"
 
 #: src/import_export/qif_import_gui.cpp:663
 #, fuzzy
 msgid "Importing Categories"
-msgstr "Organizar categorías"
+msgstr "Importando Categorías"
 
 #: src/import_export/qif_import_gui.cpp:678
 #, fuzzy, c-format
 msgid "Importing transaction %i of %i"
-msgstr "Moviendo transacción de "
+msgstr "Importando transacción %i de %i"
 
 #: src/import_export/qif_import_gui.cpp:709
 #, fuzzy
 msgid "Importing Transfers"
-msgstr "Importando CSV"
+msgstr "Importando Transferencias"
 
 #: src/import_export/qif_import_gui.cpp:713
 #, fuzzy
 msgid "Importing Split transactions"
-msgstr "Próximas transacciones"
+msgstr "Importando transacciones dividadas"
 
 #: src/import_export/qif_import_gui.cpp:717
 msgid "Import finished successfully"
-msgstr ""
+msgstr "Importación finalizada correctamente"
 
 #: src/import_export/qif_import_gui.cpp:725
 #: src/import_export/univcsvdialog.cpp:764
@@ -2357,13 +2357,13 @@ msgstr "¡Las transacciones importadas se han descartado por el usuario!"
 #: src/import_export/qif_import_gui.cpp:917
 #, fuzzy, c-format
 msgid "Added account: %s"
-msgstr " cuenta: "
+msgstr "Cuentas añadidas: %s"
 
 #: src/import_export/qif_import_gui.cpp:948
 #: src/import_export/univcsvdialog.cpp:561
 #, fuzzy, c-format
 msgid "Added payee: %s"
-msgstr "Categoría"
+msgstr "Beneficiarios añadidos: %s"
 
 #: src/import_export/univcsvdialog.cpp:73
 msgid "Amount(+/-)"
@@ -2385,7 +2385,7 @@ msgstr "Saldo"
 
 #: src/import_export/univcsvdialog.cpp:147
 msgid "&Search"
-msgstr "Buscar"
+msgstr "&Buscar"
 
 #: src/import_export/univcsvdialog.cpp:150
 #, fuzzy
@@ -2410,7 +2410,7 @@ msgstr "Formato estándar MMEX"
 
 #: src/import_export/univcsvdialog.cpp:226
 msgid "&Up"
-msgstr "Subir"
+msgstr "&Subir"
 
 #: src/import_export/univcsvdialog.cpp:228
 msgid "Move Up"
@@ -2418,11 +2418,11 @@ msgstr "Mover arriba"
 
 #: src/import_export/univcsvdialog.cpp:231
 msgid "&Down"
-msgstr "Bajar"
+msgstr "&Bajar"
 
 #: src/import_export/univcsvdialog.cpp:233
 msgid "Move &Down"
-msgstr "Mover abajo"
+msgstr "Mover &abajo"
 
 #: src/import_export/univcsvdialog.cpp:247
 msgid "Account: "
@@ -2431,7 +2431,7 @@ msgstr "Cuenta: "
 #: src/import_export/univcsvdialog.cpp:260
 #, fuzzy
 msgid "Date Format: "
-msgstr "Formato de fecha"
+msgstr "Formato de fecha: "
 
 #: src/import_export/univcsvdialog.cpp:272
 msgid "Comma"
@@ -2460,7 +2460,7 @@ msgstr "Delimitador CSV"
 
 #: src/import_export/univcsvdialog.cpp:295
 msgid "Preview"
-msgstr ""
+msgstr "Vista previa"
 
 #: src/import_export/univcsvdialog.cpp:314
 msgid "Import File"
@@ -2476,7 +2476,7 @@ msgid ""
 "Incorrect fields specified for CSV import! Requires at least Date and Amount."
 msgstr ""
 "¡Campos incorrectos especificados para la importación CSV! Se requiere al "
-"menos fecha, cantidad y beneficiario."
+"menos fecha y cantidad."
 
 #: src/import_export/univcsvdialog.cpp:599
 #: src/import_export/univcsvdialog.cpp:638
@@ -2495,7 +2495,7 @@ msgid ""
 "to account %s : %ld"
 msgstr ""
 "Transacciones importadas de CSV\n"
-"a la cuenta "
+"a la cuenta %s : %ld"
 
 #: src/import_export/univcsvdialog.cpp:677
 #: src/import_export/univcsvdialog.cpp:679
@@ -2503,7 +2503,7 @@ msgstr ""
 #: src/import_export/univcsvdialog.cpp:702
 #, fuzzy, c-format
 msgid "Line: %ld"
-msgstr "Línea: "
+msgstr "Línea: %ld"
 
 #: src/import_export/univcsvdialog.cpp:678
 #: src/import_export/univcsvdialog.cpp:680
@@ -2514,25 +2514,23 @@ msgstr " el fichero contiene un número insuficiente de símbolos"
 #: src/import_export/univcsvdialog.cpp:703
 #, fuzzy
 msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr ""
-" Falta uno de los siguientes campos: fecha, beneficiario, cantidad o tipo, "
-"omitiendo"
+msgstr " Falta uno de los siguientes campos: Fecha, Cantidad o tipo, omitiendo"
 
 #: src/import_export/univcsvdialog.cpp:728
 #: src/import_export/univcsvdialog.cpp:729
 #, fuzzy, c-format
 msgid "Line : %ld imported OK."
-msgstr " importado correctamente."
+msgstr "Línea : %ld importada correctamente."
 
 #: src/import_export/univcsvdialog.cpp:734 src/stockdialog.cpp:595
 #, fuzzy, c-format
 msgid "Total Lines : %ld"
-msgstr "Líneas totales : %d"
+msgstr "Líneas totales : %ld"
 
 #: src/import_export/univcsvdialog.cpp:736 src/stockdialog.cpp:597
 #, fuzzy, c-format
 msgid "Total Imported : %ld"
-msgstr "Total importado : %d"
+msgstr "Total importado : %ld"
 
 #: src/import_export/univcsvdialog.cpp:738
 #, c-format
@@ -2560,27 +2558,27 @@ msgstr "Transacciones guardadas en la base de datos en la cuenta: "
 msgid ""
 "Incorrect fields specified for CSV export! Requires at least Date and Amount."
 msgstr ""
-"¡Campos incorrectos especificados para la importación CSV! Se requiere al "
-"menos fecha, cantidad y beneficiario."
+"¡Campos incorrectos especificados para la exportación CSV! Se requiere al "
+"menos Fecha y Cantidad."
 
 #: src/import_export/univcsvdialog.cpp:784
 #, fuzzy
 msgid "Universal CSV Export"
-msgstr "Importar Universal CSV"
+msgstr "Exportar Universal CSV"
 
 #: src/import_export/univcsvdialog.cpp:797
 msgid "Overwrite?"
-msgstr ""
+msgstr "¿Sobreescribir?"
 
 #: src/import_export/univcsvdialog.cpp:797
 #, fuzzy
 msgid "File exists."
-msgstr "La fecha está vacía, "
+msgstr "El fichero existe."
 
 #: src/import_export/univcsvdialog.cpp:915
 #, fuzzy, c-format
 msgid "Transactions exported: %ld"
-msgstr "Informe de transacciones"
+msgstr "Transacciones exportadas: %ld"
 
 #: src/import_export/univcsvdialog.cpp:916 src/mmframe.cpp:1372
 msgid "Export to CSV"
@@ -2616,11 +2614,11 @@ msgstr "Actualización online del tipo de cambio"
 #: src/maincurrencydialog.cpp:144
 #, fuzzy
 msgid "Online Update"
-msgstr "Comprobar actualización"
+msgstr "Actualización online"
 
 #: src/maincurrencydialog.cpp:149
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Mostrar incluso las monedas sin usar"
 
 #: src/maincurrencydialog.cpp:245
 msgid ""
@@ -2633,7 +2631,7 @@ msgstr ""
 #: src/maincurrencydialog.cpp:250
 #, fuzzy
 msgid "Do you really want to delete the selected Currency?"
-msgstr "¿Realmente quiere borrar la transacción?"
+msgstr "¿Realmente quiere borrar la moneda seleccionada?"
 
 #: src/maincurrencydialog.cpp:352
 msgid "Could not find base currency symbol!"
@@ -2646,50 +2644,50 @@ msgstr "Tipo de cambio actualizado"
 #: src/maincurrencydialog.cpp:412
 #, c-format
 msgid "%s\t: %0.4f -> %0.4f\n"
-msgstr ""
+msgstr "%s\t: %0.4f -> %0.4f\n"
 
 #: src/maincurrencydialog.cpp:421
 #, c-format
 msgid "%s\t: %s\n"
-msgstr ""
+msgstr "%s\t: %s\n"
 
 #: src/maincurrencydialog.cpp:421
 #, fuzzy
 msgid "Invalid value "
-msgstr "Valor no válido"
+msgstr "Valor no válido "
 
 #: src/maincurrencydialog.cpp:470
 #, fuzzy
 msgid "Set as Base Currency"
-msgstr "Moneda base"
+msgstr "Configurar como Moneda base"
 
 #: src/maincurrencydialog.cpp:471
 #, fuzzy
 msgid "Online Update Currency Rate"
-msgstr "Act&ualización online del tipo de cambio"
+msgstr "Actualización online del tipo de cambio"
 
 #: src/mmOptionAttachmentSettings.cpp:39
 #, fuzzy
 msgid "Attachments Settings"
-msgstr "Preferencias generales"
+msgstr "Preferencias de adjuntos"
 
 #: src/mmOptionAttachmentSettings.cpp:46
 #, c-format
 msgid "Attachment archive folder for %s only:"
-msgstr ""
+msgstr "Carpeta de archivos de adjuntos para %s solo:"
 
 #: src/mmOptionAttachmentSettings.cpp:50
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Todo SO (Win,Mac,Unix) tiene su carpeta de adjuntos"
 
 #: src/mmOptionAttachmentSettings.cpp:66
 msgid "Browse for folder"
-msgstr ""
+msgstr "Explorar carpetas"
 
 #: src/mmOptionAttachmentSettings.cpp:73
 #: src/mmOptionAttachmentSettings.cpp:213
 msgid "Real path:"
-msgstr ""
+msgstr "Ruta real:"
 
 #: src/mmOptionAttachmentSettings.cpp:78
 #, fuzzy
@@ -2699,90 +2697,92 @@ msgstr "Leyenda:"
 #: src/mmOptionAttachmentSettings.cpp:83
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> Carpeta de documentos de usuario"
 
 #: src/mmOptionAttachmentSettings.cpp:84
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> Carpeta de perfil de usuario"
 
 #: src/mmOptionAttachmentSettings.cpp:85
 #, c-format
 msgid "%s -> Folder of.MMB database file"
-msgstr ""
+msgstr "%s -> Carpeta del archivo de base de datos .MMB"
 
 #: src/mmOptionAttachmentSettings.cpp:86
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Carpeta de datos de la aplicación MMEX"
 
 #: src/mmOptionAttachmentSettings.cpp:92
 msgid "Other OS folders "
-msgstr ""
+msgstr "Otras carpetas del SO"
 
 #: src/mmOptionAttachmentSettings.cpp:97
 msgid "Not yet set"
-msgstr ""
+msgstr "Todavía no configurado"
 
 #: src/mmOptionAttachmentSettings.cpp:105
 msgid "Windows folder -> "
-msgstr ""
+msgstr "Carpeta de Windows -> "
 
 #: src/mmOptionAttachmentSettings.cpp:113
 msgid "Mac folder -> "
-msgstr ""
+msgstr "Carpeta de Mac -> "
 
 #: src/mmOptionAttachmentSettings.cpp:121
 msgid "Unix folder -> "
-msgstr ""
+msgstr "Carpeta de Unix -> "
 
 #: src/mmOptionAttachmentSettings.cpp:131
 #, fuzzy
 msgid "Create and use Attachments subfolder"
-msgstr "No es posible escribir en el fichero."
+msgstr "Crear y usar subcarpetas de adjuntos"
 
 #: src/mmOptionAttachmentSettings.cpp:143
 msgid "Delete file after import"
-msgstr ""
+msgstr "Borrar archivo después de importar"
 
 #: src/mmOptionAttachmentSettings.cpp:145
 msgid "Select to delete file after import in attachments archive"
-msgstr ""
+msgstr "Seleccione para borrar el archivo después de importar en los adjuntos"
 
 #: src/mmOptionAttachmentSettings.cpp:149
 msgid "When remove attachment, move file instead of delete"
-msgstr ""
+msgstr "Cuando se borre el adjunto, mover el fichero en lugar de borrarlo"
 
 #: src/mmOptionAttachmentSettings.cpp:151
 msgid ""
 "Select to don't delete file when attachment is removed, but instead move it "
 "to 'Deleted' subfolder"
 msgstr ""
+"Seleccione para no eliminar el archivo cuando se borre el adjunto, sino"
+"moverlo a la subcarpeta 'Borrados'"
 
 #: src/mmOptionAttachmentSettings.cpp:158
 msgid "System documents directory"
-msgstr ""
+msgstr "Carpeta de documentos del sistema"
 
 #: src/mmOptionAttachmentSettings.cpp:160
 msgid "Application data directory"
-msgstr ""
+msgstr "Carpeta de datos de la aplicación"
 
 #: src/mmOptionAttachmentSettings.cpp:162
 #, fuzzy
 msgid "Database file directory"
-msgstr "Guardar base de datos como"
+msgstr "Carpeta de archivos de la base de datos"
 
 #: src/mmOptionAttachmentSettings.cpp:164
 msgid "Dropbox folder"
-msgstr ""
+msgstr "Carpeta Dropbox"
 
 #: src/mmOptionAttachmentSettings.cpp:191
 msgid "Choose folder to set as attachments archive"
-msgstr ""
+msgstr "Elegir carpeta como para los archivos adjuntos"
 
 #: src/mmOptionGeneralSettings.cpp:43
 msgid "Display Heading"
-msgstr "Encabezado"
+msgstr "Mostrar encabezado"
 
 #: src/mmOptionGeneralSettings.cpp:48 src/wizard_newdb.cpp:137
 msgid "User Name"
@@ -2906,7 +2906,7 @@ msgstr "Estado por defecto:"
 
 #: src/mmOptionMiscSettings.cpp:102
 msgid "Database Backup"
-msgstr "Copia de seguridad"
+msgstr "Copia de seguridad de la base de datos"
 
 #: src/mmOptionMiscSettings.cpp:109
 msgid "Create a new backup when MMEX Start"
@@ -2922,7 +2922,7 @@ msgstr ""
 
 #: src/mmOptionMiscSettings.cpp:115
 msgid "Backup database on exit."
-msgstr ""
+msgstr "Copia de seguridad de la base de datos al salir."
 
 #: src/mmOptionMiscSettings.cpp:117
 msgid ""
@@ -2934,109 +2934,110 @@ msgstr ""
 
 #: src/mmOptionMiscSettings.cpp:124
 msgid "Specify max number of backup files"
-msgstr ""
+msgstr "Especifique el número máximo de archivos de copia de seguridad"
 
 #: src/mmOptionMiscSettings.cpp:127
 #, fuzzy
 msgid "Max Files"
-msgstr "Ficheros CSV"
+msgstr "Archivos máximos"
 
 #: src/mmOptionMiscSettings.cpp:134
 #, fuzzy
 msgid "CSV Settings"
-msgstr "Opciones de color"
+msgstr "Opciones de CSV"
 
 #: src/mmOptionMiscSettings.cpp:142
 #, fuzzy
 msgid "Delimiter"
-msgstr "Delimitador CSV"
+msgstr "Delimitador"
 
 #: src/mmOptionNetSettings.cpp:33
 #, fuzzy
 msgid "WebApp Settings"
-msgstr "Opciones de color"
+msgstr "Opciones de WebApp"
 
 #: src/mmOptionNetSettings.cpp:40
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #: src/mmOptionNetSettings.cpp:44
 msgid "Specify the Web App URL without final slash"
-msgstr ""
+msgstr "Especifique la URL de la Web App sin la barra final"
 
 #: src/mmOptionNetSettings.cpp:47
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: src/mmOptionNetSettings.cpp:51
 msgid "Specify the Web App GUID"
-msgstr ""
+msgstr "Especifique el GUID de la Web App"
 
 #: src/mmOptionNetSettings.cpp:55
 #, fuzzy
 msgid "Proxy Settings"
-msgstr "Opciones de color"
+msgstr "Opciones de proxy"
 
 #: src/mmOptionNetSettings.cpp:63
 #, fuzzy
 msgid "Specify the proxy IP address"
-msgstr "Especifique el nombre del usuario"
+msgstr "Especifique la dirección IP del proxy"
 
 #: src/mmOptionNetSettings.cpp:69
 #, fuzzy
 msgid "Specify proxy port number"
-msgstr "Especificar número"
+msgstr "Especificar número del puerto del proxy"
 
 #: src/mmOptionNetSettings.cpp:72
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: src/mmOptionNetSettings.cpp:74 src/mmOptionNetSettings.cpp:98
 msgid "Port"
-msgstr ""
+msgstr "Puerto"
 
 #: src/mmOptionNetSettings.cpp:80
 #, fuzzy
 msgid "Web Server"
-msgstr "Servidor de Yahoo"
+msgstr "Servidor web"
 
 #: src/mmOptionNetSettings.cpp:86
 msgid "Enable"
-msgstr ""
+msgstr "Habilitado"
 
 #: src/mmOptionNetSettings.cpp:88
 msgid "Enable internal web server when MMEX Starts."
-msgstr ""
+msgstr "Habilite el servidor web interno cuando se inicia MMEX."
 
 #: src/mmOptionNetSettings.cpp:94
 #, fuzzy
 msgid "Specify web server port number"
-msgstr "Especificar número"
+msgstr "Especificar número del puerto del servidor web"
 
 #: src/mmOptionNetSettings.cpp:104
 #, fuzzy
 msgid "Usage statistics"
-msgstr "Estadísticas de transacciones"
+msgstr "Estadísticas de uso"
 
 #: src/mmOptionNetSettings.cpp:110
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Envíe datos de las estadísticas de uso anonimas"
 
 #: src/mmOptionNetSettings.cpp:112
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "Nos ayuda enviando datos anónimos sobre el uso de MMEX."
 
 #: src/mmOptionNetSettings.cpp:117
 msgid "Timeout"
-msgstr ""
+msgstr "Tiempo de espera sobrepasado"
 
 #: src/mmOptionNetSettings.cpp:126
 msgid "Specify a network communication timeout value to use."
-msgstr ""
+msgstr "Especifique el valor a usar como tiempo de espera sobrepasado"
+" para la comunicación con internet"
 
 #: src/mmOptionNetSettings.cpp:129
 msgid "Seconds"
-msgstr ""
+msgstr "Segundos"
 
 #: src/mmOptionNetSettings.cpp:135
 #, fuzzy
@@ -3046,25 +3047,26 @@ msgstr "Actualizar"
 #: src/mmOptionNetSettings.cpp:141
 #, fuzzy
 msgid "Check for updates at StartUp"
-msgstr "Comprobar act&ualizaciones"
+msgstr "Comprobar actualizaciones al inicio"
 
 #: src/mmOptionNetSettings.cpp:143
 msgid ""
 "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr ""
+"Activar para comprobar actualizaciones automáticas de nuevas versiones de MMEX al inicio"
 
 #: src/mmOptionNetSettings.cpp:150
 msgid "Stable"
-msgstr ""
+msgstr "Estable"
 
 #: src/mmOptionNetSettings.cpp:151
 msgid "Unstable"
-msgstr ""
+msgstr "Inestable"
 
 #: src/mmOptionNetSettings.cpp:155
 #, fuzzy
 msgid "Updates source:"
-msgstr "Actualizar tipo de cambio"
+msgstr "Actualizar origen:"
 
 #: src/mmOptionViewSettings.cpp:34 src/optionsdialog.cpp:130
 msgid "View Options"
@@ -3092,31 +3094,31 @@ msgstr "Tamaño de fuente de informes"
 
 #: src/mmOptionViewSettings.cpp:85
 msgid "XSmall"
-msgstr ""
+msgstr "Muy pequeña"
 
 #: src/mmOptionViewSettings.cpp:86
 msgid "Small"
-msgstr ""
+msgstr "Pequeña"
 
 #: src/mmOptionViewSettings.cpp:87
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: src/mmOptionViewSettings.cpp:88
 msgid "Large"
-msgstr ""
+msgstr "Grande"
 
 #: src/mmOptionViewSettings.cpp:89
 msgid "XLarge"
-msgstr ""
+msgstr "Muy grande"
 
 #: src/mmOptionViewSettings.cpp:90
 msgid "XXLarge"
-msgstr ""
+msgstr "Extra grande"
 
 #: src/mmOptionViewSettings.cpp:91
 msgid "Huge"
-msgstr ""
+msgstr "Enorme"
 
 #: src/mmOptionViewSettings.cpp:101
 msgid "Specify which font size is used on the report tables"
@@ -3145,39 +3147,39 @@ msgstr "Ver informes sin transacciones futuras"
 #: src/mmOptionViewSettings.cpp:135
 #, fuzzy
 msgid "User Colors"
-msgstr "Colores"
+msgstr "Colores de usuario"
 
 #: src/mmOptionViewSettings.cpp:141
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: src/mmOptionViewSettings.cpp:145
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #: src/mmOptionViewSettings.cpp:149
 msgid "3"
-msgstr ""
+msgstr "3"
 
 #: src/mmOptionViewSettings.cpp:153
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: src/mmOptionViewSettings.cpp:157
 msgid "5"
-msgstr ""
+msgstr "5"
 
 #: src/mmOptionViewSettings.cpp:161
 msgid "6"
-msgstr ""
+msgstr "6"
 
 #: src/mmOptionViewSettings.cpp:165
 msgid "7"
-msgstr ""
+msgstr "7"
 
 #: src/mmOptionViewSettings.cpp:169
 msgid "Display MMEX News on home page"
-msgstr ""
+msgstr "Mostrar Noticias MMEX en la página de inicio"
 
 #: src/mmOptionViewSettings.cpp:185 src/mmframe.cpp:1163 src/mmframe.cpp:1619
 #: src/model/Model_Account.cpp:24
@@ -3219,27 +3221,26 @@ msgstr "Borrar transacción seleccionada"
 #: src/mmcheckingpanel.cpp:493
 #, fuzzy
 msgid "D&uplicate "
-msgstr "Duplicada"
+msgstr "D&uplicada "
 
 #: src/mmcheckingpanel.cpp:494
 #, fuzzy
 msgid "Duplicate selected transaction"
-msgstr "Borrar transacción seleccionada"
+msgstr "Duplicar transacción seleccionada"
 
 #: src/mmcheckingpanel.cpp:511
 msgid "Enter any string to find it in the nearest transaction notes"
-msgstr ""
-"Introduzca cualquier cadena para buscarla en las notas de transacciones"
+msgstr "Introduzca cualquier cadena para buscarla en las notas de transacciones"
 
 #: src/mmcheckingpanel.cpp:528
 #, fuzzy, c-format
 msgid "Account View : %s"
-msgstr "Vista de la cuenta : "
+msgstr "Vista de la cuenta : %s"
 
 #: src/mmcheckingpanel.cpp:775
 #, fuzzy
 msgid "Select account used in transfer transactions"
-msgstr "Especifique el importe de esta transacción"
+msgstr "Especifique la cuenta usada en esta transacción"
 
 #: src/mmcheckingpanel.cpp:1074
 msgid "&New Transaction"
@@ -3260,7 +3261,7 @@ msgstr "&Pegar transacción"
 #: src/mmcheckingpanel.cpp:1086
 #, fuzzy
 msgid "D&uplicate Transaction"
-msgstr "Duplicar transacción"
+msgstr "D&uplicar transacción"
 
 #: src/mmcheckingpanel.cpp:1089
 msgid "&Move Transaction"
@@ -3273,17 +3274,17 @@ msgstr "&Ver categorías divididas"
 #: src/mmcheckingpanel.cpp:1103
 #, fuzzy
 msgid "Create Reoccuring T&ransaction"
-msgstr "Transacciones periódicas"
+msgstr "Crear Transacciones pe&riódicas"
 
 #: src/mmcheckingpanel.cpp:1108
 #, fuzzy
 msgid "Hide Deleted (Void)"
-msgstr "Seleccionar categoría"
+msgstr "Ocultar borradas (Nula)"
 
 #: src/mmcheckingpanel.cpp:1108
 #, fuzzy
 msgid "Show Deleted (Void)"
-msgstr " para borrar:"
+msgstr "Mostrar borradas (Nula)"
 
 #: src/mmcheckingpanel.cpp:1112
 msgid "&Delete Transaction"
@@ -3300,7 +3301,7 @@ msgstr "Borrar transacciones de \"seguimiento\" mostradas."
 #: src/mmcheckingpanel.cpp:1117
 #, fuzzy
 msgid "Delete Viewed \"Unreconciled\" Trans."
-msgstr "Borrar transacciones de \"seguimiento\" mostradas."
+msgstr "Borrar transacciones de \"no reconciliadas\" mostradas."
 
 #: src/mmcheckingpanel.cpp:1122
 msgid "Mark As &Reconciled"
@@ -3308,15 +3309,15 @@ msgstr "Marcar como &reconciliada"
 
 #: src/mmcheckingpanel.cpp:1124
 msgid "Mark As &Unreconciled"
-msgstr "Marcar como no reconciliada"
+msgstr "Marcar como &no reconciliada"
 
 #: src/mmcheckingpanel.cpp:1126
 msgid "Mark As &Void"
-msgstr "Marcar como nula"
+msgstr "Marcar como n&ula"
 
 #: src/mmcheckingpanel.cpp:1128
 msgid "Mark For &Followup"
-msgstr "Marcar para seguimiento"
+msgstr "Marcar para &seguimiento"
 
 #: src/mmcheckingpanel.cpp:1130
 msgid "Mark As &Duplicate"
@@ -3363,21 +3364,21 @@ msgstr "Seguimiento"
 #: src/mmcheckingpanel.cpp:1215
 #, fuzzy
 msgid "Unreconciled"
-msgstr "como no reconciliadas"
+msgstr "No reconciliadas"
 
 #: src/mmcheckingpanel.cpp:1218
 #, fuzzy, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr "¿Realmente quiere borrar todas las transacciones mostradas?"
+msgstr "¿Realmente quiere borrar todas las \n%s\" transacciones mostradas?"
 
 #: src/mmcheckingpanel.cpp:1555
 msgid "Do you really want to delete the selected transaction?"
-msgstr "¿Realmente quiere borrar la transacción?"
+msgstr "¿Realmente quiere borrar la transacción seleccionada?"
 
 #: src/mmcheckingpanel.cpp:1664 src/stockspanel.cpp:284
 #, fuzzy, c-format
 msgid "Moving Transaction from %s to..."
-msgstr "Moviendo transacción de "
+msgstr "Moviendo transacción de %s a..."
 
 #: src/mmcheckingpanel.cpp:1667 src/stockspanel.cpp:285
 msgid "Select the destination Account "
@@ -3386,7 +3387,7 @@ msgstr "Seleccionar la cuenta de destino"
 #: src/mmcheckingpanel.cpp:1721
 #, fuzzy
 msgid "Reoccuring Transaction saved."
-msgstr "Transacciones periódicas"
+msgstr "Transacciones periódicas guardadas."
 
 #: src/mmex.cpp:83
 msgid ""
@@ -3399,7 +3400,7 @@ msgstr ""
 #: src/mmframe.cpp:299
 #, fuzzy
 msgid "Toolbar"
-msgstr "Barra de herramien&tas"
+msgstr "Barra de herramientas"
 
 #: src/mmframe.cpp:501 src/mmframe.cpp:713
 msgid "Bank Accounts"
@@ -3429,7 +3430,7 @@ msgstr "Página de inicio"
 #: src/mmframe.cpp:716 src/mmhomepagepanel.cpp:688 src/reports/summary.cpp:224
 #, fuzzy
 msgid "Credit Card Accounts"
-msgstr "Editar cuenta"
+msgstr "Editar cuenta de Tarjeta de crédito"
 
 #: src/mmframe.cpp:735 src/mmframe.cpp:1492
 msgid "Budget Setup"
@@ -3462,7 +3463,7 @@ msgstr "&Editar cuenta"
 #: src/mmframe.cpp:1113 src/mmframe.cpp:1450
 #, fuzzy
 msgid "&Reallocate Account"
-msgstr "&Borrar cuenta"
+msgstr "&Reasignar cuenta"
 
 #: src/mmframe.cpp:1114 src/mmframe.cpp:1142 src/mmframe.cpp:1445
 msgid "&Delete Account"
@@ -3474,7 +3475,7 @@ msgstr "&Abrir sitio web de la cuenta"
 
 #: src/mmframe.cpp:1141 src/mmframe.cpp:1432
 msgid "New &Account"
-msgstr "Nueva cuenta"
+msgstr "&Nueva cuenta"
 
 #: src/mmframe.cpp:1144
 msgid "Account &List (Home)"
@@ -3520,7 +3521,7 @@ msgstr "Ficheros &recientes..."
 
 #: src/mmframe.cpp:1366
 msgid "&Clear Recent Files"
-msgstr "Limpiar ficheros recientes"
+msgstr "&Limpiar ficheros recientes"
 
 #: src/mmframe.cpp:1374
 msgid "&Report to HTML"
@@ -3540,25 +3541,25 @@ msgstr "Importar desde QIF"
 
 #: src/mmframe.cpp:1380
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WeApp..."
 
 #: src/mmframe.cpp:1380
 #, fuzzy
 msgid "Import from WebApp"
-msgstr "Importar desde QIF"
+msgstr "Importar desde WebApp"
 
 #: src/mmframe.cpp:1386
 msgid "&Print..."
-msgstr "Imprimir..."
+msgstr "Im&primir..."
 
 #: src/mmframe.cpp:1386
 #, fuzzy
 msgid "Print current view"
-msgstr "Imprimir el informe actual"
+msgstr "Imprimir vista actual"
 
 #: src/mmframe.cpp:1392
 msgid "E&xit\tAlt-X"
-msgstr "&Salir\tAlt-S"
+msgstr "&Salir\tAlt-X"
 
 #: src/mmframe.cpp:1392
 msgid "Quit this program"
@@ -3590,15 +3591,15 @@ msgstr "Mostrar presupuestos en formato de año fiscal"
 
 #: src/mmframe.cpp:1405
 msgid "Budgets: &Include Transfers in Totals"
-msgstr "Presupuestos: &Incluir transferencias en total"
+msgstr "Presupuestos: &Incluir transferencias en los totales"
 
 #: src/mmframe.cpp:1405
 msgid "Include the transfer transactions in the Budget Totals"
-msgstr "Incluir las transferencias en el total del presupuesto"
+msgstr "Incluir las transferencias en los totales del presupuesto"
 
 #: src/mmframe.cpp:1407
 msgid "Budget Setup: &Without Summaries"
-msgstr "Organización de presupuesto: Sin resúmenes"
+msgstr "Organización de presupuesto: &Sin resúmenes"
 
 #: src/mmframe.cpp:1407
 msgid "Display the Budget Setup without category summaries"
@@ -3622,11 +3623,11 @@ msgstr "Ignorar transacciones futuras"
 
 #: src/mmframe.cpp:1425
 msgid "Toggle Fullscreen\tF11"
-msgstr ""
+msgstr "Cambiar a pantalla completa\tF11"
 
 #: src/mmframe.cpp:1425
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Cambiar a pantalla completa"
 
 #: src/mmframe.cpp:1437
 msgid "Account &List"
@@ -3643,7 +3644,7 @@ msgstr "Borrar la cuenta de la base de datos"
 #: src/mmframe.cpp:1450
 #, fuzzy
 msgid "Change the account type of an account."
-msgstr "Especifique el tipo de transacción."
+msgstr "Cambie el tipo de cuenta de una cuenta."
 
 #: src/mmframe.cpp:1461
 msgid "Organize &Categories..."
@@ -3659,11 +3660,11 @@ msgstr "Organizar beneficiarios"
 
 #: src/mmframe.cpp:1471
 msgid "Organize Currency..."
-msgstr "Organizar divisas..."
+msgstr "Organizar monedas..."
 
 #: src/mmframe.cpp:1471 src/mmframe.cpp:1626
 msgid "Organize Currency"
-msgstr "Organizar divisas"
+msgstr "Organizar monedas"
 
 #: src/mmframe.cpp:1477
 msgid "&Categories..."
@@ -3671,7 +3672,7 @@ msgstr "&Categorías..."
 
 #: src/mmframe.cpp:1481
 msgid "&Payees..."
-msgstr "Beneficiarios..."
+msgstr "&Beneficiarios..."
 
 #: src/mmframe.cpp:1482
 msgid "Reassign all payees to another payee"
@@ -3687,7 +3688,7 @@ msgstr "Reorganizar categorías y beneficiarios"
 
 #: src/mmframe.cpp:1492
 msgid "&Budget Setup"
-msgstr "Organizar presupuesto"
+msgstr "&Organizar presupuesto"
 
 #: src/mmframe.cpp:1497
 msgid "&Repeating Transactions"
@@ -3733,35 +3734,35 @@ msgstr "Convertir base de datos cifrada en no cifrada"
 #: src/mmframe.cpp:1535
 #, fuzzy
 msgid "Change Encrypted &Password"
-msgstr "Convertir base de &datos cifrada"
+msgstr "Cambiar la &contraseña de encriptación"
 
 #: src/mmframe.cpp:1536
 #, fuzzy
 msgid "Change the password of an encrypted database"
-msgstr "Introducir contraseña para la nueva base de datos"
+msgstr "Cambie la contraseña de una base de datos encriptada"
 
 #: src/mmframe.cpp:1539
 #, fuzzy
 msgid "Optimize &Database"
-msgstr "Abrir base de datos"
+msgstr "Optimice la &base de datos"
 
 #: src/mmframe.cpp:1540
 msgid "Optimize database space and performance"
-msgstr ""
+msgstr "Optimice el espacio y el rendimiento de la base de datos"
 
 #: src/mmframe.cpp:1544
 #, fuzzy
 msgid "Database"
-msgstr "Nueva base de datos"
+msgstr "Base de datos"
 
 #: src/mmframe.cpp:1545
 msgid "Database management"
-msgstr ""
+msgstr "Administración de la base de datos"
 
 #: src/mmframe.cpp:1552 src/mmframe.cpp:1637
 #, fuzzy
 msgid "&Help\tF1"
-msgstr "Ay&uda"
+msgstr "Ay&uda\tF1"
 
 #: src/mmframe.cpp:1552 src/mmframe.cpp:1637
 msgid "Show the Help file"
@@ -3785,15 +3786,15 @@ msgstr "Comprobar actualizaciones"
 
 #: src/mmframe.cpp:1569
 msgid "Get Android Version"
-msgstr ""
+msgstr "Conseguir la versión de Android"
 
 #: src/mmframe.cpp:1570
 msgid "Run this program in your Android smart phone or tablet"
-msgstr ""
+msgstr "Ejecutar este programa en tu dispositivo móvil o tableta Android"
 
 #: src/mmframe.cpp:1575
 msgid "Visit MMEX Forum"
-msgstr ""
+msgstr "Visite el Foro de MMEX"
 
 #: src/mmframe.cpp:1576
 msgid ""
@@ -3810,8 +3811,7 @@ msgstr "Registrarse/Ver &notificaciones de lanzamientos."
 
 #: src/mmframe.cpp:1582
 msgid "Sign up to Notification Mailing List or View existing announcements."
-msgstr ""
-"Resgistrarse en la lista de notificación o ver los anuncios existentes."
+msgstr "Resgistrarse en la lista de notificación o ver los anuncios existentes."
 
 #: src/mmframe.cpp:1587
 msgid "Visit us on Facebook"
@@ -3863,7 +3863,7 @@ msgstr "Mostrar la ventana para organizar beneficiarios"
 
 #: src/mmframe.cpp:1626
 msgid "Show Organize Currency Dialog"
-msgstr "Mostrar la ventana para organizar divisas"
+msgstr "Mostrar la ventana para organizar monedas"
 
 #: src/mmframe.cpp:1684
 #, fuzzy, c-format
@@ -3871,11 +3871,14 @@ msgid ""
 "Please enter password for Database\n"
 "\n"
 "%s"
-msgstr "Introducir contraseña de la base de datos"
+msgstr ""
+"Introducir contraseña de la base de datos\n"
+"\n"
+"%s"
 
 #: src/mmframe.cpp:1685 src/mmframe.cpp:1875 src/mmframe.cpp:1993
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: Base de datos encriptada"
 
 #: src/mmframe.cpp:1717 src/mmframe.cpp:1759
 msgid " - No File opened "
@@ -3891,7 +3894,7 @@ msgstr ""
 #: src/mmframe.cpp:1750
 #, fuzzy
 msgid "&Next ->"
-msgstr "Siguiente"
+msgstr "&Siguiente ->"
 
 #: src/mmframe.cpp:1762
 msgid "Cannot locate previously opened database.\n"
@@ -3935,7 +3938,7 @@ msgstr "Mensaje de MMEX"
 
 #: src/mmframe.cpp:1908
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: Contraseña cambiada"
 
 #: src/mmframe.cpp:1909
 #, fuzzy, c-format
@@ -3943,51 +3946,55 @@ msgid ""
 "New password for database\n"
 "\n"
 "%s"
-msgstr "Introducir contraseña de la base de datos"
+msgstr ""
+"Introducir nueva contraseña de la base de datos\n"
+"\n"
+"%s"
 
 #: src/mmframe.cpp:1914
 msgid "New password must not be empty."
-msgstr ""
+msgstr "La nueva contraseña no puede estar vacía."
 
 #: src/mmframe.cpp:1918
 #, fuzzy
 msgid "Please confirm new password"
-msgstr "Por favor, confirme guardado..."
+msgstr "Por favor, confirme la nueva contraseña"
 
 #: src/mmframe.cpp:1922
 #, fuzzy
 msgid "Password change completed."
-msgstr "Reorganización de categoría finalizada."
+msgstr "Contraseña cambiada correctamente."
 
 #: src/mmframe.cpp:1926
 msgid "Confirm password failed."
-msgstr ""
+msgstr "Cambio de contraseña fallido."
 
 #: src/mmframe.cpp:1935
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr ""
+msgstr "Asegúrese que tiene una copia de seguridad de la base de datos"
+" antes de optimizarla"
 
 #: src/mmframe.cpp:1935
 #, fuzzy
 msgid "Do you want to proceed?"
-msgstr "¿Desea buscar otro fichero?"
+msgstr "¿Quiere continuar?"
 
 #: src/mmframe.cpp:1936 src/mmframe.cpp:1943
 msgid "DB Optimization"
-msgstr ""
+msgstr "Optimización de la base de datos"
 
 #: src/mmframe.cpp:1942
 #, fuzzy
 msgid "Database Optimization Completed!"
-msgstr "Reorganización de categoría finalizada."
+msgstr "¡Optimización de la base de datos finalizada!"
 
 #: src/mmframe.cpp:1942
 msgid "Size before"
-msgstr ""
+msgstr "Tamaño anterior"
 
 #: src/mmframe.cpp:1942
 msgid "Size after"
-msgstr ""
+msgstr "Tamaño después"
 
 #: src/mmframe.cpp:1959 src/mmframe.cpp:1980
 msgid "Save database file as"
@@ -4017,7 +4024,7 @@ msgstr "Opciones de MMEX"
 #: src/mmframe.cpp:2349
 #, fuzzy
 msgid "Choose HTML file to Export"
-msgstr "Seleccionar el fichero QIF a exportar"
+msgstr "Seleccionar el fichero HTML a exportar"
 
 #: src/mmframe.cpp:2493
 msgid "No account available to edit!"
