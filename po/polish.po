@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-11 14:51+0300\n"
-"PO-Revision-Date: 2015-01-11 14:53+0300\n"
-"Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
+"PO-Revision-Date: 2015-01-12 20:58+0100\n"
+"Last-Translator: Damian Bargieł <dmjb@wp.pl>\n"
 "Language-Team: TheZeal Software\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Launchpad-Export-Date: 2011-10-25 16:24+0000\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
@@ -802,7 +802,7 @@ msgstr "Szczegóły transakcji"
 
 #: src/billsdepositsdialog.cpp:338 src/billsdepositspanel.cpp:202
 msgid "Payment Date"
-msgstr ""
+msgstr "Data płatności"
 
 #: src/billsdepositsdialog.cpp:360
 msgid "Repeating Transaction Details"
@@ -818,7 +818,7 @@ msgstr "Określ datę następnego wystąpienia"
 
 #: src/billsdepositsdialog.cpp:390 src/billsdepositspanel.cpp:203
 msgid "Due Date"
-msgstr ""
+msgstr "Termin należności"
 
 #: src/billsdepositsdialog.cpp:394 src/billsdepositsdialog.cpp:1328
 msgid "Repeats"
@@ -1095,7 +1095,7 @@ msgstr "Autopowtarzanie"
 
 #: src/billsdepositspanel.cpp:213 src/mmhomepagepanel.cpp:382
 msgid "Payment"
-msgstr ""
+msgstr "Płatność"
 
 #: src/billsdepositspanel.cpp:217
 msgid ""
@@ -1203,7 +1203,7 @@ msgstr " Nieaktywny(a)"
 #: src/billsdepositspanel.cpp:587 src/mmhomepagepanel.cpp:346
 #, c-format
 msgid "%d days delay!"
-msgstr ""
+msgstr "%d dni opóźnienia!"
 
 #: src/billsdepositspanel.cpp:594 src/billsdepositspanel.cpp:653
 #: src/mmhomepagepanel.cpp:348
@@ -1906,7 +1906,7 @@ msgstr "Utwórz wzorzec"
 #: src/general_report_manager.cpp:481
 #, c-format
 msgid "Row(s) returned: %i  Duration: %ld ms"
-msgstr ""
+msgstr "Wierszy: %i  Czas trwania: %ld ms"
 
 #: src/general_report_manager.cpp:504
 msgid "SQL Syntax Error"
@@ -3027,7 +3027,7 @@ msgstr "7"
 
 #: src/mmOptionViewSettings.cpp:169
 msgid "Display MMEX News on home page"
-msgstr ""
+msgstr "Pokaż nowości MMEX na stronie domowej"
 
 #: src/mmOptionViewSettings.cpp:185 src/mmframe.cpp:1163 src/mmframe.cpp:1619
 #: src/model/Model_Account.cpp:24
@@ -3644,7 +3644,7 @@ msgstr "Odwiedź nas na Facebook-u"
 
 #: src/mmframe.cpp:1592 src/mmframe.cpp:1636
 msgid "&About..."
-msgstr "&O..."
+msgstr "&O programie..."
 
 #: src/mmframe.cpp:1592 src/mmframe.cpp:1636
 msgid "Show about dialog"
@@ -4443,12 +4443,12 @@ msgstr "Sieć"
 
 #: src/optionsdialog.cpp:150
 msgid "&Apply"
-msgstr ""
+msgstr "Z&astosuj"
 
 #: src/optionsdialog.cpp:176
 #, c-format
 msgid "%s page has been saved."
-msgstr ""
+msgstr "%s stron zostało zapisanych."
 
 #: src/payeedialog.cpp:68
 msgid "Default Category"
@@ -4594,6 +4594,9 @@ msgid ""
 "\n"
 "  to payee: %s"
 msgstr ""
+"Zmiana wszystkich beneficjentów: %s \n"
+"\n"
+"  na beneficjenta: %s"
 
 #: src/relocatepayeedialog.cpp:140
 msgid "Payee Relocation Confirmation"
@@ -5501,7 +5504,7 @@ msgstr "Niewłaściwa wersja WebApp API"
 #: src/webapp.cpp:136
 #, c-format
 msgid "WebApp   API version -> %s"
-msgstr ""
+msgstr "Wersja WebApp  API  -> %s"
 
 #: src/webapp.cpp:137
 #, c-format
@@ -5551,6 +5554,8 @@ msgid ""
 "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
 msgstr ""
+"Transakcja będzie dodana do pierwszego konta bankowego:\n"
+"'%s' oraz zaznaczona jako 'Do wyjaśnienia'"
 
 #: src/webapp.cpp:456
 msgid "Wrong WebApp account"
@@ -5779,33 +5784,33 @@ msgstr "Użyto jako tytuł bazy danych do wyświetlanych i drukowanych raportów
 
 #: src/wizard_update.cpp:32
 msgid "Update Wizard"
-msgstr ""
+msgstr "Kreator uaktualnienia"
 
 #: src/wizard_update.cpp:40
 msgid "A new version of MMEX is available!"
-msgstr ""
+msgstr "Jest dostępna nowa wersja MMEX!"
 
 #: src/wizard_update.cpp:41
 #, c-format
 msgid "Your version is %s"
-msgstr ""
+msgstr "Twoja wersja to %s"
 
 #: src/wizard_update.cpp:42
 #, c-format
 msgid "New version is %s"
-msgstr ""
+msgstr "Nowa wersja to %s"
 
 #: src/wizard_update.cpp:43
 msgid "Click on finish to open our website and download."
-msgstr ""
+msgstr "Kliknij aby otworzyć naszą stronę i pobrać."
 
 #: src/wizard_update.cpp:57
 msgid "What's new:"
-msgstr ""
+msgstr "Co jest nowego:"
 
 #: src/wizard_update.cpp:141
 msgid "Download in progress"
-msgstr ""
+msgstr "Pobieranie w toku"
 
 #: src/wizard_update.cpp:224
 msgid "Unable to check for updates!"
