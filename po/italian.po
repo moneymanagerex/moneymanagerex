@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex Italian Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-09 22:37+0300\n"
-"PO-Revision-Date: 2015-01-09 22:41+0300\n"
+"POT-Creation-Date: 2015-01-12 19:17+0100\n"
+"PO-Revision-Date: 2015-01-12 19:18+0100\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: amaseb <amaseb@tiscali.it>\n"
 "Language: it\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2013-03-26 09:16+0000\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
@@ -804,7 +804,7 @@ msgstr "Dettagli Operazione"
 
 #: src/billsdepositsdialog.cpp:338 src/billsdepositspanel.cpp:202
 msgid "Payment Date"
-msgstr ""
+msgstr "Data pagamento"
 
 #: src/billsdepositsdialog.cpp:360
 msgid "Repeating Transaction Details"
@@ -820,7 +820,7 @@ msgstr "Ritarda o anticipa la data della Prossima scadenza"
 
 #: src/billsdepositsdialog.cpp:390 src/billsdepositspanel.cpp:203
 msgid "Due Date"
-msgstr ""
+msgstr "Data di scadenza"
 
 #: src/billsdepositsdialog.cpp:394 src/billsdepositsdialog.cpp:1328
 msgid "Repeats"
@@ -854,16 +854,16 @@ msgstr "Esecuzione Automatica senza conferma dell'utente"
 msgid "Automatic Execution will occur without user interaction"
 msgstr "L'Esecuzione Automatica non richiede l'intervento dell'utente"
 
-#: src/billsdepositsdialog.cpp:456 src/transdialog.cpp:1010
+#: src/billsdepositsdialog.cpp:456 src/transdialog.cpp:1028
 msgid "Specify the date of the transaction"
 msgstr "Specificare la data dell'operazione"
 
-#: src/billsdepositsdialog.cpp:459 src/transdialog.cpp:1011
+#: src/billsdepositsdialog.cpp:459 src/transdialog.cpp:1029
 msgid "Retard or advance the date of the transaction"
 msgstr "Ritarda o anticipa la data della operazione"
 
 #: src/billsdepositsdialog.cpp:475 src/filtertransdialog.cpp:248
-#: src/transdialog.cpp:1012
+#: src/transdialog.cpp:1030
 msgid "Specify the status for the transaction"
 msgstr "Indicare lo stato dell'operazione"
 
@@ -877,7 +877,7 @@ msgid "Status"
 msgstr "Stato"
 
 #: src/billsdepositsdialog.cpp:491 src/splitdetailsdialog.cpp:117
-#: src/transdialog.cpp:1013
+#: src/transdialog.cpp:1031
 msgid "Specify the type of transactions to be created."
 msgstr "Specificare il tipo di operazione da creare"
 
@@ -885,13 +885,13 @@ msgstr "Specificare il tipo di operazione da creare"
 msgid "&Advanced"
 msgstr "&Avanzate"
 
-#: src/billsdepositsdialog.cpp:495 src/transdialog.cpp:1017
+#: src/billsdepositsdialog.cpp:495 src/transdialog.cpp:1035
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr ""
 "Consente di impostare diversi importi nei conti di Origine e Destinazione"
 
 #: src/billsdepositsdialog.cpp:505 src/billsdepositsdialog.cpp:790
-#: src/transdialog.cpp:1001
+#: src/transdialog.cpp:1019
 msgid "Specify the amount for this transaction"
 msgstr "Specificare l'importo di questa operazione"
 
@@ -909,7 +909,7 @@ msgstr "Specificare l'importo da trasferire"
 msgid "Amount"
 msgstr "Importo"
 
-#: src/billsdepositsdialog.cpp:520 src/transdialog.cpp:997
+#: src/billsdepositsdialog.cpp:520 src/transdialog.cpp:1015
 msgid "Specify the transfer amount in the To Account"
 msgstr "Specificare l'importo da trasferire al Conto Destinazione"
 
@@ -954,7 +954,7 @@ msgstr "Specificare la destinazione dell'operazione"
 msgid "Split"
 msgstr "Suddividi"
 
-#: src/billsdepositsdialog.cpp:553 src/transdialog.cpp:1014
+#: src/billsdepositsdialog.cpp:553 src/transdialog.cpp:1032
 msgid "Use split Categories"
 msgstr "Usa Categorie suddivise"
 
@@ -976,7 +976,7 @@ msgstr "Categoria"
 msgid "Select Category"
 msgstr "Selezione Categoria"
 
-#: src/billsdepositsdialog.cpp:570 src/transdialog.cpp:1015
+#: src/billsdepositsdialog.cpp:570 src/transdialog.cpp:1033
 msgid "Specify any associated check number or transaction number"
 msgstr "Inserire il numero di controllo o il numero dell'operazione"
 
@@ -995,7 +995,7 @@ msgstr "Organizza allegati per questa operazione ricorrente"
 msgid "Select one of the frequently used notes"
 msgstr "Selezionare una delle note usate di recente"
 
-#: src/billsdepositsdialog.cpp:595 src/transdialog.cpp:1016
+#: src/billsdepositsdialog.cpp:595 src/transdialog.cpp:1034
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Inserire una nota per questa operazione"
 
@@ -1021,7 +1021,7 @@ msgstr "Selezionare a chi va o da chi proviene il denaro dell'operazione "
 msgid "From"
 msgstr "Da"
 
-#: src/billsdepositsdialog.cpp:838 src/transdialog.cpp:1006
+#: src/billsdepositsdialog.cpp:838 src/transdialog.cpp:1024
 msgid "Specify where the transaction is coming from"
 msgstr "Specificare l'origine dell'operazione"
 
@@ -1073,7 +1073,7 @@ msgstr "Indicare il numero di ripetizioni della serie"
 msgid "Leave blank if this series continues forever."
 msgstr "Lasciare il campo vuoto se la serie si ripete all'infinito"
 
-#: src/billsdepositsdialog.cpp:1466 src/transdialog.cpp:974
+#: src/billsdepositsdialog.cpp:1466 src/transdialog.cpp:992
 msgid "Specify the category for this transaction"
 msgstr "Specifica la categoria di questa operazione"
 
@@ -1207,7 +1207,7 @@ msgstr "Inattiva"
 #: src/billsdepositspanel.cpp:587 src/mmhomepagepanel.cpp:346
 #, c-format
 msgid "%d days delay!"
-msgstr ""
+msgstr "%d giorni di ritardo!"
 
 #: src/billsdepositspanel.cpp:594 src/billsdepositspanel.cpp:653
 #: src/mmhomepagepanel.cpp:348
@@ -1554,17 +1554,17 @@ msgstr "Modifica categoria"
 msgid "Organise Categories: Editing Error"
 msgstr "Gestione Categorie: Errore di modifica"
 
-#: src/categdialog.cpp:568 src/mmframe.cpp:2662
+#: src/categdialog.cpp:568 src/mmframe.cpp:2675
 msgid "Category Relocation Completed."
 msgstr "Sostituzione categoria completata"
 
-#: src/categdialog.cpp:569 src/mmframe.cpp:2663 src/mmframe.cpp:2678
+#: src/categdialog.cpp:569 src/mmframe.cpp:2676 src/mmframe.cpp:2691
 #: src/payeedialog.cpp:320
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Records aggiornati nel database: %i"
 
-#: src/categdialog.cpp:571 src/mmframe.cpp:2665
+#: src/categdialog.cpp:571 src/mmframe.cpp:2678
 msgid "Category Relocation Result"
 msgstr "Esito sostituzione categoria"
 
@@ -1835,7 +1835,7 @@ msgstr "Inserito Importo non valido! "
 
 #: src/filtertransdialog.cpp:424 src/filtertransdialog.cpp:434
 #: src/import_export/qif_import_gui.cpp:704 src/maincurrencydialog.cpp:434
-#: src/mmframe.cpp:2780 src/splittransactionsdialog.cpp:208
+#: src/mmframe.cpp:2793 src/splittransactionsdialog.cpp:208
 #: src/stockspanel.cpp:764 src/stockspanel.cpp:765 src/util.cpp:105
 msgid "Error"
 msgstr "Errore"
@@ -1848,7 +1848,7 @@ msgstr "Dettagli Filtro: "
 msgid "General Reports Manager"
 msgstr "Manager Resoconti"
 
-#: src/general_report_manager.cpp:276 src/mmframe.cpp:739 src/mmframe.cpp:2221
+#: src/general_report_manager.cpp:276 src/mmframe.cpp:739 src/mmframe.cpp:2234
 msgid "Reports"
 msgstr "Resoconti"
 
@@ -2014,8 +2014,8 @@ msgstr "QIF"
 msgid "CSV"
 msgstr "CSV"
 
-#: src/import_export/qif_export.cpp:125 src/mmframe.cpp:2493
-#: src/mmframe.cpp:2497 src/mmframe.cpp:2516 src/mmframe.cpp:2520
+#: src/import_export/qif_export.cpp:125 src/mmframe.cpp:2506
+#: src/mmframe.cpp:2510 src/mmframe.cpp:2529 src/mmframe.cpp:2533
 msgid "Accounts"
 msgstr "Conti"
 
@@ -2363,7 +2363,7 @@ msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:599
 #: src/import_export/univcsvdialog.cpp:638
-#: src/import_export/univcsvdialog.cpp:952 src/mmframe.cpp:2066
+#: src/import_export/univcsvdialog.cpp:952 src/mmframe.cpp:2079
 msgid "Universal CSV Import"
 msgstr "Importa CSV generico"
 
@@ -3284,7 +3284,7 @@ msgstr "Conti Carta di Credito"
 msgid "Budget Setup"
 msgstr "Gestione Budget"
 
-#: src/mmframe.cpp:747 src/mmframe.cpp:2265
+#: src/mmframe.cpp:747 src/mmframe.cpp:2278
 msgid "Help"
 msgstr "Guida in linea"
 
@@ -3292,7 +3292,7 @@ msgstr "Guida in linea"
 msgid "Do you really want to delete the account?"
 msgstr "Vuoi davvero eliminare il Conto?"
 
-#: src/mmframe.cpp:1065 src/mmframe.cpp:2528
+#: src/mmframe.cpp:1065 src/mmframe.cpp:2541
 msgid "Confirm Account Deletion"
 msgstr "Conferma eliminazione del Conto"
 
@@ -3714,70 +3714,70 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/mmframe.cpp:1685 src/mmframe.cpp:1875 src/mmframe.cpp:1993
+#: src/mmframe.cpp:1685 src/mmframe.cpp:1888 src/mmframe.cpp:2006
 msgid "MMEX: Encrypted Database"
 msgstr "MMEX: Database Criptato"
 
-#: src/mmframe.cpp:1717 src/mmframe.cpp:1759
+#: src/mmframe.cpp:1730 src/mmframe.cpp:1772
 msgid " - No File opened "
 msgstr " - Nessun file aperto "
 
-#: src/mmframe.cpp:1719
+#: src/mmframe.cpp:1732
 msgid ""
 "Sorry. The Database version is too old or Database password is incorrect"
 msgstr ""
 "Spiacente. La versione del Database è troppo vecchia o la password non è "
 "corretta."
 
-#: src/mmframe.cpp:1750
+#: src/mmframe.cpp:1763
 msgid "&Next ->"
 msgstr "&Prossima ->"
 
-#: src/mmframe.cpp:1762
+#: src/mmframe.cpp:1775
 msgid "Cannot locate previously opened database.\n"
 msgstr "Impossibile trovare l'ultimo database aperto.\n"
 
-#: src/mmframe.cpp:1764
+#: src/mmframe.cpp:1777
 msgid "Password not entered for encrypted Database.\n"
 msgstr "Password non inserita per il Database criptato.\n"
 
-#: src/mmframe.cpp:1782
+#: src/mmframe.cpp:1795
 msgid "portable mode"
 msgstr "modalità <Portabile>"
 
-#: src/mmframe.cpp:1825
+#: src/mmframe.cpp:1838
 msgid "Choose database file to create"
 msgstr "Scegliere il database da creare"
 
-#: src/mmframe.cpp:1848
+#: src/mmframe.cpp:1861
 msgid "Choose database file to open"
 msgstr "Scegliere il database da aprire"
 
-#: src/mmframe.cpp:1865
+#: src/mmframe.cpp:1878
 msgid "Choose Encrypted database file to open"
 msgstr "Scegliere il database criptato da aprire"
 
-#: src/mmframe.cpp:1875
+#: src/mmframe.cpp:1888
 msgid "Enter password for database"
 msgstr "Inserire la password del database"
 
-#: src/mmframe.cpp:1880
+#: src/mmframe.cpp:1893
 msgid "Choose database file to Save As"
 msgstr "Scegliere il database da Salvare con Nome"
 
-#: src/mmframe.cpp:1902
+#: src/mmframe.cpp:1915
 msgid "Converted DB!"
 msgstr "DB Convertito!"
 
-#: src/mmframe.cpp:1902
+#: src/mmframe.cpp:1915
 msgid "MMEX message"
 msgstr "MMEX - Messaggio"
 
-#: src/mmframe.cpp:1908
+#: src/mmframe.cpp:1921
 msgid "MMEX: Encryption Password Change"
 msgstr "MMEX: Cambio password DB criptato"
 
-#: src/mmframe.cpp:1909
+#: src/mmframe.cpp:1922
 #, c-format
 msgid ""
 "New password for database\n"
@@ -3788,91 +3788,91 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/mmframe.cpp:1914
+#: src/mmframe.cpp:1927
 msgid "New password must not be empty."
 msgstr "La nuova password non deve essere vuota."
 
-#: src/mmframe.cpp:1918
+#: src/mmframe.cpp:1931
 msgid "Please confirm new password"
 msgstr "Conferma la nuova password"
 
-#: src/mmframe.cpp:1922
+#: src/mmframe.cpp:1935
 msgid "Password change completed."
 msgstr "Cambio password completato!"
 
-#: src/mmframe.cpp:1926
+#: src/mmframe.cpp:1939
 msgid "Confirm password failed."
 msgstr "La password di conferma non coincide."
 
-#: src/mmframe.cpp:1935
+#: src/mmframe.cpp:1948
 msgid "Make sure you have a backup of DB before optimize it"
 msgstr "Assicurati di avre un backup del DB prima di ottimizzarlo"
 
-#: src/mmframe.cpp:1935
+#: src/mmframe.cpp:1948
 msgid "Do you want to proceed?"
 msgstr "Vuoi procedere?"
 
-#: src/mmframe.cpp:1936 src/mmframe.cpp:1943
+#: src/mmframe.cpp:1949 src/mmframe.cpp:1956
 msgid "DB Optimization"
 msgstr "Ottimizzazione DB"
 
-#: src/mmframe.cpp:1942
+#: src/mmframe.cpp:1955
 msgid "Database Optimization Completed!"
 msgstr "Ottimizzazione Database completata!"
 
-#: src/mmframe.cpp:1942
+#: src/mmframe.cpp:1955
 msgid "Size before"
 msgstr "Dimensione precedente"
 
-#: src/mmframe.cpp:1942
+#: src/mmframe.cpp:1955
 msgid "Size after"
 msgstr "Dimensione attuale"
 
-#: src/mmframe.cpp:1959 src/mmframe.cpp:1980
+#: src/mmframe.cpp:1972 src/mmframe.cpp:1993
 msgid "Save database file as"
 msgstr "Salva il database con un determinato nome"
 
-#: src/mmframe.cpp:1980
+#: src/mmframe.cpp:1993
 msgid "Can't copy file to itself"
 msgstr "Impossibile copiare il file su sè stesso!"
 
-#: src/mmframe.cpp:1993
+#: src/mmframe.cpp:2006
 msgid "Enter password for new database"
 msgstr "Inserire la password per il nuovo database"
 
-#: src/mmframe.cpp:2066
+#: src/mmframe.cpp:2079
 msgid "No account available to import"
 msgstr "Nessun Conto disponibile da importare"
 
-#: src/mmframe.cpp:2255
+#: src/mmframe.cpp:2268
 msgid "MMEX Options have been updated."
 msgstr "Le impostazioni di MMEX sono state aggiornate"
 
-#: src/mmframe.cpp:2256 src/optionsdialog.cpp:55
+#: src/mmframe.cpp:2269 src/optionsdialog.cpp:55
 msgid "MMEX Options"
 msgstr "Opzioni MMEX"
 
-#: src/mmframe.cpp:2349
+#: src/mmframe.cpp:2362
 msgid "Choose HTML file to Export"
 msgstr "Scegliere il file HTML in cui esportare"
 
-#: src/mmframe.cpp:2493
+#: src/mmframe.cpp:2506
 msgid "No account available to edit!"
 msgstr "Nessun Conto da modificare!"
 
-#: src/mmframe.cpp:2497
+#: src/mmframe.cpp:2510
 msgid "Choose Account to Edit"
 msgstr "Scegliere il Conto da modificare"
 
-#: src/mmframe.cpp:2516
+#: src/mmframe.cpp:2529
 msgid "No account available to delete!"
 msgstr "Nessun Conto da eliminare!"
 
-#: src/mmframe.cpp:2520
+#: src/mmframe.cpp:2533
 msgid "Choose Account to Delete"
 msgstr "Scegliere il Conto da eliminare"
 
-#: src/mmframe.cpp:2525
+#: src/mmframe.cpp:2538
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -3881,32 +3881,32 @@ msgstr ""
 "Sicuro di voler cancellare il\n"
 " %s conto: %s ?"
 
-#: src/mmframe.cpp:2546
+#: src/mmframe.cpp:2559
 msgid "No account available to reallocate!"
 msgstr "Nessun conto disponibile da cambiare!"
 
-#: src/mmframe.cpp:2546 src/mmframe.cpp:2558 src/mmframe.cpp:2571
+#: src/mmframe.cpp:2559 src/mmframe.cpp:2571 src/mmframe.cpp:2584
 msgid "Account Reallocation"
 msgstr "Cambio tipo di conto"
 
-#: src/mmframe.cpp:2558
+#: src/mmframe.cpp:2571
 msgid "Choose account to reallocate account type"
 msgstr "Scegliere il Conto da cambiare di tipologia"
 
-#: src/mmframe.cpp:2571
+#: src/mmframe.cpp:2584
 #, c-format
 msgid "Choose the new type for account: %s"
 msgstr "Scegliere il nuovo tipo per il conto: %s"
 
-#: src/mmframe.cpp:2677 src/payeedialog.cpp:319
+#: src/mmframe.cpp:2690 src/payeedialog.cpp:319
 msgid "Payee Relocation Completed."
 msgstr "Sostituzione beneficiario completata"
 
-#: src/mmframe.cpp:2681 src/payeedialog.cpp:323
+#: src/mmframe.cpp:2694 src/payeedialog.cpp:323
 msgid "Payee Relocation Result"
 msgstr "Esito sostituzione beneficiario"
 
-#: src/mmframe.cpp:2780
+#: src/mmframe.cpp:2793
 #, c-format
 msgid "File %s not found"
 msgstr "File %s non trovato"
@@ -5239,23 +5239,23 @@ msgstr ""
 msgid "Confirm to add new payee"
 msgstr "Conferma per aggiunta nuovo benefeciario"
 
-#: src/transdialog.cpp:992
+#: src/transdialog.cpp:1010
 msgid "Specify account the money is taken from"
 msgstr "Specificare il Conto dal quale si effettua il trasferimento"
 
-#: src/transdialog.cpp:993
+#: src/transdialog.cpp:1011
 msgid "Specify account the money is moved to"
 msgstr "Specificare il Conto verso il quale si effettua il trasferimento"
 
-#: src/transdialog.cpp:994
+#: src/transdialog.cpp:1012
 msgid "Specify the transfer amount in the From Account."
 msgstr "Specificare l'importo da trasferire dal Conto Origine"
 
-#: src/transdialog.cpp:1002
+#: src/transdialog.cpp:1020
 msgid "Specify account for the transaction"
 msgstr "Specificare il conto per questa operazione"
 
-#: src/transdialog.cpp:1004
+#: src/transdialog.cpp:1022
 msgid "Specify to whom the transaction is going to"
 msgstr "Specificare la destinazione della operazione"
 
@@ -5808,7 +5808,6 @@ msgid "Update Wizard"
 msgstr "Aggiornamento guidato"
 
 #: src/wizard_update.cpp:40
-#, fuzzy
 msgid "A new version of MMEX is available!"
 msgstr "È disponibile una nuova versione di MMEX!"
 
@@ -5824,7 +5823,7 @@ msgstr "Nuova versione: %s"
 
 #: src/wizard_update.cpp:43
 msgid "Click on finish to open our website and download."
-msgstr ""
+msgstr "Clicca su fine per aprire il sito e scaricarla."
 
 #: src/wizard_update.cpp:57
 msgid "What's new:"
