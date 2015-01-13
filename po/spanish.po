@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-09 22:51+0300\n"
-"PO-Revision-Date: 2015-01-09 22:51+0300\n"
-"Last-Translator: Germán Trinidad\n"
+"POT-Creation-Date: 2015-01-13 14:27+0300\n"
+"PO-Revision-Date: 2015-01-13 14:30+0300\n"
+"Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: jorgeb\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Launchpad-Export-Date: 2011-10-25 16:24+0000\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
@@ -40,7 +40,6 @@ msgid "Wiki page"
 msgstr "Página de la Wiki"
 
 #: src/aboutdialog.cpp:91
-#, fuzzy
 msgid "Bug reports"
 msgstr "Informes"
 
@@ -85,7 +84,7 @@ msgstr "Licencia"
 #: src/splitdetailsdialog.cpp:143 src/splittransactionsdialog.cpp:173
 #: src/transdialog.cpp:467 src/mmsinglechoicedialog.h:57
 msgid "&OK "
-msgstr ""
+msgstr "&OK "
 
 #: src/accountdialog.cpp:61 src/mmframe.cpp:1432 src/mmframe.cpp:1621
 #: src/wizard_newaccount.cpp:70 src/wizard_newaccount.cpp:77
@@ -110,7 +109,7 @@ msgid "Account Status:"
 msgstr "Estado de la Cuenta:"
 
 #: src/accountdialog.cpp:177
-#, fuzzy, c-format
+#, c-format
 msgid "Initial Balance: %s"
 msgstr "Saldo inicial: %s"
 
@@ -145,7 +144,7 @@ msgstr "Otros"
 #: src/accountdialog.cpp:228
 #, fuzzy
 msgid "Card Number:"
-msgstr "Número: "
+msgstr "Número de tarjeta:"
 
 #: src/accountdialog.cpp:228
 msgid "Account Number:"
@@ -187,13 +186,13 @@ msgstr "Organizar adjuntos de esta cuenta"
 #: src/webappdialog.cpp:99 src/mmsinglechoicedialog.h:59
 #, fuzzy
 msgid "&Cancel "
-msgstr "&Cancelar"
+msgstr "&Cancelar "
 
 #: src/accountdialog.cpp:291
 msgid "Enter the Name of the Account. This name can be renamed at any time."
 msgstr ""
-"Introduzca el Nombre de la Cuenta. Este nombre se puede cambiar en "
-"cualquier momento."
+"Introduzca el Nombre de la Cuenta. Este nombre se puede cambiar en cualquier "
+"momento."
 
 #: src/accountdialog.cpp:292 src/wizard_newaccount.cpp:110
 msgid "Specify the type of account to be created."
@@ -309,8 +308,7 @@ msgstr "Visitar la Página web para más información"
 #, fuzzy, c-format
 msgid "Open the %s website for latest news, updates etc"
 msgstr ""
-"Abrir la página web %s para ver las últimas "
-"noticias, actualizaciones, etc"
+"Abrir la página web %s para ver las últimas noticias, actualizaciones, etc"
 
 #: src/appstartdialog.cpp:122
 #, fuzzy, c-format
@@ -320,7 +318,7 @@ msgstr "Mostrar esta ventana la próxima vez que se inicie %s"
 #: src/appstartdialog.cpp:136
 #, fuzzy
 msgid "&Exit "
-msgstr "&Salir"
+msgstr "&Salir "
 
 #: src/appstartdialog.cpp:152
 #, fuzzy, c-format
@@ -483,7 +481,7 @@ msgstr "Todas"
 #: src/assetspanel.cpp:465 src/billsdepositspanel.cpp:201
 #: src/mmcheckingpanel.cpp:1001 src/stockspanel.cpp:85
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: src/assetspanel.cpp:472 src/billsdepositsdialog.cpp:501
 #: src/billsdepositspanel.cpp:208 src/filtertransdialog.cpp:251
@@ -567,7 +565,7 @@ msgstr "Cambio en el Valor: %s %s"
 #: src/attachmentdialog.cpp:54 src/import_export/qif_import_gui.cpp:76
 #: src/import_export/univcsvdialog.cpp:924 src/payeedialog.cpp:66
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: src/attachmentdialog.cpp:55 src/general_report_manager.cpp:405
 #, fuzzy
@@ -676,19 +674,20 @@ msgstr "&Eliminar "
 
 #: src/attachmentdialog.cpp:336
 msgid "Att."
-msgstr ""
+msgstr "Att."
 
 #: src/attachmentdialog.cpp:343
 msgid ""
 "This directory and its files are automatically managed by Money Manager EX "
 "software."
 msgstr ""
-"Esta carpeta y sus archivos son administrados automáticamente por "
-"el programa Money Manager EX "
+"Esta carpeta y sus archivos son administrados automáticamente por el "
+"programa Money Manager EX "
 
 #: src/attachmentdialog.cpp:345
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr "Por favor no elimine, renombre o modifique manualmente carpetas y archivos."
+msgstr ""
+"Por favor no elimine, renombre o modifique manualmente carpetas y archivos."
 
 #: src/attachmentdialog.cpp:379 src/attachmentdialog.cpp:387
 #, fuzzy
@@ -728,7 +727,9 @@ msgstr "No es posible abrir el fichero:"
 
 #: src/attachmentdialog.cpp:453
 msgid "Please verify that file exists and user has rights to read it."
-msgstr "Por favor, compruebe que el archivo existe y el usuario tiene permisos de lectura."
+msgstr ""
+"Por favor, compruebe que el archivo existe y el usuario tiene permisos de "
+"lectura."
 
 #: src/attachmentdialog.cpp:454
 msgid "Open attachment failed"
@@ -742,7 +743,7 @@ msgstr "Nueva Transacción Periódica"
 #: src/billsdepositsdialog.cpp:141
 #, fuzzy
 msgid " Edit Repeating Transaction"
-msgstr "Editar Transacción Periódica"
+msgstr " Editar Transacción Periódica"
 
 #: src/billsdepositsdialog.cpp:146
 #, fuzzy
@@ -876,7 +877,8 @@ msgstr "Siguiente"
 
 #: src/billsdepositsdialog.cpp:409
 msgid "Advance the Next Occurance Date with the specified values"
-msgstr "Avanzar a la Fecha de la Siguiente Aparición con los valores especificados"
+msgstr ""
+"Avanzar a la Fecha de la Siguiente Aparición con los valores especificados"
 
 #: src/billsdepositsdialog.cpp:417 src/billsdepositsdialog.cpp:1370
 msgid "Times Repeated"
@@ -898,16 +900,16 @@ msgstr "Seleccionar 'Auto Ejecutar' sin confirmación del usuario."
 msgid "Automatic Execution will occur without user interaction"
 msgstr "La Ejecución Automática se realizará sin intervención del usuario"
 
-#: src/billsdepositsdialog.cpp:456 src/transdialog.cpp:1010
+#: src/billsdepositsdialog.cpp:456 src/transdialog.cpp:1028
 msgid "Specify the date of the transaction"
 msgstr "Especifique la fecha de la transacción"
 
-#: src/billsdepositsdialog.cpp:459 src/transdialog.cpp:1011
+#: src/billsdepositsdialog.cpp:459 src/transdialog.cpp:1029
 msgid "Retard or advance the date of the transaction"
 msgstr "Retrasar o avanzar la fecha de la transacción"
 
 #: src/billsdepositsdialog.cpp:475 src/filtertransdialog.cpp:248
-#: src/transdialog.cpp:1012
+#: src/transdialog.cpp:1030
 msgid "Specify the status for the transaction"
 msgstr "Especifique el estado de la transacción"
 
@@ -921,7 +923,7 @@ msgid "Status"
 msgstr "Estado"
 
 #: src/billsdepositsdialog.cpp:491 src/splitdetailsdialog.cpp:117
-#: src/transdialog.cpp:1013
+#: src/transdialog.cpp:1031
 msgid "Specify the type of transactions to be created."
 msgstr "Especifique el tipo de transacción a crear."
 
@@ -930,12 +932,13 @@ msgstr "Especifique el tipo de transacción a crear."
 msgid "&Advanced"
 msgstr "&Avanzado"
 
-#: src/billsdepositsdialog.cpp:495 src/transdialog.cpp:1017
+#: src/billsdepositsdialog.cpp:495 src/transdialog.cpp:1035
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr "Permite escribir cantidades diferentes en las cuentas de CARGO y ABONO."
+msgstr ""
+"Permite escribir cantidades diferentes en las cuentas de CARGO y ABONO."
 
 #: src/billsdepositsdialog.cpp:505 src/billsdepositsdialog.cpp:790
-#: src/transdialog.cpp:1001
+#: src/transdialog.cpp:1019
 msgid "Specify the amount for this transaction"
 msgstr "Especifique el importe de esta transacción"
 
@@ -953,7 +956,7 @@ msgstr "Especifique el importe a transferir"
 msgid "Amount"
 msgstr "Importe"
 
-#: src/billsdepositsdialog.cpp:520 src/transdialog.cpp:997
+#: src/billsdepositsdialog.cpp:520 src/transdialog.cpp:1015
 msgid "Specify the transfer amount in the To Account"
 msgstr "Especifique la cantidad a transferir en la Cuenta de Destino"
 
@@ -998,7 +1001,7 @@ msgstr "Especifique a dónde va la transacción"
 msgid "Split"
 msgstr "Dividir"
 
-#: src/billsdepositsdialog.cpp:553 src/transdialog.cpp:1014
+#: src/billsdepositsdialog.cpp:553 src/transdialog.cpp:1032
 msgid "Use split Categories"
 msgstr "Utilizar Categorías divididas"
 
@@ -1020,7 +1023,7 @@ msgstr "Categoría"
 msgid "Select Category"
 msgstr "Seleccionar Categoría"
 
-#: src/billsdepositsdialog.cpp:570 src/transdialog.cpp:1015
+#: src/billsdepositsdialog.cpp:570 src/transdialog.cpp:1033
 msgid "Specify any associated check number or transaction number"
 msgstr "Especifique cualquier número asociado a la transacción"
 
@@ -1040,7 +1043,7 @@ msgstr "Organizar adjuntos de esta transacción periódica"
 msgid "Select one of the frequently used notes"
 msgstr "Seleccione una de las notas usadas con frecuencia"
 
-#: src/billsdepositsdialog.cpp:595 src/transdialog.cpp:1016
+#: src/billsdepositsdialog.cpp:595 src/transdialog.cpp:1034
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Especifique cualquier anotación que quiera añadir a esta transacción."
 
@@ -1066,7 +1069,7 @@ msgstr "Especifique de quién viene o a quién va la transacción"
 msgid "From"
 msgstr "De"
 
-#: src/billsdepositsdialog.cpp:838 src/transdialog.cpp:1006
+#: src/billsdepositsdialog.cpp:838 src/transdialog.cpp:1024
 msgid "Specify where the transaction is coming from"
 msgstr "Especifique de dónde viene la transacción"
 
@@ -1118,7 +1121,7 @@ msgstr "Especifique el número de veces que se repite esta serie."
 msgid "Leave blank if this series continues forever."
 msgstr "Dejar en blanco si la serie continúa indefinidamente."
 
-#: src/billsdepositsdialog.cpp:1466 src/transdialog.cpp:974
+#: src/billsdepositsdialog.cpp:1466 src/transdialog.cpp:992
 msgid "Specify the category for this transaction"
 msgstr "Especifique la categoría para esta transacción"
 
@@ -1228,7 +1231,6 @@ msgid "&Delete Bills && Deposit Series..."
 msgstr "&Borrar serie de facturas y abonos..."
 
 #: src/billsdepositspanel.cpp:527
-#, fuzzy
 msgid "Manual"
 msgstr ""
 
@@ -1614,17 +1616,17 @@ msgstr "Editar Categoría"
 msgid "Organise Categories: Editing Error"
 msgstr "Organizar Categorías: Error al editar"
 
-#: src/categdialog.cpp:568 src/mmframe.cpp:2662
+#: src/categdialog.cpp:568 src/mmframe.cpp:2675
 msgid "Category Relocation Completed."
 msgstr "Reorganización de categoría finalizada."
 
-#: src/categdialog.cpp:569 src/mmframe.cpp:2663 src/mmframe.cpp:2678
+#: src/categdialog.cpp:569 src/mmframe.cpp:2676 src/mmframe.cpp:2691
 #: src/payeedialog.cpp:320
 #, fuzzy, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Registros actualizados en la base de datos: %i"
 
-#: src/categdialog.cpp:571 src/mmframe.cpp:2665
+#: src/categdialog.cpp:571 src/mmframe.cpp:2678
 msgid "Category Relocation Result"
 msgstr "Resultado de la reorganización de categoría"
 
@@ -1911,10 +1913,10 @@ msgstr "El importe introducido no es válido "
 
 #: src/filtertransdialog.cpp:424 src/filtertransdialog.cpp:434
 #: src/import_export/qif_import_gui.cpp:704 src/maincurrencydialog.cpp:434
-#: src/mmframe.cpp:2780 src/splittransactionsdialog.cpp:208
+#: src/mmframe.cpp:2793 src/splittransactionsdialog.cpp:208
 #: src/stockspanel.cpp:764 src/stockspanel.cpp:765 src/util.cpp:105
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: src/filtertransdialog.cpp:768
 msgid "Filtering Details: "
@@ -1925,7 +1927,7 @@ msgstr "Detalles de filtrado: "
 msgid "General Reports Manager"
 msgstr "Gestor de informes SQL personalizados"
 
-#: src/general_report_manager.cpp:276 src/mmframe.cpp:739 src/mmframe.cpp:2221
+#: src/general_report_manager.cpp:276 src/mmframe.cpp:739 src/mmframe.cpp:2234
 msgid "Reports"
 msgstr "Informes"
 
@@ -2110,8 +2112,8 @@ msgstr "QIF"
 msgid "CSV"
 msgstr "CSV"
 
-#: src/import_export/qif_export.cpp:125 src/mmframe.cpp:2493
-#: src/mmframe.cpp:2497 src/mmframe.cpp:2516 src/mmframe.cpp:2520
+#: src/import_export/qif_export.cpp:125 src/mmframe.cpp:2506
+#: src/mmframe.cpp:2510 src/mmframe.cpp:2529 src/mmframe.cpp:2533
 msgid "Accounts"
 msgstr "Cuentas"
 
@@ -2480,7 +2482,7 @@ msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:599
 #: src/import_export/univcsvdialog.cpp:638
-#: src/import_export/univcsvdialog.cpp:952 src/mmframe.cpp:2066
+#: src/import_export/univcsvdialog.cpp:952 src/mmframe.cpp:2079
 msgid "Universal CSV Import"
 msgstr "Importar Universal CSV"
 
@@ -2562,7 +2564,6 @@ msgstr ""
 "menos Fecha y Cantidad."
 
 #: src/import_export/univcsvdialog.cpp:784
-#, fuzzy
 msgid "Universal CSV Export"
 msgstr "Exportar Universal CSV"
 
@@ -2571,12 +2572,11 @@ msgid "Overwrite?"
 msgstr "¿Sobreescribir?"
 
 #: src/import_export/univcsvdialog.cpp:797
-#, fuzzy
 msgid "File exists."
 msgstr "El fichero existe."
 
 #: src/import_export/univcsvdialog.cpp:915
-#, fuzzy, c-format
+#, c-format
 msgid "Transactions exported: %ld"
 msgstr "Transacciones exportadas: %ld"
 
@@ -2612,7 +2612,6 @@ msgid "Online update currency rate"
 msgstr "Actualización online del tipo de cambio"
 
 #: src/maincurrencydialog.cpp:144
-#, fuzzy
 msgid "Online Update"
 msgstr "Actualización online"
 
@@ -2652,7 +2651,6 @@ msgid "%s\t: %s\n"
 msgstr "%s\t: %s\n"
 
 #: src/maincurrencydialog.cpp:421
-#, fuzzy
 msgid "Invalid value "
 msgstr "Valor no válido "
 
@@ -2690,9 +2688,8 @@ msgid "Real path:"
 msgstr "Ruta real:"
 
 #: src/mmOptionAttachmentSettings.cpp:78
-#, fuzzy
 msgid "Legend "
-msgstr "Leyenda:"
+msgstr "Leyenda"
 
 #: src/mmOptionAttachmentSettings.cpp:83
 #, c-format
@@ -2756,8 +2753,8 @@ msgid ""
 "Select to don't delete file when attachment is removed, but instead move it "
 "to 'Deleted' subfolder"
 msgstr ""
-"Seleccione para no eliminar el archivo cuando se borre el adjunto, sino"
-"moverlo a la subcarpeta 'Borrados'"
+"Seleccione para no eliminar el archivo cuando se borre el adjunto, "
+"sinomoverlo a la subcarpeta 'Borrados'"
 
 #: src/mmOptionAttachmentSettings.cpp:158
 msgid "System documents directory"
@@ -3032,8 +3029,9 @@ msgstr "Tiempo de espera sobrepasado"
 
 #: src/mmOptionNetSettings.cpp:126
 msgid "Specify a network communication timeout value to use."
-msgstr "Especifique el valor a usar como tiempo de espera sobrepasado"
-" para la comunicación con internet"
+msgstr ""
+"Especifique el valor a usar como tiempo de espera sobrepasado para la "
+"comunicación con internet"
 
 #: src/mmOptionNetSettings.cpp:129
 msgid "Seconds"
@@ -3053,7 +3051,8 @@ msgstr "Comprobar actualizaciones al inicio"
 msgid ""
 "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr ""
-"Activar para comprobar actualizaciones automáticas de nuevas versiones de MMEX al inicio"
+"Activar para comprobar actualizaciones automáticas de nuevas versiones de "
+"MMEX al inicio"
 
 #: src/mmOptionNetSettings.cpp:150
 msgid "Stable"
@@ -3230,7 +3229,8 @@ msgstr "Duplicar transacción seleccionada"
 
 #: src/mmcheckingpanel.cpp:511
 msgid "Enter any string to find it in the nearest transaction notes"
-msgstr "Introduzca cualquier cadena para buscarla en las notas de transacciones"
+msgstr ""
+"Introduzca cualquier cadena para buscarla en las notas de transacciones"
 
 #: src/mmcheckingpanel.cpp:528
 #, fuzzy, c-format
@@ -3357,7 +3357,6 @@ msgid "Confirm Transaction Deletion"
 msgstr "Confirmar borrado de transacción"
 
 #: src/mmcheckingpanel.cpp:1215
-#, fuzzy
 msgid "Follow Up"
 msgstr "Seguimiento"
 
@@ -3369,7 +3368,9 @@ msgstr "No reconciliadas"
 #: src/mmcheckingpanel.cpp:1218
 #, fuzzy, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr "¿Realmente quiere borrar todas las \n%s\" transacciones mostradas?"
+msgstr ""
+"¿Realmente quiere borrar todas las \n"
+"%s\" transacciones mostradas?"
 
 #: src/mmcheckingpanel.cpp:1555
 msgid "Do you really want to delete the selected transaction?"
@@ -3436,7 +3437,7 @@ msgstr "Editar cuenta de Tarjeta de crédito"
 msgid "Budget Setup"
 msgstr "Organizar presupuesto"
 
-#: src/mmframe.cpp:747 src/mmframe.cpp:2265
+#: src/mmframe.cpp:747 src/mmframe.cpp:2278
 msgid "Help"
 msgstr "Ayuda"
 
@@ -3444,7 +3445,7 @@ msgstr "Ayuda"
 msgid "Do you really want to delete the account?"
 msgstr "¿Realmente quiere borrar la cuenta?"
 
-#: src/mmframe.cpp:1065 src/mmframe.cpp:2528
+#: src/mmframe.cpp:1065 src/mmframe.cpp:2541
 msgid "Confirm Account Deletion"
 msgstr "Corfirmar borrado de cuenta"
 
@@ -3811,7 +3812,8 @@ msgstr "Registrarse/Ver &notificaciones de lanzamientos."
 
 #: src/mmframe.cpp:1582
 msgid "Sign up to Notification Mailing List or View existing announcements."
-msgstr "Resgistrarse en la lista de notificación o ver los anuncios existentes."
+msgstr ""
+"Resgistrarse en la lista de notificación o ver los anuncios existentes."
 
 #: src/mmframe.cpp:1587
 msgid "Visit us on Facebook"
@@ -3876,71 +3878,71 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/mmframe.cpp:1685 src/mmframe.cpp:1875 src/mmframe.cpp:1993
+#: src/mmframe.cpp:1685 src/mmframe.cpp:1888 src/mmframe.cpp:2006
 msgid "MMEX: Encrypted Database"
 msgstr "MMEX: Base de datos encriptada"
 
-#: src/mmframe.cpp:1717 src/mmframe.cpp:1759
+#: src/mmframe.cpp:1730 src/mmframe.cpp:1772
 msgid " - No File opened "
 msgstr " - Ningún fichero abierto"
 
-#: src/mmframe.cpp:1719
+#: src/mmframe.cpp:1732
 msgid ""
 "Sorry. The Database version is too old or Database password is incorrect"
 msgstr ""
 "Lo siento. La versión de la base de datos es demasiado antigua o la "
 "contraseña es incorrecta"
 
-#: src/mmframe.cpp:1750
+#: src/mmframe.cpp:1763
 #, fuzzy
 msgid "&Next ->"
 msgstr "&Siguiente ->"
 
-#: src/mmframe.cpp:1762
+#: src/mmframe.cpp:1775
 msgid "Cannot locate previously opened database.\n"
 msgstr "No se puede localizar la base de datos abierta previamente.\n"
 
-#: src/mmframe.cpp:1764
+#: src/mmframe.cpp:1777
 msgid "Password not entered for encrypted Database.\n"
 msgstr "No se ha introducido contraseña para la base de datos cifrada.\n"
 
-#: src/mmframe.cpp:1782
+#: src/mmframe.cpp:1795
 msgid "portable mode"
 msgstr "modo portable"
 
-#: src/mmframe.cpp:1825
+#: src/mmframe.cpp:1838
 msgid "Choose database file to create"
 msgstr "Seleccionar base de datos a crear"
 
-#: src/mmframe.cpp:1848
+#: src/mmframe.cpp:1861
 msgid "Choose database file to open"
 msgstr "Seleccionar base de datos para abrir"
 
-#: src/mmframe.cpp:1865
+#: src/mmframe.cpp:1878
 msgid "Choose Encrypted database file to open"
 msgstr "Seleccionar base de datos cifrada para abrir"
 
-#: src/mmframe.cpp:1875
+#: src/mmframe.cpp:1888
 msgid "Enter password for database"
 msgstr "Introducir contraseña de la base de datos"
 
-#: src/mmframe.cpp:1880
+#: src/mmframe.cpp:1893
 msgid "Choose database file to Save As"
 msgstr "Seleccionar fichero de base de datos para guardar como"
 
-#: src/mmframe.cpp:1902
+#: src/mmframe.cpp:1915
 msgid "Converted DB!"
 msgstr "¡Se ha convertido la base de datos!"
 
-#: src/mmframe.cpp:1902
+#: src/mmframe.cpp:1915
 msgid "MMEX message"
 msgstr "Mensaje de MMEX"
 
-#: src/mmframe.cpp:1908
+#: src/mmframe.cpp:1921
 msgid "MMEX: Encryption Password Change"
 msgstr "MMEX: Contraseña cambiada"
 
-#: src/mmframe.cpp:1909
+#: src/mmframe.cpp:1922
 #, fuzzy, c-format
 msgid ""
 "New password for database\n"
@@ -3951,98 +3953,99 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/mmframe.cpp:1914
+#: src/mmframe.cpp:1927
 msgid "New password must not be empty."
 msgstr "La nueva contraseña no puede estar vacía."
 
-#: src/mmframe.cpp:1918
+#: src/mmframe.cpp:1931
 #, fuzzy
 msgid "Please confirm new password"
 msgstr "Por favor, confirme la nueva contraseña"
 
-#: src/mmframe.cpp:1922
+#: src/mmframe.cpp:1935
 #, fuzzy
 msgid "Password change completed."
 msgstr "Contraseña cambiada correctamente."
 
-#: src/mmframe.cpp:1926
+#: src/mmframe.cpp:1939
 msgid "Confirm password failed."
 msgstr "Cambio de contraseña fallido."
 
-#: src/mmframe.cpp:1935
+#: src/mmframe.cpp:1948
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr "Asegúrese que tiene una copia de seguridad de la base de datos"
-" antes de optimizarla"
+msgstr ""
+"Asegúrese que tiene una copia de seguridad de la base de datos antes de "
+"optimizarla"
 
-#: src/mmframe.cpp:1935
+#: src/mmframe.cpp:1948
 #, fuzzy
 msgid "Do you want to proceed?"
 msgstr "¿Quiere continuar?"
 
-#: src/mmframe.cpp:1936 src/mmframe.cpp:1943
+#: src/mmframe.cpp:1949 src/mmframe.cpp:1956
 msgid "DB Optimization"
 msgstr "Optimización de la base de datos"
 
-#: src/mmframe.cpp:1942
+#: src/mmframe.cpp:1955
 #, fuzzy
 msgid "Database Optimization Completed!"
 msgstr "¡Optimización de la base de datos finalizada!"
 
-#: src/mmframe.cpp:1942
+#: src/mmframe.cpp:1955
 msgid "Size before"
 msgstr "Tamaño anterior"
 
-#: src/mmframe.cpp:1942
+#: src/mmframe.cpp:1955
 msgid "Size after"
 msgstr "Tamaño después"
 
-#: src/mmframe.cpp:1959 src/mmframe.cpp:1980
+#: src/mmframe.cpp:1972 src/mmframe.cpp:1993
 msgid "Save database file as"
 msgstr "Guardar base de datos como"
 
-#: src/mmframe.cpp:1980
+#: src/mmframe.cpp:1993
 msgid "Can't copy file to itself"
 msgstr "No se puede copiar el fichero a sí mismo"
 
-#: src/mmframe.cpp:1993
+#: src/mmframe.cpp:2006
 msgid "Enter password for new database"
 msgstr "Introducir contraseña para la nueva base de datos"
 
-#: src/mmframe.cpp:2066
+#: src/mmframe.cpp:2079
 msgid "No account available to import"
 msgstr "Ninguna cuenta disponible para importar"
 
-#: src/mmframe.cpp:2255
+#: src/mmframe.cpp:2268
 msgid "MMEX Options have been updated."
 msgstr "Las opciones de MMEX se han actualizado."
 
-#: src/mmframe.cpp:2256 src/optionsdialog.cpp:55
+#: src/mmframe.cpp:2269 src/optionsdialog.cpp:55
 #, fuzzy
 msgid "MMEX Options"
 msgstr "Opciones de MMEX"
 
-#: src/mmframe.cpp:2349
+#: src/mmframe.cpp:2362
 #, fuzzy
 msgid "Choose HTML file to Export"
 msgstr "Seleccionar el fichero HTML a exportar"
 
-#: src/mmframe.cpp:2493
+#: src/mmframe.cpp:2506
 msgid "No account available to edit!"
 msgstr "¡Ninguna cuenta disponible para editar!"
 
-#: src/mmframe.cpp:2497
+#: src/mmframe.cpp:2510
 msgid "Choose Account to Edit"
 msgstr "Seleccionar la cuenta a editar"
 
-#: src/mmframe.cpp:2516
+#: src/mmframe.cpp:2529
 msgid "No account available to delete!"
 msgstr "¡Ninguna cuenta disponible para borrar!"
 
-#: src/mmframe.cpp:2520
+#: src/mmframe.cpp:2533
 msgid "Choose Account to Delete"
 msgstr "Seleccionar la cuenta a borrar"
 
-#: src/mmframe.cpp:2525
+#: src/mmframe.cpp:2538
 #, fuzzy, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -4051,35 +4054,35 @@ msgstr ""
 "¿Está seguro que quiere borrar\n"
 " %s cuenta: %s ?"
 
-#: src/mmframe.cpp:2546
+#: src/mmframe.cpp:2559
 #, fuzzy
 msgid "No account available to reallocate!"
 msgstr "¡Ninguna cuenta disponible para reorganizar!"
 
-#: src/mmframe.cpp:2546 src/mmframe.cpp:2558 src/mmframe.cpp:2571
+#: src/mmframe.cpp:2559 src/mmframe.cpp:2571 src/mmframe.cpp:2584
 #, fuzzy
 msgid "Account Reallocation"
 msgstr "Reorganización de cuenta"
 
-#: src/mmframe.cpp:2558
+#: src/mmframe.cpp:2571
 #, fuzzy
 msgid "Choose account to reallocate account type"
 msgstr "Seleccionar la cuenta para recolocar el tipo de cuenta"
 
-#: src/mmframe.cpp:2571
+#: src/mmframe.cpp:2584
 #, fuzzy, c-format
 msgid "Choose the new type for account: %s"
 msgstr "Elija el nuevo tipo para la cuenta: %s"
 
-#: src/mmframe.cpp:2677 src/payeedialog.cpp:319
+#: src/mmframe.cpp:2690 src/payeedialog.cpp:319
 msgid "Payee Relocation Completed."
 msgstr "Reorganización de beneficiario finalizada."
 
-#: src/mmframe.cpp:2681 src/payeedialog.cpp:323
+#: src/mmframe.cpp:2694 src/payeedialog.cpp:323
 msgid "Payee Relocation Result"
 msgstr "Resultado de la reorganización de beneficiario"
 
-#: src/mmframe.cpp:2780
+#: src/mmframe.cpp:2793
 #, c-format
 msgid "File %s not found"
 msgstr "Archivo %s no encontrado"
@@ -4659,7 +4662,6 @@ msgid "Default Category"
 msgstr "Categoría por defecto"
 
 #: src/payeedialog.cpp:126
-#, fuzzy
 msgid "Search:"
 msgstr "Buscar:"
 
@@ -5143,7 +5145,8 @@ msgstr "Especifique la fecha de compra de acciones"
 
 #: src/stockdialog.cpp:191
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Introduzca el símbolo bursátil. (Opcional) Incluya la bolsa. ej: TEF.MC"
+msgstr ""
+"Introduzca el símbolo bursátil. (Opcional) Incluya la bolsa. ej: TEF.MC"
 
 #: src/stockdialog.cpp:194 src/stockspanel.cpp:89
 msgid "Number of Shares"
@@ -5263,7 +5266,9 @@ msgstr "Actualizar el histórico de acciones"
 
 #: src/stockdialog.cpp:660
 msgid "Specify how many stock history prices download from purchase date"
-msgstr "Especifique el número de precios históricos de las acciones desde la fecha de compra"
+msgstr ""
+"Especifique el número de precios históricos de las acciones desde la fecha "
+"de compra"
 
 #: src/stockdialog.cpp:661
 #, fuzzy, c-format
@@ -5288,15 +5293,16 @@ msgstr "¡No se ha encontrado el histórico de acciones!"
 
 #: src/stockspanel.cpp:38
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
-msgstr "Con MMEX es posible hacer un seguimiento de las acciones/fondos de inversión."
+msgstr ""
+"Con MMEX es posible hacer un seguimiento de las acciones/fondos de inversión."
 
 #: src/stockspanel.cpp:39
 msgid ""
 "To create new stocks entry the Symbol, Number of shares and Purchase prise "
 "should be entered."
 msgstr ""
-"Para crear una nueva acción debe introducir el símbolo, el número de acciones "
-"y el precio de compra"
+"Para crear una nueva acción debe introducir el símbolo, el número de "
+"acciones y el precio de compra"
 
 #: src/stockspanel.cpp:40
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
@@ -5304,7 +5310,9 @@ msgstr "Ejemplo de una cotización del IBEX: SAN.MC"
 
 #: src/stockspanel.cpp:41
 msgid "If the Stock Name field is empty it will be filed when prices updated"
-msgstr "Si el nombre de la acción está vacío se archivará cuando se actualice el precio"
+msgstr ""
+"Si el nombre de la acción está vacío se archivará cuando se actualice el "
+"precio"
 
 #: src/stockspanel.cpp:87
 msgid "Share Name"
@@ -5464,27 +5472,27 @@ msgstr ""
 msgid "Confirm to add new payee"
 msgstr "Confirme la inclusión del nuevo beneficiario"
 
-#: src/transdialog.cpp:992
+#: src/transdialog.cpp:1010
 #, fuzzy
 msgid "Specify account the money is taken from"
 msgstr "Especifique la cuenta de la que viene la transferencia"
 
-#: src/transdialog.cpp:993
+#: src/transdialog.cpp:1011
 #, fuzzy
 msgid "Specify account the money is moved to"
 msgstr "Especifique la cuenta a la que va la transferencia"
 
-#: src/transdialog.cpp:994
+#: src/transdialog.cpp:1012
 #, fuzzy
 msgid "Specify the transfer amount in the From Account."
 msgstr "Especifique la cantidad en la cuenta origen"
 
-#: src/transdialog.cpp:1002
+#: src/transdialog.cpp:1020
 #, fuzzy
 msgid "Specify account for the transaction"
 msgstr "Especifique el importe de esta transacción"
 
-#: src/transdialog.cpp:1004
+#: src/transdialog.cpp:1022
 #, fuzzy
 msgid "Specify to whom the transaction is going to"
 msgstr "Especifique a dónde va la transacción"
@@ -5840,7 +5848,8 @@ msgstr "Transacción no descargada:"
 
 #: src/webapp.cpp:541
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "por favor, corrija la carpeta de adjuntos o borre adjuntos de la WebApp"
+msgstr ""
+"por favor, corrija la carpeta de adjuntos o borre adjuntos de la WebApp"
 
 #: src/webapp.cpp:542
 msgid "Attachment folder error"
@@ -6107,8 +6116,8 @@ msgstr "Ventana de CSV Universal"
 #: src/mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
 msgstr ""
-"Recomendación: Hacer una copia de seguridad de la base de datos .mmb "
-"con regularidad."
+"Recomendación: Hacer una copia de seguridad de la base de datos .mmb con "
+"regularidad."
 
 #: src/mmTips.h:23
 msgid ""
@@ -6263,21 +6272,25 @@ msgid ""
 "Please type in an exiting payee name,\n"
 "or make a selection using the dropdown button."
 msgstr ""
+"Por favor, introduzca un nombre de beneficiario \n"
+"existente o selecciónelo usando el botón de desplazamiento."
 
 #: src/mmtextctrl.h:89
 #, fuzzy
 msgid "Invalid Amount."
-msgstr "El importe introducido no es válido"
+msgstr "El importe introducido no es válido."
 
 #: src/mmtextctrl.h:90
 msgid "Please enter a positive or calculated value."
-msgstr ""
+msgstr "Por favor, introduzca un valor positivo o calculado."
 
 #: src/mmtextctrl.h:92
 msgid ""
 "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
 msgstr ""
+"Consejo: Para cálculos, introduzca expresiones como (2+2)*(2+2)\n"
+"Se evaluarán los cálculos y el resultado se empleará como entrada."
 
 #: src/reports/payee.h:31
 msgid "Payee Report"
@@ -6289,7 +6302,7 @@ msgstr "Informe de beneficiarios"
 #: src/reports/payee.h:130
 #, fuzzy, c-format
 msgid "Payee Report - %s"
-msgstr "Informe de beneficiarios"
+msgstr "Informe de beneficiarios - %s"
 
 #~ msgid "Calendar"
 #~ msgstr "Calendario"
@@ -6305,15 +6318,15 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Your current version is: %s"
-#~ msgstr "Versión: "
+#~ msgstr "La versión es: %s"
 
 #, fuzzy
 #~ msgid "New version is: %s"
-#~ msgstr "Versión: "
+#~ msgstr "La nueva versión es: %s"
 
 #, fuzzy
 #~ msgid "Would you like to download it now ?"
-#~ msgstr "¿Desea buscar otro fichero?"
+#~ msgstr "¿Desea descargarla ahora?"
 
 #~ msgid "Total: "
 #~ msgstr "Total: "
@@ -6325,7 +6338,7 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "Seleccionar cuenta de abono"
 
 #~ msgid "Specify where the transaction is going to or coming from "
-#~ msgstr "Especifique a donde va o de donde viene la transacción"
+#~ msgstr "Especifique a dónde va o de dónde viene la transacción "
 
 #~ msgid "Specify which account the transfer is comming from"
 #~ msgstr "Especifique la cuenta de la que viene la transferencia"
@@ -6349,45 +6362,43 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Report with same name exists"
-#~ msgstr "Existe una categoría con el mismo nombre"
+#~ msgstr "Existe un informe con el mismo nombre"
 
 #~ msgid "Invalid Value "
 #~ msgstr "Valor no válido"
 
 #, fuzzy
 #~ msgid "database file"
-#~ msgstr "Guardar base de datos como"
+#~ msgstr "archivo de base de datos"
 
 #, fuzzy
 #~ msgid "New transactions found on web app"
-#~ msgstr "Viendo las transacciones de hoy"
+#~ msgstr "Encontradas nuevas transacciones en la WebApp"
 
 #, fuzzy
 #~ msgid "Download WebApp new transaction"
-#~ msgstr "Transacciones de seguimiento: "
+#~ msgstr "Descarga las nuevas transacciones de la WebApp"
 
 #~ msgid "&Bank Accounts"
 #~ msgstr "Cuentas &bancarias"
 
 #, fuzzy
 #~ msgid "Expand Bank Accounts on navigation tree"
-#~ msgstr ""
-#~ "Expandir cuentas bancarias en la página de inicio cuando se refresque"
+#~ msgstr "Expandir cuentas bancarias en el árbol de navegación"
 
 #~ msgid "Term &Accounts"
 #~ msgstr "Cuentas a pl&azo"
 
 #, fuzzy
 #~ msgid "Expand Term Accounts on navigation tree"
-#~ msgstr "Expandir cuentas a plazo en la página de inicio cuando se refresque"
+#~ msgstr "Expandir cuentas a plazo en el árbol de navegación"
 
 #~ msgid "&Stock Accounts"
-#~ msgstr "Cuentas de inversión"
+#~ msgstr "Cuentas de &inversión"
 
 #, fuzzy
 #~ msgid "Expand Stock Accounts on navigation tree"
-#~ msgstr ""
-#~ "Expandir cuentas de inversión en la página de inicio cuando se refresque"
+#~ msgstr "Expandir cuentas de inversión en el árbol de navegación"
 
 #~ msgid "Enter database's password"
 #~ msgstr "Introducir contraseña de la base de datos"
@@ -6429,10 +6440,10 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Error code:"
-#~ msgstr "Error"
+#~ msgstr "Error:"
 
 #~ msgid "&Open"
-#~ msgstr "Abrir"
+#~ msgstr "&Abrir"
 
 #~ msgid "Load Template"
 #~ msgstr "Cargar plantilla"
@@ -6451,7 +6462,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Line: %i"
-#~ msgstr "Línea: "
+#~ msgstr "Línea: %i"
 
 #~ msgid "Financial Year: "
 #~ msgstr "Año fiscal: "
@@ -6464,7 +6475,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Subcategories"
-#~ msgstr "Subcategoría"
+#~ msgstr "Subcategorías"
 
 #~ msgid "Legend:"
 #~ msgstr "Leyenda:"
@@ -6475,7 +6486,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Database::open: %s"
-#~ msgstr "Base de datos::abrir: Excepción"
+#~ msgstr "Base de datos::abrir: %s"
 
 #~ msgid "Term Account views have been temporarly turned on."
 #~ msgstr "La vista de cuentas a plazo se ha activado temporalmente."
@@ -6542,7 +6553,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "New update available: "
-#~ msgstr "¡Nueva actualización disponible!"
+#~ msgstr "Nueva actualización disponible: "
 
 #, fuzzy
 #~ msgid "Term account"
@@ -6550,7 +6561,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
-#~ msgstr "Especifique el color del árbol de navegación"
+#~ msgstr "Especifique la carpeta a usar para los archivos adjuntos"
 
 #~ msgid "Empty"
 #~ msgstr "Vacío"
@@ -6563,19 +6574,19 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Line: %i invalid amount, skipping."
-#~ msgstr " cantidad inválida, omitiendo."
+#~ msgstr "Línea: %i cantidad inválida, omitiendo."
 
 #, fuzzy
 #~ msgid "Added category: %s"
-#~ msgstr "Categoría"
+#~ msgstr "Categoría añadida: %s"
 
 #, fuzzy
 #~ msgid "Added subcategory: %s"
-#~ msgstr "Añadir una nueva categoría"
+#~ msgstr "Subcategoría añadida: %s"
 
 #, fuzzy
 #~ msgid "Date is missing"
-#~ msgstr "La fecha está vacía, "
+#~ msgstr "La fecha está vacía"
 
 #, fuzzy
 #~ msgid "Amount is missing"
@@ -6583,11 +6594,11 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Line %i"
-#~ msgstr "Línea: "
+#~ msgstr "Línea: %i"
 
 #, fuzzy
 #~ msgid "There are no accounts available for import to"
-#~ msgstr "Ninguna cuenta disponible para importar"
+#~ msgstr "Ninguna cuenta disponible a la que importar"
 
 #, fuzzy
 #~ msgid "Choose Account to Import to"
@@ -6595,23 +6606,23 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Total number of lines: %i"
-#~ msgstr "Líneas totales : %d"
+#~ msgstr "Líneas totales: %i"
 
 #, fuzzy
 #~ msgid "Do you want to scan all transaction ?"
-#~ msgstr "¿Realmente quiere borrar todas las transacciones mostradas?"
+#~ msgstr "¿Quiere escanear todas las transacciones?"
 
 #, fuzzy
 #~ msgid "Unable to delete file:"
-#~ msgstr "No es posible abrir el fichero."
+#~ msgstr "No es posible borrar el fichero:"
 
 #, fuzzy
 #~ msgid "Unable to copy file:"
-#~ msgstr "No es posible abrir el fichero."
+#~ msgstr "No es posible copiar el fichero:"
 
 #, fuzzy
 #~ msgid "Unable to move file:"
-#~ msgstr "No es posible abrir el fichero."
+#~ msgstr "No es posible mover el fichero:"
 
 #~ msgid "Colour Settings"
 #~ msgstr "Opciones de color"
@@ -6672,7 +6683,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Translators"
-#~ msgstr "Lista de transacciones "
+#~ msgstr "Traductores"
 
 #~ msgid "Repeat Transaction - Auto Execution Checking"
 #~ msgstr "Transacción periódica - Comprobación de auto ejecución"
@@ -6697,7 +6708,7 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "Se está generando el presupuesto... Por favor, espere."
 
 #~ msgid "Page Set&up..."
-#~ msgstr "Configurar página..."
+#~ msgstr "&Configurar página..."
 
 #~ msgid "Setup page printing options"
 #~ msgstr "Configurar las opciones de impresión"
@@ -6709,7 +6720,7 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "Previsualizar el informe actual"
 
 #~ msgid "Print Pre&view..."
-#~ msgstr "Vista preliminar..."
+#~ msgstr "&Vista preliminar..."
 
 #~ msgid "Import/Export Settings"
 #~ msgstr "Preferencias de importar/exportar"
@@ -6719,35 +6730,35 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "Especifique la cuenta de la que viene la transferencia"
 
 #~ msgid "Summary of Assets"
-#~ msgstr "Resumen de activos"
+#~ msgstr "Resumen de Bienes"
 
 #, fuzzy
 #~ msgid "Account:"
-#~ msgstr "Cuenta: "
+#~ msgstr "Cuenta:"
 
 #, fuzzy
 #~ msgid "Date Range:"
-#~ msgstr "Rango de fechas: "
+#~ msgstr "Rango de fechas:"
 
 #, fuzzy
 #~ msgid "Payee:"
-#~ msgstr "Beneficiario: "
+#~ msgstr "Beneficiario:"
 
 #, fuzzy
 #~ msgid "Category:"
-#~ msgstr "Categoría: "
+#~ msgstr "Categoría:"
 
 #, fuzzy
 #~ msgid "Subcategory:"
-#~ msgstr "Subcategoría"
+#~ msgstr "Subcategoría:"
 
 #, fuzzy
 #~ msgid "Status:"
-#~ msgstr "Estado: "
+#~ msgstr "Estado:"
 
 #, fuzzy
 #~ msgid "Amount Range:"
-#~ msgstr "Rango de cantidades: "
+#~ msgstr "Rango de cantidades:"
 
 #~ msgid "Notes:"
 #~ msgstr "Notas:"
@@ -6763,7 +6774,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "View Void"
-#~ msgstr "Ver hoy"
+#~ msgstr "Ver nulas"
 
 #, fuzzy
 #~ msgid "View Flagged"
@@ -6771,19 +6782,19 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "View Duplicates"
-#~ msgstr "Duplicada"
+#~ msgstr "Ver Duplicadas"
 
 #, fuzzy
 #~ msgid ""
 #~ "Organize Payees Dialog Tip: Using the * key as a wildcard when using the "
 #~ "filter. Example: *c shows Chemist and Doctor, *c*m shows Chemist only."
 #~ msgstr ""
-#~ "Consejo de la ventana para organizar beneficiarios: Utilice la tecla % "
-#~ "como comodín. Por ejemplo: %c mostraría Farmaceútico y Médico, %d%c "
+#~ "Consejo de la ventana para organizar beneficiarios: Utilice la tecla * "
+#~ "como comodín. Por ejemplo: *c mostraría Farmaceútico y Médico, *d*c "
 #~ "mostraría sólo Médico."
 
 #~ msgid "New/Edit Stock Investment"
-#~ msgstr "Nuevo/Editar Inversión en acciones"
+#~ msgstr "Nuevo/Editar compra de acciones"
 
 #~ msgid ""
 #~ "To import QIF files correctly, the date format in the QIF file must match "
@@ -6800,19 +6811,19 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Category is missing"
-#~ msgstr "Categoría  "
+#~ msgstr "Falta la Categoría"
 
 #, fuzzy
 #~ msgid "Payee missing"
-#~ msgstr "Beneficiario"
+#~ msgstr "Falta el Beneficiario"
 
 #, fuzzy
 #~ msgid "Payee Added: %s"
-#~ msgstr "Beneficiario añadido: "
+#~ msgstr "Beneficiario añadido: %s"
 
 #, fuzzy
 #~ msgid "Account name: %s"
-#~ msgstr "Nombre de la cuenta"
+#~ msgstr "Nombre de la cuenta: %s"
 
 #~ msgid "Line : "
 #~ msgstr "Línea : "
@@ -6821,7 +6832,7 @@ msgstr "Informe de beneficiarios"
 #~ msgstr " Página de inicio"
 
 #~ msgid "&OK"
-#~ msgstr "Aceptar"
+#~ msgstr "&OK"
 
 #~ msgid "Update Failed"
 #~ msgstr "Actualización fallida"
@@ -6848,7 +6859,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Custom script:"
-#~ msgstr "Informe SQL personalizado: "
+#~ msgstr "Informe SQL personalizado:"
 
 #, fuzzy
 #~ msgid "Save the script to file name set by the Report Title."
@@ -6860,9 +6871,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Test script. Save before running."
-#~ msgstr ""
-#~ "Probar script. Guardar antes de ejecutar. Los errores SQL darán lugar a "
-#~ "la pérdida del script."
+#~ msgstr "Probar script. Guardar antes de ejecutar."
 
 #~ msgid "Save changes before closing. Changes without Save will be lost."
 #~ msgstr ""
@@ -6873,7 +6882,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Load Custom Lua file:"
-#~ msgstr "Cargar fichero SQL personalizado:"
+#~ msgstr "Cargar fichero Lua personalizado:"
 
 #~ msgid "Please supply the Report Title before saving"
 #~ msgstr "Por favor, proporcione el título del informe antes de guardar"
@@ -6885,16 +6894,17 @@ msgstr "Informe de beneficiarios"
 #~ "Cancel: Add at bottom of List."
 #~ msgstr ""
 #~ " posición de la entrada:\n"
+#~ "\n"
 #~ "OK....: Insertar antes de la entrada seleccionada\n"
 #~ "Cancelar: Añadir al final de la lista."
 
 #, fuzzy
 #~ msgid "New Lua Custom Report"
-#~ msgstr "Borrar informe personalizado"
+#~ msgstr "Nuevo informe Lua personalizado"
 
 #, fuzzy
 #~ msgid "Do you want to delete the Lua file as well?"
-#~ msgstr "¿Desea eliminar también el fichero SQL?"
+#~ msgstr "¿Desea eliminar también el fichero Lua?"
 
 #~ msgid "SQL Query will modify your Data. Proceed??"
 #~ msgstr "La sentencia SQL modificará sus datos. ¿Continuar?"
@@ -6904,7 +6914,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Select the Custom Report %s"
-#~ msgstr "Seleccionar el informe SQL personalizado"
+#~ msgstr "Seleccionar el informe SQL personalizado %s"
 
 #~ msgid "Cannot locate file: "
 #~ msgstr "No se encuentra el fichero: "
@@ -6914,14 +6924,14 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Error: %s\n"
-#~ msgstr "Error: %s"
+#~ msgstr "Error: %s\n"
 
 #~ msgid "Currency List"
-#~ msgstr "Lista de divisas"
+#~ msgstr "Lista de monedas"
 
 #, fuzzy
 #~ msgid "From %s to %s"
-#~ msgstr "%s en %s"
+#~ msgstr "De %s a %s"
 
 #, fuzzy
 #~ msgid "View All transactions"
@@ -6942,7 +6952,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Create or modify reports for the Reports section"
-#~ msgstr "Crear o modificar los informes SQL para la sección de informes"
+#~ msgstr "Crear o modificar los informes para la sección de informes"
 
 #, fuzzy
 #~ msgid "Create new Custom Reports"
@@ -6955,11 +6965,11 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "Configurar nuevo fichero de base de datos"
 
 #~ msgid "Please wait while the new database is being loaded."
-#~ msgstr "Por favor, espero mientras la nueva base de datos está cargando."
+#~ msgstr "Por favor, espere mientras la nueva base de datos se carga."
 
 #, fuzzy
 #~ msgid "Week#%d"
-#~ msgstr "Semanalmente"
+#~ msgstr "Semana#%d"
 
 #, fuzzy
 #~ msgid "Enable online currency update"
@@ -6968,31 +6978,31 @@ msgstr "Informe de beneficiarios"
 #, fuzzy
 #~ msgid "Enable or disable get data from Yahoo.com to update currency rate"
 #~ msgstr ""
-#~ "Habilita o deshabilita la obtención de datos del Banco Central Europeo "
-#~ "para actualizar el tipo de cambio de divisas."
+#~ "Habilita o deshabilita la obtención de datos de Yahoo.com para actualizar "
+#~ "el tipo de cambio"
 
 #, fuzzy
 #~ msgid "Change all transactions using one Payee to another Payee"
 #~ msgstr ""
-#~ "Consejo: Cambie todas las transacciones que utilicen este beneficiario\n"
-#~ "a otro beneficiario mediante la reorganicación:"
+#~ "Cambie todas las transacciones que utilicen este beneficiario\n"
+#~ "a otro beneficiario"
 
 #, fuzzy
 #~ msgid "Filter"
-#~ msgstr "&Archivo"
+#~ msgstr "Filtro"
 
 #, fuzzy
 #~ msgid "Tools"
-#~ msgstr "&Herramientas"
+#~ msgstr "Herramientas"
 
 #, fuzzy
 #~ msgid ""
 #~ "Enter a search string.  You can use * as a wildcard to match zero or more "
 #~ "characters or ? to match a single character."
 #~ msgstr ""
-#~ "Introducir cadena de búsqueda. Se puede utilizar como comodín para "
-#~ "sustituir varios carácteres o ninguno el % además de _ para sustituir un "
-#~ "único carácter."
+#~ "Introducir cadena de búsqueda. Se puede utilizar * como comodín para "
+#~ "sustituir varios carácteres o ninguno además de ? para sustituir un único "
+#~ "carácter."
 
 #~ msgid "Add a new payee name"
 #~ msgstr "Añada el nombre de un nuevo beneficiario"
@@ -7011,8 +7021,8 @@ msgstr "Informe de beneficiarios"
 #~ "Select the currently selected payee as the selected payee for the "
 #~ "transaction"
 #~ msgstr ""
-#~ "Seleccionar el beneficiario actualmente seleccionado como el beneficiario "
-#~ "seleccionado para la transacción"
+#~ "Elija el beneficiario actualmente seleccionado como el beneficiario para "
+#~ "la transacción"
 
 #~ msgid "Edit Payee Name"
 #~ msgstr "Editar nombre del beneficiario"
@@ -7028,24 +7038,24 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Account missing"
-#~ msgstr "Listado de cuentas"
+#~ msgstr "Cuentas faltantes"
 
 #, fuzzy
 #~ msgid "Transactions imported from QIF: %ld"
-#~ msgstr "Transacciones importadas del QIF: "
+#~ msgstr "Transacciones importadas del QIF: %ld"
 
 #~ msgid ""
 #~ "<b>Note:</b> Transactions contain <b>'transfers'</b> may either be added "
 #~ "or subtracted to the <b>'Total Amount'</b> depending on last selected "
 #~ "account."
 #~ msgstr ""
-#~ "<b>Nota:</b> Las transacciones que contienen <b>'transferencias'</B> se "
+#~ "<b>Nota:</b> Las transacciones que contienen <b>'transferencias'</b> se "
 #~ "pueden sumar o restar a la <b>'Cantidad total'</b> dependiendo de la "
 #~ "última cuenta seleccionada."
 
 #, fuzzy
 #~ msgid "Transaction Statistics for %i - %i"
-#~ msgstr "Estadísticas de transacciones para "
+#~ msgstr "Estadísticas de transacciones para %i - %i"
 
 #~ msgid "View File Contents"
 #~ msgstr "Ver el contenido del fichero"
@@ -7064,13 +7074,13 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "Informe SQL personalizado: "
 
 #~ msgid "Name of Currency to Add"
-#~ msgstr "Nombre de la divisa a añadir"
+#~ msgstr "Nombre de la moneda a añadir"
 
 #~ msgid "Add Currency"
-#~ msgstr "Añadir divisa"
+#~ msgstr "Añadir moneda"
 
 #~ msgid "Attempt to Add a currency which already exists!"
-#~ msgstr "¡Se ha intentado añadir una divisa que ya existe!"
+#~ msgstr "¡Se ha intentado añadir una moneda que ya existe!"
 
 #, fuzzy
 #~ msgid "View Un-Reconciled"
@@ -7078,11 +7088,11 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Transaction Filter will interfere with this filtering."
-#~ msgstr " interferirá con este filtrado."
+#~ msgstr "El filtro de transacciones interferirá con este filtrado."
 
 #, fuzzy
 #~ msgid "Please deactivate Transaction Filter"
-#~ msgstr "Filtro de transacciones"
+#~ msgstr "Por favor, desactive el filtro de transacciones"
 
 #~ msgid "Where the Money Goes - Last Calendar Month"
 #~ msgstr "Dónde va el dinero - Mes anterior"
@@ -7127,7 +7137,7 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "De dónde viene el dinero - Año fiscal anterior"
 
 #~ msgid "Where the Money Comes From - Current Financial Year"
-#~ msgstr "Categorías - Año fiscal actual - Año fiscal actual"
+#~ msgstr "De dónde viene el dinero - Año fiscal actual"
 
 #~ msgid "Categories - Last Calendar Month"
 #~ msgstr "Categorías - Mes anterior"
@@ -7177,19 +7187,19 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Income vs Expenses - Last Year"
-#~ msgstr "Ingresos vs Gastos - Últimos 30 días"
+#~ msgstr "Ingresos vs Gastos - Último año"
 
 #, fuzzy
 #~ msgid "Income vs Expenses - Current Year"
-#~ msgstr "Ingresos vs Gastos - Mes actual"
+#~ msgstr "Ingresos vs Gastos - Año actual"
 
 #, fuzzy
 #~ msgid "Income vs Expenses - Last Financial Year"
-#~ msgstr "Ingresos vs Gastos para el año fiscal: "
+#~ msgstr "Ingresos vs Gastos - Último año fiscal"
 
 #, fuzzy
 #~ msgid "Income vs Expenses - Current Financial Year"
-#~ msgstr "Ingresos vs Gastos para el año fiscal: "
+#~ msgstr "Ingresos vs Gastos - Año fiscal actual"
 
 #~ msgid "Income vs Expenses - All Time"
 #~ msgstr "Ingresos vs Gastos - Todo el tiempo"
@@ -7213,7 +7223,7 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "Ingresos vs Gastos - Mes actual a fecha"
 
 #~ msgid "Visit MMEX Forum or &Report New Issues."
-#~ msgstr "Visitar el foro de MMEX o informar de problemas."
+#~ msgstr "Visitar el foro de MMEX o &informar de problemas."
 
 #~ msgid "Payee not found in database for Account: "
 #~ msgstr "Beneficiario no encontrado en la base de datos para la cuenta: "
@@ -7246,18 +7256,18 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Income vs Expenses for Year: %d"
-#~ msgstr "Ingresos vs Gastos para el año: "
+#~ msgstr "Ingresos vs Gastos para el año: %d"
 
 #, fuzzy
 #~ msgid "Income vs Expenses - Last 12 months"
-#~ msgstr "Ingresos vs Gastos - Mes anterior"
+#~ msgstr "Ingresos vs Gastos - Últimos 12 meses"
 
 #~ msgid "Payees Total: "
 #~ msgstr "Total beneficiarios: "
 
 #, fuzzy
 #~ msgid "View Last 365 days"
-#~ msgstr "Ver últimos 30 días"
+#~ msgstr "Ver últimos 365 días"
 
 #~ msgid "MMEX Account View: Transaction Filter"
 #~ msgstr "MMEX Vista de cuenta: Filtro de transacciones"
@@ -7273,7 +7283,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Deletion completed"
-#~ msgstr "Reorganización de beneficiario finalizada."
+#~ msgstr "Borrado completado"
 
 #~ msgid "to "
 #~ msgstr "a "
@@ -7291,11 +7301,11 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "Importar fichero &QIF"
 
 #~ msgid "Init Balance "
-#~ msgstr "Saldo inicial"
+#~ msgstr "Saldo inicial "
 
 #, fuzzy
 #~ msgid "Select accounts"
-#~ msgstr "Seleccionar cuenta"
+#~ msgstr "Seleccionar cuentas"
 
 #~ msgid "QIF Files "
 #~ msgstr "Ficheros QIF "
@@ -7314,30 +7324,30 @@ msgstr "Informe de beneficiarios"
 
 #~ msgid "Category is empty, marking transaction as Unknown category"
 #~ msgstr ""
-#~ "El campo categoría está vacío, marcando la transacción como categoría "
+#~ "La categoría está vacía, marcando la transacción como categoría "
 #~ "desconocida"
 
 #~ msgid ""
 #~ "Skipping QIF transaction because date, type, amount is empty/invalid, "
 #~ "transaction skipped had "
 #~ msgstr ""
-#~ "Omitiendo transacción QIF porque la fecha, el tipo o la cantidado esta "
-#~ "vacía o es inválida, transacción omitida "
+#~ "Omitiendo transacción QIF porque la fecha, el tipo o la cantidad están "
+#~ "vacíos o no son válidos, transacción omitida "
 
 #~ msgid " payee "
-#~ msgstr " beneficiario"
+#~ msgstr " beneficiario "
 
 #~ msgid " type "
-#~ msgstr " tipo"
+#~ msgstr " tipo "
 
 #~ msgid " amount "
-#~ msgstr " cantidad"
+#~ msgstr " cantidad "
 
 #~ msgid " date "
-#~ msgstr " fecha"
+#~ msgstr " fecha "
 
 #~ msgid "Total Imported : "
-#~ msgstr "Total importadas : "
+#~ msgstr "Total importado : "
 
 #~ msgid "Log file written to : "
 #~ msgstr "Fichero de registro escrito en : "
@@ -7349,7 +7359,7 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "a: "
 
 #~ msgid "Stock Investments"
-#~ msgstr "Inversiones en acciones"
+#~ msgstr "Compra de acciones"
 
 #~ msgid "Entry "
 #~ msgstr "Entrada "
@@ -7374,7 +7384,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Select To Account-"
-#~ msgstr "Seleccionar cuenta de abono"
+#~ msgstr "Seleccionar cuenta de abono-"
 
 #~ msgid "for Account: "
 #~ msgstr "para cuenta: "
@@ -7395,7 +7405,7 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "Beneficiario destino"
 
 #~ msgid "to payee: "
-#~ msgstr "a beneficiario: "
+#~ msgstr "al beneficiario: "
 
 #~ msgid "New..."
 #~ msgstr "Nuevo..."
@@ -7520,7 +7530,7 @@ msgstr "Informe de beneficiarios"
 #~ "(Obtiene los datos del Banco Central Europeo)"
 
 #~ msgid "Date  "
-#~ msgstr "Fecha"
+#~ msgstr "Fecha "
 
 #~ msgid "Accessing Database"
 #~ msgstr "Accediendo a la base de datos"
@@ -7654,7 +7664,7 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "minutos mientras el mercado esté abierto"
 
 #~ msgid "Please confirm deletion of a selected Currency"
-#~ msgstr "Por favor, confirme el borrado de la divida seleccionada"
+#~ msgstr "Por favor, confirme el borrado de la moneda seleccionada"
 
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
@@ -7740,12 +7750,6 @@ msgstr "Informe de beneficiarios"
 #~ msgid "Viewing All Transactions"
 #~ msgstr "Viendo todas las transacciones"
 
-#, fuzzy
-#~ msgid ""
-#~ "Account Bal: %s      Reconciled Bal: %s      Diff: %s      Displayed Bal: "
-#~ "%s"
-#~ msgstr "Saldo de la cuenta : %s    Saldo reconciliado : %s"
-
 #~ msgid "1000"
 #~ msgstr "1000"
 
@@ -7757,7 +7761,7 @@ msgstr "Informe de beneficiarios"
 
 #, fuzzy
 #~ msgid "Diference: "
-#~ msgstr "Diferencia:"
+#~ msgstr "Diferencia: "
 
 #~ msgid "&Universal CSV Files"
 #~ msgstr "Ficheros &Universal CSV"
@@ -7814,7 +7818,7 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "Gastos estimados: %s Gastos reales: %s"
 
 #~ msgid "&Delete Budget Year"
-#~ msgstr "Borrar presupuesto anual"
+#~ msgstr "&Borrar presupuesto anual"
 
 #~ msgid "Enter the year in YYYY format to specify year"
 #~ msgstr "Introduzca el año en formato YYYY"
@@ -7823,7 +7827,7 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "Año no válido"
 
 #~ msgid "&Load"
-#~ msgstr "Cargar"
+#~ msgstr "&Cargar"
 
 #~ msgid ""
 #~ "Save Heading details to the Index File, and SQL script file as required."
@@ -7940,7 +7944,7 @@ msgstr "Informe de beneficiarios"
 #~ msgstr "Seleccionar fichero de datos MM.NET CSV para importar"
 
 #~ msgid "Importing CSV MM.NET"
-#~ msgstr "Importar CSV MM.NET"
+#~ msgstr "Importando CSV MM.NET"
 
 #~ msgid "No account available for export!"
 #~ msgstr "¡Ninguna cuenta disponible para exportar!"
