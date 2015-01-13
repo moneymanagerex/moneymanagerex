@@ -68,17 +68,17 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     delimit_(","),
     importSuccessful_(false)
 {
-    CSVFieldName_[UNIV_CSV_DATE] = _("Date");
-    CSVFieldName_[UNIV_CSV_PAYEE] = _("Payee");
-    CSVFieldName_[UNIV_CSV_AMOUNT] = _("Amount(+/-)");
-    CSVFieldName_[UNIV_CSV_CATEGORY] = _("Category");
-    CSVFieldName_[UNIV_CSV_SUBCATEGORY] = _("SubCategory");
-    CSVFieldName_[UNIV_CSV_TRANSNUM] = _("Number");
-    CSVFieldName_[UNIV_CSV_NOTES] = _("Notes");
-    CSVFieldName_[UNIV_CSV_DONTCARE] = _("Don't Care");
-    CSVFieldName_[UNIV_CSV_WITHDRAWAL] = _("Withdrawal");
-    CSVFieldName_[UNIV_CSV_DEPOSIT] = _("Deposit");
-    CSVFieldName_[UNIV_CSV_BALANCE] = _("Balance");
+    CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
+    CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");
+    CSVFieldName_[UNIV_CSV_AMOUNT] = wxTRANSLATE("Amount(+/-)");
+    CSVFieldName_[UNIV_CSV_CATEGORY] = wxTRANSLATE("Category");
+    CSVFieldName_[UNIV_CSV_SUBCATEGORY] = wxTRANSLATE("SubCategory");
+    CSVFieldName_[UNIV_CSV_TRANSNUM] = wxTRANSLATE("Number");
+    CSVFieldName_[UNIV_CSV_NOTES] = wxTRANSLATE("Notes");
+    CSVFieldName_[UNIV_CSV_DONTCARE] = wxTRANSLATE("Don't Care");
+    CSVFieldName_[UNIV_CSV_WITHDRAWAL] = wxTRANSLATE("Withdrawal");
+    CSVFieldName_[UNIV_CSV_DEPOSIT] = wxTRANSLATE("Deposit");
+    CSVFieldName_[UNIV_CSV_BALANCE] = wxTRANSLATE("Balance");
 
     Create(parent, id, caption, pos, size, style);
     this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmUnivCSVDialog::changeFocus), nullptr, this);
@@ -182,11 +182,11 @@ void mmUnivCSVDialog::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer3, 1, wxGROW | wxALL, 5);
 
     //CSV fields candicate
-    csvFieldCandicate_ = new wxListBox(this, ID_LISTBOX_CANDICATE,
-        wxDefaultPosition, wxDefaultSize, 0, nullptr, wxLB_SINGLE|wxLB_NEEDED_SB);
+    csvFieldCandicate_ = new wxListBox(this, ID_LISTBOX_CANDICATE
+        , wxDefaultPosition, wxDefaultSize, 0, nullptr, wxLB_SINGLE | wxLB_NEEDED_SB);
     itemBoxSizer3->Add(csvFieldCandicate_, 1, wxGROW | wxALL, 1);
     for (const auto& it : CSVFieldName_)
-        csvFieldCandicate_->Append(it.second, new mmListBoxItem(it.first, it.second));
+        csvFieldCandicate_->Append(wxGetTranslation(it.second), new mmListBoxItem(it.first, it.second));
 
      //Add Remove Area
     wxPanel* itemPanel_AddRemove = new wxPanel(this, ID_PANEL10,
@@ -402,7 +402,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
     initDelimiter();
     //CSV fields
     csvFieldOrder_.clear();
-    for (int i = 0; i < UNIV_CSV_LAST; i++)
+    for (int i = 0; i < 99; i++)
     {
         const std::wstring w = to_wstring(i);
         const wxString& value = wxString(json::String(o[w]));
@@ -411,16 +411,18 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
             std::map<int, wxString>::const_iterator it;
             int key = -1;
 
-            for (it = CSVFieldName_.begin(); it != CSVFieldName_.end(); ++it)
+            for (const auto& entry : CSVFieldName_)
             {
-                if (it->second == value)
+                if (entry.second == value || wxGetTranslation(entry.second) == value)
                 {
-                    key = it->first;
+                    key = entry.first;
                     break;
                 }
             }
             if (key > -1) csvFieldOrder_.push_back(key);
         }
+        else
+            break;
     }
     OnLoad();
     this->update_preview();
@@ -434,7 +436,7 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& /*event*/)
     {
         mmListBoxItem* item = static_cast<mmListBoxItem*> (csvFieldCandicate_->GetClientObject(index));
 
-        csvListBox_->Append(item->getName(), new mmListBoxItem(item->getIndex(), item->getName()));
+        csvListBox_->Append(wxGetTranslation(item->getName()), new mmListBoxItem(item->getIndex(), item->getName()));
         csvFieldOrder_.push_back(item->getIndex());
 
         if (item->getIndex() != UNIV_CSV_DONTCARE)
@@ -469,7 +471,7 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& /*event*/)
                 if (item_index < item->getIndex())
                     break;
             }
-            csvFieldCandicate_->Insert(item_name, pos, new mmListBoxItem(item_index, item_name));
+            csvFieldCandicate_->Insert(wxGetTranslation(item_name), pos, new mmListBoxItem(item_index, item_name));
         }
 
         csvListBox_->Delete(index);
@@ -488,7 +490,7 @@ const wxString mmUnivCSVDialog::getCSVFieldName(int index) const
 {
     std::map<int, wxString>::const_iterator it = CSVFieldName_.find(index);
     if (it != CSVFieldName_.end())
-        return it->second;
+        return wxGetTranslation(it->second);
 
     return _("Unknown");
 }
@@ -500,15 +502,15 @@ void mmUnivCSVDialog::OnLoad()
     for (const auto& entry : csvFieldOrder_)
     {
         const wxString& item_name = CSVFieldName_[entry];
-        csvListBox_->Append(item_name, new mmListBoxItem(num++, item_name));
+        csvListBox_->Append(wxGetTranslation(item_name), new mmListBoxItem(num++, item_name));
     }
     // update csvFieldCandicate_
     csvFieldCandicate_->Clear();
-    for (std::map<int, wxString>::const_iterator it = CSVFieldName_.begin(); it != CSVFieldName_.end(); ++it)
+    for (const auto& entry : CSVFieldName_)
     {
-        std::vector<int>::const_iterator loc = find(csvFieldOrder_.begin(), csvFieldOrder_.end(), it->first);
-        if (loc == csvFieldOrder_.end() || it->first == UNIV_CSV_DONTCARE)
-            csvFieldCandicate_->Append(it->second, new mmListBoxItem(it->first, it->second));
+        std::vector<int>::const_iterator loc = find(csvFieldOrder_.begin(), csvFieldOrder_.end(), entry.first);
+        if (loc == csvFieldOrder_.end() || entry.first == UNIV_CSV_DONTCARE)
+            csvFieldCandicate_->Append(wxGetTranslation(entry.second), new mmListBoxItem(entry.first, entry.second));
     }
 }
 
@@ -912,8 +914,8 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
             ++ numRecords;
         }
 
-        wxString msg = wxString::Format(wxTRANSLATE("Transactions exported: %ld"), numRecords);
-        mmShowWarningMessage(this, wxGetTranslation(msg), _("Export to CSV"));
+        const wxString& msg = wxString::Format(_("Transactions exported: %ld"), numRecords);
+        mmShowWarningMessage(this, msg, _("Export to CSV"));
     }
 }
 
@@ -1167,7 +1169,7 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& /*event*/)
     int standard[] = {UNIV_CSV_DATE, UNIV_CSV_PAYEE, UNIV_CSV_AMOUNT, UNIV_CSV_CATEGORY, UNIV_CSV_SUBCATEGORY, UNIV_CSV_TRANSNUM, UNIV_CSV_NOTES};
     for (size_t i = 0; i < sizeof(standard)/sizeof(UNIV_CSV_DATE); ++ i)
     {
-        csvListBox_->Append(CSVFieldName_[standard[i]], new mmListBoxItem(standard[i], CSVFieldName_[standard[i]]));
+        csvListBox_->Append(wxGetTranslation(CSVFieldName_[standard[i]]), new mmListBoxItem(standard[i], CSVFieldName_[standard[i]]));
         csvFieldOrder_.push_back(standard[i]);
     }
 
@@ -1175,7 +1177,7 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& /*event*/)
     int rest[] = { UNIV_CSV_DONTCARE, UNIV_CSV_WITHDRAWAL, UNIV_CSV_DEPOSIT, UNIV_CSV_BALANCE };
     for (size_t i = 0; i < sizeof(rest)/sizeof(UNIV_CSV_DATE); ++ i)
     {
-        csvFieldCandicate_->Append(CSVFieldName_[rest[i]], new mmListBoxItem(rest[i], CSVFieldName_[rest[i]]));
+        csvFieldCandicate_->Append(wxGetTranslation(CSVFieldName_[rest[i]]), new mmListBoxItem(rest[i], CSVFieldName_[rest[i]]));
     }
 
     update_preview();
