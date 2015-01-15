@@ -26,7 +26,7 @@
 
 wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxWizard)
     EVT_WIZARD_PAGE_CHANGED(wxID_ANY, mmUpdateWizard::PageChanged)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const wxString NewVersion)
     : wxWizard(frame, wxID_ANY, _("Update Wizard")
@@ -98,8 +98,8 @@ void mmUpdateWizard::PageChanged(wxWizardEvent& evt)
 
 //----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(mmUpdateWizardPage2, wxWizardPageSimple)
-END_EVENT_TABLE()
+wxBEGIN_EVENT_TABLE(mmUpdateWizardPage2, wxWizardPageSimple)
+wxEND_EVENT_TABLE()
 
 mmUpdateWizardPage2::mmUpdateWizardPage2(mmUpdateWizard* parent)
     : wxWizardPageSimple(parent)
@@ -190,12 +190,12 @@ void mmUpdateWizardPage2::OnDownload()
 
         if (abort)
         {
-            wxLogMessage(wxT("Download was cancelled."));
+            wxLogMessage("Download was cancelled.");
         }
         else
         {
             // wxMemoryBuffer buf now contains the downloaded data
-            wxLogMessage(wxT("Downloaded %ld bytes"), buf.GetDataLen());
+            wxLogMessage("Downloaded %ld bytes", buf.GetDataLen());
         }
     }
     delete in;
@@ -220,7 +220,7 @@ const bool mmUpdate::IsUpdateAvailable(const bool& bSilent, wxString& NewVersion
             if (page == wxEmptyString)
                 page = "Page not found";
 
-            const wxString msgStr = wxString::Format("%s\n\n%s"
+            const wxString& msgStr = wxString::Format("%s\n\n%s"
                 , _("Unable to check for updates!")
                 , wxString::Format(_("Error: %s"), "\n" + page));
             wxMessageBox(msgStr, _("MMEX Update Check"));
@@ -325,7 +325,7 @@ void mmUpdate::checkUpdates(const bool& bSilent, wxFrame *frame)
     }
     else if (!bSilent && NewVersion != "error")
     {
-        const wxString msgStr = wxString::Format(_("You already have the latest version %s"), NewVersion);
+        const wxString& msgStr = wxString::Format(_("You already have the latest version %s"), NewVersion);
         wxMessageBox(msgStr, _("MMEX Update Check"), wxICON_INFORMATION);
     }
 }
