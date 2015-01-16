@@ -84,6 +84,8 @@ private:
     void viewControls(bool enable);
     void renameReport(int id);
     bool DeleteReport(int id);
+    bool changeReportGroup(int id, bool ungroup);
+    bool renameReportGroup(wxString& GroupName);
     void OnMenuSelected(wxCommandEvent& event);
     void newReport(int sample = ID_NEW_EMPTY);
     void createEditorTab(wxNotebook* notebook, int type);

@@ -60,4 +60,55 @@ private:
     }
 };
 
+class mmDialogComboBoxAutocomplete : public wxDialog
+{
+public:
+    mmDialogComboBoxAutocomplete(){}
+    mmDialogComboBoxAutocomplete(wxWindow *parent, const wxString& message, const wxString& caption, const wxString default, const wxArrayString& choices)
+    {
+        long style = wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX;
+        Default = default;
+        Choices = choices;
+        Message = message;
+        Create(parent, wxID_STATIC, caption, wxDefaultPosition, wxSize(300, 100), style);
+    }
+
+    wxString getText()
+    {
+        return cbText_->GetValue();
+    };
+
+private:
+    bool Create(wxWindow* parent, wxWindowID id
+        , const wxString& caption, const wxPoint& pos
+        , const wxSize& size, long style)
+    {
+        wxDialog::Create(parent, id, caption, pos, size, style);
+        const wxSizerFlags flags = wxSizerFlags().Align(wxALIGN_CENTER | wxALIGN_CENTER_VERTICAL).Border(wxLEFT | wxRIGHT, 15);
+        
+        wxBoxSizer* Sizer = new wxBoxSizer(wxVERTICAL);
+        this->SetSizer(Sizer);
+
+        Sizer->AddSpacer(10);
+        wxStaticText* headerText = new wxStaticText(this, wxID_STATIC, Message);
+        Sizer->Add(headerText, flags);
+        Sizer->AddSpacer(15);
+        cbText_ = new wxComboBox(this, wxID_STATIC,Default,wxDefaultPosition,wxSize(150,-1),Choices);
+        cbText_->AutoComplete(Choices);
+        Sizer->Add(cbText_, wxSizerFlags(flags).Expand());
+        Sizer->AddSpacer(20);
+        wxSizer* Button = CreateButtonSizer(wxOK | wxCANCEL);
+        Sizer->Add(Button, flags);
+        Sizer->AddSpacer(10);
+
+        GetSizer()->Fit(this);
+        GetSizer()->SetSizeHints(this);
+        Centre();
+        return true;
+    }
+
+    wxString Message, Default;
+    wxArrayString Choices;
+    wxComboBox* cbText_;
+};
 
