@@ -59,7 +59,7 @@ wxString mmReportCashFlow::getHTMLText()
 
 void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>& forecastVector)
 {
-    int years = cashFlowReportType_ == YEARLY ? 10 : 1;// Monthly for 7 years or Daily for 1 year
+    int years = cashFlowReportType_ == YEARLY ? 10 : 1;// Monthly for 10 years or Daily for 1 year
     std::map<wxDateTime, double> daily_balance;
 
     for (const auto& account : Model_Account::instance().all())
@@ -127,6 +127,13 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             && wxNOT_FOUND == accountArray_->Index(to_account->ACCOUNTNAME)); //linear search
 
         if (!isAccountFound && !isToAccountFound) continue; // skip account
+
+        // Determine if we need to process this account
+        if (Model_Account::status(account) == Model_Account::CLOSED
+            || Model_Account::type(account) == Model_Account::INVESTMENT) continue;
+        if (!activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM) continue;
+        if (!activeBankAccounts_ && (Model_Account::type(account) == Model_Account::CHECKING 
+            || Model_Account::type(account) == Model_Account::CREDIT_CARD)) continue;
 
         double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1.0);
         double toConvRate = (to_account ? Model_Account::currency(to_account)->BASECONVRATE : 1.0);
