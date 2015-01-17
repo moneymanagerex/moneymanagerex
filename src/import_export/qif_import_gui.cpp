@@ -18,17 +18,20 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "qif_import_gui.h"
 #include "constants.h"
-#include "util.h"
+#include "mmSimpleDialogs.h"
 #include "paths.h"
+#include "util.h"
 #include "webapp.h"
-#include "model/Model_Payee.h"
+
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 #include "model/Model_Currency.h"
-#include <wx/progdlg.h>
+#include "model/Model_Payee.h"
 
 #include "../resources/reconciled.xpm"
 #include "../resources/void.xpm"
+
+#include <wx/progdlg.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFImportDialog, wxDialog);
 
@@ -653,7 +656,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         progressDlg.Update(1, _("Importing Accounts"));
         if (getOrCreateAccounts() == 0 && !accountCheckBox_->GetValue()) {
             progressDlg.Update(numTransactions + 1);
-            mmShowErrorMessageInvalid(this, _("Account"));
+            mmErrorDialogs::MessageInvalid(this, _("Account"));
             return;
         }
         mmWebApp::MMEX_WebApp_UpdateAccount();

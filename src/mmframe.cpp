@@ -44,7 +44,7 @@
 #include "mmhelppanel.h"
 #include "mmhomepagepanel.h"
 #include "mmreportspanel.h"
-#include "mmsinglechoicedialog.h"
+#include "mmSimpleDialogs.h"
 #include "optionsdialog.h"
 #include "paths.h"
 #include "payeedialog.h"
@@ -1912,7 +1912,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
     db.ReKey(wxEmptyString);
     db.Close();
 
-    mmShowErrorMessage(this, _("Converted DB!"), _("MMEX message"));
+    mmErrorDialogs::MessageError(this, _("Converted DB!"), _("MMEX message"));
 }
 //----------------------------------------------------------------------------
 

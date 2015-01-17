@@ -336,6 +336,9 @@
     <ClCompile Include="..\..\src\wizard_update.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\mmSimpleDialogs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -623,9 +626,6 @@
     <ClInclude Include="..\..\src\mmHook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\mmsinglechoicedialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\db\DB_Table_Report_V1.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
@@ -714,6 +714,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\wizard_update.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mmSimpleDialogs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

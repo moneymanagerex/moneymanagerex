@@ -24,7 +24,7 @@
 #include "mmex.h"
 #include "mmframe.h"
 #include "mmTips.h"
-#include "mmsinglechoicedialog.h"
+#include "mmSimpleDialogs.h"
 #include "splittransactionsdialog.h"
 #include "transdialog.h"
 #include "validators.h"

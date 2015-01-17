@@ -17,20 +17,21 @@
  ********************************************************/
 
 #include "mmex.h"
-#include "mmframe.h"
-#include "util.h"
 #include "constants.h"
+#include "mmframe.h"
+#include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "platfdep.h"
+#include "util.h"
+#include "webserver.h"
 
 #include "model/Model_Setting.h"
 #include "model/Model_Usage.h"
-#include "webserver.h"
 
 #include <wx/cmdline.h>
-#include <wx/fs_mem.h>
 #include <wx/fs_arc.h>
 #include <wx/fs_filter.h>
+#include <wx/fs_mem.h>
 
 //----------------------------------------------------------------------------
 wxIMPLEMENT_APP(mmGUIApp);
@@ -143,7 +144,7 @@ bool OnInitImpl(mmGUIApp* app)
     Model_Usage::instance(app->m_setting_db);
 
     /* Force setting MMEX language parameter if it has not been set. */
-    mmSelectLanguage(app, 0, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
+    mmDialogs::mmSelectLanguage(app, 0, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
 
     /* Load MMEX Custom Settings */
     mmIniOptions::instance().loadOptions();

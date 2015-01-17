@@ -53,6 +53,7 @@ config.log
 config.status
 shared-ld-sh
 bk-deps
+/build/bakefiles/.bakefile_gen.state
 
 #dist
 *.dmg
@@ -64,4 +65,3 @@ bk-deps
 *.swp
 
 *.d
-

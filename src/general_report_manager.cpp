@@ -18,19 +18,21 @@
  ********************************************************/
 
 #include "general_report_manager.h"
+#include "constants.h"
 #include "minimal_editor.h"
-#include "util.h"
+#include "mmpanelbase.h"
+#include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "platfdep.h"
-#include "constants.h"
-#include "mmpanelbase.h"
-#include "mmsinglechoicedialog.h"
+#include "util.h"
+
 #include "model/Model_Infotable.h"
 #include "model/Model_Report.h"
-#include <wx/zipstrm.h>
+
 #include <memory>
 #include <wx/richtooltip.h>
 #include <wx/sstream.h>
+#include <wx/zipstrm.h>
 
 static const wxString SAMPLE_ASSETS_LUA = R"(
 local total_balance = 0
