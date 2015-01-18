@@ -88,6 +88,7 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     Sizer->Add(Button, flags);
     Sizer->AddSpacer(10);
 
+    cbText_->SetFocus();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     Centre();

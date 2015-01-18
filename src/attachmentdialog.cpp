@@ -18,6 +18,7 @@ Copyright (C) 2014 Gabriele-V
 
 #include "attachmentdialog.h"
 #include "constants.h"
+#include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "util.h"
 
@@ -175,8 +176,13 @@ void mmAttachmentDialog::AddAttachment()
     const wxString attachmentFileName = wxFileName(attachmentFilePath).GetName();
     const wxString attachmentFileExtension = wxFileName(attachmentFilePath).GetExt().MakeLower();
 	
-    const wxString attachmentDescription = wxGetTextFromUser(_("Enter a description for the new attachment:")
-		, _("Organize Attachments: Add Attachment"), attachmentFileName);
+    mmDialogComboBoxAutocomplete dlg(this, _("Enter a description for the new attachment:"),
+        _("Organize Attachments: Add Attachment"), attachmentFileName, Model_Attachment::instance().allDescriptions(true));
+
+    if (dlg.ShowModal() != wxID_OK)
+        return;
+
+    const wxString attachmentDescription = dlg.getText();
 
     wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
     int attachmentLastNumber = Model_Attachment::LastAttachmentNumber(m_RefType, m_RefId);
@@ -212,11 +218,16 @@ void mmAttachmentDialog::EditAttachment()
 	Model_Attachment::Data *attachment = Model_Attachment::instance().get(m_attachment_id);
     if (attachment)
     {
-        const wxString description = wxGetTextFromUser(_("Modify the description for the attachment:")
-			, _("Organize Attachments: Edit Attachment"), attachment->DESCRIPTION);
-		if (description.IsEmpty()) return;
+        mmDialogComboBoxAutocomplete dlg(this, _("Enter a new description for the attachment:"),
+            _("Organize Attachments: Edit Attachment"), attachment->DESCRIPTION,
+            Model_Attachment::instance().allDescriptions(true));
 
-		if (description == attachment->DESCRIPTION) return;
+        if (dlg.ShowModal() != wxID_OK)
+            return;
+
+        const wxString description = dlg.getText();
+        if (description == attachment->DESCRIPTION)
+            return;
 
 		attachment->DESCRIPTION = description;
 		m_attachment_id = Model_Attachment::instance().save(attachment);

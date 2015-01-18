@@ -896,9 +896,9 @@ void mmGeneralReportManager::newReport(int sample)
         mmDialogComboBoxAutocomplete dlg(this, _("Enter or choose name for the new report group"),
             _("Add Report Group"), "", Model_Report::instance().allGroupNames());
         if (dlg.ShowModal() == wxID_OK)
-        {
             group_name = dlg.getText();
-        }
+        else
+            return;
     }
     else
     {
@@ -911,6 +911,8 @@ void mmGeneralReportManager::newReport(int sample)
 
     report_name = wxGetTextFromUser(_("Enter the name for the report")
         , _("General Report Manager"), report_name);
+
+    if (report_name.IsEmpty()) return;
 
     wxString sqlContent, luaContent, httContent, description;
     switch (sample) {
