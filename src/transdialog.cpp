@@ -177,16 +177,18 @@ void mmTransDialog::dataToControls()
     {
         cbAccount_->SetEvtHandlerEnabled(false);
         cbAccount_->Clear();
+        const wxArrayString account_list = Model_Account::instance().all_checking_account_names();
+        cbAccount_->Append(account_list);
+
         const auto &accounts = Model_Account::instance().find(
             Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
             , Model_Account::STATUS(Model_Account::OPEN));
         for (const auto &account : accounts)
         {
-            cbAccount_->Append(account.ACCOUNTNAME);
             if (account.ACCOUNTID == m_trx_data.ACCOUNTID)
                 cbAccount_->ChangeValue(account.ACCOUNTNAME);
         }
-        cbAccount_->AutoComplete(Model_Account::instance().all_checking_account_names());
+        cbAccount_->AutoComplete(account_list);
         if (accounts.size() == 1)
         {
             cbAccount_->ChangeValue(accounts.begin()->ACCOUNTNAME);
