@@ -14,8 +14,7 @@
 *.html text
 
 # Declare files that will always have LF line endings on checkout.
-sql/tables_v1.sql text eol=lf
-*.sh              text eol=lf
+*.sh      text eol=lf
 
 # Declare files that will always have CRLF line endings on checkout.
 *.bat     text eol=crlf
