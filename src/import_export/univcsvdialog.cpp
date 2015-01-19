@@ -15,22 +15,27 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
-#include "constants.h"
+
 #include "univcsvdialog.h"
-#include "util.h"
+#include "constants.h"
+#include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "platfdep.h"
+#include "util.h"
 #include "webapp.h"
-#include <algorithm>
-#include "model/Model_Infotable.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Payee.h"
+
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 #include "model/Model_Checking.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Setting.h"
+
+#include "../resources/save.xpm"
+
+#include <algorithm>
 
 #include "csv_parser/csv_parser.hpp"
-#include "../resources/save.xpm"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog);
 
@@ -596,7 +601,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
     if (!isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT) 
         && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) || !isIndexPresent(UNIV_CSV_DEPOSIT))))
     {
-        mmShowWarningMessage(this
+        mmErrorDialogs::MessageWarning(this
             , _("Incorrect fields specified for CSV import! Requires at least Date and Amount.")
             , _("Universal CSV Import"));
          return;
@@ -613,7 +618,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
         wxFileName csv_file(fileName);
         if (fileName.IsEmpty() || !csv_file.FileExists())
         {
-            mmMessageFileInvalid(m_text_ctrl_);
+            mmErrorDialogs::InvalidFile(m_text_ctrl_);
             return;
         }
         else
@@ -621,7 +626,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             wxTextFile tFile(fileName);
             if (!tFile.Open())
             {
-                mmMessageFileInvalid(m_text_ctrl_, true);
+                mmErrorDialogs::InvalidFile(m_text_ctrl_, true);
                 return;
             }
 
@@ -781,7 +786,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
     if (!isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT)
         && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) || !isIndexPresent(UNIV_CSV_DEPOSIT))))
     {
-        mmShowWarningMessage(this
+        mmErrorDialogs::MessageWarning(this
             ,_("Incorrect fields specified for CSV export! Requires at least Date and Amount.")
             , _("Universal CSV Export"));
         return;
@@ -791,7 +796,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
     const wxString fileName = m_text_ctrl_->GetValue();
     if (fileName.IsEmpty())
     {
-        mmMessageFileInvalid(m_text_ctrl_);
+        mmErrorDialogs::InvalidFile(m_text_ctrl_);
         return;
     }
     wxFileName csv_file(fileName);
@@ -915,7 +920,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
         }
 
         const wxString& msg = wxString::Format(_("Transactions exported: %ld"), numRecords);
-        mmShowWarningMessage(this, msg, _("Export to CSV"));
+        mmErrorDialogs::MessageWarning(this, msg, _("Export to CSV"));
     }
 }
 

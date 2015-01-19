@@ -19,19 +19,23 @@
 #include "stockdialog.h"
 #include "attachmentdialog.h"
 #include "constants.h"
+#include "mmSimpleDialogs.h"
 #include "mmtextctrl.h"
 #include "paths.h"
 #include "util.h"
 #include "validators.h"
 #include "import_export/univcsvdialog.h"
-#include "model/Model_Infotable.h"
+
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_Infotable.h"
 #include "model/Model_StockHistory.h"
+
 #include "../resources/attachment.xpm"
 #include "../resources/checkupdate.xpm"
 #include"../resources/uparrow.xpm"
 #include "../resources/web.xpm"
+
 #include <wx/numdlg.h>
 #include <wx/textdlg.h>
 #include <wx/valnum.h>
@@ -386,13 +390,13 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
     Model_Account::Data* account = Model_Account::instance().get(accountID_);
     if (!account)
     {
-        mmShowErrorMessageInvalid(this, _("Held At"));
+        mmErrorDialogs::MessageInvalid(this, _("Held At"));
         return;
     }
     
     const wxString& stockSymbol = stockSymbol_->GetValue();
     if (stockSymbol.empty()) {
-        mmShowErrorMessageInvalid(this, _("Symbol"));
+        mmErrorDialogs::MessageInvalid(this, _("Symbol"));
         return;
     }
         
@@ -663,7 +667,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 
     if (nrPrices <= 0)
     {
-        mmShowErrorMessageInvalid(this, FreqStrs[freq]);
+        mmErrorDialogs::MessageInvalid(this, FreqStrs[freq]);
         return;
     }
     else
@@ -679,7 +683,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 
     if (EndDate > wxDate::Today())
     {
-        mmShowWarningMessage(this, _("End date is in the future\nQuotes will be updated until today")
+        mmErrorDialogs::MessageWarning(this, _("End date is in the future\nQuotes will be updated until today")
             , _("Stock History Error"));
         EndDate = wxDate::Today();
     }
@@ -707,7 +711,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
     if (err_code != wxURL_NOERR)
     {
         if (err_code == -1) CSVQuotes = _("Stock history not found!");
-        mmShowErrorMessage(this, CSVQuotes, _("Stock History Error"));
+        mmErrorDialogs::MessageError(this, CSVQuotes, _("Stock History Error"));
         return;
     }
 

@@ -184,6 +184,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmOptionMiscSettings.o \
 	mmex_tests_mmOptionNetSettings.o \
 	mmex_tests_mmOptionViewSettings.o \
+	mmex_tests_mmSimpleDialogs.o \
 	mmex_tests_mmcheckingpanel.o \
 	mmex_tests_mmex.o \
 	mmex_tests_mmframe.o \
@@ -668,6 +669,9 @@ mmex_tests_mmOptionNetSettings.o: $(srcdir)/../src/mmOptionNetSettings.cpp
 mmex_tests_mmOptionViewSettings.o: $(srcdir)/../src/mmOptionViewSettings.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmOptionViewSettings.cpp
 
+mmex_tests_mmSimpleDialogs.o: $(srcdir)/../src/mmSimpleDialogs.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmSimpleDialogs.cpp
+
 mmex_tests_mmcheckingpanel.o: $(srcdir)/../src/mmcheckingpanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmcheckingpanel.cpp
 
@@ -739,7 +743,7 @@ mmex_tests_wizard_newaccount.o: $(srcdir)/../src/wizard_newaccount.cpp
 
 mmex_tests_wizard_newdb.o: $(srcdir)/../src/wizard_newdb.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/wizard_newdb.cpp
-	
+
 mmex_tests_wizard_update.o: $(srcdir)/../src/wizard_update.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/wizard_update.cpp
 

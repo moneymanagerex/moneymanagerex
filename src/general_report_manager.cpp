@@ -18,18 +18,21 @@
  ********************************************************/
 
 #include "general_report_manager.h"
+#include "constants.h"
 #include "minimal_editor.h"
-#include "util.h"
+#include "mmpanelbase.h"
+#include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "platfdep.h"
-#include "constants.h"
-#include "mmpanelbase.h"
+#include "util.h"
+
 #include "model/Model_Infotable.h"
 #include "model/Model_Report.h"
-#include <wx/zipstrm.h>
+
 #include <memory>
 #include <wx/richtooltip.h>
 #include <wx/sstream.h>
+#include <wx/zipstrm.h>
 
 static const wxString SAMPLE_ASSETS_LUA = R"(
 local total_balance = 0
@@ -661,17 +664,24 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     customReportMenu->Append(ID_NEW_EMPTY, _("New Empty Report"));
     customReportMenu->Append(wxID_ANY, _("New Sample Report"), samplesMenu);
     customReportMenu->AppendSeparator();
-    customReportMenu->Append(ID_GROUP, _("Change Group"));
+    if (report)
+        customReportMenu->Append(ID_GROUP, _("Change Group"));
+    else
+        customReportMenu->Append(ID_GROUP, _("Rename Group"));
     customReportMenu->Append(ID_UNGROUP, _("UnGroup"));
     customReportMenu->Append(ID_RENAME, _("Rename Report"));
     customReportMenu->AppendSeparator();
     customReportMenu->Append(ID_DELETE, _("Delete Report"));
 
-    if (report) {
+    if (report)
+    {
         customReportMenu->Enable(ID_UNGROUP, !report->GROUPNAME.empty());
     }
-    else {
-        customReportMenu->Enable(ID_GROUP, false);
+    else
+    {
+        if (m_selectedGroup == "")
+            customReportMenu->Enable(ID_GROUP, false);
+
         customReportMenu->Enable(ID_UNGROUP, false);
         customReportMenu->Enable(ID_RENAME, false);
         customReportMenu->Enable(ID_DELETE, false);
@@ -792,6 +802,53 @@ bool mmGeneralReportManager::DeleteReport(int id)
     return false;
 }
 
+bool mmGeneralReportManager::changeReportGroup(int id, bool ungroup)
+{
+    Model_Report::Data * report = Model_Report::instance().get(id);
+    if (report)
+    {
+        if (ungroup)
+        {
+            report->GROUPNAME = "";
+            Model_Report::instance().save(report);
+            return true;
+        }
+        else
+        {
+            mmDialogComboBoxAutocomplete dlg(this, _("Enter or choose name for the new report group"),
+                _("Change report group"), report->GROUPNAME, Model_Report::instance().allGroupNames());
+
+            if (dlg.ShowModal() == wxID_OK)
+            {
+                const wxString groupName = dlg.getText();
+                report->GROUPNAME = groupName;
+                Model_Report::instance().save(report);
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool mmGeneralReportManager::renameReportGroup(wxString& GroupName)
+{
+    mmDialogComboBoxAutocomplete dlg(this, _("Enter or choose name for the new group"),
+        _("Rename group"), GroupName, Model_Report::instance().allGroupNames());
+
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        const wxString groupName = dlg.getText();
+        auto reports = Model_Report::instance().find(Model_Report::GROUPNAME(GroupName));
+        for (auto &report : reports)
+        {
+            report.GROUPNAME = groupName;
+        }
+        Model_Report::instance().save(reports);
+        return true;
+    }
+    return false;
+}
+
 void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
     int id = event.GetId();
@@ -799,39 +856,33 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     if (id == ID_NEW_EMPTY || id == ID_NEW_SAMPLE_ASSETS)
     {
         newReport(id);
+        fillControls();
+        return;
     }
-    else
+
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
+    int report_id = iData->get_report_id();
+
+    if(iData && report_id > -1)
     {
-        MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
-        int report_id = iData->get_report_id();
-        if (iData && id == ID_RENAME)
-        {
+        switch (id){
+        case ID_RENAME:
             this->renameReport(report_id);
-        }
-        else if (iData && id == ID_DELETE)
-        {
+            break;
+        case ID_DELETE:
             this->DeleteReport(report_id);
+            break;
+        case ID_GROUP:
+            this->changeReportGroup(report_id, false);
+            break;
+        case ID_UNGROUP:
+            this->changeReportGroup(report_id, true);
+            break;
         }
-        else if (iData && (id == ID_GROUP || id == ID_UNGROUP))
-        {
-            Model_Report::Data * report = Model_Report::instance().get(report_id);
-            if (report && id == ID_GROUP)
-            {
-                const wxString groupName = wxGetTextFromUser(_("Enter the name for the new report group")
-                    , _("General Report Manager"), m_selectedGroup);
-                if (!groupName.empty()){
-                    report->GROUPNAME = groupName;
-                    Model_Report::instance().save(report);
-                }
-                else
-                    return;
-            }
-            else if (report && id == ID_UNGROUP)
-            {
-                report->GROUPNAME = "";
-                Model_Report::instance().save(report);
-            }
-        }
+    }
+    else if (id == ID_GROUP)
+    {
+        this->renameReportGroup(m_selectedGroup);
     }
 
     fillControls();
@@ -842,16 +893,26 @@ void mmGeneralReportManager::newReport(int sample)
     wxString group_name;
     if (m_selectedItemID == m_rootItem)
     {
-        group_name = wxGetTextFromUser(_("Enter the name for the new report group")
-            , _("Add Report Group"), "");
+        mmDialogComboBoxAutocomplete dlg(this, _("Enter or choose name for the new report group"),
+            _("Add Report Group"), "", Model_Report::instance().allGroupNames());
+        if (dlg.ShowModal() == wxID_OK)
+            group_name = dlg.getText();
+        else
+            return;
     }
     else
     {
         group_name = m_selectedGroup;
     }
 
+
     wxDateTime now = wxDateTime::Now();
     wxString report_name = wxString::Format(_("New Report %s"), now.Format("%Y%m%d%H%M%S"));
+
+    report_name = wxGetTextFromUser(_("Enter the name for the report")
+        , _("General Report Manager"), report_name);
+
+    if (report_name.IsEmpty()) return;
 
     wxString sqlContent, luaContent, httContent, description;
     switch (sample) {

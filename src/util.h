@@ -121,23 +121,13 @@ private:
     mmPrintableBase* report_;
 };
 
-void mmShowErrorMessageInvalid(wxWindow *parent, const wxString &message);
-void mmShowErrorMessage(wxWindow *parent, const wxString &message, const wxString &messageheader);
-void mmShowWarningMessage(wxWindow *parent, const wxString &message, const wxString &messageheader);
-void mmMessageCategoryInvalid(wxWindow *button);
-void mmMessageAccountInvalid(wxWindow *object, bool transfer = false);
-void mmMessageFileInvalid(wxWindow *object, bool open = false);
-void mmMessagePayeeInvalid(wxWindow *object);
-void mmMessageNameInvalid(wxTextCtrl *textBox);
-
-const wxString mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool forced_show_dlg, bool save_setting = true);
-
 const wxDateTime mmGetStorageStringAsDate(const wxString& str);
 const wxString mmGetDateForDisplay(const wxDateTime &dt);
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
 const wxString mmGetNiceDateSimpleString(const wxDateTime &dt);
 const std::map<wxString,wxString> date_formats_map();
 const std::map<wxString,wxString> date_formats_regex();
+int CaseInsensitiveCmp(const wxString &s1, const wxString &s2);
 
 const wxString inQuotes(const wxString& label, const wxString& delimiter);
 

@@ -1,8 +1,29 @@
+/*******************************************************
+Copyright (C) 2014 Stefano Giorgio
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+********************************************************/
+
 #include "mmOptionGeneralSettings.h"
-#include <wx/spinctrl.h>
-#include "util.h"
-#include "model/Model_Currency.h"
 #include "maincurrencydialog.h"
+#include "mmSimpleDialogs.h"
+#include "util.h"
+
+#include "model/Model_Currency.h"
+
+#include <wx/spinctrl.h>
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmOptionGeneralSettings, wxPanel)
@@ -186,7 +207,7 @@ void mmOptionGeneralSettings::OnDateFormatChanged(wxCommandEvent& /*event*/)
 
 void mmOptionGeneralSettings::OnLanguageChanged(wxCommandEvent& /*event*/)
 {
-    wxString lang = mmSelectLanguage(this->m_app, this, true, false);
+    wxString lang = mmDialogs::mmSelectLanguage(this->m_app, this, true, false);
     if (lang.empty()) return;
 
     wxButton *btn = (wxButton*) FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
@@ -216,7 +237,7 @@ void mmOptionGeneralSettings::SaveSettings()
 
     wxButton *languageButton = (wxButton*) FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
     Model_Setting::instance().Set(LANGUAGE_PARAMETER, languageButton->GetLabel().Lower());
-    mmSelectLanguage(this->m_app, this, false);
+    mmDialogs::mmSelectLanguage(this->m_app, this, false);
 
     Model_Infotable::instance().SetBaseCurrency(m_currency_id);
     Model_Infotable::instance().Set("DATEFORMAT", m_date_format);

@@ -653,6 +653,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\mmSimpleDialogs.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\mmcheckingpanel.cpp"
 				>
 			</File>
@@ -1207,6 +1211,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\mmSimpleDialogs.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\mmTips.h"
 				>
 			</File>
@@ -1240,10 +1248,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\mmreportspanel.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmsinglechoicedialog.h"
 				>
 			</File>
 			<File

@@ -17,21 +17,25 @@
  ********************************************************/
 
 #include "accountdialog.h"
+#include "attachmentdialog.h"
 #include "constants.h"
-#include "maincurrencydialog.h"
 #include "images_list.h"
-#include "util.h"
+#include "maincurrencydialog.h"
+#include "mmSimpleDialogs.h"
 #include "mmOption.h"
 #include "paths.h"
+#include "util.h"
 #include "validators.h"
 #include "webapp.h"
-#include "attachmentdialog.h"
-#include <wx/valnum.h>
+
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Attachment.h"
+
 #include "../resources/attachment.xpm"
+
+#include <wx/valnum.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmNewAcctDialog, wxDialog);
 
@@ -332,13 +336,13 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     wxString acctName = m_textAccountName->GetValue().Trim();
     if (acctName.IsEmpty())
     {
-        mmShowErrorMessageInvalid(this, _("Account Name "));
+        mmErrorDialogs::MessageInvalid(this, _("Account Name "));
         return;
     }
 
     if (m_currencyID == -1)
     {
-        mmShowErrorMessageInvalid(this, _("Currency"));
+        mmErrorDialogs::MessageInvalid(this, _("Currency"));
         return;
     }
 
