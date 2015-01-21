@@ -158,8 +158,14 @@ void mmOptionsDialog::CreateControls()
 /// Saves the updated System Options to the appropriate databases.
 void mmOptionsDialog::SaveNewSystemSettings()
 {
+    Model_Infotable::instance().Savepoint();
+    Model_Setting::instance().Savepoint();
+
     for (const auto notebook_panel : m_panel_list)
         notebook_panel->SaveSettings();
+
+    Model_Setting::instance().ReleaseSavepoint();
+    Model_Infotable::instance().ReleaseSavepoint();
 }
 
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)
@@ -170,8 +176,14 @@ void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)
 
 void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
 {
+    Model_Infotable::instance().Savepoint();
+    Model_Setting::instance().Savepoint();
+
     int selected_page = m_notebook->GetSelection();
     m_panel_list[selected_page]->SaveSettings();
+
+    Model_Setting::instance().ReleaseSavepoint();
+    Model_Infotable::instance().ReleaseSavepoint();
 
     wxString msg = msg.Format(_("%s page has been saved."), m_notebook->GetPageText(selected_page));
     wxMessageBox(msg, "MMEX Options");
