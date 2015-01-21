@@ -134,7 +134,7 @@ wxString mmex::getPathDoc(const EDocFile& f)
 
     wxASSERT(f >= 0 && f < DOC_FILES_MAX);
 
-    wxString path = GetSharedDir().GetPath();
+    wxString path = GetDocDir().GetPath();
     path += wxFileName::GetPathSeparator();
     path += files[f];
 
