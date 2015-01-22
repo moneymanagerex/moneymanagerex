@@ -82,51 +82,46 @@ void DB_Init_Model::Init_Model_Tables(wxSQLite3Database* test_db)
     Model_Stock::instance(test_db);
     Model_StockHistory::instance(test_db);
     Model_Attachment::instance(test_db);
+
+    Init_BaseCurrency();
 }
 
 void DB_Init_Model::Init_Model_Assets(wxSQLite3Database* test_db)
 {
-    Model_Setting::instance(test_db);
     test_db->Begin();
     {
-        Model_Setting::instance().Set("ASSETS_COL0_WIDTH", 111);
-        Model_Setting::instance().Set("ASSETS_COL1_WIDTH", 94);
-        Model_Setting::instance().Set("ASSETS_COL2_WIDTH", 83);
-        Model_Setting::instance().Set("ASSETS_COL3_WIDTH", 109);
-        Model_Setting::instance().Set("ASSETS_COL4_WIDTH", 118);
+        Model_Setting::instance().Set("ASSETS_COL0_WIDTH", 25);
+        Model_Setting::instance().Set("ASSETS_COL1_WIDTH", 25);
+        Model_Setting::instance().Set("ASSETS_COL2_WIDTH", 95);
+        Model_Setting::instance().Set("ASSETS_COL3_WIDTH", 78);
+        Model_Setting::instance().Set("ASSETS_COL4_WIDTH", 85);
+        Model_Setting::instance().Set("ASSETS_COL5_WIDTH", 85);
+        Model_Setting::instance().Set("ASSETS_COL6_WIDTH", 90);
+        Model_Setting::instance().Set("ASSETS_COL7_WIDTH", 180);
     }
     test_db->Commit();
-    mmIniOptions::instance().loadOptions();
-
-    Model_Infotable::instance(test_db);
-    mmOptions::instance().LoadInfotableOptions();
-
-    Model_Asset::instance(test_db);
-    Model_Currency::instance(test_db);
-    Model_Attachment::instance(test_db);
 }
 
 void DB_Init_Model::Init_Model_Stocks(wxSQLite3Database* test_db)
 {
-    Model_Setting::instance(test_db);
     test_db->Begin();
     {
-        Model_Setting::instance().Set("STOCKS_COL3_WIDTH", 72);
-        Model_Setting::instance().Set("STOCKS_COL0_WIDTH", 126);
-        Model_Setting::instance().Set("STOCKS_COL4_WIDTH", 73);
-        Model_Setting::instance().Set("STOCKS_COL5_WIDTH", 66);
-        Model_Setting::instance().Set("STOCKS_COL1_WIDTH", 128);
-        Model_Setting::instance().Set("STOCKS_COL6_WIDTH", 138);
+        Model_Setting::instance().Set("STOCKS_COL0_WIDTH", 25);
+        Model_Setting::instance().Set("STOCKS_COL1_WIDTH", 25);
+        Model_Setting::instance().Set("STOCKS_COL2_WIDTH", 90);
+        Model_Setting::instance().Set("STOCKS_COL3_WIDTH", 110);
+        Model_Setting::instance().Set("STOCKS_COL4_WIDTH", 85);
+        Model_Setting::instance().Set("STOCKS_COL5_WIDTH", 95);
+        Model_Setting::instance().Set("STOCKS_COL6_WIDTH", 70);
+        Model_Setting::instance().Set("STOCKS_COL7_WIDTH", 70);
+        Model_Setting::instance().Set("STOCKS_COL8_WIDTH", 70);
+        Model_Setting::instance().Set("STOCKS_COL9_WIDTH", 80);
+        Model_Setting::instance().Set("STOCKS_COL10_WIDTH", 85);
+        Model_Setting::instance().Set("STOCKS_COL11_WIDTH", 75);
+        Model_Setting::instance().Set("STOCKS_COL12_WIDTH", 80);
+        Model_Setting::instance().Set("STOCKS_COL13_WIDTH", 120);
     }
     test_db->Commit();
-    mmIniOptions::instance().loadOptions();
-    // Initialise the required tables
-    Model_Infotable::instance(test_db);
-    Model_Currency::instance(test_db);
-    Model_Account::instance(test_db);
-    Model_Stock::instance(test_db);
-    Model_StockHistory::instance(test_db);
-    Model_Attachment::instance(test_db);
 }
 
 void DB_Init_Model::Init_BaseCurrency(const wxString& base_currency_symbol, const wxString& user_name)

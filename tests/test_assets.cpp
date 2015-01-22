@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "test_assets.h"
 #include "assetspanel.h"
+#include "assetdialog.h"
 #include "../src/constants.h"
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -63,11 +64,19 @@ void Test_Asset::setUp()
     {
         m_base_frame = new TestFrameBase(m_this_instance);
         m_base_frame->Show(true);
+        m_user_request = new TestFrameBase(m_base_frame);
+        m_user_request->Show();
+    }
+
+    if (m_this_instance == 6)
+    {
+        m_base_frame = new TestFrameBase(m_this_instance);
+        m_base_frame->Show(true);
     }
 
     m_dbmodel = new DB_Init_Model();
+    m_dbmodel->Init_Model_Tables(&m_test_db);
     m_dbmodel->Init_Model_Assets(&m_test_db);
-    m_dbmodel->Init_BaseCurrency();
 }
 
 void Test_Asset::tearDown()
@@ -75,7 +84,7 @@ void Test_Asset::tearDown()
     delete m_dbmodel;
     m_test_db.Close();
 
-    if (m_this_instance == 5)
+    if (m_this_instance > 4)
     {
         delete m_base_frame;
     }
@@ -151,6 +160,23 @@ void Test_Asset::test_remove()
     Model_Asset::instance().remove(4);
     Model_Asset::Data_Set assets = Model_Asset::instance().all();
     CPPUNIT_ASSERT(assets.size() == 4);
+}
+
+void Test_Asset::test_dialog()
+{
+    m_user_request->Show_InfoBarMessage(
+        "Assets Dialog Test:\n\n"
+        "\n\n"
+        "Use Cancel to ignore test results.");
+
+    mmAssetDialog* dlg = new mmAssetDialog(m_base_frame, 0);
+    if (dlg->ShowModal() == wxID_OK)
+    {
+        Model_Asset::Data_Set asset_table = Model_Asset::instance().all();
+        CPPUNIT_ASSERT(asset_table.size() > 0);
+
+        Model_Asset::Data bill_entry = asset_table.at(asset_table.size() - 1);
+    }
 }
 
 void Test_Asset::test_assetpanel()
