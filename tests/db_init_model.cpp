@@ -34,6 +34,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Stock.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_TransferTrans.h"
 //----------------------------------------------------------------------------
 
 DB_Init_Model::DB_Init_Model()
@@ -82,6 +83,7 @@ void DB_Init_Model::Init_Model_Tables(wxSQLite3Database* test_db)
     Model_Stock::instance(test_db);
     Model_StockHistory::instance(test_db);
     Model_Attachment::instance(test_db);
+    Model_TransferTrans::instance(test_db);
 
     Init_BaseCurrency();
 }

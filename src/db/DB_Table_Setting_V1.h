@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-12-11 16:43:03.028067.
+ *          AUTO GENERATED at 2015-01-22 15:13:14.809000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -134,7 +134,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         return "UNKNOWN";
     }
 
-    /** Returns the comumn number from the given column name*/
+    /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
         if ("SETTINGID" == name) return COL_SETTINGID;
@@ -151,7 +151,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* view_;
     
-        int SETTINGID;//  primay key
+        int SETTINGID;//  primary key
         wxString SETTINGNAME;
         wxString SETTINGVALUE;
         int id() const { return SETTINGID; }

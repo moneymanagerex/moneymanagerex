@@ -15,15 +15,15 @@
  */
 //=============================================================================
 
-#ifndef DB_TABLE_INFOTABLE_V1_H
-#define DB_TABLE_INFOTABLE_V1_H
+#ifndef DB_TABLE_TRANSFERTRANS_V1_H
+#define DB_TABLE_TRANSFERTRANS_V1_H
 
 #include "DB_Table.h"
 
-struct DB_Table_INFOTABLE_V1 : public DB_Table
+struct DB_Table_TRANSFERTRANS_V1 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_INFOTABLE_V1 Self;
+    typedef DB_Table_TRANSFERTRANS_V1 Self;
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
@@ -48,7 +48,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     Index_By_Id index_by_id_;
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_INFOTABLE_V1() 
+    ~DB_Table_TRANSFERTRANS_V1() 
     {
         destroy_cache();
     }
@@ -68,11 +68,11 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE INFOTABLE_V1(INFOID integer not null primary key, INFONAME TEXT COLLATE NOCASE NOT NULL UNIQUE, INFOVALUE TEXT NOT NULL)");
+				db->ExecuteUpdate("CREATE TABLE TRANSFERTRANS_V1 (ID INTEGER NOT NULL PRIMARY KEY, TABLE_TYPE TEXT NOT NULL UNIQUE, ID_TABLE INTEGER NOT NULL, ID_CHECKINGACCOUNT INTEGER NOT NULL, ID_CURRENCY INTEGER NOT NULL)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
-				wxLogError("INFOTABLE_V1: Exception %s", e.GetMessage().c_str());
+				wxLogError("TRANSFERTRANS_V1: Exception %s", e.GetMessage().c_str());
 				return false;
 			}
 		}
@@ -86,38 +86,50 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_INFOTABLE_INFONAME ON INFOTABLE_V1(INFONAME)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_ID_CHECKINGACCOUNT ON TRANSFERTRANS_V1 (ID_CHECKINGACCOUNT)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("INFOTABLE_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("TRANSFERTRANS_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
         return true;
     }
 
-    struct INFOID : public DB_Column<int>
+    struct ID : public DB_Column<int>
     { 
-        static wxString name() { return "INFOID"; } 
-        explicit INFOID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "ID"; } 
+        explicit ID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct INFONAME : public DB_Column<wxString>
+    struct TABLE_TYPE : public DB_Column<wxString>
     { 
-        static wxString name() { return "INFONAME"; } 
-        explicit INFONAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "TABLE_TYPE"; } 
+        explicit TABLE_TYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    struct INFOVALUE : public DB_Column<wxString>
+    struct ID_TABLE : public DB_Column<int>
     { 
-        static wxString name() { return "INFOVALUE"; } 
-        explicit INFOVALUE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "ID_TABLE"; } 
+        explicit ID_TABLE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    typedef INFOID PRIMARY;
+    struct ID_CHECKINGACCOUNT : public DB_Column<int>
+    { 
+        static wxString name() { return "ID_CHECKINGACCOUNT"; } 
+        explicit ID_CHECKINGACCOUNT(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    struct ID_CURRENCY : public DB_Column<int>
+    { 
+        static wxString name() { return "ID_CURRENCY"; } 
+        explicit ID_CURRENCY(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    typedef ID PRIMARY;
     enum COLUMN
     {
-        COL_INFOID = 0
-        , COL_INFONAME = 1
-        , COL_INFOVALUE = 2
+        COL_ID = 0
+        , COL_TABLE_TYPE = 1
+        , COL_ID_TABLE = 2
+        , COL_ID_CHECKINGACCOUNT = 3
+        , COL_ID_CURRENCY = 4
     };
 
     /** Returns the column name as a string*/
@@ -125,9 +137,11 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_INFOID: return "INFOID";
-            case COL_INFONAME: return "INFONAME";
-            case COL_INFOVALUE: return "INFOVALUE";
+            case COL_ID: return "ID";
+            case COL_TABLE_TYPE: return "TABLE_TYPE";
+            case COL_ID_TABLE: return "ID_TABLE";
+            case COL_ID_CHECKINGACCOUNT: return "ID_CHECKINGACCOUNT";
+            case COL_ID_CURRENCY: return "ID_CURRENCY";
             default: break;
         }
         
@@ -137,9 +151,11 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("INFOID" == name) return COL_INFOID;
-        else if ("INFONAME" == name) return COL_INFONAME;
-        else if ("INFOVALUE" == name) return COL_INFOVALUE;
+        if ("ID" == name) return COL_ID;
+        else if ("TABLE_TYPE" == name) return COL_TABLE_TYPE;
+        else if ("ID_TABLE" == name) return COL_ID_TABLE;
+        else if ("ID_CHECKINGACCOUNT" == name) return COL_ID_CHECKINGACCOUNT;
+        else if ("ID_CURRENCY" == name) return COL_ID_CURRENCY;
 
         return COLUMN(-1);
     }
@@ -147,15 +163,17 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_INFOTABLE_V1;
+        friend struct DB_Table_TRANSFERTRANS_V1;
         /** This is a instance pointer to itself in memory. */
         Self* view_;
     
-        int INFOID;//  primary key
-        wxString INFONAME;
-        wxString INFOVALUE;
-        int id() const { return INFOID; }
-        void id(int id) { INFOID = id; }
+        int ID;//  primary key
+        wxString TABLE_TYPE;
+        int ID_TABLE;
+        int ID_CHECKINGACCOUNT;
+        int ID_CURRENCY;
+        int id() const { return ID; }
+        void id(int id) { ID = id; }
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
@@ -169,25 +187,32 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         {
             view_ = view;
         
-            INFOID = -1;
+            ID = -1;
+            ID_TABLE = -1;
+            ID_CHECKINGACCOUNT = -1;
+            ID_CURRENCY = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* view = 0)
         {
             view_ = view;
         
-            INFOID = q.GetInt(0); // INFOID
-            INFONAME = q.GetString(1); // INFONAME
-            INFOVALUE = q.GetString(2); // INFOVALUE
+            ID = q.GetInt(0); // ID
+            TABLE_TYPE = q.GetString(1); // TABLE_TYPE
+            ID_TABLE = q.GetInt(2); // ID_TABLE
+            ID_CHECKINGACCOUNT = q.GetInt(3); // ID_CHECKINGACCOUNT
+            ID_CURRENCY = q.GetInt(4); // ID_CURRENCY
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            INFOID = other.INFOID;
-            INFONAME = other.INFONAME;
-            INFOVALUE = other.INFOVALUE;
+            ID = other.ID;
+            TABLE_TYPE = other.TABLE_TYPE;
+            ID_TABLE = other.ID_TABLE;
+            ID_CHECKINGACCOUNT = other.ID_CHECKINGACCOUNT;
+            ID_CURRENCY = other.ID_CURRENCY;
             return *this;
         }
 
@@ -196,17 +221,25 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         {
             return false;
         }
-        bool match(const Self::INFOID &in) const
+        bool match(const Self::ID &in) const
         {
-            return this->INFOID == in.v_;
+            return this->ID == in.v_;
         }
-        bool match(const Self::INFONAME &in) const
+        bool match(const Self::TABLE_TYPE &in) const
         {
-            return this->INFONAME.CmpNoCase(in.v_) == 0;
+            return this->TABLE_TYPE.CmpNoCase(in.v_) == 0;
         }
-        bool match(const Self::INFOVALUE &in) const
+        bool match(const Self::ID_TABLE &in) const
         {
-            return this->INFOVALUE.CmpNoCase(in.v_) == 0;
+            return this->ID_TABLE == in.v_;
+        }
+        bool match(const Self::ID_CHECKINGACCOUNT &in) const
+        {
+            return this->ID_CHECKINGACCOUNT == in.v_;
+        }
+        bool match(const Self::ID_CURRENCY &in) const
+        {
+            return this->ID_CURRENCY == in.v_;
         }
         wxString to_json() const
         {
@@ -219,24 +252,30 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         
         int to_json(json::Object& o) const
         {
-            o[L"INFOID"] = json::Number(this->INFOID);
-            o[L"INFONAME"] = json::String(this->INFONAME.ToStdWstring());
-            o[L"INFOVALUE"] = json::String(this->INFOVALUE.ToStdWstring());
+            o[L"ID"] = json::Number(this->ID);
+            o[L"TABLE_TYPE"] = json::String(this->TABLE_TYPE.ToStdWstring());
+            o[L"ID_TABLE"] = json::Number(this->ID_TABLE);
+            o[L"ID_CHECKINGACCOUNT"] = json::Number(this->ID_CHECKINGACCOUNT);
+            o[L"ID_CURRENCY"] = json::Number(this->ID_CURRENCY);
             return 0;
         }
         row_t to_row_t() const
         {
             row_t row;
-            row(L"INFOID") = INFOID;
-            row(L"INFONAME") = INFONAME;
-            row(L"INFOVALUE") = INFOVALUE;
+            row(L"ID") = ID;
+            row(L"TABLE_TYPE") = TABLE_TYPE;
+            row(L"ID_TABLE") = ID_TABLE;
+            row(L"ID_CHECKINGACCOUNT") = ID_CHECKINGACCOUNT;
+            row(L"ID_CURRENCY") = ID_CURRENCY;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t(L"INFOID") = INFOID;
-            t(L"INFONAME") = INFONAME;
-            t(L"INFOVALUE") = INFOVALUE;
+            t(L"ID") = ID;
+            t(L"TABLE_TYPE") = TABLE_TYPE;
+            t(L"ID_TABLE") = ID_TABLE;
+            t(L"ID_CHECKINGACCOUNT") = ID_CHECKINGACCOUNT;
+            t(L"ID_CURRENCY") = ID_CURRENCY;
         }
 
         /** Save the record instance in memory to the database. */
@@ -245,7 +284,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!view_ || !db) 
             {
-                wxLogError("can not save INFOTABLE_V1");
+                wxLogError("can not save TRANSFERTRANS_V1");
                 return false;
             }
 
@@ -257,7 +296,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         {
             if (!view_ || !db) 
             {
-                wxLogError("can not remove INFOTABLE_V1");
+                wxLogError("can not remove TRANSFERTRANS_V1");
                 return false;
             }
             
@@ -274,17 +313,17 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 3
+        NUM_COLUMNS = 5
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "INFOTABLE_V1"; }
+    wxString name() const { return "TRANSFERTRANS_V1"; }
 
-    DB_Table_INFOTABLE_V1() 
+    DB_Table_TRANSFERTRANS_V1() 
     {
-        query_ = "SELECT * FROM INFOTABLE_V1 ";
+        query_ = "SELECT * FROM TRANSFERTRANS_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -314,21 +353,23 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO INFOTABLE_V1(INFONAME, INFOVALUE) VALUES(?, ?)";
+            sql = "INSERT INTO TRANSFERTRANS_V1(TABLE_TYPE, ID_TABLE, ID_CHECKINGACCOUNT, ID_CURRENCY) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE INFOTABLE_V1 SET INFONAME = ?, INFOVALUE = ? WHERE INFOID = ?";
+            sql = "UPDATE TRANSFERTRANS_V1 SET TABLE_TYPE = ?, ID_TABLE = ?, ID_CHECKINGACCOUNT = ?, ID_CURRENCY = ? WHERE ID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->INFONAME);
-            stmt.Bind(2, entity->INFOVALUE);
+            stmt.Bind(1, entity->TABLE_TYPE);
+            stmt.Bind(2, entity->ID_TABLE);
+            stmt.Bind(3, entity->ID_CHECKINGACCOUNT);
+            stmt.Bind(4, entity->ID_CURRENCY);
             if (entity->id() > 0)
-                stmt.Bind(3, entity->INFOID);
+                stmt.Bind(5, entity->ID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -345,7 +386,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("INFOTABLE_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("TRANSFERTRANS_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -363,7 +404,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM INFOTABLE_V1 WHERE INFOID = ?";
+            wxString sql = "DELETE FROM TRANSFERTRANS_V1 WHERE ID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -388,7 +429,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("INFOTABLE_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("TRANSFERTRANS_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
