@@ -19,7 +19,6 @@
 #ifndef MM_EX_BUDGETENTRYDIALOG_H_
 #define MM_EX_BUDGETENTRYDIALOG_H_
 
-#include "defs.h"
 #include "mmtextctrl.h"
 #include "model/Model_Budget.h"
 
