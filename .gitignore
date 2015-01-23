@@ -25,6 +25,8 @@
 
 # Makefiles
 makefile
+/po/Makefile
+/setup/win/Makefile
 
 # Python
 *.pyc
@@ -49,6 +51,8 @@ makefile
 *.zip
 
 #autoconf
+aclocal.m4
+/autom4te.cache/
 config.log
 config.status
 shared-ld-sh
@@ -65,3 +69,5 @@ bk-deps
 *.swp
 
 *.d
+
+/release
