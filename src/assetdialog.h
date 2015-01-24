@@ -15,7 +15,7 @@
  ********************************************************/
 
 #pragma once
-#include "defs.h"
+
 #include "model/Model_Asset.h"
 #include "model/Model_Currency.h"
 
