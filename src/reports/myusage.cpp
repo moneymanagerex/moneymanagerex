@@ -109,7 +109,6 @@ const char *usage_template = R"(
         <tr>
             <th>USAGEDATE</th>
             <th>FREQUENCY</th>
-            <th>Slow modules (>= 1 second)</th>
         </tr>
     </thead>
     <tbody>
@@ -117,7 +116,6 @@ const char *usage_template = R"(
             <tr>
             <td><TMPL_VAR "USAGEDATE"></td>
             <td><TMPL_VAR "FREQUENCY"></td>
-            <td><TMPL_VAR "SLOW"></td>
             </tr>
         </TMPL_LOOP>
         <tr>
