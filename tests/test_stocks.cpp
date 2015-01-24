@@ -62,8 +62,8 @@ void Test_Stock::setUp()
    
     m_test_db.Open(m_test_db_filename);
     m_dbmodel = new DB_Init_Model();
+    m_dbmodel->Init_Model_Tables(&m_test_db);
     m_dbmodel->Init_Model_Stocks(&m_test_db);
-    m_dbmodel->Init_BaseCurrency();
 }
 
 void Test_Stock::tearDown()

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-12-11 16:43:03.028067.
+ *          AUTO GENERATED at 2015-01-22 15:13:14.809000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -454,6 +454,42 @@ struct SorterByHISTID
     }
 };
 
+struct SorterByID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.ID < y.ID;
+    }
+};
+
+struct SorterByID_CHECKINGACCOUNT
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.ID_CHECKINGACCOUNT < y.ID_CHECKINGACCOUNT;
+    }
+};
+
+struct SorterByID_CURRENCY
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.ID_CURRENCY < y.ID_CURRENCY;
+    }
+};
+
+struct SorterByID_TABLE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.ID_TABLE < y.ID_TABLE;
+    }
+};
+
 struct SorterByINFOID
 { 
     template<class DATA>
@@ -775,6 +811,15 @@ struct SorterBySYMBOL
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.SYMBOL < y.SYMBOL;
+    }
+};
+
+struct SorterByTABLE_TYPE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.TABLE_TYPE < y.TABLE_TYPE;
     }
 };
 

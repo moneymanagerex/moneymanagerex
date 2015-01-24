@@ -212,7 +212,7 @@ struct DB_Table_%s : public DB_Table
     }
 '''
         s +='''
-    /** Returns the comumn number from the given column name*/
+    /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
         if ("%s" == name) return COL_%s;''' % (self._primay_key, self._primay_key.upper())
@@ -236,7 +236,7 @@ struct DB_Table_%s : public DB_Table
     ''' % self._table.upper()
         for field in self._fields:
             s += '''
-        %s %s;%s''' % (base_data_types_reverse[field['type']], field['name'], field['pk'] and '//  primay key' or '')
+        %s %s;%s''' % (base_data_types_reverse[field['type']], field['name'], field['pk'] and '//  primary key' or '')
 
         s +='''
         int id() const { return %s; }

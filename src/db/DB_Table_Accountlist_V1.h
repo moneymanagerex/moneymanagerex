@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-12-11 16:43:03.028067.
+ *          AUTO GENERATED at 2015-01-22 15:13:14.809000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -204,7 +204,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         return "UNKNOWN";
     }
 
-    /** Returns the comumn number from the given column name*/
+    /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
         if ("ACCOUNTID" == name) return COL_ACCOUNTID;
@@ -231,7 +231,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* view_;
     
-        int ACCOUNTID;//  primay key
+        int ACCOUNTID;//  primary key
         wxString ACCOUNTNAME;
         wxString ACCOUNTTYPE;
         wxString ACCOUNTNUM;

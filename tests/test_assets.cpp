@@ -25,7 +25,11 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "test_assets.h"
 #include "assetspanel.h"
+#include "assetdialog.h"
 #include "../src/constants.h"
+#include "mmcheckingpanel.h"
+#include "model/Model_TransferTrans.h"
+
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
 *****************************************************************************/
@@ -63,11 +67,19 @@ void Test_Asset::setUp()
     {
         m_base_frame = new TestFrameBase(m_this_instance);
         m_base_frame->Show(true);
+        m_user_request = new TestFrameBase(m_base_frame);
+        m_user_request->Show();
+    }
+
+    if (m_this_instance == 6)
+    {
+        m_base_frame = new TestFrameBase(m_this_instance);
+        m_base_frame->Show(true);
     }
 
     m_dbmodel = new DB_Init_Model();
+    m_dbmodel->Init_Model_Tables(&m_test_db);
     m_dbmodel->Init_Model_Assets(&m_test_db);
-    m_dbmodel->Init_BaseCurrency();
 }
 
 void Test_Asset::tearDown()
@@ -75,7 +87,7 @@ void Test_Asset::tearDown()
     delete m_dbmodel;
     m_test_db.Close();
 
-    if (m_this_instance == 5)
+    if (m_this_instance > 4)
     {
         delete m_base_frame;
     }
@@ -153,8 +165,91 @@ void Test_Asset::test_remove()
     CPPUNIT_ASSERT(assets.size() == 4);
 }
 
+void Test_Asset::test_dialog()
+{
+    m_user_request->Show_InfoBarMessage(
+        "Assets Dialog Test:\n\n"
+        "\n\n"
+        "Use Cancel to ignore test results.");
+
+    mmAssetDialog* dlg = new mmAssetDialog(m_base_frame, 0);
+    if (dlg->ShowModal() == wxID_OK)
+    {
+        Model_Asset::Data_Set asset_table = Model_Asset::instance().all();
+        CPPUNIT_ASSERT(asset_table.size() > 0);
+
+        Model_Asset::Data bill_entry = asset_table.at(asset_table.size() - 1);
+    }
+}
+
 void Test_Asset::test_assetpanel()
 {
+    // Set up some data in table
+    m_test_db.Begin();
+    m_dbmodel->Add_Bank_Account("Cheque", 0);
+    m_dbmodel->Add_Bank_Account("Savings", 0);
+
+    m_dbmodel->Add_Payee("Peter", "Income", "Salary");
+    m_dbmodel->Add_Payee("Supermarket");
+
+    wxDateTime trans_date(wxDateTime::Today().Subtract(wxDateSpan::Days(7)));
+    m_dbmodel->Add_Trans_Deposit("Savings", trans_date, "Peter", 1500.0, "Income", "Salary");
+    m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date, "Supermarket", 300.0, "Food", "Groceries");
+    m_test_db.Commit();
+
+    // Need to have user get the account
+    int savings_account_id = m_dbmodel->Get_account_id("Savings");
+
+    double purchase_value = 1400.0;
+
+    // Asset is created from assets, specifying Buy/withdrawal, Sell/income,
+    Model_Asset::Data* asset_entry = Model_Asset::instance().create();
+    asset_entry->ASSETNAME = "Bed";
+    asset_entry->STARTDATE = trans_date.FormatISODate();
+    asset_entry->VALUE = purchase_value;
+    asset_entry->VALUECHANGE = Model_Asset::all_rate()[Model_Asset::RATE_DEPRECIATE];
+    asset_entry->VALUECHANGERATE = 10.0;
+    asset_entry->ASSETTYPE = Model_Asset::all_type()[Model_Asset::TYPE_HOUSE];
+    asset_entry->NOTES = "Purchase of New Bed";
+    Model_Asset::instance().save(asset_entry);
+
+    Model_TransferTrans::Data* trans_entry = Model_TransferTrans::instance().create();
+    Model_Checking::Data* checking_entry = Model_Checking::instance().create();
+
+    /*  Set tp the transfer table.
+        
+        This allows
+        1. Asset record to be located via knowing the transaction
+        2. Checking record to be found from knowing the asset
+    */
+    trans_entry->TABLE_TYPE = Model_TransferTrans::all_table_type()[Model_TransferTrans::ASSETS];
+    trans_entry->ID_TABLE = asset_entry->id();
+    trans_entry->ID_CHECKINGACCOUNT = checking_entry->id();
+    trans_entry->ID_CURRENCY = Model_Currency::instance().GetBaseCurrency()->id();
+
+    /* Set tp the transaction
+
+       Purchase of an asset will be a withdrawal from the checking account
+       Sale of an asset will be a deposit in the checking account.
+    */
+    checking_entry->ACCOUNTID = savings_account_id;
+    checking_entry->TOACCOUNTID = trans_entry->id();
+    checking_entry->PAYEEID = m_dbmodel->Get_Payee_id("Supermarket");
+    checking_entry->TRANSCODE = Model_Checking::instance().all_type()[Model_Checking::WITHDRAWAL];
+    checking_entry->TRANSAMOUNT = purchase_value;
+    checking_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED].Mid(0, 1);
+    checking_entry->CATEGID = m_dbmodel->Get_category_id("Homeneeds");
+    checking_entry->SUBCATEGID = m_dbmodel->Get_subcategory_id(checking_entry->CATEGID, "Furnishing");
+    checking_entry->TRANSDATE = trans_date.FormatISODate();
+    checking_entry->FOLLOWUPID = 0;
+    checking_entry->NOTES = "Asset: New Bed";
+    checking_entry->TOTRANSAMOUNT = purchase_value;
+    Model_Checking::instance().save(checking_entry);
+
+    /*
+        Now to display the two rcords.
+    */
+
     // Create a new frame anchored to the base frame.
     TestFrameBase* asset_frame = new TestFrameBase(m_base_frame, 670, 400);
     asset_frame->Show();
@@ -163,8 +258,24 @@ void Test_Asset::test_assetpanel()
     mmAssetsPanel* asset_panel = new mmAssetsPanel(asset_frame, mmID_ASSETS);
     asset_panel->Show();
 
-    // Anchor the panel. Otherwise it will disappear.
-    wxMessageBox("Please Examine: Asset Panel.\n\nContinue other tests ...",
-        "Testing: Asset Panel", wxOK, wxTheApp->GetTopWindow());
+    TestFrameBase* account_frame = new TestFrameBase(m_base_frame, 670, 400);
+    account_frame->Show();
+
+    mmCheckingPanel* account_panel = new mmCheckingPanel(account_frame, 0, savings_account_id);
+    account_panel->Show();
+
+    /*
+        Code to identify this transaction type is required in the checking panel
+        TRANSCODE == Model_Checking::WITHDRAWAL or Model_Checking::DEPOSIT
+        TOACCOUNTID != -1   == holds ID to Model_TransferTrans record
+    */
+
+    // Anchor the panels. Otherwise they will disappear.
+    wxMessageBox(
+        "Please Examine: Asset Panel and Account panel."
+        "\n\nContinue other tests ...",
+        "Testing: Asset Panel to Account Panel", wxOK, wxTheApp->GetTopWindow());
+
+    delete(account_panel);
 }
 //--------------------------------------------------------------------------
