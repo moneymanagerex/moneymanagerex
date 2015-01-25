@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-12-11 16:43:03.028067.
+ *          AUTO GENERATED at 2015-01-25 14:08:47.154165.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE BILLSDEPOSITS_V1(BDID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL, TRANSAMOUNT numeric NOT NULL, STATUS TEXT, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, REPEATS integer, NEXTOCCURRENCEDATE TEXT, NUMOCCURRENCES integer )");
+				db->ExecuteUpdate("CREATE TABLE BILLSDEPOSITS_V1(BDID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL /* Withdrawal, Deposit, Transfer */, TRANSAMOUNT numeric NOT NULL, STATUS TEXT /* None, Reconciled, Void, Follow up, Duplicate */, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, REPEATS integer, NEXTOCCURRENCEDATE TEXT, NUMOCCURRENCES integer )");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -232,7 +232,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         return "UNKNOWN";
     }
 
-    /** Returns the comumn number from the given column name*/
+    /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
         if ("BDID" == name) return COL_BDID;
@@ -263,7 +263,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* view_;
     
-        int BDID;//  primay key
+        int BDID;//  primary key
         int ACCOUNTID;
         int TOACCOUNTID;
         int PAYEEID;

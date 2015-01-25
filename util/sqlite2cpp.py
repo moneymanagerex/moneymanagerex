@@ -813,7 +813,7 @@ if __name__ == '__main__':
     header =  '''// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *

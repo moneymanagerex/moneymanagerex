@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-12-11 16:43:03.028067.
+ *          AUTO GENERATED at 2015-01-25 14:08:47.154165.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE ATTACHMENT_V1 (ATTACHMENTID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL, REFID INTEGER NOT NULL, DESCRIPTION TEXT COLLATE NOCASE, FILENAME TEXT NOT NULL COLLATE NOCASE)");
+				db->ExecuteUpdate("CREATE TABLE ATTACHMENT_V1 (ATTACHMENTID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */, REFID INTEGER NOT NULL, DESCRIPTION TEXT COLLATE NOCASE, FILENAME TEXT NOT NULL COLLATE NOCASE)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -148,7 +148,7 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         return "UNKNOWN";
     }
 
-    /** Returns the comumn number from the given column name*/
+    /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
         if ("ATTACHMENTID" == name) return COL_ATTACHMENTID;
@@ -167,7 +167,7 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* view_;
     
-        int ATTACHMENTID;//  primay key
+        int ATTACHMENTID;//  primary key
         wxString REFTYPE;
         int REFID;
         wxString DESCRIPTION;
