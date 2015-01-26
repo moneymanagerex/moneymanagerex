@@ -30,6 +30,7 @@ class Test_Asset : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST(test_appreciate);
     CPPUNIT_TEST(test_depreciate);
     CPPUNIT_TEST(test_remove);
+    CPPUNIT_TEST(test_dialog);
     CPPUNIT_TEST(test_assetpanel);
     CPPUNIT_TEST_SUITE_END();
 
@@ -45,6 +46,7 @@ private:
     wxSQLite3Database m_test_db;
     DB_Init_Model* m_dbmodel;
     TestFrameBase *m_base_frame;
+    TestFrameBase* m_user_request;
     int m_this_instance;
 
 private:
@@ -53,5 +55,6 @@ private:
     void test_appreciate();
     void test_depreciate();
     void test_remove();
+    void test_dialog();
     void test_assetpanel();
 };

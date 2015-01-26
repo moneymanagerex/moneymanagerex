@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-12-11 16:43:03.028067.
+ *          AUTO GENERATED at 2015-01-25 15:29:25.126684.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL , ACCOUNTNUM TEXT, STATUS TEXT NOT NULL, NOTES TEXT , HELDAT TEXT , WEBSITE TEXT , CONTACTINFO TEXT, ACCESSINFO TEXT , INITIALBAL numeric , FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL)");
+				db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL /* Checking, Term, Investment, Credit Card */, ACCOUNTNUM TEXT, STATUS TEXT NOT NULL /* Open, Closed */, NOTES TEXT , HELDAT TEXT , WEBSITE TEXT , CONTACTINFO TEXT, ACCESSINFO TEXT , INITIALBAL numeric , FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -204,7 +204,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         return "UNKNOWN";
     }
 
-    /** Returns the comumn number from the given column name*/
+    /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
         if ("ACCOUNTID" == name) return COL_ACCOUNTID;
@@ -231,7 +231,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* view_;
     
-        int ACCOUNTID;//  primay key
+        int ACCOUNTID;//  primary key
         wxString ACCOUNTNAME;
         wxString ACCOUNTTYPE;
         wxString ACCOUNTNUM;
