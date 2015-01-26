@@ -149,6 +149,20 @@ void mmQIFExportDialog::CreateControls()
 
     // Encoding --------------------------------------------
 
+    // Date Format Settings --------------------------------
+    wxString dateFormatStr = mmOptions::instance().dateFormat_;
+
+    wxStaticText* dateFormat = new wxStaticText(main_tab, wxID_STATIC, _("Date Format"));
+    m_choiceDateFormat = new wxComboBox(main_tab, wxID_ANY);
+    for (const auto& i : date_formats_map())
+    {
+        m_choiceDateFormat->Append(i.second, new wxStringClientData(i.first));
+        if (dateFormatStr == i.first) m_choiceDateFormat->SetStringSelection(i.second);
+    }
+
+    flex_sizer->Add(dateFormat, g_flags);
+    flex_sizer->Add(m_choiceDateFormat, g_flags);
+
     // File Name --------------------------------------------
     toFileCheckBox_ = new wxCheckBox(main_tab, wxID_ANY, _("Write to File")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
@@ -357,20 +371,22 @@ void mmQIFExportDialog::mmExportQIF()
 {
     bool qif_csv = m_radio_box_->GetSelection() == 0;
     bool exp_categ = cCategs_->GetValue();
-    bool exp_transactions = (accountsCheckBox_->GetValue() && selected_accounts_id_.GetCount()>0);
+    bool exp_transactions = (accountsCheckBox_->GetValue() && selected_accounts_id_.GetCount() > 0);
     bool write_to_file = toFileCheckBox_->GetValue();
     wxString sErrorMsg;
     wxString buffer;
     int numRecords = 0;
 
+    wxStringClientData* data_obj = (wxStringClientData*)m_choiceDateFormat->GetClientObject(m_choiceDateFormat->GetSelection());
+    const wxString dateMask = data_obj->GetData();
+
     //Export categories
     if (exp_categ)
     {
-        mmExportTransaction categories;
         if (qif_csv)
-            buffer << categories.getCategoriesQIF();
+            buffer << mmExportTransaction::getCategoriesQIF();
          else
-            buffer << categories.getCategoriesCSV();
+             buffer << mmExportTransaction::getCategoriesCSV();
         sErrorMsg << _("Categories exported") << "\n";
     }
 
@@ -387,8 +403,7 @@ void mmQIFExportDialog::mmExportQIF()
         {
             if (qif_csv)
             {
-                mmExportTransaction header(account_id);
-                buffer << header.getAccountHeaderQIF();
+                buffer << mmExportTransaction::getAccountHeaderQIF(account_id);
             }
 
             for (const auto& transaction : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(account_id)
@@ -405,9 +420,9 @@ void mmQIFExportDialog::mmExportQIF()
 
                 Model_Checking::Full_Data full_tran(transaction, splits);
                 if (qif_csv)
-                    buffer << mmExportTransaction::getTransactionQIF(full_tran, account_id);
+                    buffer << mmExportTransaction::getTransactionQIF(full_tran, account_id, dateMask);
                 else
-                    buffer << mmExportTransaction::getTransactionCSV(full_tran, account_id);
+                    buffer << mmExportTransaction::getTransactionCSV(full_tran, account_id, dateMask);
 
                 if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                 {
@@ -418,9 +433,9 @@ void mmQIFExportDialog::mmExportQIF()
                         //get second part of transfer transaction
                         wxString second_part = "";
                         if (qif_csv)
-                            second_part = mmExportTransaction::getTransactionQIF(full_tran, account_id);
+                            second_part = mmExportTransaction::getTransactionQIF(full_tran, account_id, dateMask);
                         else
-                            second_part = mmExportTransaction::getTransactionCSV(full_tran, account_id);
+                            second_part = mmExportTransaction::getTransactionCSV(full_tran, account_id, dateMask);
                         transferTransactions[index] += second_part;
                     }
                 }
@@ -432,8 +447,7 @@ void mmQIFExportDialog::mmExportQIF()
         {
             if (qif_csv)
             {
-                mmExportTransaction header(entry.first);
-                buffer << header.getAccountHeaderQIF();
+                buffer << mmExportTransaction::getAccountHeaderQIF(entry.first);
             }
             buffer << entry.second;
         }

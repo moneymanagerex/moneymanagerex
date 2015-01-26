@@ -28,16 +28,13 @@ class mmExportTransaction
 public:
     ~mmExportTransaction();
     mmExportTransaction();
-    mmExportTransaction(int accountID);
 
-    static wxString getTransactionQIF(const Model_Checking::Full_Data & tran, int accountID);
-    static wxString getTransactionCSV(const Model_Checking::Full_Data & tran, int accountID);
-    wxString getAccountHeaderQIF();
-    wxString getCategoriesQIF();
-    wxString getCategoriesCSV();
+    static const wxString getTransactionQIF(const Model_Checking::Full_Data & tran, int accountID, const wxString& dateMask);
+    static const wxString getTransactionCSV(const Model_Checking::Full_Data & tran, int accountID, const wxString& dateMask);
+    static const wxString getAccountHeaderQIF(int accountID);
+    static const wxString getCategoriesQIF();
+    static const wxString getCategoriesCSV();
 
-protected:
-    int m_account_id;
 };
 
 
