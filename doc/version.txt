@@ -1,16 +1,21 @@
 Version History of Money Manager Ex
 
 1.2.0 (tba)
-- New: Repeating transaction created from existing transaction
 - New: Introducing new account type - Credit Card
 - New: Monthly Summary of Accounts
 - New: Stock History Monitoring
 - New: My Usage Reports
 - New: MMEX News display on Home page
-- Change: Repeating transaction - 'Next Occur Date'
-          redefined as 'Payment Date' and 'Due Date'
-- New: Database version updated to version 3 with
-       database correction for Repeating Transactions
+- New: Apply button on Options Dialog saves displayed page.
+- New: Extra columns displayed in panels.
+- New: Command to change encrypted database password.
+- New: Command to compact the database
+- New: Import transactions from WebApp
+- New: Repeating transaction created from existing transaction
+- Functionality Change: Repeating Transaction.
+  'Next Occur Date' redefined as 'Payment Date' and 'Due Date'
+- Database Upgrade: Database version updated to version 3 with
+  auto data correction for Repeating Transactions.
 - Fix: Many bug fixes
 
 1.1.2 (November 16, 2014)
