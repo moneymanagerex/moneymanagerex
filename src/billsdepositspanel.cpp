@@ -140,9 +140,8 @@ void billsDepositsListCtrl::OnColClick(wxListEvent& event)
     Model_Setting::instance().Set("BD_ASC", m_asc);
     Model_Setting::instance().Set("BD_SORT_COL", m_selected_col);
 
-    int id = -1;
-    if (m_selected_row >= 0) id = m_bdp->bills_[m_selected_row].BDID;
-    refreshVisualList(m_bdp->initVirtualListControl(id));
+    if (m_selected_row >= 0) 
+        refreshVisualList(m_bdp->initVirtualListControl(m_bdp->bills_[m_selected_row].BDID));
 }
 
 void billsDepositsListCtrl::OnColRightClick(wxListEvent& event)

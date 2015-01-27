@@ -23,7 +23,6 @@
 #include "util.h"
 #include "validators.h"
 
-#include "model/Model_Asset.h"
 #include "model/Model_Attachment.h"
 
 #include "../resources/attachment.xpm"

@@ -35,7 +35,7 @@ private:
 class mmUpdateWizard : public wxWizard
 {
 public:
-    mmUpdateWizard(wxFrame *frame, const wxString NewVersion);
+    mmUpdateWizard(wxFrame *frame, const wxString& NewVersion);
     void RunIt(bool modal);
 
     wxString NewVersion;

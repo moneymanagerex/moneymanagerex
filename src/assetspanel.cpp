@@ -18,7 +18,7 @@
 #include "assetdialog.h"
 #include "attachmentdialog.h"
 #include "constants.h"
-#include "model/Model_Asset.h"
+
 #include "model/Model_Attachment.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Setting.h"

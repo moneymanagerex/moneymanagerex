@@ -28,7 +28,7 @@ wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxWizard)
     EVT_WIZARD_PAGE_CHANGED(wxID_ANY, mmUpdateWizard::PageChanged)
 wxEND_EVENT_TABLE()
 
-mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const wxString NewVersion)
+mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const wxString& NewVersion)
     : wxWizard(frame, wxID_ANY, _("Update Wizard")
     , wxBitmap(wxNullBitmap), wxDefaultPosition, wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER)
     , NewVersion()
