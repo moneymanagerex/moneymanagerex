@@ -416,12 +416,8 @@ void mmBudgetingPanel::initVirtualListControl()
         double catTotalsEstimated = estimated;
         double catTotalsActual = actual;
 
-        if (DisplayEntryAllowed(category.CATEGID, -1)) {
-            std::pair <int, int> category_pair;
-            category_pair.first = category.CATEGID;
-            category_pair.second = -1;
-            budget_.push_back(category_pair);
-        }
+        if (DisplayEntryAllowed(category.CATEGID, -1))
+            budget_.push_back(std::make_pair(category.CATEGID, -1));
 
         for (const auto& subcategory : allSubcategories)
         {
@@ -449,12 +445,8 @@ void mmBudgetingPanel::initVirtualListControl()
             catTotalsEstimated += estimated;
             catTotalsActual += actual;
 
-            if (DisplayEntryAllowed(category.CATEGID, subcategory.SUBCATEGID)) {
-                std::pair <int, int> category_pair;
-                category_pair.first = category.CATEGID;
-                category_pair.second = subcategory.SUBCATEGID;
-                budget_.push_back(category_pair);
-            }
+            if (DisplayEntryAllowed(category.CATEGID, subcategory.SUBCATEGID))
+                budget_.push_back(std::make_pair(category.CATEGID, subcategory.SUBCATEGID));
         }
 
         budgetTotals_[category.CATEGID].first = catTotalsEstimated;
@@ -463,10 +455,7 @@ void mmBudgetingPanel::initVirtualListControl()
         if ((!mmIniOptions::instance().budgetSetupWithoutSummaries_ || currentView_ == VIEW_SUMM)
             && DisplayEntryAllowed(-1, category.CATEGID))
         {
-            std::pair <int, int> category_pair;
-            category_pair.first = -1;
-            category_pair.second = category.CATEGID;
-            budget_.push_back(category_pair);
+            budget_.push_back(std::make_pair(-1, category.CATEGID));
             int transCatTotalIndex = (int)budget_.size() - 1;
             listCtrlBudget_->RefreshItem(transCatTotalIndex);
         }
