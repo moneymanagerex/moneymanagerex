@@ -107,7 +107,6 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Category"));
-    hb.addTableHeaderCell(_("Sub Category"));
     hb.addTableHeaderCell(_("Amount"), true);
     hb.addTableHeaderCell(_("Frequency"));
     hb.addTableHeaderCell(_("Estimated"), true);
@@ -118,59 +117,38 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     int categID = -1;
     double catTotalsAmt = 0.0, catTotalsEstimated = 0.0, catTotalsActual = 0.0;
 
-    for (const auto& category : Model_Category::all_categories())
+    auto categs = Model_Category::all_categories();
+    categs[L"\uF8FF"] = std::make_pair(-1, -1); //last alphabetical charicter
+    for (const auto& category : categs)
     {
         double estimated = (monthlyBudget
             ? Model_Budget::getMonthlyEstimate(budgetPeriod[category.second.first][category.second.second]
                 , budgetAmt[category.second.first][category.second.second])
             : Model_Budget::getYearlyEstimate(budgetPeriod[category.second.first][category.second.second]
                 , budgetAmt[category.second.first][category.second.second]));
-        if (estimated < 0) {
+
+        if (estimated < 0)
             estExpenses += estimated;
-        } else {
+        else
             estIncome += estimated;
-        }
 
         double actual = categoryStats[category.second.first][category.second.second][0];
-        if (actual < 0) {
+        if (actual < 0)
             actExpenses += actual;
-        } else {
+        else
             actIncome += actual;
-        }
-
-        if (categID == -1) categID = category.second.first;
-        
-        catTotalsAmt += actual; //FIXME: what the amount?
-        catTotalsActual += actual;
-        catTotalsEstimated += estimated;
-        /***************************************************************************/
-        if (mmIniOptions::instance().budgetReportWithSummaries_)
-        {
-            double amt = budgetAmt[category.second.first][category.second.second];
-            hb.startTableRow();
-            hb.addTableCell(category.first);
-            hb.addTableCell(wxEmptyString);
-            hb.addMoneyCell(amt);
-            hb.addTableCell(wxGetTranslation(Model_Budget::all_period()[budgetPeriod[category.second.first][category.second.second]]));
-            hb.addMoneyCell(estimated);
-            hb.addMoneyCell(actual);
-            hb.endTableRow();
-        }
 
         /***************************************************************************
         Display a TOTALS entry for the category.
         ****************************************************************************/
-        if (categID != category.second.first 
-            || category.second.second == Model_Category::all_categories().rbegin()->second.second)
+        if (categID != category.second.first && categID != -1)
         {
-
-            // Category, Sub Category, Period, Amount, Estimated, Actual
-            hb.startTableRow();
+            // Category, Period, Amount, Estimated, Actual
+            amply ? hb.startTableRow(mmColors::listFutureDateColor.GetAsString()) : hb.startTableRow();
             Model_Category::Data *c = Model_Category::instance().get(categID);
             wxString categName = "";
             if (c) categName = c->CATEGNAME;
             hb.addTableCell(categName);
-            hb.addTableCell(wxEmptyString);
             hb.addTableCell(wxEmptyString);
             hb.addTableCell(wxEmptyString);
             hb.addMoneyCell(catTotalsEstimated);
@@ -178,8 +156,25 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             hb.endTableRow();
 
             catTotalsAmt = catTotalsEstimated = catTotalsActual = 0.0;
-
         }
+        
+        catTotalsAmt += actual;
+        catTotalsActual += actual;
+        catTotalsEstimated += estimated;
+
+        /***************************************************************************/
+        if (amply && category.second.first != -1)
+        {
+            double amt = budgetAmt[category.second.first][category.second.second];
+            hb.startTableRow();
+            hb.addTableCell(category.first);
+            hb.addMoneyCell(amt);
+            hb.addTableCell(wxGetTranslation(Model_Budget::all_period()[budgetPeriod[category.second.first][category.second.second]]));
+            hb.addMoneyCell(estimated);
+            hb.addMoneyCell(actual);
+            hb.endTableRow();
+        }
+
         categID = category.second.first;
     }
 
