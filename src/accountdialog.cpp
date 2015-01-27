@@ -29,7 +29,6 @@
 #include "webapp.h"
 
 #include "model/Model_Infotable.h"
-#include "model/Model_Account.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Attachment.h"
 

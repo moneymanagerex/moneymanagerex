@@ -20,7 +20,6 @@
 #include "relocatecategorydialog.h"
 #include "util.h"
 #include "mmOption.h"
-#include "defs.h"
 #include "paths.h"
 #include "constants.h"
 #include "webapp.h"

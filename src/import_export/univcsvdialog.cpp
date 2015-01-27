@@ -413,7 +413,6 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
         const wxString& value = wxString(json::String(o[w]));
         if (!value.empty())
         {
-            std::map<int, wxString>::const_iterator it;
             int key = -1;
 
             for (const auto& entry : CSVFieldName_)

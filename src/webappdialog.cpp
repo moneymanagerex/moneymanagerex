@@ -247,8 +247,8 @@ void mmWebAppDialog::DeleteWebTr()
 void mmWebAppDialog::OnMenuSelected(wxCommandEvent& event)
 {
     wxCommandEvent evt;
-    int id = event.GetId();
-    switch (id)
+
+    switch (event.GetId())
     {
     case MENU_OPEN_ATTACHMENT: OpenAttachment(); break;
     case MENU_IMPORT_WEBTRAN: ImportWebTrSelected(); break;

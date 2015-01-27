@@ -262,8 +262,8 @@ void mmAttachmentDialog::DeleteAttachment()
 void mmAttachmentDialog::OnMenuSelected(wxCommandEvent& event)
 {
     wxCommandEvent evt;
-    int id = event.GetId();
-    switch(id)
+
+    switch(event.GetId())
     {
         case MENU_NEW_ATTACHMENT: AddAttachment(); break;
 		case MENU_OPEN_ATTACHMENT: OpenAttachment(); break;

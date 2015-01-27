@@ -43,8 +43,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/valnum.h>
 
-#include <wx/valnum.h>
-
 static const wxString TRANSACTION_STATUSES[] =
 {
     wxTRANSLATE("None"),
