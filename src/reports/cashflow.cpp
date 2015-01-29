@@ -34,6 +34,7 @@ mmReportCashFlow::mmReportCashFlow(int cashflowreporttype)
     , activeTermAccounts_(false)
     , activeBankAccounts_(false)
     , cashFlowReportType_(cashflowreporttype)
+    , m_cashflowSpecificAccounts(false)
     , today_(wxDateTime::Today())
     , colorId_(0)
 {}
@@ -129,11 +130,14 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         if (!isAccountFound && !isToAccountFound) continue; // skip account
 
         // Determine if we need to process this account
-        if (Model_Account::status(account) == Model_Account::CLOSED
-            || Model_Account::type(account) == Model_Account::INVESTMENT) continue;
-        if (!activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM) continue;
-        if (!activeBankAccounts_ && (Model_Account::type(account) == Model_Account::CHECKING 
-            || Model_Account::type(account) == Model_Account::CREDIT_CARD)) continue;
+        if (!m_cashflowSpecificAccounts)
+        {
+            if (Model_Account::status(account) == Model_Account::CLOSED
+                || Model_Account::type(account) == Model_Account::INVESTMENT) continue;
+            if (!activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM) continue;
+            if (!activeBankAccounts_ && (Model_Account::type(account) == Model_Account::CHECKING
+                || Model_Account::type(account) == Model_Account::CREDIT_CARD)) continue;
+        }
 
         double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1.0);
         double toConvRate = (to_account ? Model_Account::currency(to_account)->BASECONVRATE : 1.0);
@@ -339,6 +343,7 @@ mmReportCashFlowSpecificAccounts::mmReportCashFlowSpecificAccounts()
 : mmReportCashFlow(0)
 {
     this->cashFlowReportType_ = YEARLY;
+    this->m_cashflowSpecificAccounts = true;
 }
 
 wxString mmReportCashFlowSpecificAccounts::getHTMLText()
@@ -352,4 +357,5 @@ mmReportDailyCashFlowSpecificAccounts::mmReportDailyCashFlowSpecificAccounts()
 : mmReportCashFlowSpecificAccounts()
 {
     this->cashFlowReportType_ = DAILY;
+    this->m_cashflowSpecificAccounts = true;
 }

@@ -50,6 +50,7 @@ protected:
     bool activeTermAccounts_;
     bool activeBankAccounts_;
     int cashFlowReportType_;
+    bool m_cashflowSpecificAccounts;
     enum { YEARLY = 0, DAILY };
 
     static const int yearsNum_ = 10;
