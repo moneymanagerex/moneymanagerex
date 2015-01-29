@@ -272,14 +272,14 @@ bool mmGeneralReportManager::Create(wxWindow* parent
 
 void mmGeneralReportManager::fillControls()
 {
-    Freeze();
+    windowsFreezeThaw(this);
     viewControls(false);
     SetEvtHandlerEnabled(false);
     m_treeCtrl->DeleteAllItems();
     m_rootItem = m_treeCtrl->AddRoot(_("Reports"));
     m_selectedItemID = m_rootItem;
     m_treeCtrl->SetItemBold(m_rootItem, true);
-    Model_Report::Data_Set records = Model_Report::instance().all();
+    auto records = Model_Report::instance().all();
     std::sort(records.begin(), records.end(), SorterByREPORTNAME());
     std::stable_sort(records.begin(), records.end(), SorterByGROUPNAME());
     wxTreeItemId group;
@@ -305,7 +305,7 @@ void mmGeneralReportManager::fillControls()
     m_treeCtrl->SelectItem(m_selectedItemID);
     SetEvtHandlerEnabled(true);
     m_treeCtrl->SetFocus();
-    Thaw();
+    windowsFreezeThaw(this);
     //Show help page or report detailes (bugs:#421)
     wxTreeEvent evt(wxEVT_TREE_SEL_CHANGED, ID_REPORT_LIST);
     evt.SetItem(m_selectedItemID);

@@ -748,53 +748,52 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SetItemData(help, new mmTreeItemData("Help"));
     navTreeCtrl_->SetItemBold(help, true);
 
-    if (!m_db)
-        return;
-
-    /* Start Populating the dynamic data */
-    wxString vAccts = Model_Setting::instance().ViewAccounts();
-    wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR || vAccts == VIEW_ACCOUNTS_OPEN_STR);
-    if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
-        vAccts = VIEW_ACCOUNTS_ALL_STR;
-
-    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+    if (m_db)
     {
-        if (!((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-            (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
-            vAccts == "ALL"))
-            continue;
+        /* Start Populating the dynamic data */
+        wxString vAccts = Model_Setting::instance().ViewAccounts();
+        wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR || vAccts == VIEW_ACCOUNTS_OPEN_STR);
+        if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
+            vAccts = VIEW_ACCOUNTS_ALL_STR;
 
-        int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
-        if (Model_Account::type(account) == Model_Account::INVESTMENT)
+        for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
         {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME
-                , selectedImage, selectedImage);
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            if (!((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
+                (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
+                vAccts == "ALL"))
+                continue;
+
+            int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
+            if (Model_Account::type(account) == Model_Account::INVESTMENT)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME
+                    , selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
+            else if (Model_Account::type(account) == Model_Account::TERM)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME
+                    , selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
+            else if (Model_Account::type(account) == Model_Account::CREDIT_CARD)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
+            else
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
         }
-        else if (Model_Account::type(account) == Model_Account::TERM)
-        {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME
-                , selectedImage, selectedImage);
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-        }
-        else if (Model_Account::type(account) == Model_Account::CREDIT_CARD)
-        {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-        }
-        else
-        {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-        }
+
+        loadNavTreeItemsStatus();
+        if (!navTreeCtrl_->ItemHasChildren(accounts)) navTreeCtrl_->Delete(accounts);
+        if (!navTreeCtrl_->ItemHasChildren(cardAccounts)) navTreeCtrl_->Delete(cardAccounts);
+        if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
+        if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
     }
-
-    loadNavTreeItemsStatus();
-    if (!navTreeCtrl_->ItemHasChildren(accounts)) navTreeCtrl_->Delete(accounts);
-    if (!navTreeCtrl_->ItemHasChildren(cardAccounts)) navTreeCtrl_->Delete(cardAccounts);
-    if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
-    if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
-
     navTreeCtrl_->EnsureVisible(root);
     navTreeCtrl_->SelectItem(root);
     navTreeCtrl_->SetEvtHandlerEnabled(true);
@@ -953,6 +952,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     }
     else
     {
+        helpFileIndex_ = -1;
         const wxString data = iData->getString();
         if (data == "item@Help")
             helpFileIndex_ = mmex::HTML_INDEX;
@@ -960,8 +960,9 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             helpFileIndex_ = mmex::HTML_INVESTMENT;
         else if (data == "item@Budgeting")
             helpFileIndex_ = mmex::HTML_BUDGET;
-        else
-            helpFileIndex_ = -1;
+        else if (data == "item@Reports")
+            helpFileIndex_ = mmex::HTML_CUSTOM_SQL;
+
         if (helpFileIndex_ > -1)
         {
             createHelpPage();
@@ -1130,8 +1131,13 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             wxCommandEvent e;
             OnBudgetSetupDialog(e);
         }
-        else
-        if (iData->getString() == "item@Bank Accounts" ||
+        else if (iData->getString() == "item@Reports")
+        {
+            wxMenu menu;
+            menu.Append(wxID_VIEW_LIST, _("General Report Manager"));
+            PopupMenu(&menu, pt);
+        }
+        else if (iData->getString() == "item@Bank Accounts" ||
             iData->getString() == "item@Term Accounts" ||
             iData->getString() == "item@Credit Card Accounts" ||
             iData->getString() == "item@Stocks")
