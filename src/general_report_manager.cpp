@@ -220,14 +220,15 @@ sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindow
 }
 
 mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db)
-    : m_buttonOpen()
-    , m_db(db)
-    , m_buttonSave()
-    , m_buttonSaveAs()
-    , m_buttonRun()
-    , m_treeCtrl()
-    , m_outputHTML()
-    , m_sqlListBox()
+    : m_db(db)
+    , m_buttonOpen(nullptr)
+    , m_buttonSave(nullptr)
+    , m_buttonSaveAs(nullptr)
+    , m_buttonRun(nullptr)
+    , m_treeCtrl(nullptr)
+    , m_outputHTML(nullptr)
+    , m_sqlListBox(nullptr)
+    , m_dbView(nullptr)
     , m_selectedReportID(0)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -427,10 +428,15 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 #else
         long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS;
 #endif
-        wxTreeCtrl *dbView = new wxTreeCtrl(panel, wxID_ANY, wxDefaultPosition
+        m_dbView = new wxTreeCtrl(panel, wxID_ANY, wxDefaultPosition
             , wxDefaultSize, treeCtrlFlags);
-        box_sizer3->Add(dbView, g_flagsExpand);
+        box_sizer3->Add(m_dbView, g_flagsExpand);
         sizer->Add(box_sizer3, g_flagsExpand);
+#if wxUSE_DRAG_AND_DROP
+        m_dbView->Connect(wxID_ANY, wxEVT_TREE_BEGIN_DRAG
+            , wxTreeEventHandler(mmGeneralReportManager::OnBeginDrag)
+            , nullptr, this);
+#endif // wxUSE_DRAG_AND_DROP
 
         wxBoxSizer *box_sizer1 = new wxBoxSizer(wxVERTICAL);
         wxBoxSizer *box_sizer2 = new wxBoxSizer(wxHORIZONTAL);
@@ -453,14 +459,14 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
         // Populate database view
         std::vector<std::pair<wxString, wxArrayString>> sqlTableInfo;
         this->getSqlTableInfo(sqlTableInfo);
-        wxTreeItemId root_id = dbView->AddRoot("Tables");
+        wxTreeItemId root_id = m_dbView->AddRoot("Tables");
         for (const auto& t : sqlTableInfo)
         {
-            wxTreeItemId id = dbView->AppendItem(root_id, t.first);
+            wxTreeItemId id = m_dbView->AppendItem(root_id, t.first);
             for (const auto& c : t.second)
-                dbView->AppendItem(id, c);
+                m_dbView->AppendItem(id, c);
         }
-        dbView->Expand(root_id);
+        m_dbView->Expand(root_id);
     }
     else
         sizer->Add(templateText, g_flagsExpand);
@@ -1104,3 +1110,15 @@ wxString mmGeneralReportManager::getTemplate(const wxString& sql)
     return wxString::Format(HTT_CONTEINER, header, body);
 }
 
+void mmGeneralReportManager::OnBeginDrag(wxTreeEvent& (event))
+{
+    wxTreeItemId selectedItem = event.GetItem();
+    if (!selectedItem) return;
+
+    wxTextDataObject data;
+    data.SetText(m_dbView->GetItemText(selectedItem));
+    MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
+    wxDropSource dragSource(templateText);
+    dragSource.SetData(data);
+    dragSource.DoDragDrop();
+}
