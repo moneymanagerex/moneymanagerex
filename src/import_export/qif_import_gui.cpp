@@ -33,6 +33,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/progdlg.h>
 
+//map Quicken !Account type strings to Model_Account::TYPE
+// (not sure whether these need to be translated)
+const std::map<wxString, int> mmQIFImportDialog::m_QIFaccountTypes =
+{
+    std::make_pair("Bank", Model_Account::CHECKING),
+    std::make_pair("Cash", Model_Account::CHECKING),
+    std::make_pair("Port", Model_Account::INVESTMENT),
+    std::make_pair("Invst", Model_Account::INVESTMENT),
+    std::make_pair("CCard", Model_Account::CREDIT_CARD)
+};
+
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFImportDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
@@ -583,7 +594,7 @@ void mmQIFImportDialog::getDateMask()
 
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 {
-    windowsFreezeThaw(this);
+    this->Freeze();
     m_FileNameStr = file_name_ctrl_->GetValue();
 
     const wxString choose_ext = _("QIF Files");
@@ -601,7 +612,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
         m_userDefinedDateMask = false;
         getDateMask();
     }
-    windowsFreezeThaw(this);
+    this->Thaw();
 }
 
 void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
@@ -904,7 +915,12 @@ int mmQIFImportDialog::getOrCreateAccounts()
 
             account->FAVORITEACCT = "TRUE";
             account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
-            account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::CHECKING];
+            //the account type is found on the T (for "Type") line
+            //which overlaps with the T (for "Total Amount") line in transaction records, 
+            //so we find the account type string in the "Amount" field
+            wxString accountType = (item.second.find(Amount) == item.second.end() ? " " : item.second.at(Amount));
+            int iType = (m_QIFaccountTypes.find(accountType) == m_QIFaccountTypes.end() ? Model_Account::CHECKING : m_QIFaccountTypes.at(accountType));
+            account->ACCOUNTTYPE = Model_Account::all_type()[iType];
             account->ACCOUNTNAME = item.first;
             account->INITIALBAL = 0;
             account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
