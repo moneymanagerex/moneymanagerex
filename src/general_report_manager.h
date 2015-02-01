@@ -106,11 +106,16 @@ private:
     wxButton* m_buttonSaveAs;
     wxButton* m_buttonRun;
     wxTreeCtrl* m_treeCtrl;
+    wxTreeCtrl *m_dbView;
     sqlListCtrl* m_sqlListBox;
     wxTreeItemId m_rootItem;
     wxTreeItemId m_selectedItemID;
     int m_selectedReportID;
     wxString m_selectedGroup;
+
+#if wxUSE_DRAG_AND_DROP
+    void OnBeginDrag(wxTreeEvent& event);
+#endif // wxUSE_DRAG_AND_DROP
 
     enum
     {
