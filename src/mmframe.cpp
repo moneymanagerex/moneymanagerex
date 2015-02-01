@@ -331,6 +331,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
             updateNavTreeControl();
             //setHomePageActive(false);
             createHomePage();
+            mmLoadColorsFromDatabase();
         }
         else
         {
@@ -338,8 +339,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
             cleanupHomePanel();
             showBeginAppDialog(true);
         }
-        /* Load Colors from Database */
-        mmLoadColorsFromDatabase();
     }
 
     const wxAcceleratorEntry entries [] =
@@ -2721,6 +2720,7 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
     {
         updateNavTreeControl();
         createHomePage();
+        mmLoadColorsFromDatabase();
     }
     else
     {
@@ -2728,8 +2728,6 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
         cleanupHomePanel();
         showBeginAppDialog(true);
     }
-    /* Load Colors from Database */
-    mmLoadColorsFromDatabase();
 }
 //----------------------------------------------------------------------------
 
