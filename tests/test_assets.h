@@ -32,6 +32,7 @@ class Test_Asset : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST(test_remove);
     CPPUNIT_TEST(test_dialog);
     CPPUNIT_TEST(test_assetpanel);
+    CPPUNIT_TEST(test_trans_user_panel);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -57,4 +58,5 @@ private:
     void test_remove();
     void test_dialog();
     void test_assetpanel();
+    void test_trans_user_panel();
 };

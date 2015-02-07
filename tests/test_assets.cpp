@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "../src/constants.h"
 #include "mmcheckingpanel.h"
 #include "model/Model_TransferTrans.h"
+#include "mmUserPanelTrans.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -71,7 +72,7 @@ void Test_Asset::setUp()
         m_user_request->Show();
     }
 
-    if (m_this_instance == 6)
+    if (m_this_instance > 5)
     {
         m_base_frame = new TestFrameBase(m_this_instance);
         m_base_frame->Show(true);
@@ -309,4 +310,33 @@ void Test_Asset::test_assetpanel()
         "Testing: Asset to Account", wxOK, wxTheApp->GetTopWindow());
     delete(account_panel);
 }
+
+void Test_Asset::test_trans_user_panel()
+{
+    m_dbmodel->Add_Bank_Account("Bank One");
+    m_dbmodel->Add_Bank_Account("Bank Two");
+    m_dbmodel->Add_Bank_Account("Bank Three");
+    m_dbmodel->Add_Term_Account("Term One");
+    m_dbmodel->Add_Term_Account("Term Two");
+    m_dbmodel->Add_CreditCard_Account("Credit One");
+    m_dbmodel->Add_CreditCard_Account("Credit Two");
+    m_dbmodel->Add_Investment_Account("Investment One");
+    m_dbmodel->Add_Investment_Account("Investment Two");
+
+    // Create a new frame anchored to the base frame.
+    TestFrameBase* trans_user_panel_frame = new TestFrameBase(m_base_frame, 318, 455);
+    trans_user_panel_frame->Show();
+
+    // Create the panel under test
+    mmUserPanelTrans* trans_user_panel = new mmUserPanelTrans(trans_user_panel_frame, wxID_ANY);
+    trans_user_panel->Show();
+
+    // Anchor the panel. Otherwise it will disappear.
+    wxMessageBox("Please Examine: mmtrans_user_panel.\n\nContinue other tests ...",
+        "Testing: Assets", wxOK, wxTheApp->GetTopWindow());
+
+    mmAssetDialog* dlg = new mmAssetDialog(m_base_frame, 0);
+    dlg->ShowModal();
+}
+
 //--------------------------------------------------------------------------

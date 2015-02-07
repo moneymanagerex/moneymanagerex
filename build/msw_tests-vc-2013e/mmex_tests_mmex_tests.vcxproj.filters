@@ -405,6 +405,9 @@
     <ClCompile Include="..\..\src\model\Model_TransferTrans.cpp">
       <Filter>Source Files\model</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\mmUserPanelTrans.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -847,6 +850,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\model\Model_TransferTrans.h">
       <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mmUserPanelTrans.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
