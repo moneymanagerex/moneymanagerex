@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 James Higley
-Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2014..2015 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,6 +26,8 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "test_stocks.h"
 #include "stockdialog.h"
 #include "stockspanel.h"
+#include "mmcheckingpanel.h"
+#include "model/Model_TransferTrans.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -62,8 +64,11 @@ void Test_Stock::setUp()
    
     m_test_db.Open(m_test_db_filename);
     m_dbmodel = new DB_Init_Model();
+    m_test_db.Begin();
     m_dbmodel->Init_Model_Tables(&m_test_db);
-    m_dbmodel->Init_Model_Stocks(&m_test_db);
+    m_dbmodel->Set_Stock_Columns(&m_test_db);
+    m_dbmodel->Set_Checking_Columns(&m_test_db);
+    m_test_db.Commit();
 }
 
 void Test_Stock::tearDown()
@@ -85,7 +90,7 @@ void Test_Stock::Test_Add_Stock_Dialog()
     int id = dlg->ShowModal();
     if (id == wxID_CANCEL)
     {
-        wxMessageBox("Stock Dialog Canclled", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
+        wxMessageBox("Stock Dialog Cancelled", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
     }
     if (id == wxID_OK)
     {
@@ -126,24 +131,103 @@ void Test_Stock::Test_Edit_Stock_Dialog()
 
 void Test_Stock::Test_Stocks_Panel()
 {
+    wxDate start_date(wxDate::Now());
+    start_date.Subtract(wxDateSpan::Months(36));
+
+    // Get User Details
+    const wxString purchase_account = "Savings";
+    const wxString dividend_account = "Cheque";
+    const wxString stock_account = "Telstra";
+
+    const wxString t1_share_account = "Telstra_T1";
+    const int t1_number_share = 2000;
+    const double t1_commission = 0;
+
+    const wxDate t1_init_purchase_date = start_date;
+    const double t1_init_share_price = 1.95; //1st part payment
+    const double t1_init_purchase_value = t1_number_share * t1_init_share_price;
+
+    const wxDate t1_final_purchase_date = start_date.Add(wxDateSpan::Months(8));
+    const double t1_final_share_price = 2.00; //final payment added to T1
+    const double t1_final_purchase_value = t1_number_share * t1_final_share_price;
+
+    const wxDate t1_dividend_date_1 = start_date.Add(wxDateSpan::Months(6));
+    const wxDate t1_dividend_date_2 = start_date.Add(wxDateSpan::Months(12));
+    const double t1_dividend_value = 200.00;
+
+    const wxDate t2_purchase_date = start_date.Add(wxDateSpan::Months(10));
+    const wxString t2_share_account = "Telstra_T2";
+    double t2_share_price = 7.95;
+    int t2_share_number = 300;
+    double t2_commission = 15;
+    double t2_purchase_value = t2_share_price * t2_share_number + t2_commission;
+
+    // Set up some data in table
+    m_test_db.Begin();
+    m_dbmodel->Add_Bank_Account(purchase_account, 10000);
+    m_dbmodel->Add_Bank_Account(dividend_account);
+
+    m_dbmodel->Add_Payee(stock_account);
+
+    int cat_id = m_dbmodel->Add_Category("Share");
+    m_dbmodel->Add_Subcategory(cat_id, "Purchase");
+    m_dbmodel->Add_Subcategory(cat_id, "Sale");
+    m_dbmodel->Add_Subcategory(cat_id, "Dividend");
+
+    /* Create the Stock Account as the portfolio account */
+    int stock_account_id = m_dbmodel->Add_Investment_Account(stock_account);
+    
+    /* Create the Share Account purchase entry*/
+    int t1_shares_id = m_dbmodel->Add_Stock_Entry(stock_account_id, t1_init_purchase_date, t1_number_share
+        , t1_init_share_price, t1_commission, t1_init_share_price, 0, t1_share_account, "TLS.AX", "Initial Purchase");
+
+    int trans_id;
+    /*  Set up the transfer table for t1 init purchase */
+    trans_id = m_dbmodel->Add_Trans_Withdrawal(purchase_account, t1_init_purchase_date, stock_account, t1_init_purchase_value, "Share", "Purchase", "Telstra_T1: Purchase");
+    Model_TransferTrans::SetShareTransferTransaction(t1_shares_id, trans_id, t1_init_share_price, t1_number_share, t1_commission, Model_TransferTrans::AS_TRANSFER);
+
+    /*  Set up the transfer table for t1 final purchase */
+    trans_id = m_dbmodel->Add_Trans_Withdrawal(purchase_account, t1_final_purchase_date, stock_account, t1_final_purchase_value, "Share", "Purchase", "Telstra_T1: Final Purchase");
+    Model_TransferTrans::SetShareTransferTransaction(t1_shares_id, trans_id, t1_final_share_price, t1_number_share, Model_TransferTrans::AS_TRANSFER);
+
+    /*  Set up the transfer table for the dividend_1*/
+    trans_id = m_dbmodel->Add_Trans_Deposit(purchase_account, t1_dividend_date_1, stock_account, t1_dividend_value / 10, "Share", "Dividend", "Telstra_T1: Dividend");
+    Model_TransferTrans::SetShareTransferTransaction(t1_shares_id, trans_id);
+
+    /*  Set up the transfer table for the dividend_2*/
+    trans_id = m_dbmodel->Add_Trans_Deposit(purchase_account, t1_dividend_date_2, stock_account, t1_dividend_value / 10, "Share", "Dividend", "Telstra_T1: Dividend");
+    Model_TransferTrans::SetShareTransferTransaction(t1_shares_id, trans_id);
+
+    /*  Set up the transfer table for t2 purchase */
+    trans_id = m_dbmodel->Add_Trans_Withdrawal(purchase_account, t2_purchase_date, stock_account, t2_purchase_value, "Share", "Purchase", "Telstra_T2: Purchase");
+    Model_TransferTrans::SetShareTransferTransaction(t1_shares_id, trans_id, t2_share_price, t2_share_number, t2_commission, Model_TransferTrans::AS_TRANSFER);
+
+    /*
+    Now to display the two rcords.
+    */
+    m_test_db.Commit();
+
     // Create a new frame anchored to the base frame.
     TestFrameBase* stocks_frame = new TestFrameBase(m_base_frame, 670, 400);
     stocks_frame->Show();
 
-    int stock_Account_id = m_dbmodel->Get_account_id("AMP");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(5)), 1000, 4.2575, 0, 0, 0, "AMP Initial Share Purchase", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Months(6)), 9550, 5.2575, 0, 0, 0, "AMP Suplement Purchase", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(4)), 5, 5.2775, 0, 0, 0, "DRP", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(3)), 10, 6.1575, 0, 0, 0, "DRP ", "amp.ax");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(2)), 100, 5.4575, 0, 0, 0, "DRP", "AMP.AX");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(1)), 1000, 4.2775, 0, 0, 0, "DRP", "AMP.ax");
-    
     // Create the panel under test
-    mmStocksPanel* stocks_panel = new mmStocksPanel(stock_Account_id, stocks_frame);
+    mmStocksPanel* stocks_panel = new mmStocksPanel(stock_account_id, stocks_frame);
     stocks_panel->Show();
 
+    TestFrameBase* account_frame = new TestFrameBase(m_base_frame, 670, 400);
+    account_frame->Show();
+
+    mmCheckingPanel* account_panel = new mmCheckingPanel(account_frame, 0, m_dbmodel->Get_account_id(purchase_account));
+    account_panel->Show();
+
     // Anchor the panel. Otherwise it will disappear.
-    wxMessageBox("Please Examine: Stocks Panel.\n\nContinue other tests ...",
-        "Testing: Stocks Panel", wxOK, wxTheApp->GetTopWindow());
+    wxMessageBox("Please Examine:\n\n"
+        "Stocks Panel\n"
+        "Account panel\n"
+        "\n\nContinue other tests ...",
+        "Testing: Shares using Stocks Panel", wxOK, wxTheApp->GetTopWindow());
+
+    delete(account_panel);
 }
 //--------------------------------------------------------------------------

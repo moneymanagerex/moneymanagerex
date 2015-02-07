@@ -279,6 +279,7 @@
     <ClCompile Include="..\..\src\model\Model_Stock.cpp" />
     <ClCompile Include="..\..\src\model\Model_StockHistory.cpp" />
     <ClCompile Include="..\..\src\model\Model_Subcategory.cpp" />
+    <ClCompile Include="..\..\src\model\Model_TransferTrans.cpp" />
     <ClCompile Include="..\..\src\model\Model_Usage.cpp" />
     <ClCompile Include="..\..\src\aboutdialog.cpp" />
     <ClCompile Include="..\..\src\accountdialog.cpp" />
@@ -389,6 +390,7 @@
     <ClInclude Include="..\..\src\db\DB_Table_Stockhistory_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Transfertrans_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Usage_V1.h" />
     <ClInclude Include="..\..\src\mmOptionAttachmentSettings.h" />
     <ClInclude Include="..\..\src\mmOptionBaseSettings.h" />
@@ -415,6 +417,7 @@
     <ClInclude Include="..\..\src\model\Model_Stock.h" />
     <ClInclude Include="..\..\src\model\Model_StockHistory.h" />
     <ClInclude Include="..\..\src\model\Model_Subcategory.h" />
+    <ClInclude Include="..\..\src\model\Model_TransferTrans.h" />
     <ClInclude Include="..\..\src\model\Model_Usage.h" />
     <ClInclude Include="..\..\src\aboutdialog.h" />
     <ClInclude Include="..\..\src\accountdialog.h" />

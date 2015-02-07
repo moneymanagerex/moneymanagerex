@@ -106,6 +106,7 @@ public:
     static bool is_used(const Model_Currency::Data* c);
     static bool is_used(const Model_Currency::Data& c);
 
+    /** Return the number of accounts of type: checking*/
     static int checking_account_num();
 };
 

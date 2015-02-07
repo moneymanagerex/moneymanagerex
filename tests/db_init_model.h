@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2014, 2015 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,11 +33,14 @@ public:
     /** Initialise all tables and options required for the database */
     void Init_Model_Tables(wxSQLite3Database* test_db);
 
-    /** Initialise only the tables required for Assets in the database */
-    void Init_Model_Assets(wxSQLite3Database* test_db);
+    /** Set the column size parameters for Checking */
+    void Set_Checking_Columns(wxSQLite3Database* test_db);
 
-    /** Initialise only the tables required for Stocks in the database */
-    void Init_Model_Stocks(wxSQLite3Database* test_db);
+    /** Set the column size parameters for Assets */
+    void Set_Asset_Columns(wxSQLite3Database* test_db);
+
+    /** Set the column size parameters for Stocks */
+    void Set_Stock_Columns(wxSQLite3Database* test_db);
 
     // Used only once. Set the username and base currency
     void Init_BaseCurrency(const wxString& base_currency_symbol = "AUD", const wxString& user_name = "Test Database");
@@ -45,7 +48,7 @@ public:
     int Add_Bank_Account(const wxString& name, double initial_value = 0, const wxString& notes = "", bool favorite = true, const wxString& currency_symbol = "AUD");
     int Add_Investment_Account(const wxString& name, double initial_value = 0, const wxString& notes = "", bool favorite = true, const wxString& currency_symbol = "AUD");
     int Add_Term_Account(const wxString& name, double initial_value = 0, const wxString& notes = "", bool favorite = true, const wxString& currency_symbol = "AUD");
-    int Add_Account(const wxString& name, Model_Account::TYPE account_type, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol = "AUD");
+    int Add_CreditCard_Account(const wxString& name, double initial_value = 0, const wxString& notes = "", bool favorite = true, const wxString& currency_symbol = "AUD");
 
     int Add_Payee(const wxString& name, const wxString& category = "", const wxString& subcategory = "");
     void Add_payee_category(const wxString& name, const wxString& category_name, const wxString& subcategory_name = ""); 
@@ -63,13 +66,13 @@ public:
     * Returns the trans_id to enable split creation.
     */
     int Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
-        , const wxString& category = "", const wxString& subcategory = "");
+        , const wxString& category = "", const wxString& subcategory = "", const wxString& notes = "");
     /**
     Allows the creation of a Split Transaction when a category is not supplied.
     * Returns the trans_id to enable split creation.
     */
     int Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
-        , const wxString& category = "", const wxString& subcategory = "");
+        , const wxString& category = "", const wxString& subcategory = "", const wxString& notes = "");
     /**
     Allows the creation of a Split Transaction when a category is not supplied.
     * Returns the trans_id to enable split creation.
@@ -118,16 +121,22 @@ public:
     */
     void Bill_Split(int bill_id, double value, const wxString& category, const wxString& subcategory = "");
 
-    int Add_Asset(const wxString& name, const wxDate& date, double value, Model_Asset::TYPE asset_type = Model_Asset::TYPE_CASH,
-        Model_Asset::RATE value_change = Model_Asset::RATE::RATE_NONE, double value_change_rate = 0, const wxString& notes = "");
+    int Add_Asset(const wxString& name, const wxDate& date, double value, Model_Asset::TYPE asset_type = Model_Asset::TYPE_CASH
+        , Model_Asset::RATE value_change = Model_Asset::RATE::RATE_NONE, double value_change_rate = 0, const wxString& notes = "");
     
     /** Return the stock_id for a stock entry */
-    int Add_Stock_Entry(int account_id, const wxDate& purchase_date, double num_shares, double purchase_price,
-        double commission = 0, double current_price = 0, double value = 0,
-        const wxString& stock_name = "", const wxString& stock_symbol = "", const wxString& notes = "");
+    int Add_Stock_Entry(int account_id, const wxDate& purchase_date, double num_shares
+        , double purchase_price, double commission = 0, double current_price = 0, double value = 0
+        , const wxString& stock_name = "", const wxString& stock_symbol = "", const wxString& notes = "");
 
-    /** upd_type: ONLINE/MANUAL */ 
-    int Add_StockHistory_Entry(const wxString& stock_symbol, const wxDateTime& date, double value, int upd_type = Model_StockHistory::ONLINE);
+    /** Return the stock_id for a stock entry */
+    int Add_Stock_Entry(const wxString& account_name, const wxDate& purchase_date, double num_shares
+        , double purchase_price, double commission = 0, double current_price = 0, double value = 0
+        , const wxString& stock_name = "", const wxString& stock_symbol = "", const wxString& notes = "");
+
+    /** upd_type: ONLINE/MANUAL */
+    int Add_StockHistory_Entry(const wxString& stock_symbol, const wxDateTime& date
+        , double value, int upd_type = Model_StockHistory::ONLINE);
 
     void ShowMessage(wxString msg);
 
@@ -136,9 +145,14 @@ private:
     wxString m_account_name;    // Initialised by Set_AccountName(...), Used by Add_Trans_XXX(...) Commands.
     int m_account_id;           // Initialised by Set_AccountName(...), Used by Add_Trans_XXX(...) Commands.
 
-    int Add_Trans(const wxString& account_name, Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
-        , const wxString& category = "", const wxString& subcategory = "");
+    int Add_Account(const wxString& name, Model_Account::TYPE account_type
+        , double initial_value, const wxString& notes, bool favorite
+        , const wxString& currency_symbol = "AUD");
 
+    int Add_Trans(const wxString& account_name, Model_Checking::TYPE trans_type, const wxDateTime& date
+        , const wxString& payee, double value
+        , const wxString& category = "", const wxString& subcategory = ""
+        , const wxString& notes = "");
 
     bool m_bill_initialised;      // Set to true by Bill_Start(...)
     bool m_bill_transaction_set;  // Set to true by any Bill_xxx_Transaction(...) commands 

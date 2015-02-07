@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2015-01-25 15:29:25.126684.
+ *          AUTO GENERATED at 2015-02-04 20:04:17.599000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -454,6 +454,42 @@ struct SorterByHISTID
     }
 };
 
+struct SorterByID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.ID < y.ID;
+    }
+};
+
+struct SorterByID_CHECKINGACCOUNT
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.ID_CHECKINGACCOUNT < y.ID_CHECKINGACCOUNT;
+    }
+};
+
+struct SorterByID_CURRENCY
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.ID_CURRENCY < y.ID_CURRENCY;
+    }
+};
+
+struct SorterByID_TABLERECORD
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.ID_TABLERECORD < y.ID_TABLERECORD;
+    }
+};
+
 struct SorterByINFOID
 { 
     template<class DATA>
@@ -688,6 +724,33 @@ struct SorterBySFX_SYMBOL
     }
 };
 
+struct SorterBySHARE_COMMISSION
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.SHARE_COMMISSION < y.SHARE_COMMISSION;
+    }
+};
+
+struct SorterBySHARE_NUMBER
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.SHARE_NUMBER < y.SHARE_NUMBER;
+    }
+};
+
+struct SorterBySHARE_UNITPRICE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.SHARE_UNITPRICE < y.SHARE_UNITPRICE;
+    }
+};
+
 struct SorterBySPLITTRANSAMOUNT
 { 
     template<class DATA>
@@ -775,6 +838,15 @@ struct SorterBySYMBOL
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.SYMBOL < y.SYMBOL;
+    }
+};
+
+struct SorterByTABLETYPE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.TABLETYPE < y.TABLETYPE;
     }
 };
 
