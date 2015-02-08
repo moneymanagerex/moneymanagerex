@@ -21,6 +21,7 @@
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
+class mmUserPanelTrans;
 
 class mmAssetDialog : public wxDialog
 {
@@ -61,6 +62,7 @@ private:
     wxChoice*  m_valueChange;
     wxStaticText* m_valueChangeRateLabel;
 	wxBitmapButton* bAttachments_;
+    mmUserPanelTrans* m_checking_entry_panel;
 
     enum
     {

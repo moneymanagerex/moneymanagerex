@@ -23,6 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include <wx/spinbutt.h>
 #include "mmtextctrl.h"
+#include "model/Model_TransferTrans.h"
 
 class mmUserPanelTrans : public wxPanel
 {
@@ -40,7 +41,10 @@ public:
 
     ~mmUserPanelTrans();
 
-//    virtual void Save();
+    int SaveChecking();
+    bool ValidCheckingAccountEntry();
+
+    Model_TransferTrans::CHECKING_TYPE CheckingType();
 
 public:
     int m_checking_trans_id;

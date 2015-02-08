@@ -213,7 +213,8 @@ void mmUserPanelTrans::Create()
     transPanelSizer->Add(right_align_sizer, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT).Border(wxALL, 0));
     main_panel_sizer->Add(m_entered_notes, wxSizerFlags(g_flagsExpand).Border(wxTOP, 5));
 
-    m_entered_amount->Enable(false);
+    //TODO: Correctly set this from the asset panel
+    //m_entered_amount->Enable(false);
     m_attachment->Enable(false);
 }
 
@@ -228,6 +229,7 @@ void mmUserPanelTrans::OnActivateAccountButton(wxCommandEvent& WXUNUSED(event))
     if (scd.ShowModal() == wxID_OK)
     {
         m_account->SetLabelText(scd.GetStringSelection());
+        m_account_id = Model_Account::instance().get(scd.GetStringSelection())->ACCOUNTID;
     }
 }
 
@@ -334,4 +336,44 @@ void mmUserPanelTrans::OnAttachments(wxCommandEvent& WXUNUSED(event))
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     mmAttachmentDialog dlg(this, RefType, m_checking_trans_id);
     dlg.ShowModal();
+}
+
+bool mmUserPanelTrans::ValidCheckingAccountEntry()
+{
+    if ((m_account_id != -1) && (m_payee_id != -1) && (m_category_id != -1))
+        return true;
+    else
+        return false;
+}
+
+Model_TransferTrans::CHECKING_TYPE mmUserPanelTrans::CheckingType()
+{
+    if (m_transfer->IsChecked())
+        return Model_TransferTrans::AS_TRANSFER;
+    else
+        return Model_TransferTrans::AS_INCOME_EXPENSE;
+}
+
+int mmUserPanelTrans::SaveChecking()
+{
+    double value = 0;
+    m_entered_amount->checkValue(value);
+
+    Model_Checking::Data* tran_entry = Model_Checking::instance().create();
+    tran_entry->ACCOUNTID = m_account_id;
+    tran_entry->TOACCOUNTID = -1;
+
+    tran_entry->PAYEEID = m_payee_id;
+    tran_entry->TRANSCODE = Model_Checking::instance().all_type()[m_type_selector->GetSelection()];
+    tran_entry->TRANSAMOUNT = value;
+    tran_entry->STATUS = Model_Checking::all_status()[m_status_selector->GetSelection()].Mid(0, 1);
+    tran_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();
+    tran_entry->NOTES = m_entered_notes->GetValue();
+    tran_entry->CATEGID = m_category_id;
+    tran_entry->SUBCATEGID = m_subcategory_id;
+    tran_entry->TRANSDATE = m_date_selector->GetValue().FormatISODate();
+    tran_entry->FOLLOWUPID = 0;
+    tran_entry->TOTRANSAMOUNT = tran_entry->TRANSAMOUNT;
+
+    return Model_Checking::instance().save(tran_entry);
 }

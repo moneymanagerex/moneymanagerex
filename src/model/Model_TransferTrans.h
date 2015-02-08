@@ -67,12 +67,13 @@ public:
     static Model_TransferTrans::Data* SetAssetTransferTransaction(const int& asset_id
         , const int& checking_id
         , const CHECKING_TYPE& transfer = AS_INCOME_EXPENSE
-        , const wxString& currency_symbol = "AUD");
+        , const wxString& currency_symbol = Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL);
 
     /* Create a transaction record for Stocks */
     static Model_TransferTrans::Data* SetShareTransferTransaction(const int& share_id, const int& checking_id
         , const double& share_price = 0, const double& share_number = 0, const double& share_commission = 0
-        , const CHECKING_TYPE& transfer = AS_INCOME_EXPENSE, const wxString& currency_symbol = "AUD");
+        , const CHECKING_TYPE& transfer = AS_INCOME_EXPENSE
+        , const wxString& currency_symbol = Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL);
 
     /* Return the transfer list for for the correct table type.
     Model_TransferTrans::ASSETS or Model_TransferTrans::STOCKS */
@@ -87,8 +88,13 @@ public:
     /* Return the transfer record for the checking account */
     static Model_TransferTrans::Data TransferEntry(const int& checking_account_id);
 
+    /*
+    Remove all transfer transactions associated with the asset_id,
+    including all associated checking account entries */
     static void RemoveTransferTransactions(Model_TransferTrans::TABLE_TYPE table_type
         , const int& entry_id);
+ 
+    /* Remove the checking account entry and its associated transfer transaction. */
     static void RemoveTransferEntry(const int& checking_account_id);
 
 private:

@@ -22,6 +22,7 @@
 #include "model/Model_Attachment.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Setting.h"
+#include "model/Model_TransferTrans.h"
 #include <wx/srchctrl.h>
 
 #include "../resources/art.xpm"
@@ -199,6 +200,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
         const Model_Asset::Data& asset = m_panel->m_assets[m_selected_row];
         Model_Asset::instance().remove(asset.ASSETID);
 		mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::ASSET), asset.ASSETID);
+        Model_TransferTrans::instance().RemoveTransferTransactions(Model_TransferTrans::ASSETS, asset.ASSETID);
 
         m_panel->initVirtualListControl(m_selected_row, m_selected_col, m_asc);
         m_selected_row = -1;

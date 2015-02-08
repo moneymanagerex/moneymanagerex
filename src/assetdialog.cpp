@@ -52,8 +52,12 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset)
     , m_valueChange()
     , m_valueChangeRateLabel()
 {
+    wxString heading(_("New Asset"));
+    if (m_asset)
+        heading = _("Edit Asset");
+
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("New/Edit Asset"), wxDefaultPosition, wxSize(400, 300), style);
+    Create(parent, wxID_ANY, heading, wxDefaultPosition, wxSize(400, 300), style);
 }
 
 bool mmAssetDialog::Create(wxWindow* parent
@@ -120,9 +124,9 @@ void mmAssetDialog::CreateControls()
     wxStaticBoxSizer* transaction_frame_sizer = new wxStaticBoxSizer(transaction_frame, wxVERTICAL);
     right_sizer->Add(transaction_frame_sizer, g_flags);
 
-    mmUserPanelTrans* checking_panel = new mmUserPanelTrans(this, wxID_STATIC
+    m_checking_entry_panel = new mmUserPanelTrans(this, wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    transaction_frame_sizer->Add(checking_panel, g_flags);
+    transaction_frame_sizer->Add(m_checking_entry_panel, g_flags);
 
     /********************************************************************
      Asset Details Panel
@@ -295,6 +299,12 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
 		const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
 		mmAttachmentManage::RelocateAllAttachments(RefType, 0, NewAssetId);
 	}
+
+    if (m_checking_entry_panel->ValidCheckingAccountEntry())
+    {
+        int checking_id = m_checking_entry_panel->SaveChecking();
+        Model_TransferTrans::SetAssetTransferTransaction(NewAssetId, checking_id, m_checking_entry_panel->CheckingType());
+    }
 
     EndModal(wxID_OK);
 }

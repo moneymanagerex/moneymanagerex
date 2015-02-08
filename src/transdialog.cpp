@@ -301,6 +301,17 @@ void mmTransDialog::dataToControls()
 
     if (!skip_tooltips_init_)
         setTooltips();
+
+    // Disable these controls when the transaction belongs to an asset or a stock.
+    if (!m_new_trx && (m_trx_data.TOTRANSAMOUNT > 0) &&
+        ((m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT])
+        || (m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])))
+    {
+        textAmount_ ->Enable(false);
+        toTextAmount_->Enable(false);
+        cSplit_->Enable(false);
+        transaction_type_->Enable(false);
+    }
 }
 
 void mmTransDialog::CreateControls()
