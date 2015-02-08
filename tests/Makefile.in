@@ -185,6 +185,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmOptionNetSettings.o \
 	mmex_tests_mmOptionViewSettings.o \
 	mmex_tests_mmSimpleDialogs.o \
+	mmex_tests_mmUserPanelTrans.o \
 	mmex_tests_mmcheckingpanel.o \
 	mmex_tests_mmex.o \
 	mmex_tests_mmframe.o \
@@ -249,6 +250,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Stock.o \
 	mmex_tests_Model_StockHistory.o \
 	mmex_tests_Model_Subcategory.o \
+	mmex_tests_Model_TransferTrans.o \
 	mmex_tests_Model_Usage.o \
 	mmex_tests_html_template.o \
 	mmex_tests_mongoose.o \
@@ -672,6 +674,9 @@ mmex_tests_mmOptionViewSettings.o: $(srcdir)/../src/mmOptionViewSettings.cpp
 mmex_tests_mmSimpleDialogs.o: $(srcdir)/../src/mmSimpleDialogs.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmSimpleDialogs.cpp
 
+mmex_tests_mmUserPanelTrans.o: $(srcdir)/../src/mmUserPanelTrans.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmUserPanelTrans.cpp
+
 mmex_tests_mmcheckingpanel.o: $(srcdir)/../src/mmcheckingpanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/mmcheckingpanel.cpp
 
@@ -863,6 +868,9 @@ mmex_tests_Model_StockHistory.o: $(srcdir)/../src/model/Model_StockHistory.cpp
 
 mmex_tests_Model_Subcategory.o: $(srcdir)/../src/model/Model_Subcategory.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/model/Model_Subcategory.cpp
+
+mmex_tests_Model_TransferTrans.o: $(srcdir)/../src/model/Model_TransferTrans.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/model/Model_TransferTrans.cpp
 
 mmex_tests_Model_Usage.o: $(srcdir)/../src/model/Model_Usage.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/model/Model_Usage.cpp

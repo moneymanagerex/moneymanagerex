@@ -473,6 +473,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\Model_TransferTrans.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model_Usage.cpp"
 				>
 			</File>
@@ -642,6 +646,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\mmSimpleDialogs.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmUserPanelTrans.cpp"
 				>
 			</File>
 			<File
@@ -875,6 +883,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\db\DB_Table_Transfertrans_V1.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\db\DB_Table_Usage_V1.h"
 				>
 			</File>
@@ -952,6 +964,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\Model_Subcategory.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\Model_TransferTrans.h"
 				>
 			</File>
 			<File
@@ -1132,6 +1148,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\mmTips.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmUserPanelTrans.h"
 				>
 			</File>
 			<File

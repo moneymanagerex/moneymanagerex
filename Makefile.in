@@ -137,6 +137,7 @@ MMEX_OBJECTS =  \
 	mmex_mmOptionNetSettings.o \
 	mmex_mmOptionViewSettings.o \
 	mmex_mmSimpleDialogs.o \
+	mmex_mmUserPanelTrans.o \
 	mmex_mmcheckingpanel.o \
 	mmex_mmex.o \
 	mmex_mmframe.o \
@@ -201,6 +202,7 @@ MMEX_OBJECTS =  \
 	mmex_Model_Stock.o \
 	mmex_Model_StockHistory.o \
 	mmex_Model_Subcategory.o \
+	mmex_Model_TransferTrans.o \
 	mmex_Model_Usage.o \
 	mmex_html_template.o \
 	mmex_mongoose.o \
@@ -546,6 +548,9 @@ mmex_mmOptionViewSettings.o: $(srcdir)/src/mmOptionViewSettings.cpp
 mmex_mmSimpleDialogs.o: $(srcdir)/src/mmSimpleDialogs.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmSimpleDialogs.cpp
 
+mmex_mmUserPanelTrans.o: $(srcdir)/src/mmUserPanelTrans.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmUserPanelTrans.cpp
+
 mmex_mmcheckingpanel.o: $(srcdir)/src/mmcheckingpanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmcheckingpanel.cpp
 
@@ -737,6 +742,9 @@ mmex_Model_StockHistory.o: $(srcdir)/src/model/Model_StockHistory.cpp
 
 mmex_Model_Subcategory.o: $(srcdir)/src/model/Model_Subcategory.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Subcategory.cpp
+
+mmex_Model_TransferTrans.o: $(srcdir)/src/model/Model_TransferTrans.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_TransferTrans.cpp
 
 mmex_Model_Usage.o: $(srcdir)/src/model/Model_Usage.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Usage.cpp
