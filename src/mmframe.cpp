@@ -81,6 +81,7 @@
 #include "model/Model_Budget.h"
 #include "model/Model_Report.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_TransferTrans.h"
 #include "model/Model_Usage.h"
 #include "search/Search.h"
 #include "transdialog.h"
@@ -1652,6 +1653,7 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Budget::instance(m_db.get()));
     m_all_models.push_back(&Model_Report::instance(m_db.get()));
     m_all_models.push_back(&Model_Attachment::instance(m_db.get()));
+    m_all_models.push_back(&Model_TransferTrans::instance(m_db.get()));
 }
 
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)

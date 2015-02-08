@@ -24,6 +24,7 @@
 #include "validators.h"
 
 #include "model/Model_Attachment.h"
+#include "mmUserPanelTrans.h"
 
 #include "../resources/attachment.xpm"
 
@@ -99,20 +100,36 @@ void mmAssetDialog::dataToControls()
 
 void mmAssetDialog::CreateControls()
 {
-    wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
-    this->SetSizer(itemBoxSizer2);
+    wxBoxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
+    this->SetSizer(main_sizer);
 
-    wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
-    itemBoxSizer2->Add(itemBoxSizer3, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+    wxBoxSizer* panel_sizer = new wxBoxSizer(wxHORIZONTAL);
+    main_sizer->Add(panel_sizer, wxSizerFlags(g_flags));
 
-    wxStaticBox* itemStaticBoxSizer4Static = new wxStaticBox(this, wxID_ANY, _("Asset Details"));
-    wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(itemStaticBoxSizer4Static
-        , wxVERTICAL);
-    itemBoxSizer3->Add(itemStaticBoxSizer4, g_flags);
+    wxBoxSizer* left_sizer = new wxBoxSizer(wxVERTICAL);
+    panel_sizer->Add(left_sizer, 0);
 
-    wxPanel* itemPanel5 = new wxPanel( this, wxID_STATIC, wxDefaultPosition
+    wxStaticBox* details_frame = new wxStaticBox(this, wxID_ANY, _("Asset Details"));
+    wxStaticBoxSizer* details_frame_sizer = new wxStaticBoxSizer(details_frame, wxVERTICAL);
+    left_sizer->Add(details_frame_sizer, g_flags);
+
+    wxBoxSizer* right_sizer = new wxBoxSizer(wxVERTICAL);
+    panel_sizer->Add(right_sizer, 0);
+
+    wxStaticBox* transaction_frame = new wxStaticBox(this, wxID_ANY, _("Asset Transaction Details"));
+    wxStaticBoxSizer* transaction_frame_sizer = new wxStaticBoxSizer(transaction_frame, wxVERTICAL);
+    right_sizer->Add(transaction_frame_sizer, g_flags);
+
+    mmUserPanelTrans* checking_panel = new mmUserPanelTrans(this, wxID_STATIC
+        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    transaction_frame_sizer->Add(checking_panel, g_flags);
+
+    /********************************************************************
+     Asset Details Panel
+    *********************************************************************/
+    wxPanel* itemPanel5 = new wxPanel(this, wxID_STATIC, wxDefaultPosition
         , wxDefaultSize, wxTAB_TRAVERSAL );
-    itemStaticBoxSizer4->Add(itemPanel5, g_flags);
+    details_frame_sizer->Add(itemPanel5, g_flags);
 
     wxFlexGridSizer* itemFlexGridSizer6 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel5->SetSizer(itemFlexGridSizer6);
@@ -187,20 +204,29 @@ void mmAssetDialog::CreateControls()
 
     m_notes = new mmTextCtrl(this, IDC_NOTES, wxGetEmptyString(), wxDefaultPosition, wxSize(220, 170), wxTE_MULTILINE);
     m_notes->SetToolTip(_("Enter notes associated with this asset"));
-    itemStaticBoxSizer4->Add(m_notes, 0, wxGROW | wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT | wxBOTTOM, 10);
+    details_frame_sizer->Add(m_notes, 0, wxGROW | wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT | wxBOTTOM, 10);
 
-    wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemBoxSizer3->Add(itemPanel27, wxSizerFlags(g_flags).Center());
+    /********************************************************************
+    Separation Line
+    *********************************************************************/
+    wxStaticLine* separation_line = new wxStaticLine(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
+    main_sizer->Add(separation_line, 0, wxEXPAND | wxALL, 1);
 
-    wxBoxSizer* itemBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
-    itemPanel27->SetSizer(itemBoxSizer28);
+    /********************************************************************
+    Button Panel
+    *********************************************************************/
+    wxPanel* button_panel = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    main_sizer->Add(button_panel, wxSizerFlags(g_flags).Center());
 
-    wxButton* itemButton29 = new wxButton(itemPanel27, wxID_OK, _("&OK "));
-    itemBoxSizer28->Add(itemButton29, g_flags);
+    wxBoxSizer* button_panel_sizer = new wxBoxSizer(wxHORIZONTAL);
+    button_panel->SetSizer(button_panel_sizer);
 
-    wxButton* itemButton30 = new wxButton(itemPanel27, wxID_CANCEL, _("&Cancel "));
-    itemBoxSizer28->Add(itemButton30, g_flags);
-    itemButton30->SetFocus();
+    wxButton* ok_button = new wxButton(button_panel, wxID_OK, _("&OK "));
+    button_panel_sizer->Add(ok_button, g_flags);
+
+    wxButton* cancel_button = new wxButton(button_panel, wxID_CANCEL, _("&Cancel "));
+    button_panel_sizer->Add(cancel_button, g_flags);
+    cancel_button->SetFocus();
 }
 
 void mmAssetDialog::OnChangeAppreciationType(wxCommandEvent& /*event*/)
