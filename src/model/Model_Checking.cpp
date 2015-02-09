@@ -500,3 +500,11 @@ const wxString Model_Checking::Full_Data::to_json()
 
     return ss.str();
 }
+
+const bool Model_Checking::foreignTransaction(const Data& data)
+{
+    if ((data.TOTRANSAMOUNT > 0) && ((data.TRANSCODE == all_type()[DEPOSIT]) || (data.TRANSCODE == all_type()[WITHDRAWAL])))
+        return true;
+    else
+        return false;
+}
