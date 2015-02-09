@@ -135,11 +135,6 @@
     </data-files>
 
     <data-files>
-        <install-to>$(helppath)/german</install-to>
-        <srcdir>$(SRCDIR)/doc/help/german</srcdir>
-        <files>*</files>
-    </data-files>
-    <data-files>
         <install-to>$(helppath)/french</install-to>
         <srcdir>$(SRCDIR)/doc/help/french</srcdir>
         <files>*</files>
