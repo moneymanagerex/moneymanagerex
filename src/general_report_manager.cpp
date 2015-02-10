@@ -475,10 +475,10 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     panel->Layout();
 }
 
-void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
+void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
 {
     MinimalEditor* sqlText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
-    wxStaticText* info = (wxStaticText*) FindWindow(wxID_INFO);
+    wxStaticText* info = static_cast<wxStaticText*>(FindWindow(wxID_INFO));
     const wxString& selected_sql = sqlText->GetStringSelection();
     const wxString sql = selected_sql.empty() ? sqlText->GetValue() : selected_sql;
 
@@ -520,7 +520,7 @@ void mmGeneralReportManager::OnNewTemplate(wxCommandEvent& event)
     if (!templateText->GetValue().empty()) return;
     MinimalEditor* sqlText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
 
-    wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
+    wxNotebook* n = static_cast<wxNotebook*>(FindWindow(ID_NOTEBOOK));
     n->SetSelection(ID_TAB_HTT);
 
     templateText->ChangeValue(this->getTemplate(sqlText->GetValue()));
@@ -644,7 +644,7 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
+        wxNotebook* n = static_cast<wxNotebook*>(FindWindow(ID_NOTEBOOK));
         n->SetSelection(ID_TAB_OUT);
         m_outputHTML->ClearBackground();
 
@@ -1110,6 +1110,7 @@ wxString mmGeneralReportManager::getTemplate(const wxString& sql)
     return wxString::Format(HTT_CONTEINER, header, body);
 }
 
+#if wxUSE_DRAG_AND_DROP
 void mmGeneralReportManager::OnBeginDrag(wxTreeEvent& (event))
 {
     wxTreeItemId selectedItem = event.GetItem();
@@ -1122,3 +1123,4 @@ void mmGeneralReportManager::OnBeginDrag(wxTreeEvent& (event))
     dragSource.SetData(data);
     dragSource.DoDragDrop();
 }
+#endif // wxUSE_DRAG_AND_DROP
