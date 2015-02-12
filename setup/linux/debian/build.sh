@@ -18,6 +18,7 @@ ARCHITECTURE="amd64"
 PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
 
 BUILD_DIR="$HOME/build"
+
 cd ../../..
 MMEX_DIR=`pwd`
 
@@ -27,7 +28,7 @@ if [ $? -gt 0 ]; then
     exit 1
 fi
 
-./configure --prefix=$BUILD_DIR/$PACKAGE_NAME/usr
+./configure --prefix="$BUILD_DIR/$PACKAGE_NAME/usr"
 
 if [ $? -gt 0 ]; then
     echo "ERROR!"
@@ -40,30 +41,30 @@ if [ $? -gt 0 ]; then
 fi
 
 #Strip the binary before calculating the installed size
-strip $BUILD_DIR/$PACKAGE_NAME/usr/bin/mmex
+strip "$BUILD_DIR/$PACKAGE_NAME/usr/bin/mmex"
 
 #Make sure any needed files are in place and formatted correctly
 #Changelog
-mv $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/version.txt $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/changelog
-gzip -9 -f $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/changelog
+mv "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/version.txt" "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/changelog"
+gzip -9 -f "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/changelog"
 
 #Copyright
-cp $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/contrib.txt $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/copyright
-sed -i "s/See the GNU General Public License for more details./A copy of the GPLv2 can be found in \"\/usr\/share\/common-licenses\/GPL-2\"/g" $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/copyright
+cp "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/contrib.txt" "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/copyright"
+sed -i "s/See the GNU General Public License for more details./A copy of the GPLv2 can be found in \"\/usr\/share\/common-licenses\/GPL-2\"/g" "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/copyright"
 
 
 #Manpage
-cp $MMEX_DIR/setup/linux/common/mmex.1 $BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1
-sed -i "s/MMEX_RELEASE_DATE/$MMEX_RELEASE_DATE/g" $BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1
-sed -i "s/MMEX_VERSION/$MMEX_VERSION/g" $BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1
-gzip -9 -f $BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1
-chmod 644 $BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1.gz
+cp "$MMEX_DIR/setup/linux/common/mmex.1" "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1"
+sed -i "s/MMEX_RELEASE_DATE/$MMEX_RELEASE_DATE/g" "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1"
+sed -i "s/MMEX_VERSION/$MMEX_VERSION/g" "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1"
+gzip -9 -f "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1"
+chmod 644 "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1.gz"
 
 #Calculate installed size
 INSTALLED_SIZE=$(du -sb $BUILD_DIR/ | cut -f1)
 INSTALLED_SIZE=`expr $INSTALLED_SIZE / 1024`
 
-mkdir -p $BUILD_DIR/$PACKAGE_NAME/DEBIAN
+mkdir -p "$BUILD_DIR/$PACKAGE_NAME/DEBIAN"
 
 echo "Package: mmex
 Version: $MMEX_VERSION
