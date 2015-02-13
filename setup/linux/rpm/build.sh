@@ -21,11 +21,29 @@ sed -i "s/MMEX_HOMEPAGE/$MMEX_HOMEPAGE/g" "$BUILD_DIR/SPECS/mmex.spec"
 #TODO: Something in the description needs escaping
 sed -i "s/MMEX_DESCRIPTION/$MMEX_DESCRIPTION/g" "$BUILD_DIR/SPECS/mmex.spec"
 
-#TODO: Compile in $BUILD_DIR/SOURCES/$PACKAGE_NAME
+cd ../../..
+
+./bootstrap
+if [ $? -gt 0 ]; then
+    echo "ERROR!"
+    exit 1
+fi
+
+./configure --prefix="$BUILD_DIR/SOURCES/$PACKAGE_NAME/usr"
+
+if [ $? -gt 0 ]; then
+    echo "ERROR!"
+    exit 1
+fi
+make && make install
+if [ $? -gt 0 ]; then
+    echo "ERROR!"
+    exit 1
+fi
 
 cd "$BUILD_DIR/SOURCES"
 
 tar -zcvf "$PACKAGE_NAME.tar.gz" $PACKAGE_NAME
 
-#cd "$BUILD_DIR/SPECS"
-#rpmbuild -ba mmex.spec
+cd "$BUILD_DIR/SPECS"
+rpmbuild -ba mmex.spec
