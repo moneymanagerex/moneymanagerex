@@ -23,6 +23,8 @@ sed -i "s/MMEX_DESCRIPTION/$MMEX_DESCRIPTION/g" "$BUILD_DIR/SPECS/mmex.spec"
 
 cd ../../..
 
+cp resources/mmex.xpm "$BUILD_DIR/SOURCES"
+
 ./bootstrap
 if [ $? -gt 0 ]; then
     echo "ERROR!"
