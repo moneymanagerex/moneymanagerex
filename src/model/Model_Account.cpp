@@ -143,8 +143,13 @@ Model_Currency::Data* Model_Account::currency(const Data& r)
 
 const Model_Checking::Data_Set Model_Account::transaction(const Data*r )
 {
-    auto trans = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(r->ACCOUNTID)
-        , Model_Checking::TOACCOUNTID(r->ACCOUNTID));
+    auto trans = Model_Checking::instance().find(Model_Checking::ACCOUNTID(r->ACCOUNTID));
+    auto trans2 = Model_Checking::instance().find(Model_Checking::TOACCOUNTID(r->ACCOUNTID), Model_Checking::TRANSCODE(Model_Checking::TRANSFER));
+    for (auto i : trans2)
+    {
+        trans.push_back(i);
+    }
+
     std::sort(trans.begin(), trans.end());
     std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
 
