@@ -37,6 +37,7 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Category.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_TransferTrans.h"
 #include "billsdepositsdialog.h"
 
 #include "../resources/reconciled.xpm"
@@ -1564,6 +1565,11 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
             long transID = i.TRANSID;
             if (GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             {
+                if (Model_Checking::foreignTransaction(i))
+                {
+                    Model_TransferTrans::RemoveTransferEntry(transID);
+                }
+
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
