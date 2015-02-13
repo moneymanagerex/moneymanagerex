@@ -42,8 +42,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 /usr/bin/mmex
 /usr/share/mmex
+/usr/share/icons/hicolor/scalable/apps
+/usr/share/applications
 %docdir /usr/share/doc/mmex
 /usr/share/doc/mmex
+/usr/share/man/man1
 
 
 %changelog
