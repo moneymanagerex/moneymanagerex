@@ -19,6 +19,7 @@ PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
 
 BUILD_DIR="$HOME/build"
 
+#Build the source
 cd ../../..
 MMEX_DIR=`pwd`
 
@@ -52,8 +53,7 @@ gzip -9 -f "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/changelog"
 cp "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/contrib.txt" "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/copyright"
 sed -i "s/See the GNU General Public License for more details./A copy of the GPLv2 can be found in \"\/usr\/share\/common-licenses\/GPL-2\"/g" "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/copyright"
 
-
-#Manpage
+#Copy the manpage in to place and modify
 cp "$MMEX_DIR/setup/linux/common/mmex.1" "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1"
 sed -i "s/MMEX_RELEASE_DATE/$MMEX_RELEASE_DATE/g" "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1"
 sed -i "s/MMEX_VERSION/$MMEX_VERSION/g" "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1"
@@ -66,6 +66,7 @@ INSTALLED_SIZE=`expr $INSTALLED_SIZE / 1024`
 
 mkdir -p "$BUILD_DIR/$PACKAGE_NAME/DEBIAN"
 
+#Create the control file
 echo "Package: mmex
 Version: $MMEX_VERSION
 Section: misc
@@ -77,14 +78,10 @@ Installed-Size: $INSTALLED_SIZE
 Maintainer: MoneyManagerEx <$MMEX_EMAIL>
 Description: $MMEX_DESCRIPTION" > $BUILD_DIR/$PACKAGE_NAME/DEBIAN/control
 
+#Build the package
 cd $BUILD_DIR
 fakeroot dpkg-deb -b $PACKAGE_NAME
 
+#Check for any packaging problems
 lintian $PACKAGE_NAME.deb
-# check errors against other lintian deb 
-
-# install the package (Have you backed up your databases?)
-
-#sudo dpkg -i mmex.deb
-#mmex&
 
