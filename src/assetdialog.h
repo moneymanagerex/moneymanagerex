@@ -50,8 +50,9 @@ private:
     void dataToControls();
     void changeFocus(wxChildFocusEvent& event);
     void OnQuit(wxCloseEvent& event);
+    void OnDateChange(wxDateEvent& WXUNUSED(event));
 
-    bool assetRichText;
+    bool m_AssetRichText;
 
     mmTextCtrl* m_assetName;
     wxDatePickerCtrl* m_dpc;
@@ -61,7 +62,7 @@ private:
     wxChoice*  m_assetType;
     wxChoice*  m_valueChange;
     wxStaticText* m_valueChangeRateLabel;
-	wxBitmapButton* bAttachments_;
+	wxBitmapButton* m_attachment;
     mmUserPanelTrans* m_checking_entry_panel;
 
     enum
@@ -70,5 +71,6 @@ private:
         IDC_NOTES,
         IDC_VALUE,
         IDC_RATE,
+        IDC_DATEPICKER_CHANGE,
     };
 };

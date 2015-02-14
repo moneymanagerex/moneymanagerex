@@ -43,10 +43,13 @@ public:
 
     int SaveChecking();
     bool ValidCheckingAccountEntry();
-
+    void SetTransactionDate(const wxDateTime& trans_date);
+    void SetTransactionValue(const wxString& trans_value);
+    
     Model_TransferTrans::CHECKING_TYPE CheckingType();
+    const wxString CurrencySymbol();
 
-public:
+private:
     int m_checking_trans_id;
     int m_account_id;
     int m_payee_id;
@@ -55,9 +58,10 @@ public:
 
 private:
     void Create();
-    void OnActivateAccountButton(wxCommandEvent& WXUNUSED(event));
-    void OnActivatePayeeButton(wxCommandEvent& WXUNUSED(event));
-    void OnActivateCategoryButton(wxCommandEvent& WXUNUSED(event));
+    void OnTransAccountButton(wxCommandEvent& WXUNUSED(event));
+    void OnTransCurrencyButton(wxCommandEvent& WXUNUSED(event));
+    void OnTransPayeeButton(wxCommandEvent& WXUNUSED(event));
+    void OnTransCategoryButton(wxCommandEvent& WXUNUSED(event));
 
     void OnDateSelectorForward(wxSpinEvent& WXUNUSED(event));
     void OnDateSelectorBackward(wxSpinEvent& WXUNUSED(event));
@@ -77,6 +81,7 @@ private:
     wxChoice* m_type_selector;
     mmTextCtrl* m_entered_amount;
     wxCheckBox* m_transfer;
+    wxButton* m_trans_currency;
     wxButton* m_payee;
     wxButton* m_category;
     wxTextCtrl* m_entered_number;
@@ -98,6 +103,7 @@ private:
         ID_TRANS_ENTERED_AMOUNT,
         ID_TRANS_ENTERED_NOTES,
         ID_TRANS_FREQUENT_NOTES,
-        ID_TRANS_TRANSFER
+        ID_TRANS_TRANSFER,
+        ID_TRANS_CURRENCY_BUTTON,
     };
 };
