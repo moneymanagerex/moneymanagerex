@@ -218,7 +218,7 @@ void mmUserPanelTrans::Create()
     right_align_sizer->Add(m_attachment, g_flags);
     right_align_sizer->Add(frequent_notes, g_flags);
 
-    m_entered_notes = new wxTextCtrl(this, ID_TRANS_ENTERED_NOTES, "", wxDefaultPosition, wxSize(225, 80), wxTE_MULTILINE);
+    m_entered_notes = new wxTextCtrl(this, ID_TRANS_ENTERED_NOTES, "", wxDefaultPosition, wxSize(220, 96), wxTE_MULTILINE);
     m_entered_notes->SetToolTip(_("Specify any text notes you want to add to this transaction."));
 
     transPanelSizer->Add(right_align_sizer, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT).Border(wxALL, 0));
