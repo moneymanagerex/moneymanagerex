@@ -380,9 +380,7 @@ void mmUserPanelTrans::SetTransactionValue(const wxString& trans_value)
 
 void mmUserPanelTrans::SetTransactionValue(const double& trans_value)
 {
-    wxString value;
-    value << trans_value;
-    SetTransactionValue(value);
+    SetTransactionValue(wxString::FromDouble(trans_value, 2));
 }
 
 void mmUserPanelTrans::SetTransactionNumber(const wxString& trans_number)

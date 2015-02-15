@@ -33,6 +33,10 @@ public:
     mmStockTransDialog();
     mmStockTransDialog(wxWindow* parent, Model_Stock::Data* stock, int accountID);
 
+    Model_Stock::Data* m_stock;
+    int m_stock_id;
+
+private:
     bool Create(wxWindow* parent, wxWindowID id
         , const wxString& caption
         , const wxPoint& pos
@@ -40,20 +44,17 @@ public:
         , long style);
 
     void CreateControls();
+    void DataToControls();
 
-    void OnOk(wxCommandEvent& event);
+    void OnOk(wxCommandEvent& WXUNUSED(event));
     void OnCancel(wxCommandEvent& WXUNUSED(event));
 	void OnAttachments(wxCommandEvent& event);
     void OnStockPriceButton(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& WXUNUSED(event));
     void OnDateChange(wxDateEvent& WXUNUSED(event));
-
-    void dataToControls();
-    Model_Stock::Data* m_stock;
-    int m_stock_id;
-
-private:
     void OnTextEntered(wxCommandEvent& event);
+
+ 
 
     mmTextCtrl* m_stock_name;
     mmTextCtrl* m_stock_symbol;

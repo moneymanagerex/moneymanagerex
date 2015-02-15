@@ -115,6 +115,13 @@ void Test_Stock::Test_Add_Stock_Dialog()
     mmStockTransDialog* dlg = new mmStockTransDialog(m_base_frame, 0, account_id);
 
     int id = dlg->ShowModal();
+    while (id != wxID_CANCEL)
+    {
+        wxMessageBox(wxString::Format("Stock %s has been saved\n\nCancel to continue...", dlg->m_stock->SYMBOL)
+            , "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
+        id = dlg->ShowModal();
+    }
+
     if (id == wxID_CANCEL)
     {
         wxMessageBox("Stock Trans Dialog Cancelled", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
@@ -139,6 +146,13 @@ void Test_Stock::Test_Edit_Stock_Dialog()
 
     mmStockDialog* dlg = new mmStockDialog(m_base_frame, &stock_entry, stock_entry.HELDAT);
     int id = dlg->ShowModal();
+    while (id != wxID_CANCEL)
+    {
+        wxMessageBox(wxString::Format("Stock %s has been saved\n\nCancel to continue...", dlg->m_stock->SYMBOL)
+            , "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
+        id = dlg->ShowModal();
+    }
+
     if (id == wxID_CANCEL)
     {
         wxMessageBox("Stock Dialog Canclled", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());

@@ -86,13 +86,13 @@ bool mmStockTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString&
 
     SetIcon(mmex::getProgramIcon());
 
-    dataToControls();
+    DataToControls();
 
     Centre();
     return TRUE;
 }
 
-void mmStockTransDialog::dataToControls()
+void mmStockTransDialog::DataToControls()
 {
     if (!m_stock) return;
 
@@ -270,7 +270,7 @@ void mmStockTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
     EndModal(wxID_CANCEL);
 }
 
-void mmStockTransDialog::OnAttachments(wxCommandEvent& /*event*/)
+void mmStockTransDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
     int RefId = m_stock_id;
@@ -282,7 +282,7 @@ void mmStockTransDialog::OnAttachments(wxCommandEvent& /*event*/)
     dlg.ShowModal();
 }
 
-void mmStockTransDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
+void mmStockTransDialog::OnStockPriceButton(wxCommandEvent& WXUNUSED(event))
 {
     const wxString stockSymbol = m_stock_symbol->GetValue().Trim();
 
@@ -294,7 +294,7 @@ void mmStockTransDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
     }
 }
 
-void mmStockTransDialog::OnOk(wxCommandEvent& /*event*/)
+void mmStockTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     Model_Account::Data* account = Model_Account::instance().get(m_accountID);
     if (!account)
@@ -365,6 +365,18 @@ void mmStockTransDialog::OnTextEntered(wxCommandEvent& event)
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();         //TODO: Not necessarily the case
     Model_Account::Data *account = Model_Account::instance().get(m_accountID);
     if (account) currency = Model_Account::currency(account);
+
+    double num_shares = 0;
+    m_num_shares->checkValue(num_shares, currency);
+
+    double share_price = 0;
+    m_purchase_price->checkValue(share_price, currency);
+
+    double commission = 0;
+    m_commission->GetDouble(commission);
+
+    m_checking_entry_panel->SetTransactionValue((num_shares * share_price) + commission);
+
     int currency_precision = Model_Currency::precision(currency);
     if (currency_precision < 4) currency_precision = 4;
 
@@ -380,13 +392,4 @@ void mmStockTransDialog::OnTextEntered(wxCommandEvent& event)
     {
         m_commission->Calculate(currency, currency_precision);
     }
-
-    double num_shares = 0;
-    double purchase_price = 0;
-    double commission = 0;
-    m_num_shares->GetValue().ToDouble(&num_shares);
-    m_purchase_price->GetValue().ToDouble(&purchase_price);
-    m_commission->GetValue().ToDouble(&commission);
-
-    m_checking_entry_panel->SetTransactionValue((num_shares * purchase_price) + commission);
 }
