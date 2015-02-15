@@ -231,7 +231,7 @@ void mmAssetDialog::CreateControls()
     button_panel_sizer->Add(ok_button, g_flags);
 
     button_panel_sizer->Add(cancel_button, g_flags);
-    cancel_button->SetFocus();
+    //cancel_button->SetFocus();
 }
 
 void mmAssetDialog::OnChangeAppreciationType(wxCommandEvent& /*event*/)

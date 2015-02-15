@@ -378,6 +378,18 @@ void mmUserPanelTrans::SetTransactionValue(const wxString& trans_value)
     m_entered_amount->SetValue(trans_value);
 }
 
+void mmUserPanelTrans::SetTransactionValue(const double& trans_value)
+{
+    wxString value;
+    value << trans_value;
+    SetTransactionValue(value);
+}
+
+void mmUserPanelTrans::SetTransactionNumber(const wxString& trans_number)
+{
+    m_entered_number->SetValue(trans_number);
+}
+
 const wxString mmUserPanelTrans::CurrencySymbol()
 {
     return m_trans_currency->GetLabelText();

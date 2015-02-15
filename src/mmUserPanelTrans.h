@@ -45,7 +45,9 @@ public:
     bool ValidCheckingAccountEntry();
     void SetTransactionDate(const wxDateTime& trans_date);
     void SetTransactionValue(const wxString& trans_value);
-    
+    void SetTransactionValue(const double& trans_value);
+    void SetTransactionNumber(const wxString& trans_number);
+
     Model_TransferTrans::CHECKING_TYPE CheckingType();
     const wxString CurrencySymbol();
 

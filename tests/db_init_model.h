@@ -51,7 +51,7 @@ public:
     int Add_CreditCard_Account(const wxString& name, double initial_value = 0, const wxString& notes = "", bool favorite = true, const wxString& currency_symbol = "AUD");
 
     int Add_Payee(const wxString& name, const wxString& category = "", const wxString& subcategory = "");
-    void Add_payee_category(const wxString& name, const wxString& category_name, const wxString& subcategory_name = ""); 
+    void Add_Payee_Category(const wxString& name, const wxString& category_name, const wxString& subcategory_name = "");
     int Get_Payee_id(const wxString& name);
 
     int Add_Category(const wxString& name);
@@ -139,6 +139,9 @@ public:
         , double value, int upd_type = Model_StockHistory::ONLINE);
 
     void ShowMessage(wxString msg);
+
+    bool AccountNotExist(const wxString& account_name);
+    bool PayeeNotExist(const wxString& payee_name);
 
 private:
     int m_baseCurrency_id;

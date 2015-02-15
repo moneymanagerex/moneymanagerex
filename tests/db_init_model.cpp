@@ -209,6 +209,15 @@ int DB_Init_Model::Add_Payee(const wxString& name, const wxString& category, con
     return Model_Payee::instance().save(payee_entry);
 }
 
+void DB_Init_Model::Add_Payee_Category(const wxString& payee_name, const wxString& category_name, const wxString& subcategory_name)
+{
+    Model_Payee::Data* entry = Model_Payee::instance().get(payee_name);
+    entry->CATEGID = Get_category_id(category_name);
+    entry->SUBCATEGID = Get_subcategory_id(entry->CATEGID, subcategory_name);
+
+    Model_Payee::instance().save(entry);
+}
+
 int DB_Init_Model::Get_Payee_id(const wxString& name)
 {
     int payee_id = -1;
@@ -570,6 +579,26 @@ void DB_Init_Model::ShowMessage(wxString msg)
 {
     wxMessageBox(msg, "MMEX_Table Data Initialisation", wxOK | wxICON_WARNING, wxTheApp->GetTopWindow());
 }
+
+bool DB_Init_Model::AccountNotExist(const wxString& account_name)
+{
+    Model_Account::Data_Set list = Model_Account::instance().find(Model_Account::ACCOUNTNAME(account_name));
+    if (list.size() == 0)
+        return true;
+    else
+        return false;
+}
+
+bool DB_Init_Model::PayeeNotExist(const wxString& payee_name)
+{
+    Model_Payee::Data_Set list = Model_Payee::instance().find(Model_Payee::PAYEENAME(payee_name));
+    if (list.size() == 0)
+        return true;
+    else
+        return false;
+}
+
+
 //----------------------------------------------------------------------------
 
 template <class Value_Type>

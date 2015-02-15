@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "test_stocks.h"
 #include "stockdialog.h"
+#include "stock_transdialog.h"
 #include "stockspanel.h"
 #include "mmcheckingpanel.h"
 #include "model/Model_TransferTrans.h"
@@ -64,10 +65,38 @@ void Test_Stock::setUp()
    
     m_test_db.Open(m_test_db_filename);
     m_dbmodel = new DB_Init_Model();
+
     m_test_db.Begin();
     m_dbmodel->Init_Model_Tables(&m_test_db);
     m_dbmodel->Set_Stock_Columns(&m_test_db);
     m_dbmodel->Set_Checking_Columns(&m_test_db);
+
+    if (m_dbmodel->AccountNotExist("Savings")) m_dbmodel->Add_Bank_Account("Savings", 10000);
+    if (m_dbmodel->AccountNotExist("Cheque"))  m_dbmodel->Add_Bank_Account("Cheque", 5000);
+    if (m_dbmodel->AccountNotExist("Visa"))    m_dbmodel->Add_CreditCard_Account("Visa", -1000);
+    if (m_dbmodel->AccountNotExist("Mastercard")) m_dbmodel->Add_CreditCard_Account("Mastercard", -2000);
+    if (m_dbmodel->AccountNotExist("Insurance"))  m_dbmodel->Add_Term_Account("Insurance");
+    if (m_dbmodel->AccountNotExist("ACME Corp"))  m_dbmodel->Add_Term_Account("ACME Corp");
+    if (m_dbmodel->AccountNotExist("Yahoo Finance"))  m_dbmodel->Add_Investment_Account("Yahoo Finance");
+    if (m_dbmodel->AccountNotExist("Google Finance")) m_dbmodel->Add_Investment_Account("Google Finance");
+
+    if (m_dbmodel->PayeeNotExist("Telstra"))
+    {
+        m_dbmodel->Add_Payee("Telstra");
+
+        int cat_id = m_dbmodel->Add_Category("Share");
+        m_dbmodel->Add_Subcategory(cat_id, "Purchase");
+        m_dbmodel->Add_Subcategory(cat_id, "Sale");
+        m_dbmodel->Add_Subcategory(cat_id, "Dividend");
+
+        m_dbmodel->Add_Payee_Category("Telstra", "Share", "Purchase");
+    }
+
+    if (m_dbmodel->PayeeNotExist("Yahoo Finance"))
+    {
+        m_dbmodel->Add_Payee("Yahoo Finance");
+    }
+
     m_test_db.Commit();
 }
 
@@ -80,17 +109,15 @@ void Test_Stock::tearDown()
 
 void Test_Stock::Test_Add_Stock_Dialog()
 {
-    m_dbmodel->Add_Investment_Account("ACME Corp");
-    int account_id = m_dbmodel->Add_Investment_Account("AMP");
-    m_dbmodel->Add_Investment_Account("Qwerty Keyboards");
+    int account_id = m_dbmodel->Get_account_id("Yahoo Finance");
 
     // create a new entry using the dialog.
-    mmStockDialog* dlg = new mmStockDialog(m_base_frame, 0, account_id);
+    mmStockTransDialog* dlg = new mmStockTransDialog(m_base_frame, 0, account_id);
 
     int id = dlg->ShowModal();
     if (id == wxID_CANCEL)
     {
-        wxMessageBox("Stock Dialog Cancelled", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
+        wxMessageBox("Stock Trans Dialog Cancelled", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
     }
     if (id == wxID_OK)
     {
@@ -121,7 +148,7 @@ void Test_Stock::Test_Edit_Stock_Dialog()
         stock_table = Model_Stock::instance().all();
         Model_Stock::Data new_stock_entry = stock_table.at(stock_table.size() - 1);
 
-        CPPUNIT_ASSERT(stock_entry.HELDAT == m_dbmodel->Get_account_id("AMP"));
+        CPPUNIT_ASSERT(stock_entry.HELDAT == m_dbmodel->Get_account_id("Yahoo Finance"));
         CPPUNIT_ASSERT(new_stock_entry.COMMISSION == commission);
         CPPUNIT_ASSERT(new_stock_entry.CURRENTPRICE == current_price);
         CPPUNIT_ASSERT(new_stock_entry.NUMSHARES == num_shares);
@@ -136,8 +163,7 @@ void Test_Stock::Test_Stocks_Panel()
 
     // Get User Details
     const wxString purchase_account = "Savings";
-    const wxString dividend_account = "Cheque";
-    const wxString stock_account = "Telstra";
+    const wxString stock_account = "Yahoo Finance";
 
     const wxString t1_share_account = "Telstra_T1";
     const int t1_number_share = 2000;
@@ -164,18 +190,9 @@ void Test_Stock::Test_Stocks_Panel()
 
     // Set up some data in table
     m_test_db.Begin();
-    m_dbmodel->Add_Bank_Account(purchase_account, 10000);
-    m_dbmodel->Add_Bank_Account(dividend_account);
 
-    m_dbmodel->Add_Payee(stock_account);
-
-    int cat_id = m_dbmodel->Add_Category("Share");
-    m_dbmodel->Add_Subcategory(cat_id, "Purchase");
-    m_dbmodel->Add_Subcategory(cat_id, "Sale");
-    m_dbmodel->Add_Subcategory(cat_id, "Dividend");
-
-    /* Create the Stock Account as the portfolio account */
-    int stock_account_id = m_dbmodel->Add_Investment_Account(stock_account);
+    /* Get the Stock Account as the portfolio account */
+    int stock_account_id = m_dbmodel->Get_account_id(stock_account);
     
     /* Create the Share Account purchase entry*/
     int t1_shares_id = m_dbmodel->Add_Stock_Entry(stock_account_id, t1_init_purchase_date, t1_number_share

@@ -62,7 +62,6 @@ Test_Asset::~Test_Asset()
 void Test_Asset::setUp()
 {
     CpuTimer time("Startup");
-    m_test_db.Open(m_test_db_filename);
 
     if (m_this_instance == 5)
     {
@@ -78,11 +77,47 @@ void Test_Asset::setUp()
         m_base_frame->Show(true);
     }
 
+    m_test_db.Open(m_test_db_filename);
     m_dbmodel = new DB_Init_Model();
+
     m_test_db.Begin();
     m_dbmodel->Init_Model_Tables(&m_test_db);
     m_dbmodel->Set_Asset_Columns(&m_test_db);
     m_dbmodel->Set_Checking_Columns(&m_test_db);
+
+    if (m_dbmodel->AccountNotExist("Savings"))  m_dbmodel->Add_Bank_Account("Savings", 10000);
+    if (m_dbmodel->AccountNotExist("Cheque"))  m_dbmodel->Add_Bank_Account("Cheque", 5000);
+    if (m_dbmodel->AccountNotExist("Visa"))  m_dbmodel->Add_CreditCard_Account("Visa", -1000);
+    if (m_dbmodel->AccountNotExist("Mastercard"))  m_dbmodel->Add_CreditCard_Account("Mastercard", -2000);
+    if (m_dbmodel->AccountNotExist("Insurance"))  m_dbmodel->Add_Term_Account("Insurance");
+    if (m_dbmodel->AccountNotExist("ACME Corp"))  m_dbmodel->Add_Investment_Account("ACME Corp");
+    if (m_dbmodel->AccountNotExist("Qwerty Keyboards"))  m_dbmodel->Add_Investment_Account("Qwerty Keyboards");
+    if (m_dbmodel->AccountNotExist("AMP"))  m_dbmodel->Add_Investment_Account("AMP");
+
+    if (m_dbmodel->PayeeNotExist("Telstra"))
+    {
+        m_dbmodel->Add_Payee("Telstra");
+
+        int cat_id = m_dbmodel->Add_Category("Share");
+        m_dbmodel->Add_Subcategory(cat_id, "Purchase");
+        m_dbmodel->Add_Subcategory(cat_id, "Sale");
+        m_dbmodel->Add_Subcategory(cat_id, "Dividend");
+
+        m_dbmodel->Add_Payee_Category("Telstra", "Share", "Purchase");
+
+    }
+
+    if (m_dbmodel->PayeeNotExist("Domayne"))
+    {
+        m_dbmodel->Add_Payee("Domayne");
+    }
+
+    if (m_dbmodel->PayeeNotExist("Discount House"))
+    {
+        m_dbmodel->Add_Payee("Discount House");
+        m_dbmodel->Add_Payee_Category("Discount House", "Homeneeds", "Furnishing");
+    }
+
     m_test_db.Commit();
 }
 
@@ -202,13 +237,6 @@ void Test_Asset::test_assetpanel()
     double purchase_value = 800.0;
     double sale_value = 300.0;
 
-    // Set up some test data in table
-    m_test_db.Begin();
-    m_dbmodel->Add_Bank_Account(sale_account_name,5000);
-    m_dbmodel->Add_Payee(purchase_payee);
-    m_dbmodel->Add_Payee(sale_payee);
-    m_test_db.Commit();
-
     // Asset is created from assets, specifying Buy/withdrawal, Sell/income,
     int asset_id = m_dbmodel->Add_Asset(asset_name
         , purchase_date, purchase_value
@@ -313,16 +341,6 @@ void Test_Asset::test_assetpanel()
 
 void Test_Asset::test_trans_user_panel()
 {
-    m_dbmodel->Add_Bank_Account("Bank One");
-    m_dbmodel->Add_Bank_Account("Bank Two");
-    m_dbmodel->Add_Bank_Account("Bank Three");
-    m_dbmodel->Add_Term_Account("Term One");
-    m_dbmodel->Add_Term_Account("Term Two");
-    m_dbmodel->Add_CreditCard_Account("Credit One");
-    m_dbmodel->Add_CreditCard_Account("Credit Two");
-    m_dbmodel->Add_Investment_Account("Investment One");
-    m_dbmodel->Add_Investment_Account("Investment Two");
-
     // Create a new frame anchored to the base frame.
     TestFrameBase* trans_user_panel_frame = new TestFrameBase(m_base_frame, 318, 455);
     trans_user_panel_frame->Show();
