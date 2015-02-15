@@ -153,6 +153,7 @@ MMEX_OBJECTS =  \
 	mmex_relocatepayeedialog.o \
 	mmex_splitdetailsdialog.o \
 	mmex_splittransactionsdialog.o \
+	mmex_stock_transdialog.o \
 	mmex_stockdialog.o \
 	mmex_stockspanel.o \
 	mmex_transdialog.o \
@@ -260,8 +261,6 @@ install: install_mmex
 	(cd $(srcdir)/doc ; $(INSTALL_DATA)  *.txt $(DESTDIR)$(datadir)/doc/mmex)
 	$(INSTALL_DIR) $(DESTDIR)$(helppath)
 	(cd $(srcdir)/doc/help ; $(INSTALL_DATA)  *.html *.png $(DESTDIR)$(helppath))
-	$(INSTALL_DIR) $(DESTDIR)$(helppath)/german
-	(cd $(srcdir)/doc/help/german ; $(INSTALL_DATA)  * $(DESTDIR)$(helppath)/german)
 	$(INSTALL_DIR) $(DESTDIR)$(helppath)/french
 	(cd $(srcdir)/doc/help/french ; $(INSTALL_DATA)  * $(DESTDIR)$(helppath)/french)
 	$(INSTALL_DIR) $(DESTDIR)$(helppath)/hungarian
@@ -292,7 +291,6 @@ uninstall: uninstall_mmex
 	(cd $(DESTDIR)$(popath) ; rm -f *.mo)
 	(cd $(DESTDIR)$(datadir)/doc/mmex ; rm -f *.txt)
 	(cd $(DESTDIR)$(helppath) ; rm -f *.html *.png)
-	(cd $(DESTDIR)$(helppath)/german ; rm -f *)
 	(cd $(DESTDIR)$(helppath)/french ; rm -f *)
 	(cd $(DESTDIR)$(helppath)/hungarian ; rm -f *)
 	(cd $(DESTDIR)$(helppath)/italian ; rm -f *)
@@ -595,6 +593,9 @@ mmex_splitdetailsdialog.o: $(srcdir)/src/splitdetailsdialog.cpp
 
 mmex_splittransactionsdialog.o: $(srcdir)/src/splittransactionsdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/splittransactionsdialog.cpp
+
+mmex_stock_transdialog.o: $(srcdir)/src/stock_transdialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/stock_transdialog.cpp
 
 mmex_stockdialog.o: $(srcdir)/src/stockdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/stockdialog.cpp

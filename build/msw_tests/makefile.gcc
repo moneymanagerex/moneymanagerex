@@ -192,6 +192,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_relocatepayeedialog.o \
 	mmex_tests_splitdetailsdialog.o \
 	mmex_tests_splittransactionsdialog.o \
+	mmex_tests_stock_transdialog.o \
 	mmex_tests_stockdialog.o \
 	mmex_tests_stockspanel.o \
 	mmex_tests_transdialog.o \
@@ -820,6 +821,9 @@ mmex_tests_splitdetailsdialog.o: ../../src/splitdetailsdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_splittransactionsdialog.o: ../../src/splittransactionsdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_stock_transdialog.o: ../../src/stock_transdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_stockdialog.o: ../../src/stockdialog.cpp

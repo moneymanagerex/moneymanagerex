@@ -201,6 +201,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_relocatepayeedialog.obj \
 	mmex_tests_splitdetailsdialog.obj \
 	mmex_tests_splittransactionsdialog.obj \
+	mmex_tests_stock_transdialog.obj \
 	mmex_tests_stockdialog.obj \
 	mmex_tests_stockspanel.obj \
 	mmex_tests_transdialog.obj \
@@ -924,6 +925,9 @@ mmex_tests_splitdetailsdialog.obj: ..\..\src\splitdetailsdialog.cpp
 
 mmex_tests_splittransactionsdialog.obj: ..\..\src\splittransactionsdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\splittransactionsdialog.cpp
+
+mmex_tests_stock_transdialog.obj: ..\..\src\stock_transdialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\stock_transdialog.cpp
 
 mmex_tests_stockdialog.obj: ..\..\src\stockdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\stockdialog.cpp

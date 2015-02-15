@@ -157,6 +157,7 @@ MMEX_OBJECTS =  \
 	mmex_relocatepayeedialog.o \
 	mmex_splitdetailsdialog.o \
 	mmex_splittransactionsdialog.o \
+	mmex_stock_transdialog.o \
 	mmex_stockdialog.o \
 	mmex_stockspanel.o \
 	mmex_transdialog.o \
@@ -674,6 +675,9 @@ mmex_splitdetailsdialog.o: ../../src/splitdetailsdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_splittransactionsdialog.o: ../../src/splittransactionsdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_stock_transdialog.o: ../../src/stock_transdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_stockdialog.o: ../../src/stockdialog.cpp
