@@ -29,7 +29,7 @@ class Model_TransferTrans : public Model<DB_Table_TRANSFERTRANS_V1>
 {
 public:
     enum TABLE_TYPE { ASSETS = 0, STOCKS };
-    enum CHECKING_TYPE { AS_INCOME_EXPENSE = 1, AS_TRANSFER }; /* Transfers ignore accounting */
+    enum CHECKING_TYPE { AS_INCOME_EXPENSE = 32701, AS_TRANSFER }; /* Transfers ignore accounting */
 
 public:
     static const std::vector<std::pair<TABLE_TYPE, wxString> > TABLE_TYPE_CHOICES;
