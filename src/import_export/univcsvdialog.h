@@ -114,18 +114,14 @@ private:
     std::map<int, wxString> CSVFieldName_;
 
     wxString dt_;
-    wxString payee_;
     wxString type_;
     wxString amount_;
-    wxString categ_;
-    wxString subcateg_;
     wxString transNum_;
     wxString notes_;
     int payeeID_;
     int categID_;
     int subCategID_;
     double val_;
-    wxDateTime dtdt_;
     wxChoice* choiceDateFormat_;
     wxString date_format_;
 
