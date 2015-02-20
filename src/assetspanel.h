@@ -62,6 +62,7 @@ private:
     void OnHeaderHide(wxCommandEvent& event);
     void OnHeaderSort(wxCommandEvent& event);
     void OnHeaderReset(wxCommandEvent& event);
+    void OnHeaderColumn(wxCommandEvent& event);
 
     enum {
         MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1200,
@@ -72,6 +73,14 @@ private:
         MENU_HEADER_HIDE,
         MENU_HEADER_SORT,
         MENU_HEADER_RESET,
+        MENU_HEADER_COL_ICON,
+        MENU_HEADER_COL_ID,
+        MENU_HEADER_COL_NAME,
+        MENU_HEADER_COL_DATE,
+        MENU_HEADER_COL_TYPE,
+        MENU_HEADER_COL_VALUE_INITIAL,
+        MENU_HEADER_COL_VALUE_CURRENT,
+        MENU_HEADER_COL_NOTES,
     };
 };
 
