@@ -31,7 +31,7 @@ class mmStockTransDialog : public wxDialog
 
 public:
     mmStockTransDialog();
-    mmStockTransDialog(wxWindow* parent, Model_Stock::Data* stock, int accountID);
+    mmStockTransDialog(wxWindow* parent, Model_Stock::Data* stock, int account_id);
 
     Model_Stock::Data* m_stock;
     int m_stock_id;
@@ -46,15 +46,15 @@ private:
     void CreateControls();
     void DataToControls();
 
-    void OnOk(wxCommandEvent& WXUNUSED(event));
+    void OnSave(wxCommandEvent& WXUNUSED(event));
     void OnCancel(wxCommandEvent& WXUNUSED(event));
 	void OnAttachments(wxCommandEvent& event);
     void OnStockPriceButton(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& WXUNUSED(event));
     void OnDateChange(wxDateEvent& WXUNUSED(event));
     void OnTextEntered(wxCommandEvent& event);
+    void OnFocusChange(wxChildFocusEvent& event);
 
- 
 
     mmTextCtrl* m_stock_name;
     mmTextCtrl* m_stock_symbol;
@@ -67,8 +67,8 @@ private:
 	wxBitmapButton* m_attachments;
     mmUserPanelTrans* m_checking_entry_panel;
 
-    bool m_edit;
-    int m_accountID;
+    wxString m_dialog_heading;
+    int m_account_id;
 
     enum
     {
