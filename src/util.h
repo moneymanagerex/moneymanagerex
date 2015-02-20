@@ -121,16 +121,8 @@ private:
     mmPrintableBase* report_;
 };
 
-const wxDateTime mmGetStorageStringAsDate(const wxString& str);
-const wxString mmGetDateForDisplay(const wxDateTime &dt);
-bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
-const wxString mmGetNiceDateSimpleString(const wxDateTime &dt);
-const std::map<wxString,wxString> date_formats_map();
-const std::map<wxString,wxString> date_formats_regex();
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2);
-
 const wxString inQuotes(const wxString& label, const wxString& delimiter);
-
 void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 
 void mmLoadColorsFromDatabase();
@@ -164,6 +156,14 @@ const wxString mmPlatformType();
 const wxString getURL(const wxString& file);
 
 void windowsFreezeThaw(wxWindow* w);
+
+//* Date Functions----------------------------------------------------------*//
+const std::map<wxString, wxString> date_formats_regex();
+const wxDateTime mmGetStorageStringAsDate(const wxString& str);
+const wxString mmGetDateForDisplay(const wxDateTime &dt);
+bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
+const wxString mmGetNiceDateSimpleString(const wxDateTime &dt);
+extern const std::map<wxString, wxString> g_date_formats_map;
 
 #endif // MM_EX_UTIL_H_
 //----------------------------------------------------------------------------
