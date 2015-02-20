@@ -10,10 +10,22 @@
 #
 
 # Specify system Architecture  ("i386" or "amd64")
+<<<<<<< HEAD
 
 . ../common/variables.sh
 
 ARCHITECTURE="amd64"
+=======
+ARCHITECTURE="amd64"
+
+# Specify the build version of mmex
+MMEX_VERSION="1.2.0"
+MMEX_RELEASE_DATE="2015-02-09"
+EMAIL="moneymanagerex@moneymanagerex.org"
+HOMEPAGE="http://www.moneymanagerex.org"
+BUILD_DIR="$HOME/build"
+RELEASE_DIR="release"
+>>>>>>> upstream/master
 
 PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
 
@@ -23,13 +35,20 @@ BUILD_DIR="$HOME/build"
 cd ../../..
 MMEX_DIR=`pwd`
 
+mkdir $RELEASE_DIR
+
 ./bootstrap
 if [ $? -gt 0 ]; then
     echo "ERROR!"
     exit 1
 fi
 
+<<<<<<< HEAD
 ./configure --prefix="$BUILD_DIR/$PACKAGE_NAME/usr"
+=======
+cd $RELEASE_DIR
+../configure --prefix=$BUILD_DIR/$PACKAGE_NAME/usr
+>>>>>>> upstream/master
 
 if [ $? -gt 0 ]; then
     echo "ERROR!"
@@ -40,6 +59,8 @@ if [ $? -gt 0 ]; then
     echo "ERROR!"
     exit 1
 fi
+
+cd -
 
 #Strip the binary before calculating the installed size
 strip "$BUILD_DIR/$PACKAGE_NAME/usr/bin/mmex"
