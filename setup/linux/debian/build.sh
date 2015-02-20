@@ -18,9 +18,7 @@ MMEX_RELEASE_DATE="2015-02-09"
 EMAIL="moneymanagerex@moneymanagerex.org"
 HOMEPAGE="http://www.moneymanagerex.org"
 BUILD_DIR="$HOME/build"
-
-
-
+RELEASE_DIR="release"
 
 PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
 
@@ -28,13 +26,16 @@ BUILD_DIR="$HOME/build"
 cd ../../..
 MMEX_DIR=`pwd`
 
+mkdir $RELEASE_DIR
+
 ./bootstrap
 if [ $? -gt 0 ]; then
     echo "ERROR!"
     exit 1
 fi
 
-./configure --prefix=$BUILD_DIR/$PACKAGE_NAME/usr
+cd $RELEASE_DIR
+../configure --prefix=$BUILD_DIR/$PACKAGE_NAME/usr
 
 if [ $? -gt 0 ]; then
     echo "ERROR!"
@@ -45,6 +46,8 @@ if [ $? -gt 0 ]; then
     echo "ERROR!"
     exit 1
 fi
+
+cd -
 
 #Strip the binary before calculating the installed size
 strip $BUILD_DIR/$PACKAGE_NAME/usr/bin/mmex
