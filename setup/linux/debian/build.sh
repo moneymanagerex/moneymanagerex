@@ -10,13 +10,9 @@
 #
 
 # Specify system Architecture  ("i386" or "amd64")
-<<<<<<< HEAD
+ARCHITECTURE="amd64"
 
 . ../common/variables.sh
-
-ARCHITECTURE="amd64"
-=======
-ARCHITECTURE="amd64"
 
 # Specify the build version of mmex
 MMEX_VERSION="1.2.0"
@@ -25,7 +21,6 @@ EMAIL="moneymanagerex@moneymanagerex.org"
 HOMEPAGE="http://www.moneymanagerex.org"
 BUILD_DIR="$HOME/build"
 RELEASE_DIR="release"
->>>>>>> upstream/master
 
 PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
 
@@ -35,20 +30,15 @@ BUILD_DIR="$HOME/build"
 cd ../../..
 MMEX_DIR=`pwd`
 
-mkdir $RELEASE_DIR
-
 ./bootstrap
 if [ $? -gt 0 ]; then
     echo "ERROR!"
     exit 1
 fi
 
-<<<<<<< HEAD
-./configure --prefix="$BUILD_DIR/$PACKAGE_NAME/usr"
-=======
+mkdir $RELEASE_DIR
 cd $RELEASE_DIR
-../configure --prefix=$BUILD_DIR/$PACKAGE_NAME/usr
->>>>>>> upstream/master
+../configure --prefix="$BUILD_DIR/$PACKAGE_NAME/usr"
 
 if [ $? -gt 0 ]; then
     echo "ERROR!"
