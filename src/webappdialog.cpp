@@ -115,7 +115,7 @@ void mmWebAppDialog::fillControls()
     for (const auto& WebTran : WebAppTransactions_)
     {
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(WebTran.ID)); //WEBTRAN_ID
+data.push_back(wxVariant(wxString::Format(wxT("%i"),WebTran.ID))); //WEBTRAN_ID
         data.push_back(wxVariant(mmGetDateForDisplay(WebTran.Date))); //WEBTRAN_DATE
         data.push_back(wxVariant(WebTran.Account)); //WEBTRAN_ACCOUNT
         data.push_back(wxVariant(WebTran.Status)); //WEBTRAN_STATUS
@@ -128,7 +128,7 @@ void mmWebAppDialog::fillControls()
         if (WebTran.SubCategory != wxEmptyString) Category += ":" + WebTran.SubCategory;
         data.push_back(wxVariant(Category)); //WEBTRAN_CATEGORY
 
-        data.push_back(wxVariant(WebTran.Amount)); //WEBTRAN_AMOUNT
+        data.push_back(wxVariant(wxString::Format(wxT("%f"),WebTran.Amount)));
         data.push_back(wxVariant(WebTran.Notes)); //WEBTRAN_NOTES
         data.push_back(wxVariant(WebTran.Attachments)); //WEBTRAN_ATTACHMENTS
         webtranListBox_->AppendItem(data, (wxUIntPtr)WebTran.ID);

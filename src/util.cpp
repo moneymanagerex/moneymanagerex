@@ -146,7 +146,6 @@ bool download_file(const wxString& site, const wxString& path)
 }
 
 //* Date Functions----------------------------------------------------------*//
-
 const wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
 {
     wxString dateFmt = mmOptions::instance().dateFormat_;
@@ -171,18 +170,18 @@ const wxString mmGetDateForDisplay(const wxDateTime &dt)
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString &sDateMask)
 {
     wxString mask = sDateMask;
-    const wxDateTime today = date;
     mask.Replace("%Y%m%d", "%Y %m %d");
     if (date_formats_regex().count(mask) == 0) return false;
 
-    const wxString regex = date_formats_regex().at(mask);
+    const wxString& regex = date_formats_regex().at(mask);
     wxRegEx pattern(regex);
     //skip dot if present in pattern but not in date string 
-    const wxString separator = mask.Mid(2,1);
-    date.ParseFormat(sDate, mask, today);
+    const wxString& separator = mask.Mid(2,1);
+    date.ParseFormat(sDate, mask, date);
     if (pattern.Matches(sDate) && sDate.Contains(separator))
         return true;
-    else {
+    else
+    {
         //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
         return false;
     }
@@ -230,34 +229,6 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     return financialYear;
 }
 
-const std::map<wxString,wxString> date_formats_map()
-{
-    std::map<wxString, wxString> date_formats;
-    date_formats["%Y-%m-%d"] = "YYYY-MM-DD";
-    date_formats["%d/%m/%y"] = "DD/MM/YY";
-    date_formats["%d/%m/%Y"] = "DD/MM/YYYY";
-    date_formats["%d-%m-%y"] = "DD-MM-YY";
-    date_formats["%d-%m-%Y"] = "DD-MM-YYYY";
-    date_formats["%d.%m.%y"] = "DD.MM.YY";
-    date_formats["%d.%m.%Y"] = "DD.MM.YYYY";
-    date_formats["%d,%m,%y"] = "DD,MM,YY";
-    date_formats["%d/%m'%Y"] = "DD/MM'YYYY";
-    date_formats["%d/%m %Y"] = "DD/MM YYYY";
-    date_formats["%m/%d/%y"] = "MM/DD/YY";
-    date_formats["%m/%d/%Y"] = "MM/DD/YYYY";
-    date_formats["%m-%d-%y"] = "MM-DD-YY";
-    date_formats["%m-%d-%Y"] = "MM-DD-YYYY";
-    date_formats["%m/%d'%y"] = "MM/DD'YY";
-    date_formats["%m/%d'%Y"] = "MM/DD'YYYY";
-    date_formats["%y/%m/%d"] = "YY/MM/DD";
-    date_formats["%y-%m-%d"] = "YY-MM-DD";
-    date_formats["%Y/%m/%d"] = "YYYY/MM/DD";
-    date_formats["%Y.%m.%d"] = "YYYY.MM.DD";
-    date_formats["%Y%m%d"] = "YYYYMMDD";
-
-    return date_formats;
-}
-
 const std::map<wxString,wxString> date_formats_regex()
 {
     const wxString dd = "((([0 ][1-9])|([1-2][0-9])|(3[0-1]))|([1-9]))";
@@ -289,6 +260,30 @@ const std::map<wxString,wxString> date_formats_regex()
 
     return date_regex;
 }
+
+const std::map<wxString, wxString> g_date_formats_map = {
+    { "%Y-%m-%d", "YYYY-MM-DD" }
+    , { "%d/%m/%y", "DD/MM/YY" }
+    , { "%d/%m/%Y", "DD/MM/YYYY" }
+    , { "%d-%m-%y", "DD-MM-YY" }
+    , { "%d-%m-%Y", "DD-MM-YYYY" }
+    , { "%d.%m.%y", "DD.MM.YY" }
+    , { "%d.%m.%Y", "DD.MM.YYYY" }
+    , { "%d,%m,%y", "DD,MM,YY" }
+    , { "%d/%m'%Y", "DD/MM'YYYY" }
+    , { "%d/%m %Y", "DD/MM YYYY" }
+    , { "%m/%d/%y", "MM/DD/YY" }
+    , { "%m/%d/%Y", "MM/DD/YYYY" }
+    , { "%m-%d-%y", "MM-DD-YY" }
+    , { "%m-%d-%Y", "MM-DD-YYYY" }
+    , { "%m/%d'%y", "MM/DD'YY" }
+    , { "%m/%d'%Y", "MM/DD'YYYY" }
+    , { "%y/%m/%d", "YY/MM/DD" }
+    , { "%y-%m-%d", "YY-MM-DD" }
+    , { "%Y/%m/%d", "YYYY/MM/DD" }
+    , { "%Y.%m.%d", "YYYY.MM.DD" }
+    , { "%Y%m%d", "YYYYMMDD" }
+};
 
 static const wxString MONTHS[12] =
 {
@@ -399,7 +394,7 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
     // if decimal point, check if it's already in the string
     if (str == '.' || str == ',')
     {
-        wxString value = ((wxTextCtrl*)m_validatorWindow)->GetValue();
+        const wxString value = ((wxTextCtrl*)m_validatorWindow)->GetValue();
         size_t ind = value.rfind(decChar);
         if (ind < value.Length())
         {
