@@ -598,6 +598,12 @@ bool DB_Init_Model::PayeeNotExist(const wxString& payee_name)
         return false;
 }
 
+void DB_Init_Model::SetCurrencyExchangeRate(const wxString& currency_symbol, double rate)
+{
+    Model_Currency::Data* currency = Model_Currency::instance().GetCurrencyRecord(currency_symbol);
+    currency->BASECONVRATE = rate;
+    Model_Currency::instance().save(currency);
+}
 
 //----------------------------------------------------------------------------
 

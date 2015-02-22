@@ -142,6 +142,7 @@ public:
 
     bool AccountNotExist(const wxString& account_name);
     bool PayeeNotExist(const wxString& payee_name);
+    void SetCurrencyExchangeRate(const wxString& currency_symbol, double rate);
 
 private:
     int m_baseCurrency_id;

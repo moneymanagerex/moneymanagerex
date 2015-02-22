@@ -363,7 +363,7 @@ void mmStocksPanel::AddStockTransaction(int selectedIndex)
 {
     Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
     mmStockTransDialog dlg(this, stock, m_account_id);
-    if (dlg.ShowModal() == wxID_OK)
+    if (dlg.ShowModal() == wxID_SAVE)
     {
         listCtrlAccount_->doRefreshItems(dlg.m_stock_id);
         updateExtraStocksData(selectedIndex);

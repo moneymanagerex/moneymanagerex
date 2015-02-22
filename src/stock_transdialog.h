@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2015 Stefano Giorgio
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -53,20 +53,18 @@ private:
     void OnQuit(wxCloseEvent& WXUNUSED(event));
     void OnDateChange(wxDateEvent& WXUNUSED(event));
     void OnTextEntered(wxCommandEvent& event);
-    void OnFocusChange(wxChildFocusEvent& event);
 
-
+private:
     mmTextCtrl* m_stock_name;
     mmTextCtrl* m_stock_symbol;
     wxDatePickerCtrl* m_dpc;
     mmTextCtrl* m_num_shares;
     mmTextCtrl* m_purchase_price;
-    mmTextCtrl* m_notes;
-
     mmTextCtrl* m_commission;
+    mmTextCtrl* m_notes;
 	wxBitmapButton* m_attachments;
-    mmUserPanelTrans* m_checking_entry_panel;
 
+    mmUserPanelTrans* m_checking_entry_panel;
     wxString m_dialog_heading;
     int m_account_id;
 

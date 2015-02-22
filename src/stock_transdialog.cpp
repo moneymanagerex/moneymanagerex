@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2015 Stefano Giorgio
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -46,7 +46,6 @@ wxBEGIN_EVENT_TABLE(mmStockTransDialog, wxDialog)
     EVT_BUTTON(wxID_FILE, mmStockTransDialog::OnAttachments)
     EVT_BUTTON(wxID_INDEX, mmStockTransDialog::OnStockPriceButton)
     EVT_CLOSE(mmStockTransDialog::OnQuit)
-    //EVT_CHILD_FOCUS(mmStockTransDialog::OnFocusChange)
     EVT_DATE_CHANGED(ID_STOCKTRANS_DATEPICKER_CHANGE, mmStockTransDialog::OnDateChange)
 wxEND_EVENT_TABLE()
 
@@ -99,19 +98,33 @@ void mmStockTransDialog::DataToControls()
     m_stock_id = m_stock->STOCKID;
 
     m_stock_name->SetValue(m_stock->STOCKNAME);
+    m_dpc->SetValue(Model_Stock::PURCHASEDATE(m_stock));
     m_stock_symbol->SetValue(m_stock->SYMBOL);
     m_notes->SetValue(m_stock->NOTES);
-    m_dpc->SetValue(Model_Stock::PURCHASEDATE(m_stock));
 
-    int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : 4;
-    m_num_shares->SetValue(m_stock->NUMSHARES, precision);
-    Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
-    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    if (account) currency = Model_Account::currency(account);
-    int currency_precision = Model_Currency::precision(currency);
-    if (currency_precision < 4) currency_precision = 4;
-    m_purchase_price->SetValue(m_stock->PURCHASEPRICE, account, currency_precision);
-    m_commission->SetValue(m_stock->COMMISSION, account, currency_precision);
+    m_stock_name->Enable(false);
+    m_dpc->Enable(false);
+    m_stock_symbol->Enable(false);
+    m_notes->Enable(false);
+
+    if (Model_TransferTrans::instance().TransferList(Model_TransferTrans::TABLE_TYPE::STOCKS, m_stock->STOCKID).empty())
+    {
+        m_num_shares->SetValue(m_stock->NUMSHARES);
+        m_purchase_price->SetValue(m_stock->PURCHASEPRICE);
+        m_commission->SetValue(m_stock->COMMISSION);
+        m_checking_entry_panel->SetTransactionDate(Model_Stock::PURCHASEDATE(m_stock));
+        m_checking_entry_panel->SetTransactionValue((m_stock->NUMSHARES * m_stock->PURCHASEPRICE) + m_stock->COMMISSION);
+    }
+
+    //int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : 4;
+    //m_num_shares->SetValue(m_stock->NUMSHARES, precision);
+    //Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
+    //Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+    //if (account) currency = Model_Account::currency(account);
+    //int currency_precision = Model_Currency::precision(currency);
+    //if (currency_precision < 4) currency_precision = 4;
+    //m_purchase_price->SetValue(m_stock->PURCHASEPRICE, account, currency_precision);
+    //m_commission->SetValue(m_stock->COMMISSION, account, currency_precision);
 }
 
 void mmStockTransDialog::CreateControls()
@@ -204,6 +217,8 @@ void mmStockTransDialog::CreateControls()
         , wxBitmap(attachment_xpm), wxDefaultPosition
         , wxSize(m_commission->GetSize().GetY(), m_commission->GetSize().GetY()));
     m_attachments->SetToolTip(_("Organize attachments of this stock"));
+    //TODO m_attachments not used here
+    m_attachments->Hide();
 
     wxBitmapButton* web_button = new wxBitmapButton(stock_details_panel, wxID_INDEX, wxBitmap(web_xpm)
         , wxDefaultPosition, wxSize(m_commission->GetSize().GetY(), m_commission->GetSize().GetY()));
@@ -309,19 +324,20 @@ void mmStockTransDialog::OnSave(wxCommandEvent& WXUNUSED(event))
         mmErrorDialogs::MessageInvalid(this, _("Symbol"));
         return;
     }
-        
-    Model_Currency::Data *currency = Model_Account::currency(account);  //TODO: This may not be the case
-    const wxString& purchase_date = m_dpc->GetValue().FormatISODate();
-    const wxString& stock_name = m_stock_name->GetValue();
-    const wxString& notes = m_notes->GetValue();
+
+    Model_Currency::Data* currency = m_checking_entry_panel->GetCurrencyData();
 
     double num_shares = 0;
     if (!m_num_shares->checkValue(num_shares, currency))
+    {
         return;
+    }
 
-    double share_price;
-    if (!m_purchase_price->checkValue(share_price, currency))
+    double purchase_price;
+    if (!m_purchase_price->checkValue(purchase_price, currency))
+    {
         return;
+    }
 
     double commission = 0;
     m_commission->GetDouble(commission);
@@ -339,14 +355,14 @@ void mmStockTransDialog::OnSave(wxCommandEvent& WXUNUSED(event))
         m_stock = Model_Stock::instance().create();
 
         m_stock->HELDAT = m_account_id;
-        m_stock->PURCHASEDATE = purchase_date;
-        m_stock->STOCKNAME = stock_name;
+        m_stock->PURCHASEDATE = m_dpc->GetValue().FormatISODate();
+        m_stock->STOCKNAME = m_stock_name->GetValue();
         m_stock->SYMBOL = stock_symbol;
         m_stock->NUMSHARES = num_shares;
-        m_stock->PURCHASEPRICE = share_price;
-        m_stock->NOTES = notes;
-        m_stock->CURRENTPRICE = share_price;
-        m_stock->VALUE = (num_shares * share_price) + commission;
+        m_stock->PURCHASEPRICE = purchase_price;
+        m_stock->NOTES = m_notes->GetValue();
+        m_stock->CURRENTPRICE = purchase_price;
+        m_stock->VALUE = (num_shares * purchase_price) + commission;
         m_stock->COMMISSION = commission;
         
         new_stock_id = Model_Stock::instance().save(m_stock);
@@ -362,20 +378,24 @@ void mmStockTransDialog::OnSave(wxCommandEvent& WXUNUSED(event))
     {
         int checking_id = m_checking_entry_panel->SaveChecking();
         Model_TransferTrans::SetShareTransferTransaction(new_stock_id, checking_id
-            , share_price, num_shares, commission
+            , purchase_price, num_shares, commission
             , m_checking_entry_panel->CheckingType()
             , m_checking_entry_panel->CurrencySymbol());
 
-        //Add the number of shares to main
-        if (num_shares > 0)
+        if (!Model_TransferTrans::instance().TransferList(Model_TransferTrans::TABLE_TYPE::STOCKS, new_stock_id).empty())
         {
-            m_stock->NUMSHARES += num_shares;
-            m_stock->PURCHASEPRICE += share_price;
-            m_stock->NOTES = notes;
-            m_stock->CURRENTPRICE = share_price;
-            m_stock->VALUE = (num_shares * share_price) + commission;
-            m_stock->COMMISSION += commission;
-            Model_Stock::instance().save(m_stock);
+            //Add the number of shares to main table
+            if (num_shares > 0)
+            {
+                m_stock->NUMSHARES += num_shares;
+                m_stock->PURCHASEPRICE += purchase_price;
+                m_stock->NOTES = m_notes->GetValue();
+                m_stock->CURRENTPRICE = purchase_price;
+                m_stock->VALUE = (num_shares * purchase_price) + commission;
+                m_stock->COMMISSION += commission;
+
+                Model_Stock::instance().save(m_stock);
+            }
         }
     }
     else
@@ -388,42 +408,20 @@ void mmStockTransDialog::OnSave(wxCommandEvent& WXUNUSED(event))
 
 void mmStockTransDialog::OnTextEntered(wxCommandEvent& event)
 {
-    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();         //TODO: Not necessarily the case
-    Model_Account::Data *account = Model_Account::instance().get(m_account_id);
-    if (account) currency = Model_Account::currency(account);
-
-
-    int currency_precision = Model_Currency::precision(currency);
-    if (currency_precision < 4) currency_precision = 4;
-
-    if (event.GetId() == m_num_shares->GetId())
-    {
-        m_num_shares->Calculate(currency, 4);
-    }
-    else if (event.GetId() == m_purchase_price->GetId())
-    {
-        m_purchase_price->Calculate(currency, currency_precision);
-    }
-    else if (event.GetId() == m_commission->GetId())
-    {
-        m_commission->Calculate(currency, currency_precision);
-    }
-}
-
-void mmStockTransDialog::OnFocusChange(wxChildFocusEvent& event)
-{
-    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();         //TODO: Not necessarily the case
-    Model_Account::Data *account = Model_Account::instance().get(m_account_id);
-    if (account) currency = Model_Account::currency(account);
+    Model_Currency::Data* currency = m_checking_entry_panel->GetCurrencyData();
 
     double num_shares = 0;
-    m_num_shares->checkValue(num_shares, currency);
+    if (!m_num_shares->GetValue().empty())
+        m_num_shares->GetDouble(num_shares, currency);
 
-    double share_price = 0;
-    m_purchase_price->checkValue(share_price, currency);
+    double purchase_price = 0;
+    if (!m_purchase_price->GetValue().empty())
+        m_purchase_price->GetDouble(purchase_price, currency);
 
     double commission = 0;
-    m_commission->GetDouble(commission);
+    if (!m_commission->GetValue().empty())
+        m_commission->GetDouble(commission);
 
-    m_checking_entry_panel->SetTransactionValue((num_shares * share_price) + commission);
+    m_checking_entry_panel->SetTransactionValue((num_shares * purchase_price) + commission);
 }
+

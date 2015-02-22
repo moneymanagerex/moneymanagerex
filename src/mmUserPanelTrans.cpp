@@ -37,14 +37,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmUserPanelTrans, wxPanel)
-EVT_SPIN_UP(ID_TRANS_DATE_CONTROLLER, mmUserPanelTrans::OnDateSelectorForward)
-EVT_SPIN_DOWN(ID_TRANS_DATE_CONTROLLER, mmUserPanelTrans::OnDateSelectorBackward)
-EVT_BUTTON(ID_TRANS_ACCOUNT_BUTTON, mmUserPanelTrans::OnTransAccountButton)
-EVT_BUTTON(ID_TRANS_CURRENCY_BUTTON, mmUserPanelTrans::OnTransCurrencyButton)
-EVT_BUTTON(ID_TRANS_PAYEE_BUTTON, mmUserPanelTrans::OnTransPayeeButton)
-EVT_BUTTON(ID_TRANS_CATEGORY_BUTTON, mmUserPanelTrans::OnTransCategoryButton)
-EVT_MENU(wxID_ANY, mmUserPanelTrans::onSelectedNote)
-EVT_BUTTON(wxID_FILE, mmUserPanelTrans::OnAttachments)
+    EVT_SPIN_UP(ID_TRANS_DATE_CONTROLLER, mmUserPanelTrans::OnDateSelectorForward)
+    EVT_SPIN_DOWN(ID_TRANS_DATE_CONTROLLER, mmUserPanelTrans::OnDateSelectorBackward)
+    EVT_BUTTON(ID_TRANS_ACCOUNT_BUTTON, mmUserPanelTrans::OnTransAccountButton)
+    EVT_BUTTON(ID_TRANS_CURRENCY_BUTTON, mmUserPanelTrans::OnTransCurrencyButton)
+    EVT_BUTTON(ID_TRANS_PAYEE_BUTTON, mmUserPanelTrans::OnTransPayeeButton)
+    EVT_BUTTON(ID_TRANS_CATEGORY_BUTTON, mmUserPanelTrans::OnTransCategoryButton)
+    EVT_MENU(wxID_ANY, mmUserPanelTrans::onSelectedNote)
+    EVT_BUTTON(wxID_FILE, mmUserPanelTrans::OnAttachments)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
@@ -146,8 +146,14 @@ void mmUserPanelTrans::Create()
     m_entered_amount->SetToolTip(_("Specify the amount for this transaction"));
     m_entered_amount->Connect(ID_TRANS_ENTERED_AMOUNT
         , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmUserPanelTrans::OnEnteredText), nullptr, this);
-    
+    //TODO: m_entered_amount Enable/disable
+    //m_entered_amount->Enable(false);
+
     Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
+    if (m_account_id > 0)
+    {
+        currency = Model_Account::currency(Model_Account::instance().get(m_account_id));
+    }
     m_trans_currency = new wxButton(this, ID_TRANS_CURRENCY_BUTTON, currency->CURRENCY_SYMBOL
         , wxDefaultPosition, std_half_size);
     m_trans_currency->SetToolTip(_("Set the currency to be used for this transaction."));
@@ -155,8 +161,8 @@ void mmUserPanelTrans::Create()
     wxBoxSizer* entered_amount_sizer = new wxBoxSizer(wxHORIZONTAL);
     entered_amount_sizer->Add(m_entered_amount, g_flags);
     entered_amount_sizer->Add(m_trans_currency, g_flags);
-    //TODO Complete the implementation of currency for the transaction
-    m_trans_currency->Hide();
+    //TODO m_trans_currency Show/ Hide
+    //m_trans_currency->Hide();
 
     transPanelSizer->Add(entered_amount_text, g_flags);
     transPanelSizer->Add(entered_amount_sizer);
@@ -206,6 +212,8 @@ void mmUserPanelTrans::Create()
     // Attachment ---------------------------------------------
     m_attachment = new wxBitmapButton(this, wxID_FILE, wxBitmap(attachment_xpm));
     m_attachment->SetToolTip(_("Organize attachments of this transaction"));
+    //TODO: m_attachment Enable/disable
+    //m_attachment->Enable(false);
 
     // Frequent Notes ---------------------------------------------
     wxButton* frequent_notes = new wxButton(this, ID_TRANS_FREQUENT_NOTES, "..."
@@ -223,10 +231,6 @@ void mmUserPanelTrans::Create()
 
     transPanelSizer->Add(right_align_sizer, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT).Border(wxALL, 0));
     main_panel_sizer->Add(m_entered_notes, wxSizerFlags(g_flagsExpand).Border(wxTOP, 5));
-
-    //TODO: Correctly set this from the asset panel
-    //m_entered_amount->Enable(false);
-    m_attachment->Enable(false);
 }
 
 void mmUserPanelTrans::OnTransAccountButton(wxCommandEvent& WXUNUSED(event))
@@ -239,8 +243,11 @@ void mmUserPanelTrans::OnTransAccountButton(wxCommandEvent& WXUNUSED(event))
 
     if (scd.ShowModal() == wxID_OK)
     {
-        m_account->SetLabelText(scd.GetStringSelection());
-        m_account_id = Model_Account::instance().get(scd.GetStringSelection())->ACCOUNTID;
+        Model_Account::Data* account = Model_Account::instance().get(scd.GetStringSelection());
+        m_account->SetLabelText(account->ACCOUNTNAME);
+        m_account_id = account->ACCOUNTID;
+        Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
+        m_trans_currency->SetLabelText(currency->CURRENCY_SYMBOL);
     }
 }
 
@@ -356,7 +363,12 @@ void mmUserPanelTrans::onSelectedNote(wxCommandEvent& event)
 void mmUserPanelTrans::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    mmAttachmentDialog dlg(this, RefType, m_checking_trans_id);
+    int RefId = m_checking_trans_id;
+
+    if (RefId < 0)
+        RefId = 0;
+
+    mmAttachmentDialog dlg(this, RefType, RefId);
     dlg.ShowModal();
 }
 
@@ -393,6 +405,11 @@ const wxString mmUserPanelTrans::CurrencySymbol()
     return m_trans_currency->GetLabelText();
 }
 
+Model_Currency::Data* mmUserPanelTrans::GetCurrencyData()
+{
+    return Model_Currency::instance().GetCurrencyRecord(CurrencySymbol());
+}
+
 Model_TransferTrans::CHECKING_TYPE mmUserPanelTrans::CheckingType()
 {
     if (m_transfer->IsChecked())
@@ -403,10 +420,11 @@ Model_TransferTrans::CHECKING_TYPE mmUserPanelTrans::CheckingType()
 
 int mmUserPanelTrans::SaveChecking()
 {
+    Model_Currency::Data* currency = Model_Currency::instance().GetCurrencyRecord(CurrencySymbol());
+
     double value = 0;
     m_entered_amount->checkValue(value);
 
-    Model_Currency::Data* asset_currency = Model_Currency::instance().GetCurrencyRecord(CurrencySymbol());
 
     Model_Checking::Data* tran_entry = Model_Checking::instance().create();
     tran_entry->ACCOUNTID = m_account_id;
@@ -414,7 +432,7 @@ int mmUserPanelTrans::SaveChecking()
 
     tran_entry->PAYEEID = m_payee_id;
     tran_entry->TRANSCODE = Model_Checking::instance().all_type()[m_type_selector->GetSelection()];
-    tran_entry->TRANSAMOUNT = value * asset_currency->BASECONVRATE;
+    tran_entry->TRANSAMOUNT = value * currency->BASECONVRATE;
     tran_entry->STATUS = Model_Checking::all_status()[m_status_selector->GetSelection()].Mid(0, 1);
     tran_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();
     tran_entry->NOTES = m_entered_notes->GetValue();

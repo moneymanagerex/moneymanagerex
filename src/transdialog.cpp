@@ -309,7 +309,7 @@ void mmTransDialog::dataToControls()
         textAmount_ ->Enable(false);
         toTextAmount_->Enable(false);
         cSplit_->Enable(false);
-        transaction_type_->Enable(false);
+        //transaction_type_->Enable(false);
     }
 }
 

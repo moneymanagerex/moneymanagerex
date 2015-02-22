@@ -25,6 +25,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmtextctrl.h"
 #include "model/Model_TransferTrans.h"
 
+class Model_Currency;
+
+
 class mmUserPanelTrans : public wxPanel
 {
     wxDECLARE_EVENT_TABLE();
@@ -50,6 +53,7 @@ public:
 
     Model_TransferTrans::CHECKING_TYPE CheckingType();
     const wxString CurrencySymbol();
+    Model_Currency::Data* GetCurrencyData();
 
 private:
     int m_checking_trans_id;
