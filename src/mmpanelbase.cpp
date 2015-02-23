@@ -35,7 +35,7 @@ mmListCtrl::mmListCtrl(wxWindow *parent, wxWindowID winid)
     , m_selected_col(0)
     , m_asc(true)
     , m_ColumnHeaderNbr(-1)
-    , m_default_sort_column(0)
+    , m_default_sort_column(-1)
 {
 }
 
@@ -122,7 +122,8 @@ void mmListCtrl::OnColRightClick(wxListEvent& event)
         }
         menu.AppendSubMenu(submenu, _("Hide/Show Columns"));
         menu.Append(MENU_HEADER_HIDE, _("Hide this column"));
-        menu.Append(MENU_HEADER_SORT, _("Order by this column"));
+        if (m_default_sort_column >= 0)
+            menu.Append(MENU_HEADER_SORT, _("Order by this column"));
         menu.Append(MENU_HEADER_RESET, _("Reset columns"));
         PopupMenu(&menu);
         this->SetFocus();

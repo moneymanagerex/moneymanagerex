@@ -71,13 +71,9 @@ wxBEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
     EVT_MENU(wxID_ANY, mmBudgetingPanel::OnViewPopupSelected)
 wxEND_EVENT_TABLE()
 /*******************************************************/
-wxBEGIN_EVENT_TABLE(budgetingListCtrl, wxListCtrl)
+wxBEGIN_EVENT_TABLE(budgetingListCtrl, mmListCtrl)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, budgetingListCtrl::OnListItemSelected)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, budgetingListCtrl::OnListItemActivated)
-    EVT_LIST_COL_END_DRAG(wxID_ANY, budgetingListCtrl::OnItemResize)
-    EVT_LIST_COL_RIGHT_CLICK(wxID_ANY, budgetingListCtrl::OnColRightClick)
-    EVT_MENU(MENU_HEADER_HIDE, budgetingListCtrl::OnHeaderHide)
-    EVT_MENU(MENU_HEADER_RESET, budgetingListCtrl::OnHeaderReset)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 mmBudgetingPanel::mmBudgetingPanel(int budgetYearID
@@ -292,20 +288,37 @@ void mmBudgetingPanel::CreateControls()
 
     listCtrlBudget_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
     listCtrlBudget_->InsertColumn(COL_ICON, (" "));
-    listCtrlBudget_->InsertColumn(COL_CATEGORY, _("Category"));
-    listCtrlBudget_->InsertColumn(COL_SUBCATEGORY, _("Sub Category"));
-    listCtrlBudget_->InsertColumn(COL_FREQUENCY, _("Frequency"));
-    listCtrlBudget_->InsertColumn(COL_AMOUNT, _("Amount"), wxLIST_FORMAT_RIGHT);
-    listCtrlBudget_->InsertColumn(COL_ESTIMATED, _("Estimated"), wxLIST_FORMAT_RIGHT);
-    listCtrlBudget_->InsertColumn(COL_ACTUAL, _("Actual"), wxLIST_FORMAT_RIGHT);
+    listCtrlBudget_->InsertColumn(COL_CATEGORY, std::get<0>(listCtrlBudget_->m_columns[COL_CATEGORY]));
+    listCtrlBudget_->InsertColumn(COL_SUBCATEGORY, std::get<0>(listCtrlBudget_->m_columns[COL_SUBCATEGORY]));
+    listCtrlBudget_->InsertColumn(COL_FREQUENCY, std::get<0>(listCtrlBudget_->m_columns[COL_FREQUENCY]));
+    listCtrlBudget_->InsertColumn(COL_AMOUNT, std::get<0>(listCtrlBudget_->m_columns[COL_AMOUNT]), wxLIST_FORMAT_RIGHT);
+    listCtrlBudget_->InsertColumn(COL_ESTIMATED, std::get<0>(listCtrlBudget_->m_columns[COL_ESTIMATED]), wxLIST_FORMAT_RIGHT);
+    listCtrlBudget_->InsertColumn(COL_ACTUAL, std::get<0>(listCtrlBudget_->m_columns[COL_ACTUAL]), wxLIST_FORMAT_RIGHT);
 
     /* Get data from inidb */
     for (int i = 0; i < listCtrlBudget_->GetColumnCount(); ++i)
     {
-        int col = Model_Setting::instance().GetIntSetting(wxString::Format("BUDGET_COL%d_WIDTH", i), wxLIST_AUTOSIZE_USEHEADER);
+        int col = Model_Setting::instance().GetIntSetting(wxString::Format(listCtrlBudget_->m_col_width, i), std::get<1>(listCtrlBudget_->m_columns[i]));
         listCtrlBudget_->SetColumnWidth(i, col);
     }
     itemBoxSizer2->Add(listCtrlBudget_, 1, wxGROW | wxALL, 1);
+}
+
+budgetingListCtrl::budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id)
+    : mmListCtrl(parent, id)
+    , attr3_(mmColors::listAlternativeColor1, mmColors::listFutureDateColor, wxNullFont)
+    , cp_(cp)
+    , selectedIndex_(-1)
+{
+    m_columns.push_back(std::make_tuple(_T("Icon"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_T("Category"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_T("Sub Category"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_T("Frequency"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_T("Amount"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_T("Estimated"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_T("Actual"), wxLIST_AUTOSIZE_USEHEADER));
+
+    m_col_width = "BUDGET_COL%d_WIDTH";
 }
 
 void mmBudgetingPanel::sortTable()
@@ -497,45 +510,6 @@ void mmBudgetingPanel::DisplayBudgetingDetails(int budgetYearID)
     budgetYearID_ = budgetYearID;
     RefreshList();
     this->windowsFreezeThaw();
-}
-
-/*******************************************************/
-void budgetingListCtrl::OnItemResize(wxListEvent& event)
-{
-    int i = event.GetColumn();
-    int width = event.GetItem().GetWidth();
-    Model_Setting::instance().Set(wxString::Format("BUDGET_COL%d_WIDTH", i), width);
-}
-
-void budgetingListCtrl::OnColRightClick(wxListEvent& event)
-{
-    ColumnHeaderNr = event.GetColumn();
-    if (0 >= ColumnHeaderNr || ColumnHeaderNr > cp_->col_max()) return;
-    wxMenu menu;
-    menu.Append(MENU_HEADER_HIDE, _("Hide column"));
-    //menu.Append(MENU_HEADER_SORT, _("Order by this column"));
-    menu.Append(MENU_HEADER_RESET, _("Reset columns size"));
-    PopupMenu(&menu);
-    this->SetFocus();
-}
-
-void budgetingListCtrl::OnHeaderHide(wxCommandEvent& event)
-{
-    budgetingListCtrl::SetColumnWidth(ColumnHeaderNr, 0);
-    const wxString parameter_name = wxString::Format("BUDGET_COL%i_WIDTH", ColumnHeaderNr);
-    Model_Setting::instance().Set(parameter_name, 0);
-}
-void budgetingListCtrl::OnHeaderReset(wxCommandEvent& event)
-{
-    wxString parameter_name;
-    for (int i = 0; i < cp_->col_max(); i++)
-    {
-        budgetingListCtrl::SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER);
-        if (i == (cp_->col_max()-1))
-            budgetingListCtrl::SetColumnWidth(i, 100);
-        parameter_name = wxString::Format("BUDGET_COL%i_WIDTH", i);
-        Model_Setting::instance().Set(parameter_name, budgetingListCtrl::GetColumnWidth(i));
-    }
 }
 
 void budgetingListCtrl::OnListItemSelected(wxListEvent& event)

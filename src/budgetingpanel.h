@@ -33,12 +33,7 @@ class budgetingListCtrl : public mmListCtrl
     wxDECLARE_EVENT_TABLE();
 
 public:
-    budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id)
-        : mmListCtrl(parent, id)
-        , attr3_(mmColors::listAlternativeColor1, mmColors::listFutureDateColor, wxNullFont)
-        , cp_(cp)
-        , selectedIndex_(-1)
-    {}
+    budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id);
 
 public:
     /* required overrides for virtual style list control */
@@ -50,12 +45,6 @@ public:
     void OnListItemActivated(wxListEvent& event);
 
 private:
-    void OnItemResize(wxListEvent& event);
-    void OnColRightClick(wxListEvent& event);
-    void OnHeaderHide(wxCommandEvent& event);
-    void OnHeaderSort(wxCommandEvent& event);
-    void OnHeaderReset(wxCommandEvent& event);
-    int ColumnHeaderNr;
     wxListItemAttr attr3_; // style3
     mmBudgetingPanel* cp_;
     long selectedIndex_;
