@@ -21,14 +21,17 @@
 
 #include "util.h"
 #include <wx/listctrl.h>
+#include "wx/event.h"
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
 //----------------------------------------------------------------------------
 
 class wxListItemAttr;
 
-class mmListCtrl: public wxListCtrl
+class mmListCtrl : public wxListCtrl
 {
+    wxDECLARE_EVENT_TABLE();
+
 public:
     mmListCtrl(wxWindow *parent, wxWindowID winid);
     virtual ~mmListCtrl();
@@ -37,9 +40,31 @@ public:
     long m_selected_row;
     int m_selected_col;
     bool m_asc;
+    std::vector<std::tuple<wxString, int>> m_columns;
+    wxString m_col_width;
+    int m_default_sort_column;
 
     virtual wxListItemAttr* OnGetItemAttr(long row) const;
     wxString BuildPage(const wxString &title) const;
+
+protected:
+    void OnItemResize(wxListEvent& event);
+    virtual void OnColClick(wxListEvent& event);
+    void OnColRightClick(wxListEvent& event);
+    /* Headers Right Click*/
+    void PopupSelected(wxCommandEvent& event);
+    void OnHeaderColumn(wxCommandEvent& event);
+    void OnHeaderHide(wxCommandEvent& event);
+    void OnHeaderSort(wxCommandEvent& event);
+    void OnHeaderReset(wxCommandEvent& event);
+
+    int m_ColumnHeaderNbr;
+    enum {
+        MENU_HEADER_HIDE = wxID_HIGHEST + 2000,
+        MENU_HEADER_SORT,
+        MENU_HEADER_RESET,
+        MENU_HEADER_COLUMN, // Must be last in list
+    };
 };
 
 class mmPanelBase : public wxPanel
