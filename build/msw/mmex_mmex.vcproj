@@ -677,6 +677,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\mmpanelbase.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\mmreportspanel.cpp"
 				>
 			</File>
