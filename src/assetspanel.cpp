@@ -65,14 +65,14 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     m_selected_col = Model_Setting::instance().GetIntSetting("ASSETS_SORT_COL", 0);
     m_asc = Model_Setting::instance().GetBoolSetting("ASSETS_ASC", true);
 
-    m_columns.push_back(std::make_tuple(_T("Icon"), 25));
-    m_columns.push_back(std::make_tuple(_T("ID"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_T("Name"), 150));
-    m_columns.push_back(std::make_tuple(_T("Date"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_T("Type"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_T("Initial Value"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_T("Current Value"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_T("Notes"), 450));
+    m_columns.push_back(std::make_tuple(_("Icon"), 25));
+    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Name"), 150));
+    m_columns.push_back(std::make_tuple(_("Date"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Type"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Initial Value"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Current Value"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Notes"), 450));
 
     m_col_width = "ASSETS_COL%d_WIDTH";
     m_default_sort_column = m_panel->col_sort();

@@ -976,17 +976,17 @@ TransactionListCtrl::TransactionListCtrl(
 
     showDeletedTransactions_ = Model_Setting::instance().GetBoolSetting("SHOW_DELETED_TRANS", true);
 
-    m_columns.push_back(std::make_tuple(_T("Icon"), 25));
-    m_columns.push_back(std::make_tuple(_T("ID"), wxLIST_AUTOSIZE));
-    m_columns.push_back(std::make_tuple(_T("Date"), 112));
-    m_columns.push_back(std::make_tuple(_T("Number"), 70));
-    m_columns.push_back(std::make_tuple(_T("Payee"), 150));
-    m_columns.push_back(std::make_tuple(_T("Status"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_T("Category"), 150));
-    m_columns.push_back(std::make_tuple(_T("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_T("Deposit"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_T("Balance"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_T("Notes"), 250));
+    m_columns.push_back(std::make_tuple(_("Icon"), 25));
+    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE));
+    m_columns.push_back(std::make_tuple(_("Date"), 112));
+    m_columns.push_back(std::make_tuple(_("Number"), 70));
+    m_columns.push_back(std::make_tuple(_("Payee"), 150));
+    m_columns.push_back(std::make_tuple(_("Status"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Category"), 150));
+    m_columns.push_back(std::make_tuple(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Balance"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Notes"), 250));
 
     m_col_width = "CHECK_COL%i_WIDTH";
 
