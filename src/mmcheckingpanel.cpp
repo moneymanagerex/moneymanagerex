@@ -69,18 +69,12 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
 wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
-wxBEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
+wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
     EVT_RIGHT_DOWN(TransactionListCtrl::OnMouseRightClick)
     EVT_LEFT_DOWN(TransactionListCtrl::OnListLeftClick)
-    EVT_LIST_COL_CLICK(wxID_ANY, TransactionListCtrl::OnColClick)
-    EVT_LIST_COL_RIGHT_CLICK(wxID_ANY, TransactionListCtrl::OnColRightClick)
     EVT_LIST_KEY_DOWN(wxID_ANY,  TransactionListCtrl::OnListKeyDown)
-
-    EVT_MENU(MENU_HEADER_HIDE, TransactionListCtrl::OnHeaderHide)
-    EVT_MENU(MENU_HEADER_SORT, TransactionListCtrl::OnHeaderSort)
-    EVT_MENU(MENU_HEADER_RESET, TransactionListCtrl::OnHeaderReset)
 
     EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED
         , MENU_TREEPOPUP_MARKDELETE,        TransactionListCtrl::OnMarkTransaction)
@@ -981,6 +975,22 @@ TransactionListCtrl::TransactionListCtrl(
     SetAcceleratorTable(tab);
 
     showDeletedTransactions_ = Model_Setting::instance().GetBoolSetting("SHOW_DELETED_TRANS", true);
+
+    m_columns.push_back(std::make_tuple(_("Icon"), 25));
+    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE));
+    m_columns.push_back(std::make_tuple(_("Date"), 112));
+    m_columns.push_back(std::make_tuple(_("Number"), 70));
+    m_columns.push_back(std::make_tuple(_("Payee"), 150));
+    m_columns.push_back(std::make_tuple(_("Status"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Category"), 150));
+    m_columns.push_back(std::make_tuple(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Balance"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(_("Notes"), 250));
+
+    m_col_width = "CHECK_COL%i_WIDTH";
+
+    m_default_sort_column = COL_DEF_SORT;
 }
 
 TransactionListCtrl::~TransactionListCtrl()
@@ -997,27 +1007,27 @@ TransactionListCtrl::~TransactionListCtrl()
 void TransactionListCtrl::createColumns(mmListCtrl &lst)
 {
     lst.InsertColumn(COL_IMGSTATUS, " ", wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_IMGSTATUS, 25));
-    lst.InsertColumn(COL_ID, _("ID"), wxLIST_FORMAT_RIGHT
-        , GetColumnWidthSetting(COL_ID, wxLIST_AUTOSIZE));
-    lst.InsertColumn(COL_DATE, _("Date"), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_DATE, 112));
-    lst.InsertColumn(COL_NUMBER, _("Number"), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_NUMBER, 70));
-    lst.InsertColumn(COL_PAYEE_STR, _("Payee"), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_PAYEE_STR, 150));
-    lst.InsertColumn(COL_STATUS, _("Status"), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_STATUS, wxLIST_AUTOSIZE_USEHEADER));
-    lst.InsertColumn(COL_CATEGORY, _("Category"), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_CATEGORY, 150));
-    lst.InsertColumn(COL_WITHDRAWAL, _("Withdrawal"), wxLIST_FORMAT_RIGHT
-        , GetColumnWidthSetting(COL_WITHDRAWAL, wxLIST_AUTOSIZE_USEHEADER));
-    lst.InsertColumn(COL_DEPOSIT, _("Deposit"), wxLIST_FORMAT_RIGHT
-        , GetColumnWidthSetting(COL_DEPOSIT, wxLIST_AUTOSIZE_USEHEADER));
-    lst.InsertColumn(COL_BALANCE, _("Balance"), wxLIST_FORMAT_RIGHT
-        , GetColumnWidthSetting(COL_BALANCE, wxLIST_AUTOSIZE_USEHEADER));
-    lst.InsertColumn(COL_NOTES, _("Notes"), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_NOTES, 250));
+        , GetColumnWidthSetting(COL_IMGSTATUS, std::get<1>(m_columns[COL_IMGSTATUS])));
+    lst.InsertColumn(COL_ID, std::get<0>(m_columns[COL_ID]), wxLIST_FORMAT_RIGHT
+        , GetColumnWidthSetting(COL_ID, std::get<1>(m_columns[COL_ID])));
+    lst.InsertColumn(COL_DATE, std::get<0>(m_columns[COL_DATE]), wxLIST_FORMAT_LEFT
+        , GetColumnWidthSetting(COL_DATE, std::get<1>(m_columns[COL_DATE])));
+    lst.InsertColumn(COL_NUMBER, std::get<0>(m_columns[COL_NUMBER]), wxLIST_FORMAT_LEFT
+        , GetColumnWidthSetting(COL_NUMBER, std::get<1>(m_columns[COL_NUMBER])));
+    lst.InsertColumn(COL_PAYEE_STR, std::get<0>(m_columns[COL_PAYEE_STR]), wxLIST_FORMAT_LEFT
+        , GetColumnWidthSetting(COL_PAYEE_STR, std::get<1>(m_columns[COL_PAYEE_STR])));
+    lst.InsertColumn(COL_STATUS, std::get<0>(m_columns[COL_STATUS]), wxLIST_FORMAT_LEFT
+        , GetColumnWidthSetting(COL_STATUS, std::get<1>(m_columns[COL_STATUS])));
+    lst.InsertColumn(COL_CATEGORY, std::get<0>(m_columns[COL_CATEGORY]), wxLIST_FORMAT_LEFT
+        , GetColumnWidthSetting(COL_CATEGORY, std::get<1>(m_columns[COL_CATEGORY])));
+    lst.InsertColumn(COL_WITHDRAWAL, std::get<0>(m_columns[COL_WITHDRAWAL]), wxLIST_FORMAT_RIGHT
+        , GetColumnWidthSetting(COL_WITHDRAWAL, std::get<1>(m_columns[COL_WITHDRAWAL])));
+    lst.InsertColumn(COL_DEPOSIT, std::get<0>(m_columns[COL_DEPOSIT]), wxLIST_FORMAT_RIGHT
+        , GetColumnWidthSetting(COL_DEPOSIT, std::get<1>(m_columns[COL_DEPOSIT])));
+    lst.InsertColumn(COL_BALANCE, std::get<0>(m_columns[COL_BALANCE]), wxLIST_FORMAT_RIGHT
+        , GetColumnWidthSetting(COL_BALANCE, std::get<1>(m_columns[COL_BALANCE])));
+    lst.InsertColumn(COL_NOTES, std::get<0>(m_columns[COL_NOTES]), wxLIST_FORMAT_LEFT
+        , GetColumnWidthSetting(COL_NOTES, std::get<1>(m_columns[COL_NOTES])));
 }
 
 void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
@@ -1237,55 +1247,14 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void TransactionListCtrl::OnColRightClick(wxListEvent& event)
-{
-    ColumnHeaderNr = event.GetColumn();
-    if (0 > ColumnHeaderNr || ColumnHeaderNr >= COL_MAX) return;
-    wxMenu menu;
-    menu.Append(MENU_HEADER_HIDE, _("Hide column"));
-    menu.Append(MENU_HEADER_SORT, _("Order by this column"));
-    menu.Append(MENU_HEADER_RESET, _("Reset columns size"));
-    PopupMenu(&menu);
-    this->SetFocus();
-}
-//----------------------------------------------------------------------------
-
-void TransactionListCtrl::OnHeaderHide(wxCommandEvent& event)
-{
-    SetColumnWidth(ColumnHeaderNr, 0);
-    SetColumnWidthSetting(ColumnHeaderNr, 0);
-}
-
-void TransactionListCtrl::OnHeaderSort(wxCommandEvent& event)
-{
-    wxListEvent e;
-    e.SetId(MENU_HEADER_SORT);
-    TransactionListCtrl::OnColClick(e);
-}
-
-void TransactionListCtrl::OnHeaderReset(wxCommandEvent& event)
-{
-    for (int i = 0; i < COL_MAX; i++)
-    {
-        SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER);
-        SetColumnWidthSetting(i, TransactionListCtrl::GetColumnWidth(i));
-    }
-    wxListEvent e;
-    e.SetId(MENU_HEADER_SORT);
-    ColumnHeaderNr = COL_DEF_SORT;
-	m_asc = true;
-    TransactionListCtrl::OnColClick(e);
-}
-//----------------------------------------------------------------------------
-
 int TransactionListCtrl::GetColumnWidthSetting(const int& column_number, int default_size)
 {
-    return Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", column_number), default_size);
+    return Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, column_number), default_size);
 }
 
 void TransactionListCtrl::SetColumnWidthSetting(const int& column_number, int column_width)
 {
-    Model_Setting::instance().Set(wxString::Format("CHECK_COL%i_WIDTH", column_number), column_width);
+    Model_Setting::instance().Set(wxString::Format(m_col_width, column_number), column_width);
 }
 //-------------------------------------------------------------------
 
@@ -1295,7 +1264,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     if (event.GetId() != MENU_HEADER_SORT)
         ColumnNr = event.GetColumn();
     else
-        ColumnNr = ColumnHeaderNr;
+        ColumnNr = m_ColumnHeaderNbr;
 
     if (0 > ColumnNr || ColumnNr >= COL_MAX || ColumnNr == COL_IMGSTATUS) return;
 
