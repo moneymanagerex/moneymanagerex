@@ -113,7 +113,7 @@ void mmListCtrl::OnColRightClick(wxListEvent& event)
         if (0 > m_ColumnHeaderNbr || m_ColumnHeaderNbr >= (int)m_columns.size()) return;
         wxMenu menu;
         wxMenu *submenu = new wxMenu;
-        for (size_t i = 0; i < m_columns.size(); i++)
+        for (int i = 0; i < (int)m_columns.size(); i++)
         {
             const int id = MENU_HEADER_COLUMN + i;
             submenu->AppendCheckItem(id, std::get<0>(m_columns[i]));
@@ -168,7 +168,7 @@ void mmListCtrl::OnHeaderSort(wxCommandEvent& event)
 void mmListCtrl::OnHeaderReset(wxCommandEvent& event)
 {
     wxString parameter_name;
-    for (size_t i = 0; i < m_columns.size(); i++)
+    for (int i = 0; i < (int)m_columns.size(); i++)
     {
         SetColumnWidth(i, std::get<1>(m_columns[i]));
         if (!m_col_width.IsEmpty())

@@ -988,7 +988,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_columns.push_back(std::make_tuple(_("Balance"), wxLIST_AUTOSIZE_USEHEADER));
     m_columns.push_back(std::make_tuple(_("Notes"), 250));
 
-    m_col_width = "CHECK_COL%i_WIDTH";
+    m_col_width = "CHECK_COL%d_WIDTH";
 
     m_default_sort_column = COL_DEF_SORT;
 }
