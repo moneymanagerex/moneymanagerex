@@ -258,7 +258,7 @@ void mmBillsDepositsPanel::CreateControls()
     listCtrlAccount_->InsertColumn(COL_ICON, " ", wxLIST_FORMAT_LEFT
         , Model_Setting::instance().GetIntSetting(wxString::Format(listCtrlAccount_->m_col_width, COL_ICON),
         std::get<1>(listCtrlAccount_->m_columns[COL_ICON])));
-    for (size_t i = 1; i < listCtrlAccount_->m_columns.size(); i++)
+    for (int i = 1; i < (int)listCtrlAccount_->m_columns.size(); i++)
     {
         int item_format = wxLIST_FORMAT_LEFT;
         if ((i == COL_PAYMENT_DATE) || (i == COL_AMOUNT) || (i == COL_ID) || (i == COL_REPEATS))
