@@ -109,7 +109,7 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
 
     InsertColumn(COL_ICON, " ", wxLIST_FORMAT_LEFT
         , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, COL_ICON), std::get<1>(m_columns[COL_ICON])));
-    for (size_t i = 1; i < m_columns.size(); i++)
+    for (int i = 1; i < (int)m_columns.size(); i++)
     {
         int item_format = wxLIST_FORMAT_RIGHT;
         if ((i < 4) || (i > 10))
