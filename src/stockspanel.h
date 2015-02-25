@@ -130,6 +130,8 @@ public:
     void AddStockTransaction(int selectedIndex);
     void ListItemSelected(int selectedIndex);
 
+    void ViewStockTransactions(int selectedIndex);
+
     int m_account_id;
     Model_Currency::Data * m_currency;
     void updateExtraStocksData(int selIndex);

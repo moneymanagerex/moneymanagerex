@@ -47,6 +47,7 @@ enum {
     IDC_PANEL_STOCKS_LISTCTRL = wxID_HIGHEST + 1900,
     MENU_TREEPOPUP_EDIT,
     MENU_TREEPOPUP_ADDTRANS,
+    MENU_TREEPOPUP_VIEWTRANS,
     MENU_TREEPOPUP_DELETE,
     MENU_TREEPOPUP_NEW,
     MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
@@ -64,6 +65,7 @@ wxBEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
     EVT_MENU(MENU_TREEPOPUP_NEW, StocksListCtrl::OnNewStocks)
     EVT_MENU(MENU_TREEPOPUP_EDIT, StocksListCtrl::OnEditStocks)
     EVT_MENU(MENU_TREEPOPUP_ADDTRANS, StocksListCtrl::OnEditStocks)
+    EVT_MENU(MENU_TREEPOPUP_VIEWTRANS, StocksListCtrl::OnEditStocks)
     EVT_MENU(MENU_TREEPOPUP_DELETE, StocksListCtrl::OnDeleteStocks)
     EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, StocksListCtrl::OnOrganizeAttachments)
     EVT_RIGHT_DOWN(StocksListCtrl::OnMouseRightClick)
@@ -147,14 +149,17 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW, _("&New Stock Investment"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Stock Investment"));
     menu.Append(MENU_TREEPOPUP_ADDTRANS, _("&Add Stock Transactions"));
+    menu.Append(MENU_TREEPOPUP_VIEWTRANS, _("&View Stock Transactions"));
+    menu.AppendSeparator();
+    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Stock Investment"));
     menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Stock Investment"));
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
 
     menu.Enable(MENU_TREEPOPUP_EDIT, !hide_menu_item);
     menu.Enable(MENU_TREEPOPUP_ADDTRANS, !hide_menu_item);
+    menu.Enable(MENU_TREEPOPUP_VIEWTRANS, !hide_menu_item);
     menu.Enable(MENU_TREEPOPUP_DELETE, !hide_menu_item);
     menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, !hide_menu_item);
 
@@ -343,6 +348,10 @@ void StocksListCtrl::OnListItemActivated(wxListEvent& event)
     {
         m_stock_panel->AddStockTransaction(m_selected_row);
     }
+    else if ((event.GetId() == wxID_VIEW_DETAILS) || (event.GetId() == MENU_TREEPOPUP_VIEWTRANS))
+    {
+        m_stock_panel->ViewStockTransactions(m_selected_row);
+    }
     else
     {
         m_stock_panel->ListItemActivated(m_selected_row);
@@ -364,6 +373,15 @@ void mmStocksPanel::ListItemActivated(int selectedIndex)
 {
     call_dialog(selectedIndex);
     updateExtraStocksData(selectedIndex);
+}
+
+//TODO: View Stock Transactions
+void mmStocksPanel::ViewStockTransactions(int selectedIndex)
+{
+    Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
+    Model_TransferTrans::Data_Set stock_List = Model_TransferTrans::TransferList(Model_TransferTrans::STOCKS, stock->STOCKID);
+
+    wxMessageBox("Not implemented yet!", "View Stock Transactions");
 }
 
 void StocksListCtrl::OnColClick(wxListEvent& event)
@@ -421,6 +439,7 @@ BEGIN_EVENT_TABLE(mmStocksPanel, wxPanel)
     EVT_BUTTON(wxID_NEW,         mmStocksPanel::OnNewStocks)
     EVT_BUTTON(wxID_EDIT,        mmStocksPanel::OnEditStocks)
     EVT_BUTTON(wxID_ADD,         mmStocksPanel::OnEditStocks)
+    EVT_BUTTON(wxID_VIEW_DETAILS, mmStocksPanel::OnEditStocks)
     EVT_BUTTON(wxID_DELETE,      mmStocksPanel::OnDeleteStocks)
     EVT_BUTTON(wxID_MOVE_FRAME,  mmStocksPanel::OnMoveStocks)
     EVT_BUTTON(wxID_FILE,        mmStocksPanel::OnOpenAttachment)
@@ -514,15 +533,20 @@ void mmStocksPanel::CreateControls()
     itemButton6->SetToolTip(_("New Stock Investment"));
     BoxSizerHBottom->Add(itemButton6, g_flags);
 
+    wxButton* add_trans_btn = new wxButton(BottomPanel, wxID_ADD, _("&Add Trans "));
+    add_trans_btn->SetToolTip(_("Add Stock Transactions"));
+    BoxSizerHBottom->Add(add_trans_btn, g_flags);
+    add_trans_btn->Enable(false);
+
+    wxButton* view_trans_btn = new wxButton(BottomPanel, wxID_VIEW_DETAILS, _("&View Trans "));
+    view_trans_btn->SetToolTip(_("View Stock Transactions"));
+    BoxSizerHBottom->Add(view_trans_btn, g_flags);
+    view_trans_btn->Enable(false);
+
     wxButton* itemButton81 = new wxButton(BottomPanel, wxID_EDIT, _("&Edit "));
     itemButton81->SetToolTip(_("Edit Stock Investment"));
     BoxSizerHBottom->Add(itemButton81, g_flags);
     itemButton81->Enable(false);
-
-    wxButton* itemButton82 = new wxButton(BottomPanel, wxID_ADD, _("&Add Trans "));
-    itemButton82->SetToolTip(_("Add Stock Transactions"));
-    BoxSizerHBottom->Add(itemButton82, g_flags);
-    itemButton82->Enable(false);
 
     wxButton* itemButton7 = new wxButton(BottomPanel, wxID_DELETE, _("&Delete "));
     itemButton7->SetToolTip(_("Delete Stock Investment"));
@@ -938,10 +962,12 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
 {
     wxButton* bE = (wxButton*)FindWindow(wxID_EDIT);
     wxButton* bA = (wxButton*)FindWindow(wxID_ADD);
+    wxButton* bV = (wxButton*)FindWindow(wxID_VIEW_DETAILS);
     wxButton* bD = (wxButton*)FindWindow(wxID_DELETE);
     wxButton* bM = (wxButton*)FindWindow(wxID_MOVE_FRAME);
     if (bE) bE->Enable(en);
     if (bA) bA->Enable(en);
+    if (bV) bV->Enable(en);
     if (bD) bD->Enable(en);
     if (bM) bM->Enable(en);
     attachment_button_->Enable(en);
