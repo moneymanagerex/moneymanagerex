@@ -95,7 +95,7 @@ wxString mmListCtrl::BuildPage(const wxString &title) const
 void mmListCtrl::OnItemResize(wxListEvent& event)
 {
     int i = event.GetColumn();
-    int width = event.GetItem().GetWidth();
+    int width = GetColumnWidth(i);
     if (!m_col_width.IsEmpty())
         Model_Setting::instance().Set(wxString::Format(m_col_width, i), width);
 }
