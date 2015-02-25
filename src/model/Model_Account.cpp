@@ -18,6 +18,7 @@
 
 #include "Model_Account.h"
 #include "Model_Stock.h"
+#include "Model_TransferTrans.h"
 
 const std::vector<std::pair<Model_Account::STATUS_ENUM, wxString> > Model_Account::STATUS_CHOICES =
 {
@@ -117,8 +118,12 @@ bool Model_Account::remove(int id)
         Model_Checking::instance().remove(r.TRANSID);
     for (const auto& r: Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(id), Model_Billsdeposits::TOACCOUNTID(id)))
         Model_Billsdeposits::instance().remove(r.BDID);
-    for (const auto& r: Model_Stock::instance().find(Model_Stock::HELDAT(id)))
+
+    for (const auto& r : Model_Stock::instance().find(Model_Stock::HELDAT(id)))
+    {
         Model_Stock::instance().remove(r.STOCKID);
+        Model_TransferTrans::RemoveTransferTransactions(Model_TransferTrans::STOCKS, r.STOCKID);
+    }
     this->ReleaseSavepoint();
 
     return this->remove(id, db_);
