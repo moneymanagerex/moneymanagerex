@@ -173,7 +173,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
     mask.Replace("%Y%m%d", "%Y %m %d");
     if (date_formats_regex().count(mask) == 0) return false;
 
-    const wxString& regex = date_formats_regex().at(mask);
+    const wxString regex = date_formats_regex().at(mask);
     wxRegEx pattern(regex);
     //skip dot if present in pattern but not in date string 
     const wxString& separator = mask.Mid(2,1);
