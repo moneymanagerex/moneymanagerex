@@ -1617,6 +1617,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
     m_cp->updateExtraTransactionData(m_selectedIndex);
     this->SetEvtHandlerEnabled(true);
     Refresh();
+    Update();
     m_cp->m_listCtrlAccount->SetFocus();
 }
 
