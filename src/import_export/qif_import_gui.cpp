@@ -625,10 +625,25 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
     const wxString choose_ext = _("QIF Files");
     m_FileNameStr = wxFileSelector(_("Choose QIF data file to Import")
         , wxEmptyString, m_FileNameStr, wxEmptyString
-        , choose_ext + " (*.qif)|*.qif;*.QIF"
+        , choose_ext + " (*.qif)|*.qif;*.QIF |" + _("OFX Files") + " (*.ofx)|*.ofx;*.OFX"
         , wxFD_OPEN | wxFD_CHANGE_DIR | wxFD_FILE_MUST_EXIST);
 
     if (!m_FileNameStr.IsEmpty()) {
+        // OFX to QIF convertion
+        wxFileName *fileName = new wxFileName(m_FileNameStr);
+        wxString ext = fileName->GetExt();
+        if(ext.Upper()=="OFX"){
+          wxString ofx2qif="ofx2qif ";
+          ofx2qif << fileName->GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR) << fileName->GetFullName() << " > ";
+          ofx2qif << fileName->GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR) << fileName->GetName() << ".qif";
+          wxLogDebug(ofx2qif);
+          int ret = system(ofx2qif);
+          m_FileNameStr = "";
+          m_FileNameStr << fileName->GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR) << fileName->GetName() << ".qif";
+        }
+        
+        // END OFX to QIF convertion
+      
         correctEmptyFileExt("qif", m_FileNameStr);
 
         log_field_->ChangeValue("");
