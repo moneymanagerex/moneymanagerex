@@ -331,7 +331,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
         }
 
         const qifLineType lineType = mmQIFImport::lineType(lineStr);
-        const auto data = mmQIFImport::getLineData(lineStr);
+        const auto data = mmQIFImport::getLineData(lineStr);       
         if (lineType == EOTLT)
         {
             if (trx.find(AcctType) != trx.end() && trx[AcctType] == "Account")
@@ -348,6 +348,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
             trx.clear();
             continue;
         }
+  
         //Parse Categories
         const wxString& s = trx.find(CategorySplit) != trx.end() ? trx[CategorySplit] : "";
         if (!s.empty())
@@ -361,7 +362,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
                     m_QIFcategoryNames[c] = std::make_pair(-1, -1);
             }
         }
-
+          
         //Parse date format
         if (date_formats_temp.size() > 1 && lineType == Date
             && (data.Mid(0, 1) != "["))
@@ -373,10 +374,8 @@ bool mmQIFImportDialog::mmReadQIFFile()
             trx[lineType] = data;
         else
             trx[lineType] += "\n" + data;
-
     }
     log_field_->ScrollLines(log_field_->GetNumberOfLines());
-
     fillControls();
 
     progressDlg.Destroy();
@@ -511,9 +510,13 @@ void mmQIFImportDialog::refreshTabs(int tabs)
                     status = _("OK");
                 else
                     status = _("Warning");
+                data.push_back(wxVariant(account->ACCOUNTNAME));    
             }
-            else
+            else {
                 status = _("Missing");
+                data.push_back(wxVariant(acc.first));
+            }
+            data.push_back(wxVariant(currencySymbol));
             data.push_back(wxVariant(status));
             accListBox_->AppendItem(data, (wxUIntPtr) num++);
         }
@@ -565,7 +568,7 @@ void mmQIFImportDialog::parseDate(const wxString &dateStr, std::map<wxString, wx
             invalidMask.Add(mask);
         }
     }
-
+    
     if (invalidMask.size() < date_formats_temp.size())
     {
         for (const auto &i : invalidMask)
