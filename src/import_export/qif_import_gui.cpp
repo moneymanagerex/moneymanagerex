@@ -439,7 +439,7 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
             m_QIFcategoryNames[trx[Category]] = std::make_pair(-1, -1);
     }
 
-    if(payeeIsNotes && !isTransfer){
+    if(payeeIsNotes){
         if (trx.find(Payee) == trx.end()){
             trx[Payee] = _("Unknown");
         }else{
