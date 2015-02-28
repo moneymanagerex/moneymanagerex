@@ -260,13 +260,10 @@ bool mmGeneralReportManager::Create(wxWindow* parent
     Connect(wxID_EXECUTE, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(mmGeneralReportManager::OnRun), nullptr, this);
 
     CreateControls();
+    fillControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
-
     SetIcon(mmex::getProgramIcon());
-
-    fillControls();
-
     Centre();
     return TRUE;
 }

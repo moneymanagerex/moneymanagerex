@@ -60,6 +60,7 @@ bool mmAppStartDialog::Create(wxWindow* parent, wxWindowID id, const wxString& c
         CreateControls();
         GetSizer()->Fit(this);
         GetSizer()->SetSizeHints(this);
+        this->SetInitialSize();
         CentreOnScreen();
     }
 

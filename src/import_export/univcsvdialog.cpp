@@ -103,11 +103,9 @@ bool mmUnivCSVDialog::Create(wxWindow* parent
     SetSettings(GetStoredSettings(-1));
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
-
+    this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
-
     Centre();
-
     return TRUE;
 }
 
