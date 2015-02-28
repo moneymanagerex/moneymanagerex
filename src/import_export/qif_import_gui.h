@@ -106,6 +106,8 @@ private:
     wxChoice* accountDropDown_;
     wxCheckBox* accountNumberCheckBox_;     
     wxButton* btnOK_;
+    
+    bool payeeIsNotes = true; 
 
     enum EColumn
     {
