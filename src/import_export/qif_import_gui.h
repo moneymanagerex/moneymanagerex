@@ -24,6 +24,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Account.h"
 #include "mmpanelbase.h"
 #include "qif_import.h"
+#include <wx/filename.h>
 
 class wxDatePickerCtrl;
 
