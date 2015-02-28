@@ -504,7 +504,8 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
         m_sqlListBox->SetItemCount(m_sqlQueryData.size());
         m_sqlListBox->Refresh();
         m_sqlListBox->Update();
-        if (m_sqlQueryData.size() > 0) m_sqlListBox->EnsureVisible(0);
+        if (m_sqlQueryData.size() > 0)
+            m_sqlListBox->EnsureVisible(0);
     }
     else
     {
