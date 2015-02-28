@@ -47,6 +47,8 @@ wxBEGIN_EVENT_TABLE(mmStockTransDialog, wxDialog)
     EVT_BUTTON(wxID_INDEX, mmStockTransDialog::OnStockPriceButton)
     EVT_CLOSE(mmStockTransDialog::OnQuit)
     EVT_DATE_CHANGED(ID_STOCKTRANS_DATEPICKER_CHANGE, mmStockTransDialog::OnDateChange)
+    EVT_TEXT(ID_STOCKTRANS_PURCHASEPRICE, mmStockTransDialog::OnTextEntered)
+    EVT_TEXT(ID_STOCKTRANS_COMMISSION, mmStockTransDialog::OnTextEntered)
 wxEND_EVENT_TABLE()
 
 mmStockTransDialog::mmStockTransDialog()
@@ -106,7 +108,8 @@ void mmStockTransDialog::DataToControls()
     m_dpc->Enable(false);
     m_stock_symbol->Enable(false);
     m_notes->Enable(false);
-
+    
+    // Set up the transaction if this is the first entry.
     if (Model_TransferTrans::instance().TransferList(Model_TransferTrans::TABLE_TYPE::STOCKS, m_stock->STOCKID).empty())
     {
         m_num_shares->SetValue(m_stock->NUMSHARES);
@@ -115,16 +118,6 @@ void mmStockTransDialog::DataToControls()
         m_checking_entry_panel->SetTransactionDate(Model_Stock::PURCHASEDATE(m_stock));
         m_checking_entry_panel->SetTransactionValue((m_stock->NUMSHARES * m_stock->PURCHASEPRICE) + m_stock->COMMISSION);
     }
-
-    //int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : 4;
-    //m_num_shares->SetValue(m_stock->NUMSHARES, precision);
-    //Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
-    //Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    //if (account) currency = Model_Account::currency(account);
-    //int currency_precision = Model_Currency::precision(currency);
-    //if (currency_precision < 4) currency_precision = 4;
-    //m_purchase_price->SetValue(m_stock->PURCHASEPRICE, account, currency_precision);
-    //m_commission->SetValue(m_stock->COMMISSION, account, currency_precision);
 }
 
 void mmStockTransDialog::CreateControls()
@@ -377,26 +370,33 @@ void mmStockTransDialog::OnSave(wxCommandEvent& WXUNUSED(event))
     if (m_checking_entry_panel->ValidCheckingAccountEntry())
     {
         int checking_id = m_checking_entry_panel->SaveChecking();
-        Model_TransferTrans::SetShareTransferTransaction(new_stock_id, checking_id
-            , purchase_price, num_shares, commission
-            , m_checking_entry_panel->CheckingType()
-            , m_checking_entry_panel->CurrencySymbol());
+        // Check if this is the first entry
 
-        if (!Model_TransferTrans::instance().TransferList(Model_TransferTrans::TABLE_TYPE::STOCKS, new_stock_id).empty())
+        Model_TransferTrans::Data_Set trans_list = Model_TransferTrans::TransferList(Model_TransferTrans::TABLE_TYPE::STOCKS, new_stock_id);
+        if (!trans_list.empty())
         {
-            //Add the number of shares to main table
-            if (num_shares > 0)
+            if (num_shares > 0) // addition of new shares
             {
+                // The main table now maintains the total number of shares
+                // and the Unit price in the main table becomes obsolete.
                 m_stock->NUMSHARES += num_shares;
-                m_stock->PURCHASEPRICE += purchase_price;
-                m_stock->NOTES = m_notes->GetValue();
-                m_stock->CURRENTPRICE = purchase_price;
-                m_stock->VALUE = (num_shares * purchase_price) + commission;
                 m_stock->COMMISSION += commission;
+                m_stock->CURRENTPRICE = purchase_price;
+
+                double new_value = num_shares * purchase_price;
+                for (const auto trans : trans_list)
+                {
+                    new_value += trans.SHARE_NUMBER * trans.SHARE_UNITPRICE;
+                }
+                m_stock->VALUE = new_value;
 
                 Model_Stock::instance().save(m_stock);
             }
         }
+        Model_TransferTrans::SetShareTransferTransaction(new_stock_id, checking_id
+            , purchase_price, num_shares, commission
+            , m_checking_entry_panel->CheckingType()
+            , m_checking_entry_panel->CurrencySymbol());
     }
     else
     {
