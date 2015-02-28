@@ -176,12 +176,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
 
     const wxString regex = date_formats_regex().at(mask);
   
-    wxRegEx pattern;
-    try{
-        pattern.Compile(regex);
-    }catch(...){
-        return false;
-    }
+    wxRegEx pattern(regex);
     
     if(!pattern.IsValid())return false;   
     //skip dot if present in pattern but not in date string 
