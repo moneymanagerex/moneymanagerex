@@ -143,6 +143,7 @@ MMEX_OBJECTS =  \
 	mmex_mmframereport.o \
 	mmex_mmhelppanel.o \
 	mmex_mmhomepagepanel.o \
+	mmex_mmpanelbase.o \
 	mmex_mmreportspanel.o \
 	mmex_optionsdialog.o \
 	mmex_paths.o \
@@ -560,6 +561,9 @@ mmex_mmhelppanel.o: $(srcdir)/src/mmhelppanel.cpp
 
 mmex_mmhomepagepanel.o: $(srcdir)/src/mmhomepagepanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmhomepagepanel.cpp
+
+mmex_mmpanelbase.o: $(srcdir)/src/mmpanelbase.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmpanelbase.cpp
 
 mmex_mmreportspanel.o: $(srcdir)/src/mmreportspanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmreportspanel.cpp
