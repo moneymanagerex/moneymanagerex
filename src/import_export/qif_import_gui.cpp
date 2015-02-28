@@ -437,7 +437,7 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
         if (trx.find(Payee) == trx.end()){
             trx[Payee] = _("Unknown");
         }else{
-            trx[Memo] += trx[Payee];
+            trx[Memo] += (trx[Memo].empty() ? "" : " ") + trx[Payee];
             trx[Payee] = _("Unknown");
         }
     }else{
