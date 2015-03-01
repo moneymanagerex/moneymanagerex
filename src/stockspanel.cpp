@@ -379,9 +379,23 @@ void mmStocksPanel::ListItemActivated(int selectedIndex)
 void mmStocksPanel::ViewStockTransactions(int selectedIndex)
 {
     Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
-    Model_TransferTrans::Data_Set stock_List = Model_TransferTrans::TransferList(Model_TransferTrans::STOCKS, stock->STOCKID);
-
-    wxMessageBox("Not implemented yet!", "View Stock Transactions");
+    Model_TransferTrans::Data_Set stock_list = Model_TransferTrans::TransferList(Model_TransferTrans::STOCKS, stock->STOCKID);
+    
+    // TODO create a panel to display all the information on one screen
+    wxString msg = _("Date   \t Shares   \t Unit Price   \t Commission\n\n");
+    for (const auto stock_entry : stock_list)
+    {
+        if (stock_entry.SHARE_NUMBER > 0)
+        {
+            Model_Checking::Data* stock_trans = Model_Checking::instance().get(stock_entry.ID_CHECKINGACCOUNT);
+            wxString sd = mmGetDateForDisplay(Model_Checking::TRANSDATE(stock_trans));
+            wxString sn = wxString::FromDouble(stock_entry.SHARE_NUMBER, 0);
+            wxString su = wxString::FromDouble(stock_entry.SHARE_UNITPRICE, 4);
+            wxString sc = wxString::FromDouble(stock_entry.SHARE_COMMISSION, 2);
+            msg << wxString::Format("%s     %s                  \t %s                \t %s\n", sd, sn, su, sc);
+        }
+    }
+    wxMessageBox(msg, "View Stock Transactions");
 }
 
 void StocksListCtrl::OnColClick(wxListEvent& event)
