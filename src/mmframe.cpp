@@ -720,9 +720,17 @@ void mmGUIFrame::updateNavTreeControl()
     wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), 12, 12);
     navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
     navTreeCtrl_->SetItemBold(termAccount, true);
+
     wxTreeItemId stocks = navTreeCtrl_->AppendItem(root, _("Stocks"), 15, 15);
     navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
     navTreeCtrl_->SetItemBold(stocks, true);
+    wxTreeItemId shareAccounts = navTreeCtrl_->AppendItem(root, _("Share Accounts"), 24, 24);
+    navTreeCtrl_->SetItemData(shareAccounts, new mmTreeItemData("Share Accounts"));
+    navTreeCtrl_->SetItemBold(shareAccounts, true);
+
+    wxTreeItemId assetAccounts = navTreeCtrl_->AppendItem(root, _("Asset Accounts"), 7, 7);
+    navTreeCtrl_->SetItemData(assetAccounts, new mmTreeItemData("Asset Accounts"));
+    navTreeCtrl_->SetItemBold(assetAccounts, true);
 
     wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), 7, 7);
     navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
@@ -770,6 +778,16 @@ void mmGUIFrame::updateNavTreeControl()
                     , selectedImage, selectedImage);
                 navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
             }
+            else if (Model_Account::type(account) == Model_Account::SHARES)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
+            else if (Model_Account::type(account) == Model_Account::ASSET)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(assetAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
             else if (Model_Account::type(account) == Model_Account::TERM)
             {
                 wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME
@@ -793,6 +811,8 @@ void mmGUIFrame::updateNavTreeControl()
         if (!navTreeCtrl_->ItemHasChildren(cardAccounts)) navTreeCtrl_->Delete(cardAccounts);
         if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
         if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
+        if (!navTreeCtrl_->ItemHasChildren(shareAccounts)) navTreeCtrl_->Delete(shareAccounts);
+        if (!navTreeCtrl_->ItemHasChildren(assetAccounts)) navTreeCtrl_->Delete(assetAccounts);
     }
     navTreeCtrl_->SetEvtHandlerEnabled(true);
     windowsFreezeThaw(navTreeCtrl_);

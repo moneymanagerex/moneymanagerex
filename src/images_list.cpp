@@ -68,7 +68,7 @@ wxImageList* navtree_images_list()
     imageList->Add(wxBitmap(wxImage(money_dollar_xpm).Scale(16, 16)));
     imageList->Add(wxBitmap(wxImage(money_euro_xpm).Scale(16, 16))); //custom icons
     imageList->Add(wxBitmap(wxImage(flag_xpm).Scale(16, 16)));
-    imageList->Add(wxBitmap(wxImage(accounttree_xpm).Scale(16, 16)));
+    imageList->Add(wxBitmap(wxImage(accounttree_xpm).Scale(16, 16))); // (24) used for: shareAccounts
     imageList->Add(wxBitmap(wxImage(about_xpm).Scale(16, 16)));
     imageList->Add(wxBitmap(wxImage(clock_xpm).Scale(16, 16)));
     imageList->Add(wxBitmap(wxImage(cat_xpm).Scale(16, 16)));
