@@ -1120,6 +1120,9 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, webStatus);
                 menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments"));
 
+                if (Model_Account::type(account) == Model_Account::INVESTMENT)
+                    menu.Enable(MENU_TREEPOPUP_REALLOCATE, false);
+
                 PopupMenu(&menu, pt);
             }
         }
