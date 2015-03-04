@@ -628,6 +628,9 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
         if (ignoreFuture && Model_Checking::TRANSDATE(trx).IsLaterThan(today))
             continue; //skip future dated transactions
 
+        if (Model_Checking::foreignTransaction(trx) && trx.TOACCOUNTID == Model_TransferTrans::AS_TRANSFER)
+            continue; //skip asset or stock transactions set as transfers
+
         if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) this->countFollowUp_++;
 
         accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
