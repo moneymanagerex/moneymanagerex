@@ -550,7 +550,7 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
 
 bool mmUnivCSVDialog::validateData()
 {
-    if (dt_.Trim().IsEmpty() || amount_.Trim().IsEmpty() || type_.Trim().IsEmpty())
+    if (dt_.Trim().IsEmpty() || !val_ || type_.Trim().IsEmpty())
         return false;
 
     Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
@@ -664,13 +664,12 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
                 dt_.clear();
                 type_.clear();
-                amount_.clear();
                 transNum_.clear();
                 notes_.clear();
                 payeeID_ = -1;
                 categID_ = -1;
                 subCategID_ = -1;
-                val_ = 0.0;
+                val_ = NULL;
 
                 this->csv2tab_separated_values(line, delimit_);
                 wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
@@ -1317,7 +1316,6 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token)
                 type_ = Model_Checking::all_type()[Model_Checking::DEPOSIT];
 
             val_ = fabs(val_);
-            amount_ = token;
             break;
 
         case UNIV_CSV_CATEGORY:
@@ -1360,19 +1358,21 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token)
             break;
 
         case UNIV_CSV_DEPOSIT:
-            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
-            if (val_ <= 0.0) return;
-
+            if (token.IsEmpty())
+                return;
+            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
+                return;
+            val_ = fabs(val_);
             type_ = Model_Checking::all_type()[Model_Checking::DEPOSIT];
-            amount_ = token;
             break;
 
         case UNIV_CSV_WITHDRAWAL:
-            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
-            if (val_ <= 0.0) return;
-
+            if (token.IsEmpty())
+                return;
+            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
+                return;
+            val_ = fabs(val_);
             type_ = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
-            amount_ = token;
             break;
 
         case UNIV_CSV_BALANCE:
