@@ -1470,6 +1470,13 @@ void mmUnivCSVDialog::csv2tab_separated_values(wxString& line, const wxString& d
     //Single quotes will be used instead double quotes
     //Replace all single quotes first
     line.Replace("'", "\6");
+    line.Replace(delimit + "\"\"" + delimit, delimit + delimit);
+    if (line.StartsWith("\"\"" + delimit))
+        line.Replace("\"\"" + delimit, delimit, false);
+    if (line.EndsWith(delimit + "\"\""))
+        line.RemoveLast(2);
+
+    //line.Replace(delimit + "\"\"" + "\n", delimit + "\n");
     //Replace double quotes that used twice to replacer
     line.Replace("\"\"\"" + delimit + "\"\"\"", "\5\"" + delimit + "\"\5");
     line.Replace("\"\"\"" + delimit, "\5\"" + delimit);
