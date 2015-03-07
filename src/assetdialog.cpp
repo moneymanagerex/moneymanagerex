@@ -52,8 +52,33 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset)
     , m_assetType()
     , m_valueChange()
     , m_valueChangeRateLabel()
+    , m_hidden_trans_entry(true)
+    , m_transfer_entry(nullptr)
+    , m_checking_entry(nullptr)
 {
     wxString heading(_("New Asset"));
+    if (m_asset)
+        heading = _("Edit Asset");
+
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY, heading, wxDefaultPosition, wxSize(400, 300), style);
+}
+
+mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_TransferTrans::Data* transfer_entry, Model_Checking::Data* checking_entry)
+    : m_asset(nullptr)
+    , m_assetName()
+    , m_dpc()
+    , m_notes()
+    , m_value()
+    , m_valueChangeRate()
+    , m_assetType()
+    , m_valueChange()
+    , m_valueChangeRateLabel()
+    , m_hidden_trans_entry(false)
+    , m_transfer_entry(transfer_entry)
+    , m_checking_entry(checking_entry)
+{
+    wxString heading(_("Edit Asset Transaction"));
     if (m_asset)
         heading = _("Edit Asset");
 
@@ -93,7 +118,7 @@ void mmAssetDialog::dataToControls()
     m_notes->SetValue(m_asset->NOTES);
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
     m_value->SetValue(m_asset->VALUE);
-    m_checking_entry_panel->SetTransactionValue(m_value->GetValue());
+    m_transaction_panel->SetTransactionValue(m_value->GetValue());
 
     wxString valueChangeRate;
     valueChangeRate.Printf("%.3f", m_asset->VALUECHANGERATE);
@@ -205,13 +230,18 @@ void mmAssetDialog::CreateControls()
     /********************************************************************
     Asset Transaction Panel
     *********************************************************************/
-    wxStaticBox* transaction_frame = new wxStaticBox(this, wxID_ANY, _("New Transaction Details"));
-    wxStaticBoxSizer* transaction_frame_sizer = new wxStaticBoxSizer(transaction_frame, wxVERTICAL);
+    m_transaction_frame = new wxStaticBox(this, wxID_ANY, _("New Transaction Details"));
+    wxStaticBoxSizer* transaction_frame_sizer = new wxStaticBoxSizer(m_transaction_frame, wxVERTICAL);
     right_sizer->Add(transaction_frame_sizer, g_flags);
 
-    m_checking_entry_panel = new mmUserPanelTrans(this, wxID_STATIC);
-    transaction_frame_sizer->Add(m_checking_entry_panel, g_flags);
+    m_transaction_panel = new mmUserPanelTrans(this, m_checking_entry, wxID_STATIC);
+    transaction_frame_sizer->Add(m_transaction_panel, g_flags);
+    if (m_transfer_entry && m_checking_entry)
+    {
+        m_transaction_panel->SetCheckingType(Model_TransferTrans::type_checking(m_checking_entry->TOACCOUNTID));
+    }
 
+    if (m_hidden_trans_entry) HideTransactionPanel();
     /********************************************************************
     Separation Line
     *********************************************************************/
@@ -232,6 +262,12 @@ void mmAssetDialog::CreateControls()
 
     button_panel_sizer->Add(cancel_button, g_flags);
     //cancel_button->SetFocus();
+}
+
+void mmAssetDialog::HideTransactionPanel()
+{
+    m_transaction_frame->Hide();
+    m_transaction_panel->Hide();
 }
 
 void mmAssetDialog::OnChangeAppreciationType(wxCommandEvent& /*event*/)
@@ -301,12 +337,12 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, new_asset_id);
 	}
 
-    if (m_checking_entry_panel->ValidCheckingAccountEntry())
+    if (m_transaction_panel->ValidCheckingAccountEntry())
     {
-        int checking_id = m_checking_entry_panel->SaveChecking();
+        int checking_id = m_transaction_panel->SaveChecking();
         Model_TransferTrans::SetAssetTransferTransaction(new_asset_id, checking_id
-            , m_checking_entry_panel->CheckingType()
-            , m_checking_entry_panel->CurrencySymbol());
+            , m_transaction_panel->CheckingType()
+            , m_transaction_panel->CurrencySymbol());
     }
 
     EndModal(wxID_OK);
@@ -335,7 +371,7 @@ void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmAssetDialog::OnDateChange(wxDateEvent& WXUNUSED(event))
 {
-    m_checking_entry_panel->SetTransactionDate(m_dpc->GetValue());
+    m_transaction_panel->SetTransactionDate(m_dpc->GetValue());
 }
 
 void mmAssetDialog::OnAttachments(wxCommandEvent& /*event*/)
@@ -373,7 +409,7 @@ void mmAssetDialog::onTextEntered(wxCommandEvent& event)
         m_valueChangeRate->SetInsertionPoint(m_valueChangeRate->GetValue().Len());
     }
 
-    m_checking_entry_panel->SetTransactionValue(m_value->GetValue());
+    m_transaction_panel->SetTransactionValue(m_value->GetValue());
 
     event.Skip();
 }

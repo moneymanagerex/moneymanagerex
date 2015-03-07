@@ -53,18 +53,21 @@ mmUserPanelTrans::mmUserPanelTrans()
 }
 
 mmUserPanelTrans::mmUserPanelTrans(wxWindow *parent
-    , wxWindowID id
+    , Model_Checking::Data* checking_entry
+    , wxWindowID win_id
     , const wxPoint &pos
     , const wxSize &size
     , long style, const wxString &name)
-    : m_checking_trans_id(-1)
+    : m_checking_entry(checking_entry)
+    , m_checking_trans_id(-1)
     , m_account_id(-1)
     , m_payee_id(-1)
     , m_category_id(-1)
     , m_subcategory_id(-1)
 {
-    wxPanel::Create(parent, id, pos, size, style, name);
+    wxPanel::Create(parent, win_id, pos, size, style, name);
     Create();
+    DataToControls();
 }
 
 mmUserPanelTrans::~mmUserPanelTrans()
@@ -128,7 +131,7 @@ void mmUserPanelTrans::Create()
 
     m_transfer = new wxCheckBox(this, ID_TRANS_TRANSFER, _("&Transfer")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_transfer->SetValue(true);
+    SetCheckingType(Model_TransferTrans::AS_TRANSFER);
     m_transfer->SetToolTip(_("Funds transfer from/to this account. Uncheck to set as Expense/Income."));
 
     wxBoxSizer* type_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -233,6 +236,33 @@ void mmUserPanelTrans::Create()
     main_panel_sizer->Add(m_entered_notes, wxSizerFlags(g_flagsExpand).Border(wxTOP, 5));
 }
 
+void mmUserPanelTrans::DataToControls()
+{
+    if (!m_checking_entry) return;
+
+    wxDateTime trans_date;
+    trans_date.ParseDate(m_checking_entry->TRANSDATE);
+    SetTransactionDate(trans_date);
+
+    m_checking_trans_id = m_checking_entry->TRANSID;
+    m_account_id = m_checking_entry->ACCOUNTID;
+    m_account->SetLabelText(Model_Account::get_account_name(m_account_id));
+    m_type_selector->SetSelection(Model_Checking::type(m_checking_entry->TRANSCODE));
+
+    SetTransactionValue(m_checking_entry->TRANSAMOUNT);
+    m_status_selector->SetSelection(Model_Checking::status(m_checking_entry->STATUS));
+
+    m_payee_id = m_checking_entry->PAYEEID;
+    m_payee->SetLabelText(Model_Payee::get_payee_name(m_payee_id));
+    
+    m_category_id = m_checking_entry->CATEGID;
+    m_subcategory_id = m_checking_entry->SUBCATEGID;
+    m_category->SetLabelText(Model_Category::full_name(m_category_id, m_subcategory_id));
+
+    m_entered_number->SetValue(m_checking_entry->TRANSACTIONNUMBER);
+    m_entered_notes->SetValue(m_checking_entry->NOTES);
+}
+
 void mmUserPanelTrans::OnTransAccountButton(wxCommandEvent& WXUNUSED(event))
 {
     const auto& accounts = Model_Account::instance().all_checking_account_names();
@@ -332,10 +362,6 @@ void mmUserPanelTrans::OnEnteredText(wxCommandEvent& event)
     {
         m_entered_amount->Calculate(currency);
     }
-    //else if (event.GetId() == toTextAmount_->GetId())
-    //{
-    //    toTextAmount_->Calculate(currency);
-    //}
 }
 
 void mmUserPanelTrans::OnFrequentNotes(wxCommandEvent& WXUNUSED(event))
@@ -418,6 +444,15 @@ Model_TransferTrans::CHECKING_TYPE mmUserPanelTrans::CheckingType()
         return Model_TransferTrans::AS_INCOME_EXPENSE;
 }
 
+void mmUserPanelTrans::SetCheckingType(Model_TransferTrans::CHECKING_TYPE ct)
+{
+    m_transfer->SetValue(true);
+    if (ct == Model_TransferTrans::AS_INCOME_EXPENSE)
+    {
+        m_transfer->SetValue(false);
+    }
+}
+
 int mmUserPanelTrans::SaveChecking()
 {
     Model_Currency::Data* currency = Model_Currency::instance().GetCurrencyRecord(CurrencySymbol());
@@ -425,22 +460,25 @@ int mmUserPanelTrans::SaveChecking()
     double value = 0;
     m_entered_amount->checkValue(value);
 
+    if (!m_checking_entry)
+    {
+        m_checking_entry = Model_Checking::instance().create();
+    }
 
-    Model_Checking::Data* tran_entry = Model_Checking::instance().create();
-    tran_entry->ACCOUNTID = m_account_id;
-    tran_entry->TOACCOUNTID = -1;
+    m_checking_entry->ACCOUNTID = m_account_id;
+    m_checking_entry->TOACCOUNTID = -1;
 
-    tran_entry->PAYEEID = m_payee_id;
-    tran_entry->TRANSCODE = Model_Checking::instance().all_type()[m_type_selector->GetSelection()];
-    tran_entry->TRANSAMOUNT = value * currency->BASECONVRATE;
-    tran_entry->STATUS = Model_Checking::all_status()[m_status_selector->GetSelection()].Mid(0, 1);
-    tran_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();
-    tran_entry->NOTES = m_entered_notes->GetValue();
-    tran_entry->CATEGID = m_category_id;
-    tran_entry->SUBCATEGID = m_subcategory_id;
-    tran_entry->TRANSDATE = m_date_selector->GetValue().FormatISODate();
-    tran_entry->FOLLOWUPID = 0;
-    tran_entry->TOTRANSAMOUNT = tran_entry->TRANSAMOUNT;
+    m_checking_entry->PAYEEID = m_payee_id;
+    m_checking_entry->TRANSCODE = Model_Checking::instance().all_type()[m_type_selector->GetSelection()];
+    m_checking_entry->TRANSAMOUNT = value * currency->BASECONVRATE;
+    m_checking_entry->STATUS = Model_Checking::all_status()[m_status_selector->GetSelection()].Mid(0, 1);
+    m_checking_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();
+    m_checking_entry->NOTES = m_entered_notes->GetValue();
+    m_checking_entry->CATEGID = m_category_id;
+    m_checking_entry->SUBCATEGID = m_subcategory_id;
+    m_checking_entry->TRANSDATE = m_date_selector->GetValue().FormatISODate();
+    m_checking_entry->FOLLOWUPID = 0;
+    m_checking_entry->TOTRANSAMOUNT = m_checking_entry->TRANSAMOUNT;
 
-    return Model_Checking::instance().save(tran_entry);
+    return Model_Checking::instance().save(m_checking_entry);
 }

@@ -59,6 +59,8 @@ public:
     static TABLE_TYPE type(const Data* r);
     static TABLE_TYPE type(const Data& r);
 
+    static CHECKING_TYPE type_checking(const int& tt);
+
 public:
     /** Returns the currency Data record pointer*/
     static Model_Currency::Data* Currency(const Data* /* r */);

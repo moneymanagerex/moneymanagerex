@@ -36,7 +36,8 @@ public:
     mmUserPanelTrans();
 
     mmUserPanelTrans(wxWindow *parent
-        , wxWindowID id = wxID_ANY
+        , Model_Checking::Data* checking_entry
+        , wxWindowID win_id = wxID_ANY
         , const wxPoint &pos = wxDefaultPosition
         , const wxSize &size = wxDefaultSize
         , long style = wxTAB_TRAVERSAL
@@ -52,15 +53,19 @@ public:
     void SetTransactionNumber(const wxString& trans_number);
 
     Model_TransferTrans::CHECKING_TYPE CheckingType();
+    void SetCheckingType(Model_TransferTrans::CHECKING_TYPE ct);
     const wxString CurrencySymbol();
     Model_Currency::Data* GetCurrencyData();
 
 private:
+    Model_Checking::Data* m_checking_entry;
     int m_checking_trans_id;
+
     int m_account_id;
     int m_payee_id;
     int m_category_id;
     int m_subcategory_id;
+    void DataToControls();
 
 private:
     void Create();

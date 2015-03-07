@@ -19,6 +19,7 @@
 #pragma once
 
 #include "model/Model_Stock.h"
+#include "model/Model_TransferTrans.h"
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
@@ -32,6 +33,7 @@ class mmStockTransDialog : public wxDialog
 public:
     mmStockTransDialog();
     mmStockTransDialog(wxWindow* parent, Model_Stock::Data* stock, int account_id);
+    mmStockTransDialog(wxWindow* parent, Model_TransferTrans::Data* transfer_entry, Model_Checking::Data* checking_entry);
 
     Model_Stock::Data* m_stock;
     int m_stock_id;
@@ -45,6 +47,7 @@ private:
 
     void CreateControls();
     void DataToControls();
+    void UpdateStockValue(const double& num_shares, const double& purchase_price);
 
     void OnSave(wxCommandEvent& WXUNUSED(event));
     void OnCancel(wxCommandEvent& WXUNUSED(event));
@@ -64,10 +67,12 @@ private:
     mmTextCtrl* m_notes;
 	wxBitmapButton* m_attachments;
 
-    mmUserPanelTrans* m_checking_entry_panel;
+    mmUserPanelTrans* m_transaction_panel;
     wxString m_dialog_heading;
     int m_account_id;
-
+    
+    Model_TransferTrans::Data* m_transfer_entry;
+    Model_Checking::Data* m_checking_entry;
     enum
     {
         ID_STOCKTRANS_DATEPICKER_CHANGE = wxID_HIGHEST + 800,

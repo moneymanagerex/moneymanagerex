@@ -79,6 +79,14 @@ Model_TransferTrans::TABLE_TYPE Model_TransferTrans::type(const Data& r)
     return type(&r);
 }
 
+Model_TransferTrans::CHECKING_TYPE Model_TransferTrans::type_checking(const int& tt)
+{
+    if (tt == AS_TRANSFER)
+        return AS_TRANSFER;
+    else
+        return AS_INCOME_EXPENSE;
+}
+
 Model_Currency::Data* Model_TransferTrans::Currency(const Data* r)
 {
     Model_Currency::Data * currency = Model_Currency::instance().get(r->ID_CURRENCY);

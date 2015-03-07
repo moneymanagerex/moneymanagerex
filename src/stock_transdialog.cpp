@@ -47,6 +47,7 @@ wxBEGIN_EVENT_TABLE(mmStockTransDialog, wxDialog)
     EVT_BUTTON(wxID_INDEX, mmStockTransDialog::OnStockPriceButton)
     EVT_CLOSE(mmStockTransDialog::OnQuit)
     EVT_DATE_CHANGED(ID_STOCKTRANS_DATEPICKER_CHANGE, mmStockTransDialog::OnDateChange)
+    EVT_TEXT(ID_STOCKTRANS_NUMBER_SHARES, mmStockTransDialog::OnTextEntered)
     EVT_TEXT(ID_STOCKTRANS_PURCHASEPRICE, mmStockTransDialog::OnTextEntered)
     EVT_TEXT(ID_STOCKTRANS_COMMISSION, mmStockTransDialog::OnTextEntered)
 wxEND_EVENT_TABLE()
@@ -66,11 +67,38 @@ mmStockTransDialog::mmStockTransDialog(wxWindow* parent, Model_Stock::Data* stoc
     , m_notes(nullptr)
     , m_commission(nullptr)
     , m_attachments(nullptr)
+    , m_transfer_entry(nullptr)
+    , m_checking_entry(nullptr)
 {
     m_dialog_heading = _("New Stock Investment / Transaction");
     if (m_stock)
         m_dialog_heading = _("Add Stock Transactions");
 
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY, m_dialog_heading, wxDefaultPosition, wxSize(400, 300), style);
+}
+
+mmStockTransDialog::mmStockTransDialog(wxWindow* parent, Model_TransferTrans::Data* transfer_entry, Model_Checking::Data* checking_entry)
+    : m_stock(nullptr)
+    , m_account_id(-1)
+    , m_stock_name(nullptr)
+    , m_stock_symbol(nullptr)
+    , m_dpc(nullptr)
+    , m_num_shares(nullptr)
+    , m_purchase_price(nullptr)
+    , m_notes(nullptr)
+    , m_commission(nullptr)
+    , m_attachments(nullptr)
+    , m_transfer_entry(transfer_entry)
+    , m_checking_entry(checking_entry)
+{
+    m_dialog_heading = _("Add Stock Transactions");
+    if (transfer_entry)
+    {
+        m_dialog_heading = _("Edit Stock Transaction");
+        m_stock = Model_Stock::instance().get(transfer_entry->ID_TABLERECORD);
+        m_account_id = m_stock->HELDAT;
+    }
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, m_dialog_heading, wxDefaultPosition, wxSize(400, 300), style);
 }
@@ -115,8 +143,24 @@ void mmStockTransDialog::DataToControls()
         m_num_shares->SetValue(m_stock->NUMSHARES);
         m_purchase_price->SetValue(m_stock->PURCHASEPRICE);
         m_commission->SetValue(m_stock->COMMISSION);
-        m_checking_entry_panel->SetTransactionDate(Model_Stock::PURCHASEDATE(m_stock));
-        m_checking_entry_panel->SetTransactionValue((m_stock->NUMSHARES * m_stock->PURCHASEPRICE) + m_stock->COMMISSION);
+        m_transaction_panel->SetTransactionDate(Model_Stock::PURCHASEDATE(m_stock));
+        m_transaction_panel->SetTransactionValue((m_stock->NUMSHARES * m_stock->PURCHASEPRICE) + m_stock->COMMISSION);
+    }
+    else
+    {
+        if (m_transfer_entry)
+        {
+            m_num_shares->SetValue(m_transfer_entry->SHARE_NUMBER);
+            m_purchase_price->SetValue(m_transfer_entry->SHARE_UNITPRICE);
+            m_commission->SetValue(m_transfer_entry->SHARE_COMMISSION);
+            m_transaction_panel->SetTransactionDate(Model_Stock::PURCHASEDATE(m_stock));
+            m_transaction_panel->SetTransactionValue((m_transfer_entry->SHARE_NUMBER * m_transfer_entry->SHARE_UNITPRICE) + m_transfer_entry->SHARE_COMMISSION);
+        }
+        else
+        {
+            m_num_shares->SetValue(0);
+            m_purchase_price->SetValue(0);
+        }
     }
 }
 
@@ -234,8 +278,12 @@ void mmStockTransDialog::CreateControls()
     wxStaticBoxSizer* transaction_frame_sizer = new wxStaticBoxSizer(transaction_frame, wxVERTICAL);
     right_sizer->Add(transaction_frame_sizer, g_flags);
 
-    m_checking_entry_panel = new mmUserPanelTrans(this, wxID_STATIC);
-    transaction_frame_sizer->Add(m_checking_entry_panel, g_flags);
+    m_transaction_panel = new mmUserPanelTrans(this, m_checking_entry, wxID_STATIC);
+    transaction_frame_sizer->Add(m_transaction_panel, g_flags);
+    if (m_transfer_entry && m_checking_entry)
+    {
+        m_transaction_panel->SetCheckingType(Model_TransferTrans::type_checking(m_checking_entry->TOACCOUNTID));
+    }
 
     /********************************************************************
     Separation Line
@@ -249,7 +297,7 @@ void mmStockTransDialog::CreateControls()
     wxPanel* button_panel = new wxPanel(this, wxID_STATIC);
     wxBoxSizer* button_panel_sizer = new wxBoxSizer(wxHORIZONTAL);
     wxButton* save_button = new wxButton(button_panel, wxID_SAVE, _("&Save "));
-    wxButton* close_button = new wxButton(button_panel, wxID_CANCEL, _("&Close "));
+    wxButton* close_button = new wxButton(button_panel, wxID_CANCEL, _("&Cancel "));
 
     main_sizer->Add(button_panel, wxSizerFlags(g_flags).Center());
     button_panel->SetSizer(button_panel_sizer);
@@ -268,7 +316,7 @@ void mmStockTransDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 
 void mmStockTransDialog::OnDateChange(wxDateEvent& WXUNUSED(event))
 {
-    m_checking_entry_panel->SetTransactionDate(m_dpc->GetValue());
+    m_transaction_panel->SetTransactionDate(m_dpc->GetValue());
 }
 
 void mmStockTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
@@ -303,6 +351,19 @@ void mmStockTransDialog::OnStockPriceButton(wxCommandEvent& WXUNUSED(event))
     }
 }
 
+void mmStockTransDialog::UpdateStockValue(const double& num_shares, const double& purchase_price)
+{
+    Model_TransferTrans::Data_Set trans_list = Model_TransferTrans::TransferList(Model_TransferTrans::TABLE_TYPE::STOCKS, m_stock->STOCKID);
+    double new_value = 0;
+    for (const auto trans : trans_list)
+    {
+        new_value += trans.SHARE_NUMBER * trans.SHARE_UNITPRICE;
+    }
+    m_stock->VALUE = new_value;
+
+    Model_Stock::instance().save(m_stock);
+}
+
 void mmStockTransDialog::OnSave(wxCommandEvent& WXUNUSED(event))
 {
     Model_Account::Data* account = Model_Account::instance().get(m_account_id);
@@ -318,7 +379,7 @@ void mmStockTransDialog::OnSave(wxCommandEvent& WXUNUSED(event))
         return;
     }
 
-    Model_Currency::Data* currency = m_checking_entry_panel->GetCurrencyData();
+    Model_Currency::Data* currency = m_transaction_panel->GetCurrencyData();
 
     double num_shares = 0;
     if (!m_num_shares->checkValue(num_shares, currency))
@@ -336,12 +397,10 @@ void mmStockTransDialog::OnSave(wxCommandEvent& WXUNUSED(event))
     m_commission->GetDouble(commission);
 
     int old_stock_id = -1;
-    int new_stock_id = -1;
 
     if (m_stock)
     {
         old_stock_id = m_stock->STOCKID;
-        new_stock_id = old_stock_id;
     }
     else // create a new stock record if the record does not exist
     {
@@ -358,45 +417,48 @@ void mmStockTransDialog::OnSave(wxCommandEvent& WXUNUSED(event))
         m_stock->VALUE = (num_shares * purchase_price) + commission;
         m_stock->COMMISSION = commission;
         
-        new_stock_id = Model_Stock::instance().save(m_stock);
+        Model_Stock::instance().save(m_stock);
     }
 
     if (old_stock_id < 0)
     {
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
-        mmAttachmentManage::RelocateAllAttachments(RefType, 0, new_stock_id);
+        mmAttachmentManage::RelocateAllAttachments(RefType, 0, m_stock->STOCKID);
     }
 
-    if (m_checking_entry_panel->ValidCheckingAccountEntry())
+    if (m_transaction_panel->ValidCheckingAccountEntry())
     {
-        int checking_id = m_checking_entry_panel->SaveChecking();
+        int checking_id = m_transaction_panel->SaveChecking();
         // Check if this is the first entry
 
-        Model_TransferTrans::Data_Set trans_list = Model_TransferTrans::TransferList(Model_TransferTrans::TABLE_TYPE::STOCKS, new_stock_id);
+        if (m_transfer_entry)
+        {
+            m_transfer_entry->SHARE_UNITPRICE = purchase_price;
+            m_transfer_entry->SHARE_NUMBER = num_shares;
+            m_transfer_entry->SHARE_COMMISSION = commission;
+            
+            Model_TransferTrans::instance().save(m_transfer_entry);
+            EndModal(wxID_SAVE);
+        }
+
+        // if we get to this point
+        Model_TransferTrans::Data_Set trans_list = Model_TransferTrans::TransferList(Model_TransferTrans::TABLE_TYPE::STOCKS, m_stock->STOCKID);
         if (!trans_list.empty())
         {
             if (num_shares > 0) // addition of new shares
             {
                 // The main table now maintains the total number of shares
                 // and the Unit price in the main table becomes obsolete.
+                m_stock->CURRENTPRICE = purchase_price;
                 m_stock->NUMSHARES += num_shares;
                 m_stock->COMMISSION += commission;
-                m_stock->CURRENTPRICE = purchase_price;
-
-                double new_value = num_shares * purchase_price;
-                for (const auto trans : trans_list)
-                {
-                    new_value += trans.SHARE_NUMBER * trans.SHARE_UNITPRICE;
-                }
-                m_stock->VALUE = new_value;
-
-                Model_Stock::instance().save(m_stock);
             }
         }
-        Model_TransferTrans::SetShareTransferTransaction(new_stock_id, checking_id
+        Model_TransferTrans::SetShareTransferTransaction(m_stock->STOCKID, checking_id
             , purchase_price, num_shares, commission
-            , m_checking_entry_panel->CheckingType()
-            , m_checking_entry_panel->CurrencySymbol());
+            , m_transaction_panel->CheckingType()
+            , m_transaction_panel->CurrencySymbol());
+        UpdateStockValue(num_shares, purchase_price);
     }
     else
     {
@@ -408,7 +470,7 @@ void mmStockTransDialog::OnSave(wxCommandEvent& WXUNUSED(event))
 
 void mmStockTransDialog::OnTextEntered(wxCommandEvent& event)
 {
-    Model_Currency::Data* currency = m_checking_entry_panel->GetCurrencyData();
+    Model_Currency::Data* currency = m_transaction_panel->GetCurrencyData();
 
     double num_shares = 0;
     if (!m_num_shares->GetValue().empty())
@@ -421,7 +483,9 @@ void mmStockTransDialog::OnTextEntered(wxCommandEvent& event)
     double commission = 0;
     if (!m_commission->GetValue().empty())
         m_commission->GetDouble(commission);
-
-    m_checking_entry_panel->SetTransactionValue((num_shares * purchase_price) + commission);
+    if (num_shares > 0)
+    {
+        m_transaction_panel->SetTransactionValue((num_shares * purchase_price) + commission);
+    }
 }
 

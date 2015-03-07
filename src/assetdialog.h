@@ -18,6 +18,7 @@
 
 #include "model/Model_Asset.h"
 #include "model/Model_Currency.h"
+#include "model/Model_TransferTrans.h"
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
@@ -31,8 +32,10 @@ class mmAssetDialog : public wxDialog
 public:
     mmAssetDialog(){};
     mmAssetDialog(wxWindow *parent, Model_Asset::Data* asset);
+    mmAssetDialog(wxWindow *parent, Model_TransferTrans::Data* transfer_entry, Model_Checking::Data* checking_entry);
 
     Model_Asset::Data* m_asset;
+
 private:
     bool Create(wxWindow* parent
         , wxWindowID id
@@ -52,6 +55,11 @@ private:
     void OnQuit(wxCloseEvent& event);
     void OnDateChange(wxDateEvent& WXUNUSED(event));
 
+    void HideTransactionPanel();
+    bool m_hidden_trans_entry;
+    Model_TransferTrans::Data* m_transfer_entry;
+    Model_Checking::Data* m_checking_entry;
+
     bool m_AssetRichText;
 
     mmTextCtrl* m_assetName;
@@ -63,7 +71,8 @@ private:
     wxChoice*  m_valueChange;
     wxStaticText* m_valueChangeRateLabel;
 	wxBitmapButton* m_attachment;
-    mmUserPanelTrans* m_checking_entry_panel;
+    wxStaticBox* m_transaction_frame;
+    mmUserPanelTrans* m_transaction_panel;
 
     enum
     {
