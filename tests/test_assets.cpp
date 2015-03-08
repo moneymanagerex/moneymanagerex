@@ -346,7 +346,7 @@ void Test_Asset::test_trans_user_panel()
     trans_user_panel_frame->Show();
 
     // Create the panel under test
-    mmUserPanelTrans* trans_user_panel = new mmUserPanelTrans(trans_user_panel_frame, wxID_ANY);
+    mmUserPanelTrans* trans_user_panel = new mmUserPanelTrans(trans_user_panel_frame,0, wxID_ANY);
     trans_user_panel->Show();
 
     // Anchor the panel. Otherwise it will disappear.
