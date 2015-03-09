@@ -122,7 +122,7 @@ private:
     wxSpinButton *spinNextOccDate_;
     wxSpinButton *spinTransDate_;
 
-    void displayControlsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced = false);
+    void setToolTipsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced = false);
     void resetPayeeString();
     void setTooltips();
     void setCategoryLabel();
