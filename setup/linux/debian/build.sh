@@ -14,16 +14,19 @@ ARCHITECTURE="amd64"
 
 # Specify the build version of mmex
 MMEX_VERSION="1.2.0"
-
+MMEX_RELEASE_DATE="2015-02-09"
 EMAIL="moneymanagerex@moneymanagerex.org"
-
 HOMEPAGE="http://www.moneymanagerex.org"
+BUILD_DIR="$HOME/build"
+
+
+
 
 PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
 
 BUILD_DIR="$HOME/build"
-
 cd ../../..
+MMEX_DIR=`pwd`
 
 ./bootstrap
 if [ $? -gt 0 ]; then
@@ -46,11 +49,26 @@ fi
 #Strip the binary before calculating the installed size
 strip $BUILD_DIR/$PACKAGE_NAME/usr/bin/mmex
 
-mkdir -p $BUILD_DIR/$PACKAGE_NAME/DEBIAN
+#Make sure any needed files are in place and formatted correctly
+#Changelog
+mv $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/version.txt $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/changelog
+gzip -9 -f $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/changelog
+
+#Copyright
+mv $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/contrib.txt $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/copyright
+
+#Manpage
+cp $MMEX_DIR/setup/linux/debian/mmex.1 $BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1
+sed -i "s/MMEX_RELEASE_DATE/$MMEX_RELEASE_DATE/g" $BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1
+sed -i "s/MMEX_VERSION/$MMEX_VERSION/g" $BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1
+gzip -9 -f $BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1
+chmod 0644 $BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1.gz
 
 #Calculate installed size
 INSTALLED_SIZE=$(du -sb $BUILD_DIR/ | cut -f1)
 INSTALLED_SIZE=`expr $INSTALLED_SIZE / 1024`
+
+mkdir -p $BUILD_DIR/$PACKAGE_NAME/DEBIAN
 
 echo "Package: mmex
 Version: $MMEX_VERSION
@@ -70,11 +88,6 @@ Description: Simple to use financial management software
  would want to see in a personal finance application.
  The design goals are to concentrate  on  simplicity
  and  user friendliness - something one can use everyday." > $BUILD_DIR/$PACKAGE_NAME/DEBIAN/control
-
-mv $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/version.txt $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/changelog
-gzip -9 -f $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/changelog
-
-mv $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/contrib.txt $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/copyright
 
 cd $BUILD_DIR
 fakeroot dpkg-deb -b $PACKAGE_NAME
