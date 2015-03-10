@@ -5,7 +5,7 @@ REM Purpose: To allow easy installation of DB_Table_xxx.h files
 REM --------------------------------------------------------------------------
 @echo.
 set buildfile_name=sqlite2cpp.py
-set buildfile_location=../sql/tables_v1.sql
+set buildfile_location=../database/tables_v1.sql
 
 set actual_location=%buildfile_location%
 if not exist %actual_location% set actual_location=../%buildfile_location%

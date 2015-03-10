@@ -70,19 +70,20 @@ void mmReportBudget::GetFinancialYearValues(int& day, int& month)
     }
 }
 
-wxString mmReportBudget::AdjustYearValues(int& day, int& month, long year, wxString yearStr)
+wxString mmReportBudget::AdjustYearValues(int& day, int& month, long year, const wxString& yearStr)
 {
-    if ((yearStr.length() < 5)) {
+    wxString ret = yearStr;
+    if ((ret.length() < 5)) {
         if (mmIniOptions::instance().budgetFinancialYears_) {
             GetFinancialYearValues(day, month);
-            yearStr = wxString::Format(_("Financial Year: %s - %i"), yearStr, (year + 1));
+            ret = wxString::Format(_("Financial Year: %s - %i"), yearStr, (year + 1));
         } else
-            yearStr = wxString::Format(_("Year: %s"), yearStr);
+            ret = wxString::Format(_("Year: %s"), yearStr);
     } else {
-        yearStr = wxString::Format(_("Month: %s"), yearStr);
+        ret = wxString::Format(_("Month: %s"), yearStr);
     }
 
-    return yearStr;
+    return ret;
 }
 
 void mmReportBudget::AdjustYearValues(int& day, int& month, wxDateTime& year)
