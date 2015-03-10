@@ -191,6 +191,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmframereport.obj \
 	mmex_tests_mmhelppanel.obj \
 	mmex_tests_mmhomepagepanel.obj \
+	mmex_tests_mmpanelbase.obj \
 	mmex_tests_mmreportspanel.obj \
 	mmex_tests_optionsdialog.obj \
 	mmex_tests_paths.obj \
@@ -892,6 +893,9 @@ mmex_tests_mmhelppanel.obj: ..\..\src\mmhelppanel.cpp
 
 mmex_tests_mmhomepagepanel.obj: ..\..\src\mmhomepagepanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmhomepagepanel.cpp
+
+mmex_tests_mmpanelbase.obj: ..\..\src\mmpanelbase.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmpanelbase.cpp
 
 mmex_tests_mmreportspanel.obj: ..\..\src\mmreportspanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmreportspanel.cpp
