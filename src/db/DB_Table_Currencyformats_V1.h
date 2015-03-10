@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-12-11 16:43:03.028067.
+ *          AUTO GENERATED at 2015-01-25 14:08:47.154165.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -190,7 +190,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         return "UNKNOWN";
     }
 
-    /** Returns the comumn number from the given column name*/
+    /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
         if ("CURRENCYID" == name) return COL_CURRENCYID;
@@ -215,7 +215,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* view_;
     
-        int CURRENCYID;//  primay key
+        int CURRENCYID;//  primary key
         wxString CURRENCYNAME;
         wxString PFX_SYMBOL;
         wxString SFX_SYMBOL;

@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-12-11 16:43:03.028067.
+ *          AUTO GENERATED at 2015-01-25 14:08:47.154165.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -141,7 +141,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         return "UNKNOWN";
     }
 
-    /** Returns the comumn number from the given column name*/
+    /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
         if ("PAYEEID" == name) return COL_PAYEEID;
@@ -159,7 +159,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* view_;
     
-        int PAYEEID;//  primay key
+        int PAYEEID;//  primary key
         wxString PAYEENAME;
         int CATEGID;
         int SUBCATEGID;
