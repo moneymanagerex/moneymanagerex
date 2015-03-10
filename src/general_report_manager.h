@@ -140,7 +140,6 @@ private:
         ID_LUA_CONTENT,
         ID_TEMPLATE,
         ID_DESCRIPTION,
-        ID_SQL_GRID,
         ID_REPORT_LIST,
     };
     
