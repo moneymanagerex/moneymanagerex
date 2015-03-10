@@ -205,7 +205,7 @@ void mmBDDialog::dataToControls()
     updateControlsForTransType();
 
     Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-    bAccount_->SetLabelText(account->ACCOUNTNAME);
+    bAccount_->SetLabelText(account ? account->ACCOUNTNAME : "");
 
     setCategoryLabel();
     cSplit_->SetValue(!m_bill_data.local_splits.empty());
@@ -217,7 +217,6 @@ void mmBDDialog::dataToControls()
         m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
 
     textAmount_->Enable(m_bill_data.local_splits.empty());
-
     textAmount_->SetValue(m_bill_data.TRANSAMOUNT, account);
 
     if (m_transfer)
@@ -225,7 +224,10 @@ void mmBDDialog::dataToControls()
         m_bill_data.PAYEEID = -1;
         Model_Account::Data* to_account = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
         if (to_account)
+        {
             bPayee_->SetLabelText(to_account->ACCOUNTNAME);
+            toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT, to_account);
+        }
 
         // When editing an advanced transaction record, we do not reset the m_bill_data.TOTRANSAMOUNT
         if ((!m_new_bill || m_enter_occur) && (m_bill_data.TOTRANSAMOUNT != m_bill_data.TRANSAMOUNT))
@@ -673,22 +675,12 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(acctName);
         if (account)
         {
-            double amount = 0.0;
-            textAmount_->GetDouble(amount);
-            textAmount_->SetValue(amount, account);
-            if (m_advanced)
-            {
-                double toAmount = 0.0;
-                toTextAmount_->GetDouble(toAmount);
-                toTextAmount_->SetValue(toAmount, account);
-            }
+            Model_Currency::Data* currency = Model_Currency::instance().get(account->ACCOUNTID);
+            if (currency && textAmount_->Calculate(currency))
+                textAmount_->GetDouble(m_bill_data.TRANSAMOUNT, currency);
+
             m_bill_data.ACCOUNTID = account->ACCOUNTID;
             bAccount_->SetLabelText(acctName);
-            if (m_transfer)
-            {
-                //m_bill_data.PAYEEID = account->ACCOUNTID;//TODO:??
-                bPayee_->SetLabelText(acctName);
-            }
         }
     }
 }
@@ -782,7 +774,7 @@ void mmBDDialog::OnCategs(wxCommandEvent& /*event*/)
     setCategoryLabel();
 }
 
-void mmBDDialog::displayControlsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced)
+void mmBDDialog::setToolTipsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced)
 {
     bPayee_->UnsetToolTip();
     textAmount_->SetToolTip(_("Specify the amount for this transaction"));
@@ -810,42 +802,12 @@ void mmBDDialog::OnAttachments(wxCommandEvent& /*event*/)
 
 void mmBDDialog::updateControlsForTransType()
 {
-    wxStaticText* accountLabel = (wxStaticText*) FindWindow(ID_DIALOG_TRANS_STATIC_ACCOUNT);
-    wxStaticText* stp = (wxStaticText*) FindWindow(ID_DIALOG_TRANS_STATIC_PAYEE);
+    wxStaticText* accountLabel = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_STATIC_ACCOUNT));
+    wxStaticText* stp = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_STATIC_PAYEE));
 
-    if (transaction_type_->GetSelection() == Model_Billsdeposits::WITHDRAWAL)
+    m_transfer = transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER;
+    if (m_transfer)
     {
-        displayControlsForType(Model_Billsdeposits::WITHDRAWAL);
-        SetTransferControls();
-        stp->SetLabelText(_("Payee"));
-        bPayee_->SetToolTip(payeeWithdrawalTip_);
-        if (payeeUnknown_)
-        {
-            m_bill_data.PAYEEID = -1;
-            m_bill_data.TOACCOUNTID = -1;
-            resetPayeeString();
-        }
-        prevType_ = Model_Billsdeposits::WITHDRAWAL;
-        m_transfer = false;
-    }
-    else if (transaction_type_->GetSelection() == Model_Billsdeposits::DEPOSIT)
-    {
-        displayControlsForType(Model_Billsdeposits::DEPOSIT);
-        SetTransferControls();
-        stp->SetLabelText(_("From"));
-        bPayee_->SetToolTip(_("Specify where the transaction is coming from"));
-        if (payeeUnknown_)
-        {
-            m_bill_data.PAYEEID = -1;
-            m_bill_data.TOACCOUNTID = -1;
-            resetPayeeString();
-        }
-        prevType_ = Model_Billsdeposits::DEPOSIT;
-        m_transfer = false;
-    }
-    else //transfer
-    {
-        displayControlsForType(Model_Billsdeposits::TRANSFER, true);
         if (m_bill_data.ACCOUNTID < 0)
         {
             bAccount_->SetLabelText(_("From"));
@@ -858,9 +820,6 @@ void mmBDDialog::updateControlsForTransType()
             m_bill_data.PAYEEID = m_bill_data.ACCOUNTID;
         }
 
-        SetTransferControls(true);
-        if (cAdvanced_->IsChecked()) SetAdvancedTransferControls(true);
-
         stp->SetLabelText(_("To"));
         accountLabel->SetLabelText(_("From"));
         bPayee_->SetLabelText(_("Select To Account"));
@@ -869,9 +828,37 @@ void mmBDDialog::updateControlsForTransType()
             m_bill_data.TOACCOUNTID = -1;
             payeeUnknown_ = true;
         }
-        prevType_ = Model_Billsdeposits::TRANSFER;
-        m_transfer = true;
     }
+    else
+    {
+        if (transaction_type_->GetSelection() == Model_Billsdeposits::WITHDRAWAL)
+        {
+            stp->SetLabelText(_("Payee"));
+            bPayee_->SetToolTip(payeeWithdrawalTip_);
+            if (payeeUnknown_)
+            {
+                m_bill_data.PAYEEID = -1;
+                m_bill_data.TOACCOUNTID = -1;
+                resetPayeeString();
+            }
+        }
+        else if (transaction_type_->GetSelection() == Model_Billsdeposits::DEPOSIT)
+        {
+            stp->SetLabelText(_("From"));
+            bPayee_->SetToolTip(_("Specify where the transaction is coming from"));
+            if (payeeUnknown_)
+            {
+                m_bill_data.PAYEEID = -1;
+                m_bill_data.TOACCOUNTID = -1;
+                resetPayeeString();
+            }
+        }
+    }
+    SetTransferControls(m_transfer);
+    if (cAdvanced_->IsChecked())
+        SetAdvancedTransferControls(true);
+    prevType_ = transaction_type_->GetSelection();
+    setToolTipsForType((Model_Billsdeposits::TYPE)prevType_, m_transfer);
 }
 
 void mmBDDialog::resetPayeeString()
@@ -928,27 +915,20 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
 {
     Model_Account::Data *acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     if (!acc)
-    {
-        mmErrorDialogs::InvalidAccount((wxWindow*)bAccount_);
-        return;
-    }
+        return mmErrorDialogs::InvalidAccount((wxWindow*)bAccount_);
 
+    if (!textAmount_->checkValue(m_bill_data.TRANSAMOUNT))
+        return;
+
+    m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
     if (m_transfer)
     {
         Model_Account::Data *to_acc = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
-        if (!to_acc || to_acc->ACCOUNTID == acc->ACCOUNTID) {
-            mmErrorDialogs::InvalidAccount((wxWindow*)bPayee_, true);
+        if (!to_acc || to_acc->ACCOUNTID == acc->ACCOUNTID)
+            return mmErrorDialogs::InvalidAccount((wxWindow*)bPayee_, true);
+
+        if (m_advanced && !toTextAmount_->checkValue(m_bill_data.TOTRANSAMOUNT))
             return;
-        }
-
-        if (m_advanced)
-        {
-            if (!toTextAmount_->checkValue(m_bill_data.TOTRANSAMOUNT))
-                return;
-        }
-        else
-            m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
-
     }
     else
     {
@@ -957,7 +937,6 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
             mmErrorDialogs::InvalidPayee((wxWindow*) bPayee_);
             return;
         }
-        m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
     }
 
     if (cSplit_->IsChecked())
@@ -971,34 +950,9 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     else
     {
         if (Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID).empty())
-        {
-            mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_);
-            return;
-        }
-    }
+            return mmErrorDialogs::InvalidCategory(static_cast<wxWindow*>(bCategory_));
 
-    if (cSplit_->IsChecked())
-    {
-        m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
-
-        if (m_bill_data.TRANSAMOUNT < 0.0)
-        {
-            if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER) {
-                if (m_bill_data.TRANSAMOUNT < 0)
-                    m_bill_data.TRANSAMOUNT = -m_bill_data.TRANSAMOUNT;
-            }
-            else {
-                mmErrorDialogs::MessageInvalid(this, _("Amount"));
-                return;
-            }
-        }
     }
-    else
-    {
-        if (!textAmount_->checkValue(m_bill_data.TRANSAMOUNT))
-            return;
-    }
-
 
     if (!m_advanced || m_bill_data.TOTRANSAMOUNT < 0)
     {
@@ -1225,19 +1179,12 @@ void mmBDDialog::OnDateChanged(wxDateEvent& event)
 
 void mmBDDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
 {
-    if (cAdvanced_->IsChecked())
-    {
-        SetAdvancedTransferControls(true);
-    }
-    else
-    {
-        SetAdvancedTransferControls();
-        textAmount_->SetToolTip(amountTransferTip_);
-    }
+    SetAdvancedTransferControls(cAdvanced_->IsChecked());
 }
 
 void mmBDDialog::SetTransferControls(bool transfers)
 {
+    cAdvanced_->Enable(transfers);
     if (transfers)
     {
         if (prevType_ != Model_Billsdeposits::TRANSFER)
@@ -1248,44 +1195,32 @@ void mmBDDialog::SetTransferControls(bool transfers)
                 SetSplitControls();
             }
             cSplit_->Disable();
-            cAdvanced_->Enable();
         }
     }
     else
     {
         if (!(prevType_ == Model_Billsdeposits::WITHDRAWAL || prevType_ == Model_Billsdeposits::DEPOSIT))
         {
-            cAdvanced_->Disable();
             SetAdvancedTransferControls();
             cSplit_->Enable();
-            textAmount_->Enable();
+            toTextAmount_->ChangeValue("");
+            cAdvanced_->SetValue(false);
         }
     }
 }
 
 void mmBDDialog::SetAdvancedTransferControls(bool advanced)
 {
-    if (advanced)
+    m_advanced = advanced;
+    toTextAmount_->Enable(m_advanced);
+    textAmount_->SetToolTip(m_advanced ? amountTransferTip_ : _("Specify the transfer amount in the From Account"));
+    if (m_advanced)
     {
-        toTextAmount_->Enable();
-        m_advanced = true;
         // Display the transfer amount in the toTextAmount control.
-        if (m_bill_data.TOTRANSAMOUNT >= 0)
-        {
+        if (m_bill_data.TOTRANSAMOUNT > 0)
             toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT);
-        }
         else
-        {
             toTextAmount_->SetValue(textAmount_->GetValue());
-        }
-
-        textAmount_->SetToolTip(_("Specify the transfer amount in the From Account"));
-
-    }
-    else
-    {
-        toTextAmount_->Disable();
-        m_advanced = false;
     }
 }
 
