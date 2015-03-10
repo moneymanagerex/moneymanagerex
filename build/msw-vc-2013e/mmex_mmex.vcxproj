@@ -271,6 +271,7 @@
     <ClCompile Include="..\..\src\mmOptionMiscSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionNetSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionViewSettings.cpp" />
+    <ClCompile Include="..\..\src\mmpanelbase.cpp" />
     <ClCompile Include="..\..\src\mmSimpleDialogs.cpp" />
     <ClCompile Include="..\..\src\model\Model_Account.cpp" />
     <ClCompile Include="..\..\src\model\Model_Asset.cpp" />

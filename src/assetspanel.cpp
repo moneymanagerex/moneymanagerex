@@ -58,6 +58,15 @@ wxBEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_MENU(MENU_HEADER_SORT, mmAssetsListCtrl::OnHeaderSort)
     EVT_MENU(MENU_HEADER_RESET, mmAssetsListCtrl::OnHeaderReset)
 
+    EVT_MENU(MENU_HEADER_COL_ICON, mmAssetsListCtrl::OnHeaderColumn)
+    EVT_MENU(MENU_HEADER_COL_ID, mmAssetsListCtrl::OnHeaderColumn)
+    EVT_MENU(MENU_HEADER_COL_NAME, mmAssetsListCtrl::OnHeaderColumn)
+    EVT_MENU(MENU_HEADER_COL_DATE, mmAssetsListCtrl::OnHeaderColumn)
+    EVT_MENU(MENU_HEADER_COL_TYPE, mmAssetsListCtrl::OnHeaderColumn)
+    EVT_MENU(MENU_HEADER_COL_VALUE_INITIAL, mmAssetsListCtrl::OnHeaderColumn)
+    EVT_MENU(MENU_HEADER_COL_VALUE_CURRENT, mmAssetsListCtrl::OnHeaderColumn)
+    EVT_MENU(MENU_HEADER_COL_NOTES, mmAssetsListCtrl::OnHeaderColumn)
+
     EVT_LIST_KEY_DOWN(wxID_ANY, mmAssetsListCtrl::OnListKeyDown)
 wxEND_EVENT_TABLE()
 /*******************************************************/
@@ -318,8 +327,34 @@ void mmAssetsListCtrl::OnColRightClick(wxListEvent& event)
 {
     ColumnHeaderNr = event.GetColumn();
     if (0 > ColumnHeaderNr || ColumnHeaderNr >= m_panel->col_max()) return;
-    wxMenu menu;
-    menu.Append(MENU_HEADER_HIDE, _("Hide column"));
+    wxMenu menu, *submenu;
+    submenu = new wxMenu();
+    submenu->AppendCheckItem(MENU_HEADER_COL_ICON, _T("Icon"));
+    submenu->AppendCheckItem(MENU_HEADER_COL_ID, _T("ID"));
+    submenu->AppendCheckItem(MENU_HEADER_COL_NAME, _T("Name"));
+    submenu->AppendCheckItem(MENU_HEADER_COL_DATE, _T("Date"));
+    submenu->AppendCheckItem(MENU_HEADER_COL_TYPE, _T("Type"));
+    submenu->AppendCheckItem(MENU_HEADER_COL_VALUE_INITIAL, _T("Initial Value"));
+    submenu->AppendCheckItem(MENU_HEADER_COL_VALUE_CURRENT, _T("Current Value"));
+    submenu->AppendCheckItem(MENU_HEADER_COL_NOTES, _T("Notes"));
+    if (Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", 0), 25) != 0)
+        submenu->Check(MENU_HEADER_COL_ICON, true);
+    if (Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", 1), wxLIST_AUTOSIZE_USEHEADER) != 0)
+        submenu->Check(MENU_HEADER_COL_ID, true);
+    if (Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", 2), 150) != 0)
+        submenu->Check(MENU_HEADER_COL_NAME, true);
+    if (Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", 3), wxLIST_AUTOSIZE_USEHEADER) != 0)
+        submenu->Check(MENU_HEADER_COL_DATE, true);
+    if (Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", 4), wxLIST_AUTOSIZE_USEHEADER) != 0)
+        submenu->Check(MENU_HEADER_COL_TYPE, true);
+    if (Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", 5), wxLIST_AUTOSIZE_USEHEADER) != 0)
+        submenu->Check(MENU_HEADER_COL_VALUE_INITIAL, true);
+    if (Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", 6), wxLIST_AUTOSIZE_USEHEADER) != 0)
+        submenu->Check(MENU_HEADER_COL_VALUE_CURRENT, true);
+    if (Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", 7), 450) != 0)
+        submenu->Check(MENU_HEADER_COL_NOTES, true);
+    menu.AppendSubMenu(submenu, _("Columns"));
+//    menu.Append(MENU_HEADER_HIDE, _("Hide column"));
     menu.Append(MENU_HEADER_SORT, _("Order by this column"));
     menu.Append(MENU_HEADER_RESET, _("Reset columns size"));
     PopupMenu(&menu);
@@ -354,6 +389,53 @@ void mmAssetsListCtrl::OnHeaderReset(wxCommandEvent& event)
     ColumnHeaderNr = m_panel->col_sort();
 	m_asc = true;
     mmAssetsListCtrl::OnColClick(e);
+}
+
+void mmAssetsListCtrl::OnHeaderColumn(wxCommandEvent& event)
+{
+    int id = event.GetId();
+    int columnNbr = id - MENU_HEADER_COL_ICON;
+
+    if (Model_Setting::instance().GetIntSetting(wxString::Format("ASSETS_COL%i_WIDTH", columnNbr), wxLIST_AUTOSIZE_USEHEADER) != 0)
+    {
+        mmAssetsListCtrl::SetColumnWidth(columnNbr, 0);
+        const wxString parameter_name = wxString::Format("ASSETS_COL%i_WIDTH", columnNbr);
+        Model_Setting::instance().Set(parameter_name, 0);
+    }
+    else
+    {
+        switch (columnNbr)
+        {
+        case 0:
+            {
+                mmAssetsListCtrl::SetColumnWidth(columnNbr, 25);
+                const wxString parameter_name = wxString::Format("ASSETS_COL%i_WIDTH", columnNbr);
+                Model_Setting::instance().Set(parameter_name, 25);
+            }
+            break;
+        case 2:
+            {
+                mmAssetsListCtrl::SetColumnWidth(columnNbr, 150);
+                const wxString parameter_name = wxString::Format("ASSETS_COL%i_WIDTH", columnNbr);
+                Model_Setting::instance().Set(parameter_name, 150);
+            }
+            break;
+        case 7:
+            {
+                mmAssetsListCtrl::SetColumnWidth(columnNbr, 450);
+                const wxString parameter_name = wxString::Format("ASSETS_COL%i_WIDTH", columnNbr);
+                Model_Setting::instance().Set(parameter_name, 450);
+            }
+            break;
+        default:
+            {
+                mmAssetsListCtrl::SetColumnWidth(columnNbr, wxLIST_AUTOSIZE_USEHEADER);
+                const wxString parameter_name = wxString::Format("ASSETS_COL%i_WIDTH", columnNbr);
+                Model_Setting::instance().Set(parameter_name, wxLIST_AUTOSIZE_USEHEADER);
+            }
+        }
+    }
+
 }
 
 /*******************************************************/
