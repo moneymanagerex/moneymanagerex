@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ../common/variables.sh
+. common/variables.sh
 
 ARCHITECTURE="amd64"
 

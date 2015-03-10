@@ -12,7 +12,7 @@
 # Specify system Architecture  ("i386" or "amd64")
 ARCHITECTURE="amd64"
 
-. ../common/variables.sh
+. common/variables.sh
 
 # Specify the build version of mmex
 BUILD_DIR="$HOME/build"
