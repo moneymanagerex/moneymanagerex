@@ -1317,22 +1317,13 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 void mmGUIFrame::createHelpPage()
 {
     navTreeCtrl_->SetEvtHandlerEnabled(false);
-    int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
-    if (id == wxID_HELP)
-    {
-        mmHelpPanel* hp = (mmHelpPanel*)panelCurrent_;
-        hp->Refresh();
-    }
-    else
-    {
-        windowsFreezeThaw(homePanel_);
-        wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP
-            , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-        homePanel_->Layout();
-        windowsFreezeThaw(homePanel_);
-    }
+    windowsFreezeThaw(homePanel_);
+    wxSizer *sizer = cleanupHomePanel();
+    panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP
+        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+    homePanel_->Layout();
+    windowsFreezeThaw(homePanel_);
     menuPrintingEnable(true);
     navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
@@ -2418,6 +2409,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
     
+    menuPrintingEnable(true);
     if (gotoTransID_ > 0)
     {
         checkingAccountPage_->SetSelectedTransaction(gotoTransID_);
