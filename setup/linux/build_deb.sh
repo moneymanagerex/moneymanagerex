@@ -23,7 +23,7 @@ PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
 BUILD_DIR="$HOME/build"
 
 #Build the source
-cd ../../..
+cd ../..
 MMEX_DIR=`pwd`
 
 ./bootstrap
@@ -72,9 +72,6 @@ INSTALLED_SIZE=$(du -sb $BUILD_DIR/ | cut -f1)
 INSTALLED_SIZE=`expr $INSTALLED_SIZE / 1024`
 
 mkdir -p "DEBIAN"
-
-#Remove /'s from the description
-$MMEX_DESCRIPTION="${MMEX_DESCRIPTION//\\/}"
 
 #Create the control file
 echo "Package: mmex
