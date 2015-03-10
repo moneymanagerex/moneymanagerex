@@ -415,21 +415,20 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
     data.TRANSACTIONNUMBER = "";
     if (mmIniOptions::instance().transPayeeSelectionNone_ != 0) 
     {
-        auto transactions = instance().find(TRANSCODE(TRANSFER, NOT_EQUAL)
+        auto trx = instance().find(TRANSCODE(TRANSFER, NOT_EQUAL)
             , ACCOUNTID(accountID, EQUAL), TRANSDATE(trx_date, LESS_OR_EQUAL));
-        std::stable_sort(transactions.begin(), transactions.end(), SorterByTRANSDATE());
-        std::reverse(transactions.begin(), transactions.end());
-        for (const auto &trx : transactions)
+
+        if (!trx.empty())
         {
-            data.PAYEEID = trx.PAYEEID;
-            Model_Payee::Data * payee = Model_Payee::instance().get(trx.PAYEEID);
+            std::stable_sort(trx.begin(), trx.end(), SorterByTRANSDATE());
+            data.PAYEEID = trx.rbegin()->PAYEEID;
+            Model_Payee::Data* payee = Model_Payee::instance().get(data.PAYEEID);
 
             if (payee && mmIniOptions::instance().transCategorySelectionNone_)
             {
                 data.CATEGID = payee->CATEGID;
                 data.SUBCATEGID = payee->SUBCATEGID;
             }
-            break;
         }
     }
 }
