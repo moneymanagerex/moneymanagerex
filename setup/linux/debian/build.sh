@@ -55,7 +55,7 @@ mv $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/version.txt $BUILD_DIR/$PACKAGE_N
 gzip -9 -f $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/changelog
 
 #Copyright
-mv $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/contrib.txt $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/copyright
+cp $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/contrib.txt $BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/copyright
 
 #Manpage
 cp $MMEX_DIR/setup/linux/debian/mmex.1 $BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1
@@ -80,14 +80,14 @@ Depends: libc6 (>= 2.3.5-1), libwxgtk3.0-0 (>= 3.0.0)
 Installed-Size: $INSTALLED_SIZE
 Maintainer: MoneyManagerEx <$EMAIL>
 Description: Simple to use financial management software
- Money  Manager Ex (MMEX) is a free, open-source,
+ Money Manager Ex (MMEX) is a free, open-source,
  cross-platform, easy-to-use personal finance software.
  It primarily helps organize one's finances and keeps
  track of where, when and how the money goes.
  MMEX includes all the basic features that 90% of users
  would want to see in a personal finance application.
- The design goals are to concentrate  on  simplicity
- and  user friendliness - something one can use everyday." > $BUILD_DIR/$PACKAGE_NAME/DEBIAN/control
+ The design goals are to concentrate on simplicity
+ and user friendliness - something one can use everyday." > $BUILD_DIR/$PACKAGE_NAME/DEBIAN/control
 
 cd $BUILD_DIR
 fakeroot dpkg-deb -b $PACKAGE_NAME
