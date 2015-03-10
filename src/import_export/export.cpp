@@ -27,14 +27,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 mmExportTransaction::mmExportTransaction()
 {}
 
-mmExportTransaction::mmExportTransaction(int accountID)
-    : m_account_id(accountID)
-{}
-
 mmExportTransaction::~mmExportTransaction()
 {}
 
-wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data& full_tran, int accountID)
+const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data& full_tran
+    , int accountID, const wxString& dateMask)
 {
     bool out = full_tran.ACCOUNTID == accountID;
 
@@ -53,10 +50,12 @@ wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data&
             transNum = wxString::Format("#%i", full_tran.id());
     }
     
-    buffer << "D" << full_tran.TRANSDATE << "\n";
+    wxDate date = wxDate::Today();
+    date.ParseISODate(full_tran.TRANSDATE);
+    buffer << "D" << date.Format(dateMask) << "\n";
     double value = Model_Checking::balance(full_tran, (out ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID));
     int style = wxNumberFormatter::Style_None;
-    const wxString s = wxNumberFormatter::ToString(value, 2, style);
+    const wxString& s = wxNumberFormatter::ToString(value, 2, style);
     buffer << "T" << s << "\n";
     if (!full_tran.PAYEENAME.empty())
         buffer << "P" << full_tran.PAYEENAME << "\n";
@@ -86,15 +85,15 @@ wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data&
     return buffer;
 }
 
-wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full_Data & full_tran, int accountID)
+const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full_Data & full_tran, int accountID, const wxString& dateMask)
 {
     bool out = full_tran.ACCOUNTID == accountID;
 
-    wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+    const wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
     wxString buffer = "";
     int trans_id = full_tran.id();
-    wxString accountName = (!out ? full_tran.PAYEENAME : full_tran.ACCOUNTNAME);
+    const wxString& accountName = (!out ? full_tran.PAYEENAME : full_tran.ACCOUNTNAME);
     wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
     wxString transNum = full_tran.TRANSACTIONNUMBER;
     wxString notes = (full_tran.NOTES);
@@ -153,16 +152,17 @@ wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full_Data 
     return buffer;
 }
 
-wxString mmExportTransaction::getAccountHeaderQIF()
+const wxString mmExportTransaction::getAccountHeaderQIF(int accountID)
 {
     wxString buffer = "";
     wxString account_name = "";
     wxString currency_symbol = "";
-    Model_Checking::Data_Set enties = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(m_account_id), Model_Checking::TOACCOUNTID(m_account_id));
+    Model_Checking::Data_Set enties = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(accountID)
+        , Model_Checking::TOACCOUNTID(accountID));
     if (!enties.empty())
     {
         double dInitBalance = 0;
-        Model_Account::Data *account = Model_Account::instance().get(m_account_id);
+        Model_Account::Data *account = Model_Account::instance().get(accountID);
         if (account)
         {
             account_name = account->ACCOUNTNAME;
@@ -190,7 +190,7 @@ wxString mmExportTransaction::getAccountHeaderQIF()
     return buffer;
 }
 
-wxString mmExportTransaction::getCategoriesQIF()
+const wxString mmExportTransaction::getCategoriesQIF()
 {
     wxString buffer_qif = "";
 
@@ -219,7 +219,7 @@ wxString mmExportTransaction::getCategoriesQIF()
 
 }
 
-wxString mmExportTransaction::getCategoriesCSV()
+const wxString mmExportTransaction::getCategoriesCSV()
 {
     wxString buffer_csv ="";
     wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);

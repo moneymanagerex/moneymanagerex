@@ -65,6 +65,7 @@ private:
     wxCheckBox* dateToCheckBox_;
     wxDatePickerCtrl* fromDateCtrl_;
     wxDatePickerCtrl* toDateCtrl_;
+    wxComboBox* m_choiceDateFormat;
     wxCheckBox* toFileCheckBox_;
     wxStaticText* file_name_label_;
     wxButton* button_search_;
