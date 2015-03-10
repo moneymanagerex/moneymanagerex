@@ -293,7 +293,7 @@ const std::map<wxString,wxString> date_formats_regex()
 static const wxString MONTHS[12] =
 {
     wxTRANSLATE("January"), wxTRANSLATE("February"), wxTRANSLATE("March")
-    , wxTRANSLATE("April"), wxTRANSLATE("May "), wxTRANSLATE("June")
+    , wxTRANSLATE("April"), wxTRANSLATE("May"), wxTRANSLATE("June")
     , wxTRANSLATE("July"), wxTRANSLATE("August"), wxTRANSLATE("September")
     , wxTRANSLATE("October"), wxTRANSLATE("November"), wxTRANSLATE("December")
 };
