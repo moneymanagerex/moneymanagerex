@@ -830,7 +830,7 @@ bool mmGeneralReportManager::changeReportGroup(int id, bool ungroup)
     return false;
 }
 
-bool mmGeneralReportManager::renameReportGroup(wxString& GroupName)
+bool mmGeneralReportManager::renameReportGroup(const wxString& GroupName)
 {
     mmDialogComboBoxAutocomplete dlg(this, _("Enter or choose name for the new group"),
         _("Rename group"), GroupName, Model_Report::instance().allGroupNames());
