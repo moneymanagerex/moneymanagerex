@@ -64,6 +64,7 @@ private:
     void OnTo(wxCommandEvent& event);
     void OnTypeChanged(wxCommandEvent& event);
 	void OnAttachments(wxCommandEvent& event);
+    void OnApplyDueDate(wxCommandEvent& WXUNUSED(event));
 
     void OnDateChanged(wxDateEvent& event);
     void dataToControls();
@@ -94,14 +95,14 @@ private:
     wxChoice* choiceStatus_;
     wxChoice* transaction_type_;
 
-    bool edit_;
     bool m_new_bill;
     bool m_transfer;
     bool m_enter_occur;
 
     wxDatePickerCtrl* m_payment_date;   // dpcTransDate     Stored in ::NEXTOCCURRENCEDATE
     wxDatePickerCtrl* m_due_date;       // dpcNextOccDate   Stored in ::TRANSDATE
-    wxCalendarCtrl* calendarCtrl_;
+    wxBitmapButton* m_apply_due_date;
+    wxCalendarCtrl* m_calendar_ctrl;
     wxChoice* itemRepeats_;
     wxCheckBox* itemCheckBoxAutoExeUserAck_;
     wxCheckBox* itemCheckBoxAutoExeSilent_;
@@ -154,7 +155,7 @@ private:
         ID_DIALOG_TRANS_BUTTONCATEGS,
         ID_DIALOG_TRANS_STATIC_ACCOUNT,
         ID_DIALOG_TRANS_TEXTNUMBER,
-        ID_DIALOG_TRANS_BUTTONDATE,
+        ID_DIALOG_TRANS_BUTTON_PAYDATE,
         ID_DIALOG_TRANS_TEXTNOTES,
         ID_DIALOG_TRANS_TEXTAMOUNT,
         ID_DIALOG_TRANS_TOTEXTAMOUNT,
@@ -172,7 +173,6 @@ private:
         ID_DIALOG_TRANS_DATE_SPINNER,
         ID_DIALOG_BD,
         ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME,
-        ID_DIALOG_BD_BUTTON_NEXTOCCUR,
         ID_DIALOG_BD_COMBOBOX_REPEATS,
         ID_DIALOG_BD_TEXTCTRL_NUM_TIMES,
         ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK,
