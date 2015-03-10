@@ -39,6 +39,9 @@ public:
 
     void doRefreshItems(int trx_id = -1);
 
+protected:
+    virtual void OnColClick(wxListEvent& event);
+
 private:
     mmAssetsPanel* m_panel;
 
@@ -51,18 +54,8 @@ private:
     void OnListItemActivated(wxListEvent& event);
     void OnListKeyDown(wxListEvent& event);
     void OnListItemSelected(wxListEvent& event);
-    void OnColClick(wxListEvent& event);
     void OnEndLabelEdit(wxListEvent& event);
-    void OnItemResize(wxListEvent& event);
     bool EditAsset(Model_Asset::Data* pEntry);
-
-    /* Headers Right Click*/
-    int ColumnHeaderNr;
-    void OnColRightClick(wxListEvent& event);
-    void OnHeaderHide(wxCommandEvent& event);
-    void OnHeaderSort(wxCommandEvent& event);
-    void OnHeaderReset(wxCommandEvent& event);
-    void OnHeaderColumn(wxCommandEvent& event);
 
     enum {
         MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1200,
@@ -70,17 +63,6 @@ private:
         MENU_TREEPOPUP_DELETE,
         MENU_ON_DUPLICATE_TRANSACTION,
 		MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
-        MENU_HEADER_HIDE,
-        MENU_HEADER_SORT,
-        MENU_HEADER_RESET,
-        MENU_HEADER_COL_ICON,
-        MENU_HEADER_COL_ID,
-        MENU_HEADER_COL_NAME,
-        MENU_HEADER_COL_DATE,
-        MENU_HEADER_COL_TYPE,
-        MENU_HEADER_COL_VALUE_INITIAL,
-        MENU_HEADER_COL_VALUE_CURRENT,
-        MENU_HEADER_COL_NOTES,
     };
 };
 
