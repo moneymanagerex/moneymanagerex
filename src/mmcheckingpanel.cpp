@@ -103,11 +103,7 @@ wxEND_EVENT_TABLE();
 
 //----------------------------------------------------------------------------
 
-mmCheckingPanel::mmCheckingPanel(wxWindow *parent
-    , mmGUIFrame *frame
-    , int accountID
-    , int id
-    )
+mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accountID, int id) 
     : filteredBalance_(0.0)
     , m_listCtrlAccount()
     , m_AccountID(accountID)
@@ -142,8 +138,6 @@ bool mmCheckingPanel::Create(
 
     this->windowsFreezeThaw();
     CreateControls();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
 
     transFilterActive_ = false;
     transFilterDlg_    = new mmFilterTransactionsDialog(this);
@@ -153,6 +147,8 @@ bool mmCheckingPanel::Create(
     initFilterSettings();
 
     RefreshList();
+    GetSizer()->Fit(this);
+    GetSizer()->SetSizeHints(this);
     this->windowsFreezeThaw();
 
     return true;
@@ -1621,6 +1617,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
     m_cp->updateExtraTransactionData(m_selectedIndex);
     this->SetEvtHandlerEnabled(true);
     Refresh();
+    Update();
     m_cp->m_listCtrlAccount->SetFocus();
 }
 

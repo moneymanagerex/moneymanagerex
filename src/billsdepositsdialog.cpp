@@ -125,11 +125,6 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     wxDialog::Create( parent, id, caption, pos, size, style );
 
     CreateControls();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-
-    SetIcon(mmex::getProgramIcon());
-
     /**********************************************************************************************
      Ament controls according to function settings
     ***********************************************************************************************/
@@ -155,8 +150,11 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
         }
     }
 
+    GetSizer()->Fit(this);
+    GetSizer()->SetSizeHints(this);
+    SetIcon(mmex::getProgramIcon());
+    this->SetInitialSize();
     Centre();
-    Fit();
 
     return TRUE;
 }

@@ -87,7 +87,7 @@ bool mmNewAcctDialog::Create(wxWindow* parent
     m_accessChanged = false;
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
-
+    this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
     Centre();
 

@@ -48,6 +48,7 @@ bool mmQIFExportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
+    this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
     Centre();
     Fit();

@@ -98,13 +98,12 @@ bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     ColName_[COL_NOTES]    = _("Notes");
 
     CreateControls();
+    fillControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
+    this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
     Centre();
-    Fit();
-
-    fillControls();
 
     return TRUE;
 }
