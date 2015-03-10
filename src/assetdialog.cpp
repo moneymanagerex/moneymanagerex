@@ -68,13 +68,11 @@ bool mmAssetDialog::Create(wxWindow* parent
         return false;
 
     CreateControls();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-
-    SetIcon(mmex::getProgramIcon());
-
     dataToControls();
-
+    GetSizer()->Fit(this);
+    this->SetInitialSize();
+    GetSizer()->SetSizeHints(this);
+    SetIcon(mmex::getProgramIcon());
     Centre();
     return true;
 }

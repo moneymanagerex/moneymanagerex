@@ -142,8 +142,6 @@ bool mmCheckingPanel::Create(
 
     this->windowsFreezeThaw();
     CreateControls();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
 
     transFilterActive_ = false;
     transFilterDlg_    = new mmFilterTransactionsDialog(this);
@@ -153,6 +151,8 @@ bool mmCheckingPanel::Create(
     initFilterSettings();
 
     RefreshList();
+    GetSizer()->Fit(this);
+    GetSizer()->SetSizeHints(this);
     this->windowsFreezeThaw();
 
     return true;

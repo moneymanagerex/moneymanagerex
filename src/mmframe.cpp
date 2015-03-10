@@ -798,6 +798,7 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SelectItem(root);
     navTreeCtrl_->EnsureVisible(root);
     navTreeCtrl_->Refresh();
+    navTreeCtrl_->Update();
 }
 
 
