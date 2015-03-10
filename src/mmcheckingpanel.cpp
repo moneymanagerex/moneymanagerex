@@ -103,11 +103,7 @@ wxEND_EVENT_TABLE();
 
 //----------------------------------------------------------------------------
 
-mmCheckingPanel::mmCheckingPanel(wxWindow *parent
-    , mmGUIFrame *frame
-    , int accountID
-    , int id
-    )
+mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accountID, int id) 
     : filteredBalance_(0.0)
     , m_listCtrlAccount()
     , m_AccountID(accountID)
@@ -1621,6 +1617,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
     m_cp->updateExtraTransactionData(m_selectedIndex);
     this->SetEvtHandlerEnabled(true);
     Refresh();
+    Update();
     m_cp->m_listCtrlAccount->SetFocus();
 }
 
