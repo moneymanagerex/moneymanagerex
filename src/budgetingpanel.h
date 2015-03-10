@@ -19,7 +19,6 @@
 #pragma once
 
 #include "mmpanelbase.h"
-#include "util.h"
 #include "model/Model_Budget.h"
 
 class wxListCtrl;
