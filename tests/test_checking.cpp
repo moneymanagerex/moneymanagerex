@@ -69,8 +69,8 @@ void Test_Checking::setUp()
         m_base_frame->Show(true);
     }
 
-    m_commit_hook = new CommitCallbackHook();
     m_test_db.Open(m_test_db_filename);
+    m_commit_hook = new CommitCallbackHook();
     m_test_db.SetCommitHook(m_commit_hook);
 
     m_dbmodel = new DB_Init_Model();
@@ -488,6 +488,7 @@ void Test_Checking::Account_View_Savings()
     wxMessageBox("Please Examine: Account View."
         "\n\nNAB - Savings\n\nContinue other tests ...",
         "Testing Account: Savings", wxOK, wxTheApp->GetTopWindow());
+    delete(account_panel);
 }
 
 void Test_Checking::Account_View_Mary()
@@ -512,5 +513,6 @@ void Test_Checking::Account_View_Mary()
     wxMessageBox("Please Examine: Account View."
         "\n\nWallet - Mary.\n\nContinue other tests ...",
         "Testing Account: Mary", wxOK, wxTheApp->GetTopWindow());
+    delete(account_panel);
 }
 //--------------------------------------------------------------------------
