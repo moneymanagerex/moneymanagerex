@@ -113,7 +113,7 @@ void mmOptionGeneralSettings::Create()
     generalPanelSizer->Add(dateFormatStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     m_date_format_choice = new wxChoice(this, ID_DIALOG_OPTIONS_WXCHOICE_DATE);
-    for (const auto& i : date_formats_map())
+    for (const auto& i : g_date_formats_map)
     {
         m_date_format_choice->Append(i.second, new wxStringClientData(i.first));
         if (m_date_format == i.first) m_date_format_choice->SetStringSelection(i.second);
