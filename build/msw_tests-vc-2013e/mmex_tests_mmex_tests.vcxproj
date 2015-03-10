@@ -260,6 +260,7 @@
     <ClCompile Include="..\..\src\mmOptionMiscSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionNetSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionViewSettings.cpp" />
+    <ClCompile Include="..\..\src\mmSimpleDialogs.cpp" />
     <ClCompile Include="..\..\src\model\Model_Account.cpp" />
     <ClCompile Include="..\..\src\model\Model_Asset.cpp" />
     <ClCompile Include="..\..\src\model\Model_Attachment.cpp" />
@@ -469,7 +470,7 @@
     <ClInclude Include="..\..\src\mmhomepagepanel.h" />
     <ClInclude Include="..\..\src\mmpanelbase.h" />
     <ClInclude Include="..\..\src\mmreportspanel.h" />
-    <ClInclude Include="..\..\src\mmsinglechoicedialog.h" />
+    <ClInclude Include="..\..\src\mmSimpleDialogs.h" />
     <ClInclude Include="..\..\src\mmtextctrl.h" />
     <ClInclude Include="..\..\3rd\mongoose\mongoose.h" />
     <ClInclude Include="..\..\src\optionsdialog.h" />

@@ -184,6 +184,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmOptionMiscSettings.obj \
 	mmex_tests_mmOptionNetSettings.obj \
 	mmex_tests_mmOptionViewSettings.obj \
+	mmex_tests_mmSimpleDialogs.obj \
 	mmex_tests_mmcheckingpanel.obj \
 	mmex_tests_mmex.obj \
 	mmex_tests_mmframe.obj \
@@ -871,6 +872,9 @@ mmex_tests_mmOptionNetSettings.obj: ..\..\src\mmOptionNetSettings.cpp
 mmex_tests_mmOptionViewSettings.obj: ..\..\src\mmOptionViewSettings.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionViewSettings.cpp
 
+mmex_tests_mmSimpleDialogs.obj: ..\..\src\mmSimpleDialogs.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmSimpleDialogs.cpp
+
 mmex_tests_mmcheckingpanel.obj: ..\..\src\mmcheckingpanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmcheckingpanel.cpp
 
@@ -945,7 +949,7 @@ mmex_tests_wizard_newdb.obj: ..\..\src\wizard_newdb.cpp
 
 mmex_tests_wizard_update.obj: ..\..\src\wizard_update.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\wizard_update.cpp
-	
+
 mmex_tests_budget.obj: ..\..\src\reports\budget.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\reports\budget.cpp
 

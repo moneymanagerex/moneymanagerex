@@ -18,21 +18,22 @@
  ********************************************************/
 
 #include "stockspanel.h"
-#include "stockdialog.h"
 #include "attachmentdialog.h"
-#include "util.h"
 #include "constants.h"
-#include "mmsinglechoicedialog.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Infotable.h"
+#include "mmSimpleDialogs.h"
+#include "stockdialog.h"
+#include "util.h"
+
 #include "model/Model_Attachment.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Setting.h"
 #include "model/Model_StockHistory.h"
 
-#include "../resources/uparrow.xpm"
-#include "../resources/downarrow_red.xpm"
-#include "../resources/downarrow.xpm"
-#include "../resources/leds.xpm"
 #include "../resources/attachment.xpm"
+#include "../resources/downarrow.xpm"
+#include "../resources/downarrow_red.xpm"
+#include "../resources/leds.xpm"
+#include "../resources/uparrow.xpm"
 
 static const wxString STOCKTIPS[] = { 
     wxTRANSLATE("Using MMEX it is possible to track stocks/mutual funds investments."),
@@ -762,7 +763,7 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
         refresh_button_->SetBitmapLabel(wxBitmap(wxImage(led_red_xpm).Scale(16,16)));
         stock_details_->SetLabelText(sError);
         stock_details_short_->SetLabelText(_("Error"));
-        mmShowErrorMessage(this, sError, _("Error"));
+        mmErrorDialogs::MessageError(this, sError, _("Error"));
     }
 }
 

@@ -140,6 +140,7 @@ MMEX_OBJECTS =  \
 	mmex_mmOptionMiscSettings.o \
 	mmex_mmOptionNetSettings.o \
 	mmex_mmOptionViewSettings.o \
+	mmex_mmSimpleDialogs.o \
 	mmex_mmcheckingpanel.o \
 	mmex_mmex.o \
 	mmex_mmframe.o \
@@ -622,6 +623,9 @@ mmex_mmOptionNetSettings.o: ../../src/mmOptionNetSettings.cpp
 mmex_mmOptionViewSettings.o: ../../src/mmOptionViewSettings.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_mmSimpleDialogs.o: ../../src/mmSimpleDialogs.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_mmcheckingpanel.o: ../../src/mmcheckingpanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -696,7 +700,7 @@ mmex_wizard_newdb.o: ../../src/wizard_newdb.cpp
 
 mmex_wizard_update.o: ../../src/wizard_update.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-	
+
 mmex_budget.o: ../../src/reports/budget.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 

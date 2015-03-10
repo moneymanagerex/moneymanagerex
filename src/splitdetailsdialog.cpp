@@ -19,11 +19,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "splitdetailsdialog.h"
 #include "categdialog.h"
-#include "util.h"
 #include "constants.h"
+#include "mmSimpleDialogs.h"
+#include "util.h"
 #include "validators.h"
-#include "model/Model_Checking.h"
+
 #include "model/Model_Category.h"
+#include "model/Model_Checking.h"
 #include "model/Model_Subcategory.h"
 
 #include <wx/valnum.h>
@@ -179,7 +181,7 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
 {
     if (split_.CATEGID == -1)
     {
-        mmMessageCategoryInvalid((wxWindow*)bCategory_);
+        mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_);
         return;
     }
 

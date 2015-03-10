@@ -22,7 +22,7 @@
 #include "categdialog.h"
 #include "constants.h"
 #include "mmOption.h"
-#include "mmsinglechoicedialog.h"
+#include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "payeedialog.h"
 #include "util.h"
@@ -931,7 +931,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     Model_Account::Data *acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     if (!acc)
     {
-        mmMessageAccountInvalid((wxWindow*)bAccount_);
+        mmErrorDialogs::InvalidAccount((wxWindow*)bAccount_);
         return;
     }
 
@@ -939,7 +939,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     {
         Model_Account::Data *to_acc = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
         if (!to_acc || to_acc->ACCOUNTID == acc->ACCOUNTID) {
-            mmMessageAccountInvalid((wxWindow*)bPayee_, true);
+            mmErrorDialogs::InvalidAccount((wxWindow*)bPayee_, true);
             return;
         }
 
@@ -956,7 +956,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     {
         Model_Payee::Data *payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
         if (!payee) {
-            mmMessagePayeeInvalid((wxWindow*) bPayee_);
+            mmErrorDialogs::InvalidPayee((wxWindow*) bPayee_);
             return;
         }
         m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
@@ -966,7 +966,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     {
         if (m_bill_data.local_splits.empty())
         {
-            mmMessageCategoryInvalid((wxWindow*)bCategory_);
+            mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_);
             return;
         }
     }
@@ -974,7 +974,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     {
         if (Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID).empty())
         {
-            mmMessageCategoryInvalid((wxWindow*)bCategory_);
+            mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_);
             return;
         }
     }
@@ -990,7 +990,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
                     m_bill_data.TRANSAMOUNT = -m_bill_data.TRANSAMOUNT;
             }
             else {
-                mmShowErrorMessageInvalid(this, _("Amount"));
+                mmErrorDialogs::MessageInvalid(this, _("Amount"));
                 return;
             }
         }
