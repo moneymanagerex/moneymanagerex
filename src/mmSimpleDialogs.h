@@ -46,7 +46,7 @@ class mmDialogComboBoxAutocomplete : public wxDialog
 public:
     mmDialogComboBoxAutocomplete();
     mmDialogComboBoxAutocomplete(wxWindow *parent, const wxString& message, const wxString& caption,
-        const wxString defaultText, const wxArrayString& choices);
+        const wxString& defaultText, const wxArrayString& choices);
 
     wxString getText()
     {

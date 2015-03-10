@@ -58,7 +58,7 @@ mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete()
 {
 }
 mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete(wxWindow *parent, const wxString& message, const wxString& caption,
-    const wxString defaultText, const wxArrayString& choices)
+    const wxString& defaultText, const wxArrayString& choices)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX;
     Default = defaultText;

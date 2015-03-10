@@ -334,8 +334,8 @@ void mmPayeeDialog::OnTextChanged(wxCommandEvent& event)
 void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
 {
     wxCommandEvent evt;
-    int id = event.GetId();
-    switch(id)
+
+    switch(event.GetId())
     {
         case MENU_DEFINE_CATEGORY: DefineDefaultCategory() ; break;
         case MENU_NEW_PAYEE: AddPayee(); break;
