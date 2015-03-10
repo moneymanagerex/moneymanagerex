@@ -583,7 +583,7 @@ void mmQIFImportDialog::getDateMask()
 
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 {
-    this->Freeze();
+    windowsFreezeThaw(this);
     m_FileNameStr = file_name_ctrl_->GetValue();
 
     const wxString choose_ext = _("QIF Files");
@@ -601,7 +601,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
         m_userDefinedDateMask = false;
         getDateMask();
     }
-    this->Thaw();
+    windowsFreezeThaw(this);
 }
 
 void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)

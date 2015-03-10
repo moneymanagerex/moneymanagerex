@@ -398,8 +398,8 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     //////////////////////////////////////////////////////////////////
 
     /*GRM Reports*/
+    auto records = Model_Report::instance().all();
     //Sort by group name and report name
-    Model_Report::Data_Set records = Model_Report::instance().all();
     std::sort(records.begin(), records.end(), SorterByREPORTNAME());
     std::stable_sort(records.begin(), records.end(), SorterByGROUPNAME());
 
