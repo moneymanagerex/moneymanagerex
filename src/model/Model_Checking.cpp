@@ -421,10 +421,9 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
         if (!trx.empty())
         {
             std::stable_sort(trx.begin(), trx.end(), SorterByTRANSDATE());
-            data.PAYEEID = trx.rbegin()->PAYEEID;
-            Model_Payee::Data* payee = Model_Payee::instance().get(data.PAYEEID);
-
-            if (payee && mmIniOptions::instance().transCategorySelectionNone_)
+            Model_Payee::Data* payee = Model_Payee::instance().get(trx.rbegin()->PAYEEID);
+            if (payee) data.PAYEEID = payee->PAYEEID;
+            if (payee && mmIniOptions::instance().transCategorySelectionNone_ != 0)
             {
                 data.CATEGID = payee->CATEGID;
                 data.SUBCATEGID = payee->SUBCATEGID;
