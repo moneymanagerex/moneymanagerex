@@ -23,7 +23,6 @@ License:        GPLv2+
 Icon:           mmex.xpm
 URL:            $MMEX_HOMEPAGE
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Prefix:         /usr
 #Requires:    	$MMEX_RPM_DEPENDS
 
 %description
@@ -72,7 +71,7 @@ cp resources/mmex.xpm "$BUILD_DIR/SOURCES"
 cd ..
 cp -r moneymanagerex "$BUILD_DIR/SOURCES/$PACKAGE_NAME"
 #No need to copy the git stuff over
-rm -r "$BUILD_DIR/SOURCES/$PACKAGE_NAME/.git*"
+rm -rf "$BUILD_DIR/SOURCES/$PACKAGE_NAME/.git"
 
 cd "$BUILD_DIR/SOURCES"
 
