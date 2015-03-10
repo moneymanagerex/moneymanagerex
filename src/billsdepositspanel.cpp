@@ -142,6 +142,8 @@ void billsDepositsListCtrl::OnColClick(wxListEvent& event)
 
     if (m_selected_row >= 0) 
         refreshVisualList(m_bdp->initVirtualListControl(m_bdp->bills_[m_selected_row].BDID));
+    else
+        refreshVisualList(m_bdp->initVirtualListControl(-1));
 }
 
 void billsDepositsListCtrl::OnColRightClick(wxListEvent& event)
