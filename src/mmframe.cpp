@@ -952,6 +952,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     }
     else
     {
+        helpFileIndex_ = -1;
         const wxString data = iData->getString();
         if (data == "item@Help")
             helpFileIndex_ = mmex::HTML_INDEX;
@@ -959,8 +960,9 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             helpFileIndex_ = mmex::HTML_INVESTMENT;
         else if (data == "item@Budgeting")
             helpFileIndex_ = mmex::HTML_BUDGET;
-        else
-            helpFileIndex_ = -1;
+        else if (data == "item@Reports")
+            helpFileIndex_ = mmex::HTML_CUSTOM_SQL;
+
         if (helpFileIndex_ > -1)
         {
             createHelpPage();
@@ -1129,8 +1131,13 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             wxCommandEvent e;
             OnBudgetSetupDialog(e);
         }
-        else
-        if (iData->getString() == "item@Bank Accounts" ||
+        else if (iData->getString() == "item@Reports")
+        {
+            wxMenu menu;
+            menu.Append(wxID_VIEW_LIST, _("General Report Manager"));
+            PopupMenu(&menu, pt);
+        }
+        else if (iData->getString() == "item@Bank Accounts" ||
             iData->getString() == "item@Term Accounts" ||
             iData->getString() == "item@Credit Card Accounts" ||
             iData->getString() == "item@Stocks")
