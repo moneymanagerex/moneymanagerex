@@ -1340,25 +1340,12 @@ void mmGUIFrame::createHelpPage()
 
 void mmGUIFrame::createMenu()
 {
-    wxBitmap toolBarBitmaps[11];
-    toolBarBitmaps[0] = wxBitmap(new_xpm);
-    toolBarBitmaps[1] = wxBitmap(open_xpm);
-    toolBarBitmaps[2] = wxBitmap(save_xpm);
-    toolBarBitmaps[3] = wxBitmap(newacct_xpm);
-    toolBarBitmaps[4] = wxBitmap(house_xpm);
-    toolBarBitmaps[5] = wxBitmap(print_xpm);
-    toolBarBitmaps[6] = wxBitmap(printpreview_xpm);
-    toolBarBitmaps[7] = wxBitmap(printsetup_xpm);
-    toolBarBitmaps[8] = wxBitmap(edit_account_xpm);
-    toolBarBitmaps[9] = wxBitmap(delete_account_xpm);
-    toolBarBitmaps[10] = wxBitmap(accounttree_xpm);
-
     wxMenu *menu_file = new wxMenu;
 
     wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _("&New Database\tCtrl-N"), _("New Database"));
-    menuItemNew->SetBitmap(toolBarBitmaps[0]);
+    menuItemNew->SetBitmap(wxBitmap(new_xpm));
     wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _("&Open Database\tCtrl-O"), _("Open Database"));
-    menuItemOpen->SetBitmap(toolBarBitmaps[1]);
+    menuItemOpen->SetBitmap(wxBitmap(open_xpm));
     wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, _("Save Database &As"), _("Save Database As"));
     menuItemSaveAs->SetBitmap(wxBitmap(saveas_xpm));
     menu_file->Append(menuItemNew);
@@ -1435,25 +1422,25 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
         , _("New &Account"), _("New Account"));
-    menuItemNewAcct->SetBitmap(toolBarBitmaps[3]);
+    menuItemNewAcct->SetBitmap(wxBitmap(newacct_xpm));
     menuAccounts->Append(menuItemNewAcct);
 
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST
         , _("Account &List"), _("Show Account List"));
-    menuItemAcctList->SetBitmap(toolBarBitmaps[4]);
+    menuItemAcctList->SetBitmap(wxBitmap(house_xpm));
 
     wxMenuItem* menuItemAcctEdit = new wxMenuItem(menuAccounts, MENU_ACCTEDIT
         , _("&Edit Account"), _("Edit Account"));
-    menuItemAcctEdit->SetBitmap(toolBarBitmaps[8]);
+    menuItemAcctEdit->SetBitmap(wxBitmap(edit_account_xpm));
 
     wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE
         , _("&Delete Account"), _("Delete Account from database"));
-    menuItemAcctDelete->SetBitmap(toolBarBitmaps[9]);
+    menuItemAcctDelete->SetBitmap(wxBitmap(delete_account_xpm));
     menuAccounts->Append(menuItemAcctDelete);
 
     wxMenuItem* menuItemReallocateAcct = new wxMenuItem(menuAccounts, MENU_ACCOUNT_REALLOCATE
         , _("&Reallocate Account"), _("Change the account type of an account."));
-    menuItemReallocateAcct->SetBitmap(toolBarBitmaps[10]);
+    menuItemReallocateAcct->SetBitmap(wxBitmap(accounttree_xpm));
     menuAccounts->Append(menuItemReallocateAcct);
 
     menuAccounts->Append(menuItemAcctList);
