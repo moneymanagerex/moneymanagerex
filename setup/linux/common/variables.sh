@@ -4,8 +4,9 @@
 MMEX_VERSION="1.2.0"
 MMEX_RELEASE_DATE="2015-02-09"
 MMEX_EMAIL="moneymanagerex@moneymanagerex.org"
-MMEX_HOMEPAGE="http://www.moneymanagerex.org"
-MMEX_DEPENDS="libc6 (>= 2.3.5-1), libwxgtk3.0-0 (>= 3.0.0)"
+MMEX_HOMEPAGE="http://www.moneymanagerex.org"   
+MMEX_DEB_DEPENDS="libc6 (>= 2.3.5-1), libwxgtk3.0-0 (>= 3.0.0)"
+MMEX_RPM_DEPENDS=""
 MMEX_SUMMARY="Simple to use financial management software"
 MMEX_DESCRIPTION="Simple to use financial management software
  Money Manager Ex (MMEX) is a free, open-source,

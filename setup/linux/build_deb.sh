@@ -15,10 +15,6 @@ ARCHITECTURE="amd64"
 . ../common/variables.sh
 
 # Specify the build version of mmex
-MMEX_VERSION="1.2.0"
-MMEX_RELEASE_DATE="2015-02-09"
-EMAIL="moneymanagerex@moneymanagerex.org"
-HOMEPAGE="http://www.moneymanagerex.org"
 BUILD_DIR="$HOME/build"
 RELEASE_DIR="release"
 
@@ -50,32 +46,35 @@ if [ $? -gt 0 ]; then
     exit 1
 fi
 
-cd -
+cd "$BUILD_DIR/$PACKAGE_NAME"
 
 #Strip the binary before calculating the installed size
-strip "$BUILD_DIR/$PACKAGE_NAME/usr/bin/mmex"
+strip "usr/bin/mmex"
 
 #Make sure any needed files are in place and formatted correctly
 #Changelog
-mv "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/version.txt" "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/changelog"
-gzip -9 -f "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/changelog"
+mv "usr/share/doc/mmex/version.txt" "usr/share/doc/mmex/changelog"
+gzip -9 -f "usr/share/doc/mmex/changelog"
 
 #Copyright
-cp "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/contrib.txt" "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/copyright"
-sed -i "s/See the GNU General Public License for more details./A copy of the GPLv2 can be found in \"\/usr\/share\/common-licenses\/GPL-2\"/g" "$BUILD_DIR/$PACKAGE_NAME/usr/share/doc/mmex/copyright"
+cp "usr/share/doc/mmex/contrib.txt" "usr/share/doc/mmex/copyright"
+sed -i "s/See the GNU General Public License for more details./A copy of the GPLv2 can be found in \"\/usr\/share\/common-licenses\/GPL-2\"/g" "usr/share/doc/mmex/copyright"
 
 #Copy the manpage in to place and modify
-cp "$MMEX_DIR/setup/linux/common/mmex.1" "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1"
-sed -i "s/MMEX_RELEASE_DATE/$MMEX_RELEASE_DATE/g" "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1"
-sed -i "s/MMEX_VERSION/$MMEX_VERSION/g" "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1"
-gzip -9 -f "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1"
-chmod 644 "$BUILD_DIR/$PACKAGE_NAME/usr/share/man/man1/mmex.1.gz"
+cp "$MMEX_DIR/setup/linux/common/mmex.1" "usr/share/man/man1/mmex.1"
+sed -i "s/MMEX_RELEASE_DATE/$MMEX_RELEASE_DATE/g" "usr/share/man/man1/mmex.1"
+sed -i "s/MMEX_VERSION/$MMEX_VERSION/g" "usr/share/man/man1/mmex.1"
+gzip -9 -f "usr/share/man/man1/mmex.1"
+chmod 644 "usr/share/man/man1/mmex.1.gz"
 
 #Calculate installed size
 INSTALLED_SIZE=$(du -sb $BUILD_DIR/ | cut -f1)
 INSTALLED_SIZE=`expr $INSTALLED_SIZE / 1024`
 
-mkdir -p "$BUILD_DIR/$PACKAGE_NAME/DEBIAN"
+mkdir -p "DEBIAN"
+
+#Remove /'s from the description
+$MMEX_DESCRIPTION="${MMEX_DESCRIPTION//\\/}"
 
 #Create the control file
 echo "Package: mmex
@@ -84,10 +83,10 @@ Section: misc
 Priority: extra
 Architecture: $ARCHITECTURE
 Homepage: $MMEX_HOMEPAGE
-Depends: $MMEX_DEPENDS
+Depends: $MMEX_DEB_DEPENDS
 Installed-Size: $INSTALLED_SIZE
 Maintainer: MoneyManagerEx <$MMEX_EMAIL>
-Description: $MMEX_DESCRIPTION" > $BUILD_DIR/$PACKAGE_NAME/DEBIAN/control
+Description: $MMEX_DESCRIPTION" > "DEBIAN/control"
 
 #Build the package
 cd $BUILD_DIR
