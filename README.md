@@ -18,7 +18,7 @@ and user-friendliness - something one can use everyday.
 1. [wxWidgets](http://wxwidgets.org/) 3.0+
 2. [wxSqlite3](https://github.com/moneymanagerex/wxsqlite3)
 3. [SQLite3](http://sqlite.org/)
-3. [Chart.JS](https://github.com/nnnick/Chart.js)
+3. [ChartNew.JS](https://github.com/FVANCOP/ChartNew.js)
 4. [html-template](https://github.com/moneymanagerex/html-template)
 
 ### Supported platforms:
