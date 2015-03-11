@@ -19,12 +19,11 @@ Release:        1%{?dist}
 Source:         http://www.codelathe.com/mmex/%{name}-%{version}.tar.gz
 Summary:        $MMEX_SUMMARY
 Group:          Applications/Productivity
-License:        GPL2 or any later version
+License:        GPLv2+
 Icon:           mmex.xpm
 URL:            $MMEX_HOMEPAGE
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Prefix:         /usr
-Requires:    	$MMEX_RPM_DEPENDS
+#Requires:    	$MMEX_RPM_DEPENDS
 
 %description
 $MMEX_DESCRIPTION
@@ -32,6 +31,7 @@ $MMEX_DESCRIPTION
 
 %prep
 %setup -q
+./bootstrap
 
 
 %build
@@ -40,28 +40,29 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+rm -rf %{buildroot}
+make install DESTDIR=%{buildroot}
 
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
+%find_lang %{name}
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root,-)
-/usr/bin/mmex
-/usr/share/mmex
+%{_bindir}/*
+%{_datadir}/*
 /usr/share/icons/hicolor/scalable/apps
 /usr/share/applications
 %docdir /usr/share/doc/mmex
-/usr/share/doc/mmex
-/usr/share/man/man1
+/usr/share/doc/mmex/*
+%{_mandir}/man1/*
 
 
-%changelog" > "$BUILD_DIR/SPECS"
+%changelog" > "$BUILD_DIR/SPECS/mmex.spec"
 
-cd ../../..
+cd ../..
 
 #Copy icon
 cp resources/mmex.xpm "$BUILD_DIR/SOURCES"
@@ -69,6 +70,8 @@ cp resources/mmex.xpm "$BUILD_DIR/SOURCES"
 #Copy source
 cd ..
 cp -r moneymanagerex "$BUILD_DIR/SOURCES/$PACKAGE_NAME"
+#No need to copy the git stuff over
+rm -rf "$BUILD_DIR/SOURCES/$PACKAGE_NAME/.git"
 
 cd "$BUILD_DIR/SOURCES"
 
