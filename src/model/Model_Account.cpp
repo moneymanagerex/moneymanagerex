@@ -100,6 +100,17 @@ Model_Account::Data* Model_Account::get(const wxString& name)
     return account;
 }
 
+/** Get the Data record instance in memory. */
+Model_Account::Data* Model_Account::getByAccNum(const wxString& num)
+{
+    Data* account = this->get_one(ACCOUNTNUM(num));
+    if (account) return account;
+
+    Data_Set items = this->find(ACCOUNTNUM(num));
+    if (!items.empty()) account = this->get(items[0].ACCOUNTID, this->db_);
+    return account;
+}
+
 wxString Model_Account::get_account_name(int account_id)
 {
     Data* account = instance().get(account_id);

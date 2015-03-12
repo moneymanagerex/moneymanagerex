@@ -104,6 +104,7 @@ private:
     wxComboBox* choiceDateFormat_;
     wxCheckBox* accountCheckBox_;
     wxChoice* accountDropDown_;
+    wxCheckBox* accountNumberCheckBox_;     
     wxButton* btnOK_;
 
     enum EColumn
