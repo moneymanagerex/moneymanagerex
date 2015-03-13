@@ -112,7 +112,7 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
     dataToControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
-
+    this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
 
     Centre();

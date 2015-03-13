@@ -798,6 +798,7 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SelectItem(root);
     navTreeCtrl_->EnsureVisible(root);
     navTreeCtrl_->Refresh();
+    navTreeCtrl_->Update();
 }
 
 
@@ -1119,6 +1120,9 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 bool webStatus = !account->WEBSITE.IsEmpty();
                 menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, webStatus);
                 menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments"));
+
+                if (Model_Account::type(account) == Model_Account::INVESTMENT)
+                    menu.Enable(MENU_TREEPOPUP_REALLOCATE, false);
 
                 PopupMenu(&menu, pt);
             }
@@ -2245,6 +2249,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Check(mmIniOptions::instance().budgetReportWithSummaries_);
         menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Check(mmIniOptions::instance().ignoreFutureTransactions_);
         menuBar_->Refresh();
+        menuBar_->Update();
 
         updateNavTreeControl();
         createHomePage();

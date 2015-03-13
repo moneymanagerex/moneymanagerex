@@ -115,7 +115,6 @@ private:
 
     wxString dt_;
     wxString type_;
-    wxString amount_;
     wxString transNum_;
     wxString notes_;
     int payeeID_;

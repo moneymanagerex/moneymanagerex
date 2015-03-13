@@ -147,6 +147,7 @@ void mmBudgetingPanel::RefreshList()
 {
     initVirtualListControl();
     listCtrlBudget_->Refresh();
+    listCtrlBudget_->Update();
     if (!budget_.empty())
         listCtrlBudget_->EnsureVisible(0);
 }
@@ -672,6 +673,7 @@ void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
     {
         initVirtualListControl();
         listCtrlBudget_->Refresh();
+        listCtrlBudget_->Update();
         listCtrlBudget_->EnsureVisible(selectedIndex);
     }
 }

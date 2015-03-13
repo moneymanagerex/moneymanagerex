@@ -59,6 +59,9 @@ public:
 public:
     /** Return the Data record for the given account name */
     Data* get(const wxString& name);
+  
+    /** Return the Data record for the given account num */
+    Data* getByAccNum(const wxString& num);   
 
     static wxString get_account_name(int account_id);
 
