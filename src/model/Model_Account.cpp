@@ -303,3 +303,10 @@ int Model_Account::checking_account_num()
 {
     return Model_Account::instance().find(ACCOUNTTYPE(all_type()[CHECKING])).size();
 }
+
+bool Model_Account::Exist(const wxString& account_name)
+{
+    Data_Set list = instance().find(ACCOUNTNAME(account_name));
+
+    return (!list.size() == 0);
+}
