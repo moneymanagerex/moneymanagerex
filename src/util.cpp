@@ -16,20 +16,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include <wx/sstream.h>
-
 #include "util.h"
-#include "mmex.h"
-#include "paths.h"
-#include "constants.h"
-#include "singleton.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Setting.h"
-#include <wx/richtooltip.h>
-#include <wx/sstream.h>
-
 #include "validators.h"
 #include "model/Model_Currency.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Setting.h"
+#include <wx/sstream.h>
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
@@ -38,98 +30,11 @@ int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
 }
 
 //----------------------------------------------------------------------------
-wxString selectLanguageDlg(wxWindow *parent, const wxString &langPath, bool verbose)
-{
-    wxString lang;
-
-    wxArrayString lang_files;
-    wxFileName fn(langPath, "");
-    fn.AppendDir("en");
-    size_t cnt = wxDir::GetAllFiles(fn.GetPath(), &lang_files, "*.mo");
-
-    if (!cnt)
-    {
-        if (verbose)
-        {
-            wxString s = wxString::Format("Can't find language files (.mo) at \"%s\"", fn.GetPath());
-
-            wxMessageDialog dlg(parent, s, "Error", wxOK|wxICON_ERROR);
-            dlg.ShowModal();
-        }
-
-        return lang;
-    }
-
-    for (size_t i = 0; i < cnt; ++i)
-    {
-        wxFileName fname(lang_files[i]);
-        lang_files[i] = fname.GetName().Left(1).Upper() + fname.GetName().SubString(1,fname.GetName().Len());
-    }
-
-    lang_files.Sort(CaseInsensitiveCmp);
-    lang = wxGetSingleChoice("Please choose language", "Languages", lang_files, parent);
-
-    return lang.Lower();
-}
-
-
-//----------------------------------------------------------------------------
 void correctEmptyFileExt(const wxString& ext, wxString & fileName)
 {
     wxFileName tempFileName(fileName);
     if (tempFileName.GetExt().IsEmpty())
         fileName += "." + ext;
-}
-
-/*
-    locale.AddCatalog(lang) calls wxLogWarning and returns true for corrupted .mo file,
-    so I should use locale.IsLoaded(lang) also.
-*/
-const wxString mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool forced_show_dlg, bool save_setting)
-{
-    wxString lang;
-
-    const wxString langPath = mmex::getPathShared(mmex::LANG_DIR);
-    wxLocale &locale = app->getLocale();
-
-    if (wxDir::Exists(langPath))
-    {
-        locale.AddCatalogLookupPathPrefix(langPath);
-    }
-    else
-    {
-        if (forced_show_dlg)
-        {
-            wxMessageDialog dlg(window
-                , wxString::Format(_("Directory of language files does not exist:\n%s"), langPath)
-                , _("Error"), wxOK | wxICON_ERROR);
-            dlg.ShowModal();
-        }
-
-        return lang;
-    }
-
-    if (!forced_show_dlg)
-    {
-        lang = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
-        if (!lang.empty() && locale.AddCatalog(lang) && locale.IsLoaded(lang))
-        {
-            mmOptions::instance().language_ = lang;
-            return lang;
-        }
-    }
-
-    lang = selectLanguageDlg(window, langPath, forced_show_dlg);
-
-    if (save_setting && !lang.empty())
-    {
-        bool ok = locale.AddCatalog(lang) && locale.IsLoaded(lang);
-        if (!ok)  lang.clear(); // bad .mo file
-        mmOptions::instance().language_ = lang;
-        Model_Setting::instance().Set(LANGUAGE_PARAMETER, lang);
-    }
-
-    return lang;
 }
 
 const wxString inQuotes(const wxString& l, const wxString& delimiter)
@@ -241,7 +146,6 @@ bool download_file(const wxString& site, const wxString& path)
 }
 
 //* Date Functions----------------------------------------------------------*//
-
 const wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
 {
     wxString dateFmt = mmOptions::instance().dateFormat_;
@@ -266,7 +170,6 @@ const wxString mmGetDateForDisplay(const wxDateTime &dt)
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString &sDateMask)
 {
     wxString mask = sDateMask;
-    const wxDateTime today = date;
     mask.Replace("%Y%m%d", "%Y %m %d");
     if (date_formats_regex().count(mask) == 0) return false;
 
@@ -274,10 +177,11 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
     wxRegEx pattern(regex);
     //skip dot if present in pattern but not in date string 
     const wxString separator = mask.Mid(2,1);
-    date.ParseFormat(sDate, mask, today);
+    date.ParseFormat(sDate, mask, date);
     if (pattern.Matches(sDate) && sDate.Contains(separator))
         return true;
-    else {
+    else
+    {
         //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
         return false;
     }
@@ -325,34 +229,6 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     return financialYear;
 }
 
-const std::map<wxString,wxString> date_formats_map()
-{
-    std::map<wxString, wxString> date_formats;
-    date_formats["%Y-%m-%d"] = "YYYY-MM-DD";
-    date_formats["%d/%m/%y"] = "DD/MM/YY";
-    date_formats["%d/%m/%Y"] = "DD/MM/YYYY";
-    date_formats["%d-%m-%y"] = "DD-MM-YY";
-    date_formats["%d-%m-%Y"] = "DD-MM-YYYY";
-    date_formats["%d.%m.%y"] = "DD.MM.YY";
-    date_formats["%d.%m.%Y"] = "DD.MM.YYYY";
-    date_formats["%d,%m,%y"] = "DD,MM,YY";
-    date_formats["%d/%m'%Y"] = "DD/MM'YYYY";
-    date_formats["%d/%m %Y"] = "DD/MM YYYY";
-    date_formats["%m/%d/%y"] = "MM/DD/YY";
-    date_formats["%m/%d/%Y"] = "MM/DD/YYYY";
-    date_formats["%m-%d-%y"] = "MM-DD-YY";
-    date_formats["%m-%d-%Y"] = "MM-DD-YYYY";
-    date_formats["%m/%d'%y"] = "MM/DD'YY";
-    date_formats["%m/%d'%Y"] = "MM/DD'YYYY";
-    date_formats["%y/%m/%d"] = "YY/MM/DD";
-    date_formats["%y-%m-%d"] = "YY-MM-DD";
-    date_formats["%Y/%m/%d"] = "YYYY/MM/DD";
-    date_formats["%Y.%m.%d"] = "YYYY.MM.DD";
-    date_formats["%Y%m%d"] = "YYYYMMDD";
-
-    return date_formats;
-}
-
 const std::map<wxString,wxString> date_formats_regex()
 {
     const wxString dd = "((([0 ][1-9])|([1-2][0-9])|(3[0-1]))|([1-9]))";
@@ -385,10 +261,34 @@ const std::map<wxString,wxString> date_formats_regex()
     return date_regex;
 }
 
+const std::map<wxString, wxString> g_date_formats_map = {
+    { "%Y-%m-%d", "YYYY-MM-DD" }
+    , { "%d/%m/%y", "DD/MM/YY" }
+    , { "%d/%m/%Y", "DD/MM/YYYY" }
+    , { "%d-%m-%y", "DD-MM-YY" }
+    , { "%d-%m-%Y", "DD-MM-YYYY" }
+    , { "%d.%m.%y", "DD.MM.YY" }
+    , { "%d.%m.%Y", "DD.MM.YYYY" }
+    , { "%d,%m,%y", "DD,MM,YY" }
+    , { "%d/%m'%Y", "DD/MM'YYYY" }
+    , { "%d/%m %Y", "DD/MM YYYY" }
+    , { "%m/%d/%y", "MM/DD/YY" }
+    , { "%m/%d/%Y", "MM/DD/YYYY" }
+    , { "%m-%d-%y", "MM-DD-YY" }
+    , { "%m-%d-%Y", "MM-DD-YYYY" }
+    , { "%m/%d'%y", "MM/DD'YY" }
+    , { "%m/%d'%Y", "MM/DD'YYYY" }
+    , { "%y/%m/%d", "YY/MM/DD" }
+    , { "%y-%m-%d", "YY-MM-DD" }
+    , { "%Y/%m/%d", "YYYY/MM/DD" }
+    , { "%Y.%m.%d", "YYYY.MM.DD" }
+    , { "%Y%m%d", "YYYYMMDD" }
+};
+
 static const wxString MONTHS[12] =
 {
     wxTRANSLATE("January"), wxTRANSLATE("February"), wxTRANSLATE("March")
-    , wxTRANSLATE("April"), wxTRANSLATE("May "), wxTRANSLATE("June")
+    , wxTRANSLATE("April"), wxTRANSLATE("May"), wxTRANSLATE("June")
     , wxTRANSLATE("July"), wxTRANSLATE("August"), wxTRANSLATE("September")
     , wxTRANSLATE("October"), wxTRANSLATE("November"), wxTRANSLATE("December")
 };
@@ -407,86 +307,6 @@ static const wxString gDaysInWeek[7] =
     , wxTRANSLATE("Wednesday"), wxTRANSLATE("Thursday"), wxTRANSLATE("Friday")
     , wxTRANSLATE("Saturday")
 };
-
-/* Error Messages --------------------------------------------------------*/
-void mmShowErrorMessage(wxWindow *parent
-    , const wxString &message, const wxString &messageheader)
-{
-    wxMessageDialog msgDlg(parent, message, messageheader, wxOK | wxICON_ERROR);
-    msgDlg.ShowModal();
-}
-
-void mmShowWarningMessage(wxWindow *parent
-    , const wxString &message, const wxString &messageheader)
-{
-    wxMessageDialog msgDlg(parent, message, messageheader, wxOK | wxICON_WARNING);
-    msgDlg.ShowModal();
-}
-
-void mmShowErrorMessageInvalid(wxWindow *parent, const wxString &message)
-{
-    const wxString& msg = wxString::Format(_("Entry %s is invalid"), message);
-    mmShowErrorMessage(parent, msg, _("Invalid Entry"));
-}
-
-void mmMessageCategoryInvalid(wxWindow *button)
-{
-    wxRichToolTip tip(_("Invalid Category"),
-        _("Please use this button for category selection\nor use the 'Split' checkbox for multiple categories.")
-        + "\n");
-    tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor(button);
-}
-
-void mmMessageFileInvalid(wxWindow *object, bool open)
-{
-    const wxString& errorHeader = open ? _("Unable to open file.") : _("File name is empty.");
-    wxString errorMessage = _("Please select the file for this operation.");
-
-    const wxString errorTips = _("Selection can be made by using Search button.");
-    errorMessage = errorMessage + "\n\n" + errorTips + "\n";
-
-    wxRichToolTip tip(errorHeader, errorMessage);
-    tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor(object);
-}
-
-void mmMessageAccountInvalid(wxWindow *object, bool transfer)
-{
-    const wxString& errorHeader = _("Invalid Account");
-    wxString errorMessage;
-    if (!transfer)
-        errorMessage = _("Please select the account for this transaction.");
-    else
-        errorMessage = _("Please specify which account the transfer is going to.");
-
-    wxString errorTips = _("Selection can be made by using the dropdown button.");
-    errorMessage = errorMessage + "\n\n" + errorTips + "\n";
-
-    wxRichToolTip tip(errorHeader, errorMessage);
-    tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor(object);
-}
-
-void mmMessagePayeeInvalid(wxWindow *object)
-{
-    const wxString& errorHeader = _("Invalid Payee");
-    const wxString& errorMessage = (_("Please type in a new payee,\nor make a selection using the dropdown button.")
-        + "\n");
-    wxRichToolTip tip(errorHeader, errorMessage);
-    tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor(object);
-}
-
-void mmMessageNameInvalid(wxTextCtrl *textBox)
-{
-    const wxString& errorHeader = _("Invalid Name");
-    const wxString& errorMessage = (_("Please type in a non empty name.")
-        + "\n");
-    wxRichToolTip tip(errorHeader, errorMessage);
-    tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor((wxWindow*) textBox);
-}
 
 //
 const wxString mmPlatformType()
@@ -574,7 +394,7 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
     // if decimal point, check if it's already in the string
     if (str == '.' || str == ',')
     {
-        wxString value = ((wxTextCtrl*)m_validatorWindow)->GetValue();
+        const wxString value = ((wxTextCtrl*)m_validatorWindow)->GetValue();
         size_t ind = value.rfind(decChar);
         if (ind < value.Length())
         {

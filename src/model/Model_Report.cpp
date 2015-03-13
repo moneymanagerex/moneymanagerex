@@ -74,6 +74,21 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
     return ins;
 }
 
+wxArrayString Model_Report::allGroupNames()
+{
+    wxArrayString groups;
+    wxString PreviousGroup;
+    for (const auto &report : this->all(COL_GROUPNAME))
+    {
+        if (report.GROUPNAME != PreviousGroup)
+        {
+            groups.Add(report.GROUPNAME);
+            PreviousGroup = report.GROUPNAME;
+        }
+    }
+    return groups;
+}
+
 wxString Model_Report::get_html(const Data* r)
 {
     mm_html_template report(r->TEMPLATECONTENT);

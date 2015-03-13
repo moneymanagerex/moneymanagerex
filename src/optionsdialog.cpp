@@ -64,7 +64,7 @@ bool mmOptionsDialog::Create(wxWindow* parent
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
-
+    this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
 
     Centre();

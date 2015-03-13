@@ -38,7 +38,7 @@ public:
 
     /// Returns correct values for day and month, adjusted to financial year if required.
     /// Also returns a heading string for Month or Year reports.
-    wxString AdjustYearValues(int& day, int& month, long year, wxString yearStr);
+    wxString AdjustYearValues(int& day, int& month, long year, const wxString& yearStr);
 
     /// Sets date to end of financial year if required by user.
     void AdjustDateForEndFinancialYear(wxDateTime& date);

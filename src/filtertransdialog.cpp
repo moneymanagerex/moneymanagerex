@@ -25,24 +25,23 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #endif
 
 #include "filtertransdialog.h"
-#include "constants.h"
-#include "util.h"
 #include "categdialog.h"
+#include "constants.h"
+#include "mmSimpleDialogs.h"
 #include "paths.h"
+#include "util.h"
 #include "validators.h"
-#include <wx/valnum.h>
-#include "model/Model_Setting.h"
+
+#include "model/Model_Account.h"
+#include "model/Model_Billsdeposits.h"
+#include "model/Model_Category.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
-#include "model/Model_Account.h"
-#include "model/Model_Category.h"
-#include "model/Model_Billsdeposits.h"
-
-#include "cajun/json/elements.h"
-#include "cajun/json/reader.h"
-#include "cajun/json/writer.h"
+#include "model/Model_Setting.h"
 
 #include "../resources/save.xpm"
+
+#include <wx/valnum.h>
 
 static const wxString TRANSACTION_STATUSES[] =
 {
@@ -113,7 +112,7 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
     dataToControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
-
+    this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
 
     Centre();
@@ -421,7 +420,7 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
             double amount;
             if (!Model_Currency::fromString(minamt, amount, currency) || amount < 0)
             {
-                mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
+                mmErrorDialogs::MessageError(this, _("Invalid Amount Entered "), _("Error"));
                 return;
             }
         }
@@ -431,7 +430,7 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
             double amount;
             if (!Model_Currency::fromString(maxamt, amount, currency) || amount < 0)
             {
-                mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
+                mmErrorDialogs::MessageError(this, _("Invalid Amount Entered "), _("Error"));
                 return;
             }
         }

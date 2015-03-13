@@ -84,6 +84,8 @@ private:
     void viewControls(bool enable);
     void renameReport(int id);
     bool DeleteReport(int id);
+    bool changeReportGroup(int id, bool ungroup);
+    bool renameReportGroup(const wxString& GroupName);
     void OnMenuSelected(wxCommandEvent& event);
     void newReport(int sample = ID_NEW_EMPTY);
     void createEditorTab(wxNotebook* notebook, int type);
@@ -104,11 +106,16 @@ private:
     wxButton* m_buttonSaveAs;
     wxButton* m_buttonRun;
     wxTreeCtrl* m_treeCtrl;
+    wxTreeCtrl *m_dbView;
     sqlListCtrl* m_sqlListBox;
     wxTreeItemId m_rootItem;
     wxTreeItemId m_selectedItemID;
     int m_selectedReportID;
     wxString m_selectedGroup;
+
+#if wxUSE_DRAG_AND_DROP
+    void OnBeginDrag(wxTreeEvent& event);
+#endif // wxUSE_DRAG_AND_DROP
 
     enum
     {
@@ -133,7 +140,6 @@ private:
         ID_LUA_CONTENT,
         ID_TEMPLATE,
         ID_DESCRIPTION,
-        ID_SQL_GRID,
         ID_REPORT_LIST,
     };
     

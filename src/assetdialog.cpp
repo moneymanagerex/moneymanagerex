@@ -15,15 +15,18 @@
  ********************************************************/
 
 #include "assetdialog.h"
-#include "mmtextctrl.h"
 #include "attachmentdialog.h"
-#include "paths.h"
 #include "constants.h"
-#include "validators.h"
+#include "mmSimpleDialogs.h"
+#include "mmtextctrl.h"
+#include "paths.h"
 #include "util.h"
-#include "model/Model_Asset.h"
+#include "validators.h"
+
 #include "model/Model_Attachment.h"
+
 #include "../resources/attachment.xpm"
+
 #include <wx/valnum.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmAssetDialog, wxDialog);
@@ -65,13 +68,11 @@ bool mmAssetDialog::Create(wxWindow* parent
         return false;
 
     CreateControls();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-
-    SetIcon(mmex::getProgramIcon());
-
     dataToControls();
-
+    GetSizer()->Fit(this);
+    this->SetInitialSize();
+    GetSizer()->SetSizeHints(this);
+    SetIcon(mmex::getProgramIcon());
     Centre();
     return true;
 }
@@ -228,7 +229,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
 {
     const wxString name = m_assetName->GetValue().Trim();
     if (name.empty()){
-        mmMessageNameInvalid(m_assetName);
+        mmErrorDialogs::InvalidName(m_assetName);
         return;
     }
 

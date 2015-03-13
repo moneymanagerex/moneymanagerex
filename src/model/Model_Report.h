@@ -47,6 +47,7 @@ public:
     static Model_Report& instance();
 
 public:
+    wxArrayString allGroupNames();
     wxString get_html(const Data* r);
     wxString get_html(const Data& r);
     static void prepareTempFolder();

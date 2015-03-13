@@ -576,7 +576,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                     }
 
                     WebAppAttachmentName = wxEmptyString;
-                    WebAppAttachmentName = wxEmptyString;
+
                 } //End loop throught attachments
                 bDeleteTrWebApp = true;
             }

@@ -18,17 +18,31 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "qif_import_gui.h"
 #include "constants.h"
-#include "util.h"
+#include "mmSimpleDialogs.h"
 #include "paths.h"
+#include "util.h"
 #include "webapp.h"
-#include "model/Model_Payee.h"
+
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 #include "model/Model_Currency.h"
-#include <wx/progdlg.h>
+#include "model/Model_Payee.h"
 
 #include "../resources/reconciled.xpm"
 #include "../resources/void.xpm"
+
+#include <wx/progdlg.h>
+
+//map Quicken !Account type strings to Model_Account::TYPE
+// (not sure whether these need to be translated)
+const std::map<wxString, int> mmQIFImportDialog::m_QIFaccountTypes =
+{
+    std::make_pair("Bank", Model_Account::CHECKING),
+    std::make_pair("Cash", Model_Account::CHECKING),
+    std::make_pair("Port", Model_Account::INVESTMENT),
+    std::make_pair("Invst", Model_Account::INVESTMENT),
+    std::make_pair("CCard", Model_Account::CREDIT_CARD)
+};
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFImportDialog, wxDialog);
 
@@ -84,13 +98,12 @@ bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     ColName_[COL_NOTES]    = _("Notes");
 
     CreateControls();
+    fillControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
+    this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
     Centre();
-    Fit();
-
-    fillControls();
 
     return TRUE;
 }
@@ -123,7 +136,7 @@ void mmQIFImportDialog::CreateControls()
 
     wxStaticText* dateFormat = new wxStaticText(this, wxID_STATIC, _("Date Format"));
     choiceDateFormat_ = new wxComboBox(this, wxID_ANY);
-    for (const auto& i : date_formats_map())
+    for (const auto& i : g_date_formats_map)
     {
         choiceDateFormat_->Append(i.second, new wxStringClientData(i.first));
         if (m_dateFormatStr == i.first) choiceDateFormat_->SetStringSelection(i.second);
@@ -276,7 +289,7 @@ void mmQIFImportDialog::fillControls()
 bool mmQIFImportDialog::mmReadQIFFile()
 {
     int numLines = 0;
-    std::map<wxString, wxString> date_formats_temp = date_formats_map();
+    std::map<wxString, wxString> date_formats_temp = g_date_formats_map;
     vQIF_trxs_.clear();
     m_QIFaccounts.clear();
     m_QIFpayeeNames.clear();
@@ -573,14 +586,14 @@ void mmQIFImportDialog::getDateMask()
                 m_dateFormatStr = d.first;
             }
         }
-        wxLogDebug("%s \t%i", date_formats_map().at(m_dateFormatStr), d.second);
+        wxLogDebug("%s \t%i", g_date_formats_map.at(m_dateFormatStr), d.second);
     }
-    choiceDateFormat_->SetStringSelection(date_formats_map().at(m_dateFormatStr));
+    choiceDateFormat_->SetStringSelection(g_date_formats_map.at(m_dateFormatStr));
 }
 
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 {
-    this->Freeze();
+    windowsFreezeThaw(this);
     m_FileNameStr = file_name_ctrl_->GetValue();
 
     const wxString choose_ext = _("QIF Files");
@@ -598,7 +611,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
         m_userDefinedDateMask = false;
         getDateMask();
     }
-    this->Thaw();
+    windowsFreezeThaw(this);
 }
 
 void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
@@ -653,7 +666,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         progressDlg.Update(1, _("Importing Accounts"));
         if (getOrCreateAccounts() == 0 && !accountCheckBox_->GetValue()) {
             progressDlg.Update(numTransactions + 1);
-            mmShowErrorMessageInvalid(this, _("Account"));
+            mmErrorDialogs::MessageInvalid(this, _("Account"));
             return;
         }
         mmWebApp::MMEX_WebApp_UpdateAccount();
@@ -901,7 +914,12 @@ int mmQIFImportDialog::getOrCreateAccounts()
 
             account->FAVORITEACCT = "TRUE";
             account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
-            account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::CHECKING];
+            //the account type is found on the T (for "Type") line
+            //which overlaps with the T (for "Total Amount") line in transaction records, 
+            //so we find the account type string in the "Amount" field
+            wxString accountType = (item.second.find(Amount) == item.second.end() ? " " : item.second.at(Amount));
+            int iType = (m_QIFaccountTypes.find(accountType) == m_QIFaccountTypes.end() ? Model_Account::CHECKING : m_QIFaccountTypes.at(accountType));
+            account->ACCOUNTTYPE = Model_Account::all_type()[iType];
             account->ACCOUNTNAME = item.first;
             account->INITIALBAL = 0;
             account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;

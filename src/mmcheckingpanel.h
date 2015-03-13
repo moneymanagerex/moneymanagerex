@@ -107,6 +107,10 @@ public:
     void refreshVisualList(int trans_id = -1, bool filter = true);
     bool showDeletedTransactions_;
 
+protected:
+    /* Sort Columns */
+    virtual void OnColClick(wxListEvent& event);
+
 private:
     enum
     {
@@ -154,10 +158,6 @@ private:
         MENU_TREEPOPUP_MOVE2,
         MENU_TREEPOPUP_DELETE2,
         ID_PANEL_CHECKING_STATIC_BITMAP_VIEW,
-
-        MENU_HEADER_HIDE,
-        MENU_HEADER_SORT,
-        MENU_HEADER_RESET,
     };
 
     DECLARE_NO_COPY_CLASS(TransactionListCtrl)
@@ -197,18 +197,8 @@ private:
     void OnPaste(wxCommandEvent& WXUNUSED(event));
     int OnPaste(Model_Checking::Data* tran);
 
-    /* Sort Columns */
-    void OnColClick(wxListEvent& event);
-
     int GetColumnWidthSetting(const int& column_number, int default_size = wxLIST_AUTOSIZE);
     void SetColumnWidthSetting(const int& column_number, int column_width);
-
-    /* Headers Right Click*/
-    int ColumnHeaderNr;
-    void OnColRightClick(wxListEvent& event);
-    void OnHeaderHide(wxCommandEvent& event);
-    void OnHeaderSort(wxCommandEvent& event);
-    void OnHeaderReset(wxCommandEvent& event);
 
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */

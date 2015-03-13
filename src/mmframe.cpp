@@ -44,7 +44,7 @@
 #include "mmhelppanel.h"
 #include "mmhomepagepanel.h"
 #include "mmreportspanel.h"
-#include "mmsinglechoicedialog.h"
+#include "mmSimpleDialogs.h"
 #include "optionsdialog.h"
 #include "paths.h"
 #include "payeedialog.h"
@@ -747,57 +747,58 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SetItemData(help, new mmTreeItemData("Help"));
     navTreeCtrl_->SetItemBold(help, true);
 
-    if (!m_db)
-        return;
-
-    /* Start Populating the dynamic data */
-    wxString vAccts = Model_Setting::instance().ViewAccounts();
-    wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR || vAccts == VIEW_ACCOUNTS_OPEN_STR);
-    if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
-        vAccts = VIEW_ACCOUNTS_ALL_STR;
-
-    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+    if (m_db)
     {
-        if (!((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-            (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
-            vAccts == "ALL"))
-            continue;
+        /* Start Populating the dynamic data */
+        wxString vAccts = Model_Setting::instance().ViewAccounts();
+        wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR || vAccts == VIEW_ACCOUNTS_OPEN_STR);
+        if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
+            vAccts = VIEW_ACCOUNTS_ALL_STR;
 
-        int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
-        if (Model_Account::type(account) == Model_Account::INVESTMENT)
+        for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
         {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME
-                , selectedImage, selectedImage);
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            if (!((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
+                (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
+                vAccts == "ALL"))
+                continue;
+
+            int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
+            if (Model_Account::type(account) == Model_Account::INVESTMENT)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME
+                    , selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
+            else if (Model_Account::type(account) == Model_Account::TERM)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME
+                    , selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
+            else if (Model_Account::type(account) == Model_Account::CREDIT_CARD)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
+            else
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
         }
-        else if (Model_Account::type(account) == Model_Account::TERM)
-        {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME
-                , selectedImage, selectedImage);
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-        }
-        else if (Model_Account::type(account) == Model_Account::CREDIT_CARD)
-        {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-        }
-        else
-        {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-        }
+
+        loadNavTreeItemsStatus();
+        if (!navTreeCtrl_->ItemHasChildren(accounts)) navTreeCtrl_->Delete(accounts);
+        if (!navTreeCtrl_->ItemHasChildren(cardAccounts)) navTreeCtrl_->Delete(cardAccounts);
+        if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
+        if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
     }
-
-    loadNavTreeItemsStatus();
-    if (!navTreeCtrl_->ItemHasChildren(accounts)) navTreeCtrl_->Delete(accounts);
-    if (!navTreeCtrl_->ItemHasChildren(cardAccounts)) navTreeCtrl_->Delete(cardAccounts);
-    if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
-    if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
-
-    navTreeCtrl_->EnsureVisible(root);
-    navTreeCtrl_->SelectItem(root);
     navTreeCtrl_->SetEvtHandlerEnabled(true);
     windowsFreezeThaw(navTreeCtrl_);
+    navTreeCtrl_->SelectItem(root);
+    navTreeCtrl_->EnsureVisible(root);
+    navTreeCtrl_->Refresh();
+    navTreeCtrl_->Update();
 }
 
 
@@ -952,6 +953,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     }
     else
     {
+        helpFileIndex_ = -1;
         const wxString data = iData->getString();
         if (data == "item@Help")
             helpFileIndex_ = mmex::HTML_INDEX;
@@ -959,8 +961,9 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             helpFileIndex_ = mmex::HTML_INVESTMENT;
         else if (data == "item@Budgeting")
             helpFileIndex_ = mmex::HTML_BUDGET;
-        else
-            helpFileIndex_ = -1;
+        else if (data == "item@Reports")
+            helpFileIndex_ = mmex::HTML_CUSTOM_SQL;
+
         if (helpFileIndex_ > -1)
         {
             createHelpPage();
@@ -1118,6 +1121,9 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, webStatus);
                 menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments"));
 
+                if (Model_Account::type(account) == Model_Account::INVESTMENT)
+                    menu.Enable(MENU_TREEPOPUP_REALLOCATE, false);
+
                 PopupMenu(&menu, pt);
             }
         }
@@ -1129,8 +1135,13 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             wxCommandEvent e;
             OnBudgetSetupDialog(e);
         }
-        else
-        if (iData->getString() == "item@Bank Accounts" ||
+        else if (iData->getString() == "item@Reports")
+        {
+            wxMenu menu;
+            menu.Append(wxID_VIEW_LIST, _("General Report Manager"));
+            PopupMenu(&menu, pt);
+        }
+        else if (iData->getString() == "item@Bank Accounts" ||
             iData->getString() == "item@Term Accounts" ||
             iData->getString() == "item@Credit Card Accounts" ||
             iData->getString() == "item@Stocks")
@@ -1325,25 +1336,12 @@ void mmGUIFrame::createHelpPage()
 
 void mmGUIFrame::createMenu()
 {
-    wxBitmap toolBarBitmaps[11];
-    toolBarBitmaps[0] = wxBitmap(new_xpm);
-    toolBarBitmaps[1] = wxBitmap(open_xpm);
-    toolBarBitmaps[2] = wxBitmap(save_xpm);
-    toolBarBitmaps[3] = wxBitmap(newacct_xpm);
-    toolBarBitmaps[4] = wxBitmap(house_xpm);
-    toolBarBitmaps[5] = wxBitmap(print_xpm);
-    toolBarBitmaps[6] = wxBitmap(printpreview_xpm);
-    toolBarBitmaps[7] = wxBitmap(printsetup_xpm);
-    toolBarBitmaps[8] = wxBitmap(edit_account_xpm);
-    toolBarBitmaps[9] = wxBitmap(delete_account_xpm);
-    toolBarBitmaps[10] = wxBitmap(accounttree_xpm);
-
     wxMenu *menu_file = new wxMenu;
 
     wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _("&New Database\tCtrl-N"), _("New Database"));
-    menuItemNew->SetBitmap(toolBarBitmaps[0]);
+    menuItemNew->SetBitmap(wxBitmap(new_xpm));
     wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _("&Open Database\tCtrl-O"), _("Open Database"));
-    menuItemOpen->SetBitmap(toolBarBitmaps[1]);
+    menuItemOpen->SetBitmap(wxBitmap(open_xpm));
     wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, _("Save Database &As"), _("Save Database As"));
     menuItemSaveAs->SetBitmap(wxBitmap(saveas_xpm));
     menu_file->Append(menuItemNew);
@@ -1420,25 +1418,25 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
         , _("New &Account"), _("New Account"));
-    menuItemNewAcct->SetBitmap(toolBarBitmaps[3]);
+    menuItemNewAcct->SetBitmap(wxBitmap(newacct_xpm));
     menuAccounts->Append(menuItemNewAcct);
 
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST
         , _("Account &List"), _("Show Account List"));
-    menuItemAcctList->SetBitmap(toolBarBitmaps[4]);
+    menuItemAcctList->SetBitmap(wxBitmap(house_xpm));
 
     wxMenuItem* menuItemAcctEdit = new wxMenuItem(menuAccounts, MENU_ACCTEDIT
         , _("&Edit Account"), _("Edit Account"));
-    menuItemAcctEdit->SetBitmap(toolBarBitmaps[8]);
+    menuItemAcctEdit->SetBitmap(wxBitmap(edit_account_xpm));
 
     wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE
         , _("&Delete Account"), _("Delete Account from database"));
-    menuItemAcctDelete->SetBitmap(toolBarBitmaps[9]);
+    menuItemAcctDelete->SetBitmap(wxBitmap(delete_account_xpm));
     menuAccounts->Append(menuItemAcctDelete);
 
     wxMenuItem* menuItemReallocateAcct = new wxMenuItem(menuAccounts, MENU_ACCOUNT_REALLOCATE
         , _("&Reallocate Account"), _("Change the account type of an account."));
-    menuItemReallocateAcct->SetBitmap(toolBarBitmaps[10]);
+    menuItemReallocateAcct->SetBitmap(wxBitmap(accounttree_xpm));
     menuAccounts->Append(menuItemReallocateAcct);
 
     menuAccounts->Append(menuItemAcctList);
@@ -1902,7 +1900,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
     db.ReKey(wxEmptyString);
     db.Close();
 
-    mmShowErrorMessage(this, _("Converted DB!"), _("MMEX message"));
+    mmErrorDialogs::MessageError(this, _("Converted DB!"), _("MMEX message"));
 }
 //----------------------------------------------------------------------------
 
@@ -2251,6 +2249,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Check(mmIniOptions::instance().budgetReportWithSummaries_);
         menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Check(mmIniOptions::instance().ignoreFutureTransactions_);
         menuBar_->Refresh();
+        menuBar_->Update();
 
         updateNavTreeControl();
         createHomePage();

@@ -113,3 +113,19 @@ std::map<int, Model_Attachment::Data_Set> Model_Attachment::get_all(REFTYPE reft
 
     return data;
 }
+
+/** Return all attachments descriptions*/
+wxArrayString Model_Attachment::allDescriptions(const bool& RemoveDuplicated)
+{
+    wxArrayString descriptions;
+    wxString PreviousDescription;
+    for (const auto &attachment : this->all(COL_DESCRIPTION))
+    {
+        if (attachment.DESCRIPTION != PreviousDescription)
+        {
+            descriptions.Add(attachment.DESCRIPTION);
+            PreviousDescription = attachment.DESCRIPTION;
+        }
+    }
+    return descriptions;
+}

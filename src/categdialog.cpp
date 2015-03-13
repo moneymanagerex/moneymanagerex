@@ -20,7 +20,6 @@
 #include "relocatecategorydialog.h"
 #include "util.h"
 #include "mmOption.h"
-#include "defs.h"
 #include "paths.h"
 #include "constants.h"
 #include "webapp.h"
@@ -97,12 +96,11 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
+    fillControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
-
+    this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
-    fillControls();
-
     Centre();
     return TRUE;
 }

@@ -24,7 +24,7 @@
 #include "paths.h"
 #include "validators.h"
 #include "mmtextctrl.h"
-#include "mmsinglechoicedialog.h"
+#include "mmSimpleDialogs.h"
 
 #include <wx/combobox.h>
 #include <wx/valnum.h>
@@ -60,10 +60,6 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-
-    SetIcon(mmex::getProgramIcon());
 
     if (!m_currency)
     {
@@ -96,6 +92,11 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
     }
 
     fillControls();
+
+    GetSizer()->Fit(this);
+    GetSizer()->SetSizeHints(this);
+    this->SetInitialSize();
+    SetIcon(mmex::getProgramIcon());
 
     baseConvRate_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER,
         wxCommandEventHandler(mmCurrencyDialog::onTextEntered), nullptr, this);
