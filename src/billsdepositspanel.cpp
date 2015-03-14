@@ -219,7 +219,7 @@ void mmBillsDepositsPanel::CreateControls()
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
     wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_ANY
-        , _("Repeating Transactions"));
+        , _("Recurring Transactions"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, 0, wxALL, 1);
 

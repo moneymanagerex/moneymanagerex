@@ -114,7 +114,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
     //---------------------------------------------------
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY
-        , _("New Repeating Transaction")
+        , _("New Recurring Transaction")
         , wxDefaultPosition, wxSize(500, 300), style);
 
 }
@@ -134,11 +134,11 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
         dataToControls();
         if (!m_enter_occur)
         {
-            SetDialogHeader(_(" Edit Repeating Transaction"));
+            SetDialogHeader(_(" Edit Recurring Transaction"));
         }
         else
         {
-            SetDialogHeader(_(" Enter Repeating Transaction"));
+            SetDialogHeader(_(" Enter Recurring Transaction"));
             transaction_type_->Disable();
             m_due_date->Disable();
             itemRepeats_->Disable();
@@ -357,7 +357,7 @@ void mmBDDialog::CreateControls()
     calendarStaticBoxSizer->Add(m_calendar_ctrl, 10, wxALIGN_CENTER_HORIZONTAL | wxALL, 15);
 
     /* Bills & Deposits Details */
-    wxStaticBox* repeatDetailsStaticBox = new wxStaticBox(this, wxID_ANY, _("Repeating Transaction Details") );
+    wxStaticBox* repeatDetailsStaticBox = new wxStaticBox(this, wxID_ANY, _("Recurring Transaction Details") );
     wxStaticBoxSizer* repeatDetailsStaticBoxSizer = new wxStaticBoxSizer(repeatDetailsStaticBox, wxHORIZONTAL);
     repeatTransBoxSizer->Add(repeatDetailsStaticBoxSizer, 0, wxALIGN_CENTER | wxALL, 5);
 
@@ -540,7 +540,7 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account")), g_flags);
     bAccount_ = new wxButton(transactionPanel, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, _("Select Account")
         , wxDefaultPosition, wxSize(230, -1));
-    bAccount_->SetToolTip(_("Specify the Account that will own the repeating transaction"));
+    bAccount_->SetToolTip(_("Specify the Account that will own the recurring transaction"));
     transPanelSizer->Add(bAccount_, g_flags);
     // Payee ------------------------------------------------
     wxStaticText* staticTextPayee = new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
@@ -586,7 +586,7 @@ void mmBDDialog::CreateControls()
     bAttachments_ = new wxBitmapButton(transactionPanel, wxID_FILE
         , wxBitmap(attachment_xpm), wxDefaultPosition
         , wxSize(bSetNextOccurDate_->GetSize().GetY(), bSetNextOccurDate_->GetSize().GetY()));
-    bAttachments_->SetToolTip(_("Organize attachments of this repeating transaction"));
+    bAttachments_->SetToolTip(_("Organize attachments of this recurring transaction"));
 
     wxButton* bFrequentUsedNotes = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "..."
         , wxDefaultPosition, wxSize(bAttachments_->GetSize().GetX(), -1));

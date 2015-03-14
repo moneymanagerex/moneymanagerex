@@ -88,7 +88,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
     }
 
     // We now know the total balance on the account
-    // Start by walking through the repeating transaction list
+    // Start by walking through the recurring transaction list
 
     const wxDateTime yearFromNow = today_.Add(wxDateSpan::Years(years));
     forecastVec fvec;
@@ -142,7 +142,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1.0);
         double toConvRate = (to_account ? Model_Account::currency(to_account)->BASECONVRATE : 1.0);
 
-        // Process all possible repeating transactions for this BD
+        // Process all possible recurring transactions for this BD
         while (1)
         {
             if (nextOccurDate > yearFromNow) break;

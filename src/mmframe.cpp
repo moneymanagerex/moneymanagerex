@@ -526,7 +526,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         }
     }
 
-    //Auto repeating transaction
+    //Auto recurring transaction
     bool continueExecution = false;
 
     Model_Billsdeposits& bills = Model_Billsdeposits::instance();
@@ -727,7 +727,7 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
     navTreeCtrl_->SetItemBold(assets, true);
 
-    wxTreeItemId bills = navTreeCtrl_->AppendItem(root, _("Repeating Transactions"), 2, 2);
+    wxTreeItemId bills = navTreeCtrl_->AppendItem(root, _("Recurring Transactions"), 2, 2);
     navTreeCtrl_->SetItemData(bills, new mmTreeItemData("Bills & Deposits"));
     navTreeCtrl_->SetItemBold(bills, true);
 
@@ -1482,7 +1482,7 @@ void mmGUIFrame::createMenu()
     menuTools->Append(menuItemBudgeting);
 
     wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
-        , _("&Repeating Transactions"), _("Bills && Deposits"));
+        , _("&Recurring Transactions"), _("Bills && Deposits"));
     menuItemBillsDeposits->SetBitmap(wxBitmap(clock_xpm));
     menuTools->Append(menuItemBillsDeposits);
 

@@ -185,8 +185,8 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
             << "\n\n"
             << wxString::Format(_("Records found in transactions: %i"), int(transactions.size())) << "\n"
             << wxString::Format(_("Records found in split transactions: %i"), int(checking_split.size())) << "\n"
-            << wxString::Format(_("Records found in repeating transactions: %i"), int(billsdeposits.size())) << "\n"
-            << wxString::Format(_("Records found in repeating split transactions: %i"), int(budget_split.size())) << "\n"
+            << wxString::Format(_("Records found in recurring transactions: %i"), int(billsdeposits.size())) << "\n"
+            << wxString::Format(_("Records found in recurring split transactions: %i"), int(budget_split.size())) << "\n"
             << wxString::Format(_("Records found as Default Payee Category: %i"), int(payees.size())) << "\n"
             << wxString::Format(_("Records found in budget: %i"), int(budget.size())) << "\n\n"
             << wxString::Format(_("Changing all categories of: \n%s to category: %s")
