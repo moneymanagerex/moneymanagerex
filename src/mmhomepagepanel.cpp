@@ -421,7 +421,7 @@ public:
         }
         else if (uri.StartsWith("billsdeposits:", &sData))
         {
-            frame->setNavTreeSection(_("Repeating Transactions"));
+            frame->setNavTreeSection(_("Recurring Transactions"));
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
             frame->GetEventHandler()->AddPendingEvent(evt);
         }
