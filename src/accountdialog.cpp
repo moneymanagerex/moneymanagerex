@@ -333,7 +333,7 @@ void mmNewAcctDialog::OnAttachments(wxCommandEvent& /*event*/)
 void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 {
     wxString acctName = m_textAccountName->GetValue().Trim();
-    if (acctName.IsEmpty() || Model_Account::Exist(acctName))
+    if (acctName.IsEmpty())
     {
         mmErrorDialogs::MessageInvalid(this, _("Account Name "));
         return;
