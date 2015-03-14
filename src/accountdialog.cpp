@@ -333,10 +333,13 @@ void mmNewAcctDialog::OnAttachments(wxCommandEvent& /*event*/)
 void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 {
     wxString acctName = m_textAccountName->GetValue().Trim();
-    if (acctName.IsEmpty())
+    if (acctName.IsEmpty() || Model_Account::Exist(acctName))
     {
-        mmErrorDialogs::MessageInvalid(this, _("Account Name "));
-        return;
+        if (m_account && m_account->ACCOUNTNAME != acctName)
+        {
+            mmErrorDialogs::MessageInvalid(this, _("Account Name "));
+            return;
+        }
     }
 
     if (m_currencyID == -1)
