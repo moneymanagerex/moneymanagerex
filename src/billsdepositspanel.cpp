@@ -893,3 +893,8 @@ void mmBillsDepositsPanel::OnFilterTransactions(wxMouseEvent& event)
 
     initVirtualListControl();
 }
+
+wxString  mmBillsDepositsPanel::BuildPage() const
+{
+    return listCtrlAccount_->BuildPage(_("Recurring Transactions")); 
+}

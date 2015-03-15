@@ -96,7 +96,7 @@ public:
     static wxString GetFrequency(const Model_Billsdeposits::Data* item);
     static wxString GetRemainingDays(const Model_Billsdeposits::Data* item);
 
-    wxString BuildPage() const { return listCtrlAccount_->BuildPage(_("Repeating Transactions")); }
+    wxString BuildPage() const;
 
 private:
     void CreateControls();
