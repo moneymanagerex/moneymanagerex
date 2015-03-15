@@ -1,24 +1,24 @@
 Version History of Money Manager Ex
 
 1.2.0 (tba)
-- New: Repeating transaction created from existing transaction
+- New: Recurring transaction created from existing transaction
 - New: Introducing new account type - Credit Card
 - New: Monthly Summary of Accounts
 - New: Stock History Monitoring
 - New: My Usage Reports
 - New: MMEX News display on Home page
-- Change: Repeating transaction - 'Next Occur Date'
+- Change: Recurring transaction - 'Next Occur Date'
           redefined as 'Payment Date' and 'Due Date'
 - New: Database version updated to version 3 with
-       database correction for Repeating Transactions
+       database correction for Recurring Transactions
 - Fix: Many bug fixes
 
 1.1.2 (November 16, 2014)
-- Repeating transaction dialog restyling
-- Added transaction filter to repeating transactions panel
+- Recurring transaction dialog restyling
+- Added transaction filter to recurring transactions panel
 - Added more keywords into GRM
 - Fix CashFlow crash
-- Fix for repeating transactions with split categories
+- Fix for recurring transactions with split categories
 - Fix PayPal QIF import (bug #543)
 - Fix stock update date format (bug #545)
 - Fix budget for substituted category (bug #546)
@@ -63,7 +63,7 @@ Version History of Money Manager Ex
 
 1.0.0.2 (February 19, 2014)
 - Fix advanced transfer amounts disappearing
-- Fix repeating transactions account invalid error
+- Fix recurring transactions account invalid error
 - Fix closed stocks account shown (bugs #290)
 - Fix transfer transactions getting reset
 - Fix next transaction number
@@ -80,7 +80,7 @@ Version History of Money Manager Ex
 - fix sound (bug #256)
 - fix asset value (bug #271)
 - fix transaction report crash (bug #273)
-- fix home page repeating transaction value (bug #274)
+- fix home page recurring transaction value (bug #274)
 - fix summary asset total (bug #275)
 - fix changing account causes amount to change (bug #278)
 - fix error message when category is deleted (bug #277)
@@ -130,10 +130,10 @@ Version History of Money Manager Ex
 * Split transactions improvements
 - Payee Dialogue updated
 - Categories Dialogue Updated
-- Added Filter for Repeating Transactions panel
+- Added Filter for Recurring Transactions panel
 - Remove progress bar from Checking panel as too fast to be useful.
 - Fix crash using Transaction Report using Vista / USB
-- Fix crash using Cash Flow Report when a Repeating Transaction becomes inactive using frequency of: in/every x days/months
+- Fix crash using Cash Flow Report when a Recurring Transaction becomes inactive using frequency of: in/every x days/months
 - Added print and preview for Home Page
 - Duplicate Asset function added
 - QIF Export/Import updated
@@ -181,7 +181,7 @@ Version History of Money Manager Ex
   - Auto category inclusion for transfer transactions (user selectable)
   - Allow Status to be set to 'Reconciled' (user selectable)
 - Reintroduction of Custom Reports as installable reports.
-- Repeating Transactions:
+- Recurring Transactions:
   - Allow transactions to be automatically entered with user control.
   - Allow transactions to be automatically entered without user control.
   - new 'Skip' transaction command.
@@ -242,7 +242,7 @@ Version History of Money Manager Ex
 0.9.5.1 (Nov 6, 2009)
 - Fix: changes reverted for popup menu "Viewing transaction from ..."
 - Fix: if record in BILLSDEPOSITS_V1 has invalid CATEGID (for example, -1),
-  this record does not appear in "Repeating Transactions".
+  this record does not appear in "Recurring Transactions".
 
 0.9.5 (Nov 3, 2009)
 - Fix for Mac Paths (Wesley Ellis)
@@ -315,7 +315,7 @@ http://www.ecb.europa.eu/stats/exchange/eurofxref/html/index.en.html
 - Modify "New/Edit Transaction" dialog box
 - Modify "Organize Payees" dialog box
 - Modify "Organize Categories" dialog box
-- Modify "New/Edit Repeating Transaction" dialog box
+- Modify "New/Edit Recurring Transaction" dialog box
 - Help screen will not be shown when no database is opened
 - Remove unnecessary checking in mmGUIFrame::OnSelChanged() function
 - Currency dialog box will not resize its items so some texts are truncated.
@@ -344,7 +344,7 @@ one
 - Make "Income" and "Expenses" labels centered (George)
 - Fixed bug in getLatestTransactionNumber (Igor)
 - Added workaround for "uk.finance.yahoo.com" to convert downloaded stock value to pence (Gerald etc)
-- Added 'Daily' repeating transaction (aHfUi)
+- Added 'Daily' recurring transaction (aHfUi)
 - Fix double comparisons in Budget screens leading to wrong images being displayed when amounts are equal(luckyarthur)
 - Allow transaction report to specify only top category (which will sum all children category) (Ami, Sania)
 - Fixed minor issue where 'single quote' was being displayed as multiple quotes till DB was reopened (luckyarthur, paddy)
@@ -490,7 +490,7 @@ or via the Bills Deposits entries. This could cause wierd behavior. (Lucky Arthu
 - Added Cash Flow Forecast report
 - Added Category column to Transaction list
 - Fixed univcsv import issue if payee already exists (thanks Ktmam)
-- Added Feature: 1634931: Account column in repeating transactions.
+- Added Feature: 1634931: Account column in recurring transactions.
 - Added Feature: 1553039: Upcoming Bills & Deposits shows amount in homepage
 - Speeded up reporting performance
 - Fixed Bug 1483407: Date in home page not displayed in correct language
@@ -518,7 +518,7 @@ or via the Bills Deposits entries. This could cause wierd behavior. (Lucky Arthu
 - Upgraded to wxWidgets 2.8.0 
 - wxAui Support for dockable window support (Thanks Priyank Bolia for the patch)
 - Fixed transaction filter not displaying categories
-- Added column indicating withdrawal or deposit for repeating transactions panel
+- Added column indicating withdrawal or deposit for recurring transactions panel
 - Added Polish Translation (Thanks Andrzej)
 - Added Croatian Translation (Thanks Goran Bobanovic)
 
@@ -550,7 +550,7 @@ or via the Bills Deposits entries. This could cause wierd behavior. (Lucky Arthu
 0.7.0.2 (November 28, 2006) Development Release
 - Added caching for transaction data to make it load faster
 - Fixed Delete Button not working for assets
-- Fixed Bug 1591507: Repeating Entries order on home page
+- Fixed Bug 1591507: Recurring Entries order on home page
 - Fixed Bug 1595116: From field ignored on transfer transaction
 - Fixed Bug 1593422: Balance not considering void transactions
 - Ensure transactions with same date always are sorted correctly
@@ -565,7 +565,7 @@ or via the Bills Deposits entries. This could cause wierd behavior. (Lucky Arthu
 - Fixed some menu disable/enable logic when no database is loaded
 - Allow QIF import even when Payee field is not present
 - Fix Bug 1553157: Last Calendar Month calculation off by one bug
-- Fix Bug with reporting number of days remaining for Repeating transactions
+- Fix Bug with reporting number of days remaining for Recurring transactions
 - Fix Bug 1560453 For asset having changing value purchased current year, value is zero
 - Fix Bug 1554818 Incorrect change when transaction type is changed to Transfer type
 - Fix Bug 1563345 QIF Import date format not functioning correctly
