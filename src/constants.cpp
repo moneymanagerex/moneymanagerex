@@ -47,18 +47,12 @@ const int mmex::version::RC    = -1;
 const wxString mmex::version::generateProgramVersion(int Major, int Minor, int Patch, int Alpha, int Beta, int RC)
 {
     wxString Version = wxString::Format("%i.%i.%i", Major, Minor, Patch);
-    if (Alpha == 0)
-        Version.Append("-Alpha");
-    else if (Alpha > 0)
-        Version.Append(wxString::Format("-Alpha.%i", Alpha));
-    if (Beta == 0)
-        Version.Append("-Beta");
-    else if (Beta > 0)
-        Version.Append(wxString::Format("-Beta.%i", Beta));
-    if (RC == 0)
-        Version.Append("-RC");
-    else if (RC > 0)
-        Version.Append(wxString::Format("-RC.%i", RC));
+    if (Alpha >= 0)
+        Version.Append(Alpha < 2 ? "-Alpha" : wxString::Format("-Alpha.%i", Alpha));
+    if (Beta >= 0)
+        Version.Append(Beta < 2 ? "-Beta" : wxString::Format("-Beta.%i", Beta));
+    if (RC >= 0)
+        Version.Append(RC < 2 ? "-RC" : wxString::Format("-RC.%i", RC));
 
     return Version;
 }
@@ -80,13 +74,13 @@ const wxString mmex::getProgramName()
 }
 const wxString mmex::getTitleProgramVersion()
 {
-    return _("Version: ") + mmex::getProgramVersion();
+    return wxString::Format(_("Version: %s"), mmex::getProgramVersion());
 }
 const wxString mmex::getProgramVersion()
 {
-    return mmex::version::generateProgramVersion
-        (mmex::version::Major, mmex::version::Minor, mmex::version::Patch,
-        mmex::version::Alpha, mmex::version::Beta, mmex::version::RC);
+    return mmex::version::generateProgramVersion(mmex::version::Major
+        , mmex::version::Minor, mmex::version::Patch, mmex::version::Alpha
+        , mmex::version::Beta, mmex::version::RC);
 }
 const wxString mmex::getProgramCopyright()
 {
@@ -95,8 +89,8 @@ const wxString mmex::getProgramCopyright()
 const wxString mmex::getProgramDescription()
 {
     wxString description;
-    description << _("MMEX is using the following support products") << ":\n"
-        << "======================================\n"
+    description << _("MMEX is using the following support products:")
+        << "\n======================================\n"
         << wxVERSION_STRING << "\n"
         << "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
         << wxSQLITE3_VERSION_STRING << "\n"
