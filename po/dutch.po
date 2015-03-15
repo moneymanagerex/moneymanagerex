@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-12 23:43+0300\n"
-"PO-Revision-Date: 2015-03-12 23:43+0300\n"
+"POT-Creation-Date: 2015-03-15 14:38+0300\n"
+"PO-Revision-Date: 2015-03-15 14:38+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
 "Language: da\n"
@@ -691,16 +691,16 @@ msgid "Open attachment failed"
 msgstr "Openen bijlage mislukt"
 
 #: src/billsdepositsdialog.cpp:117
-msgid "New Repeating Transaction"
-msgstr "Nieuwe herhalende transactie"
+msgid "New Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:137
-msgid " Edit Repeating Transaction"
-msgstr " Wijzig herhalende transactie"
+msgid " Edit Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:141
-msgid " Enter Repeating Transaction"
-msgstr " Invoeren herhalende transactie"
+msgid " Enter Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:288
 msgid "Note: Split transactions not set"
@@ -802,8 +802,8 @@ msgid "Payment Date"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:360
-msgid "Repeating Transaction Details"
-msgstr "Details van de repererende transacties"
+msgid "Recurring Transaction Details"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:381
 msgid "Specify the date when this bill or deposit is due"
@@ -933,8 +933,8 @@ msgid "Select Account"
 msgstr "Kies rekening"
 
 #: src/billsdepositsdialog.cpp:543
-msgid "Specify the Account that will own the repeating transaction"
-msgstr "Specificeer de rekening die hoort bij deze herhalende transactie"
+msgid "Specify the Account that will own the recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:546 src/billsdepositsdialog.cpp:850
 #: src/billsdepositspanel.cpp:112 src/filtertransdialog.cpp:204
@@ -993,8 +993,8 @@ msgid "Number"
 msgstr "Nummer"
 
 #: src/billsdepositsdialog.cpp:589
-msgid "Organize attachments of this repeating transaction"
-msgstr "Beheren bijlagen van deze herhalende transactie"
+msgid "Organize attachments of this recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:593 src/transdialog.cpp:446
 msgid "Select one of the frequently used notes"
@@ -1127,10 +1127,10 @@ msgstr ""
 "TIP: Deze transacties kunt u instellen om actief te worden - waarbij de "
 "gebruiker de waarden nog mag aanpassen - op de vervaldatum."
 
-#: src/billsdepositspanel.cpp:222 src/mmframe.cpp:730
-#: src/mmhomepagepanel.cpp:424 src/billsdepositspanel.h:99
-msgid "Repeating Transactions"
-msgstr "Periodieken"
+#: src/billsdepositspanel.cpp:222 src/billsdepositspanel.cpp:899
+#: src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
+msgid "Recurring Transactions"
+msgstr ""
 
 #: src/billsdepositspanel.cpp:239 src/filtertransdialog.cpp:96
 #: src/mmcheckingpanel.cpp:387
@@ -3632,8 +3632,8 @@ msgid "&Budget Setup"
 msgstr "Begrotingen"
 
 #: src/mmframe.cpp:1485
-msgid "&Repeating Transactions"
-msgstr "&Herhalende transacties"
+msgid "&Recurring Transactions"
+msgstr ""
 
 #: src/mmframe.cpp:1485
 msgid "Bills && Deposits"
@@ -4676,13 +4676,13 @@ msgstr "Records gevonden in gesplitste transacties: %i"
 
 #: src/relocatecategorydialog.cpp:188
 #, c-format
-msgid "Records found in repeating transactions: %i"
-msgstr "Records gevonden in herhalende transacties: %i"
+msgid "Records found in recurring transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:189
 #, c-format
-msgid "Records found in repeating split transactions: %i"
-msgstr "Records gevonden in herhalende transacties: %i"
+msgid "Records found in recurring split transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:190
 #, c-format
@@ -6067,6 +6067,36 @@ msgstr "Begunstigden"
 #, c-format
 msgid "Payee Report - %s"
 msgstr "Begunstigden rapport - %s"
+
+#~ msgid "New Repeating Transaction"
+#~ msgstr "Nieuwe herhalende transactie"
+
+#~ msgid " Edit Repeating Transaction"
+#~ msgstr " Wijzig herhalende transactie"
+
+#~ msgid " Enter Repeating Transaction"
+#~ msgstr " Invoeren herhalende transactie"
+
+#~ msgid "Repeating Transaction Details"
+#~ msgstr "Details van de repererende transacties"
+
+#~ msgid "Specify the Account that will own the repeating transaction"
+#~ msgstr "Specificeer de rekening die hoort bij deze herhalende transactie"
+
+#~ msgid "Organize attachments of this repeating transaction"
+#~ msgstr "Beheren bijlagen van deze herhalende transactie"
+
+#~ msgid "Repeating Transactions"
+#~ msgstr "Periodieken"
+
+#~ msgid "&Repeating Transactions"
+#~ msgstr "&Herhalende transacties"
+
+#~ msgid "Records found in repeating transactions: %i"
+#~ msgstr "Records gevonden in herhalende transacties: %i"
+
+#~ msgid "Records found in repeating split transactions: %i"
+#~ msgstr "Records gevonden in herhalende transacties: %i"
 
 #~ msgid "Hide column"
 #~ msgstr "Verberg kolom"

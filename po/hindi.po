@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-12 23:45+0300\n"
-"PO-Revision-Date: 2015-03-12 23:45+0300\n"
+"POT-Creation-Date: 2015-03-15 14:39+0300\n"
+"PO-Revision-Date: 2015-03-15 14:39+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Ankur Jain <ankur1101@gmail.com>\n"
 "Language: hi_IN\n"
@@ -675,17 +675,15 @@ msgid "Open attachment failed"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:117
-#, fuzzy
-msgid "New Repeating Transaction"
-msgstr "नई / संपादन करें लेनदेन"
+msgid "New Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:137
-#, fuzzy
-msgid " Edit Repeating Transaction"
-msgstr "नई / संपादन करें लेनदेन"
+msgid " Edit Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:141
-msgid " Enter Repeating Transaction"
+msgid " Enter Recurring Transaction"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:288
@@ -790,7 +788,7 @@ msgid "Payment Date"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:360
-msgid "Repeating Transaction Details"
+msgid "Recurring Transaction Details"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:381
@@ -919,7 +917,7 @@ msgid "Select Account"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:543
-msgid "Specify the Account that will own the repeating transaction"
+msgid "Specify the Account that will own the recurring transaction"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:546 src/billsdepositsdialog.cpp:850
@@ -979,7 +977,7 @@ msgid "Number"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:589
-msgid "Organize attachments of this repeating transaction"
+msgid "Organize attachments of this recurring transaction"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:593 src/transdialog.cpp:446
@@ -1106,9 +1104,9 @@ msgid ""
 "adjust any values on the due date."
 msgstr ""
 
-#: src/billsdepositspanel.cpp:222 src/mmframe.cpp:730
-#: src/mmhomepagepanel.cpp:424 src/billsdepositspanel.h:99
-msgid "Repeating Transactions"
+#: src/billsdepositspanel.cpp:222 src/billsdepositspanel.cpp:899
+#: src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
+msgid "Recurring Transactions"
 msgstr ""
 
 #: src/billsdepositspanel.cpp:239 src/filtertransdialog.cpp:96
@@ -3565,7 +3563,7 @@ msgid "&Budget Setup"
 msgstr ""
 
 #: src/mmframe.cpp:1485
-msgid "&Repeating Transactions"
+msgid "&Recurring Transactions"
 msgstr ""
 
 #: src/mmframe.cpp:1485
@@ -4591,12 +4589,12 @@ msgstr ""
 
 #: src/relocatecategorydialog.cpp:188
 #, c-format
-msgid "Records found in repeating transactions: %i"
+msgid "Records found in recurring transactions: %i"
 msgstr ""
 
 #: src/relocatecategorydialog.cpp:189
 #, c-format
-msgid "Records found in repeating split transactions: %i"
+msgid "Records found in recurring split transactions: %i"
 msgstr ""
 
 #: src/relocatecategorydialog.cpp:190
@@ -5898,6 +5896,14 @@ msgstr ""
 #, c-format
 msgid "Payee Report - %s"
 msgstr ""
+
+#, fuzzy
+#~ msgid "New Repeating Transaction"
+#~ msgstr "नई / संपादन करें लेनदेन"
+
+#, fuzzy
+#~ msgid " Edit Repeating Transaction"
+#~ msgstr "नई / संपादन करें लेनदेन"
 
 #, fuzzy
 #~ msgid "Enter the name for the new report group"

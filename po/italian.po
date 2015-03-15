@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex Italian Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-12 23:46+0300\n"
-"PO-Revision-Date: 2015-03-12 23:46+0300\n"
+"POT-Creation-Date: 2015-03-15 14:40+0300\n"
+"PO-Revision-Date: 2015-03-15 14:40+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: amaseb <amaseb@tiscali.it>\n"
 "Language: it\n"
@@ -685,16 +685,16 @@ msgid "Open attachment failed"
 msgstr "Apertura allegato fallita"
 
 #: src/billsdepositsdialog.cpp:117
-msgid "New Repeating Transaction"
-msgstr "Nuova Operazione Ricorrente"
+msgid "New Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:137
-msgid " Edit Repeating Transaction"
-msgstr "Modifica Operazione Ricorrente"
+msgid " Edit Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:141
-msgid " Enter Repeating Transaction"
-msgstr "Inserisci Operazione Ricorrente"
+msgid " Enter Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:288
 msgid "Note: Split transactions not set"
@@ -796,8 +796,8 @@ msgid "Payment Date"
 msgstr "Data pagamento"
 
 #: src/billsdepositsdialog.cpp:360
-msgid "Repeating Transaction Details"
-msgstr "Dettagli Operazione Ricorrente"
+msgid "Recurring Transaction Details"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:381
 msgid "Specify the date when this bill or deposit is due"
@@ -925,8 +925,8 @@ msgid "Select Account"
 msgstr "Selezione Conto"
 
 #: src/billsdepositsdialog.cpp:543
-msgid "Specify the Account that will own the repeating transaction"
-msgstr "Specificare il Conto su cui sarà registrata l'operazione"
+msgid "Specify the Account that will own the recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:546 src/billsdepositsdialog.cpp:850
 #: src/billsdepositspanel.cpp:112 src/filtertransdialog.cpp:204
@@ -985,8 +985,8 @@ msgid "Number"
 msgstr "Numero"
 
 #: src/billsdepositsdialog.cpp:589
-msgid "Organize attachments of this repeating transaction"
-msgstr "Organizza allegati per questa operazione ricorrente"
+msgid "Organize attachments of this recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:593 src/transdialog.cpp:446
 msgid "Select one of the frequently used notes"
@@ -1119,10 +1119,10 @@ msgstr ""
 "Suggerimento: Queste operazioni possono essere impostate come da attivare - "
 "permettendo all'utente di correggerne i valori alla scadenza."
 
-#: src/billsdepositspanel.cpp:222 src/mmframe.cpp:730
-#: src/mmhomepagepanel.cpp:424 src/billsdepositspanel.h:99
-msgid "Repeating Transactions"
-msgstr "Operazioni Ricorrenti"
+#: src/billsdepositspanel.cpp:222 src/billsdepositspanel.cpp:899
+#: src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
+msgid "Recurring Transactions"
+msgstr ""
 
 #: src/billsdepositspanel.cpp:239 src/filtertransdialog.cpp:96
 #: src/mmcheckingpanel.cpp:387
@@ -3629,8 +3629,8 @@ msgid "&Budget Setup"
 msgstr "Gestione &Budget"
 
 #: src/mmframe.cpp:1485
-msgid "&Repeating Transactions"
-msgstr "Operazioni &Ricorrenti"
+msgid "&Recurring Transactions"
+msgstr ""
 
 #: src/mmframe.cpp:1485
 msgid "Bills && Deposits"
@@ -4673,13 +4673,13 @@ msgstr "Records in operazioni suddivise: %i"
 
 #: src/relocatecategorydialog.cpp:188
 #, c-format
-msgid "Records found in repeating transactions: %i"
-msgstr "Record trovati nelle operazioni ricorrenti: %i"
+msgid "Records found in recurring transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:189
 #, c-format
-msgid "Records found in repeating split transactions: %i"
-msgstr "Record trovati in operazioni ricorrenti suddivise: %i"
+msgid "Records found in recurring split transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:190
 #, c-format
@@ -6062,6 +6062,36 @@ msgstr "Resoconto Beneficiari"
 #, c-format
 msgid "Payee Report - %s"
 msgstr "Resoconto Beneficiario - %s"
+
+#~ msgid "New Repeating Transaction"
+#~ msgstr "Nuova Operazione Ricorrente"
+
+#~ msgid " Edit Repeating Transaction"
+#~ msgstr "Modifica Operazione Ricorrente"
+
+#~ msgid " Enter Repeating Transaction"
+#~ msgstr "Inserisci Operazione Ricorrente"
+
+#~ msgid "Repeating Transaction Details"
+#~ msgstr "Dettagli Operazione Ricorrente"
+
+#~ msgid "Specify the Account that will own the repeating transaction"
+#~ msgstr "Specificare il Conto su cui sarà registrata l'operazione"
+
+#~ msgid "Organize attachments of this repeating transaction"
+#~ msgstr "Organizza allegati per questa operazione ricorrente"
+
+#~ msgid "Repeating Transactions"
+#~ msgstr "Operazioni Ricorrenti"
+
+#~ msgid "&Repeating Transactions"
+#~ msgstr "Operazioni &Ricorrenti"
+
+#~ msgid "Records found in repeating transactions: %i"
+#~ msgstr "Record trovati nelle operazioni ricorrenti: %i"
+
+#~ msgid "Records found in repeating split transactions: %i"
+#~ msgstr "Record trovati in operazioni ricorrenti suddivise: %i"
 
 #~ msgid "Hide column"
 #~ msgstr "Nascondi colonna"
