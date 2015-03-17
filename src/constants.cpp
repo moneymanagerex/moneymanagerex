@@ -48,11 +48,11 @@ const wxString mmex::version::generateProgramVersion(int Major, int Minor, int P
 {
     wxString Version = wxString::Format("%i.%i.%i", Major, Minor, Patch);
     if (Alpha >= 0)
-        Version.Append(Alpha < 2 ? "-Alpha" : wxString::Format("-Alpha.%i", Alpha));
+        Version.Append(Alpha < 1 ? "-Alpha" : wxString::Format("-Alpha.%i", Alpha));
     if (Beta >= 0)
-        Version.Append(Beta < 2 ? "-Beta" : wxString::Format("-Beta.%i", Beta));
+        Version.Append(Beta < 1 ? "-Beta" : wxString::Format("-Beta.%i", Beta));
     if (RC >= 0)
-        Version.Append(RC < 2 ? "-RC" : wxString::Format("-RC.%i", RC));
+        Version.Append(RC < 1 ? "-RC" : wxString::Format("-RC.%i", RC));
 
     return Version;
 }
