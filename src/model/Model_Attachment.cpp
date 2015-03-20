@@ -25,7 +25,7 @@ const std::vector<std::pair<Model_Attachment::REFTYPE, wxString> > Model_Attachm
 	std::make_pair(Model_Attachment::STOCK, "Stock"),
 	std::make_pair(Model_Attachment::ASSET, "Asset"),
 	std::make_pair(Model_Attachment::BANKACCOUNT, "BankAccount"),
-	std::make_pair(Model_Attachment::BILLSDEPOSIT, "RepeatingTransaction"),
+	std::make_pair(Model_Attachment::BILLSDEPOSIT, "RecurringTransaction"),
 	std::make_pair(Model_Attachment::PAYEE, "Payee")
 };
 

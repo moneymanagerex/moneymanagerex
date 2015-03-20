@@ -260,13 +260,10 @@ bool mmGeneralReportManager::Create(wxWindow* parent
     Connect(wxID_EXECUTE, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(mmGeneralReportManager::OnRun), nullptr, this);
 
     CreateControls();
+    fillControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
-
     SetIcon(mmex::getProgramIcon());
-
-    fillControls();
-
     Centre();
     return TRUE;
 }
@@ -506,7 +503,9 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
 
         m_sqlListBox->SetItemCount(m_sqlQueryData.size());
         m_sqlListBox->Refresh();
-        if (m_sqlQueryData.size() > 0) m_sqlListBox->EnsureVisible(0);
+        m_sqlListBox->Update();
+        if (m_sqlQueryData.size() > 0)
+            m_sqlListBox->EnsureVisible(0);
     }
     else
     {

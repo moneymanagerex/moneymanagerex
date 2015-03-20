@@ -98,13 +98,12 @@ bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     ColName_[COL_NOTES]    = _("Notes");
 
     CreateControls();
+    fillControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
+    this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
     Centre();
-    Fit();
-
-    fillControls();
 
     return TRUE;
 }
@@ -161,6 +160,10 @@ void mmQIFImportDialog::CreateControls()
 
     flex_sizer->Add(accountCheckBox_, g_flags);
     flex_sizer->Add(accountDropDown_, g_flags);
+    
+    //Use account number instead of account name :
+    accountNumberCheckBox_ = new wxCheckBox(this, wxID_FILE5, _("Use account number instead of account name")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);    
 
     //Filtering Details --------------------------------------------
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Filtering Details:"));
@@ -255,9 +258,12 @@ void mmQIFImportDialog::CreateControls()
 
     //Compose all sizers togethe
     wxBoxSizer* top_sizer = new wxBoxSizer(wxHORIZONTAL);
-    main_sizer->Add(top_sizer, g_flags);
+    wxBoxSizer* inTop_sizer = new wxBoxSizer(wxVERTICAL);
+    inTop_sizer->Add(top_sizer, g_flags);
+    inTop_sizer->Add(accountNumberCheckBox_, g_flags);
+    main_sizer->Add(inTop_sizer, g_flags);
     top_sizer->Add(left_sizer, g_flags);
-    top_sizer->Add(filter_sizer, g_flags);
+    top_sizer->Add(filter_sizer, g_flags);      
     main_sizer->Add(qif_notebook, g_flagsExpand);
 
     /**********************************************************************************************
@@ -462,9 +468,18 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         {
             const std::map <int, wxString> &map = trx;
             wxVector<wxVariant> data;
+            Model_Account::Data* account = Model_Account::instance().getByAccNum(map.at(AccountName));
             data.push_back(wxVariant(wxString::Format("%i", num + 1)));
-            data.push_back(wxVariant(map.find(AccountName) != map.end()
-                && (map.at(AccountName).empty() || accountCheckBox_->IsChecked()) ? m_accountNameStr : map.at(AccountName)));
+            data.push_back(wxVariant(
+                map.find(AccountName) != map.end()
+                && (map.at(AccountName).empty() || 
+                accountCheckBox_->IsChecked()) 
+                ? m_accountNameStr
+                : (
+                  (accountNumberCheckBox_->IsChecked() && account) 
+                  ? account->ACCOUNTNAME : map.at(AccountName)
+                )
+            ));
 
             data.push_back(wxVariant(map.find(Date) != map.end() ? map.at(Date) : ""));
             data.push_back(wxVariant(map.find(TransNumber) != map.end() ? map.at(TransNumber) : ""));
@@ -499,11 +514,17 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         {
             wxVector<wxVariant> data;
             const std::map <int, wxString> &a = acc.second;
-            data.push_back(wxVariant(acc.first));
+            
             wxString currencySymbol = a.find(Date) == a.end() ? "" : a.at(Date);
-            currencySymbol = currencySymbol.SubString(1, currencySymbol.length() - 2);
-            data.push_back(wxVariant(currencySymbol));
-            Model_Account::Data* account = Model_Account::instance().get(acc.first);
+            currencySymbol = currencySymbol.SubString(1, currencySymbol.length() - 2);            
+            
+            Model_Account::Data* account;
+            if(accountNumberCheckBox_->IsChecked()){  
+              account = Model_Account::instance().getByAccNum(acc.first);
+            }else{
+              account = Model_Account::instance().get(acc.first);
+            }
+       
             wxString status;
             if (account) {
                 Model_Currency::Data *curr = Model_Currency::instance().get(account->CURRENCYID);
@@ -511,9 +532,13 @@ void mmQIFImportDialog::refreshTabs(int tabs)
                     status = _("OK");
                 else
                     status = _("Warning");
+                data.push_back(wxVariant(account->ACCOUNTNAME));    
             }
-            else
+            else {
                 status = _("Missing");
+                data.push_back(wxVariant(acc.first));
+            }
+            data.push_back(wxVariant(currencySymbol));
             data.push_back(wxVariant(status));
             accListBox_->AppendItem(data, (wxUIntPtr) num++);
         }
@@ -641,7 +666,10 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
     else {
         accountDropDown_->Enable(false);
         accountCheckBox_->SetValue(false);
+        m_accountNameStr = "";
+        refreshTabs(1);
     }
+    refreshTabs(2);  
 }
 
 void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& /*event*/)
@@ -908,7 +936,12 @@ int mmQIFImportDialog::getOrCreateAccounts()
     for (const auto &item : m_QIFaccounts)
     {
         int accountID = -1;
-        Model_Account::Data* acc = Model_Account::instance().get(item.first);
+        Model_Account::Data* acc;
+        if(accountNumberCheckBox_->IsChecked()){ 
+          acc = Model_Account::instance().getByAccNum(item.first);
+        }else{
+          acc = Model_Account::instance().get(item.first);
+        }   
         if (!acc)
         {
             Model_Account::Data *account = Model_Account::instance().create();

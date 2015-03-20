@@ -103,6 +103,17 @@ Model_Account::Data* Model_Account::get(const wxString& name)
     return account;
 }
 
+/** Get the Data record instance in memory. */
+Model_Account::Data* Model_Account::getByAccNum(const wxString& num)
+{
+    Data* account = this->get_one(ACCOUNTNUM(num));
+    if (account) return account;
+
+    Data_Set items = this->find(ACCOUNTNUM(num));
+    if (!items.empty()) account = this->get(items[0].ACCOUNTID, this->db_);
+    return account;
+}
+
 wxString Model_Account::get_account_name(int account_id)
 {
     Data* account = instance().get(account_id);
@@ -298,4 +309,11 @@ bool Model_Account::is_used(const Model_Currency::Data& c)
 int Model_Account::checking_account_num()
 {
     return Model_Account::instance().find(ACCOUNTTYPE(all_type()[CHECKING])).size();
+}
+
+bool Model_Account::Exist(const wxString& account_name)
+{
+    Data_Set list = instance().find(ACCOUNTNAME(account_name));
+
+    return (!list.size() == 0);
 }

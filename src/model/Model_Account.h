@@ -59,6 +59,9 @@ public:
 public:
     /** Return the Data record for the given account name */
     Data* get(const wxString& name);
+  
+    /** Return the Data record for the given account num */
+    Data* getByAccNum(const wxString& num);   
 
     static wxString get_account_name(int account_id);
 
@@ -108,6 +111,8 @@ public:
 
     /** Return the number of accounts of type: checking*/
     static int checking_account_num();
+
+    static bool Exist(const wxString& account_name);
 };
 
 #endif // 
