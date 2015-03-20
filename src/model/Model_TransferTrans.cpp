@@ -192,4 +192,26 @@ void Model_TransferTrans::RemoveTransferEntry(const int& checking_account_id)
     Data trans_entry = TransferEntry(checking_account_id);
     Model_Checking::instance().remove(trans_entry.ID_CHECKINGACCOUNT);
     Model_TransferTrans::instance().remove(trans_entry.ID);
+
+    if (trans_entry.TABLETYPE == all_table_type()[TABLE_TYPE::STOCKS])
+    {
+        Model_Stock::Data* stock_entry = Model_Stock::instance().get(trans_entry.ID_TABLERECORD);
+        UpdateStockValue(stock_entry);
+    }
+}
+
+void Model_TransferTrans::UpdateStockValue(Model_Stock::Data* stock_entry)
+{
+    Data_Set trans_list = TransferList(TABLE_TYPE::STOCKS, stock_entry->STOCKID);
+    double new_share_count = 0;
+    double new_value = 0;
+    for (const auto trans : trans_list)
+    {
+        new_share_count += trans.SHARE_NUMBER;
+        new_value += trans.SHARE_NUMBER * trans.SHARE_UNITPRICE;
+    }
+
+    stock_entry->NUMSHARES = new_share_count;
+    stock_entry->VALUE = new_value;
+    Model_Stock::instance().save(stock_entry);
 }

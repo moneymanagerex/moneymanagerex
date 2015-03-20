@@ -24,6 +24,7 @@
 #include "db/DB_Table_Transfertrans_V1.h"
 #include "Model_Currency.h"
 #include "Model_Checking.h"
+#include "Model_Stock.h"
 
 class Model_TransferTrans : public Model<DB_Table_TRANSFERTRANS_V1>
 {
@@ -98,6 +99,7 @@ public:
  
     /* Remove the checking account entry and its associated transfer transaction. */
     static void RemoveTransferEntry(const int& checking_account_id);
+    static void UpdateStockValue(Model_Stock::Data* stock_entry);
 
 private:
     static Model_TransferTrans::Data* SetTransferTransaction(const wxString& trans_type

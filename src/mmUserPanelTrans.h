@@ -52,6 +52,7 @@ public:
     void SetTransactionValue(const double& trans_value);
     void SetTransactionNumber(const wxString& trans_number);
 
+    int TransactionType();
     Model_TransferTrans::CHECKING_TYPE CheckingType();
     void SetCheckingType(Model_TransferTrans::CHECKING_TYPE ct);
     const wxString CurrencySymbol();

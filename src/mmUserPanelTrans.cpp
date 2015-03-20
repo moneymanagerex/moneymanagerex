@@ -482,3 +482,8 @@ int mmUserPanelTrans::SaveChecking()
 
     return Model_Checking::instance().save(m_checking_entry);
 }
+
+int mmUserPanelTrans::TransactionType()
+{
+    return m_type_selector->GetSelection();
+}

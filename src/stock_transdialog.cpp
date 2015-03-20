@@ -41,7 +41,7 @@
 IMPLEMENT_DYNAMIC_CLASS(mmStockTransDialog, wxDialog)
 
 wxBEGIN_EVENT_TABLE(mmStockTransDialog, wxDialog)
-    EVT_BUTTON(wxID_SAVE, mmStockTransDialog::OnSave)
+    EVT_BUTTON(wxID_OK, mmStockTransDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmStockTransDialog::OnCancel)
     EVT_BUTTON(wxID_FILE, mmStockTransDialog::OnAttachments)
     EVT_BUTTON(wxID_INDEX, mmStockTransDialog::OnStockPriceButton)
@@ -284,6 +284,11 @@ void mmStockTransDialog::CreateControls()
     {
         m_transaction_panel->SetCheckingType(Model_TransferTrans::type_checking(m_checking_entry->TOACCOUNTID));
     }
+    else
+    {
+        wxString acc_held = Model_Account::get_account_name(m_account_id);
+        m_transaction_panel->SetTransactionNumber(acc_held);
+    }
 
     /********************************************************************
     Separation Line
@@ -296,12 +301,12 @@ void mmStockTransDialog::CreateControls()
     *********************************************************************/
     wxPanel* button_panel = new wxPanel(this, wxID_STATIC);
     wxBoxSizer* button_panel_sizer = new wxBoxSizer(wxHORIZONTAL);
-    wxButton* save_button = new wxButton(button_panel, wxID_SAVE, _("&Save "));
+    wxButton* ok_button = new wxButton(button_panel, wxID_OK, _("&OK "));
     wxButton* close_button = new wxButton(button_panel, wxID_CANCEL, _("&Cancel "));
 
     main_sizer->Add(button_panel, wxSizerFlags(g_flags).Center());
     button_panel->SetSizer(button_panel_sizer);
-    button_panel_sizer->Add(save_button, g_flags);
+    button_panel_sizer->Add(ok_button, g_flags);
     button_panel_sizer->Add(close_button, g_flags);
     //cancel_button->SetFocus();
 }
@@ -351,20 +356,7 @@ void mmStockTransDialog::OnStockPriceButton(wxCommandEvent& WXUNUSED(event))
     }
 }
 
-void mmStockTransDialog::UpdateStockValue(const double& num_shares, const double& purchase_price)
-{
-    Model_TransferTrans::Data_Set trans_list = Model_TransferTrans::TransferList(Model_TransferTrans::TABLE_TYPE::STOCKS, m_stock->STOCKID);
-    double new_value = 0;
-    for (const auto trans : trans_list)
-    {
-        new_value += trans.SHARE_NUMBER * trans.SHARE_UNITPRICE;
-    }
-    m_stock->VALUE = new_value;
-
-    Model_Stock::instance().save(m_stock);
-}
-
-void mmStockTransDialog::OnSave(wxCommandEvent& WXUNUSED(event))
+void mmStockTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     Model_Account::Data* account = Model_Account::instance().get(m_account_id);
     if (!account)
@@ -441,31 +433,43 @@ void mmStockTransDialog::OnSave(wxCommandEvent& WXUNUSED(event))
             EndModal(wxID_SAVE);
         }
 
-        // if we get to this point
+        // The Stocks table maintains the total number of shares.
+        // The Unit price field in the Stocks table becomes obsolete.
+
+        // if we get to this point, setup the transfer table
         Model_TransferTrans::Data_Set trans_list = Model_TransferTrans::TransferList(Model_TransferTrans::TABLE_TYPE::STOCKS, m_stock->STOCKID);
         if (!trans_list.empty())
         {
-            if (num_shares > 0) // addition of new shares
+            if (num_shares > 0) // addition or removal shares
             {
-                // The main table now maintains the total number of shares
-                // and the Unit price in the main table becomes obsolete.
                 m_stock->CURRENTPRICE = purchase_price;
-                m_stock->NUMSHARES += num_shares;
                 m_stock->COMMISSION += commission;
+                if (m_transaction_panel->TransactionType() == Model_Checking::WITHDRAWAL)
+                {
+                    m_stock->NUMSHARES += num_shares;
+                }
+                else
+                {
+                    m_stock->NUMSHARES -= num_shares;
+                    // we need to subtract the number of shares for a sale
+                    num_shares = num_shares * -1;
+                }
             }
         }
+
         Model_TransferTrans::SetShareTransferTransaction(m_stock->STOCKID, checking_id
             , purchase_price, num_shares, commission
             , m_transaction_panel->CheckingType()
             , m_transaction_panel->CurrencySymbol());
-        UpdateStockValue(num_shares, purchase_price);
+        Model_TransferTrans::UpdateStockValue(m_stock);
     }
     else
     {
-        mmErrorDialogs::MessageWarning(this, _("Transaction Not saved"), m_dialog_heading);
+        mmErrorDialogs::MessageWarning(this, _("Invalid Transaction"), m_dialog_heading);
+        return;
     }
 
-    EndModal(wxID_SAVE);
+    EndModal(wxID_OK);
 }
 
 void mmStockTransDialog::OnTextEntered(wxCommandEvent& event)

@@ -362,7 +362,7 @@ void mmStocksPanel::AddStockTransaction(int selectedIndex)
 {
     Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
     mmStockTransDialog dlg(this, stock, m_account_id);
-    if (dlg.ShowModal() == wxID_SAVE)
+    if (dlg.ShowModal() == wxID_OK)
     {
         listCtrlAccount_->doRefreshItems(dlg.m_stock_id);
         updateExtraStocksData(selectedIndex);
@@ -385,7 +385,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
     wxString msg = _("Date   \t Shares   \t Unit Price   \t Commission\n\n");
     for (const auto stock_entry : stock_list)
     {
-        if (stock_entry.SHARE_NUMBER > 0)
+        if (stock_entry.SHARE_UNITPRICE > 0)
         {
             Model_Checking::Data* stock_trans = Model_Checking::instance().get(stock_entry.ID_CHECKINGACCOUNT);
             wxString sd = mmGetDateForDisplay(Model_Checking::TRANSDATE(stock_trans));

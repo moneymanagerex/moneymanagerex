@@ -47,9 +47,8 @@ private:
 
     void CreateControls();
     void DataToControls();
-    void UpdateStockValue(const double& num_shares, const double& purchase_price);
 
-    void OnSave(wxCommandEvent& WXUNUSED(event));
+    void OnOk(wxCommandEvent& WXUNUSED(event));
     void OnCancel(wxCommandEvent& WXUNUSED(event));
 	void OnAttachments(wxCommandEvent& event);
     void OnStockPriceButton(wxCommandEvent& event);
