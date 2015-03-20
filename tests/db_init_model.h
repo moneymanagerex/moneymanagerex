@@ -140,7 +140,6 @@ public:
 
     void ShowMessage(wxString msg);
 
-    bool AccountNotExist(const wxString& account_name);
     bool PayeeNotExist(const wxString& payee_name);
     void SetCurrencyExchangeRate(const wxString& currency_symbol, double rate);
 

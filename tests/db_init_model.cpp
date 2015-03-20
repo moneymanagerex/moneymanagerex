@@ -580,15 +580,6 @@ void DB_Init_Model::ShowMessage(wxString msg)
     wxMessageBox(msg, "MMEX_Table Data Initialisation", wxOK | wxICON_WARNING, wxTheApp->GetTopWindow());
 }
 
-bool DB_Init_Model::AccountNotExist(const wxString& account_name)
-{
-    Model_Account::Data_Set list = Model_Account::instance().find(Model_Account::ACCOUNTNAME(account_name));
-    if (list.size() == 0)
-        return true;
-    else
-        return false;
-}
-
 bool DB_Init_Model::PayeeNotExist(const wxString& payee_name)
 {
     Model_Payee::Data_Set list = Model_Payee::instance().find(Model_Payee::PAYEENAME(payee_name));

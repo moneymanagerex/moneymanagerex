@@ -71,14 +71,14 @@ void Test_Stock::setUp()
     m_dbmodel->Set_Stock_Columns(&m_test_db);
     m_dbmodel->Set_Checking_Columns(&m_test_db);
 
-    if (m_dbmodel->AccountNotExist("Savings")) m_dbmodel->Add_Bank_Account("Savings", 10000);
-    if (m_dbmodel->AccountNotExist("Cheque"))  m_dbmodel->Add_Bank_Account("Cheque", 5000,"",false,"USD");
-    if (m_dbmodel->AccountNotExist("Visa"))    m_dbmodel->Add_CreditCard_Account("Visa", -1000);
-    if (m_dbmodel->AccountNotExist("Mastercard")) m_dbmodel->Add_CreditCard_Account("Mastercard", -2000);
-    if (m_dbmodel->AccountNotExist("Insurance"))  m_dbmodel->Add_Term_Account("Insurance");
-    if (m_dbmodel->AccountNotExist("ACME Corp"))  m_dbmodel->Add_Term_Account("ACME Corp");
-    if (m_dbmodel->AccountNotExist("Yahoo Finance"))  m_dbmodel->Add_Investment_Account("Yahoo Finance");
-    if (m_dbmodel->AccountNotExist("Google Finance")) m_dbmodel->Add_Investment_Account("Google Finance");
+    if (!Model_Account::Exist("Savings")) m_dbmodel->Add_Bank_Account("Savings", 10000);
+    if (!Model_Account::Exist("Cheque"))  m_dbmodel->Add_Bank_Account("Cheque", 5000, "", false, "USD");
+    if (!Model_Account::Exist("Visa"))    m_dbmodel->Add_CreditCard_Account("Visa", -1000);
+    if (!Model_Account::Exist("Mastercard")) m_dbmodel->Add_CreditCard_Account("Mastercard", -2000);
+    if (!Model_Account::Exist("Insurance"))  m_dbmodel->Add_Term_Account("Insurance");
+    if (!Model_Account::Exist("ACME Corp"))  m_dbmodel->Add_Term_Account("ACME Corp");
+    if (!Model_Account::Exist("Yahoo Finance"))  m_dbmodel->Add_Investment_Account("Yahoo Finance");
+    if (!Model_Account::Exist("Google Finance")) m_dbmodel->Add_Investment_Account("Google Finance");
 
     if (m_dbmodel->PayeeNotExist("AMP"))
     {
