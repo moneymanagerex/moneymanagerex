@@ -163,7 +163,11 @@ void mmQIFImportDialog::CreateControls()
     
     //Use account number instead of account name :
     accountNumberCheckBox_ = new wxCheckBox(this, wxID_FILE5, _("Use account number instead of account name")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);    
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        
+    //Use paye as desc :
+    payeeIsNotesCheckBox_ = new wxCheckBox(this, wxID_FILE5, _("Include paye field in notes")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     //Filtering Details --------------------------------------------
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Filtering Details:"));
@@ -261,6 +265,7 @@ void mmQIFImportDialog::CreateControls()
     wxBoxSizer* inTop_sizer = new wxBoxSizer(wxVERTICAL);
     inTop_sizer->Add(top_sizer, g_flags);
     inTop_sizer->Add(accountNumberCheckBox_, g_flags);
+    inTop_sizer->Add(payeeIsNotesCheckBox_, g_flags);
     main_sizer->Add(inTop_sizer, g_flags);
     top_sizer->Add(left_sizer, g_flags);
     top_sizer->Add(filter_sizer, g_flags);      
@@ -660,6 +665,12 @@ void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
 
 void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
 {
+    if (payeeIsNotesCheckBox_->IsChecked()){
+        payeeIsNotes = true;
+    }else{
+        payeeIsNotes = false;
+    }
+    
     fromDateCtrl_->Enable(dateFromCheckBox_->IsChecked());
     toDateCtrl_->Enable(dateToCheckBox_->IsChecked());
     if (accountCheckBox_->IsChecked()
