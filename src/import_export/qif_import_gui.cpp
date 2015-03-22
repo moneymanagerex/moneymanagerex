@@ -670,6 +670,7 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
     }else{
         payeeIsNotes = false;
     }
+    refreshTabs(3);
     
     fromDateCtrl_->Enable(dateFromCheckBox_->IsChecked());
     toDateCtrl_->Enable(dateToCheckBox_->IsChecked());
