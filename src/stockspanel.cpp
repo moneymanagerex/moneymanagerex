@@ -689,7 +689,7 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
 
 wxString mmStocksPanel::GetPanelTitle(const Model_Account::Data& account) const
 {
-    return wxString::Format(_("Stock Investments: %s"), account.ACCOUNTNAME);
+    return wxString::Format(_("Stock Portfolio: %s"), account.ACCOUNTNAME);
 }
 
 wxString mmStocksPanel::BuildPage() const
