@@ -31,7 +31,7 @@ class mmAssetDialog : public wxDialog
 
 public:
     mmAssetDialog(){};
-    mmAssetDialog(wxWindow *parent, Model_Asset::Data* asset);
+    mmAssetDialog(wxWindow *parent, Model_Asset::Data* asset, bool trans_data = false);
     mmAssetDialog(wxWindow *parent, Model_TransferTrans::Data* transfer_entry, Model_Checking::Data* checking_entry);
 
     Model_Asset::Data* m_asset;
@@ -73,6 +73,7 @@ private:
 	wxBitmapButton* m_attachment;
     wxStaticBox* m_transaction_frame;
     mmUserPanelTrans* m_transaction_panel;
+    wxString m_dialog_heading;
 
     enum
     {

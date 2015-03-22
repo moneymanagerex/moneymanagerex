@@ -42,7 +42,7 @@ wxBEGIN_EVENT_TABLE( mmAssetDialog, wxDialog )
     EVT_DATE_CHANGED(IDC_DATEPICKER_CHANGE, mmAssetDialog::OnDateChange)
 wxEND_EVENT_TABLE()
 
-mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset)
+mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset, bool trans_data)
     : m_asset(asset)
     , m_assetName()
     , m_dpc()
@@ -56,12 +56,19 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset)
     , m_transfer_entry(nullptr)
     , m_checking_entry(nullptr)
 {
-    wxString heading(_("New Asset"));
-    if (m_asset)
-        heading = _("Edit Asset");
+    m_dialog_heading = _("New Asset");
+    if (m_asset && trans_data)
+    {
+        m_dialog_heading = _("Edit Asset");
+        if (trans_data)
+        {
+            m_hidden_trans_entry = false;
+            m_dialog_heading = _("Add Asset Transaction");
+        }
+    }
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, heading, wxDefaultPosition, wxSize(400, 300), style);
+    Create(parent, wxID_ANY, m_dialog_heading, wxDefaultPosition, wxSize(400, 300), style);
 }
 
 mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_TransferTrans::Data* transfer_entry, Model_Checking::Data* checking_entry)
@@ -78,12 +85,12 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_TransferTrans::Data* transf
     , m_transfer_entry(transfer_entry)
     , m_checking_entry(checking_entry)
 {
-    wxString heading(_("Edit Asset Transaction"));
+    m_dialog_heading = _("Edit Asset Transaction");
     if (m_asset)
-        heading = _("Edit Asset");
+        m_dialog_heading = _("Edit Asset");
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, heading, wxDefaultPosition, wxSize(400, 300), style);
+    Create(parent, wxID_ANY, m_dialog_heading, wxDefaultPosition, wxSize(400, 300), style);
 }
 
 bool mmAssetDialog::Create(wxWindow* parent
@@ -238,6 +245,11 @@ void mmAssetDialog::CreateControls()
     {
         m_transaction_panel->SetCheckingType(Model_TransferTrans::type_checking(m_checking_entry->TOACCOUNTID));
     }
+    else
+    {
+        if (m_asset)
+            m_transaction_panel->SetTransactionNumber(m_asset->ASSETNAME);
+    }
 
     if (m_hidden_trans_entry) HideTransactionPanel();
     /********************************************************************
@@ -341,6 +353,11 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
         Model_TransferTrans::SetAssetTransferTransaction(new_asset_id, checking_id
             , m_transaction_panel->CheckingType()
             , m_transaction_panel->CurrencySymbol());
+    }
+    else if (!m_hidden_trans_entry)
+    {
+        mmErrorDialogs::MessageWarning(this, _("Invalid Transaction"), m_dialog_heading);
+        return;
     }
 
     EndModal(wxID_OK);

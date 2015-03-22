@@ -728,13 +728,13 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SetItemData(shareAccounts, new mmTreeItemData("Share Accounts"));
     navTreeCtrl_->SetItemBold(shareAccounts, true);
 
-    wxTreeItemId assetAccounts = navTreeCtrl_->AppendItem(root, _("Asset Accounts"), 7, 7);
-    navTreeCtrl_->SetItemData(assetAccounts, new mmTreeItemData("Asset Accounts"));
-    navTreeCtrl_->SetItemBold(assetAccounts, true);
-
     wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), 7, 7);
     navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
     navTreeCtrl_->SetItemBold(assets, true);
+
+    wxTreeItemId assetAccounts = navTreeCtrl_->AppendItem(root, _("Asset Accounts"), 8, 8);
+    navTreeCtrl_->SetItemData(assetAccounts, new mmTreeItemData("Asset Accounts"));
+    navTreeCtrl_->SetItemBold(assetAccounts, true);
 
     wxTreeItemId bills = navTreeCtrl_->AppendItem(root, _("Recurring Transactions"), 2, 2);
     navTreeCtrl_->SetItemData(bills, new mmTreeItemData("Bills & Deposits"));
