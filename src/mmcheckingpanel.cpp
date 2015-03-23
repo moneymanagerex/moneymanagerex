@@ -518,7 +518,15 @@ void mmCheckingPanel::CreateControls()
 //----------------------------------------------------------------------------
 wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) const
 {
-    return wxString::Format(_("Account View : %s"), account.ACCOUNTNAME);
+    wxString heading = _("Account : %s");
+    if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::ASSET])
+        heading = _("Asset Account : %s");
+    if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::SHARES])
+        heading = _("Share Account : %s");
+    if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::TERM])
+        heading = _("Term Account : %s");
+
+    return wxString::Format(heading, account.ACCOUNTNAME);
 }
 
 wxString mmCheckingPanel::BuildPage() const
@@ -1581,7 +1589,6 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
         }
         else
         {
-//TODO: Assets and Stocks
             mmAssetDialog dlg(this, &transfer_entry, &checking_entry);
             if (dlg.ShowModal() == wxID_OK)
             {
