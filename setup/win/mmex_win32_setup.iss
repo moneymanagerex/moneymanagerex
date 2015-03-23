@@ -223,7 +223,6 @@ Source: {#my_svn_path}\doc\help\*.gif; DestDir: {app}\help; Flags: ignoreversion
  
 ; MMEX Help - Help Directories - Language dependant
 Source: {#my_svn_path}\doc\help\french\*; DestDir: {app}\help\french; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\french; 
-Source: {#my_svn_path}\doc\help\german\*; DestDir: {app}\help\german; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\german; 
 Source: {#my_svn_path}\doc\help\hungarian\*; DestDir: {app}\help\hungarian; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\hungarian; 
 Source: {#my_svn_path}\doc\help\italian\*; DestDir: {app}\help\italian; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\italian; 
 Source: {#my_svn_path}\doc\help\polish\*; DestDir: {app}\help\polish; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\polish; 
