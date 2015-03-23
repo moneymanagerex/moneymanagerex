@@ -57,7 +57,7 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset, bool tr
     , m_checking_entry(nullptr)
 {
     m_dialog_heading = _("New Asset");
-    if (m_asset && trans_data)
+    if (m_asset || trans_data)
     {
         m_dialog_heading = _("Edit Asset");
         if (trans_data)
@@ -85,9 +85,12 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_TransferTrans::Data* transf
     , m_transfer_entry(transfer_entry)
     , m_checking_entry(checking_entry)
 {
-    m_dialog_heading = _("Edit Asset Transaction");
-    if (m_asset)
-        m_dialog_heading = _("Edit Asset");
+    m_dialog_heading = _("Add Asset Transaction");
+    if (transfer_entry)
+    {
+        m_dialog_heading = _("Edit Asset Transaction");
+        m_asset = Model_Asset::instance().get(transfer_entry->ID_TABLERECORD);
+    }
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, m_dialog_heading, wxDefaultPosition, wxSize(400, 300), style);
@@ -123,7 +126,6 @@ void mmAssetDialog::dataToControls()
     m_notes->SetValue(m_asset->NOTES);
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
     m_value->SetValue(m_asset->VALUE);
-    m_transaction_panel->SetTransactionValue(m_value->GetValue());
 
     wxString valueChangeRate;
     valueChangeRate.Printf("%.3f", m_asset->VALUECHANGERATE);
@@ -132,6 +134,20 @@ void mmAssetDialog::dataToControls()
     m_valueChange->SetSelection(Model_Asset::rate(m_asset));
     enableDisableRate(Model_Asset::rate(m_asset) != Model_Asset::RATE_NONE);
     m_assetType->SetSelection(Model_Asset::type(m_asset));
+
+    // Set up the transaction if this is the first entry.
+    if (Model_TransferTrans::TransferList(Model_TransferTrans::ASSETS, m_asset->ASSETID).empty())
+    {
+        m_transaction_panel->SetTransactionValue(m_asset->VALUE);
+    }
+
+    if (!m_hidden_trans_entry)
+    {
+        m_assetName->Enable(false);
+        m_assetType->Enable(false);
+        m_dpc->Enable(false);
+        m_value->Enable(false);
+    }
 }
 
 void mmAssetDialog::CreateControls()

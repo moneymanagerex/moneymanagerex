@@ -1582,7 +1582,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
         if (transfer_entry.TABLETYPE == Model_TransferTrans::all_table_type()[Model_TransferTrans::STOCKS])
         {
             mmStockTransDialog dlg(this, &transfer_entry, &checking_entry);
-            if (dlg.ShowModal() == wxID_SAVE)
+            if (dlg.ShowModal() == wxID_OK)
             {
                 refreshVisualList(transaction_id);
             }
