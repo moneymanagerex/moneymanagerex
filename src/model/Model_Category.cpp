@@ -20,6 +20,7 @@
 #include "Model_Checking.h"
 #include "Model_Billsdeposits.h"
 #include "Model_Account.h"
+#include "model/Model_TransferTrans.h"
 #include "reports/mmDateRange.h"
 #include <tuple>
 
@@ -372,6 +373,9 @@ void Model_Category::getCategoryStats(
         {
             if (Model_Checking::type(transaction) != Model_Checking::TRANSFER)
             {
+                // Do not include asset or stock transfers in income expense calculations.
+                if (Model_Checking::foreignTransaction(transaction) && transaction.TOACCOUNTID == Model_TransferTrans::AS_TRANSFER)
+                    continue;
                 categoryStats[categID][transaction.SUBCATEGID][idx] += Model_Checking::balance(transaction) * convRate;
             }
             else if (budgetAmt != 0)
