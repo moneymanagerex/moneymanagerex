@@ -793,12 +793,12 @@ void mmGUIFrame::updateNavTreeControl()
         if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
         if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
     }
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
     windowsFreezeThaw(navTreeCtrl_);
     navTreeCtrl_->SelectItem(root);
     navTreeCtrl_->EnsureVisible(root);
     navTreeCtrl_->Refresh();
     navTreeCtrl_->Update();
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 
 
