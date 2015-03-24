@@ -26,6 +26,16 @@ wxBEGIN_EVENT_TABLE(mmOptionViewSettings, wxPanel)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
+static const wxString m_itemChoiceFontSize[] = {
+    wxTRANSLATE("XX-Small"),
+    wxTRANSLATE("X-Small"),
+    wxTRANSLATE("Small"),
+    wxTRANSLATE("Medium"),
+    wxTRANSLATE("Large"),
+    wxTRANSLATE("X-Large"),
+    wxTRANSLATE("XX-Large")
+};
+
 mmOptionViewSettings::mmOptionViewSettings()
 {
 }
@@ -100,19 +110,16 @@ void mmOptionViewSettings::Create()
 
     view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Report Font Size")), g_flags);
 
-    wxArrayString itemChoiceFontSize;
-    itemChoiceFontSize.Add(wxTRANSLATE("XX-Small"));
-    itemChoiceFontSize.Add(wxTRANSLATE("X-Small"));
-    itemChoiceFontSize.Add(wxTRANSLATE("Small"));
-    itemChoiceFontSize.Add(wxTRANSLATE("Medium"));
-    itemChoiceFontSize.Add(wxTRANSLATE("Large"));
-    itemChoiceFontSize.Add(wxTRANSLATE("X-Large"));
-    itemChoiceFontSize.Add(wxTRANSLATE("XX-Large"));
-
-    m_choice_font_size = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxSize(100, -1), itemChoiceFontSize);
+    m_choice_font_size = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxSize(100, -1));
+    for (const auto &entry : m_itemChoiceFontSize)
+        m_choice_font_size->Append(wxGetTranslation(entry));
 
     const wxString vFontSize = Model_Setting::instance().HtmlFontSize();
-    m_choice_font_size->SetStringSelection(vFontSize);
+    for (int i = 0; i < sizeof(m_itemChoiceFontSize) / sizeof(wxString); i++)
+    {
+        if (vFontSize == m_itemChoiceFontSize[i])
+            m_choice_font_size->SetSelection(i);
+    }
 
     m_choice_font_size->SetToolTip(_("Specify which font size is used on the report tables"));
     view_sizer1->Add(m_choice_font_size, g_flags);
@@ -256,8 +263,8 @@ void mmOptionViewSettings::SaveSettings()
     }
     Model_Setting::instance().SetViewTransactions(visible);
 
-    const wxString& size = m_choice_font_size->GetStringSelection();
-    Model_Setting::instance().SetHtmlFontSize(size);
+    int size = m_choice_font_size->GetSelection();
+    Model_Setting::instance().SetHtmlFontSize(m_itemChoiceFontSize[size]);
 
     Model_Setting::instance().SetBudgetFinancialYears(m_budget_financial_years->GetValue());
     Model_Setting::instance().SetBudgetIncludeTransfers(m_budget_include_transfers->GetValue());
