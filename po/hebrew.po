@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-12 23:44+0300\n"
-"PO-Revision-Date: 2015-03-12 23:44+0300\n"
+"POT-Creation-Date: 2015-03-15 14:39+0300\n"
+"PO-Revision-Date: 2015-03-15 14:39+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Avi Markovitz <Avi.Markovitz@gmail.com>\n"
 "Language: he_IL\n"
@@ -708,19 +708,16 @@ msgid "Open attachment failed"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:117
-#, fuzzy
-msgid "New Repeating Transaction"
-msgstr "הוסף/ערוך תנועות חוזרות"
+msgid "New Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:137
-#, fuzzy
-msgid " Edit Repeating Transaction"
-msgstr "הוסף/ערוך תנועות חוזרות"
+msgid " Edit Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:141
-#, fuzzy
-msgid " Enter Repeating Transaction"
-msgstr "תנועות חוזרות"
+msgid " Enter Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:288
 #, fuzzy
@@ -824,8 +821,8 @@ msgid "Payment Date"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:360
-msgid "Repeating Transaction Details"
-msgstr "פרטי תנועות חוזרות"
+msgid "Recurring Transaction Details"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:381
 msgid "Specify the date when this bill or deposit is due"
@@ -953,8 +950,8 @@ msgid "Select Account"
 msgstr "בחר חשבון"
 
 #: src/billsdepositsdialog.cpp:543
-msgid "Specify the Account that will own the repeating transaction"
-msgstr "בחר בחשבון שממנו יצאו או אליו יכנסו התנועות החוזרות"
+msgid "Specify the Account that will own the recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:546 src/billsdepositsdialog.cpp:850
 #: src/billsdepositspanel.cpp:112 src/filtertransdialog.cpp:204
@@ -1013,9 +1010,8 @@ msgid "Number"
 msgstr "אסמכתא"
 
 #: src/billsdepositsdialog.cpp:589
-#, fuzzy
-msgid "Organize attachments of this repeating transaction"
-msgstr "הזן את סכום התנועה"
+msgid "Organize attachments of this recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:593 src/transdialog.cpp:446
 msgid "Select one of the frequently used notes"
@@ -1148,10 +1144,10 @@ msgstr ""
 "עצה: עסקאות אלה ניתן להגדיר כדי להפעיל – אפשרות להתאים את כל הערכים בתאריך "
 "היעד."
 
-#: src/billsdepositspanel.cpp:222 src/mmframe.cpp:730
-#: src/mmhomepagepanel.cpp:424 src/billsdepositspanel.h:99
-msgid "Repeating Transactions"
-msgstr "תנועות חוזרות"
+#: src/billsdepositspanel.cpp:222 src/billsdepositspanel.cpp:899
+#: src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
+msgid "Recurring Transactions"
+msgstr ""
 
 #: src/billsdepositspanel.cpp:239 src/filtertransdialog.cpp:96
 #: src/mmcheckingpanel.cpp:387
@@ -3708,8 +3704,8 @@ msgid "&Budget Setup"
 msgstr "הגדרת תקציב&"
 
 #: src/mmframe.cpp:1485
-msgid "&Repeating Transactions"
-msgstr "תנועות חוזרות&"
+msgid "&Recurring Transactions"
+msgstr ""
 
 #: src/mmframe.cpp:1485
 msgid "Bills && Deposits"
@@ -4771,13 +4767,13 @@ msgid "Records found in split transactions: %i"
 msgstr ""
 
 #: src/relocatecategorydialog.cpp:188
-#, fuzzy, c-format
-msgid "Records found in repeating transactions: %i"
-msgstr "תנועות חוזרות"
+#, c-format
+msgid "Records found in recurring transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:189
 #, c-format
-msgid "Records found in repeating split transactions: %i"
+msgid "Records found in recurring split transactions: %i"
 msgstr ""
 
 #: src/relocatecategorydialog.cpp:190
@@ -6191,6 +6187,38 @@ msgstr "דוח מוטב"
 #, fuzzy, c-format
 msgid "Payee Report - %s"
 msgstr "דוח מוטב"
+
+#, fuzzy
+#~ msgid "New Repeating Transaction"
+#~ msgstr "הוסף/ערוך תנועות חוזרות"
+
+#, fuzzy
+#~ msgid " Edit Repeating Transaction"
+#~ msgstr "הוסף/ערוך תנועות חוזרות"
+
+#, fuzzy
+#~ msgid " Enter Repeating Transaction"
+#~ msgstr "תנועות חוזרות"
+
+#~ msgid "Repeating Transaction Details"
+#~ msgstr "פרטי תנועות חוזרות"
+
+#~ msgid "Specify the Account that will own the repeating transaction"
+#~ msgstr "בחר בחשבון שממנו יצאו או אליו יכנסו התנועות החוזרות"
+
+#, fuzzy
+#~ msgid "Organize attachments of this repeating transaction"
+#~ msgstr "הזן את סכום התנועה"
+
+#~ msgid "Repeating Transactions"
+#~ msgstr "תנועות חוזרות"
+
+#~ msgid "&Repeating Transactions"
+#~ msgstr "תנועות חוזרות&"
+
+#, fuzzy
+#~ msgid "Records found in repeating transactions: %i"
+#~ msgstr "תנועות חוזרות"
 
 #, fuzzy
 #~ msgid "Modify the description for the attachment:"

@@ -132,6 +132,8 @@ http://www.famfamfam.com/lab/icons/silk
 20. Todd Smith
 21. Thomas Prior
 22. Filippo Levati
+23. Erich Oswald
+24. Martin Kopecky
 
 2014
 1. [CodeLathe LLC](http://www.tonido.com/)
@@ -205,7 +207,7 @@ willmetz
 ---------------------------------------
 
 ##GNU general public license
-Copyright (C) 2013 Nikolay, Lisheng [guanlisheng], James [siena123]
+Copyright (C) 2013-2015 Nikolay, Lisheng [guanlisheng], James [siena123]
 Copyright (C) 2010-2012 Stefano [stef145g], Nikolay, Lisheng [guanlisheng]
 Copyright (C) 2009-2010 VaDiM, Nikolay, Wesley Ellis
 Copyright (C) 2005-2009 Madhan Kanagavel

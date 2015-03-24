@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-12 23:50+0300\n"
-"PO-Revision-Date: 2015-03-12 23:50+0300\n"
+"POT-Creation-Date: 2015-03-15 14:49+0300\n"
+"PO-Revision-Date: 2015-03-15 14:49+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
 "Language: ta\n"
@@ -687,19 +687,16 @@ msgid "Open attachment failed"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:117
-#, fuzzy
-msgid "New Repeating Transaction"
-msgstr "புது/மாற்று திட்டமிட்ட‌ பரிமாற்றம்"
+msgid "New Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:137
-#, fuzzy
-msgid " Edit Repeating Transaction"
-msgstr "புது/மாற்று திட்டமிட்ட‌ பரிமாற்றம்"
+msgid " Edit Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:141
-#, fuzzy
-msgid " Enter Repeating Transaction"
-msgstr "திட்டமிட்ட‌ பரிமாற்றங்கள்"
+msgid " Enter Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:288
 #, fuzzy
@@ -804,8 +801,8 @@ msgid "Payment Date"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:360
-msgid "Repeating Transaction Details"
-msgstr "திட்டமிட்ட‌ பரிமாற்ற விவரம்"
+msgid "Recurring Transaction Details"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:381
 msgid "Specify the date when this bill or deposit is due"
@@ -931,9 +928,8 @@ msgid "Select Account"
 msgstr "தேர்ந்தெடு"
 
 #: src/billsdepositsdialog.cpp:543
-#, fuzzy
-msgid "Specify the Account that will own the repeating transaction"
-msgstr "பரிமாற்றத் தொகையை குறிப்பிடு"
+msgid "Specify the Account that will own the recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:546 src/billsdepositsdialog.cpp:850
 #: src/billsdepositspanel.cpp:112 src/filtertransdialog.cpp:204
@@ -990,9 +986,8 @@ msgid "Number"
 msgstr "எண்"
 
 #: src/billsdepositsdialog.cpp:589
-#, fuzzy
-msgid "Organize attachments of this repeating transaction"
-msgstr "பரிமாற்றத் தொகையை குறிப்பிடு"
+msgid "Organize attachments of this recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:593 src/transdialog.cpp:446
 msgid "Select one of the frequently used notes"
@@ -1127,10 +1122,10 @@ msgid ""
 "values on the due date."
 msgstr ""
 
-#: src/billsdepositspanel.cpp:222 src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
-#: src/billsdepositspanel.h:99
-msgid "Repeating Transactions"
-msgstr "திட்டமிட்ட‌ பரிமாற்றங்கள்"
+#: src/billsdepositspanel.cpp:222 src/billsdepositspanel.cpp:899 src/mmframe.cpp:730
+#: src/mmhomepagepanel.cpp:424
+msgid "Recurring Transactions"
+msgstr ""
 
 #: src/billsdepositspanel.cpp:239 src/filtertransdialog.cpp:96 src/mmcheckingpanel.cpp:387
 msgid "Transaction Filter"
@@ -3783,9 +3778,8 @@ msgid "&Budget Setup"
 msgstr "பட்ஜெட் அமைப்பு"
 
 #: src/mmframe.cpp:1485
-#, fuzzy
-msgid "&Repeating Transactions"
-msgstr "திட்டமிட்ட‌ பரிமாற்றங்கள்"
+msgid "&Recurring Transactions"
+msgstr ""
 
 #: src/mmframe.cpp:1485
 msgid "Bills && Deposits"
@@ -4876,13 +4870,13 @@ msgid "Records found in split transactions: %i"
 msgstr "நகல் பரிமாற்றங்கள் பார்வைக்கு"
 
 #: src/relocatecategorydialog.cpp:188
-#, fuzzy, c-format
-msgid "Records found in repeating transactions: %i"
-msgstr "திட்டமிட்ட‌ பரிமாற்றங்கள்"
+#, c-format
+msgid "Records found in recurring transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:189
 #, c-format
-msgid "Records found in repeating split transactions: %i"
+msgid "Records found in recurring split transactions: %i"
 msgstr ""
 
 #: src/relocatecategorydialog.cpp:190
@@ -6277,6 +6271,40 @@ msgstr "பெறுநர் "
 #, fuzzy, c-format
 msgid "Payee Report - %s"
 msgstr "பெறுநர் "
+
+#, fuzzy
+#~ msgid "New Repeating Transaction"
+#~ msgstr "புது/மாற்று திட்டமிட்ட‌ பரிமாற்றம்"
+
+#, fuzzy
+#~ msgid " Edit Repeating Transaction"
+#~ msgstr "புது/மாற்று திட்டமிட்ட‌ பரிமாற்றம்"
+
+#, fuzzy
+#~ msgid " Enter Repeating Transaction"
+#~ msgstr "திட்டமிட்ட‌ பரிமாற்றங்கள்"
+
+#~ msgid "Repeating Transaction Details"
+#~ msgstr "திட்டமிட்ட‌ பரிமாற்ற விவரம்"
+
+#, fuzzy
+#~ msgid "Specify the Account that will own the repeating transaction"
+#~ msgstr "பரிமாற்றத் தொகையை குறிப்பிடு"
+
+#, fuzzy
+#~ msgid "Organize attachments of this repeating transaction"
+#~ msgstr "பரிமாற்றத் தொகையை குறிப்பிடு"
+
+#~ msgid "Repeating Transactions"
+#~ msgstr "திட்டமிட்ட‌ பரிமாற்றங்கள்"
+
+#, fuzzy
+#~ msgid "&Repeating Transactions"
+#~ msgstr "திட்டமிட்ட‌ பரிமாற்றங்கள்"
+
+#, fuzzy
+#~ msgid "Records found in repeating transactions: %i"
+#~ msgstr "திட்டமிட்ட‌ பரிமாற்றங்கள்"
 
 #, fuzzy
 #~ msgid "Modify the description for the attachment:"

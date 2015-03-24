@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-12 23:48+0300\n"
-"PO-Revision-Date: 2015-03-12 23:48+0300\n"
+"POT-Creation-Date: 2015-03-15 14:48+0300\n"
+"PO-Revision-Date: 2015-03-15 14:48+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
 "Language: sk_SK\n"
@@ -687,16 +687,16 @@ msgid "Open attachment failed"
 msgstr "Otvorenie prílohy zlyhalo"
 
 #: src/billsdepositsdialog.cpp:117
-msgid "New Repeating Transaction"
-msgstr "Pridať trvalé príkazy"
+msgid "New Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:137
-msgid " Edit Repeating Transaction"
-msgstr " Upraviť trvalé príkazy"
+msgid " Edit Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:141
-msgid " Enter Repeating Transaction"
-msgstr " Zadajte trvalý príkaz"
+msgid " Enter Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:288
 #, fuzzy
@@ -800,8 +800,8 @@ msgid "Payment Date"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:360
-msgid "Repeating Transaction Details"
-msgstr "Podrobnosti trvalého príkazu"
+msgid "Recurring Transaction Details"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:381
 msgid "Specify the date when this bill or deposit is due"
@@ -928,8 +928,8 @@ msgid "Select Account"
 msgstr "Vybrať účet"
 
 #: src/billsdepositsdialog.cpp:543
-msgid "Specify the Account that will own the repeating transaction"
-msgstr "Upresnite účet, ktorému bude priradený trvalý príkaz"
+msgid "Specify the Account that will own the recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:546 src/billsdepositsdialog.cpp:850
 #: src/billsdepositspanel.cpp:112 src/filtertransdialog.cpp:204
@@ -988,8 +988,8 @@ msgid "Number"
 msgstr "Číslo"
 
 #: src/billsdepositsdialog.cpp:589
-msgid "Organize attachments of this repeating transaction"
-msgstr "Organizovať prílohy tohto trvalého príkazu"
+msgid "Organize attachments of this recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:593 src/transdialog.cpp:446
 msgid "Select one of the frequently used notes"
@@ -1122,10 +1122,10 @@ msgstr ""
 "Tip: Tieto transakcie môžu byť nastavené tak, že sa v deň splatnosti "
 "aktivujú a umožnia používateľovi upraviť všetky položky."
 
-#: src/billsdepositspanel.cpp:222 src/mmframe.cpp:730
-#: src/mmhomepagepanel.cpp:424 src/billsdepositspanel.h:99
-msgid "Repeating Transactions"
-msgstr "Trvalé príkazy"
+#: src/billsdepositspanel.cpp:222 src/billsdepositspanel.cpp:899
+#: src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
+msgid "Recurring Transactions"
+msgstr ""
 
 #: src/billsdepositspanel.cpp:239 src/filtertransdialog.cpp:96
 #: src/mmcheckingpanel.cpp:387
@@ -3645,8 +3645,8 @@ msgid "&Budget Setup"
 msgstr "Nastavenie &rozpočtu"
 
 #: src/mmframe.cpp:1485
-msgid "&Repeating Transactions"
-msgstr "&Trvalé príkazy"
+msgid "&Recurring Transactions"
+msgstr ""
 
 #: src/mmframe.cpp:1485
 msgid "Bills && Deposits"
@@ -4698,13 +4698,13 @@ msgstr "Počet záznamov v rozdelených transakciach: %i"
 
 #: src/relocatecategorydialog.cpp:188
 #, c-format
-msgid "Records found in repeating transactions: %i"
-msgstr "Počet záznamov v trvalých príkazoch: %i"
+msgid "Records found in recurring transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:189
 #, c-format
-msgid "Records found in repeating split transactions: %i"
-msgstr "Počet záznamov v rozdelených trvalých príkazoch: %i"
+msgid "Records found in recurring split transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:190
 #, c-format
@@ -6105,6 +6105,36 @@ msgstr "Report príjemcov"
 #, c-format
 msgid "Payee Report - %s"
 msgstr "Report príjemcov - %s"
+
+#~ msgid "New Repeating Transaction"
+#~ msgstr "Pridať trvalé príkazy"
+
+#~ msgid " Edit Repeating Transaction"
+#~ msgstr " Upraviť trvalé príkazy"
+
+#~ msgid " Enter Repeating Transaction"
+#~ msgstr " Zadajte trvalý príkaz"
+
+#~ msgid "Repeating Transaction Details"
+#~ msgstr "Podrobnosti trvalého príkazu"
+
+#~ msgid "Specify the Account that will own the repeating transaction"
+#~ msgstr "Upresnite účet, ktorému bude priradený trvalý príkaz"
+
+#~ msgid "Organize attachments of this repeating transaction"
+#~ msgstr "Organizovať prílohy tohto trvalého príkazu"
+
+#~ msgid "Repeating Transactions"
+#~ msgstr "Trvalé príkazy"
+
+#~ msgid "&Repeating Transactions"
+#~ msgstr "&Trvalé príkazy"
+
+#~ msgid "Records found in repeating transactions: %i"
+#~ msgstr "Počet záznamov v trvalých príkazoch: %i"
+
+#~ msgid "Records found in repeating split transactions: %i"
+#~ msgstr "Počet záznamov v rozdelených trvalých príkazoch: %i"
 
 #~ msgid "Modify the description for the attachment:"
 #~ msgstr "Zmeňte opis prílohy:"

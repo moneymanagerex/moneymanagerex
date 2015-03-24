@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-12 23:46+0300\n"
-"PO-Revision-Date: 2015-03-12 23:46+0300\n"
+"POT-Creation-Date: 2015-03-15 14:42+0300\n"
+"PO-Revision-Date: 2015-03-15 14:42+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
 "Language: pl_PL\n"
@@ -684,16 +684,16 @@ msgid "Open attachment failed"
 msgstr "Niepowodzenie otwarcia załącznika."
 
 #: src/billsdepositsdialog.cpp:117
-msgid "New Repeating Transaction"
-msgstr "Nowa transakcja powtarzana"
+msgid "New Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:137
-msgid " Edit Repeating Transaction"
-msgstr "Edytuj transakcję powtarzaną"
+msgid " Edit Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:141
-msgid " Enter Repeating Transaction"
-msgstr "Wprowadź transakcję powtarzaną"
+msgid " Enter Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:288
 msgid "Note: Split transactions not set"
@@ -795,8 +795,8 @@ msgid "Payment Date"
 msgstr "Data płatności"
 
 #: src/billsdepositsdialog.cpp:360
-msgid "Repeating Transaction Details"
-msgstr "Szczegóły transakcji powtarzanych"
+msgid "Recurring Transaction Details"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:381
 msgid "Specify the date when this bill or deposit is due"
@@ -923,8 +923,8 @@ msgid "Select Account"
 msgstr "Wybierz konto"
 
 #: src/billsdepositsdialog.cpp:543
-msgid "Specify the Account that will own the repeating transaction"
-msgstr "Określ konto dla transakcji powtarzanej"
+msgid "Specify the Account that will own the recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:546 src/billsdepositsdialog.cpp:850
 #: src/billsdepositspanel.cpp:112 src/filtertransdialog.cpp:204
@@ -983,8 +983,8 @@ msgid "Number"
 msgstr "Numer"
 
 #: src/billsdepositsdialog.cpp:589
-msgid "Organize attachments of this repeating transaction"
-msgstr "Organizuj załączniki dla tej transakcji powtarzanej"
+msgid "Organize attachments of this recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:593 src/transdialog.cpp:446
 msgid "Select one of the frequently used notes"
@@ -1116,10 +1116,10 @@ msgstr ""
 "Porada: Te transakcje mogą być aktywowane w przyszłości - pozwalając "
 "uzytkownikowi wybrać dowolną wartość daty realizacji."
 
-#: src/billsdepositspanel.cpp:222 src/mmframe.cpp:730
-#: src/mmhomepagepanel.cpp:424 src/billsdepositspanel.h:99
-msgid "Repeating Transactions"
-msgstr "Transakcje powtarzane"
+#: src/billsdepositspanel.cpp:222 src/billsdepositspanel.cpp:899
+#: src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
+msgid "Recurring Transactions"
+msgstr ""
 
 #: src/billsdepositspanel.cpp:239 src/filtertransdialog.cpp:96
 #: src/mmcheckingpanel.cpp:387
@@ -3617,8 +3617,8 @@ msgid "&Budget Setup"
 msgstr "Ustawienie &budżetu"
 
 #: src/mmframe.cpp:1485
-msgid "&Repeating Transactions"
-msgstr "T&ransakcje powtarzane"
+msgid "&Recurring Transactions"
+msgstr ""
 
 #: src/mmframe.cpp:1485
 msgid "Bills && Deposits"
@@ -4658,13 +4658,13 @@ msgstr "Wpisy znaleziono w dzielonych transakcach: %i"
 
 #: src/relocatecategorydialog.cpp:188
 #, c-format
-msgid "Records found in repeating transactions: %i"
-msgstr "Wpisy znaleziono w transakcach powtarzanych: %i"
+msgid "Records found in recurring transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:189
 #, c-format
-msgid "Records found in repeating split transactions: %i"
-msgstr "Zapis znaleziony w powtarzanych, dzielonych transakcjach: %i"
+msgid "Records found in recurring split transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:190
 #, c-format
@@ -6037,6 +6037,36 @@ msgstr "Raport beneficjentów"
 #, c-format
 msgid "Payee Report - %s"
 msgstr "Raport beneficjentów - %s"
+
+#~ msgid "New Repeating Transaction"
+#~ msgstr "Nowa transakcja powtarzana"
+
+#~ msgid " Edit Repeating Transaction"
+#~ msgstr "Edytuj transakcję powtarzaną"
+
+#~ msgid " Enter Repeating Transaction"
+#~ msgstr "Wprowadź transakcję powtarzaną"
+
+#~ msgid "Repeating Transaction Details"
+#~ msgstr "Szczegóły transakcji powtarzanych"
+
+#~ msgid "Specify the Account that will own the repeating transaction"
+#~ msgstr "Określ konto dla transakcji powtarzanej"
+
+#~ msgid "Organize attachments of this repeating transaction"
+#~ msgstr "Organizuj załączniki dla tej transakcji powtarzanej"
+
+#~ msgid "Repeating Transactions"
+#~ msgstr "Transakcje powtarzane"
+
+#~ msgid "&Repeating Transactions"
+#~ msgstr "T&ransakcje powtarzane"
+
+#~ msgid "Records found in repeating transactions: %i"
+#~ msgstr "Wpisy znaleziono w transakcach powtarzanych: %i"
+
+#~ msgid "Records found in repeating split transactions: %i"
+#~ msgstr "Zapis znaleziony w powtarzanych, dzielonych transakcjach: %i"
 
 #~ msgid "Hide column"
 #~ msgstr "Ukryj  kulumnę"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-12 23:27+0300\n"
-"PO-Revision-Date: 2015-03-12 23:38+0300\n"
+"POT-Creation-Date: 2015-03-15 13:54+0300\n"
+"PO-Revision-Date: 2015-03-15 14:34+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -681,16 +681,16 @@ msgid "Open attachment failed"
 msgstr "Вложение не открыть"
 
 #: src/billsdepositsdialog.cpp:117
-msgid "New Repeating Transaction"
-msgstr "Новая запланированная транзакция"
+msgid "New Recurring Transaction"
+msgstr "Новая повторяющаяся транзакция"
 
 #: src/billsdepositsdialog.cpp:137
-msgid " Edit Repeating Transaction"
-msgstr " Редактор запланированной транзакции"
+msgid " Edit Recurring Transaction"
+msgstr " Редактирование повторяющейся транзакции"
 
 #: src/billsdepositsdialog.cpp:141
-msgid " Enter Repeating Transaction"
-msgstr "Планирование"
+msgid " Enter Recurring Transaction"
+msgstr " Ввод повторяющейся транзакции"
 
 #: src/billsdepositsdialog.cpp:288
 msgid "Note: Split transactions not set"
@@ -792,8 +792,8 @@ msgid "Payment Date"
 msgstr "Дата платежа"
 
 #: src/billsdepositsdialog.cpp:360
-msgid "Repeating Transaction Details"
-msgstr "Свойства повторяющейся проводки"
+msgid "Recurring Transaction Details"
+msgstr "Детали повторяющейся транзакции"
 
 #: src/billsdepositsdialog.cpp:381
 msgid "Specify the date when this bill or deposit is due"
@@ -920,8 +920,8 @@ msgid "Select Account"
 msgstr "Выберите счёт"
 
 #: src/billsdepositsdialog.cpp:543
-msgid "Specify the Account that will own the repeating transaction"
-msgstr "Укажите счёт для данной повторяющейся проводки"
+msgid "Specify the Account that will own the recurring transaction"
+msgstr "Выберите счёт для повторяющейся транзакции"
 
 #: src/billsdepositsdialog.cpp:546 src/billsdepositsdialog.cpp:850
 #: src/billsdepositspanel.cpp:112 src/filtertransdialog.cpp:204
@@ -980,8 +980,8 @@ msgid "Number"
 msgstr "№"
 
 #: src/billsdepositsdialog.cpp:589
-msgid "Organize attachments of this repeating transaction"
-msgstr "Менеджер вложений данной транзакции"
+msgid "Organize attachments of this recurring transaction"
+msgstr "Управление приложениями для повторяющейся транзакции"
 
 #: src/billsdepositsdialog.cpp:593 src/transdialog.cpp:446
 msgid "Select one of the frequently used notes"
@@ -1112,10 +1112,10 @@ msgstr ""
 "Подсказка: Эти операции можно настроить для автоматической активации, "
 "позволяя пользователю настроить любые значения в срок."
 
-#: src/billsdepositspanel.cpp:222 src/mmframe.cpp:730
-#: src/mmhomepagepanel.cpp:424 src/billsdepositspanel.h:99
-msgid "Repeating Transactions"
-msgstr "Планирование"
+#: src/billsdepositspanel.cpp:222 src/billsdepositspanel.cpp:899
+#: src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
+msgid "Recurring Transactions"
+msgstr "Повторяющиеся транзакции"
 
 #: src/billsdepositspanel.cpp:239 src/filtertransdialog.cpp:96
 #: src/mmcheckingpanel.cpp:387
@@ -3609,8 +3609,8 @@ msgid "&Budget Setup"
 msgstr "&Бюджетирование"
 
 #: src/mmframe.cpp:1485
-msgid "&Repeating Transactions"
-msgstr "&Планирование"
+msgid "&Recurring Transactions"
+msgstr "Повторяющиеся транзакции"
 
 #: src/mmframe.cpp:1485
 msgid "Bills && Deposits"
@@ -4649,13 +4649,13 @@ msgstr "Найдено транзакций в разделённых: %i"
 
 #: src/relocatecategorydialog.cpp:188
 #, c-format
-msgid "Records found in repeating transactions: %i"
-msgstr "Найдено транзакций среди запланированных: %i"
+msgid "Records found in recurring transactions: %i"
+msgstr "Найдено повторяющихся транзакций: %i"
 
 #: src/relocatecategorydialog.cpp:189
 #, c-format
-msgid "Records found in repeating split transactions: %i"
-msgstr "Найдено транзакций среди разделённых: %i"
+msgid "Records found in recurring split transactions: %i"
+msgstr "Найдено повторяющихся транзакций в разделённых: %i"
 
 #: src/relocatecategorydialog.cpp:190
 #, c-format
@@ -6023,6 +6023,36 @@ msgstr "Отчёт по получателям"
 #, c-format
 msgid "Payee Report - %s"
 msgstr "Отчёт по получателям - %s"
+
+#~ msgid "New Repeating Transaction"
+#~ msgstr "Новая запланированная транзакция"
+
+#~ msgid " Edit Repeating Transaction"
+#~ msgstr " Редактор запланированной транзакции"
+
+#~ msgid " Enter Repeating Transaction"
+#~ msgstr "Планирование"
+
+#~ msgid "Repeating Transaction Details"
+#~ msgstr "Свойства повторяющейся проводки"
+
+#~ msgid "Specify the Account that will own the repeating transaction"
+#~ msgstr "Укажите счёт для данной повторяющейся проводки"
+
+#~ msgid "Organize attachments of this repeating transaction"
+#~ msgstr "Менеджер вложений данной транзакции"
+
+#~ msgid "Repeating Transactions"
+#~ msgstr "Планирование"
+
+#~ msgid "&Repeating Transactions"
+#~ msgstr "&Планирование"
+
+#~ msgid "Records found in repeating transactions: %i"
+#~ msgstr "Найдено транзакций среди запланированных: %i"
+
+#~ msgid "Records found in repeating split transactions: %i"
+#~ msgstr "Найдено транзакций среди разделённых: %i"
 
 #~ msgid "Hide column"
 #~ msgstr "Скрыть колонку"

@@ -41,7 +41,7 @@ const int mmex::version::Major = 1;
 const int mmex::version::Minor = 2;
 const int mmex::version::Patch = 0;
 const int mmex::version::Alpha = -1;
-const int mmex::version::Beta  = 0;
+const int mmex::version::Beta  = 2;
 const int mmex::version::RC    = -1;
 
 const wxString mmex::version::generateProgramVersion(int Major, int Minor, int Patch, int Alpha, int Beta, int RC)

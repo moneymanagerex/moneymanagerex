@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-12 23:43+0300\n"
-"PO-Revision-Date: 2015-03-12 23:43+0300\n"
+"POT-Creation-Date: 2015-03-15 14:38+0300\n"
+"PO-Revision-Date: 2015-03-15 14:38+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
 "Language: nl_BE\n"
@@ -724,19 +724,16 @@ msgid "Open attachment failed"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:117
-#, fuzzy
-msgid "New Repeating Transaction"
-msgstr "Nieuwe Terugkerende Transactie / Terugkerende Transactie Bewerken"
+msgid "New Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:137
-#, fuzzy
-msgid " Edit Repeating Transaction"
-msgstr "Nieuwe Terugkerende Transactie / Terugkerende Transactie Bewerken"
+msgid " Edit Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:141
-#, fuzzy
-msgid " Enter Repeating Transaction"
-msgstr "Terugkerende Transacties"
+msgid " Enter Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:288
 #, fuzzy
@@ -840,8 +837,8 @@ msgid "Payment Date"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:360
-msgid "Repeating Transaction Details"
-msgstr "Wederkerende Transactie: Details"
+msgid "Recurring Transaction Details"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:381
 msgid "Specify the date when this bill or deposit is due"
@@ -972,9 +969,8 @@ msgid "Select Account"
 msgstr "Rekening Selecteren"
 
 #: src/billsdepositsdialog.cpp:543
-msgid "Specify the Account that will own the repeating transaction"
+msgid "Specify the Account that will own the recurring transaction"
 msgstr ""
-"Selecteer de rekening waarop de terugkerende transactie wordt uitgevoerd"
 
 #: src/billsdepositsdialog.cpp:546 src/billsdepositsdialog.cpp:850
 #: src/billsdepositspanel.cpp:112 src/filtertransdialog.cpp:204
@@ -1033,9 +1029,8 @@ msgid "Number"
 msgstr "Nummer"
 
 #: src/billsdepositsdialog.cpp:589
-#, fuzzy
-msgid "Organize attachments of this repeating transaction"
-msgstr "Voer hier het bijhorende bedrag in"
+msgid "Organize attachments of this recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:593 src/transdialog.cpp:446
 msgid "Select one of the frequently used notes"
@@ -1169,10 +1164,10 @@ msgstr ""
 "Tip: Deze transacties kunnen gezet worden op activeren op een bepaalde datum "
 "- dit laat de gebruiker toe om elke waarde aan te passen op de bewuste datum."
 
-#: src/billsdepositspanel.cpp:222 src/mmframe.cpp:730
-#: src/mmhomepagepanel.cpp:424 src/billsdepositspanel.h:99
-msgid "Repeating Transactions"
-msgstr "Terugkerende Transacties"
+#: src/billsdepositspanel.cpp:222 src/billsdepositspanel.cpp:899
+#: src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
+msgid "Recurring Transactions"
+msgstr ""
 
 #: src/billsdepositspanel.cpp:239 src/filtertransdialog.cpp:96
 #: src/mmcheckingpanel.cpp:387
@@ -3787,8 +3782,8 @@ msgid "&Budget Setup"
 msgstr "&Budget Opstellen"
 
 #: src/mmframe.cpp:1485
-msgid "&Repeating Transactions"
-msgstr "Te&rugkerende Transacties"
+msgid "&Recurring Transactions"
+msgstr ""
 
 #: src/mmframe.cpp:1485
 msgid "Bills && Deposits"
@@ -4852,13 +4847,13 @@ msgid "Records found in split transactions: %i"
 msgstr "Gedupliceerde Transacties Zichtbaar"
 
 #: src/relocatecategorydialog.cpp:188
-#, fuzzy, c-format
-msgid "Records found in repeating transactions: %i"
-msgstr "Terugkerende Transacties"
+#, c-format
+msgid "Records found in recurring transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:189
 #, c-format
-msgid "Records found in repeating split transactions: %i"
+msgid "Records found in recurring split transactions: %i"
 msgstr ""
 
 #: src/relocatecategorydialog.cpp:190
@@ -6280,6 +6275,39 @@ msgstr "Partijenrapport"
 #, fuzzy, c-format
 msgid "Payee Report - %s"
 msgstr "Partijenrapport"
+
+#, fuzzy
+#~ msgid "New Repeating Transaction"
+#~ msgstr "Nieuwe Terugkerende Transactie / Terugkerende Transactie Bewerken"
+
+#, fuzzy
+#~ msgid " Edit Repeating Transaction"
+#~ msgstr "Nieuwe Terugkerende Transactie / Terugkerende Transactie Bewerken"
+
+#, fuzzy
+#~ msgid " Enter Repeating Transaction"
+#~ msgstr "Terugkerende Transacties"
+
+#~ msgid "Repeating Transaction Details"
+#~ msgstr "Wederkerende Transactie: Details"
+
+#~ msgid "Specify the Account that will own the repeating transaction"
+#~ msgstr ""
+#~ "Selecteer de rekening waarop de terugkerende transactie wordt uitgevoerd"
+
+#, fuzzy
+#~ msgid "Organize attachments of this repeating transaction"
+#~ msgstr "Voer hier het bijhorende bedrag in"
+
+#~ msgid "Repeating Transactions"
+#~ msgstr "Terugkerende Transacties"
+
+#~ msgid "&Repeating Transactions"
+#~ msgstr "Te&rugkerende Transacties"
+
+#, fuzzy
+#~ msgid "Records found in repeating transactions: %i"
+#~ msgstr "Terugkerende Transacties"
 
 #, fuzzy
 #~ msgid "Modify the description for the attachment:"

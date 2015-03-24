@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-12 23:45+0300\n"
-"PO-Revision-Date: 2015-03-12 23:45+0300\n"
+"POT-Creation-Date: 2015-03-15 14:40+0300\n"
+"PO-Revision-Date: 2015-03-15 14:40+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
 "Language: hu_HU\n"
@@ -681,16 +681,16 @@ msgid "Open attachment failed"
 msgstr "Melléklet megnyitása nem sikerült"
 
 #: src/billsdepositsdialog.cpp:117
-msgid "New Repeating Transaction"
-msgstr "Új rendszeres ügylet"
+msgid "New Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:137
-msgid " Edit Repeating Transaction"
-msgstr "Rendszeres ügylet, szerkesztése"
+msgid " Edit Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:141
-msgid " Enter Repeating Transaction"
-msgstr "Rendszeres ügyletek beírása"
+msgid " Enter Recurring Transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:288
 msgid "Note: Split transactions not set"
@@ -792,8 +792,8 @@ msgid "Payment Date"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:360
-msgid "Repeating Transaction Details"
-msgstr "Rendszeres ügyletek részletei"
+msgid "Recurring Transaction Details"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:381
 msgid "Specify the date when this bill or deposit is due"
@@ -921,8 +921,8 @@ msgid "Select Account"
 msgstr "Számla kiválasztása"
 
 #: src/billsdepositsdialog.cpp:543
-msgid "Specify the Account that will own the repeating transaction"
-msgstr "Határozza meg az rendszeres tranzakció számláját"
+msgid "Specify the Account that will own the recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:546 src/billsdepositsdialog.cpp:850
 #: src/billsdepositspanel.cpp:112 src/filtertransdialog.cpp:204
@@ -981,8 +981,8 @@ msgid "Number"
 msgstr "Azonosító"
 
 #: src/billsdepositsdialog.cpp:589
-msgid "Organize attachments of this repeating transaction"
-msgstr "Az ügylethez tartozó mellékletek rendezése"
+msgid "Organize attachments of this recurring transaction"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:593 src/transdialog.cpp:446
 msgid "Select one of the frequently used notes"
@@ -1114,10 +1114,10 @@ msgstr ""
 "Tipp: ezek a tranzakciók aktivá tehetők, így akár az összeg, akár az "
 "esedékesség pontosítható."
 
-#: src/billsdepositspanel.cpp:222 src/mmframe.cpp:730
-#: src/mmhomepagepanel.cpp:424 src/billsdepositspanel.h:99
-msgid "Repeating Transactions"
-msgstr "Rendszeres ügyletek"
+#: src/billsdepositspanel.cpp:222 src/billsdepositspanel.cpp:899
+#: src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
+msgid "Recurring Transactions"
+msgstr ""
 
 #: src/billsdepositspanel.cpp:239 src/filtertransdialog.cpp:96
 #: src/mmcheckingpanel.cpp:387
@@ -3610,8 +3610,8 @@ msgid "&Budget Setup"
 msgstr "Költségvetés beállítása "
 
 #: src/mmframe.cpp:1485
-msgid "&Repeating Transactions"
-msgstr "Rendszeres ügyletek"
+msgid "&Recurring Transactions"
+msgstr ""
 
 #: src/mmframe.cpp:1485
 msgid "Bills && Deposits"
@@ -4649,13 +4649,13 @@ msgstr "Az összetett ügyletekben talált bejegyzések: %i"
 
 #: src/relocatecategorydialog.cpp:188
 #, c-format
-msgid "Records found in repeating transactions: %i"
-msgstr "A rendszeres ügyletekben talált bejegyzések: %i"
+msgid "Records found in recurring transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:189
 #, c-format
-msgid "Records found in repeating split transactions: %i"
-msgstr "Az ismétlődő összetett tranzakciók között talált bejegyzések: %i"
+msgid "Records found in recurring split transactions: %i"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:190
 #, c-format
@@ -6032,6 +6032,36 @@ msgstr "Kedvezményezett kimutatás"
 #, c-format
 msgid "Payee Report - %s"
 msgstr "Kedvezményezett kimutatás - %s "
+
+#~ msgid "New Repeating Transaction"
+#~ msgstr "Új rendszeres ügylet"
+
+#~ msgid " Edit Repeating Transaction"
+#~ msgstr "Rendszeres ügylet, szerkesztése"
+
+#~ msgid " Enter Repeating Transaction"
+#~ msgstr "Rendszeres ügyletek beírása"
+
+#~ msgid "Repeating Transaction Details"
+#~ msgstr "Rendszeres ügyletek részletei"
+
+#~ msgid "Specify the Account that will own the repeating transaction"
+#~ msgstr "Határozza meg az rendszeres tranzakció számláját"
+
+#~ msgid "Organize attachments of this repeating transaction"
+#~ msgstr "Az ügylethez tartozó mellékletek rendezése"
+
+#~ msgid "Repeating Transactions"
+#~ msgstr "Rendszeres ügyletek"
+
+#~ msgid "&Repeating Transactions"
+#~ msgstr "Rendszeres ügyletek"
+
+#~ msgid "Records found in repeating transactions: %i"
+#~ msgstr "A rendszeres ügyletekben talált bejegyzések: %i"
+
+#~ msgid "Records found in repeating split transactions: %i"
+#~ msgstr "Az ismétlődő összetett tranzakciók között talált bejegyzések: %i"
 
 #~ msgid "Hide column"
 #~ msgstr "Oszlop elrejtése"
