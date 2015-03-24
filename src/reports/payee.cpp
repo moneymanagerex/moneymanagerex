@@ -22,7 +22,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Currency.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
-#include "model/Model_TransferTrans.h"
 
 #include <algorithm>
 
@@ -168,7 +167,7 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
         if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue;
 
         // Do not include asset or stock transfers in income expense calculations.
-        if (Model_Checking::foreignTransaction(trx) && trx.TOACCOUNTID == Model_TransferTrans::AS_TRANSFER)
+        if (Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
 
         double convRate = acc_conv_rates[trx.ACCOUNTID];

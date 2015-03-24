@@ -38,7 +38,6 @@ Copyright (C) 2014 Nikolay
 #include "model/Model_Stock.h"
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Category.h"
-#include "model/Model_TransferTrans.h"
 
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
@@ -628,8 +627,9 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
         if (ignoreFuture && Model_Checking::TRANSDATE(trx).IsLaterThan(today))
             continue; //skip future dated transactions
 
-        if (Model_Checking::foreignTransaction(trx) && trx.TOACCOUNTID == Model_TransferTrans::AS_TRANSFER)
-            continue; //skip asset or stock transactions set as transfers
+        // Do not include asset or stock transfers in income expense calculations.
+        if (Model_Checking::foreignTransactionAsTransfer(trx))
+            continue;
 
         if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) this->countFollowUp_++;
 
@@ -668,7 +668,7 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
         }
         
         // Do not include asset or stock transfers in income expense calculations.
-        if (Model_Checking::foreignTransaction(pBankTransaction) && pBankTransaction.TOACCOUNTID == Model_TransferTrans::AS_TRANSFER)
+        if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction))
             continue;
 
         // We got this far, get the currency conversion rate for this account

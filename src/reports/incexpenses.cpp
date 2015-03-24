@@ -22,7 +22,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util.h"
 #include "model/Model_Checking.h"
 #include "model/Model_Account.h"
-#include "model/Model_TransferTrans.h"
 
 mmReportIncomeExpenses::mmReportIncomeExpenses(mmDateRange* date_range)
     : mmPrintableBaseSpecificAccounts(_("Income vs Expenses"))
@@ -81,7 +80,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
         // Do not include asset or stock transfers in income expense calculations.
-        if (Model_Checking::foreignTransaction(transaction) && transaction.TOACCOUNTID == Model_TransferTrans::AS_TRANSFER)
+        if (Model_Checking::foreignTransactionAsTransfer(transaction))
             continue;
 
         // We got this far, get the currency conversion rate for this account
