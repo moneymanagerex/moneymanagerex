@@ -23,6 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "htmlbuilder.h"
 #include "model/Model_Account.h"
 #include "model/Model_Billsdeposits.h"
+#include "model/Model_TransferTrans.h"
 
 static const wxString COLORS [] = {
     ""
@@ -83,6 +84,10 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
 
         for (const auto& tran : Model_Account::transaction(account))
         {
+            // Do not include asset or stock transfers in income expense calculations.
+            if (Model_Checking::foreignTransaction(tran) && tran.TOACCOUNTID == Model_TransferTrans::AS_TRANSFER)
+                continue;
+
             daily_balance[Model_Checking::TRANSDATE(tran)] += Model_Checking::balance(tran, account.ACCOUNTID) * currency->BASECONVRATE;
         }
     }
