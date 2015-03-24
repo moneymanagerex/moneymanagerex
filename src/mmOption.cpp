@@ -50,7 +50,7 @@ void mmOptions::LoadInfotableOptions()
 
 //----------------------------------------------------------------------------
 mmIniOptions::mmIniOptions()
-: html_font_size_(3)
+: html_font_size_("small")
 , budgetFinancialYears_(false)
 , budgetIncludeTransfers_(false)
 , budgetSetupWithoutSummaries_(false)
@@ -60,6 +60,7 @@ mmIniOptions::mmIniOptions()
 , transCategorySelectionNone_(0)
 , transStatusReconciled_(0)
 , transDateDefault_(0)
+
 {}
 
 mmIniOptions& mmIniOptions::instance()
@@ -69,7 +70,7 @@ mmIniOptions& mmIniOptions::instance()
 
 void mmIniOptions::loadOptions()
 {
-    html_font_size_   = Model_Setting::instance().HtmlFontSize();
+    html_font_size_ = Model_Setting::instance().HtmlFontSize();
 
     budgetFinancialYears_           = Model_Setting::instance().BudgetFinancialYears();
     budgetIncludeTransfers_         = Model_Setting::instance().BudgetIncludeTransfers();

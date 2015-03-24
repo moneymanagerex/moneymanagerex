@@ -50,7 +50,7 @@ public:
     void loadOptions();
 
     int account_image_id(int account_id);
-    int html_font_size_;
+    wxString html_font_size_;
 
     bool budgetFinancialYears_;
     bool budgetIncludeTransfers_;
