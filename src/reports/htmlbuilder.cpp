@@ -26,38 +26,32 @@
 
 namespace tags
 {
-static const char END[] = R"(
-    </body>
-    <script type="text/javascript">
-    var elements = document.getElementsByClassName('money');
-    for (var i = 0; i < elements.length; i++) {
-        elements[i].style.textAlign = 'right';
-       if (elements[i].innerHTML.indexOf("-") > -1) {
-            elements[i].style.color ='#ff0000';
-        }
+static const char END[] = R"(</body>
+<script type="text/javascript">
+var elements = document.getElementsByClassName('money');
+for (var i = 0; i < elements.length; i++) {
+    elements[i].style.textAlign = 'right';
+   if (elements[i].innerHTML.indexOf("-") > -1) {
+        elements[i].style.color ='#ff0000';
     }
-    </script>
-    </html>
+}
+</script>
+</html>
 )";
-static const char HTML[] = R"(
-    <!DOCTYPE html>
-    <html><head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>%s - Report</title>
-    <link href = 'master.css' rel = 'stylesheet' />
-    <script src = 'ChartNew.js'></script>
-    <script src = 'sorttable.js'></script>
-    <style>
+static const char HTML[] = R"(<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>%s - Report</title>
+<link href = 'master.css' rel = 'stylesheet' />
+<script src = 'ChartNew.js'></script>
+<script src = 'sorttable.js'></script>
+<style>
     /* Sortable tables */
-    table.sortable thead {
-        cursor: default;
-    }
-    div * {
-        font-size: %s;
-    }
-    </style>
-    </head>
-    <body>
+    table.sortable thead {cursor: default;}
+    div * {font-size: %s;}
+</style>
+</head>
+<body>
 )";
 static const wxString DIV_CONTAINER = "<div class='container'>\n";
 static const wxString DIV_ROW = "<div class='row'>\n";

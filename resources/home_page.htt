@@ -9,7 +9,7 @@
     <link href = "master.css" rel = "stylesheet" />
     <style>
 	    body * {
-            font-size: <TMPL_VAR FONT_SIZE>;
+            font-size: <TMPL_VAR HTMLFONTSIZE>;
         }
     </style>
 </head>
