@@ -8,9 +8,7 @@
     <script src = "sorttable.js"></script>
     <link href = "master.css" rel = "stylesheet" />
     <style>
-	    body * {
-            font-size: <TMPL_VAR HTMLFONTSIZE>;
-        }
+        body {font-size: <TMPL_VAR HTMLSCALE>%;}
     </style>
 </head>
   <script>

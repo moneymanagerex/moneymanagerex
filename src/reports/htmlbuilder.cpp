@@ -48,12 +48,7 @@ static const char HTML[] = R"(<!DOCTYPE html>
 <style>
     /* Sortable tables */
     table.sortable thead {cursor: default;}
-    div * {font-size: %s;}
-    body {
-       transform: scale(1.0);
-       transform-origin: 10%% 10%%;
-       // add prefixed versions too.
-    }
+    body { font-size: %s%%; }
 </style>
 </head>
 <body>
@@ -120,7 +115,8 @@ mmHTMLBuilder::mmHTMLBuilder()
 void mmHTMLBuilder::init()
 {
     html_ = wxString::Format(wxString::FromUTF8(tags::HTML)
-        , mmex::getProgramName(), mmIniOptions::instance().html_font_size_
+        , mmex::getProgramName()
+        , wxString::Format("%d", mmIniOptions::instance().html_font_size_)
     );
 
     //Show user name if provided

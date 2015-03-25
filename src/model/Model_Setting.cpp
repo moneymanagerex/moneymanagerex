@@ -192,15 +192,15 @@ void Model_Setting::SetViewTransactions(const wxString& value)
 }
 
 //-------------------------------------------------------------------
-wxString Model_Setting::HtmlFontSize()
+int Model_Setting::HtmlFontSize()
 {
-    return GetStringSetting("HTMLFONTSIZE", "Small");
+    return GetIntSetting("HTMLSCALE", 100);
 }
 
-void Model_Setting::SetHtmlFontSize(const wxString& size)
+void Model_Setting::SetHtmlFontSize(const int& scale)
 {
-    Set("HTMLFONTSIZE", size);
-    mmIniOptions::instance().html_font_size_ = size;
+    Set("HTMLSCALE", scale);
+    mmIniOptions::instance().html_font_size_ = scale;
 }
 
 //-------------------------------------------------------------------

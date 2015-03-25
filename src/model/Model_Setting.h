@@ -86,8 +86,8 @@ public:
     wxString ViewTransactions();
     void SetViewTransactions(const wxString& value);
 
-    wxString HtmlFontSize();
-    void SetHtmlFontSize(const wxString& size);
+    int HtmlFontSize();
+    void SetHtmlFontSize(const int& size);
 
     bool BudgetFinancialYears();
     void SetBudgetFinancialYears(bool value = false);

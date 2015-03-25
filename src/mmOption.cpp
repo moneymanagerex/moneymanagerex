@@ -50,7 +50,7 @@ void mmOptions::LoadInfotableOptions()
 
 //----------------------------------------------------------------------------
 mmIniOptions::mmIniOptions()
-: html_font_size_("small")
+: html_font_size_(100)
 , budgetFinancialYears_(false)
 , budgetIncludeTransfers_(false)
 , budgetSetupWithoutSummaries_(false)

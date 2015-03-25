@@ -26,16 +26,6 @@ wxBEGIN_EVENT_TABLE(mmOptionViewSettings, wxPanel)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
-static const wxString m_itemChoiceFontSize[] = {
-    wxTRANSLATE("XX-Small"),
-    wxTRANSLATE("X-Small"),
-    wxTRANSLATE("Small"),
-    wxTRANSLATE("Medium"),
-    wxTRANSLATE("Large"),
-    wxTRANSLATE("X-Large"),
-    wxTRANSLATE("XX-Large")
-};
-
 mmOptionViewSettings::mmOptionViewSettings()
 {
 }
@@ -108,21 +98,16 @@ void mmOptionViewSettings::Create()
     m_choice_trans_visible->SetStringSelection(wxGetTranslation(vTrans));
     m_choice_trans_visible->SetToolTip(_("Specify which transactions are visible by default"));
 
-    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Report Font Size")), g_flags);
+    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("HTML scale factor")), g_flags);
 
-    m_choice_font_size = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxSize(100, -1));
-    for (const auto &entry : m_itemChoiceFontSize)
-        m_choice_font_size->Append(wxGetTranslation(entry));
+    int max = 300; int min = 25;
+    m_scale_factor = new wxSpinCtrl(this, wxID_ANY
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
 
-    const wxString vFontSize = Model_Setting::instance().HtmlFontSize();
-    for (int i = 0; i < sizeof(m_itemChoiceFontSize) / sizeof(wxString); i++)
-    {
-        if (vFontSize == m_itemChoiceFontSize[i])
-            m_choice_font_size->SetSelection(i);
-    }
-
-    m_choice_font_size->SetToolTip(_("Specify which font size is used on the report tables"));
-    view_sizer1->Add(m_choice_font_size, g_flags);
+    int vFontSize = Model_Setting::instance().HtmlFontSize();
+    m_scale_factor->SetValue(vFontSize);
+    m_scale_factor->SetToolTip(_("Specify which scale factor is used for the report pages"));
+    view_sizer1->Add(m_scale_factor, g_flags);
 
     // Budget options
     m_budget_financial_years = new wxCheckBox(this, wxID_STATIC, _("View Budgets as Financial Years")
@@ -263,8 +248,8 @@ void mmOptionViewSettings::SaveSettings()
     }
     Model_Setting::instance().SetViewTransactions(visible);
 
-    int size = m_choice_font_size->GetSelection();
-    Model_Setting::instance().SetHtmlFontSize(m_itemChoiceFontSize[size]);
+    int size = m_scale_factor->GetValue();
+    Model_Setting::instance().SetHtmlFontSize(size);
 
     Model_Setting::instance().SetBudgetFinancialYears(m_budget_financial_years->GetValue());
     Model_Setting::instance().SetBudgetIncludeTransfers(m_budget_include_transfers->GetValue());

@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include "mmOptionBaseSettings.h"
+#include <wx/spinctrl.h>
 
 class mmOptionViewSettings : public mmOptionSettingsBase
 {
@@ -57,7 +58,7 @@ private:
 
     wxChoice* m_choice_visible;
     wxChoice* m_choice_trans_visible;
-    wxChoice* m_choice_font_size;
+    wxSpinCtrl* m_scale_factor;
 
     wxCheckBox* m_budget_financial_years;
     wxCheckBox* m_budget_include_transfers;

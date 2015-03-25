@@ -546,7 +546,7 @@ void mmHomePagePanel::getTemplate()
 
 void mmHomePagePanel::getData()
 {
-    m_frames["HTMLFONTSIZE"] = mmIniOptions::instance().html_font_size_;
+    m_frames["HTMLSCALE"] = wxString::Format("%d", mmIniOptions::instance().html_font_size_);
     if (Model_Setting::instance().DisplayInternetNews())
     {
         m_frames["WEBSITE_NEWS"] = displayWebsiteNews();
