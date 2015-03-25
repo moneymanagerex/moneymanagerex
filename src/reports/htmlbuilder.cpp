@@ -56,7 +56,7 @@ static const char HTML[] = R"(<!DOCTYPE html>
 static const wxString DIV_CONTAINER = "<div class='container'>\n";
 static const wxString DIV_ROW = "<div class='row'>\n";
 static const wxString DIV_COL8 = "<div class='col-xs-2'></div>\n<div class='col-xs-8'>\n";
-static const wxString DIV_END = "</div>";
+static const wxString DIV_END = "</div>\n";
 static const wxString TABLE_START = "<table class='table'>\n";
 static const wxString SORTTABLE_START = "<table class='sortable table'>\n";
 static const wxString TABLE_END = "</table>\n";
