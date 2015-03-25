@@ -49,6 +49,11 @@ static const char HTML[] = R"(<!DOCTYPE html>
     /* Sortable tables */
     table.sortable thead {cursor: default;}
     div * {font-size: %s;}
+    body {
+       transform: scale(1.0);
+       transform-origin: 10% 10%;
+       // add prefixed versions too.
+    }
 </style>
 </head>
 <body>
