@@ -51,7 +51,7 @@ static const char HTML[] = R"(<!DOCTYPE html>
     div * {font-size: %s;}
     body {
        transform: scale(1.0);
-       transform-origin: 10% 10%;
+       transform-origin: 10%% 10%%;
        // add prefixed versions too.
     }
 </style>
