@@ -199,6 +199,7 @@ wxArrayString mmOptionViewSettings::viewAccountStrings(bool translated, const wx
         itemChoiceViewAccountStrings.Add(VIEW_ACCOUNTS_OPEN_STR);
         itemChoiceViewAccountStrings.Add(VIEW_ACCOUNTS_FAVORITES_STR);
     }
+
     if (!input_string.IsEmpty())
     {
         for (size_t i = 0; i < itemChoiceViewAccountStrings.Count(); i++)
@@ -216,20 +217,20 @@ wxArrayString mmOptionViewSettings::viewAccountStrings(bool translated, const wx
 
 void mmOptionViewSettings::OnNavTreeColorChanged(wxCommandEvent& event)
 {
-    int buttonId = event.GetId();
-    wxButton* button = (wxButton*) FindWindow(buttonId);
-    if (!button) return;
-
-    wxColour colour = button->GetBackgroundColour();
-    wxColourData data;
-    data.SetChooseFull(true);
-    data.SetColour(colour);
-
-    wxColourDialog dialog(this, &data);
-    if (dialog.ShowModal() == wxID_OK)
+    wxButton* button = wxDynamicCast(FindWindow(event.GetId()), wxButton);
+    if (button)
     {
-        colour = dialog.GetColourData().GetColour();
-        button->SetBackgroundColour(colour);
+        wxColour colour = button->GetBackgroundColour();
+        wxColourData data;
+        data.SetChooseFull(true);
+        data.SetColour(colour);
+
+        wxColourDialog dialog(this, &data);
+        if (dialog.ShowModal() == wxID_OK)
+        {
+            colour = dialog.GetColourData().GetColour();
+            button->SetBackgroundColour(colour);
+        }
     }
 }
 
