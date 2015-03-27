@@ -197,9 +197,6 @@ private:
     void OnPaste(wxCommandEvent& WXUNUSED(event));
     int OnPaste(Model_Checking::Data* tran);
 
-    int GetColumnWidthSetting(const int& column_number, int default_size = wxLIST_AUTOSIZE);
-    void SetColumnWidthSetting(const int& column_number, int column_width);
-
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
     long topItemIndex_;
