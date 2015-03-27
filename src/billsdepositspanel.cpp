@@ -198,15 +198,26 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
 
 mmBillsDepositsPanel::~mmBillsDepositsPanel()
 {
-   if (m_imageList)
+    if (m_imageList)
         delete m_imageList;
-   if (transFilterDlg_)
-       delete transFilterDlg_;
+    if (transFilterDlg_)
+        delete transFilterDlg_;
+    /*
+      Save the column widths of bill_deposit list control. This should ensure
+      that column's get set incase the OnItemResize does not work on some systems.
+    */
+    for (int bd_col_num = 0; bd_col_num < COL_MAX; ++bd_col_num)
+    {
+        int bd_col_width = listCtrlAccount_->GetColumnWidth(bd_col_num);
+        if (listCtrlAccount_->GetColumnWidthSetting(bd_col_num) != bd_col_width)
+        {
+            listCtrlAccount_->SetColumnWidthSetting(bd_col_num, bd_col_width);
+        }
+    }
 }
 
 void mmBillsDepositsPanel::CreateControls()
 {
-
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer9);
 
@@ -256,15 +267,14 @@ void mmBillsDepositsPanel::CreateControls()
 
     listCtrlAccount_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
     listCtrlAccount_->InsertColumn(COL_ICON, " ", wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format(listCtrlAccount_->m_col_width, COL_ICON),
-        std::get<1>(listCtrlAccount_->m_columns[COL_ICON])));
+        , listCtrlAccount_->GetColumnWidthSetting(COL_ICON, std::get<1>(listCtrlAccount_->m_columns[COL_ICON])));
     for (int i = 1; i < (int)listCtrlAccount_->m_columns.size(); i++)
     {
         int item_format = wxLIST_FORMAT_LEFT;
         if ((i == COL_PAYMENT_DATE) || (i == COL_AMOUNT) || (i == COL_ID) || (i == COL_REPEATS))
             item_format = wxLIST_FORMAT_RIGHT;
         listCtrlAccount_->InsertColumn(i, std::get<0>(listCtrlAccount_->m_columns[i]), item_format,
-            Model_Setting::instance().GetIntSetting(wxString::Format(listCtrlAccount_->m_col_width, i), std::get<1>(listCtrlAccount_->m_columns[i])));
+            listCtrlAccount_->GetColumnWidthSetting(i, std::get<1>(listCtrlAccount_->m_columns[i])));
     }
 
     wxPanel* bdPanel = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY
