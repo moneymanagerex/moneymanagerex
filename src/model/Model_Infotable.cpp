@@ -42,7 +42,7 @@ Model_Infotable& Model_Infotable::instance(wxSQLite3Database* db)
     ins.preload();
     if (!ins.KeyExists("MMEXVERSION"))
     {
-        ins.Set("MMEXVERSION", mmex::getProgramVersion());
+        ins.Set("MMEXVERSION", mmex::version::string);
         ins.Set("DATAVERSION", mmex::DATAVERSION);
         ins.Set("CREATEDATE", wxDateTime::Now());
         ins.SetDateFormat(mmex::DEFDATEFORMAT);
