@@ -349,7 +349,7 @@ const std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, w
     r.push_back(std::make_tuple("THB", "Thai baht", L"฿", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("TTD", "Trinidad and Tobago dollar", L"TT$", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("TND", "Tunisian dinar", L"DT", L"", L"", L"", 100, 1, " ", "."));
-    r.push_back(std::make_tuple("TRY", "Turkish new lira", L"YTL", L"", L"", L"", 100, 1, " ", "."));
+    r.push_back(std::make_tuple("TRY", "Turkish lira", L"TL", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("TMT", "Turkmen manat", L"m", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("UGX", "Ugandan shilling", L"USh", L"", L"", L"", 1, 1, " ", "."));
     r.push_back(std::make_tuple("AED", "UAE dirham", L"", L"", L"", L"", 100, 1, " ", "."));
