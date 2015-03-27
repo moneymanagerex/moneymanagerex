@@ -70,7 +70,7 @@ mmIniOptions& mmIniOptions::instance()
 
 void mmIniOptions::loadOptions()
 {
-    html_font_size_ = Model_Setting::instance().HtmlFontSize();
+    html_font_size_ = Model_Setting::instance().GetHtmlScaleFactor();
 
     budgetFinancialYears_           = Model_Setting::instance().BudgetFinancialYears();
     budgetIncludeTransfers_         = Model_Setting::instance().BudgetIncludeTransfers();

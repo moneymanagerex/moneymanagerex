@@ -104,7 +104,7 @@ void mmOptionViewSettings::Create()
     m_scale_factor = new wxSpinCtrl(this, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
 
-    int vFontSize = Model_Setting::instance().HtmlFontSize();
+    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
     m_scale_factor->SetValue(vFontSize);
     m_scale_factor->SetToolTip(_("Specify which scale factor is used for the report pages"));
     view_sizer1->Add(m_scale_factor, g_flags);
@@ -249,7 +249,7 @@ void mmOptionViewSettings::SaveSettings()
     Model_Setting::instance().SetViewTransactions(visible);
 
     int size = m_scale_factor->GetValue();
-    Model_Setting::instance().SetHtmlFontSize(size);
+    Model_Setting::instance().SetHtmlScaleFactor(size);
 
     Model_Setting::instance().SetBudgetFinancialYears(m_budget_financial_years->GetValue());
     Model_Setting::instance().SetBudgetIncludeTransfers(m_budget_include_transfers->GetValue());
