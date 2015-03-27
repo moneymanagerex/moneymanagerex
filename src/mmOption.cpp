@@ -97,7 +97,7 @@ int mmIniOptions::account_image_id(int account_id)
 
     selectedImage = 9;
     int t = 0, s = 0;
-    wxString acctStatus = "Open";
+    wxString acctStatus = VIEW_ACCOUNTS_OPEN_STR;
     Model_Account::TYPE acctType = Model_Account::CHECKING;
     bool favorite = true;
 

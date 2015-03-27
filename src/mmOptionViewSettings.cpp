@@ -67,7 +67,7 @@ void mmOptionViewSettings::Create()
         , wxDefaultPosition, wxDefaultSize, itemChoiceViewAccountTranslatedStrings);
     view_sizer1->Add(m_choice_visible, g_flags);
 
-    wxString vAccts = Model_Setting::instance().ViewAccounts();
+    const wxString& vAccts = Model_Setting::instance().ViewAccounts();
     row_id = 0;
     wxArrayString itemChoiceViewAccountStrings = viewAccountStrings(false, vAccts, row_id);
     m_choice_visible->SetSelection(row_id);
@@ -89,8 +89,8 @@ void mmOptionViewSettings::Create()
 
     m_choice_trans_visible = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     for (const auto &entry : view_strings)
-        m_choice_trans_visible->Append(wxGetTranslation(entry),
-        new wxStringClientData(entry));
+        m_choice_trans_visible->Append(wxGetTranslation(entry)
+        , new wxStringClientData(entry));
 
     view_sizer1->Add(m_choice_trans_visible, g_flags);
 
@@ -187,30 +187,11 @@ wxArrayString mmOptionViewSettings::viewAccountStrings(bool translated, const wx
 {
     wxArrayString itemChoiceViewAccountStrings;
 
-    if (translated)
-    {
-        itemChoiceViewAccountStrings.Add(_("All"));
-        itemChoiceViewAccountStrings.Add(_("Open"));
-        itemChoiceViewAccountStrings.Add(_("Favorites"));
-    }
-    else
-    {
-        itemChoiceViewAccountStrings.Add(VIEW_ACCOUNTS_ALL_STR);
-        itemChoiceViewAccountStrings.Add(VIEW_ACCOUNTS_OPEN_STR);
-        itemChoiceViewAccountStrings.Add(VIEW_ACCOUNTS_FAVORITES_STR);
-    }
+    itemChoiceViewAccountStrings.Add(translated ? _("All") : VIEW_ACCOUNTS_ALL_STR);
+    itemChoiceViewAccountStrings.Add(translated ? _(VIEW_ACCOUNTS_OPEN_STR) : VIEW_ACCOUNTS_OPEN_STR);
+    itemChoiceViewAccountStrings.Add(translated ? _(VIEW_ACCOUNTS_FAVORITES_STR) : VIEW_ACCOUNTS_FAVORITES_STR);
 
-    if (!input_string.IsEmpty())
-    {
-        for (size_t i = 0; i < itemChoiceViewAccountStrings.Count(); i++)
-        {
-            if (input_string == itemChoiceViewAccountStrings[i])
-            {
-                row_id = i;
-                break;
-            }
-        }
-    }
+    row_id = itemChoiceViewAccountStrings.Index(input_string);
 
     return itemChoiceViewAccountStrings;
 }
