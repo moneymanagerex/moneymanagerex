@@ -1243,17 +1243,6 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
 }
 //----------------------------------------------------------------------------
 
-int TransactionListCtrl::GetColumnWidthSetting(const int& column_number, int default_size)
-{
-    return Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, column_number), default_size);
-}
-
-void TransactionListCtrl::SetColumnWidthSetting(const int& column_number, int column_width)
-{
-    Model_Setting::instance().Set(wxString::Format(m_col_width, column_number), column_width);
-}
-//-------------------------------------------------------------------
-
 void TransactionListCtrl::OnColClick(wxListEvent& event)
 {
     int ColumnNr;
