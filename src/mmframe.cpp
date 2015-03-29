@@ -386,9 +386,7 @@ void mmGUIFrame::cleanup()
     ShutdownDatabase();
     /// Update the database according to user requirements
     if (mmOptions::instance().databaseUpdated_ && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
-    {
         BackupDatabase(m_filename, true);
-    }
 }
 
 void mmGUIFrame::ShutdownDatabase()
@@ -433,9 +431,7 @@ void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
 void mmGUIFrame::processPendingEvents()
 {
     while (m_app->Pending())
-    {
         m_app->Dispatch();
-    }
 }
 
 //----------------------------------------------------------------------------
@@ -752,14 +748,18 @@ void mmGUIFrame::updateNavTreeControl()
         /* Start Populating the dynamic data */
         wxString vAccts = Model_Setting::instance().ViewAccounts();
         wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR || vAccts == VIEW_ACCOUNTS_OPEN_STR);
-        if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
+        if (vAccts != VIEW_ACCOUNTS_ALL_STR
+            && vAccts != VIEW_ACCOUNTS_FAVORITES_STR
+            && vAccts != VIEW_ACCOUNTS_OPEN_STR)
+        {
             vAccts = VIEW_ACCOUNTS_ALL_STR;
+        }
 
         for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
         {
-            if (!((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-                (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
-                vAccts == "ALL"))
+            if (!((vAccts == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status(account) == Model_Account::OPEN) ||
+                (vAccts == VIEW_ACCOUNTS_FAVORITES_STR && Model_Account::FAVORITEACCT(account)) ||
+                vAccts == VIEW_ACCOUNTS_ALL_STR))
                 continue;
 
             int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);

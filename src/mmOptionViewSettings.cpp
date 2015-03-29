@@ -67,7 +67,7 @@ void mmOptionViewSettings::Create()
         , wxDefaultPosition, wxDefaultSize, itemChoiceViewAccountTranslatedStrings);
     view_sizer1->Add(m_choice_visible, g_flags);
 
-    wxString vAccts = Model_Setting::instance().ViewAccounts();
+    const wxString& vAccts = Model_Setting::instance().ViewAccounts();
     row_id = 0;
     wxArrayString itemChoiceViewAccountStrings = viewAccountStrings(false, vAccts, row_id);
     m_choice_visible->SetSelection(row_id);
@@ -89,36 +89,25 @@ void mmOptionViewSettings::Create()
 
     m_choice_trans_visible = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     for (const auto &entry : view_strings)
-        m_choice_trans_visible->Append(wxGetTranslation(entry),
-        new wxStringClientData(entry));
+        m_choice_trans_visible->Append(wxGetTranslation(entry)
+        , new wxStringClientData(entry));
 
     view_sizer1->Add(m_choice_trans_visible, g_flags);
 
-    wxString vTrans = Model_Setting::instance().ViewTransactions();
+    const wxString& vTrans = Model_Setting::instance().ViewTransactions();
     m_choice_trans_visible->SetStringSelection(wxGetTranslation(vTrans));
     m_choice_trans_visible->SetToolTip(_("Specify which transactions are visible by default"));
 
-    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Report Font Size")), g_flags);
+    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("HTML scale factor")), g_flags);
 
-    const wxString itemChoiceFontSize [] = {
-        wxTRANSLATE("XSmall"),
-        wxTRANSLATE("Small"),
-        wxTRANSLATE("Normal"),
-        wxTRANSLATE("Large"),
-        wxTRANSLATE("XLarge"),
-        wxTRANSLATE("XXLarge"),
-        wxTRANSLATE("Huge") };
+    int max = 300; int min = 25;
+    m_scale_factor = new wxSpinCtrl(this, wxID_ANY
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
 
-    m_choice_font_size = new wxChoice(this, wxID_ANY);
-
-    for (const auto &entry : itemChoiceFontSize)
-        m_choice_font_size->Append(wxGetTranslation(entry));
-
-    int vFontSize = -1 + Model_Setting::instance().HtmlFontSize();
-    m_choice_font_size->SetSelection(vFontSize);
-
-    m_choice_font_size->SetToolTip(_("Specify which font size is used on the report tables"));
-    view_sizer1->Add(m_choice_font_size, g_flags);
+    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
+    m_scale_factor->SetValue(vFontSize);
+    m_scale_factor->SetToolTip(_("Specify which scale factor is used for the report pages"));
+    view_sizer1->Add(m_scale_factor, g_flags);
 
     // Budget options
     m_budget_financial_years = new wxCheckBox(this, wxID_STATIC, _("View Budgets as Financial Years")
@@ -198,49 +187,31 @@ wxArrayString mmOptionViewSettings::viewAccountStrings(bool translated, const wx
 {
     wxArrayString itemChoiceViewAccountStrings;
 
-    if (translated)
-    {
-        itemChoiceViewAccountStrings.Add(_("All"));
-        itemChoiceViewAccountStrings.Add(_("Open"));
-        itemChoiceViewAccountStrings.Add(_("Favorites"));
-    }
-    else
-    {
-        itemChoiceViewAccountStrings.Add(VIEW_ACCOUNTS_ALL_STR);
-        itemChoiceViewAccountStrings.Add(VIEW_ACCOUNTS_OPEN_STR);
-        itemChoiceViewAccountStrings.Add(VIEW_ACCOUNTS_FAVORITES_STR);
-    }
-    if (!input_string.IsEmpty())
-    {
-        for (size_t i = 0; i < itemChoiceViewAccountStrings.Count(); i++)
-        {
-            if (input_string == itemChoiceViewAccountStrings[i])
-            {
-                row_id = i;
-                break;
-            }
-        }
-    }
+    itemChoiceViewAccountStrings.Add(translated ? _("All") : VIEW_ACCOUNTS_ALL_STR);
+    itemChoiceViewAccountStrings.Add(translated ? _(VIEW_ACCOUNTS_OPEN_STR) : VIEW_ACCOUNTS_OPEN_STR);
+    itemChoiceViewAccountStrings.Add(translated ? _(VIEW_ACCOUNTS_FAVORITES_STR) : VIEW_ACCOUNTS_FAVORITES_STR);
+
+    row_id = itemChoiceViewAccountStrings.Index(input_string);
 
     return itemChoiceViewAccountStrings;
 }
 
 void mmOptionViewSettings::OnNavTreeColorChanged(wxCommandEvent& event)
 {
-    int buttonId = event.GetId();
-    wxButton* button = (wxButton*) FindWindow(buttonId);
-    if (!button) return;
-
-    wxColour colour = button->GetBackgroundColour();
-    wxColourData data;
-    data.SetChooseFull(true);
-    data.SetColour(colour);
-
-    wxColourDialog dialog(this, &data);
-    if (dialog.ShowModal() == wxID_OK)
+    wxButton* button = wxDynamicCast(FindWindow(event.GetId()), wxButton);
+    if (button)
     {
-        colour = dialog.GetColourData().GetColour();
-        button->SetBackgroundColour(colour);
+        wxColour colour = button->GetBackgroundColour();
+        wxColourData data;
+        data.SetChooseFull(true);
+        data.SetColour(colour);
+
+        wxColourDialog dialog(this, &data);
+        if (dialog.ShowModal() == wxID_OK)
+        {
+            colour = dialog.GetColourData().GetColour();
+            button->SetBackgroundColour(colour);
+        }
     }
 }
 
@@ -259,8 +230,8 @@ void mmOptionViewSettings::SaveSettings()
     }
     Model_Setting::instance().SetViewTransactions(visible);
 
-    int size = m_choice_font_size->GetCurrentSelection() + 1;
-    Model_Setting::instance().SetHtmlFontSize(size);
+    int size = m_scale_factor->GetValue();
+    Model_Setting::instance().SetHtmlScaleFactor(size);
 
     Model_Setting::instance().SetBudgetFinancialYears(m_budget_financial_years->GetValue());
     Model_Setting::instance().SetBudgetIncludeTransfers(m_budget_include_transfers->GetValue());

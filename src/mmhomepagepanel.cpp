@@ -131,7 +131,7 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
         double gain_lost = (stock.VALUE - (stock.PURCHASEPRICE * stock.NUMSHARES) - stock.COMMISSION);
         values.first += gain_lost;
         values.second += stock.VALUE;
-        if (account && account->STATUS == "Open")
+        if (account && account->STATUS == VIEW_ACCOUNTS_OPEN_STR)
         {   
             grand_total_ += stock.VALUE * conv_rate;
             grand_gain_lost_ += gain_lost * conv_rate;
@@ -546,6 +546,7 @@ void mmHomePagePanel::getTemplate()
 
 void mmHomePagePanel::getData()
 {
+    m_frames["HTMLSCALE"] = wxString::Format("%d", mmIniOptions::instance().html_font_size_);
     if (Model_Setting::instance().DisplayInternetNews())
     {
         m_frames["WEBSITE_NEWS"] = displayWebsiteNews();
@@ -708,8 +709,8 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
         tReconciled += reconciledBal * currency_rate;
 
         // show the actual amount in that account
-        if (((vAccts_ == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-            (vAccts_ == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
+        if (((vAccts_ == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status(account) == Model_Account::OPEN) ||
+            (vAccts_ == VIEW_ACCOUNTS_FAVORITES_STR && Model_Account::FAVORITEACCT(account)) ||
             (vAccts_ == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";

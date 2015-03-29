@@ -115,9 +115,6 @@ public:
 
 private:
     wxString html_;
-
-    int font_size_;
-
     struct today_
     {
         wxDateTime date;

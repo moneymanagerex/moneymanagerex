@@ -212,6 +212,6 @@ void mmOptionMiscSettings::SaveSettings()
     Model_Setting::instance().Set("MAX_BACKUP_FILES", m_max_files->GetValue());
 
     wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
-    wxString delim = st->GetValue();
+    const wxString& delim = st->GetValue();
     if (!delim.IsEmpty()) Model_Infotable::instance().Set("DELIMITER", delim);
 }
