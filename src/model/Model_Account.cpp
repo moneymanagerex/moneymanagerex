@@ -308,5 +308,5 @@ bool Model_Account::Exist(const wxString& account_name)
 {
     Data_Set list = instance().find(ACCOUNTNAME(account_name));
 
-    return (!list.size() == 0);
+    return !list.empty();
 }
