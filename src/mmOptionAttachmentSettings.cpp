@@ -254,17 +254,16 @@ void mmOptionAttachmentSettings::SaveSettings()
         if (attachmentFolder != m_old_path)
         {
             int MoveResponse = wxMessageBox(
-                wxString::Format("%s/n", _("Attachments path has been changed!"))
+                wxString::Format("%s\n", _("Attachments path has been changed!"))
                 + ("Do you want to move all attachments to the new location?")
                 , _("Attachments folder migration")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
             if (MoveResponse == wxYES)
             {
-                if (!wxRenameFile(mmex::getPathAttachment(m_old_path), attachmentFolderPath))
+                if (wxRenameFile(mmex::getPathAttachment(m_old_path), attachmentFolderPath))
                     wxMessageBox(
-                    wxString::Format("%s/n", _("Error moving attachments folder:")) +
-                    wxString::Format("%s/n/n", _("Please move it manually!")) +
-                    wxString::Format("%s: %s", _("Origin"), mmex::getPathAttachment(m_old_path)) +
+                    wxString::Format("%s\n\n", _("Error moving attachments folder: please move it manually!")) +
+                    wxString::Format("%s: %s\n", _("Origin"), mmex::getPathAttachment(m_old_path)) +
                     wxString::Format("%s: %s", _("Destination"), attachmentFolderPath)
                     , _("Attachments folder migration")
                     , wxICON_ERROR);
