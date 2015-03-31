@@ -72,6 +72,7 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
 , accountDropDown_(nullptr)
 , btnOK_(nullptr)
 {
+    this->payeeIsNotes = false;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("QIF Import"), wxDefaultPosition, wxSize(500, 300), style);
 }
@@ -168,6 +169,7 @@ void mmQIFImportDialog::CreateControls()
     //Use paye as desc :
     payeeIsNotesCheckBox_ = new wxCheckBox(this, wxID_FILE5, _("Include paye field in notes")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    payeeIsNotesCheckBox_->SetValue(this->payeeIsNotes);
 
     //Filtering Details --------------------------------------------
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Filtering Details:"));
@@ -665,12 +667,15 @@ void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
 
 void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
 {
-    if (payeeIsNotesCheckBox_->IsChecked()){
-        payeeIsNotes = true;
-    }else{
-        payeeIsNotes = false;
+    if(payeeIsNotesCheckBox_->IsChecked() != this->payeeIsNotes){
+        if (payeeIsNotesCheckBox_->IsChecked()){
+            this->payeeIsNotes = true;
+        }else{
+            this->payeeIsNotes = false;
+        }
+        mmReadQIFFile();
+        refreshTabs(3);
     }
-    refreshTabs(3);
     
     fromDateCtrl_->Enable(dateFromCheckBox_->IsChecked());
     toDateCtrl_->Enable(dateToCheckBox_->IsChecked());

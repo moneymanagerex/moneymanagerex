@@ -108,7 +108,7 @@ private:
     wxCheckBox* payeeIsNotesCheckBox_;
     wxButton* btnOK_;
     
-    bool payeeIsNotes = false; 
+    bool payeeIsNotes; 
 
     enum EColumn
     {
