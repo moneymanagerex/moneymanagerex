@@ -113,7 +113,7 @@ bool Model_Usage::send(const Data* r)
 
 	//Version
 	url += "&";
-    url += wxString::Format("Version=%s", mmex::getProgramVersion());
+    url += wxString::Format("Version=%s", mmex::version::string);
 	if (mmex::isPortableMode())
 		url += " Portable";
 
