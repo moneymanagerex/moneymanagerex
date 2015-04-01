@@ -177,9 +177,9 @@ const wxString VIEW_TRANS_LAST_3MONTHS_STR   = wxTRANSLATE("View Last 3 Months")
 const wxString VIEW_TRANS_LAST_12MONTHS_STR  = wxTRANSLATE("View Last 12 Months");
 const wxString VIEW_TRANS_CURRENT_YEAR_STR   = wxTRANSLATE("View Current Year");
 
-const wxString VIEW_ACCOUNTS_ALL_STR       = "ALL";
-const wxString VIEW_ACCOUNTS_OPEN_STR      = "Open";
-const wxString VIEW_ACCOUNTS_FAVORITES_STR = "Favorites";
+const wxString VIEW_ACCOUNTS_ALL_STR = wxTRANSLATE("ALL");
+const wxString VIEW_ACCOUNTS_OPEN_STR = wxTRANSLATE("Open");
+const wxString VIEW_ACCOUNTS_FAVORITES_STR = wxTRANSLATE("Favorites");
 
 const wxString INIDB_BUDGET_FINANCIAL_YEARS       = "BUDGET_FINANCIAL_YEARS";
 const wxString INIDB_BUDGET_INCLUDE_TRANSFERS     = "BUDGET_INCLUDE_TRANSFERS";

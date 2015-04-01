@@ -212,6 +212,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     std::vector<wxString>   totBalanceData;
 
     hb.init();
+    hb.addDivContainer();
     hb.addHeader(2, wxString::Format(_("Account Balance - %s"), mode_==0 ? _("Monthly Report"):_("Yearly Report")));
     hb.addDateNow();
     hb.addLineBreak();
@@ -226,6 +227,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.addTableHeaderCell(_("Stocks"), true);
     hb.addTableHeaderCell(_("Balance"), true);
     hb.endTableRow();
+    hb.endDiv();
     hb.endThead();
 
     for (const auto& account: Model_Account::instance().all())

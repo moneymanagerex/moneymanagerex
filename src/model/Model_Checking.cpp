@@ -385,7 +385,7 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, 
             frequentNotes.push_back(notes);
     }
     std::reverse(frequentNotes.begin(), frequentNotes.end());
-    if (frequentNotes.size() > max)
+    if (frequentNotes.size() > static_cast<size_t>(max))
         frequentNotes.erase(frequentNotes.begin() + max, frequentNotes.end());
     std::stable_sort(frequentNotes.begin(), frequentNotes.end());
 }

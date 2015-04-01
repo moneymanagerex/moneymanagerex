@@ -46,7 +46,7 @@ wxString mmReportTransactions::getHTMLText()
 {
     mmHTMLBuilder hb;
     hb.init();
-
+    hb.addDivContainer();
     wxString transHeading = _("Transaction List ");
     const Model_Account::Data* account = Model_Account::instance().get(refAccountID_);
     if (account)
@@ -117,7 +117,7 @@ wxString mmReportTransactions::getHTMLText()
     hb.endTable();
 
     transDialog_->getDescription(hb);
-
+    hb.endDiv();
     hb.end();
 
     return hb.getHTMLText();
