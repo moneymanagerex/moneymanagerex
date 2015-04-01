@@ -72,7 +72,7 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
 , accountDropDown_(nullptr)
 , btnOK_(nullptr)
 {
-    this->payeeIsNotes = false;
+    payeeIsNotes_ = false;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("QIF Import"), wxDefaultPosition, wxSize(500, 300), style);
 }
@@ -169,7 +169,7 @@ void mmQIFImportDialog::CreateControls()
     //Use paye as desc :
     payeeIsNotesCheckBox_ = new wxCheckBox(this, wxID_FILE5, _("Include paye field in notes")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    payeeIsNotesCheckBox_->SetValue(this->payeeIsNotes);
+    payeeIsNotesCheckBox_->SetValue(payeeIsNotes_);
 
     //Filtering Details --------------------------------------------
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Filtering Details:"));
@@ -446,7 +446,7 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
             m_QIFcategoryNames[trx[Category]] = std::make_pair(-1, -1);
     }
 
-    if(payeeIsNotes){
+    if(payeeIsNotes_){
         if (trx.find(Payee) == trx.end()){
             trx[Payee] = _("Unknown");
         }else{
@@ -667,11 +667,11 @@ void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
 
 void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
 {
-    if(payeeIsNotesCheckBox_->IsChecked() != this->payeeIsNotes){
+    if(payeeIsNotesCheckBox_->IsChecked() != payeeIsNotes_){
         if (payeeIsNotesCheckBox_->IsChecked()){
-            this->payeeIsNotes = true;
+            payeeIsNotes_ = true;
         }else{
-            this->payeeIsNotes = false;
+            payeeIsNotes_ = false;
         }
         mmReadQIFFile();
         refreshTabs(3);
