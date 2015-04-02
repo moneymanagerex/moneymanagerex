@@ -260,7 +260,7 @@ void mmOptionAttachmentSettings::SaveSettings()
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
             if (MoveResponse == wxYES)
             {
-                if (wxRenameFile(mmex::getPathAttachment(m_old_path), attachmentFolderPath))
+                if (!wxRenameFile(mmex::getPathAttachment(m_old_path), attachmentFolderPath))
                     wxMessageBox(
                     wxString::Format("%s\n\n", _("Error moving attachments folder: please move it manually!")) +
                     wxString::Format("%s: %s\n", _("Origin"), mmex::getPathAttachment(m_old_path)) +
@@ -268,6 +268,7 @@ void mmOptionAttachmentSettings::SaveSettings()
                     , _("Attachments folder migration")
                     , wxICON_ERROR);
             }
+            m_old_path = attachmentFolder;
         }
         if (!wxDirExists(attachmentFolderPath))
             wxMkdir(attachmentFolderPath);
