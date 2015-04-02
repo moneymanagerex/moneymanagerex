@@ -600,14 +600,16 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
         msg << "\n";
         msg << wxString::Format(_("Total Imported : %ld"), countImported); 
         msg << "\n";
-        msg << _("Date") << wxT ("              ") << _("Price");
+        msg << _("Date") << "              " << _("Price");
         msg << "\n";
         for (std::vector<wxString>::const_iterator d = rows.begin(); d != rows.end(); ++d)
-            msg << *d << wxT ("\n");
-        wxString confirmMsg = msg + _("Please confirm saving...");
-        if (!canceledbyuser && wxMessageBox(confirmMsg
-            , _("Importing CSV"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxCANCEL)
-                canceledbyuser = true;
+            msg << *d << "\n";
+        const wxString& confirmMsg = msg + _("Please confirm saving...");
+        if (!canceledbyuser 
+            && wxMessageBox(confirmMsg, _("Importing CSV"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxCANCEL)
+        {
+            canceledbyuser = true;
+        }
  
         // Since all database transactions are only in memory,
         if (!canceledbyuser)

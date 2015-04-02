@@ -753,7 +753,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 mmWebApp::MMEX_WebApp_UpdatePayee();
                 mmWebApp::MMEX_WebApp_UpdateCategory();
                 importSuccessful_ = true;
-                msg << _("Transactions saved to database in account: ") << acctName;
+                msg << wxString::Format(_("Transactions saved to database in account: %s"), acctName);
             }
             else
             {

@@ -71,7 +71,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     wxString startYearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     startYearStr.ToLong(&startYear);
 
-    wxString headingStr = AdjustYearValues(startDay, startMonth, startYear, startYearStr);
+    const wxString& headingStr = AdjustYearValues(startDay, startMonth, startYear, startYearStr);
     wxDateTime yearBegin(startDay, (wxDateTime::Month)startMonth, startYear);
     wxDateTime yearEnd(endDay, (wxDateTime::Month)endMonth, startYear);
 
@@ -120,7 +120,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, _("Budget Performance for ") + headingStr );
+    hb.addHeader(2, wxString::Format(_("Budget Performance for %s"), headingStr));
     hb.DisplayDateHeading(yearBegin, yearEnd);
 
     hb.startSortTable();
