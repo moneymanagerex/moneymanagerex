@@ -96,7 +96,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 
     mmHTMLBuilder hb;
     hb.init();
-
+    hb.addDivContainer();
     hb.addHeader(2, wxString::Format(title_, date_range_->title()));
     hb.addDateNow();
     hb.addLineBreak();
@@ -154,6 +154,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     }
     hb.endTfoot();
     hb.endTable();
+    hb.endDiv();
     hb.end();
     return hb.getHTMLText();
 }

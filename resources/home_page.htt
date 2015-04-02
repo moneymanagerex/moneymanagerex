@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8" />
@@ -7,6 +7,9 @@
     <script src = "ChartNew.js"></script>
     <script src = "sorttable.js"></script>
     <link href = "master.css" rel = "stylesheet" />
+    <style>
+        body {font-size: <TMPL_VAR HTMLSCALE>%;}
+    </style>
 </head>
   <script>
     function toggleTable(id) {
@@ -190,8 +193,8 @@
     var row = document.createElement('tr');
     createTableData(row, obj);
     createTableData(row, stats_json[obj]);
-    tbody.appendChild(row);  
-    }else{
+    tbody.appendChild(row); 
+    } else {
       document.getElementById('stat_name').innerHTML = stats_json[obj];
     }
   }

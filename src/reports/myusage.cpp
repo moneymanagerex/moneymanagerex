@@ -36,6 +36,10 @@ const char *usage_template = R"(
     <link href = "master.css" rel = "stylesheet" />
     <style>
         canvas {max-height: 400px; min-height: 100px;}
+        body {
+            transform: scale(<TMPL_VAR HTMLSCALE>);
+            transform-origin: 0%% 0%%;
+        }
     </style>
 </head>
 <body>
@@ -203,6 +207,7 @@ wxString mmReportMyUsage::getHTMLText()
     report(L"REPORTNAME") = this->local_title();
     report(L"CONTENTS") = contents;
     report(L"GRAND") = wxString::Format("%ld", (long)all_usage.size());
+    report(L"HTMLSCALE") = wxString::Format("%d", mmIniOptions::instance().html_font_size_);
 
     wxString out = wxEmptyString;
     try 
