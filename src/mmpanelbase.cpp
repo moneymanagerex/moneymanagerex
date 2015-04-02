@@ -199,6 +199,16 @@ void mmListCtrl::OnHeaderColumn(wxCommandEvent& event)
     }
 }
 
+int mmListCtrl::GetColumnWidthSetting(int column_number, int default_size)
+{
+    return Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, column_number), default_size);
+}
+
+void mmListCtrl::SetColumnWidthSetting(int column_number, int column_width)
+{
+    Model_Setting::instance().Set(wxString::Format(m_col_width, column_number), column_width);
+}
+
 mmPanelBase::mmPanelBase()
 {
 }
