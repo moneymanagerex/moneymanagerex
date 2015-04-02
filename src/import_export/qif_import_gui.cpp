@@ -72,6 +72,7 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
 , accountDropDown_(nullptr)
 , btnOK_(nullptr)
 {
+    payeeIsNotes_ = false;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("QIF Import"), wxDefaultPosition, wxSize(500, 300), style);
 }
@@ -163,7 +164,12 @@ void mmQIFImportDialog::CreateControls()
     
     //Use account number instead of account name :
     accountNumberCheckBox_ = new wxCheckBox(this, wxID_FILE5, _("Use account number instead of account name")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);    
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        
+    //Use paye as desc :
+    payeeIsNotesCheckBox_ = new wxCheckBox(this, wxID_FILE5, _("Include paye field in notes")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    payeeIsNotesCheckBox_->SetValue(payeeIsNotes_);
 
     //Filtering Details --------------------------------------------
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Filtering Details:"));
@@ -261,6 +267,7 @@ void mmQIFImportDialog::CreateControls()
     wxBoxSizer* inTop_sizer = new wxBoxSizer(wxVERTICAL);
     inTop_sizer->Add(top_sizer, g_flags);
     inTop_sizer->Add(accountNumberCheckBox_, g_flags);
+    inTop_sizer->Add(payeeIsNotesCheckBox_, g_flags);
     main_sizer->Add(inTop_sizer, g_flags);
     top_sizer->Add(left_sizer, g_flags);
     top_sizer->Add(filter_sizer, g_flags);      
@@ -439,11 +446,20 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
             m_QIFcategoryNames[trx[Category]] = std::make_pair(-1, -1);
     }
 
-    if (!isTransfer) {
-        if (trx.find(Payee) == trx.end())
+    if(payeeIsNotes_){
+        if (trx.find(Payee) == trx.end()){
             trx[Payee] = _("Unknown");
-        if (m_QIFpayeeNames.find(trx[Payee]) == m_QIFpayeeNames.end()) {
-            m_QIFpayeeNames[trx[Payee]] = -1;
+        }else{
+            trx[Memo] += (trx[Memo].empty() ? "" : " ") + trx[Payee];
+            trx[Payee] = _("Unknown");
+        }
+    }else{
+        if (!isTransfer) {
+            if (trx.find(Payee) == trx.end())
+                trx[Payee] = _("Unknown");
+            if (m_QIFpayeeNames.find(trx[Payee]) == m_QIFpayeeNames.end()) {
+                m_QIFpayeeNames[trx[Payee]] = -1;
+            }
         }
     }
 
@@ -651,6 +667,16 @@ void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
 
 void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
 {
+    if(payeeIsNotesCheckBox_->IsChecked() != payeeIsNotes_){
+        if (payeeIsNotesCheckBox_->IsChecked()){
+            payeeIsNotes_ = true;
+        }else{
+            payeeIsNotes_ = false;
+        }
+        mmReadQIFFile();
+        refreshTabs(3);
+    }
+    
     fromDateCtrl_->Enable(dateFromCheckBox_->IsChecked());
     toDateCtrl_->Enable(dateToCheckBox_->IsChecked());
     if (accountCheckBox_->IsChecked()
