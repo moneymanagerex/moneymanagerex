@@ -75,7 +75,8 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         else
         {
             if (! activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM) continue;
-            if (! activeBankAccounts_ && (Model_Account::type(account) == Model_Account::CHECKING || Model_Account::type(account) == Model_Account::CREDIT_CARD)) continue;
+            if (! activeBankAccounts_ && (Model_Account::type(account) == Model_Account::CHECKING 
+                || Model_Account::type(account) == Model_Account::CREDIT_CARD)) continue;
         }
 
         const Model_Currency::Data* currency = Model_Account::currency(account);
@@ -234,39 +235,29 @@ wxString mmReportCashFlow::getHTMLText_i()
     hb.init();
     hb.addDivContainer();
 
-    wxString headerMsg = wxString::Format (_("Cash Flow Forecast for %i Years Ahead"), years);
+    const wxString& headerMsg = wxString::Format (_("Cash Flow Forecast for %i Years Ahead"), years);
     hb.addHeader(2, headerMsg );
-    headerMsg = _("Accounts: ");
-    if (accountArray_ == nullptr) 
+    wxString accountsMsg;
+    if (accountArray_) 
     {
-        if (activeBankAccounts_ && activeTermAccounts_)
-            headerMsg << _("All Accounts");
-        else if (activeBankAccounts_)
-            headerMsg << _("All Bank Accounts");
-        else if (activeTermAccounts_)
-            headerMsg << _("All Term Accounts");
+        for (const auto& entry : *accountArray_)
+            accountsMsg.Append((accountsMsg.empty() ? "" : ", ") + entry);
     } 
     else 
     {
-        int arrIdx = 0;
- 
-        if ( (int)accountArray_->size() == 0 )
-            headerMsg << "?";
-
-        if ( !accountArray_->empty() )
-        {
-            headerMsg << accountArray_->Item(arrIdx);
-            arrIdx ++;
-        }
-        while ( arrIdx < (int)accountArray_->size() )
-        {
-            headerMsg << ", " << accountArray_->Item(arrIdx);
-            arrIdx ++;
-        }
-
+        if (activeBankAccounts_ && activeTermAccounts_)
+            accountsMsg << _("All Accounts");
+        else if (activeBankAccounts_ && !activeTermAccounts_)
+            accountsMsg << _("All Bank Accounts");
+        else if (activeTermAccounts_ && !activeBankAccounts_)
+            accountsMsg << _("All Term Accounts");
     }
 
-    hb.addHeader(2, headerMsg);
+    if (accountsMsg.empty())
+        accountsMsg = _("None");
+    accountsMsg = wxString::Format(_("Accounts: %s"), accountsMsg);
+
+    hb.addHeader(2, accountsMsg);
     hb.addDateNow();
     hb.addLineBreak();
 
@@ -297,7 +288,7 @@ wxString mmReportCashFlow::getHTMLText_i()
         }
         else
         {
-            const wxDateTime firstDayOfTheMonth = wxDateTime(dtEnd).SetDay(1);
+            const wxDateTime& firstDayOfTheMonth = wxDateTime(dtEnd).SetDay(1);
             if (dtEnd == firstDayOfTheMonth) colorId_ = ++colorId_ % 2;
         }
 

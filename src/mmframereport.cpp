@@ -91,7 +91,7 @@ public:
             contents += report.to_row_t();
 
         mm_html_template report(group_report_template);
-        report(L"REPORTNAME") = this->local_title() + " For " + this->m_group_name;
+        report(L"REPORTNAME") = wxString::Format(_("%s For %s"), this->local_title(), this->m_group_name);
         report(L"CONTENTS") = contents;
 
         wxString out = wxEmptyString;
