@@ -667,7 +667,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 payeeID_ = -1;
                 categID_ = -1;
                 subCategID_ = -1;
-                val_ = NULL;
+                val_ = 0.0;
 
                 this->csv2tab_separated_values(line, delimit_);
                 wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
