@@ -26,10 +26,10 @@
 class mmUpdate
 {
 public:
-    static void checkUpdates(const bool& bSilent, wxFrame *frame);
+    static void checkUpdates(const bool bSilent, wxFrame *frame);
 
 private:
-    static const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion);
+    static const bool IsUpdateAvailable(const bool bSilent, wxString& NewVersion);
 };
 
 class mmUpdateWizard : public wxWizard

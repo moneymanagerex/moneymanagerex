@@ -270,7 +270,7 @@ const wxString Model_Category::full_name(const Data* category, const Model_Subca
         return category->CATEGNAME + ":" + sub_category->SUBCATEGNAME;
 }
 
-const wxString Model_Category::full_name(const int &category_id, const int &subcategory_id)
+const wxString Model_Category::full_name(const int category_id, const int subcategory_id)
 {
     Data* category = Model_Category::instance().get(category_id);
     Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategory_id);

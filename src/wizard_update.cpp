@@ -204,7 +204,7 @@ void mmUpdateWizardPage2::OnDownload()
 //--------------
 //mmUpdate Class
 //--------------
-const bool mmUpdate::IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
+const bool mmUpdate::IsUpdateAvailable(const bool bSilent, wxString& NewVersion)
 {
     bool isUpdateAvailable = false;
     NewVersion = "error";
@@ -314,7 +314,7 @@ const bool mmUpdate::IsUpdateAvailable(const bool& bSilent, wxString& NewVersion
     return isUpdateAvailable;
 }
 
-void mmUpdate::checkUpdates(const bool& bSilent, wxFrame *frame)
+void mmUpdate::checkUpdates(const bool bSilent, wxFrame *frame)
 {
     wxString NewVersion = wxEmptyString;
     if (IsUpdateAvailable(bSilent, NewVersion) && NewVersion != "error")

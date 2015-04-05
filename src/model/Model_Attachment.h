@@ -60,13 +60,13 @@ public:
     static int LastAttachmentNumber(const wxString& RefType, const int RefId);
 
 	/** Return the description of the choice reftype */
-	static wxString reftype_desc(const int& RefTypeEnum);
+	static wxString reftype_desc(const int RefTypeEnum);
 
     /** Return a dataset with attachments linked to a specific type*/
     std::map<int, Data_Set> get_all(REFTYPE reftype);
 
     /** Return all attachments descriptions*/
-    wxArrayString allDescriptions(const bool& RemoveDuplicated);
+    wxArrayString allDescriptions(const bool RemoveDuplicated);
 };
 
 #endif // 

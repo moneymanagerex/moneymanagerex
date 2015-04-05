@@ -34,7 +34,7 @@ void mmReportBudget::SetDateToEndOfMonth(int month, wxDateTime& date)
     date.SetToLastMonthDay();
 }
 
-void mmReportBudget::SetDateToEndOfYear(int day, int month, wxDateTime& date, bool isEndDate)
+void mmReportBudget::SetDateToEndOfYear(const int day, const int month, wxDateTime& date, bool isEndDate)
 {
     date.SetDay(day);
     date.SetMonth((wxDateTime::Month)month);
@@ -86,11 +86,11 @@ wxString mmReportBudget::AdjustYearValues(int& day, int& month, long year, const
     return ret;
 }
 
-void mmReportBudget::AdjustYearValues(int& day, int& month, wxDateTime& year)
+void mmReportBudget::AdjustYearValues(int& day, int& month, wxDateTime& date)
 {
     if (mmIniOptions::instance().budgetFinancialYears_) {
         GetFinancialYearValues(day, month);
-        SetDateToEndOfYear(day, month, year, false);
+        SetDateToEndOfYear(day, month, date, false);
     }
 }
 
