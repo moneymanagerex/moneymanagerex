@@ -65,7 +65,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     wxString startYearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     startYearStr.ToLong(&startYear);
 
-    wxString headingStr = AdjustYearValues(startDay, startMonth, startYear, startYearStr);
+    const wxString& headingStr = AdjustYearValues(startDay, startMonth, startYear, startYearStr);
     wxDateTime yearBegin(startDay, (wxDateTime::Month)startMonth, startYear);
     wxDateTime yearEnd(endDay, (wxDateTime::Month)endMonth, startYear);
 

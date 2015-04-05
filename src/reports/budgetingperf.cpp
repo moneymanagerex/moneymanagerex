@@ -120,7 +120,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, _("Budget Performance for ") + headingStr );
+    hb.addHeader(2, wxString::Format(_("Budget Performance for %s"), headingStr));
     hb.DisplayDateHeading(yearBegin, yearEnd);
 
     hb.startSortTable();
