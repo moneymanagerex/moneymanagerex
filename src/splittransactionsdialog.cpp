@@ -134,17 +134,8 @@ void SplitTransactionDialog::CreateControls()
     listCtrlSizer->Add(lcSplit_, g_flagsExpand);
 
     wxBoxSizer* totalAmountSizer = new wxBoxSizer(wxHORIZONTAL);
-    wxString totalMessage = _("Total:");
-    if (transType_ == Model_Checking::WITHDRAWAL)
-    {
-        totalMessage.Prepend(" ");
-        totalMessage.Prepend(_("Withdrawal"));
-    }
-    if (transType_ == Model_Checking::DEPOSIT)
-    {
-        totalMessage.Prepend(" ");
-        totalMessage.Prepend(_("Deposit"));
-    }
+    const wxString& totalMessage = _("Total:");
+
     wxStaticText* transAmountText = new wxStaticText(this, wxID_STATIC, totalMessage);
     transAmount_ = new wxStaticText(this, wxID_STATIC, wxEmptyString);
     totalAmountSizer->Add(transAmountText, g_flags);
