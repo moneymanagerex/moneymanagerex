@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012 Madhan Kanagavel
+Copyright (C) 2015 Nikolay
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -51,21 +52,21 @@ SplitTransactionDialog::SplitTransactionDialog( )
 {
 }
 
-SplitTransactionDialog::SplitTransactionDialog( wxWindow* parent
+ SplitTransactionDialog::SplitTransactionDialog(wxWindow* parent
     , std::vector<Split>& split
     , int transType
-    , int accountID)
+    , int accountID
+    , double totalAmount)
     : m_splits(split)
+    , totalAmount_(totalAmount)
     , accountID_(accountID)
+    , transType_(transType)
     , items_changed_(false)
 {
     for (const auto &item : m_splits)
         m_local_splits.push_back(item);
 
-    transType_ = transType;
     selectedIndex_ = -1;
-    if (transType_ == Model_Checking::TRANSFER)
-        transType_ = Model_Checking::WITHDRAWAL;
 
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Split Transaction Dialog")
@@ -97,20 +98,18 @@ void SplitTransactionDialog::DataToControls()
 {
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
-    if (account) currency = Model_Account::currency(account);
+    if (account) { currency = Model_Account::currency(account); }
 
     lcSplit_->DeleteAllItems();
     int i = 0;
-    for (const auto & entry : this->m_local_splits)
+    for (const auto& entry : this->m_local_splits)
     {
-        const Model_Category::Data* category = Model_Category::instance().get(entry.CATEGID);
-        const Model_Subcategory::Data* sub_category = (entry.SUBCATEGID != -1 ? Model_Subcategory::instance().get(entry.SUBCATEGID) : 0);
-
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(Model_Category::full_name(category, sub_category)));
+        data.push_back(wxVariant(Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)));
         data.push_back(wxVariant(Model_Currency::toString(entry.SPLITTRANSAMOUNT, currency)));
         lcSplit_->AppendItem(data, (wxUIntPtr)i++);
-        if (lcSplit_->GetItemCount()-1 == selectedIndex_) lcSplit_->SelectRow(selectedIndex_);
+        if (lcSplit_->GetItemCount()-1 == selectedIndex_)
+            lcSplit_->SelectRow(selectedIndex_);
     }
     UpdateSplitTotal();
     SetDisplayEditDeleteButtons();
@@ -183,11 +182,12 @@ void SplitTransactionDialog::CreateControls()
 
 void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
 {
-    Split split = {-1, -1, 0};
+    double amount = totalAmount_ - Model_Splittransaction::get_total(m_local_splits);
+    if (amount < 0.0) amount = 0.0;
+    Split split = { -1, -1, amount };
     SplitDetailDialog sdd(this, split, transType_, accountID_);
     if (sdd.ShowModal() == wxID_OK)
     {
-
         this->m_local_splits.push_back(sdd.getResult());
         items_changed_ = true;
     }

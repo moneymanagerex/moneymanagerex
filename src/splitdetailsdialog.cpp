@@ -57,8 +57,12 @@ SplitDetailDialog::SplitDetailDialog(
     , int accountID)
     : split_(split)
     , accountID_(accountID)
+    , m_currency(Model_Currency::GetBaseCurrency())
 {
     transType_ = transType;
+    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    if (account)
+        m_currency = Model_Account::currency(account);
     Create(parent);
 }
 
@@ -78,15 +82,17 @@ bool SplitDetailDialog::Create(wxWindow* parent)
 
 void SplitDetailDialog::DataToControls()
 {
-    const Model_Category::Data* category = Model_Category::instance().get(split_.CATEGID);
-    const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(split_.SUBCATEGID);
-    const wxString category_name = Model_Category::full_name(category, sub_category);
-
+    const wxString& category_name = Model_Category::full_name(split_.CATEGID, split_.SUBCATEGID);
     bCategory_->SetLabelText(category_name);
 
     if (split_.SPLITTRANSAMOUNT)
         textAmount_->SetValue(fabs(split_.SPLITTRANSAMOUNT));
-    textAmount_->SetFocus();
+
+    if (category_name.empty())
+    {
+        textAmount_->SetFocus();
+        textAmount_->SelectAll();
+    }
 }
 
 void SplitDetailDialog::CreateControls()
@@ -104,7 +110,7 @@ void SplitDetailDialog::CreateControls()
     wxFlexGridSizer* controlSizer = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel7->SetSizer(controlSizer);
 
-    wxStaticText* staticTextType = new wxStaticText( itemPanel7, wxID_STATIC, _("Type"));
+    wxStaticText* staticTextType = new wxStaticText(itemPanel7, wxID_STATIC, _("Type"));
     controlSizer->Add(staticTextType, g_flags);
 
     const wxString itemChoiceStrings[] =
@@ -129,7 +135,7 @@ void SplitDetailDialog::CreateControls()
 
     wxStaticText* staticTextCategory = new wxStaticText(itemPanel7, wxID_STATIC, _("Category"));
     controlSizer->Add(staticTextCategory, g_flags);
-    bCategory_ = new wxButton( itemPanel7, ID_BUTTONCATEGORY, ""
+    bCategory_ = new wxButton(itemPanel7, ID_BUTTONCATEGORY, ""
         , wxDefaultPosition, wxSize(200, -1));
     controlSizer->Add(bCategory_, g_flags);
 
@@ -157,46 +163,36 @@ void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
 {
     mmCategDialog dlg(this);
     dlg.setTreeSelection(split_.CATEGID, split_.SUBCATEGID);
-    if ( dlg.ShowModal() == wxID_OK )
+    if (dlg.ShowModal() == wxID_OK)
     {
         split_.CATEGID = dlg.getCategId();
         split_.SUBCATEGID = dlg.getSubCategId();
-
         bCategory_->SetLabelText(dlg.getFullCategName());
     }
+    wxCommandEvent evt(wxID_ANY, wxID_ANY);
+    onTextEntered(evt);
     DataToControls();
 }
 
 void SplitDetailDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
-    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    Model_Account::Data *account = Model_Account::instance().get(accountID_);
-    if (account) currency = Model_Account::currency(account); 
-    textAmount_->Calculate(currency);
+    if (textAmount_->Calculate(m_currency))
+        textAmount_->GetDouble(split_.SPLITTRANSAMOUNT, m_currency);
 
     DataToControls();
 }
 
 void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
 {
-    if (split_.CATEGID == -1)
-    {
-        mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_);
+    if (!textAmount_->checkValue(split_.SPLITTRANSAMOUNT, m_currency))
         return;
-    }
 
-    double amount;
-    if (!textAmount_->checkValue(amount))
-    {
-        return;
-    }
+    if (Model_Category::full_name(split_.CATEGID, split_.SUBCATEGID).empty())
+        return mmErrorDialogs::InvalidCategory(wxDynamicCast(bCategory_, wxWindow));
 
-    if ( choiceType_->GetSelection() != transType_ )
-    {
-        amount = -amount;
-    }
+    if (choiceType_->GetSelection() != transType_)
+        split_.SPLITTRANSAMOUNT = -split_.SPLITTRANSAMOUNT;
 
-    split_.SPLITTRANSAMOUNT = amount;
     EndModal(wxID_OK);
 }
 

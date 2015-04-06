@@ -44,7 +44,8 @@ public:
     SplitTransactionDialog(wxWindow* parent
         , std::vector<Split>& split
         , int transType
-        , int accountID);
+        , int accountID
+        , double totalAmount = 0.0);
 
     /// Creation
     bool Create(
@@ -83,6 +84,7 @@ private:
     std::vector<Split> m_local_splits;
     int transType_;
     int accountID_;
+    double totalAmount_;
     bool items_changed_;
 
     wxButton* itemButtonNew_;
