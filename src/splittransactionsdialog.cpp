@@ -101,16 +101,15 @@ void SplitTransactionDialog::DataToControls()
     if (account) { currency = Model_Account::currency(account); }
 
     lcSplit_->DeleteAllItems();
-    int i = 0;
     for (const auto& entry : this->m_local_splits)
     {
         wxVector<wxVariant> data;
         data.push_back(wxVariant(Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)));
         data.push_back(wxVariant(Model_Currency::toString(entry.SPLITTRANSAMOUNT, currency)));
-        lcSplit_->AppendItem(data, (wxUIntPtr)i++);
-        if (lcSplit_->GetItemCount()-1 == selectedIndex_)
-            lcSplit_->SelectRow(selectedIndex_);
+        lcSplit_->AppendItem(data, (wxUIntPtr)lcSplit_->GetItemCount());
     }
+    if (lcSplit_->GetItemCount() > selectedIndex_ && selectedIndex_ >= 0)
+        lcSplit_->SelectRow(selectedIndex_);
     UpdateSplitTotal();
     SetDisplayEditDeleteButtons();
     itemButtonNew_->SetFocus();
