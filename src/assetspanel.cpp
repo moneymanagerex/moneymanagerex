@@ -620,6 +620,22 @@ wxString mmAssetsPanel::getItem(long item, long column)
     }
 }
 
+mmAssetsPanel::~mmAssetsPanel()
+{
+    /*
+    Save the column widths of the list control. This should ensure
+    that column's get set incase the OnItemResize does not work on some systems.
+    */
+    for (int column_number = 0; column_number < COL_MAX; ++column_number)
+    {
+        int column_width = m_listCtrlAssets->GetColumnWidth(column_number);
+        if (m_listCtrlAssets->GetColumnWidthSetting(column_number) != column_width)
+        {
+            m_listCtrlAssets->SetColumnWidthSetting(column_number, column_width);
+        }
+    }
+}
+
 void mmAssetsPanel::updateExtraAssetData(int selIndex)
 {
     wxStaticText* st = (wxStaticText*)FindWindow(IDC_PANEL_ASSET_STATIC_DETAILS);

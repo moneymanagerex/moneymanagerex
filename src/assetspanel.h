@@ -72,6 +72,7 @@ class mmAssetsPanel : public mmPanelBase
 
 public:
     mmAssetsPanel(wxWindow *parent, wxWindowID winid);
+    ~mmAssetsPanel();
 
     void updateExtraAssetData(int selIndex);
     int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);

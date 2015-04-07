@@ -69,6 +69,19 @@ wxEND_EVENT_TABLE()
 StocksListCtrl::~StocksListCtrl()
 {
     if (m_imageList) delete m_imageList;
+
+    /*
+    Save the column widths of the list control. This should ensure
+    that column's get set incase the OnItemResize does not work on some systems.
+    */
+    for (int column_number = 0; column_number < COL_MAX; ++column_number)
+    {
+        int column_width = GetColumnWidth(column_number);
+        if (GetColumnWidthSetting(column_number) != column_width)
+        {
+            SetColumnWidthSetting(column_number, column_width);
+        }
+    }
 }
 
 StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID winid)
