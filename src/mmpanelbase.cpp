@@ -47,7 +47,11 @@ mmListCtrl::~mmListCtrl()
       Save the column widths of the list control. This will ensure that the
       column widths get set incase the OnItemResize does not work on some systems.
     */
+#ifdef __WXMSW__ 
     for (int column_number = 0; column_number < m_colCount; ++column_number)
+#else
+    for (int column_number = 0; column_number < GetColumnCount(); ++column_number)
+#endif
     {
         int column_width = GetColumnWidth(column_number);
         if (GetColumnWidthSetting(column_number) != column_width)
