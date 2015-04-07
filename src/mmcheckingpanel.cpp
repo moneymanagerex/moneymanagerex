@@ -991,12 +991,6 @@ TransactionListCtrl::TransactionListCtrl(
 
 TransactionListCtrl::~TransactionListCtrl()
 {
-    for (int column_number = 0; column_number < COL_MAX; ++column_number)
-    {
-        int column_width = GetColumnWidth(column_number);
-        if (GetColumnWidthSetting(column_number) != column_width)
-            SetColumnWidthSetting(column_number, column_width);
-    }
 }
 
 //----------------------------------------------------------------------------

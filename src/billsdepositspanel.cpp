@@ -202,18 +202,6 @@ mmBillsDepositsPanel::~mmBillsDepositsPanel()
         delete m_imageList;
     if (transFilterDlg_)
         delete transFilterDlg_;
-    /*
-      Save the column widths of bill_deposit list control. This should ensure
-      that column's get set incase the OnItemResize does not work on some systems.
-    */
-    for (int bd_col_num = 0; bd_col_num < COL_MAX; ++bd_col_num)
-    {
-        int bd_col_width = listCtrlAccount_->GetColumnWidth(bd_col_num);
-        if (listCtrlAccount_->GetColumnWidthSetting(bd_col_num) != bd_col_width)
-        {
-            listCtrlAccount_->SetColumnWidthSetting(bd_col_num, bd_col_width);
-        }
-    }
 }
 
 void mmBillsDepositsPanel::CreateControls()
