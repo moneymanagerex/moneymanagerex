@@ -953,20 +953,12 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         }
     }
 
-    if (cSplit_->IsChecked())
+    if ((cSplit_->IsChecked() && m_bill_data.local_splits.empty())
+        || (!cSplit_->IsChecked() && Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID).empty()))
     {
-        if (m_bill_data.local_splits.empty())
-        {
-            mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_);
-            return;
-        }
+        return mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_, false);
     }
-    else
-    {
-        if (Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID).empty())
-            return mmErrorDialogs::InvalidCategory(static_cast<wxWindow*>(bCategory_));
 
-    }
 
     if (!m_advanced || m_bill_data.TOTRANSAMOUNT < 0)
     {

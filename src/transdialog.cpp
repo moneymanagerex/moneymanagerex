@@ -73,7 +73,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_notes_init_(false)
     , skip_category_init_(false)
     , skip_tooltips_init_(false)
-    , category_changed_(false)
     , skip_amount_init_(false)
 {
     Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);
@@ -569,23 +568,11 @@ bool mmTransDialog::validateData()
         m_trx_data.PAYEEID = -1;
     }
 
-    if (cSplit_->IsChecked())
+    if ((cSplit_->IsChecked() && local_splits.empty())
+        || (!cSplit_->IsChecked() && Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID).empty()))
     {
-        if (local_splits.empty())
-        {
-            mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_);
-            return false;
-        }
-    }
-    else //non split
-    {
-        Model_Category::Data *category = Model_Category::instance().get(m_trx_data.CATEGID);
-        Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(m_trx_data.SUBCATEGID);
-        if (!category || !(subcategory || m_trx_data.SUBCATEGID < 0))
-        {
-            mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_);
-            return false;
-        }
+        mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_, false);
+        return false;
     }
 
     return true;
@@ -683,18 +670,23 @@ void mmTransDialog::activateSplitTransactionsDlg()
 {
     bool bDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
 
-    if (m_trx_data.CATEGID > -1 && local_splits.empty())
+    if (!textAmount_->GetDouble(m_trx_data.TRANSAMOUNT, m_currency))
+        m_trx_data.TRANSAMOUNT = 0;
+
+    if (!Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID).empty() && local_splits.empty())
     {
-        if (!textAmount_->GetDouble(m_trx_data.TRANSAMOUNT, m_currency))
-            m_trx_data.TRANSAMOUNT = 0;
         Split s;
-        s.SPLITTRANSAMOUNT = bDeposit ? m_trx_data.TRANSAMOUNT : m_trx_data.TRANSAMOUNT;
+        s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
         s.CATEGID = m_trx_data.CATEGID;
         s.SUBCATEGID = m_trx_data.SUBCATEGID;
         local_splits.push_back(s);
     }
 
-    SplitTransactionDialog dlg(this, local_splits, transaction_type_->GetSelection(), m_trx_data.ACCOUNTID);
+    SplitTransactionDialog dlg(this, local_splits
+        , bDeposit ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL
+        , m_trx_data.ACCOUNTID
+        , m_trx_data.TRANSAMOUNT);
+
     if (dlg.ShowModal() == wxID_OK)
     {
         local_splits = dlg.getResult();
@@ -702,7 +694,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
     if (!local_splits.empty()) 
     {
         m_trx_data.TRANSAMOUNT = Model_Splittransaction::get_total(local_splits);
-        category_changed_ = dlg.isItemsChanged();
+        skip_category_init_ = !dlg.isItemsChanged();
     }
 }
 
