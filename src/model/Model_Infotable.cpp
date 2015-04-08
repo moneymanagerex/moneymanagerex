@@ -187,7 +187,7 @@ bool Model_Infotable::checkDBVersion()
     return this->GetIntInfo("DATAVERSION", 0) >= mmex::MIN_DATAVERSION;
 }
 
-bool Model_Infotable::AtDatabaseVersion(const int& required_version)
+bool Model_Infotable::AtDatabaseVersion(const int required_version)
 {
     return GetIntInfo("DATAVERSION", 0) == required_version;
 }

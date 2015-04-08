@@ -277,7 +277,7 @@ void mmWebAppDialog::OnItemRightClick(wxDataViewEvent& event)
 }
 
 
-void mmWebAppDialog::ImportAllWebTr(const bool& open)
+void mmWebAppDialog::ImportAllWebTr(const bool open)
 {
     for (int i = 0; i < webtranListBox_->GetItemCount(); i++)
     {

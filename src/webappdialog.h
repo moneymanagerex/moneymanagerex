@@ -75,7 +75,7 @@ private:
     void OnOk(wxCommandEvent& /*event*/);
 
     bool ImportWebTr(int WebTrID, bool open);
-    void ImportAllWebTr(const bool& open);
+    void ImportAllWebTr(const bool open);
 
     void OnListItemActivated(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);

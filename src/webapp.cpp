@@ -347,7 +347,7 @@ bool mmWebApp::WebApp_UpdateCategory()
 }
 
 //Download new transactions
-bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool& CheckOnly)
+bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly)
 {
     wxString NewTransactionJSON;
     int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadNewTransaction, NewTransactionJSON);

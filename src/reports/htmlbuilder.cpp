@@ -201,7 +201,7 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, const std::ve
     this->addTotalRow(caption, cols, data_str);
 }
 
-void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool& numeric, const bool& sortable)
+void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool numeric, const bool sortable)
 {
     const wxString align = sortable ? "" : "class='sorttable_nosort'"
         + numeric ? " class='text-right'" : " class='text-left'";
@@ -239,7 +239,7 @@ void mmHTMLBuilder::addTableCell(const wxDateTime& date)
     this->addTableCell(date_str);
 }
 
-void mmHTMLBuilder::addTableCell(const wxString& value, const bool& numeric)
+void mmHTMLBuilder::addTableCell(const wxString& value, const bool numeric)
 {
     const wxString align = numeric ? "class='text-right'" : "class='text-left'";
     html_ += wxString::Format(tags::TABLE_CELL, align);
@@ -395,7 +395,7 @@ void mmHTMLBuilder::endTableCell()
     html_+= tags::TABLE_CELL_END;
 }
 
-void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int& x, const int& y)
+void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int x, const int y)
 {
     static const wxString data_item =
         "{\n"
@@ -423,7 +423,7 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
     this->addText(wxString::Format(js, data, id));
 }
 
-void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueTrio>& data, const wxString& id, const int& x, const int& y)
+void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueTrio>& data, const wxString& id, const int x, const int y)
 {
     static const wxString data_item =
         "{\n"
@@ -470,7 +470,7 @@ void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueT
     this->addText(wxString::Format(js, labels, values, (int)scaleStepWidth, id));
 }
 
-void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& index, const int& x, const int& y, bool pointDot, bool showGridLines, bool datasetFill)
+void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int index, const int x, const int y, bool pointDot, bool showGridLines, bool datasetFill)
 {
     static const wxString data_item =
         "{\n"

@@ -71,7 +71,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     wxString startYearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     startYearStr.ToLong(&startYear);
 
-    wxString headingStr = AdjustYearValues(startDay, startMonth, startYear, startYearStr);
+    const wxString& headingStr = AdjustYearValues(startDay, startMonth, startYear, startYearStr);
     wxDateTime yearBegin(startDay, (wxDateTime::Month)startMonth, startYear);
     wxDateTime yearEnd(endDay, (wxDateTime::Month)endMonth, startYear);
 
@@ -89,7 +89,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats, &date_range, mmIniOptions::instance().ignoreFutureTransactions_,
-        true, true, (evaluateTransfer ? &budgetAmt : 0));
+        true, true, (evaluateTransfer ? &budgetAmt : nullptr));
     //Init totals
     const auto &allCategories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);
     const auto &allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
