@@ -529,7 +529,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     for (const auto& q1 : bills.all())
     {
         bills.decode_fields(q1);
-
+        const wxDateTime payment_date = bills.NEXTOCCURRENCEDATE(q1);
         if (bills.autoExecuteManual() && bills.requireExecution())
         {
             if (bills.allowExecution())
@@ -564,7 +564,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 tran->NOTES = q1.NOTES;
                 tran->CATEGID = q1.CATEGID;
                 tran->SUBCATEGID = q1.SUBCATEGID;
-                tran->TRANSDATE = wxDate::Now().FormatISODate();
+                tran->TRANSDATE = payment_date.FormatISODate();
 
                 int transID = Model_Checking::instance().save(tran);
 
