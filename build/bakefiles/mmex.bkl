@@ -124,14 +124,13 @@
     </data-files>
 
     <set var="helppath">
-        <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/doc/mmex/help</if>
-        <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/help</if>
+        $(DATADIR)/doc/mmex/help
     </set>
     <!-- data-files-tree generates wrong commands in bakefile v.0.2.8 -->
     <data-files>
         <install-to>$(helppath)</install-to>
         <srcdir>$(SRCDIR)/doc/help</srcdir>
-            <files>*.html *.png</files>
+            <files>*.html *.png *.gif</files>
     </data-files>
 
     <data-files>
