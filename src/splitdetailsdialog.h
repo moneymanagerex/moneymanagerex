@@ -59,7 +59,7 @@ private:
     void OnCancel(wxCommandEvent& /*event*/);
 
     Split split_;
-
+    Model_Currency::Data *m_currency;
     int transType_;
     int accountID_;
 

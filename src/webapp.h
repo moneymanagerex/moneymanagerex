@@ -101,7 +101,7 @@ public:
     static bool WebApp_UpdateCategory();
 
     /** Download new transaction */
-    static bool WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool& CheckOnly);
+    static bool WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly);
 
     /** Insert transaction in MMEX desktop, returns transaction ID */
     static int MMEX_InsertNewTransaction(webtran_holder& WebAppTrans);

@@ -46,6 +46,8 @@ public:
 
     virtual wxListItemAttr* OnGetItemAttr(long row) const;
     wxString BuildPage(const wxString &title) const;
+    int GetColumnWidthSetting(int column_number, int default_size = wxLIST_AUTOSIZE);
+    void SetColumnWidthSetting(int column_number, int column_width);
 
 protected:
     void OnItemResize(wxListEvent& event);

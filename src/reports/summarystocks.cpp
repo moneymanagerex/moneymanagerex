@@ -91,7 +91,7 @@ wxString mmReportSummaryStocks::getHTMLText()
 {
     mmHTMLBuilder hb;
     hb.init();
-
+    hb.addDivContainer();
     hb.addHeader(2, _("Summary of Stocks"));
     hb.addDateNow();
     hb.addLineBreak();
@@ -168,6 +168,7 @@ wxString mmReportSummaryStocks::getHTMLText()
     hb.endTable();
 
     //hb.endCenter();
+    hb.endDiv();
     hb.end();
     return hb.getHTMLText();
 }
@@ -193,6 +194,7 @@ wxString mmReportChartStocks::getHTMLText()
 {
     mmHTMLBuilder hb;
     hb.init();
+    hb.addDivContainer();
     hb.addHeader(2, _("Stocks Performance Charts"));
 
     wxTimeSpan dtDiff = dtRange_->end_date() - dtRange_->start_date();
@@ -246,6 +248,8 @@ wxString mmReportChartStocks::getHTMLText()
         heldAt = stock.HELDAT;
         count++;
     }
+    hb.endDiv();
+    hb.end();
 
     return hb.getHTMLText();
 }

@@ -667,7 +667,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 payeeID_ = -1;
                 categID_ = -1;
                 subCategID_ = -1;
-                val_ = NULL;
+                val_ = 0.0;
 
                 this->csv2tab_separated_values(line, delimit_);
                 wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
@@ -753,7 +753,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 mmWebApp::MMEX_WebApp_UpdatePayee();
                 mmWebApp::MMEX_WebApp_UpdateCategory();
                 importSuccessful_ = true;
-                msg << _("Transactions saved to database in account: ") << acctName;
+                msg << wxString::Format(_("Transactions saved to database in account: %s"), acctName);
             }
             else
             {

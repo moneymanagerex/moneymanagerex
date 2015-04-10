@@ -50,7 +50,7 @@ wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
 wxEND_EVENT_TABLE()
 
 
-mmPayeeDialog::mmPayeeDialog(wxWindow *parent, const bool& payee_choose) :
+mmPayeeDialog::mmPayeeDialog(wxWindow *parent, const bool payee_choose) :
     m_payee_id(-1)
     , m_maskTextCtrl()
     , payeeListBox_()

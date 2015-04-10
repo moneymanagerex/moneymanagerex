@@ -394,7 +394,7 @@ void mmBudgetingPanel::initVirtualListControl()
     }
     else
     {
-        int day, month;
+        int day = -1, month = -1;
         budgetDetails.AdjustYearValues(day, month, dtBegin);
         budgetDetails.AdjustDateForEndFinancialYear(dtEnd);
     }

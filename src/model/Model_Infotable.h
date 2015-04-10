@@ -68,7 +68,7 @@ public:
     /* Check database at minimum revision*/
     bool checkDBVersion();
     /* Check that the database is at this version*/
-    bool AtDatabaseVersion(const int& required_version);
+    bool AtDatabaseVersion(const int required_version);
     /* Set the database version counter to this version.
        Refer to the value of mmex::DATAVERSION */
     void SetDatabaseVersion(const wxString& required_version);

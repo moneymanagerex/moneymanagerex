@@ -39,7 +39,6 @@ extern const wxString DEFDELIMTER;
 */
 const wxString getProgramName();
 const wxString getTitleProgramVersion();
-const wxString getProgramVersion();
 const wxString getProgramCopyright();
 const wxString getProgramDescription();
 
@@ -51,6 +50,7 @@ namespace version
     extern const int Alpha;
     extern const int Beta;
     extern const int RC;
+    extern const wxString string;
     extern const wxString generateProgramVersion
         (int Major, int Minor, int Patch, int Alpha, int Beta, int RC);
 }

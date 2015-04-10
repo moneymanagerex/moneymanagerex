@@ -201,13 +201,14 @@ void mmErrorDialogs::MessageInvalid(wxWindow *parent, const wxString &message)
     MessageError(parent, msg, _("Invalid Entry"));
 }
 
-void mmErrorDialogs::InvalidCategory(wxWindow *button)
+void mmErrorDialogs::InvalidCategory(wxWindow *win, bool simple)
 {
-    wxRichToolTip tip(_("Invalid Category"),
-        _("Please use this button for category selection\nor use the 'Split' checkbox for multiple categories.")
-        + "\n");
+    const wxString& msg = simple
+        ? _("Please use this button for category selection.")
+        : _("Please use this button for category selection\nor use the 'Split' checkbox for multiple categories.");
+    wxRichToolTip tip(_("Invalid Category"), msg + "\n");
     tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor(button);
+    tip.ShowFor(win);
 }
 
 void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)

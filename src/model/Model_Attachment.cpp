@@ -94,7 +94,7 @@ int Model_Attachment::LastAttachmentNumber(const wxString& RefType, const int Re
 }
 
 /** Return the description of the choice reftype */
-wxString Model_Attachment::reftype_desc(const int& RefTypeEnum)
+wxString Model_Attachment::reftype_desc(const int RefTypeEnum)
 {
 	const auto& item = REFTYPE_CHOICES[RefTypeEnum];
 	wxString reftype_desc = item.second;
@@ -115,7 +115,7 @@ std::map<int, Model_Attachment::Data_Set> Model_Attachment::get_all(REFTYPE reft
 }
 
 /** Return all attachments descriptions*/
-wxArrayString Model_Attachment::allDescriptions(const bool& RemoveDuplicated)
+wxArrayString Model_Attachment::allDescriptions(const bool RemoveDuplicated)
 {
     wxArrayString descriptions;
     wxString PreviousDescription;

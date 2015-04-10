@@ -50,7 +50,7 @@ void mmOptions::LoadInfotableOptions()
 
 //----------------------------------------------------------------------------
 mmIniOptions::mmIniOptions()
-: html_font_size_(3)
+: html_font_size_(100)
 , budgetFinancialYears_(false)
 , budgetIncludeTransfers_(false)
 , budgetSetupWithoutSummaries_(false)
@@ -60,6 +60,7 @@ mmIniOptions::mmIniOptions()
 , transCategorySelectionNone_(0)
 , transStatusReconciled_(0)
 , transDateDefault_(0)
+
 {}
 
 mmIniOptions& mmIniOptions::instance()
@@ -69,7 +70,7 @@ mmIniOptions& mmIniOptions::instance()
 
 void mmIniOptions::loadOptions()
 {
-    html_font_size_   = Model_Setting::instance().HtmlFontSize();
+    html_font_size_ = Model_Setting::instance().GetHtmlScaleFactor();
 
     budgetFinancialYears_           = Model_Setting::instance().BudgetFinancialYears();
     budgetIncludeTransfers_         = Model_Setting::instance().BudgetIncludeTransfers();
@@ -96,7 +97,7 @@ int mmIniOptions::account_image_id(int account_id)
 
     selectedImage = 9;
     int t = 0, s = 0;
-    wxString acctStatus = "Open";
+    wxString acctStatus = VIEW_ACCOUNTS_OPEN_STR;
     Model_Account::TYPE acctType = Model_Account::CHECKING;
     bool favorite = true;
 

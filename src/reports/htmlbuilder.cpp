@@ -26,37 +26,37 @@
 
 namespace tags
 {
-static const char END[] =
-        "</body>\n"
-        "<script type=\"text/javascript\">\n"
-        "var elements = document.getElementsByClassName('money');\n"
-        "for (var i = 0; i < elements.length; i++) {\n"
-        "    elements[i].style.textAlign = 'right'; \n"
-        "   if (elements[i].innerHTML.indexOf(\"-\") > -1) {\n"
-        "        elements[i].style.color ='#ff0000'; \n"
-        "    }\n"
-        "}\n"
-        "</script>\n"
-        "</html>\n";
-static const char HTML[] =
-    "<!DOCTYPE html PUBLIC \" -//W3C//DTD HTML 4.01//EN\">"
-    "<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />"
-    "<title>%s - Report</title>\n"
-    "<link href = 'master.css' rel = 'stylesheet' />\n"
-    "<script src = 'ChartNew.js'></script>\n"
-    "<script src = 'sorttable.js'></script>\n"
-    "    <style>\n"
-    "    /* Sortable tables */\n"
-    "    table.sortable thead{\n"
-    "cursor: default;\n"
-    "}\n"
-    "</style>\n"
-    "</head>\n"
-    "<body>\n";
+static const char END[] = R"(</body>
+<script type="text/javascript">
+var elements = document.getElementsByClassName('money');
+for (var i = 0; i < elements.length; i++) {
+    elements[i].style.textAlign = 'right';
+   if (elements[i].innerHTML.indexOf("-") > -1) {
+        elements[i].style.color ='#ff0000';
+    }
+}
+</script>
+</html>
+)";
+static const char HTML[] = R"(<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>%s - Report</title>
+<link href = 'master.css' rel = 'stylesheet' />
+<script src = 'ChartNew.js'></script>
+<script src = 'sorttable.js'></script>
+<style>
+    /* Sortable tables */
+    table.sortable thead {cursor: default;}
+    body { font-size: %s%%; }
+</style>
+</head>
+<body>
+)";
 static const wxString DIV_CONTAINER = "<div class='container'>\n";
 static const wxString DIV_ROW = "<div class='row'>\n";
 static const wxString DIV_COL8 = "<div class='col-xs-2'></div>\n<div class='col-xs-8'>\n";
-static const wxString DIV_END = "</div>";
+static const wxString DIV_END = "</div>\n";
 static const wxString TABLE_START = "<table class='table'>\n";
 static const wxString SORTTABLE_START = "<table class='sortable table'>\n";
 static const wxString TABLE_END = "</table>\n";
@@ -103,14 +103,10 @@ static const wxString COLORS [] = {
     , "rgba(122, 179, 62, 0.7)"
     , "rgba(66, 68, 63, 0.7)"
     , "rgba(0, 102, 102, 0.7)"};
-
 }
 
 mmHTMLBuilder::mmHTMLBuilder()
 {
-    // init font size from config
-    font_size_ = mmIniOptions::instance().html_font_size_;
-
     today_.date = wxDateTime::Today();
     today_.date_str = today_.date.FormatDate();
     today_.todays_date = wxString::Format(_("Today's Date: %s"), today_.date_str);
@@ -120,6 +116,7 @@ void mmHTMLBuilder::init()
 {
     html_ = wxString::Format(wxString::FromUTF8(tags::HTML)
         , mmex::getProgramName()
+        , wxString::Format("%d", mmIniOptions::instance().html_font_size_)
     );
 
     //Show user name if provided
@@ -204,10 +201,10 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, const std::ve
     this->addTotalRow(caption, cols, data_str);
 }
 
-void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool& numeric, const bool& sortable)
+void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool numeric, const bool sortable)
 {
-    wxString align = sortable ? "" : "class='sorttable_nosort'";
-    align += numeric ? " class='text-right'" : " class='text-left'";
+    const wxString align = sortable ? "" : "class='sorttable_nosort'"
+        + numeric ? " class='text-right'" : " class='text-left'";
     html_ += wxString::Format(tags::TABLE_HEADER, align);
     html_ += (value);
     html_+= tags::TABLE_HEADER_END;
@@ -217,8 +214,8 @@ void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* c
 {
     if (precision == -1)
         precision = Model_Currency::precision(currency);
-    wxString s = Model_Currency::toCurrency(amount, currency, precision);
-    wxString f = wxString::Format("class='money' sorttable_customkey = '%f'", amount);
+    const wxString& s = Model_Currency::toCurrency(amount, currency, precision);
+    const wxString& f = wxString::Format("class='money' sorttable_customkey = '%f'", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
     html_ += s;
     this->endTableCell();
@@ -238,13 +235,13 @@ void mmHTMLBuilder::addMoneyCell(double amount, int precision)
 
 void mmHTMLBuilder::addTableCell(const wxDateTime& date)
 {
-    wxString date_str = mmGetDateForDisplay(date);
+    const wxString& date_str = mmGetDateForDisplay(date);
     this->addTableCell(date_str);
 }
 
-void mmHTMLBuilder::addTableCell(const wxString& value, const bool& numeric)
+void mmHTMLBuilder::addTableCell(const wxString& value, const bool numeric)
 {
-    wxString align = numeric ? "class='text-right'" : "class='text-left'";
+    const wxString align = numeric ? "class='text-right'" : "class='text-left'";
     html_ += wxString::Format(tags::TABLE_CELL, align);
     html_ += value;
     this->endTableCell();
@@ -398,7 +395,7 @@ void mmHTMLBuilder::endTableCell()
     html_+= tags::TABLE_CELL_END;
 }
 
-void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int& x, const int& y)
+void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int x, const int y)
 {
     static const wxString data_item =
         "{\n"
@@ -426,7 +423,7 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
     this->addText(wxString::Format(js, data, id));
 }
 
-void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueTrio>& data, const wxString& id, const int& x, const int& y)
+void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueTrio>& data, const wxString& id, const int x, const int y)
 {
     static const wxString data_item =
         "{\n"
@@ -473,7 +470,7 @@ void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueT
     this->addText(wxString::Format(js, labels, values, (int)scaleStepWidth, id));
 }
 
-void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int& index, const int& x, const int& y, bool pointDot, bool showGridLines, bool datasetFill)
+void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int index, const int x, const int y, bool pointDot, bool showGridLines, bool datasetFill)
 {
     static const wxString data_item =
         "{\n"

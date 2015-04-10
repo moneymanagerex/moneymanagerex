@@ -41,26 +41,24 @@ const int mmex::version::Major = 1;
 const int mmex::version::Minor = 2;
 const int mmex::version::Patch = 0;
 const int mmex::version::Alpha = -1;
-const int mmex::version::Beta  = 0;
+const int mmex::version::Beta  = 2;
 const int mmex::version::RC    = -1;
+const wxString mmex::version::string = mmex::version::generateProgramVersion(mmex::version::Major, mmex::version::Minor, mmex::version::Patch
+    ,mmex::version::Alpha, mmex::version::Beta, mmex::version::RC);
 
 const wxString mmex::version::generateProgramVersion(int Major, int Minor, int Patch, int Alpha, int Beta, int RC)
 {
-    wxString Version = wxString::Format("%i.%i.%i", Major, Minor, Patch);
-    if (Alpha == 0)
-        Version.Append("-Alpha");
-    else if (Alpha > 0)
-        Version.Append(wxString::Format("-Alpha.%i", Alpha));
-    if (Beta == 0)
-        Version.Append("-Beta");
-    else if (Beta > 0)
-        Version.Append(wxString::Format("-Beta.%i", Beta));
-    if (RC == 0)
-        Version.Append("-RC");
-    else if (RC > 0)
-        Version.Append(wxString::Format("-RC.%i", RC));
-
-    return Version;
+    wxString suffix = "";
+    if (Alpha >= 0 || Beta >= 0 || RC >= 0)
+    {
+        if (Alpha >= 0)
+            suffix = Alpha < 1 ? "-Alpha" : wxString::Format("-Alpha.%i", Alpha);
+        if (Beta >= 0)
+            suffix = Beta < 1 ? "-Beta" : wxString::Format("-Beta.%i", Beta);
+        if (RC >= 0)
+            suffix = RC < 1 ? "-RC" : wxString::Format("-RC.%i", RC);
+    }
+    return wxString::Format("%i.%i.%i%s", Major, Minor, Patch, suffix);
 }
 
 /* End version namespace*/
@@ -80,14 +78,9 @@ const wxString mmex::getProgramName()
 }
 const wxString mmex::getTitleProgramVersion()
 {
-    return _("Version: ") + mmex::getProgramVersion();
+    return wxString::Format(_("Version: %s"), mmex::version::string);
 }
-const wxString mmex::getProgramVersion()
-{
-    return mmex::version::generateProgramVersion
-        (mmex::version::Major, mmex::version::Minor, mmex::version::Patch,
-        mmex::version::Alpha, mmex::version::Beta, mmex::version::RC);
-}
+
 const wxString mmex::getProgramCopyright()
 {
     return "(c) 2005-2014 Madhan Kanagavel";
@@ -132,15 +125,15 @@ const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wx
     url += "utm_source=" + CampSource;
 
     url += "&";
-    url += "utm_medium=MMEX_v" + mmex::getProgramVersion();
+    url += wxString::Format("utm_medium=MMEX_v%s", mmex::version::string);
 
     return url;
 }
 
 const wxString mmex::weblink::WebSite = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org", "Website");
-const wxString mmex::weblink::Update = "http://www.moneymanagerex.org/version.php?Version=" + mmex::getProgramVersion();
-const wxString mmex::weblink::UpdateLinks = "http://www.moneymanagerex.org/version.php?Version=" + mmex::getProgramVersion() + "&Links=true";
-const wxString mmex::weblink::Changelog = "http://www.moneymanagerex.org/version.php?Version=" + mmex::getProgramVersion() + "&ChangeLog=";
+const wxString mmex::weblink::Update = wxString::Format("http://www.moneymanagerex.org/version.php?Version=%s", mmex::version::string);
+const wxString mmex::weblink::UpdateLinks = wxString::Format("http://www.moneymanagerex.org/version.php?Version=%s&Links=true", mmex::version::string);
+const wxString mmex::weblink::Changelog = wxString::Format("http://www.moneymanagerex.org/version.php?Version=%s&ChangeLog=", mmex::version::string);
 const wxString mmex::weblink::UsageStats = "http://usagestats.moneymanagerex.org/API/main_stats_v1.php";
 const wxString mmex::weblink::Download = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/download", "Download");
 const wxString mmex::weblink::News = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/news", "News");
@@ -184,9 +177,9 @@ const wxString VIEW_TRANS_LAST_3MONTHS_STR   = wxTRANSLATE("View Last 3 Months")
 const wxString VIEW_TRANS_LAST_12MONTHS_STR  = wxTRANSLATE("View Last 12 Months");
 const wxString VIEW_TRANS_CURRENT_YEAR_STR   = wxTRANSLATE("View Current Year");
 
-const wxString VIEW_ACCOUNTS_ALL_STR       = "ALL";
-const wxString VIEW_ACCOUNTS_OPEN_STR      = "Open";
-const wxString VIEW_ACCOUNTS_FAVORITES_STR = "Favorites";
+const wxString VIEW_ACCOUNTS_ALL_STR = wxTRANSLATE("ALL");
+const wxString VIEW_ACCOUNTS_OPEN_STR = wxTRANSLATE("Open");
+const wxString VIEW_ACCOUNTS_FAVORITES_STR = wxTRANSLATE("Favorites");
 
 const wxString INIDB_BUDGET_FINANCIAL_YEARS       = "BUDGET_FINANCIAL_YEARS";
 const wxString INIDB_BUDGET_INCLUDE_TRANSFERS     = "BUDGET_INCLUDE_TRANSFERS";

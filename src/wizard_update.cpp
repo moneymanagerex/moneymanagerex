@@ -38,7 +38,7 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const wxString& NewVersion)
 
     const wxString displayMsg = wxString()
         << _("A new version of MMEX is available!") << "\n\n"
-        << wxString::Format(_("Your version is %s"), mmex::getProgramVersion()) << "\n"
+        << wxString::Format(_("Your version is %s"), mmex::version::string) << "\n"
         << wxString::Format(_("New version is %s"), NewVersion) << "\n\n\n"
         << _("Click on finish to open our website and download.") << "\n\n";
         //<< _("Click on next to download it now or visit our website to download.") << "\n\n"; //TODO: Download file in wizard page2
@@ -204,7 +204,7 @@ void mmUpdateWizardPage2::OnDownload()
 //--------------
 //mmUpdate Class
 //--------------
-const bool mmUpdate::IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
+const bool mmUpdate::IsUpdateAvailable(const bool bSilent, wxString& NewVersion)
 {
     bool isUpdateAvailable = false;
     NewVersion = "error";
@@ -309,12 +309,12 @@ const bool mmUpdate::IsUpdateAvailable(const bool& bSilent, wxString& NewVersion
     if (isUpdateAvailable)
         NewVersion = mmex::version::generateProgramVersion(major, minor, patch, alpha, beta, rc);
     else
-        NewVersion = mmex::getProgramVersion();
+        NewVersion = mmex::version::string;
 
     return isUpdateAvailable;
 }
 
-void mmUpdate::checkUpdates(const bool& bSilent, wxFrame *frame)
+void mmUpdate::checkUpdates(const bool bSilent, wxFrame *frame)
 {
     wxString NewVersion = wxEmptyString;
     if (IsUpdateAvailable(bSilent, NewVersion) && NewVersion != "error")

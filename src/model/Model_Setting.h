@@ -86,8 +86,11 @@ public:
     wxString ViewTransactions();
     void SetViewTransactions(const wxString& value);
 
-    int HtmlFontSize();
-    void SetHtmlFontSize(const int& size);
+    /* Get stored value in percantage for scale html font and other objects */
+    int GetHtmlScaleFactor();
+
+    /* Set stored value in percantage for scale html font and other objects */
+    void SetHtmlScaleFactor(const int size);
 
     bool BudgetFinancialYears();
     void SetBudgetFinancialYears(bool value = false);

@@ -51,6 +51,7 @@ private:
     wxCheckBox* m_attachments_subfolder;
     wxCheckBox* m_delete_attachments;
     wxCheckBox* m_trash_attachments;
+    wxString m_old_path;
 
     enum
     {

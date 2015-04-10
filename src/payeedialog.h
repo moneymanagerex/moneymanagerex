@@ -30,7 +30,7 @@ class mmPayeeDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmPayeeDialog(wxWindow* parent, const bool& payee_choose);
+    mmPayeeDialog(wxWindow* parent, const bool payee_choose);
 
     int getPayeeId() const {return m_payee_id;}
     bool getRefreshRequested() const {return refreshRequested_;}

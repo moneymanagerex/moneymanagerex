@@ -387,9 +387,7 @@ void mmGUIFrame::cleanup()
     ShutdownDatabase();
     /// Update the database according to user requirements
     if (mmOptions::instance().databaseUpdated_ && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
-    {
         BackupDatabase(m_filename, true);
-    }
 }
 
 void mmGUIFrame::ShutdownDatabase()
@@ -434,9 +432,7 @@ void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
 void mmGUIFrame::processPendingEvents()
 {
     while (m_app->Pending())
-    {
         m_app->Dispatch();
-    }
 }
 
 //----------------------------------------------------------------------------
@@ -534,7 +530,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     for (const auto& q1 : bills.all())
     {
         bills.decode_fields(q1);
-
+        const wxDateTime payment_date = bills.NEXTOCCURRENCEDATE(q1);
         if (bills.autoExecuteManual() && bills.requireExecution())
         {
             if (bills.allowExecution())
@@ -569,7 +565,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 tran->NOTES = q1.NOTES;
                 tran->CATEGID = q1.CATEGID;
                 tran->SUBCATEGID = q1.SUBCATEGID;
-                tran->TRANSDATE = wxDate::Now().FormatISODate();
+                tran->TRANSDATE = payment_date.FormatISODate();
 
                 int transID = Model_Checking::instance().save(tran);
 
@@ -761,14 +757,18 @@ void mmGUIFrame::updateNavTreeControl()
         /* Start Populating the dynamic data */
         wxString vAccts = Model_Setting::instance().ViewAccounts();
         wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR || vAccts == VIEW_ACCOUNTS_OPEN_STR);
-        if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
+        if (vAccts != VIEW_ACCOUNTS_ALL_STR
+            && vAccts != VIEW_ACCOUNTS_FAVORITES_STR
+            && vAccts != VIEW_ACCOUNTS_OPEN_STR)
+        {
             vAccts = VIEW_ACCOUNTS_ALL_STR;
+        }
 
         for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
         {
-            if (!((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-                (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
-                vAccts == "ALL"))
+            if (!((vAccts == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status(account) == Model_Account::OPEN) ||
+                (vAccts == VIEW_ACCOUNTS_FAVORITES_STR && Model_Account::FAVORITEACCT(account)) ||
+                vAccts == VIEW_ACCOUNTS_ALL_STR))
                 continue;
 
             int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
@@ -814,12 +814,12 @@ void mmGUIFrame::updateNavTreeControl()
         if (!navTreeCtrl_->ItemHasChildren(shareAccounts)) navTreeCtrl_->Delete(shareAccounts);
         if (!navTreeCtrl_->ItemHasChildren(assetAccounts)) navTreeCtrl_->Delete(assetAccounts);
     }
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
     windowsFreezeThaw(navTreeCtrl_);
     navTreeCtrl_->SelectItem(root);
     navTreeCtrl_->EnsureVisible(root);
     navTreeCtrl_->Refresh();
     navTreeCtrl_->Update();
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 
 

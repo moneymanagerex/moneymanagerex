@@ -1002,12 +1002,6 @@ TransactionListCtrl::TransactionListCtrl(
 
 TransactionListCtrl::~TransactionListCtrl()
 {
-    for (int column_number = 0; column_number < COL_MAX; ++column_number)
-    {
-        int column_width = GetColumnWidth(column_number);
-        if (GetColumnWidthSetting(column_number) != column_width)
-            SetColumnWidthSetting(column_number, column_width);
-    }
 }
 
 //----------------------------------------------------------------------------
@@ -1263,17 +1257,6 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
     refreshVisualList();
 }
 //----------------------------------------------------------------------------
-
-int TransactionListCtrl::GetColumnWidthSetting(const int& column_number, int default_size)
-{
-    return Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, column_number), default_size);
-}
-
-void TransactionListCtrl::SetColumnWidthSetting(const int& column_number, int column_width)
-{
-    Model_Setting::instance().Set(wxString::Format(m_col_width, column_number), column_width);
-}
-//-------------------------------------------------------------------
 
 void TransactionListCtrl::OnColClick(wxListEvent& event)
 {

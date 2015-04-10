@@ -42,7 +42,7 @@ Model_Infotable& Model_Infotable::instance(wxSQLite3Database* db)
     ins.preload();
     if (!ins.KeyExists("MMEXVERSION"))
     {
-        ins.Set("MMEXVERSION", mmex::getProgramVersion());
+        ins.Set("MMEXVERSION", mmex::version::string);
         ins.Set("DATAVERSION", mmex::DATAVERSION);
         ins.Set("CREATEDATE", wxDateTime::Now());
         ins.SetDateFormat(mmex::DEFDATEFORMAT);
@@ -187,7 +187,7 @@ bool Model_Infotable::checkDBVersion()
     return this->GetIntInfo("DATAVERSION", 0) >= mmex::MIN_DATAVERSION;
 }
 
-bool Model_Infotable::AtDatabaseVersion(const int& required_version)
+bool Model_Infotable::AtDatabaseVersion(const int required_version)
 {
     return GetIntInfo("DATAVERSION", 0) == required_version;
 }
