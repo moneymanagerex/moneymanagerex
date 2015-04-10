@@ -83,7 +83,8 @@ Homepage: $MMEX_HOMEPAGE
 Depends: $MMEX_DEB_DEPENDS
 Installed-Size: $INSTALLED_SIZE
 Maintainer: MoneyManagerEx <$MMEX_EMAIL>
-Description: $MMEX_DESCRIPTION" > "DEBIAN/control"
+Description: $MMEX_DESCRIPTION" > "DEBIAN/control
+Standards-Version: 3.9.2"
 
 #Build the package
 cd $BUILD_DIR
