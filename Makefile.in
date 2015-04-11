@@ -232,7 +232,7 @@ COND_PLATFORM_OS2_1___mmex___os2_emxbindcmd = $(NM) mmex$(EXEEXT) | if grep -q \
 @COND_PLATFORM_MACOSX_0@popath = $(datadir)/mmex/po/en
 @COND_PLATFORM_MACOSX_1@popath = $(datadir)/po/en
 @COND_PLATFORM_MACOSX_0@helppath = $(datadir)/doc/mmex/help
-@COND_PLATFORM_MACOSX_1@helppath = $(datadir)/help
+@COND_PLATFORM_MACOSX_1@helppath = $(datadir)/doc/mmex/help
 
 ### Targets: ###
 
@@ -258,7 +258,7 @@ install: install_mmex
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/doc/mmex
 	(cd $(srcdir)/doc ; $(INSTALL_DATA)  *.txt $(DESTDIR)$(datadir)/doc/mmex)
 	$(INSTALL_DIR) $(DESTDIR)$(helppath)
-	(cd $(srcdir)/doc/help ; $(INSTALL_DATA)  *.html *.png $(DESTDIR)$(helppath))
+	(cd $(srcdir)/doc/help ; $(INSTALL_DATA)  *.html *.png *.gif $(DESTDIR)$(helppath))
 	$(INSTALL_DIR) $(DESTDIR)$(helppath)/french
 	(cd $(srcdir)/doc/help/french ; $(INSTALL_DATA)  * $(DESTDIR)$(helppath)/french)
 	$(INSTALL_DIR) $(DESTDIR)$(helppath)/hungarian
