@@ -222,7 +222,8 @@ int mmListCtrl::GetColumnWidthSetting(const int& column_number, int default_size
 
 void mmListCtrl::SetColumnWidthSetting(const int& column_number, int column_width)
 {
-    Model_Setting::instance().Set(wxString::Format(m_col_width, column_number), column_width);
+    if (!m_col_width.IsEmpty())
+        Model_Setting::instance().Set(wxString::Format(m_col_width, column_number), column_width);
 }
 
 mmPanelBase::mmPanelBase()
