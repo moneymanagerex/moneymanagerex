@@ -380,7 +380,7 @@ const wxDateTime Model_Billsdeposits::nextOccurDate(int repeatsType, int numRepe
 Model_Billsdeposits::Full_Data::Full_Data()
 {}
 
-Model_Billsdeposits::Full_Data::Full_Data(const Data& r): Data(r)
+Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
 {
     CATEGNAME = Model_Category::full_name(r.CATEGID, r.SUBCATEGID);
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
@@ -390,4 +390,11 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r): Data(r)
     {
         PAYEENAME = Model_Account::get_account_name(r.TOACCOUNTID);
     }
+
+    m_bill_splits = splittransaction(r);
+}
+
+bool Model_Billsdeposits::Full_Data::has_split() const
+{
+    return !m_bill_splits.empty();
 }
