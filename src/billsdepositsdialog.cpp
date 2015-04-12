@@ -288,18 +288,26 @@ void mmBDDialog::SetDialogParameters(const Model_Checking::Full_Data& transactio
 
     if (transaction.has_split())
     {
-        //TODO: Implement this feature
-        wxMessageBox(_("Note: Split transactions not set"), _("Reoccuring Transaction Creation"));
+        Model_Splittransaction::Data_Set bill_splits;
+        for (auto &split_trans : transaction.m_splits)
+        {
+            Split s;
+            s.CATEGID = split_trans.CATEGID;
+            s.SPLITTRANSAMOUNT = split_trans.SPLITTRANSAMOUNT;
+            s.SUBCATEGID = split_trans.SUBCATEGID;
+            m_bill_data.local_splits.push_back(s);
+        }
+        cSplit_->SetValue(true);
     }
     else
     {
         m_bill_data.CATEGID = transaction.CATEGID;
         m_bill_data.SUBCATEGID = transaction.SUBCATEGID;
-        setCategoryLabel();
     }
 
     m_bill_data.TRANSACTIONNUMBER = transaction.TRANSACTIONNUMBER;
     m_bill_data.NOTES = transaction.NOTES;
+    setCategoryLabel();
 }
 
 void mmBDDialog::CreateControls()
