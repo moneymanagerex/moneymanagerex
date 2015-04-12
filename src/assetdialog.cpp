@@ -264,7 +264,10 @@ void mmAssetDialog::CreateControls()
     else
     {
         if (m_asset)
+        {
             m_transaction_panel->SetTransactionNumber(m_asset->ASSETNAME);
+            m_transaction_panel->SetCheckingType(Model_TransferTrans::AS_INCOME_EXPENSE);
+        }
     }
 
     if (m_hidden_trans_entry) HideTransactionPanel();

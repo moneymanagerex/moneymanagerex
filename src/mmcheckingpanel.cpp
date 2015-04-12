@@ -519,12 +519,14 @@ void mmCheckingPanel::CreateControls()
 wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) const
 {
     wxString heading = _("Account : %s");
-    if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::ASSET])
-        heading = _("Asset Account : %s");
-    if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::SHARES])
-        heading = _("Share Account : %s");
     if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::TERM])
         heading = _("Term Account : %s");
+    else if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::SHARES])
+        heading = _("Share Account : %s");
+    else if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::ASSET])
+        heading = _("Asset Account : %s");
+    else if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::LOAN])
+        heading = _("Loan Account : %s");
 
     return wxString::Format(heading, account.ACCOUNTNAME);
 }

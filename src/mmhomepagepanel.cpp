@@ -572,6 +572,21 @@ void mmHomePagePanel::getData()
     m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
     tBalance += termBalance;
 
+    // Not included in resources/home_page.hht to prevent displaying the account details
+    double shareBalance = 0.0;
+    m_frames["SHARES_ACCOUNTS_INFO"] = displayAccounts(shareBalance, accountStats, Model_Account::SHARES);
+    tBalance += shareBalance;
+
+    // Not included in resources/home_page.hht to prevent displaying the account details
+    double assetBalance = 0.0;
+    m_frames["ASSET_ACCOUNTS_INFO"] = displayAccounts(assetBalance, accountStats, Model_Account::ASSET);
+    tBalance += assetBalance;
+
+    // <TMPL_VAR LOAN_ACCOUNTS_INFO> included in resources/home_page.hht to display the account details
+    double loanBalance = 0.0;
+    m_frames["LOAN_ACCOUNTS_INFO"] = displayAccounts(loanBalance, accountStats, Model_Account::LOAN);
+    tBalance += loanBalance;
+
     //Stocks
     wxString stocks = "";
     htmlWidgetStocks stocks_widget;
@@ -687,14 +702,16 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 /* Accounts */
 const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
 {
-    bool type_is_bank = type == Model_Account::CHECKING || type == Model_Account::CREDIT_CARD,
-         credit_card = type == Model_Account::CREDIT_CARD;
+    bool type_bank = type == Model_Account::CHECKING || type == Model_Account::CREDIT_CARD || type == Model_Account::LOAN;
+    bool type_credit = type == Model_Account::CREDIT_CARD || type == Model_Account::LOAN;
+    bool type_loan = type == Model_Account::LOAN;
+
     double tReconciled = 0;
-    const wxString idStr = (type_is_bank ? (credit_card ? "CARD_ACCOUNTS_INFO" : "ACCOUNTS_INFO") : "TERM_ACCOUNTS_INFO");
+    const wxString idStr = (type_bank ? (type_credit ? (type_loan ? "LOAN_ACCOUNTS_INFO" :"CARD_ACCOUNTS_INFO") : "ACCOUNTS_INFO") : "TERM_ACCOUNTS_INFO");
     wxString output = "<table class = 'sortable table'>\n";
     output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
     output += "<thead><tr><th nowrap>";
-    output += (type_is_bank ? (credit_card ? _("Credit Card Accounts") : _("Bank Account")) : _("Term Account"));
+    output += (type_bank ? (type_credit ? (type_loan ? _("Loan Accounts") : _("Credit Card Accounts")) : _("Bank Account")) : _("Term Account"));
 
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
     output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";

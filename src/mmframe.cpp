@@ -732,6 +732,10 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SetItemData(assetAccounts, new mmTreeItemData("Asset Accounts"));
     navTreeCtrl_->SetItemBold(assetAccounts, true);
 
+    wxTreeItemId loanAccounts = navTreeCtrl_->AppendItem(root, _("Loan Accounts"), 30, 30);
+    navTreeCtrl_->SetItemData(loanAccounts, new mmTreeItemData("Loan Accounts"));
+    navTreeCtrl_->SetItemBold(loanAccounts, true);
+
     wxTreeItemId bills = navTreeCtrl_->AppendItem(root, _("Recurring Transactions"), 2, 2);
     navTreeCtrl_->SetItemData(bills, new mmTreeItemData("Bills & Deposits"));
     navTreeCtrl_->SetItemBold(bills, true);
@@ -788,6 +792,11 @@ void mmGUIFrame::updateNavTreeControl()
                 wxTreeItemId tacct = navTreeCtrl_->AppendItem(assetAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
             }
+            else if (Model_Account::type(account) == Model_Account::LOAN)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
             else if (Model_Account::type(account) == Model_Account::TERM)
             {
                 wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME
@@ -813,6 +822,7 @@ void mmGUIFrame::updateNavTreeControl()
         if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
         if (!navTreeCtrl_->ItemHasChildren(shareAccounts)) navTreeCtrl_->Delete(shareAccounts);
         if (!navTreeCtrl_->ItemHasChildren(assetAccounts)) navTreeCtrl_->Delete(assetAccounts);
+        if (!navTreeCtrl_->ItemHasChildren(loanAccounts)) navTreeCtrl_->Delete(loanAccounts);
     }
     windowsFreezeThaw(navTreeCtrl_);
     navTreeCtrl_->SelectItem(root);
