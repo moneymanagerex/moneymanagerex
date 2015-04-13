@@ -155,7 +155,6 @@ void mmCategDialog::fillControls()
 
     m_textCtrl->SetValue("");
     m_buttonSelect->Disable();
-    m_buttonDelete->Disable();
     m_buttonEdit->Disable();
     m_buttonAdd->Enable();
     m_buttonRelocate->Enable(bEnableRelocate_);
@@ -298,13 +297,13 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
     }
 
     wxMessageBox(_("Invalid Parent Category. Choose Root or Main Category node.")
-        , _("Organise Categories: Adding Error"),wxOK|wxICON_ERROR);
+		, _("Organise Categories: Adding Error"), wxOK | wxICON_ERROR);
 
  }
 
-void mmCategDialog::showCategDialogDeleteError(wxString deleteCategoryErrMsg, bool category)
+void mmCategDialog::showCategDialogDeleteError(bool category)
 {
-
+	wxString deleteCategoryErrMsg = category ? _("Category in use.") : _("Sub-Category in use.");
     if (category)
         deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Category to\nanother Category using the relocate command:");
     else
@@ -312,13 +311,16 @@ void mmCategDialog::showCategDialogDeleteError(wxString deleteCategoryErrMsg, bo
 
     deleteCategoryErrMsg << "\n\n" << _("Tools -> Relocation of -> Categories");
 
-    wxMessageBox(deleteCategoryErrMsg,_("Organise Categories: Delete Error"), wxOK|wxICON_ERROR);
+	wxMessageBox(deleteCategoryErrMsg, _("Organise Categories: Delete Error"), wxOK | wxICON_ERROR);
 }
 
 void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
 {
-    if (selectedItemId_ == root_ || !selectedItemId_ || m_treeCtrl->ItemHasChildren(selectedItemId_))
-        return;
+	if (!selectedItemId_ || selectedItemId_ == root_)
+		return;
+
+	if (m_treeCtrl->ItemHasChildren(selectedItemId_))
+        return; //TODO: Show error message "Delete childs first"
 
     mmTreeItemCateg* iData
         = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
@@ -326,22 +328,17 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
     int categID = iData->getCategData()->CATEGID;
     int subcategID = iData->getSubCategData()->SUBCATEGID;
 
-    if (subcategID == -1) {
+    if (subcategID == -1)
+	{
         if (Model_Category::is_used(categID))
-        {
-            showCategDialogDeleteError(_("Category in use."), false);
-            return;
-        }
+            return showCategDialogDeleteError();
         else
             Model_Category::instance().remove(categID);
     } 
     else 
     {
         if (Model_Category::is_used(categID, subcategID))
-        {
-            showCategDialogDeleteError(_("Sub-Category in use."), false);
-            return;
-        }
+            return showCategDialogDeleteError(false);
         else
             Model_Subcategory::instance().remove(subcategID);
     }
@@ -421,19 +418,14 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
 
     mmTreeItemCateg* iData =
         dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
-    categID_ = -1;
-    subcategID_ = -1;
-    if (iData)
-    {
-        categID_ = iData->getCategData()->CATEGID;
-        subcategID_ = iData->getSubCategData()->SUBCATEGID;
-    }
+
+	categID_ = iData ? iData->getCategData()->CATEGID : -1;
+	subcategID_ = iData ? iData->getSubCategData()->SUBCATEGID : -1;
 
     if (selectedItemId_ == root_)
     {
         m_textCtrl->SetValue("");
         m_buttonSelect->Disable();
-        m_buttonDelete->Disable();
     }
     else
     {
@@ -447,7 +439,7 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
                 bUsed = (bUsed || Model_Category::is_used(categID_, s.SUBCATEGID));
         }
 
-        m_buttonDelete->Enable(!bUsed && !m_treeCtrl->ItemHasChildren(selectedItemId_));
+		m_buttonDelete->SetForegroundColour(!bUsed && !m_treeCtrl->ItemHasChildren(selectedItemId_) ? wxNullColour : wxColor(*wxRED));
     }
     m_buttonAdd->Enable(subcategID_ == -1);
     m_buttonEdit->Enable(selectedItemId_ != root_);

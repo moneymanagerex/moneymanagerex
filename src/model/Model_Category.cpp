@@ -279,9 +279,16 @@ const wxString Model_Category::full_name(const int category_id, const int subcat
 
 bool Model_Category::is_used(int id, int sub_id)
 {
-    const auto &deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(id), Model_Billsdeposits::SUBCATEGID(sub_id));
-    const auto &trans = Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id));
-    return !deposits.empty() || !trans.empty();
+	const auto &trans = Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id));
+	if (!trans.empty()) return true;
+	const auto &split = Model_Splittransaction::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id));
+	if (!split.empty()) return true;
+	const auto &deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(id), Model_Billsdeposits::SUBCATEGID(sub_id));
+	if (!deposits.empty()) return true;
+	const auto &deposit_split = Model_Budgetsplittransaction::instance().find(Model_Billsdeposits::CATEGID(id), Model_Billsdeposits::SUBCATEGID(sub_id));
+	if (!deposit_split.empty()) return true;
+
+	return false;
 }
 
 bool Model_Category::has_income(int id, int sub_id)
