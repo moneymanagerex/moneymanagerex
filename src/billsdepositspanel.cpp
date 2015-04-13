@@ -449,7 +449,10 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     case COL_STATUS:
         return bill.STATUS;
     case COL_CATEGORY:
-        return bill.CATEGNAME;
+        if (bill.has_split())
+            return _("Split.......");
+        else
+            return bill.CATEGNAME;
     case COL_TYPE:
         return wxGetTranslation(bill.TRANSCODE);
     case COL_AMOUNT:
