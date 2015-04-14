@@ -1159,7 +1159,6 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         menu.Enable(MENU_ON_COPY_TRANSACTION, false);
         menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
         menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
-        menu.Enable(MENU_TREEPOPUP_MOVE2, false);
     }
 
     PopupMenu(&menu, event.GetPosition());
