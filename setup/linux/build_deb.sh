@@ -86,6 +86,9 @@ Maintainer: MoneyManagerEx <$MMEX_EMAIL>
 Description: $MMEX_DESCRIPTION
 Standards-Version: 3.9.2" > "DEBIAN/control"
 
+#Generate md5sums
+md5sum `find . -type f | grep -v '^[.]/DEBIAN/'` > DEBIAN/md5sums
+
 #Build the package
 cd $BUILD_DIR
 fakeroot dpkg-deb -b $PACKAGE_NAME
