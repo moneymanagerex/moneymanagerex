@@ -90,7 +90,7 @@ const wxString mmex::getProgramVersion()
 }
 const wxString mmex::getProgramCopyright()
 {
-    return "(c) 2005-2014 Madhan Kanagavel";
+    return "(c) 2005-2015 Madhan Kanagavel";
 }
 const wxString mmex::getProgramDescription()
 {
