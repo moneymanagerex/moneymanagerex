@@ -84,7 +84,7 @@ private:
     void OnEdit(wxCommandEvent& event);
     void OnSelChanged(wxTreeEvent& event);
     void OnDoubleClicked(wxTreeEvent& event);
-    void showCategDialogDeleteError(wxString deleteCategoryErrMsg, bool category = true);
+    void showCategDialogDeleteError(bool category = true);
     void OnCategoryRelocation(wxCommandEvent& /*event*/);
     void OnExpandChbClick(wxCommandEvent& /*event*/);
     void OnShowHiddenChbClick(wxCommandEvent& /*event*/);
