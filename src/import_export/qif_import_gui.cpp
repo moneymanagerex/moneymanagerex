@@ -361,6 +361,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
             trx.clear();
             continue;
         }
+
         //Parse Categories
         const wxString& s = trx.find(CategorySplit) != trx.end() ? trx[CategorySplit] : "";
         if (!s.empty())
@@ -641,10 +642,31 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
     const wxString choose_ext = _("QIF Files");
     m_FileNameStr = wxFileSelector(_("Choose QIF data file to Import")
         , wxEmptyString, m_FileNameStr, wxEmptyString
-        , choose_ext + " (*.qif)|*.qif;*.QIF"
+        , choose_ext + " (*.qif)|*.qif;*.QIF |" 
+#ifdef PLATFORM_UNIX        
+        + _("OFX Files") + " (*.ofx)|*.ofx;*.OFX"
+#endif        
         , wxFD_OPEN | wxFD_CHANGE_DIR | wxFD_FILE_MUST_EXIST);
 
     if (!m_FileNameStr.IsEmpty()) {
+
+#ifdef PLATFORM_UNIX
+        // OFX to QIF convertion
+        wxFileName *fileName = new wxFileName(m_FileNameStr);
+        wxString ext = fileName->GetExt();
+        if(ext.Upper()=="OFX"){
+          wxString ofx2qif="ofx2qif ";
+          ofx2qif << fileName->GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR) << fileName->GetFullName() << " > ";
+          ofx2qif << fileName->GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR) << fileName->GetName() << ".qif";
+          wxLogDebug(ofx2qif);
+          int ret = system(ofx2qif);
+          m_FileNameStr = "";
+          m_FileNameStr << fileName->GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR) << fileName->GetName() << ".qif";
+        }
+        
+        // END OFX to QIF convertion
+#endif     
+      
         correctEmptyFileExt("qif", m_FileNameStr);
 
         log_field_->ChangeValue("");
