@@ -57,9 +57,13 @@
       document.getElementById('grand_value').innerHTML=grand_json['VALUE'];
   </script>
 <!--Accounts-->
-<TMPL_VAR ACCOUNTS_INFO>
+<TMPL_VAR BANK_ACCOUNTS_INFO>
 <TMPL_VAR CARD_ACCOUNTS_INFO>
 <TMPL_VAR TERM_ACCOUNTS_INFO>
+<!-- Not shown on Home Page
+  <TMPL_VAR SHARE_ACCOUNTS_INFO>
+  <TMPL_VAR ASSET_ACCOUNTS_INFO>
+-->
 <TMPL_VAR LOAN_ACCOUNTS_INFO>
 
 <!--Stocks-->
