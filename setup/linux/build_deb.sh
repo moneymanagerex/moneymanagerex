@@ -88,6 +88,7 @@ Standards-Version: 3.9.2" > "DEBIAN/control"
 
 #Generate md5sums
 md5sum `find . -type f | grep -v '^[.]/DEBIAN/'` > DEBIAN/md5sums
+chmod 0644 DEBIAN/md5sums
 
 #Build the package
 cd $BUILD_DIR
