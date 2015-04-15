@@ -15,12 +15,10 @@ ARCHITECTURE="amd64"
 . common/variables.sh
 
 # Specify the build version of mmex
-BUILD_DIR="$HOME/build"
-RELEASE_DIR="release"
+RELEASE_DIR="$HOME/release"
+BUILD_DIR="compile"
 
 PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
-
-BUILD_DIR="$HOME/build"
 
 #Build the source
 cd ../..
@@ -32,9 +30,10 @@ if [ $? -gt 0 ]; then
     exit 1
 fi
 
-mkdir $RELEASE_DIR
-cd $RELEASE_DIR
-../configure --prefix="$BUILD_DIR/$PACKAGE_NAME/usr"
+mkdir $BUILD_DIR
+cd $BUILD_DIR
+rm -rf "$RELEASE_DIR/$PACKAGE_NAME"
+../configure --prefix="$RELEASE_DIR/$PACKAGE_NAME/usr"
 
 if [ $? -gt 0 ]; then
     echo "ERROR!"
@@ -46,7 +45,7 @@ if [ $? -gt 0 ]; then
     exit 1
 fi
 
-cd "$BUILD_DIR/$PACKAGE_NAME"
+cd "$RELEASE_DIR/$PACKAGE_NAME"
 
 #Strip the binary before calculating the installed size
 strip "usr/bin/mmex"
@@ -68,7 +67,7 @@ gzip -9 -f "usr/share/man/man1/mmex.1"
 chmod 644 "usr/share/man/man1/mmex.1.gz"
 
 #Calculate installed size
-INSTALLED_SIZE=$(du -sb $BUILD_DIR/ | cut -f1)
+INSTALLED_SIZE=$(du -sb $RELEASE_DIR/ | cut -f1)
 INSTALLED_SIZE=`expr $INSTALLED_SIZE / 1024`
 
 mkdir -p "DEBIAN"
@@ -91,7 +90,7 @@ md5sum `find . -type f | grep -v '^[.]/DEBIAN/'` > DEBIAN/md5sums
 chmod 0644 DEBIAN/md5sums
 
 #Build the package
-cd $BUILD_DIR
+cd $RELEASE_DIR
 fakeroot dpkg-deb -b $PACKAGE_NAME
 
 #Check for any packaging problems
