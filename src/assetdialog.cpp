@@ -369,11 +369,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     if (m_transaction_panel->ValidCheckingAccountEntry())
     {
         int checking_id = m_transaction_panel->SaveChecking();
-        if (m_transfer_entry)
-        {
-            m_transaction_panel->SaveCheckingType();
-        }
-        else
+        if (!m_transfer_entry)
         {
             Model_TransferTrans::SetAssetTransferTransaction(new_asset_id, checking_id
                 , m_transaction_panel->CheckingType()

@@ -420,47 +420,33 @@ void mmStockTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (m_transaction_panel->ValidCheckingAccountEntry())
     {
-        int checking_id = m_transaction_panel->SaveChecking();
-        // Check if this is the first entry
+        // addition or removal shares
+        if ((num_shares > 0) && (m_transaction_panel->TransactionType() == Model_Checking::DEPOSIT))
+        {
+            // we need to subtract the number of shares for a sale
+            num_shares = num_shares * -1;
+        }
 
+        int checking_id = m_transaction_panel->SaveChecking();
+
+        // The Stocks table maintains the total number of shares.
+        // The Unit price field in the Stocks table becomes obsolete.
         if (m_transfer_entry)
         {
             m_transfer_entry->SHARE_UNITPRICE = purchase_price;
             m_transfer_entry->SHARE_NUMBER = num_shares;
             m_transfer_entry->SHARE_COMMISSION = commission;
-            
+
             Model_TransferTrans::instance().save(m_transfer_entry);
-            EndModal(wxID_SAVE);
         }
-
-        // The Stocks table maintains the total number of shares.
-        // The Unit price field in the Stocks table becomes obsolete.
-
-        // if we get to this point, setup the transfer table
-        Model_TransferTrans::Data_Set trans_list = Model_TransferTrans::TransferList(Model_TransferTrans::TABLE_TYPE::STOCKS, m_stock->STOCKID);
-        if (!trans_list.empty())
+        else
         {
-            if (num_shares > 0) // addition or removal shares
-            {
-                m_stock->CURRENTPRICE = purchase_price;
-                m_stock->COMMISSION += commission;
-                if (m_transaction_panel->TransactionType() == Model_Checking::WITHDRAWAL)
-                {
-                    m_stock->NUMSHARES += num_shares;
-                }
-                else
-                {
-                    m_stock->NUMSHARES -= num_shares;
-                    // we need to subtract the number of shares for a sale
-                    num_shares = num_shares * -1;
-                }
-            }
+            Model_TransferTrans::SetShareTransferTransaction(m_stock->STOCKID, checking_id
+                , purchase_price, num_shares, commission
+                , m_transaction_panel->CheckingType()
+                , m_transaction_panel->CurrencySymbol());
         }
 
-        Model_TransferTrans::SetShareTransferTransaction(m_stock->STOCKID, checking_id
-            , purchase_price, num_shares, commission
-            , m_transaction_panel->CheckingType()
-            , m_transaction_panel->CurrencySymbol());
         Model_TransferTrans::UpdateStockValue(m_stock);
     }
     else

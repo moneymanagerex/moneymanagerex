@@ -211,6 +211,9 @@ void Model_TransferTrans::UpdateStockValue(Model_Stock::Data* stock_entry)
         new_value += trans.SHARE_NUMBER * trans.SHARE_UNITPRICE;
     }
 
+    if (new_share_count < 0) new_share_count = 0;
+    if (new_value < 0) new_value = 0;
+
     stock_entry->NUMSHARES = new_share_count;
     stock_entry->VALUE = new_value;
     Model_Stock::instance().save(stock_entry);

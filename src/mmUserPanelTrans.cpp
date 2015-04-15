@@ -453,15 +453,6 @@ void mmUserPanelTrans::SetCheckingType(Model_TransferTrans::CHECKING_TYPE ct)
     }
 }
 
-void mmUserPanelTrans::SaveCheckingType()
-{
-    if (m_checking_entry)
-    {
-        m_checking_entry->TOACCOUNTID = CheckingType();
-        Model_Checking::instance().save(m_checking_entry);
-    }
-}
-
 int mmUserPanelTrans::SaveChecking()
 {
     Model_Currency::Data* currency = Model_Currency::instance().GetCurrencyRecord(CurrencySymbol());
@@ -475,7 +466,7 @@ int mmUserPanelTrans::SaveChecking()
     }
 
     m_checking_entry->ACCOUNTID = m_account_id;
-    m_checking_entry->TOACCOUNTID = -1;
+    m_checking_entry->TOACCOUNTID = CheckingType();
 
     m_checking_entry->PAYEEID = m_payee_id;
     m_checking_entry->TRANSCODE = Model_Checking::instance().all_type()[m_type_selector->GetSelection()];
