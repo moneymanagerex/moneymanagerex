@@ -369,9 +369,16 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     if (m_transaction_panel->ValidCheckingAccountEntry())
     {
         int checking_id = m_transaction_panel->SaveChecking();
-        Model_TransferTrans::SetAssetTransferTransaction(new_asset_id, checking_id
-            , m_transaction_panel->CheckingType()
-            , m_transaction_panel->CurrencySymbol());
+        if (m_transfer_entry)
+        {
+            m_transaction_panel->SaveCheckingType();
+        }
+        else
+        {
+            Model_TransferTrans::SetAssetTransferTransaction(new_asset_id, checking_id
+                , m_transaction_panel->CheckingType()
+                , m_transaction_panel->CurrencySymbol());
+        }
     }
     else if (!m_hidden_trans_entry)
     {

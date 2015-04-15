@@ -55,6 +55,7 @@ public:
     int TransactionType();
     Model_TransferTrans::CHECKING_TYPE CheckingType();
     void SetCheckingType(Model_TransferTrans::CHECKING_TYPE ct);
+    void SaveCheckingType();
     const wxString CurrencySymbol();
     Model_Currency::Data* GetCurrencyData();
 

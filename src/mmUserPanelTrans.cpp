@@ -453,6 +453,15 @@ void mmUserPanelTrans::SetCheckingType(Model_TransferTrans::CHECKING_TYPE ct)
     }
 }
 
+void mmUserPanelTrans::SaveCheckingType()
+{
+    if (m_checking_entry)
+    {
+        m_checking_entry->TOACCOUNTID = CheckingType();
+        Model_Checking::instance().save(m_checking_entry);
+    }
+}
+
 int mmUserPanelTrans::SaveChecking()
 {
     Model_Currency::Data* currency = Model_Currency::instance().GetCurrencyRecord(CurrencySymbol());
