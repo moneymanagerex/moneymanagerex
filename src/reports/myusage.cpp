@@ -31,7 +31,7 @@ const char *usage_template = R"(
     <meta charset="UTF-8" />
     <meta http - equiv = "Content-Type" content = "text/html" />
     <title><TMPL_VAR REPORTNAME></title>
-    <script src = "Chart.js"></script>
+    <script src = "ChartNew.js"></script>
     <script src = "sorttable.js"></script>
     <link href = "master.css" rel = "stylesheet" />
     <style>

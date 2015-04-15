@@ -171,7 +171,6 @@ Source: {#my_svn_path}\resources\kaching.wav; DestDir: {app}\res; Flags: ignorev
 Source: {#my_svn_path}\resources\mmex.ico; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\resources\master.css; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\resources\home_page.htt; DestDir: {app}\res; Flags: ignoreversion; 
-Source: {#my_svn_path}\3rd\Chart.js\Chart.js; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\3rd\ChartNew.js\ChartNew.js; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\3rd\sorttable.js\sorttable.js; DestDir: {app}\res; Flags: ignoreversion; 
 
