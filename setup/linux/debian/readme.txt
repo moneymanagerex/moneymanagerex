@@ -29,7 +29,7 @@ sudo make install
 
 # Download mmex
 cd ~/Development
-svn checkout http://svn.code.sf.net/p/moneymanagerex/code/trunk mmex
+git clone https://github.com/moneymanagerex/moneymanagerex
 
 # Configure mmex
 #     Modify 3rd/cgitemplate/html_template.h
@@ -39,14 +39,14 @@ svn checkout http://svn.code.sf.net/p/moneymanagerex/code/trunk mmex
 #         Specify system Architecture  ("i386" or "amd64")
 
 # Build mmex
-cd mmex/setup/linux/debian
-./build.sh
+cd mmex/setup/linux
+./build_deb.sh
 
 # Install the package (Have you backed up your databases?)
 cd ~/build
 dpkg -i mmex-xXX.deb
 
 # Then run it
-mmex&
+mmex &
 
 
