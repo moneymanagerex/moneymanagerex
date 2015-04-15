@@ -572,14 +572,14 @@ void mmHomePagePanel::getData()
     m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
     tBalance += termBalance;
 
-    //double shareBalance = 0.0;
+    double shareBalance = 0.0;
     // <TMPL_VAR SHARE_ACCOUNTS_INFO> included in resources/home_page.hht
-    //m_frames["SHARE_ACCOUNTS_INFO"] = displayAccounts(shareBalance, accountStats, Model_Account::SHARES);
-    //tBalance += shareBalance;
+    m_frames["SHARE_ACCOUNTS_INFO"] = displayAccounts(shareBalance, accountStats, Model_Account::SHARES);
+    tBalance += shareBalance;
 
-    //double assetBalance = 0.0;
-    //m_frames["ASSET_ACCOUNTS_INFO"] = displayAccounts(assetBalance, accountStats, Model_Account::ASSET);
-    //tBalance += assetBalance;
+    double assetBalance = 0.0;
+    m_frames["ASSET_ACCOUNTS_INFO"] = displayAccounts(assetBalance, accountStats, Model_Account::ASSET);
+    tBalance += assetBalance;
 
     double loanBalance = 0.0;
     m_frames["LOAN_ACCOUNTS_INFO"] = displayAccounts(loanBalance, accountStats, Model_Account::LOAN);
