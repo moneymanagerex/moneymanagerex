@@ -38,10 +38,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  For Internet Format for update checking read in util.cpp
  *************************************************************************/
 const int mmex::version::Major = 1;
-const int mmex::version::Minor = 2;
+const int mmex::version::Minor = 3;
 const int mmex::version::Patch = 0;
-const int mmex::version::Alpha = -1;
-const int mmex::version::Beta  = 2;
+const int mmex::version::Alpha = 0;
+const int mmex::version::Beta  = -1;
 const int mmex::version::RC    = -1;
 const wxString mmex::version::string = mmex::version::generateProgramVersion(mmex::version::Major, mmex::version::Minor, mmex::version::Patch
     ,mmex::version::Alpha, mmex::version::Beta, mmex::version::RC);
@@ -83,7 +83,7 @@ const wxString mmex::getTitleProgramVersion()
 
 const wxString mmex::getProgramCopyright()
 {
-    return "(c) 2005-2014 Madhan Kanagavel";
+    return wxString::Format("(c) 2005-%d Madhan Kanagavel", wxDateTime::Now().GetCurrentYear());
 }
 const wxString mmex::getProgramDescription()
 {
@@ -114,18 +114,9 @@ const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wx
     to divide direct access from access through desktop app links
     https://support.google.com/analytics/answer/1033867?hl=en
     */
-    wxString url = BaseURL;
-    if (BaseURL.find("/",true) > 5)
-        url += "/";
     
-    url += "?";
-    url += "utm_campaign=Application_Desktop";
-
-    url += "&";
-    url += "utm_source=" + CampSource;
-
-    url += "&";
-    url += wxString::Format("utm_medium=MMEX_v%s", mmex::version::string);
+    const wxString url = wxString::Format("%s?utm_campaign=Application_Desktop&utm_source=%s&utm_medium=MMEX_v%s"
+        , BaseURL, CampSource, mmex::version::string);
 
     return url;
 }
