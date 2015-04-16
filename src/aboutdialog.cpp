@@ -38,6 +38,7 @@ mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen)
 , artwork_text_()
 , sponsors_text_()
 , license_text_()
+, privacy_text_()
 {
 	wxString caption = wxString(_("About")) << " " << mmex::getProgramName();
 	if (TabToOpen == 4)
@@ -144,6 +145,7 @@ void mmAboutDialog::InitControls()
     if (data.GetCount() > 1) artwork_text_->SetPage(data[1]);
     if (data.GetCount() > 2) sponsors_text_->SetPage(data[2]);
 	if (data.GetCount() > 3) license_text_->SetPage(data[3]);
+    if (data.GetCount() > 4) privacy_text_->SetPage(data[4]);
 }
 void mmAboutDialog::CreateControls(int TabToOpen)
 {
@@ -190,7 +192,12 @@ void mmAboutDialog::CreateControls(int TabToOpen)
 	wxBoxSizer *license_sizer = new wxBoxSizer(wxVERTICAL);
 	license_tab->SetSizer(license_sizer);
 
-    wxSize internal_size = wxSize(400, 400); //developers_tab_->GetBestVirtualSize();
+    wxPanel* privacy_tab = new wxPanel(about_notebook, wxID_ANY);
+	about_notebook->AddPage(privacy_tab, _("Privacy"));
+	wxBoxSizer *privacy_sizer = new wxBoxSizer(wxVERTICAL);
+	privacy_tab->SetSizer(privacy_sizer);
+
+    wxSize internal_size = wxSize(500, 400); //developers_tab_->GetBestVirtualSize();
 
     about_text_ = new wxHtmlWindow(about_tab, wxID_ANY
         , wxDefaultPosition, wxDefaultSize
@@ -216,6 +223,11 @@ void mmAboutDialog::CreateControls(int TabToOpen)
 		, wxID_ANY, wxDefaultPosition, internal_size
 		, wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
 	license_sizer->Add(license_text_, 1, wxEXPAND);
+
+    privacy_text_ = new wxHtmlWindow(privacy_tab
+		, wxID_ANY, wxDefaultPosition, internal_size
+		, wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
+	privacy_sizer->Add(privacy_text_, 1, wxEXPAND);
 
     itemBoxSizer->Add(about_notebook, flags);
     about_notebook->Layout();
