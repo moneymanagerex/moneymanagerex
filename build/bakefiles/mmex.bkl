@@ -96,7 +96,7 @@
 
         <data-files>
             <install-to>$(graphicsfiles)</install-to>
-            <srcdir>$(SRCDIR)/graphics</srcdir>
+            <srcdir>$(SRCDIR)/resources</srcdir>
             <files>mmex.icns mmdb.icns</files>
         </data-files>
 
@@ -164,7 +164,7 @@
 
 	    <data-files>
             <install-to>$(DATADIR)/icons/hicolor/scalable/apps</install-to>
-            <srcdir>$(SRCDIR)/graphics</srcdir>
+            <srcdir>$(SRCDIR)/resources</srcdir>
             <files>mmex.svg</files>
         </data-files>
 
