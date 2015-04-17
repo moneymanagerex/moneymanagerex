@@ -407,17 +407,21 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     wxString group_name;
     for (const auto& record : records)
     {
-        bool no_group = record.GROUPNAME.empty();
-        if (group_name != record.GROUPNAME && !no_group)
+        bool hiden = record.GROUPNAME.StartsWith(".");
+        if (!hiden)
         {
-            group = navTreeCtrl_->AppendItem(reports, wxGetTranslation(record.GROUPNAME), 4, 4);
-            navTreeCtrl_->SetItemData(group, new mmTreeItemData(record.GROUPNAME, new mmGeneralGroupReport(record.GROUPNAME)));
-            group_name = record.GROUPNAME;
+            bool no_group = record.GROUPNAME.empty();
+            if (group_name != record.GROUPNAME && !no_group)
+            {
+                group = navTreeCtrl_->AppendItem(reports, wxGetTranslation(record.GROUPNAME), 4, 4);
+                navTreeCtrl_->SetItemData(group, new mmTreeItemData(record.GROUPNAME, new mmGeneralGroupReport(record.GROUPNAME)));
+                group_name = record.GROUPNAME;
+            }
+            Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
+            wxTreeItemId item = navTreeCtrl_->AppendItem(no_group ? reports : group
+                , wxGetTranslation(record.REPORTNAME), 8, 8);
+            navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
         }
-        Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
-        wxTreeItemId item = navTreeCtrl_->AppendItem(no_group ? reports : group
-            , wxGetTranslation(record.REPORTNAME), 8, 8);
-        navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
     }
 
 }

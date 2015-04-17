@@ -34,8 +34,8 @@
 #include <wx/sstream.h>
 #include <wx/zipstrm.h>
 
-static const wxString SAMPLE_ASSETS_LUA = R"(
-local total_balance = 0
+static const wxString SAMPLE_ASSETS_LUA = 
+R"(local total_balance = 0
 function handle_record(record)
     total_balance = total_balance + record:get('VALUE');
 end
@@ -45,11 +45,11 @@ function complete(result)
 end
 )";
 
-static const wxString SAMPLE_ASSETS_SQL =R"(
-SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES, VALUECHANGE, VALUECHANGERATE FROM ASSETS_V1;)";
+static const wxString SAMPLE_ASSETS_SQL =
+R"(SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES, VALUECHANGE, VALUECHANGERATE FROM ASSETS_V1;)";
 
-static const wxString SAMPLE_ASSETS_HTT = R"(
-<!DOCTYPE html>
+static const wxString SAMPLE_ASSETS_HTT = 
+R"(<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8" />
@@ -123,7 +123,8 @@ static const wxString SAMPLE_ASSETS_HTT = R"(
 </html>
 )";
 
-static const char *HTT_CONTEINER = R"(<!DOCTYPE html>
+static const char *HTT_CONTEINER = 
+R"(<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -898,8 +899,8 @@ void mmGeneralReportManager::newReport(int sample)
     wxString group_name;
     if (m_selectedItemID == m_rootItem)
     {
-        mmDialogComboBoxAutocomplete dlg(this, _("Enter or choose name for the new report group"),
-            _("Add Report Group"), "", Model_Report::instance().allGroupNames());
+        mmDialogComboBoxAutocomplete dlg(this, _("Enter or choose name for the new report group")
+            , _("Add Report Group"), "", Model_Report::instance().allGroupNames());
         if (dlg.ShowModal() == wxID_OK)
             group_name = dlg.getText();
         else
@@ -911,13 +912,22 @@ void mmGeneralReportManager::newReport(int sample)
     }
 
 
-    wxDateTime now = wxDateTime::Now();
+    const wxDateTime now = wxDateTime::Now();
     wxString report_name = wxString::Format(_("New Report %s"), now.Format("%Y%m%d%H%M%S"));
 
-    report_name = wxGetTextFromUser(_("Enter the name for the report")
-        , _("General Report Manager"), report_name);
+    int max_attempts = 3;
+    for (int i = 0; i < max_attempts; i++)
+    {
+        report_name = wxGetTextFromUser(_("Enter the name for the report")
+            , _("General Report Manager"), report_name);
 
-    if (report_name.IsEmpty()) return;
+        if (report_name.empty())
+            return; //Canceled by user
+        if (!report_name.empty() && Model_Report::instance().find(Model_Report::REPORTNAME(report_name)).empty())
+            break;
+        if (i == max_attempts - 1)
+            return mmErrorDialogs::MessageError(this, _("Report Name already exists"), _("New Report"));
+    }
 
     wxString sqlContent, luaContent, httContent, description;
     switch (sample) {
