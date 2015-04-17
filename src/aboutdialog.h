@@ -53,6 +53,7 @@ private:
     wxHtmlWindow* artwork_text_;
     wxHtmlWindow* sponsors_text_;
 	wxHtmlWindow* license_text_;
+    wxHtmlWindow* privacy_text_;
 
 };
 
