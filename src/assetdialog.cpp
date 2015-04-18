@@ -127,6 +127,11 @@ void mmAssetDialog::dataToControls()
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
     m_value->SetValue(m_asset->VALUE);
 
+    if (!Model_TransferTrans::TransferList(Model_TransferTrans::ASSETS, m_asset->ASSETID).empty())
+    {
+        m_value->Enable(false);
+    }
+
     wxString valueChangeRate;
     valueChangeRate.Printf("%.3f", m_asset->VALUECHANGERATE);
     m_valueChangeRate->SetValue(valueChangeRate);
