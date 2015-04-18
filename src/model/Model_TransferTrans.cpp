@@ -198,6 +198,12 @@ void Model_TransferTrans::RemoveTransferEntry(const int& checking_account_id)
         Model_Stock::Data* stock_entry = Model_Stock::instance().get(trans_entry.ID_TABLERECORD);
         UpdateStockValue(stock_entry);
     }
+
+    if (trans_entry.TABLETYPE == all_table_type()[TABLE_TYPE::ASSETS])
+    {
+        Model_Asset::Data* asset_entry = Model_Asset::instance().get(trans_entry.ID_TABLERECORD);
+        UpdateAssetValue(asset_entry);
+    }
 }
 
 void Model_TransferTrans::UpdateStockValue(Model_Stock::Data* stock_entry)
@@ -217,4 +223,37 @@ void Model_TransferTrans::UpdateStockValue(Model_Stock::Data* stock_entry)
     stock_entry->NUMSHARES = new_share_count;
     stock_entry->VALUE = new_value;
     Model_Stock::instance().save(stock_entry);
+}
+
+void Model_TransferTrans::UpdateAssetValue(Model_Asset::Data* asset_entry)
+{
+    Data_Set trans_list = TransferList(TABLE_TYPE::ASSETS, asset_entry->ASSETID);
+    bool value_updated = false;
+    double new_value = 0;
+    for (const auto trans : trans_list)
+    {
+        Model_Checking::Data* asset_trans = Model_Checking::instance().get(trans.ID_CHECKINGACCOUNT);
+        if (asset_trans)
+        {
+            if (!Model_Checking::foreignTransactionAsTransfer(*asset_trans))
+            {
+                if (asset_trans->TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT])
+                {
+                    new_value -= asset_trans->TRANSAMOUNT; // Withdrawal from asset value
+                }
+                else
+                {
+                    new_value += asset_trans->TRANSAMOUNT;  // Deposit to asset value
+                }
+
+                asset_entry->VALUE = new_value;
+                value_updated = true;
+            }
+        }
+    }
+
+    if (value_updated)
+    {
+        Model_Asset::instance().save(asset_entry);
+    }
 }

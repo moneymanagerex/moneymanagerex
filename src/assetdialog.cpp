@@ -375,6 +375,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
                 , m_transaction_panel->CheckingType()
                 , m_transaction_panel->CurrencySymbol());
         }
+        Model_TransferTrans::UpdateAssetValue(m_asset);
     }
     else if (!m_hidden_trans_entry)
     {
