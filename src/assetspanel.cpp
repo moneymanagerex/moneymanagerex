@@ -790,13 +790,18 @@ void mmAssetsPanel::ViewAssetTrans(const int& selected_index)
     Model_Asset::Data* asset = &m_assets[selected_index];
     Model_TransferTrans::Data_Set asset_list = Model_TransferTrans::TransferList(Model_TransferTrans::ASSETS, asset->ASSETID);
 
-    // TODO improve this display
-    wxString msg = _("Date\n\n");
+    // TODO create a panel to display all the information on one screen
+    wxString msg = _("Account \t Date\t   Value\n\n");
     for (const auto asset_entry : asset_list)
     {
         Model_Checking::Data* asset_trans = Model_Checking::instance().get(asset_entry.ID_CHECKINGACCOUNT);
-        wxString sd = mmGetDateForDisplay(Model_Checking::TRANSDATE(asset_trans));
-        msg << wxString::Format("%s\n", sd);
+        if (asset_trans)
+        {
+            wxString aa = Model_Account::get_account_name(asset_trans->ACCOUNTID);
+            wxString ad = mmGetDateForDisplay(Model_Checking::TRANSDATE(asset_trans));
+            wxString av = wxString::FromDouble(asset_trans->TRANSAMOUNT, 2);
+            msg << wxString::Format("%s \t%s   \t%s \n", aa, ad, av);
+        }
     }
     wxMessageBox(msg, "Viewing Asset Transactions");
 }
