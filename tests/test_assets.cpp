@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 James Higley
-Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2014..2015 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,6 +27,10 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "assetspanel.h"
 #include "assetdialog.h"
 #include "../src/constants.h"
+#include "mmcheckingpanel.h"
+#include "model/Model_TransferTrans.h"
+#include "mmUserPanelTrans.h"
+
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
 *****************************************************************************/
@@ -58,7 +62,6 @@ Test_Asset::~Test_Asset()
 void Test_Asset::setUp()
 {
     CpuTimer time("Startup");
-    m_test_db.Open(m_test_db_filename);
 
     if (m_this_instance == 5)
     {
@@ -68,15 +71,54 @@ void Test_Asset::setUp()
         m_user_request->Show();
     }
 
-    if (m_this_instance == 6)
+    if (m_this_instance > 5)
     {
         m_base_frame = new TestFrameBase(m_this_instance);
         m_base_frame->Show(true);
     }
 
+    m_test_db.Open(m_test_db_filename);
     m_dbmodel = new DB_Init_Model();
+
+    m_test_db.Begin();
     m_dbmodel->Init_Model_Tables(&m_test_db);
-    m_dbmodel->Init_Model_Assets(&m_test_db);
+    m_dbmodel->Set_Asset_Columns(&m_test_db);
+    m_dbmodel->Set_Checking_Columns(&m_test_db);
+
+    if (!Model_Account::Exist("Savings"))  m_dbmodel->Add_Bank_Account("Savings", 10000);
+    if (!Model_Account::Exist("Cheque"))  m_dbmodel->Add_Bank_Account("Cheque", 5000);
+    if (!Model_Account::Exist("Visa"))  m_dbmodel->Add_CreditCard_Account("Visa", -1000);
+    if (!Model_Account::Exist("Mastercard"))  m_dbmodel->Add_CreditCard_Account("Mastercard", -2000);
+    if (!Model_Account::Exist("Insurance"))  m_dbmodel->Add_Term_Account("Insurance");
+    if (!Model_Account::Exist("ACME Corp"))  m_dbmodel->Add_Investment_Account("ACME Corp");
+    if (!Model_Account::Exist("Qwerty Keyboards"))  m_dbmodel->Add_Investment_Account("Qwerty Keyboards");
+    if (!Model_Account::Exist("AMP"))  m_dbmodel->Add_Investment_Account("AMP");
+
+    if (m_dbmodel->PayeeNotExist("Telstra"))
+    {
+        m_dbmodel->Add_Payee("Telstra");
+
+        int cat_id = m_dbmodel->Add_Category("Share");
+        m_dbmodel->Add_Subcategory(cat_id, "Purchase");
+        m_dbmodel->Add_Subcategory(cat_id, "Sale");
+        m_dbmodel->Add_Subcategory(cat_id, "Dividend");
+
+        m_dbmodel->Add_Payee_Category("Telstra", "Share", "Purchase");
+
+    }
+
+    if (m_dbmodel->PayeeNotExist("Domayne"))
+    {
+        m_dbmodel->Add_Payee("Domayne");
+    }
+
+    if (m_dbmodel->PayeeNotExist("Discount House"))
+    {
+        m_dbmodel->Add_Payee("Discount House");
+        m_dbmodel->Add_Payee_Category("Discount House", "Homeneeds", "Furnishing");
+    }
+
+    m_test_db.Commit();
 }
 
 void Test_Asset::tearDown()
@@ -181,6 +223,80 @@ void Test_Asset::test_dialog()
 
 void Test_Asset::test_assetpanel()
 {
+    // Get user details
+    wxDateTime sale_date(wxDateTime::Today());
+    wxDateTime purchase_date = sale_date;
+    purchase_date.Subtract(wxDateSpan::Days(100));
+
+    const wxString asset_name = "Single Bed";
+    const wxString purchase_payee = "Domayne";          // store of purchase
+    const wxString sale_account_name = "Savings";       // where money going to
+    const wxString sale_payee = "Discount House";       // store of purchase
+    const wxString category = "Homeneeds";
+    const wxString subcategory = "Furnishing";
+    double purchase_value = 800.0;
+    double sale_value = 300.0;
+
+    // Asset is created from assets, specifying Buy/withdrawal, Sell/income,
+    int asset_id = m_dbmodel->Add_Asset(asset_name
+        , purchase_date, purchase_value
+        , Model_Asset::TYPE_HOUSE, Model_Asset::RATE_DEPRECIATE, 20, "Purchase of New Bed");
+
+    /* Set up an asset transaction
+       Purchase of the asset will be a withdrawal from the Savings account
+       Sale of an asset will be a deposit in the checking account.
+    */
+
+    /*  Set up the purchase transaction */
+    int purchase_entry_id = m_dbmodel->Add_Trans_Withdrawal(sale_account_name
+        , purchase_date, purchase_payee, purchase_value
+        , category, subcategory, "Asset: Bed - Purchase");
+    Model_TransferTrans::SetAssetTransferTransaction(asset_id, purchase_entry_id
+        , Model_TransferTrans::AS_TRANSFER);
+
+    /*  Set up the maintenance transaction */
+    int maintenance_entry_id = m_dbmodel->Add_Trans_Withdrawal(sale_account_name
+        , sale_date, sale_payee, sale_value
+        , category, "Others", "Asset: Bed - Fix");
+    Model_TransferTrans::SetAssetTransferTransaction(asset_id, maintenance_entry_id
+        , Model_TransferTrans::AS_INCOME_EXPENSE);
+
+    /*  Set up the sale transaction */
+    int sale_entry_id = m_dbmodel->Add_Trans_Deposit(sale_account_name
+        , sale_date, sale_payee, sale_value
+        , category, subcategory, "Asset: Bed - Sale");
+    Model_TransferTrans::SetAssetTransferTransaction(asset_id, sale_entry_id
+        , Model_TransferTrans::AS_TRANSFER);
+    
+    /* 
+    The way this works
+
+    ASSETS_V1: No change to table structure
+    CHECKINGACCOUNT_V1: No change to table structure
+
+    Identify the CHECKINGACCOUNT_V1 record as belonging to another table:
+    TRANSCODE == Model_Checking::WITHDRAWAL or Model_Checking::DEPOSIT
+    TOACCOUNTID > 0; // 1: process as is. 2 process as a transfer
+
+    TRANSCODE = Model_Checking::TRANSFER
+    TOACCOUNTID = ACCOUNTID; this is the other account
+
+    Asset <--------- TransferTrans ---------------> Checking (Transaction record)
+      |                   | <----------------------o find self in list to determine link type
+      |                                            o TOACCOUNTID - determine external type 
+      | <----------- TransferTrans ---------------> Checking (Transaction record)
+      |                   | <----------------------o find self in list to determine link type
+      |                                            o TOACCOUNTID - determine external type 
+    */
+
+    Model_TransferTrans::Data_Set trans_asset_list = Model_TransferTrans::TransferList(Model_TransferTrans::ASSETS, asset_id);
+    Model_Checking::Data_Set trans_asset_records = Model_TransferTrans::TransferRecordList(Model_TransferTrans::ASSETS, asset_id);
+    Model_TransferTrans::Data purchase_entry = Model_TransferTrans::TransferEntry(purchase_entry_id);
+
+    CPPUNIT_ASSERT(purchase_entry.ID_CHECKINGACCOUNT == trans_asset_records[0].id());
+    CPPUNIT_ASSERT(purchase_entry.ID_CHECKINGACCOUNT == trans_asset_list[0].ID_CHECKINGACCOUNT);
+    /* Now to display the two rcords. */
+
     // Create a new frame anchored to the base frame.
     TestFrameBase* asset_frame = new TestFrameBase(m_base_frame, 670, 400);
     asset_frame->Show();
@@ -189,8 +305,56 @@ void Test_Asset::test_assetpanel()
     mmAssetsPanel* asset_panel = new mmAssetsPanel(asset_frame, mmID_ASSETS);
     asset_panel->Show();
 
-    // Anchor the panel. Otherwise it will disappear.
-    wxMessageBox("Please Examine: Asset Panel.\n\nContinue other tests ...",
-        "Testing: Asset Panel", wxOK, wxTheApp->GetTopWindow());
+    TestFrameBase* account_frame = new TestFrameBase(m_base_frame, 670, 400);
+    account_frame->Show();
+
+    mmCheckingPanel* account_panel = new mmCheckingPanel(account_frame, 0, m_dbmodel->Get_account_id(sale_account_name));
+    account_panel->Show();
+
+    // Anchor the panels. Otherwise they will disappear.
+    wxMessageBox(
+        "Please Examine:\n\n"
+        "  Asset Panel\n"
+        "  Account panel\n"
+        "\n\nContinue other tests ...",
+        "Testing: Asset to Account", wxOK, wxTheApp->GetTopWindow());
+
+    delete(asset_panel);
+    delete(account_panel);
+
+    Model_TransferTrans::RemoveTransferTransactions(Model_TransferTrans::ASSETS, asset_id);
+
+    asset_panel = new mmAssetsPanel(asset_frame, mmID_ASSETS);
+    asset_panel->Show();
+
+    account_panel = new mmCheckingPanel(account_frame, 0, m_dbmodel->Get_account_id(sale_account_name));
+    account_panel->Show();
+
+    wxMessageBox(
+        "Please re Examine:\n\n"
+        "  Asset Panel\n"
+        "  Account panel\n"
+        "\n\nContinue other tests ...",
+        "Testing: Asset to Account", wxOK, wxTheApp->GetTopWindow());
+    delete(account_panel);
 }
+
+void Test_Asset::test_trans_user_panel()
+{
+    // Create a new frame anchored to the base frame.
+    TestFrameBase* trans_user_panel_frame = new TestFrameBase(m_base_frame, 318, 455);
+    trans_user_panel_frame->Show();
+
+    // Create the panel under test
+    mmUserPanelTrans* trans_user_panel = new mmUserPanelTrans(trans_user_panel_frame,0, wxID_ANY);
+    trans_user_panel->Show();
+
+    // Anchor the panel. Otherwise it will disappear.
+    wxMessageBox("Please Examine: mmtrans_user_panel.\n\nContinue other tests ...",
+        "Testing: Assets", wxOK, wxTheApp->GetTopWindow());
+
+    mmAssetDialog* dlg = new mmAssetDialog(m_base_frame, 0);
+    dlg->ShowModal();
+}
+
 //--------------------------------------------------------------------------

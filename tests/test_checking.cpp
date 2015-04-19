@@ -74,8 +74,11 @@ void Test_Checking::setUp()
     m_test_db.SetCommitHook(m_commit_hook);
 
     m_dbmodel = new DB_Init_Model();
+    m_test_db.Begin();
     m_dbmodel->Init_Model_Tables(&m_test_db);
+    m_dbmodel->Set_Checking_Columns(&m_test_db);
     m_dbmodel->Init_BaseCurrency();
+    m_test_db.Commit();
 }
 
 void Test_Checking::tearDown()

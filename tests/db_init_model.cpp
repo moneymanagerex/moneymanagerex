@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2014, 2015 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Stock.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_TransferTrans.h"
 //----------------------------------------------------------------------------
 
 DB_Init_Model::DB_Init_Model()
@@ -82,46 +83,54 @@ void DB_Init_Model::Init_Model_Tables(wxSQLite3Database* test_db)
     Model_Stock::instance(test_db);
     Model_StockHistory::instance(test_db);
     Model_Attachment::instance(test_db);
+    Model_TransferTrans::instance(test_db);
 
     Init_BaseCurrency();
 }
 
-void DB_Init_Model::Init_Model_Assets(wxSQLite3Database* test_db)
+void DB_Init_Model::Set_Checking_Columns(wxSQLite3Database* test_db)
 {
-    test_db->Begin();
-    {
-        Model_Setting::instance().Set("ASSETS_COL0_WIDTH", 25);
-        Model_Setting::instance().Set("ASSETS_COL1_WIDTH", 25);
-        Model_Setting::instance().Set("ASSETS_COL2_WIDTH", 95);
-        Model_Setting::instance().Set("ASSETS_COL3_WIDTH", 78);
-        Model_Setting::instance().Set("ASSETS_COL4_WIDTH", 85);
-        Model_Setting::instance().Set("ASSETS_COL5_WIDTH", 85);
-        Model_Setting::instance().Set("ASSETS_COL6_WIDTH", 90);
-        Model_Setting::instance().Set("ASSETS_COL7_WIDTH", 180);
-    }
-    test_db->Commit();
+    Model_Setting::instance().Set("CHECK_COL0_WIDTH", 25);
+    Model_Setting::instance().Set("CHECK_COL1_WIDTH", 28);
+    Model_Setting::instance().Set("CHECK_COL2_WIDTH", 78);
+    Model_Setting::instance().Set("CHECK_COL3_WIDTH", 50);
+    Model_Setting::instance().Set("CHECK_COL4_WIDTH", 120);
+    Model_Setting::instance().Set("CHECK_COL5_WIDTH", 45);
+    Model_Setting::instance().Set("CHECK_COL6_WIDTH", 140);
+    Model_Setting::instance().Set("CHECK_COL7_WIDTH", 70);
+    Model_Setting::instance().Set("CHECK_COL8_WIDTH", 65);
+    Model_Setting::instance().Set("CHECK_COL9_WIDTH", 65);
+    Model_Setting::instance().Set("CHECK_COL10_WIDTH", 130);
 }
 
-void DB_Init_Model::Init_Model_Stocks(wxSQLite3Database* test_db)
+void DB_Init_Model::Set_Asset_Columns(wxSQLite3Database* test_db)
 {
-    test_db->Begin();
-    {
-        Model_Setting::instance().Set("STOCKS_COL0_WIDTH", 25);
-        Model_Setting::instance().Set("STOCKS_COL1_WIDTH", 25);
-        Model_Setting::instance().Set("STOCKS_COL2_WIDTH", 90);
-        Model_Setting::instance().Set("STOCKS_COL3_WIDTH", 110);
-        Model_Setting::instance().Set("STOCKS_COL4_WIDTH", 85);
-        Model_Setting::instance().Set("STOCKS_COL5_WIDTH", 95);
-        Model_Setting::instance().Set("STOCKS_COL6_WIDTH", 70);
-        Model_Setting::instance().Set("STOCKS_COL7_WIDTH", 70);
-        Model_Setting::instance().Set("STOCKS_COL8_WIDTH", 70);
-        Model_Setting::instance().Set("STOCKS_COL9_WIDTH", 80);
-        Model_Setting::instance().Set("STOCKS_COL10_WIDTH", 85);
-        Model_Setting::instance().Set("STOCKS_COL11_WIDTH", 75);
-        Model_Setting::instance().Set("STOCKS_COL12_WIDTH", 80);
-        Model_Setting::instance().Set("STOCKS_COL13_WIDTH", 120);
-    }
-    test_db->Commit();
+    Model_Setting::instance().Set("ASSETS_COL0_WIDTH", 25);
+    Model_Setting::instance().Set("ASSETS_COL1_WIDTH", 25);
+    Model_Setting::instance().Set("ASSETS_COL2_WIDTH", 95);
+    Model_Setting::instance().Set("ASSETS_COL3_WIDTH", 78);
+    Model_Setting::instance().Set("ASSETS_COL4_WIDTH", 85);
+    Model_Setting::instance().Set("ASSETS_COL5_WIDTH", 85);
+    Model_Setting::instance().Set("ASSETS_COL6_WIDTH", 90);
+    Model_Setting::instance().Set("ASSETS_COL7_WIDTH", 180);
+}
+
+void DB_Init_Model::Set_Stock_Columns(wxSQLite3Database* test_db)
+{
+    Model_Setting::instance().Set("STOCKS_COL0_WIDTH", 25);
+    Model_Setting::instance().Set("STOCKS_COL1_WIDTH", 25);
+    Model_Setting::instance().Set("STOCKS_COL2_WIDTH", 90);
+    Model_Setting::instance().Set("STOCKS_COL3_WIDTH", 110);
+    Model_Setting::instance().Set("STOCKS_COL4_WIDTH", 85);
+    Model_Setting::instance().Set("STOCKS_COL5_WIDTH", 95);
+    Model_Setting::instance().Set("STOCKS_COL6_WIDTH", 70);
+    Model_Setting::instance().Set("STOCKS_COL7_WIDTH", 70);
+    Model_Setting::instance().Set("STOCKS_COL8_WIDTH", 70);
+    Model_Setting::instance().Set("STOCKS_COL9_WIDTH", 80);
+    Model_Setting::instance().Set("STOCKS_COL10_WIDTH", 85);
+    Model_Setting::instance().Set("STOCKS_COL11_WIDTH", 75);
+    Model_Setting::instance().Set("STOCKS_COL12_WIDTH", 80);
+    Model_Setting::instance().Set("STOCKS_COL13_WIDTH", 120);
 }
 
 void DB_Init_Model::Init_BaseCurrency(const wxString& base_currency_symbol, const wxString& user_name)
@@ -152,6 +161,11 @@ int DB_Init_Model::Add_Investment_Account(const wxString& name, double initial_v
 int DB_Init_Model::Add_Term_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
 {
     return Add_Account(name, Model_Account::TYPE::TERM, initial_value, notes, favorite, currency_symbol);
+}
+
+int DB_Init_Model::Add_CreditCard_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
+{
+    return Add_Account(name, Model_Account::TYPE::CREDIT_CARD, initial_value, notes, favorite, currency_symbol);
 }
 
 int DB_Init_Model::Add_Account(const wxString& name, Model_Account::TYPE account_type, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
@@ -193,6 +207,15 @@ int DB_Init_Model::Add_Payee(const wxString& name, const wxString& category, con
     payee_entry->SUBCATEGID = Get_subcategory_id(payee_entry->CATEGID, subcategory);
 
     return Model_Payee::instance().save(payee_entry);
+}
+
+void DB_Init_Model::Add_Payee_Category(const wxString& payee_name, const wxString& category_name, const wxString& subcategory_name)
+{
+    Model_Payee::Data* entry = Model_Payee::instance().get(payee_name);
+    entry->CATEGID = Get_category_id(category_name);
+    entry->SUBCATEGID = Get_subcategory_id(entry->CATEGID, subcategory_name);
+
+    Model_Payee::instance().save(entry);
 }
 
 int DB_Init_Model::Get_Payee_id(const wxString& name)
@@ -273,7 +296,7 @@ int DB_Init_Model::Get_account_id(const wxString& account_name)
 }
 
 int DB_Init_Model::Add_Trans(const wxString& account_name, Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
-    , const wxString& category, const wxString& subcategory)
+    , const wxString& category, const wxString& subcategory, const wxString& notes)
 {
     if (m_account_name != account_name)
     {
@@ -285,31 +308,30 @@ int DB_Init_Model::Add_Trans(const wxString& account_name, Model_Checking::TYPE 
     tran_entry->ACCOUNTID = m_account_id;
     tran_entry->TOACCOUNTID = -1;
 
+    tran_entry->TRANSDATE = date.FormatISODate();
     tran_entry->PAYEEID = Get_Payee_id(payee);
-
-    // Set to Deposit
-    tran_entry->TRANSCODE = Model_Checking::instance().all_type()[trans_type];
-    tran_entry->TRANSAMOUNT = value;
-    tran_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED].Mid(0,1);
-
     tran_entry->CATEGID = Get_category_id(category);
     tran_entry->SUBCATEGID = Get_subcategory_id(tran_entry->CATEGID, subcategory);
-    tran_entry->TRANSDATE = date.FormatISODate();
-    tran_entry->FOLLOWUPID = 0;
+
+    tran_entry->TRANSAMOUNT = value;
     tran_entry->TOTRANSAMOUNT = value;
+    tran_entry->TRANSCODE = Model_Checking::instance().all_type()[trans_type];
+    tran_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED].Mid(0,1);
+    tran_entry->FOLLOWUPID = 0;
+    tran_entry->NOTES = notes;
     return Model_Checking::instance().save(tran_entry);
 }
 
 int DB_Init_Model::Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
-    , const wxString& category, const wxString& subcategory)
+    , const wxString& category, const wxString& subcategory, const wxString& notes)
 {
-    return Add_Trans(account_name, Model_Checking::DEPOSIT, date, payee, value, category, subcategory);
+    return Add_Trans(account_name, Model_Checking::DEPOSIT, date, payee, value, category, subcategory, notes);
 }
 
 int DB_Init_Model::Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee
-    , double value, const wxString& category, const wxString& subcategory)
+    , double value, const wxString& category, const wxString& subcategory, const wxString& notes)
 {
-    return Add_Trans(account_name, Model_Checking::WITHDRAWAL, date, payee, value, category, subcategory);
+    return Add_Trans(account_name, Model_Checking::WITHDRAWAL, date, payee, value, category, subcategory, notes);
 }
 
 int DB_Init_Model::Add_Trans_Transfer(const wxString& account_name, const wxDateTime& date, const wxString& to_account, double value
@@ -531,6 +553,18 @@ int DB_Init_Model::Add_Stock_Entry(int account_id, const wxDate& purchase_date, 
     return Model_Stock::instance().save(entry);
 }
 
+int DB_Init_Model::Add_Stock_Entry(const wxString& account_name, const wxDate& purchase_date, double num_shares
+    , double purchase_price, double commission, double current_price, double value
+    , const wxString& stock_name, const wxString& stock_symbol, const wxString& notes)
+{
+    if (m_account_name != account_name)
+    {
+        m_account_name = account_name;
+        m_account_id = Get_account_id(account_name);
+    }
+    return Add_Stock_Entry(m_account_id, purchase_date, num_shares, purchase_price, commission, current_price, value, stock_name, stock_symbol, notes);
+}
+
 int DB_Init_Model::Add_StockHistory_Entry(const wxString& stock_symbol, const wxDateTime& date, double value, int upd_type)
 {
     Model_StockHistory::Data* entry = Model_StockHistory::instance().create();
@@ -545,6 +579,23 @@ void DB_Init_Model::ShowMessage(wxString msg)
 {
     wxMessageBox(msg, "MMEX_Table Data Initialisation", wxOK | wxICON_WARNING, wxTheApp->GetTopWindow());
 }
+
+bool DB_Init_Model::PayeeNotExist(const wxString& payee_name)
+{
+    Model_Payee::Data_Set list = Model_Payee::instance().find(Model_Payee::PAYEENAME(payee_name));
+    if (list.size() == 0)
+        return true;
+    else
+        return false;
+}
+
+void DB_Init_Model::SetCurrencyExchangeRate(const wxString& currency_symbol, double rate)
+{
+    Model_Currency::Data* currency = Model_Currency::instance().GetCurrencyRecord(currency_symbol);
+    currency->BASECONVRATE = rate;
+    Model_Currency::instance().save(currency);
+}
+
 //----------------------------------------------------------------------------
 
 template <class Value_Type>

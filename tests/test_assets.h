@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 James Higley
-Copyright (C) 2013 Stefano Giorgio
+Copyright (C) 2013..2015 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@ class Test_Asset : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST(test_remove);
     CPPUNIT_TEST(test_dialog);
     CPPUNIT_TEST(test_assetpanel);
+    CPPUNIT_TEST(test_trans_user_panel);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -57,4 +58,5 @@ private:
     void test_remove();
     void test_dialog();
     void test_assetpanel();
+    void test_trans_user_panel();
 };

@@ -68,7 +68,7 @@ private:
     void OnListKeyDown(wxListEvent& event);
     void OnListItemSelected(wxListEvent& event);
 
-    mmStocksPanel* stock_panel_;
+    mmStocksPanel* m_stock_panel;
     enum EColumn
     {
         COL_ICON = 0,
@@ -126,11 +126,13 @@ public:
     void OnRefreshQuotes(wxCommandEvent& event);
     //Unhide the Edit and Delete buttons if any record selected
     void enableEditDeleteButtons(bool en);
-    void OnListItemActivated(int selectedIndex);
-    void OnListItemSelected(int selectedIndex);
-    //void OnViewPopupSelected(wxCommandEvent& event);
+    void ListItemActivated(int selectedIndex);
+    void AddStockTransaction(int selectedIndex);
+    void ListItemSelected(int selectedIndex);
 
-    int accountID_;
+    void ViewStockTransactions(int selectedIndex);
+
+    int m_account_id;
     Model_Currency::Data * m_currency;
     void updateExtraStocksData(int selIndex);
     wxStaticText* stock_details_short_;

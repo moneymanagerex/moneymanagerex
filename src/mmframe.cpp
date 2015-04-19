@@ -81,6 +81,7 @@
 #include "model/Model_Budget.h"
 #include "model/Model_Report.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_TransferTrans.h"
 #include "model/Model_Usage.h"
 #include "search/Search.h"
 #include "transdialog.h"
@@ -715,13 +716,25 @@ void mmGUIFrame::updateNavTreeControl()
     wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), 12, 12);
     navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
     navTreeCtrl_->SetItemBold(termAccount, true);
+
     wxTreeItemId stocks = navTreeCtrl_->AppendItem(root, _("Stocks"), 15, 15);
     navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
     navTreeCtrl_->SetItemBold(stocks, true);
+    wxTreeItemId shareAccounts = navTreeCtrl_->AppendItem(root, _("Share Accounts"), 24, 24);
+    navTreeCtrl_->SetItemData(shareAccounts, new mmTreeItemData("Share Accounts"));
+    navTreeCtrl_->SetItemBold(shareAccounts, true);
 
     wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), 7, 7);
     navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
     navTreeCtrl_->SetItemBold(assets, true);
+
+    wxTreeItemId assetAccounts = navTreeCtrl_->AppendItem(root, _("Asset Accounts"), 8, 8);
+    navTreeCtrl_->SetItemData(assetAccounts, new mmTreeItemData("Asset Accounts"));
+    navTreeCtrl_->SetItemBold(assetAccounts, true);
+
+    wxTreeItemId loanAccounts = navTreeCtrl_->AppendItem(root, _("Loan Accounts"), 30, 30);
+    navTreeCtrl_->SetItemData(loanAccounts, new mmTreeItemData("Loan Accounts"));
+    navTreeCtrl_->SetItemBold(loanAccounts, true);
 
     wxTreeItemId bills = navTreeCtrl_->AppendItem(root, _("Recurring Transactions"), 2, 2);
     navTreeCtrl_->SetItemData(bills, new mmTreeItemData("Bills & Deposits"));
@@ -769,6 +782,21 @@ void mmGUIFrame::updateNavTreeControl()
                     , selectedImage, selectedImage);
                 navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
             }
+            else if (Model_Account::type(account) == Model_Account::SHARES)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
+            else if (Model_Account::type(account) == Model_Account::ASSET)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(assetAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
+            else if (Model_Account::type(account) == Model_Account::LOAN)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
             else if (Model_Account::type(account) == Model_Account::TERM)
             {
                 wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME
@@ -792,6 +820,9 @@ void mmGUIFrame::updateNavTreeControl()
         if (!navTreeCtrl_->ItemHasChildren(cardAccounts)) navTreeCtrl_->Delete(cardAccounts);
         if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
         if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
+        if (!navTreeCtrl_->ItemHasChildren(shareAccounts)) navTreeCtrl_->Delete(shareAccounts);
+        if (!navTreeCtrl_->ItemHasChildren(assetAccounts)) navTreeCtrl_->Delete(assetAccounts);
+        if (!navTreeCtrl_->ItemHasChildren(loanAccounts)) navTreeCtrl_->Delete(loanAccounts);
     }
     windowsFreezeThaw(navTreeCtrl_);
     navTreeCtrl_->SelectItem(root);
@@ -1648,6 +1679,7 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Budget::instance(m_db.get()));
     m_all_models.push_back(&Model_Report::instance(m_db.get()));
     m_all_models.push_back(&Model_Attachment::instance(m_db.get()));
+    m_all_models.push_back(&Model_TransferTrans::instance(m_db.get()));
 }
 
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)

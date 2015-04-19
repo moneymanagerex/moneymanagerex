@@ -21,6 +21,7 @@
 #include "Model_Account.h"
 #include "Model_Payee.h"
 #include "Model_Category.h"
+#include "Model_TransferTrans.h"
 
 const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES = 
 {
@@ -499,4 +500,14 @@ const wxString Model_Checking::Full_Data::to_json()
     json::Writer::Write(o, ss);
 
     return ss.str();
+}
+
+const bool Model_Checking::foreignTransaction(const Data& data)
+{
+    return (data.TOACCOUNTID > 0) && ((data.TRANSCODE == all_type()[DEPOSIT]) || (data.TRANSCODE == all_type()[WITHDRAWAL]));
+}
+
+const bool Model_Checking::foreignTransactionAsTransfer(const Data& data)
+{
+    return foreignTransaction(data) && (data.TOACCOUNTID == Model_TransferTrans::AS_TRANSFER);
 }

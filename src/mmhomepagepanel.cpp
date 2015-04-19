@@ -564,13 +564,26 @@ void mmHomePagePanel::getData()
     std::map<int, std::pair<double, double> > accountStats;
     get_account_stats(accountStats);
 
-    m_frames["ACCOUNTS_INFO"] = displayAccounts(tBalance, accountStats);
+    m_frames["BANK_ACCOUNTS_INFO"] = displayAccounts(tBalance, accountStats);
     m_frames["CARD_ACCOUNTS_INFO"] = displayAccounts(cardBalance, accountStats, Model_Account::CREDIT_CARD);
     tBalance += cardBalance;
 
     double termBalance = 0.0;
     m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
     tBalance += termBalance;
+
+    double shareBalance = 0.0;
+    // <TMPL_VAR SHARE_ACCOUNTS_INFO> included in resources/home_page.hht
+    m_frames["SHARE_ACCOUNTS_INFO"] = displayAccounts(shareBalance, accountStats, Model_Account::SHARES);
+    tBalance += shareBalance;
+
+    double assetBalance = 0.0;
+    m_frames["ASSET_ACCOUNTS_INFO"] = displayAccounts(assetBalance, accountStats, Model_Account::ASSET);
+    tBalance += assetBalance;
+
+    double loanBalance = 0.0;
+    m_frames["LOAN_ACCOUNTS_INFO"] = displayAccounts(loanBalance, accountStats, Model_Account::LOAN);
+    tBalance += loanBalance;
 
     //Stocks
     wxString stocks = "";
@@ -628,6 +641,10 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
         if (ignoreFuture && Model_Checking::TRANSDATE(trx).IsLaterThan(today))
             continue; //skip future dated transactions
 
+        // Do not include asset or stock transfers in income expense calculations.
+        if (Model_Checking::foreignTransactionAsTransfer(trx))
+            continue;
+
         if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) this->countFollowUp_++;
 
         accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
@@ -663,6 +680,10 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
             if (Model_Checking::TRANSDATE(pBankTransaction).IsLaterThan(date_range->today()))
                 continue; //skip future dated transactions
         }
+        
+        // Do not include asset or stock transfers in income expense calculations.
+        if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction))
+            continue;
 
         // We got this far, get the currency conversion rate for this account
         Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);
@@ -679,14 +700,26 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 /* Accounts */
 const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
 {
-    bool type_is_bank = type == Model_Account::CHECKING || type == Model_Account::CREDIT_CARD,
-         credit_card = type == Model_Account::CREDIT_CARD;
+    bool type_bank = type == Model_Account::CHECKING;
+    bool type_term = type == Model_Account::TERM;
+    bool type_credit = type == Model_Account::CREDIT_CARD;
+    bool type_asset = type == Model_Account::ASSET;
+    bool type_loan = type == Model_Account::LOAN;
+
     double tReconciled = 0;
-    const wxString idStr = (type_is_bank ? (credit_card ? "CARD_ACCOUNTS_INFO" : "ACCOUNTS_INFO") : "TERM_ACCOUNTS_INFO");
+    const wxString idStr = (type_bank ? "BANK_ACCOUNTS_INFO"
+        : (type_term ? "TERM_ACCOUNTS_INFO"
+        : (type_credit ? "CARD_ACCOUNTS_INFO"
+        : (type_asset ? "ASSET_ACCOUNTS_INFO"
+        : (type_loan ? "LOAN_ACCOUNTS_INFO" : "SHARE_ACCOUNTS_INFO")))));
     wxString output = "<table class = 'sortable table'>\n";
     output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
     output += "<thead><tr><th nowrap>";
-    output += (type_is_bank ? (credit_card ? _("Credit Card Accounts") : _("Bank Account")) : _("Term Account"));
+    output += (type_bank ? _("Bank Account")
+        : (type_term ? _("Term Account")
+        : (type_credit ? _("Credit Card Accounts")
+        : (type_asset ? _("Asset Accounts")
+        : (type_loan ? _("Loan Accounts") : _("Share Accounts"))))));
 
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
     output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";

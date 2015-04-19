@@ -36,6 +36,8 @@ public:
     void OnDuplicateAsset(wxCommandEvent& event);
 	void OnOrganizeAttachments(wxCommandEvent& event);
 	void OnOpenAttachment(wxCommandEvent& event);
+    void OnAddAssetTrans(wxCommandEvent& WXUNUSED(event));
+    void OnViewAssetTrans(wxCommandEvent& WXUNUSED(event));
 
     void doRefreshItems(int trx_id = -1);
 
@@ -59,6 +61,8 @@ private:
 
     enum {
         MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1200,
+        MENU_TREEPOPUP_ADDTRANS,
+        MENU_TREEPOPUP_VIEWTRANS,
         MENU_TREEPOPUP_EDIT,
         MENU_TREEPOPUP_DELETE,
         MENU_ON_DUPLICATE_TRANSACTION,
@@ -84,6 +88,9 @@ public:
 
     wxString BuildPage() const { return m_listCtrlAssets->BuildPage(_("Assets")); }
 
+    void AddAssetTrans(const int& selected_index);
+    void ViewAssetTrans(const int& selected_index);
+
 private:
     void enableEditDeleteButtons(bool enable);
     void OnSearchTxtEntered(wxCommandEvent& event);
@@ -108,6 +115,8 @@ private:
     void OnEditAsset(wxCommandEvent& event);
 	void OnOpenAttachment(wxCommandEvent& event);
     void OnMouseLeftDown ( wxMouseEvent& event );
+    void OnAddAssetTrans(wxCommandEvent& event);
+    void OnViewAssetTrans(wxCommandEvent& event);
 
     void OnViewPopupSelected(wxCommandEvent& event);
     void sortTable();

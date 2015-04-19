@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 James Higley
-Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2014..2015 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,7 +25,10 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "test_stocks.h"
 #include "stockdialog.h"
+#include "stock_transdialog.h"
 #include "stockspanel.h"
+#include "mmcheckingpanel.h"
+#include "model/Model_TransferTrans.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -62,8 +65,40 @@ void Test_Stock::setUp()
    
     m_test_db.Open(m_test_db_filename);
     m_dbmodel = new DB_Init_Model();
+
+    m_test_db.Begin();
     m_dbmodel->Init_Model_Tables(&m_test_db);
-    m_dbmodel->Init_Model_Stocks(&m_test_db);
+    m_dbmodel->Set_Stock_Columns(&m_test_db);
+    m_dbmodel->Set_Checking_Columns(&m_test_db);
+
+    if (!Model_Account::Exist("Savings")) m_dbmodel->Add_Bank_Account("Savings", 10000);
+    if (!Model_Account::Exist("Cheque"))  m_dbmodel->Add_Bank_Account("Cheque", 5000, "", false, "USD");
+    if (!Model_Account::Exist("Visa"))    m_dbmodel->Add_CreditCard_Account("Visa", -1000);
+    if (!Model_Account::Exist("Mastercard")) m_dbmodel->Add_CreditCard_Account("Mastercard", -2000);
+    if (!Model_Account::Exist("Insurance"))  m_dbmodel->Add_Term_Account("Insurance");
+    if (!Model_Account::Exist("ACME Corp"))  m_dbmodel->Add_Term_Account("ACME Corp");
+    if (!Model_Account::Exist("Yahoo Finance"))  m_dbmodel->Add_Investment_Account("Yahoo Finance");
+    if (!Model_Account::Exist("Google Finance")) m_dbmodel->Add_Investment_Account("Google Finance");
+
+    if (m_dbmodel->PayeeNotExist("AMP"))
+    {
+        m_dbmodel->Add_Payee("AMP");
+
+        int cat_id = m_dbmodel->Add_Category("Share");
+        m_dbmodel->Add_Subcategory(cat_id, "Purchase");
+        m_dbmodel->Add_Subcategory(cat_id, "Sale");
+        m_dbmodel->Add_Subcategory(cat_id, "Dividend");
+
+        m_dbmodel->Add_Payee_Category("AMP", "Share", "Purchase");
+    }
+
+    if (m_dbmodel->PayeeNotExist("Yahoo Finance"))
+    {
+        m_dbmodel->Add_Payee("Yahoo Finance");
+    }
+
+    m_dbmodel->SetCurrencyExchangeRate("USD", 1.5);
+    m_test_db.Commit();
 }
 
 void Test_Stock::tearDown()
@@ -73,24 +108,19 @@ void Test_Stock::tearDown()
     delete m_dbmodel;
 }
 
-void Test_Stock::Test_Add_Stock_Dialog()
+void Test_Stock::Test_Add_StockTrans_Dialog()
 {
-    m_dbmodel->Add_Investment_Account("ACME Corp");
-    int account_id = m_dbmodel->Add_Investment_Account("AMP");
-    m_dbmodel->Add_Investment_Account("Qwerty Keyboards");
+    // Create a stock entry
+    int stock_id = m_dbmodel->Add_Stock_Entry("Yahoo Finance", wxDateTime::Now().Subtract(wxDateSpan::Years(2)), 1000, 4.5, 500, 4.5, 5000, "AMP", "AMP.AX", "AMP Shares");
+    Model_Stock::Data* stock_entry = Model_Stock::instance().get(stock_id);
 
-    // create a new entry using the dialog.
-    mmStockDialog* dlg = new mmStockDialog(m_base_frame, 0, account_id);
+    // create a new entry transaction using the dialog.
+    mmStockTransDialog* dlg = new mmStockTransDialog(m_base_frame, stock_entry, stock_entry->HELDAT);
 
     int id = dlg->ShowModal();
-    if (id == wxID_CANCEL)
+    while (id == wxID_SAVE)
     {
-        wxMessageBox("Stock Dialog Canclled", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
-    }
-    if (id == wxID_OK)
-    {
-        Model_Stock::Data_Set stock_table = Model_Stock::instance().all();
-        CPPUNIT_ASSERT(stock_table.size() > 0);
+        id = dlg->ShowModal();
     }
 }
 
@@ -100,50 +130,58 @@ void Test_Stock::Test_Edit_Stock_Dialog()
     if (stock_table.size() < 1) return;
 
     Model_Stock::Data stock_entry = stock_table.at(stock_table.size() - 1);
-    double commission = stock_entry.COMMISSION;
-    double current_price = stock_entry.CURRENTPRICE;
-    double num_shares = stock_entry.NUMSHARES;
-    double purchase_price = stock_entry.PURCHASEPRICE;
+    //double commission = stock_entry.COMMISSION;
+    //double current_price = stock_entry.CURRENTPRICE;
+    //double num_shares = stock_entry.NUMSHARES;
+    //double purchase_price = stock_entry.PURCHASEPRICE;
 
     mmStockDialog* dlg = new mmStockDialog(m_base_frame, &stock_entry, stock_entry.HELDAT);
     int id = dlg->ShowModal();
-    if (id == wxID_CANCEL)
+    while (id == wxID_SAVE)
     {
-        wxMessageBox("Stock Dialog Canclled", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
+        id = dlg->ShowModal();
     }
-    else if (id == wxID_OK)
-    {
-        stock_table = Model_Stock::instance().all();
-        Model_Stock::Data new_stock_entry = stock_table.at(stock_table.size() - 1);
 
-        CPPUNIT_ASSERT(stock_entry.HELDAT == m_dbmodel->Get_account_id("AMP"));
-        CPPUNIT_ASSERT(new_stock_entry.COMMISSION == commission);
-        CPPUNIT_ASSERT(new_stock_entry.CURRENTPRICE == current_price);
-        CPPUNIT_ASSERT(new_stock_entry.NUMSHARES == num_shares);
-        CPPUNIT_ASSERT(new_stock_entry.PURCHASEPRICE == purchase_price);
-    }
+    //if (saves > 0)
+    //{
+    //    stock_table = Model_Stock::instance().all();
+    //    Model_Stock::Data new_stock_entry = stock_table.at(stock_table.size() - 1);
+
+    //    CPPUNIT_ASSERT(stock_entry.HELDAT == m_dbmodel->Get_account_id("Yahoo Finance"));
+    //    CPPUNIT_ASSERT(new_stock_entry.COMMISSION == commission);
+    //    CPPUNIT_ASSERT(new_stock_entry.CURRENTPRICE == current_price);
+    //    CPPUNIT_ASSERT(new_stock_entry.NUMSHARES == num_shares);
+    //    CPPUNIT_ASSERT(new_stock_entry.PURCHASEPRICE == purchase_price);
+    //}
 }
 
 void Test_Stock::Test_Stocks_Panel()
 {
-    // Create a new frame anchored to the base frame.
+    /* Get the Stock Portfolio Account */
+    int stock_account_id = m_dbmodel->Get_account_id("Yahoo Finance");
+
+    /* Now to display the two rcords. */
+
+    // Create the stocks frame anchored to the base frame, containing the stocks panel.
     TestFrameBase* stocks_frame = new TestFrameBase(m_base_frame, 670, 400);
+    new mmStocksPanel(stock_account_id, stocks_frame);
     stocks_frame->Show();
 
-    int stock_Account_id = m_dbmodel->Get_account_id("AMP");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(5)), 1000, 4.2575, 0, 0, 0, "AMP Initial Share Purchase", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Months(6)), 9550, 5.2575, 0, 0, 0, "AMP Suplement Purchase", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(4)), 5, 5.2775, 0, 0, 0, "DRP", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(3)), 10, 6.1575, 0, 0, 0, "DRP ", "amp.ax");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(2)), 100, 5.4575, 0, 0, 0, "DRP", "AMP.AX");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(1)), 1000, 4.2775, 0, 0, 0, "DRP", "AMP.ax");
-    
-    // Create the panel under test
-    mmStocksPanel* stocks_panel = new mmStocksPanel(stock_Account_id, stocks_frame);
-    stocks_panel->Show();
+    // Create the account frame anchored to the base frame, containing the account panel.
+    TestFrameBase* savings_account_frame = new TestFrameBase(m_base_frame, 670, 400);
+    new mmCheckingPanel(savings_account_frame, 0, m_dbmodel->Get_account_id("Savings"));
+    savings_account_frame->Show();
 
-    // Anchor the panel. Otherwise it will disappear.
-    wxMessageBox("Please Examine: Stocks Panel.\n\nContinue other tests ...",
-        "Testing: Stocks Panel", wxOK, wxTheApp->GetTopWindow());
+    // Create the account frame anchored to the base frame, containing the account panel.
+    TestFrameBase* cheque_account_frame = new TestFrameBase(m_base_frame, 670, 400);
+    new mmCheckingPanel(cheque_account_frame, 0, m_dbmodel->Get_account_id("Cheque"));
+    cheque_account_frame->Show();
+
+    // Anchor the panel. Otherwise it will disappear in the test environment.
+    wxMessageBox("Please Examine:\n\n"
+        "Stocks Panel,\n"
+        "AUD Savings Account,      USD Cheque Account\n"
+        "\nContinue other tests ...",
+        "Testing: Shares using Stocks Panel", wxOK, wxTheApp->GetTopWindow());
 }
 //--------------------------------------------------------------------------

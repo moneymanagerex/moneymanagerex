@@ -217,7 +217,8 @@ void mmTransDialog::dataToControls()
                 payee_label_->SetLabelText(_("From"));
 
             account_label_->SetLabelText(_("Account"));
-            m_trx_data.TOACCOUNTID = -1;
+            if (!Model_Checking::foreignTransaction(m_trx_data))
+                m_trx_data.TOACCOUNTID = -1;
 
             wxArrayString all_payees = Model_Payee::instance().all_payee_names();
             if (!all_payees.empty())
@@ -300,6 +301,15 @@ void mmTransDialog::dataToControls()
 
     if (!skip_tooltips_init_)
         setTooltips();
+
+    // Disable these controls when the transaction belongs to an asset or a stock.
+    if (Model_Checking::foreignTransaction(m_trx_data) && (!m_new_trx || m_duplicate))
+    {
+        textAmount_ ->Enable(false);
+        toTextAmount_->Enable(false);
+        cSplit_->Enable(false);
+        //transaction_type_->Enable(false);
+    }
 }
 
 void mmTransDialog::CreateControls()
@@ -543,7 +553,8 @@ bool mmTransDialog::validateData()
         }
         m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
         m_trx_data.PAYEEID = payee->PAYEEID;
-        m_trx_data.TOACCOUNTID = -1;
+        if (!Model_Checking::foreignTransaction(m_trx_data))
+            m_trx_data.TOACCOUNTID = -1;
 
         payee->CATEGID = m_trx_data.CATEGID;
         payee->SUBCATEGID = m_trx_data.SUBCATEGID;

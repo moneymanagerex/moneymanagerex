@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 James Higley
-Copyright (C) 2013 Stefano Giorgio
+Copyright (C) 2013..2015 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ class DB_Init_Model;
 class Test_Stock : public CPPUNIT_NS::TestFixture
 {
     CPPUNIT_TEST_SUITE(Test_Stock);
-    CPPUNIT_TEST(Test_Add_Stock_Dialog);
+    CPPUNIT_TEST(Test_Add_StockTrans_Dialog);
     CPPUNIT_TEST(Test_Edit_Stock_Dialog);
     CPPUNIT_TEST(Test_Stocks_Panel);
     CPPUNIT_TEST_SUITE_END();
@@ -48,7 +48,7 @@ private:
 
 private:
     // Test cases
-    void Test_Add_Stock_Dialog();
+    void Test_Add_StockTrans_Dialog();
     void Test_Edit_Stock_Dialog();
     void Test_Stocks_Panel();
 };

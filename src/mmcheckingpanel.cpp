@@ -37,7 +37,10 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Category.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_TransferTrans.h"
 #include "billsdepositsdialog.h"
+#include "assetdialog.h"
+#include "stock_transdialog.h"
 
 #include "../resources/reconciled.xpm"
 #include "../resources/unreconciled.xpm"
@@ -515,7 +518,17 @@ void mmCheckingPanel::CreateControls()
 //----------------------------------------------------------------------------
 wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) const
 {
-    return wxString::Format(_("Account View : %s"), account.ACCOUNTNAME);
+    wxString heading = _("Account : %s");
+    if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::TERM])
+        heading = _("Term Account : %s");
+    else if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::SHARES])
+        heading = _("Share Account : %s");
+    else if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::ASSET])
+        heading = _("Asset Account : %s");
+    else if (account.ACCOUNTTYPE == Model_Account::all_type()[Model_Account::LOAN])
+        heading = _("Loan Account : %s");
+
+    return wxString::Format(heading, account.ACCOUNTNAME);
 }
 
 wxString mmCheckingPanel::BuildPage() const
@@ -1070,6 +1083,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         if (!tran.has_split())
             have_category = true;
     }
+
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW2, _("&New Transaction"));
 
@@ -1138,6 +1152,14 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     subGlobalOpMenu->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP_ALL, _("as needing Followup"));
     subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKDUPLICATE_ALL, _("as Duplicate"));
     menu.Append(MENU_SUBMENU_MARK_ALL, _("Mark all being viewed"), subGlobalOpMenu);
+
+    // Disable menu items not ment for foreign transactions
+    if (Model_Checking::foreignTransaction(m_cp->m_trans.at(m_selectedIndex)))
+    {
+        menu.Enable(MENU_ON_COPY_TRANSACTION, false);
+        menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
+        menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
+    }
 
     PopupMenu(&menu, event.GetPosition());
     this->SetFocus();
@@ -1512,6 +1534,11 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
             long transID = i.TRANSID;
             if (GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             {
+                if (Model_Checking::foreignTransaction(i))
+                {
+                    Model_TransferTrans::RemoveTransferEntry(transID);
+                }
+
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
@@ -1530,12 +1557,36 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selectedIndex < 0) return;
+    Model_Checking::Data checking_entry = m_cp->m_trans[m_selectedIndex];
+    int transaction_id = checking_entry.TRANSID;
 
-    int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
-    mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id);
-    if (dlg.ShowModal() == wxID_OK)
+    if (Model_Checking::foreignTransaction(checking_entry))
     {
-        refreshVisualList(transaction_id);
+        Model_TransferTrans::Data transfer_entry = Model_TransferTrans::TransferEntry(transaction_id);
+        if (transfer_entry.TABLETYPE == Model_TransferTrans::all_table_type()[Model_TransferTrans::STOCKS])
+        {
+            mmStockTransDialog dlg(this, &transfer_entry, &checking_entry);
+            if (dlg.ShowModal() == wxID_OK)
+            {
+                refreshVisualList(transaction_id);
+            }
+        }
+        else
+        {
+            mmAssetDialog dlg(this, &transfer_entry, &checking_entry);
+            if (dlg.ShowModal() == wxID_OK)
+            {
+                refreshVisualList(transaction_id);
+            }
+        }
+    }
+    else
+    {
+        mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id);
+        if (dlg.ShowModal() == wxID_OK)
+        {
+            refreshVisualList(transaction_id);
+        }
     }
     topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
 }
