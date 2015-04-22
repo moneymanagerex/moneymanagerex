@@ -49,7 +49,7 @@ public:
     static mmIniOptions& instance();
     void loadOptions();
 
-    int account_image_id(int account_id);
+    const int account_image_id(int account_id, bool def = false);
     int html_font_size_;
 
     bool budgetFinancialYears_;
