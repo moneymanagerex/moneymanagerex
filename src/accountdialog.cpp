@@ -392,17 +392,15 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
     wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY);
     ev.SetEventObject( this );
 
-    //Skip all images before custom images
-    int k = 21;
     wxMenu* mainMenu = new wxMenu;
-    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST, _("Default Image"));
-    menuItem->SetBitmap(m_imageList->GetBitmap(mmIniOptions::instance().account_image_id(this->m_account->ACCOUNTID)));
+    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + img::MONEY_DOLLAR_XPM -1, _("Default Image"));
+    menuItem->SetBitmap(m_imageList->GetBitmap(mmIniOptions::instance().account_image_id(this->m_account->ACCOUNTID, true)));
     mainMenu->Append(menuItem);
 
-    for (int i = k; i < m_imageList->GetImageCount(); ++i)
+    for (int i = img::MONEY_DOLLAR_XPM; i < img::MAX_XPM; ++i)
     {
         menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i
-            , wxString::Format(_("Image #%i"), i - k + 1));
+            , wxString::Format(_("Image #%i"), i - img::MONEY_DOLLAR_XPM + 1));
         menuItem->SetBitmap(m_imageList->GetBitmap(i));
         mainMenu->Append(menuItem);
     }
@@ -413,13 +411,15 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
 
 void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
 {
-    int selectedImage = event.GetId() - wxID_HIGHEST;
+    int selectedImage = (event.GetId() - wxID_HIGHEST) - img::MONEY_DOLLAR_XPM + 1;
+    int image_id = mmIniOptions::instance().account_image_id(this->m_account->ACCOUNTID, true);
 
-    Model_Infotable::instance().Set(wxString::Format("ACC_IMAGE_ID_%i", this->m_account->ACCOUNTID), selectedImage);
-    if (selectedImage == 0)
-        selectedImage = mmIniOptions::instance().account_image_id(this->m_account->ACCOUNTID);
+    Model_Infotable::instance().Set(wxString::Format("ACC_IMAGE_ID_%i", this->m_account->ACCOUNTID)
+        , selectedImage);
+    if (selectedImage != 0)
+        image_id = selectedImage + img::MONEY_DOLLAR_XPM - 1;
 
-    m_bitmapButtons->SetBitmapLabel(m_imageList->GetBitmap(selectedImage));
+    m_bitmapButtons->SetBitmapLabel(m_imageList->GetBitmap(image_id));
 
 }
 

@@ -700,38 +700,38 @@ void mmGUIFrame::updateNavTreeControl()
     cleanupNavTreeControl(root);
     navTreeCtrl_->DeleteAllItems();
 
-    root = navTreeCtrl_->AddRoot(_("Home Page"), 0, 0);
+    root = navTreeCtrl_->AddRoot(_("Home Page"), img::HOUSE_XPM, img::HOUSE_XPM);
     navTreeCtrl_->SetItemData(root, new mmTreeItemData("Home Page"));
     navTreeCtrl_->SetItemBold(root, true);
     navTreeCtrl_->SetFocus();
 
-    wxTreeItemId accounts = navTreeCtrl_->AppendItem(root, _("Bank Accounts"), 9, 9);
+    wxTreeItemId accounts = navTreeCtrl_->AppendItem(root, _("Bank Accounts"), img::MONEYACCOUNT_XPM, img::MONEYACCOUNT_XPM);
     navTreeCtrl_->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
     navTreeCtrl_->SetItemBold(accounts, true);
-    wxTreeItemId cardAccounts = navTreeCtrl_->AppendItem(root, _("Credit Card Accounts"), 18, 18);
+    wxTreeItemId cardAccounts = navTreeCtrl_->AppendItem(root, _("Credit Card Accounts"), img::CARD_ACC_XPM, img::CARD_ACC_XPM);
     navTreeCtrl_->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
     navTreeCtrl_->SetItemBold(cardAccounts, true);
 
-    wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), 12, 12);
+    wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_XPM, img::TERMACCOUNT_XPM);
     navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
     navTreeCtrl_->SetItemBold(termAccount, true);
-    wxTreeItemId stocks = navTreeCtrl_->AppendItem(root, _("Stocks"), 15, 15);
+    wxTreeItemId stocks = navTreeCtrl_->AppendItem(root, _("Stocks"), img::STOCK_ACC_XPM, img::STOCK_ACC_XPM);
     navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
     navTreeCtrl_->SetItemBold(stocks, true);
 
-    wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), 7, 7);
+    wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), img::CAR_XPM, img::CAR_XPM);
     navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
     navTreeCtrl_->SetItemBold(assets, true);
 
-    wxTreeItemId bills = navTreeCtrl_->AppendItem(root, _("Recurring Transactions"), 2, 2);
+    wxTreeItemId bills = navTreeCtrl_->AppendItem(root, _("Recurring Transactions"), img::SCHEDULE_XPM, img::SCHEDULE_XPM);
     navTreeCtrl_->SetItemData(bills, new mmTreeItemData("Bills & Deposits"));
     navTreeCtrl_->SetItemBold(bills, true);
 
-    wxTreeItemId budgeting = navTreeCtrl_->AppendItem(root, _("Budget Setup"), 3, 3);
+    wxTreeItemId budgeting = navTreeCtrl_->AppendItem(root, _("Budget Setup"), img::CALENDAR_XPM, img::CALENDAR_XPM);
     navTreeCtrl_->SetItemData(budgeting, new mmTreeItemData("Budgeting"));
     navTreeCtrl_->SetItemBold(budgeting, true);
 
-    wxTreeItemId reports = navTreeCtrl_->AppendItem(root, _("Reports"), 4, 4);
+    wxTreeItemId reports = navTreeCtrl_->AppendItem(root, _("Reports"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemBold(reports, true);
     navTreeCtrl_->SetItemData(reports, new mmTreeItemData("Reports"));
 
@@ -739,7 +739,7 @@ void mmGUIFrame::updateNavTreeControl()
 
     ///////////////////////////////////////////////////////////////////
 
-    wxTreeItemId help = navTreeCtrl_->AppendItem(root, _("Help"), 5, 5);
+    wxTreeItemId help = navTreeCtrl_->AppendItem(root, _("Help"), img::HELP_XPM, img::HELP_XPM);
     navTreeCtrl_->SetItemData(help, new mmTreeItemData("Help"));
     navTreeCtrl_->SetItemBold(help, true);
 

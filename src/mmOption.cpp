@@ -20,6 +20,7 @@
 #include "mmOption.h"
 #include "import_export/univcsvdialog.h"
 #include "constants.h"
+#include "images_list.h"
 #include "singleton.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
@@ -88,15 +89,15 @@ void mmIniOptions::loadOptions()
     transDateDefault_           = Model_Setting::instance().GetIntSetting("TRANSACTION_DATE_DEFAULT", 0);
 }
 
-int mmIniOptions::account_image_id(int account_id)
+const int mmIniOptions::account_image_id(int account_id, bool def)
 {
-    int selectedImage = Model_Infotable::instance().GetIntInfo(wxString::Format("ACC_IMAGE_ID_%i", account_id), 99);
-    //TODO: What size of the images spool?
-    if (selectedImage > 0 && selectedImage < 99)
-        return selectedImage;
+    int max = img::MAX_XPM - img::MONEY_DOLLAR_XPM;
+    int min = 1;
+    int custom_img_id = Model_Infotable::instance().GetIntInfo(wxString::Format("ACC_IMAGE_ID_%i", account_id), 0);
+    if (!def && (custom_img_id >= min && custom_img_id <= max))
+        return custom_img_id + img::MONEY_DOLLAR_XPM - 1;
 
-    selectedImage = 9;
-    int t = 0, s = 0;
+    int selectedImage = img::MONEYACCOUNT_XPM; //Default value
     wxString acctStatus = VIEW_ACCOUNTS_OPEN_STR;
     Model_Account::TYPE acctType = Model_Account::CHECKING;
     bool favorite = true;
@@ -108,21 +109,33 @@ int mmIniOptions::account_image_id(int account_id)
         acctStatus = account->STATUS;
         favorite = account->FAVORITEACCT == "TRUE";
     }
+    bool closed = acctStatus == "Closed";
 
-    if (acctStatus == "Closed")
-        s = 2;
-    else if (favorite)
-        s = 1;
-
-    if (acctType == Model_Account::TERM) 
-        t = 3;
-    else if (acctType == Model_Account::INVESTMENT)
-        t = 6;
-    else if (acctType == Model_Account::CREDIT_CARD)
-        t = 9;
-
-    selectedImage += t + s;
-
+    switch (acctType)
+    {
+    case (Model_Account::CHECKING) :
+        if (closed) selectedImage = img::SAVINGS_ACC_CLOSED_XPM;
+        else if (favorite) selectedImage = img::SAVINGS_ACC_FAVORITE_XPM;
+        else selectedImage = img::MONEYACCOUNT_XPM;
+        break;
+    case (Model_Account::TERM) :
+        if (closed) selectedImage = img::TERM_ACC_CLOSED_XPM;
+        else if (favorite) selectedImage = img::TERM_ACC_FAVORITE_XPM;
+        else  selectedImage = img::TERMACCOUNT_XPM;
+        break;
+    case (Model_Account::INVESTMENT) :
+        if (closed) selectedImage = img::STOCK_ACC_CLOSED_XPM;
+        else if (favorite) selectedImage = img::STOCK_ACC_FAVORITE_XPM;
+        else  selectedImage = img::STOCK_ACC_XPM;
+        break;
+    case (Model_Account::CREDIT_CARD) :
+        if (closed) selectedImage = img::CARD_ACC_CLOSED_XPM;
+        else if (favorite)   selectedImage = img::CARD_ACC_FAVORITE_XPM;
+        else   selectedImage = img::CARD_ACC_XPM;
+        break;
+    default:
+        wxASSERT(false);
+    }
     return selectedImage;
 }
 

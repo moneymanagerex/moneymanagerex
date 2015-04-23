@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2012 Stefano Giorgio
- Copyright (C) 2013 Nikolay
+ Copyright (C) 2013, 2015 Nikolay
  Copyright (C) 2014 James Higley
  Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 
@@ -20,6 +20,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "images_list.h"
 #include "mmframe.h"
 #include "reports/budgetcategorysummary.h"
 #include "reports/budgetingperf.h"
@@ -79,7 +80,8 @@ const char *group_report_template = R"(
 class mmGeneralGroupReport : public mmPrintableBase
 {
 public:
-    mmGeneralGroupReport(const wxString& groupname): mmPrintableBase("mmGeneralGroupReport", _("mmGeneralGroupReport")), m_group_name(groupname)
+    mmGeneralGroupReport(const wxString& groupname): mmPrintableBase("mmGeneralGroupReport"
+        , _("mmGeneralGroupReport")), m_group_name(groupname)
     {
         m_sub_reports = Model_Report::instance().find(Model_Report::GROUPNAME(groupname));
     }
@@ -119,11 +121,13 @@ private:
 void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting)
 {
     //////////////////////////////////////////////////////////////////
-    wxTreeItemId myusage = navTreeCtrl_->AppendItem(reports, _("My Usage"), 4, 4);
+    wxTreeItemId myusage = navTreeCtrl_->AppendItem(reports
+        , _("My Usage"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(myusage, new mmTreeItemData(new mmReportMyUsage()));
 
     //////////////////////////////////////////////////////////////////
-    wxTreeItemId reportsSummary = navTreeCtrl_->AppendItem(reports, _("Monthly Summary of Accounts"), 4, 4);
+    wxTreeItemId reportsSummary = navTreeCtrl_->AppendItem(reports, _("Monthly Summary of Accounts")
+        , img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(reportsSummary, new mmTreeItemData("Monthly Summary of Accounts"
         , new mmReportSummaryByDate(this, 0)));
 
@@ -131,39 +135,43 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
     wxTreeItemId categsOverTime = navTreeCtrl_->AppendItem(reports
-        , _("Where the Money Goes"), 4, 4);
+        , _("Where the Money Goes"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(categsOverTime, new mmTreeItemData("Where the Money Goes"
         , new mmReportCategoryExpensesGoes()));
 
     this->updateReportCategoryExpensesGoesNavigation(categsOverTime);
 
     wxTreeItemId posCategs = navTreeCtrl_->AppendItem(reports
-        , _("Where the Money Comes From"), 4, 4);
+        , _("Where the Money Comes From"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(posCategs
         , new mmTreeItemData("Where the Money Comes From"
         , new mmReportCategoryExpensesComes()));
     
     this->updateReportCategoryExpensesComesNavigation(posCategs);
 
-    wxTreeItemId categs = navTreeCtrl_->AppendItem(reports, _("Categories"), 4, 4);
+    wxTreeItemId categs = navTreeCtrl_->AppendItem(reports
+        , _("Categories"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(categs
         , new mmTreeItemData("Categories - Over Time"
         , new mmReportCategoryOverTimePerformance()));
 
     this->updateReportCategoryNavigation(categs);
 
-    wxTreeItemId payeesOverTime = navTreeCtrl_->AppendItem(reports, _("Payees"), 4, 4);
+    wxTreeItemId payeesOverTime = navTreeCtrl_->AppendItem(reports
+        , _("Payees"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(payeesOverTime
         , new mmTreeItemData("Payee Report"
         , new mmReportPayeeExpenses()));
 
     this->updateReportPayeeNavigation(payeesOverTime);
 
-    wxTreeItemId incexpOverTime = navTreeCtrl_->AppendItem(reports, _("Income vs Expenses"), 4, 4);
+    wxTreeItemId incexpOverTime = navTreeCtrl_->AppendItem(reports, _("Income vs Expenses")
+        , img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(incexpOverTime, new mmTreeItemData("Income vs Expenses"
         , new mmReportIncomeExpensesAllTime()));
 
-    wxTreeItemId incexpOverTimeCalMonth = navTreeCtrl_->AppendItem(incexpOverTime, _("Last Calendar Month"), 4, 4);
+    wxTreeItemId incexpOverTimeCalMonth = navTreeCtrl_->AppendItem(incexpOverTime
+        , _("Last Calendar Month"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(incexpOverTimeCalMonth
         , new mmTreeItemData("Income vs Expenses - Last Calendar Month"
         , new mmReportIncomeExpensesLastMonth()));
@@ -171,7 +179,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     if (ignoreFuture)
     {
         wxTreeItemId incexpOverTimeCurrentMonth = navTreeCtrl_->AppendItem(incexpOverTime
-            , _("Current Month to Date"), 4, 4);
+            , _("Current Month to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(incexpOverTimeCurrentMonth
             , new mmTreeItemData("Income vs Expenses - Current Month"
             , new mmReportIncomeExpensesCurrentMonthToDate()));
@@ -179,32 +187,36 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     else
     {
         wxTreeItemId incexpOverTimeCurrentMonth = navTreeCtrl_->AppendItem(incexpOverTime
-            , _("Current Month"), 4, 4);
+            , _("Current Month"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(incexpOverTimeCurrentMonth
             , new mmTreeItemData("Income vs Expenses - Current Month"
             , new mmReportIncomeExpensesCurrentMonth()));
     }
 
-    wxTreeItemId incexpOverTimeLast30 = navTreeCtrl_->AppendItem(incexpOverTime, _("Last 30 Days"), 4, 4);
+    wxTreeItemId incexpOverTimeLast30 = navTreeCtrl_->AppendItem(incexpOverTime
+        , _("Last 30 Days"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(incexpOverTimeLast30
         , new mmTreeItemData("Income vs Expenses - Last 30 Days"
         , new mmReportIncomeExpensesLast30Days()));
 
-    wxTreeItemId incexpOverTimeLastYear = navTreeCtrl_->AppendItem(incexpOverTime, _("Last Year"), 4, 4);
+    wxTreeItemId incexpOverTimeLastYear = navTreeCtrl_->AppendItem(incexpOverTime
+        , _("Last Year"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(incexpOverTimeLastYear
         , new mmTreeItemData("Income vs Expenses - Last Year"
         , new mmReportIncomeExpensesLastYear()));
 
     if (ignoreFuture)
     {
-        wxTreeItemId incexpOverTimeCurrentYear = navTreeCtrl_->AppendItem(incexpOverTime, _("Current Year to Date"), 4, 4);
+        wxTreeItemId incexpOverTimeCurrentYear = navTreeCtrl_->AppendItem(incexpOverTime
+            , _("Current Year to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(incexpOverTimeCurrentYear
             , new mmTreeItemData("Income vs Expenses - Current Year"
             , new mmReportIncomeExpensesCurrentYearToDate()));
     }
     else
     {
-        wxTreeItemId incexpOverTimeCurrentYear = navTreeCtrl_->AppendItem(incexpOverTime, _("Current Year"), 4, 4);
+        wxTreeItemId incexpOverTimeCurrentYear = navTreeCtrl_->AppendItem(incexpOverTime
+            , _("Current Year"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(incexpOverTimeCurrentYear
             , new mmTreeItemData("Income vs Expenses - Current Year"
             , new mmReportIncomeExpensesCurrentYear()));
@@ -213,7 +225,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     if (financialYearIsDifferent())
     {
         wxTreeItemId incexpOverTimeLastFinancialYear = navTreeCtrl_->AppendItem(incexpOverTime
-            , _("Last Financial Year"), 4, 4);
+            , _("Last Financial Year"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(incexpOverTimeLastFinancialYear
             , new mmTreeItemData("Income vs Expenses - Last Financial Year"
             , new mmReportIncomeExpensesLastFinancialYear(day, month)));
@@ -221,7 +233,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         if (ignoreFuture)
         {
             wxTreeItemId incexpOverTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(incexpOverTime
-                , _("Current Financial Year to Date"), 4, 4);
+                , _("Current Financial Year to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(incexpOverTimeCurrentFinancialYear
                 , new mmTreeItemData("Income vs Expenses - Current Financial Year to Date"
                 , new mmReportIncomeExpensesCurrentFinancialYearToDate(day, month)));
@@ -229,7 +241,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         else
         {
             wxTreeItemId incexpOverTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(incexpOverTime
-                , _("Current Financial Year"), 4, 4);
+                , _("Current Financial Year"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(incexpOverTimeCurrentFinancialYear
                 , new mmTreeItemData("Income vs Expenses - Current Financial Year"
                 , new mmReportIncomeExpensesCurrentFinancialYear(day, month)));
@@ -238,11 +250,13 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
 
     ///////////////////////////////////////////////////////////////////
 
-    wxTreeItemId incexpOverTimeSpecificAccounts = navTreeCtrl_->AppendItem(reports, _("Income vs Expenses - Specific Accounts"), 4, 4);
+    wxTreeItemId incexpOverTimeSpecificAccounts = navTreeCtrl_->AppendItem(reports
+        , _("Income vs Expenses - Specific Accounts"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(incexpOverTimeSpecificAccounts, new mmTreeItemData("Income vs Expenses - Specific Accounts"
         , new mmReportIncomeExpensesAllTimeSpecificAccounts()));
 
-    wxTreeItemId incexpOverTimeCalMonthSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts, _("Last Calendar Month"), 4, 4);
+    wxTreeItemId incexpOverTimeCalMonthSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
+        , _("Last Calendar Month"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(incexpOverTimeCalMonthSpecificAccounts
         , new mmTreeItemData("Income vs Expenses - Last Calendar Month - Specific Accounts"
         , new mmReportIncomeExpensesLastMonthSpecificAccounts()));
@@ -250,7 +264,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     if (ignoreFuture)
     {
         wxTreeItemId incexpOverTimeCurrentMonthSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
-            , _("Current Month to Date"), 4, 4);
+            , _("Current Month to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(incexpOverTimeCurrentMonthSpecificAccounts
             , new mmTreeItemData("Income vs Expenses - Current Month - Specific Accounts"
             , new mmReportIncomeExpensesCurrentMonthToDateSpecificAccounts()));
@@ -258,32 +272,36 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     else
     {
         wxTreeItemId incexpOverTimeCurrentMonthSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
-            , _("Current Month"), 4, 4);
+            , _("Current Month"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(incexpOverTimeCurrentMonthSpecificAccounts
             , new mmTreeItemData("Income vs Expenses - Current Month - Specific Accounts"
             , new mmReportIncomeExpensesCurrentMonthSpecificAccounts()));
     }
 
-    wxTreeItemId incexpOverTimeLast30SpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts, _("Last 30 Days"), 4, 4);
+    wxTreeItemId incexpOverTimeLast30SpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
+        , _("Last 30 Days"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(incexpOverTimeLast30SpecificAccounts
         , new mmTreeItemData("Income vs Expenses - Last 30 Days - Specific Accounts"
         , new mmReportIncomeExpensesLast30DaysSpecificAccounts()));
 
-    wxTreeItemId incexpOverTimeLastYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts, _("Last Year"), 4, 4);
+    wxTreeItemId incexpOverTimeLastYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
+        , _("Last Year"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(incexpOverTimeLastYearSpecificAccounts
         , new mmTreeItemData("Income vs Expenses - Last Year - Specific Accounts"
         , new mmReportIncomeExpensesLastYearSpecificAccounts()));
 
     if (ignoreFuture)
     {
-        wxTreeItemId incexpOverTimeCurrentYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts, _("Current Year to Date"), 4, 4);
+        wxTreeItemId incexpOverTimeCurrentYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
+            , _("Current Year to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(incexpOverTimeCurrentYearSpecificAccounts
             , new mmTreeItemData("Income vs Expenses - Current Year - Specific Accounts"
             , new mmReportIncomeExpensesCurrentYearToDateSpecificAccounts()));
     }
     else
     {
-        wxTreeItemId incexpOverTimeCurrentYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts, _("Current Year"), 4, 4);
+        wxTreeItemId incexpOverTimeCurrentYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
+            , _("Current Year"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(incexpOverTimeCurrentYearSpecificAccounts
             , new mmTreeItemData("Income vs Expenses - Current Year - Specific Accounts"
             , new mmReportIncomeExpensesCurrentYearSpecificAccounts()));
@@ -292,7 +310,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     if (financialYearIsDifferent())
     {
         wxTreeItemId incexpOverTimeLastFinancialYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
-            , _("Last Financial Year"), 4, 4);
+            , _("Last Financial Year"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(incexpOverTimeLastFinancialYearSpecificAccounts
             , new mmTreeItemData("Income vs Expenses - Last Financial Year - Specific Accounts"
             , new mmReportIncomeExpensesLastFinancialYearSpecificAccounts(day, month)));
@@ -300,7 +318,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         if (ignoreFuture)
         {
             wxTreeItemId incexpOverTimeCurrentFinancialYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
-                , _("Current Financial Year to Date"), 4, 4);
+                , _("Current Financial Year to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(incexpOverTimeCurrentFinancialYearSpecificAccounts
                 , new mmTreeItemData("Income vs Expenses - Current Financial Year - Specific Accounts"
                 , new mmReportIncomeExpensesCurrentFinancialYearToDateSpecificAccounts(day, month)));
@@ -308,7 +326,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         else
         {
             wxTreeItemId incexpOverTimeCurrentFinancialYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
-                , _("Current Financial Year"), 4, 4);
+                , _("Current Financial Year"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(incexpOverTimeCurrentFinancialYearSpecificAccounts
                 , new mmTreeItemData("Income vs Expenses - Current Financial Year - Specific Accounts"
                 , new mmReportIncomeExpensesCurrentFinancialYearSpecificAccounts(day, month)));
@@ -324,74 +342,94 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     {
         if (!i)
         { // first loop only
-            budgetPerformance = navTreeCtrl_->AppendItem(reports, _("Budget Performance"), 4, 4);
+            budgetPerformance = navTreeCtrl_->AppendItem(reports
+                , _("Budget Performance"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance"));
 
-            budgetSetupPerformance = navTreeCtrl_->AppendItem(reports, _("Budget Category Summary"), 4, 4);
+            budgetSetupPerformance = navTreeCtrl_->AppendItem(reports
+                , _("Budget Category Summary"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance"));
         }
 
         int id = e.BUDGETYEARID;
         const wxString& name = e.BUDGETYEARNAME;
 
-        wxTreeItemId bYear = navTreeCtrl_->AppendItem(budgeting, name, 3, 3);
+        wxTreeItemId bYear = navTreeCtrl_->AppendItem(budgeting, name, img::CALENDAR_XPM, img::CALENDAR_XPM);
         navTreeCtrl_->SetItemData(bYear, new mmTreeItemData(id, true));
 
         // Only add YEARS for Budget Performance
         if (name.length() < 5)
         {
-            wxTreeItemId bYearData = navTreeCtrl_->AppendItem(budgetPerformance, name, 4, 4);
+            wxTreeItemId bYearData = navTreeCtrl_->AppendItem(budgetPerformance
+                , name, img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(bYearData, new mmTreeItemData(id, true));
         }
-        wxTreeItemId bYearSetupData = navTreeCtrl_->AppendItem(budgetSetupPerformance, name, 4, 4);
+        wxTreeItemId bYearSetupData = navTreeCtrl_->AppendItem(budgetSetupPerformance
+            , name, img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(bYearSetupData, new mmTreeItemData(id, true));
         ++i;
     }
 
     ///////////////////////////////////////////////////////////////////
-    wxTreeItemId cashFlow = navTreeCtrl_->AppendItem(reports, _("Cash Flow"), 4, 4);
+    wxTreeItemId cashFlow = navTreeCtrl_->AppendItem(reports
+        , _("Cash Flow"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(cashFlow, new mmTreeItemData("Cash Flow", new mmReportCashFlowAllAccounts()));
 
-    wxTreeItemId cashflowWithBankAccounts = navTreeCtrl_->AppendItem(cashFlow, _("Cash Flow - With Bank Accounts"), 4, 4);
-    navTreeCtrl_->SetItemData(cashflowWithBankAccounts, new mmTreeItemData("Cash Flow - With Bank Accounts", new mmReportCashFlowBankAccounts()));
+    wxTreeItemId cashflowWithBankAccounts = navTreeCtrl_->AppendItem(cashFlow
+        , _("Cash Flow - With Bank Accounts"), img::PIECHART_XPM, img::PIECHART_XPM);
+    navTreeCtrl_->SetItemData(cashflowWithBankAccounts, new mmTreeItemData("Cash Flow - With Bank Accounts"
+        , new mmReportCashFlowBankAccounts()));
 
-    wxTreeItemId cashflowWithTermAccounts = navTreeCtrl_->AppendItem(cashFlow, _("Cash Flow - With Term Accounts"), 4, 4);
-    navTreeCtrl_->SetItemData(cashflowWithTermAccounts, new mmTreeItemData("Cash Flow - With Term Accounts", new mmReportCashFlowTermAccounts()));
+    wxTreeItemId cashflowWithTermAccounts = navTreeCtrl_->AppendItem(cashFlow
+        , _("Cash Flow - With Term Accounts"), img::PIECHART_XPM, img::PIECHART_XPM);
+    navTreeCtrl_->SetItemData(cashflowWithTermAccounts, new mmTreeItemData("Cash Flow - With Term Accounts"
+        , new mmReportCashFlowTermAccounts()));
 
-    wxTreeItemId cashflowSpecificAccounts = navTreeCtrl_->AppendItem(cashFlow, _("Cash Flow - Specific Accounts"), 4, 4);
-    navTreeCtrl_->SetItemData(cashflowSpecificAccounts, new mmTreeItemData("Cash Flow - Specific Accounts", new mmReportCashFlowSpecificAccounts()));
+    wxTreeItemId cashflowSpecificAccounts = navTreeCtrl_->AppendItem(cashFlow
+        , _("Cash Flow - Specific Accounts"), img::PIECHART_XPM, img::PIECHART_XPM);
+    navTreeCtrl_->SetItemData(cashflowSpecificAccounts, new mmTreeItemData("Cash Flow - Specific Accounts"
+        , new mmReportCashFlowSpecificAccounts()));
 
-    wxTreeItemId cashflowSpecificAccountsDaily = navTreeCtrl_->AppendItem(cashFlow, _("Daily Cash Flow - Specific Accounts"), 4, 4);
-    navTreeCtrl_->SetItemData(cashflowSpecificAccountsDaily, new mmTreeItemData("Daily Cash Flow - Specific Accounts", new mmReportDailyCashFlowSpecificAccounts()));
+    wxTreeItemId cashflowSpecificAccountsDaily = navTreeCtrl_->AppendItem(cashFlow
+        , _("Daily Cash Flow - Specific Accounts"), img::PIECHART_XPM, img::PIECHART_XPM);
+    navTreeCtrl_->SetItemData(cashflowSpecificAccountsDaily, new mmTreeItemData("Daily Cash Flow - Specific Accounts"
+        , new mmReportDailyCashFlowSpecificAccounts()));
 
     ///////////////////////////////////////////////////////////////////
 
-    wxTreeItemId transactionList = navTreeCtrl_->AppendItem(reports, _("Transaction Report"), 6, 6);
+    wxTreeItemId transactionList = navTreeCtrl_->AppendItem(reports
+        , _("Transaction Report"), img::FILTER_XPM, img::FILTER_XPM);
     navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));
 
     //////////////////////////////////////////////////////////////////
 
-    wxTreeItemId stocksReportSummary = navTreeCtrl_->AppendItem(reports, _("Stocks Report"), 4, 4);
+    wxTreeItemId stocksReportSummary = navTreeCtrl_->AppendItem(reports
+        , _("Stocks Report"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(stocksReportSummary, new mmTreeItemData("Summary of Stocks"
         , new mmReportSummaryStocks()));
 
-    wxTreeItemId stocksReportLast30 = navTreeCtrl_->AppendItem(stocksReportSummary, _("Last 30 Days"), 4, 4);
+    wxTreeItemId stocksReportLast30 = navTreeCtrl_->AppendItem(stocksReportSummary
+        , _("Last 30 Days"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(stocksReportLast30, new mmTreeItemData("Stocks Report - 30 Days",
         new mmReportChartStocks(new mmLast30Days())));
 
-    wxTreeItemId stocksReport = navTreeCtrl_->AppendItem(stocksReportSummary, _("Last 365 Days"), 4, 4);
+    wxTreeItemId stocksReport = navTreeCtrl_->AppendItem(stocksReportSummary
+        , _("Last 365 Days"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(stocksReport, new mmTreeItemData("Stocks Report",
         new mmReportChartStocks(new mmLast365Days())));
 
-    wxTreeItemId stocksReportLastYear = navTreeCtrl_->AppendItem(stocksReportSummary, _("Last Year"), 4, 4);
+    wxTreeItemId stocksReportLastYear = navTreeCtrl_->AppendItem(stocksReportSummary
+        , _("Last Year"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(stocksReportLastYear, new mmTreeItemData("Stocks Report - Last Year",
         new mmReportChartStocks(new mmLastYear)));
 
-    wxTreeItemId stocksReportCurrentYear = navTreeCtrl_->AppendItem(stocksReportSummary, _("Current Year"), 4, 4);
+    wxTreeItemId stocksReportCurrentYear = navTreeCtrl_->AppendItem(stocksReportSummary
+        , _("Current Year"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(stocksReportCurrentYear, new mmTreeItemData("Stocks Report - Current Year",
         new mmReportChartStocks(new mmCurrentYear)));
 
-    wxTreeItemId stocksReportAllTime = navTreeCtrl_->AppendItem(stocksReportSummary, _("All Time"), 4, 4);
+    wxTreeItemId stocksReportAllTime = navTreeCtrl_->AppendItem(stocksReportSummary
+        , _("All Time"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(stocksReportAllTime, new mmTreeItemData("Stocks Report - All Time",
         new mmReportChartStocks()));
 
@@ -410,13 +448,15 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         bool no_group = record.GROUPNAME.empty();
         if (group_name != record.GROUPNAME && !no_group)
         {
-            group = navTreeCtrl_->AppendItem(reports, wxGetTranslation(record.GROUPNAME), 4, 4);
-            navTreeCtrl_->SetItemData(group, new mmTreeItemData(record.GROUPNAME, new mmGeneralGroupReport(record.GROUPNAME)));
+            group = navTreeCtrl_->AppendItem(reports
+                , wxGetTranslation(record.GROUPNAME), img::CUSTOMSQL_GRP_XPM, img::CUSTOMSQL_GRP_XPM);
+            navTreeCtrl_->SetItemData(group, new mmTreeItemData(record.GROUPNAME
+                , new mmGeneralGroupReport(record.GROUPNAME)));
             group_name = record.GROUPNAME;
         }
         Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
         wxTreeItemId item = navTreeCtrl_->AppendItem(no_group ? reports : group
-            , wxGetTranslation(record.REPORTNAME), 8, 8);
+            , wxGetTranslation(record.REPORTNAME), img::CUSTOMSQL_XPM, img::CUSTOMSQL_XPM);
         navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
     }
 }
@@ -426,7 +466,7 @@ void mmGUIFrame::updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categs
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
 
     wxTreeItemId categsOverTimeCalMonth = navTreeCtrl_->AppendItem(categsOverTime
-        , _("Last Calendar Month"), 4, 4);
+        , _("Last Calendar Month"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(categsOverTimeCalMonth
         , new mmTreeItemData("Where the Money Goes - Last Calendar Month"
         , new mmReportCategoryExpensesGoesLastMonth()));
@@ -434,7 +474,7 @@ void mmGUIFrame::updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categs
     if (ignoreFuture)
     {
         wxTreeItemId categsOverTimeCurrentMonth = navTreeCtrl_->AppendItem(categsOverTime
-            , _("Current Month to Date"), 4, 4);
+            , _("Current Month to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(categsOverTimeCurrentMonth
             , new mmTreeItemData("Where the Money Goes - Current Month"
             , new mmReportCategoryExpensesGoesCurrentMonthToDate()));
@@ -442,19 +482,20 @@ void mmGUIFrame::updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categs
     else
     {
         wxTreeItemId categsOverTimeCurrentMonth = navTreeCtrl_->AppendItem(categsOverTime
-            , _("Current Month"), 4, 4);
+            , _("Current Month"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(categsOverTimeCurrentMonth
             , new mmTreeItemData("Where the Money Goes - Current Month"
             , new mmReportCategoryExpensesGoesCurrentMonth()));
     }
 
     wxTreeItemId categsOverTimeLast30 = navTreeCtrl_->AppendItem(categsOverTime
-        , _("Last 30 Days"), 4, 4);
+        , _("Last 30 Days"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(categsOverTimeLast30
         , new mmTreeItemData("Where the Money Goes - Last 30 Days"
         , new mmReportCategoryExpensesGoesLast30Days()));
 
-    wxTreeItemId categsOverTimeLastYear = navTreeCtrl_->AppendItem(categsOverTime, _("Last Year"), 4, 4);
+    wxTreeItemId categsOverTimeLastYear = navTreeCtrl_->AppendItem(categsOverTime
+        , _("Last Year"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(categsOverTimeLastYear
         , new mmTreeItemData("Where the Money Goes - Last Year"
         , new mmReportCategoryExpensesGoesLastYear()));
@@ -462,7 +503,7 @@ void mmGUIFrame::updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categs
     if (ignoreFuture)
     {
         wxTreeItemId categsOverTimeCurrentYear = navTreeCtrl_->AppendItem(categsOverTime
-            , _("Current Year to Date"), 4, 4);
+            , _("Current Year to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(categsOverTimeCurrentYear
             , new mmTreeItemData("Where the Money Goes - Current Year"
             , new mmReportCategoryExpensesGoesCurrentYearToDate()));
@@ -470,7 +511,7 @@ void mmGUIFrame::updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categs
     else
     {
         wxTreeItemId categsOverTimeCurrentYear = navTreeCtrl_->AppendItem(categsOverTime
-            , _("Current Year"), 4, 4);
+            , _("Current Year"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(categsOverTimeCurrentYear
             , new mmTreeItemData("Where the Money Goes - Current Year"
             , new mmReportCategoryExpensesGoesCurrentYear()));
@@ -481,7 +522,7 @@ void mmGUIFrame::updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categs
     if (financialYearIsDifferent())
     {
         wxTreeItemId categsOverTimeLastFinancialYear = navTreeCtrl_->AppendItem(categsOverTime
-            , _("Last Financial Year"), 4, 4);
+            , _("Last Financial Year"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(categsOverTimeLastFinancialYear
             , new mmTreeItemData("Where the Money Goes - Last Financial Year"
             , new mmReportCategoryExpensesGoesLastFinancialYear(day, month)));
@@ -489,7 +530,7 @@ void mmGUIFrame::updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categs
         if (ignoreFuture)
         {
             wxTreeItemId categsOverTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(categsOverTime
-                , _("Current Financial Year to Date"), 4, 4);
+                , _("Current Financial Year to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(categsOverTimeCurrentFinancialYear
                 , new mmTreeItemData("Where the Money Goes - Current Financial Year"
                 , new mmReportCategoryExpensesGoesCurrentFinancialYearToDate(day, month)));
@@ -497,7 +538,7 @@ void mmGUIFrame::updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categs
         else
         {
             wxTreeItemId categsOverTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(categsOverTime
-                , _("Current Financial Year"), 4, 4);
+                , _("Current Financial Year"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(categsOverTimeCurrentFinancialYear
                 , new mmTreeItemData("Where the Money Goes - Current Financial Year"
                 , new mmReportCategoryExpensesGoesCurrentFinancialYear(day, month)));
@@ -510,7 +551,7 @@ void mmGUIFrame::updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCa
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
 
     wxTreeItemId posCategsCalMonth = navTreeCtrl_->AppendItem(posCategs
-        , _("Last Calendar Month"), 4, 4);
+        , _("Last Calendar Month"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(posCategsCalMonth
         , new mmTreeItemData("Where the Money Comes From - Last Calendar Month"
         , new mmReportCategoryExpensesComesLastMonth()));
@@ -518,7 +559,7 @@ void mmGUIFrame::updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCa
     if (ignoreFuture)
     {
         wxTreeItemId posCategsCurrentMonth = navTreeCtrl_->AppendItem(posCategs
-            , _("Current Month to Date"), 4, 4);
+            , _("Current Month to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(posCategsCurrentMonth
             , new mmTreeItemData("Where the Money Comes From - Current Month"
             , new mmReportCategoryExpensesComesCurrentMonthToDate()));
@@ -526,20 +567,20 @@ void mmGUIFrame::updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCa
     else
     {
         wxTreeItemId posCategsCurrentMonth = navTreeCtrl_->AppendItem(posCategs
-            , _("Current Month"), 4, 4);
+            , _("Current Month"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(posCategsCurrentMonth
             , new mmTreeItemData("Where the Money Comes From - Current Month"
             , new mmReportCategoryExpensesComesCurrentMonth()));
     }
 
     wxTreeItemId posCategsTimeLast30 = navTreeCtrl_->AppendItem(posCategs
-        , _("Last 30 Days"), 4, 4);
+        , _("Last 30 Days"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(posCategsTimeLast30
         , new mmTreeItemData("Where the Money Comes From - Last 30 Days"
         , new mmReportCategoryExpensesComesLast30Days()));
 
     wxTreeItemId posCategsTimeLastYear = navTreeCtrl_->AppendItem(posCategs
-        , _("Last Year"), 4, 4);
+        , _("Last Year"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(posCategsTimeLastYear
         , new mmTreeItemData("Where the Money Comes From - Last Year"
         , new mmReportCategoryExpensesComesLastYear()));
@@ -547,7 +588,7 @@ void mmGUIFrame::updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCa
     if (ignoreFuture)
     {
         wxTreeItemId posCategsTimeCurrentYear = navTreeCtrl_->AppendItem(posCategs
-            , _("Current Year to Date"), 4, 4);
+            , _("Current Year to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(posCategsTimeCurrentYear
             , new mmTreeItemData("Where the Money Comes From - Current Year"
             , new mmReportCategoryExpensesComesCurrentYearToDate()));
@@ -555,7 +596,7 @@ void mmGUIFrame::updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCa
     else
     {
         wxTreeItemId posCategsTimeCurrentYear = navTreeCtrl_->AppendItem(posCategs
-            , _("Current Year"), 4, 4);
+            , _("Current Year"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(posCategsTimeCurrentYear
             , new mmTreeItemData("Where the Money Comes From - Current Year"
             , new mmReportCategoryExpensesComesCurrentYear()));
@@ -566,7 +607,7 @@ void mmGUIFrame::updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCa
     if (financialYearIsDifferent())
     {
         wxTreeItemId posCategsTimeLastFinancialYear = navTreeCtrl_->AppendItem(posCategs
-            , _("Last Financial Year"), 4, 4);
+            , _("Last Financial Year"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(posCategsTimeLastFinancialYear
             , new mmTreeItemData("Where the Money Comes From - Last Financial Year"
             , new mmReportCategoryExpensesComesLastFinancialYear(day, month)));
@@ -574,7 +615,7 @@ void mmGUIFrame::updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCa
         if (ignoreFuture)
         {
             wxTreeItemId posCategsTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(posCategs
-                , _("Current Financial Year to Date"), 4, 4);
+                , _("Current Financial Year to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(posCategsTimeCurrentFinancialYear
                 , new mmTreeItemData("Where the Money Comes From - Current Financial Year"
                 , new mmReportCategoryExpensesComesCurrentFinancialYearToDate(day, month)));
@@ -582,7 +623,7 @@ void mmGUIFrame::updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCa
         else
         {
             wxTreeItemId posCategsTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(posCategs
-                , _("Current Financial Year"), 4, 4);
+                , _("Current Financial Year"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(posCategsTimeCurrentFinancialYear
                 , new mmTreeItemData("Where the Money Comes From - Current Financial Year"
                 , new mmReportCategoryExpensesComesCurrentFinancialYear(day, month)));
@@ -597,7 +638,7 @@ void mmGUIFrame::updateReportCategoryNavigation(wxTreeItemId& categs)
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
 
     wxTreeItemId categsCalMonth = navTreeCtrl_->AppendItem(categs
-        , _("Last Calendar Month"), 4, 4);
+        , _("Last Calendar Month"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(categsCalMonth
         , new mmTreeItemData("Categories - Last Calendar Month"
         , new mmReportCategoryExpensesCategoriesLastMonth()));
@@ -605,7 +646,7 @@ void mmGUIFrame::updateReportCategoryNavigation(wxTreeItemId& categs)
     if (ignoreFuture)
     {
         wxTreeItemId categsCurrentMonth = navTreeCtrl_->AppendItem(categs
-            , _("Current Month to Date"), 4, 4);
+            , _("Current Month to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(categsCurrentMonth
             , new mmTreeItemData("Categories - Current Month"
             , new mmReportCategoryExpensesCategoriesCurrentMonthToDate()));
@@ -613,18 +654,20 @@ void mmGUIFrame::updateReportCategoryNavigation(wxTreeItemId& categs)
     else
     {
         wxTreeItemId categsCurrentMonth = navTreeCtrl_->AppendItem(categs
-            , _("Current Month"), 4, 4);
+            , _("Current Month"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(categsCurrentMonth
             , new mmTreeItemData("Categories - Current Month"
             , new mmReportCategoryExpensesCategoriesCurrentMonth()));
     }
 
-    wxTreeItemId categsTimeLast30 = navTreeCtrl_->AppendItem(categs, _("Last 30 Days"), 4, 4);
+    wxTreeItemId categsTimeLast30 = navTreeCtrl_->AppendItem(categs
+        , _("Last 30 Days"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(categsTimeLast30
         , new mmTreeItemData("Categories - Last 30 Days"
         , new mmReportCategoryExpensesCategoriesLast30Days()));
 
-    wxTreeItemId categsTimeLastYear = navTreeCtrl_->AppendItem(categs, _("Last Year"), 4, 4);
+    wxTreeItemId categsTimeLastYear = navTreeCtrl_->AppendItem(categs
+        , _("Last Year"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(categsTimeLastYear
         , new mmTreeItemData("Categories - Last Year"
         , new mmReportCategoryExpensesCategoriesLastYear()));
@@ -632,7 +675,7 @@ void mmGUIFrame::updateReportCategoryNavigation(wxTreeItemId& categs)
     if (ignoreFuture)
     {
         wxTreeItemId categsTimeCurrentYear = navTreeCtrl_->AppendItem(categs
-            , _("Current Year to Date"), 4, 4);
+            , _("Current Year to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(categsTimeCurrentYear
             , new mmTreeItemData("Categories - Current Year"
             , new mmReportCategoryExpensesCategoriesCurrentYearToDate()));
@@ -640,7 +683,7 @@ void mmGUIFrame::updateReportCategoryNavigation(wxTreeItemId& categs)
     else
     {
         wxTreeItemId categsTimeCurrentYear = navTreeCtrl_->AppendItem(categs
-            , _("Current Year"), 4, 4);
+            , _("Current Year"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(categsTimeCurrentYear
             , new mmTreeItemData("Categories - Current Year"
             , new mmReportCategoryExpensesCategoriesCurrentYear()));
@@ -649,7 +692,7 @@ void mmGUIFrame::updateReportCategoryNavigation(wxTreeItemId& categs)
     if (financialYearIsDifferent())
     {
         wxTreeItemId categsTimeLastFinancialYear = navTreeCtrl_->AppendItem(categs
-            , _("Last Financial Year"), 4, 4);
+            , _("Last Financial Year"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(categsTimeLastFinancialYear
             , new mmTreeItemData("Categories - Last Financial Year"
             , new mmReportCategoryExpensesCategoriesLastFinancialYear(day, month)));
@@ -657,7 +700,7 @@ void mmGUIFrame::updateReportCategoryNavigation(wxTreeItemId& categs)
         if (ignoreFuture)
         {
             wxTreeItemId categsTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(categs
-                , _("Current Financial Year to Date"), 4, 4);
+                , _("Current Financial Year to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(categsTimeCurrentFinancialYear
                 , new mmTreeItemData("Categories - Current Financial Year"
                 , new mmReportCategoryExpensesCategoriesCurrentFinancialYearToDate(day, month)));
@@ -665,7 +708,7 @@ void mmGUIFrame::updateReportCategoryNavigation(wxTreeItemId& categs)
         else
         {
             wxTreeItemId categsTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(categs
-                , _("Current Financial Year"), 4, 4);
+                , _("Current Financial Year"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(categsTimeCurrentFinancialYear
                 , new mmTreeItemData("Categories - Current Financial Year"
                 , new mmReportCategoryExpensesCategoriesCurrentFinancialYear(day, month)));
@@ -680,7 +723,7 @@ void mmGUIFrame::updateReportPayeeNavigation(wxTreeItemId& payeesOverTime)
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
 
     wxTreeItemId payeesOverTimeCalMonth = navTreeCtrl_->AppendItem(payeesOverTime
-        , _("Last Calendar Month"), 4, 4);
+        , _("Last Calendar Month"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(payeesOverTimeCalMonth
         , new mmTreeItemData("Payees - Last Calendar Month"
         , new mmReportPayeeExpensesLastMonth()));
@@ -688,7 +731,7 @@ void mmGUIFrame::updateReportPayeeNavigation(wxTreeItemId& payeesOverTime)
     if (ignoreFuture)
     {
         wxTreeItemId payeesOverTimeCurrentMonth = navTreeCtrl_->AppendItem(payeesOverTime
-            , _("Current Month to Date"), 4, 4);
+            , _("Current Month to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(payeesOverTimeCurrentMonth
             , new mmTreeItemData("Payees - Current Month"
             , new mmReportPayeeExpensesCurrentMonthToDate()));
@@ -696,20 +739,20 @@ void mmGUIFrame::updateReportPayeeNavigation(wxTreeItemId& payeesOverTime)
     else
     {
         wxTreeItemId payeesOverTimeCurrentMonth = navTreeCtrl_->AppendItem(payeesOverTime
-            , _("Current Month"), 4, 4);
+            , _("Current Month"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(payeesOverTimeCurrentMonth
             , new mmTreeItemData("Payees - Current Month"
             , new mmReportPayeeExpensesCurrentMonth()));
     }
 
     wxTreeItemId payeesOverTimeLast30 = navTreeCtrl_->AppendItem(payeesOverTime
-        , _("Last 30 Days"), 4, 4);
+        , _("Last 30 Days"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(payeesOverTimeLast30
         , new mmTreeItemData("Payees - Last 30 Days"
         , new mmReportPayeeExpensesLast30Days()));
 
     wxTreeItemId payeesOverTimeLastYear = navTreeCtrl_->AppendItem(payeesOverTime
-        , _("Last Year"), 4, 4);
+        , _("Last Year"), img::PIECHART_XPM, img::PIECHART_XPM);
     navTreeCtrl_->SetItemData(payeesOverTimeLastYear
         , new mmTreeItemData("Payees - Last Year"
         , new mmReportPayeeExpensesLastYear()));
@@ -717,7 +760,7 @@ void mmGUIFrame::updateReportPayeeNavigation(wxTreeItemId& payeesOverTime)
     if (ignoreFuture)
     {
         wxTreeItemId payeesOverTimeCurrentYear = navTreeCtrl_->AppendItem(payeesOverTime
-            , _("Current Year to Date"), 4, 4);
+            , _("Current Year to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(payeesOverTimeCurrentYear
             , new mmTreeItemData("Payees - Current Year"
             , new mmReportPayeeExpensesCurrentYearToDate()));
@@ -725,7 +768,7 @@ void mmGUIFrame::updateReportPayeeNavigation(wxTreeItemId& payeesOverTime)
     else
     {
         wxTreeItemId payeesOverTimeCurrentYear = navTreeCtrl_->AppendItem(payeesOverTime
-            , _("Current Year"), 4, 4);
+            , _("Current Year"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(payeesOverTimeCurrentYear
             , new mmTreeItemData("Payees - Current Year"
             , new mmReportPayeeExpensesCurrentYear()));
@@ -734,7 +777,7 @@ void mmGUIFrame::updateReportPayeeNavigation(wxTreeItemId& payeesOverTime)
     if (financialYearIsDifferent())
     {
         wxTreeItemId payeesOverTimeLastFinancialYear = navTreeCtrl_->AppendItem(payeesOverTime
-            , _("Last Financial Year"), 4, 4);
+            , _("Last Financial Year"), img::PIECHART_XPM, img::PIECHART_XPM);
         navTreeCtrl_->SetItemData(payeesOverTimeLastFinancialYear
             , new mmTreeItemData("Payees - Last Financial Year"
             , new mmReportPayeeExpensesLastFinancialYear(day, month)));
@@ -742,7 +785,7 @@ void mmGUIFrame::updateReportPayeeNavigation(wxTreeItemId& payeesOverTime)
         if (ignoreFuture)
         {
             wxTreeItemId payeesOverTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(payeesOverTime
-                , _("Current Financial Year to Date"), 4, 4);
+                , _("Current Financial Year to Date"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(payeesOverTimeCurrentFinancialYear
                 , new mmTreeItemData("Payees - Current Financial Year"
                 , new mmReportPayeeExpensesCurrentFinancialYearToDate(day, month)));
@@ -750,7 +793,7 @@ void mmGUIFrame::updateReportPayeeNavigation(wxTreeItemId& payeesOverTime)
         else
         {
             wxTreeItemId payeesOverTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(payeesOverTime
-                , _("Current Financial Year"), 4, 4);
+                , _("Current Financial Year"), img::PIECHART_XPM, img::PIECHART_XPM);
             navTreeCtrl_->SetItemData(payeesOverTimeCurrentFinancialYear
                 , new mmTreeItemData("Payees - Current Financial Year"
                 , new mmReportPayeeExpensesCurrentFinancialYear(day, month)));
