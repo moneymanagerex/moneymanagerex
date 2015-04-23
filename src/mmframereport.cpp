@@ -419,7 +419,6 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
             , wxGetTranslation(record.REPORTNAME), 8, 8);
         navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
     }
-
 }
 
 void mmGUIFrame::updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categsOverTime)
