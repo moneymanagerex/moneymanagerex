@@ -352,6 +352,9 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     if (m_currencyID == -1)
         return mmErrorDialogs::MessageInvalid(this, _("Currency"));
 
+    m_itemInitValue->Calculate(Model_Account::currency(m_account));
+    if (!m_itemInitValue->checkValue(m_account->INITIALBAL, Model_Account::currency(m_account)))
+        return;
 
     wxChoice* itemAcctType = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
     int acctType = itemAcctType->GetSelection();
@@ -372,9 +375,6 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
     m_account->FAVORITEACCT = itemCheckBox->IsChecked() ? "TRUE" : "FALSE";
-
-    if (!m_itemInitValue->checkValue(m_account->INITIALBAL, Model_Account::currency(m_account)))
-        return;
 
     m_account->ACCOUNTNUM = textCtrlAcctNumber->GetValue();
     m_account->NOTES = m_notesCtrl->GetValue();
