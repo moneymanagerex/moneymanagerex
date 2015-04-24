@@ -1037,7 +1037,7 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
             if (dlg.ShowModal() == wxID_OK)
             {
                 updateNavTreeControl();
-                refreshPanelData();
+                createHomePage(); //TODO: refreshPanelData(); and change selection
             }
         }
     }
@@ -1099,7 +1099,8 @@ void mmGUIFrame::OnItemRightClick(wxTreeEvent& event)
 void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 {
     mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(id));
-    selectedItemData_ = iData;
+    if (iData) selectedItemData_ = iData;
+    else return;
 
     if (!iData->isStringData())
     {
@@ -2505,7 +2506,7 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
         if (dlg.ShowModal() == wxID_OK)
         {
             updateNavTreeControl();
-            refreshPanelData();
+            createHomePage();
         }
     }
 }
