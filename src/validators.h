@@ -19,33 +19,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 // Validators -----------------------------------------------------
-#if 0
-class mmCalcValidator : public wxTextValidator
-{
-public:
-    mmCalcValidator() : wxTextValidator(wxFILTER_INCLUDE_CHAR_LIST)
-    {
-        wxArrayString list;
-        for (const auto& c : " 1234567890.,(/+-*)")
-        {
-            list.Add(c);
-        }
-        SetIncludes(list);
-    }
-
-};
-/*
-class mmDoubleValidator: public wxFloatingPointValidator<double>
-{
-public:
-    mmDoubleValidator(int precision = 2, int max = 100000000)
-        : wxFloatingPointValidator<double>(precision, nullptr, wxNUM_VAL_NO_TRAILING_ZEROES)
-    {
-        this->SetRange(0, max);
-    }
-};
-*/
-#else
 class mmCalcValidator : public wxTextValidator
 {
 public:
@@ -58,10 +31,9 @@ public:
     void OnChar(wxKeyEvent& event);
 
 protected:
-    wxChar decChar;
+    wxChar m_decChar;
 private:
     wxDECLARE_NO_ASSIGN_CLASS(mmCalcValidator);
     DECLARE_DYNAMIC_CLASS(mmCalcValidator)
     DECLARE_EVENT_TABLE()
 };
-#endif
