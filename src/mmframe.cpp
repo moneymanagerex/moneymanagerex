@@ -1037,7 +1037,7 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
             if (dlg.ShowModal() == wxID_OK)
             {
                 updateNavTreeControl();
-                refreshPanelData();
+                createHomePage();
             }
         }
     }
@@ -2505,7 +2505,7 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
         if (dlg.ShowModal() == wxID_OK)
         {
             updateNavTreeControl();
-            refreshPanelData();
+            createHomePage();
         }
     }
 }
