@@ -64,6 +64,7 @@ const wxString mmex::version::generateProgramVersion(int Major, int Minor, int P
 /* End version namespace*/
 
 const wxSizerFlags g_flags = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
+const wxSizerFlags g_flagsCenter = wxSizerFlags().Align(wxALIGN_CENTER | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
 const wxSizerFlags g_flagsExpand = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
 
 //---------------------------------------------------------------------------
