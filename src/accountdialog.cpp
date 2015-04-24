@@ -36,6 +36,21 @@
 
 #include <wx/valnum.h>
 
+enum {
+    ID_DIALOG_NEWACCT_BUTTON_CURRENCY = wxID_HIGHEST + 1000,
+    ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNAME,
+    ID_ACCTNUMBER,
+    ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT,
+    ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE,
+    ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT,
+    ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO,
+    ID_DIALOG_NEWACCT_TEXTCTRL_NOTES,
+    ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE,
+    ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS,
+    ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT,
+    ID_DIALOG_NEWACCT_COMBO_ACCTTYPE
+};
+
 wxIMPLEMENT_DYNAMIC_CLASS(mmNewAcctDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE( mmNewAcctDialog, wxDialog )
@@ -181,7 +196,7 @@ void mmNewAcctDialog::CreateControls()
 
     m_itemInitValue = new mmTextCtrl(this
         , ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE
-        , "", wxDefaultPosition, wxDefaultSize, 0, mmCalcValidator());
+        , "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER, mmCalcValidator());
     grid_sizer->Add(m_itemInitValue, g_flagsExpand);
     m_itemInitValue->Connect(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE, wxEVT_COMMAND_TEXT_ENTER,
         wxCommandEventHandler(mmNewAcctDialog::OnTextEntered), nullptr, this);
@@ -334,16 +349,14 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 {
     wxString acctName = m_textAccountName->GetValue().Trim();
     if (acctName.IsEmpty())
-    {
-        mmErrorDialogs::MessageInvalid(this, _("Account Name "));
-        return;
-    }
+        return mmErrorDialogs::MessageInvalid(this, _("Account Name "));
+
 
     if (m_currencyID == -1)
-    {
-        mmErrorDialogs::MessageInvalid(this, _("Currency"));
-        return;
-    }
+        return mmErrorDialogs::MessageInvalid(this, _("Currency"));
+
+    if (!m_itemInitValue->checkValue(m_account->INITIALBAL, Model_Account::currency(m_account)))
+         return;
 
     wxChoice* itemAcctType = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
     int acctType = itemAcctType->GetSelection();
@@ -364,10 +377,6 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
     m_account->FAVORITEACCT = itemCheckBox->IsChecked() ? "TRUE" : "FALSE";
-
-    wxString bal = m_itemInitValue->GetValue().Trim();
-    if (!Model_Currency::fromString(bal, m_account->INITIALBAL, Model_Currency::instance().get(m_currencyID)))
-        m_account->INITIALBAL = 0.0;
     
     m_account->ACCOUNTNUM = textCtrlAcctNumber->GetValue();
     m_account->NOTES = m_notesCtrl->GetValue();
@@ -444,9 +453,9 @@ void mmNewAcctDialog::OnTextEntered(wxCommandEvent& event)
 {
     if (event.GetId() == m_itemInitValue->GetId())
     {
-        Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
-        if (!currency)
-            currency = Model_Currency::GetBaseCurrency();
-        m_itemInitValue->Calculate(currency);
+
+        m_itemInitValue->Calculate(Model_Account::currency(m_account));
+        if (!m_itemInitValue->checkValue(m_account->INITIALBAL, Model_Account::currency(m_account)))
+            return;
     }
 }
