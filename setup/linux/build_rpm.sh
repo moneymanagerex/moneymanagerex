@@ -16,7 +16,7 @@ mkdir "$BUILD_DIR/SOURCES"
 echo "Name:           mmex
 Version:        $MMEX_VERSION
 Release:        1%{?dist}
-Source:         http://www.codelathe.com/mmex/%{name}-%{version}.tar.gz
+Source:         https://github.com/moneymanagerex/moneymanagerex/archive/v%{version}.tar.gz
 Summary:        $MMEX_SUMMARY
 Group:          Applications/Productivity
 License:        GPLv2+
