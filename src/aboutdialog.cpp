@@ -33,18 +33,18 @@ wxBEGIN_EVENT_TABLE(mmAboutDialog, wxDialog)
 wxEND_EVENT_TABLE()
 
 mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen)
-: about_text_()
-, developers_text_()
-, artwork_text_()
-, sponsors_text_()
-, license_text_()
-, privacy_text_()
+: about_text_(nullptr)
+, developers_text_(nullptr)
+, artwork_text_(nullptr)
+, sponsors_text_(nullptr)
+, license_text_(nullptr)
+, privacy_text_(nullptr)
 {
-	wxString caption = wxString(_("About")) << " " << mmex::getProgramName();
-	if (TabToOpen == 4)
-		caption = _("License agreement");
+    const wxString caption = (TabToOpen == 4)
+        ? _("License agreement") : wxString::Format(_("About %s"), mmex::getProgramName());
     Create(parent, wxID_ANY, caption, wxDefaultPosition
-        , wxSize(500, 220), wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX, TabToOpen);
+        , wxSize(440, 600), wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, TabToOpen);
+    SetMinClientSize(wxSize(300, 400));
 }
 
 bool mmAboutDialog::Create(wxWindow* parent
@@ -64,11 +64,11 @@ bool mmAboutDialog::Create(wxWindow* parent
     {
 		CreateControls(TabToOpen);
         InitControls();
-        GetSizer()->Fit(this);
-        GetSizer()->SetSizeHints(this);
-        this->SetInitialSize();
-        SetIcon(mmex::getProgramIcon());
-        Centre();
+        //GetSizer()->Fit(this);
+        //GetSizer()->SetSizeHints(this);
+        //this->SetInitialSize();
+        this->SetIcon(mmex::getProgramIcon());
+        this->Centre();
     }
 
     return ok;
@@ -147,25 +147,23 @@ void mmAboutDialog::InitControls()
 	if (data.GetCount() > 3) license_text_->SetPage(data[3]);
     if (data.GetCount() > 4) privacy_text_->SetPage(data[4]);
 }
+
 void mmAboutDialog::CreateControls(int TabToOpen)
 {
-    wxSizerFlags flags;
-    flags.Align(wxALIGN_CENTER).Border(wxALL, 5);
-
     wxBoxSizer* itemBoxSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer);
 
     wxStaticText* versionStaticText = new wxStaticText( this, wxID_STATIC
 		, "Money Manager EX - " + mmex::getTitleProgramVersion());
     versionStaticText->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizer->Add(versionStaticText, flags);
+    itemBoxSizer->Add(versionStaticText, g_flagsCenter);
 
     wxStaticText* itemStaticText88 = new wxStaticText(this
         , wxID_STATIC, mmex::getProgramCopyright());
 
     //Create tabs
     wxNotebook* about_notebook = new wxNotebook(this
-        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE );
+        , wxID_ANY, wxDefaultPosition, wxSize(400, 500), wxNB_MULTILINE);
 
     wxPanel* about_tab = new wxPanel(about_notebook, wxID_ANY);
     about_notebook->AddPage(about_tab, _("About"));
@@ -197,47 +195,44 @@ void mmAboutDialog::CreateControls(int TabToOpen)
 	wxBoxSizer *privacy_sizer = new wxBoxSizer(wxVERTICAL);
 	privacy_tab->SetSizer(privacy_sizer);
 
-    wxSize internal_size = wxSize(500, 400); //developers_tab_->GetBestVirtualSize();
-
-    about_text_ = new wxHtmlWindow(about_tab, wxID_ANY
-        , wxDefaultPosition, wxDefaultSize
+    about_text_ = new wxHtmlWindow(about_tab
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    about_sizer->Add(about_text_, 1, wxGROW | wxALL, 1);
+    about_sizer->Add(about_text_, g_flagsExpand);
 
     developers_text_ = new wxHtmlWindow(developers_tab
-        , wxID_ANY, wxDefaultPosition, internal_size
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    developers_sizer->Add(developers_text_, 1, wxEXPAND);
+    developers_sizer->Add(developers_text_, g_flagsExpand);
 
     artwork_text_ = new wxHtmlWindow(artwork_tab
-        , wxID_ANY, wxDefaultPosition, internal_size
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    artwork_sizer->Add(artwork_text_, 1, wxEXPAND);
+    artwork_sizer->Add(artwork_text_, g_flagsExpand);
 
     sponsors_text_ = new wxHtmlWindow(sponsors_tab
-        , wxID_ANY, wxDefaultPosition, internal_size
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    sponsors_sizer->Add(sponsors_text_, 1, wxEXPAND);
+    sponsors_sizer->Add(sponsors_text_, g_flagsExpand);
 
 	license_text_ = new wxHtmlWindow(license_tab
-		, wxID_ANY, wxDefaultPosition, internal_size
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize
 		, wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-	license_sizer->Add(license_text_, 1, wxEXPAND);
+    license_sizer->Add(license_text_, g_flagsExpand);
 
     privacy_text_ = new wxHtmlWindow(privacy_tab
-		, wxID_ANY, wxDefaultPosition, internal_size
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize
 		, wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-	privacy_sizer->Add(privacy_text_, 1, wxEXPAND);
+    privacy_sizer->Add(privacy_text_, g_flagsExpand);
 
-    itemBoxSizer->Add(about_notebook, flags);
-    about_notebook->Layout();
+    itemBoxSizer->Add(about_notebook, g_flagsExpand);
 
-    itemBoxSizer->Add(itemStaticText88, flags);
+    itemBoxSizer->Add(itemStaticText88, g_flagsCenter);
 
     wxButton* button_OK = new wxButton(this, wxID_OK, _("&OK "));
     button_OK->SetDefault();
     button_OK->SetFocus();
-    itemBoxSizer->Add(button_OK, flags);
+    itemBoxSizer->Add(button_OK, g_flagsCenter);
 
 	about_notebook->ChangeSelection(TabToOpen);
 }
