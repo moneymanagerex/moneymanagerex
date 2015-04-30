@@ -157,7 +157,7 @@ void mmReportsPanel::saveReportText()
     if (rb_)
     {
         if (this->m_date_ranges)
-            rb_->date_range((mmDateRange*)this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
+            rb_->date_range(static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
 
         json::Object o;
         o[L"module"] = json::String(L"Report");
@@ -231,7 +231,7 @@ void mmReportsPanel::PrintPage()
 
 void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
 {
-    const mmDateRange* date_range = (mmDateRange*)this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection());
+    const mmDateRange* date_range = static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
     this->m_start_date->SetValue(date_range->start_date());
     this->m_end_date->SetValue(date_range->end_date());
     this->saveReportText();
