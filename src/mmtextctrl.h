@@ -83,12 +83,12 @@ public:
         return Model_Currency::fromString(amountStr, amount, (currency ? currency : currency_));
     }
 
-    bool checkValue(double &amount, const Model_Currency::Data* currency = nullptr, bool positive_only = true)
+    bool checkValue(double &amount, const Model_Currency::Data* currency = nullptr, bool positive_value = true)
     {
-        if (!GetDouble(amount, currency) || (positive_only && amount < 0))
+        if (!GetDouble(amount, currency) || (positive_value && amount < 0))
         {
             wxRichToolTip tip(_("Invalid Amount."),
-                _("Please enter a positive or calculated value.")
+                wxString(positive_value ? _("Please enter a positive or calculated value.") : _("Please enter a calculated value."))
                 + "\n\n"
                 + _("Tip: For calculations, enter expressions like (2+2)*(2+2)\nCalculations will be evaluated and the result used as the entry."));
             tip.SetIcon(wxICON_WARNING);
