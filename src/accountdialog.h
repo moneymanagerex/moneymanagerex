@@ -52,7 +52,6 @@ private:
 	void OnAttachments(wxCommandEvent& event);
 
     void OnImageButton(wxCommandEvent& event);
-    void changeFocus(wxChildFocusEvent& event);
 
 private:
     Model_Account::Data* m_account;
@@ -63,25 +62,8 @@ private:
     wxBitmapButton* m_bitmapButtons;
 	wxBitmapButton* bAttachments_;
     wxString m_accessInfo;
-    wxString m_notesLabel;
     int m_currencyID;
     bool m_accessChanged;
-
-    enum {
-        ID_DIALOG_NEWACCT_BUTTON_CURRENCY = wxID_HIGHEST + 1000,
-        ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNAME,
-        ID_ACCTNUMBER,
-        ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT,
-        ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE,
-        ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT,
-        ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO,
-        ID_DIALOG_NEWACCT_TEXTCTRL_NOTES,
-        ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE,
-        ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS,
-        ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT,
-        ID_DIALOG_NEWACCT_COMBO_ACCTTYPE
-    };
-
 };
 
 #endif
