@@ -13,6 +13,7 @@ before_script:
   - tar xfz bakefile-0.2.9.tar.gz
   - cd bakefile-0.2.9
   - ./configure && make && sudo make install
+  - cd ..
   - ./bootstrap.sh
   - travis_retry ./configure
 script:
