@@ -9,6 +9,10 @@ before_install:
   - brew install gettext
   - brew link --force gettext
 before_script:
+  - wget http://downloads.sourceforge.net/project/bakefile/bakefile/0.2.9/bakefile-0.2.9.tar.gz
+  - tar xfz bakefile-0.2.9.tar.gz
+  - cd bakefile-0.2.9
+  - ./configure && make && sudo make install
   - ./bootstrap.sh
   - travis_retry ./configure
 script:
