@@ -9,6 +9,7 @@ before_install:
   - brew install gettext
   - brew link --force gettext
 before_script:
+  - ./bootstrap.sh
   - travis_retry ./configure
 script:
   - ./configure && make -j4
