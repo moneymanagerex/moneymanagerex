@@ -24,9 +24,14 @@
 *.mo
 
 # Makefiles
-makefile
-/po/Makefile
-/setup/win/Makefile
+Makefile.in
+build/msw/makefile.gcc
+build/msw/makefile.vc
+po/GNUmakefile
+po/Makefile
+setup/win/GNUmakefile
+setup/win/Makefile
+tests/Makefile.in
 
 # Python
 *.pyc
@@ -36,32 +41,34 @@ makefile
 *.suo
 *.sdf
 .deps
-/build/msw-vc-2013e/Win32
-/build/msw-vc-2013e/x64
-/build/msw_tests-vc-2013e/Win32
-/build/msw_tests-vc-2013e/x64
-/mmex_release
+build/msw-vc-2013e/Win32
+build/msw-vc-2013e/x64
+build/msw_tests-vc-2013e/Win32
+build/msw_tests-vc-2013e/x64
+mmex_release
 
 # Extra files used for testing
-/build/msw_tests-vc-2013e/test_*.mmb
-/build/msw_tests-vc-2013e/test_*.emb
-/build/msw_tests-vc-2013e/test_*.txt
-/build/msw_tests-vc-2013e/test_*.sql
+build/msw_tests-vc-2013e/test_*.mmb
+build/msw_tests-vc-2013e/test_*.emb
+build/msw_tests-vc-2013e/test_*.txt
+build/msw_tests-vc-2013e/test_*.sql
 *.patch
 *.zip
 
 #autoconf
+m4/autoconf_inc.m4
 aclocal.m4
-/autom4te.cache/
+autom4te.cache/
+configure
 config.log
 config.status
 shared-ld-sh
 bk-deps
-/build/bakefiles/.bakefile_gen.state
+build/bakefiles/.bakefile_gen.state
 
 #dist
 *.dmg
-/build/macosx/dmg/
+build/macosx/dmg/
 
 #backups & tmp file
 *~
@@ -70,4 +77,5 @@ bk-deps
 
 *.d
 
-/release
+#linux build files
+/compile
