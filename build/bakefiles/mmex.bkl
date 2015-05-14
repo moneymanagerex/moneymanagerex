@@ -121,6 +121,11 @@
         <!-- data-files-tree generates wrong commands in bakefile v.0.2.8 -->
         <data-files>
             <install-to>$(helppath)</install-to>
+            <srcdir>$(SRCDIR)/resources</srcdir>
+            <files>master.css</files>
+        </data-files>
+        <data-files>
+            <install-to>$(helppath)</install-to>
             <srcdir>$(SRCDIR)/doc/help</srcdir>
                 <files>*.*</files>
         </data-files>
