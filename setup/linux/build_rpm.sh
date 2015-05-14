@@ -31,7 +31,7 @@ $MMEX_DESCRIPTION
 
 %prep
 %setup -q
-./bootstrap
+./bootstrap.sh
 
 
 %build
