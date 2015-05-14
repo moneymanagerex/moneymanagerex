@@ -24,7 +24,7 @@ PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
 cd ../..
 MMEX_DIR=`pwd`
 
-./bootstrap
+./bootstrap.sh
 if [ $? -gt 0 ]; then
     echo "ERROR!"
     exit 1
