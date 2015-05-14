@@ -8,6 +8,8 @@ before_install:
   - brew install wxwidgets
   - brew install gettext
   - brew link --force gettext
+  - brew install python
+  - brew install python3
 before_script:
   - wget http://downloads.sourceforge.net/project/bakefile/bakefile/0.2.9/bakefile-0.2.9.tar.gz
   - tar xfz bakefile-0.2.9.tar.gz
