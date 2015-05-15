@@ -1,5 +1,9 @@
 Version History of Money Manager Ex
 
+1.2.1 (May 28, 2015)
+- Fix: Negative 'Initial Balance' (bug #672)
+
+
 1.2.0 (April 28, 2015)
 - New: Introducing new account type - Credit Card
 - New: Monthly Summary of Accounts
