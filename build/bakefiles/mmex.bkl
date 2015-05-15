@@ -49,195 +49,198 @@
             <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/res</if>
         </set>
         
-    <data-files>
+        <data-files>
             <install-to>$(respath)</install-to>
-        <srcdir>$(SRCDIR)/resources</srcdir>
-        <files>kaching.wav mmex.ico master.css home_page.htt</files>
-    </data-files>
+            <srcdir>$(SRCDIR)/resources</srcdir>
+            <files>kaching.wav mmex.ico master.css home_page.htt</files>
+        </data-files>
 	
-	<data-files>
-	    <install-to>$(respath)</install-to>
-        <srcdir>$(SRCDIR)/3rd/ChartNew.js</srcdir>
-        <files>ChartNew.js</files>
-    </data-files>
+	    <data-files>
+	        <install-to>$(respath)</install-to>
+            <srcdir>$(SRCDIR)/3rd/ChartNew.js</srcdir>
+            <files>ChartNew.js</files>
+        </data-files>
 
-    <data-files>
-      <install-to>$(respath)</install-to>
-      <srcdir>$(SRCDIR)/3rd/sorttable.js</srcdir>
-      <files>sorttable.js</files>
-    </data-files>
+        <data-files>
+            <install-to>$(respath)</install-to>
+            <srcdir>$(SRCDIR)/3rd/sorttable.js</srcdir>
+            <files>sorttable.js</files>
+        </data-files>
 
-    <set var="plistfiles">
-        <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex</if>
-        <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/..</if>
-    </set>
+        <set var="plistfiles">
+            <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex</if>
+            <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/..</if>
+        </set>
 
-    <data-files>
-        <install-to>$(plistfiles)</install-to>
-        <srcdir>$(SRCDIR)/resources</srcdir>
-        <files>Info.plist</files>
-    </data-files>
+        <data-files>
+            <install-to>$(plistfiles)</install-to>
+            <srcdir>$(SRCDIR)/resources</srcdir>
+            <files>Info.plist</files>
+        </data-files>
 
-    <set var="txtfiles">
-        <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex</if>
-        <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)</if>
-    </set>
+        <set var="txtfiles">
+            <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex</if>
+            <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)</if>
+        </set>
 
-    <data-files>
-       <install-to>$(txtfiles)</install-to>
-       <srcdir>$(SRCDIR)/doc</srcdir>
-       <files>version.txt contrib.txt license.txt</files>
-    </data-files>
-
-    <set var="graphicsfiles">
-        <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex</if>
-        <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/../Resources</if>
-    </set>
-
-    <data-files>
-        <install-to>$(graphicsfiles)</install-to>
-        <srcdir>$(SRCDIR)/graphics</srcdir>
-        <files>mmex.icns mmdb.icns</files>
-    </data-files>
-
-    <set var="popath">
-        <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex/po/en</if>
-        <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/po/en</if>
-    </set>
-
-    <data-files>
-        <install-to>$(popath)</install-to>
-        <srcdir>$(SRCDIR)/po</srcdir>
-        <files>*.mo</files>
-    </data-files>
-
-    <data-files>
-        <install-to>$(DATADIR)/doc/mmex</install-to>
+        <data-files>
+            <install-to>$(txtfiles)</install-to>
             <srcdir>$(SRCDIR)/doc</srcdir>
-        <files>*.txt</files>
-    </data-files>
+            <files>version.txt contrib.txt license.txt</files>
+        </data-files>
 
-    <set var="helppath">
-        $(DATADIR)/doc/mmex/help
-    </set>
-    <!-- data-files-tree generates wrong commands in bakefile v.0.2.8 -->
-    <data-files>
-        <install-to>$(helppath)</install-to>
-        <srcdir>$(SRCDIR)/doc/help</srcdir>
-            <files>*.html *.png *.gif</files>
-    </data-files>
+        <set var="graphicsfiles">
+            <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex</if>
+            <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/../Resources</if>
+        </set>
 
-    <data-files>
-        <install-to>$(helppath)/french</install-to>
-        <srcdir>$(SRCDIR)/doc/help/french</srcdir>
-        <files>*</files>
-    </data-files>
-    <data-files>
-        <install-to>$(helppath)/hungarian</install-to>
-        <srcdir>$(SRCDIR)/doc/help/hungarian</srcdir>
-        <files>*</files>
-    </data-files>
-    <data-files>
-        <install-to>$(helppath)/italian</install-to>
-        <srcdir>$(SRCDIR)/doc/help/italian</srcdir>
-        <files>*</files>
-    </data-files>
-	<data-files>
-        <install-to>$(helppath)/polish</install-to>
-        <srcdir>$(SRCDIR)/doc/help/polish</srcdir>
-        <files>*</files>
-    </data-files>
-    <data-files>
-        <install-to>$(helppath)/russian</install-to>
-        <srcdir>$(SRCDIR)/doc/help/russian</srcdir>
-        <files>*</files>
-    </data-files>
-    <data-files>
-        <install-to>$(helppath)/spanish</install-to>
-        <srcdir>$(SRCDIR)/doc/help/spanish</srcdir>
-        <files>*</files>
-    </data-files>
+        <data-files>
+            <install-to>$(graphicsfiles)</install-to>
+            <srcdir>$(SRCDIR)/resources</srcdir>
+            <files>mmex.icns mmdb.icns</files>
+        </data-files>
 
-	<data-files>
-        <install-to>$(DATADIR)/applications</install-to>
-        <srcdir>$(SRCDIR)/resources</srcdir>
-        <files>mmex.desktop</files>
-    </data-files>
+        <set var="popath">
+            <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex/po</if>
+            <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/po</if>
+        </set>
 
-	<data-files>
-        <install-to>$(DATADIR)/icons/hicolor/scalable/apps</install-to>
-        <srcdir>$(SRCDIR)/graphics</srcdir>
-        <files>mmex.svg</files>
-    </data-files>
+        <data-files>
+            <install-to>$(popath)</install-to>
+            <srcdir>$(SRCDIR)/po</srcdir>
+            <files>*.mo</files>
+        </data-files>
 
-	<data-files>
-        <install-to>$(DATADIR)/man/man1</install-to>
-        <srcdir>$(SRCDIR)/doc</srcdir>
-        <files>mmex.1.gz</files>
-    </data-files>
+        <data-files>
+            <install-to>$(DATADIR)/doc/mmex</install-to>
+            <srcdir>$(SRCDIR)/doc</srcdir>
+            <files>*.txt</files>
+        </data-files>
+
+        <set var="helppath">$(DATADIR)/doc/mmex/help</set>
+        <!-- data-files-tree generates wrong commands in bakefile v.0.2.8 -->
+        <data-files>
+            <install-to>$(helppath)</install-to>
+            <srcdir>$(SRCDIR)/resources</srcdir>
+            <files>master.css</files>
+        </data-files>
+        <data-files>
+            <install-to>$(helppath)</install-to>
+            <srcdir>$(SRCDIR)/doc/help</srcdir>
+                <files>*.*</files>
+        </data-files>
+
+        <data-files>
+            <install-to>$(helppath)/french</install-to>
+            <srcdir>$(SRCDIR)/doc/help/french</srcdir>
+            <files>*</files>
+        </data-files>
+        <data-files>
+            <install-to>$(helppath)/hungarian</install-to>
+            <srcdir>$(SRCDIR)/doc/help/hungarian</srcdir>
+            <files>*</files>
+        </data-files>
+        <data-files>
+            <install-to>$(helppath)/italian</install-to>
+            <srcdir>$(SRCDIR)/doc/help/italian</srcdir>
+            <files>*</files>
+        </data-files>
+	    <data-files>
+            <install-to>$(helppath)/polish</install-to>
+            <srcdir>$(SRCDIR)/doc/help/polish</srcdir>
+            <files>*</files>
+        </data-files>
+        <data-files>
+            <install-to>$(helppath)/russian</install-to>
+            <srcdir>$(SRCDIR)/doc/help/russian</srcdir>
+            <files>*</files>
+        </data-files>
+        <data-files>
+            <install-to>$(helppath)/spanish</install-to>
+            <srcdir>$(SRCDIR)/doc/help/spanish</srcdir>
+            <files>*</files>
+        </data-files>
+
+	    <data-files>
+            <install-to>$(DATADIR)/applications</install-to>
+            <srcdir>$(SRCDIR)/resources</srcdir>
+            <files>mmex.desktop</files>
+        </data-files>
+
+	    <data-files>
+            <install-to>$(DATADIR)/icons/hicolor/scalable/apps</install-to>
+            <srcdir>$(SRCDIR)/resources</srcdir>
+            <files>mmex.svg</files>
+        </data-files>
+
+	    <data-files>
+            <install-to>$(DATADIR)/man/man1</install-to>
+            <srcdir>$(SRCDIR)/doc</srcdir>
+            <files>mmex.1.gz</files>
+        </data-files>
     </if>
 
     <if cond="FORMAT!='autoconf'">
 
-	<!-- runtime/* -> mmex -->
-
-    <data-files>
-        <install-to>$(PREFIX)/mmex</install-to>
-        <srcdir>$(SRCDIR)/doc</srcdir>
-        <files>version.txt contrib.txt license.txt</files>
-    </data-files>
+	    <!-- runtime/* -> mmex -->
 
         <data-files>
-        <install-to>$(PREFIX)/mmex/res</install-to>
-            <srcdir>$(SRCDIR)/resources</srcdir>
-        <files>mmex.ico</files>
-    </data-files>
+            <install-to>$(PREFIX)/mmex</install-to>
+            <srcdir>$(SRCDIR)/doc</srcdir>
+            <files>version.txt contrib.txt license.txt</files>
+        </data-files>
 
         <data-files>
-        <install-to>$(PREFIX)/mmex/res</install-to>
+            <install-to>$(PREFIX)/mmex/res</install-to>
             <srcdir>$(SRCDIR)/resources</srcdir>
-        <files>kaching.wav</files>
-    </data-files>
+            <files>mmex.ico</files>
+        </data-files>
 
         <data-files>
-        <install-to>$(PREFIX)/mmex/res</install-to>
+            <install-to>$(PREFIX)/mmex/res</install-to>
             <srcdir>$(SRCDIR)/resources</srcdir>
-        <files>master.css</files>
-    </data-files>
+            <files>kaching.wav</files>
+        </data-files>
+
+        <data-files>
+            <install-to>$(PREFIX)/mmex/res</install-to>
+            <srcdir>$(SRCDIR)/resources</srcdir>
+            <files>master.css</files>
+        </data-files>
 	
-    <data-files>
-        <install-to>$(PREFIX)/mmex/res</install-to>
+        <data-files>
+            <install-to>$(PREFIX)/mmex/res</install-to>
             <srcdir>$(SRCDIR)/3rd/ChartNew.js</srcdir>
-        <files>ChartNew.js</files>
-    </data-files>
-
-    <data-files>
-      <install-to>$(PREFIX)/mmex/res</install-to>
-      <srcdir>$(SRCDIR)/3rd/sorttable.js</srcdir>
-      <files>sorttable.js</files>
-    </data-files>
-
-      <!-- doc -> mmex/help -->
-
-    <data-files>
-        <install-to>$(PREFIX)/mmex/help</install-to>
-        <srcdir>$(SRCDIR)/doc/help</srcdir>
-        <files>*.html</files>
-    </data-files>
+            <files>ChartNew.js</files>
+        </data-files>
 
         <data-files>
-        <install-to>$(PREFIX)/mmex/help</install-to>
-        <srcdir>$(SRCDIR)/doc/help</srcdir>
-        <files>*.png</files>
-    </data-files>
+            <install-to>$(PREFIX)/mmex/res</install-to>
+            <srcdir>$(SRCDIR)/3rd/sorttable.js</srcdir>
+            <files>sorttable.js</files>
+        </data-files>
 
-    <!-- po/* -> mmex/po -->
+        <!-- doc -> mmex/help -->
 
-    <data-files>
-        <install-to>$(PREFIX)/mmex/po/en</install-to>
-        <srcdir>$(SRCDIR)/po</srcdir>
-        <files>*.mo</files>
-    </data-files>
+        <data-files>
+            <install-to>$(PREFIX)/mmex/help</install-to>
+            <srcdir>$(SRCDIR)/doc/help</srcdir>
+            <files>*.html</files>
+        </data-files>
+
+        <data-files>
+            <install-to>$(PREFIX)/mmex/help</install-to>
+            <srcdir>$(SRCDIR)/doc/help</srcdir>
+            <files>*.png</files>
+        </data-files>
+
+        <!-- po/* -> mmex/po -->
+
+        <data-files>
+            <install-to>$(PREFIX)/mmex/po</install-to>
+            <srcdir>$(SRCDIR)/po</srcdir>
+            <files>*.mo</files>
+        </data-files>
 
     </if>
 
@@ -330,10 +333,10 @@
     </subproject>
 
 	<action id="dmg" cond="PLATFORM_MACOSX=='1'">
-	<command>touch mmex.app</command>
-	<command>hdiutil create tmp.dmg -ov -volname "MMEX" -fs HFS+ -srcfolder "mmex.app"</command>
-	<command>hdiutil convert tmp.dmg -format UDZO -o MMEX.dmg</command>
-	<command>rm tmp.dmg</command>
+	    <command>touch mmex.app</command>
+	    <command>hdiutil create tmp.dmg -ov -volname "MMEX" -fs HFS+ -srcfolder "mmex.app"</command>
+	    <command>hdiutil convert tmp.dmg -format UDZO -o MMEX.dmg</command>
+	    <command>rm tmp.dmg</command>
 	</action>
 
 </makefile>

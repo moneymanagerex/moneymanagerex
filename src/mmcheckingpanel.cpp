@@ -532,16 +532,16 @@ void mmCheckingPanel::setAccountSummary()
         header_text_->SetLabelText(GetPanelTitle(*account));
 
     bool show_displayed_balance_ = (transFilterActive_ || currentView_ != MENU_VIEW_ALLTRANSACTIONS);
-    wxStaticText* header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1);
+    wxStaticText* header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1));
     header->SetLabelText(Model_Account::toCurrency(account_balance_, account));
-    header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER2);
+    header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER2));
     header->SetLabelText(Model_Account::toCurrency(reconciled_balance_, account));
-    header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER3);
+    header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER3));
     header->SetLabelText(Model_Account::toCurrency(account_balance_ - reconciled_balance_, account));
-    header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER4);
+    header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER4));
     header->SetLabelText(show_displayed_balance_
         ? _("Displayed Bal: ") : "");
-    header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER5);
+    header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER5));
     header->SetLabelText(show_displayed_balance_
         ? Model_Account::toCurrency(filteredBalance_, account) : "");
     this->Layout();
