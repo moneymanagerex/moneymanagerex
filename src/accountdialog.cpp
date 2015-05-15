@@ -355,7 +355,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     if (m_currencyID == -1)
         return mmErrorDialogs::MessageInvalid(this, _("Currency"));
 
-    if (!m_itemInitValue->checkValue(m_account->INITIALBAL, Model_Account::currency(m_account)))
+    if (!m_itemInitValue->checkValue(m_account->INITIALBAL, Model_Account::currency(m_account), false))
          return;
 
     wxChoice* itemAcctType = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
