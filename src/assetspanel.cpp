@@ -1,5 +1,8 @@
 /*******************************************************
-  This program is free software; you can redistribute it and/or modify
+ Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2015 Nikolay
+
+ This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
@@ -62,19 +65,20 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     ToggleWindowStyle(wxLC_EDIT_LABELS);
 
     // load the global variables
-    m_selected_col = Model_Setting::instance().GetIntSetting("ASSETS_SORT_COL", 0);
+    m_selected_col = Model_Setting::instance().GetIntSetting("ASSETS_SORT_COL", m_default_sort_column);
     m_asc = Model_Setting::instance().GetBoolSetting("ASSETS_ASC", true);
 
-    m_columns.push_back(std::make_tuple(_("Icon"), 25));
-    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Name"), 150));
-    m_columns.push_back(std::make_tuple(_("Date"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Type"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Initial Value"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Current Value"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Notes"), 450));
+    m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Name"), 150, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Initial Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Current Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Notes"), 450, wxLIST_FORMAT_LEFT));
 
     m_col_width = "ASSETS_COL%d_WIDTH";
+
     m_default_sort_column = m_panel->col_sort();
 }
 
@@ -367,16 +371,16 @@ void mmAssetsPanel::CreateControls()
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer9);
 
-    wxPanel* headerPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition,
-        wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL );
-    itemBoxSizer9->Add(headerPanel, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxGROW, 5);
+    wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
+        , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    itemBoxSizer9->Add(headerPanel, g_flagsBorder1);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
     wxStaticText* itemStaticText9 = new wxStaticText( headerPanel, wxID_STATIC, _("Assets"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizerVHeader->Add(itemStaticText9, 0, wxALL, 1);
+    itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
@@ -391,7 +395,7 @@ void mmAssetsPanel::CreateControls()
     itemBoxSizerHHeader2->Add(itemStaticTextMainFilter_, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxGROW, 5);
 
     header_text_ = new wxStaticText(headerPanel, wxID_STATIC, "");
-    itemBoxSizerVHeader->Add(header_text_, 0, wxALL, 1);
+    itemBoxSizerVHeader->Add(header_text_, g_flagsBorder1);
 
     /* ---------------------- */
 
@@ -415,37 +419,14 @@ void mmAssetsPanel::CreateControls()
 
     m_listCtrlAssets->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
 
-    m_listCtrlAssets->InsertColumn(COL_ICON, " ", wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format(m_listCtrlAssets->m_col_width, COL_ICON),
-        std::get<1>(m_listCtrlAssets->m_columns[COL_ICON])));
-
-    m_listCtrlAssets->InsertColumn(COL_ID, std::get<0>(m_listCtrlAssets->m_columns[COL_ID]), wxLIST_FORMAT_RIGHT
-        , Model_Setting::instance().GetIntSetting(wxString::Format(m_listCtrlAssets->m_col_width, COL_ID),
-        std::get<1>(m_listCtrlAssets->m_columns[COL_ID])));
-
-    m_listCtrlAssets->InsertColumn(COL_NAME, std::get<0>(m_listCtrlAssets->m_columns[COL_NAME]), wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format(m_listCtrlAssets->m_col_width, COL_NAME),
-        std::get<1>(m_listCtrlAssets->m_columns[COL_NAME])));
-
-    m_listCtrlAssets->InsertColumn(COL_TYPE, std::get<0>(m_listCtrlAssets->m_columns[COL_TYPE]), wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format(m_listCtrlAssets->m_col_width, COL_TYPE),
-        std::get<1>(m_listCtrlAssets->m_columns[COL_TYPE])));
-
-    m_listCtrlAssets->InsertColumn(COL_VALUE_INITIAL, std::get<0>(m_listCtrlAssets->m_columns[COL_VALUE_INITIAL]), wxLIST_FORMAT_RIGHT
-        , Model_Setting::instance().GetIntSetting(wxString::Format(m_listCtrlAssets->m_col_width, COL_VALUE_INITIAL),
-        std::get<1>(m_listCtrlAssets->m_columns[COL_VALUE_INITIAL])));
-
-    m_listCtrlAssets->InsertColumn(COL_VALUE_CURRENT, std::get<0>(m_listCtrlAssets->m_columns[COL_VALUE_CURRENT]), wxLIST_FORMAT_RIGHT
-        , Model_Setting::instance().GetIntSetting(wxString::Format(m_listCtrlAssets->m_col_width, COL_VALUE_CURRENT),
-        std::get<1>(m_listCtrlAssets->m_columns[COL_VALUE_CURRENT])));
-
-    m_listCtrlAssets->InsertColumn(COL_DATE, std::get<0>(m_listCtrlAssets->m_columns[COL_DATE]), wxLIST_FORMAT_RIGHT
-        , Model_Setting::instance().GetIntSetting(wxString::Format(m_listCtrlAssets->m_col_width, COL_DATE),
-        std::get<1>(m_listCtrlAssets->m_columns[COL_DATE])));
-
-    m_listCtrlAssets->InsertColumn(COL_NOTES, std::get<0>(m_listCtrlAssets->m_columns[COL_NOTES]), wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format(m_listCtrlAssets->m_col_width, COL_NOTES),
-        std::get<1>(m_listCtrlAssets->m_columns[COL_NOTES])));
+    int i = 0;
+    for (const auto& entry : m_listCtrlAssets->m_columns)
+    {
+        const wxString& heading = std::get<0>(entry);
+        int width = Model_Setting::instance().GetIntSetting(wxString::Format(m_listCtrlAssets->m_col_width, i), std::get<1>(entry));
+        int format = std::get<2>(entry);
+        m_listCtrlAssets->InsertColumn(i++, heading, format, width);
+    }
 
     wxPanel* assets_panel = new wxPanel(itemSplitterWindow10, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
@@ -453,33 +434,33 @@ void mmAssetsPanel::CreateControls()
     itemSplitterWindow10->SplitHorizontally(m_listCtrlAssets, assets_panel);
     itemSplitterWindow10->SetMinimumPaneSize(100);
     itemSplitterWindow10->SetSashGravity(1.0);
-    itemBoxSizer9->Add(itemSplitterWindow10, 1, wxGROW | wxALL, 1);
+    itemBoxSizer9->Add(itemSplitterWindow10, g_flagsExpandBorder1);
 
     wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
     assets_panel->SetSizer(itemBoxSizer4);
 
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer4->Add(itemBoxSizer5, 0, wxALIGN_LEFT | wxALL, 3);
+    itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1);
 
     wxButton* itemButton6 = new wxButton( assets_panel, wxID_NEW, _("&New "));
     itemButton6->SetToolTip(_("New Asset"));
-    itemBoxSizer5->Add(itemButton6, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
+    itemBoxSizer5->Add(itemButton6, 0, wxRIGHT, 5);
 
     wxButton* itemButton81 = new wxButton( assets_panel, wxID_EDIT, _("&Edit "));
     itemButton81->SetToolTip(_("Edit Asset"));
-    itemBoxSizer5->Add(itemButton81, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
+    itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 5);
     itemButton81->Enable(false);
 
     wxButton* itemButton7 = new wxButton( assets_panel, wxID_DELETE, _("&Delete "));
     itemButton7->SetToolTip(_("Delete Asset"));
-    itemBoxSizer5->Add(itemButton7, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
+    itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
 	wxBitmapButton* attachment_button_ = new wxBitmapButton(assets_panel
 		, wxID_FILE, wxBitmap(attachment_xpm), wxDefaultPosition,
 		wxSize(30, itemButton7->GetSize().GetY()));
 	attachment_button_->SetToolTip(_("Open attachments"));
-	itemBoxSizer5->Add(attachment_button_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
+    itemBoxSizer5->Add(attachment_button_, 0, wxRIGHT, 5);
 	attachment_button_->Enable(false);
 
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(assets_panel
@@ -492,12 +473,12 @@ void mmAssetsPanel::CreateControls()
 
     //Infobar-mini
     wxStaticText* itemStaticText44 = new wxStaticText(assets_panel, IDC_PANEL_ASSET_STATIC_DETAILS_MINI, "");
-    itemBoxSizer5->Add(itemStaticText44, 1, wxGROW | wxTOP, 12);
+    itemBoxSizer5->Add(itemStaticText44, 1, wxGROW | wxTOP | wxLEFT, 5);
 
     //Infobar
     wxStaticText* itemStaticText33 = new wxStaticText(assets_panel
         , IDC_PANEL_ASSET_STATIC_DETAILS, "", wxDefaultPosition, wxSize(200, -1), wxTE_MULTILINE | wxTE_WORDWRAP);
-    itemBoxSizer4->Add(itemStaticText33, 1, wxGROW | wxLEFT | wxRIGHT, 14);
+    itemBoxSizer4->Add(itemStaticText33, g_flagsExpandBorder1);
 
     updateExtraAssetData(-1);
 }

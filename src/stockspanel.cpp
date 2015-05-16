@@ -89,33 +89,31 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     m_selected_col = Model_Setting::instance().GetIntSetting("STOCKS_SORT_COL", col_sort());
     m_asc = Model_Setting::instance().GetBoolSetting("STOCKS_ASC", true);
 
-    m_columns.push_back(std::make_tuple(_("Icon"), 25));
-    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Purchase Date"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Share Name"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Share Symbol"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Number of Shares"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Unit Price"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Total Value"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Curr. unit price"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Curr. total value"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Price Date"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Commission"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Notes"), wxLIST_AUTOSIZE_USEHEADER));
+    m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Purchase Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Share Name"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Share Symbol"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Number of Shares"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Unit Price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Total Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Curr. unit price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Curr. total value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Price Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Commission"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Notes"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
 
     m_col_width = "STOCKS_COL%d_WIDTH";
     m_default_sort_column = col_sort();
 
-    InsertColumn(COL_ICON, " ", wxLIST_FORMAT_LEFT
-        , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, COL_ICON), std::get<1>(m_columns[COL_ICON])));
-    for (int i = 1; i < (int)m_columns.size(); i++)
+    int i = 0;
+    for (const auto& entry : m_columns)
     {
-        int item_format = wxLIST_FORMAT_RIGHT;
-        if ((i < 4) || (i > 10))
-            item_format = wxLIST_FORMAT_LEFT;
-        InsertColumn(i, std::get<0>(m_columns[i]), item_format,
-            Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, i), std::get<1>(m_columns[i])));
+        const wxString& heading = std::get<0>(entry);
+        int width = Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, i), std::get<1>(entry));
+        int format = std::get<2>(entry);
+        InsertColumn(i++, heading, format, width);
     }
 
     initVirtualListControl(-1, m_selected_col, m_asc);
@@ -474,53 +472,53 @@ void mmStocksPanel::CreateControls()
     itemSplitterWindow10->SplitHorizontally(listCtrlAccount_, BottomPanel);
     itemSplitterWindow10->SetMinimumPaneSize(100);
     itemSplitterWindow10->SetSashGravity(1.0);
-    itemBoxSizer9->Add(itemSplitterWindow10, 1, wxGROW | wxALL, 1);
+    itemBoxSizer9->Add(itemSplitterWindow10, g_flagsExpandBorder1);
 
     wxBoxSizer* BoxSizerVBottom = new wxBoxSizer(wxVERTICAL);
     BottomPanel->SetSizer(BoxSizerVBottom);
 
     wxBoxSizer* BoxSizerHBottom = new wxBoxSizer(wxHORIZONTAL);
-    BoxSizerVBottom->Add(BoxSizerHBottom, wxSizerFlags(g_flagsExpand).Border(0));
+    BoxSizerVBottom->Add(BoxSizerHBottom, g_flagsBorder1);
 
     wxButton* itemButton6 = new wxButton(BottomPanel, wxID_NEW, _("&New "));
     itemButton6->SetToolTip(_("New Stock Investment"));
-    BoxSizerHBottom->Add(itemButton6, g_flags);
+    BoxSizerHBottom->Add(itemButton6, 0, wxRIGHT, 5);
 
     wxButton* itemButton81 = new wxButton(BottomPanel, wxID_EDIT, _("&Edit "));
     itemButton81->SetToolTip(_("Edit Stock Investment"));
-    BoxSizerHBottom->Add(itemButton81, g_flags);
+    BoxSizerHBottom->Add(itemButton81, 0, wxRIGHT, 5);
     itemButton81->Enable(false);
 
     wxButton* itemButton7 = new wxButton(BottomPanel, wxID_DELETE, _("&Delete "));
     itemButton7->SetToolTip(_("Delete Stock Investment"));
-    BoxSizerHBottom->Add(itemButton7, g_flags);
+    BoxSizerHBottom->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
     wxButton* bMove = new wxButton(BottomPanel, wxID_MOVE_FRAME, _("&Move"));
     bMove->SetToolTip(_("Move selected transaction to another account"));
-    BoxSizerHBottom->Add(bMove, g_flags);
+    BoxSizerHBottom->Add(bMove, 0, wxRIGHT, 5);
     bMove->Enable(false);
 
     attachment_button_ = new wxBitmapButton(BottomPanel
         , wxID_FILE, wxBitmap(attachment_xpm), wxDefaultPosition
         , wxSize(30, bMove->GetSize().GetY()));
     attachment_button_->SetToolTip(_("Open attachments"));
-    BoxSizerHBottom->Add(attachment_button_, g_flags);
+    BoxSizerHBottom->Add(attachment_button_, 0, wxRIGHT, 5);
     attachment_button_->Enable(false);
 
     refresh_button_ = new wxBitmapButton(BottomPanel
         , wxID_REFRESH, wxBitmap (led_off_xpm), wxDefaultPosition, wxSize(30, bMove->GetSize().GetY()));
     refresh_button_->SetLabelText(_("Refresh"));
     refresh_button_->SetToolTip(_("Refresh Stock Prices from Yahoo"));
-    BoxSizerHBottom->Add(refresh_button_, g_flags);
+    BoxSizerHBottom->Add(refresh_button_, 0, wxRIGHT, 5);
 
     //Infobar-mini
     stock_details_short_ = new wxStaticText(BottomPanel, wxID_STATIC, strLastUpdate_);
-    BoxSizerHBottom->Add(stock_details_short_, 1, wxGROW|wxTOP, 12);
+    BoxSizerHBottom->Add(stock_details_short_, 1, wxGROW | wxTOP | wxLEFT, 5);
     //Infobar
-    stock_details_ = new wxStaticText(BottomPanel, wxID_STATIC, "",
-        wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_WORDWRAP);
-    BoxSizerVBottom->Add(stock_details_, 1, wxGROW|wxLEFT|wxRIGHT, 14);
+    stock_details_ = new wxStaticText(BottomPanel, wxID_STATIC, ""
+        , wxDefaultPosition, wxSize(200, -1), wxTE_MULTILINE | wxTE_WORDWRAP);
+    BoxSizerVBottom->Add(stock_details_, g_flagsExpandBorder1);
 
     updateExtraStocksData(-1);
 }
