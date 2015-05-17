@@ -43,6 +43,18 @@ mmListCtrl::~mmListCtrl()
 {
     if (attr1_) delete attr1_;
     if (attr2_) delete attr2_;
+    /*
+      Save the column widths of the list control. This will ensure that the
+      column widths get set incase the OnItemResize does not work on some systems.
+    */
+    for (int column_number = 0; column_number < GetColumnCount(); ++column_number)
+    {
+        int column_width = GetColumnWidth(column_number);
+        if (GetColumnWidthSetting(column_number) != column_width)
+        {
+            SetColumnWidthSetting(column_number, column_width);
+        }
+    }
 }
 
 wxListItemAttr* mmListCtrl::OnGetItemAttr(long row) const
@@ -197,6 +209,17 @@ void mmListCtrl::OnHeaderColumn(wxCommandEvent& event)
         SetColumnWidth(columnNbr, new_width);
         Model_Setting::instance().Set(parameter_name, GetColumnWidth(columnNbr));
     }
+}
+
+int mmListCtrl::GetColumnWidthSetting(int column_number, int default_size)
+{
+    return Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, column_number), default_size);
+}
+
+void mmListCtrl::SetColumnWidthSetting(int column_number, int column_width)
+{
+    if (!m_col_width.IsEmpty())
+        Model_Setting::instance().Set(wxString::Format(m_col_width, column_number), column_width);
 }
 
 mmPanelBase::mmPanelBase()
