@@ -171,15 +171,19 @@ void mmBDDialog::dataToControls()
     // Set the payment date
     bill_date.ParseDate(m_bill_data.NEXTOCCURRENCEDATE);
     m_payment_date->SetValue(bill_date);
-    if (m_enter_occur)
-    {
-        m_payment_date->SetValue(wxDateTime::Now());
-    }
     m_calendar_ctrl->SetDate(bill_date);
+    wxTimeSpan pay_date = bill_date.Subtract(wxDateTime::Now());
+    int pay_days = pay_date.GetDays();
+
     // Set the due Date
     bill_date.ParseDate(m_bill_data.TRANSDATE);
     m_due_date->SetValue(bill_date);
-
+    wxTimeSpan due_date = bill_date.Subtract(wxDateTime::Now());
+    int due_days = due_date.GetDays();
+    if (m_enter_occur && (pay_days < 14) && (due_days > -3))
+    {
+        m_payment_date->SetValue(wxDateTime::Now());
+    }
     // Have used repeatSel to multiplex auto repeat fields.
     if (m_bill_data.REPEATS >= BD_REPEATS_MULTIPLEX_BASE)
     {
