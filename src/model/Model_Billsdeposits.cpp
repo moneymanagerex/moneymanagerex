@@ -382,6 +382,7 @@ Model_Billsdeposits::Full_Data::Full_Data()
 
 Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
 {
+    m_bill_splits = splittransaction(r);
     if (!m_bill_splits.empty())
     {
         for (const auto& entry : m_bill_splits)
@@ -398,11 +399,4 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
     {
         PAYEENAME = Model_Account::get_account_name(r.TOACCOUNTID);
     }
-
-    m_bill_splits = splittransaction(r);
-}
-
-bool Model_Billsdeposits::Full_Data::has_split() const
-{
-    return !m_bill_splits.empty();
 }
