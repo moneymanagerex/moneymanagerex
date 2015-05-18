@@ -54,20 +54,22 @@ Test_Date_Range::~Test_Date_Range()
 void Test_Date_Range::setUp()
 {
     m_start_date = new wxDateTime(wxDateTime::Today());
+    //std::cout << wxString::Format("\nm_start_date = %s", m_start_date->FormatISODate());
 
     // Set date to the beginning of a financial year. Assume 1st July.
     int month = m_start_date->GetMonth();
-    if (month > wxDateTime::Jun)
+    if (month < wxDateTime::Jul)
     {
-        m_start_date->Subtract(wxDateSpan::Months(month - wxDateTime::Jul));
+        m_start_date->Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
     }
     else
     {
-        m_start_date->Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
+        m_start_date->Subtract(wxDateSpan::Months(month - wxDateTime::Jul));
     }
 
     // Correction to 1st July from start date: Today
     m_start_date->Subtract(wxDateSpan::Days(m_start_date->GetDay() - 1));
+    //std::cout << wxString::Format("\nm_start_date = %s \n\n", m_start_date->FormatISODate());
 }
 
 void Test_Date_Range::tearDown()
@@ -80,8 +82,8 @@ void Test_Date_Range::tearDown()
 void Test_Date_Range::Last_Year()
 {
     int month = m_start_date->GetMonth();
-    m_start_date->Add(wxDateSpan::Months(6)).Subtract(wxDateSpan::Year());
-    if (month > wxDateTime::Jun)
+    m_start_date->Subtract(wxDateSpan::Months(6));
+    if (month < wxDateTime::Jul)
     {
         m_start_date->Subtract(wxDateSpan::Year());
     }
@@ -96,7 +98,7 @@ void Test_Date_Range::Current_Year()
 {
     int month = m_start_date->GetMonth();
     m_start_date->Add(wxDateSpan::Months(6));
-    if (month > wxDateTime::Jun)
+    if (month < wxDateTime::Jul)
     {
         m_start_date->Subtract(wxDateSpan::Year());
     }
@@ -112,7 +114,7 @@ void Test_Date_Range::Current_Year_To_Date()
 {
     int month = m_start_date->GetMonth();
     m_start_date->Add(wxDateSpan::Months(6));
-    if (month > wxDateTime::Jun)
+    if (month < wxDateTime::Jul)
     {
         m_start_date->Subtract(wxDateSpan::Year());
     }
