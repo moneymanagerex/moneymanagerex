@@ -382,7 +382,16 @@ Model_Billsdeposits::Full_Data::Full_Data()
 
 Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
 {
-    CATEGNAME = Model_Category::full_name(r.CATEGID, r.SUBCATEGID);
+    m_bill_splits = splittransaction(r);
+    if (!m_bill_splits.empty())
+    {
+        for (const auto& entry : m_bill_splits)
+            CATEGNAME += (CATEGNAME.empty() ? " * " : ", ")
+            + Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID);
+    }
+    else
+        CATEGNAME = Model_Category::full_name(r.CATEGID, r.SUBCATEGID);
+
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
 
     PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
@@ -390,11 +399,4 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
     {
         PAYEENAME = Model_Account::get_account_name(r.TOACCOUNTID);
     }
-
-    m_bill_splits = splittransaction(r);
-}
-
-bool Model_Billsdeposits::Full_Data::has_split() const
-{
-    return !m_bill_splits.empty();
 }

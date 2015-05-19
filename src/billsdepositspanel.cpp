@@ -104,22 +104,22 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     m_selected_col = Model_Setting::instance().GetIntSetting("BD_SORT_COL", m_bdp->col_sort());
     m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
 
-    m_columns.push_back(std::make_tuple(_("Icon"), 25));
-    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Payment Date"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Due Date"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Account"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Payee"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Status"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Category"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Type"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Amount"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Frequency"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Repetitions"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Autorepeat"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Payment"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Number"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Notes"), 150));
+    m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Payment Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Due Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Account"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Payee"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Repetitions"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Autorepeat"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Payment"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Number"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Notes"), 150, wxLIST_FORMAT_LEFT));
 
     m_col_width = "BD_COL%d_WIDTH";
     m_default_sort_column = m_bdp->col_sort();
@@ -212,7 +212,7 @@ void mmBillsDepositsPanel::CreateControls()
     /* ---------------------- */
     wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
         , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-    itemBoxSizer9->Add(headerPanel, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+    itemBoxSizer9->Add(headerPanel, g_flagsBorder1);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
@@ -220,14 +220,14 @@ void mmBillsDepositsPanel::CreateControls()
     wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_ANY
         , _("Recurring Transactions"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizerVHeader->Add(itemStaticText9, 0, wxALL, 1);
+    itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
     wxBitmap itemStaticBitmap(rightarrow_xpm);
     bitmapTransFilter_ = new wxStaticBitmap(headerPanel, wxID_ANY, itemStaticBitmap);
-    itemBoxSizerHHeader2->Add(bitmapTransFilter_, 0, wxALL, 1);
+    itemBoxSizerHHeader2->Add(bitmapTransFilter_, g_flagsBorder1);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
@@ -254,15 +254,14 @@ void mmBillsDepositsPanel::CreateControls()
     listCtrlAccount_ = new billsDepositsListCtrl(this, itemSplitterWindowBillsDeposit);
 
     listCtrlAccount_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
-    listCtrlAccount_->InsertColumn(COL_ICON, " ", wxLIST_FORMAT_LEFT
-        , listCtrlAccount_->GetColumnWidthSetting(COL_ICON, std::get<1>(listCtrlAccount_->m_columns[COL_ICON])));
-    for (int i = 1; i < (int)listCtrlAccount_->m_columns.size(); i++)
+
+    int i = 0;
+    for (const auto& entry : listCtrlAccount_->m_columns)
     {
-        int item_format = wxLIST_FORMAT_LEFT;
-        if ((i == COL_PAYMENT_DATE) || (i == COL_AMOUNT) || (i == COL_ID) || (i == COL_REPEATS))
-            item_format = wxLIST_FORMAT_RIGHT;
-        listCtrlAccount_->InsertColumn(i, std::get<0>(listCtrlAccount_->m_columns[i]), item_format,
-            listCtrlAccount_->GetColumnWidthSetting(i, std::get<1>(listCtrlAccount_->m_columns[i])));
+        const wxString& heading = std::get<0>(entry);
+        int width = Model_Setting::instance().GetIntSetting(wxString::Format(listCtrlAccount_->m_col_width, i), std::get<1>(entry));
+        int format = std::get<2>(entry);
+        listCtrlAccount_->InsertColumn(i++, heading, format, width);
     }
 
     wxPanel* bdPanel = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY
@@ -271,53 +270,53 @@ void mmBillsDepositsPanel::CreateControls()
     itemSplitterWindowBillsDeposit->SplitHorizontally(listCtrlAccount_, bdPanel);
     itemSplitterWindowBillsDeposit->SetMinimumPaneSize(100);
     itemSplitterWindowBillsDeposit->SetSashGravity(1.0);
-    itemBoxSizer9->Add(itemSplitterWindowBillsDeposit, 1, wxGROW | wxALL, 1);
+    itemBoxSizer9->Add(itemSplitterWindowBillsDeposit, g_flagsExpandBorder1);
 
     wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
     bdPanel->SetSizer(itemBoxSizer4);
 
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer4->Add(itemBoxSizer5, g_flags);
+    itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1);
 
     wxButton* itemButtonNew = new wxButton(bdPanel, wxID_NEW, _("&New "));
     itemButtonNew->SetToolTip(_("New Bills & Deposit Series"));
-    itemBoxSizer5->Add(itemButtonNew, g_flags);
+    itemBoxSizer5->Add(itemButtonNew, 0, wxRIGHT, 5);
 
     wxButton* itemButton81 = new wxButton(bdPanel, wxID_EDIT, _("&Edit "));
     itemButton81->SetToolTip(_("Edit Bills & Deposit Series"));
-    itemBoxSizer5->Add(itemButton81, g_flags);
+    itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 5);
     itemButton81->Enable(false);
 
     wxButton* itemButton7 = new wxButton(bdPanel, wxID_DELETE, _("&Delete "));
     itemButton7->SetToolTip(_("Delete Bills & Deposit Series"));
-    itemBoxSizer5->Add(itemButton7, g_flags);
+    itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
     wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _("En&ter"));
     itemButton8->SetToolTip(_("Enter Next Bills & Deposit Occurrence"));
-    itemBoxSizer5->Add(itemButton8, g_flags);
+    itemBoxSizer5->Add(itemButton8, 0, wxRIGHT, 5);
     itemButton8->Enable(false);
 
     wxButton* buttonSkipTrans = new wxButton(bdPanel, wxID_IGNORE, _("&Skip"));
     buttonSkipTrans->SetToolTip(_("Skip Next Bills & Deposit Occurrence"));
-    itemBoxSizer5->Add(buttonSkipTrans, g_flags);
+    itemBoxSizer5->Add(buttonSkipTrans, 0, wxRIGHT, 5);
     buttonSkipTrans->Enable(false);
 
     wxBitmapButton* btnAttachment_ = new wxBitmapButton(bdPanel, wxID_FILE
         , wxBitmap(attachment_xpm), wxDefaultPosition
         , wxSize(30, itemButton8->GetSize().GetY()));
     btnAttachment_->SetToolTip(_("Open attachments"));
-    itemBoxSizer5->Add(btnAttachment_, g_flags);
+    itemBoxSizer5->Add(btnAttachment_, 0, wxRIGHT, 5);
     btnAttachment_->Enable(false);
 
     //Infobar-mini
     m_infoTextMini = new wxStaticText(bdPanel, wxID_STATIC, "");
-    itemBoxSizer5->Add(m_infoTextMini, 1, wxGROW | wxTOP, 12);
+    itemBoxSizer5->Add(m_infoTextMini, 1, wxGROW | wxTOP | wxLEFT, 5);
 
     //Infobar
     m_infoText = new wxStaticText(bdPanel, wxID_ANY, ""
         , wxPoint(-1, -1), wxSize(200, -1), wxNO_BORDER | wxTE_MULTILINE | wxTE_WORDWRAP | wxST_NO_AUTORESIZE);
-    itemBoxSizer4->Add(m_infoText, 1, wxGROW | wxLEFT | wxRIGHT, 14);
+    itemBoxSizer4->Add(m_infoText, g_flagsExpandBorder1);
 
     mmBillsDepositsPanel::updateBottomPanelData(-1);
 }
@@ -449,10 +448,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     case COL_STATUS:
         return bill.STATUS;
     case COL_CATEGORY:
-        if (bill.has_split())
-            return _("Split.......");
-        else
-            return bill.CATEGNAME;
+        return bill.CATEGNAME;
     case COL_TYPE:
         return wxGetTranslation(bill.TRANSCODE);
     case COL_AMOUNT:

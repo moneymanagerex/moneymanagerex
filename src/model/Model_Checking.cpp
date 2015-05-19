@@ -304,8 +304,8 @@ Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUN
     if (!m_splits.empty())
     {
         for (const auto& entry : m_splits)
-            this->CATEGNAME += Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID) + " ";
-        this->CATEGNAME.Prepend(" * ");
+            this->CATEGNAME += (this->CATEGNAME.empty() ? " * " : ", ")
+            + Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID);
     }
     else
     {
@@ -334,8 +334,8 @@ Model_Checking::Full_Data::Full_Data(const Data& r
     if (!m_splits.empty())
     {
         for (const auto& entry : m_splits)
-            this->CATEGNAME += Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID) + " ";
-        this->CATEGNAME.Prepend(" * ");
+            this->CATEGNAME += (this->CATEGNAME.empty() ? " * " : ", ")
+            + Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID);
     }
     else
     {

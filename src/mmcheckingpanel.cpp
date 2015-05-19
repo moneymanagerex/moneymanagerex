@@ -334,17 +334,13 @@ void mmCheckingPanel::OnMouseLeftDown( wxMouseEvent& event )
 
 void mmCheckingPanel::CreateControls()
 {
-    int border = 1;
-    wxSizerFlags flags = wxSizerFlags(g_flags).Border(wxALL, border);
-    wxSizerFlags flagsExpand = wxSizerFlags(g_flagsExpand).Border(wxALL, border);
-
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer9);
 
     /* ---------------------- */
     wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
         , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-    itemBoxSizer9->Add(headerPanel, flags);
+    itemBoxSizer9->Add(headerPanel, g_flagsBorder1);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
@@ -354,7 +350,7 @@ void mmCheckingPanel::CreateControls()
 
     header_text_ = new wxStaticText( headerPanel, wxID_STATIC, "");
     header_text_->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizerVHeader2->Add(header_text_, flags);
+    itemBoxSizerVHeader2->Add(header_text_, g_flagsBorder1);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     wxFlexGridSizer* itemFlexGridSizerHHeader2 = new wxFlexGridSizer(5, 1, 1);
@@ -364,20 +360,20 @@ void mmCheckingPanel::CreateControls()
     wxBitmap itemStaticBitmap(rightarrow_xpm);
     bitmapMainFilter_ = new wxStaticBitmap(headerPanel, wxID_PAGE_SETUP
         , itemStaticBitmap);
-    itemFlexGridSizerHHeader2->Add(bitmapMainFilter_, flags);
+    itemFlexGridSizerHHeader2->Add(bitmapMainFilter_, g_flagsBorder1);
     bitmapMainFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnFilterResetToViewAll), nullptr, this);
     bitmapMainFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnMouseLeftDown), nullptr, this);
 
     stxtMainFilter_ = new wxStaticText(headerPanel, wxID_ANY, "", wxDefaultPosition, wxSize(250, -1));
-    itemFlexGridSizerHHeader2->Add(stxtMainFilter_, flags);
+    itemFlexGridSizerHHeader2->Add(stxtMainFilter_, g_flagsBorder1);
 
     itemFlexGridSizerHHeader2->AddSpacer(20);
 
     bitmapTransFilter_ = new wxStaticBitmap(headerPanel, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER
         , itemStaticBitmap);
-    itemFlexGridSizerHHeader2->Add(bitmapTransFilter_, flags);
+    itemFlexGridSizerHHeader2->Add(bitmapTransFilter_, g_flagsBorder1);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), nullptr, this);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
@@ -385,7 +381,7 @@ void mmCheckingPanel::CreateControls()
 
     statTextTransFilter_ = new wxStaticText(headerPanel, wxID_ANY
         , _("Transaction Filter"));
-    itemFlexGridSizerHHeader2->Add(statTextTransFilter_, flags);
+    itemFlexGridSizerHHeader2->Add(statTextTransFilter_, g_flagsBorder1);
 
     wxStaticText* itemStaticText12 = new wxStaticText(headerPanel
         , ID_PANEL_CHECKING_STATIC_BALHEADER1, "$", wxDefaultPosition, wxSize(120, -1));
@@ -399,7 +395,7 @@ void mmCheckingPanel::CreateControls()
         , ID_PANEL_CHECKING_STATIC_BALHEADER5, "$", wxDefaultPosition, wxSize(120, -1));
 
     wxFlexGridSizer* balances_header = new wxFlexGridSizer(0,8,5,10);
-    itemBoxSizerVHeader->Add(balances_header, flagsExpand);
+    itemBoxSizerVHeader->Add(balances_header, g_flagsExpandBorder1);
     balances_header->Add(new wxStaticText(headerPanel, wxID_STATIC, _("Account Bal: ")));
     balances_header->Add(itemStaticText12);
     balances_header->Add(new wxStaticText(headerPanel,  wxID_STATIC, _("Reconciled Bal: ")));
@@ -458,13 +454,13 @@ void mmCheckingPanel::CreateControls()
     itemSplitterWindow10->SetMinimumPaneSize(100);
     itemSplitterWindow10->SetSashGravity(1.0);
 
-    itemBoxSizer9->Add(itemSplitterWindow10, flagsExpand);
+    itemBoxSizer9->Add(itemSplitterWindow10, g_flagsExpandBorder1);
 
     wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
     itemPanel12->SetSizer(itemBoxSizer4);
 
     wxBoxSizer* itemButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer4->Add(itemButtonsSizer, flags);
+    itemBoxSizer4->Add(itemButtonsSizer, g_flagsBorder1);
 
     btnNew_ = new wxButton(itemPanel12, wxID_NEW, _("&New "));
     btnNew_->SetToolTip(_("New Transaction"));
@@ -505,9 +501,9 @@ void mmCheckingPanel::CreateControls()
     itemButtonsSizer->Add(info_panel_mini_, 1, wxGROW | wxTOP | wxLEFT, 5);
 
     //Infobar
-    info_panel_ = new wxStaticText(itemPanel12
-        , wxID_STATIC, "", wxDefaultPosition, wxSize(200, -1), wxTE_MULTILINE | wxTE_WORDWRAP);
-    itemBoxSizer4->Add(info_panel_, flagsExpand);
+    info_panel_ = new wxStaticText(itemPanel12, wxID_STATIC, ""
+        , wxDefaultPosition, wxSize(200, -1), wxTE_MULTILINE | wxTE_WORDWRAP);
+    itemBoxSizer4->Add(info_panel_, g_flagsExpandBorder1);
     //Show tips when no any transaction selected
     showTips();
 }
@@ -972,17 +968,17 @@ TransactionListCtrl::TransactionListCtrl(
 
     showDeletedTransactions_ = Model_Setting::instance().GetBoolSetting("SHOW_DELETED_TRANS", true);
 
-    m_columns.push_back(std::make_tuple(_("Icon"), 25));
-    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE));
-    m_columns.push_back(std::make_tuple(_("Date"), 112));
-    m_columns.push_back(std::make_tuple(_("Number"), 70));
-    m_columns.push_back(std::make_tuple(_("Payee"), 150));
-    m_columns.push_back(std::make_tuple(_("Status"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Category"), 150));
-    m_columns.push_back(std::make_tuple(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Balance"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Notes"), 250));
+    m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Date"), 112, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Number"), 70, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Payee"), 150, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Category"), 150, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Notes"), 250, wxLIST_FORMAT_LEFT));
 
     m_col_width = "CHECK_COL%d_WIDTH";
 
@@ -996,28 +992,15 @@ TransactionListCtrl::~TransactionListCtrl()
 //----------------------------------------------------------------------------
 void TransactionListCtrl::createColumns(mmListCtrl &lst)
 {
-    lst.InsertColumn(COL_IMGSTATUS, " ", wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_IMGSTATUS, std::get<1>(m_columns[COL_IMGSTATUS])));
-    lst.InsertColumn(COL_ID, std::get<0>(m_columns[COL_ID]), wxLIST_FORMAT_RIGHT
-        , GetColumnWidthSetting(COL_ID, std::get<1>(m_columns[COL_ID])));
-    lst.InsertColumn(COL_DATE, std::get<0>(m_columns[COL_DATE]), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_DATE, std::get<1>(m_columns[COL_DATE])));
-    lst.InsertColumn(COL_NUMBER, std::get<0>(m_columns[COL_NUMBER]), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_NUMBER, std::get<1>(m_columns[COL_NUMBER])));
-    lst.InsertColumn(COL_PAYEE_STR, std::get<0>(m_columns[COL_PAYEE_STR]), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_PAYEE_STR, std::get<1>(m_columns[COL_PAYEE_STR])));
-    lst.InsertColumn(COL_STATUS, std::get<0>(m_columns[COL_STATUS]), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_STATUS, std::get<1>(m_columns[COL_STATUS])));
-    lst.InsertColumn(COL_CATEGORY, std::get<0>(m_columns[COL_CATEGORY]), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_CATEGORY, std::get<1>(m_columns[COL_CATEGORY])));
-    lst.InsertColumn(COL_WITHDRAWAL, std::get<0>(m_columns[COL_WITHDRAWAL]), wxLIST_FORMAT_RIGHT
-        , GetColumnWidthSetting(COL_WITHDRAWAL, std::get<1>(m_columns[COL_WITHDRAWAL])));
-    lst.InsertColumn(COL_DEPOSIT, std::get<0>(m_columns[COL_DEPOSIT]), wxLIST_FORMAT_RIGHT
-        , GetColumnWidthSetting(COL_DEPOSIT, std::get<1>(m_columns[COL_DEPOSIT])));
-    lst.InsertColumn(COL_BALANCE, std::get<0>(m_columns[COL_BALANCE]), wxLIST_FORMAT_RIGHT
-        , GetColumnWidthSetting(COL_BALANCE, std::get<1>(m_columns[COL_BALANCE])));
-    lst.InsertColumn(COL_NOTES, std::get<0>(m_columns[COL_NOTES]), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_NOTES, std::get<1>(m_columns[COL_NOTES])));
+    int i = 0;
+    for (const auto& entry : m_columns)
+    {
+        const wxString& heading = std::get<0>(entry);
+        int width = Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, i), std::get<1>(entry));
+        int format = std::get<2>(entry);
+        lst.InsertColumn(i, heading, format, width);
+        i++;
+    }
 }
 
 void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
@@ -1557,7 +1540,7 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
     user_colour_id -= MENU_ON_SET_UDC0;
     wxLogDebug("id: %i", user_colour_id);
 
-    Model_Checking::Data * transaction = Model_Checking::instance().get(m_selectedID);
+    Model_Checking::Data* transaction = Model_Checking::instance().get(m_selectedID);
     if (transaction)
     {
         transaction->FOLLOWUPID = user_colour_id;

@@ -40,7 +40,7 @@ public:
     long m_selected_row;
     int m_selected_col;
     bool m_asc;
-    std::vector<std::tuple<wxString, int>> m_columns;
+    std::vector<std::tuple<wxString, int, int>> m_columns;
     wxString m_col_width;
     int m_default_sort_column;
 
