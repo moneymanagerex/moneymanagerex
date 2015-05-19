@@ -1,2120 +1,1954 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-    <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF8"/>
-    <TITLE>Money Manager Ex User Manual</TITLE>
-    <link rel="stylesheet" type="text/css" href="../res/master.css">
-      <style>
-        table {
-        font-size: 100%;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>Money Manager Ex User Manual</title>
+    <link href="master.css" rel="stylesheet" type="text/css">
+    <style>
+    dt {
+            font-weight: bold;   
         }
-      </style>
-</HEAD>
-<BODY LANG="en-US" DIR="LTR">
-<table class="table, small"><tr>
-    <TD><span class="label label-info">Languages:</span></TD>
-    <TD> </TD><TD><A HREF="french/index.html">French</A><BR>
-    <TD> </TD><TD><A HREF="italian/index.html">Italian</A></TD>
-    <TD> </TD><TD><A HREF="russian/index.html">Russian</A></TD>
-    <TD> </TD><TD><A HREF="spanish/index.html">Spanish</A></TD>
-    <TD> </TD><TD><A HREF="polish/index.html">Polish</A></TD>
-</tr></table>
-<div class="page-header">
-    <H2>Money Manager Ex User Manual <small>MMEX 1.2.0</small></H2>
-</div>
-  <UL>
-    <LI>
-      <A HREF="#introduction">Introduction</A>
-    </LI>
-    <LI>
-      <A HREF="#financial_health">Working towards better Financial Health</A>
-    </LI>
-    <LI>
-      <A HREF="#concepts">Money Manager Ex Concepts</A>
-    </LI>
-    <LI>
-      <A HREF="#recommendation">Recommendations</A>
-    </LI>
-  </UL>
-  <UL>
-    <LI>Database Management</LI>
-      <UL>
-        <li>
-          <A HREF="#create_database">Creating a New Database</A>
-        </li>
-        <li>
-          <A HREF="#encrypting_database">Encrypting a Database</A>
-        </li>
-        <li>
-          <A HREF="#switching_databases">Switching Databases</A>
-        </li>
-      </UL>
-    </UL>
-  <UL>
-    <LI>Working with:</LI>
-    <UL>
-      <li>
-        <A HREF="#currencies">Currencies</A>
-      </li>
-      <li>
-        <A HREF="#categories">Categories</A>
-      </li>
-      <li>
-        <A HREF="#payees">Payees</A>
-      </li>
-    </UL>
-  </UL>
-  <UL>
-    <LI>Account Management</LI>
-    <UL>
-      <LI>
-        <A HREF="#create_account">Creating New Accounts</A>
-      </LI>
-      <LI>
-        <A HREF="#editaccounts">Editing Account Information</A>
-      </LI>
-      <LI>
-        <A HREF="#creating_new_transaction">
-          Creating
-          New Transactions
-        </A>
-      </LI>
-      <LI>
-        <A HREF="#edittrans">Editing and Updating Transactions</A>
-      </LI>
-      <LI>
-        <A HREF="#rectrans">
-          Reconciling Balancing Transactions
-        </A>
-      </LI>
-      <LI>
-        <A HREF="#followup">
-          Flagging Transactions for Followup
-        </A>
-      </LI>
-      <LI>
-        <P>
-          <A HREF="#account_setup">
-            Account Setup Example
-          </A>
-      </LI>
-    </UL>
-  </UL>
-  <UL>
-    <LI>Import From</LI>
-    <UL>
-	  <LI>
-		<A HREF="#WebApp">WebApp</A>
-      <LI>
-        <A HREF="#importQIF">QIF Files</A>
-        <LI>
-          <A HREF="#importUnivCSV">
-            Universal CSV Importer
-          </A>
-        </LI>
-        <LI>
-          <A HREF="#importcsvtips">
-            Tips for creating CSV Files
-          </A>
-        </LI>
-    </UL>
-    <LI>Export To</LI>
-    <UL>
-      <LI>
-        <A HREF="#exportcsv">CSV Files</A>
-      </LI>
-      <LI>
-        <A HREF="#export_qif">QIF Files</A>
-      </LI>
-    </UL>
-  </UL>
-  <UL>
-    <LI>
-      <A HREF="#reports">Reports</A>
-    </LI>
-    <UL>
-      <LI>
-        <A HREF="#financialYearReport">Financial Year Reports</A>
-      </LI>
-      <LI>
-        <A HREF="#transaction_report">Transaction Reports</A>
-      </LI>
-      <LI>
-        <A HREF="#cashFlowReport">Cash Flow Reports</A>
-      </LI>
-      <LI>
-        <A HREF="general_report_manager.html">General Report Manager</A>
-      </LI>
-    </UL>
-  </UL>
-  <UL>
-    <LI><A HREF="investment.html">Stock Investments</A></LI>
-    <LI><A HREF="#assets">Assets</A></LI>
-    <LI>
-      <A HREF="#recurring_transactions">
-        Recurring Transactions</A>
-    </LI>
-    <LI>
-      <A HREF="#transfilter">Transaction Report Filter</A>
-    </LI>
-    <LI>
-      <A HREF="budget.html">Budgeting</A>
-      </li>
-      <LI>
-        <A HREF="#print">Printing</A>
-        </LI>
-    <LI>
-      <A HREF="#options">MMEX Options</A>
-    </LI>
-    <LI>
-      <A HREF="#faq">
-        Frequently Asked Questions
-      </A>
-    </LI>
-  </UL>
-  <HR>
-<H3><A NAME="introduction"></A>Introduction</H3>
-<P><B>Money Manager Ex (MMEX) </B>
-is a personal money management system, for any one starting out in
-keeping track of their money, and their spending habits. Based on
-simple principles, thus allowing anyone with little, to no knowledge
-of finance and general book keeping, to successfully manage their
-money. <SPAN STYLE="font-weight: normal">MMEX does this by attempting
-to models the real financial world, to help us (the user) maintain
-our personal finances.</SPAN> The Money Manager EX Software, is Open
-Source, and free to use.</P>
-<P>The primary goal of MMEX is to
-simplify the process of tracking financial information, in an easy to
-use program that can be used as regular as necessary, to help us keep
-track of where our money comes from and more importantly, where our
-money goes, in order to make better financial decisions for our
-future.</P>
-<P>Think of Money Manager Ex as a
-computer checkbook which enables you to balance your accounts,
-organize, manage and generate reports for your finances.</P>
-<P>It is also a great way to keep abreast of
-your financial worth.</P>
-<P>The purpose of this manual is to give you
-(the user) some basic instructions for using MMEX. This instruction
-manual will evolve as the program evolves. So check the help system
-with each update and see what's new and how to better utilize MMEX.</P>
-<H5><A HREF="#top">Back to Top</A><BR><BR><BR></H5>
-<HR>
-<H3><A NAME="financial_health"></A>
-<BR>Working towards better Financial Health</H3>
-<P>Becoming organized financially requires some
-amount of discipline. Financial management can become complicated
-when there is no clear understanding of how much money we are
-getting, regarded as income as opposed to our expenses which is how
-much money we spend. Debt usually results when our cash flow is
-restricted because our expenses exceed our income. Then we need to
-borrow money to maintain our cash flow to enable us to purchase our
-necessary items.</P>
-<P>The first step towards better Financial
-Health, is to maintain good financial records. It is only when we
-have a clear understanding of where our money goes, that we can make
-an informed decision of where to cut back on our expenses when our
-cash flow becomes tight. If we do need to borrow money, we can then
-better manage our debts as well.</P>
-<P>Did you realize you spent $600 in buying DVD
-movies last year? How many times did you watch them? Do you think now
-that the $600 would have been better spent on the unexpected
-maintenance on the auto that came up yesterday? Of course there is no
-right or wrong answer to how you should spend your money. After all,
-it is you who earned that money and the right to spend it whichever
-way you see fit. But you can always make your money work harder for
-you.<BR><BR>Here's where personal finance software comes in. They
-help you slice/dice the financial data to give you better insight
-into what is going on. Always remember the software can only be as
-good as the data it has to process. Garbage In Garbage Out. But if
-you have started thinking of even using Personal finance software,
-you are well on your way to making every dollar count.</P>
-<P>Read on how to work with Money Manager Ex.</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="concepts"></A><BR>Money
-Manager Ex Concepts</H3>
-<P>Money Manager EX models the real world to
-help us maintain our personal finances.</P>
-<P>Generally we receive money from someone for a
-service we provide, or a product that we sell. This is regarded as
-Income or as a <A HREF="#trans_types"><B>Deposit</B></A>
-to our system. When we purchase an item or use a
-service, the money that we spend is regarded as an expense or
-<A HREF="#trans_types"><B>Withdrawal</B></A>
-to our system. In MMEX, the people that give us
-money or receive our money are regarded as the <A HREF="#payees"><B>Payees</B></A>
-of the system.</P>
-<P>As we hopefully do not spend all the money we
-receive, we would obviously need a place to keep our money. This is
-generally, some financial institution, or several institutions or in
-our pocket. MMEX tags these places as
-<A HREF="#create_account"><B>Accounts</B></A>.
-</P>
-<P>When we spend or receive money, we see this
-as a <A HREF="#creating_new_transaction"><I><B>transaction</B></I></A><I><SPAN STYLE="font-weight: normal">,
-and the reason for our income or expense is our </SPAN></I><A HREF="#categories"><I><B>category</B></I></A><I><SPAN STYLE="font-weight: normal">.
-There will be times where we need to transfer money from one place to
-another, such as a withdrawal from an ATM, and this type of
-transaction is known as a </SPAN></I><A HREF="#trans_types"><I><B>transfer</B></I></A><I><SPAN STYLE="font-weight: normal">.</SPAN></I></P>
-<TABLE class="table, small">
-	<TR>
-		<TD>
-			<I>This can be simplified as shown in the following diagram:</I></P>
-		</TD>
-		<TD>
-			<P><IMG SRC="mmex_concept.png" NAME="graphics1"></P>
-		</TD>
-	</TR>
-</TABLE>
-<P>One other important thing to consider is the
-<A HREF="#currencies"><B>currency</B></A>
-we use to perform the transactions.</P>
-<P>With all of these things to keep track of,
-MMEX uses a <A HREF="#create_database"><B>database</B></A>
-to store and connect all these entities
-together.</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="recommendation"></A><BR>Recommendations</H3>
-<P>The database that MMEX generates, known as
-the <B>.mmb</B> file, becomes an important file for you to maintain.
-Depending on circumstances, security features such as encryption can
-be employed, which is recognized as a <B>.emb</B> file. This is where
-we can attach a password to the database, and will require a password
-every time MMEX is opened.</P>
-<P><B>When encrypting your database, Don't
-forget your password</B>.</P>
-<P>As with any computer system, the data we
-produce is important to us, and therefore need to safeguard against
-system malfunction. MMEX has a backup system where it can produce a
-dated copy when the database is opened, and/or produce a dated copy
-of the database when changes have been detected. Up to 4 backups are
-maintained for each database when the system is initialized and/or
-when system changes have been detected, and the system shuts down.</P>
-<UL>
-	<LI><P>Always backup your .mmb or .emb database
-	file regularly.</P>
-	<LI><P>Always keep backup copies on other
-	devices to protect against hardware failure.</P>
-	<LI><P>When upgrading to a new version of MMEX,
-	make sure you backup your .mmb or .emb database file before doing
-	so.</P>
-	<LI><P>Use the Menu Tools--&gt;Options... to
-	set up the level of backup required.</P>
-</UL>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="create_database"></A><BR>Creating
-a New Database</H3>
-<P>When MMEX initially starts up, it will
-attempt to load the last database that was opened. If no database
-existed, the user is presented with the option to either open an
-existing database, or create a new one.</P>
-<P>If you need to create a new database file,
-from the Menu, Select <B>File-&gt;New Database</B>.</P>
-<P>This will prompt you to specify a new name
-for your .mmb database file, at the location you specify. Your new
-database file is now created and the New Database Wizard will be
-displayed to help you initialize the new database and assist in
-<A HREF="#create_account">creating your first account</A>.</P>
-<P>The New Database Wizard will request you to
-set the Base <B>Currency</B> and
-a <B>User Name</B>.</P>
-<P>MMEX comes with a default set of currencies
-which you can use, to correspond to your countries currency settings.
-New accounts will then use this <B>Base
-Currency</B> setting as the default. This
-allows accounts from different countries to reflect the value in the
-base currency.</P>
-<P>To help identify the purpose of the database,
-a <B>User Name</B> is
-requested. This is optional, as it is only used as a title on the
-Home Page, and in reports.</P>
-<P>Both these settings can later be changed if
-required by selecting the menu: <B>Tools
--&gt;Options</B> 
-</P>
-<P>The database name will be displayed on the
-title bar which helps remind you which database file is open.<BR><B>The
-new .mmb database file is not encrypted.</B></P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="encrypting_database">
-</A><BR>Encrypting your database file.</H3>
-<P STYLE="font-weight: normal">The database can
-now be encrypted as follows: on the Menu, Select <B>File-&gt;Save
-Database As</B></P>
-<OL>
-	<LI><P STYLE="font-weight: normal">Select your
-	location, and select your .mmb file or create a new name for your
-	database.</P>
-	<LI><P STYLE="font-weight: normal">Change the
-	<B>Save As Type:</B> to Encrypted MMB Files (*.emb), then <B>Save</B></P>
-	<LI><P STYLE="font-weight: normal">Enter a
-	password for your file &ndash; <B>You will need the password when
-	opening the database file.</B></P>
-</OL>
-  <div class="col-xs-8">  
-  <span class="label label-info">Tips:</span>
-  <table class="table">
-    <tr class="success">
-      <td>
-        Remember to make backups of your .mmb or	.emb database files.
-      </td>
-    </TR>
-    <TR class="success">
-      <td>
-        Database file is not encrypted:</SPAN><BR>
-        That means anyone else having the proper know how, can actually open the file and read the contents.
-	    So make sure that if you are storing any sensitive financial information, it is properly guarded.
-      </td>
-    </tr>
-    <tr class="success">
-      <td>
-        For encrypted database files: <B>Remember your password</B>.
-      </td>
-      </TR>
+    @media print {
+            hr .pagebreak {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body dir="ltr" lang="en-US">
+    <table class="table, small">
+        <tr>
+            <td class="label label-info">Languages:</td>
+
+            <td>
+                <a href="french/index.html">French</a>
+            </td>
+
+            <td>
+                <a href="italian/index.html">Italian</a>
+            </td>
+
+            <td>
+                <a href="russian/index.html">Russian</a>
+            </td>
+
+            <td>
+                <a href="spanish/index.html">Spanish</a>
+            </td>
+
+            <td>
+                <a href="polish/index.html">Polish</a>
+            </td>
+        </tr>
     </table>
-  </div>
-<P><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></P>
 
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="switching_databases"></A><BR>Switching
-Databases</H3>
-<P STYLE="margin-bottom: 0in"><BR>
-</P>
-<P STYLE="font-weight: normal">For users having
-multiple databases, the user can easily switch between the databases
-by using the Menu item: <B>File-&gt;Recent Files...</B></P>
-<P STYLE="font-weight: normal">This will save
-the last five recently used files. The list will show 6 entries as
-the first entry on the list is the file currently being used.</P>
-<P><B>Clearing the list.</B></P>
-<P STYLE="font-weight: normal">When the list is
-cleared, all the items in the list are cleared. When MMEX shuts down,
-the currently opened database will be saved as the last opened file.
-This will appear in the recent file list as the first entry when MMEX
-is restarted.</P>
-<P><BR><BR>
-</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="create_account"></A><BR>Creating
-New Accounts</H3>
-<P>When creating a new database file, you will
-automatically be requested to create a new account.</P>
-<P><SPAN STYLE="font-weight: normal">To manually
-create a new account, from the Menu, Select </SPAN><B>Accounts-&gt;New
-Account</B><SPAN STYLE="font-weight: normal">.</SPAN></P>
-<P><SPAN STYLE="font-weight: normal">This will
-bring up the </SPAN><B>Add Account
-Wizard</B><SPAN STYLE="font-weight: normal">.
-The wizard will assist in collecting the important information of the
-Name and Type of Account. </SPAN><B>The
-Type of Account is not changeable</B><SPAN STYLE="font-weight: normal">,
-but the name can changed when <A HREF="#editaccounts">editing account
-information</A>.</SPAN></P>
-<P STYLE="margin-bottom: 0in"><B>Name of the
-Account:</B> This is a required field.
-The recommendation is to name your accounts uniquely and in relation
-to real world accounts. Example: With CitiBank, we have a Savings
-account and a credit card Visa account. You could name your accounts
-as &quot;CitiBank Savings&quot; and &ldquo;Citibank Visa&rdquo;.</P>
-<P STYLE="margin-bottom: 0in"><BR>
-</P>
-<P><B>Type of Account: </B>MMEX currently
-supports three types of accounts:</P>
-<OL>
-	<LI><P>&ldquo;<I><B>Checking&rdquo;</B></I>
-	<B>Account:</B> <SPAN STYLE="font-weight: normal">This
-	is the most common type of account used for MMEX, and can handle
-	most common account types, such as checking accounts, savings
-	accounts, and credit card accounts.</SPAN> Also
-	known as Bank Account, and supports three kinds of transactions.
-	These are withdrawal, deposit and transfers. 
-	</P>
-	<LI><P>&ldquo;<B>Term&rdquo; Accounts:</B>
-	similar to Checking Accounts with the exception
-	that they appear in their own section on the home page and can be
-	shown or hidden for normal day usage. For a better explanation see
-	the <A HREF="#account_setup">account setup example</A>.<BR><BR>These
-	kinds of accounts cover specialized accounts such as Cash Term
-	Accounts, Bank Mortgage accounts, Loan accounts, or investment
-	accounts with regular income or expenditure that you need to keep
-	track of. These accounts have their own balance section on the Home
-	Page. These accounts also, supports three kinds of transactions.</P>
-	<LI><P><B>&quot;</B><I><B>Investment</B></I><B>&quot;
-	Account:</B> The other type of account
-	that MMEX supports is an &quot;Investment&quot; Account. This type
-	of account allows you to track stock/bonds/mutual funds investments
-	and possibly other investments you may own.</P>
-</OL>
-<P>To properly setup accounts, you should have
-balance information for the accounts you want to add to MMEX. You can
-get this information from your most recent bank, investment and
-credit card statements. To track additional information about this
-account, optionally you can enter your account details such as
-Account Number, Held At, Website, Contact info and Access Info. You
-can enter additional notes about the account in the notes field.</P>
-<P>Most accounts have some kind of balance in
-them, for example say in a credit card account, you have a current
-balance of $2304.67, you could put that value in the initial balance
-field. Going forward you only need to add transactions beyond that
-date when you had the balance.</P>
-<P><B>The Account</B> <B>Status</B>
-can be set to &quot;Open&quot; or &quot;Closed&quot;.
-Closed accounts are just that. They are no longer active. Setting
-this status is just a way to de-clutter your view in your tree view
-navigation pane. Permanent settings are made by changing the View
-Options on the Menu, Tools-&gt;Options, you can hide the closed
-accounts. See <A HREF="#navTreeTips">Tips on Navigation
-Tree</A><BR><BR><B>Currency:</B>
-<SPAN STYLE="font-weight: normal">This is
-initially set to the database Base Currency setting which was
-initially set when creating the database. Y</SPAN>ou
-can set the currency that is associated with this account and can be
-different to the base currency. 
-</P>
-<P>The exchange rate for the currency can be
-changed using the menu: <B>Tools
--&gt;Organize Currency</B></P>
-<P STYLE="font-weight: normal">Example: You live
-in the USA using US Dollars, and have an Italian bank account using
-the Euro. Most of your accounts are in USD. What is the real value of
-your Italian bank account? By changing the exchange rate for the
-Italian Euro, you can get the correct value of your accounts.</P>
-<P>You also can mark accounts as a <SPAN LANG="en-US">'Favorite</SPAN>
-Account'. This again is used to change the
-accounts that are visible in the navigation bar. See <A HREF="#navTreeTips">Tips
-on Navigation Tree</A></P>
-<div class="col-xs-8">  
-  <span class="label label-info">Tips:</span>
-  <table class="table">
-    <tr class="success">
-      <td>
-	     Use the toolbar icon for quick selection of the Add Account Wizard.
-      </td>
-    </TR>
-  </table>
-</div>
-<P><BR><BR><BR></P>
+    <div class="page-header">
+        <a id="top"></a>
 
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="account_setup"></A><B><BR>Account
-Setup Example:</B></H3>
-<P>We have a savings account with $1250, a check
-account with $500, a MasterCard owing $250, a Visa Card owing $475, a
-home mortgage loan of $230,965 and an education fund to send the
-children to college in the future currently at $5000 earning
-interest.<BR>We would set up the following accounts:</P>
-<TABLE WIDTH="615" BORDER="1" BORDERCOLOR="#000000" CELLPADDING="4" CELLSPACING="0" RULES="GROUPS">
-	<COL WIDTH="178">
-	<COL WIDTH="224">
-	<COL WIDTH="187">
-	<TBODY>
-		<TR VALIGN="TOP">
-			<TD WIDTH="178">
-				<P><B>Account Type</B></P>
-			</TD>
-			<TD WIDTH="224">
-				<P><B>Account Name</B></P>
-			</TD>
-			<TD WIDTH="187">
-				<P><B>Initial Balance</B></P>
-			</TD>
-		</TR>
-	</TBODY>
-	<TBODY>
-		<TR VALIGN="TOP">
-			<TD WIDTH="178">
-				<P>Check/Savings</P>
-			</TD>
-			<TD WIDTH="224">
-				<P>Savings</P>
-			</TD>
-			<TD WIDTH="187" SDVAL="1250" SDNUM="3081;0;[$$-409]#,##0.00;[RED]-[$$-409]#,##0.00">
-				<P>$1,250.00</P>
-			</TD>
-		</TR>
-		<TR VALIGN="TOP">
-			<TD WIDTH="178">
-				<P><BR>
-				</P>
-			</TD>
-			<TD WIDTH="224">
-				<P>Check</P>
-			</TD>
-			<TD WIDTH="187" SDVAL="500" SDNUM="3081;0;[$$-409]#,##0.00;[RED]-[$$-409]#,##0.00">
-				<P>$500.00</P>
-			</TD>
-		</TR>
-		<TR VALIGN="TOP">
-			<TD WIDTH="178">
-				<P><BR>
-				</P>
-			</TD>
-			<TD WIDTH="224">
-				<P>MasterCard</P>
-			</TD>
-			<TD WIDTH="187" SDVAL="-250" SDNUM="3081;0;[$$-409]#,##0.00;[RED]-[$$-409]#,##0.00">
-				<P><FONT COLOR="#ff0000">-$250.00</FONT>
-            </P>
-			</TD>
-		</TR>
-		<TR VALIGN="TOP">
-			<TD WIDTH="178">
-				<P><BR>
-				</P>
-			</TD>
-			<TD WIDTH="224">
-				<P>Visa Card</P>
-			</TD>
-			<TD WIDTH="187" SDVAL="-475" SDNUM="3081;0;[$$-409]#,##0.00;[RED]-[$$-409]#,##0.00">
-				<P>
-                  <FONT COLOR="#ff0000">-$475.00</FONT>
-                </P>
-			</TD>
-		</TR>
-	</TBODY>
-	<TBODY>
-		<TR VALIGN="TOP">
-			<TD WIDTH="178">
-				<P>Term</P>
-			</TD>
-			<TD WIDTH="224">
-				<P>Home Mortgage</P>
-			</TD>
-			<TD WIDTH="187" SDVAL="-230965" SDNUM="3081;0;[$$-409]#,##0.00;[RED]-[$$-409]#,##0.00">
-				<P><FONT COLOR="#ff0000">-$230,965.00</FONT></P>
-			</TD>
-		</TR>
-		<TR VALIGN="TOP">
-			<TD WIDTH="178">
-				<P><BR>
-				</P>
-			</TD>
-			<TD WIDTH="224">
-				<P>Education Fund</P>
-			</TD>
-			<TD WIDTH="187" SDVAL="5000" SDNUM="3081;0;[$$-409]#,##0.00;[RED]-[$$-409]#,##0.00">
-				<P>$5,000.00</P>
-			</TD>
-		</TR>
-	</TBODY>
-</TABLE>
-<P><BR>On the Home Page the balances would be
-$1025 for Bank accounts, and $-225,965 for Term Accounts</P>
-<P>When a payment is made from your Savings
-Account to your MasterCard with a <A HREF="#transfer">Transfer</A>
-Transaction the balance on the home page remains the same. When a
-payment is made from your savings to your home mortgage, the balance
-on the home page will reflect the payment. Now you can determine the
-amount of money you have on a day to day basis. Regular payments can
-also be set up from your savings account to your mortgage account
-using <A HREF="#recurring_transactions">Recurring Transactions</A>.</P>
-<H3><A NAME="navTreeTips"></A><B><BR>Tip
-on</B> using the Navigation Tree and Home
-page:</H3>
-<P>As more accounts are created the Navigation
-Tree and Home page can become very large.<BR>This views can be
-temporarily changed to show or hide the appropriate section:</P>
-<TABLE WIDTH="100%" BORDER="1" BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=ROWS>
-	<COL WIDTH="40*">
-	<COL WIDTH="216*">
-	<TR VALIGN="TOP">
-		<TD WIDTH="15%">
-			<P>Navigation Tree:</P>
-		</TD>
-		<TD WIDTH="85%">
-			<P>Expand/Contract the Bank and Term Account
-			branches using the +/- nodes on the navigation tree.</P>
-		</TD>
-	</TR>
-	<TR VALIGN="TOP">
-		<TD WIDTH="15%">
-			<P>Home Page:</P>
-		</TD>
-		<TD WIDTH="85%">
-			<P>Using the menu: View -&gt;Bank Accounts
-			and/or menu: View -&gt;Term Accounts</P>
-		</TD>
-	</TR>
-</TABLE>
-<P>Using a mouse Right-Click on:</P>
-<UL>
-	<LI><P>Bank Accounts in the Navigation tree,
-	will allow all accounts or only favorite accounts to be shown,
-	temporarily changing the permanent settings, as well as other useful
-	options.</P>
-</UL>
-<UL>
-	<LI><P>Any account name under Bank or Term
-	accounts, to bring up other useful options.</P>
-</UL>
-<P>To make the change permanent, change the
-options using the menu: Tools -&gt;Options --&gt;View Options</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="editaccounts"></A><BR>Editing
-Account Information</H3>
-<P>Once you have created an account, you can
-edit any of the account information fields in the following ways:</P>
-<OL>
-	<LI><P>Using menu <B>Accounts</B> &ndash;&gt;
-	<B>Edit Account</B><BR>The list of account will be displayed where
-	the required account is selected.</P>
-	<LI><P>Selecting the account name in the
-	navigation pane<BR>Right click to bring up the pop-up menu and
-	select &quot;<B>Edit Account</B>&quot;</P>
-</OL>
-<P>This will bring up the account information
-dialog where the required fields can be changed.</P>
-<UL>
-	<LI><P>Edit the account details</P>
-	<LI><P>Use the &quot;OK&quot; button to save
-	the account information.</P>
-</UL>
-<P><BR><BR>
-</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="creating_new_transaction"></A><BR>Creating
-New Transactions</H3>
-<P>Once you have created a new account, and
-selected the required account from the navigation tree, or the home
-page, the displayed account can have new transactions added as
-follows:</P>
-<UL>
-	<LI><P>Using the New button at the bottom of
-	the Account View screen,</P>
-	<LI><P>By selecting an existing transaction and
-	using the mouse Right-Click, and select the appropriate action on
-	the pop-up menu screen.</P>
-</UL>
-<P><B>New/Edit Transaction Dialog</B></P>
-<P>This dialog box will appear for new
-transactions. Use this dialog to enter the following details:</P>
-<UL>
-	<LI><P><B>Date</B> - This is generally the date of the transaction.
-	Defaults to current day and can be changed.</P>
-	<LI><P><B>Status</B> - The default is None, but can be changed to
-	Reconciled by the options settings.</P>
-	<LI><P><B>Type</B> - Refer to Transaction Types below.</P>
-	<LI><P><B>Amount</B> &ndash; Enter the amount fro the transaction.
-	The 2<SUP>nd</SUP> amount field is associated with the Advanced
-	Check-box and will be activated only for Transfer transactions.</P>
-	<LI><P><B>Advanced</B> &ndash; For a transfer transaction, when the
-	amount in the &ldquo;From&rdquo; Account is different to the &rdquo;To&rdquo;
-	Account, the difference is recorded in the separate fields. This can
-	for currency rate changes.</P>
-</UL>
-<P><I><B>Transaction Status:</B></I></P>
-<UL>
-	<LI><P STYLE="margin-bottom: 0in; font-weight: normal"><I><B>Unreconciled</B></I><I>:
-	When you enter a transaction, it initially is in the state of
-	&quot;Unreconciled&quot;. Which means the transaction has not been
-	reconciled with your bank/credit card company's balance.</I></P>
-	<LI><P STYLE="margin-bottom: 0in; font-weight: normal"><I><B>Reconciled:</B></I>
-	<I>Once the transaction is checked and verified with a credit card
-	company's balance information, it can be marked as reconciled.</I></P>
-	<LI><P STYLE="margin-bottom: 0in; font-weight: normal"><I><B>Void:</B></I>
-	<I>If you entered a transaction that later became invalid or you
-	canceled the transaction, instead of deleting the transaction you
-	can also mark it as void so you have a record of the transaction.</I></P>
-	<LI><P STYLE="margin-bottom: 0in; font-weight: normal"><I><B>Flag
-	For Followup:</B></I> <I>This status marks transactions as needing
-	more action. For example, you receive a balance statement from the
-	financial institution and you notice that the transaction amount is
-	different between what you recorded and what is in the statement.
-	You can mark it as flag for follow up so that you can followup with
-	the financial institution.</I></P>
-	<LI><P STYLE="margin-bottom: 0in"><A NAME="trans_types"></A><I><B>Duplicate:</B></I>
-	<I><SPAN STYLE="font-weight: normal">The status will be
-	automatically be changed to duplicate if it is recognized as such.</SPAN></I></P>
-</UL>
-<P><I><B>Transaction Types:</B></I> 
-</P>
-<UL>
-	<LI><P STYLE="margin-bottom: 0in"><I><B>Withdrawal:
-	</B></I>is one where one makes a payment and is an expense.</P>
-	<LI><P STYLE="margin-bottom: 0in"><I><B>Deposit:</B></I>
-	is one where money is received and is an income. 
-	</P>
-	<LI><P><A NAME="transfer"></A><I><B>Transfer:</B></I>
-	is one where a withdrawal is made from one
-	account and is deposited into another account.<BR>This type of
-	transaction is not included in Income/Expense calculations.</P>
-</UL>
-<P><A HREF="#payees"><I><B>Payee:</B></I></A>
-This is a person or an organization to whom the
-money goes or comes from. 
-</P>
-<UL>
-	<LI><P>Clicking the payee button opens up the
-	payee dialog. You can select the payee from that dialog or create a
-	new payee for immediate use.</P>
-</UL>
-<P><A HREF="#categories"><I><B>Category:</B></I></A>
-Category selects the kind of expense/income for
-the transaction. 
-</P>
-<UL>
-	<LI><P>Clicking the category button opens up
-	the category dialog. You can select the category from the dialog or
-	create a new category for immediate use.</P>
-</UL>
-<P><B>Split:</B> This
-check-box will activate the Split Transactions Dialog</P>
-<UL>
-	<LI><P>Split Transactions allows multiple categories to be recorded
-	for a single transaction.</P>
-	<LI><P>Can allow a transaction to have Income and Expense categories
-	recorded as deposit and withdrawals, provided the overall
-	transaction type is observed and remains positive, for Deposit and
-	Withdrawal transactions.</P>
-</UL>
-  <div class="col-xs-4">
-    <span class="label label-danger">Note:</span>
-    <table class="table">
-      <tr class="warning">
-        <td>
-          Do not use the same category for Deposit and Withdrawal transactions, as this will upset overall balance figures.
-        </td>
-      </tr>
-    </table>
-  </div>
-  <BR><BR><BR><BR><BR><BR>
-      <P><I><B>Transaction Number:</B></I>
-        is a field to enter any kind of number associated with the transaction
-        like check number.
-      </P>
+        <h1>Money Manager Ex User Manual <small>MMEX 1.2.0</small></h1>
+        <hr>
+    </div>
 
-      <P><B>Notes</B>:
-	This field can be used to record any special notes with regards to
-	the transaction. The button under Notes can be used to select
-	commonly used field notes.</P>
-</UL>
-<P><BR><BR><P><BR><BR></P>
+        <h2>Contents</h2>
 
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="edittrans"></A><BR>Editing
-and Updating Transactions</H3>
-<P>Editing existing transactions can be achieved
-in a number of ways:</P>
-<UL>
-	<LI><P>select the transaction and then click
-	the edit button.</P>
-	<LI><P>double-click the selected transaction.</P>
-	<LI><P>press enter on the selection. 
-	</P>
-</UL>
-<P>Any of these actions will open the
-transaction dialog box containing the details of the selected
-transaction. Make the changes and click OK to save the changes.</P>
-<P><A NAME="transaction_filtering"></A><BR><B>Transaction
-Filtering in Accounts</B></P>
-<P>Transactions can be filtered by either fixed
-filters or, by using the Transaction Filter in the Account View. This
-will allow the user to limit the visible transactions to those
-defined by the appropriate filter. These filtered transactions can
-then be easily selected and individually modified.</P>
-<P>These visible transactions can also be
-deleted in bulk if so desired.
-  <div class="col-xs-4">
-    <span class="label label-danger">Note:</span>
-    <table class="table">
-      <tr class="warning">
-        <td>
-          Caution is advised when deleting transactions.
-        </td>
-      </tr>
-    </table>
-  </div>
-  <BR><BR><BR><BR><BR>
+        <div id="toc">
+            <!-- ToC generated by Javascript -->
+        </div>
+        <hr>
 
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="rectrans"></A><BR>Reconciling
-and Balancing Transactions</H3>
-<P><B>Unreconciled Transactions:</B></P>
-<UL>
-	<LI><P>This means that they have not been
-	verified with the statement from the financial institution.</P>
-</UL>
-<P><B>Reconciled Transactions:</B></P>
-<UL>
-	<LI><P>A transaction can be considered
-	reconciled when the details of the transaction match that from the
-	financial institution.</P>
-</UL>
-<P>In MMEX, reconciled and unreconciled
-transactions are shown by different icons. When bank details are not
-checked against a bank statement, the user can select to set the
-default as Reconciled when creating transactions in the Options
-settings.</P>
-  <div class="col-xs-8">
-    <span class="label label-info">Tips:</span>
-    <table class="table">
-      <tr class="success">
-        <td>
-          To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key.
-          To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key.
-        </td>
-      </tr>
-    </table>
-  </div>
-  <BR><BR><BR><BR><BR>
+        <div id="contents">
+            <h2>Introduction</h2>
 
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="followup"></A><BR>Flagging
-transactions for followup</H3>
-<P>Some transactions might have some issues that
-you want to follow up on. Mark these as with status of flag for
-followup. This is indicated in MMEX with a different icon.</P>
-<P STYLE="font-style: normal; font-weight: normal; text-decoration: none">
-  <div class="col-xs-8">
-    <span class="label label-info">Tip:</span>
-    <table class="table">
-      <tr class="success">
-        <td>
-          To mark a transaction as requiring
-          followup, just select the transaction and hit the 'f or 'F' key.
-        </td>
-      </tr>
-    </table>
-  </div>
-  <BR><BR><BR><BR><BR>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="currencies"></A><BR>Working
-with Currencies</H3>
-<P STYLE="font-weight: normal">As MMEX can be
-used in many countries, MMEX need to consider the currency for the
-country of use. When creating a new database, the <B>Base
-Currency </B>is set to the currency used
-in the user's country. If the user's currency setting is not listed
-in the default currencies, the user can create their own currency
-Listing.</P>
-<P>MMEX allows us to work with more than one
-currency. Each account has its own currency setting, and will default
-to the base currency. When we set accounts with different currencies,
-the transactions we create in these accounts will reflect the
-currency of the account.</P>
-<P>When transactions in different currencies are
-detected, MMEX will display a Currency Summary on the Home Page. This
-will reflect the amount and conversion rate for each currency being
-used.</P>
-<P>You can manage Currencies by using the menu
-item: <B>Tools -&gt; Organize Currency</B>.</P>
-<P><B>To Add a new Currency</B>:</P>
-<UL>
-	<LI><P>Use the <B>Add</B>
-	button in the Currency Dialog</P>
-	<LI><P>Provide a suitable name for your new
-	currency.<BR>Note: This name is not changeable, but the currency can
-	be deleted if not being used.</P>
-	<LI><P>Adjust the currency values in the
-	<B>Currency Manager.</B><BR>The Currency Manager is also available
-	when editing a currency.</P>
-	<LI><P>Use the <B>Update</B> button to save the
-	changes before closing.<BR>Note: All changes will be lost if the
-	Update button is not used before Closing.</P>
-</UL>
-<P><SPAN STYLE="font-weight: normal">When more
-than one currency is being used, the </SPAN><B>Conversion to Base
-Rate</B> <SPAN STYLE="font-weight: normal">needs to be set. This will
-allow the value of the currency to properly reflect the value at the
-base rate.</SPAN></P>
-<P><SPAN STYLE="font-weight: normal">To allow
-Automatic Currency updates, the </SPAN><B>Currency Symbol</B> <SPAN STYLE="font-weight: normal">needs
-to be set for the particular currency being used.</SPAN></P>
-<P>To use the menu item: <B>Tools &ndash;&gt;
-Online Update Currency Rate</B>, the following must occur:</P>
-<UL>
-	<LI><P>Activate the option from the <B>Tools
-	&ndash;&gt; Options... Others</B> page.</P>
-	<LI><P>Set the Currency Symbol for all
-	currencies requiring update.</P>
-	<LI><P>Set the base currency value 1</P>
-</UL>
-<div class="col-xs-8">  
-  <span class="label label-info">Tips:</span>
-  <table class="table">
-    <tr class="success">
-      <td>
-        Use the toolbar icon for quick selection of the Organize Currencies dialog.
-      </td>
-    </TR>
-    <TR class="success">
-      <td>
-        Use the up/down keys to navigate the currency selection.
-      </td>
-    </tr>
-  </table>
-</div>
-<P><BR><BR><BR><BR><BR><BR><BR><BR></P>
+            <p>Money Manager Ex (MMEX) is a personal money management system,
+            for any one starting out in keeping track of their money, and their
+            spending habits. Based on simple principles, thus allowing anyone
+            with little, to no knowledge of finance and general book keeping,
+            to successfully manage their money. MMEX does this by attempting to
+            models the real financial world, to help us (the user) maintain our
+            personal finances. The Money Manager EX Software, is Open Source,
+            and free to use.</p>
 
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="categories"></A><BR>Working
-with Categories</H3>
-<P><B>Categories indicate the reason an
-expenditure is made or an income is received.</B> 
-</P>
-<P>A Category is generally used to record Income
-or Expenses. Because MMEX allows us to transfer money between
-accounts, it is also recommended to use categories to record
-transfers. This will allow us to determine what money is being
-transferred for a specific reason, such as a repayment to a loan.
-This will not be seen as an income or expense in the overall picture.
-<B>Using the same category for an income
-and an expense will upset balance figures</B>.</P>
-<P>Example: If we want to record the the value
-of running a car, we would set up the following:<BR>Category:
-Car,<BR>Subcategory: Fuel, Maintenance, Registration, Insurance, <B>Fuel
-Reimbursed<BR></B>The first 4 subcategories are used to record
-expenses. If we are reimbursed for fuel costs for any reason, we
-would need to use <B>Fuel Reimbursed</B> as an Income subcategory.
-This would then allow us to determine the correct amount we are
-spending on fuel to run the car. This will become clearer when we are
-using Budgets.</P>
-<h3>Split Categories</h3>
-<P>When adding a new transaction, we can use
-more that one category to record a transaction. This is known as a
-split category.</P>
-<P>The overall split category transaction is
-either a withdrawal or a deposit. Although the categories within the
-split, need to reflect the overall transaction type, each category
-can be classified as a withdrawal or deposit within the split. 
-</P>
-<P>Split categories can easily be viewed for a
-transaction by using a pop-up menu selection when a split category
-entry exists.</P>
-<P><B>Note:</B><BR>Withdrawal Screen: Deposits
-are displayed as negative. <BR>Deposit Screen: Withdrawals are
-displayed as negative.</P>
-<P><B>Managing Our Categories</B></P>
-<P>You can manage Categories by using the menu
-item: <B>Tools -&gt; Organize
-Categories</B>.<BR>Once the category
-dialog opens, you can add new categories and subcategories.</P>
-<P><B>To Add a new Category</B>:</P>
-<UL>
-	<LI><P>Select <B>Categories</B>
-	at the root of the tree (At the top),</P>
-	<LI><P>type the new category name into the text
-	box</P>
-	<LI><P>Use the the <B>Add</B>
-	button.</P>
-</UL>
-<P>The new category will appear at the bottom,
-and will be resorted when the dialog box is re-opened.</P>
-<P><B>To Add a new Subcategory:</B></P>
-<UL>
-	<LI><P>Select the category that you wish the
-	subcategory to belong to</P>
-	<LI><P>type the new subcategory name into the
-	text box</P>
-	<LI><P>use the the <B>Add</B> button.</P>
-</UL>
-<P>You can also change the names by selecting
-the category/subcategory in the list , modify the name in the text
-box, then use the Edit button. Use a similar action to delete the
-category/subcategory in the list.</P>
-<P><B>Note:</B> You cannot delete categories
-which are being used by any transactions.</P>
-<P>Ensure that no transactions use this
-category/subcategory, combination. This can be done by:</P>
-<UL>
-	<LI><P>Editing the transaction and changing the
-	category/subcategory.</P>
-	<LI><P>Deleting the transaction using this
-	category/subcategory.</P>
-</UL>
-<UL>
-	<LI><P>using the menu item: <B>Tools
-	&ndash;&gt; Relocation of... Categories</B><SPAN STYLE="font-weight: normal">,
-	where you can move all categories of a particular name to an
-	alternate category/subcategory combination.</SPAN></P>
-</UL>
-<P STYLE="font-weight: normal">This would then
-make the category free so it can then be deleted.</P>
-<div class="col-xs-8">  
-  <span class="label label-info">Tips:</span>
-  <table class="table">
-    <tr class="success">
-      <td>
-      Use the toolbar icon for quick selection of the Organize Categories dialog.
-      </td>
-    </TR>
-    <TR class="success">
-      <td>
-      Use the up/down keys to navigate the tree selection.
-      </td>
-    </tr>
-  <TR class="success">
-    <td>
-      Don't use the same category for Income and Expense, as this will cause incorrect balance calculations.
-    </td>
-    </tr>
-    </table>
-</div>
-<P><BR><BR><BR><BR><BR><BR><BR><BR></P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="payees"></A><BR>Working
-with Payees</H3>
-<P><B>Payees are the people or institutions that
-give us money, or <BR>the people or institutions who we pay, for our
-goods and services.</B></P>
-<P>You can manage Payees by using the menu item:
-<B>Tools &ndash;&gt; Organize Payees</B>.
+            <p>The primary goal of MMEX is to simplify the process of tracking
+            financial information, in an easy to use program that can be used
+            as regular as necessary, to help us keep track of where our money
+            comes from and more importantly, where our money goes, in order to
+            make better financial decisions for our future.</p>
 
-</P>
-<P>Once the payee dialog opens you can add new
-payees, edit or delete existing payees.</P>
-<P>T<B>o Add a new Payee:</B></P>
-<UL>
-	<LI><P>Enter the name of the payee in the
-	Filter Payees box</P>
-	<LI><P>Use the Add button</P>
-</UL>
-<P>You can also select the payee in the list,
-then use the Edit or Delete button to perform the required action.</P>
-<P><B>Note:</B> You cannot delete payees which
-are being used by any transactions.</P>
-<P>To delete a payee, ensure that no
-transactions use this payee. This can be done by:</P>
-<UL>
-	<LI><P>Editing the transaction and changing the
-	payee.</P>
-	<LI><P>Deleting the transaction using this
-	payee.</P>
-	<LI><P>By using the menu item: <B>Tools
-	&ndash;&gt; Relocation of... Payees</B><SPAN STYLE="font-weight: normal">,
-	where you can move all payees of a particular name to an alternate
-	name. </SPAN>
-	</P>
-</UL>
-<P STYLE="font-weight: normal">This would then make the payee free so it can then be deleted.</P>
-  <div class="col-xs-8">
-    <span class="label label-info">Tips:</span>
-    <table class="table">
-      <tr class="success">
-        <td>
-          Use the toolbar icon for quick selection of the Organize Payees dialog.
-        </td>
-      </TR>
-  <tr class="success">
-    <td>
-      Use the up/down keys to navigate the payee selection.
-    </td>
-  </tr>
-  <tr class="success">
-    <td>
-      Use the % as a wild-card to match many characters in the filter.
-    </td>
-  </tr>
-  <tr class="success">
-    <td>
-      Use _ to match a single character in the filter.
-    </td>
-  </tr>
-  </table>
-</div>
-<P><BR><BR><BR><BR><BR><BR><BR><BR><BR></P>
+            <p>Think of Money Manager Ex as a computer checkbook which enables
+            you to balance your accounts, organize, manage and generate reports
+            for your finances.</p>
 
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="WebApp"></A><BR>Importing From WebApp</H3>
-<P>MMEX has a light WebApp that can be installed on every PHP webserver
-like NAS, shared hosting or other PHP local installation.<BR>You can download all needed files
-<A href="https://sourceforge.net/projects/moneymanagerex-webapp/files/latest/download">
-from project page</A>.<BR><BR>
-To start-up WebApp you only have to:
-<UL>
-	<LI>unzip file in a folder on your webserver or upload files through FTP</LI>
-	<LI>rename htaccess.txt in .htaccess
-		(on Windows you need to do it from CMD and "rename" command)</LI>
-	<LI>enable PDO_SQLite if needed</LI>
-</UL>
-Then simply open your browser to the folder URL, fill first settings and 
-insert correct URL and GUID in MMEX settings (import/export tab).<BR>
-Now at every start-up MMEX will contact WebApp for new transaction that
-will be downloaded and imported in desktop database.<BR>
-All main transaction linked settings will be automatically synced to WebApp,
-in this way you can have all your account and payees ready to use
-inserting new transaction.<BR><BR>
-To obtain more information about set-up and installation see 
-<A href="https://sourceforge.net/p/moneymanagerex-webapp/wiki/">
-wiki pages.</A>
-<BR><BR>
-</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="importQIF"></A><BR>Importing
-From QIF Files</H3>
-<P>Quicken Interchange Format (QIF) is an open
-specification for reading and writing financial data to media (i.e.
-files). A QIF file typically has the following structure:<BR><BR>!Type:type
-identifier string<BR>[single character line code]Literal String
-Data<BR>...<BR>^<BR>[single character line code]Literal String
-Data<BR>...<BR>^<BR><BR>Each record ends with a ^ (caret). <BR>See
-example QIF transaction <BR><BR>!Type:Bank Header<BR>D6/ 1/94 Date
-<BR>T-1,000.00 Amount<BR>N1005 number<BR>PBank Of Mortgage Payee <BR>^
-End of transaction <BR><BR>QIF is older than Open Financial Exchange
-(OFX). The inability to reconcile imported transactions against the
-current account information is one of the primary shortcomings of
-QIF. It is commonly supported by financial institutions to supply
-down-loadable information to account holders. <BR><BR>MMEX can import
-transactions from specific types of QIF formats into an account.
-<BR><BR>The types are the following: (You can find the type of QIF by
-opening in a text editor) <BR>!Type:Bank Bank account transactions
-<BR>!Type:Cash Cash account transactions <BR>!Type:CCard Credit card
-account transactions <BR><BR><B>Important Note (1)</B>: The date
-format option has to match that of the date format in the QIF file,
-otherwise, date parsing by MMEX will fail and will result in
-transactions having incorrect dates. <BR><BR><B>Important Note (2)</B>:
-After importing from QIF, all transactions will have a &quot;Follow
-Flag&quot; as it its status. You can mark all transactions with this
-flag using the bulk status setting commands using the right click
-menu in the account view. 
-</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="importUnivCSV"></A><BR>Importing
-From Universal CSV Format</H3>
-<P>To alleviate the problem of users having to
-pre-format their bank transaction CSV files into the fixed format
-MMEX requires, MMEX also allows users to import CSV files where the
-order of fields is completely freeform. To use this importer, select
-the account you want to import into and then select the order of
-fields in the CSV file by picking and choosing from the list of
-possible fields. MMEX will now import the CSV file using the format
-information specified by the user. MMEX can import from a wide
-variety of formats. One of them is a fixed format CSV file. This file
-format exactly matches the CSV format that MMEX can export. So it can
-be useful to move data from one .mmb database file to another .mmb
-database file. To easily see the format of the CSV file, you can try
-exporting an account to a CSV file and then analyzing the format
-created.<BR><BR>The CSV field options are as follows:<BR><I><B>Date</B></I>
-- Date of the transaction (In the format specified in
-Options-&gt;DateFormat)<BR><I><B>Payee</B></I> - To whom the
-transaction was made. In the case of a transfer transaction, this
-indicates the name of the account from which the transfer was made or
-to the account the transfer was made.<BR><I><B>Amount (+/-)</B></I> -
-The transaction amount. If it is a positive value it is a deposit,
-negative value is a withdrawal.<BR><I><B>Category</B></I> - The
-category of the transaction<BR><I><B>SubCategory</B></I> - The
-subcategory of the transaction <BR><I><B>Notes</B></I> - Transaction
-Notes<BR><I><B>Number</B></I> - Transaction Number<BR><I><B>Withdrawal</B></I>
-- An +ive amount that is considered as a withdrawal. (Do not use if
-specifying Amount (+/-))<BR><I><B>Deposit</B></I> - An +ive amount
-that is considered as a deposit. (Do not use if specifying Amount
-(+/-))<BR><I><B>Don't Care</B></I> - Ignore this field<BR><BR>Note
-that the transactions from a CSV file can only be imported into a
-single MMEX account.<BR><BR><B>Important Note (1)</B>: The date
-format option has to match that of the date format in the QIF file,
-otherwise, date parsing by MMEX will fail and will result in
-transactions having incorrect dates. <BR><BR><B>Important Note (2)</B>:
-After importing from QIF, all transactions will have a &quot;Follow
-Flag&quot; as it its status. You can mark all transactions with this
-flag using the bulk status setting commands using the right click
-menu in the account view.</P>
-<P><!-- creating csv tips added by terry wick 9/14/2007 -->
-  <BR><BR>
-</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="importcsvtips"></A><BR>Tips
-for creating CSV Files</H3>
-<UL>
-	<LI><P>When creating your CSV file be sure that
-	you remove the commas from your deposits and withdrawals. This can
-	be done easily through a program such as Excel or OpenOffice Calc. 
-	</P>
-</UL>
-<UL>
-	<LI><P>Or you can change the delimiter to be
-	used by MMEX by choosing Tools &ndash;&gt; Options and changing the
-	&quot;Import/Export Settings&quot; in the &quot;General&quot; option
-	settings. 
-	</P>
-</UL>
-<UL>
-	<LI><P>You do not need to include balance
-	values in your CSV File.</P>
-</UL>
-<UL>
-	<LI><P>Note that the transactions from a CSV
-	file can only be imported into a single MMEX account.</P>
-</UL>
-<P><!-- end of tips addition from terry wick --><BR><BR>
-</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="exportcsv"></A><BR>Exporting
-to CSV Files</H3>
-<P>MMEX can export to a fixed format CSV file.
-This file format exactly matches the CSV format that MMEX can import.
-So it can be useful to move data from one .mmb database file to
-another .mmb database file. To easily see the format of the CSV file,
-you can try exporting an account to a CSV file and then analyzing the
-format created.<BR><BR>The general format is as follows:<BR><I><B>Date</B></I>
-- Date of the transaction (Displayed in the format specified in
-Options-&gt;DateFormat)<BR><I><B>Payee</B></I> - To whom the
-transaction was made. In the case of a transfer transaction, this
-indicates the name of the account from which the transfer was made or
-to the account the transfer was made.<BR><I><B>Transaction Type</B></I>
-- This can either be &quot;<I>Withdrawal</I>&quot; or
-&quot;<I>Deposit</I>&quot;<BR><I><B>Amount</B></I> - The transaction
-amount as a positive value<BR><I><B>Category</B></I> - The category
-of the transaction<BR><I><B>SubCategory</B></I> - The subcategory of
-the transaction if any (otherwise blank)<BR><I><B>Notes</B></I> -
-Transaction Notes<BR><BR>Note that the transactions from an account
-can be exported to a single CSV file.</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="export_qif"></A><BR>Exporting
-to QIF Files</H3>
-<P>MMEX can export an account to a file of the
-format: QIF.</P>
-<P>This format can also be used by MMEX to
-<A HREF="#importQIF">reload into an account</A>.</P>
-<P>Caution: Although Transfer transactions will
-be reloaded into a single account, they will not function correctly.</P>
-<P><BR><BR>
-</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="recurring_transactions"></A><BR>Recurring Transactions</H3>
-<P>These are special transactions that we set up
-in order to have the transaction entered into the data base at some
-future date. These transactions generally occur at regular intervals,
-such as the payment of a bill.</P>
-<P>These transactions:</P>
-<UL>
-	<LI><P>Are displayed as reminders on the Home
-	Page within 15 Days of the due date.</P>
-	<LI><P>Can be set up to activate automatically
-	on the due date.</P>
-	<LI><P>Can be set up to activate &ndash;
-	allowing the user to adjust any values on the due date.</P>
-</UL>
-<P><B>Recurring Transactions</B> <SPAN STYLE="font-weight: normal">can
-be accessed</SPAN> from the navigation
-tree or from the menu item Tools-&gt;Recurring Transactions. This
-will display the Recurring Transactions page.</P>
-<P>To create a new transaction, use the <B>New
-</B>button:</P>
-<UL>
-	<LI><P>Set up the Recurring Transactions
-	Details, defining which account the transaction will go to when the
-	transaction is entered.</P>
-	<LI><P>Set the date of the <B>Next
-	Occurrence</B><SPAN STYLE="font-weight: normal">,<BR>except
-	for Repeats: </SPAN><B>In x Days</B><SPAN STYLE="font-weight: normal">/Months.</SPAN></P>
-	<LI><P>Select the Repeats as &ldquo;daily&rdquo;,
-	&ldquo;weekly&rdquo; etc.</P>
-	<LI><P><B>Times Repeated:<BR></B>-
-	Enter the number of times this will occur.<BR><B>-
-	</B>No number means: Repeat
-	indefinitely.</P>
-	<LI><P STYLE="font-weight: normal">For Repeats:
-	<B>In x Days</B>/Months<BR>-
-	Set the Start date of the activity.<BR>- Set the period in Days or
-	months depending on the selection.<BR>- Use the <B>Next</B>
-	button to advance the date to the occurrence
-	Date.<BR>- Changes to the period will reactivate the <B>Next</B>
-	button. Once the transaction has been entered,
-	the activity becomes inactive.</P>
-	<LI><P STYLE="font-weight: normal">Repeats:
-	<B>Every x Days</B>/Months<BR>Similar
-	to regular repeats with the exception that the period is stated in
-	Days or Months</P>
-	<LI><P>Set up the Transaction Details section,
-	similar to <A HREF="#creating_new_transaction">creating new
-	transactions</A>.</P>
-</UL>
-<P><SPAN STYLE="font-weight: normal">These
-transaction will be displayed as:</SPAN> <B>Upcoming
-Transactions</B> <SPAN STYLE="font-weight: normal">on
-the home page within 15 days of the due date.</SPAN></P>
+            <p>It is also a great way to keep abreast of your financial
+            worth.</p>
 
-  <div class="col-xs-8">
-    <span class="label label-danger">Note:</span>
-    <table class="table">
-      <tr class="warning">
-        <td>
-          When we enter the transaction, we can
-          change the amount, payee, category, status and date if required.
-        </td>
-      </tr>
-      <tr class="warning">
-        <td>
-          <B>Entering a transaction before it is due</B>
-          , will gray out the transaction in the associated account until the day it becomes active.
-        </td>
-      </tr>
-      <tr class="warning">
-        <td>
-          To use the <A HREF="#cashFlowReport">
-            Cash
-            Flow Reports
-          </A> we need to set up recurring transactions.
-        </td>
-      </tr>
-    </table>
-  </div>
-  <BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+            <p>The purpose of this manual is to give you (the user) some basic
+            instructions for using MMEX. This instruction manual will evolve as
+            the program evolves. So check the help system with each update and
+            see what's new and how to better utilize MMEX.</p><a href=
+            "#top">Back to Top</a>
+            <hr>
 
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="assets"></A><BR>Assets</H3>
-<P>MMEX allows you to track fixed assets like
-cars, houses, land and others. Each asset can have its value
-appreciate by a certain rate per year, depreciate by a certain rate
-per year, or not change in value. The total assets are added to your
-total financial worth. 
-</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="transfilter"></A><BR>Transaction
-Report Filter</H3>
-<P>MMEX allows you to search for transactions
-that meet certain criteria. This can be done using the <A HREF="#transaction_filtering">Transaction
-Filter</A>, located Account View or as a <A HREF="#transaction_report">Transaction
-Report.</A>  
-</P>
-<P>For a Transaction Report, the resulting list
-of transactions can be printed or saved as a HTML file.</P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="reports"></A><A NAME="budgeting"></A><BR>Reports</H3>
-<P>MMEX allows a variety of reports. <BR>All the
-reports can also be printed if required using the menu:
-<B>File-&gt;Print... --&gt;Current View</B></P>
-<P>Select the appropriate report under the
-Reports node in the navigation tree. Some reports require some user
-input, some do not. Once you view a report, you can print the report
-using the print options in the menu.</P>
-<P><A NAME="financialYearReport"></A><BR><B>Financial
-Year Reports:</B> (Required by various countries)</P>
-<P>These reports generally do not start at the
-beginning of the calendar year, and appear as branches of the main
-report titles. These reports cover:</P>
-<OL>
-	<LI><P>Previous Financial Year.</P>
-	<LI><P>Current Financial Year.</P>
-</OL>
-<P>By default the start date of a financial year
-is 1<SUP>st</SUP> July
-of the year.</P>
-<P>The start date can be changed by the user to
-start on any day of any month, within a 12 month period by using the
-menu <B>Tools -&gt;Options</B>
-then selecting the <B>General</B>
-panel.</P>
-<P><A NAME="transaction_report"></A><B><BR>Transaction
-Reports:</B> 
-</P>
-<OL>
-	<LI><P>This allows the user to generate
-	specific reports based on selected user requirements.</P>
-	<LI><P>Also known as the <A HREF="#transfilter">Transaction
-	Report Filter</A>.</P>
-</OL>
-<P><A NAME="cashFlowReport"></A>A Transaction
-Report is generally used to locate specific transactions made within
-Bank or Term type accounts. This report can also be used to display
-specific details for a particular account.</P>
-<P><BR><BR>
-</P>
-<P><B>Transaction Report - transfer transactions
-may upset balance totals.</B> 
-</P>
-<P>Since a transfer transaction is a withdrawal
-from one account and a deposit to another account, a transaction
-report done on multiple accounts looses the reference point for
-determining weather the transaction is a deposit or withdrawal.</P>
-<P>When a transaction report is used for a
-specific account, it will generate a report that will match the
-account details. The reference point for transfers in known for this
-report, which will reflect in the report having correct balances
-displayed.</P>
-<P><BR><BR><BR><B>Cash flow Reports</B></P>
-<P>This report projects the amount of funds
-available, based on future commitments.</P>
-<P>Future commitments are determined from the
-<A HREF="#recurring_transactions">Recurring Transactions</A> that are
-set up for the various accounts. The report will then use the
-Recurring Transactions for the various accounts, and reflect forward
-10 years on a monthly basis. This becomes a prediction of the amount
-of money that may be available each month based on current payments.</P>
-<P><BR><BR>
-</P>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="print"></A><BR>Printing</H3>
-<P>MMEX supports printing of all reports that
-can be viewed. 
-</P>
-<P>The print options are available under the
-menu, File-&gt;Print... Current View</P>
-<P>Recommendations:</P>
-<UL>
-	<LI><P>Use the page setup option to reformat
-	the page if necessary</P>
-	<LI><P>Use the print preview option to check
-	the layout of the report before printing.</P>
-</UL>
-<H5><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="options"></A><BR>MMEX
-Options</H3>
-<P>You can modify some run time behavior of MMEX
-by changing the options in the Options Dialog.</P>
-<P>Access from the menu with <B>Tools-&gt;Options</B></P>
-<TABLE class="table table-striped">
-  <thead>
-		<TR>
-			<TH>
-				<P><B>General Panel</B></P>
-			</TH>
-			<TH>
-				<P><BR>
-				</P>
-			</TH>
-		</TR>
-    </thead>
-      <TR>
-			<TD>
-				<P><I><B>User Name<BR></B><SPAN STYLE="font-weight: normal">Optional</SPAN></I></P>
-			</TD>
-			<TD>
-				<P>This field is used as a title on the Home
-				Page, and on Reports.<BR>Leaving this field blank, will remove
-				the Home Page and Report titles.</P>
-			</TD>
-		</TR>
-		<TR>
-			<TD>
-				<P><I><B>Language</B></I></P>
-			</TD>
-			<TD>
-				<P>This is the language used by the MMEX
-				GUI. MMEX might require a restart before all GUI elements have
-				the new language.</P>
-			</TD>
-		</TR>
-		<TR>
-			<TD>
-				<P><I><B>Base Currency:</B></I></P>
-			</TD>
-			<TD>
-				<P>The base currency setting is used to set
-				the currency of the database. Individual accounts will use this
-				as the default, but can be changed if different currencies as
-				required.</P>
-			</TD>
-		</TR>
-		<TR>
-			<TD>
-				<P><I><B>Date Format:</B></I></P>
-			</TD>
-			<TD>
-				<P>The date format setting is used to
-				control how dates should be displayed and also how dates should
-				be parsed when importing QIF, CSV files.</P>
-			</TD>
-		</TR>
-		<TR>
-			<TD>
-				<P><B>Financial Year</B></P>
-			</TD>
-			<TD>
-				<P>Sets the start Day and Month for a
-				Financial Year period, as opposed to a calendar year. This is
-				used in Budgets and Reports.</P>
-			</TD>
-		</TR>
-		<TR>
-			<TD>
-				<P><I><B>Database<BR>Backup</B></I></P>
-			</TD>
-			<TD>
-				<P>Sets the way the backups are performed
-				when MMEX starts.</P>
-				<UL>
-					<LI><P><B>Create a new backup when MMEX
-					Starts</B><BR>This copies the database to a new file with
-					today's date, when MMEX Starts.<BR>The file will not be over
-					written when MMEX starts up again. When there are more that 4
-					backup files, the oldest file is deleted.</P>
-					<LI><P><B>Update database changes to
-					database backup on exit.</B><BR>When MMEX shuts down, the
-					existing database will be copied to a backup database file for
-					that day when changes to the database have been detected. When
-					changes are made on the same day, the existing backup is over
-					written. When there are more that 4 backup files, the oldest
-					file is deleted.</P>
-				</UL>
-			</TD>
-		</TR>
-</TABLE>
-<P><BR><BR>
-</P>
-<TABLE class="table table-striped">
-  <thead>
-    <TR>
-      <TH>
-        <P>
-          <B>View Options Panel</B>
-        </P>
-      </TH>
-      <TH>
-      </TH>
-    </TR>
-  </thead>
-      <TR>
-			<TD>
-				<P><I><B>Account View</B></I></P>
-			</TD>
-			<TD>
-				<P>This sets the Navigation tree's visible
-				accounts, according to status.</P>
-			</TD>
-		</TR>
-		<TR>
-			<TD>
-				<P><I><B>Transaction View</B></I></P>
-			</TD>
-			<TD>
-				<P>This determines which transactions are
-				seen as default in the Account View.</P>
-			</TD>
-		</TR>
-		<TR>
-			<TD>
-				<P><B>Font Size</B></P>
-			</TD>
-			<TD>
-				<P>This will set the font being used on the
-				Home Page and in Reports.</P>
-			</TD>
-		</TR>
-		<TR>
-			<TD>
-				<P><B>Tree View<BR>Expand Section</B></P>
-			</TD>
-			<TD>
-				<P>Sets the account types being expanded
-				when in the navigation tree is refreshed.</P>
-			</TD>
-		</TR>
-		<TR>
-			<TD>
-				<P><B>Home Page</B><BR><B>Expand Section</B></P>
-			</TD>
-			<TD>
-				<P>Sets the account types being expanded when the home page is refreshed.</P>
-			</TD>
-		</TR>
-		<TR>
-			<TD>
-				<P><BR>
-				</P>
-			</TD>
-			<TD>
-				<P><BR>
-				</P>
-			</TD>
-		</TR>
-	</TBODY>
-</TABLE>
-<P><BR><BR>
-</P>
-<TABLE class="table table-striped">
-  <thead>
-    <TR>
-      <TH>
-        <P>
-          <B>Colors Panel</B>
-        </P>
-      </TH>
-      <TH>
-      </TH>
-    </TR>
-  </thead>
-  <TR>
-    <TD>
-    </TD>
-    <TD>
-    <P>
-      Allows the user to modify colors in MMEX to suit his/her style.
-    </P>
-  </TD>
-  </TR>
-</TABLE>
-<P><BR><BR>
-</P>
-<TABLE class="table table-striped">
-  <thead>
-	<TR>
-		<TH>
-			<B>Import/Export Panel</B>
-		</TH>
-      <TH>
-        </TH>
-	</TR>
-    </thead>
-	<TR>
-		<TD>
-			<P><I><B>CSV Limiter</B></I></P>
-		</TD>
-		<TD>
-			<P>This is used as the delimiting character
-			when parsing CSV files. This is useful to modify from the default
-			',' when dealing with currencies that use ',' to denote decimal
-			points in amounts. 
-			</P>
-		</TD>
-	</TR>
-	<TR>
-		<TD>
-			<P><I><B>WebApp settings</B></I></P>
-		</TD>
-		<TD>
-			<P>Set URL and GUID of your WebApp installation to allow data sync. Parameters can be found in WebApp 'Guide' page.
-			</P>
-		</TD>
-	</TR>
-</TABLE>
-<H5><BR><BR>
-</H5>
-<TABLE class="table table-striped">
-  <thead>
-    <TR>
-      <TH>Others Panel</TH>
-      <TH>
-        <P>
-          <BR>
-				
-        </P>
-      </TH>
-    </TR>
-  </thead>
-  <TR>
-    <TD>
-      <P>
-        <I>
-          <B>New Transactions</B>
-        </I>
-      </P>
-    </TD>
-    <TD>
-      <P>
-        Changes the default settings for the
-        New/Edit Transactions Dialog
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD>
-      <P>
-        <I>
-          <B>Stock Quote Web Page</B>
-        </I>
-      </P>
-    </TD>
-    <TD>
-      <P>
-        This URL is used by the Refresh button on
-        the Stock Investments page.
-      </P>
-      <P>
-        This URL is also used by the New/Edit
-        Stock dialog, to display the web page for the listed stock.
-      </P>
-      <P>
-        The default is yahoo finance.
-        Alternatively other sites can be used if necessary.
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD>
-      <P>
-        Use Original date...
-      </P>
-    </TD>
-    <TD>
-      <P>
-        Activate to use the date of the
-        transaction date when using paste transaction, in account view.
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD>
-      <P>Use sound...</P>
-    </TD>
-    <TD>
-      <P>
-        Activate to plays a sound when a
-        transaction is entered.
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD>
-      <P>Enable online currency...</P>
-    </TD>
-    <TD>
-      <P>
-        Activate to allow currencies to be
-        updated via the internet.
-      </P>
-    </TD>
-  </TR>
-</TABLE>
+            <h2>Working towards better Financial Health</h2>
 
-<H5><BR><A HREF="#top">Back to Top</A></H5>
-<HR>
-<H3><A NAME="faq"></A><BR>Frequently Asked Questions</H3>
-<OL>
-	<LI><P STYLE="margin-bottom: 0in"><A HREF="#contribute">
-      How can I contribute?</A> 
-	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A HREF="#nameex">
-      What's the reason for the EX in the name of the software?</A> 
-	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A HREF="#database1">
-      Is the .mmb file format proprietary? And is my data safe?</A> 
-	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A HREF="#usbkey">
-      Can MMEX run from a USB Key?</A> 
-	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A HREF="#safety">
-      How do I know MMEX is not trying to steal my sensitive financial information?</A> 
-	</P>
-	<LI><P><A HREF="#statements">How do I print account statements using MMEX?</A> 
-	</P>
-</OL>
-<HR>
-<H3><A NAME="contribute"></A><BR>How can I contribute?</H3>
-<P><A NAME="contribute1"></A>You can contribute by</P>
-<UL>
-	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute2"></A>
-    Reporting bugs 
-	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute3"></A>
-    Translating	to your language 
-	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute4"></A>
-    Helping	spread the word 
-	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute5"></A>
-    If you are a C++ expert, by helping extend MMEX developing code. 
-	</P>
-	<LI><P>If you are really very happy because you saved a lot of money by using MMEX, you can donate to the MMEX project. 
-	</P>
-</UL>
+            <p>Becoming organized financially requires some amount of
+            discipline. Financial management can become complicated when there
+            is no clear understanding of how much money we are getting,
+            regarded as income as opposed to our expenses which is how much
+            money we spend. Debt usually results when our cash flow is
+            restricted because our expenses exceed our income. Then we need to
+            borrow money to maintain our cash flow to enable us to purchase our
+            necessary items.</p>
 
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_donations">
-<input type="hidden" name="business" value="moneymanagerex@moneymanagerex.org">
-<input type="hidden" name="lc" value="US">
-<input type="hidden" name="item_name" value="MoneyManagerEx">
-<input type="hidden" name="no_note" value="0">
-<input type="hidden" name="currency_code" value="USD">
-<input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
-<input type="image" src="btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-</form>
+            <p>The first step towards better Financial Health, is to maintain
+            good financial records. It is only when we have a clear
+            understanding of where our money goes, that we can make an informed
+            decision of where to cut back on our expenses when our cash flow
+            becomes tight. If we do need to borrow money, we can then better
+            manage our debts as well.</p>
 
-<P STYLE="margin-bottom: 0in"><BR>
-</P>
-<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
-	<COL WIDTH=128*>
-	<COL WIDTH=128*>
-	<TR>
-		<TD WIDTH=50%>
-			<H5><A HREF="#top">Back to
-			Top</A></H5>
-		</TD>
-		<TD WIDTH=50%>
-			<H5><A HREF="#faq">Back to
-			Frequently Asked Questions</A></H5>
-		</TD>
-	</TR>
-</TABLE>
-<HR>
-<H3><A NAME="nameex"></A><BR>What's
-the reason for the EX in the name of the software?</H3>
-<P>Originally I developed a personal finance
-software called Money Manager. It was written in .NET and more of a
-learning exercise than serious software development. It grew far
-beyond the original design. The software was frozen and work began on
-a new version which had a similar user interface and features, but
-written in C++.&nbsp; 
-</P>
-<P>Usually Microsoft names their second version
-of their improved software APIs with an Ex extension as in
-doSomething() and doSomethingEx(). So I just followed the model and
-tacked on a 'Ex' to the end. 
-</P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P STYLE="margin-bottom: 0in"><BR>
-</P>
-<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
-	<COL WIDTH=128*>
-	<COL WIDTH=128*>
-	<TR>
-		<TD WIDTH=50%>
-			<H5><A HREF="#top">Back to
-			Top</A></H5>
-		</TD>
-		<TD WIDTH=50%>
-			<H5><A HREF="#faq">Back to
-			Frequently Asked Questions</A></H5>
-		</TD>
-	</TR>
-</TABLE>
-<HR>
-<H3><A NAME="database1"></A><BR>Is
-the .mmb format proprietary? And, Is my data safe? 
-</H3>
-<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
-	<COL WIDTH=13*>
-	<COL WIDTH=243*>
-	<TR>
-		<TD WIDTH=5%>
-			<P><B>No</B></P>
-		</TD>
-		<TD WIDTH=95%>
-			<P STYLE="font-weight: normal">.mmb file is
-			not proprietary.</P>
-		</TD>
-	</TR>
-	<TR>
-		<TD WIDTH=5%>
-			<P><BR>
-			</P>
-		</TD>
-		<TD WIDTH=95%>
-			<P STYLE="font-weight: normal">MMEX uses
-			SQLite databases to store user data. That means that the .mmb file
-			is a regular SQLite database. SQLite is one of the smallest, free
-			relational database systems around and there are tons of tools to
-			open and access SQLite databases. SQLiteSpy and SQLite Browser
-			(http://sqlitebrowser.sourceforge.net/) are two such utilities.
-			Once you open the database using these tools, you can do anything
-			you want with the data. 
-			</P>
-		</TD>
-	</TR>
-	<TR>
-		<TD WIDTH=5%>
-			<P><B>Yes</B></P>
-		</TD>
-		<TD WIDTH=95%>
-			<P>Your data is completely safe.</P>
-		</TD>
-	</TR>
-	<TR>
-		<TD WIDTH=5%>
-			<P><BR>
-			</P>
-		</TD>
-		<TD WIDTH=95%>
-			<P>The data is self contained on your PC, (or
-			<A HREF="#usbkey">USB stick</A> if you have made it portable). To
-			further protect your data, <A HREF="#encrypting_database">encryption
-			can now be added.</A> This applies a password to your database
-			file, and can only be opened by MMEX or any other software if you
-			have the correct password.</P>
-		</TD>
-	</TR>
-</TABLE>
-<P><BR><BR>
-</P>
-<P><BR><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P STYLE="margin-bottom: 0in"><BR>
-</P>
-<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
-	<COL WIDTH=128*>
-	<COL WIDTH=128*>
-	<TR>
-		<TD WIDTH=50%>
-			<H5><A HREF="#top">Back to
-			Top</A></H5>
-		</TD>
-		<TD WIDTH=50%>
-			<H5><A HREF="#faq">Back to
-			Frequently Asked Questions</A></H5>
-		</TD>
-	</TR>
-</TABLE>
-<HR>
-<H3><A NAME="usbkey"></A><BR>Can
-MMEX run from a USB Key?</H3>
-<P><A NAME="usbkey1"></A><B>Yes.</B></P>
-<P>MMEX is a portable application which means
-ability to run without installation, for example, from USB flash
-drive. If MMEX finds mmexini.db3 in its folder, it assumes portable
-mode. Copy mmex's files to USB Key and copy yours mmexini.db3 to
-mmex's folder on that drive.</P>
-<P>To make MMEX portable:</P>
-<OL>
-	<LI><P><B>On Windows (assume F:\ is USB flash
-	drive)</B><BR>Copy &quot;C:\Program
-	Files\MoneyManagerEx&quot; to <A HREF="../help">F:\</A><BR>Copy
-	&quot;%APPDATA%\MoneyManagerEx\mmexini.db3&quot; to
-	<A HREF="../help">F:\MoneyManagerEx</A><BR>Copy your database file
-	to any folder on <A HREF="../help">F:\</A><BR><BR><BR>
-	</P>
-	<LI><P><B>On Unix (assume /media/disk is
-	mounted USB flash drive)</B><BR>Compile
-	mmex from sources as usually,<BR>and make
-	install prefix=/media/disk<BR>cp ~/.mmex/mmexini.db3
-	/media/disk/mmex/share/mmex<BR><BR>or if you want to copy mmex which
-	has already installed in /usr<BR>cp /usr/bin/mmex
-	/media/disk/mmex/bin<BR>cp /usr/share/mmex /media/disk/mmex/share<BR>cp
-	/usr/share/doc/mmex /media/disk/mmex/share/doc<BR>cp
-	~/.mmex/mmexini.db3 /media/disk/mmex/share/mmex<BR><BR><BR>
-	</P>
-</OL>
-<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
-	<COL WIDTH=128*>
-	<COL WIDTH=128*>
-	<TR>
-		<TD WIDTH=50%>
-			<H5><A HREF="#top">Back to
-			Top</A></H5>
-		</TD>
-		<TD WIDTH=50%>
-			<H5><A HREF="#faq">Back to
-			Frequently Asked Questions</A></H5>
-		</TD>
-	</TR>
-</TABLE>
-<HR>
-<H3><A NAME="safety"></A><BR>How
-do I know MMEX is not trying to steal my sensitive financial
-information?</H3>
-<P><A NAME="safety1"></A>Generally, with any
-closed source program, you have to depend upon the vendor's word
-regarding safety of the data. But with MMEX being open source, you
-can verify this claim yourself.<BR>
-Even if you are not a C++ expert, you
-can rest assured that anyone can access the source code at any time
-and verify the legitimacy of MMEX's intentions.<BR>
-MMEX does connect to the internet only to send anonymous usage
-statistics or when checking for an update.<BR>
-You can disable this in Options->Network<BR>
-<BR>
-<BR>
-Here is a sample of data that MMEX will send:<BR>
-<BR>
-<table border=1 cellpadding=5>
-	<tr>
-		<th>Version</th>
-		<th>Operating System</th>
-		<th>Language</th>
-		<th>Country</th>
-		<th>Resolution</th>
-		<th>Start Time</th>
-		<th>End Time</th>
-	</tr>
-	<tr>
-		<td>1.2.0 Portable</td>
-		<td>Windows 8 (build 9200), 64-bit edition</td>
-		<td>english</td>
-		<td>United States</td>
-		<td>1366x768</td>
-		<td>2014-05-01 09:00:00</td>
-		<td>2014-05-01 09:01:30</td>
-	</tr>
-</TABLE>
-<BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
-	<COL WIDTH=128*>
-	<COL WIDTH=128*>
-	<TR>
-		<TD WIDTH=50%>
-			<H5><A HREF="#top">Back to
-			Top</A></H5>
-		</TD>
-		<TD WIDTH=50%>
-			<H5><A HREF="#faq">Back to
-			Frequently Asked Questions</A></H5>
-		</TD>
-	</TR>
-</TABLE>
-<HR>
-<H3><A NAME="statements"></A><BR>How
-do I print account statements using MMEX?</H3>
-<P><A NAME="statements1"></A>To print a
-statement with transactions from any arbitrary set of criteria, use
-the Transaction Filter to select the transactions you want and then
-do a print from the menu. File -&gt;Print... -&gt;Current View</P>
-<P>The Transaction Filter is accessed from
-Reports --&gt; Transaction Reports on the Navigation Tree, or<BR>from
-the Quick Navigation buttons in the top left hand corner of MMEX.</P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P STYLE="margin-bottom: 0in"><BR>
-</P>
-<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
-	<COL WIDTH=128*>
-	<COL WIDTH=128*>
-	<TR>
-		<TD WIDTH=50%>
-			<H5><A HREF="#top">Back to
-			Top</A></H5>
-		</TD>
-		<TD WIDTH=50%>
-			<H5><A HREF="#faq">Back to
-			Frequently Asked Questions</A></H5>
-		</TD>
-	</TR>
-</TABLE>
-<HR>
-<H5>Copyright &ordf; 2005-2013&nbsp;
-CodeLathe LLC. All rights reserved.</H5>
-</BODY>
-</HTML>
+            <p>Did you realize you spent $600 in buying DVD movies last year?
+            How many times did you watch them? Do you think now that the $600
+            would have been better spent on the unexpected maintenance on the
+            auto that came up yesterday? Of course there is no right or wrong
+            answer to how you should spend your money. After all, it is you who
+            earned that money and the right to spend it whichever way you see
+            fit. But you can always make your money work harder for you.</p>
+
+            <p>Here's where personal finance software comes in. They help you
+            slice/dice the financial data to give you better insight into what
+            is going on. Always remember the software can only be as good as
+            the data it has to process. Garbage In Garbage Out. But if you have
+            started thinking of even using Personal finance software, you are
+            well on your way to making every dollar count.</p>
+
+            <p>Read on how to work with Money Manager Ex.</p><a href=
+            "#top">Back to Top</a>
+            <hr>
+
+            <h2>Money Manager Ex Concepts</h2>
+
+            <p>Money Manager EX models the real world to help us maintain our
+            personal finances.</p>
+
+            <p>Generally we receive money from someone for a service we
+            provide, or a product that we sell. This is regarded as Income or
+            as a Deposit to our system. When we purchase an item or use a
+            service, the money that we spend is regarded as an expense or
+            Withdrawal to our system. In MMEX, the people that give us money or
+            receive our money are regarded as the Payees of the system.</p>
+
+            <p>As we hopefully do not spend all the money we receive, we would
+            obviously need a place to keep our money. This is generally, some
+            financial institution, or several institutions or in our pocket.
+            MMEX tags these places as Accounts.</p>
+
+            <p>When we spend or receive money, we see this as a
+            transaction&gt;, and the reason for our income or expense is our
+            category. There will be times where we need to transfer money from
+            one place to another, such as a withdrawal from an ATM, and this
+            type of transaction is known as a transfer.</p>
+
+            <table class="table, small">
+                <tr>
+                    <td>This can be simplified as shown in the following
+                    diagram:</td>
+
+                    <td><img alt="MMEX Concept" src="mmex_concept.png"></td>
+                </tr>
+            </table>
+
+            <p>One other important thing to consider is the currency we use to
+            perform the transactions.</p>
+
+            <p>With all of these things to keep track of, MMEX uses a database
+            to store and connect all these entities together.</p><a href=
+            "#top">Back to Top</a>
+            <hr>
+
+            <h3>Recommendations</h3>
+
+            <p>The database that MMEX generates, known as the .mmb file,
+            becomes an important file for you to maintain. Depending on
+            circumstances, security features such as encryption can be
+            employed, which is recognized as a .emb file. This is where we can
+            attach a password to the database, and will require a password
+            every time MMEX is opened.</p>
+
+            <p>When encrypting your database, Don't forget your password.</p>
+
+            <p>As with any computer system, the data we produce is important to
+            us, and therefore need to safeguard against system malfunction.
+            MMEX has a backup system where it can produce a dated copy when the
+            database is opened, and/or produce a dated copy of the database
+            when changes have been detected. Up to 4 backups are maintained for
+            each database when the system is initialized and/or when system
+            changes have been detected, and the system shuts down.</p>
+
+            <ul>
+                <li>Always backup your .mmb or .emb database file
+                regularly.</li>
+
+                <li>Always keep backup copies on other devices to protect
+                against hardware failure.</li>
+
+                <li>When upgrading to a new version of MMEX, make sure you
+                backup your .mmb or .emb database file before doing so.</li>
+
+                <li>Use the Menu Tools&rarr;Options... to set up the level of
+                backup required.</li>
+            </ul><a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>Creating a New Database</h2>
+
+            <p>When MMEX initially starts up, it will attempt to load the last
+            database that was opened. If no database existed, the user is
+            presented with the option to either open an existing database, or
+            create a new one.</p>
+
+            <p>If you need to create a new database file, from the Menu, Select
+            File&rarr;New Database.</p>
+
+            <p>This will prompt you to specify a new name for your .mmb
+            database file, at the location you specify. Your new database file
+            is now created and the New Database Wizard will be displayed to
+            help you initialize the new database and assist in creating your
+            first account.</p>
+
+            <p>The New Database Wizard will request you to set the Base
+            Currency and a User Name.</p>
+
+            <p>MMEX comes with a default set of currencies which you can use,
+            to correspond to your countries currency settings. New accounts
+            will then use this Base Currency setting as the default. This
+            allows accounts from different countries to reflect the value in
+            the base currency.</p>
+
+            <p>To help identify the purpose of the database, a User Name is
+            requested. This is optional, as it is only used as a title on the
+            Home Page, and in reports.</p>
+
+            <p>Both these settings can later be changed if required by
+            selecting the menu: Tools &rarr;Options</p>
+
+            <p>The database name will be displayed on the title bar which helps
+            remind you which database file is open.<br>
+            The new .mmb database file is not encrypted.</p><a href="#top">Back
+            to Top</a>
+            <hr>
+
+            <h3>Encrypting your database file.</h3>
+
+            <p>The database can now be encrypted as follows: on the Menu,
+            Select File&rarr;Save Database As</p>
+
+            <ol>
+                <li>Select your location, and select your .mmb file or create a
+                new name for your database.</li>
+
+                <li>Change the Save As Type: to Encrypted MMB Files (*.emb),
+                then Save</li>
+
+                <li>Enter a password for your file &ndash; You will need the
+                password when opening the database file.</li>
+            </ol>
+
+            <div>
+                <span class="label label-info">Tips:</span>
+
+                <table class="table">
+                    <tr class="success">
+                        <td>Remember to make backups of your .mmb or .emb
+                        database files.</td>
+                    </tr>
+
+                    <tr class="success">
+                        <td>Database file is not encrypted:<br>
+                        That means anyone else having the proper know how, can
+                        actually open the file and read the contents. So make
+                        sure that if you are storing any sensitive financial
+                        information, it is properly guarded.</td>
+                    </tr>
+
+                    <tr class="success">
+                        <td>For encrypted database files: Remember your
+                        password.</td>
+                    </tr>
+                </table>
+            </div><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>Switching Databases</h3>
+
+            <p>For users having multiple databases, the user can easily switch
+            between the databases by using the Menu item: File&rarr;Recent
+            Files...</p>
+
+            <p>This will save the last five recently used files. The list will
+            show 6 entries as the first entry on the list is the file currently
+            being used.</p>
+
+            <p>Clearing the list.</p>
+
+            <p>When the list is cleared, all the items in the list are cleared.
+            When MMEX shuts down, the currently opened database will be saved
+            as the last opened file. This will appear in the recent file list
+            as the first entry when MMEX is restarted.</p><a href="#top">Back
+            to Top</a>
+            <hr>
+
+            <h2>Creating New Accounts</h2>
+
+            <p>When creating a new database file, you will automatically be
+            requested to create a new account.</p>
+
+            <p>To manually create a new account, from the Menu, Select
+            Accounts&rarr;New Account.</p>
+
+            <p>This will bring up the Add Account Wizard. The wizard will
+            assist in collecting the important information of the Name and Type
+            of Account. The Type of Account is not changeable, but the name can
+            changed when editing account information.</p>
+
+            <p>Name of the Account: This is a required field. The
+            recommendation is to name your accounts uniquely and in relation to
+            real world accounts. Example: With CitiBank, we have a Savings
+            account and a credit card Visa account. You could name your
+            accounts as ;CitiBank Savings; and ;Citibank Visa;.</p>
+
+            <p>Type of Account: MMEX currently supports three types of
+            accounts:</p>
+
+            <dl>
+                <dt>Checking Account</dt>
+
+                <dd>This is the most common type of account used for MMEX, and
+                can handle most common account types, such as checking
+                accounts, savings accounts, and credit card accounts. Also
+                known as Bank Account, and supports three kinds of
+                transactions. These are withdrawal, deposit and transfers.</dd>
+
+                <dt>Term Accounts</dt>
+
+                <dt></dt>
+
+                <dd>Similar to Checking Accounts with the exception that they
+                appear in their own section on the home page and can be shown
+                or hidden for normal day usage. For a better explanation see
+                the account setup example.<br>
+                <br>
+                These kinds of accounts cover specialized accounts such as Cash
+                Term Accounts, Bank Mortgage accounts, Loan accounts, or
+                investment accounts with regular income or expenditure that you
+                need to keep track of. These accounts have their own balance
+                section on the Home Page. These accounts also, supports three
+                kinds of transactions.</dd>
+
+                <dt>Investment Account</dt>
+
+                <dd>The other type of account that MMEX supports is an
+                ;Investment; Account. This type of account allows you to track
+                stock/bonds/mutual funds investments and possibly other
+                investments you may own.</dd>
+            </dl>
+
+            <p>To properly setup accounts, you should have balance information
+            for the accounts you want to add to MMEX. You can get this
+            information from your most recent bank, investment and credit card
+            statements. To track additional information about this account,
+            optionally you can enter your account details such as Account
+            Number, Held At, Website, Contact info and Access Info. You can
+            enter additional notes about the account in the notes field.</p>
+
+            <p>Most accounts have some kind of balance in them, for example say
+            in a credit card account, you have a current balance of $2304.67,
+            you could put that value in the initial balance field. Going
+            forward you only need to add transactions beyond that date when you
+            had the balance.</p>
+
+            <p>The Account Status can be set to ;Open; or ;Closed;. Closed
+            accounts are just that. They are no longer active. Setting this
+            status is just a way to de-clutter your view in your tree view
+            navigation pane. Permanent settings are made by changing the View
+            Options on the Menu, Tools&rarr;Options, you can hide the closed
+            accounts. See Tips on Navigation Tree<br>
+            <br>
+            Currency: This is initially set to the database Base Currency
+            setting which was initially set when creating the database. You can
+            set the currency that is associated with this account and can be
+            different to the base currency.</p>
+
+            <p>The exchange rate for the currency can be changed using the
+            menu: Tools &rarr;Organize Currency</p>
+
+            <p>Example: You live in the USA using US Dollars, and have an
+            Italian bank account using the Euro. Most of your accounts are in
+            USD. What is the real value of your Italian bank account? By
+            changing the exchange rate for the Italian Euro, you can get the
+            correct value of your accounts.</p>
+
+            <p>You also can mark accounts as a 'Favorite Account'. This again
+            is used to change the accounts that are visible in the navigation
+            bar. See Tips on Navigation Tree</p>
+
+            <div>
+                <span class="label label-info">Tips:</span>
+
+                <table class="table">
+                    <tr class="success">
+                        <td>Use the toolbar icon for quick selection of the Add
+                        Account Wizard.</td>
+                    </tr>
+                </table>
+            </div><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>Account Setup Example:</h3>
+
+            <p>We have a savings account with $1250, a check account with $500,
+            a MasterCard owing $250, a Visa Card owing $475, a home mortgage
+            loan of $230,965 and an education fund to send the children to
+            college in the future currently at $5000 earning interest.<br>
+            We would set up the following accounts:</p>
+
+            <table rules="GROUPS">
+                <tbody>
+                    <tr style="vertical-align: top;">
+                        <td>Account Type</td>
+
+                        <td>Account Name</td>
+
+                        <td>Initial Balance</td>
+                    </tr>
+                </tbody>
+
+                <tbody>
+                    <tr style="vertical-align: top;">
+                        <td>Check/Savings</td>
+
+                        <td>Savings</td>
+
+                        <td>$1,250.00</td>
+                    </tr>
+
+                    <tr style="vertical-align: top;">
+                        <td>&nbsp;</td>
+
+                        <td>Check</td>
+
+                        <td>$500.00</td>
+                    </tr>
+
+                    <tr style="vertical-align: top;">
+                        <td>&nbsp;</td>
+
+                        <td>MasterCard</td>
+
+                        <td style="font-color: red;">-$250.00</td>
+                    </tr>
+
+                    <tr style="vertical-align: top;">
+                        <td>&nbsp;</td>
+
+                        <td>Visa Card</td>
+
+                        <td style="font-color: red;">-$475.00</td>
+                    </tr>
+                </tbody>
+
+                <tbody>
+                    <tr style="vertical-align: top;">
+                        <td>Term</td>
+
+                        <td>Home Mortgage</td>
+
+                        <td style="font-color: red;">-$230,965.00</td>
+                    </tr>
+
+                    <tr style="vertical-align: top;">
+                        <td>&nbsp;</td>
+
+                        <td>Education Fund</td>
+
+                        <td>$5,000.00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>On the Home Page the balances would be $1025 for Bank accounts,
+            and $-225,965 for Term Accounts</p>
+
+            <p>When a payment is made from your Savings Account to your
+            MasterCard with a Transfer Transaction the balance on the home page
+            remains the same. When a payment is made from your savings to your
+            home mortgage, the balance on the home page will reflect the
+            payment. Now you can determine the amount of money you have on a
+            day to day basis. Regular payments can also be set up from your
+            savings account to your mortgage account using Recurring
+            Transactions.</p><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>Tip on using the Navigation Tree and Home page:</h3>
+
+            <p>As more accounts are created the Navigation Tree and Home page
+            can become very large.<br>
+            This views can be temporarily changed to show or hide the
+            appropriate section:</p>
+
+            <table rules="ROWS">
+                <tr style="vertical-align: top;">
+                    <td>Navigation Tree:</td>
+
+                    <td>Expand/Contract the Bank and Term Account branches
+                    using the +/- nodes on the navigation tree.</td>
+                </tr>
+
+                <tr style="vertical-align: top;">
+                    <td>Home Page:</td>
+
+                    <td>Using the menu: View &rarr;Bank Accounts and/or menu:
+                    View&rarr;Term Accounts</td>
+                </tr>
+            </table>
+
+            <p>Using a mouse Right-Click on:</p>
+
+            <ul>
+                <li>Bank Accounts in the Navigation tree, will allow all
+                accounts or only favorite accounts to be shown, temporarily
+                changing the permanent settings, as well as other useful
+                options.</li>
+            </ul>
+
+            <ul>
+                <li>Any account name under Bank or Term accounts, to bring up
+                other useful options.</li>
+            </ul>
+
+            <p>To make the change permanent, change the options using the menu:
+            Tools&rarr;Options&rarr;View Options</p><a href="#top">Back to
+            Top</a>
+            <hr>
+
+            <h3>Editing Account Information</h3>
+
+            <p>Once you have created an account, you can edit any of the
+            account information fields in the following ways:</p>
+
+            <ol>
+                <li>
+                    <p>Using menu Accounts &rarr; Edit Account<br>
+                    The list of account will be displayed where the required
+                    account is selected.</p>
+                </li>
+
+                <li>
+                    <p>Selecting the account name in the navigation pane<br>
+                    Right click to bring up the pop-up menu and select ;Edit
+                    Account;</p>
+                </li>
+            </ol>
+
+            <p>This will bring up the account information dialog where the
+            required fields can be changed.</p>
+
+            <ul>
+                <li>
+                    <p>Edit the account details</p>
+                </li>
+
+                <li>
+                    <p>Use the ;OK; button to save the account information.</p>
+                </li>
+            </ul><a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>Creating New Transactions</h2>
+
+            <p>Once you have created a new account, and selected the required
+            account from the navigation tree, or the home page, the displayed
+            account can have new transactions added as follows:</p>
+
+            <ul>
+                <li>Using the New button at the bottom of the Account View
+                screen</li>
+
+                <li>By selecting an existing transaction and using the mouse
+                Right-Click, and select the appropriate action on the pop-up
+                menu screen.</li>
+            </ul><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>New/Edit Transaction Dialog</h3>
+
+            <p>This dialog box will appear for new transactions. Use this
+            dialog to enter the following details:</p>
+
+            <ul>
+                <li>Date - This is generally the date of the transaction.
+                Defaults to current day and can be changed.</li>
+
+                <li>Status - The default is None, but can be changed to
+                Reconciled by the options settings.</li>
+
+                <li>Type - Refer to Transaction Types below.</li>
+
+                <li>Amount &ndash; Enter the amount fro the transaction. The
+                2<sup>nd</sup> amount field is associated with the Advanced
+                Check-box and will be activated only for Transfer
+                transactions.</li>
+
+                <li>Advanced &ndash; For a transfer transaction, when the
+                amount in the ;From; Account is different to the ;To; Account,
+                the difference is recorded in the separate fields. This can for
+                currency rate changes.</li>
+            </ul>
+
+            <p>Transaction Status:</p>
+
+            <ul>
+                <li>Unreconciled: When you enter a transaction, it initially is
+                in the state of ;Unreconciled;. Which means the transaction has
+                not been reconciled with your bank/credit card company's
+                balance.</li>
+
+                <li>Reconciled: Once the transaction is checked and verified
+                with a credit card company's balance information, it can be
+                marked as reconciled.</li>
+
+                <li>Void: If you entered a transaction that later became
+                invalid or you canceled the transaction, instead of deleting
+                the transaction you can also mark it as void so you have a
+                record of the transaction.</li>
+
+                <li>Flag For Followup: This status marks transactions as
+                needing more action. For example, you receive a balance
+                statement from the financial institution and you notice that
+                the transaction amount is different between what you recorded
+                and what is in the statement. You can mark it as flag for
+                follow up so that you can followup with the financial
+                institution.</li>
+
+                <li>Duplicate: The status will be automatically be changed to
+                duplicate if it is recognized as such.</li>
+            </ul>
+
+            <p>Transaction Types:</p>
+
+            <ul>
+                <li>Withdrawal: is one where one makes a payment and is an
+                expense.</li>
+
+                <li>Deposit: is one where money is received and is an
+                income.</li>
+
+                <li>Transfer: is one where a withdrawal is made from one
+                account and is deposited into another account.<br>
+                This type of transaction is not included in Income/Expense
+                calculations.</li>
+            </ul>
+
+            <p>Payee: This is a person or an organization to whom the money
+            goes or comes from.</p>
+
+            <ul>
+                <li>Clicking the payee button opens up the payee dialog. You
+                can select the payee from that dialog or create a new payee for
+                immediate use.</li>
+            </ul>
+
+            <p>Category: Category selects the kind of expense/income for the
+            transaction.</p>
+
+            <ul>
+                <li>Clicking the category button opens up the category dialog.
+                You can select the category from the dialog or create a new
+                category for immediate use.</li>
+            </ul>
+
+            <p>Split: This check-box will activate the Split Transactions
+            Dialog</p>
+
+            <ul>
+                <li>Split Transactions allows multiple categories to be
+                recorded for a single transaction.</li>
+
+                <li>Can allow a transaction to have Income and Expense
+                categories recorded as deposit and withdrawals, provided the
+                overall transaction type is observed and remains positive, for
+                Deposit and Withdrawal transactions.</li>
+            </ul>
+
+            <div>
+                <span class="label label-danger">Note:</span>
+
+                <table class="table">
+                    <tr class="warning">
+                        <td>Do not use the same category for Deposit and
+                        Withdrawal transactions, as this will upset overall
+                        balance figures.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p>Transaction Number: is a field to enter any kind of number
+            associated with the transaction like check number.</p>
+
+            <p>Notes: This field can be used to record any special notes with
+            regards to the transaction. The button under Notes can be used to
+            select commonly used field notes.</p><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>Editing and Updating Transactions</h3>
+
+            <p>Editing existing transactions can be achieved in a number of
+            ways:</p>
+
+            <ul>
+                <li>By selecting the transaction and then clicking the edit
+                button.</li>
+
+                <li>Double-clicking the selected transaction.</li>
+
+                <li>Pressing enter on the selection.</li>
+            </ul>
+
+            <p>Any of these actions will open the transaction dialog box
+            containing the details of the selected transaction. Make the
+            changes and click OK to save the changes.</p><a href="#top">Back to
+            Top</a>
+            <hr>
+
+            <h3>Transaction Filtering in Accounts</h3>
+
+            <p>Transactions can be filtered by either fixed filters or, by
+            using the Transaction Filter in the Account View. This will allow
+            the user to limit the visible transactions to those defined by the
+            appropriate filter. These filtered transactions can then be easily
+            selected and individually modified.</p>
+
+            <p>These visible transactions can also be deleted in bulk if so
+            desired.</p>
+
+            <div>
+                <span class="label label-danger">Note:</span>
+
+                <table class="table">
+                    <tr class="warning">
+                        <td>Caution is advised when deleting transactions.</td>
+                    </tr>
+                </table>
+            </div><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>Reconciling and Balancing Transactions</h3>
+
+            <p>Unreconciled Transactions:</p>
+
+            <ul>
+                <li>This means that they have not been verified with the
+                statement from the financial institution.</li>
+            </ul>
+
+            <p>Reconciled Transactions:</p>
+
+            <ul>
+                <li>A transaction can be considered reconciled when the details
+                of the transaction match that from the financial
+                institution.</li>
+            </ul>
+
+            <p>In MMEX, reconciled and unreconciled transactions are shown by
+            different icons. When bank details are not checked against a bank
+            statement, the user can select to set the default as Reconciled
+            when creating transactions in the Options settings.</p>
+
+            <div>
+                <span class="label label-info">Tips:</span>
+
+                <table class="table">
+                    <tr class="success">
+                        <td>To mark a transaction as reconciled, just select
+                        the transaction and hit the 'r' or 'R' key. To mark a
+                        transaction as unreconciled, just select the
+                        transaction and hit the 'u' or 'U' key.</td>
+                    </tr>
+                </table>
+            </div><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>Flagging transactions for followup</h3>
+
+            <p>Some transactions might have some issues that you want to follow
+            up on. Mark these as with status of flag for followup. This is
+            indicated in MMEX with a different icon.</p>
+
+            <div>
+                <span class="label label-info">Tip:</span>
+
+                <table class="table">
+                    <tr class="success">
+                        <td>To mark a transaction as requiring followup, just
+                        select the transaction and hit the 'f or 'F' key.</td>
+                    </tr>
+                </table>
+            </div><a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>Working with Currencies</h2>
+
+            <p>As MMEX can be used in many countries, MMEX need to consider the
+            currency for the country of use. When creating a new database, the
+            Base Currency is set to the currency used in the user's country. If
+            the user's currency setting is not listed in the default
+            currencies, the user can create their own currency Listing.</p>
+
+            <p>MMEX allows us to work with more than one currency. Each account
+            has its own currency setting, and will default to the base
+            currency. When we set accounts with different currencies, the
+            transactions we create in these accounts will reflect the currency
+            of the account.</p>
+
+            <p>When transactions in different currencies are detected, MMEX
+            will display a Currency Summary on the Home Page. This will reflect
+            the amount and conversion rate for each currency being used.</p>
+
+            <p>You can manage Currencies by using the menu item:
+            Tools&rarr;Organize Currency.</p>
+
+            <p>To Add a new Currency:</p>
+
+            <ul>
+                <li>Use the Add button in the Currency Dialog</li>
+
+                <li>Provide a suitable name for your new currency.<br>
+                Note: This name is not changeable, but the currency can be
+                deleted if not being used.</li>
+
+                <li>Adjust the currency values in the Currency Manager.<br>
+                The Currency Manager is also available when editing a
+                currency.</li>
+
+                <li>Use the Update button to save the changes before
+                closing.<br>
+                Note: All changes will be lost if the Update button is not used
+                before Closing.</li>
+            </ul>
+
+            <p>When more than one currency is being used, the Conversion to
+            Base Rate needs to be set. This will allow the value of the
+            currency to properly reflect the value at the base rate.</p>
+
+            <p>To allow Automatic Currency updates, the Currency Symbol needs
+            to be set for the particular currency being used.</p>
+
+            <p>To use the menu item: Tools&rarr;Online Update Currency Rate,
+            the following must occur:</p>
+
+            <ul>
+                <li>Activate the option from the Tools&rarr;Options... Others
+                page.</li>
+
+                <li>Set the Currency Symbol for all currencies requiring
+                update.</li>
+
+                <li>Set the base currency value 1</li>
+            </ul>
+
+            <div>
+                <span class="label label-info">Tips:</span>
+
+                <table class="table">
+                    <tr class="success">
+                        <td>Use the toolbar icon for quick selection of the
+                        Organize Currencies dialog.</td>
+                    </tr>
+
+                    <tr class="success">
+                        <td>Use the up/down keys to navigate the currency
+                        selection.</td>
+                    </tr>
+                </table>
+            </div><a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>Working with Categories</h2>
+
+            <p>Categories indicate the reason an expenditure is made or an
+            income is received.</p>
+
+            <p>A Category is generally used to record Income or Expenses.
+            Because MMEX allows us to transfer money between accounts, it is
+            also recommended to use categories to record transfers. This will
+            allow us to determine what money is being transferred for a
+            specific reason, such as a repayment to a loan. This will not be
+            seen as an income or expense in the overall picture. Using the same
+            category for an income and an expense will upset balance
+            figures.</p>
+
+            <p>Example: If we want to record the the value of running a car, we
+            would set up the following:<br>
+            Category: Car,<br>
+            Subcategory: Fuel, Maintenance, Registration, Insurance, Fuel
+            Reimbursed<br>
+            The first 4 subcategories are used to record expenses. If we are
+            reimbursed for fuel costs for any reason, we would need to use Fuel
+            Reimbursed as an Income subcategory. This would then allow us to
+            determine the correct amount we are spending on fuel to run the
+            car. This will become clearer when we are using
+            Budgets.</p><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>Split Categories</h3>
+
+            <p>When adding a new transaction, we can use more that one category
+            to record a transaction. This is known as a split category.</p>
+
+            <p>The overall split category transaction is either a withdrawal or
+            a deposit. Although the categories within the split, need to
+            reflect the overall transaction type, each category can be
+            classified as a withdrawal or deposit within the split.</p>
+
+            <p>Split categories can easily be viewed for a transaction by using
+            a pop-up menu selection when a split category entry exists.</p>
+
+            <p>Note:<br>
+            Withdrawal Screen: Deposits are displayed as negative.<br>
+            Deposit Screen: Withdrawals are displayed as negative.</p>
+
+            <p>Managing Our Categories</p>
+
+            <p>You can manage Categories by using the menu item:
+            Tools&rarr;Organize Categories.<br>
+            Once the category dialog opens, you can add new categories and
+            subcategories.</p>
+
+            <p>To Add a new Category:</p>
+
+            <ol>
+                <li>Select Categories at the root of the tree (At the top)</li>
+
+                <li>Type the new category name into the text box</li>
+
+                <li>Use the the Add button</li>
+            </ol>
+
+            <p>The new category will appear at the bottom, and will be resorted
+            when the dialog box is re-opened.</p>
+
+            <p>To Add a new Subcategory:</p>
+
+            <ol>
+                <li>Select the category that you wish the subcategory to belong
+                to</li>
+
+                <li>Type the new subcategory name into the text box</li>
+
+                <li>Press the Add button</li>
+            </ol>
+
+            <p>You can also change the names by selecting the
+            category/subcategory in the list , modify the name in the text box,
+            then use the Edit button. Use a similar action to delete the
+            category/subcategory in the list.</p>
+
+            <p>Note: You cannot delete categories which are being used by any
+            transactions.</p>
+
+            <p>Ensure that no transactions use this category/subcategory,
+            combination. This can be done by:</p>
+
+            <ul>
+                <li>Editing the transaction and changing the
+                category/subcategory.</li>
+
+                <li>Deleting the transaction using this
+                category/subcategory.</li>
+
+                <li>Using the menu item: Tools &rarr;Relocation of...
+                Categories, where you can move all categories of a particular
+                name to an alternate category/subcategory combination.</li>
+            </ul>
+
+            <p>This would then make the category free so it can then be
+            deleted.</p>
+
+            <div>
+                <span class="label label-info">Tips:</span>
+
+                <table class="table">
+                    <tr class="success">
+                        <td>Use the toolbar icon for quick selection of the
+                        Organize Categories dialog.</td>
+                    </tr>
+
+                    <tr class="success">
+                        <td>Use the up/down keys to navigate the tree
+                        selection.</td>
+                    </tr>
+
+                    <tr class="success">
+                        <td>Don't use the same category for Income and Expense,
+                        as this will cause incorrect balance calculations.</td>
+                    </tr>
+                </table>
+            </div><a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>Working with Payees</h2>
+
+            <p>Payees are the people or institutions that give us money, or<br>
+            the people or institutions who we pay, for our goods and
+            services.</p>
+
+            <p>You can manage Payees by using the menu item:
+            Tools&rarr;Organize Payees.</p>
+
+            <p>Once the payee dialog opens you can add new payees, edit or
+            delete existing payees.</p>
+
+            <p>To Add a new Payee:</p>
+
+            <ul>
+                <li>Enter the name of the payee in the Filter Payees box</li>
+
+                <li>Use the Add button</li>
+            </ul>
+
+            <p>You can also select the payee in the list, then use the Edit or
+            Delete button to perform the required action.</p>
+
+            <p>Note: You cannot delete payees which are being used by any
+            transactions.</p>
+
+            <p>To delete a payee, ensure that no transactions use this payee.
+            This can be done by:</p>
+
+            <ul>
+                <li>Editing the transaction and changing the payee.</li>
+
+                <li>Deleting the transaction using this payee.</li>
+
+                <li>By using the menu item: Tools&rarr;Relocation of... Payees,
+                where you can move all payees of a particular name to an
+                alternate name.</li>
+            </ul>
+
+            <p>This would then make the payee free so it can then be
+            deleted.</p>
+
+            <div>
+                <span class="label label-info">Tips:</span>
+
+                <table class="table">
+                    <tr class="success">
+                        <td>Use the toolbar icon for quick selection of the
+                        Organize Payees dialog.</td>
+                    </tr>
+
+                    <tr class="success">
+                        <td>Use the up/down keys to navigate the payee
+                        selection.</td>
+                    </tr>
+
+                    <tr class="success">
+                        <td>Use the % as a wild-card to match many characters
+                        in the filter.</td>
+                    </tr>
+
+                    <tr class="success">
+                        <td>Use _ to match a single character in the
+                        filter.</td>
+                    </tr>
+                </table>
+            </div><a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>Importing From WebApp</h2>
+
+            <p>MMEX has a light WebApp that can be installed on every PHP
+            webserver like NAS, shared hosting or other PHP local
+            installation.<br>
+            You can download all needed files <a href=
+            "https://sourceforge.net/projects/moneymanagerex-webapp/files/latest/download">
+            from project page</a>.<br>
+            <br>
+            To start-up WebApp you only have to:</p>
+
+            <ul>
+                <li>unzip file in a folder on your webserver or upload files
+                through FTP</li>
+
+                <li>rename htaccess.txt in .htaccess (on Windows you need to do
+                it from CMD and "rename" command)</li>
+
+                <li>enable PDO_SQLite if needed</li>
+            </ul>
+
+            <p>Then simply open your browser to the folder URL, fill first
+            settings and insert correct URL and GUID in MMEX settings
+            (import/export tab).</p>
+
+            <p>Now at every start-up MMEX will contact WebApp for new
+            transaction that will be downloaded and imported in desktop
+            database.</p>
+
+            <p>All main transaction linked settings will be automatically
+            synced to WebApp, in this way you can have all your account and
+            payees ready to use inserting new transaction.</p>
+
+            <p>To obtain more information about set-up and installation see
+            <a href=
+            "https://sourceforge.net/p/moneymanagerex-webapp/wiki/">wiki
+            pages.</a></p><a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>Importing From QIF Files</h2>
+
+            <p>Quicken Interchange Format (QIF) is an open specification for
+            reading and writing financial data to media (i.e. files). A QIF
+            file typically has the following structure:<br>
+            <br>
+            !Type:type identifier string<br>
+            [single character line code]Literal String Data<br>
+            ...<br>
+            ^<br>
+            [single character line code]Literal String Data<br>
+            ...<br>
+            ^<br>
+            <br>
+            Each record ends with a ^ (caret).<br>
+            See example QIF transaction<br>
+            <br>
+            !Type:Bank Header<br>
+            D6/ 1/94 Date<br>
+            T-1,000.00 Amount<br>
+            N1005 number<br>
+            PBank Of Mortgage Payee<br>
+            ^ End of transaction<br>
+            <br>
+            QIF is older than Open Financial Exchange (OFX). The inability to
+            reconcile imported transactions against the current account
+            information is one of the primary shortcomings of QIF. It is
+            commonly supported by financial institutions to supply
+            down-loadable information to account holders.<br>
+            <br>
+            MMEX can import transactions from specific types of QIF formats
+            into an account.<br>
+            <br>
+            The types are the following: (You can find the type of QIF by
+            opening in a text editor)<br>
+            !Type:Bank Bank account transactions<br>
+            !Type:Cash Cash account transactions<br>
+            !Type:CCard Credit card account transactions<br>
+            <br>
+            Important Note (1): The date format option has to match that of the
+            date format in the QIF file, otherwise, date parsing by MMEX will
+            fail and will result in transactions having incorrect dates.<br>
+            <br>
+            Important Note (2): After importing from QIF, all transactions will
+            have a ;Follow Flag; as it its status. You can mark all
+            transactions with this flag using the bulk status setting commands
+            using the right click menu in the account view.</p><a href=
+            "#top">Back to Top</a>
+            <hr>
+
+            <h2>Importing From Universal CSV Format</h2>
+
+            <p>To alleviate the problem of users having to pre-format their
+            bank transaction CSV files into the fixed format MMEX requires,
+            MMEX also allows users to import CSV files where the order of
+            fields is completely freeform. To use this importer, select the
+            account you want to import into and then select the order of fields
+            in the CSV file by picking and choosing from the list of possible
+            fields. MMEX will now import the CSV file using the format
+            information specified by the user. MMEX can import from a wide
+            variety of formats. One of them is a fixed format CSV file. This
+            file format exactly matches the CSV format that MMEX can export. So
+            it can be useful to move data from one .mmb database file to
+            another .mmb database file. To easily see the format of the CSV
+            file, you can try exporting an account to a CSV file and then
+            analyzing the format created.<br>
+            <br>
+            The CSV field options are as follows:<br>
+            Date - Date of the transaction (In the format specified in
+            Options&rarr;DateFormat)<br>
+            Payee - To whom the transaction was made. In the case of a transfer
+            transaction, this indicates the name of the account from which the
+            transfer was made or to the account the transfer was made.<br>
+            Amount (+/-) - The transaction amount. If it is a positive value it
+            is a deposit, negative value is a withdrawal.<br>
+            Category - The category of the transaction<br>
+            SubCategory - The subcategory of the transaction<br>
+            Notes - Transaction Notes<br>
+            Number - Transaction Number<br>
+            Withdrawal - An +ive amount that is considered as a withdrawal. (Do
+            not use if specifying Amount (+/-))<br>
+            Deposit - An +ive amount that is considered as a deposit. (Do not
+            use if specifying Amount (+/-))<br>
+            Don't Care - Ignore this field<br>
+            <br>
+            Note that the transactions from a CSV file can only be imported
+            into a single MMEX account.<br>
+            <br>
+            Important Note (1): The date format option has to match that of the
+            date format in the QIF file, otherwise, date parsing by MMEX will
+            fail and will result in transactions having incorrect dates.<br>
+            <br>
+            Important Note (2): After importing from QIF, all transactions will
+            have a ;Follow Flag; as it its status. You can mark all
+            transactions with this flag using the bulk status setting commands
+            using the right click menu in the account view.</p>
+            <!-- creating csv tips added by terry wick 9/14/2007 -->
+            <a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>Tips for creating CSV Files</h3>
+
+            <ul>
+                <li>When creating your CSV file be sure that you remove the
+                commas from your deposits and withdrawals. This can be done
+                easily through a program such as Excel or OpenOffice Calc.</li>
+            </ul>
+
+            <ul>
+                <li>Or you can change the delimiter to be used by MMEX by
+                choosing Tools&rarr;Options and changing the ;Import/Export
+                Settings; in the ;General; option settings.</li>
+            </ul>
+
+            <ul>
+                <li>You do not need to include balance values in your CSV
+                File.</li>
+            </ul>
+
+            <ul>
+                <li>Note that the transactions from a CSV file can only be
+                imported into a single MMEX account.</li>
+            </ul><!-- end of tips addition from terry wick -->
+            <a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>Exporting to CSV Files</h2>
+
+            <p>MMEX can export to a fixed format CSV file. This file format
+            exactly matches the CSV format that MMEX can import. So it can be
+            useful to move data from one .mmb database file to another .mmb
+            database file. To easily see the format of the CSV file, you can
+            try exporting an account to a CSV file and then analyzing the
+            format created.<br>
+            <br>
+            The general format is as follows:<br>
+            Date - Date of the transaction (Displayed in the format specified
+            in Options&rarr;DateFormat)<br>
+            Payee - To whom the transaction was made. In the case of a transfer
+            transaction, this indicates the name of the account from which the
+            transfer was made or to the account the transfer was made.<br>
+            Transaction Type - This can either be ;Withdrawal; or ;Deposit;<br>
+            Amount - The transaction amount as a positive value<br>
+            Category - The category of the transaction<br>
+            SubCategory - The subcategory of the transaction if any (otherwise
+            blank)<br>
+            Notes - Transaction Notes<br>
+            <br>
+            Note that the transactions from an account can be exported to a
+            single CSV file.</p><a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>Exporting to QIF Files</h2>
+
+            <p>MMEX can export an account to a file of the format: QIF.</p>
+
+            <p>This format can also be used by MMEX to reload into an
+            account.</p>
+
+            <p>Caution: Although Transfer transactions will be reloaded into a
+            single account, they will not function correctly.</p><a href=
+            "#top">Back to Top</a>
+            <hr>
+
+            <h2>Recurring Transactions</h2>
+
+            <p>These are special transactions that we set up in order to have
+            the transaction entered into the data base at some future date.
+            These transactions generally occur at regular intervals, such as
+            the payment of a bill.</p>
+
+            <p>These transactions:</p>
+
+            <ul>
+                <li>Are displayed as reminders on the Home Page within 15 Days
+                of the due date.</li>
+
+                <li>Can be set up to activate automatically on the due
+                date.</li>
+
+                <li>Can be set up to activate &ndash; allowing the user to
+                adjust any values on the due date.</li>
+            </ul>
+
+            <p>Recurring Transactions can be accessed from the navigation tree
+            or from the menu item Tools&rarr;Recurring Transactions. This will
+            display the Recurring Transactions page.</p>
+
+            <p>To create a new transaction, use the New button:</p>
+
+            <ul>
+                <li>Set up the Recurring Transactions Details, defining which
+                account the transaction will go to when the transaction is
+                entered.</li>
+
+                <li>
+                    <p>Set the date of the Next Occurrence,<br>
+                    except for Repeats: In x Days/Months.</p>
+                </li>
+
+                <li>Select the Repeats as ;daily;, ;weekly; etc.</li>
+
+                <li>Times Repeated:<br>
+                - Enter the number of times this will occur.<br>
+                - No number means: Repeat indefinitely.</li>
+
+                <li>For Repeats: In x Days/Months<br>
+                - Set the Start date of the activity.<br>
+                - Set the period in Days or months depending on the
+                selection.<br>
+                - Use the Next button to advance the date to the occurrence
+                Date.<br>
+                - Changes to the period will reactivate the Next button. Once
+                the transaction has been entered, the activity becomes
+                inactive.</li>
+
+                <li>Repeats: Every x Days/Months<br>
+                Similar to regular repeats with the exception that the period
+                is stated in Days or Months</li>
+
+                <li>Set up the Transaction Details section, similar to creating
+                new transactions.</li>
+            </ul>
+
+            <p>These transaction will be displayed as: Upcoming Transactions
+            &gt;on the home page within 15 days of the due date.</p>
+
+            <div>
+                <span class="label label-danger">Note:</span>
+
+                <table class="table">
+                    <tr class="warning">
+                        <td>When we enter the transaction, we can change the
+                        amount, payee, category, status and date if
+                        required.</td>
+                    </tr>
+
+                    <tr class="warning">
+                        <td>Entering a transaction before it is due , will gray
+                        out the transaction in the associated account until the
+                        day it becomes active.</td>
+                    </tr>
+
+                    <tr class="warning">
+                        <td>To use the Cash Flow Reports we need to set up
+                        recurring transactions.</td>
+                    </tr>
+                </table>
+            </div><a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>Assets</h2>
+
+            <p>MMEX allows you to track fixed assets like cars, houses, land
+            and others. Each asset can have its value appreciate by a certain
+            rate per year, depreciate by a certain rate per year, or not change
+            in value. The total assets are added to your total financial
+            worth.</p><a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>Transaction Report Filter</h2>
+
+            <p>MMEX allows you to search for transactions that meet certain
+            criteria. This can be done using the Transaction Filter, located
+            Account View or as a Transaction Report.</p>
+
+            <p>For a Transaction Report, the resulting list of transactions can
+            be printed or saved as a HTML file.</p><a href="#top">Back to
+            Top</a>
+            <hr>
+
+            <h2>Reports</h2>
+
+            <p>MMEX allows a variety of reports.<br>
+            All the reports can also be printed if required using the menu:
+            File&rarr;Print...&rarr;Current View</p>
+
+            <p>Select the appropriate report under the Reports node in the
+            navigation tree. Some reports require some user input, some do not.
+            Once you view a report, you can print the report using the print
+            options in the menu.</p>
+
+            <p>Financial Year Reports: (Required by various countries)</p>
+
+            <p>These reports generally do not start at the beginning of the
+            calendar year, and appear as branches of the main report titles.
+            These reports cover:</p>
+
+            <ol>
+                <li>
+                    <p>Previous Financial Year.</p>
+                </li>
+
+                <li>
+                    <p>Current Financial Year.</p>
+                </li>
+            </ol>
+
+            <p>By default the start date of a financial year is 1<sup>st</sup>
+            July of the year.</p>
+
+            <p>The start date can be changed by the user to start on any day of
+            any month, within a 12 month period by using the menu
+            Tools&rarr;Options then selecting the General panel.</p>
+
+            <p><br>
+            Transaction Reports:</p>
+
+            <ol>
+                <li>
+                    <p>This allows the user to generate specific reports based
+                    on selected user requirements.</p>
+                </li>
+
+                <li>
+                    <p>Also known as the Transaction Report Filter.</p>
+                </li>
+            </ol>
+
+            <p>A Transaction Report is generally used to locate specific
+            transactions made within Bank or Term type accounts. This report
+            can also be used to display specific details for a particular
+            account.</p><br>
+
+            <p>Transaction Report - transfer transactions may upset balance
+            totals.</p>
+
+            <p>Since a transfer transaction is a withdrawal from one account
+            and a deposit to another account, a transaction report done on
+            multiple accounts looses the reference point for determining
+            weather the transaction is a deposit or withdrawal.</p>
+
+            <p>When a transaction report is used for a specific account, it
+            will generate a report that will match the account details. The
+            reference point for transfers in known for this report, which will
+            reflect in the report having correct balances displayed.</p>
+
+            <p>Cash flow Reports</p>
+
+            <p>This report projects the amount of funds available, based on
+            future commitments.</p>
+
+            <p>Future commitments are determined from the Recurring
+            Transactions that are set up for the various accounts. The report
+            will then use the Recurring Transactions for the various accounts,
+            and reflect forward 10 years on a monthly basis. This becomes a
+            prediction of the amount of money that may be available each month
+            based on current payments.</p><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>Printing</h3>
+
+            <p>MMEX supports printing of all reports that can be viewed.</p>
+
+            <p>The print options are available under the menu,
+            File&rarr;Print... Current View</p>
+
+            <p>Recommendations:</p>
+
+            <ul>
+                <li>Use the page setup option to reformat the page if
+                necessary</li>
+
+                <li>Use the print preview option to check the layout of the
+                report before printing.</li>
+            </ul><a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>MMEX Options</h2>
+
+            <p>You can modify some run time behavior of MMEX by changing the
+            options in the Options Dialog.</p>
+
+            <p>Access from the menu with Tools&rarr;Options</p>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>General Panel</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tr>
+                    <td>
+                        <p>User Name<br>
+                        Optional</p>
+                    </td>
+
+                    <td>
+                        <p>This field is used as a title on the Home Page, and
+                        on Reports.<br>
+                        Leaving this field blank, will remove the Home Page and
+                        Report titles.</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Language</p>
+                    </td>
+
+                    <td>
+                        <p>This is the language used by the MMEX GUI. MMEX
+                        might require a restart before all GUI elements have
+                        the new language.</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Base Currency:</p>
+                    </td>
+
+                    <td>
+                        <p>The base currency setting is used to set the
+                        currency of the database. Individual accounts will use
+                        this as the default, but can be changed if different
+                        currencies as required.</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Date Format:</td>
+
+                    <td>The date format setting is used to control how dates
+                    should be displayed and also how dates should be parsed
+                    when importing QIF, CSV files.</td>
+                </tr>
+
+                <tr>
+                    <td>Financial Year</td>
+
+                    <td>Sets the start Day and Month for a Financial Year
+                    period, as opposed to a calendar year. This is used in
+                    Budgets and Reports.</td>
+                </tr>
+
+                <tr>
+                    <td>Database Backup</td>
+
+                    <td>
+                        <p>Sets the way the backups are performed when MMEX
+                        starts.</p>
+
+                        <ul>
+                            <li>Create a new backup when MMEX Starts<br>
+                            This copies the database to a new file with today's
+                            date, when MMEX Starts.<br>
+                            The file will not be over written when MMEX starts
+                            up again. When there are more that 4 backup files,
+                            the oldest file is deleted.</li>
+
+                            <li>Update database changes to database backup on
+                            exit.<br>
+                            When MMEX shuts down, the existing database will be
+                            copied to a backup database file for that day when
+                            changes to the database have been detected. When
+                            changes are made on the same day, the existing
+                            backup is over written. When there are more that 4
+                            backup files, the oldest file is deleted.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table><br>
+            <br>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>View Options Panel</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tr>
+                    <td>
+                        <p>Account View</p>
+                    </td>
+
+                    <td>This sets the Navigation tree's visible accounts,
+                    according to status.</td>
+                </tr>
+
+                <tr>
+                    <td>Transaction View</td>
+
+                    <td>This determines which transactions are seen as default
+                    in the Account View.</td>
+                </tr>
+
+                <tr>
+                    <td>Font Size</td>
+
+                    <td>This will set the font being used on the Home Page and
+                    in Reports.</td>
+                </tr>
+
+                <tr>
+                    <td>Tree View<br>
+                    Expand Section</td>
+
+                    <td>Sets the account types being expanded when in the
+                    navigation tree is refreshed.</td>
+                </tr>
+
+                <tr>
+                    <td>Home Page<br>
+                    Expand Section</td>
+
+                    <td>Sets the account types being expanded when the home
+                    page is refreshed.</td>
+                </tr>
+
+                <tr>
+                    <td>&nbsp;</td>
+
+                    <td>&nbsp;</td>
+                </tr>
+            </table><br>
+            <br>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Colors Panel</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tr>
+                    <td></td>
+
+                    <td>Allows the user to modify colors in MMEX to suit
+                    his/her style.</td>
+                </tr>
+            </table><br>
+            <br>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Import/Export Panel</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tr>
+                    <td>CSV Limiter</td>
+
+                    <td>This is used as the delimiting character when parsing
+                    CSV files. This is useful to modify from the default ','
+                    when dealing with currencies that use ',' to denote decimal
+                    points in amounts.</td>
+                </tr>
+
+                <tr>
+                    <td>WebApp settings</td>
+
+                    <td>Set URL and GUID of your WebApp installation to allow
+                    data sync. Parameters can be found in WebApp 'Guide'
+                    page.</td>
+                </tr>
+            </table>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Others Panel</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tr>
+                    <td>New Transactions</td>
+
+                    <td>Changes the default settings for the New/Edit
+                    Transactions Dialog</td>
+                </tr>
+
+                <tr>
+                    <td>Stock Quote Web Page</td>
+
+                    <td>This URL is used by the Refresh button on the Stock
+                    Investments page. This URL is also used by the New/Edit
+                    Stock dialog, to display the web page for the listed stock.
+                    The default is yahoo finance. Alternatively other sites can
+                    be used if necessary.</td>
+                </tr>
+
+                <tr>
+                    <td>Use Original date...</td>
+
+                    <td>Activate to use the date of the transaction date when
+                    using paste transaction, in account view.</td>
+                </tr>
+
+                <tr>
+                    <td>Use sound...</td>
+
+                    <td>Activate to plays a sound when a transaction is
+                    entered.</td>
+                </tr>
+
+                <tr>
+                    <td>Enable online currency...</td>
+
+                    <td>Activate to allow currencies to be updated via the
+                    internet.</td>
+                </tr>
+            </table><a href="#top">Back to Top</a>
+            <hr>
+
+            <h2>Frequently Asked Questions</h2>
+
+            <h3>How can I contribute?</h3>
+
+            <p>You can contribute by</p>
+
+            <ul>
+                <li>Reporting bugs</li>
+
+                <li>Translating to your language</li>
+
+                <li>Helping spread the word</li>
+
+                <li>If you are a C++ expert, by helping extend MMEX developing
+                code.</li>
+
+                <li>If you are really very happy because you saved a lot of
+                money by using MMEX, you can donate to the MMEX project.</li>
+            </ul>
+
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post"
+            target="_top">
+                <input name="cmd" type="hidden" value="_donations">
+                <input name="business" type="hidden" value=
+                "moneymanagerex@moneymanagerex.org"> <input name="lc" type=
+                "hidden" value="US"> <input name="item_name" type="hidden"
+                value="MoneyManagerEx"> <input name="no_note" type="hidden"
+                value="0"> <input name="currency_code" type="hidden" value=
+                "USD"> <input name="bn" type="hidden" value=
+                "PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
+                <input alt="PayPal - The safer, easier way to pay online!"
+                name="submit" src="btn_donateCC_LG.gif" type="image">
+            </form><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>What's the reason for the EX in the name of the software?</h3>
+
+            <p>Originally I developed a personal finance software called Money
+            Manager. It was written in .NET and more of a learning exercise
+            than serious software development. It grew far beyond the original
+            design. The software was frozen and work began on a new version
+            which had a similar user interface and features, but written in
+            C++.&nbsp;</p>
+
+            <p>Usually Microsoft names their second version of their improved
+            software APIs with an Ex extension as in doSomething() and
+            doSomethingEx(). So I just followed the model and tacked on a 'Ex'
+            to the end.</p><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>Is the .mmb format proprietary? And, Is my data safe?</h3>
+
+            <table>
+                <tr>
+                    <td>No</td>
+
+                    <td>.mmb file is not proprietary.</td>
+                </tr>
+
+                <tr>
+                    <td>&nbsp;</td>
+
+                    <td>MMEX uses SQLite databases to store user data. That
+                    means that the .mmb file is a regular SQLite database.
+                    SQLite is one of the smallest, free relational database
+                    systems around and there are tons of tools to open and
+                    access SQLite databases. SQLiteSpy and SQLite Browser
+                    (http://sqlitebrowser.sourceforge.net/) are two such
+                    utilities. Once you open the database using these tools,
+                    you can do anything you want with the data.</td>
+                </tr>
+
+                <tr>
+                    <td>Yes</td>
+
+                    <td>Your data is completely safe.</td>
+                </tr>
+
+                <tr>
+                    <td>&nbsp;</td>
+
+                    <td>The data is self contained on your PC, (or USB stick if
+                    you have made it portable). To further protect your data,
+                    encryption can now be added. This applies a password to
+                    your database file, and can only be opened by MMEX or any
+                    other software if you have the correct password.</td>
+                </tr>
+            </table><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>Can MMEX run from a USB Key?</h3>
+
+            <p>Yes.</p>
+
+            <p>MMEX is a portable application which means ability to run
+            without installation, for example, from USB flash drive. If MMEX
+            finds mmexini.db3 in its folder, it assumes portable mode. Copy
+            mmex's files to USB Key and copy yours mmexini.db3 to mmex's folder
+            on that drive.</p>
+
+            <p>To make MMEX portable:</p>
+
+            <ol>
+                <li>On Windows (assume F:\ is USB flash drive)<br>
+                Copy ;C:\Program Files\MoneyManagerEx; to F:\<br>
+                Copy ;%APPDATA%\MoneyManagerEx\mmexini.db3; to
+                F:\MoneyManagerEx<br>
+                Copy your database file to any folder on F:\<br>
+                <br>
+                <br></li>
+
+                <li>On Unix (assume /media/disk is mounted USB flash drive)<br>
+                Compile mmex from sources as usually,<br>
+                and make install prefix=/media/disk<br>
+                cp ~/.mmex/mmexini.db3 /media/disk/mmex/share/mmex<br>
+                <br>
+                or if you want to copy mmex which has already installed in
+                /usr<br>
+                cp /usr/bin/mmex /media/disk/mmex/bin<br>
+                cp /usr/share/mmex /media/disk/mmex/share<br>
+                cp /usr/share/doc/mmex /media/disk/mmex/share/doc<br>
+                cp ~/.mmex/mmexini.db3 /media/disk/mmex/share/mmex<br></li>
+            </ol><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>How do I know MMEX is not trying to steal my sensitive
+            financial information?</h3>
+
+            <p>Generally, with any closed source program, you have to depend
+            upon the vendor's word regarding safety of the data. But with MMEX
+            being open source, you can verify this claim yourself.<br>
+            Even if you are not a C++ expert, you can rest assured that anyone
+            can access the source code at any time and verify the legitimacy of
+            MMEX's intentions.<br>
+            MMEX does connect to the internet only to send anonymous usage
+            statistics or when checking for an update.<br>
+            You can disable this in Options-&gt;Network<br>
+            <br>
+            <br>
+            Here is a sample of data that MMEX will send:<br>
+            <br></p>
+
+            <table>
+                <tr>
+                    <th>Version</th>
+
+                    <th>Operating System</th>
+
+                    <th>Language</th>
+
+                    <th>Country</th>
+
+                    <th>Resolution</th>
+
+                    <th>Start Time</th>
+
+                    <th>End Time</th>
+                </tr>
+
+                <tr>
+                    <td>1.2.0 Portable</td>
+
+                    <td>Windows 8 (build 9200), 64-bit edition</td>
+
+                    <td>english</td>
+
+                    <td>United States</td>
+
+                    <td>1366x768</td>
+
+                    <td>2014-05-01 09:00:00</td>
+
+                    <td>2014-05-01 09:01:30</td>
+                </tr>
+            </table><a href="#top">Back to Top</a>
+            <hr>
+
+            <h3>How do I print account statements using MMEX?</h3>
+
+            <p>To print a statement with transactions from any arbitrary set of
+            criteria, use the Transaction Filter to select the transactions you
+            want and then do a print from the menu.
+            File&rarr;Print...&rarr;Current View</p>
+
+            <p>The Transaction Filter is accessed from Reports&rarr;Transaction
+            Reports on the Navigation Tree, or<br>
+            from the Quick Navigation buttons in the top left hand corner of
+            MMEX.</p><a href="#top">Back to Top</a>
+            <hr>
+            Copyright &copy; 2005-2013, CodeLathe LLC. All rights reserved.
+        </div><script>
+window.onload = function () {
+        var toc = "";
+        var level = 0;
+
+        document.getElementById("contents").innerHTML =
+        document.getElementById("contents").innerHTML.replace(
+            /<h([\d])>([^<]+)<\/h([\d])>/gi,
+            function (str, openLevel, titleText, closeLevel) {
+                if (openLevel != closeLevel) {
+                    return str;
+                }
+
+                if (openLevel > level) {
+                    toc += (new Array(openLevel - level + 1)).join("<ul>");
+                } else if (openLevel < level) {
+                    toc += (new Array(level - openLevel + 1)).join("<\/ul>");
+                }
+
+                level = parseInt(openLevel);
+
+                var anchor = titleText.replace(/ /g, "_");
+                toc += "<li><a href=\"#" + anchor + "\">" + titleText
+                    + "<\/a><\/li>";
+
+                return "<h" + openLevel + "><a name=\"" + anchor + "\">"
+                    + titleText + "<\/a><\/h" + closeLevel + ">";
+            }
+        );
+
+        if (level) {
+        toc += (new Array(level + 1)).join("<\/ul>");
+        }
+
+        document.getElementById("toc").innerHTML += toc;
+        };
+        </script> 
+</body>
+</html>
