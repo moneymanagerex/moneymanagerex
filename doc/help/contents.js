@@ -1,4 +1,4 @@
-function get_contenst() {
+function get_contents() {
     var toc = "";
     var level = 0;
 
