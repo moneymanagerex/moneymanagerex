@@ -36,10 +36,7 @@ const char *usage_template = R"(
     <link href = "master.css" rel = "stylesheet" />
     <style>
         canvas {max-height: 400px; min-height: 100px;}
-        body {
-            transform: scale(<TMPL_VAR HTMLSCALE>);
-            transform-origin: 0%% 0%%;
-        }
+        body {font-size: <TMPL_VAR HTMLSCALE>%;};
     </style>
 </head>
 <body>

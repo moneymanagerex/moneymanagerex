@@ -74,7 +74,7 @@ static const wxString TABLE_CELL = "    <td %s>";
 static const wxString MONEY_CELL = "    <td class='money'>";
 static const wxString TABLE_CELL_END = "</td>\n";
 static const wxString TABLE_CELL_LINK = "<a href=\"%s\">%s</a>\n";
-static const wxString TABLE_HEADER = "<th %s>";
+static const wxString TABLE_HEADER = "<th%s>";
 static const wxString HEADER = "<h%i>%s</h%i>";
 static const wxString TABLE_HEADER_END = "</th>\n";
 static const wxString LINK = "<a href=\"%s\">%s</a>\n";
@@ -203,9 +203,9 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, const std::ve
 
 void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool numeric, const bool sortable)
 {
-    const wxString align = sortable ? "" : "class='sorttable_nosort'"
-        + numeric ? " class='text-right'" : " class='text-left'";
-    html_ += wxString::Format(tags::TABLE_HEADER, align);
+    const wxString sort = (sortable ? "" : " class='sorttable_nosort'");
+    const wxString align = (numeric ? " class='text-right'" : " class='text-left'");
+    html_ += wxString::Format(tags::TABLE_HEADER, sort + align);
     html_ += (value);
     html_+= tags::TABLE_HEADER_END;
 }
@@ -245,6 +245,12 @@ void mmHTMLBuilder::addTableCell(const wxString& value, const bool numeric)
     html_ += wxString::Format(tags::TABLE_CELL, align);
     html_ += value;
     this->endTableCell();
+}
+
+void mmHTMLBuilder::addEmptyTableCell(const int number)
+{
+    for (int i = 0; i < number; i++)
+        addTableCell("");
 }
 
 void mmHTMLBuilder::addColorMarker(const wxString& color)
