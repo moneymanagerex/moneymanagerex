@@ -73,6 +73,7 @@ public:
     /** Add a Cell value */
     void addTableCell(const wxDateTime& date);
     void addTableCell(const wxString& value, const bool numeric = false);
+    void addEmptyTableCell(const int number = 1);
 
     /** Add a Cell value */
     void addTableCellLink(const wxString& href, const wxString& value);
