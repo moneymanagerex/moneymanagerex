@@ -12,7 +12,7 @@
 # Specify system Architecture  ("i386" or "amd64")
 ARCHITECTURE="amd64"
 
-. common/variables.sh
+. variables.sh
 
 # Specify the build version of mmex
 RELEASE_DIR="$HOME/release"
@@ -58,13 +58,6 @@ gzip -9 -f "usr/share/doc/mmex/changelog"
 #Copyright
 cp "usr/share/doc/mmex/contrib.txt" "usr/share/doc/mmex/copyright"
 sed -i "s/See the GNU General Public License for more details./A copy of the GPLv2 can be found in \"\/usr\/share\/common-licenses\/GPL-2\"/g" "usr/share/doc/mmex/copyright"
-
-#Copy the manpage in to place and modify
-cp "$MMEX_DIR/setup/linux/common/mmex.1" "usr/share/man/man1/mmex.1"
-sed -i "s/MMEX_RELEASE_DATE/$MMEX_RELEASE_DATE/g" "usr/share/man/man1/mmex.1"
-sed -i "s/MMEX_VERSION/$MMEX_VERSION/g" "usr/share/man/man1/mmex.1"
-gzip -9 -f "usr/share/man/man1/mmex.1"
-chmod 644 "usr/share/man/man1/mmex.1.gz"
 
 #Calculate installed size
 INSTALLED_SIZE=$(du -sb $RELEASE_DIR/ | cut -f1)

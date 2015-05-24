@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. common/variables.sh
+. variables.sh
 
 ARCHITECTURE="amd64"
 
@@ -74,13 +74,6 @@ cp -r moneymanagerex "$BUILD_DIR/SOURCES/$PACKAGE_NAME"
 rm -rf "$BUILD_DIR/SOURCES/$PACKAGE_NAME/.git"
 
 cd "$BUILD_DIR/SOURCES"
-
-#Copy the manpage in to place and modify
-cp "$PACKAGE_NAME/setup/linux/common/mmex.1" "$PACKAGE_NAME/doc/mmex.1"
-sed -i "s/MMEX_VERSION/$MMEX_VERSION/g" "$PACKAGE_NAME/doc/mmex.1"
-sed -i "s/MMEX_RELEASE_DATE/$MMEX_RELEASE_DATE/g" "$PACKAGE_NAME/doc/mmex.1"
-gzip -9 -f "$PACKAGE_NAME/doc/mmex.1"
-chmod 644 "$PACKAGE_NAME/doc/mmex.1.gz"
 
 #Compress the source
 tar -zcvf "$PACKAGE_NAME.tar.gz" $PACKAGE_NAME
