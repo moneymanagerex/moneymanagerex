@@ -1,5 +1,5 @@
 /* XPM */
-static const char *google_play[] = {
+static const char *google_play_xpm[] = {
 /* columns rows colors chars-per-pixel */
 "16 16 132 2",
 "   c #DE1755",

@@ -17,11 +17,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *******************************************************/
 
 #include <wx/imaglist.h>
-#include <map>
 
 enum img {
     HOUSE_XPM,
-    MONEYACCOUNT2_XPM,
     SCHEDULE_XPM,
     CALENDAR_XPM,
     PIECHART_XPM,
