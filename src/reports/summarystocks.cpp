@@ -89,30 +89,24 @@ void  mmReportSummaryStocks::RefreshData()
 
 wxString mmReportSummaryStocks::getHTMLText()
 {
+    RefreshData();
     mmHTMLBuilder hb;
     hb.init();
-
+    hb.addDivContainer();
     hb.addHeader(2, _("Summary of Stocks"));
     hb.addDateNow();
     hb.addLineBreak();
 
-    hb.startTable();
+    hb.addDivRow();
+    hb.addDivCol8();
+
     for (const auto& acct : stocks_)
     {
         const Model_Account::Data* account = Model_Account::instance().get(acct.id);
         const Model_Currency::Data* currency = Model_Account::currency(account);
-        hb.startTotalTableRow();
-        hb.addTableCell(acct.name);
-        hb.addTableCell("");
-        hb.addTableCell("");
-        hb.addTableCell("");
-        hb.addTableCell("");
-        hb.addTableCell("");
-        hb.addTableCell("");
-        hb.addTableCell("");
-        hb.addTableCell("");
-        hb.endTableRow();
+        hb.addHeader(3, acct.name);
 
+        hb.startTable();
         display_header(hb);
 
         hb.startTbody();
@@ -132,6 +126,7 @@ wxString mmReportSummaryStocks::getHTMLText()
         }
         hb.endTbody();
 
+        hb.startTfoot();
         hb.startTotalTableRow();
         hb.addTableCell(_("Total:"));
         hb.addTableCell("");
@@ -143,6 +138,8 @@ wxString mmReportSummaryStocks::getHTMLText()
         hb.addCurrencyCell(acct.gainloss);
         hb.addCurrencyCell(acct.total);
         hb.endTableRow();
+        hb.endTfoot();
+        hb.endTable();
 
         hb.startTbody();
         hb.startTableRow();
@@ -151,23 +148,30 @@ wxString mmReportSummaryStocks::getHTMLText()
         hb.endTbody();
     }
 
+    hb.addDivCol8();
+    hb.addHeader(3, _("Grand Total:"));
+    hb.startTable();
+
+    hb.startThead();
+    hb.startTableRow();
+    hb.addTableHeaderCell(_("Gain/Loss"), true);
+    hb.addTableHeaderCell(_("Value"), true);
+    hb.endTableRow();
+    hb.endThead();
+
     hb.startTfoot();
     hb.startTotalTableRow();
-    hb.addTableCell(_("Grand Total:"));
-    hb.addTableCell("");
-    hb.addTableCell("");
-    hb.addTableCell("");
-    hb.addTableCell("");
-    hb.addTableCell("");
-    hb.addTableCell("");
     hb.addCurrencyCell(gain_loss_sum_total_);
     hb.addCurrencyCell(stockBalance_);
     hb.endTableRow();
     hb.endTfoot();
-
     hb.endTable();
+    hb.endDiv();
 
-    //hb.endCenter();
+    hb.endDiv();
+    hb.endDiv();
+
+    hb.endDiv();
     hb.end();
     return hb.getHTMLText();
 }
@@ -238,9 +242,13 @@ wxString mmReportChartStocks::getHTMLText()
         }
         if (!aData.empty())
         {
+            hb.addDivRow();
+            hb.addDivCol8();
             Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
-            hb.addHeader(1, wxString::Format("%s - (%s)", stock.STOCKNAME, account->ACCOUNTNAME));
+            hb.addHeader(2, wxString::Format("%s - (%s)", stock.STOCKNAME, account->ACCOUNTNAME));
             hb.addLineChart(aData, stock.STOCKNAME, count, 1000, 400, pointDot, showGridLines, true);
+            hb.endDiv();
+            hb.endDiv();
         }
 
         heldAt = stock.HELDAT;
