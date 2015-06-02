@@ -173,6 +173,7 @@ const wxString VIEW_TRANS_CURRENT_YEAR_STR   = wxTRANSLATE("View Current Year");
 
 const wxString VIEW_ACCOUNTS_ALL_STR = wxTRANSLATE("ALL");
 const wxString VIEW_ACCOUNTS_OPEN_STR = wxTRANSLATE("Open");
+const wxString VIEW_ACCOUNTS_CLOSED_STR = wxTRANSLATE("Closed");
 const wxString VIEW_ACCOUNTS_FAVORITES_STR = wxTRANSLATE("Favorites");
 
 const wxString INIDB_BUDGET_FINANCIAL_YEARS       = "BUDGET_FINANCIAL_YEARS";
