@@ -750,16 +750,14 @@ void mmGUIFrame::updateNavTreeControl()
     if (m_db)
     {
         /* Start Populating the dynamic data */
-        wxString vAccts = Model_Setting::instance().ViewAccounts();
+        const wxString vAccts = Model_Setting::instance().ViewAccounts();
         wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR || vAccts == VIEW_ACCOUNTS_OPEN_STR);
-        if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
-            vAccts = VIEW_ACCOUNTS_ALL_STR;
 
         for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
         {
-            if (!((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-                (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
-                vAccts == "ALL"))
+            if (vAccts == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status(account) != Model_Account::OPEN)
+                continue;
+            else if (vAccts == VIEW_ACCOUNTS_FAVORITES_STR && !Model_Account::FAVORITEACCT(account))
                 continue;
 
             int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
@@ -1182,7 +1180,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 void mmGUIFrame::OnViewAllAccounts(wxCommandEvent&)
 {
     //Get current settings for view accounts
-    wxString vAccts = Model_Setting::instance().ViewAccounts();
+    const wxString vAccts = Model_Setting::instance().ViewAccounts();
 
     //Set view ALL & Refresh Navigation Panel
     Model_Setting::instance().SetViewAccounts(VIEW_ACCOUNTS_ALL_STR);
@@ -1191,14 +1189,13 @@ void mmGUIFrame::OnViewAllAccounts(wxCommandEvent&)
 
     //Restore settings
     Model_Setting::instance().SetViewAccounts(vAccts);
-    vAccts = Model_Setting::instance().ViewAccounts();
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewFavoriteAccounts(wxCommandEvent&)
 {
     //Get current settings for view accounts
-    wxString vAccts = Model_Setting::instance().ViewAccounts();
+    const wxString vAccts = Model_Setting::instance().ViewAccounts();
 
     //Set view Favorites & Refresh Navigation Panel
     Model_Setting::instance().SetViewAccounts(VIEW_ACCOUNTS_FAVORITES_STR);
@@ -1213,10 +1210,11 @@ void mmGUIFrame::OnViewFavoriteAccounts(wxCommandEvent&)
 void mmGUIFrame::OnViewOpenAccounts(wxCommandEvent&)
 {
     //Get current settings for view accounts
-    wxString vAccts = Model_Setting::instance().ViewAccounts();
+    const wxString vAccts = Model_Setting::instance().ViewAccounts();
 
     //Set view Open & Refresh Navigation Panel
     Model_Setting::instance().SetViewAccounts(VIEW_ACCOUNTS_OPEN_STR);
+    updateNavTreeControl();
     createHomePage();
 
     //Restore settings
