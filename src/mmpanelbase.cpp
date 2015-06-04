@@ -174,14 +174,13 @@ void mmListCtrl::OnHeaderSort(wxCommandEvent& event)
 
 void mmListCtrl::OnHeaderReset(wxCommandEvent& event)
 {
-    wxString parameter_name;
-    for (int i = 0; i < (int)m_columns.size(); i++)
+    for (const auto& col : m_columns)
     {
-        SetColumnWidth(i, std::get<1>(m_columns[i]));
+        SetColumnWidth(col.first, std::get<1>(col.second));
         if (!m_col_width.IsEmpty())
         {
-            parameter_name = wxString::Format(m_col_width, i);
-            Model_Setting::instance().Set(parameter_name, GetColumnWidth(i));
+            const wxString& parameter_name = wxString::Format(m_col_width, col.first);
+            Model_Setting::instance().Set(parameter_name, GetColumnWidth(col.first));
         }
     }
     wxListEvent e;

@@ -311,13 +311,13 @@ budgetingListCtrl::budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, con
     , cp_(cp)
     , selectedIndex_(-1)
 {
-    m_columns.push_back(std::make_tuple(_("Icon"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Sub Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Estimated"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Actual"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[0] = (std::make_tuple(_("Icon"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns[1] = (std::make_tuple(_("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[2] = (std::make_tuple(_("Sub Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[3] = (std::make_tuple(_("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[4] = (std::make_tuple(_("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[5] = (std::make_tuple(_("Estimated"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[6] = (std::make_tuple(_("Actual"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
 
     m_col_width = "BUDGET_COL%d_WIDTH";
 }

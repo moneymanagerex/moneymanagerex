@@ -89,31 +89,30 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     m_selected_col = Model_Setting::instance().GetIntSetting("STOCKS_SORT_COL", col_sort());
     m_asc = Model_Setting::instance().GetBoolSetting("STOCKS_ASC", true);
 
-    m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Purchase Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("Share Name"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("Share Symbol"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("Number of Shares"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Unit Price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Total Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Curr. unit price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Curr. total value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Price Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("Commission"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Notes"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns[0] = (std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
+    m_columns[1] = (std::make_tuple(_("ID"), 0, wxLIST_FORMAT_RIGHT));
+    m_columns[2] = (std::make_tuple(_("Purchase Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns[3] = (std::make_tuple(_("Share Name"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns[4] = (std::make_tuple(_("Share Symbol"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns[5] = (std::make_tuple(_("Number of Shares"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[6] = (std::make_tuple(_("Unit Price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[7] = (std::make_tuple(_("Total Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[8] = (std::make_tuple(_("Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[9] = (std::make_tuple(_("Curr. unit price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[10] = (std::make_tuple(_("Curr. total value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[11] = (std::make_tuple(_("Price Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns[12] = (std::make_tuple(_("Commission"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns[13] = (std::make_tuple(_("Notes"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
 
     m_col_width = "STOCKS_COL%d_WIDTH";
     m_default_sort_column = col_sort();
 
-    int i = 0;
     for (const auto& entry : m_columns)
     {
-        const wxString& heading = std::get<0>(entry);
-        int width = Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, i), std::get<1>(entry));
-        int format = std::get<2>(entry);
-        InsertColumn(i++, heading, format, width);
+        const wxString& heading = std::get<0>(entry.second);
+        int width = Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, entry.first), std::get<1>(entry.second));
+        int format = std::get<2>(entry.second);
+        InsertColumn(entry.first, heading, format, width);
     }
 
     initVirtualListControl(-1, m_selected_col, m_asc);
