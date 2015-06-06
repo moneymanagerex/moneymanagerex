@@ -9,7 +9,7 @@ and user-friendliness - something one can use everyday.
 
 Supported platforms:
 
-MS Windows: XP, Vista, 7, 8, 8.1.
+MS Windows: Vista, 7, 8, 8.1
         Unicode builds: x86, x64, ia64 versions available.
 
 Unixes: almost any Unix workstation with GTK+ 2.0 and above.
@@ -26,7 +26,7 @@ MMEX включает функции, которые 90% пользовател�
 
 Программа работает на:
 
-MS Windows: XP, 7, 8
+MS Windows: 7, 8, 8.1
         Юникод сборки: x86, x64, ia64 версии.
 
 Юниксы: любой Unix с GTK+ 2.0 и выше.
@@ -45,7 +45,7 @@ qualcosa che chiunque potesse utilizzare ogni giorno.
 
 Sistemi supportati:
 
-MS Windows: 95, 98, ME, 2000, NT, XP, 7.
+MS Windows: 7, 8, 8.1
         Build ANSI e Unicode; versioni x86, x64, ia64.
 
 Unixes: la magior parte dei sistemi Unix co GTK+ 2.0 e successivi.

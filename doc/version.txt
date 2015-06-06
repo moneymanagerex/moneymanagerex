@@ -1,10 +1,11 @@
 Version History of Money Manager Ex
 
-1.2.1 (May 28, 2015)
+1.2.1 (Jun 06, 2015)
 - Fix: Negative 'Initial Balance' (bug #672)
-- Fix:  Recurring Transactions navigation issue (bug #679)
+- Fix: Recurring Transactions navigation issue (bug #679)
 - Fix: Spelling mistakes (bugs: #676, #677)
-
+- Fix: Temporary View Change (bug #684)
+- Fix: html format (issue 487)
 
 1.2.0 (April 28, 2015)
 - New: Introducing new account type - Credit Card

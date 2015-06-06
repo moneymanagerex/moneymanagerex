@@ -9,12 +9,12 @@
 
 ; Copyright (C) 2006 Madhan Kanagavel
 ; Copyright (C) 2009 VaDiM
-; Copyright (C) 2011-2014 Stefano Giorgio
+; Copyright (C) 2011-2015 Stefano Giorgio
 ; Copyright (C) 2013 James Higley
 
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
-#define MyAppVersion "1.2.0"
+#define MyAppVersion "1.2.1"
 #define MyAppPublisher "Money Manager EX"
 #define MyAppURL "http://www.moneymanagerex.org"
 
@@ -26,8 +26,8 @@
 ; Local definitions specifically designed for my setup 
 #define my_svn_path "..\.."
 #define my_output_root "..\..\mmex_release"
-#define my_output_path "\mmex_1.2.0_win32_portable\MoneyManagerEx"
-#define my_output_filename "mmex_1.2.0_win32_setup"
+#define my_output_path "\mmex_1.2.1_win32_portable\MoneyManagerEx"
+#define my_output_filename "mmex_1.2.1_win32_setup"
 
 ;===============================================================================
 
@@ -59,14 +59,14 @@ OutputBaseFilename={#my_output_filename}
 SetupIconFile={#my_svn_path}\resources\mmex.ico
 Compression=lzma/Max
 SolidCompression=true
-VersionInfoVersion=1.2.0.0
+VersionInfoVersion=1.2.1.0
 VersionInfoCompany=Money Manager EX
 VersionInfoDescription=Money Management Software
-VersionInfoTextVersion=1.2.0.0
-VersionInfoCopyright=2014 - Money Manager EX
+VersionInfoTextVersion=1.2.1.0
+VersionInfoCopyright=2015 - Money Manager EX
 VersionInfoProductName=mmex
-VersionInfoProductVersion=1.2.0.0
-VersionInfoProductTextVersion=1.2.0.0
+VersionInfoProductVersion=1.2.1.0
+VersionInfoProductTextVersion=1.2.1.0
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl; 
@@ -186,7 +186,7 @@ Source: {#my_svn_path}\po\chinese_zh.mo; DestDir: {app}\po\en; Flags: ignorevers
 Source: {#my_svn_path}\po\croatian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\croatian; 
 Source: {#my_svn_path}\po\czech.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\czech; 
 Source: {#my_svn_path}\po\dutch.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\ducth; 
-Source: {#my_svn_path}\po\dutch_be.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\dutch_be; 
+Source: {#my_svn_path}\po\dutch_be.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\dutch_be;
 Source: {#my_svn_path}\po\english.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\english; 
 Source: {#my_svn_path}\po\english.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: help; Languages: english; 
 Source: {#my_svn_path}\po\english-uk.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\english_uk; 

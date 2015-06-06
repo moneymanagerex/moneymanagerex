@@ -1,5 +1,5 @@
 REM --------------------------------------------------------------------------
-REM Author : Stefano Giorgio [stef145g] - Copyright (C) 2012..2014
+REM Author : Stefano Giorgio [stef145g] - Copyright (C) 2012..2015
 REM 		 Updates by:
 REM          Lisheng [guanlisheng] (C) 2013
 REM          Nikolay [vomikan]     (C) 2013
@@ -10,15 +10,13 @@ REM Purpose: To allow the easy collection of support files required for
 REM          - testing in the msw-vc-2013e environment.
 REM          - providing a release version for others.
 REM 
-REM Revision of last commit: $Revision$
-REM Author   of last commit: $Author$
 REM --------------------------------------------------------------------------
 @echo off
 cls
 
 REM Set the variable: mmex_release_version
 REM to reflect the correct version.
-set mmex_release_version=mmex_1.2.0
+set mmex_release_version=mmex_1.2.1
 
 set mmex_system_name=MoneyManagerEX
 set mmex_build_location=..\..\build\msw-vc-2013e

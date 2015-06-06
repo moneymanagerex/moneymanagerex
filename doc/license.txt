@@ -17,15 +17,13 @@ The support forum links are located in the MMEX Help menu.
 ================================================
                       GNU GENERAL PUBLIC LICENSE
 ================================================
-Copyright (C) 2013 Nikolay,
-                        Lisheng [guanlisheng],
-                        James [siena123]
-Copyright (C) 2010-2012 Stefano [stef145g],
-                        Nikolay,
-                        Lisheng [guanlisheng]
-Copyright (C) 2009-2010 VaDiM,
-                        Nikolay,
-                        Wesley Ellis
+Copyright (C) 2009-2015 Nikolay
+Copyright (C) 2011-2015 LiSheng [guanlisheng]
+Copyright (C) 2013-2015 James [siena123]
+Copyright (C) 2013-2015 Gabriele[gabriele-v]
+Copyright (C) 2010-2015 Stefano [stef145g]
+Copyright (C) 2009-2010 VaDiM, Wesley Ellis
+
 Copyright (C) 2005-2009 Madhan Kanagavel
 
 This program is free software; you can redistribute it and/or
