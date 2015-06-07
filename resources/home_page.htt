@@ -37,9 +37,7 @@
     }
 
   </script>
-  <body>
-<!--Website News-->
-<TMPL_VAR WEBSITE_NEWS>
+<body>
 
 <table class = "table-bordered" width="98%">
 <tr valign="top"><td width="50%">

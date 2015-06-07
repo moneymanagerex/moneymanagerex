@@ -77,9 +77,6 @@ public:
     static row_t to_row_t();
 
 public:
-    bool DisplayInternetNews();
-    void SetDisplayInternetNews(bool display = true);
-
     wxString ViewAccounts();
     void SetViewAccounts(const wxString& value);
 

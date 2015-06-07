@@ -29,6 +29,7 @@ Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 #include <vector>
 #include "mmOption.h"
 #include "constants.h"
+#include "util.h"
 
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
@@ -72,6 +73,7 @@ public:
     void menuPrintingEnable(bool enable);
     void OnToggleFullScreen(wxCommandEvent& WXUNUSED(event));
     void OnClose(wxCloseEvent&);
+    std::vector<WebsiteNews> g_WebsiteNewsList;
 
 private:
     std::vector<const ModelBase*> m_all_models;
