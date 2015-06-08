@@ -1,4 +1,4 @@
-Money Manager Ex
+[<img src="https://raw.githubusercontent.com/moneymanagerex/moneymanagerex/master/resources/mmexlogo.png" alt="img text"  width="32" height="32"/>](http://moneymanagerex.org) Money Manager Ex
 ===============
 
 Money Manager Ex is a free, open-source, cross-platform, easy-to-use personal 
@@ -15,20 +15,19 @@ and user-friendliness - something one can use everyday.
 
 
 ### MMEX is mainly written in C++11 and built on:
-1. [wxWidgets](http://wxwidgets.org/) 3.0+
-2. [wxSqlite3](https://github.com/moneymanagerex/wxsqlite3)
-3. [SQLite3](http://sqlite.org/)
-3. [ChartNew.JS](https://github.com/FVANCOP/ChartNew.js)
-4. [html-template](https://github.com/moneymanagerex/html-template)
+* [wxWidgets](http://wxwidgets.org/) 3.0+
+*  [wxSqlite3](https://github.com/moneymanagerex/wxsqlite3)
+*  [SQLite3](http://sqlite.org/)
+*  [ChartNew.JS](https://github.com/FVANCOP/ChartNew.js)
+*  [html-template](https://github.com/moneymanagerex/html-template)
 
 ### Supported platforms:
-1. MS Windows: Vista, 7, 8, 8.1.
-    Unicode builds: x86, x64, ia64 versions available.
-3. Unixes: almost any Unix workstation with GTK+ 2.0 and above.
-4. Mac: OS X 10.8 or higher.
+*  MS Windows: Vista, 7, 8, 8.1. Unicode builds: x86, x64, ia64 versions available.
+*  Unixes: almost any Unix workstation with GTK+ 2.0 and above.
+*  Mac: OS X 10.8 or higher.
 
 #### Tips: 
-1. We can open database file (both regular and encrypted) directly with [wxSqlitePlus](https://github.com/moneymanagerex/wxSqlitePlus)
-2. We can download dozen of cool reports from [general report] (https://github.com/moneymanagerex/general-reports)
-3. Star it if you feel it is helpful
+* We can open database file (both regular and encrypted) directly with [wxSqlitePlus](https://github.com/moneymanagerex/wxSqlitePlus)
+* We can download dozen of cool reports from [general report](https://github.com/moneymanagerex/general-reports)
+* Star it if you feel it is helpful
 

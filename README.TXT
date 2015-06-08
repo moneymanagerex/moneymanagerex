@@ -51,3 +51,18 @@ MS Windows: 95, 98, ME, 2000, NT, XP, 7.
 Unixes: la magior parte dei sistemi Unix co GTK+ 2.0 e successivi.
 
 Mac: Mac OS 8.6/9.x (es. Classic) o Mac OS X 10.x.
+
+-[Palish]-----------------------------------------------------------------------
+Money Manager Ex to program rozwijany jako open source służący do zarządzania
+domowym budżetem i finansami osobistymi. 
+
+Aplikacja doskonale nadaje się do obliczania osobistego budżetu,
+wszyscy użytkownicy którzy posiadają konta bankowe, lokaty,
+udziały w funduszach, kredyty, będą mogli bez problemu zarządzać własnymi finansami. 
+
+Wydatki oraz przychody można podzielić według kategorii dzięki czemu zarządzanie
+nimi jest zdecydowanie łatwiejsze. W ten sposób można zaplanować własny budżet na cały rok.
+Program posiada moduł rozbudowanych raportów które określają w jaki sposób użytkownik
+zarządza finansami i w jaki sposób wydaje pieniądze. 
+
+Money Manager Ex posiada polski interfejs oraz daje możliwość wyboru polskiej waluty.
