@@ -64,7 +64,6 @@ private:
     wxCheckBox* m_budget_summary_without_category;
     wxCheckBox* m_ignore_future_transactions;
 
-    wxCheckBox* m_display_internet_news;
     enum
     {
         ID_DIALOG_OPTIONS_VIEW_ACCOUNTS = wxID_HIGHEST + 10
