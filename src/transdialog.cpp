@@ -60,6 +60,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , int account_id
     , int transaction_id
     , bool duplicate
+    , int type
 ) : m_currency(nullptr)
     , m_to_currency(nullptr)
     , categUpdated_(false)
@@ -76,17 +77,18 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_amount_init_(false)
 {
     Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);
-    m_new_trx = !transaction || m_duplicate ? true : false;
-    if (!m_new_trx || m_duplicate)
+    m_new_trx = (transaction || m_duplicate) ? false : true;
+    m_transfer = m_new_trx ? type == Model_Checking::TRANSFER : Model_Checking::is_transfer(transaction);
+    if (m_new_trx)
+    {
+        Model_Checking::getEmptyTransaction(m_trx_data, account_id);
+        m_trx_data.TRANSCODE = Model_Checking::all_type()[type];
+    }
+    else
     {
         Model_Checking::getTransactionData(m_trx_data, transaction);
         for (const auto& item : Model_Checking::splittransaction(transaction))
             local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
-        m_transfer = Model_Checking::type(transaction->TRANSCODE) == Model_Checking::TRANSFER;
-    }
-    else
-    {
-        Model_Checking::getEmptyTransaction(m_trx_data, account_id);
     }
 
     Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
@@ -98,7 +100,8 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     if (m_transfer) 
     {
         Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
-        m_to_currency = Model_Account::currency(to_acc);
+        if (to_acc) 
+            m_to_currency = Model_Account::currency(to_acc);
         if (m_to_currency) 
             m_advanced = !m_new_trx && (m_currency->CURRENCYID != m_to_currency->CURRENCYID || m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
     }

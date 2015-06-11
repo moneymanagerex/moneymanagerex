@@ -318,6 +318,9 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     if (Model_Setting::instance().GetBoolSetting("UPDATECHECK", true))
         mmUpdate::checkUpdates(true,this);
 
+    //Read news
+    getNewsRSS(g_WebsiteNewsList);
+
     //Show appstart
     if (from_scratch || !dbpath.IsOk())
     {

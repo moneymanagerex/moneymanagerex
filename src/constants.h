@@ -112,7 +112,7 @@ extern const wxString ATTACHMENTS_FOLDER_DATABASE;
 extern const wxString ATTACHMENTS_FOLDER_USERPROFILE;
 extern const wxString ATTACHMENTS_FOLDER_APPDATA;
 
-extern const wxString INIDB_DISPLAY_INTERNET_NEWS;
+extern const wxString INIDB_NEWS_LAST_READ_DATE;
 
 enum id
 {

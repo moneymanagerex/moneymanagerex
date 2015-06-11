@@ -30,7 +30,6 @@ Copyright (C) 2014 Nikolay
 #include "constants.h"
 #include "mmOption.h"
 #include "util.h"
-#include <wx/xml/xml.h>
 
 #include "model/Model_Setting.h"
 #include "model/Model_Asset.h"
@@ -42,6 +41,29 @@ Copyright (C) 2014 Nikolay
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
 #include "cajun/json/writer.h"
+
+static const wxString TOP_CATEGS = R"(
+<table class = 'table'>
+  <tr class='active'>
+    <th>%s</th>
+    <th nowrap class='text-right sorttable_nosort'>
+      <a id='%s_label' onclick='toggleTable("%s"); ' href='#%s' oncontextmenu='return false;'>[-]</a>
+    </th>
+  </tr>
+  <tr>
+    <td style='padding: 0px; padding-left: 0px; padding-right: 0px; width: 100%%;' colspan='2'>
+    <table class = 'sortable table' id='%s'>
+    <thead>
+      <tr><th>%s</th><th class='text-right'>%s</th></tr>
+    </thead>
+   <tbody>
+%s
+   </tbody>
+</table>
+</td></tr>
+</table>
+)";
+
 class htmlWidgetStocks
 {
 public:
@@ -183,34 +205,21 @@ wxString htmlWidgetTop7Categories::getHTMLText()
 {
     std::vector<std::pair<wxString, double> > topCategoryStats;
     getTopCategoryStats(topCategoryStats, date_range_);
-    wxString output = "";
+    wxString output = "", data;
     
-    if (!topCategoryStats.empty()) {
-        const wxString idStr = "TOP_CATEGORIES";
-        static const wxString h = R"(<table class = 'table'>
-<tr class='active'>
-<th>%s</th>
-<th nowrap class='text-right sorttable_nosort'>
-<a id='%s_label' onclick='toggleTable("%s"); ' href='#%s' oncontextmenu='return false;'>[-]</a></th></tr>
-<tr><td style='padding: 0px; padding-left: 0px; padding-right: 0px; width: 100%%;' colspan='2'>
-<table class = 'sortable table' id='%s'>
-<thead>
-<tr><th>%s</th>
-<th class='text-right'>%s</th></tr>
-</thead><tbody>)";
-        output += wxString::Format(h, title_, idStr, idStr, idStr, idStr, _("Category"), _("Summary"));
-
+    if (!topCategoryStats.empty()) 
+    {
         for (const auto& i : topCategoryStats)
         {
-            output += "<tr>";
-            output += wxString::Format("<td>%s</td>", (i.first.IsEmpty() ? "..." : i.first));
-            output += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
+            data += "<tr>";
+            data += wxString::Format("<td>%s</td>", (i.first.IsEmpty() ? "..." : i.first));
+            data += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
                 , i.second
                 , Model_Currency::toCurrency(i.second));
-            output += "</tr>";
+            data += "</tr>\n";
         }
-        output += "</tbody>\n</table>\n";
-        output += "</td></tr>\n</table>\n";
+        const wxString idStr = "TOP_CATEGORIES";
+        output += wxString::Format(TOP_CATEGS, title_, idStr, idStr, idStr, idStr, _("Category"), _("Summary"), data);
     }
 
     return output;
@@ -547,10 +556,6 @@ void mmHomePagePanel::getTemplate()
 void mmHomePagePanel::getData()
 {
     m_frames["HTMLSCALE"] = wxString::Format("%d", mmIniOptions::instance().html_font_size_);
-    if (Model_Setting::instance().DisplayInternetNews())
-    {
-        m_frames["WEBSITE_NEWS"] = displayWebsiteNews();
-    }
 
     vAccts_ = Model_Setting::instance().ViewAccounts();
     date_range_->destroy();
@@ -821,102 +826,12 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
     json::Writer::Write(o, ss);
     return ss.str();
 }
-/* Website News*/
-const wxString mmHomePagePanel::displayWebsiteNews()
-{
-    wxString output = wxEmptyString;
-
-    std::vector<WebsiteNews> WebsiteNewsList;
-    if (!mmHomePagePanel::getNewsRSS(WebsiteNewsList))
-        return output;
-    else
-    {
-        output += "<table class = 'table-bordered' width='98%'><table class ='table'>";
-        output += "<tr class ='success'><td style ='font-weight:bold; text-align:center'>Money Manager EX News</td>";
-        output += "<tr class ='success'><td style ='text-align:center'>";
-        int NewsNr = 0;
-        int NewsMax = 5;
-        for (auto &News : WebsiteNewsList)
-        {
-            NewsNr++;
-            if (NewsNr == NewsMax + 1)
-                break;
-            if (NewsNr == 1)
-                output += "|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-            output += "<a href = \"" + News.Link + "\">";
-            output += News.Date.Format(mmOptions::instance().dateFormat_) +": " + News.Title;
-            output += "</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-        }
-        output += "</td></tr></table></table>";
-        output += "<br/>";
-    }
-
-    return output;
-}
-
-const bool mmHomePagePanel::getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
-{
-    wxString RssContent;
-    if (site_content(mmex::weblink::NewsRSS, RssContent) != wxURL_NOERR)
-        return false;
-
-    wxStringInputStream RssContentStream(RssContent);
-    wxXmlDocument RssDocument;
-    if (!RssDocument.Load(RssContentStream))
-        return false;
-
-    if (RssDocument.GetRoot()->GetName() != "rss")
-        return false;
-
-    wxXmlNode* RssRoot = RssDocument.GetRoot()->GetChildren()->GetChildren();
-    while (RssRoot)
-    {
-        if (RssRoot->GetName() == "item")
-        {
-            WebsiteNews website_news;
-            wxXmlNode* News = RssRoot->GetChildren();
-            while(News)
-            {
-                wxString ElementName = News->GetName();
-
-                if (ElementName == "title")
-                    website_news.Title = News->GetChildren()->GetContent();
-                else if (ElementName == "link")
-                    website_news.Link = News->GetChildren()->GetContent();
-                else if (ElementName == "description")
-                    website_news.Description = News->GetChildren()->GetContent();
-                else if (ElementName == "pubDate")
-                {
-                    wxDateTime Date = wxDateTime::Today();
-                    wxString DateString = News->GetChildren()->GetContent();
-                    if (!DateString.IsEmpty())
-                        Date.ParseDate(DateString);
-                    if (!Date.IsValid())
-                        Date = wxDateTime::Today();
-                    website_news.Date = Date;
-                }
-                News = News->GetNext();
-            }
-            WebsiteNewsList.push_back(website_news);
-        }
-        RssRoot = RssRoot->GetNext();
-    }
-
-    if (WebsiteNewsList.size() == 0)
-        return false;
-
-    return true;
-}
 
 void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
 {
     const wxString& url = event.GetURL();
-    if (url.StartsWith("http://www.moneymanagerex.org"))
-    {
-        wxLaunchDefaultBrowser(url);
-        event.Veto();
-    }
-    else if (url.Contains("#"))
+
+    if (url.Contains("#"))
     {
         wxString name = url.AfterLast('#');
         wxLogDebug("%s", name);

@@ -177,11 +177,6 @@ void mmOptionViewSettings::Create()
     m_UDFCB7 = new wxButton(this, wxID_HIGHEST + 77, _("7"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
     userColourSettingStBoxSizer->Add(m_UDFCB7, g_flags);
-    
-    m_display_internet_news = new wxCheckBox(this, wxID_STATIC, _("Display MMEX News on home page")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_display_internet_news->SetValue(Model_Setting::instance().DisplayInternetNews());
-    viewsPanelSizer->Add(m_display_internet_news, g_flags);
 
     this->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmOptionViewSettings::OnNavTreeColorChanged), nullptr, this);
@@ -244,6 +239,4 @@ void mmOptionViewSettings::SaveSettings()
     Model_Infotable::instance().Set("USER_COLOR5", mmColors::userDefColor5);
     Model_Infotable::instance().Set("USER_COLOR6", mmColors::userDefColor6);
     Model_Infotable::instance().Set("USER_COLOR7", mmColors::userDefColor7);
-
-    Model_Setting::instance().SetDisplayInternetNews(m_display_internet_news->GetValue());
 }

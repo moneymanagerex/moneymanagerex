@@ -36,6 +36,15 @@ struct ValueTrio
     wxString label;
     double   amount;
 };
+
+struct WebsiteNews
+{
+    wxDateTime Date;
+    wxString Title;
+    wxString Link;
+    wxString Description;
+};
+
 class mmListBoxItem: public wxClientData
 {
 public:
@@ -147,17 +156,16 @@ public:
 };
 //----------------------------------------------------------------------------
 
+const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
 int site_content(const wxString& site, wxString& output);
 bool download_file(const wxString& site, const wxString& path);
-
-const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
-
-const wxString mmPlatformType();
 const wxString getURL(const wxString& file);
 
+const wxString mmPlatformType();
 void windowsFreezeThaw(wxWindow* w);
 
 //* Date Functions----------------------------------------------------------*//
+const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 const std::map<wxString, wxString> date_formats_regex();
 const wxDateTime mmGetStorageStringAsDate(const wxString& str);
 const wxString mmGetDateForDisplay(const wxDateTime &dt);

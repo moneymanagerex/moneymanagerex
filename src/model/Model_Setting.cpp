@@ -157,17 +157,6 @@ row_t Model_Setting::to_row_t()
         row(r.SETTINGNAME.ToStdWstring()) = r.SETTINGVALUE;
     return row;
 }
-//-------------------------------------------------------------------
-
-bool Model_Setting::DisplayInternetNews()
-{
-    return GetBoolSetting(INIDB_DISPLAY_INTERNET_NEWS, true);
-}
-
-void Model_Setting::SetDisplayInternetNews(bool display)
-{
-    Set(INIDB_DISPLAY_INTERNET_NEWS, display);
-}
 
 //-------------------------------------------------------------------
 wxString Model_Setting::ViewAccounts()

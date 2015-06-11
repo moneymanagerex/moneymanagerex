@@ -83,7 +83,8 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
         , MENU_TREEPOPUP_DELETE_UNRECONCILED, TransactionListCtrl::OnMarkAllTransactions)
     EVT_MENU(MENU_TREEPOPUP_SHOWTRASH,      TransactionListCtrl::OnShowChbClick)
 
-    EVT_MENU(MENU_TREEPOPUP_NEW2,           TransactionListCtrl::OnNewTransaction)
+    EVT_MENU_RANGE(MENU_TREEPOPUP_NEW_WITHDRAWAL, MENU_TREEPOPUP_NEW_DEPOSIT, TransactionListCtrl::OnNewTransaction)
+    EVT_MENU(MENU_TREEPOPUP_NEW_TRANSFER,   TransactionListCtrl::OnNewTransferTransaction)
     EVT_MENU(MENU_TREEPOPUP_DELETE2,        TransactionListCtrl::OnDeleteTransaction)
     EVT_MENU(MENU_TREEPOPUP_EDIT2,          TransactionListCtrl::OnEditTransaction)
     EVT_MENU(MENU_TREEPOPUP_MOVE2,          TransactionListCtrl::OnMoveTransaction)
@@ -1054,9 +1055,12 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
             have_category = true;
     }
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW2, _("&New Transaction"));
+    menu.Append(MENU_TREEPOPUP_NEW_WITHDRAWAL, _("&New Withdrawal"));
+    menu.Append(MENU_TREEPOPUP_NEW_DEPOSIT, _("&New Deposit"));
+    menu.Append(MENU_TREEPOPUP_NEW_TRANSFER, _("&New Transfer"));
 
     menu.AppendSeparator();
+
     menu.Append(MENU_TREEPOPUP_EDIT2, _("&Edit Transaction"));
     if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
@@ -1102,17 +1106,18 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
     menu.AppendSeparator();
 
-    menu.Append(MENU_TREEPOPUP_MARKRECONCILED, _("Mark As &Reconciled"));
-    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
-    menu.Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("Mark As &Unreconciled"));
-    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
-    menu.Append(MENU_TREEPOPUP_MARKVOID, _("Mark As &Void"));
-    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_MARKVOID, false);
-    menu.Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("Mark For &Followup"));
-    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
-    menu.Append(MENU_TREEPOPUP_MARKDUPLICATE, _("Mark As &Duplicate"));
-    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
-    menu.AppendSeparator();
+    wxMenu* subGlobalOpMenuMark = new wxMenu();
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("Mark As &Reconciled"));
+    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("Mark As &Unreconciled"));
+    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("Mark As &Void"));
+    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("Mark For &Followup"));
+    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("Mark As &Duplicate"));
+    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
+    menu.Append(wxID_ANY, _("Mark"), subGlobalOpMenuMark);
 
     wxMenu* subGlobalOpMenu = new wxMenu();
     subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKRECONCILED_ALL, _("as Reconciled"));
@@ -1523,9 +1528,20 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
 }
 
-void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
+void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
 {
-    mmTransDialog dlg(this, m_cp->m_AccountID, 0);
+    int type = event.GetId() == MENU_TREEPOPUP_NEW_DEPOSIT ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL;
+    mmTransDialog dlg(this, m_cp->m_AccountID, 0, false, type);
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        m_cp->mmPlayTransactionSound();
+        refreshVisualList(dlg.getTransactionID());
+    }
+}
+
+void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
+{
+    mmTransDialog dlg(this, m_cp->m_AccountID, 0, false, Model_Checking::TRANSFER);
     if (dlg.ShowModal() == wxID_OK)
     {
         m_cp->mmPlayTransactionSound();

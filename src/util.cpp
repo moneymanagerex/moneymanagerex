@@ -17,11 +17,13 @@
  ********************************************************/
 
 #include "util.h"
+#include "constants.h"
 #include "validators.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include <wx/sstream.h>
+#include <wx/xml/xml.h>
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
@@ -143,6 +145,67 @@ bool download_file(const wxString& site, const wxString& path)
     }
 
     return false;
+}
+
+//Get unread news or all news for last year
+const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
+{
+    wxString RssContent;
+    if (site_content(mmex::weblink::NewsRSS, RssContent) != wxURL_NOERR)
+        return false;
+
+    wxStringInputStream RssContentStream(RssContent);
+    wxXmlDocument RssDocument;
+    if (!RssDocument.Load(RssContentStream))
+        return false;
+
+    if (RssDocument.GetRoot()->GetName() != "rss")
+        return false;
+
+    const wxString news_last_read_date_str = Model_Setting::instance().GetStringSetting(INIDB_NEWS_LAST_READ_DATE, "");
+    wxDate news_last_read_date;
+    if (!news_last_read_date.ParseFormat(news_last_read_date_str))
+        news_last_read_date = wxDateTime::Today().Subtract(wxDateSpan::Year());
+
+    wxXmlNode* RssRoot = RssDocument.GetRoot()->GetChildren()->GetChildren();
+    while (RssRoot)
+    {
+        if (RssRoot->GetName() == "item")
+        {
+            WebsiteNews website_news;
+            wxXmlNode* News = RssRoot->GetChildren();
+            while (News)
+            {
+                wxString ElementName = News->GetName();
+
+                if (ElementName == "title")
+                    website_news.Title = News->GetChildren()->GetContent();
+                else if (ElementName == "link")
+                    website_news.Link = News->GetChildren()->GetContent();
+                else if (ElementName == "description")
+                    website_news.Description = News->GetChildren()->GetContent();
+                else if (ElementName == "pubDate")
+                {
+                    wxDateTime Date;
+                    const wxString DateString = News->GetChildren()->GetContent();
+                    if (!DateString.IsEmpty())
+                        Date.ParseDate(DateString);
+                    if (!Date.IsValid())
+                        Date = wxDateTime::Today().Subtract(wxDateSpan::Year()); //Seems invalid date, mark it as 1 year old
+                    website_news.Date = Date;
+                }
+                News = News->GetNext();
+            }
+            if (news_last_read_date.IsEarlierThan(website_news.Date))
+                WebsiteNewsList.push_back(website_news);
+        }
+        RssRoot = RssRoot->GetNext();
+    }
+
+    if (WebsiteNewsList.size() == 0)
+        return false;
+
+    return true;
 }
 
 //* Date Functions----------------------------------------------------------*//
