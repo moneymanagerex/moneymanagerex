@@ -150,12 +150,12 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
             conv_rate = currency->BASECONVRATE;
         }   
         std::pair<double, double>& values = stockStats[stock.HELDAT];
-        double gain_lost = (stock.VALUE - (stock.PURCHASEPRICE * stock.NUMSHARES) - stock.COMMISSION);
+        double gain_lost = (stock.CURRENTPRICE * stock.NUMSHARES - (stock.PURCHASEPRICE * stock.NUMSHARES) - stock.COMMISSION);
         values.first += gain_lost;
         values.second += stock.VALUE;
         if (account && account->STATUS == VIEW_ACCOUNTS_OPEN_STR)
         {   
-            grand_total_ += stock.VALUE * conv_rate;
+            grand_total_ += stock.CURRENTPRICE * stock.NUMSHARES * conv_rate - stock.COMMISSION;
             grand_gain_lost_ += gain_lost * conv_rate;
         }   
     }   
