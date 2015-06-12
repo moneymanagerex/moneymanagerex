@@ -93,7 +93,8 @@ extern const wxString VIEW_TRANS_LAST_12MONTHS_STR;
 extern const wxString VIEW_TRANS_CURRENT_YEAR_STR;   
 
 extern const wxString VIEW_ACCOUNTS_ALL_STR;       
-extern const wxString VIEW_ACCOUNTS_OPEN_STR;      
+extern const wxString VIEW_ACCOUNTS_OPEN_STR;
+extern const wxString VIEW_ACCOUNTS_CLOSED_STR;
 extern const wxString VIEW_ACCOUNTS_FAVORITES_STR; 
 
 extern const wxString LANGUAGE_PARAMETER;

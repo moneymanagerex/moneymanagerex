@@ -227,9 +227,7 @@ private:
     void OnPopupEditAccount(wxCommandEvent& event);
     void OnPopupReallocateAccount(wxCommandEvent& event);
 
-    void OnViewAllAccounts(wxCommandEvent& event);
-    void OnViewFavoriteAccounts(wxCommandEvent& event);
-    void OnViewOpenAccounts(wxCommandEvent& event);
+    void OnViewAccountsTemporaryChange(wxCommandEvent& event);
 
     void OnTreeItemExpanded(wxTreeEvent& event);
     void OnTreeItemCollapsed(wxTreeEvent& event);
@@ -326,6 +324,7 @@ private:
         MENU_TREEPOPUP_ACCOUNT_VIEWALL,
         MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE,
         MENU_TREEPOPUP_ACCOUNT_VIEWOPEN,
+        MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED,
         AUTO_REPEAT_TRANSACTIONS_TIMER_ID,
     };
 };
