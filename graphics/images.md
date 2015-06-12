@@ -9,7 +9,7 @@
 <br>![img](https://openclipart.org/image/24px/svg_to_png/31153/alarm-clock.png) | alarm | [page](https://openclipart.org/detail/31153/alarm-clock) 
 <br>![img](https://openclipart.org/image/24px/svg_to_png/17064/jean-victor-balin-icon-graphics.png) | Budget | [site](https://openclipart.org/detail/17064/icongraphics)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/175430/diagrama-de-sectores.png) | PieChart | [page](https://openclipart.org/detail/175430/diagrama-de-sectores-piechart)
-<br>![img](https://openclipart.org/image/24px/svg_to_png/214205/memo.png) | grm | [page](https://openclipart.org/detail/214205/memo)
+<br>![img]()| Report | [page]()
 <br>![img](https://openclipart.org/image/24px/svg_to_png/140041/funnel.png) | funnel | [page](https://openclipart.org/detail/140041/green-funnel)
 
 ###Tool Bar (32x32)
@@ -21,9 +21,20 @@
 <br>![img](https://openclipart.org/image/32px/svg_to_png/119149/man-chris-kempson-01.png) | Payee | [page](https://openclipart.org/detail/119149/man)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/172798/dollar.png) | Currencies | [page](https://openclipart.org/detail/172798/dollar-symbol-in-3d)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/22436/nicubunu-Tools.png) | Options | [page](https://openclipart.org/detail/22436/tools)
+<br>![img](https://openclipart.org/image/24px/svg_to_png/32413/edit-find-replace.png)| GRM | [page](https://openclipart.org/detail/32413/tango-edit-find-replace)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/168141/star2.png) | about | [page](https://openclipart.org/detail/168141/gold-star)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/104977/1295092948.png) | help | [page](https://openclipart.org/detail/104977/help-orb-button)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/35203/help-browser.png) | help | [page](https://openclipart.org/detail/35203/tango-help-browser)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/37255/info-icon.png) | info | [page](https://openclipart.org/detail/37255/info-icon)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/212153/rodentia-icons_accessories-news-reader.png) | news | [page](https://openclipart.org/detail/212153/rodentiaiconsaccessoriesnewsreader)
 
+###Main menu (24X24)
+<br>![img](https://openclipart.org/image/24px/svg_to_png/34579/media-floppy.png) | Save | [page](https://openclipart.org/detail/34579/tango-media-floppy)
+<br>![img](https://openclipart.org/image/24px/svg_to_png/199702/primary-history-clear.png)| Clear | [page](https://openclipart.org/detail/199702/primary-history-clear)
+<br>![img](https://openclipart.org/image/24px/svg_to_png/34279/system-log-out.png)| Exit | [page](https://openclipart.org/detail/34279/tango-system-log-out)
+<br>![img](https://openclipart.org/image/24px/svg_to_png/214205/memo.png) | Edit Acc | [page](https://openclipart.org/detail/214205/memo)
+<br>![img](https://openclipart.org/image/24px/svg_to_png/210232/misc-crown-game-lock.png)| Lock | [page](https://openclipart.org/detail/210232/misc-crown-game-lock)
+<br>![img](https://openclipart.org/image/24px/svg_to_png/180750/document-encrypted-gold.png)| Encrypt | [page](https://openclipart.org/detail/180750/encrypted-document-gold)
+<br>![img]()| | [page]()
+
+                                                                                                                                                                   
