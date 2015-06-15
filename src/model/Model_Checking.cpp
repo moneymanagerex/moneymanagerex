@@ -189,25 +189,20 @@ Model_Checking::STATUS_ENUM Model_Checking::status(const Data* r)
 
 double Model_Checking::amount(const Data* r, int account_id)
 {
-    double sum = 0;
     switch (type(r->TRANSCODE))
     {
     case WITHDRAWAL:
-        sum -= r->TRANSAMOUNT;
-        break;
+        return  -r->TRANSAMOUNT;
     case DEPOSIT:
-        sum += r->TRANSAMOUNT;
-        break;
+        return r->TRANSAMOUNT;
     case TRANSFER:
         if (account_id == r->ACCOUNTID)
-            sum -= r->TRANSAMOUNT;
+            return r->TRANSAMOUNT;
         else
-            sum += r->TOTRANSAMOUNT;
-        break;
-    default:
-        break;
+            return r->TOTRANSAMOUNT;
     }
-    return sum;
+    wxASSERT(false);
+    return 0;
 }
 
 double Model_Checking::amount(const Data&r, int account_id)
