@@ -58,7 +58,7 @@ EVT_BUTTON(wxID_OK, mmNewAcctDialog::OnOk)
 EVT_BUTTON(wxID_CANCEL, mmNewAcctDialog::OnCancel)
 EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY, mmNewAcctDialog::OnCurrency)
 EVT_BUTTON(wxID_FILE, mmNewAcctDialog::OnAttachments)
-EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + img::MAX_XPM - img::MONEY_DOLLAR_XPM, mmNewAcctDialog::OnCustonImage)
+EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + img::MAX_XPM, mmNewAcctDialog::OnCustonImage)
 EVT_TEXT_ENTER(wxID_ANY, mmNewAcctDialog::OnTextEntered)
 wxEND_EVENT_TABLE()
 
