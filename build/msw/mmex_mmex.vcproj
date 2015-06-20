@@ -441,6 +441,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\Model_CurrencyHistory.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model_Infotable.cpp"
 				>
 			</File>
@@ -847,6 +851,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\db\DB_Table_Currencyhistory_V1.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\db\DB_Table_Infotable_V1.h"
 				>
 			</File>
@@ -924,6 +932,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\Model_Currency.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\Model_CurrencyHistory.h"
 				>
 			</File>
 			<File

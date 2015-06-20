@@ -27,6 +27,7 @@
 class Model_Currency : public Model<DB_Table_CURRENCYFORMATS_V1>
 {
 public:
+    using Model<DB_Table_CURRENCYFORMATS_V1>::remove;
     Model_Currency();
     ~Model_Currency();
 
@@ -60,6 +61,12 @@ public:
 
     /** Return the currency Data record for the given symbol */
     Model_Currency::Data* GetCurrencyRecord(const wxString& currency_symbol);
+
+    /**
+    * Remove the Data record from memory and the database.
+    * Delete also all currency history
+    */
+    bool remove(int id);
 
     /** Add prefix and suffix characters to string value */
     static wxString toCurrency(double value, const Data* currency = GetBaseCurrency(), int precision = -1);

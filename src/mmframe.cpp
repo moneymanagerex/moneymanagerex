@@ -21,9 +21,7 @@
  ********************************************************/
 
 #include "mmframe.h"
-#include "mmex.h"
-#include "webserver.h"
-#include "dbwrapper.h"
+
 #include "aboutdialog.h"
 #include "accountdialog.h"
 #include "appstartdialog.h"
@@ -35,16 +33,18 @@
 #include "budgetyeardialog.h"
 #include "categdialog.h"
 #include "constants.h"
-#include "currencydialog.h"
-#include "general_report_manager.h"
+#include "dbwrapper.h"
 #include "filtertransdialog.h"
+#include "general_report_manager.h"
 #include "images_list.h"
 #include "maincurrencydialog.h"
 #include "mmcheckingpanel.h"
+#include "mmex.h"
 #include "mmhelppanel.h"
 #include "mmhomepagepanel.h"
 #include "mmreportspanel.h"
 #include "mmSimpleDialogs.h"
+#include "mmHook.h"
 #include "optionsdialog.h"
 #include "paths.h"
 #include "payeedialog.h"
@@ -53,6 +53,14 @@
 #include "recentfiles.h"
 #include "stockspanel.h"
 #include "transdialog.h"
+#include "util.h"
+#include "webapp.h"
+#include "webappdialog.h"
+#include "webserver.h"
+#include "wizard_newdb.h"
+#include "wizard_newaccount.h"
+#include "wizard_update.h"
+
 #include "reports/budgetcategorysummary.h"
 #include "reports/budgetingperf.h"
 #include "reports/cashflow.h"
@@ -62,37 +70,35 @@
 #include "reports/htmlbuilder.h"
 #include "reports/payee.h"
 #include "reports/transactions.h"
+
 #include "import_export/qif_export.h"
 #include "import_export/qif_import_gui.h"
 #include "import_export/univcsvdialog.h"
+
+#include "model/Model_Account.h"
 #include "model/Model_Asset.h"
+#include "model/Model_Attachment.h"
+#include "model/Model_Billsdeposits.h"
+#include "model/Model_Budget.h"
+#include "model/Model_Budgetyear.h"
+#include "model/Model_Category.h"
+#include "model/Model_Checking.h"
+#include "model/Model_Currencyhistory.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Report.h"
+#include "model/Model_Setting.h"
+#include "model/Model_Splittransaction.h"
 #include "model/Model_Stock.h"
 #include "model/Model_StockHistory.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Budgetyear.h"
-#include "model/Model_Account.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_Splittransaction.h"
-#include "model/Model_Budget.h"
-#include "model/Model_Report.h"
-#include "model/Model_Attachment.h"
 #include "model/Model_Usage.h"
+
 #include "search/Search.h"
-#include "transdialog.h"
-#include "webapp.h"
-#include "webappdialog.h"
-#include "wizard_newdb.h"
-#include "wizard_newaccount.h"
-#include "wizard_update.h"
-#include "mmHook.h"
-#include "util.h"
+
 #include <wx/fs_mem.h>
 #include <stack>
+
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
 #include "cajun/json/writer.h"
@@ -100,6 +106,7 @@
 /* Include XPM Support */
 
 #include "../resources/about.xpm"
+#include "../resources/accounttree.xpm"
 #include "../resources/appstart.xpm"
 #include "../resources/calendar.xpm"
 #include "../resources/car.xpm"
@@ -107,15 +114,15 @@
 #include "../resources/checkupdate.xpm"
 #include "../resources/clearlist.xpm"
 #include "../resources/clock.xpm"
-#include "../resources/general_report_manager.xpm"
 #include "../resources/delete_account.xpm"
 #include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
 #include "../resources/encrypt_db_edit.xpm"
 #include "../resources/exit.xpm"
 #include "../resources/facebook.xpm"
-#include "../resources/google_play.xpm"
 #include "../resources/filter.xpm"
+#include "../resources/general_report_manager.xpm"
+#include "../resources/google_play.xpm"
 #include "../resources/help.xpm"
 #include "../resources/house.xpm"
 #include "../resources/issues.xpm"
@@ -134,7 +141,6 @@
 #include "../resources/saveas.xpm"
 #include "../resources/user_edit.xpm"
 #include "../resources/wrench.xpm"
-#include "../resources/accounttree.xpm"
 
 //----------------------------------------------------------------------------
 
@@ -1625,6 +1631,7 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Payee::instance(m_db.get()));
     m_all_models.push_back(&Model_Checking::instance(m_db.get()));
     m_all_models.push_back(&Model_Currency::instance(m_db.get()));
+    m_all_models.push_back(&Model_CurrencyHistory::instance(m_db.get()));
     m_all_models.push_back(&Model_Budgetyear::instance(m_db.get()));
     m_all_models.push_back(&Model_Subcategory::instance(m_db.get())); // subcategory must be initialized before category
     m_all_models.push_back(&Model_Category::instance(m_db.get()));
@@ -2469,7 +2476,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnCurrency(wxCommandEvent& /*event*/)
 {
-    mmMainCurrencyDialog(this, false).ShowModal();
+    mmMainCurrencyDialog(this, false,false).ShowModal();
     refreshPanelData();
 }
 //----------------------------------------------------------------------------

@@ -198,6 +198,7 @@ MMEX_OBJECTS =  \
 	mmex_Model_Category.o \
 	mmex_Model_Checking.o \
 	mmex_Model_Currency.o \
+	mmex_Model_CurrencyHistory.o \
 	mmex_Model_Infotable.o \
 	mmex_Model_Payee.o \
 	mmex_Model_Report.o \
@@ -356,8 +357,6 @@ install: install_mmex
 	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\resources && copy /Y  master.css $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\res
-	( cd ..\..\3rd\Chart.js && copy /Y  Chart.js $(PREFIX)\mmex\res )
-	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\3rd\ChartNew.js && copy /Y  ChartNew.js $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\3rd\sorttable.js && copy /Y  sorttable.js $(PREFIX)\mmex\res )
@@ -365,8 +364,8 @@ install: install_mmex
 	( cd ..\..\doc\help && copy /Y  *.html $(PREFIX)\mmex\help )
 	-mkdir $(PREFIX)\mmex\help
 	( cd ..\..\doc\help && copy /Y  *.png $(PREFIX)\mmex\help )
-	-mkdir $(PREFIX)\mmex\po\en
-	( cd ..\..\po && copy /Y  *.mo $(PREFIX)\mmex\po\en )
+	-mkdir $(PREFIX)\mmex\po
+	( cd ..\..\po && copy /Y  *.mo $(PREFIX)\mmex\po )
 
 uninstall: uninstall_mmex
 	-if exist $(PREFIX)\mmex\version.txt -del version.txt
@@ -375,12 +374,11 @@ uninstall: uninstall_mmex
 	-if exist $(PREFIX)\mmex\res\mmex.ico -del mmex.ico
 	-if exist $(PREFIX)\mmex\res\kaching.wav -del kaching.wav
 	-if exist $(PREFIX)\mmex\res\master.css -del master.css
-	-if exist $(PREFIX)\mmex\res\Chart.js -del Chart.js
 	-if exist $(PREFIX)\mmex\res\ChartNew.js -del ChartNew.js
 	-if exist $(PREFIX)\mmex\res\sorttable.js -del sorttable.js
 	-if exist $(PREFIX)\mmex\help\*.html -del *.html
 	-if exist $(PREFIX)\mmex\help\*.png -del *.png
-	-if exist $(PREFIX)\mmex\po\en\*.mo -del *.mo
+	-if exist $(PREFIX)\mmex\po\*.mo -del *.mo
 
 clean: 
 	-if exist .\*.o del .\*.o
@@ -796,6 +794,9 @@ mmex_Model_Checking.o: ../../src/model/Model_Checking.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Currency.o: ../../src/model/Model_Currency.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_Model_CurrencyHistory.o: ../../src/model/Model_CurrencyHistory.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Infotable.o: ../../src/model/Model_Infotable.cpp
