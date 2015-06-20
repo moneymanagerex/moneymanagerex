@@ -15,15 +15,15 @@
  */
 //=============================================================================
 
-#ifndef DB_TABLE_SUBCATEGORY_V1_H
-#define DB_TABLE_SUBCATEGORY_V1_H
+#ifndef DB_TABLE_CURRENCYHISTORY_V1_H
+#define DB_TABLE_CURRENCYHISTORY_V1_H
 
 #include "DB_Table.h"
 
-struct DB_Table_SUBCATEGORY_V1 : public DB_Table
+struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_SUBCATEGORY_V1 Self;
+    typedef DB_Table_CURRENCYHISTORY_V1 Self;
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
@@ -48,7 +48,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     Index_By_Id index_by_id_;
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_SUBCATEGORY_V1() 
+    ~DB_Table_CURRENCYHISTORY_V1() 
     {
         destroy_cache();
     }
@@ -68,11 +68,11 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE SUBCATEGORY_V1(SUBCATEGID integer primary key, SUBCATEGNAME TEXT COLLATE NOCASE NOT NULL, CATEGID integer NOT NULL, UNIQUE(CATEGID, SUBCATEGNAME))");
+				db->ExecuteUpdate("CREATE TABLE CURRENCYHISTORY_V1 ( CURRHISTID INTEGER PRIMARY KEY, CURRENCYID INTEGER NOT NULL, CURRDATE TEXT NOT NULL, CURRVALUE NUMERIC NOT NULL, CURRUPDTYPE INTEGER, UNIQUE ( CURRENCYID, CURRDATE ) )");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
-				wxLogError("SUBCATEGORY_V1: Exception %s", e.GetMessage().c_str());
+				wxLogError("CURRENCYHISTORY_V1: Exception %s", e.GetMessage().c_str());
 				return false;
 			}
 		}
@@ -86,38 +86,50 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_SUBCATEGORY_CATEGID ON SUBCATEGORY_V1(CATEGID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CURRENCYHISTORY_CURRENCYID ON CURRENCYHISTORY_V1(CURRENCYID, CURRDATE)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SUBCATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CURRENCYHISTORY_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
         return true;
     }
 
-    struct SUBCATEGID : public DB_Column<int>
+    struct CURRHISTID : public DB_Column<int>
     { 
-        static wxString name() { return "SUBCATEGID"; } 
-        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CURRHISTID"; } 
+        explicit CURRHISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct SUBCATEGNAME : public DB_Column<wxString>
+    struct CURRENCYID : public DB_Column<int>
     { 
-        static wxString name() { return "SUBCATEGNAME"; } 
-        explicit SUBCATEGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "CURRENCYID"; } 
+        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct CATEGID : public DB_Column<int>
+    struct CURRDATE : public DB_Column<wxString>
     { 
-        static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CURRDATE"; } 
+        explicit CURRDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    typedef SUBCATEGID PRIMARY;
+    struct CURRVALUE : public DB_Column<double>
+    { 
+        static wxString name() { return "CURRVALUE"; } 
+        explicit CURRVALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    struct CURRUPDTYPE : public DB_Column<int>
+    { 
+        static wxString name() { return "CURRUPDTYPE"; } 
+        explicit CURRUPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    typedef CURRHISTID PRIMARY;
     enum COLUMN
     {
-        COL_SUBCATEGID = 0
-        , COL_SUBCATEGNAME = 1
-        , COL_CATEGID = 2
+        COL_CURRHISTID = 0
+        , COL_CURRENCYID = 1
+        , COL_CURRDATE = 2
+        , COL_CURRVALUE = 3
+        , COL_CURRUPDTYPE = 4
     };
 
     /** Returns the column name as a string*/
@@ -125,9 +137,11 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_SUBCATEGID: return "SUBCATEGID";
-            case COL_SUBCATEGNAME: return "SUBCATEGNAME";
-            case COL_CATEGID: return "CATEGID";
+            case COL_CURRHISTID: return "CURRHISTID";
+            case COL_CURRENCYID: return "CURRENCYID";
+            case COL_CURRDATE: return "CURRDATE";
+            case COL_CURRVALUE: return "CURRVALUE";
+            case COL_CURRUPDTYPE: return "CURRUPDTYPE";
             default: break;
         }
         
@@ -137,9 +151,11 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("SUBCATEGID" == name) return COL_SUBCATEGID;
-        else if ("SUBCATEGNAME" == name) return COL_SUBCATEGNAME;
-        else if ("CATEGID" == name) return COL_CATEGID;
+        if ("CURRHISTID" == name) return COL_CURRHISTID;
+        else if ("CURRENCYID" == name) return COL_CURRENCYID;
+        else if ("CURRDATE" == name) return COL_CURRDATE;
+        else if ("CURRVALUE" == name) return COL_CURRVALUE;
+        else if ("CURRUPDTYPE" == name) return COL_CURRUPDTYPE;
 
         return COLUMN(-1);
     }
@@ -147,15 +163,17 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_SUBCATEGORY_V1;
+        friend struct DB_Table_CURRENCYHISTORY_V1;
         /** This is a instance pointer to itself in memory. */
         Self* view_;
     
-        int SUBCATEGID;//  primary key
-        wxString SUBCATEGNAME;
-        int CATEGID;
-        int id() const { return SUBCATEGID; }
-        void id(int id) { SUBCATEGID = id; }
+        int CURRHISTID;//  primary key
+        int CURRENCYID;
+        wxString CURRDATE;
+        double CURRVALUE;
+        int CURRUPDTYPE;
+        int id() const { return CURRHISTID; }
+        void id(int id) { CURRHISTID = id; }
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
@@ -169,26 +187,32 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         {
             view_ = view;
         
-            SUBCATEGID = -1;
-            CATEGID = -1;
+            CURRHISTID = -1;
+            CURRENCYID = -1;
+            CURRVALUE = 0.0;
+            CURRUPDTYPE = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* view = 0)
         {
             view_ = view;
         
-            SUBCATEGID = q.GetInt(0); // SUBCATEGID
-            SUBCATEGNAME = q.GetString(1); // SUBCATEGNAME
-            CATEGID = q.GetInt(2); // CATEGID
+            CURRHISTID = q.GetInt(0); // CURRHISTID
+            CURRENCYID = q.GetInt(1); // CURRENCYID
+            CURRDATE = q.GetString(2); // CURRDATE
+            CURRVALUE = q.GetDouble(3); // CURRVALUE
+            CURRUPDTYPE = q.GetInt(4); // CURRUPDTYPE
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            SUBCATEGID = other.SUBCATEGID;
-            SUBCATEGNAME = other.SUBCATEGNAME;
-            CATEGID = other.CATEGID;
+            CURRHISTID = other.CURRHISTID;
+            CURRENCYID = other.CURRENCYID;
+            CURRDATE = other.CURRDATE;
+            CURRVALUE = other.CURRVALUE;
+            CURRUPDTYPE = other.CURRUPDTYPE;
             return *this;
         }
 
@@ -197,17 +221,25 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         {
             return false;
         }
-        bool match(const Self::SUBCATEGID &in) const
+        bool match(const Self::CURRHISTID &in) const
         {
-            return this->SUBCATEGID == in.v_;
+            return this->CURRHISTID == in.v_;
         }
-        bool match(const Self::SUBCATEGNAME &in) const
+        bool match(const Self::CURRENCYID &in) const
         {
-            return this->SUBCATEGNAME.CmpNoCase(in.v_) == 0;
+            return this->CURRENCYID == in.v_;
         }
-        bool match(const Self::CATEGID &in) const
+        bool match(const Self::CURRDATE &in) const
         {
-            return this->CATEGID == in.v_;
+            return this->CURRDATE.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::CURRVALUE &in) const
+        {
+            return this->CURRVALUE == in.v_;
+        }
+        bool match(const Self::CURRUPDTYPE &in) const
+        {
+            return this->CURRUPDTYPE == in.v_;
         }
         wxString to_json() const
         {
@@ -220,24 +252,30 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         
         int to_json(json::Object& o) const
         {
-            o[L"SUBCATEGID"] = json::Number(this->SUBCATEGID);
-            o[L"SUBCATEGNAME"] = json::String(this->SUBCATEGNAME.ToStdWstring());
-            o[L"CATEGID"] = json::Number(this->CATEGID);
+            o[L"CURRHISTID"] = json::Number(this->CURRHISTID);
+            o[L"CURRENCYID"] = json::Number(this->CURRENCYID);
+            o[L"CURRDATE"] = json::String(this->CURRDATE.ToStdWstring());
+            o[L"CURRVALUE"] = json::Number(this->CURRVALUE);
+            o[L"CURRUPDTYPE"] = json::Number(this->CURRUPDTYPE);
             return 0;
         }
         row_t to_row_t() const
         {
             row_t row;
-            row(L"SUBCATEGID") = SUBCATEGID;
-            row(L"SUBCATEGNAME") = SUBCATEGNAME;
-            row(L"CATEGID") = CATEGID;
+            row(L"CURRHISTID") = CURRHISTID;
+            row(L"CURRENCYID") = CURRENCYID;
+            row(L"CURRDATE") = CURRDATE;
+            row(L"CURRVALUE") = CURRVALUE;
+            row(L"CURRUPDTYPE") = CURRUPDTYPE;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t(L"SUBCATEGID") = SUBCATEGID;
-            t(L"SUBCATEGNAME") = SUBCATEGNAME;
-            t(L"CATEGID") = CATEGID;
+            t(L"CURRHISTID") = CURRHISTID;
+            t(L"CURRENCYID") = CURRENCYID;
+            t(L"CURRDATE") = CURRDATE;
+            t(L"CURRVALUE") = CURRVALUE;
+            t(L"CURRUPDTYPE") = CURRUPDTYPE;
         }
 
         /** Save the record instance in memory to the database. */
@@ -246,7 +284,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!view_ || !db) 
             {
-                wxLogError("can not save SUBCATEGORY_V1");
+                wxLogError("can not save CURRENCYHISTORY_V1");
                 return false;
             }
 
@@ -258,7 +296,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         {
             if (!view_ || !db) 
             {
-                wxLogError("can not remove SUBCATEGORY_V1");
+                wxLogError("can not remove CURRENCYHISTORY_V1");
                 return false;
             }
             
@@ -275,17 +313,17 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 3
+        NUM_COLUMNS = 5
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "SUBCATEGORY_V1"; }
+    wxString name() const { return "CURRENCYHISTORY_V1"; }
 
-    DB_Table_SUBCATEGORY_V1() 
+    DB_Table_CURRENCYHISTORY_V1() 
     {
-        query_ = "SELECT * FROM SUBCATEGORY_V1 ";
+        query_ = "SELECT * FROM CURRENCYHISTORY_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -315,21 +353,23 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO SUBCATEGORY_V1(SUBCATEGNAME, CATEGID) VALUES(?, ?)";
+            sql = "INSERT INTO CURRENCYHISTORY_V1(CURRENCYID, CURRDATE, CURRVALUE, CURRUPDTYPE) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE SUBCATEGORY_V1 SET SUBCATEGNAME = ?, CATEGID = ? WHERE SUBCATEGID = ?";
+            sql = "UPDATE CURRENCYHISTORY_V1 SET CURRENCYID = ?, CURRDATE = ?, CURRVALUE = ?, CURRUPDTYPE = ? WHERE CURRHISTID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->SUBCATEGNAME);
-            stmt.Bind(2, entity->CATEGID);
+            stmt.Bind(1, entity->CURRENCYID);
+            stmt.Bind(2, entity->CURRDATE);
+            stmt.Bind(3, entity->CURRVALUE);
+            stmt.Bind(4, entity->CURRUPDTYPE);
             if (entity->id() > 0)
-                stmt.Bind(3, entity->SUBCATEGID);
+                stmt.Bind(5, entity->CURRHISTID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -346,7 +386,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SUBCATEGORY_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("CURRENCYHISTORY_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -364,7 +404,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM SUBCATEGORY_V1 WHERE SUBCATEGID = ?";
+            wxString sql = "DELETE FROM CURRENCYHISTORY_V1 WHERE CURRHISTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -389,7 +429,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SUBCATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CURRENCYHISTORY_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

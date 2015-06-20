@@ -23,6 +23,9 @@
 #include <wx/dataview.h>
 #include <map>
 
+class wxDatePickerCtrl;
+class mmTextCtrl;
+
 class mmMainCurrencyDialog: public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmMainCurrencyDialog);
@@ -45,6 +48,9 @@ private:
         CURR_NAME,
         BASE_RATE,
         ID_DIALOG = wxID_HIGHEST + 600,
+        HISTORY_ADD,
+        HISTORY_DELETE,
+        HISTORY_UPDATE,
         MENU_ITEM1,
         MENU_ITEM2
     };
@@ -70,6 +76,13 @@ private:
     void fillControls();
     void OnShowHiddenChbClick(wxCommandEvent& event);
 
+    void ShowCurrencyHistory();
+    void OnHistoryAdd(wxCommandEvent& event);
+    void OnHistoryDelete(wxCommandEvent& event);
+    void OnHistoryUpdate(wxCommandEvent& event);
+    void OnHistorySelected(wxListEvent& event);
+    void OnHistoryDeselected(wxListEvent& event);
+
     void OnOnlineUpdateCurRate(wxCommandEvent& event);
     bool onlineUpdateCurRate(int curr_id = -1);
     void OnItemRightClick(wxDataViewEvent& event);
@@ -82,6 +95,10 @@ private:
     wxButton* itemButtonEdit_;
     wxButton* itemButtonDelete_;
     wxCheckBox* cbShowAll_;
+    wxListCtrl* valueListBox_;
+    wxDatePickerCtrl* valueDatePicker_;
+    mmTextCtrl* valueTextBox_;
+    wxStaticBox* historyStaticBox_;
 
     int currencyID_;
     int selectedIndex_;

@@ -242,6 +242,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Category.o \
 	mmex_tests_Model_Checking.o \
 	mmex_tests_Model_Currency.o \
+	mmex_tests_Model_CurrencyHistory.o \
 	mmex_tests_Model_Infotable.o \
 	mmex_tests_Model_Payee.o \
 	mmex_tests_Model_Report.o \
@@ -843,6 +844,9 @@ mmex_tests_Model_Checking.o: $(srcdir)/../src/model/Model_Checking.cpp
 
 mmex_tests_Model_Currency.o: $(srcdir)/../src/model/Model_Currency.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/model/Model_Currency.cpp
+
+mmex_tests_Model_CurrencyHistory.o: $(srcdir)/../src/model/Model_CurrencyHistory.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/model/Model_CurrencyHistory.cpp
 
 mmex_tests_Model_Infotable.o: $(srcdir)/../src/model/Model_Infotable.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/model/Model_Infotable.cpp

@@ -26,19 +26,6 @@ class mmTextCtrl;
 enum
 {
     ID_DIALOG_CURRENCY = wxID_HIGHEST + 400,
-    ID_DIALOG_CURRENCY_BUTTON_ADD,
-    ID_DIALOG_CURRENCY_BUTTON_SELECT,
-    ID_DIALOG_CURRENCY_CHOICE,
-    ID_DIALOG_CURRENCY_TEXT_PFX,
-    ID_DIALOG_CURRENCY_TEXT_SFX,
-    ID_DIALOG_CURRENCY_TEXT_DECIMAL,
-    ID_DIALOG_CURRENCY_TEXT_GROUP,
-    ID_DIALOG_CURRENCY_TEXT_UNIT,
-    ID_DIALOG_CURRENCY_TEXT_CENTS,
-    ID_DIALOG_CURRENCY_TEXT_SCALE,
-    ID_DIALOG_CURRENCY_TEXT_BASECONVRATE,
-    ID_DIALOG_CURRENCY_BUTTON_CANCEL,
-    ID_DIALOG_CURRENCY_TEXT_SYMBOL,
 };
 
 class mmCurrencyDialog : public wxDialog
@@ -61,11 +48,11 @@ private:
         long style);
 
     void CreateControls();
-
-    // utility functions
-    void OnUpdate(wxCommandEvent& event);
     void fillControls();
-    void onTextEntered(wxCommandEvent& event);
+
+    void OnOk(wxCommandEvent& event);
+    void OnCancel(wxCommandEvent& event);
+    void OnTextEntered(wxCommandEvent& event);
 
     Model_Currency::Data* m_currency;
     double convRate_;

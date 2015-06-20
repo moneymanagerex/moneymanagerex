@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2015-01-25 15:29:25.126684.
+ *          AUTO GENERATED at 2015-06-20 10:30:03.419000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -328,6 +328,15 @@ struct SorterByCONTACTINFO
     }
 };
 
+struct SorterByCURRDATE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.CURRDATE < y.CURRDATE;
+    }
+};
+
 struct SorterByCURRENCYID
 { 
     template<class DATA>
@@ -361,6 +370,33 @@ struct SorterByCURRENTPRICE
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.CURRENTPRICE < y.CURRENTPRICE;
+    }
+};
+
+struct SorterByCURRHISTID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.CURRHISTID < y.CURRHISTID;
+    }
+};
+
+struct SorterByCURRUPDTYPE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.CURRUPDTYPE < y.CURRUPDTYPE;
+    }
+};
+
+struct SorterByCURRVALUE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.CURRVALUE < y.CURRVALUE;
     }
 };
 

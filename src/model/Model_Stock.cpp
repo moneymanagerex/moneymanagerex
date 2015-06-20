@@ -68,7 +68,10 @@ double Model_Stock::value(const Data& r)
     return value(&r);
 }
 
-/** Remove the Data record from memory and the database. */
+/**
+* Remove the Data record from memory and the database.
+* Delete also all stock history
+*/
 bool Model_Stock::remove(int id)
 {
     Model_Stock::Data *data = this->get(id);

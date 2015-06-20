@@ -194,6 +194,7 @@ MMEX_OBJECTS =  \
 	mmex_Model_Category.o \
 	mmex_Model_Checking.o \
 	mmex_Model_Currency.o \
+	mmex_Model_CurrencyHistory.o \
 	mmex_Model_Infotable.o \
 	mmex_Model_Payee.o \
 	mmex_Model_Report.o \
@@ -229,10 +230,8 @@ COND_PLATFORM_OS2_1___mmex___os2_emxbindcmd = $(NM) mmex$(EXEEXT) | if grep -q \
 @COND_PLATFORM_MACOSX_1@txtfiles = $(datadir)
 @COND_PLATFORM_MACOSX_0@graphicsfiles = $(datadir)/mmex
 @COND_PLATFORM_MACOSX_1@graphicsfiles = $(datadir)/../Resources
-@COND_PLATFORM_MACOSX_0@popath = $(datadir)/mmex/po/en
-@COND_PLATFORM_MACOSX_1@popath = $(datadir)/po/en
-@COND_PLATFORM_MACOSX_0@helppath = $(datadir)/doc/mmex/help
-@COND_PLATFORM_MACOSX_1@helppath = $(datadir)/doc/mmex/help
+@COND_PLATFORM_MACOSX_0@popath = $(datadir)/mmex/po
+@COND_PLATFORM_MACOSX_1@popath = $(datadir)/po
 
 ### Targets: ###
 
@@ -242,8 +241,6 @@ install: install_mmex
 	$(INSTALL_DIR) $(DESTDIR)$(respath)
 	(cd $(srcdir)/resources ; $(INSTALL_DATA)  kaching.wav mmex.ico master.css home_page.htt $(DESTDIR)$(respath))
 	$(INSTALL_DIR) $(DESTDIR)$(respath)
-	(cd $(srcdir)/3rd/Chart.js ; $(INSTALL_DATA)  Chart.js $(DESTDIR)$(respath))
-	$(INSTALL_DIR) $(DESTDIR)$(respath)
 	(cd $(srcdir)/3rd/ChartNew.js ; $(INSTALL_DATA)  ChartNew.js $(DESTDIR)$(respath))
 	$(INSTALL_DIR) $(DESTDIR)$(respath)
 	(cd $(srcdir)/3rd/sorttable.js ; $(INSTALL_DATA)  sorttable.js $(DESTDIR)$(respath))
@@ -252,35 +249,36 @@ install: install_mmex
 	$(INSTALL_DIR) $(DESTDIR)$(txtfiles)
 	(cd $(srcdir)/doc ; $(INSTALL_DATA)  version.txt contrib.txt license.txt $(DESTDIR)$(txtfiles))
 	$(INSTALL_DIR) $(DESTDIR)$(graphicsfiles)
-	(cd $(srcdir)/graphics ; $(INSTALL_DATA)  mmex.icns mmdb.icns $(DESTDIR)$(graphicsfiles))
+	(cd $(srcdir)/resources ; $(INSTALL_DATA)  mmex.icns mmdb.icns $(DESTDIR)$(graphicsfiles))
 	$(INSTALL_DIR) $(DESTDIR)$(popath)
 	(cd $(srcdir)/po ; $(INSTALL_DATA)  *.mo $(DESTDIR)$(popath))
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/doc/mmex
 	(cd $(srcdir)/doc ; $(INSTALL_DATA)  *.txt $(DESTDIR)$(datadir)/doc/mmex)
-	$(INSTALL_DIR) $(DESTDIR)$(helppath)
-	(cd $(srcdir)/doc/help ; $(INSTALL_DATA)  *.html *.png *.gif $(DESTDIR)$(helppath))
-	$(INSTALL_DIR) $(DESTDIR)$(helppath)/french
-	(cd $(srcdir)/doc/help/french ; $(INSTALL_DATA)  * $(DESTDIR)$(helppath)/french)
-	$(INSTALL_DIR) $(DESTDIR)$(helppath)/hungarian
-	(cd $(srcdir)/doc/help/hungarian ; $(INSTALL_DATA)  * $(DESTDIR)$(helppath)/hungarian)
-	$(INSTALL_DIR) $(DESTDIR)$(helppath)/italian
-	(cd $(srcdir)/doc/help/italian ; $(INSTALL_DATA)  * $(DESTDIR)$(helppath)/italian)
-	$(INSTALL_DIR) $(DESTDIR)$(helppath)/polish
-	(cd $(srcdir)/doc/help/polish ; $(INSTALL_DATA)  * $(DESTDIR)$(helppath)/polish)
-	$(INSTALL_DIR) $(DESTDIR)$(helppath)/russian
-	(cd $(srcdir)/doc/help/russian ; $(INSTALL_DATA)  * $(DESTDIR)$(helppath)/russian)
-	$(INSTALL_DIR) $(DESTDIR)$(helppath)/spanish
-	(cd $(srcdir)/doc/help/spanish ; $(INSTALL_DATA)  * $(DESTDIR)$(helppath)/spanish)
+	$(INSTALL_DIR) $(DESTDIR)$(datadir)/doc/mmex/help
+	(cd $(srcdir)/resources ; $(INSTALL_DATA)  master.css $(DESTDIR)$(datadir)/doc/mmex/help)
+	$(INSTALL_DIR) $(DESTDIR)$(datadir)/doc/mmex/help
+	(cd $(srcdir)/doc/help ; $(INSTALL_DATA)  *.* $(DESTDIR)$(datadir)/doc/mmex/help)
+	$(INSTALL_DIR) $(DESTDIR)$(datadir)/doc/mmex/help/french
+	(cd $(srcdir)/doc/help/french ; $(INSTALL_DATA)  * $(DESTDIR)$(datadir)/doc/mmex/help/french)
+	$(INSTALL_DIR) $(DESTDIR)$(datadir)/doc/mmex/help/hungarian
+	(cd $(srcdir)/doc/help/hungarian ; $(INSTALL_DATA)  * $(DESTDIR)$(datadir)/doc/mmex/help/hungarian)
+	$(INSTALL_DIR) $(DESTDIR)$(datadir)/doc/mmex/help/italian
+	(cd $(srcdir)/doc/help/italian ; $(INSTALL_DATA)  * $(DESTDIR)$(datadir)/doc/mmex/help/italian)
+	$(INSTALL_DIR) $(DESTDIR)$(datadir)/doc/mmex/help/polish
+	(cd $(srcdir)/doc/help/polish ; $(INSTALL_DATA)  * $(DESTDIR)$(datadir)/doc/mmex/help/polish)
+	$(INSTALL_DIR) $(DESTDIR)$(datadir)/doc/mmex/help/russian
+	(cd $(srcdir)/doc/help/russian ; $(INSTALL_DATA)  * $(DESTDIR)$(datadir)/doc/mmex/help/russian)
+	$(INSTALL_DIR) $(DESTDIR)$(datadir)/doc/mmex/help/spanish
+	(cd $(srcdir)/doc/help/spanish ; $(INSTALL_DATA)  * $(DESTDIR)$(datadir)/doc/mmex/help/spanish)
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/applications
 	(cd $(srcdir)/resources ; $(INSTALL_DATA)  mmex.desktop $(DESTDIR)$(datadir)/applications)
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/icons/hicolor/scalable/apps
-	(cd $(srcdir)/graphics ; $(INSTALL_DATA)  mmex.svg $(DESTDIR)$(datadir)/icons/hicolor/scalable/apps)
+	(cd $(srcdir)/resources ; $(INSTALL_DATA)  mmex.svg $(DESTDIR)$(datadir)/icons/hicolor/scalable/apps)
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/man/man1
 	(cd $(srcdir)/doc ; $(INSTALL_DATA)  mmex.1.gz $(DESTDIR)$(datadir)/man/man1)
 
 uninstall: uninstall_mmex
 	(cd $(DESTDIR)$(respath) ; rm -f kaching.wav mmex.ico master.css home_page.htt)
-	(cd $(DESTDIR)$(respath) ; rm -f Chart.js)
 	(cd $(DESTDIR)$(respath) ; rm -f ChartNew.js)
 	(cd $(DESTDIR)$(respath) ; rm -f sorttable.js)
 	(cd $(DESTDIR)$(plistfiles) ; rm -f Info.plist)
@@ -288,13 +286,14 @@ uninstall: uninstall_mmex
 	(cd $(DESTDIR)$(graphicsfiles) ; rm -f mmex.icns mmdb.icns)
 	(cd $(DESTDIR)$(popath) ; rm -f *.mo)
 	(cd $(DESTDIR)$(datadir)/doc/mmex ; rm -f *.txt)
-	(cd $(DESTDIR)$(helppath) ; rm -f *.html *.png)
-	(cd $(DESTDIR)$(helppath)/french ; rm -f *)
-	(cd $(DESTDIR)$(helppath)/hungarian ; rm -f *)
-	(cd $(DESTDIR)$(helppath)/italian ; rm -f *)
-	(cd $(DESTDIR)$(helppath)/polish ; rm -f *)
-	(cd $(DESTDIR)$(helppath)/russian ; rm -f *)
-	(cd $(DESTDIR)$(helppath)/spanish ; rm -f *)
+	(cd $(DESTDIR)$(datadir)/doc/mmex/help ; rm -f master.css)
+	(cd $(DESTDIR)$(datadir)/doc/mmex/help ; rm -f *.*)
+	(cd $(DESTDIR)$(datadir)/doc/mmex/help/french ; rm -f *)
+	(cd $(DESTDIR)$(datadir)/doc/mmex/help/hungarian ; rm -f *)
+	(cd $(DESTDIR)$(datadir)/doc/mmex/help/italian ; rm -f *)
+	(cd $(DESTDIR)$(datadir)/doc/mmex/help/polish ; rm -f *)
+	(cd $(DESTDIR)$(datadir)/doc/mmex/help/russian ; rm -f *)
+	(cd $(DESTDIR)$(datadir)/doc/mmex/help/spanish ; rm -f *)
 	(cd $(DESTDIR)$(datadir)/applications ; rm -f mmex.desktop)
 	(cd $(DESTDIR)$(datadir)/icons/hicolor/scalable/apps ; rm -f mmex.svg)
 	(cd $(DESTDIR)$(datadir)/man/man1 ; rm -f mmex.1.gz)
@@ -714,6 +713,9 @@ mmex_Model_Checking.o: $(srcdir)/src/model/Model_Checking.cpp
 
 mmex_Model_Currency.o: $(srcdir)/src/model/Model_Currency.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Currency.cpp
+
+mmex_Model_CurrencyHistory.o: $(srcdir)/src/model/Model_CurrencyHistory.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_CurrencyHistory.cpp
 
 mmex_Model_Infotable.o: $(srcdir)/src/model/Model_Infotable.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Infotable.cpp

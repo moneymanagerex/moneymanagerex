@@ -53,7 +53,10 @@ public:
     static double value(const Data& r);
 
 public:
-    /** Remove the Data record from memory and the database. */
+    /**
+    * Remove the Data record from memory and the database.
+    * Delete also all stock history
+    */
     bool remove(int id);
 
     /**

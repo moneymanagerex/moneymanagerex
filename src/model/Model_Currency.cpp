@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "Model_Currency.h"
+#include "Model_CurrencyHistory.h"
 #include <wx/numformatter.h>
 
 bool Model_Currency::init_currencies_ = false;
@@ -133,6 +134,19 @@ Model_Currency::Data* Model_Currency::GetCurrencyRecord(const wxString& currency
     if (items.empty()) record = this->get(items[0].id(), this->db_);
 
     return record;
+}
+
+/**
+* Remove the Data record from memory and the database.
+* Delete also all currency history
+*/
+bool Model_Currency::remove(int id)
+{
+    this->Savepoint();
+    for (const auto& r : Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(id)))
+        Model_CurrencyHistory::instance().remove(r.id());
+    this->ReleaseSavepoint();
+    return this->remove(id, db_);
 }
 
 wxString Model_Currency::toCurrency(double value, const Data* currency, int precision)

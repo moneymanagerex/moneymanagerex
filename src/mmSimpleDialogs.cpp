@@ -251,12 +251,30 @@ void mmErrorDialogs::InvalidPayee(wxWindow *object)
     tip.ShowFor(object);
 }
 
-void mmErrorDialogs::InvalidName(wxTextCtrl *textBox)
+void mmErrorDialogs::InvalidName(wxTextCtrl *textBox, bool alreadyexist)
 {
     const wxString& errorHeader = _("Invalid Name");
-    const wxString& errorMessage = (_("Please type in a non empty name.")
-        + "\n");
+    wxString errorMessage;
+    if (alreadyexist)
+        errorMessage = _("Already exist!");
+    else
+        errorMessage = _("Please type in a non empty name.");
+
     wxRichToolTip tip(errorHeader, errorMessage);
     tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor((wxWindow*)textBox);
+    tip.ShowFor(textBox);
+}
+
+void mmErrorDialogs::InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist)
+{
+    const wxString& errorHeader = _("Invalid Name");
+    wxString errorMessage;
+    if (alreadyexist)
+        errorMessage = _("Already exist!");
+    else
+        errorMessage = _("Please type in a non empty symbol.");
+
+    wxRichToolTip tip(errorHeader, errorMessage);
+    tip.SetIcon(wxICON_WARNING);
+    tip.ShowFor(textBox);
 }
