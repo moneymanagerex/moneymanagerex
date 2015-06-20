@@ -972,17 +972,17 @@ TransactionListCtrl::TransactionListCtrl(
 
     showDeletedTransactions_ = Model_Setting::instance().GetBoolSetting("SHOW_DELETED_TRANS", true);
 
-    m_columns.push_back(std::make_tuple(_("Icon"), 25));
-    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE));
-    m_columns.push_back(std::make_tuple(_("Date"), 112));
-    m_columns.push_back(std::make_tuple(_("Number"), 70));
-    m_columns.push_back(std::make_tuple(_("Payee"), 150));
-    m_columns.push_back(std::make_tuple(_("Status"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Category"), 150));
-    m_columns.push_back(std::make_tuple(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Balance"), wxLIST_AUTOSIZE_USEHEADER));
-    m_columns.push_back(std::make_tuple(_("Notes"), 250));
+    m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Date"), 112, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Number"), 70, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Payee"), 150, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Category"), 150, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("Notes"), 250, wxLIST_FORMAT_LEFT));
 
     m_col_width = "CHECK_COL%d_WIDTH";
 
@@ -996,28 +996,14 @@ TransactionListCtrl::~TransactionListCtrl()
 //----------------------------------------------------------------------------
 void TransactionListCtrl::createColumns(mmListCtrl &lst)
 {
-    lst.InsertColumn(COL_IMGSTATUS, " ", wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_IMGSTATUS, std::get<1>(m_columns[COL_IMGSTATUS])));
-    lst.InsertColumn(COL_ID, std::get<0>(m_columns[COL_ID]), wxLIST_FORMAT_RIGHT
-        , GetColumnWidthSetting(COL_ID, std::get<1>(m_columns[COL_ID])));
-    lst.InsertColumn(COL_DATE, std::get<0>(m_columns[COL_DATE]), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_DATE, std::get<1>(m_columns[COL_DATE])));
-    lst.InsertColumn(COL_NUMBER, std::get<0>(m_columns[COL_NUMBER]), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_NUMBER, std::get<1>(m_columns[COL_NUMBER])));
-    lst.InsertColumn(COL_PAYEE_STR, std::get<0>(m_columns[COL_PAYEE_STR]), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_PAYEE_STR, std::get<1>(m_columns[COL_PAYEE_STR])));
-    lst.InsertColumn(COL_STATUS, std::get<0>(m_columns[COL_STATUS]), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_STATUS, std::get<1>(m_columns[COL_STATUS])));
-    lst.InsertColumn(COL_CATEGORY, std::get<0>(m_columns[COL_CATEGORY]), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_CATEGORY, std::get<1>(m_columns[COL_CATEGORY])));
-    lst.InsertColumn(COL_WITHDRAWAL, std::get<0>(m_columns[COL_WITHDRAWAL]), wxLIST_FORMAT_RIGHT
-        , GetColumnWidthSetting(COL_WITHDRAWAL, std::get<1>(m_columns[COL_WITHDRAWAL])));
-    lst.InsertColumn(COL_DEPOSIT, std::get<0>(m_columns[COL_DEPOSIT]), wxLIST_FORMAT_RIGHT
-        , GetColumnWidthSetting(COL_DEPOSIT, std::get<1>(m_columns[COL_DEPOSIT])));
-    lst.InsertColumn(COL_BALANCE, std::get<0>(m_columns[COL_BALANCE]), wxLIST_FORMAT_RIGHT
-        , GetColumnWidthSetting(COL_BALANCE, std::get<1>(m_columns[COL_BALANCE])));
-    lst.InsertColumn(COL_NOTES, std::get<0>(m_columns[COL_NOTES]), wxLIST_FORMAT_LEFT
-        , GetColumnWidthSetting(COL_NOTES, std::get<1>(m_columns[COL_NOTES])));
+    int i = 0;
+    for (const auto& entry : m_columns)
+    {
+        const wxString& heading = std::get<0>(entry);
+        int width = Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, i), std::get<1>(entry));
+        int format = std::get<2>(entry);
+        lst.InsertColumn(i++, heading, format, width);
+    }
 }
 
 void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
