@@ -395,13 +395,15 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
     json::Reader::Read(o, ss);
 
     //Date Mask
-    date_format_ = wxString(json::String(o[L"DATE_MASK"]));
+    const auto df = json::String(o[L"DATE_MASK"]);
+    if (!df.Value().empty()) date_format_ = wxString(df);
     initDateMask();
 
     //File
     m_text_ctrl_->ChangeValue(wxString(json::String(o[L"FILE_NAME"])));
     //Delimiter
-    delimit_ = wxString(json::String(o[L"DELIMITER"]));
+    const auto d = json::String(o[L"DELIMITER"]);
+    if (!d.Value().empty()) delimit_ = wxString(d);
     initDelimiter();
     //CSV fields
     csvFieldOrder_.clear();
@@ -1421,10 +1423,10 @@ void mmUnivCSVDialog::OnFileNameEntered(wxCommandEvent& event)
 
 void mmUnivCSVDialog::OnDateFormatChanged(wxCommandEvent& /*event*/)
 {
-    this->update_preview();
     wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
     if (data) date_format_ = data->GetData();
     *log_field_ << date_format_ << "\n";
+    this->update_preview();
 }
 
 void mmUnivCSVDialog::changeFocus(wxChildFocusEvent& event)
