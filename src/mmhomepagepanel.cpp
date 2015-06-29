@@ -843,11 +843,22 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         ss << str.ToStdWstring();
         json::Object o;
         json::Reader::Read(o, ss);
-        wxLogDebug("%s", str);
 
         if (name == "TOP_CATEGORIES") {
             bool entry = !json::Boolean(o[L"TOP_CATEGORIES"]);
             o[L"TOP_CATEGORIES"] = json::Boolean(entry);
+        }
+        else if (name == "INVEST") {
+            bool entry = !json::Boolean(o[L"INVEST"]);
+            o[L"INVEST"] = json::Boolean(entry);
+        }
+        else if (name == "ACCOUNTS_INFO") {
+            bool entry = !json::Boolean(o[L"ACCOUNTS_INFO"]);
+            o[L"ACCOUNTS_INFO"] = json::Boolean(entry);
+        }
+        else if (name == "CARD_ACCOUNTS_INFO") {
+            bool entry = !json::Boolean(o[L"CARD_ACCOUNTS_INFO"]);
+            o[L"CARD_ACCOUNTS_INFO"] = json::Boolean(entry);
         }
 
         std::wstringstream wss;
