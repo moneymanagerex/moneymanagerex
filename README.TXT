@@ -52,7 +52,7 @@ Unixes: la magior parte dei sistemi Unix co GTK+ 2.0 e successivi.
 
 Mac: Mac OS 8.6/9.x (es. Classic) o Mac OS X 10.x.
 
--[Palish]-----------------------------------------------------------------------
+-[Polish]-----------------------------------------------------------------------
 Money Manager Ex to program rozwijany jako open source służący do zarządzania
 domowym budżetem i finansami osobistymi. 
 

@@ -16,15 +16,24 @@ and user-friendliness - something one can use everyday.
 
 ### MMEX is mainly written in C++11 and built on:
 * [wxWidgets](http://wxwidgets.org/) 3.0+
-*  [wxSqlite3](https://github.com/moneymanagerex/wxsqlite3)
-*  [SQLite3](http://sqlite.org/)
-*  [ChartNew.JS](https://github.com/FVANCOP/ChartNew.js)
-*  [html-template](https://github.com/moneymanagerex/html-template)
+* [wxSqlite3](https://github.com/moneymanagerex/wxsqlite3)
+* [SQLite3](http://sqlite.org/)
+* [ChartNew.JS](https://github.com/FVANCOP/ChartNew.js)
+* [html-template](https://github.com/moneymanagerex/html-template)
 
 ### Supported platforms:
 *  MS Windows: Vista, 7, 8, 8.1. Unicode builds: x86, x64, ia64 versions available.
 *  Unixes: almost any Unix workstation with GTK+ 2.0 and above.
 *  Mac: OS X 10.8 or higher.
+
+### Public links:
+* [MMEX](http://www.moneymanagerex.org)
+* [Forum](http://forum.moneymanagerex.org)
+* [Facebook](https://www.facebook.com/MoneyManagerEx)
+* [Tweetter](https://twitter.com/moneymanagerex)
+* [Youtube](https://www.youtube.com/channel/UCAqVC0fOt6C5OnGv_DzE0wg)
+* [SOURCEFORGE](https://sourceforge.net/p/moneymanagerex)
+* [Github](https://github.com/moneymanagerex)
 
 #### Tips: 
 * We can open database file (both regular and encrypted) directly with [wxSqlitePlus](https://github.com/moneymanagerex/wxSqlitePlus)
