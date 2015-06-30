@@ -83,7 +83,7 @@
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Category.h"
 #include "model/Model_Checking.h"
-#include "model/Model_Currencyhistory.h"
+#include "model/Model_CurrencyHistory.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Report.h"
