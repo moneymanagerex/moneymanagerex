@@ -26,11 +26,11 @@ and user-friendliness - something one can use everyday.
 *  Unixes: almost any Unix workstation with GTK+ 2.0 and above.
 *  Mac: OS X 10.8 or higher.
 
-### Public links:
+#### Public links:
 * [MMEX](http://www.moneymanagerex.org)
 * [Forum](http://forum.moneymanagerex.org)
 * [Facebook](https://www.facebook.com/MoneyManagerEx)
-* [Tweetter](https://twitter.com/moneymanagerex)
+* [Twitter](https://twitter.com/moneymanagerex)
 * [Youtube](https://www.youtube.com/channel/UCAqVC0fOt6C5OnGv_DzE0wg)
 * [SOURCEFORGE](https://sourceforge.net/p/moneymanagerex)
 * [Github](https://github.com/moneymanagerex)
