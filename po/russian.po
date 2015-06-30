@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-15 13:54+0300\n"
-"PO-Revision-Date: 2015-03-15 14:34+0300\n"
+"PO-Revision-Date: 2015-06-30 14:50+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-03-10 20:08+0000\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.8.2\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
@@ -3036,7 +3036,7 @@ msgstr "7"
 
 #: src/mmOptionViewSettings.cpp:188
 msgid "Display MMEX News on home page"
-msgstr "Отображать носости MMEX на главной странице"
+msgstr "Отображать новости MMEX на главной странице"
 
 #: src/mmOptionViewSettings.cpp:204 src/mmframe.cpp:1173 src/mmframe.cpp:1607
 #: src/model/Model_Account.cpp:24
