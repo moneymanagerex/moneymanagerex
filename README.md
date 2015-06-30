@@ -29,6 +29,7 @@ and user-friendliness - something one can use everyday.
 #### Public links:
 * [MMEX](http://www.moneymanagerex.org)
 * [Forum](http://forum.moneymanagerex.org)
+* [WiKi](https://sourceforge.net/p/moneymanagerex/wiki/mmex)
 * [Facebook](https://www.facebook.com/MoneyManagerEx)
 * [Twitter](https://twitter.com/moneymanagerex)
 * [Youtube](https://www.youtube.com/channel/UCAqVC0fOt6C5OnGv_DzE0wg)
