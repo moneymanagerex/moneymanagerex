@@ -6,8 +6,8 @@ As MMEX is developed and more features are added, new strings might be added to 
 Everyone likes to be acknowledged for their efforts. So once you become a translator for a particular language, you will be listed in the credits of the program in the "About" dialog.
 Every once in a while, you might need to update the translated .po file with new strings that may have been added in MMEX since then.
 #####Procedure
-+ Installing PoEdit: Download poEdit from PoEdit (if running Windows, just get the simple installer version) and install it. Download Link
-+ Getting the proper .po file here: link
++ Installing PoEdit: Download poEdit from [poedit.net](http://poedit.net) (if running Windows, just get the simple installer version) and install it.
++ Getting the proper .po file here: [link](https://github.com/moneymanagerex/moneymanagerex/tree/master/po) (Change a branch by pulldown menu for a proper branch.)
 + Opening the file: Open poEdit (Start->Programs->poEdit->poEdit). If this is the first time you've run it, it will ask for your name and email address, to put them in the translation file. Then go to File->Open and open up the english-mmex file. Don't be worried by the number of strings to translate! You do not have to translate every line before sending us what you have done � MMEX will simply default to English for anything yet to be translated.
 + Basic translation: Select a line to translate in the top frame, and enter the translation in the bottom. poEdit keeps track of which lines have not yet been translated, and which are "fuzzy" translations (automated translations that may be wrong and should be checked). poEdit will also tell you if a sentence has a plural (ie. needs a different translation depending on the number of things being printed out). This should be straightforward. File->Save or the Save button will save your translations to the same file.
 + % placeholders: The % placeholders are programming constructs used to denote something will be filled in at runtime. Simply leave them as is in the translated string. For example, a sentence to give the colour of a cat and its size, in Spanish:
@@ -20,8 +20,8 @@ Every once in a while, you might need to update the translated .po file with new
 + Post your translated .po file on the forum or Email it to zealsupport mailing list (you are on there aren't you) with as much or as little as you have done, and I will get it up and running as soon as possible. :-)
 + So your .PO language file has been added to the MMEX install. Good. MMEX is now localized for your language.
 However, as new versions come out, new strings are added to MMEX and you'll need to update your .PO file accordingly.
-Every new release, the .po files in the install will be updated with new strings. You need to download the latest release and open the .po file and update it with new translations for the strings and send it back to me.
-Alternative way is make translation online on launchad.net service.
+Every new release, the .po files in the install will be updated with new strings. You need to download the latest [release](https://github.com/moneymanagerex/moneymanagerex/releases) and open the .po file and update it with new translations for the strings.
+Then upload the file into the [forum](http://forum.moneymanagerex.org/viewforum.php?f=6).
 
 #####Tips
 If you add new .po file, you should add new rule to the po.bkl.
