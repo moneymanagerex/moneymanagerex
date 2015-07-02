@@ -604,7 +604,7 @@ bool mmWebApp::WebApp_DeleteOneTransaction(int WebAppTransactionId)
 }
 
 //Download one attachment from WebApp
-wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr)
+const wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr)
 {
     const wxString& FileExtension = wxFileName(AttachmentName).GetExt().MakeLower();
     const wxString& FileName = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) + "_" + wxString::Format("%i", DesktopTransactionID)
@@ -619,12 +619,12 @@ wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, 
 }
 
 //Get one attachment from WebApp
-wxString mmWebApp::WebApp_GetAttachment(const wxString& AttachmentFileName)
+const wxString mmWebApp::WebApp_GetAttachment(const wxString& AttachmentFileName)
 {
     const wxString& FileExtension = wxFileName(AttachmentFileName).GetExt().MakeLower();
     const wxString& FilePath = mmex::getTempFolder() + "WebAppAttach_" + wxDateTime::Now().Format("%Y%m%d%H%M%S") + wxFILE_SEP_EXT + FileExtension;
     const wxString& URL = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadAttachments + "=" + AttachmentFileName;
-    return download_file(URL, FilePath) ? FilePath : wxEmptyString;
+    return download_file(URL, FilePath) ? FilePath : "";
 }
 
 

@@ -54,12 +54,12 @@ const static wxString getGuid();
 const static wxString getServicesPageURL();
 
 //Internal function
-const static wxString WebApp_getApiVersion();
+static const wxString WebApp_getApiVersion();
 static int WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString& Output);
 static bool WebApp_DeleteAllAccount();
 static bool WebApp_DeleteAllPayee();
 static bool WebApp_DeleteAllCategory();
-static wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr);
+static const wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr);
 
 public:
     /*WebApp transaction Structure*/
@@ -110,7 +110,7 @@ public:
     static bool WebApp_DeleteOneTransaction(int WebAppTransactionId);
 
     /* Return attachment URL */
-    static wxString WebApp_GetAttachment(const wxString& AttachmentFileName);
+    static const wxString WebApp_GetAttachment(const wxString& AttachmentFileName);
 
     //FUNCTIONS CALLED IN MMEX TO UPDATE ON CHANGE
     /** Update all payees on WebApp if enabled */
