@@ -36,7 +36,7 @@ void correctEmptyFileExt(const wxString& ext, wxString & fileName)
 {
     wxFileName tempFileName(fileName);
     if (tempFileName.GetExt().IsEmpty())
-        fileName += "." + ext;
+        fileName += wxFILE_SEP_EXT + ext;
 }
 
 const wxString inQuotes(const wxString& l, const wxString& delimiter)
