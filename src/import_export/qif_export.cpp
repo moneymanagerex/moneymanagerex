@@ -459,9 +459,8 @@ void mmQIFExportDialog::mmExportQIF()
         , wxString::Format(_("Number of transactions exported: %ld"), numRecords)
         , _("Export to QIF"), wxOK | wxICON_INFORMATION);
 
-    wxButton* ok = wxStaticCast(FindWindowById(wxID_OK, this), wxButton);
+    wxButton* ok = wxStaticCast(FindWindow(wxID_OK), wxButton);
     ok->Disable();
 
     msgDlg.ShowModal();
-
 }

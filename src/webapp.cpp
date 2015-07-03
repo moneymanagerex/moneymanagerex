@@ -621,9 +621,9 @@ const wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& Attachment
 //Get one attachment from WebApp
 const wxString mmWebApp::WebApp_GetAttachment(const wxString& AttachmentFileName)
 {
-    const wxString& FileExtension = wxFileName(AttachmentFileName).GetExt().MakeLower();
-    const wxString& FilePath = mmex::getTempFolder() + "WebAppAttach_" + wxDateTime::Now().Format("%Y%m%d%H%M%S") + wxFILE_SEP_EXT + FileExtension;
-    const wxString& URL = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadAttachments + "=" + AttachmentFileName;
+    const wxString FileExtension = wxFileName(AttachmentFileName).GetExt().MakeLower();
+    const wxString FilePath = mmex::getTempFolder() + "WebAppAttach_" + wxDateTime::Now().Format("%Y%m%d%H%M%S") + wxFILE_SEP_EXT + FileExtension;
+    const wxString URL = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadAttachments + "=" + AttachmentFileName;
     return download_file(URL, FilePath) ? FilePath : "";
 }
 
