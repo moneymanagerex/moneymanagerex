@@ -224,8 +224,8 @@ const wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
 
 const wxString mmex::getTempFolder()
 {
-    const wxString& path = mmex::isPortableMode() ? mmex::GetUserDir(false).GetPath() : wxStandardPaths::Get().GetTempDir();
-    const wxString& folder = mmex::isPortableMode() ? "tmp" : (mmex::GetAppName() + "_tmp");
+    const wxString path = mmex::isPortableMode() ? mmex::GetUserDir(false).GetPath() : wxStandardPaths::Get().GetTempDir();
+    const wxString folder = mmex::isPortableMode() ? "tmp" : (mmex::GetAppName() + "_tmp");
     return wxString::Format("%s%s%s%s", path, wxString(wxFILE_SEP_PATH), folder, wxString(wxFILE_SEP_PATH));
 }
 

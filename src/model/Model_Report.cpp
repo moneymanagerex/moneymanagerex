@@ -276,7 +276,7 @@ void Model_Report::prepareTempFolder()
     wxDir::GetAllFiles(resDir, &filesArray);
     for (const auto& sourceFile : filesArray)
     {
-        const wxString& repFile = tempDir + wxFileName(sourceFile).GetFullName();
+        const wxString repFile = tempDir + wxFileName(sourceFile).GetFullName();
         if (::wxFileExists(sourceFile))
         {
             if (!::wxFileExists(repFile)
