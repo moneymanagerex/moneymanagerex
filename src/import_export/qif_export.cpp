@@ -46,14 +46,12 @@ bool mmQIFExportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-    this->SetInitialSize();
+    fillControls();
     SetIcon(mmex::getProgramIcon());
+    SetMinSize(wxSize(350, 450));
+
     Centre();
     Fit();
-
-    fillControls();
 
     return TRUE;
 }
@@ -210,7 +208,7 @@ void mmQIFExportDialog::CreateControls()
     itemButtonOK->Connect(wxID_OK, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFExportDialog::OnOk), nullptr, this);
 
-    buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(itemButtonOK, g_flags);
     buttons_sizer->Add(itemButtonCancel_, g_flags);
 
     buttons_sizer->Realize();
