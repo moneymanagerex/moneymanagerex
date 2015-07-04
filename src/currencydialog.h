@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2015 Gabriele-V
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@ class mmTextCtrl;
 enum
 {
     ID_DIALOG_CURRENCY = wxID_HIGHEST + 400,
+    ID_DIALOG_CURRENCY_RATE,
 };
 
 class mmCurrencyDialog : public wxDialog
@@ -52,14 +54,14 @@ private:
 
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
+    void OnTextChanged(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
 
     Model_Currency::Data* m_currency;
     double convRate_;
-    int scale_;
+    int m_scale;
 
     mmTextCtrl* m_currencyName;
-    wxStaticText* baseRateSample_;
     wxStaticText* sampleText_;
     mmTextCtrl* m_currencySymbol;
     mmTextCtrl* baseConvRate_;
@@ -70,7 +72,6 @@ private:
     wxTextCtrl* unitTx_;
     wxTextCtrl* centTx_;
     wxTextCtrl* scaleTx_;
-    wxTextCtrl* baseConv_;
 
 };
 

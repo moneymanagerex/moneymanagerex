@@ -18,6 +18,9 @@
 
 #include "Model_Currency.h"
 #include "Model_CurrencyHistory.h"
+#include "Model_Account.h"
+#include "Model_Checking.h"
+#include "Model_Stock.h"
 #include <wx/numformatter.h>
 
 bool Model_Currency::init_currencies_ = false;
@@ -118,13 +121,6 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
     return currency;
 }
 
-void Model_Currency::SetBaseCurrency(Data* r)
-{
-    init_currencies_ = false;
-    Model_Infotable::instance().SetBaseCurrency(r->CURRENCYID);
-    Model_Infotable::instance().SetBaseCurrency(r->CURRENCYNAME);
-}
-
 Model_Currency::Data* Model_Currency::GetCurrencyRecord(const wxString& currency_symbol)
 {
     Model_Currency::Data* record = this->get_one(CURRENCY_SYMBOL(currency_symbol));
@@ -136,6 +132,32 @@ Model_Currency::Data* Model_Currency::GetCurrencyRecord(const wxString& currency
     return record;
 }
 
+std::map<wxDateTime, int> Model_Currency::DateUsed(int CurrencyID)
+{
+    wxDateTime dt;
+    std::map<wxDateTime, int> DatesList;
+    const auto &accounts = Model_Account::instance().find(CURRENCYID(CurrencyID));
+    for (const auto &account : accounts)
+    {
+        if (Model_Account::type(account) == Model_Account::TYPE::INVESTMENT)
+        {
+            for (const auto trans : Model_Stock::instance().find(Model_Stock::HELDAT(account.ACCOUNTID)))
+            {
+                dt.ParseDate(trans.PURCHASEDATE);
+                DatesList[dt] = 1;
+            }
+        }
+        else
+        {
+            for (const auto trans : Model_Checking::instance().find(Model_Checking::ACCOUNTID(account.ACCOUNTID)))
+            {
+                dt.ParseDate(trans.TRANSDATE);
+                DatesList[dt] = 1;
+            }
+        }
+    }
+    return DatesList;
+}
 /**
 * Remove the Data record from memory and the database.
 * Delete also all currency history

@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2015 Gabriele-V
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -52,10 +52,12 @@ public:
     static wxDate CURRDATE(const Data& hist);
 
     static DB_Table_CURRENCYHISTORY_V1::CURRDATE CURRDATE(const wxDate& date, OP op = EQUAL);
-    /**
-    Adds or updates an element in currency history
-    */
+    
+    /** Adds or updates an element in currency history */
     int addUpdate(const int& currencyID, const wxDate& date, double price, UPDTYPE type);
+
+    /** Return the last rate for a specific currency */
+    static double LastRate(const int& currencyID);
 };
 
 #endif // 

@@ -105,6 +105,7 @@ void mmOptionGeneralSettings::Create()
         , currName, wxDefaultPosition, wxDefaultSize);
     baseCurrencyButton->SetToolTip(_("Sets the default currency for the database."));
     currencyStaticBoxSizer->Add(baseCurrencyButton, g_flags);
+    currencyStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC, _("Right click on currency and choose 'Set as Base Currency'")), g_flags);
 
     // Date Format Settings
     wxStaticBox* dateFormatStaticBox = new wxStaticBox(this, wxID_STATIC, _("Date Format"));
@@ -185,8 +186,8 @@ void mmOptionGeneralSettings::OnCurrency(wxCommandEvent& /*event*/)
         bn->SetLabelText(currency->CURRENCYNAME);
         m_currency_id = currencyID;
 
-        wxMessageDialog msgDlg(this, _("Remember to update currency rate"), _("Important note"));
-        msgDlg.ShowModal();
+        //wxMessageDialog msgDlg(this, _("Remember to update currency rate"), _("Important note"));
+        //msgDlg.ShowModal();
     }
 }
 
@@ -239,7 +240,7 @@ void mmOptionGeneralSettings::SaveSettings()
     Model_Setting::instance().Set(LANGUAGE_PARAMETER, languageButton->GetLabel().Lower());
     mmDialogs::mmSelectLanguage(this->m_app, this, false);
 
-    Model_Infotable::instance().SetBaseCurrency(m_currency_id);
+    //Model_Infotable::instance().SetBaseCurrency(m_currency_id); Handled only inside MainCurrencyDialog to better manage CurrencyHistory changes
     Model_Infotable::instance().Set("DATEFORMAT", m_date_format);
     SaveFinancialYearStart();
 

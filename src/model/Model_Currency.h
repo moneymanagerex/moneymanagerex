@@ -22,6 +22,7 @@
 #include "Model.h"
 #include "db/DB_Table_Currencyformats_V1.h"
 #include "Model_Infotable.h" // detect base currency setting BASECURRENCYID
+#include <map>
 #include <tuple>
 
 class Model_Currency : public Model<DB_Table_CURRENCYFORMATS_V1>
@@ -56,8 +57,6 @@ public:
 
     /** Return the Data record of the base currency.*/
     static Data* GetBaseCurrency();
-    /** Set the ID of the Data record as the base currency.*/
-    static void SetBaseCurrency(Data* r);
 
     /** Return the currency Data record for the given symbol */
     Model_Currency::Data* GetCurrencyRecord(const wxString& currency_symbol);
@@ -67,6 +66,8 @@ public:
     * Delete also all currency history
     */
     bool remove(int id);
+
+    static std::map<wxDateTime,int> DateUsed(int CurrencyID);
 
     /** Add prefix and suffix characters to string value */
     static wxString toCurrency(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
