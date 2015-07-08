@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2015 Gabriele-V
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -21,6 +22,7 @@
 #include "constants.h"
 #include "defs.h"
 #include "mmCalculator.h"
+#include "mmSimpleDialogs.h"
 #include "mmtextctrl.h"
 #include "paths.h"
 #include "util.h"
@@ -32,6 +34,11 @@
 #include "model/Model_Setting.h"
 
 #include "../resources/checkupdate.xpm"
+#include "../resources/trash.xpm"
+
+#include <vector>
+#include <wx/sstream.h>
+#include <wx/xml/xml.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmMainCurrencyDialog, wxDialog);
 
@@ -46,12 +53,12 @@ wxBEGIN_EVENT_TABLE(mmMainCurrencyDialog, wxDialog)
 
     EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmMainCurrencyDialog::OnListItemActivated)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmMainCurrencyDialog::OnListItemSelected)
-    EVT_DATAVIEW_ITEM_VALUE_CHANGED(wxID_ANY, mmMainCurrencyDialog::OnValueChanged)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmMainCurrencyDialog::OnItemRightClick)
 
     EVT_BUTTON(HISTORY_ADD, mmMainCurrencyDialog::OnHistoryAdd)
     EVT_BUTTON(HISTORY_DELETE, mmMainCurrencyDialog::OnHistoryDelete)
-    //EVT_BUTTON(HISTORY_UPDATE, mmMainCurrencyDialog::OnCancel)
+    EVT_BUTTON(HISTORY_UPDATE, mmMainCurrencyDialog::OnHistoryUpdate)
+    EVT_BUTTON(HISTORY_DELUNUSED, mmMainCurrencyDialog::OnHistoryDeleteUnused)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, mmMainCurrencyDialog::OnHistorySelected)
     EVT_LIST_ITEM_DESELECTED(wxID_ANY, mmMainCurrencyDialog::OnHistoryDeselected)
 wxEND_EVENT_TABLE()
@@ -66,7 +73,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     ColName_[CURR_BASE]   = " ";
     ColName_[CURR_SYMBOL] = _("Symbol");
     ColName_[CURR_NAME]   = _("Name");
-    ColName_[BASE_RATE]   = _("Base Rate");
+    ColName_[BASE_RATE]   = _("Last Rate");
 
     currencyID_ = currencyID == -1 ? Model_Infotable::instance().GetBaseCurrencyId() : currencyID;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -111,7 +118,7 @@ void mmMainCurrencyDialog::fillControls()
         data.push_back(wxVariant(baseCurrencyID == currencyID));
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(currency.CURRENCYNAME));
-        data.push_back(wxVariant(wxString()<<currency.BASECONVRATE));
+        data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::LastRate(currencyID)));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
         if (selectedIndex_ == currencyListBox_->GetItemCount() - 1)
         {
@@ -276,14 +283,17 @@ void mmMainCurrencyDialog::CreateControls()
     wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, wxBitmap(checkupdate_xpm)
         , wxDefaultPosition, wxSize(itemButtonEdit_->GetSize().GetY(), itemButtonEdit_->GetSize().GetY()));
     buttonDownload->SetToolTip(_("Download Currency Values history"));
-    wxButton* buttonAdd = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update "));
-    buttonAdd->SetToolTip(_("Add Currency Values to history"));
-    wxButton* buttonDel = new wxButton(buttons_panel, HISTORY_DELETE, _("&Delete "));
-    buttonDel->SetToolTip(_("Delete selected Currency Values"));
+    historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update "));
+    historyButtonAdd_->SetToolTip(_("Add Currency Values to history"));
+    historyButtonDelete_ = new wxButton(buttons_panel, HISTORY_DELETE, _("&Delete "));
+    historyButtonDelete_->SetToolTip(_("Delete selected Currency Values"));
+    wxBitmapButton* buttonDelUnusedHistory = new wxBitmapButton(buttons_panel, HISTORY_DELUNUSED, wxBitmap(trash_xpm)
+        , wxDefaultPosition, wxSize(itemButtonEdit_->GetSize().GetY(), itemButtonEdit_->GetSize().GetY()));
+    buttonDelUnusedHistory->SetToolTip(_("Delete Currency Values history for unused currencies"));
     buttons_sizer->Add(buttonDownload, g_flags);
-    buttons_sizer->Add(buttonAdd, g_flags);
-    buttons_sizer->Add(buttonDel, g_flags);
-    buttonDownload->Disable(); //TO BE COMPLETED
+    buttons_sizer->Add(historyButtonAdd_, g_flags);
+    buttons_sizer->Add(historyButtonDelete_, g_flags);
+    buttons_sizer->Add(buttonDelUnusedHistory, g_flags);
 
     this->SetMinSize(wxSize(800,550));
     this->Fit();
@@ -358,10 +368,9 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
         if (currency)
         {
-            curr_rate_ = currency->BASECONVRATE;
             currName = currency->CURRENCYNAME;
+            itemButtonEdit_->Enable();
         }
-        itemButtonEdit_->Enable();
     }
     if (!bEnableSelect_)    // prevent user deleting currencies when editing accounts.
     {
@@ -391,42 +400,10 @@ void mmMainCurrencyDialog::OnListItemActivated(wxDataViewEvent& /* event */)
         OnBtnEdit(evt);
 }
 
-void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
+bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id, bool hide)
 {
-    int row = currencyListBox_->ItemToRow(event.GetItem());
-    wxVariant var;
-    currencyListBox_->GetValue(var, row, event.GetColumn());
-    wxString value = var.GetString();
-    Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
-
-    wxString calculated_amount = "";
-    double conv_rate = curr_rate_;
-    mmCalculator calc;
-    if (calc.is_ok(value))
-    {
-        calculated_amount = wxString::Format("%.4f", calc.get_result());
-        if (value != calculated_amount)
-            currencyListBox_->SetValue(wxVariant(calculated_amount), row, BASE_RATE);
-        calculated_amount.ToDouble(&conv_rate);
-
-        if (currency)
-        {
-            currency->BASECONVRATE = conv_rate;
-            Model_Currency::instance().save(currency);
-        }
-    }
-    else
-    {
-        value = Model_Currency::toString(conv_rate, currency);
-        currencyListBox_->SetValue(wxVariant(value), row, BASE_RATE);
-    }
-
-}
-
-bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
-{
-    wxString base_symbol = "";
-    wxString msg = "";
+    wxString base_symbol = wxEmptyString;
+    wxString msg = wxEmptyString;
     wxString site = mmex::weblink::YahooQuotes;
     bool ok = true;
 
@@ -442,7 +419,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
     wxString sOutput;
     if (ok)
     {
-        wxString buffer = "";
+        wxString buffer = wxEmptyString;
         for (const auto &currency : currencies)
         {
             const wxString symbol = currency.CURRENCY_SYMBOL.Upper();
@@ -501,7 +478,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
                         , currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol].first);
                     currency.BASECONVRATE = currency_data[currency_symbol].first;
                     if (base_symbol == currency_symbol)
-                        currency.BASECONVRATE = 1;
+                        continue;
                     Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID,
                         wxDateTime::Today(), currency.BASECONVRATE, Model_CurrencyHistory::ONLINE);
                 }
@@ -513,12 +490,14 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
             }
         }
 
-        Model_Currency::instance().save(currencies);
+        //Model_Currency::instance().save(currencies);  BASECONVRATE IS FIXED AND USED IF HISTORY NOT FOUND 
         Model_CurrencyHistory::instance().ReleaseSavepoint();
 
         wxMessageDialog msgDlg(this, msg, _("Currency rate updated"));
-        msgDlg.ShowModal();
+        if (!hide)
+            msgDlg.ShowModal();
         fillControls();
+        ShowCurrencyHistory();
     }
     else
     {
@@ -530,7 +509,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
 
 void mmMainCurrencyDialog::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
 {
-    onlineUpdateCurRate();
+    onlineUpdateCurRate(-1,false);
 }
 
 void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
@@ -539,15 +518,13 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
     {
         case MENU_ITEM1:
         {
-            int baseCurrencyID = Model_Infotable::instance().GetBaseCurrencyId();
-            if (baseCurrencyID != currencyID_)
-            {
-                Model_Infotable::instance().SetBaseCurrency(currencyID_);
-                itemButtonDelete_->Disable();
-                fillControls();
-            }
-        }
-        case MENU_ITEM2: onlineUpdateCurRate(currencyID_);
+            if (!SetBaseCurrency(currencyID_))
+                mmErrorDialogs::MessageError(this, "Unable to update history currency rates. Please update them manually!", "Currency history error");
+            itemButtonDelete_->Disable();
+            fillControls();
+            ShowCurrencyHistory();
+        } break;
+        case MENU_ITEM2: onlineUpdateCurRate(currencyID_,false); break;
     } 
 }
 
@@ -583,8 +560,19 @@ void mmMainCurrencyDialog::OnCancel(wxCommandEvent& /*event*/)
 void mmMainCurrencyDialog::ShowCurrencyHistory()
 {
     valueListBox_->DeleteAllItems();
-    if (currencyID_ <= 0)
+
+    int baseCurrencyID = Model_Infotable::instance().GetBaseCurrencyId();
+    if (currencyID_ <= 0 || currencyID_ == baseCurrencyID)
+    {
+        historyButtonAdd_->Disable();
+        historyButtonDelete_->Disable();
         return;
+    }
+    else
+    {
+        historyButtonAdd_->Enable();
+        historyButtonDelete_->Enable();
+    }      
 
     Model_CurrencyHistory::Data_Set histData = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID_));
     std::stable_sort(histData.begin(), histData.end(), SorterByCURRDATE());
@@ -602,7 +590,7 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
             const wxString dispAmount = wxString::Format(wxT("%f"), d.CURRVALUE);
             valueListBox_->SetItem(idx, 0, mmGetDateForDisplay(dtdt));
             valueListBox_->SetItem(idx, 1, dispAmount);
-            const wxString& priceAmount = "";
+            const wxString& priceAmount = wxEmptyString;
             valueListBox_->SetItem(idx, 2, priceAmount);
             idx++;
         }
@@ -646,6 +634,104 @@ void mmMainCurrencyDialog::OnHistoryDelete(wxCommandEvent& /*event*/)
     ShowCurrencyHistory();
 }
 
+void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
+{
+    if (currencyID_ <= 0)
+        return;
+
+    //if (wxMessageBox(_("Update currency history will take some time. Do you want to proceed?")
+    //    , _("Currency Dialog")
+    //    , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR) != wxYES)
+    //    return;
+
+    bool UpdStatus = true;
+    if (_BceCurrencyHistoryRatesList.empty())
+        UpdStatus = mmMainCurrencyDialog::HistoryDownloadBce();
+
+    if (UpdStatus == false)
+    {
+        mmErrorDialogs::MessageError(this, "Unable to download currency rates!", "Currency history error");
+        return;
+    }
+
+    wxString base_symbol = wxEmptyString;
+    Model_Currency::Data* base_currency = Model_Currency::GetBaseCurrency();
+    if (base_currency)
+        base_symbol = base_currency->CURRENCY_SYMBOL.Upper();
+
+    if (base_symbol.empty())
+    {
+        mmErrorDialogs::MessageError(this, "Could not find base currency symbol!", "Currency history error");
+            return;
+    }
+
+    std::vector<CurrencyHistoryRate> CurrencyHistoryRatesList;
+    if (base_symbol == "EUR")
+        CurrencyHistoryRatesList = _BceCurrencyHistoryRatesList;
+    else if (!ConvertHistoryRates(_BceCurrencyHistoryRatesList, CurrencyHistoryRatesList, base_symbol))
+        return;
+
+    Model_Currency::Data* CurrentCurrency = Model_Currency::instance().get(currencyID_);
+
+    const int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?")
+        , _("Currency Dialog"), wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
+    bool CheckDate;
+    if (msgResult == wxYES)
+        CheckDate = false;
+    else if (msgResult == wxNO)
+        CheckDate = true;
+    else
+        return;
+
+    const std::map<wxDateTime, int> DatesList = Model_Currency::DateUsed(currencyID_);
+    bool Found = false;
+    Model_CurrencyHistory::instance().Savepoint();
+    for (auto &CurrencyHistory : CurrencyHistoryRatesList)
+    {
+        if (CurrencyHistory.Currency == CurrentCurrency->CURRENCY_SYMBOL.Upper())
+        {
+            Found = true;
+            if (CheckDate && DatesList.find(CurrencyHistory.Date) == DatesList.end())
+                continue;
+            Model_CurrencyHistory::instance().addUpdate(currencyID_, CurrencyHistory.Date, CurrencyHistory.Rate, Model_CurrencyHistory::ONLINE);
+        }
+    }
+    Model_CurrencyHistory::instance().ReleaseSavepoint();
+
+    if (Found)
+        ShowCurrencyHistory();
+    else
+        mmErrorDialogs::MessageError(this,
+            wxString::Format("Unable to download history for symbol %S. History rates not available!", CurrentCurrency->CURRENCY_SYMBOL.Upper()),
+            "Currency history error");
+}
+
+void mmMainCurrencyDialog::OnHistoryDeleteUnused(wxCommandEvent& /*event*/)
+{
+    Model_CurrencyHistory::instance().Savepoint();
+    auto currencies = Model_Currency::instance().all();
+    for (auto &currency : currencies)
+    {
+        if (!Model_Account::is_used(currency))
+        {
+            for (const auto& r : Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currency.CURRENCYID)))
+                Model_CurrencyHistory::instance().remove(r.id());
+        }
+        else
+        {
+            std::map<wxDateTime, int> DatesList = Model_Currency::DateUsed(currency.CURRENCYID);
+            wxDateTime CurrDate;
+            for (const auto& r : Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currency.CURRENCYID)))
+            {
+                CurrDate.ParseDate(r.CURRDATE);
+                if (DatesList.find(CurrDate) == DatesList.end())
+                    Model_CurrencyHistory::instance().remove(r.id());
+            }
+        }
+    }
+    Model_CurrencyHistory::instance().ReleaseSavepoint();
+    ShowCurrencyHistory();
+}
 
 void mmMainCurrencyDialog::OnHistorySelected(wxListEvent& event)
 {
@@ -664,4 +750,171 @@ void mmMainCurrencyDialog::OnHistoryDeselected(wxListEvent& event)
 {
     valueDatePicker_->SetValue(wxDateTime::Today());
     valueTextBox_->SetValue(wxEmptyString);
+}
+
+bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
+{
+    int baseCurrencyOLD = Model_Infotable::instance().GetBaseCurrencyId();
+    if (baseCurrencyID == baseCurrencyOLD)
+        return true;
+
+    Model_Infotable::instance().SetBaseCurrency(baseCurrencyID);
+
+    Model_Currency::Data* BaseCurrency = Model_Currency::instance().get(baseCurrencyID);
+    BaseCurrency->BASECONVRATE = 1;
+    Model_Currency::instance().save(BaseCurrency);
+
+    Model_Currency::Data* BaseCurrencyOLD = Model_Currency::instance().get(baseCurrencyOLD);
+    BaseCurrencyOLD->BASECONVRATE = 0;
+    Model_Currency::instance().save(BaseCurrencyOLD);
+
+    Model_CurrencyHistory::instance().Savepoint();
+    for (const auto& r : Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(baseCurrencyID)))
+        Model_CurrencyHistory::instance().remove(r.id());
+    Model_CurrencyHistory::instance().ReleaseSavepoint();
+
+    if (wxMessageBox(_("Do you want to update today currency rates?")
+            , _("Currency Dialog")
+            , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR) != wxYES)
+        return true;
+    onlineUpdateCurRate();
+
+    if (wxMessageBox(_("Do you want to update all currency history? Any custom currency rate will be deleted!")
+            , _("Currency Dialog")
+            , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR) != wxYES)
+        return true;
+
+    Model_CurrencyHistory::instance().Savepoint();
+    for (const auto& r : Model_CurrencyHistory::instance().all())
+        Model_CurrencyHistory::instance().remove(r.id());
+    Model_CurrencyHistory::instance().ReleaseSavepoint();
+    onlineUpdateCurRate();
+
+    if (_BceCurrencyHistoryRatesList.empty())
+    {
+        if (!mmMainCurrencyDialog::HistoryDownloadBce())
+            return false;
+    }
+
+    std::vector<CurrencyHistoryRate> CurrencyHistoryRatesList;
+    if (BaseCurrency->CURRENCY_SYMBOL == "EUR")
+        CurrencyHistoryRatesList = _BceCurrencyHistoryRatesList;
+    else if (!ConvertHistoryRates(_BceCurrencyHistoryRatesList, CurrencyHistoryRatesList, BaseCurrency->CURRENCY_SYMBOL))
+        return false;
+
+    Model_CurrencyHistory::instance().Savepoint();
+    auto currencies = Model_Currency::instance().all();
+    for (auto &currency : currencies)
+    {
+        if (Model_Account::is_used(currency) && currency.CURRENCY_SYMBOL != BaseCurrency->CURRENCY_SYMBOL)
+        {
+            bool UpdStatus = false;
+            std::map<wxDateTime, int> DatesList = Model_Currency::DateUsed(currency.CURRENCYID);
+            for (auto &CurrencyHistory : CurrencyHistoryRatesList)
+            {
+                if (CurrencyHistory.Currency == currency.CURRENCY_SYMBOL.Upper())
+                {
+                    UpdStatus = true;
+                    if (DatesList.find(CurrencyHistory.Date) == DatesList.end())
+                        continue;
+                    Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID, CurrencyHistory.Date, CurrencyHistory.Rate, Model_CurrencyHistory::ONLINE);
+                }
+            }
+            if (!UpdStatus)
+                mmErrorDialogs::MessageError(this,
+                wxString::Format("Unable to download history for symbol %S. History rates not available!", currency.CURRENCY_SYMBOL.Upper()),
+                "Currency history error");
+        }
+    }
+    Model_CurrencyHistory::instance().ReleaseSavepoint();
+
+    ShowCurrencyHistory();
+    return true;
+}
+
+bool mmMainCurrencyDialog::HistoryDownloadBce()
+{
+    wxString XmlContent;
+    if (site_content(mmex::weblink::BceCurrencyHistory, XmlContent) != wxURL_NOERR)
+        return false;
+
+    wxStringInputStream XmlContentStream(XmlContent);
+    wxXmlDocument XmlDocument;
+    if (!XmlDocument.Load(XmlContentStream))
+        return false;
+    if (XmlDocument.GetRoot()->GetName() != "gesmes:Envelope")
+        return false;
+
+    wxXmlNode* XmlRoot = XmlDocument.GetRoot()->GetChildren();
+    while (XmlRoot->GetName() != "Cube")
+        XmlRoot = XmlRoot->GetNext();
+    if (XmlRoot->GetName() != "Cube")
+        return false;
+
+    double Rate;
+    wxDateTime HistoryDate;
+    XmlRoot = XmlRoot->GetChildren(); //Go inside <Cube>
+    while (XmlRoot) //<Cube time="2015-07-03">
+    {
+        HistoryDate.ParseDate(XmlRoot->GetAttribute("time"));
+        CurrencyHistoryRate CurrencyHistory;
+        wxXmlNode* XmlRate = XmlRoot->GetChildren();
+        while (XmlRate) //<Cube currency="USD" rate="1.1096"/>
+        {
+            CurrencyHistory.BaseCurrency = "EUR";
+            CurrencyHistory.Date = HistoryDate;
+            CurrencyHistory.Currency = XmlRate->GetAttribute("currency");
+            XmlRate->GetAttribute("rate").ToDouble(&Rate);
+            CurrencyHistory.Rate = Rate;
+
+            _BceCurrencyHistoryRatesList.push_back(CurrencyHistory);
+            XmlRate = XmlRate->GetNext();
+        }
+        XmlRoot = XmlRoot->GetNext();
+    }
+
+    if (_BceCurrencyHistoryRatesList.size() == 0)
+        return false;
+
+    return true;
+}
+
+bool mmMainCurrencyDialog::ConvertHistoryRates(const std::vector<CurrencyHistoryRate>& Bce, std::vector<CurrencyHistoryRate>& ConvertedRates, const wxString& BaseCurrencySymbol)
+{
+    std::map<wxDateTime, double> BaseRatesList;
+    for (auto &CurrencyHistoryBce : Bce)
+    {
+        if (CurrencyHistoryBce.Currency == BaseCurrencySymbol)
+            BaseRatesList[CurrencyHistoryBce.Date] = CurrencyHistoryBce.Rate;
+    }
+
+    if (BaseRatesList.size() == 0)
+    {
+        mmErrorDialogs::MessageError(this,
+            wxString::Format("Unable to download history for base symbol %S. History rates not available!", BaseCurrencySymbol),
+            "Currency history error");
+        return false;
+    }
+
+    for (auto &CurrencyHistoryBce : Bce)
+    {
+        CurrencyHistoryRate Rate;
+
+        if (CurrencyHistoryBce.Currency == BaseCurrencySymbol)
+        {
+            Rate.Currency = "EUR";
+            Rate.Rate = CurrencyHistoryBce.Rate;
+        }
+        else
+        {
+            Rate.Currency = CurrencyHistoryBce.Currency;
+            Rate.Rate = BaseRatesList[CurrencyHistoryBce.Date] / CurrencyHistoryBce.Rate;
+        }
+
+        Rate.BaseCurrency = BaseCurrencySymbol;
+        Rate.Date = CurrencyHistoryBce.Date;
+            
+        ConvertedRates.push_back(Rate);
+    }
+    return true;
 }

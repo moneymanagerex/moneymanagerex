@@ -172,8 +172,8 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
         if (currency)
         {
             itemButtonCurrency_->SetLabelText(currency->CURRENCYNAME);
-            Model_Currency::instance().SetBaseCurrency(currency);
             currencyID_ = currency->CURRENCYID;
+            Model_Infotable::instance().SetBaseCurrency(currencyID_);
         }
     }
 }
