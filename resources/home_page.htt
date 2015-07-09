@@ -68,8 +68,8 @@
             <tr valign='center'>
                 <td>
                 <SCRIPT>
-                    defCanvasWidth=312 * <TMPL_VAR HTMLSCALE> / 100;
-                    defCanvasHeight=256 * <TMPL_VAR HTMLSCALE> / 100;
+                    defCanvasWidth = 192 * <TMPL_VAR HTMLSCALE> / 100;
+                    defCanvasHeight = 192 * <TMPL_VAR HTMLSCALE> / 100;
                     document.write("<canvas id=\"reportChart\" height=\""+defCanvasHeight+"\" width=\""+defCanvasWidth+"\"></canvas>");
                     <!--canvas id="reportChart" width="312" height="256"></canvas-->
                 </SCRIPT>

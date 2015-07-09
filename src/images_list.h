@@ -54,7 +54,13 @@ enum img {
     YANDEX_MONEY_XPM,
     WEB_MONEY_XPM,
     RUBIK_CUBE_XPM, 
-    MAX_XPM
+    MAX_XPM,
+};
+
+enum png {
+    NEWS,
+    NEW_NEWS,
 };
 
 wxImageList* navtree_images_list();
+wxBitmap mmBitmap(int ref);

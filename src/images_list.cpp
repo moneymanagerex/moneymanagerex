@@ -59,6 +59,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/work.xpm"
 #include "../resources/yandex_money.xpm"
 
+#include "../resources/news_png.h"
+#include "../resources/nnews_png.h"
+
 static const std::map<int, wxImage> images_list()
 {
     return {
@@ -114,4 +117,34 @@ wxImageList* navtree_images_list()
         imageList->Add(wxBitmap(img.second.Scale(x, x)));
     }
     return imageList;
+}
+
+static const std::map<int, std::map<int, wxBitmap>> images_png()
+{
+    return{
+        { NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(news) }, { 24, wxBITMAP_PNG_FROM_DATA(news24) }, { 32, wxBITMAP_PNG_FROM_DATA(news32) }, { 48, wxBITMAP_PNG_FROM_DATA(news48) } } }
+        , { NEW_NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(nnews) }, { 24, wxBITMAP_PNG_FROM_DATA(nnews24) }, { 32, wxBITMAP_PNG_FROM_DATA(nnews32) }, { 48, wxBITMAP_PNG_FROM_DATA(nnews48) } } }
+    };
+
+}
+
+wxBitmap mmBitmap(int ref)
+{
+    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
+    int x = 16;
+    if (vFontSize >= 300) x = 48;
+    else if (vFontSize >= 200) x = 32;
+    else if (vFontSize >= 150) x = 24;
+
+    wxBitmap b;
+    try {
+        // throw, even if capacity allowed to access element
+        const auto m = images_png().at(ref);
+        b = m.at(x);
+    }
+    catch (std::out_of_range const& exc) {
+        wxLogError("Exception in function 'mmBitmap': %s", exc.what());
+        b = wxBitmap(about_xpm);
+    }
+    return b;
 }

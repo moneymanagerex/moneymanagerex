@@ -282,6 +282,9 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
             dbpath = Model_Setting::instance().getLastDbPath();
     }
 
+    //Read news
+    getNewsRSS(g_WebsiteNewsList);
+
     /* Create the Controls for the frame */
     createMenu();
     CreateToolBar();
@@ -321,9 +324,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     //Check for new version at startup
     if (Model_Setting::instance().GetBoolSetting("UPDATECHECK", true))
         mmUpdate::checkUpdates(true,this);
-
-    //Read news
-    getNewsRSS(g_WebsiteNewsList);
 
     //Show appstart
     if (from_scratch || !dbpath.IsOk())
@@ -1591,7 +1591,11 @@ void mmGUIFrame::createMenu()
 void mmGUIFrame::CreateToolBar()
 {
     long style = wxTB_FLAT | wxTB_NODIVIDER;
-    int x = 32;
+    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
+    int x = 16;
+    if (vFontSize >= 300) x = 48;
+    else if (vFontSize >= 200) x = 32;
+    else if (vFontSize >= 150) x = 24;
 
     toolBar_ = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style, "ToolBar");
 
@@ -1615,6 +1619,16 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_ABOUT, _("&About..."), wxBitmap(wxImage(about_xpm).Scale(x, x)), _("Show about dialog"));
     toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), wxBitmap(wxImage(help_xpm).Scale(x, x)), _("Show the Help file"));
+
+    wxString news_array;
+    for (const auto& entry : g_WebsiteNewsList)
+        news_array += entry.Title + "\n";
+    if (news_array.empty()) news_array = _("Register/View Release &Notifications");
+    wxBitmap news_ico = (g_WebsiteNewsList.size() > 0)
+        ? mmBitmap(png::NEW_NEWS)
+        : mmBitmap(png::NEWS);
+    toolBar_->AddSeparator();
+    toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _("News"), news_ico, news_array);
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
@@ -2281,6 +2295,7 @@ void mmGUIFrame::OnReportIssues(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 {
+    Model_Setting::instance().Set(INIDB_NEWS_LAST_READ_DATE, wxDate::Today().FormatISODate());
     wxLaunchDefaultBrowser(mmex::weblink::News);
 }
 //----------------------------------------------------------------------------

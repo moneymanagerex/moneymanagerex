@@ -164,7 +164,7 @@ const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 
     const wxString news_last_read_date_str = Model_Setting::instance().GetStringSetting(INIDB_NEWS_LAST_READ_DATE, "");
     wxDate news_last_read_date;
-    if (!news_last_read_date.ParseFormat(news_last_read_date_str))
+    if (!news_last_read_date.ParseISODate(news_last_read_date_str))
         news_last_read_date = wxDateTime::Today().Subtract(wxDateSpan::Year());
 
     wxXmlNode* RssRoot = RssDocument.GetRoot()->GetChildren()->GetChildren();
@@ -196,6 +196,7 @@ const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
                 }
                 News = News->GetNext();
             }
+            wxLogDebug("%s - %s", news_last_read_date.FormatISODate(), website_news.Date.FormatISODate());
             if (news_last_read_date.IsEarlierThan(website_news.Date))
                 WebsiteNewsList.push_back(website_news);
         }
