@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "mmpanelbase.h"
+#include "mmreportspanel.h"
 #include "model/Model_Setting.h"
 
 wxBEGIN_EVENT_TABLE(mmListCtrl, wxListCtrl)
@@ -227,7 +228,8 @@ mmPanelBase::~mmPanelBase()
 
 wxString mmPanelBase::BuildPage() const
 {
-    return "TBD";
+    mmReportsPanel* rp = (mmReportsPanel*)(this);
+    return rp ? rp->getPrintableBase()->getHTMLText() : "";
 }
 
 void mmPanelBase::PrintPage()
