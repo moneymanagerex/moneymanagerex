@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util.h"
 #include "paths.h"
 #include "export.h"
+#include "mmSimpleDialogs.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
 
@@ -46,14 +47,11 @@ bool mmQIFExportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-    this->SetInitialSize();
-    SetIcon(mmex::getProgramIcon());
-    Centre();
-    Fit();
-
     fillControls();
+
+    SetIcon(mmex::getProgramIcon());
+    this->SetMinSize(wxSize(350, 450));
+    this->Fit();
 
     return TRUE;
 }
@@ -169,7 +167,7 @@ void mmQIFExportDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     toFileCheckBox_->SetValue(true);
     file_name_label_ = new wxStaticText(main_tab, wxID_ANY, _("File Name:"));
-    button_search_ = new wxButton(main_tab, wxID_SAVE, _("Choose &file"));
+    button_search_ = new wxButton(main_tab, wxID_SAVE, _("File"));
     button_search_->Connect(wxID_SAVE, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFExportDialog::OnFileSearch), nullptr, this);
 
@@ -210,11 +208,10 @@ void mmQIFExportDialog::CreateControls()
     itemButtonOK->Connect(wxID_OK, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFExportDialog::OnOk), nullptr, this);
 
-    buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(itemButtonOK, g_flags);
     buttons_sizer->Add(itemButtonCancel_, g_flags);
 
     buttons_sizer->Realize();
-
 }
 
 void mmQIFExportDialog::OnButtonClear(wxCommandEvent& /*event*/)
@@ -288,24 +285,17 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 
 void mmQIFExportDialog::OnOk(wxCommandEvent& /*event*/)
 {
+    if (toFileCheckBox_->GetValue() && m_text_ctrl_->GetValue().IsEmpty())
+        return mmErrorDialogs::InvalidFile(m_text_ctrl_);
+
     bool bCorrect = false;
     wxString sErrorMsg = "";
     if (Model_Account::instance().all().empty() && accountsCheckBox_->GetValue())
-    {
         sErrorMsg =_("No Account available for export");
-    }
     else if (selected_accounts_id_.Count() < 1 && accountsCheckBox_->GetValue())
-    {
         sErrorMsg =_("No Accounts selected for export");
-    }
-    else if (toFileCheckBox_->GetValue() && m_text_ctrl_->GetValue().IsEmpty())
-    {
-        sErrorMsg =_("File name is empty");
-    }
     else if (dateToCheckBox_->GetValue() && dateFromCheckBox_->GetValue() && fromDateCtrl_->GetValue() > toDateCtrl_->GetValue())
-    {
         sErrorMsg =_("To Date less than From Date");
-    }
     else
         bCorrect = true;
 
@@ -469,8 +459,8 @@ void mmQIFExportDialog::mmExportQIF()
         , wxString::Format(_("Number of transactions exported: %ld"), numRecords)
         , _("Export to QIF"), wxOK | wxICON_INFORMATION);
 
-    (wxButton*)FindWindow(wxID_OK)->Disable();
+    wxButton* ok = wxStaticCast(FindWindow(wxID_OK), wxButton);
+    ok->Disable();
 
     msgDlg.ShowModal();
-
 }
