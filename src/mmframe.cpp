@@ -795,11 +795,7 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SelectItem(root);
     navTreeCtrl_->EnsureVisible(root);
     navTreeCtrl_->Refresh();
-    #if (__WXMAC__)
-        // Don't use Update() on Mac - see: https://sourceforge.net/p/moneymanagerex/bugs/615/
-    #else
-        navTreeCtrl_->Update();
-    #endif
+    navTreeCtrl_->Update();
     navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 
