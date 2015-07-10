@@ -374,7 +374,7 @@ void mmTransDialog::CreateControls()
     // Amount Fields --------------------------------------------
     textAmount_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1)
-        , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+        , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency);
 
     toTextAmount_ = new mmTextCtrl( this, ID_DIALOG_TRANS_TOTEXTAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1)

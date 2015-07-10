@@ -36,9 +36,10 @@ public:
         , const wxSize &size = wxDefaultSize
         , long style = 0
         , const wxValidator &validator = wxDefaultValidator
+        , const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency()
         , const wxString &name = wxTextCtrlNameStr)
         : wxTextCtrl(parent, id, value, pos, size, style, validator, name)
-        , currency_(Model_Currency::GetBaseCurrency())
+        , currency_(currency)
     {}
     void SetValue(double value)
     {
@@ -98,7 +99,7 @@ public:
         }
         return true;
     }
-private:
+
     const Model_Currency::Data* currency_;
 };
 
