@@ -395,14 +395,18 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
     json::Reader::Read(o, ss);
 
     //Date Mask
-    date_format_ = wxString(json::String(o[L"DATE_MASK"]));
+    const auto df = json::String(o[L"DATE_MASK"]);
+    if (!df.Value().empty()) date_format_ = wxString(df);
     initDateMask();
 
     //File
     m_text_ctrl_->ChangeValue(wxString(json::String(o[L"FILE_NAME"])));
+    
     //Delimiter
-    delimit_ = wxString(json::String(o[L"DELIMITER"]));
+    const auto d = json::String(o[L"DELIMITER"]);
+    if (!d.Value().empty()) delimit_ = wxString(d);
     initDelimiter();
+    
     //CSV fields
     csvFieldOrder_.clear();
     for (int i = 0; i < 99; i++)
@@ -800,6 +804,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
 
     if (from_account)
     {
+        const auto split = Model_Splittransaction::instance().get_all();
         int fromAccountID = from_account->ACCOUNTID;
 
         wxFileOutputStream output(fileName);
@@ -810,39 +815,21 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
         Model_Currency::Data* currency = Model_Account::currency(from_account);
 
         double account_balance = from_account->INITIALBAL;
-        for (const auto& pBankTransaction : Model_Checking::instance().all())
+        for (const auto& pBankTransaction : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID)
+            , Model_Checking::TOACCOUNTID(fromAccountID)))
         {
-            if (pBankTransaction.ACCOUNTID != fromAccountID && pBankTransaction.TOACCOUNTID != fromAccountID) continue;
+            if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_)
+                continue;
 
             wxString buffer = "";
-            Model_Payee::Data* payee = Model_Payee::instance().get(pBankTransaction.PAYEEID);
-            int fAccountID = pBankTransaction.ACCOUNTID;
-            int tAccountID = pBankTransaction.TOACCOUNTID;
 
-            double value = pBankTransaction.TRANSAMOUNT;
-            wxString toamount = "";
-            double value_temp = value;
+            Model_Checking::Full_Data tran(pBankTransaction, split);
 
-            double transaction_amount = (Model_Checking::status(pBankTransaction) != Model_Checking::VOID_) ? Model_Checking::balance(pBankTransaction, fromAccountID) : 0;
-            account_balance += transaction_amount;
-
-            if (Model_Checking::type(pBankTransaction) == Model_Checking::TRANSFER)
-            {
-                double tovalue = pBankTransaction.TOTRANSAMOUNT;
-
-                if (tAccountID == fromAccountID) {
-                    value = tovalue;
-                    tovalue = -value_temp;
-                } else if (fAccountID == fromAccountID) {
-                    value = -value;
-                }
-                toamount = Model_Currency::toString(tovalue, currency);
-            }
-            else if (Model_Checking::type(pBankTransaction) == Model_Checking::WITHDRAWAL)
-                value = -value;
+            double value = Model_Checking::balance(pBankTransaction, fromAccountID);
+            account_balance += value;
 
             const wxString& amount = Model_Currency::toString(value, currency);
-            const wxString& amount_tmp = Model_Currency::toString(-value, currency);
+            const wxString& amount_abs = Model_Currency::toString(fabs(value), currency);
 
             Model_Category::Data* category = Model_Category::instance().get(pBankTransaction.CATEGID);
             Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(pBankTransaction.SUBCATEGID);
@@ -856,19 +843,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                         entry = trx_date.Format(date_format_);
                         break;
                     case UNIV_CSV_PAYEE:
-                        if (Model_Checking::type(pBankTransaction) == Model_Checking::TRANSFER)
-                        {
-                            if (tAccountID == fromAccountID) {
-                                Model_Account::Data* account = Model_Account::instance().get(fAccountID);
-                                entry = account ? account->ACCOUNTNAME : "";
-                            }
-                            else if (fAccountID == fromAccountID) {
-                                Model_Account::Data* account = Model_Account::instance().get(tAccountID);
-                                entry = account ? account->ACCOUNTNAME : "";
-                            }
-                        }
-                        else
-                            entry = payee ? payee->PAYEENAME : "";
+                        entry = tran.real_payee_name(fromAccountID);
                         break;
                     case UNIV_CSV_AMOUNT:
                         entry = amount;
@@ -889,7 +864,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                         entry = (value > 0.0) ? amount : "";
                         break;
                     case UNIV_CSV_WITHDRAWAL:
-                        entry = value >= 0.0 ? "" : amount_tmp;
+                        entry = value >= 0.0 ? "" : amount_abs;
                         break;
                     case UNIV_CSV_BALANCE:
                         entry = Model_Currency::toString(account_balance, currency);
@@ -928,17 +903,19 @@ void mmUnivCSVDialog::update_preview()
         wxString item_name = this->getCSVFieldName(*it);
         this->m_list_ctrl_->InsertColumn(index, item_name);
         if (item_name == _("Notes"))
+        {
             this->m_list_ctrl_->SetColumnWidth(index, 300);
-        else if (item_name == _("Date")) {
+        }
+        else if (item_name == _("Date"))
+        {
             date_position = index;
         }
-
     }
 
     //TODO re use code in OnImport & OnExport
     if (this->is_importer_)
     {
-        wxString fileName = m_text_ctrl_->GetValue();
+        const wxString fileName = m_text_ctrl_->GetValue();
         wxFileName csv_file(fileName);
 
         if (!fileName.IsEmpty() && csv_file.FileExists())
@@ -985,55 +962,32 @@ void mmUnivCSVDialog::update_preview()
     }
     else // exporter preview
     {
-        wxString date_format = Model_Infotable::instance().DateFormat();
-        wxString acctName = m_choice_account_->GetStringSelection();
+        const wxString acctName = m_choice_account_->GetStringSelection();
         Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
         if (from_account)
         {
+            const auto split = Model_Splittransaction::instance().get_all();
             int fromAccountID = from_account->ACCOUNTID;
             size_t count = 0;
             int row = 0;
-            wxString delimit = this->delimit_;
-            Model_Currency::Data* currency = Model_Account::currency(from_account);
+            const wxString& delimit = this->delimit_;
 
             double account_balance = from_account->INITIALBAL;
-            for (const auto& pBankTransaction : Model_Checking::instance().all())
+            for (const auto& pBankTransaction : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID)
+                , Model_Checking::TOACCOUNTID(fromAccountID)))
             {
-                if (pBankTransaction.ACCOUNTID != fromAccountID && pBankTransaction.TOACCOUNTID != fromAccountID) continue;
+                if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_)
+                    continue;
 
-                Model_Payee::Data* payee = Model_Payee::instance().get(pBankTransaction.PAYEEID);
-                int fAccountID = pBankTransaction.ACCOUNTID;
-                int tAccountID = pBankTransaction.TOACCOUNTID;
+                Model_Checking::Full_Data tran(pBankTransaction, split);
 
-                double value = pBankTransaction.TRANSAMOUNT;
-                wxString toamount = "";
-                double value_temp = value;
-
-                double transaction_amount = (Model_Checking::status(pBankTransaction) != Model_Checking::VOID_) ? Model_Checking::balance(pBankTransaction, fromAccountID) : 0;
-                account_balance += transaction_amount;
-
-                if (Model_Checking::type(pBankTransaction) == Model_Checking::TRANSFER)
-                {
-                    Model_Account::Data* to_account = Model_Account::instance().get(tAccountID);
-                    const wxString fromAccount = from_account->ACCOUNTNAME;
-                    const wxString toAccount = to_account->ACCOUNTNAME;
-                    double tovalue = pBankTransaction.TOTRANSAMOUNT;
-
-                    if (tAccountID == fromAccountID) {
-                        value = tovalue;
-                        tovalue = -value_temp;
-                    } else if (fAccountID == fromAccountID) {
-                        value = -value;
-                    }
-                    toamount = Model_Currency::toString(tovalue, currency);
-                }
-                else if (Model_Checking::type(pBankTransaction) == Model_Checking::WITHDRAWAL)
-                    value = -value;
-
-                wxString amount = Model_Currency::toString(value, currency);
-
-                wxString amount_tmp = Model_Currency::toString(-value, currency);
+                double value = Model_Checking::balance(pBankTransaction, fromAccountID);
+                account_balance += value;
+                
+                Model_Currency::Data* currency = Model_Account::currency(from_account);
+                const wxString amount = Model_Currency::toString(value, currency);
+                const wxString amount_abs = Model_Currency::toString(fabs(value), currency);
 
                 int col = 0;
                 wxString buf;
@@ -1050,25 +1004,13 @@ void mmUnivCSVDialog::update_preview()
                     wxString text;
                     switch (*sit)
                     {
-                        case UNIV_CSV_DATE: //TODO: Proper date format
-                            text << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(pBankTransaction)), delimit);
+                        case UNIV_CSV_DATE:
+                        {
+                            text << inQuotes(Model_Checking::TRANSDATE(pBankTransaction).Format(date_format_), delimit);
                             break;
+                        }
                         case UNIV_CSV_PAYEE:
-                            if (Model_Checking::type(pBankTransaction) == Model_Checking::TRANSFER)
-                            {
-                                if (tAccountID == fromAccountID) {
-                                    Model_Account::Data* account = Model_Account::instance().get(fAccountID);
-                                    text << inQuotes(account ? account->ACCOUNTNAME : "", delimit);
-                                }
-                                else if (fAccountID == fromAccountID) {
-                                    Model_Account::Data* account = Model_Account::instance().get(tAccountID);
-                                    text << inQuotes(account ? account->ACCOUNTNAME : "", delimit);
-                                }
-                                else
-                                    text << "";
-                            }
-                            else
-                                text << inQuotes(payee->PAYEENAME, delimit);
+                            text << inQuotes(tran.real_payee_name(fromAccountID), delimit);
                             break;
                         case UNIV_CSV_AMOUNT:
                             text << inQuotes(amount, delimit);
@@ -1089,7 +1031,7 @@ void mmUnivCSVDialog::update_preview()
                             text << inQuotes(value > 0.0 ? amount : "", delimit);
                             break;
                         case UNIV_CSV_WITHDRAWAL:
-                            text << inQuotes(value >= 0.0 ? "" : amount_tmp, delimit);
+                            text << inQuotes(value >= 0.0 ? "" : amount_abs, delimit);
                             break;
                         case UNIV_CSV_BALANCE:
                             text << inQuotes(Model_Currency::toString(account_balance, currency), delimit);
@@ -1105,8 +1047,8 @@ void mmUnivCSVDialog::update_preview()
                         if (col == date_position)
                         {
                             wxDateTime dtdt;
-                            mmParseDisplayStringToDate(dtdt, text, date_format);
-                            text = dtdt.Format(date_format);
+                            mmParseDisplayStringToDate(dtdt, text, date_format_);
+                            text = dtdt.Format(date_format_);
                         }
                         m_list_ctrl_->SetItem(itemIndex, col, text);
                     }
@@ -1421,10 +1363,10 @@ void mmUnivCSVDialog::OnFileNameEntered(wxCommandEvent& event)
 
 void mmUnivCSVDialog::OnDateFormatChanged(wxCommandEvent& /*event*/)
 {
-    this->update_preview();
     wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
     if (data) date_format_ = data->GetData();
     *log_field_ << date_format_ << "\n";
+    this->update_preview();
 }
 
 void mmUnivCSVDialog::changeFocus(wxChildFocusEvent& event)

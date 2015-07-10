@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2015 Gabriele-V
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -20,11 +21,20 @@
 #define MM_EX_MAINCURRENCY_DIALOG_H_
 
 #include "defs.h"
-#include <wx/dataview.h>
 #include <map>
+#include <vector>
+#include <wx/dataview.h>
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
+
+struct CurrencyHistoryRate
+{
+    wxString BaseCurrency;
+    wxDateTime Date;
+    wxString Currency;
+    double Rate;
+};
 
 class mmMainCurrencyDialog: public wxDialog
 {
@@ -51,6 +61,7 @@ private:
         HISTORY_ADD,
         HISTORY_DELETE,
         HISTORY_UPDATE,
+        HISTORY_DELUNUSED,
         MENU_ITEM1,
         MENU_ITEM2
     };
@@ -72,7 +83,6 @@ private:
     void OnCancel(wxCommandEvent& event);
     void OnListItemActivated(wxDataViewEvent& event);
     void OnListItemSelected(wxDataViewEvent& event);
-    void OnValueChanged(wxDataViewEvent& event);
     void fillControls();
     void OnShowHiddenChbClick(wxCommandEvent& event);
 
@@ -80,18 +90,19 @@ private:
     void OnHistoryAdd(wxCommandEvent& event);
     void OnHistoryDelete(wxCommandEvent& event);
     void OnHistoryUpdate(wxCommandEvent& event);
+    void OnHistoryDeleteUnused(wxCommandEvent& event);
     void OnHistorySelected(wxListEvent& event);
     void OnHistoryDeselected(wxListEvent& event);
 
     void OnOnlineUpdateCurRate(wxCommandEvent& event);
-    bool onlineUpdateCurRate(int curr_id = -1);
+    bool onlineUpdateCurRate(int curr_id = -1, bool hide = true);
     void OnItemRightClick(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
+    bool SetBaseCurrency(int& baseCurrencyID);
 
     wxDataViewListCtrl* currencyListBox_;
     std::map<int, wxString> ColName_;
     bool bEnableSelect_;
-    double curr_rate_;
     wxButton* itemButtonEdit_;
     wxButton* itemButtonDelete_;
     wxCheckBox* cbShowAll_;
@@ -99,9 +110,15 @@ private:
     wxDatePickerCtrl* valueDatePicker_;
     mmTextCtrl* valueTextBox_;
     wxStaticBox* historyStaticBox_;
+    wxButton* historyButtonAdd_;
+    wxButton* historyButtonDelete_;
 
     int currencyID_;
     int selectedIndex_;
+
+    std::vector<CurrencyHistoryRate> _BceCurrencyHistoryRatesList;
+    bool HistoryDownloadBce();
+    bool ConvertHistoryRates(const std::vector<CurrencyHistoryRate>& Bce, std::vector<CurrencyHistoryRate>& ConvertedRate, const wxString& BaseCurrencySymbol);
 };
 
 #endif // MM_EX_MAINCURRENCY_DIALOG_H_

@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2015 Gabriele-V
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "Model_CurrencyHistory.h"
+#include "Model_Currency.h"
 
 Model_CurrencyHistory::Model_CurrencyHistory()
 : Model<DB_Table_CURRENCYHISTORY_V1>()
@@ -79,4 +80,21 @@ int Model_CurrencyHistory::addUpdate(const int& currencyID, const wxDate& date, 
     currHist->CURRVALUE = price;
     currHist->CURRUPDTYPE = type;
     return save(currHist);
+}
+
+
+/** Return the last attachment number linked to a specific object */
+double Model_CurrencyHistory::LastRate(const int& currencyID)
+{
+    Model_CurrencyHistory::Data_Set histData = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID));
+    
+    std::stable_sort(histData.begin(), histData.end(), SorterByCURRDATE());
+
+    if (!histData.empty())
+        return histData.back().CURRVALUE;
+    else
+    {
+        Model_Currency::Data* Currency = Model_Currency::instance().get(currencyID);
+        return Currency->BASECONVRATE;
+    }
 }

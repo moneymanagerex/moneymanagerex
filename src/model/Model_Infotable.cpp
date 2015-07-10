@@ -159,19 +159,9 @@ int Model_Infotable::GetBaseCurrencyId()
     return this->GetIntInfo("BASECURRENCYID", -1);
 }
 
-wxString Model_Infotable::GetBaseCurrencyName()
-{
-    return this->GetStringInfo("BASECURRENCYNAME", "United States dollar");
-}
-
 void Model_Infotable::SetBaseCurrency(int currency_id)
 {
     Model_Infotable::instance().Set("BASECURRENCYID", currency_id);
-}
-
-void Model_Infotable::SetBaseCurrency(const wxString& currency_name)
-{
-    Model_Infotable::instance().Set("BASECURRENCYNAME", currency_name);
 }
 
 /* Returns true if key setting found */
