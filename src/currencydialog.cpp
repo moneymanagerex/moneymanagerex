@@ -252,7 +252,6 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
 
  void mmCurrencyDialog::OnCancel(wxCommandEvent& /*event*/)
 {
-    Model_Currency::instance().destroy_cache();
     EndModal(wxID_CANCEL);
 }
 
