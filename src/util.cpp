@@ -401,15 +401,15 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
                 value.find('*', ind+1) >= value.Length() && value.find('/', ind+1) >= value.Length())
                 return;
         }
+#ifdef _MSC_VER
         if (str != m_decChar)
         {
-#ifdef _MSC_VER
             const wxChar vk = m_decChar == '.' ? 0x6e : 0xbc;
             keybd_event(vk, 0xb3, 0, 0);
             keybd_event(vk, 0xb3, KEYEVENTF_KEYUP, 0);
             return;
-#endif
         }
+#endif
     }
     event.Skip();
 }

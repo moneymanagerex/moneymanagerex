@@ -86,9 +86,7 @@ void mmAssetDialog::dataToControls()
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
     m_value->SetValue(m_asset->VALUE);
 
-    wxString valueChangeRate;
-    valueChangeRate.Printf("%.3f", m_asset->VALUECHANGERATE);
-    m_valueChangeRate->SetValue(valueChangeRate);
+    m_valueChangeRate->SetValue(m_asset->VALUECHANGERATE, 3);
 
     m_valueChange->SetSelection(Model_Asset::rate(m_asset));
     enableDisableRate(Model_Asset::rate(m_asset) != Model_Asset::RATE_NONE);
@@ -171,7 +169,7 @@ void mmAssetDialog::CreateControls()
         , mmCalcValidator());
     m_valueChangeRate->SetToolTip(_("Enter the rate at which the asset changes its value in % per year"));
     itemFlexGridSizer6->Add(m_valueChangeRate, g_flags);
-    m_valueChangeRate->Connect(IDC_RATE, IDC_RATE
+    m_valueChangeRate->Connect(IDC_RATE, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmAssetDialog::onTextEntered), nullptr, this);
     enableDisableRate(false);
 
@@ -321,10 +319,7 @@ void mmAssetDialog::onTextEntered(wxCommandEvent& event)
     }
     else if (event.GetId() == m_valueChangeRate->GetId())
     {
-        mmCalculator calc;
-        if (calc.is_ok(Model_Currency::fromString2Default(m_valueChangeRate->GetValue(), currency)))
-            m_valueChangeRate->SetValue(wxString::Format("%.3f", calc.get_result()));
-        m_valueChangeRate->SetInsertionPoint(m_valueChangeRate->GetValue().Len());
+        m_valueChangeRate->Calculate(currency, 3);
     }
 
     event.Skip();
