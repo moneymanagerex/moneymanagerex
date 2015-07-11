@@ -131,11 +131,10 @@ void mmStockDialog::updateControls()
 {
     this->SetTitle(edit_ ? _("Edit Stock Investment") : _("New Stock Investment"));
     Model_Account::Data* account = Model_Account::instance().get(accountID_);
-    Model_Currency::Data *currency = Model_Account::currency(account);
 
     double numShares = 0, pPrice = 0;
-    numShares_->GetDouble(numShares, currency);
-    currentPrice_->GetDouble(pPrice, currency);
+    numShares_->GetDouble(numShares);
+    currentPrice_->GetDouble(pPrice);
     valueInvestment_->SetLabelText(Model_Account::toCurrency(numShares*pPrice, account));
 
     //Disable history buttons on new stocks
@@ -400,21 +399,20 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
         return;
     }
         
-    Model_Currency::Data *currency = Model_Account::currency(account);
-    const wxString& pdate = dpc_->GetValue().FormatISODate();
-    const wxString& stockName = stockName_->GetValue();
-    const wxString& notes = notes_->GetValue();
+    const wxString pdate = dpc_->GetValue().FormatISODate();
+    const wxString stockName = stockName_->GetValue();
+    const wxString notes = notes_->GetValue();
 
     double numShares = 0;
-    if (!numShares_->checkValue(numShares, currency))
+    if (!numShares_->checkValue(numShares))
         return;
 
     double pPrice;
-    if (!purchasePrice_->checkValue(pPrice, currency))
+    if (!purchasePrice_->checkValue(pPrice))
         return;
 
     double cPrice;
-    if (!currentPrice_->GetDouble(cPrice, currency))
+    if (!currentPrice_->GetDouble(cPrice))
     {
         // we assume current price = purchase price
         cPrice = pPrice;
@@ -476,19 +474,19 @@ void mmStockDialog::OnTextEntered(wxCommandEvent& event)
 
     if (event.GetId() == numShares_->GetId())
     {
-        numShares_->Calculate(currency, 4);
+        numShares_->Calculate(4);
     }
     else if (event.GetId() == purchasePrice_->GetId())
     {
-        purchasePrice_->Calculate(currency, currency_precision);
+        purchasePrice_->Calculate(currency_precision);
     }
     else if (event.GetId() == currentPrice_->GetId())
     {
-        currentPrice_->Calculate(currency, currency_precision);
+        currentPrice_->Calculate(currency_precision);
     }
     else if (event.GetId() == commission_->GetId())
     {
-        commission_->Calculate(currency, currency_precision);
+        commission_->Calculate(currency_precision);
     }
 }
 

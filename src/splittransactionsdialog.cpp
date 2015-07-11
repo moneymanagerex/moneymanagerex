@@ -220,10 +220,12 @@ void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
 
 void SplitTransactionDialog::UpdateSplitTotal()
 {
+    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    const auto curr = account ? Model_Account::currency(account) : Model_Currency::GetBaseCurrency();
     double total = 0;
     for (const auto& entry : m_local_splits)
         total += entry.SPLITTRANSAMOUNT;
-    transAmount_->SetLabelText(Model_Currency::toCurrency(total));
+    transAmount_->SetLabelText(Model_Currency::toCurrency(total, curr));
 }
 
 void SplitTransactionDialog::EditEntry(int index)

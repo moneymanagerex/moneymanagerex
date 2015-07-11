@@ -449,7 +449,7 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
         str = wxString(decChar);
 
     // if decimal point, check if it's already in the string
-    if (str == '.' || str == ',')
+    if (str == decChar)
     {
         const wxString value = text_field->GetValue();
         size_t ind = value.rfind(decChar);
@@ -460,15 +460,6 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
                 value.find('*', ind+1) >= value.Length() && value.find('/', ind+1) >= value.Length())
                 return;
         }
-#if 0 //_MSC_VER
-        if (str != decChar)
-        {
-            const wxChar vk = decChar == '.' ? 0x6e : 0xbc;
-            keybd_event(vk, 0xb3, 0, 0);
-            keybd_event(vk, 0xb3, KEYEVENTF_KEYUP, 0);
-            return;
-        }
-#endif
     }
 
     if (numpad_dec_swap)

@@ -221,7 +221,7 @@ void mmBDDialog::dataToControls()
         m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
 
     textAmount_->Enable(m_bill_data.local_splits.empty());
-    textAmount_->SetValue(m_bill_data.TRANSAMOUNT, account);
+    textAmount_->SetValue(m_bill_data.TRANSAMOUNT);
 
     if (m_transfer)
     {
@@ -695,8 +695,8 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
         if (account)
         {
             Model_Currency::Data* currency = Model_Currency::instance().get(account->ACCOUNTID);
-            if (currency && textAmount_->Calculate(currency))
-                textAmount_->GetDouble(m_bill_data.TRANSAMOUNT, currency);
+            if (currency && textAmount_->Calculate())
+                textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
 
             m_bill_data.ACCOUNTID = account->ACCOUNTID;
             bAccount_->SetLabelText(acctName);
@@ -1396,18 +1396,10 @@ void mmBDDialog::activateSplitTransactionsDlg()
 
 void mmBDDialog::OnTextEntered(wxCommandEvent& event)
 {
-    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    Model_Account::Data *account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-    if (account) currency = Model_Account::currency(account);
-
     if (event.GetId() == textAmount_->GetId())
-    {
-        textAmount_->Calculate(currency);
-    }
+        textAmount_->Calculate();
     else if (event.GetId() == toTextAmount_->GetId())
-    {
-        toTextAmount_->Calculate(currency);
-    }
+        toTextAmount_->Calculate();
 }
 
 void mmBDDialog::setTooltips()

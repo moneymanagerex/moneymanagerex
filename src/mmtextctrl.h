@@ -59,14 +59,14 @@ public:
         currency_ = (currency ? currency : Model_Currency::GetBaseCurrency());
         this->SetValue(value, precision > -1 ? precision : log10(currency_->SCALE));
     }
-    bool Calculate(const Model_Currency::Data* currency, int alt_precision = -1)
+    bool Calculate(int alt_precision = -1)
     {
-        if (!currency || this->GetValue().empty()) return false;
+        if (this->GetValue().empty()) return false;
         mmCalculator calc;
-        int precision = alt_precision >= 0 ? alt_precision : log10(currency->SCALE);
-        const wxString str = Model_Currency::fromString2Default(this->GetValue(), currency);
+        int precision = alt_precision >= 0 ? alt_precision : log10(currency_->SCALE);
+        const wxString str = Model_Currency::fromString2Default(this->GetValue(), currency_);
         if (calc.is_ok(str)) {
-            this->SetValue(Model_Currency::toString(calc.get_result(), currency, precision));
+            this->SetValue(Model_Currency::toString(calc.get_result(), currency_, precision));
             this->SetInsertionPoint(this->GetValue().Len());
             return true;
         }
@@ -78,15 +78,15 @@ public:
         // Base class handles the thousands seperator
         return /*Model_Currency::fromString(*/wxTextCtrl::GetValue()/*, currency_)*/;
     }
-    bool GetDouble(double &amount, const Model_Currency::Data* currency = nullptr) const
+    bool GetDouble(double &amount) const
     {
         wxString amountStr = this->GetValue().Trim();
-        return Model_Currency::fromString(amountStr, amount, (currency ? currency : currency_));
+        return Model_Currency::fromString(amountStr, amount, currency_);
     }
 
-    bool checkValue(double &amount, const Model_Currency::Data* currency = nullptr, bool positive_value = true)
+    bool checkValue(double &amount, bool positive_value = true)
     {
-        if (!GetDouble(amount, currency) || (positive_value && amount < 0))
+        if (!GetDouble(amount) || (positive_value && amount < 0))
         {
             wxRichToolTip tip(_("Invalid Amount."),
                 wxString(positive_value ? _("Please enter a positive or calculated value.") : _("Please enter a calculated value."))

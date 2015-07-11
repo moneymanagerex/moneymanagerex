@@ -352,8 +352,8 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     if (m_currencyID == -1)
         return mmErrorDialogs::MessageInvalid(this, _("Currency"));
 
-    m_itemInitValue->Calculate(Model_Account::currency(m_account));
-    if (!m_itemInitValue->checkValue(m_account->INITIALBAL, Model_Account::currency(m_account), false))
+    m_itemInitValue->Calculate();
+    if (!m_itemInitValue->checkValue(m_account->INITIALBAL, false))
         return;
 
     wxChoice* itemAcctType = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
@@ -433,6 +433,6 @@ void mmNewAcctDialog::OnTextEntered(wxCommandEvent& event)
         Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
         if (!currency)
             currency = Model_Currency::GetBaseCurrency();
-        m_itemInitValue->Calculate(currency);
+        m_itemInitValue->Calculate();
     }
 }
