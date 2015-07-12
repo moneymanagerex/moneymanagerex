@@ -36,6 +36,13 @@ struct ValueTrio
     wxString label;
     double   amount;
 };
+struct ValueTrioList
+{
+    bool isLine;
+    wxString color;
+    wxString label;
+    std::vector<double> amountList;
+};
 
 struct WebsiteNews
 {
