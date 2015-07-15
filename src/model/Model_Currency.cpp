@@ -395,6 +395,7 @@ const std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, w
     r.push_back(std::make_tuple("VND", "Vietnamese dong", L"₫", L"", L"", L"", 1, 1, " ", "."));
     r.push_back(std::make_tuple("WST", "Samoan tala", L"WS$", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("YER", "Yemeni rial", L"", L"", L"", L"", 1, 1, " ", "."));
+    r.push_back(std::make_tuple("BTC", "Bitcoin", L"Ƀ", L"", L"", L"", 100, 1, " ", "."));
 
     return r;
 } 
