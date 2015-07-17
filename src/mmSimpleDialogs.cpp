@@ -213,11 +213,8 @@ void mmErrorDialogs::InvalidCategory(wxWindow *win, bool simple)
 
 void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)
 {
-    const wxString& errorHeader = open ? _("Unable to open file.") : _("File name is empty.");
-    wxString errorMessage = _("Please select the file for this operation.");
-
-    const wxString errorTips = _("Selection can be made by using Search button.");
-    errorMessage = errorMessage + "\n\n" + errorTips + "\n";
+    const wxString errorHeader = open ? _("Unable to open file.") : _("File name is empty.");
+    const wxString errorMessage = _("Please select the file for this operation.");
 
     wxRichToolTip tip(errorHeader, errorMessage);
     tip.SetIcon(wxICON_WARNING);

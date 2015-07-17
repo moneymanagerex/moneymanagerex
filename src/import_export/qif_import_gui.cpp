@@ -283,7 +283,7 @@ void mmQIFImportDialog::CreateControls()
     buttons_panel->SetSizer(buttons_sizer);
 
     btnOK_ = new wxButton( buttons_panel, wxID_OK, _("&OK "));
-    wxButton* itemButtonCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, _("&Close "));
     btnOK_->Connect(wxID_OK, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFImportDialog::OnOk), nullptr, this);
 
