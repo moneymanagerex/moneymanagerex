@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-11 21:37+0300\n"
-"PO-Revision-Date: 2015-07-11 21:37+0300\n"
+"PO-Revision-Date: 2015-07-12 21:56+0200\n"
 "Last-Translator: CZtranslators <cztranslators@gmail.com>\n"
 "Language-Team: Geralt <geraltcz@centrum.cz>\n"
 "Language: cs_CZ\n"
@@ -587,7 +587,7 @@ msgstr "Správce příloh: Přidat přílohu"
 
 #: src/attachmentdialog.cpp:218
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Zadejte nový popis pro přílohu:"
 
 #: src/attachmentdialog.cpp:219
 msgid "Organize Attachments: Edit Attachment"
@@ -681,15 +681,15 @@ msgstr "Otevření přílohy selhalo"
 
 #: src/billsdepositsdialog.cpp:117
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Nový trvalý příkaz"
 
 #: src/billsdepositsdialog.cpp:137
 msgid " Edit Recurring Transaction"
-msgstr ""
+msgstr " Upravit trvalý příkaz"
 
 #: src/billsdepositsdialog.cpp:141
 msgid " Enter Recurring Transaction"
-msgstr ""
+msgstr " Zadat trvalý příkaz"
 
 #: src/billsdepositsdialog.cpp:317 src/billsdepositspanel.cpp:52
 #: src/filtertransdialog.cpp:48 src/mmOptionMiscSettings.cpp:74
@@ -784,11 +784,11 @@ msgstr "Termín platby"
 
 #: src/billsdepositsdialog.cpp:372
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Podrobnosti trvalého příkazu"
 
 #: src/billsdepositsdialog.cpp:393
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Zadejte datum splatnosti výběru nebo vkladu"
 
 #: src/billsdepositsdialog.cpp:397
 msgid "Retard or advance the date of the 'next occurrence"
@@ -816,11 +816,11 @@ msgstr "Počet opakování"
 
 #: src/billsdepositsdialog.cpp:444
 msgid "Set to 'Auto Execute' on the next Pay Date."
-msgstr ""
+msgstr "Nastavit 'Automatické zadaní' na další termín splatnosti."
 
 #: src/billsdepositsdialog.cpp:445
 msgid "Set 'Auto Execute' with manual user acknowledgement."
-msgstr ""
+msgstr "Nasatvit 'Automatické zadání' s manuálním potvrzením uživatele."
 
 #: src/billsdepositsdialog.cpp:448
 msgid "Set 'Auto Execute' without user acknowlegement."
@@ -840,11 +840,11 @@ msgstr "Opozdit nebo posunout datum transakce"
 
 #: src/billsdepositsdialog.cpp:478
 msgid "Reset date to the Due Date"
-msgstr ""
+msgstr "Nastavit datum dle termínu splatnosti"
 
 #: src/billsdepositsdialog.cpp:485
 msgid "Pay Date"
-msgstr ""
+msgstr "Datum platby"
 
 #: src/billsdepositsdialog.cpp:495 src/filtertransdialog.cpp:247
 #: src/transdialog.cpp:1039
@@ -912,7 +912,7 @@ msgstr "Vyberte účet"
 
 #: src/billsdepositsdialog.cpp:555
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "Zadejte účet odkud trvalý příkaz přihází"
 
 #: src/billsdepositsdialog.cpp:558 src/billsdepositsdialog.cpp:862
 #: src/billsdepositspanel.cpp:112 src/filtertransdialog.cpp:204
@@ -972,7 +972,7 @@ msgstr "Číslo"
 
 #: src/billsdepositsdialog.cpp:601
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "Správa příloh trvalého příkazu"
 
 #: src/billsdepositsdialog.cpp:605 src/transdialog.cpp:446
 msgid "Select one of the frequently used notes"
@@ -1107,7 +1107,7 @@ msgstr ""
 #: src/billsdepositspanel.cpp:221 src/billsdepositspanel.cpp:896
 #: src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Trvalé přkazy"
 
 #: src/billsdepositspanel.cpp:238 src/filtertransdialog.cpp:96
 #: src/mmcheckingpanel.cpp:387
@@ -1325,7 +1325,7 @@ msgstr "Výdaje: "
 
 #: src/budgetingpanel.cpp:314
 msgid "Icon"
-msgstr ""
+msgstr "Ikonka"
 
 #: src/budgetingpanel.cpp:316
 msgid "Sub Category"
@@ -1930,7 +1930,7 @@ msgstr "Změnit skupinu"
 
 #: src/general_report_manager.cpp:674
 msgid "Rename Group"
-msgstr ""
+msgstr "Přejmenovat skupinu"
 
 #: src/general_report_manager.cpp:675
 msgid "UnGroup"
@@ -1959,19 +1959,19 @@ msgstr "Odstranit název zprávy:"
 
 #: src/general_report_manager.cpp:822 src/general_report_manager.cpp:900
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "Zadejte název pro novou skupinu sestavy"
 
 #: src/general_report_manager.cpp:823
 msgid "Change report group"
-msgstr ""
+msgstr "Upravit skupinu sestavy"
 
 #: src/general_report_manager.cpp:839
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "Zadejte nebo vyberte název pro novou skupinu"
 
 #: src/general_report_manager.cpp:840
 msgid "Rename group"
-msgstr ""
+msgstr "Přejmenovat skupinu"
 
 #: src/general_report_manager.cpp:901
 msgid "Add Report Group"
@@ -3603,7 +3603,7 @@ msgstr "&Rozpočet"
 
 #: src/mmframe.cpp:1483
 msgid "&Recurring Transactions"
-msgstr ""
+msgstr "Trvalé &příkazy"
 
 #: src/mmframe.cpp:1483
 msgid "Bills && Deposits"
@@ -4227,11 +4227,11 @@ msgstr "Celkový součet:"
 
 #: src/mmpanelbase.cpp:135
 msgid "Hide/Show Columns"
-msgstr ""
+msgstr "Zobrazit/skrýt sloupce"
 
 #: src/mmpanelbase.cpp:136
 msgid "Hide this column"
-msgstr ""
+msgstr "Skrýt tento sloupec"
 
 #: src/mmpanelbase.cpp:138
 msgid "Order by this column"
@@ -4239,7 +4239,7 @@ msgstr "Seřadit podle sloupce"
 
 #: src/mmpanelbase.cpp:139
 msgid "Reset columns"
-msgstr ""
+msgstr "Výchozí sloupce"
 
 #: src/mmreportspanel.cpp:191
 msgid "REPORTS"
@@ -4643,12 +4643,12 @@ msgstr "Počet záznamů v rozdělených transakcích: %i"
 #: src/relocatecategorydialog.cpp:188
 #, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr ""
+msgstr "Záznamy nalezené v trvalých příkazech: %i"
 
 #: src/relocatecategorydialog.cpp:189
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr ""
+msgstr "Záznamy nalezené v trvalých štěpených příkazech:  %i"
 
 #: src/relocatecategorydialog.cpp:190
 #, c-format
@@ -5178,11 +5178,11 @@ msgstr "Cena za jednotku"
 
 #: src/stockspanel.cpp:99
 msgid "Total Price"
-msgstr ""
+msgstr "Cena celkem"
 
 #: src/stockspanel.cpp:101
 msgid "Curr. unit value"
-msgstr ""
+msgstr "Akt. honota jednotky"
 
 #: src/stockspanel.cpp:102
 msgid "Curr. total value"
@@ -5190,7 +5190,7 @@ msgstr "Akt. celková hodnota"
 
 #: src/stockspanel.cpp:103
 msgid "Value Date"
-msgstr ""
+msgstr "Honota ke dni"
 
 #: src/stockspanel.cpp:142
 msgid "&New Stock Investment"
