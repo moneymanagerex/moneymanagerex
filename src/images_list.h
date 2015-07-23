@@ -58,9 +58,22 @@ enum img {
 };
 
 enum png {
+    NEW_DB,
+    OPEN,
+    NEW_ACC,
+    HOME,
+    CATEGORY,
+    PAYEE,
+    CURR,
+    FILTER,
+    GRM,
+    OPTIONS,
+    NEW_TRX,
+    ABOUT,
+    HELP,
     NEWS,
     NEW_NEWS,
 };
 
 wxImageList* navtree_images_list();
-wxBitmap mmBitmap(int ref);
+const wxBitmap mmBitmap(int ref);
