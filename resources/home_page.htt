@@ -8,37 +8,13 @@
     <script src = "sorttable.js"></script>
     <link href = "master.css" rel = "stylesheet" />
 </head>
-  <script>
-    function toggleTable(id) {
-        var elem = document.getElementById(id)
-        var label = document.getElementById(id + "_label")
-        var hide = elem.style.display == "none"
-        if (hide) {
-            elem.style.display = ""
-            label.innerHTML = "[-]"
-        }
-        else {
-            elem.style.display = "none"
-            label.innerHTML = "[+]"
-        }
-    }
-    function createTableRowContent(rowObject, data, cellType){
-      var rowContent = document.createElement(cellType);
-      var cell = document.createTextNode(data);
+<body>
 
-      rowContent.appendChild(cell);
-      rowObject.appendChild(rowContent);
-    }
-    function createTableData(rowObject, data){
-      createTableRowContent(rowObject, data, 'td');
-    }
+<table class = "table-bordered" width="100%">
 
-  </script>
-  <body>
 <!--Website News-->
 <TMPL_VAR WEBSITE_NEWS>
 
-<table class = "table-bordered" width="98%">
 <tr valign="top"><td width="50%">
   <table class ='table'>
     <tfoot>
@@ -182,6 +158,17 @@
     </tbody>
   </table>
 <script>
+    function createTableRowContent(rowObject, data, cellType){
+      var rowContent = document.createElement(cellType);
+      var cell = document.createTextNode(data);
+
+      rowContent.appendChild(cell);
+      return rowObject.appendChild(rowContent);
+    }
+    function createTableData(rowObject, data){
+      return createTableRowContent(rowObject, data, 'td');
+    }
+
   var stats_json = <TMPL_VAR STATISTICS>;
   var tbody = document.getElementById('stats');
   tbody.innerHTML = "";
@@ -189,7 +176,8 @@
     if (obj != 'NAME') {
     var row = document.createElement('tr');
     createTableData(row, obj);
-    createTableData(row, stats_json[obj]);
+    var second = createTableData(row, stats_json[obj]);
+    second.style.textAlign='right';
     tbody.appendChild(row);  
     }else{
       document.getElementById('stat_name').innerHTML = stats_json[obj];
@@ -204,6 +192,20 @@
 </body>
 
   <script>
+    function toggleTable(id) {
+        var elem = document.getElementById(id)
+        var label = document.getElementById(id + "_label")
+        var hide = elem.style.display == "none"
+        if (hide) {
+            elem.style.display = ""
+            label.innerHTML = "[-]"
+        }
+        else {
+            elem.style.display = "none"
+            label.innerHTML = "[+]"
+        }
+    }
+
     var toggle_json = <TMPL_VAR TOGGLES>;
       //toggleTable('BILLS_AND_DEPOSITS');
       if (!toggle_json['item@Bank Accounts'] && document.getElementById('ACCOUNTS_INFO'))
@@ -216,9 +218,9 @@
         {toggleTable('INVEST')};
       if (!toggle_json['TOP_CATEGORIES'] && document.getElementById('TOP_CATEGORIES'))
         {toggleTable('TOP_CATEGORIES')};
-    </script>
+  </script>
 
-  <script type="text/javascript">
+  <script>
     var elements= document.getElementsByClassName("money");
     for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
@@ -228,6 +230,6 @@
         } 
         element.innerHTML = element.innerHTML.replace(/\ /g, '&nbsp;');
     }
-</script>
+  </script>
 
 </html>

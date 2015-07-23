@@ -546,10 +546,7 @@ void mmHomePagePanel::getTemplate()
 
 void mmHomePagePanel::getData()
 {
-    if (Model_Setting::instance().DisplayInternetNews())
-    {
-        m_frames["WEBSITE_NEWS"] = displayWebsiteNews();
-    }
+    m_frames["WEBSITE_NEWS"] = displayWebsiteNews();
 
     vAccts_ = Model_Setting::instance().ViewAccounts();
     date_range_->destroy();
@@ -825,13 +822,16 @@ const wxString mmHomePagePanel::displayWebsiteNews()
 {
     wxString output = wxEmptyString;
 
+    if (!Model_Setting::instance().DisplayInternetNews())
+        return output;
+
     std::vector<WebsiteNews> WebsiteNewsList;
     if (!mmHomePagePanel::getNewsRSS(WebsiteNewsList))
         return output;
     else
     {
-        output += "<table class = 'table-bordered' width='98%'><table class ='table'>";
-        output += "<tr class ='success'><td style ='font-weight:bold; text-align:center'>Money Manager EX News</td>";
+        output += "<tr><td colspan='2'>";
+        output += "<table class ='table'><tr class ='success'><td style ='font-weight:bold; text-align:center'>Money Manager EX News</td>";
         output += "<tr class ='success'><td style ='text-align:center'>";
         int NewsNr = 0;
         int NewsMax = 5;
@@ -846,8 +846,7 @@ const wxString mmHomePagePanel::displayWebsiteNews()
             output += News.Date.Format(mmOptions::instance().dateFormat_) +": " + News.Title;
             output += "</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
         }
-        output += "</td></tr></table></table>";
-        output += "<br/>";
+        output += "</td></tr></table></td></tr>";
     }
 
     return output;
