@@ -99,10 +99,12 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
 
     hb.addDivRow();
-    hb.addDivCol8();
+    hb.addDivCol17_67();
     // Add the graph
+    hb.addDivCol25_50();
     if (!valueList_.empty())
         hb.addPieChart(valueList_, "Withdrawal");
+    hb.endDiv();
 
     hb.startSortTable();
     hb.startThead();

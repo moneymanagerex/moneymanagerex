@@ -98,7 +98,7 @@ wxString mmReportSummaryStocks::getHTMLText()
     hb.addLineBreak();
 
     hb.addDivRow();
-    hb.addDivCol8();
+    hb.addDivCol17_67();
 
     for (const auto& acct : stocks_)
     {
@@ -148,7 +148,7 @@ wxString mmReportSummaryStocks::getHTMLText()
         hb.endTbody();
     }
 
-    hb.addDivCol8();
+    hb.addDivCol17_67();
     hb.addHeader(3, _("Grand Total:"));
     hb.startTable();
 
@@ -243,7 +243,7 @@ wxString mmReportChartStocks::getHTMLText()
         if (!aData.empty())
         {
             hb.addDivRow();
-            hb.addDivCol8();
+            hb.addDivCol17_67();
             Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
             hb.addHeader(2, wxString::Format("%s - (%s)", stock.STOCKNAME, account->ACCOUNTNAME));
             hb.addLineChart(aData, stock.STOCKNAME, count, 1000, 400, pointDot, showGridLines, true);

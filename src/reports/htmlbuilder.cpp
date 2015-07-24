@@ -56,7 +56,9 @@ static const char HTML[] =
     "<body>\n";
 static const wxString DIV_CONTAINER = "<div class='container'>\n";
 static const wxString DIV_ROW = "<div class='row'>\n";
-static const wxString DIV_COL8 = "<div class='col-xs-2'></div>\n<div class='col-xs-8'>\n";
+static const wxString DIV_COL8 = "<div class='col-xs-2'></div>\n<div class='col-xs-8'>\n"; //17_67%
+static const wxString DIV_COL4 = "<div class='col-xs-4'></div>\n<div class='col-xs-4'>\n"; //33_33%
+static const wxString DIV_COL3 = "<div class='col-xs-3'></div>\n<div class='col-xs-6'>\n"; //25_50%
 static const wxString DIV_END = "</div>";
 static const wxString TABLE_START = "<table class='table'>\n";
 static const wxString SORTTABLE_START = "<table class='sortable table'>\n";
@@ -331,9 +333,13 @@ void mmHTMLBuilder::addDivRow()
 {
     html_ += tags::DIV_ROW;
 }
-void mmHTMLBuilder::addDivCol8()
+void mmHTMLBuilder::addDivCol17_67()
 {
     html_ += tags::DIV_COL8;
+}
+void mmHTMLBuilder::addDivCol25_50()
+{
+    html_ += tags::DIV_COL3;
 }
 void mmHTMLBuilder::endDiv()
 {
@@ -407,10 +413,11 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
         "color : '%s',\n"
         "title : '%s',\n"
         "},\n";
-    static const wxString js = "<script type='text/javascript'>\n"
+    static const wxString js = "<script>\n"
         "var data = [%s];\n"
         "var options = {\n"
-        "  annotateDisplay : true\n"
+        "  annotateDisplay : true,\n"
+        "responsive : true\n"
         "};\n"
         "var ctx = document.getElementById('%s').getContext('2d');\n"
         "var reportChart = new Chart(ctx).Pie(data, options);\n"

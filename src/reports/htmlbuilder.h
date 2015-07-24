@@ -84,7 +84,8 @@ public:
     void endTfoot();
     void addDivContainer();
     void addDivRow();
-    void addDivCol8();
+    void addDivCol17_67();
+    void addDivCol25_50();
     void endDiv();
     void startTableRow();
     void startTableRow(const wxString& color);

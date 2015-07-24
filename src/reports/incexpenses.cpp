@@ -106,7 +106,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     valueList.push_back(vt);
 
     hb.addDivRow();
-    hb.addDivCol8();
+    hb.addDivCol17_67();
     hb.startTable();
     {
         hb.startTableRow();
@@ -216,7 +216,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.addHeader(3, headerMsg);
     hb.addLineBreak();
     hb.addDivRow();
-    hb.addDivCol8();
+    hb.addDivCol17_67();
 
     hb.startSortTable();
     {
