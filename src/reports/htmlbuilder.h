@@ -85,7 +85,9 @@ public:
     void endTfoot();
     void addDivContainer();
     void addDivRow();
-    void addDivCol8();
+    void addDivCol17_67();
+    void addDivCol25_50();
+    void addDivCol6();
     void endDiv();
     void startTableRow();
     void startTableRow(const wxString& color);
@@ -102,7 +104,7 @@ public:
     void addHorizontalLine(int size = 0);
 
     /** Starts a table cell (use only if want to nest other elements inside */
-    void startTableCell(const wxString& width = "0");
+    void startTableCell(const wxString& width = "");
     void endTableCell();
 
     const wxString getHTMLText() const;
