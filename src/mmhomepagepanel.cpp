@@ -860,13 +860,15 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
             bool entry = !json::Boolean(o[L"CARD_ACCOUNTS_INFO"]);
             o[L"CARD_ACCOUNTS_INFO"] = json::Boolean(entry);
         }
+        else if (name == "TERM_ACCOUNTS_INFO") {
+            bool entry = !json::Boolean(o[L"TERM_ACCOUNTS_INFO"]);
+            o[L"TERM_ACCOUNTS_INFO"] = json::Boolean(entry);
+        }
 
         std::wstringstream wss;
         json::Writer::Write(o, wss);
         wxLogDebug("%s", wss.str());
         wxLogDebug("==========================================");
         Model_Infotable::instance().Set("NAV_TREE_STATUS", wss.str());
-
     }
-
 }
