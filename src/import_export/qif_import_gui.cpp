@@ -412,6 +412,7 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
                 trx[TransNumber] += project + "\n"; //TODO: trx number or notes
         }
     }
+
     if (trx.find(Category) != trx.end())
     {
         if (trx[Category].Mid(0,1) == "[" && trx[Category].Last() == ']')
@@ -421,6 +422,7 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
             trx[Category] = "Transfer";
             trx[TrxType] = Model_Checking::all_type()[Model_Checking::TRANSFER];
             trx[ToAccountName] = toAccName;
+            m_QIFaccounts[toAccName] = trx;
         }
 
         //Cut non standard info after /
@@ -456,6 +458,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
     {
         num = 0;
         wxString acc;
+        const wxString transfer = Model_Checking::all_type()[Model_Checking::TRANSFER];
         dataListBox_->DeleteAllItems();
         for (const auto& trx : vQIF_trxs_)
         {
@@ -468,10 +471,14 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             data.push_back(wxVariant(map.find(Date) != map.end() ? map.at(Date) : ""));
             data.push_back(wxVariant(map.find(TransNumber) != map.end() ? map.at(TransNumber) : ""));
             const wxString type = (map.find(TrxType) != map.end() ? map.at(TrxType) : "");
-            if (type == Model_Checking::all_type()[Model_Checking::TRANSFER])
+            wxString payee;
+            if (type == transfer)
                 data.push_back(wxVariant(map.find(ToAccountName) != map.end() ? map.at(ToAccountName) : ""));
             else
-                data.push_back(wxVariant(map.find(Payee) != map.end() ? map.at(Payee) : ""));
+            {
+                payee  = map.find(Payee) != map.end() ? map.at(Payee) : "";
+                data.push_back(wxVariant(payee));
+            }
             data.push_back(wxVariant(map.find(TrxType) != map.end() ? map.at(TrxType) : ""));
             
             wxString category;
@@ -480,7 +487,18 @@ void mmQIFImportDialog::refreshTabs(int tabs)
                 category.Prepend("*").Replace("\n", "|");
             }
             else
+            {
                 category = (map.find(Category) != map.end() ? map.at(Category) : "");
+                if (category.empty())
+                {
+                    const auto p = Model_Payee::instance().get(payee);
+                    if (p)
+                    {
+                        category = Model_Category::full_name(p->CATEGID, p->SUBCATEGID);
+                        m_QIFcategoryNames[category] = std::make_pair(p->CATEGID, p->SUBCATEGID);
+                    }
+                }
+            }
             data.push_back(wxVariant(category));
 
             data.push_back(wxVariant(map.find(Amount) != map.end() ? map.at(Amount) : ""));
