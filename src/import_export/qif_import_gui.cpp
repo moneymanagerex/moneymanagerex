@@ -473,7 +473,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             const wxString type = (map.find(TrxType) != map.end() ? map.at(TrxType) : "");
             wxString payee;
             if (type == transfer)
-                data.push_back(wxVariant(map.find(ToAccountName) != map.end() ? map.at(ToAccountName) : ""));
+                data.push_back(wxVariant(map.find(ToAccountName) != map.end() ? ">" + map.at(ToAccountName) : ""));
             else
             {
                 payee  = map.find(Payee) != map.end() ? map.at(Payee) : "";
@@ -517,14 +517,13 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             wxVector<wxVariant> data;
             const std::map <int, wxString> &a = acc.second;
             data.push_back(wxVariant(acc.first));
-            wxString currencySymbol = a.find(Date) == a.end() ? "" : a.at(Date);
-            currencySymbol = currencySymbol.SubString(1, currencySymbol.length() - 2);
+            const wxString currencySymbol = a.find(Date) == a.end() ? "" : a.at(Date);
             data.push_back(wxVariant(currencySymbol));
             Model_Account::Data* account = Model_Account::instance().get(acc.first);
             wxString status;
             if (account) {
                 Model_Currency::Data *curr = Model_Currency::instance().get(account->CURRENCYID);
-                if (curr && curr->CURRENCY_SYMBOL == currencySymbol)
+                if (curr && "[" + curr->CURRENCY_SYMBOL + "]" == currencySymbol)
                     status = _("OK");
                 else
                     status = _("Warning");
@@ -643,13 +642,13 @@ void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
 
 void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
 {
+    m_accountNameStr = "";
     fromDateCtrl_->Enable(dateFromCheckBox_->IsChecked());
     toDateCtrl_->Enable(dateToCheckBox_->IsChecked());
     if (accountCheckBox_->IsChecked()
         && !Model_Account::instance().all_checking_account_names().empty())
     {
         accountDropDown_->Enable(true);
-        m_accountNameStr = "";
         wxStringClientData* data_obj = (wxStringClientData*) accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
         if (data_obj)
             m_accountNameStr = data_obj->GetData();
@@ -684,8 +683,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         progressDlg.Update(1, _("Importing Accounts"));
         if (getOrCreateAccounts() == 0 && !accountCheckBox_->GetValue()) {
             progressDlg.Update(numTransactions + 1);
-            mmErrorDialogs::MessageInvalid(this, _("Account"));
-            return;
+            return mmErrorDialogs::MessageInvalid(this, _("Account"));
         }
         mmWebApp::MMEX_WebApp_UpdateAccount();
         progressDlg.Update(1, _("Importing Payees"));
@@ -711,8 +709,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             }
             //
             Model_Checking::Data *trx = Model_Checking::instance().create();
-            if (compliteTransaction(entry, trx)) {
-
+            if (compliteTransaction(entry, trx)) 
+            {
                 if (dateFromCheckBox_->IsChecked() && Model_Checking::TRANSDATE(trx).IsEarlierThan(fromDateCtrl_->GetValue()))
                     continue;
                 if (dateToCheckBox_->IsChecked() && Model_Checking::TRANSDATE(trx).IsLaterThan(toDateCtrl_->GetValue()))
@@ -809,6 +807,10 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
         }
     }
 
+    for (auto& refTrxFrom : from)
+        to.push_back(refTrxFrom);
+    from.clear();
+
     return true;
 }
 
@@ -835,7 +837,7 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
 
     int accountID = -1;
     wxString accountName = (t.find(AccountName) != t.end() ? t[AccountName] : "");
-    if ((accountName.empty() || accountCheckBox_->IsChecked()) && !transfer)
+    if ((accountName.empty() || accountCheckBox_->IsChecked()))
         accountName = m_accountNameStr;
     accountID = (m_QIFaccountsID.find(accountName) != m_QIFaccountsID.end() ? m_QIFaccountsID.at(accountName) : -1);
     if (accountID < 1)
