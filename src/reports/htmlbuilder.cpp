@@ -26,15 +26,16 @@
 
 namespace tags
 {
-static const char END[] = R"(</body>
-<script type="text/javascript">
-var elements = document.getElementsByClassName('money');
-for (var i = 0; i < elements.length; i++) {
-    elements[i].style.textAlign = 'right';
-   if (elements[i].innerHTML.indexOf("-") > -1) {
-        elements[i].style.color ='#ff0000';
+static const wxString END = R"(
+</body>
+<script>
+    var elements = document.getElementsByClassName('money');
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].style.textAlign = 'right';
+        if (elements[i].innerHTML.indexOf('-') > -1) {
+            elements[i].style.color ='#ff0000';
+        }
     }
-}
 </script>
 </html>
 )";
@@ -258,8 +259,8 @@ void mmHTMLBuilder::addEmptyTableCell(const int number)
 
 void mmHTMLBuilder::addColorMarker(const wxString& color)
 {
-    html_ += wxString::Format(tags::TABLE_CELL, wxString::Format(" style='background-color:%s'", color));
-    html_ += " ";
+    html_ += wxString::Format(tags::TABLE_CELL, "");
+    html_ += wxString::Format("<span style='font-family: serif; color: %s'>%s</span>", color, L"\u2588");
     this->endTableCell();
 }
 
