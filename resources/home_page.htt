@@ -14,7 +14,8 @@
     </style>
 </head>
 <body>
-    <table class="table-bordered" width="98%">
+<div class='conteiner'>
+    <table class="table-bordered" width="100%">
         <tr valign="top">
             <td width="50%">
                 <table class='table'>
@@ -58,21 +59,19 @@
                 <table class='table'>
                     <thead>
                         <tr class='active'>
-                            <th id="ive_name">#</th> <!--Income vs Expenses-->
+                            <th id="ive_name">#</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr valign='center'>
-                            <td>
-                                <script>
-                                    defCanvasWidth=312 * <TMPL_VAR HTMLSCALE> / 100;
-                                    defCanvasHeight=256 * <TMPL_VAR HTMLSCALE> / 100;
-                                    document.write("<canvas id=\"reportChart\" height=\""+defCanvasHeight+"\" width=\""+defCanvasWidth+"\"></canvas>");
-                                    <!--canvas id="reportChart" width="312" height="256"></canvas-->
-                                </script>
+                        <tr>
+                            <td style='vertical-align:middle' width="70%">
+                            <div class='col-xs-11' style='min-width: 256px'>
+                                <canvas id="reportChart" width="312" height="256"></canvas>
+                            </div>
                             </td>
-                            <td style='vertical-align:middle'>
+                            <td style='vertical-align:middle' width="30%">
+                            <div class='col-xs-11'>
                                 <table class='table'>
                                     <thead>
                                         <tr>
@@ -97,6 +96,8 @@
                                         </tr>
                                     </tfoot>
                                 </table>
+                            <div class='col-xs-1'></div>
+                            </div>
                             </td>
                         </tr>
                     </tbody>
@@ -115,7 +116,7 @@
                     document.getElementById('ive_difference_l').innerHTML=ive_json['7'];
                     document.getElementById('ive_difference').innerHTML=ive_json['8'];
                     <!-- Chart -->
-                    var font_size = 10 * <TMPL_VAR HTMLSCALE> /100;
+                    var font_size = 10 + 4*(<TMPL_VAR HTMLSCALE>/100 -1);
                     var data = {
                         labels : [""],
                         datasets : [
@@ -136,6 +137,7 @@
                     var options = {
                         animationEasing: "easeOutQuint",
                         annotateDisplay : true,
+                        responsive : true,
                         scaleOverride: true,
                         scaleStartValue: 0,
                         scaleSteps: [ive_json[12]],
@@ -181,6 +183,7 @@
             </td>
         </tr>
     </table>
+</div>
 </body>
 <script>
     function toggleTable(id) {
@@ -227,7 +230,7 @@
         if (element.innerHTML.indexOf("-") > -1) {
             element.style.color="#ff0000";
         }
-        element.innerHTML = element.innerHTML.replace(/\ /g, '&nbsp;');
+        element.style.whiteSpace = "nowrap";
     }
 </script>
 </html>
