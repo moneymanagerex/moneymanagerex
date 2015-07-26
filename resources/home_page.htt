@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-<div class='conteiner'>
+<div class='container'>
     <table class="table-bordered" width="100%">
         <tr valign="top">
             <td width="50%">
