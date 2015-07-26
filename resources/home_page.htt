@@ -9,7 +9,7 @@
     <link href = "master.css" rel = "stylesheet" />
 </head>
 <body>
-<div class='conteiner'>
+<div class='container'>
 <table class = "table-bordered" width="100%">
 
 <!--Website News-->
