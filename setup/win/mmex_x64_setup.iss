@@ -127,6 +127,7 @@ Name: lang\hungarian; Description: Hungarian; Types: full;
 Name: lang\indonesian; Description: Indonesian; Types: full; 
 Name: lang\italian; Description: Italian; Types: full; 
 Name: lang\latvian; Description: Latvian; Types: full; 
+Name: lang\lithuanian; Description: Lithuanian; Types: full; 
 Name: lang\norwegian; Description: Norwegian; Types: full; 
 Name: lang\polish; Description: Polish; Types: full; 
 Name: lang\portuguese; Description: Portuguese; Types: full; 
@@ -200,6 +201,7 @@ Source: {#my_svn_path}\po\hungarian.mo; DestDir: {app}\po\en; Flags: ignoreversi
 Source: {#my_svn_path}\po\indonesian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\indonesian; 
 Source: {#my_svn_path}\po\italian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\italian; 
 Source: {#my_svn_path}\po\latvian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\latvian; 
+Source: {#my_svn_path}\po\lithuanian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\lithuanian; 
 Source: {#my_svn_path}\po\norwegian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\norwegian; 
 Source: {#my_svn_path}\po\polish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\polish; 
 Source: {#my_svn_path}\po\portuguese.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\portuguese; 
