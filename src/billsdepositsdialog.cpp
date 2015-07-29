@@ -523,7 +523,7 @@ void mmBDDialog::CreateControls()
 
     // Amount Fields --------------------------------------------
     amountNormalTip_   = _("Specify the amount for this transaction");
-    amountTransferTip_ = _("Specify the amount to be transfered");
+    amountTransferTip_ = _("Specify the amount to be transferred");
 
     wxStaticText* staticTextAmount = new wxStaticText(transactionPanel, wxID_STATIC, _("Amount"));
 

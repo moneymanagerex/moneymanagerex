@@ -48,16 +48,22 @@ fi
 cd "$RELEASE_DIR/$PACKAGE_NAME"
 
 #Strip the binary before calculating the installed size
-strip "usr/bin/mmex"
+strip --remove-section=.comment "usr/bin/mmex"
 
 #Make sure any needed files are in place and formatted correctly
 #Changelog
 mv "usr/share/doc/mmex/version.txt" "usr/share/doc/mmex/changelog"
-gzip -9 -f "usr/share/doc/mmex/changelog"
+gzip -9 -f -n "usr/share/doc/mmex/changelog"
 
 #Copyright
 cp "usr/share/doc/mmex/contrib.txt" "usr/share/doc/mmex/copyright"
 sed -i "s/See the GNU General Public License for more details./A copy of the GPLv2 can be found in \"\/usr\/share\/common-licenses\/GPL-2\"/g" "usr/share/doc/mmex/copyright"
+sed -i 's/\r//g' "usr/share/doc/mmex/copyright"
+
+#Remove OSX files
+rm "usr/share/mmex/mmdb.icns"
+rm "usr/share/mmex/mmex.icns"
+rm "usr/share/mmex/Info.plist"
 
 #Calculate installed size
 INSTALLED_SIZE=$(du -sb $RELEASE_DIR/ | cut -f1)
@@ -75,8 +81,7 @@ Homepage: $MMEX_HOMEPAGE
 Depends: $MMEX_DEB_DEPENDS
 Installed-Size: $INSTALLED_SIZE
 Maintainer: MoneyManagerEx <$MMEX_EMAIL>
-Description: $MMEX_DESCRIPTION
-Standards-Version: 3.9.2" > "DEBIAN/control"
+Description: $MMEX_DESCRIPTION" > "DEBIAN/control"
 
 #Generate md5sums
 md5sum `find . -type f | grep -v '^[.]/DEBIAN/'` > DEBIAN/md5sums
@@ -87,5 +92,5 @@ cd $RELEASE_DIR
 fakeroot dpkg-deb -b $PACKAGE_NAME
 
 #Check for any packaging problems
-lintian $PACKAGE_NAME.deb
+lintian -EviIL +pedantic $PACKAGE_NAME.deb
 

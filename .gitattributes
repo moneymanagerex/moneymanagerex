@@ -17,6 +17,7 @@
 *.sh      text eol=lf
 *.guess   text eol=lf
 *.sub     text eol=lf
+*.desktop text eol=lf 
 
 # Declare files that will always have CRLF line endings on checkout.
 *.bat     text eol=crlf
