@@ -2,6 +2,7 @@
 Name=Money Manager Ex
 Exec=mmex
 Type=Application
+Keywords=money;accounts;accounting;finance;
 Name[ru]=MMEX Mенеджер личных финансов
 GenericName=Cross Platform Personal Financial Manager
 GenericName[it]=Gestore multi-piattaforma di finanza personale
