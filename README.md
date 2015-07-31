@@ -22,7 +22,7 @@ and user-friendliness - something one can use everyday.
 * [html-template](https://github.com/moneymanagerex/html-template)
 
 ### Supported platforms:
-*  MS Windows: Vista, 7, 8, 8.1, 9, 10. Unicode builds: x86, x64, ia64 versions available.
+*  MS Windows: Vista, 7, 8, 8.1, 10. Unicode builds: x86, x64, ia64 versions available.
 *  Unixes: almost any Unix workstation with GTK+ 2.0 and above.
 *  Mac: OS X 10.8 or higher.
 
