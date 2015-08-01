@@ -282,6 +282,9 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
             dbpath = Model_Setting::instance().getLastDbPath();
     }
 
+    //Read news
+    getNewsRSS(g_WebsiteNewsList);
+
     /* Create the Controls for the frame */
     createMenu();
     CreateToolBar();
@@ -321,9 +324,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     //Check for new version at startup
     if (Model_Setting::instance().GetBoolSetting("UPDATECHECK", true))
         mmUpdate::checkUpdates(true,this);
-
-    //Read news
-    getNewsRSS(g_WebsiteNewsList);
 
     //Show appstart
     if (from_scratch || !dbpath.IsOk())
@@ -1591,30 +1591,39 @@ void mmGUIFrame::createMenu()
 void mmGUIFrame::CreateToolBar()
 {
     long style = wxTB_FLAT | wxTB_NODIVIDER;
-    int x = 32;
 
     toolBar_ = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style, "ToolBar");
 
-    toolBar_->AddTool(MENU_NEW, _("New"), wxBitmap(wxImage(new_xpm).Scale(x, x)), _("New Database"));
-    toolBar_->AddTool(MENU_OPEN, _("Open"), wxBitmap(wxImage(open_xpm).Scale(x, x)), _("Open Database"));
+    toolBar_->AddTool(MENU_NEW, _("New"), mmBitmap(png::NEW_DB), _("New Database"));
+    toolBar_->AddTool(MENU_OPEN, _("Open"), mmBitmap(png::OPEN), _("Open Database"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_NEWACCT, _("New Account"), wxBitmap(wxImage(newacct_xpm).Scale(x, x)), _("New Account"));
-    toolBar_->AddTool(MENU_ACCTLIST, _("Account List"), wxBitmap(wxImage(house_xpm).Scale(x, x)), _("Show Account List"));
+    toolBar_->AddTool(MENU_NEWACCT, _("New Account"), mmBitmap(png::NEW_ACC), _("New Account"));
+    toolBar_->AddTool(MENU_ACCTLIST, _("Account List"), mmBitmap(png::HOME), _("Show Account List"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), wxBitmap(wxImage(categoryedit_xpm).Scale(x, x)), _("Show Organize Categories Dialog"));
-    toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), wxBitmap(wxImage(user_edit_xpm).Scale(x, x)), _("Show Organize Payees Dialog"));
-    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), wxBitmap(wxImage(money_dollar_xpm).Scale(x, x)), _("Show Organize Currency Dialog"));
+    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmap(png::CATEGORY), _("Show Organize Categories Dialog"));
+    toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmap(png::PAYEE), _("Show Organize Payees Dialog"));
+    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), mmBitmap(png::CURR), _("Show Organize Currency Dialog"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), wxBitmap(wxImage(filter_xpm).Scale(x, x)), _("Transaction Report Filter"));
+    toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), mmBitmap(png::FILTER), _("Transaction Report Filter"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), wxBitmap(wxImage(general_report_manager_xpm).Scale(x, x)), _("General Report Manager"));
+    toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), mmBitmap(png::GRM), _("General Report Manager"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), wxBitmap(wxImage(wrench_xpm).Scale(x, x)), _("Show the Options Dialog"));
+    toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), mmBitmap(png::OPTIONS), _("Show the Options Dialog"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_NEW, _("New"), wxBitmap(wxImage(new_transaction_xpm).Scale(x, x)), _("New Transaction"));
+    toolBar_->AddTool(wxID_NEW, _("New"), mmBitmap(png::NEW_TRX), _("New Transaction"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_ABOUT, _("&About..."), wxBitmap(wxImage(about_xpm).Scale(x, x)), _("Show about dialog"));
-    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), wxBitmap(wxImage(help_xpm).Scale(x, x)), _("Show the Help file"));
+    toolBar_->AddTool(wxID_ABOUT, _("&About..."), mmBitmap(png::ABOUT), _("Show about dialog"));
+    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmap(png::HELP), _("Show the Help file"));
+
+    wxString news_array;
+    for (const auto& entry : g_WebsiteNewsList)
+        news_array += entry.Title + "\n";
+    if (news_array.empty()) news_array = _("Register/View Release &Notifications");
+    wxBitmap news_ico = (g_WebsiteNewsList.empty())
+        ? mmBitmap(png::NEWS)
+        : mmBitmap(png::NEW_NEWS);
+    toolBar_->AddSeparator();
+    toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _("News"), news_ico, news_array);
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
@@ -2281,6 +2290,7 @@ void mmGUIFrame::OnReportIssues(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 {
+    Model_Setting::instance().Set(INIDB_NEWS_LAST_READ_DATE, wxDate::Today().FormatISODate());
     wxLaunchDefaultBrowser(mmex::weblink::News);
 }
 //----------------------------------------------------------------------------

@@ -731,6 +731,12 @@
     <ClInclude Include="..\..\src\db\DB_Table_Currencyhistory_V1.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\resources\news_png.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\resources\nnews_png.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\resources\mmex.rc">

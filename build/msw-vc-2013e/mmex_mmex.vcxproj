@@ -367,6 +367,8 @@
     <ClCompile Include="..\..\src\wizard_update.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\resources\news_png.h" />
+    <ClInclude Include="..\..\resources\nnews_png.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Assets_V1.h" />

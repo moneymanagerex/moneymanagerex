@@ -68,8 +68,8 @@
             <tr valign='center'>
                 <td>
                 <SCRIPT>
-                    defCanvasWidth=312 * <TMPL_VAR HTMLSCALE> / 100;
-                    defCanvasHeight=256 * <TMPL_VAR HTMLSCALE> / 100;
+                    defCanvasWidth = 192 * <TMPL_VAR HTMLSCALE> / 100;
+                    defCanvasHeight = 192 * <TMPL_VAR HTMLSCALE> / 100;
                     document.write("<canvas id=\"reportChart\" height=\""+defCanvasHeight+"\" width=\""+defCanvasWidth+"\"></canvas>");
                     <!--canvas id="reportChart" width="312" height="256"></canvas-->
                 </SCRIPT>
@@ -168,6 +168,17 @@
     </tbody>
   </table>
 <script>
+  function createTableRowContent(rowObject, data, cellType){
+    var rowContent = document.createElement(cellType);
+    var cell = document.createTextNode(data);
+
+    rowContent.appendChild(cell);
+    return rowObject.appendChild(rowContent);
+  }
+  function createTableData(rowObject, data){
+    return createTableRowContent(rowObject, data, 'td');
+  }
+
   var stats_json = <TMPL_VAR STATISTICS>;
   var tbody = document.getElementById('stats');
   tbody.innerHTML = "";
@@ -175,7 +186,8 @@
     if (obj != 'NAME') {
     var row = document.createElement('tr');
     createTableData(row, obj);
-    createTableData(row, stats_json[obj]);
+    var second = createTableData(row, stats_json[obj]);
+    second.style.textAlign='right';
     tbody.appendChild(row); 
     } else {
       document.getElementById('stat_name').innerHTML = stats_json[obj];
@@ -203,16 +215,7 @@
           label.innerHTML = "[+]"
       }
   }
-  function createTableRowContent(rowObject, data, cellType){
-    var rowContent = document.createElement(cellType);
-    var cell = document.createTextNode(data);
 
-    rowContent.appendChild(cell);
-    rowObject.appendChild(rowContent);
-  }
-  function createTableData(rowObject, data){
-    createTableRowContent(rowObject, data, 'td');
-  }
     var toggle_json = <TMPL_VAR TOGGLES>;
       //toggleTable('BILLS_AND_DEPOSITS');
       if (!toggle_json['ACCOUNTS_INFO'] && document.getElementById('ACCOUNTS_INFO'))
