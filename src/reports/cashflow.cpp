@@ -262,7 +262,7 @@ wxString mmReportCashFlow::getHTMLText_i()
 
     //hb.addLineChart(forecastVector, "test");
     hb.addDivRow();
-    hb.addDivCol8();
+    hb.addDivCol17_67();
     hb.startTable();
     hb.startThead();
     hb.startTableRow();

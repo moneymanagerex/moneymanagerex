@@ -120,10 +120,12 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), with_date_);
 
     hb.addDivRow();
-    hb.addDivCol8();
+    hb.addDivCol17_67();
     // Add the graph
+    hb.addDivCol25_50();
     if (type_ != NONE && !valueList_.empty())
         hb.addPieChart(valueList_, "Categories");
+    hb.endDiv();
 
     hb.startTable();
     hb.startThead();

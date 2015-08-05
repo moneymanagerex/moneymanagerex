@@ -102,7 +102,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
 
     hb.addDivRow();
-    hb.addDivCol8();
+    hb.addDivCol17_67();
     hb.startTable();
     hb.startThead();
     hb.startTableRow();

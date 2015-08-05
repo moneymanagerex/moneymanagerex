@@ -68,7 +68,6 @@ wxString mmReportIncomeExpenses::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addDivContainer();
     hb.addHeader(2, this->title());
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
     hb.addDateNow();
@@ -106,16 +105,20 @@ wxString mmReportIncomeExpenses::getHTMLText()
     valueList.push_back(vt);
 
     hb.addDivRow();
-    hb.addDivCol8();
+    hb.addDivCol17_67();
     hb.startTable();
     {
         hb.startTableRow();
         {
-            hb.startTableCell();
-            hb.addBarChart("''", valueList, "BarChart");
+            hb.startTableCell(" style='vertical-align:middle' width='70%'");
+            hb.addDivCol17_67();
+            if (!valueList.empty())
+                hb.addBarChart("''", valueList, "BarChart");
+            hb.endDiv();
             hb.endTableCell();
 
-            hb.startTableCell();
+            hb.startTableCell(" style='vertical-align:middle' width='30%'");
+            hb.addDivCol17_67();
             hb.startTable();
             {
                 hb.startThead();
@@ -131,6 +134,8 @@ wxString mmReportIncomeExpenses::getHTMLText()
                 hb.addTotalRow(_("Difference:"), 2, income_expenses_pair.first - income_expenses_pair.second);
             }
             hb.endTable();
+            hb.addDivCol6();
+            hb.endDiv();
             hb.endTableCell();
         }
         hb.endTableRow();
@@ -216,7 +221,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.addHeader(3, headerMsg);
     hb.addLineBreak();
     hb.addDivRow();
-    hb.addDivCol8();
+    hb.addDivCol17_67();
 
     hb.startSortTable();
     {
