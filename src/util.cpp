@@ -37,7 +37,7 @@ void correctEmptyFileExt(const wxString& ext, wxString & fileName)
 {
     wxFileName tempFileName(fileName);
     if (tempFileName.GetExt().IsEmpty())
-        fileName += "." + ext;
+        fileName += wxFILE_SEP_EXT + ext;
 }
 
 const wxString inQuotes(const wxString& l, const wxString& delimiter)
@@ -46,7 +46,7 @@ const wxString inQuotes(const wxString& l, const wxString& delimiter)
     if (label.Contains(delimiter) || label.Contains("\""))
     {
         label.Replace("\"","\"\"", true);
-        label = wxString() << "\"" << label << "\"";
+        label.Append("\"").Prepend("\"");
     }
 
     label.Replace("\t","    ", true);

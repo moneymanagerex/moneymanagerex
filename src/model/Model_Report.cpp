@@ -269,17 +269,14 @@ wxString Model_Report::get_html(const Data* r)
 
 void Model_Report::prepareTempFolder()
 {
-    const wxString& repDir = wxFileName(mmex::getReportIndex()).GetPathWithSep();
-    const wxString& resDir = mmex::GetResourceDir().GetPathWithSep();
-    const wxString& tempDir = mmex::getTempFolder();
-    wxString repFile;
-    wxFileName::Mkdir(repDir, 511, wxPATH_MKDIR_FULL);
+    const wxString resDir = mmex::GetResourceDir().GetPathWithSep();
+    const wxString tempDir = mmex::getTempFolder();
     wxFileName::Mkdir(tempDir, 511, wxPATH_MKDIR_FULL);
     wxArrayString filesArray;
     wxDir::GetAllFiles(resDir, &filesArray);
     for (const auto& sourceFile : filesArray)
     {
-        repFile = repDir + wxFileName(sourceFile).GetFullName();
+        const wxString repFile = tempDir + wxFileName(sourceFile).GetFullName();
         if (::wxFileExists(sourceFile))
         {
             if (!::wxFileExists(repFile)
@@ -287,9 +284,10 @@ void Model_Report::prepareTempFolder()
             {
                 if (!::wxCopyFile(sourceFile, repFile))
                     wxLogError("Could not copy %s !", sourceFile);
+                else
+                    wxLogDebug("Coping file:\n %s \nto\n %s", sourceFile, repFile);
             }
         }
-        wxLogDebug("Coping file: %s to %s", sourceFile, repFile);
     }
 }
 
