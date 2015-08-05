@@ -942,7 +942,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     if (!validateData()) return;
 
     Model_Checking::Data *r = Model_Checking::instance().get(m_trx_data.TRANSID);
-    if (m_new_trx)
+    if (m_new_trx || m_duplicate)
         r = Model_Checking::instance().create();
 
     Model_Checking::putDataToTransaction(r, m_trx_data);
@@ -960,7 +960,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     }
     Model_Splittransaction::instance().update(splt, m_trx_data.TRANSID);
 
-    if (m_new_trx)
+    if (m_new_trx || m_duplicate)
 	{
 		const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 		mmAttachmentManage::RelocateAllAttachments(RefType, old_transaction_id, m_trx_data.TRANSID);
