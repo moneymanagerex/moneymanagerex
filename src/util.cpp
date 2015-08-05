@@ -18,7 +18,6 @@
 
 #include "util.h"
 #include "constants.h"
-#include "mmtextctrl.h"
 #include "validators.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
@@ -37,7 +36,7 @@ void correctEmptyFileExt(const wxString& ext, wxString & fileName)
 {
     wxFileName tempFileName(fileName);
     if (tempFileName.GetExt().IsEmpty())
-        fileName += wxFILE_SEP_EXT + ext;
+        fileName += "." + ext;
 }
 
 const wxString inQuotes(const wxString& l, const wxString& delimiter)
@@ -46,7 +45,7 @@ const wxString inQuotes(const wxString& l, const wxString& delimiter)
     if (label.Contains(delimiter) || label.Contains("\""))
     {
         label.Replace("\"","\"\"", true);
-        label.Append("\"").Prepend("\"");
+        label = wxString() << "\"" << label << "\"";
     }
 
     label.Replace("\t","    ", true);
@@ -165,7 +164,7 @@ const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 
     const wxString news_last_read_date_str = Model_Setting::instance().GetStringSetting(INIDB_NEWS_LAST_READ_DATE, "");
     wxDate news_last_read_date;
-    if (!news_last_read_date.ParseFormat(news_last_read_date_str))
+    if (!news_last_read_date.ParseISODate(news_last_read_date_str))
         news_last_read_date = wxDateTime::Today().Subtract(wxDateSpan::Year());
 
     wxXmlNode* RssRoot = RssDocument.GetRoot()->GetChildren()->GetChildren();
@@ -197,6 +196,7 @@ const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
                 }
                 News = News->GetNext();
             }
+            wxLogDebug("%s - %s", news_last_read_date.FormatISODate(), website_news.Date.FormatISODate());
             if (news_last_read_date.IsEarlierThan(website_news.Date))
                 WebsiteNewsList.push_back(website_news);
         }
@@ -405,7 +405,7 @@ void windowsFreezeThaw(wxWindow* w)
 
 IMPLEMENT_DYNAMIC_CLASS(mmCalcValidator, wxTextValidator)
 BEGIN_EVENT_TABLE(mmCalcValidator, wxTextValidator)
-    EVT_CHAR(mmCalcValidator::OnChar)
+EVT_CHAR(mmCalcValidator::OnChar)
 END_EVENT_TABLE()
 
 mmCalcValidator::mmCalcValidator() : wxTextValidator(wxFILTER_INCLUDE_CHAR_LIST)
@@ -416,43 +416,48 @@ mmCalcValidator::mmCalcValidator() : wxTextValidator(wxFILTER_INCLUDE_CHAR_LIST)
         list.Add(c);
     }
     SetIncludes(list);
+    const Model_Currency::Data *base_currency = Model_Currency::instance().GetBaseCurrency();
+    if (base_currency)
+        m_decChar = base_currency->DECIMAL_POINT[0];
 }
 
 void mmCalcValidator::OnChar(wxKeyEvent& event)
 {
     if (!m_validatorWindow)
-        return event.Skip();
+    {
+        event.Skip();
+        return;
+    }
 
     int keyCode = event.GetKeyCode();
 
     // we don't filter special keys and delete
     if (keyCode < WXK_SPACE || keyCode == WXK_DELETE || keyCode >= WXK_START)
-        return event.Skip();
+    {
+        event.Skip();
+        return;
+    }
 
-    wxString str((wxUniChar)keyCode, 1);
+    const wxString str((wxUniChar)keyCode, 1);
     if (!(wxIsdigit(str[0]) || wxString("+-.,*/ ()").Contains(str)))
     {
         if ( !wxValidator::IsSilent() )
             wxBell();
 
-        return; // eat message
+        // eat message
+        return;
     }
-    mmTextCtrl* text_field = wxDynamicCast(m_validatorWindow, mmTextCtrl);
     // only if it's a wxTextCtrl
-    if (!m_validatorWindow || !text_field)
-        return event.Skip();
-
-    wxChar decChar = text_field->currency_->DECIMAL_POINT[0];
-    bool numpad_dec_swap = (wxGetKeyState(wxKeyCode(WXK_NUMPAD_DECIMAL)) && decChar != str);
-    
-    if (numpad_dec_swap)
-        str = wxString(decChar);
-
-    // if decimal point, check if it's already in the string
-    if (str == decChar)
+    if (!m_validatorWindow || !wxDynamicCast(m_validatorWindow, wxTextCtrl))
     {
-        const wxString value = text_field->GetValue();
-        size_t ind = value.rfind(decChar);
+        event.Skip();
+        return;
+    }
+    // if decimal point, check if it's already in the string
+    if (str == '.' || str == ',')
+    {
+        const wxString value = ((wxTextCtrl*)m_validatorWindow)->GetValue();
+        size_t ind = value.rfind(m_decChar);
         if (ind < value.Length())
         {
             // check if after last decimal point there is an operation char (+-/*)
@@ -460,11 +465,16 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
                 value.find('*', ind+1) >= value.Length() && value.find('/', ind+1) >= value.Length())
                 return;
         }
+        if (str != m_decChar)
+        {
+#ifdef _MSC_VER
+            const wxChar vk = m_decChar == '.' ? 0x6e : 0xbc;
+            keybd_event(vk, 0xb3, 0, 0);
+            keybd_event(vk, 0xb3, KEYEVENTF_KEYUP, 0);
+            return;
+#endif
+        }
     }
-
-    if (numpad_dec_swap)
-        return text_field->WriteText(str);
-    else
-         event.Skip();
+    event.Skip();
 }
 #endif

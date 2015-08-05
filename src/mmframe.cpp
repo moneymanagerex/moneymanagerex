@@ -21,7 +21,9 @@
  ********************************************************/
 
 #include "mmframe.h"
-
+#include "mmex.h"
+#include "webserver.h"
+#include "dbwrapper.h"
 #include "aboutdialog.h"
 #include "accountdialog.h"
 #include "appstartdialog.h"
@@ -33,18 +35,16 @@
 #include "budgetyeardialog.h"
 #include "categdialog.h"
 #include "constants.h"
-#include "dbwrapper.h"
-#include "filtertransdialog.h"
+#include "currencydialog.h"
 #include "general_report_manager.h"
+#include "filtertransdialog.h"
 #include "images_list.h"
 #include "maincurrencydialog.h"
 #include "mmcheckingpanel.h"
-#include "mmex.h"
 #include "mmhelppanel.h"
 #include "mmhomepagepanel.h"
 #include "mmreportspanel.h"
 #include "mmSimpleDialogs.h"
-#include "mmHook.h"
 #include "optionsdialog.h"
 #include "paths.h"
 #include "payeedialog.h"
@@ -53,14 +53,6 @@
 #include "recentfiles.h"
 #include "stockspanel.h"
 #include "transdialog.h"
-#include "util.h"
-#include "webapp.h"
-#include "webappdialog.h"
-#include "webserver.h"
-#include "wizard_newdb.h"
-#include "wizard_newaccount.h"
-#include "wizard_update.h"
-
 #include "reports/budgetcategorysummary.h"
 #include "reports/budgetingperf.h"
 #include "reports/cashflow.h"
@@ -70,35 +62,37 @@
 #include "reports/htmlbuilder.h"
 #include "reports/payee.h"
 #include "reports/transactions.h"
-
 #include "import_export/qif_export.h"
 #include "import_export/qif_import_gui.h"
 #include "import_export/univcsvdialog.h"
-
-#include "model/Model_Account.h"
 #include "model/Model_Asset.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_Budget.h"
-#include "model/Model_Budgetyear.h"
-#include "model/Model_Category.h"
-#include "model/Model_Checking.h"
-#include "model/Model_CurrencyHistory.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Report.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Splittransaction.h"
 #include "model/Model_Stock.h"
 #include "model/Model_StockHistory.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Setting.h"
+#include "model/Model_Budgetyear.h"
+#include "model/Model_Account.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Checking.h"
+#include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
+#include "model/Model_Billsdeposits.h"
+#include "model/Model_Splittransaction.h"
+#include "model/Model_Budget.h"
+#include "model/Model_Report.h"
+#include "model/Model_Attachment.h"
 #include "model/Model_Usage.h"
-
 #include "search/Search.h"
-
+#include "transdialog.h"
+#include "webapp.h"
+#include "webappdialog.h"
+#include "wizard_newdb.h"
+#include "wizard_newaccount.h"
+#include "wizard_update.h"
+#include "mmHook.h"
+#include "util.h"
 #include <wx/fs_mem.h>
 #include <stack>
-
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
 #include "cajun/json/writer.h"
@@ -106,7 +100,6 @@
 /* Include XPM Support */
 
 #include "../resources/about.xpm"
-#include "../resources/accounttree.xpm"
 #include "../resources/appstart.xpm"
 #include "../resources/calendar.xpm"
 #include "../resources/car.xpm"
@@ -114,15 +107,15 @@
 #include "../resources/checkupdate.xpm"
 #include "../resources/clearlist.xpm"
 #include "../resources/clock.xpm"
+#include "../resources/general_report_manager.xpm"
 #include "../resources/delete_account.xpm"
 #include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
 #include "../resources/encrypt_db_edit.xpm"
 #include "../resources/exit.xpm"
 #include "../resources/facebook.xpm"
-#include "../resources/filter.xpm"
-#include "../resources/general_report_manager.xpm"
 #include "../resources/google_play.xpm"
+#include "../resources/filter.xpm"
 #include "../resources/help.xpm"
 #include "../resources/house.xpm"
 #include "../resources/issues.xpm"
@@ -141,6 +134,7 @@
 #include "../resources/saveas.xpm"
 #include "../resources/user_edit.xpm"
 #include "../resources/wrench.xpm"
+#include "../resources/accounttree.xpm"
 
 //----------------------------------------------------------------------------
 
@@ -282,6 +276,9 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
             dbpath = Model_Setting::instance().getLastDbPath();
     }
 
+    //Read news
+    getNewsRSS(g_WebsiteNewsList);
+
     /* Create the Controls for the frame */
     createMenu();
     CreateToolBar();
@@ -321,9 +318,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     //Check for new version at startup
     if (Model_Setting::instance().GetBoolSetting("UPDATECHECK", true))
         mmUpdate::checkUpdates(true,this);
-
-    //Read news
-    getNewsRSS(g_WebsiteNewsList);
 
     //Show appstart
     if (from_scratch || !dbpath.IsOk())
@@ -392,7 +386,7 @@ void mmGUIFrame::cleanup()
     cleanupHomePanel(false);
     ShutdownDatabase();
     /// Update the database according to user requirements
-    if (mmOptions::instance().databaseUpdated_ && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", true))
+    if (mmOptions::instance().databaseUpdated_ && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
         BackupDatabase(m_filename, true);
 }
 
@@ -1591,30 +1585,40 @@ void mmGUIFrame::createMenu()
 void mmGUIFrame::CreateToolBar()
 {
     long style = wxTB_FLAT | wxTB_NODIVIDER;
-    int x = 32;
 
     toolBar_ = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style, "ToolBar");
 
-    toolBar_->AddTool(MENU_NEW, _("New"), wxBitmap(wxImage(new_xpm).Scale(x, x)), _("New Database"));
-    toolBar_->AddTool(MENU_OPEN, _("Open"), wxBitmap(wxImage(open_xpm).Scale(x, x)), _("Open Database"));
+    toolBar_->AddTool(MENU_NEW, _("New"), mmBitmap(png::NEW_DB), _("New Database"));
+    toolBar_->AddTool(MENU_OPEN, _("Open"), mmBitmap(png::OPEN), _("Open Database"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_NEWACCT, _("New Account"), wxBitmap(wxImage(newacct_xpm).Scale(x, x)), _("New Account"));
-    toolBar_->AddTool(MENU_ACCTLIST, _("Account List"), wxBitmap(wxImage(house_xpm).Scale(x, x)), _("Show Account List"));
+    toolBar_->AddTool(MENU_NEWACCT, _("New Account"), mmBitmap(png::NEW_ACC), _("New Account"));
+    toolBar_->AddTool(MENU_ACCTLIST, _("Account List"), mmBitmap(png::HOME), _("Show Account List"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), wxBitmap(wxImage(categoryedit_xpm).Scale(x, x)), _("Show Organize Categories Dialog"));
-    toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), wxBitmap(wxImage(user_edit_xpm).Scale(x, x)), _("Show Organize Payees Dialog"));
-    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), wxBitmap(wxImage(money_dollar_xpm).Scale(x, x)), _("Show Organize Currency Dialog"));
+    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmap(png::CATEGORY), _("Show Organize Categories Dialog"));
+    toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmap(png::PAYEE), _("Show Organize Payees Dialog"));
+    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), mmBitmap(png::CURR), _("Show Organize Currency Dialog"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), wxBitmap(wxImage(filter_xpm).Scale(x, x)), _("Transaction Report Filter"));
+    toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), mmBitmap(png::FILTER), _("Transaction Report Filter"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), wxBitmap(wxImage(general_report_manager_xpm).Scale(x, x)), _("General Report Manager"));
+    toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), mmBitmap(png::GRM), _("General Report Manager"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), wxBitmap(wxImage(wrench_xpm).Scale(x, x)), _("Show the Options Dialog"));
+    toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), mmBitmap(png::OPTIONS), _("Show the Options Dialog"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_NEW, _("New"), wxBitmap(wxImage(new_transaction_xpm).Scale(x, x)), _("New Transaction"));
+    toolBar_->AddTool(wxID_NEW, _("New"), mmBitmap(png::NEW_TRX), _("New Transaction"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_ABOUT, _("&About..."), wxBitmap(wxImage(about_xpm).Scale(x, x)), _("Show about dialog"));
-    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), wxBitmap(wxImage(help_xpm).Scale(x, x)), _("Show the Help file"));
+    toolBar_->AddTool(wxID_ABOUT, _("&About..."), mmBitmap(png::ABOUT), _("Show about dialog"));
+    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmap(png::HELP), _("Show the Help file"));
+    
+    wxString news_array;
+    for (const auto& entry : g_WebsiteNewsList)
+        news_array += entry.Title + "\n";
+    if (news_array.empty()) news_array = _("Register/View Release &Notifications");
+    wxBitmap news_ico = (g_WebsiteNewsList.size() > 0) 
+        ? mmBitmap(png::NEW_NEWS) 
+        : mmBitmap(png::NEWS);
+    toolBar_->AddSeparator();
+    toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _("News"), news_ico, news_array);
+
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
@@ -1631,7 +1635,6 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Payee::instance(m_db.get()));
     m_all_models.push_back(&Model_Checking::instance(m_db.get()));
     m_all_models.push_back(&Model_Currency::instance(m_db.get()));
-    m_all_models.push_back(&Model_CurrencyHistory::instance(m_db.get()));
     m_all_models.push_back(&Model_Budgetyear::instance(m_db.get()));
     m_all_models.push_back(&Model_Subcategory::instance(m_db.get())); // subcategory must be initialized before category
     m_all_models.push_back(&Model_Category::instance(m_db.get()));
@@ -2281,6 +2284,7 @@ void mmGUIFrame::OnReportIssues(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 {
+    Model_Setting::instance().Set(INIDB_NEWS_LAST_READ_DATE, wxDate::Today().FormatISODate());
     wxLaunchDefaultBrowser(mmex::weblink::News);
 }
 //----------------------------------------------------------------------------
@@ -2476,7 +2480,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnCurrency(wxCommandEvent& /*event*/)
 {
-    mmMainCurrencyDialog(this, false,false).ShowModal();
+    mmMainCurrencyDialog(this, false).ShowModal();
     refreshPanelData();
 }
 //----------------------------------------------------------------------------
