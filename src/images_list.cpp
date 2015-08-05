@@ -156,7 +156,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
     };
 }
 
-wxBitmap mmBitmap(int ref)
+const wxBitmap mmBitmap(int ref)
 {
     int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
     int x = 16;

@@ -76,4 +76,4 @@ enum png {
 };
 
 wxImageList* navtree_images_list();
-wxBitmap mmBitmap(int ref);
+const wxBitmap mmBitmap(int ref);
