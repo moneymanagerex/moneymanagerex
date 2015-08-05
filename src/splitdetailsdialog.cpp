@@ -176,15 +176,15 @@ void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
 
 void SplitDetailDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
-    if (textAmount_->Calculate(m_currency))
-        textAmount_->GetDouble(split_.SPLITTRANSAMOUNT, m_currency);
+    if (textAmount_->Calculate())
+        textAmount_->GetDouble(split_.SPLITTRANSAMOUNT);
 
     DataToControls();
 }
 
 void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
 {
-    if (!textAmount_->checkValue(split_.SPLITTRANSAMOUNT, m_currency))
+    if (!textAmount_->checkValue(split_.SPLITTRANSAMOUNT))
         return;
 
     if (Model_Category::full_name(split_.CATEGID, split_.SUBCATEGID).empty())

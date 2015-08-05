@@ -241,9 +241,9 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
     if (!currency_symb.empty() && m_currency->CURRENCYID == -1)
         return mmErrorDialogs::InvalidSymbol(m_currencySymbol, true);
 
-    if (baseConvRate_->Calculate(m_currency, SCALE))
-        baseConvRate_->GetDouble(m_currency->BASECONVRATE, m_currency);
-    if (!baseConvRate_->checkValue(m_currency->BASECONVRATE, m_currency))
+    if (baseConvRate_->Calculate(SCALE))
+        baseConvRate_->GetDouble(m_currency->BASECONVRATE);
+    if (!baseConvRate_->checkValue(m_currency->BASECONVRATE))
         return;
     
     Model_Currency::instance().save(m_currency);
@@ -278,6 +278,6 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
 
 void mmCurrencyDialog::OnTextEntered(wxCommandEvent& event)
 {
-    if (baseConvRate_->Calculate(m_currency, SCALE))
-        baseConvRate_->GetDouble(m_currency->BASECONVRATE, m_currency);
+    if (baseConvRate_->Calculate(SCALE))
+        baseConvRate_->GetDouble(m_currency->BASECONVRATE);
 }

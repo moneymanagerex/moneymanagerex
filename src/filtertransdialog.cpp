@@ -747,18 +747,10 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran,
 
 void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
 {
-    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    Model_Account::Data *account = Model_Account::instance().get(refAccountID_);
-    if (account) currency = Model_Account::currency(account);
-
     if (event.GetId() == amountMinEdit_->GetId())
-    {
-        amountMinEdit_->Calculate(currency);
-    }
+        amountMinEdit_->Calculate();
     else if (event.GetId() == amountMaxEdit_->GetId())
-    {
-        amountMaxEdit_->Calculate(currency);
-    }
+        amountMaxEdit_->Calculate();
 }
 
 void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)

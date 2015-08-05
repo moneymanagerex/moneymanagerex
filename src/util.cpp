@@ -18,6 +18,7 @@
 
 #include "util.h"
 #include "constants.h"
+#include "mmtextctrl.h"
 #include "validators.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
@@ -404,7 +405,7 @@ void windowsFreezeThaw(wxWindow* w)
 
 IMPLEMENT_DYNAMIC_CLASS(mmCalcValidator, wxTextValidator)
 BEGIN_EVENT_TABLE(mmCalcValidator, wxTextValidator)
-EVT_CHAR(mmCalcValidator::OnChar)
+    EVT_CHAR(mmCalcValidator::OnChar)
 END_EVENT_TABLE()
 
 mmCalcValidator::mmCalcValidator() : wxTextValidator(wxFILTER_INCLUDE_CHAR_LIST)
@@ -415,48 +416,43 @@ mmCalcValidator::mmCalcValidator() : wxTextValidator(wxFILTER_INCLUDE_CHAR_LIST)
         list.Add(c);
     }
     SetIncludes(list);
-    const Model_Currency::Data *base_currency = Model_Currency::instance().GetBaseCurrency();
-    if (base_currency)
-        m_decChar = base_currency->DECIMAL_POINT[0];
 }
 
 void mmCalcValidator::OnChar(wxKeyEvent& event)
 {
     if (!m_validatorWindow)
-    {
-        event.Skip();
-        return;
-    }
+        return event.Skip();
 
     int keyCode = event.GetKeyCode();
 
     // we don't filter special keys and delete
     if (keyCode < WXK_SPACE || keyCode == WXK_DELETE || keyCode >= WXK_START)
-    {
-        event.Skip();
-        return;
-    }
+        return event.Skip();
 
-    const wxString str((wxUniChar)keyCode, 1);
+    wxString str((wxUniChar)keyCode, 1);
     if (!(wxIsdigit(str[0]) || wxString("+-.,*/ ()").Contains(str)))
     {
         if ( !wxValidator::IsSilent() )
             wxBell();
 
-        // eat message
-        return;
+        return; // eat message
     }
+    mmTextCtrl* text_field = wxDynamicCast(m_validatorWindow, mmTextCtrl);
     // only if it's a wxTextCtrl
-    if (!m_validatorWindow || !wxDynamicCast(m_validatorWindow, wxTextCtrl))
-    {
-        event.Skip();
-        return;
-    }
+    if (!m_validatorWindow || !text_field)
+        return event.Skip();
+
+    wxChar decChar = text_field->currency_->DECIMAL_POINT[0];
+    bool numpad_dec_swap = (wxGetKeyState(wxKeyCode(WXK_NUMPAD_DECIMAL)) && decChar != str);
+    
+    if (numpad_dec_swap)
+        str = wxString(decChar);
+
     // if decimal point, check if it's already in the string
-    if (str == '.' || str == ',')
+    if (str == decChar)
     {
-        const wxString value = ((wxTextCtrl*)m_validatorWindow)->GetValue();
-        size_t ind = value.rfind(m_decChar);
+        const wxString value = text_field->GetValue();
+        size_t ind = value.rfind(decChar);
         if (ind < value.Length())
         {
             // check if after last decimal point there is an operation char (+-/*)
@@ -464,16 +460,11 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
                 value.find('*', ind+1) >= value.Length() && value.find('/', ind+1) >= value.Length())
                 return;
         }
-        if (str != m_decChar)
-        {
-#ifdef _MSC_VER
-            const wxChar vk = m_decChar == '.' ? 0x6e : 0xbc;
-            keybd_event(vk, 0xb3, 0, 0);
-            keybd_event(vk, 0xb3, KEYEVENTF_KEYUP, 0);
-            return;
-#endif
-        }
     }
-    event.Skip();
+
+    if (numpad_dec_swap)
+        return text_field->WriteText(str);
+    else
+         event.Skip();
 }
 #endif

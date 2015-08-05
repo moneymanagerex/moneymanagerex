@@ -86,9 +86,7 @@ void mmAssetDialog::dataToControls()
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
     m_value->SetValue(m_asset->VALUE);
 
-    wxString valueChangeRate;
-    valueChangeRate.Printf("%.3f", m_asset->VALUECHANGERATE);
-    m_valueChangeRate->SetValue(valueChangeRate);
+    m_valueChangeRate->SetValue(m_asset->VALUECHANGERATE, 3);
 
     m_valueChange->SetSelection(Model_Asset::rate(m_asset));
     enableDisableRate(Model_Asset::rate(m_asset) != Model_Asset::RATE_NONE);
@@ -163,7 +161,7 @@ void mmAssetDialog::CreateControls()
     m_valueChange->SetSelection(Model_Asset::RATE_NONE);
     itemFlexGridSizer6->Add(m_valueChange, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-    m_valueChangeRateLabel = new wxStaticText( itemPanel5, wxID_STATIC, _("% Rate"));
+    m_valueChangeRateLabel = new wxStaticText(itemPanel5, wxID_STATIC, _("% Rate"));
     itemFlexGridSizer6->Add(m_valueChangeRateLabel, g_flags);
 
     m_valueChangeRate = new mmTextCtrl(itemPanel5, IDC_RATE, wxGetEmptyString()
@@ -171,7 +169,7 @@ void mmAssetDialog::CreateControls()
         , mmCalcValidator());
     m_valueChangeRate->SetToolTip(_("Enter the rate at which the asset changes its value in % per year"));
     itemFlexGridSizer6->Add(m_valueChangeRate, g_flags);
-    m_valueChangeRate->Connect(IDC_RATE, IDC_RATE
+    m_valueChangeRate->Connect(IDC_RATE, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmAssetDialog::onTextEntered), nullptr, this);
     enableDisableRate(false);
 
@@ -314,17 +312,13 @@ void mmAssetDialog::changeFocus(wxChildFocusEvent& event)
 
 void mmAssetDialog::onTextEntered(wxCommandEvent& event)
 {
-    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     if (event.GetId() == m_value->GetId())
     {
-        m_value->Calculate(currency);
+        m_value->Calculate();
     }
     else if (event.GetId() == m_valueChangeRate->GetId())
     {
-        mmCalculator calc;
-        if (calc.is_ok(Model_Currency::fromString2Default(m_valueChangeRate->GetValue(), currency)))
-            m_valueChangeRate->SetValue(wxString::Format("%.3f", calc.get_result()));
-        m_valueChangeRate->SetInsertionPoint(m_valueChangeRate->GetValue().Len());
+        m_valueChangeRate->Calculate(3);
     }
 
     event.Skip();

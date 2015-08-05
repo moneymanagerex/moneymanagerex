@@ -169,13 +169,13 @@ void mmTransDialog::dataToControls()
             if (!m_advanced)
                 m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT 
                     * (m_to_currency ? m_currency->BASECONVRATE / m_to_currency->BASECONVRATE : 1);
-            toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT, m_currency);
+            toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT);
         }
         else
             toTextAmount_->ChangeValue("");
 
         if (m_trx_data.TRANSID != -1)
-            textAmount_->SetValue(m_trx_data.TRANSAMOUNT, m_currency);
+            textAmount_->SetValue(m_trx_data.TRANSAMOUNT);
         skip_amount_init_ = true;
     }
 
@@ -502,7 +502,7 @@ void mmTransDialog::CreateControls()
 
 bool mmTransDialog::validateData()
 {
-    if (!textAmount_->checkValue(m_trx_data.TRANSAMOUNT, m_currency))
+    if (!textAmount_->checkValue(m_trx_data.TRANSAMOUNT))
         return false;
 
     Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
@@ -565,7 +565,7 @@ bool mmTransDialog::validateData()
         
         if (m_advanced)
         {
-            if (!toTextAmount_->checkValue(m_trx_data.TOTRANSAMOUNT, m_currency))
+            if (!toTextAmount_->checkValue(m_trx_data.TOTRANSAMOUNT))
                 return false;
         }
         m_trx_data.PAYEEID = -1;
@@ -652,8 +652,8 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         textAmount_->SelectAll();
     else 
     {
-        if (textAmount_->Calculate(m_currency)) 
-            textAmount_->GetDouble(m_trx_data.TRANSAMOUNT, m_currency);
+        if (textAmount_->Calculate()) 
+            textAmount_->GetDouble(m_trx_data.TRANSAMOUNT);
         skip_amount_init_ = false;
     }
 
@@ -661,8 +661,8 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         toTextAmount_->SelectAll();
     else 
     {
-        if (toTextAmount_->Calculate(m_currency))
-            toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT, m_currency);
+        if (toTextAmount_->Calculate())
+            toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
     }
 
     dataToControls();
@@ -673,7 +673,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
 {
     bool bDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
 
-    if (!textAmount_->GetDouble(m_trx_data.TRANSAMOUNT, m_currency))
+    if (!textAmount_->GetDouble(m_trx_data.TRANSAMOUNT))
         m_trx_data.TRANSAMOUNT = 0;
 
     if (!Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID).empty() && local_splits.empty())
@@ -895,13 +895,13 @@ void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
     if (object_in_focus_ == textAmount_->GetId()) 
     {
-        if (textAmount_->Calculate(m_currency))
-            textAmount_->GetDouble(m_trx_data.TRANSAMOUNT, m_currency);
+        if (textAmount_->Calculate())
+            textAmount_->GetDouble(m_trx_data.TRANSAMOUNT);
         skip_amount_init_ = false;
         dataToControls();
     }
     else if (object_in_focus_ == toTextAmount_->GetId())
-        toTextAmount_->Calculate(m_currency);
+        toTextAmount_->Calculate();
     else if (object_in_focus_ == textNumber_->GetId())
         textNotes_->SetFocus();
 
