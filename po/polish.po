@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-15 14:42+0300\n"
-"PO-Revision-Date: 2015-03-15 14:42+0300\n"
-"Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
+"PO-Revision-Date: 2015-08-02 09:11+0200\n"
+"Last-Translator: Damian Bargieł <dmjb@wp.pl>\n"
 "Language-Team: TheZeal Software\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Launchpad-Export-Date: 2011-10-25 16:24+0000\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.8.3\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
@@ -69,12 +69,12 @@ msgstr "Sponsorzy"
 msgid "License"
 msgstr "Licencja"
 
-#: src/aboutdialog.cpp:225 src/accountdialog.cpp:284
-#: src/appstartdialog.cpp:136 src/assetdialog.cpp:196
-#: src/attachmentdialog.cpp:119 src/billsdepositsdialog.cpp:617
-#: src/budgetentrydialog.cpp:156 src/budgetyeardialog.cpp:115
-#: src/budgetyearentrydialog.cpp:124 src/filtertransdialog.cpp:340
-#: src/import_export/qif_export.cpp:208 src/import_export/qif_export.cpp:232
+#: src/aboutdialog.cpp:225 src/accountdialog.cpp:284 src/appstartdialog.cpp:136
+#: src/assetdialog.cpp:196 src/attachmentdialog.cpp:119
+#: src/billsdepositsdialog.cpp:617 src/budgetentrydialog.cpp:156
+#: src/budgetyeardialog.cpp:115 src/budgetyearentrydialog.cpp:124
+#: src/filtertransdialog.cpp:340 src/import_export/qif_export.cpp:208
+#: src/import_export/qif_export.cpp:232
 #: src/import_export/qif_import_gui.cpp:271 src/mmSimpleDialogs.cpp:51
 #: src/optionsdialog.cpp:149 src/payeedialog.cpp:130
 #: src/relocatecategorydialog.cpp:114 src/relocatepayeedialog.cpp:111
@@ -174,11 +174,11 @@ msgstr "Organizuj załączniki do tej transakcji"
 #: src/import_export/qif_export.cpp:234
 #: src/import_export/qif_import_gui.cpp:272
 #: src/import_export/univcsvdialog.cpp:327 src/maincurrencydialog.cpp:202
-#: src/mmSimpleDialogs.cpp:53 src/optionsdialog.cpp:151
-#: src/payeedialog.cpp:131 src/relocatecategorydialog.cpp:115
-#: src/relocatepayeedialog.cpp:112 src/reports/reportbase.cpp:78
-#: src/splitdetailsdialog.cpp:148 src/splittransactionsdialog.cpp:177
-#: src/transdialog.cpp:474 src/webappdialog.cpp:99
+#: src/mmSimpleDialogs.cpp:53 src/optionsdialog.cpp:151 src/payeedialog.cpp:131
+#: src/relocatecategorydialog.cpp:115 src/relocatepayeedialog.cpp:112
+#: src/reports/reportbase.cpp:78 src/splitdetailsdialog.cpp:148
+#: src/splittransactionsdialog.cpp:177 src/transdialog.cpp:474
+#: src/webappdialog.cpp:99
 msgid "&Cancel "
 msgstr "Anuluj"
 
@@ -377,7 +377,6 @@ msgid "% Rate"
 msgstr "% Kurs"
 
 #: src/assetdialog.cpp:172
-#, fuzzy, c-format
 msgid "Enter the rate at which the asset changes its value in % per year"
 msgstr "Wprowadź stopę zmiany wartości aktywów w % na rok"
 
@@ -393,7 +392,7 @@ msgstr "Wprowadź notatki powiązane z tymi aktywami"
 #: src/budgetingpanel.cpp:314 src/mmcheckingpanel.cpp:975
 #: src/stockspanel.cpp:92
 msgid "Icon"
-msgstr ""
+msgstr "Ikona"
 
 #: src/assetspanel.cpp:69 src/billsdepositspanel.cpp:108
 #: src/mmcheckingpanel.cpp:976 src/stockspanel.cpp:93
@@ -593,7 +592,7 @@ msgstr "Organizuj załączniki: Dodaj załącznik"
 
 #: src/attachmentdialog.cpp:218
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Wprowadż nowy opis dla załącznika:"
 
 #: src/attachmentdialog.cpp:219
 msgid "Organize Attachments: Edit Attachment"
@@ -685,15 +684,15 @@ msgstr "Niepowodzenie otwarcia załącznika."
 
 #: src/billsdepositsdialog.cpp:117
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Nowa transakcja cykliczna"
 
 #: src/billsdepositsdialog.cpp:137
 msgid " Edit Recurring Transaction"
-msgstr ""
+msgstr "Edytuj transakcję cykliczną"
 
 #: src/billsdepositsdialog.cpp:141
 msgid " Enter Recurring Transaction"
-msgstr ""
+msgstr "Wprowadź transakcję cykliczną"
 
 #: src/billsdepositsdialog.cpp:288
 msgid "Note: Split transactions not set"
@@ -796,11 +795,11 @@ msgstr "Data płatności"
 
 #: src/billsdepositsdialog.cpp:360
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Szczegóły transakcji cyklicznej"
 
 #: src/billsdepositsdialog.cpp:381
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Określ termin zapłaty należności"
 
 #: src/billsdepositsdialog.cpp:385
 msgid "Retard or advance the date of the 'next occurrence"
@@ -828,11 +827,11 @@ msgstr "Ilość powtórzeń"
 
 #: src/billsdepositsdialog.cpp:432
 msgid "Set to 'Auto Execute' on the next Pay Date."
-msgstr ""
+msgstr "Ustaw 'Wykonanie automatyczne' przy następnej dacie."
 
 #: src/billsdepositsdialog.cpp:433
 msgid "Set 'Auto Execute' with manual user acknowledgement."
-msgstr ""
+msgstr "Ustaw 'Wykonanie automatyczne' z ręcznym potwierdzeniem."
 
 #: src/billsdepositsdialog.cpp:436
 msgid "Set 'Auto Execute' without user acknowlegement."
@@ -852,11 +851,11 @@ msgstr "Określ datę transakcji"
 
 #: src/billsdepositsdialog.cpp:466
 msgid "Reset date to the Due Date"
-msgstr ""
+msgstr "Resetuj datę do daty należności"
 
 #: src/billsdepositsdialog.cpp:473
 msgid "Pay Date"
-msgstr ""
+msgstr "Data płatności"
 
 #: src/billsdepositsdialog.cpp:483 src/filtertransdialog.cpp:247
 #: src/transdialog.cpp:1036
@@ -924,7 +923,7 @@ msgstr "Wybierz konto"
 
 #: src/billsdepositsdialog.cpp:543
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "Określ konto dla transakcji cyklicznej"
 
 #: src/billsdepositsdialog.cpp:546 src/billsdepositsdialog.cpp:850
 #: src/billsdepositspanel.cpp:112 src/filtertransdialog.cpp:204
@@ -984,7 +983,7 @@ msgstr "Numer"
 
 #: src/billsdepositsdialog.cpp:589
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "Organizuj załączniki transakcji cyklicznej"
 
 #: src/billsdepositsdialog.cpp:593 src/transdialog.cpp:446
 msgid "Select one of the frequently used notes"
@@ -1119,7 +1118,7 @@ msgstr ""
 #: src/billsdepositspanel.cpp:222 src/billsdepositspanel.cpp:899
 #: src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Transakcje cykliczne"
 
 #: src/billsdepositspanel.cpp:239 src/filtertransdialog.cpp:96
 #: src/mmcheckingpanel.cpp:387
@@ -1152,7 +1151,7 @@ msgstr "Pomiń"
 
 #: src/billsdepositspanel.cpp:304
 msgid "Skip Next Bills & Deposit Occurrence"
-msgstr "Pomiń wystąpienie transakcji powtarzanej"
+msgstr "Pomiń wystąpienie transakcji cyklicznej"
 
 #: src/billsdepositspanel.cpp:416
 msgid "Enter next Occurrence..."
@@ -1940,7 +1939,7 @@ msgstr "Zmień grupę"
 
 #: src/general_report_manager.cpp:674
 msgid "Rename Group"
-msgstr ""
+msgstr "Zmień nazwę grupy"
 
 #: src/general_report_manager.cpp:675
 msgid "UnGroup"
@@ -1969,19 +1968,19 @@ msgstr "Skasuj raport o tytule:"
 
 #: src/general_report_manager.cpp:822 src/general_report_manager.cpp:900
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "Wprowadź lub wybierz nazwę dla nowej grupy raportów"
 
 #: src/general_report_manager.cpp:823
 msgid "Change report group"
-msgstr ""
+msgstr "Zmień grupę raportów"
 
 #: src/general_report_manager.cpp:839
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "Wprowadź lub wybierz nazwę dla nowej grupy"
 
 #: src/general_report_manager.cpp:840
 msgid "Rename group"
-msgstr ""
+msgstr "Zmień nazwę grupy"
 
 #: src/general_report_manager.cpp:901
 msgid "Add Report Group"
@@ -2009,8 +2008,7 @@ msgstr "Eksport QIF"
 msgid "Parameters"
 msgstr "Parametry"
 
-#: src/import_export/qif_export.cpp:99
-#: src/import_export/qif_import_gui.cpp:193
+#: src/import_export/qif_export.cpp:99 src/import_export/qif_import_gui.cpp:193
 msgid "Log"
 msgstr "Dziennik"
 
@@ -2038,8 +2036,7 @@ msgid "To Date"
 msgstr "Do daty"
 
 #: src/import_export/qif_export.cpp:156
-#: src/import_export/qif_import_gui.cpp:137
-#: src/mmOptionGeneralSettings.cpp:110
+#: src/import_export/qif_import_gui.cpp:137 src/mmOptionGeneralSettings.cpp:110
 msgid "Date Format"
 msgstr "Format daty"
 
@@ -2058,8 +2055,7 @@ msgstr "Nazwa pliku: "
 msgid "Choose &file"
 msgstr "Wybierz plik"
 
-#: src/import_export/qif_export.cpp:194
-#: src/import_export/univcsvdialog.cpp:340
+#: src/import_export/qif_export.cpp:194 src/import_export/univcsvdialog.cpp:340
 msgid "Clear"
 msgstr "Wyczyść"
 
@@ -2081,8 +2077,7 @@ msgstr "Pliki CSV"
 msgid "Choose QIF data file to Export"
 msgstr "Wybierz plik danych QIF do importu"
 
-#: src/import_export/qif_export.cpp:279
-#: src/import_export/univcsvdialog.cpp:153
+#: src/import_export/qif_export.cpp:279 src/import_export/univcsvdialog.cpp:153
 #: src/import_export/univcsvdialog.cpp:1185
 msgid "Choose CSV data file to Export"
 msgstr "Wybierz plik CSV do eksportu"
@@ -2567,8 +2562,7 @@ msgstr "Każdy typ OS (Win,Mac,Unix) ma własny folder załączników"
 msgid "Browse for folder"
 msgstr "Wyszukaj folder"
 
-#: src/mmOptionAttachmentSettings.cpp:91
-#: src/mmOptionAttachmentSettings.cpp:231
+#: src/mmOptionAttachmentSettings.cpp:91 src/mmOptionAttachmentSettings.cpp:231
 msgid "Real path:"
 msgstr "Rzeczywista ścieżka:"
 
@@ -3212,7 +3206,7 @@ msgstr "Pokaż podział kategorii"
 
 #: src/mmcheckingpanel.cpp:1109
 msgid "Create Reoccuring T&ransaction"
-msgstr "Utwórz t&ransakcje powtarzane"
+msgstr "Utwórz t&ransakcję cykliczną"
 
 #: src/mmcheckingpanel.cpp:1114
 msgid "Hide Deleted (Void)"
@@ -3618,7 +3612,7 @@ msgstr "Ustawienie &budżetu"
 
 #: src/mmframe.cpp:1485
 msgid "&Recurring Transactions"
-msgstr ""
+msgstr "&Transakcje cykliczne"
 
 #: src/mmframe.cpp:1485
 msgid "Bills && Deposits"
@@ -4242,11 +4236,11 @@ msgstr "SUMA OGÓLNA: "
 
 #: src/mmpanelbase.cpp:123
 msgid "Hide/Show Columns"
-msgstr ""
+msgstr "Pokaż/Ukryj kolumny"
 
 #: src/mmpanelbase.cpp:124
 msgid "Hide this column"
-msgstr ""
+msgstr "Ukryj tę kolumnę"
 
 #: src/mmpanelbase.cpp:126
 msgid "Order by this column"
@@ -4254,7 +4248,7 @@ msgstr "Uporządkuj z pomocą tej kolumny"
 
 #: src/mmpanelbase.cpp:127
 msgid "Reset columns"
-msgstr ""
+msgstr "Resetuj kolumny"
 
 #: src/mmreportspanel.cpp:191
 msgid "REPORTS"
@@ -4659,12 +4653,12 @@ msgstr "Wpisy znaleziono w dzielonych transakcach: %i"
 #: src/relocatecategorydialog.cpp:188
 #, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr ""
+msgstr "Rekordy znalezione w transakcjach cyklicznych: %i"
 
 #: src/relocatecategorydialog.cpp:189
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr ""
+msgstr "Rekordy znalezione w transakcjach cyklicznych z podziałem: %i"
 
 #: src/relocatecategorydialog.cpp:190
 #, c-format
@@ -5962,7 +5956,6 @@ msgstr ""
 "Przykład: wciśnięcie 'ho' wybierze 'Homeneeds', 'Home', 'House Tax', etc..."
 
 #: src/mmTips.h:37
-#, fuzzy, c-format
 msgid ""
 "Tip to get out of debt: Pay yourself 10% first. Put this into an account "
 "that is hard to touch. Make sure it is a chore to get the money out (you "
@@ -6037,103 +6030,3 @@ msgstr "Raport beneficjentów"
 #, c-format
 msgid "Payee Report - %s"
 msgstr "Raport beneficjentów - %s"
-
-#~ msgid "New Repeating Transaction"
-#~ msgstr "Nowa transakcja powtarzana"
-
-#~ msgid " Edit Repeating Transaction"
-#~ msgstr "Edytuj transakcję powtarzaną"
-
-#~ msgid " Enter Repeating Transaction"
-#~ msgstr "Wprowadź transakcję powtarzaną"
-
-#~ msgid "Repeating Transaction Details"
-#~ msgstr "Szczegóły transakcji powtarzanych"
-
-#~ msgid "Specify the Account that will own the repeating transaction"
-#~ msgstr "Określ konto dla transakcji powtarzanej"
-
-#~ msgid "Organize attachments of this repeating transaction"
-#~ msgstr "Organizuj załączniki dla tej transakcji powtarzanej"
-
-#~ msgid "Repeating Transactions"
-#~ msgstr "Transakcje powtarzane"
-
-#~ msgid "&Repeating Transactions"
-#~ msgstr "T&ransakcje powtarzane"
-
-#~ msgid "Records found in repeating transactions: %i"
-#~ msgstr "Wpisy znaleziono w transakcach powtarzanych: %i"
-
-#~ msgid "Records found in repeating split transactions: %i"
-#~ msgstr "Zapis znaleziony w powtarzanych, dzielonych transakcjach: %i"
-
-#~ msgid "Hide column"
-#~ msgstr "Ukryj  kulumnę"
-
-#~ msgid "Reset columns size"
-#~ msgstr "Resetuj szerokość kolumn"
-
-#~ msgid "Modify the description for the attachment:"
-#~ msgstr "Modyfikuj opis załącznika:"
-
-#~ msgid "Specify the date of the next bill or deposit"
-#~ msgstr "Określ datę następnej płatności lub depozytu"
-
-#~ msgid "Set to 'Auto Execute' on the 'Next Occurrence' date."
-#~ msgstr "Wykonaj transakcję automatycznie dla daty następnego wystąpienia."
-
-#~ msgid "Automatic Execution will require user acknowledgement."
-#~ msgstr "Wykonanie automatyczne będzie wymagało potwierdzenia użytkownika."
-
-#~ msgid "Enter the name for the new report group"
-#~ msgstr "Wprowadź nazwę nowej grupy raportów"
-
-#~ msgid "May "
-#~ msgstr "Maj"
-
-#~ msgid "Calendar"
-#~ msgstr "Kalendarz"
-
-#~ msgid "Next Occurrence"
-#~ msgstr "Następne wystąpienie"
-
-#~ msgid "Next Due Date"
-#~ msgstr "Następna data płatności"
-
-#~ msgid "Remaining Days"
-#~ msgstr "Pozostało dni"
-
-#~ msgid "Row(s) returned: %i Duration: %ld ms"
-#~ msgstr "Zwrócono wiersz(y): %i Czas: %ld ms"
-
-#~ msgid ""
-#~ "Changing all payees of: %s \n"
-#~ "\n"
-#~ " to payee: %s"
-#~ msgstr ""
-#~ "Zmiana wszyskich beneficjentów: %s \n"
-#~ "\n"
-#~ " na beneficjenta: %s"
-
-#~ msgid "New version of MMEX is available"
-#~ msgstr "Dostepna jest nowa wersja MMEX."
-
-#~ msgid "Your current version is: %s"
-#~ msgstr "Twoja obecna wersja to: %s"
-
-#~ msgid "New version is: %s"
-#~ msgstr "Nowa wersja to: %s"
-
-#~ msgid "Would you like to download it now ?"
-#~ msgstr "Czy chcesz ją teraz pobrać?"
-
-#~ msgid "WebApp API version -> %s"
-#~ msgstr "Wersja API WebApp -> %s"
-
-#~ msgid ""
-#~ "Transaction will be inserted with the first bank account:\n"
-#~ "'%s' and marked as 'Follow Up'"
-#~ msgstr ""
-#~ "Transakcje zostaną wprowadzone do pierwszego konta bankowego: \n"
-#~ "'%s' i oznaczone jako 'Do wyjaśnienia'"

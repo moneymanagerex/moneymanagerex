@@ -46,11 +46,14 @@ Indonesian
 Italian
 -- Maurizio [Mau13]
 -- Claudio
+Lithuanian
+-- akmc
 Norwegian
 -- Fredrik Strand, Torbjorn Kvande
 Polish
 -- Damian_pl
--- Andrzej 
+-- Andrzej
+-- Jerzy Machnicki 
 Portuguese (Portugal)
 -- Fatela
 Romanian
@@ -160,6 +163,11 @@ http://www.famfamfam.com/lab/icons/silk
 48. Patrick Eigensatz
 49. Adam Gallagher
 50. Josef Remes
+51. Terence Hughes
+52. Vincent Sinha
+53. Aliaksandr Vareika
+54. Neo Affinis S.L.
+55. Style Scissors
 
 2014
 1. [CodeLathe LLC](http://www.tonido.com/)
