@@ -450,7 +450,9 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
 
     Model_Category::Data* category = Model_Category::instance().get(categID_);
     Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
-    dlg.setTreeSelection(category ? category->CATEGNAME : "", sub_category ? sub_category->SUBCATEGNAME : "");
+    int categID = category ? category->CATEGID : -1;
+    int subcategID = sub_category ? sub_category->SUBCATEGID : -1;
+    dlg.setTreeSelection(categID, subcategID);
 
     if (dlg.ShowModal() == wxID_OK)
     {

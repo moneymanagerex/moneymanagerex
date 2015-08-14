@@ -56,7 +56,6 @@ public:
         , const wxSize& size
         , long style);
 
-    void setTreeSelection(const wxString& catName, const wxString& subCatName);
     void setTreeSelection(int &category_id, int &subcategory_id);
     int getCategId()
     {
@@ -91,6 +90,7 @@ private:
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
     bool categShowStatus(int categId, int subCategId);
+    void setTreeSelection(const wxString& catName, const wxString& subCatName);
 
     wxTreeCtrl* m_treeCtrl;
     wxTextCtrl* m_textCtrl;
@@ -108,6 +108,8 @@ private:
     bool bEnableRelocate_;
     int categID_;
     int subcategID_;
+    int InitSelectedcategID_;
+    int InitSelectedsubcategID_;
     wxColour NormalColor_;
     wxArrayString hidden_categs_;
     bool refreshRequested_;

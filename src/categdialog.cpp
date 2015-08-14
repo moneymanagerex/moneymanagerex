@@ -57,6 +57,8 @@ mmCategDialog::mmCategDialog()
     // Initialize fields in constructor
     categID_ = -1;
     subcategID_ = -1;
+    InitSelectedcategID_ = -1;
+    InitSelectedsubcategID_ = -1;
     selectedItemId_ = 0;
     bEnableSelect_ = false;
     bEnableRelocate_ = false;
@@ -69,6 +71,8 @@ mmCategDialog::mmCategDialog(wxWindow* parent
     // Initialize fields in constructor
     categID_ = -1;
     subcategID_ = -1;
+    InitSelectedcategID_ = -1;
+    InitSelectedsubcategID_ = -1;
     selectedItemId_ = 0;
     bEnableSelect_ = bEnableSelect;
     bEnableRelocate_ = bEnableRelocate;
@@ -329,14 +333,14 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
 
     if (subcategID == -1)
     {
-        if (Model_Category::is_used(categID))
+        if (Model_Category::is_used(categID) || categID == InitSelectedcategID_)
             return showCategDialogDeleteError();
         else
             Model_Category::instance().remove(categID);
     }
     else
     {
-        if (Model_Category::is_used(categID, subcategID))
+        if (Model_Category::is_used(categID, subcategID) || ((categID == InitSelectedcategID_) && (subcategID == InitSelectedsubcategID_)))
             return showCategDialogDeleteError(false);
         else
             Model_Subcategory::instance().remove(subcategID);
@@ -522,8 +526,16 @@ void mmCategDialog::setTreeSelection(int &category_id, int &subcategory_id)
         Model_Category::Data *category = Model_Category::instance().get(category_id);
         Model_Subcategory::Data *subcategory = (subcategory_id != -1 ? Model_Subcategory::instance().get(subcategory_id) : 0);
         wxString categoryName = "", subCategoryName = "";
-        if (category) categoryName = category->CATEGNAME;
-        if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
+        if (category)
+        {
+            InitSelectedcategID_ = category_id;
+            categoryName = category->CATEGNAME;
+        }
+        if (subcategory)
+        {
+            InitSelectedsubcategID_ = subcategory_id;
+            subCategoryName = subcategory->SUBCATEGNAME;
+        }
         setTreeSelection(categoryName, subCategoryName);
     }
 }
