@@ -37,7 +37,7 @@ void correctEmptyFileExt(const wxString& ext, wxString & fileName)
 {
     wxFileName tempFileName(fileName);
     if (tempFileName.GetExt().IsEmpty())
-        fileName += wxFILE_SEP_EXT + ext;
+        fileName += "." + ext;
 }
 
 const wxString inQuotes(const wxString& l, const wxString& delimiter)
@@ -46,7 +46,7 @@ const wxString inQuotes(const wxString& l, const wxString& delimiter)
     if (label.Contains(delimiter) || label.Contains("\""))
     {
         label.Replace("\"","\"\"", true);
-        label.Append("\"").Prepend("\"");
+        label = wxString() << "\"" << label << "\"";
     }
 
     label.Replace("\t","    ", true);
@@ -165,7 +165,7 @@ const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 
     const wxString news_last_read_date_str = Model_Setting::instance().GetStringSetting(INIDB_NEWS_LAST_READ_DATE, "");
     wxDate news_last_read_date;
-    if (!news_last_read_date.ParseFormat(news_last_read_date_str))
+    if (!news_last_read_date.ParseISODate(news_last_read_date_str))
         news_last_read_date = wxDateTime::Today().Subtract(wxDateSpan::Year());
 
     wxXmlNode* RssRoot = RssDocument.GetRoot()->GetChildren()->GetChildren();
@@ -197,6 +197,7 @@ const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
                 }
                 News = News->GetNext();
             }
+            wxLogDebug("%s - %s", news_last_read_date.FormatISODate(), website_news.Date.FormatISODate());
             if (news_last_read_date.IsEarlierThan(website_news.Date))
                 WebsiteNewsList.push_back(website_news);
         }
@@ -397,7 +398,6 @@ void windowsFreezeThaw(wxWindow* w)
         w->Freeze();
 }
 
-#if 1
 // ----------------------------------------------------------------------------
 // mmCalcValidator
 // Same as previous, but substitute dec char according to currency configuration
@@ -405,7 +405,7 @@ void windowsFreezeThaw(wxWindow* w)
 
 IMPLEMENT_DYNAMIC_CLASS(mmCalcValidator, wxTextValidator)
 BEGIN_EVENT_TABLE(mmCalcValidator, wxTextValidator)
-    EVT_CHAR(mmCalcValidator::OnChar)
+EVT_CHAR(mmCalcValidator::OnChar)
 END_EVENT_TABLE()
 
 mmCalcValidator::mmCalcValidator() : wxTextValidator(wxFILTER_INCLUDE_CHAR_LIST)
@@ -429,6 +429,7 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
     if (keyCode < WXK_SPACE || keyCode == WXK_DELETE || keyCode >= WXK_START)
         return event.Skip();
 
+
     wxString str((wxUniChar)keyCode, 1);
     if (!(wxIsdigit(str[0]) || wxString("+-.,*/ ()").Contains(str)))
     {
@@ -437,8 +438,8 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
 
         return; // eat message
     }
-    mmTextCtrl* text_field = wxDynamicCast(m_validatorWindow, mmTextCtrl);
     // only if it's a wxTextCtrl
+    mmTextCtrl* text_field = wxDynamicCast(m_validatorWindow, mmTextCtrl);
     if (!m_validatorWindow || !text_field)
         return event.Skip();
 
@@ -449,15 +450,15 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
         str = wxString(decChar);
 
     // if decimal point, check if it's already in the string
-    if (str == decChar)
+    if (str == '.' || str == ',')
     {
         const wxString value = text_field->GetValue();
         size_t ind = value.rfind(decChar);
         if (ind < value.Length())
         {
             // check if after last decimal point there is an operation char (+-/*)
-            if (value.find('+', ind+1) >= value.Length() && value.find('-', ind+1) >= value.Length() &&
-                value.find('*', ind+1) >= value.Length() && value.find('/', ind+1) >= value.Length())
+            if (value.find('+', ind + 1) >= value.Length() && value.find('-', ind + 1) >= value.Length() &&
+                value.find('*', ind + 1) >= value.Length() && value.find('/', ind + 1) >= value.Length())
                 return;
         }
     }
@@ -465,6 +466,7 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
     if (numpad_dec_swap)
         return text_field->WriteText(str);
     else
-         event.Skip();
+        event.Skip();
+
 }
-#endif
+

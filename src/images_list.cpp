@@ -22,6 +22,24 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/bitmap.h>
 #include <map>
 
+#include "../resources/new_db_png.h"
+#include "../resources/open_png.h"
+#include "../resources/new_acc_png.h"
+#include "../resources/home_png.h"
+#include "../resources/category_png.h"
+#include "../resources/payee_png.h"
+#include "../resources/currency_png.h"
+#include "../resources/filter_png.h"
+#include "../resources/grm_png.h"
+#include "../resources/new_trx_png.h"
+#include "../resources/options_png.h"
+#include "../resources/about_png.h"
+#include "../resources/help_png.h"
+#include "../resources/news_png.h"
+#include "../resources/nnews_png.h"
+
+
+
 #include "../resources/about.xpm"
 #include "../resources/accounttree.xpm"
 #include "../resources/calendar.xpm"
@@ -114,4 +132,47 @@ wxImageList* navtree_images_list()
         imageList->Add(wxBitmap(img.second.Scale(x, x)));
     }
     return imageList;
+}
+
+static const std::map<int, std::map<int, wxBitmap>> images_png()
+{
+    return{
+        { NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(news) }, { 24, wxBITMAP_PNG_FROM_DATA(news24) }, { 32, wxBITMAP_PNG_FROM_DATA(news32) }, { 48, wxBITMAP_PNG_FROM_DATA(news48) } } }
+        , { NEW_DB, { { 16, wxBITMAP_PNG_FROM_DATA(new_db) }, { 24, wxBITMAP_PNG_FROM_DATA(new_db24) }, { 32, wxBITMAP_PNG_FROM_DATA(new_db32) }, { 48, wxBITMAP_PNG_FROM_DATA(new_db48) } } }
+        , { OPEN, { { 16, wxBITMAP_PNG_FROM_DATA(open) }, { 24, wxBITMAP_PNG_FROM_DATA(open24) }, { 32, wxBITMAP_PNG_FROM_DATA(open32) }, { 48, wxBITMAP_PNG_FROM_DATA(open48) } } }
+        , { NEW_ACC, { { 16, wxBITMAP_PNG_FROM_DATA(new_acc) }, { 24, wxBITMAP_PNG_FROM_DATA(new_acc24) }, { 32, wxBITMAP_PNG_FROM_DATA(new_acc32) }, { 48, wxBITMAP_PNG_FROM_DATA(new_acc48) } } }
+        , { HOME, { { 16, wxBITMAP_PNG_FROM_DATA(home) }, { 24, wxBITMAP_PNG_FROM_DATA(home24) }, { 32, wxBITMAP_PNG_FROM_DATA(home32) }, { 48, wxBITMAP_PNG_FROM_DATA(home48) } } }
+        , { CATEGORY, { { 16, wxBITMAP_PNG_FROM_DATA(category) }, { 24, wxBITMAP_PNG_FROM_DATA(category24) }, { 32, wxBITMAP_PNG_FROM_DATA(category32) }, { 48, wxBITMAP_PNG_FROM_DATA(category48) } } }
+        , { PAYEE, { { 16, wxBITMAP_PNG_FROM_DATA(payee) }, { 24, wxBITMAP_PNG_FROM_DATA(payee24) }, { 32, wxBITMAP_PNG_FROM_DATA(payee32) }, { 48, wxBITMAP_PNG_FROM_DATA(payee48) } } }
+        , { CURR, { { 16, wxBITMAP_PNG_FROM_DATA(currency) }, { 24, wxBITMAP_PNG_FROM_DATA(currency24) }, { 32, wxBITMAP_PNG_FROM_DATA(currency32) }, { 48, wxBITMAP_PNG_FROM_DATA(currency48) } } }
+        , { FILTER, { { 16, wxBITMAP_PNG_FROM_DATA(filter) }, { 24, wxBITMAP_PNG_FROM_DATA(filter24) }, { 32, wxBITMAP_PNG_FROM_DATA(filter32) }, { 48, wxBITMAP_PNG_FROM_DATA(filter48) } } }
+        , { GRM, { { 16, wxBITMAP_PNG_FROM_DATA(grm) }, { 24, wxBITMAP_PNG_FROM_DATA(grm24) }, { 32, wxBITMAP_PNG_FROM_DATA(grm32) }, { 48, wxBITMAP_PNG_FROM_DATA(grm48) } } }
+        , { OPTIONS, { { 16, wxBITMAP_PNG_FROM_DATA(options) }, { 24, wxBITMAP_PNG_FROM_DATA(options24) }, { 32, wxBITMAP_PNG_FROM_DATA(options32) }, { 48, wxBITMAP_PNG_FROM_DATA(options48) } } }
+        , { NEW_TRX, { { 16, wxBITMAP_PNG_FROM_DATA(new_trx) }, { 24, wxBITMAP_PNG_FROM_DATA(new_trx24) }, { 32, wxBITMAP_PNG_FROM_DATA(new_trx32) }, { 48, wxBITMAP_PNG_FROM_DATA(new_trx48) } } }
+        , { ABOUT, { { 16, wxBITMAP_PNG_FROM_DATA(about) }, { 24, wxBITMAP_PNG_FROM_DATA(about24) }, { 32, wxBITMAP_PNG_FROM_DATA(about32) }, { 48, wxBITMAP_PNG_FROM_DATA(about48) } } }
+        , { HELP, { { 16, wxBITMAP_PNG_FROM_DATA(help) }, { 24, wxBITMAP_PNG_FROM_DATA(help24) }, { 32, wxBITMAP_PNG_FROM_DATA(help32) }, { 48, wxBITMAP_PNG_FROM_DATA(help48) } } }
+        , { NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(news) }, { 24, wxBITMAP_PNG_FROM_DATA(news24) }, { 32, wxBITMAP_PNG_FROM_DATA(news32) }, { 48, wxBITMAP_PNG_FROM_DATA(news48) } } }
+        , { NEW_NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(nnews) }, { 24, wxBITMAP_PNG_FROM_DATA(nnews24) }, { 32, wxBITMAP_PNG_FROM_DATA(nnews32) }, { 48, wxBITMAP_PNG_FROM_DATA(nnews48) } } }
+    };
+}
+
+const wxBitmap mmBitmap(int ref)
+{
+    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
+    int x = 16;
+    if (vFontSize >= 300) x = 48;
+    else if (vFontSize >= 200) x = 32;
+    else if (vFontSize >= 150) x = 24;
+
+    wxBitmap b;
+    try {
+        // throw, even if capacity allowed to access element
+        const auto m = images_png().at(ref);
+        b = m.at(x);
+    }
+    catch (std::out_of_range const& exc) {
+        wxLogError("Exception in function 'mmBitmap': %s", exc.what());
+        b = wxBitmap(about_xpm);
+    }
+    return b;
 }
