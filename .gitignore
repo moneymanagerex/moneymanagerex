@@ -38,6 +38,8 @@ makefile
 .deps
 /build/msw-vc-2013e/Win32
 /build/msw-vc-2013e/x64
+/build/msw-vc-2015/Win32
+/build/msw-vc-2015/x64
 /build/msw_tests-vc-2013e/Win32
 /build/msw_tests-vc-2013e/x64
 /mmex_release
