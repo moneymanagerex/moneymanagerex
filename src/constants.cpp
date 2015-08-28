@@ -46,19 +46,19 @@ const int mmex::version::RC    = -1;
 const wxString mmex::version::string = mmex::version::generateProgramVersion(mmex::version::Major, mmex::version::Minor, mmex::version::Patch
     ,mmex::version::Alpha, mmex::version::Beta, mmex::version::RC);
 
-const wxString mmex::version::generateProgramVersion(int Major, int Minor, int Patch, int Alpha, int Beta, int RC)
+const wxString mmex::version::generateProgramVersion(int vMajor, int vMinor, int vPatch, int vAlpha, int vBeta, int vRC)
 {
     wxString suffix = "";
-    if (Alpha >= 0 || Beta >= 0 || RC >= 0)
+    if (vAlpha >= 0 || vBeta >= 0 || vRC >= 0)
     {
-        if (Alpha >= 0)
-            suffix = Alpha < 1 ? "-Alpha" : wxString::Format("-Alpha.%i", Alpha);
+        if (vAlpha >= 0)
+            suffix = vAlpha < 1 ? "-Alpha" : wxString::Format("-Alpha.%i", vAlpha);
         if (Beta >= 0)
-            suffix = Beta < 1 ? "-Beta" : wxString::Format("-Beta.%i", Beta);
-        if (RC >= 0)
-            suffix = RC < 1 ? "-RC" : wxString::Format("-RC.%i", RC);
+            suffix = vBeta < 1 ? "-Beta" : wxString::Format("-Beta.%i", vBeta);
+        if (vRC >= 0)
+            suffix = vRC < 1 ? "-RC" : wxString::Format("-RC.%i", vRC);
     }
-    return wxString::Format("%i.%i.%i%s", Major, Minor, Patch, suffix);
+    return wxString::Format("%i.%i.%i%s", vMajor, vMinor, vPatch, suffix);
 }
 
 /* End version namespace*/

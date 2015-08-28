@@ -48,9 +48,9 @@ wxString mmReportTransactions::getHTMLText()
     hb.init();
     hb.addDivContainer();
     wxString transHeading = _("Transaction List ");
-    const Model_Account::Data* account = Model_Account::instance().get(refAccountID_);
-    if (account)
-        transHeading = wxString::Format(_("Transaction List for Account: %s"), account->ACCOUNTNAME);
+    const Model_Account::Data* acc = Model_Account::instance().get(refAccountID_);
+    if (acc)
+        transHeading = wxString::Format(_("Transaction List for Account: %s"), acc->ACCOUNTNAME);
 
     hb.addHeader(2, transHeading);
 

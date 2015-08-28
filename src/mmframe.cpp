@@ -1971,8 +1971,8 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
 
     if (newFileName == oldFileName) // on case-sensitive FS uses case-sensitive comparison
     {
-        wxMessageDialog dlg(this, _("Can't copy file to itself"), _("Save database file as"), wxOK | wxICON_WARNING);
-        dlg.ShowModal();
+        wxMessageDialog dlgMsg(this, _("Can't copy file to itself"), _("Save database file as"), wxOK | wxICON_WARNING);
+		dlgMsg.ShowModal();
         return;
     }
 

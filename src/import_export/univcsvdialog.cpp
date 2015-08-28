@@ -473,8 +473,8 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& /*event*/)
             int pos = 0;
             for (pos = 0; pos < (int)csvFieldCandicate_->GetCount() - 1; pos ++)
             {
-                mmListBoxItem *item = static_cast<mmListBoxItem*>(csvFieldCandicate_->GetClientObject(pos));
-                if (item_index < item->getIndex())
+                mmListBoxItem *item2 = static_cast<mmListBoxItem*>(csvFieldCandicate_->GetClientObject(pos));
+                if (item_index < item2->getIndex())
                     break;
             }
             csvFieldCandicate_->Insert(wxGetTranslation(item_name), pos, new mmListBoxItem(item_index, item_name));

@@ -137,12 +137,12 @@ void mmCategDialog::fillControls()
                 bShow = categShowStatus(category.CATEGID, sub_category.SUBCATEGID);
                 if (m_cbShowAll->IsChecked() || bShow)
                 {
-                    wxTreeItemId subcat = m_treeCtrl->AppendItem(maincat, sub_category.SUBCATEGNAME);
-                    m_treeCtrl->SetItemData(subcat, new mmTreeItemCateg(category, sub_category));
-                    if (!bShow) m_treeCtrl->SetItemTextColour(subcat, wxColour("GREY"));
+                    wxTreeItemId subcateg = m_treeCtrl->AppendItem(maincat, sub_category.SUBCATEGNAME);
+                    m_treeCtrl->SetItemData(subcateg, new mmTreeItemCateg(category, sub_category));
+                    if (!bShow) m_treeCtrl->SetItemTextColour(subcateg, wxColour("GREY"));
 
                     if (categID_ == category.CATEGID && subcategID_ == sub_category.SUBCATEGID)
-                        selectedItemId_ = subcat;
+                        selectedItemId_ = subcateg;
                 }
             }
             m_treeCtrl->SortChildren(maincat);
