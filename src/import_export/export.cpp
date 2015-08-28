@@ -74,7 +74,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
     {
         double valueSplit = split_entry.SPLITTRANSAMOUNT;
         if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
-			valueSplit = -valueSplit;
+            valueSplit = -valueSplit;
         const wxString split_amount = wxNumberFormatter::ToString(valueSplit, 2, style);
         const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
         buffer << "S" << split_categ << "\n"
