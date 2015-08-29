@@ -458,8 +458,8 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
     {
         categID_ = dlg.getCategId();
         subcategID_ = dlg.getSubCategId();
-        Model_Category::Data* category = Model_Category::instance().get(categID_);
-        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+        category = Model_Category::instance().get(categID_);
+        sub_category = Model_Subcategory::instance().get(subcategID_);
 
         btnCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
     }

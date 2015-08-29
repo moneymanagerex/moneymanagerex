@@ -155,18 +155,18 @@ wxString Model_Report::get_html(const Data* r)
 
     while (q.NextRow())
     {
-        Record r;
+        Record rec;
         for (int i = 0; i < columnCount; ++i)
         {
             const wxString column_name = q.GetColumnName(i);
-            r[column_name.ToStdWstring()] = q.GetAsString(i);
+            rec[column_name.ToStdWstring()] = q.GetAsString(i);
         }
 
         if (lua_status && !skip_lua)
         {
             try
             {
-                state.invokeVoidFunction("handle_record", &r);
+                state.invokeVoidFunction("handle_record", &rec);
             }
             catch (const std::runtime_error& e)
             {
@@ -186,7 +186,7 @@ wxString Model_Report::get_html(const Data* r)
         }
         row_t row;
         json::Object o;
-        for (const auto& item : r)
+        for (const auto& item : rec)
         {
             row(item.first) = item.second;
 
