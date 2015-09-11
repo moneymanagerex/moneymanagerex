@@ -257,7 +257,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     }
     else if (mode_ == 1)
     {
-        dateEnd.Set(31, wxDateTime::Dec, wxDateTime::Now().GetYear(), 23, 59, 59);
+        dateEnd.Set(31, wxDateTime::Dec, wxDateTime::Now().GetYear());
         span = wxDateSpan::Years(1);
     }
     else
@@ -267,7 +267,6 @@ wxString mmReportSummaryByDate::getHTMLText()
     while (date.IsLaterThan(dateStart))
         date -= span;
     dateStart = date;
-    //dateStart.Set(31,wxDateTime::Dec,2013);
 
     i = 0;
     for (const auto& acctMap: balanceMapVec)
