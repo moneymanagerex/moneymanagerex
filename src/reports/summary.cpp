@@ -352,7 +352,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     return hb.getHTMLText();
 }
 
-double mmReportSummaryByDate::GetDailyBalanceAt(const Model_Account::Data *account, wxDateTime date)
+double mmReportSummaryByDate::GetDailyBalanceAt(const Model_Account::Data *account, const wxDate& date)
 {
     double	convRate = 1.0;
 

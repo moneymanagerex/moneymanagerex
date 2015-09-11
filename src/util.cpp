@@ -274,19 +274,11 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     if (today.GetMonth() < monthNum) year--;
 
     int dayNum = wxAtoi(mmOptions::instance().financialYearStartDayString_);
-    if ((dayNum < 1) || (dayNum > 31 )) {
-        dayNum = 1;
-    } else if (((monthNum == wxDateTime::Feb) && (dayNum > 28)) ||
-        (((monthNum == wxDateTime::Sep) || (monthNum == wxDateTime::Apr) ||
-           (monthNum == wxDateTime::Jun) || (monthNum == wxDateTime::Nov)) && (dayNum > 29)))
-    {
-        dayNum = 1;
-    }
 
-    wxDateTime financialYear = wxDateTime(today);
-    financialYear.SetDay(dayNum);
-    financialYear.SetMonth((wxDateTime::Month)monthNum);
-    financialYear.SetYear(year);
+    if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays((wxDateTime::Month)monthNum, year))
+        dayNum = 1;
+    
+    wxDateTime financialYear(dayNum, (wxDateTime::Month)monthNum, year);
     if (prevDayRequired)
         financialYear.Subtract(wxDateSpan::Day());
     return financialYear;
