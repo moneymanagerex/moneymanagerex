@@ -59,7 +59,7 @@ private:
 
     typedef std::map<wxDate, double> balanceMap;
 
-    double GetDailyBalanceAt(const Model_Account::Data *account, wxDate date);
+    double GetDailyBalanceAt(const Model_Account::Data *account, const wxDate& date);
 };
 
 #endif //_MM_EX_REPORTSUMMARY_H_
