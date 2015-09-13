@@ -140,7 +140,7 @@ void mmNewAcctDialog::fillControls()
     choice->SetSelection(Model_Account::status(m_account));
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
-    itemCheckBox->SetValue(m_account->FAVORITEACCT == "TRUE");
+    itemCheckBox->SetValue(Model_Account::FAVORITEACCT(m_account));
 
     Model_Account::currency(m_account);
     wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY);

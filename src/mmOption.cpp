@@ -107,7 +107,7 @@ const int mmIniOptions::account_image_id(int account_id, bool def)
     {
         acctType = Model_Account::type(account);
         acctStatus = account->STATUS;
-        favorite = account->FAVORITEACCT == "TRUE";
+        favorite = Model_Account::FAVORITEACCT(account);
     }
     bool closed = acctStatus == "Closed";
 
