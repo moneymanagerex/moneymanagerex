@@ -103,29 +103,7 @@ const char *usage_template = R"(
     }
 
 </script>
-<div class = "col-xs-4"></div>
-<div class = "col-xs-4">
-<table class = "table">
-    <thead>
-        <tr>
-            <th>USAGEDATE</th>
-            <th>FREQUENCY</th>
-        </tr>
-    </thead>
-    <tbody>
-        <TMPL_LOOP NAME=CONTENTS>
-            <tr>
-            <td><TMPL_VAR "USAGEDATE"></td>
-            <td><TMPL_VAR "FREQUENCY"></td>
-            </tr>
-        </TMPL_LOOP>
-        <tr>
-            <td>Grand Total</td>
-            <td><TMPL_VAR "GRAND"></td>
-        </tr>
-    </tbody>
-</table>
-</div></div></div></div></body>
+</div></div></div></body>
 </html>
 )";
 
