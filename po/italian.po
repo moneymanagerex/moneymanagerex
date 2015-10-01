@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex Italian Translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-15 14:40+0300\n"
-"PO-Revision-Date: 2015-03-15 14:40+0300\n"
+"PO-Revision-Date: 2015-10-01 18:30+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: amaseb <amaseb@tiscali.it>\n"
 "Language: it\n"
@@ -15,6 +15,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
+"X-Poedit-Bookmarks: -1,118,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SearchPath-0: src\n"
 
 #: src/aboutdialog.cpp:42 src/aboutdialog.cpp:169
@@ -596,7 +597,7 @@ msgstr "Organizza allegati: aggiungi allegato"
 
 #: src/attachmentdialog.cpp:218
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Inserire il nome del nuovo allegato:"
 
 #: src/attachmentdialog.cpp:219
 msgid "Organize Attachments: Edit Attachment"
@@ -686,15 +687,15 @@ msgstr "Apertura allegato fallita"
 
 #: src/billsdepositsdialog.cpp:117
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Nuova Operazione Ricorrente"
 
 #: src/billsdepositsdialog.cpp:137
 msgid " Edit Recurring Transaction"
-msgstr ""
+msgstr "Modifica operazione selezionata"
 
 #: src/billsdepositsdialog.cpp:141
 msgid " Enter Recurring Transaction"
-msgstr ""
+msgstr "Inserisci Operazione Ricorrente"
 
 #: src/billsdepositsdialog.cpp:288
 msgid "Note: Split transactions not set"
@@ -797,7 +798,7 @@ msgstr "Data pagamento"
 
 #: src/billsdepositsdialog.cpp:360
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Dettagli Operazione Ricorrente"
 
 #: src/billsdepositsdialog.cpp:381
 msgid "Specify the date when this bill or deposit is due"
@@ -853,11 +854,11 @@ msgstr "Ritarda o anticipa la data della operazione"
 
 #: src/billsdepositsdialog.cpp:466
 msgid "Reset date to the Due Date"
-msgstr ""
+msgstr "Ripristina la data alla data di scadenza"
 
 #: src/billsdepositsdialog.cpp:473
 msgid "Pay Date"
-msgstr ""
+msgstr "Alla data"
 
 #: src/billsdepositsdialog.cpp:483 src/filtertransdialog.cpp:247
 #: src/transdialog.cpp:1036
@@ -1122,7 +1123,7 @@ msgstr ""
 #: src/billsdepositspanel.cpp:222 src/billsdepositspanel.cpp:899
 #: src/mmframe.cpp:730 src/mmhomepagepanel.cpp:424
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Operazioni Ricorrenti"
 
 #: src/billsdepositspanel.cpp:239 src/filtertransdialog.cpp:96
 #: src/mmcheckingpanel.cpp:387
@@ -1946,7 +1947,7 @@ msgstr "Cambiare gruppo"
 
 #: src/general_report_manager.cpp:674
 msgid "Rename Group"
-msgstr ""
+msgstr "Rinomina gruppo"
 
 #: src/general_report_manager.cpp:675
 msgid "UnGroup"
@@ -1979,7 +1980,7 @@ msgstr ""
 
 #: src/general_report_manager.cpp:823
 msgid "Change report group"
-msgstr ""
+msgstr "Cambia gruppo"
 
 #: src/general_report_manager.cpp:839
 msgid "Enter or choose name for the new group"
@@ -1987,7 +1988,7 @@ msgstr ""
 
 #: src/general_report_manager.cpp:840
 msgid "Rename group"
-msgstr ""
+msgstr "Rinomina gruppo"
 
 #: src/general_report_manager.cpp:901
 msgid "Add Report Group"
@@ -3630,7 +3631,7 @@ msgstr "Gestione &Budget"
 
 #: src/mmframe.cpp:1485
 msgid "&Recurring Transactions"
-msgstr ""
+msgstr "Operazioni &Ricorrenti"
 
 #: src/mmframe.cpp:1485
 msgid "Bills && Deposits"
@@ -4256,11 +4257,11 @@ msgstr "Totale Generale:"
 
 #: src/mmpanelbase.cpp:123
 msgid "Hide/Show Columns"
-msgstr ""
+msgstr "Mostra/Nascondi colonne"
 
 #: src/mmpanelbase.cpp:124
 msgid "Hide this column"
-msgstr ""
+msgstr "Nascondi Colonna"
 
 #: src/mmpanelbase.cpp:126
 msgid "Order by this column"
@@ -4268,7 +4269,7 @@ msgstr "Ordina per questa colonna"
 
 #: src/mmpanelbase.cpp:127
 msgid "Reset columns"
-msgstr ""
+msgstr "Resetta dimensioni colonne"
 
 #: src/mmreportspanel.cpp:191
 msgid "REPORTS"

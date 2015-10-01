@@ -1,7 +1,7 @@
 Version History of Money Manager Ex
 
-1.2.3 (Sep 1, 2015)
-- Translation updates
+1.2.3 (Nov 1, 2015)
+- Translations update
 
 1.2.2 (Jun 29, 2015)
 - Fix: Transaction Type Transfer From/To Error (bug #707)
