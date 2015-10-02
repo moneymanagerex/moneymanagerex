@@ -157,28 +157,13 @@
                 <table class='table'>
                 <thead>
                     <tr class='active'>
-                        <th id='stat_name'>Transaction Statistics</th>
+                        <th id='stat_name'></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody id='stats'>
                 </tbody>
                 </table>
-                <script>
-                    var stats_json = <TMPL_VAR STATISTICS>;
-                    var tbody = document.getElementById('stats');
-                    tbody.innerHTML = "";
-                    for(var obj in stats_json){
-                        if (obj != 'NAME') {
-                            var row = document.createElement('tr');
-                            createTableData(row, obj);
-                            createTableData(row, stats_json[obj]);
-                            tbody.appendChild(row);
-                        } else {
-                            document.getElementById('stat_name').innerHTML = stats_json[obj];
-                        }
-                    }
-                </script>
                 <!--Transaction Statistics end-->
             </td>
         </tr>
@@ -231,6 +216,21 @@
             element.style.color="#ff0000";
         }
         element.style.whiteSpace = "nowrap";
+    }
+</script>
+<script>
+    var stats_json = <TMPL_VAR STATISTICS>;
+    var tbody = document.getElementById('stats');
+    tbody.innerHTML = "";
+    for(var obj in stats_json){
+        if (obj != 'NAME') {
+            var row = document.createElement('tr');
+            createTableData(row, obj);
+            createTableData(row, stats_json[obj]);
+            tbody.appendChild(row);
+        } else {
+            document.getElementById('stat_name').innerHTML = stats_json[obj];
+        }
     }
 </script>
 </html>
