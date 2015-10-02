@@ -2,8 +2,9 @@ Version History of Money Manager Ex
 
 1.2.3 (Nov 1, 2015)
 - Translations update
-- Fix: issue 536
-- Fix: issue 569
+- Fix: Issue #536 assertion failed (datetime)
+- Fix: Issue #569 Delete currency
+- Fix: Issue #570 Add attachments on duplicate transaction
 
 1.2.2 (Jun 29, 2015)
 - Fix: Transaction Type Transfer From/To Error (bug #707)
