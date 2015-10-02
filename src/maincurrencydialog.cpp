@@ -216,7 +216,7 @@ void mmMainCurrencyDialog::CreateControls()
         itemButtonSelect->Disable();
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
-    wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, _("&Close "));
     itemBoxSizer9->Add(itemCancelButton, g_flags);
     itemCancelButton->SetFocus();
 
@@ -225,6 +225,7 @@ void mmMainCurrencyDialog::CreateControls()
     mainBoxSizer->Add(rightBoxSizer, g_flagsExpand);
 
     historyStaticBox_ = new wxStaticBox(this, wxID_ANY, _("Currency History Options"));
+
     wxStaticBoxSizer* historyStaticBox_Sizer = new wxStaticBoxSizer(historyStaticBox_, wxVERTICAL);
     rightBoxSizer->Add(historyStaticBox_Sizer, g_flagsExpand);
 
@@ -232,22 +233,20 @@ void mmMainCurrencyDialog::CreateControls()
         , wxLC_REPORT);
     historyStaticBox_Sizer->Add(valueListBox_, g_flagsExpand);
 
+    wxListItem col0, col1, col2;
     // Add first column
-    wxListItem col0;
     col0.SetId(0);
     col0.SetText(_("Date"));
     col0.SetWidth(90);
     valueListBox_->InsertColumn(0, col0);
 
     // Add second column
-    wxListItem col1;
     col1.SetId(1);
     col1.SetText(_("Value"));
     col1.SetWidth(100);
     valueListBox_->InsertColumn(1, col1);
 
     // Add third column
-    wxListItem col2;
     col2.SetId(2);
     col2.SetText(_("Diff."));
     col2.SetWidth(90);

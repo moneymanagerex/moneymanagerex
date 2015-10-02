@@ -694,7 +694,7 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(acctName);
         if (account)
         {
-            Model_Currency::Data* currency = Model_Currency::instance().get(account->ACCOUNTID);
+            Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
             if (currency && textAmount_->Calculate())
                 textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
 

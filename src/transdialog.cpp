@@ -887,7 +887,9 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
 void mmTransDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-	mmAttachmentDialog dlg(this, RefType, m_trx_data.TRANSID);
+    int TransID = m_trx_data.TRANSID;
+    if (m_duplicate) TransID = -1;
+	mmAttachmentDialog dlg(this, RefType, TransID);
 	dlg.ShowModal();
 }
 
@@ -931,7 +933,6 @@ void mmTransDialog::onNoteSelected(wxCommandEvent& event)
 
 void mmTransDialog::OnOk(wxCommandEvent& event)
 {
-	int old_transaction_id = m_trx_data.TRANSID;
     m_trx_data.STATUS = "";
     m_trx_data.NOTES = textNotes_->GetValue();
     m_trx_data.TRANSACTIONNUMBER = textNumber_->GetValue();
@@ -963,7 +964,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     if (m_new_trx || m_duplicate)
 	{
 		const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-		mmAttachmentManage::RelocateAllAttachments(RefType, old_transaction_id, m_trx_data.TRANSID);
+		mmAttachmentManage::RelocateAllAttachments(RefType, -1, m_trx_data.TRANSID);
 	}
 
     const Model_Checking::Data& tran(*r);
@@ -1042,7 +1043,7 @@ void mmTransDialog::setTooltips()
 void mmTransDialog::OnQuit(wxCloseEvent& /*event*/)
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    if (m_new_trx)
+    if (m_new_trx || m_duplicate)
         mmAttachmentManage::DeleteAllAttachments(RefType, m_trx_data.TRANSID);
     EndModal(wxID_CANCEL);
 }
