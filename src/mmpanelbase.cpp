@@ -197,7 +197,9 @@ void mmListCtrl::OnHeaderColumn(wxCommandEvent& event)
     int columnNbr = id - MENU_HEADER_COLUMN;
     if (columnNbr >= 0 && columnNbr < (int)m_columns.size() && !m_col_width.IsEmpty())
     {
-        const int default_width = std::get<1>(m_columns[columnNbr]);
+        int default_width = std::get<1>(m_columns[columnNbr]);
+        if (default_width == 0)
+            default_width = -2;
         const wxString parameter_name = wxString::Format(m_col_width, columnNbr);
         int cur_width = Model_Setting::instance().GetIntSetting(parameter_name, default_width);
         int new_width = (cur_width != 0 ? 0 : default_width);
