@@ -38,9 +38,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/news_png.h"
 #include "../resources/nnews_png.h"
 
-
-
-#include "../resources/about.xpm"
 #include "../resources/accounttree.xpm"
 #include "../resources/calendar.xpm"
 #include "../resources/car.xpm"
@@ -53,6 +50,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/coin.xpm"
 #include "../resources/customsql.xpm"
 #include "../resources/dog.xpm"
+#include "../resources/empty.xpm"
 #include "../resources/filter.xpm"
 #include "../resources/flag.xpm"
 #include "../resources/help.xpm"
@@ -77,45 +75,51 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/work.xpm"
 #include "../resources/yandex_money.xpm"
 
-static const std::map<int, wxImage> images_list()
+static const std::map<int, wxBitmap> images_list()
 {
-    return {
-        { HOUSE_XPM, wxImage(house_xpm) }
-        , { SCHEDULE_XPM, wxImage(schedule_xpm) }
-        , { CALENDAR_XPM, wxImage(calendar_xpm) }
-        , { PIECHART_XPM, wxImage(chartpiereport_xpm) }
-        , { HELP_XPM, wxImage(help_xpm) }
-        , { FILTER_XPM, wxImage(filter_xpm) }
-        , { CAR_XPM, wxImage(car_xpm) }
-        , { CUSTOMSQL_XPM, wxImage(customsql_xpm) }
-        , { CUSTOMSQL_GRP_XPM, wxImage(customsql_xpm) } //TODO: GRM rep group ico
-        , { MONEYACCOUNT_XPM, wxImage(moneyaccount_xpm) }
-        , { SAVINGS_ACC_FAVORITE_XPM, wxImage(savings_acc_favorite_xpm) }
-        , { SAVINGS_ACC_CLOSED_XPM, wxImage(savings_acc_closed_xpm) }
-        , { TERMACCOUNT_XPM, wxImage(termaccount_xpm) }
-        , { TERM_ACC_FAVORITE_XPM, wxImage(term_acc_favorite_xpm) }
-        , { TERM_ACC_CLOSED_XPM, wxImage(term_acc_closed_xpm) }
-        , { STOCK_ACC_XPM, wxImage(stock_acc_xpm) }
-        , { STOCK_ACC_FAVORITE_XPM, wxImage(stock_acc_favorite_xpm) }
-        , { STOCK_ACC_CLOSED_XPM, wxImage(stock_acc_closed_xpm) }
-        , { CARD_ACC_XPM, wxImage(card_acc_xpm) }
-        , { CARD_ACC_FAVORITE_XPM, wxImage(card_acc_favorite_xpm) }
-        , { CARD_ACC_CLOSED_XPM, wxImage(card_acc_closed_xpm) }
+    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
+    int x = 16;
+    if (vFontSize >= 300) x = 48;
+    else if (vFontSize >= 200) x = 32;
+    else if (vFontSize >= 150) x = 24;
+
+    return{
+        { HOUSE_XPM, mmBitmap(png::HOME) }
+        , { SCHEDULE_XPM, wxBitmap(wxImage(schedule_xpm).Scale(x, x)) }
+        , { CALENDAR_XPM, wxBitmap(wxImage(calendar_xpm).Scale(x, x)) }
+        , { PIECHART_XPM, wxBitmap(wxImage(chartpiereport_xpm).Scale(x, x)) }
+        , { HELP_XPM, mmBitmap(png::HELP) }
+        , { FILTER_XPM, wxBitmap(wxImage(filter_xpm).Scale(x, x)) }
+        , { CAR_XPM, wxBitmap(wxImage(car_xpm).Scale(x, x)) }
+        , { CUSTOMSQL_XPM, mmBitmap(png::GRM) }
+        , { CUSTOMSQL_GRP_XPM, mmBitmap(png::GRM) } //TODO: GRM rep group ico
+        , { MONEYACCOUNT_XPM, wxBitmap(wxImage(moneyaccount_xpm).Scale(x, x)) }
+        , { SAVINGS_ACC_FAVORITE_XPM, wxBitmap(wxImage(savings_acc_favorite_xpm).Scale(x, x)) }
+        , { SAVINGS_ACC_CLOSED_XPM, wxBitmap(wxImage(savings_acc_closed_xpm).Scale(x, x)) }
+        , { TERMACCOUNT_XPM, wxBitmap(wxImage(termaccount_xpm).Scale(x, x)) }
+        , { TERM_ACC_FAVORITE_XPM, wxBitmap(wxImage(term_acc_favorite_xpm).Scale(x, x)) }
+        , { TERM_ACC_CLOSED_XPM, wxBitmap(wxImage(term_acc_closed_xpm).Scale(x, x)) }
+        , { STOCK_ACC_XPM, wxBitmap(wxImage(stock_acc_xpm).Scale(x, x)) }
+        , { STOCK_ACC_FAVORITE_XPM, wxBitmap(wxImage(stock_acc_favorite_xpm).Scale(x, x)) }
+        , { STOCK_ACC_CLOSED_XPM, wxBitmap(wxImage(stock_acc_closed_xpm).Scale(x, x)) }
+        , { CARD_ACC_XPM, wxBitmap(wxImage(card_acc_xpm).Scale(x, x)) }
+        , { CARD_ACC_FAVORITE_XPM, wxBitmap(wxImage(card_acc_favorite_xpm).Scale(x, x)) }
+        , { CARD_ACC_CLOSED_XPM, wxBitmap(wxImage(card_acc_closed_xpm).Scale(x, x)) }
         // Custom icons for accounts
-        , { MONEY_DOLLAR_XPM, wxImage(money_dollar_xpm) }
-        , { MONEY_EURO_XPM, wxImage(money_euro_xpm) }
-        , { FLAG_XPM, wxImage(flag_xpm) }
-        , { ACCOUNTTREE_XPM, wxImage(accounttree_xpm) }
-        , { ABOUT_XPM, wxImage(about_xpm) }
-        , { CLOCK_XPM, wxImage(clock_xpm) }
-        , { CAT_XPM, wxImage(cat_xpm) }
-        , { DOG_XPM, wxImage(dog_xpm) }
-        , { TREES_XPM, wxImage(trees_xpm) }
-        , { HOURGLASS_XPM, wxImage(hourglass_xpm) }
-        , { WORK_XPM, wxImage(work_xpm) }
-        , { YANDEX_MONEY_XPM, wxImage(yandex_money_xpm) }
-        , { WEB_MONEY_XPM, wxImage(web_money_xpm) }
-        , { RUBIK_CUBE_XPM, wxImage(rubik_cube_xpm) }
+        , { MONEY_DOLLAR_XPM, wxBitmap(wxImage(money_dollar_xpm).Scale(x, x)) }
+        , { MONEY_EURO_XPM, wxBitmap(wxImage(money_euro_xpm).Scale(x, x)) }
+        , { FLAG_XPM, wxBitmap(wxImage(flag_xpm).Scale(x, x)) }
+        , { ACCOUNTTREE_XPM, wxBitmap(wxImage(accounttree_xpm).Scale(x, x)) }
+        , { ABOUT_XPM, mmBitmap(png::ABOUT) }
+        , { CLOCK_XPM, wxBitmap(wxImage(clock_xpm).Scale(x, x)) }
+        , { CAT_XPM, wxBitmap(wxImage(cat_xpm).Scale(x, x)) }
+        , { DOG_XPM, wxBitmap(wxImage(dog_xpm).Scale(x, x)) }
+        , { TREES_XPM, wxBitmap(wxImage(trees_xpm).Scale(x, x)) }
+        , { HOURGLASS_XPM, wxBitmap(wxImage(hourglass_xpm).Scale(x, x)) }
+        , { WORK_XPM, wxBitmap(wxImage(work_xpm).Scale(x, x)) }
+        , { YANDEX_MONEY_XPM, wxBitmap(wxImage(yandex_money_xpm).Scale(x, x)) }
+        , { WEB_MONEY_XPM, wxBitmap(wxImage(web_money_xpm).Scale(x, x)) }
+        , { RUBIK_CUBE_XPM, wxBitmap(wxImage(rubik_cube_xpm).Scale(x, x)) }
     };
 };
 
@@ -125,11 +129,12 @@ wxImageList* navtree_images_list()
     int x = 16;
     if (vFontSize >= 300) x = 48;
     else if (vFontSize >= 200) x = 32;
+    else if (vFontSize >= 150) x = 24;
 
     wxImageList* imageList = new wxImageList(x, x);
     for (const auto& img : images_list())
     {
-        imageList->Add(wxBitmap(img.second.Scale(x, x)));
+        imageList->Add(img.second);
     }
     return imageList;
 }
@@ -172,7 +177,7 @@ const wxBitmap mmBitmap(int ref)
     }
     catch (std::out_of_range const& exc) {
         wxLogError("Exception in function 'mmBitmap': %s", exc.what());
-        b = wxBitmap(about_xpm);
+        b = wxBitmap(empty_xpm);
     }
     return b;
 }
