@@ -377,7 +377,6 @@ msgid "% Rate"
 msgstr "% sazba"
 
 #: src/assetdialog.cpp:170
-#, fuzzy, c-format
 msgid "Enter the rate at which the asset changes its value in % per year"
 msgstr "Zadejte sazbu v %, která bude ročně zhodnocovat cenu majetku"
 
@@ -5949,7 +5948,6 @@ msgstr ""
 "Příklad: Stiskem do vyberete Domácnost, Dovolená, atd..."
 
 #: src/mmTips.h:37
-#, fuzzy, c-format
 msgid ""
 "Tip to get out of debt: Pay yourself 10% first. Put this into an account "
 "that is hard to touch. Make sure it is a chore to get the money out (you "
