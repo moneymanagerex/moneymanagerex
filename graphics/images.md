@@ -31,10 +31,10 @@
 ###Main menu (24X24)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/34579/media-floppy.png) | Save | [page](https://openclipart.org/detail/34579/tango-media-floppy)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/199702/primary-history-clear.png)| Clear | [page](https://openclipart.org/detail/199702/primary-history-clear)
-<br>![img](https://openclipart.org/image/24px/svg_to_png/34279/system-log-out.png)| Exit | [page](https://openclipart.org/detail/34279/tango-system-log-out)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/214205/memo.png) | Edit Acc | [page](https://openclipart.org/detail/214205/memo)
-<br>![img](https://openclipart.org/image/24px/svg_to_png/210232/misc-crown-game-lock.png)| Lock | [page](https://openclipart.org/detail/210232/misc-crown-game-lock)
-<br>![img](https://openclipart.org/image/24px/svg_to_png/180750/document-encrypted-gold.png)| Encrypt | [page](https://openclipart.org/detail/180750/encrypted-document-gold)
-<br>![img]()| | [page]()
+<br><img src="https://openclipart.org/image/16px/svg_to_png/210232/misc-crown-game-lock.png" /> <img src="https://openclipart.org/image/24px/svg_to_png/210232/misc-crown-game-lock.png" /> <img src="https://openclipart.org/image/32px/svg_to_png/210232/misc-crown-game-lock.png" /> <img src="https://openclipart.org/image/48px/svg_to_png/210232/misc-crown-game-lock.png" />| Lock | [page](https://openclipart.org/detail/210232/misc-crown-game-lock)
+<br> <img src="https://openclipart.org/image/16px/svg_to_png/180750/document-encrypted-gold.png" /> <img src="https://openclipart.org/image/24px/svg_to_png/180750/document-encrypted-gold.png" /> <img src="https://openclipart.org/image/32px/svg_to_png/180750/document-encrypted-gold.png" /> <img src="https://openclipart.org/image/48px/svg_to_png/180750/document-encrypted-gold.png" />| Encrypt | [page](https://openclipart.org/detail/180750/encrypted-document-gold)
+<br> <img src="https://openclipart.org/image/16px/svg_to_png/34279/system-log-out.png )" /> <img src="https://openclipart.org/image/24px/svg_to_png/34279/system-log-out.png )" /> <img src="https://openclipart.org/image/32px/svg_to_png/34279/system-log-out.png )" /> <img src="https://openclipart.org/image/48px/svg_to_png/34279/system-log-out.png )" /> | Exit | [page](https://openclipart.org/detail/34279/tango-system-log-out)
+
 
                                                                                                                                                                    

@@ -37,6 +37,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/help_png.h"
 #include "../resources/news_png.h"
 #include "../resources/nnews_png.h"
+#include "../resources/exit_png.h"
 
 #include "../resources/accounttree.xpm"
 #include "../resources/calendar.xpm"
@@ -158,6 +159,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { HELP, { { 16, wxBITMAP_PNG_FROM_DATA(help) }, { 24, wxBITMAP_PNG_FROM_DATA(help24) }, { 32, wxBITMAP_PNG_FROM_DATA(help32) }, { 48, wxBITMAP_PNG_FROM_DATA(help48) } } }
         , { NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(news) }, { 24, wxBITMAP_PNG_FROM_DATA(news24) }, { 32, wxBITMAP_PNG_FROM_DATA(news32) }, { 48, wxBITMAP_PNG_FROM_DATA(news48) } } }
         , { NEW_NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(nnews) }, { 24, wxBITMAP_PNG_FROM_DATA(nnews24) }, { 32, wxBITMAP_PNG_FROM_DATA(nnews32) }, { 48, wxBITMAP_PNG_FROM_DATA(nnews48) } } }
+        , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
     };
 }
 

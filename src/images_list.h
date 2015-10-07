@@ -73,6 +73,7 @@ enum png {
     HELP,
     NEWS,
     NEW_NEWS,
+    EXIT,
 };
 
 wxImageList* navtree_images_list();

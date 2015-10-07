@@ -116,7 +116,6 @@
 #include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
 #include "../resources/encrypt_db_edit.xpm"
-#include "../resources/exit.xpm"
 #include "../resources/facebook.xpm"
 #include "../resources/google_play.xpm"
 #include "../resources/issues.xpm"
@@ -1359,7 +1358,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemQuit = new wxMenuItem(menu_file, wxID_EXIT,
         _("E&xit\tAlt-X"), _("Quit this program"));
-    menuItemQuit->SetBitmap(wxBitmap(wxImage(exit_xpm).Scale(x, x)));
+    menuItemQuit->SetBitmap(mmBitmap(png::EXIT));
     menu_file->Append(menuItemQuit);
 
     // Create the required menu items
