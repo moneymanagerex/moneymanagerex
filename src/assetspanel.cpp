@@ -21,6 +21,7 @@
 #include "assetdialog.h"
 #include "attachmentdialog.h"
 #include "constants.h"
+#include "images_list.h"
 
 #include "model/Model_Attachment.h"
 #include "model/Model_Currency.h"
@@ -28,15 +29,11 @@
 #include <wx/srchctrl.h>
 
 #include "../resources/art.xpm"
-#include "../resources/assets.xpm"
 #include "../resources/attachment.xpm"
-#include "../resources/car.xpm"
 #include "../resources/clock.xpm"
-#include "../resources/coin.xpm"
 #include "../resources/downarrow.xpm"
 #include "../resources/house.xpm"
 #include "../resources/rightarrow.xpm"
-#include "../resources/rubik_cube.xpm"
 #include "../resources/uparrow.xpm"
 
 /*******************************************************/
@@ -404,18 +401,17 @@ void mmAssetsPanel::CreateControls()
 
     m_listCtrlAssets = new mmAssetsListCtrl(this, itemSplitterWindow10, wxID_ANY);
 
-    wxSize imageSize(16, 16);
-    m_imageList.reset(new wxImageList(imageSize.GetWidth(), imageSize.GetHeight()));
-    //TODO: Provide better icons
-    m_imageList->Add(wxBitmap(wxImage(house_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(car_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(clock_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(art_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(assets_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(coin_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(rubik_cube_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(downarrow_xpm).Scale(16, 16)));
+    int x = mmIniOptions::instance().ico_size_;
+    m_imageList.reset(new wxImageList(x, x));
+    m_imageList->Add(mmBitmap(png::HOME));
+    m_imageList->Add(mmBitmap(png::CAR));
+    m_imageList->Add(mmBitmap(png::HOUSEHOLD_OBJ));
+    m_imageList->Add(mmBitmap(png::ART));
+    m_imageList->Add(mmBitmap(png::JEWELLERY));
+    m_imageList->Add(mmBitmap(png::CASH));
+    m_imageList->Add(mmBitmap(png::OTHER));
+    m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(x, x)));
+    m_imageList->Add(wxBitmap(wxImage(downarrow_xpm).Scale(x, x)));
 
     m_listCtrlAssets->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
 

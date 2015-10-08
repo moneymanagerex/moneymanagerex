@@ -25,7 +25,7 @@ enum img {
     PIECHART_XPM,
     HELP_XPM,
     FILTER_XPM,
-    CAR_XPM,
+    ASSET_XPM,
     CUSTOMSQL_XPM,
     CUSTOMSQL_GRP_XPM,
     MONEYACCOUNT_XPM,
@@ -73,6 +73,18 @@ enum png {
     HELP,
     NEWS,
     NEW_NEWS,
+    PIE_CHART,
+    BUDGET,
+    ASSET,
+    PROPERTY,
+    CAR,
+    HOUSEHOLD_OBJ,
+    ART,
+    JEWELLERY,
+    CASH,
+    OTHER,
+    FACEBOOK,
+    EXIT,
 };
 
 wxImageList* navtree_images_list();

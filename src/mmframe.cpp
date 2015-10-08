@@ -106,28 +106,16 @@
 //----------------------------------------------------------------------------
 /* Include XPM Support */
 
-#include "../resources/about.xpm"
 #include "../resources/appstart.xpm"
-#include "../resources/calendar.xpm"
-#include "../resources/car.xpm"
-#include "../resources/categoryedit.xpm"
+#include "../resources/schedule.xpm"
 #include "../resources/checkupdate.xpm"
 #include "../resources/clearlist.xpm"
-#include "../resources/clock.xpm"
-#include "../resources/general_report_manager.xpm"
 #include "../resources/delete_account.xpm"
 #include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
 #include "../resources/encrypt_db_edit.xpm"
-#include "../resources/exit.xpm"
-#include "../resources/facebook.xpm"
 #include "../resources/google_play.xpm"
-#include "../resources/filter.xpm"
-#include "../resources/help.xpm"
-#include "../resources/house.xpm"
 #include "../resources/issues.xpm"
-#include "../resources/money_dollar.xpm"
-#include "../resources/new.xpm"
 #include "../resources/newacct.xpm"
 #include "../resources/new_transaction.xpm"
 #include "../resources/notify.xpm"
@@ -139,8 +127,6 @@
 #include "../resources/relocate_payees.xpm"
 #include "../resources/save.xpm"
 #include "../resources/saveas.xpm"
-#include "../resources/user_edit.xpm"
-#include "../resources/wrench.xpm"
 #include "../resources/accounttree.xpm"
 
 //----------------------------------------------------------------------------
@@ -727,7 +713,7 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
     navTreeCtrl_->SetItemBold(stocks, true);
 
-    wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), img::CAR_XPM, img::CAR_XPM);
+    wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), img::ASSET_XPM, img::ASSET_XPM);
     navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
     navTreeCtrl_->SetItemBold(assets, true);
 
@@ -1330,7 +1316,7 @@ void mmGUIFrame::createMenu()
     wxMenu *menu_file = new wxMenu;
 
     wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _("&New Database\tCtrl-N"), _("New Database"));
-    menuItemNew->SetBitmap(wxBitmap(wxImage(new_xpm).Scale(x, x)));
+    menuItemNew->SetBitmap(mmBitmap(png::NEW_DB));
     wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _("&Open Database\tCtrl-O"), _("Open Database"));
     menuItemOpen->SetBitmap(wxBitmap(wxImage(open_xpm).Scale(x, x)));
     wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, _("Save Database &As"), _("Save Database As"));
@@ -1369,7 +1355,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemQuit = new wxMenuItem(menu_file, wxID_EXIT,
         _("E&xit\tAlt-X"), _("Quit this program"));
-    menuItemQuit->SetBitmap(wxBitmap(wxImage(exit_xpm).Scale(x, x)));
+    menuItemQuit->SetBitmap(mmBitmap(png::EXIT));
     menu_file->Append(menuItemQuit);
 
     // Create the required menu items
@@ -1414,7 +1400,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST
         , _("Account &List"), _("Show Account List"));
-    menuItemAcctList->SetBitmap(wxBitmap(wxImage(house_xpm).Scale(x, x)));
+    menuItemAcctList->SetBitmap(mmBitmap(png::HOME));
 
     wxMenuItem* menuItemAcctEdit = new wxMenuItem(menuAccounts, MENU_ACCTEDIT
         , _("&Edit Account"), _("Edit Account"));
@@ -1438,17 +1424,17 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemCateg = new wxMenuItem(menuTools
         , MENU_ORGCATEGS, _("Organize &Categories..."), _("Organize Categories"));
-    menuItemCateg->SetBitmap(wxBitmap(wxImage(categoryedit_xpm).Scale(x, x)));
+    menuItemCateg->SetBitmap(mmBitmap(png::CATEGORY));
     menuTools->Append(menuItemCateg);
 
     wxMenuItem* menuItemPayee = new wxMenuItem(menuTools
         , MENU_ORGPAYEE, _("Organize &Payees..."), _("Organize Payees"));
-    menuItemPayee->SetBitmap(wxBitmap(wxImage(user_edit_xpm).Scale(x, x)));
+    menuItemPayee->SetBitmap(mmBitmap(png::PAYEE));
     menuTools->Append(menuItemPayee);
 
     wxMenuItem* menuItemCurrency = new wxMenuItem(menuTools, MENU_CURRENCY
         , _("Organize Currency..."), _("Organize Currency"));
-    menuItemCurrency->SetBitmap(wxBitmap(wxImage(money_dollar_xpm).Scale(x, x)));
+    menuItemCurrency->SetBitmap(mmBitmap(png::CURR));
     menuTools->Append(menuItemCurrency);
 
     wxMenu *menuRelocation = new wxMenu;
@@ -1469,38 +1455,38 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemBudgeting = new wxMenuItem(menuTools, MENU_BUDGETSETUPDIALOG
         , _("&Budget Setup"), _("Budget Setup"));
-    menuItemBudgeting->SetBitmap(wxBitmap(wxImage(calendar_xpm).Scale(x, x)));
+    menuItemBudgeting->SetBitmap(mmBitmap(png::BUDGET));
     menuTools->Append(menuItemBudgeting);
 
     wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
         , _("&Recurring Transactions"), _("Bills && Deposits"));
-    menuItemBillsDeposits->SetBitmap(wxBitmap(wxImage(clock_xpm).Scale(x, x)));
+    menuItemBillsDeposits->SetBitmap(wxBitmap(wxImage(schedule_xpm).Scale(x, x)));
     menuTools->Append(menuItemBillsDeposits);
 
     wxMenuItem* menuItemAssets = new wxMenuItem(menuTools, MENU_ASSETS
         , _("&Assets"), _("Assets"));
-    menuItemAssets->SetBitmap(wxBitmap(wxImage(car_xpm).Scale(x, x)));
+    menuItemAssets->SetBitmap(mmBitmap(png::ASSET));
     menuTools->Append(menuItemAssets);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
         , _("&Transaction Report Filter..."), _("Transaction Report Filter"));
-    menuItemTransactions->SetBitmap(wxBitmap(wxImage(filter_xpm).Scale(x, x)));
+    menuItemTransactions->SetBitmap(mmBitmap(png::FILTER));
     menuTools->Append(menuItemTransactions);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemGRM = new wxMenuItem(menuTools, wxID_VIEW_LIST
         , _("&General Report Manager..."), _("General Report Manager"));
-    menuItemGRM->SetBitmap(wxBitmap(wxImage(general_report_manager_xpm).Scale(x, x)));
+    menuItemGRM->SetBitmap(mmBitmap(png::GRM));
     menuTools->Append(menuItemGRM);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
         , _("&Options..."), _("Show the Options Dialog"));
-    menuItemOptions->SetBitmap(wxBitmap(wxImage(wrench_xpm).Scale(x, x)));
+    menuItemOptions->SetBitmap(mmBitmap(png::OPTIONS));
     menuTools->Append(menuItemOptions);
 
     menuTools->AppendSeparator();
@@ -1529,7 +1515,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemHelp = new wxMenuItem(menuTools, wxID_HELP,
         _("&Help\tF1"), _("Show the Help file"));
-    menuItemHelp->SetBitmap(wxBitmap(wxImage(help_xpm).Scale(x, x)));
+    menuItemHelp->SetBitmap(mmBitmap(png::HELP));
     menuHelp->Append(menuItemHelp);
 
     wxMenuItem* menuItemAppStart = new wxMenuItem(menuTools, MENU_SHOW_APPSTART
@@ -1559,17 +1545,17 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemNotify = new wxMenuItem(menuTools, MENU_ANNOUNCEMENTMAILING
         , _("Register/View Release &Notifications")
         , _("Sign up to Notification Mailing List or View existing announcements."));
-    menuItemNotify->SetBitmap(wxBitmap(wxImage(notify_xpm).Scale(x, x)));
+    menuItemNotify->SetBitmap(mmBitmap(png::NEWS));
     menuHelp->Append(menuItemNotify);
 
     wxMenuItem* menuItemFacebook = new wxMenuItem(menuTools, MENU_FACEBOOK
         , _("Visit us on Facebook"), _("Visit us on Facebook"));
-    menuItemFacebook->SetBitmap(wxBitmap(wxImage(facebook_xpm).Scale(x, x)));
+    menuItemFacebook->SetBitmap(mmBitmap(png::FACEBOOK));
     menuHelp->Append(menuItemFacebook);
 
     wxMenuItem* menuItemAbout = new wxMenuItem(menuTools, wxID_ABOUT
         , _("&About..."), _("Show about dialog"));
-    menuItemAbout->SetBitmap(wxBitmap(wxImage(about_xpm).Scale(x, x)));
+    menuItemAbout->SetBitmap(mmBitmap(png::ABOUT));
     menuHelp->Append(menuItemAbout);
 
     menuBar_ = new wxMenuBar;

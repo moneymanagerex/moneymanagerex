@@ -17,7 +17,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *******************************************************/
 
 #include "images_list.h"
-#include "model/Model_Setting.h"
+#include "mmOption.h"
 #include <wx/image.h>
 #include <wx/bitmap.h>
 #include <map>
@@ -37,23 +37,28 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/help_png.h"
 #include "../resources/news_png.h"
 #include "../resources/nnews_png.h"
+#include "../resources/pie_chart_png.h"
+#include "../resources/budget_png.h"
+#include "../resources/asset_png.h"
+#include "../resources/car_png.h"
+#include "../resources/jewellery_png.h"
+#include "../resources/household_obj_png.h"
+#include "../resources/art_png.h"
+#include "../resources/coin_png.h"
+#include "../resources/puzzle_png.h"
+#include "../resources/facebook_png.h"
+#include "../resources/exit_png.h"
 
-
-
-#include "../resources/about.xpm"
 #include "../resources/accounttree.xpm"
-#include "../resources/calendar.xpm"
-#include "../resources/car.xpm"
+#include "../resources/cat.xpm"
 #include "../resources/card_acc.xpm"
 #include "../resources/card_acc_closed.xpm"
 #include "../resources/card_acc_favorite.xpm"
-#include "../resources/cat.xpm"
 #include "../resources/chartpiereport.xpm"
 #include "../resources/clock.xpm"
-#include "../resources/coin.xpm"
 #include "../resources/customsql.xpm"
 #include "../resources/dog.xpm"
-#include "../resources/filter.xpm"
+#include "../resources/empty.xpm"
 #include "../resources/flag.xpm"
 #include "../resources/help.xpm"
 #include "../resources/hourglass.xpm"
@@ -62,7 +67,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/money_dollar.xpm"
 #include "../resources/money_euro.xpm"
 #include "../resources/moneyaccount.xpm"
-#include "../resources/rubik_cube.xpm"
 #include "../resources/savings_acc_closed.xpm"
 #include "../resources/savings_acc_favorite.xpm"
 #include "../resources/schedule.xpm"
@@ -77,59 +81,57 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/work.xpm"
 #include "../resources/yandex_money.xpm"
 
-static const std::map<int, wxImage> images_list()
+static const std::map<int, wxBitmap> images_list()
 {
-    return {
-        { HOUSE_XPM, wxImage(house_xpm) }
-        , { SCHEDULE_XPM, wxImage(schedule_xpm) }
-        , { CALENDAR_XPM, wxImage(calendar_xpm) }
-        , { PIECHART_XPM, wxImage(chartpiereport_xpm) }
-        , { HELP_XPM, wxImage(help_xpm) }
-        , { FILTER_XPM, wxImage(filter_xpm) }
-        , { CAR_XPM, wxImage(car_xpm) }
-        , { CUSTOMSQL_XPM, wxImage(customsql_xpm) }
-        , { CUSTOMSQL_GRP_XPM, wxImage(customsql_xpm) } //TODO: GRM rep group ico
-        , { MONEYACCOUNT_XPM, wxImage(moneyaccount_xpm) }
-        , { SAVINGS_ACC_FAVORITE_XPM, wxImage(savings_acc_favorite_xpm) }
-        , { SAVINGS_ACC_CLOSED_XPM, wxImage(savings_acc_closed_xpm) }
-        , { TERMACCOUNT_XPM, wxImage(termaccount_xpm) }
-        , { TERM_ACC_FAVORITE_XPM, wxImage(term_acc_favorite_xpm) }
-        , { TERM_ACC_CLOSED_XPM, wxImage(term_acc_closed_xpm) }
-        , { STOCK_ACC_XPM, wxImage(stock_acc_xpm) }
-        , { STOCK_ACC_FAVORITE_XPM, wxImage(stock_acc_favorite_xpm) }
-        , { STOCK_ACC_CLOSED_XPM, wxImage(stock_acc_closed_xpm) }
-        , { CARD_ACC_XPM, wxImage(card_acc_xpm) }
-        , { CARD_ACC_FAVORITE_XPM, wxImage(card_acc_favorite_xpm) }
-        , { CARD_ACC_CLOSED_XPM, wxImage(card_acc_closed_xpm) }
+    int x = mmIniOptions::instance().ico_size_;
+    return{
+        { HOUSE_XPM, mmBitmap(png::HOME) }
+        , { SCHEDULE_XPM, wxBitmap(wxImage(schedule_xpm).Scale(x, x)) }
+        , { CALENDAR_XPM, mmBitmap(png::BUDGET) }
+        , { PIECHART_XPM, mmBitmap(png::PIE_CHART) }
+        , { HELP_XPM, mmBitmap(png::HELP) }
+        , { FILTER_XPM, mmBitmap(png::FILTER) }
+        , { ASSET_XPM, mmBitmap(png::ASSET) }
+        , { CUSTOMSQL_XPM, mmBitmap(png::GRM) }
+        , { CUSTOMSQL_GRP_XPM, mmBitmap(png::GRM) } //TODO: GRM rep group ico
+        , { MONEYACCOUNT_XPM, wxBitmap(wxImage(moneyaccount_xpm).Scale(x, x)) }
+        , { SAVINGS_ACC_FAVORITE_XPM, wxBitmap(wxImage(savings_acc_favorite_xpm).Scale(x, x)) }
+        , { SAVINGS_ACC_CLOSED_XPM, wxBitmap(wxImage(savings_acc_closed_xpm).Scale(x, x)) }
+        , { TERMACCOUNT_XPM, wxBitmap(wxImage(termaccount_xpm).Scale(x, x)) }
+        , { TERM_ACC_FAVORITE_XPM, wxBitmap(wxImage(term_acc_favorite_xpm).Scale(x, x)) }
+        , { TERM_ACC_CLOSED_XPM, wxBitmap(wxImage(term_acc_closed_xpm).Scale(x, x)) }
+        , { STOCK_ACC_XPM, wxBitmap(wxImage(stock_acc_xpm).Scale(x, x)) }
+        , { STOCK_ACC_FAVORITE_XPM, wxBitmap(wxImage(stock_acc_favorite_xpm).Scale(x, x)) }
+        , { STOCK_ACC_CLOSED_XPM, wxBitmap(wxImage(stock_acc_closed_xpm).Scale(x, x)) }
+        , { CARD_ACC_XPM, wxBitmap(wxImage(card_acc_xpm).Scale(x, x)) }
+        , { CARD_ACC_FAVORITE_XPM, wxBitmap(wxImage(card_acc_favorite_xpm).Scale(x, x)) }
+        , { CARD_ACC_CLOSED_XPM, wxBitmap(wxImage(card_acc_closed_xpm).Scale(x, x)) }
         // Custom icons for accounts
-        , { MONEY_DOLLAR_XPM, wxImage(money_dollar_xpm) }
-        , { MONEY_EURO_XPM, wxImage(money_euro_xpm) }
-        , { FLAG_XPM, wxImage(flag_xpm) }
-        , { ACCOUNTTREE_XPM, wxImage(accounttree_xpm) }
-        , { ABOUT_XPM, wxImage(about_xpm) }
-        , { CLOCK_XPM, wxImage(clock_xpm) }
-        , { CAT_XPM, wxImage(cat_xpm) }
-        , { DOG_XPM, wxImage(dog_xpm) }
-        , { TREES_XPM, wxImage(trees_xpm) }
-        , { HOURGLASS_XPM, wxImage(hourglass_xpm) }
-        , { WORK_XPM, wxImage(work_xpm) }
-        , { YANDEX_MONEY_XPM, wxImage(yandex_money_xpm) }
-        , { WEB_MONEY_XPM, wxImage(web_money_xpm) }
-        , { RUBIK_CUBE_XPM, wxImage(rubik_cube_xpm) }
+        , { MONEY_DOLLAR_XPM, wxBitmap(wxImage(money_dollar_xpm).Scale(x, x)) }
+        , { MONEY_EURO_XPM, wxBitmap(wxImage(money_euro_xpm).Scale(x, x)) }
+        , { FLAG_XPM, wxBitmap(wxImage(flag_xpm).Scale(x, x)) }
+        , { ACCOUNTTREE_XPM, wxBitmap(wxImage(accounttree_xpm).Scale(x, x)) }
+        , { ABOUT_XPM, mmBitmap(png::ABOUT) }
+        , { CLOCK_XPM, wxBitmap(wxImage(clock_xpm).Scale(x, x)) }
+        , { CAT_XPM, wxBitmap(wxImage(cat_xpm).Scale(x, x)) }
+        , { DOG_XPM, wxBitmap(wxImage(dog_xpm).Scale(x, x)) }
+        , { TREES_XPM, wxBitmap(wxImage(trees_xpm).Scale(x, x)) }
+        , { HOURGLASS_XPM, wxBitmap(wxImage(hourglass_xpm).Scale(x, x)) }
+        , { WORK_XPM, wxBitmap(wxImage(work_xpm).Scale(x, x)) }
+        , { YANDEX_MONEY_XPM, wxBitmap(wxImage(yandex_money_xpm).Scale(x, x)) }
+        , { WEB_MONEY_XPM, wxBitmap(wxImage(web_money_xpm).Scale(x, x)) }
+        , { RUBIK_CUBE_XPM, mmBitmap(png::OTHER) }
     };
 };
 
 wxImageList* navtree_images_list()
 {
-    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
-    int x = 16;
-    if (vFontSize >= 300) x = 48;
-    else if (vFontSize >= 200) x = 32;
+    int x = mmIniOptions::instance().ico_size_;
 
     wxImageList* imageList = new wxImageList(x, x);
     for (const auto& img : images_list())
     {
-        imageList->Add(wxBitmap(img.second.Scale(x, x)));
+        imageList->Add(img.second);
     }
     return imageList;
 }
@@ -153,16 +155,23 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { HELP, { { 16, wxBITMAP_PNG_FROM_DATA(help) }, { 24, wxBITMAP_PNG_FROM_DATA(help24) }, { 32, wxBITMAP_PNG_FROM_DATA(help32) }, { 48, wxBITMAP_PNG_FROM_DATA(help48) } } }
         , { NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(news) }, { 24, wxBITMAP_PNG_FROM_DATA(news24) }, { 32, wxBITMAP_PNG_FROM_DATA(news32) }, { 48, wxBITMAP_PNG_FROM_DATA(news48) } } }
         , { NEW_NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(nnews) }, { 24, wxBITMAP_PNG_FROM_DATA(nnews24) }, { 32, wxBITMAP_PNG_FROM_DATA(nnews32) }, { 48, wxBITMAP_PNG_FROM_DATA(nnews48) } } }
+        , { PIE_CHART, { { 16, wxBITMAP_PNG_FROM_DATA(pie_chart) }, { 24, wxBITMAP_PNG_FROM_DATA(pie_chart24) }, { 32, wxBITMAP_PNG_FROM_DATA(pie_chart32) }, { 48, wxBITMAP_PNG_FROM_DATA(pie_chart48) } } }
+        , { BUDGET, { { 16, wxBITMAP_PNG_FROM_DATA(budget) }, { 24, wxBITMAP_PNG_FROM_DATA(budget24) }, { 32, wxBITMAP_PNG_FROM_DATA(budget32) }, { 48, wxBITMAP_PNG_FROM_DATA(budget48) } } }
+        , { ASSET, { { 16, wxBITMAP_PNG_FROM_DATA(asset) }, { 24, wxBITMAP_PNG_FROM_DATA(asset24) }, { 32, wxBITMAP_PNG_FROM_DATA(asset32) }, { 48, wxBITMAP_PNG_FROM_DATA(asset48) } } }
+        , { CAR, { { 16, wxBITMAP_PNG_FROM_DATA(car) }, { 24, wxBITMAP_PNG_FROM_DATA(car24) }, { 32, wxBITMAP_PNG_FROM_DATA(car32) }, { 48, wxBITMAP_PNG_FROM_DATA(car48) } } }
+        , { HOUSEHOLD_OBJ, { { 16, wxBITMAP_PNG_FROM_DATA(household_obj) }, { 24, wxBITMAP_PNG_FROM_DATA(household_obj24) }, { 32, wxBITMAP_PNG_FROM_DATA(household_obj32) }, { 48, wxBITMAP_PNG_FROM_DATA(household_obj48) } } }
+        , { ART, { { 16, wxBITMAP_PNG_FROM_DATA(art) }, { 24, wxBITMAP_PNG_FROM_DATA(art24) }, { 32, wxBITMAP_PNG_FROM_DATA(art32) }, { 48, wxBITMAP_PNG_FROM_DATA(art48) } } }
+        , { JEWELLERY, { { 16, wxBITMAP_PNG_FROM_DATA(jewellery) }, { 24, wxBITMAP_PNG_FROM_DATA(jewellery24) }, { 32, wxBITMAP_PNG_FROM_DATA(jewellery32) }, { 48, wxBITMAP_PNG_FROM_DATA(jewellery48) } } }
+        , { CASH, { { 16, wxBITMAP_PNG_FROM_DATA(coin) }, { 24, wxBITMAP_PNG_FROM_DATA(coin24) }, { 32, wxBITMAP_PNG_FROM_DATA(coin32) }, { 48, wxBITMAP_PNG_FROM_DATA(coin48) } } }
+        , { OTHER, { { 16, wxBITMAP_PNG_FROM_DATA(puzzle) }, { 24, wxBITMAP_PNG_FROM_DATA(puzzle24) }, { 32, wxBITMAP_PNG_FROM_DATA(puzzle32) }, { 48, wxBITMAP_PNG_FROM_DATA(puzzle48) } } }
+        , { FACEBOOK, { { 16, wxBITMAP_PNG_FROM_DATA(facebook) }, { 24, wxBITMAP_PNG_FROM_DATA(facebook24) }, { 32, wxBITMAP_PNG_FROM_DATA(facebook32) }, { 48, wxBITMAP_PNG_FROM_DATA(facebook48) } } }
+        , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
     };
 }
 
 const wxBitmap mmBitmap(int ref)
 {
-    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
-    int x = 16;
-    if (vFontSize >= 300) x = 48;
-    else if (vFontSize >= 200) x = 32;
-    else if (vFontSize >= 150) x = 24;
+    int x = mmIniOptions::instance().ico_size_;
 
     wxBitmap b;
     try {
@@ -172,7 +181,7 @@ const wxBitmap mmBitmap(int ref)
     }
     catch (std::out_of_range const& exc) {
         wxLogError("Exception in function 'mmBitmap': %s", exc.what());
-        b = wxBitmap(about_xpm);
+        b = wxBitmap(empty_xpm);
     }
     return b;
 }
