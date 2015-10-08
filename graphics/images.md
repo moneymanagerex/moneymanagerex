@@ -3,13 +3,12 @@
 <br>![img](https://openclipart.org/image/24px/svg_to_png/30805/go-home.png) | home | [page](https://openclipart.org/detail/30805/tango-go-home)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/170057/1337216652.png) | money | [page](https://openclipart.org/detail/170057/money-wads)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/217648/credit_card_path.png) | Credit Card | [page](https://openclipart.org/detail/217648/credit-card-tarjeta-de-credito)
-<br>![img](https://openclipart.org/image/24px/svg_to_png/168751/saving.png) | asset | [page](https://openclipart.org/detail/168751/saving-up)
+<br><img src="https://openclipart.org/image/24px/svg_to_png/188617/schatzkiste.png&disposition=attachment" alt="Treasure chest" title="Treasure chest by  Moini ( https://openclipart.org/user-detail/Moini )" /> | asset | [page](https://openclipart.org/detail/188617/treasure-chest)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/182298/Stock-trends-Up-and-Down.png) | Stock | [page](https://openclipart.org/detail/182298/stock-trends-up-and-down)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/171954/1346212157.png) | Recurring | [page](https://openclipart.org/detail/171954/cycle-color)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/31153/alarm-clock.png) | alarm | [page](https://openclipart.org/detail/31153/alarm-clock) 
 <br>![img](https://openclipart.org/image/24px/svg_to_png/17064/jean-victor-balin-icon-graphics.png) | Budget | [site](https://openclipart.org/detail/17064/icongraphics)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/175430/diagrama-de-sectores.png) | PieChart | [page](https://openclipart.org/detail/175430/diagrama-de-sectores-piechart)
-<br>![img]()| Report | [page]()
 <br>![img](https://openclipart.org/image/24px/svg_to_png/140041/funnel.png) | funnel | [page](https://openclipart.org/detail/140041/green-funnel)
 
 ###Tool Bar (32x32)
@@ -36,5 +35,8 @@
 <br> <img src="https://openclipart.org/image/16px/svg_to_png/180750/document-encrypted-gold.png" /> <img src="https://openclipart.org/image/24px/svg_to_png/180750/document-encrypted-gold.png" /> <img src="https://openclipart.org/image/32px/svg_to_png/180750/document-encrypted-gold.png" /> <img src="https://openclipart.org/image/48px/svg_to_png/180750/document-encrypted-gold.png" />| Encrypt | [page](https://openclipart.org/detail/180750/encrypted-document-gold)
 <br> <img src="https://openclipart.org/image/16px/svg_to_png/34279/system-log-out.png )" /> <img src="https://openclipart.org/image/24px/svg_to_png/34279/system-log-out.png )" /> <img src="https://openclipart.org/image/32px/svg_to_png/34279/system-log-out.png )" /> <img src="https://openclipart.org/image/48px/svg_to_png/34279/system-log-out.png )" /> | Exit | [page](https://openclipart.org/detail/34279/tango-system-log-out)
 
+###ASSETS (32x32)
+<br><img src="https://openclipart.org/image/32px/svg_to_png/169213/madcar2.png" />| Car | [page](https://openclipart.org/detail/169213/anglia-hotrod)
+<br><img src="https://openclipart.org/image/32px/svg_to_png/172603/Diamond-Remix-2-by-Merlin2525.png" /> | Diamond |[page](https://openclipart.org/detail/172603/diamond-remix-2)
 
                                                                                                                                                                    

@@ -37,15 +37,18 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/help_png.h"
 #include "../resources/news_png.h"
 #include "../resources/nnews_png.h"
+#include "../resources/pie_chart_png.h"
+#include "../resources/budget_png.h"
+#include "../resources/asset_png.h"
+#include "../resources/car_png.h"
+#include "../resources/jewellery_png.h"
 #include "../resources/exit_png.h"
 
 #include "../resources/accounttree.xpm"
-#include "../resources/calendar.xpm"
-#include "../resources/car.xpm"
+#include "../resources/cat.xpm"
 #include "../resources/card_acc.xpm"
 #include "../resources/card_acc_closed.xpm"
 #include "../resources/card_acc_favorite.xpm"
-#include "../resources/cat.xpm"
 #include "../resources/chartpiereport.xpm"
 #include "../resources/clock.xpm"
 #include "../resources/coin.xpm"
@@ -87,11 +90,11 @@ static const std::map<int, wxBitmap> images_list()
     return{
         { HOUSE_XPM, mmBitmap(png::HOME) }
         , { SCHEDULE_XPM, wxBitmap(wxImage(schedule_xpm).Scale(x, x)) }
-        , { CALENDAR_XPM, wxBitmap(wxImage(calendar_xpm).Scale(x, x)) }
-        , { PIECHART_XPM, wxBitmap(wxImage(chartpiereport_xpm).Scale(x, x)) }
+        , { CALENDAR_XPM, mmBitmap(png::BUDGET) }
+        , { PIECHART_XPM, mmBitmap(png::PIE_CHART) }
         , { HELP_XPM, mmBitmap(png::HELP) }
         , { FILTER_XPM, wxBitmap(wxImage(filter_xpm).Scale(x, x)) }
-        , { CAR_XPM, wxBitmap(wxImage(car_xpm).Scale(x, x)) }
+        , { ASSET_XPM, mmBitmap(png::ASSET) }
         , { CUSTOMSQL_XPM, mmBitmap(png::GRM) }
         , { CUSTOMSQL_GRP_XPM, mmBitmap(png::GRM) } //TODO: GRM rep group ico
         , { MONEYACCOUNT_XPM, wxBitmap(wxImage(moneyaccount_xpm).Scale(x, x)) }
@@ -159,6 +162,11 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { HELP, { { 16, wxBITMAP_PNG_FROM_DATA(help) }, { 24, wxBITMAP_PNG_FROM_DATA(help24) }, { 32, wxBITMAP_PNG_FROM_DATA(help32) }, { 48, wxBITMAP_PNG_FROM_DATA(help48) } } }
         , { NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(news) }, { 24, wxBITMAP_PNG_FROM_DATA(news24) }, { 32, wxBITMAP_PNG_FROM_DATA(news32) }, { 48, wxBITMAP_PNG_FROM_DATA(news48) } } }
         , { NEW_NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(nnews) }, { 24, wxBITMAP_PNG_FROM_DATA(nnews24) }, { 32, wxBITMAP_PNG_FROM_DATA(nnews32) }, { 48, wxBITMAP_PNG_FROM_DATA(nnews48) } } }
+        , { PIE_CHART, { { 16, wxBITMAP_PNG_FROM_DATA(pie_chart) }, { 24, wxBITMAP_PNG_FROM_DATA(pie_chart24) }, { 32, wxBITMAP_PNG_FROM_DATA(pie_chart32) }, { 48, wxBITMAP_PNG_FROM_DATA(pie_chart48) } } }
+        , { BUDGET, { { 16, wxBITMAP_PNG_FROM_DATA(budget) }, { 24, wxBITMAP_PNG_FROM_DATA(budget24) }, { 32, wxBITMAP_PNG_FROM_DATA(budget32) }, { 48, wxBITMAP_PNG_FROM_DATA(budget48) } } }
+        , { ASSET, { { 16, wxBITMAP_PNG_FROM_DATA(asset) }, { 24, wxBITMAP_PNG_FROM_DATA(asset24) }, { 32, wxBITMAP_PNG_FROM_DATA(asset32) }, { 48, wxBITMAP_PNG_FROM_DATA(asset48) } } }
+        , { CAR, { { 16, wxBITMAP_PNG_FROM_DATA(car) }, { 24, wxBITMAP_PNG_FROM_DATA(car24) }, { 32, wxBITMAP_PNG_FROM_DATA(car32) }, { 48, wxBITMAP_PNG_FROM_DATA(car48) } } }
+        , { JEWELLERY, { { 16, wxBITMAP_PNG_FROM_DATA(jewellery) }, { 24, wxBITMAP_PNG_FROM_DATA(jewellery24) }, { 32, wxBITMAP_PNG_FROM_DATA(jewellery32) }, { 48, wxBITMAP_PNG_FROM_DATA(jewellery48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
     };
 }

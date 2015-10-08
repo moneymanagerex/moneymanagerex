@@ -107,11 +107,9 @@
 /* Include XPM Support */
 
 #include "../resources/appstart.xpm"
-#include "../resources/calendar.xpm"
-#include "../resources/car.xpm"
+#include "../resources/schedule.xpm"
 #include "../resources/checkupdate.xpm"
 #include "../resources/clearlist.xpm"
-#include "../resources/clock.xpm"
 #include "../resources/delete_account.xpm"
 #include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
@@ -716,7 +714,7 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
     navTreeCtrl_->SetItemBold(stocks, true);
 
-    wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), img::CAR_XPM, img::CAR_XPM);
+    wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), img::ASSET_XPM, img::ASSET_XPM);
     navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
     navTreeCtrl_->SetItemBold(assets, true);
 
@@ -1458,17 +1456,17 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemBudgeting = new wxMenuItem(menuTools, MENU_BUDGETSETUPDIALOG
         , _("&Budget Setup"), _("Budget Setup"));
-    menuItemBudgeting->SetBitmap(wxBitmap(wxImage(calendar_xpm).Scale(x, x)));
+    menuItemBudgeting->SetBitmap(mmBitmap(png::BUDGET));
     menuTools->Append(menuItemBudgeting);
 
     wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
         , _("&Recurring Transactions"), _("Bills && Deposits"));
-    menuItemBillsDeposits->SetBitmap(wxBitmap(wxImage(clock_xpm).Scale(x, x)));
+    menuItemBillsDeposits->SetBitmap(wxBitmap(wxImage(schedule_xpm).Scale(x, x)));
     menuTools->Append(menuItemBillsDeposits);
 
     wxMenuItem* menuItemAssets = new wxMenuItem(menuTools, MENU_ASSETS
         , _("&Assets"), _("Assets"));
-    menuItemAssets->SetBitmap(wxBitmap(wxImage(car_xpm).Scale(x, x)));
+    menuItemAssets->SetBitmap(mmBitmap(png::ASSET));
     menuTools->Append(menuItemAssets);
 
     menuTools->AppendSeparator();
