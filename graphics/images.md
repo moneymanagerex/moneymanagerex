@@ -38,5 +38,7 @@
 ###ASSETS (32x32)
 <br><img src="https://openclipart.org/image/32px/svg_to_png/169213/madcar2.png" />| Car | [page](https://openclipart.org/detail/169213/anglia-hotrod)
 <br><img src="https://openclipart.org/image/32px/svg_to_png/172603/Diamond-Remix-2-by-Merlin2525.png" /> | Diamond |[page](https://openclipart.org/detail/172603/diamond-remix-2)
-
-                                                                                                                                                                   
+<br><img src="https://openclipart.org/image/32px/svg_to_png/203249/watering-can.png" /> | Household Object | [page](https://openclipart.org/detail/203249/watering-can-game-component-superb-quality)
+<br><img src="https://openclipart.org/image/32px/svg_to_png/214206/painting.png" /> | Art | [page](https://openclipart.org/detail/214206/painting)              
+<br><img src="https://openclipart.org/image/32px/svg_to_png/11120/jetxee-euro-coin.png" /> | Cash | [page](https://openclipart.org/detail/11120/euro-coin )    
+<br><img src="https://openclipart.org/image/32px/svg_to_png/192580/Jigsaw-Puzzle.png" /> | Other | [page](https://openclipart.org/detail/192580/jigsawpuzzle)                                                                                                                                             
