@@ -401,11 +401,7 @@ void mmAssetsPanel::CreateControls()
 
     m_listCtrlAssets = new mmAssetsListCtrl(this, itemSplitterWindow10, wxID_ANY);
 
-    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
-    int x = 16;
-    if (vFontSize >= 300) x = 48;
-    else if (vFontSize >= 200) x = 32;
-    else if (vFontSize >= 150) x = 24;
+    int x = mmIniOptions::instance().ico_size_;
     m_imageList.reset(new wxImageList(x, x));
     m_imageList->Add(mmBitmap(png::HOME));
     m_imageList->Add(mmBitmap(png::CAR));

@@ -52,6 +52,7 @@ void mmOptions::LoadInfotableOptions()
 //----------------------------------------------------------------------------
 mmIniOptions::mmIniOptions()
 : html_font_size_(100)
+, ico_size_(16)
 , budgetFinancialYears_(false)
 , budgetIncludeTransfers_(false)
 , budgetSetupWithoutSummaries_(false)
@@ -72,6 +73,11 @@ mmIniOptions& mmIniOptions::instance()
 void mmIniOptions::loadOptions()
 {
     html_font_size_ = Model_Setting::instance().GetHtmlScaleFactor();
+
+    ico_size_ = 16;
+    if (html_font_size_ >= 300) ico_size_ = 48;
+    else if (html_font_size_ >= 200) ico_size_ = 32;
+    else if (html_font_size_ >= 150) ico_size_ = 24;
 
     budgetFinancialYears_           = Model_Setting::instance().BudgetFinancialYears();
     budgetIncludeTransfers_         = Model_Setting::instance().BudgetIncludeTransfers();

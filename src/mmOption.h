@@ -51,6 +51,7 @@ public:
 
     const int account_image_id(int account_id, bool def = false);
     int html_font_size_;
+    int ico_size_;
 
     bool budgetFinancialYears_;
     bool budgetIncludeTransfers_;

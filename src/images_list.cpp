@@ -17,7 +17,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *******************************************************/
 
 #include "images_list.h"
-#include "model/Model_Setting.h"
+#include "mmOption.h"
 #include <wx/image.h>
 #include <wx/bitmap.h>
 #include <map>
@@ -82,12 +82,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 static const std::map<int, wxBitmap> images_list()
 {
-    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
-    int x = 16;
-    if (vFontSize >= 300) x = 48;
-    else if (vFontSize >= 200) x = 32;
-    else if (vFontSize >= 150) x = 24;
-
+    int x = mmIniOptions::instance().ico_size_;
     return{
         { HOUSE_XPM, mmBitmap(png::HOME) }
         , { SCHEDULE_XPM, wxBitmap(wxImage(schedule_xpm).Scale(x, x)) }
@@ -130,11 +125,7 @@ static const std::map<int, wxBitmap> images_list()
 
 wxImageList* navtree_images_list()
 {
-    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
-    int x = 16;
-    if (vFontSize >= 300) x = 48;
-    else if (vFontSize >= 200) x = 32;
-    else if (vFontSize >= 150) x = 24;
+    int x = mmIniOptions::instance().ico_size_;
 
     wxImageList* imageList = new wxImageList(x, x);
     for (const auto& img : images_list())
@@ -178,11 +169,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
 
 const wxBitmap mmBitmap(int ref)
 {
-    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
-    int x = 16;
-    if (vFontSize >= 300) x = 48;
-    else if (vFontSize >= 200) x = 32;
-    else if (vFontSize >= 150) x = 24;
+    int x = mmIniOptions::instance().ico_size_;
 
     wxBitmap b;
     try {
