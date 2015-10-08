@@ -114,7 +114,6 @@
 #include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
 #include "../resources/encrypt_db_edit.xpm"
-#include "../resources/facebook.xpm"
 #include "../resources/google_play.xpm"
 #include "../resources/issues.xpm"
 #include "../resources/newacct.xpm"
@@ -1551,7 +1550,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemFacebook = new wxMenuItem(menuTools, MENU_FACEBOOK
         , _("Visit us on Facebook"), _("Visit us on Facebook"));
-    menuItemFacebook->SetBitmap(wxBitmap(wxImage(facebook_xpm).Scale(x, x)));
+    menuItemFacebook->SetBitmap(mmBitmap(png::FACEBOOK));
     menuHelp->Append(menuItemFacebook);
 
     wxMenuItem* menuItemAbout = new wxMenuItem(menuTools, wxID_ABOUT

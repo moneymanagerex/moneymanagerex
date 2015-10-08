@@ -46,6 +46,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/art_png.h"
 #include "../resources/coin_png.h"
 #include "../resources/puzzle_png.h"
+#include "../resources/facebook_png.h"
 #include "../resources/exit_png.h"
 
 #include "../resources/accounttree.xpm"
@@ -163,6 +164,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { JEWELLERY, { { 16, wxBITMAP_PNG_FROM_DATA(jewellery) }, { 24, wxBITMAP_PNG_FROM_DATA(jewellery24) }, { 32, wxBITMAP_PNG_FROM_DATA(jewellery32) }, { 48, wxBITMAP_PNG_FROM_DATA(jewellery48) } } }
         , { CASH, { { 16, wxBITMAP_PNG_FROM_DATA(coin) }, { 24, wxBITMAP_PNG_FROM_DATA(coin24) }, { 32, wxBITMAP_PNG_FROM_DATA(coin32) }, { 48, wxBITMAP_PNG_FROM_DATA(coin48) } } }
         , { OTHER, { { 16, wxBITMAP_PNG_FROM_DATA(puzzle) }, { 24, wxBITMAP_PNG_FROM_DATA(puzzle24) }, { 32, wxBITMAP_PNG_FROM_DATA(puzzle32) }, { 48, wxBITMAP_PNG_FROM_DATA(puzzle48) } } }
+        , { FACEBOOK, { { 16, wxBITMAP_PNG_FROM_DATA(facebook) }, { 24, wxBITMAP_PNG_FROM_DATA(facebook24) }, { 32, wxBITMAP_PNG_FROM_DATA(facebook32) }, { 48, wxBITMAP_PNG_FROM_DATA(facebook48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
     };
 }

@@ -83,6 +83,7 @@ enum png {
     JEWELLERY,
     CASH,
     OTHER,
+    FACEBOOK,
     EXIT,
 };
 
