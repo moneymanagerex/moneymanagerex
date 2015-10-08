@@ -31,12 +31,9 @@
 #include "../resources/art.xpm"
 #include "../resources/attachment.xpm"
 #include "../resources/clock.xpm"
-#include "../resources/coin.xpm"
-#include "../resources/assets.xpm"
 #include "../resources/downarrow.xpm"
 #include "../resources/house.xpm"
 #include "../resources/rightarrow.xpm"
-#include "../resources/rubik_cube.xpm"
 #include "../resources/uparrow.xpm"
 
 /*******************************************************/
@@ -412,11 +409,11 @@ void mmAssetsPanel::CreateControls()
     m_imageList.reset(new wxImageList(x, x));
     m_imageList->Add(mmBitmap(png::HOME));
     m_imageList->Add(mmBitmap(png::CAR));
-    m_imageList->Add(wxBitmap(wxImage(clock_xpm).Scale(x, x)));
-    m_imageList->Add(wxBitmap(wxImage(art_xpm).Scale(x, x)));
-    m_imageList->Add(wxBitmap(wxImage(assets_xpm).Scale(x, x)));
-    m_imageList->Add(wxBitmap(wxImage(coin_xpm).Scale(x, x)));
-    m_imageList->Add(wxBitmap(wxImage(rubik_cube_xpm).Scale(x, x)));
+    m_imageList->Add(mmBitmap(png::HOUSEHOLD_OBJ));
+    m_imageList->Add(mmBitmap(png::ART));
+    m_imageList->Add(mmBitmap(png::JEWELLERY));
+    m_imageList->Add(mmBitmap(png::CASH));
+    m_imageList->Add(mmBitmap(png::OTHER));
     m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(x, x)));
     m_imageList->Add(wxBitmap(wxImage(downarrow_xpm).Scale(x, x)));
 

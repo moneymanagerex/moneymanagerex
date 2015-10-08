@@ -79,6 +79,7 @@ enum png {
     PROPERTY,
     CAR,
     HOUSEHOLD_OBJ,
+    ART,
     JEWELLERY,
     CASH,
     OTHER,

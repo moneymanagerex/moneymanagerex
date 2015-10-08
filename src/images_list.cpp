@@ -42,6 +42,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/asset_png.h"
 #include "../resources/car_png.h"
 #include "../resources/jewellery_png.h"
+#include "../resources/household_obj_png.h"
+#include "../resources/art_png.h"
+#include "../resources/coin_png.h"
+#include "../resources/puzzle_png.h"
 #include "../resources/exit_png.h"
 
 #include "../resources/accounttree.xpm"
@@ -51,11 +55,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/card_acc_favorite.xpm"
 #include "../resources/chartpiereport.xpm"
 #include "../resources/clock.xpm"
-#include "../resources/coin.xpm"
 #include "../resources/customsql.xpm"
 #include "../resources/dog.xpm"
 #include "../resources/empty.xpm"
-#include "../resources/filter.xpm"
 #include "../resources/flag.xpm"
 #include "../resources/help.xpm"
 #include "../resources/hourglass.xpm"
@@ -64,7 +66,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/money_dollar.xpm"
 #include "../resources/money_euro.xpm"
 #include "../resources/moneyaccount.xpm"
-#include "../resources/rubik_cube.xpm"
 #include "../resources/savings_acc_closed.xpm"
 #include "../resources/savings_acc_favorite.xpm"
 #include "../resources/schedule.xpm"
@@ -93,7 +94,7 @@ static const std::map<int, wxBitmap> images_list()
         , { CALENDAR_XPM, mmBitmap(png::BUDGET) }
         , { PIECHART_XPM, mmBitmap(png::PIE_CHART) }
         , { HELP_XPM, mmBitmap(png::HELP) }
-        , { FILTER_XPM, wxBitmap(wxImage(filter_xpm).Scale(x, x)) }
+        , { FILTER_XPM, mmBitmap(png::FILTER) }
         , { ASSET_XPM, mmBitmap(png::ASSET) }
         , { CUSTOMSQL_XPM, mmBitmap(png::GRM) }
         , { CUSTOMSQL_GRP_XPM, mmBitmap(png::GRM) } //TODO: GRM rep group ico
@@ -123,7 +124,7 @@ static const std::map<int, wxBitmap> images_list()
         , { WORK_XPM, wxBitmap(wxImage(work_xpm).Scale(x, x)) }
         , { YANDEX_MONEY_XPM, wxBitmap(wxImage(yandex_money_xpm).Scale(x, x)) }
         , { WEB_MONEY_XPM, wxBitmap(wxImage(web_money_xpm).Scale(x, x)) }
-        , { RUBIK_CUBE_XPM, wxBitmap(wxImage(rubik_cube_xpm).Scale(x, x)) }
+        , { RUBIK_CUBE_XPM, mmBitmap(png::OTHER) }
     };
 };
 
@@ -166,7 +167,11 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { BUDGET, { { 16, wxBITMAP_PNG_FROM_DATA(budget) }, { 24, wxBITMAP_PNG_FROM_DATA(budget24) }, { 32, wxBITMAP_PNG_FROM_DATA(budget32) }, { 48, wxBITMAP_PNG_FROM_DATA(budget48) } } }
         , { ASSET, { { 16, wxBITMAP_PNG_FROM_DATA(asset) }, { 24, wxBITMAP_PNG_FROM_DATA(asset24) }, { 32, wxBITMAP_PNG_FROM_DATA(asset32) }, { 48, wxBITMAP_PNG_FROM_DATA(asset48) } } }
         , { CAR, { { 16, wxBITMAP_PNG_FROM_DATA(car) }, { 24, wxBITMAP_PNG_FROM_DATA(car24) }, { 32, wxBITMAP_PNG_FROM_DATA(car32) }, { 48, wxBITMAP_PNG_FROM_DATA(car48) } } }
+        , { HOUSEHOLD_OBJ, { { 16, wxBITMAP_PNG_FROM_DATA(household_obj) }, { 24, wxBITMAP_PNG_FROM_DATA(household_obj24) }, { 32, wxBITMAP_PNG_FROM_DATA(household_obj32) }, { 48, wxBITMAP_PNG_FROM_DATA(household_obj48) } } }
+        , { ART, { { 16, wxBITMAP_PNG_FROM_DATA(art) }, { 24, wxBITMAP_PNG_FROM_DATA(art24) }, { 32, wxBITMAP_PNG_FROM_DATA(art32) }, { 48, wxBITMAP_PNG_FROM_DATA(art48) } } }
         , { JEWELLERY, { { 16, wxBITMAP_PNG_FROM_DATA(jewellery) }, { 24, wxBITMAP_PNG_FROM_DATA(jewellery24) }, { 32, wxBITMAP_PNG_FROM_DATA(jewellery32) }, { 48, wxBITMAP_PNG_FROM_DATA(jewellery48) } } }
+        , { CASH, { { 16, wxBITMAP_PNG_FROM_DATA(coin) }, { 24, wxBITMAP_PNG_FROM_DATA(coin24) }, { 32, wxBITMAP_PNG_FROM_DATA(coin32) }, { 48, wxBITMAP_PNG_FROM_DATA(coin48) } } }
+        , { OTHER, { { 16, wxBITMAP_PNG_FROM_DATA(puzzle) }, { 24, wxBITMAP_PNG_FROM_DATA(puzzle24) }, { 32, wxBITMAP_PNG_FROM_DATA(puzzle32) }, { 48, wxBITMAP_PNG_FROM_DATA(puzzle48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
     };
 }
