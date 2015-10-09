@@ -47,22 +47,23 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/coin_png.h"
 #include "../resources/puzzle_png.h"
 #include "../resources/facebook_png.h"
+#include "../resources/credit_card_png.h"
 #include "../resources/exit_png.h"
+
+#include "../resources/empty.xpm"
+#include "../resources/stock_acc.xpm"
+#include "../resources/stock_acc_closed.xpm"
+#include "../resources/stock_acc_favorite.xpm"
+#include "../resources/term_acc_closed.xpm"
+#include "../resources/term_acc_favorite.xpm"
+#include "../resources/termaccount.xpm"
 
 #include "../resources/accounttree.xpm"
 #include "../resources/cat.xpm"
-#include "../resources/card_acc.xpm"
-#include "../resources/card_acc_closed.xpm"
-#include "../resources/card_acc_favorite.xpm"
-#include "../resources/chartpiereport.xpm"
 #include "../resources/clock.xpm"
-#include "../resources/customsql.xpm"
 #include "../resources/dog.xpm"
-#include "../resources/empty.xpm"
 #include "../resources/flag.xpm"
-#include "../resources/help.xpm"
 #include "../resources/hourglass.xpm"
-#include "../resources/house.xpm"
 #include "../resources/money.xpm"
 #include "../resources/money_dollar.xpm"
 #include "../resources/money_euro.xpm"
@@ -70,12 +71,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/savings_acc_closed.xpm"
 #include "../resources/savings_acc_favorite.xpm"
 #include "../resources/schedule.xpm"
-#include "../resources/stock_acc.xpm"
-#include "../resources/stock_acc_closed.xpm"
-#include "../resources/stock_acc_favorite.xpm"
-#include "../resources/term_acc_closed.xpm"
-#include "../resources/term_acc_favorite.xpm"
-#include "../resources/termaccount.xpm"
 #include "../resources/trees.xpm"
 #include "../resources/web_money.xpm"
 #include "../resources/work.xpm"
@@ -103,9 +98,9 @@ static const std::map<int, wxBitmap> images_list()
         , { STOCK_ACC_XPM, wxBitmap(wxImage(stock_acc_xpm).Scale(x, x)) }
         , { STOCK_ACC_FAVORITE_XPM, wxBitmap(wxImage(stock_acc_favorite_xpm).Scale(x, x)) }
         , { STOCK_ACC_CLOSED_XPM, wxBitmap(wxImage(stock_acc_closed_xpm).Scale(x, x)) }
-        , { CARD_ACC_XPM, wxBitmap(wxImage(card_acc_xpm).Scale(x, x)) }
-        , { CARD_ACC_FAVORITE_XPM, wxBitmap(wxImage(card_acc_favorite_xpm).Scale(x, x)) }
-        , { CARD_ACC_CLOSED_XPM, wxBitmap(wxImage(card_acc_closed_xpm).Scale(x, x)) }
+        , { CARD_ACC_XPM, mmBitmap(png::CC_NORMAL) }
+        , { CARD_ACC_FAVORITE_XPM, mmBitmap(png::CC_FAVORITE) }
+        , { CARD_ACC_CLOSED_XPM, mmBitmap(png::CC_CLOSED) }
         // Custom icons for accounts
         , { MONEY_DOLLAR_XPM, wxBitmap(wxImage(money_dollar_xpm).Scale(x, x)) }
         , { MONEY_EURO_XPM, wxBitmap(wxImage(money_euro_xpm).Scale(x, x)) }
@@ -165,6 +160,9 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { CASH, { { 16, wxBITMAP_PNG_FROM_DATA(coin) }, { 24, wxBITMAP_PNG_FROM_DATA(coin24) }, { 32, wxBITMAP_PNG_FROM_DATA(coin32) }, { 48, wxBITMAP_PNG_FROM_DATA(coin48) } } }
         , { OTHER, { { 16, wxBITMAP_PNG_FROM_DATA(puzzle) }, { 24, wxBITMAP_PNG_FROM_DATA(puzzle24) }, { 32, wxBITMAP_PNG_FROM_DATA(puzzle32) }, { 48, wxBITMAP_PNG_FROM_DATA(puzzle48) } } }
         , { FACEBOOK, { { 16, wxBITMAP_PNG_FROM_DATA(facebook) }, { 24, wxBITMAP_PNG_FROM_DATA(facebook24) }, { 32, wxBITMAP_PNG_FROM_DATA(facebook32) }, { 48, wxBITMAP_PNG_FROM_DATA(facebook48) } } }
+        , { CC_NORMAL, { { 16, wxBITMAP_PNG_FROM_DATA(cc_normal) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_normal24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_normal32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_normal48) } } }
+        , { CC_FAVORITE, { { 16, wxBITMAP_PNG_FROM_DATA(cc_favorite) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_favorite24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_favorite32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_favorite48) } } }
+        , { CC_CLOSED, { { 16, wxBITMAP_PNG_FROM_DATA(cc_closed) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_closed24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_closed32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_closed48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
     };
 }

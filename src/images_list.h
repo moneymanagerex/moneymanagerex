@@ -84,6 +84,9 @@ enum png {
     CASH,
     OTHER,
     FACEBOOK,
+    CC_NORMAL,
+    CC_FAVORITE,
+    CC_CLOSED,
     EXIT,
 };
 
