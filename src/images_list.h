@@ -75,6 +75,7 @@ enum png {
     NEW_NEWS,
     PIE_CHART,
     BUDGET,
+    RECURRING,
     ASSET,
     PROPERTY,
     CAR,

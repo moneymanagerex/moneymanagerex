@@ -39,6 +39,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/nnews_png.h"
 #include "../resources/pie_chart_png.h"
 #include "../resources/budget_png.h"
+#include "../resources/recurring_png.h"
 #include "../resources/asset_png.h"
 #include "../resources/car_png.h"
 #include "../resources/jewellery_png.h"
@@ -70,7 +71,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/moneyaccount.xpm"
 #include "../resources/savings_acc_closed.xpm"
 #include "../resources/savings_acc_favorite.xpm"
-#include "../resources/schedule.xpm"
 #include "../resources/trees.xpm"
 #include "../resources/web_money.xpm"
 #include "../resources/work.xpm"
@@ -81,7 +81,7 @@ static const std::map<int, wxBitmap> images_list()
     int x = mmIniOptions::instance().ico_size_;
     return{
         { HOUSE_XPM, mmBitmap(png::HOME) }
-        , { SCHEDULE_XPM, wxBitmap(wxImage(schedule_xpm).Scale(x, x)) }
+        , { SCHEDULE_XPM, mmBitmap(png::RECURRING) }
         , { CALENDAR_XPM, mmBitmap(png::BUDGET) }
         , { PIECHART_XPM, mmBitmap(png::PIE_CHART) }
         , { HELP_XPM, mmBitmap(png::HELP) }
@@ -152,6 +152,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { NEW_NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(nnews) }, { 24, wxBITMAP_PNG_FROM_DATA(nnews24) }, { 32, wxBITMAP_PNG_FROM_DATA(nnews32) }, { 48, wxBITMAP_PNG_FROM_DATA(nnews48) } } }
         , { PIE_CHART, { { 16, wxBITMAP_PNG_FROM_DATA(pie_chart) }, { 24, wxBITMAP_PNG_FROM_DATA(pie_chart24) }, { 32, wxBITMAP_PNG_FROM_DATA(pie_chart32) }, { 48, wxBITMAP_PNG_FROM_DATA(pie_chart48) } } }
         , { BUDGET, { { 16, wxBITMAP_PNG_FROM_DATA(budget) }, { 24, wxBITMAP_PNG_FROM_DATA(budget24) }, { 32, wxBITMAP_PNG_FROM_DATA(budget32) }, { 48, wxBITMAP_PNG_FROM_DATA(budget48) } } }
+        , { RECURRING, { { 16, wxBITMAP_PNG_FROM_DATA(recurring) }, { 24, wxBITMAP_PNG_FROM_DATA(recurring24) }, { 32, wxBITMAP_PNG_FROM_DATA(recurring32) }, { 48, wxBITMAP_PNG_FROM_DATA(recurring48) } } }
         , { ASSET, { { 16, wxBITMAP_PNG_FROM_DATA(asset) }, { 24, wxBITMAP_PNG_FROM_DATA(asset24) }, { 32, wxBITMAP_PNG_FROM_DATA(asset32) }, { 48, wxBITMAP_PNG_FROM_DATA(asset48) } } }
         , { CAR, { { 16, wxBITMAP_PNG_FROM_DATA(car) }, { 24, wxBITMAP_PNG_FROM_DATA(car24) }, { 32, wxBITMAP_PNG_FROM_DATA(car32) }, { 48, wxBITMAP_PNG_FROM_DATA(car48) } } }
         , { HOUSEHOLD_OBJ, { { 16, wxBITMAP_PNG_FROM_DATA(household_obj) }, { 24, wxBITMAP_PNG_FROM_DATA(household_obj24) }, { 32, wxBITMAP_PNG_FROM_DATA(household_obj32) }, { 48, wxBITMAP_PNG_FROM_DATA(household_obj48) } } }

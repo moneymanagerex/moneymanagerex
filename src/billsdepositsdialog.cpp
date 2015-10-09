@@ -21,6 +21,7 @@
 #include "attachmentdialog.h"
 #include "categdialog.h"
 #include "constants.h"
+#include "images_list.h"
 #include "mmOption.h"
 #include "mmSimpleDialogs.h"
 #include "paths.h"
@@ -34,7 +35,6 @@
 #include "model/Model_Payee.h"
 
 #include "../resources/attachment.xpm"
-#include "../resources/schedule.xpm"
 
 #include <wx/valnum.h>
 
@@ -473,7 +473,7 @@ void mmBDDialog::CreateControls()
     spinTransDate_->SetToolTip(_("Retard or advance the date of the transaction"));
 
     m_apply_due_date = new wxBitmapButton(transactionPanel, wxID_APPLY
-        , wxBitmap(schedule_xpm), wxDefaultPosition
+        , mmBitmap(png::RECURRING), wxDefaultPosition
         , wxSize( /*spinTransDate_->GetSize().GetY()*/ -1, spinTransDate_->GetSize().GetY()));
     m_apply_due_date->SetToolTip(_("Reset date to the Due Date"));
 
