@@ -28,11 +28,8 @@
 #include "model/Model_Setting.h"
 #include <wx/srchctrl.h>
 
-#include "../resources/art.xpm"
 #include "../resources/attachment.xpm"
-#include "../resources/clock.xpm"
 #include "../resources/downarrow.xpm"
-#include "../resources/house.xpm"
 #include "../resources/rightarrow.xpm"
 #include "../resources/uparrow.xpm"
 

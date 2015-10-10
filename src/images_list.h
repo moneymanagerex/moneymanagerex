@@ -75,6 +75,7 @@ enum png {
     NEW_NEWS,
     PIE_CHART,
     BUDGET,
+    RECURRING,
     ASSET,
     PROPERTY,
     CAR,
@@ -84,6 +85,9 @@ enum png {
     CASH,
     OTHER,
     FACEBOOK,
+    CC_NORMAL,
+    CC_FAVORITE,
+    CC_CLOSED,
     EXIT,
 };
 

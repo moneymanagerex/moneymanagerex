@@ -107,7 +107,6 @@
 /* Include XPM Support */
 
 #include "../resources/appstart.xpm"
-#include "../resources/schedule.xpm"
 #include "../resources/checkupdate.xpm"
 #include "../resources/clearlist.xpm"
 #include "../resources/delete_account.xpm"
@@ -1460,7 +1459,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
         , _("&Recurring Transactions"), _("Bills && Deposits"));
-    menuItemBillsDeposits->SetBitmap(wxBitmap(wxImage(schedule_xpm).Scale(x, x)));
+    menuItemBillsDeposits->SetBitmap(mmBitmap(png::RECURRING));
     menuTools->Append(menuItemBillsDeposits);
 
     wxMenuItem* menuItemAssets = new wxMenuItem(menuTools, MENU_ASSETS
