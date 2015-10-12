@@ -17,9 +17,9 @@
  ********************************************************/
 
 #include "mmcheckingpanel.h"
-#include <wx/sound.h>
 #include "paths.h"
 #include "constants.h"
+#include "images_list.h"
 #include "util.h"
 #include "mmex.h"
 #include "mmframe.h"
@@ -39,7 +39,6 @@
 #include "model/Model_Attachment.h"
 #include "billsdepositsdialog.h"
 
-#include "../resources/reconciled.xpm"
 #include "../resources/unreconciled.xpm"
 #include "../resources/duplicate.xpm"
 #include "../resources/flag.xpm"
@@ -55,6 +54,7 @@
 
 #include <wx/srchctrl.h>
 #include <algorithm>
+#include <wx/sound.h>
 //----------------------------------------------------------------------------
 
 wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
@@ -412,16 +412,16 @@ void mmCheckingPanel::CreateControls()
         , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
         , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
-    wxSize imageSize(16, 16);
-    m_imageList.reset(new wxImageList(imageSize.GetWidth(), imageSize.GetHeight()));
-    m_imageList->Add(wxImage(reconciled_xpm).Scale(16, 16));
-    m_imageList->Add(wxImage(void_xpm).Scale(16, 16));
-    m_imageList->Add(wxImage(flag_xpm).Scale(16, 16));
-    m_imageList->Add(wxImage(unreconciled_xpm).Scale(16, 16));
-    m_imageList->Add(wxImage(uparrow_xpm).Scale(16, 16));
-    m_imageList->Add(wxImage(downarrow_xpm).Scale(16, 16));
-    m_imageList->Add(wxImage(duplicate_xpm).Scale(16, 16));
-    m_imageList->Add(wxImage(trash_xpm).Scale(16, 16));
+    int x = mmIniOptions::instance().ico_size_;
+    m_imageList.reset(new wxImageList(x, x));
+    m_imageList->Add(mmBitmap(png::RECONCILED));
+    m_imageList->Add(wxImage(void_xpm).Scale(x, x));
+    m_imageList->Add(wxImage(flag_xpm).Scale(x, x));
+    m_imageList->Add(wxImage(unreconciled_xpm).Scale(x, x));
+    m_imageList->Add(wxImage(uparrow_xpm).Scale(x, x));
+    m_imageList->Add(wxImage(downarrow_xpm).Scale(x, x));
+    m_imageList->Add(wxImage(duplicate_xpm).Scale(x, x));
+    m_imageList->Add(wxImage(trash_xpm).Scale(x, x));
 
     m_listCtrlAccount = new TransactionListCtrl(this, itemSplitterWindow10
         , wxID_ANY);

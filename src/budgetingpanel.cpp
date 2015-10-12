@@ -19,6 +19,7 @@
 
 #include "budgetingpanel.h"
 #include "budgetentrydialog.h"
+#include "images_list.h"
 #include "mmOption.h"
 #include "mmex.h"
 #include "mmframe.h"
@@ -33,8 +34,6 @@
 #include "../resources/void.xpm"
 #include "../resources/flag.xpm"
 #include "../resources/empty.xpm"
-#include "../resources/reconciled.xpm"
-
 
 enum
 {
@@ -278,12 +277,12 @@ void mmBudgetingPanel::CreateControls()
     itemIncomeSizer->Add(expenses_diff_);
     /* ---------------------- */
 
-    wxSize imageSize(16, 16);
-    m_imageList = new wxImageList(imageSize.GetWidth(), imageSize.GetHeight());
-    m_imageList->Add(wxBitmap(reconciled_xpm));
-    m_imageList->Add(wxBitmap(void_xpm));
-    m_imageList->Add(wxBitmap(flag_xpm));
-    m_imageList->Add(wxBitmap(empty_xpm));
+    int x = mmIniOptions::instance().ico_size_;
+    m_imageList = new wxImageList(x, x);
+    m_imageList->Add(mmBitmap(png::RECONCILED));
+    m_imageList->Add(wxImage(void_xpm).Scale(x, x));
+    m_imageList->Add(wxImage(flag_xpm).Scale(x, x));
+    m_imageList->Add(wxImage(empty_xpm).Scale(x, x));
 
     listCtrlBudget_ = new budgetingListCtrl(this, this, wxID_ANY);
 

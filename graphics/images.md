@@ -42,4 +42,8 @@
 <br><img src="https://openclipart.org/image/32px/svg_to_png/203249/watering-can.png" /> | Household Object | [page](https://openclipart.org/detail/203249/watering-can-game-component-superb-quality)
 <br><img src="https://openclipart.org/image/32px/svg_to_png/214206/painting.png" /> | Art | [page](https://openclipart.org/detail/214206/painting)              
 <br><img src="https://openclipart.org/image/32px/svg_to_png/11120/jetxee-euro-coin.png" /> | Cash | [page](https://openclipart.org/detail/11120/euro-coin )    
-<br><img src="https://openclipart.org/image/32px/svg_to_png/192580/Jigsaw-Puzzle.png" /> | Other | [page](https://openclipart.org/detail/192580/jigsawpuzzle)                                                                                                                                             
+<br><img src="https://openclipart.org/image/32px/svg_to_png/192580/Jigsaw-Puzzle.png" /> | Other | [page](https://openclipart.org/detail/192580/jigsawpuzzle)
+
+###Statuses
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/84289/23493485345.png" /> | Reconciled | [page](https://openclipart.org/detail/84289/check-mark)
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/26426/Anonymous-lamp.png&disposition=attachment" alt="lamp" title="lamp by  Anonymous ( https://openclipart.org/user-detail/Anonymous )" />| Follow up | [page](https://openclipart.org/detail/26426/lamp)                                                                                                                                      

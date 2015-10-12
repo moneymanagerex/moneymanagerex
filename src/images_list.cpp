@@ -50,6 +50,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/facebook_png.h"
 #include "../resources/credit_card_png.h"
 #include "../resources/savings_acc_png.h"
+#include "../resources/status_r_png.h"
 #include "../resources/exit_png.h"
 
 #include "../resources/empty.xpm"
@@ -90,15 +91,15 @@ static const std::map<int, wxBitmap> images_list()
         , { SAVINGS_ACC_NORMAL_XPM, mmBitmap(png::SAVINGS_NORMAL) }
         , { SAVINGS_ACC_FAVORITE_XPM, mmBitmap(png::SAVINGS_FAVORITES) }
         , { SAVINGS_ACC_CLOSED_XPM, mmBitmap(png::SAVINGS_CLOSED) }
+        , { CARD_ACC_XPM, mmBitmap(png::CC_NORMAL) }
+        , { CARD_ACC_FAVORITE_XPM, mmBitmap(png::CC_FAVORITE) }
+        , { CARD_ACC_CLOSED_XPM, mmBitmap(png::CC_CLOSED) }
         , { TERMACCOUNT_XPM, wxBitmap(wxImage(termaccount_xpm).Scale(x, x)) }
         , { TERM_ACC_FAVORITE_XPM, wxBitmap(wxImage(term_acc_favorite_xpm).Scale(x, x)) }
         , { TERM_ACC_CLOSED_XPM, wxBitmap(wxImage(term_acc_closed_xpm).Scale(x, x)) }
         , { STOCK_ACC_XPM, wxBitmap(wxImage(stock_acc_xpm).Scale(x, x)) }
         , { STOCK_ACC_FAVORITE_XPM, wxBitmap(wxImage(stock_acc_favorite_xpm).Scale(x, x)) }
         , { STOCK_ACC_CLOSED_XPM, wxBitmap(wxImage(stock_acc_closed_xpm).Scale(x, x)) }
-        , { CARD_ACC_XPM, mmBitmap(png::CC_NORMAL) }
-        , { CARD_ACC_FAVORITE_XPM, mmBitmap(png::CC_FAVORITE) }
-        , { CARD_ACC_CLOSED_XPM, mmBitmap(png::CC_CLOSED) }
         // Custom icons for accounts
         , { MONEY_DOLLAR_XPM, wxBitmap(wxImage(money_dollar_xpm).Scale(x, x)) }
         , { MONEY_EURO_XPM, wxBitmap(wxImage(money_euro_xpm).Scale(x, x)) }
@@ -165,6 +166,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { SAVINGS_NORMAL, { { 16, wxBITMAP_PNG_FROM_DATA(savings_acc_normal) }, { 24, wxBITMAP_PNG_FROM_DATA(savings_acc_normal24) }, { 32, wxBITMAP_PNG_FROM_DATA(savings_acc_normal32) }, { 48, wxBITMAP_PNG_FROM_DATA(savings_acc_normal48) } } }
         , { SAVINGS_FAVORITES, { { 16, wxBITMAP_PNG_FROM_DATA(savings_acc_favorite) }, { 24, wxBITMAP_PNG_FROM_DATA(savings_acc_favorite24) }, { 32, wxBITMAP_PNG_FROM_DATA(savings_acc_favorite32) }, { 48, wxBITMAP_PNG_FROM_DATA(savings_acc_favorite48) } } }
         , { SAVINGS_CLOSED, { { 16, wxBITMAP_PNG_FROM_DATA(savings_acc_closed) }, { 24, wxBITMAP_PNG_FROM_DATA(savings_acc_closed24) }, { 32, wxBITMAP_PNG_FROM_DATA(savings_acc_closed32) }, { 48, wxBITMAP_PNG_FROM_DATA(savings_acc_closed48) } } }
+        , { RECONCILED, { { 16, wxBITMAP_PNG_FROM_DATA(status_r) }, { 24, wxBITMAP_PNG_FROM_DATA(status_r24) }, { 32, wxBITMAP_PNG_FROM_DATA(status_r32) }, { 48, wxBITMAP_PNG_FROM_DATA(status_r48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
     };
 }
