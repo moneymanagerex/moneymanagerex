@@ -113,7 +113,6 @@
 #include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
 #include "../resources/encrypt_db_edit.xpm"
-#include "../resources/google_play.xpm"
 #include "../resources/issues.xpm"
 #include "../resources/newacct.xpm"
 #include "../resources/new_transaction.xpm"
@@ -1532,7 +1531,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuGooglePlay = new wxMenuItem(menuTools, MENU_GOOGLEPLAY
         , _("Get Android Version")
         , _("Run this program in your Android smart phone or tablet"));
-    menuGooglePlay->SetBitmap(wxBitmap(wxImage(google_play_xpm).Scale(x, x)));
+    menuGooglePlay->SetBitmap(mmBitmap(png::GOOGLE_PLAY));
     menuHelp->Append(menuGooglePlay);
 
     wxMenuItem* menuItemReportIssues = new wxMenuItem(menuTools, MENU_REPORTISSUES

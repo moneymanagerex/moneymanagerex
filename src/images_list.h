@@ -96,6 +96,7 @@ enum png {
     FOLLOW_UP,
     DUPLICATE_,
     RIGHTARROW,
+    GOOGLE_PLAY,
     EXIT,
 };
 
