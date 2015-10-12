@@ -30,7 +30,6 @@
 
 #include "../resources/attachment.xpm"
 #include "../resources/downarrow.xpm"
-#include "../resources/rightarrow.xpm"
 #include "../resources/uparrow.xpm"
 
 /*******************************************************/
@@ -379,14 +378,13 @@ void mmAssetsPanel::CreateControls()
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
-    wxBitmap itemStaticBitmap(rightarrow_xpm);
-    wxStaticBitmap* itemStaticBitmap3 = new wxStaticBitmap(headerPanel, wxID_STATIC, itemStaticBitmap);
-    itemBoxSizerHHeader2->Add(itemStaticBitmap3, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    wxStaticBitmap* itemStaticBitmap3 = new wxStaticBitmap(headerPanel, wxID_STATIC, mmBitmap(png::RIGHTARROW));
+    itemBoxSizerHHeader2->Add(itemStaticBitmap3, g_flagsBorder1);
     //itemStaticBitmap3->Connect(ID_PANEL_CHECKING_STATIC_BITMAP_VIEW, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnFilterResetToViewAll), nullptr, this);
     itemStaticBitmap3->Connect(wxID_STATIC, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnMouseLeftDown), nullptr, this);
 
     itemStaticTextMainFilter_ = new wxStaticText(headerPanel, wxID_STATIC, _("All"));
-    itemBoxSizerHHeader2->Add(itemStaticTextMainFilter_, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxGROW, 5);
+    itemBoxSizerHHeader2->Add(itemStaticTextMainFilter_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 1);
 
     header_text_ = new wxStaticText(headerPanel, wxID_STATIC, "");
     itemBoxSizerVHeader->Add(header_text_, g_flagsBorder1);

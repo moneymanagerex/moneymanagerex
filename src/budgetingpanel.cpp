@@ -19,6 +19,7 @@
 
 #include "budgetingpanel.h"
 #include "budgetentrydialog.h"
+#include "images_list.h"
 #include "mmOption.h"
 #include "mmex.h"
 #include "mmframe.h"
@@ -29,12 +30,9 @@
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Category.h"
 
-#include "../resources/rightarrow.xpm"
 #include "../resources/void.xpm"
 #include "../resources/flag.xpm"
 #include "../resources/empty.xpm"
-#include "../resources/reconciled.xpm"
-
 
 enum
 {
@@ -232,10 +230,9 @@ void mmBudgetingPanel::CreateControls()
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2, 0, wxALL, 1);
 
-    wxBitmap itemStaticBitmap3Bitmap(wxBitmap(wxImage(rightarrow_xpm).Scale(16,16)));
     wxStaticBitmap* itemStaticBitmap3 = new wxStaticBitmap(itemPanel3
         , ID_PANEL_BUDGETENTRY_STATIC_BITMAP_VIEW
-        , itemStaticBitmap3Bitmap, wxDefaultPosition, wxSize(16, 16), 0);
+        , mmBitmap(png::RIGHTARROW));
     itemStaticBitmap3->Connect(ID_PANEL_BUDGETENTRY_STATIC_BITMAP_VIEW, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmBudgetingPanel::OnMouseLeftDown), nullptr, this);
     itemBoxSizerHHeader2->Add(itemStaticBitmap3, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
@@ -278,12 +275,12 @@ void mmBudgetingPanel::CreateControls()
     itemIncomeSizer->Add(expenses_diff_);
     /* ---------------------- */
 
-    wxSize imageSize(16, 16);
-    m_imageList = new wxImageList(imageSize.GetWidth(), imageSize.GetHeight());
-    m_imageList->Add(wxBitmap(reconciled_xpm));
-    m_imageList->Add(wxBitmap(void_xpm));
-    m_imageList->Add(wxBitmap(flag_xpm));
-    m_imageList->Add(wxBitmap(empty_xpm));
+    int x = mmIniOptions::instance().ico_size_;
+    m_imageList = new wxImageList(x, x);
+    m_imageList->Add(mmBitmap(png::RECONCILED));
+    m_imageList->Add(wxImage(void_xpm).Scale(x, x));
+    m_imageList->Add(wxImage(flag_xpm).Scale(x, x));
+    m_imageList->Add(wxImage(empty_xpm).Scale(x, x));
 
     listCtrlBudget_ = new budgetingListCtrl(this, this, wxID_ANY);
 

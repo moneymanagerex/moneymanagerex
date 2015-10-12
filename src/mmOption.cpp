@@ -103,7 +103,7 @@ const int mmIniOptions::account_image_id(int account_id, bool def)
     if (!def && (custom_img_id >= min && custom_img_id <= max))
         return custom_img_id + img::MONEY_DOLLAR_XPM - 1;
 
-    int selectedImage = img::MONEYACCOUNT_XPM; //Default value
+    int selectedImage = img::SAVINGS_ACC_NORMAL_XPM; //Default value
     wxString acctStatus = VIEW_ACCOUNTS_OPEN_STR;
     Model_Account::TYPE acctType = Model_Account::CHECKING;
     bool favorite = true;
@@ -122,7 +122,7 @@ const int mmIniOptions::account_image_id(int account_id, bool def)
     case (Model_Account::CHECKING) :
         if (closed) selectedImage = img::SAVINGS_ACC_CLOSED_XPM;
         else if (favorite) selectedImage = img::SAVINGS_ACC_FAVORITE_XPM;
-        else selectedImage = img::MONEYACCOUNT_XPM;
+        else selectedImage = img::SAVINGS_ACC_NORMAL_XPM;
         break;
     case (Model_Account::TERM) :
         if (closed) selectedImage = img::TERM_ACC_CLOSED_XPM;

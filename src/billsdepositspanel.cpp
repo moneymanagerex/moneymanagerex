@@ -20,6 +20,7 @@
 #include "billsdepositspanel.h"
 #include "billsdepositsdialog.h"
 #include "constants.h"
+#include "images_list.h"
 
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"
@@ -30,7 +31,6 @@
 #include "../resources/attachment.xpm"
 #include "../resources/downarrow.xpm"
 #include "../resources/error.xpm"
-#include "../resources/rightarrow.xpm"
 #include "../resources/rt_exec_auto.xpm"
 #include "../resources/rt_exec_user.xpm"
 #include "../resources/tipicon.xpm"
@@ -225,8 +225,7 @@ void mmBillsDepositsPanel::CreateControls()
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
-    wxBitmap itemStaticBitmap(rightarrow_xpm);
-    bitmapTransFilter_ = new wxStaticBitmap(headerPanel, wxID_ANY, itemStaticBitmap);
+    bitmapTransFilter_ = new wxStaticBitmap(headerPanel, wxID_ANY, mmBitmap(png::RIGHTARROW));
     itemBoxSizerHHeader2->Add(bitmapTransFilter_, g_flagsBorder1);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
@@ -236,7 +235,7 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizerHHeader2->AddSpacer(5);
     wxStaticText* statTextTransFilter_ = new wxStaticText(headerPanel, wxID_ANY
         , _("Transaction Filter"));
-    itemBoxSizerHHeader2->Add(statTextTransFilter_, 0, wxALIGN_CENTER_VERTICAL, 0);
+    itemBoxSizerHHeader2->Add(statTextTransFilter_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 1);
 
     /* ---------------------- */
     wxSplitterWindow* itemSplitterWindowBillsDeposit = new wxSplitterWindow(this
@@ -864,7 +863,7 @@ void mmBillsDepositsPanel::OnFilterTransactions(wxMouseEvent& event)
 
     int e = event.GetEventType();
 
-    wxBitmap bitmapFilterIcon(rightarrow_xpm);
+    wxBitmap bitmapFilterIcon(mmBitmap(png::RIGHTARROW));
 
     if (e == wxEVT_LEFT_DOWN)
     {
