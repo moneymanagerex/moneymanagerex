@@ -30,7 +30,6 @@
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Category.h"
 
-#include "../resources/rightarrow.xpm"
 #include "../resources/void.xpm"
 #include "../resources/flag.xpm"
 #include "../resources/empty.xpm"
@@ -231,10 +230,9 @@ void mmBudgetingPanel::CreateControls()
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2, 0, wxALL, 1);
 
-    wxBitmap itemStaticBitmap3Bitmap(wxBitmap(wxImage(rightarrow_xpm).Scale(16,16)));
     wxStaticBitmap* itemStaticBitmap3 = new wxStaticBitmap(itemPanel3
         , ID_PANEL_BUDGETENTRY_STATIC_BITMAP_VIEW
-        , itemStaticBitmap3Bitmap, wxDefaultPosition, wxSize(16, 16), 0);
+        , mmBitmap(png::RIGHTARROW));
     itemStaticBitmap3->Connect(ID_PANEL_BUDGETENTRY_STATIC_BITMAP_VIEW, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmBudgetingPanel::OnMouseLeftDown), nullptr, this);
     itemBoxSizerHHeader2->Add(itemStaticBitmap3, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);

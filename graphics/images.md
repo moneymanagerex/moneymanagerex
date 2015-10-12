@@ -46,4 +46,6 @@
 
 ###Statuses
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/84289/23493485345.png" /> | Reconciled | [page](https://openclipart.org/detail/84289/check-mark)
-<br> <img src="https://openclipart.org/image/32px/svg_to_png/26426/Anonymous-lamp.png&disposition=attachment" alt="lamp" title="lamp by  Anonymous ( https://openclipart.org/user-detail/Anonymous )" />| Follow up | [page](https://openclipart.org/detail/26426/lamp)                                                                                                                                      
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/26426/Anonymous-lamp.png&disposition=attachment" alt="lamp" title="lamp by  Anonymous ( https://openclipart.org/user-detail/Anonymous )" />| Follow up | [page](https://openclipart.org/detail/26426/lamp)      
+###Panels 
+<br><img src="https://openclipart.org/image/32px/svg_to_png/33589/pulsante-03-architetto-f-01.png" />| Arrow right | [page](https://openclipart.org/detail/33589/architetto-pulsante-03)                                                                         

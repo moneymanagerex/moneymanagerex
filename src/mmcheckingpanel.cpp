@@ -43,7 +43,6 @@
 #include "../resources/duplicate.xpm"
 #include "../resources/flag.xpm"
 #include "../resources/void.xpm"
-#include "../resources/rightarrow.xpm"
 #include "../resources/uparrow.xpm"
 #include "../resources/downarrow.xpm"
 #include "../resources/tipicon.xpm"
@@ -358,9 +357,8 @@ void mmCheckingPanel::CreateControls()
     itemBoxSizerVHeader2->Add(itemBoxSizerHHeader2);
     itemBoxSizerHHeader2->Add(itemFlexGridSizerHHeader2);
 
-    wxBitmap itemStaticBitmap(rightarrow_xpm);
     bitmapMainFilter_ = new wxStaticBitmap(headerPanel, wxID_PAGE_SETUP
-        , itemStaticBitmap);
+        , mmBitmap(png::RIGHTARROW));
     itemFlexGridSizerHHeader2->Add(bitmapMainFilter_, g_flagsBorder1);
     bitmapMainFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnFilterResetToViewAll), nullptr, this);
@@ -373,7 +371,7 @@ void mmCheckingPanel::CreateControls()
     itemFlexGridSizerHHeader2->AddSpacer(20);
 
     bitmapTransFilter_ = new wxStaticBitmap(headerPanel, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER
-        , itemStaticBitmap);
+        , mmBitmap(png::RIGHTARROW));
     itemFlexGridSizerHHeader2->Add(bitmapTransFilter_, g_flagsBorder1);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), nullptr, this);
@@ -756,27 +754,15 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
 {
     int e = event.GetEventType();
 
-    wxBitmap bitmapFilterIcon(rightarrow_xpm);
-
     if (e == wxEVT_LEFT_DOWN) {
         transFilterDlg_->setAccountToolTip(_("Select account used in transfer transactions"));
-        if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->somethingSelected())
-        {
-            transFilterActive_ = true;
-            wxBitmap activeBitmapFilterIcon(tipicon_xpm);
-            bitmapFilterIcon = activeBitmapFilterIcon;
-        }
-        else
-        {
-            transFilterActive_ = false;
-        }
-
+        transFilterActive_ = (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->somethingSelected());
     } else {
         if (transFilterActive_ == false) return;
         transFilterActive_ = false;
     }
-
-    wxImage pic = bitmapFilterIcon.ConvertToImage();
+    
+    wxImage pic = (transFilterActive_ ? wxBitmap(tipicon_xpm) : mmBitmap(png::RIGHTARROW)).ConvertToImage();
     bitmapTransFilter_->SetBitmap(pic);
     SetTransactionFilterState(true);
 

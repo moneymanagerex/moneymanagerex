@@ -95,6 +95,7 @@ enum png {
     VOID_,
     FOLLOW_UP,
     DUPLICATE_,
+    RIGHTARROW,
     EXIT,
 };
 
