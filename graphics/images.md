@@ -35,6 +35,7 @@
 <br> <img src="https://openclipart.org/image/16px/svg_to_png/180750/document-encrypted-gold.png" /> <img src="https://openclipart.org/image/24px/svg_to_png/180750/document-encrypted-gold.png" /> <img src="https://openclipart.org/image/32px/svg_to_png/180750/document-encrypted-gold.png" /> <img src="https://openclipart.org/image/48px/svg_to_png/180750/document-encrypted-gold.png" />| Encrypt | [page](https://openclipart.org/detail/180750/encrypted-document-gold)
 <br> <img src="https://openclipart.org/image/16px/svg_to_png/34279/system-log-out.png )" /> <img src="https://openclipart.org/image/24px/svg_to_png/34279/system-log-out.png )" /> <img src="https://openclipart.org/image/32px/svg_to_png/34279/system-log-out.png )" /> <img src="https://openclipart.org/image/48px/svg_to_png/34279/system-log-out.png )" /> | Exit | [page](https://openclipart.org/detail/34279/tango-system-log-out)
 <br> <img src="http://www.cultureglaze.com/wp-content/uploads/2015/10/1000px-Facebook_Logo_Mini.svg_.png" width="32" height="32"/>| Facebook | [page](http://www.cultureglaze.com/wp-content/uploads/2015/10/1000px-Facebook_Logo_Mini.svg_.png)
+<br> <img src="http://mobilengine.com/wp-content/themes/mobilengine/images/play_color.png" width="32" height="32" />| Google play | [page](http://mobilengine.com/wp-content/themes/mobilengine/images/play_color.png)
 
 ###ASSETS (32x32)
 <br><img src="https://openclipart.org/image/32px/svg_to_png/169213/madcar2.png" />| Car | [page](https://openclipart.org/detail/169213/anglia-hotrod)

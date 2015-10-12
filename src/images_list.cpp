@@ -52,6 +52,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/savings_acc_png.h"
 #include "../resources/status_r_png.h"
 #include "../resources/rightarrow_png.h"
+#include "../resources/google_play_png.h"
 #include "../resources/exit_png.h"
 
 #include "../resources/empty.xpm"
@@ -169,6 +170,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { SAVINGS_CLOSED, { { 16, wxBITMAP_PNG_FROM_DATA(savings_acc_closed) }, { 24, wxBITMAP_PNG_FROM_DATA(savings_acc_closed24) }, { 32, wxBITMAP_PNG_FROM_DATA(savings_acc_closed32) }, { 48, wxBITMAP_PNG_FROM_DATA(savings_acc_closed48) } } }
         , { RECONCILED, { { 16, wxBITMAP_PNG_FROM_DATA(status_r) }, { 24, wxBITMAP_PNG_FROM_DATA(status_r24) }, { 32, wxBITMAP_PNG_FROM_DATA(status_r32) }, { 48, wxBITMAP_PNG_FROM_DATA(status_r48) } } }
         , { RIGHTARROW, { { 16, wxBITMAP_PNG_FROM_DATA(rightarrow) }, { 24, wxBITMAP_PNG_FROM_DATA(rightarrow24) }, { 32, wxBITMAP_PNG_FROM_DATA(rightarrow32) }, { 48, wxBITMAP_PNG_FROM_DATA(rightarrow48) } } }
+        , { GOOGLE_PLAY, { { 16, wxBITMAP_PNG_FROM_DATA(google_play) }, { 24, wxBITMAP_PNG_FROM_DATA(google_play24) }, { 32, wxBITMAP_PNG_FROM_DATA(google_play32) }, { 48, wxBITMAP_PNG_FROM_DATA(google_play48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
     };
 }
