@@ -49,6 +49,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/puzzle_png.h"
 #include "../resources/facebook_png.h"
 #include "../resources/credit_card_png.h"
+#include "../resources/savings_acc_png.h"
 #include "../resources/exit_png.h"
 
 #include "../resources/empty.xpm"
@@ -68,9 +69,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/money.xpm"
 #include "../resources/money_dollar.xpm"
 #include "../resources/money_euro.xpm"
-#include "../resources/moneyaccount.xpm"
-#include "../resources/savings_acc_closed.xpm"
-#include "../resources/savings_acc_favorite.xpm"
 #include "../resources/trees.xpm"
 #include "../resources/web_money.xpm"
 #include "../resources/work.xpm"
@@ -89,9 +87,9 @@ static const std::map<int, wxBitmap> images_list()
         , { ASSET_XPM, mmBitmap(png::ASSET) }
         , { CUSTOMSQL_XPM, mmBitmap(png::GRM) }
         , { CUSTOMSQL_GRP_XPM, mmBitmap(png::GRM) } //TODO: GRM rep group ico
-        , { MONEYACCOUNT_XPM, wxBitmap(wxImage(moneyaccount_xpm).Scale(x, x)) }
-        , { SAVINGS_ACC_FAVORITE_XPM, wxBitmap(wxImage(savings_acc_favorite_xpm).Scale(x, x)) }
-        , { SAVINGS_ACC_CLOSED_XPM, wxBitmap(wxImage(savings_acc_closed_xpm).Scale(x, x)) }
+        , { SAVINGS_ACC_NORMAL_XPM, mmBitmap(png::SAVINGS_NORMAL) }
+        , { SAVINGS_ACC_FAVORITE_XPM, mmBitmap(png::SAVINGS_FAVORITES) }
+        , { SAVINGS_ACC_CLOSED_XPM, mmBitmap(png::SAVINGS_CLOSED) }
         , { TERMACCOUNT_XPM, wxBitmap(wxImage(termaccount_xpm).Scale(x, x)) }
         , { TERM_ACC_FAVORITE_XPM, wxBitmap(wxImage(term_acc_favorite_xpm).Scale(x, x)) }
         , { TERM_ACC_CLOSED_XPM, wxBitmap(wxImage(term_acc_closed_xpm).Scale(x, x)) }
@@ -164,6 +162,9 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { CC_NORMAL, { { 16, wxBITMAP_PNG_FROM_DATA(cc_normal) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_normal24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_normal32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_normal48) } } }
         , { CC_FAVORITE, { { 16, wxBITMAP_PNG_FROM_DATA(cc_favorite) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_favorite24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_favorite32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_favorite48) } } }
         , { CC_CLOSED, { { 16, wxBITMAP_PNG_FROM_DATA(cc_closed) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_closed24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_closed32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_closed48) } } }
+        , { SAVINGS_NORMAL, { { 16, wxBITMAP_PNG_FROM_DATA(savings_acc_normal) }, { 24, wxBITMAP_PNG_FROM_DATA(savings_acc_normal24) }, { 32, wxBITMAP_PNG_FROM_DATA(savings_acc_normal32) }, { 48, wxBITMAP_PNG_FROM_DATA(savings_acc_normal48) } } }
+        , { SAVINGS_FAVORITES, { { 16, wxBITMAP_PNG_FROM_DATA(savings_acc_favorite) }, { 24, wxBITMAP_PNG_FROM_DATA(savings_acc_favorite24) }, { 32, wxBITMAP_PNG_FROM_DATA(savings_acc_favorite32) }, { 48, wxBITMAP_PNG_FROM_DATA(savings_acc_favorite48) } } }
+        , { SAVINGS_CLOSED, { { 16, wxBITMAP_PNG_FROM_DATA(savings_acc_closed) }, { 24, wxBITMAP_PNG_FROM_DATA(savings_acc_closed24) }, { 32, wxBITMAP_PNG_FROM_DATA(savings_acc_closed32) }, { 48, wxBITMAP_PNG_FROM_DATA(savings_acc_closed48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
     };
 }
