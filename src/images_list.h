@@ -92,12 +92,17 @@ enum png {
     CC_FAVORITE,
     CC_CLOSED,
     RECONCILED,
-    VOID_,
+    VOID_STAT,
     FOLLOW_UP,
-    DUPLICATE_,
+    DUPLICATE_STAT,
     RIGHTARROW,
+    RIGHTARROW_ACTIVE,
     GOOGLE_PLAY,
+    UPDATE,
+    FORUM,
+    CLIP,
     EXIT,
+    EMPTY,
 };
 
 wxImageList* navtree_images_list();

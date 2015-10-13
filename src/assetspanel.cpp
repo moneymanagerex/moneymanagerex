@@ -28,7 +28,6 @@
 #include "model/Model_Setting.h"
 #include <wx/srchctrl.h>
 
-#include "../resources/attachment.xpm"
 #include "../resources/downarrow.xpm"
 #include "../resources/uparrow.xpm"
 
@@ -448,7 +447,7 @@ void mmAssetsPanel::CreateControls()
     itemButton7->Enable(false);
 
 	wxBitmapButton* attachment_button_ = new wxBitmapButton(assets_panel
-		, wxID_FILE, wxBitmap(attachment_xpm), wxDefaultPosition,
+		, wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition,
 		wxSize(30, itemButton7->GetSize().GetY()));
 	attachment_button_->SetToolTip(_("Open attachments"));
     itemBoxSizer5->Add(attachment_button_, 0, wxRIGHT, 5);

@@ -51,8 +51,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/credit_card_png.h"
 #include "../resources/savings_acc_png.h"
 #include "../resources/status_r_png.h"
+#include "../resources/status_d_png.h"
+#include "../resources/status_f_png.h"
+#include "../resources/status_v_png.h"
 #include "../resources/rightarrow_png.h"
 #include "../resources/google_play_png.h"
+#include "../resources/update_png.h"
+#include "../resources/forum_png.h"
+#include "../resources/clip_png.h"
 #include "../resources/exit_png.h"
 
 #include "../resources/empty.xpm"
@@ -67,7 +73,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/cat.xpm"
 #include "../resources/clock.xpm"
 #include "../resources/dog.xpm"
-#include "../resources/flag.xpm"
 #include "../resources/hourglass.xpm"
 #include "../resources/money.xpm"
 #include "../resources/money_dollar.xpm"
@@ -77,7 +82,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/work.xpm"
 #include "../resources/yandex_money.xpm"
 
-static const std::map<int, wxBitmap> images_list()
+static const std::map<int, wxBitmap> navtree_images()
 {
     int x = mmIniOptions::instance().ico_size_;
     return{
@@ -102,10 +107,17 @@ static const std::map<int, wxBitmap> images_list()
         , { STOCK_ACC_XPM, wxBitmap(wxImage(stock_acc_xpm).Scale(x, x)) }
         , { STOCK_ACC_FAVORITE_XPM, wxBitmap(wxImage(stock_acc_favorite_xpm).Scale(x, x)) }
         , { STOCK_ACC_CLOSED_XPM, wxBitmap(wxImage(stock_acc_closed_xpm).Scale(x, x)) }
+    };
+};
+
+static const std::map<int, wxBitmap> custom_images()
+{
+    int x = mmIniOptions::instance().ico_size_;
+    return{
         // Custom icons for accounts
-        , { MONEY_DOLLAR_XPM, wxBitmap(wxImage(money_dollar_xpm).Scale(x, x)) }
+        { MONEY_DOLLAR_XPM, wxBitmap(wxImage(money_dollar_xpm).Scale(x, x)) }
         , { MONEY_EURO_XPM, wxBitmap(wxImage(money_euro_xpm).Scale(x, x)) }
-        , { FLAG_XPM, wxBitmap(wxImage(flag_xpm).Scale(x, x)) }
+        , { FLAG_XPM, mmBitmap(png::FOLLOW_UP) }
         , { ACCOUNTTREE_XPM, wxBitmap(wxImage(accounttree_xpm).Scale(x, x)) }
         , { ABOUT_XPM, mmBitmap(png::ABOUT) }
         , { CLOCK_XPM, wxBitmap(wxImage(clock_xpm).Scale(x, x)) }
@@ -118,17 +130,17 @@ static const std::map<int, wxBitmap> images_list()
         , { WEB_MONEY_XPM, wxBitmap(wxImage(web_money_xpm).Scale(x, x)) }
         , { RUBIK_CUBE_XPM, mmBitmap(png::OTHER) }
     };
-};
-
+}
 wxImageList* navtree_images_list()
 {
     int x = mmIniOptions::instance().ico_size_;
 
     wxImageList* imageList = new wxImageList(x, x);
-    for (const auto& img : images_list())
-    {
+    for (const auto& img : navtree_images())
         imageList->Add(img.second);
-    }
+    for (const auto& img : custom_images())
+        imageList->Add(img.second);
+
     return imageList;
 }
 
@@ -155,6 +167,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { BUDGET, { { 16, wxBITMAP_PNG_FROM_DATA(budget) }, { 24, wxBITMAP_PNG_FROM_DATA(budget24) }, { 32, wxBITMAP_PNG_FROM_DATA(budget32) }, { 48, wxBITMAP_PNG_FROM_DATA(budget48) } } }
         , { RECURRING, { { 16, wxBITMAP_PNG_FROM_DATA(recurring) }, { 24, wxBITMAP_PNG_FROM_DATA(recurring24) }, { 32, wxBITMAP_PNG_FROM_DATA(recurring32) }, { 48, wxBITMAP_PNG_FROM_DATA(recurring48) } } }
         , { ASSET, { { 16, wxBITMAP_PNG_FROM_DATA(asset) }, { 24, wxBITMAP_PNG_FROM_DATA(asset24) }, { 32, wxBITMAP_PNG_FROM_DATA(asset32) }, { 48, wxBITMAP_PNG_FROM_DATA(asset48) } } }
+        //, { PROPERTY, { { 16, wxBITMAP_PNG_FROM_DATA(home) }, { 24, wxBITMAP_PNG_FROM_DATA(home24) }, { 32, wxBITMAP_PNG_FROM_DATA(home32) }, { 48, wxBITMAP_PNG_FROM_DATA(home48) } } }
         , { CAR, { { 16, wxBITMAP_PNG_FROM_DATA(car) }, { 24, wxBITMAP_PNG_FROM_DATA(car24) }, { 32, wxBITMAP_PNG_FROM_DATA(car32) }, { 48, wxBITMAP_PNG_FROM_DATA(car48) } } }
         , { HOUSEHOLD_OBJ, { { 16, wxBITMAP_PNG_FROM_DATA(household_obj) }, { 24, wxBITMAP_PNG_FROM_DATA(household_obj24) }, { 32, wxBITMAP_PNG_FROM_DATA(household_obj32) }, { 48, wxBITMAP_PNG_FROM_DATA(household_obj48) } } }
         , { ART, { { 16, wxBITMAP_PNG_FROM_DATA(art) }, { 24, wxBITMAP_PNG_FROM_DATA(art24) }, { 32, wxBITMAP_PNG_FROM_DATA(art32) }, { 48, wxBITMAP_PNG_FROM_DATA(art48) } } }
@@ -162,16 +175,24 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { CASH, { { 16, wxBITMAP_PNG_FROM_DATA(coin) }, { 24, wxBITMAP_PNG_FROM_DATA(coin24) }, { 32, wxBITMAP_PNG_FROM_DATA(coin32) }, { 48, wxBITMAP_PNG_FROM_DATA(coin48) } } }
         , { OTHER, { { 16, wxBITMAP_PNG_FROM_DATA(puzzle) }, { 24, wxBITMAP_PNG_FROM_DATA(puzzle24) }, { 32, wxBITMAP_PNG_FROM_DATA(puzzle32) }, { 48, wxBITMAP_PNG_FROM_DATA(puzzle48) } } }
         , { FACEBOOK, { { 16, wxBITMAP_PNG_FROM_DATA(facebook) }, { 24, wxBITMAP_PNG_FROM_DATA(facebook24) }, { 32, wxBITMAP_PNG_FROM_DATA(facebook32) }, { 48, wxBITMAP_PNG_FROM_DATA(facebook48) } } }
-        , { CC_NORMAL, { { 16, wxBITMAP_PNG_FROM_DATA(cc_normal) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_normal24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_normal32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_normal48) } } }
-        , { CC_FAVORITE, { { 16, wxBITMAP_PNG_FROM_DATA(cc_favorite) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_favorite24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_favorite32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_favorite48) } } }
-        , { CC_CLOSED, { { 16, wxBITMAP_PNG_FROM_DATA(cc_closed) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_closed24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_closed32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_closed48) } } }
         , { SAVINGS_NORMAL, { { 16, wxBITMAP_PNG_FROM_DATA(savings_acc_normal) }, { 24, wxBITMAP_PNG_FROM_DATA(savings_acc_normal24) }, { 32, wxBITMAP_PNG_FROM_DATA(savings_acc_normal32) }, { 48, wxBITMAP_PNG_FROM_DATA(savings_acc_normal48) } } }
         , { SAVINGS_FAVORITES, { { 16, wxBITMAP_PNG_FROM_DATA(savings_acc_favorite) }, { 24, wxBITMAP_PNG_FROM_DATA(savings_acc_favorite24) }, { 32, wxBITMAP_PNG_FROM_DATA(savings_acc_favorite32) }, { 48, wxBITMAP_PNG_FROM_DATA(savings_acc_favorite48) } } }
         , { SAVINGS_CLOSED, { { 16, wxBITMAP_PNG_FROM_DATA(savings_acc_closed) }, { 24, wxBITMAP_PNG_FROM_DATA(savings_acc_closed24) }, { 32, wxBITMAP_PNG_FROM_DATA(savings_acc_closed32) }, { 48, wxBITMAP_PNG_FROM_DATA(savings_acc_closed48) } } }
+        , { CC_NORMAL, { { 16, wxBITMAP_PNG_FROM_DATA(cc_normal) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_normal24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_normal32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_normal48) } } }
+        , { CC_FAVORITE, { { 16, wxBITMAP_PNG_FROM_DATA(cc_favorite) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_favorite24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_favorite32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_favorite48) } } }
+        , { CC_CLOSED, { { 16, wxBITMAP_PNG_FROM_DATA(cc_closed) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_closed24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_closed32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_closed48) } } }
         , { RECONCILED, { { 16, wxBITMAP_PNG_FROM_DATA(status_r) }, { 24, wxBITMAP_PNG_FROM_DATA(status_r24) }, { 32, wxBITMAP_PNG_FROM_DATA(status_r32) }, { 48, wxBITMAP_PNG_FROM_DATA(status_r48) } } }
+        , { VOID_STAT, { { 16, wxBITMAP_PNG_FROM_DATA(status_v) }, { 24, wxBITMAP_PNG_FROM_DATA(status_v24) }, { 32, wxBITMAP_PNG_FROM_DATA(status_v32) }, { 48, wxBITMAP_PNG_FROM_DATA(status_v48) } } }
+        , { FOLLOW_UP, { { 16, wxBITMAP_PNG_FROM_DATA(status_f) }, { 24, wxBITMAP_PNG_FROM_DATA(status_f24) }, { 32, wxBITMAP_PNG_FROM_DATA(status_f32) }, { 48, wxBITMAP_PNG_FROM_DATA(status_f48) } } }
+        , { DUPLICATE_STAT, { { 16, wxBITMAP_PNG_FROM_DATA(status_d) }, { 24, wxBITMAP_PNG_FROM_DATA(status_d24) }, { 32, wxBITMAP_PNG_FROM_DATA(status_d32) }, { 48, wxBITMAP_PNG_FROM_DATA(status_d48) } } }
         , { RIGHTARROW, { { 16, wxBITMAP_PNG_FROM_DATA(rightarrow) }, { 24, wxBITMAP_PNG_FROM_DATA(rightarrow24) }, { 32, wxBITMAP_PNG_FROM_DATA(rightarrow32) }, { 48, wxBITMAP_PNG_FROM_DATA(rightarrow48) } } }
+        , { RIGHTARROW_ACTIVE, { { 16, wxBITMAP_PNG_FROM_DATA(rightarrow_active) }, { 24, wxBITMAP_PNG_FROM_DATA(rightarrow_active24) }, { 32, wxBITMAP_PNG_FROM_DATA(rightarrow_active32) }, { 48, wxBITMAP_PNG_FROM_DATA(rightarrow_active48) } } }
         , { GOOGLE_PLAY, { { 16, wxBITMAP_PNG_FROM_DATA(google_play) }, { 24, wxBITMAP_PNG_FROM_DATA(google_play24) }, { 32, wxBITMAP_PNG_FROM_DATA(google_play32) }, { 48, wxBITMAP_PNG_FROM_DATA(google_play48) } } }
+        , { UPDATE, { { 16, wxBITMAP_PNG_FROM_DATA(update) }, { 24, wxBITMAP_PNG_FROM_DATA(update24) }, { 32, wxBITMAP_PNG_FROM_DATA(update32) }, { 48, wxBITMAP_PNG_FROM_DATA(update48) } } }
+        , { FORUM, { { 16, wxBITMAP_PNG_FROM_DATA(forum) }, { 24, wxBITMAP_PNG_FROM_DATA(forum24) }, { 32, wxBITMAP_PNG_FROM_DATA(forum32) }, { 48, wxBITMAP_PNG_FROM_DATA(forum48) } } }
+        , { CLIP, { { 16, wxBITMAP_PNG_FROM_DATA(clip) }, { 24, wxBITMAP_PNG_FROM_DATA(clip24) }, { 32, wxBITMAP_PNG_FROM_DATA(clip32) }, { 48, wxBITMAP_PNG_FROM_DATA(clip48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
+        , { EMPTY, { { 16, wxBitmap(wxImage(empty_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(empty_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(empty_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(empty_xpm).Scale(48, 48)) } } }
     };
 }
 
@@ -187,7 +208,7 @@ const wxBitmap mmBitmap(int ref)
     }
     catch (std::out_of_range const& exc) {
         wxLogError("Exception in function 'mmBitmap': %s", exc.what());
-        b = wxBitmap(empty_xpm);
+        b = wxBitmap(wxImage(empty_xpm).Scale(x, x));
     }
     return b;
 }

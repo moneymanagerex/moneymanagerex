@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "stockdialog.h"
+#include "images_list.h"
 #include "attachmentdialog.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
@@ -31,8 +32,6 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_StockHistory.h"
 
-#include "../resources/attachment.xpm"
-#include "../resources/checkupdate.xpm"
 #include"../resources/uparrow.xpm"
 #include "../resources/web.xpm"
 
@@ -248,7 +247,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Notes")), g_flags);
     wxBoxSizer* iconsSizer = new wxBoxSizer(wxHORIZONTAL);
     itemFlexGridSizer6->Add(iconsSizer, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
-    bAttachments_ = new wxBitmapButton(itemPanel5, wxID_FILE, wxBitmap(attachment_xpm), wxDefaultPosition
+    bAttachments_ = new wxBitmapButton(itemPanel5, wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(commission_->GetSize().GetY(), commission_->GetSize().GetY()));
     bAttachments_->SetToolTip(_("Organize attachments of this stock"));
     wxBitmapButton* itemButton31 = new wxBitmapButton(itemPanel5, wxID_INDEX, wxBitmap(web_xpm)
@@ -304,7 +303,7 @@ void mmStockDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, ID_BUTTON_DOWNLOAD, wxBitmap(checkupdate_xpm)
+    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, ID_BUTTON_DOWNLOAD, mmBitmap(png::UPDATE)
         , wxDefaultPosition, wxSize(commission_->GetSize().GetY(), commission_->GetSize().GetY()));
     buttonDownload->SetToolTip(_("Download Stock Price history"));
     wxBitmapButton* buttonImport = new wxBitmapButton(buttons_panel, ID_BUTTON_IMPORT, wxBitmap(uparrow_xpm)

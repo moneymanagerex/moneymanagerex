@@ -34,8 +34,6 @@
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
 
-#include "../resources/attachment.xpm"
-
 #include <wx/valnum.h>
 
 
@@ -596,7 +594,7 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(new wxStaticText(transactionPanel, wxID_STATIC, _("Notes")), g_flags);
 
     bAttachments_ = new wxBitmapButton(transactionPanel, wxID_FILE
-        , wxBitmap(attachment_xpm), wxDefaultPosition
+        , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(bSetNextOccurDate_->GetSize().GetY(), bSetNextOccurDate_->GetSize().GetY()));
     bAttachments_->SetToolTip(_("Organize attachments of this recurring transaction"));
 

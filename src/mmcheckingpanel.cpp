@@ -39,15 +39,8 @@
 #include "model/Model_Attachment.h"
 #include "billsdepositsdialog.h"
 
-#include "../resources/unreconciled.xpm"
-#include "../resources/duplicate.xpm"
-#include "../resources/flag.xpm"
-#include "../resources/void.xpm"
 #include "../resources/uparrow.xpm"
 #include "../resources/downarrow.xpm"
-#include "../resources/tipicon.xpm"
-#include "../resources/trash.xpm"
-#include "../resources/attachment.xpm"
 
 //----------------------------------------------------------------------------
 
@@ -80,7 +73,6 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
 
     EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED_ALL
         , MENU_TREEPOPUP_DELETE_UNRECONCILED, TransactionListCtrl::OnMarkAllTransactions)
-    EVT_MENU(MENU_TREEPOPUP_SHOWTRASH,      TransactionListCtrl::OnShowChbClick)
 
     EVT_MENU_RANGE(MENU_TREEPOPUP_NEW_WITHDRAWAL, MENU_TREEPOPUP_NEW_DEPOSIT, TransactionListCtrl::OnNewTransaction)
     EVT_MENU(MENU_TREEPOPUP_NEW_TRANSFER,   TransactionListCtrl::OnNewTransferTransaction)
@@ -208,11 +200,7 @@ void mmCheckingPanel::filterTable()
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
             account_balance_ += transaction_amount;
-        else
-        {
-            if (!m_listCtrlAccount->showDeletedTransactions_)
-                continue;
-        }
+
         if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
             reconciled_balance_ += transaction_amount;
 
@@ -413,13 +401,12 @@ void mmCheckingPanel::CreateControls()
     int x = mmIniOptions::instance().ico_size_;
     m_imageList.reset(new wxImageList(x, x));
     m_imageList->Add(mmBitmap(png::RECONCILED));
-    m_imageList->Add(wxImage(void_xpm).Scale(x, x));
-    m_imageList->Add(wxImage(flag_xpm).Scale(x, x));
-    m_imageList->Add(wxImage(unreconciled_xpm).Scale(x, x));
+    m_imageList->Add(mmBitmap(png::VOID_STAT));
+    m_imageList->Add(mmBitmap(png::FOLLOW_UP));
+    m_imageList->Add(mmBitmap(png::EMPTY));
+    m_imageList->Add(mmBitmap(png::DUPLICATE_STAT));
     m_imageList->Add(wxImage(uparrow_xpm).Scale(x, x));
     m_imageList->Add(wxImage(downarrow_xpm).Scale(x, x));
-    m_imageList->Add(wxImage(duplicate_xpm).Scale(x, x));
-    m_imageList->Add(wxImage(trash_xpm).Scale(x, x));
 
     m_listCtrlAccount = new TransactionListCtrl(this, itemSplitterWindow10
         , wxID_ANY);
@@ -481,7 +468,7 @@ void mmCheckingPanel::CreateControls()
     btnDuplicate_->Enable(false);
 
     btnAttachment_ = new wxBitmapButton(itemPanel12, wxID_FILE
-        , wxBitmap(attachment_xpm), wxDefaultPosition
+        , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(30, btnDuplicate_->GetSize().GetY()));
     btnAttachment_->SetToolTip(_("Open attachments"));
     itemButtonsSizer->Add(btnAttachment_, 0, wxRIGHT, 5);
@@ -762,8 +749,7 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
         transFilterActive_ = false;
     }
     
-    wxImage pic = (transFilterActive_ ? wxBitmap(tipicon_xpm) : mmBitmap(png::RIGHTARROW)).ConvertToImage();
-    bitmapTransFilter_->SetBitmap(pic);
+    bitmapTransFilter_->SetBitmap(transFilterActive_ ? mmBitmap(png::RIGHTARROW_ACTIVE) : mmBitmap(png::RIGHTARROW));
     SetTransactionFilterState(true);
 
     RefreshList();
@@ -953,8 +939,6 @@ TransactionListCtrl::TransactionListCtrl(
     wxAcceleratorTable tab(sizeof(entries)/sizeof(*entries), entries);
     SetAcceleratorTable(tab);
 
-    showDeletedTransactions_ = Model_Setting::instance().GetBoolSetting("SHOW_DELETED_TRANS", true);
-
     m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Date"), 112, wxLIST_FORMAT_LEFT));
@@ -1078,9 +1062,6 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
     menu.AppendSeparator();
 
-    wxString menu_item_label = showDeletedTransactions_ ? _("Hide Deleted (Void)") : _("Show Deleted (Void)");
-    menu.AppendCheckItem(MENU_TREEPOPUP_SHOWTRASH, menu_item_label);
-
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE2, _("&Delete Transaction"));
     if (hide_menu_item) subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
@@ -1117,12 +1098,6 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     this->SetFocus();
 }
 //----------------------------------------------------------------------------
-void TransactionListCtrl::OnShowChbClick(wxCommandEvent& /*event*/)
-{
-    showDeletedTransactions_ = !showDeletedTransactions_;
-    Model_Setting::instance().Set("SHOW_DELETED_TRANS", showDeletedTransactions_);
-    refreshVisualList(m_selectedID);
-}
 
 void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 {

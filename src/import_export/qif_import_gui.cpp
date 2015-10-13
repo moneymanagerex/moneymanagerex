@@ -28,8 +28,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Currency.h"
 #include "model/Model_Payee.h"
 
-#include "../resources/void.xpm"
-
 #include <wx/progdlg.h>
 
 //map Quicken !Account type strings to Model_Account::TYPE

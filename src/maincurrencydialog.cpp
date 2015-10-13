@@ -21,6 +21,7 @@
 #include "currencydialog.h"
 #include "constants.h"
 #include "defs.h"
+#include "images_list.h"
 #include "mmCalculator.h"
 #include "mmSimpleDialogs.h"
 #include "mmtextctrl.h"
@@ -32,9 +33,6 @@
 #include "model/Model_CurrencyHistory.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
-
-#include "../resources/checkupdate.xpm"
-#include "../resources/trash.xpm"
 
 #include <vector>
 #include <wx/sstream.h>
@@ -151,7 +149,7 @@ void mmMainCurrencyDialog::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer22, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxBitmapButton* update_button = new wxBitmapButton(this
-        , wxID_STATIC, wxBitmap(checkupdate_xpm));
+        , wxID_STATIC, mmBitmap(png::UPDATE));
     itemBoxSizer22->Add(update_button, g_flags);
     update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
@@ -279,14 +277,15 @@ void mmMainCurrencyDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, wxBitmap(checkupdate_xpm)
+    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, mmBitmap(png::UPDATE)
         , wxDefaultPosition, wxSize(itemButtonEdit_->GetSize().GetY(), itemButtonEdit_->GetSize().GetY()));
     buttonDownload->SetToolTip(_("Download Currency Values history"));
     historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update "));
     historyButtonAdd_->SetToolTip(_("Add Currency Values to history"));
     historyButtonDelete_ = new wxButton(buttons_panel, HISTORY_DELETE, _("&Delete "));
     historyButtonDelete_->SetToolTip(_("Delete selected Currency Values"));
-    wxBitmapButton* buttonDelUnusedHistory = new wxBitmapButton(buttons_panel, HISTORY_DELUNUSED, wxBitmap(trash_xpm)
+    wxBitmapButton* buttonDelUnusedHistory = new wxBitmapButton(buttons_panel
+        , HISTORY_DELUNUSED, mmBitmap(png::VOID_STAT) //TODO: trash ico
         , wxDefaultPosition, wxSize(itemButtonEdit_->GetSize().GetY(), itemButtonEdit_->GetSize().GetY()));
     buttonDelUnusedHistory->SetToolTip(_("Delete Currency Values history for unused currencies"));
     buttons_sizer->Add(buttonDownload, g_flags);

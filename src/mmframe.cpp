@@ -107,13 +107,11 @@
 /* Include XPM Support */
 
 #include "../resources/appstart.xpm"
-#include "../resources/checkupdate.xpm"
 #include "../resources/clearlist.xpm"
 #include "../resources/delete_account.xpm"
 #include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
 #include "../resources/encrypt_db_edit.xpm"
-#include "../resources/issues.xpm"
 #include "../resources/newacct.xpm"
 #include "../resources/new_transaction.xpm"
 #include "../resources/notify.xpm"
@@ -1501,6 +1499,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemVacuumDB = new wxMenuItem(menuTools, MENU_DB_VACUUM
         , _("Optimize &Database")
         , _("Optimize database space and performance"));
+    menuItemVacuumDB->SetBitmap(mmBitmap(png::EMPTY));
     menuDatabase->Append(menuItemConvertDB);
     menuDatabase->Append(menuItemChangeEncryptPassword);
     menuDatabase->Append(menuItemVacuumDB);
@@ -1525,7 +1524,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemCheck = new wxMenuItem(menuTools, MENU_CHECKUPDATE
         , _("Check for &Updates"), _("Check For Updates"));
-    menuItemCheck->SetBitmap(wxBitmap(wxImage(checkupdate_xpm).Scale(x, x)));
+    menuItemCheck->SetBitmap(mmBitmap(png::UPDATE));
     menuHelp->Append(menuItemCheck);
 
     wxMenuItem* menuGooglePlay = new wxMenuItem(menuTools, MENU_GOOGLEPLAY
@@ -1537,7 +1536,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemReportIssues = new wxMenuItem(menuTools, MENU_REPORTISSUES
         , _("Visit MMEX Forum")
         , _("Visit the MMEX forum. See existing user comments, or report new issues with the software."));
-    menuItemReportIssues->SetBitmap(wxBitmap(wxImage(issues_xpm).Scale(x, x)));
+    menuItemReportIssues->SetBitmap(mmBitmap(png::FORUM));
     menuHelp->Append(menuItemReportIssues);
 
     wxMenuItem* menuItemNotify = new wxMenuItem(menuTools, MENU_ANNOUNCEMENTMAILING
