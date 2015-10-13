@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "stockdialog.h"
+#include "images_list.h"
 #include "attachmentdialog.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
@@ -32,7 +33,6 @@
 #include "model/Model_StockHistory.h"
 
 #include "../resources/attachment.xpm"
-#include "../resources/checkupdate.xpm"
 #include"../resources/uparrow.xpm"
 #include "../resources/web.xpm"
 
@@ -304,7 +304,7 @@ void mmStockDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, ID_BUTTON_DOWNLOAD, wxBitmap(checkupdate_xpm)
+    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, ID_BUTTON_DOWNLOAD, mmBitmap(png::UPDATE)
         , wxDefaultPosition, wxSize(commission_->GetSize().GetY(), commission_->GetSize().GetY()));
     buttonDownload->SetToolTip(_("Download Stock Price history"));
     wxBitmapButton* buttonImport = new wxBitmapButton(buttons_panel, ID_BUTTON_IMPORT, wxBitmap(uparrow_xpm)

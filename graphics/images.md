@@ -41,15 +41,25 @@
 <br><img src="https://openclipart.org/image/32px/svg_to_png/169213/madcar2.png" />| Car | [page](https://openclipart.org/detail/169213/anglia-hotrod)
 <br><img src="https://openclipart.org/image/32px/svg_to_png/172603/Diamond-Remix-2-by-Merlin2525.png" /> | Diamond |[page](https://openclipart.org/detail/172603/diamond-remix-2)
 <br><img src="https://openclipart.org/image/32px/svg_to_png/203249/watering-can.png" /> | Household Object | [page](https://openclipart.org/detail/203249/watering-can-game-component-superb-quality)
-<br><img src="https://openclipart.org/image/32px/svg_to_png/214206/painting.png" /> | Art | [page](https://openclipart.org/detail/214206/painting)              
-<br><img src="https://openclipart.org/image/32px/svg_to_png/11120/jetxee-euro-coin.png" /> | Cash | [page](https://openclipart.org/detail/11120/euro-coin )    
+<br><img src="https://openclipart.org/image/32px/svg_to_png/214206/painting.png" /> | Art | [page](https://openclipart.org/detail/214206/painting)
+<br><img src="https://openclipart.org/image/32px/svg_to_png/11120/jetxee-euro-coin.png" /> | Cash | [page](https://openclipart.org/detail/11120/euro-coin )
 <br><img src="https://openclipart.org/image/32px/svg_to_png/192580/Jigsaw-Puzzle.png" /> | Other | [page](https://openclipart.org/detail/192580/jigsawpuzzle)
 
 ###Statuses
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/84289/23493485345.png" /> | Reconciled | [page](https://openclipart.org/detail/84289/check-mark)
-<br> <img src="https://openclipart.org/image/32px/svg_to_png/26426/Anonymous-lamp.png" /> <img src="https://openclipart.org/image/32px/svg_to_png/203190/awesome-warn.png"/>| Follow up | [page](https://openclipart.org/detail/26426/lamp) [page](https://openclipart.org/detail/203190/awesome-style-warning-icon)      
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/26426/Anonymous-lamp.png" /> <img src="https://openclipart.org/image/32px/svg_to_png/203190/awesome-warn.png"/>| Follow up | [page](https://openclipart.org/detail/26426/lamp) [page](https://openclipart.org/detail/203190/awesome-style-warning-icon)
 <br><img src="https://openclipart.org/image/32px/svg_to_png/1645/dagobert83-cancel.png"/> |Void|[page](https://openclipart.org/detail/1645/cancel)
 <br><img src="https://openclipart.org/image/32px/svg_to_png/120787/clone.png"/> |Duplicate| [page](https://openclipart.org/detail/120787/duplicate-icon)
+
 ###Panels 
-<br><img src="https://openclipart.org/image/32px/svg_to_png/33583/pulsante-02-architetto-f-01.png" />| Arrow right | [page](https://openclipart.org/detail/33583/architetto-pulsante-02)      
-<br><img src="https://openclipart.org/image/32px/svg_to_png/164041/round-blue-play-button-with-focus.png" />| Arrow right pressed| [page](https://openclipart.org/                                                                 
+<br><img src="https://openclipart.org/image/32px/svg_to_png/33583/pulsante-02-architetto-f-01.png" /><img src="https://openclipart.org/image/32px/svg_to_png/164041/round-blue-play-button-with-focus.png" />| Arrow right | [page](https://openclipart.org/detail/33583/architetto-pulsante-02)      [page](https://openclipart.org/detail/164041/blue-play-button-with-focus)      
+
+
+###Other
+<br><img src="https://openclipart.org/image/32px/svg_to_png/17306/czara1-Mixe-arrow.png" />| Update |[page](https://openclipart.org/detail/17306/mixe-arrow)
+<br><img src="https://openclipart.org/image/32px/svg_to_png/30499/tango-down-arrow-red.png" />| Down arrow |[page](https://openclipart.org/detail/30499/tango-red-go-down)
+<br><img src="https://openclipart.org/image/32px/svg_to_png/30661/tango-up-arrow-blue.png" />| Up |[page](https://openclipart.org/detail/30661/tango-blue-go-up)
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/33691/view-fullscreen.png" />| Full Screen |[page](https://openclipart.org/detail/33691/tango-view-fullscreen)
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/212273/rodentia-icons_software-update-urgent.png" />| software-update |[page](https://openclipart.org/detail/212273/softwareupdate-urgent)
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/129049/bubbles-normal.png" />| Forum |[page](https://openclipart.org/detail/129049/chat)
+<br> <img src="" />| __ |[page]()                                                         

@@ -98,6 +98,8 @@ enum png {
     RIGHTARROW,
     RIGHTARROW_ACTIVE,
     GOOGLE_PLAY,
+    UPDATE,
+    FORUM,
     EXIT,
     EMPTY,
 };

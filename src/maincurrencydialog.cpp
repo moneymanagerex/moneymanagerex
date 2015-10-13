@@ -34,8 +34,6 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 
-#include "../resources/checkupdate.xpm"
-
 #include <vector>
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
@@ -151,7 +149,7 @@ void mmMainCurrencyDialog::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer22, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxBitmapButton* update_button = new wxBitmapButton(this
-        , wxID_STATIC, wxBitmap(checkupdate_xpm));
+        , wxID_STATIC, mmBitmap(png::UPDATE));
     itemBoxSizer22->Add(update_button, g_flags);
     update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
@@ -279,7 +277,7 @@ void mmMainCurrencyDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, wxBitmap(checkupdate_xpm)
+    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, mmBitmap(png::UPDATE)
         , wxDefaultPosition, wxSize(itemButtonEdit_->GetSize().GetY(), itemButtonEdit_->GetSize().GetY()));
     buttonDownload->SetToolTip(_("Download Currency Values history"));
     historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update "));
