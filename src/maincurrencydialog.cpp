@@ -21,6 +21,7 @@
 #include "currencydialog.h"
 #include "constants.h"
 #include "defs.h"
+#include "images_list.h"
 #include "mmCalculator.h"
 #include "mmSimpleDialogs.h"
 #include "mmtextctrl.h"
@@ -34,7 +35,6 @@
 #include "model/Model_Setting.h"
 
 #include "../resources/checkupdate.xpm"
-#include "../resources/trash.xpm"
 
 #include <vector>
 #include <wx/sstream.h>
@@ -286,7 +286,8 @@ void mmMainCurrencyDialog::CreateControls()
     historyButtonAdd_->SetToolTip(_("Add Currency Values to history"));
     historyButtonDelete_ = new wxButton(buttons_panel, HISTORY_DELETE, _("&Delete "));
     historyButtonDelete_->SetToolTip(_("Delete selected Currency Values"));
-    wxBitmapButton* buttonDelUnusedHistory = new wxBitmapButton(buttons_panel, HISTORY_DELUNUSED, wxBitmap(trash_xpm)
+    wxBitmapButton* buttonDelUnusedHistory = new wxBitmapButton(buttons_panel
+        , HISTORY_DELUNUSED, mmBitmap(png::VOID_STAT) //TODO: trash ico
         , wxDefaultPosition, wxSize(itemButtonEdit_->GetSize().GetY(), itemButtonEdit_->GetSize().GetY()));
     buttonDelUnusedHistory->SetToolTip(_("Delete Currency Values history for unused currencies"));
     buttons_sizer->Add(buttonDownload, g_flags);
