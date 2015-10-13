@@ -100,6 +100,7 @@ enum png {
     GOOGLE_PLAY,
     UPDATE,
     FORUM,
+    CLIP,
     EXIT,
     EMPTY,
 };

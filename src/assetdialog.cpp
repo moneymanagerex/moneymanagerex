@@ -17,6 +17,7 @@
 #include "assetdialog.h"
 #include "attachmentdialog.h"
 #include "constants.h"
+#include "images_list.h"
 #include "mmSimpleDialogs.h"
 #include "mmtextctrl.h"
 #include "paths.h"
@@ -24,8 +25,6 @@
 #include "validators.h"
 
 #include "model/Model_Attachment.h"
-
-#include "../resources/attachment.xpm"
 
 #include <wx/valnum.h>
 
@@ -176,7 +175,7 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Notes")), g_flags);
 
 	bAttachments_ = new wxBitmapButton(itemPanel5, wxID_FILE
-		, wxBitmap(attachment_xpm), wxDefaultPosition
+		, mmBitmap(png::CLIP), wxDefaultPosition
 		, wxSize(m_valueChange->GetSize().GetY(), m_valueChange->GetSize().GetY()));
 	itemFlexGridSizer6->Add(bAttachments_, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
 	bAttachments_->SetToolTip(_("Organize attachments of this asset"));

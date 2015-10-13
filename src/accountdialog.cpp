@@ -32,8 +32,6 @@
 #include "model/Model_Currency.h"
 #include "model/Model_Attachment.h"
 
-#include "../resources/attachment.xpm"
-
 #include <wx/valnum.h>
 
 enum {
@@ -286,7 +284,7 @@ void mmNewAcctDialog::CreateControls()
     itemBoxSizer28->Add(m_bitmapButtons, g_flags);
 
     bAttachments_ = new wxBitmapButton(itemPanel27, wxID_FILE
-        , wxBitmap(attachment_xpm), wxDefaultPosition
+        , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(m_textAccountName->GetSize().GetHeight(), m_textAccountName->GetSize().GetHeight()));
     bAttachments_->SetToolTip(_("Organize attachments of this account"));
     itemBoxSizer28->Add(bAttachments_, g_flags);

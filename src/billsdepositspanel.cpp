@@ -28,7 +28,6 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
 
-#include "../resources/attachment.xpm"
 #include "../resources/downarrow.xpm"
 #include "../resources/error.xpm"
 #include "../resources/rt_exec_auto.xpm"
@@ -301,7 +300,7 @@ void mmBillsDepositsPanel::CreateControls()
     buttonSkipTrans->Enable(false);
 
     wxBitmapButton* btnAttachment_ = new wxBitmapButton(bdPanel, wxID_FILE
-        , wxBitmap(attachment_xpm), wxDefaultPosition
+        , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(30, itemButton8->GetSize().GetY()));
     btnAttachment_->SetToolTip(_("Open attachments"));
     itemBoxSizer5->Add(btnAttachment_, 0, wxRIGHT, 5);

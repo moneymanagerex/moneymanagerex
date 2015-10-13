@@ -21,6 +21,7 @@
 #include "attachmentdialog.h"
 #include "categdialog.h"
 #include "constants.h"
+#include "images_list.h"
 #include "mmSimpleDialogs.h"
 #include "mmtextctrl.h"
 #include "paths.h"
@@ -33,8 +34,6 @@
 #include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
-
-#include "../resources/attachment.xpm"
 
 #include <wx/numformatter.h>
 
@@ -451,7 +450,7 @@ void mmTransDialog::CreateControls()
 	
 	// Attachments ---------------------------------------------
 	bAttachments_ = new wxBitmapButton(this, wxID_FILE
-		, wxBitmap(attachment_xpm), wxDefaultPosition
+		, mmBitmap(png::CLIP), wxDefaultPosition
 		, wxSize(bFrequentUsedNotes->GetSize().GetY(), bFrequentUsedNotes->GetSize().GetY()));
 	bAttachments_->SetToolTip(_("Organize attachments of this transaction"));
 

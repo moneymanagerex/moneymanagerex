@@ -41,7 +41,6 @@
 
 #include "../resources/uparrow.xpm"
 #include "../resources/downarrow.xpm"
-#include "../resources/attachment.xpm"
 
 //----------------------------------------------------------------------------
 
@@ -469,7 +468,7 @@ void mmCheckingPanel::CreateControls()
     btnDuplicate_->Enable(false);
 
     btnAttachment_ = new wxBitmapButton(itemPanel12, wxID_FILE
-        , wxBitmap(attachment_xpm), wxDefaultPosition
+        , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(30, btnDuplicate_->GetSize().GetY()));
     btnAttachment_->SetToolTip(_("Open attachments"));
     itemButtonsSizer->Add(btnAttachment_, 0, wxRIGHT, 5);

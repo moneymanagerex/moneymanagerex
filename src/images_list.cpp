@@ -58,6 +58,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/google_play_png.h"
 #include "../resources/update_png.h"
 #include "../resources/forum_png.h"
+#include "../resources/clip_png.h"
 #include "../resources/exit_png.h"
 
 #include "../resources/empty.xpm"
@@ -189,6 +190,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { GOOGLE_PLAY, { { 16, wxBITMAP_PNG_FROM_DATA(google_play) }, { 24, wxBITMAP_PNG_FROM_DATA(google_play24) }, { 32, wxBITMAP_PNG_FROM_DATA(google_play32) }, { 48, wxBITMAP_PNG_FROM_DATA(google_play48) } } }
         , { UPDATE, { { 16, wxBITMAP_PNG_FROM_DATA(update) }, { 24, wxBITMAP_PNG_FROM_DATA(update24) }, { 32, wxBITMAP_PNG_FROM_DATA(update32) }, { 48, wxBITMAP_PNG_FROM_DATA(update48) } } }
         , { FORUM, { { 16, wxBITMAP_PNG_FROM_DATA(forum) }, { 24, wxBITMAP_PNG_FROM_DATA(forum24) }, { 32, wxBITMAP_PNG_FROM_DATA(forum32) }, { 48, wxBITMAP_PNG_FROM_DATA(forum48) } } }
+        , { CLIP, { { 16, wxBITMAP_PNG_FROM_DATA(clip) }, { 24, wxBITMAP_PNG_FROM_DATA(clip24) }, { 32, wxBITMAP_PNG_FROM_DATA(clip32) }, { 48, wxBITMAP_PNG_FROM_DATA(clip48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
         , { EMPTY, { { 16, wxBitmap(wxImage(empty_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(empty_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(empty_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(empty_xpm).Scale(48, 48)) } } }
     };

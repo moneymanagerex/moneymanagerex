@@ -20,6 +20,7 @@
 #include "stockspanel.h"
 #include "attachmentdialog.h"
 #include "constants.h"
+#include "images_list.h"
 #include "mmSimpleDialogs.h"
 #include "stockdialog.h"
 #include "util.h"
@@ -29,7 +30,6 @@
 #include "model/Model_Setting.h"
 #include "model/Model_StockHistory.h"
 
-#include "../resources/attachment.xpm"
 #include "../resources/downarrow.xpm"
 #include "../resources/downarrow_red.xpm"
 #include "../resources/leds.xpm"
@@ -500,7 +500,7 @@ void mmStocksPanel::CreateControls()
     bMove->Enable(false);
 
     attachment_button_ = new wxBitmapButton(BottomPanel
-        , wxID_FILE, wxBitmap(attachment_xpm), wxDefaultPosition
+        , wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(30, bMove->GetSize().GetY()));
     attachment_button_->SetToolTip(_("Open attachments"));
     BoxSizerHBottom->Add(attachment_button_, 0, wxRIGHT, 5);
