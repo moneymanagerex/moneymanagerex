@@ -1501,6 +1501,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemVacuumDB = new wxMenuItem(menuTools, MENU_DB_VACUUM
         , _("Optimize &Database")
         , _("Optimize database space and performance"));
+    menuItemVacuumDB->SetBitmap(mmBitmap(png::EMPTY));
     menuDatabase->Append(menuItemConvertDB);
     menuDatabase->Append(menuItemChangeEncryptPassword);
     menuDatabase->Append(menuItemVacuumDB);

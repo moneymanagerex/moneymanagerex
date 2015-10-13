@@ -39,10 +39,6 @@
 #include "model/Model_Attachment.h"
 #include "billsdepositsdialog.h"
 
-#include "../resources/unreconciled.xpm"
-#include "../resources/duplicate.xpm"
-#include "../resources/flag.xpm"
-#include "../resources/void.xpm"
 #include "../resources/uparrow.xpm"
 #include "../resources/downarrow.xpm"
 #include "../resources/trash.xpm"
@@ -412,12 +408,12 @@ void mmCheckingPanel::CreateControls()
     int x = mmIniOptions::instance().ico_size_;
     m_imageList.reset(new wxImageList(x, x));
     m_imageList->Add(mmBitmap(png::RECONCILED));
-    m_imageList->Add(wxImage(void_xpm).Scale(x, x));
-    m_imageList->Add(wxImage(flag_xpm).Scale(x, x));
-    m_imageList->Add(wxImage(unreconciled_xpm).Scale(x, x));
+    m_imageList->Add(mmBitmap(png::VOID_STAT));
+    m_imageList->Add(mmBitmap(png::FOLLOW_UP));
+    m_imageList->Add(mmBitmap(png::EMPTY));
     m_imageList->Add(wxImage(uparrow_xpm).Scale(x, x));
     m_imageList->Add(wxImage(downarrow_xpm).Scale(x, x));
-    m_imageList->Add(wxImage(duplicate_xpm).Scale(x, x));
+    m_imageList->Add(mmBitmap(png::DUPLICATE_STAT));
     m_imageList->Add(wxImage(trash_xpm).Scale(x, x));
 
     m_listCtrlAccount = new TransactionListCtrl(this, itemSplitterWindow10

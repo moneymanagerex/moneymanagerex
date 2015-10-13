@@ -47,7 +47,9 @@
 
 ###Statuses
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/84289/23493485345.png" /> | Reconciled | [page](https://openclipart.org/detail/84289/check-mark)
-<br> <img src="https://openclipart.org/image/32px/svg_to_png/26426/Anonymous-lamp.png&disposition=attachment" alt="lamp" title="lamp by  Anonymous ( https://openclipart.org/user-detail/Anonymous )" />| Follow up | [page](https://openclipart.org/detail/26426/lamp)      
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/26426/Anonymous-lamp.png" /> <img src="https://openclipart.org/image/32px/svg_to_png/203190/awesome-warn.png"/>| Follow up | [page](https://openclipart.org/detail/26426/lamp) [page](https://openclipart.org/detail/203190/awesome-style-warning-icon)      
+<br><img src="https://openclipart.org/image/32px/svg_to_png/1645/dagobert83-cancel.png"/> |Void|[page](https://openclipart.org/detail/1645/cancel)
+<br><img src="https://openclipart.org/image/32px/svg_to_png/120787/clone.png"/> |Duplicate| [page](https://openclipart.org/detail/120787/duplicate-icon)
 ###Panels 
 <br><img src="https://openclipart.org/image/32px/svg_to_png/33583/pulsante-02-architetto-f-01.png" />| Arrow right | [page](https://openclipart.org/detail/33583/architetto-pulsante-02)      
-<br><img src="https://openclipart.org/image/32px/svg_to_png/164041/round-blue-play-button-with-focus.png" />| Arrow right pressed| [page](https://openclipart.org/detail/164041/blue-play-button-with-focus)                                                                      
+<br><img src="https://openclipart.org/image/32px/svg_to_png/164041/round-blue-play-button-with-focus.png" />| Arrow right pressed| [page](https://openclipart.org/                                                                 

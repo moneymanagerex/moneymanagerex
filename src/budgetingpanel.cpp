@@ -30,10 +30,6 @@
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Category.h"
 
-#include "../resources/void.xpm"
-#include "../resources/flag.xpm"
-#include "../resources/empty.xpm"
-
 enum
 {
     ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_EST = wxID_HIGHEST + 1400,
@@ -278,9 +274,9 @@ void mmBudgetingPanel::CreateControls()
     int x = mmIniOptions::instance().ico_size_;
     m_imageList = new wxImageList(x, x);
     m_imageList->Add(mmBitmap(png::RECONCILED));
-    m_imageList->Add(wxImage(void_xpm).Scale(x, x));
-    m_imageList->Add(wxImage(flag_xpm).Scale(x, x));
-    m_imageList->Add(wxImage(empty_xpm).Scale(x, x));
+    m_imageList->Add(mmBitmap(png::VOID_STAT));
+    m_imageList->Add(mmBitmap(png::FOLLOW_UP));
+    m_imageList->Add(mmBitmap(png::EMPTY));
 
     listCtrlBudget_ = new budgetingListCtrl(this, this, wxID_ANY);
 

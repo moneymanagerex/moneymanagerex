@@ -99,6 +99,7 @@ enum png {
     RIGHTARROW_ACTIVE,
     GOOGLE_PLAY,
     EXIT,
+    EMPTY,
 };
 
 wxImageList* navtree_images_list();

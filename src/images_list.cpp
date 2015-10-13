@@ -51,6 +51,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/credit_card_png.h"
 #include "../resources/savings_acc_png.h"
 #include "../resources/status_r_png.h"
+#include "../resources/status_d_png.h"
+#include "../resources/status_f_png.h"
+#include "../resources/status_v_png.h"
 #include "../resources/rightarrow_png.h"
 #include "../resources/google_play_png.h"
 #include "../resources/exit_png.h"
@@ -67,7 +70,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/cat.xpm"
 #include "../resources/clock.xpm"
 #include "../resources/dog.xpm"
-#include "../resources/flag.xpm"
 #include "../resources/hourglass.xpm"
 #include "../resources/money.xpm"
 #include "../resources/money_dollar.xpm"
@@ -112,7 +114,7 @@ static const std::map<int, wxBitmap> custom_images()
         // Custom icons for accounts
         { MONEY_DOLLAR_XPM, wxBitmap(wxImage(money_dollar_xpm).Scale(x, x)) }
         , { MONEY_EURO_XPM, wxBitmap(wxImage(money_euro_xpm).Scale(x, x)) }
-        , { FLAG_XPM, wxBitmap(wxImage(flag_xpm).Scale(x, x)) }
+        , { FLAG_XPM, mmBitmap(png::FOLLOW_UP) }
         , { ACCOUNTTREE_XPM, wxBitmap(wxImage(accounttree_xpm).Scale(x, x)) }
         , { ABOUT_XPM, mmBitmap(png::ABOUT) }
         , { CLOCK_XPM, wxBitmap(wxImage(clock_xpm).Scale(x, x)) }
@@ -177,10 +179,14 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { CC_FAVORITE, { { 16, wxBITMAP_PNG_FROM_DATA(cc_favorite) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_favorite24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_favorite32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_favorite48) } } }
         , { CC_CLOSED, { { 16, wxBITMAP_PNG_FROM_DATA(cc_closed) }, { 24, wxBITMAP_PNG_FROM_DATA(cc_closed24) }, { 32, wxBITMAP_PNG_FROM_DATA(cc_closed32) }, { 48, wxBITMAP_PNG_FROM_DATA(cc_closed48) } } }
         , { RECONCILED, { { 16, wxBITMAP_PNG_FROM_DATA(status_r) }, { 24, wxBITMAP_PNG_FROM_DATA(status_r24) }, { 32, wxBITMAP_PNG_FROM_DATA(status_r32) }, { 48, wxBITMAP_PNG_FROM_DATA(status_r48) } } }
+        , { VOID_STAT, { { 16, wxBITMAP_PNG_FROM_DATA(status_v) }, { 24, wxBITMAP_PNG_FROM_DATA(status_v24) }, { 32, wxBITMAP_PNG_FROM_DATA(status_v32) }, { 48, wxBITMAP_PNG_FROM_DATA(status_v48) } } }
+        , { FOLLOW_UP, { { 16, wxBITMAP_PNG_FROM_DATA(status_f) }, { 24, wxBITMAP_PNG_FROM_DATA(status_f24) }, { 32, wxBITMAP_PNG_FROM_DATA(status_f32) }, { 48, wxBITMAP_PNG_FROM_DATA(status_f48) } } }
+        , { DUPLICATE_STAT, { { 16, wxBITMAP_PNG_FROM_DATA(status_d) }, { 24, wxBITMAP_PNG_FROM_DATA(status_d24) }, { 32, wxBITMAP_PNG_FROM_DATA(status_d32) }, { 48, wxBITMAP_PNG_FROM_DATA(status_d48) } } }
         , { RIGHTARROW, { { 16, wxBITMAP_PNG_FROM_DATA(rightarrow) }, { 24, wxBITMAP_PNG_FROM_DATA(rightarrow24) }, { 32, wxBITMAP_PNG_FROM_DATA(rightarrow32) }, { 48, wxBITMAP_PNG_FROM_DATA(rightarrow48) } } }
         , { RIGHTARROW_ACTIVE, { { 16, wxBITMAP_PNG_FROM_DATA(rightarrow_active) }, { 24, wxBITMAP_PNG_FROM_DATA(rightarrow_active24) }, { 32, wxBITMAP_PNG_FROM_DATA(rightarrow_active32) }, { 48, wxBITMAP_PNG_FROM_DATA(rightarrow_active48) } } }
         , { GOOGLE_PLAY, { { 16, wxBITMAP_PNG_FROM_DATA(google_play) }, { 24, wxBITMAP_PNG_FROM_DATA(google_play24) }, { 32, wxBITMAP_PNG_FROM_DATA(google_play32) }, { 48, wxBITMAP_PNG_FROM_DATA(google_play48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
+        , { EMPTY, { { 16, wxBitmap(wxImage(empty_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(empty_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(empty_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(empty_xpm).Scale(48, 48)) } } }
     };
 }
 
@@ -196,7 +202,7 @@ const wxBitmap mmBitmap(int ref)
     }
     catch (std::out_of_range const& exc) {
         wxLogError("Exception in function 'mmBitmap': %s", exc.what());
-        b = wxBitmap(empty_xpm);
+        b = wxBitmap(wxImage(empty_xpm).Scale(x, x));
     }
     return b;
 }
