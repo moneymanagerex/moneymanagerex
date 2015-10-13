@@ -45,7 +45,6 @@
 #include "../resources/void.xpm"
 #include "../resources/uparrow.xpm"
 #include "../resources/downarrow.xpm"
-#include "../resources/tipicon.xpm"
 #include "../resources/trash.xpm"
 #include "../resources/attachment.xpm"
 
@@ -762,8 +761,7 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
         transFilterActive_ = false;
     }
     
-    wxImage pic = (transFilterActive_ ? wxBitmap(tipicon_xpm) : mmBitmap(png::RIGHTARROW)).ConvertToImage();
-    bitmapTransFilter_->SetBitmap(pic);
+    bitmapTransFilter_->SetBitmap(transFilterActive_ ? mmBitmap(png::RIGHTARROW_ACTIVE) : mmBitmap(png::RIGHTARROW));
     SetTransactionFilterState(true);
 
     RefreshList();
