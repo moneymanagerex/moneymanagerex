@@ -73,6 +73,7 @@ enum png {
     HELP,
     NEWS,
     NEW_NEWS,
+    FULLSCREEN,
     PIE_CHART,
     BUDGET,
     RECURRING,
