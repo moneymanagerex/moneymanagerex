@@ -39,8 +39,6 @@
 #include "model/Model_Attachment.h"
 #include "billsdepositsdialog.h"
 
-#include "../resources/uparrow.xpm"
-#include "../resources/downarrow.xpm"
 
 //----------------------------------------------------------------------------
 
@@ -405,8 +403,8 @@ void mmCheckingPanel::CreateControls()
     m_imageList->Add(mmBitmap(png::FOLLOW_UP));
     m_imageList->Add(mmBitmap(png::EMPTY));
     m_imageList->Add(mmBitmap(png::DUPLICATE_STAT));
-    m_imageList->Add(wxImage(uparrow_xpm).Scale(x, x));
-    m_imageList->Add(wxImage(downarrow_xpm).Scale(x, x));
+    m_imageList->Add(mmBitmap(png::UPARROW));
+    m_imageList->Add(mmBitmap(png::DOWNARROW));
 
     m_listCtrlAccount = new TransactionListCtrl(this, itemSplitterWindow10
         , wxID_ANY);

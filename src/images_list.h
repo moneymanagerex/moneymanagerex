@@ -101,6 +101,11 @@ enum png {
     UPDATE,
     FORUM,
     CLIP,
+    PROFIT,
+    LOSS,
+    UPARROW,
+    DOWNARROW,
+    IMPORT,
     EXIT,
     EMPTY,
 };

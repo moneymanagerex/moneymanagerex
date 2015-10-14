@@ -62,4 +62,9 @@
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/33691/view-fullscreen.png" />| Full Screen |[page](https://openclipart.org/detail/33691/tango-view-fullscreen)
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/212273/rodentia-icons_software-update-urgent.png" />| software-update |[page](https://openclipart.org/detail/212273/softwareupdate-urgent)
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/129049/bubbles-normal.png" />| Forum |[page](https://openclipart.org/detail/129049/chat)
-<br> <img src="" />| __ |[page]()                                                         
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/3180/valessiobrito-Paper-Clip.png" />| Attachment |[page](https://openclipart.org/detail/3180/paper-clip)
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/199978/primary-kgpg-import.png" />| Import |[page](https://openclipart.org/detail/199978/primary-kgpg-import)
+<br> <img src="" />| __ |[page]()
+
+
+                                                     

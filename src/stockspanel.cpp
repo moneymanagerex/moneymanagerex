@@ -30,10 +30,7 @@
 #include "model/Model_Setting.h"
 #include "model/Model_StockHistory.h"
 
-#include "../resources/downarrow.xpm"
-#include "../resources/downarrow_red.xpm"
 #include "../resources/leds.xpm"
-#include "../resources/uparrow.xpm"
 
 static const wxString STOCKTIPS[] = { 
     wxTRANSLATE("Using MMEX it is possible to track stocks/mutual funds investments."),
@@ -76,12 +73,12 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     , stock_panel_(cp)
     , m_imageList(0)
 {
-    wxSize imageSize(16, 16);
-    m_imageList = new wxImageList(imageSize.GetWidth(), imageSize.GetHeight());
-    m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(downarrow_red_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(downarrow_xpm).Scale(16, 16)));
+    int x = mmIniOptions::instance().ico_size_;
+    m_imageList = new wxImageList(x, x);
+    m_imageList->Add(mmBitmap(png::PROFIT));
+    m_imageList->Add(mmBitmap(png::LOSS));
+    m_imageList->Add(mmBitmap(png::UPARROW));
+    m_imageList->Add(mmBitmap(png::DOWNARROW));
 
     SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
 

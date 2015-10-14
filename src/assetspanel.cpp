@@ -28,9 +28,6 @@
 #include "model/Model_Setting.h"
 #include <wx/srchctrl.h>
 
-#include "../resources/downarrow.xpm"
-#include "../resources/uparrow.xpm"
-
 /*******************************************************/
 
 wxBEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
@@ -404,8 +401,8 @@ void mmAssetsPanel::CreateControls()
     m_imageList->Add(mmBitmap(png::JEWELLERY));
     m_imageList->Add(mmBitmap(png::CASH));
     m_imageList->Add(mmBitmap(png::OTHER));
-    m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(x, x)));
-    m_imageList->Add(wxBitmap(wxImage(downarrow_xpm).Scale(x, x)));
+    m_imageList->Add(mmBitmap(png::UPARROW));
+    m_imageList->Add(mmBitmap(png::DOWNARROW));
 
     m_listCtrlAssets->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
 

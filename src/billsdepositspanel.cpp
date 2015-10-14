@@ -28,11 +28,9 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
 
-#include "../resources/downarrow.xpm"
 #include "../resources/error.xpm"
 #include "../resources/rt_exec_auto.xpm"
 #include "../resources/rt_exec_user.xpm"
-#include "../resources/uparrow.xpm"
 
 
 enum
@@ -240,13 +238,13 @@ void mmBillsDepositsPanel::CreateControls()
         , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
         , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
-    wxSize imageSize(16, 16);
-    m_imageList = new wxImageList(imageSize.GetWidth(), imageSize.GetHeight());
-    m_imageList->Add(wxBitmap(wxImage(error_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(rt_exec_auto_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(rt_exec_user_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(downarrow_xpm).Scale(16, 16)));
+    int x = mmIniOptions::instance().ico_size_;
+    m_imageList = new wxImageList(x, x);
+    m_imageList->Add(wxBitmap(wxImage(error_xpm).Scale(x, x)));
+    m_imageList->Add(wxBitmap(wxImage(rt_exec_auto_xpm).Scale(x, x)));
+    m_imageList->Add(wxBitmap(wxImage(rt_exec_user_xpm).Scale(x, x)));
+    m_imageList->Add(mmBitmap(png::UPARROW));
+    m_imageList->Add(mmBitmap(png::DOWNARROW));
 
     listCtrlAccount_ = new billsDepositsListCtrl(this, itemSplitterWindowBillsDeposit);
 
