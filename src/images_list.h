@@ -106,6 +106,10 @@ enum png {
     UPARROW,
     DOWNARROW,
     IMPORT,
+    LED_OFF,
+    LED_RED,
+    LED_YELLOW,
+    LED_GREEN,
     EXIT,
     EMPTY,
 };
