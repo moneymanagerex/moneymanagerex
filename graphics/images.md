@@ -9,7 +9,7 @@
 <br>![img](https://openclipart.org/image/24px/svg_to_png/31153/alarm-clock.png) | alarm | [page](https://openclipart.org/detail/31153/alarm-clock) 
 <br>![img](https://openclipart.org/image/24px/svg_to_png/17064/jean-victor-balin-icon-graphics.png) | Budget | [site](https://openclipart.org/detail/17064/icongraphics)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/175430/diagrama-de-sectores.png) | PieChart | [page](https://openclipart.org/detail/175430/diagrama-de-sectores-piechart)
-<br>![img](https://openclipart.org/image/24px/svg_to_png/140041/funnel.png) | funnel | [page](https://openclipart.org/detail/140041/green-funnel)
+<br>![img](https://openclipart.org/image/24px/svg_to_png/140041/funnel.png) | funnel | [page]https://openclipart.org/detail/32407/tango-edit-find)
 
 ###Tool Bar (32x32)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/25697/Architetto----Database.png) | DB | [page](https://openclipart.org/detail/25697/architetto-database)
@@ -64,7 +64,7 @@
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/129049/bubbles-normal.png" />| Forum |[page](https://openclipart.org/detail/129049/chat)
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/3180/valessiobrito-Paper-Clip.png" />| Attachment |[page](https://openclipart.org/detail/3180/paper-clip)
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/199978/primary-kgpg-import.png" />| Import |[page](https://openclipart.org/detail/199978/primary-kgpg-import)
-<br> <img src="https://openclipart.org/image/32px/svg_to_png/88123/led-red-black.png" /><img src="https://openclipart.org/image/32px/svg_to_png/88117/led-green-black.png" /><img src="https://openclipart.org/image/32px/svg_to_png/88105/led-amber-black.png" />| LED |[page](https://openclipart.org/detail/88123/led-red)
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/88123/led-red-black.png" /><img src="https://openclipart.org/image/32px/svg_to_png/88117/led-green-black.png" /><img src="https://openclipart.org/image/32px/svg_to_png/88105/led-amber-black.png" />| LEDs |[page](https://openclipart.org/detail/88123/led-red)
 <br> <img src="" />| __ |[page]()
 <br> <img src="" />| __ |[page]()
 
