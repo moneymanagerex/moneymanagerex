@@ -3,13 +3,12 @@
 <br>![img](https://openclipart.org/image/24px/svg_to_png/30805/go-home.png) | home | [page](https://openclipart.org/detail/30805/tango-go-home)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/170057/1337216652.png) | money | [page](https://openclipart.org/detail/170057/money-wads)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/217648/credit_card_path.png) | Credit Card | [page](https://openclipart.org/detail/217648/credit-card-tarjeta-de-credito)
-<br><img src="https://openclipart.org/image/24px/svg_to_png/188617/schatzkiste.png&disposition=attachment" alt="Treasure chest" title="Treasure chest by  Moini ( https://openclipart.org/user-detail/Moini )" /> | asset | [page](https://openclipart.org/detail/188617/treasure-chest)
+<br><img src="https://openclipart.org/image/24px/svg_to_png/188617/schatzkiste.png&disposition=attachment" /> | asset | [page](https://openclipart.org/detail/188617/treasure-chest)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/182298/Stock-trends-Up-and-Down.png) | Stock | [page](https://openclipart.org/detail/182298/stock-trends-up-and-down)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/171954/1346212157.png) | Recurring | [page](https://openclipart.org/detail/171954/cycle-color)
-<br>![img](https://openclipart.org/image/24px/svg_to_png/31153/alarm-clock.png) | alarm | [page](https://openclipart.org/detail/31153/alarm-clock) 
 <br>![img](https://openclipart.org/image/24px/svg_to_png/17064/jean-victor-balin-icon-graphics.png) | Budget | [site](https://openclipart.org/detail/17064/icongraphics)
-<br>![img](https://openclipart.org/image/24px/svg_to_png/175430/diagrama-de-sectores.png) | PieChart | [page](https://openclipart.org/detail/175430/diagrama-de-sectores-piechart)
-<br>![img](https://openclipart.org/image/24px/svg_to_png/140041/funnel.png) | funnel | [page](https://openclipart.org/detail/140041/green-funnel)
+<br>![img](https://openclipart.org/image/24px/svg_to_png/125071/ponque.png) | PieChart | [page](https://openclipart.org/detail/125071/pie-graph)
+<br>![img](https://openclipart.org/image/24px/svg_to_png/32407/edit-find.png) | Transaction filter | [page](https://openclipart.org/detail/32407/tango-edit-find)
 
 ###Tool Bar (32x32)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/25697/Architetto----Database.png) | DB | [page](https://openclipart.org/detail/25697/architetto-database)
@@ -62,4 +61,12 @@
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/33691/view-fullscreen.png" />| Full Screen |[page](https://openclipart.org/detail/33691/tango-view-fullscreen)
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/212273/rodentia-icons_software-update-urgent.png" />| software-update |[page](https://openclipart.org/detail/212273/softwareupdate-urgent)
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/129049/bubbles-normal.png" />| Forum |[page](https://openclipart.org/detail/129049/chat)
-<br> <img src="" />| __ |[page]()                                                         
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/3180/valessiobrito-Paper-Clip.png" />| Attachment |[page](https://openclipart.org/detail/3180/paper-clip)
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/199978/primary-kgpg-import.png" />| Import |[page](https://openclipart.org/detail/199978/primary-kgpg-import)
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/88123/led-red-black.png" /><img src="https://openclipart.org/image/32px/svg_to_png/88117/led-green-black.png" /><img src="https://openclipart.org/image/32px/svg_to_png/88105/led-amber-black.png" />| LEDs |[page](https://openclipart.org/detail/88123/led-red)
+<br> <img src="" />| __ |[page]()
+<br> <img src="" />| __ |[page]()
+
+
+
+                                                     

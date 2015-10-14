@@ -30,11 +30,6 @@
 #include "model/Model_Setting.h"
 #include "model/Model_StockHistory.h"
 
-#include "../resources/downarrow.xpm"
-#include "../resources/downarrow_red.xpm"
-#include "../resources/leds.xpm"
-#include "../resources/uparrow.xpm"
-
 static const wxString STOCKTIPS[] = { 
     wxTRANSLATE("Using MMEX it is possible to track stocks/mutual funds investments."),
     wxTRANSLATE("To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."),
@@ -76,12 +71,12 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     , stock_panel_(cp)
     , m_imageList(0)
 {
-    wxSize imageSize(16, 16);
-    m_imageList = new wxImageList(imageSize.GetWidth(), imageSize.GetHeight());
-    m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(downarrow_red_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(downarrow_xpm).Scale(16, 16)));
+    int x = mmIniOptions::instance().ico_size_;
+    m_imageList = new wxImageList(x, x);
+    m_imageList->Add(mmBitmap(png::PROFIT));
+    m_imageList->Add(mmBitmap(png::LOSS));
+    m_imageList->Add(mmBitmap(png::UPARROW));
+    m_imageList->Add(mmBitmap(png::DOWNARROW));
 
     SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
 
@@ -507,7 +502,7 @@ void mmStocksPanel::CreateControls()
     attachment_button_->Enable(false);
 
     refresh_button_ = new wxBitmapButton(BottomPanel
-        , wxID_REFRESH, wxBitmap (led_off_xpm), wxDefaultPosition, wxSize(30, bMove->GetSize().GetY()));
+        , wxID_REFRESH, mmBitmap (png::LED_OFF), wxDefaultPosition, wxSize(30, bMove->GetSize().GetY()));
     refresh_button_->SetLabelText(_("Refresh"));
     refresh_button_->SetToolTip(_("Refresh Stock Prices from Yahoo"));
     BoxSizerHBottom->Add(refresh_button_, 0, wxRIGHT, 5);
@@ -712,7 +707,7 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
     }
     else
     {
-        refresh_button_->SetBitmapLabel(wxBitmap(wxImage(led_red_xpm).Scale(16,16)));
+        refresh_button_->SetBitmapLabel(mmBitmap(png::LED_RED));
         stock_details_->SetLabelText(sError);
         stock_details_short_->SetLabelText(_("Error"));
         mmErrorDialogs::MessageError(this, sError, _("Error"));
@@ -750,7 +745,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     //Sample CSV: "SBER.ME",85.49,"RUB","SBERBANK"
     site = wxString::Format(mmex::weblink::YahooQuotes, site);
 
-    refresh_button_->SetBitmapLabel(wxBitmap(wxImage(led_yellow_xpm).Scale(16,16)));
+    refresh_button_->SetBitmapLabel(mmBitmap(png::LED_YELLOW));
     stock_details_->SetLabelText(_("Connecting..."));
     wxString sOutput;
 
@@ -764,6 +759,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     //--//
     wxString StockSymbolWithSuffix, sName, StockQuoteCurrency;
     double dPrice = 0.0;
+    int count = 0;
 
     wxStringTokenizer tkz(sOutput, "\r\n");
     while (tkz.HasMoreTokens())
@@ -797,7 +793,14 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
             stocks_data[StockSymbolWithSuffix].second = sName;
             sError << wxString::Format(_("%s\t -> %s\n")
                 , StockSymbolWithSuffix, wxString::Format("%0.4f", dPrice));
+            count++;
         }
+    }
+
+    if (count == 0)
+    {
+        sError = _("Quotes not found");
+        return false;
     }
 
     for (auto &s: listCtrlAccount_->m_stocks)
@@ -823,7 +826,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     // We are done!
     LastRefreshDT_       = wxDateTime::Now();
     StocksRefreshStatus_ = true;
-    refresh_button_->SetBitmapLabel(wxBitmap(wxImage(led_green_xpm).Scale(16,16)));
+    refresh_button_->SetBitmapLabel(mmBitmap(png::LED_GREEN));
 
     strLastUpdate_.Printf(_("%s on %s"), LastRefreshDT_.FormatTime()
         , mmGetDateForDisplay(LastRefreshDT_));

@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmOption.h"
 #include <wx/image.h>
 #include <wx/bitmap.h>
+#include <wx/artprov.h>
 #include <map>
 
 #include "../resources/new_db_png.h"
@@ -37,6 +38,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/help_png.h"
 #include "../resources/news_png.h"
 #include "../resources/nnews_png.h"
+#include "../resources/fullscreen_png.h"
 #include "../resources/pie_chart_png.h"
 #include "../resources/budget_png.h"
 #include "../resources/recurring_png.h"
@@ -58,6 +60,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/google_play_png.h"
 #include "../resources/update_png.h"
 #include "../resources/forum_png.h"
+#include "../resources/profit_png.h"
+#include "../resources/loss_png.h"
+#include "../resources/uparrow_png.h"
+#include "../resources/downarrow_png.h"
+#include "../resources/import_png.h"
+#include "../resources/leds_png.h"
 #include "../resources/clip_png.h"
 #include "../resources/exit_png.h"
 
@@ -162,6 +170,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { ABOUT, { { 16, wxBITMAP_PNG_FROM_DATA(about) }, { 24, wxBITMAP_PNG_FROM_DATA(about24) }, { 32, wxBITMAP_PNG_FROM_DATA(about32) }, { 48, wxBITMAP_PNG_FROM_DATA(about48) } } }
         , { HELP, { { 16, wxBITMAP_PNG_FROM_DATA(help) }, { 24, wxBITMAP_PNG_FROM_DATA(help24) }, { 32, wxBITMAP_PNG_FROM_DATA(help32) }, { 48, wxBITMAP_PNG_FROM_DATA(help48) } } }
         , { NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(news) }, { 24, wxBITMAP_PNG_FROM_DATA(news24) }, { 32, wxBITMAP_PNG_FROM_DATA(news32) }, { 48, wxBITMAP_PNG_FROM_DATA(news48) } } }
+        , { FULLSCREEN, { { 16, wxBITMAP_PNG_FROM_DATA(fullscreen) }, { 24, wxBITMAP_PNG_FROM_DATA(fullscreen24) }, { 32, wxBITMAP_PNG_FROM_DATA(fullscreen32) }, { 48, wxBITMAP_PNG_FROM_DATA(fullscreen48) } } }
         , { NEW_NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(nnews) }, { 24, wxBITMAP_PNG_FROM_DATA(nnews24) }, { 32, wxBITMAP_PNG_FROM_DATA(nnews32) }, { 48, wxBITMAP_PNG_FROM_DATA(nnews48) } } }
         , { PIE_CHART, { { 16, wxBITMAP_PNG_FROM_DATA(pie_chart) }, { 24, wxBITMAP_PNG_FROM_DATA(pie_chart24) }, { 32, wxBITMAP_PNG_FROM_DATA(pie_chart32) }, { 48, wxBITMAP_PNG_FROM_DATA(pie_chart48) } } }
         , { BUDGET, { { 16, wxBITMAP_PNG_FROM_DATA(budget) }, { 24, wxBITMAP_PNG_FROM_DATA(budget24) }, { 32, wxBITMAP_PNG_FROM_DATA(budget32) }, { 48, wxBITMAP_PNG_FROM_DATA(budget48) } } }
@@ -191,8 +200,17 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { UPDATE, { { 16, wxBITMAP_PNG_FROM_DATA(update) }, { 24, wxBITMAP_PNG_FROM_DATA(update24) }, { 32, wxBITMAP_PNG_FROM_DATA(update32) }, { 48, wxBITMAP_PNG_FROM_DATA(update48) } } }
         , { FORUM, { { 16, wxBITMAP_PNG_FROM_DATA(forum) }, { 24, wxBITMAP_PNG_FROM_DATA(forum24) }, { 32, wxBITMAP_PNG_FROM_DATA(forum32) }, { 48, wxBITMAP_PNG_FROM_DATA(forum48) } } }
         , { CLIP, { { 16, wxBITMAP_PNG_FROM_DATA(clip) }, { 24, wxBITMAP_PNG_FROM_DATA(clip24) }, { 32, wxBITMAP_PNG_FROM_DATA(clip32) }, { 48, wxBITMAP_PNG_FROM_DATA(clip48) } } }
+        , { PROFIT, { { 16, wxBITMAP_PNG_FROM_DATA(profit) }, { 24, wxBITMAP_PNG_FROM_DATA(profit24) }, { 32, wxBITMAP_PNG_FROM_DATA(profit32) }, { 48, wxBITMAP_PNG_FROM_DATA(profit48) } } }
+        , { LOSS, { { 16, wxBITMAP_PNG_FROM_DATA(loss) }, { 24, wxBITMAP_PNG_FROM_DATA(loss24) }, { 32, wxBITMAP_PNG_FROM_DATA(loss32) }, { 48, wxBITMAP_PNG_FROM_DATA(loss48) } } }
+        , { UPARROW, { { 16, wxBITMAP_PNG_FROM_DATA(uparrow) }, { 24, wxBITMAP_PNG_FROM_DATA(uparrow24) }, { 32, wxBITMAP_PNG_FROM_DATA(uparrow32) }, { 48, wxBITMAP_PNG_FROM_DATA(uparrow48) } } }
+        , { DOWNARROW, { { 16, wxBITMAP_PNG_FROM_DATA(downarrow) }, { 24, wxBITMAP_PNG_FROM_DATA(downarrow24) }, { 32, wxBITMAP_PNG_FROM_DATA(downarrow32) }, { 48, wxBITMAP_PNG_FROM_DATA(downarrow48) } } }
+        , { IMPORT, { { 16, wxBITMAP_PNG_FROM_DATA(import) }, { 24, wxBITMAP_PNG_FROM_DATA(import24) }, { 32, wxBITMAP_PNG_FROM_DATA(import32) }, { 48, wxBITMAP_PNG_FROM_DATA(import48) } } }
+        , { LED_OFF, { { 16, wxBITMAP_PNG_FROM_DATA(led_off) }, { 24, wxBITMAP_PNG_FROM_DATA(led_off24) }, { 32, wxBITMAP_PNG_FROM_DATA(led_off32) }, { 48, wxBITMAP_PNG_FROM_DATA(led_off48) } } }
+        , { LED_RED, { { 16, wxBITMAP_PNG_FROM_DATA(led_red) }, { 24, wxBITMAP_PNG_FROM_DATA(led_red24) }, { 32, wxBITMAP_PNG_FROM_DATA(led_red32) }, { 48, wxBITMAP_PNG_FROM_DATA(led_red48) } } }
+        , { LED_YELLOW, { { 16, wxBITMAP_PNG_FROM_DATA(led_yellow) }, { 24, wxBITMAP_PNG_FROM_DATA(led_yellow24) }, { 32, wxBITMAP_PNG_FROM_DATA(led_yellow32) }, { 48, wxBITMAP_PNG_FROM_DATA(led_yellow48) } } }
+        , { LED_GREEN, { { 16, wxBITMAP_PNG_FROM_DATA(led_green) }, { 24, wxBITMAP_PNG_FROM_DATA(led_green24) }, { 32, wxBITMAP_PNG_FROM_DATA(led_green32) }, { 48, wxBITMAP_PNG_FROM_DATA(led_green48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
-        , { EMPTY, { { 16, wxBitmap(wxImage(empty_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(empty_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(empty_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(empty_xpm).Scale(48, 48)) } } }
+        , { EMPTY, { { 16, wxBitmap(wxImage(empty_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(empty_xpm).Scale(24, 24)) }, { 32, wxArtProvider::GetBitmap("wxART_MISSING_IMAGE") }, { 48, wxBitmap(wxImage(empty_xpm).Scale(48, 48)) } } }
     };
 }
 

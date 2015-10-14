@@ -32,7 +32,6 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_StockHistory.h"
 
-#include"../resources/uparrow.xpm"
 #include "../resources/web.xpm"
 
 #include <wx/numdlg.h>
@@ -306,7 +305,7 @@ void mmStockDialog::CreateControls()
     wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, ID_BUTTON_DOWNLOAD, mmBitmap(png::UPDATE)
         , wxDefaultPosition, wxSize(commission_->GetSize().GetY(), commission_->GetSize().GetY()));
     buttonDownload->SetToolTip(_("Download Stock Price history"));
-    wxBitmapButton* buttonImport = new wxBitmapButton(buttons_panel, ID_BUTTON_IMPORT, wxBitmap(uparrow_xpm)
+    wxBitmapButton* buttonImport = new wxBitmapButton(buttons_panel, ID_BUTTON_IMPORT, mmBitmap(png::IMPORT)
         , wxDefaultPosition, wxSize(commission_->GetSize().GetY(), commission_->GetSize().GetY()));
     buttonImport->SetToolTip(_("Import Stock Price history (CSV Format)"));
     wxButton* buttonDel = new wxButton(buttons_panel, wxID_DELETE, _("&Delete "));
