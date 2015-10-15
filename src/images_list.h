@@ -111,6 +111,8 @@ enum png {
     LED_RED,
     LED_YELLOW,
     LED_GREEN,
+    RUN,
+    AUTO,
     EXIT,
     EMPTY,
 };

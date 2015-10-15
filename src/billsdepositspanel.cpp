@@ -28,11 +28,6 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
 
-#include "../resources/error.xpm"
-#include "../resources/rt_exec_auto.xpm"
-#include "../resources/rt_exec_user.xpm"
-
-
 enum
 {
     MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1300,
@@ -240,9 +235,9 @@ void mmBillsDepositsPanel::CreateControls()
 
     int x = mmIniOptions::instance().ico_size_;
     m_imageList = new wxImageList(x, x);
-    m_imageList->Add(wxBitmap(wxImage(error_xpm).Scale(x, x)));
-    m_imageList->Add(wxBitmap(wxImage(rt_exec_auto_xpm).Scale(x, x)));
-    m_imageList->Add(wxBitmap(wxImage(rt_exec_user_xpm).Scale(x, x)));
+    m_imageList->Add(mmBitmap(png::FOLLOW_UP));
+    m_imageList->Add(mmBitmap(png::RUN)); //TODO: auto exec ico
+    m_imageList->Add(mmBitmap(png::RUN));
     m_imageList->Add(mmBitmap(png::UPARROW));
     m_imageList->Add(mmBitmap(png::DOWNARROW));
 

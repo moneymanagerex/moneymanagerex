@@ -394,7 +394,7 @@ void mmAssetsPanel::CreateControls()
 
     int x = mmIniOptions::instance().ico_size_;
     m_imageList.reset(new wxImageList(x, x));
-    m_imageList->Add(mmBitmap(png::HOME));
+    m_imageList->Add(mmBitmap(png::PROPERTY));
     m_imageList->Add(mmBitmap(png::CAR));
     m_imageList->Add(mmBitmap(png::HOUSEHOLD_OBJ));
     m_imageList->Add(mmBitmap(png::ART));

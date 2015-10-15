@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmOption.h"
 #include <wx/image.h>
 #include <wx/bitmap.h>
-#include <wx/artprov.h>
+//#include <wx/artprov.h>
 #include <map>
 
 #include "../resources/new_db_png.h"
@@ -43,6 +43,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/budget_png.h"
 #include "../resources/recurring_png.h"
 #include "../resources/asset_png.h"
+#include "../resources/property_png.h"
 #include "../resources/car_png.h"
 #include "../resources/jewellery_png.h"
 #include "../resources/household_obj_png.h"
@@ -67,6 +68,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/import_png.h"
 #include "../resources/leds_png.h"
 #include "../resources/clip_png.h"
+#include "../resources/run_png.h"
 #include "../resources/exit_png.h"
 
 #include "../resources/empty.xpm"
@@ -176,7 +178,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { BUDGET, { { 16, wxBITMAP_PNG_FROM_DATA(budget) }, { 24, wxBITMAP_PNG_FROM_DATA(budget24) }, { 32, wxBITMAP_PNG_FROM_DATA(budget32) }, { 48, wxBITMAP_PNG_FROM_DATA(budget48) } } }
         , { RECURRING, { { 16, wxBITMAP_PNG_FROM_DATA(recurring) }, { 24, wxBITMAP_PNG_FROM_DATA(recurring24) }, { 32, wxBITMAP_PNG_FROM_DATA(recurring32) }, { 48, wxBITMAP_PNG_FROM_DATA(recurring48) } } }
         , { ASSET, { { 16, wxBITMAP_PNG_FROM_DATA(asset) }, { 24, wxBITMAP_PNG_FROM_DATA(asset24) }, { 32, wxBITMAP_PNG_FROM_DATA(asset32) }, { 48, wxBITMAP_PNG_FROM_DATA(asset48) } } }
-        //, { PROPERTY, { { 16, wxBITMAP_PNG_FROM_DATA(home) }, { 24, wxBITMAP_PNG_FROM_DATA(home24) }, { 32, wxBITMAP_PNG_FROM_DATA(home32) }, { 48, wxBITMAP_PNG_FROM_DATA(home48) } } }
+        , { PROPERTY, { { 16, wxBITMAP_PNG_FROM_DATA(property) }, { 24, wxBITMAP_PNG_FROM_DATA(property24) }, { 32, wxBITMAP_PNG_FROM_DATA(property32) }, { 48, wxBITMAP_PNG_FROM_DATA(property48) } } }
         , { CAR, { { 16, wxBITMAP_PNG_FROM_DATA(car) }, { 24, wxBITMAP_PNG_FROM_DATA(car24) }, { 32, wxBITMAP_PNG_FROM_DATA(car32) }, { 48, wxBITMAP_PNG_FROM_DATA(car48) } } }
         , { HOUSEHOLD_OBJ, { { 16, wxBITMAP_PNG_FROM_DATA(household_obj) }, { 24, wxBITMAP_PNG_FROM_DATA(household_obj24) }, { 32, wxBITMAP_PNG_FROM_DATA(household_obj32) }, { 48, wxBITMAP_PNG_FROM_DATA(household_obj48) } } }
         , { ART, { { 16, wxBITMAP_PNG_FROM_DATA(art) }, { 24, wxBITMAP_PNG_FROM_DATA(art24) }, { 32, wxBITMAP_PNG_FROM_DATA(art32) }, { 48, wxBITMAP_PNG_FROM_DATA(art48) } } }
@@ -209,8 +211,10 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { LED_RED, { { 16, wxBITMAP_PNG_FROM_DATA(led_red) }, { 24, wxBITMAP_PNG_FROM_DATA(led_red24) }, { 32, wxBITMAP_PNG_FROM_DATA(led_red32) }, { 48, wxBITMAP_PNG_FROM_DATA(led_red48) } } }
         , { LED_YELLOW, { { 16, wxBITMAP_PNG_FROM_DATA(led_yellow) }, { 24, wxBITMAP_PNG_FROM_DATA(led_yellow24) }, { 32, wxBITMAP_PNG_FROM_DATA(led_yellow32) }, { 48, wxBITMAP_PNG_FROM_DATA(led_yellow48) } } }
         , { LED_GREEN, { { 16, wxBITMAP_PNG_FROM_DATA(led_green) }, { 24, wxBITMAP_PNG_FROM_DATA(led_green24) }, { 32, wxBITMAP_PNG_FROM_DATA(led_green32) }, { 48, wxBITMAP_PNG_FROM_DATA(led_green48) } } }
+        , { RUN, { { 16, wxBITMAP_PNG_FROM_DATA(run) }, { 24, wxBITMAP_PNG_FROM_DATA(run24) }, { 32, wxBITMAP_PNG_FROM_DATA(run32) }, { 48, wxBITMAP_PNG_FROM_DATA(run48) } } }
+        , { AUTO, { { 16, wxBITMAP_PNG_FROM_DATA(run) }, { 24, wxBITMAP_PNG_FROM_DATA(run24) }, { 32, wxBITMAP_PNG_FROM_DATA(run32) }, { 48, wxBITMAP_PNG_FROM_DATA(run48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
-        , { EMPTY, { { 16, wxBitmap(wxImage(empty_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(empty_xpm).Scale(24, 24)) }, { 32, wxArtProvider::GetBitmap("wxART_MISSING_IMAGE") }, { 48, wxBitmap(wxImage(empty_xpm).Scale(48, 48)) } } }
+        , { EMPTY, { { 16, wxBitmap(wxImage(empty_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(empty_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(empty_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(empty_xpm).Scale(48, 48)) } } }
     };
 }
 
