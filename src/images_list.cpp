@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmOption.h"
 #include <wx/image.h>
 #include <wx/bitmap.h>
-#include <wx/artprov.h>
+//#include <wx/artprov.h>
 #include <map>
 
 #include "../resources/new_db_png.h"
@@ -210,7 +210,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { LED_YELLOW, { { 16, wxBITMAP_PNG_FROM_DATA(led_yellow) }, { 24, wxBITMAP_PNG_FROM_DATA(led_yellow24) }, { 32, wxBITMAP_PNG_FROM_DATA(led_yellow32) }, { 48, wxBITMAP_PNG_FROM_DATA(led_yellow48) } } }
         , { LED_GREEN, { { 16, wxBITMAP_PNG_FROM_DATA(led_green) }, { 24, wxBITMAP_PNG_FROM_DATA(led_green24) }, { 32, wxBITMAP_PNG_FROM_DATA(led_green32) }, { 48, wxBITMAP_PNG_FROM_DATA(led_green48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
-        , { EMPTY, { { 16, wxBitmap(wxImage(empty_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(empty_xpm).Scale(24, 24)) }, { 32, wxArtProvider::GetBitmap("wxART_MISSING_IMAGE") }, { 48, wxBitmap(wxImage(empty_xpm).Scale(48, 48)) } } }
+        , { EMPTY, { { 16, wxBitmap(wxImage(empty_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(empty_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(empty_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(empty_xpm).Scale(48, 48)) } } }
     };
 }
 
