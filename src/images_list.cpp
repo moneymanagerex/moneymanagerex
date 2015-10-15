@@ -43,6 +43,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/budget_png.h"
 #include "../resources/recurring_png.h"
 #include "../resources/asset_png.h"
+#include "../resources/property_png.h"
 #include "../resources/car_png.h"
 #include "../resources/jewellery_png.h"
 #include "../resources/household_obj_png.h"
@@ -177,7 +178,7 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { BUDGET, { { 16, wxBITMAP_PNG_FROM_DATA(budget) }, { 24, wxBITMAP_PNG_FROM_DATA(budget24) }, { 32, wxBITMAP_PNG_FROM_DATA(budget32) }, { 48, wxBITMAP_PNG_FROM_DATA(budget48) } } }
         , { RECURRING, { { 16, wxBITMAP_PNG_FROM_DATA(recurring) }, { 24, wxBITMAP_PNG_FROM_DATA(recurring24) }, { 32, wxBITMAP_PNG_FROM_DATA(recurring32) }, { 48, wxBITMAP_PNG_FROM_DATA(recurring48) } } }
         , { ASSET, { { 16, wxBITMAP_PNG_FROM_DATA(asset) }, { 24, wxBITMAP_PNG_FROM_DATA(asset24) }, { 32, wxBITMAP_PNG_FROM_DATA(asset32) }, { 48, wxBITMAP_PNG_FROM_DATA(asset48) } } }
-        //, { PROPERTY, { { 16, wxBITMAP_PNG_FROM_DATA(home) }, { 24, wxBITMAP_PNG_FROM_DATA(home24) }, { 32, wxBITMAP_PNG_FROM_DATA(home32) }, { 48, wxBITMAP_PNG_FROM_DATA(home48) } } }
+        , { PROPERTY, { { 16, wxBITMAP_PNG_FROM_DATA(property) }, { 24, wxBITMAP_PNG_FROM_DATA(property24) }, { 32, wxBITMAP_PNG_FROM_DATA(property32) }, { 48, wxBITMAP_PNG_FROM_DATA(property48) } } }
         , { CAR, { { 16, wxBITMAP_PNG_FROM_DATA(car) }, { 24, wxBITMAP_PNG_FROM_DATA(car24) }, { 32, wxBITMAP_PNG_FROM_DATA(car32) }, { 48, wxBITMAP_PNG_FROM_DATA(car48) } } }
         , { HOUSEHOLD_OBJ, { { 16, wxBITMAP_PNG_FROM_DATA(household_obj) }, { 24, wxBITMAP_PNG_FROM_DATA(household_obj24) }, { 32, wxBITMAP_PNG_FROM_DATA(household_obj32) }, { 48, wxBITMAP_PNG_FROM_DATA(household_obj48) } } }
         , { ART, { { 16, wxBITMAP_PNG_FROM_DATA(art) }, { 24, wxBITMAP_PNG_FROM_DATA(art24) }, { 32, wxBITMAP_PNG_FROM_DATA(art32) }, { 48, wxBITMAP_PNG_FROM_DATA(art48) } } }
