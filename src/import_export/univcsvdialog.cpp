@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "univcsvdialog.h"
+#include "images_list.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
 #include "paths.h"
@@ -30,8 +31,6 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
-
-#include "../resources/save.xpm"
 
 #include <algorithm>
 
@@ -170,7 +169,7 @@ void mmUnivCSVDialog::CreateControls()
         , wxCommandEventHandler(mmUnivCSVDialog::OnSettingsSelected), nullptr, this);
 
     wxBitmapButton* itemButton_Save = new wxBitmapButton(itemPanel67
-        , wxID_SAVEAS, wxBitmap(save_xpm), wxDefaultPosition
+        , wxID_SAVEAS, mmBitmap(png::SAVEAS), wxDefaultPosition
         , wxSize(button_search->GetSize().GetHeight(), button_search->GetSize().GetHeight()));
     itemBoxSizer76->Add(itemButton_Save, wxSizerFlags(g_flags).Center().Proportion(0));
     itemButton_Save->SetToolTip(_("Save Template"));

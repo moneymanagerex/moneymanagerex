@@ -25,6 +25,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "../resources/new_db_png.h"
 #include "../resources/open_png.h"
+#include "../resources/save_png.h"
+#include "../resources/saveas_png.h"
 #include "../resources/new_acc_png.h"
 #include "../resources/home_png.h"
 #include "../resources/category_png.h"
@@ -162,6 +164,8 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         { NEWS, { { 16, wxBITMAP_PNG_FROM_DATA(news) }, { 24, wxBITMAP_PNG_FROM_DATA(news24) }, { 32, wxBITMAP_PNG_FROM_DATA(news32) }, { 48, wxBITMAP_PNG_FROM_DATA(news48) } } }
         , { NEW_DB, { { 16, wxBITMAP_PNG_FROM_DATA(new_db) }, { 24, wxBITMAP_PNG_FROM_DATA(new_db24) }, { 32, wxBITMAP_PNG_FROM_DATA(new_db32) }, { 48, wxBITMAP_PNG_FROM_DATA(new_db48) } } }
         , { OPEN, { { 16, wxBITMAP_PNG_FROM_DATA(open) }, { 24, wxBITMAP_PNG_FROM_DATA(open24) }, { 32, wxBITMAP_PNG_FROM_DATA(open32) }, { 48, wxBITMAP_PNG_FROM_DATA(open48) } } }
+        , { SAVE, { { 16, wxBITMAP_PNG_FROM_DATA(save) }, { 24, wxBITMAP_PNG_FROM_DATA(save24) }, { 32, wxBITMAP_PNG_FROM_DATA(save32) }, { 48, wxBITMAP_PNG_FROM_DATA(save48) } } }
+        , { SAVEAS, { { 16, wxBITMAP_PNG_FROM_DATA(saveas) }, { 24, wxBITMAP_PNG_FROM_DATA(saveas24) }, { 32, wxBITMAP_PNG_FROM_DATA(saveas32) }, { 48, wxBITMAP_PNG_FROM_DATA(saveas48) } } }
         , { NEW_ACC, { { 16, wxBITMAP_PNG_FROM_DATA(new_acc) }, { 24, wxBITMAP_PNG_FROM_DATA(new_acc24) }, { 32, wxBITMAP_PNG_FROM_DATA(new_acc32) }, { 48, wxBITMAP_PNG_FROM_DATA(new_acc48) } } }
         , { HOME, { { 16, wxBITMAP_PNG_FROM_DATA(home) }, { 24, wxBITMAP_PNG_FROM_DATA(home24) }, { 32, wxBITMAP_PNG_FROM_DATA(home32) }, { 48, wxBITMAP_PNG_FROM_DATA(home48) } } }
         , { CATEGORY, { { 16, wxBITMAP_PNG_FROM_DATA(category) }, { 24, wxBITMAP_PNG_FROM_DATA(category24) }, { 32, wxBITMAP_PNG_FROM_DATA(category32) }, { 48, wxBITMAP_PNG_FROM_DATA(category48) } } }

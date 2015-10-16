@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #endif
 
 #include "filtertransdialog.h"
+#include "images_list.h"
 #include "categdialog.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
@@ -38,8 +39,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
-
-#include "../resources/save.xpm"
 
 #include <wx/valnum.h>
 
@@ -345,7 +344,7 @@ void mmFilterTransactionsDialog::CreateControls()
     wxButton* itemButtonClear = new wxButton( buttonPanel, wxID_CLEAR, _("&Clear "));
 
     wxBitmapButton* save_button = new wxBitmapButton(buttonPanel
-        , wxID_SAVE, wxBitmap(save_xpm), wxDefaultPosition
+        , wxID_SAVE, mmBitmap(png::SAVE), wxDefaultPosition
         , wxSize(itemButtonOK->GetSize().GetHeight(), itemButtonOK->GetSize().GetHeight()));
 
     save_button->Show(true);

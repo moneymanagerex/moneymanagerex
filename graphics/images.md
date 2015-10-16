@@ -22,8 +22,6 @@
 <br>![img](https://openclipart.org/image/24px/svg_to_png/32413/edit-find-replace.png)| GRM | [page](https://openclipart.org/detail/32413/tango-edit-find-replace)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/168141/star2.png) | about | [page](https://openclipart.org/detail/168141/gold-star)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/104977/1295092948.png) | help | [page](https://openclipart.org/detail/104977/help-orb-button)
-<br>![img](https://openclipart.org/image/32px/svg_to_png/35203/help-browser.png) | help | [page](https://openclipart.org/detail/35203/tango-help-browser)
-<br>![img](https://openclipart.org/image/32px/svg_to_png/37255/info-icon.png) | info | [page](https://openclipart.org/detail/37255/info-icon)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/212153/rodentia-icons_accessories-news-reader.png) | news | [page](https://openclipart.org/detail/212153/rodentiaiconsaccessoriesnewsreader)
 
 ###Main menu (24X24)

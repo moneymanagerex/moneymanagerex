@@ -60,6 +60,8 @@ enum img {
 enum png {
     NEW_DB,
     OPEN,
+    SAVE,
+    SAVEAS,
     NEW_ACC,
     HOME,
     CATEGORY,

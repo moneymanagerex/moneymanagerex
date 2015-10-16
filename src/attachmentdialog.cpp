@@ -17,6 +17,7 @@ Copyright (C) 2014 Gabriele-V
  ********************************************************/
 
 #include "attachmentdialog.h"
+#include "images_list.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
 #include "paths.h"
@@ -24,8 +25,6 @@ Copyright (C) 2014 Gabriele-V
 
 #include "model/Model_Attachment.h"
 #include "model/Model_Infotable.h"
-
-#include "../resources/magic_wand.xpm"
 
 #include <wx/mimetype.h>
 
@@ -122,8 +121,7 @@ void mmAttachmentDialog::CreateControls()
     buttons_sizer->Add(btnCancel, g_flags);
 
     wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel
-        , wxID_APPLY, wxBitmap(magic_wand_xpm), wxDefaultPosition
-        , wxSize(buttonOK->GetSize().GetY(), buttonOK->GetSize().GetY()));
+        , wxID_APPLY, mmBitmap(png::RUN));
     magicButton->SetToolTip(_("Other tools"));
     buttons_sizer->Add(magicButton, g_flags);
 

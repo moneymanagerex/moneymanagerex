@@ -112,12 +112,6 @@
 #include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
 #include "../resources/encrypt_db_edit.xpm"
-#include "../resources/open.xpm"
-#include "../resources/print.xpm"
-#include "../resources/printsetup.xpm"
-#include "../resources/printpreview.xpm"
-#include "../resources/save.xpm"
-#include "../resources/saveas.xpm"
 #include "../resources/accounttree.xpm"
 
 //----------------------------------------------------------------------------
@@ -1309,9 +1303,9 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _("&New Database\tCtrl-N"), _("New Database"));
     menuItemNew->SetBitmap(mmBitmap(png::NEW_DB));
     wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _("&Open Database\tCtrl-O"), _("Open Database"));
-    menuItemOpen->SetBitmap(wxBitmap(wxImage(open_xpm).Scale(x, x)));
+    menuItemOpen->SetBitmap(mmBitmap(png::OPEN));
     wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, _("Save Database &As"), _("Save Database As"));
-    menuItemSaveAs->SetBitmap(wxBitmap(wxImage(saveas_xpm).Scale(x, x)));
+    menuItemSaveAs->SetBitmap(mmBitmap(png::SAVEAS));
     menu_file->Append(menuItemNew);
     menu_file->Append(menuItemOpen);
     menu_file->Append(menuItemSaveAs);
