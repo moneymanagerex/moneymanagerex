@@ -26,6 +26,7 @@
 
 ###Main menu (24X24)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/34579/media-floppy.png) | Save | [page](https://openclipart.org/detail/34579/tango-media-floppy)
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/32251/document-save-as.png" />| Save as... |[page](https://openclipart.org/detail/32251/tango-document-save-as)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/199702/primary-history-clear.png)| Clear | [page](https://openclipart.org/detail/199702/primary-history-clear)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/214205/memo.png) | Edit Acc | [page](https://openclipart.org/detail/214205/memo)
 <br><img src="https://openclipart.org/image/16px/svg_to_png/210232/misc-crown-game-lock.png" /> <img src="https://openclipart.org/image/24px/svg_to_png/210232/misc-crown-game-lock.png" /> <img src="https://openclipart.org/image/32px/svg_to_png/210232/misc-crown-game-lock.png" /> <img src="https://openclipart.org/image/48px/svg_to_png/210232/misc-crown-game-lock.png" />| Lock | [page](https://openclipart.org/detail/210232/misc-crown-game-lock)
@@ -66,6 +67,8 @@
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/212140/rodentia-icons_system-run.png" />| Execute |[page](https://openclipart.org/detail/212140/gear)
 <br> <img src="https://openclipart.org/image/16px/svg_to_png/3297/barretr-Pencil.png" />| Edit |[page](https://openclipart.org/detail/3297/pencil)
 <br> <img src="" />| __ |[page]()
+
+
 
 
 

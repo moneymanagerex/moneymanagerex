@@ -40,20 +40,6 @@ enum img {
     STOCK_ACC_XPM,
     STOCK_ACC_FAVORITE_XPM,
     STOCK_ACC_CLOSED_XPM, //20
-    MONEY_DOLLAR_XPM, //First user img
-    MONEY_EURO_XPM,
-    FLAG_XPM,
-    ACCOUNTTREE_XPM,
-    ABOUT_XPM,
-    CLOCK_XPM,
-    CAT_XPM,
-    DOG_XPM,
-    TREES_XPM,
-    HOURGLASS_XPM,
-    WORK_XPM,
-    YANDEX_MONEY_XPM,
-    WEB_MONEY_XPM,
-    RUBIK_CUBE_XPM, 
     MAX_XPM,
 };
 

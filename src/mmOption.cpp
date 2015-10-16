@@ -97,12 +97,6 @@ void mmIniOptions::loadOptions()
 
 const int mmIniOptions::account_image_id(int account_id, bool def)
 {
-    int max = img::MAX_XPM - img::MONEY_DOLLAR_XPM;
-    int min = 1;
-    int custom_img_id = Model_Infotable::instance().GetIntInfo(wxString::Format("ACC_IMAGE_ID_%i", account_id), 0);
-    if (!def && (custom_img_id >= min && custom_img_id <= max))
-        return custom_img_id + img::MONEY_DOLLAR_XPM - 1;
-
     int selectedImage = img::SAVINGS_ACC_NORMAL_XPM; //Default value
     wxString acctStatus = VIEW_ACCOUNTS_OPEN_STR;
     Model_Account::TYPE acctType = Model_Account::CHECKING;

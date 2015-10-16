@@ -47,19 +47,14 @@ private:
     void OnCancel(wxCommandEvent& event);
     void OnCurrency(wxCommandEvent& event);
     void fillControls(void);
-    void OnCustonImage(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
 	void OnAttachments(wxCommandEvent& event);
-
-    void OnImageButton(wxCommandEvent& event);
 
 private:
     Model_Account::Data* m_account;
     wxTextCtrl* m_textAccountName;
     wxTextCtrl* m_notesCtrl;
     mmTextCtrl* m_itemInitValue;
-    wxImageList* m_imageList;
-    wxBitmapButton* m_bitmapButtons;
 	wxBitmapButton* bAttachments_;
     wxString m_accessInfo;
     int m_currencyID;
