@@ -15,7 +15,7 @@
 <br>![img](https://openclipart.org/image/32px/svg_to_png/32215/document-open.png) | open | [page](https://openclipart.org/detail/32215/tango-document-open)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/38899/New.png) | new | [page](https://openclipart.org/detail/38899/new-file)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/27766/ronoaldo-New-Document.png) | New | [page](https://openclipart.org/detail/27766/new-document)
-<br>![img](https://openclipart.org/image/32px/svg_to_png/20404/richardtallent-Blue-Tag.png) | Tag | [page](https://openclipart.org/detail/20404/blue-tag)
+<br>![img](https://openclipart.org/image/32px/svg_to_png/20404/richardtallent-Blue-Tag.png) | Category | [page](https://openclipart.org/detail/20404/blue-tag)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/119149/man-chris-kempson-01.png) | Payee | [page](https://openclipart.org/detail/119149/man)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/172798/dollar.png) | Currencies | [page](https://openclipart.org/detail/172798/dollar-symbol-in-3d)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/22436/nicubunu-Tools.png) | Options | [page](https://openclipart.org/detail/22436/tools)
@@ -66,6 +66,7 @@
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/199978/primary-kgpg-import.png" />| Import |[page](https://openclipart.org/detail/199978/primary-kgpg-import)
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/88123/led-red-black.png" /><img src="https://openclipart.org/image/32px/svg_to_png/88117/led-green-black.png" /><img src="https://openclipart.org/image/32px/svg_to_png/88105/led-amber-black.png" />| LEDs |[page](https://openclipart.org/detail/88123/led-red)
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/212140/rodentia-icons_system-run.png" />| Execute |[page](https://openclipart.org/detail/212140/gear)
+<br> <img src="https://openclipart.org/image/16px/svg_to_png/3297/barretr-Pencil.png" />| Edit |[page](https://openclipart.org/detail/3297/pencil)
 <br> <img src="" />| __ |[page]()
 
 

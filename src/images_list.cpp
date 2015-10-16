@@ -28,7 +28,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/new_acc_png.h"
 #include "../resources/home_png.h"
 #include "../resources/category_png.h"
+#include "../resources/category_relocation_png.h"
 #include "../resources/payee_png.h"
+#include "../resources/payee_relocation_png.h"
 #include "../resources/currency_png.h"
 #include "../resources/filter_png.h"
 #include "../resources/grm_png.h"
@@ -163,7 +165,9 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { NEW_ACC, { { 16, wxBITMAP_PNG_FROM_DATA(new_acc) }, { 24, wxBITMAP_PNG_FROM_DATA(new_acc24) }, { 32, wxBITMAP_PNG_FROM_DATA(new_acc32) }, { 48, wxBITMAP_PNG_FROM_DATA(new_acc48) } } }
         , { HOME, { { 16, wxBITMAP_PNG_FROM_DATA(home) }, { 24, wxBITMAP_PNG_FROM_DATA(home24) }, { 32, wxBITMAP_PNG_FROM_DATA(home32) }, { 48, wxBITMAP_PNG_FROM_DATA(home48) } } }
         , { CATEGORY, { { 16, wxBITMAP_PNG_FROM_DATA(category) }, { 24, wxBITMAP_PNG_FROM_DATA(category24) }, { 32, wxBITMAP_PNG_FROM_DATA(category32) }, { 48, wxBITMAP_PNG_FROM_DATA(category48) } } }
+        , { CATEGORY_RELOCATION, { { 16, wxBITMAP_PNG_FROM_DATA(category_relocation) }, { 24, wxBITMAP_PNG_FROM_DATA(category_relocation24) }, { 32, wxBITMAP_PNG_FROM_DATA(category_relocation32) }, { 48, wxBITMAP_PNG_FROM_DATA(category_relocation48) } } }
         , { PAYEE, { { 16, wxBITMAP_PNG_FROM_DATA(payee) }, { 24, wxBITMAP_PNG_FROM_DATA(payee24) }, { 32, wxBITMAP_PNG_FROM_DATA(payee32) }, { 48, wxBITMAP_PNG_FROM_DATA(payee48) } } }
+        , { PAYEE_RELOCATION, { { 16, wxBITMAP_PNG_FROM_DATA(payee_relocation) }, { 24, wxBITMAP_PNG_FROM_DATA(payee_relocation24) }, { 32, wxBITMAP_PNG_FROM_DATA(payee_relocation32) }, { 48, wxBITMAP_PNG_FROM_DATA(payee_relocation48) } } }
         , { CURR, { { 16, wxBITMAP_PNG_FROM_DATA(currency) }, { 24, wxBITMAP_PNG_FROM_DATA(currency24) }, { 32, wxBITMAP_PNG_FROM_DATA(currency32) }, { 48, wxBITMAP_PNG_FROM_DATA(currency48) } } }
         , { FILTER, { { 16, wxBITMAP_PNG_FROM_DATA(filter) }, { 24, wxBITMAP_PNG_FROM_DATA(filter24) }, { 32, wxBITMAP_PNG_FROM_DATA(filter32) }, { 48, wxBITMAP_PNG_FROM_DATA(filter48) } } }
         , { GRM, { { 16, wxBITMAP_PNG_FROM_DATA(grm) }, { 24, wxBITMAP_PNG_FROM_DATA(grm24) }, { 32, wxBITMAP_PNG_FROM_DATA(grm32) }, { 48, wxBITMAP_PNG_FROM_DATA(grm48) } } }

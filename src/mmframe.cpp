@@ -112,15 +112,10 @@
 #include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
 #include "../resources/encrypt_db_edit.xpm"
-#include "../resources/newacct.xpm"
-#include "../resources/new_transaction.xpm"
-#include "../resources/notify.xpm"
 #include "../resources/open.xpm"
 #include "../resources/print.xpm"
 #include "../resources/printsetup.xpm"
 #include "../resources/printpreview.xpm"
-#include "../resources/relocate_categories.xpm"
-#include "../resources/relocate_payees.xpm"
 #include "../resources/save.xpm"
 #include "../resources/saveas.xpm"
 #include "../resources/accounttree.xpm"
@@ -1391,7 +1386,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
         , _("New &Account"), _("New Account"));
-    menuItemNewAcct->SetBitmap(wxBitmap(wxImage(newacct_xpm).Scale(x, x)));
+    menuItemNewAcct->SetBitmap(mmBitmap(png::NEW_ACC));
     menuAccounts->Append(menuItemNewAcct);
 
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST
@@ -1437,11 +1432,11 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuRelocation
         , MENU_CATEGORY_RELOCATION, _("&Categories...")
         , _("Reassign all categories to another category"));
-    menuItemCategoryRelocation->SetBitmap(wxBitmap(wxImage(relocate_categories_xpm).Scale(x, x)));
+    menuItemCategoryRelocation->SetBitmap(mmBitmap(png::CATEGORY_RELOCATION));
     wxMenuItem* menuItemPayeeRelocation = new wxMenuItem(menuRelocation
         , MENU_PAYEE_RELOCATION, _("&Payees...")
         , _("Reassign all payees to another payee"));
-    menuItemPayeeRelocation->SetBitmap(wxBitmap(wxImage(relocate_payees_xpm).Scale(x, x)));
+    menuItemPayeeRelocation->SetBitmap(mmBitmap(png::PAYEE_RELOCATION));
     menuRelocation->Append(menuItemCategoryRelocation);
     menuRelocation->Append(menuItemPayeeRelocation);
     menuTools->AppendSubMenu(menuRelocation, _("Relocation of...")
