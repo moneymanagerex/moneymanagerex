@@ -435,7 +435,7 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
     for (const auto& entry : valueList)
     {
         data += wxString::Format(data_item
-            , entry.amount, entry.color
+            , fabs(entry.amount), entry.color
             , entry.label );
     }
     this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>\n", id, x, y, x, y));
