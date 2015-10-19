@@ -100,31 +100,31 @@ static const std::map<int, wxBitmap> navtree_images()
 {
     int x = mmIniOptions::instance().ico_size_;
     return{
-        { HOUSE_XPM, mmBitmap(png::HOME) }
-        , { SCHEDULE_XPM, mmBitmap(png::RECURRING) }
-        , { CALENDAR_XPM, mmBitmap(png::BUDGET) }
-        , { PIECHART_XPM, mmBitmap(png::PIE_CHART) }
-        , { HELP_XPM, mmBitmap(png::HELP) }
-        , { FILTER_XPM, mmBitmap(png::FILTER) }
-        , { ASSET_XPM, mmBitmap(png::ASSET) }
-        , { CUSTOMSQL_XPM, mmBitmap(png::GRM) }
-        , { CUSTOMSQL_GRP_XPM, mmBitmap(png::GRM) } //TODO: GRM rep group ico
-        , { SAVINGS_ACC_NORMAL_XPM, mmBitmap(png::SAVINGS_NORMAL) }
-        , { SAVINGS_ACC_FAVORITE_XPM, mmBitmap(png::SAVINGS_FAVORITES) }
-        , { SAVINGS_ACC_CLOSED_XPM, mmBitmap(png::SAVINGS_CLOSED) }
-        , { CARD_ACC_XPM, mmBitmap(png::CC_NORMAL) }
-        , { CARD_ACC_FAVORITE_XPM, mmBitmap(png::CC_FAVORITE) }
-        , { CARD_ACC_CLOSED_XPM, mmBitmap(png::CC_CLOSED) }
-        , { TERMACCOUNT_XPM, wxBitmap(wxImage(termaccount_xpm).Scale(x, x)) }
-        , { TERM_ACC_FAVORITE_XPM, wxBitmap(wxImage(term_acc_favorite_xpm).Scale(x, x)) }
-        , { TERM_ACC_CLOSED_XPM, wxBitmap(wxImage(term_acc_closed_xpm).Scale(x, x)) }
-        , { STOCK_ACC_XPM, wxBitmap(wxImage(stock_acc_xpm).Scale(x, x)) }
-        , { STOCK_ACC_FAVORITE_XPM, wxBitmap(wxImage(stock_acc_favorite_xpm).Scale(x, x)) }
-        , { STOCK_ACC_CLOSED_XPM, wxBitmap(wxImage(stock_acc_closed_xpm).Scale(x, x)) }
+        { HOUSE_PNG, mmBitmap(png::HOME) }
+        , { SCHEDULE_PNG, mmBitmap(png::RECURRING) }
+        , { CALENDAR_PNG, mmBitmap(png::BUDGET) }
+        , { PIECHART_PNG, mmBitmap(png::PIE_CHART) }
+        , { HELP_PNG, mmBitmap(png::HELP) }
+        , { FILTER_PNG, mmBitmap(png::FILTER) }
+        , { ASSET_PNG, mmBitmap(png::ASSET) }
+        , { CUSTOMSQL_PNG, mmBitmap(png::GRM) }
+        , { CUSTOMSQL_GRP_PNG, mmBitmap(png::GRM) } //TODO: GRM rep group ico
+        , { SAVINGS_ACC_NORMAL_PNG, mmBitmap(png::SAVINGS_NORMAL) }
+        , { SAVINGS_ACC_FAVORITE_PNG, mmBitmap(png::SAVINGS_FAVORITES) }
+        , { SAVINGS_ACC_CLOSED_PNG, mmBitmap(png::SAVINGS_CLOSED) }
+        , { CARD_ACC_PNG, mmBitmap(png::CC_NORMAL) }
+        , { CARD_ACC_FAVORITE_PNG, mmBitmap(png::CC_FAVORITE) }
+        , { CARD_ACC_CLOSED_PNG, mmBitmap(png::CC_CLOSED) }
+        , { TERMACCOUNT_PNG, wxBitmap(wxImage(termaccount_xpm).Scale(x, x)) }
+        , { TERM_ACC_FAVORITE_PNG, wxBitmap(wxImage(term_acc_favorite_xpm).Scale(x, x)) }
+        , { TERM_ACC_CLOSED_PNG, wxBitmap(wxImage(term_acc_closed_xpm).Scale(x, x)) }
+        , { STOCK_ACC_PNG, wxBitmap(wxImage(stock_acc_xpm).Scale(x, x)) }
+        , { STOCK_ACC_FAVORITE_PNG, wxBitmap(wxImage(stock_acc_favorite_xpm).Scale(x, x)) }
+        , { STOCK_ACC_CLOSED_PNG, wxBitmap(wxImage(stock_acc_closed_xpm).Scale(x, x)) }
     };
 };
 
-static const std::map<int, wxBitmap> custom_images()
+static const std::map<int, wxBitmap> acc_images()
 {
     int x = mmIniOptions::instance().ico_size_;
     return{
@@ -152,7 +152,7 @@ wxImageList* navtree_images_list()
     wxImageList* imageList = new wxImageList(x, x);
     for (const auto& img : navtree_images())
         imageList->Add(img.second);
-    for (const auto& img : custom_images())
+    for (const auto& img : acc_images())
         imageList->Add(img.second);
 
     return imageList;
