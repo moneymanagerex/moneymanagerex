@@ -104,17 +104,6 @@
 #include "cajun/json/writer.h"
 
 //----------------------------------------------------------------------------
-/* Include XPM Support */
-
-#include "../resources/appstart.xpm"
-#include "../resources/clearlist.xpm"
-#include "../resources/delete_account.xpm"
-#include "../resources/edit_account.xpm"
-#include "../resources/encrypt_db.xpm"
-#include "../resources/encrypt_db_edit.xpm"
-#include "../resources/accounttree.xpm"
-
-//----------------------------------------------------------------------------
 
 int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds
 //----------------------------------------------------------------------------
@@ -1314,7 +1303,7 @@ void mmGUIFrame::createMenu()
     m_menuRecentFiles = new wxMenu;
     menu_file->Append(MENU_RECENT_FILES, _("&Recent Files..."), m_menuRecentFiles);
     wxMenuItem* menuClearRecentFiles = new wxMenuItem(menu_file, MENU_RECENT_FILES_CLEAR, _("&Clear Recent Files"));
-    menuClearRecentFiles->SetBitmap(wxBitmap(wxImage(clearlist_xpm).Scale(x, x)));
+    menuClearRecentFiles->SetBitmap(mmBitmap(png::CLEARLIST));
     menu_file->Append(menuClearRecentFiles);
     menu_file->AppendSeparator();
 
@@ -1389,16 +1378,16 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemAcctEdit = new wxMenuItem(menuAccounts, MENU_ACCTEDIT
         , _("&Edit Account"), _("Edit Account"));
-    menuItemAcctEdit->SetBitmap(wxBitmap(wxImage(edit_account_xpm).Scale(x, x)));
+    menuItemAcctEdit->SetBitmap(mmBitmap(png::EDIT_ACC));
 
     wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE
         , _("&Delete Account"), _("Delete Account from database"));
-    menuItemAcctDelete->SetBitmap(wxBitmap(wxImage(delete_account_xpm).Scale(x, x)));
+    menuItemAcctDelete->SetBitmap(mmBitmap(png::DELETE_ACC));
     menuAccounts->Append(menuItemAcctDelete);
 
     wxMenuItem* menuItemReallocateAcct = new wxMenuItem(menuAccounts, MENU_ACCOUNT_REALLOCATE
         , _("&Reallocate Account"), _("Change the account type of an account."));
-    menuItemReallocateAcct->SetBitmap(wxBitmap(wxImage(accounttree_xpm).Scale(x, x)));
+    menuItemReallocateAcct->SetBitmap(mmBitmap(png::ACCOUNTTREE));
     menuAccounts->Append(menuItemReallocateAcct);
 
     menuAccounts->Append(menuItemAcctList);
@@ -1480,11 +1469,11 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemConvertDB = new wxMenuItem(menuTools, MENU_CONVERT_ENC_DB
         , _("Convert Encrypted &DB")
         , _("Convert Encrypted DB to Non-Encrypted DB"));
-    menuItemConvertDB->SetBitmap(wxBitmap(wxImage(encrypt_db_xpm).Scale(x, x)));
+    menuItemConvertDB->SetBitmap(mmBitmap(png::ENCRYPT_DB));
     wxMenuItem* menuItemChangeEncryptPassword = new wxMenuItem(menuTools, MENU_CHANGE_ENCRYPT_PASSWORD
         , _("Change Encrypted &Password")
         , _("Change the password of an encrypted database"));
-    menuItemChangeEncryptPassword->SetBitmap(wxBitmap(wxImage(encrypt_db_edit_xpm).Scale(x, x)));
+    menuItemChangeEncryptPassword->SetBitmap(mmBitmap(png::ENCRYPT_DB_EDIT));
     wxMenuItem* menuItemVacuumDB = new wxMenuItem(menuTools, MENU_DB_VACUUM
         , _("Optimize &Database")
         , _("Optimize database space and performance"));
@@ -1506,7 +1495,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemAppStart = new wxMenuItem(menuTools, MENU_SHOW_APPSTART
         , _("&Show App Start Dialog"), _("App Start Dialog"));
-    menuItemAppStart->SetBitmap(wxBitmap(wxImage(appstart_xpm).Scale(x, x)));
+    menuItemAppStart->SetBitmap(mmBitmap(png::APPSTART));
     menuHelp->Append(menuItemAppStart);
 
     menuHelp->AppendSeparator();

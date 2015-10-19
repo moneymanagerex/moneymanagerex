@@ -32,8 +32,6 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_StockHistory.h"
 
-#include "../resources/web.xpm"
-
 #include <wx/numdlg.h>
 #include <wx/textdlg.h>
 #include <wx/valnum.h>
@@ -246,11 +244,9 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Notes")), g_flags);
     wxBoxSizer* iconsSizer = new wxBoxSizer(wxHORIZONTAL);
     itemFlexGridSizer6->Add(iconsSizer, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
-    bAttachments_ = new wxBitmapButton(itemPanel5, wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition
-        , wxSize(commission_->GetSize().GetY(), commission_->GetSize().GetY()));
+    bAttachments_ = new wxBitmapButton(itemPanel5, wxID_FILE, mmBitmap(png::CLIP));
     bAttachments_->SetToolTip(_("Organize attachments of this stock"));
-    wxBitmapButton* itemButton31 = new wxBitmapButton(itemPanel5, wxID_INDEX, wxBitmap(web_xpm)
-        , wxDefaultPosition, wxSize(commission_->GetSize().GetY(), commission_->GetSize().GetY()));
+    wxBitmapButton* itemButton31 = new wxBitmapButton(itemPanel5, wxID_INDEX, mmBitmap(png::WEB));
     itemButton31->SetToolTip(_("Display the web page for the specified Stock symbol"));
     iconsSizer->Add(bAttachments_, g_flags);
     iconsSizer->Add(itemButton31, g_flags);
@@ -302,11 +298,9 @@ void mmStockDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, ID_BUTTON_DOWNLOAD, mmBitmap(png::UPDATE)
-        , wxDefaultPosition, wxSize(commission_->GetSize().GetY(), commission_->GetSize().GetY()));
+    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, ID_BUTTON_DOWNLOAD, mmBitmap(png::UPDATE));
     buttonDownload->SetToolTip(_("Download Stock Price history"));
-    wxBitmapButton* buttonImport = new wxBitmapButton(buttons_panel, ID_BUTTON_IMPORT, mmBitmap(png::IMPORT)
-        , wxDefaultPosition, wxSize(commission_->GetSize().GetY(), commission_->GetSize().GetY()));
+    wxBitmapButton* buttonImport = new wxBitmapButton(buttons_panel, ID_BUTTON_IMPORT, mmBitmap(png::IMPORT));
     buttonImport->SetToolTip(_("Import Stock Price history (CSV Format)"));
     wxButton* buttonDel = new wxButton(buttons_panel, wxID_DELETE, _("&Delete "));
     buttonDel->SetToolTip(_("Delete selected Stock Price"));

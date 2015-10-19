@@ -57,6 +57,7 @@
 <br><img src="https://openclipart.org/image/32px/svg_to_png/17306/czara1-Mixe-arrow.png" />| Update |[page](https://openclipart.org/detail/17306/mixe-arrow)
 <br><img src="https://openclipart.org/image/32px/svg_to_png/30499/tango-down-arrow-red.png" />| Down arrow |[page](https://openclipart.org/detail/30499/tango-red-go-down)
 <br><img src="https://openclipart.org/image/32px/svg_to_png/30661/tango-up-arrow-blue.png" />| Up |[page](https://openclipart.org/detail/30661/tango-blue-go-up)
+<br> <img src="https://openclipart.org/image/32px/svg_to_png/70339/1278319749.png" />| Web |[page](https://openclipart.org/detail/70339/home-price)
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/33691/view-fullscreen.png" />| Full Screen |[page](https://openclipart.org/detail/33691/tango-view-fullscreen)
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/212273/rodentia-icons_software-update-urgent.png" />| software-update |[page](https://openclipart.org/detail/212273/softwareupdate-urgent)
 <br> <img src="https://openclipart.org/image/32px/svg_to_png/129049/bubbles-normal.png" />| Forum |[page](https://openclipart.org/detail/129049/chat)
