@@ -71,6 +71,7 @@ enum png {
     CLEARLIST,
     DELETE_ACC,
     EDIT_ACC,
+    REALLOCATE_ACC,
     ENCRYPT_DB,
     ENCRYPT_DB_EDIT,
     ACCOUNTTREE,
@@ -130,6 +131,7 @@ enum png {
     LED_GREEN,
     RUN,
     AUTO,
+    PRINT,
     EXIT,
     EMPTY,
 };

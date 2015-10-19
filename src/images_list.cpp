@@ -20,8 +20,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmOption.h"
 #include <wx/image.h>
 #include <wx/bitmap.h>
-//#include <wx/artprov.h>
 #include <map>
+//#include <wx/artprov.h>
 
 #include "../resources/new_db_png.h"
 #include "../resources/open_png.h"
@@ -74,6 +74,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/leds_png.h"
 #include "../resources/clip_png.h"
 #include "../resources/run_png.h"
+#include "../resources/clearlist_png.h"
+#include "../resources/delete_account_png.h"
+#include "../resources/edit_account_png.h"
+#include "../resources/reallocate_acc_png.h"
+#include "../resources/print_png.h"
 #include "../resources/exit_png.h"
 
 //----------------------------------------------------------------------------
@@ -87,9 +92,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/termaccount.xpm"
 
 #include "../resources/appstart.xpm"
-#include "../resources/clearlist.xpm"
-#include "../resources/delete_account.xpm"
-#include "../resources/edit_account.xpm"
 #include "../resources/encrypt_db.xpm"
 #include "../resources/encrypt_db_edit.xpm"
 #include "../resources/accounttree.xpm"
@@ -232,15 +234,16 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { LED_GREEN, { { 16, wxBITMAP_PNG_FROM_DATA(led_green) }, { 24, wxBITMAP_PNG_FROM_DATA(led_green24) }, { 32, wxBITMAP_PNG_FROM_DATA(led_green32) }, { 48, wxBITMAP_PNG_FROM_DATA(led_green48) } } }
         , { RUN, { { 16, wxBITMAP_PNG_FROM_DATA(run) }, { 24, wxBITMAP_PNG_FROM_DATA(run24) }, { 32, wxBITMAP_PNG_FROM_DATA(run32) }, { 48, wxBITMAP_PNG_FROM_DATA(run48) } } }
         , { AUTO, { { 16, wxBITMAP_PNG_FROM_DATA(run) }, { 24, wxBITMAP_PNG_FROM_DATA(run24) }, { 32, wxBITMAP_PNG_FROM_DATA(run32) }, { 48, wxBITMAP_PNG_FROM_DATA(run48) } } }
+        , { CLEARLIST, { { 16, wxBITMAP_PNG_FROM_DATA(clearlist) }, { 24, wxBITMAP_PNG_FROM_DATA(clearlist24) }, { 32, wxBITMAP_PNG_FROM_DATA(clearlist32) }, { 48, wxBITMAP_PNG_FROM_DATA(clearlist48) } } }
+        , { DELETE_ACC, { { 16, wxBITMAP_PNG_FROM_DATA(delete_account) }, { 24, wxBITMAP_PNG_FROM_DATA(delete_account24) }, { 32, wxBITMAP_PNG_FROM_DATA(delete_account32) }, { 48, wxBITMAP_PNG_FROM_DATA(delete_account48) } } }
+        , { EDIT_ACC, { { 16, wxBITMAP_PNG_FROM_DATA(edit_account) }, { 24, wxBITMAP_PNG_FROM_DATA(edit_account24) }, { 32, wxBITMAP_PNG_FROM_DATA(edit_account32) }, { 48, wxBITMAP_PNG_FROM_DATA(edit_account48) } } }
+        , { REALLOCATE_ACC, { { 16, wxBITMAP_PNG_FROM_DATA(reallocate_acc) }, { 24, wxBITMAP_PNG_FROM_DATA(reallocate_acc24) }, { 32, wxBITMAP_PNG_FROM_DATA(reallocate_acc32) }, { 48, wxBITMAP_PNG_FROM_DATA(reallocate_acc48) } } }
+        , { PRINT, { { 16, wxBITMAP_PNG_FROM_DATA(print) }, { 24, wxBITMAP_PNG_FROM_DATA(print24) }, { 32, wxBITMAP_PNG_FROM_DATA(print32) }, { 48, wxBITMAP_PNG_FROM_DATA(print48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
         , { EMPTY, { { 16, wxBitmap(wxImage(empty_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(empty_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(empty_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(empty_xpm).Scale(48, 48)) } } }
         , { APPSTART, { { 16, wxBitmap(wxImage(appstart_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(appstart_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(appstart_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(appstart_xpm).Scale(48, 48)) } } }
-        , { CLEARLIST, { { 16, wxBitmap(wxImage(clearlist_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(clearlist_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(clearlist_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(clearlist_xpm).Scale(48, 48)) } } }
-        , { DELETE_ACC, { { 16, wxBitmap(wxImage(delete_account_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(delete_account_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(delete_account_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(delete_account_xpm).Scale(48, 48)) } } }
-        , { EDIT_ACC, { { 16, wxBitmap(wxImage(clearlist_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(clearlist_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(clearlist_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(clearlist_xpm).Scale(48, 48)) } } }
         , { ENCRYPT_DB, { { 16, wxBitmap(wxImage(encrypt_db_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(encrypt_db_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(encrypt_db_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(encrypt_db_xpm).Scale(48, 48)) } } }
         , { ENCRYPT_DB_EDIT, { { 16, wxBitmap(wxImage(encrypt_db_edit_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(encrypt_db_edit_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(encrypt_db_edit_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(encrypt_db_edit_xpm).Scale(48, 48)) } } }
-        , { ACCOUNTTREE, { { 16, wxBitmap(wxImage(accounttree_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(accounttree_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(accounttree_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(accounttree_xpm).Scale(48, 48)) } } }
     };
 }
 

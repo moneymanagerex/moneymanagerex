@@ -1323,6 +1323,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemPrint = new wxMenuItem(menu_file, wxID_PRINT,
         _("&Print..."), _("Print current view"));
+    menuItemPrint->SetBitmap(mmBitmap(png::PRINT));
     menu_file->Append(menuItemPrint);
 
     menu_file->AppendSeparator();
@@ -1367,31 +1368,32 @@ void mmGUIFrame::createMenu()
 #endif
     wxMenu *menuAccounts = new wxMenu;
 
-    wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
-        , _("New &Account"), _("New Account"));
-    menuItemNewAcct->SetBitmap(mmBitmap(png::NEW_ACC));
-    menuAccounts->Append(menuItemNewAcct);
-
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST
         , _("Account &List"), _("Show Account List"));
     menuItemAcctList->SetBitmap(mmBitmap(png::HOME));
+
+    wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
+        , _("New &Account"), _("New Account"));
+    menuItemNewAcct->SetBitmap(mmBitmap(png::NEW_ACC));
 
     wxMenuItem* menuItemAcctEdit = new wxMenuItem(menuAccounts, MENU_ACCTEDIT
         , _("&Edit Account"), _("Edit Account"));
     menuItemAcctEdit->SetBitmap(mmBitmap(png::EDIT_ACC));
 
+    wxMenuItem* menuItemReallocateAcct = new wxMenuItem(menuAccounts, MENU_ACCOUNT_REALLOCATE
+        , _("&Reallocate Account"), _("Change the account type of an account."));
+    menuItemReallocateAcct->SetBitmap(mmBitmap(png::REALLOCATE_ACC));
+
     wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE
         , _("&Delete Account"), _("Delete Account from database"));
     menuItemAcctDelete->SetBitmap(mmBitmap(png::DELETE_ACC));
-    menuAccounts->Append(menuItemAcctDelete);
-
-    wxMenuItem* menuItemReallocateAcct = new wxMenuItem(menuAccounts, MENU_ACCOUNT_REALLOCATE
-        , _("&Reallocate Account"), _("Change the account type of an account."));
-    menuItemReallocateAcct->SetBitmap(mmBitmap(png::ACCOUNTTREE));
-    menuAccounts->Append(menuItemReallocateAcct);
 
     menuAccounts->Append(menuItemAcctList);
+    menuAccounts->AppendSeparator();
+    menuAccounts->Append(menuItemNewAcct);
     menuAccounts->Append(menuItemAcctEdit);
+    menuAccounts->Append(menuItemReallocateAcct);
+    menuAccounts->Append(menuItemAcctDelete);
 
     // Tools Menu
     wxMenu *menuTools = new wxMenu;
@@ -1589,6 +1591,9 @@ void mmGUIFrame::CreateToolBar()
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Fullscreen\tF11"), mmBitmap(png::FULLSCREEN), _("Toggle Fullscreen"));
+
+    toolBar_->AddSeparator();
+    toolBar_->AddTool(wxID_PRINT, _("&Print..."), mmBitmap(png::PRINT), _("Print current view"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();

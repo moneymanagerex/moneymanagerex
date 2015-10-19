@@ -25,6 +25,7 @@
 <br>![img](https://openclipart.org/image/32px/svg_to_png/212153/rodentia-icons_accessories-news-reader.png) | news | [page](https://openclipart.org/detail/212153/rodentiaiconsaccessoriesnewsreader)
 
 ###Main menu (24X24)
+<br> ![img](https://openclipart.org/image/24px/svg_to_png/32227/document-print.png) | Save | [page](https://openclipart.org/detail/32227/tango-document-print)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/34579/media-floppy.png) | Save | [page](https://openclipart.org/detail/34579/tango-media-floppy)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/199702/primary-history-clear.png)| Clear | [page](https://openclipart.org/detail/199702/primary-history-clear)
 <br>![img](https://openclipart.org/image/24px/svg_to_png/214205/memo.png) | Edit Acc | [page](https://openclipart.org/detail/214205/memo)
