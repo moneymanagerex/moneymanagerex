@@ -83,6 +83,19 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/term_acc_favorite.xpm"
 #include "../resources/termaccount.xpm"
 
+#include "../resources/accounttree.xpm"
+#include "../resources/cat.xpm"
+#include "../resources/clock.xpm"
+#include "../resources/dog.xpm"
+#include "../resources/hourglass.xpm"
+#include "../resources/money.xpm"
+#include "../resources/money_dollar.xpm"
+#include "../resources/money_euro.xpm"
+#include "../resources/trees.xpm"
+#include "../resources/web_money.xpm"
+#include "../resources/work.xpm"
+#include "../resources/yandex_money.xpm"
+
 static const std::map<int, wxBitmap> navtree_images()
 {
     int x = mmIniOptions::instance().ico_size_;
@@ -111,12 +124,35 @@ static const std::map<int, wxBitmap> navtree_images()
     };
 };
 
+static const std::map<int, wxBitmap> custom_images()
+{
+    int x = mmIniOptions::instance().ico_size_;
+    return{
+        // Custom icons for accounts
+        { MONEY_DOLLAR_XPM, wxBitmap(wxImage(money_dollar_xpm).Scale(x, x)) }
+        , { MONEY_EURO_XPM, wxBitmap(wxImage(money_euro_xpm).Scale(x, x)) }
+        , { FLAG_XPM, mmBitmap(png::FOLLOW_UP) }
+        , { ACCOUNTTREE_XPM, wxBitmap(wxImage(accounttree_xpm).Scale(x, x)) }
+        , { ABOUT_XPM, mmBitmap(png::ABOUT) }
+        , { CLOCK_XPM, wxBitmap(wxImage(clock_xpm).Scale(x, x)) }
+        , { CAT_XPM, wxBitmap(wxImage(cat_xpm).Scale(x, x)) }
+        , { DOG_XPM, wxBitmap(wxImage(dog_xpm).Scale(x, x)) }
+        , { TREES_XPM, wxBitmap(wxImage(trees_xpm).Scale(x, x)) }
+        , { HOURGLASS_XPM, wxBitmap(wxImage(hourglass_xpm).Scale(x, x)) }
+        , { WORK_XPM, wxBitmap(wxImage(work_xpm).Scale(x, x)) }
+        , { YANDEX_MONEY_XPM, wxBitmap(wxImage(yandex_money_xpm).Scale(x, x)) }
+        , { WEB_MONEY_XPM, wxBitmap(wxImage(web_money_xpm).Scale(x, x)) }
+        , { RUBIK_CUBE_XPM, mmBitmap(png::OTHER) }
+    };
+}
 wxImageList* navtree_images_list()
 {
     int x = mmIniOptions::instance().ico_size_;
 
     wxImageList* imageList = new wxImageList(x, x);
     for (const auto& img : navtree_images())
+        imageList->Add(img.second);
+    for (const auto& img : custom_images())
         imageList->Add(img.second);
 
     return imageList;
