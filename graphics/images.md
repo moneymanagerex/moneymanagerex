@@ -24,14 +24,16 @@
 <br>![img](https://openclipart.org/image/32px/svg_to_png/104977/1295092948.png) | help | [page](https://openclipart.org/detail/104977/help-orb-button)
 <br>![img](https://openclipart.org/image/32px/svg_to_png/212153/rodentia-icons_accessories-news-reader.png) | news | [page](https://openclipart.org/detail/212153/rodentiaiconsaccessoriesnewsreader)
 
-###Main menu (24X24)
-<br> ![img](https://openclipart.org/image/24px/svg_to_png/32227/document-print.png) | Save | [page](https://openclipart.org/detail/32227/tango-document-print)
-<br>![img](https://openclipart.org/image/24px/svg_to_png/34579/media-floppy.png) | Save | [page](https://openclipart.org/detail/34579/tango-media-floppy)
-<br>![img](https://openclipart.org/image/24px/svg_to_png/199702/primary-history-clear.png)| Clear | [page](https://openclipart.org/detail/199702/primary-history-clear)
-<br>![img](https://openclipart.org/image/24px/svg_to_png/214205/memo.png) | Edit Acc | [page](https://openclipart.org/detail/214205/memo)
-<br><img src="https://openclipart.org/image/16px/svg_to_png/210232/misc-crown-game-lock.png" /> <img src="https://openclipart.org/image/24px/svg_to_png/210232/misc-crown-game-lock.png" /> <img src="https://openclipart.org/image/32px/svg_to_png/210232/misc-crown-game-lock.png" /> <img src="https://openclipart.org/image/48px/svg_to_png/210232/misc-crown-game-lock.png" />| Lock | [page](https://openclipart.org/detail/210232/misc-crown-game-lock)
-<br> <img src="https://openclipart.org/image/16px/svg_to_png/180750/document-encrypted-gold.png" /> <img src="https://openclipart.org/image/24px/svg_to_png/180750/document-encrypted-gold.png" /> <img src="https://openclipart.org/image/32px/svg_to_png/180750/document-encrypted-gold.png" /> <img src="https://openclipart.org/image/48px/svg_to_png/180750/document-encrypted-gold.png" />| Encrypt | [page](https://openclipart.org/detail/180750/encrypted-document-gold)
-<br> <img src="https://openclipart.org/image/16px/svg_to_png/34279/system-log-out.png )" /> <img src="https://openclipart.org/image/24px/svg_to_png/34279/system-log-out.png )" /> <img src="https://openclipart.org/image/32px/svg_to_png/34279/system-log-out.png )" /> <img src="https://openclipart.org/image/48px/svg_to_png/34279/system-log-out.png )" /> | Exit | [page](https://openclipart.org/detail/34279/tango-system-log-out)
+###Main menu
+<br> ![img](https://openclipart.org/image/32px/svg_to_png/32227/document-print.png) | Print | [page](https://openclipart.org/detail/32227/tango-document-print)
+<br>![img](https://openclipart.org/image/32px/svg_to_png/34579/media-floppy.png) | Save | [page](https://openclipart.org/detail/34579/tango-media-floppy)
+<br>![img](https://openclipart.org/image/32px/svg_to_png/199702/primary-history-clear.png)| Clear | [page](https://openclipart.org/detail/199702/primary-history-clear)
+<br>![img](https://openclipart.org/image/32px/svg_to_png/214205/memo.png) | Edit Acc | [page](https://openclipart.org/detail/214205/memo)
+<br><img src="https://openclipart.org/image/32px/svg_to_png/33553/Open-Padlock.png" />| Lock | [page](https://openclipart.org/detail/33553/open-padlock)
+<br><img src="https://openclipart.org/image/32px/svg_to_png/180750/document-encrypted-gold.png" />| Encrypt | [page](https://openclipart.org/detail/180750/encrypted-document-gold)
+<br><img src="https://openclipart.org/image/32px/svg_to_png/32329/edit-clear.png" />| Optimize | [page](https://openclipart.org/detail/32329/tango-edit-clear)
+
+<br>  <img src="https://openclipart.org/image/32px/svg_to_png/34279/system-log-out.png )" /> | Exit | [page](https://openclipart.org/detail/34279/tango-system-log-out)
 <br> <img src="http://www.cultureglaze.com/wp-content/uploads/2015/10/1000px-Facebook_Logo_Mini.svg_.png" width="32" height="32"/>| Facebook | [page](http://www.cultureglaze.com/wp-content/uploads/2015/10/1000px-Facebook_Logo_Mini.svg_.png)
 <br> <img src="http://mobilengine.com/wp-content/themes/mobilengine/images/play_color.png" width="32" height="32" />| Google play | [page](http://mobilengine.com/wp-content/themes/mobilengine/images/play_color.png)
 
