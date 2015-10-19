@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "categdialog.h"
+#include "images_list.h"
 #include "relocatecategorydialog.h"
 #include "util.h"
 #include "mmOption.h"
@@ -26,7 +27,6 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Infotable.h"
-#include "../resources/relocate_categories.xpm"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmCategDialog, wxDialog);
 
@@ -175,7 +175,7 @@ void mmCategDialog::CreateControls()
     itemBoxSizer3->Add(itemBoxSizer33);
 
     m_buttonRelocate = new wxBitmapButton(this
-        , wxID_REPLACE_ALL, wxBitmap(relocate_categories_xpm));
+        , wxID_REPLACE_ALL, mmBitmap(png::CATEGORY_RELOCATION));
     m_buttonRelocate->Connect(wxID_REPLACE_ALL, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), nullptr, this);
     m_buttonRelocate->SetToolTip(_("Reassign all categories to another category"));

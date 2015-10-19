@@ -56,7 +56,7 @@ EVT_BUTTON(wxID_OK, mmNewAcctDialog::OnOk)
 EVT_BUTTON(wxID_CANCEL, mmNewAcctDialog::OnCancel)
 EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY, mmNewAcctDialog::OnCurrency)
 EVT_BUTTON(wxID_FILE, mmNewAcctDialog::OnAttachments)
-EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + img::MAX_XPM, mmNewAcctDialog::OnCustonImage)
+EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + acc_img::MAX_XPM, mmNewAcctDialog::OnCustonImage)
 EVT_TEXT_ENTER(wxID_ANY, mmNewAcctDialog::OnTextEntered)
 wxEND_EVENT_TABLE()
 
@@ -277,15 +277,13 @@ void mmNewAcctDialog::CreateControls()
     itemPanel27->SetSizer(itemBoxSizer28);
 
     m_bitmapButtons = new wxBitmapButton(itemPanel27
-        , wxID_STATIC, wxNullBitmap, wxDefaultPosition
-        , wxSize(m_textAccountName->GetSize().GetHeight(), m_textAccountName->GetSize().GetHeight()));
+        , wxID_STATIC, wxNullBitmap);
     m_bitmapButtons->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmNewAcctDialog::OnImageButton), nullptr, this);
     itemBoxSizer28->Add(m_bitmapButtons, g_flags);
 
     bAttachments_ = new wxBitmapButton(itemPanel27, wxID_FILE
-        , mmBitmap(png::CLIP), wxDefaultPosition
-        , wxSize(m_textAccountName->GetSize().GetHeight(), m_textAccountName->GetSize().GetHeight()));
+        , mmBitmap(png::CLIP));
     bAttachments_->SetToolTip(_("Organize attachments of this account"));
     itemBoxSizer28->Add(bAttachments_, g_flags);
 
@@ -395,14 +393,14 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
     ev.SetEventObject(this);
 
     wxMenu* mainMenu = new wxMenu;
-    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + img::MONEY_DOLLAR_XPM - 1, _("Default Image"));
+    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + acc_img::MONEY_DOLLAR_XPM - 1, _("Default Image"));
     menuItem->SetBitmap(m_imageList->GetBitmap(mmIniOptions::instance().account_image_id(this->m_account->ACCOUNTID, true)));
     mainMenu->Append(menuItem);
 
-    for (int i = img::MONEY_DOLLAR_XPM; i < img::MAX_XPM; ++i)
+    for (int i = img::LAST_NAVTREE_PNG; i < acc_img::MAX_XPM; ++i)
     {
         menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i
-            , wxString::Format(_("Image #%i"), i - img::MONEY_DOLLAR_XPM + 1));
+            , wxString::Format(_("Image #%i"), i - img::LAST_NAVTREE_PNG + 1));
         menuItem->SetBitmap(m_imageList->GetBitmap(i));
         mainMenu->Append(menuItem);
     }
@@ -413,13 +411,13 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
 
 void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
 {
-    int selectedImage = (event.GetId() - wxID_HIGHEST) - img::MONEY_DOLLAR_XPM + 1;
+    int selectedImage = (event.GetId() - wxID_HIGHEST) - img::LAST_NAVTREE_PNG + 1;
     int image_id = mmIniOptions::instance().account_image_id(this->m_account->ACCOUNTID, true);
 
     Model_Infotable::instance().Set(wxString::Format("ACC_IMAGE_ID_%i", this->m_account->ACCOUNTID)
         , selectedImage);
     if (selectedImage != 0)
-        image_id = selectedImage + img::MONEY_DOLLAR_XPM - 1;
+        image_id = selectedImage + img::LAST_NAVTREE_PNG - 1;
 
     m_bitmapButtons->SetBitmapLabel(m_imageList->GetBitmap(image_id));
 }

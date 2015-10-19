@@ -104,28 +104,6 @@
 #include "cajun/json/writer.h"
 
 //----------------------------------------------------------------------------
-/* Include XPM Support */
-
-#include "../resources/appstart.xpm"
-#include "../resources/clearlist.xpm"
-#include "../resources/delete_account.xpm"
-#include "../resources/edit_account.xpm"
-#include "../resources/encrypt_db.xpm"
-#include "../resources/encrypt_db_edit.xpm"
-#include "../resources/newacct.xpm"
-#include "../resources/new_transaction.xpm"
-#include "../resources/notify.xpm"
-#include "../resources/open.xpm"
-#include "../resources/print.xpm"
-#include "../resources/printsetup.xpm"
-#include "../resources/printpreview.xpm"
-#include "../resources/relocate_categories.xpm"
-#include "../resources/relocate_payees.xpm"
-#include "../resources/save.xpm"
-#include "../resources/saveas.xpm"
-#include "../resources/accounttree.xpm"
-
-//----------------------------------------------------------------------------
 
 int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds
 //----------------------------------------------------------------------------
@@ -690,38 +668,38 @@ void mmGUIFrame::updateNavTreeControl()
     cleanupNavTreeControl(root);
     navTreeCtrl_->DeleteAllItems();
 
-    root = navTreeCtrl_->AddRoot(_("Home Page"), img::HOUSE_XPM, img::HOUSE_XPM);
+    root = navTreeCtrl_->AddRoot(_("Home Page"), img::HOUSE_PNG, img::HOUSE_PNG);
     navTreeCtrl_->SetItemData(root, new mmTreeItemData("Home Page"));
     navTreeCtrl_->SetItemBold(root, true);
     navTreeCtrl_->SetFocus();
 
-    wxTreeItemId accounts = navTreeCtrl_->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_XPM, img::SAVINGS_ACC_NORMAL_XPM);
+    wxTreeItemId accounts = navTreeCtrl_->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
     navTreeCtrl_->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
     navTreeCtrl_->SetItemBold(accounts, true);
-    wxTreeItemId cardAccounts = navTreeCtrl_->AppendItem(root, _("Credit Card Accounts"), img::CARD_ACC_XPM, img::CARD_ACC_XPM);
+    wxTreeItemId cardAccounts = navTreeCtrl_->AppendItem(root, _("Credit Card Accounts"), img::CARD_ACC_PNG, img::CARD_ACC_PNG);
     navTreeCtrl_->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
     navTreeCtrl_->SetItemBold(cardAccounts, true);
 
-    wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_XPM, img::TERMACCOUNT_XPM);
+    wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_PNG, img::TERMACCOUNT_PNG);
     navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
     navTreeCtrl_->SetItemBold(termAccount, true);
-    wxTreeItemId stocks = navTreeCtrl_->AppendItem(root, _("Stocks"), img::STOCK_ACC_XPM, img::STOCK_ACC_XPM);
+    wxTreeItemId stocks = navTreeCtrl_->AppendItem(root, _("Stocks"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
     navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
     navTreeCtrl_->SetItemBold(stocks, true);
 
-    wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), img::ASSET_XPM, img::ASSET_XPM);
+    wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), img::ASSET_PNG, img::ASSET_PNG);
     navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
     navTreeCtrl_->SetItemBold(assets, true);
 
-    wxTreeItemId bills = navTreeCtrl_->AppendItem(root, _("Recurring Transactions"), img::SCHEDULE_XPM, img::SCHEDULE_XPM);
+    wxTreeItemId bills = navTreeCtrl_->AppendItem(root, _("Recurring Transactions"), img::SCHEDULE_PNG, img::SCHEDULE_PNG);
     navTreeCtrl_->SetItemData(bills, new mmTreeItemData("Bills & Deposits"));
     navTreeCtrl_->SetItemBold(bills, true);
 
-    wxTreeItemId budgeting = navTreeCtrl_->AppendItem(root, _("Budget Setup"), img::CALENDAR_XPM, img::CALENDAR_XPM);
+    wxTreeItemId budgeting = navTreeCtrl_->AppendItem(root, _("Budget Setup"), img::CALENDAR_PNG, img::CALENDAR_PNG);
     navTreeCtrl_->SetItemData(budgeting, new mmTreeItemData("Budgeting"));
     navTreeCtrl_->SetItemBold(budgeting, true);
 
-    wxTreeItemId reports = navTreeCtrl_->AppendItem(root, _("Reports"), img::PIECHART_XPM, img::PIECHART_XPM);
+    wxTreeItemId reports = navTreeCtrl_->AppendItem(root, _("Reports"), img::PIECHART_PNG, img::PIECHART_PNG);
     navTreeCtrl_->SetItemBold(reports, true);
     navTreeCtrl_->SetItemData(reports, new mmTreeItemData("Reports"));
 
@@ -729,7 +707,7 @@ void mmGUIFrame::updateNavTreeControl()
 
     ///////////////////////////////////////////////////////////////////
 
-    wxTreeItemId help = navTreeCtrl_->AppendItem(root, _("Help"), img::HELP_XPM, img::HELP_XPM);
+    wxTreeItemId help = navTreeCtrl_->AppendItem(root, _("Help"), img::HELP_PNG, img::HELP_PNG);
     navTreeCtrl_->SetItemData(help, new mmTreeItemData("Help"));
     navTreeCtrl_->SetItemBold(help, true);
 
@@ -1314,9 +1292,9 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _("&New Database\tCtrl-N"), _("New Database"));
     menuItemNew->SetBitmap(mmBitmap(png::NEW_DB));
     wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _("&Open Database\tCtrl-O"), _("Open Database"));
-    menuItemOpen->SetBitmap(wxBitmap(wxImage(open_xpm).Scale(x, x)));
+    menuItemOpen->SetBitmap(mmBitmap(png::OPEN));
     wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, _("Save Database &As"), _("Save Database As"));
-    menuItemSaveAs->SetBitmap(wxBitmap(wxImage(saveas_xpm).Scale(x, x)));
+    menuItemSaveAs->SetBitmap(mmBitmap(png::SAVEAS));
     menu_file->Append(menuItemNew);
     menu_file->Append(menuItemOpen);
     menu_file->Append(menuItemSaveAs);
@@ -1325,7 +1303,7 @@ void mmGUIFrame::createMenu()
     m_menuRecentFiles = new wxMenu;
     menu_file->Append(MENU_RECENT_FILES, _("&Recent Files..."), m_menuRecentFiles);
     wxMenuItem* menuClearRecentFiles = new wxMenuItem(menu_file, MENU_RECENT_FILES_CLEAR, _("&Clear Recent Files"));
-    menuClearRecentFiles->SetBitmap(wxBitmap(wxImage(clearlist_xpm).Scale(x, x)));
+    menuClearRecentFiles->SetBitmap(mmBitmap(png::CLEARLIST));
     menu_file->Append(menuClearRecentFiles);
     menu_file->AppendSeparator();
 
@@ -1345,6 +1323,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemPrint = new wxMenuItem(menu_file, wxID_PRINT,
         _("&Print..."), _("Print current view"));
+    menuItemPrint->SetBitmap(mmBitmap(png::PRINT));
     menu_file->Append(menuItemPrint);
 
     menu_file->AppendSeparator();
@@ -1389,31 +1368,32 @@ void mmGUIFrame::createMenu()
 #endif
     wxMenu *menuAccounts = new wxMenu;
 
-    wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
-        , _("New &Account"), _("New Account"));
-    menuItemNewAcct->SetBitmap(wxBitmap(wxImage(newacct_xpm).Scale(x, x)));
-    menuAccounts->Append(menuItemNewAcct);
-
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST
         , _("Account &List"), _("Show Account List"));
     menuItemAcctList->SetBitmap(mmBitmap(png::HOME));
 
+    wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
+        , _("New &Account"), _("New Account"));
+    menuItemNewAcct->SetBitmap(mmBitmap(png::NEW_ACC));
+
     wxMenuItem* menuItemAcctEdit = new wxMenuItem(menuAccounts, MENU_ACCTEDIT
         , _("&Edit Account"), _("Edit Account"));
-    menuItemAcctEdit->SetBitmap(wxBitmap(wxImage(edit_account_xpm).Scale(x, x)));
-
-    wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE
-        , _("&Delete Account"), _("Delete Account from database"));
-    menuItemAcctDelete->SetBitmap(wxBitmap(wxImage(delete_account_xpm).Scale(x, x)));
-    menuAccounts->Append(menuItemAcctDelete);
+    menuItemAcctEdit->SetBitmap(mmBitmap(png::EDIT_ACC));
 
     wxMenuItem* menuItemReallocateAcct = new wxMenuItem(menuAccounts, MENU_ACCOUNT_REALLOCATE
         , _("&Reallocate Account"), _("Change the account type of an account."));
-    menuItemReallocateAcct->SetBitmap(wxBitmap(wxImage(accounttree_xpm).Scale(x, x)));
-    menuAccounts->Append(menuItemReallocateAcct);
+    menuItemReallocateAcct->SetBitmap(mmBitmap(png::REALLOCATE_ACC));
+
+    wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE
+        , _("&Delete Account"), _("Delete Account from database"));
+    menuItemAcctDelete->SetBitmap(mmBitmap(png::DELETE_ACC));
 
     menuAccounts->Append(menuItemAcctList);
+    menuAccounts->AppendSeparator();
+    menuAccounts->Append(menuItemNewAcct);
     menuAccounts->Append(menuItemAcctEdit);
+    menuAccounts->Append(menuItemReallocateAcct);
+    menuAccounts->Append(menuItemAcctDelete);
 
     // Tools Menu
     wxMenu *menuTools = new wxMenu;
@@ -1437,11 +1417,11 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuRelocation
         , MENU_CATEGORY_RELOCATION, _("&Categories...")
         , _("Reassign all categories to another category"));
-    menuItemCategoryRelocation->SetBitmap(wxBitmap(wxImage(relocate_categories_xpm).Scale(x, x)));
+    menuItemCategoryRelocation->SetBitmap(mmBitmap(png::CATEGORY_RELOCATION));
     wxMenuItem* menuItemPayeeRelocation = new wxMenuItem(menuRelocation
         , MENU_PAYEE_RELOCATION, _("&Payees...")
         , _("Reassign all payees to another payee"));
-    menuItemPayeeRelocation->SetBitmap(wxBitmap(wxImage(relocate_payees_xpm).Scale(x, x)));
+    menuItemPayeeRelocation->SetBitmap(mmBitmap(png::PAYEE_RELOCATION));
     menuRelocation->Append(menuItemCategoryRelocation);
     menuRelocation->Append(menuItemPayeeRelocation);
     menuTools->AppendSubMenu(menuRelocation, _("Relocation of...")
@@ -1491,11 +1471,11 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemConvertDB = new wxMenuItem(menuTools, MENU_CONVERT_ENC_DB
         , _("Convert Encrypted &DB")
         , _("Convert Encrypted DB to Non-Encrypted DB"));
-    menuItemConvertDB->SetBitmap(wxBitmap(wxImage(encrypt_db_xpm).Scale(x, x)));
+    menuItemConvertDB->SetBitmap(mmBitmap(png::ENCRYPT_DB));
     wxMenuItem* menuItemChangeEncryptPassword = new wxMenuItem(menuTools, MENU_CHANGE_ENCRYPT_PASSWORD
         , _("Change Encrypted &Password")
         , _("Change the password of an encrypted database"));
-    menuItemChangeEncryptPassword->SetBitmap(wxBitmap(wxImage(encrypt_db_edit_xpm).Scale(x, x)));
+    menuItemChangeEncryptPassword->SetBitmap(mmBitmap(png::ENCRYPT_DB_EDIT));
     wxMenuItem* menuItemVacuumDB = new wxMenuItem(menuTools, MENU_DB_VACUUM
         , _("Optimize &Database")
         , _("Optimize database space and performance"));
@@ -1517,7 +1497,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemAppStart = new wxMenuItem(menuTools, MENU_SHOW_APPSTART
         , _("&Show App Start Dialog"), _("App Start Dialog"));
-    menuItemAppStart->SetBitmap(wxBitmap(wxImage(appstart_xpm).Scale(x, x)));
+    menuItemAppStart->SetBitmap(mmBitmap(png::APPSTART));
     menuHelp->Append(menuItemAppStart);
 
     menuHelp->AppendSeparator();
@@ -1611,6 +1591,9 @@ void mmGUIFrame::CreateToolBar()
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Fullscreen\tF11"), mmBitmap(png::FULLSCREEN), _("Toggle Fullscreen"));
+
+    toolBar_->AddSeparator();
+    toolBar_->AddTool(wxID_PRINT, _("&Print..."), mmBitmap(png::PRINT), _("Print current view"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();

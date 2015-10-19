@@ -19,6 +19,7 @@ Copyright (C) 2012 Nikolay
 
 #include "payeedialog.h"
 #include "attachmentdialog.h"
+#include "images_list.h"
 #include "categdialog.h"
 #include "constants.h"
 #include "mmOption.h"
@@ -31,8 +32,6 @@ Copyright (C) 2012 Nikolay
 #include "model/Model_Category.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
-
-#include "../resources/magic_wand.xpm"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmPayeeDialog, wxDialog);
 
@@ -115,8 +114,7 @@ void mmPayeeDialog::CreateControls()
     tools_sizer->Add(tools_sizer2, wxSizerFlags(g_flagsExpand).Border(0));
 
     wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel
-        , wxID_APPLY, wxBitmap(magic_wand_xpm), wxDefaultPosition
-        , wxSize(32, -1));
+        , wxID_APPLY, mmBitmap(png::RUN));
     magicButton->SetToolTip(_("Other tools"));
     tools_sizer2->Add(magicButton, g_flags);
 

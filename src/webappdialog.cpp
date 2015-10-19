@@ -17,13 +17,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "webappdialog.h"
+#include "images_list.h"
 #include "constants.h"
 #include "paths.h"
 #include "transdialog.h"
 #include "util.h"
 #include "webapp.h"
-
-#include "../resources/magic_wand.xpm"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmWebAppDialog, wxDialog);
 

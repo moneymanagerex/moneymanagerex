@@ -97,13 +97,13 @@ void mmIniOptions::loadOptions()
 
 const int mmIniOptions::account_image_id(int account_id, bool def)
 {
-    int max = img::MAX_XPM - img::MONEY_DOLLAR_XPM;
+    int max = acc_img::MAX_XPM - img::LAST_NAVTREE_PNG;
     int min = 1;
     int custom_img_id = Model_Infotable::instance().GetIntInfo(wxString::Format("ACC_IMAGE_ID_%i", account_id), 0);
     if (!def && (custom_img_id >= min && custom_img_id <= max))
-        return custom_img_id + img::MONEY_DOLLAR_XPM - 1;
+        return custom_img_id + img::LAST_NAVTREE_PNG - 1;
 
-    int selectedImage = img::SAVINGS_ACC_NORMAL_XPM; //Default value
+    int selectedImage = img::SAVINGS_ACC_NORMAL_PNG; //Default value
     wxString acctStatus = VIEW_ACCOUNTS_OPEN_STR;
     Model_Account::TYPE acctType = Model_Account::CHECKING;
     bool favorite = true;
@@ -120,24 +120,24 @@ const int mmIniOptions::account_image_id(int account_id, bool def)
     switch (acctType)
     {
     case (Model_Account::CHECKING) :
-        if (closed) selectedImage = img::SAVINGS_ACC_CLOSED_XPM;
-        else if (favorite) selectedImage = img::SAVINGS_ACC_FAVORITE_XPM;
-        else selectedImage = img::SAVINGS_ACC_NORMAL_XPM;
+        if (closed) selectedImage = img::SAVINGS_ACC_CLOSED_PNG;
+        else if (favorite) selectedImage = img::SAVINGS_ACC_FAVORITE_PNG;
+        else selectedImage = img::SAVINGS_ACC_NORMAL_PNG;
         break;
     case (Model_Account::TERM) :
-        if (closed) selectedImage = img::TERM_ACC_CLOSED_XPM;
-        else if (favorite) selectedImage = img::TERM_ACC_FAVORITE_XPM;
-        else  selectedImage = img::TERMACCOUNT_XPM;
+        if (closed) selectedImage = img::TERM_ACC_CLOSED_PNG;
+        else if (favorite) selectedImage = img::TERM_ACC_FAVORITE_PNG;
+        else  selectedImage = img::TERMACCOUNT_PNG;
         break;
     case (Model_Account::INVESTMENT) :
-        if (closed) selectedImage = img::STOCK_ACC_CLOSED_XPM;
-        else if (favorite) selectedImage = img::STOCK_ACC_FAVORITE_XPM;
-        else  selectedImage = img::STOCK_ACC_XPM;
+        if (closed) selectedImage = img::STOCK_ACC_CLOSED_PNG;
+        else if (favorite) selectedImage = img::STOCK_ACC_FAVORITE_PNG;
+        else  selectedImage = img::STOCK_ACC_PNG;
         break;
     case (Model_Account::CREDIT_CARD) :
-        if (closed) selectedImage = img::CARD_ACC_CLOSED_XPM;
-        else if (favorite)   selectedImage = img::CARD_ACC_FAVORITE_XPM;
-        else   selectedImage = img::CARD_ACC_XPM;
+        if (closed) selectedImage = img::CARD_ACC_CLOSED_PNG;
+        else if (favorite)   selectedImage = img::CARD_ACC_FAVORITE_PNG;
+        else   selectedImage = img::CARD_ACC_PNG;
         break;
     default:
         wxASSERT(false);
