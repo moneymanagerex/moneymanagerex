@@ -79,6 +79,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/edit_account_png.h"
 #include "../resources/reallocate_acc_png.h"
 #include "../resources/print_png.h"
+#include "../resources/appstart_png.h"
 #include "../resources/exit_png.h"
 
 //----------------------------------------------------------------------------
@@ -91,7 +92,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/term_acc_favorite.xpm"
 #include "../resources/termaccount.xpm"
 
-#include "../resources/appstart.xpm"
 #include "../resources/encrypt_db.xpm"
 #include "../resources/encrypt_db_edit.xpm"
 #include "../resources/accounttree.xpm"
@@ -239,9 +239,9 @@ static const std::map<int, std::map<int, wxBitmap>> images_png()
         , { EDIT_ACC, { { 16, wxBITMAP_PNG_FROM_DATA(edit_account) }, { 24, wxBITMAP_PNG_FROM_DATA(edit_account24) }, { 32, wxBITMAP_PNG_FROM_DATA(edit_account32) }, { 48, wxBITMAP_PNG_FROM_DATA(edit_account48) } } }
         , { REALLOCATE_ACC, { { 16, wxBITMAP_PNG_FROM_DATA(reallocate_acc) }, { 24, wxBITMAP_PNG_FROM_DATA(reallocate_acc24) }, { 32, wxBITMAP_PNG_FROM_DATA(reallocate_acc32) }, { 48, wxBITMAP_PNG_FROM_DATA(reallocate_acc48) } } }
         , { PRINT, { { 16, wxBITMAP_PNG_FROM_DATA(print) }, { 24, wxBITMAP_PNG_FROM_DATA(print24) }, { 32, wxBITMAP_PNG_FROM_DATA(print32) }, { 48, wxBITMAP_PNG_FROM_DATA(print48) } } }
+        , { APPSTART, { { 16, wxBITMAP_PNG_FROM_DATA(appstart) }, { 24, wxBITMAP_PNG_FROM_DATA(appstart24) }, { 32, wxBITMAP_PNG_FROM_DATA(appstart32) }, { 48, wxBITMAP_PNG_FROM_DATA(appstart48) } } }
         , { EXIT, { { 16, wxBITMAP_PNG_FROM_DATA(exit) }, { 24, wxBITMAP_PNG_FROM_DATA(exit24) }, { 32, wxBITMAP_PNG_FROM_DATA(exit32) }, { 48, wxBITMAP_PNG_FROM_DATA(exit48) } } }
         , { EMPTY, { { 16, wxBitmap(wxImage(empty_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(empty_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(empty_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(empty_xpm).Scale(48, 48)) } } }
-        , { APPSTART, { { 16, wxBitmap(wxImage(appstart_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(appstart_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(appstart_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(appstart_xpm).Scale(48, 48)) } } }
         , { ENCRYPT_DB, { { 16, wxBitmap(wxImage(encrypt_db_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(encrypt_db_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(encrypt_db_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(encrypt_db_xpm).Scale(48, 48)) } } }
         , { ENCRYPT_DB_EDIT, { { 16, wxBitmap(wxImage(encrypt_db_edit_xpm).Scale(16, 16)) }, { 24, wxBitmap(wxImage(encrypt_db_edit_xpm).Scale(24, 24)) }, { 32, wxBitmap(wxImage(encrypt_db_edit_xpm).Scale(32, 32)) }, { 48, wxBitmap(wxImage(encrypt_db_edit_xpm).Scale(48, 48)) } } }
     };
