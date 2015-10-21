@@ -48,7 +48,7 @@ enum acc_img {
     MONEY_DOLLAR_XPM = LAST_NAVTREE_PNG, //First user img
     MONEY_EURO_XPM,
     FLAG_XPM,
-    ACCOUNTTREE_XPM,
+    COINS_XPM,
     ABOUT_XPM,
     CLOCK_XPM,
     CAT_XPM,
@@ -56,8 +56,8 @@ enum acc_img {
     TREES_XPM,
     HOURGLASS_XPM,
     WORK_XPM,
-    YANDEX_MONEY_XPM,
-    WEB_MONEY_XPM,
+    PAYPAL_XPM,
+    WALLET_XPM,
     RUBIK_CUBE_XPM,
     MAX_XPM,
 };
@@ -74,7 +74,6 @@ enum png {
     REALLOCATE_ACC,
     ENCRYPT_DB,
     ENCRYPT_DB_EDIT,
-    ACCOUNTTREE,
     NEW_ACC,
     HOME,
     CATEGORY,

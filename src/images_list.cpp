@@ -90,18 +90,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 /* Include XPM Support */
 #include "../resources/empty.xpm"
 
-#include "../resources/accounttree.xpm"
+#include "../resources/coins.xpm"
 #include "../resources/clock.xpm"
 #include "../resources/cat.xpm"
 #include "../resources/dog.xpm"
 #include "../resources/hourglass.xpm"
-#include "../resources/money.xpm"
-#include "../resources/money_dollar.xpm"
-#include "../resources/money_euro.xpm"
+#include "../resources/dollar.xpm"
+#include "../resources/euro.xpm"
 #include "../resources/trees.xpm"
-#include "../resources/web_money.xpm"
+#include "../resources/wallet.xpm"
 #include "../resources/work.xpm"
-#include "../resources/yandex_money.xpm"
+#include "../resources/paypal.xpm"
 
 static const std::map<int, wxBitmap> navtree_images()
 {
@@ -135,10 +134,10 @@ static const std::map<int, wxBitmap> acc_images()
 {
     int x = mmIniOptions::instance().ico_size_;
     return{
-        { MONEY_DOLLAR_XPM, wxBitmap(wxImage(money_dollar_xpm).Scale(x, x)) }
-        , { MONEY_EURO_XPM, wxBitmap(wxImage(money_euro_xpm).Scale(x, x)) }
+        { MONEY_DOLLAR_XPM, wxBitmap(wxImage(dollar_xpm).Scale(x, x)) }
+        , { MONEY_EURO_XPM, wxBitmap(wxImage(euro_xpm).Scale(x, x)) }
         , { FLAG_XPM, mmBitmap(png::FOLLOW_UP) }
-        , { ACCOUNTTREE_XPM, wxBitmap(wxImage(accounttree_xpm).Scale(x, x)) }
+        , { COINS_XPM, wxBitmap(wxImage(coins_xpm).Scale(x, x)) }
         , { ABOUT_XPM, mmBitmap(png::ABOUT) }
         , { CLOCK_XPM, wxBitmap(wxImage(clock_xpm).Scale(x, x)) }
         , { CAT_XPM, wxBitmap(wxImage(cat_xpm).Scale(x, x)) }
@@ -146,8 +145,8 @@ static const std::map<int, wxBitmap> acc_images()
         , { TREES_XPM, wxBitmap(wxImage(trees_xpm).Scale(x, x)) }
         , { HOURGLASS_XPM, wxBitmap(wxImage(hourglass_xpm).Scale(x, x)) }
         , { WORK_XPM, wxBitmap(wxImage(work_xpm).Scale(x, x)) }
-        , { YANDEX_MONEY_XPM, wxBitmap(wxImage(yandex_money_xpm).Scale(x, x)) }
-        , { WEB_MONEY_XPM, wxBitmap(wxImage(web_money_xpm).Scale(x, x)) }
+        , { PAYPAL_XPM, wxBitmap(wxImage(paypal_xpm).Scale(x, x)) }
+        , { WALLET_XPM, wxBitmap(wxImage(wallet_xpm).Scale(x, x)) }
         , { RUBIK_CUBE_XPM, mmBitmap(png::OTHER) }
     };
 }
