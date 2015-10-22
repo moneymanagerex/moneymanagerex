@@ -549,12 +549,12 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
     Model_Setting::instance().Set("CSV_SETTINGS_CURRENT", id);
 }
 
-bool mmUnivCSVDialog::validateData()
+bool mmUnivCSVDialog::validateData(tran_holder & holder)
 {
-    if (dt_.Trim().IsEmpty() || !val_ || type_.Trim().IsEmpty())
+    if (!holder.Date.IsValid() || !holder.Amount || holder.Type.Trim().IsEmpty())
         return false;
 
-    Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+    Model_Payee::Data* payee = Model_Payee::instance().get(holder.PayeeID);
     if (!payee) 
     {
         Model_Payee::Data* u = Model_Payee::instance().get(_("Unknown"));
@@ -564,31 +564,31 @@ bool mmUnivCSVDialog::validateData()
             p->PAYEENAME = _("Unknown");
             p->CATEGID = -1;
             p->SUBCATEGID = -1;
-            payeeID_ = Model_Payee::instance().save(p);
+            holder.PayeeID = Model_Payee::instance().save(p);
             const wxString& sMsg = wxString::Format(_("Added payee: %s"), p->PAYEENAME);
             log_field_->AppendText(wxString() << sMsg << "\n");
         }
         else
-            payeeID_ = u->PAYEEID;
+            holder.PayeeID = u->PAYEEID;
     }
     else
     {
-        if (categID_ < 0){
-            categID_ = payee->CATEGID;
-            subCategID_ = payee->SUBCATEGID;
+        if (holder.CategoryID < 0){
+            holder.CategoryID = payee->CATEGID;
+            holder.SubCategoryID = payee->SUBCATEGID;
         }
     }
 
-    if (categID_ == -1) //The category name is missing in SCV file and not assigned for the payee
+    if (holder.CategoryID == -1) //The category name is missing in SCV file and not assigned for the payee
     {
         Model_Category::Data* categ = Model_Category::instance().get(_("Unknown"));
         if (categ)
-            categID_ = categ->CATEGID;
+            holder.CategoryID = categ->CATEGID;
         else
         {
             Model_Category::Data *c = Model_Category::instance().create();
             c->CATEGNAME = _("Unknown");
-            categID_ = Model_Category::instance().save(c);
+            holder.CategoryID = Model_Category::instance().save(c);
         }
     }
 
@@ -618,16 +618,14 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
         wxFileName csv_file(fileName);
         if (fileName.IsEmpty() || !csv_file.FileExists())
         {
-            mmErrorDialogs::InvalidFile(m_text_ctrl_);
-            return;
+            return mmErrorDialogs::InvalidFile(m_text_ctrl_);
         }
         else
         {
             wxTextFile tFile(fileName);
             if (!tFile.Open())
             {
-                mmErrorDialogs::InvalidFile(m_text_ctrl_, true);
-                return;
+                return mmErrorDialogs::InvalidFile(m_text_ctrl_, true);
             }
 
             wxFileName logFile = mmex::GetLogDir(true);
@@ -663,15 +661,6 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 else
                     continue;
 
-                dt_.clear();
-                type_.clear();
-                transNum_.clear();
-                notes_.clear();
-                payeeID_ = -1;
-                categID_ = -1;
-                subCategID_ = -1;
-                val_ = 0.0;
-
                 this->csv2tab_separated_values(line, delimit_);
                 wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
                 int numTokens = (int)tkz.CountTokens();
@@ -684,6 +673,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                     continue;
                 }
 
+                tran_holder holder;
+
                 std::vector<wxString> tokens;
                 while (tkz.HasMoreTokens())
                 {
@@ -694,11 +685,11 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 {
                     if (tokens.size() >= i)
                     {
-                        parseToken(csvFieldOrder_[i], tokens[i]);
+                        parseToken(csvFieldOrder_[i], tokens[i], holder);
                     }
                 }
 
-                if (!validateData()) {
+                if (!validateData(holder)) {
                     log << wxString::Format(_("Line: %ld"), countNumTotal)
                         << _(" One of the following fields: Date, Amount, Type is missing, skipping") << endl;
                     *log_field_ << wxString::Format(_("Line: %ld"), countNumTotal)
@@ -707,21 +698,19 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                     continue;
                 }
 
-                int toAccountID = -1;
-
                 Model_Checking::Data *pTransaction = Model_Checking::instance().create();
-                pTransaction->TRANSDATE = dt_;
+                pTransaction->TRANSDATE = holder.Date.FormatISODate();
                 pTransaction->ACCOUNTID = fromAccountID_;
-                pTransaction->TOACCOUNTID = toAccountID;
-                pTransaction->PAYEEID = payeeID_;
-                pTransaction->TRANSCODE = type_;
-                pTransaction->TRANSAMOUNT = val_;
-                pTransaction->TOTRANSAMOUNT = 0.0;
-                pTransaction->CATEGID = categID_;
-                pTransaction->SUBCATEGID = subCategID_;
-                pTransaction->STATUS = "";
-                pTransaction->TRANSACTIONNUMBER = transNum_;
-                pTransaction->NOTES = notes_;
+                pTransaction->TOACCOUNTID = holder.ToAccountID;
+                pTransaction->PAYEEID = holder.PayeeID;
+                pTransaction->TRANSCODE = holder.Type;
+                pTransaction->TRANSAMOUNT = holder.Amount;
+                pTransaction->TOTRANSAMOUNT = holder.ToAmount;
+                pTransaction->CATEGID = holder.CategoryID;
+                pTransaction->SUBCATEGID = holder.SubCategoryID;
+                pTransaction->STATUS = holder.Status;
+                pTransaction->TRANSACTIONNUMBER = holder.Number;
+                pTransaction->NOTES = holder.Notes;
 
                 Model_Checking::instance().save(pTransaction);
 
@@ -780,24 +769,22 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
     if (!isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT)
         && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) || !isIndexPresent(UNIV_CSV_DEPOSIT))))
     {
-        mmErrorDialogs::MessageWarning(this
-            ,_("Incorrect fields specified for CSV export! Requires at least Date and Amount.")
+        return mmErrorDialogs::MessageWarning(this
+            , _("Incorrect fields specified for CSV export! Requires at least Date and Amount.")
             , _("Universal CSV Export"));
-        return;
     }
 
     auto &delimit = this->delimit_;
     const wxString& fileName = m_text_ctrl_->GetValue();
     if (fileName.IsEmpty())
-    {
-        mmErrorDialogs::InvalidFile(m_text_ctrl_);
-        return;
-    }
+        return mmErrorDialogs::InvalidFile(m_text_ctrl_);
+
     wxFileName csv_file(fileName);
     if (csv_file.Exists()) {
         if (wxMessageBox(_("Overwrite?"), _("File exists."), wxYES_NO | wxICON_WARNING) != wxYES)
             return;
     }
+
     const wxString& acctName = m_choice_account_->GetStringSelection();
     Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
@@ -858,6 +845,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                         break;
                     case UNIV_CSV_NOTES:
                         entry = wxString(pBankTransaction.NOTES).Trim();
+                        entry.Replace("\n", "\\n");
                         break;
                     case UNIV_CSV_DEPOSIT:
                         entry = (value > 0.0) ? amount : "";
@@ -1216,7 +1204,7 @@ void mmUnivCSVDialog::OnCheckOrRadioBox(wxCommandEvent& event)
     if (!delimit_.IsEmpty()) this->update_preview();
 }
 
-void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token)
+void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_holder & holder)
 {
     wxString token = orig_token;
     if (token.Trim().IsEmpty()) return;
@@ -1229,7 +1217,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token)
     {
         case UNIV_CSV_DATE:
             if (mmParseDisplayStringToDate(dtdt, token, date_format_))
-                dt_ = dtdt.GetDateOnly().FormatISODate();
+                holder.Date = dtdt.GetDateOnly();
             break;
 
         case UNIV_CSV_PAYEE:
@@ -1241,20 +1229,20 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token)
                 Model_Payee::instance().save(payee);
             }
 
-            payeeID_ = payee->PAYEEID;
+            holder.PayeeID = payee->PAYEEID;
             break;
 
         case UNIV_CSV_AMOUNT:
             token.Replace(" ", wxEmptyString);
 
-            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
+            if (!Model_Currency::fromString(token, holder.Amount, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
 
-            if (val_ <= 0.0)
-                type_ = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
+            if (holder.Amount <= 0.0)
+                holder.Type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
             else
-                type_ = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+                holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
 
-            val_ = fabs(val_);
+            holder.Amount = fabs(holder.Amount);
             break;
 
         case UNIV_CSV_CATEGORY:
@@ -1266,30 +1254,31 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token)
                 Model_Category::instance().save(category);
             }
 
-            categID_ = category->CATEGID;
+            holder.CategoryID = category->CATEGID;
             break;
 
         case UNIV_CSV_SUBCATEGORY:
-            if (categID_ == -1)
+            if (holder.CategoryID == -1)
                 return;
 
-            sub_category = (!token.IsEmpty() ? Model_Subcategory::instance().get(token, categID_) : 0);
+            sub_category = (!token.IsEmpty() ? Model_Subcategory::instance().get(token, holder.CategoryID) : 0);
             if (!sub_category)
             {
                 sub_category = Model_Subcategory::instance().create();
-                sub_category->CATEGID = categID_;
+                sub_category->CATEGID = holder.CategoryID;
                 sub_category->SUBCATEGNAME = token;
                 Model_Subcategory::instance().save(sub_category);
             }
-            subCategID_ = sub_category->SUBCATEGID; 
+            holder.SubCategoryID = sub_category->SUBCATEGID; 
             break;
 
         case UNIV_CSV_NOTES:
-            notes_ = token;
+            holder.Notes = token;
+            holder.Notes.Replace("\\n", "\n");
             break;
 
         case UNIV_CSV_TRANSNUM:
-            transNum_ = token;
+            holder.Number = token;
             break;
 
         case UNIV_CSV_DONTCARE:
@@ -1299,19 +1288,19 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token)
         case UNIV_CSV_DEPOSIT:
             if (token.IsEmpty())
                 return;
-            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
+            if (!Model_Currency::fromString(token, holder.Amount, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
                 return;
-            val_ = fabs(val_);
-            type_ = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+            holder.Amount = fabs(holder.Amount);
+            holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
             break;
 
         case UNIV_CSV_WITHDRAWAL:
             if (token.IsEmpty())
                 return;
-            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
+            if (!Model_Currency::fromString(token, holder.Amount, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
                 return;
-            val_ = fabs(val_);
-            type_ = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
+            holder.Amount = fabs(holder.Amount);
+            holder.Type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
             break;
 
         case UNIV_CSV_BALANCE:

@@ -95,6 +95,21 @@ private:
         UNIV_CSV_BALANCE,
         UNIV_CSV_LAST
     };
+
+    struct tran_holder
+    {
+        wxDateTime Date;
+        wxString Type;
+        wxString Status = "";
+        int ToAccountID = -1;
+        double ToAmount = 0.0;
+        int PayeeID = -1;
+        int CategoryID = -1;
+        int SubCategoryID = -1;
+        double Amount = 0.0;
+        wxString Number;
+        wxString Notes;
+    };
     bool is_importer_;
     wxString delimit_;
 
@@ -113,14 +128,6 @@ private:
 
     std::map<int, wxString> CSVFieldName_;
 
-    wxString dt_;
-    wxString type_;
-    wxString transNum_;
-    wxString notes_;
-    int payeeID_;
-    int categID_;
-    int subCategID_;
-    double val_;
     wxChoice* choiceDateFormat_;
     wxString date_format_;
 
@@ -139,13 +146,13 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void OnAdd(wxCommandEvent& event);
-    bool validateData();
+    bool validateData(tran_holder & holder);
     void OnImport(wxCommandEvent& event);
     void OnExport(wxCommandEvent& event);
     void OnRemove(wxCommandEvent& event);
     bool isIndexPresent(int index) const;
     const wxString getCSVFieldName(int index) const;
-    void parseToken(int index, const wxString& token);
+    void parseToken(int index, const wxString& token, tran_holder & holder);
     void OnSave(wxCommandEvent& event);
     void OnMoveUp(wxCommandEvent& event);
     void OnMoveDown(wxCommandEvent& event);
