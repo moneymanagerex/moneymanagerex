@@ -82,12 +82,47 @@ int Model_CurrencyHistory::addUpdate(const int& currencyID, const wxDate& date, 
     return save(currHist);
 }
 
+/** Return the rate for a specific currency in a specific day*/
+double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxString& DateISO)
+{
+    if (currencyID == Model_Currency::GetBaseCurrency()->CURRENCYID)
+        return 1;
+    
+    wxDateTime Date;
+    Date.ParseDate(DateISO);
+    Model_CurrencyHistory::Data_Set Data = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID),Model_CurrencyHistory::CURRDATE(Date));
+
+    if (!Data.empty())
+        return Data.back().CURRVALUE;
+    else
+    {
+        //int Rate = 0, DaysTMP = 999, Days = 999;
+        //Model_CurrencyHistory::Data_Set histData = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID));
+        //for (auto& hist : histData)
+        //{
+        //    DaysTMP = abs((Date - Model_CurrencyHistory::CURRDATE(hist)).GetDays());
+        //    if (DaysTMP < Days)
+        //    {
+        //        Days = DaysTMP;
+        //        Rate = hist.CURRVALUE;
+        //    }
+        //}
+        //if (Rate != 0)
+        //    return Rate;
+        //else
+        //{
+        //    Model_Currency::Data* Currency = Model_Currency::instance().get(currencyID);
+        //    return Currency->BASECONVRATE;
+        //}
+        Model_Currency::Data* Currency = Model_Currency::instance().get(currencyID);
+        return Currency->BASECONVRATE;
+    }
+}
 
 /** Return the last attachment number linked to a specific object */
-double Model_CurrencyHistory::LastRate(const int& currencyID)
+double Model_CurrencyHistory::getLastRate(const int& currencyID)
 {
     Model_CurrencyHistory::Data_Set histData = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID));
-    
     std::stable_sort(histData.begin(), histData.end(), SorterByCURRDATE());
 
     if (!histData.empty())

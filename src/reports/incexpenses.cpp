@@ -20,8 +20,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "htmlbuilder.h"
 #include "util.h"
-#include "model/Model_Checking.h"
+
 #include "model/Model_Account.h"
+#include "model/Model_Checking.h"
+#include "model/Model_CurrencyHistory.h"
+
 
 mmReportIncomeExpenses::mmReportIncomeExpenses(mmDateRange* date_range)
     : mmPrintableBaseSpecificAccounts(_("Income vs Expenses"))
@@ -85,7 +88,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
             if (wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)) continue;
         }
         double convRate = 1;
-        if (account) convRate = Model_Account::currency(account)->BASECONVRATE;
+        if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID,transaction.TRANSDATE);
 
         if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
             income_expenses_pair.first += transaction.TRANSAMOUNT * convRate;
@@ -202,7 +205,8 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         {
             if (wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)) continue;
         }
-        double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);
+        double convRate = 1;
+        if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE);
 
         int idx = (Model_Checking::TRANSDATE(transaction).GetYear() * 100
             + (int) Model_Checking::TRANSDATE(transaction).GetMonth());

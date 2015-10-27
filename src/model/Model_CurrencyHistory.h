@@ -56,8 +56,11 @@ public:
     /** Adds or updates an element in currency history */
     int addUpdate(const int& currencyID, const wxDate& date, double price, UPDTYPE type);
 
+    /** Return the rate for a specific currency in a specific day*/
+    static double getDayRate(const int& currencyID, const wxString& DateISO);
+
     /** Return the last rate for a specific currency */
-    static double LastRate(const int& currencyID);
+    static double getLastRate(const int& currencyID);
 };
 
 #endif // 
