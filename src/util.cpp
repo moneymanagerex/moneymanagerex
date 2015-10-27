@@ -232,19 +232,25 @@ const wxString mmGetDateForDisplay(const wxDateTime &dt)
     return dt.Format(mmOptions::instance().dateFormat_);
 }
 
-bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString &sDateMask)
+bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, const wxString &sDateMask)
 {
     wxString mask = sDateMask;
     mask.Replace("%Y%m%d", "%Y %m %d");
     if (date_formats_regex().count(mask) == 0) return false;
 
     const wxString regex = date_formats_regex().at(mask);
+    const wxString date_template = g_date_formats_map.at(mask);
+    if (sDate.length() > date_template.length())
+        sDate = sDate.Left(date_template.length());
+    
     wxRegEx pattern(regex);
     //skip dot if present in pattern but not in date string 
     const wxString separator = mask.Mid(2,1);
-    date.ParseFormat(sDate, mask, date);
     if (pattern.Matches(sDate) && sDate.Contains(separator))
+    {
+        date.ParseFormat(sDate, mask, date);
         return true;
+    }
     else
     {
         //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);

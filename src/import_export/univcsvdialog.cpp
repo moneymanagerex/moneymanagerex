@@ -1,5 +1,7 @@
 /*******************************************************
- Copyright (C) 2006 Madhan Kanagavel
+Copyright (C) 2006 Madhan Kanagavel
+Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2015 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -70,7 +72,18 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 ) :
     is_importer_(is_importer),
     delimit_(","),
-    importSuccessful_(false)
+    importSuccessful_(false),
+    csvFieldCandicate_(nullptr),
+    csvListBox_(nullptr),
+    m_button_add_(nullptr),
+    m_button_remove_(nullptr),
+    m_choice_account_(nullptr),
+    m_radio_box_(nullptr),
+    m_list_ctrl_(nullptr),
+    m_text_ctrl_(nullptr),
+    log_field_(nullptr),
+    m_textDelimiter(nullptr),
+    choiceDateFormat_(nullptr)
 {
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
     CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");
