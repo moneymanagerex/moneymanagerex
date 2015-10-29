@@ -170,15 +170,19 @@ const wxString mmGetDateForDisplay(const wxDateTime &dt)
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString &sDateMask)
 {
     wxString mask = sDateMask;
+    wxString date_str = sDate;
     mask.Replace("%Y%m%d", "%Y %m %d");
     if (date_formats_regex().count(mask) == 0) return false;
 
     const wxString regex = date_formats_regex().at(mask);
+    const wxString date_template = g_date_formats_map.at(mask);
+    if (sDate.length() > date_template.length())
+        date_str = sDate.Left(date_template.length());
     wxRegEx pattern(regex);
     //skip dot if present in pattern but not in date string 
     const wxString separator = mask.Mid(2,1);
-    date.ParseFormat(sDate, mask, date);
-    if (pattern.Matches(sDate) && sDate.Contains(separator))
+    date.ParseFormat(date_str, mask, date);
+    if (pattern.Matches(date_str) && date_str.Contains(separator))
         return true;
     else
     {

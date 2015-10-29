@@ -623,7 +623,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
         else
         {
             wxTextFile tFile(fileName);
-            if (!tFile.Open())
+            if (!tFile.Open(wxConvAuto(wxFONTENCODING_SYSTEM)))
             {
                 mmErrorDialogs::InvalidFile(m_text_ctrl_, true);
                 return;
@@ -767,6 +767,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             *log_field_ << msg;
 
             outputLog.Close();
+            tFile.Close();
         }
     }
 
@@ -946,7 +947,7 @@ void mmUnivCSVDialog::update_preview()
         if (!fileName.IsEmpty() && csv_file.FileExists())
         {
             wxTextFile tFile(fileName);
-            if (!tFile.Open())
+            if (!tFile.Open(wxConvAuto(wxFONTENCODING_SYSTEM)))
             {
                  wxMessageBox(_("Unable to open file."), _("Universal CSV Import"), wxOK|wxICON_WARNING);
                  return;
@@ -983,6 +984,7 @@ void mmUnivCSVDialog::update_preview()
                 if (++ count >= 10) break;
                 ++ row;
             }
+            tFile.Close();
         }
     }
     else // exporter preview
@@ -1199,7 +1201,7 @@ void mmUnivCSVDialog::OnSearch(wxCommandEvent& /*event*/)
 
         if (this->is_importer_) {
             wxTextFile tFile(fileName);
-            if (!tFile.Open())
+            if (!tFile.Open(wxConvAuto(wxFONTENCODING_SYSTEM)))
             {
                 *log_field_ << _("Unable to open file.") << "\n";
                 return;
@@ -1214,6 +1216,7 @@ void mmUnivCSVDialog::OnSearch(wxCommandEvent& /*event*/)
             }
             *log_field_ << "\n";
             this->update_preview();
+            tFile.Close();
         }
     }
 }
