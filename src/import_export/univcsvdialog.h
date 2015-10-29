@@ -35,13 +35,15 @@
 #define ID_UNIVCSVBUTTON_IMPORT 10094
 #define ID_UNIVCSVBUTTON_EXPORT 10095
 #define ID_LISTBOX_CANDICATE 10099
-#define wxID_SEARCH 10100
+#define wxID_BROWSE 10100
 #define wxID_RADIO_BOX 10101
 #define wxID_STANDARD 10102
 #define wxID_ACCOUNT 10103
 #define ID_UD_DELIMIT 10104
 #define ID_FILE_NAME 10105
-////@end control identifiers
+#define ID_FIRST_ROW 10106
+#define ID_LAST_ROW 10107
+ ////@end control identifiers
 
 /*!
  * Compatibility
@@ -69,7 +71,7 @@ public:
                     const wxSize& size = SYMBOL_UNIVCSVDIALOG_SIZE,
                     long style = SYMBOL_UNIVCSVDIALOG_STYLE);
 
-    bool InportCompletedSuccessfully()
+    bool ImportCompletedSuccessfully()
     {
         return importSuccessful_;
     }
@@ -78,6 +80,11 @@ public:
         return fromAccountID_;
     }
     static void csv2tab_separated_values(wxString& line, const wxString& delimit);
+
+	bool IsImporter() const
+	{
+		return is_importer_;
+	}
 
 private:
     enum EUnivCvs
@@ -110,6 +117,9 @@ private:
     wxTextCtrl* m_text_ctrl_;
     wxTextCtrl* log_field_;
     wxTextCtrl* m_textDelimiter;
+	wxStaticBox* m_rowSelectionStaticBox_;
+	wxSpinCtrl* m_spinIgnoreFirstRows_;
+	wxSpinCtrl* m_spinIgnoreLastRows_;
 
     std::map<int, wxString> CSVFieldName_;
 
@@ -150,7 +160,7 @@ private:
     void OnMoveUp(wxCommandEvent& event);
     void OnMoveDown(wxCommandEvent& event);
     void OnStandard(wxCommandEvent& event);
-    void OnSearch(wxCommandEvent& event);
+    void OnBrowse(wxCommandEvent& event);
     void OnAccountChange(wxCommandEvent& event);
     void OnListBox(wxCommandEvent& event);
     void OnCheckOrRadioBox(wxCommandEvent& event);
@@ -159,9 +169,12 @@ private:
     void OnFileNameChanged(wxCommandEvent& event);
     void OnDateFormatChanged(wxCommandEvent& event);
     void changeFocus(wxChildFocusEvent& event);
+	void OnSpinCtrlIgnoreFirstRows(wxSpinEvent& event);
+	void OnSpinCtrlIgnoreLastRows(wxSpinEvent& event);
 
     void OnLoad();
-    void update_preview();
+	void UpdateListItemBackground();
+	void update_preview();
     void initDelimiter();
     void initDateMask();
 

@@ -2074,7 +2074,7 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
 
     mmUnivCSVDialog univCSVDialog(this);
     univCSVDialog.ShowModal();
-    if (univCSVDialog.InportCompletedSuccessfully())
+    if (univCSVDialog.ImportCompletedSuccessfully())
     {
         Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
         createCheckingAccountPage(univCSVDialog.ImportedAccountID());

@@ -48,7 +48,7 @@ wxBEGIN_EVENT_TABLE(mmUnivCSVDialog, wxDialog)
     EVT_BUTTON(wxID_UP, mmUnivCSVDialog::OnMoveUp)
     EVT_BUTTON(wxID_DOWN, mmUnivCSVDialog::OnMoveDown)
     EVT_BUTTON(wxID_STANDARD, mmUnivCSVDialog::OnStandard)
-    EVT_BUTTON(wxID_SEARCH, mmUnivCSVDialog::OnSearch)
+    EVT_BUTTON(wxID_BROWSE, mmUnivCSVDialog::OnBrowse)
     EVT_CHOICE(wxID_ACCOUNT, mmUnivCSVDialog::OnAccountChange)
     EVT_LISTBOX_DCLICK(wxID_ANY, mmUnivCSVDialog::OnListBox)
     EVT_RADIOBOX(wxID_RADIO_BOX, mmUnivCSVDialog::OnCheckOrRadioBox)
@@ -71,7 +71,9 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 ) :
     is_importer_(is_importer),
     delimit_(","),
-    importSuccessful_(false)
+    importSuccessful_(false),
+	m_spinIgnoreFirstRows_(nullptr),
+	m_spinIgnoreLastRows_(nullptr)
 {
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
     CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");
@@ -116,18 +118,17 @@ void mmUnivCSVDialog::CreateControls()
 
     // Define the staticBox font and set it as wxFONTWEIGHT_BOLD
     wxFont staticBoxFontSetting = this->GetFont();
-    staticBoxFontSetting.SetWeight(wxFONTWEIGHT_BOLD);
 
     wxBoxSizer* itemBoxSizer0 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer0);
     wxBoxSizer* itemBoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer0->Add(itemBoxSizer1, 7, wxGROW | wxALL, 0);
+    itemBoxSizer0->Add(itemBoxSizer1, 0, wxGROW | wxALL, 0);
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     itemBoxSizer1->Add(itemBoxSizer2, 8, wxGROW | wxALL, 5);
     wxBoxSizer* itemBoxSizer11 = new wxBoxSizer(wxVERTICAL);
     itemBoxSizer1->Add(itemBoxSizer11, 5, wxGROW | wxALL, 5);
 
-    //file to import, file path and search button
+    //File to import, file path and browse button
     wxPanel* itemPanel6 = new wxPanel(this
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer2->Add(itemPanel6, 0, wxEXPAND | wxALL, 1);
@@ -147,12 +148,12 @@ void mmUnivCSVDialog::CreateControls()
     m_text_ctrl_->Connect(ID_FILE_NAME
         , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameEntered), nullptr, this);
 
-    const wxString& file_button_label = this->is_importer_ ? _("&Search") : _("File");
-    wxButton* button_search = new wxButton(itemPanel6, wxID_SEARCH, file_button_label);
+    const wxString& file_button_label = this->is_importer_ ? _("&Browse") : _("File");
+    wxButton* button_browse = new wxButton(itemPanel6, wxID_BROWSE, file_button_label);
     const wxString& file_tooltip = this->is_importer_
         ? _("Choose CSV data file to Import") : _("Choose CSV data file to Export");
-    button_search->SetToolTip(file_tooltip);
-    itemBoxSizer7->Add(button_search, g_flags);
+    button_browse->SetToolTip(file_tooltip);
+    itemBoxSizer7->Add(button_browse, g_flags);
 
     // Predefined settings
     wxPanel* itemPanel67 = new wxPanel(this
@@ -171,7 +172,7 @@ void mmUnivCSVDialog::CreateControls()
 
     wxBitmapButton* itemButton_Save = new wxBitmapButton(itemPanel67
         , wxID_SAVEAS, wxBitmap(save_xpm), wxDefaultPosition
-        , wxSize(button_search->GetSize().GetHeight(), button_search->GetSize().GetHeight()));
+        , wxSize(button_browse->GetSize().GetHeight(), button_browse->GetSize().GetHeight()));
     itemBoxSizer76->Add(itemButton_Save, wxSizerFlags(g_flags).Center().Proportion(0));
     itemButton_Save->SetToolTip(_("Save Template"));
 
@@ -294,12 +295,36 @@ void mmUnivCSVDialog::CreateControls()
     importExportStaticBoxSizer->Add(m_radio_box_, 0, wxALL | wxEXPAND, 3);
     importExportStaticBoxSizer->Add(m_textDelimiter, 0, wxALIGN_BOTTOM | wxALL, 8);
 
+	// Select rows to import (not relevant for export)
+	if(IsImporter())
+	{
+		// Container.
+		m_rowSelectionStaticBox_ = new wxStaticBox(this, wxID_ANY, _("Rows to ignore"));
+		m_rowSelectionStaticBox_->SetFont(staticBoxFontSetting);
+		wxStaticBoxSizer* rowSelectionStaticBoxSizer = new wxStaticBoxSizer(m_rowSelectionStaticBox_, wxHORIZONTAL);
+		itemBoxSizer2->Add(rowSelectionStaticBoxSizer, 0, wxALL | wxEXPAND, 5);
+
+		// "Ignore first" title, spin and event handler.
+		wxStaticText* itemStaticText7 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From start: "));
+		rowSelectionStaticBoxSizer->Add(itemStaticText7, g_flags);
+		m_spinIgnoreFirstRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_FIRST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
+		rowSelectionStaticBoxSizer->Add(m_spinIgnoreFirstRows_, g_flags);
+		m_spinIgnoreFirstRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreFirstRows), nullptr, this);
+
+		// "Ignore last" title, spin and event handler.
+		wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From end: "));
+		rowSelectionStaticBoxSizer->Add(itemStaticText8, g_flags);
+		m_spinIgnoreLastRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_LAST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
+		rowSelectionStaticBoxSizer->Add(m_spinIgnoreLastRows_, g_flags);
+		m_spinIgnoreLastRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows), nullptr, this);
+	}
+
     // Preview
     wxStaticBoxSizer* m_staticbox = new wxStaticBoxSizer(new wxStaticBox(this, wxID_STATIC, _("Preview")), wxVERTICAL);
 
     m_list_ctrl_ = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT);
     m_staticbox->Add(m_list_ctrl_, 1, wxGROW | wxALL, 5);
-    itemBoxSizer0->Add(m_staticbox, 3, wxALL | wxEXPAND, 5);
+    itemBoxSizer0->Add(m_staticbox, 2, wxALL | wxEXPAND, 5);
 
     //Import File button
     wxPanel* itemPanel5 = new wxPanel(this, ID_PANEL10
@@ -334,7 +359,7 @@ void mmUnivCSVDialog::CreateControls()
     itemBoxSizer11->Add(itemBoxSizer22, 1, wxGROW|wxALL, 0);
 
     log_field_ = new wxTextCtrl( this
-        , wxID_STATIC, "", wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxHSCROLL);
+        , wxID_STATIC, "", wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxHSCROLL | wxTE_READONLY);
     itemBoxSizer22->Add(log_field_, 1, wxGROW | wxALL, 5);
 
     wxButton* itemClearButton = new wxButton(this, wxID_CLEAR, _("Clear"));
@@ -430,6 +455,27 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
         else
             break;
     }
+
+	// Row selection settings.
+	if (IsImporter())
+	{
+		std::wstring stdStr;
+		stdStr = json::String(o[L"IGNORE_FIRST_ROWS"]);
+		if (!stdStr.empty())
+		{
+			int val = std::stoi(stdStr);
+			m_spinIgnoreFirstRows_->SetMax(std::max(val, m_spinIgnoreFirstRows_->GetMax())); // Called before file is loaded so max might still be 0.
+			m_spinIgnoreFirstRows_->SetValue(val);
+		}
+		stdStr = json::String(o[L"IGNORE_LAST_ROWS"]);
+		if (!stdStr.empty())
+		{
+			int val = std::stoi(stdStr);
+			m_spinIgnoreLastRows_->SetMax(std::max(val, m_spinIgnoreLastRows_->GetMax())); // Called before file is loaded so max might still be 0.
+			m_spinIgnoreLastRows_->SetValue(val);
+		}
+	}
+
     OnLoad();
     this->update_preview();
 }
@@ -544,6 +590,12 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
         wxLogDebug("%i - %i - %s", count-1, i, CSVFieldName_[i]);
     }
 
+	if (IsImporter())
+	{
+		o[L"IGNORE_FIRST_ROWS"] = json::String(to_wstring(m_spinIgnoreFirstRows_->GetValue()));
+		o[L"IGNORE_LAST_ROWS"] = json::String(to_wstring(m_spinIgnoreLastRows_->GetValue()));
+	}
+
     std::wstringstream ss;
     json::Writer::Write(o, ss);
     Model_Setting::instance().Set(wxString::Format("CSV_SETTINGS_%d", id), ss.str());
@@ -622,154 +674,162 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             mmErrorDialogs::InvalidFile(m_text_ctrl_);
             return;
         }
+
+        wxTextFile tFile(fileName);
+        if (!tFile.Open())
+        {
+            mmErrorDialogs::InvalidFile(m_text_ctrl_, true);
+            return;
+        }
+
+        wxFileName logFile = mmex::GetLogDir(true);
+        logFile.SetFullName(fileName);
+        logFile.SetExt("txt");
+
+        wxFileOutputStream outputLog(logFile.GetFullPath());
+        wxTextOutputStream log(outputLog);
+
+        /* date, payeename, amount(+/-), Number, status, category : subcategory, notes */
+            
+        long countNumTotal = 0;
+        long countImported = 0;
+
+        wxProgressDialog progressDlg(_("Universal CSV Import")
+            , _("Transactions imported from CSV: "), 100
+            , nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
+        Model_Checking::instance().Savepoint();
+
+        wxString line;
+		int firstRow = 0;
+		int lastRow = tFile.GetLineCount();
+
+		if (IsImporter())
+		{
+			firstRow += m_spinIgnoreFirstRows_->GetValue();
+			lastRow -= m_spinIgnoreLastRows_->GetValue();
+		}
+
+		for (int lineNum = firstRow; lineNum < lastRow; lineNum++)
+        {
+			line = tFile[lineNum];
+            const wxString& progressMsg = wxString::Format(_("Transactions imported from CSV\nto account %s : %ld")
+                , "'" + acctName + "'", countImported);
+            if (!progressDlg.Pulse(progressMsg))
+            {
+                canceledbyuser = true;
+                break; // abort processing
+            }
+
+			if (line.IsEmpty())
+				continue;
+				
+			++countNumTotal;
+
+            dt_.clear();
+            type_.clear();
+            transNum_.clear();
+            notes_.clear();
+            payeeID_ = -1;
+            categID_ = -1;
+            subCategID_ = -1;
+            val_ = 0.0;
+
+            this->csv2tab_separated_values(line, delimit_);
+            wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
+            int numTokens = (int)tkz.CountTokens();
+            if (numTokens < (int)csvFieldOrder_.size())
+            {
+                log << wxString::Format(_("Line: %ld"), lineNum)
+                    << _(" file contains insufficient number of tokens") << endl;
+                *log_field_ << wxString::Format(_("Line: %ld"), lineNum)
+                    << _(" file contains insufficient number of tokens") << "\n";
+                continue;
+            }
+
+            std::vector<wxString> tokens;
+            while (tkz.HasMoreTokens())
+            {
+                tokens.push_back(tkz.GetNextToken());
+            }
+
+            for (size_t i = 0; i < csvFieldOrder_.size(); ++i)
+            {
+                if (tokens.size() >= i)
+                {
+                    parseToken(csvFieldOrder_[i], tokens[i]);
+                }
+            }
+
+            if (!validateData()) {
+                log << wxString::Format(_("Line: %ld"), lineNum)
+                    << _(" One of the following fields: Date, Amount, Type is missing, skipping") << endl;
+                *log_field_ << wxString::Format(_("Line: %ld"), lineNum)
+                    << _(" One of the following fields: Date, Amount, Type is missing, skipping") << "\n";
+
+                continue;
+            }
+
+            int toAccountID = -1;
+
+            Model_Checking::Data *pTransaction = Model_Checking::instance().create();
+            pTransaction->TRANSDATE = dt_;
+            pTransaction->ACCOUNTID = fromAccountID_;
+            pTransaction->TOACCOUNTID = toAccountID;
+            pTransaction->PAYEEID = payeeID_;
+            pTransaction->TRANSCODE = type_;
+            pTransaction->TRANSAMOUNT = val_;
+            pTransaction->TOTRANSAMOUNT = 0.0;
+            pTransaction->CATEGID = categID_;
+            pTransaction->SUBCATEGID = subCategID_;
+            pTransaction->STATUS = "";
+            pTransaction->TRANSACTIONNUMBER = transNum_;
+            pTransaction->NOTES = notes_;
+
+            Model_Checking::instance().save(pTransaction);
+
+            countImported++;
+            log << wxString::Format(_("Line : %ld imported OK."), lineNum+1) << endl;
+            *log_field_ << wxString::Format(_("Line : %ld imported OK."), lineNum+1) << "\n";
+        }
+
+        progressDlg.Update(100);
+
+        wxString msg = wxString::Format(_("Total Lines : %ld"), countNumTotal);
+        msg << "\n";
+        msg << wxString::Format(_("Total Imported : %ld"), countImported);
+        msg << "\n\n";
+        msg << wxString::Format(_("Log file written to : %s"), logFile.GetFullPath());
+        msg << "\n\n";
+
+        wxString confirmMsg = msg + _("Please confirm saving...");
+        if (!canceledbyuser && wxMessageBox(confirmMsg
+            , _("Importing CSV"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxCANCEL)
+            canceledbyuser = true;
+
+        if (countImported > 0)
+            msg << _("Imported transactions have been flagged so you can review them.");
+
+        // Since all database transactions are only in memory,
+        if (!canceledbyuser)
+        {
+            // we need to save them to the database.
+            Model_Checking::instance().ReleaseSavepoint();
+            mmWebApp::MMEX_WebApp_UpdateAccount();
+            mmWebApp::MMEX_WebApp_UpdatePayee();
+            mmWebApp::MMEX_WebApp_UpdateCategory();
+            importSuccessful_ = true;
+            msg << wxString::Format(_("Transactions saved to database in account: %s"), acctName);
+        }
         else
         {
-            wxTextFile tFile(fileName);
-            if (!tFile.Open())
-            {
-                mmErrorDialogs::InvalidFile(m_text_ctrl_, true);
-                return;
-            }
-
-            wxFileName logFile = mmex::GetLogDir(true);
-            logFile.SetFullName(fileName);
-            logFile.SetExt("txt");
-
-            wxFileOutputStream outputLog(logFile.GetFullPath());
-            wxTextOutputStream log(outputLog);
-
-            /* date, payeename, amount(+/-), Number, status, category : subcategory, notes */
-            
-            long countNumTotal = 0;
-            long countImported = 0;
-
-            wxProgressDialog progressDlg(_("Universal CSV Import")
-                , _("Transactions imported from CSV: "), 100
-                , nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
-            Model_Checking::instance().Savepoint();
-
-            wxString line;
-            for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
-            {
-                const wxString& progressMsg = wxString::Format(_("Transactions imported from CSV\nto account %s : %ld")
-                    , "'" + acctName + "'", countImported);
-                if (!progressDlg.Pulse(progressMsg))
-                {
-                    canceledbyuser = true;
-                    break; // abort processing
-                }
-
-                if (!line.IsEmpty())
-                    ++countNumTotal;
-                else
-                    continue;
-
-                dt_.clear();
-                type_.clear();
-                transNum_.clear();
-                notes_.clear();
-                payeeID_ = -1;
-                categID_ = -1;
-                subCategID_ = -1;
-                val_ = 0.0;
-
-                this->csv2tab_separated_values(line, delimit_);
-                wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
-                int numTokens = (int)tkz.CountTokens();
-                if (numTokens < (int)csvFieldOrder_.size())
-                {
-                    log << wxString::Format(_("Line: %ld"), countNumTotal)
-                        << _(" file contains insufficient number of tokens") << endl;
-                    *log_field_ << wxString::Format(_("Line: %ld"), countNumTotal)
-                        << _(" file contains insufficient number of tokens") << "\n";
-                    continue;
-                }
-
-                std::vector<wxString> tokens;
-                while (tkz.HasMoreTokens())
-                {
-                    tokens.push_back(tkz.GetNextToken());
-                }
-
-                for (size_t i = 0; i < csvFieldOrder_.size(); ++i)
-                {
-                    if (tokens.size() >= i)
-                    {
-                        parseToken(csvFieldOrder_[i], tokens[i]);
-                    }
-                }
-
-                if (!validateData()) {
-                    log << wxString::Format(_("Line: %ld"), countNumTotal)
-                        << _(" One of the following fields: Date, Amount, Type is missing, skipping") << endl;
-                    *log_field_ << wxString::Format(_("Line: %ld"), countNumTotal)
-                        << _(" One of the following fields: Date, Amount, Type is missing, skipping") << "\n";
-
-                    continue;
-                }
-
-                int toAccountID = -1;
-
-                Model_Checking::Data *pTransaction = Model_Checking::instance().create();
-                pTransaction->TRANSDATE = dt_;
-                pTransaction->ACCOUNTID = fromAccountID_;
-                pTransaction->TOACCOUNTID = toAccountID;
-                pTransaction->PAYEEID = payeeID_;
-                pTransaction->TRANSCODE = type_;
-                pTransaction->TRANSAMOUNT = val_;
-                pTransaction->TOTRANSAMOUNT = 0.0;
-                pTransaction->CATEGID = categID_;
-                pTransaction->SUBCATEGID = subCategID_;
-                pTransaction->STATUS = "";
-                pTransaction->TRANSACTIONNUMBER = transNum_;
-                pTransaction->NOTES = notes_;
-
-                Model_Checking::instance().save(pTransaction);
-
-                countImported++;
-                log << wxString::Format(_("Line : %ld imported OK."), countNumTotal) << endl;
-                *log_field_ << wxString::Format(_("Line : %ld imported OK."), countNumTotal) << "\n";
-            }
-
-            progressDlg.Update(100);
-
-            wxString msg = wxString::Format(_("Total Lines : %ld"), countNumTotal);
-            msg << "\n";
-            msg << wxString::Format(_("Total Imported : %ld"), countImported);
-            msg << "\n\n";
-            msg << wxString::Format(_("Log file written to : %s"), logFile.GetFullPath());
-            msg << "\n\n";
-
-            wxString confirmMsg = msg + _("Please confirm saving...");
-            if (!canceledbyuser && wxMessageBox(confirmMsg
-                , _("Importing CSV"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxCANCEL)
-                canceledbyuser = true;
-
-            if (countImported > 0)
-                msg << _("Imported transactions have been flagged so you can review them.");
-
-            // Since all database transactions are only in memory,
-            if (!canceledbyuser)
-            {
-                // we need to save them to the database.
-                Model_Checking::instance().ReleaseSavepoint();
-                mmWebApp::MMEX_WebApp_UpdateAccount();
-                mmWebApp::MMEX_WebApp_UpdatePayee();
-                mmWebApp::MMEX_WebApp_UpdateCategory();
-                importSuccessful_ = true;
-                msg << wxString::Format(_("Transactions saved to database in account: %s"), acctName);
-            }
-            else
-            {
-                // and discard the database changes.
-                Model_Checking::instance().Rollback();
-                msg << _("Imported transactions discarded by user!");
-            }
-
-            *log_field_ << msg;
-
-            outputLog.Close();
+            // and discard the database changes.
+            Model_Checking::instance().Rollback();
+            msg << _("Imported transactions discarded by user!");
         }
+
+        *log_field_ << msg;
+
+        outputLog.Close();
     }
 
     if (!canceledbyuser) Close();
@@ -896,6 +956,7 @@ void mmUnivCSVDialog::update_preview()
     this->m_list_ctrl_->InsertColumn(index, _("#"));
     this->m_list_ctrl_->SetColumnWidth(index, 30);
     int date_position = 0;
+	const int MAX_ROWS_IN_PREVIEW = 20;
 
     for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++ it)
     {
@@ -929,7 +990,6 @@ void mmUnivCSVDialog::update_preview()
 
             wxString delimit = this->delimit_;
             wxString line;
-            size_t count = 0;
             int row = 0;
             for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
             {
@@ -955,9 +1015,16 @@ void mmUnivCSVDialog::update_preview()
                     }
                 }
 
-                if (++ count >= 10) break;
                 ++ row;
             }
+
+			// Limit spin control's max value to number of lines in file.
+			if (IsImporter())
+			{
+				m_spinIgnoreFirstRows_->SetMax(m_list_ctrl_->GetItemCount());
+				m_spinIgnoreLastRows_->SetMax(m_list_ctrl_->GetItemCount());
+				UpdateListItemBackground();
+			}
         }
     }
     else // exporter preview
@@ -1054,7 +1121,7 @@ void mmUnivCSVDialog::update_preview()
                     }
 
                 }
-                if (++ count >= 10) break;
+                if (++ count >= MAX_ROWS_IN_PREVIEW) break;
                 ++ row;
             }
         }
@@ -1120,7 +1187,7 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& /*event*/)
     update_preview();
 }
 
-void mmUnivCSVDialog::OnSearch(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnBrowse(wxCommandEvent& /*event*/)
 {
     wxString fileName = m_text_ctrl_->GetValue();
     const wxString& header = this->is_importer_
@@ -1357,7 +1424,7 @@ void mmUnivCSVDialog::OnFileNameEntered(wxCommandEvent& event)
     file_name.Trim();
 
     event.Skip();
-    wxCommandEvent evt(wxEVT_COMMAND_BUTTON_CLICKED, wxID_SEARCH);
+    wxCommandEvent evt(wxEVT_COMMAND_BUTTON_CLICKED, wxID_BROWSE);
     this->GetEventHandler()->AddPendingEvent(evt);
 }
 
@@ -1374,6 +1441,26 @@ void mmUnivCSVDialog::changeFocus(wxChildFocusEvent& event)
     wxWindow *w = event.GetWindow();
     if (w)
         m_oject_in_focus = w->GetId();
+}
+
+void mmUnivCSVDialog::OnSpinCtrlIgnoreFirstRows(wxSpinEvent& event)
+{
+	UpdateListItemBackground();
+}
+
+void mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows(wxSpinEvent& event)
+{
+	UpdateListItemBackground();
+}
+
+void mmUnivCSVDialog::UpdateListItemBackground()
+{
+	const int firstRow = m_spinIgnoreFirstRows_->GetValue();
+	const int lastRow = m_list_ctrl_->GetItemCount() - m_spinIgnoreLastRows_->GetValue() - 1;
+	for (int row = 0; row < m_list_ctrl_->GetItemCount(); row++)
+	{
+		m_list_ctrl_->SetItemBackgroundColour(row, row >= firstRow && row <= lastRow ? m_list_ctrl_->GetBackgroundColour() :*wxLIGHT_GREY);
+	}
 }
 
 bool mmUnivCSVDialog::isIndexPresent(int index) const
