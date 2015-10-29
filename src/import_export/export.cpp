@@ -98,7 +98,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
     wxString transNum = full_tran.TRANSACTIONNUMBER;
     wxString notes = (full_tran.NOTES);
     notes.Replace("''", "'");
-    notes.Replace("\n", " ");
+    notes.Replace("\n", "\\n");
 
     if (Model_Checking::type(full_tran) == Model_Checking::TRANSFER)
     {

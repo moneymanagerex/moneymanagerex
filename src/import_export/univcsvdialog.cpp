@@ -887,6 +887,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                         break;
                     case UNIV_CSV_NOTES:
                         entry = wxString(pBankTransaction.NOTES).Trim();
+                        entry.Replace("\n", "\\n");
                         break;
                     case UNIV_CSV_DEPOSIT:
                         entry = (value > 0.0) ? amount : "";
@@ -1350,6 +1351,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token)
 
         case UNIV_CSV_NOTES:
             notes_ = token;
+            notes_.Replace("\\n", "\n");
             break;
 
         case UNIV_CSV_TRANSNUM:
