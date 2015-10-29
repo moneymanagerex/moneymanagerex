@@ -393,7 +393,7 @@ const std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, w
     r.push_back(std::make_tuple("UYU", "Uruguayan peso", L"$U", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("UZS", "Uzbekistani som", L"", L"", L"", L"", 1, 1, " ", "."));
     r.push_back(std::make_tuple("VUV", "Vanuatu vatu", L"VT", L"", L"", L"", 100, 1, " ", "."));
-    r.push_back(std::make_tuple("VEF", "Venezuelan Bolívar", L"Bs.", L"bolívar", L"céntimos", L"", 100, 1, "", "."));
+    r.push_back(std::make_tuple("VEF", L"Venezuelan Bolívar", L"Bs.", L"bolívar", L"céntimos", L"", 100, 1, "", "."));
     r.push_back(std::make_tuple("VND", "Vietnamese dong", L"₫", L"", L"", L"", 1, 1, " ", "."));
     r.push_back(std::make_tuple("WST", "Samoan tala", L"WS$", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("YER", "Yemeni rial", L"", L"", L"", L"", 1, 1, " ", "."));
