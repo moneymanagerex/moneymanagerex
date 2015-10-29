@@ -136,6 +136,8 @@
 #include "../resources/wrench.xpm"
 #include "../resources/accounttree.xpm"
 
+#include "../resources/fullscreen_png.h"
+
 //----------------------------------------------------------------------------
 
 int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds
@@ -1621,6 +1623,8 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_ABOUT, _("&About..."), wxBitmap(about_xpm), _("Show about dialog"));
     toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), wxBitmap(help_xpm), _("Show the Help file"));
+    toolBar_->AddSeparator();
+    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Fullscreen\tF11"), wxBITMAP_PNG_FROM_DATA(fullscreen), _("Toggle Fullscreen"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
