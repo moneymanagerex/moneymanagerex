@@ -2,10 +2,12 @@ Version History of Money Manager Ex
 
 1.2.3 (Nov 1, 2015)
 - Translations update
-- Fix: Issue #536 assertion failed (datetime)
-- Fix: Issue #569 Delete currency
-- Fix: Issue #570 Add attachments on duplicate transaction
-- Fix: Issues #562, #568 Wrong currency on repeating transactions
+- Fix: Assertion 'datetime failed'  (Issue #536)
+- Fix: Delete currency (Issue #569)
+- Fix: Add attachments on duplicate transaction (Issue #570)
+- Fix: Wrong currency on repeating transactions (Issues #562, #568)
+- Fix: EOL support for CSV export/import (Issue #577)
+- Fix: Issue #579 ANSI encoding and date with time support for CSV import.
 
 1.2.2 (Jun 29, 2015)
 - Fix: Transaction Type Transfer From/To Error (bug #707)
