@@ -1,5 +1,7 @@
 /*******************************************************
- Copyright (C) 2006 Madhan Kanagavel
+Copyright (C) 2006 Madhan Kanagavel
+Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2015 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -48,9 +50,7 @@ wxBEGIN_EVENT_TABLE(mmUnivCSVDialog, wxDialog)
     EVT_BUTTON(wxID_DOWN, mmUnivCSVDialog::OnMoveDown)
     EVT_BUTTON(wxID_STANDARD, mmUnivCSVDialog::OnStandard)
     EVT_BUTTON(wxID_SEARCH, mmUnivCSVDialog::OnSearch)
-    EVT_CHOICE(wxID_ACCOUNT, mmUnivCSVDialog::OnAccountChange)
     EVT_LISTBOX_DCLICK(wxID_ANY, mmUnivCSVDialog::OnListBox)
-    EVT_RADIOBOX(wxID_RADIO_BOX, mmUnivCSVDialog::OnCheckOrRadioBox)
     EVT_CHOICE(wxID_ANY, mmUnivCSVDialog::OnDateFormatChanged)
 wxEND_EVENT_TABLE()
 
@@ -70,7 +70,17 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 ) :
     is_importer_(is_importer),
     delimit_(","),
-    importSuccessful_(false)
+    importSuccessful_(false),
+    csvFieldCandicate_(nullptr),
+    csvListBox_(nullptr),
+    m_button_add_(nullptr),
+    m_button_remove_(nullptr),
+    m_choice_account_(nullptr),
+    m_list_ctrl_(nullptr),
+    m_text_ctrl_(nullptr),
+    log_field_(nullptr),
+    m_textDelimiter(nullptr),
+    choiceDateFormat_(nullptr)
 {
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
     CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");
@@ -169,8 +179,7 @@ void mmUnivCSVDialog::CreateControls()
         , wxCommandEventHandler(mmUnivCSVDialog::OnSettingsSelected), nullptr, this);
 
     wxBitmapButton* itemButton_Save = new wxBitmapButton(itemPanel67
-        , wxID_SAVEAS, mmBitmap(png::SAVEAS), wxDefaultPosition
-        , wxSize(button_search->GetSize().GetHeight(), button_search->GetSize().GetHeight()));
+        , wxID_SAVEAS, mmBitmap(png::SAVEAS));
     itemBoxSizer76->Add(itemButton_Save, wxSizerFlags(g_flags).Center().Proportion(0));
     itemButton_Save->SetToolTip(_("Save Template"));
 
@@ -242,56 +251,60 @@ void mmUnivCSVDialog::CreateControls()
     wxPanel* itemPanel7 = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer2->Add(itemPanel7, 0, wxEXPAND | wxALL, 1);
 
-    wxBoxSizer* itemBoxSizer8 = new wxBoxSizer(wxHORIZONTAL);
-    itemPanel7->SetSizer(itemBoxSizer8);
+    wxBoxSizer* itemBoxSizer08 = new wxBoxSizer(wxVERTICAL);
+    itemPanel7->SetSizer(itemBoxSizer08);
+
+    wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 4, 0, 0);
+    itemBoxSizer08->Add(flex_sizer);
 
     wxStaticText* itemStaticText6 = new wxStaticText(itemPanel7
         , wxID_ANY, _("Account: "));
-    itemBoxSizer8->Add(itemStaticText6, g_flags);
+    flex_sizer->Add(itemStaticText6, g_flags);
     itemStaticText6->SetFont(staticBoxFontSetting);
 
     m_choice_account_ = new wxChoice(itemPanel7, wxID_ACCOUNT, wxDefaultPosition, wxSize(210, -1)
         , Model_Account::instance().all_checking_account_names(), 0);
     m_choice_account_->SetSelection(0);
-    itemBoxSizer8->Add(m_choice_account_, g_flags);
+    flex_sizer->Add(m_choice_account_, g_flags);
 
     wxStaticLine*  m_staticline2 = new wxStaticLine(this
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
     itemBoxSizer2->Add(m_staticline2, flagsExpand );
 
     wxStaticText* itemStaticText66 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_("Date Format: ")));
-    itemBoxSizer8->AddSpacer(10);
-    itemBoxSizer8->Add(itemStaticText66, g_flags);
+    flex_sizer->Add(itemStaticText66, g_flags);
     itemStaticText66->SetFont(staticBoxFontSetting);
-    //itemStaticText66->Enable(!this->is_importer_);
 
     date_format_ = mmOptions::instance().dateFormat_;
-    choiceDateFormat_ = new wxChoice(itemPanel7, wxID_ANY);
+    choiceDateFormat_ = new wxChoice(itemPanel7, ID_DATE_FORMAT);
     initDateMask();
-    itemBoxSizer8->Add(choiceDateFormat_, g_flags);
+    flex_sizer->Add(choiceDateFormat_, g_flags);
 
     // CSV Delimiter
-    wxString choices [] = { _("Comma"), _("Semicolon"), _("TAB"), _("User Defined") };
-    int num = sizeof(choices) / sizeof(wxString);
-    m_radio_box_ = new wxRadioBox(this
-        , wxID_RADIO_BOX, "", wxDefaultPosition, wxDefaultSize, num, choices, 4, wxRA_SPECIFY_COLS);
+    wxStaticText* itemStaticText77 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_("CSV Delimiter")));
+    itemStaticText77->SetFont(staticBoxFontSetting);
+    flex_sizer->Add(itemStaticText77, g_flags);
 
-    m_textDelimiter = new wxTextCtrl( this, ID_UD_DELIMIT, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+    m_textDelimiter = new wxTextCtrl(itemPanel7, ID_UD_DELIMIT, "", wxDefaultPosition, wxDefaultSize
+        , wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB);
     m_textDelimiter->SetToolTip(_("Specify the delimiter to use when importing/exporting CSV files"));
     m_textDelimiter->SetMaxLength(1);
-    m_textDelimiter->Disable();
     m_textDelimiter->Connect(ID_UD_DELIMIT
-        , wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmUnivCSVDialog::OnCheckOrRadioBox), nullptr, this);
+        , wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmUnivCSVDialog::OnDelimiterChange), nullptr, this);
     initDelimiter();
+    flex_sizer->Add(m_textDelimiter, g_flags);
 
-    wxStaticBox* importExportStaticBox = new wxStaticBox(this, wxID_ANY, _("CSV Delimiter"));
-    importExportStaticBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* importExportStaticBoxSizer = new wxStaticBoxSizer(importExportStaticBox, wxHORIZONTAL);
+    //Encoding
+    wxStaticText* itemStaticText88 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_("Encoding")));
+    itemStaticText88->SetFont(staticBoxFontSetting);
+    flex_sizer->Add(itemStaticText88, g_flags);
 
-    itemBoxSizer2->Add(importExportStaticBoxSizer, 0, wxALL | wxEXPAND, 5);
+    m_choiceEncoding = new wxChoice(itemPanel7, ID_ENCODING);
+    for (const auto i : g_encoding)
+        m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
+    m_choiceEncoding->SetSelection(0);
 
-    importExportStaticBoxSizer->Add(m_radio_box_, 0, wxALL | wxEXPAND, 3);
-    importExportStaticBoxSizer->Add(m_textDelimiter, 0, wxALIGN_BOTTOM | wxALL, 8);
+    flex_sizer->Add(m_choiceEncoding, g_flags);
 
     // Preview
     wxStaticBoxSizer* m_staticbox = new wxStaticBoxSizer(new wxStaticBox(this, wxID_STATIC, _("Preview")), wxVERTICAL);
@@ -356,18 +369,8 @@ void mmUnivCSVDialog::initDelimiter()
 {
     if (delimit_.empty())
         delimit_ = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+    m_textDelimiter->ChangeValue(delimit_);
 
-    if (delimit_ == ",")
-        m_radio_box_->SetSelection(0);
-    else if (delimit_ == ";")
-        m_radio_box_->SetSelection(1);
-    else if (delimit_ == "\t")
-        m_radio_box_->SetSelection(2);
-    else {
-        m_radio_box_->SetSelection(3);
-        m_textDelimiter->Enable();
-        m_textDelimiter->ChangeValue(delimit_);
-    }
 }
 
 void mmUnivCSVDialog::OnSettingsSelected(wxCommandEvent& event)
@@ -623,10 +626,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
         else
         {
             wxTextFile tFile(fileName);
-            if (!tFile.Open())
-            {
+            if (!tFile.Open(g_encoding.at(m_choiceEncoding->GetSelection()).first))
                 return mmErrorDialogs::InvalidFile(m_text_ctrl_, true);
-            }
 
             wxFileName logFile = mmex::GetLogDir(true);
             logFile.SetFullName(fileName);
@@ -661,7 +662,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 else
                     continue;
 
-                this->csv2tab_separated_values(line, delimit_);
+                csv2tab_separated_values(line, delimit_);
                 wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
                 int numTokens = (int)tkz.CountTokens();
                 if (numTokens < (int)csvFieldOrder_.size())
@@ -757,9 +758,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             *log_field_ << msg;
 
             outputLog.Close();
+            tFile.Close();
         }
     }
-
     if (!canceledbyuser) Close();
 }
 
@@ -908,19 +909,16 @@ void mmUnivCSVDialog::update_preview()
         if (!fileName.IsEmpty() && csv_file.FileExists())
         {
             wxTextFile tFile(fileName);
-            if (!tFile.Open())
-            {
-                 wxMessageBox(_("Unable to open file."), _("Universal CSV Import"), wxOK|wxICON_WARNING);
-                 return;
-            }
 
-            wxString delimit = this->delimit_;
+            if (!tFile.Open(g_encoding.at(m_choiceEncoding->GetSelection()).first))
+                return mmErrorDialogs::MessageError(this, _("Unable to open file."), _("Universal CSV Import"));
+
             wxString line;
             size_t count = 0;
             int row = 0;
             for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
             {
-                this->csv2tab_separated_values(line, delimit);
+                csv2tab_separated_values(line, delimit_);
                 wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
 
                 int col = 0;
@@ -945,6 +943,7 @@ void mmUnivCSVDialog::update_preview()
                 if (++ count >= 10) break;
                 ++ row;
             }
+            tFile.Close();
         }
     }
     else // exporter preview
@@ -1145,19 +1144,6 @@ void mmUnivCSVDialog::OnSearch(wxCommandEvent& /*event*/)
     }
 }
 
-void mmUnivCSVDialog::OnAccountChange(wxCommandEvent& event)
-{
-    int sel = event.GetInt();
-    if (sel != wxNOT_FOUND)
-    {
-        update_preview();
-    }
-    wxString acctName = m_choice_account_->GetStringSelection();
-    Model_Account::Data* account = Model_Account::instance().get(acctName);
-    Model_Currency::Data* currency = Model_Account::currency(account);
-    *log_field_ << _("Currency:") << " " << currency->CURRENCYNAME << "\n";
-}
-
 void mmUnivCSVDialog::OnListBox(wxCommandEvent& event)
 {
     int sel = event.GetSelection();
@@ -1174,34 +1160,16 @@ void mmUnivCSVDialog::OnListBox(wxCommandEvent& event)
 
 }
 
-void mmUnivCSVDialog::OnCheckOrRadioBox(wxCommandEvent& event)
+void mmUnivCSVDialog::OnDelimiterChange(wxCommandEvent& event)
 {
-    wxString ud_delimit = m_textDelimiter->GetValue();
-
-    m_textDelimiter->Disable();
-    switch(m_radio_box_->GetSelection())
-    {
-        case 0:
-            delimit_ = ",";
-            break;
-        case 1:
-            delimit_ = ";";
-            break;
-        case 2:
-            delimit_ = "\t";
-            break;
-        case 3:
-            delimit_ = ud_delimit;
-            m_textDelimiter->Enable();
-            break;
-        default:
-            break;
-    }
-
-    m_textDelimiter->ChangeValue(delimit_);
+    const wxString delimit = m_textDelimiter->GetValue();
     event.Skip();
 
-    if (!delimit_.IsEmpty()) this->update_preview();
+    if (!delimit.IsEmpty())
+    {
+        delimit_ = delimit;
+        this->update_preview();
+    }
 }
 
 void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_holder & holder)
@@ -1349,11 +1317,30 @@ void mmUnivCSVDialog::OnFileNameEntered(wxCommandEvent& event)
     this->GetEventHandler()->AddPendingEvent(evt);
 }
 
-void mmUnivCSVDialog::OnDateFormatChanged(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnDateFormatChanged(wxCommandEvent& event)
 {
-    wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
-    if (data) date_format_ = data->GetData();
-    *log_field_ << date_format_ << "\n";
+    int sel = event.GetInt();
+    if (sel == wxNOT_FOUND)
+        return;
+    int i = event.GetId();
+    if (i == ID_DATE_FORMAT)
+    {
+        wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
+        if (data) date_format_ = data->GetData();
+        *log_field_ << date_format_ << "\n";
+    }
+    else if (i == wxID_ACCOUNT)
+    {
+        wxString acctName = m_choice_account_->GetStringSelection();
+        Model_Account::Data* account = Model_Account::instance().get(acctName);
+        Model_Currency::Data* currency = Model_Account::currency(account);
+        *log_field_ << _("Currency:") << " " << currency->CURRENCYNAME << "\n";
+    }
+    else if (i == ID_ENCODING)
+    {
+        *log_field_ << m_choiceEncoding->GetStringSelection() << "\n";
+    }
+
     this->update_preview();
 }
 
@@ -1387,52 +1374,4 @@ wxBitmap mmUnivCSVDialog::GetBitmapResource(const wxString& /*name*/)
 wxIcon mmUnivCSVDialog::GetIconResource(const wxString& /*name*/)
 {
     return wxNullIcon;
-}
-
-//--- CSV specific ---------//
-void mmUnivCSVDialog::csv2tab_separated_values(wxString& line, const wxString& delimit)
-{
-    //csv line example:
-    //12.02.2010,Payee,-1105.08,Category,Subcategory,,"Fuel ""95"", 42.31 l (24.20) 212366"
-    int i = 0;
-    //Single quotes will be used instead double quotes
-    //Replace all single quotes first
-    line.Replace("'", "\6");
-    line.Replace(delimit + "\"\"" + delimit, delimit + delimit);
-    if (line.StartsWith("\"\"" + delimit))
-        line.Replace("\"\"" + delimit, delimit, false);
-    if (line.EndsWith(delimit + "\"\""))
-        line.RemoveLast(2);
-
-    //line.Replace(delimit + "\"\"" + "\n", delimit + "\n");
-    //Replace double quotes that used twice to replacer
-    line.Replace("\"\"\"" + delimit + "\"\"\"", "\5\"" + delimit + "\"\5");
-    line.Replace("\"\"\"" + delimit, "\5\"" + delimit);
-    line.Replace(delimit + "\"\"\"", delimit + "\"\5");
-    line.Replace("\"\"" + delimit, "\5" + delimit);
-    line.Replace(delimit + "\"\"", delimit + "\5");
-
-    //replace delimiter to TAB and double quotes to single quotes
-    line.Replace("\"" + delimit + "\"", "'\t'");
-    line.Replace("\"" + delimit, "'\t");
-    line.Replace(delimit + "\"", "\t'");
-    line.Replace("\"\"", "\5");
-    line.Replace("\"", "'");
-
-    wxString temp_line = wxEmptyString;
-    wxString token;
-    wxStringTokenizer tkz1(line, "'");
-
-    while (tkz1.HasMoreTokens())
-    {
-        token = tkz1.GetNextToken();
-        if (0 == fmod((double) i, 2))
-            token.Replace(delimit, "\t");
-        temp_line << token;
-        i++;
-    };
-    //Replace back all replacers to the original value
-    temp_line.Replace("\5", "\"");
-    temp_line.Replace("\6", "'");
-    line = temp_line;
 }

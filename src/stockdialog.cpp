@@ -25,7 +25,6 @@
 #include "paths.h"
 #include "util.h"
 #include "validators.h"
-#include "import_export/univcsvdialog.h"
 
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"
@@ -547,7 +546,7 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
             priceStr.clear();
 
             const wxString& delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
-            mmUnivCSVDialog::csv2tab_separated_values(line, delimiter);
+            csv2tab_separated_values(line, delimiter);
             wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);  
             if ((int)tkz.CountTokens() < 2)
                 continue;
