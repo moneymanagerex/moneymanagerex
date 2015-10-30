@@ -210,6 +210,54 @@ const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
     return true;
 }
 
+/*--- CSV specific ---------*/
+void csv2tab_separated_values(wxString& line, const wxString& delimit)
+{
+    //csv line example:
+    //12.02.2010,Payee,-1105.08,Category,Subcategory,,"Fuel ""95"", 42.31 l (24.20) 212366"
+    int i = 0;
+    //Single quotes will be used instead double quotes
+    //Replace all single quotes first
+    line.Replace("'", "\6");
+    line.Replace(delimit + "\"\"" + delimit, delimit + delimit);
+    if (line.StartsWith("\"\"" + delimit))
+        line.Replace("\"\"" + delimit, delimit, false);
+    if (line.EndsWith(delimit + "\"\""))
+        line.RemoveLast(2);
+
+    //line.Replace(delimit + "\"\"" + "\n", delimit + "\n");
+    //Replace double quotes that used twice to replacer
+    line.Replace("\"\"\"" + delimit + "\"\"\"", "\5\"" + delimit + "\"\5");
+    line.Replace("\"\"\"" + delimit, "\5\"" + delimit);
+    line.Replace(delimit + "\"\"\"", delimit + "\"\5");
+    line.Replace("\"\"" + delimit, "\5" + delimit);
+    line.Replace(delimit + "\"\"", delimit + "\5");
+
+    //replace delimiter to TAB and double quotes to single quotes
+    line.Replace("\"" + delimit + "\"", "'\t'");
+    line.Replace("\"" + delimit, "'\t");
+    line.Replace(delimit + "\"", "\t'");
+    line.Replace("\"\"", "\5");
+    line.Replace("\"", "'");
+
+    wxString temp_line = wxEmptyString;
+    wxString token;
+    wxStringTokenizer tkz1(line, "'");
+
+    while (tkz1.HasMoreTokens())
+    {
+        token = tkz1.GetNextToken();
+        if (0 == fmod((double)i, 2))
+            token.Replace(delimit, "\t");
+        temp_line << token;
+        i++;
+    };
+    //Replace back all replacers to the original value
+    temp_line.Replace("\5", "\"");
+    temp_line.Replace("\6", "'");
+    line = temp_line;
+}
+
 //* Date Functions----------------------------------------------------------*//
 const wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
 {
@@ -232,19 +280,25 @@ const wxString mmGetDateForDisplay(const wxDateTime &dt)
     return dt.Format(mmOptions::instance().dateFormat_);
 }
 
-bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString &sDateMask)
+bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, const wxString &sDateMask)
 {
     wxString mask = sDateMask;
     mask.Replace("%Y%m%d", "%Y %m %d");
     if (date_formats_regex().count(mask) == 0) return false;
 
     const wxString regex = date_formats_regex().at(mask);
+    const wxString date_template = g_date_formats_map.at(mask);
+    if (sDate.length() > date_template.length())
+        sDate = sDate.Left(date_template.length());
+    
     wxRegEx pattern(regex);
     //skip dot if present in pattern but not in date string 
     const wxString separator = mask.Mid(2,1);
-    date.ParseFormat(sDate, mask, date);
     if (pattern.Matches(sDate) && sDate.Contains(separator))
+    {
+        date.ParseFormat(sDate, mask, date);
         return true;
+    }
     else
     {
         //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
@@ -338,6 +392,19 @@ const std::map<wxString, wxString> g_date_formats_map = {
     , { "%Y/%m/%d", "YYYY/MM/DD" }
     , { "%Y.%m.%d", "YYYY.MM.DD" }
     , { "%Y%m%d", "YYYYMMDD" }
+};
+
+const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding = {
+    { 0, { wxConvAuto(wxFONTENCODING_SYSTEM), wxTRANSLATE("Default") } }
+    , { 1, { wxConvAuto(wxFONTENCODING_UTF8), wxTRANSLATE("UTF-8") } }
+    , { 2, { wxConvAuto(wxFONTENCODING_CP1250), wxTRANSLATE("1250") } }
+    , { 3, { wxConvAuto(wxFONTENCODING_CP1251), wxTRANSLATE("1251") } }
+    , { 4, { wxConvAuto(wxFONTENCODING_CP1252), wxTRANSLATE("1252") } }
+    , { 5, { wxConvAuto(wxFONTENCODING_CP1253), wxTRANSLATE("1253") } }
+    , { 6, { wxConvAuto(wxFONTENCODING_CP1254), wxTRANSLATE("1254") } }
+    , { 7, { wxConvAuto(wxFONTENCODING_CP1255), wxTRANSLATE("1255") } }
+    , { 8, { wxConvAuto(wxFONTENCODING_CP1256), wxTRANSLATE("1256") } }
+    , { 9, { wxConvAuto(wxFONTENCODING_CP1257), wxTRANSLATE("1257") } }
 };
 
 static const wxString MONTHS[12] =

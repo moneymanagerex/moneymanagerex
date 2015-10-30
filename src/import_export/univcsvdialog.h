@@ -41,6 +41,8 @@
 #define wxID_ACCOUNT 10103
 #define ID_UD_DELIMIT 10104
 #define ID_FILE_NAME 10105
+#define ID_DATE_FORMAT 10106
+#define ID_ENCODING 10107
 ////@end control identifiers
 
 /*!
@@ -77,7 +79,6 @@ public:
     {
         return fromAccountID_;
     }
-    static void csv2tab_separated_values(wxString& line, const wxString& delimit);
 
 private:
     enum EUnivCvs
@@ -120,7 +121,6 @@ private:
     wxButton* m_button_add_;
     wxButton* m_button_remove_;
     wxChoice* m_choice_account_;
-    wxRadioBox* m_radio_box_;
     wxListCtrl* m_list_ctrl_; //preview
     wxTextCtrl* m_text_ctrl_;
     wxTextCtrl* log_field_;
@@ -129,6 +129,7 @@ private:
     std::map<int, wxString> CSVFieldName_;
 
     wxChoice* choiceDateFormat_;
+    wxChoice* m_choiceEncoding;
     wxString date_format_;
 
     int fromAccountID_;
@@ -158,9 +159,8 @@ private:
     void OnMoveDown(wxCommandEvent& event);
     void OnStandard(wxCommandEvent& event);
     void OnSearch(wxCommandEvent& event);
-    void OnAccountChange(wxCommandEvent& event);
     void OnListBox(wxCommandEvent& event);
-    void OnCheckOrRadioBox(wxCommandEvent& event);
+    void OnDelimiterChange(wxCommandEvent& event);
     void OnButtonClear(wxCommandEvent& event);
     void OnFileNameEntered(wxCommandEvent& event);
     void OnFileNameChanged(wxCommandEvent& event);
