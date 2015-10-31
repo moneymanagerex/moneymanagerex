@@ -21,6 +21,7 @@
 #include "currencydialog.h"
 #include "constants.h"
 #include "defs.h"
+#include "images_list.h"
 #include "mmCalculator.h"
 #include "mmSimpleDialogs.h"
 #include "mmtextctrl.h"
@@ -32,9 +33,6 @@
 #include "model/Model_CurrencyHistory.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
-
-#include "../resources/checkupdate.xpm"
-#include "../resources/trash.xpm"
 
 #include <vector>
 #include <wx/sstream.h>
@@ -118,7 +116,7 @@ void mmMainCurrencyDialog::fillControls()
         data.push_back(wxVariant(baseCurrencyID == currencyID));
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(currency.CURRENCYNAME));
-        data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::LastRate(currencyID)));
+        data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID)));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
         if (selectedIndex_ == currencyListBox_->GetItemCount() - 1)
         {
@@ -151,7 +149,7 @@ void mmMainCurrencyDialog::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer22, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxBitmapButton* update_button = new wxBitmapButton(this
-        , wxID_STATIC, wxBitmap(checkupdate_xpm));
+        , wxID_STATIC, mmBitmap(png::UPDATE));
     itemBoxSizer22->Add(update_button, g_flags);
     update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
@@ -216,7 +214,7 @@ void mmMainCurrencyDialog::CreateControls()
         itemButtonSelect->Disable();
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
-    wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, _("&Close "));
     itemBoxSizer9->Add(itemCancelButton, g_flags);
     itemCancelButton->SetFocus();
 
@@ -225,6 +223,7 @@ void mmMainCurrencyDialog::CreateControls()
     mainBoxSizer->Add(rightBoxSizer, g_flagsExpand);
 
     historyStaticBox_ = new wxStaticBox(this, wxID_ANY, _("Currency History Options"));
+
     wxStaticBoxSizer* historyStaticBox_Sizer = new wxStaticBoxSizer(historyStaticBox_, wxVERTICAL);
     rightBoxSizer->Add(historyStaticBox_Sizer, g_flagsExpand);
 
@@ -232,22 +231,20 @@ void mmMainCurrencyDialog::CreateControls()
         , wxLC_REPORT);
     historyStaticBox_Sizer->Add(valueListBox_, g_flagsExpand);
 
+    wxListItem col0, col1, col2;
     // Add first column
-    wxListItem col0;
     col0.SetId(0);
     col0.SetText(_("Date"));
     col0.SetWidth(90);
     valueListBox_->InsertColumn(0, col0);
 
     // Add second column
-    wxListItem col1;
     col1.SetId(1);
     col1.SetText(_("Value"));
     col1.SetWidth(100);
     valueListBox_->InsertColumn(1, col1);
 
     // Add third column
-    wxListItem col2;
     col2.SetId(2);
     col2.SetText(_("Diff."));
     col2.SetWidth(90);
@@ -280,15 +277,17 @@ void mmMainCurrencyDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, wxBitmap(checkupdate_xpm)
-        , wxDefaultPosition, wxSize(itemButtonEdit_->GetSize().GetY(), itemButtonEdit_->GetSize().GetY()));
+    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, mmBitmap(png::UPDATE));
     buttonDownload->SetToolTip(_("Download Currency Values history"));
-    historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update "));
+    historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update "), wxDefaultPosition
+        , wxSize(-1, buttonDownload->GetSize().GetY()));
     historyButtonAdd_->SetToolTip(_("Add Currency Values to history"));
-    historyButtonDelete_ = new wxButton(buttons_panel, HISTORY_DELETE, _("&Delete "));
+    historyButtonDelete_ = new wxButton(buttons_panel, HISTORY_DELETE, _("&Delete "), wxDefaultPosition
+        , wxSize(-1, buttonDownload->GetSize().GetY()));
     historyButtonDelete_->SetToolTip(_("Delete selected Currency Values"));
-    wxBitmapButton* buttonDelUnusedHistory = new wxBitmapButton(buttons_panel, HISTORY_DELUNUSED, wxBitmap(trash_xpm)
-        , wxDefaultPosition, wxSize(itemButtonEdit_->GetSize().GetY(), itemButtonEdit_->GetSize().GetY()));
+
+    wxBitmapButton* buttonDelUnusedHistory = new wxBitmapButton(buttons_panel
+        , HISTORY_DELUNUSED, mmBitmap(png::VOID_STAT));
     buttonDelUnusedHistory->SetToolTip(_("Delete Currency Values history for unused currencies"));
     buttons_sizer->Add(buttonDownload, g_flags);
     buttons_sizer->Add(historyButtonAdd_, g_flags);
@@ -612,6 +611,7 @@ void mmMainCurrencyDialog::OnHistoryAdd(wxCommandEvent& /*event*/)
         return;
     Model_CurrencyHistory::instance().addUpdate(currencyID_, valueDatePicker_->GetValue(), dPrice, Model_CurrencyHistory::MANUAL);
 
+    fillControls();
     ShowCurrencyHistory();
 }
 
@@ -631,6 +631,8 @@ void mmMainCurrencyDialog::OnHistoryDelete(wxCommandEvent& /*event*/)
         Model_CurrencyHistory::instance().remove((int)valueListBox_->GetItemData(item));
     }
     Model_CurrencyHistory::instance().ReleaseSavepoint();
+
+    fillControls();
     ShowCurrencyHistory();
 }
 
@@ -699,7 +701,10 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 
     if (Found)
+    {
+        fillControls();
         ShowCurrencyHistory();
+    }
     else
         mmErrorDialogs::MessageError(this,
             wxString::Format("Unable to download history for symbol %S. History rates not available!", CurrentCurrency->CURRENCY_SYMBOL.Upper()),
@@ -730,6 +735,8 @@ void mmMainCurrencyDialog::OnHistoryDeleteUnused(wxCommandEvent& /*event*/)
         }
     }
     Model_CurrencyHistory::instance().ReleaseSavepoint();
+
+    fillControls();
     ShowCurrencyHistory();
 }
 
@@ -828,6 +835,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     }
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 
+    fillControls();
     ShowCurrencyHistory();
     return true;
 }

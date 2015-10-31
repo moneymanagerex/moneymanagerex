@@ -49,10 +49,9 @@ public:
         ICON_VOID,
         ICON_FOLLOWUP,
         ICON_NONE,
+        ICON_DUPLICATE,
         ICON_DESC,
         ICON_ASC,
-        ICON_DUPLICATE,
-        ICON_TRASH
     };
 
     enum EColumn
@@ -106,7 +105,6 @@ public:
     long m_selectedForCopy; //The transaction ID if selected for copy
     long m_selectedID; //Selected transaction ID
     void refreshVisualList(int trans_id = -1, bool filter = true);
-    bool showDeletedTransactions_;
 
 protected:
     /* Sort Columns */
@@ -115,8 +113,7 @@ protected:
 private:
     enum
     {
-        MENU_TREEPOPUP_SHOWTRASH = wxID_HIGHEST + 150,
-        MENU_TREEPOPUP_MARKRECONCILED,
+        MENU_TREEPOPUP_MARKRECONCILED = wxID_HIGHEST + 150,
         MENU_TREEPOPUP_MARKUNRECONCILED,
         MENU_TREEPOPUP_MARKVOID,
         MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP,
@@ -192,7 +189,6 @@ private:
     void OnListItemSelected(wxListEvent& event);
     void OnListItemActivated(wxListEvent& event);
     void OnMarkTransaction(wxCommandEvent& event);
-    void OnShowChbClick(wxCommandEvent& /*event*/);
     void OnMarkAllTransactions(wxCommandEvent& event);
     void OnListKeyDown(wxListEvent& event);
     void OnChar(wxKeyEvent& event);

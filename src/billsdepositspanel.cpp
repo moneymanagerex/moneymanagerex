@@ -20,22 +20,13 @@
 #include "billsdepositspanel.h"
 #include "billsdepositsdialog.h"
 #include "constants.h"
+#include "images_list.h"
 
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
-
-#include "../resources/attachment.xpm"
-#include "../resources/downarrow.xpm"
-#include "../resources/error.xpm"
-#include "../resources/rightarrow.xpm"
-#include "../resources/rt_exec_auto.xpm"
-#include "../resources/rt_exec_user.xpm"
-#include "../resources/tipicon.xpm"
-#include "../resources/uparrow.xpm"
-
 
 enum
 {
@@ -225,8 +216,7 @@ void mmBillsDepositsPanel::CreateControls()
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
-    wxBitmap itemStaticBitmap(rightarrow_xpm);
-    bitmapTransFilter_ = new wxStaticBitmap(headerPanel, wxID_ANY, itemStaticBitmap);
+    bitmapTransFilter_ = new wxStaticBitmap(headerPanel, wxID_ANY, mmBitmap(png::RIGHTARROW));
     itemBoxSizerHHeader2->Add(bitmapTransFilter_, g_flagsBorder1);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
@@ -236,20 +226,20 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizerHHeader2->AddSpacer(5);
     wxStaticText* statTextTransFilter_ = new wxStaticText(headerPanel, wxID_ANY
         , _("Transaction Filter"));
-    itemBoxSizerHHeader2->Add(statTextTransFilter_, 0, wxALIGN_CENTER_VERTICAL, 0);
+    itemBoxSizerHHeader2->Add(statTextTransFilter_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 1);
 
     /* ---------------------- */
     wxSplitterWindow* itemSplitterWindowBillsDeposit = new wxSplitterWindow(this
         , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
         , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
-    wxSize imageSize(16, 16);
-    m_imageList = new wxImageList(imageSize.GetWidth(), imageSize.GetHeight());
-    m_imageList->Add(wxBitmap(wxImage(error_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(rt_exec_auto_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(rt_exec_user_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(downarrow_xpm).Scale(16, 16)));
+    int x = mmIniOptions::instance().ico_size_;
+    m_imageList = new wxImageList(x, x);
+    m_imageList->Add(mmBitmap(png::FOLLOW_UP));
+    m_imageList->Add(mmBitmap(png::RUN)); //TODO: auto exec ico
+    m_imageList->Add(mmBitmap(png::RUN));
+    m_imageList->Add(mmBitmap(png::UPARROW));
+    m_imageList->Add(mmBitmap(png::DOWNARROW));
 
     listCtrlAccount_ = new billsDepositsListCtrl(this, itemSplitterWindowBillsDeposit);
 
@@ -303,7 +293,7 @@ void mmBillsDepositsPanel::CreateControls()
     buttonSkipTrans->Enable(false);
 
     wxBitmapButton* btnAttachment_ = new wxBitmapButton(bdPanel, wxID_FILE
-        , wxBitmap(attachment_xpm), wxDefaultPosition
+        , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(30, itemButton8->GetSize().GetY()));
     btnAttachment_->SetToolTip(_("Open attachments"));
     itemBoxSizer5->Add(btnAttachment_, 0, wxRIGHT, 5);
@@ -864,7 +854,7 @@ void mmBillsDepositsPanel::OnFilterTransactions(wxMouseEvent& event)
 
     int e = event.GetEventType();
 
-    wxBitmap bitmapFilterIcon(rightarrow_xpm);
+    wxBitmap bitmapFilterIcon(mmBitmap(png::RIGHTARROW));
 
     if (e == wxEVT_LEFT_DOWN)
     {
@@ -872,8 +862,7 @@ void mmBillsDepositsPanel::OnFilterTransactions(wxMouseEvent& event)
         if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->somethingSelected())
         {
             transFilterActive_ = true;
-            wxBitmap activeBitmapFilterIcon(tipicon_xpm);
-            bitmapFilterIcon = activeBitmapFilterIcon;
+            bitmapFilterIcon = mmBitmap(png::RIGHTARROW_ACTIVE);
         }
         else
         {

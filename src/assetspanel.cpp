@@ -21,23 +21,12 @@
 #include "assetdialog.h"
 #include "attachmentdialog.h"
 #include "constants.h"
+#include "images_list.h"
 
 #include "model/Model_Attachment.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Setting.h"
 #include <wx/srchctrl.h>
-
-#include "../resources/art.xpm"
-#include "../resources/assets.xpm"
-#include "../resources/attachment.xpm"
-#include "../resources/car.xpm"
-#include "../resources/clock.xpm"
-#include "../resources/coin.xpm"
-#include "../resources/downarrow.xpm"
-#include "../resources/house.xpm"
-#include "../resources/rightarrow.xpm"
-#include "../resources/rubik_cube.xpm"
-#include "../resources/uparrow.xpm"
 
 /*******************************************************/
 
@@ -385,14 +374,13 @@ void mmAssetsPanel::CreateControls()
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
-    wxBitmap itemStaticBitmap(rightarrow_xpm);
-    wxStaticBitmap* itemStaticBitmap3 = new wxStaticBitmap(headerPanel, wxID_STATIC, itemStaticBitmap);
-    itemBoxSizerHHeader2->Add(itemStaticBitmap3, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    wxStaticBitmap* itemStaticBitmap3 = new wxStaticBitmap(headerPanel, wxID_STATIC, mmBitmap(png::RIGHTARROW));
+    itemBoxSizerHHeader2->Add(itemStaticBitmap3, g_flagsBorder1);
     //itemStaticBitmap3->Connect(ID_PANEL_CHECKING_STATIC_BITMAP_VIEW, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnFilterResetToViewAll), nullptr, this);
     itemStaticBitmap3->Connect(wxID_STATIC, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnMouseLeftDown), nullptr, this);
 
     itemStaticTextMainFilter_ = new wxStaticText(headerPanel, wxID_STATIC, _("All"));
-    itemBoxSizerHHeader2->Add(itemStaticTextMainFilter_, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxGROW, 5);
+    itemBoxSizerHHeader2->Add(itemStaticTextMainFilter_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 1);
 
     header_text_ = new wxStaticText(headerPanel, wxID_STATIC, "");
     itemBoxSizerVHeader->Add(header_text_, g_flagsBorder1);
@@ -404,18 +392,17 @@ void mmAssetsPanel::CreateControls()
 
     m_listCtrlAssets = new mmAssetsListCtrl(this, itemSplitterWindow10, wxID_ANY);
 
-    wxSize imageSize(16, 16);
-    m_imageList.reset(new wxImageList(imageSize.GetWidth(), imageSize.GetHeight()));
-    //TODO: Provide better icons
-    m_imageList->Add(wxBitmap(wxImage(house_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(car_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(clock_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(art_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(assets_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(coin_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(rubik_cube_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(16, 16)));
-    m_imageList->Add(wxBitmap(wxImage(downarrow_xpm).Scale(16, 16)));
+    int x = mmIniOptions::instance().ico_size_;
+    m_imageList.reset(new wxImageList(x, x));
+    m_imageList->Add(mmBitmap(png::PROPERTY));
+    m_imageList->Add(mmBitmap(png::CAR));
+    m_imageList->Add(mmBitmap(png::HOUSEHOLD_OBJ));
+    m_imageList->Add(mmBitmap(png::ART));
+    m_imageList->Add(mmBitmap(png::JEWELLERY));
+    m_imageList->Add(mmBitmap(png::CASH));
+    m_imageList->Add(mmBitmap(png::OTHER));
+    m_imageList->Add(mmBitmap(png::UPARROW));
+    m_imageList->Add(mmBitmap(png::DOWNARROW));
 
     m_listCtrlAssets->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
 
@@ -457,7 +444,7 @@ void mmAssetsPanel::CreateControls()
     itemButton7->Enable(false);
 
 	wxBitmapButton* attachment_button_ = new wxBitmapButton(assets_panel
-		, wxID_FILE, wxBitmap(attachment_xpm), wxDefaultPosition,
+		, wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition,
 		wxSize(30, itemButton7->GetSize().GetY()));
 	attachment_button_->SetToolTip(_("Open attachments"));
     itemBoxSizer5->Add(attachment_button_, 0, wxRIGHT, 5);

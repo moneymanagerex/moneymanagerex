@@ -222,7 +222,7 @@ void mmCurrencyDialog::CreateControls()
     itemBoxSizer22->Add(itemButton24, g_flags);
     itemButton24->SetToolTip(_("Save any changes made"));
 
-    wxButton* itemButton25 = new wxButton(this, wxID_CANCEL, _("&Close "));
+    wxButton* itemButton25 = new wxButton(this, wxID_CANCEL, _("&Cancel "));
     itemBoxSizer22->Add(itemButton25, g_flags);
     itemButton25->SetToolTip(_("Any changes will be lost without update"));
 }

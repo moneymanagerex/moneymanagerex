@@ -268,6 +268,7 @@ const std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, w
     r.push_back(std::make_tuple("XOF", "West African CFA franc", L"CFA", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("BMD", "Bermudian dollar", L"BD$", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("BTN", "Bhutanese ngultrum", L"Nu.", L"", L"", L"", 100, 1, " ", "."));
+    r.push_back(std::make_tuple("BTC", "Bitcoin", L"Ƀ", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("BOB", "Bolivian boliviano", L"Bs.", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("BAM", "Bosnia and Herzegovina konvertibilna marka", L"KM", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("BWP", "Botswana pula", L"P", L"", L"", L"", 100, 1, " ", "."));
@@ -392,10 +393,10 @@ const std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, w
     r.push_back(std::make_tuple("UYU", "Uruguayan peso", L"$U", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("UZS", "Uzbekistani som", L"", L"", L"", L"", 1, 1, " ", "."));
     r.push_back(std::make_tuple("VUV", "Vanuatu vatu", L"VT", L"", L"", L"", 100, 1, " ", "."));
+    r.push_back(std::make_tuple("VEF", L"Venezuelan Bolívar", L"Bs.", L"bolívar", L"céntimos", L"", 100, 1, "", "."));
     r.push_back(std::make_tuple("VND", "Vietnamese dong", L"₫", L"", L"", L"", 1, 1, " ", "."));
     r.push_back(std::make_tuple("WST", "Samoan tala", L"WS$", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("YER", "Yemeni rial", L"", L"", L"", L"", 1, 1, " ", "."));
-    r.push_back(std::make_tuple("BTC", "Bitcoin", L"Ƀ", L"", L"", L"", 100, 1, " ", "."));
 
     return r;
 } 

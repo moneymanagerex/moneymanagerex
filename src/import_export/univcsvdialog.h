@@ -41,9 +41,11 @@
 #define wxID_ACCOUNT 10103
 #define ID_UD_DELIMIT 10104
 #define ID_FILE_NAME 10105
-#define ID_FIRST_ROW 10106
-#define ID_LAST_ROW 10107
- ////@end control identifiers
+#define ID_DATE_FORMAT 10106
+#define ID_ENCODING 10107
+#define ID_FIRST_ROW 10108
+#define ID_LAST_ROW 10109
+////@end control identifiers
 
 /*!
  * Compatibility
@@ -79,7 +81,6 @@ public:
     {
         return fromAccountID_;
     }
-    static void csv2tab_separated_values(wxString& line, const wxString& delimit);
 
 	bool IsImporter() const
 	{
@@ -102,6 +103,21 @@ private:
         UNIV_CSV_BALANCE,
         UNIV_CSV_LAST
     };
+
+    struct tran_holder
+    {
+        wxDateTime Date;
+        wxString Type;
+        wxString Status = "";
+        int ToAccountID = -1;
+        double ToAmount = 0.0;
+        int PayeeID = -1;
+        int CategoryID = -1;
+        int SubCategoryID = -1;
+        double Amount = 0.0;
+        wxString Number;
+        wxString Notes;
+    };
     bool is_importer_;
     wxString delimit_;
 
@@ -112,7 +128,6 @@ private:
     wxButton* m_button_add_;
     wxButton* m_button_remove_;
     wxChoice* m_choice_account_;
-    wxRadioBox* m_radio_box_;
     wxListCtrl* m_list_ctrl_; //preview
     wxTextCtrl* m_text_ctrl_;
     wxTextCtrl* log_field_;
@@ -123,15 +138,8 @@ private:
 
     std::map<int, wxString> CSVFieldName_;
 
-    wxString dt_;
-    wxString type_;
-    wxString transNum_;
-    wxString notes_;
-    int payeeID_;
-    int categID_;
-    int subCategID_;
-    double val_;
     wxChoice* choiceDateFormat_;
+    wxChoice* m_choiceEncoding;
     wxString date_format_;
 
     int fromAccountID_;
@@ -149,21 +157,20 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void OnAdd(wxCommandEvent& event);
-    bool validateData();
+    bool validateData(tran_holder & holder);
     void OnImport(wxCommandEvent& event);
     void OnExport(wxCommandEvent& event);
     void OnRemove(wxCommandEvent& event);
     bool isIndexPresent(int index) const;
     const wxString getCSVFieldName(int index) const;
-    void parseToken(int index, const wxString& token);
+    void parseToken(int index, const wxString& token, tran_holder & holder);
     void OnSave(wxCommandEvent& event);
     void OnMoveUp(wxCommandEvent& event);
     void OnMoveDown(wxCommandEvent& event);
     void OnStandard(wxCommandEvent& event);
     void OnBrowse(wxCommandEvent& event);
-    void OnAccountChange(wxCommandEvent& event);
     void OnListBox(wxCommandEvent& event);
-    void OnCheckOrRadioBox(wxCommandEvent& event);
+    void OnDelimiterChange(wxCommandEvent& event);
     void OnButtonClear(wxCommandEvent& event);
     void OnFileNameEntered(wxCommandEvent& event);
     void OnFileNameChanged(wxCommandEvent& event);
@@ -174,7 +181,7 @@ private:
 
     void OnLoad();
 	void UpdateListItemBackground();
-	void update_preview();
+    void update_preview();
     void initDelimiter();
     void initDateMask();
 

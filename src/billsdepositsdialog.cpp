@@ -21,6 +21,7 @@
 #include "attachmentdialog.h"
 #include "categdialog.h"
 #include "constants.h"
+#include "images_list.h"
 #include "mmOption.h"
 #include "mmSimpleDialogs.h"
 #include "paths.h"
@@ -32,9 +33,6 @@
 #include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
-
-#include "../resources/attachment.xpm"
-#include "../resources/schedule.xpm"
 
 #include <wx/valnum.h>
 
@@ -473,7 +471,7 @@ void mmBDDialog::CreateControls()
     spinTransDate_->SetToolTip(_("Retard or advance the date of the transaction"));
 
     m_apply_due_date = new wxBitmapButton(transactionPanel, wxID_APPLY
-        , wxBitmap(schedule_xpm), wxDefaultPosition
+        , mmBitmap(png::RECURRING), wxDefaultPosition
         , wxSize( /*spinTransDate_->GetSize().GetY()*/ -1, spinTransDate_->GetSize().GetY()));
     m_apply_due_date->SetToolTip(_("Reset date to the Due Date"));
 
@@ -596,7 +594,7 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(new wxStaticText(transactionPanel, wxID_STATIC, _("Notes")), g_flags);
 
     bAttachments_ = new wxBitmapButton(transactionPanel, wxID_FILE
-        , wxBitmap(attachment_xpm), wxDefaultPosition
+        , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(bSetNextOccurDate_->GetSize().GetY(), bSetNextOccurDate_->GetSize().GetY()));
     bAttachments_->SetToolTip(_("Organize attachments of this recurring transaction"));
 
@@ -694,7 +692,7 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(acctName);
         if (account)
         {
-            Model_Currency::Data* currency = Model_Currency::instance().get(account->ACCOUNTID);
+            Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
             if (currency && textAmount_->Calculate())
                 textAmount_->GetDouble(m_bill_data.TRANSAMOUNT);
 
