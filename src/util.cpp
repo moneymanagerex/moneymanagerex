@@ -338,13 +338,19 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     return financialYear;
 }
 
-const std::map<wxString,wxString> date_formats_regex()
+const std::map<wxString,wxString> &date_formats_regex()
 {
-    const wxString dd = "((([0 ][1-9])|([1-2][0-9])|(3[0-1]))|([1-9]))";
+	static std::map<wxString, wxString> date_regex;
+	
+	// If the map was already filled, return it.
+	if (!date_regex.empty())
+		return date_regex;
+
+	// First time this function is called, fill the map.
+	const wxString dd = "((([0 ][1-9])|([1-2][0-9])|(3[0-1]))|([1-9]))";
     const wxString mm = "((([0 ][1-9])|(1[0-2]))|([1-9]))";
     const wxString yy = "([0-9]{2})";
     const wxString yyyy = "(((19)|([2]([0]{1})))([0-9]{2}))";
-    std::map<wxString, wxString> date_regex;
     date_regex["%d/%m/%y"] = wxString::Format("^%s/%s/%s$", dd, mm, yy);
     date_regex["%d/%m/%Y"] = wxString::Format("^%s/%s/%s$", dd, mm, yyyy);
     date_regex["%d-%m-%y"] = wxString::Format("^%s-%s-%s$", dd, mm, yy);
