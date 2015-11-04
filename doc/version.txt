@@ -1,6 +1,6 @@
 Version History of Money Manager Ex
 
-1.2.3 (Nov 1, 2015)
+1.2.3 (Nov 4, 2015)
 - Translations update
 - Fix: Assertion 'datetime failed'  (Issue #536)
 - Fix: Delete currency (Issue #569)
@@ -9,6 +9,8 @@ Version History of Money Manager Ex
 - Fix: EOL support for CSV export/import (Issue #577)
 - Fix: ANSI encoding and date with time support for CSV import (Issue #579)
 - Fix: Problem with full screen mode on Mac (bug:742)
+- New: Currency added Venezuelan Bolivar
+- Fix: tmp folder permissions(Issue #559)
 
 1.2.2 (Jun 29, 2015)
 - Fix: Transaction Type Transfer From/To Error (bug:707)
