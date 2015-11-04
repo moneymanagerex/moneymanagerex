@@ -82,10 +82,10 @@ public:
         return fromAccountID_;
     }
 
-	bool IsImporter() const
-	{
-		return is_importer_;
-	}
+    bool IsImporter() const
+    {
+        return is_importer_;
+    }
 
 private:
     enum EUnivCvs
@@ -132,9 +132,9 @@ private:
     wxTextCtrl* m_text_ctrl_;
     wxTextCtrl* log_field_;
     wxTextCtrl* m_textDelimiter;
-	wxStaticBox* m_rowSelectionStaticBox_;
-	wxSpinCtrl* m_spinIgnoreFirstRows_;
-	wxSpinCtrl* m_spinIgnoreLastRows_;
+    wxStaticBox* m_rowSelectionStaticBox_;
+    wxSpinCtrl* m_spinIgnoreFirstRows_;
+    wxSpinCtrl* m_spinIgnoreLastRows_;
 
     std::map<int, wxString> CSVFieldName_;
 
@@ -176,11 +176,11 @@ private:
     void OnFileNameChanged(wxCommandEvent& event);
     void OnDateFormatChanged(wxCommandEvent& event);
     void changeFocus(wxChildFocusEvent& event);
-	void OnSpinCtrlIgnoreFirstRows(wxSpinEvent& event);
-	void OnSpinCtrlIgnoreLastRows(wxSpinEvent& event);
+    void OnSpinCtrlIgnoreFirstRows(wxSpinEvent& event);
+    void OnSpinCtrlIgnoreLastRows(wxSpinEvent& event);
 
     void OnLoad();
-	void UpdateListItemBackground();
+    void UpdateListItemBackground();
     void update_preview();
     void initDelimiter();
     void initDateMask();

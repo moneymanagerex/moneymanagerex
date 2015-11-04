@@ -71,8 +71,8 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     is_importer_(is_importer),
     delimit_(","),
     importSuccessful_(false),
-	m_spinIgnoreFirstRows_(nullptr),
-	m_spinIgnoreLastRows_(nullptr),
+    m_spinIgnoreFirstRows_(nullptr),
+    m_spinIgnoreLastRows_(nullptr),
     csvFieldCandicate_(nullptr),
     csvListBox_(nullptr),
     m_button_add_(nullptr),
@@ -307,29 +307,29 @@ void mmUnivCSVDialog::CreateControls()
 
     flex_sizer->Add(m_choiceEncoding, g_flags);
 
-	// Select rows to import (not relevant for export)
-	if(IsImporter())
-	{
-		// Container.
-		m_rowSelectionStaticBox_ = new wxStaticBox(this, wxID_ANY, _("Rows to ignore"));
-		m_rowSelectionStaticBox_->SetFont(staticBoxFontSetting);
-		wxStaticBoxSizer* rowSelectionStaticBoxSizer = new wxStaticBoxSizer(m_rowSelectionStaticBox_, wxHORIZONTAL);
-		itemBoxSizer2->Add(rowSelectionStaticBoxSizer, 0, wxALL | wxEXPAND, 5);
+    // Select rows to import (not relevant for export)
+    if(IsImporter())
+    {
+        // Container.
+        m_rowSelectionStaticBox_ = new wxStaticBox(this, wxID_ANY, _("Rows to ignore"));
+        m_rowSelectionStaticBox_->SetFont(staticBoxFontSetting);
+        wxStaticBoxSizer* rowSelectionStaticBoxSizer = new wxStaticBoxSizer(m_rowSelectionStaticBox_, wxHORIZONTAL);
+        itemBoxSizer2->Add(rowSelectionStaticBoxSizer, 0, wxALL | wxEXPAND, 5);
 
-		// "Ignore first" title, spin and event handler.
-		wxStaticText* itemStaticText7 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From start: "));
-		rowSelectionStaticBoxSizer->Add(itemStaticText7, g_flags);
-		m_spinIgnoreFirstRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_FIRST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
-		rowSelectionStaticBoxSizer->Add(m_spinIgnoreFirstRows_, g_flags);
-		m_spinIgnoreFirstRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreFirstRows), nullptr, this);
+        // "Ignore first" title, spin and event handler.
+        wxStaticText* itemStaticText7 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From start: "));
+        rowSelectionStaticBoxSizer->Add(itemStaticText7, g_flags);
+        m_spinIgnoreFirstRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_FIRST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
+        rowSelectionStaticBoxSizer->Add(m_spinIgnoreFirstRows_, g_flags);
+        m_spinIgnoreFirstRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreFirstRows), nullptr, this);
 
-		// "Ignore last" title, spin and event handler.
-		wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From end: "));
-		rowSelectionStaticBoxSizer->Add(itemStaticText8, g_flags);
-		m_spinIgnoreLastRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_LAST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
-		rowSelectionStaticBoxSizer->Add(m_spinIgnoreLastRows_, g_flags);
-		m_spinIgnoreLastRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows), nullptr, this);
-	}
+        // "Ignore last" title, spin and event handler.
+        wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From end: "));
+        rowSelectionStaticBoxSizer->Add(itemStaticText8, g_flags);
+        m_spinIgnoreLastRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_LAST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
+        rowSelectionStaticBoxSizer->Add(m_spinIgnoreLastRows_, g_flags);
+        m_spinIgnoreLastRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows), nullptr, this);
+    }
 
     // Preview
     wxStaticBoxSizer* m_staticbox = new wxStaticBoxSizer(new wxStaticBox(this, wxID_STATIC, _("Preview")), wxVERTICAL);
@@ -458,25 +458,25 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
             break;
     }
 
-	// Row selection settings.
-	if (IsImporter())
-	{
-		std::wstring stdStr;
-		stdStr = json::String(o[L"IGNORE_FIRST_ROWS"]);
-		if (!stdStr.empty())
-		{
-			int val = std::stoi(stdStr);
-			m_spinIgnoreFirstRows_->SetMax(std::max(val, m_spinIgnoreFirstRows_->GetMax())); // Called before file is loaded so max might still be 0.
-			m_spinIgnoreFirstRows_->SetValue(val);
-		}
-		stdStr = json::String(o[L"IGNORE_LAST_ROWS"]);
-		if (!stdStr.empty())
-		{
-			int val = std::stoi(stdStr);
-			m_spinIgnoreLastRows_->SetMax(std::max(val, m_spinIgnoreLastRows_->GetMax())); // Called before file is loaded so max might still be 0.
-			m_spinIgnoreLastRows_->SetValue(val);
-		}
-	}
+    // Row selection settings.
+    if (IsImporter())
+    {
+        std::wstring stdStr;
+        stdStr = json::String(o[L"IGNORE_FIRST_ROWS"]);
+        if (!stdStr.empty())
+        {
+            int val = std::stoi(stdStr);
+            m_spinIgnoreFirstRows_->SetMax(std::max(val, m_spinIgnoreFirstRows_->GetMax())); // Called before file is loaded so max might still be 0.
+            m_spinIgnoreFirstRows_->SetValue(val);
+        }
+        stdStr = json::String(o[L"IGNORE_LAST_ROWS"]);
+        if (!stdStr.empty())
+        {
+            int val = std::stoi(stdStr);
+            m_spinIgnoreLastRows_->SetMax(std::max(val, m_spinIgnoreLastRows_->GetMax())); // Called before file is loaded so max might still be 0.
+            m_spinIgnoreLastRows_->SetValue(val);
+        }
+    }
 
     OnLoad();
     this->update_preview();
@@ -592,11 +592,11 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
         wxLogDebug("%i - %i - %s", count-1, i, CSVFieldName_[i]);
     }
 
-	if (IsImporter())
-	{
-		o[L"IGNORE_FIRST_ROWS"] = json::String(to_wstring(m_spinIgnoreFirstRows_->GetValue()));
-		o[L"IGNORE_LAST_ROWS"] = json::String(to_wstring(m_spinIgnoreLastRows_->GetValue()));
-	}
+    if (IsImporter())
+    {
+        o[L"IGNORE_FIRST_ROWS"] = json::String(to_wstring(m_spinIgnoreFirstRows_->GetValue()));
+        o[L"IGNORE_LAST_ROWS"] = json::String(to_wstring(m_spinIgnoreLastRows_->GetValue()));
+    }
 
     std::wstringstream ss;
     json::Writer::Write(o, ss);
@@ -698,18 +698,18 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
         Model_Checking::instance().Savepoint();
 
         wxString line;
-		int firstRow = 0;
-		int lastRow = tFile.GetLineCount();
+        int firstRow = 0;
+        int lastRow = tFile.GetLineCount();
 
-		if (IsImporter())
+        if (IsImporter())
         {
-			firstRow += m_spinIgnoreFirstRows_->GetValue();
-			lastRow -= m_spinIgnoreLastRows_->GetValue();
-		}
+            firstRow += m_spinIgnoreFirstRows_->GetValue();
+            lastRow -= m_spinIgnoreLastRows_->GetValue();
+        }
 
-		for (int lineNum = firstRow; lineNum < lastRow; lineNum++)
+        for (int lineNum = firstRow; lineNum < lastRow; lineNum++)
         {
-			line = tFile[lineNum];
+            line = tFile[lineNum];
                 const wxString& progressMsg = wxString::Format(_("Transactions imported from CSV\nto account %s : %ld")
                     , "'" + acctName + "'", countImported);
                 if (!progressDlg.Pulse(progressMsg))
@@ -718,9 +718,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                     break; // abort processing
                 }
 
-			if (line.IsEmpty())
+            if (line.IsEmpty())
                     continue;
-			
+
             csv2tab_separated_values(line, delimit_);
             wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
             int numTokens = (int)tkz.CountTokens();
@@ -943,7 +943,7 @@ void mmUnivCSVDialog::update_preview()
     this->m_list_ctrl_->InsertColumn(index, _("#"));
     this->m_list_ctrl_->SetColumnWidth(index, 30);
     int date_position = 0;
-	const int MAX_ROWS_IN_PREVIEW = 20;
+    const int MAX_ROWS_IN_PREVIEW = 20;
 
     for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++ it)
     {
@@ -1002,13 +1002,13 @@ void mmUnivCSVDialog::update_preview()
                 ++ row;
             }
 
-			// Limit spin control's max value to number of lines in file.
-			if (IsImporter())
-			{
-				m_spinIgnoreFirstRows_->SetMax(m_list_ctrl_->GetItemCount());
-				m_spinIgnoreLastRows_->SetMax(m_list_ctrl_->GetItemCount());
-				UpdateListItemBackground();
-			}
+            // Limit spin control's max value to number of lines in file.
+            if (IsImporter())
+            {
+                m_spinIgnoreFirstRows_->SetMax(m_list_ctrl_->GetItemCount());
+                m_spinIgnoreLastRows_->SetMax(m_list_ctrl_->GetItemCount());
+                UpdateListItemBackground();
+            }
             tFile.Close();
         }
     }
@@ -1250,9 +1250,9 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     switch (index)
     {
         case UNIV_CSV_DATE:
-			if (mmParseDisplayStringToDate(dtdt, token, date_format_))
-				holder.Date = dtdt.GetDateOnly();
-			break;
+            if (mmParseDisplayStringToDate(dtdt, token, date_format_))
+                holder.Date = dtdt.GetDateOnly();
+            break;
 
         case UNIV_CSV_PAYEE:
             payee = Model_Payee::instance().get(token);
@@ -1419,22 +1419,22 @@ void mmUnivCSVDialog::changeFocus(wxChildFocusEvent& event)
 
 void mmUnivCSVDialog::OnSpinCtrlIgnoreFirstRows(wxSpinEvent& event)
 {
-	UpdateListItemBackground();
+    UpdateListItemBackground();
 }
 
 void mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows(wxSpinEvent& event)
 {
-	UpdateListItemBackground();
+    UpdateListItemBackground();
 }
 
 void mmUnivCSVDialog::UpdateListItemBackground()
 {
-	const int firstRow = m_spinIgnoreFirstRows_->GetValue();
-	const int lastRow = m_list_ctrl_->GetItemCount() - m_spinIgnoreLastRows_->GetValue() - 1;
-	for (int row = 0; row < m_list_ctrl_->GetItemCount(); row++)
-	{
-		m_list_ctrl_->SetItemBackgroundColour(row, row >= firstRow && row <= lastRow ? m_list_ctrl_->GetBackgroundColour() :*wxLIGHT_GREY);
-	}
+    const int firstRow = m_spinIgnoreFirstRows_->GetValue();
+    const int lastRow = m_list_ctrl_->GetItemCount() - m_spinIgnoreLastRows_->GetValue() - 1;
+    for (int row = 0; row < m_list_ctrl_->GetItemCount(); row++)
+    {
+        m_list_ctrl_->SetItemBackgroundColour(row, row >= firstRow && row <= lastRow ? m_list_ctrl_->GetBackgroundColour() :*wxLIGHT_GREY);
+    }
 }
 
 bool mmUnivCSVDialog::isIndexPresent(int index) const
