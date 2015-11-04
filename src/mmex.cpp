@@ -220,5 +220,8 @@ int mmGUIApp::OnExit()
 
     Mongoose_Service::instance().stop();
 
+    //Delete mmex temp folder for current user
+    wxFileName::Rmdir(mmex::getTempFolder(), wxPATH_RMDIR_RECURSIVE);
+
     return 0;
 }
