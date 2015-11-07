@@ -1,5 +1,8 @@
 Version History of Money Manager Ex
 
+1.2.4 (Nov 14, 2015)
+- New: Japanese translation added
+
 1.2.3 (Nov 4, 2015)
 - Translations update
 - Fix: Assertion 'datetime failed'  (Issue #536)
