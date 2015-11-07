@@ -116,7 +116,7 @@ void mmMainCurrencyDialog::fillControls()
         data.push_back(wxVariant(baseCurrencyID == currencyID));
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(currency.CURRENCYNAME));
-        data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::LastRate(currencyID)));
+        data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID)));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
         if (selectedIndex_ == currencyListBox_->GetItemCount() - 1)
         {
@@ -611,6 +611,7 @@ void mmMainCurrencyDialog::OnHistoryAdd(wxCommandEvent& /*event*/)
         return;
     Model_CurrencyHistory::instance().addUpdate(currencyID_, valueDatePicker_->GetValue(), dPrice, Model_CurrencyHistory::MANUAL);
 
+    fillControls();
     ShowCurrencyHistory();
 }
 
@@ -630,6 +631,8 @@ void mmMainCurrencyDialog::OnHistoryDelete(wxCommandEvent& /*event*/)
         Model_CurrencyHistory::instance().remove((int)valueListBox_->GetItemData(item));
     }
     Model_CurrencyHistory::instance().ReleaseSavepoint();
+
+    fillControls();
     ShowCurrencyHistory();
 }
 
@@ -698,7 +701,10 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 
     if (Found)
+    {
+        fillControls();
         ShowCurrencyHistory();
+    }
     else
         mmErrorDialogs::MessageError(this,
             wxString::Format("Unable to download history for symbol %S. History rates not available!", CurrentCurrency->CURRENCY_SYMBOL.Upper()),
@@ -729,6 +735,8 @@ void mmMainCurrencyDialog::OnHistoryDeleteUnused(wxCommandEvent& /*event*/)
         }
     }
     Model_CurrencyHistory::instance().ReleaseSavepoint();
+
+    fillControls();
     ShowCurrencyHistory();
 }
 
@@ -827,6 +835,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     }
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 
+    fillControls();
     ShowCurrencyHistory();
     return true;
 }
