@@ -244,6 +244,7 @@ int Model_Currency::precision(const Data& r)
 const std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> > Model_Currency::all_currencies_template()
 {
     std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> > r;
+    //Symbol, Name, Prefix, Suffix, UNIT_NAME, CENT_NAME, SCALE, BASECONVRATE, GROUP_SEPARATOR, DECIMAL_POINT
     r.push_back(std::make_tuple("USD", "United States dollar", L"$", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("EUR", "European euro", L"€", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("GBP", "UK Pound", L"£", "", "Pound", "Pence", 100, 1, " ", "."));
@@ -386,7 +387,7 @@ const std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, w
     r.push_back(std::make_tuple("THB", "Thai baht", L"฿", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("TTD", "Trinidad and Tobago dollar", L"TT$", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("TND", "Tunisian dinar", L"DT", L"", L"", L"", 100, 1, " ", "."));
-    r.push_back(std::make_tuple("TRY", "Turkish lira", L"TL", L"", L"", L"", 100, 1, " ", "."));
+    r.push_back(std::make_tuple("TRY", "Turkish new lira", L"₺", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("TMT", "Turkmen manat", L"m", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("UGX", "Ugandan shilling", L"USh", L"", L"", L"", 1, 1, " ", "."));
     r.push_back(std::make_tuple("AED", "UAE dirham", L"", L"", L"", L"", 100, 1, " ", "."));

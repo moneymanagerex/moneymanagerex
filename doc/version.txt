@@ -1,16 +1,56 @@
 Version History of Money Manager Ex
 
-1.2.0 (tba)
-- New: Recurring transaction created from existing transaction
+1.3.0 (TBA)
+- 
+
+1.2.4 (Nov 14, 2015)
+- New: Japanese translation added
+
+1.2.3 (Nov 4, 2015)
+- Translations update
+- Fix: Assertion 'datetime failed'  (Issue #536)
+- Fix: Delete currency (Issue #569)
+- Fix: Add attachments on duplicate transaction (Issue #570)
+- Fix: Wrong currency on repeating transactions (Issues #562, #568)
+- Fix: EOL support for CSV export/import (Issue #577)
+- Fix: ANSI encoding and date with time support for CSV import (Issue #579)
+- Fix: Problem with full screen mode on Mac (bug:742)
+- New: Currency added Venezuelan Bolivar
+- Fix: tmp folder permissions(Issue #559)
+
+1.2.2 (Jun 29, 2015)
+- Fix: Transaction Type Transfer From/To Error (bug:707)
+- Fix: Stock Account fix total value
+- Fix: Export of small withdrawals have wrong sign (bug:695)
+- Fix: Czech translation update
+- Fix: Colours on print and print preview are not the same (bug:722)
+- Fix: QIF import fixes (bug:712)
+- Fix: Cancel button label changed to Close for Currency dialogue (bug:714)
+- New: Lithuanian translation added
+
+1.2.1 (June 06, 2015)
+- Fix: Negative 'Initial Balance' (bug:672)
+- Fix: Recurring Transactions navigation issue (bug:679)
+- Fix: Spelling mistakes (bugs:676,677)
+- Fix: Temporary View Change (bug:684)
+- Fix: html format (issue 487)
+
+1.2.0 (April 28, 2015)
 - New: Introducing new account type - Credit Card
 - New: Monthly Summary of Accounts
 - New: Stock History Monitoring
 - New: My Usage Reports
 - New: MMEX News display on Home page
-- Change: Recurring transaction - 'Next Occur Date'
-          redefined as 'Payment Date' and 'Due Date'
-- New: Database version updated to version 3 with
-       database correction for Recurring Transactions
+- New: Apply button on Options Dialog saves displayed page.
+- New: Extra columns displayed in panels.
+- New: Command to change encrypted database password.
+- New: Command to compact the database
+- New: Import transactions from WebApp
+- New: Repeating transaction created from existing transaction
+- Functionality Change: Repeating Transaction.
+  'Next Occur Date' redefined as 'Payment Date' and 'Due Date'
+- Database Upgrade: Database version updated to version 3 with
+  auto data correction for Repeating Transactions.
 - Fix: Many bug fixes
 
 1.1.2 (November 16, 2014)
