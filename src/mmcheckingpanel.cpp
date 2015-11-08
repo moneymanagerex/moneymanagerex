@@ -1263,7 +1263,7 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     if (item < 0 || item >= (int)m_cp->m_trans.size()) return 0;
 
     const Model_Checking::Full_Data& tran = m_cp->m_trans[item];
-    bool in_the_future = Model_Checking::TRANSDATE(&tran) > wxDateTime::Today();
+    bool in_the_future = Model_Checking::TRANSDATE(&tran) > wxDateTime::Now();
 
     // apply alternating background pattern
     int user_colour_id = tran.FOLLOWUPID;
