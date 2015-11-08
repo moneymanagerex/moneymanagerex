@@ -141,7 +141,7 @@ double Model_Asset::value(const Data* r)
 {
     double sum = r->VALUE;
     wxDate start_date = STARTDATE(r);
-    wxDate today = wxDate::Today();
+    const wxDate today = wxDate::Today();
     double diff_time_in_years = 0;
     if (today.GetYear() == start_date.GetYear())
     {
@@ -154,13 +154,13 @@ double Model_Asset::value(const Data* r)
         if (today.GetDayOfYear() < start_date.GetDayOfYear())
         {
             diff_years--;
-            wxDate::wxDateTime_t diff_days = (start_date.GetNumberOfDays(start_date.GetYear()) - start_date.GetDayOfYear()) + today.GetDayOfYear();
+            wxDate::wxDateTime_t diff_days = (wxDate::GetNumberOfDays(start_date.GetYear()) - start_date.GetDayOfYear()) + today.GetDayOfYear();
             diff_time_in_years = static_cast<double>(diff_days) / static_cast<double>(today.GetNumberOfDays(today.GetYear()));
         }
         else
         {
             wxDate::wxDateTime_t diff_days = today.GetDayOfYear() - start_date.GetDayOfYear();
-            diff_time_in_years = static_cast<double>(diff_days) / static_cast<double>(today.GetNumberOfDays(today.GetYear()));
+            diff_time_in_years = static_cast<double>(diff_days) / static_cast<double>(wxDate::GetNumberOfDays(today.GetYear()));
         }
         diff_time_in_years += static_cast<double>(diff_years);
     }

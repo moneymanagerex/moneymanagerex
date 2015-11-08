@@ -67,7 +67,7 @@ public:
     struct Bill_Data
     {
         int BDID = 0;
-        wxString TRANSDATE = wxDateTime().Today().FormatISODate();
+        wxString TRANSDATE = wxDateTime::Now().FormatISODate();
         wxString STATUS = Model_Billsdeposits::all_status()[Model_Billsdeposits::NONE];;
         int ACCOUNTID = -1;
         int TOACCOUNTID = -1;

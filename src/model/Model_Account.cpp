@@ -183,7 +183,7 @@ wxDate Model_Account::last_date(const Data* r)
     if (!trans.empty())
         return Model_Checking::TRANSDATE(trans.back());
     else
-        return wxDateTime::Today();
+        return wxDate::Today();
 }
 
 wxDate Model_Account::last_date(const Data& r)
