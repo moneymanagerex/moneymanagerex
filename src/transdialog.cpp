@@ -182,23 +182,31 @@ void mmTransDialog::dataToControls()
     {
         cbAccount_->SetEvtHandlerEnabled(false);
         cbAccount_->Clear();
-        const wxArrayString account_list = Model_Account::instance().all_checking_account_names();
+        const wxArrayString account_list = Model_Account::instance().all_checking_account_names(true);
         cbAccount_->Append(account_list);
+        cbAccount_->AutoComplete(account_list);
 
+        bool acc_closed = false;
         const auto &accounts = Model_Account::instance().find(
-            Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
-            , Model_Account::STATUS(Model_Account::OPEN));
+            Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL));
         for (const auto &account : accounts)
         {
             if (account.ACCOUNTID == m_trx_data.ACCOUNTID)
+            {
                 cbAccount_->ChangeValue(account.ACCOUNTNAME);
+                if (account.STATUS == Model_Account::all_status()[Model_Account::CLOSED])
+                {
+                    cbAccount_->Append(account.ACCOUNTNAME);
+                    acc_closed = true;
+                }
+            }
         }
-        cbAccount_->AutoComplete(account_list);
-        if (accounts.size() == 1)
-        {
-            cbAccount_->ChangeValue(accounts.begin()->ACCOUNTNAME);
-            cbAccount_->Enable(false);
-        }
+
+        if (account_list.size() == 1 && !acc_closed)
+            cbAccount_->ChangeValue(account_list[0]);
+
+        cbAccount_->Enable(!acc_closed && (account_list.size() > 1));
+
         cbAccount_->SetEvtHandlerEnabled(true);
         skip_account_init_ = true;
     }
@@ -260,7 +268,6 @@ void mmTransDialog::dataToControls()
             payee_label_->SetLabelText(_("To"));
             m_trx_data.PAYEEID = -1;
             account_label_->SetLabelText(_("From"));
-            cbAccount_->Enable(true);
         }
         skip_payee_init_ = true;
         cbPayee_->SetEvtHandlerEnabled(true);
