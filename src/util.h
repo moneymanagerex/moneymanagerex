@@ -167,7 +167,7 @@ void windowsFreezeThaw(wxWindow* w);
 
 //* Date Functions----------------------------------------------------------*//
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
-const std::map<wxString, wxString> date_formats_regex();
+const std::map<wxString, wxString> &date_formats_regex();
 const wxDateTime mmGetStorageStringAsDate(const wxString& str);
 const wxString mmGetDateForDisplay(const wxDateTime &dt);
 bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, const wxString& sDateMask);

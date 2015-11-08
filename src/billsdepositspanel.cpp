@@ -157,7 +157,7 @@ mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid
     , m_infoText(nullptr)
 {
     this->tips_.Add(_("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "));
-    this->tips_.Add(_("Tip: These transactions can be set up to activate – allowing the user to adjust any values on the due date."));
+    this->tips_.Add(_("Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."));
 
     Create(parent, winid, pos, size, style, name);
 }

@@ -75,6 +75,7 @@ SUFFIXES: .po
     <msgfmt id="hungarian.mo"/>
     <msgfmt id="indonesian.mo"/>
     <msgfmt id="italian.mo"/>
+    <msgfmt id="japanese.mo"/>
     <msgfmt id="latvian.mo"/>
     <msgfmt id="lithuanian.mo"/>
     <msgfmt id="norwegian.mo"/>

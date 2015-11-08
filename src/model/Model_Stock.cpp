@@ -107,6 +107,7 @@ Returns the total stock balance at a given date
 */
 double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const wxDate& date)
 {
+    wxString strDate = date.FormatISODate();
     std::map<int, double> totBalance;
 
     Data_Set stocks = this->instance().find(HELDAT(account->id()));
@@ -122,24 +123,24 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
         for (const auto & hist : stock_hist)
         {
             // test for the date requested
-            if (hist.DATE == date.FormatISODate())
+            if (hist.DATE == strDate)
             {
                 valueAtDate = hist.VALUE;
                 break;
             }
             // if not found, search for previous and next date
-            if (precValue == 0.0 && hist.DATE < date.FormatISODate())
+            if (precValue == 0.0 && hist.DATE < strDate)
             {
                 precValue = hist.VALUE;
                 precValueDate = hist.DATE;
             }
-            if (hist.DATE > date.FormatISODate())
+            if (hist.DATE > strDate)
             {
                 nextValue = hist.VALUE;
                 nextValueDate = hist.DATE;
             }
             // end conditions: prec value assigned and price date < requested date
-            if (precValue != 0.0 && hist.DATE < date.FormatISODate())
+            if (precValue != 0.0 && hist.DATE < strDate)
                 break;
         }
         if (valueAtDate == 0.0)
