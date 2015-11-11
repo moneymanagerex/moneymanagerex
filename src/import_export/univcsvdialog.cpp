@@ -1006,7 +1006,7 @@ void mmUnivCSVDialog::update_preview()
             if (IsImporter())
             {
                 m_spinIgnoreFirstRows_->SetRange(m_spinIgnoreFirstRows_->GetMin(), m_list_ctrl_->GetItemCount());
-                m_spinIgnoreLastRows_->SetRange(m_spinIgnoreLastRows_->GetMax(), m_list_ctrl_->GetItemCount());
+                m_spinIgnoreLastRows_->SetRange(m_spinIgnoreLastRows_->GetMin(), m_list_ctrl_->GetItemCount());
                 UpdateListItemBackground();
             }
             tFile.Close();
