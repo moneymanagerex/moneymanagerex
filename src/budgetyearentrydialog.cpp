@@ -70,8 +70,7 @@ void mmBudgetYearEntryDialog::CreateControls()
     wxStaticText* itemStaticText3 = new wxStaticText( this, wxID_STATIC, _("Budget Year:"));
     itemGridSizer2->Add(itemStaticText3, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
-    wxDateTime today(wxDateTime::Now()); 
-    int year = today.GetYear();
+    int year = wxDate::GetCurrentYear();
     textYear_ = new wxSpinCtrl( this, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxSize(100,-1), wxSP_ARROW_KEYS, 1900, 3000, year);
     textYear_->SetValue(year);
@@ -85,7 +84,7 @@ void mmBudgetYearEntryDialog::CreateControls()
         itemGridSizer2->Add(itemStaticTextMonth, 0
             , wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
-        int month = today.GetMonth() + 1; // we require months(1..12)
+        int month = wxDate::GetCurrentMonth() + 1; // we require months(1..12)
         textMonth_ = new wxSpinCtrl(this, wxID_ANY
             , wxEmptyString, wxDefaultPosition, wxSize(textYear_->GetSize())
             , wxSP_ARROW_KEYS, 1, 12, month);

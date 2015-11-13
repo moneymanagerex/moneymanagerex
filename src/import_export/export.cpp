@@ -50,7 +50,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
             transNum = wxString::Format("#%i", full_tran.id());
     }
     
-    wxDate date = wxDate::Today();
+    wxDate date;
     date.ParseISODate(full_tran.TRANSDATE);
     buffer << "D" << date.Format(dateMask) << "\n";
     double value = Model_Checking::balance(full_tran, (out ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID));
