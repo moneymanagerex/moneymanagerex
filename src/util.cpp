@@ -193,34 +193,15 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
 
 const wxDateTime mmGetStorageStringAsDate(const wxString& str)
 {
-    wxDateTime dt = wxDateTime::Today();
-    if (!str.IsEmpty()) dt.ParseDate(str);
-    if (!dt.IsValid()) dt = wxDateTime::Today();
-    if (dt.GetYear() < 100) dt.Add(wxDateSpan::Years(2000));
+    wxDateTime dt;
+    if (str.IsEmpty() || !dt.ParseDate(str))
+        dt = wxDateTime::Today();
+    int year = dt.GetYear();
+    if (year < 50)
+        dt.Add(wxDateSpan::Years(2000));
+    else if (year < 100)
+        dt.Add(wxDateSpan::Years(1900));
     return dt;
-}
-
-const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
-{
-    long monthNum;
-    mmOptions::instance().financialYearStartMonthString_.ToLong(&monthNum);
-
-    if (monthNum > 0) //Test required for compatability with previous version
-        monthNum--;
-
-    const wxDateTime today = wxDateTime::Now();
-    int year = wxDate::GetCurrentYear();
-    if (today.GetMonth() < monthNum) year--;
-
-    int dayNum = wxAtoi(mmOptions::instance().financialYearStartDayString_);
-
-    if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays((wxDateTime::Month)monthNum, year))
-        dayNum = 1;
-    
-    wxDateTime financialYear(dayNum, (wxDateTime::Month)monthNum, year);
-    if (prevDayRequired)
-        financialYear.Subtract(wxDateSpan::Day());
-    return financialYear;
 }
 
 const std::map<wxString,wxString> date_formats_regex()
