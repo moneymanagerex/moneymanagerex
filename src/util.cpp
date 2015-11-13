@@ -208,8 +208,8 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     if (monthNum > 0) //Test required for compatability with previous version
         monthNum--;
 
-    const wxDateTime today = wxDateTime::Today();
-    int year = today.GetYear();
+    const wxDateTime today = wxDateTime::Now();
+    int year = wxDate::GetCurrentYear();
     if (today.GetMonth() < monthNum) year--;
 
     int dayNum = wxAtoi(mmOptions::instance().financialYearStartDayString_);
