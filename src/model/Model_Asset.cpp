@@ -141,7 +141,7 @@ double Model_Asset::value(const Data* r)
 {
     double sum = r->VALUE;
     wxDate start_date = STARTDATE(r);
-    wxDate today = wxDate::Today();
+    const wxDate today = wxDate::Today();
     double diff_time_in_years = 0;
     if (today.GetYear() == start_date.GetYear())
     {
