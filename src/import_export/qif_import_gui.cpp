@@ -934,12 +934,7 @@ int mmQIFImportDialog::getOrCreateAccounts()
 
             account->FAVORITEACCT = "TRUE";
             account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
-            //the account type is found on the T (for "Type") line
-            //which overlaps with the T (for "Total Amount") line in transaction records, 
-            //so we find the account type string in the "Amount" field
-            wxString accountType = (item.second.find(Amount) == item.second.end() ? " " : item.second.at(Amount));
-            int iType = (m_QIFaccountTypes.find(accountType) == m_QIFaccountTypes.end() ? Model_Account::CHECKING : m_QIFaccountTypes.at(accountType));
-            account->ACCOUNTTYPE = Model_Account::all_type()[iType];
+            account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::CHECKING];
             account->ACCOUNTNAME = item.first;
             account->INITIALBAL = 0;
             account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
