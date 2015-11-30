@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2013-2015 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -169,26 +170,25 @@ const wxString mmGetDateForDisplay(const wxDateTime &dt)
 
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString &sDateMask)
 {
-    wxString mask = sDateMask;
     wxString date_str = sDate;
-    mask.Replace("%Y%m%d", "%Y %m %d");
-    if (date_formats_regex().count(mask) == 0) return false;
+    if (date_formats_regex().count(sDateMask) == 0)
+        return false;
 
-    const wxString regex = date_formats_regex().at(mask);
-    const wxString date_template = g_date_formats_map.at(mask);
+    const wxString regex = date_formats_regex().at(sDateMask);
+    const wxString date_template = g_date_formats_map.at(sDateMask);
     if (sDate.length() > date_template.length())
         date_str = sDate.Left(date_template.length());
     wxRegEx pattern(regex);
-    //skip dot if present in pattern but not in date string 
-    const wxString separator = mask.Mid(2,1);
-    date.ParseFormat(date_str, mask, date);
-    if (pattern.Matches(date_str) && date_str.Contains(separator))
-        return true;
-    else
+
+    if (pattern.Matches(date_str))
     {
-        //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
-        return false;
+        date.ParseFormat(sDate, sDateMask, date);
+        //wxLogDebug("%s = %s", sDate, date.FormatISODate());
+        return true;
     }
+
+    //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
+    return false;
 }
 
 const wxDateTime mmGetStorageStringAsDate(const wxString& str)
@@ -232,6 +232,7 @@ const std::map<wxString,wxString> date_formats_regex()
     date_regex["%Y-%m-%d"] = wxString::Format("^%s-%s-%s$", yyyy, mm, dd);
     date_regex["%Y.%m.%d"] = wxString::Format("^%s\x2E%s\x2E%s$", yyyy, mm, dd);
     date_regex["%Y %m %d"] = wxString::Format("^%s %s %s$", yyyy, mm, dd);
+    date_regex["%Y%m%d"] = wxString::Format("^%s%s%s$", yyyy, mm, dd);
 
     return date_regex;
 }
@@ -257,6 +258,7 @@ const std::map<wxString, wxString> g_date_formats_map = {
     , { "%y-%m-%d", "YY-MM-DD" }
     , { "%Y/%m/%d", "YYYY/MM/DD" }
     , { "%Y.%m.%d", "YYYY.MM.DD" }
+    , { "%Y %m %d", "YYYY MM DD" }
     , { "%Y%m%d", "YYYYMMDD" }
 };
 
