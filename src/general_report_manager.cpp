@@ -54,6 +54,7 @@ R"(<!DOCTYPE html>
 <head>
     <meta charset="UTF-8" />
     <meta http - equiv = "Content-Type" content = "text/html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10,9">
     <title><TMPL_VAR REPORTNAME></title>
     <script src = "sorttable.js"></script>
     <link href="master.css" rel="stylesheet">
@@ -129,6 +130,7 @@ R"(<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta http - equiv = "Content-Type" content = "text/html">
+    <meta http-equiv="X-UA-Compatible" content="IE=10,9">
     <title><TMPL_VAR REPORTNAME></title>
     <script src = "ChartNew.js"></script>
     <script src = "sorttable.js"></script>

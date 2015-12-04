@@ -51,7 +51,6 @@ public:
     wxString get_html(const Data* r);
     wxString get_html(const Data& r);
     static void prepareTempFolder();
-    static bool WindowsUpdateRegistry();
     static void outputReportFile(const wxString& str);
 
 public:
