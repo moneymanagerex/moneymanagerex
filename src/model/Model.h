@@ -66,7 +66,7 @@ protected:
         const auto it = cache.find(str_date);
         if (it != cache.end()) return it->second;
 
-        wxDate date = wxDateTime::Today();
+        wxDate date;
         date.ParseISODate(str_date); // the date in ISO 8601 format "YYYY-MM-DD".
         cache.insert(std::make_pair(str_date, date));
         return date;

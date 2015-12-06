@@ -23,6 +23,8 @@
 #include <vector>
 #include <map>
 
+#include <wx/spinctrl.h>
+
 #define ID_MYDIALOG8 10040
 #define SYMBOL_UNIVCSVDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
 #define SYMBOL_UNIVCSVDIALOG_TITLE _("Universal CSV Dialog")

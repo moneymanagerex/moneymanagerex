@@ -466,14 +466,14 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
         if (!stdStr.empty())
         {
             int val = std::stoi(stdStr);
-            m_spinIgnoreFirstRows_->SetMax(std::max(val, m_spinIgnoreFirstRows_->GetMax())); // Called before file is loaded so max might still be 0.
+            m_spinIgnoreFirstRows_->SetRange(m_spinIgnoreFirstRows_->GetMin(), std::max(val, m_spinIgnoreFirstRows_->GetMax())); // Called before file is loaded so max might still be 0.
             m_spinIgnoreFirstRows_->SetValue(val);
         }
         stdStr = json::String(o[L"IGNORE_LAST_ROWS"]);
         if (!stdStr.empty())
         {
             int val = std::stoi(stdStr);
-            m_spinIgnoreLastRows_->SetMax(std::max(val, m_spinIgnoreLastRows_->GetMax())); // Called before file is loaded so max might still be 0.
+            m_spinIgnoreLastRows_->SetRange(m_spinIgnoreLastRows_->GetMin(), std::max(val, m_spinIgnoreLastRows_->GetMax())); // Called before file is loaded so max might still be 0.
             m_spinIgnoreLastRows_->SetValue(val);
         }
     }
@@ -1005,8 +1005,8 @@ void mmUnivCSVDialog::update_preview()
             // Limit spin control's max value to number of lines in file.
             if (IsImporter())
             {
-                m_spinIgnoreFirstRows_->SetMax(m_list_ctrl_->GetItemCount());
-                m_spinIgnoreLastRows_->SetMax(m_list_ctrl_->GetItemCount());
+                m_spinIgnoreFirstRows_->SetRange(m_spinIgnoreFirstRows_->GetMin(), m_list_ctrl_->GetItemCount());
+                m_spinIgnoreLastRows_->SetRange(m_spinIgnoreLastRows_->GetMin(), m_list_ctrl_->GetItemCount());
                 UpdateListItemBackground();
             }
             tFile.Close();
