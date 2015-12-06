@@ -82,7 +82,8 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     m_text_ctrl_(nullptr),
     log_field_(nullptr),
     m_textDelimiter(nullptr),
-    choiceDateFormat_(nullptr)
+    choiceDateFormat_(nullptr),
+    m_rowSelectionStaticBox_(nullptr)
 {
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
     CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");
@@ -282,7 +283,7 @@ void mmUnivCSVDialog::CreateControls()
     flex_sizer->Add(choiceDateFormat_, g_flags);
 
     // CSV Delimiter
-    wxStaticText* itemStaticText77 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_("CSV Delimiter")));
+    wxStaticText* itemStaticText77 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_("CSV Delimiter:")));
     itemStaticText77->SetFont(staticBoxFontSetting);
     flex_sizer->Add(itemStaticText77, g_flags);
 
@@ -296,7 +297,7 @@ void mmUnivCSVDialog::CreateControls()
     flex_sizer->Add(m_textDelimiter, g_flags);
 
     //Encoding
-    wxStaticText* itemStaticText88 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_("Encoding")));
+    wxStaticText* itemStaticText88 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_("Encoding:")));
     itemStaticText88->SetFont(staticBoxFontSetting);
     flex_sizer->Add(itemStaticText88, g_flags);
 
@@ -306,6 +307,23 @@ void mmUnivCSVDialog::CreateControls()
     m_choiceEncoding->SetSelection(0);
 
     flex_sizer->Add(m_choiceEncoding, g_flags);
+
+    // Determine meaning of "amount" field's sign- deposit or withdrawal. 
+    // When importing, there format is given and can be either. Exporting is best to be consistent and so this option is not given.
+    if (IsImporter())
+    {
+        // Text title.
+        wxStaticText* itemStaticTextAmount = new wxStaticText(itemPanel7, wxID_ANY, _("Amount(+/-): "));
+        flex_sizer->Add(itemStaticTextAmount, g_flags);
+        itemStaticTextAmount->SetFont(staticBoxFontSetting);
+
+        // Choice selection.
+        m_choiceAmountFieldSign = new wxChoice(itemPanel7, wxID_ANY);
+        m_choiceAmountFieldSign->Append(wxGetTranslation(_("Positive values are deposits")));
+        m_choiceAmountFieldSign->Append(wxGetTranslation(_("Positive values are withdrawals")));
+        m_choiceAmountFieldSign->SetSelection(PositiveIsDeposit);
+        flex_sizer->Add(m_choiceAmountFieldSign, g_flags);
+    }
 
     // Select rows to import (not relevant for export)
     if(IsImporter())
@@ -458,10 +476,18 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
             break;
     }
 
-    // Row selection settings.
     if (IsImporter())
     {
+        // Amount sign.
         std::wstring stdStr;
+        stdStr = json::String(o[L"AMOUNT_SIGN"]);
+        if (!stdStr.empty())
+        {
+            int val = std::stoi(stdStr);
+            m_choiceAmountFieldSign->Select(val);
+        }
+
+        // Row selection settings.
         stdStr = json::String(o[L"IGNORE_FIRST_ROWS"]);
         if (!stdStr.empty())
         {
@@ -594,6 +620,10 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
 
     if (IsImporter())
     {
+        // Amount sign
+        o[L"AMOUNT_SIGN"] = json::String(to_wstring(m_choiceAmountFieldSign->GetCurrentSelection()));
+
+        // Rows to ignore
         o[L"IGNORE_FIRST_ROWS"] = json::String(to_wstring(m_spinIgnoreFirstRows_->GetValue()));
         o[L"IGNORE_LAST_ROWS"] = json::String(to_wstring(m_spinIgnoreLastRows_->GetValue()));
     }
@@ -1267,18 +1297,22 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             break;
 
         case UNIV_CSV_AMOUNT:
+        {
             token.Replace(" ", wxEmptyString);
 
             if (!Model_Currency::fromString(token, holder.Amount, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
 
-            if (holder.Amount <= 0.0)
-                holder.Type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
-            else
-                holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+            Model_Checking::TYPE txType = Model_Checking::WITHDRAWAL;
+            if (holder.Amount > 0.0 && m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsDeposit ||
+                holder.Amount <= 0.0 && m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal)
+            {
+                txType = Model_Checking::DEPOSIT;
+            }
+            holder.Type = Model_Checking::all_type()[txType];
 
             holder.Amount = fabs(holder.Amount);
             break;
-
+        }
         case UNIV_CSV_CATEGORY:
             category = Model_Category::instance().get(token);
             if (!category)

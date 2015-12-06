@@ -144,6 +144,9 @@ private:
     wxChoice* m_choiceEncoding;
     wxString date_format_;
 
+    wxChoice* m_choiceAmountFieldSign;
+    enum amountFieldSignValues { PositiveIsDeposit, PositiveIsWithdrawal };
+
     int fromAccountID_;
     bool importSuccessful_;
     int m_oject_in_focus;
