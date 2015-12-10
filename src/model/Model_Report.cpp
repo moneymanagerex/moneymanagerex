@@ -291,6 +291,16 @@ void Model_Report::prepareTempFolder()
     }
 }
 
+bool Model_Report::WindowsUpdateRegistry()
+{
+#if defined (__WXMSW__)
+    wxRegKey Key(wxRegKey::HKCU, "Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION");
+    if (Key.Exists())
+        Key.DeleteValue("mmex.exe");
+#endif
+     return true;
+}
+
 void Model_Report::outputReportFile(const wxString& str)
 {
     wxFileOutputStream index_output(mmex::getReportIndex());
