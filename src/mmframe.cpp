@@ -33,6 +33,7 @@
 #include "budgetyeardialog.h"
 #include "categdialog.h"
 #include "constants.h"
+#include "dbcheck.h"
 #include "dbwrapper.h"
 #include "filtertransdialog.h"
 #include "general_report_manager.h"
@@ -143,6 +144,7 @@ EVT_MENU(MENU_BILLSDEPOSITS, mmGUIFrame::OnBillsDeposits)
 EVT_MENU(MENU_CONVERT_ENC_DB, mmGUIFrame::OnConvertEncryptedDB)
 EVT_MENU(MENU_CHANGE_ENCRYPT_PASSWORD, mmGUIFrame::OnChangeEncryptPassword)
 EVT_MENU(MENU_DB_VACUUM, mmGUIFrame::OnVacuumDB)
+EVT_MENU(MENU_DB_CHECK, mmGUIFrame::OnCheckDB)
 
 EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
 EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
@@ -1480,9 +1482,14 @@ void mmGUIFrame::createMenu()
         , _("Optimize &Database")
         , _("Optimize database space and performance"));
     menuItemVacuumDB->SetBitmap(mmBitmap(png::EMPTY));
+    wxMenuItem* menuItemCheckDB = new wxMenuItem(menuTools, MENU_DB_CHECK
+        , _("Check Database")
+        , _("Check database integrity"));
+    menuItemCheckDB->SetBitmap(mmBitmap(png::EMPTY));
     menuDatabase->Append(menuItemConvertDB);
     menuDatabase->Append(menuItemChangeEncryptPassword);
     menuDatabase->Append(menuItemVacuumDB);
+    menuDatabase->Append(menuItemCheckDB);
     menuTools->AppendSubMenu(menuDatabase, _("Database")
         , _("Database management"));
     menuItemChangeEncryptPassword->Enable(false);
@@ -1914,6 +1921,18 @@ void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
         const wxString SizeAfter = wxFileName(m_filename).GetHumanReadableSize();
         wxMessageBox(wxString::Format("%s\n\n%s: %s\n%s: %s\n", _("Database Optimization Completed!"), _("Size before"), SizeBefore, _("Size after"), SizeAfter),
             _("DB Optimization"));
+    }
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnCheckDB(wxCommandEvent& /*event*/)
+{
+    wxMessageDialog msgDlg(this
+        , wxString::Format("%s\n\n%s", _("This operation could take some time depending on DB size"), _("Do you want to proceed?"))
+        , _("DB Check"), wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
+    if (msgDlg.ShowModal() == wxID_YES)
+    {
+        dbCheck::checkDB();
     }
 }
 //----------------------------------------------------------------------------
