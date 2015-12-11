@@ -172,12 +172,6 @@
             <srcdir>$(SRCDIR)/resources</srcdir>
             <files>mmex.svg</files>
         </data-files>
-
-	    <data-files>
-            <install-to>$(DATADIR)/man/man1</install-to>
-            <srcdir>$(SRCDIR)/doc</srcdir>
-            <files>mmex.1.gz</files>
-        </data-files>
     </if>
 
     <if cond="FORMAT!='autoconf'">
