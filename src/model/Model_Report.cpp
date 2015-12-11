@@ -295,6 +295,7 @@ bool Model_Report::WindowsUpdateRegistry()
 {
 #if defined (__WXMSW__)
     // https://msdn.microsoft.com/en-us/library/ee330730(v=vs.85).aspx
+    // https://kevinragsdale.net/windows-10-and-the-web-browser-control/
     wxRegKey Key(wxRegKey::HKCU, "Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION");
     if (Key.Create(true) && Key.SetValue("mmex.exe", 11001))
         return true;
