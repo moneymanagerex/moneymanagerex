@@ -68,6 +68,19 @@ const wxString mmex::version::generateProgramVersion(int Major, int Minor, int P
 const wxSizerFlags g_flags = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
 const wxSizerFlags g_flagsExpand = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
 
+const wxString g_CancelLabel =
+#if defined(__APPLE__)
+    wxTRANSLATE("Cancel");
+#else
+    wxTRANSLATE("&Cancel ");
+#endif
+const wxString g_CloseLabel =
+#if defined(__APPLE__)
+    wxTRANSLATE("Close");
+#else
+    wxTRANSLATE("&Close ");
+#endif
+
 //---------------------------------------------------------------------------
 const int mmex::MIN_DATAVERSION = 2;
 const wxString mmex::DATAVERSION = "3";

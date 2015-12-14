@@ -19,6 +19,7 @@
 
 #include "relocatepayeedialog.h"
 #include "model/Model_Payee.h"
+#include "constants.h"
 #include "paths.h"
 #include "wx/statline.h"
 #include "model/Model_Billsdeposits.h"
@@ -109,7 +110,7 @@ void relocatePayeeDialog::CreateControls()
     boxSizer->Add(lineBottom, flagsExpand);
 
     wxButton* okButton = new wxButton(this,wxID_OK, _("&OK "));
-    wxButton* cancelButton = new wxButton(this,wxID_CANCEL, _("&Cancel "));
+    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     cancelButton-> SetFocus () ;
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonBoxSizer->Add(okButton, flags);
