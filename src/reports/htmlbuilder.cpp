@@ -42,7 +42,6 @@ static const wxString END = R"(
 static const char HTML[] = R"(<!DOCTYPE html>
 <html><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=10,9">
 <title>%s - Report</title>
 <link href = 'master.css' rel = 'stylesheet' />
 <script src = 'ChartNew.js'></script>
