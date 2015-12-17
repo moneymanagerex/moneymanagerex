@@ -253,6 +253,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\dbcheck.cpp" />
     <ClCompile Include="..\..\src\mmframereport.cpp" />
     <ClCompile Include="..\..\src\mmOptionAttachmentSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionBaseSettings.cpp" />
@@ -370,6 +371,7 @@
     <ClCompile Include="..\..\src\wizard_newdb.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\dbcheck.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Assets_V1.h" />
