@@ -122,6 +122,7 @@ MMEX_OBJECTS =  \
 	mmex_categdialog.o \
 	mmex_constants.o \
 	mmex_currencydialog.o \
+	mmex_dbcheck.o \
 	mmex_dbwrapper.o \
 	mmex_filtertransdialog.o \
 	mmex_general_report_manager.o \
@@ -497,6 +498,9 @@ mmex_constants.o: $(srcdir)/src/constants.cpp
 
 mmex_currencydialog.o: $(srcdir)/src/currencydialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/currencydialog.cpp
+
+mmex_dbcheck.o: $(srcdir)/src/dbcheck.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/dbcheck.cpp
 
 mmex_dbwrapper.o: $(srcdir)/src/dbwrapper.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/dbwrapper.cpp
