@@ -104,6 +104,7 @@ struct DB_Table_%s : public DB_Table
     typedef std::map<int, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
+    Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
     ~DB_Table_%s() 
@@ -414,7 +415,7 @@ struct DB_Table_%s : public DB_Table
 ''' % self._table
         
         s +='''
-    DB_Table_%s() 
+    DB_Table_%s() : fake_(new Data())
     {
         query_ = "SELECT * FROM %s ";
     }
@@ -615,7 +616,8 @@ struct DB_Table_%s : public DB_Table
         
         if (!entity) 
         {
-            wxLogError("%s: %d not found", this->name().c_str(), id);
+            entity = this->fake_;
+            // wxLogError("%s: %d not found", this->name().c_str(), id);
         }
  
         return entity;

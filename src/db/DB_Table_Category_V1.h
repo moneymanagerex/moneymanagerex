@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2015-07-16 23:15:29.304575.
+ *          AUTO GENERATED at 2015-12-23 22:49:10.822911.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -46,6 +46,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     typedef std::map<int, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
+    Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
     ~DB_Table_CATEGORY_V1() 
@@ -264,7 +265,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     /** Name of the table*/    
     wxString name() const { return "CATEGORY_V1"; }
 
-    DB_Table_CATEGORY_V1() 
+    DB_Table_CATEGORY_V1() : fake_(new Data())
     {
         query_ = "SELECT * FROM CATEGORY_V1 ";
     }
@@ -449,7 +450,8 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         
         if (!entity) 
         {
-            wxLogError("%s: %d not found", this->name().c_str(), id);
+            entity = this->fake_;
+            // wxLogError("%s: %d not found", this->name().c_str(), id);
         }
  
         return entity;
