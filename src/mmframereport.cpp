@@ -126,11 +126,6 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     navTreeCtrl_->SetItemData(myusage, new mmTreeItemData(new mmReportMyUsage()));
 
     //////////////////////////////////////////////////////////////////
-    wxTreeItemId reportsSummary = navTreeCtrl_->AppendItem(reports, _("Monthly Summary of Accounts")
-        , img::PIECHART_PNG, img::PIECHART_PNG);
-    navTreeCtrl_->SetItemData(reportsSummary, new mmTreeItemData("Monthly Summary of Accounts"
-        , new mmReportSummaryByDate(this, 0)));
-
     int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
     int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
