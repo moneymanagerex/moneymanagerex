@@ -27,6 +27,7 @@
 
         <define>WXSQLITE3_HAVE_CODEC</define>
         <define>WXSQLITE3_HAVE_METADATA</define>
+        <define>WXSQLITE3_USER_AUTHENTICATION</define>
 
         <include>$(SRCDIR)/lib/wxsqlite3/sqlite3/secure/src</include>
         <include>$(SRCDIR)/lib/wxsqlite3/include</include>
