@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2015-12-23 22:49:10.822911.
+ *          AUTO GENERATED at 2015-12-29 11:10:52.430030.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -51,6 +51,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
     /** Destructor: clears any data records stored in memory */
     ~DB_Table_STOCKHISTORY_V1() 
     {
+        delete this->fake_;
         destroy_cache();
     }
 	 
@@ -166,7 +167,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
     {
         friend struct DB_Table_STOCKHISTORY_V1;
         /** This is a instance pointer to itself in memory. */
-        Self* view_;
+        Self* table_;
     
         int HISTID;//  primary key
         wxString SYMBOL;
@@ -184,18 +185,18 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
             return this->id() < r->id();
         }
 
-        explicit Data(Self* view = 0) 
+        explicit Data(Self* table = 0) 
         {
-            view_ = view;
+            table_ = table;
         
             HISTID = -1;
             VALUE = 0.0;
             UPDTYPE = -1;
         }
 
-        explicit Data(wxSQLite3ResultSet& q, Self* view = 0)
+        explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
-            view_ = view;
+            table_ = table;
         
             HISTID = q.GetInt(0); // HISTID
             SYMBOL = q.GetString(1); // SYMBOL
@@ -282,25 +283,25 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         bool save(wxSQLite3Database* db)
         {
             if (db && db->IsReadOnly()) return false;
-            if (!view_ || !db) 
+            if (!table_ || !db) 
             {
                 wxLogError("can not save STOCKHISTORY_V1");
                 return false;
             }
 
-            return view_->save(this, db);
+            return table_->save(this, db);
         }
 
         /** Remove the record instance from memory and the database. */
         bool remove(wxSQLite3Database* db)
         {
-            if (!view_ || !db) 
+            if (!table_ || !db) 
             {
                 wxLogError("can not remove STOCKHISTORY_V1");
                 return false;
             }
             
-            return view_->remove(this, db);
+            return table_->remove(this, db);
         }
 
         void destroy()

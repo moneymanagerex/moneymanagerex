@@ -19,6 +19,7 @@
         <define>SQLITE_HAS_CODEC</define>
         <define>SQLITE_ENABLE_EXTFUNC</define>
         <define>SQLITE_ENABLE_COLUMN_METADATA</define>
+        <define>SQLITE_ENABLE_JSON1</define>
 
         <define>HAVE_ACOSH</define>
         <define>HAVE_ASINH</define>

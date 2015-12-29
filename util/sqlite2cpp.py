@@ -109,6 +109,7 @@ struct DB_Table_%s : public DB_Table
     /** Destructor: clears any data records stored in memory */
     ~DB_Table_%s() 
     {
+        delete this->fake_;
         destroy_cache();
     }
 	 
@@ -233,7 +234,7 @@ struct DB_Table_%s : public DB_Table
     {
         friend struct DB_Table_%s;
         /** This is a instance pointer to itself in memory. */
-        Self* view_;
+        Self* table_;
     ''' % self._table.upper()
         for field in self._fields:
             s += '''
@@ -253,9 +254,9 @@ struct DB_Table_%s : public DB_Table
 ''' % (self._primay_key, self._primay_key)
         
         s += '''
-        explicit Data(Self* view = 0) 
+        explicit Data(Self* table = 0) 
         {
-            view_ = view;
+            table_ = table;
         '''
 
         for field in self._fields:
@@ -273,9 +274,9 @@ struct DB_Table_%s : public DB_Table
         s += '''
         }
 
-        explicit Data(wxSQLite3ResultSet& q, Self* view = 0)
+        explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
-            view_ = view;
+            table_ = table;
         '''
         for field in self._fields:
             func = base_data_types_function[field['type']]
@@ -371,25 +372,25 @@ struct DB_Table_%s : public DB_Table
         bool save(wxSQLite3Database* db)
         {
             if (db && db->IsReadOnly()) return false;
-            if (!view_ || !db) 
+            if (!table_ || !db) 
             {
                 wxLogError("can not save %s");
                 return false;
             }
 
-            return view_->save(this, db);
+            return table_->save(this, db);
         }
 
         /** Remove the record instance from memory and the database. */
         bool remove(wxSQLite3Database* db)
         {
-            if (!view_ || !db) 
+            if (!table_ || !db) 
             {
                 wxLogError("can not remove %s");
                 return false;
             }
             
-            return view_->remove(this, db);
+            return table_->remove(this, db);
         }
 
         void destroy()
@@ -850,8 +851,8 @@ if __name__ == '__main__':
     for table, sql in get_table_list(cur):
         fields = _table_info(cur, table)
         index = get_index_list(cur, table)
-        view = DB_Table(table, fields, index)
-        view.generate_class(header, sql)
+        table = DB_Table(table, fields, index)
+        table.generate_class(header, sql)
         for field in fields:
             all_fields.add(field['name'])
 

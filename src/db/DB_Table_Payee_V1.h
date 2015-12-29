@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2015-12-23 22:49:10.822911.
+ *          AUTO GENERATED at 2015-12-29 11:10:52.430030.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -51,6 +51,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     /** Destructor: clears any data records stored in memory */
     ~DB_Table_PAYEE_V1() 
     {
+        delete this->fake_;
         destroy_cache();
     }
 	 
@@ -158,7 +159,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     {
         friend struct DB_Table_PAYEE_V1;
         /** This is a instance pointer to itself in memory. */
-        Self* view_;
+        Self* table_;
     
         int PAYEEID;//  primary key
         wxString PAYEENAME;
@@ -175,18 +176,18 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             return this->id() < r->id();
         }
 
-        explicit Data(Self* view = 0) 
+        explicit Data(Self* table = 0) 
         {
-            view_ = view;
+            table_ = table;
         
             PAYEEID = -1;
             CATEGID = -1;
             SUBCATEGID = -1;
         }
 
-        explicit Data(wxSQLite3ResultSet& q, Self* view = 0)
+        explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
-            view_ = view;
+            table_ = table;
         
             PAYEEID = q.GetInt(0); // PAYEEID
             PAYEENAME = q.GetString(1); // PAYEENAME
@@ -264,25 +265,25 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         bool save(wxSQLite3Database* db)
         {
             if (db && db->IsReadOnly()) return false;
-            if (!view_ || !db) 
+            if (!table_ || !db) 
             {
                 wxLogError("can not save PAYEE_V1");
                 return false;
             }
 
-            return view_->save(this, db);
+            return table_->save(this, db);
         }
 
         /** Remove the record instance from memory and the database. */
         bool remove(wxSQLite3Database* db)
         {
-            if (!view_ || !db) 
+            if (!table_ || !db) 
             {
                 wxLogError("can not remove PAYEE_V1");
                 return false;
             }
             
-            return view_->remove(this, db);
+            return table_->remove(this, db);
         }
 
         void destroy()
