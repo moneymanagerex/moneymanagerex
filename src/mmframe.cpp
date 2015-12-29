@@ -117,6 +117,7 @@ EVT_MENU(MENU_EXPORT_CSV, mmGUIFrame::OnExportToCSV)
 EVT_MENU(MENU_EXPORT_QIF, mmGUIFrame::OnExportToQIF)
 EVT_MENU(MENU_IMPORT_QIF, mmGUIFrame::OnImportQIF)
 EVT_MENU(MENU_IMPORT_UNIVCSV, mmGUIFrame::OnImportUniversalCSV)
+EVT_MENU(MENU_IMPORT_XML, mmGUIFrame::OnImportXML)
 EVT_MENU(MENU_IMPORT_WEBAPP, mmGUIFrame::OnImportWebApp)
 EVT_MENU(wxID_EXIT, mmGUIFrame::OnQuit)
 EVT_MENU(MENU_NEWACCT, mmGUIFrame::OnNewAccount)
@@ -186,6 +187,7 @@ EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, mmGUIFrame::OnExportToCSV)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, mmGUIFrame::OnExportToQIF)
 //EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, mmGUIFrame::OnImportQIF)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, mmGUIFrame::OnImportUniversalCSV)
+EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, mmGUIFrame::OnImportXML)
 EVT_MENU_RANGE(MENU_TREEPOPUP_ACCOUNT_VIEWALL, MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED, mmGUIFrame::OnViewAccountsTemporaryChange)
 
 /*Automatic processing of repeat transactions*/
@@ -1131,6 +1133,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 menu.AppendSubMenu(exportTo, _("&Export"));
                 wxMenu *importFrom = new wxMenu;
                 importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files..."));
+                importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files..."), _("Import from XML (Excel format)"));
                 importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files..."));
                 menu.AppendSubMenu(importFrom, _("&Import"));
                 menu.AppendSeparator();
@@ -1317,6 +1320,7 @@ void mmGUIFrame::createMenu()
 
     wxMenu* importMenu = new wxMenu;
     importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV Files..."), _("Import from any CSV file"));
+    importMenu->Append(MENU_IMPORT_XML, _("&XML Files..."), _("Import from XML (Excel format)"));
     importMenu->Append(MENU_IMPORT_QIF, _("&QIF Files..."), _("Import from QIF"));
     importMenu->Append(MENU_IMPORT_WEBAPP, _("&WebApp..."), _("Import from WebApp"));
     menu_file->Append(MENU_IMPORT, _("&Import"), importMenu);
@@ -2017,7 +2021,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnExportToCSV(wxCommandEvent& /*event*/)
 {
-    mmUnivCSVDialog(this, false).ShowModal();
+    mmUnivCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_EXPORT_CSV).ShowModal();
 }
 //----------------------------------------------------------------------------
 
@@ -2059,7 +2063,7 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
         return;
     }
 
-    mmUnivCSVDialog univCSVDialog(this);
+    mmUnivCSVDialog univCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_IMPORT_CSV);
     univCSVDialog.ShowModal();
     if (univCSVDialog.ImportCompletedSuccessfully())
     {
@@ -2068,6 +2072,26 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
         if (account) setAccountNavTreeSection(account->ACCOUNTNAME);
     }
 }
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnImportXML(wxCommandEvent& /*event*/)
+{
+    if (Model_Account::instance().all().empty())
+    {
+        wxMessageBox(_("No account available to import"), _("Universal CSV Import"), wxOK | wxICON_WARNING);
+        return;
+    }
+
+    mmUnivCSVDialog univCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_IMPORT_XML);
+    univCSVDialog.ShowModal();
+    if (univCSVDialog.ImportCompletedSuccessfully())
+    {
+        Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
+        createCheckingAccountPage(univCSVDialog.ImportedAccountID());
+        if (account) setAccountNavTreeSection(account->ACCOUNTNAME);
+    }
+}
+
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnImportWebApp(wxCommandEvent& /*event*/)

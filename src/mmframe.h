@@ -170,6 +170,7 @@ private:
     void OnExportToHtml(wxCommandEvent& event);
     void OnImportQFX(wxCommandEvent& event);
     void OnImportUniversalCSV(wxCommandEvent& event);
+    void OnImportXML(wxCommandEvent& event);
     void OnImportQIF(wxCommandEvent& event);
     void OnImportWebApp(wxCommandEvent& event);
     void OnPrintPage(wxCommandEvent& WXUNUSED(event));
@@ -276,6 +277,7 @@ private:
         MENU_GOOGLEPLAY,
         MENU_IMPORT,
         MENU_IMPORT_UNIVCSV,
+        MENU_IMPORT_XML,
         MENU_IMPORT_WEBAPP,
         MENU_REPORTISSUES,
         MENU_ANNOUNCEMENTMAILING,
@@ -323,6 +325,7 @@ private:
         MENU_TREEPOPUP_ACCOUNT_IMPORTCSV,
         MENU_TREEPOPUP_ACCOUNT_IMPORTQIF,
         MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV,
+        MENU_TREEPOPUP_ACCOUNT_IMPORTXML,
         MENU_TREEPOPUP_ACCOUNT_VIEWALL,
         MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE,
         MENU_TREEPOPUP_ACCOUNT_VIEWOPEN,
