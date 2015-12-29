@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011, 2012 Nikolay & Stefano Giorgio
+ Copyright (C) 2015 Nikolay
 
  This program is free software; you can redistribute transcation and/or modify
  transcation under the terms of the GNU General Public License as published by
@@ -24,6 +25,7 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Category.h"
 #include <algorithm>
+#include <vector>
 
 mmReportTransactions::mmReportTransactions(int refAccountID, mmFilterTransactionsDialog* transDialog)
     : mmPrintableBase("mmReportTransactions")
@@ -76,8 +78,13 @@ wxString mmReportTransactions::getHTMLText()
 
     hb.startTbody();
 
-    // Display the data for each row
     double total = 0;
+    Model_Account::Data* account = nullptr;
+    bool monoAcc = transDialog_->getAccountCheckBox();
+    if (monoAcc)
+        account = Model_Account::instance().get(transDialog_->getAccountID());
+
+    // Display the data for each row
     for (auto& transaction : trans_)
     {
         hb.startTableRow();
@@ -90,29 +97,40 @@ wxString mmReportTransactions::getHTMLText()
         hb.addTableCell(transaction.TRANSACTIONNUMBER);
         hb.addTableCell(transaction.NOTES);
         // Get the exchange rate for the account
-        Model_Account::Data* account = Model_Account::instance().get(transaction.ACCOUNTID);
-        if (account)
+
+        if (!monoAcc)
         {
-            double convRate = 1;
-            const Model_Currency::Data* currency = Model_Account::currency(account);
-            if (currency)
-                convRate = currency->BASECONVRATE;
-            int accountId = transaction.ACCOUNTID;
-            if (transDialog_->getAccountCheckBox())
-                accountId = transDialog_->getAccountID();
-            double amount = Model_Checking::balance(transaction, accountId) * convRate;
-            hb.addCurrencyCell(amount);
-            total += amount;
+            account = Model_Account::instance().get(transaction.ACCOUNTID);
+            if (account)
+            {
+                const Model_Currency::Data* currency = Model_Account::currency(account);
+                double convRate = 1;
+                if (currency)
+                    convRate = currency->BASECONVRATE;
+
+                double amount = Model_Checking::balance(transaction, transaction.ACCOUNTID) * convRate;
+                hb.addCurrencyCell(amount);
+                total += amount;
+            }
+            else
+                hb.addTableCell("");
         }
         else
-            hb.addTableCell("");
-
+        {
+            double amount = Model_Checking::balance(transaction, account->ACCOUNTID);
+            const Model_Currency::Data* currency = Model_Account::currency(account);
+            hb.addCurrencyCell(amount, currency);
+            total += amount;
+        }
         hb.endTableRow();
+
     }
     hb.endTbody();
 
     // display the total balance.
-    hb.addTotalRow(_("Total Amount: "), 9, total);
+    const wxString totalStr = Model_Currency::toCurrency(total, (monoAcc ? Model_Account::currency(account) : Model_Currency::GetBaseCurrency()));
+    const std::vector<wxString> v{ totalStr };
+    hb.addTotalRow(_("Total Amount: "), 9, v);
 
     hb.endTable();
 
