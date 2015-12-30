@@ -191,6 +191,7 @@ MMEX_OBJECTS =  \
 	mmex_qif_import.o \
 	mmex_qif_import_gui.o \
 	mmex_univcsvdialog.o \
+	mmex_parsers.o \
 	mmex_Model_Account.o \
 	mmex_Model_Asset.o \
 	mmex_Model_Attachment.o \
@@ -693,6 +694,9 @@ mmex_qif_import_gui.o: $(srcdir)/src/import_export/qif_import_gui.cpp
 
 mmex_univcsvdialog.o: $(srcdir)/src/import_export/univcsvdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/import_export/univcsvdialog.cpp
+
+mmex_parsers.o: $(srcdir)/src/import_export/parsers.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/import_export/parsers.cpp
 
 mmex_Model_Account.o: $(srcdir)/src/model/Model_Account.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Account.cpp
