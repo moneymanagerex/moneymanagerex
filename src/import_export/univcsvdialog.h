@@ -27,7 +27,7 @@
 
 #define ID_MYDIALOG8 10040
 #define SYMBOL_UNIVCSVDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_UNIVCSVDIALOG_TITLE _("Universal CSV Dialog")
+#define SYMBOL_UNIVCSVDIALOG_TITLE _("Import Dialog")
 #define SYMBOL_UNIVCSVDIALOG_IDNAME ID_MYDIALOG8
 #define SYMBOL_UNIVCSVDIALOG_SIZE wxSize(400, 300)
 #define SYMBOL_UNIVCSVDIALOG_POSITION wxDefaultPosition
@@ -60,15 +60,24 @@
 #define wxFIXED_MINSIZE 0
 #endif
 
+class IImportParser;
+
 class mmUnivCSVDialog: public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmUnivCSVDialog);
     wxDECLARE_EVENT_TABLE();
 
 public:
+    enum EDialogType
+    {
+        DIALOG_TYPE_IMPORT_CSV,
+        DIALOG_TYPE_EXPORT_CSV,
+        DIALOG_TYPE_IMPORT_XML,
+    };
+
     /// Constructors
     mmUnivCSVDialog();
-    mmUnivCSVDialog(wxWindow* parent, bool is_importer = true,
+    mmUnivCSVDialog(wxWindow* parent, EDialogType dialogType,
                     wxWindowID id = SYMBOL_UNIVCSVDIALOG_IDNAME,
                     const wxString& caption = SYMBOL_UNIVCSVDIALOG_TITLE,
                     const wxPoint& pos = SYMBOL_UNIVCSVDIALOG_POSITION,
@@ -86,7 +95,19 @@ public:
 
     bool IsImporter() const
     {
-        return is_importer_;
+        return dialogType_ == DIALOG_TYPE_IMPORT_CSV || dialogType_ == DIALOG_TYPE_IMPORT_XML;
+    }
+    bool IsXML() const
+    {
+        return dialogType_ == DIALOG_TYPE_IMPORT_XML;
+    }
+    bool IsCSV() const
+    {
+        return !IsXML();
+    }
+    wxString GetSettingsPrfix() const
+    {
+        return IsXML() ? "XML_SETTINGS_" : "CSV_SETTINGS_";
     }
 
 private:
@@ -120,7 +141,7 @@ private:
         wxString Number;
         wxString Notes;
     };
-    bool is_importer_;
+    EDialogType dialogType_;
     wxString delimit_;
 
     std::vector<int> csvFieldOrder_;
@@ -196,5 +217,6 @@ private:
     void OnSettingsSelected(wxCommandEvent& event);
     wxString GetStoredSettings(int id);
     void SetSettings(const wxString &data);
+    IImportParser *CreateParser();
 };
 #endif
