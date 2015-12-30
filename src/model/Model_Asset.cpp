@@ -20,20 +20,20 @@
 
 const std::vector<std::pair<Model_Asset::RATE, wxString> > Model_Asset::RATE_CHOICES = 
 {
-    std::make_pair(Model_Asset::RATE_NONE, wxTRANSLATE("None"))
-    , std::make_pair(Model_Asset::RATE_APPRECIATE, wxTRANSLATE("Appreciates"))
-    , std::make_pair(Model_Asset::RATE_DEPRECIATE, wxTRANSLATE("Depreciates"))
+    std::make_pair(Model_Asset::RATE_NONE, wxTRANSLATE(wxString("None")))
+    , std::make_pair(Model_Asset::RATE_APPRECIATE, wxTRANSLATE(wxString("Appreciates")))
+    , std::make_pair(Model_Asset::RATE_DEPRECIATE, wxTRANSLATE(wxString("Depreciates")))
 };
 
 const std::vector<std::pair<Model_Asset::TYPE, wxString> > Model_Asset::TYPE_CHOICES = 
 {
-    std::make_pair(Model_Asset::TYPE_PROPERTY, wxTRANSLATE("Property"))
-    , std::make_pair(Model_Asset::TYPE_AUTO, wxTRANSLATE("Automobile"))
-    , std::make_pair(Model_Asset::TYPE_HOUSE, wxTRANSLATE("Household Object"))
-    , std::make_pair(Model_Asset::TYPE_ART, wxTRANSLATE("Art"))
-    , std::make_pair(Model_Asset::TYPE_JEWELLERY, wxTRANSLATE("Jewellery"))
-    , std::make_pair(Model_Asset::TYPE_CASH, wxTRANSLATE("Cash"))
-    , std::make_pair(Model_Asset::TYPE_OTHER, wxTRANSLATE("Other"))
+    std::make_pair(Model_Asset::TYPE_PROPERTY, wxTRANSLATE(wxString("Property")))
+    , std::make_pair(Model_Asset::TYPE_AUTO, wxTRANSLATE(wxString("Automobile")))
+    , std::make_pair(Model_Asset::TYPE_HOUSE, wxTRANSLATE(wxString("Household Object")))
+    , std::make_pair(Model_Asset::TYPE_ART, wxTRANSLATE(wxString("Art")))
+    , std::make_pair(Model_Asset::TYPE_JEWELLERY, wxTRANSLATE(wxString("Jewellery")))
+    , std::make_pair(Model_Asset::TYPE_CASH, wxTRANSLATE(wxString("Cash")))
+    , std::make_pair(Model_Asset::TYPE_OTHER, wxTRANSLATE(wxString("Other")))
 };
 
 Model_Asset::Model_Asset()

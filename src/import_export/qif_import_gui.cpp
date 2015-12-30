@@ -34,11 +34,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 // (not sure whether these need to be translated)
 const std::map<wxString, int> mmQIFImportDialog::m_QIFaccountTypes =
 {
-    std::make_pair("Bank", Model_Account::CHECKING),
-    std::make_pair("Cash", Model_Account::CHECKING),
-    std::make_pair("Port", Model_Account::INVESTMENT),
-    std::make_pair("Invst", Model_Account::INVESTMENT),
-    std::make_pair("CCard", Model_Account::CREDIT_CARD)
+    std::make_pair(wxString("Bank"), Model_Account::CHECKING),
+    std::make_pair(wxString("Cash"), Model_Account::CHECKING),
+    std::make_pair(wxString("Port"), Model_Account::INVESTMENT),
+    std::make_pair(wxString("Invst"), Model_Account::INVESTMENT),
+    std::make_pair(wxString("CCard"), Model_Account::CREDIT_CARD)
 };
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFImportDialog, wxDialog);
