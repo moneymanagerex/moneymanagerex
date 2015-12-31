@@ -348,6 +348,9 @@
     <ClCompile Include="..\..\src\dbcheck.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\import_export\parsers.cpp">
+      <Filter>Source Files\import_export</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -736,6 +739,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\dbcheck.h">
       <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\import_export\parsers.h">
+      <Filter>Header Files\import_export</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

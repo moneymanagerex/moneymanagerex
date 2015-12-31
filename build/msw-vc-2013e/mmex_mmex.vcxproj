@@ -266,6 +266,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\dbcheck.cpp" />
+    <ClCompile Include="..\..\src\import_export\parsers.cpp" />
     <ClCompile Include="..\..\src\mmOptionAttachmentSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionBaseSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionGeneralSettings.cpp" />
@@ -390,6 +391,7 @@
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Usage_V1.h" />
+    <ClInclude Include="..\..\src\import_export\parsers.h" />
     <ClInclude Include="..\..\src\mmOptionAttachmentSettings.h" />
     <ClInclude Include="..\..\src\mmOptionBaseSettings.h" />
     <ClInclude Include="..\..\src\mmOptionGeneralSettings.h" />
