@@ -29,7 +29,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class IImportParser
 {
 public:
-    virtual bool Open(wxString fileName) = 0;
+    // Opens and parses the input file in to an internal structure that allows calling the getter functions below.
     virtual bool Parse(wxString fileName, unsigned int itemsInLine) = 0;
     
     // Gets the number of lines that can be parsed.
@@ -82,7 +82,6 @@ class ImportParserCSV : public TableBasedParser
 {
 public:
     ImportParserCSV(wxWindow *pParentWindow, wxConvAuto encoding, wxString delimiter);
-    virtual bool Open(wxString fileName);
     virtual bool Parse(wxString fileName, unsigned int itemsInLine);
 protected:
     wxConvAuto encoding_;
@@ -94,7 +93,6 @@ class ImportParserXML : public TableBasedParser
 {
 public:
     ImportParserXML(wxWindow *pParentWindow, wxString encoding);
-    virtual bool Open(wxString fileName);
     virtual bool Parse(wxString fileName, unsigned int itemsInLine);
 protected:
     wxString encoding_;

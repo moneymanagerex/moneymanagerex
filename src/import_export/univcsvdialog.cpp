@@ -452,7 +452,19 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
 
     //File
     m_text_ctrl_->ChangeValue(wxString(json::String(o[L"FILE_NAME"])));
-    
+
+    // Account
+    const wxString accountName = wxString(json::String(o[L"ACCOUNT_NAME"]));
+    if (!accountName.IsEmpty())
+    {
+        int itemIndex = m_choice_account_->FindString(accountName);
+        if (wxNOT_FOUND == itemIndex)
+            mmErrorDialogs::MessageError(m_choice_account_, _("Default account \"" + accountName + "\" for this template does not exist.\nPlease select a new account."),
+                _("Account does not exist"));
+        else
+            m_choice_account_->Select(itemIndex);
+    }
+
     //Delimiter
     if (IsCSV())
     {
@@ -614,6 +626,7 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
     const wxString& setting_id = wxString::Format(settingsPrefix +"%d", id);
     wxLogDebug("%s", setting_id);
 
+    o[L"ACCOUNT_NAME"] = json::String(m_choice_account_->GetStringSelection().ToStdWstring());
     o[L"DATE_MASK"] = json::String(date_format_.ToStdWstring());
     o[L"DELIMITER"] = json::String(delimit_.ToStdWstring());
     const wxString fileName = m_text_ctrl_->GetValue();
@@ -723,7 +736,6 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
         wxTextOutputStream log(outputLog);
 
         /* date, payeename, amount(+/-), Number, status, category : subcategory, notes */
-        long countNumTotal = 0;
         long countImported = 0;
 
         wxProgressDialog progressDlg(_("Universal CSV Import")
@@ -751,24 +763,16 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             if (numTokens ==0)
                 continue;
 
-            if (numTokens < (int)csvFieldOrder_.size())
-            {
-                log << wxString::Format(_("Line: %ld"), lineNum)
-                        << _(" file contains insufficient number of tokens") << endl;
-                *log_field_ << wxString::Format(_("Line: %ld"), lineNum)
-                        << _(" file contains insufficient number of tokens") << "\n";
-                continue;
-            }
-
             tran_holder holder;
             for (size_t i = 0; i < csvFieldOrder_.size() && i < numTokens; ++i)
                 parseToken(csvFieldOrder_[i], pParser->GetItem(lineNum, i).Trim(false /*from left*/), holder);
 
             if (!validateData(holder)) 
             {
-                log << wxString::Format(_("Line: %ld"), lineNum)
+                // TODO: print a more specific error.
+                log << wxString::Format(_("Line: %ld"), lineNum+1)
                     << _(" One of the following fields: Date, Amount, Type is missing, skipping") << endl;
-                *log_field_ << wxString::Format(_("Line: %ld"), lineNum)
+                *log_field_ << wxString::Format(_("Line: %ld"), lineNum+1)
                     << _(" One of the following fields: Date, Amount, Type is missing, skipping") << "\n";
 
                 continue;
@@ -800,7 +804,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
         progressDlg.Update(100);
 
-        wxString msg = wxString::Format(_("Total Lines : %ld"), countNumTotal);
+        wxString msg = wxString::Format(_("Total Lines : %ld"), lastRow-firstRow+1);
         msg << "\n";
         msg << wxString::Format(_("Total Imported : %ld"), countImported);
         msg << "\n\n";
@@ -1233,6 +1237,8 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& /*event*/)
                 *log_field_ << line << "\n";
                 if (++count >= 10) break;
             }
+            // TODO: update_preview() is called twice. Once here and once in OnFileNameChanged(). 
+            // This leads to double work and double error messages to the user.
             *log_field_ << "\n";
             this->update_preview();
         }
@@ -1423,10 +1429,10 @@ void mmUnivCSVDialog::OnDateFormatChanged(wxCommandEvent& event)
         return;
     int i = event.GetId();
     if (i == ID_DATE_FORMAT)
-{
-    wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
-    if (data) date_format_ = data->GetData();
-    *log_field_ << date_format_ << "\n";
+    {
+        wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
+        if (data) date_format_ = data->GetData();
+        *log_field_ << date_format_ << "\n";
     }
     else if (i == wxID_ACCOUNT)
     {
