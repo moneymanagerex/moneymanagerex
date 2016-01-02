@@ -30,7 +30,7 @@ class IImportParser
 {
 public:
     // Opens and parses the input file in to an internal structure that allows calling the getter functions below.
-    virtual bool Parse(wxString fileName, unsigned int itemsInLine) = 0;
+    virtual bool Parse(const wxString& fileName, unsigned int itemsInLine) = 0;
     
     // Gets the number of lines that can be parsed.
     // Depending on type of file there may be lines that are not transactions.
@@ -82,7 +82,7 @@ class ImportParserCSV : public TableBasedParser
 {
 public:
     ImportParserCSV(wxWindow *pParentWindow, wxConvAuto encoding, wxString delimiter);
-    virtual bool Parse(wxString fileName, unsigned int itemsInLine);
+    virtual bool Parse(const wxString& fileName, unsigned int itemsInLine);
 protected:
     wxConvAuto encoding_;
     wxString delimiter_;
@@ -93,7 +93,7 @@ class ImportParserXML : public TableBasedParser
 {
 public:
     ImportParserXML(wxWindow *pParentWindow, wxString encoding);
-    virtual bool Parse(wxString fileName, unsigned int itemsInLine);
+    virtual bool Parse(const wxString& fileName, unsigned int itemsInLine);
 protected:
     wxString encoding_;
 };

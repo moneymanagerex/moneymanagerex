@@ -28,7 +28,7 @@ ImportParserCSV::ImportParserCSV(wxWindow *pParentWindow, wxConvAuto encoding, w
 {
 }
 
-bool ImportParserCSV::Parse(wxString fileName, unsigned int itemsInLine)
+bool ImportParserCSV::Parse(const wxString& fileName, unsigned int itemsInLine)
 {
     // Make sure file exists
     if (fileName.IsEmpty() || !wxFileName::FileExists(fileName))
@@ -77,7 +77,7 @@ ImportParserXML::ImportParserXML(wxWindow *pParentWindow, wxString encoding):
 {
 }
 
-bool ImportParserXML::Parse(wxString fileName, unsigned int itemsInLine)
+bool ImportParserXML::Parse(const wxString& fileName, unsigned int itemsInLine)
 {
     // Make sure file exists
     if (fileName.IsEmpty() || !wxFileName::FileExists(fileName))
