@@ -26,6 +26,7 @@
 #include "model/Model_Setting.h"
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
+#include <map>
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
@@ -278,7 +279,32 @@ const wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
 
 const wxString mmGetDateForDisplay(const wxDateTime &dt)
 {
-    return dt.Format(mmOptions::instance().dateFormat_);
+    /*
+    Since calls to dt.Format() are very expensive, we store previously formatted dates and the resulting formatted
+    strings in a lookup table. Next time the same date is queried, the formatted date will be returned automatically.
+    If the format is changed, all stored strings are deleted. This provides a considerable performance boost.
+    */
+
+    // Remebers previous format. If this changes, all stored string must be deleted.
+    static wxString dateFormat = mmOptions::instance().dateFormat_;
+
+    // wxDateTime to formatted string lookup table.
+    static std::map<wxDateTime, wxString> dateLookup;
+
+    // If format has been changed, delete all stored strings.
+    if (dateFormat != mmOptions::instance().dateFormat_)
+    {
+        dateFormat = mmOptions::instance().dateFormat_;
+        dateLookup.clear();
+    }
+
+    // If date exists in lookup- return it.
+    auto it = dateLookup.find(dt);
+    if (it != dateLookup.end())
+        return it->second; // The stored formatted date.
+
+    // Format date, store it and return it.
+    return dateLookup[dt] = dt.Format(mmOptions::instance().dateFormat_);
 }
 
 bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, const wxString &sDateMask)
