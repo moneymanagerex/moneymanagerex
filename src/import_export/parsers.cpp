@@ -28,11 +28,6 @@ ImportParserCSV::ImportParserCSV(wxWindow *pParentWindow, wxConvAuto encoding, w
 {
 }
 
-bool ImportParserCSV::Open(wxString fileName)
-{
-    return false;
-}
-
 bool ImportParserCSV::Parse(wxString fileName, unsigned int itemsInLine)
 {
     // Make sure file exists
@@ -80,11 +75,6 @@ bool ImportParserCSV::Parse(wxString fileName, unsigned int itemsInLine)
 ImportParserXML::ImportParserXML(wxWindow *pParentWindow, wxString encoding):
     TableBasedParser(pParentWindow), encoding_(encoding)
 {
-}
-
-bool ImportParserXML::Open(wxString fileName)
-{
-    return false;
 }
 
 bool ImportParserXML::Parse(wxString fileName, unsigned int itemsInLine)
