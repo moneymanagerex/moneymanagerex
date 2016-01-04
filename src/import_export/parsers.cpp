@@ -142,7 +142,7 @@ bool ImportParserXML::Parse(const wxString& fileName, unsigned int itemsInLine)
                 break;
 
             wxXmlNode *dataElement = cellElement->GetChildren();
-            wxString content = dataElement->GetNodeContent();
+            wxString content = dataElement? dataElement->GetNodeContent(): "";
             itemsTable_[row].push_back(content);
         }
         row++;
