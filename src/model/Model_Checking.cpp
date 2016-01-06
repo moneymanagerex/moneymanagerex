@@ -401,6 +401,17 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
         std::reverse(trans.begin(), trans.end());
         if (!trans.empty())
             trx_date = to_date(trans.begin()->TRANSDATE);
+
+        wxDateTime trx_date_b = wxDateTime::Today();
+        auto trans_b = instance().find(TOACCOUNTID(accountID), TRANSDATE(trx_date_b, LESS_OR_EQUAL));
+        std::stable_sort(trans_b.begin(), trans_b.end(), SorterByTRANSDATE());
+        std::reverse(trans_b.begin(), trans_b.end());
+        if (!trans_b.empty())
+        {
+            trx_date_b = to_date(trans_b.begin()->TRANSDATE);
+            if (!trans.empty() && (trx_date_b > trx_date))
+                trx_date = trx_date_b;
+        }
     }
 
     data.TRANSDATE = trx_date.FormatISODate();
