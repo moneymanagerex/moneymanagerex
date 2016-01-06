@@ -80,6 +80,7 @@ namespace weblink
     extern const wxString BceCurrencyHistory;
     extern const wxString DefStockUrl;
     extern const wxString GooglePlay;
+    extern const wxString WebApp;
 } // namespace weblink
 } // namespace mmex
 

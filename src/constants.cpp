@@ -143,6 +143,7 @@ const wxString mmex::weblink::YahooQuotesHistory = "http://ichart.finance.yahoo.
 const wxString mmex::weblink::BceCurrencyHistory = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml";
 //const wxString mmex::weblink::BceCurrencyHistory = "http://192.168.6.1/eurofxref-hist.xml"; // used for debug
 const wxString mmex::weblink::GooglePlay = "https://play.google.com/store/apps/details?id=com.money.manager.ex";
+const wxString mmex::weblink::WebApp = "https://github.com/moneymanagerex/web-money-manager-ex";
 
 // Will display the stock page when using Looks up the current value
 const wxString mmex::weblink::DefStockUrl = "http://finance.yahoo.com/echarts?s=%s";

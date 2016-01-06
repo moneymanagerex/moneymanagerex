@@ -25,6 +25,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmOptionMiscSettings, wxPanel)
+    EVT_CHECKBOX(ID_DIALOG_OPTIONS_CHK_BACKUP, mmOptionMiscSettings::OnBackupChanged)
+    EVT_CHECKBOX(ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE, mmOptionMiscSettings::OnBackupChanged)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
@@ -165,6 +167,16 @@ void mmOptionMiscSettings::Create()
     textDelimiter4->SetToolTip(_("Specify the delimiter to use when importing/exporting CSV files"));
     textDelimiter4->SetMaxLength(1);
     csvStaticBoxSizerGrid->Add(textDelimiter4, g_flags);
+
+    wxCommandEvent evt;
+    mmOptionMiscSettings::OnBackupChanged(evt);
+}
+
+void mmOptionMiscSettings::OnBackupChanged(wxCommandEvent& event)
+{
+    wxCheckBox* ChkBackup = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP);
+    wxCheckBox* ChkBackupUpdate = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE);
+    m_max_files->Enable(ChkBackup->GetValue() || ChkBackupUpdate->GetValue());
 }
 
 void mmOptionMiscSettings::SaveStocksUrl()

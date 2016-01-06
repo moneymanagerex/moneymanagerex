@@ -44,19 +44,26 @@ public:
 private:
     void Create();
 
+    void OnProxyChanged(wxCommandEvent& event);
+    void OnUpdateCheckChanged(wxCommandEvent& event);
+    void OnEnableWebserverChanged(wxCommandEvent& event);
+
 private:
-    wxCheckBox* m_check_update;
     wxSpinCtrl* m_network_timeout;
     wxCheckBox* m_send_data;
     wxCheckBox* m_webserver_checkbox;
     wxSpinCtrl* m_webserver_port;
+    wxTextCtrl* m_proxy_address;
     wxSpinCtrl* m_proxy_port;
+    wxCheckBox* m_check_update;
+    wxChoice*   m_update_source;
 
     enum
     {
         ID_DIALOG_OPTIONS_TEXTCTRL_PROXY = wxID_HIGHEST + 10,
         ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
         ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
-        ID_DIALOG_OPTIONS_UPDATES_SOURCE_TYPE
+        ID_DIALOG_OPTIONS_ENABLE_WEBSERVER,
+        ID_DIALOG_OPTIONS_UPDATES_CHECK
     };
 };

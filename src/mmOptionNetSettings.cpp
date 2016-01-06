@@ -17,11 +17,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "mmOptionNetSettings.h"
+#include "constants.h"
 
+#include <wx/hyperlink.h>
 #include <wx/spinctrl.h>
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmOptionNetSettings, wxPanel)
+    EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_PROXY, mmOptionNetSettings::OnProxyChanged)
+    EVT_CHECKBOX(ID_DIALOG_OPTIONS_ENABLE_WEBSERVER, mmOptionNetSettings::OnEnableWebserverChanged)
+    EVT_CHECKBOX(ID_DIALOG_OPTIONS_UPDATES_CHECK, mmOptionNetSettings::OnUpdateCheckChanged)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
@@ -70,6 +75,9 @@ void mmOptionNetSettings::Create()
     WebAppGUIDTextCtr->SetToolTip(_("Specify the Web App GUID"));
     WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
 
+    wxHyperlinkCtrl* WebAppLink = new wxHyperlinkCtrl(this, wxID_STATIC, _("More information about WebApp"), mmex::weblink::WebApp);
+    WebAppStaticBoxSizer->Add(WebAppLink, wxSizerFlags(g_flags).Border(wxLEFT, 10));
+
     // Proxy Settings
     wxStaticBox* proxyStaticBox = new wxStaticBox(this, wxID_STATIC, _("Proxy Settings"));
     SetBoldFont(proxyStaticBox);
@@ -77,9 +85,9 @@ void mmOptionNetSettings::Create()
     networkPanelSizer->Add(proxyStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
-    wxTextCtrl* proxyNameTextCtr = new wxTextCtrl(this, ID_DIALOG_OPTIONS_TEXTCTRL_PROXY
+    m_proxy_address = new wxTextCtrl(this, ID_DIALOG_OPTIONS_TEXTCTRL_PROXY
         , proxyName, wxDefaultPosition, wxSize(150, -1));
-    proxyNameTextCtr->SetToolTip(_("Specify the proxy IP address"));
+    m_proxy_address->SetToolTip(_("Specify the proxy IP address"));
 
     int proxyPort = Model_Setting::instance().GetIntSetting("PROXYPORT", 0);
     m_proxy_port = new wxSpinCtrl(this, wxID_ANY,
@@ -89,7 +97,7 @@ void mmOptionNetSettings::Create()
 
     wxFlexGridSizer* flex_sizer3 = new wxFlexGridSizer(0, 4, 0, 0);
     flex_sizer3->Add(new wxStaticText(this, wxID_STATIC, _("Proxy")), g_flags);
-    flex_sizer3->Add(proxyNameTextCtr, g_flags);
+    flex_sizer3->Add(m_proxy_address, g_flags);
     flex_sizer3->Add(new wxStaticText(this, wxID_STATIC, _("Port")), g_flags);
     flex_sizer3->Add(m_proxy_port, g_flags);
 
@@ -101,7 +109,7 @@ void mmOptionNetSettings::Create()
     wxStaticBoxSizer* webserverStaticBoxSizer = new wxStaticBoxSizer(webserverStaticBox, wxVERTICAL);
     networkPanelSizer->Add(webserverStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    m_webserver_checkbox = new wxCheckBox(this, wxID_ANY
+    m_webserver_checkbox = new wxCheckBox(this, ID_DIALOG_OPTIONS_ENABLE_WEBSERVER
         , _("Enable"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_webserver_checkbox->SetValue(GetIniDatabaseCheckboxValue("ENABLEWEBSERVER", true));
     m_webserver_checkbox->SetToolTip(_("Enable internal web server when MMEX Starts."));
@@ -156,32 +164,49 @@ void mmOptionNetSettings::Create()
     wxStaticBoxSizer* updateStaticBoxSizer = new wxStaticBoxSizer(updateStaticBox, wxVERTICAL);
     networkPanelSizer->Add(updateStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    m_check_update = new wxCheckBox(this, wxID_ANY
+    m_check_update = new wxCheckBox(this, ID_DIALOG_OPTIONS_UPDATES_CHECK
         , _("Check for updates at StartUp"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_check_update->SetValue(GetIniDatabaseCheckboxValue("UPDATECHECK", true));
     m_check_update->SetToolTip(_("Enable to automatically check if new MMEX version is available at StartUp"));
-    updateStaticBoxSizer->Add(m_check_update, g_flags);
-
-    wxFlexGridSizer* UpdateSourceStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 0);
-    updateStaticBoxSizer->Add(UpdateSourceStaticBoxSizerGrid, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxArrayString UpdatesType_;
     UpdatesType_.Add(_("Stable"));
     UpdatesType_.Add(_("Unstable"));
-    wxChoice* updatesTypeChoice = new wxChoice(this, ID_DIALOG_OPTIONS_UPDATES_SOURCE_TYPE
+    m_update_source = new wxChoice(this, wxID_ANY
         , wxDefaultPosition, wxSize(150, -1), UpdatesType_);
-    updatesTypeChoice->SetSelection(Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0));
-    UpdateSourceStaticBoxSizerGrid->Add(new wxStaticText(this, wxID_STATIC, _("Updates source:")), g_flags);
-    UpdateSourceStaticBoxSizerGrid->Add(updatesTypeChoice, g_flags);
+    m_update_source->SetSelection(Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0));
+    m_update_source->SetToolTip(_("Updates source"));
 
+    wxFlexGridSizer* UpdateSourceStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 0);
+    UpdateSourceStaticBoxSizerGrid->Add(m_check_update, g_flags);
+    UpdateSourceStaticBoxSizerGrid->Add(m_update_source, g_flags);
+    updateStaticBoxSizer->Add(UpdateSourceStaticBoxSizerGrid, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    wxCommandEvent evt;
+    mmOptionNetSettings::OnProxyChanged(evt);
+    mmOptionNetSettings::OnEnableWebserverChanged(evt);
+    mmOptionNetSettings::OnUpdateCheckChanged(evt);
     SetSizer(networkPanelSizer);
+}
+
+void mmOptionNetSettings::OnProxyChanged(wxCommandEvent& event)
+{
+    m_proxy_port->Enable(m_proxy_address->GetValue() != "");
+}
+
+void mmOptionNetSettings::OnEnableWebserverChanged(wxCommandEvent& event)
+{
+    m_webserver_port->Enable(m_webserver_checkbox->GetValue());
+}
+
+void mmOptionNetSettings::OnUpdateCheckChanged(wxCommandEvent& event)
+{
+    m_update_source->Enable(m_check_update->GetValue());
 }
 
 void mmOptionNetSettings::SaveSettings()
 {
-    wxTextCtrl* proxy = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_PROXY);
-    wxString proxyName = proxy->GetValue();
-    Model_Setting::instance().Set("PROXYIP", proxyName);
+    Model_Setting::instance().Set("PROXYIP", m_proxy_address->GetValue());
     Model_Setting::instance().Set("PROXYPORT", m_proxy_port->GetValue());
 
     wxTextCtrl* WebAppURL = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL);
@@ -198,6 +223,5 @@ void mmOptionNetSettings::SaveSettings()
     Model_Setting::instance().Set("NETWORKTIMEOUT", m_network_timeout->GetValue());
 
     Model_Setting::instance().Set("UPDATECHECK", m_check_update->GetValue());
-    wxChoice* itemChoice = (wxChoice*) FindWindow(ID_DIALOG_OPTIONS_UPDATES_SOURCE_TYPE);
-    Model_Setting::instance().Set("UPDATESOURCE", itemChoice->GetSelection());
+    Model_Setting::instance().Set("UPDATESOURCE", m_update_source->GetSelection());
 }
