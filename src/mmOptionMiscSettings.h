@@ -43,6 +43,7 @@ public:
 private:
     void Create();
 
+    void OnBackupChanged(wxCommandEvent& event);
     void SaveStocksUrl();
 
 private:
