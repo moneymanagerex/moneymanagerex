@@ -865,7 +865,11 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     if (dtdt.ParseFormat(dateStr, m_dateFormatStr, m_today))
         trx->TRANSDATE = dtdt.FormatISODate();
     else
+    {
+        *log_field_ << _("Date format or date mask is incorrect") << "\n";
         return false;
+    }
+
 
     int accountID = -1;
     wxString accountName = (t.find(AccountName) != t.end() ? t[AccountName] : "");
