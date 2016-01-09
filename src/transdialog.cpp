@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2011 Nikolay & Stefano Giorgio
+ Copyright (C) 2011 Stefano Giorgio
+ Copyright (C) 2011-2016 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -30,6 +31,7 @@
 #include "validators.h"
 #include "webapp.h"
 
+#include "mmOption.h"
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
@@ -234,6 +236,11 @@ void mmTransDialog::dataToControls()
             {
                 cbPayee_->Insert(all_payees, 0);
                 cbPayee_->AutoComplete(all_payees);
+                if (mmIniOptions::instance().transPayeeMandatory_)
+                {
+                    cbPayee_->Enable(false);
+                    cbPayee_->SetStringSelection(_("Unknown"));
+                }
             }
             Model_Payee::Data* payee = Model_Payee::instance().get(m_trx_data.PAYEEID);
             if (payee)
@@ -241,6 +248,7 @@ void mmTransDialog::dataToControls()
         }
         else //transfer
         {
+            cbPayee_->Enable(true);
             if (cSplit_->IsChecked())
             {
                 cSplit_->SetValue(false);
@@ -402,6 +410,8 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(cbAccount_, g_flags);
 
     // Payee ---------------------------------------------
+    //if (mmIniOptions::instance().transPayeeMandatory_ == 0)
+
     payee_label_ = new wxStaticText(this, wxID_STATIC, _("Payee"));
 
     /*Note: If you want to use EVT_TEXT_ENTER(id,func) to receive wxEVT_COMMAND_TEXT_ENTER events,

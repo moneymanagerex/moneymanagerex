@@ -46,6 +46,8 @@ public:
     * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Payee& instance();
+private:
+    void initialize();
 
 public:
     const Data_Set FilterPayees(const wxString& payee_pattern);

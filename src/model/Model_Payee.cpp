@@ -37,8 +37,11 @@ Model_Payee& Model_Payee::instance(wxSQLite3Database* db)
 {
     Model_Payee& ins = Singleton<Model_Payee>::instance();
     ins.db_ = db;
-    ins.destroy_cache();
+    bool init_payees = !ins.exists(db);
     ins.ensure(db);
+    if (init_payees)
+        ins.initialize();
+    ins.destroy_cache();
     ins.preload();
 
     return ins;
@@ -48,6 +51,19 @@ Model_Payee& Model_Payee::instance(wxSQLite3Database* db)
 Model_Payee& Model_Payee::instance()
 {
     return Singleton<Model_Payee>::instance();
+}
+
+void Model_Payee::initialize()
+{
+    this->Savepoint();
+
+    Model_Payee::Data *p = Model_Payee::instance().create();
+    p->PAYEENAME = _("Unknown");
+    p->CATEGID = -1;
+    p->SUBCATEGID = -1;
+    Model_Payee::instance().save(p);
+
+    this->ReleaseSavepoint();
 }
 
 const Model_Payee::Data_Set Model_Payee::FilterPayees(const wxString& payee_pattern)
@@ -99,8 +115,14 @@ const wxArrayString Model_Payee::all_payee_names()
 bool Model_Payee::is_used(int id)
 {
     const auto &trans = Model_Checking::instance().find(Model_Checking::PAYEEID(id));
+    if (!trans.empty()) return true;
     const auto &bills = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(id));
-    return !trans.empty() || !bills.empty();
+    if (!bills.empty()) return true;
+    
+    //Protect default payee
+    if (instance().get(id)->PAYEENAME == _("Unknown"))
+        return true;
+    return false;
 }
 
 bool Model_Payee::is_used(const Data* record)
