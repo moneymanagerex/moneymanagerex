@@ -410,8 +410,6 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(cbAccount_, g_flags);
 
     // Payee ---------------------------------------------
-    //if (mmIniOptions::instance().transPayeeMandatory_ == 0)
-
     payee_label_ = new wxStaticText(this, wxID_STATIC, _("Payee"));
 
     /*Note: If you want to use EVT_TEXT_ENTER(id,func) to receive wxEVT_COMMAND_TEXT_ENTER events,
