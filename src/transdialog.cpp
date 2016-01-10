@@ -236,12 +236,14 @@ void mmTransDialog::dataToControls()
             {
                 cbPayee_->Insert(all_payees, 0);
                 cbPayee_->AutoComplete(all_payees);
-                if (mmIniOptions::instance().transPayeeMandatory_)
-                {
-                    cbPayee_->Enable(false);
-                    cbPayee_->SetStringSelection(_("Unknown"));
-                }
             }
+
+            if (mmIniOptions::instance().transPayeeSelectionNone_ == 2)
+            {
+                cbPayee_->Enable(false);
+                cbPayee_->ChangeValue(_("Unknown"));
+            }
+
             Model_Payee::Data* payee = Model_Payee::instance().get(m_trx_data.PAYEEID);
             if (payee)
                 cbPayee_->ChangeValue(payee->PAYEENAME);
@@ -548,7 +550,7 @@ bool mmTransDialog::validateData()
                 , wxString::Format(_("Do you want to add new payee: \n%s?"), payee_name)
                 , _("Confirm to add new payee")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
-            if (msgDlg.ShowModal() == wxID_YES)
+            if (mmIniOptions::instance().transPayeeSelectionNone_ == 2 || msgDlg.ShowModal() == wxID_YES)
             {
                 payee = Model_Payee::instance().create();
                 payee->PAYEENAME = payee_name;

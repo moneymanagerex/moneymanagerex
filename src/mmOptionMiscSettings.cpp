@@ -81,17 +81,12 @@ void mmOptionMiscSettings::Create()
         , wxDefaultPosition, wxSize(140, -1), defaultValues_);
     defaultDateChoice->SetSelection(mmIniOptions::instance().transDateDefault_);
 
+    defaultValues_[1] = (_("Last used for payee"));
+    defaultValues_.Add(_("Unused"));
     wxChoice* defaultPayeeChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE
         , wxDefaultPosition, wxSize(140, -1), defaultValues_);
     defaultPayeeChoice->SetSelection(mmIniOptions::instance().transPayeeSelectionNone_);
-    defaultValues_[1] = (_("Last used for payee"));
-
-    wxChoice* payeeMandatory = new wxChoice(this
-        , ID_DIALOG_OPTIONS_PAYEE_MANDATORY);
-    payeeMandatory->AppendString(_("Yes"));
-    payeeMandatory->AppendString(_("No"));
-    payeeMandatory->SetSelection(mmIniOptions::instance().transPayeeMandatory_);
 
     wxChoice* defaultCategoryChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY
@@ -117,8 +112,7 @@ void mmOptionMiscSettings::Create()
     newTransflexGridSizer->Add(defaultCategoryChoice, g_flags);
     newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Status:")), g_flags);
     newTransflexGridSizer->Add(default_status, g_flags);
-    newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Payee Mandatory:")), g_flags);
-    newTransflexGridSizer->Add(payeeMandatory, g_flags);
+
     //----------------------------------------------
     //a bit more space visual appearance
     othersPanelSizer->AddSpacer(10);
@@ -206,10 +200,6 @@ void mmOptionMiscSettings::SaveSettings()
     wxChoice* itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE);
     mmIniOptions::instance().transPayeeSelectionNone_ = itemChoice->GetSelection();
     Model_Setting::instance().Set("TRANSACTION_PAYEE_NONE", itemChoice->GetSelection());
-
-    itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_PAYEE_MANDATORY);
-    mmIniOptions::instance().transPayeeMandatory_ = itemChoice->GetSelection();
-    Model_Setting::instance().Set("TRANSACTION_PAYEE_MANDATORY", itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY);
     mmIniOptions::instance().transCategorySelectionNone_ = itemChoice->GetSelection();

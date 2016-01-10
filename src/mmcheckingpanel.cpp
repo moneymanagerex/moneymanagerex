@@ -966,8 +966,6 @@ void TransactionListCtrl::createColumns(mmListCtrl &lst)
     {
         const wxString& heading = std::get<0>(entry);
         int width = Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, i), std::get<1>(entry));
-        if (heading == _("Payee") && mmIniOptions::instance().transPayeeMandatory_ != 0)
-            width = 0;
         int format = std::get<2>(entry);
         lst.InsertColumn(i, heading, format, width);
         i++;
@@ -1027,7 +1025,8 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW_WITHDRAWAL, _("&New Withdrawal"));
     menu.Append(MENU_TREEPOPUP_NEW_DEPOSIT, _("&New Deposit"));
-    menu.Append(MENU_TREEPOPUP_NEW_TRANSFER, _("&New Transfer"));
+    if (Model_Account::instance().all_checking_account_names(true).size() > 1)
+        menu.Append(MENU_TREEPOPUP_NEW_TRANSFER, _("&New Transfer"));
 
     menu.AppendSeparator();
 

@@ -58,7 +58,6 @@ mmIniOptions::mmIniOptions()
 , budgetReportWithSummaries_(true)
 , ignoreFutureTransactions_(false)
 , transPayeeSelectionNone_(0)
-, transPayeeMandatory_(0)
 , transCategorySelectionNone_(0)
 , transStatusReconciled_(0)
 , transDateDefault_(0)
@@ -87,7 +86,6 @@ void mmIniOptions::loadOptions()
 
     // Read the preference as a string and convert to int
     transPayeeSelectionNone_ = Model_Setting::instance().GetIntSetting("TRANSACTION_PAYEE_NONE", 0);
-    transPayeeMandatory_ = Model_Setting::instance().GetIntSetting("TRANSACTION_PAYEE_MANDATORY", 0);
 
     // For the category selection, default behavior should remain that the last category used for the payee is selected.
     //  This is item 1 (0-indexed) in the list.

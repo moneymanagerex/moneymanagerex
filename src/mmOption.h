@@ -60,7 +60,6 @@ public:
     bool ignoreFutureTransactions_;
 
     int transPayeeSelectionNone_;
-    int transPayeeMandatory_;
     int transCategorySelectionNone_;
     int transStatusReconciled_;
     int transDateDefault_;
