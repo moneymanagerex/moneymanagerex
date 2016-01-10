@@ -66,6 +66,7 @@ bool mmOptionsDialog::Create(wxWindow* parent
     GetSizer()->SetSizeHints(this);
     this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
+    SetMinSize(wxSize(424, 610));
 
     Centre();
     return TRUE;

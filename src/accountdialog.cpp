@@ -149,7 +149,7 @@ void mmNewAcctDialog::fillControls()
     m_itemInitValue->SetValue(Model_Currency::toString(initBal, Model_Account::currency(m_account)));
 
     int selectedImage = mmIniOptions::instance().account_image_id(m_account->ACCOUNTID);
-    m_bitmapButtons->SetBitmapLabel(m_imageList->GetBitmap(selectedImage));
+    m_bitmapButtons->SetBitmap(m_imageList->GetBitmap(selectedImage));
 
     m_accessInfo = m_account->ACCESSINFO;
 }
@@ -419,7 +419,7 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
     if (selectedImage != 0)
         image_id = selectedImage + img::LAST_NAVTREE_PNG - 1;
 
-    m_bitmapButtons->SetBitmapLabel(m_imageList->GetBitmap(image_id));
+    m_bitmapButtons->SetBitmap(m_imageList->GetBitmap(image_id));
 }
 
 void mmNewAcctDialog::OnTextEntered(wxCommandEvent& event)

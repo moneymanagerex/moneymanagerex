@@ -112,6 +112,7 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     this->SetInitialSize();
+    SetMinSize(wxSize(400, 580));
     SetIcon(mmex::getProgramIcon());
 
     Centre();
@@ -344,8 +345,7 @@ void mmFilterTransactionsDialog::CreateControls()
     wxButton* itemButtonClear = new wxButton( buttonPanel, wxID_CLEAR, _("&Clear "));
 
     wxBitmapButton* save_button = new wxBitmapButton(buttonPanel
-        , wxID_SAVE, mmBitmap(png::SAVE), wxDefaultPosition
-        , wxSize(itemButtonOK->GetSize().GetHeight(), itemButtonOK->GetSize().GetHeight()));
+        , wxID_SAVE, mmBitmap(png::SAVE));
 
     save_button->Show(true);
 
