@@ -31,3 +31,6 @@
 [submodule "database"]
 	path = database
 	url = https://github.com/moneymanagerex/database
+[submodule "lib/lua"]
+	path = lib/lua
+	url = https://github.com/lua/lua
