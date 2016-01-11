@@ -163,7 +163,7 @@ void SplitTransactionDialog::CreateControls()
     topRowButtonSizer->Add(itemButtonDelete_, flags);
 
     itemButtonOK_ = new wxButton(buttons_panel, wxID_OK, _("&OK "));
-    wxButton* itemButtonCancel = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButtonCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemButtonCancel->SetFocus();
 
     bottomRowButtonSizer->Add(itemButtonOK_, g_flags);

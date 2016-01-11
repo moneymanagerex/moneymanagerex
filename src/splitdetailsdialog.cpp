@@ -151,7 +151,7 @@ void SplitDetailDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     buttons_sizer->Add(itemButtonOK, g_flags);
 
-    wxButton* itemButtonCancel = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButtonCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     buttons_sizer->Add(itemButtonCancel, g_flags);
 }
 

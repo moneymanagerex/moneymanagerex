@@ -379,7 +379,7 @@ void mmGeneralReportManager::CreateControls()
     buttonPanelSizer->Add(m_buttonRun, g_flags);
     m_buttonRun->SetToolTip(_("Run selected report."));
 
-    wxButton* button_Close = new wxButton(buttonPanel, wxID_CLOSE, _("&Close "));
+    wxButton* button_Close = new wxButton(buttonPanel, wxID_CLOSE, wxGetTranslation(g_CloseLabel));
     buttonPanelSizer->Add(button_Close, g_flags);
     //button_Close->SetToolTip(_("Save changes before closing. Changes without Save will be lost."));
 

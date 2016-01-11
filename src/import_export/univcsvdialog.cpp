@@ -385,7 +385,7 @@ void mmUnivCSVDialog::CreateControls()
         itemButton_Export -> SetToolTip (_("Export File"));
     }
 
-    wxButton* itemCancelButton = new wxButton(itemPanel5, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemCancelButton = new wxButton(itemPanel5, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemBoxSizer6->Add(itemCancelButton, 0, wxALIGN_CENTER | wxALL, 5);
     itemCancelButton->SetFocus();
 

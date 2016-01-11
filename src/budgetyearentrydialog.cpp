@@ -19,6 +19,7 @@
 
 #include "budgetyearentrydialog.h"
 #include "paths.h"
+#include "constants.h"
 #include <wx/spinctrl.h>
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Budget.h"
@@ -123,7 +124,7 @@ void mmBudgetYearEntryDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton( this, wxID_OK, _("&OK ") );
     itemBoxSizer9->Add(itemButtonOK, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-    wxButton* itemButtonCancel = new wxButton( this, wxID_CANCEL, _("&Cancel ") );
+    wxButton* itemButtonCancel = new wxButton( this, wxID_CANCEL, wxGetTranslation(g_CancelLabel) );
     itemBoxSizer9->Add(itemButtonCancel, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 }
 

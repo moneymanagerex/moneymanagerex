@@ -18,11 +18,12 @@
  ********************************************************/
 
 #include "relocatepayeedialog.h"
-#include "model/Model_Payee.h"
 #include "paths.h"
+#include "constants.h"
 #include "wx/statline.h"
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Checking.h"
+#include "model/Model_Payee.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(relocatePayeeDialog, wxDialog);
 
@@ -109,7 +110,7 @@ void relocatePayeeDialog::CreateControls()
     boxSizer->Add(lineBottom, flagsExpand);
 
     wxButton* okButton = new wxButton(this,wxID_OK, _("&OK "));
-    wxButton* cancelButton = new wxButton(this,wxID_CANCEL, _("&Cancel "));
+    wxButton* cancelButton = new wxButton(this,wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     cancelButton-> SetFocus () ;
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonBoxSizer->Add(okButton, flags);

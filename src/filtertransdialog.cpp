@@ -338,7 +338,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     wxButton* itemButtonOK = new wxButton( buttonPanel, wxID_OK, _("&OK "));
 
-    wxButton* itemButtonCancel = new wxButton( buttonPanel, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButtonCancel = new wxButton( buttonPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemButtonCancel->SetFocus();
 
     wxButton* itemButtonClear = new wxButton( buttonPanel, wxID_CLEAR, _("&Clear "));

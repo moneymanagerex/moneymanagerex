@@ -126,7 +126,7 @@ void mmPayeeDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     tools_sizer->Add(buttons_sizer, wxSizerFlags(g_flags).Center());
     wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
-    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
+    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
     buttons_sizer->Add(buttonOK, g_flags);
     buttons_sizer->Add(btnCancel, g_flags);

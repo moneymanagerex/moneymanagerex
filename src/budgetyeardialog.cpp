@@ -20,6 +20,7 @@
 #include "budgetyearentrydialog.h"
 #include "util.h"
 #include "paths.h"
+#include "constants.h"
 #include "model/Model_Budgetyear.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetYearDialog, wxDialog);
@@ -115,7 +116,7 @@ void mmBudgetYearDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton(itemPanel25, wxID_OK, _("&OK "));
     itemButtonSizer->Add(itemButtonOK, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT | wxBOTTOM, 5);
 
-    wxButton* itemButtonCancel = new wxButton(itemPanel25, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButtonCancel = new wxButton(itemPanel25, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemButtonSizer->Add(itemButtonCancel, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT | wxBOTTOM, 5);
     itemButtonCancel->SetFocus();
 }

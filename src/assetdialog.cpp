@@ -193,7 +193,7 @@ void mmAssetDialog::CreateControls()
     wxButton* itemButton29 = new wxButton(itemPanel27, wxID_OK, _("&OK "));
     itemBoxSizer28->Add(itemButton29, g_flags);
 
-    wxButton* itemButton30 = new wxButton(itemPanel27, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButton30 = new wxButton(itemPanel27, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemBoxSizer28->Add(itemButton30, g_flags);
     itemButton30->SetFocus();
 }

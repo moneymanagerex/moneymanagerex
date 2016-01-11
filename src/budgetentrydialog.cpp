@@ -156,7 +156,7 @@ void mmBudgetEntryDialog::CreateControls()
     wxButton* itemButton7 = new wxButton(this, wxID_OK, _("&OK "));
     itemBoxSizer9->Add(itemButton7, g_flags);
 
-    wxButton* itemButton8 = new wxButton(this, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButton8 = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemBoxSizer9->Add(itemButton8, g_flags);
 }
 

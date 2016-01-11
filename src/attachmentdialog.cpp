@@ -116,7 +116,7 @@ void mmAttachmentDialog::CreateControls()
     buttons_panel->SetSizer(buttons_sizer);
 
     wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
-    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
+    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     buttons_sizer->Add(buttonOK, g_flags);
     buttons_sizer->Add(btnCancel, g_flags);
 

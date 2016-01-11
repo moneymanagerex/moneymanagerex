@@ -67,7 +67,7 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
     wxButton* next = (wxButton*) FindWindow(wxID_FORWARD); //FIXME: 
     if (next) next->SetLabel(_("&Next ->"));
     wxButton* ca = (wxButton*) FindWindow(wxID_CANCEL);
-    if (ca) ca->SetLabel(_("&Cancel "));*/
+    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));*/
 }
 
 void mmNewDatabaseWizard::RunIt(bool modal)

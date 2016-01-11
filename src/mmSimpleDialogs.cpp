@@ -50,7 +50,7 @@ void mmSingleChoiceDialog::fix_translation()
     wxButton* ok = (wxButton*)FindWindow(wxID_OK);
     if (ok) ok->SetLabel(_("&OK "));
     wxButton* ca = (wxButton*)FindWindow(wxID_CANCEL);
-    if (ca) ca->SetLabel(_("&Cancel "));
+    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
 }
 
 //  mmDialogComboBoxAutocomplete

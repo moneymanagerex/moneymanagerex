@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "reportbase.h"
+#include "constants.h"
 #include "mmex.h"
 #include "mmDateRange.h"
 #include "model/Model_Account.h"
@@ -75,7 +76,7 @@ void mmPrintableBaseSpecificAccounts::getSpecificAccounts()
     wxButton* ok = (wxButton*) mcd.FindWindow(wxID_OK);
     if (ok) ok->SetLabel(_("&OK "));
     wxButton* ca = (wxButton*) mcd.FindWindow(wxID_CANCEL);
-    if (ca) ca->SetLabel(_("&Cancel "));
+    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
 
     if (mcd.ShowModal() == wxID_OK)
     {

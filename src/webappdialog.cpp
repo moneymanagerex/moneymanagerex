@@ -95,7 +95,7 @@ void mmWebAppDialog::CreateControls()
     tools_sizer->Add(buttons_sizer, wxSizerFlags(g_flags).Center());
     wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _("&Import all "));
     wxButton* buttonApply = new wxButton(buttons_panel, wxID_APPLY, _("Import and open all "));
-    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
+    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
     buttons_sizer->Add(buttonOK, g_flags);
     buttons_sizer->Add(buttonApply, g_flags);

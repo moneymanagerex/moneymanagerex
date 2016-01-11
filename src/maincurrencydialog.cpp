@@ -214,7 +214,7 @@ void mmMainCurrencyDialog::CreateControls()
         itemButtonSelect->Disable();
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
-    wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, _("&Close "));
+    wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CloseLabel));
     itemBoxSizer9->Add(itemCancelButton, g_flags);
     itemCancelButton->SetFocus();
 

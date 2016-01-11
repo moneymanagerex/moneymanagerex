@@ -204,7 +204,7 @@ void mmQIFExportDialog::CreateControls()
     buttons_panel->SetSizer(buttons_sizer);
 
     wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
-    wxButton* itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemButtonOK->Connect(wxID_OK, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFExportDialog::OnOk), nullptr, this);
 
@@ -228,7 +228,7 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
     wxButton* ok = (wxButton*) s_acc.FindWindow(wxID_OK);
     if (ok) ok->SetLabel(_("&OK "));
     wxButton* ca = (wxButton*) s_acc.FindWindow(wxID_CANCEL);
-    if (ca) ca->SetLabel(_("&Cancel "));
+    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
 
     wxString baloon = "";
     wxArrayInt selected_items;

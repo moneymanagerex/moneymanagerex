@@ -315,7 +315,7 @@ void mmStockDialog::CreateControls()
     leftBoxSizer->Add(buttonsOK_CANCEL_sizer, wxSizerFlags(g_flags).Centre());
 
     wxButton* itemButtonOK = new wxButton(this, wxID_SAVE, _("&Save "));
-    wxButton* itemButton30 = new wxButton(this, wxID_CANCEL, _("&Close "));
+    wxButton* itemButton30 = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CloseLabel));
 
     if (edit_)
         itemButton30->SetFocus();

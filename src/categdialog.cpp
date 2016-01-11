@@ -239,7 +239,7 @@ void mmCategDialog::CreateControls()
     m_buttonSelect->SetToolTip(_("Select the currently selected category as the selected category for the transaction"));
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
-    wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemBoxSizer9->Add(itemCancelButton, g_flags);
 }
 

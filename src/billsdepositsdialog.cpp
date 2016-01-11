@@ -627,7 +627,7 @@ void mmBDDialog::CreateControls()
     wxButton* okButton = new wxButton(buttonsPanel, wxID_OK, _("&OK "));
     buttonsPanelSizer->Add(okButton, g_flags);
 
-    wxButton* cancelButton = new wxButton(buttonsPanel, wxID_CANCEL, _("&Cancel "));
+    wxButton* cancelButton = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     buttonsPanelSizer->Add(cancelButton, g_flags);
     cancelButton->SetFocus();
 
