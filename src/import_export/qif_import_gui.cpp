@@ -77,6 +77,7 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
 , accountCheckBox_(nullptr)
 , accountDropDown_(nullptr)
 , btnOK_(nullptr)
+, m_today(wxDate::Today())
 {
     payeeIsNotes_ = false;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -618,7 +619,11 @@ void mmQIFImportDialog::parseDate(const wxString &dateStr, std::map<wxString, wx
         const wxString mask = date_mask.first;
         wxDateTime dtdt = m_today;
         if (mmParseDisplayStringToDate(dtdt, dateStr, mask))
+        {
             m_date_parsing_stat[mask] ++;
+            if (dtdt <= m_today)
+                m_date_parsing_stat[mask] ++;
+        }
         else {
             invalidMask.Add(mask);
         }
@@ -777,8 +782,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         Model_Checking::Cache transfer_to_data_set;
         Model_Checking::Cache transfer_from_data_set;
         int count = 0, success = 0;
-        m_today = wxDate::Today();
         const wxString transferStr = Model_Checking::all_type()[Model_Checking::TRANSFER];
+
         for (const auto& entry : vQIF_trxs_)
         {
             if (count % 100 == 0 || count == numTransactions)
