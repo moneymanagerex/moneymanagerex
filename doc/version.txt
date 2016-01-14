@@ -1,5 +1,10 @@
 Version History of Money Manager Ex
 
+1.2.5 (Jan 24, 2016)
+- New: Portuguese_br translation updated
+- QIF import fixes
+- Minor fixes
+
 1.2.4 (Dec 21, 2015)
 - New: Japanese translation added
 - Fix: Italiano translation updated

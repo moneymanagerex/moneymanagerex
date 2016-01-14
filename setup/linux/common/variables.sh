@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Specify the build version of mmex
-MMEX_VERSION="1.2.4"
-MMEX_RELEASE_DATE="2015-11-14"
+MMEX_VERSION="1.2.5"
+MMEX_RELEASE_DATE="2016-01-24"
 MMEX_EMAIL="moneymanagerex@moneymanagerex.org"
 MMEX_HOMEPAGE="http://www.moneymanagerex.org"
 BUILD_DIR="$HOME/build"
