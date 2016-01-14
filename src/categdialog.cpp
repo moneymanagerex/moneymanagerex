@@ -105,6 +105,7 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
     GetSizer()->SetSizeHints(this);
     this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
+    SetMinSize(wxSize(316, 316));
     Centre();
     return TRUE;
 }
