@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2013-2014 Nikolay
+Copyright (C) 2013-2016 Nikolay
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -495,7 +495,8 @@ void mmQIFImportDialog::refreshTabs(int tabs)
                     if (p)
                     {
                         category = Model_Category::full_name(p->CATEGID, p->SUBCATEGID);
-                        m_QIFcategoryNames[category] = std::make_pair(p->CATEGID, p->SUBCATEGID);
+                        if (!category.empty())
+                            m_QIFcategoryNames[category] = std::make_pair(p->CATEGID, p->SUBCATEGID);
                     }
                 }
             }
@@ -598,12 +599,9 @@ void mmQIFImportDialog::getDateMask()
         if (d.second > i)
         {
             i = d.second;
-            if (!m_userDefinedDateMask)
-            {
-                m_dateFormatStr = d.first;
-            }
+            m_dateFormatStr = d.first;
         }
-        wxLogDebug("%s \t%i", g_date_formats_map.at(m_dateFormatStr), d.second);
+        wxLogDebug("%s \t%i", g_date_formats_map.at(d.first), d.second);
     }
     choiceDateFormat_->SetStringSelection(g_date_formats_map.at(m_dateFormatStr));
 }
@@ -856,7 +854,7 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     if (!Model_Currency::fromString(value, amt))
         return false;
     trx->TRANSAMOUNT = fabs(amt);
-    trx->TOTRANSAMOUNT = amt;
+    trx->TOTRANSAMOUNT = transfer ? amt : trx->TRANSAMOUNT;
 
     if (t.find(CategorySplit) != t.end()) 
     {

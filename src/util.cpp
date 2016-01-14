@@ -176,18 +176,20 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
 
     const wxString regex = date_formats_regex().at(sDateMask);
     const wxString date_template = g_date_formats_map.at(sDateMask);
-    if (sDate.length() > date_template.length())
-        date_str = sDate.Left(date_template.length());
+    if (sDate.length() != date_template.length())
+        return false;
+
     wxRegEx pattern(regex);
 
     if (pattern.Matches(date_str))
     {
-        date.ParseFormat(sDate, sDateMask, date);
-        //wxLogDebug("%s = %s", sDate, date.FormatISODate());
+        if (!date.ParseFormat(sDate, sDateMask, date))
+            return false;
+        //wxLogDebug("%s = %s (Mask:%s)", sDate, date.FormatISODate(), sDateMask);
         return true;
     }
 
-    //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
+    //wxLogDebug("%s %s %i %s", sDate, sDateMask, pattern.Matches(sDate), regex);
     return false;
 }
 
