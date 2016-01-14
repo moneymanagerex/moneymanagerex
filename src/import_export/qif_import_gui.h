@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2013-2014 Nikolay
+Copyright (C) 2013-2016 Nikolay
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ private:
     void joinSplit(Model_Checking::Cache &destination, std::vector <Model_Splittransaction::Cache> &target);
     void saveSplit();
     void getDateMask();
-    void refreshTabs(int tabs = 15);
+    void refreshTabs(int tabs);
     void parseDate(const wxString &dateStr, std::map<wxString, wxString> &date_formats_temp);
 
     //QIF paragraphs represented like maps type = data
@@ -108,7 +108,7 @@ private:
     wxCheckBox* payeeIsNotesCheckBox_;
     wxButton* btnOK_;
     
-    bool payeeIsNotes_; 
+    bool payeeIsNotes_; //Include payee field in notes
 
     enum EColumn
     {

@@ -275,3 +275,10 @@ void mmErrorDialogs::InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist)
     tip.SetIcon(wxICON_WARNING);
     tip.ShowFor(textBox);
 }
+
+void mmErrorDialogs::ToolTipWarning(wxWindow *object, const wxString &message, const wxString &messageheader)
+{
+    wxRichToolTip tip(messageheader, message);
+    tip.SetIcon(wxICON_WARNING);
+    tip.ShowFor(object);
+}
