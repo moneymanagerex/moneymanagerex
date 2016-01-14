@@ -82,5 +82,6 @@ public:
     static void InvalidPayee(wxWindow *object);
     static void InvalidName(wxTextCtrl *textBox, bool alreadyexist = false);
     static void InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist = false);
+    static void ToolTipWarning(wxWindow *object, const wxString &message, const wxString &messageheader);
 };
 #endif // MM_EX_MMSIMPLEDIALOGS_H_

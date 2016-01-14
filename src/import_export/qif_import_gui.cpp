@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2013-2014 Nikolay
+Copyright (C) 2013-2016 Nikolay
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "paths.h"
 #include "util.h"
 #include "webapp.h"
+#include "mmSimpleDialogs.h"
 
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
@@ -29,6 +30,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Payee.h"
 
 #include <wx/progdlg.h>
+
+enum tab_id {
+    LOG_TAB = 0,
+    TRX_TAB = 1,
+    ACC_TAB = 2,
+    PAYEE_TAB = 4,
+    CAT_TAB = 8,
+};
 
 //map Quicken !Account type strings to Model_Account::TYPE
 // (not sure whether these need to be translated)
@@ -160,11 +169,11 @@ void mmQIFImportDialog::CreateControls()
     flex_sizer->Add(accountDropDown_, g_flags);
     
     //Use account number instead of account name :
-    accountNumberCheckBox_ = new wxCheckBox(this, wxID_FILE5, _("Use account number instead of account name")
+    accountNumberCheckBox_ = new wxCheckBox(this, wxID_FILE6, _("Use account number instead of account name")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
         
     //Use paye as desc :
-    payeeIsNotesCheckBox_ = new wxCheckBox(this, wxID_FILE5, _("Include paye field in notes")
+    payeeIsNotesCheckBox_ = new wxCheckBox(this, wxID_FILE7, _("Include payee field in notes")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     payeeIsNotesCheckBox_->SetValue(payeeIsNotes_);
 
@@ -175,7 +184,7 @@ void mmQIFImportDialog::CreateControls()
     filter_sizer->Add(flex_sizer2, g_flagsExpand);
 
     // From Date 
-    dateFromCheckBox_ = new wxCheckBox(static_box, wxID_ANY, _("From Date")
+    dateFromCheckBox_ = new wxCheckBox(static_box, wxID_FILE8, _("From Date")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     fromDateCtrl_ = new wxDatePickerCtrl(static_box, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN);
@@ -184,7 +193,7 @@ void mmQIFImportDialog::CreateControls()
     flex_sizer2->Add(fromDateCtrl_, g_flags);
 
     // To Date
-    dateToCheckBox_ = new wxCheckBox(static_box, wxID_ANY, _("To Date")
+    dateToCheckBox_ = new wxCheckBox(static_box, wxID_FILE9, _("To Date")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     toDateCtrl_ = new wxDatePickerCtrl(static_box, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN);
@@ -293,7 +302,7 @@ void mmQIFImportDialog::CreateControls()
 
 void mmQIFImportDialog::fillControls()
 {
-    refreshTabs();
+    refreshTabs(TRX_TAB | ACC_TAB | PAYEE_TAB | CAT_TAB);
     btnOK_->Enable(!file_name_ctrl_->GetValue().empty());
 }
 
@@ -387,6 +396,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     }
     log_field_->ScrollLines(log_field_->GetNumberOfLines());
 
+    getDateMask();
     fillControls();
 
     progressDlg.Destroy();
@@ -474,7 +484,6 @@ void mmQIFImportDialog::refreshTabs(int tabs)
     int num = 0;
     if (tabs%2)
     {
-        num = 0;
         wxString acc;
         dataListBox_->DeleteAllItems();
         for (const auto& trx : vQIF_trxs_)
@@ -483,18 +492,29 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             wxVector<wxVariant> data;
             Model_Account::Data* account = Model_Account::instance().getByAccNum(map.at(AccountName));
             data.push_back(wxVariant(wxString::Format("%i", num + 1)));
-            data.push_back(wxVariant(
-                map.find(AccountName) != map.end()
-                && (map.at(AccountName).empty() || 
-                accountCheckBox_->IsChecked()) 
-                ? m_accountNameStr
-                : (
-                  (accountNumberCheckBox_->IsChecked() && account) 
-                  ? account->ACCOUNTNAME : map.at(AccountName)
-                )
-            ));
+            data.push_back(
+                    wxVariant(
+                        map.find(AccountName) != map.end()
+                            && (map.at(AccountName).empty() || accountCheckBox_->IsChecked())
+                                ? m_accountNameStr
+                                : ((accountNumberCheckBox_->IsChecked() && account)
+                                    ? account->ACCOUNTNAME : map.at(AccountName)
+                                  )
+                    )
+            );
 
-            data.push_back(wxVariant(map.find(Date) != map.end() ? map.at(Date) : ""));
+            wxString dateStr = "";
+            if (map.find(Date) != map.end())
+            {
+                dateStr = map.at(Date);
+                wxDateTime dtdt;
+                if (dtdt.ParseFormat(dateStr, m_dateFormatStr, m_today))
+                    dateStr = mmGetDateForDisplay(dtdt);
+                else
+                    dateStr.Prepend("!");
+            }
+
+            data.push_back(wxVariant(dateStr));
             data.push_back(wxVariant(map.find(TransNumber) != map.end() ? map.at(TransNumber) : ""));
             const wxString type = (map.find(TrxType) != map.end() ? map.at(TrxType) : "");
             if (type == Model_Checking::all_type()[Model_Checking::TRANSFER])
@@ -519,7 +539,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         }
     }
 
-    if (int(tabs / 2) % 2)
+    if (int(tabs / ACC_TAB) % 2)
     {
         num = 0;
         accListBox_->DeleteAllItems();
@@ -557,7 +577,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         }
     }
 
-    if (int(tabs / 4) % 2)
+    if (int(tabs / PAYEE_TAB) % 2)
     {
         payeeListBox_->DeleteAllItems();
         for (const auto& payee : m_QIFpayeeNames)
@@ -570,7 +590,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         }
     }
 
-    if (int(tabs / 8) % 2)
+    if (int(tabs / CAT_TAB) % 2)
     {
         num = 0;
         const auto &c(Model_Category::all_categories());
@@ -613,19 +633,37 @@ void mmQIFImportDialog::parseDate(const wxString &dateStr, std::map<wxString, wx
 
 void mmQIFImportDialog::getDateMask()
 {
-    //Check parsing results
-    int i = 0;
-    for (const auto& d : m_date_parsing_stat)
+    if (!m_userDefinedDateMask)
     {
-        if (d.second > i)
+        //Check parsing results
+        int count = 0;
+        for (const auto& d : m_date_parsing_stat)
         {
-            i = d.second;
-            if (!m_userDefinedDateMask)
+            wxLogDebug("%s \t%i", g_date_formats_map.at(d.first), d.second);
+
+            if (d.second > count)
             {
+                count = d.second;
                 m_dateFormatStr = d.first;
             }
         }
-        wxLogDebug("%s \t%i", g_date_formats_map.at(m_dateFormatStr), d.second);
+
+        if (!m_date_parsing_stat.empty())
+        {
+            choiceDateFormat_->Clear();
+            for (const auto& entry : m_date_parsing_stat)
+            {
+                if (count == entry.second)
+                    choiceDateFormat_->Append(g_date_formats_map.at(entry.first), new wxStringClientData(entry.first));
+            }
+        }
+        if (choiceDateFormat_->GetCount() > 1)
+        {
+            if (m_date_parsing_stat.empty())
+                mmErrorDialogs::ToolTipWarning(choiceDateFormat_, _("Can't determine date mask"), _("Error"));
+            else
+                mmErrorDialogs::ToolTipWarning(choiceDateFormat_, _("Date Mask has several values"), _("Warning"));
+        }
     }
     choiceDateFormat_->SetStringSelection(g_date_formats_map.at(m_dateFormatStr));
 }
@@ -647,8 +685,6 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
         log_field_->ChangeValue("");
         file_name_ctrl_->SetValue(m_FileNameStr);
         mmReadQIFFile();
-        m_userDefinedDateMask = false;
-        getDateMask();
     }
     windowsFreezeThaw(this);
 }
@@ -657,42 +693,50 @@ void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
 {
     wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
     if (data) m_dateFormatStr = data->GetData();
-    if (m_FileNameStr.IsEmpty())
-        return;
     m_userDefinedDateMask = true;
+    refreshTabs(TRX_TAB);
 }
 
-void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
+void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& event )
 {
-    if(payeeIsNotesCheckBox_->IsChecked() != payeeIsNotes_){
-        if (payeeIsNotesCheckBox_->IsChecked()){
-            payeeIsNotes_ = true;
-        }else{
-            payeeIsNotes_ = false;
-        }
-        mmReadQIFFile();
-        refreshTabs(3);
-    }
-    
+    int t = TRX_TAB;
+
     fromDateCtrl_->Enable(dateFromCheckBox_->IsChecked());
     toDateCtrl_->Enable(dateToCheckBox_->IsChecked());
-    if (accountCheckBox_->IsChecked()
-        && !Model_Account::instance().all_checking_account_names().empty())
+
+    if (event.GetId() == wxID_FILE6)
     {
-        accountDropDown_->Enable(true);
-        m_accountNameStr = "";
-        wxStringClientData* data_obj = (wxStringClientData*) accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
-        if (data_obj)
-            m_accountNameStr = data_obj->GetData();
-        refreshTabs(1);
+        t = t | PAYEE_TAB;
     }
-    else {
-        accountDropDown_->Enable(false);
-        accountCheckBox_->SetValue(false);
-        m_accountNameStr = "";
-        refreshTabs(1);
+    
+    if (event.GetId() == wxID_FILE7)
+    {
+        t = t | PAYEE_TAB;
+        payeeIsNotes_ = payeeIsNotesCheckBox_->IsChecked();
+        if (!m_FileNameStr.IsEmpty())
+            mmReadQIFFile(); //TODO: 1:Why read file again? 2:In future may be def payee in settings  
     }
-    refreshTabs(2);  
+
+    if (event.GetId() == wxID_FILE5)
+    {
+        t = t | ACC_TAB;
+        if (accountCheckBox_->IsChecked()
+            && !Model_Account::instance().all_checking_account_names().empty())
+        {
+            accountDropDown_->Enable(true);
+            m_accountNameStr = "";
+            wxStringClientData* data_obj = (wxStringClientData*)accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
+            if (data_obj)
+                m_accountNameStr = data_obj->GetData();
+        }
+        else {
+            accountDropDown_->Enable(false);
+            accountCheckBox_->SetValue(false);
+            m_accountNameStr = "";
+        }
+    }
+
+    refreshTabs(t);  
 }
 
 void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& /*event*/)
@@ -700,7 +744,7 @@ void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& /*event*/)
     wxStringClientData* data_obj = (wxStringClientData*) accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
     if (data_obj)
         m_accountNameStr = data_obj->GetData();
-    refreshTabs(1);
+    refreshTabs(TRX_TAB);
 }
 
 void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
@@ -732,7 +776,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         Model_Checking::Cache trx_data_set;
         Model_Checking::Cache transfer_to_data_set;
         Model_Checking::Cache transfer_from_data_set;
-        int count = 0;
+        int count = 0, success = 0;
         m_today = wxDate::Today();
         const wxString transferStr = Model_Checking::all_type()[Model_Checking::TRANSFER];
         for (const auto& entry : vQIF_trxs_)
@@ -758,6 +802,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
                     transfer_to_data_set.push_back(trx);
                 else
                     trx_data_set.push_back(trx);
+
+                success++;
             }
             else
             {
@@ -779,7 +825,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         joinSplit(trx_data_set, m_splitDataSets);
         saveSplit();
 
-        sMsg = _("Import finished successfully");
+        sMsg = _("Import finished successfully") + "\n" + wxString::Format(_("Total Imported : %ld"), success);
         btnOK_->Enable(false);
         progressDlg.Destroy();
         trx_data_set.clear();
@@ -792,7 +838,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
     wxMessageDialog(this, sMsg, _("QIF Import"), wxOK | wxICON_WARNING).ShowModal();
     *log_field_ << sMsg << "\n";
     
-    refreshTabs(2 + 4 + 8);
+    refreshTabs(ACC_TAB + PAYEE_TAB + CAT_TAB);
 }
 
 void mmQIFImportDialog::saveSplit()
@@ -892,7 +938,7 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     if (!Model_Currency::fromString(value, amt))
         return false;
     trx->TRANSAMOUNT = fabs(amt);
-    trx->TOTRANSAMOUNT = amt;
+    trx->TOTRANSAMOUNT = transfer ? amt : trx->TRANSAMOUNT;
 
     if (t.find(CategorySplit) != t.end()) 
     {
@@ -979,7 +1025,7 @@ int mmQIFImportDialog::getOrCreateAccounts()
             //which overlaps with the T (for "Total Amount") line in transaction records, 
             //so we find the account type string in the "Amount" field
             wxString accountType = (item.second.find(Amount) == item.second.end() ? " " : item.second.at(Amount));
-            int iType = (m_QIFaccountTypes.find(accountType) == m_QIFaccountTypes.end() ? Model_Account::CHECKING : m_QIFaccountTypes.at(accountType));
+            int iType = Model_Account::CHECKING;
             account->ACCOUNTTYPE = Model_Account::all_type()[iType];
             account->ACCOUNTNAME = item.first;
             account->INITIALBAL = 0;
