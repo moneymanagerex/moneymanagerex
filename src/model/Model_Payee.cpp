@@ -99,8 +99,11 @@ const wxArrayString Model_Payee::all_payee_names()
 bool Model_Payee::is_used(int id)
 {
     const auto &trans = Model_Checking::instance().find(Model_Checking::PAYEEID(id));
+    if (!trans.empty()) return true;
     const auto &bills = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(id));
-    return !trans.empty() || !bills.empty();
+    if (!bills.empty()) return true;
+
+    return false;
 }
 
 bool Model_Payee::is_used(const Data* record)

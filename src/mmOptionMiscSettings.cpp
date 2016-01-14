@@ -81,12 +81,12 @@ void mmOptionMiscSettings::Create()
         , wxDefaultPosition, wxSize(140, -1), defaultValues_);
     defaultDateChoice->SetSelection(mmIniOptions::instance().transDateDefault_);
 
+    defaultValues_[1] = (_("Last used for payee"));
+    defaultValues_.Add(_("Unused"));
     wxChoice* defaultPayeeChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE
         , wxDefaultPosition, wxSize(140, -1), defaultValues_);
     defaultPayeeChoice->SetSelection(mmIniOptions::instance().transPayeeSelectionNone_);
-
-    defaultValues_[1] = (_("Last used for payee"));
 
     wxChoice* defaultCategoryChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY

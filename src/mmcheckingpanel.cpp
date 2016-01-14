@@ -1025,7 +1025,8 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW_WITHDRAWAL, _("&New Withdrawal"));
     menu.Append(MENU_TREEPOPUP_NEW_DEPOSIT, _("&New Deposit"));
-    menu.Append(MENU_TREEPOPUP_NEW_TRANSFER, _("&New Transfer"));
+    if (Model_Account::instance().all_checking_account_names(true).size() > 1)
+        menu.Append(MENU_TREEPOPUP_NEW_TRANSFER, _("&New Transfer"));
 
     menu.AppendSeparator();
 
