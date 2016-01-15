@@ -762,10 +762,10 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         wxProgressDialog progressDlg(_("Please wait"), _("Importing")
             , numTransactions + 1, this, wxPD_APP_MODAL | wxPD_CAN_ABORT | wxPD_AUTO_HIDE);
         progressDlg.Update(1, _("Importing Accounts"));
-        if (getOrCreateAccounts() == 0 && !accountCheckBox_->GetValue()) {
+        if (getOrCreateAccounts() == 0 && !accountCheckBox_->GetValue())
+        {
             progressDlg.Update(numTransactions + 1);
-            mmErrorDialogs::MessageInvalid(this, _("Account"));
-            return;
+            return mmErrorDialogs::MessageInvalid(this, _("Account"));
         }
         mmWebApp::MMEX_WebApp_UpdateAccount();
         progressDlg.Update(1, _("Importing Payees"));
@@ -778,7 +778,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         Model_Checking::Cache trx_data_set;
         Model_Checking::Cache transfer_to_data_set;
         Model_Checking::Cache transfer_from_data_set;
-        int count = 0, success = 0;
+        int count = 0;
         const wxString transferStr = Model_Checking::all_type()[Model_Checking::TRANSFER];
 
         for (const auto& entry : vQIF_trxs_)
@@ -791,8 +791,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             }
             //
             Model_Checking::Data *trx = Model_Checking::instance().create();
-            if (compliteTransaction(entry, trx)) {
-
+            if (compliteTransaction(entry, trx))
+            {
                 if (dateFromCheckBox_->IsChecked() && Model_Checking::TRANSDATE(trx).IsEarlierThan(fromDateCtrl_->GetValue()))
                     continue;
                 if (dateToCheckBox_->IsChecked() && Model_Checking::TRANSDATE(trx).IsLaterThan(toDateCtrl_->GetValue()))
@@ -804,8 +804,6 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
                     transfer_to_data_set.push_back(trx);
                 else
                     trx_data_set.push_back(trx);
-
-                success++;
             }
             else
             {
@@ -822,16 +820,17 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         progressDlg.Update(count, _("Importing Transfers"));
         mergeTransferPair(transfer_to_data_set, transfer_from_data_set);
         appendTransfers(trx_data_set, transfer_to_data_set);
+
         Model_Checking::instance().save(trx_data_set);
         progressDlg.Update(count, _("Importing Split transactions"));
         joinSplit(trx_data_set, m_splitDataSets);
         saveSplit();
 
-        sMsg = _("Import finished successfully") + "\n" + wxString::Format(_("Total Imported : %ld"), success);
-        btnOK_->Enable(false);
-        progressDlg.Destroy();
+        sMsg = _("Import finished successfully") + "\n" + wxString::Format(_("Total Imported : %ld"), (long)trx_data_set.size());
         trx_data_set.clear();
         vQIF_trxs_.clear();
+        btnOK_->Enable(false);
+        progressDlg.Destroy();
     }
     else
     {
@@ -882,10 +881,12 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
         {
             ++i;
             if (refTrxTo->ACCOUNTID != refTrxFrom->TOACCOUNTID) continue;
+            if (refTrxTo->TOACCOUNTID != refTrxFrom->ACCOUNTID) continue;
             if (refTrxTo->TRANSACTIONNUMBER != refTrxFrom->TRANSACTIONNUMBER) continue;
             if (refTrxTo->NOTES != refTrxFrom->NOTES) continue;
             if (Model_Checking::TRANSDATE(refTrxFrom) != Model_Checking::TRANSDATE(refTrxFrom)) continue;
             refTrxTo->TOTRANSAMOUNT = refTrxFrom->TRANSAMOUNT;
+            refTrxTo->PAYEEID = -1;
             from.erase(from.begin() + i);
             break;
         }
@@ -903,9 +904,14 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
         return false;
     bool transfer = trx->TRANSCODE == Model_Checking::all_type()[Model_Checking::TRANSFER];
 
-    trx->PAYEEID = (t.find(Payee) != t.end() ? m_QIFpayeeNames[t.at(Payee)] : -1);
-    if (trx->PAYEEID == -1 && !transfer)
-        return false;
+    if (transfer)
+        trx->PAYEEID = -1;
+    else
+    {
+        trx->PAYEEID = (t.find(Payee) != t.end() ? m_QIFpayeeNames[t.at(Payee)] : -1);
+        if (trx->PAYEEID == -1 && !transfer)
+            return false;
+    }
 
     wxString dateStr = (t.find(Date) != t.end() ? t[Date] : "");
     dateStr.Replace(" ", "");
@@ -917,7 +923,6 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
         *log_field_ << _("Date format or date mask is incorrect") << "\n";
         return false;
     }
-
 
     int accountID = -1;
     wxString accountName = (t.find(AccountName) != t.end() ? t[AccountName] : "");
