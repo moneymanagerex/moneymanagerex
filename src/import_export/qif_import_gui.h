@@ -88,7 +88,8 @@ private:
     bool m_userDefinedDateMask;
     int fromAccountID_;
     wxString m_FileNameStr;
-    wxDateTime m_today;
+    const wxDateTime m_today;
+    const wxDateTime m_fresh;
 
     wxDataViewListCtrl* dataListBox_;
     wxDataViewListCtrl* accListBox_;

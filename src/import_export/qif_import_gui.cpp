@@ -71,6 +71,8 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
 , accountCheckBox_(nullptr)
 , accountDropDown_(nullptr)
 , btnOK_(nullptr)
+, m_today(wxDate::Today())
+, m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("QIF Import"), wxDefaultPosition, wxSize(500, 300), style);
@@ -559,7 +561,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             wxVector<wxVariant> data;
             data.push_back(wxVariant(categ.first));
             if (c.find(categ.first) == c.end())
-                data.push_back(wxVariant("Missing"));
+                data.push_back(wxVariant(_("Missing")));
             else
                 data.push_back(wxVariant(_("OK")));
             categoryListBox_->AppendItem(data, (wxUIntPtr) num++);
@@ -577,8 +579,13 @@ void mmQIFImportDialog::parseDate(const wxString &dateStr, std::map<wxString, wx
         const wxString mask = date_mask.first;
         wxDateTime dtdt = m_today;
         if (mmParseDisplayStringToDate(dtdt, dateStr, mask))
+        {
             m_date_parsing_stat[mask] ++;
-        else {
+            if (dtdt <= m_today && dtdt >= m_fresh)
+                m_date_parsing_stat[mask] ++; 
+        }
+        else
+        {
             invalidMask.Add(mask);
         }
     }
@@ -615,7 +622,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
     m_FileNameStr = wxFileSelector(_("Choose QIF data file to Import")
         , wxEmptyString, m_FileNameStr, wxEmptyString
         , choose_ext + " (*.qif)|*.qif;*.QIF"
-        , wxFD_OPEN | wxFD_CHANGE_DIR | wxFD_FILE_MUST_EXIST);
+        , wxFD_OPEN | wxFD_CHANGE_DIR | wxFD_FILE_MUST_EXIST, this);
 
     if (!m_FileNameStr.IsEmpty()) {
         correctEmptyFileExt("qif", m_FileNameStr);
@@ -695,7 +702,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         Model_Checking::Cache transfer_to_data_set;
         Model_Checking::Cache transfer_from_data_set;
         int count = 0;
-        m_today = wxDateTime::Today();
+
         const wxString transferStr = Model_Checking::all_type()[Model_Checking::TRANSFER];
         for (const auto& entry : vQIF_trxs_)
         {
@@ -741,11 +748,11 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         joinSplit(trx_data_set, m_splitDataSets);
         saveSplit();
 
-        sMsg = _("Import finished successfully");
-        btnOK_->Enable(false);
-        progressDlg.Destroy();
+        sMsg = _("Import finished successfully") + "\n" + wxString::Format(_("Total Imported : %ld"), (long)trx_data_set.size());
         trx_data_set.clear();
         vQIF_trxs_.clear();
+        btnOK_->Enable(false);
+        progressDlg.Destroy();
     }
     else
     {
@@ -796,10 +803,12 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
         {
             ++i;
             if (refTrxTo->ACCOUNTID != refTrxFrom->TOACCOUNTID) continue;
+            if (refTrxTo->TOACCOUNTID != refTrxFrom->ACCOUNTID) continue;
             if (refTrxTo->TRANSACTIONNUMBER != refTrxFrom->TRANSACTIONNUMBER) continue;
             if (refTrxTo->NOTES != refTrxFrom->NOTES) continue;
             if (Model_Checking::TRANSDATE(refTrxFrom) != Model_Checking::TRANSDATE(refTrxFrom)) continue;
             refTrxTo->TOTRANSAMOUNT = refTrxFrom->TRANSAMOUNT;
+            refTrxTo->PAYEEID = -1;
             from.erase(from.begin() + i);
             break;
         }
