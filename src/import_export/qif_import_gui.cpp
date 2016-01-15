@@ -78,6 +78,7 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
 , accountDropDown_(nullptr)
 , btnOK_(nullptr)
 , m_today(wxDate::Today())
+, m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
 {
     payeeIsNotes_ = false;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -318,6 +319,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     m_QIFcategoryNames[_("Unknown")] = std::make_pair(-1, -1);
     m_date_parsing_stat.clear();
 
+    
     wxFileInputStream input(m_FileNameStr);
     wxTextInputStream text(input, "\x09", wxConvUTF8);
 
@@ -401,6 +403,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     fillControls();
 
     progressDlg.Destroy();
+    
     interval = wxGetUTCTimeMillis() - start;
     wxString sMsg = wxString::Format(_("Number of lines read from QIF file: %i in %ld ms")
         , int(numLines), interval.ToLong());
@@ -621,7 +624,8 @@ void mmQIFImportDialog::parseDate(const wxString &dateStr, std::map<wxString, wx
         if (mmParseDisplayStringToDate(dtdt, dateStr, mask))
         {
             m_date_parsing_stat[mask] ++;
-            if (dtdt <= m_today)
+            //Increase the date mask rating if parse date is recent (2 month ago) date 
+            if (dtdt <= m_today && dtdt >= m_fresh)
                 m_date_parsing_stat[mask] ++;
         }
         else {
@@ -642,32 +646,19 @@ void mmQIFImportDialog::getDateMask()
     {
         //Check parsing results
         int count = 0;
+        if (!m_date_parsing_stat.empty())
+            choiceDateFormat_->Clear();
+
         for (const auto& d : m_date_parsing_stat)
         {
             wxLogDebug("%s \t%i", g_date_formats_map.at(d.first), d.second);
 
+            choiceDateFormat_->Append(g_date_formats_map.at(d.first), new wxStringClientData(d.first));
             if (d.second > count)
             {
                 count = d.second;
                 m_dateFormatStr = d.first;
             }
-        }
-
-        if (!m_date_parsing_stat.empty())
-        {
-            choiceDateFormat_->Clear();
-            for (const auto& entry : m_date_parsing_stat)
-            {
-                if (count == entry.second)
-                    choiceDateFormat_->Append(g_date_formats_map.at(entry.first), new wxStringClientData(entry.first));
-            }
-        }
-        if (choiceDateFormat_->GetCount() > 1)
-        {
-            if (m_date_parsing_stat.empty())
-                mmErrorDialogs::ToolTipWarning(choiceDateFormat_, _("Can't determine date mask"), _("Error"));
-            else
-                mmErrorDialogs::ToolTipWarning(choiceDateFormat_, _("Date Mask has several values"), _("Warning"));
         }
     }
     choiceDateFormat_->SetStringSelection(g_date_formats_map.at(m_dateFormatStr));
@@ -675,14 +666,14 @@ void mmQIFImportDialog::getDateMask()
 
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 {
-    windowsFreezeThaw(this);
     m_FileNameStr = file_name_ctrl_->GetValue();
 
     const wxString choose_ext = _("QIF Files");
+
     m_FileNameStr = wxFileSelector(_("Choose QIF data file to Import")
         , wxEmptyString, m_FileNameStr, wxEmptyString
         , choose_ext + " (*.qif)|*.qif;*.QIF"
-        , wxFD_OPEN | wxFD_CHANGE_DIR | wxFD_FILE_MUST_EXIST);
+        , wxFD_OPEN | wxFD_CHANGE_DIR | wxFD_FILE_MUST_EXIST, this); //TODO: Remove UI Blinking
 
     if (!m_FileNameStr.IsEmpty()) {
         correctEmptyFileExt("qif", m_FileNameStr);
@@ -691,7 +682,13 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
         file_name_ctrl_->SetValue(m_FileNameStr);
         mmReadQIFFile();
     }
-    windowsFreezeThaw(this);
+
+    if (m_date_parsing_stat.empty())
+        mmErrorDialogs::ToolTip4Object(choiceDateFormat_
+            , _("Can't determine date mask"), _("Error"), wxICON_ERROR);
+    else if (m_date_parsing_stat.size() > 1)
+        mmErrorDialogs::ToolTip4Object(choiceDateFormat_
+            , _("Date Mask has several values"), ("Warning"), wxICON_INFORMATION);
 }
 
 void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)

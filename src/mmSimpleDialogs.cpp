@@ -182,16 +182,16 @@ const wxString mmDialogs::mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool
 
 /* Error Messages --------------------------------------------------------*/
 void mmErrorDialogs::MessageError(wxWindow *parent
-    , const wxString &message, const wxString &messageheader)
+    , const wxString &message, const wxString &title)
 {
-    wxMessageDialog msgDlg(parent, message, messageheader, wxOK | wxICON_ERROR);
+    wxMessageDialog msgDlg(parent, message, title, wxOK | wxICON_ERROR);
     msgDlg.ShowModal();
 }
 
 void mmErrorDialogs::MessageWarning(wxWindow *parent
-    , const wxString &message, const wxString &messageheader)
+    , const wxString &message, const wxString &title)
 {
-    wxMessageDialog msgDlg(parent, message, messageheader, wxOK | wxICON_WARNING);
+    wxMessageDialog msgDlg(parent, message, title, wxOK | wxICON_WARNING);
     msgDlg.ShowModal();
 }
 
@@ -276,9 +276,9 @@ void mmErrorDialogs::InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist)
     tip.ShowFor(textBox);
 }
 
-void mmErrorDialogs::ToolTipWarning(wxWindow *object, const wxString &message, const wxString &messageheader)
+void mmErrorDialogs::ToolTip4Object(wxWindow *object, const wxString &message, const wxString &title, int ico)
 {
-    wxRichToolTip tip(messageheader, message);
-    tip.SetIcon(wxICON_WARNING);
+    wxRichToolTip tip(title, message);
+    tip.SetIcon(ico);
     tip.ShowFor(object);
 }
