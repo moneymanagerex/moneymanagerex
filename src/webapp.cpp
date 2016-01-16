@@ -222,7 +222,7 @@ bool mmWebApp::WebApp_UpdateAccount()
 
     for (const auto &Account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
-        if (Model_Account::type(Account) != Model_Account::INVESTMENT)
+        if (Model_Account::type(Account) != Model_Account::INVESTMENT && Model_Account::status(Account) != Model_Account::CLOSED)
             jsonAccountList[L"Accounts"][i][L"AccountName"] = json::String(Account.ACCOUNTNAME.ToStdWstring());
         i++;
     }

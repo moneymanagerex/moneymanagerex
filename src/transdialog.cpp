@@ -20,6 +20,7 @@
 
 #include "transdialog.h"
 #include "attachmentdialog.h"
+#include "customfielddialog.h"
 #include "categdialog.h"
 #include "constants.h"
 #include "images_list.h"
@@ -46,6 +47,7 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
 	EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
+    EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnCustomFields)
     EVT_CLOSE(mmTransDialog::OnQuit)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
@@ -319,6 +321,12 @@ void mmTransDialog::dataToControls()
 
     if (!skip_tooltips_init_)
         setTooltips();
+
+    if (Model_Infotable::instance().OpenCustomDialog(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)))
+    {
+        wxCommandEvent evt;
+        mmTransDialog::OnCustomFields(evt);
+    }
 }
 
 void mmTransDialog::CreateControls()
@@ -491,8 +499,15 @@ void mmTransDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
+    // Custom Fields ---------------------------------------------
+    bCustomFields_ = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS
+        , mmBitmap(png::EDIT_ACC), wxDefaultPosition
+        , wxSize(itemButtonCancel_->GetSize().GetY(), itemButtonCancel_->GetSize().GetY()));
+    bCustomFields_->SetToolTip(_("Open custom fields window"));
+
     buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
     buttons_sizer->Add(itemButtonCancel_, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(bCustomFields_, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
 
     itemButtonCancel_->SetFocus();
 
@@ -905,8 +920,17 @@ void mmTransDialog::OnAttachments(wxCommandEvent& /*event*/)
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     int TransID = m_trx_data.TRANSID;
     if (m_duplicate) TransID = -1;
-	mmAttachmentDialog dlg(this, RefType, TransID);
-	dlg.ShowModal();
+    mmAttachmentDialog dlg(this, RefType, TransID);
+    dlg.ShowModal();
+}
+
+void mmTransDialog::OnCustomFields(wxCommandEvent& /*event*/)
+{
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    int TransID = m_trx_data.TRANSID;
+    if (m_duplicate) TransID = -1;
+    mmCustomFieldDialog dlg(this, GetScreenPosition(), GetSize(), RefType, TransID);
+    dlg.ShowModal();
 }
 
 void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))

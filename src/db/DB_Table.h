@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2015-12-29 11:10:52.430030.
+ *          AUTO GENERATED at 2016-01-16 17:34:30.070000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -328,6 +328,15 @@ struct SorterByCONTACTINFO
     }
 };
 
+struct SorterByCONTENT
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.CONTENT < y.CONTENT;
+    }
+};
+
 struct SorterByCURRDATE
 { 
     template<class DATA>
@@ -433,6 +442,24 @@ struct SorterByFAVORITEACCT
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.FAVORITEACCT < y.FAVORITEACCT;
+    }
+};
+
+struct SorterByFIELDATADID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.FIELDATADID < y.FIELDATADID;
+    }
+};
+
+struct SorterByFIELDID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.FIELDID < y.FIELDID;
     }
 };
 
@@ -613,6 +640,15 @@ struct SorterByPFX_SYMBOL
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.PFX_SYMBOL < y.PFX_SYMBOL;
+    }
+};
+
+struct SorterByPROPERTIES
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.PROPERTIES < y.PROPERTIES;
     }
 };
 
@@ -883,6 +919,15 @@ struct SorterByTRANSID
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.TRANSID < y.TRANSID;
+    }
+};
+
+struct SorterByTYPE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.TYPE < y.TYPE;
     }
 };
 
