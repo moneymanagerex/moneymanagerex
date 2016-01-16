@@ -206,3 +206,13 @@ void Model_Infotable::SetDateFormat(const wxString& date_format_mask)
     Set("DATEFORMAT", date_format_mask);
 }
 
+//-------------------------------------------------------------------
+bool Model_Infotable::OpenCustomDialog(const wxString& RefType)
+{
+    return GetBoolInfo("CUSTOMDIALOG_" + RefType, false);
+}
+
+void Model_Infotable::SetOpenCustomDialog(const wxString& RefType, const bool Status)
+{
+    Set("CUSTOMDIALOG_" + RefType, Status);
+}
