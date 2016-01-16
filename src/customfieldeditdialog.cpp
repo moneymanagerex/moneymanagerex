@@ -27,6 +27,8 @@ Copyright (C) 2015 Gabriele-V
 #include "validators.h"
 
 #include "model/Model_Attachment.h"
+#include "model/Model_CustomField.h"
+#include "model/Model_CustomFieldData.h"
 
 #include <wx/valnum.h>
 
@@ -35,6 +37,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmCustomFieldEditDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(mmCustomFieldEditDialog, wxDialog)
     EVT_BUTTON(wxID_OK, mmCustomFieldEditDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmCustomFieldEditDialog::OnCancel)
+    EVT_CHOICE(wxID_HIGHEST, mmCustomFieldEditDialog::OnChangeType)
     EVT_CLOSE(mmCustomFieldEditDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
@@ -43,6 +46,9 @@ mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomF
     , m_fieldRefType(fieldRefType)
     , m_itemDescription(nullptr)
     , m_itemType(nullptr)
+    , m_itemRegEx(nullptr)
+    , m_itemAutocomplete(nullptr)
+    , m_itemDefault(nullptr)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("New/Edit Custom Field"), wxDefaultPosition, wxSize(400, 300), style);
@@ -76,6 +82,9 @@ void mmCustomFieldEditDialog::dataToControls()
 
     m_itemDescription->SetValue(m_field->DESCRIPTION);
     m_itemType->SetSelection(Model_CustomField::type(m_field));
+    m_itemRegEx->SetValue(Model_CustomField::getRegEx(m_field->PROPERTIES));
+    m_itemAutocomplete->SetValue(Model_CustomField::getAutocomplete(m_field->PROPERTIES));
+    m_itemDefault->SetValue(Model_CustomField::getDefault(m_field->PROPERTIES));
 }
 
 void mmCustomFieldEditDialog::CreateControls()
@@ -99,12 +108,12 @@ void mmCustomFieldEditDialog::CreateControls()
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Description")), g_flags);
-    m_itemDescription = new mmTextCtrl(itemPanel5, wxID_ANY, wxGetEmptyString());
+    m_itemDescription = new wxTextCtrl(itemPanel5, wxID_ANY, wxGetEmptyString());
     m_itemDescription->SetToolTip(_("Enter the name of the custom field"));
     itemFlexGridSizer6->Add(m_itemDescription, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Field Type")), g_flags);
-    m_itemType = new wxChoice(itemPanel5, wxID_STATIC, wxDefaultPosition, wxSize(150, -1));
+    m_itemType = new wxChoice(itemPanel5, wxID_HIGHEST, wxDefaultPosition, wxSize(150, -1));
     for (const auto& a : Model_CustomField::all_type())
         m_itemType->Append(wxGetTranslation(a), new wxStringClientData(a));
     m_itemType->SetToolTip(_("Select type of custom field"));
@@ -112,16 +121,20 @@ void mmCustomFieldEditDialog::CreateControls()
     itemFlexGridSizer6->Add(m_itemType, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("RegEx")), g_flags);
-    m_itemRegEx = new mmTextCtrl(itemPanel5, wxID_ANY, _("Function not implemented"));
+    m_itemRegEx = new wxTextCtrl(itemPanel5, wxID_ANY, "");
     m_itemRegEx->SetToolTip(_("Enter the RegEx to validate field"));
     itemFlexGridSizer6->Add(m_itemRegEx, g_flagsExpand);
-    m_itemRegEx->SetEditable(false); //To be completed
 
-    m_itemAutocomplete = new wxCheckBox(itemPanel5, wxID_STATIC, _("Autocomplete"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Autocomplete")), g_flags);
+    m_itemAutocomplete = new wxCheckBox(itemPanel5, wxID_STATIC, "", wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_itemAutocomplete->SetValue(FALSE);
     m_itemAutocomplete->SetToolTip(_("Enables autocomplete on custom field"));
     itemFlexGridSizer6->Add(m_itemAutocomplete, g_flagsExpand);
-    m_itemAutocomplete->Enable(false); //To be completed
+
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Default")), g_flags);
+    m_itemDefault = new wxTextCtrl(itemPanel5, wxID_ANY, "");
+    m_itemDefault->SetToolTip(_("Enter the default for this field"));
+    itemFlexGridSizer6->Add(m_itemDefault, g_flagsExpand);
 
     wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer3->Add(itemPanel27, wxSizerFlags(g_flags).Center());
@@ -132,9 +145,12 @@ void mmCustomFieldEditDialog::CreateControls()
     wxButton* itemButton29 = new wxButton(itemPanel27, wxID_OK, _("&OK "));
     itemBoxSizer28->Add(itemButton29, g_flags);
 
-    wxButton* itemButton30 = new wxButton(itemPanel27, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButton30 = new wxButton(itemPanel27, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemBoxSizer28->Add(itemButton30, g_flags);
     itemButton30->SetFocus();
+
+    wxCommandEvent evt;
+    OnChangeType(evt);
 }
 
 void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
@@ -149,12 +165,39 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
     wxStringClientData* type_obj = (wxStringClientData *)m_itemType->GetClientObject(m_itemType->GetSelection());
     if (type_obj) field_type = type_obj->GetData();
 
-    if (!this->m_field) this->m_field = Model_CustomField::instance().create();
+    if (!this->m_field)
+        this->m_field = Model_CustomField::instance().create();
+    else if (m_field->REFTYPE != m_fieldRefType)
+    {
+        auto DataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::FIELDID(m_field->FIELDID));
+        if (DataSet.size() > 0)
+        {
+            int DeleteResponse = wxMessageBox(
+                _("Changing field type will delete all content.") + "\n"
+                + _("Do you want to proceed?") << "\n"
+                , _("Confirm Custom Field Change")
+                , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
+            if (DeleteResponse != wxYES)
+                return;
+
+            Model_CustomFieldData::instance().Savepoint();
+            for (auto &data : DataSet)
+            {
+                data.CONTENT = wxEmptyString;
+            }
+            Model_CustomFieldData::instance().save(DataSet);
+            Model_CustomFieldData::instance().ReleaseSavepoint();
+        }
+    }
 
     m_field->REFTYPE = m_fieldRefType;
     m_field->DESCRIPTION = name;
     m_field->TYPE = field_type;
-    m_field->PROPERTIES = ""; //todo!!!!
+    m_field->PROPERTIES = Model_CustomField::formatProperties(
+        m_itemRegEx->GetValue(),
+        m_itemAutocomplete->GetValue(),
+        m_itemDefault->GetValue()
+        );
     
     Model_CustomField::instance().save(m_field);
     EndModal(wxID_OK);
@@ -168,4 +211,18 @@ void mmCustomFieldEditDialog::OnCancel(wxCommandEvent& /*event*/)
 void mmCustomFieldEditDialog::OnQuit(wxCloseEvent& /*event*/)
 {
     EndModal(wxID_CANCEL);
+}
+
+void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
+{
+    if (m_itemType->GetSelection() == Model_CustomField::STRING)
+    {
+        m_itemRegEx->Enable(false);
+        m_itemAutocomplete->Enable(true);
+    }
+    else
+    {
+        m_itemRegEx->Enable(false);
+        m_itemAutocomplete->Enable(false);
+    }
 }

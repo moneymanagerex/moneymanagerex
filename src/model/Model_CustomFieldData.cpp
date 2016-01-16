@@ -55,3 +55,23 @@ Model_CustomFieldData::Data* Model_CustomFieldData::get(int FieldID, int RefID)
         return this->get(items[0].FIELDATADID, this->db_);
     return (Model_CustomFieldData::Data*)nullptr;
 }
+
+/** Return all CustomFieldData value*/
+wxArrayString Model_CustomFieldData::allValue(const int FieldID)
+{
+    wxArrayString values;
+    wxString PreviousValue;
+
+    Model_CustomFieldData::Data_Set items = this->find(FIELDID(FieldID));
+    std::sort(items.begin(), items.end(), SorterByCONTENT());
+
+    for (const auto &item : items)
+    {
+        if (item.CONTENT != PreviousValue)
+        {
+            values.Add(item.CONTENT);
+            PreviousValue = item.CONTENT;
+        }
+    }
+    return values;
+}

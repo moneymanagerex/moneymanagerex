@@ -51,12 +51,14 @@ private:
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
+    void OnChangeType(wxCommandEvent& event);
 
     wxString m_fieldRefType;
-    mmTextCtrl* m_itemDescription;
+    wxTextCtrl* m_itemDescription;
     wxChoice*  m_itemType;
-    mmTextCtrl* m_itemRegEx;
+    wxTextCtrl* m_itemRegEx;
     wxCheckBox* m_itemAutocomplete;
+    wxTextCtrl* m_itemDefault;
 
     enum
     {

@@ -49,6 +49,7 @@ private:
 
     wxString m_RefType;
     int m_RefId;
+    bool m_RefreshRequested;
 
 public:
     void OnClose(const bool OpenStatus);

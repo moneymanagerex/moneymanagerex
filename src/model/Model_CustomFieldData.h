@@ -48,6 +48,7 @@ public:
 
 public:
     Model_CustomFieldData::Data* get(int FieldID, int RefID);
+    wxArrayString Model_CustomFieldData::allValue(const int FieldID);
 };
 
 #endif // 

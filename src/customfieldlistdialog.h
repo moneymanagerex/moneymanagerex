@@ -30,6 +30,10 @@ class mmCustomFieldListDialog : public wxDialog
 
 public:
     mmCustomFieldListDialog(wxWindow* parent, const wxString& RefType);
+    bool GetRefreshRequested()
+    {
+        return m_refresh;
+    }
 
 private:
     enum cols
@@ -51,6 +55,7 @@ private:
 
     wxString m_RefType;
     int m_field_id;
+    bool m_refresh;
     mmCustomFieldListDialog() : m_field_id(-1) {}
     std::map<int, wxString> ColName_;
     wxButton* btnCancel_;

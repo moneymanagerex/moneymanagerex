@@ -45,6 +45,7 @@ wxEND_EVENT_TABLE()
 mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent, const wxString& RefType) :
     m_field_id(-1)
     , m_RefType(RefType)
+    , m_refresh(false)
     #ifdef _DEBUG
         , debug_(true)
     #else
@@ -84,10 +85,10 @@ void mmCustomFieldListDialog::CreateControls()
     fieldListBox_ = new wxDataViewListCtrl( this
         , wxID_ANY, wxDefaultPosition, wxSize(460, 500)/*, wxDV_HORIZ_RULES*/);
 
-    if (debug_) fieldListBox_->AppendTextColumn(ColName_[FIELD_ID], wxDATAVIEW_CELL_INERT, 30);
-    fieldListBox_->AppendTextColumn(ColName_[FIELD_DESCRIPTION], wxDATAVIEW_CELL_INERT, 150);
-    fieldListBox_->AppendTextColumn(ColName_[FIELD_TYPE], wxDATAVIEW_CELL_INERT, 100);
-    if (debug_) fieldListBox_->AppendTextColumn(ColName_[FIELD_PROPERTIES], wxDATAVIEW_CELL_INERT, 300);
+    if (debug_) fieldListBox_->AppendTextColumn(ColName_[FIELD_ID], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
+    fieldListBox_->AppendTextColumn(ColName_[FIELD_DESCRIPTION], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
+    fieldListBox_->AppendTextColumn(ColName_[FIELD_TYPE], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
+    if (debug_) fieldListBox_->AppendTextColumn(ColName_[FIELD_PROPERTIES], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
     mainBoxSizer->Add(fieldListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
@@ -96,7 +97,7 @@ void mmCustomFieldListDialog::CreateControls()
     buttons_panel->SetSizer(buttons_sizer);
 
     wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
-    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
+    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     buttons_sizer->Add(buttonOK, g_flags);
     buttons_sizer->Add(btnCancel, g_flags);
 
@@ -124,7 +125,12 @@ void mmCustomFieldListDialog::fillControls()
         if (debug_) data.push_back(wxVariant(wxString::Format("%i", entry.FIELDID)));
         data.push_back(wxVariant(entry.DESCRIPTION));
         data.push_back(wxVariant(entry.TYPE));
-        if (debug_) data.push_back(wxVariant(entry.PROPERTIES));
+        if (debug_)
+        {
+            wxString Properties = entry.PROPERTIES;
+            Properties.Replace("\n", "", true);
+            data.push_back(wxVariant(Properties));
+        }
         fieldListBox_->AppendItem(data, (wxUIntPtr)entry.FIELDID);
     }
 
@@ -138,6 +144,8 @@ void mmCustomFieldListDialog::OnListItemSelected(wxDataViewEvent& event)
 
     if (selected_index >= 0)
         m_field_id = (int)fieldListBox_->GetItemData(item);
+    else
+        m_field_id = -1;
 }
 
 void mmCustomFieldListDialog::AddField()
@@ -146,6 +154,7 @@ void mmCustomFieldListDialog::AddField()
     if (dlg.ShowModal() != wxID_OK)
         return;
     fillControls();
+    m_refresh = true;
 }
 
 void mmCustomFieldListDialog::EditField()
@@ -157,6 +166,7 @@ void mmCustomFieldListDialog::EditField()
         if (dlg.ShowModal() != wxID_OK)
             return;
         fillControls();
+        m_refresh = true;
     }
 }
 
@@ -174,6 +184,7 @@ void mmCustomFieldListDialog::DeleteField()
             Model_CustomField::instance().Delete(m_field_id);
             m_field_id = -1;
             fillControls();
+            m_refresh = true;
         }
     }
 }
@@ -226,10 +237,14 @@ void mmCustomFieldListDialog::OnListItemActivated(wxDataViewEvent& event)
 
 void mmCustomFieldListDialog::OnCancel(wxCommandEvent& /*event*/)
 {
+    if (m_refresh)
+        wxMessageBox( _("To apply new changes close and re-open Custom Field panel"), _("Custom Field"), wxICON_INFORMATION);
     EndModal(wxID_CANCEL);
 }
 
 void mmCustomFieldListDialog::OnOk(wxCommandEvent& /*event*/)
 {
+    if (m_refresh)
+        wxMessageBox(_("To apply new changes close and re-open Custom Field panel"), _("Custom Field"), wxICON_INFORMATION);
     EndModal(wxID_OK);
 }

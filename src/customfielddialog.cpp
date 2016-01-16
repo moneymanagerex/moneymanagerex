@@ -54,6 +54,7 @@ mmCustomFieldDialog::~mmCustomFieldDialog()
 mmCustomFieldDialog::mmCustomFieldDialog(wxWindow* parent, const wxPoint& RefPos, const wxSize& RefSize, const wxString& RefType, int RefId) :
     m_RefType(RefType)
     , m_RefId(RefId)
+    , m_RefreshRequested(false)
 {
     Create(parent, wxID_STATIC, wxPoint(RefPos.x + RefSize.GetWidth(), RefPos.y), wxSize(300, RefSize.GetHeight()));
 }
@@ -104,7 +105,7 @@ void mmCustomFieldDialog::CreateFillControls()
             fieldData = Model_CustomFieldData::instance().create();
             fieldData->FIELDID = field.FIELDID;
             fieldData->REFID = m_RefId;
-            fieldData->CONTENT = wxEmptyString;
+            fieldData->CONTENT = Model_CustomField::getDefault(field.PROPERTIES);
             Model_CustomFieldData::instance().save(fieldData);
         }
 
@@ -116,6 +117,11 @@ void mmCustomFieldDialog::CreateFillControls()
         case Model_CustomField::STRING:
             {
                 wxTextCtrl* CustomString = new wxTextCtrl(this, controlID, fieldData->CONTENT, wxDefaultPosition, wxDefaultSize);
+                if (Model_CustomField::getAutocomplete(field.PROPERTIES))
+                {
+                    wxArrayString values = Model_CustomFieldData::instance().allValue(field.FIELDID);
+                    CustomString->AutoComplete(values);
+                }
                 itemFlexGridSizer3->Add(CustomString, g_flagsExpand);
             }
             break;
@@ -168,7 +174,7 @@ void mmCustomFieldDialog::CreateFillControls()
     wxBoxSizer* itemBoxSizer22 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer22, wxSizerFlags(g_flags).Centre());
 
-    wxButton* itemButtonClose = new wxButton(this, wxID_CANCEL, _(" Close "));
+    wxButton* itemButtonClose = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemBoxSizer22->Add(itemButtonClose, g_flags);
     itemButtonClose->SetToolTip(_("Close custom field window"));
 
@@ -183,6 +189,7 @@ void mmCustomFieldDialog::OnAddEdit(wxCommandEvent& /*event*/)
 {
     mmCustomFieldListDialog dlg(this, m_RefType);
     dlg.ShowModal();
+    m_RefreshRequested = dlg.GetRefreshRequested();
 }
 
 void mmCustomFieldDialog::OnClose(wxCommandEvent& /*event*/)
@@ -192,6 +199,12 @@ void mmCustomFieldDialog::OnClose(wxCommandEvent& /*event*/)
 
  void mmCustomFieldDialog::OnClose(const bool OpenStatus)
 {
+    if (m_RefreshRequested)
+    {
+        EndModal(wxID_OK);
+        return;
+    }
+
     Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_RefType));
 
     for (const auto &field : fields)
@@ -208,7 +221,8 @@ void mmCustomFieldDialog::OnClose(wxCommandEvent& /*event*/)
         case Model_CustomField::STRING:
             {
                 wxTextCtrl* CustomString = (wxTextCtrl*)FindWindow(controlID);
-                if (CustomString) Data = CustomString->GetValue().Trim();
+                if (CustomString != nullptr)
+                    Data = CustomString->GetValue().Trim();
             }
             break;
         case Model_CustomField::INTEGER:

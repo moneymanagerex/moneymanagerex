@@ -55,6 +55,10 @@ public:
     static FIELDTYPE type(const Data* r);
     static FIELDTYPE type(const Data& r);
     static wxArrayString all_type();
+    static wxString getRegEx(const wxString& Properties);
+    static bool getAutocomplete(const wxString& Properties);
+    static wxString getDefault(const wxString& Properties);
+    static wxString formatProperties(const wxString& RegEx, bool Autocomplete, const wxString& Default);
 };
 
 #endif // 
