@@ -314,12 +314,12 @@ bool mmQIFImportDialog::mmReadQIFFile()
     std::map<wxString, wxString> date_formats_temp = g_date_formats_map;
     vQIF_trxs_.clear();
     m_QIFaccounts.clear();
-    m_QIFpayeeNames.clear();
     m_QIFcategoryNames.clear();
-    m_QIFcategoryNames[_("Unknown")] = std::make_pair(-1, -1);
+    m_QIFpayeeNames.clear();
+    m_payee_names.clear();
+    m_payee_names.Add(_("Unknown"));
     m_date_parsing_stat.clear();
 
-    
     wxFileInputStream input(m_FileNameStr);
     wxTextInputStream text(input, "\x09", wxConvUTF8);
 
@@ -465,12 +465,16 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
             trx[Payee] = _("Unknown");
         }
     }else{
-        if (!isTransfer) {
+        if (!isTransfer) 
+        {
             if (trx.find(Payee) == trx.end())
                 trx[Payee] = _("Unknown");
-            if (m_QIFpayeeNames.find(trx[Payee]) == m_QIFpayeeNames.end()) {
-                m_QIFpayeeNames[trx[Payee]] = -1;
-            }
+
+            int i = m_payee_names.Index(trx[Payee], false);
+            if (i == wxNOT_FOUND)
+                m_payee_names.Add(trx[Payee]);
+            else
+                trx[Payee] = m_payee_names.Item(i);
         }
     }
 
@@ -511,8 +515,10 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             if (map.find(Date) != map.end())
             {
                 dateStr = map.at(Date);
+                dateStr.Replace(" ", "");
                 wxDateTime dtdt;
-                if (dtdt.ParseFormat(dateStr, m_dateFormatStr, m_today))
+                wxString::const_iterator end;
+                if (dtdt.ParseFormat(dateStr, m_dateFormatStr, &end))
                     dateStr = mmGetDateForDisplay(dtdt);
                 else
                     dateStr.Prepend("!");
@@ -584,12 +590,12 @@ void mmQIFImportDialog::refreshTabs(int tabs)
     if (int(tabs / PAYEE_TAB) % 2)
     {
         payeeListBox_->DeleteAllItems();
-        for (const auto& payee : m_QIFpayeeNames)
+        for (const auto& payee : m_payee_names)
         {
             wxVector<wxVariant> data;
-            data.push_back(wxVariant(payee.first));
-            Model_Payee::Data* p = Model_Payee::instance().get(payee.first);
-            data.push_back(wxVariant( !p ? _("Missing") : _("OK")));
+            data.push_back(wxVariant(payee));
+            Model_Payee::Data* p = Model_Payee::instance().get(payee); 
+            data.push_back(wxVariant(p ? _("OK") : _("Missing")));
             payeeListBox_->AppendItem(data, (wxUIntPtr) num++);
         }
     }
@@ -916,7 +922,8 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     wxString dateStr = (t.find(Date) != t.end() ? t[Date] : "");
     dateStr.Replace(" ", "");
     wxDateTime dtdt;
-    if (dtdt.ParseFormat(dateStr, m_dateFormatStr, m_today))
+    wxString::const_iterator end;
+    if (dtdt.ParseFormat(dateStr, m_dateFormatStr, &end))
         trx->TRANSDATE = dtdt.FormatISODate();
     else
     {
@@ -1066,22 +1073,20 @@ int mmQIFImportDialog::getOrCreateAccounts()
 void mmQIFImportDialog::getOrCreatePayees()
 {
     Model_Payee::Cache data_set;
-    for (const auto &item : m_QIFpayeeNames)
+    for (const auto &item : m_payee_names)
     {
-        Model_Payee::Data* payee = Model_Payee::instance().get(item.first);
-        if (!payee)
+        Model_Payee::Data* p = Model_Payee::instance().get(item);
+        if (!p)
         {
-            Model_Payee::Data *p = Model_Payee::instance().create();
-            p->PAYEENAME = item.first;
+            p = Model_Payee::instance().create();
+            p->PAYEENAME = item;
             p->CATEGID = -1;
             p->SUBCATEGID = -1;
-            data_set.push_back(p);
-            //payeeID = Model_Payee::instance().save(p);
-            wxString sMsg = wxString::Format(_("Added payee: %s"), item.first);
+            wxString sMsg = wxString::Format(_("Added payee: %s"), item);
             log_field_->AppendText(wxString() << sMsg << "\n");
         }
-        else
-            data_set.push_back(payee);
+
+        data_set.push_back(p);
     }
 
     Model_Payee::instance().save(data_set);
