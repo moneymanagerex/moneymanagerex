@@ -58,7 +58,8 @@ public:
     static wxString getRegEx(const wxString& Properties);
     static bool getAutocomplete(const wxString& Properties);
     static wxString getDefault(const wxString& Properties);
-    static wxString formatProperties(const wxString& RegEx, bool Autocomplete, const wxString& Default);
+    static wxArrayString getChoiches(const wxString& Properties);
+    static wxString formatProperties(const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choiches);
 };
 
 #endif // 

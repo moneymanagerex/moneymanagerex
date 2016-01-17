@@ -139,15 +139,43 @@ wxString Model_CustomField::getDefault(const wxString& Properties)
     return wxString(json::String(jsonProperties[L"Default"]));
 }
 
-wxString Model_CustomField::formatProperties(const wxString& RegEx, bool Autocomplete, const wxString& Default)
+wxArrayString Model_CustomField::getChoiches(const wxString& Properties)
 {
     json::Object jsonProperties;
     std::wstringstream jsonPropertiesStream;
+    wxArrayString Choiches;
+
+    jsonPropertiesStream << Properties.ToStdWstring();
+    json::Reader::Read(jsonProperties, jsonPropertiesStream);
+
+    const json::Array& jsonChoiches = jsonProperties[L"Choiches"];
+    for (json::Array::const_iterator it = jsonChoiches.Begin(); it != jsonChoiches.End(); ++it)
+    {
+        const json::Object& obj = *it;
+        Choiches.Add(wxString(json::String(obj[L"Choiche"])));
+    }
+
+    return Choiches;
+}
+
+wxString Model_CustomField::formatProperties(const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choiches)
+{
+    json::Object jsonProperties;
+    std::wstringstream jsonPropertiesStream;
+    json::Array jsonChoiches;
     wxString outputMessage;
 
     jsonProperties[L"RegEx"] = json::String(RegEx.ToStdWstring());
     jsonProperties[L"Autocomplete"] = json::Boolean(Autocomplete);
     jsonProperties[L"Default"] = json::String(Default.ToStdWstring());
+
+    for (const auto &choiche : Choiches)
+    {
+        json::Object o;
+        o[L"Choiche"] = json::String(choiche.ToStdWstring());
+        jsonChoiches.Insert(o);
+    }
+    jsonProperties[L"Choiches"] = json::Array(jsonChoiches);
 
     json::Writer::Write(jsonProperties, jsonPropertiesStream);
     return jsonPropertiesStream.str();

@@ -59,6 +59,7 @@ private:
     wxTextCtrl* m_itemRegEx;
     wxCheckBox* m_itemAutocomplete;
     wxTextCtrl* m_itemDefault;
+    wxTextCtrl* m_itemChoiches;
 
     enum
     {

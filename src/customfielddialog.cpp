@@ -153,8 +153,7 @@ void mmCustomFieldDialog::CreateFillControls()
             {
                 wxDate value;
                 if (!value.ParseDate(fieldData->CONTENT)) value = wxDate::Today();
-                wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(this, controlID, value
-                    , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+                wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(this, controlID, value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
                 itemFlexGridSizer3->Add(CustomDate, g_flagsExpand);
             }
             break;
@@ -162,9 +161,26 @@ void mmCustomFieldDialog::CreateFillControls()
             {
                 wxDateTime value;
                 if (!value.ParseTime(fieldData->CONTENT)) value = wxDateTime::Now();
-                wxTimePickerCtrl* CustomDate = new wxTimePickerCtrl(this, controlID, value
-                    , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
+                wxTimePickerCtrl* CustomDate = new wxTimePickerCtrl(this, controlID, value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
                 itemFlexGridSizer3->Add(CustomDate, g_flagsExpand);
+            }
+            break;
+        case Model_CustomField::SINGLECHOICHE:
+            {
+                wxArrayString Choiches = Model_CustomField::getChoiches(field.PROPERTIES);
+                Choiches.Sort();
+
+                wxChoice* CustomChoiche = new wxChoice(this, controlID, wxDefaultPosition, wxDefaultSize, Choiches);
+                itemFlexGridSizer3->Add(CustomChoiche, g_flagsExpand);
+
+                if (Choiches.size() == 0)
+                    CustomChoiche->Enable(false);
+
+                int iChoicheFound = Choiches.Index(fieldData->CONTENT);
+                if (iChoicheFound > 0)
+                    CustomChoiche->SetSelection(iChoicheFound);
+                else
+                    CustomChoiche->SetSelection(0);
             }
             break;
         default: break;
@@ -253,6 +269,12 @@ void mmCustomFieldDialog::OnClose(wxCommandEvent& /*event*/)
             {
                 wxTimePickerCtrl* CustomTime = (wxTimePickerCtrl*)FindWindow(controlID);
                 if (CustomTime) Data = CustomTime->GetValue().FormatISOTime();
+            }
+            break;
+        case Model_CustomField::SINGLECHOICHE:
+            {
+                wxChoice* CustomSingleChoiche = (wxChoice*)FindWindow(controlID);
+                if (CustomSingleChoiche) Data = CustomSingleChoiche->GetStringSelection();
             }
             break;
         default: break;
