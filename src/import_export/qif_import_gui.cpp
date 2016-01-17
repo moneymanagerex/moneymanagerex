@@ -315,6 +315,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     vQIF_trxs_.clear();
     m_QIFaccounts.clear();
     m_QIFcategoryNames.clear();
+    m_QIFcategoryNames[_("Unknown")] = std::make_pair(-1, -1);
     m_QIFpayeeNames.clear();
     m_payee_names.clear();
     m_payee_names.Add(_("Unknown"));
@@ -849,7 +850,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
     wxMessageDialog(this, sMsg, _("QIF Import"), wxOK | wxICON_WARNING).ShowModal();
     *log_field_ << sMsg << "\n";
     
-    refreshTabs(ACC_TAB + PAYEE_TAB + CAT_TAB);
+    refreshTabs(ACC_TAB | PAYEE_TAB | CAT_TAB);
 }
 
 void mmQIFImportDialog::saveSplit()
