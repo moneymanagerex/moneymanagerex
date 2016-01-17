@@ -709,8 +709,12 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& event )
 {
     int t = TRX_TAB;
 
-    fromDateCtrl_->Enable(dateFromCheckBox_->IsChecked());
-    toDateCtrl_->Enable(dateToCheckBox_->IsChecked());
+    if (event.GetId() == wxID_FILE8 || event.GetId() == wxID_FILE9)
+    {
+        fromDateCtrl_->Enable(dateFromCheckBox_->IsChecked());
+        toDateCtrl_->Enable(dateToCheckBox_->IsChecked());
+        return;
+    }
 
     if (event.GetId() == wxID_FILE6)
     {
