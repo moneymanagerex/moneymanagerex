@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2015 Gabriele-V
+Copyright (C) 2016 Gabriele-V
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -143,7 +143,7 @@ void mmCustomFieldEditDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Default")), g_flags);
     m_itemDefault = new wxTextCtrl(itemPanel5, wxID_ANY, "");
-    m_itemDefault->SetToolTip(_("Enter the default for this field"));
+    m_itemDefault->SetToolTip(_("Enter the default for this field")+"\n"+ _("For date/time insert 'Now' to make current date/time as default"));
     itemFlexGridSizer6->Add(m_itemDefault, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Choiches")), g_flags);
@@ -168,22 +168,33 @@ void mmCustomFieldEditDialog::CreateControls()
 void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
 {
     const wxString name = m_itemDescription->GetValue().Trim();
-    if (name.empty()) {
+    if (name.empty())
+    {
         mmErrorDialogs::InvalidName(m_itemDescription);
         return;
     }
 
+    wxArrayString ArrChoiches;
+    wxString Choiches = m_itemChoiches->GetValue();
+    wxStringTokenizer token(Choiches, ";");
+    while (token.HasMoreTokens())
+    {
+        ArrChoiches.Add(token.GetNextToken());
+    }
+
     if (!this->m_field)
+    {
         this->m_field = Model_CustomField::instance().create();
+    }
     else if (m_field->REFTYPE != m_fieldRefType)
     {
         auto DataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::FIELDID(m_field->FIELDID));
         if (DataSet.size() > 0)
         {
             int DeleteResponse = wxMessageBox(
-                _("Changing field type will delete all content.") + "\n"
+                _("Changing field type will delete all content!") + "\n"
                 + _("Do you want to proceed?") << "\n"
-                , _("Confirm Custom Field Change")
+                , _("Custom Field Change")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
             if (DeleteResponse != wxYES)
                 return;
@@ -197,14 +208,30 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
             Model_CustomFieldData::instance().ReleaseSavepoint();
         }
     }
-
-    wxArrayString ArrChoiches;
-    wxString Choiches = m_itemChoiches->GetValue();
-    wxStringTokenizer token(Choiches, ";");
-    while (token.HasMoreTokens())
+    else if (Model_CustomField::getChoiches(m_field->PROPERTIES) != ArrChoiches)
     {
-        ArrChoiches.Add(token.GetNextToken());
+        auto DataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::FIELDID(m_field->FIELDID));
+        if (DataSet.size() > 0)
+        {
+            int DeleteResponse = wxMessageBox(
+                _("You have modified choiches: ones removed will be cleaned!") + "\n"
+                + _("Do you want to proceed?") << "\n"
+                , _("Custom Field Change")
+                , wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
+            if (DeleteResponse != wxYES)
+                return;
+
+            Model_CustomFieldData::instance().Savepoint();
+            for (auto &data : DataSet)
+            {
+                if(ArrChoiches.Index(data.CONTENT) == wxNOT_FOUND)
+                data.CONTENT = wxEmptyString;
+            }
+            Model_CustomFieldData::instance().save(DataSet);
+            Model_CustomFieldData::instance().ReleaseSavepoint();
+        }
     }
+
 
     m_field->REFTYPE = m_fieldRefType;
     m_field->DESCRIPTION = name;

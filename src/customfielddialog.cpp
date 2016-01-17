@@ -1,5 +1,5 @@
 ﻿/*******************************************************
- Copyright (C) 2015 Gabriele-V
+ Copyright (C) 2016 Gabriele-V
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -91,7 +91,7 @@ void mmCustomFieldDialog::CreateFillControls()
     this->SetSizer(itemBoxSizer2);
 
     wxFlexGridSizer* itemFlexGridSizer3 = new wxFlexGridSizer(0, 2, 0, 0);
-    //itemFlexGridSizer3->AddGrowableCol(1);
+    itemFlexGridSizer3->AddGrowableCol(1);
     itemBoxSizer2->Add(itemFlexGridSizer3, g_flagsExpand);
 
     Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_RefType));
@@ -129,7 +129,7 @@ void mmCustomFieldDialog::CreateFillControls()
             {
                 int value = (wxAtoi(fieldData->CONTENT)) ? wxAtoi(fieldData->CONTENT) : 0;
                 wxSpinCtrl* CustomInteger = new wxSpinCtrl(this, controlID,
-                    wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -9999999, 9999999, value);
+                    wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -2147483647, 2147483647, value);
                 itemFlexGridSizer3->Add(CustomInteger, g_flagsExpand);
             }
             break;
@@ -138,7 +138,7 @@ void mmCustomFieldDialog::CreateFillControls()
                 double value;
                 if (!fieldData->CONTENT.ToDouble(&value)) value = 0;
                 wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(this, controlID
-                    ,wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -9999999, 9999999, value, 0.1);
+                    ,wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 0.01);
                 itemFlexGridSizer3->Add(CustomDecimal, g_flagsExpand);
             }
             break;
@@ -152,7 +152,10 @@ void mmCustomFieldDialog::CreateFillControls()
         case Model_CustomField::DATE:
             {
                 wxDate value;
-                if (!value.ParseDate(fieldData->CONTENT)) value = wxDate::Today();
+                if (fieldData->CONTENT.CmpNoCase("Now") == 0)
+                    value = wxDate::Today();
+                else if (!value.ParseDate(fieldData->CONTENT))
+                    value.ParseDate("1900-01-01");
                 wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(this, controlID, value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
                 itemFlexGridSizer3->Add(CustomDate, g_flagsExpand);
             }
@@ -160,7 +163,10 @@ void mmCustomFieldDialog::CreateFillControls()
         case Model_CustomField::TIME:
             {
                 wxDateTime value;
-                if (!value.ParseTime(fieldData->CONTENT)) value = wxDateTime::Now();
+                if (fieldData->CONTENT.CmpNoCase("Now") == 0)
+                    value = wxDateTime::Now();
+                else if (!value.ParseTime(fieldData->CONTENT))
+                    value.ParseTime("00:00:00");
                 wxTimePickerCtrl* CustomDate = new wxTimePickerCtrl(this, controlID, value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
                 itemFlexGridSizer3->Add(CustomDate, g_flagsExpand);
             }
@@ -176,11 +182,7 @@ void mmCustomFieldDialog::CreateFillControls()
                 if (Choiches.size() == 0)
                     CustomChoiche->Enable(false);
 
-                int iChoicheFound = Choiches.Index(fieldData->CONTENT);
-                if (iChoicheFound > 0)
-                    CustomChoiche->SetSelection(iChoicheFound);
-                else
-                    CustomChoiche->SetSelection(0);
+                CustomChoiche->SetStringSelection(fieldData->CONTENT);
             }
             break;
         default: break;
