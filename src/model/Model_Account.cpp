@@ -21,17 +21,17 @@
 
 const std::vector<std::pair<Model_Account::STATUS_ENUM, wxString> > Model_Account::STATUS_CHOICES =
 {
-    std::make_pair(Model_Account::OPEN, wxTRANSLATE(wxString("Open"))),
-    std::make_pair(Model_Account::CLOSED, wxTRANSLATE(wxString("Closed")))
+    std::make_pair(Model_Account::OPEN, wxString(wxTRANSLATE("Open"))),
+    std::make_pair(Model_Account::CLOSED, wxString(wxTRANSLATE("Closed")))
 };
 
 const std::vector<std::pair<Model_Account::TYPE, wxString> > Model_Account::TYPE_CHOICES =
 {
-    std::make_pair(Model_Account::CHECKING, wxTRANSLATE(wxString("Checking"))),
-    std::make_pair(Model_Account::TERM, wxTRANSLATE(wxString("Term"))),
-    std::make_pair(Model_Account::INVESTMENT, wxTRANSLATE(wxString("Investment"))),
-    std::make_pair(Model_Account::CREDIT_CARD, wxTRANSLATE(wxString("Credit Card"))),
-    std::make_pair(Model_Account::CASH, wxTRANSLATE(wxString("Cash")))
+    std::make_pair(Model_Account::CHECKING, wxString(wxTRANSLATE("Checking"))),
+    std::make_pair(Model_Account::TERM, wxString(wxTRANSLATE("Term"))),
+    std::make_pair(Model_Account::INVESTMENT, wxString(wxTRANSLATE("Investment"))),
+    std::make_pair(Model_Account::CREDIT_CARD, wxString(wxTRANSLATE("Credit Card"))),
+    std::make_pair(Model_Account::CASH, wxString(wxTRANSLATE("Cash")))
 };
 
 Model_Account::Model_Account()
