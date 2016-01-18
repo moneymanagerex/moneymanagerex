@@ -138,6 +138,12 @@ const int mmIniOptions::account_image_id(int account_id, bool def)
         else if (favorite)   selectedImage = img::CARD_ACC_FAVORITE_PNG;
         else   selectedImage = img::CARD_ACC_PNG;
         break;
+ //TODO: provide different icons
+    case (Model_Account::CASH) :
+        if (closed) selectedImage = img::SAVINGS_ACC_CLOSED_PNG;
+        else if (favorite) selectedImage = img::SAVINGS_ACC_FAVORITE_PNG;
+        else selectedImage = img::SAVINGS_ACC_NORMAL_PNG;
+        break;
     default:
         wxASSERT(false);
     }

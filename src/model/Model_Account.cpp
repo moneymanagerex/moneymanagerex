@@ -30,7 +30,8 @@ const std::vector<std::pair<Model_Account::TYPE, wxString> > Model_Account::TYPE
     std::make_pair(Model_Account::CHECKING, wxTRANSLATE(wxString("Checking"))),
     std::make_pair(Model_Account::TERM, wxTRANSLATE(wxString("Term"))),
     std::make_pair(Model_Account::INVESTMENT, wxTRANSLATE(wxString("Investment"))),
-    std::make_pair(Model_Account::CREDIT_CARD, wxTRANSLATE(wxString("Credit Card")))
+    std::make_pair(Model_Account::CREDIT_CARD, wxTRANSLATE(wxString("Credit Card"))),
+    std::make_pair(Model_Account::CASH, wxTRANSLATE(wxString("Cash")))
 };
 
 Model_Account::Model_Account()
