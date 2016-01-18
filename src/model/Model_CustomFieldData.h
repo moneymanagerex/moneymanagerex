@@ -49,6 +49,8 @@ public:
 public:
     Model_CustomFieldData::Data* get(int FieldID, int RefID);
     wxArrayString Model_CustomFieldData::allValue(const int FieldID);
+    bool Model_CustomFieldData::RelocateAllData(const wxString& RefType, int OldRefId, int NewRefId);
+    bool Model_CustomFieldData::DeleteAllData(const wxString& RefType, int RefID);
 };
 
 #endif // 

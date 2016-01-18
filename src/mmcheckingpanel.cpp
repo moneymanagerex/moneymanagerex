@@ -17,34 +17,33 @@
  ********************************************************/
 
 #include "mmcheckingpanel.h"
-#include "paths.h"
+#include "attachmentdialog.h"
+#include "billsdepositsdialog.h"
 #include "constants.h"
 #include "images_list.h"
-#include "util.h"
 #include "mmex.h"
 #include "mmframe.h"
-#include "mmTips.h"
 #include "mmSimpleDialogs.h"
+#include "mmTips.h"
+#include "paths.h"
 #include "splittransactionsdialog.h"
 #include "transdialog.h"
 #include "validators.h"
-#include "attachmentdialog.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Splittransaction.h"
+#include "util.h"
+
 #include "model/Model_Account.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Category.h"
 #include "model/Model_Attachment.h"
-#include "billsdepositsdialog.h"
+#include "model/Model_Category.h"
+#include "model/Model_Checking.h"
+#include "model/Model_CustomFieldData.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Setting.h"
+#include "model/Model_Splittransaction.h"
 
-
-//----------------------------------------------------------------------------
-
-#include <wx/srchctrl.h>
 #include <algorithm>
 #include <wx/sound.h>
+#include <wx/srchctrl.h>
 //----------------------------------------------------------------------------
 
 wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
@@ -714,6 +713,7 @@ void mmCheckingPanel::DeleteViewedTransactions()
         // remove also removes any split transactions
         Model_Checking::instance().remove(tran.TRANSID);
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
+        Model_CustomFieldData::instance().DeleteAllData(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
         if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
     }
     Model_Checking::instance().ReleaseSavepoint();
@@ -729,6 +729,7 @@ void mmCheckingPanel::DeleteFlaggedTransactions(const wxString& status)
             // remove also removes any split transactions
             Model_Checking::instance().remove(tran.TRANSID);
             mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
+            Model_CustomFieldData::instance().DeleteAllData(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
             if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
         }
     }
@@ -1463,6 +1464,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
+                Model_CustomFieldData::instance().DeleteAllData(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
                 if (x <= topItemIndex_) topItemIndex_--;
                 if (!m_cp->m_trans.empty() && m_selectedIndex > 0) m_selectedIndex--;
                 if (m_selectedForCopy == transID) m_selectedForCopy = -1;

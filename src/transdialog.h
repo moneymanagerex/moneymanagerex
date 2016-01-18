@@ -21,9 +21,11 @@
 #define MM_EX_TRANSDIALOG_H_
 
 #include "defs.h"
-#include "model/Model_Splittransaction.h"
+#include "customfielddialog.h"
+
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Splittransaction.h"
 
 #include <wx/spinbutt.h>
 
@@ -69,6 +71,7 @@ private:
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
+    void OnShow(wxShowEvent& event);
     void OnCategs(wxCommandEvent& event);
 	void OnAttachments(wxCommandEvent& event);
     void OnCustomFields(wxCommandEvent& event);
@@ -106,6 +109,7 @@ private:
     wxStaticText* itemStaticTextWeek_;
     wxStaticText* account_label_;
     wxStaticText* payee_label_;
+    mmCustomFieldDialog* CustomFieldDialog_;
 
     bool m_transfer;
     bool m_new_trx;

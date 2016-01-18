@@ -36,11 +36,12 @@
 #include <wx/timectrl.h>
 #include <wx/valnum.h>
 
-wxIMPLEMENT_DYNAMIC_CLASS(mmCustomFieldDialog, wxDialog);
+wxIMPLEMENT_DYNAMIC_CLASS(mmCustomFieldDialog, wxFrame);
 
-wxBEGIN_EVENT_TABLE(mmCustomFieldDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(mmCustomFieldDialog, wxFrame)
     EVT_BUTTON(wxID_EDIT, mmCustomFieldDialog::OnAddEdit)
-    EVT_BUTTON(wxID_CANCEL, mmCustomFieldDialog::OnClose)
+    EVT_BUTTON(wxID_CANCEL, mmCustomFieldDialog::OnCancel)
+    EVT_CLOSE(mmCustomFieldDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
 mmCustomFieldDialog::mmCustomFieldDialog()
@@ -63,7 +64,7 @@ bool mmCustomFieldDialog::Create(wxWindow* parent, wxWindowID id
     , const wxPoint& pos, const wxSize& size)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
+    long style = wxFRAME_TOOL_WINDOW | wxFRAME_FLOAT_ON_PARENT | wxRESIZE_BORDER | wxCLOSE_BOX | wxCAPTION;
 
     wxString WindowTitle;
     if (m_RefId > 0)
@@ -71,7 +72,7 @@ bool mmCustomFieldDialog::Create(wxWindow* parent, wxWindowID id
     else
         WindowTitle = wxString::Format(_("Custom Fields | New %s"), m_RefType);
 
-    wxDialog::Create(parent, id, WindowTitle, pos, size, style);
+    wxFrame::Create(parent, id, WindowTitle, pos, size, style);
 
     CreateFillControls();
     SetEvtHandlerEnabled(false);
@@ -192,7 +193,7 @@ void mmCustomFieldDialog::CreateFillControls()
     wxBoxSizer* itemBoxSizer22 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer22, wxSizerFlags(g_flags).Centre());
 
-    wxButton* itemButtonClose = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    wxButton* itemButtonClose = new wxButton(this, wxID_CANCEL, _("Close"));
     itemBoxSizer22->Add(itemButtonClose, g_flags);
     itemButtonClose->SetToolTip(_("Close custom field window"));
 
@@ -210,16 +211,21 @@ void mmCustomFieldDialog::OnAddEdit(wxCommandEvent& /*event*/)
     m_RefreshRequested = dlg.GetRefreshRequested();
 }
 
-void mmCustomFieldDialog::OnClose(wxCommandEvent& /*event*/)
+void mmCustomFieldDialog::OnCancel(wxCommandEvent& /*event*/)
 {
-    mmCustomFieldDialog::OnClose(false);
+    mmCustomFieldDialog::OnSave(false);
 }
 
- void mmCustomFieldDialog::OnClose(const bool OpenStatus)
+void mmCustomFieldDialog::OnQuit(wxCloseEvent& /*event*/)
+{
+    mmCustomFieldDialog::OnSave(false);
+}
+
+ void mmCustomFieldDialog::OnSave(const bool OpenStatus)
 {
     if (m_RefreshRequested)
     {
-        EndModal(wxID_OK);
+        Destroy();
         return;
     }
 
@@ -288,5 +294,5 @@ void mmCustomFieldDialog::OnClose(wxCommandEvent& /*event*/)
     }
 
     Model_Infotable::instance().SetOpenCustomDialog(m_RefType, OpenStatus);
-    EndModal(wxID_OK);
+    Destroy();
 }

@@ -30,7 +30,7 @@ enum
     ID_CUSTOMFIELD,
 };
 
-class mmCustomFieldDialog : public wxDialog
+class mmCustomFieldDialog : public wxFrame
 {
     wxDECLARE_DYNAMIC_CLASS(mmCustomFieldDialog);
     wxDECLARE_EVENT_TABLE();
@@ -45,14 +45,15 @@ private:
     void CreateFillControls();
 
     void OnAddEdit(wxCommandEvent& event);
-    void OnClose(wxCommandEvent& event);
+    void OnCancel(wxCommandEvent& event);
+    void OnQuit(wxCloseEvent& event);
 
     wxString m_RefType;
     int m_RefId;
     bool m_RefreshRequested;
 
 public:
-    void OnClose(const bool OpenStatus);
+    void OnSave(const bool OpenStatus);
 };
 
 #endif
