@@ -866,6 +866,10 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
             bool entry = !json::Boolean(o[L"CARD_ACCOUNTS_INFO"]);
             o[L"CARD_ACCOUNTS_INFO"] = json::Boolean(entry);
         }
+        else if (name == "CASH_ACCOUNTS_INFO") {
+            bool entry = !json::Boolean(o[L"CASH_ACCOUNTS_INFO"]);
+            o[L"CASH_ACCOUNTS_INFO"] = json::Boolean(entry);
+        }
         else if (name == "TERM_ACCOUNTS_INFO") {
             bool entry = !json::Boolean(o[L"TERM_ACCOUNTS_INFO"]);
             o[L"TERM_ACCOUNTS_INFO"] = json::Boolean(entry);
