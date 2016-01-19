@@ -684,6 +684,10 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
     navTreeCtrl_->SetItemBold(cardAccounts, true);
 
+    wxTreeItemId cashAccounts = navTreeCtrl_->AppendItem(root, _("Cash Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
+    navTreeCtrl_->SetItemData(cashAccounts, new mmTreeItemData("Cash Accounts"));
+    navTreeCtrl_->SetItemBold(cashAccounts, true);
+
     wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_PNG, img::TERMACCOUNT_PNG);
     navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
     navTreeCtrl_->SetItemBold(termAccount, true);
@@ -749,6 +753,11 @@ void mmGUIFrame::updateNavTreeControl()
                 wxTreeItemId tacct = navTreeCtrl_->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
             }
+            else if (Model_Account::type(account) == Model_Account::CASH)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(cashAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
             else
             {
                 wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
@@ -761,6 +770,7 @@ void mmGUIFrame::updateNavTreeControl()
         if (!navTreeCtrl_->ItemHasChildren(cardAccounts)) navTreeCtrl_->Delete(cardAccounts);
         if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
         if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
+        if (!navTreeCtrl_->ItemHasChildren(cashAccounts)) navTreeCtrl_->Delete(cashAccounts);
     }
     windowsFreezeThaw(navTreeCtrl_);
     navTreeCtrl_->SelectItem(root);

@@ -34,6 +34,7 @@
                 <!--Accounts-->
                 <TMPL_VAR ACCOUNTS_INFO>
                 <TMPL_VAR CARD_ACCOUNTS_INFO>
+                <TMPL_VAR CASH_ACCOUNTS_INFO>
                 <TMPL_VAR TERM_ACCOUNTS_INFO>
                 <!--Stocks-->
                 <TMPL_VAR STOCKS_INFO>
@@ -202,6 +203,8 @@
     {toggleTable('TERM_ACCOUNTS_INFO')};
     if (!toggle_json['CARD_ACCOUNTS_INFO'] && document.getElementById('CARD_ACCOUNTS_INFO'))
     {toggleTable('CARD_ACCOUNTS_INFO')};
+    if (!toggle_json['CASH_ACCOUNTS_INFO'] && document.getElementById('CASH_ACCOUNTS_INFO'))
+    {toggleTable('CASH_ACCOUNTS_INFO')};
     if (!toggle_json['INVEST'] && document.getElementById('INVEST'))
     {toggleTable('INVEST')};
     if (!toggle_json['TOP_CATEGORIES'] && document.getElementById('TOP_CATEGORIES'))

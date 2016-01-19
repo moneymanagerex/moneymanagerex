@@ -51,15 +51,15 @@ Model_Budget& Model_Budget::instance()
 
 const std::vector<std::pair<Model_Budget::PERIOD_ENUM, wxString> > Model_Budget::PERIOD_ENUM_CHOICES =
 {
-    std::make_pair(Model_Budget::NONE, wxTRANSLATE(wxString("None")))
-    , std::make_pair(Model_Budget::WEEKLY, wxTRANSLATE(wxString("Weekly")))
-    , std::make_pair(Model_Budget::BIWEEKLY, wxTRANSLATE(wxString("Bi-Weekly")))
-    , std::make_pair(Model_Budget::MONTHLY, wxTRANSLATE(wxString("Monthly")))
-    , std::make_pair(Model_Budget::BIMONTHLY, wxTRANSLATE(wxString("Bi-Monthly")))
-    , std::make_pair(Model_Budget::QUARTERLY, wxTRANSLATE(wxString("Quarterly")))
-    , std::make_pair(Model_Budget::HALFYEARLY, wxTRANSLATE(wxString("Half-Yearly")))
-    , std::make_pair(Model_Budget::YEARLY, wxTRANSLATE(wxString("Yearly")))
-    , std::make_pair(Model_Budget::DAILY, wxTRANSLATE(wxString("Daily")))
+    std::make_pair(Model_Budget::NONE, wxString(wxTRANSLATE("None")))
+    , std::make_pair(Model_Budget::WEEKLY, wxString(wxTRANSLATE("Weekly")))
+    , std::make_pair(Model_Budget::BIWEEKLY, wxString(wxTRANSLATE("Bi-Weekly")))
+    , std::make_pair(Model_Budget::MONTHLY, wxString(wxTRANSLATE("Monthly")))
+    , std::make_pair(Model_Budget::BIMONTHLY, wxString(wxTRANSLATE("Bi-Monthly")))
+    , std::make_pair(Model_Budget::QUARTERLY, wxString(wxTRANSLATE("Quarterly")))
+    , std::make_pair(Model_Budget::HALFYEARLY, wxString(wxTRANSLATE("Half-Yearly")))
+    , std::make_pair(Model_Budget::YEARLY, wxString(wxTRANSLATE("Yearly")))
+    , std::make_pair(Model_Budget::DAILY, wxString(wxTRANSLATE("Daily")))
 };
 
 wxArrayString Model_Budget::all_period()
