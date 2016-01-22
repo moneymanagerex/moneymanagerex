@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2015-12-29 11:10:52.430030.
+ *          AUTO GENERATED at 2016-01-22 15:19:29.518420.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -588,7 +588,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             while(q.NextRow())
             {
                 Self::Data entity(q, this);
-                result.push_back(entity);
+                result.push_back(std::move(entity));
             }
 
             q.Finalize();

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2015-12-29 11:10:52.430030.
+ *          AUTO GENERATED at 2016-01-22 15:19:29.518420.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -120,7 +120,7 @@ const typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool
         while(q.NextRow())
         {
             typename TABLE::Data entity(q, table);
-            result.push_back(entity);
+            result.push_back(std::move(entity));
         }
 
         q.Finalize();

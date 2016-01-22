@@ -639,7 +639,7 @@ struct DB_Table_%s : public DB_Table
             while(q.NextRow())
             {
                 Self::Data entity(q, this);
-                result.push_back(entity);
+                result.push_back(std::move(entity));
             }
 
             q.Finalize();
@@ -765,7 +765,7 @@ const typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool
         while(q.NextRow())
         {
             typename TABLE::Data entity(q, table);
-            result.push_back(entity);
+            result.push_back(std::move(entity));
         }
 
         q.Finalize();
