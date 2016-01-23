@@ -113,13 +113,13 @@ void mmStockDialog::dataToControls()
     notes_->SetValue(m_stock->NOTES);
     dpc_->SetValue(Model_Stock::PURCHASEDATE(m_stock));
 
-    int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : 4;
+    int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : 6;
     numShares_->SetValue(m_stock->NUMSHARES, precision);
     Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     if (account) currency = Model_Account::currency(account);
     int currency_precision = Model_Currency::precision(currency);
-    if (currency_precision < 4) currency_precision = 4;
+    if (currency_precision < 6) currency_precision = 6;
     purchasePrice_->SetValue(m_stock->PURCHASEPRICE, account, currency_precision);
     currentPrice_->SetValue(m_stock->CURRENTPRICE, account, currency_precision);
     commission_->SetValue(m_stock->COMMISSION, account, currency_precision);
@@ -401,9 +401,9 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
     }
         
     Model_Currency::Data *currency = Model_Account::currency(account);
-    const wxString& pdate = dpc_->GetValue().FormatISODate();
-    const wxString& stockName = stockName_->GetValue();
-    const wxString& notes = notes_->GetValue();
+    const wxString pdate = dpc_->GetValue().FormatISODate();
+    const wxString stockName = stockName_->GetValue();
+    const wxString notes = notes_->GetValue();
 
     double numShares = 0;
     if (!numShares_->checkValue(numShares, currency))
@@ -472,11 +472,11 @@ void mmStockDialog::OnTextEntered(wxCommandEvent& event)
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
     if (account) currency = Model_Account::currency(account);
     int currency_precision = Model_Currency::precision(currency);
-    if (currency_precision < 4) currency_precision = 4;
+    if (currency_precision < 6) currency_precision = 6;
 
     if (event.GetId() == numShares_->GetId())
     {
-        numShares_->Calculate(currency, 4);
+        numShares_->Calculate(currency, 6);
     }
     else if (event.GetId() == purchasePrice_->GetId())
     {
@@ -502,7 +502,7 @@ void mmStockDialog::OnListItemSelected(wxListEvent& event)
     if (histData->HISTID > 0)
     {
         priceDate_->SetValue(Model_StockHistory::DATE(*histData));
-        currentPrice_->SetValue(Model_Account::toString(histData->VALUE, account, 4));
+        currentPrice_->SetValue(Model_Account::toString(histData->VALUE, account, 6));
     }
 }
 
@@ -795,10 +795,10 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
     }
     if (i != priceListBox_->GetItemCount())
     {
-        listStr = Model_Account::toString(dPrice, account, 4);
+        listStr = Model_Account::toString(dPrice, account, 6);
         priceListBox_->SetItem(i, 0, mmGetDateForDisplay(priceDate_->GetValue()));
         priceListBox_->SetItem(i, 1, listStr);
-        listStr = Model_Account::toString(dPrice - m_stock->PURCHASEPRICE, account, 4);
+        listStr = Model_Account::toString(dPrice - m_stock->PURCHASEPRICE, account, 6);
         priceListBox_->SetItem(i, 2, listStr);
     }
 }
@@ -844,7 +844,7 @@ void mmStockDialog::showStockHistory()
             item.SetData(d.HISTID);
             priceListBox_->InsertItem( item );
             const wxDate dtdt = Model_StockHistory::DATE(d);
-            const wxString dispAmount = Model_Account::toString(d.VALUE, account, 4);
+            const wxString dispAmount = Model_Account::toString(d.VALUE, account, 6);
             priceListBox_->SetItem(idx, 0, mmGetDateForDisplay(dtdt));
             priceListBox_->SetItem(idx, 1, dispAmount);
             if (idx == 0)
@@ -852,7 +852,7 @@ void mmStockDialog::showStockHistory()
                 priceDate_->SetValue(dtdt);
                 currentPrice_->SetValue(dispAmount);
             }
-            const wxString& priceAmount = Model_Account::toString(d.VALUE - m_stock->PURCHASEPRICE, account, 4);
+            const wxString& priceAmount = Model_Account::toString(d.VALUE - m_stock->PURCHASEPRICE, account, 6);
             priceListBox_->SetItem(idx, 2, priceAmount);
             idx++;
         }
