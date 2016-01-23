@@ -317,7 +317,7 @@ void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
     mmCalculator calc;
     if (calc.is_ok(value))
     {
-        calculated_amount = wxString::Format("%.4f", calc.get_result());
+        calculated_amount = wxString::Format("%.6f", calc.get_result());
         if (value != calculated_amount)
             currencyListBox_->SetValue(wxVariant(calculated_amount), row, BASE_RATE);
         calculated_amount.ToDouble(&conv_rate);
@@ -409,7 +409,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
             {
                 if (currency_data.find(currency_symbol) != currency_data.end())
                 {
-                    msg << wxString::Format(_("%s\t: %0.4f -> %0.4f\n")
+                    msg << wxString::Format(_("%s\t: %0.6f -> %0.6f\n")
                         , currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol].first);
                     currency.BASECONVRATE = currency_data[currency_symbol].first;
                     if (base_symbol == currency_symbol)

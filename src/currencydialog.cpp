@@ -136,7 +136,7 @@ void mmCurrencyDialog::fillControls()
         scale_ = log10(m_currency->SCALE);
         wxString scale_value = wxString::Format("%i", scale_);
         scaleTx_->SetValue(scale_value);
-        baseConvRate_->SetValue(m_currency->BASECONVRATE, 4);
+        baseConvRate_->SetValue(m_currency->BASECONVRATE, 6);
         m_currencySymbol->SetValue(m_currency->CURRENCY_SYMBOL);
     }
     else
@@ -235,7 +235,7 @@ void mmCurrencyDialog::CreateControls()
     itemBoxSizer22->Add(itemButton24, g_flags);
     itemButton24->SetToolTip(_("Save any changes made"));
 
-    wxButton* itemButton25 = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    wxButton* itemButton25 = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CloseLabel));
     itemBoxSizer22->Add(itemButton25, g_flags);
     itemButton25->SetToolTip(_("Any changes will be lost without update"));
 }
@@ -284,6 +284,6 @@ void mmCurrencyDialog::onTextEntered(wxCommandEvent& event)
 {
     if (event.GetId() == baseConvRate_->GetId())
     {
-        baseConvRate_->Calculate(Model_Currency::GetBaseCurrency(), 4);
+        baseConvRate_->Calculate(Model_Currency::GetBaseCurrency(), 6);
     }
 }
