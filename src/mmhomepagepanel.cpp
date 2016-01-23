@@ -577,6 +577,10 @@ void mmHomePagePanel::getData()
     m_frames["CASH_ACCOUNTS_INFO"] = displayAccounts(cashBalance, accountStats, Model_Account::CASH);
     tBalance += cashBalance;
 
+    double loanBalance = 0.0;
+    m_frames["LOAN_ACCOUNTS_INFO"] = displayAccounts(loanBalance, accountStats, Model_Account::LOAN);
+    tBalance += cashBalance;
+
     double termBalance = 0.0;
     m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
     tBalance += termBalance;
@@ -688,16 +692,17 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 /* Accounts */
 const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
 {
-    bool type_bank = type == Model_Account::CHECKING || type == Model_Account::CREDIT_CARD || type == Model_Account::CASH;
-    bool type_credit = type == Model_Account::CREDIT_CARD || type == Model_Account::CASH;
-    bool type_cash = type == Model_Account::CASH;
+    bool type_bank = type == Model_Account::CHECKING || type == Model_Account::CREDIT_CARD || type == Model_Account::CASH || type == Model_Account::LOAN;
+    bool type_credit = type == Model_Account::CREDIT_CARD || type == Model_Account::CASH || type == Model_Account::LOAN;
+    bool type_cash = type == Model_Account::CASH || type == Model_Account::LOAN;
+    bool type_loan = type == Model_Account::LOAN;
 
     double tReconciled = 0;
-    const wxString idStr = (type_bank ? (type_credit ? (type_cash ? "CASH_ACCOUNTS_INFO" :"CARD_ACCOUNTS_INFO") : "ACCOUNTS_INFO") : "TERM_ACCOUNTS_INFO");
+    const wxString idStr = (type_bank ? (type_credit ? (type_cash ? (type_loan ? "LOAN_ACCOUNTS_INFO" : "CASH_ACCOUNTS_INFO") : "CARD_ACCOUNTS_INFO") : "ACCOUNTS_INFO") : "TERM_ACCOUNTS_INFO");
     wxString output = "<table class = 'sortable table'>\n";
     output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
     output += "<thead><tr><th nowrap>";
-    output += (type_bank ? (type_credit ? (type_cash ? _("Cash Accounts") : _("Credit Card Accounts")) : _("Bank Account")) : _("Term Account"));
+    output += (type_bank ? (type_credit ? (type_cash ? (type_loan ? _("Loan Accounts") : _("Cash Accounts")) : _("Credit Card Accounts")) : _("Bank Accounts")) : _("Term Accounts"));
 
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
     output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";
@@ -869,6 +874,10 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         else if (name == "CASH_ACCOUNTS_INFO") {
             bool entry = !json::Boolean(o[L"CASH_ACCOUNTS_INFO"]);
             o[L"CASH_ACCOUNTS_INFO"] = json::Boolean(entry);
+        }
+        else if (name == "LOAN_ACCOUNTS_INFO") {
+            bool entry = !json::Boolean(o[L"LOAN_ACCOUNTS_INFO"]);
+            o[L"LOAN_ACCOUNTS_INFO"] = json::Boolean(entry);
         }
         else if (name == "TERM_ACCOUNTS_INFO") {
             bool entry = !json::Boolean(o[L"TERM_ACCOUNTS_INFO"]);

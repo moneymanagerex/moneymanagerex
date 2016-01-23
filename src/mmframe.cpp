@@ -687,6 +687,9 @@ void mmGUIFrame::updateNavTreeControl()
     wxTreeItemId cashAccounts = navTreeCtrl_->AppendItem(root, _("Cash Accounts"), img::CASH_ACC_NORMAL_PNG, img::CASH_ACC_NORMAL_PNG);
     navTreeCtrl_->SetItemData(cashAccounts, new mmTreeItemData("Cash Accounts"));
     navTreeCtrl_->SetItemBold(cashAccounts, true);
+    wxTreeItemId loanAccounts = navTreeCtrl_->AppendItem(root, _("Loan Accounts"), img::LOAN_ACC_NORMAL_PNG, img::LOAN_ACC_NORMAL_PNG);
+    navTreeCtrl_->SetItemData(loanAccounts, new mmTreeItemData("Loan Accounts"));
+    navTreeCtrl_->SetItemBold(loanAccounts, true);
 
     wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_PNG, img::TERMACCOUNT_PNG);
     navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
@@ -758,6 +761,11 @@ void mmGUIFrame::updateNavTreeControl()
                 wxTreeItemId tacct = navTreeCtrl_->AppendItem(cashAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
             }
+            else if (Model_Account::type(account) == Model_Account::LOAN)
+            {
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
             else
             {
                 wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
@@ -771,6 +779,7 @@ void mmGUIFrame::updateNavTreeControl()
         if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
         if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
         if (!navTreeCtrl_->ItemHasChildren(cashAccounts)) navTreeCtrl_->Delete(cashAccounts);
+        if (!navTreeCtrl_->ItemHasChildren(loanAccounts)) navTreeCtrl_->Delete(loanAccounts);
     }
     windowsFreezeThaw(navTreeCtrl_);
     navTreeCtrl_->SelectItem(root);
