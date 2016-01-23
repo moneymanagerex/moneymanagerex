@@ -499,7 +499,7 @@ bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 //----------------------------------------------------------------------------
 void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 {
-    if (setAccountInSection(_("Bank Accounts"), accountName)) {
+    if (setAccountInSection(_("Accounts"), accountName)) {
         if (setAccountInSection(_("Term Accounts"), accountName))
             setAccountInSection(_("Stocks"), accountName);
     }
@@ -711,7 +711,7 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SetItemBold(root, true);
     navTreeCtrl_->SetFocus();
 
-    wxTreeItemId accounts = navTreeCtrl_->AppendItem(root, _("Bank Accounts"), 9, 9);
+    wxTreeItemId accounts = navTreeCtrl_->AppendItem(root, _("Accounts"), 9, 9);
     navTreeCtrl_->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
     navTreeCtrl_->SetItemBold(accounts, true);
     wxTreeItemId cardAccounts = navTreeCtrl_->AppendItem(root, _("Credit Card Accounts"), 18, 18);

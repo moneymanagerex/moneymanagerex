@@ -134,6 +134,7 @@ void mmNewAcctDialog::fillControls()
     textCtrl->SetValue(m_account->NOTES);
 
     wxChoice* itemAcctType = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
+    const auto t = m_account->ACCOUNTTYPE;
     itemAcctType->SetStringSelection(wxGetTranslation(m_account->ACCOUNTTYPE));
     itemAcctType->Enable(false);
 
@@ -177,8 +178,11 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Account Type:")), g_flags);
 
     wxChoice* itemChoice61 = new wxChoice( this, ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
-    for (const auto& type: Model_Account::all_type())
+    for (const auto& type : Model_Account::all_type())
         itemChoice61->Append(wxGetTranslation(type), new wxStringClientData(type));
+
+    if (Model_Account::all_type().Index(m_account->ACCOUNTTYPE) == wxNOT_FOUND)
+        itemChoice61->Append(m_account->ACCOUNTTYPE);
 
     grid_sizer->Add(itemChoice61, g_flagsExpand);
     itemChoice61->SetSelection(0);
@@ -358,14 +362,10 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     if (!m_itemInitValue->checkValue(m_account->INITIALBAL, Model_Account::currency(m_account), false))
          return;
 
-    wxChoice* itemAcctType = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
-    int acctType = itemAcctType->GetSelection();
-    
     if (!this->m_account) this->m_account = Model_Account::instance().create();
 
     m_account->ACCOUNTNAME = acctName;
-    m_account->ACCOUNTTYPE = Model_Account::all_type()[acctType];
-
+    
     wxTextCtrl* textCtrlAcctNumber = (wxTextCtrl*)FindWindow(ID_ACCTNUMBER);
     wxTextCtrl* textCtrlHeldAt = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT);
     wxTextCtrl* textCtrlWebsite = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE);

@@ -63,7 +63,7 @@ void mmQIFExportDialog::fillControls()
 
     for (const auto& a : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
-        if (Model_Account::type(a) == Model_Account::CHECKING || Model_Account::type(a) == Model_Account::TERM || Model_Account::type(a) == Model_Account::CREDIT_CARD)
+        if (Model_Account::type(a) != Model_Account::INVESTMENT)
         {
             accounts_name_.Add(a.ACCOUNTNAME);
             selected_accounts_id_.Add(a.ACCOUNTID);

@@ -555,28 +555,22 @@ void mmHomePagePanel::getData()
     else
         date_range_ = new mmCurrentMonth;
 
-    double tBalance = 0.0, cardBalance = 0.0;
+    double tBalance = 0.0, cardBalance = 0.0, termBalance = 0.0;;
 
     std::map<int, std::pair<double, double> > accountStats;
     get_account_stats(accountStats);
 
-    m_frames["ACCOUNTS_INFO"] = displayAccounts(tBalance, accountStats);
+    m_frames["ACCOUNTS_INFO"] = displayAccounts(tBalance, accountStats, Model_Account::CHECKING);
     m_frames["CARD_ACCOUNTS_INFO"] = displayAccounts(cardBalance, accountStats, Model_Account::CREDIT_CARD);
     tBalance += cardBalance;
 
-    double termBalance = 0.0;
     m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
     tBalance += termBalance;
 
     //Stocks
-    wxString stocks = "";
     htmlWidgetStocks stocks_widget;
-    if (!Model_Stock::instance().all().empty())
-    {
-        stocks = stocks_widget.getHTMLText();
-    }
     tBalance += stocks_widget.get_total();
-    m_frames["STOCKS_INFO"] = stocks;
+    m_frames["STOCKS_INFO"] = stocks_widget.getHTMLText();
 
     m_frames["ASSETS_INFO"] = displayAssets(tBalance);
     m_frames["GRAND_TOTAL"] = displayGrandTotals(tBalance);
@@ -675,14 +669,20 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 /* Accounts */
 const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
 {
-    bool type_is_bank = type == Model_Account::CHECKING || type == Model_Account::CREDIT_CARD,
-         credit_card = type == Model_Account::CREDIT_CARD;
+    static const std::vector < std::pair <wxString, wxString> > typeStr
+    {
+        { "ACCOUNTS_INFO", _("Accounts") },
+        { "TERM_ACCOUNTS_INFO", _("Term Account") },
+        { "", "" }, //Model_Account::INVESTMENT
+        { "CARD_ACCOUNTS_INFO", _("Credit Card Accounts") },
+    };
+
     double tReconciled = 0;
-    const wxString idStr = (type_is_bank ? (credit_card ? "CARD_ACCOUNTS_INFO" : "ACCOUNTS_INFO") : "TERM_ACCOUNTS_INFO");
+    const wxString idStr = typeStr[type].first;
     wxString output = "<table class = 'sortable table'>\n";
     output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
     output += "<thead><tr><th nowrap>";
-    output += (type_is_bank ? (credit_card ? _("Credit Card Accounts") : _("Bank Account")) : _("Term Account"));
+    output += typeStr[type].second;
 
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
     output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";
@@ -694,7 +694,10 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
-        if (Model_Account::type(account) != type || Model_Account::status(account) == Model_Account::CLOSED) continue;
+        if (Model_Account::status(account) == Model_Account::CLOSED) continue;
+        int acct = Model_Account::type(account);
+        if (acct != type && !(acct == Model_Account::CASH && type == Model_Account::CHECKING))
+                continue;
 
         Model_Currency::Data* currency = Model_Account::currency(account);
         if (!currency) currency = Model_Currency::GetBaseCurrency();

@@ -220,7 +220,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Date"));
-    hb.addTableHeaderCell(_("Bank Account"), true);
+    hb.addTableHeaderCell(_("Account"), true);
     hb.addTableHeaderCell(_("Credit Card Accounts"), true);
     hb.addTableHeaderCell(_("Term Accounts"), true);
     hb.addTableHeaderCell(_("Stocks"), true);
@@ -230,13 +230,13 @@ wxString mmReportSummaryByDate::getHTMLText()
 
     for (const auto& account: Model_Account::instance().all())
     {
-        if (Model_Account::type(account) == Model_Account::CHECKING || Model_Account::type(account) == Model_Account::CREDIT_CARD || Model_Account::type(account) == Model_Account::TERM)
+        if (Model_Account::type(account) != Model_Account::INVESTMENT)
         {
             //  in balanceMapVec ci sono i totali dei movimenti giorno per giorno
             const Model_Currency::Data* currency = Model_Account::currency(account);
             for (const auto& tran: Model_Account::transaction(account))
                 balanceMapVec[i][Model_Checking::TRANSDATE(tran)] += Model_Checking::balance(tran, account.ACCOUNTID) * currency->BASECONVRATE;
-            if ((Model_Account::type(account) == Model_Account::CHECKING || Model_Account::type(account) == Model_Account::CREDIT_CARD) && balanceMapVec[i].size())
+            if ((Model_Account::type(account) != Model_Account::INVESTMENT && Model_Account::type(account) == Model_Account::TERM) && balanceMapVec[i].size())
             {
                 date = balanceMapVec[i].begin()->first;
                 if (date.IsEarlierThan(dateStart))
@@ -278,7 +278,7 @@ wxString mmReportSummaryByDate::getHTMLText()
         i = 0;
         for (auto& account: Model_Account::instance().all())
         {
-            if (Model_Account::type(account) == Model_Account::CHECKING || Model_Account::type(account) == Model_Account::CREDIT_CARD || Model_Account::type(account) == Model_Account::TERM)
+            if (Model_Account::type(account) != Model_Account::INVESTMENT)
             {
                 for (; arIt[i] != balanceMapVec[i].end(); ++arIt[i])
                 {
@@ -287,7 +287,7 @@ wxString mmReportSummaryByDate::getHTMLText()
                     arBalance[i] += arIt[i]->second;
                 }
             }
-            else if (Model_Account::type(account) == Model_Account::INVESTMENT)
+            else
                 arBalance[i] = GetDailyBalanceAt(&account, dateStart);
             i++;
         }
@@ -300,7 +300,7 @@ wxString mmReportSummaryByDate::getHTMLText()
             i = 0;
             for (const auto& account: Model_Account::instance().all())
             {
-                if ((j == 0 && Model_Account::type(account) == Model_Account::CHECKING) ||
+                if ((j == 0 && (Model_Account::type(account) == Model_Account::CHECKING)) ||
                     (j == 1 && Model_Account::type(account) == Model_Account::CREDIT_CARD) ||
                     (j == 2 && Model_Account::type(account) == Model_Account::TERM) ||
                     (j == 3 && Model_Account::type(account) == Model_Account::INVESTMENT))

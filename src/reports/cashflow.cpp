@@ -75,7 +75,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         else
         {
             if (! activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM) continue;
-            if (! activeBankAccounts_ && (Model_Account::type(account) == Model_Account::CHECKING || Model_Account::type(account) == Model_Account::CREDIT_CARD)) continue;
+            if (! activeBankAccounts_ && (Model_Account::type(account) != Model_Account::INVESTMENT)) continue;
         }
 
         const Model_Currency::Data* currency = Model_Account::currency(account);
@@ -135,8 +135,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             if (Model_Account::status(account) == Model_Account::CLOSED
                 || Model_Account::type(account) == Model_Account::INVESTMENT) continue;
             if (!activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM) continue;
-            if (!activeBankAccounts_ && (Model_Account::type(account) == Model_Account::CHECKING
-                || Model_Account::type(account) == Model_Account::CREDIT_CARD)) continue;
+            if (!activeBankAccounts_ && (Model_Account::type(account) != Model_Account::INVESTMENT)) continue;
         }
 
         double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1.0);
