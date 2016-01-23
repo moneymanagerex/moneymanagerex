@@ -172,7 +172,8 @@ void SplitDetailDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
     if (account) currency = Model_Account::currency(account); 
-    textAmount_->Calculate(currency);
+    if (textAmount_->Calculate(currency))
+        textAmount_->GetDouble(split_.SPLITTRANSAMOUNT, currency);
 
     DataToControls();
 }
@@ -180,21 +181,14 @@ void SplitDetailDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
 {
     if (split_.CATEGID == -1)
-    {
-        mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_);
-        return;
-    }
+        return mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_);
 
     double amount;
     if (!textAmount_->checkValue(amount))
-    {
         return;
-    }
 
     if ( choiceType_->GetSelection() != transType_ )
-    {
         amount = -amount;
-    }
 
     split_.SPLITTRANSAMOUNT = amount;
     EndModal(wxID_OK);
