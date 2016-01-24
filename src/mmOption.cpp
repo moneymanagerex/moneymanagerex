@@ -143,6 +143,11 @@ const int mmIniOptions::account_image_id(int account_id, bool def)
         else if (favorite) selectedImage = img::CASH_ACC_FAVORITE_PNG;
         else selectedImage = img::CASH_ACC_NORMAL_PNG;
         break;
+    case (Model_Account::LOAN) :
+        if (closed) selectedImage = img::LOAN_ACC_CLOSED_PNG;
+        else if (favorite) selectedImage = img::LOAN_ACC_FAVORITE_PNG;
+        else selectedImage = img::LOAN_ACC_NORMAL_PNG;
+        break;
     default:
         wxASSERT(false);
     }
