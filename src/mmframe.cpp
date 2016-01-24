@@ -2593,7 +2593,7 @@ void mmGUIFrame::OnReallocateAccount(wxCommandEvent& event)
             choices.Add(item.ACCOUNTNAME);
     }
 
-    mmSingleChoiceDialog account_choice(this, _("Choose account to reallocate account type"), _("Account Reallocation"), choices);
+    mmSingleChoiceDialog account_choice(this, _("Select the account to reallocate"), _("Account Reallocation"), choices);
     if (account_choice.ShowModal() == wxID_OK)
     {
         ReallocateAccount(account_choice.GetStringSelection());
@@ -2606,7 +2606,7 @@ void mmGUIFrame::ReallocateAccount(const wxString& account_name)
     wxArrayString types = Model_Account::instance().all_type();
     types.Remove(Model_Account::all_type()[Model_Account::INVESTMENT]);
 
-    mmSingleChoiceDialog type_choice(this, wxString::Format(_("Choose the new type for account: %s"), account_name), _("Account Reallocation"), types);
+    mmSingleChoiceDialog type_choice(this, wxString::Format(_("Account: %s - Select new type."), account_name), _("Account Reallocation"), types);
     if (type_choice.ShowModal() == wxID_OK)
     {
         Model_Account::Data* account = Model_Account::instance().get(account_name);
