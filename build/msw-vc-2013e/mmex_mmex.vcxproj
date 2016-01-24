@@ -265,6 +265,9 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\customfielddialog.cpp" />
+    <ClCompile Include="..\..\src\customfieldeditdialog.cpp" />
+    <ClCompile Include="..\..\src\customfieldlistdialog.cpp" />
     <ClCompile Include="..\..\src\dbcheck.cpp" />
     <ClCompile Include="..\..\src\import_export\parsers.cpp" />
     <ClCompile Include="..\..\src\mmOptionAttachmentSettings.cpp" />
@@ -286,6 +289,8 @@
     <ClCompile Include="..\..\src\model\Model_Checking.cpp" />
     <ClCompile Include="..\..\src\model\Model_Currency.cpp" />
     <ClCompile Include="..\..\src\model\Model_CurrencyHistory.cpp" />
+    <ClCompile Include="..\..\src\model\Model_CustomField.cpp" />
+    <ClCompile Include="..\..\src\model\Model_CustomFieldData.cpp" />
     <ClCompile Include="..\..\src\model\Model_Infotable.cpp" />
     <ClCompile Include="..\..\src\model\Model_Payee.cpp" />
     <ClCompile Include="..\..\src\model\Model_Report.cpp" />
@@ -369,6 +374,9 @@
     <ClCompile Include="..\..\src\wizard_update.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\customfielddialog.h" />
+    <ClInclude Include="..\..\src\customfieldeditdialog.h" />
+    <ClInclude Include="..\..\src\customfieldlistdialog.h" />
     <ClInclude Include="..\..\src\dbcheck.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />
@@ -411,6 +419,8 @@
     <ClInclude Include="..\..\src\model\Model_Checking.h" />
     <ClInclude Include="..\..\src\model\Model_Currency.h" />
     <ClInclude Include="..\..\src\model\Model_CurrencyHistory.h" />
+    <ClInclude Include="..\..\src\model\Model_CustomField.h" />
+    <ClInclude Include="..\..\src\model\Model_CustomFieldData.h" />
     <ClInclude Include="..\..\src\model\Model_Infotable.h" />
     <ClInclude Include="..\..\src\model\Model_Payee.h" />
     <ClInclude Include="..\..\src\model\Model_Report.h" />
