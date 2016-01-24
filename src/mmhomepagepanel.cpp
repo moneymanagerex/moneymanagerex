@@ -564,7 +564,7 @@ void mmHomePagePanel::getData()
     else
         date_range_ = new mmCurrentMonth;
 
-    double tBalance = 0.0, cardBalance = 0.0;
+    double tBalance = 0.0, cardBalance = 0.0, termBalance = 0.0, cashBalance = 0.0;
 
     std::map<int, std::pair<double, double> > accountStats;
     get_account_stats(accountStats);
@@ -573,23 +573,16 @@ void mmHomePagePanel::getData()
     m_frames["CARD_ACCOUNTS_INFO"] = displayAccounts(cardBalance, accountStats, Model_Account::CREDIT_CARD);
     tBalance += cardBalance;
 
-    double cashBalance = 0.0;
     m_frames["CASH_ACCOUNTS_INFO"] = displayAccounts(cashBalance, accountStats, Model_Account::CASH);
     tBalance += cashBalance;
 
-    double termBalance = 0.0;
     m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
     tBalance += termBalance;
 
     //Stocks
-    wxString stocks = "";
     htmlWidgetStocks stocks_widget;
-    if (!Model_Stock::instance().all().empty())
-    {
-        stocks = stocks_widget.getHTMLText();
-    }
     tBalance += stocks_widget.get_total();
-    m_frames["STOCKS_INFO"] = stocks;
+    m_frames["STOCKS_INFO"] = stocks_widget.getHTMLText();
 
     m_frames["ASSETS_INFO"] = displayAssets(tBalance);
     m_frames["GRAND_TOTAL"] = displayGrandTotals(tBalance);

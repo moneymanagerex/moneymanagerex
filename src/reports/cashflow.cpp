@@ -62,6 +62,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
 {
     int years = cashFlowReportType_ == YEARLY ? 10 : 1;// Monthly for 10 years or Daily for 1 year
     std::map<wxDateTime, double> daily_balance;
+    wxArrayInt account_id;
 
     for (const auto& account : Model_Account::instance().all())
     {
@@ -74,14 +75,17 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         }
         else
         {
-            if (! activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM) continue;
-            if (! activeBankAccounts_ && (Model_Account::type(account) == Model_Account::CHECKING 
-                || Model_Account::type(account) == Model_Account::CREDIT_CARD)) continue;
+            if (! activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM)
+                continue;
+            if (!activeBankAccounts_ && (Model_Account::type(account) != Model_Account::INVESTMENT && Model_Account::type(account) != Model_Account::TERM))
+                continue;
+            //wxLogDebug("%s - %s", account.ACCOUNTNAME, account.ACCOUNTTYPE);
         }
 
         const Model_Currency::Data* currency = Model_Account::currency(account);
         tInitialBalance += account.INITIALBAL * currency->BASECONVRATE;
 
+        account_id.Add(account.ACCOUNTID);
         for (const auto& tran : Model_Account::transaction(account))
         {
             daily_balance[Model_Checking::TRANSDATE(tran)] += Model_Checking::balance(tran, account.ACCOUNTID) * currency->BASECONVRATE;
@@ -117,30 +121,14 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             processNumRepeats = true;
         }
 
-        int accountID = entry.ACCOUNTID;
-        int toAccountID = entry.TOACCOUNTID;
+        bool isAccountFound = account_id.Index(entry.ACCOUNTID) != wxNOT_FOUND;
+        bool isToAccountFound = account_id.Index(entry.TOACCOUNTID) != wxNOT_FOUND;
+        if (!isAccountFound && !isToAccountFound)
+            continue; // skip account
 
-        const Model_Account::Data* account = Model_Account::instance().get(accountID);
-        bool isAccountFound = account && !(accountArray_ != nullptr 
-            && wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)); //linear search
-
-        const Model_Account::Data* to_account = Model_Account::instance().get(toAccountID);
-        bool isToAccountFound = to_account && !(accountArray_ != nullptr 
-            && wxNOT_FOUND == accountArray_->Index(to_account->ACCOUNTNAME)); //linear search
-
-        if (!isAccountFound && !isToAccountFound) continue; // skip account
-
-        // Determine if we need to process this account
-        if (!m_cashflowSpecificAccounts)
-        {
-            if (Model_Account::status(account) == Model_Account::CLOSED
-                || Model_Account::type(account) == Model_Account::INVESTMENT) continue;
-            if (!activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM) continue;
-            if (!activeBankAccounts_ && (Model_Account::type(account) == Model_Account::CHECKING
-                || Model_Account::type(account) == Model_Account::CREDIT_CARD)) continue;
-        }
-
+        Model_Account::Data* account = Model_Account::instance().get(entry.ACCOUNTID);
         double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1.0);
+        Model_Account::Data* to_account = Model_Account::instance().get(entry.TOACCOUNTID);
         double toConvRate = (to_account ? Model_Account::currency(to_account)->BASECONVRATE : 1.0);
 
         // Process all possible recurring transactions for this BD
