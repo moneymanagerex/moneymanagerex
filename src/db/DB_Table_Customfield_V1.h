@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-01-16 17:34:30.070000.
+ *          AUTO GENERATED at 2016-01-24 11:35:26.698000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -70,7 +70,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE CUSTOMFIELD_V1 (FIELDID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */, DESCRIPTION TEXT COLLATE NOCASE, TYPE TEXT NOT NULL /* String, Integer, Decimal, Currency, Boolean, Date, SingleChoiche, MultiChoiche */, PROPERTIES TEXT NOT NULL)");
+				db->ExecuteUpdate("CREATE TABLE CUSTOMFIELD_V1 (FIELDID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */, DESCRIPTION TEXT COLLATE NOCASE, TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoiche, MultiChoiche */, PROPERTIES TEXT NOT NULL)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -529,7 +529,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
             while(q.NextRow())
             {
                 Self::Data entity(q, this);
-                result.push_back(entity);
+                result.push_back(std::move(entity));
             }
 
             q.Finalize();

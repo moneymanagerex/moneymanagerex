@@ -56,10 +56,11 @@ public:
     static FIELDTYPE type(const Data& r);
     static wxArrayString all_type();
     static wxString getRegEx(const wxString& Properties);
+    static wxString getTooltip(const wxString& Properties);
     static bool getAutocomplete(const wxString& Properties);
     static wxString getDefault(const wxString& Properties);
     static wxArrayString getChoiches(const wxString& Properties);
-    static wxString formatProperties(const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choiches);
+    static wxString formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choiches);
 };
 
 #endif // 

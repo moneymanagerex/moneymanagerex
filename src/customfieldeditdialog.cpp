@@ -46,6 +46,7 @@ mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomF
     , m_fieldRefType(fieldRefType)
     , m_itemDescription(nullptr)
     , m_itemType(nullptr)
+    , m_itemTooltip(nullptr)
     , m_itemRegEx(nullptr)
     , m_itemAutocomplete(nullptr)
     , m_itemDefault(nullptr)
@@ -83,6 +84,7 @@ void mmCustomFieldEditDialog::dataToControls()
 
     m_itemDescription->SetValue(m_field->DESCRIPTION);
     m_itemType->SetSelection(Model_CustomField::type(m_field));
+    m_itemTooltip->SetValue(Model_CustomField::getTooltip(m_field->PROPERTIES));
     m_itemRegEx->SetValue(Model_CustomField::getRegEx(m_field->PROPERTIES));
     m_itemAutocomplete->SetValue(Model_CustomField::getAutocomplete(m_field->PROPERTIES));
     m_itemDefault->SetValue(Model_CustomField::getDefault(m_field->PROPERTIES));
@@ -129,6 +131,11 @@ void mmCustomFieldEditDialog::CreateControls()
     m_itemType->SetToolTip(_("Select type of custom field"));
     m_itemType->SetSelection(Model_CustomField::STRING);
     itemFlexGridSizer6->Add(m_itemType, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
+
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("ToolTip")), g_flags);
+    m_itemTooltip = new wxTextCtrl(itemPanel5, wxID_ANY, "");
+    m_itemTooltip->SetToolTip(_("Enter the tooltip that will be shown"));
+    itemFlexGridSizer6->Add(m_itemTooltip, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("RegEx")), g_flags);
     m_itemRegEx = new wxTextCtrl(itemPanel5, wxID_ANY, "");
@@ -237,6 +244,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
     m_field->DESCRIPTION = name;
     m_field->TYPE = m_itemType->GetStringSelection();
     m_field->PROPERTIES = Model_CustomField::formatProperties(
+        m_itemTooltip->GetValue(),
         m_itemRegEx->GetValue(),
         m_itemAutocomplete->GetValue(),
         m_itemDefault->GetValue(),

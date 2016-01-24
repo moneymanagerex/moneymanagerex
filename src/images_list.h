@@ -40,7 +40,10 @@ enum img {
     STOCK_ACC_PNG,
     STOCK_ACC_FAVORITE_PNG,
     STOCK_ACC_CLOSED_PNG, //20
-    LAST_NAVTREE_PNG,
+    CASH_ACC_NORMAL_PNG,
+    CASH_ACC_FAVORITE_PNG,
+    CASH_ACC_CLOSED_PNG,
+    LAST_NAVTREE_PNG
 };
 
 /* Images set for accounts to be user assigned */
@@ -114,6 +117,9 @@ enum png {
     STOCKS_NORMAL,
     STOCKS_FAVORITE,
     STOCKS_CLOSED,
+    CASH_NORMAL,
+    CASH_FAVORITE,
+    CASH_CLOSED,
     RECONCILED,
     VOID_STAT,
     FOLLOW_UP,

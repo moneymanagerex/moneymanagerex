@@ -53,6 +53,7 @@ private:
     bool m_RefreshRequested;
 
 public:
+    void OnMove(const wxPoint& RefPos, const wxSize& RefSize);
     void OnSave(const bool OpenStatus);
 };
 

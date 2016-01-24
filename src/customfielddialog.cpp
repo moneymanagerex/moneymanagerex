@@ -111,13 +111,15 @@ void mmCustomFieldDialog::CreateFillControls()
         }
 
         int controlID = ID_CUSTOMFIELD + fieldData->FIELDATADID;
-        itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, field.DESCRIPTION), g_flags);
+        wxStaticText* Description = new wxStaticText(this, wxID_STATIC, field.DESCRIPTION);
+        itemFlexGridSizer3->Add(Description, g_flags);
 
         switch (Model_CustomField::type(field))
         {
         case Model_CustomField::STRING:
             {
                 wxTextCtrl* CustomString = new wxTextCtrl(this, controlID, fieldData->CONTENT, wxDefaultPosition, wxDefaultSize);
+                CustomString->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
                 if (Model_CustomField::getAutocomplete(field.PROPERTIES))
                 {
                     wxArrayString values = Model_CustomFieldData::instance().allValue(field.FIELDID);
@@ -131,6 +133,7 @@ void mmCustomFieldDialog::CreateFillControls()
                 int value = (wxAtoi(fieldData->CONTENT)) ? wxAtoi(fieldData->CONTENT) : 0;
                 wxSpinCtrl* CustomInteger = new wxSpinCtrl(this, controlID,
                     wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -2147483647, 2147483647, value);
+                CustomInteger->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
                 itemFlexGridSizer3->Add(CustomInteger, g_flagsExpand);
             }
             break;
@@ -140,6 +143,7 @@ void mmCustomFieldDialog::CreateFillControls()
                 if (!fieldData->CONTENT.ToDouble(&value)) value = 0;
                 wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(this, controlID
                     ,wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 0.01);
+                CustomDecimal->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
                 itemFlexGridSizer3->Add(CustomDecimal, g_flagsExpand);
             }
             break;
@@ -147,6 +151,7 @@ void mmCustomFieldDialog::CreateFillControls()
             {
                 wxCheckBox* CustomBoolean = new wxCheckBox(this, controlID, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
                 CustomBoolean->SetValue((fieldData->CONTENT == "TRUE") ? TRUE : FALSE);
+                CustomBoolean->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
                 itemFlexGridSizer3->Add(CustomBoolean, g_flagsExpand);
             }
             break;
@@ -158,6 +163,7 @@ void mmCustomFieldDialog::CreateFillControls()
                 else if (!value.ParseDate(fieldData->CONTENT))
                     value.ParseDate("1900-01-01");
                 wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(this, controlID, value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+                CustomDate->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
                 itemFlexGridSizer3->Add(CustomDate, g_flagsExpand);
             }
             break;
@@ -169,6 +175,7 @@ void mmCustomFieldDialog::CreateFillControls()
                 else if (!value.ParseTime(fieldData->CONTENT))
                     value.ParseTime("00:00:00");
                 wxTimePickerCtrl* CustomDate = new wxTimePickerCtrl(this, controlID, value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
+                CustomDate->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
                 itemFlexGridSizer3->Add(CustomDate, g_flagsExpand);
             }
             break;
@@ -178,6 +185,7 @@ void mmCustomFieldDialog::CreateFillControls()
                 Choiches.Sort();
 
                 wxChoice* CustomChoiche = new wxChoice(this, controlID, wxDefaultPosition, wxDefaultSize, Choiches);
+                CustomChoiche->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
                 itemFlexGridSizer3->Add(CustomChoiche, g_flagsExpand);
 
                 if (Choiches.size() == 0)
@@ -221,7 +229,12 @@ void mmCustomFieldDialog::OnQuit(wxCloseEvent& /*event*/)
     mmCustomFieldDialog::OnSave(false);
 }
 
- void mmCustomFieldDialog::OnSave(const bool OpenStatus)
+void mmCustomFieldDialog::OnMove(const wxPoint & RefPos, const wxSize & RefSize)
+{
+    this->Move(wxPoint(RefPos.x + RefSize.GetWidth(), RefPos.y));
+}
+
+void mmCustomFieldDialog::OnSave(const bool OpenStatus)
 {
     if (m_RefreshRequested)
     {

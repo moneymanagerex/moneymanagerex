@@ -50,7 +50,7 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
     EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnCustomFields)
     EVT_CLOSE(mmTransDialog::OnQuit)
-    //EVT_SHOW(mmTransDialog::OnShow)
+    EVT_MOVE(mmTransDialog::OnMove)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
     EVT_CHECKBOX(wxID_FORWARD, mmTransDialog::OnSplitChecked)
@@ -68,6 +68,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , int type
 ) : m_currency(nullptr)
     , m_to_currency(nullptr)
+    , CustomFieldDialog_(nullptr)
     , categUpdated_(false)
     , m_transfer(false)
     , m_advanced(false)
@@ -114,6 +115,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(500, 400), style);
     dataToControls();
+    CallAfter(&mmTransDialog::OnStartupCustomFields);
 }
 
 mmTransDialog::~mmTransDialog()
@@ -967,6 +969,15 @@ void mmTransDialog::onNoteSelected(wxCommandEvent& event)
         textNotes_->ChangeValue(frequentNotes_[i - 1]);
 }
 
+void mmTransDialog::OnStartupCustomFields()
+{
+    if (Model_Infotable::instance().OpenCustomDialog(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)))
+    {
+        wxCommandEvent evt;
+        mmTransDialog::OnCustomFields(evt);
+    }
+}
+
 void mmTransDialog::OnOk(wxCommandEvent& event)
 {
     m_trx_data.STATUS = "";
@@ -1090,11 +1101,8 @@ void mmTransDialog::OnQuit(wxCloseEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmTransDialog::OnShow(wxShowEvent &/*event*/)
+void mmTransDialog::OnMove(wxMoveEvent& /*event*/)
 {
-    if (Model_Infotable::instance().OpenCustomDialog(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)))
-    {
-        wxCommandEvent evt;
-        mmTransDialog::OnCustomFields(evt);
-    }
+    if (CustomFieldDialog_)
+        CustomFieldDialog_->OnMove(GetScreenPosition(), GetSize());
 }

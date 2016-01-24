@@ -71,7 +71,8 @@ private:
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
-    void OnShow(wxShowEvent& event);
+    void OnStartupCustomFields();
+    void OnMove(wxMoveEvent& event);
     void OnCategs(wxCommandEvent& event);
 	void OnAttachments(wxCommandEvent& event);
     void OnCustomFields(wxCommandEvent& event);

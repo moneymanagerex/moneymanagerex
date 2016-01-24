@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-01-16 17:34:30.070000.
+ *          AUTO GENERATED at 2016-01-24 11:35:26.698000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -709,7 +709,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             while(q.NextRow())
             {
                 Self::Data entity(q, this);
-                result.push_back(entity);
+                result.push_back(std::move(entity));
             }
 
             q.Finalize();

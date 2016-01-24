@@ -109,6 +109,16 @@ wxArrayString Model_CustomField::all_type()
     return types;
 }
 
+wxString Model_CustomField::getTooltip(const wxString& Properties)
+{
+    json::Object jsonProperties;
+    std::wstringstream jsonPropertiesStream;
+
+    jsonPropertiesStream << Properties.ToStdWstring();
+    json::Reader::Read(jsonProperties, jsonPropertiesStream);
+    return wxString(json::String(jsonProperties[L"Tooltip"]));
+}
+
 wxString Model_CustomField::getRegEx(const wxString& Properties)
 {
     json::Object jsonProperties;
@@ -158,13 +168,14 @@ wxArrayString Model_CustomField::getChoiches(const wxString& Properties)
     return Choiches;
 }
 
-wxString Model_CustomField::formatProperties(const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choiches)
+wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choiches)
 {
     json::Object jsonProperties;
     std::wstringstream jsonPropertiesStream;
     json::Array jsonChoiches;
     wxString outputMessage;
 
+    jsonProperties[L"Tooltip"] = json::String(Tooltip.ToStdWstring());
     jsonProperties[L"RegEx"] = json::String(RegEx.ToStdWstring());
     jsonProperties[L"Autocomplete"] = json::Boolean(Autocomplete);
     jsonProperties[L"Default"] = json::String(Default.ToStdWstring());
