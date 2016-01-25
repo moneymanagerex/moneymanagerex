@@ -86,6 +86,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/change_password_png.h"
 #include "../resources/exit_png.h"
 #include "../resources/cash_account_png.h"
+#include "../resources/loan_account_png.h"
 
 //----------------------------------------------------------------------------
 /* Include XPM Support */
@@ -130,6 +131,9 @@ static const std::map<int, wxBitmap> navtree_images()
         , { CASH_ACC_NORMAL_PNG, mmBitmap(png::CASH_NORMAL) }
         , { CASH_ACC_FAVORITE_PNG, mmBitmap(png::CASH_FAVORITE) }
         , { CASH_ACC_CLOSED_PNG, mmBitmap(png::CASH_CLOSED) }
+        , { LOAN_ACC_NORMAL_PNG, mmBitmap(png::LOAN_ACC_NORMAL) }
+        , { LOAN_ACC_FAVORITE_PNG, mmBitmap(png::LOAN_ACC_FAVORITE) }
+        , { LOAN_ACC_CLOSED_PNG, mmBitmap(png::LOAN_ACC_CLOSED) }
     };
 };
 
@@ -211,6 +215,9 @@ const wxBitmap mmBitmap(int ref)
     case CASH_NORMAL: return x == 16 ? wxBITMAP_PNG_FROM_DATA(cash_acc_16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(cash_acc_24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(cash_acc_32) : wxBITMAP_PNG_FROM_DATA(cash_acc_48);
     case CASH_FAVORITE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(cash_fav_16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(cash_fav_24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(cash_fav_32) : wxBITMAP_PNG_FROM_DATA(cash_fav_48);
     case CASH_CLOSED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(cash_closed_16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(cash_closed_24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(cash_closed_32) : wxBITMAP_PNG_FROM_DATA(cash_closed_48);
+    case LOAN_ACC_NORMAL: return x == 16 ? wxBITMAP_PNG_FROM_DATA(loan_normal_16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(loan_normal_24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(loan_normal_32) : wxBITMAP_PNG_FROM_DATA(loan_normal_48);
+    case LOAN_ACC_FAVORITE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(loan_favorite_16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(loan_favorite_24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(loan_favorite_32) : wxBITMAP_PNG_FROM_DATA(loan_favorite_48);
+    case LOAN_ACC_CLOSED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(loan_closed_16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(loan_closed_24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(loan_closed_32) : wxBITMAP_PNG_FROM_DATA(loan_closed_48);
     case TERM_NORMAL: return x == 16 ? wxBITMAP_PNG_FROM_DATA(term) : x == 24 ? wxBITMAP_PNG_FROM_DATA(term24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(term32) : wxBITMAP_PNG_FROM_DATA(term48);
     case TERM_FAVORITE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(term_favorite) : x == 24 ? wxBITMAP_PNG_FROM_DATA(term_favorite24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(term_favorite32) : wxBITMAP_PNG_FROM_DATA(term_favorite48);
     case TERM_CLOSED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(term_closed) : x == 24 ? wxBITMAP_PNG_FROM_DATA(term_closed24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(term_closed32) : wxBITMAP_PNG_FROM_DATA(term_closed48);

@@ -27,11 +27,12 @@ const std::vector<std::pair<Model_Account::STATUS_ENUM, wxString> > Model_Accoun
 
 const std::vector<std::pair<Model_Account::TYPE, wxString> > Model_Account::TYPE_CHOICES =
 {
+    std::make_pair(Model_Account::CASH, wxString(wxTRANSLATE("Cash"))),
     std::make_pair(Model_Account::CHECKING, wxString(wxTRANSLATE("Checking"))),
+    std::make_pair(Model_Account::CREDIT_CARD, wxString(wxTRANSLATE("Credit Card"))),
+    std::make_pair(Model_Account::LOAN, wxString(wxTRANSLATE("Loan"))),
     std::make_pair(Model_Account::TERM, wxString(wxTRANSLATE("Term"))),
     std::make_pair(Model_Account::INVESTMENT, wxString(wxTRANSLATE("Investment"))),
-    std::make_pair(Model_Account::CREDIT_CARD, wxString(wxTRANSLATE("Credit Card"))),
-    std::make_pair(Model_Account::CASH, wxString(wxTRANSLATE("Cash")))
 };
 
 Model_Account::Model_Account()
