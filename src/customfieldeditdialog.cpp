@@ -80,23 +80,27 @@ bool mmCustomFieldEditDialog::Create(wxWindow* parent
 
 void mmCustomFieldEditDialog::dataToControls()
 {
-    if (!this->m_field) return;
-
-    m_itemDescription->SetValue(m_field->DESCRIPTION);
-    m_itemType->SetSelection(Model_CustomField::type(m_field));
-    m_itemTooltip->SetValue(Model_CustomField::getTooltip(m_field->PROPERTIES));
-    m_itemRegEx->SetValue(Model_CustomField::getRegEx(m_field->PROPERTIES));
-    m_itemAutocomplete->SetValue(Model_CustomField::getAutocomplete(m_field->PROPERTIES));
-    m_itemDefault->SetValue(Model_CustomField::getDefault(m_field->PROPERTIES));
-
-    wxString Choiches = wxEmptyString;
-    wxArrayString ArrChoiches = Model_CustomField::getChoiches(m_field->PROPERTIES);
-    for (int i = 0; i < ArrChoiches.size(); i++)
+    if (this->m_field)
     {
-        Choiches << ArrChoiches[i] << ";";
-    }
-    m_itemChoiches->SetValue(Choiches);
+        m_itemDescription->SetValue(m_field->DESCRIPTION);
+        m_itemType->SetSelection(Model_CustomField::type(m_field));
+        m_itemTooltip->SetValue(Model_CustomField::getTooltip(m_field->PROPERTIES));
+        m_itemRegEx->SetValue(Model_CustomField::getRegEx(m_field->PROPERTIES));
+        m_itemAutocomplete->SetValue(Model_CustomField::getAutocomplete(m_field->PROPERTIES));
+        m_itemDefault->SetValue(Model_CustomField::getDefault(m_field->PROPERTIES));
 
+        wxString Choiches = wxEmptyString;
+        wxArrayString ArrChoiches = Model_CustomField::getChoiches(m_field->PROPERTIES);
+        for (int i = 0; i < ArrChoiches.size(); i++)
+        {
+            Choiches << ArrChoiches[i] << ";";
+        }
+        m_itemChoiches->SetValue(Choiches);
+    }
+    else
+    {
+        m_itemType->SetSelection(Model_CustomField::STRING);
+    }
     wxCommandEvent evt;
     OnChangeType(evt);
 }
@@ -110,12 +114,10 @@ void mmCustomFieldEditDialog::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer3, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     wxStaticBox* itemStaticBoxSizer4Static = new wxStaticBox(this, wxID_ANY, _("Custom Field Details"));
-    wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(itemStaticBoxSizer4Static
-        , wxVERTICAL);
+    wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(itemStaticBoxSizer4Static, wxVERTICAL);
     itemBoxSizer3->Add(itemStaticBoxSizer4, g_flags);
 
-    wxPanel* itemPanel5 = new wxPanel(this, wxID_STATIC, wxDefaultPosition
-        , wxDefaultSize, wxTAB_TRAVERSAL);
+    wxPanel* itemPanel5 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemStaticBoxSizer4->Add(itemPanel5, g_flags);
 
     wxFlexGridSizer* itemFlexGridSizer6 = new wxFlexGridSizer(0, 2, 0, 0);
@@ -129,7 +131,6 @@ void mmCustomFieldEditDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Field Type")), g_flags);
     m_itemType = new wxChoice(itemPanel5, wxID_HIGHEST, wxDefaultPosition, wxSize(150, -1), Model_CustomField::all_type());
     m_itemType->SetToolTip(_("Select type of custom field"));
-    m_itemType->SetSelection(Model_CustomField::STRING);
     itemFlexGridSizer6->Add(m_itemType, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("ToolTip")), g_flags);
