@@ -85,8 +85,11 @@ bool Model_CustomFieldData::RelocateAllData(const wxString& RefType, int OldRefI
     for (auto &field : fields)
     {
         Data* data = Model_CustomFieldData::instance().get(field.FIELDID, OldRefId);
-        data->REFID = NewRefId;
-        Model_CustomFieldData::instance().save(data);
+        if (data)
+        {
+            data->REFID = NewRefId;
+            Model_CustomFieldData::instance().save(data);
+        }
     }
     this->ReleaseSavepoint();
     return true;
@@ -100,7 +103,8 @@ bool Model_CustomFieldData::DeleteAllData(const wxString& RefType, int RefID)
     for (auto &field : fields)
     {
         Data* data = Model_CustomFieldData::instance().get(field.FIELDID, RefID);
-        Model_CustomFieldData::instance().remove(data->FIELDATADID);
+        if (data)
+            Model_CustomFieldData::instance().remove(data->FIELDATADID);
     }
     this->ReleaseSavepoint();
     return true;
