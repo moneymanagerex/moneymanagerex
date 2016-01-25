@@ -1008,7 +1008,8 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     }
     Model_Splittransaction::instance().update(splt, m_trx_data.TRANSID);
 
-    CustomFieldDialog_->OnSave(true);
+    if (CustomFieldDialog_)
+        CustomFieldDialog_->OnSave(true);
 
     if (m_new_trx || m_duplicate)
     {
