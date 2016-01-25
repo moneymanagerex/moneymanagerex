@@ -236,9 +236,12 @@ void mmCustomFieldDialog::OnMove(const wxPoint & RefPos, const wxSize & RefSize)
 
 void mmCustomFieldDialog::OnSave(const bool OpenStatus)
 {
+    if (!IsShown())
+        return;
+
     if (m_RefreshRequested)
     {
-        Destroy();
+        Hide();
         return;
     }
 
@@ -307,5 +310,5 @@ void mmCustomFieldDialog::OnSave(const bool OpenStatus)
     }
 
     Model_Infotable::instance().SetOpenCustomDialog(m_RefType, OpenStatus);
-    Destroy();
+    Hide();
 }
