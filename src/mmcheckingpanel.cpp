@@ -1011,8 +1011,6 @@ void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
 
 void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
-    if (m_selectedIndex > -1)
-        SetItemState(m_selectedIndex, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
     int Flags = wxLIST_HITTEST_ONITEM;
     m_selectedIndex = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
@@ -1403,6 +1401,16 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     Model_Checking::Data* tran = Model_Checking::instance().get(m_selectedForCopy);
     if (tran)
     {
+        if ((m_selectedIndex >= 0) && (GetSelectedItemCount() == 1))
+            SetItemState(m_selectedIndex, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+        else if (GetSelectedItemCount() > 1)
+        {
+            for (int x = 0; x < GetItemCount(); x++)
+            {
+                if (GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+                    SetItemState(x, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+            }
+        }
         int transactionID = OnPaste(tran);
         refreshVisualList(transactionID);
     }
@@ -1511,6 +1519,8 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
             long transID = i.TRANSID;
             if (GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             {
+                SetItemState(x, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
