@@ -1,11 +1,11 @@
 Version History of Money Manager Ex
 
-1.2.5 (Jan 24, 2016)
+1.2.5 (Jan 26, 2016)
 - Fix: Portuguese_br translation updated
 - Fix: Split transaction not allowed ENTER Key or ARITMETIC EXPRESSIONS (Issue #648)
 - Fix: Monthly Summary of Accounts Report deleted (Issue #610)
 - Fix: QIF import fixes (Issue #617)
-- New: Cash account type (Issue #455)
+- Fix: Cash account type added for android synchronisation (Issue #455)
 - Fix: Minor fixes
 
 1.2.4 (Dec 21, 2015)
