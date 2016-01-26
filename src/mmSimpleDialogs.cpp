@@ -97,8 +97,6 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
 
 const wxString mmDialogs::selectLanguageDlg(wxWindow *parent, const wxString &langPath, bool verbose)
 {
-    wxString lang;
-
     wxArrayString lang_files;
     wxFileName fn(langPath, "");
     fn.AppendDir("en");
@@ -113,19 +111,24 @@ const wxString mmDialogs::selectLanguageDlg(wxWindow *parent, const wxString &la
             wxMessageDialog dlg(parent, s, "Error", wxOK | wxICON_ERROR);
             dlg.ShowModal();
         }
-
-        return lang;
+        return "english";
     }
+
+    int os_lang_id = wxLocale::GetSystemLanguage();
+    const wxString os_language_name = wxLocale::GetLanguageName(os_lang_id);
+    int sel = 0;
 
     for (size_t i = 0; i < cnt; ++i)
     {
         wxFileName fname(lang_files[i]);
-        lang_files[i] = fname.GetName().Left(1).Upper() + fname.GetName().SubString(1, fname.GetName().Len());
+        lang_files[i] = fname.GetName().Capitalize();
+        //wxLogDebug("%s | %s | %s", lang_files[i], fname.GetFullName(), os_language_name);
+        if (lang_files[i] == os_language_name)
+            sel = i;
     }
-
     lang_files.Sort(CaseInsensitiveCmp);
-    lang = wxGetSingleChoice("Please choose language", "Languages", lang_files, parent);
 
+    const wxString lang = wxGetSingleChoice("Please choose language", "Languages", lang_files, sel, parent);
     return lang.Lower();
 }
 
@@ -135,8 +138,6 @@ so I should use locale.IsLoaded(lang) also.
 */
 const wxString mmDialogs::mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool forced_show_dlg, bool save_setting)
 {
-    wxString lang;
-
     const wxString langPath = mmex::getPathShared(mmex::LANG_DIR);
     wxLocale &locale = app->getLocale();
 
@@ -154,12 +155,12 @@ const wxString mmDialogs::mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool
             dlg.ShowModal();
         }
 
-        return lang;
+        return wxEmptyString;
     }
 
     if (!forced_show_dlg)
     {
-        lang = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
+        const wxString lang = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
         if (!lang.empty() && locale.AddCatalog(lang) && locale.IsLoaded(lang))
         {
             mmOptions::instance().language_ = lang;
@@ -167,8 +168,7 @@ const wxString mmDialogs::mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool
         }
     }
 
-    lang = selectLanguageDlg(window, langPath, forced_show_dlg);
-
+    wxString lang = selectLanguageDlg(window, langPath, forced_show_dlg);
     if (save_setting && !lang.empty())
     {
         bool ok = locale.AddCatalog(lang) && locale.IsLoaded(lang);

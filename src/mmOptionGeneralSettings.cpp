@@ -208,12 +208,12 @@ void mmOptionGeneralSettings::OnDateFormatChanged(wxCommandEvent& /*event*/)
 
 void mmOptionGeneralSettings::OnLanguageChanged(wxCommandEvent& /*event*/)
 {
-    wxString lang = mmDialogs::mmSelectLanguage(this->m_app, this, true, false);
+    const wxString lang = mmDialogs::mmSelectLanguage(this->m_app, this, true, false);
     if (lang.empty()) return;
 
     wxButton *btn = (wxButton*) FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
     wxASSERT(btn);
-    btn->SetLabelText(lang.Left(1).Upper() + lang.SubString(1, lang.Len()));
+    btn->SetLabelText(lang.Capitalize());
 }
 
 void mmOptionGeneralSettings::SaveFinancialYearStart()
