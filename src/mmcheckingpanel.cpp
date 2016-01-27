@@ -17,33 +17,34 @@
  ********************************************************/
 
 #include "mmcheckingpanel.h"
-#include "attachmentdialog.h"
-#include "billsdepositsdialog.h"
+#include "paths.h"
 #include "constants.h"
 #include "images_list.h"
+#include "util.h"
 #include "mmex.h"
 #include "mmframe.h"
-#include "mmSimpleDialogs.h"
 #include "mmTips.h"
-#include "paths.h"
+#include "mmSimpleDialogs.h"
 #include "splittransactionsdialog.h"
 #include "transdialog.h"
 #include "validators.h"
-#include "util.h"
-
-#include "model/Model_Account.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Category.h"
-#include "model/Model_Checking.h"
-#include "model/Model_CustomFieldData.h"
+#include "attachmentdialog.h"
 #include "model/Model_Infotable.h"
-#include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Checking.h"
 #include "model/Model_Splittransaction.h"
+#include "model/Model_Account.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Category.h"
+#include "model/Model_Attachment.h"
+#include "billsdepositsdialog.h"
+#include <wx/clipbrd.h>
 
+//----------------------------------------------------------------------------
+
+#include <wx/srchctrl.h>
 #include <algorithm>
 #include <wx/sound.h>
-#include <wx/srchctrl.h>
 //----------------------------------------------------------------------------
 
 wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
@@ -713,7 +714,6 @@ void mmCheckingPanel::DeleteViewedTransactions()
         // remove also removes any split transactions
         Model_Checking::instance().remove(tran.TRANSID);
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
-        Model_CustomFieldData::instance().DeleteAllData(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
         if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
     }
     Model_Checking::instance().ReleaseSavepoint();
@@ -729,7 +729,6 @@ void mmCheckingPanel::DeleteFlaggedTransactions(const wxString& status)
             // remove also removes any split transactions
             Model_Checking::instance().remove(tran.TRANSID);
             mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
-            Model_CustomFieldData::instance().DeleteAllData(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
             if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
         }
     }
@@ -953,6 +952,8 @@ TransactionListCtrl::TransactionListCtrl(
     m_col_width = "CHECK_COL%d_WIDTH";
 
     m_default_sort_column = COL_DEF_SORT;
+
+    SetSingleStyle(wxLC_SINGLE_SEL, false);
 }
 
 TransactionListCtrl::~TransactionListCtrl()
@@ -979,8 +980,8 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
     m_cp->updateExtraTransactionData(m_selectedIndex);
     topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
 
-    if (GetSelectedItemCount()>1)
-        m_cp->btnEdit_->Enable(false);
+    if (GetSelectedItemCount() > 1)
+        m_cp->enableEditDeleteButtons(true);
 
     m_selectedID = m_cp->m_trans[m_selectedIndex].TRANSID;
 }
@@ -995,13 +996,21 @@ void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
         m_selectedIndex = -1;
         m_cp->updateExtraTransactionData(m_selectedIndex);
     }
+    // Workaround for wxWidgets bug #4541 which affects MSW build
+    if ((m_selectedIndex >= 0) && (index != m_selectedIndex) && event.ShiftDown())
+    {
+        // Note: GetSelectedItemCount() does not return correct count at this time
+        // so we can't call enableEditDeleteButtons() or updateExtraTransactionData()
+        m_cp->btnEdit_->Enable(false);
+        m_cp->btnDelete_->Enable(true);
+        m_cp->btnDuplicate_->Enable(false);
+        m_cp->btnAttachment_->Enable(false);
+    }
     event.Skip();
 }
 
 void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
-    if (m_selectedIndex > -1)
-        SetItemState(m_selectedIndex, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
     int Flags = wxLIST_HITTEST_ONITEM;
     m_selectedIndex = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
@@ -1013,6 +1022,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     m_cp->updateExtraTransactionData(m_selectedIndex);
 
     bool hide_menu_item = (m_selectedIndex < 0);
+    bool multiselect = (GetSelectedItemCount() > 1);
     bool type_transfer = false;
     bool have_category = false;
     if (m_selectedIndex > -1)
@@ -1032,7 +1042,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
 
     menu.Append(MENU_TREEPOPUP_EDIT2, _("&Edit Transaction"));
-    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
+    if (hide_menu_item || multiselect) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
     menu.Append(MENU_ON_COPY_TRANSACTION, _("&Copy Transaction"));
     if (hide_menu_item) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
@@ -1041,24 +1051,24 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     if (m_selectedForCopy < 0) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
 
     menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction"));
-    if (hide_menu_item) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
+    if (hide_menu_item || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
     menu.Append(MENU_TREEPOPUP_MOVE2, _("&Move Transaction"));
-    if (hide_menu_item || type_transfer || (Model_Account::checking_account_num() < 2))
+    if (hide_menu_item || multiselect || type_transfer || (Model_Account::checking_account_num() < 2))
         menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
     menu.AppendSeparator();
 
     menu.Append(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, _("&View Split Categories"));
-    if (hide_menu_item || have_category)
+    if (hide_menu_item || multiselect || have_category)
         menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
 
     menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
-    if (hide_menu_item)
+    if (hide_menu_item || multiselect)
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
 
     menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, _("Create Reoccuring T&ransaction"));
-    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
+    if (hide_menu_item || multiselect) menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
 
     menu.AppendSeparator();
 
@@ -1075,15 +1085,15 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
     wxMenu* subGlobalOpMenuMark = new wxMenu();
     subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("Mark As &Reconciled"));
-    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
+    if (hide_menu_item || multiselect) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
     subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("Mark As &Unreconciled"));
-    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
+    if (hide_menu_item || multiselect) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
     subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("Mark As &Void"));
-    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
+    if (hide_menu_item || multiselect) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
     subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("Mark For &Followup"));
-    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
+    if (hide_menu_item || multiselect) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
     subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("Mark As &Duplicate"));
-    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
+    if (hide_menu_item || multiselect) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
     menu.Append(wxID_ANY, _("Mark"), subGlobalOpMenuMark);
 
     wxMenu* subGlobalOpMenu = new wxMenu();
@@ -1101,6 +1111,8 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
 void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 {
+    if (GetSelectedItemCount() > 1) return;
+
     int evt = event.GetId();
     wxString org_status = "";
     wxString status = "";
@@ -1330,12 +1342,48 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selectedIndex < 0) return;
 
-    m_selectedForCopy = m_cp->m_trans[m_selectedIndex].TRANSID;
+    if (GetSelectedItemCount() > 1)
+        m_selectedForCopy = -1;
+    else
+        m_selectedForCopy = m_cp->m_trans[m_selectedIndex].TRANSID;
+
+    if (wxTheClipboard->Open())
+    {
+        const wxArrayInt columns = GetColumnsOrder();
+        const wxString seperator = "\t";
+        wxString data = "";
+        if (GetSelectedItemCount() > 1)
+        {
+            for (int row = 0; row < GetItemCount(); row++)
+            {
+                if (GetItemState(row, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+                {
+                    for (const auto& column : columns)
+                    {
+                        if (GetColumnWidth(column) > 0) 
+                            data += OnGetItemText(row, column) + seperator;
+                    }
+                    data += "\n";
+                }
+            }
+        }
+        else
+        {
+            for (const auto& column : columns)
+            {
+                if (GetColumnWidth(column) > 0)
+                    data += OnGetItemText(m_selectedIndex, column) + seperator;
+            }
+            data += "\n";
+        }
+        wxTheClipboard->SetData(new wxTextDataObject(data));
+        wxTheClipboard->Close();
+    }
 }
 
 void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& event)
 {
-    if (m_selectedIndex < 0) return;
+    if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
 
     int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
     mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, true);
@@ -1353,6 +1401,16 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     Model_Checking::Data* tran = Model_Checking::instance().get(m_selectedForCopy);
     if (tran)
     {
+        if ((m_selectedIndex >= 0) && (GetSelectedItemCount() == 1))
+            SetItemState(m_selectedIndex, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+        else if (GetSelectedItemCount() > 1)
+        {
+            for (int x = 0; x < GetItemCount(); x++)
+            {
+                if (GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+                    SetItemState(x, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+            }
+        }
         int transactionID = OnPaste(tran);
         refreshVisualList(transactionID);
     }
@@ -1380,7 +1438,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 
 void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& event)
 {
-    if (m_selectedIndex < 0) return;
+    if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
     int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 
@@ -1461,10 +1519,11 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
             long transID = i.TRANSID;
             if (GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             {
+                SetItemState(x, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
-                Model_CustomFieldData::instance().DeleteAllData(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
                 if (x <= topItemIndex_) topItemIndex_--;
                 if (!m_cp->m_trans.empty() && m_selectedIndex > 0) m_selectedIndex--;
                 if (m_selectedForCopy == transID) m_selectedForCopy = -1;
@@ -1479,7 +1538,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 {
-    if (m_selectedIndex < 0) return;
+    if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
 
     int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
     mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id);
@@ -1514,6 +1573,8 @@ void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 {
+    if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
+
     int user_colour_id = event.GetId();
     user_colour_id -= MENU_ON_SET_UDC0;
     wxLogDebug("id: %i", user_colour_id);
@@ -1567,7 +1628,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
 
 void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 {
-    if (m_selectedIndex < 0) return;
+    if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
 
     const Model_Account::Data* source_account = Model_Account::instance().get(m_cp->m_AccountID);
     wxString source_name = source_account->ACCOUNTNAME;
@@ -1598,7 +1659,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 //----------------------------------------------------------------------------
 void TransactionListCtrl::OnViewSplitTransaction(wxCommandEvent& /*event*/)
 {
-    if (m_selectedIndex > -1) {
+    if ((m_selectedIndex > -1) && (GetSelectedItemCount() == 1)) {
         const Model_Checking::Full_Data& tran = m_cp->m_trans.at(m_selectedIndex);
         if (tran.has_split())
             m_cp->DisplaySplitCategories(tran.TRANSID);
@@ -1608,7 +1669,7 @@ void TransactionListCtrl::OnViewSplitTransaction(wxCommandEvent& /*event*/)
 //----------------------------------------------------------------------------
 void TransactionListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
-    if (m_selectedIndex < 0) return;
+    if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
 
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     int RefId = m_cp->m_trans[m_selectedIndex].TRANSID;
@@ -1622,7 +1683,7 @@ void TransactionListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 //----------------------------------------------------------------------------
 void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
 {
-    if (m_selectedIndex < 0) return;
+    if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
 
     mmBDDialog dlg(this, 0, false, false);
     dlg.SetDialogParameters(m_cp->m_trans[m_selectedIndex]);
