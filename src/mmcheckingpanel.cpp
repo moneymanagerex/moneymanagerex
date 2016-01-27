@@ -1349,7 +1349,6 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
 
     if (wxTheClipboard->Open())
     {
-        const wxArrayInt columns = GetColumnsOrder();
         const wxString seperator = "\t";
         wxString data = "";
         if (GetSelectedItemCount() > 1)
@@ -1358,9 +1357,9 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
             {
                 if (GetItemState(row, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
                 {
-                    for (const auto& column : columns)
+                    for (int column = 0; column < (int) m_columns.size(); column++)
                     {
-                        if (GetColumnWidth(column) > 0) 
+                        if (GetColumnWidth(column) > 0)
                             data += OnGetItemText(row, column) + seperator;
                     }
                     data += "\n";
@@ -1369,7 +1368,7 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
         }
         else
         {
-            for (const auto& column : columns)
+            for (int column = 0; column < (int) m_columns.size(); column++)
             {
                 if (GetColumnWidth(column) > 0)
                     data += OnGetItemText(m_selectedIndex, column) + seperator;
