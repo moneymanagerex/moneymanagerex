@@ -586,6 +586,7 @@ void mmHomePagePanel::getData()
     htmlWidgetStocks stocks_widget;
     tBalance += stocks_widget.get_total();
     m_frames["STOCKS_INFO"] = stocks_widget.getHTMLText();
+    tBalance += stocks_widget.get_total();
 
     m_frames["ASSETS_INFO"] = displayAssets(tBalance);
     m_frames["GRAND_TOTAL"] = displayGrandTotals(tBalance);
