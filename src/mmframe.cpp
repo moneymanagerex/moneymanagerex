@@ -166,6 +166,7 @@ EVT_MENU(MENU_PAYEE_RELOCATION, mmGUIFrame::OnPayeeRelocation)
 
 EVT_UPDATE_UI(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbarUpdateUI)
 EVT_UPDATE_UI(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinksUpdateUI)
+EVT_MENU(MENU_TREEPOPUP_NEW, mmGUIFrame::OnNewTransaction)
 EVT_MENU(MENU_TREEPOPUP_EDIT, mmGUIFrame::OnPopupEditAccount)
 EVT_MENU(MENU_TREEPOPUP_REALLOCATE, mmGUIFrame::OnPopupReallocateAccount)
 EVT_MENU(MENU_TREEPOPUP_DELETE, mmGUIFrame::OnPopupDeleteAccount)
@@ -1100,6 +1101,13 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             {
                 wxMenu menu;
                 //                  menu.Append(MENU_TREEPOPUP_GOTO, _("&Go To.."));
+                if (account->ACCOUNTTYPE != Model_Account::all_type()[Model_Account::INVESTMENT])
+                {
+                    gotoAccountID_ = account->ACCOUNTID;
+
+                    menu.Append(MENU_TREEPOPUP_NEW, _("&New Transaction"));
+                    menu.AppendSeparator();
+                }
                 menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account"));
                 menu.Append(MENU_TREEPOPUP_REALLOCATE, _("&Reallocate Account"));
                 menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account"));
