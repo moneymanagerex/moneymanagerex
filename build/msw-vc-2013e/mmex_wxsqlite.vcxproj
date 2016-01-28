@@ -91,7 +91,7 @@
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_EXTFUNC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;WXSQLITE3_USER_AUTHENTICATION;HAVE_ACOSH;HAVE_ASINH;HAVE_ATANH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_EXTFUNC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;WXSQLITE3_USER_AUTHENTICATION;HAVE_ACOSH;HAVE_ASINH;HAVE_ATANH;HAVE_ISBLANK;SQLITE_ENABLE_JSON1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -124,7 +124,7 @@
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_EXTFUNC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;WXSQLITE3_USER_AUTHENTICATION;HAVE_ACOSH;HAVE_ASINH;HAVE_ATANH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_EXTFUNC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;WXSQLITE3_USER_AUTHENTICATION;HAVE_ACOSH;HAVE_ASINH;HAVE_ATANH;HAVE_ISBLANK;SQLITE_ENABLE_JSON1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -159,7 +159,7 @@
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_EXTFUNC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;WXSQLITE3_USER_AUTHENTICATION;HAVE_ACOSH;HAVE_ASINH;HAVE_ATANH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_EXTFUNC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;WXSQLITE3_USER_AUTHENTICATION;HAVE_ACOSH;HAVE_ASINH;HAVE_ATANH;HAVE_ISBLANK;SQLITE_ENABLE_JSON1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -192,7 +192,7 @@
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_EXTFUNC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;WXSQLITE3_USER_AUTHENTICATION;HAVE_ACOSH;HAVE_ASINH;HAVE_ATANH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_EXTFUNC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;WXSQLITE3_USER_AUTHENTICATION;HAVE_ACOSH;HAVE_ASINH;HAVE_ATANH;HAVE_ISBLANK;SQLITE_ENABLE_JSON1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
