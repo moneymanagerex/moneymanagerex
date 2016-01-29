@@ -20,6 +20,7 @@
 
 #include "transdialog.h"
 #include "attachmentdialog.h"
+#include "customfielddialog.h"
 #include "categdialog.h"
 #include "constants.h"
 #include "images_list.h"
@@ -35,6 +36,7 @@
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
+#include "model/Model_CustomFieldData.h"
 #include "model/Model_Subcategory.h"
 
 #include <wx/numformatter.h>
@@ -45,8 +47,10 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
-	EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
+    EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
+    EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnCustomFields)
     EVT_CLOSE(mmTransDialog::OnQuit)
+    EVT_MOVE(mmTransDialog::OnMove)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
     EVT_CHECKBOX(wxID_FORWARD, mmTransDialog::OnSplitChecked)
@@ -64,6 +68,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , int type
 ) : m_currency(nullptr)
     , m_to_currency(nullptr)
+    , CustomFieldDialog_(nullptr)
     , categUpdated_(false)
     , m_transfer(false)
     , m_advanced(false)
@@ -110,6 +115,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(500, 400), style);
     dataToControls();
+    CallAfter(&mmTransDialog::OnStartupCustomFields);
 }
 
 mmTransDialog::~mmTransDialog()
@@ -464,17 +470,17 @@ void mmTransDialog::CreateControls()
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
-	
-	// Attachments ---------------------------------------------
-	bAttachments_ = new wxBitmapButton(this, wxID_FILE
-		, mmBitmap(png::CLIP), wxDefaultPosition
-		, wxSize(bFrequentUsedNotes->GetSize().GetY(), bFrequentUsedNotes->GetSize().GetY()));
-	bAttachments_->SetToolTip(_("Organize attachments of this transaction"));
+    
+    // Attachments ---------------------------------------------
+    bAttachments_ = new wxBitmapButton(this, wxID_FILE
+        , mmBitmap(png::CLIP), wxDefaultPosition
+        , wxSize(bFrequentUsedNotes->GetSize().GetY(), bFrequentUsedNotes->GetSize().GetY()));
+    bAttachments_->SetToolTip(_("Organize attachments of this transaction"));
 
-	wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
-	flex_sizer->Add(RightAlign_sizer, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
-	RightAlign_sizer->Add(bAttachments_, wxSizerFlags().Border(wxRIGHT, 5));
-	RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
+    wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
+    flex_sizer->Add(RightAlign_sizer, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+    RightAlign_sizer->Add(bAttachments_, wxSizerFlags().Border(wxRIGHT, 5));
+    RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
 
     textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, "", wxDefaultPosition, wxSize(-1, 120), wxTE_MULTILINE);
     box_sizer->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
@@ -491,8 +497,15 @@ void mmTransDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
+    // Custom Fields ---------------------------------------------
+    bCustomFields_ = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS
+        , mmBitmap(png::EDIT_ACC), wxDefaultPosition
+        , wxSize(itemButtonCancel_->GetSize().GetY(), itemButtonCancel_->GetSize().GetY()));
+    bCustomFields_->SetToolTip(_("Open custom fields window"));
+
     buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
     buttons_sizer->Add(itemButtonCancel_, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(bCustomFields_, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
 
     itemButtonCancel_->SetFocus();
 
@@ -555,7 +568,7 @@ bool mmTransDialog::validateData()
                 payee = Model_Payee::instance().create();
                 payee->PAYEENAME = payee_name;
                 Model_Payee::instance().save(payee);
-				mmWebApp::MMEX_WebApp_UpdatePayee();
+                mmWebApp::MMEX_WebApp_UpdatePayee();
             }
             else
                 return false;
@@ -567,7 +580,7 @@ bool mmTransDialog::validateData()
         payee->CATEGID = m_trx_data.CATEGID;
         payee->SUBCATEGID = m_trx_data.SUBCATEGID;
         Model_Payee::instance().save(payee);
-		mmWebApp::MMEX_WebApp_UpdatePayee();
+        mmWebApp::MMEX_WebApp_UpdatePayee();
     }
     else //transfer
     {
@@ -905,8 +918,17 @@ void mmTransDialog::OnAttachments(wxCommandEvent& /*event*/)
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     int TransID = m_trx_data.TRANSID;
     if (m_duplicate) TransID = -1;
-	mmAttachmentDialog dlg(this, RefType, TransID);
-	dlg.ShowModal();
+    mmAttachmentDialog dlg(this, RefType, TransID);
+    dlg.ShowModal();
+}
+
+void mmTransDialog::OnCustomFields(wxCommandEvent& /*event*/)
+{
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    int TransID = m_trx_data.TRANSID;
+    if (m_duplicate) TransID = -1;
+    CustomFieldDialog_ = new mmCustomFieldDialog(this, GetScreenPosition(), GetSize(), RefType, TransID);
+    CustomFieldDialog_->Show();
 }
 
 void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
@@ -947,6 +969,15 @@ void mmTransDialog::onNoteSelected(wxCommandEvent& event)
         textNotes_->ChangeValue(frequentNotes_[i - 1]);
 }
 
+void mmTransDialog::OnStartupCustomFields()
+{
+    if (Model_Infotable::instance().OpenCustomDialog(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)))
+    {
+        wxCommandEvent evt;
+        mmTransDialog::OnCustomFields(evt);
+    }
+}
+
 void mmTransDialog::OnOk(wxCommandEvent& event)
 {
     m_trx_data.STATUS = "";
@@ -977,11 +1008,15 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     }
     Model_Splittransaction::instance().update(splt, m_trx_data.TRANSID);
 
+    if (CustomFieldDialog_)
+        CustomFieldDialog_->OnSave(true);
+
     if (m_new_trx || m_duplicate)
-	{
-		const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-		mmAttachmentManage::RelocateAllAttachments(RefType, -1, m_trx_data.TRANSID);
-	}
+    {
+        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+        mmAttachmentManage::RelocateAllAttachments(RefType, -1, m_trx_data.TRANSID);
+        Model_CustomFieldData::instance().RelocateAllData(RefType, -1, m_trx_data.TRANSID);
+    }
 
     const Model_Checking::Data& tran(*r);
     Model_Checking::Full_Data trx(tran);
@@ -999,9 +1034,12 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
     }
 #endif
 
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     if (m_new_trx)
+    {
+        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
         mmAttachmentManage::DeleteAllAttachments(RefType, m_trx_data.TRANSID);
+        Model_CustomFieldData::instance().DeleteAllData(RefType, m_trx_data.TRANSID);
+    }
     EndModal(wxID_CANCEL);
 }
 
@@ -1062,4 +1100,10 @@ void mmTransDialog::OnQuit(wxCloseEvent& /*event*/)
     if (m_new_trx || m_duplicate)
         mmAttachmentManage::DeleteAllAttachments(RefType, m_trx_data.TRANSID);
     EndModal(wxID_CANCEL);
+}
+
+void mmTransDialog::OnMove(wxMoveEvent& /*event*/)
+{
+    if (CustomFieldDialog_)
+        CustomFieldDialog_->OnMove(GetScreenPosition(), GetSize());
 }

@@ -21,9 +21,11 @@
 #define MM_EX_TRANSDIALOG_H_
 
 #include "defs.h"
-#include "model/Model_Splittransaction.h"
+#include "customfielddialog.h"
+
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Splittransaction.h"
 
 #include <wx/spinbutt.h>
 
@@ -69,8 +71,11 @@ private:
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
+    void OnStartupCustomFields();
+    void OnMove(wxMoveEvent& event);
     void OnCategs(wxCommandEvent& event);
 	void OnAttachments(wxCommandEvent& event);
+    void OnCustomFields(wxCommandEvent& event);
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
@@ -92,6 +97,7 @@ private:
     wxTextCtrl *textNotes_;
     wxButton* bCategory_;
 	wxButton* bAttachments_;
+    wxButton* bCustomFields_;
     wxComboBox* cbAccount_;
     wxComboBox* cbPayee_;
     wxCheckBox* cSplit_;
@@ -104,6 +110,7 @@ private:
     wxStaticText* itemStaticTextWeek_;
     wxStaticText* account_label_;
     wxStaticText* payee_label_;
+    mmCustomFieldDialog* CustomFieldDialog_;
 
     bool m_transfer;
     bool m_new_trx;
@@ -150,6 +157,7 @@ private:
         ID_DIALOG_TRANS_PAYEECOMBO,
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
         ID_DIALOG_TRANS_DATE_SPINNER,
+        ID_DIALOG_TRANS_CUSTOMFIELDS,
     };
 };
 

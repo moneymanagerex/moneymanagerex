@@ -84,6 +84,8 @@
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Category.h"
 #include "model/Model_Checking.h"
+#include "model/Model_CustomField.h"
+#include "model/Model_CustomFieldData.h"
 #include "model/Model_CurrencyHistory.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
@@ -1658,6 +1660,8 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Budget::instance(m_db.get()));
     m_all_models.push_back(&Model_Report::instance(m_db.get()));
     m_all_models.push_back(&Model_Attachment::instance(m_db.get()));
+    m_all_models.push_back(&Model_CustomFieldData::instance(m_db.get()));
+    m_all_models.push_back(&Model_CustomField::instance(m_db.get()));
 }
 
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)

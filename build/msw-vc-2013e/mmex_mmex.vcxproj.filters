@@ -351,6 +351,21 @@
     <ClCompile Include="..\..\src\import_export\parsers.cpp">
       <Filter>Source Files\import_export</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\model\Model_CustomField.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\model\Model_CustomFieldData.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\customfielddialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\customfieldeditdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\customfieldlistdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -742,6 +757,21 @@
     </ClInclude>
     <ClInclude Include="..\..\src\import_export\parsers.h">
       <Filter>Header Files\import_export</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\Model_CustomField.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\Model_CustomFieldData.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\customfielddialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\customfieldeditdialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\customfieldlistdialog.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
