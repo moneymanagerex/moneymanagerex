@@ -504,7 +504,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     for (const auto& q1 : bills.all())
     {
         bills.decode_fields(q1);
-        const wxDateTime payment_date = bills.NEXTOCCURRENCEDATE(q1);
+        const wxDateTime payment_date = bills.TRANSDATE(q1);
         if (bills.autoExecuteManual() && bills.requireExecution())
         {
             if (bills.allowExecution())

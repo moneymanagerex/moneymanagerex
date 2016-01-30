@@ -67,6 +67,7 @@ public:
     struct Bill_Data
     {
         int BDID = 0;
+        // This relates the 'Date Due' field.
         wxString TRANSDATE = wxDateTime::Now().FormatISODate();
         wxString STATUS = Model_Billsdeposits::all_status()[Model_Billsdeposits::NONE];;
         int ACCOUNTID = -1;
@@ -83,6 +84,7 @@ public:
         std::vector<Split> local_splits;
         int REPEATS;
         int NUMOCCURRENCES;
+        // This relates the 'Date Paid' field.
         wxString NEXTOCCURRENCEDATE;
     };
 
@@ -117,9 +119,13 @@ public:
     static Model_Billsdeposits& instance();
 
 public:
+    // This relates the 'Date Due' field
     static wxDate TRANSDATE(const Data* r);
+    // This relates the 'Date Due' field
     static wxDate TRANSDATE(const Data& r);
+    // This relates the 'Date Paid' field
     static wxDate NEXTOCCURRENCEDATE(const Data* r);
+    // This relates the 'Date Paid' field
     static wxDate NEXTOCCURRENCEDATE(const Data& r);
     static TYPE type(const wxString& r);
     static TYPE type(const Data* r);
