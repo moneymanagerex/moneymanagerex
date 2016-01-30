@@ -27,7 +27,6 @@
 
 #define ID_MYDIALOG8 10040
 #define SYMBOL_UNIVCSVDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_UNIVCSVDIALOG_TITLE _("Import Dialog")
 #define SYMBOL_UNIVCSVDIALOG_IDNAME ID_MYDIALOG8
 #define SYMBOL_UNIVCSVDIALOG_SIZE wxSize(400, 300)
 #define SYMBOL_UNIVCSVDIALOG_POSITION wxDefaultPosition
@@ -60,7 +59,7 @@
 #define wxFIXED_MINSIZE 0
 #endif
 
-class IImportParser;
+class ITransactionsFile;
 
 class mmUnivCSVDialog: public wxDialog
 {
@@ -73,13 +72,13 @@ public:
         DIALOG_TYPE_IMPORT_CSV,
         DIALOG_TYPE_EXPORT_CSV,
         DIALOG_TYPE_IMPORT_XML,
+        DIALOG_TYPE_EXPORT_XML
     };
 
     /// Constructors
     mmUnivCSVDialog();
     mmUnivCSVDialog(wxWindow* parent, EDialogType dialogType,
                     wxWindowID id = SYMBOL_UNIVCSVDIALOG_IDNAME,
-                    const wxString& caption = SYMBOL_UNIVCSVDIALOG_TITLE,
                     const wxPoint& pos = SYMBOL_UNIVCSVDIALOG_POSITION,
                     const wxSize& size = SYMBOL_UNIVCSVDIALOG_SIZE,
                     long style = SYMBOL_UNIVCSVDIALOG_STYLE);
@@ -99,7 +98,7 @@ public:
     }
     bool IsXML() const
     {
-        return dialogType_ == DIALOG_TYPE_IMPORT_XML;
+        return dialogType_ == DIALOG_TYPE_IMPORT_XML || dialogType_ == DIALOG_TYPE_EXPORT_XML;
     }
     bool IsCSV() const
     {
@@ -167,6 +166,7 @@ private:
 
     wxChoice* m_choiceAmountFieldSign;
     enum amountFieldSignValues { PositiveIsDeposit, PositiveIsWithdrawal };
+    wxCheckBox* m_checkBoxExportTitles;
 
     int fromAccountID_;
     bool importSuccessful_;
@@ -174,8 +174,8 @@ private:
 
     /// Creation
     bool Create(wxWindow* parent,
+                const wxString& caption,
                 wxWindowID id = SYMBOL_UNIVCSVDIALOG_IDNAME,
-                const wxString& caption = SYMBOL_UNIVCSVDIALOG_TITLE,
                 const wxPoint& pos = SYMBOL_UNIVCSVDIALOG_POSITION,
                 const wxSize& size = SYMBOL_UNIVCSVDIALOG_SIZE,
                 long style = SYMBOL_UNIVCSVDIALOG_STYLE);
@@ -217,6 +217,6 @@ private:
     void OnSettingsSelected(wxCommandEvent& event);
     wxString GetStoredSettings(int id);
     void SetSettings(const wxString &data);
-    IImportParser *CreateParser();
+    ITransactionsFile *CreateFileHandler();
 };
 #endif

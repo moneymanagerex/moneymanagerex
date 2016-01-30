@@ -26,11 +26,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 // Generic interface for importing data from a file.
 // Get functions should be called after Parse() was called.
-class IImportParser
+class ITransactionsFile
 {
 public:
+    enum ItemType {/*TYPE_UNKNOWN,*/ TYPE_STRING, TYPE_NUMBER};
+
+    virtual ~ITransactionsFile() {}
+
+ // *********************** Import related methods ***********************
     // Opens and parses the input file in to an internal structure that allows calling the getter functions below.
-    virtual bool Parse(const wxString& fileName, unsigned int itemsInLine) = 0;
+    virtual bool Load(const wxString& fileName, unsigned int itemsInLine) = 0;
     
     // Gets the number of lines that can be parsed.
     // Depending on type of file there may be lines that are not transactions.
@@ -41,14 +46,31 @@ public:
 
     // Gets the item or wxEmptyString if there is none.
     virtual wxString GetItem(unsigned int line, unsigned int itemInLine) const = 0;
-    virtual ~IImportParser() {}
+
+// *********************** Export related methods ***********************
+    // Adds a new empty line to the output file. Use NewItem() to add items to this line.
+    virtual void AddNewLine() = 0;
+
+    // Adds a new item to the last line. NewLine() must be called first.
+    virtual void AddNewItem(const wxString &stringItem) = 0;
+
+    virtual void AddNewItem(const wxString &stringItem, ItemType itemType) = 0;
+
+    // Exports all item to file.
+    virtual bool Save(const wxString& fileName) = 0;
 };
 
 // A base class for a parser that reads the file in to a string table in memory.
-class TableBasedParser : public IImportParser
+class TableBasedFile : public ITransactionsFile
 {
 public:
-    TableBasedParser(wxWindow *pParentWindow) : pParentWindow_(pParentWindow) {}
+    TableBasedFile(wxWindow *pParentWindow) : pParentWindow_(pParentWindow) {}
+    virtual ~TableBasedFile()
+    {
+        for (auto line : itemsTable_)
+            line.clear();
+        itemsTable_.clear();
+    }
     virtual unsigned int GetLinesCount() const
     {
         return itemsTable_.size();
@@ -63,37 +85,56 @@ public:
     {
         if (line >= GetLinesCount() || itemInLine >= itemsTable_[line].size())
             return wxEmptyString;
-        return itemsTable_[line][itemInLine];
+        return itemsTable_[line][itemInLine].value;
     }
-    virtual ~TableBasedParser()
+    virtual void AddNewLine()
     {
-        for (auto line : itemsTable_)
-            line.clear();
-        itemsTable_.clear();
+        itemsTable_.push_back(std::vector<ValueAndType>());
     }
+
+    virtual void AddNewItem(const wxString &stringItem)
+    {
+        itemsTable_.back().push_back(stringItem);
+    }
+
+    virtual void AddNewItem(const wxString &stringItem, ItemType itemType)
+    {
+        itemsTable_.back().push_back({ stringItem, itemType });
+    }
+
 protected:
     wxWindow *pParentWindow_;
-    typedef std::vector<wxString> RowItemsT;
+    struct ValueAndType
+    {
+        ValueAndType() : value(wxEmptyString), type(TYPE_STRING) {};
+        ValueAndType(const wxString &setValue) : value(setValue), type(TYPE_STRING) {};
+        ValueAndType(const wxString &setValue, ItemType setItemType) : value(setValue), type(setItemType) {};
+        wxString value;
+        ItemType type;
+    };
+    typedef std::vector<ValueAndType> RowItemsT;
     std::vector<RowItemsT> itemsTable_;
 };
 
 // CSV parser
-class ImportParserCSV : public TableBasedParser
+class FileCSV : public TableBasedFile
 {
 public:
-    ImportParserCSV(wxWindow *pParentWindow, wxConvAuto encoding, wxString delimiter);
-    virtual bool Parse(const wxString& fileName, unsigned int itemsInLine);
+    FileCSV(wxWindow *pParentWindow, wxConvAuto encoding, wxString delimiter);
+    virtual bool Load(const wxString& fileName, unsigned int itemsInLine);
+    virtual bool Save(const wxString& fileName);
 protected:
     wxConvAuto encoding_;
     wxString delimiter_;
 };
 
 // XML parser
-class ImportParserXML : public TableBasedParser
+class FileXML : public TableBasedFile
 {
 public:
-    ImportParserXML(wxWindow *pParentWindow, wxString encoding);
-    virtual bool Parse(const wxString& fileName, unsigned int itemsInLine);
+    FileXML(wxWindow *pParentWindow, wxString encoding);
+    virtual bool Load(const wxString& fileName, unsigned int itemsInLine);
+    virtual bool Save(const wxString& fileName);
 protected:
     wxString encoding_;
 };

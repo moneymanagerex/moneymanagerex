@@ -23,12 +23,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/filename.h>
 
 // ---------------------------- CSV Parser --------------------------------
-ImportParserCSV::ImportParserCSV(wxWindow *pParentWindow, wxConvAuto encoding, wxString delimiter):
-    TableBasedParser(pParentWindow), encoding_(encoding), delimiter_(delimiter)
+FileCSV::FileCSV(wxWindow *pParentWindow, wxConvAuto encoding, wxString delimiter):
+    TableBasedFile(pParentWindow), encoding_(encoding), delimiter_(delimiter)
 {
 }
 
-bool ImportParserCSV::Parse(const wxString& fileName, unsigned int itemsInLine)
+bool FileCSV::Load(const wxString& fileName, unsigned int itemsInLine)
 {
     // Make sure file exists
     if (fileName.IsEmpty() || !wxFileName::FileExists(fileName))
@@ -52,7 +52,7 @@ bool ImportParserCSV::Parse(const wxString& fileName, unsigned int itemsInLine)
     {
         csv2tab_separated_values(line, delimiter_);
         wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
-        itemsTable_.push_back(std::vector<wxString>());
+        itemsTable_.push_back(std::vector<ValueAndType>());
 
         // Tokens in row
         while (tkz.HasMoreTokens())
@@ -71,13 +71,52 @@ bool ImportParserCSV::Parse(const wxString& fileName, unsigned int itemsInLine)
     return true;
 }
 
+bool FileCSV::Save(const wxString& fileName)
+{
+    // Make sure file exists
+    if (fileName.IsEmpty())
+    {
+        mmErrorDialogs::InvalidFile(pParentWindow_);
+        return false;
+    }
+
+    // Open file
+    wxTextFile txtFile(fileName);
+    if (!txtFile.Create())
+    {
+        mmErrorDialogs::MessageError(pParentWindow_, _("Unable to create file."), _("Universal CSV Import"));
+        return false;
+    }
+
+    // Store lines
+    for (auto rowIt : itemsTable_)
+    {
+        wxString line;
+        for (auto itemIt : rowIt)
+        {
+            if (!line.IsEmpty())
+                line += delimiter_;
+            line += inQuotes(itemIt.value, delimiter_);
+        }
+        txtFile.AddLine(line);
+    }
+
+    // Save the file.
+    if (!txtFile.Write(wxTextFileType_None, encoding_))
+    {
+        mmErrorDialogs::MessageError(pParentWindow_, _("Could not save file."), _("Export error"));
+        return false;
+    }
+    txtFile.Close();
+    return true;
+}
 // ---------------------------- XML Parser --------------------------------
-ImportParserXML::ImportParserXML(wxWindow *pParentWindow, wxString encoding):
-    TableBasedParser(pParentWindow), encoding_(encoding)
+FileXML::FileXML(wxWindow *pParentWindow, wxString encoding):
+    TableBasedFile(pParentWindow), encoding_(encoding)
 {
 }
 
-bool ImportParserXML::Parse(const wxString& fileName, unsigned int itemsInLine)
+bool FileXML::Load(const wxString& fileName, unsigned int itemsInLine)
 {
     // Make sure file exists
     if (fileName.IsEmpty() || !wxFileName::FileExists(fileName))
@@ -124,13 +163,11 @@ bool ImportParserXML::Parse(const wxString& fileName, unsigned int itemsInLine)
     }
     
     // Rows
-    int row = 0;
     for (wxXmlNode *rowElement = tableElement->GetChildren(); rowElement; rowElement = rowElement->GetNext())
     {
         if (rowElement->GetName() != _("Row"))
             continue;
-
-        itemsTable_.push_back(std::vector<wxString>());
+        AddNewLine();
 
         // Cells in row
         for (wxXmlNode *cellElement = rowElement->GetChildren(); cellElement; cellElement = cellElement->GetNext())
@@ -138,14 +175,75 @@ bool ImportParserXML::Parse(const wxString& fileName, unsigned int itemsInLine)
             if (cellElement->GetName() != _("Cell"))
                 continue;
 
-            if (itemsTable_[row].size() >= itemsInLine)
+            if (itemsTable_.back().size() >= itemsInLine)
                 break;
 
             wxXmlNode *dataElement = cellElement->GetChildren();
             wxString content = dataElement? dataElement->GetNodeContent(): "";
-            itemsTable_[row].push_back(content);
+            AddNewItem(content);
         }
-        row++;
     }
+    return true;
+}
+
+bool FileXML::Save(const wxString& fileName)
+{
+    // Make sure file exists
+    if (fileName.IsEmpty())
+    {
+        mmErrorDialogs::InvalidFile(pParentWindow_);
+        return false;
+    }
+
+    // Open file
+    wxXmlDocument xmlFile;
+ 
+    // Workbook
+    wxXmlNode* workbookElement = new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _("Workbook"));
+    xmlFile.SetRoot(workbookElement);
+    workbookElement->AddAttribute("xmlns", "urn:schemas-microsoft-com:office:spreadsheet");
+    workbookElement->AddAttribute("xmlns:o", "urn:schemas-microsoft-com:office:office");
+    workbookElement->AddAttribute("xmlns:x", "urn:schemas-microsoft-com:office:excel");
+    workbookElement->AddAttribute("xmlns:ss", "urn:schemas-microsoft-com:office:spreadsheet");
+    workbookElement->AddAttribute("xmlns:html", "http://www.w3.org/TR/REC-html40");
+
+    // Worksheet
+    wxXmlNode* worksheetElement = new wxXmlNode(workbookElement, wxXML_ELEMENT_NODE, _("Worksheet"));
+    worksheetElement->AddAttribute("ss:Name", "Transactions");
+    // workbookElement->AddAttribute("ss:RightToLeft", "1");  
+
+     // Table
+    wxXmlNode* tableElement = new wxXmlNode(worksheetElement, wxXML_ELEMENT_NODE, _("Table"));
+
+    // Rows - reverse iterate because wxXmlNode() adds the new child as the first.
+    for (auto rowIt = itemsTable_.rbegin(); rowIt != itemsTable_.rend(); rowIt++)
+    {
+        wxXmlNode* rowElement = new wxXmlNode(tableElement, wxXML_ELEMENT_NODE, _("Row"));
+
+        // Items - reverse iterate because wxXmlNode() adds the new child as the first.
+        for (auto itemIt = rowIt->rbegin(); itemIt != rowIt->rend(); itemIt++)
+        {
+            wxXmlNode* cellElement = new wxXmlNode(rowElement, wxXML_ELEMENT_NODE, _("Cell"));
+            wxXmlNode* dataElement = new wxXmlNode(cellElement, wxXML_ELEMENT_NODE, _("Data"));
+            switch (itemIt->type)
+            {
+            case TYPE_NUMBER:
+                dataElement->AddAttribute("ss:Type", "Number");
+                break;
+            default:
+                dataElement->AddAttribute("ss:Type", "String");
+            }
+
+            dataElement->AddChild(new wxXmlNode(wxXML_TEXT_NODE, "", itemIt->value));
+        }
+    }
+
+    // Save the file.
+    if (!xmlFile.Save(fileName))
+    {
+        mmErrorDialogs::MessageError(pParentWindow_, _("Could not save file."), _("Export error"));
+        return false;
+    }
+
     return true;
 }
