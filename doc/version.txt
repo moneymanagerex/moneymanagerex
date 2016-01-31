@@ -1,5 +1,10 @@
 Version History of Money Manager Ex
 
+1.2.6 (Feb 10, 2016)
+- Fix: OK the default when entering a transaction (Issue #676)
+- Fix: Grand Total missing stocks
+- Fix: Minor fixes
+
 1.2.5 (Jan 26, 2016)
 - Fix: Portuguese_br translation updated
 - Fix: Split transaction not allowed ENTER Key or ARITMETIC EXPRESSIONS (Issue #648)

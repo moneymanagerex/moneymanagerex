@@ -476,7 +476,7 @@ void mmTransDialog::CreateControls()
     buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
     buttons_sizer->Add(itemButtonCancel_, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
 
-    itemButtonCancel_->SetFocus();
+    if (!m_new_trx && !m_duplicate) itemButtonCancel_->SetFocus();
 
     buttons_sizer->Realize();
     Center();
