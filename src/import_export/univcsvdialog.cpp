@@ -66,7 +66,6 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     wxWindow* parent,
     EDialogType dialogType,
     wxWindowID id,
-    const wxString& caption,
     const wxPoint& pos,
     const wxSize& size,
     long style
@@ -99,14 +98,13 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     CSVFieldName_[UNIV_CSV_WITHDRAWAL] = wxTRANSLATE("Withdrawal");
     CSVFieldName_[UNIV_CSV_DEPOSIT] = wxTRANSLATE("Deposit");
     CSVFieldName_[UNIV_CSV_BALANCE] = wxTRANSLATE("Balance");
-
-    Create(parent, id, caption, pos, size, style);
+    Create(parent, IsImporter()?_("Import dialog"):_("Export dialog"), id, pos, size, style);
     this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmUnivCSVDialog::changeFocus), nullptr, this);
 }
 
 bool mmUnivCSVDialog::Create(wxWindow* parent
-    , wxWindowID id
     , const wxString& caption
+    , wxWindowID id
     , const wxPoint& pos
     , const wxSize& size
     , long style)
@@ -314,6 +312,13 @@ void mmUnivCSVDialog::CreateControls()
 
     flex_sizer->Add(m_choiceEncoding, g_flags);
 
+    // Option to add column titles to exported files.
+    if (!IsImporter())
+    {
+        m_checkBoxExportTitles = new wxCheckBox(itemPanel7, wxID_ANY, _("Export column titles"));
+        flex_sizer->Add(m_checkBoxExportTitles, g_flags);
+    }
+
     // Determine meaning of "amount" field's sign- deposit or withdrawal. 
     // When importing, there format is given and can be either. Exporting is best to be consistent and so this option is not given.
     if (IsImporter())
@@ -420,7 +425,7 @@ void mmUnivCSVDialog::initDelimiter()
         delimit_ = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
         m_textDelimiter->ChangeValue(delimit_);
 
-    }
+}
 
 void mmUnivCSVDialog::OnSettingsSelected(wxCommandEvent& event)
 {
@@ -522,6 +527,16 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
             int val = std::stoi(stdStr);
             m_spinIgnoreLastRows_->SetRange(m_spinIgnoreLastRows_->GetMin(), std::max(val, m_spinIgnoreLastRows_->GetMax())); // Called before file is loaded so max might still be 0.
             m_spinIgnoreLastRows_->SetValue(val);
+        }
+    }
+    else
+    {
+        std::wstring stdStr;
+        stdStr = json::String(o[L"EXPORT_TITLES"]);
+        if (!stdStr.empty())
+        {
+            bool checked = std::stoi(stdStr);
+            m_checkBoxExportTitles->SetValue(checked);
         }
     }
 
@@ -650,6 +665,10 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
         o[L"IGNORE_FIRST_ROWS"] = json::String(to_wstring(m_spinIgnoreFirstRows_->GetValue()));
         o[L"IGNORE_LAST_ROWS"] = json::String(to_wstring(m_spinIgnoreLastRows_->GetValue()));
     }
+    else
+    {
+        o[L"EXPORT_TITLES"] = json::String(to_wstring(m_checkBoxExportTitles->IsChecked()));
+    }
 
     std::wstringstream ss;
     json::Writer::Write(o, ss);
@@ -725,8 +744,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
         const wxString fileName = m_text_ctrl_->GetValue();
  
         // Open and parse file
-        IImportParser *pParser = CreateParser();
-        pParser->Parse(fileName, m_list_ctrl_->GetColumnCount());
+        ITransactionsFile *pParser = CreateFileHandler();
+        pParser->Load(fileName, m_list_ctrl_->GetColumnCount());
 
         wxFileName logFile = mmex::GetLogDir(true);
         logFile.SetFullName(fileName);
@@ -852,110 +871,129 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
         && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) || !isIndexPresent(UNIV_CSV_DEPOSIT))))
     {
         return mmErrorDialogs::MessageWarning(this
-            , _("Incorrect fields specified for CSV export! Requires at least Date and Amount.")
-            , _("Universal CSV Export"));
+            , _("Incorrect fields specified for export! Requires at least Date and Amount.")
+            , _("Export"));
     }
 
-    auto &delimit = this->delimit_;
     const wxString& fileName = m_text_ctrl_->GetValue();
     if (fileName.IsEmpty())
         return mmErrorDialogs::InvalidFile(m_text_ctrl_);
 
-    wxFileName csv_file(fileName);
-    if (csv_file.Exists()) {
+    wxFileName out_file(fileName);
+    if (out_file.Exists()) {
         if (wxMessageBox(_("Overwrite?"), _("File exists."), wxYES_NO | wxICON_WARNING) != wxYES)
             return;
+    }
+    if (!wxRemoveFile(fileName))
+    {
+        return mmErrorDialogs::MessageWarning( this,
+            _("Failed to delete existing file. File may be locked by another program."),
+            _("Destination file error"));
     }
 
     const wxString& acctName = m_choice_account_->GetStringSelection();
     Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
-    if (from_account)
+    if (!from_account)
+        return;
+
+    const auto split = Model_Splittransaction::instance().get_all();
+    int fromAccountID = from_account->ACCOUNTID;
+
+    wxDateTime trx_date;
+
+    long numRecords = 0;
+    Model_Currency::Data* currency = Model_Account::currency(from_account);
+
+    ITransactionsFile *pTxFile = CreateFileHandler();
+
+    // Write titles to file.
+    if (m_checkBoxExportTitles->IsChecked())
     {
-        const auto split = Model_Splittransaction::instance().get_all();
-        int fromAccountID = from_account->ACCOUNTID;
-
-        wxFileOutputStream output(fileName);
-        wxTextOutputStream text(output);
-        wxDateTime trx_date;
-
-        long numRecords = 0;
-        Model_Currency::Data* currency = Model_Account::currency(from_account);
-
-        double account_balance = from_account->INITIALBAL;
-        for (const auto& pBankTransaction : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID)
-            , Model_Checking::TOACCOUNTID(fromAccountID)))
+        pTxFile->AddNewLine();
+        for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++sit)
         {
-            if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_)
-                continue;
+            pTxFile->AddNewItem(wxGetTranslation(CSVFieldName_[*sit]));
+        }
+    }
 
-            wxString buffer = "";
+    // Write transactions to file.
+    double account_balance = from_account->INITIALBAL;
+    for (const auto& pBankTransaction : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID)
+        , Model_Checking::TOACCOUNTID(fromAccountID)))
+    {
+        if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_)
+            continue;
 
-            Model_Checking::Full_Data tran(pBankTransaction, split);
+        pTxFile->AddNewLine();
 
-            double value = Model_Checking::balance(pBankTransaction, fromAccountID);
-            account_balance += value;
+        Model_Checking::Full_Data tran(pBankTransaction, split);
 
-            const wxString& amount = Model_Currency::toString(value, currency);
-            const wxString& amount_abs = Model_Currency::toString(fabs(value), currency);
+        double value = Model_Checking::balance(pBankTransaction, fromAccountID);
+        account_balance += value;
 
-            Model_Category::Data* category = Model_Category::instance().get(pBankTransaction.CATEGID);
-            Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(pBankTransaction.SUBCATEGID);
-            for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++ sit)
+        const wxString& amount = Model_Currency::toString(value, currency);
+        const wxString& amount_abs = Model_Currency::toString(fabs(value), currency);
+
+        Model_Category::Data* category = Model_Category::instance().get(pBankTransaction.CATEGID);
+        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(pBankTransaction.SUBCATEGID);
+        for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++ sit)
+        {
+            wxString entry = "";
+            ITransactionsFile::ItemType itemType = ITransactionsFile::TYPE_STRING;
+            switch (*sit)
             {
-                wxString entry = "";
-                switch (*sit)
-                {
-                    case UNIV_CSV_DATE:
-                        trx_date = Model_Checking::TRANSDATE(pBankTransaction);
-                        entry = trx_date.Format(date_format_);
-                        break;
-                    case UNIV_CSV_PAYEE:
-                        entry = tran.real_payee_name(fromAccountID);
-                        break;
-                    case UNIV_CSV_AMOUNT:
-                        entry = amount;
-                        break;
-                    case UNIV_CSV_CATEGORY:
-                        entry = category ? category->CATEGNAME : "";
-                        break;
-                    case UNIV_CSV_SUBCATEGORY:
-                        entry = sub_category ? sub_category->SUBCATEGNAME : "";
-                        break;
-                    case UNIV_CSV_TRANSNUM:
-                        entry = pBankTransaction.TRANSACTIONNUMBER;
-                        break;
-                    case UNIV_CSV_NOTES:
-                        entry = wxString(pBankTransaction.NOTES).Trim();
-                        entry.Replace("\n", "\\n");
-                        break;
-                    case UNIV_CSV_DEPOSIT:
-                        entry = (value > 0.0) ? amount : "";
-                        break;
-                    case UNIV_CSV_WITHDRAWAL:
-                        entry = value >= 0.0 ? "" : amount_abs;
-                        break;
-                    case UNIV_CSV_BALANCE:
-                        entry = Model_Currency::toString(account_balance, currency);
-                        break;
-                    case UNIV_CSV_DONTCARE:
-                    default:
-                        break;
-                }
-
-                buffer << inQuotes(entry, delimit) + delimit;
+                case UNIV_CSV_DATE:
+                    trx_date = Model_Checking::TRANSDATE(pBankTransaction);
+                    entry = trx_date.Format(date_format_);
+                    break;
+                case UNIV_CSV_PAYEE:
+                    entry = tran.real_payee_name(fromAccountID);
+                    break;
+                case UNIV_CSV_AMOUNT:
+                    entry = amount;
+                    itemType = ITransactionsFile::TYPE_NUMBER;
+                    break;
+                case UNIV_CSV_CATEGORY:
+                    entry = category ? category->CATEGNAME : "";
+                    break;
+                case UNIV_CSV_SUBCATEGORY:
+                    entry = sub_category ? sub_category->SUBCATEGNAME : "";
+                    break;
+                case UNIV_CSV_TRANSNUM:
+                    entry = pBankTransaction.TRANSACTIONNUMBER;
+                    break;
+                case UNIV_CSV_NOTES:
+                    entry = wxString(pBankTransaction.NOTES).Trim();
+                    entry.Replace("\n", "\\n");
+                    break;
+                case UNIV_CSV_DEPOSIT:
+                    entry = (value > 0.0) ? amount : "";
+                    itemType = ITransactionsFile::TYPE_NUMBER;
+                    break;
+                case UNIV_CSV_WITHDRAWAL:
+                    entry = value >= 0.0 ? "" : amount_abs;
+                    itemType = ITransactionsFile::TYPE_NUMBER;
+                    break;
+                case UNIV_CSV_BALANCE:
+                    entry = Model_Currency::toString(account_balance, currency);
+                    itemType = ITransactionsFile::TYPE_NUMBER;
+                    break;
+                case UNIV_CSV_DONTCARE:
+                default:
+                    break;
             }
-
-            if (!delimit.empty()) buffer.RemoveLast(1);
-            text << buffer << endl;
-            *log_field_ << buffer << "\n";
-
-            ++ numRecords;
+            pTxFile->AddNewItem(entry, itemType);
         }
 
-        const wxString& msg = wxString::Format(_("Transactions exported: %ld"), numRecords);
-        mmErrorDialogs::MessageWarning(this, msg, _("Export to CSV"));
+        ++ numRecords;
     }
+
+    pTxFile->Save(fileName);
+    const wxString& msg = wxString::Format(_("Transactions exported: %ld"), numRecords);
+    mmErrorDialogs::MessageWarning(this, msg, _("Export"));
+
+    delete pTxFile;
 }
 
 void mmUnivCSVDialog::update_preview()
@@ -994,8 +1032,8 @@ void mmUnivCSVDialog::update_preview()
             return;
 
         // Open and parse file
-        IImportParser *pImporter = CreateParser();
-        pImporter->Parse(fileName, MAX_COLS);
+        ITransactionsFile *pImporter = CreateFileHandler();
+        pImporter->Load(fileName, MAX_COLS);
 
         // Import- Add rows to preview
         for (unsigned int row = 0; row < pImporter->GetLinesCount(); row++)
@@ -1203,6 +1241,9 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& /*event*/)
         break;
     case DIALOG_TYPE_IMPORT_XML:
         header = _("Choose MXL data file to import");
+        break;
+    case DIALOG_TYPE_EXPORT_XML:
+        header = _("Choose MXL data file to export");
         break;
     default:
         break;
@@ -1501,12 +1542,12 @@ wxIcon mmUnivCSVDialog::GetIconResource(const wxString& /*name*/)
     return wxNullIcon;
 }
 
-IImportParser *mmUnivCSVDialog::CreateParser()
+ITransactionsFile *mmUnivCSVDialog::CreateFileHandler()
 {
     // XML
     if (IsXML())
-        return new ImportParserXML(this, g_encoding.at(m_choiceEncoding->GetSelection()).second);
+        return new FileXML(this, g_encoding.at(m_choiceEncoding->GetSelection()).second);
     
     // CSV
-    return new ImportParserCSV(this, g_encoding.at(m_choiceEncoding->GetSelection()).first, delimit_);
+    return new FileCSV(this, g_encoding.at(m_choiceEncoding->GetSelection()).first, delimit_);
 }

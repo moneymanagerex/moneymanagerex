@@ -116,6 +116,7 @@ EVT_MENU(MENU_NEW, mmGUIFrame::OnNew)
 EVT_MENU(MENU_OPEN, mmGUIFrame::OnOpen)
 EVT_MENU(MENU_SAVE_AS, mmGUIFrame::OnSaveAs)
 EVT_MENU(MENU_EXPORT_CSV, mmGUIFrame::OnExportToCSV)
+EVT_MENU(MENU_EXPORT_XML, mmGUIFrame::OnExportToXML)
 EVT_MENU(MENU_EXPORT_QIF, mmGUIFrame::OnExportToQIF)
 EVT_MENU(MENU_IMPORT_QIF, mmGUIFrame::OnImportQIF)
 EVT_MENU(MENU_IMPORT_UNIVCSV, mmGUIFrame::OnImportUniversalCSV)
@@ -187,6 +188,7 @@ EVT_MENU(MENU_TREEPOPUP_ACCOUNT_DELETE, mmGUIFrame::OnDeleteAccount)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EDIT, mmGUIFrame::OnEditAccount)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_LIST, mmGUIFrame::OnAccountList)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, mmGUIFrame::OnExportToCSV)
+EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, mmGUIFrame::OnExportToXML)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, mmGUIFrame::OnExportToQIF)
 //EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, mmGUIFrame::OnImportQIF)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, mmGUIFrame::OnImportUniversalCSV)
@@ -1158,6 +1160,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             {
                 wxMenu *exportTo = new wxMenu;
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV Files..."));
+                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML Files..."));
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF Files..."));
                 menu.AppendSubMenu(exportTo, _("&Export"));
                 wxMenu *importFrom = new wxMenu;
@@ -1343,6 +1346,7 @@ void mmGUIFrame::createMenu()
 
     wxMenu* exportMenu = new wxMenu;
     exportMenu->Append(MENU_EXPORT_CSV, _("&CSV Files..."), _("Export to CSV"));
+    exportMenu->Append(MENU_EXPORT_XML, _("&XML Files..."), _("Export to XML"));
     exportMenu->Append(MENU_EXPORT_QIF, _("&QIF Files..."), _("Export to QIF"));
     exportMenu->Append(MENU_EXPORT_HTML, _("&Report to HTML"), _("Export to HTML"));
     menu_file->Append(MENU_EXPORT, _("&Export"), exportMenu);
@@ -2053,6 +2057,12 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnExportToCSV(wxCommandEvent& /*event*/)
 {
     mmUnivCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_EXPORT_CSV).ShowModal();
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnExportToXML(wxCommandEvent& /*event*/)
+{
+    mmUnivCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_EXPORT_XML).ShowModal();
 }
 //----------------------------------------------------------------------------
 

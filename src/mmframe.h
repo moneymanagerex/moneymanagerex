@@ -166,6 +166,7 @@ private:
     void OnCheckDB(wxCommandEvent& event);
     void OnSaveAs(wxCommandEvent& event);
     void OnExportToCSV(wxCommandEvent& event);
+    void OnExportToXML(wxCommandEvent& event);
     void OnExportToQIF(wxCommandEvent& event);
     void OnExportToHtml(wxCommandEvent& event);
     void OnImportQFX(wxCommandEvent& event);
@@ -283,6 +284,7 @@ private:
         MENU_ANNOUNCEMENTMAILING,
         MENU_FACEBOOK,
         MENU_EXPORT_CSV,
+        MENU_EXPORT_XML,
         MENU_EXPORT_QIF,
         MENU_SHOW_APPSTART,
         MENU_EXPORT_HTML,
@@ -321,6 +323,7 @@ private:
         MENU_TREEPOPUP_ACCOUNT_EDIT,
         MENU_TREEPOPUP_ACCOUNT_LIST,
         MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV,
+        MENU_TREEPOPUP_ACCOUNT_EXPORT2XML,
         MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF,
         MENU_TREEPOPUP_ACCOUNT_IMPORTCSV,
         MENU_TREEPOPUP_ACCOUNT_IMPORTQIF,
