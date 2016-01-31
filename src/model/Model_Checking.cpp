@@ -380,12 +380,18 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, 
     for (const auto& entry : instance().find(NOTES("", NOT_EQUAL)
         , accountID > 0 ? ACCOUNTID(accountID) : ACCOUNTID(-1, NOT_EQUAL)))
     {
-        const wxString& notes = entry.NOTES;
-        if (std::find(frequentNotes.begin(), frequentNotes.end(), notes) == frequentNotes.end())
-            frequentNotes.push_back(notes);
+        const auto i = std::find(frequentNotes.begin(), frequentNotes.end(), entry.NOTES);
+        if (i == frequentNotes.end())
+            frequentNotes.push_back(entry.NOTES);
+        else
+        {
+            frequentNotes.erase(i);
+            std::reverse(frequentNotes.begin(), frequentNotes.end());
+            frequentNotes.push_back(entry.NOTES);
+            std::reverse(frequentNotes.begin(), frequentNotes.end());
+        }
     }
-    std::reverse(frequentNotes.begin(), frequentNotes.end());
-    if (frequentNotes.size() > max)
+    if (frequentNotes.size() > static_cast<size_t>(max))
         frequentNotes.erase(frequentNotes.begin() + max, frequentNotes.end());
     std::stable_sort(frequentNotes.begin(), frequentNotes.end());
 }
