@@ -21,10 +21,6 @@
 #include "Model_Account.h"
 #include "Model_Payee.h"
 #include "Model_Category.h"
-#include <unordered_map>
-
-#include <algorithm>    // std::for_each
-#include <vector>       // std::vector
 
 const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES = 
 {
