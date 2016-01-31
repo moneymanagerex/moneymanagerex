@@ -21,6 +21,10 @@
 #include "Model_Account.h"
 #include "Model_Payee.h"
 #include "Model_Category.h"
+#include <unordered_map>
+
+#include <algorithm>    // std::for_each
+#include <vector>       // std::vector
 
 const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES = 
 {
@@ -377,20 +381,29 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, 
 {
     frequentNotes.clear();
     int max = 20;
-    for (const auto& entry : instance().find(NOTES("", NOT_EQUAL)
-        , accountID > 0 ? ACCOUNTID(accountID) : ACCOUNTID(-1, NOT_EQUAL)))
+
+    const auto notes = instance().find(NOTES("", NOT_EQUAL)
+        , accountID > 0 ? ACCOUNTID(accountID) : ACCOUNTID(-1, NOT_EQUAL));
+
+    std::map <wxString, unsigned int> counterMap;
+    for (const auto& entry : notes)
+        counterMap[entry.NOTES]++;
+
+    std::map <unsigned int, std::vector<wxString> > notesMap;
+    for (const auto& entry : counterMap)
+        notesMap[entry.second].push_back(entry.first);
+    
+    for (const auto& entry : notesMap)
     {
-        const auto i = std::find(frequentNotes.begin(), frequentNotes.end(), entry.NOTES);
-        if (i == frequentNotes.end())
-            frequentNotes.push_back(entry.NOTES);
-        else
-        {
-            frequentNotes.erase(i);
-            std::reverse(frequentNotes.begin(), frequentNotes.end());
-            frequentNotes.push_back(entry.NOTES);
-            std::reverse(frequentNotes.begin(), frequentNotes.end());
+        for (const auto& i : entry.second) {
+            frequentNotes.push_back(i);
+            if (frequentNotes.size() >= max)
+                break;
         }
     }
+
+    std::reverse(frequentNotes.begin(), frequentNotes.end());
+
     if (frequentNotes.size() > static_cast<size_t>(max))
         frequentNotes.erase(frequentNotes.begin() + max, frequentNotes.end());
     std::stable_sort(frequentNotes.begin(), frequentNotes.end());
