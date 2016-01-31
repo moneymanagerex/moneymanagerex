@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2011 Nikolay & Stefano Giorgio
+ Copyright (C) 2016 Nikolay & Stefano Giorgio
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -64,9 +64,8 @@ private:
     void OnTo(wxCommandEvent& event);
     void OnTypeChanged(wxCommandEvent& event);
 	void OnAttachments(wxCommandEvent& event);
-    void OnApplyDueDate(wxCommandEvent& WXUNUSED(event));
+    void OnResetDatePaid(wxCommandEvent& WXUNUSED(event));
 
-    void OnDateChanged(wxDateEvent& event);
     void dataToControls();
     void updateControlsForTransType();
     void addPayee(wxString payee, int categID, int subcategID );
@@ -99,8 +98,8 @@ private:
     bool m_transfer;
     bool m_enter_occur;
 
-    wxDatePickerCtrl* m_payment_date;   // dpcTransDate     Stored in ::NEXTOCCURRENCEDATE
-    wxDatePickerCtrl* m_due_date;       // dpcNextOccDate   Stored in ::TRANSDATE
+    wxDatePickerCtrl* m_date_paid;      // Stored in ::NEXTOCCURRENCEDATE
+    wxDatePickerCtrl* m_date_due;       // Stored in ::TRANSDATE
     wxBitmapButton* m_apply_due_date;
     wxCalendarCtrl* m_calendar_ctrl;
     wxChoice* itemRepeats_;

@@ -42,7 +42,7 @@ const wxString BILLSDEPOSITS_REPEATS[] =
 {
     wxTRANSLATE("None"),
     wxTRANSLATE("Weekly"),
-    wxTRANSLATE("Bi-Weekly"),
+    wxTRANSLATE("Fortnightly"),
     wxTRANSLATE("Monthly"),
     wxTRANSLATE("Bi-Monthly"),
     wxTRANSLATE("Quarterly"),
@@ -97,8 +97,8 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
 
     m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Payment Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("Due Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Date Paid"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("Date Due"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Account"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Payee"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
