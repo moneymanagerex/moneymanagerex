@@ -499,15 +499,14 @@ void mmTransDialog::CreateControls()
 
     // Custom Fields ---------------------------------------------
     bCustomFields_ = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS
-        , mmBitmap(png::EDIT_ACC), wxDefaultPosition
-        , wxSize(itemButtonCancel_->GetSize().GetY(), itemButtonCancel_->GetSize().GetY()));
+        , mmBitmap(png::EDIT_ACC));
     bCustomFields_->SetToolTip(_("Open custom fields window"));
 
     buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
     buttons_sizer->Add(itemButtonCancel_, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
     buttons_sizer->Add(bCustomFields_, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
 
-    itemButtonCancel_->SetFocus();
+    if (!m_new_trx && !m_duplicate) itemButtonCancel_->SetFocus();
 
     buttons_sizer->Realize();
     Center();
@@ -1027,11 +1026,8 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
 {
 #ifndef __WXMAC__
-    if (object_in_focus_ != itemButtonCancel_->GetId())
-    {
-        if (wxGetKeyState(wxKeyCode(WXK_ESCAPE))) itemButtonCancel_->SetFocus();
-        return;
-    }
+    if (object_in_focus_ != itemButtonCancel_->GetId() && wxGetKeyState(wxKeyCode(WXK_ESCAPE))) 
+            return itemButtonCancel_->SetFocus();
 #endif
 
     if (m_new_trx)
