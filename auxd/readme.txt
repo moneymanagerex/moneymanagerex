@@ -1,1 +1,0 @@
-AC_CONFIG_AUX_DIR([auxd])

@@ -1,3 +1,9 @@
+# CMake stuff
+bin/
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+
 # Compiled Object files
 *.slo
 *.lo
@@ -22,11 +28,10 @@
 
 # I18n
 *.mo
+*.gmo
 
 # Makefiles
-makefile
-/po/Makefile
-/setup/win/Makefile
+Makefile
 
 # Python
 *.pyc
@@ -52,15 +57,6 @@ makefile
 *.patch
 *.zip
 
-#autoconf
-aclocal.m4
-/autom4te.cache/
-config.log
-config.status
-shared-ld-sh
-bk-deps
-/build/bakefiles/.bakefile_gen.state
-
 #dist
 *.dmg
 /build/macosx/dmg/
@@ -71,5 +67,3 @@ bk-deps
 *.swp
 
 *.d
-
-/release
