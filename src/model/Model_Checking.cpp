@@ -376,17 +376,29 @@ wxString Model_Checking::Full_Data::info() const
 void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int accountID)
 {
     frequentNotes.clear();
-    int max = 20;
-    for (const auto& entry : instance().find(NOTES("", NOT_EQUAL)
-        , accountID > 0 ? ACCOUNTID(accountID) : ACCOUNTID(-1, NOT_EQUAL)))
+    int max = 9;
+
+    const auto notes = instance().find(NOTES("", NOT_EQUAL)
+        , accountID > 0 ? ACCOUNTID(accountID) : ACCOUNTID(-1, NOT_EQUAL));
+
+    std::map <wxString, int> counterMap;
+    for (const auto& entry : notes)
+        counterMap[entry.NOTES]--;
+
+    std::map <int, std::vector<wxString> > notesMap;
+    for (const auto& entry : counterMap)
+        notesMap[entry.second].push_back(entry.first);
+    
+    for (auto& v : notesMap)
     {
-        const wxString& notes = entry.NOTES;
-        if (std::find(frequentNotes.begin(), frequentNotes.end(), notes) == frequentNotes.end())
-            frequentNotes.push_back(notes);
+        std::reverse(v.second.begin(), v.second.end());
+        for (const auto& i : v.second) {
+            frequentNotes.push_back(i);
+            if (frequentNotes.size() >= static_cast<size_t>(max)) break;
+        }
+        if (frequentNotes.size() >= static_cast<size_t>(max)) break;
     }
-    std::reverse(frequentNotes.begin(), frequentNotes.end());
-    if (frequentNotes.size() > static_cast<size_t>(max))
-        frequentNotes.erase(frequentNotes.begin() + max, frequentNotes.end());
+
     std::stable_sort(frequentNotes.begin(), frequentNotes.end());
 }
 
