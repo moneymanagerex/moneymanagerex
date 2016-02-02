@@ -684,24 +684,20 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 /* Accounts */
 const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
 {
-    bool type_checking = type == Model_Account::CHECKING;
-    bool type_credit = type == Model_Account::CREDIT_CARD;
-    bool type_cash = type == Model_Account::CASH;
-    bool type_loan = type == Model_Account::LOAN;
+    static const std::vector < std::pair <wxString, wxString> > typeStr
+    {
+        { "CASH_ACCOUNTS_INFO", _("Cash Accounts") },
+        { "ACCOUNTS_INFO", _("Bank Accounts") },
+        { "CARD_ACCOUNTS_INFO", _("Credit Card Accounts") },
+        { "LOAN_ACCOUNTS_INFO", _("Loan Accounts") },
+        { "TERM_ACCOUNTS_INFO", _("Term Accounts") },
+    };
 
-    double tReconciled = 0;
-    const wxString idStr = (type_checking ? "ACCOUNTS_INFO"
-        : (type_credit ? "CARD_ACCOUNTS_INFO"
-        : (type_cash ? "CASH_ACCOUNTS_INFO"
-        : (type_loan ? "LOAN_ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO"))));
-
+    const wxString idStr = typeStr[type].first;
     wxString output = "<table class = 'sortable table'>\n";
     output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
     output += "<thead><tr><th nowrap>";
-    output += (type_checking ? _("Bank Accounts")
-        : (type_credit ? _("Credit Card Accounts")
-        : (type_cash ? _("Cash Accounts")
-        : (type_loan ? _("Loan Accounts") : _("Term Accounts")))));
+    output += typeStr[type].second;
 
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
     output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";
@@ -710,6 +706,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     output += "</tr></thead>\n";
     output += wxString::Format("<tbody id = '%s'>\n", idStr);
 
+    double tReconciled = 0;
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
