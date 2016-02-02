@@ -20,7 +20,7 @@
 #include "model/Model_Category.h"
 #include "validators.h"
 #include "paths.h"
-#include <constants.h>
+#include "constants.h"
 #include <wx/valnum.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetEntryDialog, wxDialog);
