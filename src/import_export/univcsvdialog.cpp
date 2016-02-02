@@ -880,17 +880,19 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
         return mmErrorDialogs::InvalidFile(m_text_ctrl_);
 
     wxFileName out_file(fileName);
-    if (out_file.Exists()) {
-        if (wxMessageBox(_("Overwrite?"), _("File exists."), wxYES_NO | wxICON_WARNING) != wxYES)
-            return;
-    }
-    if (!wxRemoveFile(fileName))
+    if (out_file.Exists()) 
     {
-        return mmErrorDialogs::MessageWarning( this,
-            _("Failed to delete existing file. File may be locked by another program."),
-            _("Destination file error"));
+        if (wxMessageBox(_("Overwrite existing file?"), _("File exists"), wxYES_NO | wxICON_WARNING) != wxYES)
+            return;
+ 
+        if (!wxRemoveFile(fileName))
+        {
+            return mmErrorDialogs::MessageWarning(this,
+                _("Failed to delete existing file. File may be locked by another program."),
+                _("Destination file error"));
+        }
     }
-
+ 
     const wxString& acctName = m_choice_account_->GetStringSelection();
     Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
@@ -932,8 +934,8 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
         double value = Model_Checking::balance(pBankTransaction, fromAccountID);
         account_balance += value;
 
-        const wxString& amount = Model_Currency::toString(value, currency);
-        const wxString& amount_abs = Model_Currency::toString(fabs(value), currency);
+        const wxString& amount = Model_Currency::toStringNoFormatting(value, currency);
+        const wxString& amount_abs = Model_Currency::toStringNoFormatting(fabs(value), currency);
 
         Model_Category::Data* category = Model_Category::instance().get(pBankTransaction.CATEGID);
         Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(pBankTransaction.SUBCATEGID);

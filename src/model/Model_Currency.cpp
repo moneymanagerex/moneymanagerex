@@ -192,6 +192,15 @@ wxString Model_Currency::os_group_separator()
     return sys_thousand_separator;
 }
 
+wxString Model_Currency::toStringNoFormatting(double value, const Data* currency, int precision)
+{
+    precision = (precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2));
+    int style = wxNumberFormatter::Style_None;
+    wxString s = wxNumberFormatter::ToString(value, precision, style);
+    if (s == "-0.00") s = "0.00";
+    else if (s == "-0.0") s = "0.0";
+    return s;
+}
 wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
     precision = (precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2));
