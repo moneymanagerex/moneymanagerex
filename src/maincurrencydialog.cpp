@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2015 Gabriele-V
+ Copyright (C) 2016 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -473,7 +474,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id, bool hide)
             {
                 if (currency_data.find(currency_symbol) != currency_data.end())
                 {
-                    msg << wxString::Format(_("%s\t: %0.4f -> %0.4f\n")
+                    msg << wxString::Format(_("%s\t: %0.6f -> %0.6f\n")
                         , currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol].first);
                     currency.BASECONVRATE = currency_data[currency_symbol].first;
                     if (base_symbol == currency_symbol)

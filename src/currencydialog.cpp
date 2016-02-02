@@ -39,7 +39,7 @@ EVT_TEXT(ID_DIALOG_CURRENCY, mmCurrencyDialog::OnTextChanged)
 EVT_TEXT_ENTER(ID_DIALOG_CURRENCY_RATE, mmCurrencyDialog::OnTextEntered)
 wxEND_EVENT_TABLE()
 
-static const int SCALE = 4; //Yahoo returns all values with 4 decimal places.
+static const int SCALE = 6;
 
 mmCurrencyDialog::mmCurrencyDialog()
 {
@@ -222,7 +222,7 @@ void mmCurrencyDialog::CreateControls()
     itemBoxSizer22->Add(itemButton24, g_flags);
     itemButton24->SetToolTip(_("Save any changes made"));
 
-    wxButton* itemButton25 = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    wxButton* itemButton25 = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CloseLabel));
     itemBoxSizer22->Add(itemButton25, g_flags);
     itemButton25->SetToolTip(_("Any changes will be lost without update"));
 }
