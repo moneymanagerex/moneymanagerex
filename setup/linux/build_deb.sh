@@ -16,7 +16,6 @@ ARCHITECTURE="amd64"
 
 # Specify the build version of mmex
 RELEASE_DIR="$HOME/release"
-BUILD_DIR="compile"
 
 PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
 
@@ -24,22 +23,14 @@ PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
 cd ../..
 MMEX_DIR=`pwd`
 
-./bootstrap.sh
-if [ $? -gt 0 ]; then
-    echo "ERROR!"
-    exit 1
-fi
-
-mkdir $BUILD_DIR
-cd $BUILD_DIR
 rm -rf "$RELEASE_DIR/$PACKAGE_NAME"
-../configure --prefix="$RELEASE_DIR/$PACKAGE_NAME/usr"
+cmake -DCMAKE_INSTALL_PREFIX=/usr
 
 if [ $? -gt 0 ]; then
     echo "ERROR!"
     exit 1
 fi
-make && make install
+make DESTDIR="$RELEASE_DIR/$PACKAGE_NAME" install
 if [ $? -gt 0 ]; then
     echo "ERROR!"
     exit 1
@@ -59,11 +50,6 @@ gzip -9 -f -n "usr/share/doc/mmex/changelog"
 cp "usr/share/doc/mmex/contrib.txt" "usr/share/doc/mmex/copyright"
 sed -i "s/See the GNU General Public License for more details./A copy of the GPLv2 can be found in \"\/usr\/share\/common-licenses\/GPL-2\"/g" "usr/share/doc/mmex/copyright"
 sed -i 's/\r//g' "usr/share/doc/mmex/copyright"
-
-#Remove OSX files
-rm "usr/share/mmex/mmdb.icns"
-rm "usr/share/mmex/mmex.icns"
-rm "usr/share/mmex/Info.plist"
 
 #Calculate installed size
 INSTALLED_SIZE=$(du -sb $RELEASE_DIR/ | cut -f1)
