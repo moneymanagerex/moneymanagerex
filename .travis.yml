@@ -1,7 +1,6 @@
-language: objective-c
+language: cpp
 compiler:
   - clang
-  
 before_install:
   - echo $TRAVIS_OS_NAME
   - brew update
@@ -9,9 +8,9 @@ before_install:
   - brew install gettext
   - brew link --force gettext
 before_script:
-  - travis_retry ./configure
+  - cmake .
 script:
-  - ./configure && make -j4
+  - make -j4
 branches:
   except:
     - legacy
