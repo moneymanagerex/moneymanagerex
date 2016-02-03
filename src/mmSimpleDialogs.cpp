@@ -99,7 +99,6 @@ const wxString mmDialogs::selectLanguageDlg(wxWindow *parent, const wxString &la
 {
     wxArrayString lang_files;
     wxFileName fn(langPath, "");
-    fn.AppendDir("en");
     size_t cnt = wxDir::GetAllFiles(fn.GetPath(), &lang_files, "*.mo");
 
     if (!cnt)

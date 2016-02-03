@@ -22,7 +22,7 @@
 #include "defs.h"
 #include <vector>
 #include "model/Model_Currency.h"
-#include "html_template.h"
+#include "cgitemplate/html_template.h"
 #include "util.h"
 
 class mmHTMLBuilder
