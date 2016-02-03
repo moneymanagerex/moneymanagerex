@@ -1,3 +1,10 @@
+# CMake stuff
+bin/
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+
 # Compiled Object files
 *.slo
 *.lo
@@ -22,6 +29,7 @@
 
 # I18n
 *.mo
+*.gmo
 
 # Makefiles
 makefile
@@ -60,6 +68,7 @@ config.status
 shared-ld-sh
 bk-deps
 /build/bakefiles/.bakefile_gen.state
+
 
 #dist
 *.dmg
