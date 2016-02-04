@@ -621,7 +621,6 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
     if (w)
         object_in_focus_ = w->GetId();
 
-    m_currency = Model_Currency::GetBaseCurrency();
     wxString accountName = cbAccount_->GetValue();
     wxString toAccountName = cbPayee_->GetValue();
     for (const auto& acc : Model_Account::instance().all_checking_account_names()){
