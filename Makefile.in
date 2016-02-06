@@ -203,6 +203,8 @@ MMEX_OBJECTS =  \
 	mmex_Model_Checking.o \
 	mmex_Model_Currency.o \
 	mmex_Model_CurrencyHistory.o \
+	mmex_Model_CustomField.o \
+	mmex_Model_CustomFieldData.o \
 	mmex_Model_Infotable.o \
 	mmex_Model_Payee.o \
 	mmex_Model_Report.o \
@@ -730,6 +732,12 @@ mmex_Model_Currency.o: $(srcdir)/src/model/Model_Currency.cpp
 
 mmex_Model_CurrencyHistory.o: $(srcdir)/src/model/Model_CurrencyHistory.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_CurrencyHistory.cpp
+
+mmex_Model_CustomField.o: $(srcdir)/src/model/Model_CustomField.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_CustomField.cpp
+
+mmex_Model_CustomFieldData.o: $(srcdir)/src/model/Model_CustomFieldData.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_CustomFieldData.cpp
 
 mmex_Model_Infotable.o: $(srcdir)/src/model/Model_Infotable.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Infotable.cpp
