@@ -531,13 +531,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
     }
     else
     {
-        std::wstring stdStr;
-        stdStr = json::String(o[L"EXPORT_TITLES"]);
-        if (!stdStr.empty())
-        {
-            bool checked = std::stoi(stdStr);
-            m_checkBoxExportTitles->SetValue(checked);
-        }
+        m_checkBoxExportTitles->SetValue(json::Boolean(o[L"EXPORT_TITLES"]));
     }
 
     OnLoad();
@@ -667,7 +661,7 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
     }
     else
     {
-        o[L"EXPORT_TITLES"] = json::String(to_wstring(m_checkBoxExportTitles->IsChecked()));
+        o[L"EXPORT_TITLES"] = json::Boolean(m_checkBoxExportTitles->IsChecked());
     }
 
     std::wstringstream ss;
