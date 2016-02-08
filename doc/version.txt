@@ -5,6 +5,7 @@ Version History of Money Manager Ex
 - Fix: most recent notes (Issue #677)
 - Fix: Fraction part may get lost after opening transaction for edit (Issue #690)
 - Fix: Grand Total missing stocks
+- Fix: Hebrew translation updated
 - Fix: Minor fixes
 
 1.2.5 (Jan 26, 2016)
