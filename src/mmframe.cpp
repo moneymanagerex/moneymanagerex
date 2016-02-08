@@ -744,38 +744,32 @@ void mmGUIFrame::updateNavTreeControl()
                 continue;
 
             int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
-            if (Model_Account::type(account) == Model_Account::INVESTMENT)
+
+            wxTreeItemId tacct;
+
+            switch (Model_Account::type(account))
             {
-                wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME
-                    , selectedImage, selectedImage);
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            case Model_Account::INVESTMENT:
+                tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
+                break;
+            case Model_Account::TERM:
+                tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME, selectedImage, selectedImage);
+                break;
+            case Model_Account::CREDIT_CARD:
+                tacct = navTreeCtrl_->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                break;
+            case Model_Account::CASH:
+                tacct = navTreeCtrl_->AppendItem(cashAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                break;
+            case Model_Account::LOAN:
+                tacct = navTreeCtrl_->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                break;
+            default: 
+                tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                break;
             }
-            else if (Model_Account::type(account) == Model_Account::TERM)
-            {
-                wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME
-                    , selectedImage, selectedImage);
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-            }
-            else if (Model_Account::type(account) == Model_Account::CREDIT_CARD)
-            {
-                wxTreeItemId tacct = navTreeCtrl_->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-            }
-            else if (Model_Account::type(account) == Model_Account::CASH)
-            {
-                wxTreeItemId tacct = navTreeCtrl_->AppendItem(cashAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-            }
-            else if (Model_Account::type(account) == Model_Account::LOAN)
-            {
-                wxTreeItemId tacct = navTreeCtrl_->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-            }
-            else
-            {
-                wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-            }
+
+            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
         }
 
         loadNavTreeItemsStatus();
