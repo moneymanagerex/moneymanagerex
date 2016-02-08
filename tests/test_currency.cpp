@@ -105,8 +105,8 @@ void Test_Currency::TwoDigitPrecision()
     taiwan_record->DECIMAL_POINT = ",";
     taiwan_record->SFX_SYMBOL = " - MOD";
     currency.save(taiwan_record);
-
-    currency.SetBaseCurrency(taiwan_record);
+    
+    Model_Infotable::instance().SetBaseCurrency(taiwan_record->CURRENCYID);
     //----------------------------------------------
 
     value = currency.toCurrency(12345.12345);
@@ -128,7 +128,7 @@ void Test_Currency::TwoDigitPrecision()
     value = currency.toCurrency(12345.12345, au_record);
     CPPUNIT_ASSERT(value == "$12,345.12");
 
-    currency.SetBaseCurrency(au_record);
+    Model_Infotable::instance().SetBaseCurrency(au_record->CURRENCYID);
 }
 
 void Test_Currency::FourDigitPrecision()

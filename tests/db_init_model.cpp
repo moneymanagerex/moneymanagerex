@@ -133,7 +133,7 @@ void DB_Init_Model::Init_BaseCurrency(const wxString& base_currency_symbol, cons
         currency_record->GROUP_SEPARATOR = ",";
         Model_Currency::instance().save(currency_record);
     }
-    Model_Currency::instance().SetBaseCurrency(currency_record);
+    Model_Infotable::instance().SetBaseCurrency(currency_record->CURRENCYID);
     // Set database User Name
     Model_Infotable::instance().Set("USERNAME", user_name);
     mmOptions::instance().userNameString_ = user_name;

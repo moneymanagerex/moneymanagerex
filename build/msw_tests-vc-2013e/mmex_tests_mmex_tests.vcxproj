@@ -253,7 +253,11 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\customfielddialog.cpp" />
+    <ClCompile Include="..\..\src\customfieldeditdialog.cpp" />
+    <ClCompile Include="..\..\src\customfieldlistdialog.cpp" />
     <ClCompile Include="..\..\src\dbcheck.cpp" />
+    <ClCompile Include="..\..\src\import_export\parsers.cpp" />
     <ClCompile Include="..\..\src\mmframereport.cpp" />
     <ClCompile Include="..\..\src\mmOptionAttachmentSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionBaseSettings.cpp" />
@@ -261,6 +265,7 @@
     <ClCompile Include="..\..\src\mmOptionMiscSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionNetSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionViewSettings.cpp" />
+    <ClCompile Include="..\..\src\mmpanelbase.cpp" />
     <ClCompile Include="..\..\src\mmSimpleDialogs.cpp" />
     <ClCompile Include="..\..\src\model\Model_Account.cpp" />
     <ClCompile Include="..\..\src\model\Model_Asset.cpp" />
@@ -272,6 +277,9 @@
     <ClCompile Include="..\..\src\model\Model_Category.cpp" />
     <ClCompile Include="..\..\src\model\Model_Checking.cpp" />
     <ClCompile Include="..\..\src\model\Model_Currency.cpp" />
+    <ClCompile Include="..\..\src\model\Model_CurrencyHistory.cpp" />
+    <ClCompile Include="..\..\src\model\Model_CustomField.cpp" />
+    <ClCompile Include="..\..\src\model\Model_CustomFieldData.cpp" />
     <ClCompile Include="..\..\src\model\Model_Infotable.cpp" />
     <ClCompile Include="..\..\src\model\Model_Payee.cpp" />
     <ClCompile Include="..\..\src\model\Model_Report.cpp" />
@@ -371,6 +379,9 @@
     <ClCompile Include="..\..\src\wizard_newdb.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\customfielddialog.h" />
+    <ClInclude Include="..\..\src\customfieldeditdialog.h" />
+    <ClInclude Include="..\..\src\customfieldlistdialog.h" />
     <ClInclude Include="..\..\src\dbcheck.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />
@@ -383,6 +394,8 @@
     <ClInclude Include="..\..\src\db\DB_Table_Category_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Checkingaccount_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Currencyformats_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Customfielddata_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Customfield_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Infotable_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Payee_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Report_V1.h" />
@@ -392,6 +405,7 @@
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Usage_V1.h" />
+    <ClInclude Include="..\..\src\import_export\parsers.h" />
     <ClInclude Include="..\..\src\mmOptionAttachmentSettings.h" />
     <ClInclude Include="..\..\src\mmOptionBaseSettings.h" />
     <ClInclude Include="..\..\src\mmOptionGeneralSettings.h" />
@@ -409,6 +423,9 @@
     <ClInclude Include="..\..\src\model\Model_Category.h" />
     <ClInclude Include="..\..\src\model\Model_Checking.h" />
     <ClInclude Include="..\..\src\model\Model_Currency.h" />
+    <ClInclude Include="..\..\src\model\Model_CurrencyHistory.h" />
+    <ClInclude Include="..\..\src\model\Model_CustomField.h" />
+    <ClInclude Include="..\..\src\model\Model_CustomFieldData.h" />
     <ClInclude Include="..\..\src\model\Model_Infotable.h" />
     <ClInclude Include="..\..\src\model\Model_Payee.h" />
     <ClInclude Include="..\..\src\model\Model_Report.h" />
