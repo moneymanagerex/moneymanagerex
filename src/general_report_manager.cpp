@@ -480,8 +480,9 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
     const wxString& selected_sql = sqlText->GetStringSelection();
     const wxString sql = selected_sql.empty() ? sqlText->GetValue() : selected_sql;
 
+    wxString SqlError;
     wxLongLong interval = wxGetUTCTimeMillis();
-    if (this->getSqlQuery(sql, m_sqlQueryData))
+    if (this->getSqlQuery(sql, m_sqlQueryData, SqlError))
     {
         m_sqlListBox->DeleteAllColumns();
         interval = wxGetUTCTimeMillis() - interval;
@@ -510,7 +511,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
     }
     else
     {
-        info->SetLabelText(_("SQL Syntax Error"));
+        info->SetLabelText(_("SQL Syntax Error") + " (" + SqlError + ")");
     }
 }
 
@@ -993,7 +994,8 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
 void mmGeneralReportManager::showHelp()
 {
     wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)mmex::HTML_CUSTOM_SQL));
-    if (mmOptions::instance().language_ != "english") helpIndexFile.AppendDir(mmOptions::instance().language_);
+    if (mmOptions::instance().language_ != "english" && mmOptions::instance().language_ != "")
+        helpIndexFile.AppendDir(mmOptions::instance().language_);
     wxString url = "file://" + mmex::getPathDoc((mmex::EDocFile)mmex::HTML_CUSTOM_SQL);
     if (helpIndexFile.FileExists()) // Load the help file for the given language
         url = "file://" + helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName();
@@ -1070,7 +1072,7 @@ void mmGeneralReportManager::getSqlTableInfo(std::vector<std::pair<wxString, wxA
     }
 }
 
-bool mmGeneralReportManager::getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData)
+bool mmGeneralReportManager::getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData, wxString &SqlError)
 {
     wxSQLite3ResultSet q;
     int columnCount = 0;
@@ -1085,8 +1087,10 @@ bool mmGeneralReportManager::getSqlQuery(/*in*/ const wxString& sql, /*out*/ std
         q = stmt.ExecuteQuery();
         columnCount = q.GetColumnCount();
     }
-    catch (const wxSQLite3Exception& /*e*/)
+    catch (const wxSQLite3Exception& e)
     {
+        SqlError = e.GetMessage();
+        SqlError.Replace(" or missing database[1]:", "");
         return false;
     }
 
