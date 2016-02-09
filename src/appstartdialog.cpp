@@ -166,7 +166,8 @@ void mmAppStartDialog::OnButtonAppstartHelpClick( wxCommandEvent& /*event*/ )
     wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex_));
     wxString url = "file://";
 
-    if (mmOptions::instance().language_ != "english") helpIndexFile.AppendDir(mmOptions::instance().language_);
+    if (mmOptions::instance().language_ != "english" && mmOptions::instance().language_ != "")
+        helpIndexFile.AppendDir(mmOptions::instance().language_);
 
     if (helpIndexFile.FileExists()) // Load the help file for the given language
     {
