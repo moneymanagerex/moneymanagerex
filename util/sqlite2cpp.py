@@ -186,7 +186,7 @@ struct DB_Table_%s : public DB_Table
 
         for r in self._data:
             s += '''
-            db->ExecuteUpdate("REPLACE INTO %s VALUES (%s)");''' % (self._table, ', '.join([u'wxTRANSLATE(\\"' + i + u'\\")' if isinstance(i, unicode) else str(i) for i in r]))
+            db->ExecuteUpdate("REPLACE INTO %s VALUES (%s)");''' % (self._table, ', '.join(["'" + i + "'" if isinstance(i, unicode) else str(i) for i in r]))
 
         s += '''
         }

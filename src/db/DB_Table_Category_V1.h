@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-10 22:21:04.873987.
+ *          AUTO GENERATED at 2016-02-10 22:43:03.430373.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -104,22 +104,22 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (1, wxTRANSLATE(\"Bills\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (2, wxTRANSLATE(\"Food\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (3, wxTRANSLATE(\"Leisure\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (4, wxTRANSLATE(\"Automobile\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (5, wxTRANSLATE(\"Education\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (6, wxTRANSLATE(\"Homeneeds\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (7, wxTRANSLATE(\"Healthcare\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (8, wxTRANSLATE(\"Insurance\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (9, wxTRANSLATE(\"Vacation\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (10, wxTRANSLATE(\"Taxes\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (11, wxTRANSLATE(\"Miscellaneous\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (12, wxTRANSLATE(\"Gifts\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (13, wxTRANSLATE(\"Income\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (14, wxTRANSLATE(\"Other Income\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (15, wxTRANSLATE(\"Other Expenses\"))");
-            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (16, wxTRANSLATE(\"Transfer\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (1, 'Bills')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (2, 'Food')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (3, 'Leisure')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (4, 'Automobile')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (5, 'Education')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (6, 'Homeneeds')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (7, 'Healthcare')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (8, 'Insurance')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (9, 'Vacation')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (10, 'Taxes')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (11, 'Miscellaneous')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (12, 'Gifts')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (13, 'Income')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (14, 'Other Income')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (15, 'Other Expenses')");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (16, 'Transfer')");
         }
         catch(const wxSQLite3Exception & e)
         {
