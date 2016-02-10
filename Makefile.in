@@ -691,8 +691,8 @@ mmex_summarystocks.o: $(srcdir)/src/reports/summarystocks.cpp
 mmex_transactions.o: $(srcdir)/src/reports/transactions.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/transactions.cpp
 
-mmex_platfdep.o: $(srcdir)/src/unix/platfdep.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/unix/platfdep.cpp
+mmex_platfdep.o: $(srcdir)/src/mac/platfdep.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mac/platfdep.cpp
 
 mmex_export.o: $(srcdir)/src/import_export/export.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/import_export/export.cpp
