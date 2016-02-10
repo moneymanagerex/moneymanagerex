@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-10 20:43:09.540901.
+ *          AUTO GENERATED at 2016-02-10 22:21:04.873987.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -80,6 +80,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
 		}
 
         this->ensure_index(db);
+        this->ensure_data(db);
 
         return true;
     }
@@ -99,6 +100,60 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         return true;
     }
 
+    bool ensure_data(wxSQLite3Database* db)
+    {
+        try
+        {
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (1, wxTRANSLATE(\"Telephone\"), 1)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (2, wxTRANSLATE(\"Electricity\"), 1)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (3, wxTRANSLATE(\"Gas\"), 1)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (4, wxTRANSLATE(\"Internet\"), 1)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (5, wxTRANSLATE(\"Rent\"), 1)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (6, wxTRANSLATE(\"Cable TV\"), 1)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (7, wxTRANSLATE(\"Water\"), 1)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (8, wxTRANSLATE(\"Groceries\"), 2)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (9, wxTRANSLATE(\"Dining out\"), 2)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (10, wxTRANSLATE(\"Movies\"), 3)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (11, wxTRANSLATE(\"Video Rental\"), 3)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (12, wxTRANSLATE(\"Magazines\"), 3)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (13, wxTRANSLATE(\"Maintenance\"), 4)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (14, wxTRANSLATE(\"Gas\"), 4)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (15, wxTRANSLATE(\"Parking\"), 4)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (16, wxTRANSLATE(\"Registration\"), 4)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (17, wxTRANSLATE(\"Books\"), 5)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (18, wxTRANSLATE(\"Tuition\"), 5)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (19, wxTRANSLATE(\"Others\"), 5)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (20, wxTRANSLATE(\"Clothing\"), 6)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (21, wxTRANSLATE(\"Furnishing\"), 6)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (22, wxTRANSLATE(\"Others\"), 6)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (23, wxTRANSLATE(\"Health\"), 7)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (24, wxTRANSLATE(\"Dental\"), 7)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (25, wxTRANSLATE(\"Eyecare\"), 7)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (26, wxTRANSLATE(\"Physician\"), 7)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (27, wxTRANSLATE(\"Prescriptions\"), 7)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (28, wxTRANSLATE(\"Auto\"), 8)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (29, wxTRANSLATE(\"Life\"), 8)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (30, wxTRANSLATE(\"Home\"), 8)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (31, wxTRANSLATE(\"Health\"), 8)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (32, wxTRANSLATE(\"Travel\"), 9)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (33, wxTRANSLATE(\"Lodging\"), 9)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (34, wxTRANSLATE(\"Sightseeing\"), 9)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (35, wxTRANSLATE(\"Income Tax\"), 10)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (36, wxTRANSLATE(\"House Tax\"), 10)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (37, wxTRANSLATE(\"Water Tax\"), 10)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (38, wxTRANSLATE(\"Others\"), 10)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (39, wxTRANSLATE(\"Salary\"), 13)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (40, wxTRANSLATE(\"Reimbursement/Refunds\"), 13)");
+            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (41, wxTRANSLATE(\"Investment Income\"), 13)");
+        }
+        catch(const wxSQLite3Exception & e)
+        {
+            wxLogError("SUBCATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            return false;
+        }
+
+        return true;
+    }
     struct SUBCATEGID : public DB_Column<int>
     { 
         static wxString name() { return "SUBCATEGID"; } 

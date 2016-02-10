@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-10 20:43:09.540901.
+ *          AUTO GENERATED at 2016-02-10 22:21:04.873987.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -80,6 +80,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
 		}
 
         this->ensure_index(db);
+        this->ensure_data(db);
 
         return true;
     }
@@ -99,6 +100,19 @@ struct DB_Table_STOCK_V1 : public DB_Table
         return true;
     }
 
+    bool ensure_data(wxSQLite3Database* db)
+    {
+        try
+        {
+        }
+        catch(const wxSQLite3Exception & e)
+        {
+            wxLogError("STOCK_V1: Exception %s", e.GetMessage().c_str());
+            return false;
+        }
+
+        return true;
+    }
     struct STOCKID : public DB_Column<int>
     { 
         static wxString name() { return "STOCKID"; } 

@@ -8,6 +8,7 @@ import sys
 import os
 import datetime
 import sqlite3
+import codecs
 
 # https://github.com/django/django/blob/master/django/db/backends/sqlite3/introspection.py
 def get_table_list(cursor):
@@ -41,6 +42,10 @@ def get_index_list(cursor, tbl_name):
         ORDER BY name""" % tbl_name)
     return [row[1] for row in cursor.fetchall()]
 
+def get_data_initializer_list(cursor, tbl_name):
+    "Returns a list of data in the current table."
+    cursor.execute("select * from %s" % tbl_name)
+    return cursor.fetchall()
 
 base_data_types_reverse = {
     'TEXT': 'wxString',
@@ -59,14 +64,15 @@ base_data_types_function = {
 }
 
 class DB_Table:
-    def __init__(self, table, fields, index):
+    def __init__(self, table, fields, index, data):
         self._table = table
         self._fields = fields
         self._primay_key = [field['name'] for field in self._fields if field['pk']][0]
         self._index = index
+        self._data = data
 
     def generate_class(self, header, sql):
-        fp = open('DB_Table_' + self._table.title() + '.h', 'w')
+        fp = codecs.open('DB_Table_' + self._table.title() + '.h', 'w', 'utf8')
         fp.write(header + self.to_string(sql))
         fp.close()
     
@@ -140,6 +146,7 @@ struct DB_Table_%s : public DB_Table
 		}
 
         this->ensure_index(db);
+        this->ensure_data(db);
 
         return true;
     }
@@ -170,6 +177,27 @@ struct DB_Table_%s : public DB_Table
         return true;
     }
 ''' % (self._table)
+    
+        s += '''
+    bool ensure_data(wxSQLite3Database* db)
+    {
+        try
+        {'''
+
+        for r in self._data:
+            s += '''
+            db->ExecuteUpdate("REPLACE INTO %s VALUES (%s)");''' % (self._table, ', '.join([u'wxTRANSLATE(\\"' + i + u'\\")' if isinstance(i, unicode) else str(i) for i in r]))
+
+        s += '''
+        }
+        catch(const wxSQLite3Exception & e)
+        {
+            wxLogError("%s: Exception %%s", e.GetMessage().c_str());
+            return false;
+        }
+
+        return true;
+    }''' % self._table
 
         for field in self._fields:
             s += '''
@@ -658,7 +686,7 @@ struct DB_Table_%s : public DB_Table
         return s
 
 def generate_base_class(header, fields=set):
-    fp = open('DB_Table.h', 'w')
+    fp = open('DB_Table.h', 'wb')
     code = header + '''
 #ifndef DB_TABLE_H
 #define DB_TABLE_H
@@ -851,7 +879,8 @@ if __name__ == '__main__':
     for table, sql in get_table_list(cur):
         fields = _table_info(cur, table)
         index = get_index_list(cur, table)
-        table = DB_Table(table, fields, index)
+        data = get_data_initializer_list(cur, table)
+        table = DB_Table(table, fields, index, data)
         table.generate_class(header, sql)
         for field in fields:
             all_fields.add(field['name'])

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-10 20:43:09.540901.
+ *          AUTO GENERATED at 2016-02-10 22:21:04.873987.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -80,6 +80,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 		}
 
         this->ensure_index(db);
+        this->ensure_data(db);
 
         return true;
     }
@@ -99,6 +100,35 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         return true;
     }
 
+    bool ensure_data(wxSQLite3Database* db)
+    {
+        try
+        {
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (1, wxTRANSLATE(\"Bills\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (2, wxTRANSLATE(\"Food\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (3, wxTRANSLATE(\"Leisure\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (4, wxTRANSLATE(\"Automobile\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (5, wxTRANSLATE(\"Education\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (6, wxTRANSLATE(\"Homeneeds\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (7, wxTRANSLATE(\"Healthcare\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (8, wxTRANSLATE(\"Insurance\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (9, wxTRANSLATE(\"Vacation\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (10, wxTRANSLATE(\"Taxes\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (11, wxTRANSLATE(\"Miscellaneous\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (12, wxTRANSLATE(\"Gifts\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (13, wxTRANSLATE(\"Income\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (14, wxTRANSLATE(\"Other Income\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (15, wxTRANSLATE(\"Other Expenses\"))");
+            db->ExecuteUpdate("REPLACE INTO CATEGORY_V1 VALUES (16, wxTRANSLATE(\"Transfer\"))");
+        }
+        catch(const wxSQLite3Exception & e)
+        {
+            wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            return false;
+        }
+
+        return true;
+    }
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
