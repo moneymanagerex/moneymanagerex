@@ -816,7 +816,7 @@ if __name__ == '__main__':
     header =  '''// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013 - %s Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -829,7 +829,7 @@ if __name__ == '__main__':
  *          DO NOT EDIT!
  */
 //=============================================================================
-'''% (os.path.basename(__file__), str(datetime.datetime.now()))
+'''% (datetime.date.today().year, os.path.basename(__file__), str(datetime.datetime.now()))
 
     conn, cur, sql_file = None, None, None
     try:
