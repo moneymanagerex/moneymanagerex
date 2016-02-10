@@ -63,7 +63,7 @@ private:
     void OnPayee(wxCommandEvent& event);
     void OnTo(wxCommandEvent& event);
     void OnTypeChanged(wxCommandEvent& event);
-	void OnAttachments(wxCommandEvent& event);
+    void OnAttachments(wxCommandEvent& event);
     void OnResetDatePaid(wxCommandEvent& WXUNUSED(event));
 
     void dataToControls();
@@ -86,7 +86,7 @@ private:
     wxButton* bCategory_;
     wxButton* bPayee_;
     wxButton* bAccount_;
-	wxButton* bAttachments_;
+    wxButton* bAttachments_;
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
     bool payeeUnknown_;

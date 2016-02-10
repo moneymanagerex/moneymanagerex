@@ -47,7 +47,7 @@ public:
     void OnQuit(wxCloseEvent& event);
     void OnSave(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
-	void OnAttachments(wxCommandEvent& event);
+    void OnAttachments(wxCommandEvent& event);
     void OnStockPriceButton(wxCommandEvent& event);
     void OnHistoryImportButton(wxCommandEvent& event);
     void OnHistoryDownloadButton(wxCommandEvent& event);
@@ -76,7 +76,7 @@ private:
 
     wxStaticText* valueInvestment_;
     mmTextCtrl* commission_;
-	wxBitmapButton* bAttachments_;
+    wxBitmapButton* bAttachments_;
     wxListCtrl* priceListBox_;
 
     bool edit_;

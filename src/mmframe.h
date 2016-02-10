@@ -156,7 +156,7 @@ private:
     void showBeginAppDialog(bool fromScratch = false);
     void SetDataBaseParameters(const wxString& fileName);
     void OnLaunchAccountWebsite(wxCommandEvent& event);
-	void OnAccountAttachments(wxCommandEvent& event);
+    void OnAccountAttachments(wxCommandEvent& event);
 
     void OnNew(wxCommandEvent& event);
     void OnOpen(wxCommandEvent& event);

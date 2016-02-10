@@ -41,7 +41,7 @@ wxBEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_MENU(MENU_TREEPOPUP_EDIT,   mmAssetsListCtrl::OnEditAsset)
     EVT_MENU(MENU_TREEPOPUP_DELETE, mmAssetsListCtrl::OnDeleteAsset)
     EVT_MENU(MENU_ON_DUPLICATE_TRANSACTION, mmAssetsListCtrl::OnDuplicateAsset)
-	EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, mmAssetsListCtrl::OnOrganizeAttachments)
+    EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, mmAssetsListCtrl::OnOrganizeAttachments)
 
     EVT_LIST_KEY_DOWN(wxID_ANY, mmAssetsListCtrl::OnListKeyDown)
 wxEND_EVENT_TABLE()
@@ -91,14 +91,14 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Asset"));
     menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Asset"));
-	menu.AppendSeparator();
-	menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
+    menu.AppendSeparator();
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
     if (m_selected_row < 0)
     {
         menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
         menu.Enable(MENU_TREEPOPUP_EDIT, false);
         menu.Enable(MENU_TREEPOPUP_DELETE, false);
-		menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
+        menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
     }
     PopupMenu(&menu, event.GetPosition());
 }
@@ -189,7 +189,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
     {
         const Model_Asset::Data& asset = m_panel->m_assets[m_selected_row];
         Model_Asset::instance().remove(asset.ASSETID);
-		mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::ASSET), asset.ASSETID);
+        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::ASSET), asset.ASSETID);
 
         m_panel->initVirtualListControl(m_selected_row, m_selected_col, m_asc);
         m_selected_row = -1;
@@ -221,26 +221,26 @@ void mmAssetsListCtrl::OnDuplicateAsset(wxCommandEvent& /*event*/)
 
 void mmAssetsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
-	if (m_selected_row < 0) return;
+    if (m_selected_row < 0) return;
 
-	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
-	int RefId = m_panel->m_assets[m_selected_row].ASSETID;
+    wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+    int RefId = m_panel->m_assets[m_selected_row].ASSETID;
 
-	mmAttachmentDialog dlg(this, RefType, RefId);
-	dlg.ShowModal();
+    mmAttachmentDialog dlg(this, RefType, RefId);
+    dlg.ShowModal();
 
-	doRefreshItems(RefId);
+    doRefreshItems(RefId);
 }
 
 void mmAssetsListCtrl::OnOpenAttachment(wxCommandEvent& /*event*/)
 {
-	if (m_selected_row < 0) return;
+    if (m_selected_row < 0) return;
 
-	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
-	int RefId = m_panel->m_assets[m_selected_row].ASSETID;
+    wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+    int RefId = m_panel->m_assets[m_selected_row].ASSETID;
 
-	mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
-	doRefreshItems(RefId);
+    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
+    doRefreshItems(RefId);
 }
 
 void mmAssetsListCtrl::OnListItemActivated(wxListEvent& event)
@@ -275,7 +275,7 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
          ColumnNr = m_ColumnHeaderNbr;
     if (0 > ColumnNr || ColumnNr >= m_panel->col_max() || ColumnNr == 0) return;
 
-	if (m_selected_col == ColumnNr && event.GetId() != MENU_HEADER_SORT) m_asc = !m_asc;
+    if (m_selected_col == ColumnNr && event.GetId() != MENU_HEADER_SORT) m_asc = !m_asc;
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
@@ -310,7 +310,7 @@ BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
     EVT_BUTTON(wxID_NEW, mmAssetsPanel::OnNewAsset)
     EVT_BUTTON(wxID_EDIT, mmAssetsPanel::OnEditAsset)
     EVT_BUTTON(wxID_DELETE, mmAssetsPanel::OnDeleteAsset)
-	EVT_BUTTON(wxID_FILE, mmAssetsPanel::OnOpenAttachment)
+    EVT_BUTTON(wxID_FILE, mmAssetsPanel::OnOpenAttachment)
     EVT_MENU(wxID_ANY, mmAssetsPanel::OnViewPopupSelected)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmAssetsPanel::OnSearchTxtEntered)
     EVT_TEXT_ENTER(wxID_FIND, mmAssetsPanel::OnSearchTxtEntered)
@@ -443,12 +443,12 @@ void mmAssetsPanel::CreateControls()
     itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
-	wxBitmapButton* attachment_button_ = new wxBitmapButton(assets_panel
-		, wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition,
-		wxSize(30, itemButton7->GetSize().GetY()));
-	attachment_button_->SetToolTip(_("Open attachments"));
+    wxBitmapButton* attachment_button_ = new wxBitmapButton(assets_panel
+        , wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition,
+        wxSize(30, itemButton7->GetSize().GetY()));
+    attachment_button_->SetToolTip(_("Open attachments"));
     itemBoxSizer5->Add(attachment_button_, 0, wxRIGHT, 5);
-	attachment_button_->Enable(false);
+    attachment_button_->Enable(false);
 
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(assets_panel
         , wxID_FIND, wxEmptyString, wxDefaultPosition
@@ -554,7 +554,7 @@ void mmAssetsPanel::OnEditAsset(wxCommandEvent& event)
 
 void mmAssetsPanel::OnOpenAttachment(wxCommandEvent& event)
 {
-	m_listCtrlAssets->OnOpenAttachment(event);
+    m_listCtrlAssets->OnOpenAttachment(event);
 }
 
 wxString mmAssetsPanel::getItem(long item, long column)
@@ -576,13 +576,13 @@ wxString mmAssetsPanel::getItem(long item, long column)
         return Model_Currency::toCurrency(Model_Asset::value(asset));
     case COL_DATE:
         return mmGetDateForDisplay(Model_Asset::STARTDATE(asset));
-	case COL_NOTES:
-	{
-		wxString full_notes = asset.NOTES;
-		if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::ASSET), asset.ASSETID))
-			full_notes = full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
-		return full_notes;
-	}
+    case COL_NOTES:
+    {
+        wxString full_notes = asset.NOTES;
+        if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::ASSET), asset.ASSETID))
+            full_notes = full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
+        return full_notes;
+    }
     default:
         return "";
     }
@@ -622,9 +622,9 @@ void mmAssetsPanel::enableEditDeleteButtons(bool enable)
     wxASSERT(btn);
     btn->Enable(enable);
 
-	btn = static_cast<wxButton*>(FindWindow(wxID_FILE));
-	wxASSERT(btn);
-	btn->Enable(enable);
+    btn = static_cast<wxButton*>(FindWindow(wxID_FILE));
+    wxASSERT(btn);
+    btn->Enable(enable);
 }
 
 void mmAssetsPanel::OnMouseLeftDown ( wxMouseEvent& event )

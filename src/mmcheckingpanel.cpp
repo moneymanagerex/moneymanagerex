@@ -470,7 +470,7 @@ void mmCheckingPanel::CreateControls()
         , wxSize(30, btnDuplicate_->GetSize().GetY()));
     btnAttachment_->SetToolTip(_("Open attachments"));
     itemButtonsSizer->Add(btnAttachment_, 0, wxRIGHT, 5);
-	btnAttachment_->Enable(false);
+    btnAttachment_->Enable(false);
 
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(itemPanel12
         , wxID_FIND, wxEmptyString, wxDefaultPosition
@@ -1211,7 +1211,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     /* Clear previous column image */
     setColumnImage(m_sortCol, -1);
 
-	if (g_sortcol == ColumnNr && event.GetId() != MENU_HEADER_SORT) m_asc = !m_asc; // toggle sort order
+    if (g_sortcol == ColumnNr && event.GetId() != MENU_HEADER_SORT) m_asc = !m_asc; // toggle sort order
     g_asc = m_asc;
 
     m_sortCol = toEColumn(ColumnNr);
@@ -1441,8 +1441,8 @@ void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& event)
     int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 
-	mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, transaction_id);
-	refreshVisualList(transaction_id);
+    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, transaction_id);
+    refreshVisualList(transaction_id);
 }
 
 //----------------------------------------------------------------------------
@@ -1676,7 +1676,7 @@ void TransactionListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     mmAttachmentDialog dlg(this, RefType, RefId);
     dlg.ShowModal();
 
-	refreshVisualList(RefId);
+    refreshVisualList(RefId);
 }
 
 //----------------------------------------------------------------------------

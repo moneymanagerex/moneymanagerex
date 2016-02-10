@@ -163,8 +163,8 @@ wxString mmReportCategoryExpenses::getHTMLText()
             hb.endTableRow();
         }
         if (group_counter[entry.categs] == 1 || group == 0) {
-			group = 0;
-		}
+            group = 0;
+        }
     }
     hb.endTbody();
 

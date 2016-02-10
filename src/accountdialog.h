@@ -49,7 +49,7 @@ private:
     void fillControls(void);
     void OnCustonImage(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
-	void OnAttachments(wxCommandEvent& event);
+    void OnAttachments(wxCommandEvent& event);
 
     void OnImageButton(wxCommandEvent& event);
 
@@ -60,7 +60,7 @@ private:
     mmTextCtrl* m_itemInitValue;
     wxImageList* m_imageList;
     wxBitmapButton* m_bitmapButtons;
-	wxBitmapButton* bAttachments_;
+    wxBitmapButton* bAttachments_;
     wxString m_accessInfo;
     int m_currencyID;
     bool m_accessChanged;

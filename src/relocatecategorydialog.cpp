@@ -222,7 +222,7 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
                 entry.SUBCATEGID = m_destSubCatID;
             }
             m_changedRecords += Model_Payee::instance().save(payees);
-			mmWebApp::MMEX_WebApp_UpdatePayee();
+            mmWebApp::MMEX_WebApp_UpdatePayee();
 
             for (auto &entry : budget_split)
             {
