@@ -149,7 +149,9 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.endDiv();
     hb.endDiv();
     hb.end();
-    return hb.getHTMLText();
+
+    Model_Report::outputReportFile(hb.getHTMLText());
+    return "";
 }
 
 mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly(int day, int month, mmDateRange* date_range)
@@ -274,5 +276,6 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.endDiv(); 
     hb.end();
 
-    return hb.getHTMLText();
+    Model_Report::outputReportFile(hb.getHTMLText());
+    return "";
 }

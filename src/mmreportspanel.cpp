@@ -147,13 +147,18 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    saveReportText();
-    browser_->LoadURL(getURL(mmex::getReportIndex()));
+    wxString error;
+    if (saveReportText(error))
+        browser_->LoadURL(getURL(mmex::getReportIndex()));
+    else
+        browser_->SetPage(error, "");
+
     return TRUE;
 }
 
-void mmReportsPanel::saveReportText()
+bool mmReportsPanel::saveReportText(wxString& error)
 {
+    error = "";
     if (rb_)
     {
         if (this->m_date_ranges)
@@ -164,15 +169,12 @@ void mmReportsPanel::saveReportText()
         o[L"name"] = json::String(rb_->title().ToStdWstring());
         o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
 
-        wxString html = rb_->getHTMLText();
+        error = rb_->getHTMLText();
 
-        wxFileOutputStream index_output(mmex::getReportIndex());
-        wxTextOutputStream index_file(index_output);
-        index_file << html;
-        index_output.Close();
         o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
         Model_Usage::instance().append(o);
     }
+    return error.empty();
 }
 
 void mmReportsPanel::CreateControls()
@@ -234,6 +236,9 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
     const mmDateRange* date_range = static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
     this->m_start_date->SetValue(date_range->start_date());
     this->m_end_date->SetValue(date_range->end_date());
-    this->saveReportText();
-    browser_->LoadURL(getURL(mmex::getReportIndex()));
+    wxString error;
+    if (this->saveReportText(error))
+        browser_->LoadURL(getURL(mmex::getReportIndex()));
+    else
+        browser_->SetPage(error, "");
 }

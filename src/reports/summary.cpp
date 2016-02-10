@@ -348,7 +348,8 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.endTable();
     hb.end();
 
-    return hb.getHTMLText();
+    Model_Report::outputReportFile(hb.getHTMLText());
+    return "";
 }
 
 double mmReportSummaryByDate::GetDailyBalanceAt(const Model_Account::Data *account, const wxDate& date)

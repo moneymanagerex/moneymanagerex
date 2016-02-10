@@ -1270,27 +1270,17 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 {
     if (!rs) return;
     navTreeCtrl_->SetEvtHandlerEnabled(false);
-    //TODO: Real refresh needed
-    /*int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
-    if (id == mmID_REPORTS)
-    {
-        mmReportsPanel* rp = (mmReportsPanel*)panelCurrent_;
-        rp->saveReportText();
-        wxWebView* browser = (wxWebView*)panelCurrent_->FindWindowById(mmID_BROWSER);
-        if (browser) browser->LoadURL(getURL(mmex::getReportIndex()));
-    }
-    else*/
-    {
-        windowsFreezeThaw(homePanel_);
-        wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmReportsPanel(rs
-            , cleanup, homePanel_, this, mmID_REPORTS
-            , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
 
-        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-        homePanel_->Layout();
-        windowsFreezeThaw(homePanel_);
-    }
+    windowsFreezeThaw(homePanel_);
+    wxSizer *sizer = cleanupHomePanel();
+    panelCurrent_ = new mmReportsPanel(rs
+        , cleanup, homePanel_, this, mmID_REPORTS
+        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+
+    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+    homePanel_->Layout();
+    windowsFreezeThaw(homePanel_);
+
     menuPrintingEnable(true);
     navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
