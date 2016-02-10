@@ -42,6 +42,7 @@ wxBEGIN_EVENT_TABLE(mmCustomFieldDialog, wxFrame)
     EVT_BUTTON(wxID_EDIT, mmCustomFieldDialog::OnAddEdit)
     EVT_BUTTON(wxID_CANCEL, mmCustomFieldDialog::OnCancel)
     EVT_CLOSE(mmCustomFieldDialog::OnQuit)
+    EVT_SIZE(mmCustomFieldDialog::OnResize)
 wxEND_EVENT_TABLE()
 
 mmCustomFieldDialog::mmCustomFieldDialog()
@@ -78,11 +79,17 @@ bool mmCustomFieldDialog::Create(wxWindow* parent, wxWindowID id
     SetEvtHandlerEnabled(false);
     SetEvtHandlerEnabled(true);
 
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-    this->SetInitialSize();
-    SetIcon(mmex::getProgramIcon());
+    wxSize dlgSize = Model_Infotable::instance().CustomDialogSize(m_RefType);
+    if (dlgSize.GetWidth() > 0)
+        this->SetSize(dlgSize);
+    else
+    {
+        GetSizer()->Fit(this);
+        GetSizer()->SetSizeHints(this);
+        this->SetInitialSize();
+    }
 
+    SetIcon(mmex::getProgramIcon());
     return TRUE;
 }
 
@@ -227,6 +234,12 @@ void mmCustomFieldDialog::OnCancel(wxCommandEvent& /*event*/)
 void mmCustomFieldDialog::OnQuit(wxCloseEvent& /*event*/)
 {
     mmCustomFieldDialog::OnSave(false);
+}
+
+void mmCustomFieldDialog::OnResize(wxSizeEvent& event)
+{
+    Model_Infotable::instance().SetCustomDialogSize(m_RefType, event.GetSize());
+    event.Skip();
 }
 
 void mmCustomFieldDialog::OnMove(const wxPoint & RefPos, const wxSize & RefSize)

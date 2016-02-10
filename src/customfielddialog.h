@@ -47,6 +47,7 @@ private:
     void OnAddEdit(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
+    void OnResize(wxSizeEvent& event);
 
     wxString m_RefType;
     int m_RefId;

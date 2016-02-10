@@ -15,15 +15,15 @@
  */
 //=============================================================================
 
-#ifndef DB_TABLE_USAGE_V1_H
-#define DB_TABLE_USAGE_V1_H
+#ifndef DB_TABLE_ASSETCLASS_STOCK_V1_H
+#define DB_TABLE_ASSETCLASS_STOCK_V1_H
 
 #include "DB_Table.h"
 
-struct DB_Table_USAGE_V1 : public DB_Table
+struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_USAGE_V1 Self;
+    typedef DB_Table_ASSETCLASS_STOCK_V1 Self;
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
@@ -49,7 +49,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_USAGE_V1() 
+    ~DB_Table_ASSETCLASS_STOCK_V1() 
     {
         delete this->fake_;
         destroy_cache();
@@ -70,11 +70,11 @@ struct DB_Table_USAGE_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE USAGE_V1 (USAGEID INTEGER NOT NULL PRIMARY KEY, USAGEDATE TEXT NOT NULL , JSONCONTENT TEXT NOT NULL)");
+                db->ExecuteUpdate("CREATE TABLE ASSETCLASS_STOCK_V1 (    'ID' INTEGER primary key,    'ASSETCLASSID' INTEGER NOT NULL,    'STOCKSYMBOL' TEXT UNIQUE)");
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("USAGE_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("ASSETCLASS_STOCK_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
             this->ensure_data(db);
@@ -89,11 +89,10 @@ struct DB_Table_USAGE_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_USAGE_DATE ON USAGE_V1 (USAGEDATE)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("USAGE_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("ASSETCLASS_STOCK_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -107,33 +106,33 @@ struct DB_Table_USAGE_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception & e)
         {
-            wxLogError("USAGE_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("ASSETCLASS_STOCK_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
         return true;
     }
-    struct USAGEID : public DB_Column<int>
+    struct ID : public DB_Column<int>
     { 
-        static wxString name() { return "USAGEID"; } 
-        explicit USAGEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "ID"; } 
+        explicit ID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct USAGEDATE : public DB_Column<wxString>
+    struct ASSETCLASSID : public DB_Column<int>
     { 
-        static wxString name() { return "USAGEDATE"; } 
-        explicit USAGEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "ASSETCLASSID"; } 
+        explicit ASSETCLASSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct JSONCONTENT : public DB_Column<wxString>
+    struct STOCKSYMBOL : public DB_Column<wxString>
     { 
-        static wxString name() { return "JSONCONTENT"; } 
-        explicit JSONCONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "STOCKSYMBOL"; } 
+        explicit STOCKSYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    typedef USAGEID PRIMARY;
+    typedef ID PRIMARY;
     enum COLUMN
     {
-        COL_USAGEID = 0
-        , COL_USAGEDATE = 1
-        , COL_JSONCONTENT = 2
+        COL_ID = 0
+        , COL_ASSETCLASSID = 1
+        , COL_STOCKSYMBOL = 2
     };
 
     /** Returns the column name as a string*/
@@ -141,9 +140,9 @@ struct DB_Table_USAGE_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_USAGEID: return "USAGEID";
-            case COL_USAGEDATE: return "USAGEDATE";
-            case COL_JSONCONTENT: return "JSONCONTENT";
+            case COL_ID: return "ID";
+            case COL_ASSETCLASSID: return "ASSETCLASSID";
+            case COL_STOCKSYMBOL: return "STOCKSYMBOL";
             default: break;
         }
         
@@ -153,9 +152,9 @@ struct DB_Table_USAGE_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("USAGEID" == name) return COL_USAGEID;
-        else if ("USAGEDATE" == name) return COL_USAGEDATE;
-        else if ("JSONCONTENT" == name) return COL_JSONCONTENT;
+        if ("ID" == name) return COL_ID;
+        else if ("ASSETCLASSID" == name) return COL_ASSETCLASSID;
+        else if ("STOCKSYMBOL" == name) return COL_STOCKSYMBOL;
 
         return COLUMN(-1);
     }
@@ -163,15 +162,15 @@ struct DB_Table_USAGE_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_USAGE_V1;
+        friend struct DB_Table_ASSETCLASS_STOCK_V1;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int USAGEID;//  primary key
-        wxString USAGEDATE;
-        wxString JSONCONTENT;
-        int id() const { return USAGEID; }
-        void id(int id) { USAGEID = id; }
+        int ID;//  primary key
+        int ASSETCLASSID;
+        wxString STOCKSYMBOL;
+        int id() const { return ID; }
+        void id(int id) { ID = id; }
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
@@ -185,25 +184,26 @@ struct DB_Table_USAGE_V1 : public DB_Table
         {
             table_ = table;
         
-            USAGEID = -1;
+            ID = -1;
+            ASSETCLASSID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            USAGEID = q.GetInt(0); // USAGEID
-            USAGEDATE = q.GetString(1); // USAGEDATE
-            JSONCONTENT = q.GetString(2); // JSONCONTENT
+            ID = q.GetInt(0); // ID
+            ASSETCLASSID = q.GetInt(1); // ASSETCLASSID
+            STOCKSYMBOL = q.GetString(2); // STOCKSYMBOL
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            USAGEID = other.USAGEID;
-            USAGEDATE = other.USAGEDATE;
-            JSONCONTENT = other.JSONCONTENT;
+            ID = other.ID;
+            ASSETCLASSID = other.ASSETCLASSID;
+            STOCKSYMBOL = other.STOCKSYMBOL;
             return *this;
         }
 
@@ -212,17 +212,17 @@ struct DB_Table_USAGE_V1 : public DB_Table
         {
             return false;
         }
-        bool match(const Self::USAGEID &in) const
+        bool match(const Self::ID &in) const
         {
-            return this->USAGEID == in.v_;
+            return this->ID == in.v_;
         }
-        bool match(const Self::USAGEDATE &in) const
+        bool match(const Self::ASSETCLASSID &in) const
         {
-            return this->USAGEDATE.CmpNoCase(in.v_) == 0;
+            return this->ASSETCLASSID == in.v_;
         }
-        bool match(const Self::JSONCONTENT &in) const
+        bool match(const Self::STOCKSYMBOL &in) const
         {
-            return this->JSONCONTENT.CmpNoCase(in.v_) == 0;
+            return this->STOCKSYMBOL.CmpNoCase(in.v_) == 0;
         }
         wxString to_json() const
         {
@@ -235,24 +235,24 @@ struct DB_Table_USAGE_V1 : public DB_Table
         
         int to_json(json::Object& o) const
         {
-            o[L"USAGEID"] = json::Number(this->USAGEID);
-            o[L"USAGEDATE"] = json::String(this->USAGEDATE.ToStdWstring());
-            o[L"JSONCONTENT"] = json::String(this->JSONCONTENT.ToStdWstring());
+            o[L"ID"] = json::Number(this->ID);
+            o[L"ASSETCLASSID"] = json::Number(this->ASSETCLASSID);
+            o[L"STOCKSYMBOL"] = json::String(this->STOCKSYMBOL.ToStdWstring());
             return 0;
         }
         row_t to_row_t() const
         {
             row_t row;
-            row(L"USAGEID") = USAGEID;
-            row(L"USAGEDATE") = USAGEDATE;
-            row(L"JSONCONTENT") = JSONCONTENT;
+            row(L"ID") = ID;
+            row(L"ASSETCLASSID") = ASSETCLASSID;
+            row(L"STOCKSYMBOL") = STOCKSYMBOL;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t(L"USAGEID") = USAGEID;
-            t(L"USAGEDATE") = USAGEDATE;
-            t(L"JSONCONTENT") = JSONCONTENT;
+            t(L"ID") = ID;
+            t(L"ASSETCLASSID") = ASSETCLASSID;
+            t(L"STOCKSYMBOL") = STOCKSYMBOL;
         }
 
         /** Save the record instance in memory to the database. */
@@ -261,7 +261,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save USAGE_V1");
+                wxLogError("can not save ASSETCLASS_STOCK_V1");
                 return false;
             }
 
@@ -273,7 +273,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove USAGE_V1");
+                wxLogError("can not remove ASSETCLASS_STOCK_V1");
                 return false;
             }
             
@@ -296,11 +296,11 @@ struct DB_Table_USAGE_V1 : public DB_Table
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "USAGE_V1"; }
+    wxString name() const { return "ASSETCLASS_STOCK_V1"; }
 
-    DB_Table_USAGE_V1() : fake_(new Data())
+    DB_Table_ASSETCLASS_STOCK_V1() : fake_(new Data())
     {
-        query_ = "SELECT * FROM USAGE_V1 ";
+        query_ = "SELECT * FROM ASSETCLASS_STOCK_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -330,21 +330,21 @@ struct DB_Table_USAGE_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO USAGE_V1(USAGEDATE, JSONCONTENT) VALUES(?, ?)";
+            sql = "INSERT INTO ASSETCLASS_STOCK_V1(ASSETCLASSID, STOCKSYMBOL) VALUES(?, ?)";
         }
         else
         {
-            sql = "UPDATE USAGE_V1 SET USAGEDATE = ?, JSONCONTENT = ? WHERE USAGEID = ?";
+            sql = "UPDATE ASSETCLASS_STOCK_V1 SET ASSETCLASSID = ?, STOCKSYMBOL = ? WHERE ID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->USAGEDATE);
-            stmt.Bind(2, entity->JSONCONTENT);
+            stmt.Bind(1, entity->ASSETCLASSID);
+            stmt.Bind(2, entity->STOCKSYMBOL);
             if (entity->id() > 0)
-                stmt.Bind(3, entity->USAGEID);
+                stmt.Bind(3, entity->ID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -361,7 +361,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("USAGE_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("ASSETCLASS_STOCK_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -379,7 +379,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM USAGE_V1 WHERE USAGEID = ?";
+            wxString sql = "DELETE FROM ASSETCLASS_STOCK_V1 WHERE ID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -404,7 +404,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("USAGE_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("ASSETCLASS_STOCK_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

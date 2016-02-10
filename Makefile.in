@@ -128,6 +128,9 @@ MMEX_OBJECTS =  \
 	mmex_categdialog.o \
 	mmex_constants.o \
 	mmex_currencydialog.o \
+	mmex_customfielddialog.o \
+	mmex_customfieldeditdialog.o \
+	mmex_customfieldlistdialog.o \
 	mmex_dbcheck.o \
 	mmex_dbwrapper.o \
 	mmex_filtertransdialog.o \
@@ -203,6 +206,8 @@ MMEX_OBJECTS =  \
 	mmex_Model_Checking.o \
 	mmex_Model_Currency.o \
 	mmex_Model_CurrencyHistory.o \
+	mmex_Model_CustomField.o \
+	mmex_Model_CustomFieldData.o \
 	mmex_Model_Infotable.o \
 	mmex_Model_Payee.o \
 	mmex_Model_Report.o \
@@ -506,6 +511,15 @@ mmex_constants.o: $(srcdir)/src/constants.cpp
 mmex_currencydialog.o: $(srcdir)/src/currencydialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/currencydialog.cpp
 
+mmex_customfielddialog.o: $(srcdir)/src/customfielddialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/customfielddialog.cpp
+
+mmex_customfieldeditdialog.o: $(srcdir)/src/customfieldeditdialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/customfieldeditdialog.cpp
+
+mmex_customfieldlistdialog.o: $(srcdir)/src/customfieldlistdialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/customfieldlistdialog.cpp
+
 mmex_dbcheck.o: $(srcdir)/src/dbcheck.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/dbcheck.cpp
 
@@ -677,8 +691,8 @@ mmex_summarystocks.o: $(srcdir)/src/reports/summarystocks.cpp
 mmex_transactions.o: $(srcdir)/src/reports/transactions.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/transactions.cpp
 
-mmex_platfdep.o: $(srcdir)/src/unix/platfdep.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/unix/platfdep.cpp
+mmex_platfdep.o: $(srcdir)/src/mac/platfdep.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mac/platfdep.cpp
 
 mmex_export.o: $(srcdir)/src/import_export/export.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/import_export/export.cpp
@@ -730,6 +744,12 @@ mmex_Model_Currency.o: $(srcdir)/src/model/Model_Currency.cpp
 
 mmex_Model_CurrencyHistory.o: $(srcdir)/src/model/Model_CurrencyHistory.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_CurrencyHistory.cpp
+
+mmex_Model_CustomField.o: $(srcdir)/src/model/Model_CustomField.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_CustomField.cpp
+
+mmex_Model_CustomFieldData.o: $(srcdir)/src/model/Model_CustomFieldData.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_CustomFieldData.cpp
 
 mmex_Model_Infotable.o: $(srcdir)/src/model/Model_Infotable.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Infotable.cpp

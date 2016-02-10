@@ -25,6 +25,7 @@ Copyright (C) 2016 Gabriele-V
 #include "util.h"
 
 #include "model/Model_CustomField.h"
+#include "model/Model_CustomFieldData.h"
 #include "model/Model_Infotable.h"
 
 #include <wx/mimetype.h>
@@ -37,7 +38,7 @@ wxBEGIN_EVENT_TABLE( mmCustomFieldListDialog, wxDialog )
     EVT_BUTTON(wxID_APPLY, mmCustomFieldListDialog::OnMagicButton)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmCustomFieldListDialog::OnListItemSelected)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmCustomFieldListDialog::OnItemRightClick)
-    EVT_MENU_RANGE(MENU_NEW_FIELD, MENU_DELETE_FIELD, mmCustomFieldListDialog::OnMenuSelected)
+    EVT_MENU_RANGE(MENU_NEW_FIELD, MENU_UPDATE_FIELD, mmCustomFieldListDialog::OnMenuSelected)
     EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmCustomFieldListDialog::OnListItemActivated)
 wxEND_EVENT_TABLE()
 
@@ -189,6 +190,54 @@ void mmCustomFieldListDialog::DeleteField()
     }
 }
 
+void mmCustomFieldListDialog::UpdateField()
+{
+    Model_CustomField::Data *field = Model_CustomField::instance().get(m_field_id);
+    if (!field)
+        return;
+
+    int UpdateResponse = wxMessageBox(
+        _("Do you really want to massive update field content?\nPlease consider that there isn't any validation!")
+        , _("Confirm Custom Field Content Update")
+        , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+    if (UpdateResponse != wxYES)
+        return;
+
+    const wxString txtSearch = wxGetTextFromUser(_("Find what"), _("Update Custom Field Content"));
+    if (txtSearch == "")
+    {
+        int Response = wxMessageBox(
+            _("Do you want to update blank content?\nPress no if you want to abort replace procedure!")
+            , _("Update Custom Field Content")
+            , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+        if (Response != wxYES)
+            return;
+    }
+
+    const wxString txtReplace = wxGetTextFromUser(_("Replace with"), _("Update Custom Field Content"));
+    if (txtReplace == "")
+    {
+        int Response = wxMessageBox(
+            _("Do you want to update to blank?\nPress no if you want to abort replace procedure!")
+            , _("Update Custom Field Content")
+            , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+        if (Response != wxYES)
+            return;
+    }
+
+    auto data = Model_CustomFieldData::instance().find(Model_CustomFieldData::FIELDID(m_field_id),
+        Model_CustomFieldData::CONTENT(txtSearch));
+    for (auto &d : data)
+    {
+        d.CONTENT = txtReplace;
+    }
+    Model_CustomFieldData::instance().save(data);
+
+    wxMessageBox(wxString::Format(_("%i occurrencies founded and replaced!"), (int)data.size())
+        , _("Update Custom Field Content"), wxOK | wxICON_INFORMATION);
+    m_refresh = true;
+}
+
 void mmCustomFieldListDialog::OnMenuSelected(wxCommandEvent& event)
 {
     switch(event.GetId())
@@ -196,6 +245,7 @@ void mmCustomFieldListDialog::OnMenuSelected(wxCommandEvent& event)
         case MENU_NEW_FIELD: AddField(); break;
         case MENU_EDIT_FIELD: EditField(); break;
         case MENU_DELETE_FIELD: DeleteField(); break;
+        case MENU_UPDATE_FIELD: UpdateField(); break;
         default: break;
     }
 }
@@ -219,10 +269,12 @@ void mmCustomFieldListDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->AppendSeparator();
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_EDIT_FIELD, _("&Edit ")));
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_FIELD, _("&Remove ")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_UPDATE_FIELD, _("&Massive content update ")));
     if (!field)
     {
         mainMenu->Enable(MENU_EDIT_FIELD, false);
         mainMenu->Enable(MENU_DELETE_FIELD, false);
+        mainMenu->Enable(MENU_UPDATE_FIELD, false);
     }
 
     PopupMenu(mainMenu);

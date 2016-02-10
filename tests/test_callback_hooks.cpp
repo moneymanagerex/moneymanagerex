@@ -90,7 +90,7 @@ void Test_Callback_Hooks::test_Init_Base_Currency()
     CPPUNIT_ASSERT(precision == 2);
 
     std::cout << "Set Base Currency: ";
-    currency.SetBaseCurrency(au_record);
+    Model_Infotable::instance().SetBaseCurrency(au_record->CURRENCYID);
 }
 
 // Initialise some payees
