@@ -47,9 +47,6 @@ public:
     */
     static Model_Currency& instance();
 
-private:
-    static bool init_currencies_;
-
 public:
     wxArrayString all_currency_names();
     wxArrayString all_currency_symbols();
@@ -81,19 +78,5 @@ public:
     static bool fromString(wxString s, double& val, const Data* currency = GetBaseCurrency());
     static int precision(const Data* r);
     static int precision(const Data& r);
-
-    static const std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> > all_currencies_template();
-    enum {
-        SYMBOL,
-        NAME,
-        PREFIX,
-        SUFFIX,
-        CURR_NAME,
-        CENT_NAME,
-        PRECISION,
-        CONV_RATE,
-        GROUP_SEPARATOR,
-        DECIMAL_SEPARATOR,
-    };
 };
 #endif // 
