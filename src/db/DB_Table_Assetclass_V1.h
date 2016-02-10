@@ -15,15 +15,15 @@
  */
 //=============================================================================
 
-#ifndef DB_TABLE_BUDGETYEAR_V1_H
-#define DB_TABLE_BUDGETYEAR_V1_H
+#ifndef DB_TABLE_ASSETCLASS_V1_H
+#define DB_TABLE_ASSETCLASS_V1_H
 
 #include "DB_Table.h"
 
-struct DB_Table_BUDGETYEAR_V1 : public DB_Table
+struct DB_Table_ASSETCLASS_V1 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_BUDGETYEAR_V1 Self;
+    typedef DB_Table_ASSETCLASS_V1 Self;
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
@@ -49,7 +49,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_BUDGETYEAR_V1() 
+    ~DB_Table_ASSETCLASS_V1() 
     {
         delete this->fake_;
         destroy_cache();
@@ -70,11 +70,11 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE BUDGETYEAR_V1(BUDGETYEARID integer primary key, BUDGETYEARNAME TEXT NOT NULL UNIQUE)");
+				db->ExecuteUpdate("CREATE TABLE ASSETCLASS_V1 (    'ID' INTEGER primary key,    'PARENTID' INTEGER,    'NAME' TEXT COLLATE NOCASE NOT NULL,    'ALLOCATION' REAL,    'SORTORDER' INTEGER)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
-				wxLogError("BUDGETYEAR_V1: Exception %s", e.GetMessage().c_str());
+				wxLogError("ASSETCLASS_V1: Exception %s", e.GetMessage().c_str());
 				return false;
 			}
 		}
@@ -88,32 +88,49 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETYEAR_BUDGETYEARNAME ON BUDGETYEAR_V1(BUDGETYEARNAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETYEAR_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("ASSETCLASS_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
         return true;
     }
 
-    struct BUDGETYEARID : public DB_Column<int>
+    struct ID : public DB_Column<int>
     { 
-        static wxString name() { return "BUDGETYEARID"; } 
-        explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "ID"; } 
+        explicit ID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct BUDGETYEARNAME : public DB_Column<wxString>
+    struct PARENTID : public DB_Column<int>
     { 
-        static wxString name() { return "BUDGETYEARNAME"; } 
-        explicit BUDGETYEARNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "PARENTID"; } 
+        explicit PARENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    typedef BUDGETYEARID PRIMARY;
+    struct NAME : public DB_Column<wxString>
+    { 
+        static wxString name() { return "NAME"; } 
+        explicit NAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    struct ALLOCATION : public DB_Column<double>
+    { 
+        static wxString name() { return "ALLOCATION"; } 
+        explicit ALLOCATION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    struct SORTORDER : public DB_Column<int>
+    { 
+        static wxString name() { return "SORTORDER"; } 
+        explicit SORTORDER(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    typedef ID PRIMARY;
     enum COLUMN
     {
-        COL_BUDGETYEARID = 0
-        , COL_BUDGETYEARNAME = 1
+        COL_ID = 0
+        , COL_PARENTID = 1
+        , COL_NAME = 2
+        , COL_ALLOCATION = 3
+        , COL_SORTORDER = 4
     };
 
     /** Returns the column name as a string*/
@@ -121,8 +138,11 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_BUDGETYEARID: return "BUDGETYEARID";
-            case COL_BUDGETYEARNAME: return "BUDGETYEARNAME";
+            case COL_ID: return "ID";
+            case COL_PARENTID: return "PARENTID";
+            case COL_NAME: return "NAME";
+            case COL_ALLOCATION: return "ALLOCATION";
+            case COL_SORTORDER: return "SORTORDER";
             default: break;
         }
         
@@ -132,8 +152,11 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("BUDGETYEARID" == name) return COL_BUDGETYEARID;
-        else if ("BUDGETYEARNAME" == name) return COL_BUDGETYEARNAME;
+        if ("ID" == name) return COL_ID;
+        else if ("PARENTID" == name) return COL_PARENTID;
+        else if ("NAME" == name) return COL_NAME;
+        else if ("ALLOCATION" == name) return COL_ALLOCATION;
+        else if ("SORTORDER" == name) return COL_SORTORDER;
 
         return COLUMN(-1);
     }
@@ -141,14 +164,17 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_BUDGETYEAR_V1;
+        friend struct DB_Table_ASSETCLASS_V1;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int BUDGETYEARID;//  primary key
-        wxString BUDGETYEARNAME;
-        int id() const { return BUDGETYEARID; }
-        void id(int id) { BUDGETYEARID = id; }
+        int ID;//  primary key
+        int PARENTID;
+        wxString NAME;
+        double ALLOCATION;
+        int SORTORDER;
+        int id() const { return ID; }
+        void id(int id) { ID = id; }
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
@@ -162,23 +188,32 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         {
             table_ = table;
         
-            BUDGETYEARID = -1;
+            ID = -1;
+            PARENTID = -1;
+            ALLOCATION = 0.0;
+            SORTORDER = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            BUDGETYEARID = q.GetInt(0); // BUDGETYEARID
-            BUDGETYEARNAME = q.GetString(1); // BUDGETYEARNAME
+            ID = q.GetInt(0); // ID
+            PARENTID = q.GetInt(1); // PARENTID
+            NAME = q.GetString(2); // NAME
+            ALLOCATION = q.GetDouble(3); // ALLOCATION
+            SORTORDER = q.GetInt(4); // SORTORDER
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            BUDGETYEARID = other.BUDGETYEARID;
-            BUDGETYEARNAME = other.BUDGETYEARNAME;
+            ID = other.ID;
+            PARENTID = other.PARENTID;
+            NAME = other.NAME;
+            ALLOCATION = other.ALLOCATION;
+            SORTORDER = other.SORTORDER;
             return *this;
         }
 
@@ -187,13 +222,25 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         {
             return false;
         }
-        bool match(const Self::BUDGETYEARID &in) const
+        bool match(const Self::ID &in) const
         {
-            return this->BUDGETYEARID == in.v_;
+            return this->ID == in.v_;
         }
-        bool match(const Self::BUDGETYEARNAME &in) const
+        bool match(const Self::PARENTID &in) const
         {
-            return this->BUDGETYEARNAME.CmpNoCase(in.v_) == 0;
+            return this->PARENTID == in.v_;
+        }
+        bool match(const Self::NAME &in) const
+        {
+            return this->NAME.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::ALLOCATION &in) const
+        {
+            return this->ALLOCATION == in.v_;
+        }
+        bool match(const Self::SORTORDER &in) const
+        {
+            return this->SORTORDER == in.v_;
         }
         wxString to_json() const
         {
@@ -206,21 +253,30 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         
         int to_json(json::Object& o) const
         {
-            o[L"BUDGETYEARID"] = json::Number(this->BUDGETYEARID);
-            o[L"BUDGETYEARNAME"] = json::String(this->BUDGETYEARNAME.ToStdWstring());
+            o[L"ID"] = json::Number(this->ID);
+            o[L"PARENTID"] = json::Number(this->PARENTID);
+            o[L"NAME"] = json::String(this->NAME.ToStdWstring());
+            o[L"ALLOCATION"] = json::Number(this->ALLOCATION);
+            o[L"SORTORDER"] = json::Number(this->SORTORDER);
             return 0;
         }
         row_t to_row_t() const
         {
             row_t row;
-            row(L"BUDGETYEARID") = BUDGETYEARID;
-            row(L"BUDGETYEARNAME") = BUDGETYEARNAME;
+            row(L"ID") = ID;
+            row(L"PARENTID") = PARENTID;
+            row(L"NAME") = NAME;
+            row(L"ALLOCATION") = ALLOCATION;
+            row(L"SORTORDER") = SORTORDER;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t(L"BUDGETYEARID") = BUDGETYEARID;
-            t(L"BUDGETYEARNAME") = BUDGETYEARNAME;
+            t(L"ID") = ID;
+            t(L"PARENTID") = PARENTID;
+            t(L"NAME") = NAME;
+            t(L"ALLOCATION") = ALLOCATION;
+            t(L"SORTORDER") = SORTORDER;
         }
 
         /** Save the record instance in memory to the database. */
@@ -229,7 +285,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save BUDGETYEAR_V1");
+                wxLogError("can not save ASSETCLASS_V1");
                 return false;
             }
 
@@ -241,7 +297,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove BUDGETYEAR_V1");
+                wxLogError("can not remove ASSETCLASS_V1");
                 return false;
             }
             
@@ -258,17 +314,17 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 2
+        NUM_COLUMNS = 5
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "BUDGETYEAR_V1"; }
+    wxString name() const { return "ASSETCLASS_V1"; }
 
-    DB_Table_BUDGETYEAR_V1() : fake_(new Data())
+    DB_Table_ASSETCLASS_V1() : fake_(new Data())
     {
-        query_ = "SELECT * FROM BUDGETYEAR_V1 ";
+        query_ = "SELECT * FROM ASSETCLASS_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -298,20 +354,23 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO BUDGETYEAR_V1(BUDGETYEARNAME) VALUES(?)";
+            sql = "INSERT INTO ASSETCLASS_V1(PARENTID, NAME, ALLOCATION, SORTORDER) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE BUDGETYEAR_V1 SET BUDGETYEARNAME = ? WHERE BUDGETYEARID = ?";
+            sql = "UPDATE ASSETCLASS_V1 SET PARENTID = ?, NAME = ?, ALLOCATION = ?, SORTORDER = ? WHERE ID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->BUDGETYEARNAME);
+            stmt.Bind(1, entity->PARENTID);
+            stmt.Bind(2, entity->NAME);
+            stmt.Bind(3, entity->ALLOCATION);
+            stmt.Bind(4, entity->SORTORDER);
             if (entity->id() > 0)
-                stmt.Bind(2, entity->BUDGETYEARID);
+                stmt.Bind(5, entity->ID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -328,7 +387,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETYEAR_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("ASSETCLASS_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -346,7 +405,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM BUDGETYEAR_V1 WHERE BUDGETYEARID = ?";
+            wxString sql = "DELETE FROM ASSETCLASS_V1 WHERE ID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -371,7 +430,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETYEAR_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("ASSETCLASS_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
