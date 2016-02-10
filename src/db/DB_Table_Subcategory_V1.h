@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-10 23:15:12.671015.
+ *          AUTO GENERATED at 2016-02-10 23:58:30.897553.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -104,47 +104,47 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (1, 'Telephone', 1)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (2, 'Electricity', 1)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (3, 'Gas', 1)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (4, 'Internet', 1)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (5, 'Rent', 1)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (6, 'Cable TV', 1)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (7, 'Water', 1)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (8, 'Groceries', 2)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (9, 'Dining out', 2)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (10, 'Movies', 3)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (11, 'Video Rental', 3)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (12, 'Magazines', 3)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (13, 'Maintenance', 4)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (14, 'Gas', 4)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (15, 'Parking', 4)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (16, 'Registration', 4)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (17, 'Books', 5)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (18, 'Tuition', 5)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (19, 'Others', 5)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (20, 'Clothing', 6)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (21, 'Furnishing', 6)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (22, 'Others', 6)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (23, 'Health', 7)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (24, 'Dental', 7)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (25, 'Eyecare', 7)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (26, 'Physician', 7)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (27, 'Prescriptions', 7)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (28, 'Auto', 8)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (29, 'Life', 8)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (30, 'Home', 8)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (31, 'Health', 8)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (32, 'Travel', 9)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (33, 'Lodging', 9)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (34, 'Sightseeing', 9)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (35, 'Income Tax', 10)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (36, 'House Tax', 10)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (37, 'Water Tax', 10)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (38, 'Others', 10)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (39, 'Salary', 13)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (40, 'Reimbursement/Refunds', 13)");
-            db->ExecuteUpdate("REPLACE INTO SUBCATEGORY_V1 VALUES (41, 'Investment Income', 13)");
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (1, '%s', 1)", wxTRANSLATE("Telephone")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (2, '%s', 1)", wxTRANSLATE("Electricity")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (3, '%s', 1)", wxTRANSLATE("Gas")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (4, '%s', 1)", wxTRANSLATE("Internet")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (5, '%s', 1)", wxTRANSLATE("Rent")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (6, '%s', 1)", wxTRANSLATE("Cable TV")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (7, '%s', 1)", wxTRANSLATE("Water")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (8, '%s', 2)", wxTRANSLATE("Groceries")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (9, '%s', 2)", wxTRANSLATE("Dining out")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (10, '%s', 3)", wxTRANSLATE("Movies")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (11, '%s', 3)", wxTRANSLATE("Video Rental")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (12, '%s', 3)", wxTRANSLATE("Magazines")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (13, '%s', 4)", wxTRANSLATE("Maintenance")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (14, '%s', 4)", wxTRANSLATE("Gas")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (15, '%s', 4)", wxTRANSLATE("Parking")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (16, '%s', 4)", wxTRANSLATE("Registration")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (17, '%s', 5)", wxTRANSLATE("Books")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (18, '%s', 5)", wxTRANSLATE("Tuition")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (19, '%s', 5)", wxTRANSLATE("Others")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (20, '%s', 6)", wxTRANSLATE("Clothing")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (21, '%s', 6)", wxTRANSLATE("Furnishing")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (22, '%s', 6)", wxTRANSLATE("Others")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (23, '%s', 7)", wxTRANSLATE("Health")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (24, '%s', 7)", wxTRANSLATE("Dental")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (25, '%s', 7)", wxTRANSLATE("Eyecare")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (26, '%s', 7)", wxTRANSLATE("Physician")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (27, '%s', 7)", wxTRANSLATE("Prescriptions")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (28, '%s', 8)", wxTRANSLATE("Auto")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (29, '%s', 8)", wxTRANSLATE("Life")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (30, '%s', 8)", wxTRANSLATE("Home")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (31, '%s', 8)", wxTRANSLATE("Health")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (32, '%s', 9)", wxTRANSLATE("Travel")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (33, '%s', 9)", wxTRANSLATE("Lodging")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (34, '%s', 9)", wxTRANSLATE("Sightseeing")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (35, '%s', 10)", wxTRANSLATE("Income Tax")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (36, '%s', 10)", wxTRANSLATE("House Tax")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (37, '%s', 10)", wxTRANSLATE("Water Tax")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (38, '%s', 10)", wxTRANSLATE("Others")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (39, '%s', 13)", wxTRANSLATE("Salary")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (40, '%s', 13)", wxTRANSLATE("Reimbursement/Refunds")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (41, '%s', 13)", wxTRANSLATE("Investment Income")));
         }
         catch(const wxSQLite3Exception & e)
         {

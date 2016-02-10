@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-10 23:15:12.671015.
+ *          AUTO GENERATED at 2016-02-10 23:58:30.897553.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -23,6 +23,7 @@
 #include <algorithm>
 #include <functional>
 #include <wx/wxsqlite3.h>
+#include <wx/intl.h> 
 
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
