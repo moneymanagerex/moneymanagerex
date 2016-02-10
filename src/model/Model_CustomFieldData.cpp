@@ -64,7 +64,7 @@ wxArrayString Model_CustomFieldData::allValue(const int FieldID)
     wxString PreviousValue;
 
     Model_CustomFieldData::Data_Set items = this->find(FIELDID(FieldID));
-//    std::sort(items.begin(), items.end(), SorterByCONTENT());
+    std::sort(items.begin(), items.end(), SorterByCONTENT());
 
     for (const auto &item : items)
     {

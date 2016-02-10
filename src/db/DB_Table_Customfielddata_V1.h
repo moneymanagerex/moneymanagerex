@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013 - 2016 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-01-24 11:35:26.698000.
+ *          AUTO GENERATED at 2016-02-10 23:15:12.671015.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -80,6 +80,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
 		}
 
         this->ensure_index(db);
+        this->ensure_data(db);
 
         return true;
     }
@@ -99,6 +100,19 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         return true;
     }
 
+    bool ensure_data(wxSQLite3Database* db)
+    {
+        try
+        {
+        }
+        catch(const wxSQLite3Exception & e)
+        {
+            wxLogError("CUSTOMFIELDDATA_V1: Exception %s", e.GetMessage().c_str());
+            return false;
+        }
+
+        return true;
+    }
     struct FIELDATADID : public DB_Column<int>
     { 
         static wxString name() { return "FIELDATADID"; } 
