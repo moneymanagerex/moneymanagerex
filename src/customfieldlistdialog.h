@@ -49,6 +49,7 @@ private:
         MENU_NEW_FIELD = 1,
         MENU_EDIT_FIELD,
         MENU_DELETE_FIELD,
+        MENU_UPDATE_FIELD,
     };
 
     wxDataViewListCtrl* fieldListBox_;
@@ -68,6 +69,7 @@ private:
     void AddField();
     void EditField();
     void DeleteField();
+    void UpdateField();
     void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);
 

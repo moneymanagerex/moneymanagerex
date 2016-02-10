@@ -78,6 +78,8 @@ public:
     void SetDateFormat(const wxString& date_format_mask);
     bool OpenCustomDialog(const wxString& RefType);
     void SetOpenCustomDialog(const wxString& RefType, const bool Status);
+    wxSize CustomDialogSize(const wxString& RefType);
+    void SetCustomDialogSize(const wxString& RefType, const wxSize& Size);
 };
 
 #endif // 

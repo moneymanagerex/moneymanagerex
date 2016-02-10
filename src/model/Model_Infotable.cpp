@@ -209,10 +209,23 @@ void Model_Infotable::SetDateFormat(const wxString& date_format_mask)
 //-------------------------------------------------------------------
 bool Model_Infotable::OpenCustomDialog(const wxString& RefType)
 {
-    return GetBoolInfo("CUSTOMDIALOG_" + RefType, false);
+    return GetBoolInfo("CUSTOMDIALOG_OPEN:" + RefType, false);
 }
 
 void Model_Infotable::SetOpenCustomDialog(const wxString& RefType, const bool Status)
 {
-    Set("CUSTOMDIALOG_" + RefType, Status);
+    Set("CUSTOMDIALOG_OPEN:" + RefType, Status);
+}
+
+wxSize Model_Infotable::CustomDialogSize(const wxString& RefType)
+{
+    wxString strSize = GetStringInfo("CUSTOMDIALOG_SIZE:" + RefType, "0;0");
+    return wxSize(wxAtoi(strSize.BeforeFirst(';')), wxAtoi(strSize.AfterFirst(';')));
+}
+
+void Model_Infotable::SetCustomDialogSize(const wxString& RefType, const wxSize& Size)
+{
+    wxString strSize;
+    strSize << Size.GetWidth() << ";" << Size.GetHeight();
+    Set("CUSTOMDIALOG_SIZE:" + RefType, strSize);
 }
