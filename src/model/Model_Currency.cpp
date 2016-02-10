@@ -73,18 +73,6 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
 {
     int currency_id = Model_Infotable::instance().GetBaseCurrencyId();
     Model_Currency::Data *currency = Model_Currency::instance().get(currency_id);
-    if (!currency)
-    {
-        wxASSERT(false); //Base Currency ID is invalid
-        wxLogError(_("Base Currency Not Set"));
-        if (!Model_Currency::instance().all().empty())
-            *currency = *Model_Currency::instance().all().begin();
-
-        if (!currency) {
-            wxLogFatalError("There are no any valid currencies in DB. Exit.");
-            currency = 0;
-        }
-    }
     return currency;
 }
 
