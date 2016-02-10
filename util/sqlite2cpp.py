@@ -118,7 +118,7 @@ struct DB_Table_%s : public DB_Table
         delete this->fake_;
         destroy_cache();
     }
-	 
+     
     /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()
     {
@@ -133,20 +133,20 @@ struct DB_Table_%s : public DB_Table
     bool ensure(wxSQLite3Database* db)
     {
         if (!exists(db))
-		{
-			try
-			{
-				db->ExecuteUpdate("%s");
-			}
-			catch(const wxSQLite3Exception &e) 
-			{ 
-				wxLogError("%s: Exception %%s", e.GetMessage().c_str());
-				return false;
-			}
-		}
+        {
+            try
+            {
+                db->ExecuteUpdate("%s");
+            }
+            catch(const wxSQLite3Exception &e) 
+            { 
+                wxLogError("%s: Exception %%s", e.GetMessage().c_str());
+                return false;
+            }
+            this->ensure_data(db);
+        }
 
         this->ensure_index(db);
-        this->ensure_data(db);
 
         return true;
     }

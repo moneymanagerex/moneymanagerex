@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-10 23:58:30.897553.
+ *          AUTO GENERATED at 2016-02-11 00:10:15.384128.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -54,7 +54,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         delete this->fake_;
         destroy_cache();
     }
-	 
+     
     /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()
     {
@@ -67,20 +67,20 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
     bool ensure(wxSQLite3Database* db)
     {
         if (!exists(db))
-		{
-			try
-			{
-				db->ExecuteUpdate("CREATE TABLE BILLSDEPOSITS_V1(BDID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL /* Withdrawal, Deposit, Transfer */, TRANSAMOUNT numeric NOT NULL, STATUS TEXT /* None, Reconciled, Void, Follow up, Duplicate */, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, REPEATS integer, NEXTOCCURRENCEDATE TEXT, NUMOCCURRENCES integer )");
-			}
-			catch(const wxSQLite3Exception &e) 
-			{ 
-				wxLogError("BILLSDEPOSITS_V1: Exception %s", e.GetMessage().c_str());
-				return false;
-			}
-		}
+        {
+            try
+            {
+                db->ExecuteUpdate("CREATE TABLE BILLSDEPOSITS_V1(BDID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL /* Withdrawal, Deposit, Transfer */, TRANSAMOUNT numeric NOT NULL, STATUS TEXT /* None, Reconciled, Void, Follow up, Duplicate */, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, REPEATS integer, NEXTOCCURRENCEDATE TEXT, NUMOCCURRENCES integer )");
+            }
+            catch(const wxSQLite3Exception &e) 
+            { 
+                wxLogError("BILLSDEPOSITS_V1: Exception %s", e.GetMessage().c_str());
+                return false;
+            }
+            this->ensure_data(db);
+        }
 
         this->ensure_index(db);
-        this->ensure_data(db);
 
         return true;
     }

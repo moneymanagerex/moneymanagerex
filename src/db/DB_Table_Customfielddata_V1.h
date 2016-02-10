@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-10 23:58:30.897553.
+ *          AUTO GENERATED at 2016-02-11 00:10:15.384128.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -54,7 +54,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         delete this->fake_;
         destroy_cache();
     }
-	 
+     
     /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()
     {
@@ -67,20 +67,20 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
     bool ensure(wxSQLite3Database* db)
     {
         if (!exists(db))
-		{
-			try
-			{
-				db->ExecuteUpdate("CREATE TABLE CUSTOMFIELDDATA_V1 (FIELDATADID INTEGER NOT NULL PRIMARY KEY, FIELDID INTEGER NOT NULL, REFID INTEGER NOT NULL, CONTENT TEXT, UNIQUE(FIELDID, REFID))");
-			}
-			catch(const wxSQLite3Exception &e) 
-			{ 
-				wxLogError("CUSTOMFIELDDATA_V1: Exception %s", e.GetMessage().c_str());
-				return false;
-			}
-		}
+        {
+            try
+            {
+                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELDDATA_V1 (FIELDATADID INTEGER NOT NULL PRIMARY KEY, FIELDID INTEGER NOT NULL, REFID INTEGER NOT NULL, CONTENT TEXT, UNIQUE(FIELDID, REFID))");
+            }
+            catch(const wxSQLite3Exception &e) 
+            { 
+                wxLogError("CUSTOMFIELDDATA_V1: Exception %s", e.GetMessage().c_str());
+                return false;
+            }
+            this->ensure_data(db);
+        }
 
         this->ensure_index(db);
-        this->ensure_data(db);
 
         return true;
     }
