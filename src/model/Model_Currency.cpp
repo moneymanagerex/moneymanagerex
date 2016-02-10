@@ -44,10 +44,6 @@ Model_Currency& Model_Currency::instance(wxSQLite3Database* db)
     ins.db_ = db;
     init_currencies_ = !ins.exists(db);
     ins.ensure(db);
-    if (init_currencies_)
-    {
-        ins.initialize();   // Initialises currency data in database.
-    }
     ins.destroy_cache();
     ins.preload();
     return ins;
@@ -73,29 +69,6 @@ wxArrayString Model_Currency::all_currency_symbols()
     for (const auto&i : all(COL_CURRENCY_SYMBOL))
         c.Add(i.CURRENCY_SYMBOL);
     return c;
-}
-
-void Model_Currency::initialize()
-{
-    this->Savepoint();
-    for (const auto& i : all_currencies_template())
-    {
-        Data *currency = this->create();
-
-        currency->CURRENCY_SYMBOL = std::get<SYMBOL>(i);
-        currency->CURRENCYNAME = std::get<NAME>(i);
-        currency->PFX_SYMBOL = std::get<PREFIX>(i);
-        currency->SFX_SYMBOL = std::get<SUFFIX>(i);
-        currency->UNIT_NAME = std::get<CURR_NAME>(i);
-        currency->CENT_NAME = std::get<CENT_NAME>(i);
-        currency->SCALE = std::get<PRECISION>(i);
-        currency->BASECONVRATE = std::get<CONV_RATE>(i);
-        currency->GROUP_SEPARATOR = std::get<GROUP_SEPARATOR>(i);
-        currency->DECIMAL_POINT = std::get<DECIMAL_SEPARATOR>(i);
-
-        currency->save(this->db_);
-    }
-    this->ReleaseSavepoint();
 }
 
 // Getter

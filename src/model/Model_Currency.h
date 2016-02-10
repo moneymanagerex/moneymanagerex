@@ -49,7 +49,6 @@ public:
 
 private:
     static bool init_currencies_;
-    void initialize();
 
 public:
     wxArrayString all_currency_names();
