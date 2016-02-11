@@ -76,7 +76,7 @@ private:
     void OnListItemSelected(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxDataViewEvent& event);
-	void OnListItemActivated(wxDataViewEvent& event);
+    void OnListItemActivated(wxDataViewEvent& event);
     void OnMagicButton(wxCommandEvent& event);
 
     bool debug_;

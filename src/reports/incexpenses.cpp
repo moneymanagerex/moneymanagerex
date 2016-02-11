@@ -163,8 +163,8 @@ mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly(int day, int month,
 
 mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 {
-	if(date_range_)
-		delete date_range_;
+    if(date_range_)
+        delete date_range_;
 }
 
 wxString mmReportIncomeExpensesMonthly::getHTMLText()
