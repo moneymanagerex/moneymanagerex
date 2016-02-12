@@ -340,8 +340,10 @@ bool mmQIFImportDialog::mmReadQIFFile()
             if (trx.find(AcctType) != trx.end() && trx[AcctType] == "Account")
             {
                 accName = (trx.find(TransNumber) == trx.end() ? "" : trx[TransNumber]);
-                if (m_QIFaccounts.find(accName) == m_QIFaccounts.end())
-                    m_QIFaccounts[accName] = trx;
+                const wxString curr = (trx.find(Date) != trx.end() ? trx.at(Date) : "");
+                std::map <int, wxString> a;
+                a[Date] = curr;
+                m_QIFaccounts[accName] = a;
             }
             else
             {
@@ -426,7 +428,12 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
             trx[Category] = "Transfer";
             trx[TrxType] = Model_Checking::all_type()[Model_Checking::TRANSFER];
             trx[ToAccountName] = toAccName;
-            m_QIFaccounts[toAccName] = trx;
+            if (m_QIFaccounts.find(toAccName) == m_QIFaccounts.end())
+            {
+                std::map <int, wxString> a;
+                a[Date] = "[" + Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL + "]";
+                m_QIFaccounts[toAccName] = a;
+            }
         }
 
         //Cut non standard info after /
@@ -523,7 +530,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         for (const auto& acc : m_QIFaccounts)
         {
             wxVector<wxVariant> data;
-            const std::map <int, wxString> &a = acc.second;
+            const auto &a = acc.second;
             data.push_back(wxVariant(acc.first));
             const wxString currencySymbol = a.find(Date) == a.end() ? "" : a.at(Date);
             data.push_back(wxVariant(currencySymbol));
