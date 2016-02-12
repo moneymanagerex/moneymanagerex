@@ -108,33 +108,33 @@ bool Model_Usage::send(const Data* r)
     wxString url = mmex::weblink::UsageStats;
     url += "?";
 
-	//UUID
+    //UUID
     url += wxString::Format("User_ID=%s", uuid());
 
-	//Version
-	url += "&";
+    //Version
+    url += "&";
     url += wxString::Format("Version=%s", mmex::version::string);
-	if (mmex::isPortableMode())
-		url += " Portable";
+    if (mmex::isPortableMode())
+        url += " Portable";
 
-	//Platform
-	url += "&";
+    //Platform
+    url += "&";
     url += wxString::Format("Platform=%s", wxPlatformInfo::Get().GetPortIdShortName());
 
-	//Operating System
-	url += "&";
+    //Operating System
+    url += "&";
     url += wxString::Format("OperatingSystem=%s", wxGetOsDescription());
 
-	//Language
+    //Language
     wxString Language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
     if (Language.IsEmpty())
         Language = "english";
     url += "&";
     url += wxString::Format("Language=%s", Language);
 
-	//Country
-	std::locale userLocale("");
-	wxString Country = userLocale.name();
+    //Country
+    std::locale userLocale("");
+    wxString Country = userLocale.name();
     /* Above function works on Windows only:
        for other platforms is send an empty string and country is obtained from IP Address by webservice */
     if (wxPlatformInfo::Get().GetPortIdShortName() == "msw")
@@ -143,14 +143,14 @@ bool Model_Usage::send(const Data* r)
         Country = wxEmptyString;
 
     url += "&";
-	url += wxString::Format("Country=%s", Country);
+    url += wxString::Format("Country=%s", Country);
 
-	//Resolution
-	wxSize Resolution = wxGetDisplaySize();
-	url += "&";
-	url += wxString::Format("Resolution=%ix%i", Resolution.GetX(), Resolution.GetY());
+    //Resolution
+    wxSize Resolution = wxGetDisplaySize();
+    url += "&";
+    url += wxString::Format("Resolution=%ix%i", Resolution.GetX(), Resolution.GetY());
 
-	//Start & End time
+    //Start & End time
     std::wstringstream ss;
     ss << r->JSONCONTENT.ToStdWstring();
     json::Object o;

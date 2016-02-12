@@ -424,12 +424,12 @@ void mmBDDialog::CreateControls()
     staticTimesRepeat_ = new wxStaticText(this, wxID_STATIC, _(" Payments Left "));
     itemFlexGridSizer5->Add(staticTimesRepeat_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
-	wxBoxSizer* repeatTimesBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-	itemFlexGridSizer5->Add(repeatTimesBoxSizer);
+    wxBoxSizer* repeatTimesBoxSizer = new wxBoxSizer(wxHORIZONTAL);
+    itemFlexGridSizer5->Add(repeatTimesBoxSizer);
 
     textNumRepeats_ = new wxTextCtrl(this, ID_DIALOG_BD_TEXTCTRL_NUM_TIMES, ""
         , wxDefaultPosition, wxSize(110, -1), 0, wxIntegerValidator<int>() );
-	repeatTimesBoxSizer->Add(textNumRepeats_, g_flags);
+    repeatTimesBoxSizer->Add(textNumRepeats_, g_flags);
     textNumRepeats_->SetMaxLength(12);
     setRepeatDetails();
 
@@ -808,9 +808,9 @@ void mmBDDialog::OnTypeChanged(wxCommandEvent& /*event*/)
 
 void mmBDDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-	const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
-	mmAttachmentDialog dlg(this, RefType, m_bill_data.BDID);
-	dlg.ShowModal();
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+    mmAttachmentDialog dlg(this, RefType, m_bill_data.BDID);
+    dlg.ShowModal();
 }
 
 void mmBDDialog::OnResetDatePaid(wxCommandEvent& WXUNUSED(event))

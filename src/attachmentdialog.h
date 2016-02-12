@@ -41,8 +41,8 @@ private:
 
     enum menu_items
     {
-		MENU_NEW_ATTACHMENT = 1,
-		MENU_OPEN_ATTACHMENT,
+        MENU_NEW_ATTACHMENT = 1,
+        MENU_OPEN_ATTACHMENT,
         MENU_EDIT_ATTACHMENT,
         MENU_DELETE_ATTACHMENT,
     };
@@ -55,8 +55,8 @@ private:
     wxButton* button_OK_;
     wxString m_PathSep = wxFileName::GetPathSeparator();
 
-	wxString m_RefType;
-	int m_RefId;
+    wxString m_RefType;
+    int m_RefId;
 
     mmAttachmentDialog() : m_attachment_id(-1) {}
 
@@ -65,7 +65,7 @@ private:
     void fillControls();
 
     void AddAttachment();
-	void OpenAttachment();
+    void OpenAttachment();
     void EditAttachment();
     void DeleteAttachment();
     void OnCancel(wxCommandEvent& /*event*/);
@@ -74,7 +74,7 @@ private:
     void OnListItemSelected(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxDataViewEvent& event);
-	void OnListItemActivated(wxDataViewEvent& event);
+    void OnListItemActivated(wxDataViewEvent& event);
     void OnMagicButton(wxCommandEvent& event);
 
     bool debug_;
@@ -84,14 +84,14 @@ class mmAttachmentManage
 {
 public:
     static wxString InfotablePathSetting();
-	static wxString GetAttachmentNoteSign();
-	static bool CreateReadmeFile(const wxString& FolderPath);
-	static bool CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile);
-	static bool DeleteAttachment(const wxString& FileToDelete);
-	static bool OpenAttachment(const wxString& FileToOpen);
-	static bool DeleteAllAttachments(const wxString& RefType, int RefId);
-	static bool RelocateAllAttachments(const wxString& RefType, int OldRefId, int NewRefId);
-	static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int RefId);
+    static wxString GetAttachmentNoteSign();
+    static bool CreateReadmeFile(const wxString& FolderPath);
+    static bool CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile);
+    static bool DeleteAttachment(const wxString& FileToDelete);
+    static bool OpenAttachment(const wxString& FileToOpen);
+    static bool DeleteAllAttachments(const wxString& RefType, int RefId);
+    static bool RelocateAllAttachments(const wxString& RefType, int OldRefId, int NewRefId);
+    static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int RefId);
 private:
     static wxString m_PathSep;
 };

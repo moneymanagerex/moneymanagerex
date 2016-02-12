@@ -49,7 +49,7 @@ private:
         MENU_NEW_PAYEE,
         MENU_EDIT_PAYEE,
         MENU_DELETE_PAYEE,
-		MENU_ORGANIZE_ATTACHMENTS,
+        MENU_ORGANIZE_ATTACHMENTS,
         MENU_RELOCATE_PAYEE
     };
 
@@ -73,7 +73,7 @@ private:
     void EditPayee();
     void DeletePayee();
     void DefineDefaultCategory();
-	void OnOrganizeAttachments();
+    void OnOrganizeAttachments();
     void OnPayeeRelocate();
     void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);

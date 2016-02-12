@@ -26,9 +26,9 @@ class Model_Attachment : public Model<DB_Table_ATTACHMENT_V1>
 {
 public:
     using Model<DB_Table_ATTACHMENT_V1>::get;
-	enum REFTYPE { TRANSACTION = 0, STOCK, ASSET, BANKACCOUNT, BILLSDEPOSIT, PAYEE};
+    enum REFTYPE { TRANSACTION = 0, STOCK, ASSET, BANKACCOUNT, BILLSDEPOSIT, PAYEE};
 
-	static const std::vector<std::pair<REFTYPE, wxString> > REFTYPE_CHOICES;
+    static const std::vector<std::pair<REFTYPE, wxString> > REFTYPE_CHOICES;
 
 public:
     Model_Attachment();
@@ -50,17 +50,17 @@ public:
     static Model_Attachment& instance();
 
 public:
-	/** Return a dataset with attachments linked to a specific object */
-	const Data_Set FilterAttachments(const wxString& RefType, const int RefId);
+    /** Return a dataset with attachments linked to a specific object */
+    const Data_Set FilterAttachments(const wxString& RefType, const int RefId);
 
-	/** Return the number of attachments linked to a specific object */
-	static int NrAttachments(const wxString& RefType, const int RefId);
+    /** Return the number of attachments linked to a specific object */
+    static int NrAttachments(const wxString& RefType, const int RefId);
 
-	/** Return the last attachment number linked to a specific object */
+    /** Return the last attachment number linked to a specific object */
     static int LastAttachmentNumber(const wxString& RefType, const int RefId);
 
-	/** Return the description of the choice reftype */
-	static wxString reftype_desc(const int RefTypeEnum);
+    /** Return the description of the choice reftype */
+    static wxString reftype_desc(const int RefTypeEnum);
 
     /** Return a dataset with attachments linked to a specific type*/
     std::map<int, Data_Set> get_all(REFTYPE reftype);
