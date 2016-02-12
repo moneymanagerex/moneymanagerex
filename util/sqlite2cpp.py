@@ -143,7 +143,6 @@ struct DB_Table_%s : public DB_Table
                 wxLogError("%s: Exception %%s", e.GetMessage().c_str());
                 return false;
             }
-            this->ensure_data(db);
         }
 
         this->ensure_index(db);
@@ -178,26 +177,8 @@ struct DB_Table_%s : public DB_Table
     }
 ''' % (self._table)
     
-        s += '''
-    bool ensure_data(wxSQLite3Database* db)
-    {
-        try
-        {'''
 
-        for r in self._data:
-            s += '''
-            db->ExecuteUpdate(wxString::Format("INSERT INTO %s VALUES (%s)", %s));''' % (self._table, ', '.join(["'%s'" if isinstance(i, unicode) else str(i) for i in r]), ', '.join([ 'wxTRANSLATE("' + i + '")' for i in r if isinstance(i, unicode)]))
 
-        s += '''
-        }
-        catch(const wxSQLite3Exception & e)
-        {
-            wxLogError("%s: Exception %%s", e.GetMessage().c_str());
-            return false;
-        }
-
-        return true;
-    }''' % self._table
 
         for field in self._fields:
             s += '''

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-11 00:10:15.384128.
+ *          AUTO GENERATED at 2016-02-13 00:16:48.530000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -77,7 +77,6 @@ struct DB_Table_PAYEE_V1 : public DB_Table
                 wxLogError("PAYEE_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
-            this->ensure_data(db);
         }
 
         this->ensure_index(db);
@@ -100,19 +99,6 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         return true;
     }
 
-    bool ensure_data(wxSQLite3Database* db)
-    {
-        try
-        {
-        }
-        catch(const wxSQLite3Exception & e)
-        {
-            wxLogError("PAYEE_V1: Exception %s", e.GetMessage().c_str());
-            return false;
-        }
-
-        return true;
-    }
     struct PAYEEID : public DB_Column<int>
     { 
         static wxString name() { return "PAYEEID"; } 
