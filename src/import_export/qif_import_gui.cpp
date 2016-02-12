@@ -447,6 +447,12 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
             trx[Category] = "Transfer";
             trx[TrxType] = Model_Checking::all_type()[Model_Checking::TRANSFER];
             trx[ToAccountName] = toAccName;
+            if (m_QIFaccounts.find(toAccName) == m_QIFaccounts.end())
+            {
+                std::map <int, wxString> a;
+                a[Date] = "[" + Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL + "]";
+                m_QIFaccounts[toAccName] = a;
+            }
         }
 
         //Cut non standard info after /
@@ -557,17 +563,14 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         for (const auto& acc : m_QIFaccounts)
         {
             wxVector<wxVariant> data;
-            const std::map <int, wxString> &a = acc.second;
+            const auto &a = acc.second;
             
             wxString currencySymbol = a.find(Date) == a.end() ? "" : a.at(Date);
             currencySymbol = currencySymbol.SubString(1, currencySymbol.length() - 2);            
             
-            Model_Account::Data* account;
-            if(accountNumberCheckBox_->IsChecked()){  
-              account = Model_Account::instance().getByAccNum(acc.first);
-            }else{
-              account = Model_Account::instance().get(acc.first);
-            }
+            Model_Account::Data* account = (accountNumberCheckBox_->IsChecked())
+              ? account = Model_Account::instance().getByAccNum(acc.first)
+              : account = Model_Account::instance().get(acc.first);
        
             wxString status;
             if (account) {
@@ -938,7 +941,7 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
 
     int accountID = -1;
     wxString accountName = (t.find(AccountName) != t.end() ? t[AccountName] : "");
-    if ((accountName.empty() || accountCheckBox_->IsChecked()) && !transfer)
+    if ((accountName.empty() || accountCheckBox_->IsChecked()) /*&& !transfer*/)
         accountName = m_accountNameStr;
     accountID = (m_QIFaccountsID.find(accountName) != m_QIFaccountsID.end() ? m_QIFaccountsID.at(accountName) : -1);
     if (accountID < 1)
@@ -1025,15 +1028,13 @@ int mmQIFImportDialog::getOrCreateAccounts()
 {
     m_QIFaccountsID.clear();
 
-    for (const auto &item : m_QIFaccounts)
+    for (auto &item : m_QIFaccounts)
     {
         int accountID = -1;
-        Model_Account::Data* acc;
-        if(accountNumberCheckBox_->IsChecked()){ 
-          acc = Model_Account::instance().getByAccNum(item.first);
-        }else{
-          acc = Model_Account::instance().get(item.first);
-        }   
+        Model_Account::Data* acc = (accountNumberCheckBox_->IsChecked())
+            ? acc = Model_Account::instance().getByAccNum(item.first)
+            : acc = Model_Account::instance().get(item.first);   
+
         if (!acc)
         {
             Model_Account::Data *account = Model_Account::instance().create();
@@ -1043,9 +1044,8 @@ int mmQIFImportDialog::getOrCreateAccounts()
             //the account type is found on the T (for "Type") line
             //which overlaps with the T (for "Total Amount") line in transaction records, 
             //so we find the account type string in the "Amount" field
-            wxString accountType = (item.second.find(Amount) == item.second.end() ? " " : item.second.at(Amount));
-            int iType = Model_Account::CHECKING;
-            account->ACCOUNTTYPE = Model_Account::all_type()[iType];
+
+            account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::CHECKING];
             account->ACCOUNTNAME = item.first;
             account->INITIALBAL = 0;
             account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
@@ -1054,6 +1054,7 @@ int mmQIFImportDialog::getOrCreateAccounts()
                 const wxString c = (item.second.find(Date) == item.second.end() ? "" : item.second.at(Date));
                 if (wxString::Format("[%s]", curr.CURRENCY_SYMBOL) == c) {
                     account->CURRENCYID = curr.CURRENCYID;
+                    item.second[curr.CURRENCYID] = curr.CURRENCY_SYMBOL;
                     break;
                 }
             }

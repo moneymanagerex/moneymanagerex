@@ -75,7 +75,7 @@ private:
 
     //QIF paragraphs represented like maps type = data
     std::vector <std::map <int, wxString> > vQIF_trxs_;
-    std::map<wxString, int> m_date_parsing_stat;
+    std::map<wxString, int> m_date_parsing_stat; //it counts successfully parsed dates with selected date mask
     std::map <wxString, std::map <int, wxString> > m_QIFaccounts;
     std::map <wxString, int> m_QIFaccountsID;
     std::map <wxString, int> m_QIFpayeeNames;
