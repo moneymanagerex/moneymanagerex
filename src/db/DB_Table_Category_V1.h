@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-13 00:16:48.530000.
+ *          AUTO GENERATED at 2016-02-13 12:50:39.241000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -77,6 +77,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
                 wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
+            this->ensure_data(db);
         }
 
         this->ensure_index(db);
@@ -99,6 +100,37 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         return true;
     }
 
+    bool ensure_data(wxSQLite3Database* db)
+    {
+        try
+        {
+            db->ExecuteQuery("SELECT * FROM CATEGORY_V1"); // dummy code
+        
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (1, '%s')", _("Bills")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (2, '%s')", _("Food")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (3, '%s')", _("Leisure")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (4, '%s')", _("Automobile")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (5, '%s')", _("Education")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (6, '%s')", _("Homeneeds")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (7, '%s')", _("Healthcare")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (8, '%s')", _("Insurance")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (9, '%s')", _("Vacation")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (10, '%s')", _("Taxes")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (11, '%s')", _("Miscellaneous")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (12, '%s')", _("Gifts")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (13, '%s')", _("Income")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (14, '%s')", _("Other Income")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (15, '%s')", _("Other Expenses")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (16, '%s')", _("Transfer")));
+        }
+        catch(const wxSQLite3Exception & e)
+        {
+            wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            return false;
+        }
+
+        return true;
+    }
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 

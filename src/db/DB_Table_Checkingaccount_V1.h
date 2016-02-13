@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-13 00:16:48.530000.
+ *          AUTO GENERATED at 2016-02-13 12:50:39.241000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -77,6 +77,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
                 wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
+            this->ensure_data(db);
         }
 
         this->ensure_index(db);
@@ -100,6 +101,21 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         return true;
     }
 
+    bool ensure_data(wxSQLite3Database* db)
+    {
+        try
+        {
+            db->ExecuteQuery("SELECT * FROM CHECKINGACCOUNT_V1"); // dummy code
+        
+        }
+        catch(const wxSQLite3Exception & e)
+        {
+            wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
+            return false;
+        }
+
+        return true;
+    }
     struct TRANSID : public DB_Column<int>
     { 
         static wxString name() { return "TRANSID"; } 
