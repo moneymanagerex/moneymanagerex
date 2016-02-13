@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-11 00:10:15.384128.
+ *          AUTO GENERATED at 2016-02-13 12:50:39.241000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -104,6 +104,8 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     {
         try
         {
+            db->ExecuteQuery("SELECT * FROM PAYEE_V1"); // dummy code
+        
         }
         catch(const wxSQLite3Exception & e)
         {

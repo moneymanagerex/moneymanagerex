@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-11 00:10:15.384128.
+ *          AUTO GENERATED at 2016-02-13 12:50:39.241000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -104,22 +104,24 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (1, '%s')", wxTRANSLATE("Bills")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (2, '%s')", wxTRANSLATE("Food")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (3, '%s')", wxTRANSLATE("Leisure")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (4, '%s')", wxTRANSLATE("Automobile")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (5, '%s')", wxTRANSLATE("Education")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (6, '%s')", wxTRANSLATE("Homeneeds")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (7, '%s')", wxTRANSLATE("Healthcare")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (8, '%s')", wxTRANSLATE("Insurance")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (9, '%s')", wxTRANSLATE("Vacation")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (10, '%s')", wxTRANSLATE("Taxes")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (11, '%s')", wxTRANSLATE("Miscellaneous")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (12, '%s')", wxTRANSLATE("Gifts")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (13, '%s')", wxTRANSLATE("Income")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (14, '%s')", wxTRANSLATE("Other Income")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (15, '%s')", wxTRANSLATE("Other Expenses")));
-            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (16, '%s')", wxTRANSLATE("Transfer")));
+            db->ExecuteQuery("SELECT * FROM CATEGORY_V1"); // dummy code
+        
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (1, '%s')", _("Bills")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (2, '%s')", _("Food")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (3, '%s')", _("Leisure")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (4, '%s')", _("Automobile")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (5, '%s')", _("Education")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (6, '%s')", _("Homeneeds")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (7, '%s')", _("Healthcare")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (8, '%s')", _("Insurance")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (9, '%s')", _("Vacation")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (10, '%s')", _("Taxes")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (11, '%s')", _("Miscellaneous")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (12, '%s')", _("Gifts")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (13, '%s')", _("Income")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (14, '%s')", _("Other Income")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (15, '%s')", _("Other Expenses")));
+            db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (16, '%s')", _("Transfer")));
         }
         catch(const wxSQLite3Exception & e)
         {
