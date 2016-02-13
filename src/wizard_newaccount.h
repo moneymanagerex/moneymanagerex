@@ -29,8 +29,10 @@ class mmAddAccountWizard : public wxWizard
 {
 public:
     mmAddAccountWizard(wxFrame *frame);
-    void RunIt(bool modal);
+    void RunIt();
     wxString accountName_;
+    int currencyID_;
+    int accountType_;
 
     int acctID_;
 

@@ -2154,7 +2154,7 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
 {
     mmAddAccountWizard* wizard = new mmAddAccountWizard(this);
     wizard->CenterOnParent();
-    wizard->RunIt(true);
+    wizard->RunIt();
 
     if (wizard->acctID_ != -1)
     {
