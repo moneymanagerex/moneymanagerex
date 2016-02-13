@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-11 00:10:15.384128.
+ *          AUTO GENERATED at 2016-02-13 20:35:13.516394.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -70,7 +70,7 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE ASSETCLASS_V1 (    'ID' INTEGER primary key,    'PARENTID' INTEGER,    'NAME' TEXT COLLATE NOCASE NOT NULL,    'ALLOCATION' REAL,    'SORTORDER' INTEGER)");
+                db->ExecuteUpdate("CREATE TABLE ASSETCLASS_V1 (ID INTEGER primary key, PARENTID INTEGER, NAME TEXT COLLATE NOCASE NOT NULL, ALLOCATION REAL, SORTORDER INTEGER)");
             }
             catch(const wxSQLite3Exception &e) 
             { 
