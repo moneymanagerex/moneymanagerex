@@ -360,8 +360,9 @@ bool mmQIFImportDialog::mmReadQIFFile()
             if (trx.find(AcctType) != trx.end() && trx[AcctType] == "Account")
             {
                 accName = (trx.find(TransNumber) == trx.end() ? "" : trx[TransNumber]);
-                if (m_QIFaccounts.find(accName) == m_QIFaccounts.end())
-                    m_QIFaccounts[accName] = trx;
+                std::map <int, wxString> a;
+                a[Date] = (trx.find(Date) != trx.end() ? trx.at(Date) : "");
+                m_QIFaccounts[accName] = a;
             }
             else
             {
