@@ -125,7 +125,7 @@ void mmCustomFieldListDialog::fillControls()
         wxVector<wxVariant> data;
         if (debug_) data.push_back(wxVariant(wxString::Format("%i", entry.FIELDID)));
         data.push_back(wxVariant(entry.DESCRIPTION));
-        data.push_back(wxVariant(entry.TYPE));
+        data.push_back(wxVariant(wxGetTranslation(entry.TYPE)));
         if (debug_)
         {
             wxString Properties = entry.PROPERTIES;
