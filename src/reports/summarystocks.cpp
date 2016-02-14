@@ -162,7 +162,8 @@ wxString mmReportSummaryStocks::getHTMLText()
 
     hb.endDiv();
     hb.end();
-    return hb.getHTMLText();
+    Model_Report::outputReportFile(hb.getHTMLText());
+    return "";
 }
 
 void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb) 
@@ -248,5 +249,6 @@ wxString mmReportChartStocks::getHTMLText()
     hb.endDiv();
     hb.end();
 
-    return hb.getHTMLText();
+    Model_Report::outputReportFile(hb.getHTMLText());
+    return "";
 }

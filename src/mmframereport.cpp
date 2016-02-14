@@ -103,15 +103,15 @@ public:
         }
         catch (const syntax_ex& e)
         {
-            out = e.what();
+            return e.what();
         }
         catch (...)
         {
-            // TODO
+            return _("Caught exception");
         }
 
         Model_Report::outputReportFile(out);
-        return out;
+        return "";
     }
 private:
     wxString m_group_name;
