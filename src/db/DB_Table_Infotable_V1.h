@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-13 20:35:13.516394.
+ *          AUTO GENERATED at 2016-02-14 23:50:12.285142.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -104,6 +104,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     {
         try
         {
+            db->ExecuteUpdate(wxString::Format("INSERT INTO INFOTABLE_V1 VALUES (1, '%s', '%s')", wxTRANSLATE("DATAVERSION"), "3"));
         }
         catch(const wxSQLite3Exception & e)
         {
