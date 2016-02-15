@@ -93,17 +93,7 @@ bool dbUpgrade::InitializeVersion(wxSQLite3Database* db, int version)
 
 bool dbUpgrade::CheckUpgradeDB(wxSQLite3Database * db)
 {
-    int ver = 0;
-    try
-    {
-        wxSQLite3Statement stmt = db->PrepareStatement("PRAGMA user_version");
-        wxSQLite3ResultSet rs = stmt.ExecuteQuery();
-        ver = rs.GetInt(0);
-    }
-    catch (const wxSQLite3Exception& /*e*/)
-    {
-        return true;
-    }
+    int ver = GetCurrentVersion(db);
 
     return (ver != dbLatestVersion) ? true : false;
 }
@@ -112,7 +102,7 @@ bool dbUpgrade::UpgradeDB(wxSQLite3Database * db)
 {
     int ver = GetCurrentVersion(db);
 
-    if (ver > dbLatestVersion)
+    if (ver == -1 || ver > dbLatestVersion)
     {
         wxMessageBox(_("MMEX database error!") + "\n\n"
             + wxString::Format(_("MMEX database version %i doesn't work with this MMEX version.\nPlease upgrade MMEX to newer version."), ver)
