@@ -19,11 +19,13 @@
  ********************************************************/
 
 #include "transactions.h"
+#include "attachmentdialog.h"
 #include "constants.h"
 #include "htmlbuilder.h"
 #include "util.h"
-#include "model/Model_Payee.h"
+#include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
+#include "model/Model_Payee.h"
 #include <algorithm>
 #include <vector>
 
@@ -83,6 +85,7 @@ wxString mmReportTransactions::getHTMLText()
     bool monoAcc = transDialog_->getAccountCheckBox();
     if (monoAcc)
         account = Model_Account::instance().get(transDialog_->getAccountID());
+    const wxString& AttRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 
     // Display the data for each row
     for (auto& transaction : trans_)
@@ -95,9 +98,19 @@ wxString mmReportTransactions::getHTMLText()
         hb.addTableCell(transaction.CATEGNAME);
         hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
         hb.addTableCell(transaction.TRANSACTIONNUMBER);
-        hb.addTableCell(transaction.NOTES);
-        // Get the exchange rate for the account
 
+        // Attachments
+        wxString AttachmentsLink = "";
+        if (Model_Attachment::instance().NrAttachments(AttRefType, transaction.TRANSID))
+        {
+            AttachmentsLink = wxString::Format("<a href = \"attachment:%s|%d\">%s</a>",
+                AttRefType, transaction.TRANSID, mmAttachmentManage::GetAttachmentNoteSign());
+        }
+
+        //Notes
+        hb.addTableCell(AttachmentsLink + transaction.NOTES);
+
+        // Get the exchange rate for the account
         if (!monoAcc)
         {
             account = Model_Account::instance().get(transaction.ACCOUNTID);
