@@ -51,7 +51,7 @@ public:
 
 public:
     /** Return all attachments references */
-    wxArrayString Model_Attachment::all_type();
+    wxArrayString all_type();
 
     /** Return a dataset with attachments linked to a specific object */
     const Data_Set FilterAttachments(const wxString& RefType, const int RefId);
