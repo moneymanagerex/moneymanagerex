@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-14 23:50:12.285142.
+ *          AUTO GENERATED at 2016-02-15 11:08:17.511000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -71,13 +71,13 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             try
             {
                 db->ExecuteUpdate("CREATE TABLE CURRENCYFORMATS_V1(CURRENCYID integer primary key, CURRENCYNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, PFX_SYMBOL TEXT, SFX_SYMBOL TEXT, DECIMAL_POINT TEXT, GROUP_SEPARATOR TEXT, UNIT_NAME TEXT COLLATE NOCASE, CENT_NAME TEXT COLLATE NOCASE, SCALE integer, BASECONVRATE numeric, CURRENCY_SYMBOL TEXT COLLATE NOCASE NOT NULL UNIQUE)");
+                this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
                 wxLogError("CURRENCYFORMATS_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
-            this->ensure_data(db);
         }
 
         this->ensure_index(db);
@@ -100,10 +100,8 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         return true;
     }
 
-    bool ensure_data(wxSQLite3Database* db)
+    void ensure_data(wxSQLite3Database* db)
     {
-        try
-        {
             db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (1, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("United States dollar"), wxTRANSLATE("$"), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("USD")));
             db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (2, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("European euro"), wxTRANSLATE("€"), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("EUR")));
             db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (3, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("UK Pound"), wxTRANSLATE("£"), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE("Pound"), wxTRANSLATE("Pence"), wxTRANSLATE("GBP")));
@@ -256,15 +254,8 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (150, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("Samoan tala"), wxTRANSLATE("WS$"), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("WST")));
             db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (151, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 1, 1, '%s')", wxTRANSLATE("Yemeni rial"), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("YER")));
             db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (152, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("Venezuelan Bolívar"), wxTRANSLATE("Bs."), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(","), wxTRANSLATE("bolívar"), wxTRANSLATE("céntimos"), wxTRANSLATE("VEF")));
-        }
-        catch(const wxSQLite3Exception & e)
-        {
-            wxLogError("CURRENCYFORMATS_V1: Exception %s", e.GetMessage().c_str());
-            return false;
-        }
-
-        return true;
     }
+    
     struct CURRENCYID : public DB_Column<int>
     { 
         static wxString name() { return "CURRENCYID"; } 
