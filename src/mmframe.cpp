@@ -34,6 +34,7 @@
 #include "categdialog.h"
 #include "constants.h"
 #include "dbcheck.h"
+#include "dbupgrade.h"
 #include "dbwrapper.h"
 #include "filtertransdialog.h"
 #include "general_report_manager.h"
@@ -1699,12 +1700,24 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         m_db->SetCommitHook(m_commit_callback_hook);
         m_update_callback_hook = new UpdateCallbackHook();
         m_db->SetUpdateHook(m_update_callback_hook);
+
+        //Check if DB upgrade needed
+        if (dbUpgrade::CheckUpgradeDB(m_db.get()))
+        {
+            BackupDatabase(fileName);
+            if (!dbUpgrade::UpgradeDB(m_db.get()))
+            {
+                ShutdownDatabase();
+                return false;
+            }
+        }
+
         InitializeModelTables();
 
-        // we need to check that the db is the correct version and apply any updates as necessary
+        // ** OBSOLETE **
+        // Mantained only for compatibility reason and replaced by dbupgrade.cpp
         if (Model_Infotable::instance().checkDBVersion())
         {
-            // correction for version 2 databases and update to Version 3
             if (Model_Infotable::instance().AtDatabaseVersion(2))
             {
                 for (auto bill : Model_Billsdeposits::instance().all())
@@ -1742,6 +1755,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         m_db->SetUpdateHook(m_update_callback_hook);
 
         m_password = password;
+        dbUpgrade::InitializeVersion(m_db.get());
         InitializeModelTables();
 
         SetDataBaseParameters(fileName);

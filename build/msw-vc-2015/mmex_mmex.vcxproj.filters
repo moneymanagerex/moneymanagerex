@@ -366,6 +366,9 @@
     <ClCompile Include="..\..\src\model\Model_CustomFieldData.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\dbupgrade.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -778,6 +781,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\model\Model_CustomFieldData.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dbupgrade.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dbupgrade_query.h">
+      <Filter>Header Files\db</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1000,6 +1000,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     for (const auto& entry : local_splits) 
     {
         Model_Splittransaction::Data *s = Model_Splittransaction::instance().create();
+        s->ACCOUNTID = m_trx_data.ACCOUNTID;
         s->CATEGID = entry.CATEGID;
         s->SUBCATEGID = entry.SUBCATEGID;
         s->SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;

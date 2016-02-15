@@ -269,6 +269,7 @@
     <ClCompile Include="..\..\src\customfieldeditdialog.cpp" />
     <ClCompile Include="..\..\src\customfieldlistdialog.cpp" />
     <ClCompile Include="..\..\src\dbcheck.cpp" />
+    <ClCompile Include="..\..\src\dbupgrade.cpp" />
     <ClCompile Include="..\..\src\import_export\parsers.cpp" />
     <ClCompile Include="..\..\src\mmOptionAttachmentSettings.cpp" />
     <ClCompile Include="..\..\src\mmOptionBaseSettings.cpp" />
@@ -378,6 +379,8 @@
     <ClInclude Include="..\..\src\customfieldeditdialog.h" />
     <ClInclude Include="..\..\src\customfieldlistdialog.h" />
     <ClInclude Include="..\..\src\dbcheck.h" />
+    <ClInclude Include="..\..\src\dbupgrade.h" />
+    <ClInclude Include="..\..\src\dbupgrade_query.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Assets_V1.h" />
