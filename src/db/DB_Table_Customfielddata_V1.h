@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-14 23:50:12.285142.
+ *          AUTO GENERATED at 2016-02-15 11:08:17.511000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -71,13 +71,13 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
             try
             {
                 db->ExecuteUpdate("CREATE TABLE CUSTOMFIELDDATA_V1 (FIELDATADID INTEGER NOT NULL PRIMARY KEY, FIELDID INTEGER NOT NULL, REFID INTEGER NOT NULL, CONTENT TEXT, UNIQUE(FIELDID, REFID))");
+                this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
                 wxLogError("CUSTOMFIELDDATA_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
-            this->ensure_data(db);
         }
 
         this->ensure_index(db);
@@ -100,19 +100,10 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         return true;
     }
 
-    bool ensure_data(wxSQLite3Database* db)
+    void ensure_data(wxSQLite3Database* db)
     {
-        try
-        {
-        }
-        catch(const wxSQLite3Exception & e)
-        {
-            wxLogError("CUSTOMFIELDDATA_V1: Exception %s", e.GetMessage().c_str());
-            return false;
-        }
-
-        return true;
     }
+    
     struct FIELDATADID : public DB_Column<int>
     { 
         static wxString name() { return "FIELDATADID"; } 

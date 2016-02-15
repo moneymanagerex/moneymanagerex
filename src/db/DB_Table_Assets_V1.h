@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-14 23:50:12.285142.
+ *          AUTO GENERATED at 2016-02-15 11:08:17.511000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -71,13 +71,13 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             try
             {
                 db->ExecuteUpdate("CREATE TABLE ASSETS_V1(ASSETID integer primary key, STARTDATE TEXT NOT NULL, ASSETNAME TEXT COLLATE NOCASE NOT NULL, VALUE numeric, VALUECHANGE TEXT /* None, Appreciates, Depreciates */, NOTES TEXT, VALUECHANGERATE numeric, ASSETTYPE TEXT /* Property, Automobile, Household Object, Art, Jewellery, Cash, Other */)");
+                this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
                 wxLogError("ASSETS_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
-            this->ensure_data(db);
         }
 
         this->ensure_index(db);
@@ -100,19 +100,10 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         return true;
     }
 
-    bool ensure_data(wxSQLite3Database* db)
+    void ensure_data(wxSQLite3Database* db)
     {
-        try
-        {
-        }
-        catch(const wxSQLite3Exception & e)
-        {
-            wxLogError("ASSETS_V1: Exception %s", e.GetMessage().c_str());
-            return false;
-        }
-
-        return true;
     }
+    
     struct ASSETID : public DB_Column<int>
     { 
         static wxString name() { return "ASSETID"; } 

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-14 23:50:12.285142.
+ *          AUTO GENERATED at 2016-02-15 11:08:17.511000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -71,13 +71,13 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             try
             {
                 db->ExecuteUpdate("CREATE TABLE CHECKINGACCOUNT_V1(TRANSID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL /* Withdrawal, Deposit, Transfer */, TRANSAMOUNT numeric NOT NULL, STATUS TEXT /* None, Reconciled, Void, Follow up, Duplicate */, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric)");
+                this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
                 wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
-            this->ensure_data(db);
         }
 
         this->ensure_index(db);
@@ -101,19 +101,10 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         return true;
     }
 
-    bool ensure_data(wxSQLite3Database* db)
+    void ensure_data(wxSQLite3Database* db)
     {
-        try
-        {
-        }
-        catch(const wxSQLite3Exception & e)
-        {
-            wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
-            return false;
-        }
-
-        return true;
     }
+    
     struct TRANSID : public DB_Column<int>
     { 
         static wxString name() { return "TRANSID"; } 

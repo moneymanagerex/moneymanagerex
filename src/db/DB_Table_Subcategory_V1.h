@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-14 23:50:12.285142.
+ *          AUTO GENERATED at 2016-02-15 11:08:17.511000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -71,13 +71,13 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             try
             {
                 db->ExecuteUpdate("CREATE TABLE SUBCATEGORY_V1(SUBCATEGID integer primary key, SUBCATEGNAME TEXT COLLATE NOCASE NOT NULL, CATEGID integer NOT NULL, UNIQUE(CATEGID, SUBCATEGNAME))");
+                this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
                 wxLogError("SUBCATEGORY_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
-            this->ensure_data(db);
         }
 
         this->ensure_index(db);
@@ -100,10 +100,8 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         return true;
     }
 
-    bool ensure_data(wxSQLite3Database* db)
+    void ensure_data(wxSQLite3Database* db)
     {
-        try
-        {
             db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (1, '%s', 1)", wxTRANSLATE("Telephone")));
             db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (2, '%s', 1)", wxTRANSLATE("Electricity")));
             db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (3, '%s', 1)", wxTRANSLATE("Gas")));
@@ -145,15 +143,8 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (39, '%s', 13)", wxTRANSLATE("Salary")));
             db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (40, '%s', 13)", wxTRANSLATE("Reimbursement/Refunds")));
             db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (41, '%s', 13)", wxTRANSLATE("Investment Income")));
-        }
-        catch(const wxSQLite3Exception & e)
-        {
-            wxLogError("SUBCATEGORY_V1: Exception %s", e.GetMessage().c_str());
-            return false;
-        }
-
-        return true;
     }
+    
     struct SUBCATEGID : public DB_Column<int>
     { 
         static wxString name() { return "SUBCATEGID"; } 

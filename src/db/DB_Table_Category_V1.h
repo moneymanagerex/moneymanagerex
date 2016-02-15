@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-14 23:50:12.285142.
+ *          AUTO GENERATED at 2016-02-15 11:08:17.511000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -71,13 +71,13 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
             try
             {
                 db->ExecuteUpdate("CREATE TABLE CATEGORY_V1(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE)");
+                this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
                 wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
-            this->ensure_data(db);
         }
 
         this->ensure_index(db);
@@ -100,10 +100,8 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         return true;
     }
 
-    bool ensure_data(wxSQLite3Database* db)
+    void ensure_data(wxSQLite3Database* db)
     {
-        try
-        {
             db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (1, '%s')", wxTRANSLATE("Bills")));
             db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (2, '%s')", wxTRANSLATE("Food")));
             db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (3, '%s')", wxTRANSLATE("Leisure")));
@@ -120,15 +118,8 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
             db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (14, '%s')", wxTRANSLATE("Other Income")));
             db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (15, '%s')", wxTRANSLATE("Other Expenses")));
             db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (16, '%s')", wxTRANSLATE("Transfer")));
-        }
-        catch(const wxSQLite3Exception & e)
-        {
-            wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
-            return false;
-        }
-
-        return true;
     }
+    
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
