@@ -17,16 +17,18 @@
  ********************************************************/
 
 #include "mmreportspanel.h"
-#include "platfdep.h"
-#include "mmcheckingpanel.h"
-#include "util.h"
-#include "reports/htmlbuilder.h"
+#include "attachmentdialog.h"
 #include "mmex.h"
 #include "mmframe.h"
-#include "transdialog.h"
+#include "mmcheckingpanel.h"
 #include "paths.h"
+#include "platfdep.h"
+#include "transdialog.h"
+#include "util.h"
 #include "webserver.h"
+#include "reports/htmlbuilder.h"
 #include "model/Model_Account.h"
+#include "model/Model_Attachment.h"
 #include "model/Model_Checking.h"
 #include "model/Model_Usage.h"
 
@@ -77,6 +79,17 @@ public:
                     }
                     m_reportPanel->browser_->LoadURL(getURL(mmex::getReportIndex()));
                 }
+            }
+        }
+        if (uri.StartsWith("attachment:", &sData))
+        {
+            const wxString RefType = sData.BeforeFirst('|');
+            const int RefId = wxAtoi(sData.AfterFirst('|'));
+
+            if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
+            {
+                mmAttachmentManage::OpenAttachmentFromPanelIcon(nullptr, RefType, RefId);
+                m_reportPanel->browser_->LoadURL(getURL(mmex::getReportIndex()));
             }
         }
 
@@ -222,6 +235,7 @@ void mmReportsPanel::CreateControls()
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trxid")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trx")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "attachment")));
 
     itemBoxSizer2->Add(browser_, 1, wxGROW|wxALL, 1);
 }
