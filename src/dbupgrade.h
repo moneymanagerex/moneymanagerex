@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define MM_EX_DBUPGRADE_H_
 
 #include "dbupgrade_query.h"
-#include "db\DB_Table.h"
+#include "db/DB_Table.h"
 
 class dbUpgrade
 {
