@@ -12,7 +12,7 @@ and user-friendliness - something one can use everyday.
 Platforms
 ---------
 
-[![AppVeyor](https://img.shields.io/appveyor/ci/moneymanagerex/moneymanagerex/master.svg?label=Windows)](https://ci.appveyor.com/project/wxWidgets/wxwidgets)
+[![AppVeyor](https://img.shields.io/appveyor/ci/moneymanagerex/moneymanagerex/master.svg?label=Windows)](https://ci.appveyor.com/project/moneymanagerex/moneymanagerex)
 [![Travis](https://img.shields.io/travis/moneymanagerex/moneymanagerex/master.svg?label=OSX)](http://travis-ci.org/moneymanagerex/moneymanagerex)
 
 
