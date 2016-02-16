@@ -9,7 +9,13 @@ MMEX includes all the basic features that 90% of users would want to see in a
 personal finance application. The design goals are to concentrate on simplicity
 and user-friendliness - something one can use everyday.
 
-[![Build Status](https://secure.travis-ci.org/moneymanagerex/moneymanagerex.png)](http://travis-ci.org/moneymanagerex/moneymanagerex)
+Platforms
+---------
+
+[![AppVeyor](https://img.shields.io/appveyor/ci/moneymanagerex/moneymanagerex/master.svg?label=Windows)](https://ci.appveyor.com/project/wxWidgets/wxwidgets)
+[![Travis](https://img.shields.io/travis/moneymanagerex/moneymanagerex/master.svg?label=OSX)](http://travis-ci.org/moneymanagerex/moneymanagerex)
+
+
 [![Ohloh](http://www.ohloh.net/p/moneymanagerex/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/moneymanagerex)
 [![bountysource](https://www.bountysource.com/badge/team?team_id=10686&style=bounties_received)](https://www.bountysource.com/teams/money-manager-ex)
 
@@ -22,9 +28,9 @@ and user-friendliness - something one can use everyday.
 * [html-template](https://github.com/moneymanagerex/html-template)
 
 ### Supported platforms:
-*  MS Windows: Vista, 7, 8, 8.1, 10. Unicode builds: x86, x64, ia64 versions available.
-*  Unixes: almost any Unix workstation with GTK+ 2.0 and above.
-*  Mac: OS X 10.8 or higher.
+- Windows XP, Vista, 7, 8 and 10 (32/64 bits).
+- Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x).
+- OS X (10.7 or newer) using Cocoa (32/64 bits).
 
 #### Public links:
 * [Forum](http://forum.moneymanagerex.org)
