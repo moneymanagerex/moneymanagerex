@@ -21,7 +21,7 @@
 // https://www.sqlite.org/pragma.html
 
 Model_Pragma::Model_Pragma()
-: Model<DB_Table_BUDGETSPLITTRANSACTIONS_V1>()
+: Model<DB_Table>()
 {
 }
 
