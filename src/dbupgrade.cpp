@@ -112,7 +112,7 @@ bool dbUpgrade::UpgradeDB(wxSQLite3Database * db)
 
     for (ver; ver < dbLatestVersion; ver++)
     {
-        if (!dbUpgrade::UpgradeToVersion(db, ver + 1))
+        if (!UpgradeToVersion(db, ver + 1))
             return false;
     }
 

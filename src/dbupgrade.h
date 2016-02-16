@@ -26,7 +26,7 @@ class dbUpgrade
 {
     static int GetCurrentVersion(wxSQLite3Database * db);
     static std::vector<wxString> SplitQueries(const wxString& statement);
-    static bool dbUpgrade::UpgradeToVersion(wxSQLite3Database * db, int version);
+    static bool UpgradeToVersion(wxSQLite3Database * db, int version);
 public:
     static bool InitializeVersion(wxSQLite3Database* db, int version = dbLatestVersion);
     static bool CheckUpgradeDB(wxSQLite3Database* db);
