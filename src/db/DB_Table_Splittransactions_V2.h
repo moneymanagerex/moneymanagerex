@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-18 11:29:28.954862.
+ *          AUTO GENERATED at 2016-02-18 14:58:50.923686.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -369,7 +369,7 @@ struct DB_Table_SPLITTRANSACTIONS_V2 : public DB_Table
 
     DB_Table_SPLITTRANSACTIONS_V2() : fake_(new Data())
     {
-        query_ = "SELECT * FROM SPLITTRANSACTIONS_V2 ";
+        query_ = "SELECT SPLITTRANSID, ACCOUNTID, TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT, NOTES FROM SPLITTRANSACTIONS_V2 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/

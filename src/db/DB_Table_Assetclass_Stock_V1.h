@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-18 11:29:28.954862.
+ *          AUTO GENERATED at 2016-02-18 14:58:50.923686.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -291,7 +291,7 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
 
     DB_Table_ASSETCLASS_STOCK_V1() : fake_(new Data())
     {
-        query_ = "SELECT * FROM ASSETCLASS_STOCK_V1 ";
+        query_ = "SELECT ID, ASSETCLASSID, STOCKSYMBOL FROM ASSETCLASS_STOCK_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
