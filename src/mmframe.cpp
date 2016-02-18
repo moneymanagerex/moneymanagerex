@@ -364,7 +364,7 @@ void mmGUIFrame::cleanup()
     ShutdownDatabase();
     /// Update the database according to user requirements
     if (mmOptions::instance().databaseUpdated_ && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
-        BackupDatabase(m_filename, true);
+        dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::CLOSE, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
 }
 
 void mmGUIFrame::ShutdownDatabase()
@@ -1658,11 +1658,11 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
     if (m_db)
     {
         ShutdownDatabase();
-        /// Update the database according to user requirements
+        /// Backup the database according to user requirements
         if (mmOptions::instance().databaseUpdated_ &&
             Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
         {
-            BackupDatabase(m_filename, true);
+            dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::CLOSE, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
             mmOptions::instance().databaseUpdated_ = false;
         }
     }
@@ -1689,7 +1689,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         /* Do a backup before opening */
         if (Model_Setting::instance().GetBoolSetting("BACKUPDB", false))
         {
-            BackupDatabase(fileName);
+            dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::START, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
         }
 
         m_db = mmDBWrapper::Open(fileName, password);
@@ -1704,8 +1704,8 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         //Check if DB upgrade needed
         if (dbUpgrade::CheckUpgradeDB(m_db.get()))
         {
-            BackupDatabase(fileName);
-            if (!dbUpgrade::UpgradeDB(m_db.get()))
+            //DB backup is handled inside UpgradeDB
+            if (!dbUpgrade::UpgradeDB(m_db.get(), fileName))
             {
                 ShutdownDatabase();
                 return false;
@@ -2773,49 +2773,6 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
         resetNavTreeControl();
         cleanupHomePanel();
         showBeginAppDialog(true);
-    }
-}
-//----------------------------------------------------------------------------
-
-void mmGUIFrame::BackupDatabase(const wxString& filename, bool updateRequired)
-{
-    wxFileName fn(filename);
-    if (!fn.IsOk()) return;
-
-    wxString backupType = "_start_";
-    if (updateRequired) backupType = "_update_";
-
-    wxString backupName = filename + backupType + wxDateTime().Today().FormatISODate() + "." + fn.GetExt();
-    if (updateRequired) // Create or update the backup file.
-    {
-        wxCopyFile(filename, backupName, true);
-    }
-    else                // create the backup if it does not exist
-    {
-        wxFileName fnBak(backupName);
-        if (!fnBak.FileExists())
-        {
-            wxCopyFile(filename, backupName, true);
-        }
-    }
-
-    // Get the list of created backup files for the given filename.
-    wxArrayString backupFileArray;
-    wxString fileSearch = filename + backupType + "*." + fn.GetExt();
-    wxString backupFile = wxFindFirstFile(fileSearch);
-    while (!backupFile.empty())
-    {
-        backupFileArray.Add(backupFile);
-        backupFile = wxFindNextFile();
-    }
-
-    int max = Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4);
-    if (backupFileArray.Count() > (size_t) max)
-    {
-        backupFileArray.Sort(true);
-        // ensure file is not read only before deleting file.
-        wxFileName fnLastFile(backupFileArray.Last());
-        if (fnLastFile.IsFileWritable()) wxRemoveFile(backupFileArray.Last());
     }
 }
 //----------------------------------------------------------------------------

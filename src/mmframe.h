@@ -248,8 +248,6 @@ private:
 
     /** Sets the database to the new database selected by the user */
     void SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false);
-    /// Make a dated copy of the database. Keep only the last 4 copies.
-    void BackupDatabase(const wxString& filename, bool updateRequired = false);
     
     // Required to prevent memory leaks.
     CommitCallbackHook* m_commit_callback_hook;

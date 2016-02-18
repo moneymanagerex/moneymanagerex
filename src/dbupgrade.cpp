@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 #include "dbupgrade.h"
 
+#include <wx/filename.h>
 #include <wx/msgdlg.h>
 #include <wx/tokenzr.h>
 
@@ -98,7 +99,7 @@ bool dbUpgrade::CheckUpgradeDB(wxSQLite3Database * db)
     return (ver != dbLatestVersion) ? true : false;
 }
 
-bool dbUpgrade::UpgradeDB(wxSQLite3Database * db)
+bool dbUpgrade::UpgradeDB(wxSQLite3Database * db, const wxString& DbFileName)
 {
     int ver = GetCurrentVersion(db);
 
@@ -112,6 +113,7 @@ bool dbUpgrade::UpgradeDB(wxSQLite3Database * db)
 
     for (ver; ver < dbLatestVersion; ver++)
     {
+        BackupDB(DbFileName, dbUpgrade::BACKUPTYPE::VERSION_UPGRADE, 999, ver);
         if (!UpgradeToVersion(db, ver + 1))
             return false;
     }
@@ -120,4 +122,74 @@ bool dbUpgrade::UpgradeDB(wxSQLite3Database * db)
         + _("We suggest a database optimization under Tools -> Database -> Optimize"), _("MMEX database upgrade"), wxOK | wxICON_INFORMATION);
 
     return true;
+}
+
+void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKeep, int UpgradeVersion)
+{
+    wxFileName fn(FileName);
+    if (!fn.IsOk()) return;
+
+    wxString BackupName = "";
+
+    // define string in backup filename
+    switch (BackupType)
+    {
+    case BACKUPTYPE::START :
+        BackupName = "_start_";
+        break;
+    case BACKUPTYPE::CLOSE :
+        BackupName = "_update_";
+        break;
+    case BACKUPTYPE::VERSION_UPGRADE :
+        BackupName = wxString::Format("_upgrade_v%i_", UpgradeVersion);
+        break;
+    default:
+        break;
+    }
+
+    wxString backupFileName = FileName + BackupName + wxDateTime().Today().FormatISODate() + "." + fn.GetExt();
+    wxFileName fnBak(backupFileName);
+
+    // process backup
+    switch (BackupType)
+    {
+    case BACKUPTYPE::START:
+        if (!fnBak.FileExists())
+        {
+            wxCopyFile(FileName, backupFileName, true);
+        }
+        break;
+    case BACKUPTYPE::CLOSE:
+        wxCopyFile(FileName, backupFileName, true);
+        break;
+    case BACKUPTYPE::VERSION_UPGRADE:
+        if (!fnBak.FileExists())
+        {
+            wxCopyFile(FileName, backupFileName, true);
+        }
+        break;
+    default:
+        break;
+    }
+
+    // Cleanup old backups
+    if (BackupType != BACKUPTYPE::VERSION_UPGRADE)
+    {
+        wxArrayString backupFileArray;
+        wxString fileSearch = FileName + BackupName + "*." + fn.GetExt();
+        wxString backupFile = wxFindFirstFile(fileSearch);
+        while (!backupFile.empty())
+        {
+            backupFileArray.Add(backupFile);
+            backupFile = wxFindNextFile();
+        }
+
+        if (backupFileArray.Count() > (size_t)FilesToKeep)
+        {
+            backupFileArray.Sort(true);
+            // ensure file is not read only before deleting file.
+            wxFileName fnLastFile(backupFileArray.Last());
+            if (fnLastFile.IsFileWritable()) wxRemoveFile(backupFileArray.Last());
+        }
+    }
 }
