@@ -41,8 +41,6 @@ Model_Budget& Model_Budget::instance(wxSQLite3Database* db)
     ins.destroy_cache();
     ins.ensure(db);
     
-    v1.drop(db); // drop the v1 table after migration
-
     return ins;
 }
 
