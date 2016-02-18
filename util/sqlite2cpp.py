@@ -718,6 +718,11 @@ struct DB_Table
     {
        return db->TableExists(this->name()); 
     }
+
+    void drop(wxSQLite3Database* db) const
+    {
+        db->ExecuteUpdate("DROP TABLE IF EXISTS " + this->name());
+    }
 };
 
 template<typename Arg1>

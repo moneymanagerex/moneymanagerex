@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-15 20:32:31.113355.
+ *          AUTO GENERATED at 2016-02-18 11:29:28.954862.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -55,6 +55,11 @@ struct DB_Table
     bool exists(wxSQLite3Database* db) const
     {
        return db->TableExists(this->name()); 
+    }
+
+    void drop(wxSQLite3Database* db) const
+    {
+        db->ExecuteUpdate("DROP TABLE IF EXISTS " + this->name());
     }
 };
 

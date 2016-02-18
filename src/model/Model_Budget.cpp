@@ -19,9 +19,10 @@
 #include "Model_Budget.h"
 #include <wx/intl.h>
 #include "model/Model_Category.h"
+#include "db/DB_Table_Budgettable_V1.h"
 
 Model_Budget::Model_Budget()
-: Model<DB_Table_BUDGETTABLE_V1>()
+: Model<DB_Table_BUDGETTABLE_V2>()
 {
 }
 
@@ -39,6 +40,26 @@ Model_Budget& Model_Budget::instance(wxSQLite3Database* db)
     ins.db_ = db;
     ins.destroy_cache();
     ins.ensure(db);
+
+    DB_Table_BUDGETTABLE_V1 v1;
+    if (v1.exists(db))
+    {
+        for (const auto & o : v1.all(db))
+        {
+            auto n = instance().create();
+            // n->BUDGETENTRYID = o.BUDGETENTRYID;
+            n->BUDGETYEARID = o.BUDGETYEARID;
+            n->CATEGID      = o.CATEGID;
+            n->SUBCATEGID   = o.SUBCATEGID;
+            n->PERIOD       = o.PERIOD;
+            n->AMOUNT       = o.AMOUNT;
+            n->NOTES        = ""; // new added column from v1 to v2
+
+            instance().save(n);
+        }
+    }
+
+    v1.drop(db); // drop the v1 table after migration
 
     return ins;
 }
@@ -83,9 +104,9 @@ Model_Budget::PERIOD_ENUM Model_Budget::period(const Data& r)
     return period(&r);
 }
 
-DB_Table_BUDGETTABLE_V1::PERIOD Model_Budget::PERIOD(PERIOD_ENUM period, OP op)
+DB_Table_BUDGETTABLE_V2::PERIOD Model_Budget::PERIOD(PERIOD_ENUM period, OP op)
 {
-    return DB_Table_BUDGETTABLE_V1::PERIOD(all_period()[period], op);
+    return DB_Table_BUDGETTABLE_V2::PERIOD(all_period()[period], op);
 }
 
 void Model_Budget::getBudgetEntry(int budgetYearID
