@@ -7,13 +7,13 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-19 21:55:44.628000.
+ *          AUTO GENERATED at 2016-02-19 22:29:22.523000.
  *          DO NOT EDIT!
  */
 //=============================================================================
 
-#ifndef MM_EX_DBUPGRADE_QUERY_H_
-#define MM_EX_DBUPGRADE_QUERY_H_
+#ifndef DB_UPGRADE_H_
+#define DB_UPGRADE_H_
 
 #include <vector>
 #include <wx/string.h>
@@ -29,17 +29,19 @@ const std::vector<wxString> dbUpgradeQuery =
 
     // Upgrade to version 1
     R"(
-        -- Upgrade not needed, skip version to keep compatibility 1
+        -- Upgrade not needed, skip version to keep compatibility
     )",
 
     // Upgrade to version 2
     R"(
-        -- Upgrade not needed, skip version to keep compatibility 2
+        -- Upgrade not needed, skip version to keep compatibility
     )",
 
     // Upgrade to version 3
     R"(
-        -- Upgrade not needed, skip version to keep compatibility
+        -- Upgrade embedded in MMEX code before 1.3.0 version, moved here to keep compatibility with old DB
+        UPDATE BILLSDEPOSITS_V1 SET TRANSDATE = NEXTOCCURRENCEDATE WHERE (SELECT INFOVALUE FROM INFOTABLE_V1 WHERE INFONAME = 'DATAVERSION')=2;
+        UPDATE INFOTABLE_V1 SET INFOVALUE = 3 WHERE INFONAME = 'DATAVERSION';
     )",
 
     // Upgrade to version 4
@@ -63,4 +65,4 @@ const std::vector<wxString> dbUpgradeQuery =
 
 };
 
-#endif // MM_EX_DBUPGRADE_QUERY_H_
+#endif // DB_UPGRADE_H_

@@ -37,8 +37,8 @@ StrHeader = '''//===============================================================
 '''% (datetime.date.today().year, os.path.basename(__file__), str(datetime.datetime.now()))
 
 StrHeader += '''
-#ifndef MM_EX_DBUPGRADE_QUERY_H_
-#define MM_EX_DBUPGRADE_QUERY_H_
+#ifndef DB_UPGRADE_H_
+#define DB_UPGRADE_H_
 
 #include <vector>
 #include <wx/string.h>
@@ -71,7 +71,7 @@ const int dbLatestVersion = %i;
 '''% (LatestVersion)
 
 strEnd = '''
-#endif // MM_EX_DBUPGRADE_QUERY_H_
+#endif // DB_UPGRADE_H_
 '''
 
 fp = open('DB_Upgrade.h', 'w')

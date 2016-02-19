@@ -1718,20 +1718,8 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         InitializeModelTables();
 
         // ** OBSOLETE **
-        // Mantained only for compatibility reason and replaced by dbupgrade.cpp
-        if (Model_Infotable::instance().checkDBVersion())
-        {
-            if (Model_Infotable::instance().AtDatabaseVersion(2))
-            {
-                for (auto bill : Model_Billsdeposits::instance().all())
-                {
-                    bill.TRANSDATE = bill.NEXTOCCURRENCEDATE;
-                    Model_Billsdeposits::instance().save(&bill);
-                }
-                Model_Infotable::instance().SetDatabaseVersion("3");
-            }
-        }
-        else
+        // Mantained only for really old compatibility reason and replaced by dbupgrade.cpp
+        if (!Model_Infotable::instance().checkDBVersion())
         {
             wxString note = mmex::getProgramName() + _(" - No File opened ");
             this->SetTitle(note);
