@@ -11,8 +11,8 @@ FOREACH(POFile ${POFiles})
 	SET(MOFile ${CurrentFile}.mo)
 
 	ADD_CUSTOM_COMMAND(TARGET Translations
-		COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${MOFile} ${CurrentFile}.po
-		DEPENDS ${CurrentFile}.po)
+		COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${MOFile} ${POFile}
+		DEPENDS ${POFile})
 	INSTALL(FILES ${MOFile} DESTINATION ${INSTALL_MO_DIR})
 ENDFOREACH()
 
