@@ -2,7 +2,7 @@
 bin/
 CMakeFiles
 CMakeCache.txt
-cmake_install.cmake
+*.cmake
 install_manifest.txt
 
 # Compiled Object files
