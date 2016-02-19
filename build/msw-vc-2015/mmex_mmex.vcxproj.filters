@@ -785,7 +785,7 @@
     <ClInclude Include="..\..\src\dbupgrade.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\dbupgrade_query.h">
+    <ClInclude Include="..\..\src\db\DB_Upgrade.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
   </ItemGroup>

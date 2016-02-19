@@ -461,6 +461,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\Model_Pragma.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model_Report.cpp"
 				>
 			</File>
@@ -1007,6 +1011,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\db\DB_Upgrade.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model.h"
 				>
 			</File>
@@ -1068,6 +1076,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\Model_Payee.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\Model_Pragma.h"
 				>
 			</File>
 			<File
@@ -1208,10 +1220,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\dbupgrade.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\dbupgrade_query.h"
 				>
 			</File>
 			<File

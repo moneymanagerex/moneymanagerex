@@ -211,6 +211,7 @@ MMEX_OBJECTS =  \
 	mmex_Model_CustomFieldData.o \
 	mmex_Model_Infotable.o \
 	mmex_Model_Payee.o \
+	mmex_Model_Pragma.o \
 	mmex_Model_Report.o \
 	mmex_Model_Setting.o \
 	mmex_Model_Splittransaction.o \
@@ -837,6 +838,9 @@ mmex_Model_Infotable.o: ../../src/model/Model_Infotable.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Payee.o: ../../src/model/Model_Payee.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_Model_Pragma.o: ../../src/model/Model_Pragma.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Report.o: ../../src/model/Model_Report.cpp

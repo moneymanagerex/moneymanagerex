@@ -380,7 +380,6 @@
     <ClInclude Include="..\..\src\customfieldlistdialog.h" />
     <ClInclude Include="..\..\src\dbcheck.h" />
     <ClInclude Include="..\..\src\dbupgrade.h" />
-    <ClInclude Include="..\..\src\dbupgrade_query.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Assets_V1.h" />
@@ -404,6 +403,7 @@
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Usage_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Upgrade.h" />
     <ClInclude Include="..\..\src\import_export\parsers.h" />
     <ClInclude Include="..\..\src\mmOptionAttachmentSettings.h" />
     <ClInclude Include="..\..\src\mmOptionBaseSettings.h" />

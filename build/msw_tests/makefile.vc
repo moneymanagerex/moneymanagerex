@@ -255,6 +255,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_CustomFieldData.obj \
 	mmex_tests_Model_Infotable.obj \
 	mmex_tests_Model_Payee.obj \
+	mmex_tests_Model_Pragma.obj \
 	mmex_tests_Model_Report.obj \
 	mmex_tests_Model_Setting.obj \
 	mmex_tests_Model_Splittransaction.obj \
@@ -1090,6 +1091,9 @@ mmex_tests_Model_Infotable.obj: ..\..\src\model\Model_Infotable.cpp
 
 mmex_tests_Model_Payee.obj: ..\..\src\model\Model_Payee.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_Payee.cpp
+
+mmex_tests_Model_Pragma.obj: ..\..\src\model\Model_Pragma.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_Pragma.cpp
 
 mmex_tests_Model_Report.obj: ..\..\src\model\Model_Report.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_Report.cpp
