@@ -24,7 +24,7 @@ cd ../..
 MMEX_DIR=`pwd`
 
 rm -rf "$RELEASE_DIR/$PACKAGE_NAME"
-cmake -DCMAKE_INSTALL_PREFIX=/usr
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=RELEASE -DBuildTests=OFF
 
 if [ $? -gt 0 ]; then
     echo "ERROR!"
@@ -68,6 +68,28 @@ Depends: $MMEX_DEB_DEPENDS
 Installed-Size: $INSTALLED_SIZE
 Maintainer: MoneyManagerEx <$MMEX_EMAIL>
 Description: $MMEX_DESCRIPTION" > "DEBIAN/control"
+
+#Make sure permissions are coorect
+chmod 0755 usr
+chmod 0755 usr/bin
+chmod 0755 usr/share
+chmod 0755 usr/share/applications
+chmod 0755 usr/share/doc
+chmod 0755 usr/share/doc/mmex
+chmod 0755 usr/share/doc/mmex/help
+chmod 0755 usr/share/doc/mmex/help/french
+chmod 0755 usr/share/doc/mmex/help/polish
+chmod 0755 usr/share/doc/mmex/help/russian
+chmod 0755 usr/share/doc/mmex/help/spanish
+chmod 0755 usr/share/doc/mmex/help/hungarian
+chmod 0755 usr/share/doc/mmex/help/italian
+chmod 0755 usr/share/icons
+chmod 0755 usr/share/icons/hicolor
+chmod 0755 usr/share/icons/hicolor/scalable
+chmod 0755 usr/share/icons/hicolor/scalable/apps
+chmod 0755 usr/share/mmex
+chmod 0755 usr/share/mmex/po
+chmod 0755 usr/share/mmex/res
 
 #Generate md5sums
 md5sum `find . -type f | grep -v '^[.]/DEBIAN/'` > DEBIAN/md5sums

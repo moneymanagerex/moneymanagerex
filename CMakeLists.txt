@@ -8,9 +8,10 @@ OPTION(BuildTests "Whether to build automatic unit tests" OFF)
 
 MESSAGE("-- Install Prefix = ${CMAKE_INSTALL_PREFIX}")
 MESSAGE("-- Build Type = ${CMAKE_BUILD_TYPE}")
+MESSAGE("-- Building Tests = ${BuildTests}")
 
 #Set compiler parameters
-SET(CMAKE_CXX_STANDARD 14)
+SET(CMAKE_CXX_STANDARD 11)
 #MSVC
 IF (MSVC)
 	MESSAGE("-- Compiler = MSVC")
@@ -46,6 +47,7 @@ INCLUDE_DIRECTORIES(
 	"3rd"
 	"3rd/csv-parser/include"
 	"3rd/LuaGlue/include"
+    "lib/cppunit/include"
 	"lib/lua/src"
 	"lib/wxsqlite3/include"
 	"lib/wxsqlite3/sqlite3/secure/src/"
@@ -54,22 +56,26 @@ INCLUDE_DIRECTORIES(
 ## Targets ##
 ADD_LIBRARY(LUA STATIC "")
 ADD_LIBRARY(wxSQLite3 STATIC "")
-ADD_EXECUTABLE(MMEX "")
+ADD_EXECUTABLE(mmex "")
+IF (BuildTests)
+    ADD_LIBRARY(CPPUnit STATIC "")
+    ADD_EXECUTABLE(MMEXTest "")
+ENDIF ()
 
 ## Subdirectories ##
 ADD_SUBDIRECTORY(po)
 ADD_SUBDIRECTORY(lib)
 ADD_SUBDIRECTORY(src)
+IF (BuildTests)
+    ADD_SUBDIRECTORY(tests)
+ENDIF ()
 
 ## Build and Link ##
 TARGET_LINK_LIBRARIES(wxSQLite3 dl)
-SET(EXECUTABLE_NAME "mmex")
-TARGET_LINK_LIBRARIES(MMEX ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
-
-## Tests ##
-IF(BuildTests)
-	ADD_SUBDIRECTORY(tests)
-ENDIF(BuildTests)
+TARGET_LINK_LIBRARIES(mmex ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
+IF (BuildTests)
+    TARGET_LINK_LIBRARIES(MMEXTest CPPUnit ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
+ENDIF ()
 
 ## Install ##
 
@@ -120,14 +126,14 @@ IF (UNIX AND NOT APPLE)
 		"${CMAKE_SOURCE_DIR}/doc/help/hungarian/index.html"
 		"${CMAKE_SOURCE_DIR}/doc/help/hungarian/investment.html"
 		"${CMAKE_SOURCE_DIR}/doc/help/hungarian/mmex_concept_hu.png"
-		DESTINATION "${INSTALL_DOC_DIR}/hungarian")
+		DESTINATION "${INSTALL_DOC_DIR}/help/hungarian")
 	INSTALL (FILES "${CMAKE_SOURCE_DIR}/doc/help/italian/index.html"
 		"${CMAKE_SOURCE_DIR}/doc/help/italian/investment.html"
 		"${CMAKE_SOURCE_DIR}/doc/help/italian/mmex_concept.png"
 		"${CMAKE_SOURCE_DIR}/doc/help/italian/stock_dialog.jpg"
 		"${CMAKE_SOURCE_DIR}/doc/help/italian/stock_options.jpg"
 		"${CMAKE_SOURCE_DIR}/doc/help/italian/stock_view.jpg"
-		DESTINATION "${INSTALL_DOC_DIR}/italian")
+		DESTINATION "${INSTALL_DOC_DIR}/help/italian")
 	INSTALL (FILES "${CMAKE_SOURCE_DIR}/doc/help/polish/btn_donateCC_LG.gif"
 		"${CMAKE_SOURCE_DIR}/doc/help/polish/budget.html"
 		"${CMAKE_SOURCE_DIR}/doc/help/polish/budget_editor.png"
