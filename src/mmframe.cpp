@@ -149,7 +149,7 @@ EVT_MENU(MENU_BILLSDEPOSITS, mmGUIFrame::OnBillsDeposits)
 EVT_MENU(MENU_CONVERT_ENC_DB, mmGUIFrame::OnConvertEncryptedDB)
 EVT_MENU(MENU_CHANGE_ENCRYPT_PASSWORD, mmGUIFrame::OnChangeEncryptPassword)
 EVT_MENU(MENU_DB_VACUUM, mmGUIFrame::OnVacuumDB)
-EVT_MENU(MENU_DB_CHECK, mmGUIFrame::OnCheckDB)
+EVT_MENU(MENU_DB_DEBUG, mmGUIFrame::OnDebugDB)
 
 EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
 EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
@@ -1504,9 +1504,9 @@ void mmGUIFrame::createMenu()
         , _("Optimize &Database")
         , _("Optimize database space and performance"));
     menuItemVacuumDB->SetBitmap(mmBitmap(png::EMPTY));
-    wxMenuItem* menuItemCheckDB = new wxMenuItem(menuTools, MENU_DB_CHECK
-        , _("Check Database")
-        , _("Check database integrity"));
+    wxMenuItem* menuItemCheckDB = new wxMenuItem(menuTools, MENU_DB_DEBUG
+        , _("Database Debug")
+        , _("Generate database report or fix errors"));
     menuItemCheckDB->SetBitmap(mmBitmap(png::EMPTY));
     menuDatabase->Append(menuItemConvertDB);
     menuDatabase->Append(menuItemChangeEncryptPassword);
@@ -1707,6 +1707,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             //DB backup is handled inside UpgradeDB
             if (!dbUpgrade::UpgradeDB(m_db.get(), fileName))
             {
+                int response = wxMessageBox(_("Have MMEX support provided you a debug/patch file?"), _("MMEX upgrade"), wxYES_NO);
+                if (response == wxYES)
+                    dbUpgrade::SqlFileDebug(m_db.get());
                 ShutdownDatabase();
                 return false;
             }
@@ -1962,14 +1965,14 @@ void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnCheckDB(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
 {
     wxMessageDialog msgDlg(this
-        , wxString::Format("%s\n\n%s", _("This operation could take some time depending on DB size"), _("Do you want to proceed?"))
-        , _("DB Check"), wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
+        , wxString::Format("%s\n\n%s", _("Please use this function only if explicitly requested by MMEX support"), _("Do you want to proceed?"))
+        , _("DB Debug"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        dbCheck::checkDB();
+        dbUpgrade::SqlFileDebug(m_db.get());
     }
 }
 //----------------------------------------------------------------------------

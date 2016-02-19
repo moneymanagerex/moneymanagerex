@@ -1086,7 +1086,6 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
             for (auto &item : m_bill_data.local_splits)
             {
                 Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
-                split->ACCOUNTID = tran->ACCOUNTID;
                 split->TRANSID = transID;
                 split->CATEGID = item.CATEGID;
                 split->SUBCATEGID = item.SUBCATEGID;

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-15 22:23:24.774000.
+ *          AUTO GENERATED at 2016-02-19 20:11:36.144000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -327,7 +327,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
 
     DB_Table_CUSTOMFIELD_V1() : fake_(new Data())
     {
-        query_ = "SELECT * FROM CUSTOMFIELD_V1 ";
+        query_ = "SELECT FIELDID, REFTYPE, DESCRIPTION, TYPE, PROPERTIES FROM CUSTOMFIELD_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
