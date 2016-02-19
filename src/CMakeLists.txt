@@ -2,7 +2,7 @@ IF(NOT InMMEX)
 	MESSAGE(FATAL_ERROR "Use the top-level CMake script!")
 ENDIF(NOT InMMEX)
 
-TARGET_SOURCES(MMEX PRIVATE
+TARGET_SOURCES(mmex PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/aboutdialog.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/aboutdialog.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/accountdialog.cpp"
@@ -231,6 +231,8 @@ TARGET_SOURCES(MMEX PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Infotable.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Payee.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Payee.h"
+#	"${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Pragma.cpp"
+#	"${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Pragma.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Report.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Report.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Setting.cpp"
@@ -247,20 +249,20 @@ TARGET_SOURCES(MMEX PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Usage.h"
 
 
-	"3rd/cgitemplate/html_template.cpp"
-	"3rd/mongoose/mongoose.c"
+	"${CMAKE_SOURCE_DIR}/3rd/cgitemplate/html_template.cpp"
+	"${CMAKE_SOURCE_DIR}/3rd/mongoose/mongoose.c"
 )
 #OSX
 IF (UNIX AND APPLE)
-	TARGET_SOURCES(MMEX PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mac/platfdep.cpp")
+	TARGET_SOURCES(mmex PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mac/platfdep.cpp")
 ENDIF ()
 #*nix
 IF (UNIX AND NOT APPLE)
-	TARGET_SOURCES(MMEX PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/unix/platfdep.cpp")
+	TARGET_SOURCES(mmex PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/unix/platfdep.cpp")
 ENDIF ()
 #Windows
 IF (WIN32)
-	TARGET_SOURCES(MMEX PRIVATE 
+	TARGET_SOURCES(mmex PRIVATE 
 		"${CMAKE_CURRENT_SOURCE_DIR}/win/platfdep.cpp"
 		"resources/mmex.rc")
 	
