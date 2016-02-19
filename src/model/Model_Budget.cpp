@@ -19,6 +19,7 @@
 #include "Model_Budget.h"
 #include <wx/intl.h>
 #include "model/Model_Category.h"
+#include "db/DB_Table_Budgettable_V1.h"
 
 Model_Budget::Model_Budget()
 : Model<DB_Table_BUDGETTABLE_V1>()
@@ -39,7 +40,7 @@ Model_Budget& Model_Budget::instance(wxSQLite3Database* db)
     ins.db_ = db;
     ins.destroy_cache();
     ins.ensure(db);
-
+    
     return ins;
 }
 
