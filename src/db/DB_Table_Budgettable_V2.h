@@ -15,15 +15,15 @@
  */
 //=============================================================================
 
-#ifndef DB_TABLE_SUBCATEGORY_V1_H
-#define DB_TABLE_SUBCATEGORY_V1_H
+#ifndef DB_TABLE_BUDGETTABLE_V2_H
+#define DB_TABLE_BUDGETTABLE_V2_H
 
 #include "DB_Table.h"
 
-struct DB_Table_SUBCATEGORY_V1 : public DB_Table
+struct DB_Table_BUDGETTABLE_V2 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_SUBCATEGORY_V1 Self;
+    typedef DB_Table_BUDGETTABLE_V2 Self;
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
@@ -49,7 +49,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_SUBCATEGORY_V1() 
+    ~DB_Table_BUDGETTABLE_V2() 
     {
         delete this->fake_;
         destroy_cache();
@@ -70,12 +70,12 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE SUBCATEGORY_V1(SUBCATEGID integer primary key, SUBCATEGNAME TEXT COLLATE NOCASE NOT NULL, CATEGID integer NOT NULL, UNIQUE(CATEGID, SUBCATEGNAME))");
+                db->ExecuteUpdate("CREATE TABLE BUDGETTABLE_V2(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, SUBCATEGID integer, PERIOD TEXT NOT NULL /* None, Weekly, Bi-Weekly, Monthly, Monthly, Bi-Monthly, Quarterly, Half-Yearly, Yearly, Daily*/, AMOUNT numeric NOT NULL, NOTES TEXT)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("SUBCATEGORY_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("BUDGETTABLE_V2: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -89,11 +89,11 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_SUBCATEGORY_CATEGID ON SUBCATEGORY_V1(CATEGID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETTABLE_V2_BUDGETYEARID ON BUDGETTABLE_V2(BUDGETYEARID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SUBCATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("BUDGETTABLE_V2: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -102,70 +102,53 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
 
     void ensure_data(wxSQLite3Database* db)
     {
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (1, '%s', 1)", wxTRANSLATE("Telephone")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (2, '%s', 1)", wxTRANSLATE("Electricity")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (3, '%s', 1)", wxTRANSLATE("Gas")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (4, '%s', 1)", wxTRANSLATE("Internet")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (5, '%s', 1)", wxTRANSLATE("Rent")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (6, '%s', 1)", wxTRANSLATE("Cable TV")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (7, '%s', 1)", wxTRANSLATE("Water")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (8, '%s', 2)", wxTRANSLATE("Groceries")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (9, '%s', 2)", wxTRANSLATE("Dining out")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (10, '%s', 3)", wxTRANSLATE("Movies")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (11, '%s', 3)", wxTRANSLATE("Video Rental")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (12, '%s', 3)", wxTRANSLATE("Magazines")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (13, '%s', 4)", wxTRANSLATE("Maintenance")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (14, '%s', 4)", wxTRANSLATE("Gas")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (15, '%s', 4)", wxTRANSLATE("Parking")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (16, '%s', 4)", wxTRANSLATE("Registration")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (17, '%s', 5)", wxTRANSLATE("Books")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (18, '%s', 5)", wxTRANSLATE("Tuition")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (19, '%s', 5)", wxTRANSLATE("Others")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (20, '%s', 6)", wxTRANSLATE("Clothing")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (21, '%s', 6)", wxTRANSLATE("Furnishing")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (22, '%s', 6)", wxTRANSLATE("Others")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (23, '%s', 7)", wxTRANSLATE("Health")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (24, '%s', 7)", wxTRANSLATE("Dental")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (25, '%s', 7)", wxTRANSLATE("Eyecare")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (26, '%s', 7)", wxTRANSLATE("Physician")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (27, '%s', 7)", wxTRANSLATE("Prescriptions")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (28, '%s', 8)", wxTRANSLATE("Auto")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (29, '%s', 8)", wxTRANSLATE("Life")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (30, '%s', 8)", wxTRANSLATE("Home")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (31, '%s', 8)", wxTRANSLATE("Health")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (32, '%s', 9)", wxTRANSLATE("Travel")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (33, '%s', 9)", wxTRANSLATE("Lodging")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (34, '%s', 9)", wxTRANSLATE("Sightseeing")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (35, '%s', 10)", wxTRANSLATE("Income Tax")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (36, '%s', 10)", wxTRANSLATE("House Tax")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (37, '%s', 10)", wxTRANSLATE("Water Tax")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (38, '%s', 10)", wxTRANSLATE("Others")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (39, '%s', 13)", wxTRANSLATE("Salary")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (40, '%s', 13)", wxTRANSLATE("Reimbursement/Refunds")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (41, '%s', 13)", wxTRANSLATE("Investment Income")));
     }
     
-    struct SUBCATEGID : public DB_Column<int>
+    struct BUDGETENTRYID : public DB_Column<int>
     { 
-        static wxString name() { return "SUBCATEGID"; } 
-        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "BUDGETENTRYID"; } 
+        explicit BUDGETENTRYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct SUBCATEGNAME : public DB_Column<wxString>
+    struct BUDGETYEARID : public DB_Column<int>
     { 
-        static wxString name() { return "SUBCATEGNAME"; } 
-        explicit SUBCATEGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "BUDGETYEARID"; } 
+        explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
         explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    typedef SUBCATEGID PRIMARY;
+    struct SUBCATEGID : public DB_Column<int>
+    { 
+        static wxString name() { return "SUBCATEGID"; } 
+        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    struct PERIOD : public DB_Column<wxString>
+    { 
+        static wxString name() { return "PERIOD"; } 
+        explicit PERIOD(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    struct AMOUNT : public DB_Column<double>
+    { 
+        static wxString name() { return "AMOUNT"; } 
+        explicit AMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    struct NOTES : public DB_Column<wxString>
+    { 
+        static wxString name() { return "NOTES"; } 
+        explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    typedef BUDGETENTRYID PRIMARY;
     enum COLUMN
     {
-        COL_SUBCATEGID = 0
-        , COL_SUBCATEGNAME = 1
+        COL_BUDGETENTRYID = 0
+        , COL_BUDGETYEARID = 1
         , COL_CATEGID = 2
+        , COL_SUBCATEGID = 3
+        , COL_PERIOD = 4
+        , COL_AMOUNT = 5
+        , COL_NOTES = 6
     };
 
     /** Returns the column name as a string*/
@@ -173,9 +156,13 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_SUBCATEGID: return "SUBCATEGID";
-            case COL_SUBCATEGNAME: return "SUBCATEGNAME";
+            case COL_BUDGETENTRYID: return "BUDGETENTRYID";
+            case COL_BUDGETYEARID: return "BUDGETYEARID";
             case COL_CATEGID: return "CATEGID";
+            case COL_SUBCATEGID: return "SUBCATEGID";
+            case COL_PERIOD: return "PERIOD";
+            case COL_AMOUNT: return "AMOUNT";
+            case COL_NOTES: return "NOTES";
             default: break;
         }
         
@@ -185,9 +172,13 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("SUBCATEGID" == name) return COL_SUBCATEGID;
-        else if ("SUBCATEGNAME" == name) return COL_SUBCATEGNAME;
+        if ("BUDGETENTRYID" == name) return COL_BUDGETENTRYID;
+        else if ("BUDGETYEARID" == name) return COL_BUDGETYEARID;
         else if ("CATEGID" == name) return COL_CATEGID;
+        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
+        else if ("PERIOD" == name) return COL_PERIOD;
+        else if ("AMOUNT" == name) return COL_AMOUNT;
+        else if ("NOTES" == name) return COL_NOTES;
 
         return COLUMN(-1);
     }
@@ -195,15 +186,19 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_SUBCATEGORY_V1;
+        friend struct DB_Table_BUDGETTABLE_V2;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SUBCATEGID;//  primary key
-        wxString SUBCATEGNAME;
+        int BUDGETENTRYID;//  primary key
+        int BUDGETYEARID;
         int CATEGID;
-        int id() const { return SUBCATEGID; }
-        void id(int id) { SUBCATEGID = id; }
+        int SUBCATEGID;
+        wxString PERIOD;
+        double AMOUNT;
+        wxString NOTES;
+        int id() const { return BUDGETENTRYID; }
+        void id(int id) { BUDGETENTRYID = id; }
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
@@ -217,26 +212,37 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         {
             table_ = table;
         
-            SUBCATEGID = -1;
+            BUDGETENTRYID = -1;
+            BUDGETYEARID = -1;
             CATEGID = -1;
+            SUBCATEGID = -1;
+            AMOUNT = 0.0;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            SUBCATEGID = q.GetInt(0); // SUBCATEGID
-            SUBCATEGNAME = q.GetString(1); // SUBCATEGNAME
+            BUDGETENTRYID = q.GetInt(0); // BUDGETENTRYID
+            BUDGETYEARID = q.GetInt(1); // BUDGETYEARID
             CATEGID = q.GetInt(2); // CATEGID
+            SUBCATEGID = q.GetInt(3); // SUBCATEGID
+            PERIOD = q.GetString(4); // PERIOD
+            AMOUNT = q.GetDouble(5); // AMOUNT
+            NOTES = q.GetString(6); // NOTES
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            SUBCATEGID = other.SUBCATEGID;
-            SUBCATEGNAME = other.SUBCATEGNAME;
+            BUDGETENTRYID = other.BUDGETENTRYID;
+            BUDGETYEARID = other.BUDGETYEARID;
             CATEGID = other.CATEGID;
+            SUBCATEGID = other.SUBCATEGID;
+            PERIOD = other.PERIOD;
+            AMOUNT = other.AMOUNT;
+            NOTES = other.NOTES;
             return *this;
         }
 
@@ -245,17 +251,33 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         {
             return false;
         }
-        bool match(const Self::SUBCATEGID &in) const
+        bool match(const Self::BUDGETENTRYID &in) const
         {
-            return this->SUBCATEGID == in.v_;
+            return this->BUDGETENTRYID == in.v_;
         }
-        bool match(const Self::SUBCATEGNAME &in) const
+        bool match(const Self::BUDGETYEARID &in) const
         {
-            return this->SUBCATEGNAME.CmpNoCase(in.v_) == 0;
+            return this->BUDGETYEARID == in.v_;
         }
         bool match(const Self::CATEGID &in) const
         {
             return this->CATEGID == in.v_;
+        }
+        bool match(const Self::SUBCATEGID &in) const
+        {
+            return this->SUBCATEGID == in.v_;
+        }
+        bool match(const Self::PERIOD &in) const
+        {
+            return this->PERIOD.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::AMOUNT &in) const
+        {
+            return this->AMOUNT == in.v_;
+        }
+        bool match(const Self::NOTES &in) const
+        {
+            return this->NOTES.CmpNoCase(in.v_) == 0;
         }
         wxString to_json() const
         {
@@ -268,24 +290,36 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         
         int to_json(json::Object& o) const
         {
-            o[L"SUBCATEGID"] = json::Number(this->SUBCATEGID);
-            o[L"SUBCATEGNAME"] = json::String(this->SUBCATEGNAME.ToStdWstring());
+            o[L"BUDGETENTRYID"] = json::Number(this->BUDGETENTRYID);
+            o[L"BUDGETYEARID"] = json::Number(this->BUDGETYEARID);
             o[L"CATEGID"] = json::Number(this->CATEGID);
+            o[L"SUBCATEGID"] = json::Number(this->SUBCATEGID);
+            o[L"PERIOD"] = json::String(this->PERIOD.ToStdWstring());
+            o[L"AMOUNT"] = json::Number(this->AMOUNT);
+            o[L"NOTES"] = json::String(this->NOTES.ToStdWstring());
             return 0;
         }
         row_t to_row_t() const
         {
             row_t row;
-            row(L"SUBCATEGID") = SUBCATEGID;
-            row(L"SUBCATEGNAME") = SUBCATEGNAME;
+            row(L"BUDGETENTRYID") = BUDGETENTRYID;
+            row(L"BUDGETYEARID") = BUDGETYEARID;
             row(L"CATEGID") = CATEGID;
+            row(L"SUBCATEGID") = SUBCATEGID;
+            row(L"PERIOD") = PERIOD;
+            row(L"AMOUNT") = AMOUNT;
+            row(L"NOTES") = NOTES;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t(L"SUBCATEGID") = SUBCATEGID;
-            t(L"SUBCATEGNAME") = SUBCATEGNAME;
+            t(L"BUDGETENTRYID") = BUDGETENTRYID;
+            t(L"BUDGETYEARID") = BUDGETYEARID;
             t(L"CATEGID") = CATEGID;
+            t(L"SUBCATEGID") = SUBCATEGID;
+            t(L"PERIOD") = PERIOD;
+            t(L"AMOUNT") = AMOUNT;
+            t(L"NOTES") = NOTES;
         }
 
         /** Save the record instance in memory to the database. */
@@ -294,7 +328,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save SUBCATEGORY_V1");
+                wxLogError("can not save BUDGETTABLE_V2");
                 return false;
             }
 
@@ -306,7 +340,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove SUBCATEGORY_V1");
+                wxLogError("can not remove BUDGETTABLE_V2");
                 return false;
             }
             
@@ -323,17 +357,17 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 3
+        NUM_COLUMNS = 7
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "SUBCATEGORY_V1"; }
+    wxString name() const { return "BUDGETTABLE_V2"; }
 
-    DB_Table_SUBCATEGORY_V1() : fake_(new Data())
+    DB_Table_BUDGETTABLE_V2() : fake_(new Data())
     {
-        query_ = "SELECT SUBCATEGID, SUBCATEGNAME, CATEGID FROM SUBCATEGORY_V1 ";
+        query_ = "SELECT BUDGETENTRYID, BUDGETYEARID, CATEGID, SUBCATEGID, PERIOD, AMOUNT, NOTES FROM BUDGETTABLE_V2 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -363,21 +397,25 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO SUBCATEGORY_V1(SUBCATEGNAME, CATEGID) VALUES(?, ?)";
+            sql = "INSERT INTO BUDGETTABLE_V2(BUDGETYEARID, CATEGID, SUBCATEGID, PERIOD, AMOUNT, NOTES) VALUES(?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE SUBCATEGORY_V1 SET SUBCATEGNAME = ?, CATEGID = ? WHERE SUBCATEGID = ?";
+            sql = "UPDATE BUDGETTABLE_V2 SET BUDGETYEARID = ?, CATEGID = ?, SUBCATEGID = ?, PERIOD = ?, AMOUNT = ?, NOTES = ? WHERE BUDGETENTRYID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->SUBCATEGNAME);
+            stmt.Bind(1, entity->BUDGETYEARID);
             stmt.Bind(2, entity->CATEGID);
+            stmt.Bind(3, entity->SUBCATEGID);
+            stmt.Bind(4, entity->PERIOD);
+            stmt.Bind(5, entity->AMOUNT);
+            stmt.Bind(6, entity->NOTES);
             if (entity->id() > 0)
-                stmt.Bind(3, entity->SUBCATEGID);
+                stmt.Bind(7, entity->BUDGETENTRYID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -394,7 +432,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SUBCATEGORY_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("BUDGETTABLE_V2: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -412,7 +450,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM SUBCATEGORY_V1 WHERE SUBCATEGID = ?";
+            wxString sql = "DELETE FROM BUDGETTABLE_V2 WHERE BUDGETENTRYID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -437,7 +475,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SUBCATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("BUDGETTABLE_V2: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

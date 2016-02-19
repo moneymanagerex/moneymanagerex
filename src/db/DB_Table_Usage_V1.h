@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-15 22:23:24.774000.
+ *          AUTO GENERATED at 2016-02-18 14:58:50.923686.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -291,7 +291,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
 
     DB_Table_USAGE_V1() : fake_(new Data())
     {
-        query_ = "SELECT * FROM USAGE_V1 ";
+        query_ = "SELECT USAGEID, USAGEDATE, JSONCONTENT FROM USAGE_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/

@@ -435,9 +435,9 @@ struct DB_Table_%s : public DB_Table
         s +='''
     DB_Table_%s() : fake_(new Data())
     {
-        query_ = "SELECT * FROM %s ";
+        query_ = "SELECT %s FROM %s ";
     }
-''' % (self._table, self._table)
+''' % (self._table, ', '.join([field['name'] for field in self._fields]), self._table)
         
         s +='''
     /** Create a new Data record and add to memory table (cache)*/
@@ -717,6 +717,11 @@ struct DB_Table
     bool exists(wxSQLite3Database* db) const
     {
        return db->TableExists(this->name()); 
+    }
+
+    void drop(wxSQLite3Database* db) const
+    {
+        db->ExecuteUpdate("DROP TABLE IF EXISTS " + this->name());
     }
 };
 
