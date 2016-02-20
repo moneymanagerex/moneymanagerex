@@ -47,8 +47,8 @@ std::vector<wxString> dbUpgrade::SplitQueries(const wxString & statement)
     wxStringTokenizer tokenizer(statement, ";");
     while (tokenizer.HasMoreTokens())
     {
-        wxString token = tokenizer.GetNextToken();
-        if (token.Length() > 10) // Remove empty queries
+        wxString token = tokenizer.GetNextToken().Trim().Trim(false);
+        if (token != "" && !(token.StartsWith("--") && !token.Contains("\n"))) // Remove queries with comments only
             queries.push_back(token);
     }
     return queries;
