@@ -21,6 +21,7 @@
 #include "Model_Account.h"
 #include "Model_Payee.h"
 #include "Model_Category.h"
+#include <queue>
 
 const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES = 
 {
@@ -385,21 +386,19 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, 
     for (const auto& entry : notes)
         counterMap[entry.NOTES]--;
 
-    std::map <int, std::vector<wxString> > notesMap;
-    for (const auto& entry : counterMap)
-        notesMap[entry.second].push_back(entry.first);
-    
-    for (auto& v : notesMap)
+    std::priority_queue<std::pair<int, wxString> > q; // largest element to appear as the top
+    for (const auto & kv: counterMap)
     {
-        std::reverse(v.second.begin(), v.second.end());
-        for (const auto& i : v.second) {
-            frequentNotes.push_back(i);
-            if (frequentNotes.size() >= static_cast<size_t>(max)) break;
-        }
-        if (frequentNotes.size() >= static_cast<size_t>(max)) break;
+        q.push(std::make_pair(kv.second, kv.first));
+        if (q.size() > max) q.pop(); // keep fixed queue as max
     }
 
-    std::stable_sort(frequentNotes.begin(), frequentNotes.end());
+    while(!q.empty())
+    {
+        const auto & kv = q.top();
+        frequentNotes.push_back(kv.second);
+        q.pop();
+    }
 }
 
 void Model_Checking::getEmptyTransaction(Data &data, int accountID)
