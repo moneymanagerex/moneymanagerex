@@ -382,17 +382,18 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, 
     const auto notes = instance().find(NOTES("", NOT_EQUAL)
         , accountID > 0 ? ACCOUNTID(accountID) : ACCOUNTID(-1, NOT_EQUAL));
 
-    std::map <wxString, size_t> counterMap;
+    std::map <wxString, int> counterMap;
     for (const auto& entry : notes)
-        counterMap[entry.NOTES]++;
+        counterMap[entry.NOTES]--;
 
-    std::priority_queue<std::pair<size_t, wxString> > q;
+    std::priority_queue<std::pair<int, wxString> > q; // largest element to appear as the top
     for (const auto & kv: counterMap)
     {
         q.push(std::make_pair(kv.second, kv.first));
+        if (q.size() > max) q.pop(); // keep fixed queue as max
     }
 
-    while(!q.empty() && frequentNotes.size() < 20)
+    while(!q.empty())
     {
         const auto & kv = q.top();
         frequentNotes.push_back(kv.second);
