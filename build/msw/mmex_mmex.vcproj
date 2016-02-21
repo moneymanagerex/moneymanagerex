@@ -461,10 +461,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\model\Model_Pragma.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\model\Model_Report.cpp"
 				>
 			</File>
@@ -1008,10 +1004,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\Model_Payee.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\model\Model_Pragma.h"
 				>
 			</File>
 			<File
