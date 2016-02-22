@@ -76,7 +76,7 @@ static const wxString TABLE_ROW_END = "  </tr>\n";
 static const wxString TABLE_CELL = "    <td %s>";
 static const wxString MONEY_CELL = "    <td class='money'>";
 static const wxString TABLE_CELL_END = "</td>\n";
-static const wxString TABLE_CELL_LINK = "<a href=\"%s\">%s</a>\n";
+static const wxString TABLE_CELL_LINK = "<a href=\"%s\">%s</a>";
 static const wxString TABLE_HEADER = "<th%s>";
 static const wxString HEADER = "<h%i>%s</h%i>";
 static const wxString TABLE_HEADER_END = "</th>\n";
@@ -221,7 +221,7 @@ void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* c
     if (precision == -1)
         precision = Model_Currency::precision(currency);
     wxString s = Model_Currency::toCurrency(amount, currency, precision);
-    wxString f = wxString::Format("class='money' sorttable_customkey = '%f'", amount);
+    wxString f = wxString::Format("class='money' sorttable_customkey = '%f' nowrap", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
     html_ += s;
     this->endTableCell();
@@ -233,7 +233,7 @@ void mmHTMLBuilder::addMoneyCell(double amount, int precision)
         precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
     wxString s = Model_Currency::toString(amount, Model_Currency::GetBaseCurrency(), precision);
     s.Replace(" ", "&nbsp;");
-    wxString f = wxString::Format( "class='money' sorttable_customkey = '%f'", amount);
+    wxString f = wxString::Format( "class='money' sorttable_customkey = '%f' nowrap", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
     html_ += s;
     this->endTableCell();
@@ -242,12 +242,15 @@ void mmHTMLBuilder::addMoneyCell(double amount, int precision)
 void mmHTMLBuilder::addTableCell(const wxDateTime& date)
 {
     wxString date_str = mmGetDateForDisplay(date);
-    this->addTableCell(date_str);
+    html_ += wxString::Format(tags::TABLE_CELL
+         , wxString::Format("class='text-left' sorttable_customkey = '%s' nowrap", date.FormatISODate()));
+    html_ += mmGetDateForDisplay(date);
+    this->endTableCell();
 }
 
 void mmHTMLBuilder::addTableCell(const wxString& value, const bool& numeric)
 {
-    wxString align = numeric ? "class='text-right'" : "class='text-left'";
+    wxString align = numeric ? "class='text-right' nowrap" : "class='text-left'";
     html_ += wxString::Format(tags::TABLE_CELL, align);
     html_ += value;
     this->endTableCell();
