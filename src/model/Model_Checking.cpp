@@ -21,6 +21,7 @@
 #include "Model_Account.h"
 #include "Model_Payee.h"
 #include "Model_Category.h"
+#include <queue>
 
 const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES = 
 {
@@ -377,23 +378,27 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, 
 {
     frequentNotes.clear();
     int max = 20;
-    for (const auto& entry : instance().find(NOTES("", NOT_EQUAL)
-        , accountID > 0 ? ACCOUNTID(accountID) : ACCOUNTID(-1, NOT_EQUAL)))
+
+    const auto notes = instance().find(NOTES("", NOT_EQUAL)
+        , accountID > 0 ? ACCOUNTID(accountID) : ACCOUNTID(-1, NOT_EQUAL));
+
+    std::map <wxString, int> counterMap;
+    for (const auto& entry : notes)
+        counterMap[wxString(entry.NOTES).Trim()]--;
+
+    std::priority_queue<std::pair<int, wxString> > q; // largest element to appear as the top
+    for (const auto & kv : counterMap)
     {
-        const auto i = std::find(frequentNotes.begin(), frequentNotes.end(), entry.NOTES);
-        if (i == frequentNotes.end())
-            frequentNotes.push_back(entry.NOTES);
-        else
-        {
-            frequentNotes.erase(i);
-            std::reverse(frequentNotes.begin(), frequentNotes.end());
-            frequentNotes.push_back(entry.NOTES);
-            std::reverse(frequentNotes.begin(), frequentNotes.end());
-        }
+        q.push(std::make_pair(kv.second, kv.first));
+        if (q.size() > max) q.pop(); // keep fixed queue as max
     }
-    if (frequentNotes.size() > static_cast<size_t>(max))
-        frequentNotes.erase(frequentNotes.begin() + max, frequentNotes.end());
-    std::stable_sort(frequentNotes.begin(), frequentNotes.end());
+
+    while (!q.empty())
+    {
+        const auto & kv = q.top();
+        frequentNotes.push_back(kv.second);
+        q.pop();
+    }
 }
 
 void Model_Checking::getEmptyTransaction(Data &data, int accountID)
