@@ -1,5 +1,5 @@
 Makes sure these boxes are checked before submitting your issue — thank you!
-[]Check that you using ![latest mmex version](https://github.com/moneymanagerex/moneymanagerex/releases)
+[]Check that you using [latest mmex version](https://github.com/moneymanagerex/moneymanagerex/releases)
 
 Which operating system is used?
 * (x) Windows
