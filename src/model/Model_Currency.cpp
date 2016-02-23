@@ -222,14 +222,20 @@ const wxString Model_Currency::fromString2Default(const wxString &s, const Data*
 {
     wxString str = s;
     str.Trim();
-    str.Replace(" ", "");
-    if (currency)
-    {
-        if (!currency->GROUP_SEPARATOR.empty())
-            str.Replace(currency->GROUP_SEPARATOR, "");
-        if (!currency->DECIMAL_POINT.empty())
-            str.Replace(currency->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
-    }
+    wxChar *sep = 0;
+    wxNumberFormatter::GetThousandsSeparatorIfUsed(sep);
+    const Data* c = currency ? currency : Model_Currency::GetBaseCurrency();;
+
+    if (!c->PFX_SYMBOL.empty())
+        str.Replace(c->PFX_SYMBOL, "");
+    if (!c->SFX_SYMBOL.empty())
+        str.Replace(c->SFX_SYMBOL, "");
+    if (!c->GROUP_SEPARATOR.empty())
+        str.Replace(c->GROUP_SEPARATOR, "");
+    if (!c->DECIMAL_POINT.empty())
+        str.Replace(c->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
+
+    //wxLogDebug("%s = %s", s, str);
     return str;
 }
 
