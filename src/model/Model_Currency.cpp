@@ -175,8 +175,9 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
 
 const wxString Model_Currency::fromString2Default(const wxString &s, const Data* currency)
 {
-    wxString str = s;
-    str.Trim();
+    // Remove any characters before the number stars. Useful especially for removing currency symbols.
+    wxString str = s.Mid(s.find_first_of("-0123456789"));
+
     str.Replace(" ", "");
     if (currency)
     {
