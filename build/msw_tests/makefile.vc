@@ -21,9 +21,10 @@ WXSQLITE_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) \
 	/I$(WX_DIR)\include /DNOPCH /DSQLITE_CORE /DSQLITE_ENABLE_FTS3 \
 	/DSQLITE_ENABLE_FTS3_PARENTHESIS /DSQLITE_HAS_CODEC \
 	/DSQLITE_ENABLE_EXTFUNC /DSQLITE_ENABLE_COLUMN_METADATA \
+	/DSQLITE_ENABLE_JSON1 /DHAVE_ACOSH /DHAVE_ASINH /DHAVE_ATANH /DHAVE_ISBLANK \
 	/DWXSQLITE3_HAVE_CODEC /DWXSQLITE3_HAVE_METADATA \
-	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
-	$(CPPFLAGS) $(CFLAGS)
+	/DWXSQLITE3_USER_AUTHENTICATION /I..\..\lib\wxsqlite3\sqlite3\secure\src \
+	/I..\..\lib\wxsqlite3\include $(CPPFLAGS) $(CFLAGS)
 WXSQLITE_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) \
 	$(____DEBUGINFO) /Fdwxsqlite.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	/D_CRT_SECURE_NO_WARNINGS $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
@@ -32,9 +33,10 @@ WXSQLITE_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) \
 	/I$(WX_DIR)\include /DNOPCH /DSQLITE_CORE /DSQLITE_ENABLE_FTS3 \
 	/DSQLITE_ENABLE_FTS3_PARENTHESIS /DSQLITE_HAS_CODEC \
 	/DSQLITE_ENABLE_EXTFUNC /DSQLITE_ENABLE_COLUMN_METADATA \
+	/DSQLITE_ENABLE_JSON1 /DHAVE_ACOSH /DHAVE_ASINH /DHAVE_ATANH /DHAVE_ISBLANK \
 	/DWXSQLITE3_HAVE_CODEC /DWXSQLITE3_HAVE_METADATA \
-	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include /GR \
-	/EHsc $(CPPFLAGS) $(CXXFLAGS)
+	/DWXSQLITE3_USER_AUTHENTICATION /I..\..\lib\wxsqlite3\sqlite3\secure\src \
+	/I..\..\lib\wxsqlite3\include /GR /EHsc $(CPPFLAGS) $(CXXFLAGS)
 WXSQLITE_OBJECTS =  \
 	wxsqlite_wxsqlite3.obj \
 	wxsqlite_sqlite3secure.obj
@@ -170,6 +172,11 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_categdialog.obj \
 	mmex_tests_constants.obj \
 	mmex_tests_currencydialog.obj \
+	mmex_tests_customfielddialog.obj \
+	mmex_tests_customfieldeditdialog.obj \
+	mmex_tests_customfieldlistdialog.obj \
+	mmex_tests_dbcheck.obj \
+	mmex_tests_dbupgrade.obj \
 	mmex_tests_dbwrapper.obj \
 	mmex_tests_filtertransdialog.obj \
 	mmex_tests_general_report_manager.obj \
@@ -228,6 +235,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_transactions.obj \
 	mmex_tests_platfdep.obj \
 	mmex_tests_export.obj \
+	mmex_tests_parsers.obj \
 	mmex_tests_qif_export.obj \
 	mmex_tests_qif_import.obj \
 	mmex_tests_qif_import_gui.obj \
@@ -243,6 +251,8 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Checking.obj \
 	mmex_tests_Model_Currency.obj \
 	mmex_tests_Model_CurrencyHistory.obj \
+	mmex_tests_Model_CustomField.obj \
+	mmex_tests_Model_CustomFieldData.obj \
 	mmex_tests_Model_Infotable.obj \
 	mmex_tests_Model_Payee.obj \
 	mmex_tests_Model_Report.obj \
@@ -832,6 +842,21 @@ mmex_tests_constants.obj: ..\..\src\constants.cpp
 mmex_tests_currencydialog.obj: ..\..\src\currencydialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\currencydialog.cpp
 
+mmex_tests_customfielddialog.obj: ..\..\src\customfielddialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\customfielddialog.cpp
+
+mmex_tests_customfieldeditdialog.obj: ..\..\src\customfieldeditdialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\customfieldeditdialog.cpp
+
+mmex_tests_customfieldlistdialog.obj: ..\..\src\customfieldlistdialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\customfieldlistdialog.cpp
+
+mmex_tests_dbcheck.obj: ..\..\src\dbcheck.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\dbcheck.cpp
+
+mmex_tests_dbupgrade.obj: ..\..\src\dbupgrade.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\dbupgrade.cpp
+
 mmex_tests_dbwrapper.obj: ..\..\src\dbwrapper.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\dbwrapper.cpp
 
@@ -1006,6 +1031,9 @@ mmex_tests_platfdep.obj: ..\..\src\win\platfdep.cpp
 mmex_tests_export.obj: ..\..\src\import_export\export.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\import_export\export.cpp
 
+mmex_tests_parsers.obj: ..\..\src\import_export\parsers.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\import_export\parsers.cpp
+
 mmex_tests_qif_export.obj: ..\..\src\import_export\qif_export.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\import_export\qif_export.cpp
 
@@ -1050,6 +1078,12 @@ mmex_tests_Model_Currency.obj: ..\..\src\model\Model_Currency.cpp
 
 mmex_tests_Model_CurrencyHistory.obj: ..\..\src\model\Model_CurrencyHistory.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_CurrencyHistory.cpp
+
+mmex_tests_Model_CustomField.obj: ..\..\src\model\Model_CustomField.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_CustomField.cpp
+
+mmex_tests_Model_CustomFieldData.obj: ..\..\src\model\Model_CustomFieldData.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_CustomFieldData.cpp
 
 mmex_tests_Model_Infotable.obj: ..\..\src\model\Model_Infotable.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_Infotable.cpp

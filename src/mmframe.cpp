@@ -34,6 +34,7 @@
 #include "categdialog.h"
 #include "constants.h"
 #include "dbcheck.h"
+#include "dbupgrade.h"
 #include "dbwrapper.h"
 #include "filtertransdialog.h"
 #include "general_report_manager.h"
@@ -148,7 +149,7 @@ EVT_MENU(MENU_BILLSDEPOSITS, mmGUIFrame::OnBillsDeposits)
 EVT_MENU(MENU_CONVERT_ENC_DB, mmGUIFrame::OnConvertEncryptedDB)
 EVT_MENU(MENU_CHANGE_ENCRYPT_PASSWORD, mmGUIFrame::OnChangeEncryptPassword)
 EVT_MENU(MENU_DB_VACUUM, mmGUIFrame::OnVacuumDB)
-EVT_MENU(MENU_DB_CHECK, mmGUIFrame::OnCheckDB)
+EVT_MENU(MENU_DB_DEBUG, mmGUIFrame::OnDebugDB)
 
 EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
 EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
@@ -363,7 +364,7 @@ void mmGUIFrame::cleanup()
     ShutdownDatabase();
     /// Update the database according to user requirements
     if (mmOptions::instance().databaseUpdated_ && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
-        BackupDatabase(m_filename, true);
+        dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::CLOSE, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
 }
 
 void mmGUIFrame::ShutdownDatabase()
@@ -1503,9 +1504,9 @@ void mmGUIFrame::createMenu()
         , _("Optimize &Database")
         , _("Optimize database space and performance"));
     menuItemVacuumDB->SetBitmap(mmBitmap(png::EMPTY));
-    wxMenuItem* menuItemCheckDB = new wxMenuItem(menuTools, MENU_DB_CHECK
-        , _("Check Database")
-        , _("Check database integrity"));
+    wxMenuItem* menuItemCheckDB = new wxMenuItem(menuTools, MENU_DB_DEBUG
+        , _("Database Debug")
+        , _("Generate database report or fix errors"));
     menuItemCheckDB->SetBitmap(mmBitmap(png::EMPTY));
     menuDatabase->Append(menuItemConvertDB);
     menuDatabase->Append(menuItemChangeEncryptPassword);
@@ -1657,11 +1658,11 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
     if (m_db)
     {
         ShutdownDatabase();
-        /// Update the database according to user requirements
+        /// Backup the database according to user requirements
         if (mmOptions::instance().databaseUpdated_ &&
             Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
         {
-            BackupDatabase(m_filename, true);
+            dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::CLOSE, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
             mmOptions::instance().databaseUpdated_ = false;
         }
     }
@@ -1688,7 +1689,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         /* Do a backup before opening */
         if (Model_Setting::instance().GetBoolSetting("BACKUPDB", false))
         {
-            BackupDatabase(fileName);
+            dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::START, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
         }
 
         m_db = mmDBWrapper::Open(fileName, password);
@@ -1699,23 +1700,26 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         m_db->SetCommitHook(m_commit_callback_hook);
         m_update_callback_hook = new UpdateCallbackHook();
         m_db->SetUpdateHook(m_update_callback_hook);
-        InitializeModelTables();
 
-        // we need to check that the db is the correct version and apply any updates as necessary
-        if (Model_Infotable::instance().checkDBVersion())
+        //Check if DB upgrade needed
+        if (dbUpgrade::CheckUpgradeDB(m_db.get()))
         {
-            // correction for version 2 databases and update to Version 3
-            if (Model_Infotable::instance().AtDatabaseVersion(2))
+            //DB backup is handled inside UpgradeDB
+            if (!dbUpgrade::UpgradeDB(m_db.get(), fileName))
             {
-                for (auto bill : Model_Billsdeposits::instance().all())
-                {
-                    bill.TRANSDATE = bill.NEXTOCCURRENCEDATE;
-                    Model_Billsdeposits::instance().save(&bill);
-                }
-                Model_Infotable::instance().SetDatabaseVersion("3");
+                int response = wxMessageBox(_("Have MMEX support provided you a debug/patch file?"), _("MMEX upgrade"), wxYES_NO);
+                if (response == wxYES)
+                    dbUpgrade::SqlFileDebug(m_db.get());
+                ShutdownDatabase();
+                return false;
             }
         }
-        else
+
+        InitializeModelTables();
+
+        // ** OBSOLETE **
+        // Mantained only for really old compatibility reason and replaced by dbupgrade.cpp
+        if (!Model_Infotable::instance().checkDBVersion())
         {
             wxString note = mmex::getProgramName() + _(" - No File opened ");
             this->SetTitle(note);
@@ -1742,6 +1746,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         m_db->SetUpdateHook(m_update_callback_hook);
 
         m_password = password;
+        dbUpgrade::InitializeVersion(m_db.get());
         InitializeModelTables();
 
         SetDataBaseParameters(fileName);
@@ -1948,14 +1953,14 @@ void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnCheckDB(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
 {
     wxMessageDialog msgDlg(this
-        , wxString::Format("%s\n\n%s", _("This operation could take some time depending on DB size"), _("Do you want to proceed?"))
-        , _("DB Check"), wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
+        , wxString::Format("%s\n\n%s", _("Please use this function only if explicitly requested by MMEX support"), _("Do you want to proceed?"))
+        , _("DB Debug"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        dbCheck::checkDB();
+        dbUpgrade::SqlFileDebug(m_db.get());
     }
 }
 //----------------------------------------------------------------------------
@@ -2759,49 +2764,6 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
         resetNavTreeControl();
         cleanupHomePanel();
         showBeginAppDialog(true);
-    }
-}
-//----------------------------------------------------------------------------
-
-void mmGUIFrame::BackupDatabase(const wxString& filename, bool updateRequired)
-{
-    wxFileName fn(filename);
-    if (!fn.IsOk()) return;
-
-    wxString backupType = "_start_";
-    if (updateRequired) backupType = "_update_";
-
-    wxString backupName = filename + backupType + wxDateTime().Today().FormatISODate() + "." + fn.GetExt();
-    if (updateRequired) // Create or update the backup file.
-    {
-        wxCopyFile(filename, backupName, true);
-    }
-    else                // create the backup if it does not exist
-    {
-        wxFileName fnBak(backupName);
-        if (!fnBak.FileExists())
-        {
-            wxCopyFile(filename, backupName, true);
-        }
-    }
-
-    // Get the list of created backup files for the given filename.
-    wxArrayString backupFileArray;
-    wxString fileSearch = filename + backupType + "*." + fn.GetExt();
-    wxString backupFile = wxFindFirstFile(fileSearch);
-    while (!backupFile.empty())
-    {
-        backupFileArray.Add(backupFile);
-        backupFile = wxFindNextFile();
-    }
-
-    int max = Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4);
-    if (backupFileArray.Count() > (size_t) max)
-    {
-        backupFileArray.Sort(true);
-        // ensure file is not read only before deleting file.
-        wxFileName fnLastFile(backupFileArray.Last());
-        if (fnLastFile.IsFileWritable()) wxRemoveFile(backupFileArray.Last());
     }
 }
 //----------------------------------------------------------------------------
