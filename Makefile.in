@@ -46,8 +46,7 @@ DESTDIR =
 WXSQLITE_CFLAGS = -DNOPCH -DSQLITE_CORE -DSQLITE_ENABLE_FTS3 \
 	-DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_HAS_CODEC \
 	-DSQLITE_ENABLE_EXTFUNC -DSQLITE_ENABLE_COLUMN_METADATA \
-    -DSQLITE_ENABLE_JSON1 \
-	-DHAVE_ACOSH -DHAVE_ASINH -DHAVE_ATANH -DHAVE_ISBLANK \
+	-DSQLITE_ENABLE_JSON1 -DHAVE_ACOSH -DHAVE_ASINH -DHAVE_ATANH -DHAVE_ISBLANK \
 	-DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
 	-DWXSQLITE3_USER_AUTHENTICATION \
 	-I$(srcdir)/lib/wxsqlite3/sqlite3/secure/src \
@@ -56,8 +55,7 @@ WXSQLITE_CFLAGS = -DNOPCH -DSQLITE_CORE -DSQLITE_ENABLE_FTS3 \
 WXSQLITE_CXXFLAGS = -DNOPCH -DSQLITE_CORE -DSQLITE_ENABLE_FTS3 \
 	-DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_HAS_CODEC \
 	-DSQLITE_ENABLE_EXTFUNC -DSQLITE_ENABLE_COLUMN_METADATA \
-    -DSQLITE_ENABLE_JSON1 \
-	-DHAVE_ACOSH -DHAVE_ASINH -DHAVE_ATANH -DHAVE_ISBLANK \
+	-DSQLITE_ENABLE_JSON1 -DHAVE_ACOSH -DHAVE_ASINH -DHAVE_ATANH -DHAVE_ISBLANK \
 	-DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
 	-DWXSQLITE3_USER_AUTHENTICATION \
 	-I$(srcdir)/lib/wxsqlite3/sqlite3/secure/src \
@@ -132,6 +130,7 @@ MMEX_OBJECTS =  \
 	mmex_customfieldeditdialog.o \
 	mmex_customfieldlistdialog.o \
 	mmex_dbcheck.o \
+	mmex_dbupgrade.o \
 	mmex_dbwrapper.o \
 	mmex_filtertransdialog.o \
 	mmex_general_report_manager.o \
@@ -190,11 +189,11 @@ MMEX_OBJECTS =  \
 	mmex_transactions.o \
 	mmex_platfdep.o \
 	mmex_export.o \
+	mmex_parsers.o \
 	mmex_qif_export.o \
 	mmex_qif_import.o \
 	mmex_qif_import_gui.o \
 	mmex_univcsvdialog.o \
-	mmex_parsers.o \
 	mmex_Model_Account.o \
 	mmex_Model_Asset.o \
 	mmex_Model_Attachment.o \
@@ -287,8 +286,6 @@ install: install_mmex
 	(cd $(srcdir)/resources ; $(INSTALL_DATA)  mmex.desktop $(DESTDIR)$(datadir)/applications)
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/icons/hicolor/scalable/apps
 	(cd $(srcdir)/resources ; $(INSTALL_DATA)  mmex.svg $(DESTDIR)$(datadir)/icons/hicolor/scalable/apps)
-	$(INSTALL_DIR) $(DESTDIR)$(datadir)/man/man1
-	(cd $(srcdir)/doc ; $(INSTALL_DATA)  mmex.1.gz $(DESTDIR)$(datadir)/man/man1)
 
 uninstall: uninstall_mmex
 	(cd $(DESTDIR)$(respath) ; rm -f kaching.wav mmex.ico master.css home_page.htt)
@@ -309,7 +306,6 @@ uninstall: uninstall_mmex
 	(cd $(DESTDIR)$(datadir)/doc/mmex/help/spanish ; rm -f *)
 	(cd $(DESTDIR)$(datadir)/applications ; rm -f mmex.desktop)
 	(cd $(DESTDIR)$(datadir)/icons/hicolor/scalable/apps ; rm -f mmex.svg)
-	(cd $(DESTDIR)$(datadir)/man/man1 ; rm -f mmex.1.gz)
 
 install-strip: install
 	$(STRIP) $(DESTDIR)$(bindir)/mmex$(EXEEXT)
@@ -523,6 +519,9 @@ mmex_customfieldlistdialog.o: $(srcdir)/src/customfieldlistdialog.cpp
 mmex_dbcheck.o: $(srcdir)/src/dbcheck.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/dbcheck.cpp
 
+mmex_dbupgrade.o: $(srcdir)/src/dbupgrade.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/dbupgrade.cpp
+
 mmex_dbwrapper.o: $(srcdir)/src/dbwrapper.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/dbwrapper.cpp
 
@@ -691,11 +690,14 @@ mmex_summarystocks.o: $(srcdir)/src/reports/summarystocks.cpp
 mmex_transactions.o: $(srcdir)/src/reports/transactions.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/transactions.cpp
 
-mmex_platfdep.o: $(srcdir)/src/mac/platfdep.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mac/platfdep.cpp
+mmex_platfdep.o: $(srcdir)/src/unix/platfdep.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/unix/platfdep.cpp
 
 mmex_export.o: $(srcdir)/src/import_export/export.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/import_export/export.cpp
+
+mmex_parsers.o: $(srcdir)/src/import_export/parsers.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/import_export/parsers.cpp
 
 mmex_qif_export.o: $(srcdir)/src/import_export/qif_export.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/import_export/qif_export.cpp
@@ -708,9 +710,6 @@ mmex_qif_import_gui.o: $(srcdir)/src/import_export/qif_import_gui.cpp
 
 mmex_univcsvdialog.o: $(srcdir)/src/import_export/univcsvdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/import_export/univcsvdialog.cpp
-
-mmex_parsers.o: $(srcdir)/src/import_export/parsers.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/import_export/parsers.cpp
 
 mmex_Model_Account.o: $(srcdir)/src/model/Model_Account.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Account.cpp
