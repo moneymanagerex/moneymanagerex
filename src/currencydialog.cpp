@@ -79,30 +79,11 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
 
     if (!m_currency)
     {
-        wxArrayString c;
-        for (const auto &i : Model_Currency::all_currencies_template())
-            c.Add(std::get<Model_Currency::NAME>(i));
-        mmSingleChoiceDialog select_currency_name(this, _("Currency name"), _("Select Currency"), c);
+        mmSingleChoiceDialog select_currency_name(this, _("Currency name"), _("Select Currency"), Model_Currency::instance().all_currency_names());
         if (select_currency_name.ShowModal() == wxID_OK)
         {
-            const wxString& name = select_currency_name.GetStringSelection();
-            // fill currency data from template
-            for (const auto &data : Model_Currency::all_currencies_template())
-            {
-                if (std::get<Model_Currency::NAME>(data) != name) continue;
-                // Sample : std::make_tuple("GBP", "UK Pound", L"£", "", "Pound", "Pence", 100, 1);
-                m_currency = Model_Currency::instance().create();
-                m_currency->CURRENCYNAME = name;
-                m_currency->CURRENCY_SYMBOL = std::get<Model_Currency::SYMBOL>(data);
-                m_currency->PFX_SYMBOL = std::get<Model_Currency::PREFIX>(data);
-                m_currency->SFX_SYMBOL = std::get<Model_Currency::SUFFIX>(data);
-                m_currency->UNIT_NAME = std::get<Model_Currency::CURR_NAME>(data);
-                m_currency->CENT_NAME = std::get<Model_Currency::CENT_NAME>(data);
-                m_currency->SCALE = std::get<Model_Currency::PRECISION>(data);
-                m_currency->BASECONVRATE = std::get<Model_Currency::CONV_RATE>(data);
-                m_currency->DECIMAL_POINT = wxNumberFormatter::GetDecimalSeparator();
-                m_currency->GROUP_SEPARATOR = Model_Currency::os_group_separator();
-            }
+            const wxString currencyname = select_currency_name.GetStringSelection();
+            m_currency = Model_Currency::instance().get_one(Model_Currency::CURRENCYNAME(currencyname));
         }
     }
 

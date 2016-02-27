@@ -474,7 +474,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id, bool hide)
             {
                 if (currency_data.find(currency_symbol) != currency_data.end())
                 {
-                    msg << wxString::Format(_("%s\t: %0.6f -> %0.6f\n")
+                    msg << wxString::Format("%s\t: %0.6f -> %0.6f\n"
                         , currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol].first);
                     currency.BASECONVRATE = currency_data[currency_symbol].first;
                     if (base_symbol == currency_symbol)

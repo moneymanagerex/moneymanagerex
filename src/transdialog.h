@@ -74,7 +74,7 @@ private:
     void OnStartupCustomFields();
     void OnMove(wxMoveEvent& event);
     void OnCategs(wxCommandEvent& event);
-	void OnAttachments(wxCommandEvent& event);
+    void OnAttachments(wxCommandEvent& event);
     void OnCustomFields(wxCommandEvent& event);
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
@@ -96,7 +96,7 @@ private:
     mmTextCtrl *toTextAmount_;
     wxTextCtrl *textNotes_;
     wxButton* bCategory_;
-	wxButton* bAttachments_;
+    wxButton* bAttachments_;
     wxButton* bCustomFields_;
     wxComboBox* cbAccount_;
     wxComboBox* cbPayee_;

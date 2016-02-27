@@ -17,16 +17,18 @@
  ********************************************************/
 
 #include "mmreportspanel.h"
-#include "platfdep.h"
-#include "mmcheckingpanel.h"
-#include "util.h"
-#include "reports/htmlbuilder.h"
+#include "attachmentdialog.h"
 #include "mmex.h"
 #include "mmframe.h"
-#include "transdialog.h"
+#include "mmcheckingpanel.h"
 #include "paths.h"
+#include "platfdep.h"
+#include "transdialog.h"
+#include "util.h"
 #include "webserver.h"
+#include "reports/htmlbuilder.h"
 #include "model/Model_Account.h"
+#include "model/Model_Attachment.h"
 #include "model/Model_Checking.h"
 #include "model/Model_Usage.h"
 
@@ -77,6 +79,17 @@ public:
                     }
                     m_reportPanel->browser_->LoadURL(getURL(mmex::getReportIndex()));
                 }
+            }
+        }
+        if (uri.StartsWith("attachment:", &sData))
+        {
+            const wxString RefType = sData.BeforeFirst('|');
+            const int RefId = wxAtoi(sData.AfterFirst('|'));
+
+            if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
+            {
+                mmAttachmentManage::OpenAttachmentFromPanelIcon(nullptr, RefType, RefId);
+                m_reportPanel->browser_->LoadURL(getURL(mmex::getReportIndex()));
             }
         }
 
@@ -147,13 +160,18 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    saveReportText();
-    browser_->LoadURL(getURL(mmex::getReportIndex()));
+    wxString error;
+    if (saveReportText(error))
+        browser_->LoadURL(getURL(mmex::getReportIndex()));
+    else
+        browser_->SetPage(error, "");
+
     return TRUE;
 }
 
-void mmReportsPanel::saveReportText()
+bool mmReportsPanel::saveReportText(wxString& error)
 {
+    error = "";
     if (rb_)
     {
         if (this->m_date_ranges)
@@ -164,15 +182,12 @@ void mmReportsPanel::saveReportText()
         o[L"name"] = json::String(rb_->title().ToStdWstring());
         o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
 
-        wxString html = rb_->getHTMLText();
+        error = rb_->getHTMLText();
 
-        wxFileOutputStream index_output(mmex::getReportIndex());
-        wxTextOutputStream index_file(index_output);
-        index_file << html;
-        index_output.Close();
         o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
         Model_Usage::instance().append(o);
     }
+    return error.empty();
 }
 
 void mmReportsPanel::CreateControls()
@@ -220,6 +235,7 @@ void mmReportsPanel::CreateControls()
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trxid")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trx")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "attachment")));
 
     itemBoxSizer2->Add(browser_, 1, wxGROW|wxALL, 1);
 }
@@ -234,6 +250,9 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
     const mmDateRange* date_range = static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
     this->m_start_date->SetValue(date_range->start_date());
     this->m_end_date->SetValue(date_range->end_date());
-    this->saveReportText();
-    browser_->LoadURL(getURL(mmex::getReportIndex()));
+    wxString error;
+    if (this->saveReportText(error))
+        browser_->LoadURL(getURL(mmex::getReportIndex()));
+    else
+        browser_->SetPage(error, "");
 }

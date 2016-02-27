@@ -42,7 +42,7 @@ private:
     void CreateControls();
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
-	void OnAttachments(wxCommandEvent& event);
+    void OnAttachments(wxCommandEvent& event);
     void OnChangeAppreciationType(wxCommandEvent& event);
     void enableDisableRate(bool en);
     void onTextEntered(wxCommandEvent& event);
@@ -60,7 +60,7 @@ private:
     wxChoice*  m_assetType;
     wxChoice*  m_valueChange;
     wxStaticText* m_valueChangeRateLabel;
-	wxBitmapButton* bAttachments_;
+    wxBitmapButton* bAttachments_;
 
     enum
     {

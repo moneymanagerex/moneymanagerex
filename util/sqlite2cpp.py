@@ -8,6 +8,7 @@ import sys
 import os
 import datetime
 import sqlite3
+import codecs
 
 # https://github.com/django/django/blob/master/django/db/backends/sqlite3/introspection.py
 def get_table_list(cursor):
@@ -41,6 +42,10 @@ def get_index_list(cursor, tbl_name):
         ORDER BY name""" % tbl_name)
     return [row[1] for row in cursor.fetchall()]
 
+def get_data_initializer_list(cursor, tbl_name):
+    "Returns a list of data in the current table."
+    cursor.execute("select * from %s" % tbl_name)
+    return cursor.fetchall()
 
 base_data_types_reverse = {
     'TEXT': 'wxString',
@@ -59,14 +64,15 @@ base_data_types_function = {
 }
 
 class DB_Table:
-    def __init__(self, table, fields, index):
+    def __init__(self, table, fields, index, data):
         self._table = table
         self._fields = fields
         self._primay_key = [field['name'] for field in self._fields if field['pk']][0]
         self._index = index
+        self._data = data
 
     def generate_class(self, header, sql):
-        fp = open('DB_Table_' + self._table.title() + '.h', 'w')
+        fp = codecs.open('DB_Table_' + self._table.title() + '.h', 'w', 'utf8')
         fp.write(header + self.to_string(sql))
         fp.close()
     
@@ -112,7 +118,7 @@ struct DB_Table_%s : public DB_Table
         delete this->fake_;
         destroy_cache();
     }
-	 
+     
     /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()
     {
@@ -127,17 +133,18 @@ struct DB_Table_%s : public DB_Table
     bool ensure(wxSQLite3Database* db)
     {
         if (!exists(db))
-		{
-			try
-			{
-				db->ExecuteUpdate("%s");
-			}
-			catch(const wxSQLite3Exception &e) 
-			{ 
-				wxLogError("%s: Exception %%s", e.GetMessage().c_str());
-				return false;
-			}
-		}
+        {
+            try
+            {
+                db->ExecuteUpdate("%s");
+                this->ensure_data(db);
+            }
+            catch(const wxSQLite3Exception &e) 
+            { 
+                wxLogError("%s: Exception %%s", e.GetMessage().c_str());
+                return false;
+            }
+        }
 
         this->ensure_index(db);
 
@@ -170,6 +177,16 @@ struct DB_Table_%s : public DB_Table
         return true;
     }
 ''' % (self._table)
+    
+        s += '''
+    void ensure_data(wxSQLite3Database* db)
+    {'''
+        for r in self._data:
+            s += '''
+        db->ExecuteUpdate(wxString::Format("INSERT INTO %s VALUES (%s)", %s));''' % (self._table, ', '.join(["'%s'" if isinstance(i, unicode) else str(i) for i in r]), ', '.join([ 'wxTRANSLATE("' + i + '")' if not i.isdigit() else '"' + i + '"' for i in r if isinstance(i, unicode)]))
+        s += '''
+    }
+    '''
 
         for field in self._fields:
             s += '''
@@ -418,9 +435,9 @@ struct DB_Table_%s : public DB_Table
         s +='''
     DB_Table_%s() : fake_(new Data())
     {
-        query_ = "SELECT * FROM %s ";
+        query_ = "SELECT %s FROM %s ";
     }
-''' % (self._table, self._table)
+''' % (self._table, ', '.join([field['name'] for field in self._fields]), self._table)
         
         s +='''
     /** Create a new Data record and add to memory table (cache)*/
@@ -658,7 +675,7 @@ struct DB_Table_%s : public DB_Table
         return s
 
 def generate_base_class(header, fields=set):
-    fp = open('DB_Table.h', 'w')
+    fp = open('DB_Table.h', 'wb')
     code = header + '''
 #ifndef DB_TABLE_H
 #define DB_TABLE_H
@@ -668,6 +685,7 @@ def generate_base_class(header, fields=set):
 #include <algorithm>
 #include <functional>
 #include <wx/wxsqlite3.h>
+#include <wx/intl.h> 
 
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
@@ -699,6 +717,11 @@ struct DB_Table
     bool exists(wxSQLite3Database* db) const
     {
        return db->TableExists(this->name()); 
+    }
+
+    void drop(wxSQLite3Database* db) const
+    {
+        db->ExecuteUpdate("DROP TABLE IF EXISTS " + this->name());
     }
 };
 
@@ -816,7 +839,7 @@ if __name__ == '__main__':
     header =  '''// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013 - %s Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -829,7 +852,7 @@ if __name__ == '__main__':
  *          DO NOT EDIT!
  */
 //=============================================================================
-'''% (os.path.basename(__file__), str(datetime.datetime.now()))
+'''% (datetime.date.today().year, os.path.basename(__file__), str(datetime.datetime.now()))
 
     conn, cur, sql_file = None, None, None
     try:
@@ -851,7 +874,8 @@ if __name__ == '__main__':
     for table, sql in get_table_list(cur):
         fields = _table_info(cur, table)
         index = get_index_list(cur, table)
-        table = DB_Table(table, fields, index)
+        data = get_data_initializer_list(cur, table)
+        table = DB_Table(table, fields, index, data)
         table.generate_class(header, sql)
         for field in fields:
             all_fields.add(field['name'])

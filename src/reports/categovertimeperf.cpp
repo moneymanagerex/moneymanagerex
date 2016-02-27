@@ -156,6 +156,8 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     hb.endTable();
     hb.endDiv();
     hb.end();
-    return hb.getHTMLText();
+
+    Model_Report::outputReportFile(hb.getHTMLText());
+    return "";
 }
 //----------------------------------------------------------------------------

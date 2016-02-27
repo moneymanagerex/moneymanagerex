@@ -156,14 +156,14 @@ private:
     void showBeginAppDialog(bool fromScratch = false);
     void SetDataBaseParameters(const wxString& fileName);
     void OnLaunchAccountWebsite(wxCommandEvent& event);
-	void OnAccountAttachments(wxCommandEvent& event);
+    void OnAccountAttachments(wxCommandEvent& event);
 
     void OnNew(wxCommandEvent& event);
     void OnOpen(wxCommandEvent& event);
     void OnConvertEncryptedDB(wxCommandEvent& event);
     void OnChangeEncryptPassword(wxCommandEvent& event);
     void OnVacuumDB(wxCommandEvent& event);
-    void OnCheckDB(wxCommandEvent& event);
+    void OnDebugDB(wxCommandEvent& event);
     void OnSaveAs(wxCommandEvent& event);
     void OnExportToCSV(wxCommandEvent& event);
     void OnExportToXML(wxCommandEvent& event);
@@ -248,8 +248,6 @@ private:
 
     /** Sets the database to the new database selected by the user */
     void SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false);
-    /// Make a dated copy of the database. Keep only the last 4 copies.
-    void BackupDatabase(const wxString& filename, bool updateRequired = false);
     
     // Required to prevent memory leaks.
     CommitCallbackHook* m_commit_callback_hook;
@@ -302,7 +300,7 @@ private:
         MENU_CONVERT_ENC_DB,
         MENU_CHANGE_ENCRYPT_PASSWORD,
         MENU_DB_VACUUM,
-        MENU_DB_CHECK,
+        MENU_DB_DEBUG,
         MENU_ONLINE_UPD_CURRENCY_RATE,
         MENU_ACCOUNT_REALLOCATE,
 

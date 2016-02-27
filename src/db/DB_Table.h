@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013 - 2016 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-01-24 11:35:26.698000.
+ *          AUTO GENERATED at 2016-02-19 20:11:36.144000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -23,6 +23,7 @@
 #include <algorithm>
 #include <functional>
 #include <wx/wxsqlite3.h>
+#include <wx/intl.h> 
 
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
@@ -54,6 +55,11 @@ struct DB_Table
     bool exists(wxSQLite3Database* db) const
     {
        return db->TableExists(this->name()); 
+    }
+
+    void drop(wxSQLite3Database* db) const
+    {
+        db->ExecuteUpdate("DROP TABLE IF EXISTS " + this->name());
     }
 };
 
@@ -193,12 +199,30 @@ struct SorterByACCOUNTTYPE
     }
 };
 
+struct SorterByALLOCATION
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.ALLOCATION < y.ALLOCATION;
+    }
+};
+
 struct SorterByAMOUNT
 { 
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.AMOUNT < y.AMOUNT;
+    }
+};
+
+struct SorterByASSETCLASSID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.ASSETCLASSID < y.ASSETCLASSID;
     }
 };
 
@@ -517,6 +541,15 @@ struct SorterByHISTID
     }
 };
 
+struct SorterByID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.ID < y.ID;
+    }
+};
+
 struct SorterByINFOID
 { 
     template<class DATA>
@@ -571,6 +604,15 @@ struct SorterByLUACONTENT
     }
 };
 
+struct SorterByNAME
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.NAME < y.NAME;
+    }
+};
+
 struct SorterByNEXTOCCURRENCEDATE
 { 
     template<class DATA>
@@ -604,6 +646,15 @@ struct SorterByNUMSHARES
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.NUMSHARES < y.NUMSHARES;
+    }
+};
+
+struct SorterByPARENTID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.PARENTID < y.PARENTID;
     }
 };
 
@@ -760,6 +811,15 @@ struct SorterBySFX_SYMBOL
     }
 };
 
+struct SorterBySORTORDER
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.SORTORDER < y.SORTORDER;
+    }
+};
+
 struct SorterBySPLITTRANSAMOUNT
 { 
     template<class DATA>
@@ -820,6 +880,15 @@ struct SorterBySTOCKNAME
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.STOCKNAME < y.STOCKNAME;
+    }
+};
+
+struct SorterBySTOCKSYMBOL
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.STOCKSYMBOL < y.STOCKSYMBOL;
     }
 };
 

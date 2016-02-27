@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2011 Stefano Giorgio
- Copyright (C) 2014 Nikolay
+ Copyright (C) 2014 -2016 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -650,8 +650,11 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
         m_outputHTML->ClearBackground();
 
         mmGeneralReport gr(report); //TODO: limit 500 line
-        gr.getHTMLText();
-        m_outputHTML->LoadURL(getURL(mmex::getReportIndex()));
+        const auto error = gr.getHTMLText();
+        if (error.empty())
+            m_outputHTML->LoadURL(getURL(mmex::getReportIndex()));
+        else
+            m_outputHTML->SetPage(error, "");
     }
 }
 

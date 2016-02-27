@@ -38,14 +38,18 @@ DESTDIR =
 WXSQLITE_CFLAGS = -DNOPCH -DSQLITE_CORE -DSQLITE_ENABLE_FTS3 \
 	-DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_HAS_CODEC \
 	-DSQLITE_ENABLE_EXTFUNC -DSQLITE_ENABLE_COLUMN_METADATA \
+	-DSQLITE_ENABLE_JSON1 -DHAVE_ACOSH -DHAVE_ASINH -DHAVE_ATANH -DHAVE_ISBLANK \
 	-DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
+	-DWXSQLITE3_USER_AUTHENTICATION \
 	-I$(srcdir)/../lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/../lib/wxsqlite3/include $(PIC_FLAG) $(WX_CFLAGS) $(CPPFLAGS) \
 	$(CFLAGS)
 WXSQLITE_CXXFLAGS = -DNOPCH -DSQLITE_CORE -DSQLITE_ENABLE_FTS3 \
 	-DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_HAS_CODEC \
 	-DSQLITE_ENABLE_EXTFUNC -DSQLITE_ENABLE_COLUMN_METADATA \
+	-DSQLITE_ENABLE_JSON1 -DHAVE_ACOSH -DHAVE_ASINH -DHAVE_ATANH -DHAVE_ISBLANK \
 	-DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
+	-DWXSQLITE3_USER_AUTHENTICATION \
 	-I$(srcdir)/../lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/../lib/wxsqlite3/include $(PIC_FLAG) $(WX_CXXFLAGS) $(CPPFLAGS) \
 	$(CXXFLAGS)
@@ -170,6 +174,11 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_categdialog.o \
 	mmex_tests_constants.o \
 	mmex_tests_currencydialog.o \
+	mmex_tests_customfielddialog.o \
+	mmex_tests_customfieldeditdialog.o \
+	mmex_tests_customfieldlistdialog.o \
+	mmex_tests_dbcheck.o \
+	mmex_tests_dbupgrade.o \
 	mmex_tests_dbwrapper.o \
 	mmex_tests_filtertransdialog.o \
 	mmex_tests_general_report_manager.o \
@@ -228,6 +237,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_transactions.o \
 	mmex_tests_platfdep.o \
 	mmex_tests_export.o \
+	mmex_tests_parsers.o \
 	mmex_tests_qif_export.o \
 	mmex_tests_qif_import.o \
 	mmex_tests_qif_import_gui.o \
@@ -243,6 +253,8 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Checking.o \
 	mmex_tests_Model_Currency.o \
 	mmex_tests_Model_CurrencyHistory.o \
+	mmex_tests_Model_CustomField.o \
+	mmex_tests_Model_CustomFieldData.o \
 	mmex_tests_Model_Infotable.o \
 	mmex_tests_Model_Payee.o \
 	mmex_tests_Model_Report.o \
@@ -629,6 +641,21 @@ mmex_tests_constants.o: $(srcdir)/../src/constants.cpp
 mmex_tests_currencydialog.o: $(srcdir)/../src/currencydialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/currencydialog.cpp
 
+mmex_tests_customfielddialog.o: $(srcdir)/../src/customfielddialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/customfielddialog.cpp
+
+mmex_tests_customfieldeditdialog.o: $(srcdir)/../src/customfieldeditdialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/customfieldeditdialog.cpp
+
+mmex_tests_customfieldlistdialog.o: $(srcdir)/../src/customfieldlistdialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/customfieldlistdialog.cpp
+
+mmex_tests_dbcheck.o: $(srcdir)/../src/dbcheck.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/dbcheck.cpp
+
+mmex_tests_dbupgrade.o: $(srcdir)/../src/dbupgrade.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/dbupgrade.cpp
+
 mmex_tests_dbwrapper.o: $(srcdir)/../src/dbwrapper.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/dbwrapper.cpp
 
@@ -803,6 +830,9 @@ mmex_tests_platfdep.o: $(srcdir)/../src/unix/platfdep.cpp
 mmex_tests_export.o: $(srcdir)/../src/import_export/export.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/import_export/export.cpp
 
+mmex_tests_parsers.o: $(srcdir)/../src/import_export/parsers.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/import_export/parsers.cpp
+
 mmex_tests_qif_export.o: $(srcdir)/../src/import_export/qif_export.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/import_export/qif_export.cpp
 
@@ -847,6 +877,12 @@ mmex_tests_Model_Currency.o: $(srcdir)/../src/model/Model_Currency.cpp
 
 mmex_tests_Model_CurrencyHistory.o: $(srcdir)/../src/model/Model_CurrencyHistory.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/model/Model_CurrencyHistory.cpp
+
+mmex_tests_Model_CustomField.o: $(srcdir)/../src/model/Model_CustomField.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/model/Model_CustomField.cpp
+
+mmex_tests_Model_CustomFieldData.o: $(srcdir)/../src/model/Model_CustomFieldData.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/model/Model_CustomFieldData.cpp
 
 mmex_tests_Model_Infotable.o: $(srcdir)/../src/model/Model_Infotable.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/model/Model_Infotable.cpp

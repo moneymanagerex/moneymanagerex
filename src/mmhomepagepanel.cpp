@@ -155,7 +155,7 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
         values.second += stock.VALUE;
         if (account && account->STATUS == VIEW_ACCOUNTS_OPEN_STR)
         {   
-            grand_total_ += stock.CURRENTPRICE * stock.NUMSHARES * conv_rate - stock.COMMISSION;
+            grand_total_ += stock.VALUE * conv_rate;
             grand_gain_lost_ += gain_lost * conv_rate;
         }   
     }   

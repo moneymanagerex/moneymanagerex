@@ -208,13 +208,13 @@ bool mmGUIApp::OnInit()
 
 int mmGUIApp::OnExit()
 {
-	wxLogDebug("OnExit()");
+    wxLogDebug("OnExit()");
     Model_Usage::Data* usage = Model_Usage::instance().create();
     usage->USAGEDATE = wxDate::Today().FormatISODate();
     usage->JSONCONTENT = Model_Usage::instance().to_string();
     Model_Usage::instance().save(usage);
-	if (Model_Setting::instance().GetBoolSetting(INIDB_SEND_USAGE_STATS, true))
-		Model_Usage::send();
+    if (Model_Setting::instance().GetBoolSetting(INIDB_SEND_USAGE_STATS, true))
+        Model_Usage::send();
 
     if (m_setting_db) delete m_setting_db;
 
