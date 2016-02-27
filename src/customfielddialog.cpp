@@ -69,9 +69,9 @@ bool mmCustomFieldDialog::Create(wxWindow* parent, wxWindowID id
 
     wxString WindowTitle;
     if (m_RefId > 0)
-        WindowTitle = wxString::Format(_("Custom Fields | %s %i"), m_RefType, m_RefId);
+        WindowTitle = wxString::Format(_("Custom Fields | %s %i"), wxGetTranslation(m_RefType), m_RefId);
     else
-        WindowTitle = wxString::Format(_("Custom Fields | New %s"), m_RefType);
+        WindowTitle = wxString::Format(_("Custom Fields | New %s"), wxGetTranslation(m_RefType));
 
     wxFrame::Create(parent, id, WindowTitle, pos, size, style);
 
@@ -281,13 +281,13 @@ void mmCustomFieldDialog::OnSave(const bool OpenStatus)
         case Model_CustomField::INTEGER:
             {
                 wxSpinCtrl* CustomInteger = (wxSpinCtrl*)FindWindow(controlID);
-                if (CustomInteger) Data = wxString::Format(_("%i"), CustomInteger->GetValue());
+                if (CustomInteger) Data = wxString::Format("%i", CustomInteger->GetValue());
             }
             break;
         case Model_CustomField::DECIMAL:
             {
                 wxSpinCtrlDouble* CustomDecimal = (wxSpinCtrlDouble*)FindWindow(controlID);
-                if (CustomDecimal) Data = wxString::Format(_("%f"), CustomDecimal->GetValue());
+                if (CustomDecimal) Data = wxString::Format("%f", CustomDecimal->GetValue());
             }
             break;
         case Model_CustomField::BOOLEAN:

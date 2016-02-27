@@ -48,9 +48,6 @@ public:
     */
     static Model_Category& instance();
 
-private:
-    void initialize();
-
 public:
     /** Return the Data record for the given category name */
     Data* get(const wxString& name);

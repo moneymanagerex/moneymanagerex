@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013 - 2016 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-01-24 11:35:26.698000.
+ *          AUTO GENERATED at 2016-02-19 20:11:36.144000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -54,7 +54,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         delete this->fake_;
         destroy_cache();
     }
-	 
+     
     /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()
     {
@@ -67,17 +67,18 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     bool ensure(wxSQLite3Database* db)
     {
         if (!exists(db))
-		{
-			try
-			{
-				db->ExecuteUpdate("CREATE TABLE SUBCATEGORY_V1(SUBCATEGID integer primary key, SUBCATEGNAME TEXT COLLATE NOCASE NOT NULL, CATEGID integer NOT NULL, UNIQUE(CATEGID, SUBCATEGNAME))");
-			}
-			catch(const wxSQLite3Exception &e) 
-			{ 
-				wxLogError("SUBCATEGORY_V1: Exception %s", e.GetMessage().c_str());
-				return false;
-			}
-		}
+        {
+            try
+            {
+                db->ExecuteUpdate("CREATE TABLE SUBCATEGORY_V1(SUBCATEGID integer primary key, SUBCATEGNAME TEXT COLLATE NOCASE NOT NULL, CATEGID integer NOT NULL, UNIQUE(CATEGID, SUBCATEGNAME))");
+                this->ensure_data(db);
+            }
+            catch(const wxSQLite3Exception &e) 
+            { 
+                wxLogError("SUBCATEGORY_V1: Exception %s", e.GetMessage().c_str());
+                return false;
+            }
+        }
 
         this->ensure_index(db);
 
@@ -99,6 +100,51 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         return true;
     }
 
+    void ensure_data(wxSQLite3Database* db)
+    {
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (1, '%s', 1)", wxTRANSLATE("Telephone")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (2, '%s', 1)", wxTRANSLATE("Electricity")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (3, '%s', 1)", wxTRANSLATE("Gas")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (4, '%s', 1)", wxTRANSLATE("Internet")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (5, '%s', 1)", wxTRANSLATE("Rent")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (6, '%s', 1)", wxTRANSLATE("Cable TV")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (7, '%s', 1)", wxTRANSLATE("Water")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (8, '%s', 2)", wxTRANSLATE("Groceries")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (9, '%s', 2)", wxTRANSLATE("Dining out")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (10, '%s', 3)", wxTRANSLATE("Movies")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (11, '%s', 3)", wxTRANSLATE("Video Rental")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (12, '%s', 3)", wxTRANSLATE("Magazines")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (13, '%s', 4)", wxTRANSLATE("Maintenance")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (14, '%s', 4)", wxTRANSLATE("Gas")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (15, '%s', 4)", wxTRANSLATE("Parking")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (16, '%s', 4)", wxTRANSLATE("Registration")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (17, '%s', 5)", wxTRANSLATE("Books")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (18, '%s', 5)", wxTRANSLATE("Tuition")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (19, '%s', 5)", wxTRANSLATE("Others")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (20, '%s', 6)", wxTRANSLATE("Clothing")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (21, '%s', 6)", wxTRANSLATE("Furnishing")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (22, '%s', 6)", wxTRANSLATE("Others")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (23, '%s', 7)", wxTRANSLATE("Health")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (24, '%s', 7)", wxTRANSLATE("Dental")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (25, '%s', 7)", wxTRANSLATE("Eyecare")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (26, '%s', 7)", wxTRANSLATE("Physician")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (27, '%s', 7)", wxTRANSLATE("Prescriptions")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (28, '%s', 8)", wxTRANSLATE("Auto")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (29, '%s', 8)", wxTRANSLATE("Life")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (30, '%s', 8)", wxTRANSLATE("Home")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (31, '%s', 8)", wxTRANSLATE("Health")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (32, '%s', 9)", wxTRANSLATE("Travel")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (33, '%s', 9)", wxTRANSLATE("Lodging")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (34, '%s', 9)", wxTRANSLATE("Sightseeing")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (35, '%s', 10)", wxTRANSLATE("Income Tax")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (36, '%s', 10)", wxTRANSLATE("House Tax")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (37, '%s', 10)", wxTRANSLATE("Water Tax")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (38, '%s', 10)", wxTRANSLATE("Others")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (39, '%s', 13)", wxTRANSLATE("Salary")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (40, '%s', 13)", wxTRANSLATE("Reimbursement/Refunds")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (41, '%s', 13)", wxTRANSLATE("Investment Income")));
+    }
+    
     struct SUBCATEGID : public DB_Column<int>
     { 
         static wxString name() { return "SUBCATEGID"; } 
@@ -287,7 +333,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
 
     DB_Table_SUBCATEGORY_V1() : fake_(new Data())
     {
-        query_ = "SELECT * FROM SUBCATEGORY_V1 ";
+        query_ = "SELECT SUBCATEGID, SUBCATEGNAME, CATEGID FROM SUBCATEGORY_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/

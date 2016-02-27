@@ -43,9 +43,10 @@ WXSQLITE_CFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 /W4 $(__DEBUGINFO) \
 	/I$(WX_DIR)\include /DNOPCH /DSQLITE_CORE /DSQLITE_ENABLE_FTS3 \
 	/DSQLITE_ENABLE_FTS3_PARENTHESIS /DSQLITE_HAS_CODEC \
 	/DSQLITE_ENABLE_EXTFUNC /DSQLITE_ENABLE_COLUMN_METADATA \
+	/DSQLITE_ENABLE_JSON1 /DHAVE_ACOSH /DHAVE_ASINH /DHAVE_ATANH /DHAVE_ISBLANK \
 	/DWXSQLITE3_HAVE_CODEC /DWXSQLITE3_HAVE_METADATA \
-	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
-	$(CPPFLAGS) $(CFLAGS)
+	/DWXSQLITE3_USER_AUTHENTICATION /I..\..\lib\wxsqlite3\sqlite3\secure\src \
+	/I..\..\lib\wxsqlite3\include $(CPPFLAGS) $(CFLAGS)
 WXSQLITE_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 /W4 $(__DEBUGINFO) \
 	$(____DEBUGINFO) /Fdwxsqlite.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	/D_CRT_SECURE_NO_WARNINGS $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
@@ -54,9 +55,10 @@ WXSQLITE_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 /W4 $(__DEBUGINFO) \
 	/I$(WX_DIR)\include /DNOPCH /DSQLITE_CORE /DSQLITE_ENABLE_FTS3 \
 	/DSQLITE_ENABLE_FTS3_PARENTHESIS /DSQLITE_HAS_CODEC \
 	/DSQLITE_ENABLE_EXTFUNC /DSQLITE_ENABLE_COLUMN_METADATA \
+	/DSQLITE_ENABLE_JSON1 /DHAVE_ACOSH /DHAVE_ASINH /DHAVE_ATANH /DHAVE_ISBLANK \
 	/DWXSQLITE3_HAVE_CODEC /DWXSQLITE3_HAVE_METADATA \
-	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include /GR \
-	/EHsc $(CPPFLAGS) $(CXXFLAGS)
+	/DWXSQLITE3_USER_AUTHENTICATION /I..\..\lib\wxsqlite3\sqlite3\secure\src \
+	/I..\..\lib\wxsqlite3\include /GR /EHsc $(CPPFLAGS) $(CXXFLAGS)
 WXSQLITE_OBJECTS =  \
 	wxsqlite_wxsqlite3.obj \
 	wxsqlite_sqlite3secure.obj
@@ -132,6 +134,11 @@ MMEX_OBJECTS =  \
 	mmex_categdialog.obj \
 	mmex_constants.obj \
 	mmex_currencydialog.obj \
+	mmex_customfielddialog.obj \
+	mmex_customfieldeditdialog.obj \
+	mmex_customfieldlistdialog.obj \
+	mmex_dbcheck.obj \
+	mmex_dbupgrade.obj \
 	mmex_dbwrapper.obj \
 	mmex_filtertransdialog.obj \
 	mmex_general_report_manager.obj \
@@ -190,6 +197,7 @@ MMEX_OBJECTS =  \
 	mmex_transactions.obj \
 	mmex_platfdep.obj \
 	mmex_export.obj \
+	mmex_parsers.obj \
 	mmex_qif_export.obj \
 	mmex_qif_import.obj \
 	mmex_qif_import_gui.obj \
@@ -205,6 +213,8 @@ MMEX_OBJECTS =  \
 	mmex_Model_Checking.obj \
 	mmex_Model_Currency.obj \
 	mmex_Model_CurrencyHistory.obj \
+	mmex_Model_CustomField.obj \
+	mmex_Model_CustomFieldData.obj \
 	mmex_Model_Infotable.obj \
 	mmex_Model_Payee.obj \
 	mmex_Model_Report.obj \
@@ -704,6 +714,21 @@ mmex_constants.obj: ..\..\src\constants.cpp
 mmex_currencydialog.obj: ..\..\src\currencydialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\currencydialog.cpp
 
+mmex_customfielddialog.obj: ..\..\src\customfielddialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\customfielddialog.cpp
+
+mmex_customfieldeditdialog.obj: ..\..\src\customfieldeditdialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\customfieldeditdialog.cpp
+
+mmex_customfieldlistdialog.obj: ..\..\src\customfieldlistdialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\customfieldlistdialog.cpp
+
+mmex_dbcheck.obj: ..\..\src\dbcheck.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\dbcheck.cpp
+
+mmex_dbupgrade.obj: ..\..\src\dbupgrade.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\dbupgrade.cpp
+
 mmex_dbwrapper.obj: ..\..\src\dbwrapper.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\dbwrapper.cpp
 
@@ -878,6 +903,9 @@ mmex_platfdep.obj: ..\..\src\win\platfdep.cpp
 mmex_export.obj: ..\..\src\import_export\export.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\export.cpp
 
+mmex_parsers.obj: ..\..\src\import_export\parsers.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\parsers.cpp
+
 mmex_qif_export.obj: ..\..\src\import_export\qif_export.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\qif_export.cpp
 
@@ -922,6 +950,12 @@ mmex_Model_Currency.obj: ..\..\src\model\Model_Currency.cpp
 
 mmex_Model_CurrencyHistory.obj: ..\..\src\model\Model_CurrencyHistory.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_CurrencyHistory.cpp
+
+mmex_Model_CustomField.obj: ..\..\src\model\Model_CustomField.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_CustomField.cpp
+
+mmex_Model_CustomFieldData.obj: ..\..\src\model\Model_CustomFieldData.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_CustomFieldData.cpp
 
 mmex_Model_Infotable.obj: ..\..\src\model\Model_Infotable.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Infotable.cpp

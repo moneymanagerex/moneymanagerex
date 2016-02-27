@@ -256,15 +256,15 @@ wxString Model_Report::get_html(const Data* r)
     }
     catch (const syntax_ex& e)
     {
-        out = e.what();
+        return e.what();
     }
     catch (...)
     {
-        // TODO
+        return _("Caught exception");
     }
 
     outputReportFile(out);
-    return out;
+    return "";
 }
 
 void Model_Report::prepareTempFolder()

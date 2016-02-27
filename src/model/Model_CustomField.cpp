@@ -22,14 +22,14 @@
 
 const std::vector<std::pair<Model_CustomField::FIELDTYPE, wxString> > Model_CustomField::FIELDTYPE_CHOICES =
 {
-    std::make_pair(Model_CustomField::STRING, wxString("String")),
-    std::make_pair(Model_CustomField::INTEGER, wxString("Integer")),
-    std::make_pair(Model_CustomField::DECIMAL, wxString("Decimal")),
-    std::make_pair(Model_CustomField::BOOLEAN, wxString("Boolean")),
-    std::make_pair(Model_CustomField::DATE, wxString("Date")),
-    std::make_pair(Model_CustomField::TIME, wxString("Time")),
-    std::make_pair(Model_CustomField::SINGLECHOICHE, wxString("SingleChoiche")),
-    std::make_pair(Model_CustomField::MULTICHOICHE, wxString("MultiChoiche"))
+    std::make_pair(Model_CustomField::STRING, wxString(wxTRANSLATE("String"))),
+    std::make_pair(Model_CustomField::INTEGER, wxString(wxTRANSLATE("Integer"))),
+    std::make_pair(Model_CustomField::DECIMAL, wxString(wxTRANSLATE("Decimal"))),
+    std::make_pair(Model_CustomField::BOOLEAN, wxString(wxTRANSLATE("Boolean"))),
+    std::make_pair(Model_CustomField::DATE, wxString(wxTRANSLATE("Date"))),
+    std::make_pair(Model_CustomField::TIME, wxString(wxTRANSLATE("Time"))),
+    std::make_pair(Model_CustomField::SINGLECHOICHE, wxString(wxTRANSLATE("SingleChoiche"))),
+    std::make_pair(Model_CustomField::MULTICHOICHE, wxString(wxTRANSLATE("MultiChoiche")))
 };
 
 Model_CustomField::Model_CustomField()

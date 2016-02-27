@@ -445,6 +445,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\Model_CustomField.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\Model_CustomFieldData.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model_Infotable.cpp"
 				>
 			</File>
@@ -573,7 +581,27 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\customfielddialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\customfieldeditdialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\customfieldlistdialog.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\tests\db_init_model.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\dbcheck.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\dbupgrade.cpp"
 				>
 			</File>
 			<File
@@ -706,6 +734,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\optionsdialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\import_export\parsers.cpp"
 				>
 			</File>
 			<File
@@ -883,6 +915,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\db\DB_Table_Assetclass_Stock_V1.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\db\DB_Table_Assetclass_V1.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\db\DB_Table_Assets_V1.h"
 				>
 			</File>
@@ -923,6 +963,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\db\DB_Table_Customfield_V1.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\db\DB_Table_Customfielddata_V1.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\db\DB_Table_Infotable_V1.h"
 				>
 			</File>
@@ -956,6 +1004,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\db\DB_Table_Usage_V1.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\db\DB_Upgrade.h"
 				>
 			</File>
 			<File
@@ -1004,6 +1056,14 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\Model_CurrencyHistory.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\Model_CustomField.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\Model_CustomFieldData.h"
 				>
 			</File>
 			<File
@@ -1131,7 +1191,27 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\customfielddialog.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\customfieldeditdialog.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\customfieldlistdialog.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\tests\db_init_model.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\dbcheck.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\dbupgrade.h"
 				>
 			</File>
 			<File
@@ -1280,6 +1360,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\optionsdialog.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\import_export\parsers.h"
 				>
 			</File>
 			<File

@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013 - 2016 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-01-24 11:35:26.698000.
+ *          AUTO GENERATED at 2016-02-19 20:11:36.144000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -54,7 +54,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         delete this->fake_;
         destroy_cache();
     }
-	 
+     
     /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()
     {
@@ -67,17 +67,18 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
     bool ensure(wxSQLite3Database* db)
     {
         if (!exists(db))
-		{
-			try
-			{
-				db->ExecuteUpdate("CREATE TABLE CUSTOMFIELD_V1 (FIELDID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */, DESCRIPTION TEXT COLLATE NOCASE, TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoiche, MultiChoiche */, PROPERTIES TEXT NOT NULL)");
-			}
-			catch(const wxSQLite3Exception &e) 
-			{ 
-				wxLogError("CUSTOMFIELD_V1: Exception %s", e.GetMessage().c_str());
-				return false;
-			}
-		}
+        {
+            try
+            {
+                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELD_V1 (FIELDID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */, DESCRIPTION TEXT COLLATE NOCASE, TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoiche, MultiChoiche */, PROPERTIES TEXT NOT NULL)");
+                this->ensure_data(db);
+            }
+            catch(const wxSQLite3Exception &e) 
+            { 
+                wxLogError("CUSTOMFIELD_V1: Exception %s", e.GetMessage().c_str());
+                return false;
+            }
+        }
 
         this->ensure_index(db);
 
@@ -99,6 +100,10 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         return true;
     }
 
+    void ensure_data(wxSQLite3Database* db)
+    {
+    }
+    
     struct FIELDID : public DB_Column<int>
     { 
         static wxString name() { return "FIELDID"; } 
@@ -322,7 +327,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
 
     DB_Table_CUSTOMFIELD_V1() : fake_(new Data())
     {
-        query_ = "SELECT * FROM CUSTOMFIELD_V1 ";
+        query_ = "SELECT FIELDID, REFTYPE, DESCRIPTION, TYPE, PROPERTIES FROM CUSTOMFIELD_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/

@@ -25,6 +25,7 @@ mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)
     : wxWizard(frame,wxID_ANY,_("Add Account Wizard")
     , wxBitmap(addacctwiz_xpm),wxDefaultPosition
     , wxDEFAULT_DIALOG_STYLE), acctID_(-1)
+    , currencyID_(-1), accountType_(0)
 {
     // a wizard page may be either an object of predefined class
     page1 = new wxWizardPageSimple(this);
@@ -47,18 +48,23 @@ mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)
     this->CentreOnParent();
 }
 
-void mmAddAccountWizard::RunIt(bool modal)
+void mmAddAccountWizard::RunIt()
 {
-    if (modal) {
-        if (RunWizard(page1)) {
-            // Success
-        }
-        Destroy();
-    } else {
-        FinishLayout();
-        ShowPage(page1);
-        Show(true);
+    if (RunWizard(page1)) {
+        // Success
+        Model_Account::Data* account = Model_Account::instance().create();
+
+        account->FAVORITEACCT = "TRUE";
+        account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
+        account->ACCOUNTTYPE = Model_Account::all_type()[accountType_];
+        account->ACCOUNTNAME = accountName_;
+        account->INITIALBAL = 0;
+        account->CURRENCYID = currencyID_;
+
+        Model_Account::instance().save(account);
+        acctID_ = account->ACCOUNTID;
     }
+    Destroy();
 }
 
 bool mmAddAccountPage1::TransferDataFromWindow()
@@ -144,17 +150,8 @@ bool mmAddAccountPage2::TransferDataFromWindow()
         return false;
     }
 
-    Model_Account::Data* account = Model_Account::instance().create();
-
-    account->FAVORITEACCT = "TRUE";
-    account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
-    account->ACCOUNTTYPE = Model_Account::all_type()[itemChoiceType_->GetSelection()];
-    account->ACCOUNTNAME = parent_->accountName_;
-    account->INITIALBAL = 0;
-    account->CURRENCYID = currencyID;
-
-    Model_Account::instance().save(account);
-    parent_->acctID_ = account->ACCOUNTID;
+    parent_->currencyID_ = currencyID;
+    parent_->accountType_ = itemChoiceType_->GetSelection();
 
     return true;
 }

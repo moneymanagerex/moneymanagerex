@@ -366,6 +366,9 @@
     <ClCompile Include="..\..\src\customfieldlistdialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\dbupgrade.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -772,6 +775,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\customfieldlistdialog.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dbupgrade.h">
+      <Filter>Header Files\db</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

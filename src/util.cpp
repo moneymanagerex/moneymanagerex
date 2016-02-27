@@ -462,12 +462,12 @@ static const wxString gDaysInWeek[7] =
 //
 const wxString mmPlatformType()
 {
-	return wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3);
+    return wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3);
 }
 
 const wxString getURL(const wxString& file)
 {
-	wxString index = file;
+    wxString index = file;
 #ifdef __WXGTK__
     index.Prepend("file://");
 #endif
