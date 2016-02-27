@@ -309,7 +309,7 @@ wxString mmReportSummaryByDate::getHTMLText()
 
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, wxString::Format(_("Account Balance - %s"), mode_==0 ? _("Monthly Report"):_("Yearly Report")));
+    hb.addHeader(2, wxString::Format(_("Accounts Balance - %s"), mode_==0 ? _("Monthly Report"):_("Yearly Report")));
     hb.addDateNow();
     hb.addLineBreak();
 
@@ -317,9 +317,11 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Date"));
+    hb.addTableHeaderCell(_("Cash"), true);
     hb.addTableHeaderCell(_("Bank Accounts"), true);
     hb.addTableHeaderCell(_("Credit Card Accounts"), true);
     hb.addTableHeaderCell(_("Term Accounts"), true);
+    hb.addTableHeaderCell(_("Total"), true);
     hb.addTableHeaderCell(_("Stocks"), true);
     hb.addTableHeaderCell(_("Balance"), true);
     hb.endTableRow();
@@ -426,33 +428,36 @@ wxString mmReportSummaryByDate::getHTMLText()
         totBalanceData.push_back(dateStart.FormatISODate());
         for (j=0; j<5; j++)
             balancePerDay[j] = 0.0;
-        for (j=0; j<4; j++)
+        for (j=0; j<5; j++)
         {
             i = 0;
             for (const auto& account: Model_Account::instance().all())
             {
-                if ((j == 0 && Model_Account::type(account) == Model_Account::CHECKING) ||
-                    (j == 1 && Model_Account::type(account) == Model_Account::CREDIT_CARD) ||
-                    (j == 2 && Model_Account::type(account) == Model_Account::TERM) ||
-                    (j == 3 && Model_Account::type(account) == Model_Account::INVESTMENT))
+                if ((j == 0 && Model_Account::type(account) == Model_Account::CASH) ||
+                    (j == 1 && Model_Account::type(account) == Model_Account::CHECKING) ||
+                    (j == 2 && Model_Account::type(account) == Model_Account::CREDIT_CARD) ||
+                    (j == 3 && Model_Account::type(account) == Model_Account::TERM) ||
+                    (j == 4 && Model_Account::type(account) == Model_Account::INVESTMENT))
                 {
                     balancePerDay[j] += arBalance[i];
                 }
                 i++;
             }
             totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[j]));
-            balancePerDay[4] += balancePerDay[j];
         }
-        totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[j]));
+        totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[0] + balancePerDay[1] + balancePerDay[2] + balancePerDay[3]));
+        totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[0] + balancePerDay[1] + balancePerDay[2] + balancePerDay[3] + balancePerDay[4]));
     }
 
     hb.startTbody();
-    for (i = totBalanceData.size() - 6; i >= 0; i -= 6)
+    for (i = totBalanceData.size() - 8; i >= 0; i -= 8)
     {
         if (datePrec.Left(4) != totBalanceData[i].Left(4))
         {
             hb.startTotalTableRow();
             hb.addTableCell(totBalanceData[i].Left(4));
+            hb.addTableCell("");
+            hb.addTableCell("");
             hb.addTableCell("");
             hb.addTableCell("");
             hb.addTableCell("");
@@ -466,7 +471,9 @@ wxString mmReportSummaryByDate::getHTMLText()
         hb.addTableCell(totBalanceData[i + 2], true);
         hb.addTableCell(totBalanceData[i + 3], true);
         hb.addTableCell(totBalanceData[i + 4], true);
+        hb.addTableCell(totBalanceData[i + 6], true);
         hb.addTableCell(totBalanceData[i + 5], true);
+        hb.addTableCell(totBalanceData[i + 7], true);
         hb.endTableRow();
         datePrec = totBalanceData[i];
     }
