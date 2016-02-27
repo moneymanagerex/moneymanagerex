@@ -282,17 +282,15 @@ void mmBudgetingPanel::CreateControls()
 
     listCtrlBudget_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
     listCtrlBudget_->InsertColumn(COL_ICON, (" "));
-    listCtrlBudget_->InsertColumn(COL_CATEGORY, std::get<0>(listCtrlBudget_->m_columns[COL_CATEGORY]));
-    listCtrlBudget_->InsertColumn(COL_SUBCATEGORY, std::get<0>(listCtrlBudget_->m_columns[COL_SUBCATEGORY]));
-    listCtrlBudget_->InsertColumn(COL_FREQUENCY, std::get<0>(listCtrlBudget_->m_columns[COL_FREQUENCY]));
-    listCtrlBudget_->InsertColumn(COL_AMOUNT, std::get<0>(listCtrlBudget_->m_columns[COL_AMOUNT]), wxLIST_FORMAT_RIGHT);
-    listCtrlBudget_->InsertColumn(COL_ESTIMATED, std::get<0>(listCtrlBudget_->m_columns[COL_ESTIMATED]), wxLIST_FORMAT_RIGHT);
-    listCtrlBudget_->InsertColumn(COL_ACTUAL, std::get<0>(listCtrlBudget_->m_columns[COL_ACTUAL]), wxLIST_FORMAT_RIGHT);
+    for (auto i = 1; i < EColumn::COL_MAX; i++)
+        listCtrlBudget_->InsertColumn(i, wxGetTranslation(std::get<0>(listCtrlBudget_->m_columns[i]))
+            , std::get<2>(listCtrlBudget_->m_columns[i]));
 
     /* Get data from inidb */
     for (int i = 0; i < listCtrlBudget_->GetColumnCount(); ++i)
     {
-        int col = Model_Setting::instance().GetIntSetting(wxString::Format(listCtrlBudget_->m_col_width, i), std::get<1>(listCtrlBudget_->m_columns[i]));
+        int col = Model_Setting::instance().GetIntSetting(wxString::Format(listCtrlBudget_->m_col_width, i)
+            , std::get<1>(listCtrlBudget_->m_columns[i]));
         listCtrlBudget_->SetColumnWidth(i, col);
     }
     itemBoxSizer2->Add(listCtrlBudget_, 1, wxGROW | wxALL, 1);
@@ -304,13 +302,13 @@ budgetingListCtrl::budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, con
     , cp_(cp)
     , selectedIndex_(-1)
 {
-    m_columns.push_back(std::make_tuple(_("Icon"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Sub Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Estimated"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(std::make_tuple(_("Actual"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(wxTRANSLATE("Icon"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(wxTRANSLATE("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(wxTRANSLATE("Sub Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(wxTRANSLATE("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(wxTRANSLATE("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(wxTRANSLATE("Estimated"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(wxTRANSLATE("Actual"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
 
     m_col_width = "BUDGET_COL%d_WIDTH";
 }
@@ -402,19 +400,13 @@ void mmBudgetingPanel::initVirtualListControl()
     for (const auto& category : Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
         double estimated = getEstimate(category.CATEGID, -1);
-        if (estimated < 0)
-            estExpenses += estimated;
-        else
-            estIncome += estimated;
+        estimated < 0.00 ? estExpenses += estimated : estIncome += estimated;
 
         double actual = 0;
         if (currentView_ != VIEW_PLANNED || estimated != 0)
         {
             actual = categoryStats_[category.CATEGID][-1][0];
-            if (actual < 0)
-                actExpenses += actual;
-            else
-                actIncome += actual;
+            actual < 0.00 ? actExpenses += actual : actIncome += actual;
         }
 
         /***************************************************************************
@@ -431,19 +423,13 @@ void mmBudgetingPanel::initVirtualListControl()
             if (subcategory.CATEGID != category.CATEGID) continue;
 
             estimated = getEstimate(category.CATEGID, subcategory.SUBCATEGID);
-            if (estimated < 0)
-                estExpenses += estimated;
-            else
-                estIncome += estimated;
+            estimated < 0.00 ? estExpenses += estimated : estIncome += estimated;
 
             actual = 0;
             if (currentView_ != VIEW_PLANNED || estimated != 0)
             {
                 actual = categoryStats_[category.CATEGID][subcategory.SUBCATEGID][0];
-                if (actual < 0)
-                    actExpenses += actual;
-                else
-                    actIncome += actual;
+                actual < 0.00 ? actExpenses += actual : actIncome += actual;
             }
     
             /***************************************************************************
