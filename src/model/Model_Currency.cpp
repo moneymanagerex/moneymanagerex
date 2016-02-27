@@ -177,8 +177,6 @@ const wxString Model_Currency::fromString2Default(const wxString &s, const Data*
 {
     wxString str = s;
     str.Trim();
-    wxChar *sep = 0;
-    wxNumberFormatter::GetThousandsSeparatorIfUsed(sep);
     const Data* c = currency ? currency : Model_Currency::GetBaseCurrency();;
 
     if (!c->PFX_SYMBOL.empty())
