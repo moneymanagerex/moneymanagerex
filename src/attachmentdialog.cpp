@@ -82,9 +82,9 @@ void mmAttachmentDialog::do_create(wxWindow* parent)
 
     wxString WindowTitle;
     if (m_RefId > 0)
-        WindowTitle = wxString::Format(_("Organize Attachments | %s %i"), m_RefType, m_RefId);
+        WindowTitle = wxString::Format(_("Organize Attachments | %s %i"), wxGetTranslation(m_RefType), m_RefId);
     else
-        WindowTitle = wxString::Format(_("Organize Attachments | New %s"), m_RefType);
+        WindowTitle = wxString::Format(_("Organize Attachments | New %s"), wxGetTranslation(m_RefType));
 
     if (!wxDialog::Create(parent, wxID_ANY, WindowTitle, wxDefaultPosition, wxDefaultSize, style))
         return;

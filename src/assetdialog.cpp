@@ -33,7 +33,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmAssetDialog, wxDialog);
 wxBEGIN_EVENT_TABLE( mmAssetDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmAssetDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmAssetDialog::OnCancel)
-	EVT_BUTTON(wxID_FILE, mmAssetDialog::OnAttachments)
+    EVT_BUTTON(wxID_FILE, mmAssetDialog::OnAttachments)
     EVT_CHOICE(IDC_COMBO_TYPE, mmAssetDialog::OnChangeAppreciationType)
     EVT_CHILD_FOCUS(mmAssetDialog::changeFocus)
     EVT_CLOSE(mmAssetDialog::OnQuit)
@@ -174,11 +174,11 @@ void mmAssetDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Notes")), g_flags);
 
-	bAttachments_ = new wxBitmapButton(itemPanel5, wxID_FILE
-		, mmBitmap(png::CLIP), wxDefaultPosition
-		, wxSize(m_valueChange->GetSize().GetY(), m_valueChange->GetSize().GetY()));
-	itemFlexGridSizer6->Add(bAttachments_, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
-	bAttachments_->SetToolTip(_("Organize attachments of this asset"));
+    bAttachments_ = new wxBitmapButton(itemPanel5, wxID_FILE
+        , mmBitmap(png::CLIP), wxDefaultPosition
+        , wxSize(m_valueChange->GetSize().GetY(), m_valueChange->GetSize().GetY()));
+    itemFlexGridSizer6->Add(bAttachments_, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+    bAttachments_->SetToolTip(_("Organize attachments of this asset"));
 
     m_notes = new mmTextCtrl(this, IDC_NOTES, wxGetEmptyString(), wxDefaultPosition, wxSize(220, 170), wxTE_MULTILINE);
     m_notes->SetToolTip(_("Enter notes associated with this asset"));
@@ -256,14 +256,14 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     m_asset->VALUECHANGERATE  = valueChangeRate;
     m_asset->ASSETTYPE        = asset_type;
 
-	int OldAssetId = m_asset->ASSETID;
+    int OldAssetId = m_asset->ASSETID;
     int NewAssetId = Model_Asset::instance().save(m_asset);
 
-	if (OldAssetId < 0)
-	{
-		const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
-		mmAttachmentManage::RelocateAllAttachments(RefType, 0, NewAssetId);
-	}
+    if (OldAssetId < 0)
+    {
+        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+        mmAttachmentManage::RelocateAllAttachments(RefType, 0, NewAssetId);
+    }
 
     EndModal(wxID_OK);
 }
@@ -291,16 +291,16 @@ void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmAssetDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-	const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
-	int RefId;
-	
-	if (!this->m_asset)
-		RefId = 0;
-	else
-		RefId= m_asset->ASSETID;
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+    int RefId;
+    
+    if (!this->m_asset)
+        RefId = 0;
+    else
+        RefId= m_asset->ASSETID;
 
-	mmAttachmentDialog dlg(this, RefType, RefId);
-	dlg.ShowModal();
+    mmAttachmentDialog dlg(this, RefType, RefId);
+    dlg.ShowModal();
 }
 
 void mmAssetDialog::changeFocus(wxChildFocusEvent& event)

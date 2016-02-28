@@ -756,7 +756,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
     long i, histID;
     double dPrice = 0.0;
     Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
-	Model_Currency::Data* currency = Model_Account::currency(account);
+    Model_Currency::Data* currency = Model_Account::currency(account);
     wxString currentPriceStr = currentPrice_->GetValue().Trim();
     if (!Model_Currency::fromString(currentPriceStr, dPrice, currency) || (dPrice < 0.0))
         return;

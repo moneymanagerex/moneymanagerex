@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013 - 2016 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-01-24 11:35:26.698000.
+ *          AUTO GENERATED at 2016-02-19 20:11:36.144000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -54,7 +54,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         delete this->fake_;
         destroy_cache();
     }
-	 
+     
     /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()
     {
@@ -67,17 +67,18 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     bool ensure(wxSQLite3Database* db)
     {
         if (!exists(db))
-		{
-			try
-			{
-				db->ExecuteUpdate("CREATE TABLE CATEGORY_V1(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE)");
-			}
-			catch(const wxSQLite3Exception &e) 
-			{ 
-				wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
-				return false;
-			}
-		}
+        {
+            try
+            {
+                db->ExecuteUpdate("CREATE TABLE CATEGORY_V1(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE)");
+                this->ensure_data(db);
+            }
+            catch(const wxSQLite3Exception &e) 
+            { 
+                wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+                return false;
+            }
+        }
 
         this->ensure_index(db);
 
@@ -99,6 +100,26 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         return true;
     }
 
+    void ensure_data(wxSQLite3Database* db)
+    {
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (1, '%s')", wxTRANSLATE("Bills")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (2, '%s')", wxTRANSLATE("Food")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (3, '%s')", wxTRANSLATE("Leisure")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (4, '%s')", wxTRANSLATE("Automobile")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (5, '%s')", wxTRANSLATE("Education")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (6, '%s')", wxTRANSLATE("Homeneeds")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (7, '%s')", wxTRANSLATE("Healthcare")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (8, '%s')", wxTRANSLATE("Insurance")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (9, '%s')", wxTRANSLATE("Vacation")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (10, '%s')", wxTRANSLATE("Taxes")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (11, '%s')", wxTRANSLATE("Miscellaneous")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (12, '%s')", wxTRANSLATE("Gifts")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (13, '%s')", wxTRANSLATE("Income")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (14, '%s')", wxTRANSLATE("Other Income")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (15, '%s')", wxTRANSLATE("Other Expenses")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (16, '%s')", wxTRANSLATE("Transfer")));
+    }
+    
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
@@ -268,7 +289,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 
     DB_Table_CATEGORY_V1() : fake_(new Data())
     {
-        query_ = "SELECT * FROM CATEGORY_V1 ";
+        query_ = "SELECT CATEGID, CATEGNAME FROM CATEGORY_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/

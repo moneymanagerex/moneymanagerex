@@ -191,13 +191,13 @@ wxString mmReportMyUsage::getHTMLText()
     }
     catch (const syntax_ex& e)
     {
-        out = e.what();
+        return e.what();
     }
     catch (...)
     {
-        // TODO
+        return _("Caught exception");
     }
 
     Model_Report::outputReportFile(out);
-    return out;
+    return "";
 }

@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013 - 2016 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-01-24 11:35:26.698000.
+ *          AUTO GENERATED at 2016-02-19 20:11:36.144000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -54,7 +54,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         delete this->fake_;
         destroy_cache();
     }
-	 
+     
     /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()
     {
@@ -67,17 +67,18 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
     bool ensure(wxSQLite3Database* db)
     {
         if (!exists(db))
-		{
-			try
-			{
-				db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL /* Checking, Term, Investment, Credit Card */, ACCOUNTNUM TEXT, STATUS TEXT NOT NULL /* Open, Closed */, NOTES TEXT , HELDAT TEXT , WEBSITE TEXT , CONTACTINFO TEXT, ACCESSINFO TEXT , INITIALBAL numeric , FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL)");
-			}
-			catch(const wxSQLite3Exception &e) 
-			{ 
-				wxLogError("ACCOUNTLIST_V1: Exception %s", e.GetMessage().c_str());
-				return false;
-			}
-		}
+        {
+            try
+            {
+                db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL /* Checking, Term, Investment, Credit Card */, ACCOUNTNUM TEXT, STATUS TEXT NOT NULL /* Open, Closed */, NOTES TEXT, HELDAT TEXT, WEBSITE TEXT, CONTACTINFO TEXT, ACCESSINFO TEXT, INITIALBAL numeric, FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL)");
+                this->ensure_data(db);
+            }
+            catch(const wxSQLite3Exception &e) 
+            { 
+                wxLogError("ACCOUNTLIST_V1: Exception %s", e.GetMessage().c_str());
+                return false;
+            }
+        }
 
         this->ensure_index(db);
 
@@ -99,6 +100,10 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         return true;
     }
 
+    void ensure_data(wxSQLite3Database* db)
+    {
+    }
+    
     struct ACCOUNTID : public DB_Column<int>
     { 
         static wxString name() { return "ACCOUNTID"; } 
@@ -468,7 +473,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 
     DB_Table_ACCOUNTLIST_V1() : fake_(new Data())
     {
-        query_ = "SELECT * FROM ACCOUNTLIST_V1 ";
+        query_ = "SELECT ACCOUNTID, ACCOUNTNAME, ACCOUNTTYPE, ACCOUNTNUM, STATUS, NOTES, HELDAT, WEBSITE, CONTACTINFO, ACCESSINFO, INITIALBAL, FAVORITEACCT, CURRENCYID FROM ACCOUNTLIST_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/

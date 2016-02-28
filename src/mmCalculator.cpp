@@ -37,7 +37,7 @@ const bool mmCalculator::is_ok(const wxString& input)
     }
 
     this->output_ = state.invokeFunction<double>("calc");
-	return ok;
+    return ok;
 }
 
 const bool mmCalculator::check_syntax(const wxString& input) const

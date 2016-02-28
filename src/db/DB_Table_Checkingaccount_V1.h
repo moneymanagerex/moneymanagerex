@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013,2014,2015 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013 - 2016 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-01-24 11:35:26.698000.
+ *          AUTO GENERATED at 2016-02-19 20:11:36.144000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -54,7 +54,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         delete this->fake_;
         destroy_cache();
     }
-	 
+     
     /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()
     {
@@ -67,17 +67,18 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
     bool ensure(wxSQLite3Database* db)
     {
         if (!exists(db))
-		{
-			try
-			{
-				db->ExecuteUpdate("CREATE TABLE CHECKINGACCOUNT_V1(TRANSID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL /* Withdrawal, Deposit, Transfer */, TRANSAMOUNT numeric NOT NULL, STATUS TEXT /* None, Reconciled, Void, Follow up, Duplicate */, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric)");
-			}
-			catch(const wxSQLite3Exception &e) 
-			{ 
-				wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
-				return false;
-			}
-		}
+        {
+            try
+            {
+                db->ExecuteUpdate("CREATE TABLE CHECKINGACCOUNT_V1(TRANSID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL /* Withdrawal, Deposit, Transfer */, TRANSAMOUNT numeric NOT NULL, STATUS TEXT /* None, Reconciled, Void, Follow up, Duplicate */, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric)");
+                this->ensure_data(db);
+            }
+            catch(const wxSQLite3Exception &e) 
+            { 
+                wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
+                return false;
+            }
+        }
 
         this->ensure_index(db);
 
@@ -100,6 +101,10 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         return true;
     }
 
+    void ensure_data(wxSQLite3Database* db)
+    {
+    }
+    
     struct TRANSID : public DB_Column<int>
     { 
         static wxString name() { return "TRANSID"; } 
@@ -493,7 +498,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
 
     DB_Table_CHECKINGACCOUNT_V1() : fake_(new Data())
     {
-        query_ = "SELECT * FROM CHECKINGACCOUNT_V1 ";
+        query_ = "SELECT TRANSID, ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT FROM CHECKINGACCOUNT_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
