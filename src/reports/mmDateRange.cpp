@@ -207,7 +207,7 @@ mmAllTime::mmAllTime()
 {
     this->title_ = wxTRANSLATE("Over Time");
     this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan).SetYear(1);
-    this->end_date_.SetYear(9999);
+    this->end_date_.SetDay(1).SetMonth(wxDateTime::Jan).SetYear(9996);
 }
 
 const bool mmAllTime::is_with_date() const
