@@ -42,18 +42,20 @@ WXSQLITE_CFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -DNOPCH \
 	-DSQLITE_CORE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS \
 	-DSQLITE_HAS_CODEC -DSQLITE_ENABLE_EXTFUNC -DSQLITE_ENABLE_COLUMN_METADATA \
+	-DSQLITE_ENABLE_JSON1 -DHAVE_ACOSH -DHAVE_ASINH -DHAVE_ATANH -DHAVE_ISBLANK \
 	-DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
-	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
-	$(CPPFLAGS) $(CFLAGS)
+	-DWXSQLITE3_USER_AUTHENTICATION -I..\..\lib\wxsqlite3\sqlite3\secure\src \
+	-I..\..\lib\wxsqlite3\include $(CPPFLAGS) $(CFLAGS)
 WXSQLITE_CXXFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
 	$(__DEBUG_DEFINE_p) -DHAVE_W32API_H $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -DNOPCH \
 	-DSQLITE_CORE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS \
 	-DSQLITE_HAS_CODEC -DSQLITE_ENABLE_EXTFUNC -DSQLITE_ENABLE_COLUMN_METADATA \
+	-DSQLITE_ENABLE_JSON1 -DHAVE_ACOSH -DHAVE_ASINH -DHAVE_ATANH -DHAVE_ISBLANK \
 	-DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
-	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
-	$(CPPFLAGS) $(CXXFLAGS)
+	-DWXSQLITE3_USER_AUTHENTICATION -I..\..\lib\wxsqlite3\sqlite3\secure\src \
+	-I..\..\lib\wxsqlite3\include $(CPPFLAGS) $(CXXFLAGS)
 WXSQLITE_OBJECTS =  \
 	wxsqlite_wxsqlite3.o \
 	wxsqlite_sqlite3secure.o
@@ -126,6 +128,11 @@ MMEX_OBJECTS =  \
 	mmex_categdialog.o \
 	mmex_constants.o \
 	mmex_currencydialog.o \
+	mmex_customfielddialog.o \
+	mmex_customfieldeditdialog.o \
+	mmex_customfieldlistdialog.o \
+	mmex_dbcheck.o \
+	mmex_dbupgrade.o \
 	mmex_dbwrapper.o \
 	mmex_filtertransdialog.o \
 	mmex_general_report_manager.o \
@@ -184,6 +191,7 @@ MMEX_OBJECTS =  \
 	mmex_transactions.o \
 	mmex_platfdep.o \
 	mmex_export.o \
+	mmex_parsers.o \
 	mmex_qif_export.o \
 	mmex_qif_import.o \
 	mmex_qif_import_gui.o \
@@ -199,6 +207,8 @@ MMEX_OBJECTS =  \
 	mmex_Model_Checking.o \
 	mmex_Model_Currency.o \
 	mmex_Model_CurrencyHistory.o \
+	mmex_Model_CustomField.o \
+	mmex_Model_CustomFieldData.o \
 	mmex_Model_Infotable.o \
 	mmex_Model_Payee.o \
 	mmex_Model_Report.o \
@@ -580,6 +590,21 @@ mmex_constants.o: ../../src/constants.cpp
 mmex_currencydialog.o: ../../src/currencydialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_customfielddialog.o: ../../src/customfielddialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_customfieldeditdialog.o: ../../src/customfieldeditdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_customfieldlistdialog.o: ../../src/customfieldlistdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_dbcheck.o: ../../src/dbcheck.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_dbupgrade.o: ../../src/dbupgrade.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_dbwrapper.o: ../../src/dbwrapper.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -754,6 +779,9 @@ mmex_platfdep.o: ../../src/win/platfdep.cpp
 mmex_export.o: ../../src/import_export/export.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_parsers.o: ../../src/import_export/parsers.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_qif_export.o: ../../src/import_export/qif_export.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -797,6 +825,12 @@ mmex_Model_Currency.o: ../../src/model/Model_Currency.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_CurrencyHistory.o: ../../src/model/Model_CurrencyHistory.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_Model_CustomField.o: ../../src/model/Model_CustomField.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_Model_CustomFieldData.o: ../../src/model/Model_CustomFieldData.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Infotable.o: ../../src/model/Model_Infotable.cpp

@@ -91,7 +91,7 @@ wxString mmReportTransactions::getHTMLText()
     for (auto& transaction : trans_)
     {
         hb.startTableRow();
-        hb.addTableCell(mmGetDateForDisplay(mmGetStorageStringAsDate(transaction.TRANSDATE)));
+        hb.addTableCell(mmGetStorageStringAsDate(transaction.TRANSDATE));
         hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID), transaction.ACCOUNTNAME);
         hb.addTableCell(transaction.PAYEENAME);
         hb.addTableCell(transaction.STATUS);

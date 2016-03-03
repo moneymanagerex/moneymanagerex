@@ -31,7 +31,7 @@ EXEC_PREFIX = C:\opt\bin
 
 ### Targets: ###
 
-all: arabic.mo bulgarian.mo chinese_chs.mo chinese_zh.mo croatian.mo czech.mo dutch.mo dutch_be.mo english-uk.mo english.mo french.mo german.mo greek.mo hebrew.mo hindi.mo hungarian.mo indonesian.mo italian.mo latvian.mo norwegian.mo polish.mo portuguese.mo portuguese_portugal.mo romanian.mo russian.mo serbo-croatian.mo serbian.mo slovak.mo slovenian.mo spanish.mo swedish.mo tamil.mo turkish.mo ukrainian.mo vietnamese.mo portuguese_br.mo
+all: arabic.mo bulgarian.mo chinese_chs.mo chinese_zh.mo croatian.mo czech.mo dutch.mo dutch_be.mo english-uk.mo english.mo french.mo german.mo greek.mo hebrew.mo hindi.mo hungarian.mo indonesian.mo italian.mo japanese.mo latvian.mo lithuanian.mo norwegian.mo polish.mo portuguese.mo portuguese_portugal.mo romanian.mo russian.mo serbo-croatian.mo serbian.mo slovak.mo slovenian.mo spanish.mo swedish.mo tamil.mo turkish.mo ukrainian.mo vietnamese.mo portuguese_br.mo
 
 install: 
 
@@ -59,7 +59,9 @@ clean:
 	-if exist hungarian.mo del hungarian.mo
 	-if exist indonesian.mo del indonesian.mo
 	-if exist italian.mo del italian.mo
+	-if exist japanese.mo del japanese.mo
 	-if exist latvian.mo del latvian.mo
+	-if exist lithuanian.mo del lithuanian.mo
 	-if exist norwegian.mo del norwegian.mo
 	-if exist polish.mo del polish.mo
 	-if exist portuguese.mo del portuguese.mo
@@ -132,8 +134,14 @@ indonesian.mo: indonesian.po
 italian.mo: italian.po
 	msgfmt -o italian.mo italian.po
 
+japanese.mo: japanese.po
+	msgfmt -o japanese.mo japanese.po
+
 latvian.mo: latvian.po
 	msgfmt -o latvian.mo latvian.po
+
+lithuanian.mo: lithuanian.po
+	msgfmt -o lithuanian.mo lithuanian.po
 
 norwegian.mo: norwegian.po
 	msgfmt -o norwegian.mo norwegian.po

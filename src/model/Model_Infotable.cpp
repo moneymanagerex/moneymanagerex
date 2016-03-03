@@ -177,16 +177,6 @@ bool Model_Infotable::checkDBVersion()
     return this->GetIntInfo("DATAVERSION", 0) >= mmex::MIN_DATAVERSION;
 }
 
-bool Model_Infotable::AtDatabaseVersion(const int required_version)
-{
-    return GetIntInfo("DATAVERSION", 0) == required_version;
-}
-
-void Model_Infotable::SetDatabaseVersion(const wxString& required_version)
-{
-    Set("DATAVERSION", required_version);
-}
-
 loop_t Model_Infotable::to_loop_t()
 {
     loop_t loop;
