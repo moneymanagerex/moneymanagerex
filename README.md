@@ -42,7 +42,7 @@ Platforms
 * [Github](https://github.com/moneymanagerex)
 
 #### Tips: 
-* We can open database file (both regular and encrypted) directly with [wxSqlitePlus](https://github.com/guanlisheng/wxSqlitePlus)
+* We can open database file (both regular and encrypted) directly with [wxsqliteplus](https://github.com/guanlisheng/wxsqliteplus)
 * We can download dozen of cool reports from [general report](https://github.com/moneymanagerex/general-reports)
 * Star it if you feel it is helpful
 
