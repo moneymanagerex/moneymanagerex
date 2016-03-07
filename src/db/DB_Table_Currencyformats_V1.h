@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-19 20:11:36.144000.
+ *          AUTO GENERATED at 2016-03-07 12:56:00.120066.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -172,7 +172,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (68, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("Special Drawing Rights"), wxTRANSLATE("SDR"), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("XDR")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (69, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 1, 1, '%s')", wxTRANSLATE("Iranian rial"), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("IRR")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (70, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 1, 1, '%s')", wxTRANSLATE("Iraqi dinar"), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("IQD")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (71, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("Israeli new sheqel"), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("ILS")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (71, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("Israeli new shekel"), wxTRANSLATE("₪"), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("ILS")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (72, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("Jamaican dollar"), wxTRANSLATE("J$"), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("JMD")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (73, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 1, 1, '%s')", wxTRANSLATE("Japanese yen"), wxTRANSLATE("¥"), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("JPY")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (74, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("Jordanian dinar"), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("JOD")));
