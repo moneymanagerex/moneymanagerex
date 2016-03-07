@@ -51,3 +51,4 @@ _Notice: You can [turn your previously filed issues into a pull-request here](ht
 
 * [General GitHub documentation](http://help.github.com/)
 * [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
+* [Coding guidelines](http://wxwidgets.org/develop/coding-guidelines/)
