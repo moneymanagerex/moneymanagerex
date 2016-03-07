@@ -96,7 +96,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
 
     m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(std::make_tuple(_("Date Paid"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Date Due"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Account"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
@@ -114,6 +114,15 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
 
     m_col_width = "BD_COL%d_WIDTH";
     m_default_sort_column = m_bdp->col_sort();
+    
+    for (const auto& entry : m_columns)
+    {
+        long count = GetColumnCount();
+        InsertColumn(count
+            , std::get<HEADER>(entry)
+            , std::get<FORMAT>(entry)
+            , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, count), std::get<WIDTH>(entry)));
+    }
 }
 
 billsDepositsListCtrl::~billsDepositsListCtrl()
@@ -244,15 +253,6 @@ void mmBillsDepositsPanel::CreateControls()
     listCtrlAccount_ = new billsDepositsListCtrl(this, itemSplitterWindowBillsDeposit);
 
     listCtrlAccount_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
-
-    int i = 0;
-    for (const auto& entry : listCtrlAccount_->m_columns)
-    {
-        const wxString& heading = std::get<0>(entry);
-        int width = Model_Setting::instance().GetIntSetting(wxString::Format(listCtrlAccount_->m_col_width, i), std::get<1>(entry));
-        int format = std::get<2>(entry);
-        listCtrlAccount_->InsertColumn(i++, heading, format, width);
-    }
 
     wxPanel* bdPanel = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);

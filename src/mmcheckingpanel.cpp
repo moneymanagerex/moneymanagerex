@@ -938,7 +938,7 @@ TransactionListCtrl::TransactionListCtrl(
     SetAcceleratorTable(tab);
 
     m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Date"), 112, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Number"), 70, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Payee"), 150, wxLIST_FORMAT_LEFT));
@@ -963,14 +963,13 @@ TransactionListCtrl::~TransactionListCtrl()
 //----------------------------------------------------------------------------
 void TransactionListCtrl::createColumns(mmListCtrl &lst)
 {
-    int i = 0;
     for (const auto& entry : m_columns)
     {
-        const wxString& heading = std::get<0>(entry);
-        int width = Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, i), std::get<1>(entry));
-        int format = std::get<2>(entry);
-        lst.InsertColumn(i, heading, format, width);
-        i++;
+        long count = lst.GetColumnCount();
+        lst.InsertColumn(count
+            , std::get<HEADER>(entry)
+            , std::get<FORMAT>(entry)
+            , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, count), std::get<WIDTH>(entry)));
     }
 }
 
