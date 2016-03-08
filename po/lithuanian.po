@@ -232,7 +232,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 22:26+0800\n"
+"POT-Creation-Date: 2016-03-08 23:12+0800\n"
 "PO-Revision-Date: 2015-07-27 22:42+0200\n"
 "Last-Translator: Liudas Ališauskas <liudas@akmc.lt>\n"
 "Language-Team: Lithuanian <liudas@akmc.lt>\n"
@@ -1375,7 +1375,11 @@ msgid "ILS"
 msgstr ""
 
 #: src/db/DB_Table_Currencyformats_V1.h:175
-msgid "Israeli new sheqel"
+msgid "Israeli new shekel"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:175
+msgid "₪"
 msgstr ""
 
 #: src/db/DB_Table_Currencyformats_V1.h:176
@@ -4255,17 +4259,17 @@ msgstr "Redaguoti kategoriją"
 msgid "Organise Categories: Editing Error"
 msgstr "Tvarkyti kategorijas: Redagavimo klaida"
 
-#: src/categdialog.cpp:572 src/mmframe.cpp:2711
+#: src/categdialog.cpp:572 src/mmframe.cpp:2705
 msgid "Category Relocation Completed."
 msgstr "Kategorijų perkėlimas atliktas."
 
-#: src/categdialog.cpp:573 src/mmframe.cpp:2712 src/mmframe.cpp:2727
+#: src/categdialog.cpp:573 src/mmframe.cpp:2706 src/mmframe.cpp:2721
 #: src/payeedialog.cpp:318
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Įrašai bu atnaujinti duomenų bazėje: %i"
 
-#: src/categdialog.cpp:575 src/mmframe.cpp:2714
+#: src/categdialog.cpp:575 src/mmframe.cpp:2708
 msgid "Category Relocation Result"
 msgstr "Kategorijų perkėlimo rezultatas"
 
@@ -4758,7 +4762,7 @@ msgstr "&Išvalyti "
 #: src/filtertransdialog.cpp:422 src/filtertransdialog.cpp:432
 #: src/import_export/qif_import_gui.cpp:699
 #: src/import_export/qif_import_gui.cpp:830 src/maincurrencydialog.cpp:504
-#: src/mmSimpleDialogs.cpp:154 src/mmframe.cpp:2785
+#: src/mmSimpleDialogs.cpp:154 src/mmframe.cpp:2779
 #: src/splittransactionsdialog.cpp:201 src/stockspanel.cpp:712
 #: src/stockspanel.cpp:713
 msgid "Error"
@@ -7173,33 +7177,29 @@ msgstr ""
 "Ar tikrai norite pašalinti\n"
 " %s sąskaitą: %s ?"
 
-#: src/mmframe.cpp:2595 src/mmframe.cpp:2607 src/mmframe.cpp:2620
+#: src/mmframe.cpp:2593 src/mmframe.cpp:2616
 msgid "Account Reallocation"
 msgstr "Sąskaitos perskirstymas"
 
-#: src/mmframe.cpp:2595
-msgid "No account available to reallocate!"
-msgstr "Nėra sąskaitos pasiekiamos perskirstymui!"
-
-#: src/mmframe.cpp:2607
+#: src/mmframe.cpp:2593
 #, fuzzy
 msgid "Select the account to reallocate"
 msgstr "Pasirinkite, kokio tipo paskyrą norite sukurti:"
 
-#: src/mmframe.cpp:2620
+#: src/mmframe.cpp:2615
 #, c-format
 msgid "Account: %s - Select new type."
 msgstr ""
 
-#: src/mmframe.cpp:2726 src/payeedialog.cpp:317
+#: src/mmframe.cpp:2720 src/payeedialog.cpp:317
 msgid "Payee Relocation Completed."
 msgstr "Kontrahentų perkėlimas atliktas."
 
-#: src/mmframe.cpp:2730 src/payeedialog.cpp:321
+#: src/mmframe.cpp:2724 src/payeedialog.cpp:321
 msgid "Payee Relocation Result"
 msgstr "Kontrahento perkėlimo rezultatas"
 
-#: src/mmframe.cpp:2785
+#: src/mmframe.cpp:2779
 #, c-format
 msgid "File %s not found"
 msgstr "Failas %s nerastas"
@@ -8890,6 +8890,9 @@ msgstr "MMEX atnaujinimų tikrinimas"
 #, c-format
 msgid "You already have the latest version %s"
 msgstr "Jūs jau turite naujausią versiją: %s"
+
+#~ msgid "No account available to reallocate!"
+#~ msgstr "Nėra sąskaitos pasiekiamos perskirstymui!"
 
 #~ msgid "Modify the description for the attachment:"
 #~ msgstr "Pakeisti naujo priedo aprašymą:"
