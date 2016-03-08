@@ -5,6 +5,7 @@
 XGETTEXT_ARGS="-C -k_ -kwxGetTranslation -kwxTRANSLATE -kwxPLURAL:1,2 -F \
               --add-comments=TRANSLATORS \
               --from-code=UTF-8 \
+              --no-location \
               --package-name=MMEX \
               --msgid-bugs-address=developer@moneymanagerex.org"
 
