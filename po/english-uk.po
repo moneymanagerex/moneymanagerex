@@ -1,4465 +1,8 @@
-msgid "Website:"
-msgstr ""
-
-msgid "&Skip"
-msgstr ""
-
-msgid "Skip Next Bills & Deposit Occurrence"
-msgstr ""
-
-msgid "Enter next Occurrence..."
-msgstr ""
-
-msgid "Skip next Occurrence"
-msgstr ""
-
-msgid "&New Bills && Deposit Series..."
-msgstr ""
-
-#, c-format
-msgid "About %s"
-msgstr ""
-
-msgid "&Edit Bills && Deposit Series..."
-msgstr ""
-
-msgid "&Delete Bills && Deposit Series..."
-msgstr ""
-
-msgid "Manual"
-msgstr ""
-
-msgid "Suggested"
-msgstr ""
-
-#, fuzzy
-msgid "Automated"
-msgstr "Car"
-
-#, c-format
-msgid "%d days remaining"
-msgstr ""
-
-msgid "Inactive"
-msgstr ""
-
-msgid "Enter the initial balance in this account."
-msgstr ""
-
-#, c-format
-msgid "%d days delay!"
-msgstr ""
-
-#, c-format
-msgid "%d days overdue!"
-msgstr ""
-
-msgid "Do you really want to delete the series?"
-msgstr ""
-
-msgid "Default Image"
-msgstr ""
-
-#, c-format
-msgid "Image #%i"
-msgstr ""
-
-msgid "Account"
-msgstr ""
-
-msgid ""
-"The database can later be encrypted if required, by\n"
-"using the option: 'Save database as' and changing the\n"
-"file type before saving."
-msgstr ""
-
-msgid ""
-"This is generally the name of a financial institution\n"
-"where the account is held. For example: 'ABC Bank'."
-msgstr ""
-
-msgid "Specify month for start of financial year"
-msgstr ""
-
-#, fuzzy
-msgid "Please use this button for category selection."
-msgstr "Specify the colour for future transactions"
-
-msgid "Used as a database title for displayed and printed reports."
-msgstr ""
-
-msgid "Last Used"
-msgstr ""
-
-msgid ""
-"Investment accounts are specialized accounts that only\n"
-"have stock/mutual fund investments associated with them."
-msgstr ""
-
-msgid "Select the type of account you want to create:"
-msgstr ""
-
-msgid "Database Backup"
-msgstr ""
-
-msgid "Please type in a non empty symbol."
-msgstr ""
-
-#, fuzzy
-msgid "Please select the file for this operation."
-msgstr "Specify the colour for future transactions"
-
-msgid "Organize Currency..."
-msgstr ""
-
-msgid "New"
-msgstr ""
-
-msgid "&Show App Start Dialog"
-msgstr ""
-
-#, c-format
-msgid "Records found as Default Payee Category: %i"
-msgstr ""
-
-msgid "Enter any contact information for the financial institution."
-msgstr ""
-
-msgid "&About..."
-msgstr ""
-
-msgid "CSV Settings"
-msgstr ""
-
-msgid "Cents Name"
-msgstr ""
-
-msgid "Description"
-msgstr ""
-
-msgid "Stable"
-msgstr ""
-
-msgid ""
-"Do you want to update blank content?\n"
-"Press no if you want to abort replace procedure!"
-msgstr ""
-
-msgid "Delete all transactions in current view"
-msgstr ""
-
-msgid "Select Currency"
-msgstr ""
-
-msgid "&Open "
-msgstr ""
-
-msgid "Bills && Deposits"
-msgstr ""
-
-msgid "Create Template"
-msgstr ""
-
-msgid "Account List"
-msgstr ""
-
-msgid "Choose QIF data file to Export"
-msgstr ""
-
-msgid "Visit us on Facebook"
-msgstr ""
-
-msgid "MultiChoiche"
-msgstr ""
-
-msgid "Export dialog"
-msgstr ""
-
-#, c-format
-msgid "Where the Money Comes From - %s"
-msgstr ""
-
-msgid "Commission"
-msgstr ""
-
-msgid "Delete selected Stock Price"
-msgstr ""
-
-msgid "Delete Stock Investment"
-msgstr ""
-
-msgid "Syntax error in the URL string"
-msgstr ""
-
-msgid ""
-"Enter any login/access information for the financial institution. This is "
-"not secure as anyone with access to the mmb file can access it."
-msgstr ""
-
-#, c-format
-msgid "Account '%s' not found!"
-msgstr ""
-
-msgid ""
-"Select whether to use the original transaction date or current date when "
-"copying/pasting transactions"
-msgstr ""
-
-msgid "New Database Wizard"
-msgstr ""
-
-msgid "Url"
-msgstr ""
-
-msgid "Attachment not found:"
-msgstr ""
-
-msgid "Enables autocomplete on custom field"
-msgstr ""
-
-msgid "Account Status:"
-msgstr ""
-
-msgid "Displayed Bal: "
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Organize Attachments | New %s"
-msgstr "Specify the colour for future transactions"
-
-msgid "Mark As &Unreconciled"
-msgstr ""
-
-msgid "as Reconciled"
-msgstr ""
-
-msgid "MMEX: Menu Popup Error"
-msgstr ""
-
-msgid "Repetitions"
-msgstr ""
-
-msgid "&Print..."
-msgstr ""
-
-msgid "Display the Budget Setup without category summaries"
-msgstr ""
-
-msgid "SQL Syntax Error"
-msgstr ""
-
-msgid "Access Info:"
-msgstr ""
-
-#, c-format
-msgid ""
-"Please enter password for Database\n"
-"\n"
-"%s"
-msgstr ""
-
-msgid "MMEX message"
-msgstr ""
-
-msgid "Enter password for new database"
-msgstr ""
-
-msgid "Show Organize Categories Dialog"
-msgstr ""
-
-msgid "Weekly"
-msgstr ""
-
-msgid " Help"
-msgstr ""
-
-msgid "Hide this column"
-msgstr ""
-
-msgid "Art"
-msgstr ""
-
-#, fuzzy
-msgid "Importing Accounts"
-msgstr "Favourite Account"
-
-msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
-msgstr ""
-
-msgid ""
-"Specify the required year.\n"
-"Use Spin buttons to increase or decrease the year."
-msgstr ""
-
-msgid "Difference Expenses:"
-msgstr ""
-
-msgid "Encoding:"
-msgstr ""
-
-msgid " - "
-msgstr ""
-
-#, c-format
-msgid ""
-"Transactions imported from file\n"
-"to account %s : %ld"
-msgstr ""
-
-msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr ""
-
-msgid "Choose CSV data file to import"
-msgstr ""
-
-msgid "Using MMEX it is possible to track stocks/mutual funds investments."
-msgstr ""
-
-msgid "&Add / Update "
-msgstr ""
-
-#, c-format
-msgid "%s on %s"
-msgstr ""
-
-#, c-format
-msgid "Attachment archive folder for %s only:"
-msgstr ""
-
-msgid "1257"
-msgstr ""
-
-#, fuzzy
-msgid "Enter or choose name for the new group"
-msgstr "Specify the colour for the nav tree"
-
-msgid "Specify the currency to be used by this account."
-msgstr ""
-
-msgid "The User Name is used as a title for the database."
-msgstr ""
-
-msgid "WebApp communication error"
-msgstr ""
-
-msgid "Set that first using Tools->Options menu and then add a new account."
-msgstr ""
-
-msgid "Base Account Currency Not set."
-msgstr ""
-
-msgid "Grouping Char"
-msgstr ""
-
-#, c-format
-msgid "Your version is %s"
-msgstr ""
-
-msgid "Split"
-msgstr ""
-
-#, c-format
-msgid "Custom Fields | New %s"
-msgstr ""
-
-msgid "Enable internal web server when MMEX Starts."
-msgstr ""
-
-msgid "Specify any associated check number or transaction number"
-msgstr "Specify any associated cheque number or transaction number"
-
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Specify the colour for the nav tree"
-
-msgid "Specify any text notes you want to add to this transaction."
-msgstr ""
-
-msgid "3"
-msgstr ""
-
-msgid ""
-"Please use this button for category selection\n"
-"or use the 'Split' checkbox for multiple categories."
-msgstr ""
-
-msgid "Enter the name of the asset"
-msgstr ""
-
-#, fuzzy
-msgid "Specify where the transaction is coming from"
-msgstr "Specify the colour for future transactions"
-
-msgid "&New Withdrawal"
-msgstr ""
-
-msgid "Other tools"
-msgstr ""
-
-msgid "Leave blank when not active."
-msgstr ""
-
-msgid "as Void"
-msgstr ""
-
-msgid "Currency:"
-msgstr ""
-
-msgid ""
-"Fatal error occured.\n"
-"Application will be terminated."
-msgstr ""
-
-msgid "Duplicate"
-msgstr ""
-
-msgid "Payment"
-msgstr ""
-
-msgid "Import from XML (Excel format)"
-msgstr ""
-
-msgid "Developers"
-msgstr ""
-
-msgid "Show/Hide the toolbar"
-msgstr ""
-
-msgid "&Remove "
-msgstr ""
-
-#, fuzzy
-msgid "Ignore Future transactions"
-msgstr "Specify the colour for future transactions"
-
-msgid "Show Account List"
-msgstr ""
-
-msgid "&Assets"
-msgstr ""
-
-msgid "Destination file already exist:"
-msgstr ""
-
-msgid "Change Group"
-msgstr ""
-
-msgid "Show the Help file"
-msgstr ""
-
-msgid "Choose file to Save As Report"
-msgstr ""
-
-msgid "Password not entered for encrypted Database.\n"
-msgstr ""
-
-msgid "Workbook"
-msgstr ""
-
-msgid "DB Optimization"
-msgstr ""
-
-msgid "Data"
-msgstr ""
-
-msgid "Choose Account to Delete"
-msgstr ""
-
-#, c-format
-msgid "Enter the rate at which the asset changes its value in % per year"
-msgstr ""
-
-msgid "Currency"
-msgstr ""
-
-msgid "Initial Value"
-msgstr ""
-
-msgid "Cash Flow - Specific Accounts"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Exporting transaction %i"
-msgstr "Specify the colour for future transactions"
-
-msgid "Expenses"
-msgstr ""
-
-msgid "Unknown"
-msgstr ""
-
-msgid "Term"
-msgstr ""
-
-#, fuzzy
-msgid "Missing"
-msgstr "Favourite Account"
-
-msgid "Do you want to import all transaction ?"
-msgstr ""
-
-msgid "&Add Year"
-msgstr ""
-
-msgid "Default Category"
-msgstr ""
-
-msgid "Imported transactions discarded by user!"
-msgstr ""
-
-msgid "Destination Category"
-msgstr ""
-
-#, c-format
-msgid "Every %s Days"
-msgstr ""
-
-#, c-format
-msgid "Budget Categories for %s"
-msgstr ""
-
-msgid "&Up"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Accounts: %s"
-msgstr "Favourite Account"
-
-msgid "Expand"
-msgstr ""
-
-msgid "Income:"
-msgstr ""
-
-msgid "Preview"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Accounts Balance - %s"
-msgstr "Favourite Account"
-
-msgid ""
-"Select the currently selected category as the selected category for the "
-"transaction"
-msgstr ""
-
-msgid " Split Category Details"
-msgstr ""
-
-#, c-format
-msgid "Transactions saved to database in account: %s"
-msgstr ""
-
-#, fuzzy
-msgid "Organize attachments of this stock"
-msgstr "Specify the colour for future transactions"
-
-msgid "Category in use."
-msgstr ""
-
-msgid "Months"
-msgstr ""
-
-msgid "Online update currency rate"
-msgstr ""
-
-msgid "Curr. unit value"
-msgstr ""
-
-msgid "Organise Categories: Editing Error"
-msgstr ""
-
-#, c-format
-msgid "Gain: %s"
-msgstr ""
-
-#, c-format
-msgid "%s\t: %s\n"
-msgstr ""
-
-msgid "Confirm to add new payee"
-msgstr ""
-
-msgid "&Cancel "
-msgstr ""
-
-msgid "UTF-8"
-msgstr ""
-
-#, c-format
-msgid "%s -> MMEX Application data folder"
-msgstr ""
-
-msgid "July"
-msgstr ""
-
-msgid "&Accounts"
-msgstr ""
-
-msgid "Monday"
-msgstr ""
-
-msgid "please check it in network options."
-msgstr ""
-
-msgid "Wrong WebApp API version"
-msgstr ""
-
-msgid "Closed"
-msgstr ""
-
-msgid "Attachment"
-msgstr ""
-
-msgid "New date format sample:"
-msgstr ""
-
-msgid "Specify a descriptive name for the account."
-msgstr ""
-
-msgid "Use Transaction Sound"
-msgstr ""
-
-msgid "(Optional) Specify a title or your name."
-msgstr ""
-
-#, c-format
-msgid "Change in Value: %s %s"
-msgstr ""
-
-msgid "Suffix Symbol"
-msgstr ""
-
-msgid "Scale"
-msgstr ""
-
-msgid "Unused"
-msgstr ""
-
-msgid "Click on finish to open our website and download."
-msgstr ""
-
-msgid ""
-"When MMEX Starts,\n"
-"creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
-
-msgid "Specify the Web App URL without final slash"
-msgstr ""
-
-msgid "New/Edit Custom Field"
-msgstr ""
-
-msgid "Proxy Settings"
-msgstr ""
-
-msgid "Port"
-msgstr ""
-
-msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
-
-msgid "Timeout"
-msgstr ""
-
-msgid "Number"
-msgstr ""
-
-msgid "Updates source"
-msgstr ""
-
-msgid "Attachment folder not defined"
-msgstr ""
-
-msgid "View Budgets as Financial Years"
-msgstr ""
-
-msgid "4"
-msgstr ""
-
-msgid "View Budget Summary Report without Categories"
-msgstr ""
-
-msgid "Specify which account the transfer is going to"
-msgstr ""
-
-msgid "Please verify that above path is correct"
-msgstr ""
-
-#, fuzzy
-msgid "Invalid Category"
-msgstr "Restore Default Colours"
-
-msgid "Already exist!"
-msgstr ""
-
-#, fuzzy
-msgid "Account Bal: "
-msgstr "Favourite Account"
-
-msgid "Specify the transfer amount in the From Account"
-msgstr ""
-
-msgid "Reconciled Bal: "
-msgstr ""
-
-#, fuzzy
-msgid "Duplicate selected transaction"
-msgstr "Specify the colour for future transactions"
-
-msgid "Period: Months"
-msgstr ""
-
-msgid "&Paste Transaction"
-msgstr ""
-
-msgid "Specify period in Days to activate."
-msgstr ""
-
-msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
-
-msgid "Enter a description for the new attachment:"
-msgstr ""
-
-msgid "as Unreconciled"
-msgstr ""
-
-msgid "Mark all being viewed"
-msgstr ""
-
-msgid "Save debug file"
-msgstr ""
-
-msgid "You must specify path to another database file"
-msgstr ""
-
-msgid "Home Page"
-msgstr ""
-
-msgid "Budget Setup"
-msgstr ""
-
-#, fuzzy
-msgid "Enter a new description for the attachment:"
-msgstr "Specify the colour for the nav tree"
-
-msgid "Do you really want to delete this attachment?"
-msgstr ""
-
-msgid "Date Range"
-msgstr ""
-
-msgid ""
-"MMEX allows regular payments to be set up as transactions. These "
-"transactions can also be regular deposits, or transfers that will occur at "
-"some future time. These transactions act as a reminder that an event is "
-"about to occur, and appears on the Home Page 14 days before the transaction "
-"is due. "
-msgstr ""
-
-msgid "Select type of asset"
-msgstr ""
-
-msgid "Include all subcategories for the selected category."
-msgstr ""
-
-msgid "New Bills & Deposit Series"
-msgstr ""
-
-msgid "&Clear Recent Files"
-msgstr ""
-
-msgid "Transfer To"
-msgstr ""
-
-msgid "&Import"
-msgstr ""
-
-msgid "&Navigation"
-msgstr ""
-
-msgid "Reports"
-msgstr ""
-
-msgid "Budget Summary: Include &Categories"
-msgstr ""
-
-msgid "Run selected report."
-msgstr ""
-
-msgid "Contact:"
-msgstr ""
-
-msgid "Organize Payees"
-msgstr ""
-
-msgid "&Payees..."
-msgstr ""
-
-msgid "&Transaction Report Filter..."
-msgstr ""
-
-msgid "Account Name "
-msgstr ""
-
-msgid "&General Report Manager..."
-msgstr ""
-
-msgid "Database"
-msgstr ""
-
-msgid ""
-"Specify if this account has been closed. Closed accounts are inactive in "
-"most calculations, reporting etc."
-msgstr ""
-
-#, fuzzy
-msgid "Organize attachments of this account"
-msgstr "Specify the colour for future transactions"
-
-msgid "General Report Manager"
-msgstr ""
-
-msgid "Run this program in your Android smart phone or tablet"
-msgstr ""
-
-msgid "Confirm Series Deletion"
-msgstr ""
-
-msgid " - No File opened "
-msgstr ""
-
-msgid "Could not save file."
-msgstr ""
-
-msgid "Choose Encrypted database file to open"
-msgstr ""
-
-msgid "Type:"
-msgstr ""
-
-msgid "Please confirm new password"
-msgstr ""
-
-msgid "Table"
-msgstr ""
-
-msgid "Please use this function only if explicitly requested by MMEX support"
-msgstr ""
-
-msgid "Frequency:"
-msgstr ""
-
-msgid "Choose HTML file to Export"
-msgstr ""
-
-msgid "CSV"
-msgstr ""
-
-#, c-format
-msgid "Account: %s - Select new type."
-msgstr ""
-
-msgid "mmGeneralGroupReport"
-msgstr ""
-
-msgid "Show Organize Currency Dialog"
-msgstr ""
-
-msgid "News"
-msgstr ""
-
-msgid "None"
-msgstr ""
-
-msgid "Open Last Opened Database"
-msgstr ""
-
-msgid "Budget Category Summary"
-msgstr ""
-
-msgid "To Date less than From Date"
-msgstr ""
-
-msgid "Last 365 Days"
-msgstr ""
-
-#, c-format
-msgid "Month: %s"
-msgstr ""
-
-#, c-format
-msgid "Top Withdrawals: %s"
-msgstr ""
-
-msgid "Choose &file"
-msgstr ""
-
-msgid "Follow Up On Transactions: "
-msgstr ""
-
-msgid "Actual: "
-msgstr ""
-
-msgid "Cash"
-msgstr ""
-
-#, c-format
-msgid "Number of lines read from QIF file: %i in %ld ms"
-msgstr ""
-
-msgid "Depreciates"
-msgstr ""
-
-msgid "Sub Category"
-msgstr ""
-
-msgid "Stock"
-msgstr ""
-
-msgid "Actual"
-msgstr ""
-
-msgid "Decimal"
-msgstr ""
-
-msgid "Four Weeks"
-msgstr ""
-
-msgid "Attachments"
-msgstr ""
-
-msgid "Importing Transfers"
-msgstr ""
-
-msgid "Enter the name for the new payee:"
-msgstr ""
-
-msgid "Delete existing budget"
-msgstr ""
-
-msgid "Relocate Payee"
-msgstr ""
-
-msgid "Amount(+/-)"
-msgstr ""
-
-#, c-format
-msgid "Records found in transactions: %i"
-msgstr ""
-
-msgid "&Organize Attachments"
-msgstr ""
-
-msgid "Relocate Payee Dialog"
-msgstr ""
-
-msgid "Save Template"
-msgstr ""
-
-msgid "Actual Income:"
-msgstr ""
-
-msgid "Specify year to base budget on."
-msgstr ""
-
-#, c-format
-msgid "Cash Flow Forecast for %i Years Ahead"
-msgstr ""
-
-#, fuzzy
-msgid "Account: "
-msgstr "Favourite Account"
-
-msgid "Total Income: "
-msgstr ""
-
-msgid "Transaction Details"
-msgstr ""
-
-#, c-format
-msgid "Today's Date: %s"
-msgstr ""
-
-msgid "Positive values are withdrawals"
-msgstr ""
-
-msgid "Today"
-msgstr ""
-
-msgid "Add a new category"
-msgstr ""
-
-#, fuzzy
-msgid "Bank Accounts Total:"
-msgstr "Favourite Account"
-
-#, fuzzy
-msgid "Account does not exist"
-msgstr "Favourite Account"
-
-msgid "Purchase Date"
-msgstr ""
-
-msgid "Retard or advance the date of the 'next occurrence"
-msgstr ""
-
-msgid "Total Amount: "
-msgstr ""
-
-#, c-format
-msgid "Total Lines : %ld"
-msgstr ""
-
-msgid "Stock Investment Details"
-msgstr ""
-
-msgid ""
-"Tip: If category added now, check bottom of list.\n"
-"Category will be in sorted order next time dialog appears"
-msgstr ""
-
-msgid "Enter current stock price"
-msgstr ""
-
-msgid "Overwrite existing file?"
-msgstr ""
-
-msgid "Stock Price History"
-msgstr ""
-
-msgid "Advance the next occuring date with the specified values"
-msgstr ""
-
-msgid "Quotes imported from CSV: "
-msgstr ""
-
-msgid "XML Files (*.xml) | *.xml;*.XML | All files | *.*"
-msgstr ""
-
-#, c-format
-msgid "Number of %s:"
-msgstr ""
-
-msgid "Tools -> Relocation of -> Categories"
-msgstr ""
-
-msgid "Share Name"
-msgstr ""
-
-msgid "Diff."
-msgstr ""
-
-msgid "&Edit Stock Investment"
-msgstr ""
-
-msgid "Grant automatic execute permission for this entry."
-msgstr ""
-
-msgid "Refresh Stock Prices from Yahoo"
-msgstr ""
-
-msgid "Do you really want to delete the selected Currency?"
-msgstr ""
-
-msgid "Nothing to update"
-msgstr ""
-
-msgid "Hide Selected Category"
-msgstr ""
-
-msgid "Populate Transaction #"
-msgstr ""
-
-msgid "Do you want to add also dates without any transaction?"
-msgstr ""
-
-#, fuzzy
-msgid "Specify account for the transaction"
-msgstr "Specify the colour for future transactions"
-
-msgid "Reset 'Date Paid' to 'Today's Date'"
-msgstr ""
-
-msgid "Connection error"
-msgstr ""
-
-msgid "Legend "
-msgstr ""
-
-msgid "1253"
-msgstr ""
-
-msgid "MMEX is using the following support products"
-msgstr ""
-
-msgid "April"
-msgstr ""
-
-msgid "Mac folder -> "
-msgstr ""
-
-msgid "October"
-msgstr ""
-
-msgid "New Report"
-msgstr ""
-
-msgid "Sep"
-msgstr ""
-
-msgid "Application data directory"
-msgstr ""
-
-msgid "Thursday"
-msgstr ""
-
-msgid "Choose folder to set as attachments archive"
-msgstr ""
-
-msgid "WebApp connection error"
-msgstr ""
-
-msgid "Origin"
-msgstr ""
-
-msgid "The remote file doesn't exist"
-msgstr ""
-
-#, fuzzy
-msgid "Specify the amount to be transferred"
-msgstr "Specify the colour for the nav tree"
-
-msgid "Attachments folder not set or unavailable"
-msgstr ""
-
-msgid "Set Currency"
-msgstr ""
-
-#, fuzzy
-msgid "Import WebApp transactions"
-msgstr "Specify the colour for future transactions"
-
-msgid "Currency Name"
-msgstr ""
-
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-
-msgid "Start Month"
-msgstr ""
-
-#, fuzzy
-msgid ""
-"General bank accounts cover a wide variety of account\n"
-"types like Checking, Savings and Credit card type accounts."
-msgstr ""
-"\n"
-"Select the type of account you want to create:\n"
-"\n"
-"General bank accounts cover a wide variety of account\n"
-" types like Current, Savings and Credit card type accounts."
-
-msgid "Prefix Symbol"
-msgstr ""
-
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-
-msgid "New Transaction Dialog Settings"
-msgstr ""
-
-msgid "A new version of MMEX is available!"
-msgstr ""
-
-msgid "What's new:"
-msgstr ""
-
-msgid "Select whether to use sounds when entering transactions"
-msgstr ""
-
-msgid "Clear the field to Reset the value to system default."
-msgstr ""
-
-msgid "Update Wizard"
-msgstr ""
-
-msgid "Download in progress"
-msgstr ""
-
-msgid "MMEX Update Check"
-msgstr ""
-
-msgid "Default Status:"
-msgstr ""
-
-msgid "Value Display Sample:"
-msgstr ""
-
-msgid ""
-"When MMEX shuts down and changes made to database,\n"
-"creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
-
-#, c-format
-msgid "You already have the latest version %s"
-msgstr ""
-
-#, fuzzy
-msgid "Specify where the transaction is going to"
-msgstr "Specify the colour for future transactions"
-
-msgid "File"
-msgstr ""
-
-msgid "Specify the Web App GUID"
-msgstr ""
-
-msgid "GUID"
-msgstr ""
-
-#, fuzzy
-msgid "Specify the proxy IP address"
-msgstr "Specify the colour for the nav tree"
-
-msgid "Proxy"
-msgstr ""
-
-msgid "Web Server"
-msgstr ""
-
-#, fuzzy
-msgid "Enter the name of the custom field"
-msgstr "Specify the colour for the nav tree"
-
-msgid "Usage statistics"
-msgstr ""
-
-msgid "Attachment folder not defined."
-msgstr ""
-
-msgid "Specify a network communication timeout value to use."
-msgstr ""
-
-msgid "Seconds"
-msgstr ""
-
-msgid ""
-"Enable to automatically check if new MMEX version is available at StartUp"
-msgstr ""
-
-msgid "Please set it in Tools -> Options -> Attachments"
-msgstr ""
-
-msgid "View Options"
-msgstr ""
-
-msgid "Specify which accounts are visible"
-msgstr ""
-
-msgid "Specify which transactions are visible by default"
-msgstr ""
-
-msgid "2"
-msgstr ""
-
-msgid "View Budgets with 'transfer' transactions"
-msgstr ""
-
-msgid "Choose Bank Account or Term Account"
-msgstr ""
-
-#, fuzzy
-msgid "User Colors"
-msgstr "Colours"
-
-msgid "Unable to find attachments folder:"
-msgstr ""
-
-msgid "Custom Field Change"
-msgstr ""
-
-msgid "You have modified choiches: ones removed will be cleaned!"
-msgstr ""
-
-#, c-format
-msgid ""
-"Directory of language files does not exist:\n"
-"%s"
-msgstr ""
-
-msgid "Properties"
-msgstr ""
-
-msgid "Invalid Entry"
-msgstr ""
-
-msgid "From"
-msgstr ""
-
-msgid ""
-"Do you really want to massive update field content?\n"
-"Please consider that there isn't any validation!"
-msgstr ""
-
-#, fuzzy
-msgid "Please specify which account the transfer is going to."
-msgstr "Specify the colour for future transactions"
-
-msgid "Find what"
-msgstr ""
-
-msgid "Confirm Custom Field Content Update"
-msgstr ""
-
-msgid "Please type in a non empty name."
-msgstr ""
-
-msgid "Activates"
-msgstr ""
-
-msgid ""
-"Do you want to update to blank?\n"
-"Press no if you want to abort replace procedure!"
-msgstr ""
-
-msgid "New Transaction"
-msgstr ""
-
-msgid "Delete selected transaction"
-msgstr ""
-
-msgid "Forum"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Account View : %s"
-msgstr "Favourite Account"
-
-msgid "Edit selected transaction"
-msgstr ""
-
-msgid "&New Transfer"
-msgstr ""
-
-msgid ""
-"Please restore DB from autocreated pre-upgrade backup and retry or contact "
-"MMEX support"
-msgstr ""
-
-msgid "MMEX database error!"
-msgstr ""
-
-msgid "&Move Transaction"
-msgstr ""
-
-msgid "&Delete Transaction"
-msgstr ""
-
-msgid "Date"
-msgstr ""
-
-msgid "Mark As &Reconciled"
-msgstr ""
-
-msgid "Mark As &Void"
-msgstr ""
-
-msgid "Mark As &Duplicate"
-msgstr ""
-
-msgid "Follow Up"
-msgstr ""
-
-msgid "as needing Followup"
-msgstr ""
-
-#, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Specify the colour for the nav tree"
-
-msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
-
-msgid "MMEX debug"
-msgstr ""
-
-msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr ""
-
-#, c-format
-msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
-
-msgid "When database file opening:"
-msgstr ""
-
-msgid "Asset Type"
-msgstr ""
-
-#, fuzzy
-msgid "Term Accounts"
-msgstr "Favourite Account"
-
-msgid " Auto Repeat Transactions"
-msgstr ""
-
-msgid "Opening MMEX Database - Error"
-msgstr ""
-
-#, fuzzy
-msgid "Cash Accounts"
-msgstr "Favourite Account"
-
-msgid "Help"
-msgstr ""
-
-msgid "Autorepeat"
-msgstr ""
-
-msgid "Follow up"
-msgstr ""
-
-msgid "&XML Files..."
-msgstr ""
-
-msgid "&Edit Account"
-msgstr ""
-
-msgid "&Delete Account"
-msgstr ""
-
-msgid "Account &List (Home)"
-msgstr ""
-
-msgid ""
-"Tip: These transactions can be set up to activate - allowing the user to "
-"adjust any values on the due date."
-msgstr ""
-
-msgid "&New Database\tCtrl-N"
-msgstr ""
-
-msgid "&Open Database\tCtrl-O"
-msgstr ""
-
-msgid "Open Database"
-msgstr ""
-
-msgid "Save Database As"
-msgstr ""
-
-msgid "&Recent Files..."
-msgstr ""
-
-msgid "Deposit"
-msgstr ""
-
-msgid "Export to HTML"
-msgstr ""
-
-msgid "Value"
-msgstr ""
-
-msgid "&Report to HTML"
-msgstr ""
-
-msgid "Print current view"
-msgstr ""
-
-msgid "Filtering Details: "
-msgstr ""
-
-msgid "Edit Bills & Deposit Series"
-msgstr ""
-
-msgid "Show/Hide the Navigation tree control"
-msgstr ""
-
-msgid "Enter Next Bills & Deposit Occurrence"
-msgstr ""
-
-msgid "Include the transfer transactions in the Budget Totals"
-msgstr ""
-
-msgid "&Export"
-msgstr ""
-
-msgid "Locate and load a report file."
-msgstr ""
-
-msgid "Include the categories in the Budget Category Summary"
-msgstr ""
-
-msgid "Toggle Fullscreen\tF11"
-msgstr ""
-
-msgid ""
-"This directory and its files are automatically managed by Money Manager EX "
-"software."
-msgstr ""
-
-msgid "Delete Account from database"
-msgstr ""
-
-msgid "Organize &Categories..."
-msgstr ""
-
-msgid "Organize Currency"
-msgstr ""
-
-msgid "Change in Value"
-msgstr ""
-
-msgid "Reassign all payees to another payee"
-msgstr ""
-
-msgid "Relocation of..."
-msgstr ""
-
-#, fuzzy
-msgid "&Recurring Transactions"
-msgstr "Specify the colour for future transactions"
-
-msgid "File not found in attachments. Please delete or rename it."
-msgstr ""
-
-msgid "Transaction Report Filter"
-msgstr ""
-
-msgid "&Options..."
-msgstr ""
-
-msgid "Convert Encrypted &DB"
-msgstr ""
-
-msgid "Change Encrypted &Password"
-msgstr ""
-
-msgid "Show the Options Dialog"
-msgstr ""
-
-msgid "Optimize &Database"
-msgstr ""
-
-msgid "UnGroup"
-msgstr ""
-
-msgid "&Help\tF1"
-msgstr ""
-
-msgid "Delete Report"
-msgstr ""
-
-msgid "Enter user notes and details about this account."
-msgstr ""
-
-msgid "Check for &Updates"
-msgstr ""
-
-msgid "Get Android Version"
-msgstr ""
-
-msgid "% Rate"
-msgstr ""
-
-msgid "Register/View Release &Notifications"
-msgstr ""
-
-msgid "Rename group"
-msgstr ""
-
-msgid "Add Report Group"
-msgstr ""
-
-msgid "Delete attachment failed"
-msgstr ""
-
-msgid "Have MMEX support provided you a debug/patch file?"
-msgstr ""
-
-msgid "Universal CSV Import"
-msgstr ""
-
-msgid "&Next ->"
-msgstr ""
-
-msgid "Estimated:"
-msgstr ""
-
-msgid "Choose database file to create"
-msgstr ""
-
-msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
-
-msgid "Choose database file to Save As"
-msgstr ""
-
-msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
-
-#, c-format
-msgid ""
-"New password for database\n"
-"\n"
-"%s"
-msgstr ""
-
-msgid "Worksheet"
-msgstr ""
-
-msgid "Confirm password failed."
-msgstr ""
-
-msgid "Open attachment failed"
-msgstr ""
-
-msgid "Size after"
-msgstr ""
-
-msgid "Row"
-msgstr ""
-
-msgid "Save database file as"
-msgstr ""
-
-#, fuzzy
-msgid "New Recurring Transaction"
-msgstr "Specify the colour for future transactions"
-
-msgid "MMEX Options have been updated."
-msgstr ""
-
-msgid "Parameters"
-msgstr ""
-
-msgid "Choose Account to Edit"
-msgstr ""
-
-msgid "Amount:"
-msgstr ""
-
-#, fuzzy
-msgid "Account Reallocation"
-msgstr "Favourite Account"
-
-msgid "Accounts"
-msgstr ""
-
-msgid "Payee Relocation Result"
-msgstr ""
-
-msgid "To Date"
-msgstr ""
-
-msgid "My Usage"
-msgstr ""
-
-msgid "View Non-Zero Budget Categories"
-msgstr ""
-
-msgid "Payees"
-msgstr ""
-
-msgid "Last Calendar Month"
-msgstr ""
-
-msgid ""
-"Enter the name of the financial institution in which the account is held."
-msgstr ""
-
-msgid "Category: "
-msgstr ""
-
-msgid "View Income Budget Categories"
-msgstr ""
-
-msgid "License"
-msgstr ""
-
-#, fuzzy
-msgid "Income vs Expenses - Specific Accounts"
-msgstr "Favourite Account"
-
-msgid "No Account available for export"
-msgstr ""
-
-#, fuzzy
-msgid "Cash Flow - With Bank Accounts"
-msgstr "Favourite Account"
-
-#, c-format
-msgid "Financial Year: %s - %i"
-msgstr ""
-
-msgid "Transaction Report"
-msgstr ""
-
-msgid "Exporting"
-msgstr ""
-
-msgid "&Back"
-msgstr ""
-
-msgid "Monthly"
-msgstr ""
-
-msgid "Total"
-msgstr ""
-
-msgid "Export to QIF"
-msgstr ""
-
-msgid "Upcoming Transactions"
-msgstr ""
-
-msgid "Income: "
-msgstr ""
-
-msgid "Income/Expenses"
-msgstr ""
-
-msgid "Include payee field in notes"
-msgstr ""
-
-msgid "Grand Total:"
-msgstr ""
-
-msgid "Quarterly"
-msgstr ""
-
-msgid "Reset columns"
-msgstr ""
-
-#, c-format
-msgid "Reading line %i, %ld ms"
-msgstr ""
-
-msgid "Credit Card"
-msgstr ""
-
-msgid "Expenses: "
-msgstr ""
-
-#, fuzzy
-msgid "Account Error"
-msgstr "Favourite Account"
-
-msgid "OK"
-msgstr ""
-
-msgid "Warning"
-msgstr ""
-
-msgid "Yearly"
-msgstr ""
-
-msgid "Other"
-msgstr ""
-
-msgid "Can't determine date mask"
-msgstr ""
-
-#, fuzzy
-msgid "BankAccount"
-msgstr "Favourite Account"
-
-msgid "Four Months"
-msgstr ""
-
-msgid "String"
-msgstr ""
-
-msgid "Confirm Import"
-msgstr ""
-
-msgid "Time"
-msgstr ""
-
-msgid "&Edit Asset"
-msgstr ""
-
-#, c-format
-msgid ""
-"The SQL script:\n"
-"%s \n"
-"will modify database! aborted!"
-msgstr ""
-
-msgid "Importing Categories"
-msgstr ""
-
-msgid "&Apply"
-msgstr ""
-
-msgid "&Add Month"
-msgstr ""
-
-msgid "Payee with same name exists"
-msgstr ""
-
-msgid "Import finished successfully"
-msgstr ""
-
-msgid "Organize Payees: Edit Payee"
-msgstr ""
-
-#, c-format
-msgid "In %s Days"
-msgstr ""
-
-msgid "Organize Payees: Delete Error"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Added account: %s"
-msgstr "Favourite Account"
-
-msgid "Relocate all source categories to the destination category"
-msgstr ""
-
-msgid "Budget Month Entry"
-msgstr ""
-
-msgid "to:"
-msgstr ""
-
-msgid "Don't Care"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Records found in recurring transactions: %i"
-msgstr "Specify the colour for future transactions"
-
-msgid "&OK "
-msgstr ""
-
-#, c-format
-msgid ""
-"Changing all categories of: \n"
-"%s to category: %s"
-msgstr ""
-
-msgid "&Browse"
-msgstr ""
-
-#, c-format
-msgid ""
-"Changing all payees of: %s \n"
-"\n"
-"  to payee: %s"
-msgstr ""
-
-msgid ""
-"Specify the required month.\n"
-"Use Spin buttons to increase or decrease the month."
-msgstr ""
-
-msgid "( Estimated Vs Actual )"
-msgstr ""
-
-msgid "&MMEX format"
-msgstr ""
-
-msgid "Estimated Expenses:"
-msgstr ""
-
-msgid "Monthly (last day)"
-msgstr ""
-
-msgid "Overall"
-msgstr ""
-
-msgid "&Down"
-msgstr ""
-
-#, fuzzy
-msgid "All Bank Accounts"
-msgstr "Favourite Account"
-
-msgid "Organize Categories"
-msgstr ""
-
-msgid "Category Total: "
-msgstr ""
-
-msgid "CSV Delimiter:"
-msgstr ""
-
-#, c-format
-msgid "Where the Money Goes - %s"
-msgstr ""
-
-msgid "Confirm Asset Deletion"
-msgstr ""
-
-#, c-format
-msgid "Category Income/Expenses: %s"
-msgstr ""
-
-#, fuzzy
-msgid "Amount(+/-): "
-msgstr "Favourite Account"
-
-msgid "Over Time"
-msgstr ""
-
-msgid "Show all hidden categories"
-msgstr ""
-
-msgid "Year"
-msgstr ""
-
-msgid "From start: "
-msgstr ""
-
-msgid "Last 3 Months"
-msgstr ""
-
-#, fuzzy
-msgid "Recurring Transaction Details"
-msgstr "Specify the colour for future transactions"
-
-#, fuzzy
-msgid "Summary of Accounts"
-msgstr "Favourite Account"
-
-msgid "Export File"
-msgstr ""
-
-msgid "Stocks Total:"
-msgstr ""
-
-msgid ""
-"Delete an existing category. The category cannot be used by existing "
-"transactions."
-msgstr ""
-
-msgid "Yearly Report"
-msgstr ""
-
-msgid "Import"
-msgstr ""
-
-msgid "Purchase Price"
-msgstr ""
-
-msgid "Open an already created database file with extension (*.mmb)"
-msgstr ""
-
-msgid "Transaction List "
-msgstr ""
-
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr ""
-
-msgid "Split Transaction Details"
-msgstr ""
-
-msgid "Add Category"
-msgstr ""
-
-msgid "Edit Stock Investment"
-msgstr ""
-
-msgid "Please confirm saving..."
-msgstr ""
-
-msgid "Enter the stock company name"
-msgstr ""
-
-msgid "Repeats"
-msgstr ""
-
-msgid "Enter number of shares held"
-msgstr ""
-
-msgid "Export"
-msgstr ""
-
-#, fuzzy
-msgid "Specify the stock price date"
-msgstr "Specify the colour for the nav tree"
-
-msgid "Sub Category with same name exists"
-msgstr ""
-
-msgid "Enter notes associated with this investment"
-msgstr ""
-
-msgid "Destination file error"
-msgstr ""
-
-msgid "Download Stock Price history"
-msgstr ""
-
-msgid "&New "
-msgstr ""
-
-msgid "Held At"
-msgstr ""
-
-msgid "Choose MXL data file to import"
-msgstr ""
-
-msgid "Days"
-msgstr ""
-
-msgid ""
-"Tip: Change all transactions using this Category to\n"
-"another Category using the relocate command:"
-msgstr ""
-
-msgid "Stock History Update"
-msgstr ""
-
-msgid "Last Rate"
-msgstr ""
-
-msgid "Stock History Error"
-msgstr ""
-
-msgid "Request user to enter payment on the 'Date Paid'"
-msgstr ""
-
-msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
-msgstr ""
-
-msgid "Show all even the unused currencies"
-msgstr ""
-
-msgid "Unit Price"
-msgstr ""
-
-#, c-format
-msgid "Enter a new name for %s"
-msgstr ""
-
-msgid "Value Date"
-msgstr ""
-
-msgid "Enter the currency value"
-msgstr ""
-
-msgid "Do you really want to delete the stock investment?"
-msgstr ""
-
-msgid "&Edit "
-msgstr ""
-
-msgid "Move selected transaction to another account"
-msgstr ""
-
-msgid "Delete selected Currency Values"
-msgstr ""
-
-#, c-format
-msgid "Total Shares: %s"
-msgstr ""
-
-#, c-format
-msgid "Records have been updated in the database: %i"
-msgstr ""
-
-msgid "Stock prices successfully updated"
-msgstr ""
-
-msgid "Could not find base currency symbol!"
-msgstr ""
-
-#, c-format
-msgid "%s\t -> %s\n"
-msgstr ""
-
-#, fuzzy
-msgid "Specify the date the user is requested to enter this transaction"
-msgstr "Specify the colour for future transactions"
-
-#, fuzzy
-msgid "Duplicate Transaction"
-msgstr "Specify the colour for future transactions"
-
-msgid "Set as Base Currency"
-msgstr ""
-
-msgid "Open custom fields window"
-msgstr ""
-
-msgid "Clear Settings"
-msgstr ""
-
-#, fuzzy
-msgid "Specify account the money is moved to"
-msgstr "Specify the colour for future transactions"
-
-msgid ""
-"Do you want to update all currency history? Any custom currency rate will be "
-"deleted!"
-msgstr ""
-
-msgid "Specify the date of the transaction"
-msgstr ""
-
-msgid "&Delete "
-msgstr ""
-
-msgid "A host name is required for this protocol"
-msgstr ""
-
-msgid "Browse for folder"
-msgstr ""
-
-msgid "Cannot get data from WWW!"
-msgstr ""
-
-#, fuzzy
-msgid "&Close "
-msgstr "Colours"
-
-msgid "1251"
-msgstr ""
-
-#, c-format
-msgid "%s -> User profile folder"
-msgstr ""
-
-msgid "1255"
-msgstr ""
-
-msgid "Edit Account"
-msgstr ""
-
-msgid "January"
-msgstr ""
-
-msgid "Not yet set"
-msgstr ""
-
-msgid "May"
-msgstr ""
-
-msgid "Delete Asset"
-msgstr ""
-
-msgid "December"
-msgstr ""
-
-msgid "Create and use Attachments subfolder"
-msgstr ""
-
-msgid "Jan"
-msgstr ""
-
-msgid "Apr"
-msgstr ""
-
-msgid "Aug"
-msgstr ""
-
-msgid ""
-"Select to don't delete file when attachment is removed, but instead move it "
-"to 'Deleted' subfolder"
-msgstr ""
-
-msgid "Nov"
-msgstr ""
-
-msgid "Open attachments"
-msgstr ""
-
-msgid "Tuesday"
-msgstr ""
-
-msgid "Dropbox folder"
-msgstr ""
-
-msgid "Saturday"
-msgstr ""
-
-msgid "Search"
-msgstr ""
-
-msgid "Unable to connect to WebApp:"
-msgstr ""
-
-msgid "Attachments folder migration"
-msgstr ""
-
-#, c-format
-msgid "WebApp   API version -> %s"
-msgstr ""
-
-msgid "Specify the amount for this transaction"
-msgstr ""
-
-msgid "The client failed to connect the server"
-msgstr ""
-
-msgid "Display Heading"
-msgstr ""
-
-msgid "Someone tried to send a command during a transfer"
-msgstr ""
-
-msgid "Enter any string to find related assets"
-msgstr ""
-
-#, fuzzy
-msgid "Wrong WebApp account"
-msgstr "Favourite Account"
-
-msgid "Specify the language to use"
-msgstr ""
-
-msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr ""
-
-msgid "Currency Manager"
-msgstr ""
-
-msgid ""
-"Transaction not downloaded: please close and open MMEX to try re-download "
-"transaction"
-msgstr ""
-
-msgid "Right click on currency and choose 'Set as Base Currency'"
-msgstr ""
-
-msgid "Import and open all "
-msgstr ""
-
-msgid "Specify the transfer amount in the To Account"
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
-msgid "Start Day"
-msgstr ""
-
-msgid "Account Name already exists"
-msgstr ""
-
-msgid "Unit Name"
-msgstr ""
-
-msgid "Type of Account"
-msgstr ""
-
-msgid "Use Original Date when Pasting Transactions"
-msgstr ""
-
-msgid ""
-"Term accounts are specialized bank accounts. Intended for asset\n"
-"type accounts such as Term Deposits and Bonds. These accounts\n"
-"can have regular money coming in and out, being outside the\n"
-"general income stream."
-msgstr ""
-
-msgid "Select Account"
-msgstr ""
-
-msgid "The next pages will help you create a new database."
-msgstr ""
-
-msgid "Stock Quote Web Page"
-msgstr ""
-
-msgid "Base Currency for account"
-msgstr ""
-
-msgid "Decimal Char"
-msgstr ""
-
-msgid "Base Currency Not Set"
-msgstr ""
-
-msgid "Last used for payee"
-msgstr ""
-
-#, c-format
-msgid "New version is %s"
-msgstr ""
-
-msgid "Default Date:"
-msgstr ""
-
-msgid "Unable to check for updates!"
-msgstr ""
-
-msgid "Your database file is stored with an extension of .mmb."
-msgstr ""
-
-msgid "Conversion to Base Rate"
-msgstr ""
-
-msgid ""
-"Specify the base (or default) currency to be used for the\n"
-"database. The base currency can later be changed by using\n"
-"the options dialog. New accounts, will use this currency by\n"
-"default, and can be changed when editing account details."
-msgstr ""
-
-#, fuzzy
-msgid "Specify the Account that will own the recurring transaction"
-msgstr "Specify the colour for future transactions"
-
-msgid "#"
-msgstr ""
-
-msgid "Save any changes made"
-msgstr ""
-
-msgid "Default Payee:"
-msgstr ""
-
-msgid "Payee"
-msgstr ""
-
-msgid "Default Category:"
-msgstr ""
-
-#, c-format
-msgid "%.2f Shown As: %s"
-msgstr ""
-
-msgid "Select Payee"
-msgstr ""
-
-#, c-format
-msgid "Custom Fields | %s %i"
-msgstr ""
-
-msgid "&Exit "
-msgstr ""
-
-msgid "Create a new backup when MMEX Start"
-msgstr ""
-
-msgid "Any changes will be lost without update"
-msgstr ""
-
-msgid "Specify max number of backup files"
-msgstr ""
-
-msgid "Max Files"
-msgstr ""
-
-msgid "Backup database on exit."
-msgstr ""
-
-msgid "WebApp Settings"
-msgstr ""
-
-msgid "Delimiter"
-msgstr ""
-
-#, c-format
-msgid "Open the previously opened database : %s"
-msgstr ""
-
-msgid "Custom Field Details"
-msgstr ""
-
-msgid "Close custom field window"
-msgstr ""
-
-msgid "Use split Categories"
-msgstr ""
-
-msgid "More information about WebApp"
-msgstr ""
-
-msgid "Add, edit and delete custom fields"
-msgstr ""
-
-msgid "Account Type:"
-msgstr ""
-
-msgid "Specify proxy port number"
-msgstr ""
-
-msgid "Category"
-msgstr ""
-
-msgid "ToolTip"
-msgstr ""
-
-msgid "Select Category"
-msgstr ""
-
-msgid "Enable"
-msgstr ""
-
-msgid "Field Type"
-msgstr ""
-
-msgid "Specify web server port number"
-msgstr ""
-
-msgid "Send anonymous statistics usage data"
-msgstr ""
-
-msgid "Select type of custom field"
-msgstr ""
-
-#, fuzzy
-msgid "Organize attachments of this recurring transaction"
-msgstr "Specify the colour for future transactions"
-
-#, fuzzy
-msgid "Autocomplete"
-msgstr "Car"
-
-msgid "Enter the tooltip that will be shown"
-msgstr ""
-
-msgid "RegEx"
-msgstr ""
-
-msgid "Updates"
-msgstr ""
-
-msgid "Check for updates at StartUp"
-msgstr ""
-
-msgid "Unstable"
-msgstr ""
-
-msgid "Enter the RegEx to validate field"
-msgstr ""
-
-msgid "New/Edit Asset"
-msgstr ""
-
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
-msgid "Select one of the frequently used notes"
-msgstr ""
-
-msgid "Accounts Visible"
-msgstr ""
-
-msgid "Transactions Visible"
-msgstr ""
-
-msgid "Default"
-msgstr ""
-
-msgid "HTML scale factor"
-msgstr ""
-
-msgid "Specify which scale factor is used for the report pages"
-msgstr ""
-
-msgid "Asset Details"
-msgstr ""
-
-msgid "Do you want to proceed?"
-msgstr ""
-
-msgid "View Budgets Setup Without Budget Summaries"
-msgstr ""
-
-msgid "Choiches"
-msgstr ""
-
-msgid "Enter the choiches for this field separated with a semi-colon"
-msgstr ""
-
-#, fuzzy
-msgid "View Reports without Future Transactions"
-msgstr "Specify the colour for future transactions"
-
-msgid "1"
-msgstr ""
-
-msgid "Changing field type will delete all content!"
-msgstr ""
-
-msgid "Account name"
-msgstr ""
-
-#, c-format
-msgid "Personalize custom fields | %s"
-msgstr ""
-
-msgid "5"
-msgstr ""
-
-msgid "6"
-msgstr ""
-
-msgid "7"
-msgstr ""
-
-msgid "Confirm Custom Field Deletion"
-msgstr ""
-
-#, c-format
-msgid "Entry %s is invalid"
-msgstr ""
-
-msgid "Specify to whom the transaction is going to or coming from "
-msgstr ""
-
-msgid "Attachments folder not found"
-msgstr ""
-
-msgid "Selection can be made by using the dropdown button."
-msgstr ""
-
-msgid "File name is empty."
-msgstr ""
-
-msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
-
-#, fuzzy
-msgid "Invalid Account"
-msgstr "Favourite Account"
-
-msgid "Update Custom Field Content"
-msgstr ""
-
-msgid "Name"
-msgstr ""
-
-#, fuzzy
-msgid "Please select the account for this transaction."
-msgstr "Specify the colour for future transactions"
-
-msgid "To"
-msgstr ""
-
-msgid "Replace with"
-msgstr ""
-
-#, fuzzy
-msgid "Invalid Name"
-msgstr "Restore Default Colours"
-
-msgid "Select To Account"
-msgstr ""
-
-msgid ""
-"Please type in a new payee,\n"
-"or make a selection using the dropdown button."
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Organize Attachments | %s %i"
-msgstr "Specify the colour for future transactions"
-
-msgid "Artwork"
-msgstr ""
-
-#, fuzzy
-msgid "D&uplicate "
-msgstr "Specify the colour for future transactions"
-
-#, c-format
-msgid "Initial Balance: %s"
-msgstr ""
-
-msgid "Custom Field"
-msgstr ""
-
-#, c-format
-msgid "%i occurrencies founded and replaced!"
-msgstr ""
-
-msgid "Diff: "
-msgstr ""
-
-msgid "&Help"
-msgstr ""
-
-msgid "&New Deposit"
-msgstr ""
-
-msgid "About"
-msgstr ""
-
-msgid "&Massive content update "
-msgstr ""
-
-msgid "Enter any string to find it in the nearest transaction notes"
-msgstr ""
-
-msgid "MMEX database upgrade"
-msgstr ""
-
-msgid "To apply new changes close and re-open Custom Field panel"
-msgstr ""
-
-#, fuzzy
-msgid "Select account used in transfer transactions"
-msgstr "Specify the colour for future transactions"
-
-msgid "Period: Days"
-msgstr ""
-
-#, c-format
-msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
-
-msgid "&Edit Transaction"
-msgstr ""
-
-msgid "&Copy Transaction"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr ""
-
-msgid "Delete Viewed \"Unreconciled\" Trans."
-msgstr ""
-
-#, fuzzy
-msgid "D&uplicate Transaction"
-msgstr "Specify the colour for future transactions"
-
-msgid "&View Split Categories"
-msgstr ""
-
-#, c-format
-msgid ""
-"MMEX database version %i doesn't work with this MMEX version.\n"
-"Please upgrade MMEX to newer version."
-msgstr ""
-
-#, fuzzy
-msgid "Create Reoccuring T&ransaction"
-msgstr "Specify the colour for future transactions"
-
-#, c-format
-msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
-
-msgid "Delete Viewed \"Follow Up\" Trans."
-msgstr ""
-
-msgid "Import attachment:"
-msgstr ""
-
-msgid "Query error, please contact MMEX support!"
-msgstr ""
-
-msgid "Specify period in Months to activate."
-msgstr ""
-
-msgid "Load debug file"
-msgstr ""
-
-msgid "Mark For &Followup"
-msgstr ""
-
-msgid "MMEX debug error"
-msgstr ""
-
-msgid "Mark"
-msgstr ""
-
-msgid "Wrong file type!"
-msgstr ""
-
-msgid "Specify the date of purchase of asset"
-msgstr ""
-
-msgid "Unreconciled"
-msgstr ""
-
-msgid "as Duplicate"
-msgstr ""
-
-msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
-
-msgid ""
-"Send this log to MMEX support team:\n"
-"press OK to save to file or Cancel to exit"
-msgstr ""
-
-msgid "Select the destination Account "
-msgstr ""
-
-msgid "Leave blank if the payments continue forever."
-msgstr ""
-
-msgid "Confirm Transaction Deletion"
-msgstr ""
-
-msgid "Organize Attachments: Add Attachment"
-msgstr ""
-
-msgid "Bank Accounts"
-msgstr ""
-
-#, c-format
-msgid "Moving Transaction from %s to..."
-msgstr ""
-
-msgid "Do you really want to delete the selected transaction?"
-msgstr ""
-
-msgid "Specify the category for this transaction"
-msgstr ""
-
-msgid "Navigation"
-msgstr ""
-
-#, fuzzy
-msgid "Reoccuring Transaction saved."
-msgstr "Specify the colour for future transactions"
-
-msgid "Can't open file"
-msgstr ""
-
-msgid "Toolbar"
-msgstr ""
-
-msgid "Reconciled"
-msgstr ""
-
-msgid ""
-"An incorrect password given for an encrypted file \n"
-"\n"
-"or \n"
-"\n"
-" Attempt to open a File that is not a database file \n"
-msgstr ""
-
-msgid "Stocks"
-msgstr ""
-
-#, c-format
-msgid "Error: %s"
-msgstr ""
-
-msgid "Frequency"
-msgstr ""
-
-#, fuzzy
-msgid "Credit Card Accounts"
-msgstr "Favourite Account"
-
-msgid "Organize Attachments: Edit Attachment"
-msgstr ""
-
-#, fuzzy
-msgid "Loan Accounts"
-msgstr "Favourite Account"
-
-msgid "Un-Reconciled"
-msgstr ""
-
-msgid "Do you really want to delete the account?"
-msgstr ""
-
-msgid "Void"
-msgstr ""
-
-msgid "Confirm Account Deletion"
-msgstr ""
-
-msgid "New &Account"
-msgstr ""
-
-msgid "MMEX has been opened without an active database."
-msgstr ""
-
-msgid "&New Transaction"
-msgstr ""
-
-msgid "Confirm Attachment Deletion"
-msgstr ""
-
-msgid "Include Similar"
-msgstr ""
-
-msgid "All Except Reconciled"
-msgstr ""
-
-#, fuzzy
-msgid "&Reallocate Account"
-msgstr "Favourite Account"
-
-msgid "&Launch Account Website"
-msgstr ""
-
-msgid " Specify "
-msgstr ""
-
-msgid "&CSV Files..."
-msgstr ""
-
-msgid "Wiki page"
-msgstr ""
-
-msgid "Transaction Filter"
-msgstr ""
-
-msgid "&QIF Files..."
-msgstr ""
-
-#, fuzzy
-msgid "Recurring Transactions"
-msgstr "Specify the colour for future transactions"
-
-msgid "New Database"
-msgstr ""
-
-msgid "Withdrawal"
-msgstr ""
-
-msgid "Amount Range"
-msgstr ""
-
-msgid "&Add "
-msgstr ""
-
-msgid "Save Database &As"
-msgstr ""
-
-msgid "Import from QIF"
-msgstr ""
-
-msgid "&WebApp..."
-msgstr ""
-
-msgid "Export to CSV"
-msgstr ""
-
-msgid "Transfer From"
-msgstr ""
-
-msgid "Export to XML"
-msgstr ""
-
-msgid "E&xit\tAlt-X"
-msgstr ""
-
-msgid "Import from any CSV file"
-msgstr ""
-
-msgid "&Clear "
-msgstr ""
-
-msgid "En&ter"
-msgstr ""
-
-msgid "Error"
-msgstr ""
-
-msgid "Invalid Amount Entered "
-msgstr ""
-
-msgid "Import from WebApp"
-msgstr ""
-
-msgid "Delete Bills & Deposit Series"
-msgstr ""
-
-msgid "General Reports Manager"
-msgstr ""
-
-msgid "Quit this program"
-msgstr ""
-
-msgid "Budget Setup: &Without Summaries"
-msgstr ""
-
-msgid "&Toolbar"
-msgstr ""
-
-msgid "Export the report to a new file."
-msgstr ""
-
-msgid "Budgets: As &Financial Years"
-msgstr ""
-
-msgid "Display Budgets in Financial Year Format"
-msgstr ""
-
-msgid "Budgets: &Include Transfers in Totals"
-msgstr ""
-
-msgid "Toggle Fullscreen"
-msgstr ""
-
-msgid "Enter the current value of the asset"
-msgstr ""
-
-msgid "Favorite Account"
-msgstr "Favourite Account"
-
-msgid "Att."
-msgstr ""
-
-msgid "Change the account type of an account."
-msgstr ""
-
-msgid "Ignore F&uture Transactions"
-msgstr ""
-
-msgid "&Save "
-msgstr ""
-
-msgid "Held At:"
-msgstr ""
-
-msgid "Save changes."
-msgstr ""
-
-msgid "Account &List"
-msgstr ""
-
-msgid "&Run"
-msgstr ""
-
-msgid "&Categories..."
-msgstr ""
-
-msgid "Template"
-msgstr ""
-
-msgid "Output"
-msgstr ""
-
-msgid "Card Number:"
-msgstr ""
-
-msgid "Organize &Payees..."
-msgstr ""
-
-msgid "SQL"
-msgstr ""
-
-msgid "Account Number:"
-msgstr ""
-
-msgid "Lua"
-msgstr ""
-
-msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
-
-msgid "Notes"
-msgstr ""
-
-msgid "&Test"
-msgstr ""
-
-msgid "License agreement"
-msgstr ""
-
-msgid "Relocate Categories && Payees"
-msgstr ""
-
-msgid "&Budget Setup"
-msgstr ""
-
-#, c-format
-msgid "Row(s) returned: %i  Duration: %ld ms"
-msgstr ""
-
-msgid "New Empty Report"
-msgstr ""
-
-msgid "Specify if the value of the asset changes over time"
-msgstr ""
-
-msgid "New Sample Report"
-msgstr ""
-
-msgid "Load report file:"
-msgstr ""
-
-msgid "Website"
-msgstr ""
-
-#, c-format
-msgid ""
-"Unable to open file:\n"
-"%s\n"
-"\n"
-msgstr ""
-
-msgid "Rename Group"
-msgstr ""
-
-msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr ""
-
-msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
-
-msgid "Change the password of an encrypted database"
-msgstr ""
-
-msgid "Rename Report"
-msgstr ""
-
-msgid "Optimize database space and performance"
-msgstr ""
-
-msgid "Database Debug"
-msgstr ""
-
-msgid "Generate database report or fix errors"
-msgstr ""
-
-#, fuzzy
-msgid "Enter the name for the report"
-msgstr "Specify the colour for the nav tree"
-
-msgid "Database management"
-msgstr ""
-
-msgid "Destination file already exist"
-msgstr ""
-
-msgid "File already found in attachments"
-msgstr ""
-
-msgid "Delete the Report Title:"
-msgstr ""
-
-msgid "App Start Dialog"
-msgstr ""
-
-msgid "Check For Updates"
-msgstr ""
-
-#, fuzzy
-msgid "Enter or choose name for the new report group"
-msgstr "Specify the colour for the nav tree"
-
-msgid "Change report group"
-msgstr ""
-
-msgid "Show about dialog"
-msgstr ""
-
-msgid "&File"
-msgstr ""
-
-msgid "Enter the Account Number associated with this account."
-msgstr ""
-
-msgid "Show Organize Payees Dialog"
-msgstr ""
-
-msgid ""
-"Visit the MMEX forum. See existing user comments, or report new issues with "
-"the software."
-msgstr ""
-
-msgid "Visit MMEX Forum"
-msgstr ""
-
-msgid "Sign up to Notification Mailing List or View existing announcements."
-msgstr ""
-
-#, c-format
-msgid "New Report %s"
-msgstr ""
-
-msgid "&Tools"
-msgstr ""
-
-msgid "&View"
-msgstr ""
-
-msgid "Do you want to continue and delete attachment on database?"
-msgstr ""
-
-msgid "Report Name already exists"
-msgstr ""
-
-#, fuzzy
-msgid "Organize attachments of this asset"
-msgstr "Specify the colour for future transactions"
-
-msgid "MMEX: Encrypted Database"
-msgstr ""
-
-msgid "Unable to open file."
-msgstr ""
-
-msgid "MMEX upgrade"
-msgstr ""
-
-msgid "Sub Category: "
-msgstr ""
-
-msgid ""
-"Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
-
-msgid "Unable to create file."
-msgstr ""
-
-msgid "Cannot locate previously opened database.\n"
-msgstr ""
-
-msgid "Unable to open file:"
-msgstr ""
-
-msgid "portable mode"
-msgstr ""
-
-msgid "Export error"
-msgstr ""
-
-msgid "Choose database file to open"
-msgstr ""
-
-msgid "Actual:"
-msgstr ""
-
-msgid "Enter password for database"
-msgstr ""
-
-msgid "Parsing error"
-msgstr ""
-
-msgid "Converted DB!"
-msgstr ""
-
-msgid "Sponsors"
-msgstr ""
-
-msgid "MMEX: Encryption Password Change"
-msgstr ""
-
-msgid "urn:schemas-microsoft-com:office:spreadsheet"
-msgstr ""
-
-msgid "New password must not be empty."
-msgstr ""
-
-msgid "Expense"
-msgstr ""
-
-msgid "Password change completed."
-msgstr ""
-
-msgid "Could not find Worksheet."
-msgstr ""
-
-msgid "Make sure you have a backup of DB before optimize it"
-msgstr ""
-
-msgid "Enter notes associated with this asset"
-msgstr ""
-
-msgid "Database Optimization Completed!"
-msgstr ""
-
-msgid "Could not find Table."
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
-msgid "Specify whether this category is an income or an expense category"
-msgstr ""
-
-msgid "DB Debug"
-msgstr ""
-
-msgid "Cell"
-msgstr ""
-
-msgid "Can't copy file to itself"
-msgstr ""
-
-msgid "ID"
-msgstr ""
-
-msgid "No account available to import"
-msgstr ""
-
-msgid "QIF Export"
-msgstr ""
-
-msgid "MMEX Options"
-msgstr ""
-
-msgid "Specify the frequency of the expense or deposit"
-msgstr ""
-
-msgid "No account available to edit!"
-msgstr ""
-
-msgid "Log"
-msgstr ""
-
-msgid "No account available to delete!"
-msgstr ""
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "Specify the colour for future transactions"
-
-#, c-format
-msgid ""
-"Are you sure you want to delete\n"
-" %s account: %s ?"
-msgstr ""
-
-msgid "QIF"
-msgstr ""
-
-#, fuzzy
-msgid "Select the account to reallocate"
-msgstr "Specify the colour for future transactions"
-
-msgid "Enter the amount budgeted for this category."
-msgstr ""
-
-msgid "Payee Relocation Completed."
-msgstr ""
-
-msgid "From Date"
-msgstr ""
-
-#, c-format
-msgid "File %s not found"
-msgstr ""
-
-msgid "View All Budget Categories"
-msgstr ""
-
-msgid "Caught exception"
-msgstr ""
-
-msgid "Date Format"
-msgstr ""
-
-msgid "Monthly Summary of Accounts"
-msgstr ""
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "Specify the colour for future transactions"
-
-msgid "Write to File"
-msgstr ""
-
-msgid "File Name:"
-msgstr ""
-
-msgid "Income vs Expenses"
-msgstr ""
-
-msgid "Budget Year Entry"
-msgstr ""
-
-msgid "Clear"
-msgstr ""
-
-msgid "View Planned Budget Categories"
-msgstr ""
-
-msgid "Choose Account to Export from:"
-msgstr ""
-
-msgid ""
-"Select whether this is an account that is used often. This is used to filter "
-"accounts display view."
-msgstr ""
-
-msgid "CSV Files"
-msgstr ""
-
-msgid "Type"
-msgstr ""
-
-msgid "QIF Files"
-msgstr ""
-
-msgid "Bug reports"
-msgstr ""
-
-msgid "View Expense Budget Categories"
-msgstr ""
-
-msgid "Choose CSV data file to Export"
-msgstr ""
-
-msgid "Budget Performance"
-msgstr ""
-
-msgid "View Budget Category Summary"
-msgstr ""
-
-msgid "Cash Flow"
-msgstr ""
-
-msgid "No Accounts selected for export"
-msgstr ""
-
-#, fuzzy
-msgid "Cash Flow - With Term Accounts"
-msgstr "Favourite Account"
-
-msgid "Fortnightly"
-msgstr ""
-
-#, fuzzy
-msgid "Daily Cash Flow - Specific Accounts"
-msgstr "Favourite Account"
-
-msgid "Categories exported"
-msgstr ""
-
-msgid "Stocks Report"
-msgstr ""
-
-#, c-format
-msgid "Year: %s"
-msgstr ""
-
-msgid "All Time"
-msgstr ""
-
-msgid "Please wait"
-msgstr ""
-
-msgid "&Forward"
-msgstr ""
-
-msgid "Current Value"
-msgstr ""
-
-msgid "Gain/Loss"
-msgstr ""
-
-#, c-format
-msgid "Number of transactions exported: %ld"
-msgstr ""
-
-msgid "Total:"
-msgstr ""
-
-#, c-format
-msgid "Budget Setup for %s"
-msgstr ""
-
-msgid "Summary"
-msgstr ""
-
-msgid "QIF Import"
-msgstr ""
-
-#, c-format
-msgid "Income vs Expenses: %s"
-msgstr ""
-
-msgid "Bi-Monthly"
-msgstr ""
-
-msgid "Difference:"
-msgstr ""
-
-msgid "Use account number instead of account name"
-msgstr ""
-
-msgid "Transaction Statistics"
-msgstr ""
-
-msgid "Estimated: "
-msgstr ""
-
-msgid "Total Transactions: "
-msgstr ""
-
-msgid "Filtering Details:"
-msgstr ""
-
-msgid "Hide/Show Columns"
-msgstr ""
-
-msgid "Specify the type of account to be created."
-msgstr ""
-
-msgid "Order by this column"
-msgstr ""
-
-msgid "Scanning"
-msgstr ""
-
-msgid "REPORTS"
-msgstr ""
-
-msgid "Difference: "
-msgstr ""
-
-msgid "Checking"
-msgstr "Current"
-
-#, c-format
-msgid "Line %i \t %s\n"
-msgstr ""
-
-msgid "Loan"
-msgstr ""
-
-msgid "&New Asset"
-msgstr ""
-
-msgid "Investment"
-msgstr ""
-
-msgid "Press OK Button to continue"
-msgstr ""
-
-msgid "Appreciates"
-msgstr ""
-
-msgid "Half-Yearly"
-msgstr ""
-
-msgid "Property"
-msgstr ""
-
-msgid "Icon"
-msgstr ""
-
-msgid "Household Object"
-msgstr ""
-
-msgid "Privacy"
-msgstr ""
-
-msgid "Jewellery"
-msgstr ""
-
-msgid "Choose QIF data file to Import"
-msgstr ""
-
-#, fuzzy
-msgid "Transaction"
-msgstr "Specify the colour for future transactions"
-
-msgid "Estimated"
-msgstr ""
-
-msgid "Asset"
-msgstr ""
-
-msgid "Date Mask has several values"
-msgstr ""
-
-#, fuzzy
-msgid "RecurringTransaction"
-msgstr "Specify the colour for future transactions"
-
-msgid "D&uplicate Asset"
-msgstr ""
-
-msgid "Bi-Weekly"
-msgstr ""
-
-msgid "All missing account, payees and categories will be created."
-msgstr ""
-
-msgid "Integer"
-msgstr ""
-
-msgid "Budget Editor"
-msgstr ""
-
-msgid "Boolean"
-msgstr ""
-
-msgid "Importing"
-msgstr ""
-
-msgid "SingleChoiche"
-msgstr ""
-
-msgid "Create a New Database"
-msgstr ""
-
-msgid "Payee Error"
-msgstr ""
-
-msgid "Importing Payees"
-msgstr ""
-
-msgid "General"
-msgstr ""
-
-msgid "Add a new budget year"
-msgstr ""
-
-msgid "Network"
-msgstr ""
-
-#, c-format
-msgid "Importing transaction %i of %i"
-msgstr ""
-
-#, c-format
-msgid "%s page has been saved."
-msgstr ""
-
-msgid "Daily"
-msgstr ""
-
-msgid "Search:"
-msgstr ""
-
-#, fuzzy
-msgid "Importing Split transactions"
-msgstr "Specify the colour for future transactions"
-
-msgid "Organize Payees: Add Payee"
-msgstr ""
-
-msgid "Add a new budget month"
-msgstr ""
-
-#, fuzzy
-msgid "Modify the name for the payee:"
-msgstr "Specify the colour for the nav tree"
-
-#, c-format
-msgid "Total Imported : %ld"
-msgstr ""
-
-msgid "Payee in use."
-msgstr ""
-
-msgid "&Delete Asset"
-msgstr ""
-
-msgid "Tools -> Relocation of -> Payees"
-msgstr ""
-
-msgid "Date format or date mask is incorrect"
-msgstr ""
-
-#, fuzzy
-msgid "Define Default Category"
-msgstr "Restore Default Colours"
-
-msgid "Budget Entry Details"
-msgstr ""
-
-msgid "Relocate Category Dialog"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Added payee: %s"
-msgstr "Favourite Account"
-
-msgid "Source Category"
-msgstr ""
-
-#, c-format
-msgid "In %s Months"
-msgstr ""
-
-msgid "Relocate:"
-msgstr ""
-
-msgid "SubCategory"
-msgstr ""
-
-msgid "Please Confirm:"
-msgstr ""
-
-msgid "Budget Year:"
-msgstr ""
-
-#, c-format
-msgid "Records found in split transactions: %i"
-msgstr ""
-
-msgid "Balance"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Records found in recurring split transactions: %i"
-msgstr "Specify the colour for future transactions"
-
-msgid "Follow MMEX on Facebook"
-msgstr ""
-
-#, c-format
-msgid "Records found in budget: %i"
-msgstr ""
-
-msgid "Import dialog"
-msgstr ""
-
-msgid "Category Relocation Confirmation"
-msgstr ""
-
-msgid "Budget Month:"
-msgstr ""
-
-msgid "Relocate all source payees to the destination payee"
-msgstr ""
-
-msgid "Choose CSV data file to Import"
-msgstr ""
-
-msgid "Payee Relocation Confirmation"
-msgstr ""
-
-#, c-format
-msgid "Every %s Months"
-msgstr ""
-
-#, c-format
-msgid "Budget Category Summary for %s"
-msgstr ""
-
-#, fuzzy
-msgid "Specify the order of fields in the file"
-msgstr "Specify the colour for the list details"
-
-msgid "Estimated Income:"
-msgstr ""
-
-msgid "Base Budget On:"
-msgstr ""
-
-msgid "Difference Income:"
-msgstr ""
-
-msgid "MMEX standard format"
-msgstr ""
-
-msgid "Actual Expenses:"
-msgstr ""
-
-msgid "Create a new database file to get started"
-msgstr ""
-
-#, c-format
-msgid "Budget Performance for %s"
-msgstr ""
-
-msgid "Move Up"
-msgstr ""
-
-msgid "%"
-msgstr ""
-
-msgid "Budget Year already exists"
-msgstr ""
-
-#, fuzzy
-msgid "All Accounts"
-msgstr "Favourite Account"
-
-msgid "Move &Down"
-msgstr ""
-
-#, fuzzy
-msgid "All Term Accounts"
-msgstr "Favourite Account"
-
-msgid "Do you really want to delete the Asset?"
-msgstr ""
-
-msgid "Difference"
-msgstr ""
-
-msgid "Date Format: "
-msgstr ""
-
-msgid "Total Expenses: "
-msgstr ""
-
-msgid "Monthly (last business day)"
-msgstr ""
-
-msgid "Grand Total: "
-msgstr ""
-
-msgid "Reassign all categories to another category"
-msgstr ""
-
-msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr ""
-
-msgid "Open Existing Database"
-msgstr ""
-
-#, c-format
-msgid "Categories - %s"
-msgstr ""
-
-msgid "Export column titles"
-msgstr ""
-
-msgid "Incomes"
-msgstr ""
-
-msgid "Show All"
-msgstr ""
-
-#, c-format
-msgid "From %s till %s"
-msgstr ""
-
-msgid "Positive values are deposits"
-msgstr ""
-
-#, fuzzy
-msgid "Accounts: "
-msgstr "Favourite Account"
-
-#, fuzzy
-msgid "Transaction Dates"
-msgstr "Specify the colour for future transactions"
-
-msgid "Expenses:"
-msgstr ""
-
-msgid "Rows to ignore"
-msgstr ""
-
-msgid "Month"
-msgstr ""
-
-msgid "Enter the name of the category to add or edit here"
-msgstr ""
-
-msgid "Last 90 Days"
-msgstr ""
-
-msgid "From end: "
-msgstr ""
-
-msgid "Last 12 Months"
-msgstr ""
-
-msgid ""
-"MMEX allows you to track fixed assets like cars, houses, land and others. "
-"Each asset can have its value appreciate by a certain rate per year, "
-"depreciate by a certain rate per year, or not change in value. The total "
-"assets are added to your total financial worth."
-msgstr ""
-
-msgid "Choose Accounts"
-msgstr ""
-
-msgid "Import File"
-msgstr ""
-
-msgid "Account Name"
-msgstr ""
-
-msgid "Edit the name of an existing category"
-msgstr ""
-
-#, fuzzy
-msgid "Term Accounts Total:"
-msgstr "Favourite Account"
-
-#, fuzzy
-msgid "Default account \""
-msgstr "Favourite Account"
-
-#, fuzzy
-msgid "Total Balance on all Accounts"
-msgstr "Favourite Account"
-
-msgid "Specify the date when this bill or deposit is due"
-msgstr ""
-
-msgid "Monthly Report"
-msgstr ""
-
-msgid ""
-"Incorrect fields specified for import! Requires at least Date and Amount."
-msgstr ""
-
-msgid "Summary of Stocks"
-msgstr ""
-
-msgid "&Select"
-msgstr ""
-
-msgid "Quantity"
-msgstr ""
-
-msgid "Transactions imported from file: "
-msgstr ""
-
-msgid "Current Price"
-msgstr ""
-
-msgid "New Account"
-msgstr ""
-
-msgid "Stocks Performance Charts"
-msgstr ""
-
-#, c-format
-msgid "Line: %ld"
-msgstr ""
-
-#, c-format
-msgid "Transaction List for Account: %s"
-msgstr ""
-
-msgid "Enter the name for the new category:"
-msgstr ""
-
-msgid "Split Detail Dialog"
-msgstr ""
-
-#, c-format
-msgid "Line : %ld imported OK."
-msgstr ""
-
-msgid "Split Transaction Dialog"
-msgstr ""
-
-msgid "Date Due"
-msgstr ""
-
-msgid "Invalid Total Amount"
-msgstr ""
-
-#, c-format
-msgid "Log file written to : %s"
-msgstr ""
-
-msgid "New Stock Investment"
-msgstr ""
-
-msgid "Category with same name exists"
-msgstr ""
-
-msgid "Stock Name"
-msgstr ""
-
-msgid "Imported transactions have been flagged so you can review them."
-msgstr ""
-
-msgid "Specify the purchase date of the stock investment"
-msgstr ""
-
-msgid "All"
-msgstr ""
-
-msgid "Number of Shares"
-msgstr ""
-
-msgid ""
-"Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
-
-msgid "Enter purchase price for each stock"
-msgstr ""
-
-msgid "Organise Categories: Adding Error"
-msgstr ""
-
-msgid "Price Date"
-msgstr ""
-
-msgid "File exists"
-msgstr ""
-
-msgid "Enter any commission paid"
-msgstr ""
-
-msgid "Next"
-msgstr ""
-
-msgid "Display the web page for the specified Stock symbol"
-msgstr ""
-
-msgid "Failed to delete existing file. File may be locked by another program."
-msgstr ""
-
-msgid "Stock History Options"
-msgstr ""
-
-msgid "Invalid Parent Category. Choose Root or Main Category node."
-msgstr ""
-
-msgid "Price"
-msgstr ""
-
-#, c-format
-msgid "Transactions exported: %ld"
-msgstr ""
-
-msgid "Import Stock Price history (CSV Format)"
-msgstr ""
-
-msgid "Read Documentation"
-msgstr ""
-
-msgid "Add Stock Price to history"
-msgstr ""
-
-msgid "Choose CSV data file to export"
-msgstr ""
-
-msgid "Stock History CSV Import"
-msgstr ""
-
-msgid "Sub-Category in use."
-msgstr ""
-
-msgid "Importing CSV"
-msgstr ""
-
-msgid "Choose MXL data file to export"
-msgstr ""
-
-msgid "Weeks"
-msgstr ""
-
-msgid " Payments Left "
-msgstr ""
-
-msgid "Specify type frequency of stock history"
-msgstr ""
-
-msgid "Symbol"
-msgstr ""
-
-msgid "Specify how many stock history prices download from purchase date"
-msgstr ""
-
-msgid ""
-"Tip: Change all transactions using this Sub-Category to\n"
-"another Sub-Category using the relocate command:"
-msgstr ""
-
-msgid ""
-"End date is in the future\n"
-"Quotes will be updated until today"
-msgstr ""
-
-msgid "Currency Dialog"
-msgstr ""
-
-msgid "Stock history not found!"
-msgstr ""
-
-msgid "New Asset"
-msgstr ""
-
-msgid ""
-"To create new stocks entry the Symbol, Number of shares and Purchase prise "
-"should be entered."
-msgstr ""
-
-msgid "Online Update"
-msgstr ""
-
-msgid "If the Stock Name field is empty it will be filed when prices updated"
-msgstr ""
-
-msgid "Organise Categories: Delete Error"
-msgstr ""
-
-msgid "Share Symbol"
-msgstr ""
-
-msgid "Currency History Options"
-msgstr ""
-
-msgid "Total Price"
-msgstr ""
-
-msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
-
-msgid "Curr. total value"
-msgstr ""
-
-#, fuzzy
-msgid "Specify the date of currency value"
-msgstr "Specify the colour for the nav tree"
-
-msgid "&New Stock Investment"
-msgstr ""
-
-msgid "Edit Category"
-msgstr ""
-
-msgid "&Delete Stock Investment"
-msgstr ""
-
-msgid "Download Currency Values history"
-msgstr ""
-
-msgid "Confirm Stock Investment Deletion"
-msgstr ""
-
-msgid "Read the user manual"
-msgstr ""
-
-msgid "&Move"
-msgstr ""
-
-msgid "Add Currency Values to history"
-msgstr ""
-
-msgid "Refresh"
-msgstr ""
-
-msgid "Category Relocation Completed."
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Stock Investments: %s"
-msgstr "Favourite Account"
-
-msgid "Delete Currency Values history for unused currencies"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Invested: %s"
-msgstr "Favourite Account"
-
-msgid "The requested payment will occur without user interaction"
-msgstr ""
-
-#, c-format
-msgid "Loss: %s"
-msgstr ""
-
-msgid "Currency History Options: "
-msgstr ""
-
-#, c-format
-msgid "Last updated %s"
-msgstr ""
-
-msgid "Category Relocation Result"
-msgstr ""
-
-msgid "Connecting..."
-msgstr ""
-
-msgid "Currency rate updated"
-msgstr ""
-
-msgid "Quotes not found"
-msgstr ""
-
-msgid "Edit Asset"
-msgstr ""
-
-#, c-format
-msgid "Symbol: %s"
-msgstr ""
-
-#, fuzzy
-msgid "Invalid value "
-msgstr "Restore Default Colours"
-
-#, fuzzy
-msgid "Edit Transaction"
-msgstr "Specify the colour for future transactions"
-
-msgid "Unhide Selected Category"
-msgstr ""
-
-#, fuzzy
-msgid "Organize attachments of this transaction"
-msgstr "Specify the colour for future transactions"
-
-msgid "Online Update Currency Rate"
-msgstr ""
-
-#, c-format
-msgid ""
-"Do you want to add new payee: \n"
-"%s?"
-msgstr ""
-
-msgid "Advance or retard the user request date of this transaction"
-msgstr ""
-
-#, fuzzy
-msgid "Specify account the money is taken from"
-msgstr "Specify the colour for future transactions"
-
-msgid "Do you want to update today currency rates?"
-msgstr ""
-
-msgid "Specify the transfer amount in the From Account."
-msgstr ""
-
-msgid "Cancel"
-msgstr ""
-
-#, fuzzy
-msgid "Specify to whom the transaction is going to"
-msgstr "Specify the colour for future transactions"
-
-msgid "Attachments Settings"
-msgstr ""
-
-msgid "Retard or advance the date of the transaction"
-msgstr ""
-
-msgid "Enter the URL of the website for the financial institution."
-msgstr ""
-
-msgid "Found no protocol which can get this URL"
-msgstr ""
-
-msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
-
-msgid "A path is required for this protocol"
-msgstr ""
-
-#, fuzzy
-msgid "Close"
-msgstr "Colours"
-
-msgid "An error occurred during negotiation"
-msgstr ""
-
-msgid "Real path:"
-msgstr ""
-
-msgid "Unknown error"
-msgstr ""
-
-msgid "Date Paid"
-msgstr ""
-
-msgid "1250"
-msgstr ""
-
-#, c-format
-msgid "%s -> User document directory"
-msgstr ""
-
-msgid "1252"
-msgstr ""
-
-#, c-format
-msgid "Version: %s"
-msgstr ""
-
-msgid "1254"
-msgstr ""
-
-#, c-format
-msgid "%s -> Folder of.MMB database file"
-msgstr ""
-
-msgid "1256"
-msgstr ""
-
-msgid "Follow MMEX on Twitter"
-msgstr ""
-
-msgid "February"
-msgstr ""
-
-msgid "Other OS folders "
-msgstr ""
-
-msgid "March"
-msgstr ""
-
-msgid "Specify the status for the transaction"
-msgstr ""
-
-msgid "June"
-msgstr ""
-
-msgid "Windows folder -> "
-msgstr ""
-
-msgid "August"
-msgstr ""
-
-msgid "Visit Website for more information"
-msgstr ""
-
-msgid "September"
-msgstr ""
-
-msgid "Unix folder -> "
-msgstr ""
-
-msgid "November"
-msgstr ""
-
-msgid "Status"
-msgstr ""
-
-msgid "Feb"
-msgstr ""
-
-msgid "Delete file after import"
-msgstr ""
-
-msgid "Mar"
-msgstr ""
-
-msgid "Select to delete file after import in attachments archive"
-msgstr ""
-
-msgid "Jun"
-msgstr ""
-
-msgid "When remove attachment, move file instead of delete"
-msgstr ""
-
-msgid "Jul"
-msgstr ""
-
-msgid "Specify the type of transactions to be created."
-msgstr ""
-
-msgid "Dec"
-msgstr ""
-
-msgid "System documents directory"
-msgstr ""
-
-msgid "Oct"
-msgstr ""
-
-msgid "Donate"
-msgstr ""
-
-msgid "Sunday"
-msgstr ""
-
-msgid "Database file directory"
-msgstr ""
-
-msgid "Friday"
-msgstr ""
-
-msgid "&Advanced"
-msgstr ""
-
-msgid "Wednesday"
-msgstr ""
-
-msgid "User Defined"
-msgstr ""
-
-msgid "Wrong WebApp GUID:"
-msgstr ""
-
-#, c-format
-msgid "Open the %s website for latest news, updates etc"
-msgstr ""
-
-msgid "Wrong WebApp settings"
-msgstr ""
-
-msgid "Attachments path has been changed!"
-msgstr ""
-
-msgid "please check settings and / or internet connection."
-msgstr ""
-
-msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr ""
-
-msgid "Wrong WebApp API version:"
-msgstr ""
-
-msgid "Error moving attachments folder: please move it manually!"
-msgstr ""
-
-#, c-format
-msgid "Expected API version -> %s"
-msgstr ""
-
-msgid "Account Name:"
-msgstr ""
-
-msgid "A generic network error occurred"
-msgstr ""
-
-msgid "Destination"
-msgstr ""
-
-msgid "Invalid value"
-msgstr ""
-
-msgid "Open"
-msgstr ""
-
-msgid "An error occurred during reconnection"
-msgstr ""
-
-msgid "User Name"
-msgstr ""
-
-msgid "Cannot get data from website"
-msgstr ""
-
-#, c-format
-msgid "Show this window next time %s starts"
-msgstr ""
-
-#, c-format
-msgid ""
-"Transaction will be inserted with the first bank account:\n"
-"'%s' and marked as  'Follow Up'"
-msgstr ""
-
-msgid "Language"
-msgstr ""
-
-msgid "Unable to download attachments from webapp."
-msgstr ""
-
-msgid "Favorites"
-msgstr ""
-
-msgid "Transaction not downloaded:"
-msgstr ""
-
-msgid "Base Currency"
-msgstr ""
-
-msgid "Attachment folder error"
-msgstr ""
-
-msgid "Amount"
-msgstr ""
-
-msgid "Communication error"
-msgstr ""
-
-msgid "Sets the default currency for the database."
-msgstr ""
-
-msgid "Attachment download error"
-msgstr ""
-
-msgid "Currency name"
-msgstr ""
-
-msgid "&Import all "
-msgstr ""
-
-msgid "Specify the date format for display"
-msgstr ""
-
-msgid "Unable to insert transaction in MMEX database"
-msgstr ""
-
-#, c-format
-msgid "Total: %s"
-msgstr ""
-
-#, fuzzy
-msgid "Open Attachment"
-msgstr "Specify the colour for future transactions"
-
-msgid "Financial Year"
-msgstr ""
-
-msgid "Add Account Wizard"
-msgstr ""
-
-msgid "Currency Symbol"
-msgstr ""
-
-msgid "Account Name Invalid"
-msgstr ""
-
-msgid "Specify Day for start of financial year"
-msgstr ""
-
-msgid "Name of the Account"
-msgstr ""
-
-msgid "Assets"
-msgstr ""
-
-msgid "Bills"
-msgstr ""
-
-msgid "Food"
-msgstr ""
-
-msgid "Leisure"
-msgstr ""
-
-msgid "Automobile"
-msgstr "Car"
-
-msgid "Education"
-msgstr ""
-
-msgid "Homeneeds"
-msgstr ""
-
-msgid "Healthcare"
-msgstr ""
-
-msgid "Insurance"
-msgstr ""
-
-msgid "Vacation"
-msgstr ""
-
-msgid "Taxes"
-msgstr ""
-
-msgid "Miscellaneous"
-msgstr ""
-
-msgid "Gifts"
-msgstr ""
-
-msgid "Income"
-msgstr ""
-
-msgid "Other Income"
-msgstr ""
-
-msgid "Other Expenses"
-msgstr ""
-
-msgid "Transfer"
-msgstr ""
-
 msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:47+0800\n"
+"POT-Creation-Date: 2016-03-08 23:54+0800\n"
 "PO-Revision-Date: 2015-01-09 22:32+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
@@ -4476,118 +19,457 @@ msgstr ""
 msgid " "
 msgstr ""
 
+msgid " - "
+msgstr ""
+
+msgid " - No File opened "
+msgstr ""
+
+msgid " Auto Repeat Transactions"
+msgstr ""
+
+#, fuzzy
+msgid " Edit Recurring Transaction"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid " Enter Recurring Transaction"
+msgstr "Specify the colour for future transactions"
+
+msgid " Help"
+msgstr ""
+
+msgid " One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr ""
+
+msgid " Payments Left "
+msgstr ""
+
+msgid " Specify "
+msgstr ""
+
+msgid " Split Category Details"
+msgstr ""
+
+msgid ""
+" models all transactions as belonging to accounts.\n"
+"\n"
+"The next pages will help you create a new account.\n"
+"\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+
+msgid "#"
+msgstr ""
+
 msgid "$"
 msgstr ""
 
-msgid "."
+msgid "$U"
 msgstr ""
 
-msgid "USD"
+msgid "%"
 msgstr ""
 
-msgid "United States dollar"
+msgid "% Rate"
 msgstr ""
 
-msgid "EUR"
+#, c-format
+msgid "%.2f Shown As: %s"
 msgstr ""
 
-msgid "European euro"
+#, c-format
+msgid "%d days delay!"
 msgstr ""
 
-msgid "€"
+#, c-format
+msgid "%d days overdue!"
 msgstr ""
 
-msgid "GBP"
+#, c-format
+msgid "%d days remaining"
 msgstr ""
 
-msgid "Pence"
+#, c-format
+msgid "%i occurrencies founded and replaced!"
 msgstr ""
 
-msgid "Pound"
+#, c-format
+msgid "%s\t -> %s\n"
 msgstr ""
 
-msgid "UK Pound"
+#, c-format
+msgid "%s\t: %s\n"
 msgstr ""
 
-msgid "£"
+#, c-format
+msgid "%s -> Folder of.MMB database file"
+msgstr ""
+
+#, c-format
+msgid "%s -> MMEX Application data folder"
+msgstr ""
+
+#, c-format
+msgid "%s -> User document directory"
+msgstr ""
+
+#, c-format
+msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s on %s"
+msgstr ""
+
+#, c-format
+msgid "%s page has been saved."
+msgstr ""
+
+msgid "&About..."
+msgstr ""
+
+msgid "&Accounts"
+msgstr ""
+
+msgid "&Add "
+msgstr ""
+
+msgid "&Add / Update "
+msgstr ""
+
+msgid "&Add Month"
+msgstr ""
+
+msgid "&Add Year"
+msgstr ""
+
+msgid "&Advanced"
+msgstr ""
+
+msgid "&Apply"
+msgstr ""
+
+msgid "&Assets"
+msgstr ""
+
+msgid "&Back"
+msgstr ""
+
+msgid "&Browse"
+msgstr ""
+
+msgid "&Budget Setup"
+msgstr ""
+
+msgid "&CSV Files..."
+msgstr ""
+
+msgid "&Cancel "
+msgstr ""
+
+msgid "&Categories..."
+msgstr ""
+
+msgid "&Clear "
+msgstr ""
+
+msgid "&Clear Recent Files"
+msgstr ""
+
+#, fuzzy
+msgid "&Close "
+msgstr "Colours"
+
+msgid "&Copy Transaction"
+msgstr ""
+
+msgid "&Delete "
+msgstr ""
+
+msgid "&Delete Account"
+msgstr ""
+
+msgid "&Delete Asset"
+msgstr ""
+
+msgid "&Delete Bills && Deposit Series..."
+msgstr ""
+
+msgid "&Delete Stock Investment"
+msgstr ""
+
+msgid "&Delete Transaction"
+msgstr ""
+
+msgid "&Down"
+msgstr ""
+
+msgid "&Edit "
+msgstr ""
+
+msgid "&Edit Account"
+msgstr ""
+
+msgid "&Edit Asset"
+msgstr ""
+
+msgid "&Edit Bills && Deposit Series..."
+msgstr ""
+
+msgid "&Edit Stock Investment"
+msgstr ""
+
+msgid "&Edit Transaction"
+msgstr ""
+
+msgid "&Exit "
+msgstr ""
+
+msgid "&Export"
+msgstr ""
+
+msgid "&File"
+msgstr ""
+
+msgid "&Forward"
+msgstr ""
+
+msgid "&General Report Manager..."
+msgstr ""
+
+msgid "&Help"
+msgstr ""
+
+msgid "&Help\tF1"
+msgstr ""
+
+msgid "&Import"
+msgstr ""
+
+msgid "&Import all "
+msgstr ""
+
+msgid "&Launch Account Website"
+msgstr ""
+
+msgid "&MMEX format"
+msgstr ""
+
+msgid "&Massive content update "
+msgstr ""
+
+msgid "&Move"
+msgstr ""
+
+msgid "&Move Transaction"
+msgstr ""
+
+msgid "&Navigation"
+msgstr ""
+
+msgid "&New "
+msgstr ""
+
+msgid "&New Asset"
+msgstr ""
+
+msgid "&New Bills && Deposit Series..."
+msgstr ""
+
+msgid "&New Database\tCtrl-N"
+msgstr ""
+
+msgid "&New Deposit"
+msgstr ""
+
+msgid "&New Stock Investment"
+msgstr ""
+
+msgid "&New Transaction"
+msgstr ""
+
+msgid "&New Transfer"
+msgstr ""
+
+msgid "&New Withdrawal"
+msgstr ""
+
+msgid "&Next ->"
+msgstr ""
+
+msgid "&OK "
+msgstr ""
+
+msgid "&Open "
+msgstr ""
+
+msgid "&Open Database\tCtrl-O"
+msgstr ""
+
+msgid "&Options..."
+msgstr ""
+
+msgid "&Organize Attachments"
+msgstr ""
+
+msgid "&Paste Transaction"
+msgstr ""
+
+msgid "&Payees..."
+msgstr ""
+
+msgid "&Print..."
+msgstr ""
+
+msgid "&QIF Files..."
+msgstr ""
+
+#, fuzzy
+msgid "&Reallocate Account"
+msgstr "Favourite Account"
+
+msgid "&Recent Files..."
+msgstr ""
+
+#, fuzzy
+msgid "&Recurring Transactions"
+msgstr "Specify the colour for future transactions"
+
+msgid "&Remove "
+msgstr ""
+
+msgid "&Report to HTML"
+msgstr ""
+
+msgid "&Run"
+msgstr ""
+
+msgid "&Save "
+msgstr ""
+
+msgid "&Select"
+msgstr ""
+
+msgid "&Show App Start Dialog"
+msgstr ""
+
+msgid "&Skip"
+msgstr ""
+
+msgid "&Test"
+msgstr ""
+
+msgid "&Toolbar"
+msgstr ""
+
+msgid "&Tools"
+msgstr ""
+
+msgid "&Transaction Report Filter..."
+msgstr ""
+
+msgid "&Up"
+msgstr ""
+
+msgid "&View"
+msgstr ""
+
+msgid "&View Split Categories"
+msgstr ""
+
+msgid "&WebApp..."
+msgstr ""
+
+msgid "&XML Files..."
+msgstr ""
+
+msgid "( Estimated Vs Actual )"
+msgstr ""
+
+msgid "(Optional) Specify a title or your name."
 msgstr ""
 
 msgid ","
 msgstr ""
 
-msgid "RUB"
+msgid "."
 msgstr ""
 
-msgid "Russian Ruble"
+msgid "1"
 msgstr ""
 
-msgid "коп."
+msgid "1250"
 msgstr ""
 
-msgid "р"
+msgid "1251"
 msgstr ""
 
-msgid "руб."
+msgid "1252"
 msgstr ""
 
-msgid "UAH"
+msgid "1253"
 msgstr ""
 
-msgid "Ukrainian hryvnia"
+msgid "1254"
 msgstr ""
 
-msgid "₴"
+msgid "1255"
+msgstr ""
+
+msgid "1256"
+msgstr ""
+
+msgid "1257"
+msgstr ""
+
+msgid "2"
+msgstr ""
+
+msgid "3"
+msgstr ""
+
+msgid "4"
+msgstr ""
+
+msgid "5"
+msgstr ""
+
+msgid "6"
+msgstr ""
+
+msgid "7"
+msgstr ""
+
+msgid "A generic network error occurred"
+msgstr ""
+
+msgid "A host name is required for this protocol"
+msgstr ""
+
+msgid "A new version of MMEX is available!"
+msgstr ""
+
+msgid "A path is required for this protocol"
+msgstr ""
+
+msgid "AED"
 msgstr ""
 
 msgid "AFN"
 msgstr ""
 
-msgid "Afghan afghani"
-msgstr ""
-
-msgid "pul"
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
 msgid "ALL"
 msgstr ""
 
-msgid "Albanian lek"
+msgid "AMD"
 msgstr ""
 
-msgid "L"
-msgstr ""
-
-msgid "Algerian dinar"
-msgstr ""
-
-msgid "DZD"
-msgstr ""
-
-msgid "دج"
+msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "Angolan kwanza"
-msgstr ""
-
-msgid "Céntimo"
-msgstr ""
-
-msgid "Kz"
-msgstr ""
-
-msgid "EC$"
-msgstr ""
-
-msgid "East Caribbean dollar"
-msgstr ""
-
-msgid "XCD"
 msgstr ""
 
 msgid "AR$"
@@ -4596,34 +478,370 @@ msgstr ""
 msgid "ARS"
 msgstr ""
 
-msgid "Argentine peso"
-msgstr ""
-
-msgid "centavo"
-msgstr ""
-
-msgid "AMD"
-msgstr ""
-
-msgid "Armenian dram"
+msgid "AUD"
 msgstr ""
 
 msgid "AWG"
 msgstr ""
 
+msgid "AZN"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+#, c-format
+msgid "About %s"
+msgstr ""
+
+msgid "Access Info:"
+msgstr ""
+
+msgid "Account"
+msgstr ""
+
+msgid "Account &List"
+msgstr ""
+
+msgid "Account &List (Home)"
+msgstr ""
+
+#, c-format
+msgid "Account '%s' not found!"
+msgstr ""
+
+#, fuzzy
+msgid "Account Bal: "
+msgstr "Favourite Account"
+
+#, fuzzy
+msgid "Account Error"
+msgstr "Favourite Account"
+
+msgid "Account List"
+msgstr ""
+
+msgid "Account Name"
+msgstr ""
+
+msgid "Account Name "
+msgstr ""
+
+msgid "Account Name Invalid"
+msgstr ""
+
+msgid "Account Name already exists"
+msgstr ""
+
+msgid "Account Name:"
+msgstr ""
+
+msgid "Account Number:"
+msgstr ""
+
+#, fuzzy
+msgid "Account Reallocation"
+msgstr "Favourite Account"
+
+msgid "Account Status:"
+msgstr ""
+
+msgid "Account Type:"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Account View : %s"
+msgstr "Favourite Account"
+
+#, fuzzy
+msgid "Account does not exist"
+msgstr "Favourite Account"
+
+msgid "Account name"
+msgstr ""
+
+#, fuzzy
+msgid "Account: "
+msgstr "Favourite Account"
+
+#, c-format
+msgid "Account: %s - Select new type."
+msgstr ""
+
+msgid "Accounts"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Accounts Balance - %s"
+msgstr "Favourite Account"
+
+msgid "Accounts Visible"
+msgstr ""
+
+#, fuzzy
+msgid "Accounts: "
+msgstr "Favourite Account"
+
+#, fuzzy, c-format
+msgid "Accounts: %s"
+msgstr "Favourite Account"
+
+msgid "Activates"
+msgstr ""
+
+msgid "Actual"
+msgstr ""
+
+msgid "Actual Expenses:"
+msgstr ""
+
+msgid "Actual Income:"
+msgstr ""
+
+msgid "Actual:"
+msgstr ""
+
+msgid "Actual: "
+msgstr ""
+
+msgid "Add Account Wizard"
+msgstr ""
+
+msgid "Add Category"
+msgstr ""
+
+msgid "Add Currency Values to history"
+msgstr ""
+
+msgid "Add Report Group"
+msgstr ""
+
+msgid "Add Stock Price to history"
+msgstr ""
+
+msgid "Add a new budget month"
+msgstr ""
+
+msgid "Add a new budget year"
+msgstr ""
+
+msgid "Add a new category"
+msgstr ""
+
+msgid "Add, edit and delete custom fields"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Added account: %s"
+msgstr "Favourite Account"
+
+#, fuzzy, c-format
+msgid "Added payee: %s"
+msgstr "Favourite Account"
+
+msgid "Advance or retard the user request date of this transaction"
+msgstr ""
+
+msgid "Advance the next occuring date with the specified values"
+msgstr ""
+
+msgid "Afghan afghani"
+msgstr ""
+
+msgid "Albanian lek"
+msgstr ""
+
+msgid "Algerian dinar"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+#, fuzzy
+msgid "All Accounts"
+msgstr "Favourite Account"
+
+#, fuzzy
+msgid "All Bank Accounts"
+msgstr "Favourite Account"
+
+msgid "All Except Reconciled"
+msgstr ""
+
+#, fuzzy
+msgid "All Term Accounts"
+msgstr "Favourite Account"
+
+msgid "All Time"
+msgstr ""
+
+msgid "All missing account, payees and categories will be created."
+msgstr ""
+
+msgid "Allows the setting of different amounts in the FROM and TO accounts."
+msgstr ""
+
+msgid "Already exist!"
+msgstr ""
+
+msgid "Amount"
+msgstr ""
+
+msgid "Amount Range"
+msgstr ""
+
+msgid "Amount(+/-)"
+msgstr ""
+
+#, fuzzy
+msgid "Amount(+/-): "
+msgstr "Favourite Account"
+
+msgid "Amount:"
+msgstr ""
+
+msgid "An error occurred during negotiation"
+msgstr ""
+
+msgid "An error occurred during reconnection"
+msgstr ""
+
+msgid ""
+"An incorrect password given for an encrypted file \n"
+"\n"
+"or \n"
+"\n"
+" Attempt to open a File that is not a database file \n"
+msgstr ""
+
+msgid "Angolan kwanza"
+msgstr ""
+
+msgid "Any changes will be lost without update"
+msgstr ""
+
+msgid "App Start Dialog"
+msgstr ""
+
+msgid "Application data directory"
+msgstr ""
+
+msgid "Appreciates"
+msgstr ""
+
+msgid "Apr"
+msgstr ""
+
+msgid "April"
+msgstr ""
+
+#, c-format
+msgid ""
+"Are you sure you want to delete\n"
+" %s account: %s ?"
+msgstr ""
+
+msgid "Argentine peso"
+msgstr ""
+
+msgid "Armenian dram"
+msgstr ""
+
+msgid "Art"
+msgstr ""
+
+msgid "Artwork"
+msgstr ""
+
 msgid "Aruban florin"
 msgstr ""
 
-msgid "ƒ"
+msgid ""
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location."
 msgstr ""
 
-msgid "AUD"
+msgid "Asset"
+msgstr ""
+
+msgid "Asset Details"
+msgstr ""
+
+msgid "Asset Type"
+msgstr ""
+
+msgid "Assets"
+msgstr ""
+
+msgid "Att."
+msgstr ""
+
+msgid "Attachment"
+msgstr ""
+
+#, c-format
+msgid "Attachment archive folder for %s only:"
+msgstr ""
+
+msgid "Attachment download error"
+msgstr ""
+
+msgid "Attachment folder error"
+msgstr ""
+
+msgid "Attachment folder not defined"
+msgstr ""
+
+msgid "Attachment folder not defined."
+msgstr ""
+
+msgid "Attachment not found:"
+msgstr ""
+
+msgid "Attachments"
+msgstr ""
+
+msgid "Attachments Settings"
+msgstr ""
+
+msgid "Attachments folder migration"
+msgstr ""
+
+msgid "Attachments folder not found"
+msgstr ""
+
+msgid "Attachments folder not set or unavailable"
+msgstr ""
+
+msgid "Attachments path has been changed!"
+msgstr ""
+
+msgid "Aug"
+msgstr ""
+
+msgid "August"
 msgstr ""
 
 msgid "Australian dollar"
 msgstr ""
 
-msgid "AZN"
+msgid "Auto"
+msgstr ""
+
+#, fuzzy
+msgid "Autocomplete"
+msgstr "Car"
+
+#, fuzzy
+msgid "Automated"
+msgstr "Car"
+
+msgid "Automobile"
+msgstr "Car"
+
+msgid "Autorepeat"
 msgstr ""
 
 msgid "Azerbaijani manat"
@@ -4632,40 +850,52 @@ msgstr ""
 msgid "B$"
 msgstr ""
 
-msgid "BSD"
+msgid "B./"
 msgstr ""
 
-msgid "Bahamian dollar"
-msgstr ""
-
-msgid "BHD"
-msgstr ""
-
-msgid "Bahraini dinar"
-msgstr ""
-
-msgid "BDT"
-msgstr ""
-
-msgid "Bangladeshi taka"
+msgid "BAM"
 msgstr ""
 
 msgid "BBD"
 msgstr ""
 
-msgid "Barbadian dollar"
+msgid "BD$"
 msgstr ""
 
-msgid "Bds$"
+msgid "BDT"
+msgstr ""
+
+msgid "BGN"
+msgstr ""
+
+msgid "BHD"
+msgstr ""
+
+msgid "BIF"
+msgstr ""
+
+msgid "BMD"
+msgstr ""
+
+msgid "BND"
+msgstr ""
+
+msgid "BOB"
+msgstr ""
+
+msgid "BRL"
+msgstr ""
+
+msgid "BSD"
+msgstr ""
+
+msgid "BTN"
+msgstr ""
+
+msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "Belarusian ruble"
-msgstr ""
-
-msgid "Br"
 msgstr ""
 
 msgid "BZ$"
@@ -4674,146 +904,491 @@ msgstr ""
 msgid "BZD"
 msgstr ""
 
+msgid "Backup database on exit."
+msgstr ""
+
+msgid "Bahamian dollar"
+msgstr ""
+
+msgid "Bahraini dinar"
+msgstr ""
+
+msgid "Balance"
+msgstr ""
+
+msgid "Bangladeshi taka"
+msgstr ""
+
+msgid "Bank Accounts"
+msgstr ""
+
+#, fuzzy
+msgid "Bank Accounts Total:"
+msgstr "Favourite Account"
+
+#, fuzzy
+msgid "BankAccount"
+msgstr "Favourite Account"
+
+msgid "Barbadian dollar"
+msgstr ""
+
+msgid "Base Account Currency Not set."
+msgstr ""
+
+msgid "Base Budget On:"
+msgstr ""
+
+msgid "Base Currency"
+msgstr ""
+
+msgid "Base Currency Not Set"
+msgstr ""
+
+msgid "Base Currency for account"
+msgstr ""
+
+msgid "Bds$"
+msgstr ""
+
+msgid "Becomes blank when not active."
+msgstr ""
+
+msgid ""
+"Before going to a shop and buy something: take the time making a list of "
+"what you really need. In the shop buy what is in your list."
+msgstr ""
+
+msgid "Belarusian ruble"
+msgstr ""
+
 msgid "Belize dollar"
-msgstr ""
-
-msgid "CFA"
-msgstr ""
-
-msgid "West African CFA franc"
-msgstr ""
-
-msgid "XOF"
-msgstr ""
-
-msgid "BD$"
-msgstr ""
-
-msgid "BMD"
 msgstr ""
 
 msgid "Bermudian dollar"
 msgstr ""
 
-msgid "BTN"
-msgstr ""
-
 msgid "Bhutanese ngultrum"
 msgstr ""
 
-msgid "Nu."
+msgid "Bi-Monthly"
 msgstr ""
 
-msgid "BOB"
+msgid "Bi-Weekly"
+msgstr ""
+
+msgid "Bills"
+msgstr ""
+
+msgid "Bills && Deposits"
 msgstr ""
 
 msgid "Bolivian boliviano"
 msgstr ""
 
-msgid "Bs."
+msgid "Books"
 msgstr ""
 
-msgid "BAM"
+msgid "Boolean"
 msgstr ""
 
 msgid "Bosnia and Herzegovina konvertibilna marka"
 msgstr ""
 
-msgid "KM"
-msgstr ""
-
-msgid "BWP"
-msgstr ""
-
 msgid "Botswana pula"
 msgstr ""
 
-msgid "P"
-msgstr ""
-
-msgid "BRL"
+msgid "Br"
 msgstr ""
 
 msgid "Brazilian real"
 msgstr ""
 
-msgid "R$"
-msgstr ""
-
-msgid "BND"
+msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
 msgstr ""
 
-msgid "BGN"
+msgid "Bs."
+msgstr ""
+
+#, c-format
+msgid "Budget Categories for %s"
+msgstr ""
+
+msgid "Budget Category Summary"
+msgstr ""
+
+#, c-format
+msgid "Budget Category Summary for %s"
+msgstr ""
+
+msgid "Budget Editor"
+msgstr ""
+
+msgid "Budget Entry Details"
+msgstr ""
+
+msgid "Budget Month Entry"
+msgstr ""
+
+msgid "Budget Month:"
+msgstr ""
+
+msgid "Budget Performance"
+msgstr ""
+
+#, c-format
+msgid "Budget Performance for %s"
+msgstr ""
+
+msgid "Budget Setup"
+msgstr ""
+
+#, c-format
+msgid "Budget Setup for %s"
+msgstr ""
+
+msgid "Budget Setup: &Without Summaries"
+msgstr ""
+
+msgid "Budget Summary: Include &Categories"
+msgstr ""
+
+msgid "Budget Year Entry"
+msgstr ""
+
+msgid "Budget Year already exists"
+msgstr ""
+
+msgid "Budget Year:"
+msgstr ""
+
+msgid "Budgets: &Include Transfers in Totals"
+msgstr ""
+
+msgid "Budgets: As &Financial Years"
+msgstr ""
+
+msgid "Bug reports"
 msgstr ""
 
 msgid "Bulgarian lev"
 msgstr ""
 
-msgid "BIF"
-msgstr ""
-
 msgid "Burundi franc"
 msgstr ""
 
-msgid "FBu"
-msgstr ""
-
-msgid "Cambodian riel"
-msgstr ""
-
-msgid "KHR"
-msgstr ""
-
-msgid "Central African CFA franc"
-msgstr ""
-
-msgid "XAF"
+msgid "C$"
 msgstr ""
 
 msgid "CAD"
 msgstr ""
 
-msgid "Canadian dollar"
+msgid "CDF"
 msgstr ""
 
-msgid "CVE"
+msgid "CFA"
 msgstr ""
 
-msgid "Cape Verdean escudo"
+msgid "CFP franc"
 msgstr ""
 
-msgid "Esc"
-msgstr ""
-
-msgid "Cayman Islands dollar"
-msgstr ""
-
-msgid "KY$"
-msgstr ""
-
-msgid "KYD"
+msgid "CHF"
 msgstr ""
 
 msgid "CLP"
 msgstr ""
 
-msgid "Chilean peso"
+msgid "CNY"
 msgstr ""
 
-msgid "CNY"
+msgid "COP"
+msgstr ""
+
+msgid "CRC"
+msgstr ""
+
+msgid "CSV"
+msgstr ""
+
+msgid "CSV Delimiter:"
+msgstr ""
+
+msgid "CSV Files"
+msgstr ""
+
+msgid "CSV Settings"
+msgstr ""
+
+msgid "CVE"
+msgstr ""
+
+msgid "CZK"
+msgstr ""
+
+msgid "Cable TV"
+msgstr ""
+
+msgid "Cambodian riel"
+msgstr ""
+
+msgid "Can't copy file to itself"
+msgstr ""
+
+msgid "Can't determine date mask"
+msgstr ""
+
+msgid "Can't open file"
+msgstr ""
+
+msgid "Canadian dollar"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Cannot get data from WWW!"
+msgstr ""
+
+msgid "Cannot get data from website"
+msgstr ""
+
+msgid "Cannot locate previously opened database.\n"
+msgstr ""
+
+msgid "Cape Verdean escudo"
+msgstr ""
+
+msgid "Card Number:"
+msgstr ""
+
+msgid "Cash"
+msgstr ""
+
+#, fuzzy
+msgid "Cash Accounts"
+msgstr "Favourite Account"
+
+msgid "Cash Flow"
+msgstr ""
+
+msgid "Cash Flow - Specific Accounts"
+msgstr ""
+
+#, fuzzy
+msgid "Cash Flow - With Bank Accounts"
+msgstr "Favourite Account"
+
+#, fuzzy
+msgid "Cash Flow - With Term Accounts"
+msgstr "Favourite Account"
+
+#, c-format
+msgid "Cash Flow Forecast for %i Years Ahead"
+msgstr ""
+
+msgid "Categories"
+msgstr ""
+
+#, c-format
+msgid "Categories - %s"
+msgstr ""
+
+msgid "Categories exported"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
+#, c-format
+msgid "Category Income/Expenses: %s"
+msgstr ""
+
+msgid "Category Relocation Completed."
+msgstr ""
+
+msgid "Category Relocation Confirmation"
+msgstr ""
+
+msgid "Category Relocation Result"
+msgstr ""
+
+msgid "Category Total: "
+msgstr ""
+
+msgid "Category in use."
+msgstr ""
+
+msgid "Category with same name exists"
+msgstr ""
+
+msgid "Category: "
+msgstr ""
+
+msgid "Caught exception"
+msgstr ""
+
+msgid "Cayman Islands dollar"
+msgstr ""
+
+msgid "Cell"
+msgstr ""
+
+msgid "Central African CFA franc"
+msgstr ""
+
+msgid "Cents Name"
+msgstr ""
+
+msgid "Change Encrypted &Password"
+msgstr ""
+
+msgid "Change Group"
+msgstr ""
+
+msgid "Change in Value"
+msgstr ""
+
+#, c-format
+msgid "Change in Value: %s %s"
+msgstr ""
+
+msgid "Change report group"
+msgstr ""
+
+msgid "Change the account type of an account."
+msgstr ""
+
+msgid "Change the password of an encrypted database"
+msgstr ""
+
+#, c-format
+msgid ""
+"Changing all categories of: \n"
+"%s to category: %s"
+msgstr ""
+
+#, c-format
+msgid ""
+"Changing all payees of: %s \n"
+"\n"
+"  to payee: %s"
+msgstr ""
+
+msgid "Changing field type will delete all content!"
+msgstr ""
+
+msgid "Check For Updates"
+msgstr ""
+
+msgid "Check for &Updates"
+msgstr ""
+
+msgid "Check for updates at StartUp"
+msgstr ""
+
+msgid "Checking"
+msgstr "Current"
+
+msgid "Chilean peso"
 msgstr ""
 
 msgid "Chinese renminbi"
 msgstr ""
 
-msgid "¥"
+msgid "Choiches"
 msgstr ""
 
-msgid "COP"
+msgid "Choose &file"
 msgstr ""
+
+msgid "Choose Account to Delete"
+msgstr ""
+
+msgid "Choose Account to Edit"
+msgstr ""
+
+msgid "Choose Account to Export from:"
+msgstr ""
+
+msgid "Choose Accounts"
+msgstr ""
+
+msgid "Choose Bank Account or Term Account"
+msgstr ""
+
+msgid "Choose CSV data file to Export"
+msgstr ""
+
+msgid "Choose CSV data file to Import"
+msgstr ""
+
+msgid "Choose CSV data file to export"
+msgstr ""
+
+msgid "Choose CSV data file to import"
+msgstr ""
+
+msgid "Choose Encrypted database file to open"
+msgstr ""
+
+msgid "Choose HTML file to Export"
+msgstr ""
+
+msgid "Choose MXL data file to export"
+msgstr ""
+
+msgid "Choose MXL data file to import"
+msgstr ""
+
+msgid "Choose QIF data file to Export"
+msgstr ""
+
+msgid "Choose QIF data file to Import"
+msgstr ""
+
+msgid "Choose database file to Save As"
+msgstr ""
+
+msgid "Choose database file to create"
+msgstr ""
+
+msgid "Choose database file to open"
+msgstr ""
+
+msgid "Choose file to Save As Report"
+msgstr ""
+
+msgid "Choose folder to set as attachments archive"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Clear Settings"
+msgstr ""
+
+msgid "Clear the field to Reset the value to system default."
+msgstr ""
+
+msgid "Click on finish to open our website and download."
+msgstr ""
+
+#, fuzzy
+msgid "Close"
+msgstr "Colours"
+
+msgid "Close custom field window"
+msgstr ""
+
+msgid "Closed"
+msgstr ""
+
+#, fuzzy
+msgid "Clothing"
+msgstr "Current"
 
 msgid "Col$"
 msgstr ""
@@ -4821,100 +1396,920 @@ msgstr ""
 msgid "Colombian peso"
 msgstr ""
 
+msgid "Commission"
+msgstr ""
+
+msgid "Communication error"
+msgstr ""
+
 msgid "Comorian franc"
 msgstr ""
 
-msgid "KMF"
+msgid "Confirm Account Deletion"
 msgstr ""
 
-msgid "CDF"
+msgid "Confirm Asset Deletion"
+msgstr ""
+
+msgid "Confirm Attachment Deletion"
+msgstr ""
+
+msgid "Confirm Custom Field Content Update"
+msgstr ""
+
+msgid "Confirm Custom Field Deletion"
+msgstr ""
+
+msgid "Confirm Import"
+msgstr ""
+
+msgid "Confirm Series Deletion"
+msgstr ""
+
+msgid "Confirm Stock Investment Deletion"
+msgstr ""
+
+msgid "Confirm Transaction Deletion"
+msgstr ""
+
+msgid "Confirm password failed."
+msgstr ""
+
+msgid "Confirm to add new payee"
 msgstr ""
 
 msgid "Congolese franc"
 msgstr ""
 
-msgid "F"
+msgid "Connecting..."
 msgstr ""
 
-msgid "CRC"
+msgid "Connection error"
+msgstr ""
+
+msgid "Contact:"
+msgstr ""
+
+msgid "Conversion to Base Rate"
+msgstr ""
+
+msgid "Convert Encrypted &DB"
+msgstr ""
+
+msgid "Convert Encrypted DB to Non-Encrypted DB"
+msgstr ""
+
+msgid "Converted DB!"
 msgstr ""
 
 msgid "Costa Rican colon"
 msgstr ""
 
-msgid "₡"
+msgid "Could not find Table."
 msgstr ""
+
+msgid "Could not find Worksheet."
+msgstr ""
+
+msgid "Could not find base currency symbol!"
+msgstr ""
+
+msgid "Could not save file."
+msgstr ""
+
+#, fuzzy
+msgid "Create Reoccuring T&ransaction"
+msgstr "Specify the colour for future transactions"
+
+msgid "Create Template"
+msgstr ""
+
+msgid "Create a New Database"
+msgstr ""
+
+msgid "Create a new backup when MMEX Start"
+msgstr ""
+
+msgid "Create a new database file to get started"
+msgstr ""
+
+msgid "Create and use Attachments subfolder"
+msgstr ""
+
+msgid "Credit Card"
+msgstr ""
+
+#, fuzzy
+msgid "Credit Card Accounts"
+msgstr "Favourite Account"
 
 msgid "Croatian kuna"
 msgstr ""
 
-msgid "HRK"
+msgid "Curr. total value"
 msgstr ""
 
-msgid "kn"
+msgid "Curr. unit value"
 msgstr ""
 
-msgid "CZK"
+msgid "Currency"
+msgstr ""
+
+msgid "Currency Dialog"
+msgstr ""
+
+msgid "Currency History Options"
+msgstr ""
+
+msgid "Currency History Options: "
+msgstr ""
+
+msgid "Currency Manager"
+msgstr ""
+
+msgid "Currency Name"
+msgstr ""
+
+msgid "Currency Symbol"
+msgstr ""
+
+msgid "Currency name"
+msgstr ""
+
+msgid "Currency rate updated"
+msgstr ""
+
+msgid "Currency:"
+msgstr ""
+
+msgid "Current Financial Year"
+msgstr ""
+
+msgid "Current Financial Year to Date"
+msgstr ""
+
+msgid "Current Month"
+msgstr ""
+
+msgid "Current Month to Date"
+msgstr ""
+
+msgid "Current Price"
+msgstr ""
+
+msgid "Current Value"
+msgstr ""
+
+msgid "Current Year"
+msgstr ""
+
+msgid "Current Year to Date"
+msgstr ""
+
+msgid "Custom Field"
+msgstr ""
+
+msgid "Custom Field Change"
+msgstr ""
+
+msgid "Custom Field Details"
+msgstr ""
+
+#, c-format
+msgid "Custom Fields | %s %i"
+msgstr ""
+
+#, c-format
+msgid "Custom Fields | New %s"
 msgstr ""
 
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Kč"
+msgid "Céntimo"
 msgstr ""
 
-msgid "DKK"
+msgid "D"
 msgstr ""
 
-msgid "Danish krone"
+#, fuzzy
+msgid "D&uplicate "
+msgstr "Specify the colour for future transactions"
+
+msgid "D&uplicate Asset"
 msgstr ""
 
-msgid "Kr"
+#, fuzzy
+msgid "D&uplicate Transaction"
+msgstr "Specify the colour for future transactions"
+
+msgid "DATAVERSION"
+msgstr ""
+
+msgid "DB Debug"
+msgstr ""
+
+msgid "DB Optimization"
+msgstr ""
+
+msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr ""
 
 msgid "DJF"
 msgstr ""
 
-msgid "Djiboutian franc"
-msgstr ""
-
-msgid "Fdj"
+msgid "DKK"
 msgstr ""
 
 msgid "DOP"
 msgstr ""
 
+msgid "DT"
+msgstr ""
+
+msgid "DZD"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+#, fuzzy
+msgid "Daily Cash Flow - Specific Accounts"
+msgstr "Favourite Account"
+
+msgid "Danish krone"
+msgstr ""
+
+msgid "Data"
+msgstr ""
+
+msgid "Database"
+msgstr ""
+
+msgid "Database Backup"
+msgstr ""
+
+msgid "Database Debug"
+msgstr ""
+
+msgid "Database Optimization Completed!"
+msgstr ""
+
+msgid "Database file directory"
+msgstr ""
+
+msgid "Database management"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Date Due"
+msgstr ""
+
+msgid "Date Format"
+msgstr ""
+
+msgid "Date Format: "
+msgstr ""
+
+msgid "Date Mask has several values"
+msgstr ""
+
+msgid "Date Paid"
+msgstr ""
+
+msgid "Date Range"
+msgstr ""
+
+msgid "Date format or date mask is incorrect"
+msgstr ""
+
+msgid "Days"
+msgstr ""
+
+msgid "Db"
+msgstr ""
+
+msgid "Dec"
+msgstr ""
+
+msgid "December"
+msgstr ""
+
+msgid "Decimal"
+msgstr ""
+
+msgid "Decimal Char"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Default Category"
+msgstr ""
+
+msgid "Default Category:"
+msgstr ""
+
+msgid "Default Date:"
+msgstr ""
+
+msgid "Default Image"
+msgstr ""
+
+msgid "Default Payee:"
+msgstr ""
+
+msgid "Default Status:"
+msgstr ""
+
+#, fuzzy
+msgid "Default account \""
+msgstr "Favourite Account"
+
+#, fuzzy
+msgid "Define Default Category"
+msgstr "Restore Default Colours"
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete Account from database"
+msgstr ""
+
+msgid "Delete Asset"
+msgstr ""
+
+msgid "Delete Bills & Deposit Series"
+msgstr ""
+
+msgid "Delete Currency Values history for unused currencies"
+msgstr ""
+
+msgid "Delete Report"
+msgstr ""
+
+msgid "Delete Stock Investment"
+msgstr ""
+
+msgid "Delete Viewed \"Follow Up\" Trans."
+msgstr ""
+
+msgid "Delete Viewed \"Unreconciled\" Trans."
+msgstr ""
+
+msgid "Delete all transactions in current view"
+msgstr ""
+
+msgid ""
+"Delete an existing category. The category cannot be used by existing "
+"transactions."
+msgstr ""
+
+msgid "Delete attachment failed"
+msgstr ""
+
+msgid "Delete existing budget"
+msgstr ""
+
+msgid "Delete file after import"
+msgstr ""
+
+msgid "Delete selected Currency Values"
+msgstr ""
+
+msgid "Delete selected Stock Price"
+msgstr ""
+
+msgid "Delete selected transaction"
+msgstr ""
+
+msgid "Delete the Report Title:"
+msgstr ""
+
+msgid "Delimiter"
+msgstr ""
+
+msgid "Dental"
+msgstr ""
+
+msgid "Deposit"
+msgstr ""
+
+msgid "Depreciates"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Destination"
+msgstr ""
+
+msgid "Destination Category"
+msgstr ""
+
+msgid "Destination file already exist"
+msgstr ""
+
+msgid "Destination file already exist:"
+msgstr ""
+
+msgid "Destination file error"
+msgstr ""
+
+msgid "Developers"
+msgstr ""
+
+msgid "Diff."
+msgstr ""
+
+msgid "Diff: "
+msgstr ""
+
+msgid "Difference"
+msgstr ""
+
+msgid "Difference Expenses:"
+msgstr ""
+
+msgid "Difference Income:"
+msgstr ""
+
+msgid "Difference:"
+msgstr ""
+
+msgid "Difference: "
+msgstr ""
+
+msgid "Dining out"
+msgstr ""
+
+#, c-format
+msgid ""
+"Directory of language files does not exist:\n"
+"%s"
+msgstr ""
+
+msgid "Display Budgets in Financial Year Format"
+msgstr ""
+
+msgid "Display Heading"
+msgstr ""
+
+msgid "Display the Budget Setup without category summaries"
+msgstr ""
+
+msgid "Display the web page for the specified Stock symbol"
+msgstr ""
+
+msgid "Displayed Bal: "
+msgstr ""
+
+msgid "Djiboutian franc"
+msgstr ""
+
+#, c-format
+msgid "Do you really want to delete all the \"%s\" transactions shown?"
+msgstr ""
+
+msgid "Do you really want to delete all the transactions shown?"
+msgstr ""
+
+msgid "Do you really want to delete the Asset?"
+msgstr ""
+
+msgid "Do you really want to delete the account?"
+msgstr ""
+
+msgid "Do you really want to delete the selected Currency?"
+msgstr ""
+
+msgid "Do you really want to delete the selected transaction?"
+msgstr ""
+
+msgid "Do you really want to delete the series?"
+msgstr ""
+
+msgid "Do you really want to delete the stock investment?"
+msgstr ""
+
+msgid "Do you really want to delete this attachment?"
+msgstr ""
+
+msgid "Do you really want to delete this custom field and all its data?"
+msgstr ""
+
+msgid ""
+"Do you really want to massive update field content?\n"
+"Please consider that there isn't any validation!"
+msgstr ""
+
+msgid "Do you want to add also dates without any transaction?"
+msgstr ""
+
+#, c-format
+msgid ""
+"Do you want to add new payee: \n"
+"%s?"
+msgstr ""
+
+msgid "Do you want to continue and delete attachment on database?"
+msgstr ""
+
+msgid "Do you want to import all transaction ?"
+msgstr ""
+
+msgid "Do you want to proceed?"
+msgstr ""
+
+msgid ""
+"Do you want to update all currency history? Any custom currency rate will be "
+"deleted!"
+msgstr ""
+
+msgid ""
+"Do you want to update blank content?\n"
+"Press no if you want to abort replace procedure!"
+msgstr ""
+
+msgid ""
+"Do you want to update to blank?\n"
+"Press no if you want to abort replace procedure!"
+msgstr ""
+
+msgid "Do you want to update today currency rates?"
+msgstr ""
+
 msgid "Dominican peso"
 msgstr ""
 
-msgid "RD$"
+msgid "Don't Care"
+msgstr ""
+
+msgid "Donate"
+msgstr ""
+
+msgid "Download Currency Values history"
+msgstr ""
+
+msgid "Download Stock Price history"
+msgstr ""
+
+msgid "Download in progress"
+msgstr ""
+
+msgid "Dropbox folder"
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+#, fuzzy
+msgid "Duplicate Transaction"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid "Duplicate selected transaction"
+msgstr "Specify the colour for future transactions"
+
+msgid "E"
+msgstr ""
+
+msgid "E&xit\tAlt-X"
+msgstr ""
+
+msgid "EC$"
 msgstr ""
 
 msgid "EGP"
 msgstr ""
 
-msgid "Egyptian pound"
-msgstr ""
-
 msgid "ERN"
-msgstr ""
-
-msgid "Eritrean nakfa"
-msgstr ""
-
-msgid "Nfa"
 msgstr ""
 
 msgid "ETB"
 msgstr ""
 
+msgid "EUR"
+msgstr ""
+
+msgid "East Caribbean dollar"
+msgstr ""
+
+msgid "Edit Account"
+msgstr ""
+
+msgid "Edit Asset"
+msgstr ""
+
+msgid "Edit Bills & Deposit Series"
+msgstr ""
+
+msgid "Edit Category"
+msgstr ""
+
+msgid "Edit Stock Investment"
+msgstr ""
+
+#, fuzzy
+msgid "Edit Transaction"
+msgstr "Specify the colour for future transactions"
+
+msgid "Edit selected transaction"
+msgstr ""
+
+msgid "Edit the name of an existing category"
+msgstr ""
+
+msgid "Education"
+msgstr ""
+
+msgid "Egyptian pound"
+msgstr ""
+
+msgid "Electricity"
+msgstr ""
+
+msgid "En&ter"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Enable internal web server when MMEX Starts."
+msgstr ""
+
+msgid ""
+"Enable to automatically check if new MMEX version is available at StartUp"
+msgstr ""
+
+msgid "Enable to help us sending anonymous data about MMEX usage."
+msgstr ""
+
+msgid "Enables autocomplete on custom field"
+msgstr ""
+
+msgid "Encoding:"
+msgstr ""
+
+msgid ""
+"End date is in the future\n"
+"Quotes will be updated until today"
+msgstr ""
+
+msgid "Enter Next Bills & Deposit Occurrence"
+msgstr ""
+
+msgid "Enter a description for the new attachment:"
+msgstr ""
+
+#, fuzzy
+msgid "Enter a new description for the attachment:"
+msgstr "Specify the colour for the nav tree"
+
+#, c-format
+msgid "Enter a new name for %s"
+msgstr ""
+
+msgid "Enter any commission paid"
+msgstr ""
+
+msgid "Enter any contact information for the financial institution."
+msgstr ""
+
+msgid ""
+"Enter any login/access information for the financial institution. This is "
+"not secure as anyone with access to the mmb file can access it."
+msgstr ""
+
+msgid "Enter any string to find it in the nearest transaction notes"
+msgstr ""
+
+msgid "Enter any string to find related assets"
+msgstr ""
+
+msgid "Enter current stock price"
+msgstr ""
+
+msgid "Enter next Occurrence..."
+msgstr ""
+
+msgid "Enter notes associated with this asset"
+msgstr ""
+
+msgid "Enter notes associated with this investment"
+msgstr ""
+
+msgid "Enter number of shares held"
+msgstr ""
+
+#, fuzzy
+msgid "Enter or choose name for the new group"
+msgstr "Specify the colour for the nav tree"
+
+#, fuzzy
+msgid "Enter or choose name for the new report group"
+msgstr "Specify the colour for the nav tree"
+
+msgid "Enter password for database"
+msgstr ""
+
+msgid "Enter password for new database"
+msgstr ""
+
+msgid "Enter purchase price for each stock"
+msgstr ""
+
+msgid "Enter the Account Number associated with this account."
+msgstr ""
+
+msgid "Enter the Name of the Account. This name can be renamed at any time."
+msgstr ""
+
+msgid "Enter the RegEx to validate field"
+msgstr ""
+
+msgid "Enter the URL of the website for the financial institution."
+msgstr ""
+
+msgid "Enter the amount budgeted for this category."
+msgstr ""
+
+msgid "Enter the choiches for this field separated with a semi-colon"
+msgstr ""
+
+msgid "Enter the currency value"
+msgstr ""
+
+msgid "Enter the current value of the asset"
+msgstr ""
+
+#, fuzzy
+msgid "Enter the default for this field"
+msgstr "Specify the colour for the nav tree"
+
+msgid "Enter the initial balance in this account."
+msgstr ""
+
+msgid "Enter the name for the new category:"
+msgstr ""
+
+msgid "Enter the name for the new payee:"
+msgstr ""
+
+#, fuzzy
+msgid "Enter the name for the report"
+msgstr "Specify the colour for the nav tree"
+
+msgid "Enter the name of the asset"
+msgstr ""
+
+msgid "Enter the name of the category to add or edit here"
+msgstr ""
+
+#, fuzzy
+msgid "Enter the name of the custom field"
+msgstr "Specify the colour for the nav tree"
+
+msgid ""
+"Enter the name of the financial institution in which the account is held."
+msgstr ""
+
+#, c-format
+msgid "Enter the rate at which the asset changes its value in % per year"
+msgstr ""
+
+msgid "Enter the stock company name"
+msgstr ""
+
+msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
+msgstr ""
+
+msgid "Enter the tooltip that will be shown"
+msgstr ""
+
+msgid "Enter user notes and details about this account."
+msgstr ""
+
+#, c-format
+msgid "Entry %s is invalid"
+msgstr ""
+
+msgid "Eritrean nakfa"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Error moving attachments folder: please move it manually!"
+msgstr ""
+
+#, c-format
+msgid "Error: %s"
+msgstr ""
+
+msgid "Esc"
+msgstr ""
+
+msgid "Estimated"
+msgstr ""
+
+msgid "Estimated Expenses:"
+msgstr ""
+
+msgid "Estimated Income:"
+msgstr ""
+
+msgid "Estimated:"
+msgstr ""
+
+msgid "Estimated: "
+msgstr ""
+
 msgid "Ethiopian birr"
 msgstr ""
 
-msgid "FKP"
+msgid "European euro"
 msgstr ""
 
-msgid "Falkland Islands pound"
+#, c-format
+msgid "Every %s Days"
+msgstr ""
+
+#, c-format
+msgid "Every %s Months"
+msgstr ""
+
+msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
+msgstr ""
+
+msgid "Expand"
+msgstr ""
+
+#, c-format
+msgid "Expected API version -> %s"
+msgstr ""
+
+msgid "Expense"
+msgstr ""
+
+msgid "Expenses"
+msgstr ""
+
+msgid "Expenses:"
+msgstr ""
+
+msgid "Expenses: "
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "Export File"
+msgstr ""
+
+msgid "Export column titles"
+msgstr ""
+
+msgid "Export dialog"
+msgstr ""
+
+msgid "Export error"
+msgstr ""
+
+msgid "Export the report to a new file."
+msgstr ""
+
+msgid "Export to CSV"
+msgstr ""
+
+msgid "Export to HTML"
+msgstr ""
+
+msgid "Export to QIF"
+msgstr ""
+
+msgid "Export to XML"
+msgstr ""
+
+msgid "Exporting"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Exporting transaction %i"
+msgstr "Specify the colour for future transactions"
+
+msgid "Eyecare"
+msgstr ""
+
+msgid "F"
+msgstr ""
+
+msgid "FBu"
+msgstr ""
+
+msgid "FG"
 msgstr ""
 
 msgid "FJ$"
@@ -4923,58 +2318,180 @@ msgstr ""
 msgid "FJD"
 msgstr ""
 
+msgid "FKP"
+msgstr ""
+
+msgid "FMG"
+msgstr ""
+
+msgid "Failed to delete existing file. File may be locked by another program."
+msgstr ""
+
+msgid "Falkland Islands pound"
+msgstr ""
+
+msgid ""
+"Fatal error occured.\n"
+"Application will be terminated."
+msgstr ""
+
+msgid "Favorite Account"
+msgstr "Favourite Account"
+
+msgid "Favorites"
+msgstr ""
+
+msgid "Fdj"
+msgstr ""
+
+msgid "Feb"
+msgstr ""
+
+msgid "February"
+msgstr ""
+
+msgid "Field Type"
+msgstr ""
+
 msgid "Fijian dollar"
 msgstr ""
 
-msgid "CFP franc"
+msgid "File"
 msgstr ""
 
-msgid "XPF"
+#, c-format
+msgid "File %s not found"
 msgstr ""
 
-msgid "D"
+msgid "File Name:"
 msgstr ""
 
-msgid "GMD"
+msgid "File already found in attachments"
 msgstr ""
 
-msgid "Gambian dalasi"
+msgid "File exists"
+msgstr ""
+
+msgid "File is not in Excel XML Spreadsheet 2003 format."
+msgstr ""
+
+msgid "File name is empty."
+msgstr ""
+
+msgid "File not found in attachments. Please delete or rename it."
+msgstr ""
+
+msgid "Filtering Details:"
+msgstr ""
+
+msgid "Filtering Details: "
+msgstr ""
+
+msgid "Financial Year"
+msgstr ""
+
+#, c-format
+msgid "Financial Year: %s - %i"
+msgstr ""
+
+msgid "Find what"
+msgstr ""
+
+msgid "Follow MMEX on Facebook"
+msgstr ""
+
+msgid "Follow MMEX on Twitter"
+msgstr ""
+
+msgid "Follow Up"
+msgstr ""
+
+msgid "Follow Up On Transactions: "
+msgstr ""
+
+msgid "Follow up"
+msgstr ""
+
+msgid "Food"
+msgstr ""
+
+msgid "For date/time insert 'Now' to make current date/time as default"
+msgstr ""
+
+msgid "Fortnightly"
+msgstr ""
+
+msgid "Forum"
+msgstr ""
+
+msgid "Found no protocol which can get this URL"
+msgstr ""
+
+msgid "Four Months"
+msgstr ""
+
+msgid "Four Weeks"
+msgstr ""
+
+msgid "Fr."
+msgstr ""
+
+msgid "Frequency"
+msgstr ""
+
+msgid "Frequency:"
+msgstr ""
+
+msgid "Friday"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+#, c-format
+msgid "From %s till %s"
+msgstr ""
+
+msgid "From Date"
+msgstr ""
+
+msgid "From end: "
+msgstr ""
+
+msgid "From start: "
+msgstr ""
+
+msgid "Ft"
+msgstr ""
+
+msgid "Furnishing"
+msgstr ""
+
+msgid "G"
+msgstr ""
+
+msgid "GBP"
 msgstr ""
 
 msgid "GEL"
 msgstr ""
 
-msgid "Georgian lari"
-msgstr ""
-
 msgid "GHS"
-msgstr ""
-
-msgid "Ghanaian cedi"
 msgstr ""
 
 msgid "GIP"
 msgstr ""
 
-msgid "Gibraltar pound"
-msgstr ""
-
-msgid "GTQ"
-msgstr ""
-
-msgid "Guatemalan quetzal"
-msgstr ""
-
-msgid "Q"
-msgstr ""
-
-msgid "FG"
+msgid "GMD"
 msgstr ""
 
 msgid "GNF"
 msgstr ""
 
-msgid "Guinean franc"
+msgid "GTQ"
+msgstr ""
+
+msgid "GUID"
 msgstr ""
 
 msgid "GY$"
@@ -4983,22 +2500,79 @@ msgstr ""
 msgid "GYD"
 msgstr ""
 
+msgid "Gain/Loss"
+msgstr ""
+
+#, c-format
+msgid "Gain: %s"
+msgstr ""
+
+msgid "Gambian dalasi"
+msgstr ""
+
+msgid "Gas"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "General Report Manager"
+msgstr ""
+
+msgid "General Reports Manager"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"General bank accounts cover a wide variety of account\n"
+"types like Checking, Savings and Credit card type accounts."
+msgstr ""
+"\n"
+"Select the type of account you want to create:\n"
+"\n"
+"General bank accounts cover a wide variety of account\n"
+" types like Current, Savings and Credit card type accounts."
+
+msgid "Generate database report or fix errors"
+msgstr ""
+
+msgid "Georgian lari"
+msgstr ""
+
+msgid "Get Android Version"
+msgstr ""
+
+msgid "Ghanaian cedi"
+msgstr ""
+
+msgid "Gibraltar pound"
+msgstr ""
+
+msgid "Gifts"
+msgstr ""
+
+msgid "Grand Total:"
+msgstr ""
+
+msgid "Grand Total: "
+msgstr ""
+
+msgid "Grant automatic execute permission for this entry."
+msgstr ""
+
+msgid "Groceries"
+msgstr ""
+
+msgid "Grouping Char"
+msgstr ""
+
+msgid "Guatemalan quetzal"
+msgstr ""
+
+msgid "Guinean franc"
+msgstr ""
+
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "G"
-msgstr ""
-
-msgid "HTG"
-msgstr ""
-
-msgid "Haitian gourde"
-msgstr ""
-
-msgid "HNL"
-msgstr ""
-
-msgid "Honduran lempira"
 msgstr ""
 
 msgid "HK$"
@@ -5007,16 +2581,94 @@ msgstr ""
 msgid "HKD"
 msgstr ""
 
-msgid "Hong Kong dollar"
+msgid "HNL"
 msgstr ""
 
-msgid "Ft"
+msgid "HRK"
+msgstr ""
+
+msgid "HTG"
+msgstr ""
+
+msgid "HTML scale factor"
 msgstr ""
 
 msgid "HUF"
 msgstr ""
 
+msgid "Haitian gourde"
+msgstr ""
+
+msgid "Half-Yearly"
+msgstr ""
+
+msgid "Have MMEX support provided you a debug/patch file?"
+msgstr ""
+
+msgid "Health"
+msgstr ""
+
+msgid "Healthcare"
+msgstr ""
+
+msgid "Held At"
+msgstr ""
+
+msgid "Held At:"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Hide Selected Category"
+msgstr ""
+
+msgid "Hide this column"
+msgstr ""
+
+msgid "Hide/Show Columns"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Home Page"
+msgstr ""
+
+msgid "Homeneeds"
+msgstr ""
+
+msgid "Honduran lempira"
+msgstr ""
+
+msgid "Hong Kong dollar"
+msgstr ""
+
+msgid "House Tax"
+msgstr ""
+
+msgid "Household Object"
+msgstr ""
+
 msgid "Hungarian forint"
+msgstr ""
+
+msgid "ID"
+msgstr ""
+
+msgid "IDR"
+msgstr ""
+
+msgid "ILS"
+msgstr ""
+
+msgid "INR"
+msgstr ""
+
+msgid "IQD"
+msgstr ""
+
+msgid "IRR"
 msgstr ""
 
 msgid "ISK"
@@ -5025,55 +2677,240 @@ msgstr ""
 msgid "Icelandic króna"
 msgstr ""
 
-msgid "kr"
+msgid "Icon"
 msgstr ""
 
-msgid "INR"
+msgid "If the Stock Name field is empty it will be filed when prices updated"
+msgstr ""
+
+msgid "Ignore F&uture Transactions"
+msgstr ""
+
+#, fuzzy
+msgid "Ignore Future transactions"
+msgstr "Specify the colour for future transactions"
+
+#, c-format
+msgid "Image #%i"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Import File"
+msgstr ""
+
+msgid "Import Stock Price history (CSV Format)"
+msgstr ""
+
+#, fuzzy
+msgid "Import WebApp transactions"
+msgstr "Specify the colour for future transactions"
+
+msgid "Import and open all "
+msgstr ""
+
+msgid "Import attachment:"
+msgstr ""
+
+msgid "Import dialog"
+msgstr ""
+
+msgid "Import finished successfully"
+msgstr ""
+
+msgid "Import from QIF"
+msgstr ""
+
+msgid "Import from WebApp"
+msgstr ""
+
+msgid "Import from XML (Excel format)"
+msgstr ""
+
+msgid "Import from any CSV file"
+msgstr ""
+
+msgid "Imported transactions discarded by user!"
+msgstr ""
+
+msgid "Imported transactions have been flagged so you can review them."
+msgstr ""
+
+msgid "Importing"
+msgstr ""
+
+#, fuzzy
+msgid "Importing Accounts"
+msgstr "Favourite Account"
+
+msgid "Importing CSV"
+msgstr ""
+
+msgid "Importing Categories"
+msgstr ""
+
+msgid "Importing Payees"
+msgstr ""
+
+#, fuzzy
+msgid "Importing Split transactions"
+msgstr "Specify the colour for future transactions"
+
+msgid "Importing Transfers"
+msgstr ""
+
+#, c-format
+msgid "Importing transaction %i of %i"
+msgstr ""
+
+#, c-format
+msgid "In %s Days"
+msgstr ""
+
+#, c-format
+msgid "In %s Months"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "Include Similar"
+msgstr ""
+
+msgid "Include all subcategories for the selected category."
+msgstr ""
+
+msgid "Include payee field in notes"
+msgstr ""
+
+msgid "Include the categories in the Budget Category Summary"
+msgstr ""
+
+msgid "Include the transfer transactions in the Budget Totals"
+msgstr ""
+
+msgid "Income"
+msgstr ""
+
+msgid "Income Tax"
+msgstr ""
+
+msgid "Income vs Expenses"
+msgstr ""
+
+#, fuzzy
+msgid "Income vs Expenses - Specific Accounts"
+msgstr "Favourite Account"
+
+#, c-format
+msgid "Income vs Expenses: %s"
+msgstr ""
+
+msgid "Income/Expenses"
+msgstr ""
+
+msgid "Income:"
+msgstr ""
+
+msgid "Income: "
+msgstr ""
+
+msgid "Incomes"
+msgstr ""
+
+msgid ""
+"Incorrect fields specified for export! Requires at least Date and Amount."
+msgstr ""
+
+msgid ""
+"Incorrect fields specified for import! Requires at least Date and Amount."
 msgstr ""
 
 msgid "Indian rupee"
 msgstr ""
 
-msgid "₹"
-msgstr ""
-
-msgid "IDR"
-msgstr ""
-
 msgid "Indonesian rupiah"
 msgstr ""
 
-msgid "Rp"
+#, c-format
+msgid "Initial Balance: %s"
 msgstr ""
 
-msgid "SDR"
+msgid "Initial Value"
 msgstr ""
 
-msgid "Special Drawing Rights"
+msgid "Insurance"
 msgstr ""
 
-msgid "XDR"
+msgid "Integer"
 msgstr ""
 
-msgid "IRR"
+msgid "Internet"
+msgstr ""
+
+#, fuzzy
+msgid "Invalid Account"
+msgstr "Favourite Account"
+
+msgid "Invalid Amount Entered "
+msgstr ""
+
+msgid "Invalid Amount."
+msgstr ""
+
+#, fuzzy
+msgid "Invalid Category"
+msgstr "Restore Default Colours"
+
+msgid "Invalid Entry"
+msgstr ""
+
+#, fuzzy
+msgid "Invalid Name"
+msgstr "Restore Default Colours"
+
+msgid "Invalid Parent Category. Choose Root or Main Category node."
+msgstr ""
+
+msgid "Invalid Payee"
+msgstr ""
+
+msgid "Invalid Total Amount"
+msgstr ""
+
+msgid "Invalid file content, please contact MMEX support!"
+msgstr ""
+
+msgid "Invalid value"
+msgstr ""
+
+#, fuzzy
+msgid "Invalid value "
+msgstr "Restore Default Colours"
+
+#, fuzzy, c-format
+msgid "Invested: %s"
+msgstr "Favourite Account"
+
+msgid "Investment"
+msgstr ""
+
+msgid "Investment Income"
+msgstr ""
+
+msgid ""
+"Investment accounts are specialized accounts that only\n"
+"have stock/mutual fund investments associated with them."
 msgstr ""
 
 msgid "Iranian rial"
 msgstr ""
 
-msgid "IQD"
-msgstr ""
-
 msgid "Iraqi dinar"
 msgstr ""
 
-msgid "ILS"
-msgstr ""
-
 msgid "Israeli new shekel"
-msgstr ""
-
-msgid "₪"
 msgstr ""
 
 msgid "J$"
@@ -5082,19 +2919,79 @@ msgstr ""
 msgid "JMD"
 msgstr ""
 
-msgid "Jamaican dollar"
+msgid "JOD"
 msgstr ""
 
 msgid "JPY"
 msgstr ""
 
+msgid "Jamaican dollar"
+msgstr ""
+
+msgid "Jan"
+msgstr ""
+
+msgid "January"
+msgstr ""
+
 msgid "Japanese yen"
 msgstr ""
 
-msgid "JOD"
+msgid "Jewellery"
 msgstr ""
 
 msgid "Jordanian dinar"
+msgstr ""
+
+msgid "Jul"
+msgstr ""
+
+msgid "July"
+msgstr ""
+
+msgid "Jun"
+msgstr ""
+
+msgid "June"
+msgstr ""
+
+msgid "K"
+msgstr ""
+
+msgid "KES"
+msgstr ""
+
+msgid "KGS"
+msgstr ""
+
+msgid "KHR"
+msgstr ""
+
+msgid "KM"
+msgstr ""
+
+msgid "KMF"
+msgstr ""
+
+msgid "KN"
+msgstr ""
+
+msgid "KPW"
+msgstr ""
+
+msgid "KRW"
+msgstr ""
+
+msgid "KSh"
+msgstr ""
+
+msgid "KWD"
+msgstr ""
+
+msgid "KY$"
+msgstr ""
+
+msgid "KYD"
 msgstr ""
 
 msgid "KZT"
@@ -5103,202 +3000,461 @@ msgstr ""
 msgid "Kazakhstani tenge"
 msgstr ""
 
-msgid "T"
-msgstr ""
-
-msgid "KES"
-msgstr ""
-
-msgid "KSh"
-msgstr ""
-
 msgid "Kenyan shilling"
 msgstr ""
 
-msgid "KPW"
-msgstr ""
-
-msgid "North Korean won"
-msgstr ""
-
-msgid "W"
-msgstr ""
-
-msgid "KRW"
-msgstr ""
-
-msgid "South Korean won"
-msgstr ""
-
-msgid "KWD"
+msgid "Kr"
 msgstr ""
 
 msgid "Kuwaiti dinar"
 msgstr ""
 
-msgid "KGS"
-msgstr ""
-
 msgid "Kyrgyzstani som"
 msgstr ""
 
-msgid "KN"
+msgid "Kz"
 msgstr ""
 
-msgid "LAK"
+msgid "Kč"
 msgstr ""
 
-msgid "Lao kip"
-msgstr ""
-
-msgid "LVL"
-msgstr ""
-
-msgid "Latvian lats"
-msgstr ""
-
-msgid "Ls"
-msgstr ""
-
-msgid "LBP"
-msgstr ""
-
-msgid "Lebanese lira"
-msgstr ""
-
-msgid "LSL"
-msgstr ""
-
-msgid "Lesotho loti"
-msgstr ""
-
-msgid "M"
+msgid "L"
 msgstr ""
 
 msgid "L$"
 msgstr ""
 
-msgid "LRD"
+msgid "LAK"
 msgstr ""
 
-msgid "Liberian dollar"
+msgid "LBP"
 msgstr ""
 
 msgid "LD"
 msgstr ""
 
-msgid "LYD"
+msgid "LKR"
 msgstr ""
 
-msgid "Libyan dinar"
+msgid "LRD"
+msgstr ""
+
+msgid "LSL"
 msgstr ""
 
 msgid "LTL"
 msgstr ""
 
+msgid "LVL"
+msgstr ""
+
+msgid "LYD"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Lao kip"
+msgstr ""
+
+msgid "Last 12 Months"
+msgstr ""
+
+msgid "Last 3 Months"
+msgstr ""
+
+msgid "Last 30 Days"
+msgstr ""
+
+msgid "Last 365 Days"
+msgstr ""
+
+msgid "Last 90 Days"
+msgstr ""
+
+msgid "Last Calendar Month"
+msgstr ""
+
+msgid "Last Financial Year"
+msgstr ""
+
+msgid "Last Month"
+msgstr ""
+
+msgid "Last Rate"
+msgstr ""
+
+msgid "Last Used"
+msgstr ""
+
+msgid "Last Year"
+msgstr ""
+
+#, c-format
+msgid "Last updated %s"
+msgstr ""
+
+msgid "Last used for payee"
+msgstr ""
+
+msgid "Latvian lats"
+msgstr ""
+
+msgid "Le"
+msgstr ""
+
+msgid "Leave blank if the payments continue forever."
+msgstr ""
+
+msgid "Leave blank when not active."
+msgstr ""
+
+msgid "Lebanese lira"
+msgstr ""
+
+msgid "Legend "
+msgstr ""
+
+msgid "Leisure"
+msgstr ""
+
+msgid "Lesotho loti"
+msgstr ""
+
+msgid "Liberian dollar"
+msgstr ""
+
+msgid "Libyan dinar"
+msgstr ""
+
+msgid "License"
+msgstr ""
+
+msgid "License agreement"
+msgstr ""
+
+msgid "Life"
+msgstr ""
+
+#, c-format
+msgid "Line %i \t %s\n"
+msgstr ""
+
+#, c-format
+msgid "Line : %ld imported OK."
+msgstr ""
+
+#, c-format
+msgid "Line: %ld"
+msgstr ""
+
 msgid "Lithuanian litas"
+msgstr ""
+
+msgid "Load debug file"
+msgstr ""
+
+msgid "Load report file:"
+msgstr ""
+
+msgid "Loan"
+msgstr ""
+
+#, fuzzy
+msgid "Loan Accounts"
+msgstr "Favourite Account"
+
+msgid "Locate and load a report file."
+msgstr ""
+
+msgid "Lodging"
+msgstr ""
+
+msgid "Log"
+msgstr ""
+
+#, c-format
+msgid "Log file written to : %s"
+msgstr ""
+
+#, c-format
+msgid "Loss: %s"
+msgstr ""
+
+msgid "Ls"
 msgstr ""
 
 msgid "Lt"
 msgstr ""
 
-msgid "MOP"
+msgid "Lua"
 msgstr ""
 
-msgid "Macanese pataca"
-msgstr ""
-
-msgid "MKD"
-msgstr ""
-
-msgid "Macedonian denar"
-msgstr ""
-
-msgid "FMG"
-msgstr ""
-
-msgid "MGA"
-msgstr ""
-
-msgid "Malagasy ariary"
-msgstr ""
-
-msgid "MK"
-msgstr ""
-
-msgid "MWK"
-msgstr ""
-
-msgid "Malawian kwacha"
-msgstr ""
-
-msgid "MYR"
-msgstr ""
-
-msgid "Malaysian ringgit"
-msgstr ""
-
-msgid "RM"
-msgstr ""
-
-msgid "MVR"
-msgstr ""
-
-msgid "Maldivian rufiyaa"
-msgstr ""
-
-msgid "Rf"
-msgstr ""
-
-msgid "MRO"
-msgstr ""
-
-msgid "Mauritanian ouguiya"
-msgstr ""
-
-msgid "UM"
-msgstr ""
-
-msgid "MUR"
-msgstr ""
-
-msgid "Mauritian rupee"
-msgstr ""
-
-msgid "Rs"
-msgstr ""
-
-msgid "MXN"
-msgstr ""
-
-msgid "Mexican peso"
-msgstr ""
-
-msgid "MDL"
-msgstr ""
-
-msgid "Moldovan leu"
-msgstr ""
-
-msgid "MNT"
-msgstr ""
-
-msgid "Mongolian tugrik"
-msgstr ""
-
-msgid "₮"
+msgid "M"
 msgstr ""
 
 msgid "MAD"
 msgstr ""
 
-msgid "Moroccan dirham"
+msgid "MDL"
 msgstr ""
 
-msgid "K"
+msgid "MGA"
+msgstr ""
+
+msgid "MK"
+msgstr ""
+
+msgid "MKD"
+msgstr ""
+
+msgid "MMEX Options"
+msgstr ""
+
+msgid "MMEX Options have been updated."
+msgstr ""
+
+msgid "MMEX Update Check"
+msgstr ""
+
+msgid ""
+"MMEX allows regular payments to be set up as transactions. These "
+"transactions can also be regular deposits, or transfers that will occur at "
+"some future time. These transactions act as a reminder that an event is "
+"about to occur, and appears on the Home Page 14 days before the transaction "
+"is due. "
+msgstr ""
+
+msgid ""
+"MMEX allows you to track fixed assets like cars, houses, land and others. "
+"Each asset can have its value appreciate by a certain rate per year, "
+"depreciate by a certain rate per year, or not change in value. The total "
+"assets are added to your total financial worth."
+msgstr ""
+
+msgid "MMEX database error!"
+msgstr ""
+
+#, c-format
+msgid "MMEX database succesfully upgraded to version %i"
+msgstr ""
+
+msgid "MMEX database upgrade"
+msgstr ""
+
+#, c-format
+msgid "MMEX database upgrade to version %i failed!"
+msgstr ""
+
+#, c-format
+msgid ""
+"MMEX database version %i doesn't work with this MMEX version.\n"
+"Please upgrade MMEX to newer version."
+msgstr ""
+
+msgid "MMEX debug"
+msgstr ""
+
+msgid "MMEX debug error"
+msgstr ""
+
+msgid "MMEX has been opened without an active database."
+msgstr ""
+
+msgid "MMEX is using the following support products"
+msgstr ""
+
+msgid "MMEX message"
+msgstr ""
+
+msgid "MMEX standard format"
+msgstr ""
+
+msgid "MMEX upgrade"
+msgstr ""
+
+msgid "MMEX: Encrypted Database"
+msgstr ""
+
+msgid "MMEX: Encryption Password Change"
+msgstr ""
+
+msgid "MMEX: Menu Popup Error"
 msgstr ""
 
 msgid "MMK"
+msgstr ""
+
+msgid "MNT"
+msgstr ""
+
+msgid "MOP"
+msgstr ""
+
+msgid "MRO"
+msgstr ""
+
+msgid "MUR"
+msgstr ""
+
+msgid "MVR"
+msgstr ""
+
+msgid "MWK"
+msgstr ""
+
+msgid "MXN"
+msgstr ""
+
+msgid "MYR"
+msgstr ""
+
+msgid "Mac folder -> "
+msgstr ""
+
+msgid "Macanese pataca"
+msgstr ""
+
+msgid "Macedonian denar"
+msgstr ""
+
+msgid "Magazines"
+msgstr ""
+
+msgid "Maintenance"
+msgstr ""
+
+msgid "Make sure you have a backup of DB before optimize it"
+msgstr ""
+
+msgid "Malagasy ariary"
+msgstr ""
+
+msgid "Malawian kwacha"
+msgstr ""
+
+msgid "Malaysian ringgit"
+msgstr ""
+
+msgid "Maldivian rufiyaa"
+msgstr ""
+
+msgid "Manual"
+msgstr ""
+
+msgid "Mar"
+msgstr ""
+
+msgid "March"
+msgstr ""
+
+msgid "Mark"
+msgstr ""
+
+msgid "Mark As &Duplicate"
+msgstr ""
+
+msgid "Mark As &Reconciled"
+msgstr ""
+
+msgid "Mark As &Unreconciled"
+msgstr ""
+
+msgid "Mark As &Void"
+msgstr ""
+
+msgid "Mark For &Followup"
+msgstr ""
+
+msgid "Mark all being viewed"
+msgstr ""
+
+msgid "Mauritanian ouguiya"
+msgstr ""
+
+msgid "Mauritian rupee"
+msgstr ""
+
+msgid "Max Files"
+msgstr ""
+
+msgid "May"
+msgstr ""
+
+msgid "Mexican peso"
+msgstr ""
+
+msgid "Miscellaneous"
+msgstr ""
+
+#, fuzzy
+msgid "Missing"
+msgstr "Favourite Account"
+
+#, fuzzy
+msgid "Modify the name for the payee:"
+msgstr "Specify the colour for the nav tree"
+
+msgid "Moldovan leu"
+msgstr ""
+
+msgid "Monday"
+msgstr ""
+
+msgid "Mongolian tugrik"
+msgstr ""
+
+msgid "Month"
+msgstr ""
+
+#, c-format
+msgid "Month: %s"
+msgstr ""
+
+msgid "Monthly"
+msgstr ""
+
+msgid "Monthly (last business day)"
+msgstr ""
+
+msgid "Monthly (last day)"
+msgstr ""
+
+msgid "Monthly Report"
+msgstr ""
+
+msgid "Monthly Summary of Accounts"
+msgstr ""
+
+msgid "Months"
+msgstr ""
+
+msgid "More information about WebApp"
+msgstr ""
+
+msgid "Moroccan dirham"
+msgstr ""
+
+msgid "Move &Down"
+msgstr ""
+
+msgid "Move Up"
+msgstr ""
+
+msgid "Move selected transaction to another account"
+msgstr ""
+
+msgid "Movies"
+msgstr ""
+
+#, c-format
+msgid "Moving Transaction from %s to..."
+msgstr ""
+
+msgid "MultiChoiche"
+msgstr ""
+
+msgid "My Usage"
 msgstr ""
 
 msgid "Myanma kyat"
@@ -5310,7 +3466,16 @@ msgstr ""
 msgid "NAD"
 msgstr ""
 
-msgid "Namibian dollar"
+msgid "NAƒ"
+msgstr ""
+
+msgid "NGN"
+msgstr ""
+
+msgid "NIO"
+msgstr ""
+
+msgid "NOK"
 msgstr ""
 
 msgid "NPR"
@@ -5319,16 +3484,7 @@ msgstr ""
 msgid "NRs"
 msgstr ""
 
-msgid "Nepalese rupee"
-msgstr ""
-
-msgid "ANG"
-msgstr ""
-
-msgid "NAƒ"
-msgstr ""
-
-msgid "Netherlands Antillean gulden"
+msgid "NT$"
 msgstr ""
 
 msgid "NZ$"
@@ -5337,94 +3493,629 @@ msgstr ""
 msgid "NZD"
 msgstr ""
 
+msgid "Name"
+msgstr ""
+
+msgid "Name of the Account"
+msgstr ""
+
+msgid "Namibian dollar"
+msgstr ""
+
+msgid "Navigation"
+msgstr ""
+
+msgid "Nepalese rupee"
+msgstr ""
+
+msgid "Netherlands Antillean gulden"
+msgstr ""
+
+msgid "Network"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "New &Account"
+msgstr ""
+
+msgid "New Account"
+msgstr ""
+
+msgid "New Asset"
+msgstr ""
+
+msgid "New Bills & Deposit Series"
+msgstr ""
+
+msgid "New Database"
+msgstr ""
+
+msgid "New Database Wizard"
+msgstr ""
+
+msgid "New Empty Report"
+msgstr ""
+
+#, fuzzy
+msgid "New Recurring Transaction"
+msgstr "Specify the colour for future transactions"
+
+msgid "New Report"
+msgstr ""
+
+#, c-format
+msgid "New Report %s"
+msgstr ""
+
+msgid "New Sample Report"
+msgstr ""
+
+msgid "New Stock Investment"
+msgstr ""
+
+msgid "New Taiwan dollar"
+msgstr ""
+
+msgid "New Transaction"
+msgstr ""
+
+msgid "New Transaction Dialog Settings"
+msgstr ""
+
 msgid "New Zealand dollar"
 msgstr ""
 
-msgid "C$"
+msgid "New date format sample:"
 msgstr ""
 
-msgid "NIO"
+#, c-format
+msgid ""
+"New password for database\n"
+"\n"
+"%s"
+msgstr ""
+
+msgid "New password must not be empty."
+msgstr ""
+
+#, c-format
+msgid "New version is %s"
+msgstr ""
+
+msgid "New/Edit Asset"
+msgstr ""
+
+msgid "New/Edit Custom Field"
+msgstr ""
+
+msgid "News"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Nfa"
 msgstr ""
 
 msgid "Nicaraguan córdoba"
 msgstr ""
 
-msgid "NGN"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
-msgid "₦"
+msgid "No Account available for export"
 msgstr ""
 
-msgid "NOK"
+msgid "No Accounts selected for export"
+msgstr ""
+
+msgid "No account available to delete!"
+msgstr ""
+
+msgid "No account available to edit!"
+msgstr ""
+
+msgid "No account available to import"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "North Korean won"
 msgstr ""
 
 msgid "Norwegian krone"
 msgstr ""
 
+msgid "Not yet set"
+msgstr ""
+
+msgid "Notes"
+msgstr ""
+
+msgid "Nothing to update"
+msgstr ""
+
+msgid "Nov"
+msgstr ""
+
+msgid "November"
+msgstr ""
+
+msgid "Nu."
+msgstr ""
+
+msgid "Number"
+msgstr ""
+
+#, c-format
+msgid "Number of %s:"
+msgstr ""
+
+msgid "Number of Shares"
+msgstr ""
+
+#, c-format
+msgid "Number of lines read from QIF file: %i in %ld ms"
+msgstr ""
+
+#, c-format
+msgid "Number of transactions exported: %ld"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
 msgid "OMR"
+msgstr ""
+
+msgid "Oct"
+msgstr ""
+
+msgid "October"
 msgstr ""
 
 msgid "Omani rial"
 msgstr ""
 
-msgid "PKR"
+msgid "Online Update"
 msgstr ""
 
-msgid "Pakistani rupee"
+msgid "Online Update Currency Rate"
 msgstr ""
 
-msgid "Rs."
+msgid "Online update currency rate"
 msgstr ""
 
-msgid "B./"
+msgid "Open"
+msgstr ""
+
+#, fuzzy
+msgid "Open Attachment"
+msgstr "Specify the colour for future transactions"
+
+msgid "Open Database"
+msgstr ""
+
+msgid "Open Existing Database"
+msgstr ""
+
+msgid "Open Last Opened Database"
+msgstr ""
+
+msgid "Open an already created database file with extension (*.mmb)"
+msgstr ""
+
+msgid "Open attachment failed"
+msgstr ""
+
+msgid "Open attachments"
+msgstr ""
+
+msgid "Open custom fields window"
+msgstr ""
+
+#, c-format
+msgid "Open the %s website for latest news, updates etc"
+msgstr ""
+
+#, c-format
+msgid "Open the previously opened database : %s"
+msgstr ""
+
+msgid "Opening MMEX Database - Error"
+msgstr ""
+
+msgid "Optimize &Database"
+msgstr ""
+
+msgid "Optimize database space and performance"
+msgstr ""
+
+msgid "Order by this column"
+msgstr ""
+
+msgid "Organise Categories: Adding Error"
+msgstr ""
+
+msgid "Organise Categories: Delete Error"
+msgstr ""
+
+msgid "Organise Categories: Editing Error"
+msgstr ""
+
+msgid "Organize &Categories..."
+msgstr ""
+
+msgid "Organize &Payees..."
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Organize Attachments | %s %i"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy, c-format
+msgid "Organize Attachments | New %s"
+msgstr "Specify the colour for future transactions"
+
+msgid "Organize Attachments: Add Attachment"
+msgstr ""
+
+msgid "Organize Attachments: Edit Attachment"
+msgstr ""
+
+msgid "Organize Categories"
+msgstr ""
+
+msgid ""
+"Organize Categories Dialog Tip: Pressing 2 key combination will cycle "
+"through all categories starting with that key combination. Example: Pressing "
+"ho will select Homeneeds, Home, House Tax, etc..."
+msgstr ""
+
+msgid ""
+"Organize Categories Dialog Tip: Pressing the h key will cycle through all "
+"categories starting with the letter h"
+msgstr ""
+
+msgid "Organize Currency"
+msgstr ""
+
+msgid "Organize Currency..."
+msgstr ""
+
+msgid "Organize Payees"
+msgstr ""
+
+msgid "Organize Payees: Add Payee"
+msgstr ""
+
+msgid "Organize Payees: Delete Error"
+msgstr ""
+
+msgid "Organize Payees: Edit Payee"
+msgstr ""
+
+#, fuzzy
+msgid "Organize attachments of this account"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid "Organize attachments of this asset"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid "Organize attachments of this recurring transaction"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid "Organize attachments of this stock"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid "Organize attachments of this transaction"
+msgstr "Specify the colour for future transactions"
+
+msgid "Origin"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Other Expenses"
+msgstr ""
+
+msgid "Other Income"
+msgstr ""
+
+msgid "Other OS folders "
+msgstr ""
+
+msgid "Other tools"
+msgstr ""
+
+msgid "Others"
+msgstr ""
+
+msgid "Output"
+msgstr ""
+
+msgid "Over Time"
+msgstr ""
+
+msgid "Overall"
+msgstr ""
+
+msgid "Overwrite existing file?"
+msgstr ""
+
+msgid "P"
 msgstr ""
 
 msgid "PAB"
 msgstr ""
 
-msgid "Panamanian balboa"
+msgid "PEN"
 msgstr ""
 
 msgid "PGK"
 msgstr ""
 
-msgid "Papua New Guinean kina"
-msgstr ""
-
-msgid "PYG"
-msgstr ""
-
-msgid "Paraguayan guarani"
-msgstr ""
-
-msgid "PEN"
-msgstr ""
-
-msgid "Peruvian nuevo sol"
-msgstr ""
-
-msgid "S/."
-msgstr ""
-
 msgid "PHP"
 msgstr ""
 
-msgid "Philippine peso"
-msgstr ""
-
-msgid "₱"
+msgid "PKR"
 msgstr ""
 
 msgid "PLN"
 msgstr ""
 
+msgid "PYG"
+msgstr ""
+
+msgid "Pakistani rupee"
+msgstr ""
+
+msgid "Panamanian balboa"
+msgstr ""
+
+msgid "Papua New Guinean kina"
+msgstr ""
+
+msgid "Paraguayan guarani"
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "Parking"
+msgstr ""
+
+msgid "Parsing error"
+msgstr ""
+
+msgid "Password change completed."
+msgstr ""
+
+msgid "Password not entered for encrypted Database.\n"
+msgstr ""
+
+msgid "Payee"
+msgstr ""
+
+msgid "Payee Error"
+msgstr ""
+
+msgid "Payee Relocation Completed."
+msgstr ""
+
+msgid "Payee Relocation Confirmation"
+msgstr ""
+
+msgid "Payee Relocation Result"
+msgstr ""
+
+msgid "Payee Report"
+msgstr ""
+
+#, c-format
+msgid "Payee Report - %s"
+msgstr ""
+
+msgid "Payee in use."
+msgstr ""
+
+msgid "Payee with same name exists"
+msgstr ""
+
+msgid "Payees"
+msgstr ""
+
+msgid "Payment"
+msgstr ""
+
+msgid "Pence"
+msgstr ""
+
+msgid "Period: Days"
+msgstr ""
+
+msgid "Period: Months"
+msgstr ""
+
+#, c-format
+msgid "Personalize custom fields | %s"
+msgstr ""
+
+msgid "Peruvian nuevo sol"
+msgstr ""
+
+msgid "Philippine peso"
+msgstr ""
+
+msgid "Physician"
+msgstr ""
+
+msgid "Please Confirm:"
+msgstr ""
+
+msgid "Please confirm new password"
+msgstr ""
+
+msgid "Please confirm saving..."
+msgstr ""
+
+msgid "Please do not remove, rename or modify manually directories and files."
+msgstr ""
+
+msgid "Please enter a calculated value."
+msgstr ""
+
+msgid "Please enter a positive or calculated value."
+msgstr ""
+
+#, c-format
+msgid ""
+"Please enter password for Database\n"
+"\n"
+"%s"
+msgstr ""
+
+msgid ""
+"Please restore DB from autocreated pre-upgrade backup and retry or contact "
+"MMEX support"
+msgstr ""
+
+#, fuzzy
+msgid "Please select the account for this transaction."
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid "Please select the file for this operation."
+msgstr "Specify the colour for future transactions"
+
+msgid "Please set it in Tools -> Options -> Attachments"
+msgstr ""
+
+#, fuzzy
+msgid "Please specify which account the transfer is going to."
+msgstr "Specify the colour for future transactions"
+
+msgid ""
+"Please type in a new payee,\n"
+"or make a selection using the dropdown button."
+msgstr ""
+
+msgid "Please type in a non empty name."
+msgstr ""
+
+msgid "Please type in a non empty symbol."
+msgstr ""
+
+msgid ""
+"Please type in an exiting payee name,\n"
+"or make a selection using the dropdown button."
+msgstr ""
+
+msgid ""
+"Please use this button for category selection\n"
+"or use the 'Split' checkbox for multiple categories."
+msgstr ""
+
+#, fuzzy
+msgid "Please use this button for category selection."
+msgstr "Specify the colour for future transactions"
+
+msgid "Please use this function only if explicitly requested by MMEX support"
+msgstr ""
+
+msgid "Please verify that above path is correct"
+msgstr ""
+
+msgid "Please verify that file exists and user has rights to read it."
+msgstr ""
+
+msgid "Please wait"
+msgstr ""
+
 msgid "Polish zloty"
 msgstr ""
 
+msgid "Populate Transaction #"
+msgstr ""
+
+msgid "Port"
+msgstr ""
+
+msgid "Positive values are deposits"
+msgstr ""
+
+msgid "Positive values are withdrawals"
+msgstr ""
+
+msgid "Pound"
+msgstr ""
+
+msgid "Prefix Symbol"
+msgstr ""
+
+msgid "Prescriptions"
+msgstr ""
+
+msgid "Press OK Button to continue"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "Price Date"
+msgstr ""
+
+msgid "Print current view"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Properties"
+msgstr ""
+
+msgid "Property"
+msgstr ""
+
+msgid "Proxy"
+msgstr ""
+
+msgid "Proxy Settings"
+msgstr ""
+
+msgid "Purchase Date"
+msgstr ""
+
+msgid "Purchase Price"
+msgstr ""
+
+msgid "Q"
+msgstr ""
+
 msgid "QAR"
+msgstr ""
+
+msgid "QIF"
+msgstr ""
+
+msgid "QIF Export"
+msgstr ""
+
+msgid "QIF Files"
+msgstr ""
+
+msgid "QIF Import"
 msgstr ""
 
 msgid "QR"
@@ -5433,407 +4124,71 @@ msgstr ""
 msgid "Qatari riyal"
 msgstr ""
 
-msgid "RON"
+msgid "Quantity"
 msgstr ""
 
-msgid "Romanian leu"
+msgid "Quarterly"
 msgstr ""
 
-msgid "RF"
+msgid "Query error, please contact MMEX support!"
 msgstr ""
 
-msgid "RWF"
+msgid "Quit this program"
 msgstr ""
 
-msgid "Rwandan franc"
+msgid "Quotes imported from CSV: "
 msgstr ""
 
-msgid "Db"
-msgstr ""
-
-msgid "STD"
-msgstr ""
-
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
-msgid "SAR"
-msgstr ""
-
-msgid "SR"
-msgstr ""
-
-msgid "Saudi riyal"
-msgstr ""
-
-msgid "RSD"
-msgstr ""
-
-msgid "Serbian dinar"
-msgstr ""
-
-msgid "din."
-msgstr ""
-
-msgid "SCR"
-msgstr ""
-
-msgid "Seychellois rupee"
-msgstr ""
-
-msgid "Le"
-msgstr ""
-
-msgid "SLL"
-msgstr ""
-
-msgid "Sierra Leonean leone"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "SGD"
-msgstr ""
-
-msgid "Singapore dollar"
-msgstr ""
-
-msgid "SBD"
-msgstr ""
-
-msgid "SI$"
-msgstr ""
-
-msgid "Solomon Islands dollar"
-msgstr ""
-
-msgid "SOS"
-msgstr ""
-
-msgid "Sh."
-msgstr ""
-
-msgid "Somali shilling"
+msgid "Quotes not found"
 msgstr ""
 
 msgid "R"
 msgstr ""
 
-msgid "South African rand"
+msgid "R$"
 msgstr ""
 
-msgid "ZAR"
+msgid "RD$"
 msgstr ""
 
-msgid "LKR"
+msgid "REPORTS"
 msgstr ""
 
-msgid "Sri Lankan rupee"
+msgid "RF"
 msgstr ""
 
-msgid "SHP"
+msgid "RM"
 msgstr ""
 
-msgid "Saint Helena pound"
+msgid "RON"
 msgstr ""
 
-msgid "SDG"
+msgid "RSD"
 msgstr ""
 
-msgid "Sudanese pound"
+msgid "RUB"
 msgstr ""
 
-msgid "SRD"
+msgid "RWF"
 msgstr ""
 
-msgid "Surinamese dollar"
+msgid "Read Documentation"
 msgstr ""
 
-msgid "E"
+msgid "Read the user manual"
 msgstr ""
 
-msgid "SZL"
+#, c-format
+msgid "Reading line %i, %ld ms"
 msgstr ""
 
-msgid "Swazi lilangeni"
+msgid "Real path:"
 msgstr ""
 
-msgid "SEK"
+msgid "Reassign all categories to another category"
 msgstr ""
 
-msgid "Swedish krona"
-msgstr ""
-
-msgid "CHF"
-msgstr ""
-
-msgid "Fr."
-msgstr ""
-
-msgid "Swiss franc"
-msgstr ""
-
-msgid "SYP"
-msgstr ""
-
-msgid "Syrian pound"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "New Taiwan dollar"
-msgstr ""
-
-msgid "TWD"
-msgstr ""
-
-msgid "TJS"
-msgstr ""
-
-msgid "Tajikistani somoni"
-msgstr ""
-
-msgid "TZS"
-msgstr ""
-
-msgid "Tanzanian shilling"
-msgstr ""
-
-msgid "THB"
-msgstr ""
-
-msgid "Thai baht"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "TT$"
-msgstr ""
-
-msgid "TTD"
-msgstr ""
-
-msgid "Trinidad and Tobago dollar"
-msgstr ""
-
-msgid "DT"
-msgstr ""
-
-msgid "TND"
-msgstr ""
-
-msgid "Tunisian dinar"
-msgstr ""
-
-msgid "TRY"
-msgstr ""
-
-msgid "Turkish lira"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
-msgid "TMT"
-msgstr ""
-
-msgid "Turkmen manat"
-msgstr ""
-
-msgid "m"
-msgstr ""
-
-msgid "UGX"
-msgstr ""
-
-msgid "USh"
-msgstr ""
-
-msgid "Ugandan shilling"
-msgstr ""
-
-msgid "AED"
-msgstr ""
-
-msgid "UAE dirham"
-msgstr ""
-
-msgid "$U"
-msgstr ""
-
-msgid "UYU"
-msgstr ""
-
-msgid "Uruguayan peso"
-msgstr ""
-
-msgid "UZS"
-msgstr ""
-
-msgid "Uzbekistani som"
-msgstr ""
-
-msgid "VT"
-msgstr ""
-
-msgid "VUV"
-msgstr ""
-
-msgid "Vanuatu vatu"
-msgstr ""
-
-msgid "VND"
-msgstr ""
-
-msgid "Vietnamese dong"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "Samoan tala"
-msgstr ""
-
-msgid "WS$"
-msgstr ""
-
-msgid "WST"
-msgstr ""
-
-msgid "YER"
-msgstr ""
-
-msgid "Yemeni rial"
-msgstr ""
-
-msgid "VEF"
-msgstr ""
-
-msgid "Venezuelan Bolívar"
-msgstr ""
-
-msgid "bolívar"
-msgstr ""
-
-msgid "céntimos"
-msgstr ""
-
-msgid "DATAVERSION"
-msgstr ""
-
-msgid "Telephone"
-msgstr ""
-
-msgid "Electricity"
-msgstr ""
-
-msgid "Gas"
-msgstr ""
-
-msgid "Internet"
-msgstr ""
-
-msgid "Rent"
-msgstr ""
-
-msgid "Cable TV"
-msgstr ""
-
-msgid "Water"
-msgstr ""
-
-msgid "Groceries"
-msgstr ""
-
-msgid "Dining out"
-msgstr ""
-
-msgid "Movies"
-msgstr ""
-
-msgid "Video Rental"
-msgstr ""
-
-msgid "Magazines"
-msgstr ""
-
-msgid "Maintenance"
-msgstr ""
-
-msgid "Parking"
-msgstr ""
-
-msgid "Registration"
-msgstr ""
-
-msgid "Books"
-msgstr ""
-
-msgid "Tuition"
-msgstr ""
-
-msgid "Others"
-msgstr ""
-
-#, fuzzy
-msgid "Clothing"
-msgstr "Current"
-
-msgid "Furnishing"
-msgstr ""
-
-msgid "Health"
-msgstr ""
-
-msgid "Dental"
-msgstr ""
-
-msgid "Eyecare"
-msgstr ""
-
-msgid "Physician"
-msgstr ""
-
-msgid "Prescriptions"
-msgstr ""
-
-msgid "Auto"
-msgstr ""
-
-msgid "Life"
-msgstr ""
-
-msgid "Home"
-msgstr ""
-
-msgid "Travel"
-msgstr ""
-
-msgid "Lodging"
-msgstr ""
-
-msgid "Sightseeing"
-msgstr ""
-
-msgid "Income Tax"
-msgstr ""
-
-msgid "House Tax"
-msgstr ""
-
-msgid "Water Tax"
-msgstr ""
-
-msgid "Salary"
-msgstr ""
-
-msgid "Reimbursement/Refunds"
-msgstr ""
-
-msgid "Investment Income"
+msgid "Reassign all payees to another payee"
 msgstr ""
 
 msgid "Recommendation: Always backup your .mmb database file regularly."
@@ -5849,7 +4204,1017 @@ msgid ""
 "transactions."
 msgstr ""
 
+msgid "Reconciled"
+msgstr ""
+
+msgid "Reconciled Bal: "
+msgstr ""
+
+#, c-format
+msgid "Records found as Default Payee Category: %i"
+msgstr ""
+
+#, c-format
+msgid "Records found in budget: %i"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Records found in recurring split transactions: %i"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy, c-format
+msgid "Records found in recurring transactions: %i"
+msgstr "Specify the colour for future transactions"
+
+#, c-format
+msgid "Records found in split transactions: %i"
+msgstr ""
+
+#, c-format
+msgid "Records found in transactions: %i"
+msgstr ""
+
+#, c-format
+msgid "Records have been updated in the database: %i"
+msgstr ""
+
+#, fuzzy
+msgid "Recurring Transaction Details"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid "Recurring Transactions"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid "RecurringTransaction"
+msgstr "Specify the colour for future transactions"
+
+msgid "Refresh"
+msgstr ""
+
+msgid "Refresh Stock Prices from Yahoo"
+msgstr ""
+
+msgid "RegEx"
+msgstr ""
+
+msgid "Register/View Release &Notifications"
+msgstr ""
+
+msgid "Registration"
+msgstr ""
+
+msgid "Reimbursement/Refunds"
+msgstr ""
+
+msgid "Relocate Categories && Payees"
+msgstr ""
+
+msgid "Relocate Category Dialog"
+msgstr ""
+
+msgid "Relocate Payee"
+msgstr ""
+
+msgid "Relocate Payee Dialog"
+msgstr ""
+
+msgid "Relocate all source categories to the destination category"
+msgstr ""
+
+msgid "Relocate all source payees to the destination payee"
+msgstr ""
+
+msgid "Relocate:"
+msgstr ""
+
+msgid "Relocation of..."
+msgstr ""
+
+msgid "Rename Group"
+msgstr ""
+
+msgid "Rename Report"
+msgstr ""
+
+msgid "Rename group"
+msgstr ""
+
+msgid "Rent"
+msgstr ""
+
+#, fuzzy
+msgid "Reoccuring Transaction saved."
+msgstr "Specify the colour for future transactions"
+
+msgid "Repeats"
+msgstr ""
+
+msgid "Repetitions"
+msgstr ""
+
+msgid "Replace with"
+msgstr ""
+
+msgid "Report Name already exists"
+msgstr ""
+
+msgid "Reports"
+msgstr ""
+
+msgid "Request user to enter payment on the 'Date Paid'"
+msgstr ""
+
+msgid "Reset 'Date Paid' to 'Today's Date'"
+msgstr ""
+
+msgid "Reset columns"
+msgstr ""
+
+msgid "Retard or advance the date of the 'next occurrence"
+msgstr ""
+
+msgid "Retard or advance the date of the transaction"
+msgstr ""
+
+msgid "Rf"
+msgstr ""
+
+msgid "Right click on currency and choose 'Set as Base Currency'"
+msgstr ""
+
+msgid "Romanian leu"
+msgstr ""
+
+msgid "Row"
+msgstr ""
+
+#, c-format
+msgid "Row(s) returned: %i  Duration: %ld ms"
+msgstr ""
+
+msgid "Rows to ignore"
+msgstr ""
+
+msgid "Rp"
+msgstr ""
+
+msgid "Rs"
+msgstr ""
+
+msgid "Rs."
+msgstr ""
+
+msgid "Run selected report."
+msgstr ""
+
+msgid "Run this program in your Android smart phone or tablet"
+msgstr ""
+
+msgid "Russian Ruble"
+msgstr ""
+
+msgid "Rwandan franc"
+msgstr ""
+
+msgid "S$"
+msgstr ""
+
+msgid "S/."
+msgstr ""
+
+msgid "SAR"
+msgstr ""
+
+msgid "SBD"
+msgstr ""
+
+msgid "SCR"
+msgstr ""
+
+msgid "SDG"
+msgstr ""
+
+msgid "SDR"
+msgstr ""
+
+msgid "SEK"
+msgstr ""
+
+msgid "SGD"
+msgstr ""
+
+msgid "SHP"
+msgstr ""
+
+msgid "SI$"
+msgstr ""
+
+msgid "SLL"
+msgstr ""
+
+msgid "SOS"
+msgstr ""
+
+msgid "SQL"
+msgstr ""
+
+msgid "SQL Syntax Error"
+msgstr ""
+
+msgid "SR"
+msgstr ""
+
+msgid "SRD"
+msgstr ""
+
+msgid "STD"
+msgstr ""
+
+msgid "SYP"
+msgstr ""
+
+msgid "SZL"
+msgstr ""
+
+msgid "Saint Helena pound"
+msgstr ""
+
+msgid "Salary"
+msgstr ""
+
+msgid "Samoan tala"
+msgstr ""
+
+msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
+msgstr ""
+
+msgid "Saturday"
+msgstr ""
+
+msgid "Saudi riyal"
+msgstr ""
+
+msgid "Save Database &As"
+msgstr ""
+
+msgid "Save Database As"
+msgstr ""
+
+msgid "Save Template"
+msgstr ""
+
+msgid "Save any changes made"
+msgstr ""
+
+msgid "Save changes."
+msgstr ""
+
+msgid "Save database file as"
+msgstr ""
+
+msgid "Save debug file"
+msgstr ""
+
+msgid "Scale"
+msgstr ""
+
+msgid "Scanning"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search:"
+msgstr ""
+
+msgid "Seconds"
+msgstr ""
+
+msgid "Select Account"
+msgstr ""
+
+msgid "Select Category"
+msgstr ""
+
+msgid "Select Currency"
+msgstr ""
+
+msgid "Select Payee"
+msgstr ""
+
+msgid "Select To Account"
+msgstr ""
+
+#, fuzzy
+msgid "Select account used in transfer transactions"
+msgstr "Specify the colour for future transactions"
+
+msgid "Select one of the frequently used notes"
+msgstr ""
+
+#, fuzzy
+msgid "Select the account to reallocate"
+msgstr "Specify the colour for future transactions"
+
+msgid ""
+"Select the currently selected category as the selected category for the "
+"transaction"
+msgstr ""
+
+msgid "Select the destination Account "
+msgstr ""
+
+msgid "Select the type of account you want to create:"
+msgstr ""
+
+msgid "Select to delete file after import in attachments archive"
+msgstr ""
+
+msgid ""
+"Select to don't delete file when attachment is removed, but instead move it "
+"to 'Deleted' subfolder"
+msgstr ""
+
+msgid "Select type of asset"
+msgstr ""
+
+msgid "Select type of custom field"
+msgstr ""
+
+msgid ""
+"Select whether this is an account that is used often. This is used to filter "
+"accounts display view."
+msgstr ""
+
+msgid "Select whether to use sounds when entering transactions"
+msgstr ""
+
+msgid ""
+"Select whether to use the original transaction date or current date when "
+"copying/pasting transactions"
+msgstr ""
+
+msgid "Selection can be made by using the dropdown button."
+msgstr ""
+
+msgid "Send anonymous statistics usage data"
+msgstr ""
+
+msgid ""
+"Send this log to MMEX support team:\n"
+"press OK to save to file or Cancel to exit"
+msgstr ""
+
+msgid "Sep"
+msgstr ""
+
+msgid "September"
+msgstr ""
+
+msgid "Serbian dinar"
+msgstr ""
+
+msgid "Set Currency"
+msgstr ""
+
+msgid "Set as Base Currency"
+msgstr ""
+
+msgid "Set that first using Tools->Options menu and then add a new account."
+msgstr ""
+
+msgid "Sets the default currency for the database."
+msgstr ""
+
+msgid "Seychellois rupee"
+msgstr ""
+
+msgid "Sh."
+msgstr ""
+
+msgid "Share Name"
+msgstr ""
+
+msgid "Share Symbol"
+msgstr ""
+
+msgid "Show Account List"
+msgstr ""
+
+msgid "Show All"
+msgstr ""
+
+msgid "Show Organize Categories Dialog"
+msgstr ""
+
+msgid "Show Organize Currency Dialog"
+msgstr ""
+
+msgid "Show Organize Payees Dialog"
+msgstr ""
+
+msgid "Show about dialog"
+msgstr ""
+
+msgid "Show all even the unused currencies"
+msgstr ""
+
+msgid "Show all hidden categories"
+msgstr ""
+
+msgid "Show the Help file"
+msgstr ""
+
+msgid "Show the Options Dialog"
+msgstr ""
+
+#, c-format
+msgid "Show this window next time %s starts"
+msgstr ""
+
+msgid "Show/Hide the Navigation tree control"
+msgstr ""
+
+msgid "Show/Hide the toolbar"
+msgstr ""
+
+msgid "Sierra Leonean leone"
+msgstr ""
+
+msgid "Sightseeing"
+msgstr ""
+
+msgid "Sign up to Notification Mailing List or View existing announcements."
+msgstr ""
+
+msgid "Singapore dollar"
+msgstr ""
+
+msgid "SingleChoiche"
+msgstr ""
+
+msgid "Size after"
+msgstr ""
+
+msgid "Size before"
+msgstr ""
+
+msgid "Skip Next Bills & Deposit Occurrence"
+msgstr ""
+
+msgid "Skip next Occurrence"
+msgstr ""
+
+msgid "Solomon Islands dollar"
+msgstr ""
+
+msgid "Somali shilling"
+msgstr ""
+
+msgid "Someone tried to send a command during a transfer"
+msgstr ""
+
+msgid ""
+"Sorry. The Database version is too old or Database password is incorrect"
+msgstr ""
+
+msgid "Source Category"
+msgstr ""
+
+msgid "South African rand"
+msgstr ""
+
+msgid "South Korean won"
+msgstr ""
+
+msgid "Special Drawing Rights"
+msgstr ""
+
+msgid "Specify Day for start of financial year"
+msgstr ""
+
+msgid "Specify a descriptive name for the account."
+msgstr ""
+
+msgid "Specify a network communication timeout value to use."
+msgstr ""
+
+#, fuzzy
+msgid "Specify account for the transaction"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid "Specify account the money is moved to"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid "Specify account the money is taken from"
+msgstr "Specify the colour for future transactions"
+
+msgid "Specify any associated check number or transaction number"
+msgstr "Specify any associated cheque number or transaction number"
+
+msgid "Specify any text notes you want to add to this transaction."
+msgstr ""
+
+msgid "Specify how many stock history prices download from purchase date"
+msgstr ""
+
+msgid "Specify if the value of the asset changes over time"
+msgstr ""
+
+msgid ""
+"Specify if this account has been closed. Closed accounts are inactive in "
+"most calculations, reporting etc."
+msgstr ""
+
+msgid "Specify max number of backup files"
+msgstr ""
+
+msgid "Specify month for start of financial year"
+msgstr ""
+
+msgid "Specify period in Days to activate."
+msgstr ""
+
+msgid "Specify period in Months to activate."
+msgstr ""
+
+msgid "Specify proxy port number"
+msgstr ""
+
+#, fuzzy
+msgid "Specify the Account that will own the recurring transaction"
+msgstr "Specify the colour for future transactions"
+
+msgid "Specify the Web App GUID"
+msgstr ""
+
+msgid "Specify the Web App URL without final slash"
+msgstr ""
+
+msgid "Specify the amount for this transaction"
+msgstr ""
+
+#, fuzzy
+msgid "Specify the amount to be transferred"
+msgstr "Specify the colour for the nav tree"
+
+msgid ""
+"Specify the base (or default) currency to be used for the\n"
+"database. The base currency can later be changed by using\n"
+"the options dialog. New accounts, will use this currency by\n"
+"default, and can be changed when editing account details."
+msgstr ""
+
+msgid "Specify the category for this transaction"
+msgstr ""
+
+msgid "Specify the currency to be used by this account."
+msgstr ""
+
+msgid "Specify the date format for display"
+msgstr ""
+
+#, fuzzy
+msgid "Specify the date of currency value"
+msgstr "Specify the colour for the nav tree"
+
+msgid "Specify the date of purchase of asset"
+msgstr ""
+
+msgid "Specify the date of the transaction"
+msgstr ""
+
+#, fuzzy
+msgid "Specify the date the user is requested to enter this transaction"
+msgstr "Specify the colour for future transactions"
+
+msgid "Specify the date when this bill or deposit is due"
+msgstr ""
+
+msgid "Specify the delimiter to use when importing/exporting CSV files"
+msgstr ""
+
+msgid "Specify the frequency of the expense or deposit"
+msgstr ""
+
+msgid "Specify the language to use"
+msgstr ""
+
+#, fuzzy
+msgid "Specify the number of payments to be made."
+msgstr "Specify the colour for the nav tree"
+
+#, fuzzy
+msgid "Specify the order of fields in the file"
+msgstr "Specify the colour for the list details"
+
+#, fuzzy
+msgid "Specify the proxy IP address"
+msgstr "Specify the colour for the nav tree"
+
+msgid "Specify the purchase date of the stock investment"
+msgstr ""
+
+msgid ""
+"Specify the required month.\n"
+"Use Spin buttons to increase or decrease the month."
+msgstr ""
+
+msgid ""
+"Specify the required year.\n"
+"Use Spin buttons to increase or decrease the year."
+msgstr ""
+
+msgid "Specify the status for the transaction"
+msgstr ""
+
+#, fuzzy
+msgid "Specify the stock price date"
+msgstr "Specify the colour for the nav tree"
+
+msgid "Specify the transfer amount in the From Account"
+msgstr ""
+
+msgid "Specify the transfer amount in the From Account."
+msgstr ""
+
+msgid "Specify the transfer amount in the To Account"
+msgstr ""
+
+msgid "Specify the type of account to be created."
+msgstr ""
+
+msgid "Specify the type of transactions to be created."
+msgstr ""
+
+#, fuzzy
+msgid "Specify to whom the transaction is going to"
+msgstr "Specify the colour for future transactions"
+
+msgid "Specify to whom the transaction is going to or coming from "
+msgstr ""
+
+msgid "Specify type frequency of stock history"
+msgstr ""
+
+msgid "Specify web server port number"
+msgstr ""
+
+#, fuzzy
+msgid "Specify where the transaction is coming from"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid "Specify where the transaction is going to"
+msgstr "Specify the colour for future transactions"
+
+msgid "Specify whether this category is an income or an expense category"
+msgstr ""
+
+msgid "Specify which account the transfer is going to"
+msgstr ""
+
+msgid "Specify which accounts are visible"
+msgstr ""
+
+msgid "Specify which scale factor is used for the report pages"
+msgstr ""
+
+msgid "Specify which transactions are visible by default"
+msgstr ""
+
+msgid "Specify year to base budget on."
+msgstr ""
+
+msgid "Split"
+msgstr ""
+
+msgid "Split Detail Dialog"
+msgstr ""
+
+msgid "Split Transaction Details"
+msgstr ""
+
+msgid "Split Transaction Dialog"
+msgstr ""
+
+msgid "Sponsors"
+msgstr ""
+
+msgid "Sri Lankan rupee"
+msgstr ""
+
+msgid "Stable"
+msgstr ""
+
+msgid "Start Day"
+msgstr ""
+
+msgid "Start Month"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Stock"
+msgstr ""
+
+msgid "Stock History CSV Import"
+msgstr ""
+
+msgid "Stock History Error"
+msgstr ""
+
+msgid "Stock History Options"
+msgstr ""
+
+msgid "Stock History Update"
+msgstr ""
+
+msgid "Stock Investment Details"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Stock Investments: %s"
+msgstr "Favourite Account"
+
+msgid "Stock Name"
+msgstr ""
+
+msgid "Stock Price History"
+msgstr ""
+
+msgid "Stock Quote Web Page"
+msgstr ""
+
+msgid "Stock history not found!"
+msgstr ""
+
+msgid "Stock prices successfully updated"
+msgstr ""
+
+msgid "Stocks"
+msgstr ""
+
+msgid "Stocks Performance Charts"
+msgstr ""
+
+msgid "Stocks Report"
+msgstr ""
+
+msgid "Stocks Total:"
+msgstr ""
+
+msgid "String"
+msgstr ""
+
+msgid "Sub Category"
+msgstr ""
+
+msgid "Sub Category with same name exists"
+msgstr ""
+
+msgid "Sub Category: "
+msgstr ""
+
+msgid "Sub-Category in use."
+msgstr ""
+
+msgid "SubCategory"
+msgstr ""
+
+msgid "Sudanese pound"
+msgstr ""
+
+msgid "Suffix Symbol"
+msgstr ""
+
+msgid "Suggested"
+msgstr ""
+
+msgid "Summary"
+msgstr ""
+
+#, fuzzy
+msgid "Summary of Accounts"
+msgstr "Favourite Account"
+
+msgid "Summary of Stocks"
+msgstr ""
+
+msgid "Sunday"
+msgstr ""
+
+msgid "Surinamese dollar"
+msgstr ""
+
+msgid "Swazi lilangeni"
+msgstr ""
+
+msgid "Swedish krona"
+msgstr ""
+
+msgid "Swiss franc"
+msgstr ""
+
+msgid "Symbol"
+msgstr ""
+
+#, c-format
+msgid "Symbol: %s"
+msgstr ""
+
+msgid "Syntax error in the URL string"
+msgstr ""
+
+msgid "Syrian pound"
+msgstr ""
+
+msgid "System documents directory"
+msgstr ""
+
+msgid "São Tomé and Príncipe dobra"
+msgstr ""
+
+msgid "T"
+msgstr ""
+
+msgid "THB"
+msgstr ""
+
+msgid "TJS"
+msgstr ""
+
+msgid "TMT"
+msgstr ""
+
+msgid "TND"
+msgstr ""
+
+msgid "TRY"
+msgstr ""
+
+msgid "TT$"
+msgstr ""
+
+msgid "TTD"
+msgstr ""
+
+msgid "TWD"
+msgstr ""
+
+msgid "TZS"
+msgstr ""
+
+msgid "Table"
+msgstr ""
+
+msgid "Tajikistani somoni"
+msgstr ""
+
+msgid "Tanzanian shilling"
+msgstr ""
+
+msgid "Taxes"
+msgstr ""
+
+msgid "Telephone"
+msgstr ""
+
+msgid "Template"
+msgstr ""
+
+msgid "Term"
+msgstr ""
+
+#, fuzzy
+msgid "Term Accounts"
+msgstr "Favourite Account"
+
+#, fuzzy
+msgid "Term Accounts Total:"
+msgstr "Favourite Account"
+
+msgid ""
+"Term accounts are specialized bank accounts. Intended for asset\n"
+"type accounts such as Term Deposits and Bonds. These accounts\n"
+"can have regular money coming in and out, being outside the\n"
+"general income stream."
+msgstr ""
+
+msgid "Thai baht"
+msgstr ""
+
+#, c-format
+msgid ""
+"The SQL script:\n"
+"%s \n"
+"will modify database! aborted!"
+msgstr ""
+
+msgid "The User Name is used as a title for the database."
+msgstr ""
+
+msgid "The client failed to connect the server"
+msgstr ""
+
+msgid ""
+"The database can later be encrypted if required, by\n"
+"using the option: 'Save database as' and changing the\n"
+"file type before saving."
+msgstr ""
+
+msgid "The next pages will help you create a new database."
+msgstr ""
+
+msgid "The remote file doesn't exist"
+msgstr ""
+
+msgid "The requested payment will occur without user interaction"
+msgstr ""
+
+msgid ""
+"This directory and its files are automatically managed by Money Manager EX "
+"software."
+msgstr ""
+
+msgid ""
+"This is generally the name of a financial institution\n"
+"where the account is held. For example: 'ABC Bank'."
+msgstr ""
+
+msgid "Thursday"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "Timeout"
+msgstr ""
+
+msgid "Tip to get out of debt: Create a realistic budget for your expenses."
+msgstr ""
+
+msgid "Tip to get out of debt: Establish an emergency fund."
+msgstr ""
+
+msgid "Tip to get out of debt: Pay more than the minimum."
+msgstr ""
+
+#, c-format
+msgid ""
+"Tip to get out of debt: Pay yourself 10% first. Put this into an account "
+"that is hard to touch. Make sure it is a chore to get the money out (you "
+"have to drive to the bank), so you will only tap it consciously and for "
+"major expenses."
+msgstr ""
+
+msgid "Tip to get out of debt: Spend less than you earn."
+msgstr ""
+
+msgid "Tip to get out of debt: Stop acquiring new debt."
+msgstr ""
+
+msgid ""
+"Tip: Change all transactions using this Category to\n"
+"another Category using the relocate command:"
+msgstr ""
+
+msgid ""
+"Tip: Change all transactions using this Payee to another Payee\n"
+"using the relocate command:"
+msgstr ""
+
+msgid ""
+"Tip: Change all transactions using this Sub-Category to\n"
+"another Sub-Category using the relocate command:"
+msgstr ""
+
+msgid ""
+"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
+"Calculations will be evaluated and the result used as the entry."
+msgstr ""
+
+msgid ""
+"Tip: If category added now, check bottom of list.\n"
+"Category will be in sorted order next time dialog appears"
+msgstr ""
+
+msgid ""
+"Tip: MMEX supports printing of all reports that can be viewed. The print "
+"options are available under the menu, File->Print."
+msgstr ""
+
 msgid "Tip: Remember to make backups of your .mmb."
+msgstr ""
+
+msgid ""
+"Tip: Set exchange rate for currencies in case if you have accounts with "
+"different currencies."
 msgstr ""
 
 msgid ""
@@ -5857,6 +5222,11 @@ msgid ""
 "proper know how can actually open the file and read the contents. So make "
 "sure that if you are storing any sensitive financial information it is "
 "properly guarded."
+msgstr ""
+
+msgid ""
+"Tip: These transactions can be set up to activate - allowing the user to "
+"adjust any values on the due date."
 msgstr ""
 
 msgid ""
@@ -5871,8 +5241,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Tip: MMEX supports printing of all reports that can be viewed. The print "
-"options are available under the menu, File->Print."
+"Tip: To print a statement with transactions from any arbitrary set of "
+"criteria, use the transaction filter to select the transactions you want and "
+"then do a print from the menu."
 msgstr ""
 
 msgid ""
@@ -5880,63 +5251,437 @@ msgid ""
 "the Options Dialog. "
 msgstr ""
 
-msgid ""
-"Tip: To print a statement with transactions from any arbitrary set of "
-"criteria, use the transaction filter to select the transactions you want and "
-"then do a print from the menu."
+msgid "To"
+msgstr ""
+
+msgid "To Date"
+msgstr ""
+
+msgid "To Date less than From Date"
+msgstr ""
+
+msgid "To apply new changes close and re-open Custom Field panel"
 msgstr ""
 
 msgid ""
-"Tip: Set exchange rate for currencies in case if you have accounts with "
-"different currencies."
+"To create new stocks entry the Symbol, Number of shares and Purchase prise "
+"should be entered."
+msgstr ""
+
+msgid "Today"
+msgstr ""
+
+#, c-format
+msgid "Today's Date: %s"
+msgstr ""
+
+msgid "Toggle Fullscreen"
+msgstr ""
+
+msgid "Toggle Fullscreen\tF11"
+msgstr ""
+
+msgid "ToolTip"
+msgstr ""
+
+msgid "Toolbar"
+msgstr ""
+
+msgid "Tools -> Relocation of -> Categories"
+msgstr ""
+
+msgid "Tools -> Relocation of -> Payees"
+msgstr ""
+
+#, c-format
+msgid "Top Withdrawals: %s"
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "Total Amount: "
+msgstr ""
+
+#, fuzzy
+msgid "Total Balance on all Accounts"
+msgstr "Favourite Account"
+
+msgid "Total Expenses: "
+msgstr ""
+
+#, c-format
+msgid "Total Imported : %ld"
+msgstr ""
+
+msgid "Total Income: "
+msgstr ""
+
+#, c-format
+msgid "Total Lines : %ld"
+msgstr ""
+
+msgid "Total Price"
+msgstr ""
+
+#, c-format
+msgid "Total Shares: %s"
+msgstr ""
+
+msgid "Total Transactions: "
+msgstr ""
+
+msgid "Total:"
+msgstr ""
+
+#, c-format
+msgid "Total: %s"
+msgstr ""
+
+#, fuzzy
+msgid "Transaction"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+msgid "Transaction Dates"
+msgstr "Specify the colour for future transactions"
+
+msgid "Transaction Details"
+msgstr ""
+
+msgid "Transaction Filter"
+msgstr ""
+
+msgid "Transaction List "
+msgstr ""
+
+#, c-format
+msgid "Transaction List for Account: %s"
+msgstr ""
+
+msgid "Transaction Report"
+msgstr ""
+
+msgid "Transaction Report Filter"
+msgstr ""
+
+msgid "Transaction Statistics"
+msgstr ""
+
+msgid "Transaction not downloaded:"
 msgstr ""
 
 msgid ""
-"Organize Categories Dialog Tip: Pressing the h key will cycle through all "
-"categories starting with the letter h"
-msgstr ""
-
-msgid ""
-"Organize Categories Dialog Tip: Pressing 2 key combination will cycle "
-"through all categories starting with that key combination. Example: Pressing "
-"ho will select Homeneeds, Home, House Tax, etc..."
+"Transaction not downloaded: please close and open MMEX to try re-download "
+"transaction"
 msgstr ""
 
 #, c-format
 msgid ""
-"Tip to get out of debt: Pay yourself 10% first. Put this into an account "
-"that is hard to touch. Make sure it is a chore to get the money out (you "
-"have to drive to the bank), so you will only tap it consciously and for "
-"major expenses."
+"Transaction will be inserted with the first bank account:\n"
+"'%s' and marked as  'Follow Up'"
 msgstr ""
 
-msgid "Tip to get out of debt: Establish an emergency fund."
+msgid "Transactions Visible"
 msgstr ""
 
-msgid "Tip to get out of debt: Stop acquiring new debt."
+#, c-format
+msgid "Transactions exported: %ld"
 msgstr ""
 
-msgid "Tip to get out of debt: Create a realistic budget for your expenses."
-msgstr ""
-
-msgid "Tip to get out of debt: Spend less than you earn."
-msgstr ""
-
-msgid "Tip to get out of debt: Pay more than the minimum."
-msgstr ""
-
+#, c-format
 msgid ""
-"Before going to a shop and buy something: take the time making a list of "
-"what you really need. In the shop buy what is in your list."
+"Transactions imported from file\n"
+"to account %s : %ld"
+msgstr ""
+
+msgid "Transactions imported from file: "
+msgstr ""
+
+#, c-format
+msgid "Transactions saved to database in account: %s"
+msgstr ""
+
+msgid "Transfer"
+msgstr ""
+
+msgid "Transfer From"
+msgstr ""
+
+msgid "Transfer To"
+msgstr ""
+
+msgid "Travel"
+msgstr ""
+
+msgid "Trinidad and Tobago dollar"
+msgstr ""
+
+msgid "Tuesday"
+msgstr ""
+
+msgid "Tuition"
+msgstr ""
+
+msgid "Tunisian dinar"
+msgstr ""
+
+msgid "Turkish lira"
+msgstr ""
+
+msgid "Turkmen manat"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Type of Account"
+msgstr ""
+
+msgid "Type:"
+msgstr ""
+
+msgid "UAE dirham"
+msgstr ""
+
+msgid "UAH"
+msgstr ""
+
+msgid "UGX"
+msgstr ""
+
+msgid "UK Pound"
+msgstr ""
+
+msgid "UM"
+msgstr ""
+
+msgid "USD"
+msgstr ""
+
+msgid "USh"
+msgstr ""
+
+msgid "UTF-8"
+msgstr ""
+
+msgid "UYU"
+msgstr ""
+
+msgid "UZS"
+msgstr ""
+
+msgid "Ugandan shilling"
+msgstr ""
+
+msgid "Ukrainian hryvnia"
+msgstr ""
+
+msgid "Un-Reconciled"
+msgstr ""
+
+msgid "UnGroup"
+msgstr ""
+
+msgid "Unable to check for updates!"
+msgstr ""
+
+msgid "Unable to connect to WebApp:"
+msgstr ""
+
+msgid "Unable to create file."
+msgstr ""
+
+msgid "Unable to download attachments from webapp."
+msgstr ""
+
+msgid "Unable to find attachments folder:"
+msgstr ""
+
+msgid "Unable to insert transaction in MMEX database"
+msgstr ""
+
+msgid "Unable to open file."
+msgstr ""
+
+msgid "Unable to open file:"
+msgstr ""
+
+#, c-format
+msgid ""
+"Unable to open file:\n"
+"%s\n"
+"\n"
+msgstr ""
+
+msgid "Unhide Selected Category"
+msgstr ""
+
+msgid "Unit Name"
+msgstr ""
+
+msgid "Unit Price"
+msgstr ""
+
+msgid "United States dollar"
+msgstr ""
+
+msgid "Universal CSV Import"
+msgstr ""
+
+msgid "Unix folder -> "
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
+
+msgid "Unreconciled"
+msgstr ""
+
+msgid "Unstable"
+msgstr ""
+
+msgid "Unused"
+msgstr ""
+
+msgid "Upcoming Transactions"
+msgstr ""
+
+msgid "Update Custom Field Content"
+msgstr ""
+
+msgid "Update Wizard"
+msgstr ""
+
+msgid "Updates"
+msgstr ""
+
+msgid "Updates source"
+msgstr ""
+
+msgid "Url"
+msgstr ""
+
+msgid "Uruguayan peso"
+msgstr ""
+
+msgid "Usage statistics"
+msgstr ""
+
+msgid "Use Original Date when Pasting Transactions"
+msgstr ""
+
+msgid "Use Transaction Sound"
+msgstr ""
+
+msgid "Use account number instead of account name"
+msgstr ""
+
+msgid "Use split Categories"
+msgstr ""
+
+msgid "Used as a database title for displayed and printed reports."
+msgstr ""
+
+#, fuzzy
+msgid "User Colors"
+msgstr "Colours"
+
+msgid "User Defined"
+msgstr ""
+
+msgid "User Name"
+msgstr ""
+
+msgid "User requested to enter this transaction on the 'Date Paid'"
+msgstr ""
+
+msgid "Using MMEX it is possible to track stocks/mutual funds investments."
+msgstr ""
+
+msgid "Uzbekistani som"
+msgstr ""
+
+msgid "VEF"
+msgstr ""
+
+msgid "VND"
+msgstr ""
+
+msgid "VT"
+msgstr ""
+
+msgid "VUV"
+msgstr ""
+
+msgid "Vacation"
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "Value Date"
+msgstr ""
+
+msgid "Value Display Sample:"
+msgstr ""
+
+msgid "Vanuatu vatu"
+msgstr ""
+
+msgid "Venezuelan Bolívar"
+msgstr ""
+
+#, c-format
+msgid "Version: %s"
+msgstr ""
+
+msgid "Video Rental"
+msgstr ""
+
+msgid "Vietnamese dong"
+msgstr ""
+
+msgid "View All Budget Categories"
 msgstr ""
 
 msgid "View All Transactions"
 msgstr ""
 
-msgid "View Today"
+msgid "View Budget Category Summary"
+msgstr ""
+
+msgid "View Budget Summary Report without Categories"
+msgstr ""
+
+msgid "View Budgets Setup Without Budget Summaries"
+msgstr ""
+
+msgid "View Budgets as Financial Years"
+msgstr ""
+
+msgid "View Budgets with 'transfer' transactions"
 msgstr ""
 
 msgid "View Current Month"
+msgstr ""
+
+msgid "View Current Year"
+msgstr ""
+
+msgid "View Expense Budget Categories"
+msgstr ""
+
+msgid "View Income Budget Categories"
+msgstr ""
+
+msgid "View Last 12 Months"
+msgstr ""
+
+msgid "View Last 3 Months"
 msgstr ""
 
 msgid "View Last 30 days"
@@ -5948,156 +5693,349 @@ msgstr ""
 msgid "View Last Month"
 msgstr ""
 
-msgid "View Last 3 Months"
+msgid "View Non-Zero Budget Categories"
 msgstr ""
 
-msgid "View Last 12 Months"
+msgid "View Options"
 msgstr ""
 
-msgid "View Current Year"
+msgid "View Planned Budget Categories"
 msgstr ""
 
-msgid "Invalid Payee"
+#, fuzzy
+msgid "View Reports without Future Transactions"
+msgstr "Specify the colour for future transactions"
+
+msgid "View Today"
 msgstr ""
 
-msgid ""
-"Please type in an exiting payee name,\n"
-"or make a selection using the dropdown button."
+msgid "Visit MMEX Forum"
 msgstr ""
 
-msgid "Invalid Amount."
-msgstr ""
-
-msgid "Please enter a calculated value."
-msgstr ""
-
-msgid "Please enter a positive or calculated value."
+msgid "Visit Website for more information"
 msgstr ""
 
 msgid ""
-"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
-"Calculations will be evaluated and the result used as the entry."
+"Visit the MMEX forum. See existing user comments, or report new issues with "
+"the software."
 msgstr ""
 
-msgid "Where the Money Goes"
+msgid "Visit us on Facebook"
+msgstr ""
+
+msgid "Void"
+msgstr ""
+
+msgid "W"
+msgstr ""
+
+msgid "WS$"
+msgstr ""
+
+msgid "WST"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "Water"
+msgstr ""
+
+msgid "Water Tax"
+msgstr ""
+
+msgid "We suggest a database optimization under Tools -> Database -> Optimize"
+msgstr ""
+
+msgid "Web Server"
+msgstr ""
+
+#, c-format
+msgid "WebApp   API version -> %s"
+msgstr ""
+
+msgid "WebApp Settings"
+msgstr ""
+
+msgid "WebApp communication error"
+msgstr ""
+
+msgid "WebApp connection error"
+msgstr ""
+
+msgid "Website"
+msgstr ""
+
+msgid "Website:"
+msgstr ""
+
+msgid "Wednesday"
+msgstr ""
+
+msgid "Weekly"
+msgstr ""
+
+msgid "Weeks"
+msgstr ""
+
+msgid "West African CFA franc"
+msgstr ""
+
+msgid "What's new:"
+msgstr ""
+
+msgid ""
+"When MMEX Starts,\n"
+"creates the backup database: dbFile_start_YYYY-MM-DD.ext."
+msgstr ""
+
+msgid ""
+"When MMEX shuts down and changes made to database,\n"
+"creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
+msgstr ""
+
+msgid "When database file opening:"
+msgstr ""
+
+msgid "When remove attachment, move file instead of delete"
 msgstr ""
 
 msgid "Where the Money Comes From"
 msgstr ""
 
-msgid "Categories"
+#, c-format
+msgid "Where the Money Comes From - %s"
 msgstr ""
 
-msgid "Payee Report"
-msgstr ""
-
-msgid "Current Month"
+msgid "Where the Money Goes"
 msgstr ""
 
 #, c-format
-msgid "Payee Report - %s"
+msgid "Where the Money Goes - %s"
 msgstr ""
 
-msgid "Current Month to Date"
+msgid "Wiki page"
 msgstr ""
 
-msgid "Last Month"
+msgid "Windows folder -> "
 msgstr ""
 
-msgid "Last 30 Days"
+msgid "Withdrawal"
 msgstr ""
 
-msgid "Last Year"
+msgid "Workbook"
 msgstr ""
 
-msgid "Current Year"
+msgid "Worksheet"
 msgstr ""
 
-msgid "Current Year to Date"
+msgid "Write to File"
 msgstr ""
 
-msgid "Last Financial Year"
+msgid "Wrong WebApp API version"
 msgstr ""
 
-msgid "Current Financial Year"
+msgid "Wrong WebApp API version:"
 msgstr ""
 
-msgid "Current Financial Year to Date"
+msgid "Wrong WebApp GUID:"
 msgstr ""
 
 #, fuzzy
-#~ msgid "Note: Split transactions not set"
-#~ msgstr "Specify the colour for future transactions"
+msgid "Wrong WebApp account"
+msgstr "Favourite Account"
 
-#, fuzzy
-#~ msgid "Term Account"
-#~ msgstr "Favourite Account"
+msgid "Wrong WebApp settings"
+msgstr ""
 
-#, fuzzy
-#~ msgid "Select From Account"
-#~ msgstr "Favourite Account"
+msgid "Wrong file type!"
+msgstr ""
 
-#, fuzzy
-#~ msgid "From Account"
-#~ msgstr "Favourite Account"
+msgid "XAF"
+msgstr ""
 
-#, fuzzy
-#~ msgid "To Account"
-#~ msgstr "Favourite Account"
+msgid "XCD"
+msgstr ""
 
-#, fuzzy
-#~ msgid "Term &Accounts"
-#~ msgstr "Favourite Account"
+msgid "XDR"
+msgstr ""
 
-#, fuzzy
-#~ msgid "Expand Term Accounts on navigation tree"
-#~ msgstr "Favourite Account"
+msgid "XML Files (*.xml) | *.xml;*.XML | All files | *.*"
+msgstr ""
+
+msgid "XOF"
+msgstr ""
+
+msgid "XPF"
+msgstr ""
+
+msgid "YER"
+msgstr ""
+
+msgid "Year"
+msgstr ""
+
+#, c-format
+msgid "Year: %s"
+msgstr ""
+
+msgid "Yearly"
+msgstr ""
+
+msgid "Yearly Report"
+msgstr ""
+
+msgid "Yemeni rial"
+msgstr ""
+
+#, c-format
+msgid "You already have the latest version %s"
+msgstr ""
+
+msgid "You have modified choiches: ones removed will be cleaned!"
+msgstr ""
+
+msgid "You must specify path to another database file"
+msgstr ""
+
+msgid "Your database file is stored with an extension of .mmb."
+msgstr ""
+
+#, c-format
+msgid "Your version is %s"
+msgstr ""
+
+msgid "ZAR"
+msgstr ""
+
+msgid "as Duplicate"
+msgstr ""
+
+msgid "as Reconciled"
+msgstr ""
+
+msgid "as Unreconciled"
+msgstr ""
+
+msgid "as Void"
+msgstr ""
+
+msgid "as needing Followup"
+msgstr ""
+
+msgid "bolívar"
+msgstr ""
+
+msgid "centavo"
+msgstr ""
+
+msgid "céntimos"
+msgstr ""
+
+msgid "din."
+msgstr ""
+
+msgid "kn"
+msgstr ""
+
+msgid "kr"
+msgstr ""
+
+msgid "m"
+msgstr ""
+
+msgid "mmGeneralGroupReport"
+msgstr ""
+
+msgid "please check it in network options."
+msgstr ""
+
+msgid "please check settings and / or internet connection."
+msgstr ""
+
+msgid "please fix attachments folder or delete attachments from WebApp"
+msgstr ""
+
+msgid "portable mode"
+msgstr ""
+
+msgid "pul"
+msgstr ""
+
+msgid "to:"
+msgstr ""
+
+msgid "urn:schemas-microsoft-com:office:spreadsheet"
+msgstr ""
+
+msgid "£"
+msgstr ""
+
+msgid "¥"
+msgstr ""
+
+msgid "ƒ"
+msgstr ""
+
+msgid "коп."
+msgstr ""
+
+msgid "р"
+msgstr ""
+
+msgid "руб."
+msgstr ""
+
+msgid "؋"
+msgstr ""
+
+msgid "دج"
+msgstr ""
+
+msgid "฿"
+msgstr ""
+
+msgid "₡"
+msgstr ""
+
+msgid "₦"
+msgstr ""
+
+msgid "₪"
+msgstr ""
+
+msgid "₫"
+msgstr ""
+
+msgid "€"
+msgstr ""
+
+msgid "₮"
+msgstr ""
+
+msgid "₱"
+msgstr ""
+
+msgid "₴"
+msgstr ""
+
+msgid "₹"
+msgstr ""
+
+msgid "₺"
+msgstr ""
 
 #, fuzzy
 #~ msgid "&Stock Accounts"
 #~ msgstr "Favourite Account"
 
-#~ msgid "Expand Bank Accounts in Trew View when tree is refreshed"
-#~ msgstr "Expand Bank Accounts in Tree View when tree is refreshed"
-
-#~ msgid "Expand Term Accounts in Trew View when tree is refreshed"
-#~ msgstr "Expand Term Accounts in Tree View when tree is refreshed"
-
-#~ msgid "Expand Stocks Accounts in Trew View when tree is refreshed"
-#~ msgstr "Expand Stocks Accounts in Tree View when tree is refreshed"
-
 #, fuzzy
-#~ msgid "Term account"
+#~ msgid "Account missing"
 #~ msgstr "Favourite Account"
 
 #, fuzzy
-#~ msgid "Specify the folder to use when archive attachments"
-#~ msgstr "Specify the colour for the nav tree"
-
-#, fuzzy
-#~ msgid "Amount is missing"
+#~ msgid "Account name: %s"
 #~ msgstr "Favourite Account"
-
-#~ msgid "Specify the color for the list background"
-#~ msgstr "Specify the colour for the list background"
-
-#~ msgid "Specify the color for the list row 0"
-#~ msgstr "Specify the colour for the list row 0"
-
-#~ msgid "Specify the color for the list row 1"
-#~ msgstr "Specify the colour for the list row 1"
-
-#~ msgid "Specify the color for the list Border"
-#~ msgstr "Specify the colour for the list Border"
-
-#~ msgid "Specify the color for future transactions"
-#~ msgstr "Specify the colour for future transactions"
-
-#~ msgid "Restore Default Colors"
-#~ msgstr "Restore Default Colours"
-
-#~ msgid "Colors"
-#~ msgstr "Colours"
 
 #, fuzzy
 #~ msgid "Account:"
@@ -6108,23 +6046,85 @@ msgstr ""
 #~ msgstr "Favourite Account"
 
 #, fuzzy
-#~ msgid "Account name: %s"
+#~ msgid "Amount is missing"
 #~ msgstr "Favourite Account"
-
-#, fuzzy
-#~ msgid "View All transactions"
-#~ msgstr "Specify the colour for future transactions"
 
 #~ msgid "Checking/Savings"
 #~ msgstr "Current/Savings"
 
+#~ msgid "Colors"
+#~ msgstr "Colours"
+
+#~ msgid "Expand Bank Accounts in Trew View when tree is refreshed"
+#~ msgstr "Expand Bank Accounts in Tree View when tree is refreshed"
+
+#~ msgid "Expand Stocks Accounts in Trew View when tree is refreshed"
+#~ msgstr "Expand Stocks Accounts in Tree View when tree is refreshed"
+
+#~ msgid "Expand Term Accounts in Trew View when tree is refreshed"
+#~ msgstr "Expand Term Accounts in Tree View when tree is refreshed"
+
 #, fuzzy
-#~ msgid "Account missing"
+#~ msgid "Expand Term Accounts on navigation tree"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "From Account"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Note: Split transactions not set"
+#~ msgstr "Specify the colour for future transactions"
+
+#~ msgid "Restore Default Colors"
+#~ msgstr "Restore Default Colours"
+
+#, fuzzy
+#~ msgid "Select From Account"
 #~ msgstr "Favourite Account"
 
 #, fuzzy
 #~ msgid "Select To Account-"
 #~ msgstr "Favourite Account"
+
+#~ msgid "Specify the color for future transactions"
+#~ msgstr "Specify the colour for future transactions"
+
+#~ msgid "Specify the color for the list Border"
+#~ msgstr "Specify the colour for the list Border"
+
+#~ msgid "Specify the color for the list background"
+#~ msgstr "Specify the colour for the list background"
+
+#~ msgid "Specify the color for the list row 0"
+#~ msgstr "Specify the colour for the list row 0"
+
+#~ msgid "Specify the color for the list row 1"
+#~ msgstr "Specify the colour for the list row 1"
+
+#, fuzzy
+#~ msgid "Specify the folder to use when archive attachments"
+#~ msgstr "Specify the colour for the nav tree"
+
+#, fuzzy
+#~ msgid "Term &Accounts"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Term Account"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Term account"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "To Account"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "View All transactions"
+#~ msgstr "Specify the colour for future transactions"
 
 #, fuzzy
 #~ msgid "for Account: "

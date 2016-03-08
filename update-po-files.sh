@@ -16,6 +16,6 @@ find ./src -name "*.h"   | xargs xgettext ${XGETTEXT_ARGS}          -j -o ./po/M
 echo "Merging into *.po..."
 for p in ./po/*.po ; do
     echo "Merging $p ..."
-    msgmerge --quiet --update --backup=none $p ./po/MoneyManagerEx.pot
+    msgmerge --quiet --update --sort-output --backup=none $p ./po/MoneyManagerEx.pot
 done
 echo "Finished"
