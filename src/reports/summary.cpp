@@ -416,7 +416,7 @@ wxString mmReportSummaryByDate::getHTMLText()
             }
             else
             {
-                double	convRate = 1.0;
+                double convRate = 1.0;
                 Model_Currency::Data* currency = Model_Account::currency(account);
                 if (currency)
                     convRate = Model_CurrencyHistory::getDayRate(currency->id(), dateStart.FormatISODate());
