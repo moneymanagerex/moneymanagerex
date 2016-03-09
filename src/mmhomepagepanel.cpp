@@ -824,11 +824,15 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 /* Website News*/
 const wxString mmHomePagePanel::displayWebsiteNews()
 {
-    wxString output = wxEmptyString;
+    static wxString output = wxEmptyString;
 
     if (!Model_Setting::instance().DisplayInternetNews())
+        output = wxEmptyString; // in case user changed setting
         return output;
 
+    if (output != wxEmptyString) // function has run before and returned a successful news html
+        return output;
+    
     std::vector<WebsiteNews> WebsiteNewsList;
     if (!mmHomePagePanel::getNewsRSS(WebsiteNewsList))
         return output;
