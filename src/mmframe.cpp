@@ -1032,12 +1032,12 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnPopupReallocateAccount(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnPopupReallocateAccount(wxCommandEvent& WXUNUSED(event))
 {
     if (selectedItemData_)
     {
         int account_id = selectedItemData_->getData();
-        ReallocateAccount(Model_Account::get_account_name(account_id));
+        ReallocateAccount(account_id);
     }
 }
 //----------------------------------------------------------------------------
@@ -2587,48 +2587,42 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnReallocateAccount(wxCommandEvent& event)
+void mmGUIFrame::OnReallocateAccount(wxCommandEvent& WXUNUSED(event))
 {
-    const auto &accounts = Model_Account::instance().all();
-    if (accounts.empty())
-    {
-        wxMessageBox(_("No account available to reallocate!"), _("Account Reallocation"), wxOK | wxICON_WARNING);
-        return;
-    }
+    mmSingleChoiceDialog account_choice(this
+        , _("Select the account to reallocate"), _("Account Reallocation")
+        , Model_Account::instance().all_checking_account_names());
 
-    // Remove investment type accounts from account list
-    wxArrayString choices;
-    for (const auto & item : accounts)
-    {
-        if (item.ACCOUNTTYPE != Model_Account::all_type()[Model_Account::INVESTMENT])
-            choices.Add(item.ACCOUNTNAME);
-    }
-
-    mmSingleChoiceDialog account_choice(this, _("Select the account to reallocate"), _("Account Reallocation"), choices);
     if (account_choice.ShowModal() == wxID_OK)
     {
-        ReallocateAccount(account_choice.GetStringSelection());
+        Model_Account::Data* account = Model_Account::instance().get(account_choice.GetStringSelection());
+        if (account)
+            ReallocateAccount(account->ACCOUNTID);
     }
 }
 
-void mmGUIFrame::ReallocateAccount(const wxString& account_name)
+void mmGUIFrame::ReallocateAccount(int accountID)
 {
-    // Remove investment type from reallocation list
+    Model_Account::Data* account = Model_Account::instance().get(accountID);
+
     wxArrayString types = Model_Account::instance().all_type();
     types.Remove(Model_Account::all_type()[Model_Account::INVESTMENT]);
+    wxArrayString t;
+    for (const auto entry : types)
+        t.Add(wxGetTranslation(entry));
 
-    mmSingleChoiceDialog type_choice(this, wxString::Format(_("Account: %s - Select new type."), account_name), _("Account Reallocation"), types);
+    mmSingleChoiceDialog type_choice(this
+        , wxString::Format(_("Account: %s - Select new type."), account->ACCOUNTNAME)
+        , _("Account Reallocation"), t);
+
     if (type_choice.ShowModal() == wxID_OK)
     {
-        Model_Account::Data* account = Model_Account::instance().get(account_name);
-        if (account)
-        {
-            account->ACCOUNTTYPE = type_choice.GetStringSelection();
-            Model_Account::instance().save(account);
+        int sel = type_choice.GetSelection();
+        account->ACCOUNTTYPE = types[sel];
+        Model_Account::instance().save(account);
 
-            updateNavTreeControl();
-            refreshPanelData();
-        }
+        updateNavTreeControl();
+        createHomePage();
     }
 }
 
