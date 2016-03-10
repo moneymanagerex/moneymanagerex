@@ -48,8 +48,8 @@ wxEND_EVENT_TABLE()
 /*******************************************************/
 
 mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid)
-    : mmListCtrl(parent, winid)
-    , m_panel(cp)
+: mmListCtrl(parent, winid)
+, m_panel(cp)
 {
     ToggleWindowStyle(wxLC_EDIT_LABELS);
 
@@ -58,7 +58,7 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     m_asc = Model_Setting::instance().GetBoolSetting("ASSETS_ASC", true);
 
     m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(std::make_tuple(_("Name"), 150, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
@@ -67,8 +67,16 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     m_columns.push_back(std::make_tuple(_("Notes"), 450, wxLIST_FORMAT_LEFT));
 
     m_col_width = "ASSETS_COL%d_WIDTH";
-
     m_default_sort_column = m_panel->col_sort();
+
+    for (const auto& entry : m_columns)
+    {
+        long count = GetColumnCount();
+        InsertColumn(count
+            , std::get<HEADER>(entry)
+            , std::get<FORMAT>(entry)
+            , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, count), std::get<WIDTH>(entry)));
+    }
 }
 
 void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
@@ -405,15 +413,6 @@ void mmAssetsPanel::CreateControls()
     m_imageList->Add(mmBitmap(png::DOWNARROW));
 
     m_listCtrlAssets->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
-
-    int i = 0;
-    for (const auto& entry : m_listCtrlAssets->m_columns)
-    {
-        const wxString& heading = std::get<0>(entry);
-        int width = Model_Setting::instance().GetIntSetting(wxString::Format(m_listCtrlAssets->m_col_width, i), std::get<1>(entry));
-        int format = std::get<2>(entry);
-        m_listCtrlAssets->InsertColumn(i++, heading, format, width);
-    }
 
     wxPanel* assets_panel = new wxPanel(itemSplitterWindow10, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);

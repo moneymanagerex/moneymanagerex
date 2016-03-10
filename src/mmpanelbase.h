@@ -62,6 +62,9 @@ protected:
 
     int m_ColumnHeaderNbr;
     enum {
+        HEADER = 0,
+        WIDTH,
+        FORMAT,
         MENU_HEADER_HIDE = wxID_HIGHEST + 2000,
         MENU_HEADER_SORT,
         MENU_HEADER_RESET,

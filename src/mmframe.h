@@ -237,7 +237,7 @@ private:
     void navTreeStateToJson();
 
     void processPendingEvents();
-    void ReallocateAccount(const wxString& account_name);
+    void ReallocateAccount(int accountID);
 
     /* Recent Files */
     mmFileHistory* m_recentFiles;

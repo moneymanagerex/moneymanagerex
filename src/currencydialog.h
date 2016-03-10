@@ -58,7 +58,6 @@ private:
     void OnTextEntered(wxCommandEvent& event);
 
     Model_Currency::Data* m_currency;
-    double convRate_;
     int m_scale;
 
     mmTextCtrl* m_currencyName;
