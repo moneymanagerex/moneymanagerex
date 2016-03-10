@@ -51,7 +51,7 @@ mmCurrencyDialog::~mmCurrencyDialog()
 
 mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, Model_Currency::Data * currency)
     : m_currency(currency)
-        , m_scale(2)
+        , m_scale(SCALE)
         , m_currencyName(nullptr)
         , sampleText_(nullptr)
         , m_currencySymbol(nullptr)
@@ -79,7 +79,8 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
 
     if (!m_currency)
     {
-        mmSingleChoiceDialog select_currency_name(this, _("Currency name"), _("Select Currency"), Model_Currency::instance().all_currency_names());
+        mmSingleChoiceDialog select_currency_name(this, _("Currency name")
+            , _("Select Currency"), Model_Currency::instance().all_currency_names());
         if (select_currency_name.ShowModal() == wxID_OK)
         {
             const wxString currencyname = select_currency_name.GetStringSelection();
@@ -116,17 +117,15 @@ void mmCurrencyDialog::fillControls()
         m_scale = log10(m_currency->SCALE);
         const wxString& scale_value = wxString::Format("%i", m_scale);
         scaleTx_->ChangeValue(scale_value);
-        baseConvRate_->SetValue(m_currency->BASECONVRATE, SCALE);
+        bool baseCurrency = (Model_Infotable::instance().GetBaseCurrencyId() == m_currency->CURRENCYID);
+        baseConvRate_->SetValue((baseCurrency ? 1.00 : m_currency->BASECONVRATE), SCALE);
+        baseConvRate_->Enable(!baseCurrency);
         m_currencySymbol->ChangeValue(m_currency->CURRENCY_SYMBOL);
     }
     else
     {
-        convRate_ = 1;
-        baseConvRate_->ChangeValue("1");
+        baseConvRate_->SetValue(1.00, SCALE);
     }
-
-    // resize the dialog window
-    Fit();
 }
 
 void mmCurrencyDialog::CreateControls()

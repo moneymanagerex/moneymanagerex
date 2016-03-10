@@ -95,7 +95,7 @@ private:
     void OnHistoryDeselected(wxListEvent& event);
 
     void OnOnlineUpdateCurRate(wxCommandEvent& event);
-    bool onlineUpdateCurRate(int curr_id = -1, bool hide = true);
+    bool OnlineUpdateCurRate(int curr_id = -1, bool hide = true);
     void OnItemRightClick(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     bool SetBaseCurrency(int& baseCurrencyID);

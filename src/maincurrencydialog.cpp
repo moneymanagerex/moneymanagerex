@@ -66,7 +66,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     wxWindow* parent
     , int currencyID
     , bool bEnableSelect
-) : currencyListBox_(),
+) : currencyListBox_(nullptr),
     bEnableSelect_(bEnableSelect)
 {
     ColName_[CURR_BASE]   = " ";
@@ -400,7 +400,7 @@ void mmMainCurrencyDialog::OnListItemActivated(wxDataViewEvent& /* event */)
         OnBtnEdit(evt);
 }
 
-bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id, bool hide)
+bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
 {
     wxString base_symbol = wxEmptyString;
     wxString msg = wxEmptyString;
@@ -481,6 +481,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id, bool hide)
                         continue;
                     Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID,
                         wxDateTime::Today(), currency.BASECONVRATE, Model_CurrencyHistory::ONLINE);
+                    Model_Currency::instance().save(&currency);
                 }
                 else
                 {
@@ -509,7 +510,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id, bool hide)
 
 void mmMainCurrencyDialog::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
 {
-    onlineUpdateCurRate(-1,false);
+    OnlineUpdateCurRate(-1,false);
 }
 
 void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
@@ -524,7 +525,7 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
             fillControls();
             ShowCurrencyHistory();
         } break;
-        case MENU_ITEM2: onlineUpdateCurRate(currencyID_,false); break;
+        case MENU_ITEM2: OnlineUpdateCurRate(currencyID_,false); break;
     } 
 }
 
@@ -785,7 +786,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
             , _("Currency Dialog")
             , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR) != wxYES)
         return true;
-    onlineUpdateCurRate();
+    OnlineUpdateCurRate();
 
     if (wxMessageBox(_("Do you want to update all currency history? Any custom currency rate will be deleted!")
             , _("Currency Dialog")
@@ -796,7 +797,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     for (const auto& r : Model_CurrencyHistory::instance().all())
         Model_CurrencyHistory::instance().remove(r.id());
     Model_CurrencyHistory::instance().ReleaseSavepoint();
-    onlineUpdateCurRate();
+    OnlineUpdateCurRate();
 
     if (_BceCurrencyHistoryRatesList.empty())
     {
