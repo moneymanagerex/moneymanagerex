@@ -153,7 +153,7 @@ void mmFilterTransactionsDialog::CreateControls()
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
     itemBoxSizer2->Add(itemBoxSizer3, g_flagsExpand);
 
-    wxStaticBox* static_box_sizer = new wxStaticBox(this, wxID_ANY, _("Specify "));
+    wxStaticBox* static_box_sizer = new wxStaticBox(this, wxID_ANY, _("Specify"));
     wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(static_box_sizer, wxVERTICAL);
     itemBoxSizer3->Add(itemStaticBoxSizer4, 1, wxGROW|wxALL, 10);
 
