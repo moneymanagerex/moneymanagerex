@@ -130,11 +130,11 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
         dataToControls();
         if (!m_enter_occur)
         {
-            SetDialogHeader(_(" Edit Recurring Transaction"));
+            SetDialogHeader(_("Edit Recurring Transaction"));
         }
         else
         {
-            SetDialogHeader(_(" Enter Recurring Transaction"));
+            SetDialogHeader(_("Enter Recurring Transaction"));
             transaction_type_->Disable();
             m_date_due->Disable();
             m_calendar_ctrl->Disable();

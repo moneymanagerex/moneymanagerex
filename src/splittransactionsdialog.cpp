@@ -120,7 +120,7 @@ void SplitTransactionDialog::CreateControls()
     wxBoxSizer* dialogMainSizerV = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(dialogMainSizerV);
 
-    wxStaticText* headingText = new wxStaticText(this, wxID_STATIC, _(" Split Category Details"));
+    wxStaticText* headingText = new wxStaticText(this, wxID_STATIC, _("Split Category Details"));
     dialogMainSizerV->Add(headingText, g_flags);
 
     wxBoxSizer* listCtrlSizer = new wxBoxSizer(wxHORIZONTAL);
