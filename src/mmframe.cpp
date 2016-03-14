@@ -514,7 +514,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             {
                 continueExecution = true;
                 mmBDDialog repeatTransactionsDlg(this, q1.BDID, false, true);
-                repeatTransactionsDlg.SetDialogHeader(_(" Auto Repeat Transactions"));
+                repeatTransactionsDlg.SetDialogHeader(_("Auto Repeat Transactions"));
                 if (repeatTransactionsDlg.ShowModal() == wxID_OK)
                 {
                     refreshPanelData();
@@ -1721,7 +1721,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         // Mantained only for really old compatibility reason and replaced by dbupgrade.cpp
         if (!Model_Infotable::instance().checkDBVersion())
         {
-            wxString note = mmex::getProgramName() + _(" - No File opened ");
+            wxString note = mmex::getProgramName() + " - " + _("No File opened");
             this->SetTitle(note);
             wxMessageBox(_("Sorry. The Database version is too old or Database password is incorrect")
                 , dialogErrorMessageHeading
@@ -1764,7 +1764,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
     }
     else // open of existing database failed
     {
-        wxString note = mmex::getProgramName() + _(" - No File opened ");
+        wxString note = mmex::getProgramName() + " - " + _("No File opened");
         this->SetTitle(note);
 
         wxString msgStr = _("Cannot locate previously opened database.\n");

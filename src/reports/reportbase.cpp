@@ -35,7 +35,7 @@ wxString mmPrintableBase::local_title() const
     if (!m_date_range) 
         return m_local_title; 
     else 
-        return m_local_title + _(" - ") + m_date_range->local_title();
+        return m_local_title + " - " + m_date_range->local_title();
 }
 
 mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
