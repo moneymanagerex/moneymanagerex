@@ -44,7 +44,7 @@ mmAppStartDialog::mmAppStartDialog(wxWindow* parent)
     , m_buttonExit(nullptr)
     , m_buttonClose(nullptr)
 {
-    wxString caption = mmex::getProgramName() + "   " + mmex::getTitleProgramVersion();
+    wxString caption = wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), mmex::getTitleProgramVersion());
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, caption, wxDefaultPosition, wxSize(400, 300), style);
 }
@@ -112,22 +112,22 @@ void mmAppStartDialog::CreateControls()
     itemBoxSizer5->Add(itemButton8, 0, wxGROW | wxALL, 5);
 
     wxButton* itemButton9 = new wxButton(this, wxID_INDEX, _("Visit Website for more information"));
-    wxString s = _("Open the %s website for latest news, updates etc");
-    s = wxString::Format(s, mmex::getProgramName());
+    const wxString s = wxString::Format(_("Open the %s website for latest news, updates etc")
+        , mmex::getProgramName());
     itemButton9->SetToolTip(s);
     itemBoxSizer5->Add(itemButton9, 0, wxGROW | wxALL, 5);
 
     wxBoxSizer* itemBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer10, 0, wxALIGN_LEFT | wxALL, 5);
 
-    wxString showAppStartString = _("Show this window next time %s starts");
-    showAppStartString = wxString::Format(showAppStartString, mmex::getProgramName());
+    const wxString showAppStartString = wxString::Format(_("Show this window next time %s starts")
+        , mmex::getProgramName());
 
     itemCheckBox = new wxCheckBox(this, wxID_STATIC, showAppStartString, wxDefaultPosition,
         wxDefaultSize, wxCHK_2STATE);
     bool showBeginApp = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
-    if (showBeginApp) itemCheckBox->SetValue(true);
-    else              itemCheckBox->SetValue(false);
+    itemCheckBox->SetValue(showBeginApp);
+
     itemBoxSizer10->Add(itemCheckBox, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     wxStaticLine* line = new wxStaticLine(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);

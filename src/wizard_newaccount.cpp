@@ -23,15 +23,17 @@
 
 mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)
     : wxWizard(frame,wxID_ANY,_("Add Account Wizard")
-    , wxBitmap(addacctwiz_xpm),wxDefaultPosition
+    , wxBitmap(addacctwiz_xpm), wxDefaultPosition
     , wxDEFAULT_DIALOG_STYLE), acctID_(-1)
     , currencyID_(-1), accountType_(0)
 {
     // a wizard page may be either an object of predefined class
     page1 = new wxWizardPageSimple(this);
 
-    wxString noteString = mmex::getProgramName()
-        + _(" models all transactions as belonging to accounts.\n\nThe next pages will help you create a new account.\n\nTo help you get started, begin by making a list of all\nfinancial institutions where you hold an account.");
+    wxString noteString = wxString::Format(
+            _("%s models all transactions as belonging to accounts."), mmex::getProgramName()) + "\n\n"
+        + _("The next pages will help you create a new account.") + "\n\n"
+        + _("To help you get started, begin by making a list of all\nfinancial institutions where you hold an account.");
 
     new wxStaticText(page1, wxID_ANY, noteString);
 
