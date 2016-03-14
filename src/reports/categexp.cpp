@@ -172,10 +172,10 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.startTfoot();
     if (type_ == NONE)
     {
-        hb.addTotalRow(_("Total Expenses: "), span, group_total[-1]);
-        hb.addTotalRow(_("Total Income: "), span, group_total[-2]);
+        hb.addTotalRow(_("Total Expenses:"), span, group_total[-1]);
+        hb.addTotalRow(_("Total Income:"), span, group_total[-2]);
     }
-    hb.addTotalRow(_("Grand Total: "), span, group_total[-1] + group_total[-2]);
+    hb.addTotalRow(_("Grand Total:"), span, group_total[-1] + group_total[-2]);
     hb.endTfoot();
 
     hb.endTable();
@@ -196,60 +196,60 @@ mmReportCategoryExpensesGoes::mmReportCategoryExpensesGoes
 mmReportCategoryExpensesGoesCurrentMonth::mmReportCategoryExpensesGoesCurrentMonth
 ( )
 : mmReportCategoryExpensesGoes(new mmCurrentMonth()
-, wxString::Format(_("Where the Money Goes - %s"), _("Current Month")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Goes"), _("Current Month")))
 {}
 
 mmReportCategoryExpensesGoesCurrentMonthToDate::mmReportCategoryExpensesGoesCurrentMonthToDate
 ( )
 : mmReportCategoryExpensesGoes(new mmCurrentMonthToDate()
-, wxString::Format(_("Where the Money Goes - %s"), _("Current Month to Date")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Goes"), _("Current Month to Date")))
 {}
 
 mmReportCategoryExpensesGoesLastMonth::mmReportCategoryExpensesGoesLastMonth
 ( )
 : mmReportCategoryExpensesGoes(new mmLastMonth()
-, wxString::Format(_("Where the Money Goes - %s"), _("Last Month")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Goes"), _("Last Month")))
 {}
 
 mmReportCategoryExpensesGoesLast30Days::mmReportCategoryExpensesGoesLast30Days
 ( )
 : mmReportCategoryExpensesGoes(new mmLast30Days()
-, wxString::Format(_("Where the Money Goes - %s"), _("Last 30 Days")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Goes"), _("Last 30 Days")))
 {}
 
 mmReportCategoryExpensesGoesLastYear::mmReportCategoryExpensesGoesLastYear
 ( )
 : mmReportCategoryExpensesGoes(new mmLastYear()
-,  wxString::Format(_("Where the Money Goes - %s"), _("Last Year")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Goes"), _("Last Year")))
 {}
 
 mmReportCategoryExpensesGoesCurrentYear::mmReportCategoryExpensesGoesCurrentYear()
 : mmReportCategoryExpensesGoes(new mmCurrentYear()
-, wxString::Format(_("Where the Money Goes - %s"), _("Current Year")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Goes"), _("Current Year")))
 {}
 
 mmReportCategoryExpensesGoesCurrentYearToDate::mmReportCategoryExpensesGoesCurrentYearToDate
 ( )
 : mmReportCategoryExpensesGoes(new mmCurrentYearToDate()
-, wxString::Format(_("Where the Money Goes - %s"), _("Current Year to Date")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Goes"), _("Current Year to Date")))
 {}
 
 mmReportCategoryExpensesGoesLastFinancialYear::mmReportCategoryExpensesGoesLastFinancialYear
 ( const int day, const int month)
 : mmReportCategoryExpensesGoes(new mmLastFinancialYear(day, month)
-, wxString::Format(_("Where the Money Goes - %s"), _("Last Financial Year")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Goes"), _("Last Financial Year")))
 {}
 
 mmReportCategoryExpensesGoesCurrentFinancialYear::mmReportCategoryExpensesGoesCurrentFinancialYear
 ( const int day, const int month)
 : mmReportCategoryExpensesGoes(new mmCurrentFinancialYear(day, month)
-, wxString::Format(_("Where the Money Goes - %s"), _("Current Financial Year")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Goes"), _("Current Financial Year")))
 {}
 
 mmReportCategoryExpensesGoesCurrentFinancialYearToDate::mmReportCategoryExpensesGoesCurrentFinancialYearToDate
 (const int day, const int month)
 : mmReportCategoryExpensesGoes(new mmCurrentFinancialYearToDate(day, month)
-, wxString::Format(_("Where the Money Goes - %s"), _("Current Financial Year to Date")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Goes"), _("Current Financial Year to Date")))
 {}
 
 mmReportCategoryExpensesComes::mmReportCategoryExpensesComes
@@ -260,61 +260,61 @@ mmReportCategoryExpensesComes::mmReportCategoryExpensesComes
 mmReportCategoryExpensesComesCurrentMonth::mmReportCategoryExpensesComesCurrentMonth
 ( )
 : mmReportCategoryExpensesComes(new  mmCurrentMonth()
-, wxString::Format(_("Where the Money Comes From - %s"), _("Current Month")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Comes From"), _("Current Month")))
 {}
 
 mmReportCategoryExpensesComesCurrentMonthToDate::mmReportCategoryExpensesComesCurrentMonthToDate
 ( )
 : mmReportCategoryExpensesComes(new mmCurrentMonthToDate()
-, wxString::Format(_("Where the Money Comes From - %s"), _("Current Month to Date")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Comes From"), _("Current Month to Date")))
 {}
 
 mmReportCategoryExpensesComesLastMonth::mmReportCategoryExpensesComesLastMonth
 ( )
 : mmReportCategoryExpensesComes(new mmLastMonth()
-,  wxString::Format(_("Where the Money Comes From - %s"), _("Last Month")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Comes From"), _("Last Month")))
 {}
 
 mmReportCategoryExpensesComesLast30Days::mmReportCategoryExpensesComesLast30Days
 ( )
 : mmReportCategoryExpensesComes(new mmLast30Days()
-, wxString::Format(_("Where the Money Comes From - %s"), _("Last 30 Days")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Comes From"), _("Last 30 Days")))
 {}
 
 mmReportCategoryExpensesComesLastYear::mmReportCategoryExpensesComesLastYear
 ( )
 : mmReportCategoryExpensesComes(new mmLastYear()
-, wxString::Format(_("Where the Money Comes From - %s"), _("Last Year")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Comes From"), _("Last Year")))
 {}
 
 mmReportCategoryExpensesComesCurrentYear::mmReportCategoryExpensesComesCurrentYear
 ( )
 : mmReportCategoryExpensesComes(new mmCurrentYear()
-, wxString::Format(_("Where the Money Comes From - %s"), _("Current Year")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Comes From"), _("Current Year")))
 {}
 
 mmReportCategoryExpensesComesCurrentYearToDate::mmReportCategoryExpensesComesCurrentYearToDate
 ( )
 : mmReportCategoryExpensesComes(new mmCurrentYearToDate()
-, wxString::Format(_("Where the Money Comes From - %s"), _("Current Year to Date")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Comes From"), _("Current Year to Date")))
 {}
 
 mmReportCategoryExpensesComesLastFinancialYear::mmReportCategoryExpensesComesLastFinancialYear
 ( int day, int month)
 : mmReportCategoryExpensesComes(new mmLastFinancialYear(day, month)
-, wxString::Format(_("Where the Money Comes From - %s"), _("Last Financial Year")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Comes From"), _("Last Financial Year")))
 {}
 
 mmReportCategoryExpensesComesCurrentFinancialYear::mmReportCategoryExpensesComesCurrentFinancialYear
 ( int day, int month)
 : mmReportCategoryExpensesComes(new mmCurrentFinancialYear(day, month)
-, wxString::Format(_("Where the Money Comes From - %s"), _("Current Financial Year")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Comes From"), _("Current Financial Year")))
 {}
 
 mmReportCategoryExpensesComesCurrentFinancialYearToDate::mmReportCategoryExpensesComesCurrentFinancialYearToDate
 (int day, int month)
 : mmReportCategoryExpensesComes(new mmCurrentFinancialYearToDate(day, month)
-, wxString::Format(_("Where the Money Comes From - %s"), _("Current Financial Year to Date")))
+    , wxString::Format(_("%1$s - %2$s"), _("Where the Money Comes From"), _("Current Financial Year to Date")))
 {}
 
 mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories
@@ -325,57 +325,57 @@ mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories
 mmReportCategoryExpensesCategoriesCurrentMonth::mmReportCategoryExpensesCategoriesCurrentMonth
 ( )
 : mmReportCategoryExpensesCategories(new mmCurrentMonth()
-, wxString::Format(_("Categories - %s"), _("Current Month")))
+    , wxString::Format(_("%1$s - %2$s"), _("Categories"), _("Current Month")))
 {}
 
 mmReportCategoryExpensesCategoriesCurrentMonthToDate::mmReportCategoryExpensesCategoriesCurrentMonthToDate
 ( )
 : mmReportCategoryExpensesCategories(new mmCurrentMonthToDate()
-, wxString::Format(_("Categories - %s"), _("Current Month to Date")))
+    , wxString::Format(_("%1$s - %2$s"), _("Categories"), _("Current Month to Date")))
 {}
 
 mmReportCategoryExpensesCategoriesLastMonth::mmReportCategoryExpensesCategoriesLastMonth()
 : mmReportCategoryExpensesCategories(new mmLastMonth()
-, wxString::Format(_("Categories - %s"), _("Last Month")))
+    , wxString::Format(_("%1$s - %2$s"), _("Categories"), _("Last Month")))
 {}
 
 mmReportCategoryExpensesCategoriesLast30Days::mmReportCategoryExpensesCategoriesLast30Days
 ( )
 : mmReportCategoryExpensesCategories(new mmLast30Days()
-, wxString::Format(_("Categories - %s"), _("Last 30 Days")))
+    , wxString::Format(_("%1$s - %2$s"), _("Categories"), _("Last 30 Days")))
 {}
 
 mmReportCategoryExpensesCategoriesLastYear::mmReportCategoryExpensesCategoriesLastYear()
 : mmReportCategoryExpensesCategories(new mmLastYear()
-, wxString::Format(_("Categories - %s"), _("Last Year")))
+    , wxString::Format(_("%1$s - %2$s"), _("Categories"), _("Last Year")))
 {}
 
 mmReportCategoryExpensesCategoriesCurrentYear::mmReportCategoryExpensesCategoriesCurrentYear
 ( )
 : mmReportCategoryExpensesCategories(new mmCurrentYear()
-, wxString::Format(_("Categories - %s"), _("Current Year")))
+    , wxString::Format(_("%1$s - %2$s"), _("Categories"), _("Current Year")))
 {}
 
 mmReportCategoryExpensesCategoriesCurrentYearToDate::mmReportCategoryExpensesCategoriesCurrentYearToDate
 ( )
 : mmReportCategoryExpensesCategories(new mmCurrentYearToDate()
-, wxString::Format(_("Categories - %s"), _("Current Year to Date")))
+    , wxString::Format(_("%1$s - %2$s"), _("Categories"), _("Current Year to Date")))
 {}
 
 mmReportCategoryExpensesCategoriesLastFinancialYear::mmReportCategoryExpensesCategoriesLastFinancialYear
 ( int day, int month)
 : mmReportCategoryExpensesCategories(new mmLastFinancialYear(day, month)
-, wxString::Format(_("Categories - %s"), _("Last Financial Year")))
+    , wxString::Format(_("%1$s - %2$s"), _("Categories"), _("Last Financial Year")))
 {}
 
 mmReportCategoryExpensesCategoriesCurrentFinancialYear::mmReportCategoryExpensesCategoriesCurrentFinancialYear
 ( int day, int month)
 : mmReportCategoryExpensesCategories(new mmCurrentFinancialYear(day, month)
-, wxString::Format(_("Categories - %s"), _("Current Financial Year")))
+    , wxString::Format(_("%1$s - %2$s"), _("Categories"), _("Current Financial Year")))
 {}
 
 mmReportCategoryExpensesCategoriesCurrentFinancialYearToDate::mmReportCategoryExpensesCategoriesCurrentFinancialYearToDate
 (int day, int month)
 : mmReportCategoryExpensesCategories(new mmCurrentFinancialYearToDate(day, month)
-, wxString::Format(_("Categories - %s"), _("Current Financial Year to Date")))
+    , wxString::Format(_("%1$s - %2$s"), _("Categories"), _("Current Financial Year to Date")))
 {}
