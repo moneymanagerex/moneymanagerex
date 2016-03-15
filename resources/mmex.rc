@@ -50,8 +50,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,2,5
- PRODUCTVERSION 1,2,5
+ FILEVERSION 1,2,7
+ PRODUCTVERSION 1,2,7
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -68,12 +68,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "MoneyManagerEX"
             VALUE "FileDescription", "Money Management Software"
-            VALUE "FileVersion", "1, 2, 5"
+            VALUE "FileVersion", "1, 2, 7"
             VALUE "InternalName", "mmex"
             VALUE "LegalCopyright", "Copyright (C) 2016 Money Manager EX (http://www.moneymanagerex.org/)"
             VALUE "OriginalFilename", "mmex.exe"
             VALUE "ProductName", "MoneyManagerEx"
-            VALUE "ProductVersion", "1, 2, 5"
+            VALUE "ProductVersion", "1, 2, 7"
         END
     END
     BLOCK "VarFileInfo"

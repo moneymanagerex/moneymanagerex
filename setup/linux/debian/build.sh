@@ -13,7 +13,7 @@
 ARCHITECTURE="amd64"
 
 # Specify the build version of mmex
-MMEX_VERSION="1.2.5"
+MMEX_VERSION="1.2.7"
 MMEX_RELEASE_DATE="2016-01-24"
 EMAIL="moneymanagerex@moneymanagerex.org"
 HOMEPAGE="http://www.moneymanagerex.org"

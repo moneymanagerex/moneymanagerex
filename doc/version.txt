@@ -1,5 +1,10 @@
 Version History of Money Manager Ex
 
+1.2.6 (Apr 2, 2016)
+- Fix: Minor fixes
+- Fix: Italian translation updated
+- Fix: Russian translation updated
+
 1.2.6 (Mar 6, 2016)
 - Fix: OK the default when entering a transaction (Issue #676)
 - Fix: most recent notes (Issue #677)
