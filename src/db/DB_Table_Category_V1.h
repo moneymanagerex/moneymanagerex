@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-19 20:11:36.144000.
+ *          AUTO GENERATED at 2016-03-15 17:43:58.503181.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -102,6 +102,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 
     void ensure_data(wxSQLite3Database* db)
     {
+        db->Begin();
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (1, '%s')", wxTRANSLATE("Bills")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (2, '%s')", wxTRANSLATE("Food")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (3, '%s')", wxTRANSLATE("Leisure")));
@@ -118,6 +119,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (14, '%s')", wxTRANSLATE("Other Income")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (15, '%s')", wxTRANSLATE("Other Expenses")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES (16, '%s')", wxTRANSLATE("Transfer")));
+        db->Commit();
     }
     
     struct CATEGID : public DB_Column<int>

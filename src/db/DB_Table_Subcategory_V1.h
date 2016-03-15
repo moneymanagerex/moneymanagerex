@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-19 20:11:36.144000.
+ *          AUTO GENERATED at 2016-03-15 17:43:58.503181.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -102,6 +102,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
 
     void ensure_data(wxSQLite3Database* db)
     {
+        db->Begin();
         db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (1, '%s', 1)", wxTRANSLATE("Telephone")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (2, '%s', 1)", wxTRANSLATE("Electricity")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (3, '%s', 1)", wxTRANSLATE("Gas")));
@@ -143,6 +144,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (39, '%s', 13)", wxTRANSLATE("Salary")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (40, '%s', 13)", wxTRANSLATE("Reimbursement/Refunds")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY_V1 VALUES (41, '%s', 13)", wxTRANSLATE("Investment Income")));
+        db->Commit();
     }
     
     struct SUBCATEGID : public DB_Column<int>
