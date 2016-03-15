@@ -107,10 +107,10 @@ const char *usage_template = R"(
 </html>
 )";
 
-mmReportMyUsage::mmReportMyUsage(mmDateRange* date_range)
+mmReportMyUsage::mmReportMyUsage()
 : mmPrintableBase("My Usage", _("My Usage"))
 {
-    this->m_date_range = date_range;
+    this->m_date_range = nullptr;
 }
 
 mmReportMyUsage::~mmReportMyUsage()

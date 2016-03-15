@@ -24,7 +24,7 @@ class mmDateRange;
 class mmReportMyUsage: public mmPrintableBase 
 {
 public:
-    explicit mmReportMyUsage(mmDateRange* date_range = 0);
+    mmReportMyUsage();
     virtual ~mmReportMyUsage();
 
     virtual bool has_date_range();
