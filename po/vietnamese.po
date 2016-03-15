@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-21 00:00+0300\n"
-"PO-Revision-Date: 2015-12-21 00:00+0300\n"
+"POT-Creation-Date: 2016-03-15 11:16+0300\n"
+"PO-Revision-Date: 2016-03-15 11:16+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
 "Language: vi_VN\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-05-31 17:00+0000\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
@@ -74,13 +74,13 @@ msgstr ""
 msgid "License"
 msgstr ""
 
-#: src/aboutdialog.cpp:225 src/accountdialog.cpp:299 src/appstartdialog.cpp:136
+#: src/aboutdialog.cpp:225 src/accountdialog.cpp:303 src/appstartdialog.cpp:136
 #: src/assetdialog.cpp:194 src/attachmentdialog.cpp:119
 #: src/billsdepositsdialog.cpp:629 src/budgetentrydialog.cpp:156
 #: src/budgetyeardialog.cpp:116 src/budgetyearentrydialog.cpp:125
 #: src/filtertransdialog.cpp:340 src/import_export/qif_export.cpp:206
 #: src/import_export/qif_export.cpp:230
-#: src/import_export/qif_import_gui.cpp:271 src/mmSimpleDialogs.cpp:51
+#: src/import_export/qif_import_gui.cpp:273 src/mmSimpleDialogs.cpp:51
 #: src/optionsdialog.cpp:149 src/payeedialog.cpp:130
 #: src/relocatecategorydialog.cpp:114 src/relocatepayeedialog.cpp:112
 #: src/reports/reportbase.cpp:76 src/splitdetailsdialog.cpp:145
@@ -98,38 +98,38 @@ msgstr "Tài khoản mới"
 msgid "Edit Account"
 msgstr "Sửa tài khoản"
 
-#: src/accountdialog.cpp:172
+#: src/accountdialog.cpp:173
 msgid "Account Name:"
 msgstr "Tên tài khoản:"
 
-#: src/accountdialog.cpp:177
+#: src/accountdialog.cpp:178
 msgid "Account Type:"
 msgstr "Loại tài khoản:"
 
-#: src/accountdialog.cpp:186
+#: src/accountdialog.cpp:190
 msgid "Account Status:"
 msgstr "Tình trạng tài khoản"
 
-#: src/accountdialog.cpp:195
+#: src/accountdialog.cpp:199
 #, fuzzy, c-format
 msgid "Initial Balance: %s"
 msgstr "Số dư ban đầu:"
 
-#: src/accountdialog.cpp:204 src/import_export/univcsvdialog.cpp:1235
+#: src/accountdialog.cpp:208 src/import_export/univcsvdialog.cpp:1235
 msgid "Currency:"
 msgstr "Tiền tệ:"
 
-#: src/accountdialog.cpp:206 src/currencydialog.cpp:70
+#: src/accountdialog.cpp:210 src/currencydialog.cpp:70
 msgid "Select Currency"
 msgstr "Chọn tiền tệ"
 
-#: src/accountdialog.cpp:217
+#: src/accountdialog.cpp:221
 msgid "Favorite Account"
 msgstr "Tài khoản ưu tiên"
 
-#: src/accountdialog.cpp:227 src/assetdialog.cpp:176 src/assetspanel.cpp:75
+#: src/accountdialog.cpp:231 src/assetdialog.cpp:176 src/assetspanel.cpp:75
 #: src/billsdepositsdialog.cpp:596 src/billsdepositspanel.cpp:122
-#: src/filtertransdialog.cpp:305 src/import_export/qif_import_gui.cpp:98
+#: src/filtertransdialog.cpp:305 src/import_export/qif_import_gui.cpp:100
 #: src/import_export/univcsvdialog.cpp:82
 #: src/import_export/univcsvdialog.cpp:934 src/mmcheckingpanel.cpp:985
 #: src/reports/transactions.cpp:72 src/stockdialog.cpp:249
@@ -137,51 +137,51 @@ msgstr "Tài khoản ưu tiên"
 msgid "Notes"
 msgstr "Ghi chú"
 
-#: src/accountdialog.cpp:237 src/model/Model_Category.cpp:111
+#: src/accountdialog.cpp:241 src/model/Model_Category.cpp:111
 #: src/model/Model_Category.cpp:121 src/model/Model_Category.cpp:165
 #: src/optionsdialog.cpp:133
 msgid "Others"
 msgstr "Khác"
 
-#: src/accountdialog.cpp:246
+#: src/accountdialog.cpp:250
 #, fuzzy
 msgid "Card Number:"
 msgstr "Số tham chiếu: "
 
-#: src/accountdialog.cpp:246
+#: src/accountdialog.cpp:250
 msgid "Account Number:"
 msgstr "Số tài khoản:"
 
-#: src/accountdialog.cpp:252
+#: src/accountdialog.cpp:256
 msgid "Held At:"
 msgstr "Mở tại:"
 
-#: src/accountdialog.cpp:258
+#: src/accountdialog.cpp:262
 msgid "Website:"
 msgstr "Trang web:"
 
-#: src/accountdialog.cpp:264
+#: src/accountdialog.cpp:268
 msgid "Contact:"
 msgstr "Thông tin liên lạc:"
 
-#: src/accountdialog.cpp:270
+#: src/accountdialog.cpp:274
 msgid "Access Info:"
 msgstr "Thông tin truy cập:"
 
-#: src/accountdialog.cpp:294
+#: src/accountdialog.cpp:298
 #, fuzzy
 msgid "Organize attachments of this account"
 msgstr "Nhập số tiền giao dịch"
 
-#: src/accountdialog.cpp:309
+#: src/accountdialog.cpp:313
 msgid "Enter the Name of the Account. This name can be renamed at any time."
 msgstr "Điền tên tài khoản. Có thể sửa sau nếu muốn."
 
-#: src/accountdialog.cpp:310 src/wizard_newaccount.cpp:110
+#: src/accountdialog.cpp:314 src/wizard_newaccount.cpp:110
 msgid "Specify the type of account to be created."
 msgstr "Xác định loại tài khoản muốn tạo"
 
-#: src/accountdialog.cpp:311
+#: src/accountdialog.cpp:315
 msgid ""
 "Specify if this account has been closed. Closed accounts are inactive in "
 "most calculations, reporting etc."
@@ -189,15 +189,15 @@ msgstr ""
 "Xác định liệu tài khoản này đã bị đóng chưa. Các tài khoản bị đóng sẽ không "
 "được tính trong phần lớn các tính toán, báo cáo v.v."
 
-#: src/accountdialog.cpp:312
+#: src/accountdialog.cpp:316
 msgid "Enter the initial balance in this account."
 msgstr "Điền số dư ban đầu của tài khoản này."
 
-#: src/accountdialog.cpp:313
+#: src/accountdialog.cpp:317
 msgid "Specify the currency to be used by this account."
 msgstr "Chọn tiền tệ của tài khoản này."
 
-#: src/accountdialog.cpp:314
+#: src/accountdialog.cpp:318
 msgid ""
 "Select whether this is an account that is used often. This is used to filter "
 "accounts display view."
@@ -205,28 +205,28 @@ msgstr ""
 "Xác định tài khoản này có được sử dụng nhiều không, để giúp lọc các tài "
 "khoản cần xem"
 
-#: src/accountdialog.cpp:315
+#: src/accountdialog.cpp:319
 msgid "Enter user notes and details about this account."
 msgstr "Điền ghi chú của người dùng và chi tiết của tài khoản này"
 
-#: src/accountdialog.cpp:316
+#: src/accountdialog.cpp:320
 msgid "Enter the Account Number associated with this account."
 msgstr "Điền số tài khoản liên quan đến tài khoản này"
 
-#: src/accountdialog.cpp:317
+#: src/accountdialog.cpp:321
 msgid ""
 "Enter the name of the financial institution in which the account is held."
 msgstr "Điền tên tổ chức tài chính nơi tài khoản này được mở"
 
-#: src/accountdialog.cpp:318
+#: src/accountdialog.cpp:322
 msgid "Enter the URL of the website for the financial institution."
 msgstr "Điền địa chỉ trang web của tổ chức tài chính"
 
-#: src/accountdialog.cpp:319
+#: src/accountdialog.cpp:323
 msgid "Enter any contact information for the financial institution."
 msgstr "Điền bất kỳ thông tin liên lạc nào của tổ chức tài chính"
 
-#: src/accountdialog.cpp:320
+#: src/accountdialog.cpp:324
 msgid ""
 "Enter any login/access information for the financial institution. This is "
 "not secure as anyone with access to the mmb file can access it."
@@ -234,11 +234,11 @@ msgstr ""
 "Điền thông tin truy cập / đăng nhập vào tổ chức tài chính. Lưu ý: thông tin "
 "này không được bảo mật, bởi bất cứ ai cũng có thể truy nhập vào file mmb này."
 
-#: src/accountdialog.cpp:352
+#: src/accountdialog.cpp:356
 msgid "Account Name "
 msgstr "Tên tài khoản "
 
-#: src/accountdialog.cpp:356 src/import_export/qif_import_gui.cpp:228
+#: src/accountdialog.cpp:360 src/import_export/qif_import_gui.cpp:230
 #: src/mmOptionGeneralSettings.cpp:92
 msgid "Currency"
 msgstr "Tiền tệ"
@@ -314,9 +314,9 @@ msgid "Asset Details"
 msgstr "Chi tiết tài sản"
 
 #: src/assetdialog.cpp:116 src/assetspanel.cpp:70
-#: src/import_export/qif_import_gui.cpp:227
-#: src/import_export/qif_import_gui.cpp:240
-#: src/import_export/qif_import_gui.cpp:251 src/maincurrencydialog.cpp:60
+#: src/import_export/qif_import_gui.cpp:229
+#: src/import_export/qif_import_gui.cpp:242
+#: src/import_export/qif_import_gui.cpp:253 src/maincurrencydialog.cpp:60
 #: src/payeedialog.cpp:67 src/reports/summarystocks.cpp:183
 msgid "Name"
 msgstr "Tên"
@@ -326,10 +326,10 @@ msgid "Enter the name of the asset"
 msgstr "Nhập tên tài sản"
 
 #: src/assetdialog.cpp:124 src/assetspanel.cpp:71
-#: src/import_export/qif_import_gui.cpp:92
+#: src/import_export/qif_import_gui.cpp:94
 #: src/import_export/univcsvdialog.cpp:76
 #: src/import_export/univcsvdialog.cpp:936 src/mmcheckingpanel.cpp:977
-#: src/reports/cashflow.cpp:278 src/reports/summary.cpp:222
+#: src/reports/cashflow.cpp:277 src/reports/summary.cpp:151
 #: src/reports/transactions.cpp:65 src/stockdialog.cpp:180
 #: src/stockdialog.cpp:284 src/stockdialog.cpp:603 src/transdialog.cpp:334
 #: src/webappdialog.cpp:79
@@ -348,7 +348,7 @@ msgstr "Loại tài sản"
 msgid "Select type of asset"
 msgstr "Xác định loại tài sản"
 
-#: src/assetdialog.cpp:142 src/import_export/qif_import_gui.cpp:97
+#: src/assetdialog.cpp:142 src/import_export/qif_import_gui.cpp:99
 #: src/reports/summarystocks.cpp:158 src/reports/summarystocks.cpp:191
 #: src/stockdialog.cpp:244
 msgid "Value"
@@ -391,7 +391,7 @@ msgstr ""
 
 #: src/assetspanel.cpp:72 src/billsdepositsdialog.cpp:521
 #: src/billsdepositspanel.cpp:115 src/filtertransdialog.cpp:250
-#: src/import_export/qif_import_gui.cpp:95 src/mmhomepagepanel.cpp:757
+#: src/import_export/qif_import_gui.cpp:97 src/mmhomepagepanel.cpp:761
 #: src/reports/budgetingperf.cpp:129 src/reports/incexpenses.cpp:123
 #: src/reports/transactions.cpp:70 src/splitdetailsdialog.cpp:107
 #: src/transdialog.cpp:367 src/webappdialog.cpp:82
@@ -453,8 +453,7 @@ msgstr ""
 
 #: src/assetspanel.cpp:377 src/general_report_manager.cpp:665
 #: src/general_report_manager.cpp:931 src/mmframe.cpp:728 src/mmframe.cpp:1490
-#: src/mmhomepagepanel.cpp:418 src/mmhomepagepanel.cpp:784
-#: src/reports/summary.cpp:179 src/assetspanel.h:85
+#: src/mmhomepagepanel.cpp:418 src/mmhomepagepanel.cpp:788 src/assetspanel.h:85
 msgid "Assets"
 msgstr "Tài sản"
 
@@ -525,7 +524,7 @@ msgstr "Tổng cộng: %s"
 msgid "Change in Value: %s %s"
 msgstr "Hướng biến động"
 
-#: src/attachmentdialog.cpp:55 src/import_export/qif_import_gui.cpp:90
+#: src/attachmentdialog.cpp:55 src/import_export/qif_import_gui.cpp:92
 #: src/import_export/univcsvdialog.cpp:925 src/payeedialog.cpp:66
 msgid "#"
 msgstr ""
@@ -707,7 +706,7 @@ msgstr ""
 #: src/billsdepositsdialog.cpp:317 src/billsdepositspanel.cpp:52
 #: src/filtertransdialog.cpp:48 src/mmOptionMiscSettings.cpp:74
 #: src/model/Model_Asset.cpp:23 src/model/Model_Billsdeposits.cpp:34
-#: src/model/Model_Budget.cpp:54 src/model/Model_Checking.cpp:34
+#: src/model/Model_Budget.cpp:54 src/model/Model_Checking.cpp:35
 msgid "None"
 msgstr "(Trống)"
 
@@ -843,11 +842,11 @@ msgstr "Tự động ghi nhận giao dịch (không xác nhận)"
 msgid "Automatic Execution will occur without user interaction"
 msgstr "Người dùng sẽ không được xác nhận trước khi thực hiện"
 
-#: src/billsdepositsdialog.cpp:470 src/transdialog.cpp:1038
+#: src/billsdepositsdialog.cpp:470 src/transdialog.cpp:1037
 msgid "Specify the date of the transaction"
 msgstr "Xác định ngày thực hiện giao dịch"
 
-#: src/billsdepositsdialog.cpp:473 src/transdialog.cpp:1039
+#: src/billsdepositsdialog.cpp:473 src/transdialog.cpp:1038
 msgid "Retard or advance the date of the transaction"
 msgstr "Tăng/lùi ngày giao dịch"
 
@@ -860,21 +859,21 @@ msgid "Pay Date"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:495 src/filtertransdialog.cpp:247
-#: src/transdialog.cpp:1040
+#: src/transdialog.cpp:1039
 msgid "Specify the status for the transaction"
 msgstr "Xác định tình trạng giao dịch này"
 
 #: src/billsdepositsdialog.cpp:497 src/billsdepositspanel.cpp:113
-#: src/filtertransdialog.cpp:237 src/import_export/qif_import_gui.cpp:229
-#: src/import_export/qif_import_gui.cpp:241
-#: src/import_export/qif_import_gui.cpp:252 src/mmcheckingpanel.cpp:980
+#: src/filtertransdialog.cpp:237 src/import_export/qif_import_gui.cpp:231
+#: src/import_export/qif_import_gui.cpp:243
+#: src/import_export/qif_import_gui.cpp:254 src/mmcheckingpanel.cpp:980
 #: src/reports/transactions.cpp:68 src/transdialog.cpp:348
 #: src/webappdialog.cpp:81
 msgid "Status"
 msgstr "Tình trạng"
 
 #: src/billsdepositsdialog.cpp:511 src/splitdetailsdialog.cpp:119
-#: src/transdialog.cpp:1041
+#: src/transdialog.cpp:1040
 msgid "Specify the type of transactions to be created."
 msgstr "Xác định loại giao dịch"
 
@@ -883,12 +882,12 @@ msgstr "Xác định loại giao dịch"
 msgid "&Advanced"
 msgstr "Chi tiết"
 
-#: src/billsdepositsdialog.cpp:515 src/transdialog.cpp:1045
+#: src/billsdepositsdialog.cpp:515 src/transdialog.cpp:1044
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Cho phép ghi số tiền khác nhau ở tài khoản gửi và tài khoản nhận"
 
 #: src/billsdepositsdialog.cpp:525 src/billsdepositsdialog.cpp:799
-#: src/transdialog.cpp:1029
+#: src/transdialog.cpp:1028
 msgid "Specify the amount for this transaction"
 msgstr "Nhập số tiền giao dịch"
 
@@ -898,7 +897,7 @@ msgstr "Nhập số tiền sẽ chuyển"
 
 #: src/billsdepositsdialog.cpp:528 src/billsdepositspanel.cpp:116
 #: src/budgetingpanel.cpp:318 src/mmhomepagepanel.cpp:382
-#: src/mmhomepagepanel.cpp:758 src/reports/budgetcategorysummary.cpp:110
+#: src/mmhomepagepanel.cpp:762 src/reports/budgetcategorysummary.cpp:110
 #: src/reports/categexp.cpp:136 src/reports/incexpenses.cpp:124
 #: src/reports/transactions.cpp:73 src/splitdetailsdialog.cpp:122
 #: src/splittransactionsdialog.cpp:134 src/transdialog.cpp:385
@@ -906,15 +905,15 @@ msgstr "Nhập số tiền sẽ chuyển"
 msgid "Amount"
 msgstr "Số tiền"
 
-#: src/billsdepositsdialog.cpp:540 src/transdialog.cpp:1025
+#: src/billsdepositsdialog.cpp:540 src/transdialog.cpp:1024
 msgid "Specify the transfer amount in the To Account"
 msgstr "Nhập số tiền sẽ chuyển trong tài khoản gửi"
 
 #: src/billsdepositsdialog.cpp:552 src/billsdepositspanel.cpp:111
-#: src/filtertransdialog.cpp:175 src/import_export/qif_import_gui.cpp:91
-#: src/import_export/qif_import_gui.cpp:151
-#: src/import_export/qif_import_gui.cpp:221
-#: src/import_export/qif_import_gui.cpp:686 src/reports/transactions.cpp:66
+#: src/filtertransdialog.cpp:175 src/import_export/qif_import_gui.cpp:93
+#: src/import_export/qif_import_gui.cpp:153
+#: src/import_export/qif_import_gui.cpp:223
+#: src/import_export/qif_import_gui.cpp:703 src/reports/transactions.cpp:66
 #: src/transdialog.cpp:220 src/transdialog.cpp:392 src/webappdialog.cpp:80
 msgid "Account"
 msgstr "Tài khoản"
@@ -930,8 +929,8 @@ msgstr ""
 
 #: src/billsdepositsdialog.cpp:558 src/billsdepositsdialog.cpp:862
 #: src/billsdepositspanel.cpp:112 src/filtertransdialog.cpp:204
-#: src/import_export/qif_import_gui.cpp:94
-#: src/import_export/qif_import_gui.cpp:234
+#: src/import_export/qif_import_gui.cpp:96
+#: src/import_export/qif_import_gui.cpp:236
 #: src/import_export/univcsvdialog.cpp:77 src/mmcheckingpanel.cpp:979
 #: src/mmhomepagepanel.cpp:382 src/reports/payee.cpp:113
 #: src/reports/transactions.cpp:67 src/transdialog.cpp:216
@@ -951,14 +950,14 @@ msgstr "Nhập đối tượng nhận giao dịch"
 msgid "Split"
 msgstr "Nhiều hạng mục"
 
-#: src/billsdepositsdialog.cpp:573 src/transdialog.cpp:1042
+#: src/billsdepositsdialog.cpp:573 src/transdialog.cpp:1041
 msgid "Use split Categories"
 msgstr "Chia ra nhiều hạng mục"
 
 #: src/billsdepositsdialog.cpp:579 src/billsdepositspanel.cpp:114
 #: src/budgetingpanel.cpp:315 src/filtertransdialog.cpp:215
-#: src/import_export/qif_import_gui.cpp:96
-#: src/import_export/qif_import_gui.cpp:246
+#: src/import_export/qif_import_gui.cpp:98
+#: src/import_export/qif_import_gui.cpp:248
 #: src/import_export/univcsvdialog.cpp:79 src/mmcheckingpanel.cpp:981
 #: src/mmhomepagepanel.cpp:201 src/reports/budgetcategorysummary.cpp:109
 #: src/reports/budgetingperf.cpp:128 src/reports/categexp.cpp:135
@@ -973,12 +972,12 @@ msgstr "Hạng mục"
 msgid "Select Category"
 msgstr "Chọn hạng mục"
 
-#: src/billsdepositsdialog.cpp:590 src/transdialog.cpp:1043
+#: src/billsdepositsdialog.cpp:590 src/transdialog.cpp:1042
 msgid "Specify any associated check number or transaction number"
 msgstr "Nhập số hóa đơn liên quan hoặc số giao dịch để tham khảo"
 
 #: src/billsdepositsdialog.cpp:592 src/billsdepositspanel.cpp:121
-#: src/filtertransdialog.cpp:297 src/import_export/qif_import_gui.cpp:93
+#: src/filtertransdialog.cpp:297 src/import_export/qif_import_gui.cpp:95
 #: src/import_export/univcsvdialog.cpp:81 src/mmcheckingpanel.cpp:978
 #: src/reports/transactions.cpp:71 src/transdialog.cpp:435
 msgid "Number"
@@ -992,7 +991,7 @@ msgstr ""
 msgid "Select one of the frequently used notes"
 msgstr "Chọn những mục thường xuyên ghi"
 
-#: src/billsdepositsdialog.cpp:615 src/transdialog.cpp:1044
+#: src/billsdepositsdialog.cpp:615 src/transdialog.cpp:1043
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Nhập ghi chú cho giao dịch nếu cần"
 
@@ -1026,7 +1025,7 @@ msgstr "Tới"
 msgid "Select To Account"
 msgstr "Chọn tài khoản nhận"
 
-#: src/billsdepositsdialog.cpp:874 src/transdialog.cpp:1034
+#: src/billsdepositsdialog.cpp:874 src/transdialog.cpp:1033
 msgid "Specify where the transaction is coming from"
 msgstr "Nhập đối tượng thực hiện giao dịch"
 
@@ -1070,12 +1069,12 @@ msgstr ""
 msgid "Leave blank if this series continues forever."
 msgstr ""
 
-#: src/billsdepositsdialog.cpp:1425 src/transdialog.cpp:1002
+#: src/billsdepositsdialog.cpp:1425 src/transdialog.cpp:1001
 msgid "Specify the category for this transaction"
 msgstr "Chọn hạng mục cho giao dịch này"
 
 #: src/billsdepositsdialog.cpp:1443 src/categdialog.cpp:111
-#: src/import_export/qif_export.cpp:115 src/mmframereport.cpp:148
+#: src/import_export/qif_export.cpp:115 src/mmframereport.cpp:149
 #: src/transdialog.cpp:275 src/reports/categexp.h:191
 msgid "Categories"
 msgstr "Hạng mục"
@@ -1250,7 +1249,7 @@ msgstr "Loại:"
 msgid "Expense"
 msgstr "Chi"
 
-#: src/budgetentrydialog.cpp:128 src/mmhomepagepanel.cpp:759
+#: src/budgetentrydialog.cpp:128 src/mmhomepagepanel.cpp:763
 #: src/model/Model_Category.cpp:191 src/reports/incexpenses.cpp:101
 #: src/reports/incexpenses.cpp:228
 msgid "Income"
@@ -1608,7 +1607,7 @@ msgstr "Đóng"
 msgid "Close"
 msgstr "Đóng"
 
-#: src/constants.cpp:81 src/import_export/qif_import_gui.cpp:272
+#: src/constants.cpp:81 src/import_export/qif_import_gui.cpp:274
 #: src/maincurrencydialog.cpp:202 src/stockdialog.cpp:328
 #, fuzzy
 msgid "&Close "
@@ -1783,23 +1782,23 @@ msgstr "Lỗi"
 msgid "Opening MMEX Database - Error"
 msgstr ""
 
-#: src/filtertransdialog.cpp:49 src/mmhomepagepanel.cpp:687
-#: src/model/Model_Billsdeposits.cpp:35 src/model/Model_Checking.cpp:35
+#: src/filtertransdialog.cpp:49 src/mmhomepagepanel.cpp:688
+#: src/model/Model_Billsdeposits.cpp:35 src/model/Model_Checking.cpp:36
 msgid "Reconciled"
 msgstr "Đã đối chiếu"
 
 #: src/filtertransdialog.cpp:50 src/model/Model_Billsdeposits.cpp:36
-#: src/model/Model_Checking.cpp:36
+#: src/model/Model_Checking.cpp:37
 msgid "Void"
 msgstr "Đã hủy"
 
 #: src/filtertransdialog.cpp:51 src/model/Model_Billsdeposits.cpp:37
-#: src/model/Model_Checking.cpp:37
+#: src/model/Model_Checking.cpp:38
 msgid "Follow up"
 msgstr "Cần theo dõi"
 
 #: src/filtertransdialog.cpp:52 src/model/Model_Billsdeposits.cpp:38
-#: src/model/Model_Checking.cpp:38
+#: src/model/Model_Checking.cpp:39
 msgid "Duplicate"
 msgstr "Trùng lặp"
 
@@ -1832,14 +1831,14 @@ msgstr "Dời toàn bộ giao dịch từ hạng mục nguồn sang hạng mục
 
 #: src/filtertransdialog.cpp:256 src/import_export/univcsvdialog.cpp:84
 #: src/mmcheckingpanel.cpp:982 src/model/Model_Billsdeposits.cpp:27
-#: src/model/Model_Checking.cpp:27 src/splitdetailsdialog.cpp:112
+#: src/model/Model_Checking.cpp:28 src/splitdetailsdialog.cpp:112
 #: src/splittransactionsdialog.cpp:143
 msgid "Withdrawal"
 msgstr "Chi"
 
 #: src/filtertransdialog.cpp:258 src/import_export/univcsvdialog.cpp:85
 #: src/mmcheckingpanel.cpp:983 src/model/Model_Billsdeposits.cpp:28
-#: src/model/Model_Checking.cpp:28 src/splitdetailsdialog.cpp:113
+#: src/model/Model_Checking.cpp:29 src/splitdetailsdialog.cpp:113
 #: src/splittransactionsdialog.cpp:148
 msgid "Deposit"
 msgstr "Thu"
@@ -1869,7 +1868,7 @@ msgid "Invalid Amount Entered "
 msgstr "Số tiền không hợp lệ "
 
 #: src/filtertransdialog.cpp:423 src/filtertransdialog.cpp:433
-#: src/import_export/qif_import_gui.cpp:733 src/maincurrencydialog.cpp:434
+#: src/import_export/qif_import_gui.cpp:750 src/maincurrencydialog.cpp:434
 #: src/mmSimpleDialogs.cpp:153 src/mmframe.cpp:2784
 #: src/splittransactionsdialog.cpp:211 src/stockspanel.cpp:717
 #: src/stockspanel.cpp:718
@@ -2067,7 +2066,7 @@ msgstr "Xuất ra QIF"
 msgid "Parameters"
 msgstr "Đối tượng giao dịch"
 
-#: src/import_export/qif_export.cpp:97 src/import_export/qif_import_gui.cpp:193
+#: src/import_export/qif_export.cpp:97 src/import_export/qif_import_gui.cpp:195
 #, fuzzy
 msgid "Log"
 msgstr "Nhà trọ"
@@ -2080,25 +2079,26 @@ msgstr ""
 msgid "CSV"
 msgstr ""
 
-#: src/import_export/qif_export.cpp:121 src/mmframe.cpp:2498
-#: src/mmframe.cpp:2502 src/mmframe.cpp:2521 src/mmframe.cpp:2525
+#: src/import_export/qif_export.cpp:121 src/mmframe.cpp:502 src/mmframe.cpp:714
+#: src/mmframe.cpp:2498 src/mmframe.cpp:2502 src/mmframe.cpp:2521
+#: src/mmframe.cpp:2525 src/mmhomepagepanel.cpp:675
 msgid "Accounts"
 msgstr "Tài khoản"
 
 #: src/import_export/qif_export.cpp:132
-#: src/import_export/qif_import_gui.cpp:171
+#: src/import_export/qif_import_gui.cpp:173
 #, fuzzy
 msgid "From Date"
 msgstr "Từ "
 
 #: src/import_export/qif_export.cpp:141
-#: src/import_export/qif_import_gui.cpp:180
+#: src/import_export/qif_import_gui.cpp:182
 #, fuzzy
 msgid "To Date"
 msgstr "Ngày"
 
 #: src/import_export/qif_export.cpp:154
-#: src/import_export/qif_import_gui.cpp:137 src/mmOptionGeneralSettings.cpp:110
+#: src/import_export/qif_import_gui.cpp:139 src/mmOptionGeneralSettings.cpp:110
 msgid "Date Format"
 msgstr "Kiểu ngày"
 
@@ -2107,13 +2107,13 @@ msgid "Write to File"
 msgstr ""
 
 #: src/import_export/qif_export.cpp:169
-#: src/import_export/qif_import_gui.cpp:121
+#: src/import_export/qif_import_gui.cpp:123
 #: src/import_export/univcsvdialog.cpp:138
 msgid "File Name:"
 msgstr ""
 
 #: src/import_export/qif_export.cpp:170
-#: src/import_export/qif_import_gui.cpp:122
+#: src/import_export/qif_import_gui.cpp:124
 msgid "Choose &file"
 msgstr ""
 
@@ -2127,7 +2127,7 @@ msgid "Choose Account to Export from:"
 msgstr "Chọn tài khỏan để xuất:"
 
 #: src/import_export/qif_export.cpp:273
-#: src/import_export/qif_import_gui.cpp:616
+#: src/import_export/qif_import_gui.cpp:633
 msgid "QIF Files"
 msgstr "Tệp QIF"
 
@@ -2169,8 +2169,8 @@ msgid "Categories exported"
 msgstr "Báo cáo hạng mục"
 
 #: src/import_export/qif_export.cpp:397
-#: src/import_export/qif_import_gui.cpp:303
-#: src/import_export/qif_import_gui.cpp:681
+#: src/import_export/qif_import_gui.cpp:307
+#: src/import_export/qif_import_gui.cpp:698
 #, fuzzy
 msgid "Please wait"
 msgstr "Xin chờ"
@@ -2194,23 +2194,24 @@ msgstr "Báo cáo giao dịch"
 msgid "Export to QIF"
 msgstr "Xuất ra QIF"
 
-#: src/import_export/qif_import_gui.cpp:76
-#: src/import_export/qif_import_gui.cpp:756
+#: src/import_export/qif_import_gui.cpp:78
+#: src/import_export/qif_import_gui.cpp:773
 msgid "QIF Import"
 msgstr "Nhập QIF"
 
-#: src/import_export/qif_import_gui.cpp:165
+#: src/import_export/qif_import_gui.cpp:167
 #, fuzzy
 msgid "Filtering Details:"
 msgstr "Chi tiết lọc: "
 
-#: src/import_export/qif_import_gui.cpp:202
+#: src/import_export/qif_import_gui.cpp:204
 msgid "Data"
 msgstr ""
 
-#: src/import_export/qif_import_gui.cpp:297
-#: src/import_export/qif_import_gui.cpp:439
-#: src/import_export/qif_import_gui.cpp:901
+#: src/import_export/qif_import_gui.cpp:299
+#: src/import_export/qif_import_gui.cpp:301
+#: src/import_export/qif_import_gui.cpp:451
+#: src/import_export/qif_import_gui.cpp:921
 #: src/import_export/univcsvdialog.cpp:499
 #: src/import_export/univcsvdialog.cpp:559
 #: src/import_export/univcsvdialog.cpp:563
@@ -2220,115 +2221,122 @@ msgstr ""
 msgid "Unknown"
 msgstr "Không rõ"
 
-#: src/import_export/qif_import_gui.cpp:303
+#: src/import_export/qif_import_gui.cpp:307
 #, fuzzy
 msgid "Scanning"
 msgstr "Cảnh báo"
 
-#: src/import_export/qif_import_gui.cpp:321
+#: src/import_export/qif_import_gui.cpp:325
 #, c-format
 msgid "Reading line %i, %ld ms"
 msgstr ""
 
-#: src/import_export/qif_import_gui.cpp:327
+#: src/import_export/qif_import_gui.cpp:331
 #, fuzzy, c-format
 msgid "Line %i \t %s\n"
 msgstr "Dòng: "
 
-#: src/import_export/qif_import_gui.cpp:383
+#: src/import_export/qif_import_gui.cpp:389
 #, fuzzy, c-format
 msgid "Number of lines read from QIF file: %i in %ld ms"
 msgstr "Báo cáo giao dịch"
 
-#: src/import_export/qif_import_gui.cpp:386
+#: src/import_export/qif_import_gui.cpp:392
 msgid "Press OK Button to continue"
 msgstr ""
 
-#: src/import_export/qif_import_gui.cpp:527
-#: src/import_export/qif_import_gui.cpp:546
-#: src/import_export/qif_import_gui.cpp:563
+#: src/import_export/qif_import_gui.cpp:542
+#: src/import_export/qif_import_gui.cpp:561
+#: src/import_export/qif_import_gui.cpp:578
 msgid "OK"
 msgstr "Xong"
 
-#: src/import_export/qif_import_gui.cpp:529
+#: src/import_export/qif_import_gui.cpp:544
 #, fuzzy
 msgid "Warning"
 msgstr "Cảnh báo"
 
-#: src/import_export/qif_import_gui.cpp:532
-#: src/import_export/qif_import_gui.cpp:546
+#: src/import_export/qif_import_gui.cpp:547
+#: src/import_export/qif_import_gui.cpp:561
+#: src/import_export/qif_import_gui.cpp:576
 #, fuzzy
 msgid "Missing"
 msgstr "Tài khoản ngân hàng"
 
-#: src/import_export/qif_import_gui.cpp:617
+#: src/import_export/qif_import_gui.cpp:634
 #, fuzzy
 msgid "Choose QIF data file to Import"
 msgstr "Chọn tệp dữ liệu QIF để nhập"
 
-#: src/import_export/qif_import_gui.cpp:674
+#: src/import_export/qif_import_gui.cpp:691
 #, fuzzy
 msgid "Do you want to import all transaction ?"
 msgstr "Bạn thực sự muốn xóa tất cả các giao dịch đang xem?"
 
-#: src/import_export/qif_import_gui.cpp:675
+#: src/import_export/qif_import_gui.cpp:692
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
-#: src/import_export/qif_import_gui.cpp:676
+#: src/import_export/qif_import_gui.cpp:693
 msgid "Confirm Import"
 msgstr ""
 
-#: src/import_export/qif_import_gui.cpp:681
+#: src/import_export/qif_import_gui.cpp:698
 #, fuzzy
 msgid "Importing"
 msgstr "&Nhập"
 
-#: src/import_export/qif_import_gui.cpp:683
+#: src/import_export/qif_import_gui.cpp:700
 #, fuzzy
 msgid "Importing Accounts"
 msgstr "Ghi chú quan trọng"
 
-#: src/import_export/qif_import_gui.cpp:689
+#: src/import_export/qif_import_gui.cpp:706
 #, fuzzy
 msgid "Importing Payees"
 msgstr "&Nhập"
 
-#: src/import_export/qif_import_gui.cpp:692
+#: src/import_export/qif_import_gui.cpp:709
 #, fuzzy
 msgid "Importing Categories"
 msgstr "Quản lí các hạng mục thu chi"
 
-#: src/import_export/qif_import_gui.cpp:707
+#: src/import_export/qif_import_gui.cpp:724
 #, fuzzy, c-format
 msgid "Importing transaction %i of %i"
 msgstr "Chuyển giao dịch từ "
 
-#: src/import_export/qif_import_gui.cpp:738
+#: src/import_export/qif_import_gui.cpp:755
 #, fuzzy
 msgid "Importing Transfers"
 msgstr "&Nhập"
 
-#: src/import_export/qif_import_gui.cpp:742
+#: src/import_export/qif_import_gui.cpp:759
 #, fuzzy
 msgid "Importing Split transactions"
 msgstr "Các giao dịch sắp tới"
 
-#: src/import_export/qif_import_gui.cpp:746
+#: src/import_export/qif_import_gui.cpp:763
 msgid "Import finished successfully"
 msgstr ""
 
-#: src/import_export/qif_import_gui.cpp:754
+#: src/import_export/qif_import_gui.cpp:763
+#: src/import_export/univcsvdialog.cpp:736 src/stockdialog.cpp:601
+#, fuzzy, c-format
+msgid "Total Imported : %ld"
+msgstr "Đã trích nhập tổng cộng : "
+
+#: src/import_export/qif_import_gui.cpp:771
 #: src/import_export/univcsvdialog.cpp:764
 msgid "Imported transactions discarded by user!"
 msgstr "Các giao dịch đã bị người dùng bãi bỏ!"
 
-#: src/import_export/qif_import_gui.cpp:950
+#: src/import_export/qif_import_gui.cpp:970
 #, fuzzy, c-format
 msgid "Added account: %s"
 msgstr "sang tài khoản "
 
-#: src/import_export/qif_import_gui.cpp:981
+#: src/import_export/qif_import_gui.cpp:999
 #: src/import_export/univcsvdialog.cpp:567
 #, fuzzy, c-format
 msgid "Added payee: %s"
@@ -2347,8 +2355,7 @@ msgid "Don't Care"
 msgstr "Không quan tâm"
 
 #: src/import_export/univcsvdialog.cpp:86 src/mmcheckingpanel.cpp:984
-#: src/mmhomepagepanel.cpp:688 src/reports/summary.cpp:135
-#: src/reports/summary.cpp:137 src/reports/summary.cpp:227
+#: src/mmhomepagepanel.cpp:689 src/reports/summary.cpp:158
 msgid "Balance"
 msgstr "Số dư"
 
@@ -2496,11 +2503,6 @@ msgstr " đã nhập xong."
 msgid "Total Lines : %ld"
 msgstr "Dòng: "
 
-#: src/import_export/univcsvdialog.cpp:736 src/stockdialog.cpp:601
-#, fuzzy, c-format
-msgid "Total Imported : %ld"
-msgstr "Đã trích nhập tổng cộng : "
-
 #: src/import_export/univcsvdialog.cpp:738
 #, c-format
 msgid "Log file written to : %s"
@@ -2609,7 +2611,7 @@ msgstr ""
 
 #: src/maincurrencydialog.cpp:412
 #, c-format
-msgid "%s\t: %0.4f -> %0.4f\n"
+msgid "%s\t: %0.6f -> %0.6f\n"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:421
@@ -3432,16 +3434,12 @@ msgstr ""
 msgid "Toolbar"
 msgstr "&Thanh công cụ"
 
-#: src/mmframe.cpp:502 src/mmframe.cpp:714
-msgid "Bank Accounts"
-msgstr "Tài khoản ngân hàng"
-
-#: src/mmframe.cpp:503 src/mmframe.cpp:721 src/reports/summary.cpp:225
+#: src/mmframe.cpp:503 src/mmframe.cpp:721 src/reports/summary.cpp:155
 msgid "Term Accounts"
 msgstr "Tài khoản có kì hạn"
 
 #: src/mmframe.cpp:504 src/mmframe.cpp:724 src/mmhomepagepanel.cpp:64
-#: src/mmhomepagepanel.cpp:82 src/reports/summary.cpp:226
+#: src/mmhomepagepanel.cpp:82 src/reports/summary.cpp:157
 msgid "Stocks"
 msgstr "Chứng khoán"
 
@@ -3457,7 +3455,7 @@ msgstr "Mục lục"
 msgid "Home Page"
 msgstr "Trang chính"
 
-#: src/mmframe.cpp:717 src/mmhomepagepanel.cpp:685 src/reports/summary.cpp:224
+#: src/mmframe.cpp:717 src/mmhomepagepanel.cpp:678 src/reports/summary.cpp:154
 #, fuzzy
 msgid "Credit Card Accounts"
 msgstr "Sửa tài khoản"
@@ -4113,68 +4111,68 @@ msgstr ""
 msgid "Monthly Summary of Accounts"
 msgstr "Tổng kết các tài khoản"
 
-#: src/mmframereport.cpp:134 src/reports/categexp.h:57
+#: src/mmframereport.cpp:135 src/reports/categexp.h:57
 msgid "Where the Money Goes"
 msgstr "Tiền đi đâu"
 
-#: src/mmframereport.cpp:141 src/reports/categexp.h:124
+#: src/mmframereport.cpp:142 src/reports/categexp.h:124
 msgid "Where the Money Comes From"
 msgstr "Tiền đến từ đâu"
 
-#: src/mmframereport.cpp:155
+#: src/mmframereport.cpp:156
 msgid "Payees"
 msgstr "Đối tượng giao dịch"
 
-#: src/mmframereport.cpp:162 src/reports/incexpenses.cpp:27
+#: src/mmframereport.cpp:163 src/reports/incexpenses.cpp:27
 #: src/reports/incexpenses.cpp:148
 msgid "Income vs Expenses"
 msgstr "Thu / Chi"
 
-#: src/mmframereport.cpp:166 src/mmframereport.cpp:245
-#: src/mmframereport.cpp:430 src/mmframereport.cpp:514
-#: src/mmframereport.cpp:601 src/mmframereport.cpp:684
+#: src/mmframereport.cpp:167 src/mmframereport.cpp:246
+#: src/mmframereport.cpp:431 src/mmframereport.cpp:515
+#: src/mmframereport.cpp:602 src/mmframereport.cpp:685
 msgid "Last Calendar Month"
 msgstr "Tháng trước"
 
-#: src/mmframereport.cpp:174 src/mmframereport.cpp:253
-#: src/mmframereport.cpp:438 src/mmframereport.cpp:522
-#: src/mmframereport.cpp:609 src/mmframereport.cpp:692
+#: src/mmframereport.cpp:175 src/mmframereport.cpp:254
+#: src/mmframereport.cpp:439 src/mmframereport.cpp:523
+#: src/mmframereport.cpp:610 src/mmframereport.cpp:693
 #: src/reports/categexp.cpp:205 src/reports/categexp.cpp:269
 #: src/reports/categexp.cpp:334 src/reports/mmDateRange.cpp:90
 #: src/reports/payee.h:66
 msgid "Current Month to Date"
 msgstr "Đầu tháng đến nay"
 
-#: src/mmframereport.cpp:182 src/mmframereport.cpp:261
-#: src/mmframereport.cpp:446 src/mmframereport.cpp:530
-#: src/mmframereport.cpp:617 src/mmframereport.cpp:700
+#: src/mmframereport.cpp:183 src/mmframereport.cpp:262
+#: src/mmframereport.cpp:447 src/mmframereport.cpp:531
+#: src/mmframereport.cpp:618 src/mmframereport.cpp:701
 #: src/reports/categexp.cpp:199 src/reports/categexp.cpp:263
 #: src/reports/categexp.cpp:328 src/reports/mmDateRange.cpp:74
 #: src/reports/payee.h:58
 msgid "Current Month"
 msgstr "Tháng này"
 
-#: src/mmframereport.cpp:188 src/mmframereport.cpp:267
-#: src/mmframereport.cpp:378 src/mmframereport.cpp:453
-#: src/mmframereport.cpp:537 src/mmframereport.cpp:623
-#: src/mmframereport.cpp:707 src/reports/categexp.cpp:217
+#: src/mmframereport.cpp:189 src/mmframereport.cpp:268
+#: src/mmframereport.cpp:379 src/mmframereport.cpp:454
+#: src/mmframereport.cpp:538 src/mmframereport.cpp:624
+#: src/mmframereport.cpp:708 src/reports/categexp.cpp:217
 #: src/reports/categexp.cpp:281 src/reports/categexp.cpp:345
 #: src/reports/mmDateRange.cpp:108 src/reports/payee.h:82
 msgid "Last 30 Days"
 msgstr "30 ngày trước"
 
-#: src/mmframereport.cpp:193 src/mmframereport.cpp:272
-#: src/mmframereport.cpp:386 src/mmframereport.cpp:458
-#: src/mmframereport.cpp:543 src/mmframereport.cpp:628
-#: src/mmframereport.cpp:713 src/reports/categexp.cpp:223
+#: src/mmframereport.cpp:194 src/mmframereport.cpp:273
+#: src/mmframereport.cpp:387 src/mmframereport.cpp:459
+#: src/mmframereport.cpp:544 src/mmframereport.cpp:629
+#: src/mmframereport.cpp:714 src/reports/categexp.cpp:223
 #: src/reports/categexp.cpp:287 src/reports/categexp.cpp:350
 #: src/reports/mmDateRange.cpp:162 src/reports/payee.h:90
 msgid "Last Year"
 msgstr "Năm ngoái"
 
-#: src/mmframereport.cpp:200 src/mmframereport.cpp:279
-#: src/mmframereport.cpp:466 src/mmframereport.cpp:551
-#: src/mmframereport.cpp:636 src/mmframereport.cpp:721
+#: src/mmframereport.cpp:201 src/mmframereport.cpp:280
+#: src/mmframereport.cpp:467 src/mmframereport.cpp:552
+#: src/mmframereport.cpp:637 src/mmframereport.cpp:722
 #: src/reports/categexp.cpp:234 src/reports/categexp.cpp:299
 #: src/reports/categexp.cpp:362 src/reports/mmDateRange.cpp:154
 #: src/reports/payee.h:106
@@ -4182,27 +4180,27 @@ msgstr "Năm ngoái"
 msgid "Current Year to Date"
 msgstr "Đầu tháng đến nay"
 
-#: src/mmframereport.cpp:207 src/mmframereport.cpp:286
-#: src/mmframereport.cpp:390 src/mmframereport.cpp:474
-#: src/mmframereport.cpp:559 src/mmframereport.cpp:644
-#: src/mmframereport.cpp:729 src/reports/categexp.cpp:228
+#: src/mmframereport.cpp:208 src/mmframereport.cpp:287
+#: src/mmframereport.cpp:391 src/mmframereport.cpp:475
+#: src/mmframereport.cpp:560 src/mmframereport.cpp:645
+#: src/mmframereport.cpp:730 src/reports/categexp.cpp:228
 #: src/reports/categexp.cpp:293 src/reports/categexp.cpp:356
 #: src/reports/mmDateRange.cpp:146 src/reports/payee.h:98
 msgid "Current Year"
 msgstr "Năm nay"
 
-#: src/mmframereport.cpp:216 src/mmframereport.cpp:295
-#: src/mmframereport.cpp:485 src/mmframereport.cpp:570
-#: src/mmframereport.cpp:653 src/mmframereport.cpp:738
+#: src/mmframereport.cpp:217 src/mmframereport.cpp:296
+#: src/mmframereport.cpp:486 src/mmframereport.cpp:571
+#: src/mmframereport.cpp:654 src/mmframereport.cpp:739
 #: src/reports/categexp.cpp:240 src/reports/categexp.cpp:305
 #: src/reports/categexp.cpp:368 src/reports/mmDateRange.cpp:202
 #: src/reports/payee.h:114
 msgid "Last Financial Year"
 msgstr "Tài khóa trước"
 
-#: src/mmframereport.cpp:224 src/mmframereport.cpp:303
-#: src/mmframereport.cpp:493 src/mmframereport.cpp:578
-#: src/mmframereport.cpp:661 src/mmframereport.cpp:746
+#: src/mmframereport.cpp:225 src/mmframereport.cpp:304
+#: src/mmframereport.cpp:494 src/mmframereport.cpp:579
+#: src/mmframereport.cpp:662 src/mmframereport.cpp:747
 #: src/reports/categexp.cpp:252 src/reports/categexp.cpp:317
 #: src/reports/categexp.cpp:380 src/reports/mmDateRange.cpp:192
 #: src/reports/payee.h:130
@@ -4210,64 +4208,64 @@ msgstr "Tài khóa trước"
 msgid "Current Financial Year to Date"
 msgstr "Tài khóa hiện tại"
 
-#: src/mmframereport.cpp:232 src/mmframereport.cpp:311
-#: src/mmframereport.cpp:501 src/mmframereport.cpp:586
-#: src/mmframereport.cpp:669 src/mmframereport.cpp:754
+#: src/mmframereport.cpp:233 src/mmframereport.cpp:312
+#: src/mmframereport.cpp:502 src/mmframereport.cpp:587
+#: src/mmframereport.cpp:670 src/mmframereport.cpp:755
 #: src/reports/categexp.cpp:246 src/reports/categexp.cpp:311
 #: src/reports/categexp.cpp:374 src/reports/mmDateRange.cpp:182
 #: src/reports/payee.h:122
 msgid "Current Financial Year"
 msgstr "Tài khóa hiện tại"
 
-#: src/mmframereport.cpp:241
+#: src/mmframereport.cpp:242
 #, fuzzy
 msgid "Income vs Expenses - Specific Accounts"
 msgstr "Thu / Chi - Tháng này"
 
-#: src/mmframereport.cpp:327
+#: src/mmframereport.cpp:328
 msgid "Budget Performance"
 msgstr "Hiệu quả dự toán"
 
-#: src/mmframereport.cpp:330
+#: src/mmframereport.cpp:331
 msgid "Budget Category Summary"
 msgstr "Tóm lược hạng mục dự toán"
 
-#: src/mmframereport.cpp:352 src/reports/cashflow.cpp:33
+#: src/mmframereport.cpp:353 src/reports/cashflow.cpp:33
 msgid "Cash Flow"
 msgstr "Dòng tiền"
 
-#: src/mmframereport.cpp:355
+#: src/mmframereport.cpp:356
 msgid "Cash Flow - With Bank Accounts"
 msgstr "Dòng tiền - Tài khoản ngân hàng"
 
-#: src/mmframereport.cpp:358
+#: src/mmframereport.cpp:359
 msgid "Cash Flow - With Term Accounts"
 msgstr "Dòng tiền - Tài khoản có kì hạn"
 
-#: src/mmframereport.cpp:361
+#: src/mmframereport.cpp:362
 msgid "Cash Flow - Specific Accounts"
 msgstr "Dòng tiền - Tài khoản cụ thể"
 
-#: src/mmframereport.cpp:364
+#: src/mmframereport.cpp:365
 #, fuzzy
 msgid "Daily Cash Flow - Specific Accounts"
 msgstr "Dòng tiền - Tài khoản cụ thể"
 
-#: src/mmframereport.cpp:369
+#: src/mmframereport.cpp:370
 msgid "Transaction Report"
 msgstr "Báo cáo giao dịch"
 
-#: src/mmframereport.cpp:374
+#: src/mmframereport.cpp:375
 #, fuzzy
 msgid "Stocks Report"
 msgstr "Tổng kết chứng khoán:"
 
-#: src/mmframereport.cpp:382 src/reports/mmDateRange.cpp:230
+#: src/mmframereport.cpp:383 src/reports/mmDateRange.cpp:230
 #, fuzzy
 msgid "Last 365 Days"
 msgstr "30 ngày trước"
 
-#: src/mmframereport.cpp:394
+#: src/mmframereport.cpp:395
 #, fuzzy
 msgid "All Time"
 msgstr "Tất cả tệp"
@@ -4289,12 +4287,13 @@ msgstr " Trợ giúp"
 msgid "Gain/Loss"
 msgstr "Lãi / Lỗ"
 
-#: src/mmhomepagepanel.cpp:83 src/reports/cashflow.cpp:279
+#: src/mmhomepagepanel.cpp:83 src/reports/cashflow.cpp:278
 #: src/reports/categexp.cpp:137 src/reports/categovertimeperf.cpp:140
+#: src/reports/summary.cpp:156
 msgid "Total"
 msgstr "Tổng cộng"
 
-#: src/mmhomepagepanel.cpp:106 src/mmhomepagepanel.cpp:721
+#: src/mmhomepagepanel.cpp:106 src/mmhomepagepanel.cpp:725
 #: src/reports/incexpenses.cpp:259 src/reports/payee.cpp:138
 #: src/reports/summarystocks.cpp:131 src/splittransactionsdialog.cpp:139
 msgid "Total:"
@@ -4309,53 +4308,49 @@ msgstr "Chi nhiều nhất: "
 msgid "Summary"
 msgstr "Tóm lược"
 
-#: src/mmhomepagepanel.cpp:587
+#: src/mmhomepagepanel.cpp:582
 msgid "Upcoming Transactions"
 msgstr "Các giao dịch sắp tới"
 
-#: src/mmhomepagepanel.cpp:685 src/reports/summary.cpp:223
-msgid "Bank Account"
-msgstr "Tài khoản ngân hàng"
-
-#: src/mmhomepagepanel.cpp:685
+#: src/mmhomepagepanel.cpp:676
 #, fuzzy
 msgid "Term Account"
 msgstr "Tài khoản có kì hạn"
 
-#: src/mmhomepagepanel.cpp:756 src/reports/incexpenses.cpp:29
+#: src/mmhomepagepanel.cpp:760 src/reports/incexpenses.cpp:29
 #: src/reports/incexpenses.cpp:152
 #, fuzzy, c-format
 msgid "Income vs Expenses: %s"
 msgstr "Thu / Chi: "
 
-#: src/mmhomepagepanel.cpp:761 src/reports/categovertimeperf.cpp:139
+#: src/mmhomepagepanel.cpp:765 src/reports/categovertimeperf.cpp:139
 #: src/reports/incexpenses.cpp:105 src/reports/incexpenses.cpp:229
 #: src/reports/payee.cpp:115
 msgid "Expenses"
 msgstr "Chi"
 
-#: src/mmhomepagepanel.cpp:763 src/reports/incexpenses.cpp:131
+#: src/mmhomepagepanel.cpp:767 src/reports/incexpenses.cpp:131
 msgid "Difference:"
 msgstr "Chênh lệch:"
 
-#: src/mmhomepagepanel.cpp:765
+#: src/mmhomepagepanel.cpp:769
 #, fuzzy
 msgid "Income/Expenses"
 msgstr "Thu / Chi"
 
-#: src/mmhomepagepanel.cpp:796
+#: src/mmhomepagepanel.cpp:800
 msgid "Transaction Statistics"
 msgstr "Thống kê giao dịch"
 
-#: src/mmhomepagepanel.cpp:799
+#: src/mmhomepagepanel.cpp:803
 msgid "Follow Up On Transactions: "
 msgstr "Giao dịch cần theo dõi: "
 
-#: src/mmhomepagepanel.cpp:801
+#: src/mmhomepagepanel.cpp:805
 msgid "Total Transactions: "
 msgstr "Tổng số giao dịch: "
 
-#: src/mmhomepagepanel.cpp:814 src/reports/summarystocks.cpp:152
+#: src/mmhomepagepanel.cpp:818 src/reports/summarystocks.cpp:152
 msgid "Grand Total:"
 msgstr "Tổng cộng:"
 
@@ -4399,7 +4394,12 @@ msgstr "Đầu tư"
 msgid "Credit Card"
 msgstr ""
 
-#: src/model/Model_Account.cpp:109
+#: src/model/Model_Account.cpp:34 src/model/Model_Asset.cpp:35
+#: src/reports/summary.cpp:152
+msgid "Cash"
+msgstr "Tiền mặt"
+
+#: src/model/Model_Account.cpp:110
 #, fuzzy
 msgid "Account Error"
 msgstr "Tài khoản: "
@@ -4432,16 +4432,12 @@ msgstr "Tác phẩm nghệ thuật"
 msgid "Jewellery"
 msgstr "Vàng bạc đá quý"
 
-#: src/model/Model_Asset.cpp:35
-msgid "Cash"
-msgstr "Tiền mặt"
-
 #: src/model/Model_Asset.cpp:36
 msgid "Other"
 msgstr "Khác"
 
 #: src/model/Model_Billsdeposits.cpp:29 src/model/Model_Category.cpp:209
-#: src/model/Model_Checking.cpp:29
+#: src/model/Model_Checking.cpp:30
 msgid "Transfer"
 msgstr "Chuyển khoản"
 
@@ -4887,30 +4883,30 @@ msgstr "Toàn bộ"
 msgid "%"
 msgstr "%"
 
-#: src/reports/cashflow.cpp:236
+#: src/reports/cashflow.cpp:235
 #, fuzzy, c-format
 msgid "Cash Flow Forecast for %i Years Ahead"
 msgstr "Dự báo dòng tiền cho %d năm sau"
 
-#: src/reports/cashflow.cpp:238 src/reports/incexpenses.cpp:46
+#: src/reports/cashflow.cpp:237 src/reports/incexpenses.cpp:46
 #: src/reports/incexpenses.cpp:164
 msgid "Accounts: "
 msgstr "Tài khoản: "
 
-#: src/reports/cashflow.cpp:242 src/reports/incexpenses.cpp:49
+#: src/reports/cashflow.cpp:241 src/reports/incexpenses.cpp:49
 #: src/reports/incexpenses.cpp:167
 msgid "All Accounts"
 msgstr "Tất cả tài khoản"
 
-#: src/reports/cashflow.cpp:244
+#: src/reports/cashflow.cpp:243
 msgid "All Bank Accounts"
 msgstr "Tất cả tài khoản ngân hàng"
 
-#: src/reports/cashflow.cpp:246
+#: src/reports/cashflow.cpp:245
 msgid "All Term Accounts"
 msgstr "Tất cả tài khoản có kì hạn"
 
-#: src/reports/cashflow.cpp:280 src/reports/incexpenses.cpp:230
+#: src/reports/cashflow.cpp:279 src/reports/incexpenses.cpp:230
 #: src/reports/payee.cpp:116
 msgid "Difference"
 msgstr "Chênh lệch:"
@@ -4982,12 +4978,12 @@ msgstr "Thu"
 msgid "Today's Date: %s"
 msgstr "Ngày hôm nay: "
 
-#: src/reports/htmlbuilder.cpp:305
+#: src/reports/htmlbuilder.cpp:308
 #, fuzzy, c-format
 msgid "From %s till %s"
 msgstr "%s trên %s"
 
-#: src/reports/htmlbuilder.cpp:311 src/reports/mmDateRange.cpp:208
+#: src/reports/htmlbuilder.cpp:314 src/reports/mmDateRange.cpp:208
 msgid "Over Time"
 msgstr ""
 
@@ -5036,44 +5032,24 @@ msgstr " : "
 msgid "Choose Accounts"
 msgstr "Chọn tài khoản"
 
-#: src/reports/summary.cpp:122
-msgid "Summary of Accounts"
-msgstr "Tổng kết các tài khoản"
+#: src/reports/summary.cpp:144
+#, c-format
+msgid "Accounts Balance - %s"
+msgstr ""
 
-#: src/reports/summary.cpp:131 src/reports/summary.cpp:133
-msgid "Account Name"
-msgstr "Tên tài khoản"
-
-#: src/reports/summary.cpp:150
-msgid "Bank Accounts Total:"
-msgstr "Tổng kết TK ngân hàng:"
-
-#: src/reports/summary.cpp:167
-msgid "Term Accounts Total:"
-msgstr "Tổng kết TK có kì hạn:"
-
-#: src/reports/summary.cpp:173
-msgid "Stocks Total:"
-msgstr "Tổng kết chứng khoán:"
-
-#: src/reports/summary.cpp:185
-msgid "Total Balance on all Accounts"
-msgstr "Số dư chung cho tất cả tài khoản"
-
-#: src/reports/summary.cpp:215
-#, fuzzy, c-format
-msgid "Account Balance - %s"
-msgstr "Số dư TK: "
-
-#: src/reports/summary.cpp:215
+#: src/reports/summary.cpp:144
 #, fuzzy
 msgid "Monthly Report"
 msgstr "Mỗi tháng"
 
-#: src/reports/summary.cpp:215
+#: src/reports/summary.cpp:144
 #, fuzzy
 msgid "Yearly Report"
 msgstr "Báo cáo đối tượng giao dịch"
+
+#: src/reports/summary.cpp:153
+msgid "Bank Accounts"
+msgstr "Tài khoản ngân hàng"
 
 #: src/reports/summarystocks.cpp:96
 msgid "Summary of Stocks"
@@ -5482,27 +5458,27 @@ msgstr "Bạn thực sự muốn xóa chuỗi giao dịch này?"
 msgid "Confirm to add new payee"
 msgstr ""
 
-#: src/transdialog.cpp:1020
+#: src/transdialog.cpp:1019
 #, fuzzy
 msgid "Specify account the money is taken from"
 msgstr "Nhập tài khoản chuyển tiền"
 
-#: src/transdialog.cpp:1021
+#: src/transdialog.cpp:1020
 #, fuzzy
 msgid "Specify account the money is moved to"
 msgstr "Nhập tài khoản nhận"
 
-#: src/transdialog.cpp:1022
+#: src/transdialog.cpp:1021
 #, fuzzy
 msgid "Specify the transfer amount in the From Account."
 msgstr "Nhập số tiền cần chuyển trong tài khoản gửi"
 
-#: src/transdialog.cpp:1030
+#: src/transdialog.cpp:1029
 #, fuzzy
 msgid "Specify account for the transaction"
 msgstr "Nhập số tiền giao dịch"
 
-#: src/transdialog.cpp:1032
+#: src/transdialog.cpp:1031
 #, fuzzy
 msgid "Specify to whom the transaction is going to"
 msgstr "Nhập đối tượng nhận giao dịch"
@@ -5540,123 +5516,123 @@ msgstr ""
 msgid "Unknown error"
 msgstr "Không rõ"
 
-#: src/util.cpp:267
+#: src/util.cpp:261
 msgid "January"
 msgstr "Tháng 1"
 
-#: src/util.cpp:267
+#: src/util.cpp:261
 msgid "February"
 msgstr "Tháng 2"
 
-#: src/util.cpp:267
+#: src/util.cpp:261
 msgid "March"
 msgstr "Tháng 3"
 
-#: src/util.cpp:268
+#: src/util.cpp:262
 msgid "April"
 msgstr "Tháng 4"
 
-#: src/util.cpp:268 src/util.cpp:276
+#: src/util.cpp:262 src/util.cpp:270
 msgid "May"
 msgstr "T.05"
 
-#: src/util.cpp:268
+#: src/util.cpp:262
 msgid "June"
 msgstr "Tháng 6"
 
-#: src/util.cpp:269
+#: src/util.cpp:263
 msgid "July"
 msgstr "Tháng 7"
 
-#: src/util.cpp:269
+#: src/util.cpp:263
 msgid "August"
 msgstr "Tháng 8"
 
-#: src/util.cpp:269
+#: src/util.cpp:263
 msgid "September"
 msgstr "Tháng 9"
 
-#: src/util.cpp:270
+#: src/util.cpp:264
 msgid "October"
 msgstr "Tháng 10"
 
-#: src/util.cpp:270
+#: src/util.cpp:264
 msgid "November"
 msgstr "Tháng 11"
 
-#: src/util.cpp:270
+#: src/util.cpp:264
 msgid "December"
 msgstr "Tháng 12"
 
-#: src/util.cpp:275
+#: src/util.cpp:269
 msgid "Jan"
 msgstr "T.01"
 
-#: src/util.cpp:275
+#: src/util.cpp:269
 msgid "Feb"
 msgstr "T.02"
 
-#: src/util.cpp:275
+#: src/util.cpp:269
 msgid "Mar"
 msgstr "T.03"
 
-#: src/util.cpp:276
+#: src/util.cpp:270
 msgid "Apr"
 msgstr "T.04"
 
-#: src/util.cpp:276
+#: src/util.cpp:270
 msgid "Jun"
 msgstr "T.06"
 
-#: src/util.cpp:277
+#: src/util.cpp:271
 msgid "Jul"
 msgstr "T.07"
 
-#: src/util.cpp:277
+#: src/util.cpp:271
 msgid "Aug"
 msgstr "T.08"
 
-#: src/util.cpp:277
+#: src/util.cpp:271
 msgid "Sep"
 msgstr "T.09"
 
-#: src/util.cpp:278
+#: src/util.cpp:272
 msgid "Oct"
 msgstr "T.10"
 
-#: src/util.cpp:278
+#: src/util.cpp:272
 msgid "Nov"
 msgstr "T.11"
 
-#: src/util.cpp:278
+#: src/util.cpp:272
 msgid "Dec"
 msgstr "T.12"
 
-#: src/util.cpp:283
+#: src/util.cpp:277
 msgid "Sunday"
 msgstr "Chủ nhật"
 
-#: src/util.cpp:283
+#: src/util.cpp:277
 msgid "Monday"
 msgstr "Thứ hai"
 
-#: src/util.cpp:283
+#: src/util.cpp:277
 msgid "Tuesday"
 msgstr "Thứ ba"
 
-#: src/util.cpp:284
+#: src/util.cpp:278
 msgid "Wednesday"
 msgstr "Thứ tư"
 
-#: src/util.cpp:284
+#: src/util.cpp:278
 msgid "Thursday"
 msgstr "Thứ năm"
 
-#: src/util.cpp:284
+#: src/util.cpp:278
 msgid "Friday"
 msgstr "Thứ sáu"
 
-#: src/util.cpp:285
+#: src/util.cpp:279
 msgid "Saturday"
 msgstr "Thứ bảy"
 
@@ -6165,6 +6141,31 @@ msgstr "Báo cáo đối tượng giao dịch"
 #, fuzzy, c-format
 msgid "Payee Report - %s"
 msgstr "Báo cáo đối tượng giao dịch"
+
+#~ msgid "Bank Account"
+#~ msgstr "Tài khoản ngân hàng"
+
+#~ msgid "Summary of Accounts"
+#~ msgstr "Tổng kết các tài khoản"
+
+#~ msgid "Account Name"
+#~ msgstr "Tên tài khoản"
+
+#~ msgid "Bank Accounts Total:"
+#~ msgstr "Tổng kết TK ngân hàng:"
+
+#~ msgid "Term Accounts Total:"
+#~ msgstr "Tổng kết TK có kì hạn:"
+
+#~ msgid "Stocks Total:"
+#~ msgstr "Tổng kết chứng khoán:"
+
+#~ msgid "Total Balance on all Accounts"
+#~ msgstr "Số dư chung cho tất cả tài khoản"
+
+#, fuzzy
+#~ msgid "Account Balance - %s"
+#~ msgstr "Số dư TK: "
 
 #, fuzzy
 #~ msgid "Note: Split transactions not set"
