@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-19 20:11:36.144000.
+ *          AUTO GENERATED at 2016-03-15 17:43:58.503181.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -103,6 +103,8 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
 
     void ensure_data(wxSQLite3Database* db)
     {
+        db->Begin();
+        db->Commit();
     }
     
     struct TRANSID : public DB_Column<int>
