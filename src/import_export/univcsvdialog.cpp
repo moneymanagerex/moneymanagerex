@@ -784,9 +784,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             {
                 // TODO: print a more specific error.
                 log << wxString::Format(_("Line: %ld"), lineNum+1)
-                    << _(" One of the following fields: Date, Amount, Type is missing, skipping") << endl;
+                    << _("One of the following fields: Date, Amount, Type is missing, skipping") << endl;
                 *log_field_ << wxString::Format(_("Line: %ld"), lineNum+1)
-                    << _(" One of the following fields: Date, Amount, Type is missing, skipping") << "\n";
+                    << _("One of the following fields: Date, Amount, Type is missing, skipping") << "\n";
 
                 continue;
             }

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-03-07 12:56:00.120066.
+ *          AUTO GENERATED at 2016-03-15 17:43:58.503181.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -102,6 +102,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
 
     void ensure_data(wxSQLite3Database* db)
     {
+        db->Begin();
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (1, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("United States dollar"), wxTRANSLATE("$"), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("USD")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (2, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("European euro"), wxTRANSLATE("€"), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("EUR")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (3, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("UK Pound"), wxTRANSLATE("£"), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE("Pound"), wxTRANSLATE("Pence"), wxTRANSLATE("GBP")));
@@ -254,6 +255,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (150, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("Samoan tala"), wxTRANSLATE("WS$"), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("WST")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (151, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 1, 1, '%s')", wxTRANSLATE("Yemeni rial"), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(" "), wxTRANSLATE(""), wxTRANSLATE(""), wxTRANSLATE("YER")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES (152, '%s', '%s', '%s', '%s', '%s', '%s', '%s', 100, 1, '%s')", wxTRANSLATE("Venezuelan Bolívar"), wxTRANSLATE("Bs."), wxTRANSLATE(""), wxTRANSLATE("."), wxTRANSLATE(","), wxTRANSLATE("bolívar"), wxTRANSLATE("céntimos"), wxTRANSLATE("VEF")));
+        db->Commit();
     }
     
     struct CURRENCYID : public DB_Column<int>
