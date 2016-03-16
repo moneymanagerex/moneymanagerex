@@ -175,7 +175,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 
             // year end
             hb.startTableCell(wxString::Format(" style='text-align:right;%s' nowrap"
-                , (actual - estimated < 0) ? "color:#FF0000;" : "color:#00FF00;"));
+                , (actual - estimated < 0) ? "color:#FF0000;" : "color:#009900;"));
             const auto val = Model_Currency::toString(actual, Model_Currency::GetBaseCurrency());
             hb.addText(val);
             hb.endTableCell();
@@ -230,7 +230,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 
                 // year end
                 hb.startTableCell(wxString::Format(" style='text-align:right;%s' nowrap"
-                    , ((actual - estimated < 0)) ? "color:#FF0000;" : "color:#00FF00;"));
+                    , ((actual - estimated < 0)) ? "color:#FF0000;" : "color:#009900;"));
                 const auto val = Model_Currency::toString(actual, Model_Currency::GetBaseCurrency());
                 hb.addText(val);
                 hb.endTableCell();
