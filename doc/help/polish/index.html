@@ -1,15 +1,55 @@
 ﻿<!DOCTYPE HTML>
 <HTML>
-<HEAD>
-    <META charset="UTF8"/>
-    <TITLE>Instrukcja użytkowania Money Manager Ex</TITLE>
-    <link href="../master.css" rel="stylesheet" type="text/css">
-      <style>
-        table {
-        font-size: 100%;
+<head>
+    <meta charset="UTF-8">
+    <title>Money Manager Ex User Manual</title>
+    <link href="../../res/master.css" rel="stylesheet" type="text/css">
+    <script src="../contents.js"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+    <!--Smooth Back to Top Button Start-->
+    <script>
+        jQuery(document).ready(function () {
+            var offset = 220;
+            var duration = 500;
+            jQuery(window).scroll(function () {
+                if (jQuery(this).scrollTop() > offset) {
+                    jQuery('.back-to-top').fadeIn(duration);
+                } else {
+                    jQuery('.back-to-top').fadeOut(duration);
+                }
+            });
+            jQuery('.back-to-top').click(function (event) {
+                event.preventDefault();
+                jQuery('html, body').animate({ scrollTop: 0 }, duration);
+                return false;
+            })
+        });
+    </script>
+    <style>
+        div#page {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
         }
-      </style>
-</HEAD>
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2em;
+            right: 0px;
+            text-decoration: none;
+            color: #000000;
+            font-size: 12px;
+            padding: 1em;
+            display: none;
+        }
+
+            .back-to-top:hover {
+                text-decoration: none;
+            }
+    </style>
+</head>
+
 <BODY LANG="pl-PL" DIR="LTR">
 <table class="table, small"><tr>
     <TD><span class="label label-info">Jezyk:</span></TD>
@@ -20,7 +60,7 @@
     <TD> </TD><TD><A HREF="../spanish/index.html">Hiszpański</A></TD>
 </tr></table>
 <div class="page-header">
-    <H2>Instrukcja użytkowania Money Manager <small>MMEX 1.2.0.0</small></H2>
+    <H2>Instrukcja użytkowania Money Manager <small>MMEX 1.3.0</small></H2>
 </div>
   <UL>
     <LI>
@@ -2019,7 +2059,6 @@ górnym lewym rogu interfejsu MMEX.</P>
 	</TR>
 </TABLE>
 <HR>
-<H5>Copyright &ordf; 2005-2013&nbsp;
-CodeLathe LLC. All rights reserved.</H5>
+<H5>Copyright &#9400; 2005-2016, CodeLathe LLC. All rights reserved.</H5>
 </BODY>
 </HTML>
