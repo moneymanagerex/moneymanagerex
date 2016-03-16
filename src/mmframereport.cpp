@@ -134,24 +134,28 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
     int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
-    wxTreeItemId categsOverTime = navTreeCtrl_->AppendItem(reports
+    wxTreeItemId categsGoes = navTreeCtrl_->AppendItem(reports
         , _("Where the Money Goes"), img::PIECHART_PNG, img::PIECHART_PNG);
-    navTreeCtrl_->SetItemData(categsOverTime, new mmTreeItemData("Where the Money Goes"
+    navTreeCtrl_->SetItemData(categsGoes, new mmTreeItemData("Where the Money Goes"
         , new mmReportCategoryExpensesGoes()));
 
-    wxTreeItemId posCategs = navTreeCtrl_->AppendItem(reports
+    wxTreeItemId categsComes = navTreeCtrl_->AppendItem(reports
         , _("Where the Money Comes From"), img::PIECHART_PNG, img::PIECHART_PNG);
-    navTreeCtrl_->SetItemData(posCategs
+    navTreeCtrl_->SetItemData(categsComes
         , new mmTreeItemData("Where the Money Comes From"
         , new mmReportCategoryExpensesComes()));
     
     wxTreeItemId categs = navTreeCtrl_->AppendItem(reports
         , _("Categories"), img::PIECHART_PNG, img::PIECHART_PNG);
     navTreeCtrl_->SetItemData(categs
+        , new mmTreeItemData("Categories"
+        , new mmReportCategoryExpensesCategories()));
+
+    wxTreeItemId categsOverTime = navTreeCtrl_->AppendItem(categs
+        , _("Over Time"), img::PIECHART_PNG, img::PIECHART_PNG);
+    navTreeCtrl_->SetItemData(categsOverTime
         , new mmTreeItemData("Categories - Over Time"
         , new mmReportCategoryOverTimePerformance()));
-
-    this->updateReportCategoryNavigation(categs);
 
     wxTreeItemId payeesOverTime = navTreeCtrl_->AppendItem(reports
         , _("Payees"), img::PIECHART_PNG, img::PIECHART_PNG);
@@ -454,91 +458,6 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         wxTreeItemId item = navTreeCtrl_->AppendItem(no_group ? reports : group
             , wxGetTranslation(record.REPORTNAME), img::CUSTOMSQL_PNG, img::CUSTOMSQL_PNG);
         navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
-    }
-}
-
-void mmGUIFrame::updateReportCategoryNavigation(wxTreeItemId& categs)
-{
-    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
-    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
-    bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
-
-    wxTreeItemId categsCalMonth = navTreeCtrl_->AppendItem(categs
-        , _("Last Calendar Month"), img::PIECHART_PNG, img::PIECHART_PNG);
-    navTreeCtrl_->SetItemData(categsCalMonth
-        , new mmTreeItemData("Categories - Last Calendar Month"
-        , new mmReportCategoryExpensesCategoriesLastMonth()));
-
-    if (ignoreFuture)
-    {
-        wxTreeItemId categsCurrentMonth = navTreeCtrl_->AppendItem(categs
-            , _("Current Month to Date"), img::PIECHART_PNG, img::PIECHART_PNG);
-        navTreeCtrl_->SetItemData(categsCurrentMonth
-            , new mmTreeItemData("Categories - Current Month"
-            , new mmReportCategoryExpensesCategoriesCurrentMonthToDate()));
-    }
-    else
-    {
-        wxTreeItemId categsCurrentMonth = navTreeCtrl_->AppendItem(categs
-            , _("Current Month"), img::PIECHART_PNG, img::PIECHART_PNG);
-        navTreeCtrl_->SetItemData(categsCurrentMonth
-            , new mmTreeItemData("Categories - Current Month"
-            , new mmReportCategoryExpensesCategoriesCurrentMonth()));
-    }
-
-    wxTreeItemId categsTimeLast30 = navTreeCtrl_->AppendItem(categs
-        , _("Last 30 Days"), img::PIECHART_PNG, img::PIECHART_PNG);
-    navTreeCtrl_->SetItemData(categsTimeLast30
-        , new mmTreeItemData("Categories - Last 30 Days"
-        , new mmReportCategoryExpensesCategoriesLast30Days()));
-
-    wxTreeItemId categsTimeLastYear = navTreeCtrl_->AppendItem(categs
-        , _("Last Year"), img::PIECHART_PNG, img::PIECHART_PNG);
-    navTreeCtrl_->SetItemData(categsTimeLastYear
-        , new mmTreeItemData("Categories - Last Year"
-        , new mmReportCategoryExpensesCategoriesLastYear()));
-
-    if (ignoreFuture)
-    {
-        wxTreeItemId categsTimeCurrentYear = navTreeCtrl_->AppendItem(categs
-            , _("Current Year to Date"), img::PIECHART_PNG, img::PIECHART_PNG);
-        navTreeCtrl_->SetItemData(categsTimeCurrentYear
-            , new mmTreeItemData("Categories - Current Year"
-            , new mmReportCategoryExpensesCategoriesCurrentYearToDate()));
-    }
-    else
-    {
-        wxTreeItemId categsTimeCurrentYear = navTreeCtrl_->AppendItem(categs
-            , _("Current Year"), img::PIECHART_PNG, img::PIECHART_PNG);
-        navTreeCtrl_->SetItemData(categsTimeCurrentYear
-            , new mmTreeItemData("Categories - Current Year"
-            , new mmReportCategoryExpensesCategoriesCurrentYear()));
-    }
-
-    if (financialYearIsDifferent())
-    {
-        wxTreeItemId categsTimeLastFinancialYear = navTreeCtrl_->AppendItem(categs
-            , _("Last Financial Year"), img::PIECHART_PNG, img::PIECHART_PNG);
-        navTreeCtrl_->SetItemData(categsTimeLastFinancialYear
-            , new mmTreeItemData("Categories - Last Financial Year"
-            , new mmReportCategoryExpensesCategoriesLastFinancialYear(day, month)));
-
-        if (ignoreFuture)
-        {
-            wxTreeItemId categsTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(categs
-                , _("Current Financial Year to Date"), img::PIECHART_PNG, img::PIECHART_PNG);
-            navTreeCtrl_->SetItemData(categsTimeCurrentFinancialYear
-                , new mmTreeItemData("Categories - Current Financial Year"
-                , new mmReportCategoryExpensesCategoriesCurrentFinancialYearToDate(day, month)));
-        }
-        else
-        {
-            wxTreeItemId categsTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(categs
-                , _("Current Financial Year"), img::PIECHART_PNG, img::PIECHART_PNG);
-            navTreeCtrl_->SetItemData(categsTimeCurrentFinancialYear
-                , new mmTreeItemData("Categories - Current Financial Year"
-                , new mmReportCategoryExpensesCategoriesCurrentFinancialYear(day, month)));
-        }
     }
 }
 
