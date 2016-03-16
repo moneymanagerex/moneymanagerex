@@ -22,6 +22,8 @@
 #include "budget.h"
 #include <map>
 
+class mmHTMLBuilder;
+
 class mmReportBudgetingPerformance : public mmReportBudget
 {
 public:
