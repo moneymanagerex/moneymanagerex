@@ -1,11 +1,59 @@
-<!DOCTYPE HTML>
-<html lang="fr"><head>
-<meta charset="UTF-8">
-	<link href="../master.css" rel="stylesheet" type="text/css">
+﻿<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Money Manager Ex User Manual</title>
+    <link href="../../res/master.css" rel="stylesheet" type="text/css">
+    <script src="../contents.js"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+    <!--Smooth Back to Top Button Start-->
+    <script>
+        jQuery(document).ready(function () {
+            var offset = 220;
+            var duration = 500;
+            jQuery(window).scroll(function () {
+                if (jQuery(this).scrollTop() > offset) {
+                    jQuery('.back-to-top').fadeIn(duration);
+                } else {
+                    jQuery('.back-to-top').fadeOut(duration);
+                }
+            });
+            jQuery('.back-to-top').click(function (event) {
+                event.preventDefault();
+                jQuery('html, body').animate({ scrollTop: 0 }, duration);
+                return false;
+            })
+        });
+    </script>
+    <style>
+        div#page {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+        }
 
-<meta name="ProgId" content="FrontPage.Editor.Document"><title>Manuel utilisateur de Money Manager Ex</title></head><body>
-<font face="Verdana">
-</font>
+        .back-to-top {
+            position: fixed;
+            bottom: 2em;
+            right: 0px;
+            text-decoration: none;
+            color: #000000;
+            font-size: 12px;
+            padding: 1em;
+            display: none;
+        }
+
+            .back-to-top:hover {
+                text-decoration: none;
+            }
+    </style>
+</head>
+
+<body>
+    <a href="#" class="back-to-top"><img src="../backtotop.png" alt="Back to Top"/></a>
+    <!--Smooth Back to Top Button End-->
+
 <h2><font face="Verdana"><a name="top">Manuel utilisateur de Money Manager Ex</a></font></h2>
 <hr>
 <ol>

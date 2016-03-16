@@ -1,30 +1,63 @@
 <!DOCTYPE HTML>
-<html><head>
-<meta charset="UTF-8"><title>Manual de usuario de Money Manager Ex</title>
+<html>
 
-<meta name="GENERATOR" content="OpenOffice.org 3.3 (Win32)">
-<meta name="CREATED" content="0;0">
-<meta name="CHANGEDBY" content="Stefano Giorgio">
-<meta name="CHANGED" content="20110712;15281613">
-<meta name="ProgId" content="FrontPage.Editor.Document">
-<meta name="CHANGEDBY" content="Stefano Giorgio">
-<meta name="CHANGEDBY" content="Stefano Giorgio">
-<style type="text/css">
-<!--
-H2.cjk { font-family: "SimSun" }
-H2.ctl { font-family: "Mangal" }
-H3.cjk { font-family: "SimSun" }
-H3.ctl { font-family: "Mangal" }
-H5.cjk { font-family: "SimSun" }
-H5.ctl { font-family: "Mangal" }
--->
-</style>
-<link rel="stylesheet" type="text/css" href="../master.css"></head>
-<body style="direction: ltr;" lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Money Manager Ex User Manual</title>
+    <link href="../../res/master.css" rel="stylesheet" type="text/css">
+    <script src="../contents.js"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+    <!--Smooth Back to Top Button Start-->
+    <script>
+        jQuery(document).ready(function () {
+            var offset = 220;
+            var duration = 500;
+            jQuery(window).scroll(function () {
+                if (jQuery(this).scrollTop() > offset) {
+                    jQuery('.back-to-top').fadeIn(duration);
+                } else {
+                    jQuery('.back-to-top').fadeOut(duration);
+                }
+            });
+            jQuery('.back-to-top').click(function (event) {
+                event.preventDefault();
+                jQuery('html, body').animate({ scrollTop: 0 }, duration);
+                return false;
+            })
+        });
+    </script>
+    <style>
+        div#page {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2em;
+            right: 0px;
+            text-decoration: none;
+            color: #000000;
+            font-size: 12px;
+            padding: 1em;
+            display: none;
+        }
+
+            .back-to-top:hover {
+                text-decoration: none;
+            }
+    </style>
+</head>
+<body dir="ltr" lang="en-US">
+    <a href="#" class="back-to-top"><img src="../backtotop.png" alt="Back to Top"/></a>
+    <!--Smooth Back to Top Button End-->
 <h2 class="western" align="center"><a name="top"></a><font face="Verdana"><br>
 Manual de usuario de Money
 Manager Ex<br>
-<font size="3">MMEX 0.9.9.0</font></font></h2>
+<font size="3">MMEX 1.3.0</font></font></h2>
 <hr>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 <col width="208*"> <col width="48*"> <tbody>
