@@ -27,7 +27,7 @@
 class mmReportCategoryExpenses : public mmPrintableBase
 {
 public:
-    mmReportCategoryExpenses(mmDateRange* date_range, const wxString& title, int type);
+    mmReportCategoryExpenses(const wxString& title, int type);
     virtual ~mmReportCategoryExpenses();
 
     virtual void RefreshData();
@@ -38,7 +38,6 @@ public:
     enum TYPE { NONE = 0, GOES, COME, CATEGORY};
 
 protected:
-    bool ignoreFutureDate_;
     wxString title_;
     int type_;
 
@@ -52,82 +51,19 @@ private:
 class mmReportCategoryExpensesGoes: public mmReportCategoryExpenses
 {
 public:
-    explicit mmReportCategoryExpensesGoes(mmDateRange* date_range = new mmAllTime()
-    , const wxString& title = _("Where the Money Goes"));
+    explicit mmReportCategoryExpensesGoes(const wxString& title = _("Where the Money Goes"));
 };
 
 class mmReportCategoryExpensesComes : public mmReportCategoryExpenses
 {
 public:
-    explicit mmReportCategoryExpensesComes(mmDateRange* date_range = new mmAllTime()
-    , const wxString& title = _("Where the Money Comes From"));
+    explicit mmReportCategoryExpensesComes(const wxString& title = _("Where the Money Comes From"));
 };
 
 class mmReportCategoryExpensesCategories : public mmReportCategoryExpenses
 {
 public:
-    explicit mmReportCategoryExpensesCategories(mmDateRange* date_range = new mmAllTime()
-    , const wxString& title = _("Categories"));
-};
-
-class mmReportCategoryExpensesCategoriesCurrentMonth: public mmReportCategoryExpensesCategories
-{
-public:
-    mmReportCategoryExpensesCategoriesCurrentMonth();
-};
-
-class mmReportCategoryExpensesCategoriesCurrentMonthToDate: public mmReportCategoryExpensesCategories
-{
-public:
-    mmReportCategoryExpensesCategoriesCurrentMonthToDate();
-};
-
-class mmReportCategoryExpensesCategoriesLastMonth: public mmReportCategoryExpensesCategories
-{
-public:
-    mmReportCategoryExpensesCategoriesLastMonth();
-};
-
-class mmReportCategoryExpensesCategoriesLast30Days: public mmReportCategoryExpensesCategories
-{
-public:
-    mmReportCategoryExpensesCategoriesLast30Days();
-};
-
-class mmReportCategoryExpensesCategoriesLastYear: public mmReportCategoryExpensesCategories
-{
-public:
-    mmReportCategoryExpensesCategoriesLastYear();
-};
-
-class mmReportCategoryExpensesCategoriesCurrentYear: public mmReportCategoryExpensesCategories
-{
-public:
-    mmReportCategoryExpensesCategoriesCurrentYear();
-};
-
-class mmReportCategoryExpensesCategoriesCurrentYearToDate: public mmReportCategoryExpensesCategories
-{
-public:
-    mmReportCategoryExpensesCategoriesCurrentYearToDate();
-};
-
-class mmReportCategoryExpensesCategoriesLastFinancialYear: public mmReportCategoryExpensesCategories
-{
-public:
-    mmReportCategoryExpensesCategoriesLastFinancialYear(int day, int month);
-};
-
-class mmReportCategoryExpensesCategoriesCurrentFinancialYear: public mmReportCategoryExpensesCategories
-{
-public:
-    mmReportCategoryExpensesCategoriesCurrentFinancialYear(int day, int month);
-};
-
-class mmReportCategoryExpensesCategoriesCurrentFinancialYearToDate : public mmReportCategoryExpensesCategories
-{
-public:
-    mmReportCategoryExpensesCategoriesCurrentFinancialYearToDate(int day, int month);
+    explicit mmReportCategoryExpensesCategories(const wxString& title = _("Categories"));
 };
 
 #endif // MM_EX_REPORTCATEGEXP_H_
