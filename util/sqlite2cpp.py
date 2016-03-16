@@ -180,11 +180,13 @@ struct DB_Table_%s : public DB_Table
     
         s += '''
     void ensure_data(wxSQLite3Database* db)
-    {'''
+    {
+        db->Begin();'''
         for r in self._data:
             s += '''
         db->ExecuteUpdate(wxString::Format("INSERT INTO %s VALUES (%s)", %s));''' % (self._table, ', '.join(["'%s'" if isinstance(i, unicode) else str(i) for i in r]), ', '.join([ 'wxTRANSLATE("' + i + '")' if not i.isdigit() else '"' + i + '"' for i in r if isinstance(i, unicode)]))
         s += '''
+        db->Commit();
     }
     '''
 

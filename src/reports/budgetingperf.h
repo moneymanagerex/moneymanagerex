@@ -33,8 +33,8 @@ public:
 private:
     int budgetYearID_;
 
-    void DisplayEstimateMonths(mmHTMLBuilder& hb, double estimated);
-    void DisplayActualMonths(mmHTMLBuilder& hb, double estimated, std::map<int, double>& actual);
+    const wxString DisplayEstimateMonths(double estimated);
+    const wxString DisplayActualMonths(double estimated, std::map<int, double>& actual);
 };
 
 #endif // MM_EX_REPORTBUDGETING_PERFORMANCE_H_
