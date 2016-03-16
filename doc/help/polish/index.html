@@ -1,15 +1,55 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+﻿<!DOCTYPE HTML>
 <HTML>
-<HEAD>
-    <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF8"/>
-    <TITLE>Instrukcja użytkowania Money Manager Ex</TITLE>
-    <link rel="stylesheet" type="text/css" href="../../res/master.css">
-      <style>
-        table {
-        font-size: 100%;
+<head>
+    <meta charset="UTF-8">
+    <title>Money Manager Ex User Manual</title>
+    <link href="../../res/master.css" rel="stylesheet" type="text/css">
+    <script src="../contents.js"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+    <!--Smooth Back to Top Button Start-->
+    <script>
+        jQuery(document).ready(function () {
+            var offset = 220;
+            var duration = 500;
+            jQuery(window).scroll(function () {
+                if (jQuery(this).scrollTop() > offset) {
+                    jQuery('.back-to-top').fadeIn(duration);
+                } else {
+                    jQuery('.back-to-top').fadeOut(duration);
+                }
+            });
+            jQuery('.back-to-top').click(function (event) {
+                event.preventDefault();
+                jQuery('html, body').animate({ scrollTop: 0 }, duration);
+                return false;
+            })
+        });
+    </script>
+    <style>
+        div#page {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
         }
-      </style>
-</HEAD>
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2em;
+            right: 0px;
+            text-decoration: none;
+            color: #000000;
+            font-size: 12px;
+            padding: 1em;
+            display: none;
+        }
+
+            .back-to-top:hover {
+                text-decoration: none;
+            }
+    </style>
+</head>
+
 <BODY LANG="pl-PL" DIR="LTR">
 <table class="table, small"><tr>
     <TD><span class="label label-info">Jezyk:</span></TD>
@@ -1968,7 +2008,7 @@ Poniżej przykład informacji statystycznych przesyłanych przez MMEX:<BR>
 		<th>Czas końca</th>
 	</tr>
 	<tr>
-		<td>1.2.0 Portable</td>
+		<td>1.2.0.0 Portable</td>
 		<td>Windows 8 (build 9200), 64-bit edition</td>
 		<td>english</td>
 		<td>United States</td>
@@ -2019,7 +2059,6 @@ górnym lewym rogu interfejsu MMEX.</P>
 	</TR>
 </TABLE>
 <HR>
-<H5>Copyright &ordf; 2005-2013&nbsp;
-CodeLathe LLC. All rights reserved.</H5>
+<H5>Copyright &#9400; 2005-2016, CodeLathe LLC. All rights reserved.</H5>
 </BODY>
 </HTML>
