@@ -421,7 +421,7 @@ void mmBDDialog::CreateControls()
     itemRepeats_->SetSelection(0);
 
     // Repeat Times --------------------------------------------
-    staticTimesRepeat_ = new wxStaticText(this, wxID_STATIC, _(" Payments Left "));
+    staticTimesRepeat_ = new wxStaticText(this, wxID_STATIC, _("Payments Left"));
     itemFlexGridSizer5->Add(staticTimesRepeat_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
     wxBoxSizer* repeatTimesBoxSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -1304,7 +1304,7 @@ void mmBDDialog::setRepeatDetails()
     else
     {
         staticTextRepeats_->SetLabelText(repeatLabelRepeats);
-        staticTimesRepeat_->SetLabelText(_(" Payments Left "));
+        staticTimesRepeat_->SetLabelText(_("Payments Left"));
         const auto& toolTipsStr = _("Specify the number of payments to be made.") 
             + "\n" + _("Leave blank if the payments continue forever.");
         textNumRepeats_->SetToolTip(toolTipsStr);
