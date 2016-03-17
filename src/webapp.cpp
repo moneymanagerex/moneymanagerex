@@ -451,7 +451,8 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
 
         wxString msgStr = wxString::Format(_("Account '%s' not found!"), WebAppTrans.Account)
             << "\n\n"
-            << wxString::Format(_("Transaction will be inserted with the first bank account:\n'%s' and marked as  'Follow Up'")
+            << wxString::Format(_("Transaction will be inserted with the first bank account:\n"
+            "'%s' and marked as  'Follow Up'")
             , FistAccountName) << "\n";
         wxMessageBox(msgStr, _("Wrong WebApp account"), wxICON_ERROR);
     }

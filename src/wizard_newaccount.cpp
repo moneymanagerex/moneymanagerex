@@ -31,9 +31,10 @@ mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)
     page1 = new wxWizardPageSimple(this);
 
     wxString noteString = wxString::Format(
-            _("%s models all transactions as belonging to accounts."), mmex::getProgramName()) + "\n\n"
-        + _("The next pages will help you create a new account.") + "\n\n"
-        + _("To help you get started, begin by making a list of all\nfinancial institutions where you hold an account.");
+        _("%s models all transactions as belonging to accounts."), mmex::getProgramName()) + "\n\n"
+        + _("The next pages will help you create a new account.\n"
+            "To help you get started, begin by making a list of all\n"
+            "financial institutions where you hold an account.");
 
     new wxStaticText(page1, wxID_ANY, noteString);
 
@@ -101,7 +102,8 @@ mmAddAccountPage1::mmAddAccountPage1(mmAddAccountWizard* parent)
 
     wxString helpMsg;
     helpMsg  << "\n" << _("Specify a descriptive name for the account.") << "\n"
-            << _("This is generally the name of a financial institution\nwhere the account is held. For example: 'ABC Bank'.");
+            << _("This is generally the name of a financial institution\n"
+            "where the account is held. For example: 'ABC Bank'.");
     mainSizer->Add(new wxStaticText(this, wxID_ANY, helpMsg ), 0, wxALL, 5);
 
     SetSizer(mainSizer);
@@ -125,15 +127,20 @@ mmAddAccountPage2::mmAddAccountPage2(mmAddAccountWizard *parent)
 
     wxString textMsg = "\n";
     textMsg << _("Select the type of account you want to create:") << "\n\n"
-            << _("General bank accounts cover a wide variety of account\ntypes like Checking, Savings and Credit card type accounts.");
+            << _("General bank accounts cover a wide variety of account\n"
+            "types like Checking, Savings and Credit card type accounts.");
     mainSizer->Add(new wxStaticText(this, wxID_ANY, textMsg), 0, wxALL, 5);
 
     textMsg = "\n";
-    textMsg << _("Investment accounts are specialized accounts that only\nhave stock/mutual fund investments associated with them.");
+    textMsg << _("Investment accounts are specialized accounts that only\n"
+        "have stock/mutual fund investments associated with them.");
     mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
 
     textMsg = "\n";
-    textMsg << _("Term accounts are specialized bank accounts. Intended for asset\ntype accounts such as Term Deposits and Bonds. These accounts\ncan have regular money coming in and out, being outside the\ngeneral income stream.");
+    textMsg << _("Term accounts are specialized bank accounts. Intended for asset\n"
+        "type accounts such as Term Deposits and Bonds. These accounts\n"
+        "can have regular money coming in and out, being outside the\n"
+        "general income stream.");
     mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
 
     SetSizer(mainSizer);

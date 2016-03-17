@@ -130,13 +130,15 @@ void mmOptionMiscSettings::Create()
     wxCheckBox* backupCheckBox = new wxCheckBox(this, ID_DIALOG_OPTIONS_CHK_BACKUP
         , _("Create a new backup when MMEX Start"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     backupCheckBox->SetValue(GetIniDatabaseCheckboxValue("BACKUPDB", false));
-    backupCheckBox->SetToolTip(_("When MMEX Starts,\ncreates the backup database: dbFile_start_YYYY-MM-DD.ext."));
+    backupCheckBox->SetToolTip(_("When MMEX Starts,\n"
+        "creates the backup database: dbFile_start_YYYY-MM-DD.ext."));
     backupStaticBoxSizer->Add(backupCheckBox, g_flags);
 
     wxCheckBox* backupUpdateCheckBox = new wxCheckBox(this, ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE
         , _("Backup database on exit."), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     backupUpdateCheckBox->SetValue(GetIniDatabaseCheckboxValue("BACKUPDB_UPDATE", true));
-    backupUpdateCheckBox->SetToolTip(_("When MMEX shuts down and changes made to database,\ncreates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."));
+    backupUpdateCheckBox->SetToolTip(_("When MMEX shuts down and changes made to database,\n"
+        "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."));
     backupStaticBoxSizer->Add(backupUpdateCheckBox, g_flags);
 
     int max = Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4);

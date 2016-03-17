@@ -197,7 +197,8 @@ void mmCustomFieldListDialog::UpdateField()
         return;
 
     int UpdateResponse = wxMessageBox(
-        _("Do you really want to massive update field content?\nPlease consider that there isn't any validation!")
+        _("Do you really want to massive update field content?\n"
+            "Please consider that there isn't any validation!")
         , _("Confirm Custom Field Content Update")
         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if (UpdateResponse != wxYES)
@@ -207,7 +208,8 @@ void mmCustomFieldListDialog::UpdateField()
     if (txtSearch == "")
     {
         int Response = wxMessageBox(
-            _("Do you want to update blank content?\nPress no if you want to abort replace procedure!")
+            _("Do you want to update blank content?\n"
+                "Press no if you want to abort replace procedure!")
             , _("Update Custom Field Content")
             , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
         if (Response != wxYES)
@@ -218,7 +220,8 @@ void mmCustomFieldListDialog::UpdateField()
     if (txtReplace == "")
     {
         int Response = wxMessageBox(
-            _("Do you want to update to blank?\nPress no if you want to abort replace procedure!")
+            _("Do you want to update to blank?\n"
+                "Press no if you want to abort replace procedure!")
             , _("Update Custom Field Content")
             , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
         if (Response != wxYES)
