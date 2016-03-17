@@ -824,19 +824,23 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 /* Website News*/
 const wxString mmHomePagePanel::displayWebsiteNews()
 {
-    wxString output = wxEmptyString;
-
     if (!Model_Setting::instance().DisplayInternetNews())
-        return output;
+        return wxEmptyString;
 
+    static wxString output;
     std::vector<WebsiteNews> WebsiteNewsList;
-    if (!mmHomePagePanel::getNewsRSS(WebsiteNewsList))
-        return output;
-    else
+
+    if (output.empty() && mmHomePagePanel::getNewsRSS(WebsiteNewsList))
     {
-        output += "<tr><td colspan='2'>";
-        output += "<table class ='table'><tr class ='success'><td style ='font-weight:bold; text-align:center'>Money Manager EX News</td>";
-        output += "<tr class ='success'><td style ='text-align:center'>";
+        if (WebsiteNewsList.empty())
+        {
+            output = " ";
+            return wxEmptyString;
+        }
+        output = R"(<tr><td colspan='2'>
+        <table class ='table'><tr class ='success'>
+        <td style ='font-weight:bold; text-align:center'>Money Manager EX News</td>
+        <tr class ='success'><td style ='text-align:center'>)";
         int NewsNr = 0;
         int NewsMax = 5;
         for (auto &News : WebsiteNewsList)
@@ -858,6 +862,11 @@ const wxString mmHomePagePanel::displayWebsiteNews()
 
 const bool mmHomePagePanel::getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 {
+    const wxString news_last_read_date_str = Model_Setting::instance().GetStringSetting(INIDB_NEWS_LAST_READ_DATE, "");
+    wxDate news_last_read_date;
+    if (!news_last_read_date.ParseISODate(news_last_read_date_str))
+        news_last_read_date = wxDateTime::Today().Subtract(wxDateSpan::Year());
+
     wxString RssContent;
     if (site_content(mmex::weblink::NewsRSS, RssContent) != wxURL_NOERR)
         return false;
@@ -899,13 +908,11 @@ const bool mmHomePagePanel::getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList
                 }
                 News = News->GetNext();
             }
-            WebsiteNewsList.push_back(website_news);
+            if (news_last_read_date.IsEarlierThan(website_news.Date))
+                WebsiteNewsList.push_back(website_news);
         }
         RssRoot = RssRoot->GetNext();
     }
-
-    if (WebsiteNewsList.size() == 0)
-        return false;
 
     return true;
 }
@@ -913,8 +920,9 @@ const bool mmHomePagePanel::getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList
 void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
 {
     const wxString& url = event.GetURL();
-    if (url.StartsWith("http://www.moneymanagerex.org"))
+    if (url.StartsWith("http://www.moneymanagerex.org/news"))
     {
+        Model_Setting::instance().Set(INIDB_NEWS_LAST_READ_DATE, wxDate::Today().FormatISODate());
         wxLaunchDefaultBrowser(url);
         event.Veto();
     }
