@@ -1274,39 +1274,40 @@ void mmBDDialog::setRepeatDetails()
     {
         staticTextRepeats_->SetLabelText(repeatLabelActivate);
         staticTimesRepeat_->SetLabelText(timeLabelDays);
-        const auto& toolTipsStr = _("Specify period in Days to activate.") 
-            + "\n" + _("Becomes blank when not active.");
+        const auto& toolTipsStr = _("Specify period in Days to activate."
+            "Becomes blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else if (repeats == 12)
     {
         staticTextRepeats_->SetLabelText(repeatLabelActivate);
         staticTimesRepeat_->SetLabelText(timeLabelMonths);
-        const auto& toolTipsStr = _("Specify period in Months to activate.") 
-            + "\n" + _("Becomes blank when not active.");
+        const auto& toolTipsStr = _("Specify period in Months to activate.\n"
+            "Becomes blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else if (repeats == 13)
     {
         staticTextRepeats_->SetLabelText(repeatLabelRepeats);
         staticTimesRepeat_->SetLabelText(timeLabelDays);
-        const auto& toolTipsStr = _("Specify period in Days to activate.") 
-            + "\n" + _("Leave blank when not active.");
+        const auto& toolTipsStr = _("Specify period in Days to activate.\n"
+            "Leave blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else if (repeats == 14)
     {
         staticTextRepeats_->SetLabelText(repeatLabelRepeats);
         staticTimesRepeat_->SetLabelText(timeLabelMonths);
-        const auto& toolTipsStr = _("Specify period in Months to activate.") + "\n" + _("Leave blank when not active.");
+        const auto& toolTipsStr = _("Specify period in Months to activate.\n"
+            "Leave blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else
     {
         staticTextRepeats_->SetLabelText(repeatLabelRepeats);
         staticTimesRepeat_->SetLabelText(_("Payments Left"));
-        const auto& toolTipsStr = _("Specify the number of payments to be made.") 
-            + "\n" + _("Leave blank if the payments continue forever.");
+        const auto& toolTipsStr = _("Specify the number of payments to be made." 
+            "Leave blank if the payments continue forever.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
 }

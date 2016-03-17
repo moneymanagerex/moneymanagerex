@@ -153,7 +153,8 @@ void mmCustomFieldEditDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Default")), g_flags);
     m_itemDefault = new wxTextCtrl(itemPanel5, wxID_ANY, "");
-    m_itemDefault->SetToolTip(_("Enter the default for this field")+"\n"+ _("For date/time insert 'Now' to make current date/time as default"));
+    m_itemDefault->SetToolTip(_("Enter the default for this field\n"
+        "For date/time insert 'Now' to make current date/time as default"));
     itemFlexGridSizer6->Add(m_itemDefault, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Choiches")), g_flags);
