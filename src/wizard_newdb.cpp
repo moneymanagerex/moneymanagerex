@@ -47,10 +47,15 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
 */
     page1 = new wxWizardPageSimple(this);
     wxString displayMsg;
-    displayMsg << _("The next pages will help you create a new database.") << "\n\n"
-               << _("Your database file is stored with an extension of .mmb.") << "\n\n"
-               << _("As this file contains important financial information,\nwe recommended creating daily backups with the Options\nsetting: 'Backup before opening', and store your backups\nin a separate location.") << "\n\n"
-               << _("The database can later be encrypted if required, by\nusing the option: 'Save database as' and changing the\nfile type before saving.");
+    displayMsg << _("The next pages will help you create a new database.\n\n"
+               "Your database file is stored with an extension of .mmb.\n"
+               "As this file contains important financial information,\n"
+               "we recommended creating daily backups with the Options\n"
+               "setting: 'Backup before opening', and store your backups\n"
+               "in a separate location.\n\n"
+               "The database can later be encrypted if required, by\n"
+               "using the option: 'Save database as' and changing the\n"
+               "file type before saving.");
     new wxStaticText(page1, wxID_ANY, displayMsg);
 
     mmNewDatabaseWizardPage* page2 = new mmNewDatabaseWizardPage(this);
@@ -126,7 +131,10 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     the options dialog. New accounts, will use this currency by
     default, and can be changed when editing account details.
 ***************************************************************/
-    wxString helpMsg = _("Specify the base (or default) currency to be used for the\ndatabase. The base currency can later be changed by using\nthe options dialog. New accounts, will use this currency by\ndefault, and can be changed when editing account details.");
+    wxString helpMsg = _("Specify the base (or default) currency to be used for the\n"
+        "database. The base currency can later be changed by using\n"
+        "the options dialog. New accounts, will use this currency by\n"
+        "default, and can be changed when editing account details.");
     helpMsg += "\n";
     mainSizer->Add( new wxStaticText(this, wxID_ANY, helpMsg), 0, wxALL, 5);
 

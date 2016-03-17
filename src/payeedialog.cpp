@@ -266,7 +266,8 @@ void mmPayeeDialog::DeletePayee()
             wxString deletePayeeErrMsg = _("Payee in use.");
             deletePayeeErrMsg
                 << "\n\n"
-                << _("Tip: Change all transactions using this Payee to another Payee\nusing the relocate command:")
+                << _("Tip: Change all transactions using this Payee to another Payee"
+                    "using the relocate command:")
                 << "\n\n" << _("Tools -> Relocation of -> Payees");
             wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
             return;

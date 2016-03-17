@@ -674,7 +674,9 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 
     if (EndDate > wxDate::Today())
     {
-        mmErrorDialogs::MessageWarning(this, _("End date is in the future\nQuotes will be updated until today")
+        mmErrorDialogs::MessageWarning(this
+            , _("End date is in the future\n"
+                "Quotes will be updated until today")
             , _("Stock History Error"));
         EndDate = wxDate::Today();
     }

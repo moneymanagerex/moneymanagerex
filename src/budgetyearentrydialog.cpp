@@ -75,7 +75,8 @@ void mmBudgetYearEntryDialog::CreateControls()
     textYear_ = new wxSpinCtrl( this, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxSize(100,-1), wxSP_ARROW_KEYS, 1900, 3000, year);
     textYear_->SetValue(year);
-    textYear_->SetToolTip(_("Specify the required year.\nUse Spin buttons to increase or decrease the year."));
+    textYear_->SetToolTip(_("Specify the required year.\n"
+        "Use Spin buttons to increase or decrease the year."));
     itemGridSizer2->Add(textYear_, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     if (withMonth_)
@@ -90,7 +91,8 @@ void mmBudgetYearEntryDialog::CreateControls()
             , wxEmptyString, wxDefaultPosition, wxSize(textYear_->GetSize())
             , wxSP_ARROW_KEYS, 1, 12, month);
         textMonth_->SetValue(month);
-        textMonth_->SetToolTip(_("Specify the required month.\nUse Spin buttons to increase or decrease the month."));
+        textMonth_->SetToolTip(_("Specify the required month.\n"
+            "Use Spin buttons to increase or decrease the month."));
  
         itemGridSizer2->Add(textMonth_, 0, wxALIGN_LEFT |wxALIGN_CENTER_VERTICAL|wxALL, 5);
     }

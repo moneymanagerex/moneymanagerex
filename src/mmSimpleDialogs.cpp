@@ -205,7 +205,8 @@ void mmErrorDialogs::InvalidCategory(wxWindow *win, bool simple)
 {
     const wxString& msg = simple
         ? _("Please use this button for category selection.")
-        : _("Please use this button for category selection\nor use the 'Split' checkbox for multiple categories.");
+        : _("Please use this button for category selection\n"
+            "or use the 'Split' checkbox for multiple categories.");
     wxRichToolTip tip(_("Invalid Category"), msg + "\n");
     tip.SetIcon(wxICON_WARNING);
     tip.ShowFor(win);
@@ -241,8 +242,9 @@ void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer)
 void mmErrorDialogs::InvalidPayee(wxWindow *object)
 {
     const wxString& errorHeader = _("Invalid Payee");
-    const wxString& errorMessage = (_("Please type in a new payee,\nor make a selection using the dropdown button.")
-        + "\n");
+    const wxString& errorMessage = _("Please type in a new payee,\n"
+            "or make a selection using the dropdown button.")
+        + "\n";
     wxRichToolTip tip(errorHeader, errorMessage);
     tip.SetIcon(wxICON_WARNING);
     tip.ShowFor(object);

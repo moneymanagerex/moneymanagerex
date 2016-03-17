@@ -257,7 +257,8 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         if (!categories.empty())
         {
             wxString errMsg = _("Category with same name exists");
-            errMsg << "\n\n" << _("Tip: If category added now, check bottom of list.\nCategory will be in sorted order next time dialog appears");
+            errMsg << "\n\n" << _("Tip: If category added now, check bottom of list.\n"
+                "Category will be in sorted order next time dialog appears");
             wxMessageBox(errMsg, _("Organise Categories: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
@@ -309,9 +310,11 @@ void mmCategDialog::showCategDialogDeleteError(bool category)
 {
     wxString deleteCategoryErrMsg = category ? _("Category in use.") : _("Sub-Category in use.");
     if (category)
-        deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Category to\nanother Category using the relocate command:");
+        deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Category to\n"
+            "another Category using the relocate command:");
     else
-        deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Sub-Category to\nanother Sub-Category using the relocate command:");
+        deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Sub-Category to\n"
+            "another Sub-Category using the relocate command:");
 
     deleteCategoryErrMsg << "\n\n" << _("Tools -> Relocation of -> Categories");
 
