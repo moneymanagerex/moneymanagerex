@@ -25,10 +25,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <algorithm>
 
-mmReportPayeeExpenses::mmReportPayeeExpenses(const wxString& title, mmDateRange* date_range)
+mmReportPayeeExpenses::mmReportPayeeExpenses(const wxString& title)
     : mmPrintableBase(title)
     , title_(title)
-    , date_range_(date_range)
     , positiveTotal_(0.0)
     , negativeTotal_(0.0)
 {
@@ -36,7 +35,11 @@ mmReportPayeeExpenses::mmReportPayeeExpenses(const wxString& title, mmDateRange*
 
 mmReportPayeeExpenses::~mmReportPayeeExpenses()
 {
-    if (date_range_) delete date_range_;
+}
+
+bool mmReportPayeeExpenses::has_date_range()
+{
+    return true;
 }
 
 void  mmReportPayeeExpenses::RefreshData()
@@ -47,7 +50,7 @@ void  mmReportPayeeExpenses::RefreshData()
     negativeTotal_ = 0.0;
 
     std::map<int, std::pair<double, double> > payeeStats;
-    getPayeeStats(payeeStats, date_range_
+    getPayeeStats(payeeStats, const_cast<mmDateRange*>(m_date_range)
         , mmIniOptions::instance().ignoreFutureTransactions_);
 
     data_holder line;
@@ -96,7 +99,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.init();
     hb.addDivContainer();
     hb.addHeader(2, title_);
-    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
+    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
 
     hb.addDivRow();
     hb.addDivCol17_67();
@@ -161,9 +164,9 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
 
     const auto &transactions = Model_Checking::instance().find(
         Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
-        , Model_Checking::TRANSDATE(date_range_->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(date_range_->end_date(), LESS_OR_EQUAL));
-    const wxDateTime today = date_range_->today();
+        , Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
+        , Model_Checking::TRANSDATE(m_date_range->end_date(), LESS_OR_EQUAL));
+    const wxDateTime today = m_date_range->today();
     const auto all_splits = Model_Splittransaction::instance().get_all();
     for (const auto& trx: transactions)
     {
