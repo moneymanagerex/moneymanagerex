@@ -27,7 +27,7 @@
 class mmReportCategoryExpenses : public mmPrintableBase
 {
 public:
-    mmReportCategoryExpenses(const wxString& title, int type);
+    explicit mmReportCategoryExpenses(const wxString& title, int type);
     virtual ~mmReportCategoryExpenses();
 
     virtual void RefreshData();
