@@ -105,7 +105,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
 
     m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(std::make_tuple(_("Payment Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Due Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Account"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));

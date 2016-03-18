@@ -973,7 +973,7 @@ TransactionListCtrl::TransactionListCtrl(
     showDeletedTransactions_ = Model_Setting::instance().GetBoolSetting("SHOW_DELETED_TRANS", true);
 
     m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Date"), 112, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Number"), 70, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Payee"), 150, wxLIST_FORMAT_LEFT));

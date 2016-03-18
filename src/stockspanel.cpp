@@ -90,7 +90,7 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     m_asc = Model_Setting::instance().GetBoolSetting("STOCKS_ASC", true);
 
     m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(std::make_tuple(_("Purchase Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Share Name"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Share Symbol"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));

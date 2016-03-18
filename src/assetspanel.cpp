@@ -66,7 +66,7 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     m_asc = Model_Setting::instance().GetBoolSetting("ASSETS_ASC", true);
 
     m_columns.push_back(std::make_tuple(" ", 25, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(std::make_tuple(_("ID"), 0, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(std::make_tuple(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(std::make_tuple(_("Name"), 150, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(std::make_tuple(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
