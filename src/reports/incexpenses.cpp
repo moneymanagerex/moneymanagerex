@@ -26,22 +26,24 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_CurrencyHistory.h"
 
 
-mmReportIncomeExpenses::mmReportIncomeExpenses(mmDateRange* date_range)
+mmReportIncomeExpenses::mmReportIncomeExpenses()
     : mmPrintableBaseSpecificAccounts(_("Income vs Expenses"))
-    , date_range_(date_range)
     , title_(_("Income vs Expenses: %s"))
 {
 }
 
 mmReportIncomeExpenses::~mmReportIncomeExpenses()
 {
-    if(date_range_)
-        delete date_range_;
+}
+
+bool mmReportIncomeExpenses::has_date_range()
+{
+    return true;
 }
 
 wxString mmReportIncomeExpenses::title() const
 {
-    return wxString::Format(this->title_, date_range_->title());
+    return wxString::Format(this->title_, m_date_range->title());
 }
 
 wxString mmReportIncomeExpenses::getHTMLText()
@@ -72,13 +74,13 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.init();
     hb.addDivContainer();
     hb.addHeader(2, this->title());
-    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
+    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
     hb.addDateNow();
 
     std::pair<double, double> income_expenses_pair;
     for (const auto& transaction : Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(date_range_->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(date_range_->end_date(), LESS_OR_EQUAL)
+        Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
+        , Model_Checking::TRANSDATE(m_date_range->end_date(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
         // We got this far, get the currency conversion rate for this account
@@ -154,19 +156,24 @@ wxString mmReportIncomeExpenses::getHTMLText()
     return "";
 }
 
-mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly(int day, int month, mmDateRange* date_range)
+mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly()
     : mmPrintableBaseSpecificAccounts(_("Income vs Expenses"))
-    , day_(day)
-    , month_(month)
-    , date_range_(date_range)
     , title_(_("Income vs Expenses: %s"))
 {
 }
 
 mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 {
-    if(date_range_)
-        delete date_range_;
+}
+
+bool mmReportIncomeExpensesMonthly::has_date_range()
+{
+    return true;
+}
+
+wxString mmReportIncomeExpensesMonthly::title() const
+{
+    return wxString::Format(this->title_, m_date_range->title());
 }
 
 wxString mmReportIncomeExpensesMonthly::getHTMLText()
@@ -197,8 +204,8 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     //TODO: init all the map values with 0.0
     for (const auto& transaction : Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(date_range_->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(date_range_->end_date(), LESS_OR_EQUAL)
+        Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
+        , Model_Checking::TRANSDATE(m_date_range->end_date(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
         // We got this far, get the currency conversion rate for this account
@@ -223,7 +230,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.init();
     hb.addDivContainer();
     hb.addHeader(2, this->title());
-    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
+    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
     hb.addHeader(3, headerMsg);
     hb.addLineBreak();
     hb.addDivRow();
@@ -242,7 +249,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             hb.endTableRow();
         }
         hb.endThead();
-        wxLogDebug("from %s till %s", date_range_->start_date().FormatISODate(), date_range_->end_date().FormatISODate());
+        wxLogDebug("from %s till %s", m_date_range->start_date().FormatISODate(), m_date_range->end_date().FormatISODate());
 
         double total_expenses = 0.0;
         double total_income = 0.0;
