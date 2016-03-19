@@ -39,15 +39,12 @@ protected:
 class mmReportIncomeExpensesSpecificAccounts : public mmReportIncomeExpenses
 {
 public:
-    mmReportIncomeExpensesSpecificAccounts() : mmReportIncomeExpenses()
-    {
-    }
-    virtual ~mmReportIncomeExpensesSpecificAccounts() {};
-    virtual wxString getHTMLText()
-    {
-        getSpecificAccounts();
-        return mmReportIncomeExpenses::getHTMLText();
-    }
+    mmReportIncomeExpensesSpecificAccounts();
+    virtual ~mmReportIncomeExpensesSpecificAccounts();
+    virtual wxString getHTMLText();
+
+protected:
+    bool bHaveAccount;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -67,15 +64,12 @@ protected:
 class mmReportIncomeExpensesMonthlySpecificAccounts : public mmReportIncomeExpensesMonthly
 {
 public:
-    mmReportIncomeExpensesMonthlySpecificAccounts() : mmReportIncomeExpensesMonthly()
-    {
-    }
-    virtual ~mmReportIncomeExpensesMonthlySpecificAccounts() {};
-    virtual wxString getHTMLText()
-    {
-        getSpecificAccounts();
-        return mmReportIncomeExpensesMonthly::getHTMLText();
-    }
+    mmReportIncomeExpensesMonthlySpecificAccounts();
+    virtual ~mmReportIncomeExpensesMonthlySpecificAccounts();
+    virtual wxString getHTMLText();
+
+protected:
+    bool bHaveAccount;
 };
 
 #endif // MM_EX_REPORTINCEXP_H_
