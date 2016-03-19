@@ -20,7 +20,6 @@
 #define MM_EX_REPORTINCEXP_H_
 
 #include "reportbase.h"
-#include "mmDateRange.h"
 
 class mmReportIncomeExpenses : public mmPrintableBaseSpecificAccounts
 {

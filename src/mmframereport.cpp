@@ -254,35 +254,15 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
 
     //////////////////////////////////////////////////////////////////
 
-    wxTreeItemId stocksReportSummary = navTreeCtrl_->AppendItem(reports
+    wxTreeItemId stocksReport = navTreeCtrl_->AppendItem(reports
         , _("Stocks Report"), img::PIECHART_PNG, img::PIECHART_PNG);
+    navTreeCtrl_->SetItemData(stocksReport, new mmTreeItemData("Stocks Report",
+        new mmReportChartStocks()));
+
+    wxTreeItemId stocksReportSummary = navTreeCtrl_->AppendItem(stocksReport
+        , _("Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
     navTreeCtrl_->SetItemData(stocksReportSummary, new mmTreeItemData("Summary of Stocks"
         , new mmReportSummaryStocks()));
-
-    wxTreeItemId stocksReportLast30 = navTreeCtrl_->AppendItem(stocksReportSummary
-        , _("Last 30 Days"), img::PIECHART_PNG, img::PIECHART_PNG);
-    navTreeCtrl_->SetItemData(stocksReportLast30, new mmTreeItemData("Stocks Report - 30 Days",
-        new mmReportChartStocks(new mmLast30Days())));
-
-    wxTreeItemId stocksReport = navTreeCtrl_->AppendItem(stocksReportSummary
-        , _("Last 365 Days"), img::PIECHART_PNG, img::PIECHART_PNG);
-    navTreeCtrl_->SetItemData(stocksReport, new mmTreeItemData("Stocks Report",
-        new mmReportChartStocks(new mmLast365Days())));
-
-    wxTreeItemId stocksReportLastYear = navTreeCtrl_->AppendItem(stocksReportSummary
-        , _("Last Year"), img::PIECHART_PNG, img::PIECHART_PNG);
-    navTreeCtrl_->SetItemData(stocksReportLastYear, new mmTreeItemData("Stocks Report - Last Year",
-        new mmReportChartStocks(new mmLastYear)));
-
-    wxTreeItemId stocksReportCurrentYear = navTreeCtrl_->AppendItem(stocksReportSummary
-        , _("Current Year"), img::PIECHART_PNG, img::PIECHART_PNG);
-    navTreeCtrl_->SetItemData(stocksReportCurrentYear, new mmTreeItemData("Stocks Report - Current Year",
-        new mmReportChartStocks(new mmCurrentYear)));
-
-    wxTreeItemId stocksReportAllTime = navTreeCtrl_->AppendItem(stocksReportSummary
-        , _("All Time"), img::PIECHART_PNG, img::PIECHART_PNG);
-    navTreeCtrl_->SetItemData(stocksReportAllTime, new mmTreeItemData("Stocks Report - All Time",
-        new mmReportChartStocks()));
 
     //////////////////////////////////////////////////////////////////
 

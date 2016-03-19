@@ -20,11 +20,11 @@
 #ifndef MM_EX_REPORTBASE_H_
 #define MM_EX_REPORTBASE_H_
 //----------------------------------------------------------------------------
+#include "mmDateRange.h"
 #include "mmOption.h"
 #include "model/Model_Report.h"
 class wxString;
 class wxArrayString;
-class mmDateRange;
 //----------------------------------------------------------------------------
 
 class mmPrintableBase
