@@ -51,19 +51,19 @@ private:
 class mmReportCategoryExpensesGoes: public mmReportCategoryExpenses
 {
 public:
-    explicit mmReportCategoryExpensesGoes(const wxString& title = _("Where the Money Goes"));
+    mmReportCategoryExpensesGoes();
 };
 
 class mmReportCategoryExpensesComes : public mmReportCategoryExpenses
 {
 public:
-    explicit mmReportCategoryExpensesComes(const wxString& title = _("Where the Money Comes From"));
+    mmReportCategoryExpensesComes();
 };
 
 class mmReportCategoryExpensesCategories : public mmReportCategoryExpenses
 {
 public:
-    explicit mmReportCategoryExpensesCategories(const wxString& title = _("Categories"));
+    mmReportCategoryExpensesCategories();
 };
 
 #endif // MM_EX_REPORTCATEGEXP_H_

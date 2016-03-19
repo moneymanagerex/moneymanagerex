@@ -156,6 +156,26 @@ wxString mmReportIncomeExpenses::getHTMLText()
     return "";
 }
 
+mmReportIncomeExpensesSpecificAccounts::mmReportIncomeExpensesSpecificAccounts()
+    : mmReportIncomeExpenses()
+    , bHaveAccount(false)
+{
+}
+
+mmReportIncomeExpensesSpecificAccounts::~mmReportIncomeExpensesSpecificAccounts()
+{
+}
+
+wxString mmReportIncomeExpensesSpecificAccounts::getHTMLText()
+{
+    if (!bHaveAccount)
+    {
+        bHaveAccount = true;
+        getSpecificAccounts();
+    }
+    return mmReportIncomeExpenses::getHTMLText();
+}
+
 mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly()
     : mmPrintableBaseSpecificAccounts(_("Income vs Expenses"))
     , title_(_("Income vs Expenses: %s"))
@@ -285,4 +305,24 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
     Model_Report::outputReportFile(hb.getHTMLText());
     return "";
+}
+
+mmReportIncomeExpensesMonthlySpecificAccounts::mmReportIncomeExpensesMonthlySpecificAccounts()
+    : mmReportIncomeExpensesMonthly()
+    , bHaveAccount(false)
+{
+}
+
+mmReportIncomeExpensesMonthlySpecificAccounts::~mmReportIncomeExpensesMonthlySpecificAccounts()
+{
+}
+
+wxString mmReportIncomeExpensesMonthlySpecificAccounts::getHTMLText()
+{
+    if (!bHaveAccount)
+    {
+        bHaveAccount = true;
+        getSpecificAccounts();
+    }
+    return mmReportIncomeExpensesMonthly::getHTMLText();
 }

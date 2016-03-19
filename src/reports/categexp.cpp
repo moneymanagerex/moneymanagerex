@@ -187,18 +187,18 @@ wxString mmReportCategoryExpenses::getHTMLText()
     return "";
 }
 
-mmReportCategoryExpensesGoes::mmReportCategoryExpensesGoes
-(const wxString& title)
-: mmReportCategoryExpenses(title, 2)
-{}
+mmReportCategoryExpensesGoes::mmReportCategoryExpensesGoes()
+    : mmReportCategoryExpenses(_("Where the Money Goes"), 2)
+{
+}
 
-mmReportCategoryExpensesComes::mmReportCategoryExpensesComes
-(const wxString& title)
-: mmReportCategoryExpenses(title, 1)
-{}
+mmReportCategoryExpensesComes::mmReportCategoryExpensesComes()
+    : mmReportCategoryExpenses(_("Where the Money Comes From"), 1)
+{
+}
 
-mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories
-(const wxString& title)
-: mmReportCategoryExpenses(title, 3)
-{}
+mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories()
+    : mmReportCategoryExpenses(_("Categories"), 3)
+{
+}
 
