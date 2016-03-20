@@ -30,17 +30,18 @@ class wxArrayString;
 class mmPrintableBase
 {
 public:
-    mmPrintableBase(const wxString& title): m_title(title), m_date_range(nullptr) {}
+    mmPrintableBase(const wxString& title): m_title(title), m_date_range(nullptr), m_initial(true) {}
     virtual ~mmPrintableBase() {}
     virtual wxString getHTMLText() = 0;
     virtual void RefreshData() {}
     virtual wxString title() const;
     virtual bool has_date_range() { return false;}
-public:
     void date_range(const mmDateRange* date_range) { this->m_date_range = date_range; }
+    void initial_report(bool initial) { m_initial = initial; }
 protected:
     wxString m_title;
     const mmDateRange* m_date_range;
+    bool m_initial;
 };
 
 class mmGeneralReport : public mmPrintableBase

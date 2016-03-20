@@ -197,7 +197,7 @@ mmReportCategoryExpensesComes::mmReportCategoryExpensesComes()
 }
 
 mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories()
-    : mmReportCategoryExpenses(_("Categories"), 3)
+    : mmReportCategoryExpenses(_("Categories"), 0)
 {
 }
 

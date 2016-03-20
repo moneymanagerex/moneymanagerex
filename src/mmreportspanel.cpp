@@ -169,11 +169,12 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     return TRUE;
 }
 
-bool mmReportsPanel::saveReportText(wxString& error)
+bool mmReportsPanel::saveReportText(wxString& error, bool initial)
 {
     error = "";
     if (rb_)
     {
+        rb_->initial_report(initial);
         if (this->m_date_ranges)
             rb_->date_range(static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
 
@@ -251,7 +252,7 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
     this->m_start_date->SetValue(date_range->start_date());
     this->m_end_date->SetValue(date_range->end_date());
     wxString error;
-    if (this->saveReportText(error))
+    if (this->saveReportText(error, false))
         browser_->LoadURL(getURL(mmex::getReportIndex()));
     else
         browser_->SetPage(error, "");

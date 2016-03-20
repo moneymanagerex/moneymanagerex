@@ -79,5 +79,7 @@ void mmPrintableBaseSpecificAccounts::getSpecificAccounts()
         }
     }
 
+    if (accountArray_)
+        delete accountArray_;
     accountArray_ = selections;
 }

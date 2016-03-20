@@ -433,11 +433,16 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
         "</script>\n";
 
     wxString data ="";
+    wxString label;
     for (const auto& entry : valueList)
     {
+        // Replace problem causing character
+        label = entry.label;
+        label.Replace("'", " ");
+
         data += wxString::Format(data_item
             , fabs(entry.amount), entry.color
-            , entry.label );
+            , label );
     }
     this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>\n", id, x, y, x, y));
     this->addText(wxString::Format(js, data, id));

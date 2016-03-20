@@ -36,9 +36,6 @@ public:
     mmReportIncomeExpensesSpecificAccounts();
     virtual ~mmReportIncomeExpensesSpecificAccounts();
     virtual wxString getHTMLText();
-
-protected:
-    bool bHaveAccount;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -57,9 +54,6 @@ public:
     mmReportIncomeExpensesMonthlySpecificAccounts();
     virtual ~mmReportIncomeExpensesMonthlySpecificAccounts();
     virtual wxString getHTMLText();
-
-protected:
-    bool bHaveAccount;
 };
 
 #endif // MM_EX_REPORTINCEXP_H_

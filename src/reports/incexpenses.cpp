@@ -152,7 +152,6 @@ wxString mmReportIncomeExpenses::getHTMLText()
 
 mmReportIncomeExpensesSpecificAccounts::mmReportIncomeExpensesSpecificAccounts()
     : mmReportIncomeExpenses()
-    , bHaveAccount(false)
 {
 }
 
@@ -162,11 +161,8 @@ mmReportIncomeExpensesSpecificAccounts::~mmReportIncomeExpensesSpecificAccounts(
 
 wxString mmReportIncomeExpensesSpecificAccounts::getHTMLText()
 {
-    if (!bHaveAccount)
-    {
-        bHaveAccount = true;
+    if (m_initial)
         getSpecificAccounts();
-    }
     return mmReportIncomeExpenses::getHTMLText();
 }
 
@@ -297,7 +293,6 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
 mmReportIncomeExpensesMonthlySpecificAccounts::mmReportIncomeExpensesMonthlySpecificAccounts()
     : mmReportIncomeExpensesMonthly()
-    , bHaveAccount(false)
 {
 }
 
@@ -307,10 +302,7 @@ mmReportIncomeExpensesMonthlySpecificAccounts::~mmReportIncomeExpensesMonthlySpe
 
 wxString mmReportIncomeExpensesMonthlySpecificAccounts::getHTMLText()
 {
-    if (!bHaveAccount)
-    {
-        bHaveAccount = true;
+    if (m_initial)
         getSpecificAccounts();
-    }
     return mmReportIncomeExpensesMonthly::getHTMLText();
 }
