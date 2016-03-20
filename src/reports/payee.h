@@ -27,7 +27,7 @@
 class mmReportPayeeExpenses : public mmPrintableBase
 {
 public:
-    explicit mmReportPayeeExpenses(const wxString& title = _("Payee Report"));
+    mmReportPayeeExpenses();
     virtual ~mmReportPayeeExpenses();
 
     virtual void RefreshData();
@@ -38,7 +38,6 @@ protected:
     void getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats
         , mmDateRange* date_range, bool ignoreFuture) const;
 
-    wxString title_;
     enum TYPE {INCOME = 0, EXPENSES, MAX};
 
 private:

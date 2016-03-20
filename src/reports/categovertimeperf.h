@@ -21,21 +21,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define MM_EX_REPORTCATEGOVERTIME_H_
 //----------------------------------------------------------------------------
 #include "reportbase.h"
-#include "mmDateRange.h"
 //----------------------------------------------------------------------------
 
 class mmReportCategoryOverTimePerformance : public mmPrintableBase
 {
 public:
-    explicit mmReportCategoryOverTimePerformance(mmDateRange* date_range = new mmLast12Months());
+    mmReportCategoryOverTimePerformance();
     ~mmReportCategoryOverTimePerformance();
 
     wxString getHTMLText();
 
 protected:
-    mmDateRange* date_range_;
-    wxString title_;
-
     enum TYPE { INCOME = 0, EXPENSES, TOTAL, MAX };
 };
 //----------------------------------------------------------------------------

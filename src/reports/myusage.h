@@ -18,9 +18,7 @@
 
 #pragma once
 #include "reportbase.h"
-#include "mmDateRange.h"
 
-class mmDateRange;
 class mmReportMyUsage: public mmPrintableBase 
 {
 public:

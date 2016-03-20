@@ -30,16 +30,8 @@ wxString mmPrintableBase::title() const
         return m_title + " - " + m_date_range->title();
 }
 
-wxString mmPrintableBase::local_title() const
-{
-    if (!m_date_range) 
-        return m_local_title; 
-    else 
-        return m_local_title + " - " + m_date_range->local_title();
-}
-
 mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
-: mmPrintableBase(report->REPORTNAME, wxGetTranslation(report->REPORTNAME))
+: mmPrintableBase(report->REPORTNAME)
 , m_report(report)
 {
 }
@@ -52,7 +44,6 @@ wxString mmGeneralReport::getHTMLText()
 mmPrintableBaseSpecificAccounts::mmPrintableBaseSpecificAccounts(const wxString& report_name, int sort_column)
 : mmPrintableBase(report_name)
 , accountArray_(0)
-, reportName_(report_name)
 {
 }
 
@@ -72,7 +63,7 @@ void mmPrintableBaseSpecificAccounts::getSpecificAccounts()
         accounts.Add(account.ACCOUNTNAME);
     }
 
-    wxMultiChoiceDialog mcd(0, _("Choose Accounts"), reportName_, accounts);
+    wxMultiChoiceDialog mcd(0, _("Choose Accounts"), m_title, accounts);
     wxButton* ok = (wxButton*) mcd.FindWindow(wxID_OK);
     if (ok) ok->SetLabel(_("&OK "));
     wxButton* ca = (wxButton*) mcd.FindWindow(wxID_CANCEL);

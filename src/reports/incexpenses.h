@@ -28,11 +28,6 @@ public:
     virtual ~mmReportIncomeExpenses();
     virtual bool has_date_range();
     virtual wxString getHTMLText();
-
-protected:
-    wxString title_;
-    virtual wxString title() const;
-
 };
 
 class mmReportIncomeExpensesSpecificAccounts : public mmReportIncomeExpenses
@@ -54,10 +49,6 @@ public:
     virtual ~mmReportIncomeExpensesMonthly();
     virtual bool has_date_range();
     virtual wxString getHTMLText();
-
-protected:
-    wxString title_;
-    virtual wxString title() const;
 };
 
 class mmReportIncomeExpensesMonthlySpecificAccounts : public mmReportIncomeExpensesMonthly

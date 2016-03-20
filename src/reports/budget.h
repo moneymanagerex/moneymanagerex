@@ -21,7 +21,6 @@
 #include "reportbase.h"
 
 class mmHTMLBuilder;
-class wxDateTime;
 
 /*************************************************************************
  Class: mmReportBudget : This class is a base class for Budget Reports.

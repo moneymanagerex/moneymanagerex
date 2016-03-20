@@ -30,16 +30,15 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 //----------------------------------------------------------------------------
 
-mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance(mmDateRange* date_range)
-    : mmPrintableBase("mmReportCategoryOverTimePerformance")
-    , date_range_(date_range)
-    , title_(_("Category Income/Expenses: %s"))
+mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance()
+    : mmPrintableBase(_("Category Income/Expenses"))
 {
+    m_date_range = new mmLast12Months();
 }
 //----------------------------------------------------------------------------
 mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()
 {
-    if (date_range_) delete date_range_;
+    delete m_date_range;
 }
 
 wxString mmReportCategoryOverTimePerformance::getHTMLText()
@@ -49,7 +48,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     //Get statistic
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
-        , date_range_
+        , const_cast<mmDateRange*>(m_date_range)
         , mmIniOptions::instance().ignoreFutureTransactions_);
 
     //Init totals
@@ -97,7 +96,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, wxString::Format(title_, date_range_->title()));
+    hb.addHeader(2, title());
     hb.addDateNow();
     hb.addLineBreak();
 
@@ -107,7 +106,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Category"));
-    wxDateTime start_date = date_range_->start_date();
+    wxDateTime start_date = m_date_range->start_date();
     for (int i = 0; i < MONTHS_IN_PERIOD; i++)
     {
         wxDateTime d = wxDateTime(start_date).Add(wxDateSpan::Months(i));
