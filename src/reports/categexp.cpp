@@ -30,9 +30,8 @@
 
 mmReportCategoryExpenses::mmReportCategoryExpenses
 (const wxString& title, int type)
-: mmPrintableBase("mmReportCategoryExpenses")
-, title_(title)
-, type_(type)
+    : mmPrintableBase(title)
+    , type_(type)
 {
 }
 
@@ -115,7 +114,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, title_);
+    hb.addHeader(2, title());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
 
     hb.addDivRow();

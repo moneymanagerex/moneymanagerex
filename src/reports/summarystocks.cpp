@@ -40,9 +40,9 @@
 #define STOCK_SORT_BY_VALUE         9
 
 mmReportSummaryStocks::mmReportSummaryStocks()
-: mmPrintableBase("mmReportSummaryStocks")
-, gain_loss_sum_total_(0.0)
-, stockBalance_(0.0)
+    : mmPrintableBase(_("Summary of Stocks"))
+    , gain_loss_sum_total_(0.0)
+    , stockBalance_(0.0)
 {
 }
 
@@ -93,7 +93,7 @@ wxString mmReportSummaryStocks::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, _("Summary of Stocks"));
+    hb.addHeader(2, m_title);
     hb.addDateNow();
     hb.addLineBreak();
 
@@ -184,7 +184,7 @@ void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb)
 }
 
 mmReportChartStocks::mmReportChartStocks()
-    : mmPrintableBase("mmReportChartStocks")
+    : mmPrintableBase(_("Stocks Performance Charts"))
 {
 }
 
@@ -202,7 +202,7 @@ wxString mmReportChartStocks::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, _("Stocks Performance Charts"));
+    hb.addHeader(2, title());
 
     wxTimeSpan dtDiff = m_date_range->end_date() - m_date_range->start_date();
     if (m_date_range->is_with_date() && dtDiff.GetDays() <= 366)

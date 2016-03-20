@@ -25,9 +25,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <algorithm>
 
-mmReportPayeeExpenses::mmReportPayeeExpenses(const wxString& title)
-    : mmPrintableBase(title)
-    , title_(title)
+mmReportPayeeExpenses::mmReportPayeeExpenses()
+    : mmPrintableBase(_("Payee Report"))
     , positiveTotal_(0.0)
     , negativeTotal_(0.0)
 {
@@ -98,7 +97,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, title_);
+    hb.addHeader(2, title());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
 
     hb.addDivRow();

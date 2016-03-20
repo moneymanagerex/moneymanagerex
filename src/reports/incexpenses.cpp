@@ -28,7 +28,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 mmReportIncomeExpenses::mmReportIncomeExpenses()
     : mmPrintableBaseSpecificAccounts(_("Income vs Expenses"))
-    , title_(_("Income vs Expenses: %s"))
 {
 }
 
@@ -39,11 +38,6 @@ mmReportIncomeExpenses::~mmReportIncomeExpenses()
 bool mmReportIncomeExpenses::has_date_range()
 {
     return true;
-}
-
-wxString mmReportIncomeExpenses::title() const
-{
-    return wxString::Format(this->title_, m_date_range->title());
 }
 
 wxString mmReportIncomeExpenses::getHTMLText()
@@ -178,7 +172,6 @@ wxString mmReportIncomeExpensesSpecificAccounts::getHTMLText()
 
 mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly()
     : mmPrintableBaseSpecificAccounts(_("Income vs Expenses"))
-    , title_(_("Income vs Expenses: %s"))
 {
 }
 
@@ -189,11 +182,6 @@ mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 bool mmReportIncomeExpensesMonthly::has_date_range()
 {
     return true;
-}
-
-wxString mmReportIncomeExpensesMonthly::title() const
-{
-    return wxString::Format(this->title_, m_date_range->title());
 }
 
 wxString mmReportIncomeExpensesMonthly::getHTMLText()

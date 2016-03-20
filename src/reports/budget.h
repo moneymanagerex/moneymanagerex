@@ -20,7 +20,7 @@
 
 #include "reportbase.h"
 
-class wxDateTime;
+class mmHTMLBuilder;
 
 /*************************************************************************
  Class: mmReportBudget : This class is a base class for Budget Reports.

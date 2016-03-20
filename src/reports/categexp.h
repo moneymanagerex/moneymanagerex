@@ -37,7 +37,6 @@ public:
     enum TYPE { NONE = 0, GOES, COME, CATEGORY};
 
 protected:
-    wxString title_;
     int type_;
 
 private:
