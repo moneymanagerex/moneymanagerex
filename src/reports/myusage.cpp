@@ -18,7 +18,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "myusage.h"
 #include "model/Model_Usage.h"
-#include "reports/mmDateRange.h"
 #include "reports/htmlbuilder.h"
 #include "model/Model_Report.h"
 #include "cajun/json/elements.h"
@@ -107,14 +106,14 @@ const char *usage_template = R"(
 </html>
 )";
 
-mmReportMyUsage::mmReportMyUsage(mmDateRange* date_range)
-: mmPrintableBase("My Usage", _("My Usage"))
+mmReportMyUsage::mmReportMyUsage()
+: mmPrintableBase(_("My Usage"))
 {
-    this->m_date_range = date_range;
 }
 
 mmReportMyUsage::~mmReportMyUsage()
-{}
+{
+}
 
 bool mmReportMyUsage::has_date_range()
 {
@@ -179,7 +178,7 @@ wxString mmReportMyUsage::getHTMLText()
     }
 
     mm_html_template report(usage_template);
-    report(L"REPORTNAME") = this->local_title();
+    report(L"REPORTNAME") = this->title();
     report(L"CONTENTS") = contents;
     report(L"GRAND") = wxString::Format("%ld", (long)all_usage.size());
     report(L"HTMLSCALE") = wxString::Format("%d", mmIniOptions::instance().html_font_size_);

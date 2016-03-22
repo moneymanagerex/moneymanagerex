@@ -48,7 +48,7 @@ public:
     void CreateControls();
     void sortTable() {}
 
-    bool saveReportText(wxString& error);
+    bool saveReportText(wxString& error, bool initial = true);
     mmPrintableBase* getPrintableBase() { return rb_; }
     void PrintPage();
 
