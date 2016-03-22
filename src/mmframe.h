@@ -148,10 +148,6 @@ private:
     void menuEnableItems(bool enable);
     void updateNavTreeControl();
     void updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting);
-    void updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categsOverTime);
-    void updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCategs);
-    void updateReportCategoryNavigation(wxTreeItemId& categs);
-    void updateReportPayeeNavigation(wxTreeItemId& payeesOverTime);
     void showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt);
     void showBeginAppDialog(bool fromScratch = false);
     void SetDataBaseParameters(const wxString& fileName);

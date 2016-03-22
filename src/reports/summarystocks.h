@@ -21,7 +21,6 @@
 
 #include "reportbase.h"
 #include <vector>
-#include "mmDateRange.h"
 
 class mmHTMLBuilder;
 
@@ -41,16 +40,14 @@ private:
     double gain_loss_sum_total_;
     double stockBalance_;
 };
+
 class mmReportChartStocks : public mmPrintableBase 
 {
 public:
-    mmReportChartStocks(mmDateRange* date_range=new mmAllTime()) :
-        mmPrintableBase("mmReportChartStocks"), dtRange_(date_range) {}
-    ~mmReportChartStocks() { delete dtRange_; }
+    mmReportChartStocks();
+    ~mmReportChartStocks();
+    virtual bool has_date_range();
     wxString getHTMLText();
-
-private:
-    mmDateRange* dtRange_;
 };
 
 #endif // _MM_EX_REPORTSUMMARYSTOCKS_H_

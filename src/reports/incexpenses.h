@@ -20,252 +20,40 @@
 #define MM_EX_REPORTINCEXP_H_
 
 #include "reportbase.h"
-#include "mmDateRange.h"
 
 class mmReportIncomeExpenses : public mmPrintableBaseSpecificAccounts
 {
 public:
-    explicit mmReportIncomeExpenses(mmDateRange* date_range = new mmCurrentMonth());
+    mmReportIncomeExpenses();
     virtual ~mmReportIncomeExpenses();
+    virtual bool has_date_range();
     virtual wxString getHTMLText();
-
-protected:
-    mmDateRange* date_range_;
-    wxString title_;
-    virtual wxString title() const;
-
-};
-
-class mmReportIncomeExpensesAllTime: public mmReportIncomeExpenses
-{
-public:
-    mmReportIncomeExpensesAllTime(): mmReportIncomeExpenses(new mmAllTime())
-    {
-    }
-};
-
-class mmReportIncomeExpensesCurrentMonth: public mmReportIncomeExpenses
-{
-public:
-    mmReportIncomeExpensesCurrentMonth(): mmReportIncomeExpenses(new mmCurrentMonth())
-    {
-    }
-};
-
-class mmReportIncomeExpensesCurrentMonthToDate: public mmReportIncomeExpenses
-{
-public:
-    mmReportIncomeExpensesCurrentMonthToDate(): mmReportIncomeExpenses(new mmCurrentMonthToDate())
-    {
-    }
-};
-
-class mmReportIncomeExpensesLastMonth: public mmReportIncomeExpenses
-{
-public:
-    mmReportIncomeExpensesLastMonth(): mmReportIncomeExpenses(new mmLastMonth())
-    {
-    }
-};
-
-class mmReportIncomeExpensesLast30Days: public mmReportIncomeExpenses
-{
-public:
-    mmReportIncomeExpensesLast30Days(): mmReportIncomeExpenses(new mmLast30Days())
-    {
-    }
 };
 
 class mmReportIncomeExpensesSpecificAccounts : public mmReportIncomeExpenses
 {
 public:
-    explicit mmReportIncomeExpensesSpecificAccounts(mmDateRange* date_range = new mmCurrentMonth()) : mmReportIncomeExpenses(date_range)
-    {
-    }
-    virtual ~mmReportIncomeExpensesSpecificAccounts() {};
-    virtual wxString getHTMLText()
-    {
-        getSpecificAccounts();
-        return mmReportIncomeExpenses::getHTMLText();
-    }
-};
-
-class mmReportIncomeExpensesAllTimeSpecificAccounts : public mmReportIncomeExpensesSpecificAccounts
-{
-public:
-    mmReportIncomeExpensesAllTimeSpecificAccounts() : mmReportIncomeExpensesSpecificAccounts(new mmAllTime())
-    {
-    }
-};
-
-class mmReportIncomeExpensesCurrentMonthSpecificAccounts : public mmReportIncomeExpensesSpecificAccounts
-{
-public:
-    mmReportIncomeExpensesCurrentMonthSpecificAccounts() : mmReportIncomeExpensesSpecificAccounts(new mmCurrentMonth())
-    {
-    }
-};
-
-class mmReportIncomeExpensesCurrentMonthToDateSpecificAccounts : public mmReportIncomeExpensesSpecificAccounts
-{
-public:
-    mmReportIncomeExpensesCurrentMonthToDateSpecificAccounts() : mmReportIncomeExpensesSpecificAccounts(new mmCurrentMonthToDate())
-    {
-    }
-};
-
-class mmReportIncomeExpensesLastMonthSpecificAccounts : public mmReportIncomeExpensesSpecificAccounts
-{
-public:
-    mmReportIncomeExpensesLastMonthSpecificAccounts() : mmReportIncomeExpensesSpecificAccounts(new mmLastMonth())
-    {
-    }
-};
-
-class mmReportIncomeExpensesLast30DaysSpecificAccounts : public mmReportIncomeExpensesSpecificAccounts
-{
-public:
-    mmReportIncomeExpensesLast30DaysSpecificAccounts() : mmReportIncomeExpensesSpecificAccounts(new mmLast30Days())
-    {
-    }
+    mmReportIncomeExpensesSpecificAccounts();
+    virtual ~mmReportIncomeExpensesSpecificAccounts();
+    virtual wxString getHTMLText();
 };
 
 /////////////////////////////////////////////////////////////////////////////////////
 class mmReportIncomeExpensesMonthly : public mmPrintableBaseSpecificAccounts
 {
 public:
-    explicit mmReportIncomeExpensesMonthly(int day_ = 1
-                                         , int month_ = 1
-                                         , mmDateRange* date_range = new mmCurrentMonth());
+    mmReportIncomeExpensesMonthly();
     virtual ~mmReportIncomeExpensesMonthly();
+    virtual bool has_date_range();
     virtual wxString getHTMLText();
-protected:
-
-    mmDateRange* date_range_;
-    int day_;
-    int month_;
-    wxString title_;
-    virtual wxString title() const
-    {
-        return wxString::Format(title_, date_range_->title());
-    }
-};
-
-class mmReportIncomeExpensesCurrentYear: public mmReportIncomeExpensesMonthly
-{
-public:
-    mmReportIncomeExpensesCurrentYear(): mmReportIncomeExpensesMonthly(1, 1, new mmCurrentYear())
-    {
-    }
-};
-
-class mmReportIncomeExpensesCurrentYearToDate : public mmReportIncomeExpensesMonthly
-{
-public:
-    mmReportIncomeExpensesCurrentYearToDate() : mmReportIncomeExpensesMonthly(1, 1, new mmCurrentYearToDate())
-    {
-    }
-};
-
-class mmReportIncomeExpensesLastYear : public mmReportIncomeExpensesMonthly
-{
-public:
-    mmReportIncomeExpensesLastYear(): mmReportIncomeExpensesMonthly(1, 1, new mmLastYear())
-    {
-    }
-};
-
-class mmReportIncomeExpensesCurrentFinancialYear: public mmReportIncomeExpensesMonthly
-{
-public:
-    mmReportIncomeExpensesCurrentFinancialYear(const int day, const int month)
-        : mmReportIncomeExpensesMonthly(day, month, new mmCurrentFinancialYear(day, month))
-    {
-    }
-};
-
-class mmReportIncomeExpensesCurrentFinancialYearToDate : public mmReportIncomeExpensesMonthly
-{
-public:
-    mmReportIncomeExpensesCurrentFinancialYearToDate(const int day, const int month)
-        : mmReportIncomeExpensesMonthly(day, month, new mmCurrentFinancialYearToDate(day, month))
-    {
-    }
-};
-
-class mmReportIncomeExpensesLastFinancialYear : public mmReportIncomeExpensesMonthly
-{
-public:
-    mmReportIncomeExpensesLastFinancialYear(const int day, const int month)
-        : mmReportIncomeExpensesMonthly(day, month, new mmLastFinancialYear(day, month))
-    {
-    }
 };
 
 class mmReportIncomeExpensesMonthlySpecificAccounts : public mmReportIncomeExpensesMonthly
 {
 public:
-    explicit mmReportIncomeExpensesMonthlySpecificAccounts(int day = 1, int month = 1
-        , mmDateRange* date_range = new mmCurrentMonth()) : mmReportIncomeExpensesMonthly(day, month, date_range)
-    {
-    }
-    virtual ~mmReportIncomeExpensesMonthlySpecificAccounts() {};
-    virtual wxString getHTMLText()
-    {
-        getSpecificAccounts();
-        return mmReportIncomeExpensesMonthly::getHTMLText();
-    }
-};
-
-class mmReportIncomeExpensesCurrentYearSpecificAccounts : public mmReportIncomeExpensesMonthlySpecificAccounts
-{
-public:
-    mmReportIncomeExpensesCurrentYearSpecificAccounts() : mmReportIncomeExpensesMonthlySpecificAccounts(1, 1, new mmCurrentYear())
-    {
-    }
-};
-
-class mmReportIncomeExpensesCurrentYearToDateSpecificAccounts : public mmReportIncomeExpensesMonthlySpecificAccounts
-{
-public:
-    mmReportIncomeExpensesCurrentYearToDateSpecificAccounts() : mmReportIncomeExpensesMonthlySpecificAccounts(1, 1, new mmCurrentYearToDate())
-    {
-    }
-};
-
-class mmReportIncomeExpensesLastYearSpecificAccounts : public mmReportIncomeExpensesMonthlySpecificAccounts
-{
-public:
-    mmReportIncomeExpensesLastYearSpecificAccounts() : mmReportIncomeExpensesMonthlySpecificAccounts(1, 1, new mmLastYear())
-    {
-    }
-};
-
-class mmReportIncomeExpensesCurrentFinancialYearSpecificAccounts : public mmReportIncomeExpensesMonthlySpecificAccounts
-{
-public:
-    mmReportIncomeExpensesCurrentFinancialYearSpecificAccounts(const int day, const int month)
-        : mmReportIncomeExpensesMonthlySpecificAccounts(day, month, new mmCurrentFinancialYear(day, month))
-    {
-    }
-};
-
-class mmReportIncomeExpensesCurrentFinancialYearToDateSpecificAccounts : public mmReportIncomeExpensesMonthlySpecificAccounts
-{
-public:
-    mmReportIncomeExpensesCurrentFinancialYearToDateSpecificAccounts(const int day, const int month)
-        : mmReportIncomeExpensesMonthlySpecificAccounts(day, month, new mmCurrentFinancialYearToDate(day, month))
-    {
-    }
-};
-
-class mmReportIncomeExpensesLastFinancialYearSpecificAccounts : public mmReportIncomeExpensesMonthlySpecificAccounts
-{
-public:
-    mmReportIncomeExpensesLastFinancialYearSpecificAccounts(const int day, const int month)
-        : mmReportIncomeExpensesMonthlySpecificAccounts(day, month, new mmLastFinancialYear(day, month))
-    {
-    }
+    mmReportIncomeExpensesMonthlySpecificAccounts();
+    virtual ~mmReportIncomeExpensesMonthlySpecificAccounts();
+    virtual wxString getHTMLText();
 };
 
 #endif // MM_EX_REPORTINCEXP_H_

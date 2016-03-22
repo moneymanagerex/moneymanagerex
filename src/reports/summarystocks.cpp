@@ -40,9 +40,9 @@
 #define STOCK_SORT_BY_VALUE         9
 
 mmReportSummaryStocks::mmReportSummaryStocks()
-: mmPrintableBase("mmReportSummaryStocks")
-, gain_loss_sum_total_(0.0)
-, stockBalance_(0.0)
+    : mmPrintableBase(_("Summary of Stocks"))
+    , gain_loss_sum_total_(0.0)
+    , stockBalance_(0.0)
 {
 }
 
@@ -93,7 +93,7 @@ wxString mmReportSummaryStocks::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, _("Summary of Stocks"));
+    hb.addHeader(2, m_title);
     hb.addDateNow();
     hb.addLineBreak();
 
@@ -183,16 +183,30 @@ void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb)
     hb.endThead();
 }
 
+mmReportChartStocks::mmReportChartStocks()
+    : mmPrintableBase(_("Stocks Performance Charts"))
+{
+}
+
+mmReportChartStocks::~mmReportChartStocks()
+{
+}
+
+bool mmReportChartStocks::has_date_range()
+{
+    return true;
+}
+
 wxString mmReportChartStocks::getHTMLText()
 {
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, _("Stocks Performance Charts"));
+    hb.addHeader(2, title());
 
-    wxTimeSpan dtDiff = dtRange_->end_date() - dtRange_->start_date();
-    if (dtRange_->is_with_date() && dtDiff.GetDays() <= 366)
-        hb.DisplayDateHeading(dtRange_->start_date(), dtRange_->end_date(), true);
+    wxTimeSpan dtDiff = m_date_range->end_date() - m_date_range->start_date();
+    if (m_date_range->is_with_date() && dtDiff.GetDays() <= 366)
+        hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), true);
     hb.addHorizontalLine();
 
     int count = 0, heldAt = -1;
@@ -203,8 +217,8 @@ wxString mmReportChartStocks::getHTMLText()
     {
         int dataCount = 0, freq = 1;
         Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(stock.SYMBOL),
-            Model_StockHistory::DATE(dtRange_->start_date(), GREATER_OR_EQUAL),
-            Model_StockHistory::DATE(dtRange_->end_date(), LESS_OR_EQUAL));
+            Model_StockHistory::DATE(m_date_range->start_date(), GREATER_OR_EQUAL),
+            Model_StockHistory::DATE(m_date_range->end_date(), LESS_OR_EQUAL));
         std::stable_sort(histData.begin(), histData.end(), SorterByDATE());
         if (histData.size() <= 30)
             showGridLines = pointDot = true;
