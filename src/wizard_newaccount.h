@@ -41,10 +41,10 @@ private:
 };
 //----------------------------------------------------------------------------
 
-class mmAddAccountPage1 : public wxWizardPageSimple
+class mmAddAccountNamePage : public wxWizardPageSimple
 {
 public:
-    mmAddAccountPage1(mmAddAccountWizard* parent);
+    mmAddAccountNamePage(mmAddAccountWizard* parent);
     virtual bool TransferDataFromWindow();
 
 private:
@@ -53,10 +53,10 @@ private:
 };
 //----------------------------------------------------------------------------
 
-class mmAddAccountPage2 : public wxWizardPageSimple
+class mmAddAccountTypePage : public wxWizardPageSimple
 {
 public:
-    mmAddAccountPage2(mmAddAccountWizard *parent);
+    mmAddAccountTypePage(mmAddAccountWizard *parent);
     virtual bool TransferDataFromWindow();
 
 private:
