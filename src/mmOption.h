@@ -39,7 +39,7 @@ public:
 
     // set and save the option: m_language
     void Language(wxString& language);
-    wxString Language();
+    wxString Language(bool get_db = false);
 
     // set and save the option: m_userNameString
     void UserName(const wxString& username);

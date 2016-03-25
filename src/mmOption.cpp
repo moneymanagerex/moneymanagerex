@@ -66,8 +66,13 @@ void mmOptions::Language(wxString& language)
     Model_Setting::instance().Set(LANGUAGE_PARAMETER, language);
 }
 
-wxString mmOptions::Language()
+wxString mmOptions::Language(bool get_db)
 {
+    if (get_db)
+    {
+        m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
+    }
+
     return m_language;
 }
 

@@ -163,7 +163,7 @@ const wxString mmDialogs::mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool
 //TODO: Determine how this functions using class
         //wxString lang = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
 
-        wxString lang = mmOptions::instance().Language();
+        wxString lang = mmOptions::instance().Language(true);
         if (!lang.empty() && locale.AddCatalog(lang) && locale.IsLoaded(lang))
         {
             mmOptions::instance().Language(lang);
