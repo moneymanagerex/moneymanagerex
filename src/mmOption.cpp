@@ -27,9 +27,9 @@
 
 //----------------------------------------------------------------------------
 mmOptions::mmOptions()
-:   dateFormat_(mmex::DEFDATEFORMAT)
-    , language_("english")
-    , databaseUpdated_(false)
+:   m_dateFormat(mmex::DEFDATEFORMAT)
+    , m_language("english")
+    , m_databaseUpdated(false)
 {}
 
 //----------------------------------------------------------------------------
@@ -41,12 +41,80 @@ mmOptions& mmOptions::instance()
 //----------------------------------------------------------------------------
 void mmOptions::LoadInfotableOptions()
 {
-    dateFormat_ = Model_Infotable::instance().DateFormat();
-    userNameString_ = Model_Infotable::instance().GetStringInfo("USERNAME", "");
+    m_dateFormat = Model_Infotable::instance().DateFormat();
+    m_userNameString = Model_Infotable::instance().GetStringInfo("USERNAME", "");
+    m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
 
-    financialYearStartDayString_   = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
-    financialYearStartMonthString_ = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
+    m_financialYearStartDayString   = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
+    m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
 }
+
+void mmOptions::DateFormat(const wxString& dateformat)
+{
+    m_dateFormat = dateformat;
+    Model_Infotable::instance().SetDateFormat(dateformat);
+}
+
+wxString mmOptions::DateFormat()
+{
+    return m_dateFormat;
+}
+
+void mmOptions::Language(wxString& language)
+{
+    m_language = language;
+    Model_Setting::instance().Set(LANGUAGE_PARAMETER, language);
+}
+
+wxString mmOptions::Language()
+{
+    return m_language;
+}
+
+void mmOptions::UserName(const wxString& username)
+{
+    m_userNameString = username;
+    Model_Infotable::instance().Set("USERNAME", username);
+}
+
+wxString mmOptions::UserName()
+{
+    return m_userNameString;
+}
+
+wxString mmOptions::FinancialYearStartDay()
+{
+    return m_financialYearStartDayString;
+}
+
+void mmOptions::FinancialYearStartDay(const wxString& setting)
+{
+    m_financialYearStartDayString = setting;
+    Model_Infotable::instance().Set("FINANCIAL_YEAR_START_DAY", setting);
+}
+
+wxString mmOptions::FinancialYearStartMonth()
+{
+    return m_financialYearStartMonthString;
+}
+
+void mmOptions::FinancialYearStartMonth(const wxString& setting)
+{
+    m_financialYearStartMonthString = setting;
+    Model_Infotable::instance().Set("FINANCIAL_YEAR_START_MONTH", setting);
+}
+
+void mmOptions::DatabaseUpdated(bool value)
+{
+    m_databaseUpdated = value;
+
+}
+
+bool mmOptions::DatabaseUpdated()
+{
+    return m_databaseUpdated;
+}
+
 
 //----------------------------------------------------------------------------
 mmIniOptions::mmIniOptions()

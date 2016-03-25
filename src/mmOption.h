@@ -33,13 +33,38 @@ public:
     static mmOptions& instance();
     void LoadInfotableOptions();
 
-    wxString dateFormat_;
-    wxString language_;
-    wxString userNameString_;
+    // set and save the option: m_dateFormat
+    void DateFormat(const wxString& datefornat);
+    wxString DateFormat();
 
-    wxString financialYearStartDayString_;
-    wxString financialYearStartMonthString_;
-    bool databaseUpdated_;
+    // set and save the option: m_language
+    void Language(wxString& language);
+    wxString Language();
+
+    // set and save the option: m_userNameString
+    void UserName(const wxString& username);
+    wxString UserName();
+
+    // set and save the option: m_financialYearStartDayString
+    void FinancialYearStartDay(const wxString& setting);
+    wxString FinancialYearStartDay();
+
+    // set and save the option: m_financialYearStartMonthString
+    void FinancialYearStartMonth(const wxString& setting);
+    wxString FinancialYearStartMonth();
+
+    // set and save the option: m_databaseUpdated
+    void DatabaseUpdated(bool value);
+    bool DatabaseUpdated();
+
+private:
+    wxString m_dateFormat;
+    wxString m_language;
+    wxString m_userNameString;
+
+    wxString m_financialYearStartDayString;
+    wxString m_financialYearStartMonthString;
+    bool m_databaseUpdated;
 };
 
 class mmIniOptions

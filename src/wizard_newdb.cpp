@@ -164,8 +164,7 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
         return false;
     }
     wxString userName = itemUserName_->GetValue().Trim();
-    Model_Infotable::instance().Set("USERNAME", userName);
-    mmOptions::instance().userNameString_ = userName;
+    mmOptions::instance().UserName(userName);
 
     return true;
 }
