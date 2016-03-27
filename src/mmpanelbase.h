@@ -28,6 +28,16 @@
 
 class wxListItemAttr;
 
+struct PANEL_COLUMN
+{
+    PANEL_COLUMN(const wxString & header, int width, int format)
+        : HEADER(header), WIDTH(width), FORMAT(format)
+    {}
+    wxString HEADER;
+    int WIDTH;
+    int FORMAT;
+};
+
 class mmListCtrl : public wxListCtrl
 {
     wxDECLARE_EVENT_TABLE();
@@ -40,7 +50,7 @@ public:
     long m_selected_row;
     int m_selected_col;
     bool m_asc;
-    std::vector<std::tuple<wxString, int, int>> m_columns;
+    std::vector<PANEL_COLUMN> m_columns;
     wxString m_col_width;
     int m_default_sort_column;
 
