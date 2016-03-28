@@ -1,6 +1,6 @@
 /* XPM */
-static const char * work_xpm[] = {
-"16 14 10 1",
+static const char* work_xpm[] = {
+"16 16 10 1",
 " 	c None",
 ".	c #EE171A",
 "+	c #ED171A",
@@ -11,6 +11,7 @@ static const char * work_xpm[] = {
 "&	c #EC171A",
 "*	c #EC181A",
 "=	c #EC171B",
+"                ",
 "       ..       ",
 "       ++@      ",
 "      +#++      ",
@@ -24,4 +25,5 @@ static const char * work_xpm[] = {
 " .+ %%  % %  +. ",
 " + %%%%    %  + ",
 "++            ++",
-"=+++++++++++++++"};
+"=+++++++++++++++",
+"                "};
