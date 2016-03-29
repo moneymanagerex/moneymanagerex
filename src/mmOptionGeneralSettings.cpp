@@ -197,7 +197,6 @@ void mmOptionGeneralSettings::OnDateFormatChanged(wxCommandEvent& /*event*/)
     if (data)
     {
         m_date_format = data->GetData();
-        mmOptions::instance().dateFormat_ = m_date_format;
         m_sample_date_text->SetLabelText(wxDateTime::Now().Format(m_date_format));
     }
     else
@@ -220,28 +219,26 @@ void mmOptionGeneralSettings::SaveFinancialYearStart()
 {
     //Save Financial Year Start Day
     wxSpinCtrl* fysDay = (wxSpinCtrl*) FindWindow(ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY);
-    wxString fysDayVal = wxString::Format("%d", fysDay->GetValue());
-    mmOptions::instance().financialYearStartDayString_ = fysDayVal;
-    Model_Infotable::instance().Set("FINANCIAL_YEAR_START_DAY", fysDayVal);
+    mmOptions::instance().FinancialYearStartDay(wxString::Format("%d", fysDay->GetValue()));
 
     //Save Financial Year Start Month
     wxString fysMonthVal = wxString() << m_month_selection->GetSelection() + 1;
-    mmOptions::instance().financialYearStartMonthString_ = fysMonthVal;
-    Model_Infotable::instance().Set("FINANCIAL_YEAR_START_MONTH", fysMonthVal);
+    mmOptions::instance().FinancialYearStartMonth(fysMonthVal);
 }
 
 void mmOptionGeneralSettings::SaveSettings()
 {
     wxTextCtrl* stun = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME);
-    mmOptions::instance().userNameString_ = stun->GetValue();
-    Model_Infotable::instance().Set("USERNAME", mmOptions::instance().userNameString_);
+    mmOptions::instance().UserName(stun->GetValue());
 
     wxButton *languageButton = (wxButton*) FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
-    Model_Setting::instance().Set(LANGUAGE_PARAMETER, languageButton->GetLabel().Lower());
+    wxString language = languageButton->GetLabel().Lower();
+    mmOptions::instance().Language(language);
     mmDialogs::mmSelectLanguage(this->m_app, this, false);
 
     //Model_Infotable::instance().SetBaseCurrency(m_currency_id); Handled only inside MainCurrencyDialog to better manage CurrencyHistory changes
-    Model_Infotable::instance().Set("DATEFORMAT", m_date_format);
+
+    mmOptions::instance().DateFormat(m_date_format);
     SaveFinancialYearStart();
 
     Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());

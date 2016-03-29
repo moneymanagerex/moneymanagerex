@@ -997,8 +997,8 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
 void mmGeneralReportManager::showHelp()
 {
     wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)mmex::HTML_CUSTOM_SQL));
-    if (mmOptions::instance().language_ != "english" && mmOptions::instance().language_ != "")
-        helpIndexFile.AppendDir(mmOptions::instance().language_);
+    if (mmOptions::instance().Language() != "english" && mmOptions::instance().Language() != "")
+        helpIndexFile.AppendDir(mmOptions::instance().Language());
     wxString url = "file://" + mmex::getPathDoc((mmex::EDocFile)mmex::HTML_CUSTOM_SQL);
     if (helpIndexFile.FileExists()) // Load the help file for the given language
         url = "file://" + helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName();
