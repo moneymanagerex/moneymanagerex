@@ -36,7 +36,7 @@ SET(INSTALL_MO_DIR "share/mmex/po")
 
 #Check for required libraries
 FIND_PACKAGE(Gettext REQUIRED)
-FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv stc webview base REQUIRED)
+FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv scintilla stc webview base REQUIRED)
 INCLUDE(${wxWidgets_USE_FILE})
 
 MESSAGE("-- Base Directory =  ${CMAKE_SOURCE_DIR}")
@@ -47,7 +47,7 @@ INCLUDE_DIRECTORIES(
 	"3rd"
 	"3rd/csv-parser/include"
 	"3rd/LuaGlue/include"
-    "lib/cppunit/include"
+	"lib/cppunit/include"
 	"lib/lua/src"
 	"lib/wxsqlite3/include"
 	"lib/wxsqlite3/sqlite3/secure/src/"
