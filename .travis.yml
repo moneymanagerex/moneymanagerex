@@ -9,7 +9,7 @@ before_install:
   - brew link --force gettext
 before_script:
   - wget -qO- https://cmake.org/files/v3.1/cmake-3.1.3-Darwin-x86_64.tar.gz | tar xvz
-  - ./cmake .
+  - ./cmake-3.1.3-Darwin-x86_64/CMake.app/Contents/bin/cmake .
 script:
   - make -j4
 branches:
