@@ -141,7 +141,7 @@ void mmQIFImportDialog::CreateControls()
     left_sizer->Add(flex_sizer, g_flagsExpand);
 
     // Date Format Settings
-    m_dateFormatStr = mmOptions::instance().dateFormat_;
+    m_dateFormatStr = mmOptions::instance().DateFormat();
 
     wxStaticText* dateFormat = new wxStaticText(this, wxID_STATIC, _("Date Format"));
     choiceDateFormat_ = new wxComboBox(this, wxID_ANY);
