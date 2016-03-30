@@ -71,7 +71,9 @@ IF (BuildTests)
 ENDIF ()
 
 ## Build and Link ##
-TARGET_LINK_LIBRARIES(wxSQLite3 dl)
+IF (NOT WIN32)
+    TARGET_LINK_LIBRARIES(wxSQLite3 dl)
+ENDIF ()
 TARGET_LINK_LIBRARIES(mmex ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
 IF (BuildTests)
     TARGET_LINK_LIBRARIES(MMEXTest CPPUnit ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
