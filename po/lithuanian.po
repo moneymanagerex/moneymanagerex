@@ -5337,7 +5337,6 @@ msgid "Tip to get out of debt: Pay more than the minimum."
 msgstr ""
 "Patarimas kaip išsikapstyti iš skolų: Grąžinkite daugiau nei mažiausia įmoka."
 
-#, c-format
 msgid ""
 "Tip to get out of debt: Pay yourself 10% first. Put this into an account "
 "that is hard to touch. Make sure it is a chore to get the money out (you "
