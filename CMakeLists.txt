@@ -36,7 +36,11 @@ SET(INSTALL_MO_DIR "share/mmex/po")
 
 #Check for required libraries
 FIND_PACKAGE(Gettext REQUIRED)
-FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv scintilla stc webview base REQUIRED)
+IF ((MSVC) OR (UNIX AND APPLE))
+    FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv scintilla stc webview base REQUIRED)
+ELSE()
+    FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv stc webview base REQUIRED)
+ENDIF()
 INCLUDE(${wxWidgets_USE_FILE})
 
 MESSAGE("-- Base Directory =  ${CMAKE_SOURCE_DIR}")
