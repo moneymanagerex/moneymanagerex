@@ -23,7 +23,6 @@
 #include "db/DB_Table_Currencyformats_V1.h"
 #include "Model_Infotable.h" // detect base currency setting BASECURRENCYID
 #include <map>
-#include <tuple>
 
 class Model_Currency : public Model<DB_Table_CURRENCYFORMATS_V1>
 {
