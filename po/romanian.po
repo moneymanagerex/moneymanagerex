@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 22:43+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Alexandru Bogdan Munteanu <muntealb@gmail.com>\n"
@@ -17,70 +17,7 @@ msgstr ""
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-#, fuzzy
-msgid " - "
-msgstr " : "
-
-msgid " - No File opened "
-msgstr " - Nu este deschisă nici o filă"
-
-#, fuzzy
-msgid " Auto Repeat Transactions"
-msgstr "Recurențe"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "Creează/Editează Tranzacția Recurentă (Repetitivă)"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "Recurențe"
-
-msgid " Help"
-msgstr "Ajutor"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr ""
-" Unul din cîmpurile următoare (Dată, Beneficiar, Sumă, Tip) este absent, sar"
-
-msgid " Payments Left "
-msgstr ""
-
-#, fuzzy
-msgid " Specify "
-msgstr "Tipul"
-
-#, fuzzy
-msgid " Split Category Details"
-msgstr "Categorii Multiple"
-
-#, fuzzy
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-" consideră toate tranzacțiile ca efectuîndu-se între conturi.\n"
-"\n"
-"Ferestrele următoare te vor ajuta să creezi un cont nou.\n"
-"\n"
-"Pentru început alcătuiește o listă cu toate instituțiile\n"
-"financiare unde deții un cont."
-
 msgid "#"
-msgstr ""
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
 msgstr ""
 
 msgid "%"
@@ -92,6 +29,10 @@ msgstr " dată "
 
 #, c-format
 msgid "%.2f Shown As: %s"
+msgstr ""
+
+#, c-format
+msgid "%1$s - %2$s"
 msgstr ""
 
 #, c-format
@@ -132,6 +73,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, c-format
@@ -441,12 +386,6 @@ msgstr " (Estimat vs Real)"
 msgid "(Optional) Specify a title or your name."
 msgstr ""
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr ""
 
@@ -520,9 +459,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -734,10 +670,6 @@ msgstr "Vezi Toate Tranzacțiile Exceptînd Reconciliatele"
 msgid "All Term Accounts"
 msgstr "Contul Originar"
 
-#, fuzzy
-msgid "All Time"
-msgstr "Într-o Filă &CSV"
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -822,13 +754,6 @@ msgstr ""
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-
 #, fuzzy
 msgid "Asset"
 msgstr "Bunuri"
@@ -901,6 +826,10 @@ msgid "Auto"
 msgstr "Auto"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "Recurențe"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Categoria nu poate fi absentă"
 
@@ -917,19 +846,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -966,9 +886,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -1018,12 +935,6 @@ msgstr "Valuta de bază nu este setată"
 
 msgid "Base Currency for account"
 msgstr "Valuta de bază pentru cont"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr ""
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1079,9 +990,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1157,9 +1065,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1278,10 +1183,6 @@ msgstr "Prognoza Fluxului de Numerar (toate conturile) - Pe un an înainte"
 msgid "Categories"
 msgstr "Categorii"
 
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "Topul Categoriilor în Ultimele 30 de Zile"
-
 #, fuzzy
 msgid "Categories exported"
 msgstr "Categorie"
@@ -1289,8 +1190,8 @@ msgstr "Categorie"
 msgid "Category"
 msgstr "Categorie"
 
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "Categoria Venituri/Cheltuieli Pe Ultimele 12 Luni "
 
 #, fuzzy
@@ -1498,9 +1399,6 @@ msgstr "Închis"
 
 msgid "Clothing"
 msgstr "Îmbrăcăminte"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1715,9 +1613,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1785,8 +1680,12 @@ msgstr "Nu e deschisă nici o bază de date"
 msgid "Database Debug"
 msgstr "Bază de Date Nouă"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "Categoria nu poate fi absentă"
 
 #, fuzzy
@@ -2163,9 +2062,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "&Ieși\tAlt-X"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2194,6 +2090,10 @@ msgstr "Editează Seria de Operațiuni Financiare"
 #, fuzzy
 msgid "Edit Category"
 msgstr "Categorii Multiple"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "Creează/Editează Tranzacția Recurentă (Repetitivă)"
 
 msgid "Edit Stock Investment"
 msgstr "Editează Investiția în Acțiuni"
@@ -2247,6 +2147,10 @@ msgstr ""
 #, fuzzy
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "Introdu Evenimentul Financiar Următor"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "Recurențe"
 
 #, fuzzy
 msgid "Enter a description for the new attachment:"
@@ -2341,9 +2245,10 @@ msgstr "Precizează valoarea curentă a bunului"
 msgid "Enter the current value of the asset"
 msgstr "Precizează valoarea curentă a bunului"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Scrie numele bunului"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "Introdu soldul inițial al acestui cont."
@@ -2525,9 +2430,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2638,9 +2540,6 @@ msgstr "Monitorizată"
 msgid "Food"
 msgstr "Mîncare"
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2655,9 +2554,6 @@ msgstr "La Patru Luni"
 
 msgid "Four Weeks"
 msgstr "La Patru Săptămîni"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "Frecvență"
@@ -2720,9 +2616,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2741,6 +2634,10 @@ msgstr "Gaz"
 
 msgid "General"
 msgstr "Generale"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "Raport SQL Personalizat"
 
 #, fuzzy
 msgid "General Report Manager"
@@ -2784,10 +2681,6 @@ msgstr "Cadouri"
 msgid "Grand Total:"
 msgstr "Total:"
 
-#, fuzzy
-msgid "Grand Total: "
-msgstr "Total: %s"
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2804,9 +2697,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2904,9 +2794,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3187,9 +3074,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3263,9 +3147,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3290,13 +3171,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3351,9 +3226,6 @@ msgstr "Ultimele 30 de Zile"
 msgid "Last 90 Days"
 msgstr "Ultimele 30 de Zile"
 
-msgid "Last Calendar Month"
-msgstr "Ultima Lună Calendaristică"
-
 #, fuzzy
 msgid "Last Financial Year"
 msgstr "Ultimul An"
@@ -3386,15 +3258,6 @@ msgstr ""
 #, fuzzy
 msgid "Le"
 msgstr "Viață"
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr ""
-"Specifică numărul de dăți cît va fi repetată seria. Lasă spațiul gol dacă "
-"seria continuă pe timp nedefinit."
-
-msgid "Leave blank when not active."
-msgstr ""
 
 msgid "Lebanese lira"
 msgstr ""
@@ -3762,13 +3625,7 @@ msgstr "Mesaj MMEX"
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3785,12 +3642,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3908,9 +3759,6 @@ msgstr ""
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3921,6 +3769,10 @@ msgstr "Nu există nici un cont disponibil! Nu pot exporta!"
 #, fuzzy
 msgid "No Accounts selected for export"
 msgstr "Nu există nici un cont disponibil! Nu pot exporta!"
+
+#, fuzzy
+msgid "No File opened"
+msgstr " - Nu este deschisă nici o filă"
 
 #, fuzzy
 msgid "No account available to delete!"
@@ -3958,9 +3810,6 @@ msgstr "Noi"
 msgid "November"
 msgstr "Noiembrie"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "Număr"
 
@@ -3993,6 +3842,11 @@ msgstr "Octombrie"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr ""
+" Unul din cîmpurile următoare (Dată, Beneficiar, Sumă, Tip) este absent, sar"
 
 #, fuzzy
 msgid "Online Update"
@@ -4258,10 +4112,6 @@ msgstr ""
 msgid "Payee Report"
 msgstr "Beneficiar"
 
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "Beneficiar"
-
 #, fuzzy
 msgid "Payee in use."
 msgstr "Beneficiarul este în uz"
@@ -4274,6 +4124,9 @@ msgid "Payees"
 msgstr "Beneficiar"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4496,12 +4349,6 @@ msgid "Quotes not found"
 msgstr ""
 
 msgid "R"
-msgstr ""
-
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
 msgstr ""
 
 msgid "REPORTS"
@@ -4728,9 +4575,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 #, fuzzy
 msgid "Run selected report."
 msgstr "Nu există nici un cont disponibil! Nu pot exporta!"
@@ -4742,12 +4586,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4772,9 +4610,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 msgid "SLL"
@@ -4976,9 +4811,6 @@ msgstr "Specifică valuta utilizată pentru acest cont."
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "Numele Acțiunii"
 
@@ -5042,12 +4874,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 #, fuzzy
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "Introdu Evenimentul Financiar Următor"
@@ -5083,6 +4909,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr "Tipul"
 
 msgid "Specify Day for start of financial year"
 msgstr ""
@@ -5132,11 +4962,26 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "Specifică suma pentru această tranzacție"
 
-msgid "Specify period in Days to activate."
-msgstr ""
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
+msgstr "Specifică tipul de cont ce trebuie creat."
 
 #, fuzzy
-msgid "Specify period in Months to activate."
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "Specifică tipul de cont ce trebuie creat."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "Specifică tipul de cont ce trebuie creat."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "Specifică tipul de cont ce trebuie creat."
 
 #, fuzzy
@@ -5210,8 +5055,12 @@ msgid "Specify the language to use"
 msgstr "Specifică limba de folosit"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Specifică tipul de cont ce trebuie creat."
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr ""
+"Specifică numărul de dăți cît va fi repetată seria. Lasă spațiul gol dacă "
+"seria continuă pe timp nedefinit."
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5306,6 +5155,10 @@ msgstr "Specifică anul pe care să fie bazat bugetul."
 
 msgid "Split"
 msgstr "Multiple"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr "Categorii Multiple"
 
 msgid "Split Detail Dialog"
 msgstr "Alege Categoriile Multiple"
@@ -5460,9 +5313,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "Către"
@@ -5480,9 +5330,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5548,13 +5395,31 @@ msgstr ""
 msgid "The client failed to connect the server"
 msgstr ""
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+" consideră toate tranzacțiile ca efectuîndu-se între conturi.\n"
+"\n"
+"Ferestrele următoare te vor ajuta să creezi un cont nou.\n"
+"\n"
+"Pentru început alcătuiește o listă cu toate instituțiile\n"
+"financiare unde deții un cont."
+
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
-
-msgid "The next pages will help you create a new database."
 msgstr ""
 
 msgid "The remote file doesn't exist"
@@ -5616,10 +5481,11 @@ msgid ""
 "another Category using the relocate command:"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
-msgstr ""
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
+msgstr "Vezi toate tranzacțiile"
 
 msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
@@ -5743,7 +5609,7 @@ msgid "Total Balance on all Accounts"
 msgstr "Soldul Total"
 
 #, fuzzy
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr "Cheltuieli:"
 
 #, fuzzy, c-format
@@ -5751,7 +5617,7 @@ msgid "Total Imported : %ld"
 msgstr "Suma Totală:"
 
 #, fuzzy
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr "Venituri:"
 
 #, fuzzy, c-format
@@ -6096,9 +5962,6 @@ msgstr ""
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Versiune:"
@@ -6206,9 +6069,6 @@ msgstr "Nulă"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6286,15 +6146,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "Proveniența Banilor"
 
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Proveniența Banilor"
-
 msgid "Where the Money Goes"
-msgstr "Destinația Banilor"
-
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
 msgstr "Destinația Banilor"
 
 msgid "Wiki page"
@@ -6383,10 +6235,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr ""
 
-#, fuzzy
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "Deschide o bază de date deja creată care are extensia (*.mmb)"
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6409,18 +6257,9 @@ msgstr "ca Nule"
 msgid "as needing Followup"
 msgstr "ca Monitorizate"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "Stomatologie"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6430,10 +6269,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "Raport SQL Personalizat"
 
 msgid "please check it in network options."
 msgstr ""
@@ -6458,66 +6293,13 @@ msgstr " La: "
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #, fuzzy
 #~ msgid "  and contributors from around the world"
 #~ msgstr "  și contribuitori din jurul lumii."
+
+#, fuzzy
+#~ msgid " - "
+#~ msgstr " : "
 
 #~ msgid " : Restart"
 #~ msgstr " : Repornește"
@@ -6525,6 +6307,9 @@ msgstr ""
 #, fuzzy
 #~ msgid " Filter Settings "
 #~ msgstr "Setări de Vedere"
+
+#~ msgid " Help"
+#~ msgstr "Ajutor"
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -6749,6 +6534,10 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "Altele"
 
+#, fuzzy
+#~ msgid "All Time"
+#~ msgstr "Într-o Filă &CSV"
+
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "Permite orice întîrziere a cotațiilor bursiere"
 
@@ -6856,6 +6645,10 @@ msgstr ""
 #~ msgstr "Prognoza Fluxului de Numerar (toate conturile) - Pe un an înainte"
 
 #, fuzzy
+#~ msgid "Categories - %s"
+#~ msgstr "Topul Categoriilor în Ultimele 30 de Zile"
+
+#, fuzzy
 #~ msgid "Categories - Current Month"
 #~ msgstr "Vezi din Luna Curentă"
 
@@ -6902,10 +6695,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Category:"
 #~ msgstr "Categorie"
-
-#, fuzzy
-#~ msgid "Change all transactions using one Payee to another Payee"
-#~ msgstr "Vezi toate tranzacțiile"
 
 #~ msgid "Change settings for automatic refresh"
 #~ msgstr "Schimbă setările pentru împrospătarea automată"
@@ -7096,6 +6885,10 @@ msgstr ""
 #~ msgid "Enter &Transaction"
 #~ msgstr "Introdu &Tranzacția"
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Scrie numele bunului"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr ""
@@ -7231,6 +7024,10 @@ msgstr ""
 
 #~ msgid "Gain Loss"
 #~ msgstr "Cîștig/Pierdere"
+
+#, fuzzy
+#~ msgid "Grand Total: "
+#~ msgstr "Total: %s"
 
 #, fuzzy
 #~ msgid "Hide Deleted (Void)"
@@ -7380,6 +7177,9 @@ msgstr ""
 #~ "Conturile de investiții sînt conturi specializate care conțin doar \n"
 #~ "investiții în acțiuni ale unor companii sau fonduri mutuale. \n"
 #~ "\n"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "Ultima Lună Calendaristică"
 
 #~ msgid "Legend:"
 #~ msgstr "Legendă:"
@@ -7562,6 +7362,10 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Payee Added: %s"
+#~ msgstr "Beneficiar"
+
+#, fuzzy
+#~ msgid "Payee Report - %s"
 #~ msgstr "Beneficiar"
 
 #, fuzzy
@@ -7800,6 +7604,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "Specifică culoarea pentru arborele de navigare"
+
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "Specifică tipul de cont ce trebuie creat."
 
 #, fuzzy
 #~ msgid "Specify the number of times this series repeats."
@@ -8188,6 +7996,10 @@ msgstr ""
 #~ "Alege beneficiarul selectat curent drept beneficiar pentru tranzacție"
 
 #, fuzzy
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "Proveniența Banilor"
+
+#, fuzzy
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "Proveniența Banilor"
 
@@ -8218,6 +8030,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "Proveniența Banilor"
+
+#, fuzzy
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "Destinația Banilor"
 
 #, fuzzy
 #~ msgid "Where the Money Goes - 30 Days"
@@ -8270,6 +8086,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Your current version is: %s"
 #~ msgstr "Versiune:"
+
+#, fuzzy
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "Deschide o bază de date deja creată care are extensia (*.mmb)"
 
 #, fuzzy
 #~ msgid "database file"

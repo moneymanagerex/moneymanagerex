@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 23:06+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
@@ -18,74 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-#, fuzzy
-msgid " - "
-msgstr ":"
-
-msgid " - No File opened "
-msgstr " - Tidak ada file yang dibuka"
-
-#, fuzzy
-msgid " Auto Repeat Transactions"
-msgstr "Pengelolaan Transaksi Rutin"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "Tambah / Ubah Transaksi Rutin"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "Pengelolaan Transaksi Rutin"
-
-msgid " Help"
-msgstr " Halaman bantuan"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr ""
-"Salah satu dari field tanggal, pemberi/penerima, tipe transaksi, jumlah "
-"tidak ditemukan, dilewat"
-
-msgid " Payments Left "
-msgstr ""
-
-#, fuzzy
-msgid " Specify "
-msgstr "Pilih Tipe"
-
-#, fuzzy
-msgid " Split Category Details"
-msgstr "Rinci Kategori"
-
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-" berprinsip bahwa semua transaksi menginduk pada sebuah rekening.\n"
-"\n"
-"Untuk memudahkan Anda dalam menggunakan program ini,mulailah dengan membuat\n"
-"seluruh rekening yang akan digunakan.\n"
-"\n"
-"Halaman berikutnya akan memandu Anda dalam membuat rekening baru.\n"
-"\n"
-"Untuk membantu anda memulai, awali dari membuat sebuah list semua\n"
-"institusi finansial dimna anda menaruh rekening."
-
 msgid "#"
 msgstr "#"
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
-msgstr ""
 
 msgid "%"
 msgstr "%"
@@ -97,6 +31,10 @@ msgstr "tanggal"
 #, fuzzy, c-format
 msgid "%.2f Shown As: %s"
 msgstr "Ditampilkan Sebagai:"
+
+#, c-format
+msgid "%1$s - %2$s"
+msgstr ""
 
 #, c-format
 msgid "%d days delay!"
@@ -136,6 +74,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, fuzzy, c-format
@@ -434,12 +376,6 @@ msgstr "Perkiraan Penerimaan : Penerimaan Aktual :"
 msgid "(Optional) Specify a title or your name."
 msgstr "(Pilihan) Tentukan sebuah nama atau gunakan nama anda."
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr ""
 
@@ -513,9 +449,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -723,10 +656,6 @@ msgstr "Tampilkan semua transaksi kecuali yang telah di-rekonsiliasi"
 msgid "All Term Accounts"
 msgstr "Dari Rekening"
 
-#, fuzzy
-msgid "All Time"
-msgstr "&File CSV"
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -812,17 +741,6 @@ msgstr ""
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-"File berikut berisi informasi keuangan penting,\n"
-"kita anjurkan membuat backup harian dengan Opsi\n"
-"Pengaturan: 'Backup sebelum membuka', dan menyimpan backup Anda\n"
-"di lokasi yang terpisah."
-
 #, fuzzy
 msgid "Asset"
 msgstr "Aset"
@@ -896,6 +814,10 @@ msgid "Auto"
 msgstr "untuk"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "Pengelolaan Transaksi Rutin"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Perkiraan"
 
@@ -912,19 +834,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -961,9 +874,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -1012,12 +922,6 @@ msgstr "Mata uang belum dipilih"
 
 msgid "Base Currency for account"
 msgstr "Mata uang yang digunakan dalam rekening"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr "Menjadi kosong ketika tidak aktif."
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1076,9 +980,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1153,9 +1054,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1275,10 +1173,6 @@ msgstr "Perkiraan Arus kas untuk %d Tahun Ke Depan"
 msgid "Categories"
 msgstr "Kategori"
 
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "Kategori - 30 Hari Terakhir"
-
 #, fuzzy
 msgid "Categories exported"
 msgstr "Kategori Laporan"
@@ -1286,8 +1180,8 @@ msgstr "Kategori Laporan"
 msgid "Category"
 msgstr "Kategori"
 
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "Kategori Penerimaan/Pengeluaran Lebih Dari %d Bulan Terakhir"
 
 #, fuzzy
@@ -1497,9 +1391,6 @@ msgstr "Tidak Aktif / Ditutup"
 #, fuzzy
 msgid "Clothing"
 msgstr "Memeriksa"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1716,9 +1607,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1787,8 +1675,12 @@ msgstr "Tidak ada data yang dibuka"
 msgid "Database Debug"
 msgstr "Buat Data Keuangan Baru"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "Kategori tidak boleh dikosongkan"
 
 #, fuzzy
@@ -2166,9 +2058,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "K&eluar\tAlt-x"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2198,6 +2087,10 @@ msgstr "Ubah grup tagihan dan penerimaan"
 #, fuzzy
 msgid "Edit Category"
 msgstr "Rinci Kategori"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "Tambah / Ubah Transaksi Rutin"
 
 msgid "Edit Stock Investment"
 msgstr "Ubah Investasi Saham"
@@ -2253,6 +2146,10 @@ msgstr ""
 #, fuzzy
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "Periksa grup tagihan dan penerimaan"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "Pengelolaan Transaksi Rutin"
 
 #, fuzzy
 msgid "Enter a description for the new attachment:"
@@ -2353,9 +2250,10 @@ msgstr "Isi dengan nilai aset saat ini (Rp.)"
 msgid "Enter the current value of the asset"
 msgstr "Isi dengan nilai aset saat ini (Rp.)"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Isi dengan nama aset"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "isi dengan saldo rekening saat ini"
@@ -2536,9 +2434,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2652,9 +2547,6 @@ msgstr "Tindak lanjut"
 msgid "Food"
 msgstr "Makanan"
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2669,9 +2561,6 @@ msgstr "Empat Bulan"
 
 msgid "Four Weeks"
 msgstr "Empat Minggu"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "Jangka Waktu"
@@ -2735,9 +2624,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2756,6 +2642,10 @@ msgstr "Gas"
 
 msgid "General"
 msgstr "Umum"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "Laporan SQL Query"
 
 #, fuzzy
 msgid "General Report Manager"
@@ -2794,9 +2684,6 @@ msgstr "Hadiah"
 msgid "Grand Total:"
 msgstr "Total Keseluruhan:"
 
-msgid "Grand Total: "
-msgstr "Total Keseluruhan:"
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2814,9 +2701,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2918,9 +2802,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3193,9 +3074,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3269,9 +3147,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3296,13 +3171,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3357,9 +3226,6 @@ msgstr "30 Hari Terakhir"
 msgid "Last 90 Days"
 msgstr "30 Hari Terakhir"
 
-msgid "Last Calendar Month"
-msgstr "Bulan Lalu"
-
 msgid "Last Financial Year"
 msgstr "Tahun Finansial Terakhir"
 
@@ -3391,15 +3257,6 @@ msgstr ""
 #, fuzzy
 msgid "Le"
 msgstr "Kehidupan"
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr ""
-"Isi dengan angka berapa kali grup transaksi itu diulang. Biarkan kosong "
-"apabila grupi transaksi tersebut diulang selamanya"
-
-msgid "Leave blank when not active."
-msgstr "Tinggalkan kosong ketika tidak aktif."
 
 msgid "Lebanese lira"
 msgstr ""
@@ -3785,13 +3642,7 @@ msgstr "MMEX pesan"
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3808,12 +3659,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3931,9 +3776,6 @@ msgstr "Berikut"
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3944,6 +3786,10 @@ msgstr "Rekening tidak ada ! Proses ekspor tidak bisa dilakukan !"
 #, fuzzy
 msgid "No Accounts selected for export"
 msgstr "Rekening tidak ada ! Proses ekspor tidak bisa dilakukan !"
+
+#, fuzzy
+msgid "No File opened"
+msgstr " - Tidak ada file yang dibuka"
 
 #, fuzzy
 msgid "No account available to delete!"
@@ -3981,9 +3827,6 @@ msgstr "Nov"
 msgid "November"
 msgstr "November"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "Nomor"
 
@@ -4016,6 +3859,12 @@ msgstr "Oktober"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr ""
+"Salah satu dari field tanggal, pemberi/penerima, tipe transaksi, jumlah "
+"tidak ditemukan, dilewat"
 
 #, fuzzy
 msgid "Online Update"
@@ -4286,10 +4135,6 @@ msgstr "Hasil Perpindahan Penerima:"
 msgid "Payee Report"
 msgstr "Laporan Penerima"
 
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "Laporan Penerima"
-
 #, fuzzy
 msgid "Payee in use."
 msgstr "Penerima/penyetor sedang digunakan"
@@ -4301,6 +4146,9 @@ msgid "Payees"
 msgstr "Penerima pembayaran"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4523,12 +4371,6 @@ msgid "Quotes not found"
 msgstr ""
 
 msgid "R"
-msgstr ""
-
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
 msgstr ""
 
 msgid "REPORTS"
@@ -4764,9 +4606,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 #, fuzzy
 msgid "Run selected report."
 msgstr "Rekening tidak ada ! Proses ekspor tidak bisa dilakukan !"
@@ -4778,12 +4617,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4808,9 +4641,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 msgid "SLL"
@@ -5010,9 +4840,6 @@ msgstr "Pilih mata uang yang akan digunakan untuk rekening ini."
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "Nama saham"
 
@@ -5078,12 +4905,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 #, fuzzy
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "Periksa grup tagihan dan penerimaan"
@@ -5119,6 +4940,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr "Pilih Tipe"
 
 msgid "Specify Day for start of financial year"
 msgstr "Tentukan Hari untuk awal dari tahun finansial"
@@ -5167,11 +4992,26 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "Isi dengan jumlah (Rp.) untuk transaksi ini"
 
-msgid "Specify period in Days to activate."
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
 msgstr "Tentukan periode hari untuk aktivasi."
 
 #, fuzzy
-msgid "Specify period in Months to activate."
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "Tentukan periode hari untuk aktivasi."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "Pilih tipe rekening yang akan dibuat"
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "Pilih tipe rekening yang akan dibuat"
 
 #, fuzzy
@@ -5243,8 +5083,12 @@ msgid "Specify the language to use"
 msgstr "Pilih bahasa yang akan digunakkan"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Pilih tipe rekening yang akan dibuat"
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr ""
+"Isi dengan angka berapa kali grup transaksi itu diulang. Biarkan kosong "
+"apabila grupi transaksi tersebut diulang selamanya"
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5342,6 +5186,10 @@ msgstr "Isi dengan tahun anggaran yang akan digunakan"
 
 msgid "Split"
 msgstr "Rinci"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr "Rinci Kategori"
 
 msgid "Split Detail Dialog"
 msgstr "Rincian "
@@ -5496,9 +5344,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "Ke"
@@ -5517,9 +5362,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5588,18 +5430,40 @@ msgstr "Nama Pengguna digunakan untuk nama data keuangan."
 msgid "The client failed to connect the server"
 msgstr ""
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+" berprinsip bahwa semua transaksi menginduk pada sebuah rekening.\n"
+"\n"
+"Untuk memudahkan Anda dalam menggunakan program ini,mulailah dengan membuat\n"
+"seluruh rekening yang akan digunakan.\n"
+"\n"
+"Halaman berikutnya akan memandu Anda dalam membuat rekening baru.\n"
+"\n"
+"Untuk membantu anda memulai, awali dari membuat sebuah list semua\n"
+"institusi finansial dimna anda menaruh rekening."
+
+#, fuzzy
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
 msgstr ""
-"Data keuangan nantinya dapat dienkripsi jika diperlukan, oleh\n"
-"menggunakan pilihan: 'Simpan data keuangan sebagai' dan mengubah \n"
-"tipe file sebelum disimpan."
-
-msgid "The next pages will help you create a new database."
-msgstr ""
-"Halaman berikutnya akan membantu anda menbuat sebuah data keuangan baru."
+"File berikut berisi informasi keuangan penting,\n"
+"kita anjurkan membuat backup harian dengan Opsi\n"
+"Pengaturan: 'Backup sebelum membuka', dan menyimpan backup Anda\n"
+"di lokasi yang terpisah."
 
 msgid "The remote file doesn't exist"
 msgstr ""
@@ -5667,9 +5531,10 @@ msgid ""
 "another Category using the relocate command:"
 msgstr "Saran: Ubah semua transaksi menggunakan penerima ini untuk penerima"
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
 msgstr "Saran: Ubah semua transaksi menggunakan penerima ini untuk penerima"
 
 #, fuzzy
@@ -5819,7 +5684,7 @@ msgid "Total Balance on all Accounts"
 msgstr "Total saldo seluruh rekening"
 
 #, fuzzy
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr "Pengeluaran :"
 
 #, fuzzy, c-format
@@ -5827,7 +5692,7 @@ msgid "Total Imported : %ld"
 msgstr "Total Keseluruhan :"
 
 #, fuzzy
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr "Penerimaan :"
 
 #, fuzzy, c-format
@@ -6176,9 +6041,6 @@ msgstr "Contoh Nilai Tampilan:"
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Riwayat Versi Software"
@@ -6282,9 +6144,6 @@ msgstr "Batal"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6367,15 +6226,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "Penerimaan Uang"
 
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Penerimaan Uang"
-
 msgid "Where the Money Goes"
-msgstr "Pengeluaran Uang"
-
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
 msgstr "Pengeluaran Uang"
 
 msgid "Wiki page"
@@ -6464,9 +6315,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr "Anda harus menetukan lokasi ke file data keuangan yang berbeda"
 
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "Database anda disimpan dalam extension .mmb."
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6489,18 +6337,9 @@ msgstr "Batal"
 msgid "as needing Followup"
 msgstr "Perlu Tindaklanjut"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "Umum"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6510,10 +6349,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "Laporan SQL Query"
 
 msgid "please check it in network options."
 msgstr ""
@@ -6538,66 +6373,13 @@ msgstr " Sampai dengan : "
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #, fuzzy
 #~ msgid "  and contributors from around the world"
 #~ msgstr " dan kontributor dari seluruh dunia."
+
+#, fuzzy
+#~ msgid " - "
+#~ msgstr ":"
 
 #, fuzzy
 #~ msgid " : Requires MMEX Restart"
@@ -6609,6 +6391,9 @@ msgstr ""
 #, fuzzy
 #~ msgid " Filter Settings "
 #~ msgstr "Setting Tampilan"
+
+#~ msgid " Help"
+#~ msgstr " Halaman bantuan"
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -6876,6 +6661,10 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "Lainnya"
 
+#, fuzzy
+#~ msgid "All Time"
+#~ msgstr "&File CSV"
+
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "Allow for any delay in quotes"
 
@@ -6968,6 +6757,9 @@ msgstr ""
 #~ msgid "Be &notified of new releases"
 #~ msgstr "Mohon informasi versi terbaru"
 
+#~ msgid "Becomes blank when not active."
+#~ msgstr "Menjadi kosong ketika tidak aktif."
+
 #~ msgid "Budget Performance for Year : "
 #~ msgstr "Performa Anggaran Untuk Tahun "
 
@@ -7006,6 +6798,10 @@ msgstr ""
 
 #~ msgid "Cash Flow Forecast For All Accounts - A Year Ahead"
 #~ msgstr "Perkiraan Arus kas untuk Seluruh Rekening - 1 Tahun Ke Depan"
+
+#, fuzzy
+#~ msgid "Categories - %s"
+#~ msgstr "Kategori - 30 Hari Terakhir"
 
 #, fuzzy
 #~ msgid "Categories - Current Financial Year"
@@ -7289,6 +7085,10 @@ msgstr ""
 #~ "mencocokan  lebih dari satu karakter atau _ untuk mencocokan sebuah "
 #~ "karakter tunggal."
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Isi dengan nama aset"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr "Isi dengan nama institusi keuangan yang mengelola saham"
@@ -7440,6 +7240,9 @@ msgstr ""
 #~ msgid "Gain Loss"
 #~ msgstr "Rugi-Laba"
 
+#~ msgid "Grand Total: "
+#~ msgstr "Total Keseluruhan:"
+
 #, fuzzy
 #~ msgid "Heading"
 #~ msgstr "Judul"
@@ -7587,6 +7390,12 @@ msgstr ""
 #~ "\n"
 #~ "Rekening investasi untuk saat ini hanya dikhususkan untuk \n"
 #~ "menampung transaksi investasi saham saja atau yang sejenisnya\n"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "Bulan Lalu"
+
+#~ msgid "Leave blank when not active."
+#~ msgstr "Tinggalkan kosong ketika tidak aktif."
 
 #~ msgid "Legend:"
 #~ msgstr "Keterangan :"
@@ -7804,6 +7613,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Payee Added: %s"
 #~ msgstr "Penerima / Penyetor"
+
+#, fuzzy
+#~ msgid "Payee Report - %s"
+#~ msgstr "Laporan Penerima"
 
 #, fuzzy
 #~ msgid "Payee Report - Current Financial Year"
@@ -8119,6 +7932,10 @@ msgstr ""
 #~ msgstr "Pilih warna nav tree"
 
 #, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "Pilih tipe rekening yang akan dibuat"
+
+#, fuzzy
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr ""
 #~ "Isi dengan angka berapa kali grup transaksi itu diulang. Biarkan kosong "
@@ -8208,6 +8025,19 @@ msgstr ""
 
 #~ msgid "Thank you! "
 #~ msgstr "Terima kasih!"
+
+#~ msgid ""
+#~ "The database can later be encrypted if required, by\n"
+#~ "using the option: 'Save database as' and changing the\n"
+#~ "file type before saving."
+#~ msgstr ""
+#~ "Data keuangan nantinya dapat dienkripsi jika diperlukan, oleh\n"
+#~ "menggunakan pilihan: 'Simpan data keuangan sebagai' dan mengubah \n"
+#~ "tipe file sebelum disimpan."
+
+#~ msgid "The next pages will help you create a new database."
+#~ msgstr ""
+#~ "Halaman berikutnya akan membantu anda menbuat sebuah data keuangan baru."
 
 #, fuzzy
 #~ msgid ""
@@ -8555,6 +8385,10 @@ msgstr ""
 #~ msgstr "pilih penerima/penyetor untuk digunakan pada transaksi"
 
 #, fuzzy
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "Penerimaan Uang"
+
+#, fuzzy
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "Asal Penerimaan Uang - 30 Hari terakhir"
 
@@ -8587,6 +8421,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "Asal Penerimaan Uang - Tahun Lalu"
+
+#, fuzzy
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "Pengeluaran Uang"
 
 #, fuzzy
 #~ msgid "Where the Money Goes - 30 Days"
@@ -8650,6 +8488,9 @@ msgstr ""
 #, fuzzy
 #~ msgid "Your current version is: %s"
 #~ msgstr "Riwayat Versi Software"
+
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "Database anda disimpan dalam extension .mmb."
 
 #, fuzzy
 #~ msgid "database file"

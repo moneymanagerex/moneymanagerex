@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 22:50+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
@@ -17,71 +17,7 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-#, fuzzy
-msgid " - "
-msgstr " : "
-
-msgid " - No File opened "
-msgstr " - Nije otvorena niti jedna datoteka"
-
-#, fuzzy
-msgid " Auto Repeat Transactions"
-msgstr "Ponavljajuće transakcije"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "Nova/Uredi ponavljajuća transakcija"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "Ponavljajuće transakcije"
-
-#, fuzzy
-msgid " Help"
-msgstr "Pomoć"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr ""
-"Jedno od slijedećih polja: datum, remitent, iznos, tip nedostaje, preskačem"
-
-msgid " Payments Left "
-msgstr ""
-
-#, fuzzy
-msgid " Specify "
-msgstr "Odaberi tip"
-
-#, fuzzy
-msgid " Split Category Details"
-msgstr "Razdvoji kategoriju"
-
-#, fuzzy
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-"tretira sve transakcije kao da pripadaju računima. \n"
-"\n"
-"Slijedeće stranice će Vam pomoći u stvaranju novog računa. \n"
-"\n"
-"Kako bismo Vam pomogli da počnete, krenite sa stvaranjem liste svih \n"
-"finansijskih institucija gde imate račune."
-
 msgid "#"
-msgstr ""
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
 msgstr ""
 
 msgid "%"
@@ -93,6 +29,10 @@ msgstr "Datum"
 
 #, c-format
 msgid "%.2f Shown As: %s"
+msgstr ""
+
+#, c-format
+msgid "%1$s - %2$s"
 msgstr ""
 
 #, c-format
@@ -133,6 +73,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, c-format
@@ -450,12 +394,6 @@ msgstr "Procenjeni prihod: Stvarni prihod:"
 msgid "(Optional) Specify a title or your name."
 msgstr ""
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr ""
 
@@ -529,9 +467,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -743,10 +678,6 @@ msgstr "Prikaži sve osim usklađenih transakcija"
 msgid "All Term Accounts"
 msgstr "Na teret račun"
 
-#, fuzzy
-msgid "All Time"
-msgstr "&CSV Datoteke"
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -831,13 +762,6 @@ msgstr ""
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-
 #, fuzzy
 msgid "Asset"
 msgstr "Imovina"
@@ -911,6 +835,10 @@ msgid "Auto"
 msgstr "za"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "Ponavljajuće transakcije"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Kategorija ne može biti prazna"
 
@@ -927,19 +855,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -976,9 +895,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -1028,12 +944,6 @@ msgstr "Bazna valuta nije određena"
 
 msgid "Base Currency for account"
 msgstr "Bazna valuta za račun"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr ""
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1089,9 +999,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1167,9 +1074,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1288,10 +1192,6 @@ msgstr "Prognoza novčanog toka za sve račune - Godinu dana unaprijed"
 msgid "Categories"
 msgstr "Kategorije"
 
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "Top kategorije zadnjih 30 dana"
-
 #, fuzzy
 msgid "Categories exported"
 msgstr "Kategorija"
@@ -1299,8 +1199,8 @@ msgstr "Kategorija"
 msgid "Category"
 msgstr "Kategorija"
 
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "Prihodi/Rashodi kategorije tokom zadnjih 12 mjeseci"
 
 #, fuzzy
@@ -1510,9 +1410,6 @@ msgstr "Zatvoren"
 #, fuzzy
 msgid "Clothing"
 msgstr "Provjera"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1729,9 +1626,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1800,8 +1694,12 @@ msgstr "Niti jedna baza podataka nije otvorena"
 msgid "Database Debug"
 msgstr "Nova baza podataka"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "Kategorija ne može biti prazna"
 
 #, fuzzy
@@ -2179,9 +2077,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "E&xit\tAlt-X"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2210,6 +2105,10 @@ msgstr "Uredi ponavljanja Računa && Uplata"
 #, fuzzy
 msgid "Edit Category"
 msgstr "Razdvoji kategoriju"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "Nova/Uredi ponavljajuća transakcija"
 
 msgid "Edit Stock Investment"
 msgstr "Uredi berzansku investiciju"
@@ -2263,6 +2162,10 @@ msgstr ""
 #, fuzzy
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "Unesi slijedeće ponavljanje Računa && Uplate"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "Ponavljajuće transakcije"
 
 #, fuzzy
 msgid "Enter a description for the new attachment:"
@@ -2357,9 +2260,10 @@ msgstr "Unesite trenutnu vrednost imovine"
 msgid "Enter the current value of the asset"
 msgstr "Unesite trenutnu vrednost imovine"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Unesite naziv imovine"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "Unesi početni bilans za ovaj račun."
@@ -2541,9 +2445,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2654,9 +2555,6 @@ msgstr "Prati"
 msgid "Food"
 msgstr ""
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2671,9 +2569,6 @@ msgstr "Četiri meseca"
 
 msgid "Four Weeks"
 msgstr "Četiri nedelje"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "Učestalost"
@@ -2736,9 +2631,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2757,6 +2649,10 @@ msgstr ""
 
 msgid "General"
 msgstr "Generalno"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "Proizvoljni SQL izvještaj"
 
 #, fuzzy
 msgid "General Report Manager"
@@ -2799,10 +2695,6 @@ msgstr ""
 msgid "Grand Total:"
 msgstr "Ukupno:"
 
-#, fuzzy
-msgid "Grand Total: "
-msgstr "Ukupno: %s"
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2819,9 +2711,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2921,9 +2810,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3204,9 +3090,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3280,9 +3163,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3307,13 +3187,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3368,9 +3242,6 @@ msgstr "Zadnjih 30 dana"
 msgid "Last 90 Days"
 msgstr "Zadnjih 30 dana"
 
-msgid "Last Calendar Month"
-msgstr "Poslednji kalendarski mesec"
-
 #, fuzzy
 msgid "Last Financial Year"
 msgstr "Prošla godina"
@@ -3401,15 +3272,6 @@ msgid "Latvian lats"
 msgstr ""
 
 msgid "Le"
-msgstr ""
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr ""
-"Odredite broj ponavljanja. Ostavi prazno ukoliko se ponavljanja nastavljaju "
-"zauvek."
-
-msgid "Leave blank when not active."
 msgstr ""
 
 msgid "Lebanese lira"
@@ -3781,13 +3643,7 @@ msgstr "MMEX poruka"
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3804,12 +3660,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3927,9 +3777,6 @@ msgstr ""
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3940,6 +3787,10 @@ msgstr "Nema dostupnog računa! Nije moguć izvoz!"
 #, fuzzy
 msgid "No Accounts selected for export"
 msgstr "Nema dostupnog računa! Nije moguć izvoz!"
+
+#, fuzzy
+msgid "No File opened"
+msgstr " - Nije otvorena niti jedna datoteka"
 
 #, fuzzy
 msgid "No account available to delete!"
@@ -3977,9 +3828,6 @@ msgstr "nov"
 msgid "November"
 msgstr "Novembar"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "Broj"
 
@@ -4012,6 +3860,11 @@ msgstr "Oktobar"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr ""
+"Jedno od slijedećih polja: datum, remitent, iznos, tip nedostaje, preskačem"
 
 #, fuzzy
 msgid "Online Update"
@@ -4280,10 +4133,6 @@ msgstr ""
 msgid "Payee Report"
 msgstr "Remitent"
 
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "Remitent"
-
 #, fuzzy
 msgid "Payee in use."
 msgstr "Remitent je aktivan"
@@ -4296,6 +4145,9 @@ msgid "Payees"
 msgstr "Remitent"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4520,12 +4372,6 @@ msgid "Quotes not found"
 msgstr ""
 
 msgid "R"
-msgstr ""
-
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
 msgstr ""
 
 msgid "REPORTS"
@@ -4753,9 +4599,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 #, fuzzy
 msgid "Run selected report."
 msgstr "Nema dostupnog računa! Nije moguć izvoz!"
@@ -4767,12 +4610,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4797,9 +4634,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 msgid "SLL"
@@ -5001,9 +4835,6 @@ msgstr "Odredite valutu koja će se koristiti sa ovim računom."
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "Naziv deonice"
 
@@ -5068,12 +4899,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 #, fuzzy
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "Unesi slijedeće ponavljanje Računa && Uplate"
@@ -5110,6 +4935,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr "Odaberi tip"
 
 msgid "Specify Day for start of financial year"
 msgstr ""
@@ -5159,11 +4988,26 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "Odredi iznos za ovu transakciju"
 
-msgid "Specify period in Days to activate."
-msgstr ""
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
+msgstr "Odredi tip računa koji će se stvoriti"
 
 #, fuzzy
-msgid "Specify period in Months to activate."
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "Odredi tip računa koji će se stvoriti"
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "Odredi tip računa koji će se stvoriti"
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "Odredi tip računa koji će se stvoriti"
 
 #, fuzzy
@@ -5236,8 +5080,12 @@ msgid "Specify the language to use"
 msgstr "Odredi koji jezik koristiti"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Odredi tip računa koji će se stvoriti"
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr ""
+"Odredite broj ponavljanja. Ostavi prazno ukoliko se ponavljanja nastavljaju "
+"zauvek."
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5330,6 +5178,10 @@ msgstr "Odredi godinu na kojoj će se bazirati budžet."
 
 msgid "Split"
 msgstr "Razdvoji"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr "Razdvoji kategoriju"
 
 msgid "Split Detail Dialog"
 msgstr "Podeli opciju Detalji"
@@ -5484,9 +5336,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "U korist"
@@ -5504,9 +5353,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5571,13 +5417,31 @@ msgstr ""
 msgid "The client failed to connect the server"
 msgstr ""
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+"tretira sve transakcije kao da pripadaju računima. \n"
+"\n"
+"Slijedeće stranice će Vam pomoći u stvaranju novog računa. \n"
+"\n"
+"Kako bismo Vam pomogli da počnete, krenite sa stvaranjem liste svih \n"
+"finansijskih institucija gde imate račune."
+
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
-
-msgid "The next pages will help you create a new database."
 msgstr ""
 
 msgid "The remote file doesn't exist"
@@ -5639,10 +5503,11 @@ msgid ""
 "another Category using the relocate command:"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
-msgstr ""
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
+msgstr "Prikaz svih transakcija"
 
 msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
@@ -5766,7 +5631,7 @@ msgid "Total Balance on all Accounts"
 msgstr "Ukupni bilans svih računa"
 
 #, fuzzy
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr "Troškovi:"
 
 #, fuzzy, c-format
@@ -5774,7 +5639,7 @@ msgid "Total Imported : %ld"
 msgstr "Ukupan iznos:"
 
 #, fuzzy
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr "Prihod:"
 
 #, fuzzy, c-format
@@ -6120,9 +5985,6 @@ msgstr ""
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Istorija verzije"
@@ -6230,9 +6092,6 @@ msgstr "Prazno"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6310,15 +6169,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "Otkuda novac dolazi"
 
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Otkuda novac dolazi"
-
 msgid "Where the Money Goes"
-msgstr "Gde novac odlazi"
-
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
 msgstr "Gde novac odlazi"
 
 msgid "Wiki page"
@@ -6407,10 +6258,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr ""
 
-#, fuzzy
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "Otvori već stvorenu bazu podataka sa ekstenzijom (*.mmb)"
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6433,18 +6280,9 @@ msgstr "kao Prazno"
 msgid "as needing Followup"
 msgstr "kao traži Praćenje"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "Generalno"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6454,10 +6292,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "Proizvoljni SQL izvještaj"
 
 msgid "please check it in network options."
 msgstr ""
@@ -6482,66 +6316,13 @@ msgstr "U korist:"
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #, fuzzy
 #~ msgid "  and contributors from around the world"
 #~ msgstr "i oni koji su pridoneli iz celog sveta."
+
+#, fuzzy
+#~ msgid " - "
+#~ msgstr " : "
 
 #~ msgid " : Restart"
 #~ msgstr ": Restart"
@@ -6549,6 +6330,10 @@ msgstr ""
 #, fuzzy
 #~ msgid " Filter Settings "
 #~ msgstr "Pogledaj postavke"
+
+#, fuzzy
+#~ msgid " Help"
+#~ msgstr "Pomoć"
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -6782,6 +6567,10 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "Ostalo"
 
+#, fuzzy
+#~ msgid "All Time"
+#~ msgstr "&CSV Datoteke"
+
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "Dozvoljeno kašnjenje u preuzimanju trenutnih cena"
 
@@ -6891,6 +6680,10 @@ msgstr ""
 #~ msgstr "Prognoza novčanog toka za sve račune - Godinu dana unaprijed"
 
 #, fuzzy
+#~ msgid "Categories - %s"
+#~ msgstr "Top kategorije zadnjih 30 dana"
+
+#, fuzzy
 #~ msgid "Categories - Current Month"
 #~ msgstr "Pregledaj tekući mesec"
 
@@ -6938,10 +6731,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Category:"
 #~ msgstr "Kategorija"
-
-#, fuzzy
-#~ msgid "Change all transactions using one Payee to another Payee"
-#~ msgstr "Prikaz svih transakcija"
 
 #~ msgid "Change settings for automatic refresh"
 #~ msgstr "Promeni postavke za automatsko osvežavanje"
@@ -7130,6 +6919,10 @@ msgstr ""
 #~ msgid "Enter &Transaction"
 #~ msgstr "Unesi transakciju"
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Unesite naziv imovine"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr "Unesite naziv finansijske institucije gde se nalazi investicija"
@@ -7242,6 +7035,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Gain Loss"
 #~ msgstr "Dobit Gubitak"
+
+#, fuzzy
+#~ msgid "Grand Total: "
+#~ msgstr "Ukupno: %s"
 
 #, fuzzy
 #~ msgid "Hide Deleted (Void)"
@@ -7391,6 +7188,9 @@ msgstr ""
 #~ "\n"
 #~ "Investicioni računi su specijalizovani računi sa kojima \n"
 #~ "su vezane samo deonice/investicioni fondovi. \n"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "Poslednji kalendarski mesec"
 
 #~ msgid "Legend:"
 #~ msgstr "Legenda:"
@@ -7572,6 +7372,10 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Payee Added: %s"
+#~ msgstr "Remitent"
+
+#, fuzzy
+#~ msgid "Payee Report - %s"
 #~ msgstr "Remitent"
 
 #, fuzzy
@@ -7813,6 +7617,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "Odredite boju navigacijskog drveta"
+
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "Odredi tip računa koji će se stvoriti"
 
 #, fuzzy
 #~ msgid "Specify the number of times this series repeats."
@@ -8200,6 +8008,10 @@ msgstr ""
 #~ msgstr "Odaberite trenutno označenog remitenta za transakciju"
 
 #, fuzzy
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "Otkuda novac dolazi"
+
+#, fuzzy
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "Otkuda novac dolazi"
 
@@ -8230,6 +8042,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "Otkuda novac dolazi"
+
+#, fuzzy
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "Gde novac odlazi"
 
 #, fuzzy
 #~ msgid "Where the Money Goes - 30 Days"
@@ -8282,6 +8098,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Your current version is: %s"
 #~ msgstr "Istorija verzije"
+
+#, fuzzy
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "Otvori već stvorenu bazu podataka sa ekstenzijom (*.mmb)"
 
 #, fuzzy
 #~ msgid "database file"

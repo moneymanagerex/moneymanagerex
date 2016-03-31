@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 22:30+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: hasan almemar\n"
@@ -17,71 +17,7 @@ msgstr ""
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-#, fuzzy
-msgid " - "
-msgstr ":"
-
-msgid " - No File opened "
-msgstr " - لم يتم فتح الملف"
-
-#, fuzzy
-msgid " Auto Repeat Transactions"
-msgstr "العمليات المتكررة"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "اضافة/تحرير المعاملات المتكررة"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "العمليات المتكررة"
-
-msgid " Help"
-msgstr "مساعدة"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr ""
-"واحد من المجالات التالية : التاريخ ، المستفيد ونوع المعاملة ، المبلغ ، "
-"وسلاسل فئة فارغة ، تم تخطيه"
-
-msgid " Payments Left "
-msgstr ""
-
-#, fuzzy
-msgid " Specify "
-msgstr "تعيين النوع"
-
-#, fuzzy
-msgid " Split Category Details"
-msgstr "تجزئ الصنف"
-
-#, fuzzy
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-" الصفحة التالية ستساعدك على انشاء حساب جديد.\n"
-"\n"
-"لمساعدتك على البدء ، البدء في وضع قائمة\n"
-" من جميع المؤسسات المالية التي تملك بها حساب."
-
 msgid "#"
-msgstr ""
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
 msgstr ""
 
 msgid "%"
@@ -93,6 +29,10 @@ msgstr "التاريخ"
 
 #, c-format
 msgid "%.2f Shown As: %s"
+msgstr ""
+
+#, c-format
+msgid "%1$s - %2$s"
 msgstr ""
 
 #, c-format
@@ -133,6 +73,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, c-format
@@ -444,12 +388,6 @@ msgstr " (المتوقع والفعلي)"
 msgid "(Optional) Specify a title or your name."
 msgstr ""
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr ""
 
@@ -523,9 +461,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -737,10 +672,6 @@ msgstr "عرض كل العمليات عدا الناجحة"
 msgid "All Term Accounts"
 msgstr "من الحساب"
 
-#, fuzzy
-msgid "All Time"
-msgstr "&ملفاتCSV"
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -825,13 +756,6 @@ msgstr ""
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-
 #, fuzzy
 msgid "Asset"
 msgstr "الممتلكات"
@@ -904,6 +828,10 @@ msgid "Auto"
 msgstr "السيارة"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "العمليات المتكررة"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "الصنف مستخدم حاليا"
 
@@ -920,19 +848,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -969,9 +888,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -1021,12 +937,6 @@ msgstr "العملة الاساسية غير معينة"
 
 msgid "Base Currency for account"
 msgstr "العملة الاساسية للحساب"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr ""
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1082,9 +992,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1160,9 +1067,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1281,10 +1185,6 @@ msgstr "التدفق المالي لكل الحسابات - العمود يمث�
 msgid "Categories"
 msgstr "الاصناف"
 
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "اعلى اصناف في آخر 30 يوم"
-
 #, fuzzy
 msgid "Categories exported"
 msgstr "الصنف"
@@ -1292,8 +1192,8 @@ msgstr "الصنف"
 msgid "Category"
 msgstr "الفئة"
 
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "الايرادات والمصروفات"
 
 #, fuzzy
@@ -1500,9 +1400,6 @@ msgstr "مغلق"
 
 msgid "Clothing"
 msgstr "الملابس"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1716,9 +1613,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1786,8 +1680,12 @@ msgstr "ﻻ توجد قاعدة بيانات مفتوحة"
 msgid "Database Debug"
 msgstr "قاعدة بيانات جديدة"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "الصنف مستخدم حاليا"
 
 #, fuzzy
@@ -2159,9 +2057,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "&خروج\tAlt-X"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2190,6 +2085,10 @@ msgstr "تحرير سلسلة اذونات && وودائع"
 #, fuzzy
 msgid "Edit Category"
 msgstr "تجزئ الصنف"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "اضافة/تحرير المعاملات المتكررة"
 
 msgid "Edit Stock Investment"
 msgstr "تحرير سهم استثماري"
@@ -2243,6 +2142,10 @@ msgstr ""
 #, fuzzy
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "سلسلة اذونات && وودائع جديدة"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "العمليات المتكررة"
 
 #, fuzzy
 msgid "Enter a description for the new attachment:"
@@ -2335,9 +2238,10 @@ msgstr "اكتب القيمة الحالية للممتلك"
 msgid "Enter the current value of the asset"
 msgstr "اكتب القيمة الحالية للممتلك"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "اكتب اسم الممتلك"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "ادخل الرصيد الاولي في هذا الحساب."
@@ -2519,9 +2423,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2632,9 +2533,6 @@ msgstr "متابعة"
 msgid "Food"
 msgstr "الطعام"
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2649,9 +2547,6 @@ msgstr "اربع اشهر"
 
 msgid "Four Weeks"
 msgstr "اربعة اسابيع"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "التكرار"
@@ -2714,9 +2609,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2735,6 +2627,10 @@ msgstr "الغاز"
 
 msgid "General"
 msgstr "عام"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "حذف ممتلك"
 
 #, fuzzy
 msgid "General Report Manager"
@@ -2777,10 +2673,6 @@ msgstr "الهبات"
 msgid "Grand Total:"
 msgstr "المجموع:"
 
-#, fuzzy
-msgid "Grand Total: "
-msgstr "المجموع: %s"
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2797,9 +2689,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2897,9 +2786,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3166,9 +3052,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3242,9 +3125,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3269,13 +3149,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3330,9 +3204,6 @@ msgstr "آخر 30 يوم"
 msgid "Last 90 Days"
 msgstr "آخر 30 يوم"
 
-msgid "Last Calendar Month"
-msgstr "تقويم آخر شهر"
-
 #, fuzzy
 msgid "Last Financial Year"
 msgstr "آخر عام"
@@ -3365,12 +3236,6 @@ msgstr ""
 #, fuzzy
 msgid "Le"
 msgstr "الحياة"
-
-msgid "Leave blank if the payments continue forever."
-msgstr ""
-
-msgid "Leave blank when not active."
-msgstr ""
 
 msgid "Lebanese lira"
 msgstr ""
@@ -3736,13 +3601,7 @@ msgstr ""
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3759,12 +3618,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3882,9 +3735,6 @@ msgstr ""
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3895,6 +3745,10 @@ msgstr "ﻻ يوجد حساب متاح! ﻻ يمكن التصدير!"
 #, fuzzy
 msgid "No Accounts selected for export"
 msgstr "ﻻ يوجد حساب متاح! ﻻ يمكن التصدير!"
+
+#, fuzzy
+msgid "No File opened"
+msgstr " - لم يتم فتح الملف"
 
 #, fuzzy
 msgid "No account available to delete!"
@@ -3932,9 +3786,6 @@ msgstr "نوفمبر"
 msgid "November"
 msgstr "نوفمبر"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "عدد"
 
@@ -3967,6 +3818,12 @@ msgstr "اكتوبر"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr ""
+"واحد من المجالات التالية : التاريخ ، المستفيد ونوع المعاملة ، المبلغ ، "
+"وسلاسل فئة فارغة ، تم تخطيه"
 
 #, fuzzy
 msgid "Online Update"
@@ -4230,10 +4087,6 @@ msgstr ""
 msgid "Payee Report"
 msgstr "المستفيد"
 
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "المستفيد"
-
 #, fuzzy
 msgid "Payee in use."
 msgstr "المستفيد مستخدم حاليا"
@@ -4246,6 +4099,9 @@ msgid "Payees"
 msgstr "المستفيد"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4468,12 +4324,6 @@ msgid "Quotes not found"
 msgstr ""
 
 msgid "R"
-msgstr ""
-
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
 msgstr ""
 
 msgid "REPORTS"
@@ -4700,9 +4550,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 #, fuzzy
 msgid "Run selected report."
 msgstr "ﻻ يوجد حساب متاح! ﻻ يمكن التصدير!"
@@ -4714,12 +4561,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4744,9 +4585,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 msgid "SLL"
@@ -4944,9 +4782,6 @@ msgstr "تعيين العملة لاستخدامها مع هذا الحساب."
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "اسم السهم"
 
@@ -5010,12 +4845,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 #, fuzzy
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "سلسلة اذونات && وودائع جديدة"
@@ -5049,6 +4878,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr "تعيين النوع"
 
 msgid "Specify Day for start of financial year"
 msgstr ""
@@ -5096,11 +4929,26 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "تعيين مبلغ العملية"
 
-msgid "Specify period in Days to activate."
-msgstr ""
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
+msgstr "تحديد نوع الحساب التي سيتم إنشاؤها."
 
 #, fuzzy
-msgid "Specify period in Months to activate."
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "تحديد نوع الحساب التي سيتم إنشاؤها."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "تحديد نوع الحساب التي سيتم إنشاؤها."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "تحديد نوع الحساب التي سيتم إنشاؤها."
 
 #, fuzzy
@@ -5173,7 +5021,9 @@ msgid "Specify the language to use"
 msgstr "تعيين اللغة المستخدمة"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
 msgstr "تحديد نوع الحساب التي سيتم إنشاؤها."
 
 #, fuzzy
@@ -5267,6 +5117,10 @@ msgstr "تعيين عام تأسيس الميزانية."
 
 msgid "Split"
 msgstr "تجزئ"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr "تجزئ الصنف"
 
 msgid "Split Detail Dialog"
 msgstr "تقسيم نافذة التفاصيل"
@@ -5421,9 +5275,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "إلى"
@@ -5441,9 +5292,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5509,13 +5357,31 @@ msgstr ""
 msgid "The client failed to connect the server"
 msgstr ""
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+" models all transactions as belonging to accounts.\n"
+"\n"
+" الصفحة التالية ستساعدك على انشاء حساب جديد.\n"
+"\n"
+"لمساعدتك على البدء ، البدء في وضع قائمة\n"
+" من جميع المؤسسات المالية التي تملك بها حساب."
+
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
-
-msgid "The next pages will help you create a new database."
 msgstr ""
 
 msgid "The remote file doesn't exist"
@@ -5577,10 +5443,11 @@ msgid ""
 "another Category using the relocate command:"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
-msgstr ""
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
+msgstr "استعراض كل العمليات"
 
 msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
@@ -5704,7 +5571,7 @@ msgid "Total Balance on all Accounts"
 msgstr "الرصيد في كل الحسابات"
 
 #, fuzzy
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr "المصروفات"
 
 #, fuzzy, c-format
@@ -5712,7 +5579,7 @@ msgid "Total Imported : %ld"
 msgstr "مجموع المبالغ:"
 
 #, fuzzy
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr "الواردات:"
 
 #, fuzzy, c-format
@@ -6057,9 +5924,6 @@ msgstr ""
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "الاصدار:"
@@ -6166,9 +6030,6 @@ msgstr "ملغي"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6246,15 +6107,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "ما هي مصادر المال"
 
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "ما هي مصادر المال"
-
 msgid "Where the Money Goes"
-msgstr "اين صرف المال"
-
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
 msgstr "اين صرف المال"
 
 msgid "Wiki page"
@@ -6343,9 +6196,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr ""
 
-msgid "Your database file is stored with an extension of .mmb."
-msgstr ""
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6368,18 +6218,9 @@ msgstr "كملغي"
 msgid "as needing Followup"
 msgstr "تحتاج للمتابعة"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "الاسنان"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6389,10 +6230,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "حذف ممتلك"
 
 msgid "please check it in network options."
 msgstr ""
@@ -6417,66 +6254,16 @@ msgstr "إلى:"
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
+#, fuzzy
+#~ msgid " - "
+#~ msgstr ":"
 
 #, fuzzy
 #~ msgid " Filter Settings "
 #~ msgstr "اعدادات العرض"
+
+#~ msgid " Help"
+#~ msgstr "مساعدة"
 
 #~ msgid " Start Page"
 #~ msgstr "صفحة البدء"
@@ -6686,6 +6473,10 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "أخرى"
 
+#, fuzzy
+#~ msgid "All Time"
+#~ msgstr "&ملفاتCSV"
+
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "السماح بأي تأخير في السعر"
 
@@ -6788,6 +6579,10 @@ msgstr ""
 #~ msgstr "التدفق المالي لكل الحسابات - العمود يمثل عام"
 
 #, fuzzy
+#~ msgid "Categories - %s"
+#~ msgstr "اعلى اصناف في آخر 30 يوم"
+
+#, fuzzy
 #~ msgid "Categories - Current Month"
 #~ msgstr "عرض الشهر الحالي"
 
@@ -6847,10 +6642,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Category:"
 #~ msgstr "الصنف"
-
-#, fuzzy
-#~ msgid "Change all transactions using one Payee to another Payee"
-#~ msgstr "استعراض كل العمليات"
 
 #~ msgid "Change settings for automatic refresh"
 #~ msgstr "تغيير اعدادات التحديث اﻵلي"
@@ -7033,6 +6824,10 @@ msgstr ""
 #~ msgid "Enter &Transaction"
 #~ msgstr "دخول &العمليات"
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "اكتب اسم الممتلك"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr "اكتب اسم المؤسسة المالية التي تضع حسابك الاستثماري لديها"
@@ -7122,6 +6917,10 @@ msgstr ""
 
 #~ msgid "Gain Loss"
 #~ msgstr "ربح خسارة"
+
+#, fuzzy
+#~ msgid "Grand Total: "
+#~ msgstr "المجموع: %s"
 
 #, fuzzy
 #~ msgid "Hide Deleted (Void)"
@@ -7235,6 +7034,9 @@ msgstr ""
 #~ "الحسابات الاستثمارية هي حسابات مخصصة فقط \n"
 #~ "لمالكي الاسهم/الصناديق الاستثمارية \n"
 #~ "المرتبطة به.\n"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "تقويم آخر شهر"
 
 #~ msgid "Legend:"
 #~ msgstr "المفسر:"
@@ -7391,6 +7193,10 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Payee Added: %s"
+#~ msgstr "المستفيد"
+
+#, fuzzy
+#~ msgid "Payee Report - %s"
 #~ msgstr "المستفيد"
 
 #, fuzzy
@@ -7983,6 +7789,10 @@ msgstr ""
 #~ msgstr "اختيار المستفيد الحالي كمستفيد من العملية"
 
 #, fuzzy
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "ما هي مصادر المال"
+
+#, fuzzy
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "ما هي مصادر المال"
 
@@ -8021,6 +7831,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "ما هي مصادر المال"
+
+#, fuzzy
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "اين صرف المال"
 
 #, fuzzy
 #~ msgid "Where the Money Goes - 30 Days"
