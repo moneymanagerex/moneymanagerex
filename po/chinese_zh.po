@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 22:31+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
@@ -17,68 +17,7 @@ msgstr ""
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-#, fuzzy
-msgid " - "
-msgstr " : "
-
-msgid " - No File opened "
-msgstr " - 没有已開啟的檔案 "
-
-#, fuzzy
-msgid " Auto Repeat Transactions"
-msgstr "循環交易項目"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "新增/編輯循環交易項目"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "循環交易項目"
-
-msgid " Help"
-msgstr " 輔助說明"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr "其中一個欄位是消失：日期、受帳人、總額、交易類型，忽略。"
-
-msgid " Payments Left "
-msgstr ""
-
-#, fuzzy
-msgid " Specify "
-msgstr "選擇分類"
-
-#, fuzzy
-msgid " Split Category Details"
-msgstr "拆分類型"
-
-#, fuzzy
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-"中所有交易將屬於此帳目。\n"
-"\n"
-"下一頁會幫助你建立新帳目。\n"
-"\n"
-"首先是建立一個你資金往來金融機構的清單。"
-
 msgid "#"
-msgstr ""
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
 msgstr ""
 
 msgid "%"
@@ -90,6 +29,10 @@ msgstr " 日期 "
 
 #, c-format
 msgid "%.2f Shown As: %s"
+msgstr ""
+
+#, c-format
+msgid "%1$s - %2$s"
 msgstr ""
 
 #, c-format
@@ -130,6 +73,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, c-format
@@ -446,12 +393,6 @@ msgstr "估計收入 : 實際收入 : "
 msgid "(Optional) Specify a title or your name."
 msgstr ""
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr ""
 
@@ -525,9 +466,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -739,10 +677,6 @@ msgstr "檢視所有核實以外的交易"
 msgid "All Term Accounts"
 msgstr "由帳目"
 
-#, fuzzy
-msgid "All Time"
-msgstr "&CSV檔案"
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -827,13 +761,6 @@ msgstr ""
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-
 #, fuzzy
 msgid "Asset"
 msgstr "資產"
@@ -907,6 +834,10 @@ msgid "Auto"
 msgstr "至"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "循環交易項目"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "類型不可空白"
 
@@ -923,19 +854,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -972,9 +894,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -1024,12 +943,6 @@ msgstr "未設定基本貨幣"
 
 msgid "Base Currency for account"
 msgstr "帳目基本貨幣"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr ""
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1085,9 +998,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1163,9 +1073,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1283,10 +1190,6 @@ msgstr "所有帳目的現金流預測 - 12個月"
 msgid "Categories"
 msgstr "依類別查看資金走向"
 
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "30天內支出最多的類型"
-
 #, fuzzy
 msgid "Categories exported"
 msgstr "類型"
@@ -1294,8 +1197,8 @@ msgstr "類型"
 msgid "Category"
 msgstr "類型"
 
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "12個月內的各類型收入及支出"
 
 #, fuzzy
@@ -1505,9 +1408,6 @@ msgstr "已關閉"
 #, fuzzy
 msgid "Clothing"
 msgstr "支票/存款/信用卡"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1724,9 +1624,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1794,8 +1691,12 @@ msgstr "沒有開啟資料庫"
 msgid "Database Debug"
 msgstr "新增資料庫"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "類型不可空白"
 
 #, fuzzy
@@ -2171,9 +2072,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "離開(&x)\tAlt-X"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2202,6 +2100,10 @@ msgstr "編輯帳單和存款項目"
 #, fuzzy
 msgid "Edit Category"
 msgstr "拆分類型"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "新增/編輯循環交易項目"
 
 msgid "Edit Stock Investment"
 msgstr "編輯股票"
@@ -2255,6 +2157,10 @@ msgstr ""
 #, fuzzy
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "輸入帳單及收入發生"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "循環交易項目"
 
 #, fuzzy
 msgid "Enter a description for the new attachment:"
@@ -2347,9 +2253,10 @@ msgstr "請輸入資產值"
 msgid "Enter the current value of the asset"
 msgstr "請輸入資產值"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "請輸入資產名稱"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "輸入帳目最初的結算。"
@@ -2531,9 +2438,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2644,9 +2548,6 @@ msgstr "需要跟進"
 msgid "Food"
 msgstr ""
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2661,9 +2562,6 @@ msgstr "每四個月"
 
 msgid "Four Weeks"
 msgstr "四個星期"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "重複類型"
@@ -2726,9 +2624,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2747,6 +2642,10 @@ msgstr ""
 
 msgid "General"
 msgstr "一般"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "自訂SQL報表"
 
 #, fuzzy
 msgid "General Report Manager"
@@ -2788,10 +2687,6 @@ msgstr ""
 msgid "Grand Total:"
 msgstr "總計:"
 
-#, fuzzy
-msgid "Grand Total: "
-msgstr "總計: %s"
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2808,9 +2703,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2910,9 +2802,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3189,9 +3078,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3265,9 +3151,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3292,13 +3175,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3353,9 +3230,6 @@ msgstr "最近30天"
 msgid "Last 90 Days"
 msgstr "最近30天"
 
-msgid "Last Calendar Month"
-msgstr "上月"
-
 #, fuzzy
 msgid "Last Financial Year"
 msgstr "上年"
@@ -3386,13 +3260,6 @@ msgid "Latvian lats"
 msgstr ""
 
 msgid "Le"
-msgstr ""
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr "設定重復的次數。如果永遠持續則保留空白"
-
-msgid "Leave blank when not active."
 msgstr ""
 
 msgid "Lebanese lira"
@@ -3764,13 +3631,7 @@ msgstr "MMEX訊息"
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3787,12 +3648,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3910,9 +3765,6 @@ msgstr ""
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3923,6 +3775,10 @@ msgstr "沒有可用的帳目！無法匯出！"
 #, fuzzy
 msgid "No Accounts selected for export"
 msgstr "沒有可用的帳目！無法匯出！"
+
+#, fuzzy
+msgid "No File opened"
+msgstr " - 没有已開啟的檔案 "
 
 #, fuzzy
 msgid "No account available to delete!"
@@ -3960,9 +3816,6 @@ msgstr "十一月"
 msgid "November"
 msgstr "十一月"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "編號"
 
@@ -3995,6 +3848,10 @@ msgstr "十月"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr "其中一個欄位是消失：日期、受帳人、總額、交易類型，忽略。"
 
 #, fuzzy
 msgid "Online Update"
@@ -4262,10 +4119,6 @@ msgstr ""
 msgid "Payee Report"
 msgstr "受帳人"
 
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "受帳人"
-
 #, fuzzy
 msgid "Payee in use."
 msgstr "受帳人使用中"
@@ -4278,6 +4131,9 @@ msgid "Payees"
 msgstr "受帳人"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4501,12 +4357,6 @@ msgid "Quotes not found"
 msgstr ""
 
 msgid "R"
-msgstr ""
-
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
 msgstr ""
 
 msgid "REPORTS"
@@ -4734,9 +4584,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 #, fuzzy
 msgid "Run selected report."
 msgstr "沒有可用的帳目！無法匯出！"
@@ -4748,12 +4595,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4778,9 +4619,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 msgid "SLL"
@@ -4978,9 +4816,6 @@ msgstr "設定帳目所使用的貨幣。"
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "股票名稱"
 
@@ -5044,12 +4879,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 #, fuzzy
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "輸入帳單及收入發生"
@@ -5084,6 +4913,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr "選擇分類"
 
 msgid "Specify Day for start of financial year"
 msgstr ""
@@ -5131,11 +4964,26 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "輸入交易的金額"
 
-msgid "Specify period in Days to activate."
-msgstr ""
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
+msgstr "指定新建立帳目的類型。"
 
 #, fuzzy
-msgid "Specify period in Months to activate."
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "指定新建立帳目的類型。"
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "指定新建立帳目的類型。"
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "指定新建立帳目的類型。"
 
 #, fuzzy
@@ -5207,8 +5055,10 @@ msgid "Specify the language to use"
 msgstr "選擇使用語言"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "指定新建立帳目的類型。"
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr "設定重復的次數。如果永遠持續則保留空白"
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5301,6 +5151,10 @@ msgstr "依預算編列指定年度。"
 
 msgid "Split"
 msgstr "拆分"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr "拆分類型"
 
 msgid "Split Detail Dialog"
 msgstr "拆分細明表"
@@ -5455,9 +5309,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "至"
@@ -5475,9 +5326,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5542,13 +5390,30 @@ msgstr ""
 msgid "The client failed to connect the server"
 msgstr ""
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+"中所有交易將屬於此帳目。\n"
+"\n"
+"下一頁會幫助你建立新帳目。\n"
+"\n"
+"首先是建立一個你資金往來金融機構的清單。"
+
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
-
-msgid "The next pages will help you create a new database."
 msgstr ""
 
 msgid "The remote file doesn't exist"
@@ -5609,10 +5474,11 @@ msgid ""
 "another Category using the relocate command:"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
-msgstr ""
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
+msgstr "檢視所有交易"
 
 msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
@@ -5736,7 +5602,7 @@ msgid "Total Balance on all Accounts"
 msgstr "總計所有帳目總結"
 
 #, fuzzy
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr "支出:"
 
 #, fuzzy, c-format
@@ -5744,7 +5610,7 @@ msgid "Total Imported : %ld"
 msgstr "總額 :"
 
 #, fuzzy
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr "收入:"
 
 #, fuzzy, c-format
@@ -6090,9 +5956,6 @@ msgstr ""
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "版本歷史"
@@ -6199,9 +6062,6 @@ msgstr "作廢"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6279,15 +6139,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "依類別查看收入"
 
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "依類別查看收入"
-
 msgid "Where the Money Goes"
-msgstr "依類別查看支出"
-
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
 msgstr "依類別查看支出"
 
 msgid "Wiki page"
@@ -6376,10 +6228,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr ""
 
-#, fuzzy
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "開啟一個已建立的 Money Manager Ex 資料庫 (*.mmb檔案)"
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6402,18 +6250,9 @@ msgstr "無效"
 msgid "as needing Followup"
 msgstr "需要跟進"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "一般"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6423,10 +6262,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "自訂SQL報表"
 
 msgid "please check it in network options."
 msgstr ""
@@ -6451,66 +6286,13 @@ msgstr " 至: "
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #, fuzzy
 #~ msgid "  and contributors from around the world"
 #~ msgstr "  和來自全世界的貢獻者。"
+
+#, fuzzy
+#~ msgid " - "
+#~ msgstr " : "
 
 #~ msgid " : Restart"
 #~ msgstr " : 重新啟動"
@@ -6518,6 +6300,9 @@ msgstr ""
 #, fuzzy
 #~ msgid " Filter Settings "
 #~ msgstr "顯示設定"
+
+#~ msgid " Help"
+#~ msgstr " 輔助說明"
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -6750,6 +6535,10 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "其他"
 
+#, fuzzy
+#~ msgid "All Time"
+#~ msgstr "&CSV檔案"
+
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "允許股價延遲"
 
@@ -6860,6 +6649,10 @@ msgstr ""
 #~ msgstr "所有帳目的現金流預測 - 12個月"
 
 #, fuzzy
+#~ msgid "Categories - %s"
+#~ msgstr "30天內支出最多的類型"
+
+#, fuzzy
 #~ msgid "Categories - Current Month"
 #~ msgstr "檢視本月"
 
@@ -6906,10 +6699,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Category:"
 #~ msgstr "類型"
-
-#, fuzzy
-#~ msgid "Change all transactions using one Payee to another Payee"
-#~ msgstr "檢視所有交易"
 
 #~ msgid "Change settings for automatic refresh"
 #~ msgstr "變更設定為自動更新"
@@ -7076,6 +6865,10 @@ msgstr ""
 #~ msgid "Enter &Transaction"
 #~ msgstr "輸入交易"
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "請輸入資產名稱"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr "選擇託管金融機構"
@@ -7210,6 +7003,10 @@ msgstr ""
 #~ msgstr "獲利 / 虧損"
 
 #, fuzzy
+#~ msgid "Grand Total: "
+#~ msgstr "總計: %s"
+
+#, fuzzy
 #~ msgid "Hide Deleted (Void)"
 #~ msgstr "選擇類型"
 
@@ -7336,6 +7133,9 @@ msgstr ""
 #~ "\n"
 #~ "投資型帳目是特殊的帳目，只有投票/共同基金帳目\n"
 #~ "才會使用此類型。\n"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "上月"
 
 #~ msgid "Legend:"
 #~ msgstr "圖例:"
@@ -7519,6 +7319,10 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Payee Added: %s"
+#~ msgstr "受帳人"
+
+#, fuzzy
+#~ msgid "Payee Report - %s"
 #~ msgstr "受帳人"
 
 #, fuzzy
@@ -7756,6 +7560,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "指定導航樹的顏色"
+
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "指定新建立帳目的類型。"
 
 #, fuzzy
 #~ msgid "Specify the number of times this series repeats."
@@ -8138,6 +7946,10 @@ msgstr ""
 #~ msgstr "指定已選取之受帳人為此交易之受帳人"
 
 #, fuzzy
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "依類別查看收入"
+
+#, fuzzy
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "依類別查看收入"
 
@@ -8168,6 +7980,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "依類別查看收入"
+
+#, fuzzy
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "依類別查看支出"
 
 #, fuzzy
 #~ msgid "Where the Money Goes - 30 Days"
@@ -8220,6 +8036,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Your current version is: %s"
 #~ msgstr "版本歷史"
+
+#, fuzzy
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "開啟一個已建立的 Money Manager Ex 資料庫 (*.mmb檔案)"
 
 #, fuzzy
 #~ msgid "database file"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 22:36+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
@@ -17,65 +17,8 @@ msgstr ""
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
-#, fuzzy
-msgid " "
-msgstr "C"
-
-msgid " - "
-msgstr "- "
-
-msgid " - No File opened "
-msgstr " - Nincs megnyitott fájl"
-
-msgid " Auto Repeat Transactions"
-msgstr " Automatikusan ismétlődő ügyletek"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "Rendszeres ügylet, szerkesztése"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "Rendszeres ügyletek beírása"
-
-msgid " Help"
-msgstr "Súgó "
-
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr "A következő mezők egyike hiányzik, továbblép: Dátum, Összeg, Típus"
-
-msgid " Payments Left "
-msgstr ""
-
-msgid " Specify "
-msgstr "Meghatározás"
-
-msgid " Split Category Details"
-msgstr "Kategória bontása részletek"
-
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-" az ügyleteket számlák szerint mutatja.\n"
-"\n"
-"A következő lapok segítenek új számla létrehozásában.\n"
-"\n"
-"Az egyszerűbb indulás érdekében tanácsos felállítani\n"
-"egy listát a pénzintézetekről, ahol számlát vezet."
-
 msgid "#"
 msgstr "#"
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
-msgstr ""
 
 msgid "%"
 msgstr "%"
@@ -86,6 +29,10 @@ msgstr " % arány"
 #, c-format
 msgid "%.2f Shown As: %s"
 msgstr "%.2f Megjelenítve mint: %s"
+
+#, c-format
+msgid "%1$s - %2$s"
+msgstr ""
 
 #, c-format
 msgid "%d days delay!"
@@ -126,6 +73,10 @@ msgstr "%s -> Felhasználói dokumentumkönyvtár"
 #, c-format
 msgid "%s -> User profile folder"
 msgstr "%s -> felhasználói profilkönyvtár"
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
+msgstr ""
 
 #, c-format
 msgid "%s on %s"
@@ -402,12 +353,6 @@ msgstr "(Becsült - Tényleges)"
 msgid "(Optional) Specify a title or your name."
 msgstr "Tetszőleges - adjon meg egy címet, vagy a nevét."
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr "1"
 
@@ -481,9 +426,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -678,9 +620,6 @@ msgstr "Kiegyenlítettek kivételével mind"
 msgid "All Term Accounts"
 msgstr "Összes időszaki számla"
 
-msgid "All Time"
-msgstr "Minden időpont"
-
 msgid "All missing account, payees and categories will be created."
 msgstr "Az összes hiányzó számlát, kedvezményezettet és kategóriát létrehozom."
 
@@ -771,17 +710,6 @@ msgstr "Illusztráció"
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-"Mivel a fájl fontos pénzügyi adatokat tartalmaz, \n"
-"javasoljuk naponta készítsen másolatot a következő opció\n"
-"beállításával: \"Másolat készítése megnyitás előtt\", illetve\n"
-"a másolatok eltérő helyen történő elhelyezését."
-
 #, fuzzy
 msgid "Asset"
 msgstr "Vagyon"
@@ -852,6 +780,10 @@ msgid "Auto"
 msgstr "Autó"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr " Automatikusan ismétlődő ügyletek"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Törlés befejezve"
 
@@ -867,19 +799,10 @@ msgstr "Automatikus ismétlés"
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -917,9 +840,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -967,12 +887,6 @@ msgstr "Alap pénznem nincs beállítva"
 
 msgid "Base Currency for account"
 msgstr "A számla alap pénzneme"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr "Üressé válik, ha nem aktív."
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1030,9 +944,6 @@ msgid "Browse for folder"
 msgstr "Könytár böngészése"
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, c-format
@@ -1100,9 +1011,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1214,18 +1122,14 @@ msgstr "Cash Flow előrejelzés %i évre előre"
 msgid "Categories"
 msgstr "Kategóriák"
 
-#, c-format
-msgid "Categories - %s"
-msgstr "Kategóriák - %s"
-
 msgid "Categories exported"
 msgstr "Exportált kategóriák"
 
 msgid "Category"
 msgstr "Kategória"
 
-#, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "A kategória Bevételei/Kiadásai: %s"
 
 msgid "Category Relocation Completed."
@@ -1415,9 +1319,6 @@ msgstr "Zárolt"
 
 msgid "Clothing"
 msgstr "Ruházat"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1620,9 +1521,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 #, fuzzy
 msgid "D"
 msgstr "ID"
@@ -1685,7 +1583,12 @@ msgstr "Adatbázis másolat"
 msgid "Database Debug"
 msgstr "Adatbázis"
 
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "Adatbázis optimalizálása befejezve"
 
 msgid "Database file directory"
@@ -2025,9 +1928,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "Kilépés\tAlt-X"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2055,6 +1955,10 @@ msgstr "Rendszeres számla- és betéti átutalás szerkesztése"
 
 msgid "Edit Category"
 msgstr "Kategória szerkesztése"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "Rendszeres ügylet, szerkesztése"
 
 msgid "Edit Stock Investment"
 msgstr "Értékpapírbefektetés szerkesztése"
@@ -2111,6 +2015,10 @@ msgstr ""
 
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "A rendszeres számla- és betéti átutalás következő esedékessége"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "Rendszeres ügyletek beírása"
 
 msgid "Enter a description for the new attachment:"
 msgstr "Az új melléklet leírása: "
@@ -2200,9 +2108,10 @@ msgstr "Adja meg a vagyontárgy jelenlegi értékét"
 msgid "Enter the current value of the asset"
 msgstr "Adja meg a vagyontárgy jelenlegi értékét"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Írja be a jelentés nevét"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "Adja meg a számla kezdő egyenlegét."
@@ -2374,9 +2283,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2481,9 +2387,6 @@ msgstr "Egyeztetendő"
 msgid "Food"
 msgstr "Étel"
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2498,9 +2401,6 @@ msgstr "Négy hónap"
 
 msgid "Four Weeks"
 msgstr "Négy hét"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "Gyakoriság"
@@ -2562,9 +2462,6 @@ msgstr ""
 msgid "GUID"
 msgstr "GUID"
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2583,6 +2480,10 @@ msgstr "Üzemanyag/gáz"
 
 msgid "General"
 msgstr "Általános"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "mmGeneralGroupReport"
 
 msgid "General Report Manager"
 msgstr "Fő jelentéskezelő"
@@ -2618,9 +2519,6 @@ msgstr "Ajándékok"
 msgid "Grand Total:"
 msgstr "Összes összesen: "
 
-msgid "Grand Total: "
-msgstr "Összes összesen: "
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2637,9 +2535,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2740,9 +2635,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -2982,9 +2874,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3058,9 +2947,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3085,13 +2971,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3143,9 +3023,6 @@ msgstr "Utóbbi 365 nap"
 msgid "Last 90 Days"
 msgstr "Elmúlt 90 nap"
 
-msgid "Last Calendar Month"
-msgstr "Előző naptári hónapban"
-
 msgid "Last Financial Year"
 msgstr "Múlt pénzügyi évben"
 
@@ -3175,13 +3052,6 @@ msgstr ""
 #, fuzzy
 msgid "Le"
 msgstr "Élet"
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr "Ha lejárat nélküli, akkor hagyja üresen. "
-
-msgid "Leave blank when not active."
-msgstr "Hagyja üresen, ha nem aktív."
 
 msgid "Lebanese lira"
 msgstr ""
@@ -3546,13 +3416,7 @@ msgstr "Saját használat"
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3569,12 +3433,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3690,9 +3548,6 @@ msgstr "Következő"
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3701,6 +3556,10 @@ msgstr "Exportálásra nincs elérhető számla!"
 
 msgid "No Accounts selected for export"
 msgstr "Nincs exportálásra kiválasztott számla!"
+
+#, fuzzy
+msgid "No File opened"
+msgstr " - Nincs megnyitott fájl"
 
 msgid "No account available to delete!"
 msgstr "Nincs törölhető számla!"
@@ -3735,9 +3594,6 @@ msgstr "nov."
 msgid "November"
 msgstr "november"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "Azonosító"
 
@@ -3770,6 +3626,10 @@ msgstr "október"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr "A következő mezők egyike hiányzik, továbblép: Dátum, Összeg, Típus"
 
 msgid "Online Update"
 msgstr "Online frissítés"
@@ -4013,10 +3873,6 @@ msgstr "Kedvezményezett áthelyezésének eredménye"
 msgid "Payee Report"
 msgstr "Kedvezményezett kimutatás"
 
-#, c-format
-msgid "Payee Report - %s"
-msgstr "Kedvezményezett kimutatás - %s "
-
 msgid "Payee in use."
 msgstr "A kedvezményezett foglalt."
 
@@ -4027,6 +3883,9 @@ msgid "Payees"
 msgstr "Kedvezményezettek"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4250,12 +4109,6 @@ msgstr "A fájlokat %s nem találom"
 msgid "R"
 msgstr ""
 
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
-msgstr ""
-
 msgid "REPORTS"
 msgstr "KIMUTATÁSOK"
 
@@ -4476,9 +4329,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 msgid "Run selected report."
 msgstr "kiválasztott jelentés futtatása"
 
@@ -4489,12 +4339,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4519,9 +4363,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 #, fuzzy
@@ -4716,9 +4557,6 @@ msgstr "Adja meg a adatbázis által használt pénznemet."
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "Értékpapír neve"
 
@@ -4780,12 +4618,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr "Méret utána"
-
-msgid "Size before"
-msgstr "Méret előtte"
-
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "A következő rendszeres számla- és betéti átutalás kihagyása"
 
@@ -4816,6 +4648,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr "Meghatározás"
 
 msgid "Specify Day for start of financial year"
 msgstr "Határozza meg a pénzügyi év kezdőnapját!"
@@ -4862,10 +4698,26 @@ msgstr "Határozza meg a fájlmásolatok max. számát"
 msgid "Specify month for start of financial year"
 msgstr "Határozza meg a pénzügyi év induló hónapját"
 
-msgid "Specify period in Days to activate."
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
 msgstr "A bekapcsoláshoz határozza meg a gyakoriságot napokban."
 
-msgid "Specify period in Months to activate."
+#, fuzzy
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "A bekapcsoláshoz határozza meg a gyakoriságot napokban."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "Hónapokban adja meg az érvényesítés időszakát"
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "Hónapokban adja meg az érvényesítés időszakát"
 
 msgid "Specify proxy port number"
@@ -4936,8 +4788,10 @@ msgid "Specify the language to use"
 msgstr "Adja meg a használandó nyelvet"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Adja meg a létrehozandó számla típusát."
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr "Ha lejárat nélküli, akkor hagyja üresen. "
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5023,6 +4877,10 @@ msgstr "Adja meg az alap költségvetés évét"
 
 msgid "Split"
 msgstr "Bontás"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr "Kategória bontása részletek"
 
 msgid "Split Detail Dialog"
 msgstr "Bontás részletezése párbeszéd"
@@ -5168,9 +5026,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr "Rendszer dokumentumok könyvtár"
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "Hova"
@@ -5189,9 +5044,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5261,17 +5113,37 @@ msgstr "A felhasználó neve az adatbázis címe is egyben. "
 msgid "The client failed to connect the server"
 msgstr "A kliens nem tud a szerverhez kapcsolódni"
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+" az ügyleteket számlák szerint mutatja.\n"
+"\n"
+"A következő lapok segítenek új számla létrehozásában.\n"
+"\n"
+"Az egyszerűbb indulás érdekében tanácsos felállítani\n"
+"egy listát a pénzintézetekről, ahol számlát vezet."
+
+#, fuzzy
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
 msgstr ""
-"Igény esetén az adatbázis később is titkosítható\n"
-"az \"Adatbázis mentése másként\" opcióval, ahol \n"
-"a fájl típusát mentés előtt .emb-re változtathatja."
-
-msgid "The next pages will help you create a new database."
-msgstr "A következő lapok segítenek új adatbázis felállításában."
+"Mivel a fájl fontos pénzügyi adatokat tartalmaz, \n"
+"javasoljuk naponta készítsen másolatot a következő opció\n"
+"beállításával: \"Másolat készítése megnyitás előtt\", illetve\n"
+"a másolatok eltérő helyen történő elhelyezését."
 
 msgid "The remote file doesn't exist"
 msgstr "A távoli fájl nem létezik"
@@ -5337,9 +5209,10 @@ msgstr ""
 "Tipp: az összes tranzakció eredeti kategóriájának megváltoztatására\n"
 "másik kategóriára használja az áthelyezés parancsot:"
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
 msgstr ""
 "Tipp: az áthelyezés parancsot használhatja, hogy az adott\n"
 "kedvezményezett tranzakcióit más kedvezményezettre váltsa át:"
@@ -5491,14 +5364,16 @@ msgstr "Végösszeg: "
 msgid "Total Balance on all Accounts"
 msgstr "Az összes számla egyenlege: "
 
-msgid "Total Expenses: "
+#, fuzzy
+msgid "Total Expenses:"
 msgstr "Összes kiadás: "
 
 #, c-format
 msgid "Total Imported : %ld"
 msgstr "Összesen importált: %ld"
 
-msgid "Total Income: "
+#, fuzzy
+msgid "Total Income:"
 msgstr "Összes bevétel: "
 
 #, c-format
@@ -5830,9 +5705,6 @@ msgstr "A megjelenített példa értéke: "
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Verzió: "
@@ -5928,9 +5800,6 @@ msgstr "Érvénytelen"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6006,16 +5875,8 @@ msgstr "Melléklet eltávolításakor a fájlt mozgassa és nem törölje"
 msgid "Where the Money Comes From"
 msgstr "Ahonnan a pénz érkezett"
 
-#, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Ahonnan a pénz érkezett - %s"
-
 msgid "Where the Money Goes"
 msgstr "Hová ment a pénz"
-
-#, c-format
-msgid "Where the Money Goes - %s"
-msgstr "Ahová a pénz ment - %s"
 
 msgid "Wiki page"
 msgstr "Wiki-lap"
@@ -6100,9 +5961,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr "Adja meg egy másik adatbázis elérési útját"
 
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "Az adatbázisfájl .mmb kiterjesztéssel lesz elmentve."
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6125,18 +5983,9 @@ msgstr "érvénytelenként"
 msgid "as needing Followup"
 msgstr "folyamatban-ként"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "Fogorvos"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6146,9 +5995,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-msgid "mmGeneralGroupReport"
-msgstr "mmGeneralGroupReport"
 
 msgid "please check it in network options."
 msgstr "a hálózati beállításoknál ellenőrizze."
@@ -6174,62 +6020,12 @@ msgstr " Ide: "
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
+#, fuzzy
+#~ msgid " "
+#~ msgstr "C"
 
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
+#~ msgid " - "
+#~ msgstr "- "
 
 #~ msgid " : Requires MMEX Restart"
 #~ msgstr " : Az MMEX újraindítását igényli!"
@@ -6240,6 +6036,9 @@ msgstr ""
 
 #~ msgid " Filter Settings "
 #~ msgstr " Szűrési beállítások"
+
+#~ msgid " Help"
+#~ msgstr "Súgó "
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -6490,6 +6289,9 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "Összes többi"
 
+#~ msgid "All Time"
+#~ msgstr "Minden időpont"
+
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "A jegyzésekben a késleltetés engedélyezett"
 
@@ -6577,6 +6379,9 @@ msgstr ""
 #~ msgid "Be &notified of new releases"
 #~ msgstr "Verziókövetés"
 
+#~ msgid "Becomes blank when not active."
+#~ msgstr "Üressé válik, ha nem aktív."
+
 #~ msgid "Budget Performance for Year : "
 #~ msgstr "Költségvetés működése a következő évben : "
 
@@ -6611,6 +6416,9 @@ msgstr ""
 
 #~ msgid "Cash Flow Forecast For All Accounts - A Year Ahead"
 #~ msgstr "Cash Flow előrejelzés minden számlához"
+
+#~ msgid "Categories - %s"
+#~ msgstr "Kategóriák - %s"
 
 #~ msgid "Categories - Current Financial Year"
 #~ msgstr "Kategóriák - ebben a pénzügyi évben"
@@ -6864,6 +6672,10 @@ msgstr ""
 #~ "Írjon be keresési karaktersort. A *-ot használhatja 0 vagy több, a ?-t "
 #~ "pedig egy karakter helyettesítésére."
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Írja be a jelentés nevét"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr "Adja meg az értékpapírt kibocsájtó pénzintézet nevét"
@@ -6992,6 +6804,9 @@ msgstr ""
 #, fuzzy
 #~ msgid "Gain Loss"
 #~ msgstr "Emelkedés/süllyedés"
+
+#~ msgid "Grand Total: "
+#~ msgstr "Összes összesen: "
 
 #, fuzzy
 #~ msgid "HTML_BUILDER: Syntax error function: %s"
@@ -7150,6 +6965,12 @@ msgstr ""
 
 #~ msgid "Large"
 #~ msgstr "Nagy"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "Előző naptári hónapban"
+
+#~ msgid "Leave blank when not active."
+#~ msgstr "Hagyja üresen, ha nem aktív."
 
 #~ msgid "Legend:"
 #~ msgstr "Jelmagyarázat: "
@@ -7354,6 +7175,9 @@ msgstr ""
 #, fuzzy
 #~ msgid "Payee Added: %s"
 #~ msgstr "Hozzáadott kedvezményezett: "
+
+#~ msgid "Payee Report - %s"
+#~ msgstr "Kedvezményezett kimutatás - %s "
 
 #, fuzzy
 #~ msgid "Payee missing"
@@ -7591,6 +7415,12 @@ msgstr ""
 #~ msgid "Sign up for the announcement mailing list"
 #~ msgstr "Feliratkozás a levelezőlistára"
 
+#~ msgid "Size after"
+#~ msgstr "Méret utána"
+
+#~ msgid "Size before"
+#~ msgstr "Méret előtte"
+
 #~ msgid ""
 #~ "Skipping QIF transaction because date, type, amount is empty/invalid, "
 #~ "transaction skipped had "
@@ -7649,6 +7479,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "Adja meg a navigációs fa színét"
+
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "Adja meg a létrehozandó számla típusát."
 
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Adja meg a megbízás ismétlődésének számát."
@@ -7731,6 +7565,18 @@ msgstr ""
 
 #~ msgid "Thank you! "
 #~ msgstr "Köszönöm!"
+
+#~ msgid ""
+#~ "The database can later be encrypted if required, by\n"
+#~ "using the option: 'Save database as' and changing the\n"
+#~ "file type before saving."
+#~ msgstr ""
+#~ "Igény esetén az adatbázis később is titkosítható\n"
+#~ "az \"Adatbázis mentése másként\" opcióval, ahol \n"
+#~ "a fájl típusát mentés előtt .emb-re változtathatja."
+
+#~ msgid "The next pages will help you create a new database."
+#~ msgstr "A következő lapok segítenek új adatbázis felállításában."
 
 #, fuzzy
 #~ msgid ""
@@ -8064,6 +7910,9 @@ msgstr ""
 #~ "payee for the current account."
 #~ msgstr "Adja hozzá a kijelölt kedvezményezettet az ügylethez"
 
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "Ahonnan a pénz érkezett - %s"
+
 #, fuzzy
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "Ahonnan a pénz jött - előző 30 napban"
@@ -8089,6 +7938,9 @@ msgstr ""
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "Ahonnan a pénz jött - tavaly"
+
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "Ahová a pénz ment - %s"
 
 #, fuzzy
 #~ msgid "Where the Money Goes - 30 Days"
@@ -8144,6 +7996,9 @@ msgstr ""
 
 #~ msgid "Your current version is: %s"
 #~ msgstr "Az Ön által használt verzió: %s"
+
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "Az adatbázisfájl .mmb kiterjesztéssel lesz elmentve."
 
 #~ msgid "database file"
 #~ msgstr "Adatbázisfájl"

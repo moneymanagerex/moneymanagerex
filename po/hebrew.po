@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 22:34+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Avi Markovitz <Avi.Markovitz@gmail.com>\n"
@@ -18,65 +18,8 @@ msgstr ""
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-msgid " - "
-msgstr ""
-
-msgid " - No File opened "
-msgstr " - קובץ לא נפתח "
-
-msgid " Auto Repeat Transactions"
-msgstr " תנועות חוזרות אוטומטית"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "הוסף/ערוך תנועות חוזרות"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "תנועות חוזרות"
-
-msgid " Help"
-msgstr " עזרה"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr " אחד השדות הבאים חסר: תאריך, מוטב, סכום, סוג. מדלג"
-
-msgid " Payments Left "
-msgstr ""
-
-msgid " Specify "
-msgstr " הגדר "
-
-msgid " Split Category Details"
-msgstr " חלון פיצול קטגוריות"
-
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-" ממדל את כל התנועות כמשויכות לחשבונות.\n"
-"\n"
-"העמוד הבא יסיע לך ליצור חשבון חדש.\n"
-"\n"
-"על מנת להתחיל, הכן רשימה של כל המוסדות הפיננסיים\n"
-"בהם מנוהלים חשבונותך."
-
 msgid "#"
 msgstr "#"
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
-msgstr ""
 
 msgid "%"
 msgstr "%"
@@ -87,6 +30,10 @@ msgstr "% שער"
 #, fuzzy, c-format
 msgid "%.2f Shown As: %s"
 msgstr "הצג כ: "
+
+#, c-format
+msgid "%1$s - %2$s"
+msgstr ""
 
 #, c-format
 msgid "%d days delay!"
@@ -126,6 +73,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, c-format
@@ -418,12 +369,6 @@ msgstr "(תחזית מול בפועל)"
 msgid "(Optional) Specify a title or your name."
 msgstr "אופציונאלי - הזן תאור או את שימך"
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr "1"
 
@@ -497,9 +442,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -698,9 +640,6 @@ msgstr "הצג הכל למעט מותאמים"
 msgid "All Term Accounts"
 msgstr "כל חשבונות החיסכון"
 
-msgid "All Time"
-msgstr "בכל הזמנים"
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -786,17 +725,6 @@ msgstr "גרפיקה"
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-"מאחר שקובץ זה מכיל מידע פיננסי חשוב,\n"
-"מומלץ ליצור גיבויים יומיים. לשם כך, בחר באפשרויות ->\n"
-"הגדרות -> 'גיבוי לפני פתיחה', ולאחסן את הגיבויים\n"
-"בסיפריה נפרדת."
-
 #, fuzzy
 msgid "Asset"
 msgstr "נכסים"
@@ -868,6 +796,10 @@ msgid "Auto"
 msgstr "רכב"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr " תנועות חוזרות אוטומטית"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "תחזית"
 
@@ -884,19 +816,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -934,9 +857,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -984,12 +904,6 @@ msgstr "לא נקבע מטבע בסיס"
 
 msgid "Base Currency for account"
 msgstr "מטבע בסיס לחשבון"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr "הופך 'ריק' כאשר אינו פעיל."
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1047,9 +961,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1118,9 +1029,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1236,18 +1144,14 @@ msgstr "שנים קדימה %d תחזית תזרים מזומנים ל"
 msgid "Categories"
 msgstr "קטגוריות"
 
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "קטגוריות - 30 יום"
-
 msgid "Categories exported"
 msgstr "קטגוריות יוצאו"
 
 msgid "Category"
 msgstr "קטגוריה"
 
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "חודשים קודמים %d קטגורית הכנסה/הוצאה ב "
 
 msgid "Category Relocation Completed."
@@ -1446,9 +1350,6 @@ msgstr "סגור"
 
 msgid "Clothing"
 msgstr "הלבשה"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1659,9 +1560,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1726,8 +1624,12 @@ msgstr "גבה מסד נתונים"
 msgid "Database Debug"
 msgstr "מסד נתונים חדש"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "העברת קטגוריה הושלמה."
 
 #, fuzzy
@@ -2086,9 +1988,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "&צא tab]Alt-X]"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2116,6 +2015,10 @@ msgstr "ערוך סידרת משיכות/הפקדות"
 
 msgid "Edit Category"
 msgstr "ערוך קטגוריה"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "הוסף/ערוך תנועות חוזרות"
 
 msgid "Edit Stock Investment"
 msgstr "ערוך תיק נירות ערך"
@@ -2168,6 +2071,10 @@ msgstr ""
 
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "הזן את המופע הבא של משיכות/הפקדות"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "תנועות חוזרות"
 
 #, fuzzy
 msgid "Enter a description for the new attachment:"
@@ -2259,9 +2166,10 @@ msgstr "הזן ערך נוכחי של הנכס"
 msgid "Enter the current value of the asset"
 msgstr "הזן ערך נוכחי של הנכס"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "הזן את שם הנכס"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "הזן את יתרת הפתיחה של החשבון."
@@ -2434,9 +2342,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2544,9 +2449,6 @@ msgstr "מעקב"
 msgid "Food"
 msgstr "מזון"
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2561,9 +2463,6 @@ msgstr "ארבעה חודשים"
 
 msgid "Four Weeks"
 msgstr "ארבעה שבועות"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "תדירות"
@@ -2625,9 +2524,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2646,6 +2542,10 @@ msgstr "דלק"
 
 msgid "General"
 msgstr "כללי"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "מנהל דוחות מותאמים"
 
 #, fuzzy
 msgid "General Report Manager"
@@ -2683,9 +2583,6 @@ msgstr "מתנות"
 msgid "Grand Total:"
 msgstr "סך הכל כללי:"
 
-msgid "Grand Total: "
-msgstr "סך הכל כללי: "
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2702,9 +2599,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2801,9 +2695,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3067,9 +2958,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3143,9 +3031,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3170,13 +3055,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3232,9 +3111,6 @@ msgstr "30 ימים אחרונים"
 msgid "Last 90 Days"
 msgstr "30 ימים אחרונים"
 
-msgid "Last Calendar Month"
-msgstr "חודש אחרון"
-
 msgid "Last Financial Year"
 msgstr "שנה פיסקאלית קודמת"
 
@@ -3265,13 +3141,6 @@ msgstr ""
 #, fuzzy
 msgid "Le"
 msgstr "חיים"
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr "השאר ריק אם הסדרה ללא מועד סיום."
-
-msgid "Leave blank when not active."
-msgstr "השאר ריק כאשר לא פעיל."
 
 msgid "Lebanese lira"
 msgstr ""
@@ -3645,13 +3514,7 @@ msgstr "הודעת MMEX"
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3668,12 +3531,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3790,9 +3647,6 @@ msgstr "הבא"
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3801,6 +3655,10 @@ msgstr "אין חשבון זמין ליצוא"
 
 msgid "No Accounts selected for export"
 msgstr "לא נבחר חשבון ליצוא"
+
+#, fuzzy
+msgid "No File opened"
+msgstr " - קובץ לא נפתח "
 
 msgid "No account available to delete!"
 msgstr "אין חשבון זמין למחיקה!"
@@ -3835,9 +3693,6 @@ msgstr "נוב"
 msgid "November"
 msgstr "נובמבר"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "אסמכתא"
 
@@ -3871,6 +3726,10 @@ msgstr "אוקטובר"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr " אחד השדות הבאים חסר: תאריך, מוטב, סכום, סוג. מדלג"
 
 #, fuzzy
 msgid "Online Update"
@@ -4130,10 +3989,6 @@ msgstr "תוצאת העברת מוטבים"
 msgid "Payee Report"
 msgstr "דוח מוטב"
 
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "דוח מוטב"
-
 msgid "Payee in use."
 msgstr "מוטב בשימוש."
 
@@ -4144,6 +3999,9 @@ msgid "Payees"
 msgstr "מוטבים"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4362,12 +4220,6 @@ msgid "Quotes not found"
 msgstr "קובץ %s לא נמצא"
 
 msgid "R"
-msgstr ""
-
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
 msgstr ""
 
 msgid "REPORTS"
@@ -4594,9 +4446,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 #, fuzzy
 msgid "Run selected report."
 msgstr "לא נבחר חשבון ליצוא"
@@ -4608,12 +4457,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4638,9 +4481,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 #, fuzzy
@@ -4830,9 +4670,6 @@ msgstr "מגדיר את מטבע הבסיס למסד הנתונים"
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "מחיר מניה"
 
@@ -4895,12 +4732,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "דלג על המופע הבא של משיכות/הפקדות"
 
@@ -4931,6 +4762,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr " הגדר "
 
 msgid "Specify Day for start of financial year"
 msgstr "הגדר את היום הראשון בשנה הפיסקאלית"
@@ -4977,10 +4812,26 @@ msgstr "הגדר מספר מקסימלי של קובצי גיבוי"
 msgid "Specify month for start of financial year"
 msgstr "הזן את סכום התנועה"
 
-msgid "Specify period in Days to activate."
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
 msgstr "הזן תקופה בימים כדי להפעיל."
 
-msgid "Specify period in Months to activate."
+#, fuzzy
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "הזן תקופה בימים כדי להפעיל."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "הזן תקופת חודשים כדי להפעיל."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "הזן תקופת חודשים כדי להפעיל."
 
 msgid "Specify proxy port number"
@@ -5051,8 +4902,10 @@ msgid "Specify the language to use"
 msgstr "בחר שפה"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "הגדר את סוג החשבון שיוצר."
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr "השאר ריק אם הסדרה ללא מועד סיום."
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5143,6 +4996,10 @@ msgstr "הגדר שנת בסיס לתקציב"
 
 msgid "Split"
 msgstr "פצל"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr " חלון פיצול קטגוריות"
 
 msgid "Split Detail Dialog"
 msgstr "חלון פירטי פיצול"
@@ -5291,9 +5148,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "ל"
@@ -5312,9 +5166,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5382,17 +5233,37 @@ msgstr "שם משתמש ישמש גם ככותרת למסד הנתונים"
 msgid "The client failed to connect the server"
 msgstr ""
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+" ממדל את כל התנועות כמשויכות לחשבונות.\n"
+"\n"
+"העמוד הבא יסיע לך ליצור חשבון חדש.\n"
+"\n"
+"על מנת להתחיל, הכן רשימה של כל המוסדות הפיננסיים\n"
+"בהם מנוהלים חשבונותך."
+
+#, fuzzy
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
 msgstr ""
-"במידת הצורך, ניתן יהיה מאוחר יותר  להצפין את מסד הנתונים,  \n"
-"תוך שימוש באפשרות: 'שמירת מסד נתונים כ...' ולשנות\n"
-"סוג הקובץ לפני השמירה."
-
-msgid "The next pages will help you create a new database."
-msgstr "הדפים הבאים ינחו אותך ביצירת מסד נתונים חדש."
+"מאחר שקובץ זה מכיל מידע פיננסי חשוב,\n"
+"מומלץ ליצור גיבויים יומיים. לשם כך, בחר באפשרויות ->\n"
+"הגדרות -> 'גיבוי לפני פתיחה', ולאחסן את הגיבויים\n"
+"בסיפריה נפרדת."
 
 msgid "The remote file doesn't exist"
 msgstr ""
@@ -5455,9 +5326,10 @@ msgstr ""
 "עצה: שנה את הקטגוריה בכל התנועות  לקטגוריה\n"
 "אחרת מתפריט כלים -> העברה של... :"
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
 msgstr ":עצה: שנה את כל התנועות הקשורות למוטב זה למוטב אחר באמצעות פקודת העברה"
 
 msgid ""
@@ -5602,7 +5474,7 @@ msgid "Total Balance on all Accounts"
 msgstr "יתרה כוללת לכל החשבונות"
 
 #, fuzzy
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr "הוצאות בפועל: "
 
 #, fuzzy, c-format
@@ -5610,7 +5482,7 @@ msgid "Total Imported : %ld"
 msgstr "סך הכל יובא : %d"
 
 #, fuzzy
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr "הכנסות בפועל: "
 
 #, fuzzy, c-format
@@ -5947,9 +5819,6 @@ msgstr "דוגמה לתצוגת ערך:"
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "גירסה: "
@@ -6047,9 +5916,6 @@ msgstr "מבוטל"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6131,15 +5997,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "מאין מגיע הכסף"
 
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "מאין מגיע הכסף"
-
 msgid "Where the Money Goes"
-msgstr "לאן הולך הכסף"
-
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
 msgstr "לאן הולך הכסף"
 
 msgid "Wiki page"
@@ -6227,9 +6085,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr "הגדר נתיב לקובץ מסד נתונים אחר"
 
-msgid "Your database file is stored with an extension of .mmb."
-msgstr ".mmb  קובץ מסד הנתונים נשמר עם סיומת"
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6252,18 +6107,9 @@ msgstr "כמבוטל"
 msgid "as needing Followup"
 msgstr "למעקב"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "שיניים"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6273,10 +6119,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "מנהל דוחות מותאמים"
 
 msgid "please check it in network options."
 msgstr ""
@@ -6300,65 +6142,11 @@ msgstr "ל:"
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #~ msgid " Filter Settings "
 #~ msgstr " הגדרות סינון "
+
+#~ msgid " Help"
+#~ msgstr " עזרה"
 
 #~ msgid " Start Page"
 #~ msgstr " דף פתיחה"
@@ -6450,6 +6238,9 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "כל האחרים"
 
+#~ msgid "All Time"
+#~ msgstr "בכל הזמנים"
+
 #~ msgid "Amount Range:"
 #~ msgstr "טווח סכומים:"
 
@@ -6487,6 +6278,9 @@ msgstr ""
 #~ msgid "Base conversion for currency symbol: %s has not been set."
 #~ msgstr "בסיס המרה עבור סמל מטבע  %s לא הוגדר."
 
+#~ msgid "Becomes blank when not active."
+#~ msgstr "הופך 'ריק' כאשר אינו פעיל."
+
 #~ msgid "Budget report being generated... Please wait."
 #~ msgstr "דוח תקציב מופק כעת... המתן בבקשה."
 
@@ -6501,6 +6295,10 @@ msgstr ""
 
 #~ msgid "Cannot process these QIF Account Types yet."
 #~ msgstr ". אלו QIF לעבד סוגי חשבון לא ניתן עדין"
+
+#, fuzzy
+#~ msgid "Categories - %s"
+#~ msgstr "קטגוריות - 30 יום"
 
 #~ msgid "Categories - Current Financial Year"
 #~ msgstr "קטגוריות - שנת פיסקאלית נוכחית"
@@ -6658,6 +6456,10 @@ msgstr ""
 #~ "או ב- ? כדי לייצג תו בודד."
 
 #, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "הזן את שם הנכס"
+
+#, fuzzy
 #~ msgid "Error code:"
 #~ msgstr "שגיאה"
 
@@ -6709,6 +6511,9 @@ msgstr ""
 
 #~ msgid "Future Transactions"
 #~ msgstr "תנועות עתידיות"
+
+#~ msgid "Grand Total: "
+#~ msgstr "סך הכל כללי: "
 
 #~ msgid "HTML_BUILDER: Syntax error function: %s"
 #~ msgstr "HTML_BUILDER: תחביר פונקציה שאגוי: %s"
@@ -6788,6 +6593,12 @@ msgstr ""
 
 #~ msgid "Large"
 #~ msgstr "גדול"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "חודש אחרון"
+
+#~ msgid "Leave blank when not active."
+#~ msgstr "השאר ריק כאשר לא פעיל."
 
 #~ msgid "Legend:"
 #~ msgstr "מקרא:"
@@ -6934,6 +6745,10 @@ msgstr ""
 
 #~ msgid "Payee Added: %s"
 #~ msgstr "מוטב שנוסף:  %s"
+
+#, fuzzy
+#~ msgid "Payee Report - %s"
+#~ msgstr "דוח מוטב"
 
 #~ msgid "Payee missing"
 #~ msgstr "חסר מוטב"
@@ -7128,6 +6943,10 @@ msgstr ""
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "הגדר צבע לסרגל הניווט"
 
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "הגדר את סוג החשבון שיוצר."
+
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "הגדר את מספר המופעים של הסידרה."
 
@@ -7182,6 +7001,18 @@ msgstr ""
 
 #~ msgid "Test script. Save before running."
 #~ msgstr "בדוק קוד. שמור לפני הרצה."
+
+#~ msgid ""
+#~ "The database can later be encrypted if required, by\n"
+#~ "using the option: 'Save database as' and changing the\n"
+#~ "file type before saving."
+#~ msgstr ""
+#~ "במידת הצורך, ניתן יהיה מאוחר יותר  להצפין את מסד הנתונים,  \n"
+#~ "תוך שימוש באפשרות: 'שמירת מסד נתונים כ...' ולשנות\n"
+#~ "סוג הקובץ לפני השמירה."
+
+#~ msgid "The next pages will help you create a new database."
+#~ msgstr "הדפים הבאים ינחו אותך ביצירת מסד נתונים חדש."
 
 #, fuzzy
 #~ msgid "There are no accounts available for import to"
@@ -7285,6 +7116,10 @@ msgstr ""
 #~ msgid "Week#%d"
 #~ msgstr "שבועי"
 
+#, fuzzy
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "מאין מגיע הכסף"
+
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "מהיכן שהכסף מגיע - 30 יום"
 
@@ -7308,6 +7143,10 @@ msgstr ""
 
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "מהיכן שהכסף מגיע - שנה קודמת"
+
+#, fuzzy
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "לאן הולך הכסף"
 
 #~ msgid "Where the Money Goes - 30 Days"
 #~ msgstr "לאן  שהכסף הולך  - 30 יום"
@@ -7358,6 +7197,9 @@ msgstr ""
 #, fuzzy
 #~ msgid "Your current version is: %s"
 #~ msgstr "גירסה: "
+
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr ".mmb  קובץ מסד הנתונים נשמר עם סיומת"
 
 #, fuzzy
 #~ msgid "database file"

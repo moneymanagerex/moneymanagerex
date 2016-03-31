@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 23:07+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
@@ -17,68 +17,8 @@ msgstr ""
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-#, fuzzy
-msgid " - "
-msgstr " : "
-
-msgid " - No File opened "
-msgstr " - Κανένα αρχείο ανοιχτό"
-
-msgid " Auto Repeat Transactions"
-msgstr "Αυτόματα επαναλαμβανόμενες συναλλαγές"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "Δημιουργία/επεξεργασία επαναλαμβανόμενης συναλλαγής"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "Επαναλαμβανόμενες συναλλαγές"
-
-msgid " Help"
-msgstr " Βοήθεια"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr ""
-"Ένα από τα επόμενα πεδία: Ημερομηνία, δικαιούχος, ποσό, τύπος, λείπει, "
-"παραλείπεται"
-
-msgid " Payments Left "
-msgstr ""
-
-msgid " Specify "
-msgstr " Καθορίστε "
-
-msgid " Split Category Details"
-msgstr " Λεπτομέρειες διαίρεσης κατηγορίας"
-
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-" θεωρεί ότι όλες οι συναλλαγές ανήκουν σε λογαριασμούς.\n"
-"\n"
-"Οι επόμενες σελίδες θα σας βοηθήσουν να δημιουργήσετε ένα νέο λογαριασμό.\n"
-"\n"
-"Για να σας βοηθήσουμε να ξεκινήσετε, αρχίστε φτιάχνοντας μια λίστα όλων\n"
-"των οικονομικών οργανισμών όπου διατηρείτε κάποιο λογαριασμό."
-
 msgid "#"
 msgstr "#"
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
-msgstr ""
 
 msgid "%"
 msgstr "%"
@@ -89,6 +29,10 @@ msgstr "% ποσοστό"
 #, fuzzy, c-format
 msgid "%.2f Shown As: %s"
 msgstr "Προβαλλόμενο ως: "
+
+#, c-format
+msgid "%1$s - %2$s"
+msgstr ""
 
 #, c-format
 msgid "%d days delay!"
@@ -128,6 +72,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, c-format
@@ -423,12 +371,6 @@ msgstr "(Εκτιμώμενα προς πραγματικά)"
 msgid "(Optional) Specify a title or your name."
 msgstr "(Προαιρετικό) Ορίστε ένα τίτλο ή το όνομά σας."
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr ""
 
@@ -502,9 +444,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -706,10 +645,6 @@ msgstr "Δείτε όλες τις διευθετημένες κινήσεις"
 msgid "All Term Accounts"
 msgstr "Όλοι οι προθεσμιακοί λογαριασμοί"
 
-#, fuzzy
-msgid "All Time"
-msgstr "Όλα τα αρχεία"
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -796,18 +731,6 @@ msgstr "Τέχνη"
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-"Καθώς το αρχείο αυτό περιέχει σημαντικές οικονομικές πληροφορίες,\n"
-"συνιστούμε να δημιουργείτε καθημερινά αντίγραφα ασφαλείας από τις Επιλογές\n"
-"θέτοντας: 'Αντίγραφα ασφαλείας πριν το άνοιγμα' και αποθηκεύοντας τα "
-"αντίγραφα\n"
-"σε ένα άλλο μέρος."
-
 #, fuzzy
 msgid "Asset"
 msgstr "Περιουσιακά στοιχεία"
@@ -880,6 +803,10 @@ msgid "Auto"
 msgstr "Αυτοκίνητο"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "Αυτόματα επαναλαμβανόμενες συναλλαγές"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Η μετατόπιση δικαιούχου ολοκληρώθηκε."
 
@@ -896,19 +823,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -945,9 +863,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -995,12 +910,6 @@ msgstr "Δεν ορίστηκε το βασικό νόμισμα"
 
 msgid "Base Currency for account"
 msgstr "Βασικό νόμισμα του λογαριασμού"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr "Γίνεται κενό όταν δεν είναι ενεργό."
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1059,9 +968,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1130,9 +1036,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1246,10 +1149,6 @@ msgstr "Πρόβλεψη χρηματικής ροής για %d χρόνια μ
 msgid "Categories"
 msgstr "Κατηγορίες"
 
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "Κατηγορίες - Προηγούμενες 30 ημέρες"
-
 #, fuzzy
 msgid "Categories exported"
 msgstr "Έκθεση κατηγορίας"
@@ -1257,8 +1156,8 @@ msgstr "Έκθεση κατηγορίας"
 msgid "Category"
 msgstr "Κατηγορία"
 
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "Έσοδα/έξοδα κατηγορίας κατά τους τελευταίους %d μήνες"
 
 msgid "Category Relocation Completed."
@@ -1456,9 +1355,6 @@ msgstr "Κλειστός"
 
 msgid "Clothing"
 msgstr "Ρουχισμός"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1671,9 +1567,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1740,8 +1633,12 @@ msgstr "Αντίγραφο ασφαλείας της βάσης δεδομένω
 msgid "Database Debug"
 msgstr "Νέα βάση δεδομένων"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "Η μετατόπιση κατηγορίεας ολοκληρώθηκε."
 
 #, fuzzy
@@ -2103,9 +2000,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "&Έξοδος\tAlt-X"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2134,6 +2028,10 @@ msgstr "Επεξεργασία σειράς πληρωμών & καταθέσε�
 #, fuzzy
 msgid "Edit Category"
 msgstr "Διαίρεση κατηγορίας"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "Δημιουργία/επεξεργασία επαναλαμβανόμενης συναλλαγής"
 
 msgid "Edit Stock Investment"
 msgstr "Επεξεργασθείτε την επένδυση σε μετοχές"
@@ -2185,6 +2083,10 @@ msgstr ""
 
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "Εισάγετε την επόμενη εμφάνιση πληρωμής & κατάθεσης"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "Επαναλαμβανόμενες συναλλαγές"
 
 #, fuzzy
 msgid "Enter a description for the new attachment:"
@@ -2283,9 +2185,10 @@ msgstr "Εισάγετε την τρέχουσα αξία του περιουσ�
 msgid "Enter the current value of the asset"
 msgstr "Εισάγετε την τρέχουσα αξία του περιουσιακού στοιχείου"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Εισάγετε το όνομα του περιουσιακού στοιχείου"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "Εισάγετε το αρχικό υπόλοιπο του λογαριασμού αυτού."
@@ -2466,9 +2369,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2578,9 +2478,6 @@ msgstr "Για επανέλεγχο"
 msgid "Food"
 msgstr "Τρόφιμα"
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2595,9 +2492,6 @@ msgstr "Τέσσερις μήνες"
 
 msgid "Four Weeks"
 msgstr "Τέσσερις εβδομάδες"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "Συχνότητα"
@@ -2660,9 +2554,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2681,6 +2572,10 @@ msgstr "Καύσιμα"
 
 msgid "General"
 msgstr "Γενικές"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "Διαχείριση προσαρμοσμένων εκθέσεων SQL"
 
 #, fuzzy
 msgid "General Report Manager"
@@ -2718,9 +2613,6 @@ msgstr "Δώρα"
 msgid "Grand Total:"
 msgstr "Γενικό σύνολο:"
 
-msgid "Grand Total: "
-msgstr "Γενικό σύνολο: "
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2737,9 +2629,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2837,9 +2726,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3108,9 +2994,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3184,9 +3067,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3211,13 +3091,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3272,9 +3146,6 @@ msgstr "Τελευταίες 30 ημέρες"
 msgid "Last 90 Days"
 msgstr "Τελευταίες 30 ημέρες"
 
-msgid "Last Calendar Month"
-msgstr "Προηγούμενος ημερολογιακός μήνας"
-
 msgid "Last Financial Year"
 msgstr "Τελευταίο οικονομικό έτος"
 
@@ -3305,13 +3176,6 @@ msgstr ""
 #, fuzzy
 msgid "Le"
 msgstr "Ζωή"
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr "Αφήστε το κενό αν η σειρά αυτή θα συνεχίζεται για πάντα."
-
-msgid "Leave blank when not active."
-msgstr "Αφήστε το κενό όταν δεν είναι ενεργό."
 
 msgid "Lebanese lira"
 msgstr ""
@@ -3692,13 +3556,7 @@ msgstr "Μήνυμα MMEX"
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3715,12 +3573,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3837,9 +3689,6 @@ msgstr "Επόμενο"
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3849,6 +3698,10 @@ msgstr "Κανείς λογαριασμός διαθέσιμος για εξαγ
 #, fuzzy
 msgid "No Accounts selected for export"
 msgstr "Κανείς λογαριασμός διαθέσιμος για εξαγωγή"
+
+#, fuzzy
+msgid "No File opened"
+msgstr " - Κανένα αρχείο ανοιχτό"
 
 msgid "No account available to delete!"
 msgstr "Κανείς λογαριασμός διαθέσιμος προς διαγραφή!"
@@ -3883,9 +3736,6 @@ msgstr "Νοε"
 msgid "November"
 msgstr "Νοέμβριος"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "Αριθμός"
 
@@ -3918,6 +3768,12 @@ msgstr "Οκτώβριος"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr ""
+"Ένα από τα επόμενα πεδία: Ημερομηνία, δικαιούχος, ποσό, τύπος, λείπει, "
+"παραλείπεται"
 
 #, fuzzy
 msgid "Online Update"
@@ -4179,10 +4035,6 @@ msgstr "Αποτέλεσμα μετατόπισης δικαιούχου"
 msgid "Payee Report"
 msgstr "Έκθεση δικαιούχου"
 
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "Έκθεση δικαιούχου"
-
 msgid "Payee in use."
 msgstr "Δικαιούχος σε χρήση"
 
@@ -4193,6 +4045,9 @@ msgid "Payees"
 msgstr "Δικαιούχοι"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4410,12 +4265,6 @@ msgid "Quotes not found"
 msgstr ""
 
 msgid "R"
-msgstr ""
-
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
 msgstr ""
 
 msgid "REPORTS"
@@ -4645,9 +4494,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 #, fuzzy
 msgid "Run selected report."
 msgstr "Κανείς λογαριασμός διαθέσιμος για εξαγωγή"
@@ -4659,12 +4505,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4689,9 +4529,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 msgid "SLL"
@@ -4888,9 +4725,6 @@ msgstr "Ορίζει το προεπιλεγμένο νόμισμα για τη 
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "Όνομα μετοχής"
 
@@ -4957,12 +4791,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "Παρακάμψτε την επόμενη εμφάνιση πληρωμής & κατάθεσης"
 
@@ -4995,6 +4823,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr " Καθορίστε "
 
 msgid "Specify Day for start of financial year"
 msgstr "Καθορίστε την ημέρα έναρξης του οικονομικού έτους"
@@ -5044,10 +4876,26 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "Καθορίστε τον μήνα έναρξης του οικονομικού έτους"
 
-msgid "Specify period in Days to activate."
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
 msgstr "Καθορίστε περίοδο σε ημέρες για ενεργοποίηση."
 
-msgid "Specify period in Months to activate."
+#, fuzzy
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "Καθορίστε περίοδο σε ημέρες για ενεργοποίηση."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "Καθορίστε την περίοδο σε μήνες για ενεργοποίηση."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "Καθορίστε την περίοδο σε μήνες για ενεργοποίηση."
 
 #, fuzzy
@@ -5121,8 +4969,10 @@ msgid "Specify the language to use"
 msgstr "Καθορίστε τη χρησιμοποιούμενη γλώσσα"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Καθορίστε τον τύπο του λογαριασμού που θα δημιουργηθεί."
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr "Αφήστε το κενό αν η σειρά αυτή θα συνεχίζεται για πάντα."
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5216,6 +5066,10 @@ msgstr "Δηλώστε το έτος που θα βασισθεί ο προϋπ�
 
 msgid "Split"
 msgstr "Διαίρεση"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr " Λεπτομέρειες διαίρεσης κατηγορίας"
 
 msgid "Split Detail Dialog"
 msgstr "Διαίρεση παραθύρου λεπτομερειών"
@@ -5364,9 +5218,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "Προς"
@@ -5385,9 +5236,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5456,18 +5304,38 @@ msgstr "Το όνομα χρήστη χρησιμοποιήθηκε ως τίτ�
 msgid "The client failed to connect the server"
 msgstr ""
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+" θεωρεί ότι όλες οι συναλλαγές ανήκουν σε λογαριασμούς.\n"
+"\n"
+"Οι επόμενες σελίδες θα σας βοηθήσουν να δημιουργήσετε ένα νέο λογαριασμό.\n"
+"\n"
+"Για να σας βοηθήσουμε να ξεκινήσετε, αρχίστε φτιάχνοντας μια λίστα όλων\n"
+"των οικονομικών οργανισμών όπου διατηρείτε κάποιο λογαριασμό."
+
+#, fuzzy
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
 msgstr ""
-"Η βάση δεδομένων μπορεί αργότερα να κρυπτογραφηθεί αν χρειάζεται, με\n"
-"χρήστη της επιλογής: 'Αποθήκευση βάσης δεδομένων ως' και αλλάζοντας \n"
-"τον τύπο του αρχείου πριν την αποθήκευση."
-
-msgid "The next pages will help you create a new database."
-msgstr ""
-"Οι επόμενες σελίδες θα σας βοηθήσουν να δημιουργήσετε μια νέα βάση δεδομένων."
+"Καθώς το αρχείο αυτό περιέχει σημαντικές οικονομικές πληροφορίες,\n"
+"συνιστούμε να δημιουργείτε καθημερινά αντίγραφα ασφαλείας από τις Επιλογές\n"
+"θέτοντας: 'Αντίγραφα ασφαλείας πριν το άνοιγμα' και αποθηκεύοντας τα "
+"αντίγραφα\n"
+"σε ένα άλλο μέρος."
 
 msgid "The remote file doesn't exist"
 msgstr ""
@@ -5543,9 +5411,10 @@ msgstr ""
 "Συμβουλή: Αλλάξτε όλες τις συναλλαγές που χρησιμοποιούν αυτόν τον \n"
 "δικαιούχο σε άλλο δικαιούχο χρησιμοποιώντας την εντολή Μετατόπιση:"
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
 msgstr ""
 "Συμβουλή: Αλλάξτε όλες τις συναλλαγές που χρησιμοποιούν αυτόν τον \n"
 "δικαιούχο σε άλλο δικαιούχο χρησιμοποιώντας την εντολή Μετατόπιση:"
@@ -5703,7 +5572,7 @@ msgid "Total Balance on all Accounts"
 msgstr "Συνολικό υπόλοιπο σε όλους τους λογαριασμούς"
 
 #, fuzzy
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr "Πραγματικά έξοδα: "
 
 #, fuzzy, c-format
@@ -5711,7 +5580,7 @@ msgid "Total Imported : %ld"
 msgstr "Σύνολο εισηγμένων : %d"
 
 #, fuzzy
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr "Πραγματικά έσοδα: "
 
 #, fuzzy, c-format
@@ -6057,9 +5926,6 @@ msgstr "Δείγμα εμφάνισης τιμής:"
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Έκδοση:"
@@ -6159,9 +6025,6 @@ msgstr "Άκυρη"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6244,15 +6107,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "Από πού έρχονται τα χρήματα"
 
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Από πού έρχονται τα χρήματα"
-
 msgid "Where the Money Goes"
-msgstr "Πού πηγαίνουν τα χρήματα"
-
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
 msgstr "Πού πηγαίνουν τα χρήματα"
 
 msgid "Wiki page"
@@ -6340,9 +6195,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr "Πρέπει να καθορίσετε τη διαδρομή για μια άλλη βάση δεδομένων"
 
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "Η βάση δεδομένων σας αποθηκεύτηκε με επέκταση .mmb"
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6365,18 +6217,9 @@ msgstr "ως άκυρη"
 msgid "as needing Followup"
 msgstr "ως χρειαζούμενη επανέλεγχο"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "Οδοντιατρικά"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6386,10 +6229,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "Διαχείριση προσαρμοσμένων εκθέσεων SQL"
 
 msgid "please check it in network options."
 msgstr ""
@@ -6413,65 +6252,12 @@ msgstr "προς:"
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #~ msgid "  and contributors from around the world"
 #~ msgstr " και συνεισφέροντες από όλον τον κόσμο"
+
+#, fuzzy
+#~ msgid " - "
+#~ msgstr " : "
 
 #~ msgid " : Requires MMEX Restart"
 #~ msgstr " : Χρειάζεται επανεκκίνηση του MMEX"
@@ -6482,6 +6268,9 @@ msgstr ""
 
 #~ msgid " Filter Settings "
 #~ msgstr " Ρυθμίσεις φίλτρου"
+
+#~ msgid " Help"
+#~ msgstr " Βοήθεια"
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -6726,6 +6515,10 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "Άλλα"
 
+#, fuzzy
+#~ msgid "All Time"
+#~ msgstr "Όλα τα αρχεία"
+
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "Επιτρέπονται τυχόν καθυστερήσεις στις τιμές"
 
@@ -6811,6 +6604,9 @@ msgstr ""
 #~ msgid "Be &notified of new releases"
 #~ msgstr "Παρακαλώ ενημερωθείτε για νέες εκδόσεις"
 
+#~ msgid "Becomes blank when not active."
+#~ msgstr "Γίνεται κενό όταν δεν είναι ενεργό."
+
 #, fuzzy
 #~ msgid "Budget Performance for Year : "
 #~ msgstr "Εκτέλεση Προϋπολογισμού"
@@ -6844,6 +6640,10 @@ msgstr ""
 #~ msgid "Cannot process these QIF Account Types yet."
 #~ msgstr ""
 #~ "Δεν είναι δυνατή ακόμα η επεξεργασία αυτών των τύπων λογαριασμού QIF"
+
+#, fuzzy
+#~ msgid "Categories - %s"
+#~ msgstr "Κατηγορίες - Προηγούμενες 30 ημέρες"
 
 #~ msgid "Categories - Current Financial Year"
 #~ msgstr "Κατηγορίες - Τρέχον οικονομικό έτος"
@@ -7102,6 +6902,10 @@ msgstr ""
 #~ "χαρακτήρα μπαλαντέρ για να ταιριάξετε 0 ή περισσότερους χαρακτήρες και το "
 #~ "_ για να ταιριάξετε ένα μεμονωμένο χαρακτήρα."
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Εισάγετε το όνομα του περιουσιακού στοιχείου"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr ""
@@ -7260,6 +7064,9 @@ msgstr ""
 #~ msgid "Gain Loss"
 #~ msgstr "Κέρδη/Ζημιές"
 
+#~ msgid "Grand Total: "
+#~ msgstr "Γενικό σύνολο: "
+
 #~ msgid "Heading"
 #~ msgstr "Τίτλος"
 
@@ -7395,6 +7202,12 @@ msgstr ""
 #, fuzzy
 #~ msgid "Large"
 #~ msgstr "Γλώσσα"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "Προηγούμενος ημερολογιακός μήνας"
+
+#~ msgid "Leave blank when not active."
+#~ msgstr "Αφήστε το κενό όταν δεν είναι ενεργό."
 
 #~ msgid "Legend:"
 #~ msgstr "Υπόμνημα:"
@@ -7600,6 +7413,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Payee Added: %s"
 #~ msgstr "Δικαιούχος που προστέθηκε: "
+
+#, fuzzy
+#~ msgid "Payee Report - %s"
+#~ msgstr "Έκθεση δικαιούχου"
 
 #, fuzzy
 #~ msgid "Payee missing"
@@ -7873,6 +7690,10 @@ msgstr ""
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "Καθορίστε το χρώμα του δέντρου πλοήγησης"
 
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "Καθορίστε τον τύπο του λογαριασμού που θα δημιουργηθεί."
+
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Καθορίστε τον αριθμό των επαναλήψεων αυτής της σειράς."
 
@@ -7955,6 +7776,20 @@ msgstr ""
 
 #~ msgid "Thank you! "
 #~ msgstr "Σας ευχαριστούμε!"
+
+#~ msgid ""
+#~ "The database can later be encrypted if required, by\n"
+#~ "using the option: 'Save database as' and changing the\n"
+#~ "file type before saving."
+#~ msgstr ""
+#~ "Η βάση δεδομένων μπορεί αργότερα να κρυπτογραφηθεί αν χρειάζεται, με\n"
+#~ "χρήστη της επιλογής: 'Αποθήκευση βάσης δεδομένων ως' και αλλάζοντας \n"
+#~ "τον τύπο του αρχείου πριν την αποθήκευση."
+
+#~ msgid "The next pages will help you create a new database."
+#~ msgstr ""
+#~ "Οι επόμενες σελίδες θα σας βοηθήσουν να δημιουργήσετε μια νέα βάση "
+#~ "δεδομένων."
 
 #, fuzzy
 #~ msgid "There are no accounts available for import to"
@@ -8264,6 +8099,10 @@ msgstr ""
 #~ msgstr "Επιλέξτε την παρούσα πληρωμή σαν επιλεγμένη πληρωμή για την κίνηση."
 
 #, fuzzy
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "Από πού έρχονται τα χρήματα"
+
+#, fuzzy
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "Από που έρχονται τα χρήματα - Προηγούμενες 30 ημέρες"
 
@@ -8288,6 +8127,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "Από που έρχονται τα χρήματα - Προηγούμενο έτος"
+
+#, fuzzy
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "Πού πηγαίνουν τα χρήματα"
 
 #, fuzzy
 #~ msgid "Where the Money Goes - 30 Days"
@@ -8336,6 +8179,9 @@ msgstr ""
 #, fuzzy
 #~ msgid "Your current version is: %s"
 #~ msgstr "Έκδοση:"
+
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "Η βάση δεδομένων σας αποθηκεύτηκε με επέκταση .mmb"
 
 #, fuzzy
 #~ msgid "database file"

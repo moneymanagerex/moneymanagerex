@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 22:32+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
@@ -16,57 +16,7 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-msgid " - "
-msgstr ""
-
-msgid " - No File opened "
-msgstr ""
-
-msgid " Auto Repeat Transactions"
-msgstr ""
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "Specify the colour for future transactions"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "Specify the colour for future transactions"
-
-msgid " Help"
-msgstr ""
-
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr ""
-
-msgid " Payments Left "
-msgstr ""
-
-msgid " Specify "
-msgstr ""
-
-msgid " Split Category Details"
-msgstr ""
-
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-
 msgid "#"
-msgstr ""
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
 msgstr ""
 
 msgid "%"
@@ -77,6 +27,10 @@ msgstr ""
 
 #, c-format
 msgid "%.2f Shown As: %s"
+msgstr ""
+
+#, c-format
+msgid "%1$s - %2$s"
 msgstr ""
 
 #, c-format
@@ -117,6 +71,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, c-format
@@ -391,12 +349,6 @@ msgstr ""
 msgid "(Optional) Specify a title or your name."
 msgstr ""
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr ""
 
@@ -470,9 +422,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -672,9 +621,6 @@ msgstr ""
 msgid "All Term Accounts"
 msgstr "Favourite Account"
 
-msgid "All Time"
-msgstr ""
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -756,13 +702,6 @@ msgstr ""
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-
 msgid "Asset"
 msgstr ""
 
@@ -831,6 +770,10 @@ msgid "Auto"
 msgstr ""
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "Specify the colour for future transactions"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Car"
 
@@ -847,19 +790,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -896,9 +830,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -946,12 +877,6 @@ msgid "Base Currency Not Set"
 msgstr ""
 
 msgid "Base Currency for account"
-msgstr ""
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
 msgstr ""
 
 msgid ""
@@ -1008,9 +933,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, c-format
@@ -1078,9 +1000,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1192,18 +1111,13 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#, c-format
-msgid "Categories - %s"
-msgstr ""
-
 msgid "Categories exported"
 msgstr ""
 
 msgid "Category"
 msgstr ""
 
-#, c-format
-msgid "Category Income/Expenses: %s"
+msgid "Category Income/Expenses"
 msgstr ""
 
 msgid "Category Relocation Completed."
@@ -1389,9 +1303,6 @@ msgstr ""
 #, fuzzy
 msgid "Clothing"
 msgstr "Current"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1586,9 +1497,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1652,7 +1560,12 @@ msgstr ""
 msgid "Database Debug"
 msgstr ""
 
-msgid "Database Optimization Completed!"
+#, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr ""
 
 msgid "Database file directory"
@@ -1979,9 +1892,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr ""
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2008,6 +1918,10 @@ msgstr ""
 
 msgid "Edit Category"
 msgstr ""
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "Specify the colour for future transactions"
 
 msgid "Edit Stock Investment"
 msgstr ""
@@ -2060,6 +1974,10 @@ msgstr ""
 
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr ""
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "Specify the colour for future transactions"
 
 msgid "Enter a description for the new attachment:"
 msgstr ""
@@ -2145,9 +2063,10 @@ msgstr ""
 msgid "Enter the current value of the asset"
 msgstr ""
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Specify the colour for the nav tree"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr ""
@@ -2312,9 +2231,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2415,9 +2331,6 @@ msgstr ""
 msgid "Food"
 msgstr ""
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2431,9 +2344,6 @@ msgid "Four Months"
 msgstr ""
 
 msgid "Four Weeks"
-msgstr ""
-
-msgid "Fr."
 msgstr ""
 
 msgid "Frequency"
@@ -2494,9 +2404,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2514,6 +2421,9 @@ msgid "Gas"
 msgstr ""
 
 msgid "General"
+msgstr ""
+
+msgid "General Group Report"
 msgstr ""
 
 msgid "General Report Manager"
@@ -2554,9 +2464,6 @@ msgstr ""
 msgid "Grand Total:"
 msgstr ""
 
-msgid "Grand Total: "
-msgstr ""
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2573,9 +2480,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2672,9 +2576,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -2913,9 +2814,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -2988,9 +2886,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3015,13 +2910,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3072,9 +2961,6 @@ msgstr ""
 msgid "Last 90 Days"
 msgstr ""
 
-msgid "Last Calendar Month"
-msgstr ""
-
 msgid "Last Financial Year"
 msgstr ""
 
@@ -3101,12 +2987,6 @@ msgid "Latvian lats"
 msgstr ""
 
 msgid "Le"
-msgstr ""
-
-msgid "Leave blank if the payments continue forever."
-msgstr ""
-
-msgid "Leave blank when not active."
 msgstr ""
 
 msgid "Lebanese lira"
@@ -3460,13 +3340,7 @@ msgstr ""
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3482,12 +3356,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3599,9 +3467,6 @@ msgstr ""
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3609,6 +3474,9 @@ msgid "No Account available for export"
 msgstr ""
 
 msgid "No Accounts selected for export"
+msgstr ""
+
+msgid "No File opened"
 msgstr ""
 
 msgid "No account available to delete!"
@@ -3644,9 +3512,6 @@ msgstr ""
 msgid "November"
 msgstr ""
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr ""
 
@@ -3678,6 +3543,9 @@ msgid "October"
 msgstr ""
 
 msgid "Omani rial"
+msgstr ""
+
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
 msgstr ""
 
 msgid "Online Update"
@@ -3920,10 +3788,6 @@ msgstr ""
 msgid "Payee Report"
 msgstr ""
 
-#, c-format
-msgid "Payee Report - %s"
-msgstr ""
-
 msgid "Payee in use."
 msgstr ""
 
@@ -3934,6 +3798,9 @@ msgid "Payees"
 msgstr ""
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 msgid "Pence"
@@ -4143,12 +4010,6 @@ msgid "Quotes not found"
 msgstr ""
 
 msgid "R"
-msgstr ""
-
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
 msgstr ""
 
 msgid "REPORTS"
@@ -4363,9 +4224,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 msgid "Run selected report."
 msgstr ""
 
@@ -4376,12 +4234,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4406,9 +4258,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 msgid "SLL"
@@ -4591,9 +4440,6 @@ msgstr ""
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr ""
 
@@ -4655,12 +4501,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr ""
 
@@ -4690,6 +4530,9 @@ msgid "South Korean won"
 msgstr ""
 
 msgid "Special Drawing Rights"
+msgstr ""
+
+msgid "Specify"
 msgstr ""
 
 msgid "Specify Day for start of financial year"
@@ -4736,10 +4579,22 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr ""
 
-msgid "Specify period in Days to activate."
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
 msgstr ""
 
-msgid "Specify period in Months to activate."
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr ""
+
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr ""
+
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr ""
 
 msgid "Specify proxy port number"
@@ -4805,7 +4660,9 @@ msgid "Specify the language to use"
 msgstr ""
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
 msgstr "Specify the colour for the nav tree"
 
 #, fuzzy
@@ -4891,6 +4748,9 @@ msgid "Specify year to base budget on."
 msgstr ""
 
 msgid "Split"
+msgstr ""
+
+msgid "Split Category Details"
 msgstr ""
 
 msgid "Split Detail Dialog"
@@ -5037,9 +4897,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 msgid "T"
 msgstr ""
 
@@ -5056,9 +4913,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5123,12 +4977,23 @@ msgid "The client failed to connect the server"
 msgstr ""
 
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
-
-msgid "The next pages will help you create a new database."
 msgstr ""
 
 msgid "The remote file doesn't exist"
@@ -5185,8 +5050,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
 msgstr ""
 
 msgid ""
@@ -5307,14 +5172,14 @@ msgstr ""
 msgid "Total Balance on all Accounts"
 msgstr "Favourite Account"
 
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr ""
 
 #, c-format
 msgid "Total Imported : %ld"
 msgstr ""
 
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr ""
 
 #, c-format
@@ -5632,9 +5497,6 @@ msgstr ""
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, c-format
 msgid "Version: %s"
 msgstr ""
@@ -5729,9 +5591,6 @@ msgstr ""
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -5803,15 +5662,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr ""
 
-#, c-format
-msgid "Where the Money Comes From - %s"
-msgstr ""
-
 msgid "Where the Money Goes"
-msgstr ""
-
-#, c-format
-msgid "Where the Money Goes - %s"
 msgstr ""
 
 msgid "Wiki page"
@@ -5898,9 +5749,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr ""
 
-msgid "Your database file is stored with an extension of .mmb."
-msgstr ""
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -5923,16 +5771,7 @@ msgstr ""
 msgid "as needing Followup"
 msgstr ""
 
-msgid "bolívar"
-msgstr ""
-
 msgid "centavo"
-msgstr ""
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
 msgstr ""
 
 msgid "kn"
@@ -5942,9 +5781,6 @@ msgid "kr"
 msgstr ""
 
 msgid "m"
-msgstr ""
-
-msgid "mmGeneralGroupReport"
 msgstr ""
 
 msgid "please check it in network options."
@@ -5966,63 +5802,6 @@ msgid "to:"
 msgstr ""
 
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
-msgstr ""
-
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
 msgstr ""
 
 #, fuzzy
@@ -6054,6 +5833,10 @@ msgstr ""
 
 #~ msgid "Colors"
 #~ msgstr "Colours"
+
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Specify the colour for the nav tree"
 
 #~ msgid "Expand Bank Accounts in Trew View when tree is refreshed"
 #~ msgstr "Expand Bank Accounts in Tree View when tree is refreshed"

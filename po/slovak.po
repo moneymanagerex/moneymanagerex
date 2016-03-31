@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 22:50+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
@@ -16,67 +16,8 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-msgid " - "
-msgstr ""
-
-msgid " - No File opened "
-msgstr " - Nie je otvorený žiadny súbor "
-
-msgid " Auto Repeat Transactions"
-msgstr " Automatické trvalé príkazy"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr " Upraviť trvalé príkazy"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr " Zadajte trvalý príkaz"
-
-msgid " Help"
-msgstr " Pomoc"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr ""
-" Jedno z nasledujúcich polí: dátum, príjemca, suma, typ chýba, preskočené"
-
-msgid " Payments Left "
-msgstr ""
-
-msgid " Specify "
-msgstr " Upresniť "
-
-msgid " Split Category Details"
-msgstr " Detaily kategórie rozdelenia"
-
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-" umožní správu všetkých transakcií tak,\n"
-"ako prislúchajú k účtom.\n"
-"\n"
-"Ďalšie strany vám pomôžu vytvoriť nový účet.\n"
-"\n"
-"Pre začiatok si vytvorte zoznam všetkých finančných\n"
-"inštitúcií, v ktorých máte účet."
-
 msgid "#"
 msgstr "#"
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
-msgstr ""
 
 msgid "%"
 msgstr "%"
@@ -87,6 +28,10 @@ msgstr "% sadzba"
 #, c-format
 msgid "%.2f Shown As: %s"
 msgstr "%.2f sa zobrazí ako: %s"
+
+#, c-format
+msgid "%1$s - %2$s"
+msgstr ""
 
 #, c-format
 msgid "%d days delay!"
@@ -127,6 +72,10 @@ msgstr "%s -> Priečinok dokumentov používateľa"
 #, c-format
 msgid "%s -> User profile folder"
 msgstr "%s -> Priečinok používateľského profilu"
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
+msgstr ""
 
 #, c-format
 msgid "%s on %s"
@@ -405,12 +354,6 @@ msgstr "(Odhad a skutočnosť)"
 msgid "(Optional) Specify a title or your name."
 msgstr "(Voliteľné) Upresnite názov alebo vaše meno."
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr "1"
 
@@ -484,9 +427,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -682,9 +622,6 @@ msgstr "Všetky okrem schválených"
 msgid "All Term Accounts"
 msgstr "Všetky termínované účty"
 
-msgid "All Time"
-msgstr "Celý čas"
-
 msgid "All missing account, payees and categories will be created."
 msgstr "Všetky chýbajúce účty, príjemcovia a kategórie budú vytvorené."
 
@@ -774,17 +711,6 @@ msgstr "Grafika"
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-"Pretože tento súbor obsahuje dôležité informácie o finaciach,\n"
-"odporúčame vytvárať denné zálohy tohto súboru pomocou\n"
-"nastavenia Možností: 'Vytvoriť novú zálohu pri štarte MMEX'\n"
-"a uložiť tieto zálohy na inom mieste."
-
 #, fuzzy
 msgid "Asset"
 msgstr "Hmotný majetok"
@@ -859,6 +785,10 @@ msgid "Auto"
 msgstr "Automobil"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr " Automatické trvalé príkazy"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Odhadované"
 
@@ -875,19 +805,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -925,9 +846,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -975,12 +893,6 @@ msgstr "Základná mena nie je nastavená"
 
 msgid "Base Currency for account"
 msgstr "Základná mena pre účet"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr "Zostane prázdne, ak nie je aktívne."
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1038,9 +950,6 @@ msgid "Browse for folder"
 msgstr "Nastaviť priečinok"
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1108,9 +1017,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1224,18 +1130,14 @@ msgstr "Predpoveď peňažného toku na %i rokov dopredu"
 msgid "Categories"
 msgstr "Kategórie"
 
-#, c-format
-msgid "Categories - %s"
-msgstr "Kategórie - %s"
-
 msgid "Categories exported"
 msgstr "kategórií exportovaných"
 
 msgid "Category"
 msgstr "Kategória"
 
-#, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "Kategórie príjmov a výdavkov: %s"
 
 msgid "Category Relocation Completed."
@@ -1434,9 +1336,6 @@ msgstr "Uzavretý"
 
 msgid "Clothing"
 msgstr "Oblečenie"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1643,9 +1542,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 #, fuzzy
 msgid "D"
 msgstr "GUID"
@@ -1709,8 +1605,12 @@ msgstr "Záloha databázy"
 msgid "Database Debug"
 msgstr "Nová databáza"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "Premiestnenie kategórií je dokončené."
 
 msgid "Database file directory"
@@ -2056,9 +1956,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "&Koniec\tAlt-X"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2086,6 +1983,10 @@ msgstr "Upraviť cyklus platieb alebo vkladov"
 
 msgid "Edit Category"
 msgstr "Upraviť kategóriu"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr " Upraviť trvalé príkazy"
 
 msgid "Edit Stock Investment"
 msgstr "Upraviť akcie"
@@ -2137,6 +2038,10 @@ msgstr ""
 
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "Zadať ďalší výskyt platieb alebo vkladov"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr " Zadajte trvalý príkaz"
 
 msgid "Enter a description for the new attachment:"
 msgstr "Zadajte opis novej prílohy:"
@@ -2227,9 +2132,10 @@ msgstr "Vložte aktuálnu hodnotu hmotného majetku"
 msgid "Enter the current value of the asset"
 msgstr "Vložte aktuálnu hodnotu hmotného majetku"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Zadajte názov reportu"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "Zadajte počiatočný stav tohoto účtu."
@@ -2399,9 +2305,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2507,9 +2410,6 @@ msgstr "Sledovať (F)"
 msgid "Food"
 msgstr "Jedlo"
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2524,9 +2424,6 @@ msgstr "4 mesiace"
 
 msgid "Four Weeks"
 msgstr "4 týždne"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "Frekvencia"
@@ -2588,9 +2485,6 @@ msgstr ""
 msgid "GUID"
 msgstr "GUID"
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2609,6 +2503,10 @@ msgstr "Plyn"
 
 msgid "General"
 msgstr "Všeobecné"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "Správca vlastných reportov"
 
 msgid "General Report Manager"
 msgstr "Správca vlastných reportov"
@@ -2644,9 +2542,6 @@ msgstr "Dary"
 msgid "Grand Total:"
 msgstr "Celkový súčet:"
 
-msgid "Grand Total: "
-msgstr "Celkový súčet: "
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2663,9 +2558,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2765,9 +2657,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3014,9 +2903,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3090,9 +2976,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3117,13 +3000,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3176,9 +3053,6 @@ msgstr "Posledných 30 dní"
 msgid "Last 90 Days"
 msgstr "Posledných 90 dní"
 
-msgid "Last Calendar Month"
-msgstr "Minulý kalendárny mesiac"
-
 msgid "Last Financial Year"
 msgstr "Minulý fiškálny rok"
 
@@ -3208,13 +3082,6 @@ msgstr ""
 #, fuzzy
 msgid "Le"
 msgstr "Životné"
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr "Zanechajte prázdne pre trvalé opakovanie."
-
-msgid "Leave blank when not active."
-msgstr "Nechajte prázdne, ak nie je aktívne."
 
 msgid "Lebanese lira"
 msgstr ""
@@ -3583,13 +3450,7 @@ msgstr "Správa MMEX"
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3606,12 +3467,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3724,9 +3579,6 @@ msgstr "Ďalší"
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3735,6 +3587,10 @@ msgstr "Nie je dostupný žiadny účet pre export"
 
 msgid "No Accounts selected for export"
 msgstr "Na export nie je vybraný žiadny účet"
+
+#, fuzzy
+msgid "No File opened"
+msgstr " - Nie je otvorený žiadny súbor "
 
 msgid "No account available to delete!"
 msgstr "Na odstránenie nie je dostupný žiadny účet!"
@@ -3769,9 +3625,6 @@ msgstr "Nov"
 msgid "November"
 msgstr "November"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "Číslo"
 
@@ -3804,6 +3657,11 @@ msgstr "Október"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr ""
+" Jedno z nasledujúcich polí: dátum, príjemca, suma, typ chýba, preskočené"
 
 msgid "Online Update"
 msgstr "Online aktualizovať"
@@ -4053,10 +3911,6 @@ msgstr "Výsledok premiestnenia príjemcov"
 msgid "Payee Report"
 msgstr "Report príjemcov"
 
-#, c-format
-msgid "Payee Report - %s"
-msgstr "Report príjemcov - %s"
-
 msgid "Payee in use."
 msgstr "Príjemca je použitý."
 
@@ -4067,6 +3921,9 @@ msgid "Payees"
 msgstr "Príjemcovia"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4294,12 +4151,6 @@ msgstr "Súbor %s nebol nájdený"
 msgid "R"
 msgstr ""
 
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
-msgstr ""
-
 msgid "REPORTS"
 msgstr "REPORTY"
 
@@ -4520,9 +4371,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 msgid "Run selected report."
 msgstr "Spustiť vybraný report."
 
@@ -4533,12 +4381,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4563,9 +4405,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 #, fuzzy
@@ -4758,9 +4597,6 @@ msgstr "Nastavte predvolenú menu pre databázu."
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "Názov akcií"
 
@@ -4823,12 +4659,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "Preskočiť ďalší výskyt platieb alebo vkladov"
 
@@ -4861,6 +4691,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr " Upresniť "
 
 msgid "Specify Day for start of financial year"
 msgstr "Upresnite deň, ktorým sa začína fiškálny rok"
@@ -4905,10 +4739,26 @@ msgstr "Upresnite maximálny počet záložných súborov"
 msgid "Specify month for start of financial year"
 msgstr "Upresnite mesiac, ktorým sa začína fiškálny rok"
 
-msgid "Specify period in Days to activate."
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
 msgstr "Upresnite obdobie aktívnosti v dňoch."
 
-msgid "Specify period in Months to activate."
+#, fuzzy
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "Upresnite obdobie aktívnosti v dňoch."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "Upresnite obdobie aktívnosti v mesiacoch."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "Upresnite obdobie aktívnosti v mesiacoch."
 
 msgid "Specify proxy port number"
@@ -4979,8 +4829,10 @@ msgid "Specify the language to use"
 msgstr "Upresnite jazyk, ktorý má program používať"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Upresnite typ vytváraného účtu."
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr "Zanechajte prázdne pre trvalé opakovanie."
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5068,6 +4920,10 @@ msgstr "Upresnite rok, na ktorom bude založený rozpočet."
 
 msgid "Split"
 msgstr "Rozdeliť"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr " Detaily kategórie rozdelenia"
 
 msgid "Split Detail Dialog"
 msgstr "Podrobnosti rozdelenia"
@@ -5218,9 +5074,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr "Systémový priečinok dokumentov"
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "Komu"
@@ -5239,9 +5092,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5311,17 +5161,38 @@ msgstr "Meno používateľa sa použije ako názov databázy."
 msgid "The client failed to connect the server"
 msgstr "Klientovi sa nepodarilo spojiť so serverom"
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+" umožní správu všetkých transakcií tak,\n"
+"ako prislúchajú k účtom.\n"
+"\n"
+"Ďalšie strany vám pomôžu vytvoriť nový účet.\n"
+"\n"
+"Pre začiatok si vytvorte zoznam všetkých finančných\n"
+"inštitúcií, v ktorých máte účet."
+
+#, fuzzy
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
 msgstr ""
-"Ak to bude potrebné, môže byť databáza neskôr zašifrovaná\n"
-"použitím možnosti: 'Uložiť databázu ako' a zmenením typu\n"
-"súboru na .emb."
-
-msgid "The next pages will help you create a new database."
-msgstr "Ďalšie strany vám pomôžu vytvoriť novú databázu."
+"Pretože tento súbor obsahuje dôležité informácie o finaciach,\n"
+"odporúčame vytvárať denné zálohy tohto súboru pomocou\n"
+"nastavenia Možností: 'Vytvoriť novú zálohu pri štarte MMEX'\n"
+"a uložiť tieto zálohy na inom mieste."
 
 msgid "The remote file doesn't exist"
 msgstr "Vzdialený súbor neexistuje"
@@ -5390,9 +5261,10 @@ msgstr ""
 "Tip: Zmeňte kategóriu za inú kategóriu vo všetkých transakciach,\n"
 "ktoré ju používajú pomocou príkazu na premiestnenie:"
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
 msgstr ""
 "Tip: Zmeňte príjemcu za iného príjemcu vo všetkých transakciach,\n"
 "ktoré ho používajú pomocou príkazu na premiestnenie:"
@@ -5542,14 +5414,16 @@ msgstr "Celková suma: "
 msgid "Total Balance on all Accounts"
 msgstr "Celkový zostatok na všetkých účtoch"
 
-msgid "Total Expenses: "
+#, fuzzy
+msgid "Total Expenses:"
 msgstr "Celkové výdavky: "
 
 #, c-format
 msgid "Total Imported : %ld"
 msgstr "Celkom importovaných: %ld"
 
-msgid "Total Income: "
+#, fuzzy
+msgid "Total Income:"
 msgstr "Celkové príjmy: "
 
 #, fuzzy, c-format
@@ -5885,9 +5759,6 @@ msgstr "Príklad zobrazenia hodnoty:"
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Verzia: "
@@ -5983,9 +5854,6 @@ msgstr "Neplatné (V)"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6061,16 +5929,8 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "Odkiaľ idú peniaze"
 
-#, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Odkiaľ idú peniaze - %s"
-
 msgid "Where the Money Goes"
 msgstr "Kam idú peniaze"
-
-#, c-format
-msgid "Where the Money Goes - %s"
-msgstr "Kam idú peniaze - %s"
 
 msgid "Wiki page"
 msgstr "Wiki stránka"
@@ -6156,9 +6016,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr "Musíte upresniť cestu k inému databázovému súboru"
 
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "Váš databázový súbor je uložený s príponou .mmb."
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6181,18 +6038,9 @@ msgstr "ako neplatné"
 msgid "as needing Followup"
 msgstr "ako potrebné sledovať"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "Zubný lekár"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6202,10 +6050,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "Správca vlastných reportov"
 
 msgid "please check it in network options."
 msgstr "prosím overte ho v sieťových nastaveniach."
@@ -6229,65 +6073,11 @@ msgstr "do:"
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #~ msgid " Filter Settings "
 #~ msgstr " Nastavenia filtra "
+
+#~ msgid " Help"
+#~ msgstr " Pomoc"
 
 #~ msgid " Start Page"
 #~ msgstr " Úvodná stránka"
@@ -6384,6 +6174,9 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "Všetko ostatné"
 
+#~ msgid "All Time"
+#~ msgstr "Celý čas"
+
 #~ msgid "Amount Range:"
 #~ msgstr "Rozsah sumy:"
 
@@ -6418,6 +6211,9 @@ msgstr ""
 #~ msgid "Base conversion for currency symbol: %s has not been set."
 #~ msgstr "Výmenný kurz pre symbol meny: %s nebol nastavený."
 
+#~ msgid "Becomes blank when not active."
+#~ msgstr "Zostane prázdne, ak nie je aktívne."
+
 #~ msgid "Budget report being generated... Please wait."
 #~ msgstr "Vytvára sa rozpočtový report... Prosím čakajte."
 
@@ -6432,6 +6228,9 @@ msgstr ""
 
 #~ msgid "Cannot process these QIF Account Types yet."
 #~ msgstr "Ešte nie je možné spracovanie QIF typov účtov."
+
+#~ msgid "Categories - %s"
+#~ msgstr "Kategórie - %s"
 
 #~ msgid "Categories - Current Financial Year"
 #~ msgstr "Kategórie - aktuálny fiškálny rok"
@@ -6597,6 +6396,10 @@ msgstr ""
 #~ "Zadajte hľadaný reťazec. Ako zástupný znak môžete používať % (zodpovedá "
 #~ "žiadnemu alebo viacerým znakom) alebo _ (zodpovedá jednému znaku)."
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Zadajte názov reportu"
+
 #~ msgid "Error code:"
 #~ msgstr "Chybový kód:"
 
@@ -6646,6 +6449,9 @@ msgstr ""
 
 #~ msgid "Future Transactions"
 #~ msgstr "Budúce transakcie"
+
+#~ msgid "Grand Total: "
+#~ msgstr "Celkový súčet: "
 
 #~ msgid "Heading"
 #~ msgstr "Záhlavie"
@@ -6724,6 +6530,12 @@ msgstr ""
 
 #~ msgid "Large"
 #~ msgstr "Veľké"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "Minulý kalendárny mesiac"
+
+#~ msgid "Leave blank when not active."
+#~ msgstr "Nechajte prázdne, ak nie je aktívne."
 
 #~ msgid "Legend:"
 #~ msgstr "Legenda:"
@@ -6881,6 +6693,9 @@ msgstr ""
 
 #~ msgid "Payee Added: %s"
 #~ msgstr "Pridaný príjemca: %s"
+
+#~ msgid "Payee Report - %s"
+#~ msgstr "Report príjemcov - %s"
 
 #~ msgid "Payee missing"
 #~ msgstr "Chýba príjemca"
@@ -7096,6 +6911,10 @@ msgstr ""
 #~ msgid "Specify the color for the nav tree"
 #~ msgstr "Upresnite farbu pre navigačný strom"
 
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "Upresnite typ vytváraného účtu."
+
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Upresnite počet opakovaní."
 
@@ -7146,6 +6965,18 @@ msgstr ""
 
 #~ msgid "Test script. Save before running."
 #~ msgstr "Otestujte skript. Pred spustením ho uložte."
+
+#~ msgid ""
+#~ "The database can later be encrypted if required, by\n"
+#~ "using the option: 'Save database as' and changing the\n"
+#~ "file type before saving."
+#~ msgstr ""
+#~ "Ak to bude potrebné, môže byť databáza neskôr zašifrovaná\n"
+#~ "použitím možnosti: 'Uložiť databázu ako' a zmenením typu\n"
+#~ "súboru na .emb."
+
+#~ msgid "The next pages will help you create a new database."
+#~ msgstr "Ďalšie strany vám pomôžu vytvoriť novú databázu."
 
 #~ msgid "There are no accounts available for import to"
 #~ msgstr "Nie sú dostupné žiadne účety, do ktorých by sa malo importovať"
@@ -7258,6 +7089,9 @@ msgstr ""
 #~ msgid "Week#%d"
 #~ msgstr "Týždeň#%d"
 
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "Odkiaľ idú peniaze - %s"
+
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "Odkiaľ idú peniaze - 30 dní"
 
@@ -7281,6 +7115,9 @@ msgstr ""
 
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "Odkiaľ idú peniaze - minulý rok"
+
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "Kam idú peniaze - %s"
 
 #~ msgid "Where the Money Goes - 30 Days"
 #~ msgstr "Kam idú peniaze - 30 dní"
@@ -7333,6 +7170,9 @@ msgstr ""
 #, fuzzy
 #~ msgid "Your current version is: %s"
 #~ msgstr "Vaša aktuálna verzia je: "
+
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "Váš databázový súbor je uložený s príponou .mmb."
 
 #~ msgid "database file"
 #~ msgstr "databázový súbor"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-07-27 22:42+0200\n"
 "Last-Translator: Liudas Ališauskas <liudas@akmc.lt>\n"
 "Language-Team: Lithuanian <liudas@akmc.lt>\n"
@@ -22,65 +22,8 @@ msgstr ""
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-msgid " - "
-msgstr " - "
-
-msgid " - No File opened "
-msgstr " - Nėra atverto failo "
-
-msgid " Auto Repeat Transactions"
-msgstr " Automatiškai kartojamos operacijos"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr " Redaguoti pasikartojančią operaciją"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr " Įvesti pasikartojančią operaciją"
-
-msgid " Help"
-msgstr " Pagalba"
-
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr " Trūksta vieno iš šių laukų: Data, Suma, Tipas - praleidžiama"
-
-#, fuzzy
-msgid " Payments Left "
-msgstr "Mokėjimo data"
-
-msgid " Specify "
-msgstr " Apibrėžti "
-
-msgid " Split Category Details"
-msgstr " Skelti kategorijos informaciją"
-
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-" formuoja visas operacijas kaip sąskaitų dedamąsias.\n"
-"\n"
-"Kitas puslapis padės Jums sukurti naują sąskaitą.\n"
-"\n"
-"Kad pradėti, sudarykite sąrašą visų finansinių\n"
-"institucijų, kuriose laikote sąskaitas."
-
 msgid "#"
 msgstr "Nr."
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
-msgstr ""
 
 msgid "%"
 msgstr "%"
@@ -91,6 +34,10 @@ msgstr "Tempas %"
 #, c-format
 msgid "%.2f Shown As: %s"
 msgstr "%.2f rodoma kaip: %s"
+
+#, c-format
+msgid "%1$s - %2$s"
+msgstr ""
 
 #, c-format
 msgid "%d days delay!"
@@ -131,6 +78,10 @@ msgstr "%s -> Naudotojo dokumentų katalogas"
 #, c-format
 msgid "%s -> User profile folder"
 msgstr "%s -> Naudotojo profilio aplankas"
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
+msgstr ""
 
 #, c-format
 msgid "%s on %s"
@@ -407,12 +358,6 @@ msgstr "(Numatomos prieš Tikras)"
 msgid "(Optional) Specify a title or your name."
 msgstr "(Nebūtina) Nurodykite savo vardo titulą."
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr "1"
 
@@ -486,9 +431,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -683,9 +625,6 @@ msgstr "Visos išskyrus Suderintas"
 msgid "All Term Accounts"
 msgstr "Visos terminuotosios sąskaitos"
 
-msgid "All Time"
-msgstr "Visas laikas"
-
 msgid "All missing account, payees and categories will be created."
 msgstr "Visos trūkstamos sąskaitos, kontrahentai ir kategorijos bus sukurtos."
 
@@ -775,17 +714,6 @@ msgstr "Grafika"
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-"Kadangi šis failas turi svarbios finansinės informacijos,\n"
-"rekomenduojame kurti kasdienines atsargines kopijas Pasirinktyse\n"
-"nustatant: „Sukurti naują atsarginę kopiją startuojant“ ir saugoti savo\n"
-"atsargines kopijas atskiroje vietoje."
-
 #, fuzzy
 msgid "Asset"
 msgstr "Turtas"
@@ -856,6 +784,10 @@ msgid "Auto"
 msgstr "Auto"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr " Automatiškai kartojamos operacijos"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Automatiškai"
 
@@ -871,19 +803,10 @@ msgstr "Auto kartojimas"
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -921,9 +844,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -971,12 +891,6 @@ msgstr "Pagrindinė valiuta nenustatyta"
 
 msgid "Base Currency for account"
 msgstr "Pagrindinė sąskaitos valiuta"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr "Tampa tuščias kai neaktyvus."
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1034,9 +948,6 @@ msgid "Browse for folder"
 msgstr "Ieškoti aplanko"
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, c-format
@@ -1104,9 +1015,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1219,18 +1127,14 @@ msgstr "Pinigų srautų prognozė %i metams į priekį"
 msgid "Categories"
 msgstr "Kategorijos"
 
-#, c-format
-msgid "Categories - %s"
-msgstr "Kategorijos - %s"
-
 msgid "Categories exported"
 msgstr "Kategorijos eksportuotos"
 
 msgid "Category"
 msgstr "Kategorija"
 
-#, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "Kategorija Pajamos/Išlaidos: %s"
 
 msgid "Category Relocation Completed."
@@ -1424,9 +1328,6 @@ msgstr "Uždarytus"
 
 msgid "Clothing"
 msgstr "Apranga"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1627,9 +1528,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 #, fuzzy
 msgid "D"
 msgstr "ID"
@@ -1692,7 +1590,12 @@ msgstr "Duomenų bazės atsarginė kopija"
 msgid "Database Debug"
 msgstr "Duomenų bazė"
 
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "Duomenų bazės optimizavimas atliktas!"
 
 msgid "Database file directory"
@@ -2034,9 +1937,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "I&šeiti\tAlt-X"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2064,6 +1964,10 @@ msgstr "Redaguoti mokesčių ir įmokų serijas"
 
 msgid "Edit Category"
 msgstr "Redaguoti kategoriją"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr " Redaguoti pasikartojančią operaciją"
 
 msgid "Edit Stock Investment"
 msgstr "Redaguoti investiciją į akcijas"
@@ -2121,6 +2025,10 @@ msgstr ""
 
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "Įveskite kitą mokesčio ir įmokos įvykį"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr " Įvesti pasikartojančią operaciją"
 
 msgid "Enter a description for the new attachment:"
 msgstr "Įveskite naujo priedo aprašymą:"
@@ -2213,9 +2121,10 @@ msgstr "Įveskite esamą turto vertę"
 msgid "Enter the current value of the asset"
 msgstr "Įveskite esamą turto vertę"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Įveskite ataskaitos pavadinimą"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "Įveskite pradinį šios sąskaitos balansą."
@@ -2385,9 +2294,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2492,9 +2398,6 @@ msgstr "Stebima"
 msgid "Food"
 msgstr "Maistas"
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2509,9 +2412,6 @@ msgstr "Keturis mėnesius"
 
 msgid "Four Weeks"
 msgstr "Keturios savaites"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "Dažnis"
@@ -2573,9 +2473,6 @@ msgstr ""
 msgid "GUID"
 msgstr "GUID"
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2594,6 +2491,10 @@ msgstr "Dujos"
 
 msgid "General"
 msgstr "Bendros"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "mmGeneralGroupReport"
 
 msgid "General Report Manager"
 msgstr "Bendras ataskaitų tvarkytuvas"
@@ -2629,9 +2530,6 @@ msgstr "Dovanos"
 msgid "Grand Total:"
 msgstr "Bendra suma:"
 
-msgid "Grand Total: "
-msgstr "Bendra suma: "
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2648,9 +2546,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2751,9 +2646,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -2993,9 +2885,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3069,9 +2958,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3096,13 +2982,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3154,9 +3034,6 @@ msgstr "Paskutinės 365 dienos"
 msgid "Last 90 Days"
 msgstr "Paskutinių 90 dienų"
 
-msgid "Last Calendar Month"
-msgstr "Praeitas kalendorinis mėnuo"
-
 msgid "Last Financial Year"
 msgstr "Praeitais finansiniais metais"
 
@@ -3186,13 +3063,6 @@ msgstr ""
 #, fuzzy
 msgid "Le"
 msgstr "Gyvybė"
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr "Palikite tuščią, jei ši serija kartojama nenutrūkstamai."
-
-msgid "Leave blank when not active."
-msgstr "Palikite tuščią kai neaktyvus."
 
 msgid "Lebanese lira"
 msgstr ""
@@ -3555,13 +3425,7 @@ msgstr "Mano naudojimasis"
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3578,12 +3442,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3699,9 +3557,6 @@ msgstr "Kitas"
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3710,6 +3565,10 @@ msgstr "Nėra sąskaitos tinkamos ekportui"
 
 msgid "No Accounts selected for export"
 msgstr "Nerasta sąskaitų pažymėtų eksportui"
+
+#, fuzzy
+msgid "No File opened"
+msgstr " - Nėra atverto failo "
 
 msgid "No account available to delete!"
 msgstr "Nėra sąskaitos pasiekiamos ištrynimui!"
@@ -3744,9 +3603,6 @@ msgstr "Lap"
 msgid "November"
 msgstr "Lapkritis"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "Numeris"
 
@@ -3779,6 +3635,10 @@ msgstr "Spalis"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr " Trūksta vieno iš šių laukų: Data, Suma, Tipas - praleidžiama"
 
 msgid "Online Update"
 msgstr "Atnaujinti iš interneto"
@@ -4023,10 +3883,6 @@ msgstr "Kontrahento perkėlimo rezultatas"
 msgid "Payee Report"
 msgstr "Kontrahentų ataskaita"
 
-#, c-format
-msgid "Payee Report - %s"
-msgstr "Kontrahentų ataskaita - %s"
-
 msgid "Payee in use."
 msgstr "Kontrahentas naudojamas."
 
@@ -4038,6 +3894,10 @@ msgstr "Korespondentai"
 
 msgid "Payment"
 msgstr "Mokėjimas"
+
+#, fuzzy
+msgid "Payments Left"
+msgstr "Mokėjimo data"
 
 msgid "Pence"
 msgstr ""
@@ -4262,12 +4122,6 @@ msgstr "Failas %s nerastas"
 msgid "R"
 msgstr ""
 
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
-msgstr ""
-
 msgid "REPORTS"
 msgstr "ATASKAITOS"
 
@@ -4489,9 +4343,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 msgid "Run selected report."
 msgstr "Paleisti pažymėtą ataskaitą."
 
@@ -4504,12 +4355,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4534,9 +4379,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 #, fuzzy
@@ -4730,9 +4572,6 @@ msgstr "Nustato numatytą duomenų bazės valiutą."
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "Akcijų pavadinimas"
 
@@ -4796,12 +4635,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr "Dydis po"
-
-msgid "Size before"
-msgstr "Dydis prieš"
-
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "Praleisti kitą mokesčio ir įmokos įvykį"
 
@@ -4834,6 +4667,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr " Apibrėžti "
 
 msgid "Specify Day for start of financial year"
 msgstr "Nurodykite finansinių metų pradžios dieną"
@@ -4880,10 +4717,26 @@ msgstr "Nurodykite didžiausią atsarginių kopijų failų skaičių"
 msgid "Specify month for start of financial year"
 msgstr "Nurodykite finansinių metų pradžios mėnesį"
 
-msgid "Specify period in Days to activate."
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
 msgstr "Nurodykite aktyvavimo laikotarpį dienomis."
 
-msgid "Specify period in Months to activate."
+#, fuzzy
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "Nurodykite aktyvavimo laikotarpį dienomis."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "Nurodykite aktyvavimo laikotarpį mėnesiais."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "Nurodykite aktyvavimo laikotarpį mėnesiais."
 
 msgid "Specify proxy port number"
@@ -4956,8 +4809,10 @@ msgid "Specify the language to use"
 msgstr "Nurodykite naudotiną kalbą"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Nurodykite kuriamos sąskaitos tipą."
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr "Palikite tuščią, jei ši serija kartojama nenutrūkstamai."
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5043,6 +4898,10 @@ msgstr "Nurodykite metus, kuriais pagrįstas biudžetas."
 
 msgid "Split"
 msgstr "Suskaldyti"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr " Skelti kategorijos informaciją"
 
 msgid "Split Detail Dialog"
 msgstr "Skelti informacijos dialogo langą"
@@ -5188,9 +5047,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr "Sistemos dokumentų katalogas"
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "Į"
@@ -5209,9 +5065,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5281,17 +5134,37 @@ msgstr "Naudotojo vardas naudojamas kaip duomenų bazės antraštė."
 msgid "The client failed to connect the server"
 msgstr "Klientui nepavyko prisijungti prie serverio"
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+" formuoja visas operacijas kaip sąskaitų dedamąsias.\n"
+"\n"
+"Kitas puslapis padės Jums sukurti naują sąskaitą.\n"
+"\n"
+"Kad pradėti, sudarykite sąrašą visų finansinių\n"
+"institucijų, kuriose laikote sąskaitas."
+
+#, fuzzy
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
 msgstr ""
-"Duomenų bazė, esant poreikiui, gali būti užšifruota vėliau\n"
-"naudojant pasirinktį: „Išsaugoti duomenų bazę kaip“  ir pakeičiant\n"
-"failo tipą prieš išsaugant."
-
-msgid "The next pages will help you create a new database."
-msgstr "Kiti puslapiai padės Jums sukurti naują duomenų bazę."
+"Kadangi šis failas turi svarbios finansinės informacijos,\n"
+"rekomenduojame kurti kasdienines atsargines kopijas Pasirinktyse\n"
+"nustatant: „Sukurti naują atsarginę kopiją startuojant“ ir saugoti savo\n"
+"atsargines kopijas atskiroje vietoje."
 
 msgid "The remote file doesn't exist"
 msgstr "Nutolęs failas neegzistuoja"
@@ -5337,6 +5210,7 @@ msgid "Tip to get out of debt: Pay more than the minimum."
 msgstr ""
 "Patarimas kaip išsikapstyti iš skolų: Grąžinkite daugiau nei mažiausia įmoka."
 
+#, fuzzy, c-format
 msgid ""
 "Tip to get out of debt: Pay yourself 10% first. Put this into an account "
 "that is hard to touch. Make sure it is a chore to get the money out (you "
@@ -5361,9 +5235,10 @@ msgstr ""
 "Patarimas: Pakeiskite visas operacijas naudojančias šią kategoriją į\n"
 "kitą kategoriją, pasinaudojant perkėlimo komanda:"
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
 msgstr ""
 "Patarimas: Pakeiskite visas operacijas naudojančias šį kontrahentą į kitą\n"
 "pasinaudojant perkėlimo komanda:"
@@ -5517,14 +5392,16 @@ msgstr "Visa suma: "
 msgid "Total Balance on all Accounts"
 msgstr "Bendras balansas visose sąskaitose"
 
-msgid "Total Expenses: "
+#, fuzzy
+msgid "Total Expenses:"
 msgstr "Visos išlaidos: "
 
 #, c-format
 msgid "Total Imported : %ld"
 msgstr "Viso importuota: %ld"
 
-msgid "Total Income: "
+#, fuzzy
+msgid "Total Income:"
 msgstr "Viso pajamų: "
 
 #, c-format
@@ -5858,9 +5735,6 @@ msgstr "Vertės rodymo pavyzdys:"
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Versija: "
@@ -5956,9 +5830,6 @@ msgstr "Negaliojanti"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6035,16 +5906,8 @@ msgstr "Kai šalinamas priedas, perkelti failą vietoje ištrynimo"
 msgid "Where the Money Comes From"
 msgstr "Iš kur gaunami pinigai"
 
-#, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Iš kur gaunami pinigai - %s"
-
 msgid "Where the Money Goes"
 msgstr "Kur juda pinigai"
-
-#, c-format
-msgid "Where the Money Goes - %s"
-msgstr "Kur juda pinigai - %s"
 
 msgid "Wiki page"
 msgstr "Wiki puslapis"
@@ -6129,9 +5992,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr "Privalote nurodyti kelią į kitą duomenų bazę"
 
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "Jūsų duomenų bazės failas yra išsaugotas su plėtiniu .mmb."
-
 #, c-format
 msgid "Your version is %s"
 msgstr "Jūsų versija yra %s"
@@ -6154,18 +6014,9 @@ msgstr "kaip Negaliojanti"
 msgid "as needing Followup"
 msgstr "kaip reikalaujanti stebėjimo"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "Dantys"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6175,9 +6026,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-msgid "mmGeneralGroupReport"
-msgstr "mmGeneralGroupReport"
 
 msgid "please check it in network options."
 msgstr "prašome patikrinti tai tinklo nustatymuose."
@@ -6201,62 +6049,11 @@ msgstr "į:"
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
+#~ msgid " - "
+#~ msgstr " - "
 
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
+#~ msgid " Help"
+#~ msgstr " Pagalba"
 
 #~ msgid " file contains insufficient number of tokens"
 #~ msgstr " failas turi nepakankamą leksemų skaičių"
@@ -6270,6 +6067,9 @@ msgstr ""
 #~ msgid "&Search"
 #~ msgstr "&Ieškoti"
 
+#~ msgid "All Time"
+#~ msgstr "Visas laikas"
+
 #~ msgid ""
 #~ "Attempt to delete a currency being used by an account\n"
 #~ " or as the base currency."
@@ -6282,6 +6082,12 @@ msgstr ""
 
 #~ msgid "Base Rate Conversion Sample:"
 #~ msgstr "Pagrindinio kurso konvertavimo pavyzdys:"
+
+#~ msgid "Becomes blank when not active."
+#~ msgstr "Tampa tuščias kai neaktyvus."
+
+#~ msgid "Categories - %s"
+#~ msgstr "Kategorijos - %s"
 
 #~ msgid "Choose the new type for account: %s"
 #~ msgstr "Pasirinkite naują tipą sąskaitai: %s"
@@ -6298,8 +6104,15 @@ msgstr ""
 #~ msgid "Display MMEX News on home page"
 #~ msgstr "Rodyti MMEX naujienas pradžios puslapyje"
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Įveskite ataskaitos pavadinimą"
+
 #~ msgid "File name is empty"
 #~ msgstr "Failo pavadinimas neįrašytas"
+
+#~ msgid "Grand Total: "
+#~ msgstr "Bendra suma: "
 
 #~ msgid "Hide Deleted (Void)"
 #~ msgstr "Slėpti ištrintas (Negaliojančias)"
@@ -6312,6 +6125,12 @@ msgstr ""
 
 #~ msgid "Large"
 #~ msgstr "Didelis"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "Praeitas kalendorinis mėnuo"
+
+#~ msgid "Leave blank when not active."
+#~ msgstr "Palikite tuščią kai neaktyvus."
 
 #~ msgid "May "
 #~ msgstr "Gegužė "
@@ -6339,6 +6158,9 @@ msgstr ""
 #~ msgid "Overwrite?"
 #~ msgstr "Perrašyti?"
 
+#~ msgid "Payee Report - %s"
+#~ msgstr "Kontrahentų ataskaita - %s"
+
 #~ msgid "Reoccuring Transaction Creation"
 #~ msgstr "Pasikartojančios operacijos kūrimas"
 
@@ -6363,14 +6185,36 @@ msgstr ""
 #~ msgid "Show Deleted (Void)"
 #~ msgstr "Rodyti ištrintas (Negaliojančias)"
 
+#~ msgid "Size after"
+#~ msgstr "Dydis po"
+
+#~ msgid "Size before"
+#~ msgstr "Dydis prieš"
+
 #~ msgid "Small"
 #~ msgstr "Mažas"
+
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "Nurodykite kuriamos sąskaitos tipą."
 
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Nurodykite serijos pasikartojimų skaičių."
 
 #~ msgid "Term Account"
 #~ msgstr "Terminuota sąskaita"
+
+#~ msgid ""
+#~ "The database can later be encrypted if required, by\n"
+#~ "using the option: 'Save database as' and changing the\n"
+#~ "file type before saving."
+#~ msgstr ""
+#~ "Duomenų bazė, esant poreikiui, gali būti užšifruota vėliau\n"
+#~ "naudojant pasirinktį: „Išsaugoti duomenų bazę kaip“  ir pakeičiant\n"
+#~ "failo tipą prieš išsaugant."
+
+#~ msgid "The next pages will help you create a new database."
+#~ msgstr "Kiti puslapiai padės Jums sukurti naują duomenų bazę."
 
 #~ msgid "Times Repeated"
 #~ msgstr "Kartojama kartų"
@@ -6384,6 +6228,12 @@ msgstr ""
 #~ msgid "Universal CSV Export"
 #~ msgstr "Universalus CSV eksportas"
 
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "Iš kur gaunami pinigai - %s"
+
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "Kur juda pinigai - %s"
+
 #~ msgid "XLarge"
 #~ msgstr "XDidelis"
 
@@ -6392,3 +6242,6 @@ msgstr ""
 
 #~ msgid "XXLarge"
 #~ msgstr "XXDidelis"
+
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "Jūsų duomenų bazės failas yra išsaugotas su plėtiniu .mmb."

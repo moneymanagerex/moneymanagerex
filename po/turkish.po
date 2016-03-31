@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 22:59+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
@@ -18,67 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-#, fuzzy
-msgid " - "
-msgstr " : "
-
-msgid " - No File opened "
-msgstr "Hiçbir dosya açılmadı"
-
-#, fuzzy
-msgid " Auto Repeat Transactions"
-msgstr "Tekrarlayan İşlemler"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "Tekrarlayan İşlem Giriş / Güncelleme"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "Tekrarlayan İşlemler"
-
-msgid " Help"
-msgstr " Yardım"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr "Tarih, Alacaklı, Tutar veya Tip eksik, yok sayılıyor"
-
-msgid " Payments Left "
-msgstr ""
-
-#, fuzzy
-msgid " Specify "
-msgstr "Tip"
-
-#, fuzzy
-msgid " Split Category Details"
-msgstr "Parçalı Kategori"
-
-#, fuzzy
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-"Hesaplarınıza ait tüm hareketleri takip eder.\n"
-"\n"
-"Başlangıçta yardımcı olması için hesaplarınızı tuttuğunuz \n"
-"tüm finansal kurumların bir listesini çıkarabilirsiniz."
-
 msgid "#"
-msgstr ""
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
 msgstr ""
 
 msgid "%"
@@ -90,6 +30,10 @@ msgstr " tarih "
 
 #, c-format
 msgid "%.2f Shown As: %s"
+msgstr ""
+
+#, c-format
+msgid "%1$s - %2$s"
 msgstr ""
 
 #, c-format
@@ -130,6 +74,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, c-format
@@ -446,12 +394,6 @@ msgstr " (Tahmini Vs Gerçekleşen)"
 msgid "(Optional) Specify a title or your name."
 msgstr ""
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr ""
 
@@ -525,9 +467,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -739,10 +678,6 @@ msgstr "Onaylanmış İşlemler Dışındakiler"
 msgid "All Term Accounts"
 msgstr "Aktarıldığı Hesap"
 
-#, fuzzy
-msgid "All Time"
-msgstr "&CSV"
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -827,13 +762,6 @@ msgstr ""
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-
 #, fuzzy
 msgid "Asset"
 msgstr "Varlıklar"
@@ -907,6 +835,10 @@ msgid "Auto"
 msgstr "e"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "Tekrarlayan İşlemler"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Kategori boş olamaz"
 
@@ -923,19 +855,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -972,9 +895,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -1024,12 +944,6 @@ msgstr "Yerel Para Birimi Belirtilmedi"
 
 msgid "Base Currency for account"
 msgstr "Hesap İçin Kullanılacak Para Birimi"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr ""
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1085,9 +999,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1163,9 +1074,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1284,10 +1192,6 @@ msgstr "Tüm Hesaplar İçin Nakit Akışı Tahmini - Önümüzdeki 1 Yıl"
 msgid "Categories"
 msgstr "Kategoriler"
 
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "Yüksek Tutarlı İşlemler (Son 30 Gün)"
-
 #, fuzzy
 msgid "Categories exported"
 msgstr "Kategori"
@@ -1295,8 +1199,8 @@ msgstr "Kategori"
 msgid "Category"
 msgstr "Kategori"
 
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "Kategori Bazında Gelir / Gider (Son 12 Ay)"
 
 #, fuzzy
@@ -1505,9 +1409,6 @@ msgstr "Kapalı"
 #, fuzzy
 msgid "Clothing"
 msgstr "Kontrol Ediliyor"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1723,9 +1624,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1793,8 +1691,12 @@ msgstr "Veritabanı açılmadı"
 msgid "Database Debug"
 msgstr "Yeni Veritabanı"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "Kategori boş olamaz"
 
 #, fuzzy
@@ -2171,9 +2073,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "Çı&kış\tAlt-X"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2202,6 +2101,10 @@ msgstr "Fatura && Ödeme Serisi düzenle"
 #, fuzzy
 msgid "Edit Category"
 msgstr "Parçalı Kategori"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "Tekrarlayan İşlem Giriş / Güncelleme"
 
 msgid "Edit Stock Investment"
 msgstr "Menkul Kıymet Yatırımı Düzenle"
@@ -2255,6 +2158,10 @@ msgstr ""
 #, fuzzy
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "Sonraki Fatura && Ödeme Oluşumu"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "Tekrarlayan İşlemler"
 
 #, fuzzy
 msgid "Enter a description for the new attachment:"
@@ -2349,9 +2256,10 @@ msgstr "Varlığın güncel değerini giriniz"
 msgid "Enter the current value of the asset"
 msgstr "Varlığın güncel değerini giriniz"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Varlık adını giriniz"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "Varsa hesabın mevcut bakiyesini giriniz."
@@ -2533,9 +2441,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2646,9 +2551,6 @@ msgstr "Takip Et"
 msgid "Food"
 msgstr ""
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2663,9 +2565,6 @@ msgstr "4 Aylık"
 
 msgid "Four Weeks"
 msgstr "4 Haftalık"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "Sıklık"
@@ -2728,9 +2627,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2749,6 +2645,10 @@ msgstr ""
 
 msgid "General"
 msgstr "Genel"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "Özel SQL Raporu"
 
 #, fuzzy
 msgid "General Report Manager"
@@ -2791,10 +2691,6 @@ msgstr ""
 msgid "Grand Total:"
 msgstr "Toplam:"
 
-#, fuzzy
-msgid "Grand Total: "
-msgstr "Toplam: %s"
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2811,9 +2707,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2913,9 +2806,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3196,9 +3086,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3272,9 +3159,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3299,13 +3183,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3360,9 +3238,6 @@ msgstr "Son 30 Gün"
 msgid "Last 90 Days"
 msgstr "Son 30 Gün"
 
-msgid "Last Calendar Month"
-msgstr "Son Takvim Ayı"
-
 #, fuzzy
 msgid "Last Financial Year"
 msgstr "Son Takvim Yılı"
@@ -3393,15 +3268,6 @@ msgid "Latvian lats"
 msgstr ""
 
 msgid "Le"
-msgstr ""
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr ""
-"Bu işlwmin kaç dönem tekrarlanacağını giriniz. Eğer daima devam edecek ise "
-"boş bırakınız."
-
-msgid "Leave blank when not active."
 msgstr ""
 
 msgid "Lebanese lira"
@@ -3773,13 +3639,7 @@ msgstr "MMEX mesajı"
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3796,12 +3656,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3919,9 +3773,6 @@ msgstr ""
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3932,6 +3783,10 @@ msgstr "Kullanılabilir Hiçbir Hesap Yok! Dışarı Aktarım Gerçekleştirilem
 #, fuzzy
 msgid "No Accounts selected for export"
 msgstr "Kullanılabilir Hiçbir Hesap Yok! Dışarı Aktarım Gerçekleştirilemez!"
+
+#, fuzzy
+msgid "No File opened"
+msgstr "Hiçbir dosya açılmadı"
 
 #, fuzzy
 msgid "No account available to delete!"
@@ -3969,9 +3824,6 @@ msgstr "Kasım"
 msgid "November"
 msgstr "Kasım"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "No"
 
@@ -4004,6 +3856,10 @@ msgstr "Ekim"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr "Tarih, Alacaklı, Tutar veya Tip eksik, yok sayılıyor"
 
 #, fuzzy
 msgid "Online Update"
@@ -4273,10 +4129,6 @@ msgstr ""
 msgid "Payee Report"
 msgstr "Alacaklı "
 
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "Alacaklı "
-
 #, fuzzy
 msgid "Payee in use."
 msgstr "Alacaklı kullanımda"
@@ -4289,6 +4141,9 @@ msgid "Payees"
 msgstr "Alacaklı"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4512,12 +4367,6 @@ msgid "Quotes not found"
 msgstr ""
 
 msgid "R"
-msgstr ""
-
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
 msgstr ""
 
 msgid "REPORTS"
@@ -4745,9 +4594,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 #, fuzzy
 msgid "Run selected report."
 msgstr "Kullanılabilir Hiçbir Hesap Yok! Dışarı Aktarım Gerçekleştirilemez!"
@@ -4759,12 +4605,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4789,9 +4629,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 msgid "SLL"
@@ -4994,9 +4831,6 @@ msgstr "Bu hesapta kullanılacak para birimini belirtiniz."
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "Hisse"
 
@@ -5060,12 +4894,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 #, fuzzy
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "Sonraki Fatura && Ödeme Oluşumu"
@@ -5099,6 +4927,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr "Tip"
 
 msgid "Specify Day for start of financial year"
 msgstr ""
@@ -5148,11 +4980,26 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "Bu işlemin tutarını belirtiniz"
 
-msgid "Specify period in Days to activate."
-msgstr ""
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
+msgstr "Oluşturulacak hesabın tipini belirtiniz."
 
 #, fuzzy
-msgid "Specify period in Months to activate."
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "Oluşturulacak hesabın tipini belirtiniz."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "Oluşturulacak hesabın tipini belirtiniz."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "Oluşturulacak hesabın tipini belirtiniz."
 
 #, fuzzy
@@ -5224,8 +5071,12 @@ msgid "Specify the language to use"
 msgstr "Kullanılacak Dili seçiniz"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Oluşturulacak hesabın tipini belirtiniz."
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr ""
+"Bu işlwmin kaç dönem tekrarlanacağını giriniz. Eğer daima devam edecek ise "
+"boş bırakınız."
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5318,6 +5169,10 @@ msgstr "Baz Alınacak Bütçe Yılını Belirtiniz."
 
 msgid "Split"
 msgstr "Parçalı"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr "Parçalı Kategori"
 
 msgid "Split Detail Dialog"
 msgstr "Bölünmüş Detay Ekranı"
@@ -5472,9 +5327,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "Alıcı"
@@ -5492,9 +5344,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5559,13 +5408,29 @@ msgstr ""
 msgid "The client failed to connect the server"
 msgstr ""
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+"Hesaplarınıza ait tüm hareketleri takip eder.\n"
+"\n"
+"Başlangıçta yardımcı olması için hesaplarınızı tuttuğunuz \n"
+"tüm finansal kurumların bir listesini çıkarabilirsiniz."
+
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
-
-msgid "The next pages will help you create a new database."
 msgstr ""
 
 msgid "The remote file doesn't exist"
@@ -5627,10 +5492,11 @@ msgid ""
 "another Category using the relocate command:"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
-msgstr ""
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
+msgstr "Tüm İşlemler"
 
 msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
@@ -5754,7 +5620,7 @@ msgid "Total Balance on all Accounts"
 msgstr "Tüm Hesaplardaki Toplam Bakiye"
 
 #, fuzzy
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr "Gider: "
 
 #, fuzzy, c-format
@@ -5762,7 +5628,7 @@ msgid "Total Imported : %ld"
 msgstr "Toplam Tutar: "
 
 #, fuzzy
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr "Gelir:"
 
 #, fuzzy, c-format
@@ -6108,9 +5974,6 @@ msgstr ""
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Versiyon: "
@@ -6218,9 +6081,6 @@ msgstr "Hükümsüz"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6299,15 +6159,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "Para Nereden Akıyor"
 
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Para Nereden Akıyor"
-
 msgid "Where the Money Goes"
-msgstr "Param Nereye Gidiyor"
-
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
 msgstr "Param Nereye Gidiyor"
 
 msgid "Wiki page"
@@ -6396,10 +6248,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr ""
 
-#, fuzzy
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "Önceden oluşturulmuş (*.mmb) bir veritabanı dosyası aç"
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6422,18 +6270,9 @@ msgstr "Hükümsüz"
 msgid "as needing Followup"
 msgstr "Takip Et"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "Genel"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6443,10 +6282,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "Özel SQL Raporu"
 
 msgid "please check it in network options."
 msgstr ""
@@ -6471,66 +6306,13 @@ msgstr " Bitiş: "
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #, fuzzy
 #~ msgid "  and contributors from around the world"
 #~ msgstr " ve dünyanın dörtbir yanından katılımcılar."
+
+#, fuzzy
+#~ msgid " - "
+#~ msgstr " : "
 
 #~ msgid " : Restart"
 #~ msgstr " : Yeniden Başlat"
@@ -6538,6 +6320,9 @@ msgstr ""
 #, fuzzy
 #~ msgid " Filter Settings "
 #~ msgstr "Görünüm Ayarları"
+
+#~ msgid " Help"
+#~ msgstr " Yardım"
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -6771,6 +6556,10 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "Diğerleri"
 
+#, fuzzy
+#~ msgid "All Time"
+#~ msgstr "&CSV"
+
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "Fiyatlardaki herhangi bir gecikmeye izin ver"
 
@@ -6880,6 +6669,10 @@ msgstr ""
 #~ msgstr "Tüm Hesaplar İçin Nakit Akışı Tahmini - Önümüzdeki 1 Yıl"
 
 #, fuzzy
+#~ msgid "Categories - %s"
+#~ msgstr "Yüksek Tutarlı İşlemler (Son 30 Gün)"
+
+#, fuzzy
 #~ msgid "Categories - Current Month"
 #~ msgstr "Şimdiki Ayı Görüntüle"
 
@@ -6926,10 +6719,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Category:"
 #~ msgstr "Kategori"
-
-#, fuzzy
-#~ msgid "Change all transactions using one Payee to another Payee"
-#~ msgstr "Tüm İşlemler"
 
 #~ msgid "Change settings for automatic refresh"
 #~ msgstr "Otomatik yenileme için ayarları değiştir"
@@ -7122,6 +6911,10 @@ msgstr ""
 #~ msgid "Enter &Transaction"
 #~ msgstr "İşlem Gir"
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Varlık adını giriniz"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr "Yatırımın bulunduğu finans kuruluşunun adını giriniz"
@@ -7256,6 +7049,10 @@ msgstr ""
 
 #~ msgid "Gain Loss"
 #~ msgstr "+ / - "
+
+#, fuzzy
+#~ msgid "Grand Total: "
+#~ msgstr "Toplam: %s"
 
 #, fuzzy
 #~ msgid "Hide Deleted (Void)"
@@ -7405,6 +7202,9 @@ msgstr ""
 #~ "\n"
 #~ "Yatırım hesapları sadece Menkul Kıymetler / Aracı Kurum yatırımlarını \n"
 #~ "ilişkilendirebileceğiniz özelleştirilmiş hesaplardır. \n"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "Son Takvim Ayı"
 
 #~ msgid "Legend:"
 #~ msgstr "Gösterge:"
@@ -7589,6 +7389,10 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Payee Added: %s"
+#~ msgstr "Alacaklı "
+
+#, fuzzy
+#~ msgid "Payee Report - %s"
 #~ msgstr "Alacaklı "
 
 #, fuzzy
@@ -7829,6 +7633,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "Kontrol Paneli rengini belirtiniz"
+
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "Oluşturulacak hesabın tipini belirtiniz."
 
 #, fuzzy
 #~ msgid "Specify the number of times this series repeats."
@@ -8215,6 +8023,10 @@ msgstr ""
 #~ msgstr "Etkin alacaklıyı bu işlem için seçilmiş alacaklı olarak kaydet"
 
 #, fuzzy
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "Para Nereden Akıyor"
+
+#, fuzzy
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "Para Nereden Akıyor"
 
@@ -8245,6 +8057,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "Para Nereden Akıyor"
+
+#, fuzzy
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "Param Nereye Gidiyor"
 
 #, fuzzy
 #~ msgid "Where the Money Goes - 30 Days"
@@ -8297,6 +8113,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Your current version is: %s"
 #~ msgstr "Versiyon: "
+
+#, fuzzy
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "Önceden oluşturulmuş (*.mmb) bir veritabanı dosyası aç"
 
 #, fuzzy
 #~ msgid "database file"
