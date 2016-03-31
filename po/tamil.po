@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 22:59+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
@@ -18,69 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-#, fuzzy
-msgid " - "
-msgstr " : "
-
-msgid " - No File opened "
-msgstr " - கோப்பேதும் திறப்பிலில்லை"
-
-#, fuzzy
-msgid " Auto Repeat Transactions"
-msgstr "திட்டமிட்ட‌ பரிமாற்றங்கள்"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "புது/மாற்று திட்டமிட்ட‌ பரிமாற்றம்"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "திட்டமிட்ட‌ பரிமாற்றங்கள்"
-
-msgid " Help"
-msgstr "உதவி"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr "பின்வரும் தலைப்புகளுள் ஏதோ ஒன்று இல்லை: தேதி,பெறுநர்,தொகை,வகை - தவிர்க்கப்பட்டது."
-
-msgid " Payments Left "
-msgstr ""
-
-#, fuzzy
-msgid " Specify "
-msgstr "வகையைக் குறிப்பிடு"
-
-#, fuzzy
-msgid " Split Category Details"
-msgstr "வகையைப் பிரி"
-
-#, fuzzy
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-"மணி மேனேஜர் எல்லா பரிமாற்றங்களையும் கணக்குக்கு\n"
-" \n"
-"உரியதாக்குகிறது. பின்வரும் பக்கங்கள் புது கணக்கை\n"
-"\n"
-"சேர்க்க உதவும். நீங்கள் துவங்க, எல்லா நிதியக்\n"
-"கணக்குகளையும் பட்டியலிட்டு சேருங்கள்"
-
 msgid "#"
-msgstr ""
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
 msgstr ""
 
 msgid "%"
@@ -92,6 +30,10 @@ msgstr "தேதி"
 
 #, c-format
 msgid "%.2f Shown As: %s"
+msgstr ""
+
+#, c-format
+msgid "%1$s - %2$s"
 msgstr ""
 
 #, c-format
@@ -132,6 +74,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, c-format
@@ -448,12 +394,6 @@ msgstr "மதிப்பிடப்பட்ட வரவு: உண்மை
 msgid "(Optional) Specify a title or your name."
 msgstr ""
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr ""
 
@@ -527,9 +467,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -741,10 +678,6 @@ msgstr "சரிபார்க்கப்படாத பரிமாற்�
 msgid "All Term Accounts"
 msgstr "அனுப்புநர் கணக்கு "
 
-#, fuzzy
-msgid "All Time"
-msgstr "&CSV கோப்புகள்"
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -829,13 +762,6 @@ msgstr ""
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-
 #, fuzzy
 msgid "Asset"
 msgstr "சொத்துக்கள்"
@@ -909,6 +835,10 @@ msgid "Auto"
 msgstr "வரை"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "திட்டமிட்ட‌ பரிமாற்றங்கள்"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "வகை செல்லாது"
 
@@ -925,19 +855,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -974,9 +895,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -1026,12 +944,6 @@ msgstr "அடிப்படை நாணயம் அமைக்கப்ப�
 
 msgid "Base Currency for account"
 msgstr "கணக்கின் அடிப்படை நாணயம்"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr ""
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1087,9 +999,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1165,9 +1074,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1285,10 +1191,6 @@ msgstr "காசு நடை எல்லா கணக்குகளின்
 msgid "Categories"
 msgstr "வகை"
 
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "கடந்த 30 நாட்களின் உச்ச வகைகள்  "
-
 #, fuzzy
 msgid "Categories exported"
 msgstr "வகை "
@@ -1296,8 +1198,8 @@ msgstr "வகை "
 msgid "Category"
 msgstr "வகை"
 
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "கடந்த 12 மாதங்களின் வரவு/செலவு வகைகள் "
 
 #, fuzzy
@@ -1506,9 +1408,6 @@ msgstr "மூடப்பட்டது"
 #, fuzzy
 msgid "Clothing"
 msgstr "வங்கிக் கணக்கு"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1724,9 +1623,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1795,8 +1691,12 @@ msgstr "ஒரு தகவல்தளமும் திறக்கபடவ�
 msgid "Database Debug"
 msgstr "எளிய முறையில் புதிய தகவல்தளம்"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "வகை செல்லாது"
 
 #, fuzzy
@@ -2172,9 +2072,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "வெளியேறு\tAlt-X"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2203,6 +2100,10 @@ msgstr "ரசீது && வைப்பு தொடரை மாற்று
 #, fuzzy
 msgid "Edit Category"
 msgstr "வகையைப் பிரி"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "புது/மாற்று திட்டமிட்ட‌ பரிமாற்றம்"
 
 msgid "Edit Stock Investment"
 msgstr "பங்கு முதலீட்டை மாற்று"
@@ -2256,6 +2157,10 @@ msgstr ""
 #, fuzzy
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "அடுத்த ரசீது && வைப்பு நிகழ்வை இடு"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "திட்டமிட்ட‌ பரிமாற்றங்கள்"
 
 #, fuzzy
 msgid "Enter a description for the new attachment:"
@@ -2350,9 +2255,10 @@ msgstr "சொத்தின் தற்போதைய மதிப்பை 
 msgid "Enter the current value of the asset"
 msgstr "சொத்தின் தற்போதைய மதிப்பை இடு"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "சொத்தின் பெயரை இடு"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "இக் கணக்கிலுள்ள ஆரம்பத் தொகையை இடு"
@@ -2534,9 +2440,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2647,9 +2550,6 @@ msgstr "பின் தொடர்"
 msgid "Food"
 msgstr ""
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2664,9 +2564,6 @@ msgstr "நான்கு மாதங்களுக்கொருமுற�
 
 msgid "Four Weeks"
 msgstr "நான்கு வாரங்களுக்கொருமுறை"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "இடைவெளி"
@@ -2729,9 +2626,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2750,6 +2644,10 @@ msgstr ""
 
 msgid "General"
 msgstr "பொது"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "தனி SQL அறிக்கை"
 
 #, fuzzy
 msgid "General Report Manager"
@@ -2792,10 +2690,6 @@ msgstr ""
 msgid "Grand Total:"
 msgstr "மொத்தம்:"
 
-#, fuzzy
-msgid "Grand Total: "
-msgstr "மொத்தம்: %s"
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2812,9 +2706,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2914,9 +2805,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3194,9 +3082,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3270,9 +3155,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3297,13 +3179,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3358,9 +3234,6 @@ msgstr "கடைசி 30 நாட்கள்"
 msgid "Last 90 Days"
 msgstr "கடைசி 30 நாட்கள்"
 
-msgid "Last Calendar Month"
-msgstr "கடந்த மாதம்"
-
 #, fuzzy
 msgid "Last Financial Year"
 msgstr "கடந்த ஆண்டு"
@@ -3391,15 +3264,6 @@ msgid "Latvian lats"
 msgstr ""
 
 msgid "Le"
-msgstr ""
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr ""
-"எத்தனை முறை இத்தொடர் மீண்டும் நிகழும் எனக் குறிப்பிடு. கணக்கற்றமுறையெனில் ஏதும் குறிப்பிட "
-"வேண்டாம்."
-
-msgid "Leave blank when not active."
 msgstr ""
 
 msgid "Lebanese lira"
@@ -3769,13 +3633,7 @@ msgstr ""
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3792,12 +3650,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3915,9 +3767,6 @@ msgstr ""
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3928,6 +3777,10 @@ msgstr "ஒரு கணக்கும் இல்லை! ஏற்ற இய�
 #, fuzzy
 msgid "No Accounts selected for export"
 msgstr "ஒரு கணக்கும் இல்லை! ஏற்ற இயலாது!"
+
+#, fuzzy
+msgid "No File opened"
+msgstr " - கோப்பேதும் திறப்பிலில்லை"
 
 #, fuzzy
 msgid "No account available to delete!"
@@ -3965,9 +3818,6 @@ msgstr "நவம்பர்"
 msgid "November"
 msgstr "நவம்பர்"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "எண்"
 
@@ -4000,6 +3850,10 @@ msgstr "அக்டோபர்"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr "பின்வரும் தலைப்புகளுள் ஏதோ ஒன்று இல்லை: தேதி,பெறுநர்,தொகை,வகை - தவிர்க்கப்பட்டது."
 
 #, fuzzy
 msgid "Online Update"
@@ -4267,10 +4121,6 @@ msgstr ""
 msgid "Payee Report"
 msgstr "பெறுநர் "
 
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "பெறுநர் "
-
 #, fuzzy
 msgid "Payee in use."
 msgstr "பெறுநர் பயன்பாட்டில் உள்ளது"
@@ -4283,6 +4133,9 @@ msgid "Payees"
 msgstr "பெறுநர்"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4506,12 +4359,6 @@ msgid "Quotes not found"
 msgstr ""
 
 msgid "R"
-msgstr ""
-
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
 msgstr ""
 
 msgid "REPORTS"
@@ -4739,9 +4586,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 #, fuzzy
 msgid "Run selected report."
 msgstr "ஒரு கணக்கும் இல்லை! ஏற்ற இயலாது!"
@@ -4753,12 +4597,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4783,9 +4621,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 msgid "SLL"
@@ -4984,9 +4819,6 @@ msgstr "இக்கணக்கில் பயன்படும் நாண�
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "பங்கு பெயர்"
 
@@ -5050,12 +4882,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 #, fuzzy
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "அடுத்த ரசீது && வைப்பு நிகழ்வை இடு"
@@ -5090,6 +4916,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr "வகையைக் குறிப்பிடு"
 
 msgid "Specify Day for start of financial year"
 msgstr ""
@@ -5139,11 +4969,26 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "பரிமாற்றத் தொகையை குறிப்பிடு"
 
-msgid "Specify period in Days to activate."
-msgstr ""
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
+msgstr "உருவாக்கும் கணக்கு வகையை குறிப்பிடு"
 
 #, fuzzy
-msgid "Specify period in Months to activate."
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "உருவாக்கும் கணக்கு வகையை குறிப்பிடு"
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "உருவாக்கும் கணக்கு வகையை குறிப்பிடு"
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "உருவாக்கும் கணக்கு வகையை குறிப்பிடு"
 
 #, fuzzy
@@ -5216,8 +5061,12 @@ msgid "Specify the language to use"
 msgstr "பயன்பாட்டு மொழியைக் குறிப்பிடு"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "உருவாக்கும் கணக்கு வகையை குறிப்பிடு"
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr ""
+"எத்தனை முறை இத்தொடர் மீண்டும் நிகழும் எனக் குறிப்பிடு. கணக்கற்றமுறையெனில் ஏதும் குறிப்பிட "
+"வேண்டாம்."
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5310,6 +5159,10 @@ msgstr "அடிப்படை பட்ஜெட் ஆண்டை குற
 
 msgid "Split"
 msgstr "பிரி"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr "வகையைப் பிரி"
 
 msgid "Split Detail Dialog"
 msgstr "பிரிவு விவர சாளரம்"
@@ -5464,9 +5317,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "பெறுதல்"
@@ -5484,9 +5334,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5551,13 +5398,31 @@ msgstr ""
 msgid "The client failed to connect the server"
 msgstr ""
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+"மணி மேனேஜர் எல்லா பரிமாற்றங்களையும் கணக்குக்கு\n"
+" \n"
+"உரியதாக்குகிறது. பின்வரும் பக்கங்கள் புது கணக்கை\n"
+"\n"
+"சேர்க்க உதவும். நீங்கள் துவங்க, எல்லா நிதியக்\n"
+"கணக்குகளையும் பட்டியலிட்டு சேருங்கள்"
+
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
-
-msgid "The next pages will help you create a new database."
 msgstr ""
 
 msgid "The remote file doesn't exist"
@@ -5619,10 +5484,11 @@ msgid ""
 "another Category using the relocate command:"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
-msgstr ""
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
+msgstr "அனைத்து பரிமாற்றங்களும் பார்வைக்கு"
 
 msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
@@ -5746,7 +5612,7 @@ msgid "Total Balance on all Accounts"
 msgstr "அனைத்து கணக்குகளின் மொத்த இருப்பு: "
 
 #, fuzzy
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr "செலவுகள்: "
 
 #, fuzzy, c-format
@@ -5754,7 +5620,7 @@ msgid "Total Imported : %ld"
 msgstr "மொத்த தொகை: "
 
 #, fuzzy
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr "வரவு: "
 
 #, fuzzy, c-format
@@ -6100,9 +5966,6 @@ msgstr ""
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "வெளியீட்டு வரலாறு"
@@ -6209,9 +6072,6 @@ msgstr "செல்லாதது"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6290,15 +6150,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "எங்கிருந்து தொகை வருகிறது"
 
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "எங்கிருந்து தொகை வருகிறது"
-
 msgid "Where the Money Goes"
-msgstr "எங்கே தொகை செல்கிறது"
-
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
 msgstr "எங்கே தொகை செல்கிறது"
 
 msgid "Wiki page"
@@ -6387,10 +6239,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr ""
 
-#, fuzzy
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "ஏற்கனவே (*.mmb) நீட்சியுடன் உருவாக்கப்பட்ட மணி மேனேஜர் தகவல்தளத்தை கோப்பை திற"
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6413,18 +6261,9 @@ msgstr "செல்லாதது என"
 msgid "as needing Followup"
 msgstr "பின் தொடர் என"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "பொது"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6434,10 +6273,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "தனி SQL அறிக்கை"
 
 msgid "please check it in network options."
 msgstr ""
@@ -6462,66 +6297,13 @@ msgstr " முடிவு தேதி: "
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #, fuzzy
 #~ msgid "  and contributors from around the world"
 #~ msgstr "மற்றும் உலகெங்கிலுமுள்ள தன்னார்வலர்கள்."
+
+#, fuzzy
+#~ msgid " - "
+#~ msgstr " : "
 
 #~ msgid " : Restart"
 #~ msgstr " : மறுபடித் திற"
@@ -6529,6 +6311,9 @@ msgstr ""
 #, fuzzy
 #~ msgid " Filter Settings "
 #~ msgstr "அமைப்புகளைப் பார்"
+
+#~ msgid " Help"
+#~ msgstr "உதவி"
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -6758,6 +6543,10 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "மற்றவை"
 
+#, fuzzy
+#~ msgid "All Time"
+#~ msgstr "&CSV கோப்புகள்"
+
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "பங்குவிலை மேற்கோளில் தாமதத்தை அனுமதி"
 
@@ -6868,6 +6657,10 @@ msgstr ""
 #~ msgstr "காசு நடை எல்லா கணக்குகளின் ஓராண்டு முன்னோட்டம்"
 
 #, fuzzy
+#~ msgid "Categories - %s"
+#~ msgstr "கடந்த 30 நாட்களின் உச்ச வகைகள்  "
+
+#, fuzzy
 #~ msgid "Categories - Current Month"
 #~ msgstr "இந்த மாதம்"
 
@@ -6914,10 +6707,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Category:"
 #~ msgstr "வகை "
-
-#, fuzzy
-#~ msgid "Change all transactions using one Payee to another Payee"
-#~ msgstr "அனைத்து பரிமாற்றங்களும் பார்வைக்கு"
 
 #~ msgid "Change settings for automatic refresh"
 #~ msgstr "தானாக புதுப்பிக்கும் தெரிவுகள்"
@@ -7090,6 +6879,10 @@ msgstr ""
 #~ msgid "Enter &Transaction"
 #~ msgstr "பரிமாற்றத்தை இடு"
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "சொத்தின் பெயரை இடு"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr "முதலீடு வைத்திருக்கும் நிதி நிறுவன பெயரை இடு"
@@ -7223,6 +7016,10 @@ msgstr ""
 #~ msgstr "லாப நட்டம்  "
 
 #, fuzzy
+#~ msgid "Grand Total: "
+#~ msgstr "மொத்தம்: %s"
+
+#, fuzzy
 #~ msgid "Hide Deleted (Void)"
 #~ msgstr "வகையை தேர்ந்தெடு"
 
@@ -7350,6 +7147,9 @@ msgstr ""
 #~ "முதலீட்டு கணக்குகள் பங்கு/பரஸ்பர நிதி \n"
 #~ "முதலிய சிறப்பு வகை கணக்குகள்\n"
 #~ "கொண்டது.\n"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "கடந்த மாதம்"
 
 #~ msgid "Legend:"
 #~ msgstr "பொருள்:"
@@ -7534,6 +7334,10 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Payee Added: %s"
+#~ msgstr "பெறுநர் "
+
+#, fuzzy
+#~ msgid "Payee Report - %s"
 #~ msgstr "பெறுநர் "
 
 #, fuzzy
@@ -7770,6 +7574,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "உலாவும் வழிக்கான வண்ணத்தை குறிப்பிடு"
+
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "உருவாக்கும் கணக்கு வகையை குறிப்பிடு"
 
 #, fuzzy
 #~ msgid "Specify the number of times this series repeats."
@@ -8154,6 +7962,10 @@ msgstr ""
 #~ msgstr "தேர்ந்தெடுத்த பெறுநரை பரிமாற்றத்தின் பெறுநராக தேர்ந்தெடு."
 
 #, fuzzy
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "எங்கிருந்து தொகை வருகிறது"
+
+#, fuzzy
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "எங்கிருந்து தொகை வருகிறது"
 
@@ -8184,6 +7996,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "எங்கிருந்து தொகை வருகிறது"
+
+#, fuzzy
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "எங்கே தொகை செல்கிறது"
 
 #, fuzzy
 #~ msgid "Where the Money Goes - 30 Days"
@@ -8236,6 +8052,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Your current version is: %s"
 #~ msgstr "வெளியீட்டு வரலாறு"
+
+#, fuzzy
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "ஏற்கனவே (*.mmb) நீட்சியுடன் உருவாக்கப்பட்ட மணி மேனேஜர் தகவல்தளத்தை கோப்பை திற"
 
 #, fuzzy
 #~ msgid "database file"

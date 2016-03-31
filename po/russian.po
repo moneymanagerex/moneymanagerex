@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 22:50+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -17,66 +17,8 @@ msgstr ""
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
-#, fuzzy
-msgid " "
-msgstr "?"
-
-msgid " - "
-msgstr " - "
-
-msgid " - No File opened "
-msgstr "- Нет открытого файла"
-
-msgid " Auto Repeat Transactions"
-msgstr "Автоматические проводки"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr " Редактор запланированной транзакции"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "Планирование"
-
-msgid " Help"
-msgstr " Помощь"
-
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr " Одно из полей (дата, тип проводки, сумма) отсутсвует, пропущено"
-
-#, fuzzy
-msgid " Payments Left "
-msgstr "Дата платежа"
-
-msgid " Specify "
-msgstr " Укажите "
-
-msgid " Split Category Details"
-msgstr " Свойства составной транзакции"
-
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-" работает со счетами, содержащими сделки - финансовые проводки.\n"
-"\n"
-"Последующая информация поможет Вам создать новый счёт.\n"
-"\n"
-"Для начала, соберите данные по всем финансовым учреждениям\n"
-"в которых расположены ваши счета."
-
 msgid "#"
 msgstr "№"
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
-msgstr ""
 
 msgid "%"
 msgstr "%"
@@ -87,6 +29,10 @@ msgstr "% изменения"
 #, c-format
 msgid "%.2f Shown As: %s"
 msgstr "%.2f отобразится как: %s"
+
+#, c-format
+msgid "%1$s - %2$s"
+msgstr ""
 
 #, c-format
 msgid "%d days delay!"
@@ -127,6 +73,10 @@ msgstr "%s -> Пользовательская папка документов"
 #, c-format
 msgid "%s -> User profile folder"
 msgstr "%s -> Папка профиля пользователя"
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
+msgstr ""
 
 #, c-format
 msgid "%s on %s"
@@ -403,12 +353,6 @@ msgstr " (Оценочно/Фактически)"
 msgid "(Optional) Specify a title or your name."
 msgstr "(Не обязательно) Введите заголовок или ваше имя."
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr "1"
 
@@ -482,9 +426,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -680,9 +621,6 @@ msgstr "Кроме выверенных"
 msgid "All Term Accounts"
 msgstr "Все счета вкладов"
 
-msgid "All Time"
-msgstr "Весь период"
-
 msgid "All missing account, payees and categories will be created."
 msgstr "Все отсутсвующие счета, получатели и ратегории будут созданы."
 
@@ -772,17 +710,6 @@ msgstr "Графика"
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-"Так как база данных содержит важную информацию,\n"
-"рекомендуется создать ежедневное резервирование файла.\n"
-"Воспользуйтесь в настройках опцией 'Сохранить перед открытием'.\n"
-"Храните копии в надёжном месте."
-
 #, fuzzy
 msgid "Asset"
 msgstr "Активы"
@@ -853,6 +780,10 @@ msgid "Auto"
 msgstr "Авто"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "Автоматические проводки"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Удаление выполнено"
 
@@ -868,19 +799,10 @@ msgstr "Автоповтор"
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -918,9 +840,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -968,12 +887,6 @@ msgstr "Основная валюта не установлена"
 
 msgid "Base Currency for account"
 msgstr "Основная валюта счёта"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr "Не заполняйте без необходимости."
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1031,9 +944,6 @@ msgid "Browse for folder"
 msgstr "Навигация по каталогу"
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, c-format
@@ -1101,9 +1011,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1215,18 +1122,14 @@ msgstr "Прогноз денежного потока на %i лет"
 msgid "Categories"
 msgstr "Категории"
 
-#, c-format
-msgid "Categories - %s"
-msgstr "Категории - %s"
-
 msgid "Categories exported"
 msgstr "Категории выгружены"
 
 msgid "Category"
 msgstr "Категория"
 
-#, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "Доход/Расход по категориям: %s"
 
 msgid "Category Relocation Completed."
@@ -1419,9 +1322,6 @@ msgstr "Закрыт"
 
 msgid "Clothing"
 msgstr "Одежда"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1624,9 +1524,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 #, fuzzy
 msgid "D"
 msgstr "ID"
@@ -1689,7 +1586,12 @@ msgstr "Параметры резервного копирования"
 msgid "Database Debug"
 msgstr "База данных"
 
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "Оптимизация баз данных выполнена!"
 
 msgid "Database file directory"
@@ -2031,9 +1933,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "В&ыход\tAlt-X"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2061,6 +1960,10 @@ msgstr "Редактировать запланированные транзак
 
 msgid "Edit Category"
 msgstr "Редактировать категорию"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr " Редактор запланированной транзакции"
 
 msgid "Edit Stock Investment"
 msgstr "Редактирование инвестиции"
@@ -2116,6 +2019,10 @@ msgstr ""
 
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "Зачислить запланированную транзакцию"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "Планирование"
 
 msgid "Enter a description for the new attachment:"
 msgstr "Введите имя нового вложения:"
@@ -2205,9 +2112,10 @@ msgstr "Введите текущую стоимость актива"
 msgid "Enter the current value of the asset"
 msgstr "Введите текущую стоимость актива"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Введите название отчёта"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "Введите начальный баланс для данного счёта."
@@ -2376,9 +2284,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2484,9 +2389,6 @@ msgstr "Отслеживать"
 msgid "Food"
 msgstr "Продукты"
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2501,9 +2403,6 @@ msgstr "Четыре месяца"
 
 msgid "Four Weeks"
 msgstr "Четыре недели"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "Период"
@@ -2565,9 +2464,6 @@ msgstr ""
 msgid "GUID"
 msgstr "GUID"
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2586,6 +2482,10 @@ msgstr "Топливо"
 
 msgid "General"
 msgstr "Основные"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "Менеджер отчётов"
 
 msgid "General Report Manager"
 msgstr "Менеджер отчётов"
@@ -2621,9 +2521,6 @@ msgstr "Подарки"
 msgid "Grand Total:"
 msgstr "Всего:"
 
-msgid "Grand Total: "
-msgstr "Итого:"
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2640,9 +2537,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2743,9 +2637,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -2982,9 +2873,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3058,9 +2946,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3085,13 +2970,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3143,9 +3022,6 @@ msgstr "Последние 365 дней"
 msgid "Last 90 Days"
 msgstr "Последние 90 дней"
 
-msgid "Last Calendar Month"
-msgstr "Прошлый месяц"
-
 msgid "Last Financial Year"
 msgstr "Прошлый финансовый год"
 
@@ -3175,13 +3051,6 @@ msgstr ""
 #, fuzzy
 msgid "Le"
 msgstr "Жизнь"
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr "Введите количество повторов. Оставьте поле пустым, если бесконечно."
-
-msgid "Leave blank when not active."
-msgstr "Не заполняйте без необходимости."
 
 msgid "Lebanese lira"
 msgstr ""
@@ -3545,13 +3414,7 @@ msgstr "Статистика"
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3568,12 +3431,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3689,9 +3546,6 @@ msgstr "Следующий"
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3700,6 +3554,10 @@ msgstr "Не выбран счёт. Нечего выгружать"
 
 msgid "No Accounts selected for export"
 msgstr "Не выбран счёт, нечего выгружать"
+
+#, fuzzy
+msgid "No File opened"
+msgstr "- Нет открытого файла"
 
 msgid "No account available to delete!"
 msgstr "Нет доступного счёта для удаления!"
@@ -3734,9 +3592,6 @@ msgstr "Ноя"
 msgid "November"
 msgstr "Ноябрь"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "№"
 
@@ -3769,6 +3624,10 @@ msgstr "Октябрь"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr " Одно из полей (дата, тип проводки, сумма) отсутсвует, пропущено"
 
 msgid "Online Update"
 msgstr "Обновить онлайн"
@@ -4013,10 +3872,6 @@ msgstr "Итог замены получателя"
 msgid "Payee Report"
 msgstr "Отчёт по получателям"
 
-#, c-format
-msgid "Payee Report - %s"
-msgstr "Отчёт по получателям - %s"
-
 msgid "Payee in use."
 msgstr "Получатель используется"
 
@@ -4028,6 +3883,10 @@ msgstr "Получатели"
 
 msgid "Payment"
 msgstr "Оплата"
+
+#, fuzzy
+msgid "Payments Left"
+msgstr "Дата платежа"
 
 #, fuzzy
 msgid "Pence"
@@ -4252,12 +4111,6 @@ msgstr "Файл %s не найден"
 msgid "R"
 msgstr ""
 
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
-msgstr ""
-
 msgid "REPORTS"
 msgstr "ОТЧЁТЫ"
 
@@ -4477,9 +4330,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 msgid "Run selected report."
 msgstr "Запустить выбранный отчёт."
 
@@ -4490,12 +4340,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4520,9 +4364,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 #, fuzzy
@@ -4713,9 +4554,6 @@ msgstr "Установите базовую валюту."
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "Название"
 
@@ -4777,12 +4615,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr "Размер после"
-
-msgid "Size before"
-msgstr "Размер до"
-
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "Пропустить запланированную транзакцию"
 
@@ -4813,6 +4645,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr " Укажите "
 
 msgid "Specify Day for start of financial year"
 msgstr "Установите первый день финансового года"
@@ -4857,10 +4693,26 @@ msgstr "Определите лимит количества резервных 
 msgid "Specify month for start of financial year"
 msgstr "Задайте первый месяц финансового года"
 
-msgid "Specify period in Days to activate."
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
 msgstr "Укажите период в днях до исполнения."
 
-msgid "Specify period in Months to activate."
+#, fuzzy
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "Укажите период в днях до исполнения."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "Укажите период в месяцах до активации."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "Укажите период в месяцах до активации."
 
 msgid "Specify proxy port number"
@@ -4932,8 +4784,10 @@ msgid "Specify the language to use"
 msgstr "Выберите язык интерфейса"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Укажите тип создаваемого счёта"
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr "Введите количество повторов. Оставьте поле пустым, если бесконечно."
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5019,6 +4873,10 @@ msgstr "Укажите год, на котором базируется новы
 
 msgid "Split"
 msgstr "Разделить"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr " Свойства составной транзакции"
 
 msgid "Split Detail Dialog"
 msgstr "Детали чека"
@@ -5164,9 +5022,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr "Системный каталог документов"
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "В"
@@ -5185,9 +5040,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5257,17 +5109,37 @@ msgstr "Имя пользователя для заголовков."
 msgid "The client failed to connect the server"
 msgstr "Не удалось подключиться к серверу"
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+" работает со счетами, содержащими сделки - финансовые проводки.\n"
+"\n"
+"Последующая информация поможет Вам создать новый счёт.\n"
+"\n"
+"Для начала, соберите данные по всем финансовым учреждениям\n"
+"в которых расположены ваши счета."
+
+#, fuzzy
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
 msgstr ""
-"База данных в дальнейшем может быть зашифрована. \n"
-"Для этого используйте опцию 'Сохранить БД как...' \n"
-"Измените тип перед сохранением."
-
-msgid "The next pages will help you create a new database."
-msgstr "Следующие страницы помогут создать новую базу данных."
+"Так как база данных содержит важную информацию,\n"
+"рекомендуется создать ежедневное резервирование файла.\n"
+"Воспользуйтесь в настройках опцией 'Сохранить перед открытием'.\n"
+"Храните копии в надёжном месте."
 
 msgid "The remote file doesn't exist"
 msgstr "Файл не существует"
@@ -5335,9 +5207,10 @@ msgstr ""
 "Совет: Меняйте плательщика всех транзакций на другого,\n"
 "используя команду замены:"
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
 msgstr ""
 "Совет: Меняйте получателя транзакций на другого,\n"
 "используя команду замены:"
@@ -5486,14 +5359,16 @@ msgstr "Всего: "
 msgid "Total Balance on all Accounts"
 msgstr "Общий баланс по всем счетам"
 
-msgid "Total Expenses: "
+#, fuzzy
+msgid "Total Expenses:"
 msgstr "Суммарный расход:"
 
 #, c-format
 msgid "Total Imported : %ld"
 msgstr "Всего импортировано:  %ld"
 
-msgid "Total Income: "
+#, fuzzy
+msgid "Total Income:"
 msgstr "Суммарный доход:"
 
 #, c-format
@@ -5825,9 +5700,6 @@ msgstr "Пример значения:"
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Версия: "
@@ -5923,9 +5795,6 @@ msgstr "Не учитывать"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6002,16 +5871,8 @@ msgstr "При удалении вложения, перемещать не уд
 msgid "Where the Money Comes From"
 msgstr "Доходы"
 
-#, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Доходы - %s"
-
 msgid "Where the Money Goes"
 msgstr "Расходы"
-
-#, c-format
-msgid "Where the Money Goes - %s"
-msgstr "Расходы - %s"
 
 msgid "Wiki page"
 msgstr "wiki страница"
@@ -6097,9 +5958,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr "Вы должны указать другой путь к базе данных"
 
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "Ваша база данных хранится с расширением (*.mmb)"
-
 #, c-format
 msgid "Your version is %s"
 msgstr "Ваша версия: %s"
@@ -6122,18 +5980,9 @@ msgstr "Не учитывать"
 msgid "as needing Followup"
 msgstr "Отслеживать"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "Стоматология"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6143,9 +5992,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-msgid "mmGeneralGroupReport"
-msgstr "Менеджер отчётов"
 
 msgid "please check it in network options."
 msgstr "пожалуйста проверьте это в опциях сети."
@@ -6169,63 +6015,6 @@ msgstr "на:"
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #~ msgid ""
 #~ "\n"
 #~ "%s\n"
@@ -6237,8 +6026,15 @@ msgstr ""
 #~ "База открыта только для чтения\n"
 #~ "Вы должны иметь право записи в файл базы"
 
+#, fuzzy
+#~ msgid " "
+#~ msgstr "?"
+
 #~ msgid "  and contributors from around the world"
 #~ msgstr "  и соратники :-) со всего мира."
+
+#~ msgid " - "
+#~ msgstr " - "
 
 #~ msgid " : Requires MMEX Restart"
 #~ msgstr " : Необходим перезапуск MMEX"
@@ -6248,6 +6044,9 @@ msgstr ""
 
 #~ msgid " Filter Settings "
 #~ msgstr "Параметры фильтра "
+
+#~ msgid " Help"
+#~ msgstr " Помощь"
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -6526,6 +6325,9 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "Остальное"
 
+#~ msgid "All Time"
+#~ msgstr "Весь период"
+
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "Допустимый диапазон времени для обновления котировок"
 
@@ -6616,6 +6418,9 @@ msgstr ""
 #~ msgid "Be &notified of new releases"
 #~ msgstr "&Знать о новых версиях ;-)"
 
+#~ msgid "Becomes blank when not active."
+#~ msgstr "Не заполняйте без необходимости."
+
 #~ msgid "Budget Entry Dialog"
 #~ msgstr "Бюджет"
 
@@ -6664,6 +6469,9 @@ msgstr ""
 
 #~ msgid "Cash Flow Filter"
 #~ msgstr "Движение средств"
+
+#~ msgid "Categories - %s"
+#~ msgstr "Категории - %s"
 
 #~ msgid "Categories - Current Financial Year"
 #~ msgstr "Категории - Текущий финансовый год"
@@ -6966,6 +6774,10 @@ msgstr ""
 #~ msgid "Enter name for account to import to"
 #~ msgstr "Выберите счёт для импорта"
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Введите название отчёта"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr "Введите название финансового учреждения, в котором размещён вклад"
@@ -7121,6 +6933,9 @@ msgstr ""
 #~ msgid "Gain Loss"
 #~ msgstr "Доход/Убытки"
 
+#~ msgid "Grand Total: "
+#~ msgstr "Итого:"
+
 #~ msgid "HTML_BUILDER: Syntax error function: %s"
 #~ msgstr "HTML_BUILDER: Синтаксическая ошибка функции: %s"
 
@@ -7274,6 +7089,12 @@ msgstr ""
 
 #~ msgid "Large"
 #~ msgstr "Большой"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "Прошлый месяц"
+
+#~ msgid "Leave blank when not active."
+#~ msgstr "Не заполняйте без необходимости."
 
 #~ msgid "Legend:"
 #~ msgstr "     Легенда:"
@@ -7506,6 +7327,9 @@ msgstr ""
 
 #~ msgid "Payee Default: Set to Select"
 #~ msgstr "Плательщик: Выбрать"
+
+#~ msgid "Payee Report - %s"
+#~ msgstr "Отчёт по получателям - %s"
 
 #~ msgid "Payee Report - Current Financial Year"
 #~ msgstr "Получатели - Текущий финансовый год"
@@ -7802,6 +7626,12 @@ msgstr ""
 #~ msgid "Sign up for the announcement mailing list"
 #~ msgstr "Подписаться на рассылку уведомлений"
 
+#~ msgid "Size after"
+#~ msgstr "Размер после"
+
+#~ msgid "Size before"
+#~ msgstr "Размер до"
+
 #~ msgid ""
 #~ "Skipping QIF transaction because date, type, amount is empty/invalid, "
 #~ "transaction skipped had "
@@ -7863,6 +7693,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "Укажите цвет окна навигации"
+
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "Укажите тип создаваемого счёта"
 
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Укажите количество повторов для данной серии."
@@ -7947,6 +7781,18 @@ msgstr ""
 
 #~ msgid "Thank you! "
 #~ msgstr "Спасибо! "
+
+#~ msgid ""
+#~ "The database can later be encrypted if required, by\n"
+#~ "using the option: 'Save database as' and changing the\n"
+#~ "file type before saving."
+#~ msgstr ""
+#~ "База данных в дальнейшем может быть зашифрована. \n"
+#~ "Для этого используйте опцию 'Сохранить БД как...' \n"
+#~ "Измените тип перед сохранением."
+
+#~ msgid "The next pages will help you create a new database."
+#~ msgstr "Следующие страницы помогут создать новую базу данных."
 
 #~ msgid ""
 #~ "The next pages will help you create a new database.\n"
@@ -8338,6 +8184,9 @@ msgstr ""
 #~ "Если не отмечено, то будет использоваться часто используемый плательщик "
 #~ "для текущего счёта."
 
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "Доходы - %s"
+
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "Доходы - 30 дней"
 
@@ -8367,6 +8216,9 @@ msgstr ""
 
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "Доходы - Прошлый год"
+
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "Расходы - %s"
 
 #~ msgid "Where the Money Goes - 30 Days"
 #~ msgstr "Расходы - 30 дней"
@@ -8433,6 +8285,9 @@ msgstr ""
 
 #~ msgid "Your current version is: %s"
 #~ msgstr "Ваша версия: %s"
+
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "Ваша база данных хранится с расширением (*.mmb)"
 
 #~ msgid "database file"
 #~ msgstr "файл базы данных"

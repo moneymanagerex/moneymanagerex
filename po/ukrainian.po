@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 22:56+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
@@ -19,71 +19,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-#, fuzzy
-msgid " - "
-msgstr " :"
-
-#, fuzzy
-msgid " - No File opened "
-msgstr "Money Manager EX - файл не відкрито"
-
-#, fuzzy
-msgid " Auto Repeat Transactions"
-msgstr "Видалити Транзакцію"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "Нова транзакція/Редагувати"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "Видалити Транзакцію"
-
-msgid " Help"
-msgstr "Допомога"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr ""
-"Одне з наступних полів : дата, одержувач, сума, тип відсутнє, пропускаємо"
-
-msgid " Payments Left "
-msgstr ""
-
-#, fuzzy
-msgid " Specify "
-msgstr "Вкажіть Тип"
-
-#, fuzzy
-msgid " Split Category Details"
-msgstr "Виберіть Категорію"
-
-#, fuzzy
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-"Money Manager моделює всі транзакції як приналежні до рахунків.\n"
-"\n"
-" Наступні сторінки допоможуть Вам створити новий рахунок.\n"
-"\n"
-"Щоб Вам легше було розпочати, почніть з складання списку всіх \n"
-"фінансових установ де ви маєте рахунки."
-
 msgid "#"
-msgstr ""
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
 msgstr ""
 
 msgid "%"
@@ -95,6 +31,10 @@ msgstr " дата"
 
 #, c-format
 msgid "%.2f Shown As: %s"
+msgstr ""
+
+#, c-format
+msgid "%1$s - %2$s"
 msgstr ""
 
 #, c-format
@@ -135,6 +75,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, c-format
@@ -452,12 +396,6 @@ msgstr "Прогнозований дохід : Дійсний дохід :"
 msgid "(Optional) Specify a title or your name."
 msgstr ""
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr ""
 
@@ -531,9 +469,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -745,10 +680,6 @@ msgstr "Показати Проведені Транзакції"
 msgid "All Term Accounts"
 msgstr "Рахунок З"
 
-#, fuzzy
-msgid "All Time"
-msgstr "Файли &CSV "
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -833,13 +764,6 @@ msgstr ""
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-
 #, fuzzy
 msgid "Asset"
 msgstr "Майно"
@@ -912,6 +836,10 @@ msgid "Auto"
 msgstr "Авто"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "Видалити Транзакцію"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Категорія використовується"
 
@@ -928,19 +856,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -977,9 +896,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -1029,12 +945,6 @@ msgstr "Базову валюту не встановлено"
 
 msgid "Base Currency for account"
 msgstr "Базова валюта для рахунку"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr ""
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1090,9 +1000,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1170,9 +1077,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1291,10 +1195,6 @@ msgstr ""
 msgid "Categories"
 msgstr "Категорії"
 
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "Останні 30 днів"
-
 #, fuzzy
 msgid "Categories exported"
 msgstr "Категорія"
@@ -1302,8 +1202,8 @@ msgstr "Категорія"
 msgid "Category"
 msgstr "Категорія"
 
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "Прибутки проти Витрат"
 
 #, fuzzy
@@ -1510,9 +1410,6 @@ msgstr "Закритий"
 #, fuzzy
 msgid "Clothing"
 msgstr "Чековий"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1729,9 +1626,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1799,8 +1693,12 @@ msgstr "Майстер Нової Бази Даних"
 msgid "Database Debug"
 msgstr "Майстер Нової Бази Даних"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "Категорія використовується"
 
 #, fuzzy
@@ -2177,9 +2075,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "В&ихід\tAlt-X"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2208,6 +2103,10 @@ msgstr "Редагувати серію Витрат і Доходів"
 #, fuzzy
 msgid "Edit Category"
 msgstr "Виберіть Категорію"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "Нова транзакція/Редагувати"
 
 msgid "Edit Stock Investment"
 msgstr "Редагувати Цінний папір"
@@ -2261,6 +2160,10 @@ msgstr ""
 #, fuzzy
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "Ввести наступну появу Витрат і Доходів"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "Видалити Транзакцію"
 
 #, fuzzy
 msgid "Enter a description for the new attachment:"
@@ -2355,9 +2258,10 @@ msgstr "Введіть поточну вартість майна"
 msgid "Enter the current value of the asset"
 msgstr "Введіть поточну вартість майна"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Введіть назву майна"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "Введіть початковий баланс на цьому рахунку"
@@ -2540,9 +2444,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2654,9 +2555,6 @@ msgstr "В черзі"
 msgid "Food"
 msgstr "Продовольство"
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2671,9 +2569,6 @@ msgstr "Чотири місяці"
 
 msgid "Four Weeks"
 msgstr "Чотири тижні"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "Частота"
@@ -2736,9 +2631,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2757,6 +2649,10 @@ msgstr "Газ"
 
 msgid "General"
 msgstr "Загальні"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "Видалити майно"
 
 #, fuzzy
 msgid "General Report Manager"
@@ -2800,10 +2696,6 @@ msgstr "Подарунки"
 msgid "Grand Total:"
 msgstr "Всього:"
 
-#, fuzzy
-msgid "Grand Total: "
-msgstr "Всього: %s"
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2820,9 +2712,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2923,9 +2812,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3208,9 +3094,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3284,9 +3167,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3311,13 +3191,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3372,9 +3246,6 @@ msgstr "Останні 30 днів"
 msgid "Last 90 Days"
 msgstr "Останні 30 днів"
 
-msgid "Last Calendar Month"
-msgstr "Останній календарний місяць"
-
 #, fuzzy
 msgid "Last Financial Year"
 msgstr "Останній Рік"
@@ -3407,15 +3278,6 @@ msgstr ""
 #, fuzzy
 msgid "Le"
 msgstr "Життя"
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr ""
-"Вкажіть кількість повторів у серії. Залиште пустим якщо серія повторюється "
-"нескінченно"
-
-msgid "Leave blank when not active."
-msgstr ""
 
 msgid "Lebanese lira"
 msgstr ""
@@ -3781,13 +3643,7 @@ msgstr ""
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3804,12 +3660,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3928,9 +3778,6 @@ msgstr "Далі"
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3941,6 +3788,10 @@ msgstr "Нема Рахунка! Експорт неможливий !"
 #, fuzzy
 msgid "No Accounts selected for export"
 msgstr "Нема Рахунка! Експорт неможливий !"
+
+#, fuzzy
+msgid "No File opened"
+msgstr "Money Manager EX - файл не відкрито"
 
 #, fuzzy
 msgid "No account available to delete!"
@@ -3978,9 +3829,6 @@ msgstr "Лис"
 msgid "November"
 msgstr "Листопад"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "Номер"
 
@@ -4013,6 +3861,11 @@ msgstr "Жовтень"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr ""
+"Одне з наступних полів : дата, одержувач, сума, тип відсутнє, пропускаємо"
 
 #, fuzzy
 msgid "Online Update"
@@ -4283,10 +4136,6 @@ msgstr ""
 msgid "Payee Report"
 msgstr "Одержувач"
 
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "Одержувач"
-
 #, fuzzy
 msgid "Payee in use."
 msgstr "Одержувач використовується"
@@ -4299,6 +4148,9 @@ msgid "Payees"
 msgstr "Отримувач"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4526,12 +4378,6 @@ msgstr ""
 msgid "R"
 msgstr ""
 
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
-msgstr ""
-
 msgid "REPORTS"
 msgstr "ЗВІТИ"
 
@@ -4756,9 +4602,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 #, fuzzy
 msgid "Run selected report."
 msgstr "Нема Рахунка! Експорт неможливий !"
@@ -4770,12 +4613,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4800,9 +4637,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 msgid "SLL"
@@ -5005,9 +4839,6 @@ msgstr "Вкажіть валюту, яка буде використовува�
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 #, fuzzy
 msgid "Share Name"
 msgstr "Назва частки"
@@ -5073,12 +4904,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 #, fuzzy
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "Ввести наступну появу Витрат і Доходів"
@@ -5112,6 +4937,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr "Вкажіть Тип"
 
 msgid "Specify Day for start of financial year"
 msgstr ""
@@ -5161,11 +4990,26 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "Вкажіть суму для цієї транзакції"
 
-msgid "Specify period in Days to activate."
-msgstr ""
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
+msgstr "Вкажіть тип рахунку який необхідно створити."
 
 #, fuzzy
-msgid "Specify period in Months to activate."
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "Вкажіть тип рахунку який необхідно створити."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "Вкажіть тип рахунку який необхідно створити."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "Вкажіть тип рахунку який необхідно створити."
 
 #, fuzzy
@@ -5240,8 +5084,12 @@ msgid "Specify the language to use"
 msgstr "Вкажіть мову як потрібно використовувати"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Вкажіть тип рахунку який необхідно створити."
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr ""
+"Вкажіть кількість повторів у серії. Залиште пустим якщо серія повторюється "
+"нескінченно"
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5334,6 +5182,10 @@ msgstr "Вкажіть рік, на якому базувати бюджет"
 
 msgid "Split"
 msgstr "Розділити"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr "Виберіть Категорію"
 
 #, fuzzy
 msgid "Split Detail Dialog"
@@ -5490,9 +5342,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "На"
@@ -5510,9 +5359,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5577,13 +5423,31 @@ msgstr ""
 msgid "The client failed to connect the server"
 msgstr ""
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+"Money Manager моделює всі транзакції як приналежні до рахунків.\n"
+"\n"
+" Наступні сторінки допоможуть Вам створити новий рахунок.\n"
+"\n"
+"Щоб Вам легше було розпочати, почніть з складання списку всіх \n"
+"фінансових установ де ви маєте рахунки."
+
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
-
-msgid "The next pages will help you create a new database."
 msgstr ""
 
 msgid "The remote file doesn't exist"
@@ -5645,10 +5509,11 @@ msgid ""
 "another Category using the relocate command:"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
-msgstr ""
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
+msgstr "Перегляд всіх транзакцій"
 
 msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
@@ -5773,7 +5638,7 @@ msgid "Total Balance on all Accounts"
 msgstr "Загальний баланс по всім Рахункам :"
 
 #, fuzzy
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr "Витрати"
 
 #, fuzzy, c-format
@@ -5781,7 +5646,7 @@ msgid "Total Imported : %ld"
 msgstr "Загальна сумма:"
 
 #, fuzzy
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr "Дохід"
 
 #, fuzzy, c-format
@@ -6130,9 +5995,6 @@ msgstr ""
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Версія: "
@@ -6241,9 +6103,6 @@ msgstr "Недійсна"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6320,15 +6179,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "Куда подіваються гроші"
 
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Куда подіваються гроші"
-
 msgid "Where the Money Goes"
-msgstr "Куда подіваються гроші"
-
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
 msgstr "Куда подіваються гроші"
 
 msgid "Wiki page"
@@ -6417,10 +6268,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr ""
 
-#, fuzzy
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "Відкрити вже створену базу данниMoney Manager Ex з розширенням "
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6443,18 +6290,9 @@ msgstr "як Недійсну"
 msgid "as needing Followup"
 msgstr "як очікуючу в Черзі"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "Стоматологія"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6464,10 +6302,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "Видалити майно"
 
 msgid "please check it in network options."
 msgstr ""
@@ -6492,70 +6326,20 @@ msgstr "На:"
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #, fuzzy
 #~ msgid "  and contributors from around the world"
 #~ msgstr "та помічники з усього світу."
 
 #, fuzzy
+#~ msgid " - "
+#~ msgstr " :"
+
+#, fuzzy
 #~ msgid " Filter Settings "
 #~ msgstr "Перегляд установок"
+
+#~ msgid " Help"
+#~ msgstr "Допомога"
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -6770,6 +6554,10 @@ msgstr ""
 #~ msgstr "Інше"
 
 #, fuzzy
+#~ msgid "All Time"
+#~ msgstr "Файли &CSV "
+
+#, fuzzy
 #~ msgid "Amount Range:"
 #~ msgstr "Вкажіть Діапазон Суми"
 
@@ -6834,6 +6622,10 @@ msgstr ""
 #~ msgstr " немає можливості обробляти Типи Рахунків на даний момент"
 
 #, fuzzy
+#~ msgid "Categories - %s"
+#~ msgstr "Останні 30 днів"
+
+#, fuzzy
 #~ msgid "Categories - Current Month"
 #~ msgstr "Показати поточний місяць"
 
@@ -6877,10 +6669,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Category:"
 #~ msgstr "Категорія"
-
-#, fuzzy
-#~ msgid "Change all transactions using one Payee to another Payee"
-#~ msgstr "Перегляд всіх транзакцій"
 
 #~ msgid "Change the name of an existing payee"
 #~ msgstr "Змінити назву існуючого одержувача"
@@ -7039,6 +6827,10 @@ msgstr ""
 #~ msgid "Enter &Transaction"
 #~ msgstr "Ввести Транзакцію"
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Введіть назву майна"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr "Вкажіть назву фінансової установи де зберігаються цінні папери"
@@ -7145,6 +6937,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Gain Loss"
 #~ msgstr "Дохід Втрати"
+
+#, fuzzy
+#~ msgid "Grand Total: "
+#~ msgstr "Всього: %s"
 
 #, fuzzy
 #~ msgid "Hide Deleted (Void)"
@@ -7272,6 +7068,9 @@ msgstr ""
 #~ "Інвестиційні рахунки це спеціалізовані рахунки які \n"
 #~ "пов'язані з інвествиціями у цінні папери/паєві фонди\n"
 #~ "\n"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "Останній календарний місяць"
 
 #, fuzzy
 #~ msgid "Line %i"
@@ -7437,6 +7236,10 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Payee Added: %s"
+#~ msgstr "Одержувач"
+
+#, fuzzy
+#~ msgid "Payee Report - %s"
 #~ msgstr "Одержувач"
 
 #, fuzzy
@@ -7661,6 +7464,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "Вкажіть колір навігаційного дерева"
+
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "Вкажіть тип рахунку який необхідно створити."
 
 #, fuzzy
 #~ msgid "Specify the number of times this series repeats."
@@ -8037,6 +7844,10 @@ msgstr ""
 #~ msgstr "Вибрати цього одержувача для використання в транзакції"
 
 #, fuzzy
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "Куда подіваються гроші"
+
+#, fuzzy
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "Куда подіваються гроші"
 
@@ -8066,6 +7877,10 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
+#~ msgstr "Куда подіваються гроші"
+
+#, fuzzy
+#~ msgid "Where the Money Goes - %s"
 #~ msgstr "Куда подіваються гроші"
 
 #, fuzzy
@@ -8116,6 +7931,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Your current version is: %s"
 #~ msgstr "Версія: "
+
+#, fuzzy
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "Відкрити вже створену базу данниMoney Manager Ex з розширенням "
 
 #, fuzzy
 #~ msgid "database file"

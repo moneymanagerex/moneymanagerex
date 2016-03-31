@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 23:04+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
@@ -18,71 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-#, fuzzy
-msgid " - "
-msgstr " :"
-
-#, fuzzy
-msgid " - No File opened "
-msgstr "Money Manager EX - Ingen fil åpnet"
-
-#, fuzzy
-msgid " Auto Repeat Transactions"
-msgstr "Gjenta transaksjoner"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "Gjenta transaksjoner"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "Gjenta transaksjoner"
-
-#, fuzzy
-msgid " Help"
-msgstr "Hjelp"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr "Ett av feltene: dato, mottaker, beløp, type mangler, hopper over"
-
-msgid " Payments Left "
-msgstr ""
-
-#, fuzzy
-msgid " Specify "
-msgstr "Angi type"
-
-#, fuzzy
-msgid " Split Category Details"
-msgstr "Velg Kategori"
-
-#, fuzzy
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-"Money Manager tildeler alle transaksjoner til konti.\n"
-"\n"
-" Den neste siden vil hjelpe deg å opprette en ny konto.\n"
-"\n"
-" Begynn med å lage en liste over alle de finansielle institusjonene du har "
-"konto."
-
 msgid "#"
-msgstr ""
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
 msgstr ""
 
 msgid "%"
@@ -94,6 +30,10 @@ msgstr "Oppdater"
 
 #, c-format
 msgid "%.2f Shown As: %s"
+msgstr ""
+
+#, c-format
+msgid "%1$s - %2$s"
 msgstr ""
 
 #, c-format
@@ -134,6 +74,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, c-format
@@ -451,12 +395,6 @@ msgstr "Estimerte inntekter: Faktiske inntekter:"
 msgid "(Optional) Specify a title or your name."
 msgstr ""
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr ""
 
@@ -530,9 +468,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -744,10 +679,6 @@ msgstr "Vis alle gjennomførte transaksjoner"
 msgid "All Term Accounts"
 msgstr "Fra Konto"
 
-#, fuzzy
-msgid "All Time"
-msgstr "&CSV filer"
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -833,13 +764,6 @@ msgstr ""
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-
 #, fuzzy
 msgid "Asset"
 msgstr "Aktiva"
@@ -913,6 +837,10 @@ msgid "Auto"
 msgstr "Beløp"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "Gjenta transaksjoner"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Kategorien er i bruk"
 
@@ -929,19 +857,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -978,9 +897,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -1030,12 +946,6 @@ msgstr "Hoved valuta ikke angitt"
 
 msgid "Base Currency for account"
 msgstr "Hoved valuta for denne konto"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr ""
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1091,9 +1001,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1169,9 +1076,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1290,10 +1194,6 @@ msgstr ""
 msgid "Categories"
 msgstr "Kategori"
 
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "Siste 30 dager"
-
 #, fuzzy
 msgid "Categories exported"
 msgstr "Kategori"
@@ -1301,8 +1201,8 @@ msgstr "Kategori"
 msgid "Category"
 msgstr "Kategori"
 
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "Inntekt vs Utgifter"
 
 #, fuzzy
@@ -1511,9 +1411,6 @@ msgstr "Avsluttet"
 #, fuzzy
 msgid "Clothing"
 msgstr "Sjekkonto"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1729,9 +1626,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1799,8 +1693,12 @@ msgstr "Ny database veiviser"
 msgid "Database Debug"
 msgstr "Ny database veiviser"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "Kategorien er i bruk"
 
 #, fuzzy
@@ -2172,9 +2070,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "&Avslutt\tAlt-A"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2203,6 +2098,10 @@ msgstr "Endre Regning && Innskuddserier"
 #, fuzzy
 msgid "Edit Category"
 msgstr "Velg Kategori"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "Gjenta transaksjoner"
 
 msgid "Edit Stock Investment"
 msgstr "Endre aksjeinvestering"
@@ -2256,6 +2155,10 @@ msgstr ""
 #, fuzzy
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "Angi neste Regning && Innskudds hendelse"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "Gjenta transaksjoner"
 
 #, fuzzy
 msgid "Enter a description for the new attachment:"
@@ -2351,9 +2254,10 @@ msgstr "angi nåværende verdi av aktiva"
 msgid "Enter the current value of the asset"
 msgstr "angi nåværende verdi av aktiva"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Skriv aktivaens navn"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "Angi åpningsbalanse for denne kontoen"
@@ -2536,9 +2440,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2649,9 +2550,6 @@ msgstr "Følg opp"
 msgid "Food"
 msgstr ""
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2666,9 +2564,6 @@ msgstr "Fire måneder"
 
 msgid "Four Weeks"
 msgstr "Fire uker"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "Gjentakelsesfrekvens"
@@ -2731,9 +2626,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2752,6 +2644,10 @@ msgstr ""
 
 msgid "General"
 msgstr "Generellt"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "Slette Aktiva"
 
 #, fuzzy
 msgid "General Report Manager"
@@ -2794,10 +2690,6 @@ msgstr ""
 msgid "Grand Total:"
 msgstr "Total:"
 
-#, fuzzy
-msgid "Grand Total: "
-msgstr "Total: %s"
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2814,9 +2706,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2916,9 +2805,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3198,9 +3084,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3274,9 +3157,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3301,13 +3181,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3362,9 +3236,6 @@ msgstr "Siste 30 dager"
 msgid "Last 90 Days"
 msgstr "Siste 30 dager"
 
-msgid "Last Calendar Month"
-msgstr "Siste kalender måned"
-
 #, fuzzy
 msgid "Last Financial Year"
 msgstr "Forrige år"
@@ -3395,13 +3266,6 @@ msgid "Latvian lats"
 msgstr ""
 
 msgid "Le"
-msgstr ""
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr "Angi antall gjentakelser for serien. Blank for uendelig antall"
-
-msgid "Leave blank when not active."
 msgstr ""
 
 msgid "Lebanese lira"
@@ -3769,13 +3633,7 @@ msgstr ""
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3792,12 +3650,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3916,9 +3768,6 @@ msgstr ""
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3929,6 +3778,10 @@ msgstr "Ingen konto tilgjenelig! Kan ikke eksportere!"
 #, fuzzy
 msgid "No Accounts selected for export"
 msgstr "Ingen konto tilgjenelig! Kan ikke eksportere!"
+
+#, fuzzy
+msgid "No File opened"
+msgstr "Money Manager EX - Ingen fil åpnet"
 
 #, fuzzy
 msgid "No account available to delete!"
@@ -3967,9 +3820,6 @@ msgstr ""
 msgid "November"
 msgstr "Nummer"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "Nummer"
 
@@ -4003,6 +3853,10 @@ msgstr "Annet"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr "Ett av feltene: dato, mottaker, beløp, type mangler, hopper over"
 
 #, fuzzy
 msgid "Online Update"
@@ -4271,10 +4125,6 @@ msgstr ""
 msgid "Payee Report"
 msgstr "Mottaker"
 
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "Mottaker"
-
 #, fuzzy
 msgid "Payee in use."
 msgstr "Mottaker er i bruk"
@@ -4287,6 +4137,9 @@ msgid "Payees"
 msgstr "Mottaker"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4514,12 +4367,6 @@ msgstr ""
 msgid "R"
 msgstr ""
 
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
-msgstr ""
-
 msgid "REPORTS"
 msgstr "RAPPORTER"
 
@@ -4744,9 +4591,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 #, fuzzy
 msgid "Run selected report."
 msgstr "Ingen konto tilgjenelig! Kan ikke eksportere!"
@@ -4758,12 +4602,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4788,9 +4626,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 msgid "SLL"
@@ -4989,9 +4824,6 @@ msgstr "Angi kontoens valuta."
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "Aksjenavn"
 
@@ -5056,12 +4888,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 #, fuzzy
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "Angi neste Regning && Innskudds hendelse"
@@ -5095,6 +4921,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr "Angi type"
 
 msgid "Specify Day for start of financial year"
 msgstr ""
@@ -5142,11 +4972,26 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "Angi beløp til denne transaksjonen"
 
-msgid "Specify period in Days to activate."
-msgstr ""
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
+msgstr "Angi kontotype"
 
 #, fuzzy
-msgid "Specify period in Months to activate."
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "Angi kontotype"
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "Angi kontotype"
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "Angi kontotype"
 
 #, fuzzy
@@ -5219,8 +5064,10 @@ msgid "Specify the language to use"
 msgstr "Angi språk"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Angi kontotype"
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr "Angi antall gjentakelser for serien. Blank for uendelig antall"
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5313,6 +5160,10 @@ msgstr "Angi år som grunnlag for budsjett"
 
 msgid "Split"
 msgstr ""
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr "Velg Kategori"
 
 #, fuzzy
 msgid "Split Detail Dialog"
@@ -5470,9 +5321,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "Til"
@@ -5490,9 +5338,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5556,13 +5401,31 @@ msgstr ""
 msgid "The client failed to connect the server"
 msgstr ""
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+"Money Manager tildeler alle transaksjoner til konti.\n"
+"\n"
+" Den neste siden vil hjelpe deg å opprette en ny konto.\n"
+"\n"
+" Begynn med å lage en liste over alle de finansielle institusjonene du har "
+"konto."
+
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
-
-msgid "The next pages will help you create a new database."
 msgstr ""
 
 msgid "The remote file doesn't exist"
@@ -5624,10 +5487,11 @@ msgid ""
 "another Category using the relocate command:"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
-msgstr ""
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
+msgstr "Viser alle transaksjoner"
 
 msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
@@ -5751,7 +5615,7 @@ msgid "Total Balance on all Accounts"
 msgstr "Total balanse for alle konti :"
 
 #, fuzzy
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr "Utgift"
 
 #, fuzzy, c-format
@@ -5759,7 +5623,7 @@ msgid "Total Imported : %ld"
 msgstr "Totalt beløp :"
 
 #, fuzzy
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr "Inntekt"
 
 #, fuzzy, c-format
@@ -6107,9 +5971,6 @@ msgstr ""
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Versjons historikk"
@@ -6218,9 +6079,6 @@ msgstr "Ugyldig"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6298,15 +6156,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "Hvor går pengene"
 
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Hvor går pengene"
-
 msgid "Where the Money Goes"
-msgstr "Hvor går pengene"
-
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
 msgstr "Hvor går pengene"
 
 msgid "Wiki page"
@@ -6395,10 +6245,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr ""
 
-#, fuzzy
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "Åpne en eksisterende Money Manager Ex database (*.mmb)"
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6421,18 +6267,9 @@ msgstr "som ugyldig"
 msgid "as needing Followup"
 msgstr "som behov for oppfølging"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "Generellt"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6442,10 +6279,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "Slette Aktiva"
 
 msgid "please check it in network options."
 msgstr ""
@@ -6469,66 +6302,13 @@ msgstr " Til:"
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #, fuzzy
 #~ msgid "  and contributors from around the world"
 #~ msgstr "og andre bidragsytere fra resten av verden."
+
+#, fuzzy
+#~ msgid " - "
+#~ msgstr " :"
 
 #, fuzzy
 #~ msgid " : Restart"
@@ -6537,6 +6317,10 @@ msgstr ""
 #, fuzzy
 #~ msgid " Filter Settings "
 #~ msgstr "Vis innstillinger"
+
+#, fuzzy
+#~ msgid " Help"
+#~ msgstr "Hjelp"
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -6748,6 +6532,10 @@ msgstr ""
 #~ msgstr "Andre"
 
 #, fuzzy
+#~ msgid "All Time"
+#~ msgstr "&CSV filer"
+
+#, fuzzy
 #~ msgid "Amount Range:"
 #~ msgstr "Angi beløp område"
 
@@ -6810,6 +6598,10 @@ msgstr ""
 #~ msgstr "kan ikke prossessere konto typer nå"
 
 #, fuzzy
+#~ msgid "Categories - %s"
+#~ msgstr "Siste 30 dager"
+
+#, fuzzy
 #~ msgid "Categories - Current Month"
 #~ msgstr "Denne måneden"
 
@@ -6853,10 +6645,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Category:"
 #~ msgstr "Kategori"
-
-#, fuzzy
-#~ msgid "Change all transactions using one Payee to another Payee"
-#~ msgstr "Viser alle transaksjoner"
 
 #~ msgid "Change the name of an existing payee"
 #~ msgstr "Endre navn på en eksisterende mottaker"
@@ -7012,6 +6800,10 @@ msgstr ""
 #~ msgid "Enter &Transaction"
 #~ msgstr "Angi Transaksjon"
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Skriv aktivaens navn"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr "Angi navnet på den finansielle institusjonen som investeringen er"
@@ -7118,6 +6910,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Gain Loss"
 #~ msgstr "Fortjeneste Tap"
+
+#, fuzzy
+#~ msgid "Grand Total: "
+#~ msgstr "Total: %s"
 
 #, fuzzy
 #~ msgid "Hide Deleted (Void)"
@@ -7243,6 +7039,9 @@ msgstr ""
 #~ "\n"
 #~ "Investeringskonto er spesielle konti som bare har\n"
 #~ "aksjer/fond knyttet til seg.\n"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "Siste kalender måned"
 
 #, fuzzy
 #~ msgid "Line %i"
@@ -7407,6 +7206,10 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Payee Added: %s"
+#~ msgstr "Mottaker"
+
+#, fuzzy
+#~ msgid "Payee Report - %s"
 #~ msgstr "Mottaker"
 
 #, fuzzy
@@ -7635,6 +7438,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "Angi farge for nav. tre"
+
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "Angi kontotype"
 
 #, fuzzy
 #~ msgid "Specify the number of times this series repeats."
@@ -8008,6 +7815,10 @@ msgstr ""
 #~ msgstr "Bruk den valgte mottakeren for transaksjonen"
 
 #, fuzzy
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "Hvor går pengene"
+
+#, fuzzy
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "Hvor går pengene"
 
@@ -8037,6 +7848,10 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
+#~ msgstr "Hvor går pengene"
+
+#, fuzzy
+#~ msgid "Where the Money Goes - %s"
 #~ msgstr "Hvor går pengene"
 
 #, fuzzy
@@ -8086,6 +7901,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Your current version is: %s"
 #~ msgstr "Versjons historikk"
+
+#, fuzzy
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "Åpne en eksisterende Money Manager Ex database (*.mmb)"
 
 #, fuzzy
 #~ msgid "database file"

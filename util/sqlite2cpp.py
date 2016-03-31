@@ -10,6 +10,17 @@ import datetime
 import sqlite3
 import codecs
 
+# http://stackoverflow.com/questions/196345/how-to-check-if-a-string-in-python-is-in-ascii
+def is_ascii(s):
+    if isinstance(s, unicode):
+        return all(ord(c) < 128 for c in s)
+    return False 
+
+def is_trans(s):
+    if not is_ascii(s): return False
+    if not s.replace(" ", "").replace("/","").isalnum(): return False
+    return True
+
 # https://github.com/django/django/blob/master/django/db/backends/sqlite3/introspection.py
 def get_table_list(cursor):
     "Returns a list of table names in the current database."
@@ -184,7 +195,7 @@ struct DB_Table_%s : public DB_Table
         db->Begin();'''
         for r in self._data:
             s += '''
-        db->ExecuteUpdate(wxString::Format("INSERT INTO %s VALUES (%s)", %s));''' % (self._table, ', '.join(["'%s'" if isinstance(i, unicode) else str(i) for i in r]), ', '.join([ 'wxTRANSLATE("' + i + '")' if not i.isdigit() else '"' + i + '"' for i in r if isinstance(i, unicode)]))
+        db->ExecuteUpdate(wxString::Format("INSERT INTO %s VALUES (%s)", %s));''' % (self._table, ', '.join(["'%s'" if is_trans(i) else "'%s'" % i for i in r]), ', '.join([ 'wxTRANSLATE("' + i + '")' for i in r if is_trans(i)]))
         s += '''
         db->Commit();
     }

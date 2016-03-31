@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-03-08 23:54+0800\n"
+"POT-Creation-Date: 2016-03-31 22:45+0800\n"
 "PO-Revision-Date: 2015-01-09 23:05+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
@@ -19,71 +19,7 @@ msgstr ""
 "2);\n"
 "X-Poedit-SearchPath-0: src\n"
 
-msgid " "
-msgstr ""
-
-#, fuzzy
-msgid " - "
-msgstr " : "
-
-msgid " - No File opened "
-msgstr " - Nav atvērta faila "
-
-#, fuzzy
-msgid " Auto Repeat Transactions"
-msgstr "Atkārtojošies darījumi"
-
-#, fuzzy
-msgid " Edit Recurring Transaction"
-msgstr "Jauns/rediģēt atkārtojošos darījumu"
-
-#, fuzzy
-msgid " Enter Recurring Transaction"
-msgstr "Atkārtojošies darījumi"
-
-msgid " Help"
-msgstr " Palīdzība"
-
-#, fuzzy
-msgid " One of the following fields: Date, Amount, Type is missing, skipping"
-msgstr ""
-"Trūkst viens no šiem laukiem: datums, darījuma partneris, summa, tips, "
-"izlaižu"
-
-msgid " Payments Left "
-msgstr ""
-
-#, fuzzy
-msgid " Specify "
-msgstr "Norādiet tipu"
-
-#, fuzzy
-msgid " Split Category Details"
-msgstr "Sadalīt kategoriju"
-
-#, fuzzy
-msgid ""
-" models all transactions as belonging to accounts.\n"
-"\n"
-"The next pages will help you create a new account.\n"
-"\n"
-"To help you get started, begin by making a list of all\n"
-"financial institutions where you hold an account."
-msgstr ""
-" visus darījumus saglabā kontos. \n"
-"\n"
-"Nākošās lapas palīdzēs Jums izveidot jaunu kontu. \n"
-"\n"
-"Lai palīdzētu Jums iesākt, sāciet ar saraksta izveidi, kurā ir  \n"
-"norādītas visas finanšu iestādes, kuros Jūs turat savus kontus."
-
 msgid "#"
-msgstr ""
-
-msgid "$"
-msgstr ""
-
-msgid "$U"
 msgstr ""
 
 msgid "%"
@@ -95,6 +31,10 @@ msgstr " datums "
 
 #, c-format
 msgid "%.2f Shown As: %s"
+msgstr ""
+
+#, c-format
+msgid "%1$s - %2$s"
 msgstr ""
 
 #, c-format
@@ -135,6 +75,10 @@ msgstr ""
 
 #, c-format
 msgid "%s -> User profile folder"
+msgstr ""
+
+#, c-format
+msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #, c-format
@@ -444,12 +388,6 @@ msgstr " (aprēķinātie pret faktiskajiem)"
 msgid "(Optional) Specify a title or your name."
 msgstr ""
 
-msgid ","
-msgstr ""
-
-msgid "."
-msgstr ""
-
 msgid "1"
 msgstr ""
 
@@ -523,9 +461,6 @@ msgid "ANG"
 msgstr ""
 
 msgid "AOA"
-msgstr ""
-
-msgid "AR$"
 msgstr ""
 
 msgid "ARS"
@@ -737,10 +672,6 @@ msgstr "Apskatīt visus, izņemot saskaņotos, darījumus"
 msgid "All Term Accounts"
 msgstr "No konta"
 
-#, fuzzy
-msgid "All Time"
-msgstr "&CSV faili"
-
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
@@ -825,13 +756,6 @@ msgstr ""
 msgid "Aruban florin"
 msgstr ""
 
-msgid ""
-"As this file contains important financial information,\n"
-"we recommended creating daily backups with the Options\n"
-"setting: 'Backup before opening', and store your backups\n"
-"in a separate location."
-msgstr ""
-
 #, fuzzy
 msgid "Asset"
 msgstr "Aktīvi"
@@ -904,6 +828,10 @@ msgid "Auto"
 msgstr "Automašīna"
 
 #, fuzzy
+msgid "Auto Repeat Transactions"
+msgstr "Atkārtojošies darījumi"
+
+#, fuzzy
 msgid "Autocomplete"
 msgstr "Kategorija nevar būt tukša"
 
@@ -920,19 +848,10 @@ msgstr ""
 msgid "Azerbaijani manat"
 msgstr ""
 
-msgid "B$"
-msgstr ""
-
-msgid "B./"
-msgstr ""
-
 msgid "BAM"
 msgstr ""
 
 msgid "BBD"
-msgstr ""
-
-msgid "BD$"
 msgstr ""
 
 msgid "BDT"
@@ -969,9 +888,6 @@ msgid "BWP"
 msgstr ""
 
 msgid "BYR"
-msgstr ""
-
-msgid "BZ$"
 msgstr ""
 
 msgid "BZD"
@@ -1021,12 +937,6 @@ msgstr "Nav uzstādīta pamata valūta"
 
 msgid "Base Currency for account"
 msgstr "Konta pamata valūta"
-
-msgid "Bds$"
-msgstr ""
-
-msgid "Becomes blank when not active."
-msgstr ""
 
 msgid ""
 "Before going to a shop and buy something: take the time making a list of "
@@ -1082,9 +992,6 @@ msgid "Browse for folder"
 msgstr ""
 
 msgid "Brunei dollar"
-msgstr ""
-
-msgid "Bs."
 msgstr ""
 
 #, fuzzy, c-format
@@ -1160,9 +1067,6 @@ msgid "Bulgarian lev"
 msgstr ""
 
 msgid "Burundi franc"
-msgstr ""
-
-msgid "C$"
 msgstr ""
 
 msgid "CAD"
@@ -1281,10 +1185,6 @@ msgstr "Naudas plūsmas prognoze visiem kontiem - gadu uz priekšu"
 msgid "Categories"
 msgstr "Kategorijas"
 
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "Top kategorijas pēdējās 30 dienās"
-
 #, fuzzy
 msgid "Categories exported"
 msgstr "Kategorija"
@@ -1292,8 +1192,8 @@ msgstr "Kategorija"
 msgid "Category"
 msgstr "Kategorija"
 
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
+#, fuzzy
+msgid "Category Income/Expenses"
 msgstr "Kategorija ienākumi/izdevumi par pēdējiem 12 Mēnešiem"
 
 #, fuzzy
@@ -1501,9 +1401,6 @@ msgstr "Aizvērts"
 
 msgid "Clothing"
 msgstr "Apģērbs"
-
-msgid "Col$"
-msgstr ""
 
 msgid "Colombian peso"
 msgstr ""
@@ -1718,9 +1615,6 @@ msgstr ""
 msgid "Czech koruna"
 msgstr ""
 
-msgid "Céntimo"
-msgstr ""
-
 msgid "D"
 msgstr ""
 
@@ -1788,8 +1682,12 @@ msgstr "Nav atvērtas datubāzes"
 msgid "Database Debug"
 msgstr "Jauna datu bāze"
 
-#, fuzzy
-msgid "Database Optimization Completed!"
+#, fuzzy, c-format
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
+"Size before: %s\n"
+"Size after: %s\n"
 msgstr "Kategorija nevar būt tukša"
 
 #, fuzzy
@@ -2166,9 +2064,6 @@ msgstr ""
 msgid "E&xit\tAlt-X"
 msgstr "I&zeja\tAlt-Z"
 
-msgid "EC$"
-msgstr ""
-
 msgid "EGP"
 msgstr ""
 
@@ -2197,6 +2092,10 @@ msgstr "Rediģēt rēķinu && iemaksu sēriju"
 #, fuzzy
 msgid "Edit Category"
 msgstr "Sadalīt kategoriju"
+
+#, fuzzy
+msgid "Edit Recurring Transaction"
+msgstr "Jauns/rediģēt atkārtojošos darījumu"
 
 msgid "Edit Stock Investment"
 msgstr "Rediģēt akciju ieguldījumu"
@@ -2250,6 +2149,10 @@ msgstr ""
 #, fuzzy
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "Ievadiet jaunu rēķina && iemaksu notikumu"
+
+#, fuzzy
+msgid "Enter Recurring Transaction"
+msgstr "Atkārtojošies darījumi"
 
 #, fuzzy
 msgid "Enter a description for the new attachment:"
@@ -2344,9 +2247,10 @@ msgstr "Ievadiet pašreizējo aktīva vērtību"
 msgid "Enter the current value of the asset"
 msgstr "Ievadiet pašreizējo aktīva vērtību"
 
-#, fuzzy
-msgid "Enter the default for this field"
-msgstr "Ievadiet aktīva nosaukumu"
+msgid ""
+"Enter the default for this field\n"
+"For date/time insert 'Now' to make current date/time as default"
+msgstr ""
 
 msgid "Enter the initial balance in this account."
 msgstr "Ievadiet šī konta sākuma atlikumu."
@@ -2528,9 +2432,6 @@ msgstr ""
 msgid "FG"
 msgstr ""
 
-msgid "FJ$"
-msgstr ""
-
 msgid "FJD"
 msgstr ""
 
@@ -2641,9 +2542,6 @@ msgstr "Sekot"
 msgid "Food"
 msgstr "Pārtika"
 
-msgid "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
-
 msgid "Fortnightly"
 msgstr ""
 
@@ -2658,9 +2556,6 @@ msgstr "Četri mēneši"
 
 msgid "Four Weeks"
 msgstr "Četras nedēļas"
-
-msgid "Fr."
-msgstr ""
 
 msgid "Frequency"
 msgstr "Biežums"
@@ -2723,9 +2618,6 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-msgid "GY$"
-msgstr ""
-
 msgid "GYD"
 msgstr ""
 
@@ -2744,6 +2636,10 @@ msgstr "Degviela"
 
 msgid "General"
 msgstr "Vispārēji"
+
+#, fuzzy
+msgid "General Group Report"
+msgstr "Lietotāja SQL pārskats"
 
 #, fuzzy
 msgid "General Report Manager"
@@ -2786,10 +2682,6 @@ msgstr "Dāvanas"
 msgid "Grand Total:"
 msgstr "Kopā:"
 
-#, fuzzy
-msgid "Grand Total: "
-msgstr "Kopā: %s"
-
 msgid "Grant automatic execute permission for this entry."
 msgstr ""
 
@@ -2806,9 +2698,6 @@ msgid "Guinean franc"
 msgstr ""
 
 msgid "Guyanese dollar"
-msgstr ""
-
-msgid "HK$"
 msgstr ""
 
 msgid "HKD"
@@ -2906,9 +2795,6 @@ msgid "IRR"
 msgstr ""
 
 msgid "ISK"
-msgstr ""
-
-msgid "Icelandic króna"
 msgstr ""
 
 msgid "Icon"
@@ -3186,9 +3072,6 @@ msgstr ""
 msgid "Israeli new shekel"
 msgstr ""
 
-msgid "J$"
-msgstr ""
-
 msgid "JMD"
 msgstr ""
 
@@ -3262,9 +3145,6 @@ msgstr ""
 msgid "KWD"
 msgstr ""
 
-msgid "KY$"
-msgstr ""
-
 msgid "KYD"
 msgstr ""
 
@@ -3289,13 +3169,7 @@ msgstr ""
 msgid "Kz"
 msgstr ""
 
-msgid "Kč"
-msgstr ""
-
 msgid "L"
-msgstr ""
-
-msgid "L$"
 msgstr ""
 
 msgid "LAK"
@@ -3350,9 +3224,6 @@ msgstr "Pēdējās 30 dienas"
 msgid "Last 90 Days"
 msgstr "Pēdējās 30 dienas"
 
-msgid "Last Calendar Month"
-msgstr "Pēdējais kalendārais mēnesis"
-
 #, fuzzy
 msgid "Last Financial Year"
 msgstr "Pēdējais gads"
@@ -3385,15 +3256,6 @@ msgstr ""
 #, fuzzy
 msgid "Le"
 msgstr "Dzīvība"
-
-#, fuzzy
-msgid "Leave blank if the payments continue forever."
-msgstr ""
-"Norādiet reižu skaitu, kuru atkārto šī sērija. Atstājiet tukšu, ja sērija "
-"turpinās mūžīgi."
-
-msgid "Leave blank when not active."
-msgstr ""
 
 msgid "Lebanese lira"
 msgstr ""
@@ -3761,13 +3623,7 @@ msgstr "MMEX ziņojums"
 msgid "Myanma kyat"
 msgstr ""
 
-msgid "N$"
-msgstr ""
-
 msgid "NAD"
-msgstr ""
-
-msgid "NAƒ"
 msgstr ""
 
 msgid "NGN"
@@ -3784,12 +3640,6 @@ msgid "NPR"
 msgstr ""
 
 msgid "NRs"
-msgstr ""
-
-msgid "NT$"
-msgstr ""
-
-msgid "NZ$"
 msgstr ""
 
 msgid "NZD"
@@ -3907,9 +3757,6 @@ msgstr ""
 msgid "Nfa"
 msgstr ""
 
-msgid "Nicaraguan córdoba"
-msgstr ""
-
 msgid "Nigerian naira"
 msgstr ""
 
@@ -3920,6 +3767,10 @@ msgstr "Konti nav pieejami! Nevar eksportēt!"
 #, fuzzy
 msgid "No Accounts selected for export"
 msgstr "Konti nav pieejami! Nevar eksportēt!"
+
+#, fuzzy
+msgid "No File opened"
+msgstr " - Nav atvērta faila "
 
 #, fuzzy
 msgid "No account available to delete!"
@@ -3957,9 +3808,6 @@ msgstr "Nov"
 msgid "November"
 msgstr "Novembris"
 
-msgid "Nu."
-msgstr ""
-
 msgid "Number"
 msgstr "Numurs"
 
@@ -3992,6 +3840,12 @@ msgstr "Oktobris"
 
 msgid "Omani rial"
 msgstr ""
+
+#, fuzzy
+msgid "One of the following fields: Date, Amount, Type is missing, skipping"
+msgstr ""
+"Trūkst viens no šiem laukiem: datums, darījuma partneris, summa, tips, "
+"izlaižu"
 
 #, fuzzy
 msgid "Online Update"
@@ -4258,10 +4112,6 @@ msgstr ""
 msgid "Payee Report"
 msgstr "Darījuma partneris"
 
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "Darījuma partneris"
-
 #, fuzzy
 msgid "Payee in use."
 msgstr "Darījuma partneris tiek lietots"
@@ -4274,6 +4124,9 @@ msgid "Payees"
 msgstr "Darījuma partneris"
 
 msgid "Payment"
+msgstr ""
+
+msgid "Payments Left"
 msgstr ""
 
 #, fuzzy
@@ -4496,12 +4349,6 @@ msgid "Quotes not found"
 msgstr ""
 
 msgid "R"
-msgstr ""
-
-msgid "R$"
-msgstr ""
-
-msgid "RD$"
 msgstr ""
 
 msgid "REPORTS"
@@ -4728,9 +4575,6 @@ msgstr ""
 msgid "Rs"
 msgstr ""
 
-msgid "Rs."
-msgstr ""
-
 #, fuzzy
 msgid "Run selected report."
 msgstr "Konti nav pieejami! Nevar eksportēt!"
@@ -4742,12 +4586,6 @@ msgid "Russian Ruble"
 msgstr ""
 
 msgid "Rwandan franc"
-msgstr ""
-
-msgid "S$"
-msgstr ""
-
-msgid "S/."
 msgstr ""
 
 msgid "SAR"
@@ -4772,9 +4610,6 @@ msgid "SGD"
 msgstr ""
 
 msgid "SHP"
-msgstr ""
-
-msgid "SI$"
 msgstr ""
 
 msgid "SLL"
@@ -4977,9 +4812,6 @@ msgstr "Norādiet valūtu, kas tiks izmantots šajā kontā."
 msgid "Seychellois rupee"
 msgstr ""
 
-msgid "Sh."
-msgstr ""
-
 msgid "Share Name"
 msgstr "Akciju nosaukums"
 
@@ -5043,12 +4875,6 @@ msgstr ""
 msgid "SingleChoiche"
 msgstr ""
 
-msgid "Size after"
-msgstr ""
-
-msgid "Size before"
-msgstr ""
-
 #, fuzzy
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "Ievadiet jaunu rēķina && iemaksu notikumu"
@@ -5084,6 +4910,10 @@ msgstr ""
 
 msgid "Special Drawing Rights"
 msgstr ""
+
+#, fuzzy
+msgid "Specify"
+msgstr "Norādiet tipu"
 
 msgid "Specify Day for start of financial year"
 msgstr ""
@@ -5133,11 +4963,26 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "Norādiet darījuma summu"
 
-msgid "Specify period in Days to activate."
-msgstr ""
+#, fuzzy
+msgid ""
+"Specify period in Days to activate.\n"
+"Leave blank when not active."
+msgstr "Norādiet konta tipu, kas ir jāizveido."
 
 #, fuzzy
-msgid "Specify period in Months to activate."
+msgid "Specify period in Days to activate.Becomes blank when not active."
+msgstr "Norādiet konta tipu, kas ir jāizveido."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Becomes blank when not active."
+msgstr "Norādiet konta tipu, kas ir jāizveido."
+
+#, fuzzy
+msgid ""
+"Specify period in Months to activate.\n"
+"Leave blank when not active."
 msgstr "Norādiet konta tipu, kas ir jāizveido."
 
 #, fuzzy
@@ -5211,8 +5056,12 @@ msgid "Specify the language to use"
 msgstr "Norādiet valodu, kuru izmantosiet"
 
 #, fuzzy
-msgid "Specify the number of payments to be made."
-msgstr "Norādiet konta tipu, kas ir jāizveido."
+msgid ""
+"Specify the number of payments to be made.Leave blank if the payments "
+"continue forever."
+msgstr ""
+"Norādiet reižu skaitu, kuru atkārto šī sērija. Atstājiet tukšu, ja sērija "
+"turpinās mūžīgi."
 
 #, fuzzy
 msgid "Specify the order of fields in the file"
@@ -5305,6 +5154,10 @@ msgstr "Norādiet gadu, uz kuru balstīt budžetu"
 
 msgid "Split"
 msgstr "Sadalīt"
+
+#, fuzzy
+msgid "Split Category Details"
+msgstr "Sadalīt kategoriju"
 
 msgid "Split Detail Dialog"
 msgstr "Sadalīšanas informācijas logs"
@@ -5459,9 +5312,6 @@ msgstr ""
 msgid "System documents directory"
 msgstr ""
 
-msgid "São Tomé and Príncipe dobra"
-msgstr ""
-
 #, fuzzy
 msgid "T"
 msgstr "Uz"
@@ -5479,9 +5329,6 @@ msgid "TND"
 msgstr ""
 
 msgid "TRY"
-msgstr ""
-
-msgid "TT$"
 msgstr ""
 
 msgid "TTD"
@@ -5547,13 +5394,31 @@ msgstr ""
 msgid "The client failed to connect the server"
 msgstr ""
 
+#, fuzzy
 msgid ""
+"The next pages will help you create a new account.\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+" visus darījumus saglabā kontos. \n"
+"\n"
+"Nākošās lapas palīdzēs Jums izveidot jaunu kontu. \n"
+"\n"
+"Lai palīdzētu Jums iesākt, sāciet ar saraksta izveidi, kurā ir  \n"
+"norādītas visas finanšu iestādes, kuros Jūs turat savus kontus."
+
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
+"Your database file is stored with an extension of .mmb.\n"
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
-
-msgid "The next pages will help you create a new database."
 msgstr ""
 
 msgid "The remote file doesn't exist"
@@ -5615,10 +5480,11 @@ msgid ""
 "another Category using the relocate command:"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payee\n"
-"using the relocate command:"
-msgstr ""
+"Tip: Change all transactions using this Payee to another Payeeusing the "
+"relocate command:"
+msgstr "Visu darījumu apskate"
 
 msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
@@ -5742,7 +5608,7 @@ msgid "Total Balance on all Accounts"
 msgstr "Visu kontu kopējais atlikums"
 
 #, fuzzy
-msgid "Total Expenses: "
+msgid "Total Expenses:"
 msgstr "Izdevumi:"
 
 #, fuzzy, c-format
@@ -5750,7 +5616,7 @@ msgid "Total Imported : %ld"
 msgstr "Kopējā suma:"
 
 #, fuzzy
-msgid "Total Income: "
+msgid "Total Income:"
 msgstr "Ienākumi:"
 
 #, fuzzy, c-format
@@ -6095,9 +5961,6 @@ msgstr ""
 msgid "Vanuatu vatu"
 msgstr ""
 
-msgid "Venezuelan Bolívar"
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Versija: "
@@ -6203,9 +6066,6 @@ msgstr "Atcelts"
 msgid "W"
 msgstr ""
 
-msgid "WS$"
-msgstr ""
-
 msgid "WST"
 msgstr ""
 
@@ -6283,15 +6143,7 @@ msgstr ""
 msgid "Where the Money Comes From"
 msgstr "No kurienes nāk nauda"
 
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "No kurienes nāk nauda"
-
 msgid "Where the Money Goes"
-msgstr "Kur aiziet nauda"
-
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
 msgstr "Kur aiziet nauda"
 
 msgid "Wiki page"
@@ -6380,10 +6232,6 @@ msgstr ""
 msgid "You must specify path to another database file"
 msgstr ""
 
-#, fuzzy
-msgid "Your database file is stored with an extension of .mmb."
-msgstr "Atvērt iepriekš izveidotu datu bāzes failu ar paplašinājumu (*.mmb)"
-
 #, c-format
 msgid "Your version is %s"
 msgstr ""
@@ -6406,18 +6254,9 @@ msgstr "kā atceltu"
 msgid "as needing Followup"
 msgstr "nepieciešama sekošana"
 
-msgid "bolívar"
-msgstr ""
-
 #, fuzzy
 msgid "centavo"
 msgstr "Zobārstniecība"
-
-msgid "céntimos"
-msgstr ""
-
-msgid "din."
-msgstr ""
 
 msgid "kn"
 msgstr ""
@@ -6427,10 +6266,6 @@ msgstr ""
 
 msgid "m"
 msgstr ""
-
-#, fuzzy
-msgid "mmGeneralGroupReport"
-msgstr "Lietotāja SQL pārskats"
 
 msgid "please check it in network options."
 msgstr ""
@@ -6455,66 +6290,13 @@ msgstr " Uz: "
 msgid "urn:schemas-microsoft-com:office:spreadsheet"
 msgstr ""
 
-msgid "£"
-msgstr ""
-
-msgid "¥"
-msgstr ""
-
-msgid "ƒ"
-msgstr ""
-
-msgid "коп."
-msgstr ""
-
-msgid "р"
-msgstr ""
-
-msgid "руб."
-msgstr ""
-
-msgid "؋"
-msgstr ""
-
-msgid "دج"
-msgstr ""
-
-msgid "฿"
-msgstr ""
-
-msgid "₡"
-msgstr ""
-
-msgid "₦"
-msgstr ""
-
-msgid "₪"
-msgstr ""
-
-msgid "₫"
-msgstr ""
-
-msgid "€"
-msgstr ""
-
-msgid "₮"
-msgstr ""
-
-msgid "₱"
-msgstr ""
-
-msgid "₴"
-msgstr ""
-
-msgid "₹"
-msgstr ""
-
-msgid "₺"
-msgstr ""
-
 #, fuzzy
 #~ msgid "  and contributors from around the world"
 #~ msgstr " un atbalstītāji no visas pasaules."
+
+#, fuzzy
+#~ msgid " - "
+#~ msgstr " : "
 
 #~ msgid " : Restart"
 #~ msgstr " : Restarts"
@@ -6522,6 +6304,9 @@ msgstr ""
 #, fuzzy
 #~ msgid " Filter Settings "
 #~ msgstr "Skata parametri"
+
+#~ msgid " Help"
+#~ msgstr " Palīdzība"
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -6746,6 +6531,10 @@ msgstr ""
 #~ msgid "All Others"
 #~ msgstr "Citi"
 
+#, fuzzy
+#~ msgid "All Time"
+#~ msgstr "&CSV faili"
+
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "Atļaut jebkādu aizturi kotējumos"
 
@@ -6854,6 +6643,10 @@ msgstr ""
 #~ msgstr "Naudas plūsmas prognoze visiem kontiem - gadu uz priekšu"
 
 #, fuzzy
+#~ msgid "Categories - %s"
+#~ msgstr "Top kategorijas pēdējās 30 dienās"
+
+#, fuzzy
 #~ msgid "Categories - Current Month"
 #~ msgstr "Apskatīt pašreizējo mēnesi"
 
@@ -6900,10 +6693,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Category:"
 #~ msgstr "Kategorija"
-
-#, fuzzy
-#~ msgid "Change all transactions using one Payee to another Payee"
-#~ msgstr "Visu darījumu apskate"
 
 #~ msgid "Change settings for automatic refresh"
 #~ msgstr "Izmainīt parametrus automātiskai atjaunošanai"
@@ -7095,6 +6884,10 @@ msgstr ""
 #~ msgid "Enter &Transaction"
 #~ msgstr "&Ievadiet darījumu"
 
+#, fuzzy
+#~ msgid "Enter the default for this field"
+#~ msgstr "Ievadiet aktīva nosaukumu"
+
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr "Ievadiet finansu iestādes nosaukumu, kurā tiek turēti ieguldījumi"
@@ -7228,6 +7021,10 @@ msgstr ""
 
 #~ msgid "Gain Loss"
 #~ msgstr "Pieaugums, zaudējums"
+
+#, fuzzy
+#~ msgid "Grand Total: "
+#~ msgstr "Kopā: %s"
 
 #, fuzzy
 #~ msgid "Hide Deleted (Void)"
@@ -7373,6 +7170,9 @@ msgstr ""
 #~ "\n"
 #~ "Ieguldījumu konti ir specializēti konti, kuros ir tikai \n"
 #~ "akciju ieguldījumi, kas saistīti ar tiem. \n"
+
+#~ msgid "Last Calendar Month"
+#~ msgstr "Pēdējais kalendārais mēnesis"
 
 #~ msgid "Legend:"
 #~ msgstr "Apzīmējumi:"
@@ -7554,6 +7354,10 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Payee Added: %s"
+#~ msgstr "Darījuma partneris"
+
+#, fuzzy
+#~ msgid "Payee Report - %s"
 #~ msgstr "Darījuma partneris"
 
 #, fuzzy
@@ -7797,6 +7601,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "Norādiet navigācijas koka krāsu"
+
+#, fuzzy
+#~ msgid "Specify the number of payments to be made."
+#~ msgstr "Norādiet konta tipu, kas ir jāizveido."
 
 #, fuzzy
 #~ msgid "Specify the number of times this series repeats."
@@ -8182,6 +7990,10 @@ msgstr ""
 #~ msgstr "Atzīmējiet pašreiz atzīmēto darījuma partneri, kā darījuma partneri"
 
 #, fuzzy
+#~ msgid "Where the Money Comes From - %s"
+#~ msgstr "No kurienes nāk nauda"
+
+#, fuzzy
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "No kurienes nāk nauda"
 
@@ -8212,6 +8024,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "No kurienes nāk nauda"
+
+#, fuzzy
+#~ msgid "Where the Money Goes - %s"
+#~ msgstr "Kur aiziet nauda"
 
 #, fuzzy
 #~ msgid "Where the Money Goes - 30 Days"
@@ -8264,6 +8080,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Your current version is: %s"
 #~ msgstr "Versija: "
+
+#, fuzzy
+#~ msgid "Your database file is stored with an extension of .mmb."
+#~ msgstr "Atvērt iepriekš izveidotu datu bāzes failu ar paplašinājumu (*.mmb)"
 
 #, fuzzy
 #~ msgid "database file"
