@@ -123,8 +123,8 @@ void mmListCtrl::OnColRightClick(wxListEvent& event)
         for (int i = 0; i < (int)m_columns.size(); i++)
         {
             const int id = MENU_HEADER_COLUMN + i;
-            submenu->AppendCheckItem(id, std::get<0>(m_columns[i]));
-            if (Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, i), std::get<1>(m_columns[i])) != 0)
+            submenu->AppendCheckItem(id, m_columns[i].HEADER);
+            if (Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, i), m_columns[i].WIDTH) != 0)
                 submenu->Check(id, true);
         }
         menu.AppendSubMenu(submenu, _("Hide/Show Columns"));
@@ -177,7 +177,7 @@ void mmListCtrl::OnHeaderReset(wxCommandEvent& event)
     wxString parameter_name;
     for (int i = 0; i < (int)m_columns.size(); i++)
     {
-        SetColumnWidth(i, std::get<1>(m_columns[i]));
+        SetColumnWidth(i, m_columns[i].WIDTH);
         if (!m_col_width.IsEmpty())
         {
             parameter_name = wxString::Format(m_col_width, i);
@@ -197,7 +197,7 @@ void mmListCtrl::OnHeaderColumn(wxCommandEvent& event)
     int columnNbr = id - MENU_HEADER_COLUMN;
     if (columnNbr >= 0 && columnNbr < (int)m_columns.size() && !m_col_width.IsEmpty())
     {
-        int default_width = std::get<1>(m_columns[columnNbr]);
+        int default_width = m_columns[columnNbr].WIDTH;
         if (default_width == 0)
             default_width = wxLIST_AUTOSIZE_USEHEADER;
         const wxString parameter_name = wxString::Format(m_col_width, columnNbr);

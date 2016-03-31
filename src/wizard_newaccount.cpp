@@ -38,8 +38,8 @@ mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)
 
     new wxStaticText(page1, wxID_ANY, noteString);
 
-    mmAddAccountPage1* page2 = new mmAddAccountPage1(this);
-    mmAddAccountPage2* page3 = new mmAddAccountPage2(this);
+    mmAddAccountTypePage* page2 = new mmAddAccountTypePage(this);
+    mmAddAccountNamePage* page3 = new mmAddAccountNamePage(this);
 
     // set the page order using a convenience function - could also use
     // SetNext/Prev directly as below
@@ -70,7 +70,7 @@ void mmAddAccountWizard::RunIt()
     Destroy();
 }
 
-bool mmAddAccountPage1::TransferDataFromWindow()
+bool mmAddAccountNamePage::TransferDataFromWindow()
 {
     bool result = true;
     const wxString account_name = textAccountName_->GetValue().Trim();
@@ -91,7 +91,7 @@ bool mmAddAccountPage1::TransferDataFromWindow()
     return result;
 }
 
-mmAddAccountPage1::mmAddAccountPage1(mmAddAccountWizard* parent)
+mmAddAccountNamePage::mmAddAccountNamePage(mmAddAccountWizard* parent)
     : wxWizardPageSimple(parent), parent_(parent)
 {
     textAccountName_ = new wxTextCtrl(this, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxSize(130,-1), 0 );
@@ -110,7 +110,7 @@ mmAddAccountPage1::mmAddAccountPage1(mmAddAccountWizard* parent)
     mainSizer->Fit(this);
 }
 
-mmAddAccountPage2::mmAddAccountPage2(mmAddAccountWizard *parent)
+mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
     : wxWizardPageSimple(parent)
     , parent_(parent)
 {
@@ -147,7 +147,7 @@ mmAddAccountPage2::mmAddAccountPage2(mmAddAccountWizard *parent)
     mainSizer->Fit(this);
 }
 
-bool mmAddAccountPage2::TransferDataFromWindow()
+bool mmAddAccountTypePage::TransferDataFromWindow()
 {
     int currencyID = Model_Infotable::instance().GetBaseCurrencyId();
     if (currencyID == -1)
