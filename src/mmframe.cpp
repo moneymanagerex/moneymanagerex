@@ -269,12 +269,13 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     m_recentFiles->Load();
 
     // Load perspective
-    wxString auiPerspective = Model_Setting::instance().GetStringSetting("AUIPERSPECTIVE", wxEmptyString);
+    const wxString auiPerspective = Model_Setting::instance()
+        .GetStringSetting("AUIPERSPECTIVE", wxEmptyString);
     m_mgr.LoadPerspective(auiPerspective);
 
     // add the toolbars to the manager
     m_mgr.AddPane(toolBar_, wxAuiPaneInfo().
-        Name("toolbar").Caption(_("Toolbar")).ToolbarPane().Top()
+        Name("toolbar").ToolbarPane().Top()
         .LeftDockable(false).RightDockable(false).MinSize(1000, -1)
         .Show(Model_Setting::instance().GetBoolSetting("SHOWTOOLBAR", true)));
 
@@ -283,6 +284,8 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     m_mgr.GetArtProvider()->SetMetric(3, 1);
 
     // "commit" all changes made to wxAuiManager
+    m_mgr.GetPane("Navigation").Caption(_("Navigation"));
+    m_mgr.GetPane("toolbar").Caption(_("Toolbar"));
     m_mgr.Update();
 
     // Show license agreement at first open
@@ -659,14 +662,14 @@ void mmGUIFrame::createControls()
     homePanel_ = new wxPanel(this, wxID_ANY,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTR_SINGLE | wxNO_BORDER);
 
-    m_mgr.AddPane(navTreeCtrl_, wxAuiPaneInfo().
-        Name("Navigation").Caption(_("Navigation")).
-        BestSize(wxSize(200, 100)).MinSize(wxSize(100, 100)).
-        Left());
+    m_mgr.AddPane(navTreeCtrl_, wxAuiPaneInfo()
+        . Name("Navigation")
+        . BestSize(wxSize(200, 100)).MinSize(wxSize(100, 100))
+        . Left());
 
-    m_mgr.AddPane(homePanel_, wxAuiPaneInfo().
-        Name("Home").Caption("Home").
-        CenterPane().PaneBorder(false));
+    m_mgr.AddPane(homePanel_, wxAuiPaneInfo()
+        . Name("Home").Caption("Home")
+        . CenterPane().PaneBorder(false));
 }
 //----------------------------------------------------------------------------
 
