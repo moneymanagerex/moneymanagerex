@@ -26,11 +26,11 @@
    so that we don't hit the DB that often
    for data.
 */
-class mmOptions
+class Option
 {
 public:
-    mmOptions();
-    static mmOptions& instance();
+    Option();
+    static Option& instance();
     void LoadInfotableOptions();
 
     // set and save the option: m_dateFormat

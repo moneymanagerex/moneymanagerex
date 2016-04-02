@@ -26,20 +26,20 @@
 #include "model/Model_Account.h"
 
 //----------------------------------------------------------------------------
-mmOptions::mmOptions()
+Option::Option()
 :   m_dateFormat(mmex::DEFDATEFORMAT)
     , m_language("english")
     , m_databaseUpdated(false)
 {}
 
 //----------------------------------------------------------------------------
-mmOptions& mmOptions::instance()
+Option& Option::instance()
 {
-    return Singleton<mmOptions>::instance();
+    return Singleton<Option>::instance();
 }
 
 //----------------------------------------------------------------------------
-void mmOptions::LoadInfotableOptions()
+void Option::LoadInfotableOptions()
 {
     m_dateFormat = Model_Infotable::instance().DateFormat();
     m_userNameString = Model_Infotable::instance().GetStringInfo("USERNAME", "");
@@ -49,24 +49,24 @@ void mmOptions::LoadInfotableOptions()
     m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
 }
 
-void mmOptions::DateFormat(const wxString& dateformat)
+void Option::DateFormat(const wxString& dateformat)
 {
     m_dateFormat = dateformat;
     Model_Infotable::instance().SetDateFormat(dateformat);
 }
 
-wxString mmOptions::DateFormat()
+wxString Option::DateFormat()
 {
     return m_dateFormat;
 }
 
-void mmOptions::Language(wxString& language)
+void Option::Language(wxString& language)
 {
     m_language = language;
     Model_Setting::instance().Set(LANGUAGE_PARAMETER, language);
 }
 
-wxString mmOptions::Language(bool get_db)
+wxString Option::Language(bool get_db)
 {
     if (get_db)
     {
@@ -76,46 +76,46 @@ wxString mmOptions::Language(bool get_db)
     return m_language;
 }
 
-void mmOptions::UserName(const wxString& username)
+void Option::UserName(const wxString& username)
 {
     m_userNameString = username;
     Model_Infotable::instance().Set("USERNAME", username);
 }
 
-wxString mmOptions::UserName()
+wxString Option::UserName()
 {
     return m_userNameString;
 }
 
-wxString mmOptions::FinancialYearStartDay()
+wxString Option::FinancialYearStartDay()
 {
     return m_financialYearStartDayString;
 }
 
-void mmOptions::FinancialYearStartDay(const wxString& setting)
+void Option::FinancialYearStartDay(const wxString& setting)
 {
     m_financialYearStartDayString = setting;
     Model_Infotable::instance().Set("FINANCIAL_YEAR_START_DAY", setting);
 }
 
-wxString mmOptions::FinancialYearStartMonth()
+wxString Option::FinancialYearStartMonth()
 {
     return m_financialYearStartMonthString;
 }
 
-void mmOptions::FinancialYearStartMonth(const wxString& setting)
+void Option::FinancialYearStartMonth(const wxString& setting)
 {
     m_financialYearStartMonthString = setting;
     Model_Infotable::instance().Set("FINANCIAL_YEAR_START_MONTH", setting);
 }
 
-void mmOptions::DatabaseUpdated(bool value)
+void Option::DatabaseUpdated(bool value)
 {
     m_databaseUpdated = value;
 
 }
 
-bool mmOptions::DatabaseUpdated()
+bool Option::DatabaseUpdated()
 {
     return m_databaseUpdated;
 }

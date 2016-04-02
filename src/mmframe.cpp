@@ -366,8 +366,10 @@ void mmGUIFrame::cleanup()
     cleanupHomePanel(false);
     ShutdownDatabase();
     /// Update the database according to user requirements
-    if (mmOptions::instance().DatabaseUpdated() && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
+    if (Option::instance().DatabaseUpdated() && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
+    {
         dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::CLOSE, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
+    }
 }
 
 void mmGUIFrame::ShutdownDatabase()
@@ -1662,11 +1664,11 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
     {
         ShutdownDatabase();
         /// Backup the database according to user requirements
-        if (mmOptions::instance().DatabaseUpdated() &&
+        if (Option::instance().DatabaseUpdated() &&
             Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
         {
             dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::CLOSE, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
-            mmOptions::instance().DatabaseUpdated(false);
+            Option::instance().DatabaseUpdated(false);
         }
     }
 
@@ -1798,7 +1800,7 @@ void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
     {
         m_filename = fileName;
         /* Set InfoTable Options into memory */
-        mmOptions::instance().LoadInfotableOptions();
+        Option::instance().LoadInfotableOptions();
     }
     else
     {

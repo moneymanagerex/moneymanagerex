@@ -57,8 +57,8 @@ void mmReportBudget::SetBudgetMonth(wxString budgetYearStr, wxDateTime& startDat
 
 void mmReportBudget::GetFinancialYearValues(int& day, int& month)
 {
-    day = wxAtoi(mmOptions::instance().FinancialYearStartDay());
-    month = wxAtoi(mmOptions::instance().FinancialYearStartMonth()) - 1;
+    day = wxAtoi(Option::instance().FinancialYearStartDay());
+    month = wxAtoi(Option::instance().FinancialYearStartMonth()) - 1;
     if ( (day > 28) && (month == wxDateTime::Feb) )
         day = 28;
     else if ( ((day > 30) && (month == wxDateTime::Sep)) ||

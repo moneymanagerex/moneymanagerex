@@ -163,10 +163,10 @@ const wxString mmDialogs::mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool
 //TODO: Determine how this functions using class
         //wxString lang = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
 
-        wxString lang = mmOptions::instance().Language(true);
+        wxString lang = Option::instance().Language(true);
         if (!lang.empty() && locale.AddCatalog(lang) && locale.IsLoaded(lang))
         {
-            mmOptions::instance().Language(lang);
+            Option::instance().Language(lang);
             return lang;
         }
     }
@@ -176,7 +176,7 @@ const wxString mmDialogs::mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool
     {
         bool ok = locale.AddCatalog(lang) && locale.IsLoaded(lang);
         if (!ok)  lang.clear(); // bad .mo file
-        mmOptions::instance().Language(lang);
+        Option::instance().Language(lang);
        // Model_Setting::instance().Set(LANGUAGE_PARAMETER, lang);
     }
 

@@ -278,7 +278,7 @@ void mmUnivCSVDialog::CreateControls()
     flex_sizer->Add(itemStaticText66, g_flags);
     itemStaticText66->SetFont(staticBoxFontSetting);
 
-    date_format_ = mmOptions::instance().DateFormat();
+    date_format_ = Option::instance().DateFormat();
     choiceDateFormat_ = new wxChoice(itemPanel7, ID_DATE_FORMAT);
     initDateMask();
     flex_sizer->Add(choiceDateFormat_, g_flags);
