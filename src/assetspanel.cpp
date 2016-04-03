@@ -400,7 +400,7 @@ void mmAssetsPanel::CreateControls()
 
     m_listCtrlAssets = new mmAssetsListCtrl(this, itemSplitterWindow10, wxID_ANY);
 
-    int x = mmIniOptions::instance().ico_size_;
+    int x = Option::instance().IconSize();
     m_imageList.reset(new wxImageList(x, x));
     m_imageList->Add(mmBitmap(png::PROPERTY));
     m_imageList->Add(mmBitmap(png::CAR));

@@ -148,7 +148,7 @@ void mmNewAcctDialog::fillControls()
     double initBal = m_account->INITIALBAL;
     m_itemInitValue->SetValue(Model_Currency::toString(initBal, Model_Account::currency(m_account)));
 
-    int selectedImage = mmIniOptions::instance().account_image_id(m_account->ACCOUNTID);
+    int selectedImage = Option::instance().AccountImageId(m_account->ACCOUNTID);
     m_bitmapButtons->SetBitmap(m_imageList->GetBitmap(selectedImage));
 
     m_accessInfo = m_account->ACCESSINFO;
@@ -391,7 +391,7 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
 
     wxMenu* mainMenu = new wxMenu;
     wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + acc_img::MONEY_DOLLAR_XPM - 1, _("Default Image"));
-    menuItem->SetBitmap(m_imageList->GetBitmap(mmIniOptions::instance().account_image_id(this->m_account->ACCOUNTID, true)));
+    menuItem->SetBitmap(m_imageList->GetBitmap(Option::instance().AccountImageId(this->m_account->ACCOUNTID, true)));
     mainMenu->Append(menuItem);
 
     for (int i = img::LAST_NAVTREE_PNG; i < acc_img::MAX_XPM; ++i)
@@ -409,7 +409,7 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
 void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
 {
     int selectedImage = (event.GetId() - wxID_HIGHEST) - img::LAST_NAVTREE_PNG + 1;
-    int image_id = mmIniOptions::instance().account_image_id(this->m_account->ACCOUNTID, true);
+    int image_id = Option::instance().AccountImageId(this->m_account->ACCOUNTID, true);
 
     Model_Infotable::instance().Set(wxString::Format("ACC_IMAGE_ID_%i", this->m_account->ACCOUNTID)
         , selectedImage);

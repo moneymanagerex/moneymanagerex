@@ -555,11 +555,11 @@ void mmHomePagePanel::getTemplate()
 
 void mmHomePagePanel::getData()
 {
-    m_frames["HTMLSCALE"] = wxString::Format("%d", mmIniOptions::instance().html_font_size_);
+    m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().HtmlFontSize());
 
     vAccts_ = Model_Setting::instance().ViewAccounts();
     date_range_->destroy();
-    if (mmIniOptions::instance().ignoreFutureTransactions_)
+    if (Option::instance().IgnoreFutureTransactions())
         date_range_ = new mmCurrentMonthToDate;
     else
         date_range_ = new mmCurrentMonth;
@@ -623,7 +623,7 @@ void mmHomePagePanel::fillData()
 
 void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> > &accountStats)
 {
-    bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
+    bool ignoreFuture = Option::instance().IgnoreFutureTransactions();
 
     const auto &transactions = Model_Checking::instance().all();
     this->total_transactions_ = transactions.size();
@@ -650,7 +650,7 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
     , mmDateRange* date_range)const
 {
     //Initialization
-    bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
+    bool ignoreFuture = Option::instance().IgnoreFutureTransactions();
     wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
 
     //Calculations
