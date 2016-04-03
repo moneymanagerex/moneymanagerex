@@ -98,15 +98,15 @@ void relocateCategoryDialog::CreateControls()
     wxBoxSizer* boxSizer = new wxBoxSizer(wxVERTICAL);
     wxFlexGridSizer* request_sizer = new wxFlexGridSizer(0, 2, 0, 0);
 
-    topSizer->Add(boxSizer, g_flags);
+    topSizer->Add(boxSizer, g_flagsV);
 
-    boxSizer->Add(headerText, g_flags);
+    boxSizer->Add(headerText, g_flagsV);
     boxSizer->Add(lineTop, g_flagsExpand);
 
-    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Relocate:")), g_flags);
-    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("to:")), g_flags);
-    request_sizer->Add(m_buttonSource, g_flags);
-    request_sizer->Add(m_buttonDest, g_flags);
+    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Relocate:")), g_flagsH);
+    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("to:")), g_flagsH);
+    request_sizer->Add(m_buttonSource, g_flagsH);
+    request_sizer->Add(m_buttonDest, g_flagsH);
     boxSizer->Add(request_sizer);
 
     boxSizer->Add(lineBottom, g_flagsExpand);
@@ -115,9 +115,9 @@ void relocateCategoryDialog::CreateControls()
     wxButton* cancelButton = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     cancelButton-> SetFocus();
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    buttonBoxSizer->Add(okButton, g_flags);
-    buttonBoxSizer->Add(cancelButton, g_flags);
-    boxSizer->Add(buttonBoxSizer, g_flags);
+    buttonBoxSizer->Add(okButton, g_flagsH);
+    buttonBoxSizer->Add(cancelButton, g_flagsH);
+    boxSizer->Add(buttonBoxSizer, g_flagsV);
 
     this->Fit();
 }

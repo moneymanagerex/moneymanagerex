@@ -166,12 +166,12 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer->AddGrowableCol(1, 1);
     itemBoxSizer3->Add(grid_sizer, g_flagsExpand);
 
-    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Account Name:")), g_flags);
+    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Account Name:")), g_flagsH);
 
     m_textAccountName = new wxTextCtrl(this, wxID_ANY, "");
     grid_sizer->Add(m_textAccountName, g_flagsExpand);
 
-    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Account Type:")), g_flags);
+    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Account Type:")), g_flagsH);
 
     wxChoice* itemChoice61 = new wxChoice(this, ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
     for (const auto& type : Model_Account::all_type())
@@ -182,7 +182,7 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer->Add(itemChoice61, g_flagsExpand);
     itemChoice61->SetSelection(0);
 
-    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Account Status:")), g_flags);
+    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Account Status:")), g_flagsH);
 
     wxChoice* itemChoice6 = new wxChoice(this, ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
     for (const auto& status : Model_Account::all_status())
@@ -191,14 +191,14 @@ void mmNewAcctDialog::CreateControls()
     itemChoice6->SetSelection(0);
 
     grid_sizer->Add(new wxStaticText(this, wxID_STATIC
-        , wxString::Format(_("Initial Balance: %s"), "")), g_flags);
+        , wxString::Format(_("Initial Balance: %s"), "")), g_flagsH);
 
     m_itemInitValue = new mmTextCtrl(this
         , ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE
         , "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER, mmCalcValidator());
     grid_sizer->Add(m_itemInitValue, g_flagsExpand);
 
-    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Currency:")), g_flags);
+    grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Currency:")), g_flagsH);
 
     wxString currName = _("Select Currency");
     Model_Currency::Data* base_currency = Model_Currency::GetBaseCurrency();
@@ -214,7 +214,7 @@ void mmNewAcctDialog::CreateControls()
         , _("Favorite Account"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemCheckBox10->SetValue(TRUE);
     grid_sizer->AddSpacer(1);
-    grid_sizer->Add(itemCheckBox10, g_flags);
+    grid_sizer->Add(itemCheckBox10, g_flagsH);
 
     // Notes  ---------------------------------------------
 
@@ -240,31 +240,31 @@ void mmNewAcctDialog::CreateControls()
     others_sizer->Add(grid_sizer2, g_flagsExpand);
 
     grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC
-        , (Model_Account::type(m_account) == Model_Account::CREDIT_CARD ? _("Card Number:") : _("Account Number:"))), g_flags);
+        , (Model_Account::type(m_account) == Model_Account::CREDIT_CARD ? _("Card Number:") : _("Account Number:"))), g_flagsH);
 
     wxTextCtrl* itemTextCtrl6 = new wxTextCtrl(others_tab
         , ID_ACCTNUMBER, "", wxDefaultPosition, wxDefaultSize);
     grid_sizer2->Add(itemTextCtrl6, g_flagsExpand);
 
-    grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC, _("Held At:")), g_flags);
+    grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC, _("Held At:")), g_flagsH);
 
     wxTextCtrl* itemTextCtrl8 = new wxTextCtrl(others_tab
         , ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT, "");
     grid_sizer2->Add(itemTextCtrl8, g_flagsExpand);
 
-    grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC, _("Website:")), g_flags);
+    grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC, _("Website:")), g_flagsH);
     wxTextCtrl* itemTextCtrl10 = new wxTextCtrl(others_tab
         , ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE, "");
     grid_sizer2->Add(itemTextCtrl10, g_flagsExpand);
 
     grid_sizer2->Add(new wxStaticText(others_tab
-        , wxID_STATIC, _("Contact:")), g_flags);
+        , wxID_STATIC, _("Contact:")), g_flagsH);
     wxTextCtrl* itemTextCtrl12 = new wxTextCtrl(others_tab
         , ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT, "");
     grid_sizer2->Add(itemTextCtrl12, g_flagsExpand);
 
     grid_sizer2->Add(new wxStaticText(others_tab
-        , wxID_STATIC, _("Access Info:")), g_flags);
+        , wxID_STATIC, _("Access Info:")), g_flagsH);
     wxTextCtrl* itemTextCtrl14 = new wxTextCtrl(others_tab
         , ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO, m_accessInfo);
     grid_sizer2->Add(itemTextCtrl14, g_flagsExpand);
@@ -273,7 +273,7 @@ void mmNewAcctDialog::CreateControls()
 
     //Buttons
     wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemBoxSizer3->Add(itemPanel27, g_flags);
+    itemBoxSizer3->Add(itemPanel27, g_flagsV);
 
     wxBoxSizer* itemBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel27->SetSizer(itemBoxSizer28);
@@ -282,20 +282,20 @@ void mmNewAcctDialog::CreateControls()
         , wxID_STATIC, wxNullBitmap);
     m_bitmapButtons->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmNewAcctDialog::OnImageButton), nullptr, this);
-    itemBoxSizer28->Add(m_bitmapButtons, g_flags);
+    itemBoxSizer28->Add(m_bitmapButtons, g_flagsH);
 
     bAttachments_ = new wxBitmapButton(itemPanel27, wxID_FILE
         , mmBitmap(png::CLIP));
     bAttachments_->SetToolTip(_("Organize attachments of this account"));
-    itemBoxSizer28->Add(bAttachments_, g_flags);
+    itemBoxSizer28->Add(bAttachments_, g_flagsH);
 
     itemBoxSizer28->AddSpacer(20);
 
     wxButton* itemButton29 = new wxButton(itemPanel27, wxID_OK, _("&OK "));
-    itemBoxSizer28->Add(itemButton29, g_flags);
+    itemBoxSizer28->Add(itemButton29, g_flagsH);
 
     wxButton* itemButton30 = new wxButton(itemPanel27, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    itemBoxSizer28->Add(itemButton30, g_flags);
+    itemBoxSizer28->Add(itemButton30, g_flagsH);
 
     if (true)
     {

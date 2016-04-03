@@ -115,64 +115,64 @@ void mmCustomFieldEditDialog::CreateControls()
 
     wxStaticBox* itemStaticBoxSizer4Static = new wxStaticBox(this, wxID_ANY, _("Custom Field Details"));
     wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(itemStaticBoxSizer4Static, wxVERTICAL);
-    itemBoxSizer3->Add(itemStaticBoxSizer4, g_flags);
+    itemBoxSizer3->Add(itemStaticBoxSizer4, g_flagsV);
 
     wxPanel* itemPanel5 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemStaticBoxSizer4->Add(itemPanel5, g_flags);
+    itemStaticBoxSizer4->Add(itemPanel5, g_flagsV);
 
     wxFlexGridSizer* itemFlexGridSizer6 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Description")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Description")), g_flagsH);
     m_itemDescription = new wxTextCtrl(itemPanel5, wxID_ANY, wxGetEmptyString());
     m_itemDescription->SetToolTip(_("Enter the name of the custom field"));
     itemFlexGridSizer6->Add(m_itemDescription, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Field Type")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Field Type")), g_flagsH);
     m_itemType = new wxChoice(itemPanel5, wxID_HIGHEST, wxDefaultPosition, wxSize(150, -1));
     for (const auto& type : Model_CustomField::all_type())
         m_itemType->Append(wxGetTranslation(type), new wxStringClientData(type));
     m_itemType->SetToolTip(_("Select type of custom field"));
     itemFlexGridSizer6->Add(m_itemType, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("ToolTip")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("ToolTip")), g_flagsH);
     m_itemTooltip = new wxTextCtrl(itemPanel5, wxID_ANY, "");
     m_itemTooltip->SetToolTip(_("Enter the tooltip that will be shown"));
     itemFlexGridSizer6->Add(m_itemTooltip, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("RegEx")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("RegEx")), g_flagsH);
     m_itemRegEx = new wxTextCtrl(itemPanel5, wxID_ANY, "");
     m_itemRegEx->SetToolTip(_("Enter the RegEx to validate field"));
     itemFlexGridSizer6->Add(m_itemRegEx, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Autocomplete")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Autocomplete")), g_flagsH);
     m_itemAutocomplete = new wxCheckBox(itemPanel5, wxID_STATIC, "", wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_itemAutocomplete->SetValue(FALSE);
     m_itemAutocomplete->SetToolTip(_("Enables autocomplete on custom field"));
     itemFlexGridSizer6->Add(m_itemAutocomplete, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Default")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Default")), g_flagsH);
     m_itemDefault = new wxTextCtrl(itemPanel5, wxID_ANY, "");
     m_itemDefault->SetToolTip(_("Enter the default for this field\n"
         "For date/time insert 'Now' to make current date/time as default"));
     itemFlexGridSizer6->Add(m_itemDefault, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Choiches")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Choiches")), g_flagsH);
     m_itemChoiches = new wxTextCtrl(itemPanel5, wxID_ANY, "");
     m_itemChoiches->SetToolTip(_("Enter the choiches for this field separated with a semi-colon"));
     itemFlexGridSizer6->Add(m_itemChoiches, g_flagsExpand);
 
     wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemBoxSizer3->Add(itemPanel27, wxSizerFlags(g_flags).Center());
+    itemBoxSizer3->Add(itemPanel27, wxSizerFlags(g_flagsV).Center());
 
     wxBoxSizer* itemBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel27->SetSizer(itemBoxSizer28);
 
     wxButton* itemButton29 = new wxButton(itemPanel27, wxID_OK, _("&OK "));
-    itemBoxSizer28->Add(itemButton29, g_flags);
+    itemBoxSizer28->Add(itemButton29, g_flagsH);
 
     wxButton* itemButton30 = new wxButton(itemPanel27, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    itemBoxSizer28->Add(itemButton30, g_flags);
+    itemBoxSizer28->Add(itemButton30, g_flagsH);
     itemButton30->SetFocus();
 }
 

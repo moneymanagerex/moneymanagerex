@@ -438,7 +438,7 @@ void mmStocksPanel::CreateControls()
     /* ---------------------- */
     wxPanel* headerPanel = new wxPanel(this, wxID_ANY
         , wxDefaultPosition , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-    itemBoxSizer9->Add(headerPanel, 0, wxALIGN_CENTER_VERTICAL);
+    itemBoxSizer9->Add(headerPanel, 0, wxALIGN_LEFT);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
@@ -452,7 +452,7 @@ void mmStocksPanel::CreateControls()
     itemBoxSizerHHeader->Add(header_text_, 1, wxALIGN_CENTER_VERTICAL | wxALL, 1);
 
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader, 1, wxEXPAND, 1);
-    itemBoxSizerVHeader->Add(header_total_, 1, wxALIGN_CENTER_VERTICAL | wxALL, 1);
+    itemBoxSizerVHeader->Add(header_total_, 1, wxALL, 1);
 
     /* ---------------------- */
     wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow(this
@@ -473,7 +473,7 @@ void mmStocksPanel::CreateControls()
     BottomPanel->SetSizer(BoxSizerVBottom);
 
     wxBoxSizer* BoxSizerHBottom = new wxBoxSizer(wxHORIZONTAL);
-    BoxSizerVBottom->Add(BoxSizerHBottom, g_flagsBorder1);
+    BoxSizerVBottom->Add(BoxSizerHBottom, g_flagsBorder1V);
 
     wxButton* itemButton6 = new wxButton(BottomPanel, wxID_NEW, _("&New "));
     itemButton6->SetToolTip(_("New Stock Investment"));

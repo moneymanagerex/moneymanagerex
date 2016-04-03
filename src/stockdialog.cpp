@@ -152,103 +152,103 @@ void mmStockDialog::CreateControls()
     this->SetSizer(mainBoxSizer);
 
     wxBoxSizer* leftBoxSizer = new wxBoxSizer(wxVERTICAL);
-    mainBoxSizer->Add(leftBoxSizer, g_flags);
+    mainBoxSizer->Add(leftBoxSizer, g_flagsH);
 
     wxStaticBox* itemStaticBoxSizer4Static = new wxStaticBox(this, wxID_ANY, _("Stock Investment Details"));
     wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(itemStaticBoxSizer4Static, wxVERTICAL);
     leftBoxSizer->Add(itemStaticBoxSizer4, g_flagsExpand);
 
     wxPanel* itemPanel5 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemStaticBoxSizer4->Add(itemPanel5, g_flags);
+    itemStaticBoxSizer4->Add(itemPanel5, g_flagsV);
 
     wxFlexGridSizer* itemFlexGridSizer6 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Stock Name")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Stock Name")), g_flagsH);
 
     stockName_ = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCKNAME, "");
     itemFlexGridSizer6->Add(stockName_, g_flagsExpand);
     stockName_->SetToolTip(_("Enter the stock company name"));
 
     //Date
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Date")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Date")), g_flagsH);
 
     dpc_ = new wxDatePickerCtrl(itemPanel5, ID_DPC_STOCK_PDATE
         , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-    itemFlexGridSizer6->Add(dpc_, g_flags);
+    itemFlexGridSizer6->Add(dpc_, g_flagsH);
     dpc_->SetToolTip(_("Specify the purchase date of the stock investment"));
 
     //Symbol
     wxStaticText* symbol = new wxStaticText(itemPanel5, wxID_STATIC, _("Symbol"));
-    itemFlexGridSizer6->Add(symbol, g_flags);
+    itemFlexGridSizer6->Add(symbol, g_flagsH);
     symbol->SetFont(this->GetFont().Bold());
 
     stockSymbol_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL
         , "", wxDefaultPosition, wxSize(150, -1), 0);
-    itemFlexGridSizer6->Add(stockSymbol_, g_flags);
+    itemFlexGridSizer6->Add(stockSymbol_, g_flagsH);
     stockSymbol_->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
     //Number of Shares
     wxStaticText* number = new wxStaticText(itemPanel5, wxID_STATIC, _("Number of Shares"));
-    itemFlexGridSizer6->Add(number, g_flags);
+    itemFlexGridSizer6->Add(number, g_flagsH);
     number->SetFont(this->GetFont().Bold());
     numShares_ = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_NUMBER_SHARES, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemFlexGridSizer6->Add(numShares_, g_flags);
+    itemFlexGridSizer6->Add(numShares_, g_flagsH);
     numShares_->SetToolTip(_("Enter number of shares held"));
     numShares_->Connect(ID_TEXTCTRL_NUMBER_SHARES, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
 
     //Purchase Price
     wxStaticText* pprice = new wxStaticText(itemPanel5, wxID_STATIC, _("Purchase Price"));
-    itemFlexGridSizer6->Add(pprice, g_flags);
+    itemFlexGridSizer6->Add(pprice, g_flagsH);
     pprice->SetFont(this->GetFont().Bold());
     purchasePrice_ = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_PP, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemFlexGridSizer6->Add(purchasePrice_, g_flags);
+    itemFlexGridSizer6->Add(purchasePrice_, g_flagsH);
     purchasePrice_->SetToolTip(_("Enter purchase price for each stock"));
     purchasePrice_->Connect(ID_TEXTCTRL_STOCK_PP, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
 
     //
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Current Price")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Current Price")), g_flagsH);
     currentPrice_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_CP, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemFlexGridSizer6->Add(currentPrice_, g_flags);
+    itemFlexGridSizer6->Add(currentPrice_, g_flagsH);
     currentPrice_->SetToolTip(_("Enter current stock price"));
     currentPrice_->Connect(ID_TEXTCTRL_STOCK_CP, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
 
     //
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Price Date")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Price Date")), g_flagsH);
     priceDate_ = new wxDatePickerCtrl(itemPanel5, ID_DPC_CP_PDATE
         , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-    itemFlexGridSizer6->Add(priceDate_, g_flags);
+    itemFlexGridSizer6->Add(priceDate_, g_flagsH);
     priceDate_->SetToolTip(_("Specify the stock price date"));
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Commission")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Commission")), g_flagsH);
     commission_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_COMMISSION, "0"
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemFlexGridSizer6->Add(commission_, g_flags);
+    itemFlexGridSizer6->Add(commission_, g_flagsH);
     commission_->SetToolTip(_("Enter any commission paid"));
     commission_->Connect(ID_TEXTCTRL_STOCK_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
 
     //
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Value")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Value")), g_flagsH);
     valueInvestment_ = new wxStaticText(itemPanel5, ID_STATIC_STOCK_VALUE, "--");
-    itemFlexGridSizer6->Add(valueInvestment_, g_flags);
+    itemFlexGridSizer6->Add(valueInvestment_, g_flagsH);
 
     //
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Notes")), g_flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Notes")), g_flagsH);
     wxBoxSizer* iconsSizer = new wxBoxSizer(wxHORIZONTAL);
-    itemFlexGridSizer6->Add(iconsSizer, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+    itemFlexGridSizer6->Add(iconsSizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     bAttachments_ = new wxBitmapButton(itemPanel5, wxID_FILE, mmBitmap(png::CLIP));
     bAttachments_->SetToolTip(_("Organize attachments of this stock"));
     wxBitmapButton* itemButton31 = new wxBitmapButton(itemPanel5, wxID_INDEX, mmBitmap(png::WEB));
     itemButton31->SetToolTip(_("Display the web page for the specified Stock symbol"));
-    iconsSizer->Add(bAttachments_, g_flags);
-    iconsSizer->Add(itemButton31, g_flags);
+    iconsSizer->Add(bAttachments_, g_flagsH);
+    iconsSizer->Add(itemButton31, g_flagsH);
 
     notes_ = new mmTextCtrl(this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 90), wxTE_MULTILINE);
     itemStaticBoxSizer4->Add(notes_, g_flagsExpand);
@@ -293,7 +293,7 @@ void mmStockDialog::CreateControls()
 
     //History Buttons
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    historyStaticBoxSizer->Add(buttons_panel, wxSizerFlags(g_flags).Centre());
+    historyStaticBoxSizer->Add(buttons_panel, wxSizerFlags(g_flagsV).Centre());
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
@@ -305,22 +305,22 @@ void mmStockDialog::CreateControls()
     buttonDel->SetToolTip(_("Delete selected Stock Price"));
     wxButton* buttonAdd = new wxButton(buttons_panel, wxID_ADD, _("&Add "));
     buttonAdd->SetToolTip(_("Add Stock Price to history"));
-    buttons_sizer->Add(buttonDownload, g_flags);
-    buttons_sizer->Add(buttonImport, g_flags);
-    buttons_sizer->Add(buttonDel, g_flags);
-    buttons_sizer->Add(buttonAdd, g_flags);
+    buttons_sizer->Add(buttonDownload, g_flagsH);
+    buttons_sizer->Add(buttonImport, g_flagsH);
+    buttons_sizer->Add(buttonDel, g_flagsH);
+    buttons_sizer->Add(buttonAdd, g_flagsH);
 
     //OK & Cancel buttons
     wxStdDialogButtonSizer*  buttonsOK_CANCEL_sizer = new wxStdDialogButtonSizer;
-    leftBoxSizer->Add(buttonsOK_CANCEL_sizer, wxSizerFlags(g_flags).Centre());
+    leftBoxSizer->Add(buttonsOK_CANCEL_sizer, wxSizerFlags(g_flagsV).Centre());
 
     wxButton* itemButtonOK = new wxButton(this, wxID_SAVE, _("&Save "));
     wxButton* itemButton30 = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CloseLabel));
 
     if (edit_)
         itemButton30->SetFocus();
-    buttonsOK_CANCEL_sizer->Add(itemButtonOK, g_flags);
-    buttonsOK_CANCEL_sizer->Add(itemButton30, g_flags);
+    buttonsOK_CANCEL_sizer->Add(itemButtonOK, g_flagsH);
+    buttonsOK_CANCEL_sizer->Add(itemButton30, g_flagsH);
 }
 
 void mmStockDialog::OnQuit(wxCloseEvent& /*event*/)

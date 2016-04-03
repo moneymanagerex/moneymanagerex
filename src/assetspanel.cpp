@@ -370,20 +370,20 @@ void mmAssetsPanel::CreateControls()
 
     wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
         , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-    itemBoxSizer9->Add(headerPanel, g_flagsBorder1);
+    itemBoxSizer9->Add(headerPanel, g_flagsBorder1V);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
     wxStaticText* itemStaticText9 = new wxStaticText( headerPanel, wxID_STATIC, _("Assets"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1);
+    itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1V);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
     wxStaticBitmap* itemStaticBitmap3 = new wxStaticBitmap(headerPanel, wxID_STATIC, mmBitmap(png::RIGHTARROW));
-    itemBoxSizerHHeader2->Add(itemStaticBitmap3, g_flagsBorder1);
+    itemBoxSizerHHeader2->Add(itemStaticBitmap3, g_flagsBorder1H);
     //itemStaticBitmap3->Connect(ID_PANEL_CHECKING_STATIC_BITMAP_VIEW, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnFilterResetToViewAll), nullptr, this);
     itemStaticBitmap3->Connect(wxID_STATIC, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnMouseLeftDown), nullptr, this);
 
@@ -391,7 +391,7 @@ void mmAssetsPanel::CreateControls()
     itemBoxSizerHHeader2->Add(itemStaticTextMainFilter_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 1);
 
     header_text_ = new wxStaticText(headerPanel, wxID_STATIC, "");
-    itemBoxSizerVHeader->Add(header_text_, g_flagsBorder1);
+    itemBoxSizerVHeader->Add(header_text_, g_flagsBorder1V);
 
     /* ---------------------- */
 
@@ -426,7 +426,7 @@ void mmAssetsPanel::CreateControls()
     assets_panel->SetSizer(itemBoxSizer4);
 
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1);
+    itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1V);
 
     wxButton* itemButton6 = new wxButton( assets_panel, wxID_NEW, _("&New "));
     itemButton6->SetToolTip(_("New Asset"));

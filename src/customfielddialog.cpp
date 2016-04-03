@@ -119,7 +119,7 @@ void mmCustomFieldDialog::CreateFillControls()
 
         int controlID = ID_CUSTOMFIELD + fieldData->FIELDATADID;
         wxStaticText* Description = new wxStaticText(this, wxID_STATIC, field.DESCRIPTION);
-        itemFlexGridSizer3->Add(Description, g_flags);
+        itemFlexGridSizer3->Add(Description, g_flagsH);
 
         switch (Model_CustomField::type(field))
         {
@@ -206,17 +206,17 @@ void mmCustomFieldDialog::CreateFillControls()
     }
 
     wxBoxSizer* itemBoxSizer22 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer2->Add(itemBoxSizer22, wxSizerFlags(g_flags).Centre());
+    itemBoxSizer2->Add(itemBoxSizer22, wxSizerFlags(g_flagsV).Centre());
 
     wxButton* itemButtonClose = new wxButton(this, wxID_CANCEL, _("Close"));
-    itemBoxSizer22->Add(itemButtonClose, g_flags);
+    itemBoxSizer22->Add(itemButtonClose, g_flagsH);
     itemButtonClose->SetToolTip(_("Close custom field window"));
 
     wxBitmapButton* itemButtonAddEdit = new wxBitmapButton(this, wxID_EDIT
         , mmBitmap(png::OPTIONS), wxDefaultPosition
         , wxSize(itemButtonClose->GetSize().GetY(), itemButtonClose->GetSize().GetY()));
     itemButtonAddEdit->SetToolTip(_("Add, edit and delete custom fields"));
-    itemBoxSizer22->Add(itemButtonAddEdit, g_flags);
+    itemBoxSizer22->Add(itemButtonAddEdit, g_flagsH);
 }
 
 void mmCustomFieldDialog::OnAddEdit(wxCommandEvent& /*event*/)

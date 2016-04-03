@@ -135,8 +135,8 @@ void mmQIFImportDialog::CreateControls()
     file_name_ctrl_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString
         , wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
 
-    flex_sizer->Add(file_name_label, g_flags);
-    flex_sizer->Add(button_search_, g_flags);
+    flex_sizer->Add(file_name_label, g_flagsH);
+    flex_sizer->Add(button_search_, g_flagsH);
     main_sizer->Add(file_name_ctrl_, 0, wxALL|wxGROW, 5);
     left_sizer->Add(flex_sizer, g_flagsExpand);
 
@@ -153,8 +153,8 @@ void mmQIFImportDialog::CreateControls()
     choiceDateFormat_->Connect(wxID_ANY, wxEVT_COMMAND_COMBOBOX_SELECTED
         , wxCommandEventHandler(mmQIFImportDialog::OnDateMaskChange), nullptr, this);
 
-    flex_sizer->Add(dateFormat, g_flags);
-    flex_sizer->Add(choiceDateFormat_, g_flags);
+    flex_sizer->Add(dateFormat, g_flagsH);
+    flex_sizer->Add(choiceDateFormat_, g_flagsH);
 
     //Account
     accountCheckBox_ = new wxCheckBox(this, wxID_FILE5, _("Account")
@@ -167,8 +167,8 @@ void mmQIFImportDialog::CreateControls()
     accountDropDown_->Enable(false);
     accountDropDown_->SetSelection(0);
 
-    flex_sizer->Add(accountCheckBox_, g_flags);
-    flex_sizer->Add(accountDropDown_, g_flags);
+    flex_sizer->Add(accountCheckBox_, g_flagsH);
+    flex_sizer->Add(accountDropDown_, g_flagsH);
     
     //Use account number instead of account name :
     accountNumberCheckBox_ = new wxCheckBox(this, wxID_FILE6, _("Use account number instead of account name")
@@ -191,8 +191,8 @@ void mmQIFImportDialog::CreateControls()
     fromDateCtrl_ = new wxDatePickerCtrl(static_box, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN);
     fromDateCtrl_->Enable(false);
-    flex_sizer2->Add(dateFromCheckBox_, g_flags);
-    flex_sizer2->Add(fromDateCtrl_, g_flags);
+    flex_sizer2->Add(dateFromCheckBox_, g_flagsH);
+    flex_sizer2->Add(fromDateCtrl_, g_flagsH);
 
     // To Date
     dateToCheckBox_ = new wxCheckBox(static_box, wxID_FILE9, _("To Date")
@@ -200,8 +200,8 @@ void mmQIFImportDialog::CreateControls()
     toDateCtrl_ = new wxDatePickerCtrl(static_box, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN);
     toDateCtrl_->Enable(false);
-    flex_sizer2->Add(dateToCheckBox_, g_flags);
-    flex_sizer2->Add(toDateCtrl_, g_flags);
+    flex_sizer2->Add(dateToCheckBox_, g_flagsH);
+    flex_sizer2->Add(toDateCtrl_, g_flagsH);
 
     //Data viewer ----------------------------------------------
     wxNotebook* qif_notebook = new wxNotebook(this
@@ -273,19 +273,19 @@ void mmQIFImportDialog::CreateControls()
     //Compose all sizers togethe
     wxBoxSizer* top_sizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* inTop_sizer = new wxBoxSizer(wxVERTICAL);
-    inTop_sizer->Add(top_sizer, g_flags);
-    inTop_sizer->Add(accountNumberCheckBox_, g_flags);
-    inTop_sizer->Add(payeeIsNotesCheckBox_, g_flags);
-    main_sizer->Add(inTop_sizer, g_flags);
-    top_sizer->Add(left_sizer, g_flags);
-    top_sizer->Add(filter_sizer, g_flags);      
+    inTop_sizer->Add(top_sizer, g_flagsV);
+    inTop_sizer->Add(accountNumberCheckBox_, g_flagsV);
+    inTop_sizer->Add(payeeIsNotesCheckBox_, g_flagsV);
+    main_sizer->Add(inTop_sizer, g_flagsV);
+    top_sizer->Add(left_sizer, g_flagsH);
+    top_sizer->Add(filter_sizer, g_flagsH);      
     main_sizer->Add(qif_notebook, g_flagsExpand);
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
     ***********************************************************************************************/
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    main_sizer->Add(buttons_panel, wxSizerFlags(g_flags).Center());
+    main_sizer->Add(buttons_panel, wxSizerFlags(g_flagsV).Center());
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
@@ -295,8 +295,8 @@ void mmQIFImportDialog::CreateControls()
     btnOK_->Connect(wxID_OK, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFImportDialog::OnOk), nullptr, this);
 
-    buttons_sizer->Add(btnOK_, g_flags);
-    buttons_sizer->Add(itemButtonCancel_, g_flags);
+    buttons_sizer->Add(btnOK_, g_flagsH);
+    buttons_sizer->Add(itemButtonCancel_, g_flagsH);
 
     buttons_sizer->Realize();
     Fit();

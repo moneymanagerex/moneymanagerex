@@ -203,7 +203,7 @@ void mmBudgetingPanel::UpdateBudgetHeading()
 void mmBudgetingPanel::CreateControls()
 {
     wxSizerFlags flags;
-    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxLEFT|wxTOP, 4);
+    flags.Align(wxALIGN_LEFT).Border(wxLEFT|wxTOP, 4);
 
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
