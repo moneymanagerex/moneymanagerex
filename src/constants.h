@@ -22,8 +22,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 class wxString;
 
-extern const wxSizerFlags g_flags;
-extern const wxSizerFlags g_flagsBorder1;
+extern const wxSizerFlags g_flagsH;
+extern const wxSizerFlags g_flagsV;
+extern const wxSizerFlags g_flagsBorder1H;
+extern const wxSizerFlags g_flagsBorder1V;
 extern const wxSizerFlags g_flagsCenter;
 extern const wxSizerFlags g_flagsExpand;
 extern const wxSizerFlags g_flagsExpandBorder1;

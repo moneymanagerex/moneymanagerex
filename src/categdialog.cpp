@@ -192,11 +192,11 @@ void mmCategDialog::CreateControls()
     m_cbShowAll->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED
         , wxCommandEventHandler(mmCategDialog::OnShowHiddenChbClick), nullptr, this);
 
-    itemBoxSizer33->Add(m_buttonRelocate, g_flags);
+    itemBoxSizer33->Add(m_buttonRelocate, g_flagsH);
     itemBoxSizer33->AddSpacer(10);
-    itemBoxSizer33->Add(m_cbExpand, g_flags);
+    itemBoxSizer33->Add(m_cbExpand, g_flagsH);
     itemBoxSizer33->AddSpacer(10);
-    itemBoxSizer33->Add(m_cbShowAll, g_flags);
+    itemBoxSizer33->Add(m_cbShowAll, g_flagsH);
 
 #if defined (__WXGTK__) || defined (__WXMAC__)
     m_treeCtrl = new wxTreeCtrl( this, wxID_ANY,
@@ -209,7 +209,7 @@ void mmCategDialog::CreateControls()
     itemBoxSizer3->Add(m_treeCtrl, g_flagsExpand);
 
     wxPanel* buttonsPanel = new wxPanel(this, wxID_ANY);
-    mainSizerVertical->Add(buttonsPanel, wxSizerFlags(g_flags).Center());
+    mainSizerVertical->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center());
     wxBoxSizer* buttonsSizer = new wxBoxSizer(wxVERTICAL);
     buttonsPanel->SetSizer(buttonsSizer);
 
@@ -221,15 +221,15 @@ void mmCategDialog::CreateControls()
     buttonsSizer->Add(itemBoxSizer66);
 
     m_buttonAdd = new wxButton(buttonsPanel, wxID_ADD, _("&Add "));
-    itemBoxSizer66->Add(m_buttonAdd, g_flags);
+    itemBoxSizer66->Add(m_buttonAdd, g_flagsH);
     m_buttonAdd->SetToolTip(_("Add a new category"));
 
     m_buttonEdit = new wxButton(buttonsPanel, wxID_EDIT, _("&Edit "));
-    itemBoxSizer66->Add(m_buttonEdit, g_flags);
+    itemBoxSizer66->Add(m_buttonEdit, g_flagsH);
     m_buttonEdit->SetToolTip(_("Edit the name of an existing category"));
 
     m_buttonDelete = new wxButton(buttonsPanel, wxID_REMOVE, _("&Delete "));
-    itemBoxSizer66->Add(m_buttonDelete, g_flags);
+    itemBoxSizer66->Add(m_buttonDelete, g_flagsH);
     m_buttonDelete->SetToolTip(_("Delete an existing category. The category cannot be used by existing transactions."));
 
     wxStdDialogButtonSizer* itemBoxSizer9 = new wxStdDialogButtonSizer;
@@ -241,7 +241,7 @@ void mmCategDialog::CreateControls()
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
     wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    itemBoxSizer9->Add(itemCancelButton, g_flags);
+    itemBoxSizer9->Add(itemCancelButton, g_flagsH);
 }
 
 void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)

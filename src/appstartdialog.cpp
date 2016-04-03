@@ -91,7 +91,7 @@ void mmAppStartDialog::CreateControls()
     wxBitmap itemStaticBitmap4Bitmap(money_xpm);
     wxStaticBitmap* itemStaticBitmap4 = new wxStaticBitmap(this, wxID_STATIC, wxBitmap(money_xpm));
 
-    itemBoxSizer3->Add(itemStaticBitmap4, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+    itemBoxSizer3->Add(itemStaticBitmap4, 0, wxALL, 5);
 
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxVERTICAL);
     itemBoxSizer3->Add(itemBoxSizer5, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);

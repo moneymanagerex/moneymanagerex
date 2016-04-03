@@ -111,19 +111,19 @@ void mmAttachmentDialog::CreateControls()
     mainBoxSizer->Add(attachmentListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    mainBoxSizer->Add(buttons_panel, wxSizerFlags(g_flags).Center());
+    mainBoxSizer->Add(buttons_panel, wxSizerFlags(g_flagsV).Center());
     wxStdDialogButtonSizer* buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
     wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    buttons_sizer->Add(buttonOK, g_flags);
-    buttons_sizer->Add(btnCancel, g_flags);
+    buttons_sizer->Add(buttonOK, g_flagsH);
+    buttons_sizer->Add(btnCancel, g_flagsH);
 
     wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel
         , wxID_APPLY, mmBitmap(png::RUN));
     magicButton->SetToolTip(_("Other tools"));
-    buttons_sizer->Add(magicButton, g_flags);
+    buttons_sizer->Add(magicButton, g_flagsH);
 
     Center();
     this->SetSizer(mainBoxSizer);

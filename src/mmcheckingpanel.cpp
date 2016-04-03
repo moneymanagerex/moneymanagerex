@@ -326,7 +326,7 @@ void mmCheckingPanel::CreateControls()
     /* ---------------------- */
     wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
         , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-    itemBoxSizer9->Add(headerPanel, g_flagsBorder1);
+    itemBoxSizer9->Add(headerPanel, g_flagsBorder1V);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
@@ -336,7 +336,7 @@ void mmCheckingPanel::CreateControls()
 
     header_text_ = new wxStaticText( headerPanel, wxID_STATIC, "");
     header_text_->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizerVHeader2->Add(header_text_, g_flagsBorder1);
+    itemBoxSizerVHeader2->Add(header_text_, g_flagsBorder1H);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     wxFlexGridSizer* itemFlexGridSizerHHeader2 = new wxFlexGridSizer(5, 1, 1);
@@ -345,20 +345,20 @@ void mmCheckingPanel::CreateControls()
 
     bitmapMainFilter_ = new wxStaticBitmap(headerPanel, wxID_PAGE_SETUP
         , mmBitmap(png::RIGHTARROW));
-    itemFlexGridSizerHHeader2->Add(bitmapMainFilter_, g_flagsBorder1);
+    itemFlexGridSizerHHeader2->Add(bitmapMainFilter_, g_flagsBorder1H);
     bitmapMainFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnFilterResetToViewAll), nullptr, this);
     bitmapMainFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnMouseLeftDown), nullptr, this);
 
     stxtMainFilter_ = new wxStaticText(headerPanel, wxID_ANY, "", wxDefaultPosition, wxSize(250, -1));
-    itemFlexGridSizerHHeader2->Add(stxtMainFilter_, g_flagsBorder1);
+    itemFlexGridSizerHHeader2->Add(stxtMainFilter_, g_flagsBorder1H);
 
     itemFlexGridSizerHHeader2->AddSpacer(20);
 
     bitmapTransFilter_ = new wxStaticBitmap(headerPanel, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER
         , mmBitmap(png::RIGHTARROW));
-    itemFlexGridSizerHHeader2->Add(bitmapTransFilter_, g_flagsBorder1);
+    itemFlexGridSizerHHeader2->Add(bitmapTransFilter_, g_flagsBorder1H);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), nullptr, this);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
@@ -366,7 +366,7 @@ void mmCheckingPanel::CreateControls()
 
     statTextTransFilter_ = new wxStaticText(headerPanel, wxID_ANY
         , _("Transaction Filter"));
-    itemFlexGridSizerHHeader2->Add(statTextTransFilter_, g_flagsBorder1);
+    itemFlexGridSizerHHeader2->Add(statTextTransFilter_, g_flagsBorder1H);
 
     wxStaticText* itemStaticText12 = new wxStaticText(headerPanel
         , ID_PANEL_CHECKING_STATIC_BALHEADER1, "$", wxDefaultPosition, wxSize(120, -1));
@@ -444,7 +444,7 @@ void mmCheckingPanel::CreateControls()
     itemPanel12->SetSizer(itemBoxSizer4);
 
     wxBoxSizer* itemButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer4->Add(itemButtonsSizer, g_flagsBorder1);
+    itemBoxSizer4->Add(itemButtonsSizer, g_flagsBorder1V);
 
     btnNew_ = new wxButton(itemPanel12, wxID_NEW, _("&New "));
     btnNew_->SetToolTip(_("New Transaction"));

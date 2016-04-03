@@ -212,7 +212,7 @@ void mmBillsDepositsPanel::CreateControls()
     /* ---------------------- */
     wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
         , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-    itemBoxSizer9->Add(headerPanel, g_flagsBorder1);
+    itemBoxSizer9->Add(headerPanel, g_flagsBorder1V);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
@@ -220,13 +220,13 @@ void mmBillsDepositsPanel::CreateControls()
     wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_ANY
         , _("Recurring Transactions"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1);
+    itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1V);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
     bitmapTransFilter_ = new wxStaticBitmap(headerPanel, wxID_ANY, mmBitmap(png::RIGHTARROW));
-    itemBoxSizerHHeader2->Add(bitmapTransFilter_, g_flagsBorder1);
+    itemBoxSizerHHeader2->Add(bitmapTransFilter_, g_flagsBorder1H);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
@@ -266,7 +266,7 @@ void mmBillsDepositsPanel::CreateControls()
     bdPanel->SetSizer(itemBoxSizer4);
 
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1);
+    itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1V);
 
     wxButton* itemButtonNew = new wxButton(bdPanel, wxID_NEW, _("&New "));
     itemButtonNew->SetToolTip(_("New Bills & Deposit Series"));
