@@ -116,20 +116,20 @@ void mmPayeeDialog::CreateControls()
     wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel
         , wxID_APPLY, mmBitmap(png::RUN));
     magicButton->SetToolTip(_("Other tools"));
-    tools_sizer2->Add(magicButton, g_flags);
+    tools_sizer2->Add(magicButton, g_flagsH);
 
     m_maskTextCtrl = new wxSearchCtrl(buttons_panel, wxID_FIND);
     m_maskTextCtrl->SetFocus();
     tools_sizer2->Prepend(m_maskTextCtrl, g_flagsExpand);
-    tools_sizer2->Prepend(new wxStaticText(buttons_panel, wxID_STATIC, _("Search:")), g_flags);
+    tools_sizer2->Prepend(new wxStaticText(buttons_panel, wxID_STATIC, _("Search:")), g_flagsH);
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
-    tools_sizer->Add(buttons_sizer, wxSizerFlags(g_flags).Center());
+    tools_sizer->Add(buttons_sizer, wxSizerFlags(g_flagsV).Center());
     wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
-    buttons_sizer->Add(buttonOK, g_flags);
-    buttons_sizer->Add(btnCancel, g_flags);
+    buttons_sizer->Add(buttonOK, g_flagsH);
+    buttons_sizer->Add(btnCancel, g_flagsH);
 
     this->SetSizer(mainBoxSizer);
 }

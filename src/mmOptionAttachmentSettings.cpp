@@ -64,7 +64,7 @@ void mmOptionAttachmentSettings::Create()
     wxString attachmentStaticText_desc = wxString::Format(_("Attachment archive folder for %s only:"), OSType);
 
     wxStaticText* attachmentStaticText = new wxStaticText(this, wxID_STATIC, attachmentStaticText_desc);
-    attachmentStaticBoxSizer->Add(attachmentStaticText, g_flags);
+    attachmentStaticBoxSizer->Add(attachmentStaticText, g_flagsV);
     attachmentStaticText->SetToolTip(_("Every OS type (Win,Mac,Unix) has its attachment folder"));
 
     wxBoxSizer* attachDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -84,14 +84,14 @@ void mmOptionAttachmentSettings::Create()
         , ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, "...", wxDefaultPosition, wxSize(25, -1), 0);
     AttachmentsFolderButton->SetToolTip(_("Browse for folder"));
 
-    attachDefinedSizer->Add(textAttachment, g_flags);
-    attachDefinedSizer->Add(AttachmentsFolderButton, g_flags);
+    attachDefinedSizer->Add(textAttachment, g_flagsH);
+    attachDefinedSizer->Add(AttachmentsFolderButton, g_flagsH);
 
     wxStaticText* attachmentFolderCurrOSText = new wxStaticText(this
         , ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT
         , _("Real path:") + "\n" + mmex::getPathAttachment(attachmentFolder));
     attachmentFolderCurrOSText->SetFont(this->GetFont().Smaller());
-    attachmentStaticBoxSizer->Add(attachmentFolderCurrOSText, g_flags);
+    attachmentStaticBoxSizer->Add(attachmentFolderCurrOSText, g_flagsV);
 
     // Legend
     wxStaticBox* attachmentStaticBoxLegend = new wxStaticBox(this, wxID_ANY, _("Legend "));
@@ -152,9 +152,9 @@ void mmOptionAttachmentSettings::Create()
     m_attachments_subfolder = new wxCheckBox(this, ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER
         , cbAttachmentsSubfolder_desc, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_attachments_subfolder->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSSUBFOLDER", true));
-    attachmentStaticBoxSizer->Add(m_attachments_subfolder, g_flags);
+    attachmentStaticBoxSizer->Add(m_attachments_subfolder, g_flagsV);
     attachmentStaticBoxSizer->Add(new wxStaticText(this
-        , wxID_STATIC, subFolder), g_flags);
+        , wxID_STATIC, subFolder), g_flagsV);
 
     attachmentStaticBoxSizer->AddSpacer(20);
 
@@ -162,13 +162,13 @@ void mmOptionAttachmentSettings::Create()
         _("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_delete_attachments->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false));
     m_delete_attachments->SetToolTip(_("Select to delete file after import in attachments archive"));
-    attachmentStaticBoxSizer->Add(m_delete_attachments, g_flags);
+    attachmentStaticBoxSizer->Add(m_delete_attachments, g_flagsV);
 
     m_trash_attachments = new wxCheckBox(this, wxID_STATIC,
         _("When remove attachment, move file instead of delete"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_trash_attachments->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSTRASH", false));
     m_trash_attachments->SetToolTip(_("Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"));
-    attachmentStaticBoxSizer->Add(m_trash_attachments, g_flags);
+    attachmentStaticBoxSizer->Add(m_trash_attachments, g_flagsV);
 }
 
 void mmOptionAttachmentSettings::OnAttachmentsButton(wxCommandEvent& /*event*/)

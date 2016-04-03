@@ -69,9 +69,10 @@ bool relocatePayeeDialog::Create( wxWindow* parent, wxWindowID id,
 
 void relocatePayeeDialog::CreateControls()
 {
-    wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Center();
-    flagsExpand.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Expand().Center();
+    wxSizerFlags flagsH, flagsV, flagsExpand;
+    flagsH.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Center();
+	flagsV.Align(wxALIGN_LEFT).Border(wxALL, 5).Center();
+	flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
     wxSize btnSize = wxSize(180,-1);
 
     wxStaticText* headerText = new wxStaticText( this, wxID_STATIC,
@@ -95,16 +96,16 @@ void relocatePayeeDialog::CreateControls()
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
     wxBoxSizer* boxSizer = new wxBoxSizer(wxVERTICAL);
-    topSizer->Add(boxSizer, flags);
+    topSizer->Add(boxSizer, flagsV);
     wxFlexGridSizer* request_sizer = new wxFlexGridSizer(0, 2, 0, 0);
 
-    boxSizer->Add(headerText, flags);
+    boxSizer->Add(headerText, flagsV);
     boxSizer->Add(lineTop, flagsExpand);
 
-    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Relocate:")), flags);
-    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("to:")), flags);
-    request_sizer->Add(cbSourcePayee_, flags);
-    request_sizer->Add(cbDestPayee_, flags);
+    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Relocate:")), flagsH);
+    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("to:")), flagsH);
+    request_sizer->Add(cbSourcePayee_, flagsH);
+    request_sizer->Add(cbDestPayee_, flagsH);
 
     boxSizer->Add(request_sizer, flagsExpand);
     boxSizer->Add(lineBottom, flagsExpand);
@@ -113,9 +114,9 @@ void relocatePayeeDialog::CreateControls()
     wxButton* cancelButton = new wxButton(this,wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     cancelButton-> SetFocus () ;
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    buttonBoxSizer->Add(okButton, flags);
-    buttonBoxSizer->Add(cancelButton, flags);
-    boxSizer->Add(buttonBoxSizer, flags);
+    buttonBoxSizer->Add(okButton, flagsH);
+    buttonBoxSizer->Add(cancelButton, flagsH);
+    boxSizer->Add(buttonBoxSizer, flagsV);
 }
 
 int relocatePayeeDialog::updatedPayeesCount()

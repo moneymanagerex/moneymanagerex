@@ -61,14 +61,14 @@ void mmOptionNetSettings::Create()
     networkPanelSizer->Add(WebAppStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
     WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGrid, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    WebAppStaticBoxSizerGrid->Add(new wxStaticText(this, wxID_STATIC, _("Url")), g_flags);
+    WebAppStaticBoxSizerGrid->Add(new wxStaticText(this, wxID_STATIC, _("Url")), g_flagsH);
     wxString WebAppURL = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
     wxTextCtrl* WebAppURLTextCtr = new wxTextCtrl(this, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
         WebAppURL, wxDefaultPosition, wxSize(300, -1));
     WebAppURLTextCtr->SetToolTip(_("Specify the Web App URL without final slash"));
     WebAppStaticBoxSizerGrid->Add(WebAppURLTextCtr, 1, wxEXPAND | wxALL, 5);
 
-    WebAppStaticBoxSizerGrid->Add(new wxStaticText(this, wxID_STATIC, _("GUID")), g_flags);
+    WebAppStaticBoxSizerGrid->Add(new wxStaticText(this, wxID_STATIC, _("GUID")), g_flagsH);
     wxString WebAppGUID = Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "");
     wxTextCtrl* WebAppGUIDTextCtr = new wxTextCtrl(this, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
         WebAppGUID, wxDefaultPosition, wxSize(300, -1));
@@ -76,7 +76,7 @@ void mmOptionNetSettings::Create()
     WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
 
     wxHyperlinkCtrl* WebAppLink = new wxHyperlinkCtrl(this, wxID_STATIC, _("More information about WebApp"), mmex::weblink::WebApp);
-    WebAppStaticBoxSizer->Add(WebAppLink, wxSizerFlags(g_flags).Border(wxLEFT, 10));
+    WebAppStaticBoxSizer->Add(WebAppLink, wxSizerFlags(g_flagsV).Border(wxLEFT, 10));
 
     // Proxy Settings
     wxStaticBox* proxyStaticBox = new wxStaticBox(this, wxID_STATIC, _("Proxy Settings"));
@@ -96,12 +96,12 @@ void mmOptionNetSettings::Create()
     m_proxy_port->SetToolTip(_("Specify proxy port number"));
 
     wxFlexGridSizer* flex_sizer3 = new wxFlexGridSizer(0, 4, 0, 0);
-    flex_sizer3->Add(new wxStaticText(this, wxID_STATIC, _("Proxy")), g_flags);
-    flex_sizer3->Add(m_proxy_address, g_flags);
-    flex_sizer3->Add(new wxStaticText(this, wxID_STATIC, _("Port")), g_flags);
-    flex_sizer3->Add(m_proxy_port, g_flags);
+    flex_sizer3->Add(new wxStaticText(this, wxID_STATIC, _("Proxy")), g_flagsH);
+    flex_sizer3->Add(m_proxy_address, g_flagsH);
+    flex_sizer3->Add(new wxStaticText(this, wxID_STATIC, _("Port")), g_flagsH);
+    flex_sizer3->Add(m_proxy_port, g_flagsH);
 
-    proxyStaticBoxSizer->Add(flex_sizer3, g_flags);
+    proxyStaticBoxSizer->Add(flex_sizer3, g_flagsV);
 
     // Web Server Settings
     wxStaticBox* webserverStaticBox = new wxStaticBox(this, wxID_STATIC, _("Web Server"));
@@ -121,11 +121,11 @@ void mmOptionNetSettings::Create()
     m_webserver_port->SetToolTip(_("Specify web server port number"));
 
     wxFlexGridSizer* flex_sizer4 = new wxFlexGridSizer(0, 4, 0, 0);
-    flex_sizer4->Add(m_webserver_checkbox, g_flags);
-    flex_sizer4->Add(new wxStaticText(this, wxID_STATIC, _("Port")), g_flags);
-    flex_sizer4->Add(m_webserver_port, g_flags);
+    flex_sizer4->Add(m_webserver_checkbox, g_flagsH);
+    flex_sizer4->Add(new wxStaticText(this, wxID_STATIC, _("Port")), g_flagsH);
+    flex_sizer4->Add(m_webserver_port, g_flagsH);
 
-    webserverStaticBoxSizer->Add(flex_sizer4, g_flags);
+    webserverStaticBoxSizer->Add(flex_sizer4, g_flagsV);
 
     //Usage data send
     wxStaticBox* usageStaticBox = new wxStaticBox(this, wxID_STATIC, _("Usage statistics"));
@@ -138,7 +138,7 @@ void mmOptionNetSettings::Create()
     m_send_data->SetValue(GetIniDatabaseCheckboxValue(INIDB_SEND_USAGE_STATS, true));
     m_send_data->SetToolTip(_("Enable to help us sending anonymous data about MMEX usage."));
 
-    usageStaticBoxSizer->Add(m_send_data, g_flags);
+    usageStaticBoxSizer->Add(m_send_data, g_flagsV);
 
     // Communication timeout
     wxStaticBox* timeoutStaticBox = new wxStaticBox(this, wxID_STATIC, _("Timeout"));
@@ -153,10 +153,10 @@ void mmOptionNetSettings::Create()
     m_network_timeout->SetToolTip(_("Specify a network communication timeout value to use."));
 
     wxFlexGridSizer* flex_sizer5 = new wxFlexGridSizer(0, 2, 0, 0);
-    flex_sizer5->Add(new wxStaticText(this, wxID_STATIC, _("Seconds")), g_flags);
-    flex_sizer5->Add(m_network_timeout, g_flags);
+    flex_sizer5->Add(new wxStaticText(this, wxID_STATIC, _("Seconds")), g_flagsH);
+    flex_sizer5->Add(m_network_timeout, g_flagsH);
 
-    timeoutStaticBoxSizer->Add(flex_sizer5, g_flags);
+    timeoutStaticBoxSizer->Add(flex_sizer5, g_flagsV);
 
     //Updates check
     wxStaticBox* updateStaticBox = new wxStaticBox(this, wxID_STATIC, _("Updates"));
@@ -178,8 +178,8 @@ void mmOptionNetSettings::Create()
     m_update_source->SetToolTip(_("Updates source"));
 
     wxFlexGridSizer* UpdateSourceStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 0);
-    UpdateSourceStaticBoxSizerGrid->Add(m_check_update, g_flags);
-    UpdateSourceStaticBoxSizerGrid->Add(m_update_source, g_flags);
+    UpdateSourceStaticBoxSizerGrid->Add(m_check_update, g_flagsH);
+    UpdateSourceStaticBoxSizerGrid->Add(m_update_source, g_flagsH);
     updateStaticBoxSizer->Add(UpdateSourceStaticBoxSizerGrid, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxCommandEvent evt;

@@ -111,7 +111,7 @@ void SplitDetailDialog::CreateControls()
     itemPanel7->SetSizer(controlSizer);
 
     wxStaticText* staticTextType = new wxStaticText(itemPanel7, wxID_STATIC, _("Type"));
-    controlSizer->Add(staticTextType, g_flags);
+    controlSizer->Add(staticTextType, g_flagsH);
 
     const wxString itemChoiceStrings[] =
     {
@@ -123,36 +123,36 @@ void SplitDetailDialog::CreateControls()
         , 2, itemChoiceStrings);
     choiceType_->SetSelection(split_.SPLITTRANSAMOUNT < 0 ? !transType_ : transType_);
     choiceType_->SetToolTip(_("Specify the type of transactions to be created."));
-    controlSizer->Add(choiceType_, g_flags);
+    controlSizer->Add(choiceType_, g_flagsH);
 
     wxStaticText* staticTextAmount = new wxStaticText(itemPanel7, wxID_STATIC, _("Amount"));
-    controlSizer->Add(staticTextAmount, g_flags);
+    controlSizer->Add(staticTextAmount, g_flagsH);
 
     textAmount_ = new mmTextCtrl(itemPanel7, ID_TEXTCTRLAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
-    controlSizer->Add(textAmount_, g_flags);
+    controlSizer->Add(textAmount_, g_flagsH);
 
     wxStaticText* staticTextCategory = new wxStaticText(itemPanel7, wxID_STATIC, _("Category"));
-    controlSizer->Add(staticTextCategory, g_flags);
+    controlSizer->Add(staticTextCategory, g_flagsH);
     bCategory_ = new wxButton(itemPanel7, ID_BUTTONCATEGORY, ""
         , wxDefaultPosition, wxSize(200, -1));
-    controlSizer->Add(bCategory_, g_flags);
+    controlSizer->Add(bCategory_, g_flagsH);
 
     /**************************************************************************
      Control Buttons
     ***************************************************************************/
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    itemBoxSizer2->Add(buttons_panel, wxSizerFlags(g_flags).Center().Border(wxALL, 10));
+    itemBoxSizer2->Add(buttons_panel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 10));
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
     wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
-    buttons_sizer->Add(itemButtonOK, g_flags);
+    buttons_sizer->Add(itemButtonOK, g_flagsH);
 
     wxButton* itemButtonCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    buttons_sizer->Add(itemButtonCancel, g_flags);
+    buttons_sizer->Add(itemButtonCancel, g_flagsH);
 }
 
 /*!

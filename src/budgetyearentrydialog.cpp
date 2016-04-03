@@ -124,10 +124,10 @@ void mmBudgetYearEntryDialog::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer9, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5);
    
     wxButton* itemButtonOK = new wxButton( this, wxID_OK, _("&OK ") );
-    itemBoxSizer9->Add(itemButtonOK, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    itemBoxSizer9->Add(itemButtonOK, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     wxButton* itemButtonCancel = new wxButton( this, wxID_CANCEL, wxGetTranslation(g_CancelLabel) );
-    itemBoxSizer9->Add(itemButtonCancel, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    itemBoxSizer9->Add(itemButtonCancel, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 }
 
 void mmBudgetYearEntryDialog::OnOk(wxCommandEvent& /*event*/)

@@ -58,7 +58,7 @@ void mmOptionViewSettings::Create()
     wxFlexGridSizer* view_sizer1 = new wxFlexGridSizer(0, 2, 0, 5);
     accountStaticBoxSizer->Add(view_sizer1);
 
-    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Accounts Visible")), g_flags);
+    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Accounts Visible")), g_flagsH);
 
     const wxString vAccts = Model_Setting::instance().ViewAccounts();
     wxArrayString view_accounts;
@@ -74,10 +74,10 @@ void mmOptionViewSettings::Create()
             m_choice_visible->SetStringSelection(wxGetTranslation(entry));
     }
 
-    view_sizer1->Add(m_choice_visible, g_flags);
+    view_sizer1->Add(m_choice_visible, g_flagsH);
     m_choice_visible->SetToolTip(_("Specify which accounts are visible"));
 
-    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Transactions Visible")), g_flags);
+    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Transactions Visible")), g_flagsH);
 
     wxArrayString view_strings;
     view_strings.Add(VIEW_TRANS_ALL_STR);
@@ -96,13 +96,13 @@ void mmOptionViewSettings::Create()
             , new wxStringClientData(entry));
     }
 
-    view_sizer1->Add(m_choice_trans_visible, g_flags);
+    view_sizer1->Add(m_choice_trans_visible, g_flagsH);
 
     const wxString vTrans = Model_Setting::instance().ViewTransactions();
     m_choice_trans_visible->SetStringSelection(wxGetTranslation(vTrans));
     m_choice_trans_visible->SetToolTip(_("Specify which transactions are visible by default"));
 
-    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("HTML scale factor")), g_flags);
+    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("HTML scale factor")), g_flagsH);
 
     int max = 300; int min = 25;
     m_scale_factor = new wxSpinCtrl(this, wxID_ANY
@@ -111,37 +111,37 @@ void mmOptionViewSettings::Create()
     int vFontSize = Option::instance().HtmlFontSize();
     m_scale_factor->SetValue(vFontSize);
     m_scale_factor->SetToolTip(_("Specify which scale factor is used for the report pages"));
-    view_sizer1->Add(m_scale_factor, g_flags);
+    view_sizer1->Add(m_scale_factor, g_flagsH);
 
     // Budget options
     m_budget_financial_years = new wxCheckBox(this, wxID_STATIC, _("View Budgets as Financial Years")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_budget_financial_years->SetValue(Option::instance().BudgetFinancialYears());
-    viewsPanelSizer->Add(m_budget_financial_years, g_flags);
+    viewsPanelSizer->Add(m_budget_financial_years, g_flagsV);
 
     m_budget_include_transfers = new wxCheckBox(this, wxID_STATIC
         , _("View Budgets with 'transfer' transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_budget_include_transfers->SetValue(Option::instance().BudgetIncludeTransfers());
-    viewsPanelSizer->Add(m_budget_include_transfers, g_flags);
+    viewsPanelSizer->Add(m_budget_include_transfers, g_flagsV);
 
     m_budget_setup_without_summary = new wxCheckBox(this, wxID_STATIC
         , _("View Budgets Setup Without Budget Summaries")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_budget_setup_without_summary->SetValue(Option::instance().BudgetSetupWithoutSummaries());
-    viewsPanelSizer->Add(m_budget_setup_without_summary, g_flags);
+    viewsPanelSizer->Add(m_budget_setup_without_summary, g_flagsV);
 
     m_budget_summary_without_category = new wxCheckBox(this, wxID_STATIC
         , _("View Budget Category Report with Summaries")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_budget_summary_without_category->SetValue(Option::instance().BudgetReportWithSummaries());
-    viewsPanelSizer->Add(m_budget_summary_without_category, g_flags);
+    viewsPanelSizer->Add(m_budget_summary_without_category, g_flagsV);
 
     m_ignore_future_transactions = new wxCheckBox(this, wxID_STATIC
         , _("View Reports without Future Transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_ignore_future_transactions->SetValue(Option::instance().IgnoreFutureTransactions());
-    viewsPanelSizer->Add(m_ignore_future_transactions, g_flags);
+    viewsPanelSizer->Add(m_ignore_future_transactions, g_flagsV);
 
     // Colours settings
     wxStaticBox* userColourSettingStBox = new wxStaticBox(this, wxID_ANY, _("User Colors"));
@@ -152,31 +152,31 @@ void mmOptionViewSettings::Create()
     int size_x = 30;
     m_UDFCB1 = new wxButton(this, wxID_HIGHEST + 11, _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB1->SetBackgroundColour(mmColors::userDefColor1);
-    userColourSettingStBoxSizer->Add(m_UDFCB1, g_flags);
+    userColourSettingStBoxSizer->Add(m_UDFCB1, g_flagsH);
 
     m_UDFCB2 = new wxButton(this, wxID_HIGHEST + 22, _("2"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB2->SetBackgroundColour(mmColors::userDefColor2);
-    userColourSettingStBoxSizer->Add(m_UDFCB2, g_flags);
+    userColourSettingStBoxSizer->Add(m_UDFCB2, g_flagsH);
 
     m_UDFCB3 = new wxButton(this, wxID_HIGHEST + 33, _("3"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB3->SetBackgroundColour(mmColors::userDefColor3);
-    userColourSettingStBoxSizer->Add(m_UDFCB3, g_flags);
+    userColourSettingStBoxSizer->Add(m_UDFCB3, g_flagsH);
 
     m_UDFCB4 = new wxButton(this, wxID_HIGHEST + 44, _("4"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB4->SetBackgroundColour(mmColors::userDefColor4);
-    userColourSettingStBoxSizer->Add(m_UDFCB4, g_flags);
+    userColourSettingStBoxSizer->Add(m_UDFCB4, g_flagsH);
 
     m_UDFCB5 = new wxButton(this, wxID_HIGHEST + 55, _("5"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB5->SetBackgroundColour(mmColors::userDefColor5);
-    userColourSettingStBoxSizer->Add(m_UDFCB5, g_flags);
+    userColourSettingStBoxSizer->Add(m_UDFCB5, g_flagsH);
 
     m_UDFCB6 = new wxButton(this, wxID_HIGHEST + 66, _("6"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB6->SetBackgroundColour(mmColors::userDefColor6);
-    userColourSettingStBoxSizer->Add(m_UDFCB6, g_flags);
+    userColourSettingStBoxSizer->Add(m_UDFCB6, g_flagsH);
 
     m_UDFCB7 = new wxButton(this, wxID_HIGHEST + 77, _("7"), wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
-    userColourSettingStBoxSizer->Add(m_UDFCB7, g_flags);
+    userColourSettingStBoxSizer->Add(m_UDFCB7, g_flagsH);
 
     this->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmOptionViewSettings::OnNavTreeColorChanged), nullptr, this);
