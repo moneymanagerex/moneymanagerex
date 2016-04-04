@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-02-19 22:29:22.523000.
+ *          AUTO GENERATED at 2016-04-03 09:11:54.989000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -18,7 +18,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 4;
+const int dbLatestVersion = 5;
 
 const std::vector<wxString> dbUpgradeQuery =
 {
@@ -61,6 +61,29 @@ const std::vector<wxString> dbUpgradeQuery =
             'ASSETCLASSID' INTEGER NOT NULL,
             'STOCKSYMBOL' TEXT UNIQUE
         );
+    )",
+
+    // Upgrade to version 5
+    R"(
+        -- CustomField
+        CREATE TABLE IF NOT EXISTS CUSTOMFIELD_V1 (
+        FIELDID INTEGER NOT NULL PRIMARY KEY
+        , REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */
+        , DESCRIPTION TEXT COLLATE NOCASE
+        , TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoiche, MultiChoiche */
+        , PROPERTIES TEXT NOT NULL
+        );
+        CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELD_REF ON CUSTOMFIELD_V1 (REFTYPE);
+        
+        -- CustomFieldData
+        CREATE TABLE IF NOT EXISTS CUSTOMFIELDDATA_V1 (
+        FIELDATADID INTEGER NOT NULL PRIMARY KEY
+        , FIELDID INTEGER NOT NULL
+        , REFID INTEGER NOT NULL
+        , CONTENT TEXT
+        , UNIQUE(FIELDID, REFID)
+        );
+        CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELDDATA_REF ON CUSTOMFIELDDATA_V1 (FIELDID, REFID);
     )",
 
 };

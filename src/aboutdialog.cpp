@@ -18,13 +18,12 @@
  *******************************************************/
 #include "aboutdialog.h"
 #include "constants.h"
-#include "reports/htmlbuilder.h"
 #include "paths.h"
-/*******************************************************/
-
+#include "reports/htmlbuilder.h"
+#include "db/DB_Upgrade.h"
+#include <wx/statline.h>
 #include <wx/version.h>
 #include <wx/wxsqlite3.h>
-#include <wx/statline.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmAboutDialog, wxDialog);
 
@@ -154,7 +153,7 @@ void mmAboutDialog::CreateControls(int TabToOpen)
     this->SetSizer(itemBoxSizer);
 
     wxStaticText* versionStaticText = new wxStaticText( this, wxID_STATIC
-        , "Money Manager EX - " + mmex::getTitleProgramVersion());
+        , "Money Manager EX - " + mmex::getTitleProgramVersion() + " " + wxString::Format(_("(DB v.%i)"), dbLatestVersion));
     versionStaticText->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizer->Add(versionStaticText, g_flagsCenter);
 
