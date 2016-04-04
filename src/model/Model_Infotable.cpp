@@ -45,7 +45,7 @@ Model_Infotable& Model_Infotable::instance(wxSQLite3Database* db)
         ins.Set("MMEXVERSION", mmex::version::string);
         ins.Set("DATAVERSION", mmex::DATAVERSION);
         ins.Set("CREATEDATE", wxDateTime::Now());
-        ins.SetDateFormat(mmex::DEFDATEFORMAT);
+        ins.Set("DATEFORMAT", mmex::DEFDATEFORMAT);
     }
 
     return ins;
@@ -183,17 +183,6 @@ loop_t Model_Infotable::to_loop_t()
     for (const auto &r: instance().all())
         loop += r.to_row_t();
     return loop;
-}
-
-//-------------------------------------------------------------------
-wxString Model_Infotable::DateFormat()
-{
-    return GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
-}
-
-void Model_Infotable::SetDateFormat(const wxString& date_format_mask)
-{
-    Set("DATEFORMAT", date_format_mask);
 }
 
 //-------------------------------------------------------------------

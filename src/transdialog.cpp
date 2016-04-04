@@ -244,7 +244,7 @@ void mmTransDialog::dataToControls()
                 cbPayee_->AutoComplete(all_payees);
             }
 
-            if (mmIniOptions::instance().transPayeeSelectionNone_ == 2)
+            if (Option::instance().TransCategorySelectionNone() == 2)
             {
                 cbPayee_->Enable(false);
                 cbPayee_->ChangeValue(_("Unknown"));
@@ -562,7 +562,7 @@ bool mmTransDialog::validateData()
                 , wxString::Format(_("Do you want to add new payee: \n%s?"), payee_name)
                 , _("Confirm to add new payee")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
-            if (mmIniOptions::instance().transPayeeSelectionNone_ == 2 || msgDlg.ShowModal() == wxID_YES)
+            if (Option::instance().TransCategorySelectionNone() == 2 || msgDlg.ShowModal() == wxID_YES)
             {
                 payee = Model_Payee::instance().create();
                 payee->PAYEENAME = payee_name;
@@ -811,7 +811,7 @@ void mmTransDialog::setCategoryForPayee(const Model_Payee::Data *payee)
 {
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
-    if (mmIniOptions::instance().transCategorySelectionNone_ != 0
+    if (Option::instance().TransCategorySelectionNone() != 0
         && !categUpdated_ && local_splits.empty() && m_new_trx && !m_duplicate)
     {
         // if payee has memory of last category used then display last category for payee

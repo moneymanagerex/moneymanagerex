@@ -140,8 +140,9 @@ static const std::map<int, wxBitmap> navtree_images()
 // Custom icons for accounts
 static const std::map<int, wxBitmap> acc_images()
 {
-    int x = mmIniOptions::instance().ico_size_;
-    return{
+    int x = Option::instance().IconSize();
+    return
+    {
         { MONEY_DOLLAR_XPM, wxBitmap(wxImage(dollar_xpm).Scale(x, x)) }
         , { MONEY_EURO_XPM, wxBitmap(wxImage(euro_xpm).Scale(x, x)) }
         , { FLAG_XPM, mmBitmap(png::FOLLOW_UP) }
@@ -160,7 +161,7 @@ static const std::map<int, wxBitmap> acc_images()
 }
 wxImageList* navtree_images_list()
 {
-    int x = mmIniOptions::instance().ico_size_;
+    int x = Option::instance().IconSize();
 
     wxImageList* imageList = new wxImageList(x, x);
     for (const auto& img : navtree_images())
@@ -173,7 +174,7 @@ wxImageList* navtree_images_list()
 
 const wxBitmap mmBitmap(int ref)
 {
-    int x = mmIniOptions::instance().ico_size_;
+    int x = Option::instance().IconSize();
 
     switch (ref)
     {

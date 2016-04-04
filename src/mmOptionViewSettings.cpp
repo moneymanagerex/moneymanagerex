@@ -108,7 +108,7 @@ void mmOptionViewSettings::Create()
     m_scale_factor = new wxSpinCtrl(this, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
 
-    int vFontSize = Model_Setting::instance().GetHtmlScaleFactor();
+    int vFontSize = Option::instance().HtmlFontSize();
     m_scale_factor->SetValue(vFontSize);
     m_scale_factor->SetToolTip(_("Specify which scale factor is used for the report pages"));
     view_sizer1->Add(m_scale_factor, g_flags);
@@ -116,31 +116,31 @@ void mmOptionViewSettings::Create()
     // Budget options
     m_budget_financial_years = new wxCheckBox(this, wxID_STATIC, _("View Budgets as Financial Years")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_financial_years->SetValue(Model_Setting::instance().BudgetFinancialYears());
+    m_budget_financial_years->SetValue(Option::instance().BudgetFinancialYears());
     viewsPanelSizer->Add(m_budget_financial_years, g_flags);
 
     m_budget_include_transfers = new wxCheckBox(this, wxID_STATIC
         , _("View Budgets with 'transfer' transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_include_transfers->SetValue(Model_Setting::instance().BudgetIncludeTransfers());
+    m_budget_include_transfers->SetValue(Option::instance().BudgetIncludeTransfers());
     viewsPanelSizer->Add(m_budget_include_transfers, g_flags);
 
     m_budget_setup_without_summary = new wxCheckBox(this, wxID_STATIC
         , _("View Budgets Setup Without Budget Summaries")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_setup_without_summary->SetValue(Model_Setting::instance().BudgetSetupWithoutSummary());
+    m_budget_setup_without_summary->SetValue(Option::instance().BudgetSetupWithoutSummaries());
     viewsPanelSizer->Add(m_budget_setup_without_summary, g_flags);
 
     m_budget_summary_without_category = new wxCheckBox(this, wxID_STATIC
-        , _("View Budget Summary Report without Categories")
+        , _("View Budget Category Report with Summaries")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_summary_without_category->SetValue(Model_Setting::instance().BudgetSummaryWithoutCategory());
+    m_budget_summary_without_category->SetValue(Option::instance().BudgetReportWithSummaries());
     viewsPanelSizer->Add(m_budget_summary_without_category, g_flags);
 
     m_ignore_future_transactions = new wxCheckBox(this, wxID_STATIC
         , _("View Reports without Future Transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_ignore_future_transactions->SetValue(Model_Setting::instance().IgnoreFutureTransactions());
+    m_ignore_future_transactions->SetValue(Option::instance().IgnoreFutureTransactions());
     viewsPanelSizer->Add(m_ignore_future_transactions, g_flags);
 
     // Colours settings
@@ -216,13 +216,13 @@ void mmOptionViewSettings::SaveSettings()
     Model_Setting::instance().SetViewTransactions(transVisible);
 
     int size = m_scale_factor->GetValue();
-    Model_Setting::instance().SetHtmlScaleFactor(size);
+    Option::instance().HtmlFontSize(size);
 
-    Model_Setting::instance().SetBudgetFinancialYears(m_budget_financial_years->GetValue());
-    Model_Setting::instance().SetBudgetIncludeTransfers(m_budget_include_transfers->GetValue());
-    Model_Setting::instance().SetBudgetSetupWithoutSummary(m_budget_setup_without_summary->GetValue());
-    Model_Setting::instance().SetBudgetSummaryWithoutCategory(m_budget_summary_without_category->GetValue());
-    Model_Setting::instance().SetIgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
+    Option::instance().BudgetFinancialYears(m_budget_financial_years->GetValue());
+    Option::instance().BudgetIncludeTransfers(m_budget_include_transfers->GetValue());
+    Option::instance().BudgetSetupWithoutSummaries(m_budget_setup_without_summary->GetValue());
+    Option::instance().BudgetReportWithSummaries(m_budget_summary_without_category->GetValue());
+    Option::instance().IgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
 
     mmColors::userDefColor1 = m_UDFCB1->GetBackgroundColour();
     mmColors::userDefColor2 = m_UDFCB2->GetBackgroundColour();

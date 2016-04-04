@@ -173,7 +173,7 @@ wxString mmBudgetingPanel::GetPanelTitle() const
     wxString yearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     if ((yearStr.length() < 5))
     {
-        if (mmIniOptions::instance().budgetFinancialYears_)
+        if (Option::instance().BudgetFinancialYears())
         {
             long year;
             yearStr.ToLong(&year);
@@ -271,7 +271,7 @@ void mmBudgetingPanel::CreateControls()
     itemIncomeSizer->Add(expenses_diff_);
     /* ---------------------- */
 
-    int x = mmIniOptions::instance().ico_size_;
+    int x = Option::instance().IconSize();
     m_imageList = new wxImageList(x, x);
     m_imageList->Add(mmBitmap(png::RECONCILED));
     m_imageList->Add(mmBitmap(png::VOID_STAT));
@@ -367,7 +367,7 @@ void mmBudgetingPanel::initVirtualListControl()
     mmReportBudget budgetDetails;
 
     bool evaluateTransfer = false;
-    if (mmIniOptions::instance().budgetIncludeTransfers_)
+    if (Option::instance().BudgetIncludeTransfers())
     {
         evaluateTransfer = true;
     }
@@ -395,7 +395,7 @@ void mmBudgetingPanel::initVirtualListControl()
     //Get statistics
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod_, budgetAmt_);
     Model_Category::instance().getCategoryStats(categoryStats_
-        , &date_range, mmIniOptions::instance().ignoreFutureTransactions_
+        , &date_range, Option::instance().IgnoreFutureTransactions()
         , false, true, (evaluateTransfer ? &budgetAmt_ : 0));
 
     const Model_Subcategory::Data_Set& allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
@@ -459,7 +459,7 @@ void mmBudgetingPanel::initVirtualListControl()
         budgetTotals_[category.CATEGID].first = catTotalsEstimated;
         budgetTotals_[category.CATEGID].second = catTotalsActual;
 
-        if ((!mmIniOptions::instance().budgetSetupWithoutSummaries_ || currentView_ == VIEW_SUMM)
+        if ((!Option::instance().BudgetSetupWithoutSummaries() || currentView_ == VIEW_SUMM)
             && DisplayEntryAllowed(-1, category.CATEGID))
         {
             budget_.push_back(std::make_pair(-1, category.CATEGID));

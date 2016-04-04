@@ -69,8 +69,6 @@ public:
     static loop_t to_loop_t();
 
 public:
-    wxString DateFormat();
-    void SetDateFormat(const wxString& date_format_mask);
     bool OpenCustomDialog(const wxString& RefType);
     void SetOpenCustomDialog(const wxString& RefType, const bool Status);
     wxSize CustomDialogSize(const wxString& RefType);

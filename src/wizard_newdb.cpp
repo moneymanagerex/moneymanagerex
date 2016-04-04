@@ -164,7 +164,7 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
         return false;
     }
     wxString userName = itemUserName_->GetValue().Trim();
-    mmOptions::instance().UserName(userName);
+    Option::instance().UserName(userName);
 
     return true;
 }

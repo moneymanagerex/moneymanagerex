@@ -485,7 +485,7 @@ void mmBDDialog::CreateControls()
 
     for(const auto& i: Model_Billsdeposits::all_status())
         choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
-    choiceStatus_->SetSelection(mmIniOptions::instance().transStatusReconciled_);
+    choiceStatus_->SetSelection(Option::instance().TransStatusReconciled());
     choiceStatus_->SetToolTip(_("Specify the status for the transaction"));
 
     transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Status")), g_flags);
@@ -731,7 +731,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
                 // Only for new transactions: if user want to autofill last category used for payee.
                 // If this is a Split Transaction, ignore displaying last category for payee
                 if (payee->CATEGID != -1 && m_bill_data.local_splits.empty() 
-                    && mmIniOptions::instance().transCategorySelectionNone_ == 1 
+                    && Option::instance().TransCategorySelectionNone() == 1 
                     && !categUpdated_ && m_bill_data.BDID == 0)
                 {
                     m_bill_data.CATEGID = payee->CATEGID;
@@ -896,7 +896,7 @@ void mmBDDialog::resetPayeeString()
 
             // Only for new transactions: if user want to autofill last category used for payee.
             // If this is a Split Transaction, ignore displaying last category for payee
-            if (filtd[0].CATEGID != -1 && m_bill_data.local_splits.empty() && mmIniOptions::instance().transCategorySelectionNone_ == 1 && !categUpdated_ && m_bill_data.BDID == 0)
+            if (filtd[0].CATEGID != -1 && m_bill_data.local_splits.empty() && Option::instance().TransCategorySelectionNone() == 1 && !categUpdated_ && m_bill_data.BDID == 0)
             {
                 m_bill_data.CATEGID = filtd[0].CATEGID;
                 m_bill_data.SUBCATEGID = filtd[0].SUBCATEGID;

@@ -181,7 +181,7 @@ wxString mmReportMyUsage::getHTMLText()
     report(L"REPORTNAME") = this->title();
     report(L"CONTENTS") = contents;
     report(L"GRAND") = wxString::Format("%ld", (long)all_usage.size());
-    report(L"HTMLSCALE") = wxString::Format("%d", mmIniOptions::instance().html_font_size_);
+    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
 
     wxString out = wxEmptyString;
     try 

@@ -80,3 +80,6 @@ bk-deps
 *.swp
 
 *.d
+
+/release
+mmex.VC.db

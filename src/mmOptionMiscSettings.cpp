@@ -79,19 +79,19 @@ void mmOptionMiscSettings::Create()
     wxChoice* defaultDateChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE
         , wxDefaultPosition, wxSize(140, -1), defaultValues_);
-    defaultDateChoice->SetSelection(mmIniOptions::instance().transDateDefault_);
+    defaultDateChoice->SetSelection(Option::instance().TransDateDefault());
 
     defaultValues_[1] = (_("Last used for payee"));
     defaultValues_.Add(_("Unused"));
     wxChoice* defaultPayeeChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE
         , wxDefaultPosition, wxSize(140, -1), defaultValues_);
-    defaultPayeeChoice->SetSelection(mmIniOptions::instance().transPayeeSelectionNone_);
+    defaultPayeeChoice->SetSelection(Option::instance().TransPayeeSelectionNone());
 
     wxChoice* defaultCategoryChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY
         , wxDefaultPosition, defaultPayeeChoice->GetSize(), defaultValues_);
-    defaultCategoryChoice->SetSelection(mmIniOptions::instance().transCategorySelectionNone_);
+    defaultCategoryChoice->SetSelection(Option::instance().TransCategorySelectionNone());
 
     wxChoice* default_status = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS
@@ -100,7 +100,7 @@ void mmOptionMiscSettings::Create()
     for (const auto& i : Model_Checking::all_status())
         default_status->Append(wxGetTranslation(i), new wxStringClientData(i));
 
-    default_status->SetSelection(mmIniOptions::instance().transStatusReconciled_);
+    default_status->SetSelection(Option::instance().TransStatusReconciled());
 
     wxFlexGridSizer* newTransflexGridSizer = new wxFlexGridSizer(0, 2, 0, 0);
     transSettingsStaticBoxSizer->Add(newTransflexGridSizer);
@@ -200,20 +200,16 @@ void mmOptionMiscSettings::SaveStocksUrl()
 void mmOptionMiscSettings::SaveSettings()
 {
     wxChoice* itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE);
-    mmIniOptions::instance().transPayeeSelectionNone_ = itemChoice->GetSelection();
-    Model_Setting::instance().Set("TRANSACTION_PAYEE_NONE", itemChoice->GetSelection());
+    Option::instance().TransPayeeSelectionNone(itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY);
-    mmIniOptions::instance().transCategorySelectionNone_ = itemChoice->GetSelection();
-    Model_Setting::instance().Set("TRANSACTION_CATEGORY_NONE", itemChoice->GetSelection());
+    Option::instance().TransCategorySelectionNone(itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS);
-    mmIniOptions::instance().transStatusReconciled_ = itemChoice->GetSelection();
-    Model_Setting::instance().Set("TRANSACTION_STATUS_RECONCILED", itemChoice->GetSelection());
+    Option::instance().TransStatusReconciled(itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE);
-    mmIniOptions::instance().transDateDefault_ = itemChoice->GetSelection();
-    Model_Setting::instance().Set("TRANSACTION_DATE_DEFAULT", itemChoice->GetSelection());
+    Option::instance().TransDateDefault(itemChoice->GetSelection());
 
     SaveStocksUrl();
 

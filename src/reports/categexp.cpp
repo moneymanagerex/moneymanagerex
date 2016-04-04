@@ -51,7 +51,7 @@ void  mmReportCategoryExpenses::RefreshData()
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , const_cast<mmDateRange*>(m_date_range)
-        , mmIniOptions::instance().ignoreFutureTransactions_
+        , Option::instance().IgnoreFutureTransactions()
         , false
         , m_date_range->is_with_date());
 
