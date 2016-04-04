@@ -5,7 +5,7 @@ compiler:
 before_install:
   - echo $TRAVIS_OS_NAME
   - brew update
-  - brew install wxwidgets --devel
+  - brew install wxwidgets
   - brew install gettext
   - brew link --force gettext
 before_script:
