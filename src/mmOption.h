@@ -26,12 +26,12 @@
    so that we don't hit the DB that often
    for data.
 */
-class mmOptions
+class Option
 {
 public:
-    mmOptions();
-    static mmOptions& instance();
-    void LoadInfotableOptions();
+    Option();
+    static Option& instance();
+    void LoadOptions(bool include_infotable = true);
 
     // set and save the option: m_dateFormat
     void DateFormat(const wxString& datefornat);
@@ -57,37 +57,63 @@ public:
     void DatabaseUpdated(bool value);
     bool DatabaseUpdated();
 
+    void BudgetFinancialYears(bool value);
+    bool BudgetFinancialYears();
+
+    void BudgetIncludeTransfers(bool value);
+    bool BudgetIncludeTransfers();
+    
+    void BudgetSetupWithoutSummaries(bool value);
+    bool BudgetSetupWithoutSummaries();
+
+    void BudgetReportWithSummaries(bool value);
+    bool BudgetReportWithSummaries();
+
+    void IgnoreFutureTransactions(bool value);
+    bool IgnoreFutureTransactions();
+
+    void TransPayeeSelectionNone(int value);
+    int TransPayeeSelectionNone();
+
+    void TransCategorySelectionNone(int value);
+    int TransCategorySelectionNone();
+
+    void TransStatusReconciled(int value);
+    int TransStatusReconciled();
+
+    void TransDateDefault(int value);
+    int TransDateDefault();
+
+    /* stored value in percantage for scale html font and other objects */
+    void HtmlFontSize(int value);
+    int HtmlFontSize();
+
+    void IconSize(int value);
+    int IconSize();
+
+    const int AccountImageId(int account_id, bool def = false);
+
 private:
     wxString m_dateFormat;
     wxString m_language;
     wxString m_userNameString;
-
     wxString m_financialYearStartDayString;
     wxString m_financialYearStartMonthString;
+
     bool m_databaseUpdated;
-};
+    bool m_budgetFinancialYears;            //INIDB_BUDGET_FINANCIAL_YEARS
+    bool m_budgetIncludeTransfers;          //INIDB_BUDGET_INCLUDE_TRANSFERS
+    bool m_budgetSetupWithoutSummaries;     //INIDB_BUDGET_SETUP_WITHOUT_SUMMARY
+    bool m_budgetReportWithSummaries;       //INIDB_BUDGET_SUMMARY_WITHOUT_CATEG
+    bool m_ignoreFutureTransactions;        //INIDB_IGNORE_FUTURE_TRANSACTIONS
 
-class mmIniOptions
-{
-public:
-    mmIniOptions();
-    static mmIniOptions& instance();
-    void loadOptions();
+    int m_transPayeeSelectionNone;
+    int m_transCategorySelectionNone;
+    int m_transStatusReconciled;
+    int m_transDateDefault;
 
-    const int account_image_id(int account_id, bool def = false);
-    int html_font_size_;
-    int ico_size_;
-
-    bool budgetFinancialYears_;
-    bool budgetIncludeTransfers_;
-    bool budgetSetupWithoutSummaries_;
-    bool budgetReportWithSummaries_;
-    bool ignoreFutureTransactions_;
-
-    int transPayeeSelectionNone_;
-    int transCategorySelectionNone_;
-    int transStatusReconciled_;
-    int transDateDefault_;
+    int m_html_font_size;
+    int m_ico_size;
 };
 
 #endif // MM_EX_OPTION_H_

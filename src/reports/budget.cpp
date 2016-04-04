@@ -57,10 +57,12 @@ void mmReportBudget::SetBudgetMonth(wxString budgetYearStr, wxDateTime& startDat
 
 void mmReportBudget::GetFinancialYearValues(int& day, int& month)
 {
-    day = wxAtoi(mmOptions::instance().FinancialYearStartDay());
-    month = wxAtoi(mmOptions::instance().FinancialYearStartMonth()) - 1;
-    if ( (day > 28) && (month == wxDateTime::Feb) )
+    day = wxAtoi(Option::instance().FinancialYearStartDay());
+    month = wxAtoi(Option::instance().FinancialYearStartMonth()) - 1;
+    if ((day > 28) && (month == wxDateTime::Feb))
+    {
         day = 28;
+    }
     else if ( ((day > 30) && (month == wxDateTime::Sep)) ||
               ((day > 30) && (month == wxDateTime::Apr)) ||
               ((day > 30) && (month == wxDateTime::Jun)) ||
@@ -73,13 +75,20 @@ void mmReportBudget::GetFinancialYearValues(int& day, int& month)
 wxString mmReportBudget::AdjustYearValues(int& day, int& month, long year, const wxString& yearStr)
 {
     wxString ret = yearStr;
-    if ((ret.length() < 5)) {
-        if (mmIniOptions::instance().budgetFinancialYears_) {
+    if ((ret.length() < 5))
+    {
+        if (Option::instance().BudgetFinancialYears())
+        {
             GetFinancialYearValues(day, month);
             ret = wxString::Format(_("Financial Year: %s - %i"), yearStr, (year + 1));
-        } else
+        }
+        else
+        {
             ret = wxString::Format(_("Year: %s"), yearStr);
-    } else {
+        }
+    }
+    else
+    {
         ret = wxString::Format(_("Month: %s"), yearStr);
     }
 
@@ -88,7 +97,8 @@ wxString mmReportBudget::AdjustYearValues(int& day, int& month, long year, const
 
 void mmReportBudget::AdjustYearValues(int& day, int& month, wxDateTime& date)
 {
-    if (mmIniOptions::instance().budgetFinancialYears_) {
+    if (Option::instance().BudgetFinancialYears())
+    {
         GetFinancialYearValues(day, month);
         SetDateToEndOfYear(day, month, date, false);
     }
@@ -96,7 +106,7 @@ void mmReportBudget::AdjustYearValues(int& day, int& month, wxDateTime& date)
 
 void mmReportBudget::AdjustDateForEndFinancialYear(wxDateTime& date)
 {
-    if (mmIniOptions::instance().budgetFinancialYears_)
+    if (Option::instance().BudgetFinancialYears())
     {
         int day, month;
         GetFinancialYearValues(day, month);

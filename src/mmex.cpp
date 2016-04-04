@@ -146,8 +146,8 @@ bool OnInitImpl(mmGUIApp* app)
     /* Force setting MMEX language parameter if it has not been set. */
     mmDialogs::mmSelectLanguage(app, 0, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
 
-    /* Load MMEX Custom Settings */
-    mmIniOptions::instance().loadOptions();
+    /* Load general MMEX Custom Settings */
+    Option::instance().LoadOptions(false);
 
     /* Was App Maximized? */
     bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", true);

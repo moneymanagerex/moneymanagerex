@@ -245,7 +245,7 @@ wxString Model_Report::get_html(const Data* r)
         s.Replace("\\", "\\\\");
         report(L"FILESEPARATOR") = s;
         report(L"LANGUAGE") = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
-        report(L"HTMLSCALE") = wxString::Format("%d", mmIniOptions::instance().html_font_size_);
+        report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
     }
     report(L"ERRORS") = errors;
 

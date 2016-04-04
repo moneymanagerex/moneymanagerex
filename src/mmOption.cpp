@@ -26,47 +26,91 @@
 #include "model/Model_Account.h"
 
 //----------------------------------------------------------------------------
-mmOptions::mmOptions()
+Option::Option()
 :   m_dateFormat(mmex::DEFDATEFORMAT)
     , m_language("english")
     , m_databaseUpdated(false)
+    , m_budgetFinancialYears(false)
+    , m_budgetIncludeTransfers(false)
+    , m_budgetSetupWithoutSummaries(false)
+    , m_budgetReportWithSummaries(true)
+    , m_ignoreFutureTransactions(false)
+    , m_transPayeeSelectionNone(0)
+    , m_transCategorySelectionNone(0)
+    , m_transStatusReconciled(0)
+    , m_transDateDefault(0)
+    , m_html_font_size(100)
+    , m_ico_size(16)
 {}
 
 //----------------------------------------------------------------------------
-mmOptions& mmOptions::instance()
+Option& Option::instance()
 {
-    return Singleton<mmOptions>::instance();
+    return Singleton<Option>::instance();
 }
 
 //----------------------------------------------------------------------------
-void mmOptions::LoadInfotableOptions()
+void Option::LoadOptions(bool include_infotable)
 {
-    m_dateFormat = Model_Infotable::instance().DateFormat();
-    m_userNameString = Model_Infotable::instance().GetStringInfo("USERNAME", "");
+    if (include_infotable)
+    {
+        m_dateFormat = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
+        m_userNameString = Model_Infotable::instance().GetStringInfo("USERNAME", "");
+        m_financialYearStartDayString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
+        m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
+    }
+
     m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
 
-    m_financialYearStartDayString   = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
-    m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
+    m_budgetFinancialYears = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
+    m_budgetIncludeTransfers = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
+    m_budgetSetupWithoutSummaries = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, false);
+    m_budgetReportWithSummaries = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true);
+    m_ignoreFutureTransactions = Model_Setting::instance().GetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, false);
+
+    // Read the preference as a string and convert to int
+    m_transPayeeSelectionNone = Model_Setting::instance().GetIntSetting("TRANSACTION_PAYEE_NONE", 0);
+
+    // For the category selection, default behavior should remain that the last category used for the payee is selected.
+    //  This is item 1 (0-indexed) in the list.
+    m_transCategorySelectionNone = Model_Setting::instance().GetIntSetting("TRANSACTION_CATEGORY_NONE", 1);
+    m_transStatusReconciled = Model_Setting::instance().GetIntSetting("TRANSACTION_STATUS_RECONCILED", 0);
+    m_transDateDefault = Model_Setting::instance().GetIntSetting("TRANSACTION_DATE_DEFAULT", 0);
+
+    m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", 100);
+    m_ico_size = 16;
+    if (m_html_font_size >= 300)
+    {
+        m_ico_size = 48;
+    }
+    else if (m_html_font_size >= 200)
+    {
+        m_ico_size = 32;
+    }
+    else if (m_html_font_size >= 150)
+    {
+        m_ico_size = 24;
+    }
 }
 
-void mmOptions::DateFormat(const wxString& dateformat)
+void Option::DateFormat(const wxString& dateformat)
 {
     m_dateFormat = dateformat;
-    Model_Infotable::instance().SetDateFormat(dateformat);
+    Model_Infotable::instance().Set("DATEFORMAT", dateformat);;
 }
 
-wxString mmOptions::DateFormat()
+wxString Option::DateFormat()
 {
     return m_dateFormat;
 }
 
-void mmOptions::Language(wxString& language)
+void Option::Language(wxString& language)
 {
     m_language = language;
     Model_Setting::instance().Set(LANGUAGE_PARAMETER, language);
 }
 
-wxString mmOptions::Language(bool get_db)
+wxString Option::Language(bool get_db)
 {
     if (get_db)
     {
@@ -76,98 +120,173 @@ wxString mmOptions::Language(bool get_db)
     return m_language;
 }
 
-void mmOptions::UserName(const wxString& username)
+void Option::UserName(const wxString& username)
 {
     m_userNameString = username;
     Model_Infotable::instance().Set("USERNAME", username);
 }
 
-wxString mmOptions::UserName()
+wxString Option::UserName()
 {
     return m_userNameString;
 }
 
-wxString mmOptions::FinancialYearStartDay()
+wxString Option::FinancialYearStartDay()
 {
     return m_financialYearStartDayString;
 }
 
-void mmOptions::FinancialYearStartDay(const wxString& setting)
+void Option::FinancialYearStartDay(const wxString& setting)
 {
     m_financialYearStartDayString = setting;
     Model_Infotable::instance().Set("FINANCIAL_YEAR_START_DAY", setting);
 }
 
-wxString mmOptions::FinancialYearStartMonth()
+wxString Option::FinancialYearStartMonth()
 {
     return m_financialYearStartMonthString;
 }
 
-void mmOptions::FinancialYearStartMonth(const wxString& setting)
+void Option::FinancialYearStartMonth(const wxString& setting)
 {
     m_financialYearStartMonthString = setting;
     Model_Infotable::instance().Set("FINANCIAL_YEAR_START_MONTH", setting);
 }
 
-void mmOptions::DatabaseUpdated(bool value)
+void Option::DatabaseUpdated(bool value)
 {
     m_databaseUpdated = value;
-
 }
 
-bool mmOptions::DatabaseUpdated()
+bool Option::DatabaseUpdated()
 {
     return m_databaseUpdated;
 }
 
-
-//----------------------------------------------------------------------------
-mmIniOptions::mmIniOptions()
-: html_font_size_(100)
-, ico_size_(16)
-, budgetFinancialYears_(false)
-, budgetIncludeTransfers_(false)
-, budgetSetupWithoutSummaries_(false)
-, budgetReportWithSummaries_(true)
-, ignoreFutureTransactions_(false)
-, transPayeeSelectionNone_(0)
-, transCategorySelectionNone_(0)
-, transStatusReconciled_(0)
-, transDateDefault_(0)
-
-{}
-
-mmIniOptions& mmIniOptions::instance()
+void Option::BudgetFinancialYears(bool value)
 {
-    return Singleton<mmIniOptions>::instance();
+    Model_Setting::instance().Set(INIDB_BUDGET_FINANCIAL_YEARS, value);
+    m_budgetFinancialYears = value;
 }
 
-void mmIniOptions::loadOptions()
+bool Option::BudgetFinancialYears()
 {
-    html_font_size_ = Model_Setting::instance().GetHtmlScaleFactor();
-
-    ico_size_ = 16;
-    if (html_font_size_ >= 300) ico_size_ = 48;
-    else if (html_font_size_ >= 200) ico_size_ = 32;
-    else if (html_font_size_ >= 150) ico_size_ = 24;
-
-    budgetFinancialYears_           = Model_Setting::instance().BudgetFinancialYears();
-    budgetIncludeTransfers_         = Model_Setting::instance().BudgetIncludeTransfers();
-    budgetSetupWithoutSummaries_    = Model_Setting::instance().BudgetSetupWithoutSummary();
-    budgetReportWithSummaries_      = Model_Setting::instance().BudgetSummaryWithoutCategory();
-    ignoreFutureTransactions_       = Model_Setting::instance().IgnoreFutureTransactions();
-
-    // Read the preference as a string and convert to int
-    transPayeeSelectionNone_ = Model_Setting::instance().GetIntSetting("TRANSACTION_PAYEE_NONE", 0);
-
-    // For the category selection, default behavior should remain that the last category used for the payee is selected.
-    //  This is item 1 (0-indexed) in the list.
-    transCategorySelectionNone_ = Model_Setting::instance().GetIntSetting("TRANSACTION_CATEGORY_NONE", 1);
-    transStatusReconciled_      = Model_Setting::instance().GetIntSetting("TRANSACTION_STATUS_RECONCILED", 0);
-    transDateDefault_           = Model_Setting::instance().GetIntSetting("TRANSACTION_DATE_DEFAULT", 0);
+    return m_budgetFinancialYears;
 }
 
-const int mmIniOptions::account_image_id(int account_id, bool def)
+void Option::BudgetIncludeTransfers(bool value)
+{
+    Model_Setting::instance().Set(INIDB_BUDGET_INCLUDE_TRANSFERS, value);
+    m_budgetIncludeTransfers = value;
+
+}
+
+bool Option::BudgetIncludeTransfers()
+{
+    return m_budgetIncludeTransfers;
+}
+
+void Option::BudgetSetupWithoutSummaries(bool value)
+{
+    Model_Setting::instance().Set(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, value);
+    m_budgetSetupWithoutSummaries = value;
+}
+
+bool Option::BudgetSetupWithoutSummaries()
+{
+    return m_budgetSetupWithoutSummaries;
+}
+
+void Option::BudgetReportWithSummaries(bool value)
+{
+    Model_Setting::instance().Set(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, value);
+    m_budgetReportWithSummaries = value;
+
+}
+bool Option::BudgetReportWithSummaries()
+{
+    return m_budgetReportWithSummaries;
+}
+
+void Option::IgnoreFutureTransactions(bool value)
+{
+    Model_Setting::instance().Set(INIDB_IGNORE_FUTURE_TRANSACTIONS, value);
+    m_ignoreFutureTransactions = value;
+}
+
+bool Option::IgnoreFutureTransactions()
+{
+    return m_ignoreFutureTransactions;
+}
+
+
+void Option::TransPayeeSelectionNone(int value)
+{
+    Model_Setting::instance().Set("TRANSACTION_PAYEE_NONE", value);
+    m_transPayeeSelectionNone = value;
+}
+
+int Option::TransPayeeSelectionNone()
+{
+    return m_transPayeeSelectionNone;
+}
+
+
+void Option::TransCategorySelectionNone(int value)
+{
+    Model_Setting::instance().Set("TRANSACTION_CATEGORY_NONE", value);
+    m_transCategorySelectionNone = value;
+}
+
+int Option::TransCategorySelectionNone()
+{
+    return m_transCategorySelectionNone;
+}
+
+void Option::TransStatusReconciled(int value)
+{
+    Model_Setting::instance().Set("TRANSACTION_STATUS_RECONCILED", value);
+    m_transStatusReconciled = value;
+}
+
+int Option::TransStatusReconciled()
+{
+    return m_transStatusReconciled;
+}
+
+void Option::TransDateDefault(int value)
+{
+    Model_Setting::instance().Set("TRANSACTION_DATE_DEFAULT", value);
+    m_transDateDefault = value;
+}
+
+int Option::TransDateDefault()
+{
+    return m_transDateDefault;
+}
+
+void Option::HtmlFontSize(int value)
+{
+    Model_Setting::instance().Set("HTMLSCALE", value);
+    m_html_font_size = value;
+}
+
+int Option::HtmlFontSize()
+{
+    return m_html_font_size;
+}
+
+void Option::IconSize(int value)
+{
+    m_ico_size = value;
+}
+
+int Option::IconSize()
+{
+    return m_ico_size;
+}
+
+const int Option::AccountImageId(int account_id, bool def)
 {
     int max = acc_img::MAX_XPM - img::LAST_NAVTREE_PNG;
     int min = 1;
@@ -226,4 +345,3 @@ const int mmIniOptions::account_image_id(int account_id, bool def)
     }
     return selectedImage;
 }
-

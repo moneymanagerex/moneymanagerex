@@ -82,27 +82,6 @@ public:
 
     wxString ViewTransactions();
     void SetViewTransactions(const wxString& value);
-
-    /* Get stored value in percantage for scale html font and other objects */
-    int GetHtmlScaleFactor();
-
-    /* Set stored value in percantage for scale html font and other objects */
-    void SetHtmlScaleFactor(const int size);
-
-    bool BudgetFinancialYears();
-    void SetBudgetFinancialYears(bool value = false);
-
-    bool BudgetIncludeTransfers();
-    void SetBudgetIncludeTransfers(bool value = false);
-
-    bool BudgetSetupWithoutSummary();
-    void SetBudgetSetupWithoutSummary(bool value = false);
-
-    bool BudgetSummaryWithoutCategory();
-    void SetBudgetSummaryWithoutCategory(bool value = true);
-
-    bool IgnoreFutureTransactions();
-    void SetIgnoreFutureTransactions(bool value = false);
 };
 
 #endif // 

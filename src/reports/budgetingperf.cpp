@@ -79,7 +79,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
-    if (mmIniOptions::instance().budgetIncludeTransfers_)
+    if (Option::instance().BudgetIncludeTransfers())
     {
         evaluateTransfer = true;
     }
@@ -88,7 +88,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     std::map<int, std::map<int, double> > budgetAmt;
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
-    Model_Category::instance().getCategoryStats(categoryStats, &date_range, mmIniOptions::instance().ignoreFutureTransactions_,
+    Model_Category::instance().getCategoryStats(categoryStats, &date_range, Option::instance().IgnoreFutureTransactions(),
         true, true, (evaluateTransfer ? &budgetAmt : nullptr));
     //Init totals
     const auto &allCategories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);

@@ -70,15 +70,18 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     wxDateTime yearEnd(endDay, (wxDateTime::Month)endMonth, startYear);
 
     bool monthlyBudget = (startYearStr.length() > 5);
-    if (monthlyBudget) {
+    if (monthlyBudget)
+    {
         SetBudgetMonth(startYearStr, yearBegin, yearEnd);
-    } else {
+    }
+    else
+    {
         AdjustDateForEndFinancialYear(yearEnd);
     }
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
-    if (mmIniOptions::instance().budgetIncludeTransfers_)
+    if (Option::instance().BudgetIncludeTransfers())
     {
         evaluateTransfer = true;
     }
@@ -87,13 +90,13 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     std::map<int, std::map<int, double> > budgetAmt;
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
-    Model_Category::instance().getCategoryStats(categoryStats, &date_range, mmIniOptions::instance().ignoreFutureTransactions_,
+    Model_Category::instance().getCategoryStats(categoryStats, &date_range, Option::instance().IgnoreFutureTransactions(),
         false, true, (evaluateTransfer ? &budgetAmt : nullptr));
 
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    bool amply = mmIniOptions::instance().budgetReportWithSummaries_;
+    bool amply = Option::instance().BudgetReportWithSummaries();
     const wxString& headerStartupMsg = amply ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
 
     hb.addHeader(2, wxString::Format(headerStartupMsg,  headingStr + "<br>" + _("( Estimated Vs Actual )")));

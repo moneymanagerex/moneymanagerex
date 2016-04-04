@@ -263,7 +263,7 @@ void csv2tab_separated_values(wxString& line, const wxString& delimit)
 //* Date Functions----------------------------------------------------------*//
 const wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
 {
-    wxString dateFmt = mmOptions::instance().DateFormat();
+    wxString dateFmt = Option::instance().DateFormat();
     dateFmt.Replace("%Y%m%d", "%Y %m %d");
     dateFmt.Replace(".", " ");
     dateFmt.Replace(",", " ");
@@ -286,15 +286,15 @@ const wxString mmGetDateForDisplay(const wxDateTime &dt)
     */
 
     // Remebers previous format. If this changes, all stored string must be deleted.
-    static wxString dateFormat = mmOptions::instance().DateFormat();
+    static wxString dateFormat = Option::instance().DateFormat();
 
     // wxDateTime to formatted string lookup table.
     static std::map<wxDateTime, wxString> dateLookup;
 
     // If format has been changed, delete all stored strings.
-    if (dateFormat != mmOptions::instance().DateFormat())
+    if (dateFormat != Option::instance().DateFormat())
     {
-        dateFormat = mmOptions::instance().DateFormat();
+        dateFormat = Option::instance().DateFormat();
         dateLookup.clear();
     }
 
@@ -304,7 +304,7 @@ const wxString mmGetDateForDisplay(const wxDateTime &dt)
         return it->second; // The stored formatted date.
 
     // Format date, store it and return it.
-    return dateLookup[dt] = dt.Format(mmOptions::instance().DateFormat());
+    return dateLookup[dt] = dt.Format(Option::instance().DateFormat());
 }
 
 bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, const wxString &sDateMask)
@@ -340,7 +340,7 @@ const wxDateTime mmGetStorageStringAsDate(const wxString& str)
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
 {
     long monthNum;
-    mmOptions::instance().FinancialYearStartMonth().ToLong(&monthNum);
+    Option::instance().FinancialYearStartMonth().ToLong(&monthNum);
 
     if (monthNum > 0) //Test required for compatability with previous version
         monthNum--;
@@ -348,7 +348,7 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     int year = wxDate::GetCurrentYear();
     if (wxDate::GetCurrentMonth() < monthNum) year--;
 
-    int dayNum = wxAtoi(mmOptions::instance().FinancialYearStartDay());
+    int dayNum = wxAtoi(Option::instance().FinancialYearStartDay());
 
     if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays((wxDateTime::Month)monthNum, year))
         dayNum = 1;

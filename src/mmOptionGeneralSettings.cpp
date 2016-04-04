@@ -46,7 +46,7 @@ mmOptionGeneralSettings::mmOptionGeneralSettings(wxWindow *parent, mmGUIApp* app
     wxPanel::Create(parent, id, pos, size, style, name);
     m_app = app;
     m_currency_id = Model_Infotable::instance().GetBaseCurrencyId();
-    m_date_format = Model_Infotable::instance().DateFormat();
+    m_date_format = Option::instance().DateFormat();
 
     Create();
 }
@@ -219,26 +219,26 @@ void mmOptionGeneralSettings::SaveFinancialYearStart()
 {
     //Save Financial Year Start Day
     wxSpinCtrl* fysDay = (wxSpinCtrl*) FindWindow(ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY);
-    mmOptions::instance().FinancialYearStartDay(wxString::Format("%d", fysDay->GetValue()));
+    Option::instance().FinancialYearStartDay(wxString::Format("%d", fysDay->GetValue()));
 
     //Save Financial Year Start Month
     wxString fysMonthVal = wxString() << m_month_selection->GetSelection() + 1;
-    mmOptions::instance().FinancialYearStartMonth(fysMonthVal);
+    Option::instance().FinancialYearStartMonth(fysMonthVal);
 }
 
 void mmOptionGeneralSettings::SaveSettings()
 {
     wxTextCtrl* stun = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME);
-    mmOptions::instance().UserName(stun->GetValue());
+    Option::instance().UserName(stun->GetValue());
 
     wxButton *languageButton = (wxButton*) FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
     wxString language = languageButton->GetLabel().Lower();
-    mmOptions::instance().Language(language);
+    Option::instance().Language(language);
     mmDialogs::mmSelectLanguage(this->m_app, this, false);
 
     //Model_Infotable::instance().SetBaseCurrency(m_currency_id); Handled only inside MainCurrencyDialog to better manage CurrencyHistory changes
 
-    mmOptions::instance().DateFormat(m_date_format);
+    Option::instance().DateFormat(m_date_format);
     SaveFinancialYearStart();
 
     Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());
