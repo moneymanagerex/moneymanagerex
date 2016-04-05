@@ -105,16 +105,16 @@ void mmQIFExportDialog::CreateControls()
     int num = sizeof(choices) / sizeof(wxString);
     m_radio_box_ = new wxRadioBox(main_tab, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, num, choices, 2, wxRA_SPECIFY_COLS);
-    tab1_sizer->Add(m_radio_box_, wxSizerFlags(g_flags).Center());
+    tab1_sizer->Add(m_radio_box_, wxSizerFlags(g_flagsV).Center());
 
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
-    tab1_sizer->Add(flex_sizer, wxSizerFlags(g_flags).Left());
+    tab1_sizer->Add(flex_sizer, wxSizerFlags(g_flagsV).Left());
 
     // Categories -------------------------------------------------
     cCategs_ = new wxCheckBox(main_tab, wxID_ANY
         , _("Categories"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cCategs_->SetValue(FALSE);
-    flex_sizer->Add(cCategs_, g_flags);
+    flex_sizer->Add(cCategs_, g_flagsH);
     flex_sizer->AddSpacer(1);
 
     // Accounts --------------------------------------------
@@ -125,8 +125,8 @@ void mmQIFExportDialog::CreateControls()
     bSelectedAccounts_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFExportDialog::OnAccountsButton), nullptr, this);
     accountsCheckBox_->SetValue(true);
-    flex_sizer->Add(accountsCheckBox_, g_flags);
-    flex_sizer->Add(bSelectedAccounts_, g_flags);
+    flex_sizer->Add(accountsCheckBox_, g_flagsH);
+    flex_sizer->Add(bSelectedAccounts_, g_flagsH);
 
     // From Date --------------------------------------------
     dateFromCheckBox_ = new wxCheckBox(main_tab, wxID_ANY, _("From Date")
@@ -134,8 +134,8 @@ void mmQIFExportDialog::CreateControls()
     fromDateCtrl_ = new wxDatePickerCtrl(main_tab, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxSize(fieldWidth,-1), wxDP_DROPDOWN);
     fromDateCtrl_->Enable(false);
-    flex_sizer->Add(dateFromCheckBox_, g_flags);
-    flex_sizer->Add(fromDateCtrl_, g_flags);
+    flex_sizer->Add(dateFromCheckBox_, g_flagsH);
+    flex_sizer->Add(fromDateCtrl_, g_flagsH);
 
     // To Date --------------------------------------------
     dateToCheckBox_ = new wxCheckBox(main_tab, wxID_ANY, _("To Date")
@@ -143,8 +143,8 @@ void mmQIFExportDialog::CreateControls()
     toDateCtrl_ = new wxDatePickerCtrl(main_tab, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxSize(fieldWidth,-1), wxDP_DROPDOWN);
     toDateCtrl_->Enable(false);
-    flex_sizer->Add(dateToCheckBox_, g_flags);
-    flex_sizer->Add(toDateCtrl_, g_flags);
+    flex_sizer->Add(dateToCheckBox_, g_flagsH);
+    flex_sizer->Add(toDateCtrl_, g_flagsH);
 
     // Encoding --------------------------------------------
 
@@ -159,8 +159,8 @@ void mmQIFExportDialog::CreateControls()
         if (dateFormatStr == i.first) m_choiceDateFormat->SetStringSelection(i.second);
     }
 
-    flex_sizer->Add(dateFormat, g_flags);
-    flex_sizer->Add(m_choiceDateFormat, g_flags);
+    flex_sizer->Add(dateFormat, g_flagsH);
+    flex_sizer->Add(m_choiceDateFormat, g_flagsH);
 
     // File Name --------------------------------------------
     toFileCheckBox_ = new wxCheckBox(main_tab, wxID_ANY, _("Write to File")
@@ -178,10 +178,10 @@ void mmQIFExportDialog::CreateControls()
     m_text_ctrl_->Connect(wxID_FILE, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmQIFExportDialog::OnFileNameEntered), nullptr, this);
 
-    flex_sizer->Add(toFileCheckBox_, g_flags);
+    flex_sizer->Add(toFileCheckBox_, g_flagsH);
     flex_sizer->AddSpacer(1);
-    flex_sizer->Add(file_name_label_, g_flags);
-    flex_sizer->Add(button_search_, g_flags);
+    flex_sizer->Add(file_name_label_, g_flagsH);
+    flex_sizer->Add(button_search_, g_flagsH);
     tab1_sizer->Add(m_text_ctrl_, 0, wxALL|wxGROW, border);
 
     //Log viewer
@@ -190,7 +190,7 @@ void mmQIFExportDialog::CreateControls()
     tab2_sizer->Add(log_field_, 1, wxGROW|wxALL, border);
 
     wxButton* itemClearButton = new wxButton(log_tab, wxID_CLEAR, _("Clear"));
-    tab2_sizer->Add(itemClearButton, wxSizerFlags(g_flags).Center());
+    tab2_sizer->Add(itemClearButton, wxSizerFlags(g_flagsV).Center());
     itemClearButton->Connect(wxID_CLEAR, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFExportDialog::OnButtonClear), nullptr, this);
 
@@ -198,7 +198,7 @@ void mmQIFExportDialog::CreateControls()
      Button Panel with OK and Cancel Buttons
     ***********************************************************************************************/
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    main_sizer->Add(buttons_panel, wxSizerFlags(g_flags).Center().Border(wxALL, 0));
+    main_sizer->Add(buttons_panel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 0));
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
@@ -208,8 +208,8 @@ void mmQIFExportDialog::CreateControls()
     itemButtonOK->Connect(wxID_OK, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFExportDialog::OnOk), nullptr, this);
 
-    buttons_sizer->Add(itemButtonOK, g_flags);
-    buttons_sizer->Add(itemButtonCancel_, g_flags);
+    buttons_sizer->Add(itemButtonOK, g_flagsH);
+    buttons_sizer->Add(itemButtonCancel_, g_flagsH);
 
     buttons_sizer->Realize();
 }

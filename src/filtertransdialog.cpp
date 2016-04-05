@@ -174,7 +174,7 @@ void mmFilterTransactionsDialog::CreateControls()
     //--Start of Row --------------------------------------------------------
     accountCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Account")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(accountCheckBox_, g_flags);
+    itemPanelSizer->Add(accountCheckBox_, g_flagsH);
 
     accountDropDown_ = new wxChoice(itemPanel
         , wxID_ANY, wxDefaultPosition, wxSize(220, -1)
@@ -185,7 +185,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     dateRangeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Date Range")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(dateRangeCheckBox_, g_flags);
+    itemPanelSizer->Add(dateRangeCheckBox_, g_flagsH);
 
     fromDateCtrl_ = new wxDatePickerCtrl(itemPanel, wxID_ANY, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
@@ -203,7 +203,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     payeeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Payee")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(payeeCheckBox_, g_flags);
+    itemPanelSizer->Add(payeeCheckBox_, g_flagsH);
 
     cbPayee_ = new wxComboBox(itemPanel, wxID_ANY, "", wxDefaultPosition,  wxSize(220, -1));
     cbPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
@@ -218,7 +218,7 @@ void mmFilterTransactionsDialog::CreateControls()
     wxFlexGridSizer* categSizer = new wxFlexGridSizer(0, 1, 0, 0);
     categSizer->AddGrowableCol(0, 1);
 
-    itemPanelSizer->Add(categoryCheckBox_, g_flags);
+    itemPanelSizer->Add(categoryCheckBox_, g_flagsH);
     itemPanelSizer->Add(categSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     btnCategory_ = new wxButton(itemPanel, wxID_ANY, ""
@@ -230,13 +230,13 @@ void mmFilterTransactionsDialog::CreateControls()
     similarCategCheckBox_->SetToolTip(_("Include all subcategories for the selected category."));
 
     categSizer->Add(btnCategory_, g_flagsExpand);
-    categSizer->Add(similarCategCheckBox_, wxSizerFlags(g_flags).Center().Border(0));
+    categSizer->Add(similarCategCheckBox_, wxSizerFlags(g_flagsH).Center().Border(0));
     categSizer->AddSpacer(5);
     //--End of Row --------------------------------------------------------
 
     statusCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Status")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(statusCheckBox_, g_flags);
+    itemPanelSizer->Add(statusCheckBox_, g_flagsH);
 
     choiceStatus_ = new wxChoice(itemPanel, wxID_ANY);
 
@@ -262,7 +262,7 @@ void mmFilterTransactionsDialog::CreateControls()
     cbTypeTransferFrom_ = new wxCheckBox(itemPanel, wxID_ANY, _("Transfer From")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
-    itemPanelSizer->Add(typeCheckBox_, g_flags);
+    itemPanelSizer->Add(typeCheckBox_, g_flagsH);
     itemPanelSizer->Add(typeSizer, g_flagsExpand);
     typeSizer->Add(cbTypeWithdrawal_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
     typeSizer->Add(cbTypeDeposit_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
@@ -274,7 +274,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     amountRangeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Amount Range")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(amountRangeCheckBox_, g_flags);
+    itemPanelSizer->Add(amountRangeCheckBox_, g_flagsH);
 
     amountMinEdit_ = new mmTextCtrl(itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
@@ -296,7 +296,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     transNumberCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Number")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
-    itemPanelSizer->Add(transNumberCheckBox_, g_flags);
+    itemPanelSizer->Add(transNumberCheckBox_, g_flagsH);
 
     transNumberEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
     itemPanelSizer->Add(transNumberEdit_, g_flagsExpand);
@@ -304,7 +304,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     notesCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Notes")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(notesCheckBox_, g_flags);
+    itemPanelSizer->Add(notesCheckBox_, g_flagsH);
 
     notesEdit_ = new wxTextCtrl( itemPanel, wxID_ANY);
     itemPanelSizer->Add(notesEdit_, g_flagsExpand);
@@ -324,15 +324,15 @@ void mmFilterTransactionsDialog::CreateControls()
     m_radio_box_->SetSelection(view_no);
     m_radio_box_->Show(true);
 
-    itemBoxSizer3->Add(settings_box_sizer, wxSizerFlags(g_flags).Center());
+    itemBoxSizer3->Add(settings_box_sizer, wxSizerFlags(g_flagsV).Center());
     settings_box_sizer->Add(m_settingLabel, wxSizerFlags(g_flagsExpand).Border(0));
-    settings_box_sizer->Add(m_radio_box_, g_flags);
+    settings_box_sizer->Add(m_radio_box_, g_flagsV);
 
     /******************************************************************************
      Button Panel with OK/Cancel buttons
     *******************************************************************************/
     wxPanel* buttonPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemBoxSizer3->Add(buttonPanel, wxSizerFlags(g_flags).Center());
+    itemBoxSizer3->Add(buttonPanel, wxSizerFlags(g_flagsV).Center());
 
     wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonPanel->SetSizer(buttonPanelSizer);
@@ -349,10 +349,10 @@ void mmFilterTransactionsDialog::CreateControls()
 
     save_button->Show(true);
 
-    buttonPanelSizer->Add(save_button,g_flags);
-    buttonPanelSizer->Add(itemButtonOK, g_flags);
-    buttonPanelSizer->Add(itemButtonCancel, g_flags);
-    buttonPanelSizer->Add(itemButtonClear, g_flags);
+    buttonPanelSizer->Add(save_button,g_flagsH);
+    buttonPanelSizer->Add(itemButtonOK, g_flagsH);
+    buttonPanelSizer->Add(itemButtonCancel, g_flagsH);
+    buttonPanelSizer->Add(itemButtonClear, g_flagsH);
 }
 
 void mmFilterTransactionsDialog::OnCheckboxClick( wxCommandEvent& event )

@@ -148,7 +148,7 @@ void mmUnivCSVDialog::CreateControls()
     itemPanel6->SetSizer(itemBoxSizer7);
 
     wxStaticText* itemStaticText5 = new wxStaticText(itemPanel6, wxID_ANY, _("File Name:"));
-    itemBoxSizer7->Add(itemStaticText5, g_flags);
+    itemBoxSizer7->Add(itemStaticText5, g_flagsH);
     itemStaticText5->SetFont(staticBoxFontSetting);
 
     m_text_ctrl_ = new wxTextCtrl(itemPanel6
@@ -164,32 +164,32 @@ void mmUnivCSVDialog::CreateControls()
     const wxString& file_tooltip = IsImporter()
         ? _("Choose CSV data file to Import") : _("Choose CSV data file to Export");
     button_browse->SetToolTip(file_tooltip);
-    itemBoxSizer7->Add(button_browse, g_flags);
+    itemBoxSizer7->Add(button_browse, g_flagsH);
 
     // Predefined settings
     wxPanel* itemPanel67 = new wxPanel(this
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     wxBoxSizer* itemBoxSizer76 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel67->SetSizer(itemBoxSizer76);
-    itemBoxSizer2->Add(itemPanel67, wxSizerFlags(g_flagsExpand).Center().Proportion(0).Border(0));
+    itemBoxSizer2->Add(itemPanel67, wxSizerFlags(g_flagsExpand).Proportion(0).Border(0));
     const wxString settings_choice [] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
     wxRadioBox* radio_box = new wxRadioBox(itemPanel67
         , wxID_APPLY, "", wxDefaultPosition, wxDefaultSize
         , sizeof(settings_choice) / sizeof(wxString)
         , settings_choice, 10, wxRA_SPECIFY_COLS);
-    itemBoxSizer76->Add(radio_box, wxSizerFlags(g_flags).Center().Proportion(1));
+    itemBoxSizer76->Add(radio_box, wxSizerFlags(g_flagsH).Center().Proportion(1));
     radio_box->Connect(wxID_APPLY, wxEVT_COMMAND_RADIOBOX_SELECTED
         , wxCommandEventHandler(mmUnivCSVDialog::OnSettingsSelected), nullptr, this);
 
     wxBitmapButton* itemButton_Save = new wxBitmapButton(itemPanel67
         , wxID_SAVEAS, mmBitmap(png::SAVEAS));
-    itemBoxSizer76->Add(itemButton_Save, wxSizerFlags(g_flags).Center().Proportion(0));
+    itemBoxSizer76->Add(itemButton_Save, wxSizerFlags(g_flagsH).Center().Proportion(0));
     itemButton_Save->SetToolTip(_("Save Template"));
 
     //
     wxStaticText* itemStaticText3 = new wxStaticText(this, wxID_STATIC
        , _("Specify the order of fields in the file"));
-    itemBoxSizer2->Add(itemStaticText3, g_flags);
+    itemBoxSizer2->Add(itemStaticText3, g_flagsV);
     itemStaticText3->SetFont(staticBoxFontSetting);
 
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
@@ -205,22 +205,22 @@ void mmUnivCSVDialog::CreateControls()
      //Add Remove Area
     wxPanel* itemPanel_AddRemove = new wxPanel(this, ID_PANEL10,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemBoxSizer3->Add(itemPanel_AddRemove, g_flags);
+    itemBoxSizer3->Add(itemPanel_AddRemove, g_flagsH);
 
     wxBoxSizer* itemBoxSizer_AddRemove = new wxBoxSizer(wxVERTICAL);
     itemPanel_AddRemove->SetSizer(itemBoxSizer_AddRemove);
 
     //Add button
     m_button_add_= new wxButton(itemPanel_AddRemove, wxID_ADD, _("&Add "));
-    itemBoxSizer_AddRemove->Add(m_button_add_, g_flags);
+    itemBoxSizer_AddRemove->Add(m_button_add_, g_flagsV);
 
     //Remove button
     m_button_remove_ = new wxButton(itemPanel_AddRemove, wxID_REMOVE, _("&Remove "));
-    itemBoxSizer_AddRemove->Add(m_button_remove_, g_flags);
+    itemBoxSizer_AddRemove->Add(m_button_remove_, g_flagsV);
 
     //Standard MMEX CSV
     wxButton* itemButton_standard = new wxButton(itemPanel_AddRemove, wxID_STANDARD, _("&MMEX format"));
-    itemBoxSizer_AddRemove->Add(itemButton_standard, g_flags);
+    itemBoxSizer_AddRemove->Add(itemButton_standard, g_flagsV);
     itemButton_standard->SetToolTip(_("MMEX standard format"));
 
     //ListBox of attribute order
@@ -231,19 +231,19 @@ void mmUnivCSVDialog::CreateControls()
    //Arranger Area
     wxPanel* itemPanel_Arranger = new wxPanel(this, ID_PANEL10
         , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemBoxSizer3->Add(itemPanel_Arranger, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 1);
+    itemBoxSizer3->Add(itemPanel_Arranger, 0, wxALL, 1);
 
     wxBoxSizer* itemBoxSizer_Arranger = new wxBoxSizer(wxVERTICAL);
     itemPanel_Arranger->SetSizer(itemBoxSizer_Arranger);
 
     //Move Up button
     wxButton* itemButton_MoveUp = new wxButton(itemPanel_Arranger, wxID_UP, _("&Up"));
-    itemBoxSizer_Arranger->Add(itemButton_MoveUp, g_flags);
+    itemBoxSizer_Arranger->Add(itemButton_MoveUp, g_flagsV);
     itemButton_MoveUp -> SetToolTip (_("Move Up"));
 
     //Move down button
     wxButton* itemButton_MoveDown = new wxButton(itemPanel_Arranger, wxID_DOWN, _("&Down"));
-    itemBoxSizer_Arranger->Add(itemButton_MoveDown, g_flags);
+    itemBoxSizer_Arranger->Add(itemButton_MoveDown, g_flagsV);
     itemButton_MoveDown->SetToolTip(_("Move &Down"));
 
     wxStaticLine*  m_staticline1 = new wxStaticLine(this
@@ -262,33 +262,33 @@ void mmUnivCSVDialog::CreateControls()
 
     wxStaticText* itemStaticText6 = new wxStaticText(itemPanel7
         , wxID_ANY, _("Account: "));
-    flex_sizer->Add(itemStaticText6, g_flags);
+    flex_sizer->Add(itemStaticText6, g_flagsH);
     itemStaticText6->SetFont(staticBoxFontSetting);
 
     m_choice_account_ = new wxChoice(itemPanel7, wxID_ACCOUNT, wxDefaultPosition, wxSize(210, -1)
         , Model_Account::instance().all_checking_account_names(), 0);
     m_choice_account_->SetSelection(0);
-    flex_sizer->Add(m_choice_account_, g_flags);
+    flex_sizer->Add(m_choice_account_, g_flagsH);
 
     wxStaticLine*  m_staticline2 = new wxStaticLine(this
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
     itemBoxSizer2->Add(m_staticline2, flagsExpand );
 
     wxStaticText* itemStaticText66 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_("Date Format: ")));
-    flex_sizer->Add(itemStaticText66, g_flags);
+    flex_sizer->Add(itemStaticText66, g_flagsH);
     itemStaticText66->SetFont(staticBoxFontSetting);
 
     date_format_ = Option::instance().DateFormat();
     choiceDateFormat_ = new wxChoice(itemPanel7, ID_DATE_FORMAT);
     initDateMask();
-    flex_sizer->Add(choiceDateFormat_, g_flags);
+    flex_sizer->Add(choiceDateFormat_, g_flagsH);
 
     // CSV Delimiter
     if (IsCSV())
     {
         wxStaticText* itemStaticText77 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_("CSV Delimiter:")));
         itemStaticText77->SetFont(staticBoxFontSetting);
-        flex_sizer->Add(itemStaticText77, g_flags);
+        flex_sizer->Add(itemStaticText77, g_flagsH);
 
         m_textDelimiter = new wxTextCtrl(itemPanel7, ID_UD_DELIMIT, "", wxDefaultPosition, wxDefaultSize
             , wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB);
@@ -297,26 +297,26 @@ void mmUnivCSVDialog::CreateControls()
         m_textDelimiter->Connect(ID_UD_DELIMIT
             , wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmUnivCSVDialog::OnDelimiterChange), nullptr, this);
         initDelimiter();
-        flex_sizer->Add(m_textDelimiter, g_flags);
+        flex_sizer->Add(m_textDelimiter, g_flagsH);
     }
 
     //Encoding
     wxStaticText* itemStaticText88 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_("Encoding:")));
     itemStaticText88->SetFont(staticBoxFontSetting);
-    flex_sizer->Add(itemStaticText88, g_flags);
+    flex_sizer->Add(itemStaticText88, g_flagsH);
 
     m_choiceEncoding = new wxChoice(itemPanel7, ID_ENCODING);
     for (const auto i : g_encoding)
         m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
     m_choiceEncoding->SetSelection(0);
 
-    flex_sizer->Add(m_choiceEncoding, g_flags);
+    flex_sizer->Add(m_choiceEncoding, g_flagsH);
 
     // Option to add column titles to exported files.
     if (!IsImporter())
     {
         m_checkBoxExportTitles = new wxCheckBox(itemPanel7, wxID_ANY, _("Export column titles"));
-        flex_sizer->Add(m_checkBoxExportTitles, g_flags);
+        flex_sizer->Add(m_checkBoxExportTitles, g_flagsH);
     }
 
     // Determine meaning of "amount" field's sign- deposit or withdrawal. 
@@ -325,7 +325,7 @@ void mmUnivCSVDialog::CreateControls()
     {
         // Text title.
         wxStaticText* itemStaticTextAmount = new wxStaticText(itemPanel7, wxID_ANY, _("Amount(+/-): "));
-        flex_sizer->Add(itemStaticTextAmount, g_flags);
+        flex_sizer->Add(itemStaticTextAmount, g_flagsH);
         itemStaticTextAmount->SetFont(staticBoxFontSetting);
 
         // Choice selection.
@@ -333,7 +333,7 @@ void mmUnivCSVDialog::CreateControls()
         m_choiceAmountFieldSign->Append(wxGetTranslation(_("Positive values are deposits")));
         m_choiceAmountFieldSign->Append(wxGetTranslation(_("Positive values are withdrawals")));
         m_choiceAmountFieldSign->SetSelection(PositiveIsDeposit);
-        flex_sizer->Add(m_choiceAmountFieldSign, g_flags);
+        flex_sizer->Add(m_choiceAmountFieldSign, g_flagsH);
     }
 
     // Select rows to import (not relevant for export)
@@ -347,16 +347,16 @@ void mmUnivCSVDialog::CreateControls()
 
         // "Ignore first" title, spin and event handler.
         wxStaticText* itemStaticText7 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From start: "));
-        rowSelectionStaticBoxSizer->Add(itemStaticText7, g_flags);
+        rowSelectionStaticBoxSizer->Add(itemStaticText7, g_flagsH);
         m_spinIgnoreFirstRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_FIRST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
-        rowSelectionStaticBoxSizer->Add(m_spinIgnoreFirstRows_, g_flags);
+        rowSelectionStaticBoxSizer->Add(m_spinIgnoreFirstRows_, g_flagsH);
         m_spinIgnoreFirstRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreFirstRows), nullptr, this);
 
         // "Ignore last" title, spin and event handler.
         wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From end: "));
-        rowSelectionStaticBoxSizer->Add(itemStaticText8, g_flags);
+        rowSelectionStaticBoxSizer->Add(itemStaticText8, g_flagsH);
         m_spinIgnoreLastRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_LAST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
-        rowSelectionStaticBoxSizer->Add(m_spinIgnoreLastRows_, g_flags);
+        rowSelectionStaticBoxSizer->Add(m_spinIgnoreLastRows_, g_flagsH);
         m_spinIgnoreLastRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows), nullptr, this);
     }
 
