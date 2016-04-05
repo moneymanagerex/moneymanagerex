@@ -71,7 +71,7 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     const wxString& caption, const wxPoint& pos, const wxSize& size, long style)
 {
     wxDialog::Create(parent, id, caption, pos, size, style);
-    const wxSizerFlags flags = wxSizerFlags().Align(wxALIGN_CENTER | wxALIGN_CENTER_VERTICAL).Border(wxLEFT | wxRIGHT, 15);
+    const wxSizerFlags flags = wxSizerFlags().Align(wxALIGN_CENTER).Border(wxLEFT | wxRIGHT, 15);
 
     wxBoxSizer* Sizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(Sizer);

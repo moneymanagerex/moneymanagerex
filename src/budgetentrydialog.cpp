@@ -104,8 +104,8 @@ void mmBudgetEntryDialog::CreateControls()
     wxStaticText* itemTextEstCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catEstimateAmountStr_);
     wxStaticText* itemTextActCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catActualAmountStr_);
     
-    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Category: ")), g_flags);
-    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, category->CATEGNAME), wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Category: ")), g_flagsH);
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, category->CATEGNAME), wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     // only add the subcategory if it exists.
     if (budgetEntry_->SUBCATEGID >= 0) {
         wxStaticText* itemTextSubCatTag = new wxStaticText(itemPanel7, wxID_STATIC
@@ -113,15 +113,15 @@ void mmBudgetEntryDialog::CreateControls()
         wxStaticText* itemTextSubCatName = new wxStaticText(itemPanel7, wxID_STATIC
             , sub_category->SUBCATEGNAME);
         
-        itemGridSizer2->Add(itemTextSubCatTag, g_flags);
-        itemGridSizer2->Add(itemTextSubCatName, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+        itemGridSizer2->Add(itemTextSubCatTag, g_flagsH);
+        itemGridSizer2->Add(itemTextSubCatName, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     }
-    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Estimated:")), g_flags);
-    itemGridSizer2->Add(itemTextEstCatAmt, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
-    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Actual:")), g_flags);
-    itemGridSizer2->Add(itemTextActCatAmt, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Estimated:")), g_flagsH);
+    itemGridSizer2->Add(itemTextEstCatAmt, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Actual:")), g_flagsH);
+    itemGridSizer2->Add(itemTextActCatAmt, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
 
-    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Type:")), g_flags);
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Type:")), g_flagsH);
 
     wxArrayString itemTypeStrings;  
     itemTypeStrings.Add(_("Expense"));
@@ -132,7 +132,7 @@ void mmBudgetEntryDialog::CreateControls()
     itemGridSizer2->Add(m_choiceType, g_flagsExpand);
     m_choiceType->SetToolTip(_("Specify whether this category is an income or an expense category"));
 
-    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Frequency:")), g_flags);
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Frequency:")), g_flagsH);
 
     m_choiceItem = new wxChoice(itemPanel7, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, Model_Budget::all_period());
@@ -140,7 +140,7 @@ void mmBudgetEntryDialog::CreateControls()
     m_choiceItem->SetToolTip(_("Specify the frequency of the expense or deposit"));
     m_choiceItem->Connect(wxID_ANY, wxEVT_CHAR, wxKeyEventHandler(mmBudgetEntryDialog::onChoiceChar), nullptr, this);
 
-    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Amount:")), g_flags);
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Amount:")), g_flagsH);
 
     m_textAmount = new mmTextCtrl(itemPanel7, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
@@ -151,13 +151,13 @@ void mmBudgetEntryDialog::CreateControls()
     m_textAmount->SetFocus();
     
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer2->Add(itemBoxSizer9, wxSizerFlags(g_flags).Center());
+    itemBoxSizer2->Add(itemBoxSizer9, wxSizerFlags(g_flagsV).Center());
    
     wxButton* itemButton7 = new wxButton(this, wxID_OK, _("&OK "));
-    itemBoxSizer9->Add(itemButton7, g_flags);
+    itemBoxSizer9->Add(itemButton7, g_flagsH);
 
     wxButton* itemButton8 = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    itemBoxSizer9->Add(itemButton8, g_flags);
+    itemBoxSizer9->Add(itemButton8, g_flagsH);
 }
 
 

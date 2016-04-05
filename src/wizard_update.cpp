@@ -60,7 +60,7 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const wxString& NewVersion)
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
 
     page1_sizer->Add(updateText);
-    page1_sizer->Add(whatsnew, wxSizerFlags(g_flags).Border(wxBOTTOM, 0));
+    page1_sizer->Add(whatsnew, wxSizerFlags(g_flagsV).Border(wxBOTTOM, 0));
     page1_sizer->Add(changelog, wxSizerFlags(g_flagsExpand).Border(wxTOP,0));
     changelog->LoadPage(URL);
 

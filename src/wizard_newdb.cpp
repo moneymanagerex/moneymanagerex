@@ -146,7 +146,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     itemBoxSizer5->Add(itemStaticText6, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     itemUserName_ = new wxTextCtrl(this, wxID_ANY);
-    itemBoxSizer5->Add(itemUserName_, 1, wxALIGN_CENTER_VERTICAL | wxGROW | wxALL, 5);
+    itemBoxSizer5->Add(itemUserName_, 1, wxGROW | wxALL, 5);
 
     helpMsg = _("(Optional) Specify a title or your name.") + "\n";
     helpMsg += _("Used as a database title for displayed and printed reports.");
