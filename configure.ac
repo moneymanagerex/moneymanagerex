@@ -3,7 +3,7 @@
 ##########################################################################
 
 AC_PREREQ(2.53)
-AC_INIT([MoneyManagerEx], 1.2.0, [moneymanagerex@moneymanagerex.org])
+AC_INIT([MoneyManagerEx], 1.3.0, [moneymanagerex@moneymanagerex.org])
 
 ##########################################################################
 
