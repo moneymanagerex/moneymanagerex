@@ -232,7 +232,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     if (date.GetDay() != dateEnd.GetDay() || date.GetMonth() != dateEnd.GetMonth() || date.GetYear() != dateEnd.GetYear())
         arDates.push_back(date);
 
-    for (const auto & dateStart : arDates)
+    for (const auto & dd : arDates)
     {
         i = 0;
         for (auto& account: Model_Account::instance().all())
@@ -241,7 +241,7 @@ wxString mmReportSummaryByDate::getHTMLText()
             {
                 for (; arIt[i] != balanceMapVec[i].end(); ++arIt[i])
                 {
-                    if (arIt[i]->first.IsLaterThan(dateStart))
+                    if (arIt[i]->first.IsLaterThan(dd))
                         break;
                     arBalance[i] += arIt[i]->second;
                 }
@@ -250,13 +250,13 @@ wxString mmReportSummaryByDate::getHTMLText()
             {
                 Model_Currency::Data* currency = Model_Account::currency(account);
                 double	convRate = currency ? currency->BASECONVRATE : 1.0;
-                arBalance[i] = arHistory.getDailyBalanceAt(&account, dateStart) * convRate;
+                arBalance[i] = arHistory.getDailyBalanceAt(&account, dd) * convRate;
             }
             i++;
         }
 
         // prepare columns for report: date, cash, checking, credit card, term, partial total, investment, grand total
-        totBalanceData.push_back(dateStart.FormatISODate());
+        totBalanceData.push_back(dd.FormatISODate());
         for (j=0; j<6; j++)
             balancePerDay[j] = 0.0;
         i = 0;
