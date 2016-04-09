@@ -16,7 +16,7 @@ install:
 
     cd c:\projects\wxwidgets
 
-    git checkout tags/v3.0.2
+    git checkout tags/v3.1.0
 
     cd c:\projects\moneymanagerex
 
