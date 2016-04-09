@@ -335,7 +335,7 @@
     <ClCompile Include="..\..\src\minimal_editor.cpp" />
     <ClCompile Include="..\..\src\mmCalculator.cpp" />
     <ClCompile Include="..\..\src\reports\mmDateRange.cpp" />
-    <ClCompile Include="..\..\src\mmOption.cpp" />
+    <ClCompile Include="..\..\src\option.cpp" />
     <ClCompile Include="..\..\src\mmcheckingpanel.cpp" />
     <ClCompile Include="..\..\src\mmex.cpp" />
     <ClCompile Include="..\..\src\mmframe.cpp" />
@@ -470,7 +470,7 @@
     <ClInclude Include="..\..\src\mmCalculator.h" />
     <ClInclude Include="..\..\src\reports\mmDateRange.h" />
     <ClInclude Include="..\..\src\mmHook.h" />
-    <ClInclude Include="..\..\src\mmOption.h" />
+    <ClInclude Include="..\..\src\option.h" />
     <ClInclude Include="..\..\src\mmTips.h" />
     <ClInclude Include="..\..\src\mmcheckingpanel.h" />
     <ClInclude Include="..\..\src\mmcombobox.h" />

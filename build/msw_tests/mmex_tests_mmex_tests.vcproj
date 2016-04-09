@@ -657,10 +657,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\mmOption.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\mmOptionAttachmentSettings.cpp"
 				>
 			</File>
@@ -730,6 +726,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\reports\myusage.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\option.cpp"
 				>
 			</File>
 			<File
@@ -988,6 +988,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\db\DB_Table_Splittransactions_V1.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\db\DB_Table_Splittransactions_V2.h"
 				>
 			</File>
 			<File
@@ -1279,10 +1283,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\mmOption.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\mmOptionAttachmentSettings.h"
 				>
 			</File>
@@ -1356,6 +1356,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\reports\myusage.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\option.h"
 				>
 			</File>
 			<File

@@ -96,7 +96,7 @@
     <ClCompile Include="..\..\src\mmCalculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\mmOption.cpp">
+    <ClCompile Include="..\..\src\option.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\mmcheckingpanel.cpp">
@@ -425,7 +425,7 @@
     <ClInclude Include="..\..\src\mmCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\mmOption.h">
+    <ClInclude Include="..\..\src\option.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\mmcheckingpanel.h">

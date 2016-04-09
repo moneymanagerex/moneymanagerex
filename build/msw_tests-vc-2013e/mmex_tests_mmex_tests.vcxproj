@@ -331,7 +331,7 @@
     <ClCompile Include="..\..\src\maincurrencydialog.cpp" />
     <ClCompile Include="..\..\src\minimal_editor.cpp" />
     <ClCompile Include="..\..\src\mmCalculator.cpp" />
-    <ClCompile Include="..\..\src\mmOption.cpp" />
+    <ClCompile Include="..\..\src\option.cpp" />
     <ClCompile Include="..\..\src\mmcheckingpanel.cpp" />
     <ClCompile Include="..\..\src\mmex.cpp" />
     <ClCompile Include="..\..\tests\mmex_tests.cpp" />
@@ -481,7 +481,7 @@
     <ClInclude Include="..\..\src\minimal_editor.h" />
     <ClInclude Include="..\..\src\mmCalculator.h" />
     <ClInclude Include="..\..\src\mmHook.h" />
-    <ClInclude Include="..\..\src\mmOption.h" />
+    <ClInclude Include="..\..\src\option.h" />
     <ClInclude Include="..\..\src\mmTips.h" />
     <ClInclude Include="..\..\src\mmcheckingpanel.h" />
     <ClInclude Include="..\..\src\mmcombobox.h" />

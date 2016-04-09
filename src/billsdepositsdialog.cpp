@@ -22,7 +22,7 @@
 #include "categdialog.h"
 #include "constants.h"
 #include "images_list.h"
-#include "mmOption.h"
+#include "option.h"
 #include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "payeedialog.h"

@@ -91,11 +91,11 @@ void Test_Options_Dialog::test_dialog()
     mmOptionsDialog dlg(m_base_frame, 0);
     if (dlg.ShowModal() == wxID_OK)
     {
-        CPPUNIT_ASSERT(mmOptions::instance().language_ == "english");
-        CPPUNIT_ASSERT(mmOptions::instance().userNameString_ == "Test Database");
+        CPPUNIT_ASSERT(Option::instance().Language() == "english");
+        CPPUNIT_ASSERT(Option::instance().UserName() == "Test Database");
 
-        CPPUNIT_ASSERT(mmOptions::instance().financialYearStartDayString_ == "1");
-        CPPUNIT_ASSERT(mmOptions::instance().financialYearStartMonthString_ == "7");
+        CPPUNIT_ASSERT(Option::instance().FinancialYearStartDay() == "1");
+        CPPUNIT_ASSERT(Option::instance().FinancialYearStartMonth() == "7");
     }
 }
 

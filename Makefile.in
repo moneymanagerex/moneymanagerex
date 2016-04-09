@@ -138,7 +138,6 @@ MMEX_OBJECTS =  \
 	mmex_maincurrencydialog.o \
 	mmex_minimal_editor.o \
 	mmex_mmCalculator.o \
-	mmex_mmOption.o \
 	mmex_mmOptionAttachmentSettings.o \
 	mmex_mmOptionBaseSettings.o \
 	mmex_mmOptionGeneralSettings.o \
@@ -154,6 +153,7 @@ MMEX_OBJECTS =  \
 	mmex_mmhomepagepanel.o \
 	mmex_mmpanelbase.o \
 	mmex_mmreportspanel.o \
+	mmex_option.o \
 	mmex_optionsdialog.o \
 	mmex_paths.o \
 	mmex_payeedialog.o \
@@ -543,9 +543,6 @@ mmex_minimal_editor.o: $(srcdir)/src/minimal_editor.cpp
 mmex_mmCalculator.o: $(srcdir)/src/mmCalculator.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmCalculator.cpp
 
-mmex_mmOption.o: $(srcdir)/src/mmOption.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmOption.cpp
-
 mmex_mmOptionAttachmentSettings.o: $(srcdir)/src/mmOptionAttachmentSettings.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmOptionAttachmentSettings.cpp
 
@@ -590,6 +587,9 @@ mmex_mmpanelbase.o: $(srcdir)/src/mmpanelbase.cpp
 
 mmex_mmreportspanel.o: $(srcdir)/src/mmreportspanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mmreportspanel.cpp
+
+mmex_option.o: $(srcdir)/src/option.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/option.cpp
 
 mmex_optionsdialog.o: $(srcdir)/src/optionsdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/optionsdialog.cpp

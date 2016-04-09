@@ -146,7 +146,6 @@ MMEX_OBJECTS =  \
 	mmex_maincurrencydialog.obj \
 	mmex_minimal_editor.obj \
 	mmex_mmCalculator.obj \
-	mmex_mmOption.obj \
 	mmex_mmOptionAttachmentSettings.obj \
 	mmex_mmOptionBaseSettings.obj \
 	mmex_mmOptionGeneralSettings.obj \
@@ -162,6 +161,7 @@ MMEX_OBJECTS =  \
 	mmex_mmhomepagepanel.obj \
 	mmex_mmpanelbase.obj \
 	mmex_mmreportspanel.obj \
+	mmex_option.obj \
 	mmex_optionsdialog.obj \
 	mmex_paths.obj \
 	mmex_payeedialog.obj \
@@ -750,9 +750,6 @@ mmex_minimal_editor.obj: ..\..\src\minimal_editor.cpp
 mmex_mmCalculator.obj: ..\..\src\mmCalculator.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmCalculator.cpp
 
-mmex_mmOption.obj: ..\..\src\mmOption.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOption.cpp
-
 mmex_mmOptionAttachmentSettings.obj: ..\..\src\mmOptionAttachmentSettings.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionAttachmentSettings.cpp
 
@@ -797,6 +794,9 @@ mmex_mmpanelbase.obj: ..\..\src\mmpanelbase.cpp
 
 mmex_mmreportspanel.obj: ..\..\src\mmreportspanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmreportspanel.cpp
+
+mmex_option.obj: ..\..\src\option.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\option.cpp
 
 mmex_optionsdialog.obj: ..\..\src\optionsdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\optionsdialog.cpp

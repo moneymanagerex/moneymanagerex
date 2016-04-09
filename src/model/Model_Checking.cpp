@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "mmOption.h"
+#include "option.h"
 #include "Model_Checking.h"
 #include "Model_Account.h"
 #include "Model_Payee.h"

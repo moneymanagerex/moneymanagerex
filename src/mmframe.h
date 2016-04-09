@@ -27,7 +27,7 @@ Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 #include <wx/aui/aui.h>
 #include <wx/toolbar.h>
 #include <vector>
-#include "mmOption.h"
+#include "option.h"
 #include "constants.h"
 #include "util.h"
 

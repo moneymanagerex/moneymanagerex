@@ -175,7 +175,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_maincurrencydialog.o \
 	mmex_tests_minimal_editor.o \
 	mmex_tests_mmCalculator.o \
-	mmex_tests_mmOption.o \
 	mmex_tests_mmOptionAttachmentSettings.o \
 	mmex_tests_mmOptionBaseSettings.o \
 	mmex_tests_mmOptionGeneralSettings.o \
@@ -191,6 +190,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmhomepagepanel.o \
 	mmex_tests_mmpanelbase.o \
 	mmex_tests_mmreportspanel.o \
+	mmex_tests_option.o \
 	mmex_tests_optionsdialog.o \
 	mmex_tests_paths.o \
 	mmex_tests_payeedialog.o \
@@ -775,9 +775,6 @@ mmex_tests_minimal_editor.o: ../../src/minimal_editor.cpp
 mmex_tests_mmCalculator.o: ../../src/mmCalculator.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_tests_mmOption.o: ../../src/mmOption.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_tests_mmOptionAttachmentSettings.o: ../../src/mmOptionAttachmentSettings.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
@@ -821,6 +818,9 @@ mmex_tests_mmpanelbase.o: ../../src/mmpanelbase.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmreportspanel.o: ../../src/mmreportspanel.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_option.o: ../../src/option.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_optionsdialog.o: ../../src/optionsdialog.cpp

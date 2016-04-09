@@ -19,7 +19,7 @@
 
 #include "htmlbuilder.h"
 #include "util.h"
-#include "mmOption.h"
+#include "option.h"
 #include "constants.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
