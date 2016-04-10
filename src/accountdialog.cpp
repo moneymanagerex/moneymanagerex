@@ -22,7 +22,7 @@
 #include "images_list.h"
 #include "maincurrencydialog.h"
 #include "mmSimpleDialogs.h"
-#include "mmOption.h"
+#include "option.h"
 #include "paths.h"
 #include "util.h"
 #include "validators.h"

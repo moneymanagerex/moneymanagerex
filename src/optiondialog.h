@@ -25,7 +25,7 @@
 #include <vector>
 
 class mmGUIApp;
-class mmOptionSettingsBase;
+class OptionSettingsBase;
 
 class mmOptionsDialog: public wxDialog
 {
@@ -57,7 +57,7 @@ private:
 private:
     wxImageList* m_imageList;
     wxListbook* m_notebook;
-    std::vector<mmOptionSettingsBase*> m_panel_list;
+    std::vector<OptionSettingsBase*> m_panel_list;
 };
 
 #endif

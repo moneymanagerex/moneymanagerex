@@ -23,7 +23,7 @@
 #include <wx/frame.h>
 #include <wx/textctrl.h>
 #include <wx/button.h>
-#include "mmOption.h"
+#include "option.h"
 
 //----------------------------------------------------------------------------
 

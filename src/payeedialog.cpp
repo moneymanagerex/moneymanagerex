@@ -22,7 +22,7 @@ Copyright (C) 2012 Nikolay
 #include "images_list.h"
 #include "categdialog.h"
 #include "constants.h"
-#include "mmOption.h"
+#include "option.h"
 #include "paths.h"
 #include "relocatepayeedialog.h"
 #include "util.h"

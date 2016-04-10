@@ -21,7 +21,7 @@
 #define MM_EX_REPORTBASE_H_
 //----------------------------------------------------------------------------
 #include "mmDateRange.h"
-#include "mmOption.h"
+#include "option.h"
 #include "model/Model_Report.h"
 class wxString;
 class wxArrayString;

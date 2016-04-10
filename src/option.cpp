@@ -17,7 +17,7 @@
  ********************************************************/
 
 
-#include "mmOption.h"
+#include "option.h"
 #include "constants.h"
 #include "images_list.h"
 #include "singleton.h"

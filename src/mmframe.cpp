@@ -47,7 +47,7 @@
 #include "mmreportspanel.h"
 #include "mmSimpleDialogs.h"
 #include "mmHook.h"
-#include "optionsdialog.h"
+#include "optiondialog.h"
 #include "paths.h"
 #include "payeedialog.h"
 #include "relocatecategorydialog.h"

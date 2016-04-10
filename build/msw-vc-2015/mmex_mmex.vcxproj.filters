@@ -96,7 +96,7 @@
     <ClCompile Include="..\..\src\mmCalculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\mmOption.cpp">
+    <ClCompile Include="..\..\src\option.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\mmcheckingpanel.cpp">
@@ -114,7 +114,7 @@
     <ClCompile Include="..\..\src\mmreportspanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\optionsdialog.cpp">
+    <ClCompile Include="..\..\src\optiondialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\paths.cpp">
@@ -315,22 +315,22 @@
     <ClCompile Include="..\..\src\reports\myusage.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\mmOptionAttachmentSettings.cpp">
+    <ClCompile Include="..\..\src\optionsettingsattachment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\mmOptionBaseSettings.cpp">
+    <ClCompile Include="..\..\src\optionsettingsbase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\mmOptionGeneralSettings.cpp">
+    <ClCompile Include="..\..\src\optionsettingsgeneral.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\mmOptionMiscSettings.cpp">
+    <ClCompile Include="..\..\src\optionsettingsmisc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\mmOptionNetSettings.cpp">
+    <ClCompile Include="..\..\src\optionsettingsnet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\mmOptionViewSettings.cpp">
+    <ClCompile Include="..\..\src\optionsettingsview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wizard_update.cpp">
@@ -425,7 +425,7 @@
     <ClInclude Include="..\..\src\mmCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\mmOption.h">
+    <ClInclude Include="..\..\src\option.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\mmcheckingpanel.h">
@@ -449,7 +449,7 @@
     <ClInclude Include="..\..\src\mmtextctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\optionsdialog.h">
+    <ClInclude Include="..\..\src\optiondialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\paths.h">
@@ -725,22 +725,22 @@
     <ClInclude Include="..\..\src\reports\myusage.h">
       <Filter>Header Files\reports</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\mmOptionAttachmentSettings.h">
+    <ClInclude Include="..\..\src\optionsettingsattachment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\mmOptionBaseSettings.h">
+    <ClInclude Include="..\..\src\optionsettingsbase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\mmOptionGeneralSettings.h">
+    <ClInclude Include="..\..\src\optionsettingsgeneral.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\mmOptionMiscSettings.h">
+    <ClInclude Include="..\..\src\optionsettingsmisc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\mmOptionNetSettings.h">
+    <ClInclude Include="..\..\src\optionsettingsnet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\mmOptionViewSettings.h">
+    <ClInclude Include="..\..\src\optionsettingsview.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\wizard_update.h">

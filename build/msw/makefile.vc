@@ -146,13 +146,6 @@ MMEX_OBJECTS =  \
 	mmex_maincurrencydialog.obj \
 	mmex_minimal_editor.obj \
 	mmex_mmCalculator.obj \
-	mmex_mmOption.obj \
-	mmex_mmOptionAttachmentSettings.obj \
-	mmex_mmOptionBaseSettings.obj \
-	mmex_mmOptionGeneralSettings.obj \
-	mmex_mmOptionMiscSettings.obj \
-	mmex_mmOptionNetSettings.obj \
-	mmex_mmOptionViewSettings.obj \
 	mmex_mmSimpleDialogs.obj \
 	mmex_mmcheckingpanel.obj \
 	mmex_mmex.obj \
@@ -162,7 +155,14 @@ MMEX_OBJECTS =  \
 	mmex_mmhomepagepanel.obj \
 	mmex_mmpanelbase.obj \
 	mmex_mmreportspanel.obj \
-	mmex_optionsdialog.obj \
+	mmex_option.obj \
+	mmex_optiondialog.obj \
+	mmex_optionsettingsattachment.obj \
+	mmex_optionsettingsbase.obj \
+	mmex_optionsettingsgeneral.obj \
+	mmex_optionsettingsmisc.obj \
+	mmex_optionsettingsnet.obj \
+	mmex_optionsettingsview.obj \
 	mmex_paths.obj \
 	mmex_payeedialog.obj \
 	mmex_recentfiles.obj \
@@ -750,27 +750,6 @@ mmex_minimal_editor.obj: ..\..\src\minimal_editor.cpp
 mmex_mmCalculator.obj: ..\..\src\mmCalculator.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmCalculator.cpp
 
-mmex_mmOption.obj: ..\..\src\mmOption.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOption.cpp
-
-mmex_mmOptionAttachmentSettings.obj: ..\..\src\mmOptionAttachmentSettings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionAttachmentSettings.cpp
-
-mmex_mmOptionBaseSettings.obj: ..\..\src\mmOptionBaseSettings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionBaseSettings.cpp
-
-mmex_mmOptionGeneralSettings.obj: ..\..\src\mmOptionGeneralSettings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionGeneralSettings.cpp
-
-mmex_mmOptionMiscSettings.obj: ..\..\src\mmOptionMiscSettings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionMiscSettings.cpp
-
-mmex_mmOptionNetSettings.obj: ..\..\src\mmOptionNetSettings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionNetSettings.cpp
-
-mmex_mmOptionViewSettings.obj: ..\..\src\mmOptionViewSettings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOptionViewSettings.cpp
-
 mmex_mmSimpleDialogs.obj: ..\..\src\mmSimpleDialogs.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmSimpleDialogs.cpp
 
@@ -798,8 +777,29 @@ mmex_mmpanelbase.obj: ..\..\src\mmpanelbase.cpp
 mmex_mmreportspanel.obj: ..\..\src\mmreportspanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmreportspanel.cpp
 
-mmex_optionsdialog.obj: ..\..\src\optionsdialog.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\optionsdialog.cpp
+mmex_option.obj: ..\..\src\option.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\option.cpp
+
+mmex_optiondialog.obj: ..\..\src\optiondialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\optiondialog.cpp
+
+mmex_optionsettingsattachment.obj: ..\..\src\optionsettingsattachment.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\optionsettingsattachment.cpp
+
+mmex_optionsettingsbase.obj: ..\..\src\optionsettingsbase.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\optionsettingsbase.cpp
+
+mmex_optionsettingsgeneral.obj: ..\..\src\optionsettingsgeneral.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\optionsettingsgeneral.cpp
+
+mmex_optionsettingsmisc.obj: ..\..\src\optionsettingsmisc.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\optionsettingsmisc.cpp
+
+mmex_optionsettingsnet.obj: ..\..\src\optionsettingsnet.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\optionsettingsnet.cpp
+
+mmex_optionsettingsview.obj: ..\..\src\optionsettingsview.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\optionsettingsview.cpp
 
 mmex_paths.obj: ..\..\src\paths.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\paths.cpp

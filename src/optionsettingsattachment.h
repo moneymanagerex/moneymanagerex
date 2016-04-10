@@ -18,23 +18,23 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 
-#include "mmOptionBaseSettings.h"
+#include "optionsettingsbase.h"
 
-class mmOptionAttachmentSettings : public mmOptionSettingsBase
+class OptionSettingsAttachment : public OptionSettingsBase
 {
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmOptionAttachmentSettings();
+    OptionSettingsAttachment();
 
-    mmOptionAttachmentSettings(wxWindow *parent
+    OptionSettingsAttachment(wxWindow *parent
     , wxWindowID id = wxID_ANY
     , const wxPoint &pos = wxDefaultPosition
     , const wxSize &size = wxDefaultSize
     , long style = wxTAB_TRAVERSAL
     , const wxString &name = wxPanelNameStr);
 
-    ~mmOptionAttachmentSettings();
+    ~OptionSettingsAttachment();
 
 public:
     virtual void SaveSettings();

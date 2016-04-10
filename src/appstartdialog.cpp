@@ -20,7 +20,7 @@
 #include "defs.h"
 #include "paths.h"
 #include "constants.h"
-#include "mmOption.h"
+#include "option.h"
 #include "model/Model_Setting.h"
 
 #include "../resources/money.xpm"

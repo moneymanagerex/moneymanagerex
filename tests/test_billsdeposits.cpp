@@ -28,7 +28,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Category.h"
-#include "mmOption.h"
+#include "option.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -116,7 +116,7 @@ void Test_BillsDeposits::test_dialog_freeform_new()
         "      if an entry has been created\n");
 
     mmBDDialog* dlg = new mmBDDialog(m_base_frame, 0, false, false);
-    mmIniOptions::instance().transCategorySelectionNone_ = 1;
+    Option::instance().TransCategorySelectionNone(1);
 
     bool testing_dialog = true;
     while (testing_dialog)
