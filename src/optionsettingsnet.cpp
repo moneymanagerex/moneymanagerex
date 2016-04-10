@@ -16,25 +16,25 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "mmOptionNetSettings.h"
+#include "optionsettingsnet.h"
 #include "constants.h"
 
 #include <wx/hyperlink.h>
 #include <wx/spinctrl.h>
 
 /*******************************************************/
-wxBEGIN_EVENT_TABLE(mmOptionNetSettings, wxPanel)
-    EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_PROXY, mmOptionNetSettings::OnProxyChanged)
-    EVT_CHECKBOX(ID_DIALOG_OPTIONS_ENABLE_WEBSERVER, mmOptionNetSettings::OnEnableWebserverChanged)
-    EVT_CHECKBOX(ID_DIALOG_OPTIONS_UPDATES_CHECK, mmOptionNetSettings::OnUpdateCheckChanged)
+wxBEGIN_EVENT_TABLE(OptionSettingsNet, wxPanel)
+    EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_PROXY, OptionSettingsNet::OnProxyChanged)
+    EVT_CHECKBOX(ID_DIALOG_OPTIONS_ENABLE_WEBSERVER, OptionSettingsNet::OnEnableWebserverChanged)
+    EVT_CHECKBOX(ID_DIALOG_OPTIONS_UPDATES_CHECK, OptionSettingsNet::OnUpdateCheckChanged)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
-mmOptionNetSettings::mmOptionNetSettings()
+OptionSettingsNet::OptionSettingsNet()
 {
 }
 
-mmOptionNetSettings::mmOptionNetSettings(wxWindow *parent
+OptionSettingsNet::OptionSettingsNet(wxWindow *parent
     , wxWindowID id
     , const wxPoint &pos
     , const wxSize &size
@@ -44,11 +44,11 @@ mmOptionNetSettings::mmOptionNetSettings(wxWindow *parent
     Create();
 }
 
-mmOptionNetSettings::~mmOptionNetSettings()
+OptionSettingsNet::~OptionSettingsNet()
 {
 }
 
-void mmOptionNetSettings::Create()
+void OptionSettingsNet::Create()
 {
     wxBoxSizer* networkPanelSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(networkPanelSizer);
@@ -183,28 +183,28 @@ void mmOptionNetSettings::Create()
     updateStaticBoxSizer->Add(UpdateSourceStaticBoxSizerGrid, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxCommandEvent evt;
-    mmOptionNetSettings::OnProxyChanged(evt);
-    mmOptionNetSettings::OnEnableWebserverChanged(evt);
-    mmOptionNetSettings::OnUpdateCheckChanged(evt);
+    OptionSettingsNet::OnProxyChanged(evt);
+    OptionSettingsNet::OnEnableWebserverChanged(evt);
+    OptionSettingsNet::OnUpdateCheckChanged(evt);
     SetSizer(networkPanelSizer);
 }
 
-void mmOptionNetSettings::OnProxyChanged(wxCommandEvent& event)
+void OptionSettingsNet::OnProxyChanged(wxCommandEvent& event)
 {
     m_proxy_port->Enable(m_proxy_address->GetValue() != "");
 }
 
-void mmOptionNetSettings::OnEnableWebserverChanged(wxCommandEvent& event)
+void OptionSettingsNet::OnEnableWebserverChanged(wxCommandEvent& event)
 {
     m_webserver_port->Enable(m_webserver_checkbox->GetValue());
 }
 
-void mmOptionNetSettings::OnUpdateCheckChanged(wxCommandEvent& event)
+void OptionSettingsNet::OnUpdateCheckChanged(wxCommandEvent& event)
 {
     m_update_source->Enable(m_check_update->GetValue());
 }
 
-void mmOptionNetSettings::SaveSettings()
+void OptionSettingsNet::SaveSettings()
 {
     Model_Setting::instance().Set("PROXYIP", m_proxy_address->GetValue());
     Model_Setting::instance().Set("PROXYPORT", m_proxy_port->GetValue());

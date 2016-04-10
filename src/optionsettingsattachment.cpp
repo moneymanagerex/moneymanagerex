@@ -16,25 +16,25 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "mmOptionAttachmentSettings.h"
+#include "optionsettingsattachment.h"
 #include "attachmentdialog.h"
 #include "paths.h"
 #include "util.h"
 
 /*******************************************************/
-wxBEGIN_EVENT_TABLE(mmOptionAttachmentSettings, wxPanel)
-    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, mmOptionAttachmentSettings::OnAttachmentsButton)
-    EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 9, mmOptionAttachmentSettings::OnAttachmentsMenu)
-    EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, mmOptionAttachmentSettings::OnAttachmentsPathChanged)
-    EVT_CHECKBOX(ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER, mmOptionAttachmentSettings::OnAttachmentsSubfolderChanged)
+wxBEGIN_EVENT_TABLE(OptionSettingsAttachment, wxPanel)
+    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, OptionSettingsAttachment::OnAttachmentsButton)
+    EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 9, OptionSettingsAttachment::OnAttachmentsMenu)
+    EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, OptionSettingsAttachment::OnAttachmentsPathChanged)
+    EVT_CHECKBOX(ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER, OptionSettingsAttachment::OnAttachmentsSubfolderChanged)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
-mmOptionAttachmentSettings::mmOptionAttachmentSettings()
+OptionSettingsAttachment::OptionSettingsAttachment()
 {
 }
 
-mmOptionAttachmentSettings::mmOptionAttachmentSettings(wxWindow *parent
+OptionSettingsAttachment::OptionSettingsAttachment(wxWindow *parent
     , wxWindowID id
     , const wxPoint &pos
     , const wxSize &size
@@ -44,11 +44,11 @@ mmOptionAttachmentSettings::mmOptionAttachmentSettings(wxWindow *parent
     Create();
 }
 
-mmOptionAttachmentSettings::~mmOptionAttachmentSettings()
+OptionSettingsAttachment::~OptionSettingsAttachment()
 {
 }
 
-void mmOptionAttachmentSettings::Create()
+void OptionSettingsAttachment::Create()
 {
     wxBoxSizer* attachmentPanelSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(attachmentPanelSizer);
@@ -171,7 +171,7 @@ void mmOptionAttachmentSettings::Create()
     attachmentStaticBoxSizer->Add(m_trash_attachments, g_flagsV);
 }
 
-void mmOptionAttachmentSettings::OnAttachmentsButton(wxCommandEvent& /*event*/)
+void OptionSettingsAttachment::OnAttachmentsButton(wxCommandEvent& /*event*/)
 {
     wxMenu * attachmentsMenu = new wxMenu;
     wxMenuItem* menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST, _("System documents directory"));
@@ -189,7 +189,7 @@ void mmOptionAttachmentSettings::OnAttachmentsButton(wxCommandEvent& /*event*/)
     delete attachmentsMenu;
 }
 
-void mmOptionAttachmentSettings::OnAttachmentsMenu(wxCommandEvent& event)
+void OptionSettingsAttachment::OnAttachmentsMenu(wxCommandEvent& event)
 {
     wxTextCtrl* att = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
     if (!att) return;
@@ -222,7 +222,7 @@ void mmOptionAttachmentSettings::OnAttachmentsMenu(wxCommandEvent& event)
     OnAttachmentsPathChanged(event);
 }
 
-void mmOptionAttachmentSettings::OnAttachmentsPathChanged(wxCommandEvent& event)
+void OptionSettingsAttachment::OnAttachmentsPathChanged(wxCommandEvent& event)
 {
     wxTextCtrl* att = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
     if (!att) return;
@@ -232,13 +232,13 @@ void mmOptionAttachmentSettings::OnAttachmentsPathChanged(wxCommandEvent& event)
     text->SetLabelText(_("Real path:") + "\n" + AttachmentsFolder);
 }
 
-void mmOptionAttachmentSettings::OnAttachmentsSubfolderChanged(wxCommandEvent& event)
+void OptionSettingsAttachment::OnAttachmentsSubfolderChanged(wxCommandEvent& event)
 {
     Model_Infotable::instance().Set("ATTACHMENTSSUBFOLDER", m_attachments_subfolder->GetValue());
     OnAttachmentsPathChanged(event);
 }
 
-void mmOptionAttachmentSettings::SaveSettings()
+void OptionSettingsAttachment::SaveSettings()
 {
     wxTextCtrl* attTextCtrl = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
     wxString attachmentFolder = attTextCtrl->GetValue().Trim();

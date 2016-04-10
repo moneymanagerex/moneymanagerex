@@ -18,58 +18,54 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 
-#include "mmOptionBaseSettings.h"
+#include "optionsettingsbase.h"
+#include <wx/spinctrl.h>
 
-class mmGUIApp;
-
-class mmOptionGeneralSettings : public mmOptionSettingsBase
+class OptionSettingsView : public OptionSettingsBase
 {
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmOptionGeneralSettings();
+    OptionSettingsView();
 
-    mmOptionGeneralSettings(wxWindow *parent, mmGUIApp* app
+    OptionSettingsView(wxWindow *parent
         , wxWindowID id = wxID_ANY
         , const wxPoint &pos = wxDefaultPosition
         , const wxSize &size = wxDefaultSize
         , long style = wxTAB_TRAVERSAL
         , const wxString &name = wxPanelNameStr);
 
-    ~mmOptionGeneralSettings();
+    ~OptionSettingsView();
 
 public:
     virtual void SaveSettings();
 
 private:
     void Create();
-
-    void OnCurrency(wxCommandEvent& event);
-    void OnDateFormatChanged(wxCommandEvent& event);
-    void OnLanguageChanged(wxCommandEvent& event);
-
-    void SaveFinancialYearStart();
+    void OnNavTreeColorChanged(wxCommandEvent& event);
 
 private:
-    mmGUIApp* m_app;
-    wxChoice* m_date_format_choice;
-    wxChoice* m_month_selection;
-    wxStaticText* m_sample_date_text;
+    /// Colour Buttons.
+    wxButton* m_UDFCB1;
+    wxButton* m_UDFCB2;
+    wxButton* m_UDFCB3;
+    wxButton* m_UDFCB4;
+    wxButton* m_UDFCB5;
+    wxButton* m_UDFCB6;
+    wxButton* m_UDFCB7;
 
-    int m_currency_id;
-    wxString m_date_format;
-    wxString m_current_language;
+    wxChoice* m_choice_visible;
+    wxChoice* m_choice_trans_visible;
+    wxSpinCtrl* m_scale_factor;
 
-    wxCheckBox* m_use_org_date_copy_paste;
-    wxCheckBox* m_use_sound;
+    wxCheckBox* m_budget_financial_years;
+    wxCheckBox* m_budget_include_transfers;
+    wxCheckBox* m_budget_setup_without_summary;
+    wxCheckBox* m_budget_summary_without_category;
+    wxCheckBox* m_ignore_future_transactions;
 
     enum
     {
-        ID_DIALOG_OPTIONS_BUTTON_CURRENCY = wxID_HIGHEST + 10,
-        ID_DIALOG_OPTIONS_WXCHOICE_DATE,
-        ID_DIALOG_OPTIONS_BUTTON_LANGUAGE,
-        ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME,
-        ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
-        ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_MONTH
+        ID_DIALOG_OPTIONS_VIEW_ACCOUNTS = wxID_HIGHEST + 10
     };
 };

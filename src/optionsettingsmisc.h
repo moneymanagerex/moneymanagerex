@@ -18,24 +18,24 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 
-#include "mmOptionBaseSettings.h"
+#include "optionsettingsbase.h"
 
 class wxSpinCtrl;
-class mmOptionMiscSettings : public mmOptionSettingsBase
+class OptionSettingsMisc : public OptionSettingsBase
 {
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmOptionMiscSettings();
+    OptionSettingsMisc();
 
-    mmOptionMiscSettings(wxWindow *parent
+    OptionSettingsMisc(wxWindow *parent
         , wxWindowID id = wxID_ANY
         , const wxPoint &pos = wxDefaultPosition
         , const wxSize &size = wxDefaultSize
         , long style = wxTAB_TRAVERSAL
         , const wxString &name = wxPanelNameStr);
 
-    ~mmOptionMiscSettings();
+    ~OptionSettingsMisc();
 
 public:
     virtual void SaveSettings();

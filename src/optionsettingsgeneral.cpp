@@ -16,7 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "mmOptionGeneralSettings.h"
+#include "optionsettingsgeneral.h"
 #include "maincurrencydialog.h"
 #include "mmSimpleDialogs.h"
 #include "util.h"
@@ -26,18 +26,18 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/spinctrl.h>
 
 /*******************************************************/
-wxBEGIN_EVENT_TABLE(mmOptionGeneralSettings, wxPanel)
-    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmOptionGeneralSettings::OnCurrency)
-    EVT_CHOICE(ID_DIALOG_OPTIONS_WXCHOICE_DATE, mmOptionGeneralSettings::OnDateFormatChanged)
-    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, mmOptionGeneralSettings::OnLanguageChanged)
+wxBEGIN_EVENT_TABLE(OptionSettingsGeneral, wxPanel)
+    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, OptionSettingsGeneral::OnCurrency)
+    EVT_CHOICE(ID_DIALOG_OPTIONS_WXCHOICE_DATE, OptionSettingsGeneral::OnDateFormatChanged)
+    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, OptionSettingsGeneral::OnLanguageChanged)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
-mmOptionGeneralSettings::mmOptionGeneralSettings()
+OptionSettingsGeneral::OptionSettingsGeneral()
 {
 }
 
-mmOptionGeneralSettings::mmOptionGeneralSettings(wxWindow *parent, mmGUIApp* app
+OptionSettingsGeneral::OptionSettingsGeneral(wxWindow *parent, mmGUIApp* app
     , wxWindowID id
     , const wxPoint &pos
     , const wxSize &size
@@ -51,11 +51,11 @@ mmOptionGeneralSettings::mmOptionGeneralSettings(wxWindow *parent, mmGUIApp* app
     Create();
 }
 
-mmOptionGeneralSettings::~mmOptionGeneralSettings()
+OptionSettingsGeneral::~OptionSettingsGeneral()
 {
 }
 
-void mmOptionGeneralSettings::Create()
+void OptionSettingsGeneral::Create()
 {
     wxBoxSizer* generalPanelSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(generalPanelSizer);
@@ -175,7 +175,7 @@ void mmOptionGeneralSettings::Create()
     generalPanelSizer->Add(m_use_sound, g_flagsV);
 }
 
-void mmOptionGeneralSettings::OnCurrency(wxCommandEvent& /*event*/)
+void OptionSettingsGeneral::OnCurrency(wxCommandEvent& /*event*/)
 {
     int currencyID = Model_Infotable::instance().GetBaseCurrencyId();
 
@@ -191,7 +191,7 @@ void mmOptionGeneralSettings::OnCurrency(wxCommandEvent& /*event*/)
     }
 }
 
-void mmOptionGeneralSettings::OnDateFormatChanged(wxCommandEvent& /*event*/)
+void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& /*event*/)
 {
     wxStringClientData* data = (wxStringClientData*) (m_date_format_choice->GetClientObject(m_date_format_choice->GetSelection()));
     if (data)
@@ -205,7 +205,7 @@ void mmOptionGeneralSettings::OnDateFormatChanged(wxCommandEvent& /*event*/)
     }
 }
 
-void mmOptionGeneralSettings::OnLanguageChanged(wxCommandEvent& /*event*/)
+void OptionSettingsGeneral::OnLanguageChanged(wxCommandEvent& /*event*/)
 {
     const wxString lang = mmDialogs::mmSelectLanguage(this->m_app, this, true, false);
     if (lang.empty()) return;
@@ -215,7 +215,7 @@ void mmOptionGeneralSettings::OnLanguageChanged(wxCommandEvent& /*event*/)
     btn->SetLabelText(lang.Capitalize());
 }
 
-void mmOptionGeneralSettings::SaveFinancialYearStart()
+void OptionSettingsGeneral::SaveFinancialYearStart()
 {
     //Save Financial Year Start Day
     wxSpinCtrl* fysDay = (wxSpinCtrl*) FindWindow(ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY);
@@ -226,7 +226,7 @@ void mmOptionGeneralSettings::SaveFinancialYearStart()
     Option::instance().FinancialYearStartMonth(fysMonthVal);
 }
 
-void mmOptionGeneralSettings::SaveSettings()
+void OptionSettingsGeneral::SaveSettings()
 {
     wxTextCtrl* stun = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME);
     Option::instance().UserName(stun->GetValue());
