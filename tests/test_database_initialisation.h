@@ -27,7 +27,6 @@ class TestFrameBase;
 class Test_DatabaseInitialisation : public CPPUNIT_NS::TestFixture
 {
     CPPUNIT_TEST_SUITE(Test_DatabaseInitialisation);
-    CPPUNIT_TEST(Financial_Year_Date_Range);
     CPPUNIT_TEST(Add_Account_Entries);
     CPPUNIT_TEST(Add_Payee_Entries);
     CPPUNIT_TEST(Add_Category_Entries);
@@ -55,7 +54,6 @@ private:
 
 private:
     // Test cases
-    void Financial_Year_Date_Range();
     void Add_Account_Entries();
     void Add_Payee_Entries();
     void Add_Category_Entries();
