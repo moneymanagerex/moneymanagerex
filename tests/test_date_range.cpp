@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 James Higley
-Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2014..2016 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -57,13 +57,13 @@ void Test_Date_Range::setUp()
 
     // Set date to the beginning of a financial year. Assume 1st July.
     int month = m_start_date->GetMonth();
-    if (month > wxDateTime::Jun)
+    if (month < wxDateTime::Jul)
     {
-        m_start_date->Subtract(wxDateSpan::Months(month - wxDateTime::Jul));
+        m_start_date->Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
     }
     else
     {
-        m_start_date->Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
+        m_start_date->Subtract(wxDateSpan::Months(month - wxDateTime::Jul));
     }
 
     // Correction to 1st July from start date: Today
@@ -80,8 +80,8 @@ void Test_Date_Range::tearDown()
 void Test_Date_Range::Last_Year()
 {
     int month = m_start_date->GetMonth();
-    m_start_date->Add(wxDateSpan::Months(6)).Subtract(wxDateSpan::Year());
-    if (month > wxDateTime::Jun)
+    m_start_date->Subtract(wxDateSpan::Months(6));
+    if (month < wxDateTime::Jul)
     {
         m_start_date->Subtract(wxDateSpan::Year());
     }
@@ -96,7 +96,7 @@ void Test_Date_Range::Current_Year()
 {
     int month = m_start_date->GetMonth();
     m_start_date->Add(wxDateSpan::Months(6));
-    if (month > wxDateTime::Jun)
+    if (month < wxDateTime::Jul)
     {
         m_start_date->Subtract(wxDateSpan::Year());
     }
@@ -112,7 +112,7 @@ void Test_Date_Range::Current_Year_To_Date()
 {
     int month = m_start_date->GetMonth();
     m_start_date->Add(wxDateSpan::Months(6));
-    if (month > wxDateTime::Jun)
+    if (month < wxDateTime::Jul)
     {
         m_start_date->Subtract(wxDateSpan::Year());
     }
