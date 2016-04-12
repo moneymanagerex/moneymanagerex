@@ -273,6 +273,8 @@ void mmCheckingPanel::updateTable()
 
 void mmCheckingPanel::markSelectedTransaction(int trans_id)
 {
+    m_listCtrlAccount->m_selectedIndex = -1;
+    m_listCtrlAccount->m_selectedID = -1;
     if (trans_id > 0)
     {
         long i = 0;
@@ -281,6 +283,7 @@ void mmCheckingPanel::markSelectedTransaction(int trans_id)
             if (trans_id == tran.TRANSID)
             {
                 m_listCtrlAccount->m_selectedIndex = i;
+                m_listCtrlAccount->m_selectedID = trans_id;
                 break;
             }
             ++i;
@@ -1541,15 +1544,13 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 {
     int user_colour_id = event.GetId();
     user_colour_id -= MENU_ON_SET_UDC0;
-    wxLogDebug("id: %i", user_colour_id);
 
     Model_Checking::Data * transaction = Model_Checking::instance().get(m_selectedID);
     if (transaction)
     {
         transaction->FOLLOWUPID = user_colour_id;
         Model_Checking::instance().save(transaction);
-        m_cp->m_trans[m_selectedIndex].FOLLOWUPID = user_colour_id;
-        RefreshItems(m_selectedIndex, m_selectedIndex);
+        refreshVisualList(m_selectedID);
     }
 }
 //----------------------------------------------------------------------------
