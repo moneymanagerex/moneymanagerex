@@ -79,35 +79,6 @@ void Test_DatabaseInitialisation::tearDown()
     m_test_db.Close();
 }
 
-void Test_DatabaseInitialisation::Financial_Year_Date_Range()
-{
-    wxDateTime starting_date(wxDateTime::Today());
-
-    // Set date to start of current financial year.
-    int month = starting_date.GetMonth();
-    if (month > wxDateTime::Jun)
-    {
-        starting_date.Subtract(wxDateSpan::Months(month - wxDateTime::Jul));
-    }
-    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
-
-    // readjust day to beginning of the month
-    starting_date.Subtract(wxDateSpan::Days(starting_date.GetDay() - 1));
-
-    // Now for the tests:
-    //------------------------------------------------------------------------
-    mmCurrentFinancialYear current_financial_year(1, 7);
-    CPPUNIT_ASSERT_EQUAL(starting_date.FormatISODate(), current_financial_year.start_date().FormatISODate());
-
-    mmLastFinancialYear last_financial_year(1, 7);
-    starting_date.Subtract(wxDateSpan::Year());
-    CPPUNIT_ASSERT_EQUAL(starting_date.FormatISODate(), last_financial_year.start_date().FormatISODate());
-
-    mmLastYear last_year;
-    starting_date.Add(wxDateSpan::Months(6)).Subtract(wxDateSpan::Year());
-    CPPUNIT_ASSERT_EQUAL(starting_date.FormatISODate(), last_year.start_date().FormatISODate());
-}
-
 void Test_DatabaseInitialisation::Add_Account_Entries()
 {
     CpuTimer Start("Account  Entries");
@@ -321,19 +292,28 @@ void Test_DatabaseInitialisation::Add_Stock_Entries(const wxDateTime& starting_d
 void Test_DatabaseInitialisation::Add_Transaction_Entries()
 {
     CpuTimer Start("Transaction Entries");
-    // Set date 3 years ago from today.
-    wxDateTime starting_date(wxDateTime::Today().Subtract(wxDateSpan::Years(3)));
 
-    // Advance or retard the date to the beginning of that financial year.
+    wxDateTime starting_date(wxDateTime::Today());
+
+    // Set date to the beginning of current financial year. Assume 1st July.
     int month = starting_date.GetMonth();
-    if (month > wxDateTime::Jun)
+    if (month < wxDateTime::Jul)
+    {
+        starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
+    }
+    else
     {
         starting_date.Subtract(wxDateSpan::Months(month - wxDateTime::Jul));
     }
-    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(wxDateTime::Jul - month));
 
     // readjust day to beginning of the month
     starting_date.Subtract(wxDateSpan::Days(starting_date.GetDay() - 1));
+
+    mmCurrentFinancialYear current_financial_year(1, 7);
+    CPPUNIT_ASSERT_EQUAL(starting_date.FormatISODate(), current_financial_year.start_date().FormatISODate());
+
+    // Set start date 3 years ago from today.
+    starting_date.Subtract(wxDateSpan::Years(3));
 
     wxDateTime trans_date = starting_date;
     m_test_db.Begin();  // Set all data to memory first, then save to database at end.

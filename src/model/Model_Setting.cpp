@@ -18,7 +18,7 @@
 
 #include "Model_Setting.h"
 #include "constants.h"
-#include "mmOption.h"
+#include "option.h"
 #include "paths.h"
 
 Model_Setting::Model_Setting()

@@ -24,12 +24,12 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "framebase_tests.h"
 //----------------------------------------------------------------------------
 #include "test_options_dialog.h"
-#include "optionsdialog.h"
-#include "mmOptionGeneralSettings.h"
-#include "mmOptionMiscSettings.h"
-#include "mmOptionNetSettings.h"
-#include "mmOptionViewSettings.h"
-#include "mmOptionAttachmentSettings.h"
+#include "optiondialog.h"
+#include "optionsettingsgeneral.h"
+#include "optionsettingsmisc.h"
+#include "optionsettingsnet.h"
+#include "optionsettingsview.h"
+#include "optionsettingsattachment.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -91,11 +91,11 @@ void Test_Options_Dialog::test_dialog()
     mmOptionsDialog dlg(m_base_frame, 0);
     if (dlg.ShowModal() == wxID_OK)
     {
-        CPPUNIT_ASSERT(mmOptions::instance().language_ == "english");
-        CPPUNIT_ASSERT(mmOptions::instance().userNameString_ == "Test Database");
+        CPPUNIT_ASSERT(Option::instance().Language() == "english");
+        CPPUNIT_ASSERT(Option::instance().UserName() == "Test Database");
 
-        CPPUNIT_ASSERT(mmOptions::instance().financialYearStartDayString_ == "1");
-        CPPUNIT_ASSERT(mmOptions::instance().financialYearStartMonthString_ == "7");
+        CPPUNIT_ASSERT(Option::instance().FinancialYearStartDay() == "1");
+        CPPUNIT_ASSERT(Option::instance().FinancialYearStartMonth() == "7");
     }
 }
 
@@ -106,7 +106,7 @@ void Test_Options_Dialog::test_general_panel()
     settings_frame->Show();
 
     // Create the panel under test
-    mmOptionSettingsBase* settings_panel = new mmOptionGeneralSettings(settings_frame, 0);
+    OptionSettingsBase* settings_panel = new OptionSettingsGeneral(settings_frame, 0);
     settings_panel->Show();
 
     // Anchor the panel. Otherwise it will disappear.
@@ -124,7 +124,7 @@ void Test_Options_Dialog::test_view_panel()
     settings_frame->Show();
 
     // Create the panel under test
-    mmOptionSettingsBase* settings_panel = new mmOptionViewSettings(settings_frame, wxID_ANY);
+    OptionSettingsBase* settings_panel = new OptionSettingsView(settings_frame, wxID_ANY);
     settings_panel->Show();
 
     // Anchor the panel. Otherwise it will disappear.
@@ -141,7 +141,7 @@ void Test_Options_Dialog::test_network_panel()
     settings_frame->Show();
 
     // Create the panel under test
-    mmOptionSettingsBase* settings_panel = new mmOptionNetSettings(settings_frame, wxID_ANY);
+    OptionSettingsBase* settings_panel = new OptionSettingsNet(settings_frame, wxID_ANY);
     settings_panel->Show();
 
     // Anchor the panel. Otherwise it will disappear.
@@ -158,7 +158,7 @@ void Test_Options_Dialog::test_misc_panel()
     settings_frame->Show();
 
     // Create the panel under test
-    mmOptionSettingsBase* settings_panel = new mmOptionMiscSettings(settings_frame, wxID_ANY);
+    OptionSettingsBase* settings_panel = new OptionSettingsMisc(settings_frame, wxID_ANY);
     settings_panel->Show();
 
     // Anchor the panel. Otherwise it will disappear.
@@ -175,7 +175,7 @@ void Test_Options_Dialog::test_attachment_panel()
     settings_frame->Show();
 
     // Create the panel under test
-    mmOptionSettingsBase* settings_panel = new mmOptionAttachmentSettings(settings_frame, wxID_ANY);
+    OptionSettingsBase* settings_panel = new OptionSettingsAttachment(settings_frame, wxID_ANY);
     settings_panel->Show();
 
     // Anchor the panel. Otherwise it will disappear.

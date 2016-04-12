@@ -16,25 +16,25 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "mmOptionMiscSettings.h"
-#include "mmOption.h"
+#include "optionsettingsmisc.h"
+#include "option.h"
 
 #include "model/Model_Checking.h"
 
 #include <wx/spinctrl.h>
 
 /*******************************************************/
-wxBEGIN_EVENT_TABLE(mmOptionMiscSettings, wxPanel)
-    EVT_CHECKBOX(ID_DIALOG_OPTIONS_CHK_BACKUP, mmOptionMiscSettings::OnBackupChanged)
-    EVT_CHECKBOX(ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE, mmOptionMiscSettings::OnBackupChanged)
+wxBEGIN_EVENT_TABLE(OptionSettingsMisc, wxPanel)
+    EVT_CHECKBOX(ID_DIALOG_OPTIONS_CHK_BACKUP, OptionSettingsMisc::OnBackupChanged)
+    EVT_CHECKBOX(ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE, OptionSettingsMisc::OnBackupChanged)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
-mmOptionMiscSettings::mmOptionMiscSettings()
+OptionSettingsMisc::OptionSettingsMisc()
 {
 }
 
-mmOptionMiscSettings::mmOptionMiscSettings(wxWindow *parent
+OptionSettingsMisc::OptionSettingsMisc(wxWindow *parent
     , wxWindowID id
     , const wxPoint &pos
     , const wxSize &size
@@ -44,11 +44,11 @@ mmOptionMiscSettings::mmOptionMiscSettings(wxWindow *parent
     Create();
 }
 
-mmOptionMiscSettings::~mmOptionMiscSettings()
+OptionSettingsMisc::~OptionSettingsMisc()
 {
 }
 
-void mmOptionMiscSettings::Create()
+void OptionSettingsMisc::Create()
 {
     wxBoxSizer* othersPanelSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(othersPanelSizer);
@@ -171,17 +171,17 @@ void mmOptionMiscSettings::Create()
     csvStaticBoxSizerGrid->Add(textDelimiter4, g_flagsH);
 
     wxCommandEvent evt;
-    mmOptionMiscSettings::OnBackupChanged(evt);
+    OptionSettingsMisc::OnBackupChanged(evt);
 }
 
-void mmOptionMiscSettings::OnBackupChanged(wxCommandEvent& event)
+void OptionSettingsMisc::OnBackupChanged(wxCommandEvent& event)
 {
     wxCheckBox* ChkBackup = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP);
     wxCheckBox* ChkBackupUpdate = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE);
     m_max_files->Enable(ChkBackup->GetValue() || ChkBackupUpdate->GetValue());
 }
 
-void mmOptionMiscSettings::SaveStocksUrl()
+void OptionSettingsMisc::SaveStocksUrl()
 {
     wxTextCtrl* url = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL);
     wxString stockURL = url->GetValue();
@@ -197,7 +197,7 @@ void mmOptionMiscSettings::SaveStocksUrl()
     }
 }
 
-void mmOptionMiscSettings::SaveSettings()
+void OptionSettingsMisc::SaveSettings()
 {
     wxChoice* itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE);
     Option::instance().TransPayeeSelectionNone(itemChoice->GetSelection());

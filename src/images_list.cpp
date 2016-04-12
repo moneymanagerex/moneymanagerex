@@ -17,7 +17,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *******************************************************/
 
 #include "images_list.h"
-#include "mmOption.h"
+#include "option.h"
 #include <wx/image.h>
 #include <wx/bitmap.h>
 #include <map>

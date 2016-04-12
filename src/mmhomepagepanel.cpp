@@ -28,7 +28,7 @@ Copyright (C) 2014 Nikolay
 #include <cmath>
 
 #include "constants.h"
-#include "mmOption.h"
+#include "option.h"
 #include "util.h"
 
 #include "model/Model_Setting.h"

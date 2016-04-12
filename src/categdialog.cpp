@@ -20,7 +20,7 @@
 #include "images_list.h"
 #include "relocatecategorydialog.h"
 #include "util.h"
-#include "mmOption.h"
+#include "option.h"
 #include "paths.h"
 #include "constants.h"
 #include "webapp.h"

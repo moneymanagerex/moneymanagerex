@@ -657,34 +657,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\mmOption.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmOptionAttachmentSettings.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmOptionBaseSettings.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmOptionGeneralSettings.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmOptionMiscSettings.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmOptionNetSettings.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmOptionViewSettings.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\mmSimpleDialogs.cpp"
 				>
 			</File>
@@ -733,7 +705,35 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\optionsdialog.cpp"
+				RelativePath="..\..\src\option.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optiondialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optionsettingsattachment.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optionsettingsbase.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optionsettingsgeneral.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optionsettingsmisc.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optionsettingsnet.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optionsettingsview.cpp"
 				>
 			</File>
 			<File
@@ -988,6 +988,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\db\DB_Table_Splittransactions_V1.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\db\DB_Table_Splittransactions_V2.h"
 				>
 			</File>
 			<File
@@ -1279,34 +1283,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\mmOption.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmOptionAttachmentSettings.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmOptionBaseSettings.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmOptionGeneralSettings.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmOptionMiscSettings.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmOptionNetSettings.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmOptionViewSettings.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\mmSimpleDialogs.h"
 				>
 			</File>
@@ -1359,7 +1335,35 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\optionsdialog.h"
+				RelativePath="..\..\src\option.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optiondialog.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optionsettingsattachment.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optionsettingsbase.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optionsettingsgeneral.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optionsettingsmisc.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optionsettingsnet.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\optionsettingsview.h"
 				>
 			</File>
 			<File

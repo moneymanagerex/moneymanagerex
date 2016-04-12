@@ -140,13 +140,6 @@ MMEX_OBJECTS =  \
 	mmex_maincurrencydialog.o \
 	mmex_minimal_editor.o \
 	mmex_mmCalculator.o \
-	mmex_mmOption.o \
-	mmex_mmOptionAttachmentSettings.o \
-	mmex_mmOptionBaseSettings.o \
-	mmex_mmOptionGeneralSettings.o \
-	mmex_mmOptionMiscSettings.o \
-	mmex_mmOptionNetSettings.o \
-	mmex_mmOptionViewSettings.o \
 	mmex_mmSimpleDialogs.o \
 	mmex_mmcheckingpanel.o \
 	mmex_mmex.o \
@@ -156,7 +149,14 @@ MMEX_OBJECTS =  \
 	mmex_mmhomepagepanel.o \
 	mmex_mmpanelbase.o \
 	mmex_mmreportspanel.o \
-	mmex_optionsdialog.o \
+	mmex_option.o \
+	mmex_optiondialog.o \
+	mmex_optionsettingsattachment.o \
+	mmex_optionsettingsbase.o \
+	mmex_optionsettingsgeneral.o \
+	mmex_optionsettingsmisc.o \
+	mmex_optionsettingsnet.o \
+	mmex_optionsettingsview.o \
 	mmex_paths.o \
 	mmex_payeedialog.o \
 	mmex_recentfiles.o \
@@ -626,27 +626,6 @@ mmex_minimal_editor.o: ../../src/minimal_editor.cpp
 mmex_mmCalculator.o: ../../src/mmCalculator.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_mmOption.o: ../../src/mmOption.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmOptionAttachmentSettings.o: ../../src/mmOptionAttachmentSettings.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmOptionBaseSettings.o: ../../src/mmOptionBaseSettings.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmOptionGeneralSettings.o: ../../src/mmOptionGeneralSettings.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmOptionMiscSettings.o: ../../src/mmOptionMiscSettings.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmOptionNetSettings.o: ../../src/mmOptionNetSettings.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmOptionViewSettings.o: ../../src/mmOptionViewSettings.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_mmSimpleDialogs.o: ../../src/mmSimpleDialogs.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -674,7 +653,28 @@ mmex_mmpanelbase.o: ../../src/mmpanelbase.cpp
 mmex_mmreportspanel.o: ../../src/mmreportspanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_optionsdialog.o: ../../src/optionsdialog.cpp
+mmex_option.o: ../../src/option.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_optiondialog.o: ../../src/optiondialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_optionsettingsattachment.o: ../../src/optionsettingsattachment.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_optionsettingsbase.o: ../../src/optionsettingsbase.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_optionsettingsgeneral.o: ../../src/optionsettingsgeneral.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_optionsettingsmisc.o: ../../src/optionsettingsmisc.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_optionsettingsnet.o: ../../src/optionsettingsnet.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_optionsettingsview.o: ../../src/optionsettingsview.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_paths.o: ../../src/paths.cpp

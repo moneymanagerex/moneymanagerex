@@ -17,7 +17,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-#include "optionsdialog.h"
+#include "optiondialog.h"
 #include "constants.h"
 #include "paths.h"
 
@@ -27,11 +27,11 @@
 #include "../resources/preferences-other.xpm"
 #include "../resources/view.xpm"
 
-#include "mmOptionGeneralSettings.h"
-#include "mmOptionViewSettings.h"
-#include "mmOptionAttachmentSettings.h"
-#include "mmOptionNetSettings.h"
-#include "mmOptionMiscSettings.h"
+#include "optionsettingsgeneral.h"
+#include "optionsettingsview.h"
+#include "optionsettingsattachment.h"
+#include "optionsettingsnet.h"
+#include "optionsettingsmisc.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog);
 
@@ -97,31 +97,31 @@ void mmOptionsDialog::CreateControls()
     /*********************************************************************************************
      General Panel
     **********************************************************************************************/
-    mmOptionGeneralSettings* general_panel = new mmOptionGeneralSettings(m_notebook, m_app);
+    OptionSettingsGeneral* general_panel = new OptionSettingsGeneral(m_notebook, m_app);
     m_panel_list.push_back(general_panel);
 
     /*********************************************************************************************
      Views Panel
     **********************************************************************************************/
-    mmOptionViewSettings* views_panel = new mmOptionViewSettings(m_notebook);
+    OptionSettingsView* views_panel = new OptionSettingsView(m_notebook);
     m_panel_list.push_back(views_panel);
 
     /*********************************************************************************************
      Attachments Panel
     **********************************************************************************************/
-    mmOptionAttachmentSettings* attachment_panel = new mmOptionAttachmentSettings(m_notebook);
+    OptionSettingsAttachment* attachment_panel = new OptionSettingsAttachment(m_notebook);
     m_panel_list.push_back(attachment_panel);
 
     /*********************************************************************************************
     Network Panel
     **********************************************************************************************/
-    mmOptionNetSettings* network_panel = new mmOptionNetSettings(m_notebook);
+    OptionSettingsNet* network_panel = new OptionSettingsNet(m_notebook);
     m_panel_list.push_back(network_panel);
 
     /*********************************************************************************************
     Others Panel
     **********************************************************************************************/
-    mmOptionMiscSettings* others_panel = new mmOptionMiscSettings(m_notebook);
+    OptionSettingsMisc* others_panel = new OptionSettingsMisc(m_notebook);
     m_panel_list.push_back(others_panel);
 
     /**********************************************************************************************

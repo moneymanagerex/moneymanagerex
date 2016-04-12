@@ -16,21 +16,21 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "mmOptionViewSettings.h"
+#include "optionsettingsview.h"
 #include "util.h"
 
 #include <wx/colordlg.h>
 
 /*******************************************************/
-wxBEGIN_EVENT_TABLE(mmOptionViewSettings, wxPanel)
+wxBEGIN_EVENT_TABLE(OptionSettingsView, wxPanel)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
-mmOptionViewSettings::mmOptionViewSettings()
+OptionSettingsView::OptionSettingsView()
 {
 }
 
-mmOptionViewSettings::mmOptionViewSettings(wxWindow *parent
+OptionSettingsView::OptionSettingsView(wxWindow *parent
     , wxWindowID id
     , const wxPoint &pos
     , const wxSize &size
@@ -40,11 +40,11 @@ mmOptionViewSettings::mmOptionViewSettings(wxWindow *parent
     Create();
 }
 
-mmOptionViewSettings::~mmOptionViewSettings()
+OptionSettingsView::~OptionSettingsView()
 {
 }
 
-void mmOptionViewSettings::Create()
+void OptionSettingsView::Create()
 {
     wxBoxSizer* viewsPanelSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(viewsPanelSizer);
@@ -179,10 +179,10 @@ void mmOptionViewSettings::Create()
     userColourSettingStBoxSizer->Add(m_UDFCB7, g_flagsH);
 
     this->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmOptionViewSettings::OnNavTreeColorChanged), nullptr, this);
+        , wxCommandEventHandler(OptionSettingsView::OnNavTreeColorChanged), nullptr, this);
 }
 
-void mmOptionViewSettings::OnNavTreeColorChanged(wxCommandEvent& event)
+void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
 {
     wxButton* button = wxDynamicCast(FindWindow(event.GetId()), wxButton);
     if (button)
@@ -201,7 +201,7 @@ void mmOptionViewSettings::OnNavTreeColorChanged(wxCommandEvent& event)
     }
 }
 
-void mmOptionViewSettings::SaveSettings()
+void OptionSettingsView::SaveSettings()
 {
     wxString accVisible = VIEW_ACCOUNTS_ALL_STR;
     wxStringClientData* visible_acc_obj = (wxStringClientData *)m_choice_visible->GetClientObject(m_choice_visible->GetSelection());

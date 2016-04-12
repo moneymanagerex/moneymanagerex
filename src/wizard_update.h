@@ -21,7 +21,7 @@
 
 #include <wx/wizard.h>
 #include <wx/frame.h>
-#include "mmOption.h"
+#include "option.h"
 
 class mmUpdate
 {

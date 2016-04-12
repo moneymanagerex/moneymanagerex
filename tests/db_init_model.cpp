@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
-#include "mmOption.h"
+#include "option.h"
 
 #include "model/Model_Currency.h"
 
@@ -56,11 +56,10 @@ void DB_Init_Model::Init_Model_Tables(wxSQLite3Database* test_db)
     // For the purpose of testing, we will create the
     // settings table in the main database.
     Model_Setting::instance(test_db);
-    mmIniOptions::instance().loadOptions();
 
     Model_Infotable::instance(test_db);
-    Model_Infotable::instance().SetDateFormat("%d-%m-%Y");
-    mmOptions::instance().LoadInfotableOptions();
+    Option::instance().DateFormat("%d-%m-%Y");
+    Option::instance().LoadOptions();
 
     Model_Currency::instance(test_db);
     Model_Account::instance(test_db);
@@ -135,8 +134,7 @@ void DB_Init_Model::Init_BaseCurrency(const wxString& base_currency_symbol, cons
     }
     Model_Infotable::instance().SetBaseCurrency(currency_record->CURRENCYID);
     // Set database User Name
-    Model_Infotable::instance().Set("USERNAME", user_name);
-    mmOptions::instance().userNameString_ = user_name;
+    Option::instance().UserName(user_name);
 }
 
 int DB_Init_Model::Add_Bank_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)

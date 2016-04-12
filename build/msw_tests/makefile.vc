@@ -184,13 +184,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_maincurrencydialog.obj \
 	mmex_tests_minimal_editor.obj \
 	mmex_tests_mmCalculator.obj \
-	mmex_tests_mmOption.obj \
-	mmex_tests_mmOptionAttachmentSettings.obj \
-	mmex_tests_mmOptionBaseSettings.obj \
-	mmex_tests_mmOptionGeneralSettings.obj \
-	mmex_tests_mmOptionMiscSettings.obj \
-	mmex_tests_mmOptionNetSettings.obj \
-	mmex_tests_mmOptionViewSettings.obj \
 	mmex_tests_mmSimpleDialogs.obj \
 	mmex_tests_mmcheckingpanel.obj \
 	mmex_tests_mmex.obj \
@@ -200,7 +193,14 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmhomepagepanel.obj \
 	mmex_tests_mmpanelbase.obj \
 	mmex_tests_mmreportspanel.obj \
-	mmex_tests_optionsdialog.obj \
+	mmex_tests_option.obj \
+	mmex_tests_optiondialog.obj \
+	mmex_tests_optionsettingsattachment.obj \
+	mmex_tests_optionsettingsbase.obj \
+	mmex_tests_optionsettingsgeneral.obj \
+	mmex_tests_optionsettingsmisc.obj \
+	mmex_tests_optionsettingsnet.obj \
+	mmex_tests_optionsettingsview.obj \
 	mmex_tests_paths.obj \
 	mmex_tests_payeedialog.obj \
 	mmex_tests_recentfiles.obj \
@@ -878,27 +878,6 @@ mmex_tests_minimal_editor.obj: ..\..\src\minimal_editor.cpp
 mmex_tests_mmCalculator.obj: ..\..\src\mmCalculator.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmCalculator.cpp
 
-mmex_tests_mmOption.obj: ..\..\src\mmOption.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOption.cpp
-
-mmex_tests_mmOptionAttachmentSettings.obj: ..\..\src\mmOptionAttachmentSettings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionAttachmentSettings.cpp
-
-mmex_tests_mmOptionBaseSettings.obj: ..\..\src\mmOptionBaseSettings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionBaseSettings.cpp
-
-mmex_tests_mmOptionGeneralSettings.obj: ..\..\src\mmOptionGeneralSettings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionGeneralSettings.cpp
-
-mmex_tests_mmOptionMiscSettings.obj: ..\..\src\mmOptionMiscSettings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionMiscSettings.cpp
-
-mmex_tests_mmOptionNetSettings.obj: ..\..\src\mmOptionNetSettings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionNetSettings.cpp
-
-mmex_tests_mmOptionViewSettings.obj: ..\..\src\mmOptionViewSettings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmOptionViewSettings.cpp
-
 mmex_tests_mmSimpleDialogs.obj: ..\..\src\mmSimpleDialogs.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmSimpleDialogs.cpp
 
@@ -926,8 +905,29 @@ mmex_tests_mmpanelbase.obj: ..\..\src\mmpanelbase.cpp
 mmex_tests_mmreportspanel.obj: ..\..\src\mmreportspanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\mmreportspanel.cpp
 
-mmex_tests_optionsdialog.obj: ..\..\src\optionsdialog.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\optionsdialog.cpp
+mmex_tests_option.obj: ..\..\src\option.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\option.cpp
+
+mmex_tests_optiondialog.obj: ..\..\src\optiondialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\optiondialog.cpp
+
+mmex_tests_optionsettingsattachment.obj: ..\..\src\optionsettingsattachment.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\optionsettingsattachment.cpp
+
+mmex_tests_optionsettingsbase.obj: ..\..\src\optionsettingsbase.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\optionsettingsbase.cpp
+
+mmex_tests_optionsettingsgeneral.obj: ..\..\src\optionsettingsgeneral.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\optionsettingsgeneral.cpp
+
+mmex_tests_optionsettingsmisc.obj: ..\..\src\optionsettingsmisc.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\optionsettingsmisc.cpp
+
+mmex_tests_optionsettingsnet.obj: ..\..\src\optionsettingsnet.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\optionsettingsnet.cpp
+
+mmex_tests_optionsettingsview.obj: ..\..\src\optionsettingsview.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\optionsettingsview.cpp
 
 mmex_tests_paths.obj: ..\..\src\paths.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\paths.cpp

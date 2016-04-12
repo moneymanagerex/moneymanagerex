@@ -20,7 +20,7 @@
 #include "budgetingpanel.h"
 #include "budgetentrydialog.h"
 #include "images_list.h"
-#include "mmOption.h"
+#include "option.h"
 #include "mmex.h"
 #include "mmframe.h"
 #include "reports/budget.h"

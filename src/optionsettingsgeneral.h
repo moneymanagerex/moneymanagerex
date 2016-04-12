@@ -18,25 +18,25 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 
-#include "mmOptionBaseSettings.h"
+#include "optionsettingsbase.h"
 
-class wxSpinCtrl;
+class mmGUIApp;
 
-class mmOptionNetSettings : public mmOptionSettingsBase
+class OptionSettingsGeneral : public OptionSettingsBase
 {
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmOptionNetSettings();
+    OptionSettingsGeneral();
 
-    mmOptionNetSettings(wxWindow *parent
+    OptionSettingsGeneral(wxWindow *parent, mmGUIApp* app
         , wxWindowID id = wxID_ANY
         , const wxPoint &pos = wxDefaultPosition
         , const wxSize &size = wxDefaultSize
         , long style = wxTAB_TRAVERSAL
         , const wxString &name = wxPanelNameStr);
 
-    ~mmOptionNetSettings();
+    ~OptionSettingsGeneral();
 
 public:
     virtual void SaveSettings();
@@ -44,26 +44,32 @@ public:
 private:
     void Create();
 
-    void OnProxyChanged(wxCommandEvent& event);
-    void OnUpdateCheckChanged(wxCommandEvent& event);
-    void OnEnableWebserverChanged(wxCommandEvent& event);
+    void OnCurrency(wxCommandEvent& event);
+    void OnDateFormatChanged(wxCommandEvent& event);
+    void OnLanguageChanged(wxCommandEvent& event);
+
+    void SaveFinancialYearStart();
 
 private:
-    wxSpinCtrl* m_network_timeout;
-    wxCheckBox* m_send_data;
-    wxCheckBox* m_webserver_checkbox;
-    wxSpinCtrl* m_webserver_port;
-    wxTextCtrl* m_proxy_address;
-    wxSpinCtrl* m_proxy_port;
-    wxCheckBox* m_check_update;
-    wxChoice*   m_update_source;
+    mmGUIApp* m_app;
+    wxChoice* m_date_format_choice;
+    wxChoice* m_month_selection;
+    wxStaticText* m_sample_date_text;
+
+    int m_currency_id;
+    wxString m_date_format;
+    wxString m_current_language;
+
+    wxCheckBox* m_use_org_date_copy_paste;
+    wxCheckBox* m_use_sound;
 
     enum
     {
-        ID_DIALOG_OPTIONS_TEXTCTRL_PROXY = wxID_HIGHEST + 10,
-        ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
-        ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
-        ID_DIALOG_OPTIONS_ENABLE_WEBSERVER,
-        ID_DIALOG_OPTIONS_UPDATES_CHECK
+        ID_DIALOG_OPTIONS_BUTTON_CURRENCY = wxID_HIGHEST + 10,
+        ID_DIALOG_OPTIONS_WXCHOICE_DATE,
+        ID_DIALOG_OPTIONS_BUTTON_LANGUAGE,
+        ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME,
+        ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
+        ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_MONTH
     };
 };
