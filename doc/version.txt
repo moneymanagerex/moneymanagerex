@@ -1,13 +1,13 @@
 Version History of Money Manager Ex
 
-1.2.7 (Apr 12, 2016)
-- Fix: Minor fixes
+1.2.7 (Apr 14, 2016)
 - Fix: Italian translation updated
 - Fix: Russian translation updated
 - Fix: Help files updated
 - Fix: Validate math expressions (Issue #659)
 - Fix: Items in Navigation keep disappearing in Ubuntu and MacOS (Issue #658)
 - Fix: Transactions color tag is lost in some specific case (Issue #788)
+- Fix: Minor fixes
 
 1.2.6 (Mar 6, 2016)
 - Fix: OK the default when entering a transaction (Issue #676)
