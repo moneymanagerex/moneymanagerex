@@ -18,7 +18,7 @@ cls
 
 REM Set the variable: mmex_release_version
 REM to reflect the correct version.
-set mmex_release_version=mmex_1.2.0
+set mmex_release_version=mmex_1.3.0-alpha
 
 set mmex_system_name=MoneyManagerEX
 set mmex_build_location=..\..\build\msw-vc-2013e
@@ -49,7 +49,7 @@ if exist .\mpress.219\mpress.exe goto display_config_continue
 @echo.
 @echo %display_message%
 @echo ------------------------------------------------------------------------
-pause
+timeout /t 15
 cls
 
 REM Starts with Win32 Release
@@ -115,7 +115,7 @@ copy "..\..\3rd\sorttable.js\sorttable.js"     "%mmex_build_dir%\res"
 @echo.
 @echo Updated Support Files for: %mmex_build_dir%
 @echo.
-pause
+timeout /t 15
 cls
 
 :skip_this_location
@@ -163,7 +163,7 @@ if not exist %mmex_release_destination% mkdir %mmex_release_destination%
 @echo Destination: %mmex_release_destination%
 @echo From Source: %mmex_release_source%
 @echo --------------------------------------------------------------------
-pause
+timeout /t 15
 cls
 
 @echo --------------------------------------------------------------------
@@ -208,4 +208,4 @@ goto UpdateFiles
 @echo.
 @echo Update completed.
 @echo ------------------------------------------------------------------------
-pause
+timeout /t 15
