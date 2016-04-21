@@ -5,8 +5,6 @@ make sure these boxed are checked before submitting your issue - thank you!
   - [ ] Mac OSX
   - [ ] Linux 
 -  Check MMEX version
+  - [ ] 1.3.x
   - [ ] 1.2.x
-  - [ ] 1.1.x
-  - [ ] 1.0.x
-  - [ ] 0.9 or older
-  
+  - [ ] 1.1 or older
