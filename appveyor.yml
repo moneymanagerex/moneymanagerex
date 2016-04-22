@@ -17,22 +17,24 @@ environment:
 
 install:
 # wxWidgets
-## REMOVE BELOW COMMENT TO CLEANUP CACHE WHEN WXWIDGETS UPGRADED
-#- cmd: RMDIR /S /Q %WXWIN%
 - cmd: IF %PLATFORM%==x64 (SET WXLIBFOLDER=vc_x64_lib) ELSE (SET WXLIBFOLDER=vc_lib)
-- cmd: IF NOT EXIST %WXWIN%\lib\%WXLIBFOLDER% git clone https://github.com/wxWidgets/wxWidgets.git %WXWIN%
-- cmd: IF NOT EXIST %WXWIN%\lib\%WXLIBFOLDER% cd %WXWIN%
-- cmd: IF NOT EXIST %WXWIN%\lib\%WXLIBFOLDER% git checkout tags/v3.1.0
-- cmd: IF NOT EXIST "%WXWIN%\lib\%WXLIBFOLDER%" copy "%WXWIN%\include\wx\msw\setup0.h" "%WXWIN%\include\wx\msw\setup.h"
+## REMOVE BELOW COMMENT TO CLEANUP CACHE WHEN WXWIDGETS UPGRADED
+#- cmd: DEL %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip /F /Q
+- cmd: git clone https://github.com/wxWidgets/wxWidgets.git %WXWIN%
+- cmd: cd %WXWIN%
+- cmd: git checkout tags/v3.1.0
+- cmd: copy "%WXWIN%\include\wx\msw\setup0.h" "%WXWIN%\include\wx\msw\setup.h"
+- cmd: IF EXIST %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (7z x %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip -o%WXWIN%\lib\%WXLIBFOLDER%)
 - cmd: >-
     IF NOT EXIST %WXWIN%\lib\%WXLIBFOLDER% msbuild "%WXWIN%\build\msw\wx_vc12.sln" /m /p:Configuration=Release /p:Platform="%PLATFORM%" /verbosity:quiet /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+- cmd: 7z a %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip %WXWIN%\lib\%WXLIBFOLDER%\*
 # MMEX
 - cmd: cd %APPVEYOR_BUILD_FOLDER%
 - cmd: git submodule update --init
 
 cache:
-  - '%WXWIN%\lib\vc_lib'
-  - '%WXWIN%\lib\vc_x64_lib'
+  - '%APPVEYOR_BUILD_FOLDER%\vc_lib.zip'
+  - '%APPVEYOR_BUILD_FOLDER%\vc_x64_lib.zip'
 
 build:
   project: build\msw-vc-2013e\mmex.sln
