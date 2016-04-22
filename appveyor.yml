@@ -1,35 +1,57 @@
 version: 1.0.{build}
+
 pull_requests:
   do_not_increment_build_number: true
+  
 image: Visual Studio 2013
 configuration: Release
-platform: x64
+platform:
+  - Win32
+  - x64
+
+matrix:
+  fast_finish: true
+
 environment:
   wxwin: c:\projects\wxwidgets
+
 install:
+# wxWidgets
+## REMOVE BELOW COMMENT TO CLEANUP CACHE WHEN WXWIDGETS UPGRADED
+#- cmd: RMDIR /S /Q %WXWIN%
+- cmd: IF %PLATFORM%==x64 (SET WXLIBFOLDER=vc_x64_lib) ELSE (SET WXLIBFOLDER=vc_lib)
+- cmd: IF NOT EXIST %WXWIN%\lib\%WXLIBFOLDER% git clone https://github.com/wxWidgets/wxWidgets.git %WXWIN%
+- cmd: IF NOT EXIST %WXWIN%\lib\%WXLIBFOLDER% cd %WXWIN%
+- cmd: IF NOT EXIST %WXWIN%\lib\%WXLIBFOLDER% git checkout tags/v3.1.0
+- cmd: IF NOT EXIST "%WXWIN%\lib\%WXLIBFOLDER%" copy "%WXWIN%\include\wx\msw\setup0.h" "%WXWIN%\include\wx\msw\setup.h"
 - cmd: >-
-    git submodule update --init
+    IF NOT EXIST %WXWIN%\lib\%WXLIBFOLDER% msbuild "%WXWIN%\build\msw\wx_vc12.sln" /m /p:Configuration=Release /p:Platform="%PLATFORM%" /verbosity:quiet /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+# MMEX
+- cmd: cd %APPVEYOR_BUILD_FOLDER%
+- cmd: git submodule update --init
 
+cache:
+  - '%WXWIN%\lib\vc_lib'
+  - '%WXWIN%\lib\vc_x64_lib'
 
-    git clone https://github.com/wxWidgets/wxWidgets.git c:\projects\wxwidgets
-
-
-    cd c:\projects\wxwidgets
-
-    git checkout tags/v3.1.0
-
-    cd c:\projects\moneymanagerex
-
-
-    copy "c:\projects\wxwidgets\include\wx\msw\setup0.h" "c:\projects\wxwidgets\include\wx\msw\setup.h"
-
-
-    set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
-
-    "c:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe" "c:\projects\wxwidgets\build\msw\wx_vc12.sln" /verbosity:quiet /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-before_build:
-- cmd: set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
 build:
-  project: build/msw-vc-2013e/mmex.sln
+  project: build\msw-vc-2013e\mmex.sln
   parallel: true
   verbosity: normal
+
+after_build:
+- cmd: SET PATH=%PATH%;C:\cygwin64\bin
+- cmd: cd %APPVEYOR_BUILD_FOLDER%\po
+- cmd: C:\cygwin64\bin\make.exe
+- cmd: cd %APPVEYOR_BUILD_FOLDER%\setup\win
+- ps: Start-FileDownload https://web.archive.org/web/20150506065200/http://www.matcode.com/mpress.219.zip
+- cmd: 7z x mpress.219.zip -o%APPVEYOR_BUILD_FOLDER%\setup\win\mpress.219
+- cmd: update_mmex_build_files.bat
+- cmd: cd %APPVEYOR_BUILD_FOLDER%
+- cmd: 7z a mmex_1.3.0-alpha_%PLATFORM%_portable.zip %APPVEYOR_BUILD_FOLDER%\mmex_release\mmex_1.3.0-alpha_%PLATFORM%_portable\*
+- ps: Push-AppveyorArtifact "mmex_1.3.0-alpha_${env:platform}_portable.zip" -FileName "mmex_1.3.0-alpha_${env:platform}_portable.zip"
+- ps: Push-AppveyorArtifact "mmex_release\mmex_1.3.0-alpha_${env:platform}_portable\MoneyManagerEX\bin\mmex.exe" -FileName "mmex_${env:platform}.exe"
+
+# Debug
+#on_finish:
+#- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
