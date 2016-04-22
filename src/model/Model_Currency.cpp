@@ -21,6 +21,7 @@
 #include "Model_Account.h"
 #include "Model_Checking.h"
 #include "Model_Stock.h"
+#include "option.h"
 #include <wx/numformatter.h>
 
 Model_Currency::Model_Currency()
@@ -71,7 +72,7 @@ wxArrayString Model_Currency::all_currency_symbols()
 // Getter
 Model_Currency::Data* Model_Currency::GetBaseCurrency()
 {
-    int currency_id = Model_Infotable::instance().GetBaseCurrencyId();
+    int currency_id = Option::instance().BaseCurrency();
     Model_Currency::Data *currency = Model_Currency::instance().get(currency_id);
     return currency;
 }

@@ -58,9 +58,6 @@ public:
     wxString GetStringInfo(const wxString& key, const wxString& default_value);
     const wxColour GetColourSetting(const wxString& key, const wxColour& default_value = wxColour(255, 255, 255));
 
-    int GetBaseCurrencyId();
-    void SetBaseCurrency(int currency_id);
-
     /* Returns true if key setting found */
     bool KeyExists(const wxString& key);
     /* Check database at minimum revision*/

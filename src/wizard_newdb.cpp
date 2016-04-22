@@ -171,7 +171,7 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
 
 void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
 {
-    currencyID_ = Model_Infotable::instance().GetBaseCurrencyId();
+    currencyID_ = Option::instance().BaseCurrency();
 
     if (mmMainCurrencyDialog::Execute(this, currencyID_) && currencyID_ != -1)
     {
@@ -180,7 +180,7 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
         {
             itemButtonCurrency_->SetLabelText(currency->CURRENCYNAME);
             currencyID_ = currency->CURRENCYID;
-            Model_Infotable::instance().SetBaseCurrency(currencyID_);
+            Option::instance().BaseCurrency(currencyID_);
         }
     }
 }

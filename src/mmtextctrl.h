@@ -65,8 +65,9 @@ public:
         mmCalculator calc;
         int precision = alt_precision >= 0 ? alt_precision : log10(currency_->SCALE);
         const wxString str = Model_Currency::fromString2Default(this->GetValue(), currency_);
-        if (calc.is_ok(str)) {
-            this->SetValue(Model_Currency::toString(calc.get_result(), currency_, precision));
+        if (calc.is_ok(str))
+        {
+            this->ChangeValue(Model_Currency::toString(calc.get_result(), currency_, precision));
             this->SetInsertionPoint(this->GetValue().Len());
             return true;
         }

@@ -154,16 +154,6 @@ const wxColour Model_Infotable::GetColourSetting(const wxString& key, const wxCo
     return default_value;
 }
 
-int Model_Infotable::GetBaseCurrencyId()
-{
-    return this->GetIntInfo("BASECURRENCYID", -1);
-}
-
-void Model_Infotable::SetBaseCurrency(int currency_id)
-{
-    Model_Infotable::instance().Set("BASECURRENCYID", currency_id);
-}
-
 /* Returns true if key setting found */
 bool Model_Infotable::KeyExists(const wxString& key)
 {
