@@ -27,7 +27,7 @@ install:
 - cmd: IF EXIST %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (7z x %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip -o%WXWIN%\lib\%WXLIBFOLDER%)
 - cmd: >-
     IF NOT EXIST %WXWIN%\lib\%WXLIBFOLDER% msbuild "%WXWIN%\build\msw\wx_vc12.sln" /m /p:Configuration=Release /p:Platform="%PLATFORM%" /verbosity:quiet /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-- cmd: 7z a %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip %WXWIN%\lib\%WXLIBFOLDER%\*
+- cmd: IF NOT EXIST %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (7z a %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip %WXWIN%\lib\%WXLIBFOLDER%\*)
 # MMEX
 - cmd: cd %APPVEYOR_BUILD_FOLDER%
 - cmd: git submodule update --init
