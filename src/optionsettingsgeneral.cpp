@@ -45,7 +45,7 @@ OptionSettingsGeneral::OptionSettingsGeneral(wxWindow *parent, mmGUIApp* app
 {
     wxPanel::Create(parent, id, pos, size, style, name);
     m_app = app;
-    m_currency_id = Model_Infotable::instance().GetBaseCurrencyId();
+    m_currency_id = Option::instance().BaseCurrency();
     m_date_format = Option::instance().DateFormat();
 
     Create();
@@ -103,9 +103,9 @@ void OptionSettingsGeneral::Create()
         currName = currency->CURRENCYNAME;
     wxButton* baseCurrencyButton = new wxButton(this, ID_DIALOG_OPTIONS_BUTTON_CURRENCY
         , currName, wxDefaultPosition, wxDefaultSize);
-    baseCurrencyButton->SetToolTip(_("Sets the default currency for the database."));
+    baseCurrencyButton->SetToolTip(_("Sets the database default Currency using the 'Currency Dialog'"));
     currencyStaticBoxSizer->Add(baseCurrencyButton, g_flagsH);
-    currencyStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC, _("Right click on currency and choose 'Set as Base Currency'")), g_flagsH);
+    currencyStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC, _("Right click and select 'Set as Base Currency' in 'Currency Dialog'")), g_flagsH);
 
     // Date Format Settings
     wxStaticBox* dateFormatStaticBox = new wxStaticBox(this, wxID_STATIC, _("Date Format"));
@@ -177,10 +177,11 @@ void OptionSettingsGeneral::Create()
 
 void OptionSettingsGeneral::OnCurrency(wxCommandEvent& /*event*/)
 {
-    int currencyID = Model_Infotable::instance().GetBaseCurrencyId();
+    int currencyID = Option::instance().BaseCurrency();
 
     if (mmMainCurrencyDialog::Execute(this, currencyID) && currencyID != -1)
     {
+        currencyID = Option::instance().BaseCurrency();
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID);
         wxButton* bn = (wxButton*) FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
         bn->SetLabelText(currency->CURRENCYNAME);

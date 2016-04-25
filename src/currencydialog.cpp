@@ -117,7 +117,7 @@ void mmCurrencyDialog::fillControls()
         m_scale = log10(m_currency->SCALE);
         const wxString& scale_value = wxString::Format("%i", m_scale);
         scaleTx_->ChangeValue(scale_value);
-        bool baseCurrency = (Model_Infotable::instance().GetBaseCurrencyId() == m_currency->CURRENCYID);
+        bool baseCurrency = (Option::instance().BaseCurrency() == m_currency->CURRENCYID);
         baseConvRate_->SetValue((baseCurrency ? 1.00 : m_currency->BASECONVRATE), SCALE);
         baseConvRate_->Enable(!baseCurrency);
         m_currencySymbol->ChangeValue(m_currency->CURRENCY_SYMBOL);
@@ -238,15 +238,18 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
 void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
 {  
     int scale = wxAtoi(scaleTx_->GetValue());
-    m_currency->PFX_SYMBOL = pfxTx_->GetValue();
-    m_currency->SFX_SYMBOL = sfxTx_->GetValue();
-    m_currency->DECIMAL_POINT = decTx_->GetValue();
-    m_currency->GROUP_SEPARATOR = grpTx_->GetValue();
-    m_currency->UNIT_NAME = unitTx_->GetValue();
-    m_currency->CENT_NAME = centTx_->GetValue();
-    m_currency->SCALE = static_cast<int>(pow(10, scale));
-    m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue().Trim();
-    m_currency->CURRENCYNAME = m_currencyName->GetValue();
+    if (m_currency)
+    {
+        m_currency->PFX_SYMBOL = pfxTx_->GetValue();
+        m_currency->SFX_SYMBOL = sfxTx_->GetValue();
+        m_currency->DECIMAL_POINT = decTx_->GetValue();
+        m_currency->GROUP_SEPARATOR = grpTx_->GetValue();
+        m_currency->UNIT_NAME = unitTx_->GetValue();
+        m_currency->CENT_NAME = centTx_->GetValue();
+        m_currency->SCALE = static_cast<int>(pow(10, scale));
+        m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue().Trim();
+        m_currency->CURRENCYNAME = m_currencyName->GetValue();
+    }
 
     wxString dispAmount = "";
     double base_amount = 123456.78;

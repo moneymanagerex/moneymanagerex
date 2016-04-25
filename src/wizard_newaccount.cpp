@@ -149,7 +149,7 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
 
 bool mmAddAccountTypePage::TransferDataFromWindow()
 {
-    int currencyID = Model_Infotable::instance().GetBaseCurrencyId();
+    int currencyID = Option::instance().BaseCurrency();
     if (currencyID == -1)
     {
         wxString errorMsg;
