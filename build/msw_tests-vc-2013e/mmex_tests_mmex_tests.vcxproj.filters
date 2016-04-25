@@ -432,6 +432,21 @@
     <ClCompile Include="..\..\src\dbupgrade.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\model\Model_Shareinfo.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\model\Model_Translink.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sharetransactiondialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\usertransactionpanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tests\test_translink.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -901,6 +916,21 @@
     </ClInclude>
     <ClInclude Include="..\..\src\dbupgrade.h">
       <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\Model_Shareinfo.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\Model_Translink.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sharetransactiondialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\usertransactionpanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tests\test_translink.h">
+      <Filter>Test Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

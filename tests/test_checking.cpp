@@ -73,7 +73,7 @@ void Test_Checking::setUp()
     m_commit_hook = new CommitCallbackHook();
     m_test_db.SetCommitHook(m_commit_hook);
 
-    m_dbmodel = new DB_Init_Model();
+    m_dbmodel = new DB_Model();
     m_dbmodel->Init_Model_Tables(&m_test_db);
     m_dbmodel->Init_BaseCurrency();
 }

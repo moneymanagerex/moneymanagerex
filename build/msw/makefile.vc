@@ -168,11 +168,13 @@ MMEX_OBJECTS =  \
 	mmex_recentfiles.obj \
 	mmex_relocatecategorydialog.obj \
 	mmex_relocatepayeedialog.obj \
+	mmex_sharetransactiondialog.obj \
 	mmex_splitdetailsdialog.obj \
 	mmex_splittransactionsdialog.obj \
 	mmex_stockdialog.obj \
 	mmex_stockspanel.obj \
 	mmex_transdialog.obj \
+	mmex_usertransactionpanel.obj \
 	mmex_util.obj \
 	mmex_webapp.obj \
 	mmex_webappdialog.obj \
@@ -219,10 +221,12 @@ MMEX_OBJECTS =  \
 	mmex_Model_Payee.obj \
 	mmex_Model_Report.obj \
 	mmex_Model_Setting.obj \
+	mmex_Model_Shareinfo.obj \
 	mmex_Model_Splittransaction.obj \
 	mmex_Model_Stock.obj \
 	mmex_Model_StockHistory.obj \
 	mmex_Model_Subcategory.obj \
+	mmex_Model_Translink.obj \
 	mmex_Model_Usage.obj \
 	mmex_html_template.obj \
 	mmex_mongoose.obj \
@@ -816,6 +820,9 @@ mmex_relocatecategorydialog.obj: ..\..\src\relocatecategorydialog.cpp
 mmex_relocatepayeedialog.obj: ..\..\src\relocatepayeedialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\relocatepayeedialog.cpp
 
+mmex_sharetransactiondialog.obj: ..\..\src\sharetransactiondialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\sharetransactiondialog.cpp
+
 mmex_splitdetailsdialog.obj: ..\..\src\splitdetailsdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\splitdetailsdialog.cpp
 
@@ -830,6 +837,9 @@ mmex_stockspanel.obj: ..\..\src\stockspanel.cpp
 
 mmex_transdialog.obj: ..\..\src\transdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\transdialog.cpp
+
+mmex_usertransactionpanel.obj: ..\..\src\usertransactionpanel.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\usertransactionpanel.cpp
 
 mmex_util.obj: ..\..\src\util.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\util.cpp
@@ -969,6 +979,9 @@ mmex_Model_Report.obj: ..\..\src\model\Model_Report.cpp
 mmex_Model_Setting.obj: ..\..\src\model\Model_Setting.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Setting.cpp
 
+mmex_Model_Shareinfo.obj: ..\..\src\model\Model_Shareinfo.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Shareinfo.cpp
+
 mmex_Model_Splittransaction.obj: ..\..\src\model\Model_Splittransaction.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Splittransaction.cpp
 
@@ -980,6 +993,9 @@ mmex_Model_StockHistory.obj: ..\..\src\model\Model_StockHistory.cpp
 
 mmex_Model_Subcategory.obj: ..\..\src\model\Model_Subcategory.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Subcategory.cpp
+
+mmex_Model_Translink.obj: ..\..\src\model\Model_Translink.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Translink.cpp
 
 mmex_Model_Usage.obj: ..\..\src\model\Model_Usage.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Usage.cpp

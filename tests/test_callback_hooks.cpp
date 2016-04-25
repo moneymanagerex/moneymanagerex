@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Subcategory.h"
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
+#include "option.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -90,7 +91,7 @@ void Test_Callback_Hooks::test_Init_Base_Currency()
     CPPUNIT_ASSERT(precision == 2);
 
     std::cout << "Set Base Currency: ";
-    Model_Infotable::instance().SetBaseCurrency(au_record->CURRENCYID);
+    Option::instance().BaseCurrency(au_record->CURRENCYID);
 }
 
 // Initialise some payees

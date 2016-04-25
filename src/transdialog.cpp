@@ -235,7 +235,10 @@ void mmTransDialog::dataToControls()
                 payee_label_->SetLabelText(_("From"));
 
             account_label_->SetLabelText(_("Account"));
-            m_trx_data.TOACCOUNTID = -1;
+            if (!Model_Checking::foreignTransaction(m_trx_data))
+            {
+                m_trx_data.TOACCOUNTID = -1;
+            }
 
             wxArrayString all_payees = Model_Payee::instance().all_payee_names();
             if (!all_payees.empty())
@@ -574,8 +577,11 @@ bool mmTransDialog::validateData()
         }
         m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
         m_trx_data.PAYEEID = payee->PAYEEID;
-        m_trx_data.TOACCOUNTID = -1;
-
+        if (!Model_Checking::foreignTransaction(m_trx_data))
+        {
+            m_trx_data.TOACCOUNTID = -1;
+        }
+        
         payee->CATEGID = m_trx_data.CATEGID;
         payee->SUBCATEGID = m_trx_data.SUBCATEGID;
         Model_Payee::instance().save(payee);

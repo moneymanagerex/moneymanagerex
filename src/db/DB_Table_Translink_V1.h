@@ -15,15 +15,15 @@
  */
 //=============================================================================
 
-#ifndef DB_TABLE_CUSTOMFIELD_V1_H
-#define DB_TABLE_CUSTOMFIELD_V1_H
+#ifndef DB_TABLE_TRANSLINK_V1_H
+#define DB_TABLE_TRANSLINK_V1_H
 
 #include "DB_Table.h"
 
-struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
+struct DB_Table_TRANSLINK_V1 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CUSTOMFIELD_V1 Self;
+    typedef DB_Table_TRANSLINK_V1 Self;
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
@@ -49,7 +49,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CUSTOMFIELD_V1() 
+    ~DB_Table_TRANSLINK_V1() 
     {
         delete this->fake_;
         destroy_cache();
@@ -70,12 +70,12 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELD_V1 (FIELDID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */, DESCRIPTION TEXT COLLATE NOCASE, TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoiche, MultiChoiche */, PROPERTIES TEXT NOT NULL)");
+                db->ExecuteUpdate("CREATE TABLE TRANSLINK_V1 (TRANSLINKID  integer NOT NULL primary key, CHECKINGACCOUNTID integer NOT NULL, LINKTYPE TEXT NOT NULL /* Asset, Stock */, LINKRECORDID integer NOT NULL)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("CUSTOMFIELD_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("TRANSLINK_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -89,11 +89,12 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELD_REF ON CUSTOMFIELD_V1 (REFTYPE)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CHECKINGACCOUNT ON TRANSLINK_V1 (CHECKINGACCOUNTID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_LINKRECORD ON TRANSLINK_V1 (LINKTYPE, LINKRECORDID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELD_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("TRANSLINK_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -106,39 +107,33 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         db->Commit();
     }
     
-    struct FIELDID : public DB_Column<int>
+    struct TRANSLINKID : public DB_Column<int>
     { 
-        static wxString name() { return "FIELDID"; } 
-        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "TRANSLINKID"; } 
+        explicit TRANSLINKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct REFTYPE : public DB_Column<wxString>
+    struct CHECKINGACCOUNTID : public DB_Column<int>
     { 
-        static wxString name() { return "REFTYPE"; } 
-        explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "CHECKINGACCOUNTID"; } 
+        explicit CHECKINGACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct DESCRIPTION : public DB_Column<wxString>
+    struct LINKTYPE : public DB_Column<wxString>
     { 
-        static wxString name() { return "DESCRIPTION"; } 
-        explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "LINKTYPE"; } 
+        explicit LINKTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    struct TYPE : public DB_Column<wxString>
+    struct LINKRECORDID : public DB_Column<int>
     { 
-        static wxString name() { return "TYPE"; } 
-        explicit TYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "LINKRECORDID"; } 
+        explicit LINKRECORDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct PROPERTIES : public DB_Column<wxString>
-    { 
-        static wxString name() { return "PROPERTIES"; } 
-        explicit PROPERTIES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    typedef FIELDID PRIMARY;
+    typedef TRANSLINKID PRIMARY;
     enum COLUMN
     {
-        COL_FIELDID = 0
-        , COL_REFTYPE = 1
-        , COL_DESCRIPTION = 2
-        , COL_TYPE = 3
-        , COL_PROPERTIES = 4
+        COL_TRANSLINKID = 0
+        , COL_CHECKINGACCOUNTID = 1
+        , COL_LINKTYPE = 2
+        , COL_LINKRECORDID = 3
     };
 
     /** Returns the column name as a string*/
@@ -146,11 +141,10 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_FIELDID: return "FIELDID";
-            case COL_REFTYPE: return "REFTYPE";
-            case COL_DESCRIPTION: return "DESCRIPTION";
-            case COL_TYPE: return "TYPE";
-            case COL_PROPERTIES: return "PROPERTIES";
+            case COL_TRANSLINKID: return "TRANSLINKID";
+            case COL_CHECKINGACCOUNTID: return "CHECKINGACCOUNTID";
+            case COL_LINKTYPE: return "LINKTYPE";
+            case COL_LINKRECORDID: return "LINKRECORDID";
             default: break;
         }
         
@@ -160,11 +154,10 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("FIELDID" == name) return COL_FIELDID;
-        else if ("REFTYPE" == name) return COL_REFTYPE;
-        else if ("DESCRIPTION" == name) return COL_DESCRIPTION;
-        else if ("TYPE" == name) return COL_TYPE;
-        else if ("PROPERTIES" == name) return COL_PROPERTIES;
+        if ("TRANSLINKID" == name) return COL_TRANSLINKID;
+        else if ("CHECKINGACCOUNTID" == name) return COL_CHECKINGACCOUNTID;
+        else if ("LINKTYPE" == name) return COL_LINKTYPE;
+        else if ("LINKRECORDID" == name) return COL_LINKRECORDID;
 
         return COLUMN(-1);
     }
@@ -172,17 +165,16 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CUSTOMFIELD_V1;
+        friend struct DB_Table_TRANSLINK_V1;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int FIELDID;//  primary key
-        wxString REFTYPE;
-        wxString DESCRIPTION;
-        wxString TYPE;
-        wxString PROPERTIES;
-        int id() const { return FIELDID; }
-        void id(int id) { FIELDID = id; }
+        int TRANSLINKID;//  primary key
+        int CHECKINGACCOUNTID;
+        wxString LINKTYPE;
+        int LINKRECORDID;
+        int id() const { return TRANSLINKID; }
+        void id(int id) { TRANSLINKID = id; }
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
@@ -196,29 +188,29 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         {
             table_ = table;
         
-            FIELDID = -1;
+            TRANSLINKID = -1;
+            CHECKINGACCOUNTID = -1;
+            LINKRECORDID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            FIELDID = q.GetInt(0); // FIELDID
-            REFTYPE = q.GetString(1); // REFTYPE
-            DESCRIPTION = q.GetString(2); // DESCRIPTION
-            TYPE = q.GetString(3); // TYPE
-            PROPERTIES = q.GetString(4); // PROPERTIES
+            TRANSLINKID = q.GetInt(0); // TRANSLINKID
+            CHECKINGACCOUNTID = q.GetInt(1); // CHECKINGACCOUNTID
+            LINKTYPE = q.GetString(2); // LINKTYPE
+            LINKRECORDID = q.GetInt(3); // LINKRECORDID
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            FIELDID = other.FIELDID;
-            REFTYPE = other.REFTYPE;
-            DESCRIPTION = other.DESCRIPTION;
-            TYPE = other.TYPE;
-            PROPERTIES = other.PROPERTIES;
+            TRANSLINKID = other.TRANSLINKID;
+            CHECKINGACCOUNTID = other.CHECKINGACCOUNTID;
+            LINKTYPE = other.LINKTYPE;
+            LINKRECORDID = other.LINKRECORDID;
             return *this;
         }
 
@@ -227,25 +219,21 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         {
             return false;
         }
-        bool match(const Self::FIELDID &in) const
+        bool match(const Self::TRANSLINKID &in) const
         {
-            return this->FIELDID == in.v_;
+            return this->TRANSLINKID == in.v_;
         }
-        bool match(const Self::REFTYPE &in) const
+        bool match(const Self::CHECKINGACCOUNTID &in) const
         {
-            return this->REFTYPE.CmpNoCase(in.v_) == 0;
+            return this->CHECKINGACCOUNTID == in.v_;
         }
-        bool match(const Self::DESCRIPTION &in) const
+        bool match(const Self::LINKTYPE &in) const
         {
-            return this->DESCRIPTION.CmpNoCase(in.v_) == 0;
+            return this->LINKTYPE.CmpNoCase(in.v_) == 0;
         }
-        bool match(const Self::TYPE &in) const
+        bool match(const Self::LINKRECORDID &in) const
         {
-            return this->TYPE.CmpNoCase(in.v_) == 0;
-        }
-        bool match(const Self::PROPERTIES &in) const
-        {
-            return this->PROPERTIES.CmpNoCase(in.v_) == 0;
+            return this->LINKRECORDID == in.v_;
         }
         wxString to_json() const
         {
@@ -258,30 +246,27 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         
         int to_json(json::Object& o) const
         {
-            o[L"FIELDID"] = json::Number(this->FIELDID);
-            o[L"REFTYPE"] = json::String(this->REFTYPE.ToStdWstring());
-            o[L"DESCRIPTION"] = json::String(this->DESCRIPTION.ToStdWstring());
-            o[L"TYPE"] = json::String(this->TYPE.ToStdWstring());
-            o[L"PROPERTIES"] = json::String(this->PROPERTIES.ToStdWstring());
+            o[L"TRANSLINKID"] = json::Number(this->TRANSLINKID);
+            o[L"CHECKINGACCOUNTID"] = json::Number(this->CHECKINGACCOUNTID);
+            o[L"LINKTYPE"] = json::String(this->LINKTYPE.ToStdWstring());
+            o[L"LINKRECORDID"] = json::Number(this->LINKRECORDID);
             return 0;
         }
         row_t to_row_t() const
         {
             row_t row;
-            row(L"FIELDID") = FIELDID;
-            row(L"REFTYPE") = REFTYPE;
-            row(L"DESCRIPTION") = DESCRIPTION;
-            row(L"TYPE") = TYPE;
-            row(L"PROPERTIES") = PROPERTIES;
+            row(L"TRANSLINKID") = TRANSLINKID;
+            row(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
+            row(L"LINKTYPE") = LINKTYPE;
+            row(L"LINKRECORDID") = LINKRECORDID;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t(L"FIELDID") = FIELDID;
-            t(L"REFTYPE") = REFTYPE;
-            t(L"DESCRIPTION") = DESCRIPTION;
-            t(L"TYPE") = TYPE;
-            t(L"PROPERTIES") = PROPERTIES;
+            t(L"TRANSLINKID") = TRANSLINKID;
+            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
+            t(L"LINKTYPE") = LINKTYPE;
+            t(L"LINKRECORDID") = LINKRECORDID;
         }
 
         /** Save the record instance in memory to the database. */
@@ -290,7 +275,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save CUSTOMFIELD_V1");
+                wxLogError("can not save TRANSLINK_V1");
                 return false;
             }
 
@@ -302,7 +287,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove CUSTOMFIELD_V1");
+                wxLogError("can not remove TRANSLINK_V1");
                 return false;
             }
             
@@ -319,17 +304,17 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 5
+        NUM_COLUMNS = 4
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "CUSTOMFIELD_V1"; }
+    wxString name() const { return "TRANSLINK_V1"; }
 
-    DB_Table_CUSTOMFIELD_V1() : fake_(new Data())
+    DB_Table_TRANSLINK_V1() : fake_(new Data())
     {
-        query_ = "SELECT FIELDID, REFTYPE, DESCRIPTION, TYPE, PROPERTIES FROM CUSTOMFIELD_V1 ";
+        query_ = "SELECT TRANSLINKID, CHECKINGACCOUNTID, LINKTYPE, LINKRECORDID FROM TRANSLINK_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -359,23 +344,22 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CUSTOMFIELD_V1(REFTYPE, DESCRIPTION, TYPE, PROPERTIES) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO TRANSLINK_V1(CHECKINGACCOUNTID, LINKTYPE, LINKRECORDID) VALUES(?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CUSTOMFIELD_V1 SET REFTYPE = ?, DESCRIPTION = ?, TYPE = ?, PROPERTIES = ? WHERE FIELDID = ?";
+            sql = "UPDATE TRANSLINK_V1 SET CHECKINGACCOUNTID = ?, LINKTYPE = ?, LINKRECORDID = ? WHERE TRANSLINKID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->REFTYPE);
-            stmt.Bind(2, entity->DESCRIPTION);
-            stmt.Bind(3, entity->TYPE);
-            stmt.Bind(4, entity->PROPERTIES);
+            stmt.Bind(1, entity->CHECKINGACCOUNTID);
+            stmt.Bind(2, entity->LINKTYPE);
+            stmt.Bind(3, entity->LINKRECORDID);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->FIELDID);
+                stmt.Bind(4, entity->TRANSLINKID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -392,7 +376,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELD_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("TRANSLINK_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -410,7 +394,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CUSTOMFIELD_V1 WHERE FIELDID = ?";
+            wxString sql = "DELETE FROM TRANSLINK_V1 WHERE TRANSLINKID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -435,7 +419,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELD_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("TRANSLINK_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

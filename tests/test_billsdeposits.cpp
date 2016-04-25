@@ -69,7 +69,7 @@ void Test_BillsDeposits::setUp()
 
     m_test_db.Open(m_test_db_filename);
 
-    m_dbmodel = new DB_Init_Model();
+    m_dbmodel = new DB_Model();
     m_dbmodel->Init_Model_Tables(&m_test_db);
 
     // Only need to add data to database once.

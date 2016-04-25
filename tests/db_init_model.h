@@ -24,11 +24,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 class Model_Checking;
 
-class DB_Init_Model
+class DB_Model
 {
 public:
-    DB_Init_Model();
-    virtual ~DB_Init_Model();
+    DB_Model();
+    virtual ~DB_Model();
 
     /** Initialise all tables and options required for the database */
     void Init_Model_Tables(wxSQLite3Database* test_db);
@@ -220,7 +220,7 @@ private:
 };
 //----------------------------------------------------------------------------
 
-class DB_Model_Initialise_Statistics : public DB_Init_Model
+class DB_Model_Initialise_Statistics : public DB_Model
 {
 public:
     /**

@@ -96,6 +96,8 @@
 #include "model/Model_Stock.h"
 #include "model/Model_StockHistory.h"
 #include "model/Model_Subcategory.h"
+#include "model/Model_Translink.h"
+#include "model/Model_Shareinfo.h"
 #include "model/Model_Usage.h"
 
 #include "search/Search.h"
@@ -691,6 +693,7 @@ void mmGUIFrame::updateNavTreeControl()
     wxTreeItemId accounts = navTreeCtrl_->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
     navTreeCtrl_->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
     navTreeCtrl_->SetItemBold(accounts, true);
+
     wxTreeItemId cardAccounts = navTreeCtrl_->AppendItem(root, _("Credit Card Accounts"), img::CARD_ACC_PNG, img::CARD_ACC_PNG);
     navTreeCtrl_->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
     navTreeCtrl_->SetItemBold(cardAccounts, true);
@@ -705,7 +708,8 @@ void mmGUIFrame::updateNavTreeControl()
     wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_PNG, img::TERMACCOUNT_PNG);
     navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
     navTreeCtrl_->SetItemBold(termAccount, true);
-    wxTreeItemId stocks = navTreeCtrl_->AppendItem(root, _("Stocks"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
+    
+    wxTreeItemId stocks = navTreeCtrl_->AppendItem(root, _("Stock Portfolios"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
     navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
     navTreeCtrl_->SetItemBold(stocks, true);
 
@@ -756,7 +760,27 @@ void mmGUIFrame::updateNavTreeControl()
             switch (Model_Account::type(account))
             {
             case Model_Account::INVESTMENT:
-                tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
+                {
+                    tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
+                    // find all the accounts associated with this stock portfolio
+                    Model_Stock::Data_Set stock_account_list = Model_Stock::instance()
+                        .find(Model_Stock::HELDAT(account.ACCOUNTID));
+                    // Put the names of the Stock_entry names as children of the stock account.
+                    for (const auto stock_entry : stock_account_list)
+                    {
+                        wxTreeItemId se = navTreeCtrl_->AppendItem(tacct, stock_entry.STOCKNAME, selectedImage, selectedImage);
+                        int account_id = stock_entry.STOCKID;
+                        if (Model_Translink::ShareAccountId(account_id))
+                        {
+                            navTreeCtrl_->SetItemData(se, new mmTreeItemData(account_id, false));
+                        }
+                    }
+                }
+                break;
+            case Model_Account::SHARES: // already displayed in stock portfolios
+                break;
+            case Model_Account::ASSET:
+                tacct = navTreeCtrl_->AppendItem(assets, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             case Model_Account::TERM:
                 tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME, selectedImage, selectedImage);
@@ -770,12 +794,15 @@ void mmGUIFrame::updateNavTreeControl()
             case Model_Account::LOAN:
                 tacct = navTreeCtrl_->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
-            default: 
+            default:
                 tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             }
 
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            if (Model_Account::type(account) != Model_Account::SHARES)
+            {
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            }
         }
 
         loadNavTreeItemsStatus();
@@ -1055,8 +1082,13 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
+            wxString warning_msg = _("Do you really want to delete the account?");
+            if (account->ACCOUNTTYPE == Model_Account::all_type()[Model_Account::INVESTMENT])
+            {
+                warning_msg += "\n\nThis will also delete any associated Share Accounts.";
+            }
             wxMessageDialog msgDlg(this
-                , _("Do you really want to delete the account?")
+                , warning_msg
                 , _("Confirm Account Deletion")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
             if (msgDlg.ShowModal() == wxID_YES)
@@ -1656,6 +1688,8 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Attachment::instance(m_db.get()));
     m_all_models.push_back(&Model_CustomFieldData::instance(m_db.get()));
     m_all_models.push_back(&Model_CustomField::instance(m_db.get()));
+    m_all_models.push_back(&Model_Translink::instance(m_db.get()));
+    m_all_models.push_back(&Model_Shareinfo::instance(m_db.get()));
 }
 
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)

@@ -469,6 +469,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\Model_Shareinfo.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model_Splittransaction.cpp"
 				>
 			</File>
@@ -482,6 +486,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\Model_Subcategory.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\Model_Translink.cpp"
 				>
 			</File>
 			<File
@@ -769,6 +777,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\sharetransactiondialog.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\splitdetailsdialog.cpp"
 				>
 			</File>
@@ -802,6 +814,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\import_export\univcsvdialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\usertransactionpanel.cpp"
 				>
 			</File>
 			<File
@@ -919,11 +935,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\db\DB_Table_Splittransactions_V1.h"
+				RelativePath="..\..\src\db\DB_Table_Shareinfo_V1.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\db\DB_Table_Splittransactions_V2.h"
+				RelativePath="..\..\src\db\DB_Table_Splittransactions_V1.h"
 				>
 			</File>
 			<File
@@ -936,6 +952,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\db\DB_Table_Subcategory_V1.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\db\DB_Table_Translink_V1.h"
 				>
 			</File>
 			<File
@@ -1019,6 +1039,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\Model_Shareinfo.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model_Splittransaction.h"
 				>
 			</File>
@@ -1032,6 +1056,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\Model_Subcategory.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\Model_Translink.h"
 				>
 			</File>
 			<File
@@ -1335,6 +1363,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\sharetransactiondialog.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\singleton.h"
 				>
 			</File>
@@ -1372,6 +1404,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\import_export\univcsvdialog.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\usertransactionpanel.h"
 				>
 			</File>
 			<File
