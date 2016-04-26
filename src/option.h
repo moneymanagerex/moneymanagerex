@@ -53,6 +53,11 @@ public:
     void FinancialYearStartMonth(const wxString& setting);
     wxString FinancialYearStartMonth();
 
+    // set the base currency ID
+    void BaseCurrency(int base_currency_id);
+    // returns the base currency ID
+    int BaseCurrency();
+
     // set and save the option: m_databaseUpdated
     void DatabaseUpdated(bool value);
     bool DatabaseUpdated();
@@ -99,6 +104,7 @@ private:
     wxString m_userNameString;
     wxString m_financialYearStartDayString;
     wxString m_financialYearStartMonthString;
+    int m_baseCurrency;
 
     bool m_databaseUpdated;
     bool m_budgetFinancialYears;            //INIDB_BUDGET_FINANCIAL_YEARS

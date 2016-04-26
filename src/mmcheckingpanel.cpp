@@ -102,7 +102,7 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     , transFilterDlg_(0)
     , m_frame(frame)
 {
-    m_basecurrecyID = Model_Infotable::instance().GetBaseCurrencyId();
+    m_basecurrecyID = Option::instance().BaseCurrency();
     long style = wxTAB_TRAVERSAL | wxNO_BORDER;
     Create(parent, mmID_CHECKING, wxDefaultPosition, wxDefaultSize, style);
 }

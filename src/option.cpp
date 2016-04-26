@@ -58,6 +58,7 @@ void Option::LoadOptions(bool include_infotable)
         m_userNameString = Model_Infotable::instance().GetStringInfo("USERNAME", "");
         m_financialYearStartDayString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
         m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
+        m_baseCurrency = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
     }
 
     m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
@@ -151,6 +152,17 @@ void Option::FinancialYearStartMonth(const wxString& setting)
 {
     m_financialYearStartMonthString = setting;
     Model_Infotable::instance().Set("FINANCIAL_YEAR_START_MONTH", setting);
+}
+
+void Option::BaseCurrency(int base_currency_id)
+{
+    m_baseCurrency = base_currency_id;
+    Model_Infotable::instance().Set("BASECURRENCYID", base_currency_id);
+}
+
+int Option::BaseCurrency()
+{
+    return m_baseCurrency;
 }
 
 void Option::DatabaseUpdated(bool value)

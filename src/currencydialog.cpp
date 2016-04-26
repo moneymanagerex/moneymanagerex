@@ -64,6 +64,13 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, Model_Currency::Data * curr
         , centTx_(nullptr)
         , scaleTx_(nullptr)
 {
+    if (!m_currency)
+    {
+        m_currency = Model_Currency::instance().create();
+        m_currency->BASECONVRATE = 1;
+        m_currency->SCALE = 2;
+    }
+
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_STATIC, _("Currency Manager"), wxDefaultPosition, wxSize(500, 300), style);
 }
@@ -117,7 +124,7 @@ void mmCurrencyDialog::fillControls()
         m_scale = log10(m_currency->SCALE);
         const wxString& scale_value = wxString::Format("%i", m_scale);
         scaleTx_->ChangeValue(scale_value);
-        bool baseCurrency = (Model_Infotable::instance().GetBaseCurrencyId() == m_currency->CURRENCYID);
+        bool baseCurrency = (Option::instance().BaseCurrency() == m_currency->CURRENCYID);
         baseConvRate_->SetValue((baseCurrency ? 1.00 : m_currency->BASECONVRATE), SCALE);
         baseConvRate_->Enable(!baseCurrency);
         m_currencySymbol->ChangeValue(m_currency->CURRENCY_SYMBOL);
