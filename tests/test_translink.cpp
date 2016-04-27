@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "db_init_model.h"
 #include "framebase_tests.h"
 //----------------------------------------------------------------------------
-#include "test_stocks.h"
+#include "test_translink.h"
 #include "stockdialog.h"
 #include "stockspanel.h"
 
@@ -32,18 +32,18 @@ Turn test ON or OFF in file: defined_test_selection.h
 *****************************************************************************/
 #include "defined_test_selection.h"
 
-#ifdef MMEX_TEST_STOCKS
+#ifdef MMEX_TEST_TRANSLINK
 // Registers the fixture into the 'registry'
-CPPUNIT_TEST_SUITE_REGISTRATION(Test_Stock);
+CPPUNIT_TEST_SUITE_REGISTRATION(Test_Translink);
 #endif
 
 static int s_instance_count = 0;
 //----------------------------------------------------------------------------
-Test_Stock::Test_Stock()
+Test_Translink::Test_Translink()
 {
     s_instance_count++;
     m_this_instance = s_instance_count;
-    m_test_db_filename = "test_db_model_stock.mmb";
+    m_test_db_filename = "test_db_translink.mmb";
 
     if (m_this_instance == 1)
     {
@@ -54,7 +54,7 @@ Test_Stock::Test_Stock()
     }
 }
 
-Test_Stock::~Test_Stock()
+Test_Translink::~Test_Translink()
 {
     s_instance_count--;
     if (s_instance_count < 1)
@@ -63,7 +63,7 @@ Test_Stock::~Test_Stock()
     }
 }
 
-void Test_Stock::setUp()
+void Test_Translink::setUp()
 {
     m_base_frame = new TestFrameBase(s_instance_count);
     m_base_frame->Show(true);
@@ -74,14 +74,14 @@ void Test_Stock::setUp()
     m_dbmodel->Init_Model_Stocks(&m_test_db);
 }
 
-void Test_Stock::tearDown()
+void Test_Translink::tearDown()
 {
     m_test_db.Close();
     delete m_base_frame;
     delete m_dbmodel;
 }
 
-void Test_Stock::Test_Add_Stock_Dialog()
+void Test_Translink::Test_Add_Stock_Dialog()
 {
     m_dbmodel->Add_Investment_Account("ACME Corp");
     int account_id = m_dbmodel->Add_Investment_Account("AMP");
@@ -102,7 +102,7 @@ void Test_Stock::Test_Add_Stock_Dialog()
     }
 }
 
-void Test_Stock::Test_Edit_Stock_Dialog()
+void Test_Translink::Test_Edit_Stock_Dialog()
 {
     Model_Stock::Data_Set stock_table = Model_Stock::instance().all();
     if (stock_table.size() < 1) return;
@@ -132,7 +132,7 @@ void Test_Stock::Test_Edit_Stock_Dialog()
     }
 }
 
-void Test_Stock::Test_Stocks_Panel()
+void Test_Translink::Test_Stocks_Panel()
 {
     // Create a new frame anchored to the base frame.
     TestFrameBase* stocks_frame = new TestFrameBase(m_base_frame, 670, 400);

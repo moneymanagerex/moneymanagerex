@@ -34,9 +34,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Stock.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_Translink.h"
+#include "model/Model_Shareinfo.h"
 //----------------------------------------------------------------------------
 
-DB_Init_Model::DB_Init_Model()
+DB_Model::DB_Model()
 : m_bill_entry(0)
 , m_bill_initialised(false)
 , m_bill_transaction_set(false)
@@ -44,12 +46,12 @@ DB_Init_Model::DB_Init_Model()
 //    ShowMessage("DB_Init_Model - Initialise Instance Only.");
 }
 
-DB_Init_Model::~DB_Init_Model()
+DB_Model::~DB_Model()
 {
 //    ShowMessage("DB_Init_Model - Shutdown.");
 }
 
-void DB_Init_Model::Init_Model_Tables(wxSQLite3Database* test_db)
+void DB_Model::Init_Model_Tables(wxSQLite3Database* test_db)
 {
     CpuTimer start("DB_Init_Model");
 
@@ -81,11 +83,13 @@ void DB_Init_Model::Init_Model_Tables(wxSQLite3Database* test_db)
     Model_Stock::instance(test_db);
     Model_StockHistory::instance(test_db);
     Model_Attachment::instance(test_db);
+    Model_Translink::instance(test_db);
+    Model_Shareinfo::instance(test_db);
 
     Init_BaseCurrency();
 }
 
-void DB_Init_Model::Init_Model_Assets(wxSQLite3Database* test_db)
+void DB_Model::Init_Model_Assets(wxSQLite3Database* test_db)
 {
     test_db->Begin();
     {
@@ -101,7 +105,7 @@ void DB_Init_Model::Init_Model_Assets(wxSQLite3Database* test_db)
     test_db->Commit();
 }
 
-void DB_Init_Model::Init_Model_Stocks(wxSQLite3Database* test_db)
+void DB_Model::Init_Model_Stocks(wxSQLite3Database* test_db)
 {
     test_db->Begin();
     {
@@ -123,7 +127,7 @@ void DB_Init_Model::Init_Model_Stocks(wxSQLite3Database* test_db)
     test_db->Commit();
 }
 
-void DB_Init_Model::Init_BaseCurrency(const wxString& base_currency_symbol, const wxString& user_name)
+void DB_Model::Init_BaseCurrency(const wxString& base_currency_symbol, const wxString& user_name)
 {
     Model_Currency::Data* currency_record = Model_Currency::instance().GetCurrencyRecord(base_currency_symbol);
     if (base_currency_symbol == "AUD")
@@ -132,34 +136,34 @@ void DB_Init_Model::Init_BaseCurrency(const wxString& base_currency_symbol, cons
         currency_record->GROUP_SEPARATOR = ",";
         Model_Currency::instance().save(currency_record);
     }
-    Model_Infotable::instance().SetBaseCurrency(currency_record->CURRENCYID);
+    Option::instance().BaseCurrency(currency_record->CURRENCYID);
     // Set database User Name
     Option::instance().UserName(user_name);
 }
 
-int DB_Init_Model::Add_Bank_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
+int DB_Model::Add_Bank_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
 {
     return Add_Account(name, Model_Account::TYPE::CHECKING, initial_value, notes, favorite, currency_symbol);
 }
 
-int DB_Init_Model::Add_Investment_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
+int DB_Model::Add_Investment_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
 {
     return Add_Account(name, Model_Account::TYPE::INVESTMENT, initial_value, notes, favorite, currency_symbol);
 }
 
-int DB_Init_Model::Add_Term_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
+int DB_Model::Add_Term_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
 {
     return Add_Account(name, Model_Account::TYPE::TERM, initial_value, notes, favorite, currency_symbol);
 }
 
-int DB_Init_Model::Add_Account(const wxString& name, Model_Account::TYPE account_type, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
+int DB_Model::Add_Account(const wxString& name, Model_Account::TYPE account_type, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
 {
     int currencyID = -1;
     if (!currency_symbol.IsEmpty())
     {
         currencyID = Model_Currency::instance().GetCurrencyRecord(currency_symbol)->id();
     }
-    else currencyID = Model_Infotable::instance().GetBaseCurrencyId();
+    else currencyID = Option::instance().BaseCurrency();
 
     if (currencyID == -1)
     {
@@ -183,7 +187,7 @@ int DB_Init_Model::Add_Account(const wxString& name, Model_Account::TYPE account
     return Model_Account::instance().save(account);
 }
 
-int DB_Init_Model::Add_Payee(const wxString& name, const wxString& category, const wxString& subcategory)
+int DB_Model::Add_Payee(const wxString& name, const wxString& category, const wxString& subcategory)
 {
     Model_Payee::Data* payee_entry = Model_Payee::instance().create();
     payee_entry->PAYEENAME = name;
@@ -193,7 +197,7 @@ int DB_Init_Model::Add_Payee(const wxString& name, const wxString& category, con
     return Model_Payee::instance().save(payee_entry);
 }
 
-int DB_Init_Model::Get_Payee_id(const wxString& name)
+int DB_Model::Get_Payee_id(const wxString& name)
 {
     int payee_id = -1;
     Model_Payee::Data* entry = Model_Payee::instance().get(name);
@@ -206,7 +210,7 @@ int DB_Init_Model::Get_Payee_id(const wxString& name)
     return payee_id;
 }
 
-int DB_Init_Model::Add_Category(const wxString& name)
+int DB_Model::Add_Category(const wxString& name)
 {
     Model_Category::Data* cat_entry = Model_Category::instance().create();
     cat_entry->CATEGNAME = name;
@@ -214,7 +218,7 @@ int DB_Init_Model::Add_Category(const wxString& name)
     return Model_Category::instance().save(cat_entry);
 }
 
-int DB_Init_Model::Get_category_id(const wxString& category)
+int DB_Model::Get_category_id(const wxString& category)
 {
     int cat_id = -1;
     if (!category.IsEmpty())
@@ -231,7 +235,7 @@ int DB_Init_Model::Get_category_id(const wxString& category)
     return cat_id;
 }
 
-int DB_Init_Model::Add_Subcategory(int category_id, const wxString& name)
+int DB_Model::Add_Subcategory(int category_id, const wxString& name)
 {
     Model_Subcategory::Data* subcat_entry = Model_Subcategory::instance().create();
     subcat_entry->SUBCATEGNAME = name;
@@ -240,7 +244,7 @@ int DB_Init_Model::Add_Subcategory(int category_id, const wxString& name)
     return Model_Subcategory::instance().save(subcat_entry);
 }
 
-int DB_Init_Model::Get_subcategory_id(int category_id, const wxString& subcategory)
+int DB_Model::Get_subcategory_id(int category_id, const wxString& subcategory)
 {
     int subcat_id = -1;
     if (!subcategory.IsEmpty())
@@ -257,7 +261,7 @@ int DB_Init_Model::Get_subcategory_id(int category_id, const wxString& subcatego
     return subcat_id;
 }
 
-int DB_Init_Model::Get_account_id(const wxString& account_name)
+int DB_Model::Get_account_id(const wxString& account_name)
 {
     int account_id = -1;
     Model_Account::Data* account = Model_Account::instance().get(account_name);
@@ -270,7 +274,7 @@ int DB_Init_Model::Get_account_id(const wxString& account_name)
     return account_id;
 }
 
-int DB_Init_Model::Add_Trans(const wxString& account_name, Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
+int DB_Model::Add_Trans(const wxString& account_name, Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
     , const wxString& category, const wxString& subcategory)
 {
     if (m_account_name != account_name)
@@ -298,19 +302,19 @@ int DB_Init_Model::Add_Trans(const wxString& account_name, Model_Checking::TYPE 
     return Model_Checking::instance().save(tran_entry);
 }
 
-int DB_Init_Model::Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
+int DB_Model::Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
     , const wxString& category, const wxString& subcategory)
 {
     return Add_Trans(account_name, Model_Checking::DEPOSIT, date, payee, value, category, subcategory);
 }
 
-int DB_Init_Model::Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee
+int DB_Model::Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee
     , double value, const wxString& category, const wxString& subcategory)
 {
     return Add_Trans(account_name, Model_Checking::WITHDRAWAL, date, payee, value, category, subcategory);
 }
 
-int DB_Init_Model::Add_Trans_Transfer(const wxString& account_name, const wxDateTime& date, const wxString& to_account, double value
+int DB_Model::Add_Trans_Transfer(const wxString& account_name, const wxDateTime& date, const wxString& to_account, double value
     , const wxString& category, const wxString& subcategory, bool advanced, double adv_value)
 {
     if (m_account_name != account_name)
@@ -339,7 +343,7 @@ int DB_Init_Model::Add_Trans_Transfer(const wxString& account_name, const wxDate
 }
 
 // If category not supplied, assume that it is a split.
-void DB_Init_Model::Add_Trans_Split(int trans_id, double value, const wxString& category, const wxString& subcategory)
+void DB_Model::Add_Trans_Split(int trans_id, double value, const wxString& category, const wxString& subcategory)
 {
     Model_Checking::Data* trans_entry = Model_Checking::instance().get(trans_id);
     if (trans_entry)
@@ -362,7 +366,7 @@ void DB_Init_Model::Add_Trans_Split(int trans_id, double value, const wxString& 
     else ShowMessage("Transaction not found for the Split Transaction");
 }
 
-void DB_Init_Model::Bill_Split(int bill_id, double value, const wxString& category, const wxString& subcategory)
+void DB_Model::Bill_Split(int bill_id, double value, const wxString& category, const wxString& subcategory)
 {
     Model_Billsdeposits::Data* bill_entry = Model_Billsdeposits::instance().get(bill_id);
     if (bill_entry)
@@ -385,7 +389,7 @@ void DB_Init_Model::Bill_Split(int bill_id, double value, const wxString& catego
     else ShowMessage("Bill entry not found for the Bill Split Transaction");
 }
 
-void DB_Init_Model::Bill_Start(const wxString& account, const wxDateTime& start_date, Model_Billsdeposits::REPEAT_TYPE repeats, int num_occur)
+void DB_Model::Bill_Start(const wxString& account, const wxDateTime& start_date, Model_Billsdeposits::REPEAT_TYPE repeats, int num_occur)
 {
     if (!m_bill_entry)
     {
@@ -407,20 +411,20 @@ void DB_Init_Model::Bill_Start(const wxString& account, const wxDateTime& start_
     else ShowMessage("Previous bill not saved. \n\nPlease use command: Bill_End(...)\n");
 }
 
-void DB_Init_Model::Bill_Trans_Deposit(const wxDateTime& date, const wxString& payee, double value
+void DB_Model::Bill_Trans_Deposit(const wxDateTime& date, const wxString& payee, double value
     , const wxString& category, const wxString& subcategory)
 {
     Bill_Transaction(Model_Checking::DEPOSIT, date, payee, value, category, subcategory);
 }
 
-void DB_Init_Model::Bill_Trans_Withdrawal(const wxDateTime& date, const wxString& payee, double value
+void DB_Model::Bill_Trans_Withdrawal(const wxDateTime& date, const wxString& payee, double value
     , const wxString& category, const wxString& subcategory)
 {
     Bill_Transaction(Model_Checking::WITHDRAWAL, date, payee, value, category, subcategory);
 }
 
 // Common to Bill_Trans_Deposit(...) and Bill_Trans_Withdrawal(...)
-void DB_Init_Model::Bill_Transaction(Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
+void DB_Model::Bill_Transaction(Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
     , const wxString& category, const wxString& subcategory)
 {
     if (m_bill_initialised && !m_bill_transaction_set)
@@ -444,7 +448,7 @@ void DB_Init_Model::Bill_Transaction(Model_Checking::TYPE trans_type, const wxDa
     else ShowMessage("Bill not initialised.\n\nPlease use command: Bill_Start(...)\n");
 }
 
-void DB_Init_Model::Bill_Trans_Transfer(const wxDateTime& date, const wxString& to_account, double value
+void DB_Model::Bill_Trans_Transfer(const wxDateTime& date, const wxString& to_account, double value
     , const wxString& category, const wxString& subcategory, bool advanced, double adv_value)
 {
     if (m_bill_initialised && !m_bill_transaction_set)
@@ -469,7 +473,7 @@ void DB_Init_Model::Bill_Trans_Transfer(const wxDateTime& date, const wxString& 
     else ShowMessage("Bill not initialised.\n\nPlease use command: Bill_Start(...)\n");
 }
 
-int DB_Init_Model::BILL_End(bool autoExecuteUserAck, bool autoExecuteSilent)
+int DB_Model::BILL_End(bool autoExecuteUserAck, bool autoExecuteSilent)
 {
     int bill_id = -1;
     if (m_bill_initialised && m_bill_transaction_set)
@@ -497,7 +501,7 @@ int DB_Init_Model::BILL_End(bool autoExecuteUserAck, bool autoExecuteSilent)
     return bill_id;
 }
 
-int DB_Init_Model::Add_Asset(const wxString& name, const wxDate& date, double value, Model_Asset::TYPE asset_type,
+int DB_Model::Add_Asset(const wxString& name, const wxDate& date, double value, Model_Asset::TYPE asset_type,
     Model_Asset::RATE value_change, double value_change_rate, const wxString& notes)
 {
     Model_Asset::Data* entry = Model_Asset::instance().create();
@@ -511,7 +515,7 @@ int DB_Init_Model::Add_Asset(const wxString& name, const wxDate& date, double va
     return Model_Asset::instance().save(entry);
 }
 
-int DB_Init_Model::Add_Stock_Entry(int account_id, const wxDate& purchase_date, double num_shares, double purchase_price,
+int DB_Model::Add_Stock_Entry(int account_id, const wxDate& purchase_date, double num_shares, double purchase_price,
     double commission, double current_price, double value,
     const wxString& stock_name, const wxString& stock_symbol, const wxString& notes)
 {
@@ -529,7 +533,7 @@ int DB_Init_Model::Add_Stock_Entry(int account_id, const wxDate& purchase_date, 
     return Model_Stock::instance().save(entry);
 }
 
-int DB_Init_Model::Add_StockHistory_Entry(const wxString& stock_symbol, const wxDateTime& date, double value, int upd_type)
+int DB_Model::Add_StockHistory_Entry(const wxString& stock_symbol, const wxDateTime& date, double value, int upd_type)
 {
     Model_StockHistory::Data* entry = Model_StockHistory::instance().create();
     entry->DATE = date.FormatISODate();
@@ -539,7 +543,7 @@ int DB_Init_Model::Add_StockHistory_Entry(const wxString& stock_symbol, const wx
     return Model_StockHistory::instance().save(entry);
 }
 
-void DB_Init_Model::ShowMessage(wxString msg)
+void DB_Model::ShowMessage(wxString msg)
 {
     wxMessageBox(msg, "MMEX_Table Data Initialisation", wxOK | wxICON_WARNING, wxTheApp->GetTopWindow());
 }
@@ -738,7 +742,7 @@ int DB_Model_Initialise_Statistics::Add_Trans_Deposit(const wxString& account_na
     m_payee_income_list.Set_Value(payee, value);
     m_category_income_list.Set_Value(category, value);
     m_subcategory_income_list.Set_Value(category, subcategory, value);
-    return DB_Init_Model::Add_Trans_Deposit(account_name, date, payee, value, category, subcategory);
+    return DB_Model::Add_Trans_Deposit(account_name, date, payee, value, category, subcategory);
 }
 
 int DB_Model_Initialise_Statistics::Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value, const wxString& category, const wxString& subcategory)
@@ -752,7 +756,7 @@ int DB_Model_Initialise_Statistics::Add_Trans_Withdrawal(const wxString& account
             m_subcategory_expense_list.Set_Value(category, subcategory, value);
         }
     }
-    return DB_Init_Model::Add_Trans_Withdrawal(account_name, date, payee, value, category, subcategory);
+    return DB_Model::Add_Trans_Withdrawal(account_name, date, payee, value, category, subcategory);
 }
 
 int DB_Model_Initialise_Statistics::Add_Trans_Transfer(const wxString& account_name, const wxDateTime& date, const wxString& to_account, double value, const wxString& category, const wxString& subcategory, bool advanced, double adv_value)
@@ -767,7 +771,7 @@ int DB_Model_Initialise_Statistics::Add_Trans_Transfer(const wxString& account_n
             m_subcategory_expense_list.Set_Value(category, subcategory, value);
         }
     }
-    return DB_Init_Model::Add_Trans_Transfer(account_name, date, to_account, value, category, subcategory, advanced, adv_value);
+    return DB_Model::Add_Trans_Transfer(account_name, date, to_account, value, category, subcategory, advanced, adv_value);
 }
 
 void DB_Model_Initialise_Statistics::Add_Trans_Split(int trans_id, double value, const wxString& category, const wxString& subcategory)
@@ -791,7 +795,7 @@ void DB_Model_Initialise_Statistics::Add_Trans_Split(int trans_id, double value,
             }
         }
     }
-    DB_Init_Model::Add_Trans_Split(trans_id, value, category, subcategory);
+    DB_Model::Add_Trans_Split(trans_id, value, category, subcategory);
 }
 
 

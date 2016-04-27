@@ -37,6 +37,9 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Category.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_Translink.h"
+#include "sharetransactiondialog.h"
+#include "assetdialog.h"
 #include "billsdepositsdialog.h"
 #include <wx/clipbrd.h>
 
@@ -1103,6 +1106,14 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKDUPLICATE_ALL, _("as Duplicate"));
     menu.Append(MENU_SUBMENU_MARK_ALL, _("Mark all being viewed"), subGlobalOpMenu);
 
+    // Disable menu items not ment for foreign transactions
+    if (Model_Checking::foreignTransaction(m_cp->m_trans.at(m_selectedIndex)))
+    {
+        menu.Enable(MENU_ON_COPY_TRANSACTION, false);
+        menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
+        menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
+    }
+
     PopupMenu(&menu, event.GetPosition());
     this->SetFocus();
 }
@@ -1519,6 +1530,11 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
             {
                 SetItemState(x, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
 
+                if (Model_Checking::foreignTransaction(i))
+                {
+                    Model_Translink::RemoveTranslinkEntry(transID);
+                }
+
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
@@ -1537,12 +1553,36 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 {
     if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
+    Model_Checking::Data checking_entry = m_cp->m_trans[m_selectedIndex];
+    int transaction_id = checking_entry.TRANSID;
 
-    int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
-    mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id);
-    if (dlg.ShowModal() == wxID_OK)
+    if (Model_Checking::foreignTransaction(checking_entry))
     {
-        refreshVisualList(transaction_id);
+        Model_Translink::Data translink = Model_Translink::TranslinkRecord(transaction_id);
+        if (translink.LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::STOCK))
+        {
+            ShareTransactionDialog dlg(this, &translink, &checking_entry);
+            if (dlg.ShowModal() == wxID_OK)
+            {
+                refreshVisualList(transaction_id);
+            }
+        }
+        else
+        {
+//            mmAssetDialog dlg(this, &translink, &checking_entry);
+//            if (dlg.ShowModal() == wxID_OK)
+//            {
+//                refreshVisualList(transaction_id);
+//            }
+        }
+    }
+    else
+    {
+        mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id);
+        if (dlg.ShowModal() == wxID_OK)
+        {
+            refreshVisualList(transaction_id);
+        }
     }
     topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
 }

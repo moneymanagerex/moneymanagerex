@@ -23,6 +23,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "db_init_model.h"
 //----------------------------------------------------------------------------
 #include "test_currency.h"
+#include "option.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -55,7 +56,7 @@ void Test_Currency::setUp()
 {
     CpuTimer time("Setup");
     m_test_db.Open(m_test_db_filename);
-    m_dbmodel = new DB_Init_Model();
+    m_dbmodel = new DB_Model();
     m_dbmodel->Init_Model_Tables(&m_test_db);
     m_dbmodel->Init_BaseCurrency();
 }
@@ -106,7 +107,7 @@ void Test_Currency::TwoDigitPrecision()
     taiwan_record->SFX_SYMBOL = " - MOD";
     currency.save(taiwan_record);
     
-    Model_Infotable::instance().SetBaseCurrency(taiwan_record->CURRENCYID);
+    Option::instance().BaseCurrency(taiwan_record->CURRENCYID);
     //----------------------------------------------
 
     value = currency.toCurrency(12345.12345);
@@ -128,7 +129,7 @@ void Test_Currency::TwoDigitPrecision()
     value = currency.toCurrency(12345.12345, au_record);
     CPPUNIT_ASSERT(value == "$12,345.12");
 
-    Model_Infotable::instance().SetBaseCurrency(au_record->CURRENCYID);
+    Option::instance().BaseCurrency(au_record->CURRENCYID);
 }
 
 void Test_Currency::FourDigitPrecision()

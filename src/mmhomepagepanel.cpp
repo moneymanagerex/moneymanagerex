@@ -37,6 +37,7 @@ Copyright (C) 2014 Nikolay
 #include "model/Model_Stock.h"
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Category.h"
+#include "model/Model_Translink.h"
 
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
@@ -668,7 +669,13 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
             if (Model_Checking::TRANSDATE(pBankTransaction).IsLaterThan(date_range->today()))
                 continue; //skip future dated transactions
         }
-
+        
+        // Check if this is a foreign transaction
+        if (Model_Checking::foreignTransaction(pBankTransaction) && pBankTransaction.TOACCOUNTID == Model_Translink::AS_TRANSFER)
+        {
+            continue; // Do not include foreign transfer transactions in income/expense calculations.
+        }
+        
         // We got this far, get the currency conversion rate for this account
         Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);
         double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);

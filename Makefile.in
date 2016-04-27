@@ -160,11 +160,13 @@ MMEX_OBJECTS =  \
 	mmex_recentfiles.o \
 	mmex_relocatecategorydialog.o \
 	mmex_relocatepayeedialog.o \
+	mmex_sharetransactiondialog.o \
 	mmex_splitdetailsdialog.o \
 	mmex_splittransactionsdialog.o \
 	mmex_stockdialog.o \
 	mmex_stockspanel.o \
 	mmex_transdialog.o \
+	mmex_usertransactionpanel.o \
 	mmex_util.o \
 	mmex_webapp.o \
 	mmex_webappdialog.o \
@@ -211,10 +213,12 @@ MMEX_OBJECTS =  \
 	mmex_Model_Payee.o \
 	mmex_Model_Report.o \
 	mmex_Model_Setting.o \
+	mmex_Model_Shareinfo.o \
 	mmex_Model_Splittransaction.o \
 	mmex_Model_Stock.o \
 	mmex_Model_StockHistory.o \
 	mmex_Model_Subcategory.o \
+	mmex_Model_Translink.o \
 	mmex_Model_Usage.o \
 	mmex_html_template.o \
 	mmex_mongoose.o \
@@ -609,6 +613,9 @@ mmex_relocatecategorydialog.o: $(srcdir)/src/relocatecategorydialog.cpp
 mmex_relocatepayeedialog.o: $(srcdir)/src/relocatepayeedialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/relocatepayeedialog.cpp
 
+mmex_sharetransactiondialog.o: $(srcdir)/src/sharetransactiondialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/sharetransactiondialog.cpp
+
 mmex_splitdetailsdialog.o: $(srcdir)/src/splitdetailsdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/splitdetailsdialog.cpp
 
@@ -623,6 +630,9 @@ mmex_stockspanel.o: $(srcdir)/src/stockspanel.cpp
 
 mmex_transdialog.o: $(srcdir)/src/transdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/transdialog.cpp
+
+mmex_usertransactionpanel.o: $(srcdir)/src/usertransactionpanel.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/usertransactionpanel.cpp
 
 mmex_util.o: $(srcdir)/src/util.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/util.cpp
@@ -690,8 +700,8 @@ mmex_summarystocks.o: $(srcdir)/src/reports/summarystocks.cpp
 mmex_transactions.o: $(srcdir)/src/reports/transactions.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/transactions.cpp
 
-mmex_platfdep.o: $(srcdir)/src/mac/platfdep.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/mac/platfdep.cpp
+mmex_platfdep.o: $(srcdir)/src/unix/platfdep.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/unix/platfdep.cpp
 
 mmex_export.o: $(srcdir)/src/import_export/export.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/import_export/export.cpp
@@ -762,6 +772,9 @@ mmex_Model_Report.o: $(srcdir)/src/model/Model_Report.cpp
 mmex_Model_Setting.o: $(srcdir)/src/model/Model_Setting.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Setting.cpp
 
+mmex_Model_Shareinfo.o: $(srcdir)/src/model/Model_Shareinfo.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Shareinfo.cpp
+
 mmex_Model_Splittransaction.o: $(srcdir)/src/model/Model_Splittransaction.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Splittransaction.cpp
 
@@ -773,6 +786,9 @@ mmex_Model_StockHistory.o: $(srcdir)/src/model/Model_StockHistory.cpp
 
 mmex_Model_Subcategory.o: $(srcdir)/src/model/Model_Subcategory.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Subcategory.cpp
+
+mmex_Model_Translink.o: $(srcdir)/src/model/Model_Translink.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Translink.cpp
 
 mmex_Model_Usage.o: $(srcdir)/src/model/Model_Usage.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Usage.cpp

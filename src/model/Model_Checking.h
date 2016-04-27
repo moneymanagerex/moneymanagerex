@@ -157,6 +157,8 @@ public:
     static void getEmptyTransaction(Data &data, int accountID);
     static bool getTransactionData(Data &data, const Data* r);
     static void putDataToTransaction(Data *r, const Data &data);
+    static const bool foreignTransaction(const Data& data);
+    static const bool foreignTransactionAsTransfer(const Data& data);
 };
 
 #endif // 

@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 James Higley
-Copyright (C) 2013 Stefano Giorgio
+Copyright (C) 2013..2016 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,21 +22,19 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <cppunit/extensions/HelperMacros.h>
 //----------------------------------------------------------------------------
 class TestFrameBase;
+class DB_Model;
 
-class Test_Asset : public CPPUNIT_NS::TestFixture
+class Test_Translink : public CPPUNIT_NS::TestFixture
 {
-    CPPUNIT_TEST_SUITE(Test_Asset);
-    CPPUNIT_TEST(test_add);
-    CPPUNIT_TEST(test_appreciate);
-    CPPUNIT_TEST(test_depreciate);
-    CPPUNIT_TEST(test_remove);
-    CPPUNIT_TEST(test_dialog);
-    CPPUNIT_TEST(test_assetpanel);
+    CPPUNIT_TEST_SUITE(Test_Translink);
+    CPPUNIT_TEST(Test_Add_Stock_Dialog);
+    CPPUNIT_TEST(Test_Edit_Stock_Dialog);
+    CPPUNIT_TEST(Test_Stocks_Panel);
     CPPUNIT_TEST_SUITE_END();
 
 public:
-    Test_Asset();
-    virtual ~Test_Asset();
+    Test_Translink();
+    virtual ~Test_Translink();
 
     void setUp();
     void tearDown();
@@ -46,15 +44,11 @@ private:
     wxSQLite3Database m_test_db;
     DB_Model* m_dbmodel;
     TestFrameBase *m_base_frame;
-    TestFrameBase* m_user_request;
     int m_this_instance;
 
 private:
     // Test cases
-    void test_add();
-    void test_appreciate();
-    void test_depreciate();
-    void test_remove();
-    void test_dialog();
-    void test_assetpanel();
+    void Test_Add_Stock_Dialog();
+    void Test_Edit_Stock_Dialog();
+    void Test_Stocks_Panel();
 };

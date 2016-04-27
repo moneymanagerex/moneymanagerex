@@ -260,6 +260,8 @@
     <ClCompile Include="..\..\src\dbupgrade.cpp" />
     <ClCompile Include="..\..\src\import_export\parsers.cpp" />
     <ClCompile Include="..\..\src\mmframereport.cpp" />
+    <ClCompile Include="..\..\src\model\Model_Shareinfo.cpp" />
+    <ClCompile Include="..\..\src\model\Model_Translink.cpp" />
     <ClCompile Include="..\..\src\optionsettingsattachment.cpp" />
     <ClCompile Include="..\..\src\optionsettingsbase.cpp" />
     <ClCompile Include="..\..\src\optionsettingsgeneral.cpp" />
@@ -314,6 +316,8 @@
     <ClCompile Include="..\..\src\reports\myusage.cpp" />
     <ClCompile Include="..\..\src\reports\summary.cpp" />
     <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
+    <ClCompile Include="..\..\src\sharetransactiondialog.cpp" />
+    <ClCompile Include="..\..\src\usertransactionpanel.cpp" />
     <ClCompile Include="..\..\src\wizard_update.cpp" />
     <ClCompile Include="..\..\tests\cpu_timer.cpp" />
     <ClCompile Include="..\..\3rd\csv-parser\csv_parser.cpp" />
@@ -378,6 +382,7 @@
     <ClCompile Include="..\..\src\webserver.cpp" />
     <ClCompile Include="..\..\src\wizard_newaccount.cpp" />
     <ClCompile Include="..\..\src\wizard_newdb.cpp" />
+    <ClCompile Include="..\..\tests\test_translink.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\customfielddialog.h" />
@@ -408,6 +413,8 @@
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Usage_V1.h" />
     <ClInclude Include="..\..\src\import_export\parsers.h" />
+    <ClInclude Include="..\..\src\model\Model_Shareinfo.h" />
+    <ClInclude Include="..\..\src\model\Model_Translink.h" />
     <ClInclude Include="..\..\src\optionsettingsattachment.h" />
     <ClInclude Include="..\..\src\optionsettingsbase.h" />
     <ClInclude Include="..\..\src\optionsettingsgeneral.h" />
@@ -461,6 +468,8 @@
     <ClInclude Include="..\..\src\reports\myusage.h" />
     <ClInclude Include="..\..\src\reports\summary.h" />
     <ClInclude Include="..\..\src\reports\summarystocks.h" />
+    <ClInclude Include="..\..\src\sharetransactiondialog.h" />
+    <ClInclude Include="..\..\src\usertransactionpanel.h" />
     <ClInclude Include="..\..\src\wizard_update.h" />
     <ClInclude Include="..\..\tests\cpu_timer.h" />
     <ClInclude Include="..\..\src\currencydialog.h" />
@@ -536,6 +545,7 @@
     <ClInclude Include="..\..\src\webserver.h" />
     <ClInclude Include="..\..\src\wizard_newaccount.h" />
     <ClInclude Include="..\..\src\wizard_newdb.h" />
+    <ClInclude Include="..\..\tests\test_translink.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\tests\mmex_tests.rc" />

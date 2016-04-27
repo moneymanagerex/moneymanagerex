@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-04-03 09:11:54.989000.
+ *          AUTO GENERATED at 2016-04-25 08:51:29.184000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -84,6 +84,28 @@ const std::vector<wxString> dbUpgradeQuery =
         , UNIQUE(FIELDID, REFID)
         );
         CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELDDATA_REF ON CUSTOMFIELDDATA_V1 (FIELDID, REFID);
+        
+        -- describe TRANSACTIONLINK_V1
+        CREATE TABLE IF NOT EXISTS TRANSLINK_V1 (
+        TRANSLINKID  integer NOT NULL primary key
+        , CHECKINGACCOUNTID integer NOT NULL
+        , LINKTYPE TEXT NOT NULL /* Asset, Stock */
+        , LINKRECORDID integer NOT NULL
+        );
+        CREATE INDEX IF NOT EXISTS IDX_LINKRECORD ON TRANSLINK_V1 (LINKTYPE, LINKRECORDID);
+        CREATE INDEX IF NOT EXISTS IDX_CHECKINGACCOUNT ON TRANSLINK_V1 (CHECKINGACCOUNTID);
+        
+        -- describe SHAREINFO_V1
+        CREATE TABLE IF NOT EXISTS SHAREINFO_V1 (
+        SHAREINFOID  integer NOT NULL primary key
+        , CHECKINGACCOUNTID integer NOT NULL
+        , SHARENUMBER numeric
+        , SHAREPRICE numeric
+        , SHARECOMMISSION numeric
+        , SHARELOT TEXT
+        );
+        CREATE INDEX IF NOT EXISTS IDX_SHAREINFO ON SHAREINFO_V1 (CHECKINGACCOUNTID);
+        
     )",
 
 };
