@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-03-31 22:35:20.149824.
+ *          AUTO GENERATED at 2016-04-25 08:52:23.799000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -334,6 +334,15 @@ struct SorterByCENT_NAME
     }
 };
 
+struct SorterByCHECKINGACCOUNTID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.CHECKINGACCOUNTID < y.CHECKINGACCOUNTID;
+    }
+};
+
 struct SorterByCOMMISSION
 { 
     template<class DATA>
@@ -595,6 +604,24 @@ struct SorterByJSONCONTENT
     }
 };
 
+struct SorterByLINKRECORDID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.LINKRECORDID < y.LINKRECORDID;
+    }
+};
+
+struct SorterByLINKTYPE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.LINKTYPE < y.LINKTYPE;
+    }
+};
+
 struct SorterByLUACONTENT
 { 
     template<class DATA>
@@ -811,6 +838,51 @@ struct SorterBySFX_SYMBOL
     }
 };
 
+struct SorterBySHARECOMMISSION
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.SHARECOMMISSION < y.SHARECOMMISSION;
+    }
+};
+
+struct SorterBySHAREINFOID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.SHAREINFOID < y.SHAREINFOID;
+    }
+};
+
+struct SorterBySHARELOT
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.SHARELOT < y.SHARELOT;
+    }
+};
+
+struct SorterBySHARENUMBER
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.SHARENUMBER < y.SHARENUMBER;
+    }
+};
+
+struct SorterBySHAREPRICE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.SHAREPRICE < y.SHAREPRICE;
+    }
+};
+
 struct SorterBySORTORDER
 { 
     template<class DATA>
@@ -988,6 +1060,15 @@ struct SorterByTRANSID
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.TRANSID < y.TRANSID;
+    }
+};
+
+struct SorterByTRANSLINKID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.TRANSLINKID < y.TRANSLINKID;
     }
 };
 

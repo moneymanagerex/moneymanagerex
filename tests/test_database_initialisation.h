@@ -32,7 +32,7 @@ class Test_DatabaseInitialisation : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST(Add_Category_Entries);
     CPPUNIT_TEST(Add_Transaction_Entries);
     CPPUNIT_TEST(Add_Repeat_Transaction_Entries);
-    CPPUNIT_TEST(Database_Encryption_Password_test_db);
+    //CPPUNIT_TEST(Database_Encryption_Password_test_db);
     CPPUNIT_TEST_SUITE_END();
 
 public:

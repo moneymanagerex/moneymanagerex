@@ -162,11 +162,13 @@ MMEX_OBJECTS =  \
 	mmex_recentfiles.o \
 	mmex_relocatecategorydialog.o \
 	mmex_relocatepayeedialog.o \
+	mmex_sharetransactiondialog.o \
 	mmex_splitdetailsdialog.o \
 	mmex_splittransactionsdialog.o \
 	mmex_stockdialog.o \
 	mmex_stockspanel.o \
 	mmex_transdialog.o \
+	mmex_usertransactionpanel.o \
 	mmex_util.o \
 	mmex_webapp.o \
 	mmex_webappdialog.o \
@@ -213,10 +215,12 @@ MMEX_OBJECTS =  \
 	mmex_Model_Payee.o \
 	mmex_Model_Report.o \
 	mmex_Model_Setting.o \
+	mmex_Model_Shareinfo.o \
 	mmex_Model_Splittransaction.o \
 	mmex_Model_Stock.o \
 	mmex_Model_StockHistory.o \
 	mmex_Model_Subcategory.o \
+	mmex_Model_Translink.o \
 	mmex_Model_Usage.o \
 	mmex_html_template.o \
 	mmex_mongoose.o \
@@ -692,6 +696,9 @@ mmex_relocatecategorydialog.o: ../../src/relocatecategorydialog.cpp
 mmex_relocatepayeedialog.o: ../../src/relocatepayeedialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_sharetransactiondialog.o: ../../src/sharetransactiondialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_splitdetailsdialog.o: ../../src/splitdetailsdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -705,6 +712,9 @@ mmex_stockspanel.o: ../../src/stockspanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_transdialog.o: ../../src/transdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_usertransactionpanel.o: ../../src/usertransactionpanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_util.o: ../../src/util.cpp
@@ -845,6 +855,9 @@ mmex_Model_Report.o: ../../src/model/Model_Report.cpp
 mmex_Model_Setting.o: ../../src/model/Model_Setting.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_Model_Shareinfo.o: ../../src/model/Model_Shareinfo.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_Model_Splittransaction.o: ../../src/model/Model_Splittransaction.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -855,6 +868,9 @@ mmex_Model_StockHistory.o: ../../src/model/Model_StockHistory.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Subcategory.o: ../../src/model/Model_Subcategory.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_Model_Translink.o: ../../src/model/Model_Translink.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Usage.o: ../../src/model/Model_Usage.cpp

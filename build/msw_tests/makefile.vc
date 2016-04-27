@@ -206,11 +206,13 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_recentfiles.obj \
 	mmex_tests_relocatecategorydialog.obj \
 	mmex_tests_relocatepayeedialog.obj \
+	mmex_tests_sharetransactiondialog.obj \
 	mmex_tests_splitdetailsdialog.obj \
 	mmex_tests_splittransactionsdialog.obj \
 	mmex_tests_stockdialog.obj \
 	mmex_tests_stockspanel.obj \
 	mmex_tests_transdialog.obj \
+	mmex_tests_usertransactionpanel.obj \
 	mmex_tests_util.obj \
 	mmex_tests_webapp.obj \
 	mmex_tests_webappdialog.obj \
@@ -257,10 +259,12 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Payee.obj \
 	mmex_tests_Model_Report.obj \
 	mmex_tests_Model_Setting.obj \
+	mmex_tests_Model_Shareinfo.obj \
 	mmex_tests_Model_Splittransaction.obj \
 	mmex_tests_Model_Stock.obj \
 	mmex_tests_Model_StockHistory.obj \
 	mmex_tests_Model_Subcategory.obj \
+	mmex_tests_Model_Translink.obj \
 	mmex_tests_Model_Usage.obj \
 	mmex_tests_html_template.obj \
 	mmex_tests_mongoose.obj \
@@ -281,7 +285,8 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_test_options_dialog.obj \
 	mmex_tests_test_relocate_category.obj \
 	mmex_tests_test_relocate_payee.obj \
-	mmex_tests_test_stocks.obj
+	mmex_tests_test_stocks.obj \
+	mmex_tests_test_translink.obj
 MMEX_TESTS_RESOURCES =  \
 	mmex_tests_mmex_tests.res
 
@@ -944,6 +949,9 @@ mmex_tests_relocatecategorydialog.obj: ..\..\src\relocatecategorydialog.cpp
 mmex_tests_relocatepayeedialog.obj: ..\..\src\relocatepayeedialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\relocatepayeedialog.cpp
 
+mmex_tests_sharetransactiondialog.obj: ..\..\src\sharetransactiondialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\sharetransactiondialog.cpp
+
 mmex_tests_splitdetailsdialog.obj: ..\..\src\splitdetailsdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\splitdetailsdialog.cpp
 
@@ -958,6 +966,9 @@ mmex_tests_stockspanel.obj: ..\..\src\stockspanel.cpp
 
 mmex_tests_transdialog.obj: ..\..\src\transdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\transdialog.cpp
+
+mmex_tests_usertransactionpanel.obj: ..\..\src\usertransactionpanel.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\usertransactionpanel.cpp
 
 mmex_tests_util.obj: ..\..\src\util.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\util.cpp
@@ -1097,6 +1108,9 @@ mmex_tests_Model_Report.obj: ..\..\src\model\Model_Report.cpp
 mmex_tests_Model_Setting.obj: ..\..\src\model\Model_Setting.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_Setting.cpp
 
+mmex_tests_Model_Shareinfo.obj: ..\..\src\model\Model_Shareinfo.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_Shareinfo.cpp
+
 mmex_tests_Model_Splittransaction.obj: ..\..\src\model\Model_Splittransaction.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_Splittransaction.cpp
 
@@ -1108,6 +1122,9 @@ mmex_tests_Model_StockHistory.obj: ..\..\src\model\Model_StockHistory.cpp
 
 mmex_tests_Model_Subcategory.obj: ..\..\src\model\Model_Subcategory.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_Subcategory.cpp
+
+mmex_tests_Model_Translink.obj: ..\..\src\model\Model_Translink.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_Translink.cpp
 
 mmex_tests_Model_Usage.obj: ..\..\src\model\Model_Usage.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\src\model\Model_Usage.cpp
@@ -1171,6 +1188,9 @@ mmex_tests_test_relocate_payee.obj: ..\..\tests\test_relocate_payee.cpp
 
 mmex_tests_test_stocks.obj: ..\..\tests\test_stocks.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\tests\test_stocks.cpp
+
+mmex_tests_test_translink.obj: ..\..\tests\test_translink.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\tests\test_translink.cpp
 
 mmex_tests_mmex_tests.res: ..\..\tests\mmex_tests.rc
 	rc /fo$@  /d WIN32 $(____WX_SHARED_47_p_1) $(__WXUNICODE_DEFINE_p_3) $(__WXDEBUG_DEFINE_p_3) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_3)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_56_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\3rd /i ..\..\3rd\LuaGlue\include /i ..\..\3rd\cgitemplate /i ..\..\3rd\csv-parser\include /i ..\..\src /d NOPCH /d _CONSOLE /i ..\..\src /i ..\..\lib\cppunit\include /d wxIMPLEMENT_WXWIN_MAIN= ..\..\tests\mmex_tests.rc

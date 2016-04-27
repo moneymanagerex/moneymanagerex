@@ -65,7 +65,7 @@ void Test_Relocate_Payee::setUp()
     m_base_frame->Show(true);
 
     m_test_db.Open(m_test_db_filename);
-    m_dbmodel = new DB_Init_Model();
+    m_dbmodel = new DB_Model();
     m_dbmodel->Init_Model_Tables(&m_test_db);
     m_dbmodel->Init_BaseCurrency();
 
