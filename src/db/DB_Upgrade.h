@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-04-25 08:51:29.184000.
+ *          AUTO GENERATED at 2016-04-28 12:52:07.810000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -18,7 +18,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 5;
+const int dbLatestVersion = 6;
 
 const std::vector<wxString> dbUpgradeQuery =
 {
@@ -84,7 +84,10 @@ const std::vector<wxString> dbUpgradeQuery =
         , UNIQUE(FIELDID, REFID)
         );
         CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELDDATA_REF ON CUSTOMFIELDDATA_V1 (FIELDID, REFID);
-        
+    )",
+
+    // Upgrade to version 6
+    R"(
         -- describe TRANSACTIONLINK_V1
         CREATE TABLE IF NOT EXISTS TRANSLINK_V1 (
         TRANSLINKID  integer NOT NULL primary key
@@ -105,7 +108,6 @@ const std::vector<wxString> dbUpgradeQuery =
         , SHARELOT TEXT
         );
         CREATE INDEX IF NOT EXISTS IDX_SHAREINFO ON SHAREINFO_V1 (CHECKINGACCOUNTID);
-        
     )",
 
 };
