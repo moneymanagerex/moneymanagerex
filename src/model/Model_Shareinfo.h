@@ -60,6 +60,6 @@ public:
         , const double share_commission
         , const wxString share_lot);
 
-    /* Remove the share entry associated with the checking account entry */
+    /* Remove the share entry if it exists */
     static void RemoveShareEntry(const int checking_id);
 };

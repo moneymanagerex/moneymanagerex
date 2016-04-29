@@ -91,5 +91,9 @@ Model_Shareinfo::Data Model_Shareinfo::ShareEntry(const int checking_id)
 
 void Model_Shareinfo::RemoveShareEntry(const int checking_id)
 {
-    Model_Shareinfo::instance().remove(ShareEntry(checking_id).SHAREINFOID);
+    Data_Set list = ShareList(checking_id);
+    if (!list.empty())
+    {
+        Model_Shareinfo::instance().remove(list.at(0).SHAREINFOID);
+    }
 }
