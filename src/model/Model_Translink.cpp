@@ -108,6 +108,16 @@ Model_Translink::Data_Set Model_Translink::TranslinkList(Model_Attachment::REFTY
     return translink_list;
 }
 
+bool Model_Translink::HasShares(const int stock_id)
+{
+    if (TranslinkList(Model_Attachment::STOCK, stock_id).empty())
+    {
+        return false;
+    }
+
+    return true;
+}
+
 Model_Translink::Data Model_Translink::TranslinkRecord(const int checking_id)
 {
     Model_Translink::Data_Set translink_list = Model_Translink::instance().find(

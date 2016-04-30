@@ -93,16 +93,16 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
 
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT));
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("Purchase Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Share Name"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Share Symbol"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Number of Shares"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("Unit Price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("Total Price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("*Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Company Name"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Symbol"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Unit Total"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("*Unit Price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("Curr. unit value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("Curr. total value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("Value Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Curr. Unit Price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("Curr. Total Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_columns.push_back(PANEL_COLUMN(_("Price Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(PANEL_COLUMN(_("Commission"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Notes"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
 
@@ -174,7 +174,7 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
         return Model_Currency::toString(m_stocks[item].NUMSHARES, m_stock_panel->m_currency, precision);
     }
     if (column == COL_PRICE)        return Model_Currency::toString(m_stocks[item].PURCHASEPRICE, m_stock_panel->m_currency, 4);
-    if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].PURCHASEPRICE*m_stocks[item].NUMSHARES, m_stock_panel->m_currency);
+    if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].VALUE, m_stock_panel->m_currency);
     if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item), m_stock_panel->m_currency);
     if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE, m_stock_panel->m_currency, 4);
     if (column == COL_CURRVALUE)    return Model_Currency::toString(m_stocks[item].CURRENTPRICE*m_stocks[item].NUMSHARES, m_stock_panel->m_currency);
@@ -193,7 +193,7 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
 
 double StocksListCtrl::getGainLoss(long item) const
 {
-    return m_stocks[item].NUMSHARES * m_stocks[item].CURRENTPRICE - ((m_stocks[item].NUMSHARES * m_stocks[item].PURCHASEPRICE) + m_stocks[item].COMMISSION);
+    return m_stocks[item].NUMSHARES * m_stocks[item].CURRENTPRICE - (m_stocks[item].VALUE + m_stocks[item].COMMISSION);
 }
 
 void StocksListCtrl::OnListItemSelected(wxListEvent& event)
@@ -376,7 +376,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
     Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::STOCK, stock->STOCKID);
  
     // TODO create a panel to display all the information on one screen
-    wxString msg = _("Date   \t Shares   \t Unit Price   \t Commission\n\n");
+    wxString msg = _("Date   \t Lot   \t Shares   \t Unit Price   \t Commission\n\n");
     for (const auto stock_link : stock_list)
     {
         Model_Shareinfo::Data share_entry = Model_Shareinfo::ShareEntry(stock_link.CHECKINGACCOUNTID);
@@ -384,10 +384,11 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
         {
             Model_Checking::Data* stock_trans = Model_Checking::instance().get(stock_link.CHECKINGACCOUNTID);
             wxString sd = mmGetDateForDisplay(Model_Checking::TRANSDATE(stock_trans));
+            wxString sl = share_entry.SHARELOT;
             wxString sn = wxString::FromDouble(share_entry.SHARENUMBER, 0);
             wxString su = wxString::FromDouble(share_entry.SHAREPRICE, 4);
             wxString sc = wxString::FromDouble(share_entry.SHARECOMMISSION, 2);
-            msg << wxString::Format("%s     %s                  \t %s                \t %s\n", sd, sn, su, sc);
+            msg << wxString::Format("%s     %s     %s                  \t %s                \t %s\n", sd, sl, sn, su, sc);
         }
     }
     wxMessageBox(msg, "View Stock Transactions");
@@ -618,8 +619,8 @@ void StocksListCtrl::sortTable()
         std::stable_sort(m_stocks.begin(), m_stocks.end()
             , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
         {
-            double valueX = x.PURCHASEPRICE * x.NUMSHARES;
-            double valueY = y.PURCHASEPRICE * y.NUMSHARES;
+            double valueX = x.VALUE;
+            double valueY = y.VALUE;
             return valueX < valueY;
         });
         break;
@@ -627,8 +628,8 @@ void StocksListCtrl::sortTable()
         std::stable_sort(m_stocks.begin(), m_stocks.end()
             , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
         {
-            double valueX = x.VALUE - ((x.NUMSHARES * x.PURCHASEPRICE) + x.COMMISSION);
-            double valueY = y.VALUE - ((y.NUMSHARES * y.PURCHASEPRICE) + y.COMMISSION);
+            double valueX = x.VALUE - (x.VALUE + x.COMMISSION);
+            double valueY = y.VALUE - (y.VALUE + y.COMMISSION);
             return valueX < valueY;
         });
         break;
@@ -927,7 +928,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     {
         purchasedTime++;
         stocktotalnumShares += s.NUMSHARES;
-        stockavgPurchasePrice += s.PURCHASEPRICE * s.NUMSHARES;
+        stockavgPurchasePrice += s.VALUE;
     }
     stockavgPurchasePrice /= stocktotalnumShares;
 

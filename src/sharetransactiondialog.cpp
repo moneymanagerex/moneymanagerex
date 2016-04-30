@@ -140,7 +140,7 @@ void ShareTransactionDialog::DataToControls()
     if (translink_list.empty())
     {   // Set up the transaction as the first entry.
         m_share_num->SetValue(m_stock->NUMSHARES, 0);
-        m_share_price->SetValue(m_stock->PURCHASEPRICE, 4);
+        m_share_price->SetValue(m_stock->PURCHASEPRICE, 6);
         m_commission->SetValue(m_stock->COMMISSION, 4);
         m_transaction_panel->TransactionDate(Model_Stock::PURCHASEDATE(m_stock));
         m_transaction_panel->SetTransactionValue(
@@ -151,7 +151,7 @@ void ShareTransactionDialog::DataToControls()
         if (m_translink_entry && &m_share_entry)
         {
             m_share_num->SetValue(m_share_entry.SHARENUMBER, 0);
-            m_share_price->SetValue(m_share_entry.SHAREPRICE, 4);
+            m_share_price->SetValue(m_share_entry.SHAREPRICE, 6);
             m_commission->SetValue(m_share_entry.SHARECOMMISSION);
             m_share_lot->SetValue(m_share_entry.SHARELOT);
 
@@ -210,8 +210,8 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(m_stock_symbol, g_flagsH);
     m_stock_symbol->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
-    //Share Number
-    wxStaticText* number = new wxStaticText(stock_details_panel, wxID_STATIC, _("Unit Number"));
+    //Share Unit Number 
+    wxStaticText* number = new wxStaticText(stock_details_panel, wxID_STATIC, _("Share Unit"));
     itemFlexGridSizer6->Add(number, g_flagsH);
     number->SetFont(this->GetFont().Bold());
     m_share_num = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NUMBER, ""

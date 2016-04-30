@@ -774,11 +774,14 @@ void mmGUIFrame::updateNavTreeControl()
                     // Put the names of the Stock_entry names as children of the stock account.
                     for (const auto stock_entry : stock_account_list)
                     {
-                        wxTreeItemId se = navTreeCtrl_->AppendItem(tacct, stock_entry.STOCKNAME, selectedImage, selectedImage);
-                        int account_id = stock_entry.STOCKID;
-                        if (Model_Translink::ShareAccountId(account_id))
+                        if (Model_Translink::HasShares(stock_entry.STOCKID))
                         {
-                            navTreeCtrl_->SetItemData(se, new mmTreeItemData(account_id, false));
+                            wxTreeItemId se = navTreeCtrl_->AppendItem(tacct, stock_entry.STOCKNAME, selectedImage, selectedImage);
+                            int account_id = stock_entry.STOCKID;
+                            if (Model_Translink::ShareAccountId(account_id))
+                            {
+                                navTreeCtrl_->SetItemData(se, new mmTreeItemData(account_id, false));
+                            }
                         }
                     }
                 }
@@ -2531,6 +2534,7 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
 
     //TODO: Refresh Panel
     {
+        updateNavTreeControl();
         windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmStocksPanel(accountID, homePanel_, mmID_STOCKS);
