@@ -164,7 +164,7 @@ void UserTransactionPanel::Create()
     entered_amount_sizer->Add(m_entered_amount, g_flagsH);
     entered_amount_sizer->Add(m_trans_currency, g_flagsH);
     //TODO m_trans_currency Show/ Hide
-    //m_trans_currency->Hide();
+    m_trans_currency->Hide();
 
     transPanelSizer->Add(entered_amount_text, g_flagsH);
     transPanelSizer->Add(entered_amount_sizer);

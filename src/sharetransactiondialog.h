@@ -72,7 +72,7 @@ private:
     
     Model_Checking::Data* m_checking_entry;
     Model_Translink::Data* m_translink_entry;
-    Model_Shareinfo::Data m_share_entry;
+    Model_Shareinfo::Data* m_share_entry;
     enum
     {
         ID_STOCKTRANS_DATEPICKER_CHANGE = wxID_HIGHEST + 800,

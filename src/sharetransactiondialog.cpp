@@ -96,8 +96,10 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink
         m_dialog_heading = _("Edit Share Transaction");
         m_stock = Model_Stock::instance().get(translink_entry->LINKRECORDID);
         m_account_id = m_stock->HELDAT;
-
-        m_share_entry = Model_Shareinfo::ShareEntry(translink_entry->CHECKINGACCOUNTID);
+        if (translink_entry->LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::STOCK))
+        {
+            m_share_entry = Model_Shareinfo::ShareEntry(translink_entry->CHECKINGACCOUNTID);
+        }
     }
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, m_dialog_heading, wxDefaultPosition, wxSize(400, 300), style);
@@ -139,31 +141,34 @@ void ShareTransactionDialog::DataToControls()
 
     if (translink_list.empty())
     {   // Set up the transaction as the first entry.
-        m_share_num->SetValue(m_stock->NUMSHARES, 0);
+        int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : 6;
+        m_share_num->SetValue(m_stock->NUMSHARES, precision);
         m_share_price->SetValue(m_stock->PURCHASEPRICE, 6);
-        m_commission->SetValue(m_stock->COMMISSION, 4);
+        m_commission->SetValue(m_stock->COMMISSION);
         m_transaction_panel->TransactionDate(Model_Stock::PURCHASEDATE(m_stock));
         m_transaction_panel->SetTransactionValue(
             ( m_stock->NUMSHARES * m_stock->PURCHASEPRICE) + m_stock->COMMISSION, true);
     }
     else
     {
-        if (m_translink_entry && &m_share_entry)
+        if (m_translink_entry && m_share_entry)
         {
-            m_share_num->SetValue(m_share_entry.SHARENUMBER, 0);
-            m_share_price->SetValue(m_share_entry.SHAREPRICE, 6);
-            m_commission->SetValue(m_share_entry.SHARECOMMISSION);
-            m_share_lot->SetValue(m_share_entry.SHARELOT);
+            int precision = m_share_entry->SHARENUMBER == floor(m_share_entry->SHARENUMBER) ? 0 : 6;
+            m_share_num->SetValue(m_share_entry->SHARENUMBER, precision);
+            m_share_price->SetValue(m_share_entry->SHAREPRICE, 6);
+            m_commission->SetValue(m_share_entry->SHARECOMMISSION);
+            m_share_lot->SetValue(m_share_entry->SHARELOT);
 
             Model_Checking::Data* checking_entry = Model_Checking::instance().get(m_translink_entry->CHECKINGACCOUNTID);
             m_transaction_panel->TransactionDate(Model_Checking::TRANSDATE(checking_entry));
             m_transaction_panel->SetTransactionValue(
-                (m_share_entry.SHARENUMBER * m_share_entry.SHAREPRICE) + m_share_entry.SHARECOMMISSION, true);
+                (m_share_entry->SHARENUMBER * m_share_entry->SHAREPRICE) + m_share_entry->SHARECOMMISSION, true);
         }
         else
         {
             m_share_num->SetValue(0, 0);
-            m_share_price->SetValue(0, 4);
+            m_share_price->SetValue(0, 6);
+            m_transaction_panel->SetTransactionValue(0, true);
         }
     }
 }
@@ -211,7 +216,7 @@ void ShareTransactionDialog::CreateControls()
     m_stock_symbol->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
     //Share Unit Number 
-    wxStaticText* number = new wxStaticText(stock_details_panel, wxID_STATIC, _("Share Unit"));
+    wxStaticText* number = new wxStaticText(stock_details_panel, wxID_STATIC, _("Share Number"));
     itemFlexGridSizer6->Add(number, g_flagsH);
     number->SetFont(this->GetFont().Bold());
     m_share_num = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NUMBER, ""
@@ -433,7 +438,7 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         // NUMSHARES, PURCHASEPRICE and COMMISSION fields in the Stocks table are used as
         // a summary and allows Stock history to work in its current form.
         // The Shares table now maintains share_num, share_price, and commission on the
-        // date of purchase, together with a record in the chechingaccount table.
+        // date of purchase, together with a record in the checking account table.
         */
         if (!m_translink_entry)
         {
@@ -455,8 +460,6 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
 void ShareTransactionDialog::OnTextEntered(wxCommandEvent& event)
 {
-    //Model_Currency::Data* currency = m_transaction_panel->GetCurrencyData();
-
     double share_num = 0;
     if (!m_share_num->GetValue().empty())
     {

@@ -200,7 +200,7 @@ void mmStockDialog::CreateControls()
     stockSymbol_->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
     //Number of Shares
-    wxStaticText* number = new wxStaticText(itemPanel5, wxID_STATIC, _("*Share Unit"));
+    wxStaticText* number = new wxStaticText(itemPanel5, wxID_STATIC, _("*Share Number"));
     itemFlexGridSizer6->Add(number, g_flagsH);
     number->SetFont(this->GetFont().Bold());
     numShares_ = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_NUMBER_SHARES, ""
