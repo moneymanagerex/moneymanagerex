@@ -108,6 +108,16 @@ Model_Translink::Data_Set Model_Translink::TranslinkList(Model_Attachment::REFTY
     return translink_list;
 }
 
+bool Model_Translink::HasShares(const int stock_id)
+{
+    if (TranslinkList(Model_Attachment::STOCK, stock_id).empty())
+    {
+        return false;
+    }
+
+    return true;
+}
+
 Model_Translink::Data Model_Translink::TranslinkRecord(const int checking_id)
 {
     Model_Translink::Data_Set translink_list = Model_Translink::instance().find(
@@ -168,12 +178,12 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
     double new_value = 0;
     for (const auto trans : trans_list)
     {
-        Model_Shareinfo::Data share_entry = Model_Shareinfo::ShareEntry(trans.CHECKINGACCOUNTID);
+        Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.CHECKINGACCOUNTID);
 
-        new_share_count += share_entry.SHARENUMBER;
+        new_share_count += share_entry->SHARENUMBER;
         if (new_share_count < 0) new_share_count = 0;
 
-        new_value += share_entry.SHARENUMBER * share_entry.SHAREPRICE;
+        new_value += share_entry->SHARENUMBER * share_entry->SHAREPRICE;
         if (new_value < 0) new_value = 0;
     }
 

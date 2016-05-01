@@ -48,6 +48,26 @@ Model_Shareinfo& Model_Shareinfo::instance()
     return Singleton<Model_Shareinfo>::instance();
 }
 
+Model_Shareinfo::Data_Set Model_Shareinfo::ShareList(const int checking_id)
+{
+    // SQL equivalent statement:
+    // select * from Model_Shareinfo where CHECKINGACCOUNTID = checking_account_id;
+    Model_Shareinfo::Data_Set trans_list = Model_Shareinfo::instance()
+        .find(Model_Shareinfo::CHECKINGACCOUNTID(checking_id));
+
+    return trans_list;
+}
+
+Model_Shareinfo::Data* Model_Shareinfo::ShareEntry(const int checking_id)
+{
+    Data_Set list = Model_Shareinfo::ShareList(checking_id);
+    if (!list.empty())
+    {
+        return Model_Shareinfo::instance().get(list.at(0).SHAREINFOID);
+    }
+    return NULL;
+}
+
 void Model_Shareinfo::ShareEntry(const int checking_id
     , const double share_number
     , const double share_price
@@ -74,22 +94,11 @@ void Model_Shareinfo::ShareEntry(const int checking_id
     Model_Shareinfo::instance().save(share_entry);
 }
 
-Model_Shareinfo::Data_Set Model_Shareinfo::ShareList(const int checking_id)
-{
-    // SQL equivalent statement:
-    // select * from Model_Shareinfo where CHECKINGACCOUNTID = checking_account_id;
-    Model_Shareinfo::Data_Set trans_list = Model_Shareinfo::instance()
-        .find(Model_Shareinfo::CHECKINGACCOUNTID(checking_id));
-
-    return trans_list;
-}
-
-Model_Shareinfo::Data Model_Shareinfo::ShareEntry(const int checking_id)
-{
-    return ShareList(checking_id).at(0);
-}
-
 void Model_Shareinfo::RemoveShareEntry(const int checking_id)
 {
-    Model_Shareinfo::instance().remove(ShareEntry(checking_id).SHAREINFOID);
+    Data_Set list = ShareList(checking_id);
+    if (!list.empty())
+    {
+        Model_Shareinfo::instance().remove(list.at(0).SHAREINFOID);
+    }
 }

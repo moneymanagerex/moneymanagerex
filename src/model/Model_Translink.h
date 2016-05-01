@@ -72,6 +72,8 @@ public:
     static Model_Translink::Data_Set TranslinkList(Model_Attachment::REFTYPE link_table
         , const int link_id);
 
+    static bool HasShares(const int stock_id);
+
     /*
     Return the link record for the checking account 
     Equivalent SQL statements:
@@ -93,6 +95,12 @@ public:
     /* Remove the checking account entry and its associated transfer transaction. */
     static void RemoveTranslinkEntry(const int checking_account_id);
 
+    /*
+    stock_entry.PURCHASEPRICE ... obsolete. This is now on a per entry basis.
+    stock_entry.NUMSHARES = total amount of shares purchased.
+    stock_entry.VALUE     = value of shares based on:
+    ... share_entry.SHARENUMBER * share_entry.SHAREPRICE
+    */
     static void UpdateStockValue(Model_Stock::Data* stock_entry);
     static void UpdateAssetValue(Model_Asset::Data* asset_entry);
 

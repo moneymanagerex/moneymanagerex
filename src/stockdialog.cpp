@@ -30,6 +30,7 @@
 #include "model/Model_Attachment.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_StockHistory.h"
+#include "model/Model_Translink.h"
 
 #include <wx/numdlg.h>
 #include <wx/textdlg.h>
@@ -148,6 +149,15 @@ void mmStockDialog::updateControls()
 
 void mmStockDialog::CreateControls()
 {
+    bool initial_stock_transaction = true;
+    if (m_stock)
+    {
+        if (!Model_Translink::TranslinkList(Model_Attachment::STOCK, m_stock->STOCKID).empty())
+        {
+            initial_stock_transaction = false;
+        }
+    }
+
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     this->SetSizer(mainBoxSizer);
 
@@ -164,22 +174,23 @@ void mmStockDialog::CreateControls()
     wxFlexGridSizer* itemFlexGridSizer6 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Stock Name")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Company Name")), g_flagsH);
 
     stockName_ = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCKNAME, "");
     itemFlexGridSizer6->Add(stockName_, g_flagsExpand);
     stockName_->SetToolTip(_("Enter the stock company name"));
 
     //Date
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Date")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("*Date")), g_flagsH);
 
     dpc_ = new wxDatePickerCtrl(itemPanel5, ID_DPC_STOCK_PDATE
         , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     itemFlexGridSizer6->Add(dpc_, g_flagsH);
-    dpc_->SetToolTip(_("Specify the purchase date of the stock investment"));
+    dpc_->SetToolTip(_("Specify the initial date of the stock investment\nUsed when creating the initial Share transaction."));
+    //dpc_->Enable(initial_stock_transaction);
 
     //Symbol
-    wxStaticText* symbol = new wxStaticText(itemPanel5, wxID_STATIC, _("Symbol"));
+    wxStaticText* symbol = new wxStaticText(itemPanel5, wxID_STATIC, _("Stock Symbol"));
     itemFlexGridSizer6->Add(symbol, g_flagsH);
     symbol->SetFont(this->GetFont().Bold());
 
@@ -189,26 +200,28 @@ void mmStockDialog::CreateControls()
     stockSymbol_->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
     //Number of Shares
-    wxStaticText* number = new wxStaticText(itemPanel5, wxID_STATIC, _("Number of Shares"));
+    wxStaticText* number = new wxStaticText(itemPanel5, wxID_STATIC, _("*Share Number"));
     itemFlexGridSizer6->Add(number, g_flagsH);
     number->SetFont(this->GetFont().Bold());
     numShares_ = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_NUMBER_SHARES, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(numShares_, g_flagsH);
-    numShares_->SetToolTip(_("Enter number of shares held"));
+    numShares_->SetToolTip(_("Enter number of shares.\nUsed when creating the initial Share transaction."));
     numShares_->Connect(ID_TEXTCTRL_NUMBER_SHARES, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
+    numShares_->Enable(initial_stock_transaction);
 
     //Purchase Price
-    wxStaticText* pprice = new wxStaticText(itemPanel5, wxID_STATIC, _("Purchase Price"));
+    wxStaticText* pprice = new wxStaticText(itemPanel5, wxID_STATIC, _("*Share Price"));
     itemFlexGridSizer6->Add(pprice, g_flagsH);
     pprice->SetFont(this->GetFont().Bold());
     purchasePrice_ = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_PP, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(purchasePrice_, g_flagsH);
-    purchasePrice_->SetToolTip(_("Enter purchase price for each stock"));
+    purchasePrice_->SetToolTip(_("Enter the initial price per share.\nUsed when creating the initial Share transaction."));
     purchasePrice_->Connect(ID_TEXTCTRL_STOCK_PP, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
+    purchasePrice_->Enable(initial_stock_transaction);
 
     //
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Current Price")), g_flagsH);
