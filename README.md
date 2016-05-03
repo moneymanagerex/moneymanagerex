@@ -47,4 +47,4 @@ Platforms
 * Star it if you feel it is helpful
 
 #### Developers:
-<script src="https://github.com/moneymanagerex/moneymanagerex/blob/master/developer.geojson"></script>
+<script src="https://embed.github.com/view/geojson/moneymanagerex/moneymanagerex/master/developer.geojson"></script>
