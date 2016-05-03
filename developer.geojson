@@ -44,6 +44,19 @@
     {
       "type": "Feature",
       "properties": {
+        "name": "Stefano Giorgio"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -35.2819367,
+          149.128894
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "name": "Nikolay Akimov"
       },
       "geometry": {
