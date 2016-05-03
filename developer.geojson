@@ -40,6 +40,19 @@
             39.5631
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nikolay Akimov"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.10937499999999,
+          61.77312286453148
+        ]
+      }
     }
   ]
 }
