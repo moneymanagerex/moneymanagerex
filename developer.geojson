@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name" : "Lisheng Guan"
+        "name" : "Lisheng Guan",
         "href" : "http://guanlisheng.com/"
         },
       "geometry": {
@@ -32,7 +32,7 @@
       "type": "Feature",
       "properties": {
         "name" : "Patrick O'Malley"
-      }
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
