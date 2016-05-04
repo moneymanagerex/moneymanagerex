@@ -3,69 +3,28 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
-        "name" : "Lisheng Guan",
-        "href" : "http://guanlisheng.com/"
-        },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          116.39053344726561,
-          39.916319613808135
-        ]
-      }
+      "properties": { "name" : "Lisheng Guan", "href" : "http://guanlisheng.com/" },
+      "geometry": { "type": "Point", "coordinates": [116.39053344726561, 39.916319613808135] }
     },
     {
       "type": "Feature",
-      "properties": {
-        "name" : "James Higley"
-        },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -111.54696084559,
-          40.72626337409
-        ]
-      }
+      "properties": { "name" : "James Higley" },
+      "geometry": { "type": "Point", "coordinates": [-111.54696084559, 40.72626337409] }
     },
     {
       "type": "Feature",
-      "properties": {
-        "name" : "Patrick O'Malley"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-            -95.1216,
-            39.5631
-        ]
-      }
+      "properties": { "name" : "Patrick O'Malley" },
+      "geometry": { "type": "Point", "coordinates": [-95.1216, 39.5631] }
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Stefano Giorgio"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          149.128894,
-          -35.2819367
-        ]
-      }
+      "properties": { "name": "Stefano Giorgio" },
+      "geometry": { "type": "Point", "coordinates": [149.128894, -35.2819367] }
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Nikolay Akimov"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          30.4001895,
-          60.0416222
-        ]
-      }
+      "properties": { "name": "Nikolay Akimov" },
+      "geometry": { "type": "Point", "coordinates": [30.4001895, 60.0416222] }
     }
   ]
 }
