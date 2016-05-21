@@ -161,6 +161,7 @@ EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
 EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
 EVT_MENU(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinks)
+EVT_MENU(MENU_VIEW_HIDE_SHARE_ACCOUNTS, mmGUIFrame::OnHideShareAccounts)
 EVT_MENU(MENU_VIEW_BUDGET_FINANCIAL_YEARS, mmGUIFrame::OnViewBudgetFinancialYears)
 EVT_MENU(MENU_VIEW_BUDGET_TRANSFER_TOTAL, mmGUIFrame::OnViewBudgetTransferTotal)
 EVT_MENU(MENU_VIEW_BUDGET_SETUP_SUMMARY, mmGUIFrame::OnViewBudgetSetupSummary)
@@ -231,6 +232,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , toolBar_(nullptr)
     , selectedItemData_(nullptr)
     , helpFileIndex_(-1)
+    , m_hide_share_accounts(true)
     , autoRepeatTransactionsTimer_(this, AUTO_REPEAT_TRANSACTIONS_TIMER_ID)
 {
     // tell wxAuiManager to manage this frame
@@ -713,6 +715,10 @@ void mmGUIFrame::updateNavTreeControl()
     navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
     navTreeCtrl_->SetItemBold(stocks, true);
 
+    wxTreeItemId shareAccounts = navTreeCtrl_->AppendItem(root, _("Share Accounts"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
+    navTreeCtrl_->SetItemData(shareAccounts, new mmTreeItemData("Share Accounts"));
+    navTreeCtrl_->SetItemBold(shareAccounts, true);
+
     wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), img::ASSET_PNG, img::ASSET_PNG);
     navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
     navTreeCtrl_->SetItemBold(assets, true);
@@ -768,16 +774,20 @@ void mmGUIFrame::updateNavTreeControl()
                     // Put the names of the Stock_entry names as children of the stock account.
                     for (const auto stock_entry : stock_account_list)
                     {
-                        wxTreeItemId se = navTreeCtrl_->AppendItem(tacct, stock_entry.STOCKNAME, selectedImage, selectedImage);
-                        int account_id = stock_entry.STOCKID;
-                        if (Model_Translink::ShareAccountId(account_id))
+                        if (Model_Translink::HasShares(stock_entry.STOCKID))
                         {
-                            navTreeCtrl_->SetItemData(se, new mmTreeItemData(account_id, false));
+                            wxTreeItemId se = navTreeCtrl_->AppendItem(tacct, stock_entry.STOCKNAME, selectedImage, selectedImage);
+                            int account_id = stock_entry.STOCKID;
+                            if (Model_Translink::ShareAccountId(account_id))
+                            {
+                                navTreeCtrl_->SetItemData(se, new mmTreeItemData(account_id, false));
+                            }
                         }
                     }
                 }
                 break;
-            case Model_Account::SHARES: // already displayed in stock portfolios
+            case Model_Account::SHARES:
+                tacct = navTreeCtrl_->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             case Model_Account::ASSET:
                 tacct = navTreeCtrl_->AppendItem(assets, account.ACCOUNTNAME, selectedImage, selectedImage);
@@ -799,10 +809,7 @@ void mmGUIFrame::updateNavTreeControl()
                 break;
             }
 
-            if (Model_Account::type(account) != Model_Account::SHARES)
-            {
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-            }
+            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
         }
 
         loadNavTreeItemsStatus();
@@ -812,6 +819,11 @@ void mmGUIFrame::updateNavTreeControl()
         if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
         if (!navTreeCtrl_->ItemHasChildren(cashAccounts)) navTreeCtrl_->Delete(cashAccounts);
         if (!navTreeCtrl_->ItemHasChildren(loanAccounts)) navTreeCtrl_->Delete(loanAccounts);
+
+        if (!navTreeCtrl_->ItemHasChildren(shareAccounts) || m_hide_share_accounts)
+        {
+            navTreeCtrl_->Delete(shareAccounts);
+        }
     }
     windowsFreezeThaw(navTreeCtrl_);
     navTreeCtrl_->SelectItem(root);
@@ -1083,9 +1095,9 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
         if (account)
         {
             wxString warning_msg = _("Do you really want to delete the account?");
-            if (account->ACCOUNTTYPE == Model_Account::all_type()[Model_Account::INVESTMENT])
+            if (account->ACCOUNTTYPE == Model_Account::all_type()[Model_Account::INVESTMENT] || account->ACCOUNTTYPE == Model_Account::all_type()[Model_Account::SHARES])
             {
-                warning_msg += "\n\nThis will also delete any associated Share Accounts.";
+                warning_msg += "\n\nThis will also delete any associated Shares.";
             }
             wxMessageDialog msgDlg(this
                 , warning_msg
@@ -1399,7 +1411,10 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemToolbar = new wxMenuItem(menuView, MENU_VIEW_TOOLBAR,
         _("&Toolbar"), _("Show/Hide the toolbar"), wxITEM_CHECK);
     wxMenuItem* menuItemLinks = new wxMenuItem(menuView, MENU_VIEW_LINKS,
-        _("&Navigation"), _("Show/Hide the Navigation tree control"), wxITEM_CHECK);;
+        _("&Navigation"), _("Show/Hide the Navigation tree control"), wxITEM_CHECK);
+    wxMenuItem* menuItemHideShareAccounts = new wxMenuItem(menuView, MENU_VIEW_HIDE_SHARE_ACCOUNTS,
+        _("&Display Share Accounts"), _("Show/Hide Share Accounts in the navigation tree"), wxITEM_CHECK);
+
     wxMenuItem* menuItemBudgetFinancialYears = new wxMenuItem(menuView, MENU_VIEW_BUDGET_FINANCIAL_YEARS,
         _("Budgets: As &Financial Years"), _("Display Budgets in Financial Year Format"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetTransferTotal = new wxMenuItem(menuView, MENU_VIEW_BUDGET_TRANSFER_TOTAL,
@@ -1413,7 +1428,8 @@ void mmGUIFrame::createMenu()
     //Add the menu items to the menu bar
     menuView->Append(menuItemToolbar);
     menuView->Append(menuItemLinks);
-
+    menuView->Append(menuItemHideShareAccounts);
+    menuView->AppendSeparator();
     menuView->Append(menuItemBudgetFinancialYears);
     menuView->Append(menuItemBudgetTransferTotal);
     menuView->AppendSeparator();
@@ -2518,9 +2534,10 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
 
     //TODO: Refresh Panel
     {
+        //updateNavTreeControl();
         windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmStocksPanel(accountID, homePanel_, mmID_STOCKS);
+        panelCurrent_ = new mmStocksPanel(accountID, this, homePanel_, mmID_STOCKS);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
@@ -2706,6 +2723,12 @@ void mmGUIFrame::OnViewStockAccounts(wxCommandEvent &event)
     updateNavTreeControl();
 }
 
+void mmGUIFrame::OnHideShareAccounts(wxCommandEvent &event)
+{
+    m_hide_share_accounts = !m_hide_share_accounts;
+    updateNavTreeControl();
+}
+
 void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent &event)
 {
     Option::instance().BudgetFinancialYears(!Option::instance().BudgetFinancialYears());
@@ -2846,4 +2869,9 @@ void mmGUIFrame::OnToggleFullScreen(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::OnClose(wxCloseEvent&)
 {
     Destroy();
+}
+
+void mmGUIFrame::RefreshNavigationTree()
+{
+    updateNavTreeControl();
 }

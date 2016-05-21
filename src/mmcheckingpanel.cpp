@@ -714,6 +714,11 @@ void mmCheckingPanel::DeleteViewedTransactions()
     Model_Checking::instance().Savepoint();
     for (const auto& tran: this->m_trans)
     {
+        if (Model_Checking::foreignTransaction(tran))
+        {
+            Model_Translink::RemoveTranslinkEntry(tran.TRANSID);
+        }
+
         // remove also removes any split transactions
         Model_Checking::instance().remove(tran.TRANSID);
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
@@ -1533,6 +1538,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
                 if (Model_Checking::foreignTransaction(i))
                 {
                     Model_Translink::RemoveTranslinkEntry(transID);
+                    m_cp->m_frame->RefreshNavigationTree();
                 }
 
                 // remove also removes any split transactions

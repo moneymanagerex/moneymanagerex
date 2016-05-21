@@ -75,6 +75,8 @@ public:
     void OnClose(wxCloseEvent&);
     std::vector<WebsiteNews> g_WebsiteNewsList;
 
+    void RefreshNavigationTree();
+
 private:
     std::vector<const ModelBase*> m_all_models;
 private:
@@ -176,6 +178,9 @@ private:
     void OnAssets(wxCommandEvent& event);
     void OnGotoAccount(wxCommandEvent& WXUNUSED(event));
     void OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event));
+
+    bool m_hide_share_accounts;
+    void OnHideShareAccounts(wxCommandEvent &event);
 
     void OnViewToolbar(wxCommandEvent &event);
     void OnViewStatusbar(wxCommandEvent &event);
@@ -291,6 +296,7 @@ private:
         MENU_TRANSACTIONREPORT,
         MENU_VIEW_TOOLBAR,
         MENU_VIEW_LINKS,
+        MENU_VIEW_HIDE_SHARE_ACCOUNTS,
         MENU_CATEGORY_RELOCATION,
         MENU_PAYEE_RELOCATION,
         MENU_CONVERT_ENC_DB,

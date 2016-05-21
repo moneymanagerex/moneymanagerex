@@ -42,8 +42,9 @@ public:
         , const wxSize& size
         , long style);
 
-    void CreateControls();
+    int m_stock_id;
 
+private:
     void OnQuit(wxCloseEvent& event);
     void OnSave(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
@@ -54,33 +55,31 @@ public:
     void OnHistoryAddButton(wxCommandEvent& event);
     void OnHistoryDeleteButton(wxCommandEvent& event);
     void OnListItemSelected(wxListEvent& event);
-    void onFocusChange(wxChildFocusEvent& event);
-    
-    void updateControls();
-    void dataToControls();
-    void showStockHistory();
-    Model_Stock::Data* m_stock;
-    int stockID_;
-
-private:
+    void OnFocusChange(wxChildFocusEvent& event);
     void OnTextEntered(wxCommandEvent& event);
 
-    mmTextCtrl* stockName_;
-    mmTextCtrl* stockSymbol_;
-    wxDatePickerCtrl* dpc_;
-    mmTextCtrl* numShares_;
-    mmTextCtrl* purchasePrice_;
-    mmTextCtrl* notes_;
-    mmTextCtrl* currentPrice_;
-    wxDatePickerCtrl* priceDate_;
+    void CreateControls();
+    void UpdateControls();
+    void DataToControls();
+    void ShowStockHistory();
+    void CreateShareAccount(Model_Account::Data* stock_account);
 
-    wxStaticText* valueInvestment_;
-    mmTextCtrl* commission_;
-    wxBitmapButton* bAttachments_;
-    wxListCtrl* priceListBox_;
+    mmTextCtrl* m_stock_name_ctrl;
+    mmTextCtrl* m_stock_symbol_ctrl;
+    wxDatePickerCtrl* m_purchase_date_ctrl;
+    mmTextCtrl* m_num_shares_ctrl;
+    mmTextCtrl* m_purchase_price_ctrl;
+    mmTextCtrl* m_notes_ctrl;
+    mmTextCtrl* m_current_price_ctrl;
+    wxDatePickerCtrl* m_current_date_ctrl;
+    wxStaticText* m_value_investment;
+    mmTextCtrl* m_commission_ctrl;
+    wxBitmapButton* m_bAttachments;
+    wxListCtrl* m_price_listbox;
 
-    bool edit_;
-    int accountID_;
+    Model_Stock::Data* m_stock;
+    bool m_edit;
+    int m_account_id;
 
     enum
     {

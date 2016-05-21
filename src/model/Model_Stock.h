@@ -49,9 +49,18 @@ public:
     static wxDate PURCHASEDATE(const Data* stock);
     static wxDate PURCHASEDATE(const Data& stock);
 
-    static double value(const Data* r);
-    static double value(const Data& r);
+    /** Original value of Stocks */
+    static double InvestmentValue(const Data* r);
+    /** Original value of Stocks */
+    static double InvestmentValue(const Data& r);
 
+    static double CurrentValue(const Data* r);
+    static double CurrentValue(const Data& r);
+
+    /**
+    update stock history table and stock items price/values with same symbol code
+    */
+    static void UpdateStockHistory(Data* stock, const wxDateTime& current_date);
 public:
     /**
     * Remove the Data record from memory and the database.

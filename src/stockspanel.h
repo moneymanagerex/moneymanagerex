@@ -24,6 +24,7 @@
 #include "model/Model_Stock.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Account.h"
+#include "mmframe.h"
 
 class wxListEvent;
 class mmStocksPanel;
@@ -44,6 +45,7 @@ public:
     void OnMoveStocks(wxCommandEvent& event);
     void OnEditStocks(wxCommandEvent& event);
     void OnOrganizeAttachments(wxCommandEvent& event);
+    void OnStockWebPage(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
     long get_selectedIndex() { return m_selected_row; }
     int getColumnsNumber() { return COL_MAX; }
@@ -88,7 +90,7 @@ private:
         COL_MAX, // number of columns
     };
     wxImageList* m_imageList;
-    double getGainLoss(long item) const;
+    double GetGainLoss(long item) const;
     void sortTable();
 };
 
@@ -100,6 +102,7 @@ class mmStocksPanel : public mmPanelBase
 public:
     mmStocksPanel(
         int accountID,
+        mmGUIFrame* frame,
         wxWindow *parent,
         wxWindowID winid = wxID_ANY,
         const wxPoint& pos = wxDefaultPosition,
@@ -140,6 +143,7 @@ public:
     void updateHeader();
 
     wxString BuildPage() const;
+    mmGUIFrame* m_frame;
 
 private:
     StocksListCtrl* listCtrlAccount_;

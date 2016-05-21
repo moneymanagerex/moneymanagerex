@@ -57,9 +57,7 @@ public:
 
     int TransactionType();
     Model_Translink::CHECKING_TYPE CheckingType();
-    void SetCheckingType(Model_Translink::CHECKING_TYPE ct);
-    const wxString CurrencySymbol();
-    Model_Currency::Data* GetCurrencyData();
+    void CheckingType(Model_Translink::CHECKING_TYPE ct);
 
 private:
     Model_Checking::Data* m_checking_entry;

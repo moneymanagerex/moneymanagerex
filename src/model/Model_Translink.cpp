@@ -108,6 +108,16 @@ Model_Translink::Data_Set Model_Translink::TranslinkList(Model_Attachment::REFTY
     return translink_list;
 }
 
+bool Model_Translink::HasShares(const int stock_id)
+{
+    if (TranslinkList(Model_Attachment::STOCK, stock_id).empty())
+    {
+        return false;
+    }
+
+    return true;
+}
+
 Model_Translink::Data Model_Translink::TranslinkRecord(const int checking_id)
 {
     Model_Translink::Data_Set translink_list = Model_Translink::instance().find(
@@ -164,21 +174,34 @@ void Model_Translink::RemoveTranslinkEntry(const int checking_account_id)
 void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
 {
     Data_Set trans_list = TranslinkList(Model_Attachment::REFTYPE::STOCK, stock_entry->STOCKID);
-    double new_share_count = 0;
-    double new_value = 0;
+    double total_shares = 0;
+    double total_initial_value = 0;
+    double total_commission = 0;
     for (const auto trans : trans_list)
     {
-        Model_Shareinfo::Data share_entry = Model_Shareinfo::ShareEntry(trans.CHECKINGACCOUNTID);
+        Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.CHECKINGACCOUNTID);
 
-        new_share_count += share_entry.SHARENUMBER;
-        if (new_share_count < 0) new_share_count = 0;
+        total_shares += share_entry->SHARENUMBER;
+        if (total_shares < 0) total_shares = 0;
 
-        new_value += share_entry.SHARENUMBER * share_entry.SHAREPRICE;
-        if (new_value < 0) new_value = 0;
+        total_initial_value += share_entry->SHARENUMBER * share_entry->SHAREPRICE;
+        if (total_initial_value < 0) total_initial_value = 0;
+
+        total_commission += share_entry->SHARECOMMISSION;
     }
 
-    stock_entry->NUMSHARES = new_share_count;
-    stock_entry->VALUE = new_value;
+    // The stock record contains the total of share transactions.
+    if (trans_list.empty())
+    {
+        stock_entry->PURCHASEPRICE = stock_entry->CURRENTPRICE;
+    }
+    else
+    {
+        stock_entry->PURCHASEPRICE = 0;
+        stock_entry->NUMSHARES = total_shares;
+        stock_entry->VALUE = total_initial_value;
+        stock_entry->COMMISSION = total_commission;
+    }
     Model_Stock::instance().save(stock_entry);
 }
 
