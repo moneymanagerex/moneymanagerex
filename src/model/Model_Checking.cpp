@@ -436,7 +436,7 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
     data.TRANSAMOUNT = 0;
     data.TOTRANSAMOUNT = 0;
     data.TRANSACTIONNUMBER = "";
-    if (Option::instance().TransCategorySelectionNone() != 0) 
+    if (Option::instance().TransCategorySelection() != Option::NONE)
     {
         auto trx = instance().find(TRANSCODE(TRANSFER, NOT_EQUAL)
             , ACCOUNTID(accountID, EQUAL), TRANSDATE(trx_date, LESS_OR_EQUAL));
@@ -446,7 +446,7 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
             std::stable_sort(trx.begin(), trx.end(), SorterByTRANSDATE());
             Model_Payee::Data* payee = Model_Payee::instance().get(trx.rbegin()->PAYEEID);
             if (payee) data.PAYEEID = payee->PAYEEID;
-            if (payee && Option::instance().TransCategorySelectionNone() != 0)
+            if (payee && Option::instance().TransCategorySelection() != Option::NONE)
             {
                 data.CATEGID = payee->CATEGID;
                 data.SUBCATEGID = payee->SUBCATEGID;

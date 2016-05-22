@@ -86,12 +86,12 @@ void OptionSettingsMisc::Create()
     wxChoice* defaultPayeeChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE
         , wxDefaultPosition, wxSize(140, -1), defaultValues_);
-    defaultPayeeChoice->SetSelection(Option::instance().TransPayeeSelectionNone());
+    defaultPayeeChoice->SetSelection(Option::instance().TransPayeeSelection());
 
     wxChoice* defaultCategoryChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY
         , wxDefaultPosition, defaultPayeeChoice->GetSize(), defaultValues_);
-    defaultCategoryChoice->SetSelection(Option::instance().TransCategorySelectionNone());
+    defaultCategoryChoice->SetSelection(Option::instance().TransCategorySelection());
 
     wxChoice* default_status = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS
@@ -200,10 +200,10 @@ void OptionSettingsMisc::SaveStocksUrl()
 void OptionSettingsMisc::SaveSettings()
 {
     wxChoice* itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE);
-    Option::instance().TransPayeeSelectionNone(itemChoice->GetSelection());
+    Option::instance().TransPayeeSelection(itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY);
-    Option::instance().TransCategorySelectionNone(itemChoice->GetSelection());
+    Option::instance().TransCategorySelection(itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS);
     Option::instance().TransStatusReconciled(itemChoice->GetSelection());

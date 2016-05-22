@@ -297,7 +297,7 @@ void UserTransactionPanel::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
             m_payee->SetLabelText(payee->PAYEENAME);
 
             // Only for new transactions: if user want to autofill last category used for payee and category has not been set.
-            if ((Option::instance().TransCategorySelectionNone() == 1) && (m_category_id < 0) && (m_subcategory_id < 0))
+            if ((Option::instance().TransCategorySelection() == Option::LASTUSED) && (m_category_id < 0) && (m_subcategory_id < 0))
             {
                 if (payee->CATEGID > 0)
                 {

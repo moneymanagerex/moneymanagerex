@@ -731,7 +731,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
                 // Only for new transactions: if user want to autofill last category used for payee.
                 // If this is a Split Transaction, ignore displaying last category for payee
                 if (payee->CATEGID != -1 && m_bill_data.local_splits.empty() 
-                    && Option::instance().TransCategorySelectionNone() == 1 
+                    && Option::instance().TransCategorySelection() == Option::LASTUSED 
                     && !categUpdated_ && m_bill_data.BDID == 0)
                 {
                     m_bill_data.CATEGID = payee->CATEGID;
@@ -896,7 +896,7 @@ void mmBDDialog::resetPayeeString()
 
             // Only for new transactions: if user want to autofill last category used for payee.
             // If this is a Split Transaction, ignore displaying last category for payee
-            if (filtd[0].CATEGID != -1 && m_bill_data.local_splits.empty() && Option::instance().TransCategorySelectionNone() == 1 && !categUpdated_ && m_bill_data.BDID == 0)
+            if (filtd[0].CATEGID != -1 && m_bill_data.local_splits.empty() && Option::instance().TransCategorySelection() == Option::LASTUSED && !categUpdated_ && m_bill_data.BDID == 0)
             {
                 m_bill_data.CATEGID = filtd[0].CATEGID;
                 m_bill_data.SUBCATEGID = filtd[0].SUBCATEGID;

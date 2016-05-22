@@ -29,6 +29,10 @@
 class Option
 {
 public:
+    enum USAGE_TYPE { NONE = 0, LASTUSED, UNUSED };
+    //static const std::vector<std::pair<USAGE_TYPE, wxString> > USAGE_CHOICE;
+
+public:
     Option();
     static Option& instance();
     void LoadOptions(bool include_infotable = true);
@@ -77,11 +81,11 @@ public:
     void IgnoreFutureTransactions(bool value);
     bool IgnoreFutureTransactions();
 
-    void TransPayeeSelectionNone(int value);
-    int TransPayeeSelectionNone();
+    void TransPayeeSelection(int value);
+    int TransPayeeSelection();
 
-    void TransCategorySelectionNone(int value);
-    int TransCategorySelectionNone();
+    void TransCategorySelection(int value);
+    int TransCategorySelection();
 
     void TransStatusReconciled(int value);
     int TransStatusReconciled();
@@ -113,8 +117,8 @@ private:
     bool m_budgetReportWithSummaries;       //INIDB_BUDGET_SUMMARY_WITHOUT_CATEG
     bool m_ignoreFutureTransactions;        //INIDB_IGNORE_FUTURE_TRANSACTIONS
 
-    int m_transPayeeSelectionNone;
-    int m_transCategorySelectionNone;
+    int m_transPayeeSelection;
+    int m_transCategorySelection;
     int m_transStatusReconciled;
     int m_transDateDefault;
 
