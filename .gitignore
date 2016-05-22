@@ -4,6 +4,7 @@ CMakeFiles
 CMakeCache.txt
 *.cmake
 install_manifest.txt
+_CPack_Packages
 
 # Compiled Object files
 *.slo
@@ -73,6 +74,8 @@ bk-deps
 #dist
 *.dmg
 /build/macosx/dmg/
+*.deb
+*.rpm
 
 #backups & tmp file
 *~

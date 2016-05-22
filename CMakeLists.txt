@@ -6,7 +6,6 @@ PROJECT(MoneyManagerEx)
 
 OPTION(BuildTests "Whether to build automatic unit tests" OFF)
 
-MESSAGE("-- Install Prefix = ${CMAKE_INSTALL_PREFIX}")
 MESSAGE("-- Build Type = ${CMAKE_BUILD_TYPE}")
 MESSAGE("-- Building Tests = ${BuildTests}")
 
@@ -94,78 +93,17 @@ IF (UNIX AND NOT APPLE)
 
 	#Binary	
 	INSTALL(PROGRAMS "${CMAKE_SOURCE_DIR}/bin/mmex" 
-		DESTINATION bin)	
+		DESTINATION bin)
 	
 	#Help Files
 	INSTALL(FILES "${CMAKE_SOURCE_DIR}/doc/contrib.txt"
 		"${CMAKE_SOURCE_DIR}/doc/license.txt"
 		"${CMAKE_SOURCE_DIR}/doc/version.txt"
 		DESTINATION "${INSTALL_DOC_DIR}")
-	INSTALL(FILES "${CMAKE_SOURCE_DIR}/doc/help/backtotop.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/btn_donateCC_LG.gif"
-		"${CMAKE_SOURCE_DIR}/doc/help/budget.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/budget_editor.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/budget_entry_details.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/budget_grid.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/contents.js"
-		"${CMAKE_SOURCE_DIR}/doc/help/general_report_manager.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/GRM.gif"
-		"${CMAKE_SOURCE_DIR}/doc/help/index.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/mmex_concept.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/mmex_db_structure.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/stocks_and_shares.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/stock_shares_new_shares.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/stock_shares_new_stock.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/stock_shares_portfolio.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/stock_shares_share_account.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/stock_shares_view_transactions.png"        
-		"${CMAKE_SOURCE_DIR}/resources/master.css"
-		DESTINATION "${INSTALL_DOC_DIR}/help")
-	INSTALL(FILES "${CMAKE_SOURCE_DIR}/doc/help/french/account.jpg"
-		"${CMAKE_SOURCE_DIR}/doc/help/french/add_acc_wizard1.jpg"
-		"${CMAKE_SOURCE_DIR}/doc/help/french/add_acc_wizard2.jpg"
-		"${CMAKE_SOURCE_DIR}/doc/help/french/add_acc_wizard3.jpg"
-		"${CMAKE_SOURCE_DIR}/doc/help/french/index.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/french/investment.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/french/main_screen.jpg"
-		"${CMAKE_SOURCE_DIR}/doc/help/french/mmex_concept.png"
-		DESTINATION "${INSTALL_DOC_DIR}/help/french")
-	INSTALL (FILES "${CMAKE_SOURCE_DIR}/doc/help/hungarian/budget.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/hungarian/index.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/hungarian/investment.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/hungarian/mmex_concept_hu.png"
-		DESTINATION "${INSTALL_DOC_DIR}/help/hungarian")
-	INSTALL (FILES "${CMAKE_SOURCE_DIR}/doc/help/italian/index.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/italian/investment.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/italian/mmex_concept.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/italian/stock_dialog.jpg"
-		"${CMAKE_SOURCE_DIR}/doc/help/italian/stock_options.jpg"
-		"${CMAKE_SOURCE_DIR}/doc/help/italian/stock_view.jpg"
-		DESTINATION "${INSTALL_DOC_DIR}/help/italian")
-	INSTALL (FILES "${CMAKE_SOURCE_DIR}/doc/help/polish/btn_donateCC_LG.gif"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/budget.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/budget_editor.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/budget_entry_details.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/budget_grid.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/general_report_manager.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/GRM.gif"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/index.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/investment.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/mmex_concept.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/mmex_structure.jpg"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/stock_dialog.jpg"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/stock_options.jpg"
-		"${CMAKE_SOURCE_DIR}/doc/help/polish/stock_view.jpg"
-		DESTINATION "${INSTALL_DOC_DIR}/help/polish")
-	INSTALL (FILES "${CMAKE_SOURCE_DIR}/doc/help/russian/index.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/russian/investment.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/russian/mmex_concept.png"
-		"${CMAKE_SOURCE_DIR}/doc/help/russian/stock_dialog.png"
-		DESTINATION "${INSTALL_DOC_DIR}/help/russian")
-	INSTALL (FILES "${CMAKE_SOURCE_DIR}/doc/help/spanish/budget.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/spanish/index.html"
-		"${CMAKE_SOURCE_DIR}/doc/help/spanish/investment.html"
-		DESTINATION "${INSTALL_DOC_DIR}/help/spanish")
+	INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/doc/help"
+		DESTINATION "${INSTALL_DOC_DIR}")
+    INSTALL(FILES "${CMAKE_SOURCE_DIR}/resources/master.css"
+        DESTINATION "${INSTALL_DOC_DIR}/help")
 
 	#Resources
 	INSTALL(FILES "${CMAKE_SOURCE_DIR}/3rd/ChartNew.js/ChartNew.js"
@@ -184,10 +122,19 @@ IF (UNIX AND NOT APPLE)
 	INSTALL(FILES "${CMAKE_SOURCE_DIR}/resources/mmex.svg"
 		DESTINATION "share/icons/hicolor/scalable/apps")
 
-
 ENDIF ()
 #Windows
 IF (WIN32)
 ENDIF ()
 
+## CPack ##
+SET(CPACK_GENERATOR "DEB;RPM")
+SET(CPACK_PACKAGE_NAME "mmex")
+SET(CPACK_PACKAGE_VERSION "1.3.0")
+SET(CPACK_PACKAGE_CONTACT "MoneyManagerEx Developers <developers@moneymanagerex.org>")
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple to use financial management software")
+SET(CPACK_PACKAGE_DESCRIPTION "Money Manager Ex (MMEX) is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. MMEX includes all the basic features that 90% of users would want to see in a personal finance application. The design goals are to concentrate on simplicity and user friendliness - something one can use everyday.")
+SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.15), libgcc1 (>=1:4.1.1), libstdc++6 (>= 4.6), libwxgtk3.0-0v5 (>= 3.0.0) | libwxgtk3.0-0 (>=3.0.0), libwxgtk-media3.0-0v5 (>=3.0.0) | libwxgtk-media3.0-0 (>=3.0.0), libwxgtk-webview3.0-0v5 (>= 3.0.0) | libwxgtk-webview3.0-0v5 (>= 3.0.0)")
 
+INCLUDE(CPack) 
+	
