@@ -25,6 +25,13 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Account.h"
 
+//const std::vector<std::pair<Option::USAGE_TYPE, wxString> > Option::USAGE_CHOICE =
+//{
+//    std::make_pair(Option::NONE, wxString(wxTRANSLATE("None"))),
+//    std::make_pair(Option::LASTUSED, wxString(wxTRANSLATE("Last Used"))),
+//    std::make_pair(Option::UNUSED, wxString(wxTRANSLATE("Unused")))
+//};
+
 //----------------------------------------------------------------------------
 Option::Option()
 :   m_dateFormat(mmex::DEFDATEFORMAT)
@@ -35,9 +42,9 @@ Option::Option()
     , m_budgetSetupWithoutSummaries(false)
     , m_budgetReportWithSummaries(true)
     , m_ignoreFutureTransactions(false)
-    , m_transPayeeSelectionNone(0)
-    , m_transCategorySelectionNone(0)
-    , m_transStatusReconciled(0)
+    , m_transPayeeSelection(Option::NONE)
+    , m_transCategorySelection(Option::NONE)
+    , m_transStatusReconciled(Option::NONE)
     , m_transDateDefault(0)
     , m_html_font_size(100)
     , m_ico_size(16)
@@ -70,12 +77,12 @@ void Option::LoadOptions(bool include_infotable)
     m_ignoreFutureTransactions = Model_Setting::instance().GetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, false);
 
     // Read the preference as a string and convert to int
-    m_transPayeeSelectionNone = Model_Setting::instance().GetIntSetting("TRANSACTION_PAYEE_NONE", 0);
+    m_transPayeeSelection = Model_Setting::instance().GetIntSetting("TRANSACTION_PAYEE_NONE", Option::NONE);
 
     // For the category selection, default behavior should remain that the last category used for the payee is selected.
     //  This is item 1 (0-indexed) in the list.
-    m_transCategorySelectionNone = Model_Setting::instance().GetIntSetting("TRANSACTION_CATEGORY_NONE", 1);
-    m_transStatusReconciled = Model_Setting::instance().GetIntSetting("TRANSACTION_STATUS_RECONCILED", 0);
+    m_transCategorySelection = Model_Setting::instance().GetIntSetting("TRANSACTION_CATEGORY_NONE", Option::LASTUSED);
+    m_transStatusReconciled = Model_Setting::instance().GetIntSetting("TRANSACTION_STATUS_RECONCILED", Option::NONE);
     m_transDateDefault = Model_Setting::instance().GetIntSetting("TRANSACTION_DATE_DEFAULT", 0);
 
     m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", 100);
@@ -232,27 +239,27 @@ bool Option::IgnoreFutureTransactions()
 }
 
 
-void Option::TransPayeeSelectionNone(int value)
+void Option::TransPayeeSelection(int value)
 {
     Model_Setting::instance().Set("TRANSACTION_PAYEE_NONE", value);
-    m_transPayeeSelectionNone = value;
+    m_transPayeeSelection = value;
 }
 
-int Option::TransPayeeSelectionNone()
+int Option::TransPayeeSelection()
 {
-    return m_transPayeeSelectionNone;
+    return m_transPayeeSelection;
 }
 
 
-void Option::TransCategorySelectionNone(int value)
+void Option::TransCategorySelection(int value)
 {
     Model_Setting::instance().Set("TRANSACTION_CATEGORY_NONE", value);
-    m_transCategorySelectionNone = value;
+    m_transCategorySelection = value;
 }
 
-int Option::TransCategorySelectionNone()
+int Option::TransCategorySelection()
 {
-    return m_transCategorySelectionNone;
+    return m_transCategorySelection;
 }
 
 void Option::TransStatusReconciled(int value)
