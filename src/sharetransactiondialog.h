@@ -33,10 +33,9 @@ class ShareTransactionDialog : public wxDialog
 
 public:
     ShareTransactionDialog();
-    ShareTransactionDialog(wxWindow* parent, Model_Stock::Data* stock, int account_id);
+    ShareTransactionDialog(wxWindow* parent, Model_Stock::Data* stock);
     ShareTransactionDialog(wxWindow* parent, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry);
 
-    Model_Stock::Data* m_stock;
     int m_stock_id;
 
 private:
@@ -52,7 +51,6 @@ private:
     void OnQuit(wxCloseEvent& WXUNUSED(event));
     void OnOk(wxCommandEvent& WXUNUSED(event));
     void OnCancel(wxCommandEvent& WXUNUSED(event));
-	void OnAttachments(wxCommandEvent& event);
     void OnStockPriceButton(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
 
@@ -68,11 +66,11 @@ private:
 
     UserTransactionPanel* m_transaction_panel;
     wxString m_dialog_heading;
-    int m_account_id;
-    
+
+    Model_Stock::Data* m_stock;
     Model_Checking::Data* m_checking_entry;
     Model_Translink::Data* m_translink_entry;
-    Model_Shareinfo::Data m_share_entry;
+    Model_Shareinfo::Data* m_share_entry;
     enum
     {
         ID_STOCKTRANS_DATEPICKER_CHANGE = wxID_HIGHEST + 800,

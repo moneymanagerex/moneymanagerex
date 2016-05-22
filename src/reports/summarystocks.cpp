@@ -41,16 +41,16 @@
 
 mmReportSummaryStocks::mmReportSummaryStocks()
     : mmPrintableBase(_("Summary of Stocks"))
-    , gain_loss_sum_total_(0.0)
-    , stockBalance_(0.0)
+    , m_gain_loss_sum_total(0.0)
+    , m_stock_balance(0.0)
 {
 }
 
 void  mmReportSummaryStocks::RefreshData()
 {
-    stocks_.clear();
-    gain_loss_sum_total_ = 0.0;
-    stockBalance_ = 0.0;
+    m_stocks.clear();
+    m_gain_loss_sum_total = 0.0;
+    m_stock_balance = 0.0;
 
     data_holder line;
     account_holder account;
@@ -68,22 +68,22 @@ void  mmReportSummaryStocks::RefreshData()
         for (const auto& stock : Model_Stock::instance().find(Model_Stock::HELDAT(a.ACCOUNTID)))
         {
             const Model_Currency::Data* currency = Model_Account::currency(a);
-            stockBalance_ += currency->BASECONVRATE * stock.VALUE;
-            account.gainloss += stock.VALUE - Model_Stock::value(stock);
-            gain_loss_sum_total_ += (stock.VALUE - Model_Stock::value(stock)) * currency->BASECONVRATE;
+            m_stock_balance += currency->BASECONVRATE * Model_Stock::CurrentValue(stock);
+            account.gainloss += Model_Stock::CurrentValue(stock) - Model_Stock::InvestmentValue(stock);
+            m_gain_loss_sum_total += (Model_Stock::CurrentValue(stock) - Model_Stock::InvestmentValue(stock)) * currency->BASECONVRATE;
 
             line.name = stock.STOCKNAME;
             line.symbol = stock.SYMBOL;
             line.date = mmGetDateForDisplay(Model_Stock::PURCHASEDATE(stock));
             line.qty = stock.NUMSHARES;
-            line.purchase = stock.PURCHASEPRICE;
+            line.purchase = Model_Stock::InvestmentValue(stock);
             line.current = stock.CURRENTPRICE;
             line.commission = stock.COMMISSION;
-            line.gainloss = stock.VALUE - Model_Stock::value(stock);
-            line.value = stock.VALUE;
+            line.gainloss = Model_Stock::CurrentValue(stock) - Model_Stock::InvestmentValue(stock);
+            line.value = Model_Stock::CurrentValue(stock);
             account.data.push_back(line);
         }
-        stocks_.push_back(account);
+        m_stocks.push_back(account);
     }
 }
 
@@ -100,7 +100,7 @@ wxString mmReportSummaryStocks::getHTMLText()
     hb.addDivRow();
     hb.addDivCol17_67();
 
-    for (const auto& acct : stocks_)
+    for (const auto& acct : m_stocks)
     {
         const Model_Account::Data* account = Model_Account::instance().get(acct.id);
         const Model_Currency::Data* currency = Model_Account::currency(account);
@@ -116,7 +116,7 @@ wxString mmReportSummaryStocks::getHTMLText()
             hb.addTableCell(entry.name);
             hb.addTableCell(entry.symbol);
             hb.addTableCell(entry.date);
-            hb.addTableCell(Model_Account::toString(entry.qty, account, 4), true);
+            hb.addTableCell(Model_Account::toString(entry.qty, account, floor(entry.qty) ? 0 : 4), true);
             hb.addCurrencyCell(entry.purchase, currency, 4);
             hb.addCurrencyCell(entry.current, currency, 4);
             hb.addCurrencyCell(entry.commission, currency, 4);
@@ -144,14 +144,14 @@ wxString mmReportSummaryStocks::getHTMLText()
     hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Gain/Loss"), true);
-    hb.addTableHeaderCell(_("Value"), true);
+    hb.addTableHeaderCell(_("Current Value"), true);
     hb.endTableRow();
     hb.endThead();
 
     hb.startTfoot();
     hb.startTotalTableRow();
-    hb.addCurrencyCell(gain_loss_sum_total_);
-    hb.addCurrencyCell(stockBalance_);
+    hb.addCurrencyCell(m_gain_loss_sum_total);
+    hb.addCurrencyCell(m_stock_balance);
     hb.endTableRow();
     hb.endTfoot();
     hb.endTable();
@@ -172,13 +172,13 @@ void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb)
     hb.startTableRow();
     hb.addTableHeaderCell(_("Name"));
     hb.addTableHeaderCell(_("Symbol"));
-    hb.addTableHeaderCell(_("Purchase Date"));
+    hb.addTableHeaderCell(_("*Purchase Date"));
     hb.addTableHeaderCell(_("Quantity"), true);
-    hb.addTableHeaderCell(_("Purchase Price"), true);
+    hb.addTableHeaderCell(_("Initial Value"), true);
     hb.addTableHeaderCell(_("Current Price"), true);
     hb.addTableHeaderCell(_("Commission"), true);
     hb.addTableHeaderCell(_("Gain/Loss"), true);
-    hb.addTableHeaderCell(_("Value"), true);
+    hb.addTableHeaderCell(_("Current Value"), true);
     hb.endTableRow();
     hb.endThead();
 }

@@ -130,7 +130,7 @@ void UserTransactionPanel::Create()
 
     m_transfer = new wxCheckBox(this, ID_TRANS_TRANSFER, _("&Transfer")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    SetCheckingType(Model_Translink::AS_TRANSFER);
+    CheckingType(Model_Translink::AS_TRANSFER);
     m_transfer->SetToolTip(_("Funds transfer from/to this account. Uncheck to set as Expense/Income."));
 
     wxBoxSizer* type_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -148,8 +148,6 @@ void UserTransactionPanel::Create()
     m_entered_amount->SetToolTip(_("Specify the amount for this transaction"));
     m_entered_amount->Connect(ID_TRANS_ENTERED_AMOUNT
         , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(UserTransactionPanel::OnEnteredText), nullptr, this);
-    //TODO: m_entered_amount Enable/disable
-    //m_entered_amount->Enable(false);
 
     Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
     if (m_account_id > 0)
@@ -164,7 +162,7 @@ void UserTransactionPanel::Create()
     entered_amount_sizer->Add(m_entered_amount, g_flagsH);
     entered_amount_sizer->Add(m_trans_currency, g_flagsH);
     //TODO m_trans_currency Show/ Hide
-    //m_trans_currency->Hide();
+    m_trans_currency->Hide();
 
     transPanelSizer->Add(entered_amount_text, g_flagsH);
     transPanelSizer->Add(entered_amount_sizer);
@@ -444,16 +442,6 @@ void UserTransactionPanel::SetTransactionAccount(const wxString& trans_account)
     }
 }
 
-const wxString UserTransactionPanel::CurrencySymbol()
-{
-    return m_trans_currency->GetLabelText();
-}
-
-Model_Currency::Data* UserTransactionPanel::GetCurrencyData()
-{
-    return Model_Currency::instance().GetCurrencyRecord(CurrencySymbol());
-}
-
 Model_Translink::CHECKING_TYPE UserTransactionPanel::CheckingType()
 {
     if (m_transfer->IsChecked())
@@ -462,7 +450,7 @@ Model_Translink::CHECKING_TYPE UserTransactionPanel::CheckingType()
         return Model_Translink::AS_INCOME_EXPENSE;
 }
 
-void UserTransactionPanel::SetCheckingType(Model_Translink::CHECKING_TYPE ct)
+void UserTransactionPanel::CheckingType(Model_Translink::CHECKING_TYPE ct)
 {
     m_transfer->SetValue(true);
     if (ct == Model_Translink::AS_INCOME_EXPENSE)
@@ -473,10 +461,12 @@ void UserTransactionPanel::SetCheckingType(Model_Translink::CHECKING_TYPE ct)
 
 int UserTransactionPanel::SaveChecking()
 {
-    Model_Currency::Data* currency = Model_Currency::instance().GetCurrencyRecord(CurrencySymbol());
+    double initial_amount = 0;
+    m_entered_amount->checkValue(initial_amount);
 
-    double value = 0;
-    m_entered_amount->checkValue(value);
+    Model_Account::Data* base_account = Model_Account::instance().get(m_account_id);
+    wxString currency_symbol = Model_Currency::instance().get(base_account->CURRENCYID)->CURRENCY_SYMBOL;
+    Model_Currency::Data* currency = Model_Currency::instance().GetCurrencyRecord(currency_symbol);
 
     if (!m_checking_entry)
     {
@@ -487,9 +477,9 @@ int UserTransactionPanel::SaveChecking()
     m_checking_entry->TOACCOUNTID = CheckingType();
 
     m_checking_entry->PAYEEID = m_payee_id;
-    m_checking_entry->TRANSCODE = Model_Checking::instance().all_type()[m_type_selector->GetSelection()];
-    m_checking_entry->TRANSAMOUNT = value * currency->BASECONVRATE;
-    m_checking_entry->STATUS = Model_Checking::all_status()[m_status_selector->GetSelection()].Mid(0, 1);
+    m_checking_entry->TRANSCODE = Model_Checking::instance().all_type()[TransactionType()];
+    m_checking_entry->TRANSAMOUNT = initial_amount * currency->BASECONVRATE;
+    m_checking_entry->STATUS = Model_Checking::all_status()[TransactionType()].Mid(0, 1);
     m_checking_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();
     m_checking_entry->NOTES = m_entered_notes->GetValue();
     m_checking_entry->CATEGID = m_category_id;

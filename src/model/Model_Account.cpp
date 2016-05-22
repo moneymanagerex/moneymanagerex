@@ -19,6 +19,7 @@
 #include "Model_Account.h"
 #include "Model_Stock.h"
 #include "Model_Translink.h"
+#include "Model_Shareinfo.h"
 
 const std::vector<std::pair<Model_Account::STATUS_ENUM, wxString> > Model_Account::STATUS_CHOICES =
 {
@@ -130,7 +131,15 @@ bool Model_Account::remove(int id)
 {
     this->Savepoint();
     for (const auto& r: Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(id), Model_Checking::TOACCOUNTID(id)))
+    {
+        if (Model_Checking::foreignTransaction(r))
+        {
+            Model_Shareinfo::RemoveShareEntry(r.TRANSID);
+            Model_Translink::Data tr = Model_Translink::TranslinkRecord(r.TRANSID);
+            Model_Translink::instance().remove(tr.TRANSLINKID);
+        }
         Model_Checking::instance().remove(r.TRANSID);
+    }
     for (const auto& r: Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(id), Model_Billsdeposits::TOACCOUNTID(id)))
         Model_Billsdeposits::instance().remove(r.BDID);
 
@@ -220,8 +229,8 @@ std::pair<double, double> Model_Account::investment_balance(const Data* r)
     std::pair<double /*origianl input value*/, double /**/> sum;
     for (const auto& stock: Model_Stock::instance().find(Model_Stock::HELDAT(r->ACCOUNTID)))
     {
-        sum.first += stock.VALUE;
-        sum.second += Model_Stock::value(stock);
+        sum.first += Model_Stock::CurrentValue(stock);
+        sum.second += Model_Stock::InvestmentValue(stock);
     }
     return sum;
 }

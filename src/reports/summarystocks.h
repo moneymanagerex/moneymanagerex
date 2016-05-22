@@ -36,9 +36,9 @@ private:
     // structure for sorting of data
     struct data_holder { wxString name; wxString symbol; wxString date; double qty; double purchase; double current; double commission; double gainloss; double value; };
     struct account_holder { int id; wxString name; std::vector<data_holder> data; double gainloss; double total; };
-    std::vector<account_holder> stocks_;
-    double gain_loss_sum_total_;
-    double stockBalance_;
+    std::vector<account_holder> m_stocks;
+    double m_gain_loss_sum_total;
+    double m_stock_balance;
 };
 
 class mmReportChartStocks : public mmPrintableBase 
