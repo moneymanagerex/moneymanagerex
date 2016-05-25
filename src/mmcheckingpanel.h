@@ -21,7 +21,6 @@ Copyright (C) 2013, 2014 Nikolay
 #ifndef MM_EX_CHECKINGPANEL_H_
 #define MM_EX_CHECKINGPANEL_H_
 //----------------------------------------------------------------------------
-#include "filtertransdialog.h"
 #include "mmpanelbase.h"
 #include "reports/mmDateRange.h"
 #include "model/Model_Checking.h"
