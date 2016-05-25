@@ -3,6 +3,11 @@
   "features": [
     {
       "type": "Feature",
+      "properties": { "name" : "Gabriele Villa"},
+      "geometry": { "type": "Point", "coordinates": [45.673776, 9.977855] }
+    },
+    {
+      "type": "Feature",
       "properties": { "name" : "Lisheng Guan", "href" : "http://guanlisheng.com/" },
       "geometry": { "type": "Point", "coordinates": [116.39053344726561, 39.916319613808135] }
     },
