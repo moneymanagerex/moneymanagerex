@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": { "name" : "Gabriele Villa"},
-      "geometry": { "type": "Point", "coordinates": [45.673776, 9.977855] }
+      "geometry": { "type": "Point", "coordinates": [9.977855, 45.673776] }
     },
     {
       "type": "Feature",
