@@ -102,7 +102,7 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     , m_AccountID(accountID)
     , m_account(Model_Account::instance().get(accountID))
     , m_currency(Model_Account::currency(m_account))
-    , transFilterDlg_(0)
+    , m_trans_filter_dlg(0)
     , m_frame(frame)
 {
     m_basecurrecyID = Option::instance().BaseCurrency();
@@ -117,7 +117,7 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
 */
 mmCheckingPanel::~mmCheckingPanel()
 {
-    if (transFilterDlg_) delete transFilterDlg_;
+    if (m_trans_filter_dlg) delete m_trans_filter_dlg;
 }
 
 bool mmCheckingPanel::Create(
@@ -133,7 +133,7 @@ bool mmCheckingPanel::Create(
     CreateControls();
 
     transFilterActive_ = false;
-    transFilterDlg_    = new mmFilterTransactionsDialog(this);
+    m_trans_filter_dlg    = new mmFilterTransactionsDialog(this);
     SetTransactionFilterState(true);
 
     initViewTransactionsHeader();
@@ -207,7 +207,7 @@ void mmCheckingPanel::filterTable()
 
         if (transFilterActive_)
         {
-            if (!transFilterDlg_->checkAll(tran, m_AccountID, splits))
+            if (!m_trans_filter_dlg->checkAll(tran, m_AccountID, splits))
                 continue;
         }
         else
@@ -409,8 +409,7 @@ void mmCheckingPanel::CreateControls()
     m_imageList->Add(mmBitmap(png::UPARROW));
     m_imageList->Add(mmBitmap(png::DOWNARROW));
 
-    m_listCtrlAccount = new TransactionListCtrl(this, itemSplitterWindow10
-        , wxID_ANY);
+    m_listCtrlAccount = new TransactionListCtrl(this, itemSplitterWindow10);
 
     m_listCtrlAccount->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
     m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
@@ -748,8 +747,8 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
     int e = event.GetEventType();
 
     if (e == wxEVT_LEFT_DOWN) {
-        transFilterDlg_->setAccountToolTip(_("Select account used in transfer transactions"));
-        transFilterActive_ = (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->somethingSelected());
+        m_trans_filter_dlg->setAccountToolTip(_("Select account used in transfer transactions"));
+        transFilterActive_ = (m_trans_filter_dlg->ShowModal() == wxID_OK && m_trans_filter_dlg->somethingSelected());
     } else {
         if (transFilterActive_ == false) return;
         transFilterActive_ = false;
@@ -1149,7 +1148,7 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 
     bool bRefreshRequired = (status == "V") || (org_status == "V");
 
-    if ((m_cp->transFilterActive_ && m_cp->transFilterDlg_->getStatusCheckBox()) || bRefreshRequired)
+    if ((m_cp->transFilterActive_ && m_cp->m_trans_filter_dlg->getStatusCheckBox()) || bRefreshRequired)
     {
         refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
     }

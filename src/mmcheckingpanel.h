@@ -38,7 +38,7 @@ class TransactionListCtrl : public mmListCtrl
 public:
 
     TransactionListCtrl(mmCheckingPanel *cp, wxWindow *parent
-        , const wxWindowID id);
+        , const wxWindowID id = wxID_ANY);
     
     ~TransactionListCtrl();
 
@@ -278,7 +278,7 @@ private:
     wxStaticText* statTextTransFilter_;
     wxStaticBitmap* bitmapTransFilter_;
     wxStaticBitmap* bitmapMainFilter_;
-    mmFilterTransactionsDialog* transFilterDlg_;
+    mmFilterTransactionsDialog* m_trans_filter_dlg;
 
     int currentView_;
     int m_AccountID;
