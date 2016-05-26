@@ -75,6 +75,8 @@ public:
     void OnClose(wxCloseEvent&);
     std::vector<WebsiteNews> g_WebsiteNewsList;
 
+    void RefreshNavigationTree();
+
 private:
     std::vector<const ModelBase*> m_all_models;
 private:

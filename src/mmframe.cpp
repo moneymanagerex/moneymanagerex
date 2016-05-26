@@ -2714,6 +2714,11 @@ void mmGUIFrame::OnHideShareAccounts(wxCommandEvent &event)
     updateNavTreeControl();
 }
 
+void mmGUIFrame::RefreshNavigationTree()
+{
+    updateNavTreeControl();
+}
+
 void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent &event)
 {
     Option::instance().BudgetFinancialYears(!Option::instance().BudgetFinancialYears());
