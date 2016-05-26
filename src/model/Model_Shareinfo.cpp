@@ -68,11 +68,11 @@ Model_Shareinfo::Data* Model_Shareinfo::ShareEntry(const int checking_id)
     return NULL;
 }
 
-void Model_Shareinfo::ShareEntry(const int checking_id
-    , const double share_number
-    , const double share_price
-    , const double share_commission
-    , const wxString share_lot)
+void Model_Shareinfo::ShareEntry(int checking_id
+    , double share_number
+    , double share_price
+    , double share_commission
+    , const wxString& share_lot)
 {
     Data* share_entry = NULL;
     Data_Set share_list = ShareList(checking_id);

@@ -55,11 +55,11 @@ public:
     Create a Share record if it does not exist.
     save the share record linked to the checking account.
     */
-    static void ShareEntry(const int checking_id
-        , const double share_number
-        , const double share_price
-        , const double share_commission
-        , const wxString share_lot);
+    static void ShareEntry(int checking_id
+        , double share_number
+        , double share_price
+        , double share_commission
+        , const wxString& share_lot);
 
     /* Remove the share entry if it exists */
     static void RemoveShareEntry(const int checking_id);
