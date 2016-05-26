@@ -2708,21 +2708,6 @@ void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
     event.Check(m_mgr.GetPane("Navigation").IsShown());
 }
 
-void mmGUIFrame::OnViewBankAccounts(wxCommandEvent &event)
-{
-    updateNavTreeControl();
-}
-
-void mmGUIFrame::OnViewTermAccounts(wxCommandEvent &event)
-{
-    updateNavTreeControl();
-}
-
-void mmGUIFrame::OnViewStockAccounts(wxCommandEvent &event)
-{
-    updateNavTreeControl();
-}
-
 void mmGUIFrame::OnHideShareAccounts(wxCommandEvent &event)
 {
     m_hide_share_accounts = !m_hide_share_accounts;
@@ -2871,7 +2856,3 @@ void mmGUIFrame::OnClose(wxCloseEvent&)
     Destroy();
 }
 
-void mmGUIFrame::RefreshNavigationTree()
-{
-    updateNavTreeControl();
-}
