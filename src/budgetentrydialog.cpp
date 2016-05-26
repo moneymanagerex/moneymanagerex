@@ -80,7 +80,7 @@ void mmBudgetEntryDialog::fillControls()
     else
         m_choiceType->SetSelection(DEF_TYPE_INCOME);
 
-    m_textAmount->SetValue(fabs(amt));
+    m_textAmount->SetValue(std::fabs(amt));
 }
 
 void mmBudgetEntryDialog::CreateControls()

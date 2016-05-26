@@ -354,9 +354,9 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         int daysOverdue = Model_Billsdeposits::instance().daysOverdue(&entry);
         wxString daysRemainingStr = (daysPayment > 0
             ? wxString::Format(_("%d days remaining"), daysPayment)
-            : wxString::Format(_("%d days delay!"), abs(daysPayment)));
+            : wxString::Format(_("%d days delay!"), std::abs(daysPayment)));
         if (daysOverdue < 0)
-            daysRemainingStr = wxString::Format(_("%d days overdue!"), abs(daysOverdue));
+            daysRemainingStr = wxString::Format(_("%d days overdue!"), std::abs(daysOverdue));
 
         wxString payeeStr = "";
         if (Model_Billsdeposits::type(entry) == Model_Billsdeposits::TRANSFER)

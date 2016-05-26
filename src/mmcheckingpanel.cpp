@@ -782,7 +782,7 @@ const wxString mmCheckingPanel::getItem(long item, long column)
     case TransactionListCtrl::COL_STATUS:
         return tran.STATUS;
     case TransactionListCtrl::COL_WITHDRAWAL:
-        return tran.AMOUNT <= 0 ? Model_Currency::toString(fabs(tran.AMOUNT), this->m_currency) : "";
+        return tran.AMOUNT <= 0 ? Model_Currency::toString(std::fabs(tran.AMOUNT), this->m_currency) : "";
     case TransactionListCtrl::COL_DEPOSIT:
         return tran.AMOUNT > 0 ? Model_Currency::toString(tran.AMOUNT, this->m_currency) : "";
     case TransactionListCtrl::COL_BALANCE:

@@ -86,7 +86,7 @@ void SplitDetailDialog::DataToControls()
     bCategory_->SetLabelText(category_name);
 
     if (split_.SPLITTRANSAMOUNT)
-        textAmount_->SetValue(fabs(split_.SPLITTRANSAMOUNT));
+        textAmount_->SetValue(std::fabs(split_.SPLITTRANSAMOUNT));
 
     if (category_name.empty())
     {
