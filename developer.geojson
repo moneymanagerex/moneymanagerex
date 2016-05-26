@@ -14,7 +14,7 @@
     {
       "type": "Feature",
       "properties": { "name" : "James Higley" },
-      "geometry": { "type": "Point", "coordinates": [-111.54696084559, 40.72626337409] }
+      "geometry": { "type": "Point", "coordinates": [-111.741117, 40.371423] }
     },
     {
       "type": "Feature",
