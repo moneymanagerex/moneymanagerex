@@ -2576,7 +2576,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     windowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmAssetsPanel(homePanel_, mmID_ASSETS);
+    panelCurrent_ = new mmAssetsPanel(this, homePanel_, mmID_ASSETS);
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
     windowsFreezeThaw(homePanel_);
