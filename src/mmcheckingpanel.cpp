@@ -1575,11 +1575,11 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
         }
         else
         {
-//            mmAssetDialog dlg(this, &translink, &checking_entry);
-//            if (dlg.ShowModal() == wxID_OK)
-//            {
-//                refreshVisualList(transaction_id);
-//            }
+            mmAssetDialog dlg(this, &translink, &checking_entry);
+            if (dlg.ShowModal() == wxID_OK)
+            {
+                refreshVisualList(transaction_id);
+            }
         }
     }
     else
