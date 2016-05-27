@@ -104,8 +104,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/work.xpm"
 #include "../resources/paypal.xpm"
 
-static const std::map<int, wxBitmap> navtree_images =
+static const std::map<int, wxBitmap> navtree_images()
 {
+    return{
         { HOUSE_PNG, mmBitmap(png::HOME) }
         , { SCHEDULE_PNG, mmBitmap(png::RECURRING) }
         , { CALENDAR_PNG, mmBitmap(png::BUDGET) }
@@ -133,6 +134,7 @@ static const std::map<int, wxBitmap> navtree_images =
         , { LOAN_ACC_NORMAL_PNG, mmBitmap(png::LOAN_ACC_NORMAL) }
         , { LOAN_ACC_FAVORITE_PNG, mmBitmap(png::LOAN_ACC_FAVORITE) }
         , { LOAN_ACC_CLOSED_PNG, mmBitmap(png::LOAN_ACC_CLOSED) }
+    };
 };
 
 // Custom icons for accounts
@@ -162,7 +164,7 @@ wxImageList* navtree_images_list()
     int x = Option::instance().IconSize();
 
     wxImageList* imageList = new wxImageList(x, x);
-    for (const auto& img : navtree_images)
+    for (const auto& img : navtree_images())
         imageList->Add(img.second);
     for (const auto& img : acc_images())
         imageList->Add(img.second);
