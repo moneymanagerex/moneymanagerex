@@ -17,6 +17,7 @@
 #pragma once
 #include "mmpanelbase.h"
 #include "model/Model_Asset.h"
+#include "mmframe.h"
 
 class wxListEvent;
 class mmAssetsPanel;
@@ -36,6 +37,9 @@ public:
     void OnDuplicateAsset(wxCommandEvent& event);
     void OnOrganizeAttachments(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
+    void OnAddAssetTrans(wxCommandEvent& WXUNUSED(event));
+    void OnViewAssetTrans(wxCommandEvent& WXUNUSED(event));
+    void OnGotoAssetAccount(wxCommandEvent& WXUNUSED(event));
 
     void doRefreshItems(int trx_id = -1);
 
@@ -59,6 +63,9 @@ private:
 
     enum {
         MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1200,
+        MENU_TREEPOPUP_ADDTRANS,
+        MENU_TREEPOPUP_VIEWTRANS,
+        MENU_TREEPOPUP_GOTOACCOUNT,
         MENU_TREEPOPUP_EDIT,
         MENU_TREEPOPUP_DELETE,
         MENU_ON_DUPLICATE_TRANSACTION,
@@ -71,7 +78,8 @@ class mmAssetsPanel : public mmPanelBase
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmAssetsPanel(wxWindow *parent, wxWindowID winid);
+    mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid);
+    mmGUIFrame* m_frame;
 
     void updateExtraAssetData(int selIndex);
     int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);
@@ -83,6 +91,10 @@ public:
     int col_sort() { return COL_DATE; }
 
     wxString BuildPage() const { return m_listCtrlAssets->BuildPage(_("Assets")); }
+
+    void AddAssetTrans(const int selected_index);
+    void ViewAssetTrans(const int selected_index);
+    void GotoAssetAccount(const int selected_index);
 
 private:
     void enableEditDeleteButtons(bool enable);
@@ -108,6 +120,8 @@ private:
     void OnEditAsset(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
     void OnMouseLeftDown ( wxMouseEvent& event );
+    void OnAddAssetTrans(wxCommandEvent& event);
+    void OnViewAssetTrans(wxCommandEvent& event);
 
     void OnViewPopupSelected(wxCommandEvent& event);
     void sortTable();

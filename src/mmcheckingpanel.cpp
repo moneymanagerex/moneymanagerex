@@ -1032,13 +1032,22 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     bool multiselect = (GetSelectedItemCount() > 1);
     bool type_transfer = false;
     bool have_category = false;
+    bool is_foreign = false;
     if (m_selectedIndex > -1)
     {
         const Model_Checking::Full_Data& tran = m_cp->m_trans.at(m_selectedIndex);
         if (Model_Checking::type(tran.TRANSCODE) == Model_Checking::TRANSFER)
+        {
             type_transfer = true;
+        }
         if (!tran.has_split())
+        {
             have_category = true;
+        }
+        if (Model_Checking::foreignTransaction(tran))
+        {
+            is_foreign = true;
+        }
     }
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW_WITHDRAWAL, _("&New Withdrawal"));
@@ -1061,7 +1070,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     if (hide_menu_item || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
     menu.Append(MENU_TREEPOPUP_MOVE2, _("&Move Transaction"));
-    if (hide_menu_item || multiselect || type_transfer || (Model_Account::checking_account_num() < 2))
+    if (hide_menu_item || multiselect || type_transfer || (Model_Account::checking_account_num() < 2) || is_foreign)
         menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
     menu.AppendSeparator();
@@ -1575,11 +1584,11 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
         }
         else
         {
-//            mmAssetDialog dlg(this, &translink, &checking_entry);
-//            if (dlg.ShowModal() == wxID_OK)
-//            {
-//                refreshVisualList(transaction_id);
-//            }
+            mmAssetDialog dlg(this, &translink, &checking_entry);
+            if (dlg.ShowModal() == wxID_OK)
+            {
+                refreshVisualList(transaction_id);
+            }
         }
     }
     else
