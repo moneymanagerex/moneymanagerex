@@ -834,7 +834,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
         {
             if (stocks_data.find(symbol) == stocks_data.end())
             {
-                stocks_data[symbol] = std::make_pair(stock.CURRENTPRICE, "");
+                stocks_data[symbol] = std::make_pair(0, "");
                 site << symbol << "+";
             }
         }
@@ -909,11 +909,13 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
         if (it == stocks_data.end()) continue;
         dPrice = it->second.first;
 
-        s.CURRENTPRICE = dPrice;
-        if (s.STOCKNAME.empty()) s.STOCKNAME = it->second.second;
-        Model_Stock::instance().save(&s);
-
-        Model_StockHistory::instance().addUpdate(s.SYMBOL, wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
+        if (dPrice != 0)
+        {
+            s.CURRENTPRICE = dPrice;
+            if (s.STOCKNAME.empty()) s.STOCKNAME = it->second.second;
+            Model_Stock::instance().save(&s);
+            Model_StockHistory::instance().addUpdate(s.SYMBOL, wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
+        }
     }
 
     // Now refresh the display
