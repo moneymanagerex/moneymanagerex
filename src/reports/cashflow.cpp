@@ -88,6 +88,10 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         account_id.Add(account.ACCOUNTID);
         for (const auto& tran : Model_Account::transaction(account))
         {
+            // Do not include asset or stock transfers in income expense calculations.
+            if (Model_Checking::foreignTransactionAsTransfer(tran))
+                continue;
+
             daily_balance[Model_Checking::TRANSDATE(tran)] += Model_Checking::balance(tran, account.ACCOUNTID) * currency->BASECONVRATE;
         }
     }

@@ -480,9 +480,24 @@ bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 //----------------------------------------------------------------------------
 void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 {
-    if (setAccountInSection(_("Bank Accounts"), accountName)) {
-        if (setAccountInSection(_("Term Accounts"), accountName))
-            setAccountInSection(_("Stocks"), accountName);
+    if (setAccountInSection(_("Bank Accounts"), accountName))
+    {
+        if (setAccountInSection(_("Credit Card Accounts"), accountName))
+        {
+            if (setAccountInSection(_("Term Accounts"), accountName))
+            {
+                if (setAccountInSection(_("Stock Portfolios"), accountName))
+                {
+                    if (setAccountInSection(_("Cash Accounts"), accountName))
+                    {
+                        if (setAccountInSection(_("Loan Accounts"), accountName))
+                        {
+                            setAccountInSection(_("Assets"), accountName);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -2576,7 +2591,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     windowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmAssetsPanel(homePanel_, mmID_ASSETS);
+    panelCurrent_ = new mmAssetsPanel(this, homePanel_, mmID_ASSETS);
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
     windowsFreezeThaw(homePanel_);
