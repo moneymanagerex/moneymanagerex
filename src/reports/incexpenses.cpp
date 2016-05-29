@@ -77,6 +77,10 @@ wxString mmReportIncomeExpenses::getHTMLText()
         , Model_Checking::TRANSDATE(m_date_range->end_date(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
+        // Do not include asset or stock transfers in income expense calculations.
+        if (Model_Checking::foreignTransactionAsTransfer(transaction))
+            continue;
+
         // We got this far, get the currency conversion rate for this account
         Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
         if (accountArray_)

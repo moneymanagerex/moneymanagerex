@@ -635,6 +635,10 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
         if (ignoreFuture && Model_Checking::TRANSDATE(trx).IsLaterThan(today))
             continue; //skip future dated transactions
 
+        // Do not include asset or stock transfers in income expense calculations.
+        if (Model_Checking::foreignTransactionAsTransfer(trx))
+            continue;
+
         if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) this->countFollowUp_++;
 
         accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
@@ -671,12 +675,10 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
                 continue; //skip future dated transactions
         }
         
-        // Check if this is a foreign transaction
-        if (Model_Checking::foreignTransaction(pBankTransaction) && pBankTransaction.TOACCOUNTID == Model_Translink::AS_TRANSFER)
-        {
-            continue; // Do not include foreign transfer transactions in income/expense calculations.
-        }
-        
+        // Do not include asset or stock transfers in income expense calculations.
+        if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction))
+            continue;
+
         // We got this far, get the currency conversion rate for this account
         Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);
         double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);

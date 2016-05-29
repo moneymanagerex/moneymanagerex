@@ -96,7 +96,14 @@ wxString mmReportTransactions::getHTMLText()
         hb.addTableCell(transaction.PAYEENAME);
         hb.addTableCell(transaction.STATUS);
         hb.addTableCell(transaction.CATEGNAME);
-        hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
+        if (Model_Checking::foreignTransactionAsTransfer(transaction))
+        {
+            hb.addTableCell(wxGetTranslation(transaction.TRANSCODE) + " *T");
+        }
+        else
+        {
+            hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
+        }
         hb.addTableCell(transaction.TRANSACTIONNUMBER);
 
         // Attachments
