@@ -230,9 +230,13 @@ void mmTransDialog::dataToControls()
         if (!m_transfer)
         {
             if (!Model_Checking::is_deposit(m_trx_data.TRANSCODE))
+            {
                 payee_label_->SetLabelText(_("Payee"));
+            }
             else
+            {
                 payee_label_->SetLabelText(_("From"));
+            }
 
             account_label_->SetLabelText(_("Account"));
             if (!Model_Checking::foreignTransaction(m_trx_data))
@@ -247,7 +251,7 @@ void mmTransDialog::dataToControls()
                 cbPayee_->AutoComplete(all_payees);
             }
 
-            if (Option::instance().TransCategorySelection() == Option::UNUSED)
+            if (m_new_trx && (Option::instance().TransPayeeSelection() == Option::UNUSED))
             {
                 cbPayee_->Enable(false);
                 cbPayee_->ChangeValue(_("Unknown"));
@@ -255,7 +259,13 @@ void mmTransDialog::dataToControls()
 
             Model_Payee::Data* payee = Model_Payee::instance().get(m_trx_data.PAYEEID);
             if (payee)
+            {
                 cbPayee_->ChangeValue(payee->PAYEENAME);
+                if (m_new_trx && (Option::instance().TransPayeeSelection() == Option::NONE))
+                {
+                    cbPayee_->ChangeValue("");
+                }
+            }
         }
         else //transfer
         {
