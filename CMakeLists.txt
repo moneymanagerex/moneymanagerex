@@ -128,13 +128,26 @@ IF (WIN32)
 ENDIF ()
 
 ## CPack ##
-SET(CPACK_GENERATOR "DEB;RPM")
 SET(CPACK_PACKAGE_NAME "mmex")
 SET(CPACK_PACKAGE_VERSION "1.3.0")
 SET(CPACK_PACKAGE_CONTACT "MoneyManagerEx Developers <developers@moneymanagerex.org>")
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple to use financial management software")
 SET(CPACK_PACKAGE_DESCRIPTION "Money Manager Ex (MMEX) is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. MMEX includes all the basic features that 90% of users would want to see in a personal finance application. The design goals are to concentrate on simplicity and user friendliness - something one can use everyday.")
-SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.15), libgcc1 (>=1:4.1.1), libstdc++6 (>= 4.6), libwxgtk3.0-0v5 (>= 3.0.0) | libwxgtk3.0-0 (>=3.0.0), libwxgtk-media3.0-0v5 (>=3.0.0) | libwxgtk-media3.0-0 (>=3.0.0), libwxgtk-webview3.0-0v5 (>= 3.0.0) | libwxgtk-webview3.0-0v5 (>= 3.0.0)")
+IF (UNIX AND NOT APPLE)
+	IF (EXISTS "/etc/debian_version")
+		SET(CPACK_GENERATOR "DEB")
+		SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.15), libgcc1 (>=1:4.1.1), libstdc++6 (>= 4.6), libwxgtk3.0-0v5 (>= 3.0.0) | libwxgtk3.0-0 (>=3.0.0), libwxgtk-webview3.0-0v5 (>= 3.0.0) | libwxgtk-webview3.0-0v5 (>= 3.0.0)")
+	ENDIF ()
+
+	IF (EXISTS "/etc/redhat-release")
+		SET(CPACK_GENERATOR "RPM")
+	ENDIF ()
+ENDIF ()
+
+IF (UNIX AND APPLE)
+	SET(CPACK_GENERATOR "DMG")
+ENDIF ()
+
 
 INCLUDE(CPack) 
 	
