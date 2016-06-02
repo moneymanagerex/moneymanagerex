@@ -21,12 +21,12 @@
 
 const std::vector<std::pair<Model_Attachment::REFTYPE, wxString> > Model_Attachment::REFTYPE_CHOICES =
 {
-    std::make_pair(Model_Attachment::TRANSACTION, wxString(wxTRANSLATE("Transaction"))),
-    std::make_pair(Model_Attachment::STOCK, wxString(wxTRANSLATE("Stock"))),
-    std::make_pair(Model_Attachment::ASSET, wxString(wxTRANSLATE("Asset"))),
-    std::make_pair(Model_Attachment::BANKACCOUNT, wxString(wxTRANSLATE("BankAccount"))),
-    std::make_pair(Model_Attachment::BILLSDEPOSIT, wxString(wxTRANSLATE("RecurringTransaction"))),
-    std::make_pair(Model_Attachment::PAYEE, wxString(wxTRANSLATE("Payee")))
+    {Model_Attachment::TRANSACTION, wxString(wxTRANSLATE("Transaction"))},
+    {Model_Attachment::STOCK, wxString(wxTRANSLATE("Stock"))},
+    {Model_Attachment::ASSET, wxString(wxTRANSLATE("Asset"))},
+    {Model_Attachment::BANKACCOUNT, wxString(wxTRANSLATE("BankAccount"))},
+    {Model_Attachment::BILLSDEPOSIT, wxString(wxTRANSLATE("RecurringTransaction"))},
+    {Model_Attachment::PAYEE, wxString(wxTRANSLATE("Payee"))}
 };
 
 Model_Attachment::Model_Attachment()

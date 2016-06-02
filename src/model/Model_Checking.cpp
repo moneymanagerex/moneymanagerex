@@ -26,18 +26,18 @@
 
 const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES = 
 {
-    std::make_pair(Model_Checking::WITHDRAWAL, wxString(wxTRANSLATE("Withdrawal")))
-    , std::make_pair(Model_Checking::DEPOSIT, wxString(wxTRANSLATE("Deposit")))
-    , std::make_pair(Model_Checking::TRANSFER, wxString(wxTRANSLATE("Transfer")))
+    {Model_Checking::WITHDRAWAL, wxString(wxTRANSLATE("Withdrawal"))}
+    , {Model_Checking::DEPOSIT, wxString(wxTRANSLATE("Deposit"))}
+    , {Model_Checking::TRANSFER, wxString(wxTRANSLATE("Transfer"))}
 };
 
 const std::vector<std::pair<Model_Checking::STATUS_ENUM, wxString> > Model_Checking::STATUS_ENUM_CHOICES =
 {
-    std::make_pair(Model_Checking::NONE, wxTRANSLATE("None"))
-    , std::make_pair(Model_Checking::RECONCILED, wxString(wxTRANSLATE("Reconciled")))
-    , std::make_pair(Model_Checking::VOID_, wxString(wxTRANSLATE("Void")))
-    , std::make_pair(Model_Checking::FOLLOWUP, wxString(wxTRANSLATE("Follow up")))
-    , std::make_pair(Model_Checking::DUPLICATE_, wxString(wxTRANSLATE("Duplicate")))
+    {Model_Checking::NONE, wxTRANSLATE("None")}
+    , {Model_Checking::RECONCILED, wxString(wxTRANSLATE("Reconciled"))}
+    , {Model_Checking::VOID_, wxString(wxTRANSLATE("Void"))}
+    , {Model_Checking::FOLLOWUP, wxString(wxTRANSLATE("Follow up"))}
+    , {Model_Checking::DUPLICATE_, wxString(wxTRANSLATE("Duplicate"))}
 };
 
 Model_Checking::Model_Checking(): Model<DB_Table_CHECKINGACCOUNT_V1>()

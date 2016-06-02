@@ -24,18 +24,18 @@
 
 const std::vector<std::pair<Model_Billsdeposits::TYPE, wxString> > Model_Billsdeposits::TYPE_CHOICES =
 {
-    std::make_pair(Model_Billsdeposits::WITHDRAWAL, wxString(wxTRANSLATE("Withdrawal")))
-    , std::make_pair(Model_Billsdeposits::DEPOSIT, wxString(wxTRANSLATE("Deposit")))
-    , std::make_pair(Model_Billsdeposits::TRANSFER, wxString(wxTRANSLATE("Transfer")))
+    {Model_Billsdeposits::WITHDRAWAL, wxString(wxTRANSLATE("Withdrawal"))}
+    , {Model_Billsdeposits::DEPOSIT, wxString(wxTRANSLATE("Deposit"))}
+    , {Model_Billsdeposits::TRANSFER, wxString(wxTRANSLATE("Transfer"))}
 };
 
 const std::vector<std::pair<Model_Billsdeposits::STATUS_ENUM, wxString> > Model_Billsdeposits::STATUS_ENUM_CHOICES =
 {
-    std::make_pair(Model_Billsdeposits::NONE, wxString(wxTRANSLATE("None")))
-    , std::make_pair(Model_Billsdeposits::RECONCILED, wxString(wxTRANSLATE("Reconciled")))
-    , std::make_pair(Model_Billsdeposits::VOID_, wxString(wxTRANSLATE("Void")))
-    , std::make_pair(Model_Billsdeposits::FOLLOWUP, wxString(wxTRANSLATE("Follow up")))
-    , std::make_pair(Model_Billsdeposits::DUPLICATE_, wxString(wxTRANSLATE("Duplicate")))
+    {Model_Billsdeposits::NONE, wxString(wxTRANSLATE("None"))}
+    , {Model_Billsdeposits::RECONCILED, wxString(wxTRANSLATE("Reconciled"))}
+    , {Model_Billsdeposits::VOID_, wxString(wxTRANSLATE("Void"))}
+    , {Model_Billsdeposits::FOLLOWUP, wxString(wxTRANSLATE("Follow up"))}
+    , {Model_Billsdeposits::DUPLICATE_, wxString(wxTRANSLATE("Duplicate"))}
 };
 
 Model_Billsdeposits::Model_Billsdeposits()
