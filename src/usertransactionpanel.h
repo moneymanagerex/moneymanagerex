@@ -71,6 +71,8 @@ private:
 private:
     void Create();
     void DataToControls();
+    void SetLastPayeeAndCategory(const int account_id);
+
     void OnTransAccountButton(wxCommandEvent& WXUNUSED(event));
     void OnTransCurrencyButton(wxCommandEvent& WXUNUSED(event));
     void OnTransPayeeButton(wxCommandEvent& WXUNUSED(event));
