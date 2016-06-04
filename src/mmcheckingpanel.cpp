@@ -1584,7 +1584,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
         }
         else
         {
-            mmAssetDialog dlg(this, &translink, &checking_entry);
+            mmAssetDialog dlg(this, m_cp->m_frame, &translink, &checking_entry);
             if (dlg.ShowModal() == wxID_OK)
             {
                 refreshVisualList(transaction_id);

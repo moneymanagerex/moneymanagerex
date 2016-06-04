@@ -274,6 +274,8 @@ void UserTransactionPanel::SetLastPayeeAndCategory(const int account_id)
 
             if (Option::instance().TransCategorySelection() == Option::LASTUSED)
             {
+                m_payee_id = last_payee->PAYEEID;
+                m_category_id = last_payee->CATEGID;
                 m_category->SetLabelText(Model_Category::full_name(last_payee->CATEGID, last_payee->SUBCATEGID));
             }
         }
@@ -415,10 +417,14 @@ void UserTransactionPanel::OnAttachments(wxCommandEvent& WXUNUSED(event))
 
 bool UserTransactionPanel::ValidCheckingAccountEntry()
 {
-    if ((m_account_id != -1) && (m_payee_id != -1) && (m_category_id != -1))
+    if ((m_account_id != -1) && (m_payee_id != -1) && (m_category_id != -1) && (!m_entered_amount->GetValue().IsEmpty()))
+    {
         return true;
+    }
     else
+    {
         return false;
+    }
 }
 
 wxDateTime UserTransactionPanel::TransactionDate()
