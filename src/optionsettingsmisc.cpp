@@ -72,25 +72,25 @@ void OptionSettingsMisc::Create()
     wxStaticBoxSizer* transSettingsStaticBoxSizer = new wxStaticBoxSizer(transSettingsStaticBox, wxVERTICAL);
     othersPanelSizer->Add(transSettingsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    wxArrayString defaultValues_;
-    defaultValues_.Add(_("None"));
-    defaultValues_.Add(_("Last Used"));
+    wxArrayString default_values;
+    default_values.Add(_("None"));
+    default_values.Add(_("Last Used"));
 
     wxChoice* defaultDateChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE
-        , wxDefaultPosition, wxSize(140, -1), defaultValues_);
+        , wxDefaultPosition, wxSize(140, -1), default_values);
     defaultDateChoice->SetSelection(Option::instance().TransDateDefault());
 
-    defaultValues_[1] = (_("Last used for payee"));
-    defaultValues_.Add(_("Unused"));
     wxChoice* defaultPayeeChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE
-        , wxDefaultPosition, wxSize(140, -1), defaultValues_);
+        , wxDefaultPosition, wxSize(140, -1), default_values);
     defaultPayeeChoice->SetSelection(Option::instance().TransPayeeSelection());
 
+    default_values[1] = (_("Last used for payee"));
+    default_values.Add(_("Unused"));
     wxChoice* defaultCategoryChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY
-        , wxDefaultPosition, defaultPayeeChoice->GetSize(), defaultValues_);
+        , wxDefaultPosition, defaultPayeeChoice->GetSize(), default_values);
     defaultCategoryChoice->SetSelection(Option::instance().TransCategorySelection());
 
     wxChoice* default_status = new wxChoice(this

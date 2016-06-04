@@ -236,7 +236,7 @@ void UserTransactionPanel::Create()
 void UserTransactionPanel::DataToControls()
 {
     if (!m_checking_entry) return;
-
+        
     wxDateTime trans_date;
     trans_date.ParseDate(m_checking_entry->TRANSDATE);
     TransactionDate(trans_date);
@@ -258,6 +258,26 @@ void UserTransactionPanel::DataToControls()
 
     m_entered_number->SetValue(m_checking_entry->TRANSACTIONNUMBER);
     m_entered_notes->SetValue(m_checking_entry->NOTES);
+}
+
+void UserTransactionPanel::SetLastPayeeAndCategory(const int account_id)
+{
+    if (Option::instance().TransPayeeSelection() == Option::LASTUSED)
+    {
+        Model_Checking::Data_Set trans_list = Model_Checking::instance().find(Model_Checking::ACCOUNTID(account_id));
+        if (!trans_list.empty())
+        {
+            int last_trans_pos = trans_list.size() - 1;
+
+            Model_Payee::Data* last_payee = Model_Payee::instance().get(trans_list.at(last_trans_pos).PAYEEID);
+            m_payee->SetLabelText(last_payee->PAYEENAME);
+
+            if (Option::instance().TransCategorySelection() == Option::LASTUSED)
+            {
+                m_category->SetLabelText(Model_Category::full_name(last_payee->CATEGID, last_payee->SUBCATEGID));
+            }
+        }
+    }
 }
 
 void UserTransactionPanel::OnTransAccountButton(wxCommandEvent& WXUNUSED(event))
@@ -437,6 +457,7 @@ void UserTransactionPanel::SetTransactionAccount(const wxString& trans_account)
     {
         m_account->SetLabelText(account->ACCOUNTNAME);
         m_account_id = account->ACCOUNTID;
+        SetLastPayeeAndCategory(m_account_id);
         Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
         m_trans_currency->SetLabelText(currency->CURRENCY_SYMBOL);
     }
