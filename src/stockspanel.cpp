@@ -195,7 +195,14 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
 
 double StocksListCtrl::GetGainLoss(long item) const
 {
-    return m_stocks[item].NUMSHARES * m_stocks[item].CURRENTPRICE - (m_stocks[item].VALUE + m_stocks[item].COMMISSION);
+    if (m_stocks[item].PURCHASEPRICE == 0)
+    {
+        return m_stocks[item].NUMSHARES * m_stocks[item].CURRENTPRICE - (m_stocks[item].VALUE + m_stocks[item].COMMISSION);
+    }
+    else
+    {
+        return m_stocks[item].NUMSHARES * m_stocks[item].CURRENTPRICE - ((m_stocks[item].NUMSHARES * m_stocks[item].PURCHASEPRICE) + m_stocks[item].COMMISSION);
+    }
 }
 
 void StocksListCtrl::OnListItemSelected(wxListEvent& event)
@@ -248,12 +255,11 @@ void StocksListCtrl::OnListKeyDown(wxListEvent& event)
 
 void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
 {
-    mmStockDialog dlg(this, nullptr, m_stock_panel->m_account_id);
+    mmStockDialog dlg(this, m_stock_panel->m_frame, nullptr, m_stock_panel->m_account_id);
     dlg.ShowModal();
     if (Model_Stock::instance().get(dlg.m_stock_id))
     {
         doRefreshItems(dlg.m_stock_id);
-        m_stock_panel->m_frame->RefreshNavigationTree();
     }
 }
 
@@ -1034,7 +1040,7 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
 void mmStocksPanel::call_dialog(int selectedIndex)
 {
     Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
-    mmStockDialog dlg(this, stock, m_account_id);
+    mmStockDialog dlg(this, m_frame, stock, m_account_id);
     dlg.ShowModal();
     listCtrlAccount_->doRefreshItems(dlg.m_stock_id);
 }

@@ -80,23 +80,6 @@ double Model_Stock::CurrentValue(const Data& r)
     return CurrentValue(&r);
 }
 
-void Model_Stock::UpdateStockHistory(Data* stock, const wxDateTime& current_date)
-{
-    // update stock history table and stock items price/values with same symbol code
-    if (!stock->SYMBOL.IsEmpty())
-    {
-        for (auto st : Model_Stock::instance().find(Model_Stock::SYMBOL(stock->SYMBOL)))
-        {
-            if (st.STOCKID != stock->STOCKID)
-            {
-                st.CURRENTPRICE = stock->CURRENTPRICE;
-                Model_Stock::instance().save(&st);
-            }
-            Model_StockHistory::instance().addUpdate(st.SYMBOL, current_date, st.CURRENTPRICE, Model_StockHistory::MANUAL);
-        }
-    }
-}
-
 /**
 * Remove the Data record from memory and the database.
 * Delete also all stock history

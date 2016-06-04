@@ -33,6 +33,7 @@
 #include "model/Model_Translink.h"
 #include "accountdialog.h"
 #include "sharetransactiondialog.h"
+#include "mmframe.h"
 
 #include <wx/numdlg.h>
 #include <wx/textdlg.h>
@@ -59,9 +60,11 @@ mmStockDialog::mmStockDialog( )
 }
 
 mmStockDialog::mmStockDialog(wxWindow* parent
+    , mmGUIFrame* gui_frame
     , Model_Stock::Data* stock
     , int accountID)
     : m_stock(stock)
+    , m_gui_frame(gui_frame)
     , m_edit(stock ? true: false)
     , m_account_id(accountID)
     , m_stock_name_ctrl(nullptr)
@@ -469,7 +472,7 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, m_stock->STOCKID);
     }
 
-    Model_Stock::UpdateStockHistory(m_stock, m_current_date_ctrl->GetValue());
+    Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, m_current_date_ctrl->GetValue(), m_stock->CURRENTPRICE, Model_StockHistory::MANUAL);
     ShowStockHistory();
 
     Model_Account::Data* share_account = Model_Account::instance().get(m_stock_name_ctrl->GetValue());
@@ -515,6 +518,7 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account)
 
     ShareTransactionDialog share_dialog(this, m_stock);
     share_dialog.ShowModal();
+    m_gui_frame->RefreshNavigationTree();
 }
 
 void mmStockDialog::OnTextEntered(wxCommandEvent& event)

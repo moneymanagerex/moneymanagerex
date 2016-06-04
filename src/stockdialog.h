@@ -24,6 +24,7 @@
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
+class mmGUIFrame;
 
 class mmStockDialog : public wxDialog
 {
@@ -33,6 +34,7 @@ class mmStockDialog : public wxDialog
 public:
     mmStockDialog();
     mmStockDialog(wxWindow* parent
+        , mmGUIFrame* gui_frame
         , Model_Stock::Data* stock
         , int accountID);
 
@@ -80,7 +82,7 @@ private:
     Model_Stock::Data* m_stock;
     bool m_edit;
     int m_account_id;
-
+    mmGUIFrame* m_gui_frame;
     enum
     {
         ID_DPC_STOCK_PDATE = wxID_HIGHEST + 800,
