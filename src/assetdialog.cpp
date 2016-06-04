@@ -124,7 +124,7 @@ void mmAssetDialog::dataToControls()
     m_assetName->SetValue(m_asset->ASSETNAME);
     m_notes->SetValue(m_asset->NOTES);
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
-    m_value->SetValue(m_asset->VALUE);
+    m_value->SetValue(std::abs(m_asset->VALUE));
 
     if (!Model_Translink::TranslinkList(Model_Attachment::ASSET, m_asset->ASSETID).empty())
     {
