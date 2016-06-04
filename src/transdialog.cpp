@@ -653,12 +653,14 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
 {
     wxWindow *w = event.GetWindow();
     if (w)
+    {
         object_in_focus_ = w->GetId();
-
+    }
     m_currency = Model_Currency::GetBaseCurrency();
     wxString accountName = cbAccount_->GetValue();
     wxString toAccountName = cbPayee_->GetValue();
-    for (const auto& acc : Model_Account::instance().all_checking_account_names()){
+    for (const auto& acc : Model_Account::instance().all_checking_account_names())
+    {
         if (acc.CmpNoCase(accountName) == 0) accountName = acc;
         if (acc.CmpNoCase(toAccountName) == 0) toAccountName = acc;
     }
@@ -693,16 +695,22 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
     }
 
     if (object_in_focus_ == textAmount_->GetId())
+    {
         textAmount_->SelectAll();
+    }
     else 
     {
-        if (textAmount_->Calculate()) 
+        if (textAmount_->Calculate())
+        {
             textAmount_->GetDouble(m_trx_data.TRANSAMOUNT);
+        }
         skip_amount_init_ = false;
     }
 
     if (m_advanced && object_in_focus_ == toTextAmount_->GetId())
+    {
         toTextAmount_->SelectAll();
+    }
     else 
     {
         if (toTextAmount_->Calculate())
@@ -842,6 +850,12 @@ void mmTransDialog::setCategoryForPayee(const Model_Payee::Data *payee)
             bCategory_->SetLabelText(fullCategoryName);
             wxLogDebug("Category: %s = %.2f", bCategory_->GetLabel(), m_trx_data.TRANSAMOUNT);
         }
+        else
+        {
+            bCategory_->SetLabelText(_("Select Category"));
+            m_trx_data.CATEGID = -1;
+            m_trx_data.SUBCATEGID = -1;
+        }
     }
 }
 
@@ -873,8 +887,9 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
                 }
             }
             else
+            {
                 m_trx_data.TRANSAMOUNT = 0;
-
+            }
             local_splits.clear();
         }
     }
