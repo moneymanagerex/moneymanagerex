@@ -27,6 +27,7 @@
 #include "model/Model_Attachment.h"
 #include "usertransactionpanel.h"
 #include "accountdialog.h"
+#include "mmframe.h"
 
 #include <wx/valnum.h>
 
@@ -41,8 +42,9 @@ wxBEGIN_EVENT_TABLE( mmAssetDialog, wxDialog )
     EVT_CLOSE(mmAssetDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
-mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset, bool trans_data)
+mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Asset::Data* asset, bool trans_data)
     : m_asset(asset)
+    , m_gui_frame(gui_frame)
     , m_assetName()
     , m_dpc()
     , m_notes()
@@ -54,8 +56,8 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset, bool tr
     , m_hidden_trans_entry(true)
     , m_transfer_entry(nullptr)
     , m_checking_entry(nullptr)
+    , m_dialog_heading (_("New Asset"))
 {
-    m_dialog_heading = _("New Asset");
     if (m_asset || trans_data)
     {
         m_dialog_heading = _("Edit Asset");
@@ -70,8 +72,9 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset, bool tr
     Create(parent, wxID_ANY, m_dialog_heading, wxDefaultPosition, wxSize(400, 300), style);
 }
 
-mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry)
+mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry)
     : m_asset(nullptr)
+    , m_gui_frame(gui_frame)
     , m_assetName()
     , m_dpc()
     , m_notes()
@@ -83,8 +86,8 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Translink::Data* transfer_e
     , m_hidden_trans_entry(false)
     , m_transfer_entry(transfer_entry)
     , m_checking_entry(checking_entry)
+    , m_dialog_heading (_("Add Asset Transaction"))
 {
-    m_dialog_heading = _("Add Asset Transaction");
     if (transfer_entry)
     {
         m_dialog_heading = _("Edit Asset Transaction");
@@ -386,7 +389,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     }
 
     Model_Account::Data* asset_account = Model_Account::instance().get(name);
-    if (is_new && !asset_account)
+    if (!asset_account)
     {
         if (wxMessageBox(_("Asset Account not found.\n\nWould you want to create one?")
             , _("New Asset"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
@@ -421,8 +424,9 @@ void mmAssetDialog::CreateAssetAccount()
 
     mmNewAcctDialog account_dialog(asset_account, this);
     account_dialog.ShowModal();
+    m_gui_frame->RefreshNavigationTree();
 
-    mmAssetDialog asset_dialog(this, m_asset, true);
+    mmAssetDialog asset_dialog(this, m_gui_frame, m_asset, true);
     asset_dialog.SetTransactionAccountName(m_asset->ASSETNAME);
     asset_dialog.SetTransactionDate();
     asset_dialog.ShowModal();

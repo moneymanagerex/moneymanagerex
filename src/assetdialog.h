@@ -23,6 +23,7 @@
 class wxDatePickerCtrl;
 class mmTextCtrl;
 class UserTransactionPanel;
+class mmGUIFrame;
 
 class mmAssetDialog : public wxDialog
 {
@@ -31,8 +32,8 @@ class mmAssetDialog : public wxDialog
 
 public:
     mmAssetDialog(){};
-    mmAssetDialog(wxWindow *parent, Model_Asset::Data* asset, bool trans_data = false);
-    mmAssetDialog(wxWindow *parent, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry);
+    mmAssetDialog(wxWindow *parent, mmGUIFrame* gui_frame, Model_Asset::Data* asset, bool trans_data = false);
+    mmAssetDialog(wxWindow *parent, mmGUIFrame* gui_frame, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry);
 
     Model_Asset::Data* m_asset;
     void SetTransactionAccountName(const wxString& account_name);
@@ -76,6 +77,7 @@ private:
     wxStaticBox* m_transaction_frame;
     UserTransactionPanel* m_transaction_panel;
     wxString m_dialog_heading;
+    mmGUIFrame* m_gui_frame;
 
     enum
     {
