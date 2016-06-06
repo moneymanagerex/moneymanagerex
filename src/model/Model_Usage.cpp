@@ -218,7 +218,7 @@ void Model_Usage::pageview(const std::string& documentPath, const std::string& d
     std::map<std::string, std::string> parameters = {
         {"v", "1"},
         {"t", "pageview"},
-        {"tid", "UA-65654136-2"},
+        {"tid", "UA-51521761-6"},
         {"cid", std::string(uuid().c_str())},
         {"dp", documentPath},
         {"dt", documentTitle},
