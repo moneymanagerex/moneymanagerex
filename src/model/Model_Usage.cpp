@@ -82,10 +82,10 @@ std::wstring Model_Usage::to_string() const
 wxString uuid()
 {
     wxString UUID = Model_Setting::instance().GetStringSetting("UUID", wxEmptyString);
-    if (UUID == wxEmptyString || UUID.length() < wxString("mac_20140428075834").length())
+    if (UUID == wxEmptyString || UUID.length() < wxString("mac_20140428075834123").length())
     {
         wxDateTime now = wxDateTime::Now();
-        UUID = wxString::Format("%s_%s", wxPlatformInfo::Get().GetPortIdShortName(), now.Format("%Y%m%d%H%M%S"));
+        UUID = wxString::Format("%s_%s", wxPlatformInfo::Get().GetPortIdShortName(), now.Format("%Y%m%d%H%M%S%l"));
         Model_Setting::instance().Set("UUID", UUID);
     }
     return UUID;
