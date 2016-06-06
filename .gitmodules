@@ -3,7 +3,7 @@
 	url = https://github.com/utelle/wxsqlite3.git
 [submodule "3rd/mongoose"]
 	path = 3rd/mongoose
-	url = https://github.com/moneymanagerex/mongoose.git
+	url = https://github.com/cesanta/mongoose.git
 [submodule "3rd/LuaGlue"]
 	path = 3rd/LuaGlue
 	url = https://github.com/moneymanagerex/LuaGlue.git

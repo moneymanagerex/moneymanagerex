@@ -25,28 +25,15 @@
 #include "singleton.h"
 #include "model/Model_Setting.h"
 
-std::string event_to_name(enum mg_event ev)
+
+static struct mg_serve_http_opts s_http_server_opts;
+
+static void ev_handler(struct mg_connection *nc, int ev, void *p) 
 {
-    switch (ev)
+    if (ev == MG_EV_HTTP_REQUEST)
     {
-    case MG_POLL:       return "MG_POLL";
-    case MG_CONNECT:    return "MG_CONNECT";
-    case MG_AUTH:       return "MG_AUTH";
-    case MG_REQUEST:    return "MG_REQUEST";
-    case MG_REPLY:      return "MG_REPLY";
-    case MG_CLOSE:      return "MG_CLOSE";
-    case MG_LUA:        return "MG_LUA";
-    case MG_HTTP_ERROR: return "MG_HTTP_ERROR";
-    default:            return "UNKNOWN";
+        mg_serve_http(nc, (struct http_message *) p, s_http_server_opts);
     }
-}
-
-static int ev_handler(struct mg_connection *conn, enum mg_event ev) 
-{
-    wxLogDebug("%s, RUI: %s, TYPE: %s", conn->request_method, conn->uri, event_to_name(ev));
-    if (ev == MG_AUTH) return MG_TRUE;
-
-    return MG_FALSE;
 }
 
 WebServerThread::WebServerThread(): wxThread()
@@ -64,19 +51,27 @@ wxThread::ExitCode WebServerThread::Entry()
     const wxString& strPort = wxString::Format("%d", webserverPort);
 
     // Create and configure the server
-    struct mg_server *server = mg_create_server(nullptr, ev_handler);
-    mg_set_option(server, "listening_port", strPort.mb_str());
-    mg_set_option(server, "document_root", wxFileName(mmex::getReportIndex()).GetPath().mb_str());
-    wxSetWorkingDirectory(mg_get_option(server, "document_root"));
+    struct mg_mgr mgr;
+    struct mg_connection *nc;
+
+    mg_mgr_init(&mgr, NULL);
+    nc = mg_bind(&mgr, strPort.c_str(), ev_handler);
+    
+    mg_set_protocol_http_websocket(nc);
+    std::string document_root(wxFileName(mmex::getReportIndex()).GetPath().c_str());
+    s_http_server_opts.document_root = document_root.c_str();
+    s_http_server_opts.enable_directory_listing = "yes";
+
+    wxSetWorkingDirectory(wxString(s_http_server_opts.document_root));
 
     // Serve requests 
     while (IsAlive())
     {
-        mg_poll_server(server, 1000);
+        mg_mgr_poll(&mgr, 1000);
     }
 
     // Cleanup, and free server instance
-    mg_destroy_server(&server);
+    mg_mgr_free(&mgr);
 
     return (wxThread::ExitCode)0;
 }

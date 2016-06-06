@@ -110,7 +110,7 @@ const wxString mmex::getProgramDescription()
         << wxVERSION_STRING << "\n"
         << "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
         << wxSQLITE3_VERSION_STRING << "\n"
-        << "Mongoose " << MONGOOSE_VERSION << "\n"
+        << "Mongoose " << MG_VERSION << "\n"
         << LUA_VERSION << "\n";
 #if defined(_MSC_VER)
     description << "Microsoft Visual Studio " << _MSC_VER;
