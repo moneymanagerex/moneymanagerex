@@ -27,6 +27,7 @@
 #include "model/Model_Currency.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Translink.h"
+#include "model/Model_Usage.h"
 #include <wx/srchctrl.h>
 
 /*******************************************************/
@@ -360,7 +361,7 @@ BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
 END_EVENT_TABLE()
 /*******************************************************/
 
-mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid)
+mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name)
     : m_filter_type(Model_Asset::TYPE(-1))
     , m_frame(frame)
     , m_listCtrlAssets()
@@ -368,7 +369,7 @@ mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID win
     , header_text_()
     , tips_()
 {
-    Create(parent, winid, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, wxPanelNameStr);
+    Create(parent, winid, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, name);
 }
 
 bool mmAssetsPanel::Create(wxWindow *parent
@@ -396,6 +397,9 @@ bool mmAssetsPanel::Create(wxWindow *parent
     this->windowsFreezeThaw();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
+
+    Model_Usage::instance().pageview(name, name);
+
     return true;
 }
 

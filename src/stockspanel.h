@@ -108,7 +108,7 @@ public:
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = wxPanelNameStr
+        const wxString& name = "mmStocksPanel"
     );
     ~mmStocksPanel();
 
@@ -116,7 +116,7 @@ public:
                  const wxPoint& pos = wxDefaultPosition,
                  const wxSize& size = wxDefaultSize,
                  long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                 const wxString& name = wxPanelNameStr);
+                 const wxString& name = "mmStocksPanel");
 
     void CreateControls();
 

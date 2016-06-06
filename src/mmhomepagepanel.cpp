@@ -38,6 +38,7 @@ Copyright (C) 2014 Nikolay
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Category.h"
 #include "model/Model_Translink.h"
+#include "model/Model_Usage.h"
 
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
@@ -506,13 +507,15 @@ bool mmHomePagePanel::Create(wxWindow *parent
     , const wxString& name)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    wxPanel::Create(parent, winid, pos, size, style, name);
+    wxPanelBase::Create(parent, winid, pos, size, style, name);
 
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
     createHTML();
+
+    Model_Usage::instance().pageview(name, name);
 
     return TRUE;
 }

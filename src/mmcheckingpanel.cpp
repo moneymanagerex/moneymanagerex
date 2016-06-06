@@ -39,6 +39,7 @@
 #include "model/Model_Category.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_Translink.h"
+#include "model/Model_Usage.h"
 #include "sharetransactiondialog.h"
 #include "assetdialog.h"
 #include "billsdepositsdialog.h"
@@ -144,6 +145,8 @@ bool mmCheckingPanel::Create(
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     this->windowsFreezeThaw();
+
+    Model_Usage::instance().pageview(name, name);
 
     return true;
 }

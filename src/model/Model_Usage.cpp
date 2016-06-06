@@ -23,9 +23,11 @@
 #include "paths.h"
 #include <wx/platinfo.h>
 #include <wx/intl.h>
+#include "mongoose/mongoose.h"
 
 Model_Usage::Model_Usage()
 : Model<DB_Table_USAGE_V1>()
+, m_end(false)
 {
 }
 
@@ -175,4 +177,86 @@ bool Model_Usage::send(const Data* r)
 bool Model_Usage::send(const Data& r)
 {
     return send(&r);
+}
+
+void Model_Usage::ev_handler(struct mg_connection *nc, int ev, void *ev_data)
+{
+    struct http_message *hm = (struct http_message *) ev_data;
+    Model_Usage* usage = (Model_Usage*)nc->mgr->user_data;
+    int connect_status;
+
+    switch (ev)
+    {   
+        case MG_EV_CONNECT:
+            connect_status = * (int *) ev_data;
+            if (connect_status != 0)
+            {
+                usage->m_end = true; 
+            }
+            break;
+        case MG_EV_HTTP_REPLY:
+            printf("Got reply:\n%.*s\n", (int) hm->body.len, hm->body.p);
+            nc->flags |= MG_F_SEND_AND_CLOSE;
+            usage->m_end = true;
+            break;
+        default:
+            break;
+    }
+}
+
+void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle)
+{
+    return pageview(std::string(documentPath.c_str()), std::string(documentTitle.c_str()));
+}
+
+void Model_Usage::pageview(const std::string& documentPath, const std::string& documentTitle)
+{
+    static std::string GA_URL_ENDPOINT = "http://www.google-analytics.com/collect?";
+
+    std::string url = GA_URL_ENDPOINT;
+
+    std::map<std::string, std::string> parameters = {
+        {"v", "1"},
+        {"t", "pageview"},
+        {"tid", "UA-65654136-2"},
+        {"cid", std::string(uuid().c_str())},
+        {"dp", documentPath},
+        {"dt", documentTitle},
+//        {"geoid", },
+        {"ul", std::string(Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english").c_str())}
+    };
+
+    for (const auto & kv : parameters)
+    {
+        if (kv.second.empty()) continue;
+        url += kv.first + "=" + kv.second + "&";
+    }
+
+    url.back() = ' '; // override the last &
+
+    std::cout<<url<<std::endl;
+
+    struct mg_mgr mgr;
+    struct mg_connection *nc;
+
+    mg_mgr_init(&mgr, this);
+
+    nc = mg_connect_http(&mgr, Model_Usage::ev_handler, url.c_str(), NULL, NULL); // GET
+
+    mg_set_protocol_http_websocket(nc);
+
+	time_t ts_start = time(NULL);
+	time_t ts_end = ts_start;
+    this->m_end = false;
+
+    while(!this->m_end)
+    {
+ 		if ((ts_end - ts_start) > 1) // 1 sec
+		{
+			std::cout << "timeout" << std::endl;
+			break;
+		}
+		ts_end = mg_mgr_poll(&mgr, 1000);
+    }
+    mg_mgr_free(&mgr);
 }

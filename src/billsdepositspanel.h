@@ -77,7 +77,7 @@ public:
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxTAB_TRAVERSAL | wxNO_BORDER
-        , const wxString& name = wxPanelNameStr
+        , const wxString& name = "mmBillsDepositsPanel" 
     );
     ~mmBillsDepositsPanel();
 
@@ -104,7 +104,7 @@ private:
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = wxPanelNameStr);
+        const wxString& name = "mmBillsDepositsPanel");
 
     /* Event handlers for Buttons */
     void OnNewBDSeries(wxCommandEvent& event);

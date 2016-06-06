@@ -310,7 +310,7 @@ private:
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = wxPanelNameStr
+        const wxString& name = "mmCheckingPanel" 
     );
     void enableEditDeleteButtons(bool en);
 

@@ -36,14 +36,14 @@ public:
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = wxPanelNameStr);
+        const wxString& name = "mmReportsPanel");
     ~mmReportsPanel();
 
     bool Create(wxWindow *parent, wxWindowID winid,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = wxPanelNameStr);
+        const wxString& name = "mmReportsPanel");
 
     void CreateControls();
     void sortTable() {}

@@ -78,7 +78,7 @@ class mmAssetsPanel : public mmPanelBase
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid);
+    mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name="mmAssetsPanel");
     mmGUIFrame* m_frame;
 
     void updateExtraAssetData(int selIndex);

@@ -35,7 +35,7 @@ public:
                  const wxPoint& pos = wxDefaultPosition,
                  const wxSize& size = wxDefaultSize,
                  long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                 const wxString& name = wxPanelNameStr );
+                 const wxString& name = "mmHelpPanel");
 
     wxString BuildPage() const { return ""; }
     void PrintPage();
@@ -49,7 +49,7 @@ private:
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxTAB_TRAVERSAL | wxNO_BORDER
-        , const wxString& name = wxPanelNameStr);
+        , const wxString& name = "mmHelpPanel");
 
     void CreateControls();
     virtual void sortTable();

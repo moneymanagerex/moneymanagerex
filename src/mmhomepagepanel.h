@@ -38,13 +38,13 @@ public:
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = wxPanelNameStr);
+        const wxString& name = "mmHomePagePanel");
 
     bool Create(wxWindow *parent, wxWindowID winid,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = wxPanelNameStr);
+        const wxString& name = "mmHomePagePanel");
 
     ~mmHomePagePanel();
 

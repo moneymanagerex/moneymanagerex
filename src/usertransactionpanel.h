@@ -41,7 +41,7 @@ public:
         , const wxPoint &pos = wxDefaultPosition
         , const wxSize &size = wxDefaultSize
         , long style = wxTAB_TRAVERSAL
-        , const wxString &name = wxPanelNameStr);
+        , const wxString &name = "UserTransactionPanel");
 
     ~UserTransactionPanel();
 
