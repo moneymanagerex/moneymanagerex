@@ -16,6 +16,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#ifdef __WXMSW__
+#define WIN32_LEAN_AND_MEAN
+#endif
+
 #include "Model_Usage.h"
 #include "Model_Setting.h"
 #include "util.h"
