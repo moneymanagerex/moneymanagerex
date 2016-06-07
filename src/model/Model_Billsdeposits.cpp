@@ -18,9 +18,13 @@
 
 #include "Model_Billsdeposits.h"
 #include "option.h"
-#include "Model_Category.h"
 #include "Model_Account.h"
+#include "Model_Attachment.h"
+#include "Model_Category.h"
 #include "Model_Payee.h"
+
+/* TODO: Move attachment management outside of attachmentdialog */
+#include "attachmentdialog.h"
 
 const std::vector<std::pair<Model_Billsdeposits::TYPE, wxString> > Model_Billsdeposits::TYPE_CHOICES =
 {
@@ -327,7 +331,10 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
         save(bill);
 
         if (bill->NUMOCCURRENCES == REPEAT_TYPE::REPEAT_NONE)
+        {
+            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), bdID);
             remove(bdID);
+        }
     }
 }
 
