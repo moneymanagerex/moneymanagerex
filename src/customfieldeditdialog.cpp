@@ -91,7 +91,7 @@ void mmCustomFieldEditDialog::dataToControls()
 
         wxString Choiches = wxEmptyString;
         wxArrayString ArrChoiches = Model_CustomField::getChoiches(m_field->PROPERTIES);
-        for (int i = 0; i < ArrChoiches.size(); i++)
+        for (size_t i = 0; i < ArrChoiches.size(); i++)
         {
             Choiches << ArrChoiches[i] << ";";
         }

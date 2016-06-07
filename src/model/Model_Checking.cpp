@@ -378,7 +378,7 @@ wxString Model_Checking::Full_Data::info() const
 void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int accountID)
 {
     frequentNotes.clear();
-    int max = 20;
+    size_t max = 20;
 
     const auto notes = instance().find(NOTES("", NOT_EQUAL)
         , accountID > 0 ? ACCOUNTID(accountID) : ACCOUNTID(-1, NOT_EQUAL));
