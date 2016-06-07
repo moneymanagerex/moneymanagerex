@@ -33,6 +33,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Category.h"
 #include "model/Model_Checking.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_Usage.h"
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(UserTransactionPanel, wxPanel)
@@ -67,6 +68,7 @@ UserTransactionPanel::UserTransactionPanel(wxWindow *parent
     wxPanel::Create(parent, win_id, pos, size, style, name);
     Create();
     DataToControls();
+    Model_Usage::instance().pageview(name, name);
 }
 
 UserTransactionPanel::~UserTransactionPanel()

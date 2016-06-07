@@ -32,6 +32,7 @@
 #include "model/Model_StockHistory.h"
 #include "model/Model_Translink.h"
 #include "model/Model_Shareinfo.h"
+#include "model/Model_Usage.h"
 
 static const wxString STOCKTIPS[] = { 
     wxTRANSLATE("Using MMEX it is possible to track stocks/mutual funds investments."),
@@ -518,6 +519,7 @@ bool mmStocksPanel::Create(wxWindow *parent
     GetSizer()->SetSizeHints(this);
 
     this->windowsFreezeThaw();
+    Model_Usage::instance().pageview(name, name);
     return TRUE;
 }
 

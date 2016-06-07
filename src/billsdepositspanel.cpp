@@ -27,6 +27,7 @@
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Usage.h"
 
 enum
 {
@@ -192,6 +193,7 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
     initVirtualListControl();
 
     this->windowsFreezeThaw();
+    Model_Usage::instance().pageview(name, name);
 
     return TRUE;
 }

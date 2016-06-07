@@ -22,6 +22,7 @@
 #include "constants.h"
 #include "mmex.h"
 #include "mmframe.h"
+#include "model/Model_Usage.h"
 
 BEGIN_EVENT_TABLE(mmHelpPanel, wxPanel)
     EVT_BUTTON(wxID_BACKWARD, mmHelpPanel::OnHelpPageBack)
@@ -44,6 +45,7 @@ bool mmHelpPanel::Create( wxWindow *parent, wxWindowID winid,
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
+    Model_Usage::instance().pageview(name, name);
 
     return TRUE;
 }
