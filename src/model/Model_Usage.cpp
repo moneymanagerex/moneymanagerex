@@ -227,7 +227,12 @@ void Model_Usage::pageview(const std::string& documentPath, const std::string& d
         {"dp", documentPath},
         {"dt", documentTitle},
 //        {"geoid", },
-        {"ul", std::string(Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english").c_str())}
+        {"ul", std::string(Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english").c_str())},
+        {"sr", std::string(wxString::Format("%ix%i", wxGetDisplaySize().GetX(), wxGetDisplaySize().GetY()).c_str())},
+        {"vp", ""},
+        {"sd", ""},
+        // application
+        {"av", ""}, // application version
     };
 
     for (const auto & kv : parameters)
