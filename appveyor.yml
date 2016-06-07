@@ -19,7 +19,7 @@ install:
 # wxWidgets
 - cmd: IF %PLATFORM%==x64 (SET WXLIBFOLDER=vc_x64_lib) ELSE (SET WXLIBFOLDER=vc_lib)
 ## REMOVE BELOW COMMENT TO CLEANUP CACHE WHEN WXWIDGETS UPGRADED
-#- cmd: DEL %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip /F /Q
+- cmd: DEL %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip /F /Q
 - cmd: git clone https://github.com/wxWidgets/wxWidgets.git %WXWIN%
 - cmd: cd %WXWIN%
 - cmd: git checkout tags/v3.1.0
@@ -27,8 +27,6 @@ install:
 - cmd: IF EXIST %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (7z x %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip -o%WXWIN%\lib\%WXLIBFOLDER%)
 - cmd: >-
     IF NOT EXIST %WXWIN%\lib\%WXLIBFOLDER% msbuild "%WXWIN%\build\msw\wx_vc12.sln" /m /p:wxUSE_IPV6=1 /p:Configuration=Release /p:Platform="%PLATFORM%" /verbosity:quiet /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-- cmd: >-
-    msbuild "%WXWIN%\build\msw\wx_vc12.sln" /m /p:wxUSE_IPV6=1 /p:Configuration=Release /p:Platform="%PLATFORM%" /verbosity:quiet /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 - cmd: IF NOT EXIST %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (7z a %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip %WXWIN%\lib\%WXLIBFOLDER%\*)
 # MMEX
 - cmd: cd %APPVEYOR_BUILD_FOLDER%
