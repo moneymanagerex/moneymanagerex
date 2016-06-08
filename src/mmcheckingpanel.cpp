@@ -1124,7 +1124,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.Append(MENU_SUBMENU_MARK_ALL, _("Mark all being viewed"), subGlobalOpMenu);
 
     // Disable menu items not ment for foreign transactions
-    if (Model_Checking::foreignTransaction(m_cp->m_trans.at(m_selectedIndex)))
+    if (!is_foreign)
     {
         menu.Enable(MENU_ON_COPY_TRANSACTION, false);
         menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
