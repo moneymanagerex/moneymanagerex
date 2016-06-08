@@ -68,7 +68,7 @@ UserTransactionPanel::UserTransactionPanel(wxWindow *parent
     wxPanel::Create(parent, win_id, pos, size, style, name);
     Create();
     DataToControls();
-    Model_Usage::instance().pageview(name, name);
+    Model_Usage::instance().pageview(this);
 }
 
 UserTransactionPanel::~UserTransactionPanel()

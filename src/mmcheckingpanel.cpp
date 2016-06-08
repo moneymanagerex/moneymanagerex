@@ -146,7 +146,7 @@ bool mmCheckingPanel::Create(
     GetSizer()->SetSizeHints(this);
     this->windowsFreezeThaw();
 
-    Model_Usage::instance().pageview(name, name);
+    Model_Usage::instance().pageview(this);
 
     return true;
 }

@@ -24,6 +24,7 @@
 #include <wx/statline.h>
 #include <wx/version.h>
 #include <wx/wxsqlite3.h>
+#include "model/Model_Usage.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmAboutDialog, wxDialog);
 
@@ -69,6 +70,8 @@ bool mmAboutDialog::Create(wxWindow* parent
         this->SetIcon(mmex::getProgramIcon());
         this->Centre();
     }
+
+    Model_Usage::instance().pageview(this);
 
     return ok;
 }

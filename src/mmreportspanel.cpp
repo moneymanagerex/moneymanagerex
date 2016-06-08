@@ -166,7 +166,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     else
         browser_->SetPage(error, "");
 
-    Model_Usage::instance().pageview(name, name);
+    Model_Usage::instance().pageview(this);
 
     return TRUE;
 }

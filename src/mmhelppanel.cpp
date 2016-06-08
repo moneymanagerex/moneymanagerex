@@ -45,7 +45,7 @@ bool mmHelpPanel::Create( wxWindow *parent, wxWindowID winid,
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
-    Model_Usage::instance().pageview(name, name);
+    Model_Usage::instance().pageview(this);
 
     return TRUE;
 }

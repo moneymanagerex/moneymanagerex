@@ -64,6 +64,7 @@ public:
     static void ev_handler(struct mg_connection *nc, int ev, void *ev_data);
     void pageview(const std::string& documentPath, const std::string& documentTitle);
     void pageview(const wxString& documentPath, const wxString& documentTitle);
+    void pageview(const wxWindow* window);
 };
 
 #endif // 

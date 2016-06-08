@@ -398,7 +398,7 @@ bool mmAssetsPanel::Create(wxWindow *parent
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    Model_Usage::instance().pageview(name, name);
+    Model_Usage::instance().pageview(this);
 
     return true;
 }

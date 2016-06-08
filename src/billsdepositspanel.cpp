@@ -193,7 +193,7 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
     initVirtualListControl();
 
     this->windowsFreezeThaw();
-    Model_Usage::instance().pageview(name, name);
+    Model_Usage::instance().pageview(this);
 
     return TRUE;
 }

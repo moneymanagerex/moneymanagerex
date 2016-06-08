@@ -208,6 +208,22 @@ void Model_Usage::ev_handler(struct mg_connection *nc, int ev, void *ev_data)
     }
 }
 
+void Model_Usage::pageview(const wxWindow* window)
+{
+    if (!window) return;
+
+    const wxWindow *current = window;
+
+    wxString documentPath;
+    while (current)
+    {
+       documentPath = "/" + current->GetName() + documentPath; 
+       current = current->GetParent();
+    }
+
+    return pageview(documentPath, window->GetName());
+}
+
 void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle)
 {
     return pageview(std::string(documentPath.c_str()), std::string(documentTitle.c_str()));

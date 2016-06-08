@@ -107,7 +107,7 @@ bool mmBudgetingPanel::Create(wxWindow *parent
         listCtrlBudget_->EnsureVisible(0);
 
     this->windowsFreezeThaw();
-    Model_Usage::instance().pageview(name, name);
+    Model_Usage::instance().pageview(this);
     return TRUE;
 }
 
