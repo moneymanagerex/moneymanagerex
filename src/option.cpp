@@ -84,6 +84,7 @@ void Option::LoadOptions(bool include_infotable)
     m_transCategorySelection = Model_Setting::instance().GetIntSetting("TRANSACTION_CATEGORY_NONE", Option::LASTUSED);
     m_transStatusReconciled = Model_Setting::instance().GetIntSetting("TRANSACTION_STATUS_RECONCILED", Option::NONE);
     m_transDateDefault = Model_Setting::instance().GetIntSetting("TRANSACTION_DATE_DEFAULT", 0);
+    m_usageStatistics = Model_Setting::instance().GetBoolSetting(INIDB_SEND_USAGE_STATS, true);
 
     m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", 100);
     m_ico_size = 16;
@@ -282,6 +283,17 @@ void Option::TransDateDefault(int value)
 int Option::TransDateDefault()
 {
     return m_transDateDefault;
+}
+
+void Option::SendUsageStatistics(bool value)
+{
+    m_usageStatistics = value;
+    Model_Setting::instance().Set(INIDB_SEND_USAGE_STATS, value);
+}
+
+bool Option::SendUsageStatistics()
+{
+    return m_usageStatistics;
 }
 
 void Option::HtmlFontSize(int value)

@@ -28,6 +28,7 @@
 #include <wx/platinfo.h>
 #include <wx/intl.h>
 #include "mongoose/mongoose.h"
+#include "option.h"
 
 Model_Usage::Model_Usage()
 : Model<DB_Table_USAGE_V1>()
@@ -132,7 +133,7 @@ bool Model_Usage::send(const Data* r)
     url += wxString::Format("OperatingSystem=%s", wxGetOsDescription());
 
     //Language
-    wxString Language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
+    wxString Language = Option::instance().Language();
     if (Language.IsEmpty())
         Language = "english";
     url += "&";
@@ -231,6 +232,11 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
 
 void Model_Usage::pageview(const std::string& documentPath, const std::string& documentTitle)
 {
+    if (!Option::instance().SendUsageStatistics())
+    {
+        return;
+    }
+
     static std::string GA_URL_ENDPOINT = "http://www.google-analytics.com/collect?";
 
     std::string url = GA_URL_ENDPOINT;
@@ -243,7 +249,7 @@ void Model_Usage::pageview(const std::string& documentPath, const std::string& d
         {"dp", documentPath},
         {"dt", documentTitle},
 //        {"geoid", },
-        {"ul", std::string(Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english").c_str())},
+        {"ul", std::string(Option::instance().Language())},
         {"sr", std::string(wxString::Format("%ix%i", wxGetDisplaySize().GetX(), wxGetDisplaySize().GetY()).c_str())},
         {"vp", ""},
         {"sd", ""},

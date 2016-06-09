@@ -296,7 +296,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     if (Model_Setting::instance().GetStringSetting(INIDB_SEND_USAGE_STATS, "") == "")
     {
         mmAboutDialog(this, 5).ShowModal();
-        Model_Setting::instance().Set(INIDB_SEND_USAGE_STATS, "TRUE");
+        Option::instance().SendUsageStatistics(true);
     }
 
     //Check for new version at startup

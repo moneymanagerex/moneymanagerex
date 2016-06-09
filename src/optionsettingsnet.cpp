@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "optionsettingsnet.h"
 #include "constants.h"
+#include "option.h"
 
 #include <wx/hyperlink.h>
 #include <wx/spinctrl.h>
@@ -135,7 +136,7 @@ void OptionSettingsNet::Create()
 
     m_send_data = new wxCheckBox(this, wxID_ANY
         , _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_send_data->SetValue(GetIniDatabaseCheckboxValue(INIDB_SEND_USAGE_STATS, true));
+    m_send_data->SetValue(Option::instance().SendUsageStatistics());
     m_send_data->SetToolTip(_("Enable to help us sending anonymous data about MMEX usage."));
 
     usageStaticBoxSizer->Add(m_send_data, g_flagsV);
@@ -218,7 +219,7 @@ void OptionSettingsNet::SaveSettings()
     Model_Setting::instance().Set("ENABLEWEBSERVER", m_webserver_checkbox->GetValue());
     Model_Setting::instance().Set("WEBSERVERPORT", m_webserver_port->GetValue());
 
-    Model_Setting::instance().Set(INIDB_SEND_USAGE_STATS, m_send_data->GetValue());
+    Option::instance().SendUsageStatistics(m_send_data->GetValue());
 
     Model_Setting::instance().Set("NETWORKTIMEOUT", m_network_timeout->GetValue());
 
