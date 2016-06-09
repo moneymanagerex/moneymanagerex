@@ -93,6 +93,9 @@ public:
     void TransDateDefault(int value);
     int TransDateDefault();
 
+    void SendUsageStatistics(bool value);
+    bool SendUsageStatistics();
+
     /* stored value in percantage for scale html font and other objects */
     void HtmlFontSize(int value);
     int HtmlFontSize();
@@ -121,6 +124,7 @@ private:
     int m_transCategorySelection;
     int m_transStatusReconciled;
     int m_transDateDefault;
+    bool m_usageStatistics;
 
     int m_html_font_size;
     int m_ico_size;
