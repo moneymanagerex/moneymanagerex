@@ -114,7 +114,9 @@ void mmGUIApp::HandleEvent(wxEvtHandler *handler, wxEventFunction func, wxEvent&
 
 int mmGUIApp::FilterEvent(wxEvent &event)
 {
-    if (event.GetEventType() == wxEVT_CREATE)
+    int ret = wxApp::FilterEvent(event);
+
+    if (event.GetEventType() == wxEVT_SHOW)
     {
         wxWindow *win = (wxWindow*)event.GetEventObject();
 
@@ -124,7 +126,7 @@ int mmGUIApp::FilterEvent(wxEvent &event)
         }
     }
 
-    return wxApp::FilterEvent(event);
+    return ret;
 }
 
 //----------------------------------------------------------------------------

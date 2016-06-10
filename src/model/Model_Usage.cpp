@@ -216,6 +216,9 @@ void Model_Usage::pageview(const wxWindow* window)
 
     const wxWindow *current = window;
 
+    wxString documentTitle = window->GetLabel();
+    if (documentTitle.IsEmpty()) documentTitle = window->GetName();
+
     wxString documentPath;
     while (current)
     {
@@ -228,7 +231,7 @@ void Model_Usage::pageview(const wxWindow* window)
         current = current->GetParent();
     }
 
-    return pageview(wxURI(documentPath).BuildURI(), wxURI(window->GetName()).BuildURI());
+    return pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI());
 }
 
 void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle)
