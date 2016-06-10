@@ -212,17 +212,23 @@ void Model_Usage::ev_handler(struct mg_connection *nc, int ev, void *ev_data)
 void Model_Usage::pageview(const wxWindow* window)
 {
     if (!window) return;
+    if (window->GetName().IsEmpty()) return;
 
     const wxWindow *current = window;
 
     wxString documentPath;
     while (current)
     {
-       documentPath = "/" + current->GetName() + documentPath; 
-       current = current->GetParent();
+        if (current->GetName().IsEmpty())
+        {
+            current = current->GetParent();
+            continue;
+        }
+        documentPath = "/" + current->GetName() + documentPath; 
+        current = current->GetParent();
     }
 
-    return pageview(documentPath, window->GetName());
+    return pageview(wxURI(documentPath).BuildURI(), wxURI(window->GetName()).BuildURI());
 }
 
 void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle)
@@ -282,7 +288,7 @@ void Model_Usage::pageview(const std::string& documentPath, const std::string& d
 
     while(!this->m_end)
     {
- 		if ((ts_end - ts_start) > 1) // 1 sec
+		if ((ts_end - ts_start) >= 1) // 1 sec
 		{
 			std::cout << "timeout" << std::endl;
 			break;

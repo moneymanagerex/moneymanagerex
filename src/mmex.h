@@ -47,6 +47,9 @@ private:
     int OnExit();
     void OnFatalException(); // called when a crash occurs in this application
     void HandleEvent(wxEvtHandler *handler, wxEventFunction func, wxEvent& event) const;
+
+public:
+    virtual int FilterEvent(wxEvent& event);
 };
 
 //----------------------------------------------------------------------------

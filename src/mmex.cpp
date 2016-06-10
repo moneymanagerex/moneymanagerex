@@ -111,6 +111,22 @@ void mmGUIApp::HandleEvent(wxEvtHandler *handler, wxEventFunction func, wxEvent&
         wxLogError("%s", e.what());
     }
 }
+
+int mmGUIApp::FilterEvent(wxEvent &event)
+{
+    if (event.GetEventType() == wxEVT_CREATE)
+    {
+        wxWindow *win = (wxWindow*)event.GetEventObject();
+
+        if (win && win->IsTopLevel()) // wxDialog & wxFrame http://docs.wxwidgets.org/trunk/classwx_top_level_window.html
+        {
+            Model_Usage::instance().pageview(win);
+        }
+    }
+
+    return wxApp::FilterEvent(event);
+}
+
 //----------------------------------------------------------------------------
 
 void mmGUIApp::OnFatalException()
