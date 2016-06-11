@@ -54,6 +54,8 @@ public:
         Model_Splittransaction::Data_Set m_splits;
         wxString real_payee_name(int account_id) const;
         bool has_split() const;
+        bool is_foreign() const;
+        bool is_foreign_transfer() const;
 
         wxString info() const;
         const wxString to_json();

@@ -367,6 +367,16 @@ bool Model_Checking::Full_Data::has_split() const
     return !this->m_splits.empty();
 }
 
+bool Model_Checking::Full_Data::is_foreign() const
+{
+    return (this->TOACCOUNTID > 0) && ((this->TRANSCODE == all_type()[DEPOSIT]) || (this->TRANSCODE == all_type()[WITHDRAWAL]));
+}
+
+bool Model_Checking::Full_Data::is_foreign_transfer() const
+{
+    return is_foreign() && (this->TOACCOUNTID == Model_Translink::AS_TRANSFER);
+}
+
 wxString Model_Checking::Full_Data::info() const
 {
     // TODO more info

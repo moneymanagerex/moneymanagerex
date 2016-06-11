@@ -98,7 +98,7 @@ wxString mmReportTransactions::getHTMLText()
         hb.addTableCell(transaction.CATEGNAME);
         if (Model_Checking::foreignTransactionAsTransfer(transaction))
         {
-            hb.addTableCell(wxGetTranslation(transaction.TRANSCODE) + " *T");
+            hb.addTableCell("< " + wxGetTranslation(transaction.TRANSCODE));
         }
         else
         {

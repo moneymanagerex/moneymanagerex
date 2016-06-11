@@ -781,9 +781,9 @@ const wxString mmCheckingPanel::getItem(long item, long column)
     case TransactionListCtrl::COL_CATEGORY:
         return tran.CATEGNAME;
     case TransactionListCtrl::COL_PAYEE_STR:
-        return tran.PAYEENAME;
+        return tran.is_foreign_transfer() ? "< " + tran.PAYEENAME : tran.PAYEENAME;
     case TransactionListCtrl::COL_STATUS:
-        return tran.STATUS;
+        return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
     case TransactionListCtrl::COL_WITHDRAWAL:
         return tran.AMOUNT <= 0 ? Model_Currency::toString(std::fabs(tran.AMOUNT), this->m_currency) : "";
     case TransactionListCtrl::COL_DEPOSIT:
@@ -1281,6 +1281,8 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
     {
         res = ICON_NONE;
         wxString status = m_cp->getItem(item, COL_STATUS);
+        if (status.length() > 1)
+            status = status.Mid(2, 1);
         if ( status == "F")
             res = ICON_FOLLOWUP;
         else if (status == "R")

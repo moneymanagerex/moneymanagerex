@@ -256,7 +256,13 @@ void mmAssetDialog::CreateControls()
     /********************************************************************
     Asset Transaction Panel
     *********************************************************************/
-    m_transaction_frame = new wxStaticBox(this, wxID_ANY, _("New Transaction Details"));
+    wxString trans_frame_heading = _("New Transaction Details");
+    if (m_checking_entry)
+    {
+        trans_frame_heading = _("Edit Transaction Details");
+    }
+
+    m_transaction_frame = new wxStaticBox(this, wxID_ANY, trans_frame_heading);
     wxStaticBoxSizer* transaction_frame_sizer = new wxStaticBoxSizer(m_transaction_frame, wxVERTICAL);
     right_sizer->Add(transaction_frame_sizer, g_flagsV);
 
