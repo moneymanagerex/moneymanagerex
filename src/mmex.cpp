@@ -120,7 +120,7 @@ int mmGUIApp::FilterEvent(wxEvent &event)
     {
         wxWindow *win = (wxWindow*)event.GetEventObject();
 
-        if (win && win->IsTopLevel()) // wxDialog & wxFrame http://docs.wxwidgets.org/trunk/classwx_top_level_window.html
+        if (win && win->IsTopLevel() && win != this->m_frame) // wxDialog & wxFrame http://docs.wxwidgets.org/trunk/classwx_top_level_window.html
         {
             Model_Usage::instance().pageview(win);
         }
