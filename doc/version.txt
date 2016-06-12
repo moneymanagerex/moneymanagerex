@@ -1,13 +1,52 @@
 Version History of Money Manager Ex
 
-1.3.0 (TBA)
-- 
+1.3.0 (Jul 17, 2016)
+- New: Database upgrade management.
+- New: Enhanced visual effects using new Icons.
+- New: Reports upgrade providing improved date range support.
+- New: Account types: Cash, Loan.
+- New: Introduction of Custom Fields for transactions
+- New: Stocks & Shares Management upgrade using Share Accounts.
+- New: Asset Management Upgrade using Asset Accounts.
+- Fix: General bug fixex and documentation updates.
 
-1.2.4 (Nov 14, 2015)
+1.2.7 (Apr 14, 2016)
+- Fix: Italian translation updated
+- Fix: Russian translation updated
+- Fix: Help files updated
+- Fix: Validate math expressions (Issue #659)
+- Fix: Items in Navigation keep disappearing in Ubuntu and MacOS (Issue #658)
+- Fix: Transactions color tag is lost in some specific case (Issue #788)
+- Fix: Minor fixes
+
+1.2.6 (Mar 6, 2016)
+- Fix: OK the default when entering a transaction (Issue #676)
+- Fix: most recent notes (Issue #677)
+- Fix: Fraction part may get lost after opening transaction for edit (Issue #690)
+- Fix: Grand Total missing stocks
+- Fix: Hebrew translation updated
+- Fix: Transaction Report formatting (Issue #717)
+- Fix: Monthly Summary of Accounts Report (Issue #610)
+- Fix: Minor fixes
+
+1.2.5 (Jan 26, 2016)
+- Fix: Portuguese_br translation updated
+- Fix: Split transaction not allowed ENTER Key or ARITMETIC EXPRESSIONS (Issue #648)
+- Fix: Monthly Summary of Accounts Report deleted (Issue #610)
+- Fix: QIF import fixes (Issue #617)
+- Fix: Cash account type added for android synchronisation (Issue #455)
+- Fix: Minor fixes
+
+1.2.4 (Dec 21, 2015)
 - New: Japanese translation added
+- Fix: Italiano translation updated
+- Fix: Home Page folder path fix
+- Fix: Speedup
+- Fix: QIF import fixes
+- Fix: CMD + C on OS X causes MMEX popup window to close (Issue #769)
 
 1.2.3 (Nov 4, 2015)
-- Translations update
+- Fix: Translations update
 - Fix: Assertion 'datetime failed'  (Issue #536)
 - Fix: Delete currency (Issue #569)
 - Fix: Add attachments on duplicate transaction (Issue #570)

@@ -9,7 +9,7 @@ Gabriele         [gabriele-v]
 =======================================
 ##Translations
 Brazilian Portuguese
--- Jose Carlos
+-- Jose Carlos, Daniel Cunha de Almeida
 Bulgarian
 -- Ivan Gyokov, Poltargaista
 Croatian
@@ -46,11 +46,14 @@ Indonesian
 Italian
 -- Maurizio [Mau13]
 -- Claudio
+Lithuanian
+-- akmc
 Norwegian
 -- Fredrik Strand, Torbjorn Kvande
 Polish
 -- Damian_pl
--- Andrzej 
+-- Andrzej
+-- Jerzy Machnicki 
 Portuguese (Portugal)
 -- Fatela
 Romanian
@@ -108,6 +111,38 @@ http://www.famfamfam.com/lab/icons/silk
 
 ---------------------------------------
 ##Sponsors
+2016
+1. Fabio Giorgieri
+2. BRET ADAMS
+3. Vic Forte
+4. Osman Goni
+5. Veli tokmen
+6. Dorothy Dean
+7. CARLOS MARTIN RECIO
+8. Garry Smith
+9. Angela Ruyle
+10. Gisèle Turcotte
+11. Sihar Simbolon
+12. Jesus Pinto Cosgaya
+13. Ian Shaw
+14. ĽUBOMÍR NIKOLÍNI
+15. Michael Sirna
+16. Random Netzley
+17. James Mork
+18. Csaba Bihari
+19. Pedro Pires
+20. Thomas Crawley
+21. Massimo BORSETTO
+22. José Hamilton Rosário
+23. Hany ElHawary
+24. Richard Clegg
+25. Philip Cook
+26.	Rudolf Leuenberger 
+27.	JHM Designs Publications
+28. Vic Forte
+29. Carlo Basile
+30. Christophe Pot
+31. Marcin Magnus
 
 2015
 1. Heinrich Hasler
@@ -118,6 +153,78 @@ http://www.famfamfam.com/lab/icons/silk
 6. Gregory Majewski
 7. Bruno MAILLARD
 8. Yury Siamashka
+9. Adam Bishop
+10. Michael Scutt
+11. Kurt Tremp
+12. JEAN GUILLEN
+13. Peter Hulm
+14. CHIEN YI-YUN
+15. Christophe DEMETRIADIS
+16. Olzo Franco Solano
+17. BRUECKNER RENE
+18. David Piears
+19. CHRISTIAN SCHOENENBERGER
+20. Todd Smith
+21. Thomas Prior
+22. Filippo Levati
+23. Erich Oswald
+24. Martin Kopecky
+25. Александр Грицюк
+26. JOSE MARIA ALVAREZ
+27. Balázs Terjék
+28. Nina Neuhaus
+29. Roman Riabenko
+30. Urs Wuffli
+31. AF Christensen
+32. Kevin Luken
+33. Richard Watts
+34. Terry Mort
+35. Kieron McGeever
+36. Paul Croft
+37. Daniele Leucci
+38. Julio Gomez
+39. Stephane Vitalis-brun
+40. Lukáš Novák
+41. Sezer Gülsay
+42. Emanuele Fabbri
+43. Style Scissors
+44. Henry R
+45. Stefan Andersson
+46. Renaud Cadet
+47. David Piears
+48. Patrick Eigensatz
+49. Adam Gallagher
+50. Josef Remes
+51. Terence Hughes
+52. Vincent Sinha
+53. Aliaksandr Vareika
+54. Neo Affinis S.L.
+55. Style Scissors
+56. Yves Macherel
+57. SATER KLAUDIA GĄSIECKA
+58. Atanas Vasilev
+59. ick Gardner
+60. Stephen G Donald
+61. Harvey Brewer
+62. Jose Manuel Marrero León
+63. Wisnu Baskoro
+64. Guy SCHLOSSER
+65. Jiří Vyskočil
+66. Mogens Bjerg
+67. Giuseppe Conti
+68. Vito Croce
+69. Leslie Shipp
+70. Kevin Hawkins
+71. Jose Manuel Marrero León
+72. Petr Prikryl
+73. Steve Hefferman
+74. Carl Steinhauser
+75. Helen Mercer
+76. Robert Van Etterijck
+77. Lucas Wronski
+78. Andreas Löwenhagen
+79. Eduardo Claudio Mallet
+80. MADA GSM
 
 2014
 1. [CodeLathe LLC](http://www.tonido.com/)
@@ -191,9 +298,13 @@ willmetz
 ---------------------------------------
 
 ##GNU general public license
-Copyright (C) 2013 Nikolay, Lisheng [guanlisheng], James [siena123]
-Copyright (C) 2010-2012 Stefano [stef145g], Nikolay, Lisheng [guanlisheng]
-Copyright (C) 2009-2010 VaDiM, Nikolay, Wesley Ellis
+Copyright (C) 2009-2016 Nikolay
+Copyright (C) 2011-2016 LiSheng [guanlisheng]
+Copyright (C) 2013-2016 James [siena123]
+Copyright (C) 2013-2016 Gabriele[gabriele-v]
+Copyright (C) 2010-2016 Stefano [stef145g]
+Copyright (C) 2009-2010 VaDiM, Wesley Ellis
+
 Copyright (C) 2005-2009 Madhan Kanagavel
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
@@ -231,4 +342,3 @@ If we decide to change our Privacy policy, we will update the Privacy policy mod
  
 This policy was last modified on 2014-04-30.
 - Money Manager EX team
----------------------------------------
