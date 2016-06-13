@@ -70,7 +70,6 @@ namespace weblink
     extern const wxString Update;
     extern const wxString UpdateLinks;
     extern const wxString Changelog;
-    extern const wxString UsageStats;
     extern const wxString Download;
     extern const wxString News;
     extern const wxString NewsRSS;

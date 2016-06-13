@@ -201,18 +201,18 @@ void Model_Usage::pageview(const std::string& documentPath, const std::string& d
 
     mg_set_protocol_http_websocket(nc);
 
-	time_t ts_start = time(NULL);
-	time_t ts_end = ts_start;
+    time_t ts_start = time(NULL);
+    time_t ts_end = ts_start;
     this->m_end = false;
 
     while(!this->m_end)
     {
-		if ((ts_end - ts_start) >= 1) // 1 sec
-		{
-			std::cout << "timeout" << std::endl;
-			break;
-		}
-		ts_end = mg_mgr_poll(&mgr, 1000);
+        if ((ts_end - ts_start) >= 1) // 1 sec
+        {
+            std::cout << "timeout" << std::endl;
+            break;
+        }
+        ts_end = mg_mgr_poll(&mgr, 1000);
     }
     mg_mgr_free(&mgr);
 }
