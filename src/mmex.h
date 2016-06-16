@@ -22,6 +22,7 @@
 //----------------------------------------------------------------------------
 #include <wx/app.h>
 #include <wx/debugrpt.h>
+#include <wx/snglinst.h>
 
 //----------------------------------------------------------------------------
 class mmGUIFrame;
@@ -47,6 +48,7 @@ private:
     int OnExit();
     void OnFatalException(); // called when a crash occurs in this application
     void HandleEvent(wxEvtHandler *handler, wxEventFunction func, wxEvent& event) const;
+    wxSingleInstanceChecker* m_checker;
 
 public:
     virtual int FilterEvent(wxEvent& event);
