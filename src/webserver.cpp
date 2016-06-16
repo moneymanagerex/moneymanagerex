@@ -40,7 +40,7 @@ static void ev_handler(struct mg_connection *nc, int ev, void *p)
     }
 }
 
-WebServerThread::WebServerThread(): wxThread()
+WebServerThread::WebServerThread(): wxThread(wxTHREAD_JOINABLE)
 {
 }
 
@@ -56,10 +56,15 @@ wxThread::ExitCode WebServerThread::Entry()
 
     // Create and configure the server
     struct mg_mgr mgr;
-    struct mg_connection *nc;
 
     mg_mgr_init(&mgr, NULL);
-    nc = mg_bind(&mgr, strPort.c_str(), ev_handler);
+    struct mg_connection* nc = mg_bind(&mgr, strPort.c_str(), ev_handler);
+    if (nc == nullptr)
+    {
+        wxLogDebug(wxString::Format("mg_bind(%s) failed", strPort));
+        mg_mgr_free(&mgr);
+        return (wxThread::ExitCode)-1;
+    }
     
     mg_set_protocol_http_websocket(nc);
     std::string document_root(wxFileName(mmex::getReportIndex()).GetPath().c_str());
@@ -77,7 +82,7 @@ wxThread::ExitCode WebServerThread::Entry()
     // Cleanup, and free server instance
     mg_mgr_free(&mgr);
 
-    return (wxThread::ExitCode)0;
+    return nullptr;
 }
 
 Mongoose_Service::Mongoose_Service(): m_thread(0)
@@ -104,8 +109,16 @@ int Mongoose_Service::svc()
     if (Model_Setting::instance().GetBoolSetting("ENABLEWEBSERVER", true))
     {
         m_thread = new WebServerThread();
-        wxLogDebug("Mongoose Service started");
-        m_thread->Run();
+        if (m_thread->Run() == wxTHREAD_NO_ERROR)
+        {
+            wxLogDebug("Mongoose Service started");
+        }
+        else
+        {
+            wxLogDebug("Can't create the web server thread!");
+            delete m_thread;
+            m_thread = 0;
+        }
     }
     return 0;
 }
