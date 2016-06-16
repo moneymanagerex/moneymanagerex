@@ -40,7 +40,7 @@ static void ev_handler(struct mg_connection *nc, int ev, void *p)
     }
 }
 
-WebServerThread::WebServerThread(): wxThread(wxTHREAD_JOINABLE)
+WebServerThread::WebServerThread(): wxThread()
 {
 }
 
