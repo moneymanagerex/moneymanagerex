@@ -206,6 +206,16 @@ bool OnInitImpl(mmGUIApp* app)
 //----------------------------------------------------------------------------
 bool mmGUIApp::OnInit()
 {
+    m_checker = new wxSingleInstanceChecker;
+    if (m_checker->IsAnotherRunning())
+    {
+        wxMessageBox(_(
+            "MMEX is already running...\n\n"
+            "Multiple instances are no longer supported."), _("MMEX Instance Check"));
+        delete m_checker;
+        return false;
+    }
+
     bool ok = false;
 
     try
@@ -239,5 +249,6 @@ int mmGUIApp::OnExit()
     //Delete mmex temp folder for current user
     wxFileName::Rmdir(mmex::getTempFolder(), wxPATH_RMDIR_RECURSIVE);
 
+    delete m_checker;
     return 0;
 }
