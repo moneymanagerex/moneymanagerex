@@ -28,9 +28,6 @@
     <Filter Include="Header Files\3d">
       <UniqueIdentifier>{485ba4c0-3d1a-4ce9-aadd-7426678ef72c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\db">
-      <UniqueIdentifier>{ca3c8614-b5c1-4e74-904c-13def9608090}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\reports">
       <UniqueIdentifier>{43bcc064-de99-4da4-b5b4-2b3ecb627b7c}</UniqueIdentifier>
     </Filter>
@@ -219,9 +216,6 @@
     <ClCompile Include="..\..\3rd\cgitemplate\html_template.cpp">
       <Filter>Source Files\3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\dbwrapper.cpp">
-      <Filter>Source Files\db</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\mmframe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -367,7 +361,22 @@
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\dbupgrade.cpp">
-      <Filter>Source Files\db</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dbwrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\usertransactionpanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\model\Model_Shareinfo.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\model\Model_Translink.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sharetransactiondialog.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -787,6 +796,18 @@
     </ClInclude>
     <ClInclude Include="..\..\src\db\DB_Upgrade.h">
       <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\usertransactionpanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\Model_Translink.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\Model_Shareinfo.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sharetransactiondialog.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
