@@ -206,7 +206,7 @@
       <AdditionalDependencies>$(Platform)\$(Configuration)\wxsqlite.lib;$(Platform)\$(Configuration)\lua.lib;wxmsw31u_core.lib;wxmsw31u_qa.lib;wxbase31u_net.lib;wxmsw31u_html.lib;wxbase31u_xml.lib;wxmsw31u_aui.lib;wxmsw31u_adv.lib;wxmsw31u_stc.lib;wxscintilla.lib;wxmsw31u_webview.lib;wxbase31u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(Platform)\$(Configuration)\mmex.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_x64_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_x64_lib;$(WXWIN)\include;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>$(Platform)\$(Configuration)\mmex.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
@@ -270,7 +270,10 @@
     <ClCompile Include="..\..\src\customfieldlistdialog.cpp" />
     <ClCompile Include="..\..\src\dbcheck.cpp" />
     <ClCompile Include="..\..\src\dbupgrade.cpp" />
+    <ClCompile Include="..\..\src\dbwrapper.cpp" />
     <ClCompile Include="..\..\src\import_export\parsers.cpp" />
+    <ClCompile Include="..\..\src\model\Model_Shareinfo.cpp" />
+    <ClCompile Include="..\..\src\model\Model_Translink.cpp" />
     <ClCompile Include="..\..\src\optionsettingsattachment.cpp" />
     <ClCompile Include="..\..\src\optionsettingsbase.cpp" />
     <ClCompile Include="..\..\src\optionsettingsgeneral.cpp" />
@@ -323,7 +326,6 @@
     <ClCompile Include="..\..\src\constants.cpp" />
     <ClCompile Include="..\..\3rd\csv-parser\csv_parser.cpp" />
     <ClCompile Include="..\..\src\currencydialog.cpp" />
-    <ClCompile Include="..\..\src\dbwrapper.cpp" />
     <ClCompile Include="..\..\src\import_export\export.cpp" />
     <ClCompile Include="..\..\src\filtertransdialog.cpp" />
     <ClCompile Include="..\..\src\general_report_manager.cpp" />
@@ -351,6 +353,8 @@
     <ClCompile Include="..\..\src\payeedialog.cpp" />
     <ClCompile Include="..\..\src\reports\summary.cpp" />
     <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
+    <ClCompile Include="..\..\src\sharetransactiondialog.cpp" />
+    <ClCompile Include="..\..\src\usertransactionpanel.cpp" />
     <ClCompile Include="..\..\src\webappdialog.cpp" />
     <ClCompile Include="..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_export.cpp" />
@@ -405,6 +409,8 @@
     <ClInclude Include="..\..\src\db\DB_Table_Usage_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Upgrade.h" />
     <ClInclude Include="..\..\src\import_export\parsers.h" />
+    <ClInclude Include="..\..\src\model\Model_Shareinfo.h" />
+    <ClInclude Include="..\..\src\model\Model_Translink.h" />
     <ClInclude Include="..\..\src\optionsettingsattachment.h" />
     <ClInclude Include="..\..\src\optionsettingsbase.h" />
     <ClInclude Include="..\..\src\optionsettingsgeneral.h" />
@@ -498,6 +504,7 @@
     <ClInclude Include="..\..\src\reports\summary.h" />
     <ClInclude Include="..\..\src\reports\summarystocks.h" />
     <ClInclude Include="..\..\src\resource.h" />
+    <ClInclude Include="..\..\src\sharetransactiondialog.h" />
     <ClInclude Include="..\..\src\singleton.h" />
     <ClInclude Include="..\..\src\splitdetailsdialog.h" />
     <ClInclude Include="..\..\src\splittransactionsdialog.h" />
@@ -506,6 +513,7 @@
     <ClInclude Include="..\..\src\reports\transactions.h" />
     <ClInclude Include="..\..\src\transdialog.h" />
     <ClInclude Include="..\..\src\import_export\univcsvdialog.h" />
+    <ClInclude Include="..\..\src\usertransactionpanel.h" />
     <ClInclude Include="..\..\src\util.h" />
     <ClInclude Include="..\..\src\validators.h" />
     <ClInclude Include="..\..\src\webapp.h" />
