@@ -32,7 +32,7 @@ class mmAboutDialog : public wxDialog
 
 public:
     mmAboutDialog() {}
-    mmAboutDialog(wxWindow* parent, int TabToOpen);
+    mmAboutDialog(wxWindow* parent, int TabToOpen, const wxString &name = "mmAboutDialog");
 
 private:
     bool Create(wxWindow* parent
@@ -41,7 +41,9 @@ private:
         , const wxPoint& pos
         , const wxSize& size
         , long style
-        , int TabToOpen);
+        , int TabToOpen
+        , const wxString &name
+        );
     void CreateControls(int TabToOpen);
     void InitControls();
     void OnVersionHistory(wxCommandEvent& event);

@@ -31,7 +31,7 @@ wxBEGIN_EVENT_TABLE(mmAboutDialog, wxDialog)
     EVT_HTML_LINK_CLICKED(wxID_ANY, mmAboutDialog::OnLinkClicked)
 wxEND_EVENT_TABLE()
 
-mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen)
+mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen, const wxString &name)
 : about_text_(nullptr)
 , developers_text_(nullptr)
 , artwork_text_(nullptr)
@@ -42,7 +42,7 @@ mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen)
     const wxString caption = (TabToOpen == 4)
         ? _("License agreement") : wxString::Format(_("About %s"), mmex::getProgramName());
     Create(parent, wxID_ANY, caption, wxDefaultPosition
-        , wxSize(440, 600), wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, TabToOpen);
+        , wxSize(440, 600), wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, TabToOpen, name);
     SetMinClientSize(wxSize(300, 400));
 }
 
@@ -53,11 +53,12 @@ bool mmAboutDialog::Create(wxWindow* parent
     , const wxSize& size
     , long style
     , int TabToOpen
+    , const wxString &name
     )
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
 
-    bool ok = wxDialog::Create(parent, id, caption, pos, size, style);
+    bool ok = wxDialog::Create(parent, id, caption, pos, size, style, name);
 
     if (ok)
     {

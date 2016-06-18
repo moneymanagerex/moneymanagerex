@@ -49,7 +49,7 @@ wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
 wxEND_EVENT_TABLE()
 
 
-mmPayeeDialog::mmPayeeDialog(wxWindow *parent, const bool payee_choose) :
+mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString &name) :
     m_payee_id(-1)
     , m_maskTextCtrl()
     , payeeListBox_()
@@ -66,16 +66,16 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent, const bool payee_choose) :
     ColName_[PAYEE_NAME] = _("Name");
     ColName_[PAYEE_CATEGORY]   = _("Default Category");
 
-    do_create(parent);
+    Create(parent, name);
 }
 
-void mmPayeeDialog::do_create(wxWindow* parent)
+void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
 
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
     if (!wxDialog::Create(parent, wxID_ANY, _("Organize Payees")
-        , wxDefaultPosition, wxDefaultSize, style))
+        , wxDefaultPosition, wxDefaultSize, style, name))
     {
         return;
     }
