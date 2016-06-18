@@ -115,7 +115,7 @@ bool dbUpgrade::UpgradeDB(wxSQLite3Database * db, const wxString& DbFileName)
         return false;
     }
 
-    for (ver; ver < dbLatestVersion; ver++)
+    for (; ver < dbLatestVersion; ver++)
     {
         BackupDB(DbFileName, dbUpgrade::BACKUPTYPE::VERSION_UPGRADE, 999, ver);
         if (!UpgradeToVersion(db, ver + 1))
