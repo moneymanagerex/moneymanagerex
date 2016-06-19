@@ -31,7 +31,7 @@ public:
     mmHTMLBuilder();
     ~mmHTMLBuilder() {}
 
-    void DisplayDateHeading(const wxDateTime& startYear, const wxDateTime& endYear, bool withDateRange = true);
+    void DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true);
 
     /** Starts a new HMTL report */
     void init();
