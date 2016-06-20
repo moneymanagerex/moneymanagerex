@@ -190,6 +190,9 @@ const wxString VIEW_TRANS_LAST_MONTH_STR     = wxTRANSLATE("View Last Month");
 const wxString VIEW_TRANS_LAST_3MONTHS_STR   = wxTRANSLATE("View Last 3 Months");
 const wxString VIEW_TRANS_LAST_12MONTHS_STR  = wxTRANSLATE("View Last 12 Months");
 const wxString VIEW_TRANS_CURRENT_YEAR_STR   = wxTRANSLATE("View Current Year");
+const wxString VIEW_TRANS_CURRENT_FIN_YEAR_STR = wxTRANSLATE("View Current Financial Year");
+const wxString VIEW_TRANS_LAST_YEAR_STR      = wxTRANSLATE("View Last Year");
+const wxString VIEW_TRANS_LAST_FIN_YEAR_STR  = wxTRANSLATE("View Last Financial Year");
 
 const wxString VIEW_ACCOUNTS_ALL_STR = wxTRANSLATE("ALL");
 const wxString VIEW_ACCOUNTS_OPEN_STR = wxTRANSLATE("Open");

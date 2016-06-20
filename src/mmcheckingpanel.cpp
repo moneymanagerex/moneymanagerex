@@ -664,6 +664,14 @@ void mmCheckingPanel::initFilterSettings()
         date_range = new mmLast12Months;
     else if (currentView_ == MENU_VIEW_CURRENTYEAR)
         date_range = new mmCurrentYear;
+    else if (currentView_ == MENU_VIEW_CURRENTFINANCIALYEAR)
+        date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
+        , wxAtoi(Option::instance().FinancialYearStartMonth()));
+    else if (currentView_ == MENU_VIEW_LASTYEAR)
+        date_range = new mmLastYear;
+    else if (currentView_ == MENU_VIEW_LASTFINANCIALYEAR)
+        date_range = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
+        , wxAtoi(Option::instance().FinancialYearStartMonth()));
     else
         wxASSERT(false);
 

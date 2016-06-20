@@ -247,6 +247,9 @@ private:
         MENU_VIEW_LAST3MONTHS,
         MENU_VIEW_LAST12MONTHS,
         MENU_VIEW_CURRENTYEAR,
+        MENU_VIEW_CURRENTFINANCIALYEAR,
+        MENU_VIEW_LASTYEAR,
+        MENU_VIEW_LASTFINANCIALYEAR,
     };
     static wxArrayString menu_labels()
     {
@@ -260,6 +263,9 @@ private:
         items.Add(wxTRANSLATE("View Last 3 Months"));
         items.Add(wxTRANSLATE("View Last 12 Months"));
         items.Add(wxTRANSLATE("View Current Year"));
+        items.Add(wxTRANSLATE("View Current Financial Year"));
+        items.Add(wxTRANSLATE("View Last Year"));
+        items.Add(wxTRANSLATE("View Last Financial Year"));
         return items;
     }
     wxDECLARE_EVENT_TABLE();

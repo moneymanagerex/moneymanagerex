@@ -63,7 +63,10 @@ static const wxString DATE_PRESETTINGS[] =
     VIEW_TRANS_LAST_MONTH_STR,
     VIEW_TRANS_LAST_3MONTHS_STR,
     VIEW_TRANS_LAST_12MONTHS_STR,
-    VIEW_TRANS_CURRENT_YEAR_STR
+    VIEW_TRANS_CURRENT_YEAR_STR,
+    VIEW_TRANS_CURRENT_FIN_YEAR_STR,
+    VIEW_TRANS_LAST_YEAR_STR,
+    VIEW_TRANS_LAST_FIN_YEAR_STR
 };
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmFilterTransactionsDialog, wxDialog);
@@ -642,10 +645,18 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
         date_range_ = new mmLastMonth;
     else if (view == VIEW_TRANS_LAST_3MONTHS_STR)
         date_range_ = new mmLast3Months;
-    else if (view == VIEW_TRANS_CURRENT_YEAR_STR)
-        date_range_ = new mmCurrentYear;
     else if (view == VIEW_TRANS_LAST_12MONTHS_STR)
         date_range_ = new mmLast12Months;
+    else if (view == VIEW_TRANS_CURRENT_YEAR_STR)
+        date_range_ = new mmCurrentYear;
+    else if (view == VIEW_TRANS_CURRENT_FIN_YEAR_STR)
+        date_range_ = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
+        , wxAtoi(Option::instance().FinancialYearStartMonth()));
+    else if (view == VIEW_TRANS_LAST_YEAR_STR)
+        date_range_ = new mmLastYear;
+    else if (view == VIEW_TRANS_LAST_FIN_YEAR_STR)
+        date_range_ = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
+        , wxAtoi(Option::instance().FinancialYearStartMonth()));
 
     if (dateRangeCheckBox_->IsChecked())
     {
