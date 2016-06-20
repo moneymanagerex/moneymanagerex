@@ -88,20 +88,23 @@ namespace weblink
 } // namespace weblink
 } // namespace mmex
 
-extern const wxString VIEW_TRANS_ALL_STR;            
-extern const wxString VIEW_TRANS_TODAY_STR;          
-extern const wxString VIEW_TRANS_CURRENT_MONTH_STR;  
-extern const wxString VIEW_TRANS_LAST_30_DAYS_STR;   
-extern const wxString VIEW_TRANS_LAST_90_DAYS_STR;   
-extern const wxString VIEW_TRANS_LAST_MONTH_STR;     
-extern const wxString VIEW_TRANS_LAST_3MONTHS_STR;   
-extern const wxString VIEW_TRANS_LAST_12MONTHS_STR;  
-extern const wxString VIEW_TRANS_CURRENT_YEAR_STR;   
+extern const wxString VIEW_TRANS_ALL_STR;
+extern const wxString VIEW_TRANS_TODAY_STR;
+extern const wxString VIEW_TRANS_CURRENT_MONTH_STR;
+extern const wxString VIEW_TRANS_LAST_30_DAYS_STR;
+extern const wxString VIEW_TRANS_LAST_90_DAYS_STR;
+extern const wxString VIEW_TRANS_LAST_MONTH_STR;
+extern const wxString VIEW_TRANS_LAST_3MONTHS_STR;
+extern const wxString VIEW_TRANS_LAST_12MONTHS_STR;
+extern const wxString VIEW_TRANS_CURRENT_YEAR_STR;
+extern const wxString VIEW_TRANS_CURRENT_FIN_YEAR_STR;
+extern const wxString VIEW_TRANS_LAST_YEAR_STR;
+extern const wxString VIEW_TRANS_LAST_FIN_YEAR_STR;
 
-extern const wxString VIEW_ACCOUNTS_ALL_STR;       
+extern const wxString VIEW_ACCOUNTS_ALL_STR;
 extern const wxString VIEW_ACCOUNTS_OPEN_STR;
 extern const wxString VIEW_ACCOUNTS_CLOSED_STR;
-extern const wxString VIEW_ACCOUNTS_FAVORITES_STR; 
+extern const wxString VIEW_ACCOUNTS_FAVORITES_STR;
 
 extern const wxString LANGUAGE_PARAMETER;
 extern const wxString INIDB_USE_TRANSACTION_SOUND;

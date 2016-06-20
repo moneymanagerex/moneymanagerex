@@ -87,8 +87,11 @@ void OptionSettingsView::Create()
     view_strings.Add(VIEW_TRANS_LAST_90_DAYS_STR);
     view_strings.Add(VIEW_TRANS_LAST_MONTH_STR);
     view_strings.Add(VIEW_TRANS_LAST_3MONTHS_STR);
-    view_strings.Add(VIEW_TRANS_CURRENT_YEAR_STR);
     view_strings.Add(VIEW_TRANS_LAST_12MONTHS_STR);
+    view_strings.Add(VIEW_TRANS_CURRENT_YEAR_STR);
+    view_strings.Add(VIEW_TRANS_CURRENT_FIN_YEAR_STR);
+    view_strings.Add(VIEW_TRANS_LAST_YEAR_STR);
+    view_strings.Add(VIEW_TRANS_LAST_FIN_YEAR_STR);
 
     m_choice_trans_visible = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     for (const auto &entry : view_strings) {
