@@ -112,7 +112,7 @@ void OptionSettingsNet::Create()
 
     m_webserver_checkbox = new wxCheckBox(this, ID_DIALOG_OPTIONS_ENABLE_WEBSERVER
         , _("Enable"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_webserver_checkbox->SetValue(GetIniDatabaseCheckboxValue("ENABLEWEBSERVER", true));
+    m_webserver_checkbox->SetValue(GetIniDatabaseCheckboxValue("ENABLEWEBSERVER", false));
     m_webserver_checkbox->SetToolTip(_("Enable internal web server when MMEX Starts."));
 
     int webserverPort = Model_Setting::instance().GetIntSetting("WEBSERVERPORT", 8080);

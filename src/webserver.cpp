@@ -106,7 +106,7 @@ int Mongoose_Service::open()
 
 int Mongoose_Service::svc()
 {
-    if (Model_Setting::instance().GetBoolSetting("ENABLEWEBSERVER", true))
+    if (Model_Setting::instance().GetBoolSetting("ENABLEWEBSERVER", false))
     {
         m_thread = new WebServerThread();
         if (m_thread->Run() == wxTHREAD_NO_ERROR)
