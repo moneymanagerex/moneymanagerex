@@ -62,6 +62,7 @@ void DB_Model::Init_Model_Tables(wxSQLite3Database* test_db)
     Model_Infotable::instance(test_db);
     Option::instance().DateFormat("%d-%m-%Y");
     Option::instance().LoadOptions();
+    Option::instance().SendUsageStatistics(false);
 
     Model_Currency::instance(test_db);
     Model_Account::instance(test_db);

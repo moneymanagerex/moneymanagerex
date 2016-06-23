@@ -329,7 +329,12 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
 
     // Create transactions for a single month. These are repeated untill current month.
     int month_count = 0;
+
+    /* Removal of statistics placed as assets in test database */
+#ifdef RECORD_DATABASE_STATS_AS_ASSETS
     bool display_month_totals = true;
+#endif
+
     while (starting_date < wxDateTime::Today())
     {
         month_count++;
@@ -455,7 +460,7 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
         m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "ANZ - Cash Manager", 150, "Transfer", "Saving");
         m_dbmodel->Add_Trans_Deposit("ANZ - Cash Manager", trans_date, "Bank - ANZ", (250 * month_count * .05)/12, "Income", "Bank Interest");
 
-
+#ifdef RECORD_DATABASE_STATS_AS_ASSETS
         //--------------------------------------------------------------------
         if (display_month_totals)
         {
@@ -475,6 +480,7 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
 
             display_month_totals = false;
         }
+#endif
 
         // -------------------------------------------------------------------
 
@@ -482,6 +488,7 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
         starting_date.Add(wxDateSpan::Month());
     }
 
+#ifdef RECORD_DATABASE_STATS_AS_ASSETS
     // -----------------------------------------------------------------------
     // Report Totals for payees and categories
     m_dbmodel->Current_Payee_Income_Stats("---------- Payee Income: All Time Totals ----------", starting_date);
@@ -496,6 +503,7 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
     m_dbmodel->Total_Payee_Stats(starting_date);
     m_dbmodel->Total_Category_Stats(starting_date);
     m_dbmodel->Total_Subcategory_Stats(starting_date);
+#endif
 
     //------------------------------------------------------------------------ 
     m_test_db.Commit(); // Finalise the database entries.

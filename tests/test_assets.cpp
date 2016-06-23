@@ -169,7 +169,7 @@ void Test_Asset::test_dialog()
         "\n\n"
         "Use Cancel to ignore test results.");
 
-    mmAssetDialog* dlg = new mmAssetDialog(m_base_frame, 0);
+    mmAssetDialog* dlg = new mmAssetDialog(m_base_frame, NULL, 0);
     if (dlg->ShowModal() == wxID_OK)
     {
         Model_Asset::Data_Set asset_table = Model_Asset::instance().all();
@@ -186,7 +186,7 @@ void Test_Asset::test_assetpanel()
     asset_frame->Show();
 
     // Create the panel under test
-    mmAssetsPanel* asset_panel = new mmAssetsPanel(asset_frame, mmID_ASSETS);
+    mmAssetsPanel* asset_panel = new mmAssetsPanel(NULL, asset_frame, mmID_ASSETS);
     asset_panel->Show();
 
     // Anchor the panel. Otherwise it will disappear.

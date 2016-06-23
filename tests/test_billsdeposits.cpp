@@ -116,7 +116,7 @@ void Test_BillsDeposits::test_dialog_freeform_new()
         "      if an entry has been created\n");
 
     mmBDDialog* dlg = new mmBDDialog(m_base_frame, 0, false, false);
-    Option::instance().TransCategorySelectionNone(1);
+    Option::instance().TransCategorySelection(Option::LASTUSED);
 
     bool testing_dialog = true;
     while (testing_dialog)

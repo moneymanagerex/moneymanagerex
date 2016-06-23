@@ -88,7 +88,7 @@ void Test_Translink::Test_Add_Stock_Dialog()
     m_dbmodel->Add_Investment_Account("Qwerty Keyboards");
 
     // create a new entry using the dialog.
-    mmStockDialog* dlg = new mmStockDialog(m_base_frame, 0, account_id);
+    mmStockDialog* dlg = new mmStockDialog(m_base_frame, NULL, 0, account_id);
 
     int id = dlg->ShowModal();
     if (id == wxID_CANCEL)
@@ -113,7 +113,7 @@ void Test_Translink::Test_Edit_Stock_Dialog()
     double num_shares = stock_entry.NUMSHARES;
     double purchase_price = stock_entry.PURCHASEPRICE;
 
-    mmStockDialog* dlg = new mmStockDialog(m_base_frame, &stock_entry, stock_entry.HELDAT);
+    mmStockDialog* dlg = new mmStockDialog(m_base_frame, NULL, &stock_entry, stock_entry.HELDAT);
     int id = dlg->ShowModal();
     if (id == wxID_CANCEL)
     {
@@ -147,7 +147,7 @@ void Test_Translink::Test_Stocks_Panel()
     m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(1)), 1000, 4.2775, 0, 0, 0, "DRP", "AMP.ax");
     
     // Create the panel under test
-    mmStocksPanel* stocks_panel = new mmStocksPanel(stock_Account_id, stocks_frame);
+    mmStocksPanel* stocks_panel = new mmStocksPanel(stock_Account_id, NULL, stocks_frame);
     stocks_panel->Show();
 
     // Anchor the panel. Otherwise it will disappear.
