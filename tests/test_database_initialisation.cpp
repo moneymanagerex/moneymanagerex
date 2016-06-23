@@ -86,23 +86,24 @@ void Test_DatabaseInitialisation::Add_Account_Entries()
     // Add accounts
     m_test_db.Begin();
     m_dbmodel->Add_Bank_Account("NAB - Savings", 1000, "Joint - General Account");
-    m_dbmodel->Add_Term_Account("ANZ - Cash Manager", 0, "Savings for special ocasions, Higher Interest Account", false);
-    m_dbmodel->Add_Term_Account("ANZ - Personal Loan", 0, "$10,000 @ 20% pa", false);
-
     m_dbmodel->Add_Bank_Account("ANZ - Cheque", 0, "", false);
-    m_dbmodel->Add_Term_Account("Home Loan", -500000, "House Mortgage", false);
-    
+
+    m_dbmodel->Add_Term_Account("ANZ - Cash Manager", 0, "Savings for special ocasions, Higher Interest Account", false);
+
+    m_dbmodel->Add_Account("Home Loan", Model_Account::LOAN, -500000, "House Mortgage", false);
+    m_dbmodel->Add_Account("ANZ - Personal Loan", Model_Account::LOAN, 0, "$10,000 @ 20% pa", false);
+
     m_dbmodel->Add_Bank_Account("ANZ - Mastercard", 0, "Credit Card");
     m_dbmodel->Add_Bank_Account("Wallet - Peter", 0, "Cash Money - Daily Expenses");
     m_dbmodel->Add_Bank_Account("Wallet - Mary", 0, "Cash Money - Daily Expenses");
 
-    m_dbmodel->Add_Investment_Account("ABC Corporation", 0, "Shares");
-    m_dbmodel->Add_Term_Account("ACME Corporation Shares", 0, "Share Dividends");
-    m_dbmodel->Add_Investment_Account("ACME Corporation", 0, "Shares");
-    m_dbmodel->Add_Term_Account("ABC Corporation Shares", 0, "Share Dividends");
+    m_dbmodel->Add_Account("ACME Corporation Shares", Model_Account::SHARES, 0, "Share Dividends", false);
+    m_dbmodel->Add_Account("ABC Corporation Shares", Model_Account::SHARES, 0, "Share Dividends", false);
     m_dbmodel->Add_Term_Account("Insurance Policies");
 
     m_dbmodel->Add_Investment_Account("Yahoo Finance", 0, "Stocks");
+    m_dbmodel->Add_Investment_Account("Broker Jim", 0, "Stocks");
+    m_dbmodel->Add_Investment_Account("Biden", 0, "Stocks");
 
     m_test_db.Commit();
 }
@@ -178,27 +179,6 @@ void Test_DatabaseInitialisation::Add_Category_Entries()
 void Test_DatabaseInitialisation::Add_Stock_Entries(const wxDateTime& starting_date)
 {
     wxDateTime trans_date = starting_date;
-    // Using Stocks to handle Shares
-    int stock_ABC_Account_id = m_dbmodel->Get_account_id("ABC Corporation");
-    int stock_ACME_Account_id = m_dbmodel->Get_account_id("ACME Corporation");
-
-    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(2)), 1000, 4.2575, 0, 0, 0, "ABC Initial Share Purchase", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 1000, 4.2575, 0, 0, 0, "ACME Initial Share Purchase", "AMP.ax");
-
-    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 9550, 5.2575, 0, 0, 0, "ABC Suplement Purchase", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 9550, 5.2575, 0, 0, 0, "ACME Suplement Purchase", "AMP.ax");
-
-    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 5, 5.2775, 0, 0, 0, "DRP", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 5, 5.2775, 0, 0, 0, "DRP", "AMP.ax");
-
-    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 10, 6.1575, 0, 0, 0, "DRP ", "amp.ax");
-    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 10, 6.1575, 0, 0, 0, "DRP ", "amp.ax");
-
-    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 100, 5.4575, 0, 0, 0, "DRP", "AMP.AX");
-    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 100, 5.4575, 0, 0, 0, "DRP", "AMP.AX");
-
-    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 1000, 4.2775, 0, 0, 0, "DRP", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 1000, 4.2775, 0, 0, 0, "DRP", "AMP.ax");
 
     // Setting up a stock portfolio
     int stock_Yahoo_Finance_id = m_dbmodel->Get_account_id("Yahoo Finance");
