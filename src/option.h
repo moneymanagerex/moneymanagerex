@@ -29,6 +29,9 @@
 class Option
 {
 public:
+    enum USAGE_TYPE { NONE = 0, LASTUSED, UNUSED };
+
+public:
     Option();
     static Option& instance();
     void LoadOptions(bool include_infotable = true);
