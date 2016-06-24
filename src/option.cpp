@@ -25,13 +25,6 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Account.h"
 
-//const std::vector<std::pair<Option::USAGE_TYPE, wxString> > Option::USAGE_CHOICE =
-//{
-//    std::make_pair(Option::NONE, wxString(wxTRANSLATE("None"))),
-//    std::make_pair(Option::LASTUSED, wxString(wxTRANSLATE("Last Used"))),
-//    std::make_pair(Option::UNUSED, wxString(wxTRANSLATE("Unused")))
-//};
-
 //----------------------------------------------------------------------------
 Option::Option()
 :   m_dateFormat(mmex::DEFDATEFORMAT)

@@ -29,10 +29,6 @@
 class Option
 {
 public:
-    enum USAGE_TYPE { NONE = 0, LASTUSED, UNUSED };
-    //static const std::vector<std::pair<USAGE_TYPE, wxString> > USAGE_CHOICE;
-
-public:
     Option();
     static Option& instance();
     void LoadOptions(bool include_infotable = true);
