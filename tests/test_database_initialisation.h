@@ -30,9 +30,11 @@ class Test_DatabaseInitialisation : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST(Add_Account_Entries);
     CPPUNIT_TEST(Add_Payee_Entries);
     CPPUNIT_TEST(Add_Category_Entries);
+    CPPUNIT_TEST(Add_Asset_Entries);
+    CPPUNIT_TEST(Add_Stock_and_Share_Entries);
     CPPUNIT_TEST(Add_Transaction_Entries);
-    CPPUNIT_TEST(Add_Repeat_Transaction_Entries);
-    //CPPUNIT_TEST(Database_Encryption_Password_test_db);
+    CPPUNIT_TEST(Add_Recurring_Transaction_Entries);
+    CPPUNIT_TEST(Encrypt_Database_with_Password_test_db);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -45,7 +47,7 @@ public:
 private:
     wxString m_test_db_filename;
     wxSQLite3Database m_test_db;
-    DB_Model_Initialise_Statistics* m_dbmodel;
+    DB_Model* m_dbmodel;
     TestFrameBase* m_base_frame;
     int m_this_instance;
     CommitCallbackHook* m_commit_hook;
@@ -57,8 +59,10 @@ private:
     void Add_Account_Entries();
     void Add_Payee_Entries();
     void Add_Category_Entries();
+    void Add_Asset_Entries();
+    void Add_Stock_and_Share_Entries();
+    void Add_Recurring_Transaction_Entries();
     void Add_Transaction_Entries();
-    void Add_Repeat_Transaction_Entries();
-    void Database_Encryption_Password_test_db();
+    void Encrypt_Database_with_Password_test_db();
 };
 //----------------------------------------------------------------------------
