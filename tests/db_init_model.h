@@ -63,13 +63,13 @@ public:
     * Returns the trans_id to enable split creation.
     */
     int Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
-        , const wxString& category = "", const wxString& subcategory = "");
+        , const wxString& category = "", const wxString& subcategory = "", const wxString& trans_num = "");
     /**
     Allows the creation of a Split Transaction when a category is not supplied.
     * Returns the trans_id to enable split creation.
     */
     int Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
-        , const wxString& category = "", const wxString& subcategory = "");
+        , const wxString& category = "", const wxString& subcategory = "", const wxString& trans_num = "");
     /**
     Allows the creation of a Split Transaction when a category is not supplied.
     * Returns the trans_id to enable split creation.
@@ -126,9 +126,6 @@ public:
         double commission = 0, double current_price = 0, double value = 0,
         const wxString& stock_name = "", const wxString& stock_symbol = "", const wxString& notes = "");
 
-    /** upd_type: ONLINE/MANUAL */ 
-    int Add_StockHistory_Entry(const wxString& stock_symbol, const wxDateTime& date, double value, int upd_type = Model_StockHistory::ONLINE);
-
     void ShowMessage(wxString msg);
 
 private:
@@ -137,7 +134,7 @@ private:
     int m_account_id;           // Initialised by Set_AccountName(...), Used by Add_Trans_XXX(...) Commands.
 
     int Add_Trans(const wxString& account_name, Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
-        , const wxString& category = "", const wxString& subcategory = "");
+        , const wxString& category = "", const wxString& subcategory = "", const wxString& trans_num = "");
 
 
     bool m_bill_initialised;      // Set to true by Bill_Start(...)
@@ -228,13 +225,13 @@ public:
     * Returns the transaction ID to enable split creation.
     */
     int Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
-        , const wxString& category = "", const wxString& subcategory = "");
+        , const wxString& category = "", const wxString& subcategory = "", const wxString& trans_num = "");
     /**
     Allows the creation of a Split Transaction when a category is not supplied.
     * Returns the transaction ID to enable split creation.
     */
     int Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
-        , const wxString& category = "", const wxString& subcategory = "");
+        , const wxString& category = "", const wxString& subcategory = "", const wxString& trans_num = "");
     /**
     Allows the creation of a Split Transaction when a category is not supplied.
     * Returns the transaction ID to enable split creation.

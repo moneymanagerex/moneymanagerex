@@ -62,6 +62,7 @@ void DB_Model::Init_Model_Tables(wxSQLite3Database* test_db)
     Model_Infotable::instance(test_db);
     Option::instance().DateFormat("%d-%m-%Y");
     Option::instance().LoadOptions();
+    Option::instance().SendUsageStatistics(false);
 
     Model_Currency::instance(test_db);
     Model_Account::instance(test_db);
@@ -275,7 +276,7 @@ int DB_Model::Get_account_id(const wxString& account_name)
 }
 
 int DB_Model::Add_Trans(const wxString& account_name, Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
-    , const wxString& category, const wxString& subcategory)
+    , const wxString& category, const wxString& subcategory, const wxString& trans_num)
 {
     if (m_account_name != account_name)
     {
@@ -289,7 +290,7 @@ int DB_Model::Add_Trans(const wxString& account_name, Model_Checking::TYPE trans
 
     tran_entry->PAYEEID = Get_Payee_id(payee);
 
-    // Set to Deposit
+    // Set transaction type
     tran_entry->TRANSCODE = Model_Checking::instance().all_type()[trans_type];
     tran_entry->TRANSAMOUNT = value;
     tran_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED].Mid(0,1);
@@ -299,19 +300,21 @@ int DB_Model::Add_Trans(const wxString& account_name, Model_Checking::TYPE trans
     tran_entry->TRANSDATE = date.FormatISODate();
     tran_entry->FOLLOWUPID = 0;
     tran_entry->TOTRANSAMOUNT = value;
+    tran_entry->TRANSACTIONNUMBER = trans_num;
+
     return Model_Checking::instance().save(tran_entry);
 }
 
 int DB_Model::Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
-    , const wxString& category, const wxString& subcategory)
+    , const wxString& category, const wxString& subcategory, const wxString& trans_num)
 {
-    return Add_Trans(account_name, Model_Checking::DEPOSIT, date, payee, value, category, subcategory);
+    return Add_Trans(account_name, Model_Checking::DEPOSIT, date, payee, value, category, subcategory, trans_num);
 }
 
 int DB_Model::Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee
-    , double value, const wxString& category, const wxString& subcategory)
+    , double value, const wxString& category, const wxString& subcategory, const wxString& trans_num)
 {
-    return Add_Trans(account_name, Model_Checking::WITHDRAWAL, date, payee, value, category, subcategory);
+    return Add_Trans(account_name, Model_Checking::WITHDRAWAL, date, payee, value, category, subcategory, trans_num);
 }
 
 int DB_Model::Add_Trans_Transfer(const wxString& account_name, const wxDateTime& date, const wxString& to_account, double value
@@ -533,16 +536,6 @@ int DB_Model::Add_Stock_Entry(int account_id, const wxDate& purchase_date, doubl
     return Model_Stock::instance().save(entry);
 }
 
-int DB_Model::Add_StockHistory_Entry(const wxString& stock_symbol, const wxDateTime& date, double value, int upd_type)
-{
-    Model_StockHistory::Data* entry = Model_StockHistory::instance().create();
-    entry->DATE = date.FormatISODate();
-    entry->SYMBOL = stock_symbol;
-    entry->VALUE = value;
-    entry->UPDTYPE = upd_type;
-    return Model_StockHistory::instance().save(entry);
-}
-
 void DB_Model::ShowMessage(wxString msg)
 {
     wxMessageBox(msg, "MMEX_Table Data Initialisation", wxOK | wxICON_WARNING, wxTheApp->GetTopWindow());
@@ -737,15 +730,15 @@ void Dual_Name::Add_Value(const double value)
 }
 
 //----------------------------------------------------------------------------
-int DB_Model_Initialise_Statistics::Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value, const wxString& category, const wxString& subcategory)
+int DB_Model_Initialise_Statistics::Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value, const wxString& category, const wxString& subcategory, const wxString& trans_num)
 {
     m_payee_income_list.Set_Value(payee, value);
     m_category_income_list.Set_Value(category, value);
     m_subcategory_income_list.Set_Value(category, subcategory, value);
-    return DB_Model::Add_Trans_Deposit(account_name, date, payee, value, category, subcategory);
+    return DB_Model::Add_Trans_Deposit(account_name, date, payee, value, category, subcategory, trans_num);
 }
 
-int DB_Model_Initialise_Statistics::Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value, const wxString& category, const wxString& subcategory)
+int DB_Model_Initialise_Statistics::Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value, const wxString& category, const wxString& subcategory, const wxString& trans_num)
 {
     m_payee_expense_list.Set_Value(payee, value);
     if (!category.IsEmpty())
@@ -756,7 +749,7 @@ int DB_Model_Initialise_Statistics::Add_Trans_Withdrawal(const wxString& account
             m_subcategory_expense_list.Set_Value(category, subcategory, value);
         }
     }
-    return DB_Model::Add_Trans_Withdrawal(account_name, date, payee, value, category, subcategory);
+    return DB_Model::Add_Trans_Withdrawal(account_name, date, payee, value, category, subcategory, trans_num);
 }
 
 int DB_Model_Initialise_Statistics::Add_Trans_Transfer(const wxString& account_name, const wxDateTime& date, const wxString& to_account, double value, const wxString& category, const wxString& subcategory, bool advanced, double adv_value)

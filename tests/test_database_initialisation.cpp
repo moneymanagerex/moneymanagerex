@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "test_database_initialisation.h"
 #include "reports/mmDateRange.h"
+#include "model/Model_Translink.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -44,7 +45,7 @@ Test_DatabaseInitialisation::Test_DatabaseInitialisation()
     m_this_instance = s_instance_count;
     m_test_db_filename = "test_mmex_db_" + wxDateTime(wxDateTime::Today()).FormatISODate() + ".mmb";
     // recreate the file if run twice on same day.
-    if (wxFileExists(m_test_db_filename))
+    if ((m_this_instance == 1) && wxFileExists(m_test_db_filename))
     {
         wxRemoveFile(m_test_db_filename);
     }
@@ -53,6 +54,7 @@ Test_DatabaseInitialisation::Test_DatabaseInitialisation()
 Test_DatabaseInitialisation::~Test_DatabaseInitialisation()
 {
     s_instance_count--;
+    m_this_instance = s_instance_count;
     if (s_instance_count < 1)
     {
         TestFrameBase base_frame(m_this_instance);
@@ -85,24 +87,22 @@ void Test_DatabaseInitialisation::Add_Account_Entries()
 
     // Add accounts
     m_test_db.Begin();
-    m_dbmodel->Add_Bank_Account("NAB - Savings", 1000, "Joint - General Account");
-    m_dbmodel->Add_Term_Account("ANZ - Cash Manager", 0, "Savings for special ocasions, Higher Interest Account", false);
-    m_dbmodel->Add_Term_Account("ANZ - Personal Loan", 0, "$10,000 @ 20% pa", false);
-
+    m_dbmodel->Add_Bank_Account("NAB - Savings", 0, "Joint - General Account");
     m_dbmodel->Add_Bank_Account("ANZ - Cheque", 0, "", false);
-    m_dbmodel->Add_Term_Account("Home Loan", -500000, "House Mortgage", false);
-    
+
+    m_dbmodel->Add_Term_Account("ANZ - Cash Manager", 0, "Savings for special ocasions, Higher Interest Account", false);
+
+    m_dbmodel->Add_Account("Loan: Personal ANZ", Model_Account::LOAN, 0, "$10,000 @ 20% pa", false);
+
     m_dbmodel->Add_Bank_Account("ANZ - Mastercard", 0, "Credit Card");
     m_dbmodel->Add_Bank_Account("Wallet - Peter", 0, "Cash Money - Daily Expenses");
     m_dbmodel->Add_Bank_Account("Wallet - Mary", 0, "Cash Money - Daily Expenses");
 
-    m_dbmodel->Add_Investment_Account("ABC Corporation", 0, "Shares");
-    m_dbmodel->Add_Term_Account("ACME Corporation Shares", 0, "Share Dividends");
-    m_dbmodel->Add_Investment_Account("ACME Corporation", 0, "Shares");
-    m_dbmodel->Add_Term_Account("ABC Corporation Shares", 0, "Share Dividends");
+    m_dbmodel->Add_Account("ACME Corporation Shares", Model_Account::SHARES, 0, "Share Dividends", false);
+    m_dbmodel->Add_Account("ABC Corporation Shares", Model_Account::SHARES, 0, "Share Dividends", false);
     m_dbmodel->Add_Term_Account("Insurance Policies");
 
-    m_dbmodel->Add_Investment_Account("Yahoo Finance", 0, "Stocks");
+    m_dbmodel->Add_Investment_Account("Broker Jim", 0, "Stocks");
 
     m_test_db.Commit();
 }
@@ -146,6 +146,7 @@ void Test_DatabaseInitialisation::Add_Category_Entries()
     m_dbmodel->Add_Subcategory(cat_id, "Loan Repayments");
     m_dbmodel->Add_Subcategory(cat_id, "Loan Offset");
     m_dbmodel->Add_Subcategory(cat_id, "Loan Interest");
+    m_dbmodel->Add_Subcategory(cat_id, "Purchase");
 
     // Category structure: "Mastercard"
     cat_id = m_dbmodel->Add_Category("Mastercard");
@@ -175,33 +176,124 @@ void Test_DatabaseInitialisation::Add_Category_Entries()
     m_test_db.Commit();
 }
 
+void Test_DatabaseInitialisation::Add_Asset_Entries()
+{
+    CpuTimer Start("Asset Entries");
+
+    mmCurrentFinancialYear current_financial_year(1, 7);
+    wxDateTime starting_date = current_financial_year.start_date();
+
+    wxDateTime asset_date = starting_date.Subtract(wxDateSpan::Years(8));
+    m_test_db.Begin();
+
+    //----------------------------------------------------------------------------------------
+    // Asset: Family Home
+
+    // Set up some additional details
+    m_dbmodel->Add_Payee("Toyota Car Sales");
+    m_dbmodel->Add_Subcategory(m_dbmodel->Get_category_id("Automobile"), "Purchase");
+    const wxString auto_asset = "Asset: Toyota Sedan";
+
+    // Create the asset entry
+    int asset_id = m_dbmodel->Add_Asset(auto_asset, asset_date, 10000, Model_Asset::TYPE_AUTO, Model_Asset::RATE_DEPRECIATE, 5.0, "New Car Depreciates 5% pa");
+
+    // Create the asset account and the initial transaction entry
+    m_dbmodel->Add_Account(auto_asset, Model_Account::ASSET, 0, "New car - Toyota Sedan", false);
+    int checking_id = m_dbmodel->Add_Trans_Withdrawal(auto_asset, asset_date, "Toyota Car Sales", 10000, "Automobile", "Purchase", auto_asset);
+
+    // Link the asset entry to the transaction
+    Model_Translink::SetAssetTranslink(asset_id, checking_id);
+
+    // Create a loan to pay off the car.
+    m_dbmodel->Add_Account("Loan: Toyota Sedan", Model_Account::LOAN, 0, "$10,000 @ 20% pa", false);
+    m_dbmodel->Add_Trans_Transfer("Loan: Toyota Sedan", asset_date, auto_asset, 10000, "Automobile", "Purchase");
+
+    //----------------------------------------------------------------------------------------
+    // Asset: Family Home
+    asset_date = starting_date.Add(wxDateSpan::Years(1).Subtract(wxDateSpan::Months(3)));
+    m_dbmodel->Add_Payee("Global Realestate Sales");
+    const wxString asset_familyhome = "Asset: Family Home";
+
+    // Create the asset entry
+    asset_id = m_dbmodel->Add_Asset(asset_familyhome, asset_date, 250000, Model_Asset::TYPE_PROPERTY, Model_Asset::RATE_APPRECIATE, 2.0, "Home apprectates at 2% pa");
+
+    // Create the asset account and the initial transaction entry
+    m_dbmodel->Add_Account(asset_familyhome, Model_Account::ASSET, 0, "Family home purchase", false);
+    checking_id = m_dbmodel->Add_Trans_Withdrawal(asset_familyhome, asset_date, "Global Realestate Sales", 250000, "Home", "Purchase", asset_familyhome);
+
+    // Link the asset entry to the transaction
+    Model_Translink::SetAssetTranslink(asset_id, checking_id);
+
+    // Create a loan to pay off the Family Home.
+    m_dbmodel->Add_Account("Loan: Family Home", Model_Account::LOAN, 0, "Family Home Mortgage", false);
+    m_dbmodel->Add_Trans_Transfer("Loan: Family Home", asset_date, asset_familyhome, 250000, "Home", "Purchase");
+
+    m_test_db.Commit();
+}
+
+void Test_DatabaseInitialisation::Add_Recurring_Transaction_Entries()
+{
+    CpuTimer Start("Repeat Transaction Entries");
+
+
+    m_test_db.Begin();
+
+    wxDateTime bill_date = wxDateTime::Today().Add(wxDateSpan::Days(3));
+    m_dbmodel->Bill_Start("ANZ - Mastercard", bill_date, Model_Billsdeposits::REPEAT_WEEKLY);
+    m_dbmodel->Bill_Trans_Withdrawal(bill_date, "Woolworths", 100);
+    int bill_id = m_dbmodel->BILL_End();
+
+    m_dbmodel->Bill_Split(bill_id, 10, "Food", "Groceries");
+    m_dbmodel->Bill_Split(bill_id, 30, "Food", "Groceries");
+    m_dbmodel->Bill_Split(bill_id, 60, "Food", "Groceries");
+
+    mmCurrentFinancialYear current_financial_year(1, 7);
+    bill_date = current_financial_year.start_date();
+    bill_date.Subtract(wxDateSpan::Years(7).Subtract(wxDateSpan::Months(4)));
+
+    while (bill_date < wxDateTime::Today())
+    {
+        m_dbmodel->Add_Trans_Withdrawal("Loan: Family Home", bill_date, "Bank - NAB", 2000, "Home", "Loan Interest");
+        m_dbmodel->Add_Trans_Transfer("NAB - Savings", bill_date, "Loan: Family Home", 3500, "Home", "Loan Repayments");
+        bill_date.Add(wxDateSpan::Month());
+    }
+
+    m_dbmodel->Bill_Start("Loan: Family Home", bill_date, Model_Billsdeposits::REPEAT_MONTHLY);
+    m_dbmodel->Bill_Trans_Withdrawal(bill_date, "Bank - NAB", 2000, "Home", "Loan Interest");
+    m_dbmodel->BILL_End(true);
+
+    m_dbmodel->Bill_Start("NAB - Savings", bill_date, Model_Billsdeposits::REPEAT_MONTHLY);
+    m_dbmodel->Bill_Trans_Transfer(bill_date, "Loan: Family Home", 3500, "Home", "Loan Repayments");
+    m_dbmodel->BILL_End(true);
+
+
+    m_test_db.Commit();
+}
+
+void Test_DatabaseInitialisation::Add_Stock_and_Share_Entries()
+{
+    CpuTimer Start("Stock and Share Entries");
+
+    mmCurrentFinancialYear current_financial_year(1, 7);
+    wxDateTime starting_date = current_financial_year.start_date();
+
+    // Set start date 3 years ago.
+    starting_date.Subtract(wxDateSpan::Years(3));
+ 
+    m_test_db.Begin();
+
+    // Setting up all entries for Stocks
+    Add_Stock_Entries(starting_date);
+
+    m_test_db.Commit();
+}
+
 void Test_DatabaseInitialisation::Add_Stock_Entries(const wxDateTime& starting_date)
 {
     wxDateTime trans_date = starting_date;
-    // Using Stocks to handle Shares
-    int stock_ABC_Account_id = m_dbmodel->Get_account_id("ABC Corporation");
-    int stock_ACME_Account_id = m_dbmodel->Get_account_id("ACME Corporation");
-
-    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(2)), 1000, 4.2575, 0, 0, 0, "ABC Initial Share Purchase", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 1000, 4.2575, 0, 0, 0, "ACME Initial Share Purchase", "AMP.ax");
-
-    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 9550, 5.2575, 0, 0, 0, "ABC Suplement Purchase", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 9550, 5.2575, 0, 0, 0, "ACME Suplement Purchase", "AMP.ax");
-
-    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 5, 5.2775, 0, 0, 0, "DRP", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 5, 5.2775, 0, 0, 0, "DRP", "AMP.ax");
-
-    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 10, 6.1575, 0, 0, 0, "DRP ", "amp.ax");
-    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 10, 6.1575, 0, 0, 0, "DRP ", "amp.ax");
-
-    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 100, 5.4575, 0, 0, 0, "DRP", "AMP.AX");
-    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 100, 5.4575, 0, 0, 0, "DRP", "AMP.AX");
-
-    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 1000, 4.2775, 0, 0, 0, "DRP", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 1000, 4.2775, 0, 0, 0, "DRP", "AMP.ax");
 
     // Setting up a stock portfolio
-    int stock_Yahoo_Finance_id = m_dbmodel->Get_account_id("Yahoo Finance");
+    int stock_Yahoo_Finance_id = m_dbmodel->Add_Investment_Account("Yahoo Finance", 0, "Stocks");
 
     // Setting up history for Telstra at start of a financial year
     trans_date = starting_date;
@@ -215,7 +307,7 @@ void Test_DatabaseInitialisation::Add_Stock_Entries(const wxDateTime& starting_d
     int share_cycle = 0;
     for (int i = 0; trans_date < wxDateTime::Today(); ++i)
     {
-        m_dbmodel->Add_StockHistory_Entry(stock_symbol, trans_date, num_shares * share_value, Model_StockHistory::MANUAL);
+        Model_StockHistory::instance().addUpdate(stock_symbol, trans_date, share_value, Model_StockHistory::MANUAL);
         if (share_cycle <= 15)
         {
             share_value += share_dif;
@@ -244,7 +336,7 @@ void Test_DatabaseInitialisation::Add_Stock_Entries(const wxDateTime& starting_d
     share_cycle = 0;
     for (int i = 0; trans_date < wxDateTime::Today(); ++i)
     {
-        m_dbmodel->Add_StockHistory_Entry(stock_symbol, trans_date, num_shares * share_value, Model_StockHistory::MANUAL);
+        Model_StockHistory::instance().addUpdate(stock_symbol, trans_date, share_value, Model_StockHistory::MANUAL);
         if (share_cycle <= 10)
         {
             share_value += share_dif;
@@ -272,7 +364,7 @@ void Test_DatabaseInitialisation::Add_Stock_Entries(const wxDateTime& starting_d
     share_cycle = 0;
     for (int i = 0; i < 45; ++i)
     {
-        m_dbmodel->Add_StockHistory_Entry(stock_symbol, trans_date, num_shares * share_value, Model_StockHistory::ONLINE);
+        Model_StockHistory::instance().addUpdate(stock_symbol, trans_date, share_value, Model_StockHistory::ONLINE);
         if (share_cycle <= 5)
         {
             share_value += share_dif;
@@ -319,18 +411,15 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
     m_test_db.Begin();  // Set all data to memory first, then save to database at end.
 
     // Setting up a personal loan
-    int personal_loan_id = m_dbmodel->Add_Trans_Transfer("ANZ - Personal Loan", trans_date, "ANZ - Cheque", 10000, "Transfer", "Bank Loan");
+    int personal_loan_id = m_dbmodel->Add_Trans_Transfer("Loan: Personal ANZ", trans_date, "ANZ - Cheque", 10000, "Transfer", "Bank Loan");
     Model_Checking::Data* personal_loan = Model_Checking::instance().get(personal_loan_id);
     personal_loan->NOTES = "Initialise $10,000 Personal loan from ANZ -Bank";
     Model_Checking::instance().save(personal_loan);
 
-    // Setting up all entries for Stocks
-    Add_Stock_Entries(starting_date);
-
     // Create transactions for a single month. These are repeated untill current month.
     int month_count = 0;
-    bool display_month_totals = true;
-    while (starting_date < wxDateTime::Today())
+
+    while (trans_date < wxDateTime::Today())
     {
         month_count++;
         trans_date = starting_date;
@@ -441,92 +530,37 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
         trans_date.SetToLastMonthDay();
 
         m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "ANZ - Mastercard", 625.0, "Mastercard", "Repayment");
-        m_dbmodel->Add_Trans_Withdrawal("NAB - Savings", trans_date, "Bank - NAB", 3500, "Home", "Loan Repayments");
-        m_dbmodel->Add_Trans_Deposit("Home Loan", trans_date, "Bank - NAB", 3500, "Home", "Loan Offset");
-        m_dbmodel->Add_Trans_Withdrawal("Home Loan", trans_date, "Bank - NAB", 500, "Home", "Loan Interest");
-
         m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Utility Provider", 150, "Home", "Phone/Internet");
 
         m_dbmodel->Add_Trans_Withdrawal("NAB - Savings", trans_date, "Bank - ANZ", 180, "Personal Loan", "Repayments");
-        m_dbmodel->Add_Trans_Deposit("ANZ - Personal Loan", trans_date, "Bank - ANZ", 180, "Personal Loan", "Offset");
-        m_dbmodel->Add_Trans_Withdrawal("ANZ - Personal Loan", trans_date, "Bank - ANZ", ((10000 - (180 * month_count)) * 0.20) / 12 , "Personal Loan", "Interest");
+        m_dbmodel->Add_Trans_Deposit("Loan: Personal ANZ", trans_date, "Bank - ANZ", 180, "Personal Loan", "Offset");
+        m_dbmodel->Add_Trans_Withdrawal("Loan: Personal ANZ", trans_date, "Bank - ANZ", ((10000 - (180 * month_count)) * 0.20) / 12, "Personal Loan", "Interest");
 
         m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "ANZ - Cheque", 100, "Transfer", "Saving");
         m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "ANZ - Cash Manager", 150, "Transfer", "Saving");
         m_dbmodel->Add_Trans_Deposit("ANZ - Cash Manager", trans_date, "Bank - ANZ", (250 * month_count * .05)/12, "Income", "Bank Interest");
-
-
-        //--------------------------------------------------------------------
-        if (display_month_totals)
-        {
-            m_dbmodel->Current_Payee_Income_Stats("---------- Payee Income: First Month Totals ----------", starting_date);
-            m_dbmodel->Current_Payee_Expense_Stats("---------- Payee Expense: First Month Totals ----------", starting_date);
-
-            m_dbmodel->Current_Category_Income_Stats("---------- Category Income: First Month Totals ----------", starting_date);
-            m_dbmodel->Current_Category_Expense_Stats("---------- Category Expense: First Month Totals ----------", starting_date);
-            
-            m_dbmodel->Current_Subcategory_Income_Stats("---------- Subcategory Income: First Month Totals ----------", starting_date);
-            m_dbmodel->Current_Subcategory_Expense_Stats("---------- Subcategory Expense: First Month Totals ----------", starting_date);
-
-            //Collect Totals Data.
-            m_dbmodel->Total_Payee_Stats(starting_date);
-            m_dbmodel->Total_Category_Stats(starting_date);
-            m_dbmodel->Total_Subcategory_Stats(starting_date);
-
-            display_month_totals = false;
-        }
-
         // -------------------------------------------------------------------
 
         // Set start of next month transactions
         starting_date.Add(wxDateSpan::Month());
     }
 
-    // -----------------------------------------------------------------------
-    // Report Totals for payees and categories
-    m_dbmodel->Current_Payee_Income_Stats("---------- Payee Income: All Time Totals ----------", starting_date);
-    m_dbmodel->Current_Payee_Expense_Stats("---------- Payee Expense: All Time Totals ----------", starting_date);
-
-    m_dbmodel->Current_Category_Income_Stats("---------- Category Income: All Time Totals ----------", starting_date);
-    m_dbmodel->Current_Category_Income_Stats("---------- Category Income: All Time Totals ----------", starting_date);
-
-    m_dbmodel->Current_Subcategory_Income_Stats("---------- Subcategory Expense: All Time Totals ----------", starting_date);
-    m_dbmodel->Current_Subcategory_Income_Stats("---------- Subcategory Expense: All Time Totals ----------", starting_date);
-
-    m_dbmodel->Total_Payee_Stats(starting_date);
-    m_dbmodel->Total_Category_Stats(starting_date);
-    m_dbmodel->Total_Subcategory_Stats(starting_date);
-
     //------------------------------------------------------------------------ 
     m_test_db.Commit(); // Finalise the database entries.
 }
 
-void Test_DatabaseInitialisation::Add_Repeat_Transaction_Entries()
-{
-    CpuTimer Start("Repeat Transaction Entries");
-    wxDateTime start_date = wxDateTime::Today().Add(wxDateSpan::Day());
-
-    m_test_db.Begin();
-
-    m_dbmodel->Bill_Start("ANZ - Mastercard", start_date, Model_Billsdeposits::REPEAT_WEEKLY);
-    m_dbmodel->Bill_Trans_Withdrawal(start_date, "Woolworths", 100);
-    int bill_id = m_dbmodel->BILL_End();
-   
-    m_dbmodel->Bill_Split(bill_id, 10, "Food", "Groceries");
-    m_dbmodel->Bill_Split(bill_id, 30, "Food", "Groceries");
-    m_dbmodel->Bill_Split(bill_id, 60, "Food", "Groceries");
-
-    m_test_db.Commit();
-}
-
-void Test_DatabaseInitialisation::Database_Encryption_Password_test_db()
+void Test_DatabaseInitialisation::Encrypt_Database_with_Password_test_db()
 {
     wxString encryption_password = "test_db";
-    wxString target_encrypted_filename = "test_mmex_db_encrypted.emb";
+    wxString target_encrypted_filename = "test_mmex_db_encrypted_" + wxDateTime(wxDateTime::Today()).FormatISODate() + ".emb";
 
     // Backup the existing database - with encryption.
     if (m_test_db.IsOpen())
     {
+        if (wxFileExists(target_encrypted_filename))
+        {
+            wxRemoveFile(m_test_db_filename);
+        }
         m_test_db.Backup(target_encrypted_filename, encryption_password);
     }
     else
