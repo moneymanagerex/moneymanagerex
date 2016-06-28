@@ -197,6 +197,7 @@ void Model_Usage::pageview(const std::string& documentPath, const std::string& d
     mg_mgr_init(&mgr, this);
 
     std::string user_agent = "User-Agent: " + std::string(wxGetOsDescription().c_str()) + "\r\n";
+    std::cout<<user_agent<<std::endl;
     nc = mg_connect_http(&mgr, Model_Usage::ev_handler, url.c_str(), user_agent.c_str(), NULL); // GET
 
     mg_set_protocol_http_websocket(nc);
