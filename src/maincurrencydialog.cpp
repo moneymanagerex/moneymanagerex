@@ -29,11 +29,7 @@
 #include "paths.h"
 #include "util.h"
 #include "validators.h"
-#include "model/Model_Account.h"
-#include "model/Model_Currency.h"
-#include "model/Model_CurrencyHistory.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Setting.h"
+#include "model/allmodel.h"
 
 #include <vector>
 #include <wx/sstream.h>

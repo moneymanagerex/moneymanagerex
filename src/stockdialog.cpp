@@ -26,11 +26,7 @@
 #include "util.h"
 #include "validators.h"
 
-#include "model/Model_Account.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_StockHistory.h"
-#include "model/Model_Translink.h"
+#include "model/allmodel.h"
 #include "accountdialog.h"
 #include "sharetransactiondialog.h"
 #include "mmframe.h"

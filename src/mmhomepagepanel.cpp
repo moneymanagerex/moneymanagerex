@@ -31,14 +31,7 @@ Copyright (C) 2014 Nikolay
 #include "option.h"
 #include "util.h"
 
-#include "model/Model_Setting.h"
-#include "model/Model_Asset.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Stock.h"
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_Category.h"
-#include "model/Model_Translink.h"
-#include "model/Model_Usage.h"
+#include "model/allmodel.h"
 
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"

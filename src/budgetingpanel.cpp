@@ -25,11 +25,7 @@
 #include "mmframe.h"
 #include "reports/budget.h"
 #include "reports/mmDateRange.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Budgetyear.h"
-#include "model/Model_Category.h"
-#include "model/Model_Usage.h"
+#include "model/allmodel.h"
 
 enum
 {

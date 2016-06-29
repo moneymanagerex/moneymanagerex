@@ -23,11 +23,7 @@
 #include "constants.h"
 #include "images_list.h"
 
-#include "model/Model_Attachment.h"
-#include "model/Model_Currency.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Translink.h"
-#include "model/Model_Usage.h"
+#include "model/allmodel.h"
 #include <wx/srchctrl.h>
 
 /*******************************************************/

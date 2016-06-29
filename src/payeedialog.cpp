@@ -28,10 +28,7 @@ Copyright (C) 2012 Nikolay
 #include "util.h"
 #include "webapp.h"
 
-#include "model/Model_Attachment.h"
-#include "model/Model_Category.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Payee.h"
+#include "model/allmodel.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmPayeeDialog, wxDialog);
 

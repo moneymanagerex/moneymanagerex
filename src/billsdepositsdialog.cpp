@@ -29,10 +29,7 @@
 #include "util.h"
 #include "validators.h"
 
-#include "model/Model_Account.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Category.h"
-#include "model/Model_Payee.h"
+#include "model/allmodel.h"
 
 #include <wx/valnum.h>
 

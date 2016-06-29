@@ -28,12 +28,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "categdialog.h"
 #include "attachmentdialog.h"
 
-#include "model/Model_Currency.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Category.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Usage.h"
+#include "model/allmodel.h"
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(UserTransactionPanel, wxPanel)

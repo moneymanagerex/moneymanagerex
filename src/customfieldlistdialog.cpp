@@ -24,9 +24,7 @@ Copyright (C) 2016 Gabriele-V
 #include "paths.h"
 #include "util.h"
 
-#include "model/Model_CustomField.h"
-#include "model/Model_CustomFieldData.h"
-#include "model/Model_Infotable.h"
+#include "model/allmodel.h"
 
 #include <wx/mimetype.h>
 
