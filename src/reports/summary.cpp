@@ -19,12 +19,7 @@
 #include "summary.h"
 #include "constants.h"
 #include "htmlbuilder.h"
-#include "model/Model_Account.h"
-#include "model/Model_Currency.h"
-#include "model/Model_CurrencyHistory.h"
-#include "model/Model_Asset.h"
-#include "model/Model_Stock.h"
-#include "model/Model_StockHistory.h"
+#include "model/allmodel.h"
 #include <algorithm>
 
 #if 0

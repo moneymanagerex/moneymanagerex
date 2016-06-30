@@ -29,12 +29,7 @@ Copyright (C) 2015 Yosef
 #include "webapp.h"
 #include "parsers.h"
 
-#include "model/Model_Account.h"
-#include "model/Model_Category.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Setting.h"
+#include "model/allmodel.h"
 
 #include <algorithm>
 

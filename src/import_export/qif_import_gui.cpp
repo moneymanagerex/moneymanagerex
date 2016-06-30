@@ -24,10 +24,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "webapp.h"
 #include "mmSimpleDialogs.h"
 
-#include "model/Model_Account.h"
-#include "model/Model_Category.h"
-#include "model/Model_Currency.h"
-#include "model/Model_Payee.h"
+#include "model/allmodel.h"
 
 #include <wx/progdlg.h>
 

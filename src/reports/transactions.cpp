@@ -23,9 +23,7 @@
 #include "constants.h"
 #include "htmlbuilder.h"
 #include "util.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Category.h"
-#include "model/Model_Payee.h"
+#include "model/allmodel.h"
 #include <algorithm>
 #include <vector>
 
