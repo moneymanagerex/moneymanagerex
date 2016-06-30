@@ -63,15 +63,7 @@
 #include "wizard_newaccount.h"
 #include "wizard_update.h"
 
-#include "reports/budgetcategorysummary.h"
-#include "reports/budgetingperf.h"
-#include "reports/cashflow.h"
-#include "reports/categexp.h"
-#include "reports/categovertimeperf.h"
-#include "reports/incexpenses.h"
-#include "reports/htmlbuilder.h"
-#include "reports/payee.h"
-#include "reports/transactions.h"
+#include "reports/allreport.h"
 
 #include "import_export/qif_export.h"
 #include "import_export/qif_import_gui.h"

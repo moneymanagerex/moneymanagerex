@@ -526,6 +526,7 @@ void mmHomePagePanel::CreateControls()
     this->SetSizer(itemBoxSizer2);
 
     browser_ = wxWebView::New(this, mmID_BROWSER);
+    browser_->RunScript("alert('navigator.userAgent')");
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "assets")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
