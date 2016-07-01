@@ -74,7 +74,6 @@ private:
     void SetLastPayeeAndCategory(const int account_id);
 
     void OnTransAccountButton(wxCommandEvent& WXUNUSED(event));
-    void OnTransCurrencyButton(wxCommandEvent& WXUNUSED(event));
     void OnTransPayeeButton(wxCommandEvent& WXUNUSED(event));
     void OnTransCategoryButton(wxCommandEvent& WXUNUSED(event));
 

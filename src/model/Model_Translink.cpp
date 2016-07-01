@@ -217,13 +217,14 @@ void Model_Translink::UpdateAssetValue(Model_Asset::Data* asset_entry)
         {
             if (!Model_Checking::foreignTransactionAsTransfer(*asset_trans))
             {
+                Model_Currency::Data* asset_currency = Model_Account::currency(Model_Account::instance().get(asset_trans->ACCOUNTID));
                 if (asset_trans->TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT])
                 {
-                    new_value -= asset_trans->TRANSAMOUNT; // Withdrawal from asset value
+                    new_value -= asset_trans->TRANSAMOUNT * asset_currency->BASECONVRATE; // Withdrawal from asset value
                 }
                 else
                 {
-                    new_value += asset_trans->TRANSAMOUNT;  // Deposit to asset value
+                    new_value += asset_trans->TRANSAMOUNT * asset_currency->BASECONVRATE;  // Deposit to asset value
                 }
 
                 asset_entry->VALUE = new_value;
