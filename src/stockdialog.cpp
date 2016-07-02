@@ -110,13 +110,14 @@ void mmStockDialog::DataToControls()
     m_notes_ctrl->SetValue(m_stock->NOTES);
     m_purchase_date_ctrl->SetValue(Model_Stock::PURCHASEDATE(m_stock));
 
-    int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : 6;
+    int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : Option::instance().SharePrecision();
     m_num_shares_ctrl->SetValue(m_stock->NUMSHARES, precision);
     Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     if (account) currency = Model_Account::currency(account);
     int currency_precision = Model_Currency::precision(currency);
-    if (currency_precision < 6) currency_precision = 6;
+    if (currency_precision < Option::instance().SharePrecision())
+        currency_precision = Option::instance().SharePrecision();
     m_purchase_price_ctrl->SetValue(m_stock->PURCHASEPRICE, account, currency_precision);
     m_current_price_ctrl->SetValue(m_stock->CURRENTPRICE, account, currency_precision);
     m_commission_ctrl->SetValue(m_stock->COMMISSION, account, currency_precision);
@@ -523,11 +524,12 @@ void mmStockDialog::OnTextEntered(wxCommandEvent& event)
     Model_Account::Data *account = Model_Account::instance().get(m_account_id);
     if (account) currency = Model_Account::currency(account);
     int currency_precision = Model_Currency::precision(currency);
-    if (currency_precision < 6) currency_precision = 6;
+    if (currency_precision < Option::instance().SharePrecision())
+        currency_precision = Option::instance().SharePrecision();
 
     if (event.GetId() == m_num_shares_ctrl->GetId())
     {
-        m_num_shares_ctrl->Calculate(6);
+        m_num_shares_ctrl->Calculate(Option::instance().SharePrecision());
     }
     else if (event.GetId() == m_purchase_price_ctrl->GetId())
     {
@@ -553,7 +555,7 @@ void mmStockDialog::OnListItemSelected(wxListEvent& event)
     if (histData->HISTID > 0)
     {
         m_current_date_ctrl->SetValue(Model_StockHistory::DATE(*histData));
-        m_current_price_ctrl->SetValue(Model_Account::toString(histData->VALUE, account, 6));
+        m_current_price_ctrl->SetValue(Model_Account::toString(histData->VALUE, account, Option::instance().SharePrecision()));
     }
 }
 
@@ -850,10 +852,10 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
     }
     if (i != m_price_listbox->GetItemCount())
     {
-        listStr = Model_Account::toString(dPrice, account, 6);
+        listStr = Model_Account::toString(dPrice, account, Option::instance().SharePrecision());
         m_price_listbox->SetItem(i, 0, mmGetDateForDisplay(m_current_date_ctrl->GetValue()));
         m_price_listbox->SetItem(i, 1, listStr);
-        listStr = Model_Account::toString(dPrice - m_stock->PURCHASEPRICE, account, 6);
+        listStr = Model_Account::toString(dPrice - m_stock->PURCHASEPRICE, account, Option::instance().SharePrecision());
         m_price_listbox->SetItem(i, 2, listStr);
     }
 }
@@ -899,7 +901,7 @@ void mmStockDialog::ShowStockHistory()
             item.SetData(d.HISTID);
             m_price_listbox->InsertItem(item);
             const wxDate dtdt = Model_StockHistory::DATE(d);
-            const wxString dispAmount = Model_Account::toString(d.VALUE, account, 4);
+            const wxString dispAmount = Model_Account::toString(d.VALUE, account, Option::instance().SharePrecision());
             m_price_listbox->SetItem(idx, 0, mmGetDateForDisplay(dtdt));
             m_price_listbox->SetItem(idx, 1, dispAmount);
             if (idx == 0)
@@ -907,7 +909,7 @@ void mmStockDialog::ShowStockHistory()
                 m_current_date_ctrl->SetValue(dtdt);
                 m_current_price_ctrl->SetValue(dispAmount);
             }
-            const wxString& priceAmount = Model_Account::toString(d.VALUE - m_stock->PURCHASEPRICE, account, 6);
+            const wxString& priceAmount = Model_Account::toString(d.VALUE - m_stock->PURCHASEPRICE, account, Option::instance().SharePrecision());
             m_price_listbox->SetItem(idx, 2, priceAmount);
             idx++;
         }

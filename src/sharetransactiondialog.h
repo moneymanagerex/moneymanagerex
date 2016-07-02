@@ -55,14 +55,14 @@ private:
     void OnTextEntered(wxCommandEvent& event);
 
 private:
-    mmTextCtrl* m_stock_name;
-    mmTextCtrl* m_stock_symbol;
-    mmTextCtrl* m_share_num;
-    mmTextCtrl* m_share_price;
-    mmTextCtrl* m_share_lot;
-    mmTextCtrl* m_commission;
-    mmTextCtrl* m_notes;
-	wxBitmapButton* m_attachments;
+    mmTextCtrl* m_stock_name_ctrl;
+    mmTextCtrl* m_stock_symbol_ctrl;
+    mmTextCtrl* m_share_num_ctrl;
+    mmTextCtrl* m_share_price_ctrl;
+    mmTextCtrl* m_share_lot_ctrl;
+    mmTextCtrl* m_commission_ctrl;
+    mmTextCtrl* m_notes_ctrl;
+	wxBitmapButton* m_attachments_btn;
 
     UserTransactionPanel* m_transaction_panel;
     wxString m_dialog_heading;

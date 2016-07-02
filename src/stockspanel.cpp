@@ -408,9 +408,9 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
             wxString sd = mmGetDateForDisplay(Model_Checking::TRANSDATE(stock_trans));
             wxString sl = share_entry->SHARELOT;
       
-            int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : 4;
+            int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
             wxString sn = wxString::FromDouble(share_entry->SHARENUMBER, precision);
-            wxString su = wxString::FromDouble(share_entry->SHAREPRICE, 4);
+            wxString su = wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().SharePrecision());
             wxString sc = wxString::FromDouble(share_entry->SHARECOMMISSION, 2);
             msg << wxString::Format("%s     %s          %s               %s          %s\n", sd, sl, sn, su, sc);
         }
