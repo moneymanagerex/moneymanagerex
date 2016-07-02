@@ -40,6 +40,7 @@ Option::Option()
     , m_transStatusReconciled(Option::NONE)
     , m_usageStatistics(true)
     , m_transDateDefault(0)
+    , m_sharePrecision(4)
     , m_html_font_size(100)
     , m_ico_size(16)
 {}
@@ -60,6 +61,7 @@ void Option::LoadOptions(bool include_infotable)
         m_financialYearStartDayString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
         m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
         m_baseCurrency = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
+        m_sharePrecision = Model_Infotable::instance().GetIntInfo("SHARE_PRECISION", 4);
     }
 
     m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
@@ -277,6 +279,17 @@ void Option::TransDateDefault(int value)
 int Option::TransDateDefault()
 {
     return m_transDateDefault;
+}
+
+void Option::SharePrecision(int value)
+{
+    Model_Infotable::instance().Set("SHARE_PRECISION", value);
+    m_sharePrecision = value;
+}
+
+int Option::SharePrecision()
+{
+    return m_sharePrecision;
 }
 
 void Option::SendUsageStatistics(bool value)

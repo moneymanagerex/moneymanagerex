@@ -53,14 +53,14 @@ ShareTransactionDialog::ShareTransactionDialog()
 
 ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Stock::Data* stock)
     : m_stock(stock)
-    , m_stock_name(nullptr)
-    , m_stock_symbol(nullptr)
-    , m_share_num(nullptr)
-    , m_share_price(nullptr)
-    , m_share_lot(nullptr)
-    , m_notes(nullptr)
-    , m_commission(nullptr)
-    , m_attachments(nullptr)
+    , m_stock_name_ctrl(nullptr)
+    , m_stock_symbol_ctrl(nullptr)
+    , m_share_num_ctrl(nullptr)
+    , m_share_price_ctrl(nullptr)
+    , m_share_lot_ctrl(nullptr)
+    , m_notes_ctrl(nullptr)
+    , m_commission_ctrl(nullptr)
+    , m_attachments_btn(nullptr)
     , m_translink_entry(nullptr)
     , m_share_entry(nullptr)
     , m_checking_entry(nullptr)
@@ -72,14 +72,14 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Stock::Da
 
 ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink::Data* translink_entry, Model_Checking::Data* checking_entry)
     : m_stock(nullptr)
-    , m_stock_name(nullptr)
-    , m_stock_symbol(nullptr)
-    , m_share_num(nullptr)
-    , m_share_price(nullptr)
-    , m_share_lot(nullptr)
-    , m_notes(nullptr)
-    , m_commission(nullptr)
-    , m_attachments(nullptr)
+    , m_stock_name_ctrl(nullptr)
+    , m_stock_symbol_ctrl(nullptr)
+    , m_share_num_ctrl(nullptr)
+    , m_share_price_ctrl(nullptr)
+    , m_share_lot_ctrl(nullptr)
+    , m_notes_ctrl(nullptr)
+    , m_commission_ctrl(nullptr)
+    , m_attachments_btn(nullptr)
     , m_translink_entry(translink_entry)
     , m_checking_entry(checking_entry)
     , m_dialog_heading(_("Add Share Transaction"))
@@ -120,23 +120,23 @@ void ShareTransactionDialog::DataToControls()
     if (!m_stock) return;
 
     m_stock_id = m_stock->STOCKID;
-    m_stock_name->SetValue(m_stock->STOCKNAME);
+    m_stock_name_ctrl->SetValue(m_stock->STOCKNAME);
     m_transaction_panel->SetTransactionAccount(m_stock->STOCKNAME);
-    m_stock_symbol->SetValue(m_stock->SYMBOL);
-    m_notes->SetValue(m_stock->NOTES);
+    m_stock_symbol_ctrl->SetValue(m_stock->SYMBOL);
+    m_notes_ctrl->SetValue(m_stock->NOTES);
 
-    m_stock_name->Enable(false);
-    m_stock_symbol->Enable(false);
-    m_notes->Enable(false);
+    m_stock_name_ctrl->Enable(false);
+    m_stock_symbol_ctrl->Enable(false);
+    m_notes_ctrl->Enable(false);
 
     Model_Translink::Data_Set translink_list = Model_Translink::TranslinkList(Model_Attachment::STOCK, m_stock->STOCKID);
 
     if (translink_list.empty())
     {   // Set up the transaction as the first entry.
-        int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : 6;
-        m_share_num->SetValue(m_stock->NUMSHARES, precision);
-        m_share_price->SetValue(m_stock->PURCHASEPRICE, 6);
-        m_commission->SetValue(m_stock->COMMISSION);
+        int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : Option::instance().SharePrecision();
+        m_share_num_ctrl->SetValue(m_stock->NUMSHARES, precision);
+        m_share_price_ctrl->SetValue(m_stock->PURCHASEPRICE, Option::instance().SharePrecision());
+        m_commission_ctrl->SetValue(m_stock->COMMISSION, Option::instance().SharePrecision());
         m_transaction_panel->TransactionDate(Model_Stock::PURCHASEDATE(m_stock));
         m_transaction_panel->SetTransactionValue(
             ( m_stock->NUMSHARES * m_stock->PURCHASEPRICE) + m_stock->COMMISSION, true);
@@ -145,11 +145,11 @@ void ShareTransactionDialog::DataToControls()
     {
         if (m_translink_entry && m_share_entry)
         {
-            int precision = m_share_entry->SHARENUMBER == floor(m_share_entry->SHARENUMBER) ? 0 : 6;
-            m_share_num->SetValue(std::abs(m_share_entry->SHARENUMBER), precision);
-            m_share_price->SetValue(m_share_entry->SHAREPRICE, 6);
-            m_commission->SetValue(m_share_entry->SHARECOMMISSION);
-            m_share_lot->SetValue(m_share_entry->SHARELOT);
+            int precision = m_share_entry->SHARENUMBER == floor(m_share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
+            m_share_num_ctrl->SetValue(std::abs(m_share_entry->SHARENUMBER), precision);
+            m_share_price_ctrl->SetValue(m_share_entry->SHAREPRICE, Option::instance().SharePrecision());
+            m_commission_ctrl->SetValue(m_share_entry->SHARECOMMISSION, Option::instance().SharePrecision());
+            m_share_lot_ctrl->SetValue(m_share_entry->SHARELOT);
 
             Model_Checking::Data* checking_entry = Model_Checking::instance().get(m_translink_entry->CHECKINGACCOUNTID);
             m_transaction_panel->TransactionDate(Model_Checking::TRANSDATE(checking_entry));
@@ -158,8 +158,8 @@ void ShareTransactionDialog::DataToControls()
         }
         else
         {
-            m_share_num->SetValue(0, 0);
-            m_share_price->SetValue(0, 6);
+            m_share_num_ctrl->SetValue(0, 0);
+            m_share_price_ctrl->SetValue(0, Option::instance().SharePrecision());
             m_transaction_panel->SetTransactionValue(0, true);
         }
     }
@@ -193,49 +193,49 @@ void ShareTransactionDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(stock_details_panel, wxID_STATIC, _("Company Name")), g_flagsH);
 
-    m_stock_name = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NAME, "");
-    itemFlexGridSizer6->Add(m_stock_name, g_flagsExpand);
-    m_stock_name->SetToolTip(_("Enter the stock company name"));
+    m_stock_name_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NAME, "");
+    itemFlexGridSizer6->Add(m_stock_name_ctrl, g_flagsExpand);
+    m_stock_name_ctrl->SetToolTip(_("Enter the stock company name"));
 
     //Symbol
     wxStaticText* symbol = new wxStaticText(stock_details_panel, wxID_STATIC, _("Stock Symbol"));
     itemFlexGridSizer6->Add(symbol, g_flagsH);
     symbol->SetFont(this->GetFont().Bold());
 
-    m_stock_symbol = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_SYMBOL
+    m_stock_symbol_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_SYMBOL
         , "", wxDefaultPosition, wxSize(150, -1), 0);
-    itemFlexGridSizer6->Add(m_stock_symbol, g_flagsH);
-    m_stock_symbol->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
+    itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsH);
+    m_stock_symbol_ctrl->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
     //Share Unit Number 
     wxStaticText* number = new wxStaticText(stock_details_panel, wxID_STATIC, _("Share Number"));
     itemFlexGridSizer6->Add(number, g_flagsH);
     number->SetFont(this->GetFont().Bold());
-    m_share_num = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NUMBER, ""
+    m_share_num_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NUMBER, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemFlexGridSizer6->Add(m_share_num, g_flagsH);
-    m_share_num->SetToolTip(_("Enter number of shares held"));
-    m_share_num->Connect(ID_STOCKTRANS_SHARE_NUMBER, wxEVT_COMMAND_TEXT_ENTER
+    itemFlexGridSizer6->Add(m_share_num_ctrl, g_flagsH);
+    m_share_num_ctrl->SetToolTip(_("Enter number of shares held"));
+    m_share_num_ctrl->Connect(ID_STOCKTRANS_SHARE_NUMBER, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(ShareTransactionDialog::OnTextEntered), nullptr, this);
 
     //Share Price
     wxStaticText* pprice = new wxStaticText(stock_details_panel, wxID_STATIC, _("Share Price"));
     pprice->SetFont(this->GetFont().Bold());
-    m_share_price = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_PRICE, ""
+    m_share_price_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_PRICE, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(pprice, g_flagsH);
-    itemFlexGridSizer6->Add(m_share_price, g_flagsH);
-    m_share_price->SetToolTip(_("Enter the current value for a single share unit"));
-    m_share_price->Connect(ID_STOCKTRANS_SHARE_PRICE, wxEVT_COMMAND_TEXT_ENTER
+    itemFlexGridSizer6->Add(m_share_price_ctrl, g_flagsH);
+    m_share_price_ctrl->SetToolTip(_("Enter the current value for a single share unit"));
+    m_share_price_ctrl->Connect(ID_STOCKTRANS_SHARE_PRICE, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(ShareTransactionDialog::OnTextEntered), nullptr, this);
 
     // Commission
-    m_commission = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_COMMISSION, "0"
+    m_commission_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_COMMISSION, "0"
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(new wxStaticText(stock_details_panel, wxID_STATIC, _("Commission")), g_flagsH);
-    itemFlexGridSizer6->Add(m_commission, g_flagsH);
-    m_commission->SetToolTip(_("Enter any commission paid"));
-    m_commission->Connect(ID_STOCKTRANS_SHARE_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
+    itemFlexGridSizer6->Add(m_commission_ctrl, g_flagsH);
+    m_commission_ctrl->SetToolTip(_("Enter any commission paid"));
+    m_commission_ctrl->Connect(ID_STOCKTRANS_SHARE_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(ShareTransactionDialog::OnTextEntered), nullptr, this);
 
     //Share Lot
@@ -243,32 +243,32 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(lot_text, g_flagsH);
     lot_text->SetFont(this->GetFont().Bold());
 
-    m_share_lot = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_LOT
+    m_share_lot_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_LOT
         , "", wxDefaultPosition, wxSize(150, -1), 0);
-    itemFlexGridSizer6->Add(m_share_lot, g_flagsH);
-    m_share_lot->SetToolTip(_("Enter the LOT that this parcel os shares belong to"));
+    itemFlexGridSizer6->Add(m_share_lot_ctrl, g_flagsH);
+    m_share_lot_ctrl->SetToolTip(_("Enter the LOT that this parcel os shares belong to"));
 
     //Notes
     itemFlexGridSizer6->Add(new wxStaticText(stock_details_panel, wxID_STATIC, _("Notes")), g_flagsH);
 
     //Attachments
-    m_attachments = new wxBitmapButton(stock_details_panel, wxID_FILE, mmBitmap(png::CLIP));
-    m_attachments->SetToolTip(_("Organize attachments of this stock"));
+    m_attachments_btn = new wxBitmapButton(stock_details_panel, wxID_FILE, mmBitmap(png::CLIP));
+    m_attachments_btn->SetToolTip(_("Organize attachments of this stock"));
     //TODO m_attachments not used here
-    m_attachments->Hide();
+    m_attachments_btn->Hide();
 
     wxBitmapButton* web_button = new wxBitmapButton(stock_details_panel, wxID_INDEX, mmBitmap(png::WEB));
     web_button->SetToolTip(_("Display the web page for the specified Stock symbol"));
 
     wxBoxSizer* icon_sizer = new wxBoxSizer(wxHORIZONTAL);
-    icon_sizer->Add(m_attachments, g_flagsH);
+    icon_sizer->Add(m_attachments_btn, g_flagsH);
     icon_sizer->Add(web_button, g_flagsH);
     itemFlexGridSizer6->Add(icon_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
 
-    m_notes = new mmTextCtrl(this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 162), wxTE_MULTILINE);
-    details_frame_sizer->Add(m_notes, g_flagsExpand);
+    m_notes_ctrl = new mmTextCtrl(this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 162), wxTE_MULTILINE);
+    details_frame_sizer->Add(m_notes_ctrl, g_flagsExpand);
     details_frame_sizer->AddSpacer(1);
-    m_notes->SetToolTip(_("Enter notes associated with this investment"));
+    m_notes_ctrl->SetToolTip(_("Enter notes associated with this investment"));
 
     /********************************************************************
     Transaction Panel
@@ -335,7 +335,7 @@ void ShareTransactionDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 
 void ShareTransactionDialog::OnStockPriceButton(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString stockSymbol = m_stock_symbol->GetValue().Trim();
+    const wxString stockSymbol = m_stock_symbol_ctrl->GetValue().Trim();
 
     if (!stockSymbol.IsEmpty())
     {
@@ -348,19 +348,19 @@ void ShareTransactionDialog::OnStockPriceButton(wxCommandEvent& WXUNUSED(event))
 void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     double num_shares = 0;
-    if (!m_share_num->checkValue(num_shares))
+    if (!m_share_num_ctrl->checkValue(num_shares))
     {
         return;
     }
 
     double share_price = 0;
-    if (!m_share_price->checkValue(share_price))
+    if (!m_share_price_ctrl->checkValue(share_price))
     {
         return;
     }
 
     double commission = 0;
-    m_commission->GetDouble(commission);
+    m_commission_ctrl->GetDouble(commission);
 
     double current_price = share_price;
     if (m_stock && ((m_stock->PURCHASEPRICE != m_stock->CURRENTPRICE) && (m_stock->PURCHASEPRICE != 0)))
@@ -405,7 +405,7 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
              Model_Translink::SetStockTranslink(m_stock->STOCKID
                 , checking_id, m_transaction_panel->CheckingType());
         }
-        Model_Shareinfo::ShareEntry(checking_id, num_shares, share_price, commission, m_share_lot->GetValue());
+        Model_Shareinfo::ShareEntry(checking_id, num_shares, share_price, commission, m_share_lot_ctrl->GetValue());
 
         Model_Translink::UpdateStockValue(m_stock);
         if (!loyalty_shares)
@@ -425,21 +425,21 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void ShareTransactionDialog::OnTextEntered(wxCommandEvent& event)
 {
     double share_num = 0;
-    if (!m_share_num->GetValue().empty())
+    if (!m_share_num_ctrl->GetValue().empty())
     {
-        m_share_num->GetDouble(share_num);
+        m_share_num_ctrl->GetDouble(share_num);
     }
 
     double share_price = 0;
-    if (!m_share_price->GetValue().empty())
+    if (!m_share_price_ctrl->GetValue().empty())
     {
-        m_share_price->GetDouble(share_price);
+        m_share_price_ctrl->GetDouble(share_price);
     }
 
     double share_commission = 0;
-    if (!m_commission->GetValue().empty())
+    if (!m_commission_ctrl->GetValue().empty())
     {
-        m_commission->GetDouble(share_commission);
+        m_commission_ctrl->GetDouble(share_commission);
     }
 
     if (share_num > 0)

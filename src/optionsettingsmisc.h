@@ -48,6 +48,7 @@ private:
 
 private:
     wxSpinCtrl* m_max_files;
+    wxSpinCtrl* m_share_precision;
 
     enum
     {

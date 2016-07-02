@@ -95,6 +95,9 @@ public:
     void SendUsageStatistics(bool value);
     bool SendUsageStatistics();
 
+    void SharePrecision(int value);
+    int SharePrecision();
+
     /* stored value in percantage for scale html font and other objects */
     void HtmlFontSize(int value);
     int HtmlFontSize();
@@ -124,6 +127,7 @@ private:
     int m_transStatusReconciled;
     int m_transDateDefault;
     bool m_usageStatistics;
+    int m_sharePrecision;
 
     int m_html_font_size;
     int m_ico_size;

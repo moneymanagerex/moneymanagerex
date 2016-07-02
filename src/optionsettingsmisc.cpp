@@ -63,7 +63,18 @@ void OptionSettingsMisc::Create()
         , ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL, stockURL);
     othersPanelSizer->Add(itemTextCtrURL, wxSizerFlags(g_flagsExpand).Proportion(0));
     itemTextCtrURL->SetToolTip(_("Clear the field to Reset the value to system default."));
-    othersPanelSizer->AddSpacer(15);
+
+    // Share Precision
+    wxFlexGridSizer* share_precision_sizer = new wxFlexGridSizer(0, 2, 0, 0);
+    share_precision_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Share Precision")), wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    m_share_precision = new wxSpinCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize
+        , wxSP_ARROW_KEYS, 2, 10, Option::instance().SharePrecision());
+    m_share_precision->SetValue(Option::instance().SharePrecision());
+    m_share_precision->SetToolTip(_("Set the precision for Share prices"));
+
+    share_precision_sizer->Add(m_share_precision, wxSizerFlags(g_flagsExpand).Proportion(0));
+    othersPanelSizer->Add(share_precision_sizer, g_flagsBorder1V);
 
     // New transaction dialog settings
     wxStaticBox* transSettingsStaticBox = new wxStaticBox(this, wxID_STATIC, _("New Transaction Dialog Settings"));
@@ -212,6 +223,7 @@ void OptionSettingsMisc::SaveSettings()
     Option::instance().TransDateDefault(itemChoice->GetSelection());
 
     SaveStocksUrl();
+    Option::instance().SharePrecision(m_share_precision->GetValue());
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP);
     Model_Setting::instance().Set("BACKUPDB", itemCheckBox->GetValue());
