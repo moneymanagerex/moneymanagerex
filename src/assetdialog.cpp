@@ -125,6 +125,11 @@ void mmAssetDialog::dataToControls()
     if (!this->m_asset) return;
 
     m_assetName->SetValue(m_asset->ASSETNAME);
+    if (Model_Account::instance().get(m_asset->ASSETNAME))
+    {
+        m_assetName->Enable(false);
+    }
+
     m_notes->SetValue(m_asset->NOTES);
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
     m_value->SetValue(std::abs(m_asset->VALUE));
@@ -395,10 +400,10 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     }
 
     Model_Account::Data* asset_account = Model_Account::instance().get(name);
-    if (!asset_account)
+    if (is_new && !asset_account)
     {
         if (wxMessageBox(_("Asset Account not found.\n\nWould you want to create one?")
-            , _("New Asset"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
+            , _("New Asset"), wxYES_NO | wxICON_INFORMATION) == wxYES)
         {
             CreateAssetAccount();
         }

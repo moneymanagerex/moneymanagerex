@@ -756,7 +756,25 @@ void mmAssetsPanel::AddAssetTrans(const int selected_index)
 {
     Model_Asset::Data* asset = &m_assets[selected_index];
     mmAssetDialog asset_dialog(this, m_frame, asset, true);
-    asset_dialog.SetTransactionAccountName(asset->ASSETNAME);
+    Model_Account::Data* account = Model_Account::instance().get(asset->ASSETNAME);
+    if (account)
+    {
+        asset_dialog.SetTransactionAccountName(asset->ASSETNAME);
+    }
+    else
+    {
+        Model_Translink::Data_Set translist = Model_Translink::TranslinkList(Model_Attachment::ASSET, asset->ASSETID);
+        if (!translist.empty())
+        {
+            wxMessageBox(_(
+                "This asset does not have its own account\n\n"
+                "Multiple transactions for this asset are not recommended.")
+                , _("Asset Management"), wxOK | wxICON_INFORMATION);
+
+            return; // abort process
+        }
+    }
+
     if (asset_dialog.ShowModal() == wxID_OK)
     {
         m_listCtrlAssets->doRefreshItems(selected_index);
@@ -791,9 +809,27 @@ void mmAssetsPanel::GotoAssetAccount(const int selected_index)
     const Model_Account::Data* account = Model_Account::instance().get(asset->ASSETNAME);
     if (account)
     {
-        m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-        m_frame->setGotoAccountID(account->ACCOUNTID, -1);
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-        m_frame->GetEventHandler()->AddPendingEvent(evt);
+        SetAccountParameters(account);
     }
+    else
+    {
+        Model_Translink::Data_Set asset_list = Model_Translink::TranslinkList(Model_Attachment::ASSET, asset->ASSETID);
+        for (const auto asset_entry : asset_list)
+        {
+            Model_Checking::Data* asset_trans = Model_Checking::instance().get(asset_entry.CHECKINGACCOUNTID);
+            if (asset_trans)
+            {
+                account = Model_Account::instance().get(asset_trans->ACCOUNTID);
+                SetAccountParameters(account);
+            }
+        }
+    }
+}
+
+void mmAssetsPanel::SetAccountParameters(const Model_Account::Data* account)
+{
+    m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+    m_frame->setGotoAccountID(account->ACCOUNTID, -1);
+    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+    m_frame->GetEventHandler()->AddPendingEvent(evt);
 }

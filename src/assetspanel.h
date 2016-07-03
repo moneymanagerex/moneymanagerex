@@ -17,6 +17,7 @@
 #pragma once
 #include "mmpanelbase.h"
 #include "model/Model_Asset.h"
+#include "model/Model_Account.h"
 #include "mmframe.h"
 
 class wxListEvent;
@@ -125,6 +126,7 @@ private:
 
     void OnViewPopupSelected(wxCommandEvent& event);
     void sortTable();
+    void SetAccountParameters(const Model_Account::Data* account);
 
 private:
     wxString tips_;

@@ -126,18 +126,6 @@ Model_Translink::Data Model_Translink::TranslinkRecord(const int checking_id)
     return translink_list.at(0);
 }
 
-Model_Checking::Data_Set Model_Translink::TranslinkCheckingList(Model_Attachment::REFTYPE table_type, const int entry_id)
-{
-    Model_Checking::Data_Set record_list;
-    for (const auto& trans_entry : TranslinkList(table_type, entry_id))
-    {
-        Model_Checking::Data* entry = Model_Checking::instance().get(trans_entry.TRANSLINKID);
-        record_list.push_back(*entry);
-    }
-
-    return record_list;
-}
-
 void Model_Translink::RemoveTransLinkRecords(Model_Attachment::REFTYPE table_type, const int entry_id)
 {
     for (const auto& translink : TranslinkList(table_type, entry_id))
