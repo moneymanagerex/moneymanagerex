@@ -177,6 +177,7 @@ TARGET_SOURCES(mmex PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Translink_V1.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Usage_V1.h"
 
+	"${CMAKE_CURRENT_SOURCE_DIR}/reports/allreport.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/reports/budgetcategorysummary.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/reports/budgetcategorysummary.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/reports/budget.cpp"
@@ -208,6 +209,7 @@ TARGET_SOURCES(mmex PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/reports/transactions.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/reports/transactions.h"
 
+	"${CMAKE_CURRENT_SOURCE_DIR}/model/allmodel.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Account.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Account.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Asset.cpp"

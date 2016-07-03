@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.1)
 
 SET(InMMEX TRUE)
 
-PROJECT(MoneyManagerEx)
+PROJECT(MoneyManagerEx VERSION 1.3.0)
 
 OPTION(BuildTests "Whether to build automatic unit tests" OFF)
 
@@ -14,15 +14,19 @@ SET(CMAKE_CXX_STANDARD 11)
 #MSVC
 IF (MSVC)
 	MESSAGE("-- Compiler = MSVC")
+	#TODO:
 
 #GCC or Clang
-ELSEIF (("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU") OR ("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang"))
-	IF ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
+ELSEIF (("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU") OR ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang"))
+	IF ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 		MESSAGE("-- Compiler = GNU")
+		#TODO:
 	ELSE()
 		MESSAGE("-- Compiler = Clang")
+		#TODO:
 	ENDIF()
 ENDIF ()
+
 
 #Set various location
 SET(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin")
@@ -35,7 +39,8 @@ SET(INSTALL_MO_DIR "share/mmex/po")
 
 #Check for required libraries
 FIND_PACKAGE(Gettext REQUIRED)
-IF ((MSVC) OR (UNIX AND APPLE))
+#wxScintilla doesn't exist on Linux
+IF ((CMAKE_SYSTEM_NAME STREQUAL "Darwin") OR (CMAKE_SYSTEM_NAME STREQUAL "Windows"))
     FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv scintilla stc webview base REQUIRED)
 ELSE()
     FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv stc webview base REQUIRED)
@@ -85,11 +90,11 @@ ENDIF ()
 ## Install ##
 
 #OSX
-IF (UNIX AND APPLE)
-
+IF (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+	#TODO:
 ENDIF ()
-#*nix
-IF (UNIX AND NOT APPLE)
+#Linux
+IF (CMAKE_SYSTEM_NAME STREQUAL "Linux")
 
 	#Binary	
 	INSTALL(PROGRAMS "${CMAKE_SOURCE_DIR}/bin/mmex" 
@@ -102,8 +107,8 @@ IF (UNIX AND NOT APPLE)
 		DESTINATION "${INSTALL_DOC_DIR}")
 	INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/doc/help"
 		DESTINATION "${INSTALL_DOC_DIR}")
-    INSTALL(FILES "${CMAKE_SOURCE_DIR}/resources/master.css"
-        DESTINATION "${INSTALL_DOC_DIR}/help")
+	INSTALL(FILES "${CMAKE_SOURCE_DIR}/resources/master.css"
+        	DESTINATION "${INSTALL_DOC_DIR}/help")
 
 	#Resources
 	INSTALL(FILES "${CMAKE_SOURCE_DIR}/3rd/ChartNew.js/ChartNew.js"
@@ -124,7 +129,8 @@ IF (UNIX AND NOT APPLE)
 
 ENDIF ()
 #Windows
-IF (WIN32)
+IF (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+	#TODO:
 ENDIF ()
 
 ## CPack ##
@@ -133,20 +139,25 @@ SET(CPACK_PACKAGE_VERSION "1.3.0")
 SET(CPACK_PACKAGE_CONTACT "MoneyManagerEx Developers <developers@moneymanagerex.org>")
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple to use financial management software")
 SET(CPACK_PACKAGE_DESCRIPTION "Money Manager Ex (MMEX) is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. MMEX includes all the basic features that 90% of users would want to see in a personal finance application. The design goals are to concentrate on simplicity and user friendliness - something one can use everyday.")
-IF (UNIX AND NOT APPLE)
+IF (CMAKE_SYSTEM_NAME STREQUAL "Linux")
 	IF (EXISTS "/etc/debian_version")
 		SET(CPACK_GENERATOR "DEB")
 		SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.15), libgcc1 (>=1:4.1.1), libstdc++6 (>= 4.6), libwxgtk3.0-0v5 (>= 3.0.0) | libwxgtk3.0-0 (>=3.0.0), libwxgtk-webview3.0-0v5 (>= 3.0.0) | libwxgtk-webview3.0-0v5 (>= 3.0.0)")
-	ENDIF ()
-
-	IF (EXISTS "/etc/redhat-release")
+	ELSEIF (EXISTS "/etc/redhat-release")
 		SET(CPACK_GENERATOR "RPM")
+	ELSE ()
+		#TODO: tar.gz
 	ENDIF ()
 ENDIF ()
 
-IF (UNIX AND APPLE)
+IF (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 	SET(CPACK_GENERATOR "DMG")
+	#TODO:
 ENDIF ()
+
+IF (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+	#TODO:
+ENDIF()
 
 
 INCLUDE(CPack) 
