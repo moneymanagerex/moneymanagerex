@@ -81,14 +81,6 @@ public:
     */
     static Model_Translink::Data TranslinkRecord(const int checking_id);
 
-    /*
-    Return the list of entries maintained by the translink list.
-    Model_Translink::ASSETS or Model_Translink::STOCKS
-    */
-    static Model_Checking::Data_Set TranslinkCheckingList(Model_Attachment::REFTYPE table_type
-        , const int entry_id);
-
-
     /* Remove all records associated with the Translink list */
     static void RemoveTransLinkRecords(Model_Attachment::REFTYPE table_type, const int entry_id);
  
