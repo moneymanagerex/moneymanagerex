@@ -200,7 +200,7 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
 
 void dbUpgrade::SqlFileDebug(wxSQLite3Database * db)
 {
-    wxFileDialog fileDlgLoad(nullptr,_("Load debug file"),"","","MMDBG Files(*.mmdbg) | *.mmb", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+    wxFileDialog fileDlgLoad(nullptr,_("Load debug file"),"","","MMDBG Files(*.mmdbg) | *.mmdbg", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
     if (fileDlgLoad.ShowModal() != wxID_OK)
         return;
 
@@ -220,12 +220,12 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database * db)
 
         txtLog << wxString::Format("MMEX Version: %s", mmex::version::string) + wxTextFile::GetEOL();
         txtLog << wxString::Format("DB Version: %i", dbUpgrade::GetCurrentVersion(db)) + wxTextFile::GetEOL();
-        txtLog << wxString::Format("Operating System: %s", wxGetOsDescription()) + wxTextFile::GetEOL();
-        
+        txtLog << wxString::Format("Operating System: %s", wxGetOsDescription()) + wxTextFile::GetEOL() + wxTextFile::GetEOL();
 
         for (txtLine = txtFile.GetNextLine(); !txtFile.Eof(); txtLine = txtFile.GetNextLine())
         {
-            txtLog = txtLog + wxTextFile::GetEOL() + "Query: " + txtLine + wxTextFile::GetEOL();
+            txtLog << wxTextFile::GetEOL() << "=== Query ===" << wxTextFile::GetEOL() << txtLine << wxTextFile::GetEOL();
+
             wxSQLite3Statement stmt = db->PrepareStatement(txtLine);
             if (stmt.IsReadOnly())
             {
@@ -233,11 +233,12 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database * db)
                 {
                     wxSQLite3ResultSet rs = stmt.ExecuteQuery();
                     int columnCount = rs.GetColumnCount();
+                    txtLog << "=== Result ===" << wxTextFile::GetEOL();
                     while (rs.NextRow())
                     {
                         wxString strRow = "";
                         for (int i = 0; i < columnCount; ++i)
-                            strRow << "'" + rs.GetAsString(i) + "'  ";
+                            strRow << "'" + rs.GetAsString(i) + "'   ";
                         txtLog << strRow + wxTextFile::GetEOL();
                     }
                 }
@@ -255,7 +256,7 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database * db)
             }
         }
 
-        txtLog << wxTextFile::GetEOL() << "======================================" << wxTextFile::GetEOL() << mmex::getProgramDescription();
+        txtLog << wxTextFile::GetEOL() << wxTextFile::GetEOL() << wxTextFile::GetEOL() << mmex::getProgramDescription();
 
         wxTextEntryDialog dlg(nullptr, _("Send this log to MMEX support team:\npress OK to save to file or Cancel to exit"),
             _("MMEX debug"), txtLog, wxOK | wxCANCEL | wxCENTRE | wxTE_MULTILINE);
