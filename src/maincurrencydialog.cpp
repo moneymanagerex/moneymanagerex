@@ -410,8 +410,9 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
     Model_Currency::Data * base_currency = Model_Currency::GetBaseCurrency();
     if (base_currency)
         base_symbol = base_currency->CURRENCY_SYMBOL.Upper();
+    else
+        ok = false;
 
-    ok = !base_symbol.empty();
     if (!ok)
         msg = _("Could not find base currency symbol!");
 
@@ -439,10 +440,10 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
 
     if (ok)
     {
-        wxString CurrencySymbol, sName;
+        wxString CurrencySymbol;
         double dRate = 1;
 
-        std::map<wxString, std::pair<double, wxString> > currency_data;
+        std::map<wxString, double> currency_data;
 
         // Break it up into lines
         wxStringTokenizer tkz(sOutput, "\r\n");
@@ -451,13 +452,12 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
         {
             wxString csvline = tkz.GetNextToken();
 
-            wxRegEx pattern("\"(...)...=X\",([^,][0-9.]+),\"([^\"]*)\",\"([^\"]*)\"");
+            wxRegEx pattern("\"(...)...=X\",([^,][0-9.]+)");
             if (pattern.Matches(csvline))
             {
                 CurrencySymbol = pattern.GetMatch(csvline, 1);
                 pattern.GetMatch(csvline, 2).ToDouble(&dRate);
-                sName = pattern.GetMatch(csvline, 4);
-                currency_data[CurrencySymbol] = std::make_pair(dRate, sName);
+                currency_data[CurrencySymbol] = dRate;
             }
         }
 
@@ -475,8 +475,8 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
                 if (currency_data.find(currency_symbol) != currency_data.end())
                 {
                     msg << wxString::Format("%s\t: %0.6f -> %0.6f\n"
-                        , currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol].first);
-                    currency.BASECONVRATE = currency_data[currency_symbol].first;
+                        , currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol]);
+                    currency.BASECONVRATE = currency_data[currency_symbol];
                     if (base_symbol == currency_symbol)
                         continue;
                     Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID,
