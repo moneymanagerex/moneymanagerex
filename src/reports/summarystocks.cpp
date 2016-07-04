@@ -130,8 +130,8 @@ wxString mmReportSummaryStocks::getHTMLText()
         hb.startTotalTableRow();
         hb.addTableCell(_("Total:"));
         hb.addEmptyTableCell(6);
-        hb.addCurrencyCell(acct.gainloss);
-        hb.addCurrencyCell(acct.total);
+        hb.addCurrencyCell(acct.gainloss, currency);
+        hb.addCurrencyCell(acct.total, currency);
         hb.endTableRow();
         hb.endTfoot();
         hb.endTable();

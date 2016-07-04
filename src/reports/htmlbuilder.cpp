@@ -218,8 +218,8 @@ void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* c
 {
     if (precision == -1)
         precision = Model_Currency::precision(currency);
-    const wxString& s = Model_Currency::toCurrency(amount, currency, precision);
-    const wxString& f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
+    const wxString s = Model_Currency::toCurrency(amount, currency, precision);
+    const wxString f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
     html_ += s;
     this->endTableCell();
