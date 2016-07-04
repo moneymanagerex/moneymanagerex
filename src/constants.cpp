@@ -155,7 +155,7 @@ const wxString mmex::weblink::BugReport = "http://bugreport.moneymanagerex.org";
 const wxString mmex::weblink::Donate = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";
 const wxString mmex::weblink::Twitter = "https://twitter.com/MoneyManagerEx";
 const wxString mmex::weblink::Facebook = "http://www.facebook.com/pages/Money-Manager-Ex/242286559144586";
-/*s=Symbol; l1=Last Trade (Price Only); c4=???; n=Name*/
+/* http://kx.cloudingenium.com/content-providers/how-to-obtain-stock-quotes-from-yahoo-finance-you-can-query-them-via-excel-too/ */
 const wxString mmex::weblink::YahooQuotes = "http://download.finance.yahoo.com/d/quotes.csv?s=%s&f=sl1&e=.csv";
 const wxString mmex::weblink::YahooQuotesHistory = "http://ichart.finance.yahoo.com/table.csv?s=";
 const wxString mmex::weblink::BceCurrencyHistory = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml";
