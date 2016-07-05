@@ -39,18 +39,18 @@ wxBEGIN_EVENT_TABLE(mmAppStartDialog, wxDialog)
     EVT_CLOSE(mmAppStartDialog::OnClose)
 wxEND_EVENT_TABLE()
 
-mmAppStartDialog::mmAppStartDialog(wxWindow* parent)
+mmAppStartDialog::mmAppStartDialog(wxWindow* parent, const wxString& name)
     : itemCheckBox(nullptr)
     , m_buttonExit(nullptr)
     , m_buttonClose(nullptr)
 {
     wxString caption = wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), mmex::getTitleProgramVersion());
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, caption, wxDefaultPosition, wxSize(400, 300), style);
+    Create(parent, wxID_ANY, caption, wxDefaultPosition, wxSize(400, 300), style, name);
 }
 
 bool mmAppStartDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
-    , const wxPoint& pos, const wxSize& size, long style)
+    , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     bool ok = wxDialog::Create(parent, id, caption, pos, size, style);

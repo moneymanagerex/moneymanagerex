@@ -29,7 +29,7 @@ class mmAppStartDialog: public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmAppStartDialog(wxWindow* parent);
+    mmAppStartDialog(wxWindow* parent, const wxString& name = "mmAppStartDialog");
     ~mmAppStartDialog();
     void SetCloseButtonToExit();
 
@@ -44,7 +44,8 @@ private:
         , const wxString& caption
         , const wxPoint& pos
         , const wxSize& size
-        , long style);
+        , long style
+        , const wxString& name = "mmAppStartDialog");
     void CreateControls();
     void OnButtonAppstartOpenDatabaseClick( wxCommandEvent& event );
     void OnButtonAppstartNewDatabaseClick( wxCommandEvent& event );

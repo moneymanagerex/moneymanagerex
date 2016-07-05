@@ -64,7 +64,7 @@ mmNewAcctDialog::mmNewAcctDialog()
 {
 }
 
-mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
+mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent, const wxString &name)
     : m_account(account)
     , m_currencyID(-1)
     , m_textAccountName(nullptr)
@@ -75,7 +75,7 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
 {
     m_imageList = navtree_images_list();
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("New Account"), wxDefaultPosition, wxSize(550, 300), style);
+    Create(parent, wxID_ANY, _("New Account"), wxDefaultPosition, wxSize(550, 300), style, name);
 }
 
 mmNewAcctDialog::~mmNewAcctDialog()
@@ -89,10 +89,11 @@ bool mmNewAcctDialog::Create(wxWindow* parent
     , const wxString& caption
     , const wxPoint& pos
     , const wxSize& size
-    , long style)
+    , long style
+    , const wxString& name)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style);
+    wxDialog::Create(parent, id, caption, pos, size, style, name);
     this->SetTitle(_("Edit Account"));
     SetIcon(mmex::getProgramIcon());
 

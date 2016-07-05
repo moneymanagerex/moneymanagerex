@@ -29,7 +29,7 @@ class mmNewAcctDialog : public wxDialog
 
 public:
     mmNewAcctDialog();
-    mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent);
+    mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent, const wxString &name = "mmAccountDialog");
     ~mmNewAcctDialog();
 
     bool Create(wxWindow* parent
@@ -37,7 +37,8 @@ public:
         , const wxString& caption
         , const wxPoint& pos
         , const wxSize& size
-        , long style);
+        , long style
+        , const wxString& name);
 
 private:
     void CreateControls();
