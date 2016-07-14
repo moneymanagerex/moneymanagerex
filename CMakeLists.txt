@@ -40,7 +40,7 @@ SET(INSTALL_MO_DIR "share/mmex/po")
 #Check for required libraries
 FIND_PACKAGE(Gettext REQUIRED)
 #wxScintilla doesn't exist on Linux
-IF ((CMAKE_SYSTEM_NAME STREQUAL "Darwin") OR (CMAKE_SYSTEM_NAME STREQUAL "Windows"))
+IF (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv scintilla stc webview base REQUIRED)
 ELSE()
     FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv stc webview base REQUIRED)
