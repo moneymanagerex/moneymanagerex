@@ -31,6 +31,7 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Attachment.h"
+#include "model/jsonstore.h"
 
 #include <wx/valnum.h>
 
@@ -72,6 +73,13 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent,
     , m_itemInitValue(nullptr)
     , m_imageList(nullptr)
     , m_bitmapButtons(nullptr)
+    , m_statement_lock_ctrl(nullptr)
+    , m_statement_date_ctrl(nullptr)
+    , m_minimum_balance_ctrl(nullptr)
+    , m_credit_limit_ctrl(nullptr)
+    , m_interest_rate_ctrl(nullptr)
+    , m_payment_due_date_ctrl(nullptr)
+    , m_minimum_payment_ctrl(nullptr)
 {
     m_imageList = navtree_images_list();
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -153,6 +161,18 @@ void mmNewAcctDialog::fillControls()
     m_bitmapButtons->SetBitmap(m_imageList->GetBitmap(selectedImage));
 
     m_accessInfo = m_account->ACCESSINFO;
+
+    // Load extra information from a jsonstore
+    JsonAccount store(m_account->ACCOUNTID);
+
+    m_credit_limit_ctrl->SetValue(wxString::FromDouble(store.CreditLimit(), 2));
+    m_interest_rate_ctrl->SetValue(wxString::FromDouble(store.InterestRate(), 2));
+    m_payment_due_date_ctrl->SetValue(store.PaymentDueDate());
+    m_minimum_payment_ctrl->SetValue(wxString::FromDouble(store.MinimumPayment(), 2));
+
+    m_statement_lock_ctrl->SetValue(store.StatementLocked());
+    m_statement_date_ctrl->SetValue(store.StatementDate());
+    m_minimum_balance_ctrl->SetValue(wxString::FromDouble(store.MinimumBalance(), 2));
 }
 
 void mmNewAcctDialog::CreateControls()
@@ -270,6 +290,60 @@ void mmNewAcctDialog::CreateControls()
         , ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO, m_accessInfo);
     grid_sizer2->Add(itemTextCtrl14, g_flagsExpand);
 
+    //-------------------------------------------------------------------------------------
+    wxPanel* statement_tab = new wxPanel(acc_notebook, wxID_ANY);
+    acc_notebook->AddPage(statement_tab, _("Statement"));
+    wxBoxSizer* statement_sizer = new wxBoxSizer(wxVERTICAL);
+    statement_tab->SetSizer(statement_sizer);
+
+    wxFlexGridSizer* statement_grid_sizer = new wxFlexGridSizer(0, 2, 0, 0);
+    statement_grid_sizer->AddGrowableCol(1, 1);
+    statement_sizer->Add(statement_grid_sizer, g_flagsExpand);
+
+    statement_grid_sizer->Add(new wxStaticText(statement_tab, wxID_STATIC, _("Statement:")), g_flagsH);
+    m_statement_lock_ctrl = new wxCheckBox(statement_tab, wxID_ANY, _("Locked")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    statement_grid_sizer->Add(m_statement_lock_ctrl, g_flagsExpand);
+
+    statement_grid_sizer->Add(new wxStaticText(statement_tab, wxID_STATIC, _("Reconciled Date:")), g_flagsH);
+    m_statement_date_ctrl = new wxDatePickerCtrl(statement_tab, wxID_ANY, wxDefaultDateTime
+        , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    statement_grid_sizer->Add(m_statement_date_ctrl, g_flagsExpand);
+
+    statement_grid_sizer->Add(new wxStaticText(statement_tab, wxID_STATIC, _("Minimum Bal:")), g_flagsH);
+    m_minimum_balance_ctrl = new mmTextCtrl(statement_tab, wxID_ANY, "0.00"
+        , wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER, mmCalcValidator());
+    statement_grid_sizer->Add(m_minimum_balance_ctrl, g_flagsExpand);
+
+    //-------------------------------------------------------------------------------------
+    wxPanel* credit_tab = new wxPanel(acc_notebook, wxID_ANY);
+    acc_notebook->AddPage(credit_tab, _("Credit"));
+    wxBoxSizer* credit_sizer = new wxBoxSizer(wxVERTICAL);
+    credit_tab->SetSizer(credit_sizer);
+
+    wxFlexGridSizer* credit_grid_sizer = new wxFlexGridSizer(0, 2, 0, 0);
+    credit_grid_sizer->AddGrowableCol(1, 1);
+    credit_sizer->Add(credit_grid_sizer, g_flagsExpand);
+
+    credit_grid_sizer->Add(new wxStaticText(credit_tab, wxID_STATIC, _("Credit Limit:")), g_flagsH);
+    m_credit_limit_ctrl = new mmTextCtrl(credit_tab, wxID_ANY,""
+        , wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER, mmCalcValidator());
+    credit_grid_sizer->Add(m_credit_limit_ctrl, g_flagsExpand);
+
+    credit_grid_sizer->Add(new wxStaticText(credit_tab, wxID_STATIC, _("Interest Rate:")), g_flagsH);
+    m_interest_rate_ctrl = new mmTextCtrl(credit_tab, wxID_ANY, "");
+    credit_grid_sizer->Add(m_interest_rate_ctrl, g_flagsExpand);
+
+    credit_grid_sizer->Add(new wxStaticText(credit_tab, wxID_STATIC, _("Payment Due Date:")), g_flagsH);
+    m_payment_due_date_ctrl = new wxDatePickerCtrl(credit_tab, wxID_ANY, wxDefaultDateTime
+        , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    credit_grid_sizer->Add(m_payment_due_date_ctrl, g_flagsExpand);
+
+    credit_grid_sizer->Add(new wxStaticText(credit_tab, wxID_STATIC, _("Minimum Payment:")), g_flagsH);
+    m_minimum_payment_ctrl = new mmTextCtrl(credit_tab, wxID_ANY, "");
+    credit_grid_sizer->Add(m_minimum_payment_ctrl, g_flagsExpand);
+    //-------------------------------------------------------------------------------------
+
     itemBoxSizer3->Add(acc_notebook);
 
     //Buttons
@@ -312,6 +386,11 @@ void mmNewAcctDialog::CreateControls()
         itemTextCtrl10->SetToolTip(_("Enter the URL of the website for the financial institution."));
         itemTextCtrl12->SetToolTip(_("Enter any contact information for the financial institution."));
         itemTextCtrl14->SetToolTip(_("Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."));
+        
+        m_statement_lock_ctrl->SetToolTip(_("Enable or disable the transaction Lock"));
+        m_statement_date_ctrl->SetToolTip(_("The date of the transaction lock"));
+        m_minimum_balance_ctrl->SetToolTip(_("Account balance lower limit. Zero to disable"));
+        m_credit_limit_ctrl->SetToolTip(_("Credit limit for the Account. Zero to disable"));
     }
 }
 
@@ -379,7 +458,26 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     if (m_accessChanged)
         m_account->ACCESSINFO = textCtrlAccess->GetValue();
 
-    Model_Account::instance().save(m_account);
+    int account_id = Model_Account::instance().save(m_account);
+
+    // Store extra information in a jsonstore
+    JsonAccount store(account_id);
+    double value = 0;
+    m_credit_limit_ctrl->checkValue(value);
+    store.CreditLimit(value);
+    
+    m_interest_rate_ctrl->checkValue(value);
+    store.InterestRate(value);
+    store.PaymentDueDate(m_payment_due_date_ctrl->GetValue());
+
+    m_minimum_payment_ctrl->checkValue(value);
+    store.MinimumPayment(value);
+
+    store.StatementLocked(m_statement_lock_ctrl->GetValue());
+    store.StatementDate(m_statement_date_ctrl->GetValue());
+
+    m_minimum_balance_ctrl->checkValue(value);
+    store.MinimumBalance(value);
 
     EndModal(wxID_OK);
     mmWebApp::MMEX_WebApp_UpdateAccount();
