@@ -375,6 +375,9 @@
     <ClCompile Include="..\..\src\model\Model_Translink.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\model\jsonstore.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\sharetransactiondialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -801,6 +804,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\model\Model_Translink.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\jsonstore.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\model\Model_Shareinfo.h">

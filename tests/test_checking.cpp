@@ -363,7 +363,7 @@ void Test_Checking::Transaction_Dialog_Messages()
                     "1. Use the OK button to observe error messages.\n"
                     "2. Add appropriate details as required.\n\n"
                     "Use Cancel to exit dialog.");
-                mmTransDialog test_dialog(m_base_frame, account_id, 0);
+                mmTransDialog test_dialog(m_base_frame, account_id, 0, 0);
                 if (wxID_CANCEL == test_dialog.ShowModal())
                 {
                     testing = false;
@@ -379,7 +379,7 @@ void Test_Checking::Transaction_Dialog_Messages()
                     "1. Use the OK button to observe error messages.\n"
                     "2. Add appropriate details as required.\n\n"
                     "Use Cancel to exit dialog.");
-                mmTransDialog test_dialog(m_base_frame, account_id, 0);
+                mmTransDialog test_dialog(m_base_frame, account_id, 0, 0);
                 if (wxID_CANCEL == test_dialog.ShowModal())
                 {
                     testing = false;
@@ -392,7 +392,7 @@ void Test_Checking::Transaction_Dialog_Messages()
                 Model_Checking::Data trans_entry = table.at(table.size() - 1);
 
                 user_request->Show_InfoBarMessage("This Test Completed\n\n Use Cancel to proceed to next test.");
-                mmTransDialog test_dialog(m_base_frame, account_id, trans_entry.id());
+                mmTransDialog test_dialog(m_base_frame, account_id, trans_entry.id(), 0);
                 if (wxID_CANCEL == test_dialog.ShowModal())
                 {
                     testing = false;
@@ -431,7 +431,7 @@ void Test_Checking::Transaction_New_Edit()
                       "   This transaction will be used for editing.\n"
                       "2. Add appropriate details as required.\n\n"
                       "Use Cancel to exit dialog.\n");
-                mmTransDialog test_dialog(m_base_frame, account_id, 0);
+                mmTransDialog test_dialog(m_base_frame, account_id, 0, 0);
                 if (wxID_CANCEL == test_dialog.ShowModal())
                 {
                     user_request->Show_InfoBarMessage("Test Completed\n\n Refer back to console.");
@@ -448,7 +448,7 @@ void Test_Checking::Transaction_New_Edit()
                     "1. Check that the category is Mastercard/Repayment\n"
                     "2. Add appropriate details as required.\n\n"
                     "Use Cancel to exit dialog.\n");
-                mmTransDialog test_dialog(m_base_frame, account_id, trans_entry.id());
+                mmTransDialog test_dialog(m_base_frame, account_id, trans_entry.id(), 0);
                 if (wxID_CANCEL == test_dialog.ShowModal())
                 {
                     user_request->Show_InfoBarMessage("Test Completed\n\n Refer back to console.");

@@ -637,6 +637,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\jsonstore.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\maincurrencydialog.cpp"
 				>
 			</File>
@@ -1075,6 +1079,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\allmodel.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\reports\allreport.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\appstartdialog.h"
 				>
 			</File>
@@ -1204,6 +1216,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\reports\incexpenses.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\jsonstore.h"
 				>
 			</File>
 			<File

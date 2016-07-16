@@ -274,6 +274,7 @@
     <ClCompile Include="..\..\src\import_export\parsers.cpp" />
     <ClCompile Include="..\..\src\model\Model_Shareinfo.cpp" />
     <ClCompile Include="..\..\src\model\Model_Translink.cpp" />
+    <ClCompile Include="..\..\src\model\jsonstore.cpp" />
     <ClCompile Include="..\..\src\optionsettingsattachment.cpp" />
     <ClCompile Include="..\..\src\optionsettingsbase.cpp" />
     <ClCompile Include="..\..\src\optionsettingsgeneral.cpp" />
@@ -411,6 +412,7 @@
     <ClInclude Include="..\..\src\import_export\parsers.h" />
     <ClInclude Include="..\..\src\model\Model_Shareinfo.h" />
     <ClInclude Include="..\..\src\model\Model_Translink.h" />
+    <ClInclude Include="..\..\src\model\jsonstore.h" />
     <ClInclude Include="..\..\src\optionsettingsattachment.h" />
     <ClInclude Include="..\..\src\optionsettingsbase.h" />
     <ClInclude Include="..\..\src\optionsettingsgeneral.h" />

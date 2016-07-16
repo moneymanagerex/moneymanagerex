@@ -268,6 +268,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Subcategory.o \
 	mmex_tests_Model_Translink.o \
 	mmex_tests_Model_Usage.o \
+	mmex_tests_jsonstore.o \
 	mmex_tests_html_template.o \
 	mmex_tests_mongoose.o \
 	mmex_tests_csv_parser.o \
@@ -927,6 +928,9 @@ mmex_tests_Model_Translink.o: $(srcdir)/../src/model/Model_Translink.cpp
 
 mmex_tests_Model_Usage.o: $(srcdir)/../src/model/Model_Usage.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/model/Model_Usage.cpp
+
+mmex_tests_jsonstore.o: $(srcdir)/../src/model/jsonstore.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../src/model/jsonstore.cpp
 
 mmex_tests_html_template.o: $(srcdir)/../3rd/cgitemplate/html_template.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../3rd/cgitemplate/html_template.cpp

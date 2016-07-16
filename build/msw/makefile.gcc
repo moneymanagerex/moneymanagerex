@@ -222,6 +222,7 @@ MMEX_OBJECTS =  \
 	mmex_Model_Subcategory.o \
 	mmex_Model_Translink.o \
 	mmex_Model_Usage.o \
+	mmex_jsonstore.o \
 	mmex_html_template.o \
 	mmex_mongoose.o \
 	mmex_csv_parser.o \
@@ -874,6 +875,9 @@ mmex_Model_Translink.o: ../../src/model/Model_Translink.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Usage.o: ../../src/model/Model_Usage.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_jsonstore.o: ../../src/model/jsonstore.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_html_template.o: ../../3rd/cgitemplate/html_template.cpp

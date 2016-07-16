@@ -447,6 +447,9 @@
     <ClCompile Include="..\..\tests\test_translink.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\model\jsonstore.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -931,6 +934,9 @@
     </ClInclude>
     <ClInclude Include="..\..\tests\test_translink.h">
       <Filter>Test Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\jsonstore.h">
+      <Filter>Header Files\model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
