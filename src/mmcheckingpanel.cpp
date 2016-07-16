@@ -663,6 +663,14 @@ void mmCheckingPanel::initFilterSettings()
     else if (currentView_ == MENU_VIEW_LASTFINANCIALYEAR)
         date_range = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
         , wxAtoi(Option::instance().FinancialYearStartMonth()));
+    else if (currentView_ == MENU_VIEW_STATEMENTDATE)
+    {
+        if (Model_Account::BoolOf(m_account->STATEMENTLOCKED))
+        {
+            wxDateTime today(wxDateTime::Today());
+            date_range = new mmSpecifiedRange(Model_Account::DateOf(m_account->STATEMENTDATE).Add(wxDateSpan::Day()), today);
+        }
+    }
     else
         wxASSERT(false);
 
@@ -1532,6 +1540,12 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
 
+    Model_Checking::Data checking_entry = m_cp->m_trans[m_selectedIndex];
+    if (TransactionLocked(checking_entry.TRANSDATE))
+    {
+        return;
+    }
+
     //ask if they really want to delete
     wxMessageDialog msgDlg(this
         , _("Do you really want to delete the selected transaction?")
@@ -1568,12 +1582,37 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
     }
 }
 //----------------------------------------------------------------------------
+bool TransactionListCtrl::TransactionLocked(const wxString& transdate)
+{
+    if (Model_Account::BoolOf(m_cp->m_account->STATEMENTLOCKED))
+    {
+        wxDateTime transaction_date;
+        if (transaction_date.ParseDate(transdate))
+        {
+            if (transaction_date <= Model_Account::DateOf(m_cp->m_account->STATEMENTDATE))
+            {
+                wxMessageBox(_(wxString::Format(
+                    "Locked transaction to date: %s\n\n"
+                    "Reconciled transactions."
+                    , mmGetDateForDisplay(Model_Account::DateOf(m_cp->m_account->STATEMENTDATE))))
+                    , _("MMEX Transaction Check"), wxOK | wxICON_WARNING);
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 {
     if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
     Model_Checking::Data checking_entry = m_cp->m_trans[m_selectedIndex];
     int transaction_id = checking_entry.TRANSID;
+
+    if (TransactionLocked(checking_entry.TRANSDATE))
+    {
+        return;
+    }
 
     if (Model_Checking::foreignTransaction(checking_entry))
     {
@@ -1597,7 +1636,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     }
     else
     {
-        mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id);
+        mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, m_cp->account_balance_);
         if (dlg.ShowModal() == wxID_OK)
         {
             refreshVisualList(transaction_id);
@@ -1609,7 +1648,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
 {
     int type = event.GetId() == MENU_TREEPOPUP_NEW_DEPOSIT ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL;
-    mmTransDialog dlg(this, m_cp->m_AccountID, 0, false, type);
+    mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->account_balance_, false, type);
     if (dlg.ShowModal() == wxID_OK)
     {
         m_cp->mmPlayTransactionSound();
@@ -1619,7 +1658,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
 {
-    mmTransDialog dlg(this, m_cp->m_AccountID, 0, false, Model_Checking::TRANSFER);
+    mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->account_balance_, false, Model_Checking::TRANSFER);
     if (dlg.ShowModal() == wxID_OK)
     {
         m_cp->mmPlayTransactionSound();
@@ -1686,6 +1725,12 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
 void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 {
     if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
+
+    Model_Checking::Data checking_entry = m_cp->m_trans[m_selectedIndex];
+    if (TransactionLocked(checking_entry.TRANSDATE))
+    {
+        return;
+    }
 
     const Model_Account::Data* source_account = Model_Account::instance().get(m_cp->m_AccountID);
     wxString source_name = source_account->ACCOUNTNAME;

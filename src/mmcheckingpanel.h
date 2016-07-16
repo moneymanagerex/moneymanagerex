@@ -195,6 +195,8 @@ private:
     void OnPaste(wxCommandEvent& WXUNUSED(event));
     int OnPaste(Model_Checking::Data* tran);
 
+    bool TransactionLocked(const wxString& transdate);
+
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
     long topItemIndex_;
@@ -250,6 +252,7 @@ private:
         MENU_VIEW_CURRENTFINANCIALYEAR,
         MENU_VIEW_LASTYEAR,
         MENU_VIEW_LASTFINANCIALYEAR,
+        MENU_VIEW_STATEMENTDATE,
     };
     static wxArrayString menu_labels()
     {
@@ -266,6 +269,7 @@ private:
         items.Add(wxTRANSLATE("View Current Financial Year"));
         items.Add(wxTRANSLATE("View Last Year"));
         items.Add(wxTRANSLATE("View Last Financial Year"));
+        items.Add(wxTRANSLATE("View Since Statement Date"));
         return items;
     }
     wxDECLARE_EVENT_TABLE();

@@ -328,3 +328,19 @@ bool Model_Account::Exist(const wxString& account_name)
 
     return !list.empty();
 }
+
+wxDateTime Model_Account::DateOf(const wxString& date_str)
+{
+    wxDateTime date;
+    if (!date.ParseISODate(date_str))
+    {
+        date = wxDateTime::Today();
+    }
+
+    return date;
+}
+
+bool Model_Account::BoolOf(int value)
+{
+    return value > 0 ? true : false;
+}

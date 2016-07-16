@@ -63,6 +63,16 @@ private:
     wxBitmapButton* m_bitmapButtons;
     wxBitmapButton* bAttachments_;
     wxString m_accessInfo;
+
+    wxCheckBox* m_statement_lock_ctrl;
+    wxDatePickerCtrl* m_statement_date_ctrl;
+    mmTextCtrl* m_minimum_balance_ctrl;
+
+    mmTextCtrl* m_credit_limit_ctrl;
+    mmTextCtrl* m_interest_rate_ctrl;
+    wxDatePickerCtrl* m_payment_due_date_ctrl;
+    mmTextCtrl* m_minimum_payment_ctrl;
+
     int m_currencyID;
     bool m_accessChanged;
 };

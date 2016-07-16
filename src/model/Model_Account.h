@@ -112,6 +112,9 @@ public:
     static int checking_account_num();
 
     static bool Exist(const wxString& account_name);
+
+    static wxDateTime DateOf(const wxString& date_str);
+    static bool BoolOf(int value);
 };
 
 #endif // 

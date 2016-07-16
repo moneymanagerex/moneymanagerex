@@ -69,7 +69,7 @@ public:
                 const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
                 if (transaction)
                 {
-                    mmTransDialog dlg(nullptr, -1, transID);
+                    mmTransDialog dlg(nullptr, -1, transID, 0);
                     if (dlg.ShowModal() == wxID_OK)
                     {
                         m_reportPanel->rb_->getHTMLText();

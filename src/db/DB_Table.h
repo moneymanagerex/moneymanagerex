@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-04-25 08:52:23.799000.
+ *          AUTO GENERATED at 2016-07-16 22:51:23.825000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -370,6 +370,15 @@ struct SorterByCONTENT
     }
 };
 
+struct SorterByCREDITLIMIT
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.CREDITLIMIT < y.CREDITLIMIT;
+    }
+};
+
 struct SorterByCURRDATE
 { 
     template<class DATA>
@@ -595,6 +604,15 @@ struct SorterByINITIALBAL
     }
 };
 
+struct SorterByINTERESTRATE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.INTERESTRATE < y.INTERESTRATE;
+    }
+};
+
 struct SorterByJSONCONTENT
 { 
     template<class DATA>
@@ -628,6 +646,24 @@ struct SorterByLUACONTENT
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.LUACONTENT < y.LUACONTENT;
+    }
+};
+
+struct SorterByMINIMUMBALANCE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.MINIMUMBALANCE < y.MINIMUMBALANCE;
+    }
+};
+
+struct SorterByMINIMUMPAYMENT
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.MINIMUMPAYMENT < y.MINIMUMPAYMENT;
     }
 };
 
@@ -700,6 +736,15 @@ struct SorterByPAYEENAME
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.PAYEENAME < y.PAYEENAME;
+    }
+};
+
+struct SorterByPAYMENTDUEDATE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.PAYMENTDUEDATE < y.PAYMENTDUEDATE;
     }
 };
 
@@ -925,6 +970,24 @@ struct SorterBySTARTDATE
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.STARTDATE < y.STARTDATE;
+    }
+};
+
+struct SorterBySTATEMENTDATE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.STATEMENTDATE < y.STATEMENTDATE;
+    }
+};
+
+struct SorterBySTATEMENTLOCKED
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.STATEMENTLOCKED < y.STATEMENTLOCKED;
     }
 };
 
