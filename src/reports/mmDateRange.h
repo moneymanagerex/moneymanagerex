@@ -134,7 +134,7 @@ public:
 class mmSpecifiedRange : public mmDateRange
 {
 public:
-    mmSpecifiedRange(wxDateTime& start, wxDateTime& end);
+    mmSpecifiedRange(const wxDateTime& start, const wxDateTime& end);
 };
 
 class mmLast365Days: public mmDateRange

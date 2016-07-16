@@ -215,7 +215,7 @@ const bool mmAllTime::is_with_date() const
     return false;
 }
 
-mmSpecifiedRange::mmSpecifiedRange(wxDateTime& start, wxDateTime& end)
+mmSpecifiedRange::mmSpecifiedRange(const wxDateTime& start, const wxDateTime& end)
 : mmDateRange()
 {
     this->title_ = "";

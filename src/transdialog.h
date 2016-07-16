@@ -45,6 +45,7 @@ public:
         wxWindow* parent
         , int account_id
         , int transaction_id
+        , double current_balance
         , bool duplicate = false
         , int type = Model_Checking::WITHDRAWAL
     );
@@ -117,6 +118,8 @@ private:
     bool m_duplicate;
     bool categUpdated_;
     bool m_advanced;
+    int m_account_id;
+    double m_current_balance;
 
     int object_in_focus_;
 

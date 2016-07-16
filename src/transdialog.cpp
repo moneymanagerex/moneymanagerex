@@ -38,6 +38,7 @@
 #include "model/Model_Category.h"
 #include "model/Model_CustomFieldData.h"
 #include "model/Model_Subcategory.h"
+#include "model/jsonstore.h"
 
 #include <wx/numformatter.h>
 
@@ -64,6 +65,7 @@ wxEND_EVENT_TABLE()
 mmTransDialog::mmTransDialog(wxWindow* parent
     , int account_id
     , int transaction_id
+    , double current_balance
     , bool duplicate
     , int type
 ) : m_currency(nullptr)
@@ -72,6 +74,8 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , categUpdated_(false)
     , m_transfer(false)
     , m_advanced(false)
+    , m_account_id(account_id)
+    , m_current_balance(current_balance)
     , m_duplicate(duplicate)
     , skip_account_init_(false)
     , skip_payee_init_(false)
@@ -1024,6 +1028,54 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
         r = Model_Checking::instance().create();
 
     Model_Checking::putDataToTransaction(r, m_trx_data);
+
+    /* Check if transaction is to proceed.*/
+    JsonAccount store(m_account_id);
+    if (store.StatementLocked())
+    {
+        if (dpc_->GetValue() <= store.StatementDate())
+        {
+            if (wxMessageBox(_(wxString::Format(
+                "Locked transaction to date: %s\n\n"
+                "Do you wish to continue ? "
+                , mmGetDateForDisplay(store.StatementDate())))
+                , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
+            {
+                return;
+            }
+        }
+    }
+
+    if (m_new_trx || m_duplicate)
+    {
+        bool abort_transaction = false;
+        double new_value = m_trx_data.TRANSAMOUNT;
+
+        if (m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
+        {
+            new_value *= -1;
+        }
+
+        new_value += m_current_balance;
+
+        if ((store.MinimumBalance() != 0) && (new_value < store.MinimumBalance()))
+        {
+            abort_transaction = true;
+        }
+
+        if ((store.CreditLimit() != 0) && (new_value < (store.CreditLimit() * -1)))
+        {
+            abort_transaction = true;
+        }
+
+        if (abort_transaction && wxMessageBox( _(
+            "This transaction will exceed your set limit\n\n"
+            "Do you wish to continue?")
+            , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
+        {
+            return;
+        }
+    }
 
     m_trx_data.TRANSID = Model_Checking::instance().save(r);
 
