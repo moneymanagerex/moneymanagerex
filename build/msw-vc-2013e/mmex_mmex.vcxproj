@@ -271,6 +271,7 @@
     <ClCompile Include="..\..\src\dbcheck.cpp" />
     <ClCompile Include="..\..\src\dbupgrade.cpp" />
     <ClCompile Include="..\..\src\import_export\parsers.cpp" />
+    <ClCompile Include="..\..\src\model\jsonstore.cpp" />
     <ClCompile Include="..\..\src\model\Model_ShareInfo.cpp" />
     <ClCompile Include="..\..\src\model\Model_Translink.cpp" />
     <ClCompile Include="..\..\src\optionsettingsattachment.cpp" />
@@ -408,6 +409,8 @@
     <ClInclude Include="..\..\src\db\DB_Table_Translink_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Usage_V1.h" />
     <ClInclude Include="..\..\src\import_export\parsers.h" />
+    <ClInclude Include="..\..\src\model\allmodel.h" />
+    <ClInclude Include="..\..\src\model\jsonstore.h" />
     <ClInclude Include="..\..\src\model\Model_ShareInfo.h" />
     <ClInclude Include="..\..\src\model\Model_Translink.h" />
     <ClInclude Include="..\..\src\optionsettingsattachment.h" />
