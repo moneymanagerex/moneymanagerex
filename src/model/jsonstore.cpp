@@ -24,6 +24,7 @@ Json base class
 *************************************************************************/
 JsonStore::JsonStore(const wxString& table_key)
     : m_infotable_key(table_key)
+    , m_save_required(false)
 {
     std::wstringstream in_stream;
     wxString jdata = Model_Infotable::instance().GetStringInfo(m_infotable_key, "{}");
@@ -37,10 +38,13 @@ JsonStore::JsonStore(const wxString& table_key)
 
 JsonStore::~JsonStore()
 {
-    // save json values to the infotable file
-    std::wstringstream out_stream;
-    json::Writer::Write(m_jo, out_stream);
-    Model_Infotable::instance().Set(m_infotable_key, out_stream.str());
+    if (m_save_required)
+    {
+        // save json values to the infotable file
+        std::wstringstream out_stream;
+        json::Writer::Write(m_jo, out_stream);
+        Model_Infotable::instance().Set(m_infotable_key, out_stream.str());
+    }
 }
 
 
@@ -61,6 +65,7 @@ bool JsonAccount::StatementLocked()
 void JsonAccount::StatementLocked(bool locked)
 {
     m_jo[L"StatementLocked"] = json::Boolean(locked);
+    m_save_required = true;
 }
 
 wxDateTime JsonAccount::StatementDate()
@@ -78,6 +83,7 @@ wxDateTime JsonAccount::StatementDate()
 void JsonAccount::StatementDate(wxDateTime date)
 {
     m_jo[L"StatementDate"] = json::String(date.FormatISODate().ToStdWstring());
+    m_save_required = true;
 }
 
 double JsonAccount::MinimumBalance()
@@ -88,6 +94,7 @@ double JsonAccount::MinimumBalance()
 void JsonAccount::MinimumBalance(double value)
 {
     m_jo[L"MinimumBalance"] = json::Number(value);
+    m_save_required = true;
 }
 
 double JsonAccount::CreditLimit()
@@ -98,6 +105,7 @@ double JsonAccount::CreditLimit()
 void JsonAccount::CreditLimit(double value)
 {
     m_jo[L"CreditLimit"] = json::Number(value);
+    m_save_required = true;
 }
 
 double JsonAccount::InterestRate()
@@ -108,6 +116,7 @@ double JsonAccount::InterestRate()
 void JsonAccount::InterestRate(double value)
 {
     m_jo[L"InterestRate"] = json::Number(value);
+    m_save_required = true;
 }
 
 wxDateTime JsonAccount::PaymentDueDate()
@@ -125,6 +134,7 @@ wxDateTime JsonAccount::PaymentDueDate()
 void JsonAccount::PaymentDueDate(wxDateTime date)
 {
     m_jo[L"PaymentDueDate"] = json::String(date.FormatISODate().ToStdWstring());
+    m_save_required = true;
 }
 
 double JsonAccount::MinimumPayment()
@@ -135,4 +145,5 @@ double JsonAccount::MinimumPayment()
 void JsonAccount::MinimumPayment(double value)
 {
     m_jo[L"MinimumPayment"] = json::Number(value);
+    m_save_required = true;
 }

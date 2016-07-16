@@ -37,6 +37,7 @@ private:
 
 public:
     json::Object m_jo;
+    bool m_save_required;
 
 public:
     JsonStore(const wxString& table_key);
