@@ -473,6 +473,8 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     m_minimum_balance_ctrl->checkValue(value);
     m_account->MINIMUMBALANCE = value;
 
+    Model_Account::instance().save(m_account);
+
     EndModal(wxID_OK);
     mmWebApp::MMEX_WebApp_UpdateAccount();
 }
