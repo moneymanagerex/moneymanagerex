@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-04-25 08:52:23.799000.
+ *          AUTO GENERATED at 2016-07-16 22:51:23.825000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -70,7 +70,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL /* Checking, Term, Investment, Credit Card */, ACCOUNTNUM TEXT, STATUS TEXT NOT NULL /* Open, Closed */, NOTES TEXT, HELDAT TEXT, WEBSITE TEXT, CONTACTINFO TEXT, ACCESSINFO TEXT, INITIALBAL numeric, FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL)");
+                db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL /* Checking, Term, Investment, Credit Card */, ACCOUNTNUM TEXT, STATUS TEXT NOT NULL /* Open, Closed */, NOTES TEXT, HELDAT TEXT, WEBSITE TEXT, CONTACTINFO TEXT, ACCESSINFO TEXT, INITIALBAL numeric, FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL, STATEMENTLOCKED integer, STATEMENTDATE TEXT, MINIMUMBALANCE numeric, CREDITLIMIT numeric, INTERESTRATE numeric, PAYMENTDUEDATE text, MINIMUMPAYMENT numeric)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
@@ -171,6 +171,41 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         static wxString name() { return "CURRENCYID"; } 
         explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    struct STATEMENTLOCKED : public DB_Column<int>
+    { 
+        static wxString name() { return "STATEMENTLOCKED"; } 
+        explicit STATEMENTLOCKED(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    struct STATEMENTDATE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "STATEMENTDATE"; } 
+        explicit STATEMENTDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    struct MINIMUMBALANCE : public DB_Column<double>
+    { 
+        static wxString name() { return "MINIMUMBALANCE"; } 
+        explicit MINIMUMBALANCE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    struct CREDITLIMIT : public DB_Column<double>
+    { 
+        static wxString name() { return "CREDITLIMIT"; } 
+        explicit CREDITLIMIT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    struct INTERESTRATE : public DB_Column<double>
+    { 
+        static wxString name() { return "INTERESTRATE"; } 
+        explicit INTERESTRATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    struct PAYMENTDUEDATE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "PAYMENTDUEDATE"; } 
+        explicit PAYMENTDUEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    struct MINIMUMPAYMENT : public DB_Column<double>
+    { 
+        static wxString name() { return "MINIMUMPAYMENT"; } 
+        explicit MINIMUMPAYMENT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
     typedef ACCOUNTID PRIMARY;
     enum COLUMN
     {
@@ -187,6 +222,13 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         , COL_INITIALBAL = 10
         , COL_FAVORITEACCT = 11
         , COL_CURRENCYID = 12
+        , COL_STATEMENTLOCKED = 13
+        , COL_STATEMENTDATE = 14
+        , COL_MINIMUMBALANCE = 15
+        , COL_CREDITLIMIT = 16
+        , COL_INTERESTRATE = 17
+        , COL_PAYMENTDUEDATE = 18
+        , COL_MINIMUMPAYMENT = 19
     };
 
     /** Returns the column name as a string*/
@@ -207,6 +249,13 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             case COL_INITIALBAL: return "INITIALBAL";
             case COL_FAVORITEACCT: return "FAVORITEACCT";
             case COL_CURRENCYID: return "CURRENCYID";
+            case COL_STATEMENTLOCKED: return "STATEMENTLOCKED";
+            case COL_STATEMENTDATE: return "STATEMENTDATE";
+            case COL_MINIMUMBALANCE: return "MINIMUMBALANCE";
+            case COL_CREDITLIMIT: return "CREDITLIMIT";
+            case COL_INTERESTRATE: return "INTERESTRATE";
+            case COL_PAYMENTDUEDATE: return "PAYMENTDUEDATE";
+            case COL_MINIMUMPAYMENT: return "MINIMUMPAYMENT";
             default: break;
         }
         
@@ -229,6 +278,13 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         else if ("INITIALBAL" == name) return COL_INITIALBAL;
         else if ("FAVORITEACCT" == name) return COL_FAVORITEACCT;
         else if ("CURRENCYID" == name) return COL_CURRENCYID;
+        else if ("STATEMENTLOCKED" == name) return COL_STATEMENTLOCKED;
+        else if ("STATEMENTDATE" == name) return COL_STATEMENTDATE;
+        else if ("MINIMUMBALANCE" == name) return COL_MINIMUMBALANCE;
+        else if ("CREDITLIMIT" == name) return COL_CREDITLIMIT;
+        else if ("INTERESTRATE" == name) return COL_INTERESTRATE;
+        else if ("PAYMENTDUEDATE" == name) return COL_PAYMENTDUEDATE;
+        else if ("MINIMUMPAYMENT" == name) return COL_MINIMUMPAYMENT;
 
         return COLUMN(-1);
     }
@@ -253,6 +309,13 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         double INITIALBAL;
         wxString FAVORITEACCT;
         int CURRENCYID;
+        int STATEMENTLOCKED;
+        wxString STATEMENTDATE;
+        double MINIMUMBALANCE;
+        double CREDITLIMIT;
+        double INTERESTRATE;
+        wxString PAYMENTDUEDATE;
+        double MINIMUMPAYMENT;
         int id() const { return ACCOUNTID; }
         void id(int id) { ACCOUNTID = id; }
         bool operator < (const Data& r) const
@@ -271,6 +334,11 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             ACCOUNTID = -1;
             INITIALBAL = 0.0;
             CURRENCYID = -1;
+            STATEMENTLOCKED = -1;
+            MINIMUMBALANCE = 0.0;
+            CREDITLIMIT = 0.0;
+            INTERESTRATE = 0.0;
+            MINIMUMPAYMENT = 0.0;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
@@ -290,6 +358,13 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             INITIALBAL = q.GetDouble(10); // INITIALBAL
             FAVORITEACCT = q.GetString(11); // FAVORITEACCT
             CURRENCYID = q.GetInt(12); // CURRENCYID
+            STATEMENTLOCKED = q.GetInt(13); // STATEMENTLOCKED
+            STATEMENTDATE = q.GetString(14); // STATEMENTDATE
+            MINIMUMBALANCE = q.GetDouble(15); // MINIMUMBALANCE
+            CREDITLIMIT = q.GetDouble(16); // CREDITLIMIT
+            INTERESTRATE = q.GetDouble(17); // INTERESTRATE
+            PAYMENTDUEDATE = q.GetString(18); // PAYMENTDUEDATE
+            MINIMUMPAYMENT = q.GetDouble(19); // MINIMUMPAYMENT
         }
 
         Data& operator=(const Data& other)
@@ -309,6 +384,13 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             INITIALBAL = other.INITIALBAL;
             FAVORITEACCT = other.FAVORITEACCT;
             CURRENCYID = other.CURRENCYID;
+            STATEMENTLOCKED = other.STATEMENTLOCKED;
+            STATEMENTDATE = other.STATEMENTDATE;
+            MINIMUMBALANCE = other.MINIMUMBALANCE;
+            CREDITLIMIT = other.CREDITLIMIT;
+            INTERESTRATE = other.INTERESTRATE;
+            PAYMENTDUEDATE = other.PAYMENTDUEDATE;
+            MINIMUMPAYMENT = other.MINIMUMPAYMENT;
             return *this;
         }
 
@@ -369,6 +451,34 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         {
             return this->CURRENCYID == in.v_;
         }
+        bool match(const Self::STATEMENTLOCKED &in) const
+        {
+            return this->STATEMENTLOCKED == in.v_;
+        }
+        bool match(const Self::STATEMENTDATE &in) const
+        {
+            return this->STATEMENTDATE.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::MINIMUMBALANCE &in) const
+        {
+            return this->MINIMUMBALANCE == in.v_;
+        }
+        bool match(const Self::CREDITLIMIT &in) const
+        {
+            return this->CREDITLIMIT == in.v_;
+        }
+        bool match(const Self::INTERESTRATE &in) const
+        {
+            return this->INTERESTRATE == in.v_;
+        }
+        bool match(const Self::PAYMENTDUEDATE &in) const
+        {
+            return this->PAYMENTDUEDATE.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::MINIMUMPAYMENT &in) const
+        {
+            return this->MINIMUMPAYMENT == in.v_;
+        }
         wxString to_json() const
         {
             json::Object o;
@@ -393,6 +503,13 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             o[L"INITIALBAL"] = json::Number(this->INITIALBAL);
             o[L"FAVORITEACCT"] = json::String(this->FAVORITEACCT.ToStdWstring());
             o[L"CURRENCYID"] = json::Number(this->CURRENCYID);
+            o[L"STATEMENTLOCKED"] = json::Number(this->STATEMENTLOCKED);
+            o[L"STATEMENTDATE"] = json::String(this->STATEMENTDATE.ToStdWstring());
+            o[L"MINIMUMBALANCE"] = json::Number(this->MINIMUMBALANCE);
+            o[L"CREDITLIMIT"] = json::Number(this->CREDITLIMIT);
+            o[L"INTERESTRATE"] = json::Number(this->INTERESTRATE);
+            o[L"PAYMENTDUEDATE"] = json::String(this->PAYMENTDUEDATE.ToStdWstring());
+            o[L"MINIMUMPAYMENT"] = json::Number(this->MINIMUMPAYMENT);
             return 0;
         }
         row_t to_row_t() const
@@ -411,6 +528,13 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             row(L"INITIALBAL") = INITIALBAL;
             row(L"FAVORITEACCT") = FAVORITEACCT;
             row(L"CURRENCYID") = CURRENCYID;
+            row(L"STATEMENTLOCKED") = STATEMENTLOCKED;
+            row(L"STATEMENTDATE") = STATEMENTDATE;
+            row(L"MINIMUMBALANCE") = MINIMUMBALANCE;
+            row(L"CREDITLIMIT") = CREDITLIMIT;
+            row(L"INTERESTRATE") = INTERESTRATE;
+            row(L"PAYMENTDUEDATE") = PAYMENTDUEDATE;
+            row(L"MINIMUMPAYMENT") = MINIMUMPAYMENT;
             return row;
         }
         void to_template(html_template& t) const
@@ -428,6 +552,13 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             t(L"INITIALBAL") = INITIALBAL;
             t(L"FAVORITEACCT") = FAVORITEACCT;
             t(L"CURRENCYID") = CURRENCYID;
+            t(L"STATEMENTLOCKED") = STATEMENTLOCKED;
+            t(L"STATEMENTDATE") = STATEMENTDATE;
+            t(L"MINIMUMBALANCE") = MINIMUMBALANCE;
+            t(L"CREDITLIMIT") = CREDITLIMIT;
+            t(L"INTERESTRATE") = INTERESTRATE;
+            t(L"PAYMENTDUEDATE") = PAYMENTDUEDATE;
+            t(L"MINIMUMPAYMENT") = MINIMUMPAYMENT;
         }
 
         /** Save the record instance in memory to the database. */
@@ -465,7 +596,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 13
+        NUM_COLUMNS = 20
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
@@ -475,7 +606,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 
     DB_Table_ACCOUNTLIST_V1() : fake_(new Data())
     {
-        query_ = "SELECT ACCOUNTID, ACCOUNTNAME, ACCOUNTTYPE, ACCOUNTNUM, STATUS, NOTES, HELDAT, WEBSITE, CONTACTINFO, ACCESSINFO, INITIALBAL, FAVORITEACCT, CURRENCYID FROM ACCOUNTLIST_V1 ";
+        query_ = "SELECT ACCOUNTID, ACCOUNTNAME, ACCOUNTTYPE, ACCOUNTNUM, STATUS, NOTES, HELDAT, WEBSITE, CONTACTINFO, ACCESSINFO, INITIALBAL, FAVORITEACCT, CURRENCYID, STATEMENTLOCKED, STATEMENTDATE, MINIMUMBALANCE, CREDITLIMIT, INTERESTRATE, PAYMENTDUEDATE, MINIMUMPAYMENT FROM ACCOUNTLIST_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -505,11 +636,11 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO ACCOUNTLIST_V1(ACCOUNTNAME, ACCOUNTTYPE, ACCOUNTNUM, STATUS, NOTES, HELDAT, WEBSITE, CONTACTINFO, ACCESSINFO, INITIALBAL, FAVORITEACCT, CURRENCYID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO ACCOUNTLIST_V1(ACCOUNTNAME, ACCOUNTTYPE, ACCOUNTNUM, STATUS, NOTES, HELDAT, WEBSITE, CONTACTINFO, ACCESSINFO, INITIALBAL, FAVORITEACCT, CURRENCYID, STATEMENTLOCKED, STATEMENTDATE, MINIMUMBALANCE, CREDITLIMIT, INTERESTRATE, PAYMENTDUEDATE, MINIMUMPAYMENT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE ACCOUNTLIST_V1 SET ACCOUNTNAME = ?, ACCOUNTTYPE = ?, ACCOUNTNUM = ?, STATUS = ?, NOTES = ?, HELDAT = ?, WEBSITE = ?, CONTACTINFO = ?, ACCESSINFO = ?, INITIALBAL = ?, FAVORITEACCT = ?, CURRENCYID = ? WHERE ACCOUNTID = ?";
+            sql = "UPDATE ACCOUNTLIST_V1 SET ACCOUNTNAME = ?, ACCOUNTTYPE = ?, ACCOUNTNUM = ?, STATUS = ?, NOTES = ?, HELDAT = ?, WEBSITE = ?, CONTACTINFO = ?, ACCESSINFO = ?, INITIALBAL = ?, FAVORITEACCT = ?, CURRENCYID = ?, STATEMENTLOCKED = ?, STATEMENTDATE = ?, MINIMUMBALANCE = ?, CREDITLIMIT = ?, INTERESTRATE = ?, PAYMENTDUEDATE = ?, MINIMUMPAYMENT = ? WHERE ACCOUNTID = ?";
         }
 
         try
@@ -528,8 +659,15 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             stmt.Bind(10, entity->INITIALBAL);
             stmt.Bind(11, entity->FAVORITEACCT);
             stmt.Bind(12, entity->CURRENCYID);
+            stmt.Bind(13, entity->STATEMENTLOCKED);
+            stmt.Bind(14, entity->STATEMENTDATE);
+            stmt.Bind(15, entity->MINIMUMBALANCE);
+            stmt.Bind(16, entity->CREDITLIMIT);
+            stmt.Bind(17, entity->INTERESTRATE);
+            stmt.Bind(18, entity->PAYMENTDUEDATE);
+            stmt.Bind(19, entity->MINIMUMPAYMENT);
             if (entity->id() > 0)
-                stmt.Bind(13, entity->ACCOUNTID);
+                stmt.Bind(20, entity->ACCOUNTID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

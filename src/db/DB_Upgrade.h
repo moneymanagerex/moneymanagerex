@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-04-28 12:52:07.810000.
+ *          AUTO GENERATED at 2016-07-16 22:51:32.920000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -18,7 +18,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 6;
+const int dbLatestVersion = 7;
 
 const std::vector<wxString> dbUpgradeQuery =
 {
@@ -108,6 +108,18 @@ const std::vector<wxString> dbUpgradeQuery =
         , SHARELOT TEXT
         );
         CREATE INDEX IF NOT EXISTS IDX_SHAREINFO ON SHAREINFO_V1 (CHECKINGACCOUNTID);
+    )",
+
+    // Upgrade to version 7
+    R"(
+        alter table ACCOUNTLIST_V1 add column STATEMENTLOCKED integer;
+        alter table ACCOUNTLIST_V1 add column STATEMENTDATE TEXT;
+        alter table ACCOUNTLIST_V1 add column MINIMUMBALANCE numeric;
+        alter table ACCOUNTLIST_V1 add column CREDITLIMIT numeric;
+        alter table ACCOUNTLIST_V1 add column INTERESTRATE numeric;
+        alter table ACCOUNTLIST_V1 add column PAYMENTDUEDATE text;
+        alter table ACCOUNTLIST_V1 add column MINIMUMPAYMENT numeric;
+        
     )",
 
 };
