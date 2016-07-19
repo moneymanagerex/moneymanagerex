@@ -67,6 +67,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , double current_balance
     , bool duplicate
     , int type
+    , const wxString& name
 ) : m_currency(nullptr)
     , m_to_currency(nullptr)
     , CustomFieldDialog_(nullptr)
@@ -116,7 +117,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     }
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(500, 400), style);
+    Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(500, 400), style, name);
     dataToControls();
     CallAfter(&mmTransDialog::OnStartupCustomFields);
 }
@@ -126,10 +127,10 @@ mmTransDialog::~mmTransDialog()
 }
 
 bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
-    , const wxPoint& pos, const wxSize& size, long style)
+    , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style);
+    wxDialog::Create(parent, id, caption, pos, size, style, name);
 
     CreateControls();
     GetSizer()->Fit(this);

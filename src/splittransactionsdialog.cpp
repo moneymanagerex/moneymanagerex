@@ -56,7 +56,9 @@ SplitTransactionDialog::SplitTransactionDialog( )
     , std::vector<Split>& split
     , int transType
     , int accountID
-    , double totalAmount)
+    , double totalAmount
+    , const wxString& name
+    )
     : m_splits(split)
     , totalAmount_(totalAmount)
     , accountID_(accountID)
@@ -70,7 +72,7 @@ SplitTransactionDialog::SplitTransactionDialog( )
 
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Split Transaction Dialog")
-        , wxDefaultPosition, wxSize(400, 400), style);
+        , wxDefaultPosition, wxSize(400, 400), style, name);
 }
 
 bool SplitTransactionDialog::Create(wxWindow* parent
@@ -78,11 +80,13 @@ bool SplitTransactionDialog::Create(wxWindow* parent
     , const wxString& caption
     , const wxPoint& pos
     , const wxSize& size
-    , long style)
+    , long style
+    , const wxString& name
+    )
 {
     lcSplit_ = nullptr;
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create( parent, id, caption, pos, size, style );
+    wxDialog::Create( parent, id, caption, pos, size, style, name);
 
     CreateControls();
     GetSizer()->Fit(this);

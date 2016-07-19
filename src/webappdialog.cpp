@@ -36,22 +36,22 @@ wxBEGIN_EVENT_TABLE(mmWebAppDialog, wxDialog)
 wxEND_EVENT_TABLE()
 
 
-mmWebAppDialog::mmWebAppDialog(wxWindow *parent) :
+mmWebAppDialog::mmWebAppDialog(wxWindow *parent, const wxString& name) :
     m_webtran_id(-1)
     , m_maskTextCtrl()
     , webtranListBox_()
     , refreshRequested_(false)
 {
-    do_create(parent);
+    Create(parent, name);
 }
 
-void mmWebAppDialog::do_create(wxWindow* parent)
+void mmWebAppDialog::Create(wxWindow* parent, const wxString& name)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
 
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
     if (!wxDialog::Create(parent, wxID_ANY, _("Import WebApp transactions")
-        , wxDefaultPosition, wxDefaultSize, style))
+        , wxDefaultPosition, wxDefaultSize, style, name))
     {
         return;
     }

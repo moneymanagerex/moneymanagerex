@@ -58,7 +58,9 @@ mmStockDialog::mmStockDialog( )
 mmStockDialog::mmStockDialog(wxWindow* parent
     , mmGUIFrame* gui_frame
     , Model_Stock::Data* stock
-    , int accountID)
+    , int accountID
+    , const wxString& name
+    )
     : m_stock(stock)
     , m_gui_frame(gui_frame)
     , m_edit(stock ? true: false)
@@ -77,14 +79,14 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     , m_price_listbox(nullptr)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(400, 300), style);
+    Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(400, 300), style, name);
 }
 
 bool mmStockDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
-    , const wxPoint& pos, const wxSize& size, long style)
+    , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style);
+    wxDialog::Create(parent, id, caption, pos, size, style, name);
 
     CreateControls();
     GetSizer()->Fit(this);

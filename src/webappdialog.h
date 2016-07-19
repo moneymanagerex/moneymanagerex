@@ -31,7 +31,7 @@ class mmWebAppDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmWebAppDialog(wxWindow* parent);
+    mmWebAppDialog(wxWindow* parent, const wxString& name = "mmWebAppDialog");
 
     bool getRefreshRequested() const { return refreshRequested_; }
 
@@ -66,7 +66,7 @@ private:
 
     mmWebAppDialog() : m_webtran_id(-1), refreshRequested_(false) {}
 
-    void do_create(wxWindow* parent);
+    void Create(wxWindow* parent, const wxString& name = "mmWebAppDialog");
     void CreateControls();
     void fillControls();
 

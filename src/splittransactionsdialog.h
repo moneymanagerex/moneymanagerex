@@ -45,7 +45,9 @@ public:
         , std::vector<Split>& split
         , int transType
         , int accountID
-        , double totalAmount = 0.0);
+        , double totalAmount = 0.0
+        , const wxString& name = "SplitTransactionDialog"
+        );
 
     /// Creation
     bool Create(
@@ -54,7 +56,9 @@ public:
         const wxString& caption,
         const wxPoint& pos,
         const wxSize& size,
-        long style);
+        long style
+        , const wxString& name
+        );
     std::vector<Split> getResult() { return m_splits; }
     bool isItemsChanged(){ return items_changed_; }
     void SetDisplaySplitCategories();

@@ -36,13 +36,17 @@ public:
     mmStockDialog(wxWindow* parent
         , mmGUIFrame* gui_frame
         , Model_Stock::Data* stock
-        , int accountID);
+        , int accountID
+        , const wxString& name = "mmStockDialog"
+        );
 
     bool Create(wxWindow* parent, wxWindowID id
         , const wxString& caption
         , const wxPoint& pos
         , const wxSize& size
-        , long style);
+        , long style
+        , const wxString& name = "mmStockDialog"
+        );
 
     int m_stock_id;
 
