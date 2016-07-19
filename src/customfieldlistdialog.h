@@ -62,7 +62,7 @@ private:
     wxButton* btnCancel_;
     wxButton* button_OK_;
 
-    void do_create(wxWindow* parent);
+    void Create(wxWindow* parent);
     void CreateControls();
     void fillControls();
 

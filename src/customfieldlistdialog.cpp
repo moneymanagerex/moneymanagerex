@@ -56,10 +56,10 @@ mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent, const wxStri
     ColName_[FIELD_TYPE] = _("Type");
     if (debug_) ColName_[FIELD_PROPERTIES] = _("Properties");
 
-    do_create(parent);
+    Create(parent);
 }
 
-void mmCustomFieldListDialog::do_create(wxWindow* parent)
+void mmCustomFieldListDialog::Create(wxWindow* parent)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
