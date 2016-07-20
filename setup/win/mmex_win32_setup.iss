@@ -9,12 +9,12 @@
 
 ; Copyright (C) 2006 Madhan Kanagavel
 ; Copyright (C) 2009 VaDiM
-; Copyright (C) 2011-2014 Stefano Giorgio
+; Copyright (C) 2011-2016 Stefano Giorgio
 ; Copyright (C) 2013 James Higley
 
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
-#define MyAppVersion "1.2.0"
+#define MyAppVersion "1.3.0-beta"
 #define MyAppPublisher "Money Manager EX"
 #define MyAppURL "http://www.moneymanagerex.org"
 
@@ -23,11 +23,10 @@
 
 
 ;===============================================================================
-; Local definitions specifically designed for my setup 
-#define my_svn_path "..\.."
+; Local definitions
 #define my_output_root "..\..\mmex_release"
-#define my_output_path "\mmex_1.2.0_win32_portable\MoneyManagerEx"
-#define my_output_filename "mmex_1.2.0_win32_setup"
+#define my_output_path "\mmex_1.3.0-beta_win32_portable\MoneyManagerEx"
+#define my_output_filename "mmex_1.3.0-beta_win32_setup"
 
 ;===============================================================================
 
@@ -51,22 +50,22 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}{#MyAppDevelopVersion}
 DefaultGroupName={#MyAppName}{#MyAppDevelopVersion}
-LicenseFile={#my_svn_path}\doc\license.txt
-InfoBeforeFile={#my_svn_path}\README.TXT
-InfoAfterFile={#my_svn_path}\doc\version.txt
+LicenseFile={#my_output_root}{#my_output_path}\license.txt
+InfoBeforeFile={#my_output_root}{#my_output_path}\README.TXT
+InfoAfterFile={#my_output_root}{#my_output_path}\version.txt
 OutputDir={#my_output_root}
 OutputBaseFilename={#my_output_filename}
-SetupIconFile={#my_svn_path}\resources\mmex.ico
+SetupIconFile={#my_output_root}{#my_output_path}\res\mmex.ico
 Compression=lzma/Max
 SolidCompression=true
-VersionInfoVersion=1.2.0.0
+VersionInfoVersion=1.3.0.0
 VersionInfoCompany=Money Manager EX
 VersionInfoDescription=Money Management Software
-VersionInfoTextVersion=1.2.0.0
-VersionInfoCopyright=2014 - Money Manager EX
+VersionInfoTextVersion=1.3.0.0
+VersionInfoCopyright=2016 - Money Manager EX
 VersionInfoProductName=mmex
-VersionInfoProductVersion=1.2.0.0
-VersionInfoProductTextVersion=1.2.0.0
+VersionInfoProductVersion=1.3.0.0
+VersionInfoProductTextVersion=1.3.0.0
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl; 
@@ -161,77 +160,77 @@ Source: {#my_output_root}{#my_output_path}\bin\msvcp120.dll; DestDir: {app}\bin;
 Source: {#my_output_root}{#my_output_path}\bin\msvcr120.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: program; 
 
 ; MMEX Root files
-Source: {#my_svn_path}\doc\contrib.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
-Source: {#my_svn_path}\doc\license.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
-Source: {#my_svn_path}\doc\version.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
+Source: {#my_output_root}{#my_output_path}\contrib.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
+Source: {#my_output_root}{#my_output_path}\license.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
+Source: {#my_output_root}{#my_output_path}\version.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
 
 ; Include in directory if user requires a local setup
 Source: {#my_output_root}{#my_output_path}\mmexini.db3; DestDir: {app}; Flags: ignoreversion; Components: local;
 
 ; MMEX Resource files
-Source: {#my_svn_path}\resources\kaching.wav; DestDir: {app}\res; Flags: ignoreversion; 
-Source: {#my_svn_path}\resources\mmex.ico; DestDir: {app}\res; Flags: ignoreversion; 
-Source: {#my_svn_path}\resources\master.css; DestDir: {app}\res; Flags: ignoreversion; 
-Source: {#my_svn_path}\resources\home_page.htt; DestDir: {app}\res; Flags: ignoreversion; 
-Source: {#my_svn_path}\3rd\ChartNew.js\ChartNew.js; DestDir: {app}\res; Flags: ignoreversion; 
-Source: {#my_svn_path}\3rd\sorttable.js\sorttable.js; DestDir: {app}\res; Flags: ignoreversion; 
+Source: {#my_output_root}{#my_output_path}\res\ChartNew.js; DestDir: {app}\res; Flags: ignoreversion; 
+Source: {#my_output_root}{#my_output_path}\res\home_page.htt; DestDir: {app}\res; Flags: ignoreversion; 
+Source: {#my_output_root}{#my_output_path}\res\kaching.wav; DestDir: {app}\res; Flags: ignoreversion; 
+Source: {#my_output_root}{#my_output_path}\res\master.css; DestDir: {app}\res; Flags: ignoreversion; 
+Source: {#my_output_root}{#my_output_path}\res\mmex.ico; DestDir: {app}\res; Flags: ignoreversion; 
+Source: {#my_output_root}{#my_output_path}\res\sorttable.js; DestDir: {app}\res; Flags: ignoreversion; 
 
 ; MMEX Root files - language dependant
-Source: {#my_svn_path}\README.TXT; DestDir: {app}; Flags: ignoreversion; Components: program; Languages: english; 
+Source: {#my_output_root}{#my_output_path}\README.TXT; DestDir: {app}; Flags: ignoreversion; Components: program; Languages: english; 
 
 ; MMEX Language Files - Determined by Component
-Source: {#my_svn_path}\po\arabic.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\arabic; 
-Source: {#my_svn_path}\po\bulgarian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\bulgarian; 
-Source: {#my_svn_path}\po\chinese_chs.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\chinese_chs; 
-Source: {#my_svn_path}\po\chinese_zh.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\chinese_zh; 
-Source: {#my_svn_path}\po\croatian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\croatian; 
-Source: {#my_svn_path}\po\czech.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\czech; 
-Source: {#my_svn_path}\po\dutch.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\ducth; 
-Source: {#my_svn_path}\po\dutch_be.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\dutch_be; 
-Source: {#my_svn_path}\po\english.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\english; 
-Source: {#my_svn_path}\po\english.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: help; Languages: english; 
-Source: {#my_svn_path}\po\english-uk.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\english_uk; 
-Source: {#my_svn_path}\po\french.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\french; 
-Source: {#my_svn_path}\po\german.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\german; 
-Source: {#my_svn_path}\po\greek.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\greek; 
-Source: {#my_svn_path}\po\hebrew.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hebrew;
-Source: {#my_svn_path}\po\hindi.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hindi;
-Source: {#my_svn_path}\po\hungarian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hungarian; 
-Source: {#my_svn_path}\po\indonesian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\indonesian; 
-Source: {#my_svn_path}\po\italian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\italian; 
-Source: {#my_svn_path}\po\japanese.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\japanese;
-Source: {#my_svn_path}\po\latvian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\latvian; 
-Source: {#my_svn_path}\po\lithuanian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\lithuanian; 
-Source: {#my_svn_path}\po\norwegian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\norwegian; 
-Source: {#my_svn_path}\po\polish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\polish; 
-Source: {#my_svn_path}\po\portuguese.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\portuguese; 
-Source: {#my_svn_path}\po\portuguese_portugal.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\portuguese_portugal; 
-Source: {#my_svn_path}\po\romanian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\romanian; 
-Source: {#my_svn_path}\po\russian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\russian; 
-Source: {#my_svn_path}\po\serbian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\serbian; 
-Source: {#my_svn_path}\po\serbo-croatian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\serbo_croatian; 
-Source: {#my_svn_path}\po\slovak.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\slovak; 
-Source: {#my_svn_path}\po\slovenian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\slovenian; 
-Source: {#my_svn_path}\po\spanish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\spanish; 
-Source: {#my_svn_path}\po\swedish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\swedish; 
-Source: {#my_svn_path}\po\tamil.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\tamil; 
-Source: {#my_svn_path}\po\turkish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\turkish; 
-Source: {#my_svn_path}\po\ukrainian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\ukrainian; 
-Source: {#my_svn_path}\po\vietnamese.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\vietnamese; 
+Source: {#my_output_root}{#my_output_path}\po\en\arabic.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\arabic; 
+Source: {#my_output_root}{#my_output_path}\po\en\bulgarian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\bulgarian; 
+Source: {#my_output_root}{#my_output_path}\po\en\chinese_chs.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\chinese_chs; 
+Source: {#my_output_root}{#my_output_path}\po\en\chinese_zh.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\chinese_zh; 
+Source: {#my_output_root}{#my_output_path}\po\en\croatian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\croatian; 
+Source: {#my_output_root}{#my_output_path}\po\en\czech.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\czech; 
+Source: {#my_output_root}{#my_output_path}\po\en\dutch.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\ducth; 
+Source: {#my_output_root}{#my_output_path}\po\en\dutch_be.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\dutch_be;
+Source: {#my_output_root}{#my_output_path}\po\en\english.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\english; 
+Source: {#my_output_root}{#my_output_path}\po\en\english.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: help; Languages: english; 
+Source: {#my_output_root}{#my_output_path}\po\en\english-uk.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\english_uk; 
+Source: {#my_output_root}{#my_output_path}\po\en\french.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\french; 
+Source: {#my_output_root}{#my_output_path}\po\en\german.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\german; 
+Source: {#my_output_root}{#my_output_path}\po\en\greek.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\greek; 
+Source: {#my_output_root}{#my_output_path}\po\en\hebrew.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hebrew;
+Source: {#my_output_root}{#my_output_path}\po\en\hindi.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hindi;
+Source: {#my_output_root}{#my_output_path}\po\en\hungarian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hungarian; 
+Source: {#my_output_root}{#my_output_path}\po\en\indonesian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\indonesian; 
+Source: {#my_output_root}{#my_output_path}\po\en\italian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\italian;
+Source: {#my_output_root}{#my_output_path}\po\en\japanese.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\japanese;
+Source: {#my_output_root}{#my_output_path}\po\en\latvian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\latvian; 
+Source: {#my_output_root}{#my_output_path}\po\en\lithuanian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\lithuanian; 
+Source: {#my_output_root}{#my_output_path}\po\en\norwegian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\norwegian; 
+Source: {#my_output_root}{#my_output_path}\po\en\polish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\polish; 
+Source: {#my_output_root}{#my_output_path}\po\en\portuguese.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\portuguese; 
+Source: {#my_output_root}{#my_output_path}\po\en\portuguese_portugal.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\portuguese_portugal; 
+Source: {#my_output_root}{#my_output_path}\po\en\romanian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\romanian; 
+Source: {#my_output_root}{#my_output_path}\po\en\russian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\russian; 
+Source: {#my_output_root}{#my_output_path}\po\en\serbian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\serbian; 
+Source: {#my_output_root}{#my_output_path}\po\en\serbo-croatian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\serbo_croatian; 
+Source: {#my_output_root}{#my_output_path}\po\en\slovak.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\slovak; 
+Source: {#my_output_root}{#my_output_path}\po\en\slovenian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\slovenian; 
+Source: {#my_output_root}{#my_output_path}\po\en\spanish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\spanish; 
+Source: {#my_output_root}{#my_output_path}\po\en\swedish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\swedish; 
+Source: {#my_output_root}{#my_output_path}\po\en\tamil.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\tamil; 
+Source: {#my_output_root}{#my_output_path}\po\en\turkish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\turkish; 
+Source: {#my_output_root}{#my_output_path}\po\en\ukrainian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\ukrainian; 
+Source: {#my_output_root}{#my_output_path}\po\en\vietnamese.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\vietnamese; 
 
 ; MMEX Help - Root Help files 
-Source: {#my_svn_path}\doc\help\*.html; DestDir: {app}\help; Flags: ignoreversion; Components: help;
-Source: {#my_svn_path}\doc\help\*.png; DestDir: {app}\help; Flags: ignoreversion; Components: help;
-Source: {#my_svn_path}\doc\help\*.gif; DestDir: {app}\help; Flags: ignoreversion; Components: help;
+Source: {#my_output_root}{#my_output_path}\help\*.html; DestDir: {app}\help; Flags: ignoreversion; Components: help;
+Source: {#my_output_root}{#my_output_path}\help\*.png; DestDir: {app}\help; Flags: ignoreversion; Components: help;
+Source: {#my_output_root}{#my_output_path}\help\*.gif; DestDir: {app}\help; Flags: ignoreversion; Components: help;
  
 ; MMEX Help - Help Directories - Language dependant
-Source: {#my_svn_path}\doc\help\french\*; DestDir: {app}\help\french; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\french; 
-Source: {#my_svn_path}\doc\help\german\*; DestDir: {app}\help\german; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\german; 
-Source: {#my_svn_path}\doc\help\hungarian\*; DestDir: {app}\help\hungarian; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\hungarian; 
-Source: {#my_svn_path}\doc\help\italian\*; DestDir: {app}\help\italian; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\italian; 
-Source: {#my_svn_path}\doc\help\polish\*; DestDir: {app}\help\polish; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\polish; 
-Source: {#my_svn_path}\doc\help\russian\*; DestDir: {app}\help\russian; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\russian; 
-Source: {#my_svn_path}\doc\help\spanish\*; DestDir: {app}\help\spanish; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\spanish; 
+Source: {#my_output_root}{#my_output_path}\help\french\*; DestDir: {app}\help\french; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\french; 
+; Source: {#my_output_root}{#my_output_path}\help\german\*; DestDir: {app}\help\german; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\german; 
+Source: {#my_output_root}{#my_output_path}\help\hungarian\*; DestDir: {app}\help\hungarian; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\hungarian; 
+Source: {#my_output_root}{#my_output_path}\help\italian\*; DestDir: {app}\help\italian; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\italian; 
+Source: {#my_output_root}{#my_output_path}\help\polish\*; DestDir: {app}\help\polish; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\polish; 
+Source: {#my_output_root}{#my_output_path}\help\russian\*; DestDir: {app}\help\russian; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\russian; 
+Source: {#my_output_root}{#my_output_path}\help\spanish\*; DestDir: {app}\help\spanish; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\spanish; 
 
 
 [Icons]
