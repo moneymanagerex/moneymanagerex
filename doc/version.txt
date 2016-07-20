@@ -8,6 +8,9 @@ Version History of Money Manager Ex
 - New: Introduction of Custom Fields for transactions
 - New: Stocks & Shares Management upgrade using Share Accounts.
 - New: Asset Management Upgrade using Asset Accounts.
+- New: Mininum Balance on accounts.
+- New: Credit Limit on Accounts.
+- New: Lock account transactions to a reconciled date.
 - Fix: General bug fixex and documentation updates.
 
 1.2.7 (Apr 14, 2016)
