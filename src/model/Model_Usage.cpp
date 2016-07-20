@@ -124,16 +124,22 @@ void Model_Usage::ev_handler(struct mg_connection *nc, int ev, void *ev_data)
 void Model_Usage::pageview(const wxWindow* window)
 {
     if (!window) return;
+    if (window->GetName().IsEmpty()) return;
 
     const wxWindow *current = window;
 
     wxString documentTitle = window->GetLabel();
-    if (documentTitle.IsEmpty()) documentTitle = window->GetClassInfo()->GetClassName();
+    if (documentTitle.IsEmpty()) documentTitle = window->GetName();
 
     wxString documentPath;
     while (current)
     {
-        documentPath = "/" + wxString(current->GetClassInfo()->GetClassName()) + documentPath; 
+        if (current->GetName().IsEmpty())
+        {
+            current = current->GetParent();
+            continue;
+        }
+        documentPath = "/" + current->GetName() + documentPath; 
         current = current->GetParent();
     }
 
