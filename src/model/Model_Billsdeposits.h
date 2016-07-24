@@ -144,6 +144,7 @@ public:
     bool autoExecuteSilent();
     bool requireExecution();
     bool allowExecution();
+    bool AllowTransaction(const Data& r);
 
     static int daysPayment(const Data* r);
     static int daysOverdue(const Data* r);

@@ -262,6 +262,40 @@ bool Model_Billsdeposits::allowExecution()
     return m_allowExecution;
 }
 
+bool Model_Billsdeposits::AllowTransaction(const Data& r)
+{
+    Model_Account::Data* account = Model_Account::instance().get(r.ACCOUNTID);
+    double current_account_balance = Model_Account::balance(account);
+    double new_value = r.TRANSAMOUNT;
+
+    if (r.TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
+    {
+        new_value *= -1;
+    }
+    new_value += current_account_balance;
+
+    bool abort_transaction = false;
+    if ((account->MINIMUMBALANCE != 0) && (new_value < account->MINIMUMBALANCE))
+    {
+        abort_transaction = true;
+    }
+
+    if ((account->CREDITLIMIT != 0) && (new_value < (account->CREDITLIMIT * -1)))
+    {
+        abort_transaction = true;
+    }
+
+    if (abort_transaction && wxMessageBox(_(
+        "A recurring transaction will exceed your account limit.\n\n"
+        "Do you wish to continue?")
+        , _("MMEX Recurring Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
+    {
+        abort_transaction = false;
+    }
+
+    return !abort_transaction;
+}
+
 int Model_Billsdeposits::daysPayment(const Data* r)
 {
     const wxDate& payment_date = Model_Billsdeposits::NEXTOCCURRENCEDATE(r);

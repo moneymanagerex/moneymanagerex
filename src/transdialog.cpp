@@ -1069,7 +1069,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
         }
 
         if (abort_transaction && wxMessageBox( _(
-            "This transaction will exceed your set limit\n\n"
+            "This transaction will exceed your account limit.\n\n"
             "Do you wish to continue?")
             , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
         {
