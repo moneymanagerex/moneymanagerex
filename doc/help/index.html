@@ -377,24 +377,48 @@
             changed when editing account information.
         </p>
         <p>
-            Name of the Account: This is a required field. The
+            <strong>Name of the Account:</strong> <br>This is a required field. The
             recommendation is to name your accounts uniquely and in relation to
             real world accounts. Example: With CitiBank, we have a Savings
             account and a credit card Visa account. You could name your
             accounts as ;CitiBank Savings; and ;Citibank Visa;.
         </p>
         <p>
-            Type of Account: MMEX currently supports three types of
+            <strong>Type of Account</strong>:<br>MMEX currently supports eight of
             accounts:
         </p>
         <dl>
+            <dt>Cash Accounts</dt>
+            <dt></dt>
+            <dd>
+                Similar to Checking Accounts with the exception that they
+                appear in their own section on the home page and can be shown
+                or hidden for normal day usage. For a better explanation see
+                the account setup example.<br>
+                &nbsp;</dd>
             <dt>Checking Account</dt>
             <dd>
                 This is the most common type of account used for MMEX, and
                 can handle most common account types, such as checking
                 accounts, savings accounts, and credit card accounts. Also
                 known as Bank Account, and supports three kinds of
-                transactions. These are withdrawal, deposit and transfers.
+                transactions. These are withdrawal, deposit and transfers.<br>
+            </dd>
+			<dd>
+                &nbsp;</dd>
+            <dt>Credit Card Accounts</dt>
+            <dt></dt>
+            <dd>
+                Similar to Checking Accounts with the exception that they appear 
+				in their own section on the home page and can be shown or hidden 
+				for normal day usage.<br>&nbsp;
+            </dd>
+            <dt>Loan Accounts</dt>
+            <dt></dt>
+            <dd>
+                Similar to Checking Accounts with the exception that they appear 
+				in their own section on the home page and can be shown or hidden 
+				for normal day usage.<br>&nbsp;
             </dd>
             <dt>Term Accounts</dt>
             <dt></dt>
@@ -409,17 +433,50 @@
                 investment accounts with regular income or expenditure that you
                 need to keep track of. These accounts have their own balance
                 section on the Home Page. These accounts also, supports three
-                kinds of transactions.
-            </dd>
+                kinds of transactions.<br>&nbsp;</dd>
             <dt>Investment Account</dt>
             <dd>
-                The other type of account that MMEX supports is an
-                ;Investment; Account. This type of account allows you to track
+                This is a specialized account type that supports Stocks and 
+				Shares. It allows Stock Portfolio's to be created within the Investment Account. This type of account allows 
+				us to track
                 stock/bonds/mutual funds investments and possibly other
-                investments you may own.
+                investments you may own.<br>&nbsp;<br>
             </dd>
+            <dt>Asset Accounts</dt>
+            <dt></dt>
+            <dd>
+                These specialized account types appear under Assets in the 
+				navigation tree and assist Asset Management.<br><strong>These do NOT appear 
+				on the home page.</strong><br>
+                <br>
+            </dd>
+            <dt>Share Accounts</dt>
+            <dt></dt>
+            <dd>
+                These specialized account types appear under a Stock Portfolio 
+				to assist the Stocks and Shares Management.<br>T<strong>hese do 
+				NOT appear on the home page.</strong><br><br>These types can also be 
+				displayed by using the Menu -&gt; View -&gt; "Display Share Accounts" 
+				to display these under Share Accounts in the Navigation tree. 
+				This is generally not necessary, but is required in the case 
+				where a Stock is not accessing the Share account.<br>
+            </dd>
+			<dt></dt>
         </dl>
         <p>
+            <strong>Credit Limit and Minimum Balance</strong></p>
+		<p>
+            This has been introduced&nbsp; for each account. Initially set to 
+			zero (0) to disable this feature.</p>
+		<p>
+            &nbsp;Setting a minimum balance will warn the user when the 
+			resulting balance of entering a transaction will be below this 
+			value. The Credit Limit is the same as minimum balance, except that 
+			a positive Credit Limit will reflect a negative balance.
+        </p>
+		<p>
+            &nbsp;</p>
+		<p>
             To properly setup accounts, you should have balance information
             for the accounts you want to add to MMEX. You can get this
             information from your most recent bank, investment and credit card
@@ -443,7 +500,7 @@
             Options on the Menu, Tools&rarr;Options, you can hide the closed
             accounts. See Tips on Navigation Tree<br>
             <br>
-            Currency: This is initially set to the database Base Currency
+            <strong>Currency</strong>: This is initially set to the database Base Currency
             setting which was initially set when creating the database. You can
             set the currency that is associated with this account and can be
             different to the base currency.
@@ -1405,61 +1462,63 @@
         <hr>
         <h2>Recurring Transactions</h2>
         <p>
-            These are special transactions that we set up in order to have
-            the transaction entered into the data base at some future date.
-            These transactions generally occur at regular intervals, such as
-            the payment of a bill.
-        </p>
+            These are transactions that will be entered into the data base at some future date, 
+			and can be set up to repeat at regular intervals. These transactions 
+			can remind us of pending bill. The future transaction date is 
+			provided as 'Date Paid' and 'Date Due' allowing the bill to be 
+			entered between a range of dates or on a single date when the two 
+			dates are the same.</p>
         <p>These transactions:</p>
         <ul>
             <li>
                 Are displayed as reminders on the Home Page within 15 Days
-                of the due date.
-            </li>
+                of the 'Date Paid' date.</li>
             <li>
-                Can be set up to activate automatically on the due
-                date.
-            </li>
+                Can be set up to be automatically entered on the transaction 
+				'Date Paid' date with the transaction having the 'Date Due'.</li>
             <li>
-                Can be set up to activate &ndash; allowing the user to
-                adjust any values on the due date.
-            </li>
+                Can be set up to advise us to enter the payment at the 'Date 
+				Paid' date, allowing us to
+                adjust or delay payment to the 'Date Due'.</li>
+			<li>
+                When a transaction is being entered manually, the 'Date Paid' 
+				can be reset to today's date by using the 'Date Reset' icon.</li>
         </ul>
         <p>
-            Recurring Transactions can be accessed from the navigation tree
+            Recurring Transactions can be created directly from an existing 
+			transaction in an account or by accessing the <strong>Recurring 
+			Transactions</strong> from the navigation tree
             or from the menu item Tools&rarr;Recurring Transactions. This will
             display the Recurring Transactions page.
         </p>
-        <p>To create a new transaction, use the New button:</p>
+        <p>To create a new transaction, use the New button.
+                Setting up the Recurring Transactions Details: </p>
         <ul>
             <li>
-                Set up the Recurring Transactions Details, defining which
-                account the transaction will go to when the transaction is
-                entered.
-            </li>
+                Select the dates using the 'Transaction Dates' calendar. If 
+				necessary, adjust the 'Date Paid' date to a date before the 'Due 
+				Date'</li>
             <li>
                 <p>
-                    Set the date of the Next Occurrence,<br>
-                    except for Repeats: In x Days/Months.
-                </p>
+                    Except for Repeats: In x Days/Months, the 'Date Due' date 
+					will have been set by the calendar.</p>
             </li>
             <li>Select the Repeats as ;daily;, ;weekly; etc.</li>
             <li>
-                Times Repeated:<br>
+                Payments Left:<br>
                 - Enter the number of times this will occur.<br>
                 - No number means: Repeat indefinitely.
             </li>
             <li>
                 For Repeats: In x Days/Months<br>
-                - Set the Start date of the activity.<br>
+                - Set the 'Date Due' of the activity, (possibly already set).<br>
                 - Set the period in Days or months depending on the
                 selection.<br>
-                - Use the Next button to advance the date to the occurrence
-                Date.<br>
-                - Changes to the period will reactivate the Next button. Once
+                - Use the Next button to advance the date to the 
+                Date Paid.<br>
+                - Changing the 'Period' field will reactivate the Next button. Once
                 the transaction has been entered, the activity becomes
-                inactive.
-            </li>
+                inactive.</li>
             <li>
                 Repeats: Every x Days/Months<br>
                 Similar to regular repeats with the exception that the period
