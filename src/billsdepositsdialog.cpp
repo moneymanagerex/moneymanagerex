@@ -930,6 +930,12 @@ void mmBDDialog::onNoteSelected(wxCommandEvent& event)
 
 void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
 {
+    Model_Billsdeposits::Data bill_data = *Model_Billsdeposits::instance().get(m_bill_data.BDID);
+    if (!Model_Billsdeposits::instance().AllowTransaction(bill_data))
+    {
+        return;
+    }
+
     Model_Account::Data *acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     if (!acc)
         return mmErrorDialogs::InvalidAccount((wxWindow*)bAccount_);

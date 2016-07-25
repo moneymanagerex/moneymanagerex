@@ -502,10 +502,11 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     for (const auto& q1 : bills.all())
     {
         bills.decode_fields(q1);
+        bool allow_transaction = bills.AllowTransaction(q1);
         const wxDateTime payment_date = bills.TRANSDATE(q1);
         if (bills.autoExecuteManual() && bills.requireExecution())
         {
-            if (bills.allowExecution())
+            if (allow_transaction && bills.allowExecution())
             {
                 continueExecution = true;
                 mmBDDialog repeatTransactionsDlg(this, q1.BDID, false, true);
@@ -519,7 +520,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             }
         }
 
-        if (bills.autoExecuteSilent() && bills.requireExecution())
+        if (allow_transaction && bills.autoExecuteSilent() && bills.requireExecution())
         {
             if (bills.allowExecution())
             {
