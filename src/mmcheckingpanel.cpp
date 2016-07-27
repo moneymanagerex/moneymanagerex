@@ -90,7 +90,7 @@ wxEND_EVENT_TABLE();
 //----------------------------------------------------------------------------
 
 mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accountID, int id) 
-    : filteredBalance_(0.0)
+    : m_filteredBalance(0.0)
     , m_listCtrlAccount()
     , m_AccountID(accountID)
     , m_account(Model_Account::instance().get(accountID))
@@ -125,7 +125,7 @@ bool mmCheckingPanel::Create(
     this->windowsFreezeThaw();
     CreateControls();
 
-    transFilterActive_ = false;
+    m_transFilterActive = false;
     m_trans_filter_dlg    = new mmFilterTransactionsDialog(this);
     SetTransactionFilterState(true);
 
@@ -185,9 +185,9 @@ void mmCheckingPanel::sortTable()
 void mmCheckingPanel::filterTable()
 {
     this->m_trans.clear();
-    account_balance_ = m_account ? m_account->INITIALBAL : 0.0;
-    reconciled_balance_ = account_balance_;
-    filteredBalance_ = 0.0;
+    m_account_balance = m_account ? m_account->INITIALBAL : 0.0;
+    m_reconciled_balance = m_account_balance;
+    m_filteredBalance = 0.0;
 
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
@@ -195,27 +195,27 @@ void mmCheckingPanel::filterTable()
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
-            account_balance_ += transaction_amount;
+            m_account_balance += transaction_amount;
 
         if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
-            reconciled_balance_ += transaction_amount;
+            m_reconciled_balance += transaction_amount;
 
-        if (transFilterActive_)
+        if (m_transFilterActive)
         {
             if (!m_trans_filter_dlg->checkAll(tran, m_AccountID, splits))
                 continue;
         }
         else
         {
-            if (!Model_Checking::TRANSDATE(tran).IsBetween(quickFilterBeginDate_, quickFilterEndDate_))
+            if (!Model_Checking::TRANSDATE(tran).IsBetween(m_quickFilterBeginDate, m_quickFilterEndDate))
                 continue;
         }
 
         Model_Checking::Full_Data full_tran(tran, splits);
         full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
-        full_tran.BALANCE = account_balance_;
+        full_tran.BALANCE = m_account_balance;
         full_tran.AMOUNT = transaction_amount;
-        filteredBalance_ += transaction_amount;
+        m_filteredBalance += transaction_amount;
 
         if (attachments.count(full_tran.TRANSID))
             full_tran.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
@@ -226,24 +226,24 @@ void mmCheckingPanel::filterTable()
 
 void mmCheckingPanel::updateTable()
 {
-    account_balance_ = 0.0;
-    reconciled_balance_ = 0.0;
+    m_account_balance = 0.0;
+    m_reconciled_balance = 0.0;
     if (m_account)
     {
-        account_balance_ = m_account->INITIALBAL;
-        reconciled_balance_ = account_balance_;
+        m_account_balance = m_account->INITIALBAL;
+        m_reconciled_balance = m_account_balance;
     }
     for (const auto& tran : Model_Account::transaction(m_account))
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
-            account_balance_ += transaction_amount;
-        reconciled_balance_ += Model_Checking::reconciled(tran, m_AccountID);
+            m_account_balance += transaction_amount;
+        m_reconciled_balance += Model_Checking::reconciled(tran, m_AccountID);
     }
-    filteredBalance_ = 0.0;
+    m_filteredBalance = 0.0;
     for (const auto & tran : m_trans)
     {
-        filteredBalance_ += Model_Checking::amount(tran, m_AccountID);
+        m_filteredBalance += Model_Checking::amount(tran, m_AccountID);
     }
 
     setAccountSummary();
@@ -332,39 +332,39 @@ void mmCheckingPanel::CreateControls()
     wxGridSizer* itemBoxSizerVHeader2 = new wxGridSizer(0, 1, 5, 20);
     itemBoxSizerVHeader->Add(itemBoxSizerVHeader2);
 
-    header_text_ = new wxStaticText( headerPanel, wxID_STATIC, "");
-    header_text_->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizerVHeader2->Add(header_text_, g_flagsBorder1H);
+    m_header_text = new wxStaticText( headerPanel, wxID_STATIC, "");
+    m_header_text->SetFont(this->GetFont().Larger().Bold());
+    itemBoxSizerVHeader2->Add(m_header_text, g_flagsBorder1H);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     wxFlexGridSizer* itemFlexGridSizerHHeader2 = new wxFlexGridSizer(5, 1, 1);
     itemBoxSizerVHeader2->Add(itemBoxSizerHHeader2);
     itemBoxSizerHHeader2->Add(itemFlexGridSizerHHeader2);
 
-    bitmapMainFilter_ = new wxStaticBitmap(headerPanel, wxID_PAGE_SETUP
+    m_bitmapMainFilter = new wxStaticBitmap(headerPanel, wxID_PAGE_SETUP
         , mmBitmap(png::RIGHTARROW));
-    itemFlexGridSizerHHeader2->Add(bitmapMainFilter_, g_flagsBorder1H);
-    bitmapMainFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
+    itemFlexGridSizerHHeader2->Add(m_bitmapMainFilter, g_flagsBorder1H);
+    m_bitmapMainFilter->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnFilterResetToViewAll), nullptr, this);
-    bitmapMainFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
+    m_bitmapMainFilter->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnMouseLeftDown), nullptr, this);
 
-    stxtMainFilter_ = new wxStaticText(headerPanel, wxID_ANY, "", wxDefaultPosition, wxSize(250, -1));
-    itemFlexGridSizerHHeader2->Add(stxtMainFilter_, g_flagsBorder1H);
+    m_stxtMainFilter = new wxStaticText(headerPanel, wxID_ANY, "", wxDefaultPosition, wxSize(250, -1));
+    itemFlexGridSizerHHeader2->Add(m_stxtMainFilter, g_flagsBorder1H);
 
     itemFlexGridSizerHHeader2->AddSpacer(20);
 
-    bitmapTransFilter_ = new wxStaticBitmap(headerPanel, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER
+    m_bitmapTransFilter = new wxStaticBitmap(headerPanel, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER
         , mmBitmap(png::RIGHTARROW));
-    itemFlexGridSizerHHeader2->Add(bitmapTransFilter_, g_flagsBorder1H);
-    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
+    itemFlexGridSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
+    m_bitmapTransFilter->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), nullptr, this);
-    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
+    m_bitmapTransFilter->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), nullptr, this);
 
-    statTextTransFilter_ = new wxStaticText(headerPanel, wxID_ANY
+    m_statTextTransFilter = new wxStaticText(headerPanel, wxID_ANY
         , _("Transaction Filter"));
-    itemFlexGridSizerHHeader2->Add(statTextTransFilter_, g_flagsBorder1H);
+    itemFlexGridSizerHHeader2->Add(m_statTextTransFilter, g_flagsBorder1H);
 
     wxStaticText* itemStaticText12 = new wxStaticText(headerPanel
         , ID_PANEL_CHECKING_STATIC_BALHEADER1, "$", wxDefaultPosition, wxSize(120, -1));
@@ -443,48 +443,48 @@ void mmCheckingPanel::CreateControls()
     wxBoxSizer* itemButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer4->Add(itemButtonsSizer, g_flagsBorder1V);
 
-    btnNew_ = new wxButton(itemPanel12, wxID_NEW, _("&New "));
-    btnNew_->SetToolTip(_("New Transaction"));
-    itemButtonsSizer->Add(btnNew_, 0, wxRIGHT, 5);
+    m_btnNew = new wxButton(itemPanel12, wxID_NEW, _("&New "));
+    m_btnNew->SetToolTip(_("New Transaction"));
+    itemButtonsSizer->Add(m_btnNew, 0, wxRIGHT, 5);
 
-    btnEdit_ = new wxButton(itemPanel12, wxID_EDIT, _("&Edit "));
-    btnEdit_->SetToolTip(_("Edit selected transaction"));
-    itemButtonsSizer->Add(btnEdit_, 0, wxRIGHT, 5);
-    btnEdit_->Enable(false);
+    m_btnEdit = new wxButton(itemPanel12, wxID_EDIT, _("&Edit "));
+    m_btnEdit->SetToolTip(_("Edit selected transaction"));
+    itemButtonsSizer->Add(m_btnEdit, 0, wxRIGHT, 5);
+    m_btnEdit->Enable(false);
 
-    btnDelete_ = new wxButton(itemPanel12, wxID_REMOVE, _("&Delete "));
-    btnDelete_->SetToolTip(_("Delete selected transaction"));
-    itemButtonsSizer->Add(btnDelete_, 0, wxRIGHT, 5);
-    btnDelete_->Enable(false);
+    m_btnDelete = new wxButton(itemPanel12, wxID_REMOVE, _("&Delete "));
+    m_btnDelete->SetToolTip(_("Delete selected transaction"));
+    itemButtonsSizer->Add(m_btnDelete, 0, wxRIGHT, 5);
+    m_btnDelete->Enable(false);
 
-    btnDuplicate_ = new wxButton(itemPanel12, wxID_DUPLICATE, _("D&uplicate "));
-    btnDuplicate_->SetToolTip(_("Duplicate selected transaction"));
-    itemButtonsSizer->Add(btnDuplicate_, 0, wxRIGHT, 5);
-    btnDuplicate_->Enable(false);
+    m_btnDuplicate = new wxButton(itemPanel12, wxID_DUPLICATE, _("D&uplicate "));
+    m_btnDuplicate->SetToolTip(_("Duplicate selected transaction"));
+    itemButtonsSizer->Add(m_btnDuplicate, 0, wxRIGHT, 5);
+    m_btnDuplicate->Enable(false);
 
-    btnAttachment_ = new wxBitmapButton(itemPanel12, wxID_FILE
+    m_btnAttachment = new wxBitmapButton(itemPanel12, wxID_FILE
         , mmBitmap(png::CLIP), wxDefaultPosition
-        , wxSize(30, btnDuplicate_->GetSize().GetY()));
-    btnAttachment_->SetToolTip(_("Open attachments"));
-    itemButtonsSizer->Add(btnAttachment_, 0, wxRIGHT, 5);
-    btnAttachment_->Enable(false);
+        , wxSize(30, m_btnDuplicate->GetSize().GetY()));
+    m_btnAttachment->SetToolTip(_("Open attachments"));
+    itemButtonsSizer->Add(m_btnAttachment, 0, wxRIGHT, 5);
+    m_btnAttachment->Enable(false);
 
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(itemPanel12
         , wxID_FIND, wxEmptyString, wxDefaultPosition
-        , wxSize(100, btnDuplicate_->GetSize().GetHeight())
+        , wxSize(100, m_btnDuplicate->GetSize().GetHeight())
         , wxTE_NOHIDESEL, wxDefaultValidator);
     searchCtrl->SetDescriptiveText(_("Search"));
     itemButtonsSizer->Add(searchCtrl, 0, wxCENTER, 1);
     searchCtrl->SetToolTip(_("Enter any string to find it in the nearest transaction notes"));
 
     //Infobar-mini
-    info_panel_mini_ = new wxStaticText(itemPanel12, wxID_STATIC, "");
-    itemButtonsSizer->Add(info_panel_mini_, 1, wxGROW | wxTOP | wxLEFT, 5);
+    m_info_panel_mini = new wxStaticText(itemPanel12, wxID_STATIC, "");
+    itemButtonsSizer->Add(m_info_panel_mini, 1, wxGROW | wxTOP | wxLEFT, 5);
 
     //Infobar
-    info_panel_ = new wxStaticText(itemPanel12, wxID_STATIC, ""
+    m_info_panel = new wxStaticText(itemPanel12, wxID_STATIC, ""
         , wxDefaultPosition, wxSize(200, -1), wxTE_MULTILINE | wxTE_WORDWRAP);
-    itemBoxSizer4->Add(info_panel_, g_flagsExpandBorder1);
+    itemBoxSizer4->Add(m_info_panel, g_flagsExpandBorder1);
     //Show tips when no any transaction selected
     showTips();
 }
@@ -506,21 +506,21 @@ void mmCheckingPanel::setAccountSummary()
     Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
 
     if (account)
-        header_text_->SetLabelText(GetPanelTitle(*account));
+        m_header_text->SetLabelText(GetPanelTitle(*account));
 
-    bool show_displayed_balance_ = (transFilterActive_ || currentView_ != MENU_VIEW_ALLTRANSACTIONS);
+    bool show_displayed_balance_ = (m_transFilterActive || m_currentView != MENU_VIEW_ALLTRANSACTIONS);
     wxStaticText* header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1));
-    header->SetLabelText(Model_Account::toCurrency(account_balance_, account));
+    header->SetLabelText(Model_Account::toCurrency(m_account_balance, account));
     header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER2));
-    header->SetLabelText(Model_Account::toCurrency(reconciled_balance_, account));
+    header->SetLabelText(Model_Account::toCurrency(m_reconciled_balance, account));
     header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER3));
-    header->SetLabelText(Model_Account::toCurrency(account_balance_ - reconciled_balance_, account));
+    header->SetLabelText(Model_Account::toCurrency(m_account_balance - m_reconciled_balance, account));
     header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER4));
     header->SetLabelText(show_displayed_balance_
         ? _("Displayed Bal: ") : "");
     header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER5));
     header->SetLabelText(show_displayed_balance_
-        ? Model_Account::toCurrency(filteredBalance_, account) : "");
+        ? Model_Account::toCurrency(m_filteredBalance, account) : "");
     this->Layout();
 }
 
@@ -529,17 +529,17 @@ void mmCheckingPanel::enableEditDeleteButtons(bool en)
 {
     if (m_listCtrlAccount->GetSelectedItemCount()>1)
     {
-        btnEdit_->Enable(false);
-        btnDelete_->Enable(true);
-        btnDuplicate_->Enable(false);
-        btnAttachment_->Enable(false);
+        m_btnEdit->Enable(false);
+        m_btnDelete->Enable(true);
+        m_btnDuplicate->Enable(false);
+        m_btnAttachment->Enable(false);
     }
     else
     {
-        btnEdit_->Enable(en);
-        btnDelete_->Enable(en);
-        btnDuplicate_->Enable(en);
-        btnAttachment_->Enable(en);
+        m_btnEdit->Enable(en);
+        m_btnDelete->Enable(en);
+        m_btnDuplicate->Enable(en);
+        m_btnAttachment->Enable(en);
     }
 }
 //----------------------------------------------------------------------------
@@ -551,25 +551,25 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
         enableEditDeleteButtons(true);
         const Model_Checking::Data& tran = this->m_trans.at(selIndex);
         Model_Checking::Full_Data full_tran(tran);
-        info_panel_->SetLabelText(tran.NOTES);
+        m_info_panel->SetLabelText(tran.NOTES);
         wxString miniStr = full_tran.info();
 
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty())
         {
-            info_panel_mini_->SetLabelText(miniStr.substr(0, miniStr.Find("\n")) + " ...");
-            info_panel_mini_->SetToolTip(miniStr);
+            m_info_panel_mini->SetLabelText(miniStr.substr(0, miniStr.Find("\n")) + " ...");
+            m_info_panel_mini->SetToolTip(miniStr);
         }
         else
         {
-            info_panel_mini_->SetLabelText(miniStr);
-            info_panel_mini_->SetToolTip(miniStr);
+            m_info_panel_mini->SetLabelText(miniStr);
+            m_info_panel_mini->SetToolTip(miniStr);
         }
 
     }
     else
     {
-        info_panel_mini_->SetLabelText("");
+        m_info_panel_mini->SetLabelText("");
         enableEditDeleteButtons(false);
         showTips();
     }
@@ -577,7 +577,7 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
 //----------------------------------------------------------------------------
 void mmCheckingPanel::showTips()
 {
-    info_panel_->SetLabelText(wxGetTranslation(TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]));
+    m_info_panel->SetLabelText(wxGetTranslation(TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]));
 }
 //----------------------------------------------------------------------------
 
@@ -623,47 +623,47 @@ void mmCheckingPanel::OnOpenAttachment(wxCommandEvent& event)
 void mmCheckingPanel::initViewTransactionsHeader()
 {
     const wxString& def_view = Model_Setting::instance().ViewTransactions();
-    currentView_ = menu_labels().Index(Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view));
-    if (currentView_ < 0 || currentView_ >= (int) menu_labels().size())
-        currentView_ = menu_labels().Index(VIEW_TRANS_ALL_STR);
+    m_currentView = menu_labels().Index(Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view));
+    if (m_currentView < 0 || m_currentView >= (int) menu_labels().size())
+        m_currentView = menu_labels().Index(VIEW_TRANS_ALL_STR);
 
-    SetTransactionFilterState(currentView_ == MENU_VIEW_ALLTRANSACTIONS);
-    stxtMainFilter_->SetLabelText(wxGetTranslation(menu_labels()[currentView_]));
+    SetTransactionFilterState(m_currentView == MENU_VIEW_ALLTRANSACTIONS);
+    m_stxtMainFilter->SetLabelText(wxGetTranslation(menu_labels()[m_currentView]));
 }
 //----------------------------------------------------------------------------
 void mmCheckingPanel::initFilterSettings()
 {
     mmDateRange* date_range = 0;
 
-    if (transFilterActive_)
+    if (m_transFilterActive)
         date_range = new mmAllTime;
-    else if (currentView_ == MENU_VIEW_ALLTRANSACTIONS)
+    else if (m_currentView == MENU_VIEW_ALLTRANSACTIONS)
         date_range = new mmAllTime;
-    else if (currentView_ == MENU_VIEW_TODAY)
+    else if (m_currentView == MENU_VIEW_TODAY)
         date_range = new mmToday;
-    else if (currentView_ == MENU_VIEW_CURRENTMONTH)
+    else if (m_currentView == MENU_VIEW_CURRENTMONTH)
         date_range = new mmCurrentMonth;
-    else if (currentView_ == MENU_VIEW_LAST30)
+    else if (m_currentView == MENU_VIEW_LAST30)
         date_range = new mmLast30Days;
-    else if (currentView_ == MENU_VIEW_LAST90)
+    else if (m_currentView == MENU_VIEW_LAST90)
         date_range = new mmLast90Days;
-    else if (currentView_ == MENU_VIEW_LASTMONTH)
+    else if (m_currentView == MENU_VIEW_LASTMONTH)
         date_range = new mmLastMonth;
-    else if (currentView_ == MENU_VIEW_LAST3MONTHS)
+    else if (m_currentView == MENU_VIEW_LAST3MONTHS)
         date_range = new mmLast3Months;
-    else if (currentView_ == MENU_VIEW_LAST12MONTHS)
+    else if (m_currentView == MENU_VIEW_LAST12MONTHS)
         date_range = new mmLast12Months;
-    else if (currentView_ == MENU_VIEW_CURRENTYEAR)
+    else if (m_currentView == MENU_VIEW_CURRENTYEAR)
         date_range = new mmCurrentYear;
-    else if (currentView_ == MENU_VIEW_CURRENTFINANCIALYEAR)
+    else if (m_currentView == MENU_VIEW_CURRENTFINANCIALYEAR)
         date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
         , wxAtoi(Option::instance().FinancialYearStartMonth()));
-    else if (currentView_ == MENU_VIEW_LASTYEAR)
+    else if (m_currentView == MENU_VIEW_LASTYEAR)
         date_range = new mmLastYear;
-    else if (currentView_ == MENU_VIEW_LASTFINANCIALYEAR)
+    else if (m_currentView == MENU_VIEW_LASTFINANCIALYEAR)
         date_range = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
         , wxAtoi(Option::instance().FinancialYearStartMonth()));
-    else if (currentView_ == MENU_VIEW_STATEMENTDATE)
+    else if (m_currentView == MENU_VIEW_STATEMENTDATE)
     {
         if (Model_Account::BoolOf(m_account->STATEMENTLOCKED))
         {
@@ -676,22 +676,22 @@ void mmCheckingPanel::initFilterSettings()
 
     if (date_range)
     {
-        quickFilterBeginDate_ = date_range->start_date();
-        quickFilterEndDate_ = date_range->end_date();
+        m_quickFilterBeginDate = date_range->start_date();
+        m_quickFilterEndDate = date_range->end_date();
         delete date_range;
     }
 }
 
 void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
 
-    if (currentView_ == MENU_VIEW_ALLTRANSACTIONS)
+    if (m_currentView == MENU_VIEW_ALLTRANSACTIONS)
     {
         event.Skip();
         return;
     }
 
-    currentView_ = MENU_VIEW_ALLTRANSACTIONS;
-    stxtMainFilter_->SetLabelText(wxGetTranslation(menu_labels()[currentView_]));
+    m_currentView = MENU_VIEW_ALLTRANSACTIONS;
+    m_stxtMainFilter->SetLabelText(wxGetTranslation(menu_labels()[m_currentView]));
     SetTransactionFilterState(true);
     initFilterSettings();
 
@@ -702,21 +702,21 @@ void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
 
 void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 {
-    currentView_ = event.GetId() - wxID_HIGHEST;
+    m_currentView = event.GetId() - wxID_HIGHEST;
 
-    if (currentView_ == MENU_VIEW_ALLTRANSACTIONS)
-        transFilterActive_ = false;
+    if (m_currentView == MENU_VIEW_ALLTRANSACTIONS)
+        m_transFilterActive = false;
 
-    stxtMainFilter_->SetLabelText(wxGetTranslation(menu_labels()[currentView_]));
-    SetTransactionFilterState(currentView_ == MENU_VIEW_ALLTRANSACTIONS);
+    m_stxtMainFilter->SetLabelText(wxGetTranslation(menu_labels()[m_currentView]));
+    SetTransactionFilterState(m_currentView == MENU_VIEW_ALLTRANSACTIONS);
 
     m_listCtrlAccount->m_selectedIndex = -1;
 
     Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%ld", (long) m_AccountID)
-        , menu_labels()[currentView_]);
+        , menu_labels()[m_currentView]);
     initFilterSettings();
     RefreshList(m_listCtrlAccount->m_selectedID);
-    stxtMainFilter_->Layout();
+    m_stxtMainFilter->Layout();
 }
 
 void mmCheckingPanel::DeleteViewedTransactions()
@@ -759,13 +759,13 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
 
     if (e == wxEVT_LEFT_DOWN) {
         m_trans_filter_dlg->setAccountToolTip(_("Select account used in transfer transactions"));
-        transFilterActive_ = (m_trans_filter_dlg->ShowModal() == wxID_OK && m_trans_filter_dlg->somethingSelected());
+        m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK && m_trans_filter_dlg->somethingSelected());
     } else {
-        if (transFilterActive_ == false) return;
-        transFilterActive_ = false;
+        if (m_transFilterActive == false) return;
+        m_transFilterActive = false;
     }
     
-    bitmapTransFilter_->SetBitmap(transFilterActive_ ? mmBitmap(png::RIGHTARROW_ACTIVE) : mmBitmap(png::RIGHTARROW));
+    m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::RIGHTARROW_ACTIVE) : mmBitmap(png::RIGHTARROW));
     SetTransactionFilterState(true);
 
     RefreshList();
@@ -864,8 +864,8 @@ void mmCheckingPanel::RefreshList(int transID)
 
 void mmCheckingPanel::SetTransactionFilterState(bool active)
 {
-    bitmapMainFilter_->Enable(!transFilterActive_);
-    stxtMainFilter_->Enable(!transFilterActive_);
+    m_bitmapMainFilter->Enable(!m_transFilterActive);
+    m_stxtMainFilter->Enable(!m_transFilterActive);
     //bitmapTransFilter_->Enable(active || transFilterActive_);
     //statTextTransFilter_->Enable(active || transFilterActive_);
 }
@@ -932,7 +932,7 @@ TransactionListCtrl::TransactionListCtrl(
     g_sortcol(COL_DEF_SORT),
     g_asc(true),
     m_selectedID(-1),
-    topItemIndex_(-1)
+    m_topItemIndex(-1)
 {
     wxASSERT(m_cp);
 
@@ -995,7 +995,7 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
 {
     m_selectedIndex = event.GetIndex();
     m_cp->updateExtraTransactionData(m_selectedIndex);
-    topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
+    m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 
     if (GetSelectedItemCount() > 1)
         m_cp->enableEditDeleteButtons(true);
@@ -1018,10 +1018,10 @@ void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
     {
         // Note: GetSelectedItemCount() does not return correct count at this time
         // so we can't call enableEditDeleteButtons() or updateExtraTransactionData()
-        m_cp->btnEdit_->Enable(false);
-        m_cp->btnDelete_->Enable(true);
-        m_cp->btnDuplicate_->Enable(false);
-        m_cp->btnAttachment_->Enable(false);
+        m_cp->m_btnEdit->Enable(false);
+        m_cp->m_btnDelete->Enable(true);
+        m_cp->m_btnDuplicate->Enable(false);
+        m_cp->m_btnAttachment->Enable(false);
     }
     event.Skip();
 }
@@ -1168,7 +1168,7 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 
     bool bRefreshRequired = (status == "V") || (org_status == "V");
 
-    if ((m_cp->transFilterActive_ && m_cp->m_trans_filter_dlg->getStatusCheckBox()) || bRefreshRequired)
+    if ((m_cp->m_transFilterActive && m_cp->m_trans_filter_dlg->getStatusCheckBox()) || bRefreshRequired)
     {
         refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
     }
@@ -1421,13 +1421,13 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& event)
     if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
 
     int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
-    mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, true);
+    mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, m_cp->m_account_balance, true);
     if (dlg.ShowModal() == wxID_OK)
     {
         m_selectedIndex = dlg.getTransactionID();
         refreshVisualList(m_selectedIndex);
     }
-    topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
+    m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 }
 
 void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
@@ -1491,7 +1491,7 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
         return;
     }
 
-    topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
+    m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 
     //Read status of the selected transaction
     wxString status = m_cp->m_trans[m_selectedIndex].STATUS;
@@ -1538,7 +1538,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
     //check if a transaction is selected
     if (GetSelectedItemCount() < 1) return;
 
-    topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
+    m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 
     Model_Checking::Data checking_entry = m_cp->m_trans[m_selectedIndex];
     if (TransactionLocked(checking_entry.TRANSDATE))
@@ -1571,7 +1571,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
-                if (x <= topItemIndex_) topItemIndex_--;
+                if (x <= m_topItemIndex) m_topItemIndex--;
                 if (!m_cp->m_trans.empty() && m_selectedIndex > 0) m_selectedIndex--;
                 if (m_selectedForCopy == transID) m_selectedForCopy = -1;
             }
@@ -1636,19 +1636,19 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     }
     else
     {
-        mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, m_cp->account_balance_);
+        mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, m_cp->m_account_balance);
         if (dlg.ShowModal() == wxID_OK)
         {
             refreshVisualList(transaction_id);
         }
     }
-    topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
+    m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 }
 
 void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
 {
     int type = event.GetId() == MENU_TREEPOPUP_NEW_DEPOSIT ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL;
-    mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->account_balance_, false, type);
+    mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->m_account_balance, false, type);
     if (dlg.ShowModal() == wxID_OK)
     {
         m_cp->mmPlayTransactionSound();
@@ -1658,7 +1658,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
 {
-    mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->account_balance_, false, Model_Checking::TRANSFER);
+    mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->m_account_balance, false, Model_Checking::TRANSFER);
     if (dlg.ShowModal() == wxID_OK)
     {
         m_cp->mmPlayTransactionSound();
@@ -1699,19 +1699,19 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
     m_cp->sortTable();
     m_cp->markSelectedTransaction(trans_id);
 
-    if (topItemIndex_ >= (long)m_cp->m_trans.size())
-        topItemIndex_ = g_asc ? (long)m_cp->m_trans.size() - 1 : 0;
+    if (m_topItemIndex >= (long) m_cp->m_trans.size())
+        m_topItemIndex = g_asc ? (long) m_cp->m_trans.size() - 1 : 0;
     if (m_selectedIndex > (long)m_cp->m_trans.size() - 1) m_selectedIndex = -1;
-    if (topItemIndex_ < m_selectedIndex) topItemIndex_ = m_selectedIndex;
+    if (m_topItemIndex < m_selectedIndex) m_topItemIndex = m_selectedIndex;
 
 
     if (m_selectedIndex >= 0 && !m_cp->m_trans.empty())
     {
         SetItemState(m_selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(m_selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
-        if (topItemIndex_ < 0 || (topItemIndex_ - m_selectedIndex) > GetCountPerPage())
-            topItemIndex_ = m_selectedIndex;
-        EnsureVisible(topItemIndex_);
+        if (m_topItemIndex < 0 || (m_topItemIndex - m_selectedIndex) > GetCountPerPage())
+            m_topItemIndex = m_selectedIndex;
+        EnsureVisible(m_topItemIndex);
     }
 
     m_cp->setAccountSummary();

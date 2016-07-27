@@ -36,7 +36,7 @@ class TransactionListCtrl : public mmListCtrl
 {
 public:
 
-    TransactionListCtrl(mmCheckingPanel *cp, wxWindow *parent
+    TransactionListCtrl(mmCheckingPanel* cp, wxWindow* parent
         , const wxWindowID id = wxID_ANY);
     
     ~TransactionListCtrl();
@@ -162,7 +162,7 @@ private:
     DECLARE_NO_COPY_CLASS(TransactionListCtrl)
     wxDECLARE_EVENT_TABLE();
 
-    mmCheckingPanel *m_cp;
+    mmCheckingPanel* m_cp;
 
     wxListItemAttr m_attr1;  // style1
     wxListItemAttr m_attr2;  // style2
@@ -181,7 +181,7 @@ private:
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;
     virtual int OnGetItemColumnImage(long item, long column) const;
-    virtual wxListItemAttr *OnGetItemAttr(long item) const;
+    virtual wxListItemAttr* OnGetItemAttr(long item) const;
 
     void OnMouseRightClick(wxMouseEvent& event);
     void OnListLeftClick(wxMouseEvent& event);
@@ -199,7 +199,7 @@ private:
 
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
-    long topItemIndex_;
+    long m_topItemIndex;
 };
 
 //----------------------------------------------------------------------------
@@ -208,8 +208,8 @@ class mmCheckingPanel : public mmPanelBase
 {
 public:
 
-    mmCheckingPanel(wxWindow *parent
-        , mmGUIFrame *frame
+    mmCheckingPanel(wxWindow* parent
+        , mmGUIFrame* frame
         , int accountID
         , int id = wxID_ANY
     );
@@ -275,31 +275,31 @@ private:
     wxDECLARE_EVENT_TABLE();
     friend class TransactionListCtrl; // needs access to m_core, initdb_, ...
 
-    wxButton* btnNew_;
-    wxButton* btnEdit_;
-    wxButton* btnDuplicate_;
-    wxButton* btnDelete_;
-    wxButton* btnAttachment_;
-    wxStaticText* header_text_;
-    wxStaticText* info_panel_;
-    wxStaticText* info_panel_mini_;
-    wxStaticText* stxtMainFilter_;
-    wxStaticText* statTextTransFilter_;
-    wxStaticBitmap* bitmapTransFilter_;
-    wxStaticBitmap* bitmapMainFilter_;
+    wxButton* m_btnNew;
+    wxButton* m_btnEdit;
+    wxButton* m_btnDuplicate;
+    wxButton* m_btnDelete;
+    wxButton* m_btnAttachment;
+    wxStaticText* m_header_text;
+    wxStaticText* m_info_panel;
+    wxStaticText* m_info_panel_mini;
+    wxStaticText* m_stxtMainFilter;
+    wxStaticText* m_statTextTransFilter;
+    wxStaticBitmap* m_bitmapTransFilter;
+    wxStaticBitmap* m_bitmapMainFilter;
     mmFilterTransactionsDialog* m_trans_filter_dlg;
 
-    int currentView_;
+    int m_currentView;
     int m_AccountID;
     int m_basecurrecyID;
-    wxDateTime quickFilterBeginDate_;
-    wxDateTime quickFilterEndDate_;
-    bool transFilterActive_;
-    double filteredBalance_;
-    double account_balance_;
-    double reconciled_balance_;
+    wxDateTime m_quickFilterBeginDate;
+    wxDateTime m_quickFilterEndDate;
+    bool m_transFilterActive;
+    double m_filteredBalance;
+    double m_account_balance;
+    double m_reconciled_balance;
 
-    TransactionListCtrl *m_listCtrlAccount;
+    TransactionListCtrl* m_listCtrlAccount;
     Model_Account::Data* m_account;
     Model_Currency::Data* m_currency;
     wxScopedPtr<wxImageList> m_imageList;
@@ -315,7 +315,7 @@ private:
     void CreateControls();
 
     bool Create(
-        wxWindow *parent,
+        wxWindow* parent,
         wxWindowID winid,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
@@ -351,7 +351,7 @@ private:
 private:
     static void mmPlayTransactionSound();
 private:
-    mmGUIFrame *m_frame;
+    mmGUIFrame* m_frame;
 };
 //----------------------------------------------------------------------------
 #endif // MM_EX_CHECKINGPANEL_H_
