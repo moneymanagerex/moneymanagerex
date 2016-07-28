@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-07-16 22:51:23.825000.
+ *          AUTO GENERATED at 2016-07-28 23:49:41.803626.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,9 +27,8 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json() const
+        std::wstring to_json(json::Array& a) const
         {
-            json::Array a;
             for (const auto & item: *this)
             {
                 json::Object o;

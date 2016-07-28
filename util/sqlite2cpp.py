@@ -102,9 +102,8 @@ struct DB_Table_%s : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json() const
+        std::wstring to_json(json::Array& a) const
         {
-            json::Array a;
             for (const auto & item: *this)
             {
                 json::Object o;
