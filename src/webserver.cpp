@@ -29,6 +29,9 @@
 #include "singleton.h"
 #include "model/Model_Setting.h"
 
+#include "cajun/json/elements.h"
+#include "cajun/json/reader.h"
+#include "cajun/json/writer.h"
 
 static struct mg_serve_http_opts s_http_server_opts;
 
@@ -39,12 +42,19 @@ static void handle_sql(struct mg_connection* nc, struct http_message* hm)
 
     std::cout<<query<<std::endl;
 
-    // TODO build statement
+    json::Object result;
+    result[L"query"] = json::String(wxString(query).ToStdWstring());
 
+    // TODO build statement
+     
     /* send headers */
     mg_printf(nc, "%s", "HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n");
 
-    mg_printf_http_chunk(nc, "{query:%s}", hm->query_string.p);
+    std::wstringstream ss;
+    json::Writer::Write(result, ss);
+    std::wstring str = ss.str();
+
+    mg_printf_http_chunk(nc, "%s", str.c_str());
     mg_send_http_chunk(nc, "", 0);
 }
 
