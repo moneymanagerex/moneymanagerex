@@ -28,6 +28,7 @@
 #include "mongoose/mongoose.h"
 #include "singleton.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Report.h"
 
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
@@ -39,39 +40,40 @@ static void handle_sql(struct mg_connection* nc, struct http_message* hm)
 {
     char query[0xffff];
     mg_get_http_var(&hm->query_string, "query", query, sizeof(query));
-
     std::cout<<query<<std::endl;
 
     json::Object result;
     result[L"query"] = json::String(wxString(query).ToStdWstring());
-
-    // TODO build statement
+    bool ret = Model_Report::instance().get_objects_from_sql(wxString(query), result); 
      
-    /* send headers */
-    mg_printf(nc, "%s", "HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n");
-
     std::wstringstream ss;
     json::Writer::Write(result, ss);
     std::wstring str = ss.str();
+    std::cout<<str<<std::endl;
 
-    mg_printf_http_chunk(nc, "%s", str.c_str());
-    mg_send_http_chunk(nc, "", 0);
+    mg_printf(nc, "HTTP/1.1 200 OK\r\n"
+                "Content-Type: application/json; charset=utf-8\r\n"
+                "Content-Length: %lu\r\n\r\n%ls", str.length(), str.c_str());
 }
 
 static void ev_handler(struct mg_connection *nc, int ev, void *ev_data) 
 {
-    if (ev == MG_EV_HTTP_REQUEST)
-    {
-        struct http_message *hm = (struct http_message *) ev_data;
+    struct http_message *hm = (struct http_message *) ev_data;
 
-        if (mg_vcmp(&hm->uri, "/api/v1/sql"))
-        {
-            handle_sql(nc, hm);
-        }
-        else
-        {
-            mg_serve_http(nc, hm, s_http_server_opts);
-        }
+    switch (ev)
+    {
+        case MG_EV_HTTP_REQUEST:
+            if (mg_vcmp(&hm->uri, "/api/v1/sql") == 0)
+            {
+                handle_sql(nc, hm);
+            }
+            else
+            {
+                mg_serve_http(nc, hm, s_http_server_opts); /* Serve static content */
+            }
+            break;
+        default:
+            break;
     }
 }
 

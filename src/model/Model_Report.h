@@ -22,6 +22,10 @@
 #include "Model.h"
 #include "db/DB_Table_Report_V1.h"
 
+#include "cajun/json/elements.h"
+#include "cajun/json/reader.h"
+#include "cajun/json/writer.h"
+
 class Model_Report : public Model<DB_Table_REPORT_V1>
 {
 public:
@@ -47,6 +51,7 @@ public:
     static Model_Report& instance();
 
 public:
+    bool get_objects_from_sql(const wxString& query, json::Object& o);
     wxArrayString allGroupNames();
     wxString get_html(const Data* r);
     wxString get_html(const Data& r);

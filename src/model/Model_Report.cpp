@@ -74,6 +74,48 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
     return ins;
 }
 
+bool Model_Report::get_objects_from_sql(const wxString& query, json::Object& o)
+{
+    wxSQLite3Statement stmt = this->db_->PrepareStatement(query);
+    if (!stmt.IsReadOnly())
+    {
+        o[L"msg"] = json::String(L"the sql is not readonly");
+        return false;
+    }
+
+    json::Array results;
+    wxSQLite3ResultSet q = stmt.ExecuteQuery();
+    int columns = q.GetColumnCount();
+    while (q.NextRow())
+    {
+        json::Object r;
+
+        for (int i = 0; i < columns; ++i)
+        {
+            wxString column_name = q.GetColumnName(i);
+
+            switch (q.GetColumnType(i))
+            {
+                case WXSQLITE_INTEGER:
+                    r[column_name.ToStdWstring()] = json::Number(q.GetInt(i));
+                    break;
+                case WXSQLITE_FLOAT:
+                    r[column_name.ToStdWstring()] = json::Number(q.GetDouble(i));
+                    break;
+                default:
+                    r[column_name.ToStdWstring()] = json::String(q.GetString(i).ToStdWstring());
+                    break;
+            }
+        }
+
+        results.Insert(r);
+    }
+    q.Finalize();
+
+    o[L"results"] = results;
+    return true;
+}
+
 wxArrayString Model_Report::allGroupNames()
 {
     wxArrayString groups;
