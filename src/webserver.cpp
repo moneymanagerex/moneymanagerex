@@ -32,11 +32,36 @@
 
 static struct mg_serve_http_opts s_http_server_opts;
 
-static void ev_handler(struct mg_connection *nc, int ev, void *p) 
+static void handle_sql(struct mg_connection* nc, struct http_message* hm)
+{
+    char query[0xffff];
+    mg_get_http_var(&hm->query_string, "query", query, sizeof(query));
+
+    std::cout<<query<<std::endl;
+
+    // TODO build statement
+
+    /* send headers */
+    mg_printf(nc, "%s", "HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n");
+
+    mg_printf_http_chunk(nc, "{query:%s}", hm->query_string.p);
+    mg_send_http_chunk(nc, "", 0);
+}
+
+static void ev_handler(struct mg_connection *nc, int ev, void *ev_data) 
 {
     if (ev == MG_EV_HTTP_REQUEST)
     {
-        mg_serve_http(nc, (struct http_message *) p, s_http_server_opts);
+        struct http_message *hm = (struct http_message *) ev_data;
+
+        if (mg_vcmp(&hm->uri, "/api/v1/sql"))
+        {
+            handle_sql(nc, hm);
+        }
+        else
+        {
+            mg_serve_http(nc, hm, s_http_server_opts);
+        }
     }
 }
 
