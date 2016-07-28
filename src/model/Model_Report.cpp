@@ -137,7 +137,6 @@ wxString Model_Report::get_html(const Data* r)
     r->to_template(report);
 
     loop_t contents;
-    json::Array jsoncontents;
 
     loop_t errors;
     row_t error;
@@ -227,22 +226,11 @@ wxString Model_Report::get_html(const Data* r)
             }
         }
         row_t row;
-        json::Object o;
         for (const auto& item : rec)
         {
             row(item.first) = item.second;
-
-            double v;
-            if ((colHeaders[item.first] == WXSQLITE_INTEGER || colHeaders[item.first] == WXSQLITE_FLOAT)
-                && wxString(item.second).ToDouble(&v))
-            {
-                o[wxString(item.first).ToStdWstring()] = json::Number(v);
-            }
-            else
-                o[wxString(item.first).ToStdWstring()] = json::String(wxString(item.second).ToStdWstring());
         }
         contents += row;
-        jsoncontents.Insert(o);
 
     }
     q.Finalize();
@@ -276,9 +264,6 @@ wxString Model_Report::get_html(const Data* r)
 
     report(L"CONTENTS") = contents;
     {
-        std::wstringstream ss;
-        json::Writer::Write(jsoncontents, ss);
-        report(L"JSONCONTENTS") = wxString(ss.str());
         auto p = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
         //javascript does not handle backslashs
         p.Replace("\\", "\\\\");

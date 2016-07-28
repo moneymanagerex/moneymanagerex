@@ -29,6 +29,8 @@
 #include "singleton.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Report.h"
+#include "model/Model_Setting.h"
+#include "model/Model_Infotable.h"
 
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
@@ -45,6 +47,16 @@ static void handle_sql(struct mg_connection* nc, struct http_message* hm)
     json::Object result;
     result[L"query"] = json::String(wxString(query).ToStdWstring());
     bool ret = Model_Report::instance().get_objects_from_sql(wxString(query), result); 
+
+    for (const auto & r : Model_Setting::instance().all())
+    {
+        result[r.SETTINGNAME.ToStdWstring()] = json::String(r.SETTINGVALUE.ToStdWstring());
+    }
+
+    for (const auto & r : Model_Infotable::instance().all())
+    {
+        result[r.INFONAME.ToStdWstring()] = json::String(r.INFOVALUE.ToStdWstring());
+    }
      
     std::wstringstream ss;
     json::Writer::Write(result, ss);
