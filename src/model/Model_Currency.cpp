@@ -209,3 +209,13 @@ int Model_Currency::precision(const Data& r)
     return precision(&r);
 }
 
+int Model_Currency::precision(int account_id)
+{
+    const Model_Account::Data* trans_account = Model_Account::instance().get(account_id);
+    if (account_id > 0)
+    {
+        return precision(Model_Account::currency(trans_account));
+    }
+    else return 2;
+}
+

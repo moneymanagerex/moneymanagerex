@@ -39,7 +39,7 @@ EVT_TEXT(ID_DIALOG_CURRENCY, mmCurrencyDialog::OnTextChanged)
 EVT_TEXT_ENTER(ID_DIALOG_CURRENCY_RATE, mmCurrencyDialog::OnTextEntered)
 wxEND_EVENT_TABLE()
 
-static const int SCALE = 6;
+static const int SCALE = 9;
 
 mmCurrencyDialog::mmCurrencyDialog()
 {

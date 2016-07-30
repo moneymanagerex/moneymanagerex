@@ -58,7 +58,7 @@ private:
     Model_Account::Data* m_account;
     wxTextCtrl* m_textAccountName;
     wxTextCtrl* m_notesCtrl;
-    mmTextCtrl* m_itemInitValue;
+    mmTextCtrl* m_initbalance_ctrl;
     wxImageList* m_imageList;
     wxBitmapButton* m_bitmapButtons;
     wxBitmapButton* bAttachments_;

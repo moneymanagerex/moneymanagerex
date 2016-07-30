@@ -77,10 +77,10 @@ private:
     void OnTextEntered(wxCommandEvent& event);
     int transID_;
 
-    wxTextCtrl *textNumber_;
-    mmTextCtrl *textAmount_;
-    mmTextCtrl *toTextAmount_;
-    wxTextCtrl *textNotes_;
+    wxTextCtrl* textNumber_;
+    mmTextCtrl* textAmount_;
+    mmTextCtrl* toTextAmount_;
+    wxTextCtrl* textNotes_;
     wxTextCtrl* textCategory_;
     wxTextCtrl* textNumRepeats_;
     wxButton* bCategory_;
@@ -91,8 +91,8 @@ private:
     wxCheckBox* cAdvanced_;
     bool payeeUnknown_;
 
-    wxChoice* choiceStatus_;
-    wxChoice* transaction_type_;
+    wxChoice* m_choice_status;
+    wxChoice* m_choice_transaction_type;
 
     bool m_new_bill;
     bool m_transfer;
@@ -109,7 +109,6 @@ private:
     bool autoExecuteSilent_;
 
     Model_Billsdeposits::Bill_Data m_bill_data;
-    std::vector<Split> local_splits;
 
     bool m_advanced;
     bool categUpdated_;
@@ -119,8 +118,8 @@ private:
     wxString payeeWithdrawalTip_;
     wxString amountNormalTip_;
     wxString amountTransferTip_;
-    wxSpinButton *spinNextOccDate_;
-    wxSpinButton *spinTransDate_;
+    wxSpinButton* spinNextOccDate_;
+    wxSpinButton* spinTransDate_;
 
     void setToolTipsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced = false);
     void resetPayeeString();
@@ -140,7 +139,7 @@ private:
 
     wxStaticText* staticTimesRepeat_;
     wxStaticText* staticTextRepeats_;
-    wxButton* bSetNextOccurDate_;
+    wxButton* m_btn_due_date;
     void OnRepeatTypeChanged(wxCommandEvent& event);
     void OnsetNextRepeatDate(wxCommandEvent& event);
     void OnPeriodChange(wxCommandEvent& event);

@@ -94,10 +94,10 @@ private:
     void setTooltips();
     void setCategoryForPayee(const Model_Payee::Data *payee);
 
-    mmTextCtrl *textNumber_;
-    mmTextCtrl *textAmount_;
-    mmTextCtrl *toTextAmount_;
-    wxTextCtrl *textNotes_;
+    mmTextCtrl* textNumber_;
+    mmTextCtrl* m_textAmount;
+    mmTextCtrl* toTextAmount_;
+    wxTextCtrl* textNotes_;
     wxButton* bCategory_;
     wxButton* bAttachments_;
     wxButton* bCustomFields_;
