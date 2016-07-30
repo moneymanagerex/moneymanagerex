@@ -77,5 +77,6 @@ public:
     static bool fromString(wxString s, double& val, const Data* currency = GetBaseCurrency());
     static int precision(const Data* r);
     static int precision(const Data& r);
+    static int precision(int account_id);
 };
 #endif // 

@@ -44,7 +44,7 @@ wxBEGIN_EVENT_TABLE(mmMainCurrencyDialog, wxDialog)
     EVT_BUTTON(wxID_REMOVE, mmMainCurrencyDialog::OnBtnDelete)
     EVT_BUTTON(wxID_CANCEL, mmMainCurrencyDialog::OnCancel)
 
-    EVT_MENU_RANGE(MENU_ITEM1, MENU_ITEM2, mmMainCurrencyDialog::OnMenuSelected)
+    EVT_MENU_RANGE(MENU_ITEM1, MENU_ITEM3, mmMainCurrencyDialog::OnMenuSelected)
 
     EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmMainCurrencyDialog::OnListItemActivated)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmMainCurrencyDialog::OnListItemSelected)
@@ -521,6 +521,11 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
             ShowCurrencyHistory();
         } break;
         case MENU_ITEM2: OnlineUpdateCurRate(currencyID_,false); break;
+        case MENU_ITEM3:
+        {
+            wxCommandEvent e;
+            this->OnBtnEdit(e);
+        } break;
     } 
 }
 
@@ -532,7 +537,8 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
     wxMenu* mainMenu = new wxMenu;
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM1, _("Set as Base Currency")));
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM2, _("Online Update Currency Rate")));
-    
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM3, _("&Edit ")));
+
     int baseCurrencyID = Option::instance().BaseCurrency();
     if (baseCurrencyID == currencyID_)
         mainMenu->Enable(MENU_ITEM1, false);

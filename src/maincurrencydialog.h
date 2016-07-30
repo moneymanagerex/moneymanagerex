@@ -63,7 +63,8 @@ private:
         HISTORY_UPDATE,
         HISTORY_DELUNUSED,
         MENU_ITEM1,
-        MENU_ITEM2
+        MENU_ITEM2,
+        MENU_ITEM3
     };
 
     bool Create(wxWindow* parent

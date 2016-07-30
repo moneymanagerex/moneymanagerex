@@ -180,13 +180,15 @@ void mmTransDialog::dataToControls()
             if (!m_advanced)
                 m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT 
                     * (m_to_currency ? m_currency->BASECONVRATE / m_to_currency->BASECONVRATE : 1);
-            toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT);
+            toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT, Model_Currency::precision(m_trx_data.TOACCOUNTID));
         }
         else
             toTextAmount_->ChangeValue("");
 
         if (m_trx_data.TRANSID != -1)
-            textAmount_->SetValue(m_trx_data.TRANSAMOUNT);
+        {
+            m_textAmount->SetValue(m_trx_data.TRANSAMOUNT, Model_Currency::precision(m_trx_data.ACCOUNTID));
+        }
         skip_amount_init_ = true;
     }
 
@@ -314,7 +316,7 @@ void mmTransDialog::dataToControls()
         if (has_split)
         {
             fullCategoryName = _("Categories");
-            textAmount_->SetValue(Model_Splittransaction::get_total(local_splits));
+            m_textAmount->SetValue(Model_Splittransaction::get_total(local_splits));
             m_trx_data.CATEGID = -1;
             m_trx_data.SUBCATEGID = -1;
         }
@@ -330,7 +332,7 @@ void mmTransDialog::dataToControls()
         cSplit_->SetValue(has_split);
         skip_category_init_ = true;
     }
-    textAmount_->Enable(local_splits.empty());
+    m_textAmount->Enable(local_splits.empty());
     cSplit_->Enable(!m_transfer);
 
     if (!skip_notes_init_) //Notes & Transaction Number
@@ -411,7 +413,7 @@ void mmTransDialog::CreateControls()
     typeSizer->Add(cAdvanced_, g_flagsH);
 
     // Amount Fields --------------------------------------------
-    textAmount_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTAMOUNT, ""
+    m_textAmount = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1)
         , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
 
@@ -420,7 +422,7 @@ void mmTransDialog::CreateControls()
         , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
-    amountSizer->Add(textAmount_, g_flagsH);
+    amountSizer->Add(m_textAmount, g_flagsH);
     amountSizer->Add(toTextAmount_, g_flagsH);
 
     flex_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Amount")), g_flagsH);
@@ -531,7 +533,7 @@ void mmTransDialog::CreateControls()
 
     cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), nullptr, this);
-    textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
+    m_textAmount->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
     toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
@@ -547,7 +549,7 @@ void mmTransDialog::CreateControls()
 
 bool mmTransDialog::validateData()
 {
-    if (!textAmount_->checkValue(m_trx_data.TRANSAMOUNT))
+    if (!m_textAmount->checkValue(m_trx_data.TRANSAMOUNT))
         return false;
 
     Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
@@ -698,15 +700,15 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         }
     }
 
-    if (object_in_focus_ == textAmount_->GetId())
+    if (object_in_focus_ == m_textAmount->GetId())
     {
-        textAmount_->SelectAll();
+        m_textAmount->SelectAll();
     }
     else 
     {
-        if (textAmount_->Calculate())
+        if (m_textAmount->Calculate(Model_Currency::precision(m_trx_data.ACCOUNTID)))
         {
-            textAmount_->GetDouble(m_trx_data.TRANSAMOUNT);
+            m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
         }
         skip_amount_init_ = false;
     }
@@ -717,8 +719,10 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
     }
     else 
     {
-        if (toTextAmount_->Calculate())
+        if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID)))
+        {
             toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
+        }
     }
 
     dataToControls();
@@ -729,7 +733,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
 {
     bool bDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
 
-    if (!textAmount_->GetDouble(m_trx_data.TRANSAMOUNT))
+    if (!m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT))
         m_trx_data.TRANSAMOUNT = 0;
 
     if (!Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID).empty() && local_splits.empty())
@@ -967,18 +971,23 @@ void mmTransDialog::OnCustomFields(wxCommandEvent& /*event*/)
 
 void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
-    if (object_in_focus_ == textAmount_->GetId()) 
+    if (object_in_focus_ == m_textAmount->GetId())
     {
-        if (textAmount_->Calculate())
-            textAmount_->GetDouble(m_trx_data.TRANSAMOUNT);
+        if (m_textAmount->Calculate(Model_Currency::precision(m_currency)))
+        {
+            m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
+        }
         skip_amount_init_ = false;
         dataToControls();
     }
-    else if (object_in_focus_ == toTextAmount_->GetId())
-        toTextAmount_->Calculate();
+    else if (object_in_focus_ == m_textAmount->GetId())
+    {
+        m_textAmount->Calculate(Model_Currency::precision(m_currency));
+    }
     else if (object_in_focus_ == textNumber_->GetId())
-        textNotes_->SetFocus();
-
+    {
+        m_textAmount->SetFocus();
+    }
 }
 
 void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
@@ -1138,7 +1147,7 @@ void mmTransDialog::setTooltips()
     }
     if (!m_new_trx) return;
 
-    textAmount_->UnsetToolTip();
+    m_textAmount->UnsetToolTip();
     toTextAmount_->UnsetToolTip();
     cbAccount_->UnsetToolTip();
     cbPayee_->UnsetToolTip();
@@ -1147,14 +1156,14 @@ void mmTransDialog::setTooltips()
     {
         cbAccount_->SetToolTip(_("Specify account the money is taken from"));
         cbPayee_->SetToolTip(_("Specify account the money is moved to"));
-        textAmount_->SetToolTip(_("Specify the transfer amount in the From Account."));
+        m_textAmount->SetToolTip(_("Specify the transfer amount in the From Account."));
 
         if (m_advanced)
             toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
     }
     else
     {
-        textAmount_->SetToolTip(_("Specify the amount for this transaction"));
+        m_textAmount->SetToolTip(_("Specify the amount for this transaction"));
         cbAccount_->SetToolTip(_("Specify account for the transaction"));
         if (!Model_Checking::is_deposit(m_trx_data.TRANSCODE))
             cbPayee_->SetToolTip(_("Specify to whom the transaction is going to"));
