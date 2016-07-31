@@ -11,6 +11,9 @@ Version History of Money Manager Ex
 - New: Mininum Balance on accounts.
 - New: Credit Limit on Accounts.
 - New: Lock account transactions to a reconciled date.
+- New: Multi transaction selection for various functions
+- Update: Bitcoin (BTC) support to 8 digit precision
+- Remove: Show/Hide void transactions
 - Fix: General bug fixex and documentation updates.
 
 1.2.7 (Apr 14, 2016)

@@ -52,7 +52,7 @@ after_build:
 - cmd: cd %APPVEYOR_BUILD_FOLDER%
 - cmd: 7z a mmex_1.3.0-beta.2_%PLATFORM%_portable_build%APPVEYOR_BUILD_NUMBER%.zip %APPVEYOR_BUILD_FOLDER%\mmex_release\mmex_1.3.0-beta.2_%PLATFORM%_portable\*
 - ps: Push-AppveyorArtifact "mmex_1.3.0-beta.2_${env:platform}_portable_build${env:appveyor_build_number}.zip" -FileName "mmex_1.3.0-beta.2_${env:platform}_portable_build${env:appveyor_build_number}.zip"
-- ps: Push-AppveyorArtifact "mmex_release\mmex_1.3.0-beta.2_${env:platform}_portable\MoneyManagerEX\bin\mmex.exe" -FileName "mmex_${env:platform}.exe"
+- ps: Push-AppveyorArtifact "mmex_release\mmex_1.3.0-beta.2_${env:platform}_portable\MoneyManagerEX\bin\mmex.exe" -FileName "mmex_${env:platform}_build${env:appveyor_build_number}.exe"
 
 # Debug
 #on_finish:
