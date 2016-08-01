@@ -1174,11 +1174,13 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             PopupMenu(&menu, pt);
         }
         else if (iData->getString() == "item@Bank Accounts" ||
+            iData->getString() == "item@Cash Accounts" ||
+            iData->getString() == "item@Loan Accounts" ||
             iData->getString() == "item@Term Accounts" ||
             iData->getString() == "item@Credit Card Accounts" ||
             iData->getString() == "item@Stocks")
         {
-            // Create for Bank Credit Card Term & Stock Accounts
+            // Create for Account types: Bank, Cash, Loan, Credit Card, Term & Stocks 
             wxMenu menu;
             menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account"));
             menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account"));
@@ -1186,7 +1188,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List (Home)"));
             menu.AppendSeparator();
 
-            // Create only for Bank & Credit Card Accounts
+            // Create only for Account types: Bank, Cash, Loan & Credit Card
             if ((iData->getString() != "item@Term Accounts") && (iData->getString() != "item@Stocks"))
             {
                 wxMenu *exportTo = new wxMenu;
