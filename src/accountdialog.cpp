@@ -79,10 +79,12 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent,
     , m_interest_rate_ctrl(nullptr)
     , m_payment_due_date_ctrl(nullptr)
     , m_minimum_payment_ctrl(nullptr)
+    , m_accessinfo_infocus(false)
 {
     m_imageList = navtree_images_list();
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("New Account"), wxDefaultPosition, wxSize(550, 300), style, name);
+    this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmNewAcctDialog::OnChangeFocus), nullptr, this);
 }
 
 mmNewAcctDialog::~mmNewAcctDialog()
@@ -105,8 +107,6 @@ bool mmNewAcctDialog::Create(wxWindow* parent
     SetIcon(mmex::getProgramIcon());
 
     CreateControls();
-    m_accessChanged = false;
-
     fillControls();
 
     GetSizer()->Fit(this);
@@ -284,7 +284,7 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer2->Add(new wxStaticText(others_tab
         , wxID_STATIC, _("Access Info:")), g_flagsH);
     wxTextCtrl* itemTextCtrl14 = new wxTextCtrl(others_tab
-        , ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO, m_accessInfo);
+        , ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO, "********************");
     grid_sizer2->Add(itemTextCtrl14, g_flagsExpand);
 
     //-------------------------------------------------------------------------------------
@@ -447,7 +447,6 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     wxTextCtrl* textCtrlHeldAt = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT);
     wxTextCtrl* textCtrlWebsite = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE);
     wxTextCtrl* textCtrlContact = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT);
-    wxTextCtrl* textCtrlAccess = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO);
 
     wxChoice* choice = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
     m_account->STATUS = Model_Account::all_status()[choice->GetSelection()];
@@ -462,8 +461,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     m_account->WEBSITE = textCtrlWebsite->GetValue();
     m_account->CONTACTINFO = textCtrlContact->GetValue();
     m_account->CURRENCYID = m_currencyID;
-    if (m_accessChanged)
-        m_account->ACCESSINFO = textCtrlAccess->GetValue();
+    m_account->ACCESSINFO = m_accessInfo;
 
     double value = 0;
     m_credit_limit_ctrl->checkValue(value);
@@ -522,6 +520,32 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
         image_id = selectedImage + img::LAST_NAVTREE_PNG - 1;
 
     m_bitmapButtons->SetBitmap(m_imageList->GetBitmap(image_id));
+}
+
+void mmNewAcctDialog::OnChangeFocus(wxChildFocusEvent& event)
+{
+    wxWindow *w = event.GetWindow();
+    int oject_in_focus = 0;
+    if ( w ) oject_in_focus = w->GetId();
+
+    wxTextCtrl* textCtrl = (wxTextCtrl*) FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO);
+    if (oject_in_focus == ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO)
+    {
+        if (!m_accessinfo_infocus)
+        {
+            textCtrl->SetValue(m_accessInfo);
+            m_accessinfo_infocus = true;
+        }
+    }
+    else
+    {
+        if (m_accessinfo_infocus)
+        {
+            m_accessInfo = textCtrl->GetValue();
+            textCtrl->SetValue("********************");
+            m_accessinfo_infocus = false;
+        }
+    }
 }
 
 void mmNewAcctDialog::OnTextEntered(wxCommandEvent& event)

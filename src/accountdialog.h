@@ -53,6 +53,7 @@ private:
     void OnAttachments(wxCommandEvent& event);
 
     void OnImageButton(wxCommandEvent& event);
+    void OnChangeFocus(wxChildFocusEvent& event);
 
 private:
     Model_Account::Data* m_account;
@@ -74,7 +75,7 @@ private:
     mmTextCtrl* m_minimum_payment_ctrl;
 
     int m_currencyID;
-    bool m_accessChanged;
+    bool m_accessinfo_infocus;
 };
 
 #endif
