@@ -255,6 +255,13 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
 
     //////////////////////////////////////////////////////////////////
 
+    wxTreeItemId forecastReport = navTreeCtrl_->AppendItem(reports
+        , _("Forecast Report"), img::PIECHART_PNG, img::PIECHART_PNG);
+    navTreeCtrl_->SetItemData(forecastReport, new mmTreeItemData("Forecast Report"
+        , new mmReportForecast()));
+
+    //////////////////////////////////////////////////////////////////
+    
     /*GRM Reports*/
     auto records = Model_Report::instance().all();
     //Sort by group name and report name

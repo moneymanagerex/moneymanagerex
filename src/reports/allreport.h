@@ -33,3 +33,4 @@
 #include "summary.h"
 #include "summarystocks.h"
 #include "transactions.h"
+#include "forecast.h"

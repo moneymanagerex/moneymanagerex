@@ -44,6 +44,9 @@ protected:
     const mmDateRange* m_date_range;
     bool m_initial;
     int m_date_selection;
+
+public:
+    static const char * m_template;
 };
 
 class mmGeneralReport : public mmPrintableBase
@@ -69,6 +72,18 @@ protected:
 
     void getSpecificAccounts();
 };
+
+#include "html_template.h"
+class mm_html_template: public html_template
+{
+public:
+    explicit mm_html_template(const wxString & arg_template);
+
+private:
+    void load_context();
+};
+
+
 
 //----------------------------------------------------------------------------
 #endif // MM_EX_REPORTBASE_H_

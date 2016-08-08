@@ -549,18 +549,3 @@ std::ostream& operator << (std::ostream& os, const wxDateTime& date)
     return os;
 }
 
-mm_html_template::mm_html_template(const wxString& arg_template): html_template(arg_template.ToStdWstring())
-{
-    this->load_context();
-}
-
-void mm_html_template::load_context()
-{
-    (*this)(L"TODAY") = wxDate::Now().FormatISODate();
-    for (const auto &r: Model_Infotable::instance().all())
-        (*this)(r.INFONAME.ToStdWstring()) = r.INFOVALUE;
-    (*this)(L"INFOTABLE") = Model_Infotable::to_loop_t();
-
-    const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
-    if (currency) currency->to_template(*this);
-}
