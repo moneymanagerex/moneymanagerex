@@ -180,6 +180,7 @@ MMEX_OBJECTS =  \
 	mmex_cashflow.o \
 	mmex_categexp.o \
 	mmex_categovertimeperf.o \
+	mmex_forecast.o \
 	mmex_htmlbuilder.o \
 	mmex_incexpenses.o \
 	mmex_mmDateRange.o \
@@ -672,6 +673,9 @@ mmex_categexp.o: $(srcdir)/src/reports/categexp.cpp
 
 mmex_categovertimeperf.o: $(srcdir)/src/reports/categovertimeperf.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/categovertimeperf.cpp
+
+mmex_forecast.o: $(srcdir)/src/reports/forecast.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/forecast.cpp
 
 mmex_htmlbuilder.o: $(srcdir)/src/reports/htmlbuilder.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/htmlbuilder.cpp
