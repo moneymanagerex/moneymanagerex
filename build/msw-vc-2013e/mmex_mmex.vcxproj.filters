@@ -267,6 +267,9 @@
     <ClCompile Include="..\..\src\reports\categovertimeperf.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\reports\forecast.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\reports\htmlbuilder.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>

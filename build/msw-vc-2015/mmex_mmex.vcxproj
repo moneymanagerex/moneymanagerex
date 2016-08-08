@@ -323,6 +323,7 @@
     <ClCompile Include="..\..\src\categdialog.cpp" />
     <ClCompile Include="..\..\src\reports\categexp.cpp" />
     <ClCompile Include="..\..\src\reports\categovertimeperf.cpp" />
+    <ClCompile Include="..\..\src\reports\forecast.cpp" />
     <ClCompile Include="..\..\src\constants.cpp" />
     <ClCompile Include="..\..\3rd\csv-parser\csv_parser.cpp" />
     <ClCompile Include="..\..\src\currencydialog.cpp" />
