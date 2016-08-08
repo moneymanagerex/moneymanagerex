@@ -262,13 +262,21 @@ void mmCheckingPanel::markSelectedTransaction(int trans_id)
         long i = 0;
         for (const auto & tran : m_trans)
         {
+            //reset any selected items in the list
+            if (m_listCtrlAccount->GetItemState(i, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+            {
+                m_listCtrlAccount->SetItemState(i, 0, wxLIST_STATE_SELECTED);
+            }
+            // discover where the transaction has ended up in the list
             if (trans_id == tran.TRANSID)
             {
                 m_listCtrlAccount->m_selectedIndex = i;
-                break;
             }
             ++i;
         }
+
+        // set the selected ID to this transaction.
+        m_listCtrlAccount->m_selectedID = trans_id;
     }
 
     if (!m_trans.empty() && m_listCtrlAccount->m_selectedIndex < 0)
