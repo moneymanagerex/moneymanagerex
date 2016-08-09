@@ -190,6 +190,8 @@ TARGET_SOURCES(mmex PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/reports/categexp.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/reports/categovertimeperf.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/reports/categovertimeperf.h"
+	"${CMAKE_CURRENT_SOURCE_DIR}/reports/forecast.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/reports/forecast.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/reports/htmlbuilder.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/reports/htmlbuilder.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/reports/incexpenses.cpp"
