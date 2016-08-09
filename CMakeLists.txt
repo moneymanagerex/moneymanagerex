@@ -39,7 +39,7 @@ SET(INSTALL_MO_DIR "share/mmex/po")
 
 #Check for required libraries
 FIND_PACKAGE(Gettext REQUIRED)
-#wxScintilla doesn't exist on Linux
+#wxScintilla is needed on Windows
 IF (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv scintilla stc webview base REQUIRED)
 ELSE()
@@ -53,6 +53,7 @@ INCLUDE_DIRECTORIES(
 	${wxWidgets_INCLUDE_DIRS}
 	"src"
 	"3rd"
+	"3rd/cgitemplate"
 	"3rd/csv-parser/include"
 	"3rd/LuaGlue/include"
 	"lib/cppunit/include"
@@ -152,6 +153,8 @@ ENDIF ()
 
 IF (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 	SET(CPACK_GENERATOR "DMG")
+	SET(CPACK_DMG_VOLUME_NAME "MMEX")
+	SET(CPACK_DMG_FORMAT "UDZO")
 	#TODO:
 ENDIF ()
 
