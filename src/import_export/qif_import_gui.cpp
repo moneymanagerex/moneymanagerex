@@ -889,6 +889,7 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
     for (auto& refTrxTo : to)
     {
         int i = -1;
+        bool pair_found = false;
         for (auto& refTrxFrom : from)
         {
             ++i;
@@ -898,10 +899,24 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
             if (refTrxTo->NOTES != refTrxFrom->NOTES) continue;
             if (Model_Checking::TRANSDATE(refTrxFrom) != Model_Checking::TRANSDATE(refTrxFrom)) continue;
             refTrxTo->TOTRANSAMOUNT = refTrxFrom->TRANSAMOUNT;
-            refTrxTo->PAYEEID = -1;
             from.erase(from.begin() + i);
+            pair_found = true;
             break;
         }
+        if (!pair_found)
+        {
+            refTrxTo->TOTRANSAMOUNT = refTrxTo->TRANSAMOUNT;
+            refTrxTo->PAYEEID = refTrxTo->TOACCOUNTID;
+            refTrxTo->TOACCOUNTID = refTrxTo->ACCOUNTID;
+            refTrxTo->ACCOUNTID = refTrxTo->PAYEEID;
+
+        }
+        refTrxTo->PAYEEID = -1;
+    }
+
+    while (!from.empty()) {
+        to.push_back(from.back());
+        from.pop_back();
     }
 
     return true;
@@ -914,16 +929,12 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     trx->TRANSCODE = (t.find(TrxType) != t.end() ? t[TrxType] : "");
     if (trx->TRANSCODE.empty())
         return false;
-    bool transfer = trx->TRANSCODE == Model_Checking::all_type()[Model_Checking::TRANSFER];
+    bool transfer = Model_Checking::is_transfer(trx->TRANSCODE); 
 
-    if (transfer)
-        trx->PAYEEID = -1;
-    else
-    {
+    if (!transfer)
         trx->PAYEEID = (t.find(Payee) != t.end() ? m_QIFpayeeNames[t.at(Payee)] : -1);
-        if (trx->PAYEEID == -1 && !transfer)
-            return false;
-    }
+    if (trx->PAYEEID == -1 && !transfer)
+        return false;
 
     wxString dateStr = (t.find(Date) != t.end() ? t[Date] : "");
     dateStr.Replace(" ", "");
