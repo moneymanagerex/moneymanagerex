@@ -1793,14 +1793,13 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         dbUpgrade::InitializeVersion(m_db.get());
         InitializeModelTables();
 
-        SetDataBaseParameters(fileName);
-
         mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this);
         wizard->CenterOnParent();
         wizard->RunIt(true);
         wxButton* next = (wxButton*) wizard->FindWindow(wxID_FORWARD); //FIXME: 
         if (next) next->SetLabel(_("&Next ->"));
 
+        SetDataBaseParameters(fileName);
         /* Jump to new account creation screen */
         wxCommandEvent evt;
         OnNewAccount(evt);

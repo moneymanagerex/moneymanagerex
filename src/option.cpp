@@ -24,6 +24,9 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Account.h"
+#include "maincurrencydialog.h"
+#include "model/Model_Currency.h"
+#include "model/Model_CurrencyHistory.h"
 
 //----------------------------------------------------------------------------
 Option::Option()
@@ -60,8 +63,18 @@ void Option::LoadOptions(bool include_infotable)
         m_userNameString = Model_Infotable::instance().GetStringInfo("USERNAME", "");
         m_financialYearStartDayString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
         m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
-        m_baseCurrency = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
         m_sharePrecision = Model_Infotable::instance().GetIntInfo("SHARE_PRECISION", 4);
+        m_baseCurrency = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
+        // Ensure that base currency is set for the database.
+        while (m_baseCurrency < 1)
+        {
+            if (mmMainCurrencyDialog::Execute(m_baseCurrency))
+            {
+                BaseCurrency(m_baseCurrency);
+                Model_CurrencyHistory::ResetCurrencyHistory();
+                Model_Currency::ResetBaseConversionRates();
+            }
+        }
     }
 
     m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");

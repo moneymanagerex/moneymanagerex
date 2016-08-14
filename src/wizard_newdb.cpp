@@ -116,6 +116,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     {
         currencyID_ = base_currency->CURRENCYID;
         currName = base_currency->CURRENCYNAME;
+	    Option::instance().BaseCurrency(currencyID_);
     }
 
     itemButtonCurrency_ = new wxButton(this, wxID_ANY, currName, wxDefaultPosition, wxSize(220, -1), 0);

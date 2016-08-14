@@ -49,6 +49,8 @@ public:
         , int currencyID = -1, bool bEnableSelect = true);
 
     static bool Execute(wxWindow* parent, int& currencyID);
+    // Return the base currency
+    static bool Execute(int& currencyID);
 
 private:
     enum cols
@@ -114,8 +116,9 @@ private:
     wxButton* historyButtonAdd_;
     wxButton* historyButtonDelete_;
 
-    int currencyID_;
+    int m_currency_id;
     int selectedIndex_;
+    bool m_static_dialog;
 
     std::vector<CurrencyHistoryRate> _BceCurrencyHistoryRatesList;
     bool HistoryDownloadBce();
