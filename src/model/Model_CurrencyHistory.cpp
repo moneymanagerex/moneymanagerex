@@ -133,3 +133,13 @@ double Model_CurrencyHistory::getLastRate(const int& currencyID)
         return Currency->BASECONVRATE;
     }
 }
+
+void Model_CurrencyHistory::ResetCurrencyHistory()
+{
+    Model_CurrencyHistory::instance().Savepoint();
+    for (const auto& r : Model_CurrencyHistory::instance().all())
+    {
+        Model_CurrencyHistory::instance().remove(r.id());
+    }
+    Model_CurrencyHistory::instance().ReleaseSavepoint();
+}

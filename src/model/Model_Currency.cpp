@@ -73,8 +73,19 @@ wxArrayString Model_Currency::all_currency_symbols()
 Model_Currency::Data* Model_Currency::GetBaseCurrency()
 {
     int currency_id = Option::instance().BaseCurrency();
-    Model_Currency::Data *currency = Model_Currency::instance().get(currency_id);
+    Model_Currency::Data* currency = Model_Currency::instance().get(currency_id);
     return currency;
+}
+
+void Model_Currency::ResetBaseConversionRates()
+{
+    Model_Currency::instance().Savepoint();
+    for (auto currency : Model_Currency::instance().all())
+    {
+        currency.BASECONVRATE = 1;
+        Model_Currency::instance().save(&currency);
+    }
+    Model_Currency::instance().ReleaseSavepoint();
 }
 
 Model_Currency::Data* Model_Currency::GetCurrencyRecord(const wxString& currency_symbol)
