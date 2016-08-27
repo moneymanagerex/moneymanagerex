@@ -41,6 +41,9 @@ class wxSQLite3ResultSet;
 
 typedef wxDateTime wxDate;
 
+#if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
+    // wx 3.1 has implemented such hash
+#else
 namespace std
 {
     template<>
@@ -52,6 +55,7 @@ namespace std
         }
     };
 }
+#endif
 
 class ModelBase
 {
