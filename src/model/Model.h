@@ -25,6 +25,7 @@
 
 #include <vector>
 #include <map>
+#include <unordered_map>
 #include <algorithm>
 #include <wx/datetime.h>
 #include "singleton.h"
@@ -39,6 +40,18 @@ class wxSQLite3Database;
 class wxSQLite3ResultSet;
 
 typedef wxDateTime wxDate;
+
+namespace std
+{
+    template<>
+    struct hash<wxString>
+    {
+        size_t operator()(const wxString& k) const
+        {
+            return std::hash<std::wstring>()(k.ToStdWstring());
+        }
+    };
+}
 
 class ModelBase
 {
@@ -62,7 +75,7 @@ public:
 protected:
     static wxDate to_date(const wxString& str_date)
     {
-        static std::map<wxString, wxDate> cache;
+        static std::unordered_map<wxString, wxDate> cache;
         const auto it = cache.find(str_date);
         if (it != cache.end()) return it->second;
 
