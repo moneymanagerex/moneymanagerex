@@ -274,7 +274,7 @@ DB_Table_ACCOUNTLIST_V1::STATUS Model_Account::STATUS(STATUS_ENUM status, OP op)
 
 Model_Account::TYPE Model_Account::type(const Data* account)
 {
-    static std::map<wxString, TYPE> cache;
+    static std::unordered_map<wxString, TYPE> cache;
     const auto it = cache.find(account->ACCOUNTTYPE);
     if (it != cache.end()) return it->second;
 

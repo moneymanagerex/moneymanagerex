@@ -112,7 +112,7 @@ wxDate Model_Billsdeposits::NEXTOCCURRENCEDATE(const Data& r)
 
 Model_Billsdeposits::TYPE Model_Billsdeposits::type(const wxString& r)
 {
-    static std::map<wxString, TYPE> cache;
+    static std::unordered_map<wxString, TYPE> cache;
     const auto it = cache.find(r);
     if (it != cache.end()) return it->second;
 
@@ -138,7 +138,7 @@ Model_Billsdeposits::TYPE Model_Billsdeposits::type(const Data* r)
 }
 Model_Billsdeposits::STATUS_ENUM Model_Billsdeposits::status(const wxString& r)
 {
-    static std::map<wxString, STATUS_ENUM> cache;
+    static std::unordered_map<wxString, STATUS_ENUM> cache;
     const auto it = cache.find(r);
     if (it != cache.end()) return it->second;
 

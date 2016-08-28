@@ -131,7 +131,7 @@ wxDate Model_Checking::TRANSDATE(const Data& r)
 Model_Checking::TYPE Model_Checking::type(const wxString& r)
 {
     if (r.empty()) return TYPE::WITHDRAWAL;
-    static std::map<wxString, TYPE> cache;
+    static std::unordered_map<wxString, TYPE> cache;
     const auto it = cache.find(r);
     if (it != cache.end()) return it->second;
 
@@ -158,7 +158,7 @@ Model_Checking::TYPE Model_Checking::type(const Data* r)
 
 Model_Checking::STATUS_ENUM Model_Checking::status(const wxString& r)
 {
-    static std::map<wxString, STATUS_ENUM> cache;
+    static std::unordered_map<wxString, STATUS_ENUM> cache;
     const auto it = cache.find(r);
     if (it != cache.end()) return it->second;
 
