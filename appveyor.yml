@@ -22,7 +22,7 @@ install:
 #- cmd: DEL %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip /F /Q
 - cmd: git clone https://github.com/wxWidgets/wxWidgets.git %WXWIN%
 - cmd: cd %WXWIN%
-- cmd: git checkout tags/v3.1.0
+- cmd: git checkout tags/v3.0.2
 - cmd: copy "%WXWIN%\include\wx\msw\setup0.h" "%WXWIN%\include\wx\msw\setup.h"
 - cmd: IF EXIST %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (7z x %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip -o%WXWIN%\lib\%WXLIBFOLDER%)
 - cmd: >-
