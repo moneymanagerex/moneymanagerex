@@ -46,7 +46,7 @@
     <if cond="FORMAT=='autoconf'">
         <set var="respath">
             <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex/res</if>
-            <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/res</if>
+            <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/../Resources</if>
         </set>
         
         <data-files>
@@ -80,7 +80,7 @@
 
         <set var="txtfiles">
             <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex</if>
-            <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)</if>
+            <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/doc</if>
         </set>
 
         <data-files>
@@ -117,7 +117,10 @@
             <files>*.txt</files>
         </data-files>
 
-        <set var="helppath">$(DATADIR)/doc/mmex/help</set>
+        <set var="helppath">
+            <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/doc/mmex/help</if>
+            <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/doc/help</if>
+        </set>
         <!-- data-files-tree generates wrong commands in bakefile v.0.2.8 -->
         <data-files>
             <install-to>$(helppath)</install-to>
