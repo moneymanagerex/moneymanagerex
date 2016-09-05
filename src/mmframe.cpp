@@ -198,7 +198,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , homePanel_(nullptr)
     , activeReport_(false)
     , panelCurrent_(nullptr)
-    , navTreeCtrl_(nullptr)
+    , m_nav_tree_ctrl(nullptr)
     , menuBar_(nullptr)
     , toolBar_(nullptr)
     , selectedItemData_(nullptr)
@@ -333,7 +333,7 @@ void mmGUIFrame::cleanup()
     if (!m_filename.IsEmpty()) // Exiting before file is opened
         saveSettings();
 
-    wxTreeItemId rootitem = navTreeCtrl_->GetRootItem();
+    wxTreeItemId rootitem = m_nav_tree_ctrl->GetRootItem();
     cleanupNavTreeControl(rootitem);
     m_mgr.UnInit();
 
@@ -361,26 +361,26 @@ void mmGUIFrame::ShutdownDatabase()
 
 void mmGUIFrame::resetNavTreeControl()
 {
-    wxTreeItemId root = navTreeCtrl_->GetRootItem();
+    wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
     cleanupNavTreeControl(root);
-    navTreeCtrl_->DeleteAllItems();
+    m_nav_tree_ctrl->DeleteAllItems();
 }
 
 void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
 {
     while (item.IsOk())
     {
-        if (navTreeCtrl_->ItemHasChildren(item))
+        if (m_nav_tree_ctrl->ItemHasChildren(item))
         {
             wxTreeItemIdValue cookie;
-            wxTreeItemId childitem = navTreeCtrl_->GetFirstChild(item, cookie);
+            wxTreeItemId childitem = m_nav_tree_ctrl->GetFirstChild(item, cookie);
             cleanupNavTreeControl(childitem);
         }
-        mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(item));
-        navTreeCtrl_->SetItemData(item, 0);
+        mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(item));
+        m_nav_tree_ctrl->SetItemData(item, 0);
         if (iData)
             delete iData;
-        item = navTreeCtrl_->GetNextSibling(item);
+        item = m_nav_tree_ctrl->GetNextSibling(item);
     }
 }
 
@@ -397,14 +397,14 @@ void mmGUIFrame::processPendingEvents()
 wxTreeItemId mmGUIFrame::getTreeItemfor(const wxTreeItemId& itemID, const wxString& accountName) const
 {
     wxTreeItemIdValue treeDummyValue;
-    wxTreeItemId navTreeID = navTreeCtrl_->GetFirstChild(itemID, treeDummyValue);
+    wxTreeItemId navTreeID = m_nav_tree_ctrl->GetFirstChild(itemID, treeDummyValue);
 
     while (navTreeID.IsOk())
     {
-        if (accountName == navTreeCtrl_->GetItemText(navTreeID))
+        if (accountName == m_nav_tree_ctrl->GetItemText(navTreeID))
             break;
         else
-            navTreeID = navTreeCtrl_->GetNextChild(itemID, treeDummyValue);
+            navTreeID = m_nav_tree_ctrl->GetNextChild(itemID, treeDummyValue);
     }
     return navTreeID;
 }
@@ -412,39 +412,39 @@ wxTreeItemId mmGUIFrame::getTreeItemfor(const wxTreeItemId& itemID, const wxStri
 //----------------------------------------------------------------------------
 bool mmGUIFrame::setAccountInSection(const wxString& sectionName, const wxString& accountName)
 {
-    navTreeCtrl_->SetEvtHandlerEnabled(false);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     bool accountNotFound = true;
-    wxTreeItemId rootItem = getTreeItemfor(navTreeCtrl_->GetRootItem(), sectionName);
-    if (rootItem.IsOk() && navTreeCtrl_->ItemHasChildren(rootItem))
+    wxTreeItemId rootItem = getTreeItemfor(m_nav_tree_ctrl->GetRootItem(), sectionName);
+    if (rootItem.IsOk() && m_nav_tree_ctrl->ItemHasChildren(rootItem))
     {
-        navTreeCtrl_->ExpandAllChildren(rootItem);
+        m_nav_tree_ctrl->ExpandAllChildren(rootItem);
         wxTreeItemId accountItem = getTreeItemfor(rootItem, accountName);
         if (accountItem.IsOk())
         {
             // Set the NavTreeCtrl and prevent any event code being executed for now.
-            navTreeCtrl_->SelectItem(accountItem);
+            m_nav_tree_ctrl->SelectItem(accountItem);
             //processPendingEvents();
             accountNotFound = false;
         }
     }
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
     return accountNotFound;
 }
 
 //----------------------------------------------------------------------------
 bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 {
-    navTreeCtrl_->SetEvtHandlerEnabled(false);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     bool accountNotFound = true;
-    wxTreeItemId rootItem = getTreeItemfor(navTreeCtrl_->GetRootItem(), sectionName);
+    wxTreeItemId rootItem = getTreeItemfor(m_nav_tree_ctrl->GetRootItem(), sectionName);
     if (rootItem.IsOk())
     {
         // Set the NavTreeCtrl and prevent any event code being executed for now.
-        navTreeCtrl_->SelectItem(rootItem);
+        m_nav_tree_ctrl->SelectItem(rootItem);
         //processPendingEvents();
         accountNotFound = false;
     }
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
     return accountNotFound;
 }
 
@@ -642,20 +642,20 @@ void mmGUIFrame::createControls()
 {
 #if defined (__WXGTK__) || defined (__WXMAC__)
     // Under GTK, row lines look ugly
-    navTreeCtrl_ = new wxTreeCtrl( this, ID_NAVTREECTRL,
+    m_nav_tree_ctrl = new wxTreeCtrl( this, ID_NAVTREECTRL,
         wxDefaultPosition, wxSize(100, 100));
 #else
-    navTreeCtrl_ = new wxTreeCtrl(this, ID_NAVTREECTRL,
+    m_nav_tree_ctrl = new wxTreeCtrl(this, ID_NAVTREECTRL,
         wxDefaultPosition, wxSize(100, 100), wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES);
 #endif
 
-    navTreeCtrl_->AssignImageList(navtree_images_list());
-    navTreeCtrl_->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
+    m_nav_tree_ctrl->AssignImageList(navtree_images_list());
+    m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 
     homePanel_ = new wxPanel(this, wxID_ANY,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTR_SINGLE | wxNO_BORDER);
 
-    m_mgr.AddPane(navTreeCtrl_, wxAuiPaneInfo()
+    m_mgr.AddPane(m_nav_tree_ctrl, wxAuiPaneInfo()
         . Name("Navigation")
         . BestSize(wxSize(200, 100)).MinSize(wxSize(100, 100))
         . Left());
@@ -668,72 +668,73 @@ void mmGUIFrame::createControls()
 
 void mmGUIFrame::updateNavTreeControl()
 {
-    windowsFreezeThaw(navTreeCtrl_);
-    navTreeCtrl_->SetEvtHandlerEnabled(false);
-    wxTreeItemId root = navTreeCtrl_->GetRootItem();
+    windowsFreezeThaw(m_nav_tree_ctrl);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
+    wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
     cleanupNavTreeControl(root);
-    navTreeCtrl_->DeleteAllItems();
+    m_nav_tree_ctrl->DeleteAllItems();
 
-    root = navTreeCtrl_->AddRoot(_("Home Page"), img::HOUSE_PNG, img::HOUSE_PNG);
-    navTreeCtrl_->SetItemData(root, new mmTreeItemData("Home Page"));
-    navTreeCtrl_->SetItemBold(root, true);
-    navTreeCtrl_->SetFocus();
+    root = m_nav_tree_ctrl->AddRoot(_("Home Page"), img::HOUSE_PNG, img::HOUSE_PNG);
+    m_nav_tree_ctrl->SetItemData(root, new mmTreeItemData("Home Page"));
+    m_nav_tree_ctrl->SetItemBold(root, true);
+    m_nav_tree_ctrl->SetFocus();
 
-    wxTreeItemId accounts = navTreeCtrl_->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
-    navTreeCtrl_->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
-    navTreeCtrl_->SetItemBold(accounts, true);
+    wxTreeItemId accounts = m_nav_tree_ctrl->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
+    m_nav_tree_ctrl->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
+    m_nav_tree_ctrl->SetItemBold(accounts, true);
 
-    wxTreeItemId cardAccounts = navTreeCtrl_->AppendItem(root, _("Credit Card Accounts"), img::CARD_ACC_PNG, img::CARD_ACC_PNG);
-    navTreeCtrl_->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
-    navTreeCtrl_->SetItemBold(cardAccounts, true);
+    wxTreeItemId cardAccounts = m_nav_tree_ctrl->AppendItem(root, _("Credit Card Accounts"), img::CARD_ACC_PNG, img::CARD_ACC_PNG);
+    m_nav_tree_ctrl->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
+    m_nav_tree_ctrl->SetItemBold(cardAccounts, true);
 
-    wxTreeItemId cashAccounts = navTreeCtrl_->AppendItem(root, _("Cash Accounts"), img::CASH_ACC_NORMAL_PNG, img::CASH_ACC_NORMAL_PNG);
-    navTreeCtrl_->SetItemData(cashAccounts, new mmTreeItemData("Cash Accounts"));
-    navTreeCtrl_->SetItemBold(cashAccounts, true);
-    wxTreeItemId loanAccounts = navTreeCtrl_->AppendItem(root, _("Loan Accounts"), img::LOAN_ACC_NORMAL_PNG, img::LOAN_ACC_NORMAL_PNG);
-    navTreeCtrl_->SetItemData(loanAccounts, new mmTreeItemData("Loan Accounts"));
-    navTreeCtrl_->SetItemBold(loanAccounts, true);
+    wxTreeItemId cashAccounts = m_nav_tree_ctrl->AppendItem(root, _("Cash Accounts"), img::CASH_ACC_NORMAL_PNG, img::CASH_ACC_NORMAL_PNG);
+    m_nav_tree_ctrl->SetItemData(cashAccounts, new mmTreeItemData("Cash Accounts"));
+    m_nav_tree_ctrl->SetItemBold(cashAccounts, true);
 
-    wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_PNG, img::TERMACCOUNT_PNG);
-    navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
-    navTreeCtrl_->SetItemBold(termAccount, true);
+    wxTreeItemId loanAccounts = m_nav_tree_ctrl->AppendItem(root, _("Loan Accounts"), img::LOAN_ACC_NORMAL_PNG, img::LOAN_ACC_NORMAL_PNG);
+    m_nav_tree_ctrl->SetItemData(loanAccounts, new mmTreeItemData("Loan Accounts"));
+    m_nav_tree_ctrl->SetItemBold(loanAccounts, true);
+
+    wxTreeItemId termAccounts = m_nav_tree_ctrl->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_PNG, img::TERMACCOUNT_PNG);
+    m_nav_tree_ctrl->SetItemData(termAccounts, new mmTreeItemData("Term Accounts"));
+    m_nav_tree_ctrl->SetItemBold(termAccounts, true);
     
-    wxTreeItemId stocks = navTreeCtrl_->AppendItem(root, _("Stock Portfolios"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
-    navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
-    navTreeCtrl_->SetItemBold(stocks, true);
+    wxTreeItemId stocks = m_nav_tree_ctrl->AppendItem(root, _("Stock Portfolios"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
+    m_nav_tree_ctrl->SetItemData(stocks, new mmTreeItemData("Stocks"));
+    m_nav_tree_ctrl->SetItemBold(stocks, true);
 
-    wxTreeItemId shareAccounts = navTreeCtrl_->AppendItem(root, _("Share Accounts"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
-    navTreeCtrl_->SetItemData(shareAccounts, new mmTreeItemData("Share Accounts"));
-    navTreeCtrl_->SetItemBold(shareAccounts, true);
+    wxTreeItemId shareAccounts = m_nav_tree_ctrl->AppendItem(root, _("Share Accounts"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
+    m_nav_tree_ctrl->SetItemData(shareAccounts, new mmTreeItemData("Share Accounts"));
+    m_nav_tree_ctrl->SetItemBold(shareAccounts, true);
 
-    wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), img::ASSET_PNG, img::ASSET_PNG);
-    navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
-    navTreeCtrl_->SetItemBold(assets, true);
+    wxTreeItemId assets = m_nav_tree_ctrl->AppendItem(root, _("Assets"), img::ASSET_PNG, img::ASSET_PNG);
+    m_nav_tree_ctrl->SetItemData(assets, new mmTreeItemData("Assets"));
+    m_nav_tree_ctrl->SetItemBold(assets, true);
 
-    wxTreeItemId bills = navTreeCtrl_->AppendItem(root, _("Recurring Transactions"), img::SCHEDULE_PNG, img::SCHEDULE_PNG);
-    navTreeCtrl_->SetItemData(bills, new mmTreeItemData("Bills & Deposits"));
-    navTreeCtrl_->SetItemBold(bills, true);
+    wxTreeItemId bills = m_nav_tree_ctrl->AppendItem(root, _("Recurring Transactions"), img::SCHEDULE_PNG, img::SCHEDULE_PNG);
+    m_nav_tree_ctrl->SetItemData(bills, new mmTreeItemData("Bills & Deposits"));
+    m_nav_tree_ctrl->SetItemBold(bills, true);
 
-    wxTreeItemId budgeting = navTreeCtrl_->AppendItem(root, _("Budget Setup"), img::CALENDAR_PNG, img::CALENDAR_PNG);
-    navTreeCtrl_->SetItemData(budgeting, new mmTreeItemData("Budgeting"));
-    navTreeCtrl_->SetItemBold(budgeting, true);
+    wxTreeItemId budgeting = m_nav_tree_ctrl->AppendItem(root, _("Budget Setup"), img::CALENDAR_PNG, img::CALENDAR_PNG);
+    m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData("Budgeting"));
+    m_nav_tree_ctrl->SetItemBold(budgeting, true);
 
-    wxTreeItemId reports = navTreeCtrl_->AppendItem(root, _("Reports"), img::PIECHART_PNG, img::PIECHART_PNG);
-    navTreeCtrl_->SetItemBold(reports, true);
-    navTreeCtrl_->SetItemData(reports, new mmTreeItemData("Reports"));
+    wxTreeItemId reports = m_nav_tree_ctrl->AppendItem(root, _("Reports"), img::PIECHART_PNG, img::PIECHART_PNG);
+    m_nav_tree_ctrl->SetItemBold(reports, true);
+    m_nav_tree_ctrl->SetItemData(reports, new mmTreeItemData("Reports"));
 
     this->updateReportNavigation(reports, budgeting);
 
     ///////////////////////////////////////////////////////////////////
 
-    wxTreeItemId help = navTreeCtrl_->AppendItem(root, _("Help"), img::HELP_PNG, img::HELP_PNG);
-    navTreeCtrl_->SetItemData(help, new mmTreeItemData("Help"));
-    navTreeCtrl_->SetItemBold(help, true);
+    wxTreeItemId help = m_nav_tree_ctrl->AppendItem(root, _("Help"), img::HELP_PNG, img::HELP_PNG);
+    m_nav_tree_ctrl->SetItemData(help, new mmTreeItemData("Help"));
+    m_nav_tree_ctrl->SetItemBold(help, true);
 
     if (m_db)
     {
         /* Start Populating the dynamic data */
-        const wxString vAccts = Model_Setting::instance().ViewAccounts();
+        wxString vAccts = Model_Setting::instance().ViewAccounts();
         wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR 
             || vAccts == VIEW_ACCOUNTS_OPEN_STR || vAccts == VIEW_ACCOUNTS_CLOSED_STR);
 
@@ -754,79 +755,78 @@ void mmGUIFrame::updateNavTreeControl()
             {
             case Model_Account::INVESTMENT:
                 {
-                    tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
+                    tacct = m_nav_tree_ctrl->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
                     // find all the accounts associated with this stock portfolio
                     Model_Stock::Data_Set stock_account_list = Model_Stock::instance()
                         .find(Model_Stock::HELDAT(account.ACCOUNTID));
                     // Put the names of the Stock_entry names as children of the stock account.
-                    for (const auto stock_entry : stock_account_list)
+                    for (const auto &stock_entry : stock_account_list)
                     {
                         if (Model_Translink::HasShares(stock_entry.STOCKID))
                         {
-                            wxTreeItemId se = navTreeCtrl_->AppendItem(tacct, stock_entry.STOCKNAME, selectedImage, selectedImage);
+                            wxTreeItemId se = m_nav_tree_ctrl->AppendItem(tacct, stock_entry.STOCKNAME, selectedImage, selectedImage);
                             int account_id = stock_entry.STOCKID;
                             if (Model_Translink::ShareAccountId(account_id))
                             {
-                                navTreeCtrl_->SetItemData(se, new mmTreeItemData(account_id, false));
+                                m_nav_tree_ctrl->SetItemData(se, new mmTreeItemData(account_id, false));
                             }
                         }
                     }
                 }
                 break;
             case Model_Account::SHARES:
-                tacct = navTreeCtrl_->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             case Model_Account::ASSET:
-                tacct = navTreeCtrl_->AppendItem(assets, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(assets, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             case Model_Account::TERM:
-                tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(termAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             case Model_Account::CREDIT_CARD:
-                tacct = navTreeCtrl_->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             case Model_Account::CASH:
-                tacct = navTreeCtrl_->AppendItem(cashAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(cashAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             case Model_Account::LOAN:
-                tacct = navTreeCtrl_->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             default:
-                tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             }
 
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
         }
 
         loadNavTreeItemsStatus();
-        if (!navTreeCtrl_->ItemHasChildren(accounts)) navTreeCtrl_->Delete(accounts);
-        if (!navTreeCtrl_->ItemHasChildren(cardAccounts)) navTreeCtrl_->Delete(cardAccounts);
-        if (!navTreeCtrl_->ItemHasChildren(termAccount)) navTreeCtrl_->Delete(termAccount);
-        if (!navTreeCtrl_->ItemHasChildren(stocks)) navTreeCtrl_->Delete(stocks);
-        if (!navTreeCtrl_->ItemHasChildren(cashAccounts)) navTreeCtrl_->Delete(cashAccounts);
-        if (!navTreeCtrl_->ItemHasChildren(loanAccounts)) navTreeCtrl_->Delete(loanAccounts);
+        if (!m_nav_tree_ctrl->ItemHasChildren(accounts)) m_nav_tree_ctrl->Delete(accounts);
+        if (!m_nav_tree_ctrl->ItemHasChildren(cardAccounts)) m_nav_tree_ctrl->Delete(cardAccounts);
+        if (!m_nav_tree_ctrl->ItemHasChildren(termAccounts)) m_nav_tree_ctrl->Delete(termAccounts);
+        if (!m_nav_tree_ctrl->ItemHasChildren(stocks)) m_nav_tree_ctrl->Delete(stocks);
+        if (!m_nav_tree_ctrl->ItemHasChildren(cashAccounts)) m_nav_tree_ctrl->Delete(cashAccounts);
+        if (!m_nav_tree_ctrl->ItemHasChildren(loanAccounts)) m_nav_tree_ctrl->Delete(loanAccounts);
 
-        if (!navTreeCtrl_->ItemHasChildren(shareAccounts) || m_hide_share_accounts)
+        if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts) || m_hide_share_accounts)
         {
-            navTreeCtrl_->Delete(shareAccounts);
+            m_nav_tree_ctrl->Delete(shareAccounts);
         }
     }
-    windowsFreezeThaw(navTreeCtrl_);
-    navTreeCtrl_->SelectItem(root);
-    navTreeCtrl_->EnsureVisible(root);
-    navTreeCtrl_->Refresh();
-    navTreeCtrl_->Update();
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
+    windowsFreezeThaw(m_nav_tree_ctrl);
+    m_nav_tree_ctrl->SelectItem(root);
+    m_nav_tree_ctrl->EnsureVisible(root);
+    m_nav_tree_ctrl->Refresh();
+    m_nav_tree_ctrl->Update();
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
-
 
 void mmGUIFrame::loadNavTreeItemsStatus()
 {
     /* Load Nav Tree Control */
     SetEvtHandlerEnabled(false);
-    wxTreeItemId root = navTreeCtrl_->GetRootItem();
-    navTreeCtrl_->Expand(root);
+    wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
+    m_nav_tree_ctrl->Expand(root);
 
     wxString str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
     if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
@@ -837,8 +837,8 @@ void mmGUIFrame::loadNavTreeItemsStatus()
     json::Reader::Read(o, ss);
 
     std::stack<wxTreeItemId> items;
-    if (navTreeCtrl_->GetRootItem().IsOk())
-        items.push(navTreeCtrl_->GetRootItem());
+    if (m_nav_tree_ctrl->GetRootItem().IsOk())
+        items.push(m_nav_tree_ctrl->GetRootItem());
 
     while (!items.empty())
     {
@@ -846,17 +846,17 @@ void mmGUIFrame::loadNavTreeItemsStatus()
         items.pop();
 
         wxTreeItemIdValue cookie;
-        wxTreeItemId nextChild = navTreeCtrl_->GetFirstChild(next, cookie);
+        wxTreeItemId nextChild = m_nav_tree_ctrl->GetFirstChild(next, cookie);
         while (nextChild.IsOk())
         {
-            if (navTreeCtrl_->HasChildren(nextChild)) items.push(nextChild);
-            nextChild = navTreeCtrl_->GetNextSibling(nextChild);
+            if (m_nav_tree_ctrl->HasChildren(nextChild)) items.push(nextChild);
+            nextChild = m_nav_tree_ctrl->GetNextSibling(nextChild);
         }
 
         mmTreeItemData* iData =
-            dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(next));
+            dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
         if (iData && json::Boolean(o[iData->getString().ToStdWstring()]))
-            navTreeCtrl_->Expand(next);
+            m_nav_tree_ctrl->Expand(next);
     };
 
     SetEvtHandlerEnabled(true);
@@ -865,7 +865,7 @@ void mmGUIFrame::loadNavTreeItemsStatus()
 void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
 {
     mmTreeItemData* iData =
-        dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(event.GetItem()));
+        dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(event.GetItem()));
     if (!iData) return;
     navTreeStateToJson();
 }
@@ -874,7 +874,7 @@ void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
 void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
 {
     mmTreeItemData* iData =
-        dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(event.GetItem()));
+        dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(event.GetItem()));
     if (!iData) return;
     navTreeStateToJson();
 }
@@ -885,8 +885,8 @@ void mmGUIFrame::navTreeStateToJson()
     o.Clear();
 
     std::stack<wxTreeItemId> items;
-    if (navTreeCtrl_->GetRootItem().IsOk())
-        items.push(navTreeCtrl_->GetRootItem());
+    if (m_nav_tree_ctrl->GetRootItem().IsOk())
+        items.push(m_nav_tree_ctrl->GetRootItem());
 
     while (!items.empty())
     {
@@ -894,17 +894,17 @@ void mmGUIFrame::navTreeStateToJson()
         items.pop();
 
         wxTreeItemIdValue cookie;
-        wxTreeItemId nextChild = navTreeCtrl_->GetFirstChild(next, cookie);
+        wxTreeItemId nextChild = m_nav_tree_ctrl->GetFirstChild(next, cookie);
         while (nextChild.IsOk())
         {
-            if (navTreeCtrl_->HasChildren(nextChild)) items.push(nextChild);
-            nextChild = navTreeCtrl_->GetNextSibling(nextChild);
+            if (m_nav_tree_ctrl->HasChildren(nextChild)) items.push(nextChild);
+            nextChild = m_nav_tree_ctrl->GetNextSibling(nextChild);
         }
 
         mmTreeItemData* iData =
-            dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(next));
-        if (iData && json::Boolean(navTreeCtrl_->IsExpanded(next)))
-            o[iData->getString().ToStdWstring()] = json::Boolean(navTreeCtrl_->IsExpanded(next));
+            dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
+        if (iData && json::Boolean(m_nav_tree_ctrl->IsExpanded(next)))
+            o[iData->getString().ToStdWstring()] = json::Boolean(m_nav_tree_ctrl->IsExpanded(next));
     };
     std::wstringstream ss;
     json::Writer::Write(o, ss);
@@ -921,7 +921,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     wxTreeItemId selectedItem = event.GetItem();
     if (!selectedItem) return;
 
-    mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(selectedItem));
+    mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(selectedItem));
     selectedItemData_ = iData;
     if (!iData) return;
 
@@ -932,8 +932,8 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         {
             int year = iData->getData();
 
-            wxTreeItemId idparent = navTreeCtrl_->GetItemParent(selectedItem);
-            mmTreeItemData* iParentData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(idparent));
+            wxTreeItemId idparent = m_nav_tree_ctrl->GetItemParent(selectedItem);
+            mmTreeItemData* iParentData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(idparent));
             if (iParentData->getString() == "item@Budget Performance") //FIXME: this is report
             {
                 mmPrintableBase* rs = new mmReportBudgetingPerformance(year);
@@ -960,7 +960,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
                     createCheckingAccountPage(gotoAccountID_);
                 else
                     createStocksAccountPage(gotoAccountID_);
-                navTreeCtrl_->SetFocus();
+                m_nav_tree_ctrl->SetFocus();
                 menuPrintingEnable(true);
             }
             else
@@ -1116,13 +1116,13 @@ void mmGUIFrame::OnItemMenu(wxTreeEvent& event)
 void mmGUIFrame::OnItemRightClick(wxTreeEvent& event)
 {
     wxTreeItemId selectedItem = event.GetItem();
-    navTreeCtrl_->SelectItem(selectedItem);
+    m_nav_tree_ctrl->SelectItem(selectedItem);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 {
-    mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(id));
+    mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(id));
     if (iData) selectedItemData_ = iData;
     else return;
 
@@ -1245,7 +1245,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     json::Object o;
     o[L"module"] = json::String(L"Budget Panel");
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
-    navTreeCtrl_->SetEvtHandlerEnabled(false);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_->GetId() == mmID_BUDGET)
     {
         budgetingPage_->DisplayBudgetingDetails(budgetYearID);
@@ -1266,7 +1266,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
     menuPrintingEnable(true);
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
 
@@ -1276,7 +1276,7 @@ void mmGUIFrame::createHomePage()
     o[L"module"] = json::String(L"Home Page");
     o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
 
-    navTreeCtrl_->SetEvtHandlerEnabled(false);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
     /* Update home page details only if it is being displayed */
     if (id == mmID_HOMEPAGE)
@@ -1297,8 +1297,8 @@ void mmGUIFrame::createHomePage()
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
     }
-    navTreeCtrl_->SelectItem(navTreeCtrl_->GetRootItem());
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
+    m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
     Model_Usage::instance().append(o);
@@ -1308,7 +1308,7 @@ void mmGUIFrame::createHomePage()
 void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 {
     if (!rs) return;
-    navTreeCtrl_->SetEvtHandlerEnabled(false);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
 
     windowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
@@ -1321,13 +1321,13 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
     windowsFreezeThaw(homePanel_);
 
     menuPrintingEnable(true);
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::createHelpPage()
 {
-    navTreeCtrl_->SetEvtHandlerEnabled(false);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     windowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
     panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP
@@ -1336,7 +1336,7 @@ void mmGUIFrame::createHelpPage()
     homePanel_->Layout();
     windowsFreezeThaw(homePanel_);
     menuPrintingEnable(true);
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
 
