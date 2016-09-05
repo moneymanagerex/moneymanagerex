@@ -109,7 +109,7 @@ IF (CMAKE_SYSTEM_NAME STREQUAL "Linux")
 	INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/doc/help"
 		DESTINATION "${INSTALL_DOC_DIR}")
 	INSTALL(FILES "${CMAKE_SOURCE_DIR}/resources/master.css"
-        	DESTINATION "${INSTALL_DOC_DIR}/help")
+	        DESTINATION "${INSTALL_DOC_DIR}/help")
 
 	#Resources
 	INSTALL(FILES "${CMAKE_SOURCE_DIR}/3rd/ChartNew.js/ChartNew.js"
@@ -143,9 +143,11 @@ SET(CPACK_PACKAGE_DESCRIPTION "Money Manager Ex (MMEX) is a free, open-source, c
 IF (CMAKE_SYSTEM_NAME STREQUAL "Linux")
 	IF (EXISTS "/etc/debian_version")
 		SET(CPACK_GENERATOR "DEB")
-		SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.15), libgcc1 (>=1:4.1.1), libstdc++6 (>= 4.6), libwxgtk3.0-0v5 (>= 3.0.0) | libwxgtk3.0-0 (>=3.0.0), libwxgtk-webview3.0-0v5 (>= 3.0.0) | libwxgtk-webview3.0-0v5 (>= 3.0.0)")
+		SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.15), libgcc1 (>=1:4.1.1), libstdc++6 (>= 4.6), libwxgtk3.0-0v5 (>= 3.0.0) | libwxgtk3.0-0 (>=3.0.0), libwxgtk-webview3.0-0v5 (>= 3.0.0) | libwxgtk-webview3.0-0 (>= 3.0.0)")
 	ELSEIF (EXISTS "/etc/redhat-release")
 		SET(CPACK_GENERATOR "RPM")
+		SET(CPACK_RPM_PACKAGE_REQUIRES "gcc-c++, wxgtk3-devel, rpmbuild, cmake >= 3.1")
+		SET(CPACK_RPM_PACKAGE_LICENSE "GPL-2+")
 	ELSE ()
 		#TODO: tar.gz
 	ENDIF ()
