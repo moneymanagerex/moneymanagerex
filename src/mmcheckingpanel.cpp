@@ -991,7 +991,7 @@ void TransactionListCtrl::createColumns(mmListCtrl &lst)
 {
     for (const auto& entry : m_columns)
     {
-        long count = lst.GetColumnCount();
+        int count = lst.GetColumnCount();
         lst.InsertColumn(count
             , entry.HEADER
             , entry.FORMAT
