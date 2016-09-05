@@ -18,7 +18,7 @@ cls
 
 REM Set the variable: mmex_release_version
 REM to reflect the correct version.
-set mmex_release_version=mmex_1.3.0-beta.6
+set mmex_release_version=mmex_1.3.0-rc.1
 
 set mmex_system_name=MoneyManagerEX
 set mmex_build_location=..\..\build\msw-vc-2013e
