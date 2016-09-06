@@ -115,6 +115,7 @@ private:
     wxStaticText* payee_label_;
     mmCustomFieldDialog* CustomFieldDialog_;
 
+    int m_type;
     bool m_transfer;
     bool m_new_trx;
     bool m_duplicate;

@@ -2270,7 +2270,7 @@ void mmGUIFrame::refreshPanelData()
 
 void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
 {
-    mmCategDialog dlg(this, false);
+    mmCategDialog dlg(this, -1, false);
     dlg.ShowModal();
     if (dlg.getRefreshRequested())
     {
