@@ -74,6 +74,7 @@ public:
 private:
     void CreateControls();
     void fillControls();
+    void arrangeItems();
 
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
