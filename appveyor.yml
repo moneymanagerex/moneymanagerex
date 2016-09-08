@@ -34,6 +34,7 @@ install:
 - cmd: SET PUBLISH_BINARY=false
 - cmd: git describe --tags > _git_tag.tmp
 - cmd: SET /p GIT_TAG=<_git_tag.tmp
+- cmd: SET GIT_TAG=v1.3.0-rc.1
 - cmd: ECHO %GIT_TAG%
 - cmd: ECHO %APPVEYOR_REPO_BRANCH%
 - cmd: DEL _git_tag.tmp
