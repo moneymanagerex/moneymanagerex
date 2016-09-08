@@ -55,10 +55,11 @@ after_build:
 - cmd: cd %APPVEYOR_BUILD_FOLDER%\setup\win
 - ps: Start-FileDownload https://web.archive.org/web/20150506065200/http://www.matcode.com/mpress.219.zip
 - cmd: 7z x mpress.219.zip -o%APPVEYOR_BUILD_FOLDER%\setup\win\mpress.219
-- cmd: tree
 - cmd: update_mmex_build_files.bat
 - cmd: cd %APPVEYOR_BUILD_FOLDER%
+- cmd: ECHO %APPVEYOR_BUILD_FOLDER%\mmex_release\mmex_%GIT_TAG%_%PLATFORM%_portable
 - cmd: 7z a mmex_%GIT_TAG%_%PLATFORM%_portable_build%APPVEYOR_BUILD_NUMBER%.zip %APPVEYOR_BUILD_FOLDER%\mmex_release\mmex_%GIT_TAG%_%PLATFORM%_portable\*
+- cmd: ECHO mmex_%GIT_TAG%_${env:platform}_portable_build${env:appveyor_build_number}.zip
 - ps: Push-AppveyorArtifact "mmex_%GIT_TAG%_${env:platform}_portable_build${env:appveyor_build_number}.zip" -FileName "mmex_%GIT_TAG%_${env:platform}_portable_build${env:appveyor_build_number}.zip"
 - ps: Push-AppveyorArtifact "mmex_release\mmex_%GIT_TAG%_${env:platform}_portable\MoneyManagerEX\bin\mmex.exe" -FileName "mmex_${env:platform}_build${env:appveyor_build_number}.exe"
 
