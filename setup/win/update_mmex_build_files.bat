@@ -18,7 +18,7 @@ cls
 
 REM Set the variable: mmex_release_version
 REM to reflect the correct version.
-set mmex_release_version=%GIT_TAG%
+set mmex_release_version=mmex_%GIT_TAG%
 @echo %mmex_release_version%
 
 set mmex_system_name=MoneyManagerEX
