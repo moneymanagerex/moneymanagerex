@@ -61,8 +61,8 @@ after_build:
 - cmd: ECHO %APPVEYOR_BUILD_FOLDER%\mmex_release\mmex_%GIT_TAG%_%PLATFORM%_portable
 - cmd: 7z a mmex_%GIT_TAG%_%PLATFORM%_portable_build%APPVEYOR_BUILD_NUMBER%.zip %APPVEYOR_BUILD_FOLDER%\mmex_release\mmex_%GIT_TAG%_%PLATFORM%_portable\*
 - cmd: ECHO mmex_%GIT_TAG%_${env:platform}_portable_build${env:appveyor_build_number}.zip
-- ps: Push-AppveyorArtifact "mmex_%GIT_TAG%_${env:platform}_portable_build${env:appveyor_build_number}.zip" -FileName "mmex_%GIT_TAG%_${env:platform}_portable_build${env:appveyor_build_number}.zip"
-- ps: Push-AppveyorArtifact "mmex_release\mmex_%GIT_TAG%_${env:platform}_portable\MoneyManagerEX\bin\mmex.exe" -FileName "mmex_${env:platform}_build${env:appveyor_build_number}.exe"
+- ps: Push-AppveyorArtifact "mmex_${env:git_tag}_${env:platform}_portable_build${env:appveyor_build_number}.zip" -FileName "mmex_${env:git_tag}_${env:platform}_portable_build${env:appveyor_build_number}.zip"
+- ps: Push-AppveyorArtifact "mmex_release\mmex_${env:git_tag}_${env:platform}_portable\MoneyManagerEX\bin\mmex.exe" -FileName "mmex_${env:platform}_build${env:appveyor_build_number}.exe"
 
 # Debug
 #on_finish:
