@@ -50,7 +50,7 @@ if exist .\mpress.219\mpress.exe goto display_config_continue
 @echo.
 @echo %display_message%
 @echo ------------------------------------------------------------------------
-timeout /t 15
+timeout /t 5
 cls
 
 REM Starts with Win32 Release
@@ -116,7 +116,7 @@ copy "..\..\3rd\sorttable.js\sorttable.js"     "%mmex_build_dir%\res"
 @echo.
 @echo Updated Support Files for: %mmex_build_dir%
 @echo.
-timeout /t 15
+timeout /t 5
 cls
 
 :skip_this_location
@@ -164,7 +164,7 @@ if not exist %mmex_release_destination% mkdir %mmex_release_destination%
 @echo Destination: %mmex_release_destination%
 @echo From Source: %mmex_release_source%
 @echo --------------------------------------------------------------------
-timeout /t 15
+timeout /t 5
 cls
 
 @echo --------------------------------------------------------------------
@@ -209,4 +209,4 @@ goto UpdateFiles
 @echo.
 @echo Update completed.
 @echo ------------------------------------------------------------------------
-timeout /t 15
+timeout /t 5
