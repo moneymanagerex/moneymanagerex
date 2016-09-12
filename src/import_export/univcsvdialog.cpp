@@ -459,8 +459,9 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
     {
         int itemIndex = m_choice_account_->FindString(accountName);
         if (wxNOT_FOUND == itemIndex)
-            mmErrorDialogs::MessageError(m_choice_account_, _("Default account \"" + accountName + "\" for this template does not exist.\nPlease select a new account."),
-                _("Account does not exist"));
+            mmErrorDialogs::MessageError(m_choice_account_
+                , wxString::Format(_("Default account '%s' for this template does not exist.\nPlease select a new account."), accountName)
+                ,_("Account does not exist"));
         else
             m_choice_account_->Select(itemIndex);
     }

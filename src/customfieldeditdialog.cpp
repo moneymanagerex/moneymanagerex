@@ -225,7 +225,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
         if (DataSet.size() > 0)
         {
             int DeleteResponse = wxMessageBox(
-                _("You have modified choiches: ones removed will be cleaned!") + "\n"
+                _("You have modified choices: ones removed will be cleaned!") + "\n"
                 + _("Do you want to proceed?") << "\n"
                 , _("Custom Field Change")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
