@@ -136,7 +136,6 @@ bool FileXML::Load(const wxString& fileName, unsigned int itemsInLine)
 
     // Workbook
     wxXmlNode *workbookElement = xmlFile.GetRoot();
-    wxString t = workbookElement->GetName();
     if (workbookElement->GetName().Cmp("Workbook") != 0
         || workbookElement->GetAttribute("xmlns").Cmp("urn:schemas-microsoft-com:office:spreadsheet") != 0)
     {
