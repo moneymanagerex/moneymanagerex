@@ -45,7 +45,7 @@ class mmCategDialog : public wxDialog
 
 public:
     mmCategDialog();
-    mmCategDialog(wxWindow* parent
+    mmCategDialog(wxWindow* parent, int type = -1
         , bool bEnableSelect = true
         , bool bEnableRelocate = true);
 
@@ -56,14 +56,14 @@ public:
         , const wxSize& size
         , long style);
 
-    void setTreeSelection(int &category_id, int &subcategory_id);
+    void setTreeSelection(int category_id, int subcategory_id);
     int getCategId()
     {
-        return categID_;
+        return m_category_id;
     }
     int getSubCategId()
     {
-        return subcategID_;
+        return m_subcategory_id;
     }
     bool getRefreshRequested()
     {
@@ -74,6 +74,7 @@ public:
 private:
     void CreateControls();
     void fillControls();
+    void arrangeItems();
 
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
@@ -104,10 +105,11 @@ private:
     wxTreeItemId selectedItemId_;
     wxTreeItemId root_;
     wxTreeItemId getTreeItemFor(const wxTreeItemId& itemID, const wxString& itemText);
+    int m_transaction_type;
     bool bEnableSelect_;
     bool bEnableRelocate_;
-    int categID_;
-    int subcategID_;
+    int m_category_id;
+    int m_subcategory_id;
     int InitSelectedcategID_;
     int InitSelectedsubcategID_;
     wxColour NormalColor_;

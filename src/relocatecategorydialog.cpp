@@ -138,7 +138,7 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
 
 void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
 {
-    mmCategDialog destCat(this, true, false);
+    mmCategDialog destCat(this, -1, true, false);
     destCat.setTreeSelection(m_destCatID, m_destSubCatID);
 
     if (destCat.ShowModal() == wxID_OK)
