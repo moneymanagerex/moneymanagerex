@@ -46,7 +46,6 @@ static void handle_sql(struct mg_connection* nc, struct http_message* hm)
 
     json::Object result;
     result[L"query"] = json::String(wxString(query).ToStdWstring());
-    bool ret = Model_Report::instance().get_objects_from_sql(wxString(query), result); 
 
     for (const auto & r : Model_Setting::instance().all())
     {
