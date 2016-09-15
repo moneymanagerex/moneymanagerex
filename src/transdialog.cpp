@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
- Copyright (C) 2011-2016 Nikolay
+ Copyright (C) 2011-2016 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -73,7 +73,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , CustomFieldDialog_(nullptr)
     , categUpdated_(false)
     , m_transfer(false)
-    , m_type(type)
     , m_advanced(false)
     , m_account_id(account_id)
     , m_current_balance(current_balance)
@@ -101,8 +100,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         for (const auto& item : Model_Checking::splittransaction(transaction))
             local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
     }
-    m_type = Model_Checking::type(m_trx_data.TRANSCODE);
-    wxLogDebug("%s", Model_Checking::all_type()[m_type]);
 
     Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
     if (acc)
@@ -805,7 +802,6 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
     if (old_type != m_trx_data.TRANSCODE)
     {
         m_transfer = Model_Checking::is_transfer(m_trx_data.TRANSCODE);
-        m_type = Model_Checking::all_type().Index(m_trx_data.TRANSCODE);
         if (!m_transfer) m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
         if (!m_transfer) m_trx_data.TOACCOUNTID = -1;
         if (m_transfer) m_trx_data.PAYEEID = -1;
@@ -940,8 +936,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
     }
     else
     {
-        mmCategDialog dlg(this, m_type, true, false);
-        dlg.setTreeSelection(m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
+        mmCategDialog dlg(this, m_trx_data.CATEGID, m_trx_data.SUBCATEGID, false);
         if (dlg.ShowModal() == wxID_OK)
         {
             m_trx_data.CATEGID = dlg.getCategId();

@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
-Copyright (C) 2012 Nikolay
+Copyright (C) 2012 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -282,8 +282,7 @@ void mmPayeeDialog::DefineDefaultCategory()
     Model_Payee::Data *payee = Model_Payee::instance().get(m_payee_id);
     if (payee)
     {
-        mmCategDialog dlg(this, -1, true, false);
-        dlg.setTreeSelection(payee->CATEGID, payee->SUBCATEGID);
+        mmCategDialog dlg(this, payee->CATEGID, payee->SUBCATEGID, false);
         if (dlg.ShowModal() == wxID_OK)
         {
             payee->CATEGID = dlg.getCategId();
