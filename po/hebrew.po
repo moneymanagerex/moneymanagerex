@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-08 10:35+0300\n"
-"PO-Revision-Date: 2016-09-08 10:37+0300\n"
+"POT-Creation-Date: 2016-09-16 11:43+0300\n"
+"PO-Revision-Date: 2016-09-16 11:44+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Avi Markovitz <Avi.Markovitz@gmail.com>\n"
 "Language: he_IL\n"
@@ -84,11 +84,11 @@ msgid "Privacy"
 msgstr "פרטיות"
 
 #: aboutdialog.cpp:232 accountdialog.cpp:366 appstartdialog.cpp:136
-#: assetdialog.cpp:301 attachmentdialog.cpp:118 billsdepositsdialog.cpp:628
+#: assetdialog.cpp:301 attachmentdialog.cpp:118 billsdepositsdialog.cpp:629
 #: budgetentrydialog.cpp:156 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:126 currencydialog.cpp:208
 #: customfieldeditdialog.cpp:171 customfieldlistdialog.cpp:98
-#: filtertransdialog.cpp:338 import_export/qif_export.cpp:206
+#: filtertransdialog.cpp:339 import_export/qif_export.cpp:206
 #: import_export/qif_export.cpp:229 import_export/qif_import_gui.cpp:290
 #: mmSimpleDialogs.cpp:51 optiondialog.cpp:150 payeedialog.cpp:125
 #: relocatecategorydialog.cpp:111 relocatepayeedialog.cpp:113
@@ -124,7 +124,7 @@ msgstr "סטאטוס חשבון:"
 msgid "Initial Balance: %s"
 msgstr "יתרת פתיחה: %s"
 
-#: accountdialog.cpp:219 import_export/univcsvdialog.cpp:1474
+#: accountdialog.cpp:219 import_export/univcsvdialog.cpp:1475
 msgid "Currency:"
 msgstr "מטבע:"
 
@@ -137,8 +137,8 @@ msgid "Favorite Account"
 msgstr "חשבון מועדף"
 
 #: accountdialog.cpp:242 assetdialog.cpp:249 assetspanel.cpp:68
-#: billsdepositsdialog.cpp:595 billsdepositspanel.cpp:109
-#: filtertransdialog.cpp:303 import_export/qif_import_gui.cpp:104
+#: billsdepositsdialog.cpp:596 billsdepositspanel.cpp:109
+#: filtertransdialog.cpp:304 import_export/qif_import_gui.cpp:104
 #: import_export/univcsvdialog.cpp:91 mmcheckingpanel.cpp:976
 #: reports/transactions.cpp:74 sharetransactiondialog.cpp:252
 #: stockdialog.cpp:269 stockspanel.cpp:103 transdialog.cpp:485
@@ -484,8 +484,8 @@ msgstr ""
 msgid "ID"
 msgstr "מספר מזהה"
 
-#: assetspanel.cpp:65 billsdepositsdialog.cpp:520 billsdepositspanel.cpp:102
-#: customfieldlistdialog.cpp:56 filtertransdialog.cpp:248
+#: assetspanel.cpp:65 billsdepositsdialog.cpp:521 billsdepositspanel.cpp:102
+#: customfieldlistdialog.cpp:56 filtertransdialog.cpp:249
 #: import_export/qif_import_gui.cpp:101 mmhomepagepanel.cpp:779
 #: reports/budgetingperf.cpp:130 reports/incexpenses.cpp:129
 #: reports/transactions.cpp:72 splitdetailsdialog.cpp:113 transdialog.cpp:410
@@ -531,7 +531,7 @@ msgid "&Delete Asset"
 msgstr "מח&ק נכס"
 
 #: assetspanel.cpp:108 billsdepositspanel.cpp:408 mmcheckingpanel.cpp:1100
-#: mmframe.cpp:1154 payeedialog.cpp:372 stockspanel.cpp:148
+#: mmframe.cpp:1154 payeedialog.cpp:371 stockspanel.cpp:148
 msgid "&Organize Attachments"
 msgstr "&נהל צרופות"
 
@@ -585,14 +585,14 @@ msgid "View Asset Transactions"
 msgstr "הצג תנועות רכוש"
 
 #: assetspanel.cpp:481 attachmentdialog.cpp:287 billsdepositspanel.cpp:272
-#: categdialog.cpp:227 customfieldlistdialog.cpp:271 maincurrencydialog.cpp:196
-#: maincurrencydialog.cpp:570 mmcheckingpanel.cpp:458 payeedialog.cpp:366
+#: categdialog.cpp:228 customfieldlistdialog.cpp:271 maincurrencydialog.cpp:196
+#: maincurrencydialog.cpp:570 mmcheckingpanel.cpp:458 payeedialog.cpp:365
 #: splittransactionsdialog.cpp:164 stockspanel.cpp:583
 msgid "&Edit "
 msgstr "&ערוך "
 
 #: assetspanel.cpp:486 billsdepositspanel.cpp:277 budgetyeardialog.cpp:103
-#: categdialog.cpp:231 maincurrencydialog.cpp:283 mmcheckingpanel.cpp:463
+#: categdialog.cpp:232 maincurrencydialog.cpp:283 mmcheckingpanel.cpp:463
 #: mmcheckingpanel.cpp:1116 stockdialog.cpp:330 stockspanel.cpp:588
 msgid "&Delete "
 msgstr "&מחק"
@@ -645,7 +645,7 @@ msgid ""
 msgstr "תאריך ערך חשבון\n"
 
 #: attachmentdialog.cpp:54 customfieldlistdialog.cpp:54
-#: import_export/qif_import_gui.cpp:96 import_export/univcsvdialog.cpp:994
+#: import_export/qif_import_gui.cpp:96 import_export/univcsvdialog.cpp:995
 #: payeedialog.cpp:62
 msgid "#"
 msgstr "#"
@@ -726,9 +726,9 @@ msgstr "האם למחוק את הצרופה?"
 msgid "Confirm Attachment Deletion"
 msgstr "אשר מחיקת צרופה"
 
-#: attachmentdialog.cpp:284 categdialog.cpp:223 customfieldlistdialog.cpp:269
+#: attachmentdialog.cpp:284 categdialog.cpp:224 customfieldlistdialog.cpp:269
 #: import_export/univcsvdialog.cpp:209 maincurrencydialog.cpp:193
-#: payeedialog.cpp:365 splittransactionsdialog.cpp:163 stockdialog.cpp:332
+#: payeedialog.cpp:364 splittransactionsdialog.cpp:163 stockdialog.cpp:332
 msgid "&Add "
 msgstr "&הוסף "
 
@@ -738,7 +738,7 @@ msgstr "&פתח"
 
 #: attachmentdialog.cpp:289 customfieldlistdialog.cpp:272
 #: import_export/univcsvdialog.cpp:213 maincurrencydialog.cpp:200
-#: payeedialog.cpp:368 splittransactionsdialog.cpp:165
+#: payeedialog.cpp:367 splittransactionsdialog.cpp:165
 msgid "&Remove "
 msgstr "&הסר"
 
@@ -797,207 +797,207 @@ msgstr "נא ודא כי הקובץ קיים, וכי יש למשתמש הרשא�
 msgid "Open attachment failed"
 msgstr "פתיחת צרופה כשלה"
 
-#: billsdepositsdialog.cpp:110
+#: billsdepositsdialog.cpp:111
 msgid "New Recurring Transaction"
 msgstr "תנועה מחזורית חדשה"
 
-#: billsdepositsdialog.cpp:130
+#: billsdepositsdialog.cpp:131
 msgid "Edit Recurring Transaction"
 msgstr "ערוך תנועה מחזורית"
 
-#: billsdepositsdialog.cpp:134
+#: billsdepositsdialog.cpp:135
 msgid "Enter Recurring Transaction"
 msgstr "הזן תנועה מחזורית"
 
-#: billsdepositsdialog.cpp:312 billsdepositspanel.cpp:39
-#: filtertransdialog.cpp:42 model/Model_Asset.cpp:23
+#: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:39
+#: filtertransdialog.cpp:43 model/Model_Asset.cpp:23
 #: model/Model_Billsdeposits.cpp:38 model/Model_Budget.cpp:55
 #: model/Model_Checking.cpp:36 optionsettingsmisc.cpp:87
 #: reports/cashflow.cpp:248
 msgid "None"
 msgstr "ללא"
 
-#: billsdepositsdialog.cpp:313 billsdepositspanel.cpp:40
+#: billsdepositsdialog.cpp:314 billsdepositspanel.cpp:40
 #: model/Model_Budget.cpp:56
 msgid "Weekly"
 msgstr "שבועי"
 
-#: billsdepositsdialog.cpp:314 billsdepositspanel.cpp:41
+#: billsdepositsdialog.cpp:315 billsdepositspanel.cpp:41
 msgid "Fortnightly"
 msgstr "דו שבועי"
 
-#: billsdepositsdialog.cpp:315 billsdepositspanel.cpp:42 mmframereport.cpp:158
+#: billsdepositsdialog.cpp:316 billsdepositspanel.cpp:42 mmframereport.cpp:158
 #: mmframereport.cpp:171 model/Model_Budget.cpp:58
 msgid "Monthly"
 msgstr "חודשי"
 
-#: billsdepositsdialog.cpp:316 billsdepositspanel.cpp:43
+#: billsdepositsdialog.cpp:317 billsdepositspanel.cpp:43
 #: model/Model_Budget.cpp:59
 msgid "Bi-Monthly"
 msgstr "דו חודשי"
 
-#: billsdepositsdialog.cpp:317 billsdepositspanel.cpp:44
+#: billsdepositsdialog.cpp:318 billsdepositspanel.cpp:44
 #: model/Model_Budget.cpp:60
 msgid "Quarterly"
 msgstr "רבעוני"
 
-#: billsdepositsdialog.cpp:318 billsdepositspanel.cpp:45
+#: billsdepositsdialog.cpp:319 billsdepositspanel.cpp:45
 #: model/Model_Budget.cpp:61
 msgid "Half-Yearly"
 msgstr "חצי שנתי"
 
-#: billsdepositsdialog.cpp:319 billsdepositspanel.cpp:46
+#: billsdepositsdialog.cpp:320 billsdepositspanel.cpp:46
 #: model/Model_Budget.cpp:62
 msgid "Yearly"
 msgstr "שנתי"
 
-#: billsdepositsdialog.cpp:320 billsdepositspanel.cpp:47
+#: billsdepositsdialog.cpp:321 billsdepositspanel.cpp:47
 msgid "Four Months"
 msgstr "ארבעה חודשים"
 
-#: billsdepositsdialog.cpp:321 billsdepositspanel.cpp:48
+#: billsdepositsdialog.cpp:322 billsdepositspanel.cpp:48
 msgid "Four Weeks"
 msgstr "ארבעה שבועות"
 
-#: billsdepositsdialog.cpp:322 billsdepositspanel.cpp:49
+#: billsdepositsdialog.cpp:323 billsdepositspanel.cpp:49
 #: model/Model_Budget.cpp:63
 msgid "Daily"
 msgstr "יומי"
 
-#: billsdepositsdialog.cpp:323 billsdepositspanel.cpp:50
+#: billsdepositsdialog.cpp:324 billsdepositspanel.cpp:50
 #, c-format
 msgid "In %s Days"
 msgstr "ימים %s בעוד"
 
-#: billsdepositsdialog.cpp:324 billsdepositspanel.cpp:51
+#: billsdepositsdialog.cpp:325 billsdepositspanel.cpp:51
 #, c-format
 msgid "In %s Months"
 msgstr "בעוד %s חודשים"
 
-#: billsdepositsdialog.cpp:325 billsdepositspanel.cpp:52
+#: billsdepositsdialog.cpp:326 billsdepositspanel.cpp:52
 #, c-format
 msgid "Every %s Days"
 msgstr "בכל  %s ימים"
 
-#: billsdepositsdialog.cpp:326 billsdepositspanel.cpp:53
+#: billsdepositsdialog.cpp:327 billsdepositspanel.cpp:53
 #, c-format
 msgid "Every %s Months"
 msgstr "בכל  %s חודשים"
 
-#: billsdepositsdialog.cpp:327 billsdepositspanel.cpp:54
+#: billsdepositsdialog.cpp:328 billsdepositspanel.cpp:54
 msgid "Monthly (last day)"
 msgstr "חודשי (יום אחרון)"
 
-#: billsdepositsdialog.cpp:328 billsdepositspanel.cpp:55
+#: billsdepositsdialog.cpp:329 billsdepositspanel.cpp:55
 msgid "Monthly (last business day)"
 msgstr "חודשי (יום עסקים אחרון)"
 
-#: billsdepositsdialog.cpp:339 transdialog.cpp:355
+#: billsdepositsdialog.cpp:340 transdialog.cpp:355
 msgid "Transaction Details"
 msgstr "פרטי תנועה"
 
-#: billsdepositsdialog.cpp:345
+#: billsdepositsdialog.cpp:346
 msgid "Transaction Dates"
 msgstr "תאריך תנועה"
 
-#: billsdepositsdialog.cpp:367
+#: billsdepositsdialog.cpp:368
 msgid "Recurring Transaction Details"
 msgstr "פרטי תנועה מחזורית"
 
-#: billsdepositsdialog.cpp:388
+#: billsdepositsdialog.cpp:389
 msgid "Specify the date when this bill or deposit is due"
 msgstr "הזן את תאריך הערך של המשיכה או ההפקדה"
 
-#: billsdepositsdialog.cpp:392
+#: billsdepositsdialog.cpp:393
 msgid "Retard or advance the date of the 'next occurrence"
 msgstr "אחר או קדם את התאריך של המופע הבא"
 
-#: billsdepositsdialog.cpp:398 billsdepositspanel.cpp:97
+#: billsdepositsdialog.cpp:399 billsdepositspanel.cpp:97
 msgid "Date Due"
 msgstr "תאריך פרעון"
 
-#: billsdepositsdialog.cpp:402 billsdepositsdialog.cpp:1301
+#: billsdepositsdialog.cpp:403 billsdepositsdialog.cpp:1301
 msgid "Repeats"
 msgstr "חזרות"
 
-#: billsdepositsdialog.cpp:415
+#: billsdepositsdialog.cpp:416
 msgid "Next"
 msgstr "הבא"
 
-#: billsdepositsdialog.cpp:417
+#: billsdepositsdialog.cpp:418
 msgid "Advance the next occuring date with the specified values"
 msgstr "קדם את תאריך המופע הבא עם הערכים שצוינו "
 
-#: billsdepositsdialog.cpp:425 billsdepositsdialog.cpp:1344
+#: billsdepositsdialog.cpp:426 billsdepositsdialog.cpp:1344
 msgid "Payments Left"
 msgstr "תשלומים נותרו"
 
-#: billsdepositsdialog.cpp:439
+#: billsdepositsdialog.cpp:440
 msgid "Request user to enter payment on the 'Date Paid'"
 msgstr "המשתמש ידרש להזין את התשלום ב 'מועד התשלום'"
 
-#: billsdepositsdialog.cpp:440
+#: billsdepositsdialog.cpp:441
 msgid "User requested to enter this transaction on the 'Date Paid'"
 msgstr "המשתמש ידרש להזין את התנועה ב 'מועד התשלום'"
 
-#: billsdepositsdialog.cpp:443
+#: billsdepositsdialog.cpp:444
 msgid "Grant automatic execute permission for this entry."
 msgstr "הענק רשות לרישום אוטומטי עבור תנועה זו."
 
-#: billsdepositsdialog.cpp:445
+#: billsdepositsdialog.cpp:446
 msgid "The requested payment will occur without user interaction"
 msgstr "התשלום המבוקש ירשם ללא התערבות המשתמש"
 
-#: billsdepositsdialog.cpp:465
+#: billsdepositsdialog.cpp:466
 msgid "Specify the date the user is requested to enter this transaction"
 msgstr "הזן תאריך בו יתבקש המשתמש להזין את התנועה"
 
-#: billsdepositsdialog.cpp:468
+#: billsdepositsdialog.cpp:469
 msgid "Advance or retard the user request date of this transaction"
 msgstr "קדם או אחר את תאריך התנועה"
 
-#: billsdepositsdialog.cpp:473
+#: billsdepositsdialog.cpp:474
 msgid "Reset 'Date Paid' to 'Today's Date'"
 msgstr "החלף  את 'שולם בתאריך' ב 'תאריך של היום'"
 
-#: billsdepositsdialog.cpp:480 billsdepositspanel.cpp:96
+#: billsdepositsdialog.cpp:481 billsdepositspanel.cpp:96
 msgid "Date Paid"
 msgstr "תאריך תשלום"
 
-#: billsdepositsdialog.cpp:492 filtertransdialog.cpp:245 transdialog.cpp:1177
+#: billsdepositsdialog.cpp:493 filtertransdialog.cpp:246 transdialog.cpp:1176
 msgid "Specify the status for the transaction"
 msgstr "הגדר  סטאטוס תנועה"
 
-#: billsdepositsdialog.cpp:494 billsdepositspanel.cpp:100
-#: filtertransdialog.cpp:235 import_export/qif_import_gui.cpp:244
+#: billsdepositsdialog.cpp:495 billsdepositspanel.cpp:100
+#: filtertransdialog.cpp:236 import_export/qif_import_gui.cpp:244
 #: import_export/qif_import_gui.cpp:256 import_export/qif_import_gui.cpp:267
 #: mmcheckingpanel.cpp:971 reports/transactions.cpp:70 transdialog.cpp:391
 #: usertransactionpanel.cpp:176 webappdialog.cpp:80
 msgid "Status"
 msgstr "סטאטוס"
 
-#: billsdepositsdialog.cpp:510 splitdetailsdialog.cpp:125 transdialog.cpp:1178
+#: billsdepositsdialog.cpp:511 splitdetailsdialog.cpp:125 transdialog.cpp:1177
 msgid "Specify the type of transactions to be created."
 msgstr "בחר את סוג התנועה שתיווצר."
 
-#: billsdepositsdialog.cpp:511 transdialog.cpp:405
+#: billsdepositsdialog.cpp:512 transdialog.cpp:405
 msgid "&Advanced"
 msgstr "&מתקדם"
 
-#: billsdepositsdialog.cpp:514 transdialog.cpp:1182
+#: billsdepositsdialog.cpp:515 transdialog.cpp:1181
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "מאפשר הגדרה של סכומים שונים בחשבון 'שולח' ובחשבון 'מקבל'."
 
-#: billsdepositsdialog.cpp:524 billsdepositsdialog.cpp:800 transdialog.cpp:1166
+#: billsdepositsdialog.cpp:525 billsdepositsdialog.cpp:800 transdialog.cpp:1165
 #: usertransactionpanel.cpp:144
 msgid "Specify the amount for this transaction"
 msgstr "הזן את סכום התנועה"
 
-#: billsdepositsdialog.cpp:525
+#: billsdepositsdialog.cpp:526
 msgid "Specify the amount to be transferred"
 msgstr "הזן את הסכום ל'העברה'"
 
-#: billsdepositsdialog.cpp:527 billsdepositspanel.cpp:103
+#: billsdepositsdialog.cpp:528 billsdepositspanel.cpp:103
 #: budgetingpanel.cpp:309 mmhomepagepanel.cpp:387 mmhomepagepanel.cpp:780
 #: reports/budgetcategorysummary.cpp:113 reports/categexp.cpp:133
 #: reports/incexpenses.cpp:130 reports/transactions.cpp:75
@@ -1006,12 +1006,12 @@ msgstr "הזן את הסכום ל'העברה'"
 msgid "Amount"
 msgstr "סכום"
 
-#: billsdepositsdialog.cpp:539 transdialog.cpp:1162
+#: billsdepositsdialog.cpp:540 transdialog.cpp:1161
 msgid "Specify the transfer amount in the To Account"
 msgstr "הזן את הסכום להעברה בחשבון ה'מקבל'"
 
-#: billsdepositsdialog.cpp:551 billsdepositspanel.cpp:98
-#: filtertransdialog.cpp:173 import_export/qif_import_gui.cpp:97
+#: billsdepositsdialog.cpp:552 billsdepositspanel.cpp:98
+#: filtertransdialog.cpp:174 import_export/qif_import_gui.cpp:97
 #: import_export/qif_import_gui.cpp:157 import_export/qif_import_gui.cpp:236
 #: import_export/qif_import_gui.cpp:780 reports/transactions.cpp:68
 #: transdialog.cpp:247 transdialog.cpp:435 usertransactionpanel.cpp:110
@@ -1019,18 +1019,18 @@ msgstr "הזן את הסכום להעברה בחשבון ה'מקבל'"
 msgid "Account"
 msgstr "חשבון"
 
-#: billsdepositsdialog.cpp:552 billsdepositsdialog.cpp:681
-#: billsdepositsdialog.cpp:713 billsdepositsdialog.cpp:763
+#: billsdepositsdialog.cpp:553 billsdepositsdialog.cpp:682
+#: billsdepositsdialog.cpp:714 billsdepositsdialog.cpp:764
 #: usertransactionpanel.cpp:111
 msgid "Select Account"
 msgstr "בחר חשבון"
 
-#: billsdepositsdialog.cpp:554
+#: billsdepositsdialog.cpp:555
 msgid "Specify the Account that will own the recurring transaction"
 msgstr "בחר 'חשבון' עבור התנועה המחזורית"
 
-#: billsdepositsdialog.cpp:557 billsdepositsdialog.cpp:863
-#: billsdepositspanel.cpp:99 filtertransdialog.cpp:202
+#: billsdepositsdialog.cpp:558 billsdepositsdialog.cpp:863
+#: billsdepositspanel.cpp:99 filtertransdialog.cpp:203
 #: import_export/qif_import_gui.cpp:100 import_export/qif_import_gui.cpp:249
 #: import_export/univcsvdialog.cpp:86 mmcheckingpanel.cpp:970
 #: mmhomepagepanel.cpp:387 model/Model_Attachment.cpp:29 reports/payee.cpp:115
@@ -1039,25 +1039,25 @@ msgstr "בחר 'חשבון' עבור התנועה המחזורית"
 msgid "Payee"
 msgstr "מוטב"
 
-#: billsdepositsdialog.cpp:559 billsdepositsdialog.cpp:893
+#: billsdepositsdialog.cpp:560 billsdepositsdialog.cpp:893
 #: usertransactionpanel.cpp:181
 msgid "Select Payee"
 msgstr "בחר מוטב"
 
-#: billsdepositsdialog.cpp:561
+#: billsdepositsdialog.cpp:562
 msgid "Specify where the transaction is going to"
 msgstr "בחר להיכן מועברת התנועה"
 
-#: billsdepositsdialog.cpp:569 transdialog.cpp:453
+#: billsdepositsdialog.cpp:570 transdialog.cpp:453
 msgid "Split"
 msgstr "פצל"
 
-#: billsdepositsdialog.cpp:572 transdialog.cpp:1179
+#: billsdepositsdialog.cpp:573 transdialog.cpp:1178
 msgid "Use split Categories"
 msgstr "השתמש בפיצול קטגוריות"
 
-#: billsdepositsdialog.cpp:578 billsdepositspanel.cpp:101
-#: budgetingpanel.cpp:306 filtertransdialog.cpp:213
+#: billsdepositsdialog.cpp:579 billsdepositspanel.cpp:101
+#: budgetingpanel.cpp:306 filtertransdialog.cpp:214
 #: import_export/qif_import_gui.cpp:102 import_export/qif_import_gui.cpp:261
 #: import_export/univcsvdialog.cpp:88 mmcheckingpanel.cpp:972
 #: mmhomepagepanel.cpp:218 reports/budgetcategorysummary.cpp:112
@@ -1068,40 +1068,40 @@ msgstr "השתמש בפיצול קטגוריות"
 msgid "Category"
 msgstr "קטגוריה"
 
-#: billsdepositsdialog.cpp:579 billsdepositsdialog.cpp:1476 transdialog.cpp:328
+#: billsdepositsdialog.cpp:580 billsdepositsdialog.cpp:1476 transdialog.cpp:328
 #: transdialog.cpp:863 usertransactionpanel.cpp:188
 msgid "Select Category"
 msgstr "בחר קטגוריה"
 
-#: billsdepositsdialog.cpp:589 transdialog.cpp:1180
+#: billsdepositsdialog.cpp:590 transdialog.cpp:1179
 msgid "Specify any associated check number or transaction number"
 msgstr "הזן כאסמכתא מספר שק או מספר תנועה"
 
-#: billsdepositsdialog.cpp:591 billsdepositspanel.cpp:108
-#: filtertransdialog.cpp:295 import_export/qif_import_gui.cpp:99
+#: billsdepositsdialog.cpp:592 billsdepositspanel.cpp:108
+#: filtertransdialog.cpp:296 import_export/qif_import_gui.cpp:99
 #: import_export/univcsvdialog.cpp:90 mmcheckingpanel.cpp:969
 #: reports/transactions.cpp:73 transdialog.cpp:478 usertransactionpanel.cpp:200
 msgid "Number"
 msgstr "אסמכתא"
 
-#: billsdepositsdialog.cpp:600
+#: billsdepositsdialog.cpp:601
 msgid "Organize attachments of this recurring transaction"
 msgstr "נהל צרופות לתנועה המחזורית"
 
-#: billsdepositsdialog.cpp:604 transdialog.cpp:489 usertransactionpanel.cpp:215
+#: billsdepositsdialog.cpp:605 transdialog.cpp:489 usertransactionpanel.cpp:215
 msgid "Select one of the frequently used notes"
 msgstr "בחר באחת מההערות שבשימוש תכוף"
 
-#: billsdepositsdialog.cpp:614 transdialog.cpp:1181
+#: billsdepositsdialog.cpp:615 transdialog.cpp:1180
 #: usertransactionpanel.cpp:224
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "הקלד הערת טקסט שתרצה לצרף לתנועה זו."
 
-#: billsdepositsdialog.cpp:680
+#: billsdepositsdialog.cpp:681
 msgid "Choose Bank Account or Term Account"
 msgstr "בחר חשבון בנק או חיסכון"
 
-#: billsdepositsdialog.cpp:713 billsdepositsdialog.cpp:763
+#: billsdepositsdialog.cpp:714 billsdepositsdialog.cpp:764
 msgid "Account name"
 msgstr "שם חשבון"
 
@@ -1126,7 +1126,7 @@ msgstr "ל"
 msgid "Select To Account"
 msgstr "בחר ל'חשבון'"
 
-#: billsdepositsdialog.cpp:875 transdialog.cpp:1171
+#: billsdepositsdialog.cpp:875 transdialog.cpp:1170
 msgid "Specify where the transaction is coming from"
 msgstr "הגדר מהיכן מגיעה התנועה"
 
@@ -1178,12 +1178,12 @@ msgid ""
 "continue forever."
 msgstr " הזן את מספר התשלומים לביצוע. השאר ריק כדי שהתשלומים ימשיכו לעד."
 
-#: billsdepositsdialog.cpp:1444 transdialog.cpp:1139
+#: billsdepositsdialog.cpp:1444 transdialog.cpp:1138
 #: usertransactionpanel.cpp:190
 msgid "Specify the category for this transaction"
 msgstr "בחר קטגוריה עבור תנועה זו"
 
-#: billsdepositsdialog.cpp:1466 categdialog.cpp:116
+#: billsdepositsdialog.cpp:1466 categdialog.cpp:118
 #: import_export/qif_export.cpp:115 mmframereport.cpp:135
 #: reports/categexp.cpp:200 transdialog.cpp:318
 msgid "Categories"
@@ -1231,7 +1231,7 @@ msgstr ""
 msgid "Recurring Transactions"
 msgstr "תנועות מחזרית"
 
-#: billsdepositspanel.cpp:234 filtertransdialog.cpp:93 mmcheckingpanel.cpp:374
+#: billsdepositspanel.cpp:234 filtertransdialog.cpp:94 mmcheckingpanel.cpp:374
 msgid "Transaction Filter"
 msgstr "מסנן תנועות"
 
@@ -1530,67 +1530,63 @@ msgstr "הזן שנת בסיס לתקציב."
 msgid "Budget Year already exists"
 msgstr "שנת תקציב קיימת"
 
-#: categdialog.cpp:91 mmframe.cpp:1468 mmframe.cpp:1638
+#: categdialog.cpp:92 mmframe.cpp:1468 mmframe.cpp:1638
 msgid "Organize Categories"
 msgstr "נהל קטגוריות"
 
-#: categdialog.cpp:182 mmframe.cpp:1485
+#: categdialog.cpp:187 mmframe.cpp:1485
 msgid "Reassign all categories to another category"
 msgstr "הקצא מחדש של כל הקטגוריות לקטגוריה אחרת"
 
-#: categdialog.cpp:184
+#: categdialog.cpp:189
 msgid "Expand"
 msgstr "הרחב"
 
-#: categdialog.cpp:189 maincurrencydialog.cpp:161
+#: categdialog.cpp:194 maincurrencydialog.cpp:161
 msgid "Show All"
 msgstr "הצג הכל"
 
-#: categdialog.cpp:191
+#: categdialog.cpp:196
 msgid "Show all hidden categories"
 msgstr "הצג את כל הקטגוריות המוסתרות"
 
-#: categdialog.cpp:218
-msgid "Enter the name of the category to add or edit here"
-msgstr "הזן את שם הקטגוריה להוספה או עריכה"
-
-#: categdialog.cpp:225
+#: categdialog.cpp:226
 msgid "Add a new category"
 msgstr "הוסף קטגוריה חדשה"
 
-#: categdialog.cpp:229
+#: categdialog.cpp:230
 msgid "Edit the name of an existing category"
 msgstr "ערוך שם של קטגוריה קיימת"
 
-#: categdialog.cpp:233
+#: categdialog.cpp:234
 msgid ""
 "Delete an existing category. The category cannot be used by existing "
 "transactions."
 msgstr "מחק קטגוריה קימת. לא ניתן להשתמש בקטגוריה בתנועות הקימות."
 
-#: categdialog.cpp:238 maincurrencydialog.cpp:207
+#: categdialog.cpp:239 maincurrencydialog.cpp:207
 msgid "&Select"
 msgstr "&בחר"
 
-#: categdialog.cpp:240
+#: categdialog.cpp:241
 msgid ""
 "Select the currently selected category as the selected category for the "
 "transaction"
 msgstr "בחר בקטגוריה הנוכחית כקטגוריה הנבחרת עבור התנועה"
 
-#: categdialog.cpp:249
+#: categdialog.cpp:250
 msgid "Enter the name for the new category:"
 msgstr "הזן שם קטגוריה חדשה:"
 
-#: categdialog.cpp:250
+#: categdialog.cpp:251
 msgid "Add Category"
 msgstr "הוסף קטגוריה"
 
-#: categdialog.cpp:259 categdialog.cpp:476
+#: categdialog.cpp:260 categdialog.cpp:467
 msgid "Category with same name exists"
 msgstr "קטגוריה בשם זהה כבר קימת"
 
-#: categdialog.cpp:260
+#: categdialog.cpp:261
 msgid ""
 "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
@@ -1598,27 +1594,27 @@ msgstr ""
 "עצה: אם קטגוריה נוספה כעת, בדוק המצאותה בתחתית הרשימה.\n"
 "קטגוריות יהיו בסדר ממוין בפעם הבאה שתופיע תיבת דו-שיח"
 
-#: categdialog.cpp:262 categdialog.cpp:287 categdialog.cpp:305
+#: categdialog.cpp:263 categdialog.cpp:286 categdialog.cpp:304
 msgid "Organise Categories: Adding Error"
 msgstr "נהל קטגוריות: הוסף שגיאה"
 
-#: categdialog.cpp:286 categdialog.cpp:493
+#: categdialog.cpp:285 categdialog.cpp:484
 msgid "Sub Category with same name exists"
 msgstr "קיימת כבר תת קטגוריה עם שם זהה"
 
-#: categdialog.cpp:304
+#: categdialog.cpp:303
 msgid "Invalid Parent Category. Choose Root or Main Category node."
 msgstr "קטגורית אב לא תקינה. בחר רמה ראשית או קטגוריה ראשית."
 
-#: categdialog.cpp:311
+#: categdialog.cpp:310
 msgid "Category in use."
 msgstr "הקטגוריה בשימוש."
 
-#: categdialog.cpp:311
+#: categdialog.cpp:310
 msgid "Sub-Category in use."
 msgstr "תת קטגוריה בשימוש."
 
-#: categdialog.cpp:313
+#: categdialog.cpp:312
 msgid ""
 "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
@@ -1626,7 +1622,7 @@ msgstr ""
 "עצה: שנה את הקטגוריה בכל התנועות  לקטגוריה\n"
 "אחרת מתפריט כלים -> העברה של... :"
 
-#: categdialog.cpp:316
+#: categdialog.cpp:315
 msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
@@ -1634,49 +1630,49 @@ msgstr ""
 "עצה: שנה את תת-הקטגורה בכל התנועות  לתת קטגוריה\n"
 "אחרת מתפריט כלים -> העברה של... :"
 
-#: categdialog.cpp:319
+#: categdialog.cpp:318
 msgid "Tools -> Relocation of -> Categories"
 msgstr "כלים -> מיקום מחדש -> קטגוריות"
 
-#: categdialog.cpp:321
+#: categdialog.cpp:320
 msgid "Organise Categories: Delete Error"
 msgstr "נהל קטגוריות: מחק שגיאה"
 
-#: categdialog.cpp:461
+#: categdialog.cpp:453
 #, c-format
 msgid "Enter a new name for %s"
 msgstr "%s הזן שם חדש עבור"
 
-#: categdialog.cpp:463
+#: categdialog.cpp:455
 msgid "Edit Category"
 msgstr "ערוך קטגוריה"
 
-#: categdialog.cpp:477 categdialog.cpp:494
+#: categdialog.cpp:468 categdialog.cpp:485
 msgid "Organise Categories: Editing Error"
 msgstr "נהל קטגוריות: שגיאת עריכה"
 
-#: categdialog.cpp:575 mmframe.cpp:2770
+#: categdialog.cpp:561 mmframe.cpp:2770
 msgid "Category Relocation Completed."
 msgstr "העברת קטגוריה הושלמה."
 
-#: categdialog.cpp:576 mmframe.cpp:2771 mmframe.cpp:2786 payeedialog.cpp:316
+#: categdialog.cpp:562 mmframe.cpp:2771 mmframe.cpp:2786 payeedialog.cpp:315
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "רשומות עודכנו במסד הנתונים:  %i"
 
-#: categdialog.cpp:578 mmframe.cpp:2773
+#: categdialog.cpp:564 mmframe.cpp:2773
 msgid "Category Relocation Result"
 msgstr "התוצאה העברת קטגוריה"
 
-#: categdialog.cpp:643
+#: categdialog.cpp:629
 msgid "Hide Selected Category"
 msgstr "הסתר את הקטגוריה הנבחרת"
 
-#: categdialog.cpp:644
+#: categdialog.cpp:630
 msgid "Unhide Selected Category"
 msgstr "הצג את הקטגוריה הנבחרת"
 
-#: categdialog.cpp:646
+#: categdialog.cpp:632
 msgid "Clear Settings"
 msgstr "נקה הגדרות"
 
@@ -1927,8 +1923,8 @@ msgid "Custom Field Change"
 msgstr "שינוי שדה מותאם אישית"
 
 #: customfieldeditdialog.cpp:228
-msgid "You have modified choiches: ones removed will be cleaned!"
-msgstr "ערכת שינוים באפשרויות: הם ינוקו לאחר שהוסרו!"
+msgid "You have modified choices: ones removed will be cleaned!"
+msgstr ""
 
 #: customfieldlistdialog.cpp:57
 msgid "Properties"
@@ -1991,8 +1987,8 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:237
 #, c-format
-msgid "%i occurrencies founded and replaced!"
-msgstr "%i  שערי מטבע נמצאו והוחלפו"
+msgid "%i occurrences founded and replaced!"
+msgstr ""
 
 #: customfieldlistdialog.cpp:273
 msgid "&Massive content update "
@@ -2122,90 +2118,90 @@ msgstr "שגיאה: %s"
 msgid "Opening MMEX Database - Error"
 msgstr "שגיאה בפתיחת מסד נתונים - MMEX"
 
-#: filtertransdialog.cpp:43 mmhomepagepanel.cpp:708
+#: filtertransdialog.cpp:44 mmhomepagepanel.cpp:708
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:37
 msgid "Reconciled"
 msgstr "מותאם"
 
-#: filtertransdialog.cpp:44 model/Model_Billsdeposits.cpp:40
+#: filtertransdialog.cpp:45 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:38
 msgid "Void"
 msgstr "מבוטל"
 
-#: filtertransdialog.cpp:45 model/Model_Billsdeposits.cpp:41
+#: filtertransdialog.cpp:46 model/Model_Billsdeposits.cpp:41
 #: model/Model_Checking.cpp:39
 msgid "Follow up"
 msgstr "מעקב"
 
-#: filtertransdialog.cpp:46 model/Model_Billsdeposits.cpp:42
+#: filtertransdialog.cpp:47 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:40
 msgid "Duplicate"
 msgstr "כפול"
 
-#: filtertransdialog.cpp:47
+#: filtertransdialog.cpp:48
 msgid "Un-Reconciled"
 msgstr "לא מותאם"
 
-#: filtertransdialog.cpp:48
+#: filtertransdialog.cpp:49
 msgid "All Except Reconciled"
 msgstr "הכל למעט מותאמים"
 
-#: filtertransdialog.cpp:154
+#: filtertransdialog.cpp:155
 msgid "Specify"
 msgstr " הגדר "
 
-#: filtertransdialog.cpp:184 reports/mmDateRange.cpp:27
+#: filtertransdialog.cpp:185 reports/mmDateRange.cpp:27
 msgid "Date Range"
 msgstr "טווח תאריכים"
 
-#: filtertransdialog.cpp:226
+#: filtertransdialog.cpp:227
 msgid "Include Similar"
 msgstr "כולל דומה"
 
-#: filtertransdialog.cpp:228
+#: filtertransdialog.cpp:229
 msgid "Include all subcategories for the selected category."
 msgstr "כלול את כל קטגוריות המשנה לקטגוריה שבחרה."
 
-#: filtertransdialog.cpp:254 import_export/univcsvdialog.cpp:93
+#: filtertransdialog.cpp:255 import_export/univcsvdialog.cpp:93
 #: mmcheckingpanel.cpp:973 model/Model_Billsdeposits.cpp:31
 #: model/Model_Checking.cpp:29 splitdetailsdialog.cpp:118
 msgid "Withdrawal"
 msgstr "משיכה"
 
-#: filtertransdialog.cpp:256 import_export/univcsvdialog.cpp:94
+#: filtertransdialog.cpp:257 import_export/univcsvdialog.cpp:94
 #: mmcheckingpanel.cpp:974 model/Model_Billsdeposits.cpp:32
 #: model/Model_Checking.cpp:30 splitdetailsdialog.cpp:119
 msgid "Deposit"
 msgstr "הפקדה"
 
-#: filtertransdialog.cpp:258
+#: filtertransdialog.cpp:259
 msgid "Transfer To"
 msgstr "העבר ל"
 
-#: filtertransdialog.cpp:260
+#: filtertransdialog.cpp:261
 msgid "Transfer From"
 msgstr "העבר מ"
 
-#: filtertransdialog.cpp:273
+#: filtertransdialog.cpp:274
 msgid "Amount Range"
 msgstr "טווח סכומים"
 
-#: filtertransdialog.cpp:343
+#: filtertransdialog.cpp:344
 msgid "&Clear "
 msgstr "&נקה "
 
-#: filtertransdialog.cpp:420 filtertransdialog.cpp:430
+#: filtertransdialog.cpp:421 filtertransdialog.cpp:431
 msgid "Invalid Amount Entered "
 msgstr "הוזן סכום לא תקין "
 
-#: filtertransdialog.cpp:420 filtertransdialog.cpp:430
+#: filtertransdialog.cpp:421 filtertransdialog.cpp:431
 #: import_export/qif_import_gui.cpp:696 import_export/qif_import_gui.cpp:827
 #: maincurrencydialog.cpp:524 mmSimpleDialogs.cpp:154 mmframe.cpp:2844
 #: splittransactionsdialog.cpp:206 stockspanel.cpp:813 stockspanel.cpp:814
 msgid "Error"
 msgstr "שגיאה"
 
-#: filtertransdialog.cpp:766
+#: filtertransdialog.cpp:765
 msgid "Filtering Details: "
 msgstr "פרטי סינון: "
 
@@ -2311,7 +2307,7 @@ msgstr "דוח דוגמא חדש"
 msgid "Change Group"
 msgstr "שנה קבוצה"
 
-#: general_report_manager.cpp:680
+#: general_report_manager.cpp:680 general_report_manager.cpp:846
 msgid "Rename Group"
 msgstr "שנה שם קבוצה"
 
@@ -2352,10 +2348,6 @@ msgstr "שנה קבוצת דוחות"
 msgid "Enter or choose name for the new group"
 msgstr "הזן או בחר שם עבור הקבוצה החדשה"
 
-#: general_report_manager.cpp:846
-msgid "Rename group"
-msgstr "שנה שם קבוצה"
-
 #: general_report_manager.cpp:907
 msgid "Add Report Group"
 msgstr "הוסף קבוצת דוחות"
@@ -2377,13 +2369,13 @@ msgstr "דוח חדש"
 msgid "Choose file to Save As Report"
 msgstr "בחר קובץ לשמירה כדוח"
 
-#: import_export/parsers.cpp:44 import_export/univcsvdialog.cpp:1261
+#: import_export/parsers.cpp:44 import_export/univcsvdialog.cpp:1262
 #: mmSimpleDialogs.cpp:220
 msgid "Unable to open file."
 msgstr "לא ניתן לפתוח קובץ."
 
 #: import_export/parsers.cpp:44 import_export/parsers.cpp:87
-#: import_export/univcsvdialog.cpp:749 mmframe.cpp:2138 mmframe.cpp:2157
+#: import_export/univcsvdialog.cpp:750 mmframe.cpp:2138 mmframe.cpp:2157
 msgid "Universal CSV Import"
 msgstr "אוניברסלי  CSV יבוא"
 
@@ -2391,58 +2383,38 @@ msgstr "אוניברסלי  CSV יבוא"
 msgid "Unable to create file."
 msgstr "לא ניתן ליצר קובץ."
 
-#: import_export/parsers.cpp:107 import_export/parsers.cpp:244
+#: import_export/parsers.cpp:107 import_export/parsers.cpp:246
 msgid "Could not save file."
 msgstr "לא ניתן לשמור קובץ."
 
-#: import_export/parsers.cpp:107 import_export/parsers.cpp:244
+#: import_export/parsers.cpp:107 import_export/parsers.cpp:246
 msgid "Export error"
 msgstr "שגיאת יצוא"
 
-#: import_export/parsers.cpp:132 import_export/parsers.cpp:140
+#: import_export/parsers.cpp:133 import_export/parsers.cpp:142
 msgid "File is not in Excel XML Spreadsheet 2003 format."
 msgstr "הקובץ אינו בתבנית XML גיליון אלקטרוני אקסל 2003."
 
-#: import_export/parsers.cpp:132 import_export/parsers.cpp:140
-#: import_export/parsers.cpp:153 import_export/parsers.cpp:161
+#: import_export/parsers.cpp:133 import_export/parsers.cpp:142
+#: import_export/parsers.cpp:155 import_export/parsers.cpp:163
 msgid "Parsing error"
 msgstr "שגיאת ניתוח"
 
-#: import_export/parsers.cpp:138 import_export/parsers.cpp:202
-msgid "Workbook"
-msgstr "חוברת עבודה"
-
-#: import_export/parsers.cpp:138
-msgid "urn:schemas-microsoft-com:office:spreadsheet"
-msgstr "urn:schemas-microsoft-com:office:spreadsheet"
-
-#: import_export/parsers.cpp:147 import_export/parsers.cpp:211
-msgid "Worksheet"
-msgstr "גיליון עבודה"
-
-#: import_export/parsers.cpp:153
+#: import_export/parsers.cpp:155
 msgid "Could not find Worksheet."
 msgstr "גיליון עבודה לא נימצא."
 
-#: import_export/parsers.cpp:159 import_export/parsers.cpp:216
+#: import_export/parsers.cpp:161
 msgid "Table"
 msgstr "טבלה"
 
-#: import_export/parsers.cpp:161
+#: import_export/parsers.cpp:163
 msgid "Could not find Table."
 msgstr "לא נמצאה טבלה."
 
-#: import_export/parsers.cpp:168 import_export/parsers.cpp:221
-msgid "Row"
-msgstr "שורה"
-
-#: import_export/parsers.cpp:175 import_export/parsers.cpp:226
-msgid "Cell"
-msgstr "תא"
-
-#: import_export/parsers.cpp:227 import_export/qif_import_gui.cpp:217
-msgid "Data"
-msgstr "נתונים"
+#: import_export/parsers.cpp:214
+msgid "Transactions"
+msgstr ""
 
 #: import_export/qif_export.cpp:40 import_export/qif_export.cpp:227
 #: import_export/qif_export.cpp:305
@@ -2504,7 +2476,7 @@ msgstr "בחר חשבון לייצא:"
 msgid "QIF Files"
 msgstr "QIF קובצי"
 
-#: import_export/qif_export.cpp:272 import_export/univcsvdialog.cpp:1245
+#: import_export/qif_export.cpp:272 import_export/univcsvdialog.cpp:1246
 msgid "CSV Files"
 msgstr "קובצי CSV"
 
@@ -2575,12 +2547,16 @@ msgstr "כלול שדה מוטב בהערות"
 msgid "Filtering Details:"
 msgstr "פרטי סינון: "
 
+#: import_export/qif_import_gui.cpp:217
+msgid "Data"
+msgstr "נתונים"
+
 #: import_export/qif_import_gui.cpp:315 import_export/qif_import_gui.cpp:318
 #: import_export/qif_import_gui.cpp:467 import_export/qif_import_gui.cpp:470
 #: import_export/qif_import_gui.cpp:476 import_export/qif_import_gui.cpp:1014
-#: import_export/univcsvdialog.cpp:600 import_export/univcsvdialog.cpp:676
-#: import_export/univcsvdialog.cpp:680 import_export/univcsvdialog.cpp:700
-#: import_export/univcsvdialog.cpp:706 transdialog.cpp:263 webapp.cpp:386
+#: import_export/univcsvdialog.cpp:601 import_export/univcsvdialog.cpp:677
+#: import_export/univcsvdialog.cpp:681 import_export/univcsvdialog.cpp:701
+#: import_export/univcsvdialog.cpp:707 transdialog.cpp:263 webapp.cpp:386
 #: webapp.cpp:390
 msgid "Unknown"
 msgstr "לא ידוע"
@@ -2680,13 +2656,13 @@ msgstr "מייבא תנועות מפוצלות"
 msgid "Import finished successfully"
 msgstr "היבוא הסתיים בהצלחה"
 
-#: import_export/qif_import_gui.cpp:841 import_export/univcsvdialog.cpp:817
+#: import_export/qif_import_gui.cpp:841 import_export/univcsvdialog.cpp:818
 #: stockdialog.cpp:656
 #, c-format
 msgid "Total Imported : %ld"
 msgstr "סך כל יובאו : %ld"
 
-#: import_export/qif_import_gui.cpp:849 import_export/univcsvdialog.cpp:845
+#: import_export/qif_import_gui.cpp:849 import_export/univcsvdialog.cpp:846
 msgid "Imported transactions discarded by user!"
 msgstr "נמחקו על-ידי המשתמש תנועות מיובאות"
 
@@ -2699,7 +2675,7 @@ msgstr "מתארך או מסיכת תאריך שגויים"
 msgid "Added account: %s"
 msgstr "התווסף חשבון: %s"
 
-#: import_export/qif_import_gui.cpp:1100 import_export/univcsvdialog.cpp:684
+#: import_export/qif_import_gui.cpp:1100 import_export/univcsvdialog.cpp:685
 #, c-format
 msgid "Added payee: %s"
 msgstr "התווסף מוטב:  %s"
@@ -2830,121 +2806,124 @@ msgstr "יבא קובץ"
 msgid "Export File"
 msgstr "יצא קובץ"
 
-#: import_export/univcsvdialog.cpp:462
-msgid "Default account \""
-msgstr "מחק חשבון \""
-
 #: import_export/univcsvdialog.cpp:463
+#, c-format
+msgid ""
+"Default account '%s' for this template does not exist.\n"
+"Please select a new account."
+msgstr ""
+
+#: import_export/univcsvdialog.cpp:464
 msgid "Account does not exist"
 msgstr "חשבון לא קיים"
 
-#: import_export/univcsvdialog.cpp:721
+#: import_export/univcsvdialog.cpp:722
 msgid ""
 "Incorrect fields specified for import! Requires at least Date and Amount."
 msgstr ""
 "לא הוגדרו השדות הנחוצים ליבוא! השדות המינימליים הדרושים הם תאריך וסכום."
 
-#: import_export/univcsvdialog.cpp:722 import_export/univcsvdialog.cpp:824
+#: import_export/univcsvdialog.cpp:723 import_export/univcsvdialog.cpp:825
 #: webappdialog.cpp:272
 msgid "Import"
 msgstr "יבוא"
 
-#: import_export/univcsvdialog.cpp:750
+#: import_export/univcsvdialog.cpp:751
 msgid "Transactions imported from file: "
 msgstr "תנועות יובאו מקובץ:"
 
-#: import_export/univcsvdialog.cpp:762
+#: import_export/univcsvdialog.cpp:763
 #, c-format
 msgid ""
 "Transactions imported from file\n"
 "to account %s : %ld"
 msgstr "תנועות יובאו מקובץ לחשבון %s : %ld"
 
-#: import_export/univcsvdialog.cpp:781 import_export/univcsvdialog.cpp:783
+#: import_export/univcsvdialog.cpp:782 import_export/univcsvdialog.cpp:784
 #, c-format
 msgid "Line: %ld"
 msgstr "שורה:  %ld"
 
-#: import_export/univcsvdialog.cpp:782 import_export/univcsvdialog.cpp:784
+#: import_export/univcsvdialog.cpp:783 import_export/univcsvdialog.cpp:785
 msgid "One of the following fields: Date, Amount, Type is missing, skipping"
 msgstr " אחד השדות הבאים: תאריך, סכום או סוג חסר, מדלג"
 
-#: import_export/univcsvdialog.cpp:806 import_export/univcsvdialog.cpp:807
+#: import_export/univcsvdialog.cpp:807 import_export/univcsvdialog.cpp:808
 #, c-format
 msgid "Line : %ld imported OK."
 msgstr " שורה: %ld יובא בהצלחה."
 
-#: import_export/univcsvdialog.cpp:815 stockdialog.cpp:654
+#: import_export/univcsvdialog.cpp:816 stockdialog.cpp:654
 #, c-format
 msgid "Total Lines : %ld"
 msgstr "סך כל שורות : %ld"
 
-#: import_export/univcsvdialog.cpp:819
+#: import_export/univcsvdialog.cpp:820
 #, c-format
 msgid "Log file written to : %s"
 msgstr "%s : קובץ לוג נכתב ל"
 
-#: import_export/univcsvdialog.cpp:822 stockdialog.cpp:662
+#: import_export/univcsvdialog.cpp:823 stockdialog.cpp:662
 msgid "Please confirm saving..."
 msgstr "נא אשר שמירה..."
 
-#: import_export/univcsvdialog.cpp:828
+#: import_export/univcsvdialog.cpp:829
 msgid "Imported transactions have been flagged so you can review them."
 msgstr "תנועות שיובאו סומנו כך שתוכל לבקרן."
 
-#: import_export/univcsvdialog.cpp:839
+#: import_export/univcsvdialog.cpp:840
 #, c-format
 msgid "Transactions saved to database in account: %s"
 msgstr "תנועה נשמרה במסד הנתונים לחשבון:  %s"
 
-#: import_export/univcsvdialog.cpp:863
+#: import_export/univcsvdialog.cpp:864
 msgid ""
 "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr ""
 "לא הוגדרו השדות הנחוצים ליבוא! השדות המינימליים הדרושים הם תאריך וסכום."
 
-#: import_export/univcsvdialog.cpp:864 import_export/univcsvdialog.cpp:985
+#: import_export/univcsvdialog.cpp:865 import_export/univcsvdialog.cpp:986
 msgid "Export"
 msgstr "יצא"
 
-#: import_export/univcsvdialog.cpp:874
+#: import_export/univcsvdialog.cpp:875
 msgid "Overwrite existing file?"
 msgstr "האם לדרוס קובץ קיים?"
 
-#: import_export/univcsvdialog.cpp:874
+#: import_export/univcsvdialog.cpp:875
 msgid "File exists"
 msgstr "קובץ קיים"
 
-#: import_export/univcsvdialog.cpp:880
+#: import_export/univcsvdialog.cpp:881
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr "לא ניתן למחוק את הקובץ הקיים. הקובץ עשוי להיות נעול על ידי תכנית אחרת."
 
-#: import_export/univcsvdialog.cpp:881
+#: import_export/univcsvdialog.cpp:882
 msgid "Destination file error"
 msgstr "שגיאת קובץ יעד"
 
-#: import_export/univcsvdialog.cpp:984
+#: import_export/univcsvdialog.cpp:985
 #, c-format
 msgid "Transactions exported: %ld"
 msgstr "תנועות יוצאו:  %ld"
 
-#: import_export/univcsvdialog.cpp:1228 stockdialog.cpp:570
+#: import_export/univcsvdialog.cpp:1229 stockdialog.cpp:570
 msgid "Choose CSV data file to import"
 msgstr "בחר קובץ נתונים CSV לייבא"
 
-#: import_export/univcsvdialog.cpp:1231
+#: import_export/univcsvdialog.cpp:1232
 msgid "Choose CSV data file to export"
 msgstr "בחר קובץ נתונים CSV לייצא "
 
-#: import_export/univcsvdialog.cpp:1234
+#: import_export/univcsvdialog.cpp:1235
 msgid "Choose MXL data file to import"
 msgstr "בחר קובץ נתונים XML לייבא"
 
-#: import_export/univcsvdialog.cpp:1237
+#: import_export/univcsvdialog.cpp:1238
 msgid "Choose MXL data file to export"
 msgstr "בחר קובץ נתונים XML ליצוא"
 
-#: import_export/univcsvdialog.cpp:1244
+#: import_export/univcsvdialog.cpp:1245
 msgid "XML Files (*.xml) | *.xml;*.XML | All files | *.*"
 msgstr "קבצי XML (*. xml) | *. xml; *. XML | כל הקבצים | *.*"
 
@@ -3326,7 +3305,7 @@ msgstr "האם למחוק את כל  \"%s\" התנועות המוצגות?"
 msgid "Do you really want to delete the selected transaction?"
 msgstr "האם למחוק את התנועות הנבחרות?"
 
-#: mmcheckingpanel.cpp:1606 transdialog.cpp:1051 transdialog.cpp:1083
+#: mmcheckingpanel.cpp:1606 transdialog.cpp:1050 transdialog.cpp:1082
 msgid "MMEX Transaction Check"
 msgstr "בדיקת תנועות MMEX"
 
@@ -4120,11 +4099,11 @@ msgstr "שנה סוג חשבון"
 msgid "Account: %s - Select new type."
 msgstr "חשבון:  %s  - בחר סוג חדש."
 
-#: mmframe.cpp:2785 payeedialog.cpp:315
+#: mmframe.cpp:2785 payeedialog.cpp:314
 msgid "Payee Relocation Completed."
 msgstr "העברת מוטב הושלמה."
 
-#: mmframe.cpp:2789 payeedialog.cpp:319
+#: mmframe.cpp:2789 payeedialog.cpp:318
 msgid "Payee Relocation Result"
 msgstr "תוצאת העברת מוטבים"
 
@@ -5021,11 +5000,11 @@ msgstr "כלים -> העברה של -> מוטבים"
 msgid "Organize Payees: Delete Error"
 msgstr "נהל מוטבים: מחק שגיאה"
 
-#: payeedialog.cpp:361
+#: payeedialog.cpp:360
 msgid "Define Default Category"
 msgstr "הגדר קטגורית ברירת מחדל"
 
-#: payeedialog.cpp:376
+#: payeedialog.cpp:375
 msgid "Relocate Payee"
 msgstr "העבר תנועות מוטב"
 
@@ -5053,41 +5032,41 @@ msgstr "העבר את:"
 msgid "to:"
 msgstr "ל:"
 
-#: relocatecategorydialog.cpp:181 relocatepayeedialog.cpp:137
+#: relocatecategorydialog.cpp:179 relocatepayeedialog.cpp:137
 msgid "Please Confirm:"
 msgstr "נא אשר:"
 
-#: relocatecategorydialog.cpp:183
+#: relocatecategorydialog.cpp:181
 #, c-format
 msgid "Records found in transactions: %i"
 msgstr "רשומות שנמצאו בתנועה:  %i"
 
-#: relocatecategorydialog.cpp:184
+#: relocatecategorydialog.cpp:182
 #, c-format
 msgid "Records found in split transactions: %i"
 msgstr "רשומות שנמצאו בתנועות מפוצלות: %i"
 
-#: relocatecategorydialog.cpp:185
+#: relocatecategorydialog.cpp:183
 #, c-format
 msgid "Records found in recurring transactions: %i"
 msgstr "רשומות שנמצאו בתנועות מחזוריות: %i"
 
-#: relocatecategorydialog.cpp:186
+#: relocatecategorydialog.cpp:184
 #, c-format
 msgid "Records found in recurring split transactions: %i"
 msgstr "רשומות שנמצאו בתנועות מחזוריות מפוצלות: %i"
 
-#: relocatecategorydialog.cpp:187
+#: relocatecategorydialog.cpp:185
 #, c-format
 msgid "Records found as Default Payee Category: %i"
 msgstr "רשומות שנמצאו כמוטבים ברירת מחדל לקטגוריה: %i"
 
-#: relocatecategorydialog.cpp:188
+#: relocatecategorydialog.cpp:186
 #, c-format
 msgid "Records found in budget: %i"
 msgstr "רשומות שנמצאו בתקציב: %i"
 
-#: relocatecategorydialog.cpp:189
+#: relocatecategorydialog.cpp:187
 #, c-format
 msgid ""
 "Changing all categories of: \n"
@@ -5096,7 +5075,7 @@ msgstr ""
 "מחליף את כל הקטגוריות מ: %s\n"
 "  לקטגוריה: %s"
 
-#: relocatecategorydialog.cpp:192
+#: relocatecategorydialog.cpp:190
 msgid "Category Relocation Confirmation"
 msgstr "העברת קטגוריה הושלמה"
 
@@ -5872,7 +5851,7 @@ msgstr ""
 msgid "Confirm to add new payee"
 msgstr "אשר הוספת מוטב"
 
-#: transdialog.cpp:1081
+#: transdialog.cpp:1080
 msgid ""
 "This transaction will exceed your account limit.\n"
 "\n"
@@ -5882,31 +5861,31 @@ msgstr ""
 "\n"
 "האם להמשיך?"
 
-#: transdialog.cpp:1157
+#: transdialog.cpp:1156
 msgid "Specify account the money is taken from"
 msgstr "הזן את החשבון ממנו נלקח הכסף"
 
-#: transdialog.cpp:1158
+#: transdialog.cpp:1157
 msgid "Specify account the money is moved to"
 msgstr "הזן את החשבון אליו מועבר הכסף"
 
-#: transdialog.cpp:1159
+#: transdialog.cpp:1158
 msgid "Specify the transfer amount in the From Account."
 msgstr "הזן את סכום ההעברה בחשבון השולח."
 
-#: transdialog.cpp:1167
+#: transdialog.cpp:1166
 msgid "Specify account for the transaction"
 msgstr "הזן את חשבון התנועה"
 
-#: transdialog.cpp:1169
+#: transdialog.cpp:1168
 msgid "Specify to whom the transaction is going to"
 msgstr "הגדר למי הולכת התנועה"
 
-#: transdialog.cpp:1175 usertransactionpanel.cpp:96
+#: transdialog.cpp:1174 usertransactionpanel.cpp:96
 msgid "Specify the date of the transaction"
 msgstr "הזן את תאריך התנועה"
 
-#: transdialog.cpp:1176 usertransactionpanel.cpp:100
+#: transdialog.cpp:1175 usertransactionpanel.cpp:100
 msgid "Retard or advance the date of the transaction"
 msgstr "אחר או קדם את תאריך התנועה"
 
@@ -8255,6 +8234,36 @@ msgid ""
 msgstr ""
 "טיפ : לחישובים הזן ביטויים כמו ( 2 + 2 ) * ( 2 + 2 )\n"
 "חישובים יתבצעו והתוצאה תשמש כהזנה."
+
+#~ msgid "Enter the name of the category to add or edit here"
+#~ msgstr "הזן את שם הקטגוריה להוספה או עריכה"
+
+#~ msgid "You have modified choiches: ones removed will be cleaned!"
+#~ msgstr "ערכת שינוים באפשרויות: הם ינוקו לאחר שהוסרו!"
+
+#~ msgid "%i occurrencies founded and replaced!"
+#~ msgstr "%i  שערי מטבע נמצאו והוחלפו"
+
+#~ msgid "Rename group"
+#~ msgstr "שנה שם קבוצה"
+
+#~ msgid "Workbook"
+#~ msgstr "חוברת עבודה"
+
+#~ msgid "urn:schemas-microsoft-com:office:spreadsheet"
+#~ msgstr "urn:schemas-microsoft-com:office:spreadsheet"
+
+#~ msgid "Worksheet"
+#~ msgstr "גיליון עבודה"
+
+#~ msgid "Row"
+#~ msgstr "שורה"
+
+#~ msgid "Cell"
+#~ msgstr "תא"
+
+#~ msgid "Default account \""
+#~ msgstr "מחק חשבון \""
 
 #~ msgid "New/Edit Asset"
 #~ msgstr "הוסף/ערוך נכס"
