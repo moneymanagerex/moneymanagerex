@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2014 Nikolay
+Copyright (C) 2014 Nikolay Akimov
 Copyright (C) 2015 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
@@ -326,8 +326,7 @@ void UserTransactionPanel::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
 
 void UserTransactionPanel::OnTransCategoryButton(wxCommandEvent& WXUNUSED(event))
 {
-    mmCategDialog dlg(this);
-    dlg.setTreeSelection(m_category_id, m_subcategory_id);
+    mmCategDialog dlg(this, m_category_id, m_subcategory_id);
     if (dlg.ShowModal() == wxID_OK)
     {
         m_category_id = dlg.getCategId();

@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012 Madhan Kanagavel
-                        Modified by: Stefano Giorgio, Nikolay
+Modified by: Stefano Giorgio, Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -161,8 +161,7 @@ void SplitDetailDialog::CreateControls()
 
 void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
 {
-    mmCategDialog dlg(this);
-    dlg.setTreeSelection(split_.CATEGID, split_.SUBCATEGID);
+    mmCategDialog dlg(this, split_.CATEGID, split_.SUBCATEGID, false);
     if (dlg.ShowModal() == wxID_OK)
     {
         split_.CATEGID = dlg.getCategId();

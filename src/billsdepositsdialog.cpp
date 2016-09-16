@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2016 Nikolay & Stefano Giorgio
+ Copyright (C) 2016 Nikolay Akimov
+ Copyright (C) 2016 Stefano Giorgio
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -781,8 +782,7 @@ void mmBDDialog::OnCategs(wxCommandEvent& /*event*/)
     }
     else
     {
-        mmCategDialog dlg(this);
-        dlg.setTreeSelection(m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
+        mmCategDialog dlg(this, m_bill_data.CATEGID, m_bill_data.SUBCATEGID, false);
         if (dlg.ShowModal() == wxID_OK)
         {
             m_bill_data.CATEGID = dlg.getCategId();

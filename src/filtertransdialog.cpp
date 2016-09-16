@@ -1,5 +1,6 @@
 ﻿/*******************************************************
-Copyright (C) 2006-2012
+Copyright (C) 2006 Madhan Kanagavel
+Copyright (C) 2016 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -443,13 +444,11 @@ void mmFilterTransactionsDialog::OnButtoncancelClick( wxCommandEvent& /*event*/ 
 
 void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
 {
-    mmCategDialog dlg(this);
-
     Model_Category::Data* category = Model_Category::instance().get(categID_);
     Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
     int categID = category ? category->CATEGID : -1;
     int subcategID = sub_category ? sub_category->SUBCATEGID : -1;
-    dlg.setTreeSelection(categID, subcategID);
+    mmCategDialog dlg(this, categID, subcategID, false);
 
     if (dlg.ShowModal() == wxID_OK)
     {

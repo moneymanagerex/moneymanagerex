@@ -45,9 +45,10 @@ class mmCategDialog : public wxDialog
 
 public:
     mmCategDialog();
-    mmCategDialog(wxWindow* parent, int type = -1
-        , bool bEnableSelect = true
-        , bool bEnableRelocate = true);
+    mmCategDialog(wxWindow* parent
+        , int category_id = -1, int subcategory_id = -1
+        , bool bEnableRelocate = true
+        , bool bEnableSelect = true);
 
     bool Create(wxWindow* parent
         , wxWindowID id
@@ -56,25 +57,24 @@ public:
         , const wxSize& size
         , long style);
 
-    void setTreeSelection(int category_id, int subcategory_id);
     int getCategId()
     {
-        return m_category_id;
+        return m_categ_id;
     }
     int getSubCategId()
     {
-        return m_subcategory_id;
+        return m_subcateg_id;
     }
     bool getRefreshRequested()
     {
-        return refreshRequested_;
+        return m_refresh_requested;
     }
     wxString getFullCategName();
 
 private:
     void CreateControls();
     void fillControls();
-    void arrangeItems();
+    void setTreeSelection(int category_id, int subcategory_id);
 
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
@@ -94,7 +94,6 @@ private:
     void setTreeSelection(const wxString& catName, const wxString& subCatName);
 
     wxTreeCtrl* m_treeCtrl;
-    wxTextCtrl* m_textCtrl;
     wxButton* m_buttonAdd;
     wxButton* m_buttonEdit;
     wxButton* m_buttonSelect;
@@ -105,16 +104,15 @@ private:
     wxTreeItemId selectedItemId_;
     wxTreeItemId root_;
     wxTreeItemId getTreeItemFor(const wxTreeItemId& itemID, const wxString& itemText);
-    int m_transaction_type;
-    bool bEnableSelect_;
-    bool bEnableRelocate_;
-    int m_category_id;
-    int m_subcategory_id;
-    int InitSelectedcategID_;
-    int InitSelectedsubcategID_;
+    bool m_enable_select;
+    bool m_enable_relocate;
+    int m_categ_id;
+    int m_subcateg_id;
+    int m_init_selected_categ_id;
+    int m_init_selected_subcateg_id;
     wxColour NormalColor_;
-    wxArrayString hidden_categs_;
-    bool refreshRequested_;
+    wxArrayString m_hidden_categs;
+    bool m_refresh_requested;
 
     enum
     {
