@@ -515,7 +515,7 @@ msgid ""
 "Would you want to create one?"
 msgstr ""
 "Cuenta de activos no encontrada.\n"
-"\n!
+"\n"
 "¿Quiere crear una?"
 
 #: src/assetspanel.cpp:62 src/billsdepositspanel.cpp:95
