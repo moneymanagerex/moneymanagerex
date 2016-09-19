@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2016-09-16 11:48+0300\n"
-"PO-Revision-Date: 2016-09-19 16:21+0300\n"
+"PO-Revision-Date: 2016-09-19 17:18+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2064,7 +2064,7 @@ msgstr "Массовое обновление содержимого"
 
 #: src/customfieldlistdialog.cpp:294 src/customfieldlistdialog.cpp:301
 msgid "To apply new changes close and re-open Custom Field panel"
-msgstr ""
+msgstr "Чтобы применить новые изменения надо закрыть и снова открыть панель"
 
 #: src/customfieldlistdialog.cpp:294 src/customfieldlistdialog.cpp:301
 msgid "Custom Field"
@@ -2080,6 +2080,8 @@ msgid ""
 "Please restore DB from autocreated pre-upgrade backup and retry or contact "
 "MMEX support"
 msgstr ""
+"Пожалуйста, восстановите БД из автоматического созданной резервной копии "
+"перед обновлением и повторить попытку или обратитесь в службу поддержки MMEX"
 
 #: src/dbupgrade.cpp:73 src/dbupgrade.cpp:114 src/dbupgrade.cpp:126
 msgid "MMEX database upgrade"
@@ -2095,11 +2097,13 @@ msgid ""
 "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
 msgstr ""
+"MMEX версия базы данных %i я не работает с этой версией MMEX.\n"
+"Пожалуйста, обновите MMEX до более новой версии."
 
 #: src/dbupgrade.cpp:125
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "База данных MMEX успешно обновлен до версии%i"
 
 #: src/dbupgrade.cpp:126
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
@@ -4012,7 +4016,7 @@ msgstr "MMEX: Зашифрованная БД"
 
 #: src/mmframe.cpp:1754
 msgid "Have MMEX support provided you a debug/patch file?"
-msgstr ""
+msgstr "Поддержка MMEX предоставила вам файл отладки/патч?"
 
 #: src/mmframe.cpp:1754
 msgid "MMEX upgrade"
@@ -4126,6 +4130,8 @@ msgstr ""
 #: src/mmframe.cpp:2005
 msgid "Please use this function only if explicitly requested by MMEX support"
 msgstr ""
+"Пожалуйста, используйте эту функцию только в случае явного запроса от "
+"поддержки MMEX"
 
 #: src/mmframe.cpp:2006
 msgid "DB Debug"
@@ -5656,6 +5662,8 @@ msgid ""
 "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
 msgstr ""
+"Введите количество акций.\n"
+"Используется при создании первоначальных долей сделки."
 
 #: src/stockdialog.cpp:227 src/stockspanel.cpp:96
 msgid "*Share Price"
@@ -6043,7 +6051,7 @@ msgstr "Укажите счёт для данной повторяющейся �
 
 #: src/usertransactionpanel.cpp:125
 msgid "Withdraw funds from or deposit funds to this Account."
-msgstr ""
+msgstr "Вывод средств из или ввод средств на этот счет."
 
 #: src/usertransactionpanel.cpp:127
 msgid "&Transfer"
