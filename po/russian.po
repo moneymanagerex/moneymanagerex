@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2016-09-16 11:48+0300\n"
-"PO-Revision-Date: 2016-09-16 11:49+0300\n"
+"PO-Revision-Date: 2016-09-19 16:21+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -188,7 +188,7 @@ msgstr "Ведомость:"
 
 #: src/accountdialog.cpp:301
 msgid "Locked"
-msgstr ""
+msgstr "Заблокированный"
 
 #: src/accountdialog.cpp:305
 msgid "Reconciled Date:"
@@ -297,7 +297,7 @@ msgstr "Остаток на счете, нижний предел. Ноль дл
 
 #: src/accountdialog.cpp:390
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Кредитный лимит для счета. Ноль для отключения"
 
 #: src/accountdialog.cpp:433
 msgid "Account Name "
@@ -490,6 +490,9 @@ msgid ""
 "\n"
 "Would you want to create one?"
 msgstr ""
+"Счет активов не найден.\n"
+"\n"
+"Вы хотели бы создать его?"
 
 #: src/assetspanel.cpp:62 src/billsdepositspanel.cpp:95
 #: src/mmcheckingpanel.cpp:967 src/stockspanel.cpp:91
@@ -654,6 +657,9 @@ msgid ""
 "\n"
 "Multiple transactions for this asset are not recommended."
 msgstr ""
+"Этот актив не имеет свой собственный счет\n"
+"\n"
+"Не рекомендуется использовать несколько транзакций для этого актива."
 
 #: src/assetspanel.cpp:772
 msgid "Asset Management"
@@ -664,6 +670,8 @@ msgid ""
 "Account \t Date\t   Value\n"
 "\n"
 msgstr ""
+"Счёт \t Дата\t  Стоимость\n"
+"\n"
 
 #: src/attachmentdialog.cpp:54 src/customfieldlistdialog.cpp:54
 #: src/import_export/qif_import_gui.cpp:96
@@ -964,15 +972,15 @@ msgstr "Дата платежа"
 
 #: src/billsdepositsdialog.cpp:440
 msgid "Request user to enter payment on the 'Date Paid'"
-msgstr ""
+msgstr "Пользователь должен ввести оплату на \"Дата Оплаты\""
 
 #: src/billsdepositsdialog.cpp:441
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
+msgstr "Пользователь должен ввести транзакцию на \"Дата Оплаты\""
 
 #: src/billsdepositsdialog.cpp:444
 msgid "Grant automatic execute permission for this entry."
-msgstr ""
+msgstr "Автоматическое разрешение на выполнение данной записи."
 
 #: src/billsdepositsdialog.cpp:446
 #, fuzzy
@@ -991,7 +999,7 @@ msgstr "Укажите дату проводки"
 
 #: src/billsdepositsdialog.cpp:474
 msgid "Reset 'Date Paid' to 'Today's Date'"
-msgstr ""
+msgstr "Сброс \"Дата Оплаты\" на \"Сегодняшняя дата\""
 
 #: src/billsdepositsdialog.cpp:481 src/billsdepositspanel.cpp:96
 msgid "Date Paid"
@@ -1891,7 +1899,7 @@ msgstr "Настраиваемые поля | %s %i"
 #: src/customfielddialog.cpp:74
 #, c-format
 msgid "Custom Fields | New %s"
-msgstr ""
+msgstr "Пользовательские поля | Новое %s"
 
 #: src/customfielddialog.cpp:213
 msgid "Close custom field window"
@@ -1899,7 +1907,7 @@ msgstr "Закрыть окно "
 
 #: src/customfielddialog.cpp:218
 msgid "Add, edit and delete custom fields"
-msgstr ""
+msgstr "Добавлять, редактировать и удалять пользовательские поля"
 
 #: src/customfieldeditdialog.cpp:56
 #, fuzzy
@@ -1955,6 +1963,8 @@ msgid ""
 "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
 msgstr ""
+"Введите значение по умолчанию для этого поля\n"
+"Выберите 'Теперь', чтобы сделать текущую дату/время по умолчанию"
 
 #: src/customfieldeditdialog.cpp:160
 msgid "Choiches"
@@ -1962,11 +1972,11 @@ msgstr "Выбор"
 
 #: src/customfieldeditdialog.cpp:162
 msgid "Enter the choiches for this field separated with a semi-colon"
-msgstr ""
+msgstr "Введите варианты значений для этого поля разделенные точкой с запятой"
 
 #: src/customfieldeditdialog.cpp:206
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "Изменение типа поля удалит все содержимое!"
 
 #: src/customfieldeditdialog.cpp:207 src/customfieldeditdialog.cpp:229
 #: src/mmframe.cpp:1986 src/mmframe.cpp:2005
@@ -1979,7 +1989,7 @@ msgstr "Изменить"
 
 #: src/customfieldeditdialog.cpp:228
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "Вы изменили выбор: одни удалены будут очищены!"
 
 #: src/customfieldlistdialog.cpp:57
 msgid "Properties"
@@ -1988,7 +1998,7 @@ msgstr "Свойства"
 #: src/customfieldlistdialog.cpp:67
 #, c-format
 msgid "Personalize custom fields | %s"
-msgstr ""
+msgstr "Персонализированные пользовательские поля | % s"
 
 #: src/customfieldlistdialog.cpp:178
 #, fuzzy
@@ -2005,6 +2015,8 @@ msgid ""
 "Do you really want to massive update field content?\n"
 "Please consider that there isn't any validation!"
 msgstr ""
+"Вы действительно хотите массово обновить содержимое полей?\n"
+"Пожалуйста, обратите внимание, что нет никакой проверки!"
 
 #: src/customfieldlistdialog.cpp:200
 #, fuzzy
@@ -2019,13 +2031,15 @@ msgstr "Найти то, что"
 #: src/customfieldlistdialog.cpp:217 src/customfieldlistdialog.cpp:223
 #: src/customfieldlistdialog.cpp:238
 msgid "Update Custom Field Content"
-msgstr ""
+msgstr "Обновление пользовательского поля"
 
 #: src/customfieldlistdialog.cpp:209
 msgid ""
 "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
+"Вы хотите, чтобы обновить содержимое на пустое значение?\n"
+"Нажмите Нет, если вы хотите прервать процедуру замены!"
 
 #: src/customfieldlistdialog.cpp:217
 msgid "Replace with"
@@ -2036,15 +2050,17 @@ msgid ""
 "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
+"Вы хотите, чтобы обновить содержимое на пустое значение?\n"
+"Нажмите Нет, если вы хотите прервать процедуру замены!"
 
 #: src/customfieldlistdialog.cpp:237
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i вхождений найдено и заменено!"
 
 #: src/customfieldlistdialog.cpp:273
 msgid "&Massive content update "
-msgstr ""
+msgstr "Массовое обновление содержимого"
 
 #: src/customfieldlistdialog.cpp:294 src/customfieldlistdialog.cpp:301
 msgid "To apply new changes close and re-open Custom Field panel"
@@ -2057,7 +2073,7 @@ msgstr "Пользовательские поля"
 #: src/dbupgrade.cpp:71
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Обновление базы данных MMEX до версии %i не удалось!"
 
 #: src/dbupgrade.cpp:72
 msgid ""
@@ -2467,7 +2483,7 @@ msgstr "Не могу найти таблицу."
 
 #: src/import_export/parsers.cpp:214
 msgid "Transactions"
-msgstr ""
+msgstr "Транзакции"
 
 #: src/import_export/qif_export.cpp:40 src/import_export/qif_export.cpp:227
 #: src/import_export/qif_export.cpp:305
@@ -2736,7 +2752,7 @@ msgstr "Импорт прерван пользователем!"
 
 #: src/import_export/qif_import_gui.cpp:947
 msgid "Date format or date mask is incorrect"
-msgstr ""
+msgstr "Формат или маска даты неверна"
 
 #: src/import_export/qif_import_gui.cpp:1071
 #, c-format
@@ -2883,6 +2899,8 @@ msgid ""
 "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr ""
+"Счёт по умолчанию '% s' для этого шаблона не существует.\n"
+"Пожалуйста, выберите другой счёт."
 
 #: src/import_export/univcsvdialog.cpp:464
 msgid "Account does not exist"
@@ -2979,6 +2997,8 @@ msgstr "Файл существует."
 #: src/import_export/univcsvdialog.cpp:881
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr ""
+"Не удалось удалить существующий файл. Файл может быть заблокирован другой "
+"программой."
 
 #: src/import_export/univcsvdialog.cpp:882
 #, fuzzy
@@ -3011,7 +3031,7 @@ msgstr "Выберите QIF файл для экспорта"
 
 #: src/import_export/univcsvdialog.cpp:1245
 msgid "XML Files (*.xml) | *.xml;*.XML | All files | *.*"
-msgstr ""
+msgstr "XML файлы (*.xml) | *.xml;*.XML | Все файлы | *.*"
 
 #: src/maincurrencydialog.cpp:70 src/reports/summarystocks.cpp:174
 #: src/stockdialog.cpp:416 src/stockspanel.cpp:94
@@ -3137,6 +3157,8 @@ msgid ""
 "Do you want to update all currency history? Any custom currency rate will be "
 "deleted!"
 msgstr ""
+"Вы хотите обновить всю историю валют? Все пользовательские курсы будут "
+"удалены!"
 
 #: src/mmSimpleDialogs.cpp:153
 #, c-format
@@ -3356,7 +3378,7 @@ msgstr "&Повтор"
 
 #: src/mmcheckingpanel.cpp:1131
 msgid "Mark"
-msgstr ""
+msgstr "Отметить"
 
 #: src/mmcheckingpanel.cpp:1134
 msgid "as Reconciled"
@@ -3441,6 +3463,9 @@ msgid ""
 "\n"
 "Multiple instances are no longer supported."
 msgstr ""
+"MMEX уже работает ...\n"
+"\n"
+"Запуск нескольких экземпляров больше не поддерживается."
 
 #: src/mmex.cpp:214
 #, fuzzy
@@ -3852,7 +3877,7 @@ msgstr "Отладка базы данных"
 
 #: src/mmframe.cpp:1551
 msgid "Generate database report or fix errors"
-msgstr ""
+msgstr "Создание отчетов базы данных или исправление ошибок"
 
 #: src/mmframe.cpp:1557
 msgid "Database"
@@ -4204,7 +4229,7 @@ msgstr "Переопределение счёта"
 #: src/mmframe.cpp:2684
 #, c-format
 msgid "Account: %s - Select new type."
-msgstr ""
+msgstr "Счёёт: %s - Выберети новый тип."
 
 #: src/mmframe.cpp:2785 src/payeedialog.cpp:314
 msgid "Payee Relocation Completed."
@@ -4226,7 +4251,7 @@ msgstr "Менеджер отчётов"
 #: src/mmframereport.cpp:99 src/model/Model_Report.cpp:307
 #: src/reports/forecast.cpp:86 src/reports/myusage.cpp:197
 msgid "Caught exception"
-msgstr ""
+msgstr "Исключение"
 
 #: src/mmframereport.cpp:114 src/reports/myusage.cpp:110
 msgid "My Usage"
@@ -4304,7 +4329,7 @@ msgstr "Сводка"
 
 #: src/mmframereport.cpp:259
 msgid "Forecast Report"
-msgstr ""
+msgstr "Прогноз"
 
 #: src/mmhelppanel.cpp:65
 msgid "&Back"
@@ -4498,6 +4523,9 @@ msgid ""
 "\n"
 "Do you wish to continue?"
 msgstr ""
+"Повторяющейся сделка будет превышать лимит счета.\n"
+"\n"
+"Вы хотите продолжить?"
 
 #: src/model/Model_Billsdeposits.cpp:291
 #, fuzzy
@@ -4739,11 +4767,13 @@ msgstr "Установить валюту"
 
 #: src/optionsettingsgeneral.cpp:106
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr ""
+msgstr "Устанавливает валюту по умолчанию с помощью менеджера валют"
 
 #: src/optionsettingsgeneral.cpp:108
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
 msgstr ""
+"Щелкните правой кнопкой мыши и выберите 'Установить в качестве базовой "
+"валюты' в 'Менеджере валют'"
 
 #: src/optionsettingsgeneral.cpp:123
 msgid "Specify the date format for display"
@@ -4909,7 +4939,7 @@ msgstr "Задайте Web App GUID"
 
 #: src/optionsettingsnet.cpp:79
 msgid "More information about WebApp"
-msgstr ""
+msgstr "Дополнительная информация о WebApp"
 
 #: src/optionsettingsnet.cpp:83
 msgid "Proxy Settings"
@@ -6400,7 +6430,7 @@ msgstr "Мастер создания счёта"
 #: src/wizard_newaccount.cpp:34
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr ""
+msgstr "%s содержит все транзакции внутри счетов."
 
 #: src/wizard_newaccount.cpp:35
 #, fuzzy
