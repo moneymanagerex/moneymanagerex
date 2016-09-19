@@ -246,7 +246,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
 
     m_field->REFTYPE = m_fieldRefType;
     m_field->DESCRIPTION = name;
-    m_field->TYPE = m_itemType->GetStringSelection();
+    m_field->TYPE = Model_CustomField::fieldtype_desc(m_itemType->GetSelection());
     m_field->PROPERTIES = Model_CustomField::formatProperties(
         m_itemTooltip->GetValue(),
         m_itemRegEx->GetValue(),
