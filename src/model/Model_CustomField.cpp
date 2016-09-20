@@ -86,13 +86,17 @@ bool Model_CustomField::Delete(const int& FieldID)
 wxString Model_CustomField::fieldtype_desc(const int FieldTypeEnum)
 {
     const auto& item = FIELDTYPE_CHOICES[FieldTypeEnum];
-    wxString reftype_desc = item.second;
+    const wxString reftype_desc = item.second;
     return reftype_desc;
 }
 
 Model_CustomField::FIELDTYPE Model_CustomField::type(const Data* r)
 {
-    for (const auto& item : FIELDTYPE_CHOICES) if (item.second.CmpNoCase(r->TYPE) == 0) return item.first;
+    for (const auto& item : FIELDTYPE_CHOICES)
+    {
+        if (item.second.CmpNoCase(r->TYPE) == 0)
+            return item.first;
+    }
 
     return FIELDTYPE(-1);
 }
