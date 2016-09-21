@@ -3166,13 +3166,13 @@ msgstr "Sélectionner un fichier CSV à exporter"
 
 #: src/import_export/univcsvdialog.cpp:1235
 #, fuzzy
-msgid "Choose MXL data file to import"
-msgstr "Sélectionner le fichier MXL à importer"
+msgid "Choose XML data file to import"
+msgstr "Sélectionner le fichier XML à importer"
 
 #: src/import_export/univcsvdialog.cpp:1238
 #, fuzzy
-msgid "Choose MXL data file to export"
-msgstr "Sélectionner le fichier MXL à exporter"
+msgid "Choose XML data file to export"
+msgstr "Sélectionner le fichier XML à exporter"
 
 #: src/import_export/univcsvdialog.cpp:1245
 #, fuzzy

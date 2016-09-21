@@ -2992,12 +2992,12 @@ msgid "Choose CSV data file to export"
 msgstr "Wybierz dane CSV do eksportu"
 
 #: src/import_export/univcsvdialog.cpp:1235
-msgid "Choose MXL data file to import"
-msgstr "Wybierz plik MXL do importu"
+msgid "Choose XML data file to import"
+msgstr "Wybierz plik XML do importu"
 
 #: src/import_export/univcsvdialog.cpp:1238
-msgid "Choose MXL data file to export"
-msgstr "Wybierz dane MXL do eksportu"
+msgid "Choose XML data file to export"
+msgstr "Wybierz dane XML do eksportu"
 
 #: src/import_export/univcsvdialog.cpp:1245
 msgid "XML Files (*.xml) | *.xml;*.XML | All files | *.*"

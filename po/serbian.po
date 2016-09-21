@@ -3184,12 +3184,12 @@ msgstr "Одабери CSV датотеку за извоз"
 
 #: src/import_export/univcsvdialog.cpp:1235
 #, fuzzy
-msgid "Choose MXL data file to import"
+msgid "Choose XML data file to import"
 msgstr "Одабери CSV датотеку за извоз"
 
 #: src/import_export/univcsvdialog.cpp:1238
 #, fuzzy
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "Одабери QIF датотеку за извоз"
 
 #: src/import_export/univcsvdialog.cpp:1245

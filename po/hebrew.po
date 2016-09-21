@@ -2916,11 +2916,11 @@ msgid "Choose CSV data file to export"
 msgstr "בחר קובץ נתונים CSV לייצא "
 
 #: import_export/univcsvdialog.cpp:1235
-msgid "Choose MXL data file to import"
+msgid "Choose XML data file to import"
 msgstr "בחר קובץ נתונים XML לייבא"
 
 #: import_export/univcsvdialog.cpp:1238
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "בחר קובץ נתונים XML ליצוא"
 
 #: import_export/univcsvdialog.cpp:1245

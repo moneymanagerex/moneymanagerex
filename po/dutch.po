@@ -3011,11 +3011,11 @@ msgid "Choose CSV data file to export"
 msgstr "Selecteer CSV-bestand om te exporteren"
 
 #: src/import_export/univcsvdialog.cpp:1235
-msgid "Choose MXL data file to import"
+msgid "Choose XML data file to import"
 msgstr "Selecteer MXL-bestand voor import"
 
 #: src/import_export/univcsvdialog.cpp:1238
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "Selecteer MXL-bestand om te exporteren"
 
 #: src/import_export/univcsvdialog.cpp:1245

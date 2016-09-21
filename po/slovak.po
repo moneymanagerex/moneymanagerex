@@ -3068,12 +3068,12 @@ msgstr "Vybrať CSV dátový súbor, do ktorého sa bude exportovať"
 
 #: src/import_export/univcsvdialog.cpp:1235
 #, fuzzy
-msgid "Choose MXL data file to import"
+msgid "Choose XML data file to import"
 msgstr "Vybrať CSV dátový súbor, z ktorého sa bude importovať"
 
 #: src/import_export/univcsvdialog.cpp:1238
 #, fuzzy
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "Vybrať QIF dátový súbor, do ktorého sa bude exportovať"
 
 #: src/import_export/univcsvdialog.cpp:1245

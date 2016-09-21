@@ -3168,12 +3168,12 @@ msgstr "CSV-Bestand Exporteren"
 
 #: src/import_export/univcsvdialog.cpp:1235
 #, fuzzy
-msgid "Choose MXL data file to import"
+msgid "Choose XML data file to import"
 msgstr "CSV-Bestand Importeren"
 
 #: src/import_export/univcsvdialog.cpp:1238
 #, fuzzy
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "QIF-Bestand Exporteren"
 
 #: src/import_export/univcsvdialog.cpp:1245

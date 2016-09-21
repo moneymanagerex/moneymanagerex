@@ -3197,12 +3197,12 @@ msgstr "Odaberite CSV datoteku za izvoz"
 
 #: src/import_export/univcsvdialog.cpp:1235
 #, fuzzy
-msgid "Choose MXL data file to import"
+msgid "Choose XML data file to import"
 msgstr "Odaberite CSV datoteku za izvoz"
 
 #: src/import_export/univcsvdialog.cpp:1238
 #, fuzzy
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "Odaberite QIF datoteku za uvoz"
 
 #: src/import_export/univcsvdialog.cpp:1245

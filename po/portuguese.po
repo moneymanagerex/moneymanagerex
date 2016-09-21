@@ -3080,12 +3080,12 @@ msgstr "Escolha o arquivo CSV a ser exportado"
 
 #: src/import_export/univcsvdialog.cpp:1235
 #, fuzzy
-msgid "Choose MXL data file to import"
+msgid "Choose XML data file to import"
 msgstr "Escolha o arquivo CSV para importar"
 
 #: src/import_export/univcsvdialog.cpp:1238
 #, fuzzy
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "Escolha o arquivo QIF a ser exportado"
 
 #: src/import_export/univcsvdialog.cpp:1245

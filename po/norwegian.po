@@ -3181,12 +3181,12 @@ msgstr "Velg fil å eksportere CVS data til"
 
 #: src/import_export/univcsvdialog.cpp:1235
 #, fuzzy
-msgid "Choose MXL data file to import"
+msgid "Choose XML data file to import"
 msgstr "Velg fil å eksportere CVS data til"
 
 #: src/import_export/univcsvdialog.cpp:1238
 #, fuzzy
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "Velg en QIF fil for å importere"
 
 #: src/import_export/univcsvdialog.cpp:1245

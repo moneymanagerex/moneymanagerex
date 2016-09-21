@@ -2987,11 +2987,11 @@ msgid "Choose CSV data file to export"
 msgstr "Выберите файл данных СSV для экспорта"
 
 #: src/import_export/univcsvdialog.cpp:1235
-msgid "Choose MXL data file to import"
-msgstr "Выберите файл  XML для экспорта"
+msgid "Choose XML data file to import"
+msgstr "Выберите файл  XML для импорта"
 
 #: src/import_export/univcsvdialog.cpp:1238
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "Выберите XML файл для экспорта"
 
 #: src/import_export/univcsvdialog.cpp:1245

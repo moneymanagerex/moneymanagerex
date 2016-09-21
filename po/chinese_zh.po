@@ -3179,12 +3179,12 @@ msgstr "選擇CSV匯出日期格式"
 
 #: src/import_export/univcsvdialog.cpp:1235
 #, fuzzy
-msgid "Choose MXL data file to import"
+msgid "Choose XML data file to import"
 msgstr "選擇CSV匯出日期格式"
 
 #: src/import_export/univcsvdialog.cpp:1238
 #, fuzzy
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "選擇欲匯入的QIF資料檔案"
 
 #: src/import_export/univcsvdialog.cpp:1245
