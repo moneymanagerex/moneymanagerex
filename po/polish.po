@@ -1952,11 +1952,11 @@ msgstr ""
 "Dla czasu/daty wpisz 'Now' aby ustawić datę bieżącą jako domyślną"
 
 #: src/customfieldeditdialog.cpp:160
-msgid "Choiches"
+msgid "Choices"
 msgstr "Dobór"
 
 #: src/customfieldeditdialog.cpp:162
-msgid "Enter the choiches for this field separated with a semi-colon"
+msgid "Enter the choices for this field separated with a semicolon"
 msgstr "Wprowadź wybrane do tego pola przedzielając średnikiem"
 
 #: src/customfieldeditdialog.cpp:206

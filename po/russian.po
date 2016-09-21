@@ -1946,11 +1946,11 @@ msgstr ""
 "Выберите 'Теперь', чтобы сделать текущую дату/время по умолчанию"
 
 #: src/customfieldeditdialog.cpp:160
-msgid "Choiches"
+msgid "Choices"
 msgstr "Выбор"
 
 #: src/customfieldeditdialog.cpp:162
-msgid "Enter the choiches for this field separated with a semi-colon"
+msgid "Enter the choices for this field separated with a semicolon"
 msgstr "Введите варианты значений для этого поля разделенные точкой с запятой"
 
 #: src/customfieldeditdialog.cpp:206

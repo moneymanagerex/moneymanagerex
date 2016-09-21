@@ -157,9 +157,9 @@ void mmCustomFieldEditDialog::CreateControls()
         "For date/time insert 'Now' to make current date/time as default"));
     itemFlexGridSizer6->Add(m_itemDefault, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Choiches")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Choices")), g_flagsH);
     m_itemChoiches = new wxTextCtrl(itemPanel5, wxID_ANY, "");
-    m_itemChoiches->SetToolTip(_("Enter the choiches for this field separated with a semi-colon"));
+    m_itemChoiches->SetToolTip(_("Enter the choices for this field separated with a semicolon"));
     itemFlexGridSizer6->Add(m_itemChoiches, g_flagsExpand);
 
     wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);

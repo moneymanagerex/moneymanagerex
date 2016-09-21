@@ -1950,11 +1950,11 @@ msgid ""
 msgstr ""
 
 #: customfieldeditdialog.cpp:160
-msgid "Choiches"
+msgid "Choices"
 msgstr ""
 
 #: customfieldeditdialog.cpp:162
-msgid "Enter the choiches for this field separated with a semi-colon"
+msgid "Enter the choices for this field separated with a semicolon"
 msgstr ""
 
 #: customfieldeditdialog.cpp:206
