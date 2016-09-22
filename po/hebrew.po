@@ -1902,11 +1902,11 @@ msgstr ""
 " להוספת תאריך/שעה בחר ב'כעת'  כדי להפוך תאריך/שעה נוכחייםלברירת מחדל"
 
 #: customfieldeditdialog.cpp:160
-msgid "Choiches"
+msgid "Choices"
 msgstr "ברירה"
 
 #: customfieldeditdialog.cpp:162
-msgid "Enter the choiches for this field separated with a semi-colon"
+msgid "Enter the choices for this field separated with a semicolon"
 msgstr "הזן אפשרויות עבור שדה זה, הפרד בין האפשרויות באמצעות נקודה פסיק"
 
 #: customfieldeditdialog.cpp:206
@@ -2916,11 +2916,11 @@ msgid "Choose CSV data file to export"
 msgstr "בחר קובץ נתונים CSV לייצא "
 
 #: import_export/univcsvdialog.cpp:1235
-msgid "Choose MXL data file to import"
+msgid "Choose XML data file to import"
 msgstr "בחר קובץ נתונים XML לייבא"
 
 #: import_export/univcsvdialog.cpp:1238
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "בחר קובץ נתונים XML ליצוא"
 
 #: import_export/univcsvdialog.cpp:1245

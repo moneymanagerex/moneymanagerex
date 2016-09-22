@@ -1966,11 +1966,11 @@ msgstr ""
 "Voor datum/tijd 'Now' ingeven om de huidige datum/tijd standaard te maken"
 
 #: src/customfieldeditdialog.cpp:160
-msgid "Choiches"
+msgid "Choices"
 msgstr "Keuzes"
 
 #: src/customfieldeditdialog.cpp:162
-msgid "Enter the choiches for this field separated with a semi-colon"
+msgid "Enter the choices for this field separated with a semicolon"
 msgstr ""
 "Keuzemogelijkheden voor dit veld invoeren, gescheiden door een puntkomma"
 
@@ -3011,11 +3011,11 @@ msgid "Choose CSV data file to export"
 msgstr "Selecteer CSV-bestand om te exporteren"
 
 #: src/import_export/univcsvdialog.cpp:1235
-msgid "Choose MXL data file to import"
+msgid "Choose XML data file to import"
 msgstr "Selecteer MXL-bestand voor import"
 
 #: src/import_export/univcsvdialog.cpp:1238
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "Selecteer MXL-bestand om te exporteren"
 
 #: src/import_export/univcsvdialog.cpp:1245

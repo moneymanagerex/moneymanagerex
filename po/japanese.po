@@ -1950,11 +1950,11 @@ msgid ""
 msgstr ""
 
 #: customfieldeditdialog.cpp:160
-msgid "Choiches"
+msgid "Choices"
 msgstr ""
 
 #: customfieldeditdialog.cpp:162
-msgid "Enter the choiches for this field separated with a semi-colon"
+msgid "Enter the choices for this field separated with a semicolon"
 msgstr ""
 
 #: customfieldeditdialog.cpp:206
@@ -2990,12 +2990,12 @@ msgstr "エクスポートする CSV データファイルを選択"
 
 #: import_export/univcsvdialog.cpp:1235
 #, fuzzy
-msgid "Choose MXL data file to import"
+msgid "Choose XML data file to import"
 msgstr "インポートする CSV データファイルを選択"
 
 #: import_export/univcsvdialog.cpp:1238
 #, fuzzy
-msgid "Choose MXL data file to export"
+msgid "Choose XML data file to export"
 msgstr "エクスポートする QIF データファイルを選択"
 
 #: import_export/univcsvdialog.cpp:1245

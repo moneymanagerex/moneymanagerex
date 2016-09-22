@@ -1232,10 +1232,10 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& /*event*/)
         header = _("Choose CSV data file to export");
         break;
     case DIALOG_TYPE_IMPORT_XML:
-        header = _("Choose MXL data file to import");
+        header = _("Choose XML data file to import");
         break;
     case DIALOG_TYPE_EXPORT_XML:
-        header = _("Choose MXL data file to export");
+        header = _("Choose XML data file to export");
         break;
     default:
         break;

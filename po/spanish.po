@@ -2071,11 +2071,11 @@ msgstr ""
 "Para fecha/hora inserte 'Ahora' para poner la fecha/hora actual por defecto"
 
 #: src/customfieldeditdialog.cpp:160
-msgid "Choiches"
+msgid "Choices"
 msgstr "Elecciones"
 
 #: src/customfieldeditdialog.cpp:162
-msgid "Enter the choiches for this field separated with a semi-colon"
+msgid "Enter the choices for this field separated with a semicolon"
 msgstr "Introduzca las elecciones para este campo separadas por punto y coma"
 
 #: src/customfieldeditdialog.cpp:206
@@ -3207,13 +3207,13 @@ msgstr "Seleccionar el fichero CSV a exportar"
 
 #: src/import_export/univcsvdialog.cpp:1235
 #, fuzzy
-msgid "Choose MXL data file to import"
-msgstr "Seleccionar el fichero MXL a importar"
+msgid "Choose XML data file to import"
+msgstr "Seleccionar el fichero XML a importar"
 
 #: src/import_export/univcsvdialog.cpp:1238
 #, fuzzy
-msgid "Choose MXL data file to export"
-msgstr "Seleccionar el fichero MXL a exportar"
+msgid "Choose XML data file to export"
+msgstr "Seleccionar el fichero XML a exportar"
 
 #: src/import_export/univcsvdialog.cpp:1245
 msgid "XML Files (*.xml) | *.xml;*.XML | All files | *.*"

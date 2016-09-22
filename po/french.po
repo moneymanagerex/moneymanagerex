@@ -2038,12 +2038,12 @@ msgstr ""
 
 #: src/customfieldeditdialog.cpp:160
 #, fuzzy
-msgid "Choiches"
+msgid "Choices"
 msgstr "Choix :"
 
 #: src/customfieldeditdialog.cpp:162
 #, fuzzy
-msgid "Enter the choiches for this field separated with a semi-colon"
+msgid "Enter the choices for this field separated with a semicolon"
 msgstr "Entrez les choix pour ce champ séparés par un point-virgule"
 
 #: src/customfieldeditdialog.cpp:206
@@ -3166,13 +3166,13 @@ msgstr "Sélectionner un fichier CSV à exporter"
 
 #: src/import_export/univcsvdialog.cpp:1235
 #, fuzzy
-msgid "Choose MXL data file to import"
-msgstr "Sélectionner le fichier MXL à importer"
+msgid "Choose XML data file to import"
+msgstr "Sélectionner le fichier XML à importer"
 
 #: src/import_export/univcsvdialog.cpp:1238
 #, fuzzy
-msgid "Choose MXL data file to export"
-msgstr "Sélectionner le fichier MXL à exporter"
+msgid "Choose XML data file to export"
+msgstr "Sélectionner le fichier XML à exporter"
 
 #: src/import_export/univcsvdialog.cpp:1245
 #, fuzzy
