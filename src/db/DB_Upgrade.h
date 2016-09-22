@@ -70,7 +70,7 @@ const std::vector<wxString> dbUpgradeQuery =
         FIELDID INTEGER NOT NULL PRIMARY KEY
         , REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */
         , DESCRIPTION TEXT COLLATE NOCASE
-        , TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoiche, MultiChoiche */
+        , TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoice, MultiChoice */
         , PROPERTIES TEXT NOT NULL
         );
         CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELD_REF ON CUSTOMFIELD_V1 (REFTYPE);

@@ -186,19 +186,19 @@ void mmCustomFieldDialog::CreateFillControls()
                 itemFlexGridSizer3->Add(CustomDate, g_flagsExpand);
             }
             break;
-        case Model_CustomField::SINGLECHOICHE:
+        case Model_CustomField::SINGLECHOICE:
             {
-                wxArrayString Choiches = Model_CustomField::getChoiches(field.PROPERTIES);
-                Choiches.Sort();
+                wxArrayString Choices = Model_CustomField::getChoices(field.PROPERTIES);
+                Choices.Sort();
 
-                wxChoice* CustomChoiche = new wxChoice(this, controlID, wxDefaultPosition, wxDefaultSize, Choiches);
-                CustomChoiche->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
-                itemFlexGridSizer3->Add(CustomChoiche, g_flagsExpand);
+                wxChoice* CustomChoice = new wxChoice(this, controlID, wxDefaultPosition, wxDefaultSize, Choices);
+                CustomChoice->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+                itemFlexGridSizer3->Add(CustomChoice, g_flagsExpand);
 
-                if (Choiches.size() == 0)
-                    CustomChoiche->Enable(false);
+                if (Choices.size() == 0)
+                    CustomChoice->Enable(false);
 
-                CustomChoiche->SetStringSelection(fieldData->CONTENT);
+                CustomChoice->SetStringSelection(fieldData->CONTENT);
             }
             break;
         default: break;
@@ -308,10 +308,10 @@ void mmCustomFieldDialog::OnSave(const bool OpenStatus)
                 if (CustomTime) Data = CustomTime->GetValue().FormatISOTime();
             }
             break;
-        case Model_CustomField::SINGLECHOICHE:
+        case Model_CustomField::SINGLECHOICE:
             {
-                wxChoice* CustomSingleChoiche = (wxChoice*)FindWindow(controlID);
-                if (CustomSingleChoiche) Data = CustomSingleChoiche->GetStringSelection();
+                wxChoice* CustomSingleChoice = (wxChoice*)FindWindow(controlID);
+                if (CustomSingleChoice) Data = CustomSingleChoice->GetStringSelection();
             }
             break;
         default: break;

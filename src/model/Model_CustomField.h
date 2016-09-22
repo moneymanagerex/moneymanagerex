@@ -26,7 +26,7 @@ class Model_CustomField : public Model<DB_Table_CUSTOMFIELD_V1>
 {
 public:
     using Model<DB_Table_CUSTOMFIELD_V1>::get;
-    enum FIELDTYPE { STRING = 0, INTEGER, DECIMAL, BOOLEAN, DATE, TIME, SINGLECHOICHE, MULTICHOICHE};
+    enum FIELDTYPE { STRING = 0, INTEGER, DECIMAL, BOOLEAN, DATE, TIME, SINGLECHOICE, MULTICHOICE};
 
     static const std::vector<std::pair<FIELDTYPE, wxString> > FIELDTYPE_CHOICES;
 
@@ -59,8 +59,8 @@ public:
     static wxString getTooltip(const wxString& Properties);
     static bool getAutocomplete(const wxString& Properties);
     static wxString getDefault(const wxString& Properties);
-    static wxArrayString getChoiches(const wxString& Properties);
-    static wxString formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choiches);
+    static wxArrayString getChoices(const wxString& Properties);
+    static wxString formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choices);
 };
 
 #endif // 
