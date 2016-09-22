@@ -28,8 +28,8 @@ const std::vector<std::pair<Model_CustomField::FIELDTYPE, wxString> > Model_Cust
     {Model_CustomField::BOOLEAN, wxString(wxTRANSLATE("Boolean"))},
     {Model_CustomField::DATE, wxString(wxTRANSLATE("Date"))},
     {Model_CustomField::TIME, wxString(wxTRANSLATE("Time"))},
-    {Model_CustomField::SINGLECHOICHE, wxString(wxTRANSLATE("SingleChoiche"))},
-    {Model_CustomField::MULTICHOICHE, wxString(wxTRANSLATE("MultiChoiche"))}
+    {Model_CustomField::SINGLECHOICE, wxString(wxTRANSLATE("SingleChoice"))},
+    {Model_CustomField::MULTICHOICE, wxString(wxTRANSLATE("MultiChoice"))}
 };
 
 Model_CustomField::Model_CustomField()
@@ -153,30 +153,30 @@ wxString Model_CustomField::getDefault(const wxString& Properties)
     return wxString(json::String(jsonProperties[L"Default"]));
 }
 
-wxArrayString Model_CustomField::getChoiches(const wxString& Properties)
+wxArrayString Model_CustomField::getChoices(const wxString& Properties)
 {
     json::Object jsonProperties;
     std::wstringstream jsonPropertiesStream;
-    wxArrayString Choiches;
+    wxArrayString Choices;
 
     jsonPropertiesStream << Properties.ToStdWstring();
     json::Reader::Read(jsonProperties, jsonPropertiesStream);
 
-    const json::Array& jsonChoiches = jsonProperties[L"Choiches"];
-    for (json::Array::const_iterator it = jsonChoiches.Begin(); it != jsonChoiches.End(); ++it)
+    const json::Array& jsonChoices = jsonProperties[L"Choices"];
+    for (json::Array::const_iterator it = jsonChoices.Begin(); it != jsonChoices.End(); ++it)
     {
         const json::Object& obj = *it;
-        Choiches.Add(wxString(json::String(obj[L"Choiche"])));
+        Choices.Add(wxString(json::String(obj[L"Choice"])));
     }
 
-    return Choiches;
+    return Choices;
 }
 
-wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choiches)
+wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choices)
 {
     json::Object jsonProperties;
     std::wstringstream jsonPropertiesStream;
-    json::Array jsonChoiches;
+    json::Array jsonChoices;
     wxString outputMessage;
 
     jsonProperties[L"Tooltip"] = json::String(Tooltip.ToStdWstring());
@@ -184,13 +184,13 @@ wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxSt
     jsonProperties[L"Autocomplete"] = json::Boolean(Autocomplete);
     jsonProperties[L"Default"] = json::String(Default.ToStdWstring());
 
-    for (const auto &choiche : Choiches)
+    for (const auto &choice : Choices)
     {
         json::Object o;
-        o[L"Choiche"] = json::String(choiche.ToStdWstring());
-        jsonChoiches.Insert(o);
+        o[L"Choice"] = json::String(choice.ToStdWstring());
+        jsonChoices.Insert(o);
     }
-    jsonProperties[L"Choiches"] = json::Array(jsonChoiches);
+    jsonProperties[L"Choices"] = json::Array(jsonChoices);
 
     json::Writer::Write(jsonProperties, jsonPropertiesStream);
     return jsonPropertiesStream.str();
