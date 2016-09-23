@@ -78,6 +78,7 @@ public:
     }
 
     EColumn g_sortcol; // index of column to sort
+    EColumn m_prevSortCol;
     bool g_asc; // asc\desc sorting
 
     bool getSortOrder() const { return m_asc; }
@@ -176,8 +177,6 @@ private:
     wxListItemAttr m_attr16; // user defined style 6
     wxListItemAttr m_attr17; // user defined style 7
 
-    EColumn m_sortCol;
-
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;
     virtual int OnGetItemColumnImage(long item, long column) const;
@@ -200,6 +199,8 @@ private:
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
     long m_topItemIndex;
+    EColumn m_sortCol;
+
 };
 
 //----------------------------------------------------------------------------
