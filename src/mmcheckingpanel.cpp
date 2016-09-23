@@ -189,6 +189,8 @@ void mmCheckingPanel::filterTable()
     m_reconciled_balance = m_account_balance;
     m_filteredBalance = 0.0;
 
+    const wxString begin_date = m_quickFilterBeginDate.FormatISODate();
+    const wxString end_date = m_quickFilterEndDate.FormatISODate();
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
     for (const auto& tran : Model_Account::transaction(this->m_account))
@@ -207,8 +209,11 @@ void mmCheckingPanel::filterTable()
         }
         else
         {
-            if (!Model_Checking::TRANSDATE(tran).IsBetween(m_quickFilterBeginDate, m_quickFilterEndDate))
-                continue;
+            if (m_currentView != MENU_VIEW_ALLTRANSACTIONS)
+            {
+                if (tran.TRANSDATE < begin_date) continue;
+                if (tran.TRANSDATE > end_date) continue;
+            }
         }
 
         Model_Checking::Full_Data full_tran(tran, splits);
