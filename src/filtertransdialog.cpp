@@ -68,12 +68,13 @@ static const wxString DATE_PRESETTINGS[] =
 wxIMPLEMENT_DYNAMIC_CLASS(mmFilterTransactionsDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
-    EVT_CHECKBOX(wxID_ANY,    mmFilterTransactionsDialog::OnCheckboxClick )
-    EVT_BUTTON  (wxID_OK,     mmFilterTransactionsDialog::OnButtonokClick )
-    EVT_BUTTON  (wxID_CANCEL, mmFilterTransactionsDialog::OnButtoncancelClick )
-    EVT_BUTTON  (wxID_SAVE,   mmFilterTransactionsDialog::OnButtonSaveClick )
-    EVT_BUTTON  (wxID_CLEAR,  mmFilterTransactionsDialog::OnButtonClearClick )
-    EVT_MENU    (wxID_ANY,    mmFilterTransactionsDialog::datePresetMenuSelected )
+    EVT_CHECKBOX(wxID_ANY, mmFilterTransactionsDialog::OnCheckboxClick)
+    EVT_BUTTON(wxID_OK, mmFilterTransactionsDialog::OnButtonokClick)
+    EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtoncancelClick)
+    EVT_BUTTON(wxID_SAVE, mmFilterTransactionsDialog::OnButtonSaveClick)
+    EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
+    EVT_MENU(wxID_ANY, mmFilterTransactionsDialog::datePresetMenuSelected)
+    EVT_DATE_CHANGED(wxID_ANY, mmFilterTransactionsDialog::OnDateChanged)
 wxEND_EVENT_TABLE()
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog( )
@@ -86,7 +87,6 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent)
     , payeeID_(-1)
     , refAccountID_(-1)
     , refAccountStr_("")
-    , date_range_(0)
     , m_settingLabel()
     , bSimilarCategoryStatus_(false)
 {
@@ -107,7 +107,6 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
     CreateControls();
     GetStoredSettings(-1);
 
-    dataToControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     this->SetInitialSize();
@@ -120,6 +119,7 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
 
 int mmFilterTransactionsDialog::ShowModal()
 {
+    dataToControls();
     // rebuild the payee list as it may have changed
     BuildPayeeList();
 
@@ -186,9 +186,9 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(dateRangeCheckBox_, g_flagsH);
 
-    fromDateCtrl_ = new wxDatePickerCtrl(itemPanel, wxID_ANY, wxDefaultDateTime
+    fromDateCtrl_ = new wxDatePickerCtrl(itemPanel, wxID_FIRST, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
-    toDateControl_ = new wxDatePickerCtrl(itemPanel, wxID_ANY, wxDefaultDateTime
+    toDateControl_ = new wxDatePickerCtrl(itemPanel, wxID_LAST, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
     dateRangeCheckBox_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
         , wxMouseEventHandler(mmFilterTransactionsDialog::datePresetMenu), nullptr, this);
@@ -366,8 +366,6 @@ void mmFilterTransactionsDialog::OnCheckboxClick( wxCommandEvent& event )
         event.GetId() != cbTypeTransferFrom_->GetId())
     {
         accountDropDown_->Enable(accountCheckBox_->IsChecked());
-        fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
-        toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
         cbPayee_->Enable(payeeCheckBox_->IsChecked());
         btnCategory_->Enable(categoryCheckBox_->IsChecked());
         similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
@@ -381,6 +379,10 @@ void mmFilterTransactionsDialog::OnCheckboxClick( wxCommandEvent& event )
         notesEdit_->Enable(notesCheckBox_->IsChecked());
         transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
         accountDropDown_->Enable(accountCheckBox_->IsChecked());
+        fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
+        m_begin_date = fromDateCtrl_->GetValue().FormatISODate();
+        toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
+        m_end_date = toDateControl_->GetValue().FormatISODate();
     }
 
     event.Skip();
@@ -621,41 +623,43 @@ void mmFilterTransactionsDialog::datePresetMenu( wxMouseEvent& event )
 
 void mmFilterTransactionsDialog::setPresettings(const wxString& view)
 {
-    if (date_range_) delete date_range_;
-    date_range_ = new mmCurrentMonth;
+    mmDateRange* date_range = new mmCurrentMonth;
     dateRangeCheckBox_->SetValue(true);
 
     if (view == VIEW_TRANS_ALL_STR)
         dateRangeCheckBox_->SetValue(false);
     else if (view == VIEW_TRANS_TODAY_STR)
-        date_range_ = new mmToday;
+        date_range = new mmToday;
     else if (view == VIEW_TRANS_CURRENT_MONTH_STR)
-        date_range_ = new mmCurrentMonth;
+        date_range = new mmCurrentMonth;
     else if (view == VIEW_TRANS_LAST_30_DAYS_STR)
-        date_range_ = new mmLast30Days;
+        date_range = new mmLast30Days;
     else if (view == VIEW_TRANS_LAST_90_DAYS_STR)
-        date_range_ = new mmLast90Days;
+        date_range = new mmLast90Days;
     else if (view == VIEW_TRANS_LAST_MONTH_STR)
-        date_range_ = new mmLastMonth;
+        date_range = new mmLastMonth;
     else if (view == VIEW_TRANS_LAST_3MONTHS_STR)
-        date_range_ = new mmLast3Months;
+        date_range = new mmLast3Months;
     else if (view == VIEW_TRANS_LAST_12MONTHS_STR)
-        date_range_ = new mmLast12Months;
+        date_range = new mmLast12Months;
     else if (view == VIEW_TRANS_CURRENT_YEAR_STR)
-        date_range_ = new mmCurrentYear;
+        date_range = new mmCurrentYear;
     else if (view == VIEW_TRANS_CURRENT_FIN_YEAR_STR)
-        date_range_ = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
+        date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
         , wxAtoi(Option::instance().FinancialYearStartMonth()));
     else if (view == VIEW_TRANS_LAST_YEAR_STR)
-        date_range_ = new mmLastYear;
+        date_range = new mmLastYear;
     else if (view == VIEW_TRANS_LAST_FIN_YEAR_STR)
-        date_range_ = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
+        date_range = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
         , wxAtoi(Option::instance().FinancialYearStartMonth()));
+
+    m_begin_date = date_range->start_date().FormatISODate();
+    m_end_date = date_range->end_date().FormatISODate();
 
     if (dateRangeCheckBox_->IsChecked())
     {
-        fromDateCtrl_->SetValue(date_range_->start_date());
-        toDateControl_->SetValue(date_range_->end_date());
+        fromDateCtrl_->SetValue(date_range->start_date());
+        toDateControl_->SetValue(date_range->end_date());
         fromDateCtrl_->Enable();
         toDateControl_->Enable();
     }
@@ -714,11 +718,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, cons
     //wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(), getToDateControl().GetDateOnly().FormatISODate());
     if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID))
         ok = false;
-    else if 
-    (   getDateRangeCheckBox()
-        && !Model_Checking::TRANSDATE(tran).IsBetween(
-            getFromDateCtrl().GetDateOnly(), getToDateControl().GetDateOnly())
-    )
+    else if (getDateRangeCheckBox() && (tran.TRANSDATE < m_begin_date || tran.TRANSDATE > m_end_date))
         ok = false;
     else if (getPayeeCheckBox() && !checkPayee<Model_Checking>(tran)) ok = false;
     else if (getCategoryCheckBox() && !checkCategory<Model_Checking>(tran, split)) ok = false;
@@ -734,12 +734,8 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran,
 {
     bool ok = true;
     if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID)) ok = false;
-    else if (getDateRangeCheckBox()
-        && !Model_Billsdeposits::TRANSDATE(tran)
-            .IsBetween(getFromDateCtrl().GetDateOnly()
-            , getToDateControl().GetDateOnly()
-        )
-    ) ok = false;
+    else if (getDateRangeCheckBox() && (tran.TRANSDATE < m_begin_date && tran.TRANSDATE > m_end_date))
+        ok = false;
     else if (getPayeeCheckBox() && !checkPayee<Model_Billsdeposits>(tran)) ok = false;
     else if (getCategoryCheckBox() && !checkCategory<Model_Billsdeposits>(tran, split)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
@@ -876,9 +872,11 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     //Dates
     dateRangeCheckBox_->SetValue(!wxString(json::String(o[L"DATE"])).empty() || !wxString(json::String(o[L"DATE2"])).empty());
     fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
-    fromDateCtrl_->SetValue(mmGetStorageStringAsDate(wxString(json::String(o[L"DATE1"]))));
+    m_begin_date = wxString(json::String(o[L"DATE1"]));
+    fromDateCtrl_->SetValue(mmGetStorageStringAsDate(m_begin_date));
     toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
-    toDateControl_->SetValue(mmGetStorageStringAsDate(wxString(json::String(o[L"DATE2"]))));
+    m_end_date = wxString(json::String(o[L"DATE2"]));
+    toDateControl_->SetValue(mmGetStorageStringAsDate(m_end_date));
 
     //Payee
     payeeCheckBox_->SetValue(!wxString(json::String(o[L"PAYEE"])).empty());
@@ -947,4 +945,14 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     notesCheckBox_->SetValue(!wxString(json::String(o[L"NOTES"])).empty());
     notesEdit_->Enable(notesCheckBox_->IsChecked());
     notesEdit_->ChangeValue(wxString(json::String(o[L"NOTES"])));
+}
+
+void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)
+{
+    switch (event.GetId())
+    {
+    case wxID_FIRST: m_begin_date = event.GetDate().FormatISODate(); break;
+    case wxID_LAST: m_end_date = event.GetDate().FormatISODate(); break;
+    }
+
 }

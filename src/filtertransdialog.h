@@ -74,15 +74,6 @@ private:
     {
         return dateRangeCheckBox_->GetValue();
     }
-    wxDateTime getFromDateCtrl()
-    {
-        return fromDateCtrl_->GetValue();
-    }
-    wxDateTime getToDateControl()
-    {
-        return toDateControl_->GetValue();
-    }
-
     bool getAmountRangeCheckBoxMin()
     {
         return amountRangeCheckBox_->GetValue() && !amountMinEdit_->GetValue().IsEmpty();
@@ -111,6 +102,7 @@ private:
     }
 
 private:
+    void OnDateChanged(wxDateEvent& event);
     /// Returns true if Status string matches.
     bool compareStatus(const wxString& itemStatus) const;
 
@@ -197,7 +189,8 @@ private:
     wxRadioBox* m_radio_box_;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
-    mmDateRange* date_range_;
+    wxString m_begin_date;
+    wxString m_end_date;
 
     int categID_;
     int subcategID_;

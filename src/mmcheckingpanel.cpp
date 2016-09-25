@@ -144,7 +144,6 @@ bool mmCheckingPanel::Create(
 
 void mmCheckingPanel::sortTable()
 {
-    std::sort(this->m_trans.begin(), this->m_trans.end());
     switch (m_listCtrlAccount->g_sortcol)
     {
     case TransactionListCtrl::COL_ID:
@@ -175,11 +174,16 @@ void mmCheckingPanel::sortTable()
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByNOTES());
         break;
     default:
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE());
+        if (m_listCtrlAccount->m_prevSortCol != m_listCtrlAccount->g_sortcol)
+        {
+            std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE());
+            m_listCtrlAccount->m_prevSortCol = m_listCtrlAccount->getSortColumn();
+        }
         break;
     }
 
-    if (!m_listCtrlAccount->g_asc) std::reverse(this->m_trans.begin(), this->m_trans.end());
+    if (!m_listCtrlAccount->g_asc)
+        std::reverse(this->m_trans.begin(), this->m_trans.end());
 }
 
 void mmCheckingPanel::filterTable()
@@ -189,6 +193,8 @@ void mmCheckingPanel::filterTable()
     m_reconciled_balance = m_account_balance;
     m_filteredBalance = 0.0;
 
+    const wxString begin_date = m_quickFilterBeginDate.FormatISODate();
+    const wxString end_date = m_quickFilterEndDate.FormatISODate();
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
     for (const auto& tran : Model_Account::transaction(this->m_account))
@@ -207,8 +213,11 @@ void mmCheckingPanel::filterTable()
         }
         else
         {
-            if (!Model_Checking::TRANSDATE(tran).IsBetween(m_quickFilterBeginDate, m_quickFilterEndDate))
-                continue;
+            if (m_currentView != MENU_VIEW_ALLTRANSACTIONS)
+            {
+                if (tran.TRANSDATE < begin_date) continue;
+                if (tran.TRANSDATE > end_date) continue;
+            }
         }
 
         Model_Checking::Full_Data full_tran(tran, splits);
@@ -938,6 +947,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_attr17(*wxYELLOW, mmColors::userDefColor7, wxNullFont),
     m_sortCol(COL_DEF_SORT),
     g_sortcol(COL_DEF_SORT),
+    m_prevSortCol(COL_DEF_SORT),
     g_asc(true),
     m_selectedID(-1),
     m_topItemIndex(-1)
@@ -1256,6 +1266,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     if (g_sortcol == ColumnNr && event.GetId() != MENU_HEADER_SORT) m_asc = !m_asc; // toggle sort order
     g_asc = m_asc;
 
+    m_prevSortCol = m_sortCol;
     m_sortCol = toEColumn(ColumnNr);
     g_sortcol = m_sortCol;
 
