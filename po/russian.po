@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2016-09-16 11:48+0300\n"
-"PO-Revision-Date: 2016-09-20 16:07+0300\n"
+"PO-Revision-Date: 2016-09-26 18:28+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -36,7 +36,7 @@ msgstr "Форум"
 
 #: src/aboutdialog.cpp:91
 msgid "Wiki page"
-msgstr "wiki страница"
+msgstr "Wiki страница"
 
 #: src/aboutdialog.cpp:93
 msgid "Bug reports"
@@ -65,7 +65,7 @@ msgstr "О программе"
 
 #: src/aboutdialog.cpp:174
 msgid "Developers"
-msgstr "Разработка"
+msgstr "Разработчики"
 
 #: src/aboutdialog.cpp:179
 msgid "Artwork"
@@ -107,7 +107,7 @@ msgstr "Новый счёт"
 
 #: src/accountdialog.cpp:106 src/mmframe.cpp:1446
 msgid "Edit Account"
-msgstr "&Редактировать счёт"
+msgstr "Редактировать счёт"
 
 #: src/accountdialog.cpp:187
 msgid "Account Name:"
@@ -156,7 +156,7 @@ msgstr "Прочее"
 
 #: src/accountdialog.cpp:261
 msgid "Card Number:"
-msgstr "№"
+msgstr "Номер карты:"
 
 #: src/accountdialog.cpp:261
 msgid "Account Number:"
@@ -953,15 +953,15 @@ msgstr "Специальные параметры даты следующего 
 
 #: src/billsdepositsdialog.cpp:426 src/billsdepositsdialog.cpp:1344
 msgid "Payments Left"
-msgstr "Платежей пропущено"
+msgstr "Платежей всего"
 
 #: src/billsdepositsdialog.cpp:440
 msgid "Request user to enter payment on the 'Date Paid'"
-msgstr "Пользователь должен ввести оплату на \"Дата Оплаты\""
+msgstr "Пользователь должен ввести оплату на 'Дата Оплаты'"
 
 #: src/billsdepositsdialog.cpp:441
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr "Пользователь должен ввести транзакцию на \"Дата Оплаты\""
+msgstr "Пользователь должен ввести транзакцию на 'Дата Оплаты'"
 
 #: src/billsdepositsdialog.cpp:444
 msgid "Grant automatic execute permission for this entry."
@@ -981,7 +981,7 @@ msgstr "Опережение или запаздывание даты запро
 
 #: src/billsdepositsdialog.cpp:474
 msgid "Reset 'Date Paid' to 'Today's Date'"
-msgstr "Сброс \"Дата Оплаты\" на \"Сегодняшняя дата\""
+msgstr "Сброс 'Дата Оплаты' на 'Сегодняшняя дата'"
 
 #: src/billsdepositsdialog.cpp:481 src/billsdepositspanel.cpp:96
 msgid "Date Paid"
@@ -2084,6 +2084,8 @@ msgstr "База данных MMEX успешно обновлен до верс
 #: src/dbupgrade.cpp:126
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
 msgstr ""
+"Мы предлагаем оптимизацию базы данных в меню Сервис -> База данных -> "
+"Оптимизатор"
 
 #: src/dbupgrade.cpp:203
 msgid "Load debug file"
@@ -4088,6 +4090,7 @@ msgid "No account available to import"
 msgstr "Не выбран счёт. Нечего загружать. "
 
 #: src/mmframe.cpp:2208
+#, fuzzy
 msgid ""
 "Asset Accounts hold Asset transactions\n"
 "\n"
@@ -4096,12 +4099,19 @@ msgid ""
 "\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
 msgstr ""
+"Счета активов держать сделок с активами\n"
+"\n"
+"сделок с активами создаются в рамках активов View\n"
+"после выбора активов в этой точке зрения.\n"
+"\n"
+"Счета активов также может содержать обычные транзакции регулярные счета."
 
 #: src/mmframe.cpp:2212
 msgid "Asset Account Creation"
 msgstr "Создание счёта актива"
 
 #: src/mmframe.cpp:2218
+#, fuzzy
 msgid ""
 "Share Accounts hold Share transactions\n"
 "\n"
@@ -4113,6 +4123,15 @@ msgid ""
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr ""
+"Паевые счета содержат сделки с акциями\n"
+"\n"
+"Доля сделок создаются в портфель акций View\n"
+"после выбора акции компании в рамках соответствующего вида.\n"
+"\n"
+"Эти счета становятся видимыми только после связывания запаса на счета Share\n"
+"Или с помощью меню View -> 'Показывать Доля счетов \"\n"
+"Доля счетов также может содержать обычные транзакции с обычной учетной "
+"записи."
 
 #: src/mmframe.cpp:2224
 msgid "Share Account Creation"
@@ -5068,13 +5087,12 @@ msgid "Payee in use."
 msgstr "Получатель используется"
 
 #: src/payeedialog.cpp:266
-#, fuzzy
 msgid ""
 "Tip: Change all transactions using this Payee to another Payeeusing the "
 "relocate command:"
 msgstr ""
-"Совет: Меняйте получателя транзакций на другого,\n"
-"используя команду замены:"
+"Совет: Изменить все транзакции этого получателя на другого получателю с "
+"помощью команды:"
 
 #: src/payeedialog.cpp:268
 msgid "Tools -> Relocation of -> Payees"
@@ -5568,11 +5586,12 @@ msgid "*Date"
 msgstr "*Дата"
 
 #: src/stockdialog.cpp:211
-#, fuzzy
 msgid ""
 "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr "Выберите категорию данной проводки"
+msgstr ""
+"Укажите начальную дату фондовой инвестиции\n"
+"Используется при создании первоначальной транзакции."
 
 #: src/stockdialog.cpp:215
 msgid "*Share Number"
@@ -5595,17 +5614,20 @@ msgid ""
 "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
 msgstr ""
+"Введите начальную цену на одну акцию.\n"
+"Используется при создании первоначальной долей сделки."
 
 #: src/stockdialog.cpp:238
 msgid "*Commission"
 msgstr "*Комиссия"
 
 #: src/stockdialog.cpp:242
-#, fuzzy
 msgid ""
 "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr "Введите любой текст для поиска по заметкам"
+msgstr ""
+"Введите любую уплаченной комиссию.\n"
+"Используется при создании первоначальной сделки."
 
 #: src/stockdialog.cpp:248 src/stockspanel.cpp:101
 msgid "Price Date"
@@ -5669,6 +5691,11 @@ msgid ""
 "Creating a new account will affect Share Account connections\n"
 "and will therefore require manual readjustment."
 msgstr ""
+"Паевой Счет не найден.\n"
+"\n"
+"Вы хотели бы создать его?\n"
+"Создание новой учетной записи будут влиять на связи Паевого Счёта\n"
+"поэтому потребует ручной настройки."
 
 #: src/stockdialog.cpp:583
 msgid "Stock History CSV Import"
@@ -5937,6 +5964,9 @@ msgid ""
 "\n"
 "Do you wish to continue?"
 msgstr ""
+"Эта транзакция будет превышать лимит счета.\n"
+"\n"
+"Вы хотите продолжить?"
 
 #: src/transdialog.cpp:1156
 msgid "Specify account the money is taken from"
@@ -5967,9 +5997,8 @@ msgid "Retard or advance the date of the transaction"
 msgstr "Укажите дату проводки"
 
 #: src/usertransactionpanel.cpp:113
-#, fuzzy
 msgid "Specify the associated Account that will contain this transaction"
-msgstr "Укажите счёт для данной повторяющейся проводки"
+msgstr "Укажите счёт для данной транзакции"
 
 #: src/usertransactionpanel.cpp:125
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -5982,25 +6011,24 @@ msgstr "Перевод"
 #: src/usertransactionpanel.cpp:130
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
 msgstr ""
+"Перечисление средств с/на этот счет. Снимите флажок, чтобы установить в "
+"качестве расходов/доходов."
 
 #: src/usertransactionpanel.cpp:155
 msgid "Currency used for this transaction."
 msgstr "Укажите валюту, которая будет использоваться для этого счёта."
 
 #: src/usertransactionpanel.cpp:174
-#, fuzzy
 msgid "Specify the status for this transaction"
 msgstr "Выберите статус проводки"
 
 #: src/usertransactionpanel.cpp:182
-#, fuzzy
 msgid "Specify a person, Company or Organisation for this transaction."
-msgstr "Введите сумму для данной проводки"
+msgstr "Укажите персону, компанию или организацию для этой сделки."
 
 #: src/usertransactionpanel.cpp:198
-#, fuzzy
 msgid "Specify a transaction code or associated check details"
-msgstr "Укажите какие транзакции должны показываться по умолчанию"
+msgstr "Укажите код транзакции или связанные с ними детали чека"
 
 #: src/usertransactionpanel.cpp:289
 msgid "Select the required account"
@@ -6363,18 +6391,14 @@ msgid "%s models all transactions as belonging to accounts."
 msgstr "%s содержит все транзакции внутри счетов."
 
 #: src/wizard_newaccount.cpp:35
-#, fuzzy
 msgid ""
 "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
 msgstr ""
-" работает со счетами, содержащими сделки - финансовые проводки.\n"
-"\n"
-"Последующая информация поможет Вам создать новый счёт.\n"
-"\n"
-"Для начала, соберите данные по всем финансовым учреждениям\n"
-"в которых расположены ваши счета."
+"Следующие страницы помогут вам создать новый счёт.\n"
+"Чтобы помочь вам начать работу, начните с составления списка всех\n"
+"финансовых предприятий, где вы держите счета."
 
 #: src/wizard_newaccount.cpp:79
 msgid "Account Name Invalid"
@@ -6462,6 +6486,19 @@ msgid ""
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
 msgstr ""
+"Следующие страницы помогут вам создать новую базу данных.\n"
+"\n"
+"Файл базы данных хранится с расширением .mmb.\n"
+"Поскольку этот файл содержит важную финансовую информацию,\n"
+"мы рекомендовали создавать ежедневные резервные копии. Настройте это в "
+"опциях:\n"
+"\"Резервное копирование перед открытием\". Также копируйте и храните "
+"резервные копии\n"
+"в отдельном месте.\n"
+"\n"
+"В базе данных может быть зашифрована, при необходимости,\n"
+"с помощью опции: \"Сохранить базу данных как\" с изменением\n"
+"типа файла перед сохранением."
 
 #: src/wizard_newdb.cpp:126
 msgid "Base Currency for account"
@@ -8219,15 +8256,14 @@ msgstr ""
 "диалоговом окне Настройки."
 
 #: src/mmTips.h:31
-#, fuzzy
 msgid ""
 "Tip: To print a statement with transactions from any arbitrary set of "
 "criteria, use the transaction filter to select the transactions you want and "
 "then do a print from the menu."
 msgstr ""
 "Подсказка: Чтобы распечатать сводку по транзакциям исходя из определённых "
-"критериев, используйте фильтр проводок,а затем выполните печать из основного "
-"меню."
+"критериев, используйте фильтр проводок, а затем выполните печать из "
+"основного меню."
 
 #: src/mmTips.h:32
 msgid ""
