@@ -293,9 +293,9 @@ private:
     int m_currentView;
     int m_AccountID;
     int m_basecurrecyID;
-    wxDateTime m_quickFilterBeginDate;
-    wxDateTime m_quickFilterEndDate;
     bool m_transFilterActive;
+    wxString m_begin_date;
+    wxString m_end_date;
     double m_filteredBalance;
     double m_account_balance;
     double m_reconciled_balance;
