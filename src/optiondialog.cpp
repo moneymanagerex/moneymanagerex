@@ -187,5 +187,5 @@ void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
     Model_Infotable::instance().ReleaseSavepoint();
 
     const wxString& msg = wxString::Format(_("%s page has been saved."), m_notebook->GetPageText(selected_page));
-    wxMessageBox(msg, "MMEX Options");
+    wxMessageBox(msg, _("MMEX Options"));
 }

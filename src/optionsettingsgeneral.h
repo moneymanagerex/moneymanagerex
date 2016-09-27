@@ -48,7 +48,7 @@ private:
     void OnDateFormatChanged(wxCommandEvent& event);
     void OnLanguageChanged(wxCommandEvent& event);
 
-    void SaveFinancialYearStart();
+    bool SaveFinancialYearStart();
 
 private:
     mmGUIApp* m_app;

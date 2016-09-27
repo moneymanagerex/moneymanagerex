@@ -216,15 +216,22 @@ void OptionSettingsGeneral::OnLanguageChanged(wxCommandEvent& /*event*/)
     btn->SetLabelText(lang.Capitalize());
 }
 
-void OptionSettingsGeneral::SaveFinancialYearStart()
+bool OptionSettingsGeneral::SaveFinancialYearStart()
 {
+    //Save Financial Year Start Month
+    int month = 1 + m_month_selection->GetSelection();
+    wxString fysMonthVal = wxString::Format("%d", month);
+    Option::instance().FinancialYearStartMonth(fysMonthVal);
+    int last_month_day = wxDateTime(1, wxDateTime::Month(month-1), 2015).GetLastMonthDay().GetDay();
+
     //Save Financial Year Start Day
     wxSpinCtrl* fysDay = (wxSpinCtrl*) FindWindow(ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY);
-    Option::instance().FinancialYearStartDay(wxString::Format("%d", fysDay->GetValue()));
+    int day = fysDay->GetValue();
+    if (last_month_day < day)
+        day = last_month_day;
 
-    //Save Financial Year Start Month
-    wxString fysMonthVal = wxString() << m_month_selection->GetSelection() + 1;
-    Option::instance().FinancialYearStartMonth(fysMonthVal);
+    Option::instance().FinancialYearStartDay(wxString::Format("%d", day));
+    return last_month_day < day;
 }
 
 void OptionSettingsGeneral::SaveSettings()
@@ -233,7 +240,7 @@ void OptionSettingsGeneral::SaveSettings()
     Option::instance().UserName(stun->GetValue());
 
     wxButton *languageButton = (wxButton*) FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
-    wxString language = languageButton->GetLabel().Lower();
+    auto language = languageButton->GetLabel().Lower();
     Option::instance().Language(language);
     mmDialogs::mmSelectLanguage(this->m_app, this, false);
 
