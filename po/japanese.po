@@ -5076,7 +5076,7 @@ msgstr "支払先は使用しています。"
 #: payeedialog.cpp:266
 #, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payeeusing the "
+"Tip: Change all transactions using this Payee to another Payee using the "
 "relocate command:"
 msgstr ""
 "ヒント: 再配置コマンドを使用して、すべての取引を\n"

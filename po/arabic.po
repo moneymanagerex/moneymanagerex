@@ -5393,7 +5393,7 @@ msgstr "المستفيد مستخدم حاليا"
 #: src/payeedialog.cpp:266
 #, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payeeusing the "
+"Tip: Change all transactions using this Payee to another Payee using the "
 "relocate command:"
 msgstr "استعراض كل العمليات"
 

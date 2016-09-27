@@ -5208,7 +5208,7 @@ msgstr "Príjemca je použitý."
 #: src/payeedialog.cpp:266
 #, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payeeusing the "
+"Tip: Change all transactions using this Payee to another Payee using the "
 "relocate command:"
 msgstr ""
 "Tip: Zmeňte príjemcu za iného príjemcu vo všetkých transakciach,\n"

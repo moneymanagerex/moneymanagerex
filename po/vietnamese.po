@@ -5284,7 +5284,7 @@ msgstr "Đối tượng giao dịch đang được sử dụng."
 #: src/payeedialog.cpp:266
 #, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payeeusing the "
+"Tip: Change all transactions using this Payee to another Payee using the "
 "relocate command:"
 msgstr ""
 "Mách bạn: Chuyển tất cả giao dịch đang có đối tượng giao dịch này sang đối "

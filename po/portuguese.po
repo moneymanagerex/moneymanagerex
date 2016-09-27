@@ -5229,7 +5229,7 @@ msgstr "Este Favorecido está em uso."
 #: src/payeedialog.cpp:266
 #, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payeeusing the "
+"Tip: Change all transactions using this Payee to another Payee using the "
 "relocate command:"
 msgstr ""
 "Dica: Altere todas as transações deste Favorecido por outro Favorecido\n"

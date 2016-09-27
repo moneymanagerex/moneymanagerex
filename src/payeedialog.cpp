@@ -133,12 +133,10 @@ void mmPayeeDialog::CreateControls()
 
 void mmPayeeDialog::fillControls()
 {
-    Model_Payee::Data_Set p = Model_Payee::instance().FilterPayees(m_maskStr);
-    if (p.size() == 0) return;
-
     int firstInTheListPayeeID = -1;
     payeeListBox_->DeleteAllItems();
-    for (const auto& payee : p)
+
+    for (const auto& payee : Model_Payee::instance().FilterPayees(m_maskStr))
     {
         const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID, payee.SUBCATEGID);
         if (firstInTheListPayeeID == -1) { firstInTheListPayeeID = payee.PAYEEID; }
@@ -161,12 +159,12 @@ void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)
     int row = payeeListBox_->ItemToRow(event.GetItem());
     wxVariant var;
     payeeListBox_->GetValue(var, row, event.GetColumn());
-    wxString value = var.GetString();
+    const wxString value = var.GetString();
 
-    Model_Payee::Data* payee = Model_Payee::instance().get(m_payee_rename);
+    auto payee = Model_Payee::instance().get(m_payee_rename);
     if (!payee || value == payee->PAYEENAME) return;
 
-    Model_Payee::Data_Set payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(value));
+    const auto payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(value));
     if (payees.empty())
     {
         if (payee)
@@ -255,8 +253,8 @@ void mmPayeeDialog::EditPayee()
 
 void mmPayeeDialog::DeletePayee()
 {
-    Model_Payee::Data *payees = Model_Payee::instance().get(m_payee_id);
-    if (payees)
+    const auto *payee = Model_Payee::instance().get(m_payee_id);
+    if (payee)
     {
         if (!Model_Payee::instance().remove(m_payee_id))
         {
@@ -264,13 +262,14 @@ void mmPayeeDialog::DeletePayee()
             deletePayeeErrMsg
                 << "\n\n"
                 << _("Tip: Change all transactions using this Payee to another Payee"
-                    "using the relocate command:")
+                    " using the relocate command:")
                 << "\n\n" << _("Tools -> Relocation of -> Payees");
             wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
             return;
         }
         else
             mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), m_payee_id);
+
         m_payee_id = -1;
         refreshRequested_ = true;
         fillControls();

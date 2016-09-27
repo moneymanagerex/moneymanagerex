@@ -4987,7 +4987,7 @@ msgstr "מוטב בשימוש."
 
 #: payeedialog.cpp:266
 msgid ""
-"Tip: Change all transactions using this Payee to another Payeeusing the "
+"Tip: Change all transactions using this Payee to another Payee using the "
 "relocate command:"
 msgstr ""
 ":עצה: שנה את כל התנועות הקשורות למוטב זה, למוטב אחר באמצעות פקודת העברה:"
