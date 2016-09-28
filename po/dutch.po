@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2016-09-16 11:40+0300\n"
-"PO-Revision-Date: 2016-09-16 11:41+0300\n"
+"PO-Revision-Date: 2016-09-21 13:31+0100\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
 "Language: nl_NL\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Launchpad-Export-Date: 2011-10-25 16:24+0000\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.6.11\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: src\n"
@@ -84,13 +84,14 @@ msgstr "Licentie"
 msgid "Privacy"
 msgstr "Privacy"
 
-#: src/aboutdialog.cpp:232 src/accountdialog.cpp:366 src/appstartdialog.cpp:136
-#: src/assetdialog.cpp:301 src/attachmentdialog.cpp:118
-#: src/billsdepositsdialog.cpp:629 src/budgetentrydialog.cpp:156
-#: src/budgetyeardialog.cpp:116 src/budgetyearentrydialog.cpp:126
-#: src/currencydialog.cpp:208 src/customfieldeditdialog.cpp:171
-#: src/customfieldlistdialog.cpp:98 src/filtertransdialog.cpp:339
-#: src/import_export/qif_export.cpp:206 src/import_export/qif_export.cpp:229
+#: src/aboutdialog.cpp:232 src/accountdialog.cpp:366
+#: src/appstartdialog.cpp:136 src/assetdialog.cpp:301
+#: src/attachmentdialog.cpp:118 src/billsdepositsdialog.cpp:629
+#: src/budgetentrydialog.cpp:156 src/budgetyeardialog.cpp:116
+#: src/budgetyearentrydialog.cpp:126 src/currencydialog.cpp:208
+#: src/customfieldeditdialog.cpp:171 src/customfieldlistdialog.cpp:98
+#: src/filtertransdialog.cpp:339 src/import_export/qif_export.cpp:206
+#: src/import_export/qif_export.cpp:229
 #: src/import_export/qif_import_gui.cpp:290 src/mmSimpleDialogs.cpp:51
 #: src/optiondialog.cpp:150 src/payeedialog.cpp:125
 #: src/relocatecategorydialog.cpp:111 src/relocatepayeedialog.cpp:113
@@ -575,8 +576,9 @@ msgstr ""
 
 #: src/assetspanel.cpp:414 src/general_report_manager.cpp:671
 #: src/general_report_manager.cpp:946 src/mmframe.cpp:466 src/mmframe.cpp:710
-#: src/mmframe.cpp:1509 src/mmhomepagepanel.cpp:423 src/mmhomepagepanel.cpp:806
-#: src/reports/summary.cpp:176 src/assetspanel.h:94
+#: src/mmframe.cpp:1509 src/mmhomepagepanel.cpp:423
+#: src/mmhomepagepanel.cpp:806 src/reports/summary.cpp:176
+#: src/assetspanel.h:94
 msgid "Assets"
 msgstr "Bezittingen"
 
@@ -615,7 +617,8 @@ msgstr "&Wijzigen "
 #: src/assetspanel.cpp:486 src/billsdepositspanel.cpp:277
 #: src/budgetyeardialog.cpp:103 src/categdialog.cpp:232
 #: src/maincurrencydialog.cpp:283 src/mmcheckingpanel.cpp:463
-#: src/mmcheckingpanel.cpp:1116 src/stockdialog.cpp:330 src/stockspanel.cpp:588
+#: src/mmcheckingpanel.cpp:1116 src/stockdialog.cpp:330
+#: src/stockspanel.cpp:588
 msgid "&Delete "
 msgstr "&Verwijderen "
 
@@ -1832,15 +1835,15 @@ msgstr "Valuta manager"
 
 #: src/currencydialog.cpp:89
 msgid "Currency name"
-msgstr "Valuta-naam"
+msgstr "Valutanaam"
 
 #: src/currencydialog.cpp:148
 msgid "Currency Name"
-msgstr "Valuta-naam"
+msgstr "Valutanaam"
 
 #: src/currencydialog.cpp:152
 msgid "Currency Symbol"
-msgstr "Valuta symbool"
+msgstr "Valutasymbool"
 
 #: src/currencydialog.cpp:157
 msgid "Unit Name"
@@ -1860,7 +1863,7 @@ msgstr "Achtervoegsel symbool"
 
 #: src/currencydialog.cpp:173
 msgid "Decimal Char"
-msgstr "Decimaal teken"
+msgstr "Decimaalteken"
 
 #: src/currencydialog.cpp:177
 msgid "Grouping Char"
@@ -1966,11 +1969,11 @@ msgstr ""
 "Voor datum/tijd 'Now' ingeven om de huidige datum/tijd standaard te maken"
 
 #: src/customfieldeditdialog.cpp:160
-msgid "Choices"
+msgid "Choiches"
 msgstr "Keuzes"
 
 #: src/customfieldeditdialog.cpp:162
-msgid "Enter the choices for this field separated with a semicolon"
+msgid "Enter the choiches for this field separated with a semi-colon"
 msgstr ""
 "Keuzemogelijkheden voor dit veld invoeren, gescheiden door een puntkomma"
 
@@ -1989,7 +1992,7 @@ msgstr "Wijzig eigen veld"
 
 #: src/customfieldeditdialog.cpp:228
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "U hebt keuzeopties aangepast: verwijderde opties worden gewist!"
 
 #: src/customfieldlistdialog.cpp:57
 msgid "Properties"
@@ -2054,7 +2057,7 @@ msgstr ""
 #: src/customfieldlistdialog.cpp:237
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i overeenkomsten gevonden en vervangen!"
 
 #: src/customfieldlistdialog.cpp:273
 msgid "&Massive content update "
@@ -2484,7 +2487,7 @@ msgstr "Kan de tabel niet vinden."
 
 #: src/import_export/parsers.cpp:214
 msgid "Transactions"
-msgstr ""
+msgstr "Transacties"
 
 #: src/import_export/qif_export.cpp:40 src/import_export/qif_export.cpp:227
 #: src/import_export/qif_export.cpp:305
@@ -2495,7 +2498,8 @@ msgstr "QIF Export"
 msgid "Parameters"
 msgstr "Parameters"
 
-#: src/import_export/qif_export.cpp:97 src/import_export/qif_import_gui.cpp:208
+#: src/import_export/qif_export.cpp:97
+#: src/import_export/qif_import_gui.cpp:208
 msgid "Log"
 msgstr "Logboek"
 
@@ -2537,7 +2541,8 @@ msgstr "Schrijf naar bestand"
 msgid "File Name:"
 msgstr "Bestandsnaam:"
 
-#: src/import_export/qif_export.cpp:192 src/import_export/univcsvdialog.cpp:401
+#: src/import_export/qif_export.cpp:192
+#: src/import_export/univcsvdialog.cpp:401
 msgid "Clear"
 msgstr "Wissen"
 
@@ -2559,7 +2564,8 @@ msgstr "CSV-bestanden"
 msgid "Choose QIF data file to Export"
 msgstr "Selecteer QIF-bestand om te exporteren"
 
-#: src/import_export/qif_export.cpp:276 src/import_export/univcsvdialog.cpp:160
+#: src/import_export/qif_export.cpp:276
+#: src/import_export/univcsvdialog.cpp:160
 msgid "Choose CSV data file to Export"
 msgstr "Selecteer CSV-bestand om te exporteren"
 
@@ -2897,6 +2903,8 @@ msgid ""
 "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr ""
+"Standaardrekening '%s' voor dit sjabloon bestaat niet.\n"
+"Selecteer alstublieft een andere rekening."
 
 #: src/import_export/univcsvdialog.cpp:464
 msgid "Account does not exist"
@@ -3011,11 +3019,11 @@ msgid "Choose CSV data file to export"
 msgstr "Selecteer CSV-bestand om te exporteren"
 
 #: src/import_export/univcsvdialog.cpp:1235
-msgid "Choose XML data file to import"
+msgid "Choose MXL data file to import"
 msgstr "Selecteer MXL-bestand voor import"
 
 #: src/import_export/univcsvdialog.cpp:1238
-msgid "Choose XML data file to export"
+msgid "Choose MXL data file to export"
 msgstr "Selecteer MXL-bestand om te exporteren"
 
 #: src/import_export/univcsvdialog.cpp:1245
@@ -3091,7 +3099,7 @@ msgstr "Wilt u deze valuta werkelijk verwijderen?"
 
 #: src/maincurrencydialog.cpp:362
 msgid "Base Currency Selection"
-msgstr ""
+msgstr "Standaardvaluta selectie"
 
 #: src/maincurrencydialog.cpp:406
 msgid "Currency History Options: "
@@ -3099,7 +3107,7 @@ msgstr "Valutahistorie opties: "
 
 #: src/maincurrencydialog.cpp:436
 msgid "Could not find base currency symbol!"
-msgstr "Kan het standaard valuta symbool niet vinden!"
+msgstr "Kan het standaard valutasymbool niet vinden!"
 
 #: src/maincurrencydialog.cpp:483 src/maincurrencydialog.cpp:516
 msgid "Currency rate updated"
@@ -4310,7 +4318,7 @@ msgstr "Samenvatting "
 
 #: src/mmframereport.cpp:259
 msgid "Forecast Report"
-msgstr ""
+msgstr "Prognoserapport"
 
 #: src/mmhelppanel.cpp:65
 msgid "&Back"
@@ -4740,7 +4748,7 @@ msgstr "Geef aan welke taal gebruikt wordt"
 
 #: src/optionsettingsgeneral.cpp:98
 msgid "Base Currency"
-msgstr "Standaard valuta"
+msgstr "Standaardvaluta"
 
 #: src/optionsettingsgeneral.cpp:100 src/wizard_newdb.cpp:113
 msgid "Set Currency"
@@ -5330,7 +5338,7 @@ msgstr "Inkomsten"
 
 #: src/reports/forecast.cpp:24
 msgid "Forecast"
-msgstr ""
+msgstr "Prognose"
 
 #: src/reports/htmlbuilder.cpp:115
 #, c-format
@@ -5721,7 +5729,7 @@ msgstr ""
 "Wilt u er nu een aanmaken?\n"
 "Creëren van een nieuwe rekening heeft invloed op de verbindingen van de "
 "effectenrekening\n"
-"en daarom zal je deze handmatig moeten aanpassen."
+"en daarom moet u deze handmatig aanpassen."
 
 #: src/stockdialog.cpp:583
 msgid "Stock History CSV Import"
@@ -6426,9 +6434,9 @@ msgid ""
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
 msgstr ""
-"De volgende bladzijden helpen je bij het maken van een\n"
+"De volgende bladzijden helpen u bij het maken van een\n"
 "nieuwe rekening. Om te beginnen kunnen we een lijst maken\n"
-"van alle financiële instituties  waar je rekeningen hebt."
+"van alle financiële instituties  waar u rekeningen hebt."
 
 #: src/wizard_newaccount.cpp:79
 msgid "Account Name Invalid"
@@ -6518,17 +6526,17 @@ msgid ""
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
 msgstr ""
-"De volgende bladzijden helpen je een nieuw databestand te maken.\n"
+"De volgende bladzijden helpen u een nieuw databestand te maken.\n"
 "\n"
-"Je databestand wordt opgeslagen met de extensie .mmb.\n"
+"Uw databestand wordt opgeslagen met de extensie .mmb.\n"
 "Omdat dit bestand belangrijke financiële informatie bevat,\n"
-"bevelen we je aan om dagelijks back-ups te maken via de optie:\n"
+"bevelen we u aan om dagelijks back-ups te maken via de optie:\n"
 "'Een back-up maken bij het starten van MMEX'. Bewaar de\n"
 "back-ups in een andere map.\n"
 "\n"
 "Het databestand kan later ook worden versleuteld, via de\n"
 "optie: 'Databestand opslaan als' en het bestandstype\n"
-"te wijzigen voordat je het bestand opslaat."
+"te wijzigen voordat u het bestand opslaat."
 
 #: src/wizard_newdb.cpp:126
 msgid "Base Currency for account"
@@ -8200,11 +8208,11 @@ msgstr "Inkomstenbelasting"
 
 #: src/db/DB_Table_Subcategory_V1.h:140
 msgid "House Tax"
-msgstr "Onroerend goed belasting"
+msgstr "Onroerendgoedbelasting"
 
 #: src/db/DB_Table_Subcategory_V1.h:141
 msgid "Water Tax"
-msgstr "Waterschap belasting"
+msgstr "Waterschapsbelasting"
 
 #: src/db/DB_Table_Subcategory_V1.h:143
 msgid "Salary"
