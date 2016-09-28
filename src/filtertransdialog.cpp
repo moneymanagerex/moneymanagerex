@@ -663,6 +663,7 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
         fromDateCtrl_->Enable();
         toDateControl_->Enable();
     }
+    delete date_range;
 }
 
 void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
