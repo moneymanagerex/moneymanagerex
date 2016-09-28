@@ -5327,7 +5327,7 @@ msgstr "பெறுநர் பயன்பாட்டில் உள்ள�
 #: src/payeedialog.cpp:266
 #, fuzzy
 msgid ""
-"Tip: Change all transactions using this Payee to another Payeeusing the relocate command:"
+"Tip: Change all transactions using this Payee to another Payee using the relocate command:"
 msgstr "அனைத்து பரிமாற்றங்களும் பார்வைக்கு"
 
 #: src/payeedialog.cpp:268

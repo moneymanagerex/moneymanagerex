@@ -5084,7 +5084,7 @@ msgstr "Beneficjent jest w użyciu."
 
 #: src/payeedialog.cpp:266
 msgid ""
-"Tip: Change all transactions using this Payee to another Payeeusing the "
+"Tip: Change all transactions using this Payee to another Payee using the "
 "relocate command:"
 msgstr ""
 "Porada: Zmień wszystke transakcje z danym beneficjentem na innego "
