@@ -114,7 +114,7 @@ void Option::LoadOptions(bool include_infotable)
 void Option::DateFormat(const wxString& dateformat)
 {
     m_dateFormat = dateformat;
-    Model_Infotable::instance().Set("DATEFORMAT", dateformat);;
+    Model_Infotable::instance().Set("DATEFORMAT", dateformat);
 }
 
 wxString Option::DateFormat()

@@ -874,10 +874,10 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     dateRangeCheckBox_->SetValue(!wxString(json::String(o[L"DATE"])).empty() || !wxString(json::String(o[L"DATE2"])).empty());
     fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
     m_begin_date = wxString(json::String(o[L"DATE1"]));
-    fromDateCtrl_->SetValue(mmGetStorageStringAsDate(m_begin_date));
+    fromDateCtrl_->SetValue(mmParseISODate(m_begin_date));
     toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
     m_end_date = wxString(json::String(o[L"DATE2"]));
-    toDateControl_->SetValue(mmGetStorageStringAsDate(m_end_date));
+    toDateControl_->SetValue(mmParseISODate(m_end_date));
 
     //Payee
     payeeCheckBox_->SetValue(!wxString(json::String(o[L"PAYEE"])).empty());

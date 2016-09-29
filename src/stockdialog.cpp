@@ -586,7 +586,6 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
         long countNumTotal = 0;
         long countImported = 0;
         double price;
-        wxDateTime dt;
         wxString dateStr, priceStr;
         Model_StockHistory::Data *data;
         Model_StockHistory::Cache stockData;
@@ -625,6 +624,7 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
             }
 
             // date
+            wxDateTime dt;
             dateStr = tokens[0];
             mmParseDisplayStringToDate(dt, dateStr, Option::instance().DateFormat());
             dateStr = dt.FormatISODate();
@@ -855,7 +855,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
     if (i != m_price_listbox->GetItemCount())
     {
         listStr = Model_Account::toString(dPrice, account, Option::instance().SharePrecision());
-        m_price_listbox->SetItem(i, 0, mmGetDateForDisplay(m_current_date_ctrl->GetValue()));
+        m_price_listbox->SetItem(i, 0, mmGetDateForDisplay(m_current_date_ctrl->GetValue().FormatISODate()));
         m_price_listbox->SetItem(i, 1, listStr);
         listStr = Model_Account::toString(dPrice - m_stock->PURCHASEPRICE, account, Option::instance().SharePrecision());
         m_price_listbox->SetItem(i, 2, listStr);
@@ -904,7 +904,7 @@ void mmStockDialog::ShowStockHistory()
             m_price_listbox->InsertItem(item);
             const wxDate dtdt = Model_StockHistory::DATE(d);
             const wxString dispAmount = Model_Account::toString(d.VALUE, account, Option::instance().SharePrecision());
-            m_price_listbox->SetItem(idx, 0, mmGetDateForDisplay(dtdt));
+            m_price_listbox->SetItem(idx, 0, mmGetDateForDisplay(d.DATE));
             m_price_listbox->SetItem(idx, 1, dispAmount);
             if (idx == 0)
             {

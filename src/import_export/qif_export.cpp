@@ -397,13 +397,15 @@ void mmQIFExportDialog::mmExportQIF()
                 buffer << mmExportTransaction::getAccountHeaderQIF(account_id);
             }
 
+            const wxString begin_date = fromDateCtrl_->GetValue().FormatISODate();
+            const wxString end_date = toDateCtrl_->GetValue().FormatISODate();
             for (const auto& transaction : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(account_id)
                 , Model_Checking::TOACCOUNTID(account_id)))
             {
                 //Filtering
-                if (dateFromCheckBox_->IsChecked() && Model_Checking::TRANSDATE(transaction) < fromDateCtrl_->GetValue())
+                if (dateFromCheckBox_->IsChecked() && transaction.TRANSDATE < begin_date)
                     continue;
-                if (dateToCheckBox_->IsChecked() && Model_Checking::TRANSDATE(transaction) > toDateCtrl_->GetValue())
+                if (dateToCheckBox_->IsChecked() && transaction.TRANSDATE > end_date)
                     continue;
 
                 if (!progressDlg.Pulse(wxString::Format(_("Exporting transaction %i"), ++numRecords))) // if cancel clicked

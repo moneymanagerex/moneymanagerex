@@ -791,7 +791,7 @@ const wxString mmCheckingPanel::getItem(long item, long column)
     case TransactionListCtrl::COL_ID:
         return wxString::Format("%i", tran.TRANSID).Trim();
     case TransactionListCtrl::COL_DATE:
-        return mmGetDateForDisplay(Model_Checking::TRANSDATE(tran));
+        return mmGetDateForDisplay(tran.TRANSDATE);
     case TransactionListCtrl::COL_NUMBER:
         return tran.TRANSACTIONNUMBER;
     case TransactionListCtrl::COL_CATEGORY:
@@ -1324,7 +1324,7 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     if (item < 0 || item >= (int)m_cp->m_trans.size()) return 0;
 
     const Model_Checking::Full_Data& tran = m_cp->m_trans[item];
-    bool in_the_future = Model_Checking::TRANSDATE(&tran) > wxDateTime::Now();
+    bool in_the_future = tran.TRANSDATE > wxDateTime::Today().FormatISODate();
 
     // apply alternating background pattern
     int user_colour_id = tran.FOLLOWUPID;
@@ -1605,7 +1605,7 @@ bool TransactionListCtrl::TransactionLocked(const wxString& transdate)
                 wxMessageBox(_(wxString::Format(
                     "Locked transaction to date: %s\n\n"
                     "Reconciled transactions."
-                    , mmGetDateForDisplay(Model_Account::DateOf(m_cp->m_account->STATEMENTDATE))))
+                    , mmGetDateForDisplay(m_cp->m_account->STATEMENTDATE)))
                     , _("MMEX Transaction Check"), wxOK | wxICON_WARNING);
                 return true;
             }
