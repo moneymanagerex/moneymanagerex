@@ -305,7 +305,7 @@ const wxString mmGetDateForDisplay(const wxString &iso_date)
     return dateLookup[iso_date] = date_str;
 }
 
-bool mmParseDisplayStringToDate(wxDateTime& date, wxString str_date, const wxString &sDateMask)
+bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, const wxString &sDateMask)
 {
     if (date_formats_regex().count(sDateMask) == 0)
         return false;
@@ -323,9 +323,9 @@ bool mmParseDisplayStringToDate(wxDateTime& date, wxString str_date, const wxStr
 
     if (pattern.Matches(str_date))
     {
-        str_date = pattern.GetMatch(str_date);
+        auto date_str = pattern.GetMatch(str_date);
         wxString::const_iterator end;
-        return date.ParseFormat(str_date, sDateMask, &end);
+        return date.ParseFormat(date_str, sDateMask, &end);
     }
     return false;
 }
