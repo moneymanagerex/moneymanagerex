@@ -41,6 +41,9 @@ TestFrameBase::TestFrameBase(int frame_count)
     CreateStatusBar();
     wxString msg = wxString() << "TEST Using Base Frame: " << frame_count;
     SetStatusText(msg);
+
+    /* Initialize required Image Handlers */
+    wxImage::AddHandler(new wxPNGHandler); //
 }
 
 TestFrameBase::TestFrameBase(wxWindow* parent, int size_x, int size_y)

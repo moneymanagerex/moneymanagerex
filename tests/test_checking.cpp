@@ -45,6 +45,10 @@ Test_Checking::Test_Checking()
     s_instance_count++;
     m_this_instance = s_instance_count;
     m_test_db_filename = "test_db_model_checking.mmb";
+    if ((m_this_instance == 1) && wxFileExists(m_test_db_filename))
+    {
+        wxRemoveFile(m_test_db_filename);
+    }
 }
 
 Test_Checking::~Test_Checking()

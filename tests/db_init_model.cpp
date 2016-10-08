@@ -36,6 +36,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Attachment.h"
 #include "model/Model_Translink.h"
 #include "model/Model_Shareinfo.h"
+#include "model/Model_CustomField.h"
+#include "model/Model_CustomFieldData.h"
 //----------------------------------------------------------------------------
 
 DB_Model::DB_Model()
@@ -59,14 +61,18 @@ void DB_Model::Init_Model_Tables(wxSQLite3Database* test_db)
     // settings table in the main database.
     Model_Setting::instance(test_db);
 
+    // Set up critical options
     Model_Infotable::instance(test_db);
     Option::instance().DateFormat("%d-%m-%Y");
-    Option::instance().LoadOptions();
+    Option::instance().UserName("Test Database");
     Option::instance().SendUsageStatistics(false);
-
     Model_Currency::instance(test_db);
-    Model_Account::instance(test_db);
+    Init_BaseCurrency();
 
+    // load remaining options
+    Option::instance().LoadOptions();
+
+    Model_Account::instance(test_db);
     Model_Subcategory::instance(test_db);
     Model_Category::instance(test_db);
     Model_Payee::instance(test_db);
@@ -86,8 +92,8 @@ void DB_Model::Init_Model_Tables(wxSQLite3Database* test_db)
     Model_Attachment::instance(test_db);
     Model_Translink::instance(test_db);
     Model_Shareinfo::instance(test_db);
-
-    Init_BaseCurrency();
+    Model_CustomField::instance(test_db);
+    Model_CustomFieldData::instance(test_db);
 }
 
 void DB_Model::Init_Model_Assets(wxSQLite3Database* test_db)
@@ -128,7 +134,7 @@ void DB_Model::Init_Model_Stocks(wxSQLite3Database* test_db)
     test_db->Commit();
 }
 
-void DB_Model::Init_BaseCurrency(const wxString& base_currency_symbol, const wxString& user_name)
+void DB_Model::Init_BaseCurrency(const wxString& base_currency_symbol)
 {
     Model_Currency::Data* currency_record = Model_Currency::instance().GetCurrencyRecord(base_currency_symbol);
     if (base_currency_symbol == "AUD")
@@ -138,8 +144,6 @@ void DB_Model::Init_BaseCurrency(const wxString& base_currency_symbol, const wxS
         Model_Currency::instance().save(currency_record);
     }
     Option::instance().BaseCurrency(currency_record->CURRENCYID);
-    // Set database User Name
-    Option::instance().UserName(user_name);
 }
 
 int DB_Model::Add_Bank_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
