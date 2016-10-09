@@ -71,7 +71,7 @@ public:
     const wxString getRandomColor(bool positive);
 
     /** Add a Cell value */
-    void addTableCell(const wxDateTime& date);
+    void addTableCellDate(const wxString& iso_date);
     void addTableCell(const wxString& value, const bool numeric = false);
     void addEmptyTableCell(const int number = 1);
 

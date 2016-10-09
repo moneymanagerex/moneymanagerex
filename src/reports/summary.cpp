@@ -453,7 +453,7 @@ wxString mmReportSummaryByDate::getHTMLText()
             hb.endTableRow();
         }
         hb.startTableRow();
-        hb.addTableCell(mmGetDateForDisplay(mmGetStorageStringAsDate(totBalanceData[i])));
+        hb.addTableCellDate(totBalanceData[i]);
         for (j = 0; j < 7; j++)
             hb.addTableCell(totBalanceData[i + j + 1], true);
         hb.endTableRow();

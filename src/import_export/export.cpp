@@ -47,9 +47,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
             transNum = wxString::Format("#%i", full_tran.id());
     }
     
-    wxDate date;
-    date.ParseISODate(full_tran.TRANSDATE);
-    buffer << "D" << date.Format(dateMask) << "\n";
+    buffer << "D" << Model_Checking::TRANSDATE(full_tran).Format(dateMask) << "\n";
     double value = Model_Checking::balance(full_tran, (out ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID));
     int style = wxNumberFormatter::Style_None;
     const wxString& s = wxNumberFormatter::ToString(value, 2, style);
@@ -120,7 +118,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
 
             buffer << trans_id << delimit
                 << inQuotes(accountName, delimit) << delimit
-                << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(full_tran)), delimit) << delimit
+                << inQuotes(mmGetDateForDisplay(full_tran.TRANSDATE), delimit) << delimit
                 << inQuotes(full_tran.PAYEENAME, delimit) << delimit
                 << full_tran.STATUS << delimit
                 << full_tran.TRANSCODE << delimit
@@ -136,7 +134,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
     {
         buffer << trans_id << delimit
             << inQuotes(accountName, delimit) << delimit
-            << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(full_tran)), delimit) << delimit
+            << inQuotes(mmGetDateForDisplay(full_tran.TRANSDATE), delimit) << delimit
             << inQuotes(full_tran.PAYEENAME, delimit) << delimit
             << full_tran.STATUS << delimit
             << full_tran.TRANSCODE << delimit

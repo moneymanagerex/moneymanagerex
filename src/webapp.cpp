@@ -364,7 +364,6 @@ bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_,
         webtran_holder WebTran;
         WebAppTransactions_.clear();
         std::wstring TrProgrStr;
-        wxDateTime dt;
         wxString dtStr,Payee,Category,SubCategory;
 
         for (int i = 0; i < static_cast<int>(jsonTransaction.Size()); i++)
@@ -374,8 +373,7 @@ bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_,
             WebTran.ID = wxAtoi(wxString(json::String(jsonTransaction[TrProgrStr][L"ID"])));
             
             dtStr = wxString(json::String(jsonTransaction[TrProgrStr][L"Date"]));
-            mmParseDisplayStringToDate(dt, dtStr, "%Y-%m-%d");
-            WebTran.Date = dt;
+            WebTran.Date = mmParseISODate(dtStr);
       
             WebTran.Account = wxString(json::String(jsonTransaction[TrProgrStr][L"Account"]));
             WebTran.ToAccount = wxString(json::String(jsonTransaction[TrProgrStr][L"ToAccount"]));

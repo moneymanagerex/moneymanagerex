@@ -236,11 +236,11 @@ void mmHTMLBuilder::addMoneyCell(double amount, int precision)
     this->endTableCell();
 }
 
-void mmHTMLBuilder::addTableCell(const wxDateTime& date)
+void mmHTMLBuilder::addTableCellDate(const wxString& iso_date)
 {
     html_ += wxString::Format(tags::TABLE_CELL
-        , wxString::Format(" class='text-left' sorttable_customkey = '%s' nowrap", date.FormatISODate()));
-    html_ += mmGetDateForDisplay(date);
+        , wxString::Format(" class='text-left' sorttable_customkey = '%s' nowrap", iso_date));
+    html_ += mmGetDateForDisplay(iso_date);
     this->endTableCell();
 }
 

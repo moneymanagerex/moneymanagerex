@@ -162,7 +162,7 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
 wxString StocksListCtrl::OnGetItemText(long item, long column) const
 {
     if (column == COL_ID)           return wxString::Format("%i", m_stocks[item].STOCKID).Trim();
-    if (column == COL_DATE)         return mmGetDateForDisplay(mmGetStorageStringAsDate(m_stocks[item].PURCHASEDATE));
+    if (column == COL_DATE)         return mmGetDateForDisplay(m_stocks[item].PURCHASEDATE);
     if (column == COL_NAME)         return m_stocks[item].STOCKNAME;
     if (column == COL_SYMBOL)       return m_stocks[item].SYMBOL;
     if (column == COL_NUMBER)
@@ -175,7 +175,7 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
     if (column == COL_GAIN_LOSS)    return Model_Currency::toString(GetGainLoss(item), m_stock_panel->m_currency);
     if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE, m_stock_panel->m_currency, 4);
     if (column == COL_CURRVALUE)    return Model_Currency::toString(Model_Stock::CurrentValue(m_stocks[item]), m_stock_panel->m_currency);
-    if (column == COL_PRICEDATE)    return mmGetDateForDisplay(mmGetStorageStringAsDate(Model_Stock::instance().lastPriceDate(&m_stocks[item])));
+    if (column == COL_PRICEDATE)    return mmGetDateForDisplay(Model_Stock::instance().lastPriceDate(&m_stocks[item]));
     if (column == COL_COMMISSION)   return Model_Currency::toString(m_stocks[item].COMMISSION, m_stock_panel->m_currency);
     if (column == COL_NOTES)
     {
@@ -405,7 +405,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
         if ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0))
         {
             Model_Checking::Data* stock_trans = Model_Checking::instance().get(stock_link.CHECKINGACCOUNTID);
-            wxString sd = mmGetDateForDisplay(Model_Checking::TRANSDATE(stock_trans));
+            wxString sd = mmGetDateForDisplay(stock_trans->TRANSDATE);
             wxString sl = share_entry->SHARELOT;
       
             int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
@@ -932,7 +932,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     refresh_button_->SetBitmapLabel(mmBitmap(png::LED_GREEN));
 
     strLastUpdate_.Printf(_("%s on %s"), LastRefreshDT_.FormatTime()
-        , mmGetDateForDisplay(LastRefreshDT_));
+        , mmGetDateForDisplay(LastRefreshDT_.FormatISODate()));
     Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
 
     return true;

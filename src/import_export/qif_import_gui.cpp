@@ -524,7 +524,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
                 wxDateTime dtdt;
                 wxString::const_iterator end;
                 if (dtdt.ParseFormat(dateStr, m_dateFormatStr, &end))
-                    dateStr = mmGetDateForDisplay(dtdt);
+                    dateStr = mmGetDateForDisplay(dtdt.FormatISODate());
                 else
                     dateStr.Prepend("!");
             }
@@ -793,6 +793,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         int count = 0;
         const wxString transferStr = Model_Checking::all_type()[Model_Checking::TRANSFER];
 
+        const auto begin_date = toDateCtrl_->GetValue().FormatISODate();
+        const auto end_date = fromDateCtrl_->GetValue().FormatISODate();
         for (const auto& entry : vQIF_trxs_)
         {
             if (count % 100 == 0 || count == numTransactions)
@@ -805,9 +807,9 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             Model_Checking::Data *trx = Model_Checking::instance().create();
             if (compliteTransaction(entry, trx))
             {
-                if (dateFromCheckBox_->IsChecked() && Model_Checking::TRANSDATE(trx).IsEarlierThan(fromDateCtrl_->GetValue()))
+                if (dateFromCheckBox_->IsChecked() && trx->TRANSDATE < begin_date)
                     continue;
-                if (dateToCheckBox_->IsChecked() && Model_Checking::TRANSDATE(trx).IsLaterThan(toDateCtrl_->GetValue()))
+                if (dateToCheckBox_->IsChecked() && trx->TRANSDATE > end_date)
                     continue;
 
                 if (trx->TRANSCODE == transferStr && trx->TOTRANSAMOUNT > 0.0)
@@ -897,7 +899,7 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
             if (refTrxTo->TOACCOUNTID != refTrxFrom->ACCOUNTID) continue;
             if (refTrxTo->TRANSACTIONNUMBER != refTrxFrom->TRANSACTIONNUMBER) continue;
             if (refTrxTo->NOTES != refTrxFrom->NOTES) continue;
-            if (Model_Checking::TRANSDATE(refTrxFrom) != Model_Checking::TRANSDATE(refTrxFrom)) continue;
+            if (refTrxFrom->TRANSDATE != refTrxFrom->TRANSDATE) continue;
             refTrxTo->TOTRANSAMOUNT = refTrxFrom->TRANSAMOUNT;
             from.erase(from.begin() + i);
             pair_found = true;

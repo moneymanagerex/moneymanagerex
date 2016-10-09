@@ -83,9 +83,6 @@ public:
     static const Model_Billsdeposits::Data_Set billsdeposits(const Data* r);
     static const Model_Billsdeposits::Data_Set billsdeposits(const Data& r);
 
-    static wxDate last_date(const Data* r);
-    static wxDate last_date(const Data& r);
-
     static double balance(const Data* r);
     static double balance(const Data& r);
 

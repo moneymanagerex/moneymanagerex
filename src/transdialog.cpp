@@ -1046,7 +1046,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
             if (wxMessageBox(_(wxString::Format(
                 "Locked transaction to date: %s\n\n"
                 "Do you wish to continue ? "
-                , mmGetDateForDisplay(Model_Account::DateOf(account->STATEMENTDATE))))
+                , mmGetDateForDisplay(account->STATEMENTDATE)))
                 , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
             {
                 return;
