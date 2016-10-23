@@ -805,8 +805,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             Model_Checking::instance().save(pTransaction);
 
             countImported++;
-            log << wxString::Format(_("Line : %ld imported OK."), lineNum+1) << endl;
-            *log_field_ << wxString::Format(_("Line : %ld imported OK."), lineNum+1) << "\n";
+            log << wxString::Format(_("Line: %ld imported OK."), lineNum+1) << endl;
+            *log_field_ << wxString::Format(_("Line: %ld imported OK."), lineNum+1) << "\n";
         }
 
         delete pParser;
