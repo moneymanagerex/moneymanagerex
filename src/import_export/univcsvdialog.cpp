@@ -20,6 +20,7 @@ Copyright (C) 2015 Yosef
  ********************************************************/
 
 #include "univcsvdialog.h"
+
 #include "images_list.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
@@ -804,8 +805,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             Model_Checking::instance().save(pTransaction);
 
             countImported++;
-            log << wxString::Format(_("Line : %ld imported OK."), lineNum+1) << endl;
-            *log_field_ << wxString::Format(_("Line : %ld imported OK."), lineNum+1) << "\n";
+            log << wxString::Format(_("Line: %ld imported OK."), lineNum+1) << endl;
+            *log_field_ << wxString::Format(_("Line: %ld imported OK."), lineNum+1) << "\n";
         }
 
         delete pParser;
@@ -1394,6 +1395,9 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         case UNIV_CSV_DEPOSIT:
             if (token.IsEmpty())
                 return;
+            // do nothing if an amount has already been stored by a previous call
+            if (holder.Amount != 0.0)
+                break;
             if (!Model_Currency::fromString(token, holder.Amount, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
                 return;
             holder.Amount = fabs(holder.Amount);
@@ -1403,6 +1407,9 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         case UNIV_CSV_WITHDRAWAL:
             if (token.IsEmpty())
                 return;
+            // do nothing if an amount has already been stored by a previous call
+            if (holder.Amount != 0.0)
+                break;
             if (!Model_Currency::fromString(token, holder.Amount, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
                 return;
             holder.Amount = fabs(holder.Amount);
