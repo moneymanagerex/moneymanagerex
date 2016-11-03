@@ -21,8 +21,24 @@
 
 #include "Model.h"
 #include "db/DB_Table_Usage_V1.h"
+#include <wx/thread.h>
 
 struct mg_connection;
+
+class SendStatsThread : public wxThread
+{
+public:
+	SendStatsThread(const std::string& url);
+	~SendStatsThread();
+	static void ev_handler(struct mg_connection *nc, int ev, void *ev_data);
+
+	bool m_end;
+
+protected:
+	std::string m_url;
+
+	virtual ExitCode Entry();
+};
 
 class Model_Usage : public Model<DB_Table_USAGE_V1>
 {
@@ -50,15 +66,11 @@ private:
     json::Array a, m_cache;
 
 public:
-    bool m_end;
-
-public:
     void append(const json::Object& o);
     void append_cache_usage(const json::Object& o);
     std::wstring to_string() const;
 
 public:
-    static void ev_handler(struct mg_connection *nc, int ev, void *ev_data);
     void pageview(const std::string& documentPath, const std::string& documentTitle);
     void pageview(const wxString& documentPath, const wxString& documentTitle);
     void pageview(const wxWindow* window);
