@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2016-09-16 11:46+0300\n"
-"PO-Revision-Date: 2016-09-16 11:47+0300\n"
-"Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
+"PO-Revision-Date: 2016-10-05 19:10+0100\n"
+"Last-Translator: Damian Bargieł <dmjb@wp.pl>\n"
 "Language-Team: TheZeal Software\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Launchpad-Export-Date: 2011-10-25 16:24+0000\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
@@ -83,13 +83,14 @@ msgstr "Licencja"
 msgid "Privacy"
 msgstr "Prywatność"
 
-#: src/aboutdialog.cpp:232 src/accountdialog.cpp:366 src/appstartdialog.cpp:136
-#: src/assetdialog.cpp:301 src/attachmentdialog.cpp:118
-#: src/billsdepositsdialog.cpp:629 src/budgetentrydialog.cpp:156
-#: src/budgetyeardialog.cpp:116 src/budgetyearentrydialog.cpp:126
-#: src/currencydialog.cpp:208 src/customfieldeditdialog.cpp:171
-#: src/customfieldlistdialog.cpp:98 src/filtertransdialog.cpp:339
-#: src/import_export/qif_export.cpp:206 src/import_export/qif_export.cpp:229
+#: src/aboutdialog.cpp:232 src/accountdialog.cpp:366
+#: src/appstartdialog.cpp:136 src/assetdialog.cpp:301
+#: src/attachmentdialog.cpp:118 src/billsdepositsdialog.cpp:629
+#: src/budgetentrydialog.cpp:156 src/budgetyeardialog.cpp:116
+#: src/budgetyearentrydialog.cpp:126 src/currencydialog.cpp:208
+#: src/customfieldeditdialog.cpp:171 src/customfieldlistdialog.cpp:98
+#: src/filtertransdialog.cpp:339 src/import_export/qif_export.cpp:206
+#: src/import_export/qif_export.cpp:229
 #: src/import_export/qif_import_gui.cpp:290 src/mmSimpleDialogs.cpp:51
 #: src/optiondialog.cpp:150 src/payeedialog.cpp:125
 #: src/relocatecategorydialog.cpp:111 src/relocatepayeedialog.cpp:113
@@ -569,8 +570,9 @@ msgstr ""
 
 #: src/assetspanel.cpp:414 src/general_report_manager.cpp:671
 #: src/general_report_manager.cpp:946 src/mmframe.cpp:466 src/mmframe.cpp:710
-#: src/mmframe.cpp:1509 src/mmhomepagepanel.cpp:423 src/mmhomepagepanel.cpp:806
-#: src/reports/summary.cpp:176 src/assetspanel.h:94
+#: src/mmframe.cpp:1509 src/mmhomepagepanel.cpp:423
+#: src/mmhomepagepanel.cpp:806 src/reports/summary.cpp:176
+#: src/assetspanel.h:94
 msgid "Assets"
 msgstr "Aktywa"
 
@@ -609,7 +611,8 @@ msgstr "&Edytuj"
 #: src/assetspanel.cpp:486 src/billsdepositspanel.cpp:277
 #: src/budgetyeardialog.cpp:103 src/categdialog.cpp:232
 #: src/maincurrencydialog.cpp:283 src/mmcheckingpanel.cpp:463
-#: src/mmcheckingpanel.cpp:1116 src/stockdialog.cpp:330 src/stockspanel.cpp:588
+#: src/mmcheckingpanel.cpp:1116 src/stockdialog.cpp:330
+#: src/stockspanel.cpp:588
 msgid "&Delete "
 msgstr "Usuń"
 
@@ -1974,7 +1977,7 @@ msgstr "Zmiana własnego pola"
 
 #: src/customfieldeditdialog.cpp:228
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "Zmodyfikowano wybór: elementy usunięte zostaną wyczyszczone!"
 
 #: src/customfieldlistdialog.cpp:57
 msgid "Properties"
@@ -2038,7 +2041,7 @@ msgstr ""
 #: src/customfieldlistdialog.cpp:237
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i wystąpień znaleziono i zamieniono!"
 
 #: src/customfieldlistdialog.cpp:273
 msgid "&Massive content update "
@@ -2468,7 +2471,7 @@ msgstr "Nie można znaleźć tabeli"
 
 #: src/import_export/parsers.cpp:214
 msgid "Transactions"
-msgstr ""
+msgstr "Transakcje"
 
 #: src/import_export/qif_export.cpp:40 src/import_export/qif_export.cpp:227
 #: src/import_export/qif_export.cpp:305
@@ -2479,7 +2482,8 @@ msgstr "Eksport QIF"
 msgid "Parameters"
 msgstr "Parametry"
 
-#: src/import_export/qif_export.cpp:97 src/import_export/qif_import_gui.cpp:208
+#: src/import_export/qif_export.cpp:97
+#: src/import_export/qif_import_gui.cpp:208
 msgid "Log"
 msgstr "Dziennik"
 
@@ -2521,7 +2525,8 @@ msgstr "Zapis do pliku"
 msgid "File Name:"
 msgstr "Nazwa pliku: "
 
-#: src/import_export/qif_export.cpp:192 src/import_export/univcsvdialog.cpp:401
+#: src/import_export/qif_export.cpp:192
+#: src/import_export/univcsvdialog.cpp:401
 msgid "Clear"
 msgstr "Wyczyść"
 
@@ -2543,7 +2548,8 @@ msgstr "Pliki CSV"
 msgid "Choose QIF data file to Export"
 msgstr "Wybierz plik danych QIF do importu"
 
-#: src/import_export/qif_export.cpp:276 src/import_export/univcsvdialog.cpp:160
+#: src/import_export/qif_export.cpp:276
+#: src/import_export/univcsvdialog.cpp:160
 msgid "Choose CSV data file to Export"
 msgstr "Wybierz plik CSV do eksportu"
 
@@ -2881,6 +2887,8 @@ msgid ""
 "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr ""
+"Konto domyślne '%s' dla tego wzorca nie istnieje.\n"
+"Wybierz nowe konto."
 
 #: src/import_export/univcsvdialog.cpp:464
 msgid "Account does not exist"
@@ -3072,7 +3080,7 @@ msgstr "Czy na pewno chcesz usunąć wybraną walutę?"
 
 #: src/maincurrencydialog.cpp:362
 msgid "Base Currency Selection"
-msgstr ""
+msgstr "Wybór waluty bazowej"
 
 #: src/maincurrencydialog.cpp:406
 msgid "Currency History Options: "
@@ -4284,7 +4292,7 @@ msgstr "Podsumowanie"
 
 #: src/mmframereport.cpp:259
 msgid "Forecast Report"
-msgstr ""
+msgstr "Raport prognozy"
 
 #: src/mmhelppanel.cpp:65
 msgid "&Back"
@@ -5303,7 +5311,7 @@ msgstr "Przychody"
 
 #: src/reports/forecast.cpp:24
 msgid "Forecast"
-msgstr ""
+msgstr "Prognoza"
 
 #: src/reports/htmlbuilder.cpp:115
 #, c-format
