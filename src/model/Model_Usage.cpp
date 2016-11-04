@@ -189,7 +189,9 @@ void Model_Usage::pageview(const std::string& documentPath, const std::string& d
     url.back() = ' '; // override the last &
 
 	// Spawn thread to send statistics
-	new SendStatsThread(url);
+	SendStatsThread* thread = new SendStatsThread(url);
+	if (thread)
+		thread->Run();
 }
 
 SendStatsThread::SendStatsThread(const std::string& url) : wxThread()
