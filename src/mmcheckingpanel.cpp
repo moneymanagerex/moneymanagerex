@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2014-2016 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -126,7 +127,7 @@ bool mmCheckingPanel::Create(
     CreateControls();
 
     m_transFilterActive = false;
-    m_trans_filter_dlg    = new mmFilterTransactionsDialog(this);
+    m_trans_filter_dlg = new mmFilterTransactionsDialog(this);
     SetTransactionFilterState(true);
 
     initViewTransactionsHeader();
@@ -266,6 +267,8 @@ void mmCheckingPanel::markSelectedTransaction(int trans_id)
 {
     if (trans_id > 0)
     {
+        m_listCtrlAccount->m_selectedIndex = -1;
+        m_listCtrlAccount->m_selectedID = -1;
         long i = 0;
         for (const auto & tran : m_trans)
         {
@@ -278,20 +281,21 @@ void mmCheckingPanel::markSelectedTransaction(int trans_id)
             if (trans_id == tran.TRANSID)
             {
                 m_listCtrlAccount->m_selectedIndex = i;
+                // set the selected ID to this transaction.
+                m_listCtrlAccount->m_selectedID = trans_id;
             }
             ++i;
         }
-
-        // set the selected ID to this transaction.
-        m_listCtrlAccount->m_selectedID = trans_id;
     }
 
     if (!m_trans.empty() && m_listCtrlAccount->m_selectedIndex < 0)
     {
-        if (m_listCtrlAccount->g_asc)
-            m_listCtrlAccount->EnsureVisible(static_cast<long>(m_trans.size()) - 1);
-        else
-            m_listCtrlAccount->EnsureVisible(0);
+        long i = static_cast<long>(m_trans.size()) - 1;
+        if (!m_listCtrlAccount->g_asc)
+            i =0;
+        m_listCtrlAccount->EnsureVisible(i);
+        m_listCtrlAccount->m_selectedIndex = i;
+        m_listCtrlAccount->m_selectedID = m_trans[i].TRANSID;
     }
     else
     {
@@ -766,18 +770,23 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
 {
     int e = event.GetEventType();
 
-    if (e == wxEVT_LEFT_DOWN) {
+    if (e == wxEVT_LEFT_DOWN)
+    {
         m_trans_filter_dlg->setAccountToolTip(_("Select account used in transfer transactions"));
-        m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK && m_trans_filter_dlg->somethingSelected());
-    } else {
+        m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK 
+            && m_trans_filter_dlg->somethingSelected());
+    }
+    else 
+    {
         if (m_transFilterActive == false) return;
         m_transFilterActive = false;
     }
     
-    m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::RIGHTARROW_ACTIVE) : mmBitmap(png::RIGHTARROW));
+    m_bitmapTransFilter->SetBitmap(m_transFilterActive 
+        ? mmBitmap(png::RIGHTARROW_ACTIVE) : mmBitmap(png::RIGHTARROW));
     SetTransactionFilterState(true);
 
-    RefreshList();
+    RefreshList(m_listCtrlAccount->m_selectedID);
 }
 
 
@@ -1178,7 +1187,8 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 
     bool bRefreshRequired = (status == "V") || (org_status == "V");
 
-    if ((m_cp->m_transFilterActive && m_cp->m_trans_filter_dlg->getStatusCheckBox()) || bRefreshRequired)
+    if ((m_cp->m_transFilterActive && m_cp->m_trans_filter_dlg->getStatusCheckBox()) 
+        || bRefreshRequired)
     {
         refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
     }
@@ -1710,9 +1720,10 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
     m_cp->sortTable();
     m_cp->markSelectedTransaction(trans_id);
 
-    if (m_topItemIndex >= (long) m_cp->m_trans.size())
-        m_topItemIndex = g_asc ? (long) m_cp->m_trans.size() - 1 : 0;
-    if (m_selectedIndex > (long)m_cp->m_trans.size() - 1) m_selectedIndex = -1;
+    long i = (long)m_cp->m_trans.size();
+    if (m_topItemIndex >= i)
+        m_topItemIndex = g_asc ? i - 1 : 0;
+    if (m_selectedIndex > i - 1) m_selectedIndex = -1;
     if (m_topItemIndex < m_selectedIndex) m_topItemIndex = m_selectedIndex;
 
 
