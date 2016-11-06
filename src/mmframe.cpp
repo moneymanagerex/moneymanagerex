@@ -498,11 +498,12 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     //Auto recurring transaction
     bool continueExecution = false;
 
-    Model_Billsdeposits& bills = Model_Billsdeposits::instance();
+	Model_Billsdeposits::AccountBalance bal;
+	Model_Billsdeposits& bills = Model_Billsdeposits::instance();
     for (const auto& q1 : bills.all())
     {
         bills.decode_fields(q1);
-        bool allow_transaction = bills.AllowTransaction(q1);
+        bool allow_transaction = bills.AllowTransaction(q1, bal);
         const wxDateTime payment_date = bills.TRANSDATE(q1);
         if (bills.autoExecuteManual() && bills.requireExecution())
         {

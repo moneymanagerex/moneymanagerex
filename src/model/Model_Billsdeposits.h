@@ -144,7 +144,8 @@ public:
     bool autoExecuteSilent();
     bool requireExecution();
     bool allowExecution();
-    bool AllowTransaction(const Data& r);
+	typedef std::map<int, double> AccountBalance;
+	bool AllowTransaction(const Data& r, AccountBalance& bal);
 
     static int daysPayment(const Data* r);
     static int daysOverdue(const Data* r);

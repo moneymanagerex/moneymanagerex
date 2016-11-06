@@ -951,7 +951,9 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     bill_data.TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
     bill_data.TRANSCODE = m_bill_data.TRANSCODE;
 
-    if (!Model_Billsdeposits::instance().AllowTransaction(bill_data)) return;
+	Model_Billsdeposits::AccountBalance bal;
+
+    if (!Model_Billsdeposits::instance().AllowTransaction(bill_data, bal)) return;
     if (!textAmount_->checkValue(m_bill_data.TRANSAMOUNT)) return;
 
     m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
