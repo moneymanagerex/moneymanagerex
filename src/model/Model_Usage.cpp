@@ -32,7 +32,6 @@
 
 Model_Usage::Model_Usage()
 : Model<DB_Table_USAGE_V1>()
-, m_end(false)
 {
 }
 
@@ -96,10 +95,10 @@ wxString uuid()
     return UUID;
 }
 
-void Model_Usage::ev_handler(struct mg_connection *nc, int ev, void *ev_data)
+void SendStatsThread::ev_handler(struct mg_connection *nc, int ev, void *ev_data)
 {
     struct http_message *hm = (struct http_message *) ev_data;
-    Model_Usage* usage = (Model_Usage*)nc->mgr->user_data;
+	SendStatsThread* usage = (SendStatsThread*)nc->mgr->user_data;
     int connect_status;
 
     switch (ev)
@@ -189,31 +188,51 @@ void Model_Usage::pageview(const std::string& documentPath, const std::string& d
 
     url.back() = ' '; // override the last &
 
-    std::cout<<url<<std::endl;
+	// Spawn thread to send statistics
+	SendStatsThread* thread = new SendStatsThread(url);
+	if (thread)
+		thread->Run();
+}
 
-    struct mg_mgr mgr;
-    struct mg_connection *nc;
+SendStatsThread::SendStatsThread(const std::string& url) : wxThread()
+, m_url(url)
+, m_end(false)
+{
+}
 
-    mg_mgr_init(&mgr, this);
+SendStatsThread::~SendStatsThread()
+{
+}
 
-    std::string user_agent = "User-Agent: " + std::string(wxGetOsDescription().c_str()) + "\r\n";
-    std::cout<<user_agent<<std::endl;
-    nc = mg_connect_http(&mgr, Model_Usage::ev_handler, url.c_str(), user_agent.c_str(), NULL); // GET
+wxThread::ExitCode SendStatsThread::Entry()
+{
+	std::cout << m_url << std::endl;
 
-    mg_set_protocol_http_websocket(nc);
+	struct mg_mgr mgr;
+	struct mg_connection *nc;
 
-    time_t ts_start = time(NULL);
-    time_t ts_end = ts_start;
-    this->m_end = false;
+	mg_mgr_init(&mgr, this);
 
-    while(!this->m_end)
-    {
-        if ((ts_end - ts_start) >= 1) // 1 sec
-        {
-            std::cout << "timeout" << std::endl;
-            break;
-        }
-        ts_end = mg_mgr_poll(&mgr, 1000);
-    }
-    mg_mgr_free(&mgr);
+	std::string user_agent = "User-Agent: " + std::string(wxGetOsDescription().c_str()) + "\r\n";
+	std::cout << user_agent << std::endl;
+	nc = mg_connect_http(&mgr, SendStatsThread::ev_handler, m_url.c_str(), user_agent.c_str(), NULL); // GET
+
+	mg_set_protocol_http_websocket(nc);
+
+	time_t ts_start = time(NULL);
+	time_t ts_end = ts_start;
+	this->m_end = false;
+
+	while (!this->m_end)
+	{
+		if ((ts_end - ts_start) >= 1) // 1 sec
+		{
+			std::cout << "timeout" << std::endl;
+			break;
+		}
+		ts_end = mg_mgr_poll(&mgr, 1000);
+	}
+	mg_mgr_free(&mgr);
+
+	return nullptr;
 }
