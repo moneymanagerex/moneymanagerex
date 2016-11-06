@@ -24,12 +24,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class TestFrameBase;
 class DB_Model;
 
+#include "model/Model_Translink.h"
+
 class Test_Translink : public CPPUNIT_NS::TestFixture
 {
     CPPUNIT_TEST_SUITE(Test_Translink);
-    CPPUNIT_TEST(Test_Add_Stock_Dialog);
-    CPPUNIT_TEST(Test_Edit_Stock_Dialog);
-    CPPUNIT_TEST(Test_Stocks_Panel);
+    CPPUNIT_TEST(Test_Australian_Currency);
+    CPPUNIT_TEST(Test_Argentina_Currency);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -43,12 +44,16 @@ private:
     wxString m_test_db_filename;
     wxSQLite3Database m_test_db;
     DB_Model* m_dbmodel;
-    TestFrameBase *m_base_frame;
     int m_this_instance;
 
+    int CreateStockEntry(int broker_account_id, wxDateTime date, const wxString& company_name, const wxString stock_symbol,
+        double num_shares, double price);
+
+    void CreateShareEntry(int stock_entry_id, int payee_id, wxDateTime date,
+        const wxString& category = "Transfer", const wxString& subcategory = "",
+        int trans_code = Model_Checking::WITHDRAWAL, Model_Translink::CHECKING_TYPE trans_type = Model_Translink::AS_TRANSFER);
 private:
     // Test cases
-    void Test_Add_Stock_Dialog();
-    void Test_Edit_Stock_Dialog();
-    void Test_Stocks_Panel();
+    void Test_Australian_Currency();
+    void Test_Argentina_Currency();
 };
