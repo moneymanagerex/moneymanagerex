@@ -142,37 +142,17 @@ double Model_Asset::value(const Data* r)
     double sum = r->VALUE;
     wxDate start_date = STARTDATE(r);
     const wxDate today = wxDate::Today();
-    double diff_time_in_years = 0;
-    if (today.GetYear() == start_date.GetYear())
-    {
-        wxDate::wxDateTime_t diff_days = today.GetDayOfYear() - start_date.GetDayOfYear();
-        diff_time_in_years = static_cast<double>(diff_days) / static_cast<double>(today.GetNumberOfDays(today.GetYear()));
-    }
-    else
-    {
-        int diff_years = today.GetYear() - start_date.GetYear();
-        if (today.GetDayOfYear() < start_date.GetDayOfYear())
-        {
-            diff_years--;
-            wxDate::wxDateTime_t diff_days = (wxDate::GetNumberOfDays(start_date.GetYear()) - start_date.GetDayOfYear()) + today.GetDayOfYear();
-            diff_time_in_years = static_cast<double>(diff_days) / static_cast<double>(today.GetNumberOfDays(today.GetYear()));
-        }
-        else
-        {
-            wxDate::wxDateTime_t diff_days = today.GetDayOfYear() - start_date.GetDayOfYear();
-            diff_time_in_years = static_cast<double>(diff_days) / static_cast<double>(wxDate::GetNumberOfDays(today.GetYear()));
-        }
-        diff_time_in_years += static_cast<double>(diff_years);
-    }
+	wxTimeSpan diff_time = today - start_date;
+	double diff_time_in_days = static_cast<double>(diff_time.GetDays());
     switch (rate(r))
     {
     case RATE_NONE:
         break;
     case RATE_APPRECIATE:
-        sum *= pow(1.0 + (r->VALUECHANGERATE / 100), diff_time_in_years);
+        sum *= pow(1.0 + (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
         break;
     case RATE_DEPRECIATE:
-        sum *= pow(1.0 - (r->VALUECHANGERATE / 100), diff_time_in_years);
+        sum *= pow(1.0 - (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
         break;
     default:
         break;
