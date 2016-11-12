@@ -425,14 +425,9 @@ void UserTransactionPanel::TransactionDate(const wxDateTime& trans_date)
     m_date_selector->SetValue(trans_date);
 }
 
-void UserTransactionPanel::SetTransactionValue(const wxString& trans_value)
-{
-    m_entered_amount->SetValue(trans_value);
-}
-
 void UserTransactionPanel::SetTransactionValue(const double& trans_value, bool fixed_value)
 {
-    SetTransactionValue(wxString::FromDouble(trans_value, 2));
+    m_entered_amount->SetValue(trans_value, 2);
     if (fixed_value)
     {
         m_entered_amount->Enable(false);
