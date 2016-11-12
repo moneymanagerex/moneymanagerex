@@ -50,7 +50,6 @@ public:
     wxDateTime TransactionDate();
     void TransactionDate(const wxDateTime& trans_date);
 
-    void SetTransactionValue(const wxString& trans_value);
     void SetTransactionValue(const double& trans_value, bool fixed_value = false);
     void SetTransactionNumber(const wxString& trans_number);
     void SetTransactionAccount(const wxString& trans_account);
