@@ -3,6 +3,4 @@ MAINTAINER Lisheng Guan<guanlisheng@gmail.com>
 
 RUN apt-get update && apt-get install -y libwxgtk3.0-dev build-essential
 
-RUN pwd && tree
-
 RUN ./configure && make -j4
