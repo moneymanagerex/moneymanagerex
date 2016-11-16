@@ -12,4 +12,4 @@ ADD . /moneymanagerex
 # Define working directory:
 WORKDIR /moneymanagerex
 
-CMD ./configure && make -j4
+RUN ./configure && make -j10
