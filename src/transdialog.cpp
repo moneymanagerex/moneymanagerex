@@ -293,12 +293,13 @@ void mmTransDialog::dataToControls()
                 }
             }
 
-            cbPayee_->Insert(Model_Account::instance().all_checking_account_names(true), 0);
+			wxArrayString account_names = Model_Account::instance().all_checking_account_names(true);
+            cbPayee_->Insert(account_names, 0);
             Model_Account::Data *account = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
             if (account)
                 cbPayee_->ChangeValue(account->ACCOUNTNAME);
 
-            cbPayee_->AutoComplete(Model_Account::instance().all_checking_account_names());
+            cbPayee_->AutoComplete(account_names);
 
             payee_label_->SetLabelText(_("To"));
             m_trx_data.PAYEEID = -1;
