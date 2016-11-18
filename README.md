@@ -30,6 +30,9 @@ Platforms
 - Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x).
 - OS X (10.7 or newer) using Cocoa (32/64 bits).
 
+### Docker images
+* https://hub.docker.com/r/moneymanagerex/moneymanagerex/
+
 #### Public links:
 * [Forum](http://forum.moneymanagerex.org)
 * [Wiki](https://sourceforge.net/p/moneymanagerex/wiki/mmex)
@@ -43,6 +46,3 @@ Platforms
 * We can open database file (both regular and encrypted) directly with [wxsqliteplus](https://github.com/guanlisheng/wxsqliteplus)
 * We can download dozen of cool reports from [general report](https://github.com/moneymanagerex/general-reports)
 * Star it if you feel it is helpful
-
-#### Developers:
-<script src="https://embed.github.com/view/geojson/moneymanagerex/moneymanagerex/master/developer.geojson"></script>
