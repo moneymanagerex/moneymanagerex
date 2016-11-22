@@ -652,7 +652,7 @@ void mmCheckingPanel::initViewTransactionsHeader()
 //----------------------------------------------------------------------------
 void mmCheckingPanel::initFilterSettings()
 {
-    mmDateRange* date_range = new mmAllTime;
+    mmDateRange* date_range = NULL;
 
     if (!m_transFilterActive)
     {
@@ -689,6 +689,10 @@ void mmCheckingPanel::initFilterSettings()
             }
         }
     }
+	if (date_range == NULL)
+	{
+		date_range = new mmAllTime;
+	}
 
     m_begin_date = date_range->start_date().FormatISODate();
     m_end_date = date_range->end_date().FormatISODate();
