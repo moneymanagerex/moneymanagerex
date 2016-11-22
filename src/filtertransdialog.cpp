@@ -623,7 +623,7 @@ void mmFilterTransactionsDialog::datePresetMenu( wxMouseEvent& event )
 
 void mmFilterTransactionsDialog::setPresettings(const wxString& view)
 {
-    mmDateRange* date_range = new mmCurrentMonth;
+    mmDateRange* date_range = NULL;
     dateRangeCheckBox_->SetValue(true);
 
     if (view == VIEW_TRANS_ALL_STR)
@@ -652,6 +652,8 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
     else if (view == VIEW_TRANS_LAST_FIN_YEAR_STR)
         date_range = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
         , wxAtoi(Option::instance().FinancialYearStartMonth()));
+	if (date_range == NULL)
+		date_range = new mmCurrentMonth;
 
     m_begin_date = date_range->start_date().FormatISODate();
     m_end_date = date_range->end_date().FormatISODate();
