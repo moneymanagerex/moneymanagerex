@@ -101,12 +101,12 @@ LUA_OBJECTS =  \
 	lua_lvm.o \
 	lua_lzio.o
 MMEX_CFLAGS = -I$(srcdir)/lib/wxsqlite3/sqlite3/secure/src \
-	-I$(srcdir)/lib/wxsqlite3/include -I$(srcdir)/lib/lua -I$(srcdir)/lib \
+	-I$(srcdir)/lib/wxsqlite3/include -I$(srcdir)/lib/lua/src -I$(srcdir)/lib \
 	-I$(srcdir)/3rd -I$(srcdir)/3rd/LuaGlue/include \
 	-I$(srcdir)/3rd/cgitemplate -I$(srcdir)/3rd/csv-parser/include \
 	-I$(srcdir)/src -DNOPCH $(WX_CFLAGS) $(PIC_FLAG) $(CPPFLAGS) $(CFLAGS)
 MMEX_CXXFLAGS = -I$(srcdir)/lib/wxsqlite3/sqlite3/secure/src \
-	-I$(srcdir)/lib/wxsqlite3/include -I$(srcdir)/lib/lua -I$(srcdir)/lib \
+	-I$(srcdir)/lib/wxsqlite3/include -I$(srcdir)/lib/lua/src -I$(srcdir)/lib \
 	-I$(srcdir)/3rd -I$(srcdir)/3rd/LuaGlue/include \
 	-I$(srcdir)/3rd/cgitemplate -I$(srcdir)/3rd/csv-parser/include \
 	-I$(srcdir)/src -DNOPCH $(WX_CXXFLAGS) $(PIC_FLAG) $(CPPFLAGS) $(CXXFLAGS)
@@ -365,107 +365,107 @@ wxsqlite_wxsqlite3.o: $(srcdir)/lib/wxsqlite3/src/wxsqlite3.cpp
 wxsqlite_sqlite3secure.o: $(srcdir)/lib/wxsqlite3/sqlite3/secure/src/sqlite3secure.c
 	$(CCC) -c -o $@ $(WXSQLITE_CFLAGS) $(srcdir)/lib/wxsqlite3/sqlite3/secure/src/sqlite3secure.c
 
-lua_lapi.o: $(srcdir)/lib/lua/lapi.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lapi.c
+lua_lapi.o: $(srcdir)/lib/lua/src/lapi.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lapi.c
 
-lua_lauxlib.o: $(srcdir)/lib/lua/lauxlib.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lauxlib.c
+lua_lauxlib.o: $(srcdir)/lib/lua/src/lauxlib.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lauxlib.c
 
-lua_lbaselib.o: $(srcdir)/lib/lua/lbaselib.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lbaselib.c
+lua_lbaselib.o: $(srcdir)/lib/lua/src/lbaselib.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lbaselib.c
 
-lua_lbitlib.o: $(srcdir)/lib/lua/lbitlib.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lbitlib.c
+lua_lbitlib.o: $(srcdir)/lib/lua/src/lbitlib.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lbitlib.c
 
-lua_lcode.o: $(srcdir)/lib/lua/lcode.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lcode.c
+lua_lcode.o: $(srcdir)/lib/lua/src/lcode.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lcode.c
 
-lua_lcorolib.o: $(srcdir)/lib/lua/lcorolib.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lcorolib.c
+lua_lcorolib.o: $(srcdir)/lib/lua/src/lcorolib.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lcorolib.c
 
-lua_lctype.o: $(srcdir)/lib/lua/lctype.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lctype.c
+lua_lctype.o: $(srcdir)/lib/lua/src/lctype.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lctype.c
 
-lua_ldblib.o: $(srcdir)/lib/lua/ldblib.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/ldblib.c
+lua_ldblib.o: $(srcdir)/lib/lua/src/ldblib.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/ldblib.c
 
-lua_ldebug.o: $(srcdir)/lib/lua/ldebug.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/ldebug.c
+lua_ldebug.o: $(srcdir)/lib/lua/src/ldebug.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/ldebug.c
 
-lua_ldo.o: $(srcdir)/lib/lua/ldo.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/ldo.c
+lua_ldo.o: $(srcdir)/lib/lua/src/ldo.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/ldo.c
 
-lua_ldump.o: $(srcdir)/lib/lua/ldump.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/ldump.c
+lua_ldump.o: $(srcdir)/lib/lua/src/ldump.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/ldump.c
 
-lua_lfunc.o: $(srcdir)/lib/lua/lfunc.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lfunc.c
+lua_lfunc.o: $(srcdir)/lib/lua/src/lfunc.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lfunc.c
 
-lua_lgc.o: $(srcdir)/lib/lua/lgc.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lgc.c
+lua_lgc.o: $(srcdir)/lib/lua/src/lgc.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lgc.c
 
-lua_linit.o: $(srcdir)/lib/lua/linit.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/linit.c
+lua_linit.o: $(srcdir)/lib/lua/src/linit.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/linit.c
 
-lua_liolib.o: $(srcdir)/lib/lua/liolib.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/liolib.c
+lua_liolib.o: $(srcdir)/lib/lua/src/liolib.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/liolib.c
 
-lua_llex.o: $(srcdir)/lib/lua/llex.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/llex.c
+lua_llex.o: $(srcdir)/lib/lua/src/llex.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/llex.c
 
-lua_lmathlib.o: $(srcdir)/lib/lua/lmathlib.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lmathlib.c
+lua_lmathlib.o: $(srcdir)/lib/lua/src/lmathlib.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lmathlib.c
 
-lua_lmem.o: $(srcdir)/lib/lua/lmem.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lmem.c
+lua_lmem.o: $(srcdir)/lib/lua/src/lmem.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lmem.c
 
-lua_loadlib.o: $(srcdir)/lib/lua/loadlib.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/loadlib.c
+lua_loadlib.o: $(srcdir)/lib/lua/src/loadlib.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/loadlib.c
 
-lua_lobject.o: $(srcdir)/lib/lua/lobject.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lobject.c
+lua_lobject.o: $(srcdir)/lib/lua/src/lobject.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lobject.c
 
-lua_lopcodes.o: $(srcdir)/lib/lua/lopcodes.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lopcodes.c
+lua_lopcodes.o: $(srcdir)/lib/lua/src/lopcodes.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lopcodes.c
 
-lua_loslib.o: $(srcdir)/lib/lua/loslib.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/loslib.c
+lua_loslib.o: $(srcdir)/lib/lua/src/loslib.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/loslib.c
 
-lua_lparser.o: $(srcdir)/lib/lua/lparser.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lparser.c
+lua_lparser.o: $(srcdir)/lib/lua/src/lparser.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lparser.c
 
-lua_lstate.o: $(srcdir)/lib/lua/lstate.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lstate.c
+lua_lstate.o: $(srcdir)/lib/lua/src/lstate.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lstate.c
 
-lua_lstring.o: $(srcdir)/lib/lua/lstring.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lstring.c
+lua_lstring.o: $(srcdir)/lib/lua/src/lstring.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lstring.c
 
-lua_lstrlib.o: $(srcdir)/lib/lua/lstrlib.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lstrlib.c
+lua_lstrlib.o: $(srcdir)/lib/lua/src/lstrlib.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lstrlib.c
 
-lua_ltable.o: $(srcdir)/lib/lua/ltable.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/ltable.c
+lua_ltable.o: $(srcdir)/lib/lua/src/ltable.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/ltable.c
 
-lua_ltablib.o: $(srcdir)/lib/lua/ltablib.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/ltablib.c
+lua_ltablib.o: $(srcdir)/lib/lua/src/ltablib.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/ltablib.c
 
-lua_ltm.o: $(srcdir)/lib/lua/ltm.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/ltm.c
+lua_ltm.o: $(srcdir)/lib/lua/src/ltm.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/ltm.c
 
-lua_lua.o: $(srcdir)/lib/lua/lua.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lua.c
+lua_lua.o: $(srcdir)/lib/lua/src/lua.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lua.c
 
-lua_luac.o: $(srcdir)/lib/lua/luac.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/luac.c
+lua_luac.o: $(srcdir)/lib/lua/src/luac.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/luac.c
 
-lua_lundump.o: $(srcdir)/lib/lua/lundump.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lundump.c
+lua_lundump.o: $(srcdir)/lib/lua/src/lundump.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lundump.c
 
-lua_lvm.o: $(srcdir)/lib/lua/lvm.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lvm.c
+lua_lvm.o: $(srcdir)/lib/lua/src/lvm.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lvm.c
 
-lua_lzio.o: $(srcdir)/lib/lua/lzio.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/lzio.c
+lua_lzio.o: $(srcdir)/lib/lua/src/lzio.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lzio.c
 
 mmex_aboutdialog.o: $(srcdir)/src/aboutdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/aboutdialog.cpp
@@ -807,7 +807,7 @@ mmex_csv_parser.o: $(srcdir)/3rd/csv-parser/csv_parser.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/3rd/csv-parser/csv_parser.cpp
 
 mmex_resources_mmex_rc.o: $(srcdir)/resources/mmex.rc
-	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/lib/wxsqlite3/include --include-dir $(srcdir)/lib/lua --include-dir $(srcdir)/lib --include-dir $(srcdir)/3rd --include-dir $(srcdir)/3rd/LuaGlue/include --include-dir $(srcdir)/3rd/cgitemplate --include-dir $(srcdir)/3rd/csv-parser/include --include-dir $(srcdir)/src --define NOPCH
+	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/lib/wxsqlite3/include --include-dir $(srcdir)/lib/lua/src --include-dir $(srcdir)/lib --include-dir $(srcdir)/3rd --include-dir $(srcdir)/3rd/LuaGlue/include --include-dir $(srcdir)/3rd/cgitemplate --include-dir $(srcdir)/3rd/csv-parser/include --include-dir $(srcdir)/src --define NOPCH
 
 
 # Include dependency info, if present:
