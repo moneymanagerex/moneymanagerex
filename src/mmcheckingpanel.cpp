@@ -685,7 +685,7 @@ void mmCheckingPanel::initFilterSettings()
             if (Model_Account::BoolOf(m_account->STATEMENTLOCKED))
             {
                 date_range = new mmSpecifiedRange(Model_Account::DateOf(m_account->STATEMENTDATE)
-                    .Add(wxDateSpan::Day()), date_range->today());
+                    .Add(wxDateSpan::Day()), wxDateTime::Today());
             }
         }
     }
