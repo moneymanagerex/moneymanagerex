@@ -121,7 +121,6 @@ private:
     bool m_duplicate;
     bool categUpdated_;
     bool m_advanced;
-    int m_account_id;
     double m_current_balance;
 
     int object_in_focus_;

@@ -74,7 +74,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , categUpdated_(false)
     , m_transfer(false)
     , m_advanced(false)
-    , m_account_id(account_id)
     , m_current_balance(current_balance)
     , m_duplicate(duplicate)
     , skip_account_init_(false)
@@ -1039,7 +1038,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     Model_Checking::putDataToTransaction(r, m_trx_data);
 
     /* Check if transaction is to proceed.*/
-    Model_Account::Data* account = Model_Account::instance().get(m_account_id);
+    Model_Account::Data* account = Model_Account::instance().get(m_trx_data.ACCOUNTID);
     if (Model_Account::BoolOf(account->STATEMENTLOCKED))
     {
         if (dpc_->GetValue() <= Model_Account::DateOf(account->STATEMENTDATE))
