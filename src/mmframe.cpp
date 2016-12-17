@@ -1734,7 +1734,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         /* Do a backup before opening */
         if (Model_Setting::instance().GetBoolSetting("BACKUPDB", false))
         {
-            dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::START, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
+            dbUpgrade::BackupDB(fileName, dbUpgrade::BACKUPTYPE::START, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
         }
 
         m_db = mmDBWrapper::Open(fileName, password);
