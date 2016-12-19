@@ -247,8 +247,13 @@ void mmCategDialog::CreateControls()
 
 void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
 {
-    const wxString& text = wxGetTextFromUser(_("Enter the name for the new category:")
-        , _("Add Category"), "");
+    wxString prompt_msg = _("Enter the name for the new category:");
+    if (selectedItemId_ == root_)
+    {
+        prompt_msg << "\n\n" << _("Tip: If category added now, check bottom of list.");
+    }
+
+    const wxString& text = wxGetTextFromUser(prompt_msg, _("Add Category"), "");
     if (text.IsEmpty())
         return;
 
@@ -275,12 +280,13 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
     }
 
     mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
+    if (!iData) return; // node added at root level
     if (iData->getSubCategData()->SUBCATEGID == -1) // not subcateg
     {
         const auto &subcategories = Model_Category::sub_category(iData->getCategData());
         for (const auto& subcategory : subcategories)
         {
-            if (subcategory.SUBCATEGNAME == text)
+            if (subcategory.SUBCATEGNAME.Upper() == text.Upper())
             {
                 wxMessageBox(_("Sub Category with same name exists")
                     , _("Organise Categories: Adding Error"), wxOK | wxICON_ERROR);
@@ -462,7 +468,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     if (iData->getSubCategData()->SUBCATEGID == -1) // not subcateg
     {
         Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::CATEGNAME(text));
-        if (!categories.empty())
+        if (!categories.empty() && (old_name == text))
         {
             wxString errMsg = _("Category with same name exists");
             wxMessageBox(errMsg, _("Organise Categories: Editing Error"), wxOK | wxICON_ERROR);
