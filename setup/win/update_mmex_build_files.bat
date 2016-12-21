@@ -1,10 +1,10 @@
 REM --------------------------------------------------------------------------
-REM Author : Stefano Giorgio [stef145g] - Copyright (C) 2012..2014
+REM Author : Stefano Giorgio [stef145g] - Copyright (C) 2012..2016
 REM 		 Updates by:
-REM          Lisheng [guanlisheng] (C) 2013
+REM          Lisheng [guanlisheng] (C) 2016
 REM          Nikolay [vomikan]     (C) 2013
 REM          James [siena123]      (c) 2014
-REM          gabriele-v            (c) 2014
+REM          gabriele-v            (c) 2016
 REM 
 REM Purpose: To allow the easy collection of support files required for
 REM          - testing in the msw-vc-2013e environment.
@@ -16,9 +16,20 @@ REM --------------------------------------------------------------------------
 @echo off
 cls
 
-REM Set the variable: mmex_release_version
-REM to reflect the correct version.
-set mmex_release_version=mmex_%GIT_TAG%
+REM To reflect the currect version for manual setup
+REM set the variable: release_version
+set release_version=mmex_1.3.0
+set manual_delay=30
+
+REM ------------------------------------------------ 
+set null_version=mmex_
+set auto_version=mmex_%GIT_TAG%
+set auto_delay=1
+
+set mmex_release_version=%auto_version%
+if %auto_version% == %null_version% set mmex_release_version=%release_version%
+if %auto_version% == %null_version% set auto_delay=%manual_delay%
+
 @echo %mmex_release_version%
 
 set mmex_system_name=MoneyManagerEX
@@ -50,7 +61,7 @@ if exist .\mpress.219\mpress.exe goto display_config_continue
 @echo.
 @echo %display_message%
 @echo ------------------------------------------------------------------------
-timeout /t 5
+timeout /t %auto_delay%
 cls
 
 REM Starts with Win32 Release
@@ -116,7 +127,7 @@ copy "..\..\3rd\sorttable.js\sorttable.js"     "%mmex_build_dir%\res"
 @echo.
 @echo Updated Support Files for: %mmex_build_dir%
 @echo.
-timeout /t 5
+timeout /t %auto_delay%
 cls
 
 :skip_this_location
@@ -164,7 +175,7 @@ if not exist %mmex_release_destination% mkdir %mmex_release_destination%
 @echo Destination: %mmex_release_destination%
 @echo From Source: %mmex_release_source%
 @echo --------------------------------------------------------------------
-timeout /t 5
+timeout /t %auto_delay%
 cls
 
 @echo --------------------------------------------------------------------
@@ -209,4 +220,4 @@ goto UpdateFiles
 @echo.
 @echo Update completed.
 @echo ------------------------------------------------------------------------
-timeout /t 5
+timeout /t %auto_delay%

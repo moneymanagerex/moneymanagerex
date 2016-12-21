@@ -12,9 +12,12 @@
 ; Copyright (C) 2011-2016 Stefano Giorgio
 ; Copyright (C) 2013 James Higley
 
+; Note: MyWinVersionInfo - use numbers only
+#define MyWinVersionInfo "1.3.0"
+
+#define MyAppVersion "1.3.0"
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
-#define MyAppVersion "1.3.0-beta"
 #define MyAppPublisher "Money Manager EX"
 #define MyAppURL "http://www.moneymanagerex.org"
 
@@ -25,8 +28,12 @@
 ;===============================================================================
 ; Local definitions
 #define my_output_root "..\..\mmex_release"
-#define my_output_path "\mmex_1.3.0-beta_win32_portable\MoneyManagerEx"
-#define my_output_filename "mmex_1.3.0-beta_win32_setup"
+
+; Note: This is the path where MMEX.exe will be found
+#define my_output_path "\mmex_v1.3.0_win32_portable_build392\MoneyManagerEx"
+
+; Note: Any revision mods can be added here
+#define my_output_filename "mmex_v1.3.0_build392_win32_setup"
 
 ;===============================================================================
 
@@ -58,14 +65,14 @@ OutputBaseFilename={#my_output_filename}
 SetupIconFile={#my_output_root}{#my_output_path}\res\mmex.ico
 Compression=lzma/Max
 SolidCompression=true
-VersionInfoVersion=1.3.0.0
+VersionInfoVersion={#MyWinVersionInfo}.0
 VersionInfoCompany=Money Manager EX
 VersionInfoDescription=Money Management Software
-VersionInfoTextVersion=1.3.0.0
+VersionInfoTextVersion={#MyWinVersionInfo}.0
 VersionInfoCopyright=2016 - Money Manager EX
 VersionInfoProductName=mmex
-VersionInfoProductVersion=1.3.0.0
-VersionInfoProductTextVersion=1.3.0.0
+VersionInfoProductVersion={#MyWinVersionInfo}.0
+VersionInfoProductTextVersion={#MyWinVersionInfo}.0
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl; 
