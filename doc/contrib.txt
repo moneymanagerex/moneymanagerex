@@ -116,8 +116,8 @@ http://www.famfamfam.com/lab/icons/silk
 2. BRET ADAMS
 3. Vic Forte
 4. Osman Goni
-5. Veli tokmen
-6. Dorothy Dean
+5. Dorothy Dean
+6. Veli Tokmen
 7. CARLOS MARTIN RECIO
 8. Garry Smith
 9. Angela Ruyle
@@ -137,12 +137,69 @@ http://www.famfamfam.com/lab/icons/silk
 23. Hany ElHawary
 24. Richard Clegg
 25. Philip Cook
-26.	Rudolf Leuenberger 
-27.	JHM Designs Publications
+26. Rudolf Leuenberger
+27. JHM Designs Publications
 28. Vic Forte
 29. Carlo Basile
 30. Christophe Pot
 31. Marcin Magnus
+32. Gernie Melliza
+33. Annaclerio Cattelan
+34. Sean Baber
+35. Nasser Kaviani
+36. Robert Edser
+37. Alain Benzimra
+38. Mark Balko
+39. Johannes Traxler
+40. Isabel Pires Monteiro
+41. Wiesław Stawiszyński
+42. Eduardo Siri
+43. Eric PINCHON
+44. Étienne Bourgeois
+45. Sergii Stepanchuk
+46. Francois Verret
+47. 伊筠 錢
+48. Emanuele Pizzurno
+49. Jean Paul Dion
+50. Steven Godfrey
+51. VSP AVVO
+52. Pinhas Gold
+53. Jose Manuel Marrero León
+54. Athanasios Tsoutsaios
+55. Irene Dunn
+56. Franck Vilenstein
+57. Gary Ferland
+58. Style Scissors
+59. Gábor Glück
+60. Halidou ROUAMBA
+61. José Hamilton Rosário
+62. Blair Boyle
+63. Edgar Lloren
+64. A Kloosterman
+65. VU MUN VO
+66. Per Hovland
+67. Juan Quintana
+68. Andinet Shiferaw
+69. H John Boeschen
+70. Harvey Brewer
+71. sabine Duchesne
+72. Mimi Barbier
+73. Andras Radacsi
+74. Clément Martin
+75. Robert Coverston
+76. Andrew Peter Grigg
+77. Judith Campbell
+78. Kennet Härmälä
+79. Jeffrey Pilling
+80. Paolo Marchiori
+81. Peter Helfer
+82. Hubert Behmer
+83. Andreas Löwenhagen
+84. Eduardo Siri
+85. Del Hardesty
+86. Alberto Ghilardi
+87. Horst Weber
+88. Marius Raht
 
 2015
 1. Heinrich Hasler
@@ -305,8 +362,6 @@ Copyright (C) 2013-2016 Gabriele[gabriele-v]
 Copyright (C) 2010-2016 Stefano [stef145g]
 Copyright (C) 2009-2010 VaDiM, Wesley Ellis
 
-Copyright (C) 2005-2009 Madhan Kanagavel
-
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -315,8 +370,7 @@ See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program; if not, write to
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
-
----------------------------------------
+======================================================================
 
 ##Privacy Policy
 We can collect information from you when you install or use Money Manager EX application.
@@ -342,3 +396,4 @@ If we decide to change our Privacy policy, we will update the Privacy policy mod
  
 This policy was last modified on 2014-04-30.
 - Money Manager EX team
+---------------------------------------
