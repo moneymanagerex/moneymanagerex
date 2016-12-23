@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-09-16 11:45+0300\n"
-"PO-Revision-Date: 2016-09-16 11:45+0300\n"
+"POT-Creation-Date: 2016-12-23 16:29+0300\n"
+"PO-Revision-Date: 2016-12-23 16:29+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "Language: ja\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2015-11-07 15:20+0000\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -87,11 +87,11 @@ msgstr "ライセンス"
 msgid "Privacy"
 msgstr ""
 
-#: aboutdialog.cpp:232 accountdialog.cpp:366 appstartdialog.cpp:136
+#: aboutdialog.cpp:232 accountdialog.cpp:373 appstartdialog.cpp:136
 #: assetdialog.cpp:301 attachmentdialog.cpp:118 billsdepositsdialog.cpp:629
 #: budgetentrydialog.cpp:156 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:126 currencydialog.cpp:208
-#: customfieldeditdialog.cpp:171 customfieldlistdialog.cpp:98
+#: customfieldeditdialog.cpp:170 customfieldlistdialog.cpp:98
 #: filtertransdialog.cpp:339 import_export/qif_export.cpp:206
 #: import_export/qif_export.cpp:229 import_export/qif_import_gui.cpp:290
 #: mmSimpleDialogs.cpp:51 optiondialog.cpp:150 payeedialog.cpp:125
@@ -102,140 +102,140 @@ msgstr ""
 msgid "&OK "
 msgstr "&OK "
 
-#: accountdialog.cpp:86 mmframe.cpp:1442 mmframe.cpp:1635
+#: accountdialog.cpp:86 mmframe.cpp:1443 mmframe.cpp:1636
 #: wizard_newaccount.cpp:79 wizard_newaccount.cpp:86 wizard_newaccount.cpp:158
 msgid "New Account"
 msgstr "新しいアカウント"
 
-#: accountdialog.cpp:106 mmframe.cpp:1446
+#: accountdialog.cpp:106 mmframe.cpp:1447
 msgid "Edit Account"
 msgstr "アカウントを編集"
 
-#: accountdialog.cpp:187
+#: accountdialog.cpp:194
 msgid "Account Name:"
 msgstr "アカウント名:"
 
-#: accountdialog.cpp:192
+#: accountdialog.cpp:199
 msgid "Account Type:"
 msgstr "アカウントの種類:"
 
-#: accountdialog.cpp:203
+#: accountdialog.cpp:210
 msgid "Account Status:"
 msgstr "アカウントの状態:"
 
-#: accountdialog.cpp:212
+#: accountdialog.cpp:219
 #, c-format
 msgid "Initial Balance: %s"
 msgstr "初期残高: %s"
 
-#: accountdialog.cpp:219 import_export/univcsvdialog.cpp:1475
+#: accountdialog.cpp:226 import_export/univcsvdialog.cpp:1482
 msgid "Currency:"
 msgstr "通貨:"
 
-#: accountdialog.cpp:221 currencydialog.cpp:90
+#: accountdialog.cpp:228 currencydialog.cpp:90
 msgid "Select Currency"
 msgstr "通貨を選択"
 
-#: accountdialog.cpp:232
+#: accountdialog.cpp:239
 msgid "Favorite Account"
 msgstr "お気に入りのアカウント"
 
-#: accountdialog.cpp:242 assetdialog.cpp:249 assetspanel.cpp:68
+#: accountdialog.cpp:249 assetdialog.cpp:249 assetspanel.cpp:68
 #: billsdepositsdialog.cpp:596 billsdepositspanel.cpp:109
 #: filtertransdialog.cpp:304 import_export/qif_import_gui.cpp:104
-#: import_export/univcsvdialog.cpp:91 mmcheckingpanel.cpp:976
+#: import_export/univcsvdialog.cpp:92 mmcheckingpanel.cpp:991
 #: reports/transactions.cpp:74 sharetransactiondialog.cpp:252
 #: stockdialog.cpp:269 stockspanel.cpp:103 transdialog.cpp:485
 #: usertransactionpanel.cpp:204 webappdialog.cpp:85
 msgid "Notes"
 msgstr "メモ"
 
-#: accountdialog.cpp:252 optiondialog.cpp:134 db/DB_Table_Subcategory_V1.h:123
+#: accountdialog.cpp:259 optiondialog.cpp:134 db/DB_Table_Subcategory_V1.h:123
 #: db/DB_Table_Subcategory_V1.h:126 db/DB_Table_Subcategory_V1.h:142
 msgid "Others"
 msgstr "その他"
 
-#: accountdialog.cpp:261
+#: accountdialog.cpp:268
 msgid "Card Number:"
 msgstr ""
 
-#: accountdialog.cpp:261
+#: accountdialog.cpp:268
 msgid "Account Number:"
 msgstr "アカウント番号"
 
-#: accountdialog.cpp:267
+#: accountdialog.cpp:274
 msgid "Held At:"
 msgstr "開設:"
 
-#: accountdialog.cpp:273
+#: accountdialog.cpp:280
 msgid "Website:"
 msgstr "ウェブサイト:"
 
-#: accountdialog.cpp:279
+#: accountdialog.cpp:286
 msgid "Contact:"
 msgstr "連絡先:"
 
-#: accountdialog.cpp:285
+#: accountdialog.cpp:292
 msgid "Access Info:"
 msgstr "アクセス情報"
 
-#: accountdialog.cpp:292
+#: accountdialog.cpp:299
 #, fuzzy
 msgid "Statement"
 msgstr "添付ファイル"
 
-#: accountdialog.cpp:300
+#: accountdialog.cpp:307
 msgid "Statement:"
 msgstr ""
 
-#: accountdialog.cpp:301
+#: accountdialog.cpp:308
 msgid "Locked"
 msgstr ""
 
-#: accountdialog.cpp:305
+#: accountdialog.cpp:312
 #, fuzzy
 msgid "Reconciled Date:"
 msgstr "照合済の残高: "
 
-#: accountdialog.cpp:310
+#: accountdialog.cpp:317
 msgid "Minimum Bal:"
 msgstr ""
 
-#: accountdialog.cpp:317
+#: accountdialog.cpp:324
 msgid "Credit"
 msgstr ""
 
-#: accountdialog.cpp:325
+#: accountdialog.cpp:332
 msgid "Credit Limit:"
 msgstr ""
 
-#: accountdialog.cpp:330
+#: accountdialog.cpp:337
 #, fuzzy
 msgid "Interest Rate:"
 msgstr "インターネット"
 
-#: accountdialog.cpp:334
+#: accountdialog.cpp:341
 #, fuzzy
 msgid "Payment Due Date:"
 msgstr "次の期限日"
 
-#: accountdialog.cpp:339
+#: accountdialog.cpp:346
 msgid "Minimum Payment:"
 msgstr ""
 
-#: accountdialog.cpp:361
+#: accountdialog.cpp:368
 msgid "Organize attachments of this account"
 msgstr "このアカウントの添付を編集"
 
-#: accountdialog.cpp:374
+#: accountdialog.cpp:381
 msgid "Enter the Name of the Account. This name can be renamed at any time."
 msgstr "アカウントの名前を入力してください。名前はいつでも変更できます。"
 
-#: accountdialog.cpp:375 wizard_newaccount.cpp:120
+#: accountdialog.cpp:382 wizard_newaccount.cpp:120
 msgid "Specify the type of account to be created."
 msgstr "作成するアカウントの種類を指定してください。"
 
-#: accountdialog.cpp:376
+#: accountdialog.cpp:383
 msgid ""
 "Specify if this account has been closed. Closed accounts are inactive in "
 "most calculations, reporting etc."
@@ -243,15 +243,15 @@ msgstr ""
 "このアカウントを閉じた場合に指定してください。閉じたアカウントは計算、レポー"
 "トなどで対象外になります。"
 
-#: accountdialog.cpp:377
+#: accountdialog.cpp:384
 msgid "Enter the initial balance in this account."
 msgstr "このアカウントの初期残高を入力してください。"
 
-#: accountdialog.cpp:378
+#: accountdialog.cpp:385
 msgid "Specify the currency to be used by this account."
 msgstr "このアカウントで使用する通貨を指定してください。"
 
-#: accountdialog.cpp:379
+#: accountdialog.cpp:386
 msgid ""
 "Select whether this is an account that is used often. This is used to filter "
 "accounts display view."
@@ -259,28 +259,28 @@ msgstr ""
 "よく使うアカウントを選択してください。これはアカウントを表示するフィルターに"
 "使用します。"
 
-#: accountdialog.cpp:380
+#: accountdialog.cpp:387
 msgid "Enter user notes and details about this account."
 msgstr "このアカウントに関するメモと詳細を入力してください。"
 
-#: accountdialog.cpp:381
+#: accountdialog.cpp:388
 msgid "Enter the Account Number associated with this account."
 msgstr "このアカウントに関連付けるアカウント番号/口座番号を入力してください。"
 
-#: accountdialog.cpp:382
+#: accountdialog.cpp:389
 msgid ""
 "Enter the name of the financial institution in which the account is held."
 msgstr "アカウント/口座を所有する金融機関の名前を入力してください。"
 
-#: accountdialog.cpp:383
+#: accountdialog.cpp:390
 msgid "Enter the URL of the website for the financial institution."
 msgstr "金融機関のウェブサイトの URL を入力してください。"
 
-#: accountdialog.cpp:384
+#: accountdialog.cpp:391
 msgid "Enter any contact information for the financial institution."
 msgstr "金融機関の連絡先情報を入力してください。"
 
-#: accountdialog.cpp:385
+#: accountdialog.cpp:392
 msgid ""
 "Enter any login/access information for the financial institution. This is "
 "not secure as anyone with access to the mmb file can access it."
@@ -288,44 +288,44 @@ msgstr ""
 "金融機関のログイン/アクセス情報を入力してください。 mmb ファイルにアクセス権"
 "のある人は誰でもアクセスできるため、安全ではありません。"
 
-#: accountdialog.cpp:387
+#: accountdialog.cpp:394
 #, fuzzy
 msgid "Enable or disable the transaction Lock"
 msgstr "選択した取引を編集"
 
-#: accountdialog.cpp:388
+#: accountdialog.cpp:395
 #, fuzzy
 msgid "The date of the transaction lock"
 msgstr "取引の日付を指定してください"
 
-#: accountdialog.cpp:389
+#: accountdialog.cpp:396
 msgid "Account balance lower limit. Zero to disable"
 msgstr ""
 
-#: accountdialog.cpp:390
+#: accountdialog.cpp:397
 msgid "Credit limit for the Account. Zero to disable"
 msgstr ""
 
-#: accountdialog.cpp:433
+#: accountdialog.cpp:440
 msgid "Account Name "
 msgstr "アカウント名 "
 
-#: accountdialog.cpp:437 import_export/qif_import_gui.cpp:243
+#: accountdialog.cpp:444 import_export/qif_import_gui.cpp:243
 #: optionsettingsgeneral.cpp:92
 msgid "Currency"
 msgstr "通貨"
 
-#: accountdialog.cpp:496
+#: accountdialog.cpp:503
 msgid "Default Image"
 msgstr "デフォルト画像"
 
-#: accountdialog.cpp:503
+#: accountdialog.cpp:510
 #, c-format
 msgid "Image #%i"
 msgstr "画像 #%i"
 
-#: appstartdialog.cpp:47 mmframe.cpp:1768 mmframe.cpp:1810 mmframe.cpp:1831
-#: mmframe.cpp:1833 mmhelppanel.cpp:68
+#: appstartdialog.cpp:47 mmframe.cpp:1769 mmframe.cpp:1811 mmframe.cpp:1832
+#: mmframe.cpp:1834 mmhelppanel.cpp:68
 #, c-format
 msgid "%1$s - %2$s"
 msgstr ""
@@ -414,8 +414,8 @@ msgid "Enter the name of the asset"
 msgstr "資産の名前を入力してください"
 
 #: assetdialog.cpp:197 assetspanel.cpp:64 import_export/qif_import_gui.cpp:98
-#: import_export/univcsvdialog.cpp:85 maincurrencydialog.cpp:235
-#: maincurrencydialog.cpp:258 mmcheckingpanel.cpp:968
+#: import_export/univcsvdialog.cpp:86 maincurrencydialog.cpp:235
+#: maincurrencydialog.cpp:258 mmcheckingpanel.cpp:983
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:261
 #: reports/summary.cpp:314 reports/transactions.cpp:67 stockdialog.cpp:302
 #: stockdialog.cpp:658 transdialog.cpp:377 usertransactionpanel.cpp:106
@@ -495,7 +495,7 @@ msgid ""
 "Would you want to create one?"
 msgstr ""
 
-#: assetspanel.cpp:62 billsdepositspanel.cpp:95 mmcheckingpanel.cpp:967
+#: assetspanel.cpp:62 billsdepositspanel.cpp:95 mmcheckingpanel.cpp:982
 #: stockspanel.cpp:91
 msgid "ID"
 msgstr ""
@@ -549,8 +549,8 @@ msgstr "資産を編集(&E)"
 msgid "&Delete Asset"
 msgstr "資産を削除(&D)"
 
-#: assetspanel.cpp:108 billsdepositspanel.cpp:408 mmcheckingpanel.cpp:1100
-#: mmframe.cpp:1154 payeedialog.cpp:371 stockspanel.cpp:148
+#: assetspanel.cpp:108 billsdepositspanel.cpp:408 mmcheckingpanel.cpp:1115
+#: mmframe.cpp:1155 payeedialog.cpp:370 stockspanel.cpp:148
 msgid "&Organize Attachments"
 msgstr "添付を整理(&O)"
 
@@ -574,19 +574,19 @@ msgstr ""
 "ないことがあります。総資産は、あなたの合計財務価値に追加されます。"
 
 #: assetspanel.cpp:414 general_report_manager.cpp:671
-#: general_report_manager.cpp:946 mmframe.cpp:466 mmframe.cpp:710
-#: mmframe.cpp:1509 mmhomepagepanel.cpp:423 mmhomepagepanel.cpp:806
+#: general_report_manager.cpp:946 mmframe.cpp:466 mmframe.cpp:711
+#: mmframe.cpp:1510 mmhomepagepanel.cpp:423 mmhomepagepanel.cpp:806
 #: reports/summary.cpp:176 assetspanel.h:94
 msgid "Assets"
 msgstr "資産"
 
 #: assetspanel.cpp:426 assetspanel.cpp:695 assetspanel.cpp:712
 #: import_export/qif_export.cpp:61 import_export/qif_export.cpp:62
-#: import_export/qif_export.cpp:123 mmframe.cpp:1208
+#: import_export/qif_export.cpp:123 mmframe.cpp:1209
 msgid "All"
 msgstr "すべて"
 
-#: assetspanel.cpp:467 billsdepositspanel.cpp:268 mmcheckingpanel.cpp:454
+#: assetspanel.cpp:467 billsdepositspanel.cpp:268 mmcheckingpanel.cpp:465
 #: stockspanel.cpp:569
 msgid "&New "
 msgstr "新規(&N) "
@@ -608,14 +608,14 @@ msgstr "すべての取引を表示"
 
 #: assetspanel.cpp:481 attachmentdialog.cpp:287 billsdepositspanel.cpp:272
 #: categdialog.cpp:228 customfieldlistdialog.cpp:271 maincurrencydialog.cpp:196
-#: maincurrencydialog.cpp:570 mmcheckingpanel.cpp:458 payeedialog.cpp:365
+#: maincurrencydialog.cpp:570 mmcheckingpanel.cpp:469 payeedialog.cpp:364
 #: splittransactionsdialog.cpp:164 stockspanel.cpp:583
 msgid "&Edit "
 msgstr "編集(&E) "
 
 #: assetspanel.cpp:486 billsdepositspanel.cpp:277 budgetyeardialog.cpp:103
-#: categdialog.cpp:232 maincurrencydialog.cpp:283 mmcheckingpanel.cpp:463
-#: mmcheckingpanel.cpp:1116 stockdialog.cpp:330 stockspanel.cpp:588
+#: categdialog.cpp:232 maincurrencydialog.cpp:283 mmcheckingpanel.cpp:474
+#: mmcheckingpanel.cpp:1131 stockdialog.cpp:330 stockspanel.cpp:588
 msgid "&Delete "
 msgstr "削除(&D) "
 
@@ -623,12 +623,12 @@ msgstr "削除(&D) "
 msgid "Delete Asset"
 msgstr "資産を削除"
 
-#: assetspanel.cpp:494 billsdepositspanel.cpp:295 mmcheckingpanel.cpp:476
+#: assetspanel.cpp:494 billsdepositspanel.cpp:295 mmcheckingpanel.cpp:487
 #: stockspanel.cpp:601
 msgid "Open attachments"
 msgstr "添付ファイルを開く"
 
-#: assetspanel.cpp:501 assetspanel.cpp:502 mmcheckingpanel.cpp:484
+#: assetspanel.cpp:501 assetspanel.cpp:502 mmcheckingpanel.cpp:495
 msgid "Search"
 msgstr "検索"
 
@@ -665,18 +665,18 @@ msgid ""
 msgstr ""
 
 #: attachmentdialog.cpp:54 customfieldlistdialog.cpp:54
-#: import_export/qif_import_gui.cpp:96 import_export/univcsvdialog.cpp:995
+#: import_export/qif_import_gui.cpp:96 import_export/univcsvdialog.cpp:996
 #: payeedialog.cpp:62
 msgid "#"
 msgstr "#"
 
-#: attachmentdialog.cpp:55 customfieldeditdialog.cpp:126
+#: attachmentdialog.cpp:55 customfieldeditdialog.cpp:125
 #: customfieldlistdialog.cpp:55 general_report_manager.cpp:407
 msgid "Description"
 msgstr "説明"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:170
-#: import_export/univcsvdialog.cpp:157
+#: import_export/univcsvdialog.cpp:158
 msgid "File"
 msgstr "ファイル"
 
@@ -747,8 +747,8 @@ msgid "Confirm Attachment Deletion"
 msgstr "添付ファイル削除の確認"
 
 #: attachmentdialog.cpp:284 categdialog.cpp:224 customfieldlistdialog.cpp:269
-#: import_export/univcsvdialog.cpp:209 maincurrencydialog.cpp:193
-#: payeedialog.cpp:364 splittransactionsdialog.cpp:163 stockdialog.cpp:332
+#: import_export/univcsvdialog.cpp:210 maincurrencydialog.cpp:193
+#: payeedialog.cpp:363 splittransactionsdialog.cpp:163 stockdialog.cpp:332
 msgid "&Add "
 msgstr "追加(&A) "
 
@@ -757,8 +757,8 @@ msgid "&Open "
 msgstr "開く(&O) "
 
 #: attachmentdialog.cpp:289 customfieldlistdialog.cpp:272
-#: import_export/univcsvdialog.cpp:213 maincurrencydialog.cpp:200
-#: payeedialog.cpp:367 splittransactionsdialog.cpp:165
+#: import_export/univcsvdialog.cpp:214 maincurrencydialog.cpp:200
+#: payeedialog.cpp:366 splittransactionsdialog.cpp:165
 msgid "&Remove "
 msgstr "削除(&R) "
 
@@ -944,7 +944,7 @@ msgstr "次の '発生日' を遅らせるかまたは進めます"
 msgid "Date Due"
 msgstr "日付の範囲"
 
-#: billsdepositsdialog.cpp:403 billsdepositsdialog.cpp:1301
+#: billsdepositsdialog.cpp:403 billsdepositsdialog.cpp:1303
 msgid "Repeats"
 msgstr "繰り返し"
 
@@ -957,7 +957,7 @@ msgstr "次"
 msgid "Advance the next occuring date with the specified values"
 msgstr "指定した値で次の発生日を進めます"
 
-#: billsdepositsdialog.cpp:426 billsdepositsdialog.cpp:1344
+#: billsdepositsdialog.cpp:426 billsdepositsdialog.cpp:1346
 msgid "Payments Left"
 msgstr ""
 
@@ -1004,7 +1004,7 @@ msgstr "取引の状態を指定してください"
 #: billsdepositsdialog.cpp:495 billsdepositspanel.cpp:100
 #: filtertransdialog.cpp:236 import_export/qif_import_gui.cpp:244
 #: import_export/qif_import_gui.cpp:256 import_export/qif_import_gui.cpp:267
-#: mmcheckingpanel.cpp:971 reports/transactions.cpp:70 transdialog.cpp:391
+#: mmcheckingpanel.cpp:986 reports/transactions.cpp:70 transdialog.cpp:391
 #: usertransactionpanel.cpp:176 webappdialog.cpp:80
 msgid "Status"
 msgstr "状態"
@@ -1047,7 +1047,7 @@ msgstr "振替先のアカウントに振替する金額を指定してくださ
 #: filtertransdialog.cpp:174 import_export/qif_import_gui.cpp:97
 #: import_export/qif_import_gui.cpp:157 import_export/qif_import_gui.cpp:236
 #: import_export/qif_import_gui.cpp:780 reports/transactions.cpp:68
-#: transdialog.cpp:247 transdialog.cpp:435 usertransactionpanel.cpp:110
+#: transdialog.cpp:246 transdialog.cpp:435 usertransactionpanel.cpp:110
 #: webappdialog.cpp:79
 msgid "Account"
 msgstr "アカウント"
@@ -1065,9 +1065,9 @@ msgstr ""
 #: billsdepositsdialog.cpp:558 billsdepositsdialog.cpp:863
 #: billsdepositspanel.cpp:99 filtertransdialog.cpp:203
 #: import_export/qif_import_gui.cpp:100 import_export/qif_import_gui.cpp:249
-#: import_export/univcsvdialog.cpp:86 mmcheckingpanel.cpp:970
+#: import_export/univcsvdialog.cpp:87 mmcheckingpanel.cpp:985
 #: mmhomepagepanel.cpp:387 model/Model_Attachment.cpp:29 reports/payee.cpp:115
-#: reports/transactions.cpp:69 transdialog.cpp:240 transdialog.cpp:440
+#: reports/transactions.cpp:69 transdialog.cpp:239 transdialog.cpp:440
 #: usertransactionpanel.cpp:180 webappdialog.cpp:82
 msgid "Payee"
 msgstr "支払先"
@@ -1092,7 +1092,7 @@ msgstr "分割カテゴリーを使用します"
 #: billsdepositsdialog.cpp:579 billsdepositspanel.cpp:101
 #: budgetingpanel.cpp:306 filtertransdialog.cpp:214
 #: import_export/qif_import_gui.cpp:102 import_export/qif_import_gui.cpp:261
-#: import_export/univcsvdialog.cpp:88 mmcheckingpanel.cpp:972
+#: import_export/univcsvdialog.cpp:89 mmcheckingpanel.cpp:987
 #: mmhomepagepanel.cpp:218 reports/budgetcategorysummary.cpp:112
 #: reports/budgetingperf.cpp:129 reports/categexp.cpp:132
 #: reports/categovertimeperf.cpp:108 reports/transactions.cpp:71
@@ -1101,7 +1101,7 @@ msgstr "分割カテゴリーを使用します"
 msgid "Category"
 msgstr "カテゴリー"
 
-#: billsdepositsdialog.cpp:580 billsdepositsdialog.cpp:1476 transdialog.cpp:328
+#: billsdepositsdialog.cpp:580 billsdepositsdialog.cpp:1478 transdialog.cpp:328
 #: transdialog.cpp:863 usertransactionpanel.cpp:188
 msgid "Select Category"
 msgstr "カテゴリーを選択"
@@ -1112,7 +1112,7 @@ msgstr "任意の関連する小切手番号または取引番号を指定して
 
 #: billsdepositsdialog.cpp:592 billsdepositspanel.cpp:108
 #: filtertransdialog.cpp:296 import_export/qif_import_gui.cpp:99
-#: import_export/univcsvdialog.cpp:90 mmcheckingpanel.cpp:969
+#: import_export/univcsvdialog.cpp:91 mmcheckingpanel.cpp:984
 #: reports/transactions.cpp:73 transdialog.cpp:478 usertransactionpanel.cpp:200
 msgid "Number"
 msgstr "番号"
@@ -1147,7 +1147,7 @@ msgid "Specify to whom the transaction is going to or coming from "
 msgstr "取引が誰から誰にいくか指定します "
 
 #: billsdepositsdialog.cpp:840 billsdepositsdialog.cpp:851
-#: billsdepositsdialog.cpp:874 transdialog.cpp:244 transdialog.cpp:305
+#: billsdepositsdialog.cpp:874 transdialog.cpp:243 transdialog.cpp:305
 msgid "From"
 msgstr "元"
 
@@ -1163,61 +1163,61 @@ msgstr "先のアカウントを選択"
 msgid "Specify where the transaction is coming from"
 msgstr "取引がどこから来ているるか指定します"
 
-#: billsdepositsdialog.cpp:1252
+#: billsdepositsdialog.cpp:1254
 msgid "Specify the transfer amount in the From Account"
 msgstr "元のアカウントから振替する金額を指定します"
 
-#: billsdepositsdialog.cpp:1302
+#: billsdepositsdialog.cpp:1304
 msgid "Activates"
 msgstr "アクティベート"
 
-#: billsdepositsdialog.cpp:1304
+#: billsdepositsdialog.cpp:1306
 msgid "Period: Days"
 msgstr "期間: 日数"
 
-#: billsdepositsdialog.cpp:1305
+#: billsdepositsdialog.cpp:1307
 msgid "Period: Months"
 msgstr "期間: 月数"
 
-#: billsdepositsdialog.cpp:1313
+#: billsdepositsdialog.cpp:1315
 #, fuzzy
 msgid "Specify period in Days to activate.Becomes blank when not active."
 msgstr "アクティベートする期間を日数で指定します。"
 
-#: billsdepositsdialog.cpp:1321
+#: billsdepositsdialog.cpp:1323
 #, fuzzy
 msgid ""
 "Specify period in Months to activate.\n"
 "Becomes blank when not active."
 msgstr "アクティベートする期間を月数で指定します。"
 
-#: billsdepositsdialog.cpp:1329
+#: billsdepositsdialog.cpp:1331
 #, fuzzy
 msgid ""
 "Specify period in Days to activate.\n"
 "Leave blank when not active."
 msgstr "アクティベートする期間を日数で指定します。"
 
-#: billsdepositsdialog.cpp:1337
+#: billsdepositsdialog.cpp:1339
 #, fuzzy
 msgid ""
 "Specify period in Months to activate.\n"
 "Leave blank when not active."
 msgstr "アクティベートする期間を月数で指定します。"
 
-#: billsdepositsdialog.cpp:1345
+#: billsdepositsdialog.cpp:1347
 #, fuzzy
 msgid ""
 "Specify the number of payments to be made.Leave blank if the payments "
 "continue forever."
 msgstr "このシリーズを永久に続ける場合は、空白のままにします。"
 
-#: billsdepositsdialog.cpp:1444 transdialog.cpp:1138
+#: billsdepositsdialog.cpp:1446 transdialog.cpp:1138
 #: usertransactionpanel.cpp:190
 msgid "Specify the category for this transaction"
 msgstr "この取引のカテゴリーを指定します"
 
-#: billsdepositsdialog.cpp:1466 categdialog.cpp:118
+#: billsdepositsdialog.cpp:1468 categdialog.cpp:118
 #: import_export/qif_export.cpp:115 mmframereport.cpp:135
 #: reports/categexp.cpp:200 transdialog.cpp:318
 msgid "Categories"
@@ -1259,12 +1259,12 @@ msgid ""
 "adjust any values on the due date."
 msgstr ""
 
-#: billsdepositspanel.cpp:218 billsdepositspanel.cpp:882 mmframe.cpp:714
+#: billsdepositspanel.cpp:218 billsdepositspanel.cpp:882 mmframe.cpp:715
 #: mmhomepagepanel.cpp:429
 msgid "Recurring Transactions"
 msgstr ""
 
-#: billsdepositspanel.cpp:234 filtertransdialog.cpp:94 mmcheckingpanel.cpp:374
+#: billsdepositspanel.cpp:234 filtertransdialog.cpp:94 mmcheckingpanel.cpp:385
 msgid "Transaction Filter"
 msgstr "取引フィルター"
 
@@ -1563,11 +1563,11 @@ msgstr "基本予算にオンする年を指定します。"
 msgid "Budget Year already exists"
 msgstr "予算年度はすでに存在します"
 
-#: categdialog.cpp:92 mmframe.cpp:1468 mmframe.cpp:1638
+#: categdialog.cpp:92 mmframe.cpp:1469 mmframe.cpp:1639
 msgid "Organize Categories"
 msgstr "カテゴリーの整理"
 
-#: categdialog.cpp:187 mmframe.cpp:1485
+#: categdialog.cpp:187 mmframe.cpp:1486
 msgid "Reassign all categories to another category"
 msgstr "すべてのカテゴリーを別のカテゴリーに再割り当てします"
 
@@ -1613,15 +1613,19 @@ msgstr ""
 msgid "Enter the name for the new category:"
 msgstr "新しいカテゴリーの名前を入力してください:"
 
-#: categdialog.cpp:251
+#: categdialog.cpp:253
+msgid "Tip: If category added now, check bottom of list."
+msgstr ""
+
+#: categdialog.cpp:256
 msgid "Add Category"
 msgstr "カテゴリーを追加"
 
-#: categdialog.cpp:260 categdialog.cpp:467
+#: categdialog.cpp:265 categdialog.cpp:473
 msgid "Category with same name exists"
 msgstr "同じ名前のカテゴリーが存在します"
 
-#: categdialog.cpp:261
+#: categdialog.cpp:266
 msgid ""
 "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
@@ -1629,29 +1633,29 @@ msgstr ""
 "ヒント: 今、カテゴリーを追加した場合は、リストの最後を確認してください。\n"
 "次回ダイアログボックスが表示されると、カテゴリーはソート順になります"
 
-#: categdialog.cpp:263 categdialog.cpp:286 categdialog.cpp:304
+#: categdialog.cpp:268 categdialog.cpp:292 categdialog.cpp:310
 msgid "Organise Categories: Adding Error"
 msgstr "カテゴリーの整理: 追加エラー"
 
-#: categdialog.cpp:285 categdialog.cpp:484
+#: categdialog.cpp:291 categdialog.cpp:490
 msgid "Sub Category with same name exists"
 msgstr "同じ名前のサブカテゴリーが存在します"
 
-#: categdialog.cpp:303
+#: categdialog.cpp:309
 msgid "Invalid Parent Category. Choose Root or Main Category node."
 msgstr ""
 "親カテゴリーが正しくありません。ルートまたはメインカテゴリーノードを選択して"
 "ください。"
 
-#: categdialog.cpp:310
+#: categdialog.cpp:316
 msgid "Category in use."
 msgstr "カテゴリーは使用中です。"
 
-#: categdialog.cpp:310
+#: categdialog.cpp:316
 msgid "Sub-Category in use."
 msgstr "サブカテゴリーは使用中です。"
 
-#: categdialog.cpp:312
+#: categdialog.cpp:318
 msgid ""
 "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
@@ -1659,7 +1663,7 @@ msgstr ""
 "ヒント: 再配置コマンドを使用して、このカテゴリーを使用している\n"
 "すべての取引を、別のカテゴリーに変更します:"
 
-#: categdialog.cpp:315
+#: categdialog.cpp:321
 msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
@@ -1667,49 +1671,49 @@ msgstr ""
 "ヒント: 再配置コマンドを使用して、このサブカテゴリー使用している\n"
 "すべての取引を、別のサブカテゴリーに変更します:"
 
-#: categdialog.cpp:318
+#: categdialog.cpp:324
 msgid "Tools -> Relocation of -> Categories"
 msgstr "ツール -> 再配置 -> カテゴリー"
 
-#: categdialog.cpp:320
+#: categdialog.cpp:326
 msgid "Organise Categories: Delete Error"
 msgstr "カテゴリーの整理: 削除エラー"
 
-#: categdialog.cpp:453
+#: categdialog.cpp:459
 #, c-format
 msgid "Enter a new name for %s"
 msgstr "%s の新しい名前を入力してください"
 
-#: categdialog.cpp:455
+#: categdialog.cpp:461
 msgid "Edit Category"
 msgstr "カテゴリーを編集"
 
-#: categdialog.cpp:468 categdialog.cpp:485
+#: categdialog.cpp:474 categdialog.cpp:491
 msgid "Organise Categories: Editing Error"
 msgstr "カテゴリーの整理: 編集エラー"
 
-#: categdialog.cpp:561 mmframe.cpp:2770
+#: categdialog.cpp:567 mmframe.cpp:2771
 msgid "Category Relocation Completed."
 msgstr "カテゴリーの再配置が完了しました。"
 
-#: categdialog.cpp:562 mmframe.cpp:2771 mmframe.cpp:2786 payeedialog.cpp:315
+#: categdialog.cpp:568 mmframe.cpp:2772 mmframe.cpp:2787 payeedialog.cpp:314
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "データベースのレコードが更新されました: %i"
 
-#: categdialog.cpp:564 mmframe.cpp:2773
+#: categdialog.cpp:570 mmframe.cpp:2774
 msgid "Category Relocation Result"
 msgstr "カテゴリーの再配置結果"
 
-#: categdialog.cpp:629
+#: categdialog.cpp:635
 msgid "Hide Selected Category"
 msgstr "選択したカテゴリーを非表示にする"
 
-#: categdialog.cpp:630
+#: categdialog.cpp:636
 msgid "Unhide Selected Category"
 msgstr "選択したカテゴリーを表示する"
 
-#: categdialog.cpp:632
+#: categdialog.cpp:638
 msgid "Clear Settings"
 msgstr "設定をクリア"
 
@@ -1736,53 +1740,53 @@ msgstr ""
 msgid "MMEX is using the following support products"
 msgstr "MMEX は、以下のサポート製品を使用しています"
 
-#: constants.cpp:185 mmcheckingpanel.h:260
+#: constants.cpp:185 mmcheckingpanel.h:261
 msgid "View All Transactions"
 msgstr "すべての取引を表示"
 
-#: constants.cpp:186 mmcheckingpanel.h:261
+#: constants.cpp:186 mmcheckingpanel.h:262
 msgid "View Today"
 msgstr "今日を表示"
 
-#: constants.cpp:187 mmcheckingpanel.h:262
+#: constants.cpp:187 mmcheckingpanel.h:263
 msgid "View Current Month"
 msgstr "今月を表示"
 
-#: constants.cpp:188 mmcheckingpanel.h:263
+#: constants.cpp:188 mmcheckingpanel.h:264
 msgid "View Last 30 days"
 msgstr "最近30日を表示"
 
-#: constants.cpp:189 mmcheckingpanel.h:264
+#: constants.cpp:189 mmcheckingpanel.h:265
 msgid "View Last 90 days"
 msgstr "最近90日を表示"
 
-#: constants.cpp:190 mmcheckingpanel.h:265
+#: constants.cpp:190 mmcheckingpanel.h:266
 msgid "View Last Month"
 msgstr "前月を表示"
 
-#: constants.cpp:191 mmcheckingpanel.h:266
+#: constants.cpp:191 mmcheckingpanel.h:267
 msgid "View Last 3 Months"
 msgstr "最近3ヶ月を表示"
 
-#: constants.cpp:192 mmcheckingpanel.h:267
+#: constants.cpp:192 mmcheckingpanel.h:268
 msgid "View Last 12 Months"
 msgstr "最近12ヶ月を表示"
 
-#: constants.cpp:193 mmcheckingpanel.h:268
+#: constants.cpp:193 mmcheckingpanel.h:269
 msgid "View Current Year"
 msgstr "今年を表示"
 
-#: constants.cpp:194 mmcheckingpanel.h:269
+#: constants.cpp:194 mmcheckingpanel.h:270
 #, fuzzy
 msgid "View Current Financial Year"
 msgstr "今年度"
 
-#: constants.cpp:195 mmcheckingpanel.h:270
+#: constants.cpp:195 mmcheckingpanel.h:271
 #, fuzzy
 msgid "View Last Year"
 msgstr "昨年"
 
-#: constants.cpp:196 mmcheckingpanel.h:271
+#: constants.cpp:196 mmcheckingpanel.h:272
 #, fuzzy
 msgid "View Last Financial Year"
 msgstr "昨年度"
@@ -1791,16 +1795,16 @@ msgstr "昨年度"
 msgid "ALL"
 msgstr ""
 
-#: constants.cpp:199 mmframe.cpp:1210 mmframe.cpp:1633
+#: constants.cpp:199 mmframe.cpp:1211 mmframe.cpp:1634
 #: model/Model_Account.cpp:26
 msgid "Open"
 msgstr "開く"
 
-#: constants.cpp:200 mmframe.cpp:1211 model/Model_Account.cpp:27
+#: constants.cpp:200 mmframe.cpp:1212 model/Model_Account.cpp:27
 msgid "Closed"
 msgstr "締切"
 
-#: constants.cpp:201 mmframe.cpp:1209
+#: constants.cpp:201 mmframe.cpp:1210
 msgid "Favorites"
 msgstr "お気に入り"
 
@@ -1892,85 +1896,85 @@ msgstr ""
 msgid "New/Edit Custom Field"
 msgstr "資産を作成/編集"
 
-#: customfieldeditdialog.cpp:116
+#: customfieldeditdialog.cpp:115
 #, fuzzy
 msgid "Custom Field Details"
 msgstr "資産の詳細"
 
-#: customfieldeditdialog.cpp:128
+#: customfieldeditdialog.cpp:127
 #, fuzzy
 msgid "Enter the name of the custom field"
 msgstr "資産の名前を入力してください"
 
-#: customfieldeditdialog.cpp:131
+#: customfieldeditdialog.cpp:130
 #, fuzzy
 msgid "Field Type"
 msgstr "資産の種類"
 
-#: customfieldeditdialog.cpp:135
+#: customfieldeditdialog.cpp:134
 #, fuzzy
 msgid "Select type of custom field"
 msgstr "資産の種類を指定してください"
 
-#: customfieldeditdialog.cpp:138
+#: customfieldeditdialog.cpp:137
 #, fuzzy
 msgid "ToolTip"
 msgstr "ツール(&T)"
 
-#: customfieldeditdialog.cpp:140
+#: customfieldeditdialog.cpp:139
 msgid "Enter the tooltip that will be shown"
 msgstr ""
 
-#: customfieldeditdialog.cpp:143
+#: customfieldeditdialog.cpp:142
 msgid "RegEx"
 msgstr ""
 
-#: customfieldeditdialog.cpp:145
+#: customfieldeditdialog.cpp:144
 #, fuzzy
 msgid "Enter the RegEx to validate field"
 msgstr "資産の名前を入力してください"
 
-#: customfieldeditdialog.cpp:148
+#: customfieldeditdialog.cpp:147
 #, fuzzy
 msgid "Autocomplete"
 msgstr "自動車"
 
-#: customfieldeditdialog.cpp:151
+#: customfieldeditdialog.cpp:150
 msgid "Enables autocomplete on custom field"
 msgstr ""
 
-#: customfieldeditdialog.cpp:154 util.cpp:427
+#: customfieldeditdialog.cpp:153 util.cpp:433
 msgid "Default"
 msgstr ""
 
-#: customfieldeditdialog.cpp:156
+#: customfieldeditdialog.cpp:155
 msgid ""
 "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
 msgstr ""
 
-#: customfieldeditdialog.cpp:160
+#: customfieldeditdialog.cpp:159
 msgid "Choices"
 msgstr ""
 
-#: customfieldeditdialog.cpp:162
+#: customfieldeditdialog.cpp:161
 msgid "Enter the choices for this field separated with a semicolon"
 msgstr ""
 
-#: customfieldeditdialog.cpp:206
+#: customfieldeditdialog.cpp:202
 msgid "Changing field type will delete all content!"
 msgstr ""
 
-#: customfieldeditdialog.cpp:207 customfieldeditdialog.cpp:229 mmframe.cpp:1986
-#: mmframe.cpp:2005
+#: customfieldeditdialog.cpp:203 customfieldeditdialog.cpp:225 mmframe.cpp:1987
+#: mmframe.cpp:2006
 msgid "Do you want to proceed?"
 msgstr ""
 
-#: customfieldeditdialog.cpp:208 customfieldeditdialog.cpp:230
+#: customfieldeditdialog.cpp:204 customfieldeditdialog.cpp:226
 msgid "Custom Field Change"
 msgstr ""
 
-#: customfieldeditdialog.cpp:228
+#: customfieldeditdialog.cpp:224
 msgid "You have modified choices: ones removed will be cleaned!"
 msgstr ""
 
@@ -2159,7 +2163,7 @@ msgstr ""
 msgid "Error: %s"
 msgstr ""
 
-#: dbwrapper.cpp:85 mmframe.cpp:1725
+#: dbwrapper.cpp:85 mmframe.cpp:1726
 msgid "Opening MMEX Database - Error"
 msgstr "MMEX データベースを開く時 - エラー"
 
@@ -2208,14 +2212,14 @@ msgstr "類似を含める"
 msgid "Include all subcategories for the selected category."
 msgstr "選択したカテゴリのすべてのサブカテゴリを含めます。"
 
-#: filtertransdialog.cpp:255 import_export/univcsvdialog.cpp:93
-#: mmcheckingpanel.cpp:973 model/Model_Billsdeposits.cpp:31
+#: filtertransdialog.cpp:255 import_export/univcsvdialog.cpp:94
+#: mmcheckingpanel.cpp:988 model/Model_Billsdeposits.cpp:31
 #: model/Model_Checking.cpp:29 splitdetailsdialog.cpp:118
 msgid "Withdrawal"
 msgstr "引出"
 
-#: filtertransdialog.cpp:257 import_export/univcsvdialog.cpp:94
-#: mmcheckingpanel.cpp:974 model/Model_Billsdeposits.cpp:32
+#: filtertransdialog.cpp:257 import_export/univcsvdialog.cpp:95
+#: mmcheckingpanel.cpp:989 model/Model_Billsdeposits.cpp:32
 #: model/Model_Checking.cpp:30 splitdetailsdialog.cpp:119
 msgid "Deposit"
 msgstr "預金"
@@ -2236,18 +2240,18 @@ msgstr "金額の範囲"
 msgid "&Clear "
 msgstr "クリア(&C) "
 
-#: filtertransdialog.cpp:421 filtertransdialog.cpp:431
+#: filtertransdialog.cpp:423 filtertransdialog.cpp:433
 msgid "Invalid Amount Entered "
 msgstr "入力された金額は正しくありません "
 
-#: filtertransdialog.cpp:421 filtertransdialog.cpp:431
-#: import_export/qif_import_gui.cpp:696 import_export/qif_import_gui.cpp:827
-#: maincurrencydialog.cpp:524 mmSimpleDialogs.cpp:154 mmframe.cpp:2844
+#: filtertransdialog.cpp:423 filtertransdialog.cpp:433
+#: import_export/qif_import_gui.cpp:696 import_export/qif_import_gui.cpp:829
+#: maincurrencydialog.cpp:524 mmSimpleDialogs.cpp:154 mmframe.cpp:2845
 #: splittransactionsdialog.cpp:206 stockspanel.cpp:813 stockspanel.cpp:814
 msgid "Error"
 msgstr "エラー"
 
-#: filtertransdialog.cpp:765
+#: filtertransdialog.cpp:764
 msgid "Filtering Details: "
 msgstr "フィルターの詳細: "
 
@@ -2255,12 +2259,12 @@ msgstr "フィルターの詳細: "
 msgid "General Reports Manager"
 msgstr "汎用レポートマネージャー"
 
-#: general_report_manager.cpp:278 mmframe.cpp:722 mmframe.cpp:2335
+#: general_report_manager.cpp:278 mmframe.cpp:723 mmframe.cpp:2336
 msgid "Reports"
 msgstr "レポート"
 
-#: general_report_manager.cpp:365 import_export/univcsvdialog.cpp:375
-#: mmframe.cpp:1203 mmframe.cpp:1382
+#: general_report_manager.cpp:365 import_export/univcsvdialog.cpp:376
+#: mmframe.cpp:1204 mmframe.cpp:1383
 msgid "&Import"
 msgstr "インポート(&I)"
 
@@ -2268,8 +2272,8 @@ msgstr "インポート(&I)"
 msgid "Locate and load a report file."
 msgstr "場所を指定してレポートファイルをロードします。"
 
-#: general_report_manager.cpp:369 import_export/univcsvdialog.cpp:382
-#: mmframe.cpp:1198 mmframe.cpp:1375
+#: general_report_manager.cpp:369 import_export/univcsvdialog.cpp:383
+#: mmframe.cpp:1199 mmframe.cpp:1376
 msgid "&Export"
 msgstr "エクスポート(&E)"
 
@@ -2374,7 +2378,7 @@ msgid "Enter the name for the report"
 msgstr "レポートの名前を入力してください"
 
 #: general_report_manager.cpp:781 general_report_manager.cpp:926
-#: mmframe.cpp:1173 mmframe.cpp:1523 mmframe.cpp:1644
+#: mmframe.cpp:1174 mmframe.cpp:1524 mmframe.cpp:1645
 msgid "General Report Manager"
 msgstr "汎用レポートマネージャー"
 
@@ -2415,13 +2419,13 @@ msgstr "新しいレポート"
 msgid "Choose file to Save As Report"
 msgstr "レポートとして保存するファイルを選択"
 
-#: import_export/parsers.cpp:44 import_export/univcsvdialog.cpp:1262
+#: import_export/parsers.cpp:44 import_export/univcsvdialog.cpp:1263
 #: mmSimpleDialogs.cpp:220
 msgid "Unable to open file."
 msgstr "ファイルを開くことができません。"
 
 #: import_export/parsers.cpp:44 import_export/parsers.cpp:87
-#: import_export/univcsvdialog.cpp:750 mmframe.cpp:2138 mmframe.cpp:2157
+#: import_export/univcsvdialog.cpp:751 mmframe.cpp:2139 mmframe.cpp:2158
 msgid "Universal CSV Import"
 msgstr "ユニバーサル CSV インポート"
 
@@ -2488,8 +2492,8 @@ msgstr "QIF"
 msgid "CSV"
 msgstr "CSV"
 
-#: import_export/qif_export.cpp:121 mmframe.cpp:2611 mmframe.cpp:2615
-#: mmframe.cpp:2634 mmframe.cpp:2638
+#: import_export/qif_export.cpp:121 mmframe.cpp:2612 mmframe.cpp:2616
+#: mmframe.cpp:2635 mmframe.cpp:2639
 msgid "Accounts"
 msgstr "アカウント"
 
@@ -2511,11 +2515,11 @@ msgid "Write to File"
 msgstr "ファイルに書き込み"
 
 #: import_export/qif_export.cpp:169 import_export/qif_import_gui.cpp:127
-#: import_export/univcsvdialog.cpp:145
+#: import_export/univcsvdialog.cpp:146
 msgid "File Name:"
 msgstr "ファイル名:"
 
-#: import_export/qif_export.cpp:192 import_export/univcsvdialog.cpp:401
+#: import_export/qif_export.cpp:192 import_export/univcsvdialog.cpp:402
 msgid "Clear"
 msgstr "クリア"
 
@@ -2527,7 +2531,7 @@ msgstr "エクスポートする元のアカウントを選択:"
 msgid "QIF Files"
 msgstr "QIF ファイル"
 
-#: import_export/qif_export.cpp:272 import_export/univcsvdialog.cpp:1246
+#: import_export/qif_export.cpp:272 import_export/univcsvdialog.cpp:1247
 msgid "CSV Files"
 msgstr "CSV ファイル"
 
@@ -2535,7 +2539,7 @@ msgstr "CSV ファイル"
 msgid "Choose QIF data file to Export"
 msgstr "エクスポートする QIF データファイルを選択"
 
-#: import_export/qif_export.cpp:276 import_export/univcsvdialog.cpp:160
+#: import_export/qif_export.cpp:276 import_export/univcsvdialog.cpp:161
 msgid "Choose CSV data file to Export"
 msgstr "エクスポートする CSV データファイルを選択"
 
@@ -2564,21 +2568,21 @@ msgstr "しばらくお待ちください"
 msgid "Exporting"
 msgstr "エクスポートしています"
 
-#: import_export/qif_export.cpp:409
+#: import_export/qif_export.cpp:411
 #, c-format
 msgid "Exporting transaction %i"
 msgstr "取引をエクスポートしています %i"
 
-#: import_export/qif_export.cpp:459
+#: import_export/qif_export.cpp:461
 #, c-format
 msgid "Number of transactions exported: %ld"
 msgstr "エクスポートした取引の数: %ld"
 
-#: import_export/qif_export.cpp:460 mmframe.cpp:1373
+#: import_export/qif_export.cpp:462 mmframe.cpp:1374
 msgid "Export to QIF"
 msgstr "QIF にエクスポート"
 
-#: import_export/qif_import_gui.cpp:82 import_export/qif_import_gui.cpp:851
+#: import_export/qif_import_gui.cpp:82 import_export/qif_import_gui.cpp:853
 msgid "QIF Import"
 msgstr "QIF インポート"
 
@@ -2604,11 +2608,11 @@ msgstr "データ"
 
 #: import_export/qif_import_gui.cpp:315 import_export/qif_import_gui.cpp:318
 #: import_export/qif_import_gui.cpp:467 import_export/qif_import_gui.cpp:470
-#: import_export/qif_import_gui.cpp:476 import_export/qif_import_gui.cpp:1014
-#: import_export/univcsvdialog.cpp:601 import_export/univcsvdialog.cpp:677
-#: import_export/univcsvdialog.cpp:681 import_export/univcsvdialog.cpp:701
-#: import_export/univcsvdialog.cpp:707 transdialog.cpp:263 webapp.cpp:386
-#: webapp.cpp:390
+#: import_export/qif_import_gui.cpp:476 import_export/qif_import_gui.cpp:1016
+#: import_export/univcsvdialog.cpp:602 import_export/univcsvdialog.cpp:678
+#: import_export/univcsvdialog.cpp:682 import_export/univcsvdialog.cpp:702
+#: import_export/univcsvdialog.cpp:708 transdialog.cpp:262 webapp.cpp:384
+#: webapp.cpp:388
 msgid "Unknown"
 msgstr "不明"
 
@@ -2688,195 +2692,195 @@ msgstr "支払先をインポートしています"
 msgid "Importing Categories"
 msgstr "カテゴリーをインポートしています"
 
-#: import_export/qif_import_gui.cpp:801
+#: import_export/qif_import_gui.cpp:803
 #, c-format
 msgid "Importing transaction %i of %i"
 msgstr "取引をインポートしています %i / %i"
 
-#: import_export/qif_import_gui.cpp:832
+#: import_export/qif_import_gui.cpp:834
 msgid "Importing Transfers"
 msgstr "振替をインポートしています"
 
-#: import_export/qif_import_gui.cpp:837
+#: import_export/qif_import_gui.cpp:839
 msgid "Importing Split transactions"
 msgstr "分割取引をインポートしています"
 
-#: import_export/qif_import_gui.cpp:841
+#: import_export/qif_import_gui.cpp:843
 msgid "Import finished successfully"
 msgstr "インポートが正常に終了しました"
 
-#: import_export/qif_import_gui.cpp:841 import_export/univcsvdialog.cpp:818
+#: import_export/qif_import_gui.cpp:843 import_export/univcsvdialog.cpp:819
 #: stockdialog.cpp:656
 #, c-format
 msgid "Total Imported : %ld"
 msgstr "インポートした合計 : %ld"
 
-#: import_export/qif_import_gui.cpp:849 import_export/univcsvdialog.cpp:846
+#: import_export/qif_import_gui.cpp:851 import_export/univcsvdialog.cpp:847
 msgid "Imported transactions discarded by user!"
 msgstr "インポートした取引がユーザーによって破棄されました!"
 
-#: import_export/qif_import_gui.cpp:947
+#: import_export/qif_import_gui.cpp:949
 msgid "Date format or date mask is incorrect"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1071
+#: import_export/qif_import_gui.cpp:1073
 #, c-format
 msgid "Added account: %s"
 msgstr "追加したアカウント: %s"
 
-#: import_export/qif_import_gui.cpp:1100 import_export/univcsvdialog.cpp:685
+#: import_export/qif_import_gui.cpp:1102 import_export/univcsvdialog.cpp:686
 #, c-format
 msgid "Added payee: %s"
 msgstr "追加した支払先: %s"
 
-#: import_export/univcsvdialog.cpp:87
+#: import_export/univcsvdialog.cpp:88
 msgid "Amount(+/-)"
 msgstr "金額(+/-)"
 
-#: import_export/univcsvdialog.cpp:89
+#: import_export/univcsvdialog.cpp:90
 msgid "SubCategory"
 msgstr "サブカテゴリー"
 
-#: import_export/univcsvdialog.cpp:92
+#: import_export/univcsvdialog.cpp:93
 msgid "Don't Care"
 msgstr "気にしない"
 
-#: import_export/univcsvdialog.cpp:95 mmcheckingpanel.cpp:975
+#: import_export/univcsvdialog.cpp:96 mmcheckingpanel.cpp:990
 #: mmhomepagepanel.cpp:709 reports/summary.cpp:132 reports/summary.cpp:134
 #: reports/summary.cpp:321
 msgid "Balance"
 msgstr "残高"
 
-#: import_export/univcsvdialog.cpp:96
+#: import_export/univcsvdialog.cpp:97
 #, fuzzy
 msgid "Import dialog"
 msgstr "ファイルのインポート"
 
-#: import_export/univcsvdialog.cpp:96
+#: import_export/univcsvdialog.cpp:97
 #, fuzzy
 msgid "Export dialog"
 msgstr "ファイルのエクスポート"
 
-#: import_export/univcsvdialog.cpp:157
+#: import_export/univcsvdialog.cpp:158
 msgid "&Browse"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:160
+#: import_export/univcsvdialog.cpp:161
 msgid "Choose CSV data file to Import"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:182
+#: import_export/univcsvdialog.cpp:183
 msgid "Save Template"
 msgstr "テンプレートを保存"
 
-#: import_export/univcsvdialog.cpp:186
+#: import_export/univcsvdialog.cpp:187
 #, fuzzy
 msgid "Specify the order of fields in the file"
 msgstr "CSV ファイルのフィールドの順番を指定します"
 
-#: import_export/univcsvdialog.cpp:217
+#: import_export/univcsvdialog.cpp:218
 msgid "&MMEX format"
 msgstr "&MMEX フォーマット"
 
-#: import_export/univcsvdialog.cpp:219
+#: import_export/univcsvdialog.cpp:220
 msgid "MMEX standard format"
 msgstr "MMEX 標準フォーマット"
 
-#: import_export/univcsvdialog.cpp:235
+#: import_export/univcsvdialog.cpp:236
 msgid "&Up"
 msgstr "上へ(&U)"
 
-#: import_export/univcsvdialog.cpp:237
+#: import_export/univcsvdialog.cpp:238
 msgid "Move Up"
 msgstr "上に移動"
 
-#: import_export/univcsvdialog.cpp:240
+#: import_export/univcsvdialog.cpp:241
 msgid "&Down"
 msgstr "下へ(&D)"
 
-#: import_export/univcsvdialog.cpp:242
+#: import_export/univcsvdialog.cpp:243
 msgid "Move &Down"
 msgstr "下に移動(&D)"
 
-#: import_export/univcsvdialog.cpp:259
+#: import_export/univcsvdialog.cpp:260
 msgid "Account: "
 msgstr "アカウント: "
 
-#: import_export/univcsvdialog.cpp:272
+#: import_export/univcsvdialog.cpp:273
 msgid "Date Format: "
 msgstr "日付フォーマット: "
 
-#: import_export/univcsvdialog.cpp:284
+#: import_export/univcsvdialog.cpp:285
 #, fuzzy
 msgid "CSV Delimiter:"
 msgstr "CSV デリミタ"
 
-#: import_export/univcsvdialog.cpp:290 optionsettingsmisc.cpp:180
+#: import_export/univcsvdialog.cpp:291 optionsettingsmisc.cpp:180
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr ""
 "CSV ファイルをインポート/エクスポートする時に使用するデリミタを指定します"
 
-#: import_export/univcsvdialog.cpp:299
+#: import_export/univcsvdialog.cpp:300
 msgid "Encoding:"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:313
+#: import_export/univcsvdialog.cpp:314
 #, fuzzy
 msgid "Export column titles"
 msgstr "ファイルのエクスポート"
 
-#: import_export/univcsvdialog.cpp:322
+#: import_export/univcsvdialog.cpp:323
 #, fuzzy
 msgid "Amount(+/-): "
 msgstr "金額(+/-)"
 
-#: import_export/univcsvdialog.cpp:328
+#: import_export/univcsvdialog.cpp:329
 msgid "Positive values are deposits"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:329
+#: import_export/univcsvdialog.cpp:330
 msgid "Positive values are withdrawals"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:338
+#: import_export/univcsvdialog.cpp:339
 msgid "Rows to ignore"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:344
+#: import_export/univcsvdialog.cpp:345
 #, fuzzy
 msgid "From start: "
 msgstr "開始日"
 
-#: import_export/univcsvdialog.cpp:351
+#: import_export/univcsvdialog.cpp:352
 #, fuzzy
 msgid "From end: "
 msgstr "開始日"
 
-#: import_export/univcsvdialog.cpp:359
+#: import_export/univcsvdialog.cpp:360
 msgid "Preview"
 msgstr "プレビュー"
 
-#: import_export/univcsvdialog.cpp:378
+#: import_export/univcsvdialog.cpp:379
 msgid "Import File"
 msgstr "ファイルのインポート"
 
-#: import_export/univcsvdialog.cpp:385
+#: import_export/univcsvdialog.cpp:386
 msgid "Export File"
 msgstr "ファイルのエクスポート"
 
-#: import_export/univcsvdialog.cpp:463
+#: import_export/univcsvdialog.cpp:464
 #, c-format
 msgid ""
 "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:464
+#: import_export/univcsvdialog.cpp:465
 #, fuzzy
 msgid "Account does not exist"
 msgstr "アカウント名は既に存在します"
 
-#: import_export/univcsvdialog.cpp:722
+#: import_export/univcsvdialog.cpp:723
 #, fuzzy
 msgid ""
 "Incorrect fields specified for import! Requires at least Date and Amount."
@@ -2884,17 +2888,17 @@ msgstr ""
 "CSV インポートに指定したフィールドが正しくありません! 少なくとも日付、金額、"
 "支払先が必要です。"
 
-#: import_export/univcsvdialog.cpp:723 import_export/univcsvdialog.cpp:825
+#: import_export/univcsvdialog.cpp:724 import_export/univcsvdialog.cpp:826
 #: webappdialog.cpp:272
 msgid "Import"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:751
+#: import_export/univcsvdialog.cpp:752
 #, fuzzy
 msgid "Transactions imported from file: "
 msgstr "CSV から取引をインポートしました: "
 
-#: import_export/univcsvdialog.cpp:763
+#: import_export/univcsvdialog.cpp:764
 #, fuzzy, c-format
 msgid ""
 "Transactions imported from file\n"
@@ -2903,46 +2907,46 @@ msgstr ""
 "CSV から取引をインポートしました\n"
 "先のアカウント %s : %i"
 
-#: import_export/univcsvdialog.cpp:782 import_export/univcsvdialog.cpp:784
+#: import_export/univcsvdialog.cpp:783 import_export/univcsvdialog.cpp:785
 #, c-format
 msgid "Line: %ld"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:783 import_export/univcsvdialog.cpp:785
+#: import_export/univcsvdialog.cpp:784 import_export/univcsvdialog.cpp:786
 #, fuzzy
 msgid "One of the following fields: Date, Amount, Type is missing, skipping"
 msgstr ""
 " 次のフィールド: 日付、金額、種類、の１つが見つかりません。スキップします"
 
-#: import_export/univcsvdialog.cpp:807 import_export/univcsvdialog.cpp:808
+#: import_export/univcsvdialog.cpp:808 import_export/univcsvdialog.cpp:809
 #, c-format
-msgid "Line : %ld imported OK."
+msgid "Line: %ld imported OK."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:816 stockdialog.cpp:654
+#: import_export/univcsvdialog.cpp:817 stockdialog.cpp:654
 #, c-format
 msgid "Total Lines : %ld"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:820
+#: import_export/univcsvdialog.cpp:821
 #, c-format
 msgid "Log file written to : %s"
 msgstr "ログファイル書き込み先 : %s"
 
-#: import_export/univcsvdialog.cpp:823 stockdialog.cpp:662
+#: import_export/univcsvdialog.cpp:824 stockdialog.cpp:662
 msgid "Please confirm saving..."
 msgstr "保存を確認してください..."
 
-#: import_export/univcsvdialog.cpp:829
+#: import_export/univcsvdialog.cpp:830
 msgid "Imported transactions have been flagged so you can review them."
 msgstr "確認できるようにインポートした取引にフラグをつけました。"
 
-#: import_export/univcsvdialog.cpp:840
+#: import_export/univcsvdialog.cpp:841
 #, c-format
 msgid "Transactions saved to database in account: %s"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:864
+#: import_export/univcsvdialog.cpp:865
 #, fuzzy
 msgid ""
 "Incorrect fields specified for export! Requires at least Date and Amount."
@@ -2950,55 +2954,55 @@ msgstr ""
 "CSV インポートに指定したフィールドが正しくありません! 少なくとも日付、金額、"
 "支払先が必要です。"
 
-#: import_export/univcsvdialog.cpp:865 import_export/univcsvdialog.cpp:986
+#: import_export/univcsvdialog.cpp:866 import_export/univcsvdialog.cpp:987
 #, fuzzy
 msgid "Export"
 msgstr "エクスポート(&E)"
 
-#: import_export/univcsvdialog.cpp:875
+#: import_export/univcsvdialog.cpp:876
 #, fuzzy
 msgid "Overwrite existing file?"
 msgstr "既存の予算を削除"
 
-#: import_export/univcsvdialog.cpp:875
+#: import_export/univcsvdialog.cpp:876
 #, fuzzy
 msgid "File exists"
 msgstr "ファイル名が空です"
 
-#: import_export/univcsvdialog.cpp:881
+#: import_export/univcsvdialog.cpp:882
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:882
+#: import_export/univcsvdialog.cpp:883
 #, fuzzy
 msgid "Destination file error"
 msgstr "先のカテゴリー"
 
-#: import_export/univcsvdialog.cpp:985
+#: import_export/univcsvdialog.cpp:986
 #, c-format
 msgid "Transactions exported: %ld"
 msgstr "取引をエクスポートしました: %ld"
 
-#: import_export/univcsvdialog.cpp:1229 stockdialog.cpp:570
+#: import_export/univcsvdialog.cpp:1230 stockdialog.cpp:570
 msgid "Choose CSV data file to import"
 msgstr "インポートする CSV データファイルを選択"
 
-#: import_export/univcsvdialog.cpp:1232
+#: import_export/univcsvdialog.cpp:1233
 #, fuzzy
 msgid "Choose CSV data file to export"
 msgstr "エクスポートする CSV データファイルを選択"
 
-#: import_export/univcsvdialog.cpp:1235
+#: import_export/univcsvdialog.cpp:1236
 #, fuzzy
 msgid "Choose XML data file to import"
 msgstr "インポートする CSV データファイルを選択"
 
-#: import_export/univcsvdialog.cpp:1238
+#: import_export/univcsvdialog.cpp:1239
 #, fuzzy
 msgid "Choose XML data file to export"
 msgstr "エクスポートする QIF データファイルを選択"
 
-#: import_export/univcsvdialog.cpp:1245
+#: import_export/univcsvdialog.cpp:1246
 msgid "XML Files (*.xml) | *.xml;*.XML | All files | *.*"
 msgstr ""
 
@@ -3012,8 +3016,8 @@ msgid "Last Rate"
 msgstr ""
 
 #: maincurrencydialog.cpp:76 maincurrencydialog.cpp:331
-#: maincurrencydialog.cpp:713 maincurrencydialog.cpp:819
-#: maincurrencydialog.cpp:825
+#: maincurrencydialog.cpp:712 maincurrencydialog.cpp:818
+#: maincurrencydialog.cpp:824
 msgid "Currency Dialog"
 msgstr "通貨ダイアログ"
 
@@ -3102,15 +3106,15 @@ msgstr "基本通貨として設定"
 msgid "Online Update Currency Rate"
 msgstr "通貨レートをオンライン更新"
 
-#: maincurrencydialog.cpp:712
+#: maincurrencydialog.cpp:711
 msgid "Do you want to add also dates without any transaction?"
 msgstr ""
 
-#: maincurrencydialog.cpp:818
+#: maincurrencydialog.cpp:817
 msgid "Do you want to update today currency rates?"
 msgstr ""
 
-#: maincurrencydialog.cpp:824
+#: maincurrencydialog.cpp:823
 msgid ""
 "Do you want to update all currency history? Any custom currency rate will be "
 "deleted!"
@@ -3202,199 +3206,199 @@ msgstr "名前を入力してください。"
 msgid "Please type in a non empty symbol."
 msgstr ""
 
-#: mmcheckingpanel.cpp:384 mmcheckingpanel.cpp:528
+#: mmcheckingpanel.cpp:395 mmcheckingpanel.cpp:539
 msgid "Displayed Bal: "
 msgstr "表示した残高: "
 
-#: mmcheckingpanel.cpp:390
+#: mmcheckingpanel.cpp:401
 msgid "Account Bal: "
 msgstr "アカウントの残高: "
 
-#: mmcheckingpanel.cpp:392
+#: mmcheckingpanel.cpp:403
 msgid "Reconciled Bal: "
 msgstr "照合済の残高: "
 
-#: mmcheckingpanel.cpp:394
+#: mmcheckingpanel.cpp:405
 msgid "Diff: "
 msgstr "差異: "
 
-#: mmcheckingpanel.cpp:455 mmframe.cpp:1648 transdialog.cpp:141
+#: mmcheckingpanel.cpp:466 mmframe.cpp:1649 transdialog.cpp:140
 msgid "New Transaction"
 msgstr "新しい取引"
 
-#: mmcheckingpanel.cpp:459
+#: mmcheckingpanel.cpp:470
 msgid "Edit selected transaction"
 msgstr "選択した取引を編集"
 
-#: mmcheckingpanel.cpp:464
+#: mmcheckingpanel.cpp:475
 msgid "Delete selected transaction"
 msgstr "選択した取引を削除"
 
-#: mmcheckingpanel.cpp:468
+#: mmcheckingpanel.cpp:479
 msgid "D&uplicate "
 msgstr "複製(&u) "
 
-#: mmcheckingpanel.cpp:469
+#: mmcheckingpanel.cpp:480
 msgid "Duplicate selected transaction"
 msgstr "選択した取引を複製します"
 
-#: mmcheckingpanel.cpp:486
+#: mmcheckingpanel.cpp:497
 msgid "Enter any string to find it in the nearest transaction notes"
 msgstr "最も近い取引メモを検索する、任意の文字列を入力してください"
 
-#: mmcheckingpanel.cpp:503
+#: mmcheckingpanel.cpp:514
 #, c-format
 msgid "Account View : %s"
 msgstr "アカウント表示 : %s"
 
-#: mmcheckingpanel.cpp:769
+#: mmcheckingpanel.cpp:779
 msgid "Select account used in transfer transactions"
 msgstr "振替取引に使用するアカウントを選択します"
 
-#: mmcheckingpanel.cpp:1071
+#: mmcheckingpanel.cpp:1086
 msgid "&New Withdrawal"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1072
+#: mmcheckingpanel.cpp:1087
 msgid "&New Deposit"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1074
+#: mmcheckingpanel.cpp:1089
 msgid "&New Transfer"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1078
+#: mmcheckingpanel.cpp:1093
 msgid "&Edit Transaction"
 msgstr "取引を編集(&E)"
 
-#: mmcheckingpanel.cpp:1081
+#: mmcheckingpanel.cpp:1096
 msgid "&Copy Transaction"
 msgstr "取引をコピー(&C)"
 
-#: mmcheckingpanel.cpp:1084
+#: mmcheckingpanel.cpp:1099
 msgid "&Paste Transaction"
 msgstr "取引を貼り付け(&P)"
 
-#: mmcheckingpanel.cpp:1087
+#: mmcheckingpanel.cpp:1102
 msgid "D&uplicate Transaction"
 msgstr "取引を複製(&u)"
 
-#: mmcheckingpanel.cpp:1090
+#: mmcheckingpanel.cpp:1105
 msgid "&Move Transaction"
 msgstr "取引を移動(&M)"
 
-#: mmcheckingpanel.cpp:1096
+#: mmcheckingpanel.cpp:1111
 msgid "&View Split Categories"
 msgstr "分割カテゴリーを表示(&V)"
 
-#: mmcheckingpanel.cpp:1104
+#: mmcheckingpanel.cpp:1119
 msgid "Create Reoccuring T&ransaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1110
+#: mmcheckingpanel.cpp:1125
 msgid "&Delete Transaction"
 msgstr "取引を削除(&D)"
 
-#: mmcheckingpanel.cpp:1113
+#: mmcheckingpanel.cpp:1128
 msgid "Delete all transactions in current view"
 msgstr "現在表示の取引をすべて削除します"
 
-#: mmcheckingpanel.cpp:1114
+#: mmcheckingpanel.cpp:1129
 msgid "Delete Viewed \"Follow Up\" Trans."
 msgstr "表示した \"フォロー アップ\" 取引を削除します。"
 
-#: mmcheckingpanel.cpp:1115
+#: mmcheckingpanel.cpp:1130
 msgid "Delete Viewed \"Unreconciled\" Trans."
 msgstr "表示した \"未照合\" 取引を削除します。"
 
-#: mmcheckingpanel.cpp:1121
+#: mmcheckingpanel.cpp:1136
 msgid "Mark As &Reconciled"
 msgstr "照合済としてマーク(&R)"
 
-#: mmcheckingpanel.cpp:1123
+#: mmcheckingpanel.cpp:1138
 msgid "Mark As &Unreconciled"
 msgstr "未照合としてマーク(&U)"
 
-#: mmcheckingpanel.cpp:1125
+#: mmcheckingpanel.cpp:1140
 msgid "Mark As &Void"
 msgstr "無効としてマーク(&V)"
 
-#: mmcheckingpanel.cpp:1127
+#: mmcheckingpanel.cpp:1142
 msgid "Mark For &Followup"
 msgstr "フォローアップとしてマーク(&F)"
 
-#: mmcheckingpanel.cpp:1129
+#: mmcheckingpanel.cpp:1144
 msgid "Mark As &Duplicate"
 msgstr "重複としてマーク(&D)"
 
-#: mmcheckingpanel.cpp:1131
+#: mmcheckingpanel.cpp:1146
 msgid "Mark"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1134
+#: mmcheckingpanel.cpp:1149
 msgid "as Reconciled"
 msgstr "照合済として"
 
-#: mmcheckingpanel.cpp:1135
+#: mmcheckingpanel.cpp:1150
 msgid "as Unreconciled"
 msgstr "未照合として"
 
-#: mmcheckingpanel.cpp:1136
+#: mmcheckingpanel.cpp:1151
 msgid "as Void"
 msgstr "無効として"
 
-#: mmcheckingpanel.cpp:1137
+#: mmcheckingpanel.cpp:1152
 msgid "as needing Followup"
 msgstr "フォローアップが必要として"
 
-#: mmcheckingpanel.cpp:1138
+#: mmcheckingpanel.cpp:1153
 msgid "as Duplicate"
 msgstr "重複として"
 
-#: mmcheckingpanel.cpp:1139
+#: mmcheckingpanel.cpp:1154
 msgid "Mark all being viewed"
 msgstr "表示されているすべてをマーク"
 
-#: mmcheckingpanel.cpp:1208
+#: mmcheckingpanel.cpp:1224
 msgid "Do you really want to delete all the transactions shown?"
 msgstr "表示されているすべての取引を削除してもよろしいですか?"
 
-#: mmcheckingpanel.cpp:1209 mmcheckingpanel.cpp:1222 mmcheckingpanel.cpp:1560
+#: mmcheckingpanel.cpp:1225 mmcheckingpanel.cpp:1238 mmcheckingpanel.cpp:1577
 msgid "Confirm Transaction Deletion"
 msgstr "取引の削除を確認"
 
-#: mmcheckingpanel.cpp:1218
+#: mmcheckingpanel.cpp:1234
 msgid "Follow Up"
 msgstr "フォローアップ"
 
-#: mmcheckingpanel.cpp:1218
+#: mmcheckingpanel.cpp:1234
 msgid "Unreconciled"
 msgstr "未照合"
 
-#: mmcheckingpanel.cpp:1221
+#: mmcheckingpanel.cpp:1237
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "表示されている \"%s\" 取引をすべて削除してもよろしいですか?"
 
-#: mmcheckingpanel.cpp:1559
+#: mmcheckingpanel.cpp:1576
 msgid "Do you really want to delete the selected transaction?"
 msgstr "選択した取引を削除してもよろしいですか?"
 
-#: mmcheckingpanel.cpp:1606 transdialog.cpp:1050 transdialog.cpp:1082
+#: mmcheckingpanel.cpp:1623 transdialog.cpp:1050 transdialog.cpp:1082
 #, fuzzy
 msgid "MMEX Transaction Check"
 msgstr "取引を編集"
 
-#: mmcheckingpanel.cpp:1745 stockspanel.cpp:287
+#: mmcheckingpanel.cpp:1763 stockspanel.cpp:287
 #, c-format
 msgid "Moving Transaction from %s to..."
 msgstr "%s から取引を移動中..."
 
-#: mmcheckingpanel.cpp:1748 stockspanel.cpp:288
+#: mmcheckingpanel.cpp:1766 stockspanel.cpp:288
 msgid "Select the destination Account "
 msgstr "移動先のアカウントを選択します "
 
-#: mmcheckingpanel.cpp:1802
+#: mmcheckingpanel.cpp:1820
 msgid "Reoccuring Transaction saved."
 msgstr ""
 
@@ -3426,450 +3430,450 @@ msgstr "ナビゲーション"
 msgid "Toolbar"
 msgstr "ツールバー"
 
-#: mmframe.cpp:454 mmframe.cpp:682 mmhomepagepanel.cpp:696
+#: mmframe.cpp:454 mmframe.cpp:683 mmhomepagepanel.cpp:696
 #: reports/summary.cpp:316
 msgid "Bank Accounts"
 msgstr "銀行口座"
 
-#: mmframe.cpp:456 mmframe.cpp:686 mmhomepagepanel.cpp:697
+#: mmframe.cpp:456 mmframe.cpp:687 mmhomepagepanel.cpp:697
 #: reports/summary.cpp:317
 msgid "Credit Card Accounts"
 msgstr ""
 
-#: mmframe.cpp:458 mmframe.cpp:698 mmhomepagepanel.cpp:699
+#: mmframe.cpp:458 mmframe.cpp:699 mmhomepagepanel.cpp:699
 #: reports/summary.cpp:318
 msgid "Term Accounts"
 msgstr "定期口座"
 
-#: mmframe.cpp:460 mmframe.cpp:702
+#: mmframe.cpp:460 mmframe.cpp:703
 #, fuzzy
 msgid "Stock Portfolios"
 msgstr "株式口座"
 
-#: mmframe.cpp:462 mmframe.cpp:690 mmhomepagepanel.cpp:695
+#: mmframe.cpp:462 mmframe.cpp:691 mmhomepagepanel.cpp:695
 #, fuzzy
 msgid "Cash Accounts"
 msgstr "アカウントを選択"
 
-#: mmframe.cpp:464 mmframe.cpp:694 mmhomepagepanel.cpp:698
+#: mmframe.cpp:464 mmframe.cpp:695 mmhomepagepanel.cpp:698
 #, fuzzy
 msgid "Loan Accounts"
 msgstr "銀行口座"
 
-#: mmframe.cpp:513
+#: mmframe.cpp:514
 #, fuzzy
 msgid "Auto Repeat Transactions"
 msgstr " 自動繰り返し取引"
 
-#: mmframe.cpp:677
+#: mmframe.cpp:678
 msgid "Home Page"
 msgstr "ホームページ"
 
-#: mmframe.cpp:706
+#: mmframe.cpp:707
 #, fuzzy
 msgid "Share Accounts"
 msgstr "アカウントを選択"
 
-#: mmframe.cpp:718 mmframe.cpp:1499
+#: mmframe.cpp:719 mmframe.cpp:1500
 msgid "Budget Setup"
 msgstr "予算の設定"
 
-#: mmframe.cpp:730 mmframe.cpp:2380 mmhelppanel.cpp:68
+#: mmframe.cpp:731 mmframe.cpp:2381 mmhelppanel.cpp:68
 msgid "Help"
 msgstr "ヘルプ"
 
-#: mmframe.cpp:1084
+#: mmframe.cpp:1085
 msgid "Do you really want to delete the account?"
 msgstr "アカウントを削除してもよろしいですか?"
 
-#: mmframe.cpp:1091 mmframe.cpp:2646
+#: mmframe.cpp:1092 mmframe.cpp:2647
 msgid "Confirm Account Deletion"
 msgstr "アカウントの削除を確認"
 
-#: mmframe.cpp:1111
+#: mmframe.cpp:1112
 msgid "MMEX has been opened without an active database."
 msgstr "MMEX は、アクティブなデータベースを使用せずに開きました。"
 
-#: mmframe.cpp:1112
+#: mmframe.cpp:1113
 msgid "MMEX: Menu Popup Error"
 msgstr "MMEX: メニュー ポップアップ エラー"
 
-#: mmframe.cpp:1143
+#: mmframe.cpp:1144
 msgid "&New Transaction"
 msgstr "新しい取引(&N)"
 
-#: mmframe.cpp:1146 mmframe.cpp:1187 mmframe.cpp:1446
+#: mmframe.cpp:1147 mmframe.cpp:1188 mmframe.cpp:1447
 msgid "&Edit Account"
 msgstr "アカウントを編集(&E)"
 
-#: mmframe.cpp:1147 mmframe.cpp:1450
+#: mmframe.cpp:1148 mmframe.cpp:1451
 msgid "&Reallocate Account"
 msgstr ""
 
-#: mmframe.cpp:1148 mmframe.cpp:1186 mmframe.cpp:1454
+#: mmframe.cpp:1149 mmframe.cpp:1187 mmframe.cpp:1455
 msgid "&Delete Account"
 msgstr "アカウントを削除(&D)"
 
-#: mmframe.cpp:1150
+#: mmframe.cpp:1151
 msgid "&Launch Account Website"
 msgstr "アカウントのWebサイトを起動(&L)"
 
-#: mmframe.cpp:1185 mmframe.cpp:1442
+#: mmframe.cpp:1186 mmframe.cpp:1443
 msgid "New &Account"
 msgstr "新しいアカウント(&A)"
 
-#: mmframe.cpp:1188
+#: mmframe.cpp:1189
 msgid "Account &List (Home)"
 msgstr "アカウントリスト / ホーム(&L)"
 
-#: mmframe.cpp:1195 mmframe.cpp:1200 mmframe.cpp:1371 mmframe.cpp:1378
+#: mmframe.cpp:1196 mmframe.cpp:1201 mmframe.cpp:1372 mmframe.cpp:1379
 msgid "&CSV Files..."
 msgstr "&CSV ファイル..."
 
-#: mmframe.cpp:1196 mmframe.cpp:1201 mmframe.cpp:1372 mmframe.cpp:1379
+#: mmframe.cpp:1197 mmframe.cpp:1202 mmframe.cpp:1373 mmframe.cpp:1380
 #, fuzzy
 msgid "&XML Files..."
 msgstr "&CSV ファイル..."
 
-#: mmframe.cpp:1197 mmframe.cpp:1202 mmframe.cpp:1373 mmframe.cpp:1380
+#: mmframe.cpp:1198 mmframe.cpp:1203 mmframe.cpp:1374 mmframe.cpp:1381
 msgid "&QIF Files..."
 msgstr "&QIF ファイル..."
 
-#: mmframe.cpp:1201 mmframe.cpp:1379
+#: mmframe.cpp:1202 mmframe.cpp:1380
 msgid "Import from XML (Excel format)"
 msgstr ""
 
-#: mmframe.cpp:1212 optionsettingsview.cpp:61
+#: mmframe.cpp:1213 optionsettingsview.cpp:61
 msgid "Accounts Visible"
 msgstr "アカウント表示"
 
-#: mmframe.cpp:1352
+#: mmframe.cpp:1353
 msgid "&New Database\tCtrl-N"
 msgstr "新しいデータベース(&N)\tCtrl-N"
 
-#: mmframe.cpp:1352 mmframe.cpp:1632 wizard_newdb.cpp:164
+#: mmframe.cpp:1353 mmframe.cpp:1633 wizard_newdb.cpp:164
 msgid "New Database"
 msgstr "新しいデータベース"
 
-#: mmframe.cpp:1354
+#: mmframe.cpp:1355
 msgid "&Open Database\tCtrl-O"
 msgstr "データベースを開く(&O)\tCtrl-O"
 
-#: mmframe.cpp:1354 mmframe.cpp:1633
+#: mmframe.cpp:1355 mmframe.cpp:1634
 msgid "Open Database"
 msgstr "データベースを開く"
 
-#: mmframe.cpp:1356
+#: mmframe.cpp:1357
 msgid "Save Database &As"
 msgstr "名前を付けてデータベースを保存(&A)"
 
-#: mmframe.cpp:1356
+#: mmframe.cpp:1357
 msgid "Save Database As"
 msgstr "名前を付けてデータベースを保存"
 
-#: mmframe.cpp:1364
+#: mmframe.cpp:1365
 msgid "&Recent Files..."
 msgstr "最近使用したファイル(&R)..."
 
-#: mmframe.cpp:1365
+#: mmframe.cpp:1366
 msgid "&Clear Recent Files"
 msgstr "最近使用したファイルをクリア(&C)"
 
-#: mmframe.cpp:1371
+#: mmframe.cpp:1372
 msgid "Export to CSV"
 msgstr "CSV にエクスポート"
 
-#: mmframe.cpp:1372
+#: mmframe.cpp:1373
 #, fuzzy
 msgid "Export to XML"
 msgstr "HTML にエクスポート"
 
-#: mmframe.cpp:1374
+#: mmframe.cpp:1375
 msgid "&Report to HTML"
 msgstr "HTML にレポート(&R)"
 
-#: mmframe.cpp:1374
+#: mmframe.cpp:1375
 msgid "Export to HTML"
 msgstr "HTML にエクスポート"
 
-#: mmframe.cpp:1378
+#: mmframe.cpp:1379
 msgid "Import from any CSV file"
 msgstr "任意の CSV ファイルからインポート"
 
-#: mmframe.cpp:1380
+#: mmframe.cpp:1381
 msgid "Import from QIF"
 msgstr "QIF からインポート"
 
-#: mmframe.cpp:1381
+#: mmframe.cpp:1382
 msgid "&WebApp..."
 msgstr ""
 
-#: mmframe.cpp:1381
+#: mmframe.cpp:1382
 msgid "Import from WebApp"
 msgstr ""
 
-#: mmframe.cpp:1387 mmframe.cpp:1667
+#: mmframe.cpp:1388 mmframe.cpp:1668
 msgid "&Print..."
 msgstr "印刷(&P)..."
 
-#: mmframe.cpp:1387 mmframe.cpp:1667
+#: mmframe.cpp:1388 mmframe.cpp:1668
 msgid "Print current view"
 msgstr "現在の表示を印刷"
 
-#: mmframe.cpp:1394
+#: mmframe.cpp:1395
 msgid "E&xit\tAlt-X"
 msgstr "終了(&x)\tAlt-X"
 
-#: mmframe.cpp:1394
+#: mmframe.cpp:1395
 msgid "Quit this program"
 msgstr "このプログラムを終了します"
 
-#: mmframe.cpp:1401
+#: mmframe.cpp:1402
 msgid "&Toolbar"
 msgstr "ツールバー(&T)"
 
-#: mmframe.cpp:1401
+#: mmframe.cpp:1402
 msgid "Show/Hide the toolbar"
 msgstr "ツールバーの表示/非表示"
 
-#: mmframe.cpp:1403
+#: mmframe.cpp:1404
 msgid "&Navigation"
 msgstr "ナビゲーション(&N)"
 
-#: mmframe.cpp:1403
+#: mmframe.cpp:1404
 msgid "Show/Hide the Navigation tree control"
 msgstr "ナビゲーション ツリー コントロールの表示/非表示"
 
-#: mmframe.cpp:1405
+#: mmframe.cpp:1406
 #, fuzzy
 msgid "&Display Share Accounts"
 msgstr "アカウントを削除(&D)"
 
-#: mmframe.cpp:1405
+#: mmframe.cpp:1406
 #, fuzzy
 msgid "Show/Hide Share Accounts in the navigation tree"
 msgstr "ナビゲーション ツリー コントロールの表示/非表示"
 
-#: mmframe.cpp:1408
+#: mmframe.cpp:1409
 msgid "Budgets: As &Financial Years"
 msgstr "予算: 会計年度として(&F)"
 
-#: mmframe.cpp:1408
+#: mmframe.cpp:1409
 msgid "Display Budgets in Financial Year Format"
 msgstr "会計年度の形式で予算を表示します"
 
-#: mmframe.cpp:1410
+#: mmframe.cpp:1411
 msgid "Budgets: &Include Transfers in Totals"
 msgstr "予算: 合計に振替を含める(&I)"
 
-#: mmframe.cpp:1410
+#: mmframe.cpp:1411
 msgid "Include the transfer transactions in the Budget Totals"
 msgstr "予算の合計に振替取引を含めます"
 
-#: mmframe.cpp:1412
+#: mmframe.cpp:1413
 msgid "Budget Setup: &Without Summaries"
 msgstr "予算の設定: サマリーなし(&W)"
 
-#: mmframe.cpp:1412
+#: mmframe.cpp:1413
 msgid "Display the Budget Setup without category summaries"
 msgstr "カテゴリー サマリーのない予算の設定を表示します"
 
-#: mmframe.cpp:1414
+#: mmframe.cpp:1415
 #, fuzzy
 msgid "Budget Category Report: with &Summaries"
 msgstr "予算カテゴリー サマリー"
 
-#: mmframe.cpp:1414
+#: mmframe.cpp:1415
 #, fuzzy
 msgid "Include the category summaries in the Budget Category Summary"
 msgstr "予算カテゴリーのサマリーにカテゴリーを含めます"
 
-#: mmframe.cpp:1416
+#: mmframe.cpp:1417
 msgid "Ignore F&uture Transactions"
 msgstr "将来の取引を無視する(&F)"
 
-#: mmframe.cpp:1416
+#: mmframe.cpp:1417
 msgid "Ignore Future transactions"
 msgstr "将来の取引を無視します"
 
-#: mmframe.cpp:1431 mmframe.cpp:1664
+#: mmframe.cpp:1432 mmframe.cpp:1665
 msgid "Toggle Fullscreen\tF11"
 msgstr ""
 
-#: mmframe.cpp:1431 mmframe.cpp:1664
+#: mmframe.cpp:1432 mmframe.cpp:1665
 msgid "Toggle Fullscreen"
 msgstr ""
 
-#: mmframe.cpp:1438
+#: mmframe.cpp:1439
 msgid "Account &List"
 msgstr "アカウント リスト(&L)"
 
-#: mmframe.cpp:1438 mmframe.cpp:1636
+#: mmframe.cpp:1439 mmframe.cpp:1637
 msgid "Show Account List"
 msgstr "アカウントのリストを表示します"
 
-#: mmframe.cpp:1450
+#: mmframe.cpp:1451
 msgid "Change the account type of an account."
 msgstr ""
 
-#: mmframe.cpp:1454
+#: mmframe.cpp:1455
 msgid "Delete Account from database"
 msgstr "データベースからアカウントを削除"
 
-#: mmframe.cpp:1468
+#: mmframe.cpp:1469
 msgid "Organize &Categories..."
 msgstr "カテゴリーの整理(&C)..."
 
-#: mmframe.cpp:1473
+#: mmframe.cpp:1474
 msgid "Organize &Payees..."
 msgstr "支払先の整理(&P)..."
 
-#: mmframe.cpp:1473 mmframe.cpp:1639 payeedialog.cpp:74
+#: mmframe.cpp:1474 mmframe.cpp:1640 payeedialog.cpp:74
 msgid "Organize Payees"
 msgstr "支払先を整理します"
 
-#: mmframe.cpp:1478
+#: mmframe.cpp:1479
 msgid "Organize Currency..."
 msgstr "通貨の整理..."
 
-#: mmframe.cpp:1478 mmframe.cpp:1640
+#: mmframe.cpp:1479 mmframe.cpp:1641
 msgid "Organize Currency"
 msgstr "通貨を整理します"
 
-#: mmframe.cpp:1484
+#: mmframe.cpp:1485
 msgid "&Categories..."
 msgstr "カテゴリー(&C)..."
 
-#: mmframe.cpp:1488
+#: mmframe.cpp:1489
 msgid "&Payees..."
 msgstr "支払先(&P)..."
 
-#: mmframe.cpp:1489
+#: mmframe.cpp:1490
 msgid "Reassign all payees to another payee"
 msgstr "すべての支払先を別の支払先に再割り当て"
 
-#: mmframe.cpp:1493
+#: mmframe.cpp:1494
 msgid "Relocation of..."
 msgstr "再配置..."
 
-#: mmframe.cpp:1494
+#: mmframe.cpp:1495
 msgid "Relocate Categories && Payees"
 msgstr "カテゴリー && 支払先を再配置します"
 
-#: mmframe.cpp:1499
+#: mmframe.cpp:1500
 msgid "&Budget Setup"
 msgstr "予算の設定(&B)"
 
-#: mmframe.cpp:1504
+#: mmframe.cpp:1505
 msgid "&Recurring Transactions"
 msgstr ""
 
-#: mmframe.cpp:1504
+#: mmframe.cpp:1505
 msgid "Bills && Deposits"
 msgstr "手形 && 預金"
 
-#: mmframe.cpp:1509
+#: mmframe.cpp:1510
 msgid "&Assets"
 msgstr "資産(&A)"
 
-#: mmframe.cpp:1516
+#: mmframe.cpp:1517
 msgid "&Transaction Report Filter..."
 msgstr "取引レポート フィルター(&T)..."
 
-#: mmframe.cpp:1516 mmframe.cpp:1642
+#: mmframe.cpp:1517 mmframe.cpp:1643
 msgid "Transaction Report Filter"
 msgstr "取引レポート フィルター"
 
-#: mmframe.cpp:1523
+#: mmframe.cpp:1524
 msgid "&General Report Manager..."
 msgstr "汎用レポートマネージャー(&G)..."
 
-#: mmframe.cpp:1530 mmframe.cpp:1646
+#: mmframe.cpp:1531 mmframe.cpp:1647
 msgid "&Options..."
 msgstr "オプション(&O)..."
 
-#: mmframe.cpp:1530 mmframe.cpp:1646
+#: mmframe.cpp:1531 mmframe.cpp:1647
 msgid "Show the Options Dialog"
 msgstr "オプション ダイアログを表示します"
 
-#: mmframe.cpp:1538
+#: mmframe.cpp:1539
 msgid "Convert Encrypted &DB"
 msgstr "暗号化 &DB を変換"
 
-#: mmframe.cpp:1539
+#: mmframe.cpp:1540
 msgid "Convert Encrypted DB to Non-Encrypted DB"
 msgstr "暗号化された DB を暗号化されていない DB に変換します"
 
-#: mmframe.cpp:1542
+#: mmframe.cpp:1543
 msgid "Change Encrypted &Password"
 msgstr ""
 
-#: mmframe.cpp:1543
+#: mmframe.cpp:1544
 msgid "Change the password of an encrypted database"
 msgstr ""
 
-#: mmframe.cpp:1546
+#: mmframe.cpp:1547
 msgid "Optimize &Database"
 msgstr ""
 
-#: mmframe.cpp:1547
+#: mmframe.cpp:1548
 msgid "Optimize database space and performance"
 msgstr ""
 
-#: mmframe.cpp:1550
+#: mmframe.cpp:1551
 #, fuzzy
 msgid "Database Debug"
 msgstr "データベースのバックアップ"
 
-#: mmframe.cpp:1551
+#: mmframe.cpp:1552
 msgid "Generate database report or fix errors"
 msgstr ""
 
-#: mmframe.cpp:1557
+#: mmframe.cpp:1558
 msgid "Database"
 msgstr ""
 
-#: mmframe.cpp:1558
+#: mmframe.cpp:1559
 msgid "Database management"
 msgstr ""
 
-#: mmframe.cpp:1565 mmframe.cpp:1651
+#: mmframe.cpp:1566 mmframe.cpp:1652
 msgid "&Help\tF1"
 msgstr "ヘルプ(&H)\tF1"
 
-#: mmframe.cpp:1565 mmframe.cpp:1651
+#: mmframe.cpp:1566 mmframe.cpp:1652
 msgid "Show the Help file"
 msgstr "ヘルプ ファイルを表示します"
 
-#: mmframe.cpp:1570
+#: mmframe.cpp:1571
 msgid "&Show App Start Dialog"
 msgstr "アプリの起動ダイアログを表示(&S)"
 
-#: mmframe.cpp:1570
+#: mmframe.cpp:1571
 msgid "App Start Dialog"
 msgstr "アプリ起動ダイアログ"
 
-#: mmframe.cpp:1577
+#: mmframe.cpp:1578
 msgid "Check for &Updates"
 msgstr "更新を確認(&U)"
 
-#: mmframe.cpp:1577
+#: mmframe.cpp:1578
 msgid "Check For Updates"
 msgstr "更新プログラムを確認します"
 
-#: mmframe.cpp:1582
+#: mmframe.cpp:1583
 msgid "Get Android Version"
 msgstr ""
 
-#: mmframe.cpp:1583
+#: mmframe.cpp:1584
 msgid "Run this program in your Android smart phone or tablet"
 msgstr ""
 
-#: mmframe.cpp:1588
+#: mmframe.cpp:1589
 msgid "Visit MMEX Forum"
 msgstr "MMEX フォーラムを訪問"
 
-#: mmframe.cpp:1589
+#: mmframe.cpp:1590
 msgid ""
 "Visit the MMEX forum. See existing user comments, or report new issues with "
 "the software."
@@ -3877,72 +3881,72 @@ msgstr ""
 "MMEX フォーラムをご覧ください。既存ユーザーのコメントを参照したり、ソフトウェ"
 "アに関する新しい問題をレポートしてください。"
 
-#: mmframe.cpp:1594 mmframe.cpp:1656
+#: mmframe.cpp:1595 mmframe.cpp:1657
 msgid "Register/View Release &Notifications"
 msgstr ""
 
-#: mmframe.cpp:1595
+#: mmframe.cpp:1596
 msgid "Sign up to Notification Mailing List or View existing announcements."
 msgstr ""
 "サインアップすると、メーリング リストの通知や既存のお知らせを表示します。"
 
-#: mmframe.cpp:1600
+#: mmframe.cpp:1601
 msgid "Visit us on Facebook"
 msgstr "私たちの Facebook を訪問"
 
-#: mmframe.cpp:1605 mmframe.cpp:1650
+#: mmframe.cpp:1606 mmframe.cpp:1651
 msgid "&About..."
 msgstr "について(&A)..."
 
-#: mmframe.cpp:1605 mmframe.cpp:1650
+#: mmframe.cpp:1606 mmframe.cpp:1651
 msgid "Show about dialog"
 msgstr "アプリについてのダイアログを表示します"
 
-#: mmframe.cpp:1610
+#: mmframe.cpp:1611
 msgid "&File"
 msgstr "ファイル(&F)"
 
-#: mmframe.cpp:1611
+#: mmframe.cpp:1612
 msgid "&Accounts"
 msgstr "アカウント(&A)"
 
-#: mmframe.cpp:1612
+#: mmframe.cpp:1613
 msgid "&Tools"
 msgstr "ツール(&T)"
 
-#: mmframe.cpp:1613
+#: mmframe.cpp:1614
 msgid "&View"
 msgstr "表示(&V)"
 
-#: mmframe.cpp:1614
+#: mmframe.cpp:1615
 msgid "&Help"
 msgstr "ヘルプ(&H)"
 
-#: mmframe.cpp:1632 mmframe.cpp:1648
+#: mmframe.cpp:1633 mmframe.cpp:1649
 msgid "New"
 msgstr "新規"
 
-#: mmframe.cpp:1636
+#: mmframe.cpp:1637
 msgid "Account List"
 msgstr "アカウントリスト"
 
-#: mmframe.cpp:1638
+#: mmframe.cpp:1639
 msgid "Show Organize Categories Dialog"
 msgstr "カテゴリー整理ダイアログを表示"
 
-#: mmframe.cpp:1639
+#: mmframe.cpp:1640
 msgid "Show Organize Payees Dialog"
 msgstr "支払先整理ダイアログを表示"
 
-#: mmframe.cpp:1640
+#: mmframe.cpp:1641
 msgid "Show Organize Currency Dialog"
 msgstr "通貨整理ダイアログを表示"
 
-#: mmframe.cpp:1661
+#: mmframe.cpp:1662
 msgid "News"
 msgstr ""
 
-#: mmframe.cpp:1719
+#: mmframe.cpp:1720
 #, c-format
 msgid ""
 "Please enter password for Database\n"
@@ -3950,79 +3954,79 @@ msgid ""
 "%s"
 msgstr ""
 
-#: mmframe.cpp:1720 mmframe.cpp:1926 mmframe.cpp:2059
+#: mmframe.cpp:1721 mmframe.cpp:1927 mmframe.cpp:2060
 msgid "MMEX: Encrypted Database"
 msgstr ""
 
-#: mmframe.cpp:1754
+#: mmframe.cpp:1755
 msgid "Have MMEX support provided you a debug/patch file?"
 msgstr ""
 
-#: mmframe.cpp:1754
+#: mmframe.cpp:1755
 msgid "MMEX upgrade"
 msgstr ""
 
-#: mmframe.cpp:1768 mmframe.cpp:1810
+#: mmframe.cpp:1769 mmframe.cpp:1811
 #, fuzzy
 msgid "No File opened"
 msgstr " - 開かれたファイルはありません "
 
-#: mmframe.cpp:1770
+#: mmframe.cpp:1771
 msgid ""
 "Sorry. The Database version is too old or Database password is incorrect"
 msgstr ""
 "申し訳ありません。データベースのバージョンが古すぎるか、データベースのパス"
 "ワードが正しくありません"
 
-#: mmframe.cpp:1800
+#: mmframe.cpp:1801
 msgid "&Next ->"
 msgstr "次へ(&N) ->"
 
-#: mmframe.cpp:1813
+#: mmframe.cpp:1814
 msgid "Cannot locate previously opened database.\n"
 msgstr "以前開いたデータベースが見つかりません。\n"
 
-#: mmframe.cpp:1815
+#: mmframe.cpp:1816
 msgid "Password not entered for encrypted Database.\n"
 msgstr "暗号化されたデータベースのパスワードが入力されていません。\n"
 
-#: mmframe.cpp:1833
+#: mmframe.cpp:1834
 msgid "portable mode"
 msgstr "ポータブル モード"
 
-#: mmframe.cpp:1876
+#: mmframe.cpp:1877
 msgid "Choose database file to create"
 msgstr "作成するデータベース ファイルを選択してください"
 
-#: mmframe.cpp:1899
+#: mmframe.cpp:1900
 msgid "Choose database file to open"
 msgstr "開くデータベース ファイルを選択してください"
 
-#: mmframe.cpp:1916
+#: mmframe.cpp:1917
 msgid "Choose Encrypted database file to open"
 msgstr "開く暗号化されたデータベース ファイルを選択してください"
 
-#: mmframe.cpp:1926
+#: mmframe.cpp:1927
 msgid "Enter password for database"
 msgstr "データベースのパスワードを入力してください"
 
-#: mmframe.cpp:1931
+#: mmframe.cpp:1932
 msgid "Choose database file to Save As"
 msgstr "名前を付けて保存するデータベース ファイルを選択してください"
 
-#: mmframe.cpp:1953
+#: mmframe.cpp:1954
 msgid "Converted DB!"
 msgstr "DB を変換しました!"
 
-#: mmframe.cpp:1953
+#: mmframe.cpp:1954
 msgid "MMEX message"
 msgstr "MMEX メッセージ"
 
-#: mmframe.cpp:1959
+#: mmframe.cpp:1960
 msgid "MMEX: Encryption Password Change"
 msgstr ""
 
-#: mmframe.cpp:1960
+#: mmframe.cpp:1961
 #, c-format
 msgid ""
 "New password for database\n"
@@ -4030,31 +4034,31 @@ msgid ""
 "%s"
 msgstr ""
 
-#: mmframe.cpp:1965
+#: mmframe.cpp:1966
 msgid "New password must not be empty."
 msgstr ""
 
-#: mmframe.cpp:1969
+#: mmframe.cpp:1970
 msgid "Please confirm new password"
 msgstr ""
 
-#: mmframe.cpp:1973
+#: mmframe.cpp:1974
 msgid "Password change completed."
 msgstr ""
 
-#: mmframe.cpp:1977
+#: mmframe.cpp:1978
 msgid "Confirm password failed."
 msgstr ""
 
-#: mmframe.cpp:1986
+#: mmframe.cpp:1987
 msgid "Make sure you have a backup of DB before optimize it"
 msgstr ""
 
-#: mmframe.cpp:1987 mmframe.cpp:1997
+#: mmframe.cpp:1988 mmframe.cpp:1998
 msgid "DB Optimization"
 msgstr ""
 
-#: mmframe.cpp:1994
+#: mmframe.cpp:1995
 #, c-format
 msgid ""
 "Database Optimization Completed!\n"
@@ -4063,31 +4067,31 @@ msgid ""
 "Size after: %s\n"
 msgstr ""
 
-#: mmframe.cpp:2005
+#: mmframe.cpp:2006
 msgid "Please use this function only if explicitly requested by MMEX support"
 msgstr ""
 
-#: mmframe.cpp:2006
+#: mmframe.cpp:2007
 msgid "DB Debug"
 msgstr ""
 
-#: mmframe.cpp:2025 mmframe.cpp:2046
+#: mmframe.cpp:2026 mmframe.cpp:2047
 msgid "Save database file as"
 msgstr "名前を付けてデータベース ファイルを保存"
 
-#: mmframe.cpp:2046
+#: mmframe.cpp:2047
 msgid "Can't copy file to itself"
 msgstr "自分自身にファイルをコピーすることはできません"
 
-#: mmframe.cpp:2059
+#: mmframe.cpp:2060
 msgid "Enter password for new database"
 msgstr "新しいデータベースのパスワードを入力してください"
 
-#: mmframe.cpp:2138 mmframe.cpp:2157
+#: mmframe.cpp:2139 mmframe.cpp:2158
 msgid "No account available to import"
 msgstr "インポート可能なアカウントがありません"
 
-#: mmframe.cpp:2208
+#: mmframe.cpp:2209
 msgid ""
 "Asset Accounts hold Asset transactions\n"
 "\n"
@@ -4097,12 +4101,12 @@ msgid ""
 "Asset Accounts can also hold normal transactions to regular accounts."
 msgstr ""
 
-#: mmframe.cpp:2212
+#: mmframe.cpp:2213
 #, fuzzy
 msgid "Asset Account Creation"
 msgstr "アカウントの削除を確認"
 
-#: mmframe.cpp:2218
+#: mmframe.cpp:2219
 msgid ""
 "Share Accounts hold Share transactions\n"
 "\n"
@@ -4115,40 +4119,40 @@ msgid ""
 "Share Accounts can also hold normal transactions to regular account."
 msgstr ""
 
-#: mmframe.cpp:2224
+#: mmframe.cpp:2225
 #, fuzzy
 msgid "Share Account Creation"
 msgstr "アカウントの削除を確認"
 
-#: mmframe.cpp:2370
+#: mmframe.cpp:2371
 msgid "MMEX Options have been updated."
 msgstr "MMEX オプションが更新されました。"
 
-#: mmframe.cpp:2371 optiondialog.cpp:55
+#: mmframe.cpp:2372 optiondialog.cpp:55 optiondialog.cpp:190
 msgid "MMEX Options"
 msgstr ""
 
-#: mmframe.cpp:2465
+#: mmframe.cpp:2466
 msgid "Choose HTML file to Export"
 msgstr "エクスポートする HTML ファイルを選択してください"
 
-#: mmframe.cpp:2611
+#: mmframe.cpp:2612
 msgid "No account available to edit!"
 msgstr "編集可能なアカウントはありません!"
 
-#: mmframe.cpp:2615
+#: mmframe.cpp:2616
 msgid "Choose Account to Edit"
 msgstr "編集するアカウントを選択してください"
 
-#: mmframe.cpp:2634
+#: mmframe.cpp:2635
 msgid "No account available to delete!"
 msgstr "削除可能なアカウントがありません!"
 
-#: mmframe.cpp:2638
+#: mmframe.cpp:2639
 msgid "Choose Account to Delete"
 msgstr "削除するアカウントを選択してください"
 
-#: mmframe.cpp:2643
+#: mmframe.cpp:2644
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -4157,29 +4161,29 @@ msgstr ""
 "削除してもよろしいですか\n"
 " %s アカウント: %s ?"
 
-#: mmframe.cpp:2662
+#: mmframe.cpp:2663
 #, fuzzy
 msgid "Select the account to reallocate"
 msgstr "作成するアカウントの種類を選択します:"
 
-#: mmframe.cpp:2662 mmframe.cpp:2685
+#: mmframe.cpp:2663 mmframe.cpp:2686
 msgid "Account Reallocation"
 msgstr ""
 
-#: mmframe.cpp:2684
+#: mmframe.cpp:2685
 #, c-format
 msgid "Account: %s - Select new type."
 msgstr ""
 
-#: mmframe.cpp:2785 payeedialog.cpp:314
+#: mmframe.cpp:2786 payeedialog.cpp:313
 msgid "Payee Relocation Completed."
 msgstr "支払先の再配置を完了しました。"
 
-#: mmframe.cpp:2789 payeedialog.cpp:318
+#: mmframe.cpp:2790 payeedialog.cpp:317
 msgid "Payee Relocation Result"
 msgstr "支払先の再配置結果"
 
-#: mmframe.cpp:2844
+#: mmframe.cpp:2845
 #, c-format
 msgid "File %s not found"
 msgstr "ファイル %s が見つかりません"
@@ -4211,7 +4215,7 @@ msgid "Where the Money Comes From"
 msgstr "お金が入ってくる元"
 
 #: mmframereport.cpp:141 reports/htmlbuilder.cpp:315
-#: reports/mmDateRange.cpp:208
+#: reports/mmDateRange.cpp:209
 msgid "Over Time"
 msgstr "時間の経過"
 
@@ -4459,14 +4463,14 @@ msgstr "繰り返し取引"
 msgid "Transfer"
 msgstr "交通"
 
-#: model/Model_Billsdeposits.cpp:289
+#: model/Model_Billsdeposits.cpp:302
 msgid ""
 "A recurring transaction will exceed your account limit.\n"
 "\n"
 "Do you wish to continue?"
 msgstr ""
 
-#: model/Model_Billsdeposits.cpp:291
+#: model/Model_Billsdeposits.cpp:304
 #, fuzzy
 msgid "MMEX Recurring Transaction Check"
 msgstr "繰り返し取引"
@@ -4499,11 +4503,11 @@ msgid "Time"
 msgstr "時間の経過"
 
 #: model/Model_CustomField.cpp:31
-msgid "SingleChoiche"
+msgid "SingleChoice"
 msgstr ""
 
 #: model/Model_CustomField.cpp:32
-msgid "MultiChoiche"
+msgid "MultiChoice"
 msgstr ""
 
 #: model/Model_Payee.cpp:80
@@ -5049,31 +5053,31 @@ msgstr "デフォルトのカテゴリー"
 msgid "Search:"
 msgstr "検索:"
 
-#: payeedialog.cpp:182 payeedialog.cpp:221 payeedialog.cpp:249
+#: payeedialog.cpp:180 payeedialog.cpp:219 payeedialog.cpp:247
 msgid "Payee with same name exists"
 msgstr "同じ名前の支払先が存在します"
 
-#: payeedialog.cpp:183 payeedialog.cpp:206 payeedialog.cpp:221
+#: payeedialog.cpp:181 payeedialog.cpp:204 payeedialog.cpp:219
 msgid "Organize Payees: Add Payee"
 msgstr "支払先の整理: 支払先を追加"
 
-#: payeedialog.cpp:205
+#: payeedialog.cpp:203
 msgid "Enter the name for the new payee:"
 msgstr "新しい支払先の名前を入力してください:"
 
-#: payeedialog.cpp:232
+#: payeedialog.cpp:230
 msgid "Modify the name for the payee:"
 msgstr "支払先の名前を変更します:"
 
-#: payeedialog.cpp:233 payeedialog.cpp:249
+#: payeedialog.cpp:231 payeedialog.cpp:247
 msgid "Organize Payees: Edit Payee"
 msgstr "支払先の整理: 支払先を編集"
 
-#: payeedialog.cpp:263
+#: payeedialog.cpp:261
 msgid "Payee in use."
 msgstr "支払先は使用しています。"
 
-#: payeedialog.cpp:266
+#: payeedialog.cpp:264
 #, fuzzy
 msgid ""
 "Tip: Change all transactions using this Payee to another Payee using the "
@@ -5082,19 +5086,19 @@ msgstr ""
 "ヒント: 再配置コマンドを使用して、すべての取引を\n"
 "この支払先から別の取引先に変更します:"
 
-#: payeedialog.cpp:268
+#: payeedialog.cpp:266
 msgid "Tools -> Relocation of -> Payees"
 msgstr "ツール -> 再配置 -> 支払先"
 
-#: payeedialog.cpp:269
+#: payeedialog.cpp:267
 msgid "Organize Payees: Delete Error"
 msgstr "支払先の整理: 削除エラー"
 
-#: payeedialog.cpp:360
+#: payeedialog.cpp:359
 msgid "Define Default Category"
 msgstr "デフォルトのカテゴリーを定義"
 
-#: payeedialog.cpp:375
+#: payeedialog.cpp:374
 msgid "Relocate Payee"
 msgstr "支払先の再配置"
 
@@ -5371,19 +5375,19 @@ msgstr "日付に今年"
 msgid "Last Year"
 msgstr "昨年"
 
-#: reports/mmDateRange.cpp:182
+#: reports/mmDateRange.cpp:183
 msgid "Current Financial Year"
 msgstr "今年度"
 
-#: reports/mmDateRange.cpp:192
+#: reports/mmDateRange.cpp:193
 msgid "Current Financial Year to Date"
 msgstr "日付に今年度"
 
-#: reports/mmDateRange.cpp:202
+#: reports/mmDateRange.cpp:203
 msgid "Last Financial Year"
 msgstr "昨年度"
 
-#: reports/mmDateRange.cpp:230
+#: reports/mmDateRange.cpp:231
 msgid "Last 365 Days"
 msgstr ""
 
@@ -5695,7 +5699,7 @@ msgstr ""
 msgid "Stock History CSV Import"
 msgstr ""
 
-#: stockdialog.cpp:584 stockdialog.cpp:599
+#: stockdialog.cpp:584 stockdialog.cpp:598
 msgid "Quotes imported from CSV: "
 msgstr ""
 
@@ -5921,11 +5925,11 @@ msgstr "%s - %s"
 msgid "Symbol: %s"
 msgstr ""
 
-#: transdialog.cpp:140
+#: transdialog.cpp:139
 msgid "Duplicate Transaction"
 msgstr ""
 
-#: transdialog.cpp:141
+#: transdialog.cpp:140
 msgid "Edit Transaction"
 msgstr "取引を編集"
 
@@ -6069,159 +6073,159 @@ msgstr "WWW からデータを取得できません!"
 msgid "Unknown error"
 msgstr "不明なエラー"
 
-#: util.cpp:428
+#: util.cpp:434
 msgid "UTF-8"
 msgstr ""
 
-#: util.cpp:429
+#: util.cpp:435
 msgid "1250"
 msgstr ""
 
-#: util.cpp:430
+#: util.cpp:436
 msgid "1251"
 msgstr ""
 
-#: util.cpp:431
+#: util.cpp:437
 msgid "1252"
 msgstr ""
 
-#: util.cpp:432
+#: util.cpp:438
 msgid "1253"
 msgstr ""
 
-#: util.cpp:433
+#: util.cpp:439
 msgid "1254"
 msgstr ""
 
-#: util.cpp:434
+#: util.cpp:440
 msgid "1255"
 msgstr ""
 
-#: util.cpp:435
+#: util.cpp:441
 msgid "1256"
 msgstr ""
 
-#: util.cpp:436
+#: util.cpp:442
 msgid "1257"
 msgstr ""
 
-#: util.cpp:441
+#: util.cpp:447
 msgid "January"
 msgstr "1月"
 
-#: util.cpp:441
+#: util.cpp:447
 msgid "February"
 msgstr "2月"
 
-#: util.cpp:441
+#: util.cpp:447
 msgid "March"
 msgstr "3月"
 
-#: util.cpp:442
+#: util.cpp:448
 msgid "April"
 msgstr "4月"
 
-#: util.cpp:442 util.cpp:450
+#: util.cpp:448 util.cpp:456
 msgid "May"
 msgstr "5月"
 
-#: util.cpp:442
+#: util.cpp:448
 msgid "June"
 msgstr "6月"
 
-#: util.cpp:443
+#: util.cpp:449
 msgid "July"
 msgstr "7月"
 
-#: util.cpp:443
+#: util.cpp:449
 msgid "August"
 msgstr "8月"
 
-#: util.cpp:443
+#: util.cpp:449
 msgid "September"
 msgstr "9月"
 
-#: util.cpp:444
+#: util.cpp:450
 msgid "October"
 msgstr "10月"
 
-#: util.cpp:444
+#: util.cpp:450
 msgid "November"
 msgstr "11月"
 
-#: util.cpp:444
+#: util.cpp:450
 msgid "December"
 msgstr "12月"
 
-#: util.cpp:449
+#: util.cpp:455
 msgid "Jan"
 msgstr "1月"
 
-#: util.cpp:449
+#: util.cpp:455
 msgid "Feb"
 msgstr "2月"
 
-#: util.cpp:449
+#: util.cpp:455
 msgid "Mar"
 msgstr "3月"
 
-#: util.cpp:450
+#: util.cpp:456
 msgid "Apr"
 msgstr "4月"
 
-#: util.cpp:450
+#: util.cpp:456
 msgid "Jun"
 msgstr "6月"
 
-#: util.cpp:451
+#: util.cpp:457
 msgid "Jul"
 msgstr "7月"
 
-#: util.cpp:451
+#: util.cpp:457
 msgid "Aug"
 msgstr "8月"
 
-#: util.cpp:451
+#: util.cpp:457
 msgid "Sep"
 msgstr "9月"
 
-#: util.cpp:452
+#: util.cpp:458
 msgid "Oct"
 msgstr "10月"
 
-#: util.cpp:452
+#: util.cpp:458
 msgid "Nov"
 msgstr "11月"
 
-#: util.cpp:452
+#: util.cpp:458
 msgid "Dec"
 msgstr "12月"
 
-#: util.cpp:457
+#: util.cpp:463
 msgid "Sunday"
 msgstr "日曜日"
 
-#: util.cpp:457
+#: util.cpp:463
 msgid "Monday"
 msgstr "月曜日"
 
-#: util.cpp:457
+#: util.cpp:463
 msgid "Tuesday"
 msgstr "火曜日"
 
-#: util.cpp:458
+#: util.cpp:464
 msgid "Wednesday"
 msgstr "水曜日"
 
-#: util.cpp:458
+#: util.cpp:464
 msgid "Thursday"
 msgstr "木曜日"
 
-#: util.cpp:458
+#: util.cpp:464
 msgid "Friday"
 msgstr "金曜日"
 
-#: util.cpp:459
+#: util.cpp:465
 msgid "Saturday"
 msgstr "土曜日"
 
@@ -6295,57 +6299,57 @@ msgstr "転送中に誰かがコマンドを送信しようとしました"
 msgid "Cannot get data from website"
 msgstr "Web サイトからデータを取得できません"
 
-#: webapp.cpp:447
+#: webapp.cpp:445
 #, c-format
 msgid "Account '%s' not found!"
 msgstr ""
 
-#: webapp.cpp:449
+#: webapp.cpp:447
 #, c-format
 msgid ""
 "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
 msgstr ""
 
-#: webapp.cpp:452
+#: webapp.cpp:450
 msgid "Wrong WebApp account"
 msgstr "WebApp アカウントが間違っています"
 
-#: webapp.cpp:534 webapp.cpp:567
+#: webapp.cpp:532 webapp.cpp:565
 msgid "Unable to download attachments from webapp."
 msgstr ""
 
-#: webapp.cpp:535
+#: webapp.cpp:533
 msgid "Attachments folder not set or unavailable"
 msgstr ""
 
-#: webapp.cpp:536
+#: webapp.cpp:534
 msgid "Transaction not downloaded:"
 msgstr ""
 
-#: webapp.cpp:537
+#: webapp.cpp:535
 msgid "please fix attachments folder or delete attachments from WebApp"
 msgstr ""
 
-#: webapp.cpp:538
+#: webapp.cpp:536
 msgid "Attachment folder error"
 msgstr ""
 
-#: webapp.cpp:558
+#: webapp.cpp:556
 msgid "Attachment"
 msgstr ""
 
-#: webapp.cpp:568
+#: webapp.cpp:566
 msgid "Communication error"
 msgstr ""
 
-#: webapp.cpp:569
+#: webapp.cpp:567
 msgid ""
 "Transaction not downloaded: please close and open MMEX to try re-download "
 "transaction"
 msgstr ""
 
-#: webapp.cpp:570
+#: webapp.cpp:568
 msgid "Attachment download error"
 msgstr ""
 
@@ -8333,7 +8337,7 @@ msgstr ""
 "お店に行って何かを購入する前に、あなたが本当に必要なもののリストを作成する時"
 "間をとってください。お店では、リストにあるものを購入しましょう。"
 
-#: mmcheckingpanel.h:272
+#: mmcheckingpanel.h:273
 msgid "View Since Statement Date"
 msgstr ""
 
