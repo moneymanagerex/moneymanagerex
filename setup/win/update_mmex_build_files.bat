@@ -1,3 +1,4 @@
+@echo off
 REM --------------------------------------------------------------------------
 REM Author : Stefano Giorgio [stef145g] - Copyright (C) 2012..2016
 REM 		 Updates by:
@@ -10,10 +11,7 @@ REM Purpose: To allow the easy collection of support files required for
 REM          - testing in the msw-vc-2013e environment.
 REM          - providing a release version for others.
 REM 
-REM Revision of last commit: $Revision$
-REM Author   of last commit: $Author$
 REM --------------------------------------------------------------------------
-@echo off
 cls
 
 REM To reflect the currect version for manual setup
@@ -34,6 +32,7 @@ if %auto_version% == %null_version% set auto_delay=%manual_delay%
 
 set mmex_system_name=MoneyManagerEX
 set mmex_build_location=..\..\build\msw-vc-2013e
+set mmex_test_build_location=..\msw_tests-vc-2013e\
 set mmex_release_location=..\..\mmex_release
 if NOT EXIST %mmex_release_location% md %mmex_release_location%
 
@@ -81,8 +80,8 @@ set mmex_build_dir=%mmex_build_location%\%mmex_win_system_type%\%location%
 
 :UpdateFiles_Continue
 set current_location=%mmex_win_system_type%\%location%
-if %current_location% == %mmex_win_system_type%\tests\debug set current_location=..\msw_tests-vc-2013e\%mmex_win_system_type%\debug
-if %current_location% == ..\msw_tests-vc-2013e\%mmex_win_system_type%\debug set mmex_build_dir=%mmex_build_location%\%current_location%
+if %current_location% == %mmex_win_system_type%\tests\debug set current_location=%mmex_test_build_location%%mmex_win_system_type%\debug
+if %current_location% == %mmex_test_build_location%%mmex_win_system_type%\debug set mmex_build_dir=%mmex_build_location%\%current_location%
 
 if not exist %mmex_build_dir% goto skip_this_location
 @echo ------------------------------------------------------------------------
@@ -134,7 +133,7 @@ cls
 REM Work out what to do next. Continue from already processed, win32\release
 if %current_location%==%mmex_win_system_type%\release       goto update_debug
 if %current_location%==%mmex_win_system_type%\debug         goto update_tests_debug
-if %current_location%==..\msw_tests-vc-2013e\%mmex_win_system_type%\debug   goto update_release
+if %current_location%==%mmex_test_build_location%%mmex_win_system_type%\debug   goto update_release
 if %current_location%==win32\%mmex_system_name%             goto system_change_x64
 goto ScriptEnd
 REM -------------------------------------------------------------------------- 
@@ -193,7 +192,7 @@ set mmex_release_bin_dir=%mmex_release_dir%\bin
 if not exist %mmex_release_bin_dir% mkdir %mmex_release_bin_dir%
 
 REM Create a zero length file for portable version
-copy nul %mmex_release_dir%\mmexini.db3
+if not exist %mmex_release_dir%\mmexini.db3 copy nul %mmex_release_dir%\mmexini.db3
 
 if %mmex_win_system_type%==x64 goto get_x64_dll_files
 REM set up the executable files for Win32
