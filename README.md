@@ -15,6 +15,7 @@ Platforms
 [![AppVeyor](https://img.shields.io/appveyor/ci/guanlisheng/moneymanagerex/master.svg?label=Windows)](https://ci.appveyor.com/project/guanlisheng/moneymanagerex)
 [![Travis](https://img.shields.io/travis/moneymanagerex/moneymanagerex/master.svg?label=OSX)](http://travis-ci.org/moneymanagerex/moneymanagerex)
 [![Ohloh](http://www.ohloh.net/p/moneymanagerex/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/moneymanagerex)
+[![Download Money Manager Ex](https://img.shields.io/sourceforge/dm/moneymanagerex.svg)](https://sourceforge.net/projects/moneymanagerex/files/latest/download)
 
 
 ### MMEX is mainly written in C++11 and built on:
