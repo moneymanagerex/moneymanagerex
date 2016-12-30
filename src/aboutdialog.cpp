@@ -99,6 +99,8 @@ void mmAboutDialog::InitControls()
     hb.addLineBreak();
     hb.addTableCellLink(mmex::weblink::Donate, _("Donate"));
     hb.addLineBreak();
+    hb.addTableCellLink("https://cash.me/$guanlisheng/1", _("Buy us a coffee"));
+    hb.addLineBreak();
 
     hb.end();
     html = hb.getHTMLText();
