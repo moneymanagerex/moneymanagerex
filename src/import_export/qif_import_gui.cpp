@@ -805,7 +805,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             }
             //
             Model_Checking::Data *trx = Model_Checking::instance().create();
-            if (compliteTransaction(entry, trx))
+            wxString msg;
+            if (compliteTransaction(entry, trx, msg))
             {
                 if (dateFromCheckBox_->IsChecked() && trx->TRANSDATE < begin_date)
                     continue;
@@ -821,12 +822,13 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             }
             else
             {
+                *log_field_ << wxString::Format(_("Error: %s"), msg);
+
                 wxString t = "";
                 for (const auto&i : entry)
                     t << i.second << "|";
                 t.RemoveLast(1);
-
-                *log_field_ << _("Error") + wxString::Format("\n( %s )\n", t);
+                *log_field_ << wxString::Format("\n( %s )\n", t);
             }
             ++count;
         }
@@ -925,18 +927,24 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
 }
 
 bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString> &i
-    , /*out*/ Model_Checking::Data* trx)
+    , /*out*/ Model_Checking::Data* trx, wxString& msg)
 {
     auto t = i;
     trx->TRANSCODE = (t.find(TrxType) != t.end() ? t[TrxType] : "");
     if (trx->TRANSCODE.empty())
+    {
+        msg = _("Transaction code is missing");
         return false;
+    }
     bool transfer = Model_Checking::is_transfer(trx->TRANSCODE); 
 
     if (!transfer)
         trx->PAYEEID = (t.find(Payee) != t.end() ? m_QIFpayeeNames[t.at(Payee)] : -1);
     if (trx->PAYEEID == -1 && !transfer)
+    {
+        msg = _("Transaction Payee is missing or incorrect");
         return false;
+    }
 
     wxString dateStr = (t.find(Date) != t.end() ? t[Date] : "");
     dateStr.Replace(" ", "");
@@ -956,11 +964,17 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
         accountName = m_accountNameStr;
     accountID = (m_QIFaccountsID.find(accountName) != m_QIFaccountsID.end() ? m_QIFaccountsID.at(accountName) : -1);
     if (accountID < 1)
+    {
+        msg = _("Transaction Account is incorrect");
         return false;
+    }
     trx->ACCOUNTID = accountID;
     trx->TOACCOUNTID = (t.find(ToAccountName) != t.end() ? (m_QIFaccountsID.find(t[ToAccountName]) != m_QIFaccountsID.end() ? m_QIFaccountsID[t[ToAccountName]] : -1) : -1);
     if (trx->ACCOUNTID == trx->TOACCOUNTID && transfer)
+    {
+        msg = _("Transaction Account for transfer is incorrect");
         return false;
+    }
 
     trx->TRANSACTIONNUMBER = (t.find(TransNumber) != t.end() ? t[TransNumber] : "");
     trx->NOTES = (t.find(Memo) != t.end() ? t[Memo] : "");
@@ -969,7 +983,10 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
     double amt;
     const wxString value = t.find(Amount) != t.end() ? t[Amount] : "";
     if (!Model_Currency::fromString(value, amt))
+    {
+        msg = _("Transaction Amount is incorrect");
         return false;
+    }
     trx->TRANSAMOUNT = fabs(amt);
     trx->TOTRANSAMOUNT = transfer ? amt : trx->TRANSAMOUNT;
 
@@ -983,7 +1000,11 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
             const wxString c = token.GetNextToken();
             if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end()) return false;
             int categID = m_QIFcategoryNames[c].first;
-            if (categID <= 0) return false;
+            if (categID <= 0)
+            {
+                msg = _("Transaction Category is incorrect");
+                return false;
+            }
             Model_Splittransaction::Data* s = Model_Splittransaction::instance().create();
             s->CATEGID = categID;
             s->SUBCATEGID = m_QIFcategoryNames[c].second;
