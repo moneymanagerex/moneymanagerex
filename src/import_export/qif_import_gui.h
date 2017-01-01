@@ -64,7 +64,7 @@ private:
     void getOrCreateCategories();
     void compliteTransaction(std::map <int, wxString> &trx, const wxString &accName);
     bool compliteTransaction(/*in*/ const std::map <int, wxString> &i
-        , /*out*/ Model_Checking::Data* trx);
+        , /*out*/ Model_Checking::Data* trx, wxString& msg);
     bool mergeTransferPair(Model_Checking::Cache& to, Model_Checking::Cache& from);
     void appendTransfers(Model_Checking::Cache &destination, Model_Checking::Cache &target);
     void joinSplit(Model_Checking::Cache &destination, std::vector <Model_Splittransaction::Cache> &target);
