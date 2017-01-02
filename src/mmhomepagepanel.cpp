@@ -621,16 +621,21 @@ void mmHomePagePanel::fillData()
 
 void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> > &accountStats)
 {
-    bool ignoreFuture = Option::instance().IgnoreFutureTransactions();
-
-    const auto &transactions = Model_Checking::instance().all();
-    this->total_transactions_ = transactions.size();
-    const wxDateTime today = date_range_->today();
-    for (const auto& trx : transactions)
+    Model_Checking::Data_Set all_trans;
+    if (Option::instance().IgnoreFutureTransactions())
     {
-        if (ignoreFuture && Model_Checking::TRANSDATE(trx).IsLaterThan(today))
-            continue; //skip future dated transactions
+        all_trans = Model_Checking::instance().find(
+            DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range_->today().FormatISODate(), LESS_OR_EQUAL));
+    }
+    else
+    {
+        all_trans = Model_Checking::instance().all();
+    }
 
+    this->total_transactions_ = all_trans.size();
+
+    for (const auto& trx : all_trans)
+    {
         // Do not include asset or stock transfers in income expense calculations.
         if (Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
