@@ -99,7 +99,6 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     , m_trans_filter_dlg(0)
     , m_frame(frame)
 {
-    m_basecurrecyID = Option::instance().BaseCurrency();
     long style = wxTAB_TRAVERSAL | wxNO_BORDER;
     Create(parent, mmID_CHECKING, wxDefaultPosition, wxDefaultSize, style);
 }
@@ -888,8 +887,6 @@ void mmCheckingPanel::SetTransactionFilterState(bool active)
 {
     m_bitmapMainFilter->Enable(!m_transFilterActive);
     m_stxtMainFilter->Enable(!m_transFilterActive);
-    //bitmapTransFilter_->Enable(active || transFilterActive_);
-    //statTextTransFilter_->Enable(active || transFilterActive_);
 }
 
 void mmCheckingPanel::SetSelectedTransaction(int transID)
@@ -993,6 +990,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_col_width = "CHECK_COL%d_WIDTH";
 
     m_default_sort_column = COL_DEF_SORT;
+    m_today = wxDateTime::Today().FormatISODate();
 
     SetSingleStyle(wxLC_SINGLE_SEL, false);
 }
@@ -1338,7 +1336,7 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     if (item < 0 || item >= (int)m_cp->m_trans.size()) return 0;
 
     const Model_Checking::Full_Data& tran = m_cp->m_trans[item];
-    bool in_the_future = tran.TRANSDATE > wxDateTime::Today().FormatISODate();
+    bool in_the_future = (tran.TRANSDATE > m_today);
 
     // apply alternating background pattern
     int user_colour_id = tran.FOLLOWUPID;
@@ -1355,11 +1353,12 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
         else if (user_colour_id == 6) return (wxListItemAttr*)&m_attr16;
         else if (user_colour_id == 7) return (wxListItemAttr*)&m_attr17;
     }
-    else if (in_the_future && item % 2) return (wxListItemAttr*)&m_attr3;
-    else if (in_the_future)             return (wxListItemAttr*)&m_attr4;
-    else if (item % 2)                  return (wxListItemAttr*)&m_attr1;
+    if (in_the_future)
+    {
+        return (item % 2 ? (wxListItemAttr*)&m_attr3 : (wxListItemAttr*)&m_attr4);
+    }
 
-    return (wxListItemAttr*)&m_attr2;
+    return (item % 2 ? (wxListItemAttr*)&m_attr1 : (wxListItemAttr*)&m_attr2);
 }
 //----------------------------------------------------------------------------
 // If any of these keys are encountered, the search for the event handler
@@ -1713,6 +1712,7 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 
 void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
 {
+    m_today = wxDateTime::Today().FormatISODate();
     this->SetEvtHandlerEnabled(false);
     Hide();
 

@@ -101,10 +101,10 @@ public:
     void OnViewSplitTransaction(wxCommandEvent& event);
     void OnOrganizeAttachments(wxCommandEvent& event);
     void OnCreateReoccurance(wxCommandEvent& event);
+    void refreshVisualList(int trans_id = -1, bool filter = true);
     long m_selectedIndex;
     long m_selectedForCopy; //The transaction ID if selected for copy
     long m_selectedID; //Selected transaction ID
-    void refreshVisualList(int trans_id = -1, bool filter = true);
 
 protected:
     /* Sort Columns */
@@ -200,7 +200,7 @@ private:
     where to display the list again after refresh */
     long m_topItemIndex;
     EColumn m_sortCol;
-
+    wxString m_today;
 };
 
 //----------------------------------------------------------------------------
@@ -292,7 +292,6 @@ private:
 
     int m_currentView;
     int m_AccountID;
-    int m_basecurrecyID;
     bool m_transFilterActive;
     wxString m_begin_date;
     wxString m_end_date;
