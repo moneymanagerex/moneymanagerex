@@ -483,6 +483,7 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
         msg = _("Currency rate updated");
         msg << "\n\n";
 
+        wxDateTime today = wxDateTime::Today();
         Model_CurrencyHistory::instance().Savepoint();
         for (auto &currency : currencies)
         {
@@ -499,7 +500,7 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
                     if (base_symbol == currency_symbol)
                         continue;
                     Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID,
-                        wxDateTime::Today(), currency.BASECONVRATE, Model_CurrencyHistory::ONLINE);
+                        today, currency.BASECONVRATE, Model_CurrencyHistory::ONLINE);
                     Model_Currency::instance().save(&currency);
                 }
                 else
