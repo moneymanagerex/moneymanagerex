@@ -342,6 +342,7 @@ const int Option::AccountImageId(int account_id, bool def)
     int max = acc_img::MAX_XPM - img::LAST_NAVTREE_PNG;
     int min = 1;
     int custom_img_id = Model_Infotable::instance().GetIntInfo(wxString::Format("ACC_IMAGE_ID_%i", account_id), 0);
+    if (custom_img_id > max) custom_img_id = custom_img_id - 20; //Bug #963 fix 
     if (!def && (custom_img_id >= min && custom_img_id <= max))
         return custom_img_id + img::LAST_NAVTREE_PNG - 1;
 
