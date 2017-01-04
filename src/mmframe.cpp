@@ -967,7 +967,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             else
             {
                 /* cannot find accountid */
-                wxASSERT(true);
+                wxASSERT(false);
             }
         }
     }
