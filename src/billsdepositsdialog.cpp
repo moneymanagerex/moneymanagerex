@@ -1312,7 +1312,7 @@ void mmBDDialog::setRepeatDetails()
     {
         staticTextRepeats_->SetLabelText(repeatLabelActivate);
         staticTimesRepeat_->SetLabelText(timeLabelDays);
-        const auto& toolTipsStr = _("Specify period in Days to activate."
+        const auto& toolTipsStr = _("Specify period in Days to activate.\n"
             "Becomes blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
@@ -1344,7 +1344,7 @@ void mmBDDialog::setRepeatDetails()
     {
         staticTextRepeats_->SetLabelText(repeatLabelRepeats);
         staticTimesRepeat_->SetLabelText(_("Payments Left"));
-        const auto& toolTipsStr = _("Specify the number of payments to be made." 
+        const auto& toolTipsStr = _("Specify the number of payments to be made.\n" 
             "Leave blank if the payments continue forever.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
