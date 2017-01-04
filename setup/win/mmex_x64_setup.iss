@@ -13,9 +13,9 @@
 ; Copyright (C) 2013 James Higley
 
 ; Note: MyWinVersionInfo - use numbers only
-#define MyWinVersionInfo "1.3.0"
+#define MyWinVersionInfo "1.3.1"
 
-#define MyAppVersion "1.3.0"
+#define MyAppVersion "1.3.1"
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
 #define MyAppPublisher "Money Manager EX"
@@ -30,10 +30,10 @@
 #define my_output_root "..\..\mmex_release"
 
 ; Note: This is the path where MMEX.exe will be found
-#define my_output_path "\mmex_v1.3.0_x64_portable_build392\MoneyManagerEx"
+#define my_output_path "\mmex_v1.3.1_x64_portable\MoneyManagerEx"
 
 ; Note: Any revision mods can be added here
-#define my_output_filename "mmex_v1.3.0_build392_x64_setup"
+#define my_output_filename "mmex_v1.3.1_x64_setup"
 
 ;===============================================================================
 
