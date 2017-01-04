@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2016-12-23 16:35+0300\n"
-"PO-Revision-Date: 2016-12-23 16:35+0300\n"
+"POT-Creation-Date: 2017-01-04 17:33+0300\n"
+"PO-Revision-Date: 2017-01-04 17:33+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
 "Language: uk\n"
@@ -58,37 +58,41 @@ msgstr ""
 msgid "Donate"
 msgstr "Жертвувати"
 
-#: src/aboutdialog.cpp:157
+#: src/aboutdialog.cpp:102
+msgid "Buy us a coffee"
+msgstr ""
+
+#: src/aboutdialog.cpp:159
 #, c-format
 msgid "(DB v.%i)"
 msgstr ""
 
-#: src/aboutdialog.cpp:169
+#: src/aboutdialog.cpp:171
 #, fuzzy
 msgid "About"
 msgstr "Про "
 
-#: src/aboutdialog.cpp:174
+#: src/aboutdialog.cpp:176
 msgid "Developers"
 msgstr "Розробники"
 
-#: src/aboutdialog.cpp:179
+#: src/aboutdialog.cpp:181
 msgid "Artwork"
 msgstr ""
 
-#: src/aboutdialog.cpp:184
+#: src/aboutdialog.cpp:186
 msgid "Sponsors"
 msgstr "Спонсори"
 
-#: src/aboutdialog.cpp:189
+#: src/aboutdialog.cpp:191
 msgid "License"
 msgstr "Ліцензія"
 
-#: src/aboutdialog.cpp:194
+#: src/aboutdialog.cpp:196
 msgid "Privacy"
 msgstr ""
 
-#: src/aboutdialog.cpp:232 src/accountdialog.cpp:373 src/appstartdialog.cpp:136
+#: src/aboutdialog.cpp:234 src/accountdialog.cpp:373 src/appstartdialog.cpp:136
 #: src/assetdialog.cpp:301 src/attachmentdialog.cpp:118
 #: src/billsdepositsdialog.cpp:629 src/budgetentrydialog.cpp:156
 #: src/budgetyeardialog.cpp:116 src/budgetyearentrydialog.cpp:126
@@ -146,7 +150,7 @@ msgstr "Улюблений рахунок"
 #: src/accountdialog.cpp:249 src/assetdialog.cpp:249 src/assetspanel.cpp:68
 #: src/billsdepositsdialog.cpp:596 src/billsdepositspanel.cpp:109
 #: src/filtertransdialog.cpp:304 src/import_export/qif_import_gui.cpp:104
-#: src/import_export/univcsvdialog.cpp:92 src/mmcheckingpanel.cpp:991
+#: src/import_export/univcsvdialog.cpp:92 src/mmcheckingpanel.cpp:988
 #: src/reports/transactions.cpp:74 src/sharetransactiondialog.cpp:252
 #: src/stockdialog.cpp:269 src/stockspanel.cpp:103 src/transdialog.cpp:485
 #: src/usertransactionpanel.cpp:204 src/webappdialog.cpp:85
@@ -431,7 +435,7 @@ msgstr "Введіть назву майна"
 #: src/assetdialog.cpp:197 src/assetspanel.cpp:64
 #: src/import_export/qif_import_gui.cpp:98
 #: src/import_export/univcsvdialog.cpp:86 src/maincurrencydialog.cpp:235
-#: src/maincurrencydialog.cpp:258 src/mmcheckingpanel.cpp:983
+#: src/maincurrencydialog.cpp:258 src/mmcheckingpanel.cpp:980
 #: src/model/Model_CustomField.cpp:29 src/reports/cashflow.cpp:261
 #: src/reports/summary.cpp:314 src/reports/transactions.cpp:67
 #: src/stockdialog.cpp:302 src/stockdialog.cpp:658 src/transdialog.cpp:377
@@ -516,14 +520,14 @@ msgid ""
 msgstr ""
 
 #: src/assetspanel.cpp:62 src/billsdepositspanel.cpp:95
-#: src/mmcheckingpanel.cpp:982 src/stockspanel.cpp:91
+#: src/mmcheckingpanel.cpp:979 src/stockspanel.cpp:91
 msgid "ID"
 msgstr ""
 
 #: src/assetspanel.cpp:65 src/billsdepositsdialog.cpp:521
 #: src/billsdepositspanel.cpp:102 src/customfieldlistdialog.cpp:56
 #: src/filtertransdialog.cpp:249 src/import_export/qif_import_gui.cpp:101
-#: src/mmhomepagepanel.cpp:779 src/reports/budgetingperf.cpp:130
+#: src/mmhomepagepanel.cpp:784 src/reports/budgetingperf.cpp:130
 #: src/reports/incexpenses.cpp:129 src/reports/transactions.cpp:72
 #: src/splitdetailsdialog.cpp:113 src/transdialog.cpp:410
 #: src/usertransactionpanel.cpp:136 src/webappdialog.cpp:81
@@ -574,7 +578,7 @@ msgid "&Delete Asset"
 msgstr "&Видалити майно"
 
 #: src/assetspanel.cpp:108 src/billsdepositspanel.cpp:408
-#: src/mmcheckingpanel.cpp:1115 src/mmframe.cpp:1155 src/payeedialog.cpp:370
+#: src/mmcheckingpanel.cpp:1113 src/mmframe.cpp:1155 src/payeedialog.cpp:370
 #: src/stockspanel.cpp:148
 #, fuzzy
 msgid "&Organize Attachments"
@@ -598,7 +602,7 @@ msgstr ""
 
 #: src/assetspanel.cpp:414 src/general_report_manager.cpp:671
 #: src/general_report_manager.cpp:946 src/mmframe.cpp:466 src/mmframe.cpp:711
-#: src/mmframe.cpp:1510 src/mmhomepagepanel.cpp:423 src/mmhomepagepanel.cpp:806
+#: src/mmframe.cpp:1510 src/mmhomepagepanel.cpp:423 src/mmhomepagepanel.cpp:811
 #: src/reports/summary.cpp:176 src/assetspanel.h:94
 msgid "Assets"
 msgstr "Майно"
@@ -610,7 +614,7 @@ msgid "All"
 msgstr "Всі"
 
 #: src/assetspanel.cpp:467 src/billsdepositspanel.cpp:268
-#: src/mmcheckingpanel.cpp:465 src/stockspanel.cpp:569
+#: src/mmcheckingpanel.cpp:464 src/stockspanel.cpp:569
 #, fuzzy
 msgid "&New "
 msgstr "Нове"
@@ -633,7 +637,7 @@ msgstr "Показати всі транзакції"
 #: src/assetspanel.cpp:481 src/attachmentdialog.cpp:287
 #: src/billsdepositspanel.cpp:272 src/categdialog.cpp:228
 #: src/customfieldlistdialog.cpp:271 src/maincurrencydialog.cpp:196
-#: src/maincurrencydialog.cpp:570 src/mmcheckingpanel.cpp:469
+#: src/maincurrencydialog.cpp:579 src/mmcheckingpanel.cpp:468
 #: src/payeedialog.cpp:364 src/splittransactionsdialog.cpp:164
 #: src/stockspanel.cpp:583
 #, fuzzy
@@ -642,8 +646,8 @@ msgstr "Редагувати"
 
 #: src/assetspanel.cpp:486 src/billsdepositspanel.cpp:277
 #: src/budgetyeardialog.cpp:103 src/categdialog.cpp:232
-#: src/maincurrencydialog.cpp:283 src/mmcheckingpanel.cpp:474
-#: src/mmcheckingpanel.cpp:1131 src/stockdialog.cpp:330 src/stockspanel.cpp:588
+#: src/maincurrencydialog.cpp:283 src/mmcheckingpanel.cpp:473
+#: src/mmcheckingpanel.cpp:1129 src/stockdialog.cpp:330 src/stockspanel.cpp:588
 #, fuzzy
 msgid "&Delete "
 msgstr "Видалити"
@@ -653,12 +657,12 @@ msgid "Delete Asset"
 msgstr "Видалити майно"
 
 #: src/assetspanel.cpp:494 src/billsdepositspanel.cpp:295
-#: src/mmcheckingpanel.cpp:487 src/stockspanel.cpp:601
+#: src/mmcheckingpanel.cpp:486 src/stockspanel.cpp:601
 #, fuzzy
 msgid "Open attachments"
 msgstr "&Відкрити базу даних\tCtrl-O"
 
-#: src/assetspanel.cpp:501 src/assetspanel.cpp:502 src/mmcheckingpanel.cpp:495
+#: src/assetspanel.cpp:501 src/assetspanel.cpp:502 src/mmcheckingpanel.cpp:494
 #, fuzzy
 msgid "Search"
 msgstr "Березень"
@@ -1053,7 +1057,7 @@ msgstr "Вкажіть статус для транзакції"
 #: src/billsdepositsdialog.cpp:495 src/billsdepositspanel.cpp:100
 #: src/filtertransdialog.cpp:236 src/import_export/qif_import_gui.cpp:244
 #: src/import_export/qif_import_gui.cpp:256
-#: src/import_export/qif_import_gui.cpp:267 src/mmcheckingpanel.cpp:986
+#: src/import_export/qif_import_gui.cpp:267 src/mmcheckingpanel.cpp:983
 #: src/reports/transactions.cpp:70 src/transdialog.cpp:391
 #: src/usertransactionpanel.cpp:176 src/webappdialog.cpp:80
 msgid "Status"
@@ -1086,7 +1090,7 @@ msgstr "Вкажіть суму для цієї транзакції"
 
 #: src/billsdepositsdialog.cpp:528 src/billsdepositspanel.cpp:103
 #: src/budgetingpanel.cpp:309 src/mmhomepagepanel.cpp:387
-#: src/mmhomepagepanel.cpp:780 src/reports/budgetcategorysummary.cpp:113
+#: src/mmhomepagepanel.cpp:785 src/reports/budgetcategorysummary.cpp:113
 #: src/reports/categexp.cpp:133 src/reports/incexpenses.cpp:130
 #: src/reports/transactions.cpp:75 src/splitdetailsdialog.cpp:128
 #: src/splittransactionsdialog.cpp:136 src/transdialog.cpp:428
@@ -1124,7 +1128,7 @@ msgstr "Вкажіть суму для цієї транзакції"
 #: src/billsdepositspanel.cpp:99 src/filtertransdialog.cpp:203
 #: src/import_export/qif_import_gui.cpp:100
 #: src/import_export/qif_import_gui.cpp:249
-#: src/import_export/univcsvdialog.cpp:87 src/mmcheckingpanel.cpp:985
+#: src/import_export/univcsvdialog.cpp:87 src/mmcheckingpanel.cpp:982
 #: src/mmhomepagepanel.cpp:387 src/model/Model_Attachment.cpp:29
 #: src/reports/payee.cpp:115 src/reports/transactions.cpp:69
 #: src/transdialog.cpp:239 src/transdialog.cpp:440
@@ -1155,7 +1159,7 @@ msgstr "Виберіть Категорію"
 #: src/budgetingpanel.cpp:306 src/filtertransdialog.cpp:214
 #: src/import_export/qif_import_gui.cpp:102
 #: src/import_export/qif_import_gui.cpp:261
-#: src/import_export/univcsvdialog.cpp:89 src/mmcheckingpanel.cpp:987
+#: src/import_export/univcsvdialog.cpp:89 src/mmcheckingpanel.cpp:984
 #: src/mmhomepagepanel.cpp:218 src/reports/budgetcategorysummary.cpp:112
 #: src/reports/budgetingperf.cpp:129 src/reports/categexp.cpp:132
 #: src/reports/categovertimeperf.cpp:108 src/reports/transactions.cpp:71
@@ -1177,7 +1181,7 @@ msgstr "Вкажіть номер асоційованого чека або н�
 
 #: src/billsdepositsdialog.cpp:592 src/billsdepositspanel.cpp:108
 #: src/filtertransdialog.cpp:296 src/import_export/qif_import_gui.cpp:99
-#: src/import_export/univcsvdialog.cpp:91 src/mmcheckingpanel.cpp:984
+#: src/import_export/univcsvdialog.cpp:91 src/mmcheckingpanel.cpp:981
 #: src/reports/transactions.cpp:73 src/transdialog.cpp:478
 #: src/usertransactionpanel.cpp:200
 msgid "Number"
@@ -1341,7 +1345,7 @@ msgid "Recurring Transactions"
 msgstr "Видалити Транзакцію"
 
 #: src/billsdepositspanel.cpp:234 src/filtertransdialog.cpp:94
-#: src/mmcheckingpanel.cpp:385
+#: src/mmcheckingpanel.cpp:384
 msgid "Transaction Filter"
 msgstr "Фільтр транзакцій"
 
@@ -1481,7 +1485,7 @@ msgstr "Тип:"
 msgid "Expense"
 msgstr "Витрата"
 
-#: src/budgetentrydialog.cpp:128 src/mmhomepagepanel.cpp:781
+#: src/budgetentrydialog.cpp:128 src/mmhomepagepanel.cpp:786
 #: src/reports/incexpenses.cpp:103 src/reports/incexpenses.cpp:254
 #: src/db/DB_Table_Category_V1.h:117
 msgid "Income"
@@ -2282,7 +2286,8 @@ msgid ""
 " Attempt to open a File that is not a database file \n"
 msgstr ""
 
-#: src/dbwrapper.cpp:82 src/webapp.cpp:119 src/wizard_update.cpp:225
+#: src/dbwrapper.cpp:82 src/import_export/qif_import_gui.cpp:825
+#: src/webapp.cpp:119 src/wizard_update.cpp:225
 #, c-format
 msgid "Error: %s"
 msgstr "Помилка: %s"
@@ -2292,7 +2297,7 @@ msgstr "Помилка: %s"
 msgid "Opening MMEX Database - Error"
 msgstr "Відкрити останню відкриту базу"
 
-#: src/filtertransdialog.cpp:44 src/mmhomepagepanel.cpp:708
+#: src/filtertransdialog.cpp:44 src/mmhomepagepanel.cpp:713
 #: src/model/Model_Billsdeposits.cpp:39 src/model/Model_Checking.cpp:37
 msgid "Reconciled"
 msgstr "Проведена"
@@ -2342,13 +2347,13 @@ msgid "Include all subcategories for the selected category."
 msgstr ""
 
 #: src/filtertransdialog.cpp:255 src/import_export/univcsvdialog.cpp:94
-#: src/mmcheckingpanel.cpp:988 src/model/Model_Billsdeposits.cpp:31
+#: src/mmcheckingpanel.cpp:985 src/model/Model_Billsdeposits.cpp:31
 #: src/model/Model_Checking.cpp:29 src/splitdetailsdialog.cpp:118
 msgid "Withdrawal"
 msgstr "Витрата"
 
 #: src/filtertransdialog.cpp:257 src/import_export/univcsvdialog.cpp:95
-#: src/mmcheckingpanel.cpp:989 src/model/Model_Billsdeposits.cpp:32
+#: src/mmcheckingpanel.cpp:986 src/model/Model_Billsdeposits.cpp:32
 #: src/model/Model_Checking.cpp:30 src/splitdetailsdialog.cpp:119
 msgid "Deposit"
 msgstr "Дохід"
@@ -2377,8 +2382,7 @@ msgid "Invalid Amount Entered "
 msgstr "Сумма невірно введена"
 
 #: src/filtertransdialog.cpp:423 src/filtertransdialog.cpp:433
-#: src/import_export/qif_import_gui.cpp:696
-#: src/import_export/qif_import_gui.cpp:829 src/maincurrencydialog.cpp:524
+#: src/import_export/qif_import_gui.cpp:696 src/maincurrencydialog.cpp:531
 #: src/mmSimpleDialogs.cpp:154 src/mmframe.cpp:2845
 #: src/splittransactionsdialog.cpp:206 src/stockspanel.cpp:813
 #: src/stockspanel.cpp:814
@@ -2756,7 +2760,7 @@ msgid "Export to QIF"
 msgstr "Експорт до  CSV"
 
 #: src/import_export/qif_import_gui.cpp:82
-#: src/import_export/qif_import_gui.cpp:853
+#: src/import_export/qif_import_gui.cpp:855
 msgid "QIF Import"
 msgstr "Імпорт з QIF"
 
@@ -2787,7 +2791,7 @@ msgstr ""
 #: src/import_export/qif_import_gui.cpp:467
 #: src/import_export/qif_import_gui.cpp:470
 #: src/import_export/qif_import_gui.cpp:476
-#: src/import_export/qif_import_gui.cpp:1016
+#: src/import_export/qif_import_gui.cpp:1037
 #: src/import_export/univcsvdialog.cpp:602
 #: src/import_export/univcsvdialog.cpp:678
 #: src/import_export/univcsvdialog.cpp:682
@@ -2888,41 +2892,65 @@ msgstr "Організувати Категорії"
 msgid "Importing transaction %i of %i"
 msgstr "Показати транзакції за останні 30 днів"
 
-#: src/import_export/qif_import_gui.cpp:834
+#: src/import_export/qif_import_gui.cpp:836
 #, fuzzy
 msgid "Importing Transfers"
 msgstr "Імпорт з CSV"
 
-#: src/import_export/qif_import_gui.cpp:839
+#: src/import_export/qif_import_gui.cpp:841
 #, fuzzy
 msgid "Importing Split transactions"
 msgstr "Майбутні проводки"
 
-#: src/import_export/qif_import_gui.cpp:843
+#: src/import_export/qif_import_gui.cpp:845
 msgid "Import finished successfully"
 msgstr ""
 
-#: src/import_export/qif_import_gui.cpp:843
+#: src/import_export/qif_import_gui.cpp:845
 #: src/import_export/univcsvdialog.cpp:819 src/stockdialog.cpp:656
 #, fuzzy, c-format
 msgid "Total Imported : %ld"
 msgstr "Загальна сумма:"
 
-#: src/import_export/qif_import_gui.cpp:851
+#: src/import_export/qif_import_gui.cpp:853
 #: src/import_export/univcsvdialog.cpp:847
 msgid "Imported transactions discarded by user!"
 msgstr ""
 
-#: src/import_export/qif_import_gui.cpp:949
+#: src/import_export/qif_import_gui.cpp:936
+msgid "Transaction code is missing"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:945
+msgid "Transaction Payee is missing or incorrect"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:957
 msgid "Date format or date mask is incorrect"
 msgstr ""
 
-#: src/import_export/qif_import_gui.cpp:1073
+#: src/import_export/qif_import_gui.cpp:968
+msgid "Transaction Account is incorrect"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:975
+msgid "Transaction Account for transfer is incorrect"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:987
+msgid "Transaction Amount is incorrect"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:1005
+msgid "Transaction Category is incorrect"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:1094
 #, fuzzy, c-format
 msgid "Added account: %s"
 msgstr " сума"
 
-#: src/import_export/qif_import_gui.cpp:1102
+#: src/import_export/qif_import_gui.cpp:1123
 #: src/import_export/univcsvdialog.cpp:686
 #, fuzzy, c-format
 msgid "Added payee: %s"
@@ -2940,8 +2968,8 @@ msgstr "Підкатегорія"
 msgid "Don't Care"
 msgstr "Не перейматись"
 
-#: src/import_export/univcsvdialog.cpp:96 src/mmcheckingpanel.cpp:990
-#: src/mmhomepagepanel.cpp:709 src/reports/summary.cpp:132
+#: src/import_export/univcsvdialog.cpp:96 src/mmcheckingpanel.cpp:987
+#: src/mmhomepagepanel.cpp:714 src/reports/summary.cpp:132
 #: src/reports/summary.cpp:134 src/reports/summary.cpp:321
 msgid "Balance"
 msgstr "Баланс"
@@ -3231,8 +3259,8 @@ msgid "Last Rate"
 msgstr " дата"
 
 #: src/maincurrencydialog.cpp:76 src/maincurrencydialog.cpp:331
-#: src/maincurrencydialog.cpp:712 src/maincurrencydialog.cpp:818
-#: src/maincurrencydialog.cpp:824
+#: src/maincurrencydialog.cpp:721 src/maincurrencydialog.cpp:828
+#: src/maincurrencydialog.cpp:834
 #, fuzzy
 msgid "Currency Dialog"
 msgstr "Назва валюти"
@@ -3302,53 +3330,77 @@ msgid "Base Currency Selection"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:406
-#, fuzzy
-msgid "Currency History Options: "
-msgstr "Валюта"
+#, c-format
+msgid "Currency History Options: %s "
+msgstr ""
 
-#: src/maincurrencydialog.cpp:436
+#: src/maincurrencydialog.cpp:436 src/maincurrencydialog.cpp:708
 msgid "Could not find base currency symbol!"
 msgstr ""
 
-#: src/maincurrencydialog.cpp:483 src/maincurrencydialog.cpp:516
-#, fuzzy
-msgid "Currency rate updated"
-msgstr "Управління валютами"
+#: src/maincurrencydialog.cpp:483 src/maincurrencydialog.cpp:523
+msgid "Currency rates have been updated"
+msgstr ""
 
-#: src/maincurrencydialog.cpp:508
+#: src/maincurrencydialog.cpp:513
 #, c-format
 msgid "%s\t: %s\n"
 msgstr ""
 
-#: src/maincurrencydialog.cpp:508
+#: src/maincurrencydialog.cpp:513 src/webapp.cpp:186
 #, fuzzy
-msgid "Invalid value "
+msgid "Invalid value"
 msgstr "Невірна вартість"
 
-#: src/maincurrencydialog.cpp:568
+#: src/maincurrencydialog.cpp:553
+msgid "Unable to update history currency rates. Please update them manually!"
+msgstr ""
+
+#: src/maincurrencydialog.cpp:554 src/maincurrencydialog.cpp:695
+#: src/maincurrencydialog.cpp:708 src/maincurrencydialog.cpp:754
+#: src/maincurrencydialog.cpp:874 src/maincurrencydialog.cpp:944
+msgid "Currency history error"
+msgstr ""
+
+#: src/maincurrencydialog.cpp:577
 #, fuzzy
 msgid "Set as Base Currency"
 msgstr "Базова валюта"
 
-#: src/maincurrencydialog.cpp:569
+#: src/maincurrencydialog.cpp:578
 #, fuzzy
 msgid "Online Update Currency Rate"
 msgstr "Базову валюту не встановлено"
 
-#: src/maincurrencydialog.cpp:711
+#: src/maincurrencydialog.cpp:695
+msgid "Unable to download currency rates!"
+msgstr ""
+
+#: src/maincurrencydialog.cpp:720
 #, fuzzy
 msgid "Do you want to add also dates without any transaction?"
 msgstr "Ви дійсно хочете видалити всі показані транзакції ?"
 
-#: src/maincurrencydialog.cpp:817
+#: src/maincurrencydialog.cpp:752 src/maincurrencydialog.cpp:873
+#, c-format
+msgid "Unable to download history for symbol %s. History rates not available!"
+msgstr ""
+
+#: src/maincurrencydialog.cpp:827
 #, fuzzy
 msgid "Do you want to update today currency rates?"
 msgstr "Базову валюту не встановлено"
 
-#: src/maincurrencydialog.cpp:823
+#: src/maincurrencydialog.cpp:833
 msgid ""
 "Do you want to update all currency history? Any custom currency rate will be "
 "deleted!"
+msgstr ""
+
+#: src/maincurrencydialog.cpp:943
+#, c-format
+msgid ""
+"Unable to download history for base symbol %s. History rates not available!"
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:153
@@ -3441,211 +3493,211 @@ msgstr ""
 msgid "Please type in a non empty symbol."
 msgstr ""
 
-#: src/mmcheckingpanel.cpp:395 src/mmcheckingpanel.cpp:539
+#: src/mmcheckingpanel.cpp:394 src/mmcheckingpanel.cpp:538
 #, fuzzy
 msgid "Displayed Bal: "
 msgstr "Вияв"
 
-#: src/mmcheckingpanel.cpp:401
+#: src/mmcheckingpanel.cpp:400
 #, fuzzy
 msgid "Account Bal: "
 msgstr "Рахунки"
 
-#: src/mmcheckingpanel.cpp:403
+#: src/mmcheckingpanel.cpp:402
 #, fuzzy
 msgid "Reconciled Bal: "
 msgstr "Проведена"
 
-#: src/mmcheckingpanel.cpp:405
+#: src/mmcheckingpanel.cpp:404
 #, fuzzy
 msgid "Diff: "
 msgstr "Баланс:"
 
-#: src/mmcheckingpanel.cpp:466 src/mmframe.cpp:1649 src/transdialog.cpp:140
+#: src/mmcheckingpanel.cpp:465 src/mmframe.cpp:1649 src/transdialog.cpp:140
 msgid "New Transaction"
 msgstr "Нова Транзакція"
 
-#: src/mmcheckingpanel.cpp:470
+#: src/mmcheckingpanel.cpp:469
 #, fuzzy
 msgid "Edit selected transaction"
 msgstr "Видалити Транзакцію"
 
-#: src/mmcheckingpanel.cpp:475
+#: src/mmcheckingpanel.cpp:474
 #, fuzzy
 msgid "Delete selected transaction"
 msgstr "Видалити всі відмічені транзакції"
 
-#: src/mmcheckingpanel.cpp:479
+#: src/mmcheckingpanel.cpp:478
 #, fuzzy
 msgid "D&uplicate "
 msgstr "Задвоеніе"
 
-#: src/mmcheckingpanel.cpp:480
+#: src/mmcheckingpanel.cpp:479
 #, fuzzy
 msgid "Duplicate selected transaction"
 msgstr "Видалити всі відмічені транзакції"
 
-#: src/mmcheckingpanel.cpp:497
+#: src/mmcheckingpanel.cpp:496
 msgid "Enter any string to find it in the nearest transaction notes"
 msgstr ""
 
-#: src/mmcheckingpanel.cpp:514
+#: src/mmcheckingpanel.cpp:513
 #, fuzzy, c-format
 msgid "Account View : %s"
 msgstr "Перегляд рахунку :"
 
-#: src/mmcheckingpanel.cpp:779
+#: src/mmcheckingpanel.cpp:778
 #, fuzzy
 msgid "Select account used in transfer transactions"
 msgstr "Вкажіть суму для цієї транзакції"
 
-#: src/mmcheckingpanel.cpp:1086
+#: src/mmcheckingpanel.cpp:1084
 #, fuzzy
 msgid "&New Withdrawal"
 msgstr "Витрата"
 
-#: src/mmcheckingpanel.cpp:1087
+#: src/mmcheckingpanel.cpp:1085
 #, fuzzy
 msgid "&New Deposit"
 msgstr "Дохід"
 
-#: src/mmcheckingpanel.cpp:1089
+#: src/mmcheckingpanel.cpp:1087
 #, fuzzy
 msgid "&New Transfer"
 msgstr "Переміщення"
 
-#: src/mmcheckingpanel.cpp:1093
+#: src/mmcheckingpanel.cpp:1091
 msgid "&Edit Transaction"
 msgstr "&Редагувати транзакцію"
 
-#: src/mmcheckingpanel.cpp:1096
+#: src/mmcheckingpanel.cpp:1094
 #, fuzzy
 msgid "&Copy Transaction"
 msgstr "&Нова транзакція"
 
-#: src/mmcheckingpanel.cpp:1099
+#: src/mmcheckingpanel.cpp:1097
 #, fuzzy
 msgid "&Paste Transaction"
 msgstr "&Нова транзакція"
 
-#: src/mmcheckingpanel.cpp:1102
+#: src/mmcheckingpanel.cpp:1100
 #, fuzzy
 msgid "D&uplicate Transaction"
 msgstr "Показати Відмічені Транзакції"
 
-#: src/mmcheckingpanel.cpp:1105
+#: src/mmcheckingpanel.cpp:1103
 #, fuzzy
 msgid "&Move Transaction"
 msgstr "&Нова транзакція"
 
-#: src/mmcheckingpanel.cpp:1111
+#: src/mmcheckingpanel.cpp:1109
 #, fuzzy
 msgid "&View Split Categories"
 msgstr "Проглянути всі заплановані категорії"
 
-#: src/mmcheckingpanel.cpp:1119
+#: src/mmcheckingpanel.cpp:1117
 #, fuzzy
 msgid "Create Reoccuring T&ransaction"
 msgstr "Видалити Транзакцію"
 
-#: src/mmcheckingpanel.cpp:1125
+#: src/mmcheckingpanel.cpp:1123
 msgid "&Delete Transaction"
 msgstr "&Видалити транзакцію"
 
-#: src/mmcheckingpanel.cpp:1128
+#: src/mmcheckingpanel.cpp:1126
 msgid "Delete all transactions in current view"
 msgstr "Видалити всі транзакції у поточному виді"
 
-#: src/mmcheckingpanel.cpp:1129
+#: src/mmcheckingpanel.cpp:1127
 #, fuzzy
 msgid "Delete Viewed \"Follow Up\" Trans."
 msgstr "Показати всі транзакції"
 
-#: src/mmcheckingpanel.cpp:1130
+#: src/mmcheckingpanel.cpp:1128
 #, fuzzy
 msgid "Delete Viewed \"Unreconciled\" Trans."
 msgstr "Показати всі транзакції"
 
-#: src/mmcheckingpanel.cpp:1136
+#: src/mmcheckingpanel.cpp:1134
 msgid "Mark As &Reconciled"
 msgstr "Відмітити як &Проведену"
 
-#: src/mmcheckingpanel.cpp:1138
+#: src/mmcheckingpanel.cpp:1136
 msgid "Mark As &Unreconciled"
 msgstr "Відмітити як &Непроведену"
 
-#: src/mmcheckingpanel.cpp:1140
+#: src/mmcheckingpanel.cpp:1138
 msgid "Mark As &Void"
 msgstr "Відмітити як Н&едійсну"
 
-#: src/mmcheckingpanel.cpp:1142
+#: src/mmcheckingpanel.cpp:1140
 msgid "Mark For &Followup"
 msgstr "Відмітити як В &Черзі"
 
-#: src/mmcheckingpanel.cpp:1144
+#: src/mmcheckingpanel.cpp:1142
 #, fuzzy
 msgid "Mark As &Duplicate"
 msgstr "Відмітити як Н&едійсну"
 
-#: src/mmcheckingpanel.cpp:1146
+#: src/mmcheckingpanel.cpp:1144
 msgid "Mark"
 msgstr ""
 
-#: src/mmcheckingpanel.cpp:1149
+#: src/mmcheckingpanel.cpp:1147
 msgid "as Reconciled"
 msgstr "як Проведену"
 
-#: src/mmcheckingpanel.cpp:1150
+#: src/mmcheckingpanel.cpp:1148
 msgid "as Unreconciled"
 msgstr "як Непроведену"
 
-#: src/mmcheckingpanel.cpp:1151
+#: src/mmcheckingpanel.cpp:1149
 msgid "as Void"
 msgstr "як Недійсну"
 
-#: src/mmcheckingpanel.cpp:1152
+#: src/mmcheckingpanel.cpp:1150
 msgid "as needing Followup"
 msgstr "як очікуючу в Черзі"
 
-#: src/mmcheckingpanel.cpp:1153
+#: src/mmcheckingpanel.cpp:1151
 msgid "as Duplicate"
 msgstr ""
 
-#: src/mmcheckingpanel.cpp:1154
+#: src/mmcheckingpanel.cpp:1152
 #, fuzzy
 msgid "Mark all being viewed"
 msgstr "Виділити всі"
 
-#: src/mmcheckingpanel.cpp:1224
+#: src/mmcheckingpanel.cpp:1222
 msgid "Do you really want to delete all the transactions shown?"
 msgstr "Ви дійсно хочете видалити всі показані транзакції ?"
 
-#: src/mmcheckingpanel.cpp:1225 src/mmcheckingpanel.cpp:1238
-#: src/mmcheckingpanel.cpp:1577
+#: src/mmcheckingpanel.cpp:1223 src/mmcheckingpanel.cpp:1236
+#: src/mmcheckingpanel.cpp:1576
 msgid "Confirm Transaction Deletion"
 msgstr "Підтвердість видалення транзакцій"
 
-#: src/mmcheckingpanel.cpp:1234
+#: src/mmcheckingpanel.cpp:1232
 #, fuzzy
 msgid "Follow Up"
 msgstr "В черзі"
 
-#: src/mmcheckingpanel.cpp:1234
+#: src/mmcheckingpanel.cpp:1232
 #, fuzzy
 msgid "Unreconciled"
 msgstr "як Непроведену"
 
-#: src/mmcheckingpanel.cpp:1237
+#: src/mmcheckingpanel.cpp:1235
 #, fuzzy, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "Ви дійсно хочете видалити всі показані транзакції ?"
 
-#: src/mmcheckingpanel.cpp:1576
+#: src/mmcheckingpanel.cpp:1575
 #, fuzzy
 msgid "Do you really want to delete the selected transaction?"
 msgstr "Ви дійсно бажаєте видалити транзакцію ?"
 
-#: src/mmcheckingpanel.cpp:1623 src/transdialog.cpp:1050
+#: src/mmcheckingpanel.cpp:1622 src/transdialog.cpp:1050
 #: src/transdialog.cpp:1082
 #, fuzzy
 msgid "MMEX Transaction Check"
@@ -3692,18 +3744,18 @@ msgstr "Навігація"
 msgid "Toolbar"
 msgstr "&Інструменти"
 
-#: src/mmframe.cpp:454 src/mmframe.cpp:683 src/mmhomepagepanel.cpp:696
+#: src/mmframe.cpp:454 src/mmframe.cpp:683 src/mmhomepagepanel.cpp:701
 #: src/reports/summary.cpp:316
 msgid "Bank Accounts"
 msgstr "Банківські Рахунки"
 
-#: src/mmframe.cpp:456 src/mmframe.cpp:687 src/mmhomepagepanel.cpp:697
+#: src/mmframe.cpp:456 src/mmframe.cpp:687 src/mmhomepagepanel.cpp:702
 #: src/reports/summary.cpp:317
 #, fuzzy
 msgid "Credit Card Accounts"
 msgstr "Редагувати рахунок"
 
-#: src/mmframe.cpp:458 src/mmframe.cpp:699 src/mmhomepagepanel.cpp:699
+#: src/mmframe.cpp:458 src/mmframe.cpp:699 src/mmhomepagepanel.cpp:704
 #: src/reports/summary.cpp:318
 #, fuzzy
 msgid "Term Accounts"
@@ -3714,12 +3766,12 @@ msgstr "Рахунок З"
 msgid "Stock Portfolios"
 msgstr "Всього:"
 
-#: src/mmframe.cpp:462 src/mmframe.cpp:691 src/mmhomepagepanel.cpp:695
+#: src/mmframe.cpp:462 src/mmframe.cpp:691 src/mmhomepagepanel.cpp:700
 #, fuzzy
 msgid "Cash Accounts"
 msgstr "Виберіть рахунок для редагування"
 
-#: src/mmframe.cpp:464 src/mmframe.cpp:695 src/mmhomepagepanel.cpp:698
+#: src/mmframe.cpp:464 src/mmframe.cpp:695 src/mmhomepagepanel.cpp:703
 #, fuzzy
 msgid "Loan Accounts"
 msgstr "Банківські Рахунки"
@@ -4623,7 +4675,7 @@ msgstr "Дохід/Втрати"
 msgid "Total"
 msgstr "Всього"
 
-#: src/mmhomepagepanel.cpp:123 src/mmhomepagepanel.cpp:743
+#: src/mmhomepagepanel.cpp:123 src/mmhomepagepanel.cpp:748
 #: src/reports/incexpenses.cpp:285 src/reports/payee.cpp:140
 #: src/reports/summarystocks.cpp:131 src/splittransactionsdialog.cpp:141
 msgid "Total:"
@@ -4638,42 +4690,42 @@ msgstr "Витрата"
 msgid "Upcoming Transactions"
 msgstr "Майбутні проводки"
 
-#: src/mmhomepagepanel.cpp:778
+#: src/mmhomepagepanel.cpp:783
 #, fuzzy, c-format
 msgid "Income vs Expenses: %s"
 msgstr "Прибутки проти Витрат"
 
-#: src/mmhomepagepanel.cpp:783 src/reports/categovertimeperf.cpp:138
+#: src/mmhomepagepanel.cpp:788 src/reports/categovertimeperf.cpp:138
 #: src/reports/incexpenses.cpp:107 src/reports/incexpenses.cpp:255
 #: src/reports/payee.cpp:117
 msgid "Expenses"
 msgstr "Витрати"
 
-#: src/mmhomepagepanel.cpp:785 src/reports/incexpenses.cpp:137
+#: src/mmhomepagepanel.cpp:790 src/reports/incexpenses.cpp:137
 msgid "Difference:"
 msgstr "Баланс:"
 
-#: src/mmhomepagepanel.cpp:787
+#: src/mmhomepagepanel.cpp:792
 #, fuzzy
 msgid "Income/Expenses"
 msgstr "Прибутки проти Витрат"
 
-#: src/mmhomepagepanel.cpp:818
+#: src/mmhomepagepanel.cpp:823
 #, fuzzy
 msgid "Transaction Statistics"
 msgstr "Список транзакцій"
 
-#: src/mmhomepagepanel.cpp:821
+#: src/mmhomepagepanel.cpp:826
 #, fuzzy
 msgid "Follow Up On Transactions: "
 msgstr "Майбутні проводки"
 
-#: src/mmhomepagepanel.cpp:823
+#: src/mmhomepagepanel.cpp:828
 #, fuzzy
 msgid "Total Transactions: "
 msgstr "Проводок за все"
 
-#: src/mmhomepagepanel.cpp:836 src/reports/categexp.cpp:176
+#: src/mmhomepagepanel.cpp:841 src/reports/categexp.cpp:176
 #: src/reports/summarystocks.cpp:141
 #, fuzzy
 msgid "Grand Total:"
@@ -6707,11 +6759,6 @@ msgstr ""
 #: src/webapp.cpp:185
 msgid "The client failed to connect the server"
 msgstr ""
-
-#: src/webapp.cpp:186
-#, fuzzy
-msgid "Invalid value"
-msgstr "Невірна вартість"
 
 #: src/webapp.cpp:187
 msgid "The remote file doesn't exist"
@@ -8790,6 +8837,18 @@ msgid ""
 "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Currency History Options: "
+#~ msgstr "Валюта"
+
+#, fuzzy
+#~ msgid "Currency rate updated"
+#~ msgstr "Управління валютами"
+
+#, fuzzy
+#~ msgid "Invalid value "
+#~ msgstr "Невірна вартість"
 
 #, fuzzy
 #~ msgid "Line : %ld imported OK."
