@@ -1421,7 +1421,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             break;
 
         default:
-            wxASSERT(true);
+            wxASSERT(false);
             break;
     }
 }
