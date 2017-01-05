@@ -115,8 +115,12 @@ Name: local; Description: "Make portable: Include mmexini.db3 file in MMEX direc
 Name: help; Description: "Help files"; Types: full minimal; 
 Name: lang; Description: Languages; Types: full; 
 Name: lang\english; Description: English; Types: full; 
+Name: lang\abkhazian; Description: Abkhazian; Types: full; 
+Name: lang\albanian; Description: Albanian; Types: full; 
 Name: lang\arabic; Description: Arabic; Types: full; 
 Name: lang\bulgarian; Description: Bulgarian; Types: full; 
+Name: lang\burmese; Description: Burmese; Types: full; 
+Name: lang\catalan; Description: "Catalan"; Types: full; 
 Name: lang\chinese_chs; Description: "Chinese Chs"; Types: full; 
 Name: lang\chinese_zh; Description: "Chinese Zh"; Types: full; 
 Name: lang\croatian; Description: Croatian; Types: full; 
@@ -124,6 +128,7 @@ Name: lang\czech; Description: Czech; Types: full;
 Name: lang\ducth; Description: Dutch; Types: full; 
 Name: lang\dutch_be; Description: "Dutch Be"; Types: full; 
 Name: lang\english_uk; Description: "English UK"; Types: full; 
+Name: lang\finnish; Description: Finnish; Types: full; 
 Name: lang\french; Description: French; Types: full; 
 Name: lang\german; Description: German; Types: full; 
 Name: lang\greek; Description: Greek; Types: full; 
@@ -133,9 +138,12 @@ Name: lang\hungarian; Description: Hungarian; Types: full;
 Name: lang\indonesian; Description: Indonesian; Types: full; 
 Name: lang\italian; Description: Italian; Types: full; 
 Name: lang\japanese; Description: Japanese; Types: full;
+Name: lang\korean; Description: Korean; Types: full; 
 Name: lang\latvian; Description: Latvian; Types: full; 
 Name: lang\lithuanian; Description: Lithuanian; Types: full; 
+Name: lang\malayalam; Description: Malayalam; Types: full; 
 Name: lang\norwegian; Description: Norwegian; Types: full; 
+Name: lang\persian; Description: Persian; Types: full; 
 Name: lang\polish; Description: Polish; Types: full; 
 Name: lang\portuguese; Description: Portuguese; Types: full; 
 Name: lang\portuguese_portugal; Description: "Portuguese Portugal"; Types: full; 
@@ -148,10 +156,10 @@ Name: lang\slovenian; Description: Slovenian; Types: full;
 Name: lang\spanish; Description: Spanish; Types: full; 
 Name: lang\swedish; Description: Swedish; Types: full; 
 Name: lang\tamil; Description: Tamil; Types: full; 
+Name: lang\thai; Description: Thai; Types: full; 
 Name: lang\turkish; Description: Turkish; Types: full; 
 Name: lang\ukrainian; Description: Ukrainian; Types: full; 
 Name: lang\vietnamese; Description: Vietnamese; Types: full; 
-
 
 [Tasks]
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; 
