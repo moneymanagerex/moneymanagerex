@@ -17,11 +17,11 @@ The support forum links are located in the MMEX Help menu.
 ================================================
                       GNU GENERAL PUBLIC LICENSE
 ================================================
-Copyright (C) 2009-2016 Nikolay
-Copyright (C) 2011-2016 LiSheng [guanlisheng]
+Copyright (C) 2009-2017 Nikolay
+Copyright (C) 2011-2017 LiSheng [guanlisheng]
 Copyright (C) 2013-2016 James [siena123]
-Copyright (C) 2013-2016 Gabriele[gabriele-v]
-Copyright (C) 2010-2016 Stefano [stef145g]
+Copyright (C) 2013-2017 Gabriele[gabriele-v]
+Copyright (C) 2010-2017 Stefano [stef145g]
 Copyright (C) 2009-2010 VaDiM, Wesley Ellis
 
 Copyright (C) 2005-2009 Madhan Kanagavel
