@@ -186,6 +186,7 @@ private:
     void OnListLeftClick(wxMouseEvent& event);
     void OnListItemSelected(wxListEvent& event);
     void OnListItemActivated(wxListEvent& event);
+    void OnListItemFocused(wxListEvent& event);
     void OnMarkTransaction(wxCommandEvent& event);
     void OnMarkAllTransactions(wxCommandEvent& event);
     void OnListKeyDown(wxListEvent& event);

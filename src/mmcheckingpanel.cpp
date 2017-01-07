@@ -59,6 +59,7 @@ wxEND_EVENT_TABLE()
 wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
+    EVT_LIST_ITEM_FOCUSED(wxID_ANY, TransactionListCtrl::OnListItemFocused)
     EVT_RIGHT_DOWN(TransactionListCtrl::OnMouseRightClick)
     EVT_LEFT_DOWN(TransactionListCtrl::OnListLeftClick)
     EVT_LIST_KEY_DOWN(wxID_ANY,  TransactionListCtrl::OnListKeyDown)
@@ -1830,3 +1831,26 @@ void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
     AddPendingEvent(evt);
 }
 
+void TransactionListCtrl::OnListItemFocused(wxListEvent& event)
+{
+    long count = this->GetSelectedItemCount();
+    if (count < 2) return;
+
+    long x = 0;
+    double balance = 0;
+    for (const auto& i : m_cp->m_trans)
+    {
+        if (GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+        {
+            balance += Model_Checking::balance(i);
+        }
+        x++;
+    }
+    wxString msg;
+    Model_Account::Data *account = Model_Account::instance().get(m_cp->m_AccountID);
+    msg = wxString::Format(_("Transactions selected: %ld"), count);
+    msg += "\n";
+    msg += wxString::Format(_("Selected transactions balance: %s")
+        , Model_Account::toCurrency(balance, account));
+    m_cp->m_info_panel->SetLabelText(msg);
+}
