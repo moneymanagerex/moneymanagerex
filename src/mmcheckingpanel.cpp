@@ -1837,20 +1837,33 @@ void TransactionListCtrl::OnListItemFocused(wxListEvent& event)
     if (count < 2) return;
 
     long x = 0;
+    wxString maxDate, minDate;
     double balance = 0;
     for (const auto& i : m_cp->m_trans)
     {
         if (GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
         {
             balance += Model_Checking::balance(i);
+            if (minDate > i.TRANSDATE || maxDate.empty()) minDate = i.TRANSDATE;
+            if (maxDate < i.TRANSDATE || maxDate.empty()) maxDate = i.TRANSDATE;
         }
         x++;
     }
+
+    wxDateTime min_date, max_date;
+    min_date.ParseISODate(minDate);
+    max_date.ParseISODate(maxDate);
+
+    int days = wxTimeSpan(max_date.Subtract(min_date)).GetDays();
+
     wxString msg;
     Model_Account::Data *account = Model_Account::instance().get(m_cp->m_AccountID);
     msg = wxString::Format(_("Transactions selected: %ld"), count);
     msg += "\n";
     msg += wxString::Format(_("Selected transactions balance: %s")
         , Model_Account::toCurrency(balance, account));
+    msg += "\n";
+    msg += wxString::Format(_("Days between selected transactions: %d"), days);
+
     m_cp->m_info_panel->SetLabelText(msg);
 }
