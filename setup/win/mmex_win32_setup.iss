@@ -30,10 +30,10 @@
 #define my_output_root "..\..\mmex_release"
 
 ; Note: This is the path where MMEX.exe will be found
-#define my_output_path "\mmex_v1.3.1_win32_portable\MoneyManagerEx"
+#define my_output_path "\mmex_1.3.1_win32_portable\MoneyManagerEx"
 
 ; Note: Any revision mods can be added here
-#define my_output_filename "mmex_v1.3.1_win32_setup"
+#define my_output_filename "mmex_1.3.1_win32_setup"
 
 ;===============================================================================
 
@@ -195,7 +195,11 @@ Source: {#my_output_root}{#my_output_path}\README.TXT; DestDir: {app}; Flags: ig
 
 ; MMEX Language Files - Determined by Component
 Source: {#my_output_root}{#my_output_path}\po\en\arabic.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\arabic; 
+Source: {#my_output_root}{#my_output_path}\po\en\abkhazian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\abkhazian; 
+Source: {#my_output_root}{#my_output_path}\po\en\albanian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\albanian; 
 Source: {#my_output_root}{#my_output_path}\po\en\bulgarian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\bulgarian; 
+Source: {#my_output_root}{#my_output_path}\po\en\burmese.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\burmese; 
+Source: {#my_output_root}{#my_output_path}\po\en\catalan.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\catalan; 
 Source: {#my_output_root}{#my_output_path}\po\en\chinese_chs.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\chinese_chs; 
 Source: {#my_output_root}{#my_output_path}\po\en\chinese_zh.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\chinese_zh; 
 Source: {#my_output_root}{#my_output_path}\po\en\croatian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\croatian; 
@@ -205,6 +209,7 @@ Source: {#my_output_root}{#my_output_path}\po\en\dutch_be.mo; DestDir: {app}\po\
 Source: {#my_output_root}{#my_output_path}\po\en\english.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\english; 
 Source: {#my_output_root}{#my_output_path}\po\en\english.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: help; Languages: english; 
 Source: {#my_output_root}{#my_output_path}\po\en\english-uk.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\english_uk; 
+Source: {#my_output_root}{#my_output_path}\po\en\finnish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\finnish; 
 Source: {#my_output_root}{#my_output_path}\po\en\french.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\french; 
 Source: {#my_output_root}{#my_output_path}\po\en\german.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\german; 
 Source: {#my_output_root}{#my_output_path}\po\en\greek.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\greek; 
@@ -214,9 +219,12 @@ Source: {#my_output_root}{#my_output_path}\po\en\hungarian.mo; DestDir: {app}\po
 Source: {#my_output_root}{#my_output_path}\po\en\indonesian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\indonesian; 
 Source: {#my_output_root}{#my_output_path}\po\en\italian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\italian;
 Source: {#my_output_root}{#my_output_path}\po\en\japanese.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\japanese;
+Source: {#my_output_root}{#my_output_path}\po\en\korean.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\korean; 
 Source: {#my_output_root}{#my_output_path}\po\en\latvian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\latvian; 
 Source: {#my_output_root}{#my_output_path}\po\en\lithuanian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\lithuanian; 
+Source: {#my_output_root}{#my_output_path}\po\en\malayalam.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\malayalam; 
 Source: {#my_output_root}{#my_output_path}\po\en\norwegian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\norwegian; 
+Source: {#my_output_root}{#my_output_path}\po\en\persian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\persian; 
 Source: {#my_output_root}{#my_output_path}\po\en\polish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\polish; 
 Source: {#my_output_root}{#my_output_path}\po\en\portuguese.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\portuguese; 
 Source: {#my_output_root}{#my_output_path}\po\en\portuguese_portugal.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\portuguese_portugal; 
@@ -229,6 +237,7 @@ Source: {#my_output_root}{#my_output_path}\po\en\slovenian.mo; DestDir: {app}\po
 Source: {#my_output_root}{#my_output_path}\po\en\spanish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\spanish; 
 Source: {#my_output_root}{#my_output_path}\po\en\swedish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\swedish; 
 Source: {#my_output_root}{#my_output_path}\po\en\tamil.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\tamil; 
+Source: {#my_output_root}{#my_output_path}\po\en\thai.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\thai; 
 Source: {#my_output_root}{#my_output_path}\po\en\turkish.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\turkish; 
 Source: {#my_output_root}{#my_output_path}\po\en\ukrainian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\ukrainian; 
 Source: {#my_output_root}{#my_output_path}\po\en\vietnamese.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\vietnamese; 
