@@ -31,8 +31,8 @@ if %auto_version% == %null_version% set auto_delay=%manual_delay%
 @echo %mmex_release_version%
 
 set mmex_system_name=MoneyManagerEX
-set mmex_build_location=..\..\build\msw-vc-2013e
-set mmex_test_build_location=..\msw_tests-vc-2013e\
+set mmex_build_location=..\..\build\msw-vc-2015
+set mmex_test_build_location=..\msw_tests-vc-2015\
 set mmex_release_location=..\..\mmex_release
 if NOT EXIST %mmex_release_location% md %mmex_release_location%
 
