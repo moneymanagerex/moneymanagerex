@@ -290,9 +290,21 @@ void mmCheckingPanel::markSelectedTransaction(int trans_id)
 
     if (!m_trans.empty() && m_listCtrlAccount->m_selectedIndex < 0)
     {
-        long i = static_cast<long>(m_trans.size()) - 1;
-        if (!m_listCtrlAccount->g_asc)
-            i =0;
+        long i = m_listCtrlAccount->g_asc ? static_cast<long>(m_trans.size()) - 1 : 0;
+
+        if (m_listCtrlAccount->g_sortcol == TransactionListCtrl::COL_DATE)
+        {
+            bool future = true;
+            while (future && i >= 0)
+            {
+                if (m_trans[i].TRANSDATE > m_listCtrlAccount->m_today && i > 0)
+                {
+                    i = m_listCtrlAccount->g_asc ? i - 1 : i + 1;
+                }
+                else
+                    future = false;
+            }
+        }
         m_listCtrlAccount->EnsureVisible(i);
         m_listCtrlAccount->m_selectedIndex = i;
         m_listCtrlAccount->m_selectedID = m_trans[i].TRANSID;
