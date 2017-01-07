@@ -53,6 +53,7 @@ public:
         ICON_ASC,
     };
 
+public:
     enum EColumn
     {
         COL_IMGSTATUS = 0,
@@ -77,6 +78,7 @@ public:
         return res;
     }
 
+public:
     EColumn g_sortcol; // index of column to sort
     EColumn m_prevSortCol;
     bool g_asc; // asc\desc sorting
@@ -89,6 +91,7 @@ public:
 
     void setColumnImage(EColumn col, int image);
 
+public:
     void OnNewTransaction(wxCommandEvent& event);
     void OnNewTransferTransaction(wxCommandEvent& event);
     void OnDeleteTransaction(wxCommandEvent& event);
@@ -105,6 +108,7 @@ public:
     long m_selectedIndex;
     long m_selectedForCopy; //The transaction ID if selected for copy
     long m_selectedID; //Selected transaction ID
+    wxString m_today;
 
 protected:
     /* Sort Columns */
@@ -163,6 +167,7 @@ private:
     DECLARE_NO_COPY_CLASS(TransactionListCtrl)
     wxDECLARE_EVENT_TABLE();
 
+private:
     mmCheckingPanel* m_cp;
 
     wxListItemAttr m_attr1;  // style1
@@ -182,6 +187,7 @@ private:
     virtual int OnGetItemColumnImage(long item, long column) const;
     virtual wxListItemAttr* OnGetItemAttr(long item) const;
 
+private:
     void OnMouseRightClick(wxMouseEvent& event);
     void OnListLeftClick(wxMouseEvent& event);
     void OnListItemSelected(wxListEvent& event);
@@ -201,7 +207,6 @@ private:
     where to display the list again after refresh */
     long m_topItemIndex;
     EColumn m_sortCol;
-    wxString m_today;
 };
 
 //----------------------------------------------------------------------------
