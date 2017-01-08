@@ -1,9 +1,9 @@
 @echo off
 REM --------------------------------------------------------------------------
-REM Author : Stefano Giorgio [stef145g] - Copyright (C) 2012..2016
+REM Author : Stefano Giorgio [stef145g] - Copyright (C) 2012..2017
 REM 		 Updates by:
 REM          Lisheng [guanlisheng] (C) 2016
-REM          Nikolay [vomikan]     (C) 2013
+REM          Nikolay [vomikan]     (C) 2017
 REM          James [siena123]      (c) 2014
 REM          gabriele-v            (c) 2016
 REM 
@@ -195,17 +195,29 @@ REM Create a zero length file for portable version
 if not exist %mmex_release_dir%\mmexini.db3 copy nul %mmex_release_dir%\mmexini.db3
 
 if %mmex_win_system_type%==x64 goto get_x64_dll_files
-REM set up the executable files for Win32
+REM Set up the executable files for Win32
 copy %mmex_release_source%\mmex.exe %mmex_release_bin_dir%
-copy "C:\Windows\sysWOW64\msvcp120.dll" %mmex_release_bin_dir%
-copy "C:\Windows\sysWOW64\msvcr120.dll" %mmex_release_bin_dir%
+
+REM Runtime files for Win32 - MSCV_2013
+rem copy "C:\Windows\sysWOW64\msvcp120.dll" %mmex_release_bin_dir%
+rem copy "C:\Windows\sysWOW64\msvcr120.dll" %mmex_release_bin_dir%
+
+REM Runtime files for Win32 - MSCV_2015
+copy "C:\Windows\sysWOW64\msvcp140.dll" %mmex_release_bin_dir%
+copy "C:\Windows\sysWOW64\vcruntime140.dll" %mmex_release_bin_dir%
 goto update_release_continue
 
 :get_x64_dll_files
-REM set up the executable files for x64
+REM Set up the executable files for x64
 copy %mmex_release_source%\mmex.exe %mmex_release_bin_dir%
-copy "C:\Windows\system32\msvcp120.dll" %mmex_release_bin_dir%
-copy "C:\Windows\system32\msvcr120.dll" %mmex_release_bin_dir%
+
+REM Runtime files for x64 - MSCV_2013
+rem copy "C:\Windows\system32\msvcp120.dll" %mmex_release_bin_dir%
+rem copy "C:\Windows\system32\msvcr120.dll" %mmex_release_bin_dir%
+
+REM Runtime files for x64 - MSCV_2015
+copy "C:\Windows\system32\msvcp140.dll" %mmex_release_bin_dir%
+copy "C:\Windows\system32\vcruntime140.dll" %mmex_release_bin_dir%
 
 :update_release_continue
 REM Create a compressed version of the output file for distribution
