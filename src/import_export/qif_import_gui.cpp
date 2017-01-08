@@ -73,6 +73,7 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
 , toDateCtrl_(nullptr)
 , accountCheckBox_(nullptr)
 , accountDropDown_(nullptr)
+, m_choiceEncoding(nullptr)
 , btnOK_(nullptr)
 , m_today(wxDate::Today())
 , m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
@@ -137,22 +138,18 @@ void mmQIFImportDialog::CreateControls()
     main_sizer->Add(file_name_ctrl_, 0, wxALL|wxGROW, 5);
     left_sizer->Add(flex_sizer, g_flagsExpand);
 
-    // Date Format Settings
-    m_dateFormatStr = Option::instance().DateFormat();
+    //Encoding
+    wxStaticText* itemStaticText88 = new wxStaticText(this, wxID_STATIC, wxString(_("Encoding:")));
+    //itemStaticText88->SetFont(staticBoxFontSetting);
+    flex_sizer->Add(itemStaticText88, g_flagsH);
 
-    wxStaticText* dateFormat = new wxStaticText(this, wxID_STATIC, _("Date Format"));
-    choiceDateFormat_ = new wxComboBox(this, wxID_ANY);
-    for (const auto& i : g_date_formats_map)
-    {
-        choiceDateFormat_->Append(i.second, new wxStringClientData(i.first));
-        if (m_dateFormatStr == i.first) choiceDateFormat_->SetStringSelection(i.second);
-    }
-    choiceDateFormat_->Connect(wxID_ANY, wxEVT_COMMAND_COMBOBOX_SELECTED
-        , wxCommandEventHandler(mmQIFImportDialog::OnDateMaskChange), nullptr, this);
+    m_choiceEncoding = new wxChoice(this, wxID_ANY);
+    for (const auto i : g_encoding)
+        m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
+    m_choiceEncoding->SetSelection(0);
 
-    flex_sizer->Add(dateFormat, g_flagsH);
-    flex_sizer->Add(choiceDateFormat_, g_flagsH);
-
+    flex_sizer->Add(m_choiceEncoding, g_flagsH);
+    
     //Account
     accountCheckBox_ = new wxCheckBox(this, wxID_FILE5, _("Account")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
@@ -171,7 +168,7 @@ void mmQIFImportDialog::CreateControls()
     accountNumberCheckBox_ = new wxCheckBox(this, wxID_FILE6, _("Use account number instead of account name")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
         
-    //Use paye as desc :
+    //Use payee as desc :
     payeeIsNotesCheckBox_ = new wxCheckBox(this, wxID_FILE7, _("Include payee field in notes")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     payeeIsNotesCheckBox_->SetValue(payeeIsNotes_);
@@ -269,13 +266,36 @@ void mmQIFImportDialog::CreateControls()
 
     //Compose all sizers togethe
     wxBoxSizer* top_sizer = new wxBoxSizer(wxHORIZONTAL);
+    top_sizer->Add(left_sizer, g_flagsH);
+    top_sizer->Add(filter_sizer, g_flagsH);
+
+    wxFlexGridSizer* flex_sizer_b = new wxFlexGridSizer(0, 2, 0, 0);
+    flex_sizer_b->Add(accountNumberCheckBox_, g_flagsH);
+    flex_sizer_b->Add(payeeIsNotesCheckBox_, g_flagsH);
+
+    // Date Format Settings
+    m_dateFormatStr = Option::instance().DateFormat();
+
+    wxStaticText* dateFormat = new wxStaticText(this, wxID_STATIC, _("Date Format"));
+    choiceDateFormat_ = new wxComboBox(this, wxID_ANY);
+    for (const auto& i : g_date_formats_map)
+    {
+        choiceDateFormat_->Append(i.second, new wxStringClientData(i.first));
+        if (m_dateFormatStr == i.first) choiceDateFormat_->SetStringSelection(i.second);
+    }
+    choiceDateFormat_->Connect(wxID_ANY, wxEVT_COMMAND_COMBOBOX_SELECTED
+        , wxCommandEventHandler(mmQIFImportDialog::OnDateMaskChange), nullptr, this);
+
+    wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
+    date_sizer->Add(dateFormat, g_flagsH);
+    date_sizer->Add(choiceDateFormat_, g_flagsH);
+    flex_sizer_b->Add(date_sizer, g_flagsH);
+    //
+
     wxBoxSizer* inTop_sizer = new wxBoxSizer(wxVERTICAL);
     inTop_sizer->Add(top_sizer, g_flagsV);
-    inTop_sizer->Add(accountNumberCheckBox_, g_flagsV);
-    inTop_sizer->Add(payeeIsNotesCheckBox_, g_flagsV);
+    inTop_sizer->Add(flex_sizer_b, g_flagsExpand);
     main_sizer->Add(inTop_sizer, g_flagsV);
-    top_sizer->Add(left_sizer, g_flagsH);
-    top_sizer->Add(filter_sizer, g_flagsH);      
     main_sizer->Add(qif_notebook, g_flagsExpand);
 
     /**********************************************************************************************
@@ -319,7 +339,8 @@ bool mmQIFImportDialog::mmReadQIFFile()
     m_date_parsing_stat.clear();
 
     wxFileInputStream input(m_FileNameStr);
-    wxTextInputStream text(input, "\x09", wxConvUTF8);
+    wxConvAuto conv = g_encoding.at(m_choiceEncoding->GetSelection()).first;
+    wxTextInputStream text(input, "\x09", conv);
 
     wxProgressDialog progressDlg(_("Please wait"), _("Scanning")
         , 0, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
@@ -675,7 +696,6 @@ void mmQIFImportDialog::getDateMask()
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 {
     m_FileNameStr = file_name_ctrl_->GetValue();
-
     const wxString choose_ext = _("QIF Files");
 
     m_FileNameStr = wxFileSelector(_("Choose QIF data file to Import")

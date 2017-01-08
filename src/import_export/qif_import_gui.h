@@ -98,6 +98,7 @@ private:
     wxDataViewListCtrl* categoryListBox_;
     wxButton* button_search_;
     wxTextCtrl* file_name_ctrl_;
+    wxChoice* m_choiceEncoding;
     wxTextCtrl* log_field_;
     wxCheckBox* dateFromCheckBox_;
     wxCheckBox* dateToCheckBox_;
