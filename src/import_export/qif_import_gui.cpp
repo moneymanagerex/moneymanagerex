@@ -888,7 +888,7 @@ void mmQIFImportDialog::appendTransfers(Model_Checking::Cache &destination, Mode
 
 bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Checking::Cache& from)
 {
-    if (to.empty() || from.empty()) return false; //Nothing to merge
+    if (to.empty() && from.empty()) return false; //Nothing to merge
 
     for (auto& refTrxTo : to)
     {
@@ -907,18 +907,13 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
             pair_found = true;
             break;
         }
-        if (!pair_found)
-        {
-            refTrxTo->TOTRANSAMOUNT = refTrxTo->TRANSAMOUNT;
-            refTrxTo->PAYEEID = refTrxTo->TOACCOUNTID;
-            refTrxTo->TOACCOUNTID = refTrxTo->ACCOUNTID;
-            refTrxTo->ACCOUNTID = refTrxTo->PAYEEID;
 
-        }
-        refTrxTo->PAYEEID = -1;
+        if (!pair_found)
+            refTrxTo->TOTRANSAMOUNT = refTrxTo->TRANSAMOUNT;
     }
 
     while (!from.empty()) {
+        std::swap(from.back()->ACCOUNTID, from.back()->TOACCOUNTID);
         to.push_back(from.back());
         from.pop_back();
     }
@@ -978,7 +973,22 @@ bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString
 
     trx->TRANSACTIONNUMBER = (t.find(TransNumber) != t.end() ? t[TransNumber] : "");
     trx->NOTES = (t.find(Memo) != t.end() ? t[Memo] : "");
-    trx->STATUS = "";
+
+    wxString status = "";
+    if (t.find(Status) != t.end())
+    {
+        wxString s = t[Status];
+        if (s == "X" || s == "R")
+            status = "R";
+        /*else if (s == "*" || s == "c")
+        {
+            TODO: What does 'cleared' status mean?
+            status = "c"; 
+        }*/
+        
+    }
+    trx->STATUS = status;
+
     trx->FOLLOWUPID = -1;
     double amt;
     const wxString value = t.find(Amount) != t.end() ? t[Amount] : "";
