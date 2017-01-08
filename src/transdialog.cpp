@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
- Copyright (C) 2011-2016 Nikolay
+ Copyright (C) 2011-2016 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -74,7 +74,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , categUpdated_(false)
     , m_transfer(false)
     , m_advanced(false)
-    , m_account_id(account_id)
     , m_current_balance(current_balance)
     , m_duplicate(duplicate)
     , skip_account_init_(false)
@@ -293,12 +292,13 @@ void mmTransDialog::dataToControls()
                 }
             }
 
-            cbPayee_->Insert(Model_Account::instance().all_checking_account_names(true), 0);
+			wxArrayString account_names = Model_Account::instance().all_checking_account_names(true);
+            cbPayee_->Insert(account_names, 0);
             Model_Account::Data *account = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
             if (account)
                 cbPayee_->ChangeValue(account->ACCOUNTNAME);
 
-            cbPayee_->AutoComplete(Model_Account::instance().all_checking_account_names());
+            cbPayee_->AutoComplete(account_names);
 
             payee_label_->SetLabelText(_("To"));
             m_trx_data.PAYEEID = -1;
@@ -936,8 +936,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
     }
     else
     {
-        mmCategDialog dlg(this, true, false);
-        dlg.setTreeSelection(m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
+        mmCategDialog dlg(this, m_trx_data.CATEGID, m_trx_data.SUBCATEGID, false);
         if (dlg.ShowModal() == wxID_OK)
         {
             m_trx_data.CATEGID = dlg.getCategId();
@@ -1039,7 +1038,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     Model_Checking::putDataToTransaction(r, m_trx_data);
 
     /* Check if transaction is to proceed.*/
-    Model_Account::Data* account = Model_Account::instance().get(m_account_id);
+    Model_Account::Data* account = Model_Account::instance().get(m_trx_data.ACCOUNTID);
     if (Model_Account::BoolOf(account->STATEMENTLOCKED))
     {
         if (dpc_->GetValue() <= Model_Account::DateOf(account->STATEMENTDATE))
@@ -1047,7 +1046,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
             if (wxMessageBox(_(wxString::Format(
                 "Locked transaction to date: %s\n\n"
                 "Do you wish to continue ? "
-                , mmGetDateForDisplay(Model_Account::DateOf(account->STATEMENTDATE))))
+                , mmGetDateForDisplay(account->STATEMENTDATE)))
                 , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
             {
                 return;

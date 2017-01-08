@@ -82,7 +82,7 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     Sizer->AddSpacer(15);
     cbText_ = new wxComboBox(this, wxID_STATIC, Default, wxDefaultPosition, wxSize(150, -1), Choices);
     cbText_->AutoComplete(Choices);
-    Sizer->Add(cbText_, wxSizerFlags(flags).Expand());
+    Sizer->Add(cbText_, wxSizerFlags().Border(wxLEFT | wxRIGHT, 15).Expand());
     Sizer->AddSpacer(20);
     wxSizer* Button = CreateButtonSizer(wxOK | wxCANCEL);
     Sizer->Add(Button, flags);

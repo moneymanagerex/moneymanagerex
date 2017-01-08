@@ -74,7 +74,7 @@ void  mmReportSummaryStocks::RefreshData()
 
             line.name = stock.STOCKNAME;
             line.symbol = stock.SYMBOL;
-            line.date = mmGetDateForDisplay(Model_Stock::PURCHASEDATE(stock));
+            line.date = stock.PURCHASEDATE;
             line.qty = stock.NUMSHARES;
             line.purchase = Model_Stock::InvestmentValue(stock);
             line.current = stock.CURRENTPRICE;
@@ -115,7 +115,7 @@ wxString mmReportSummaryStocks::getHTMLText()
             hb.startTableRow();
             hb.addTableCell(entry.name);
             hb.addTableCell(entry.symbol);
-            hb.addTableCell(entry.date);
+            hb.addTableCellDate(entry.date);
             hb.addTableCell(Model_Account::toString(entry.qty, account, floor(entry.qty) ? 0 : 4), true);
             hb.addCurrencyCell(entry.purchase, currency, 4);
             hb.addCurrencyCell(entry.current, currency, 4);
@@ -212,7 +212,7 @@ wxString mmReportChartStocks::getHTMLText()
     int count = 0, heldAt = -1;
     bool pointDot = false, showGridLines = false;
     wxTimeSpan dist;
-    wxDate dateDt, precDateDt = wxInvalidDateTime;
+    wxDate precDateDt = wxInvalidDateTime;
     for (const auto& stock : Model_Stock::instance().all(Model_Stock::COL_HELDAT))
     {
         int dataCount = 0, freq = 1;
@@ -232,9 +232,9 @@ wxString mmReportChartStocks::getHTMLText()
             if (dataCount % freq == 0)
             {
                 ValueTrio val;
-                dateDt = Model_StockHistory::DATE(hist);
+                const wxDate dateDt = Model_StockHistory::DATE(hist);
                 if (histData.size() <= 30)
-                    val.label = mmGetDateForDisplay(dateDt);
+                    val.label = mmGetDateForDisplay(hist.DATE);
                 else if (precDateDt.IsValid() && dateDt.GetMonth() != precDateDt.GetMonth())
                     val.label = dateDt.GetMonthName(dateDt.GetMonth());
                 else

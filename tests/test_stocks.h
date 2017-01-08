@@ -29,7 +29,7 @@ class Test_Stock : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST_SUITE(Test_Stock);
     CPPUNIT_TEST(Test_Add_Stock_Dialog);
     CPPUNIT_TEST(Test_Edit_Stock_Dialog);
-    CPPUNIT_TEST(Test_Stocks_Panel);
+    CPPUNIT_TEST(Test_Stock_Panels);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -43,12 +43,11 @@ private:
     wxString m_test_db_filename;
     wxSQLite3Database m_test_db;
     DB_Model* m_dbmodel;
-    TestFrameBase *m_base_frame;
     int m_this_instance;
 
 private:
     // Test cases
     void Test_Add_Stock_Dialog();
     void Test_Edit_Stock_Dialog();
-    void Test_Stocks_Panel();
+    void Test_Stock_Panels();
 };

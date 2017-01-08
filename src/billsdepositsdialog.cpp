@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2016 Nikolay & Stefano Giorgio
+ Copyright (C) 2016 Nikolay Akimov
+ Copyright (C) 2016 Stefano Giorgio
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -781,8 +782,7 @@ void mmBDDialog::OnCategs(wxCommandEvent& /*event*/)
     }
     else
     {
-        mmCategDialog dlg(this);
-        dlg.setTreeSelection(m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
+        mmCategDialog dlg(this, m_bill_data.CATEGID, m_bill_data.SUBCATEGID, false);
         if (dlg.ShowModal() == wxID_OK)
         {
             m_bill_data.CATEGID = dlg.getCategId();
@@ -951,7 +951,9 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     bill_data.TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
     bill_data.TRANSCODE = m_bill_data.TRANSCODE;
 
-    if (!Model_Billsdeposits::instance().AllowTransaction(bill_data)) return;
+	Model_Billsdeposits::AccountBalance bal;
+
+    if (!Model_Billsdeposits::instance().AllowTransaction(bill_data, bal)) return;
     if (!textAmount_->checkValue(m_bill_data.TRANSAMOUNT)) return;
 
     m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
@@ -1310,7 +1312,7 @@ void mmBDDialog::setRepeatDetails()
     {
         staticTextRepeats_->SetLabelText(repeatLabelActivate);
         staticTimesRepeat_->SetLabelText(timeLabelDays);
-        const auto& toolTipsStr = _("Specify period in Days to activate."
+        const auto& toolTipsStr = _("Specify period in Days to activate.\n"
             "Becomes blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
@@ -1342,7 +1344,7 @@ void mmBDDialog::setRepeatDetails()
     {
         staticTextRepeats_->SetLabelText(repeatLabelRepeats);
         staticTimesRepeat_->SetLabelText(_("Payments Left"));
-        const auto& toolTipsStr = _("Specify the number of payments to be made." 
+        const auto& toolTipsStr = _("Specify the number of payments to be made.\n" 
             "Leave blank if the payments continue forever.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }

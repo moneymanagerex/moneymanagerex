@@ -46,6 +46,7 @@ private:
     wxString m_test_db_filename;
     wxSQLite3Database m_test_db;
     DB_Model* m_dbmodel;
+    int m_this_instance;
 
 private:
     void TwoDigitPrecision();

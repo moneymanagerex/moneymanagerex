@@ -39,8 +39,8 @@ public:
     /** Initialise only the tables required for Stocks in the database */
     void Init_Model_Stocks(wxSQLite3Database* test_db);
 
-    // Used only once. Set the username and base currency
-    void Init_BaseCurrency(const wxString& base_currency_symbol = "AUD", const wxString& user_name = "Test Database");
+    // Used only once. Set the base currency
+    void Init_BaseCurrency(const wxString& base_currency_symbol = "AUD");
     
     int Add_Bank_Account(const wxString& name, double initial_value = 0, const wxString& notes = "", bool favorite = true, const wxString& currency_symbol = "AUD");
     int Add_Investment_Account(const wxString& name, double initial_value = 0, const wxString& notes = "", bool favorite = true, const wxString& currency_symbol = "AUD");

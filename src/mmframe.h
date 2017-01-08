@@ -100,7 +100,7 @@ private:
     /* controls */
     mmPanelBase* panelCurrent_;
     wxPanel* homePanel_;
-    wxTreeCtrl* navTreeCtrl_;
+    wxTreeCtrl* m_nav_tree_ctrl;
     wxMenuBar *menuBar_;
     wxToolBar* toolBar_;
 

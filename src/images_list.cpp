@@ -165,9 +165,15 @@ wxImageList* navtree_images_list()
 
     wxImageList* imageList = new wxImageList(x, x);
     for (const auto& img : navtree_images())
+    {
+        wxASSERT(img.second.GetHeight() == x && img.second.GetWidth() == x);
         imageList->Add(img.second);
+    }
     for (const auto& img : acc_images())
+    {
+        wxASSERT(img.second.GetHeight() == x && img.second.GetWidth() == x);
         imageList->Add(img.second);
+    }
 
     return imageList;
 }

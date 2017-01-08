@@ -26,6 +26,8 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "test_database_initialisation.h"
 #include "reports/mmDateRange.h"
 #include "model/Model_Translink.h"
+#include "db/DB_Upgrade.h"
+#include "dbupgrade.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -69,10 +71,13 @@ void Test_DatabaseInitialisation::setUp()
     CpuTimer time("Startup");
 
     m_test_db.Open(m_test_db_filename);
+    if (m_this_instance == 1)
+    {
+        dbUpgrade::InitializeVersion(&m_test_db, dbLatestVersion);
+    }
 
     m_dbmodel = new DB_Model_Initialise_Statistics();
     m_dbmodel->Init_Model_Tables(&m_test_db);
-    m_dbmodel->Init_BaseCurrency();
 }
 
 void Test_DatabaseInitialisation::tearDown()

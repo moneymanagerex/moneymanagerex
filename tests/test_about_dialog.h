@@ -38,7 +38,9 @@ public:
 	void tearDown();
 
 private:
-    TestFrameBase *frame;
+    TestFrameBase* m_base_frame;
+    int m_this_instance;
 
+private:
     void test_about_dialog();
 };

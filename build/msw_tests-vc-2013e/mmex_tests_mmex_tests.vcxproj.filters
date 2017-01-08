@@ -447,6 +447,9 @@
     <ClCompile Include="..\..\tests\test_translink.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\reports\forecast.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -931,6 +934,12 @@
     </ClInclude>
     <ClInclude Include="..\..\tests\test_translink.h">
       <Filter>Test Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\forecast.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\db\DB_Upgrade.h">
+      <Filter>Header Files\db</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

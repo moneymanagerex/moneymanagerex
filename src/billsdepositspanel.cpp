@@ -425,9 +425,9 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     case COL_ID:
         return wxString::Format("%i", bill.BDID).Trim();
     case COL_PAYMENT_DATE:
-        return mmGetDateForDisplay(Model_Billsdeposits::NEXTOCCURRENCEDATE(bill));
+        return mmGetDateForDisplay(bill.NEXTOCCURRENCEDATE);
     case COL_DUE_DATE:
-        return mmGetDateForDisplay(Model_Billsdeposits::TRANSDATE(bill));
+        return mmGetDateForDisplay(bill.TRANSDATE);
     case COL_ACCOUNT:
         return bill.ACCOUNTNAME;
     case COL_PAYEE:

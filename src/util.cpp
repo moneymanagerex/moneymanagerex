@@ -277,19 +277,12 @@ const wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
     return dateFmt;
 }
 
-const wxString mmGetDateForDisplay(const wxDateTime &dt)
+const wxString mmGetDateForDisplay(const wxString &iso_date)
 {
-    /*
-    Since calls to dt.Format() are very expensive, we store previously formatted dates and the resulting formatted
-    strings in a lookup table. Next time the same date is queried, the formatted date will be returned automatically.
-    If the format is changed, all stored strings are deleted. This provides a considerable performance boost.
-    */
+    //ISO Date to formatted string lookup table.
+    static std::unordered_map<wxString, wxString> dateLookup;
 
-    // Remebers previous format. If this changes, all stored string must be deleted.
     static wxString dateFormat = Option::instance().DateFormat();
-
-    // wxDateTime to formatted string lookup table.
-    static std::map<wxDateTime, wxString> dateLookup;
 
     // If format has been changed, delete all stored strings.
     if (dateFormat != Option::instance().DateFormat())
@@ -299,32 +292,45 @@ const wxString mmGetDateForDisplay(const wxDateTime &dt)
     }
 
     // If date exists in lookup- return it.
-    auto it = dateLookup.find(dt);
+    auto it = dateLookup.find(iso_date);
     if (it != dateLookup.end())
         return it->second; // The stored formatted date.
 
     // Format date, store it and return it.
-    return dateLookup[dt] = dt.Format(Option::instance().DateFormat());
+    wxString date_str = dateFormat;
+    if (date_str.Replace("%Y", iso_date.Mid(0, 4))==0)
+        date_str.Replace("%y", iso_date.Mid(2, 2));
+    date_str.Replace("%m", iso_date.Mid(5, 2));
+    date_str.Replace("%d", iso_date.Mid(8, 2));
+    return dateLookup[iso_date] = date_str;
 }
 
-bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, const wxString &sDateMask)
+bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, const wxString &sDateMask)
 {
     if (date_formats_regex().count(sDateMask) == 0)
         return false;
 
+    static std::unordered_map<wxString, wxDate> cache;
+    const auto it = cache.find(str_date);
+    if (it != cache.end())
+    {
+        date = it->second;
+        return true;
+    }
+
     const wxString regex = date_formats_regex().at(sDateMask);
     wxRegEx pattern(regex);
 
-    if (pattern.Matches(sDate))
+    if (pattern.Matches(str_date))
     {
-        sDate = pattern.GetMatch(sDate);
+        auto date_str = pattern.GetMatch(str_date);
         wxString::const_iterator end;
-        return date.ParseFormat(sDate, sDateMask, &end);
+        return date.ParseFormat(date_str, sDateMask, &end);
     }
     return false;
 }
 
-const wxDateTime mmGetStorageStringAsDate(const wxString& str)
+const wxDateTime mmParseISODate(const wxString& str)
 {
     wxDateTime dt;
     if (str.IsEmpty() || !dt.ParseDate(str))
@@ -359,7 +365,7 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     return financialYear;
 }
 
-const std::map<wxString,wxString> &date_formats_regex()
+const std::map<wxString, wxString> &date_formats_regex()
 {
     static std::map<wxString, wxString> date_regex;
 

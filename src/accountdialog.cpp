@@ -164,11 +164,18 @@ void mmNewAcctDialog::fillControls()
     m_credit_limit_ctrl->SetValue(m_account->CREDITLIMIT, 2);
     m_interest_rate_ctrl->SetValue(m_account->INTERESTRATE, 2);
 
-    m_payment_due_date_ctrl->SetValue(Model_Account::DateOf(m_account->PAYMENTDUEDATE));
+    if (!m_account->PAYMENTDUEDATE.empty())
+    {
+        m_payment_due_date_ctrl->SetValue(Model_Account::DateOf(m_account->PAYMENTDUEDATE));
+    }
     m_minimum_payment_ctrl->SetValue(m_account->MINIMUMPAYMENT, 2);
 
     m_statement_lock_ctrl->SetValue(Model_Account::BoolOf(m_account->STATEMENTLOCKED));
-    m_statement_date_ctrl->SetValue(Model_Account::DateOf(m_account->STATEMENTDATE));
+
+    if (!m_account->STATEMENTDATE.empty())
+    {
+        m_statement_date_ctrl->SetValue(Model_Account::DateOf(m_account->STATEMENTDATE));
+    }
     m_minimum_balance_ctrl->SetValue(m_account->MINIMUMBALANCE, 2);
 }
 

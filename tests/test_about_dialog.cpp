@@ -35,22 +35,23 @@ Turn test ON or OFF in file: defined_test_selection.h
 CPPUNIT_TEST_SUITE_REGISTRATION( Test_About_Dialog );
 #endif
 
-static int instance_count = 0;
+static int s_instance_count = 0;
 //----------------------------------------------------------------------------
 Test_About_Dialog::Test_About_Dialog()
 {
-    instance_count++;
+    s_instance_count++;
+    m_this_instance = s_instance_count;
 }
 
 Test_About_Dialog::~Test_About_Dialog()
 {
-    instance_count--;
+    s_instance_count--;
 }
 
 void Test_About_Dialog::setUp()
 {
-    frame = new TestFrameBase(instance_count);
-    frame->Show(true);
+    m_base_frame = new TestFrameBase(m_this_instance);
+    m_base_frame->Show(true);
 }
 
 void Test_About_Dialog::tearDown()
@@ -59,7 +60,7 @@ void Test_About_Dialog::tearDown()
     * Note: If the frame is not deleted here, it will
     * remain active until the console window closes.
     */    
-    delete frame;
+    delete m_base_frame;
 }
 
 void Test_About_Dialog::test_about_dialog()
@@ -67,7 +68,7 @@ void Test_About_Dialog::test_about_dialog()
     wxString file_name = mmex::getPathDoc(mmex::F_CONTRIB);
     if (wxFileExists(file_name))
     {
-        mmAboutDialog* dlg = new mmAboutDialog(frame, 4);
+        mmAboutDialog* dlg = new mmAboutDialog(m_base_frame, 4);
         int id = dlg->ShowModal();
         if (id == wxID_OK)
         {

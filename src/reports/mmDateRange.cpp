@@ -166,15 +166,16 @@ mmCurrentFinancialYear::mmCurrentFinancialYear(const int day, const int month)
 : mmDateRange()
 {
     int this_month = this->start_date_.GetMonth() + 1;
-    wxDateTime finDate = wxDateTime(this->start_date_).SetMonth(wxDateTime::Month(month - 1)).SetDay(day);
+    auto finDate = wxDateTime(this->start_date_).SetDay(1).SetMonth(wxDateTime::Month(month - 1));
+    auto last_month_day = finDate.GetLastMonthDay().GetDay();
+    wxASSERT(day <= last_month_day);
+    finDate.SetDay(day <= last_month_day ? day : last_month_day);
+
     if (finDate.IsLaterThan(this->start_date_))
-    {
         this->start_date_.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(month - this_month));
-    }
     else
-    {
         this->start_date_.Subtract(wxDateSpan::Months(this_month - month));
-    }
+
     this->start_date_.Subtract(wxDateSpan::Days(this->start_date_.GetDay() - 1)).Add(wxDateSpan::Days(day - 1));
     
     this->end_date_ = this->start_date_;

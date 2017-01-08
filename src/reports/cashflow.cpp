@@ -208,7 +208,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             if (!d_balance.first.IsLaterThan(dtEnd))
                 forecastVector[idx].amount += d_balance.second;
         }
-        forecastVector[idx].label = mmGetDateForDisplay(dtEnd);
+        forecastVector[idx].label = mmGetDateForDisplay(dtEnd.FormatISODate());
     }
 }
 

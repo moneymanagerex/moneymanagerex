@@ -35,18 +35,23 @@ Turn test ON or OFF in file: defined_test_selection.h
 CPPUNIT_TEST_SUITE_REGISTRATION(Test_Currency);
 #endif
 
-static int instance_count = 0;
+static int s_instance_count = 0;
 //----------------------------------------------------------------------------
 Test_Currency::Test_Currency()
 {
-    instance_count++;
+    s_instance_count++;
+    m_this_instance = s_instance_count;
     m_test_db_filename = "test_db_model_currency.mmb";
+    if ((m_this_instance == 1) && wxFileExists(m_test_db_filename))
+    {
+        wxRemoveFile(m_test_db_filename);
+    }
 }
 
 Test_Currency::~Test_Currency()
 {
-    instance_count--;
-    if (instance_count < 1)
+    s_instance_count--;
+    if (s_instance_count < 1)
     {
         wxRemoveFile(m_test_db_filename);
     }

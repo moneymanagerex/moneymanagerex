@@ -50,7 +50,7 @@ mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomF
     , m_itemRegEx(nullptr)
     , m_itemAutocomplete(nullptr)
     , m_itemDefault(nullptr)
-    , m_itemChoiches(nullptr)
+    , m_itemChoices(nullptr)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("New/Edit Custom Field"), wxDefaultPosition, wxSize(400, 300), style);
@@ -89,13 +89,12 @@ void mmCustomFieldEditDialog::dataToControls()
         m_itemAutocomplete->SetValue(Model_CustomField::getAutocomplete(m_field->PROPERTIES));
         m_itemDefault->SetValue(Model_CustomField::getDefault(m_field->PROPERTIES));
 
-        wxString Choiches = wxEmptyString;
-        wxArrayString ArrChoiches = Model_CustomField::getChoiches(m_field->PROPERTIES);
-        for (size_t i = 0; i < ArrChoiches.size(); i++)
+        wxString Choices = wxEmptyString;
+        for (const auto ArrChoices : Model_CustomField::getChoices(m_field->PROPERTIES))
         {
-            Choiches << ArrChoiches[i] << ";";
+            Choices << ArrChoices << ";";
         }
-        m_itemChoiches->SetValue(Choiches);
+        m_itemChoices->SetValue(Choices);
     }
     else
     {
@@ -157,10 +156,10 @@ void mmCustomFieldEditDialog::CreateControls()
         "For date/time insert 'Now' to make current date/time as default"));
     itemFlexGridSizer6->Add(m_itemDefault, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Choiches")), g_flagsH);
-    m_itemChoiches = new wxTextCtrl(itemPanel5, wxID_ANY, "");
-    m_itemChoiches->SetToolTip(_("Enter the choiches for this field separated with a semi-colon"));
-    itemFlexGridSizer6->Add(m_itemChoiches, g_flagsExpand);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Choices")), g_flagsH);
+    m_itemChoices = new wxTextCtrl(itemPanel5, wxID_ANY, "");
+    m_itemChoices->SetToolTip(_("Enter the choices for this field separated with a semicolon"));
+    itemFlexGridSizer6->Add(m_itemChoices, g_flagsExpand);
 
     wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer3->Add(itemPanel27, wxSizerFlags(g_flagsV).Center());
@@ -180,17 +179,14 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
 {
     const wxString name = m_itemDescription->GetValue().Trim();
     if (name.empty())
-    {
-        mmErrorDialogs::InvalidName(m_itemDescription);
-        return;
-    }
+        return mmErrorDialogs::InvalidName(m_itemDescription);
 
-    wxArrayString ArrChoiches;
-    wxString Choiches = m_itemChoiches->GetValue();
-    wxStringTokenizer token(Choiches, ";");
+    wxArrayString ArrChoices;
+    wxString Choices = m_itemChoices->GetValue();
+    wxStringTokenizer token(Choices, ";");
     while (token.HasMoreTokens())
     {
-        ArrChoiches.Add(token.GetNextToken());
+        ArrChoices.Add(token.GetNextToken());
     }
 
     if (!this->m_field)
@@ -219,13 +215,13 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
             Model_CustomFieldData::instance().ReleaseSavepoint();
         }
     }
-    else if (Model_CustomField::getChoiches(m_field->PROPERTIES) != ArrChoiches)
+    else if (Model_CustomField::getChoices(m_field->PROPERTIES) != ArrChoices)
     {
         auto DataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::FIELDID(m_field->FIELDID));
         if (DataSet.size() > 0)
         {
             int DeleteResponse = wxMessageBox(
-                _("You have modified choiches: ones removed will be cleaned!") + "\n"
+                _("You have modified choices: ones removed will be cleaned!") + "\n"
                 + _("Do you want to proceed?") << "\n"
                 , _("Custom Field Change")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
@@ -235,7 +231,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
             Model_CustomFieldData::instance().Savepoint();
             for (auto &data : DataSet)
             {
-                if(ArrChoiches.Index(data.CONTENT) == wxNOT_FOUND)
+                if(ArrChoices.Index(data.CONTENT) == wxNOT_FOUND)
                 data.CONTENT = wxEmptyString;
             }
             Model_CustomFieldData::instance().save(DataSet);
@@ -246,13 +242,13 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
 
     m_field->REFTYPE = m_fieldRefType;
     m_field->DESCRIPTION = name;
-    m_field->TYPE = m_itemType->GetStringSelection();
+    m_field->TYPE = Model_CustomField::fieldtype_desc(m_itemType->GetSelection());
     m_field->PROPERTIES = Model_CustomField::formatProperties(
         m_itemTooltip->GetValue(),
         m_itemRegEx->GetValue(),
         m_itemAutocomplete->GetValue(),
         m_itemDefault->GetValue(),
-        ArrChoiches
+        ArrChoices
         );
     
     Model_CustomField::instance().save(m_field);
@@ -277,16 +273,16 @@ void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
         {
             m_itemRegEx->Enable(false);
             m_itemAutocomplete->Enable(true);
-            m_itemChoiches->Enable(false);
-            m_itemChoiches->SetValue(wxEmptyString);
+            m_itemChoices->Enable(false);
+            m_itemChoices->SetValue(wxEmptyString);
         }
         break;
-    case Model_CustomField::SINGLECHOICHE:
+    case Model_CustomField::SINGLECHOICE:
         {
             m_itemRegEx->Enable(false);
             m_itemAutocomplete->Enable(false);
             m_itemAutocomplete->SetValue(false);
-            m_itemChoiches->Enable(true);
+            m_itemChoices->Enable(true);
         }
         break;
     default:
@@ -294,8 +290,8 @@ void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
             m_itemRegEx->Enable(false);
             m_itemAutocomplete->Enable(false);
             m_itemAutocomplete->SetValue(false);
-            m_itemChoiches->Enable(false);
-            m_itemChoiches->SetValue(wxEmptyString);
+            m_itemChoices->Enable(false);
+            m_itemChoices->SetValue(wxEmptyString);
         }
         break;
     }

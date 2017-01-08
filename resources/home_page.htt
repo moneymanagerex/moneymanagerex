@@ -232,7 +232,11 @@
         if (obj != 'NAME') {
             var row = document.createElement('tr');
             createTableData(row, obj);
-            createTableData(row, stats_json[obj]);
+            var cell = document.createElement("td");    
+            var cellText = document.createTextNode(stats_json[obj]);
+			cell.style.textAlign='right';
+            cell.appendChild(cellText);
+            row.appendChild(cell);
             tbody.appendChild(row);
         } else {
             document.getElementById('stat_name').innerHTML = stats_json[obj];

@@ -195,20 +195,6 @@ const Model_Billsdeposits::Data_Set Model_Account::billsdeposits(const Data& r)
     return billsdeposits(&r);
 }
 
-wxDate Model_Account::last_date(const Data* r)
-{
-    Model_Checking::Data_Set trans = transaction(r);
-    if (!trans.empty())
-        return Model_Checking::TRANSDATE(trans.back());
-    else
-        return wxDate::Today();
-}
-
-wxDate Model_Account::last_date(const Data& r)
-{
-    return last_date(&r);
-}
-
 double Model_Account::balance(const Data* r)
 {
     double sum = r->INITIALBAL;
@@ -331,13 +317,7 @@ bool Model_Account::Exist(const wxString& account_name)
 
 wxDateTime Model_Account::DateOf(const wxString& date_str)
 {
-    wxDateTime date;
-    if (!date.ParseISODate(date_str))
-    {
-        date = wxDateTime::Today();
-    }
-
-    return date;
+    return Model::to_date(date_str);
 }
 
 bool Model_Account::BoolOf(int value)

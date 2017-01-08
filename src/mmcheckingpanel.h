@@ -78,6 +78,7 @@ public:
     }
 
     EColumn g_sortcol; // index of column to sort
+    EColumn m_prevSortCol;
     bool g_asc; // asc\desc sorting
 
     bool getSortOrder() const { return m_asc; }
@@ -100,10 +101,10 @@ public:
     void OnViewSplitTransaction(wxCommandEvent& event);
     void OnOrganizeAttachments(wxCommandEvent& event);
     void OnCreateReoccurance(wxCommandEvent& event);
+    void refreshVisualList(int trans_id = -1, bool filter = true);
     long m_selectedIndex;
     long m_selectedForCopy; //The transaction ID if selected for copy
     long m_selectedID; //Selected transaction ID
-    void refreshVisualList(int trans_id = -1, bool filter = true);
 
 protected:
     /* Sort Columns */
@@ -176,8 +177,6 @@ private:
     wxListItemAttr m_attr16; // user defined style 6
     wxListItemAttr m_attr17; // user defined style 7
 
-    EColumn m_sortCol;
-
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;
     virtual int OnGetItemColumnImage(long item, long column) const;
@@ -200,6 +199,8 @@ private:
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
     long m_topItemIndex;
+    EColumn m_sortCol;
+    wxString m_today;
 };
 
 //----------------------------------------------------------------------------
@@ -291,10 +292,9 @@ private:
 
     int m_currentView;
     int m_AccountID;
-    int m_basecurrecyID;
-    wxDateTime m_quickFilterBeginDate;
-    wxDateTime m_quickFilterEndDate;
     bool m_transFilterActive;
+    wxString m_begin_date;
+    wxString m_end_date;
     double m_filteredBalance;
     double m_account_balance;
     double m_reconciled_balance;
