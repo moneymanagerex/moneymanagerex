@@ -173,8 +173,8 @@ Root: HKCU; Subkey: "Software\Microsoft\Internet Explorer\Main\FeatureControl\FE
 
 ; MMEX Executable files 
 Source: {#my_output_root}{#my_output_path}\bin\mmex.exe; DestDir: {app}\bin; Flags: ignoreversion; Components: program; 
-Source: {#my_output_root}{#my_output_path}\bin\msvcp120.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: program; 
-Source: {#my_output_root}{#my_output_path}\bin\msvcr120.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: program; 
+Source: {#my_output_root}{#my_output_path}\bin\msvcp140.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: program; 
+Source: {#my_output_root}{#my_output_path}\bin\vcruntime140.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: program;
 
 ; MMEX Root files
 Source: {#my_output_root}{#my_output_path}\contrib.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
