@@ -57,7 +57,7 @@ wxBEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
     EVT_CLOSE(mmQIFImportDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
-mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
+mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int account_id)
 : m_userDefinedDateMask(false)
 , choiceDateFormat_(nullptr)
 , dataListBox_(nullptr)
@@ -75,6 +75,7 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
 , accountDropDown_(nullptr)
 , m_choiceEncoding(nullptr)
 , btnOK_(nullptr)
+, m_init_account_id(account_id)
 , m_today(wxDate::Today())
 , m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
 {
@@ -105,6 +106,10 @@ bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     ColName_[COL_NOTES]    = _("Notes");
 
     CreateControls();
+    const auto &acc = Model_Account::instance().get(m_init_account_id);
+    if (acc)
+        m_accountNameStr = acc->ACCOUNTNAME;
+
     fillControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -321,6 +326,15 @@ void mmQIFImportDialog::CreateControls()
 
 void mmQIFImportDialog::fillControls()
 {
+    const auto &acc = Model_Account::instance().get(m_accountNameStr);
+    if (acc)
+    {
+        m_accountNameStr = acc->ACCOUNTNAME;
+        accountDropDown_->SetStringSelection(m_accountNameStr);
+        accountDropDown_->Enable(true);
+        accountCheckBox_->SetValue(true);
+    }
+
     refreshTabs(TRX_TAB | ACC_TAB | PAYEE_TAB | CAT_TAB);
     btnOK_->Enable(!file_name_ctrl_->GetValue().empty());
 }
@@ -775,7 +789,7 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& event )
 
 void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& /*event*/)
 {
-    wxStringClientData* data_obj = (wxStringClientData*) accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
+    wxStringClientData* data_obj = (wxStringClientData*)accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
     if (data_obj)
         m_accountNameStr = data_obj->GetData();
     refreshTabs(TRX_TAB);
