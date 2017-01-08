@@ -34,7 +34,7 @@ class mmQIFImportDialog : public wxDialog
 
 public:
     mmQIFImportDialog() {}
-    mmQIFImportDialog(wxWindow* parent);
+    mmQIFImportDialog(wxWindow* parent, int account_id);
 
     bool Create(wxWindow* parent, wxWindowID id
         , const wxString& caption
@@ -84,6 +84,7 @@ private:
     std::vector <Model_Splittransaction::Cache> m_splitDataSets;
     static const std::map <wxString, int> m_QIFaccountTypes;
 
+    int m_init_account_id;
     wxString m_accountNameStr;
     wxString m_dateFormatStr;
     bool m_userDefinedDateMask;
