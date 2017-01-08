@@ -19,7 +19,7 @@ install:
 # wxWidgets
 - cmd: IF %PLATFORM%==x64 (SET WXLIBFOLDER=vc_x64_lib) ELSE (SET WXLIBFOLDER=vc_lib)
 ## REMOVE BELOW COMMENT TO CLEANUP CACHE WHEN WXWIDGETS UPGRADED
-- cmd: DEL %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip /F /Q
+# - cmd: DEL %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip /F /Q
 - cmd: git clone https://github.com/wxWidgets/wxWidgets.git %WXWIN%
 - cmd: cd %WXWIN%
 - cmd: git checkout tags/v3.1.0
