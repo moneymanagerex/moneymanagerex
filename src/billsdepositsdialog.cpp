@@ -676,7 +676,7 @@ void mmBDDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
 {
-    const auto& accounts = Model_Account::instance().all_checking_account_names();
+    const auto& accounts = Model_Account::instance().all_checking_account_names(true);
     mmSingleChoiceDialog scd(this
         , _("Choose Bank Account or Term Account")
         , _("Select Account")
@@ -712,7 +712,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
     {
         m_bill_data.PAYEEID = -1;
         mmSingleChoiceDialog scd(this, _("Account name"), _("Select Account")
-            , Model_Account::instance().all_checking_account_names());
+            , Model_Account::instance().all_checking_account_names(true));
         if (scd.ShowModal() == wxID_OK)
         {
             const wxString& acctName = scd.GetStringSelection();
