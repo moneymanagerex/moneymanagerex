@@ -877,10 +877,6 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             if (!Model_Checking::is_transfer(trx))
                 continue;
 
-            const auto data_å = Model_Checking::instance().find(
-                //Model_Checking::ACCOUNTID(trx->TOACCOUNTID)
-                Model_Checking::TRANSCODE(Model_Checking::TRANSFER)
-            );
             const auto data = Model_Checking::instance().find(
                 Model_Checking::TRANSDATE(trx->TRANSDATE)
                 , Model_Checking::ACCOUNTID(trx->ACCOUNTID)
