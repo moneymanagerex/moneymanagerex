@@ -871,6 +871,29 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         mergeTransferPair(transfer_to_data_set, transfer_from_data_set);
         appendTransfers(trx_data_set, transfer_to_data_set);
 
+        //Search for duplicates for transfers
+        for (auto &trx : trx_data_set)
+        {
+            if (!Model_Checking::is_transfer(trx))
+                continue;
+
+            const auto data_å = Model_Checking::instance().find(
+                //Model_Checking::ACCOUNTID(trx->TOACCOUNTID)
+                Model_Checking::TRANSCODE(Model_Checking::TRANSFER)
+            );
+            const auto data = Model_Checking::instance().find(
+                Model_Checking::TRANSDATE(trx->TRANSDATE)
+                , Model_Checking::ACCOUNTID(trx->ACCOUNTID)
+                , Model_Checking::TOACCOUNTID(trx->TOACCOUNTID)
+                , Model_Checking::NOTES(trx->NOTES)
+                , Model_Checking::TRANSACTIONNUMBER(trx->TRANSACTIONNUMBER)
+                , Model_Checking::TRANSCODE(Model_Checking::TRANSFER)
+                , Model_Checking::TRANSAMOUNT(trx->TRANSAMOUNT)
+            );
+            if (data.size() > 0)
+                trx->STATUS = "D";
+        }
+
         Model_Checking::instance().save(trx_data_set);
         progressDlg.Update(count, _("Importing Split transactions"));
         joinSplit(trx_data_set, m_splitDataSets);
@@ -894,10 +917,14 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
 
 void mmQIFImportDialog::saveSplit()
 {
+    if (m_splitDataSets.empty()) return;
+
+    Model_Splittransaction::instance().Savepoint();
     while (!m_splitDataSets.empty()) {
         Model_Splittransaction::instance().save(m_splitDataSets.back());
         m_splitDataSets.pop_back();
     }
+    Model_Splittransaction::instance().ReleaseSavepoint();
 }
 void mmQIFImportDialog::joinSplit(Model_Checking::Cache &destination
     , std::vector<Model_Splittransaction::Cache> &target)

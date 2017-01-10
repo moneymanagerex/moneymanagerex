@@ -108,6 +108,11 @@ DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxDate& d
     return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op);
 }
 
+DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxString& date, OP op)
+{
+    return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date, op);
+}
+
 DB_Table_CHECKINGACCOUNT_V1::STATUS Model_Checking::STATUS(STATUS_ENUM status, OP op)
 {
     return DB_Table_CHECKINGACCOUNT_V1::STATUS(toShortStatus(all_status()[status]), op);
