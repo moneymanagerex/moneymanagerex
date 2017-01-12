@@ -82,7 +82,6 @@ private:
     wxArrayString m_payee_names;
     std::map <wxString, std::pair<int, int> > m_QIFcategoryNames;
     std::vector <Model_Splittransaction::Cache> m_splitDataSets;
-    static const std::map <wxString, int> m_QIFaccountTypes;
 
     int m_init_account_id;
     wxString m_accountNameStr;

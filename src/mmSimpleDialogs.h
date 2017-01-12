@@ -41,6 +41,22 @@ private:
     void fix_translation();
 };
 
+class mmMultiChoiceDialog : public wxMultiChoiceDialog
+{
+public:
+    using wxMultiChoiceDialog::ShowModal;
+
+    mmMultiChoiceDialog();
+    mmMultiChoiceDialog(wxWindow* parent, const wxString& message,
+        const wxString& caption, const Model_Account::Data_Set& accounts);
+    int ShowModal()
+    {
+        return wxMultiChoiceDialog::ShowModal();
+    }
+private:
+    void fix_translation();
+};
+
 class mmDialogComboBoxAutocomplete : public wxDialog
 {
 public:

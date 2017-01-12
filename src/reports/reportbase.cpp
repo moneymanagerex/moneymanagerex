@@ -21,6 +21,7 @@
 #include "mmex.h"
 #include "mmDateRange.h"
 #include "model/Model_Account.h"
+#include "mmSimpleDialogs.h"
 
 wxString mmPrintableBase::title() const
 {
@@ -58,27 +59,16 @@ mmPrintableBaseSpecificAccounts::~mmPrintableBaseSpecificAccounts()
 void mmPrintableBaseSpecificAccounts::getSpecificAccounts()
 {
     wxArrayString* selections = new wxArrayString();
-    wxArrayString accounts;
-    for (const auto &account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
-    {
-        if (Model_Account::type(account) == Model_Account::INVESTMENT) continue;
-        accounts.Add(account.ACCOUNTNAME);
-    }
+    auto accounts = Model_Account::instance().find(
+        Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
+    );
 
-    wxMultiChoiceDialog mcd(0, _("Choose Accounts"), m_title, accounts);
-    wxButton* ok = (wxButton*) mcd.FindWindow(wxID_OK);
-    if (ok) ok->SetLabel(_("&OK "));
-    wxButton* ca = (wxButton*) mcd.FindWindow(wxID_CANCEL);
-    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
+    mmMultiChoiceDialog mcd(0, _("Choose Accounts"), m_title, accounts);
 
     if (mcd.ShowModal() == wxID_OK)
     {
-        wxArrayInt arraySel = mcd.GetSelections();
-
-        for (size_t i = 0; i < arraySel.size(); ++i)
-        {
-            selections->Add(accounts.Item(arraySel[i]));
-        }
+        for (const auto &i : mcd.GetSelections())
+            selections->Add(accounts.at(i).ACCOUNTNAME);
     }
 
     if (accountArray_)

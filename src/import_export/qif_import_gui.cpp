@@ -36,17 +36,6 @@ enum tab_id {
     CAT_TAB = 8,
 };
 
-//map Quicken !Account type strings to Model_Account::TYPE
-// (not sure whether these need to be translated)
-const std::map<wxString, int> mmQIFImportDialog::m_QIFaccountTypes =
-{
-    std::make_pair(wxString("Bank"), Model_Account::CHECKING),
-    std::make_pair(wxString("Cash"), Model_Account::CHECKING),
-    std::make_pair(wxString("Port"), Model_Account::INVESTMENT),
-    std::make_pair(wxString("Invst"), Model_Account::INVESTMENT),
-    std::make_pair(wxString("CCard"), Model_Account::CREDIT_CARD)
-};
-
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFImportDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
@@ -58,26 +47,26 @@ wxBEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
 wxEND_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int account_id)
-: m_userDefinedDateMask(false)
-, choiceDateFormat_(nullptr)
-, dataListBox_(nullptr)
-, accListBox_(nullptr)
-, payeeListBox_(nullptr)
-, categoryListBox_(nullptr)
-, button_search_(nullptr)
-, file_name_ctrl_(nullptr)
-, log_field_(nullptr)
-, dateFromCheckBox_(nullptr)
-, dateToCheckBox_(nullptr)
-, fromDateCtrl_(nullptr)
-, toDateCtrl_(nullptr)
-, accountCheckBox_(nullptr)
-, accountDropDown_(nullptr)
-, m_choiceEncoding(nullptr)
-, btnOK_(nullptr)
-, m_init_account_id(account_id)
-, m_today(wxDate::Today())
-, m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
+    : m_userDefinedDateMask(false)
+    , choiceDateFormat_(nullptr)
+    , dataListBox_(nullptr)
+    , accListBox_(nullptr)
+    , payeeListBox_(nullptr)
+    , categoryListBox_(nullptr)
+    , button_search_(nullptr)
+    , file_name_ctrl_(nullptr)
+    , log_field_(nullptr)
+    , dateFromCheckBox_(nullptr)
+    , dateToCheckBox_(nullptr)
+    , fromDateCtrl_(nullptr)
+    , toDateCtrl_(nullptr)
+    , accountCheckBox_(nullptr)
+    , accountDropDown_(nullptr)
+    , m_choiceEncoding(nullptr)
+    , btnOK_(nullptr)
+    , m_init_account_id(account_id)
+    , m_today(wxDate::Today())
+    , m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
 {
     payeeIsNotes_ = false;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
