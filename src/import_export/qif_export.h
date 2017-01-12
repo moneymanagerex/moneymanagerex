@@ -30,6 +30,7 @@ class mmQIFExportDialog : public wxDialog
 
 public:
     mmQIFExportDialog() {}
+    virtual ~mmQIFExportDialog() {}
 
     mmQIFExportDialog(wxWindow* parent);
 
@@ -72,7 +73,7 @@ private:
     wxTextCtrl* m_text_ctrl_;
     wxTextCtrl* log_field_;
     //wxLog *logger_;
-    wxRadioBox* m_radio_box_;
+    wxRadioBox* m_radio_box;
     wxString delimit_;
     wxArrayString accounts_name_;
 };

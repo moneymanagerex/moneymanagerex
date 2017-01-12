@@ -27,7 +27,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFExportDialog, wxDialog);
 
-wxBEGIN_EVENT_TABLE( mmQIFExportDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(mmQIFExportDialog, wxDialog)
     EVT_CHECKBOX(wxID_ANY, mmQIFExportDialog::OnCheckboxClick )
     EVT_BUTTON(wxID_OK, mmQIFExportDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmQIFExportDialog::OnCancel)
@@ -35,6 +35,20 @@ wxBEGIN_EVENT_TABLE( mmQIFExportDialog, wxDialog)
 wxEND_EVENT_TABLE()
 
 mmQIFExportDialog::mmQIFExportDialog(wxWindow* parent)
+    : cCategs_(nullptr)
+    , accountsCheckBox_(nullptr)
+    , bSelectedAccounts_(nullptr)
+    , dateFromCheckBox_(nullptr)
+    , dateToCheckBox_(nullptr)
+    , fromDateCtrl_(nullptr)
+    , toDateCtrl_(nullptr)
+    , m_choiceDateFormat(nullptr)
+    , toFileCheckBox_(nullptr)
+    , file_name_label_(nullptr)
+    , button_search_(nullptr)
+    , m_text_ctrl_(nullptr)
+    , log_field_(nullptr)
+    , m_radio_box(nullptr)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("QIF Export"), wxDefaultPosition, wxSize(500, 300), style);
@@ -61,14 +75,13 @@ void mmQIFExportDialog::fillControls()
     bSelectedAccounts_->SetLabelText(_("All"));
     bSelectedAccounts_->SetToolTip(_("All"));
 
-    for (const auto& a : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+    for (const auto& a : Model_Account::instance().find(
+        Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL))
+    )
     {
-        if (Model_Account::type(a) != Model_Account::INVESTMENT)
-        {
-            accounts_name_.Add(a.ACCOUNTNAME);
-            selected_accounts_id_.Add(a.ACCOUNTID);
-            accounts_id_.Add(a.ACCOUNTID);
-        }
+        accounts_name_.Add(a.ACCOUNTNAME);
+        selected_accounts_id_.Add(a.ACCOUNTID);
+        accounts_id_.Add(a.ACCOUNTID);
     }
 
     // redirect logs to text control
@@ -103,9 +116,9 @@ void mmQIFExportDialog::CreateControls()
     //
     wxString choices[] = { _("QIF"), _("CSV")};
     int num = sizeof(choices) / sizeof(wxString);
-    m_radio_box_ = new wxRadioBox(main_tab, wxID_ANY, ""
+    m_radio_box = new wxRadioBox(main_tab, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, num, choices, 2, wxRA_SPECIFY_COLS);
-    tab1_sizer->Add(m_radio_box_, wxSizerFlags(g_flagsV).Center());
+    tab1_sizer->Add(m_radio_box, wxSizerFlags(g_flagsV).Center());
 
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
     tab1_sizer->Add(flex_sizer, wxSizerFlags(g_flagsV).Left());
@@ -267,7 +280,7 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
 void mmQIFExportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 {
     wxString fileName = m_text_ctrl_->GetValue();
-    const bool qif_csv = m_radio_box_->GetSelection() == 0;
+    const bool qif_csv = m_radio_box->GetSelection() == 0;
 
     const wxString choose_ext = qif_csv ? _("QIF Files") : _("CSV Files");
     fileName = wxFileSelector(
@@ -307,7 +320,6 @@ void mmQIFExportDialog::OnOk(wxCommandEvent& /*event*/)
 
 void mmQIFExportDialog::OnCancel(wxCommandEvent& /*event*/)
 {
-
     EndModal(wxID_CANCEL);
 }
 
@@ -360,7 +372,7 @@ void mmQIFExportDialog::OnFileNameEntered(wxCommandEvent& event)
 
 void mmQIFExportDialog::mmExportQIF()
 {
-    bool qif_csv = m_radio_box_->GetSelection() == 0;
+    bool qif_csv = m_radio_box->GetSelection() == 0;
     bool exp_categ = cCategs_->GetValue();
     bool exp_transactions = (accountsCheckBox_->GetValue() && selected_accounts_id_.GetCount() > 0);
     bool write_to_file = toFileCheckBox_->GetValue();

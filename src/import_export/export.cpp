@@ -150,34 +150,34 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
 const wxString mmExportTransaction::getAccountHeaderQIF(int accountID)
 {
     wxString buffer = "";
-    wxString account_name = "";
-    wxString currency_symbol = "";
-    Model_Checking::Data_Set enties = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(accountID)
-        , Model_Checking::TOACCOUNTID(accountID));
-    if (!enties.empty())
+    wxString currency_symbol = Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL;
+    Model_Account::Data *account = Model_Account::instance().get(accountID);
+    if (account)
     {
-        double dInitBalance = 0;
-        Model_Account::Data *account = Model_Account::instance().get(accountID);
-        if (account)
+        double dInitBalance = account->INITIALBAL;
+        Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
+        if (currency)
         {
-            account_name = account->ACCOUNTNAME;
-            dInitBalance = account->INITIALBAL;
-            Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
-            if (currency)
+            currency_symbol = currency->CURRENCY_SYMBOL;
+        }
+
+        const wxString currency_code = "[" + currency_symbol + "]";
+        const wxString sInitBalance = Model_Currency::toString(dInitBalance, currency);
+        wxString qif_acc_type = m_QIFaccountTypes.begin()->first;
+        for (const auto &item : m_QIFaccountTypes)
+        {
+            if (item.second == Model_Account::all_type().Index(account->ACCOUNTTYPE))
             {
-                currency_symbol = currency->CURRENCY_SYMBOL;
+                qif_acc_type = item.first;
+                break;
             }
         }
 
-        wxString currency_code = "[" + currency_symbol + "]";
-
-        const wxString sInitBalance = wxString::Format("%f", dInitBalance);
-
         buffer = wxString("!Account") << "\n"
-            << "N" << account_name << "\n"
-            << "TBank" << "\n"
+            << "N" << account->ACCOUNTNAME << "\n"
+            << "T" << qif_acc_type << "\n"
             << "D" << currency_code << "\n"
-            << (dInitBalance != 0 ? wxString("$") << sInitBalance << "\n" : "")
+            << (dInitBalance != 0 ? wxString::Format("$%s\n", sInitBalance) : "")
             << "^" << "\n"
             << "!Type:Cash" << "\n";
     }
@@ -237,3 +237,15 @@ const wxString mmExportTransaction::getCategoriesCSV()
     return buffer_csv;
 }
 
+//map Quicken !Account type strings to Model_Account::TYPE
+// (not sure whether these need to be translated)
+const std::map<wxString, int> mmExportTransaction::m_QIFaccountTypes =
+{
+    std::make_pair(wxString("Cash"), Model_Account::CASH), //Cash Flow: Cash Account
+    std::make_pair(wxString("Bank"), Model_Account::CHECKING), //Cash Flow: Checking Account
+    std::make_pair(wxString("CCard"), Model_Account::CREDIT_CARD), //Cash Flow: Credit Card Account
+    std::make_pair(wxString("Invst"), Model_Account::INVESTMENT), //Investing: Investment Account
+    std::make_pair(wxString("Oth A"), Model_Account::CHECKING), //Property & Debt: Asset
+    std::make_pair(wxString("Oth L"), Model_Account::CHECKING), //Property & Debt: Liability
+    std::make_pair(wxString("Invoice"), Model_Account::CHECKING), //Invoice (Quicken for Business only)
+};

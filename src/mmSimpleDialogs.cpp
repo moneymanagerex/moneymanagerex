@@ -53,6 +53,27 @@ void mmSingleChoiceDialog::fix_translation()
     if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
 }
 
+//mmMultiChoiceDialog
+mmMultiChoiceDialog::mmMultiChoiceDialog()
+{
+}
+mmMultiChoiceDialog::mmMultiChoiceDialog(wxWindow* parent, const wxString& message,
+    const wxString& caption, const Model_Account::Data_Set& accounts)
+{
+    wxArrayString choices;
+    for (const auto & item : accounts) choices.Add(item.ACCOUNTNAME);
+    wxMultiChoiceDialog::Create(parent, message, caption, choices);
+    fix_translation();
+}
+void mmMultiChoiceDialog::fix_translation()
+{
+    wxButton* ok = (wxButton*)FindWindow(wxID_OK);
+    if (ok) ok->SetLabel(_("&OK "));
+    wxButton* ca = (wxButton*)FindWindow(wxID_CANCEL);
+    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
+}
+
+
 //  mmDialogComboBoxAutocomplete
 mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete()
 {

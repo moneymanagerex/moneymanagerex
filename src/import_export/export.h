@@ -26,7 +26,7 @@ class mmExportTransaction
 {
 
 public:
-    ~mmExportTransaction();
+    virtual ~mmExportTransaction();
     mmExportTransaction();
 
     static const wxString getTransactionQIF(const Model_Checking::Full_Data & tran, int accountID, const wxString& dateMask);
@@ -34,6 +34,7 @@ public:
     static const wxString getAccountHeaderQIF(int accountID);
     static const wxString getCategoriesQIF();
     static const wxString getCategoriesCSV();
+    static const std::map <wxString, int> m_QIFaccountTypes;
 
 };
 
