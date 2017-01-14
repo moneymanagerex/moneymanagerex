@@ -365,9 +365,9 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     return financialYear;
 }
 
-const std::map<wxString, wxString> &date_formats_regex()
+const std::unordered_map<wxString, wxString> &date_formats_regex()
 {
-    static std::map<wxString, wxString> date_regex;
+    static std::unordered_map<wxString, wxString> date_regex;
 
     // If the map was already filled, return it.
     if (!date_regex.empty())
@@ -404,7 +404,7 @@ const std::map<wxString, wxString> &date_formats_regex()
     return date_regex;
 }
 
-const std::map<wxString, wxString> g_date_formats_map = {
+const std::unordered_map<wxString, wxString> g_date_formats_map = {
     { "%Y-%m-%d", "YYYY-MM-DD" }
     , { "%d/%m/%y", "DD/MM/YY" }
     , { "%d/%m/%Y", "DD/MM/YYYY" }

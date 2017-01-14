@@ -106,19 +106,10 @@ const wxString mmExportTransaction::getAccountHeaderQIF(int accountID)
 
         const wxString currency_code = "[" + currency_symbol + "]";
         const wxString sInitBalance = Model_Currency::toString(dInitBalance, currency);
-        wxString qif_acc_type = m_QIFaccountTypes.begin()->first;
-        for (const auto &item : m_QIFaccountTypes)
-        {
-            if (item.second == Model_Account::all_type().Index(account->ACCOUNTTYPE))
-            {
-                qif_acc_type = item.first;
-                break;
-            }
-        }
 
         buffer = wxString("!Account") << "\n"
             << "N" << account->ACCOUNTNAME << "\n"
-            << "T" << qif_acc_type << "\n"
+            << "T" << qif_acc_type(account->ACCOUNTTYPE) << "\n"
             << "D" << currency_code << "\n"
             << (dInitBalance != 0 ? wxString::Format("$%s\n", sInitBalance) : "")
             << "^" << "\n"
@@ -154,12 +145,11 @@ const wxString mmExportTransaction::getCategoriesQIF()
         }
     }
     return buffer_qif;
-
 }
 
 //map Quicken !Account type strings to Model_Account::TYPE
 // (not sure whether these need to be translated)
-const std::map<wxString, int> mmExportTransaction::m_QIFaccountTypes =
+const std::unordered_map<wxString, int> mmExportTransaction::m_QIFaccountTypes =
 {
     std::make_pair(wxString("Cash"), Model_Account::CASH), //Cash Flow: Cash Account
     std::make_pair(wxString("Bank"), Model_Account::CHECKING), //Cash Flow: Checking Account
@@ -169,3 +159,31 @@ const std::map<wxString, int> mmExportTransaction::m_QIFaccountTypes =
     std::make_pair(wxString("Oth L"), Model_Account::CHECKING), //Property & Debt: Liability
     std::make_pair(wxString("Invoice"), Model_Account::CHECKING), //Invoice (Quicken for Business only)
 };
+
+const wxString mmExportTransaction::qif_acc_type(const wxString& mmex_type)
+{
+    wxString qif_acc_type = m_QIFaccountTypes.begin()->first;
+    for (const auto &item : m_QIFaccountTypes)
+    {
+        if (item.second == Model_Account::all_type().Index(mmex_type))
+        {
+            qif_acc_type = item.first;
+            break;
+        }
+    }
+    return qif_acc_type;
+}
+
+const wxString mmExportTransaction::mm_acc_type(const wxString& qif_type)
+{
+    wxString mm_acc_type = Model_Account::all_type()[Model_Account::CASH];
+    for (const auto &item : m_QIFaccountTypes)
+    {
+        if (item.first == qif_type)
+        {
+            mm_acc_type = Model_Account::all_type()[(item.second)];
+            break;
+        }
+    }
+    return mm_acc_type;
+}

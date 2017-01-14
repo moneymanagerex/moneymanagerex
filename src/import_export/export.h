@@ -32,8 +32,9 @@ public:
     static const wxString getTransactionQIF(const Model_Checking::Full_Data & tran, const wxString& dateMask, bool reverce = false);
     static const wxString getAccountHeaderQIF(int accountID);
     static const wxString getCategoriesQIF();
-    static const std::map <wxString, int> m_QIFaccountTypes;
+    static const std::unordered_map <wxString, int> m_QIFaccountTypes;
+    static const wxString qif_acc_type(const wxString& mmex_type);
+    static const wxString mm_acc_type(const wxString& qif_type);
 };
-
 
 #endif 
