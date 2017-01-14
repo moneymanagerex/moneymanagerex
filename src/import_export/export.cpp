@@ -56,6 +56,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
     }
     
     buffer << "D" << Model_Checking::TRANSDATE(full_tran).Format(dateMask) << "\n";
+    buffer << "C" << (full_tran.STATUS == "R" ? "R" : "") << "\n";
     double value = Model_Checking::balance(full_tran
         , (reverce ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID));
     int style = wxNumberFormatter::Style_None;

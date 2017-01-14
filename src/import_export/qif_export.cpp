@@ -284,6 +284,9 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& /*event*/)
     if (!fileName.IsEmpty())
         correctEmptyFileExt("qif", fileName);
     m_text_ctrl_->SetValue(fileName);
+
+    wxButton* ok = wxStaticCast(FindWindow(wxID_OK), wxButton);
+    ok->Enable();
 }
 
 void mmQIFExportDialog::OnOk(wxCommandEvent& /*event*/)
@@ -472,7 +475,8 @@ void mmQIFExportDialog::mmExportQIF()
         , _("Export to QIF"), wxOK | wxICON_INFORMATION);
 
     wxButton* ok = wxStaticCast(FindWindow(wxID_OK), wxButton);
-    ok->Disable();
+    if (toFileCheckBox_->IsChecked())
+        ok->Disable();
 
     msgDlg.ShowModal();
 }
