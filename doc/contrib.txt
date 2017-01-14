@@ -8,6 +8,8 @@ Gabriele         [gabriele-v]
 
 =======================================
 ##Translations
+Albanian
+-- Artur Gjevori
 Brazilian Portuguese
 -- Jose Carlos, Daniel Cunha de Almeida
 Bulgarian
