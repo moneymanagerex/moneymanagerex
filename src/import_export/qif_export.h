@@ -30,9 +30,9 @@ class mmQIFExportDialog : public wxDialog
 
 public:
     mmQIFExportDialog() {}
-    virtual ~mmQIFExportDialog() {}
+    //virtual ~mmQIFExportDialog() {}
 
-    mmQIFExportDialog(wxWindow* parent);
+    mmQIFExportDialog(wxWindow* parent /*, int gotoAccountID*/);
 
     bool Create(wxWindow* parent
         , wxWindowID id
@@ -42,9 +42,6 @@ public:
         , long style);
 
 private:
-    void OnQuit(wxCloseEvent& event);
-    void OnCancel(wxCommandEvent& event);
-    void OnOk(wxCommandEvent& /*event*/);
     void mmExportQIF();
     void OnAccountsButton(wxCommandEvent& /*event*/);
     void OnCheckboxClick(wxCommandEvent& /*event*/);
@@ -54,10 +51,10 @@ private:
     void OnButtonClear(wxCommandEvent& /*event*/);
     void CreateControls();
     void fillControls();
+    void OnQuit(wxCloseEvent& event);
+    void OnCancel(wxCommandEvent& event);
+    void OnOk(wxCommandEvent& /*event*/);
 
-    wxArrayInt accounts_id_;
-    /* Selected accounts id */
-    wxArrayInt selected_accounts_id_;
 
     wxCheckBox* cCategs_;
     wxCheckBox* accountsCheckBox_;
@@ -73,8 +70,12 @@ private:
     wxTextCtrl* m_text_ctrl_;
     wxTextCtrl* log_field_;
     //wxLog *logger_;
-    wxRadioBox* m_radio_box;
-    wxString delimit_;
-    wxArrayString accounts_name_;
+    wxRadioBox* m_radio_box_deprecated;
+    wxString delimit_deprecated_;
+
+    /* Selected accounts values */
+    wxArrayString m_accounts_name;
+    wxArrayInt accounts_id_;
+    wxArrayInt selected_accounts_id_;
 };
 #endif // 
