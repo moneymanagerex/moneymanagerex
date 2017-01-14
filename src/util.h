@@ -167,12 +167,12 @@ void windowsFreezeThaw(wxWindow* w);
 
 //* Date Functions----------------------------------------------------------*//
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
-const std::map<wxString, wxString> &date_formats_regex();
+const std::unordered_map<wxString, wxString> &date_formats_regex();
 const wxDateTime mmParseISODate(const wxString& str);
 const wxString mmGetDateForDisplay(const wxString &iso_date);
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
 const wxString mmGetNiceDateSimpleString(const wxDateTime &dt);
-extern const std::map<wxString, wxString> g_date_formats_map;
+extern const std::unordered_map<wxString, wxString> g_date_formats_map;
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
 
 #endif // MM_EX_UTIL_H_

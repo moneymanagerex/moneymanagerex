@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "qif_import_gui.h"
+#include "export.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
 #include "paths.h"
@@ -231,6 +232,7 @@ void mmQIFImportDialog::CreateControls()
     accListBox_ = new wxDataViewListCtrl(acc_tab
         , wxID_ANY, wxDefaultPosition, wxSize(100, 200));
     accListBox_->AppendTextColumn(_("Name"), wxDATAVIEW_CELL_INERT, 250, wxALIGN_LEFT);
+    accListBox_->AppendTextColumn(_("Type"), wxDATAVIEW_CELL_INERT, 50, wxALIGN_LEFT);
     accListBox_->AppendTextColumn(_("Currency"), wxDATAVIEW_CELL_INERT, 50, wxALIGN_LEFT);
     accListBox_->AppendTextColumn(_("Status"), wxDATAVIEW_CELL_INERT, 150, wxALIGN_LEFT);
     acc_sizer->Add(accListBox_, g_flagsExpand);
@@ -331,7 +333,7 @@ void mmQIFImportDialog::fillControls()
 bool mmQIFImportDialog::mmReadQIFFile()
 {
     int numLines = 0;
-    std::map<wxString, wxString> date_formats_temp = g_date_formats_map;
+    std::unordered_map<wxString, wxString> date_formats_temp = g_date_formats_map;
     vQIF_trxs_.clear();
     m_QIFaccounts.clear();
     m_QIFcategoryNames.clear();
@@ -352,7 +354,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     wxLongLong interval = wxGetUTCTimeMillis() - start;
 
     wxString accName = ""; //TODO: check Account check box
-    std::map <int, wxString> trx;
+    std::unordered_map <int, wxString> trx;
     while (input.IsOk() && !input.Eof())
     {
         ++numLines;
@@ -381,13 +383,14 @@ bool mmQIFImportDialog::mmReadQIFFile()
             if (trx.find(AcctType) != trx.end() && trx[AcctType] == "Account")
             {
                 accName = (trx.find(TransNumber) == trx.end() ? "" : trx[TransNumber]);
-                std::map <int, wxString> a;
-                a[Date] = (trx.find(Date) != trx.end() ? trx.at(Date) : "");
+                std::unordered_map <int, wxString> a;
+                a[AccountType] = (trx.find(Description) != trx.end() ? trx.at(Description) : "");
+                a[Description] = (trx.find(AccountType) != trx.end() ? trx.at(AccountType) : "");
                 m_QIFaccounts[accName] = a;
             }
             else
             {
-                compliteTransaction(trx, accName);
+                completeTransaction(trx, accName);
                 vQIF_trxs_.push_back(trx);
             }
             trx.clear();
@@ -437,7 +440,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     return true;
 }
 
-void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const wxString &accName)
+void mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &trx, const wxString &accName)
 {
     bool isTransfer = false;
     auto accountName = accName;
@@ -471,8 +474,9 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
             trx[ToAccountName] = toAccName;
             if (m_QIFaccounts.find(toAccName) == m_QIFaccounts.end())
             {
-                std::map <int, wxString> a;
-                a[Date] = "[" + Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL + "]";
+                std::unordered_map <int, wxString> a;
+                a[Description] = "[" + Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL + "]";
+                a[AccountType] = (trx.find(Description) != trx.end() ? trx.at(Description) : "");
                 m_QIFaccounts[toAccName] = a;
             }
         }
@@ -525,25 +529,24 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         dataListBox_->DeleteAllItems();
         for (const auto& trx : vQIF_trxs_)
         {
-            const std::map <int, wxString> &map = trx;
             wxVector<wxVariant> data;
-            Model_Account::Data* account = Model_Account::instance().getByAccNum(map.at(AccountName));
+            Model_Account::Data* account = Model_Account::instance().getByAccNum(trx.at(AccountName));
             data.push_back(wxVariant(wxString::Format("%i", num + 1)));
             data.push_back(
                     wxVariant(
-                        map.find(AccountName) != map.end()
-                            && (map.at(AccountName).empty() || accountCheckBox_->IsChecked())
+                        trx.find(AccountName) != trx.end()
+                            && (trx.at(AccountName).empty() || accountCheckBox_->IsChecked())
                                 ? m_accountNameStr
                                 : ((accountNumberCheckBox_->IsChecked() && account)
-                                    ? account->ACCOUNTNAME : map.at(AccountName)
+                                    ? account->ACCOUNTNAME : trx.at(AccountName)
                                   )
                     )
             );
 
             wxString dateStr = "";
-            if (map.find(Date) != map.end())
+            if (trx.find(Date) != trx.end())
             {
-                dateStr = map.at(Date);
+                dateStr = trx.at(Date);
                 dateStr.Replace(" ", "");
                 wxDateTime dtdt;
                 wxString::const_iterator end;
@@ -554,25 +557,25 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             }
 
             data.push_back(wxVariant(dateStr));
-            data.push_back(wxVariant(map.find(TransNumber) != map.end() ? map.at(TransNumber) : ""));
-            const wxString type = (map.find(TrxType) != map.end() ? map.at(TrxType) : "");
+            data.push_back(wxVariant(trx.find(TransNumber) != trx.end() ? trx.at(TransNumber) : ""));
+            const wxString type = (trx.find(TrxType) != trx.end() ? trx.at(TrxType) : "");
             if (type == Model_Checking::all_type()[Model_Checking::TRANSFER])
-                data.push_back(wxVariant(map.find(ToAccountName) != map.end() ? map.at(ToAccountName) : ""));
+                data.push_back(wxVariant(trx.find(ToAccountName) != trx.end() ? trx.at(ToAccountName) : ""));
             else
-                data.push_back(wxVariant(map.find(Payee) != map.end() ? map.at(Payee) : ""));
-            data.push_back(wxVariant(map.find(TrxType) != map.end() ? map.at(TrxType) : ""));
+                data.push_back(wxVariant(trx.find(Payee) != trx.end() ? trx.at(Payee) : ""));
+            data.push_back(wxVariant(trx.find(TrxType) != trx.end() ? trx.at(TrxType) : ""));
             
             wxString category;
-            if (map.find(CategorySplit) != map.end()) {
-                category = map.at(CategorySplit);
+            if (trx.find(CategorySplit) != trx.end()) {
+                category = trx.at(CategorySplit);
                 category.Prepend("*").Replace("\n", "|");
             }
             else
-                category = (map.find(Category) != map.end() ? map.at(Category) : "");
+                category = (trx.find(Category) != trx.end() ? trx.at(Category) : "");
             data.push_back(wxVariant(category));
 
-            data.push_back(wxVariant(map.find(Amount) != map.end() ? map.at(Amount) : ""));
-            data.push_back(wxVariant(map.find(Memo) != map.end() ? map.at(Memo) : ""));
+            data.push_back(wxVariant(trx.find(Amount) != trx.end() ? trx.at(Amount) : ""));
+            data.push_back(wxVariant(trx.find(Memo) != trx.end() ? trx.at(Memo) : ""));
 
             dataListBox_->AppendItem(data, (wxUIntPtr) num++);
         }
@@ -587,7 +590,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             wxVector<wxVariant> data;
             const auto &a = acc.second;
             
-            wxString currencySymbol = a.find(Date) == a.end() ? "" : a.at(Date);
+            wxString currencySymbol = a.find(Description) == a.end() ? "" : a.at(Description);
             currencySymbol = currencySymbol.SubString(1, currencySymbol.length() - 2);            
             
             Model_Account::Data* account = (accountNumberCheckBox_->IsChecked())
@@ -595,18 +598,28 @@ void mmQIFImportDialog::refreshTabs(int tabs)
               : account = Model_Account::instance().get(acc.first);
        
             wxString status;
-            if (account) {
+            const wxString type = acc.second.find(AccountType) != acc.second.end() 
+                ? acc.second.at(AccountType) : "";
+
+            if (account)
+            {
                 Model_Currency::Data *curr = Model_Currency::instance().get(account->CURRENCYID);
                 if (curr && curr->CURRENCY_SYMBOL == currencySymbol)
                     status = _("OK");
                 else
                     status = _("Warning");
-                data.push_back(wxVariant(account->ACCOUNTNAME));    
+                if (account->ACCOUNTTYPE != mmExportTransaction::mm_acc_type(type))
+                {
+                    status = _("Warning");
+                }
+                data.push_back(wxVariant(account->ACCOUNTNAME)); 
             }
             else {
                 status = _("Missing");
                 data.push_back(wxVariant(acc.first));
             }
+
+            data.push_back(wxVariant(type));
             data.push_back(wxVariant(currencySymbol));
             data.push_back(wxVariant(status));
             accListBox_->AppendItem(data, (wxUIntPtr) num++);
@@ -644,11 +657,11 @@ void mmQIFImportDialog::refreshTabs(int tabs)
     }
 }
 
-void mmQIFImportDialog::parseDate(const wxString &dateStr, std::map<wxString, wxString> &date_formats_temp)
+void mmQIFImportDialog::parseDate(const wxString &dateStr, std::unordered_map<wxString, wxString> &date_formats_temp)
 {
     if (date_formats_temp.size() == 1) return;
     wxArrayString invalidMask;
-    const std::map<wxString, wxString> date_formats = date_formats_temp;
+    const std::unordered_map<wxString, wxString> date_formats = date_formats_temp;
     for (const auto& date_mask : date_formats)
     {
         const wxString mask = date_mask.first;
@@ -829,7 +842,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             //
             Model_Checking::Data *trx = Model_Checking::instance().create();
             wxString msg;
-            if (compliteTransaction(entry, trx, msg))
+            if (completeTransaction(entry, trx, msg))
             {
                 if (dateFromCheckBox_->IsChecked() && trx->TRANSDATE < begin_date)
                     continue;
@@ -967,7 +980,7 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
     return true;
 }
 
-bool mmQIFImportDialog::compliteTransaction(/*in*/ const std::map <int, wxString> &i
+bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int, wxString> &i
     , /*out*/ Model_Checking::Data* trx, wxString& msg)
 {
     auto t = i;
@@ -1129,23 +1142,23 @@ int mmQIFImportDialog::getOrCreateAccounts()
 
             account->FAVORITEACCT = "TRUE";
             account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
-            //the account type is found on the T (for "Type") line
-            //which overlaps with the T (for "Total Amount") line in transaction records, 
-            //so we find the account type string in the "Amount" field
 
-            account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::CHECKING];
+            const auto type = item.second.find(AccountType) != item.second.end() ? item.second.at(AccountType) : "";
+            account->ACCOUNTTYPE = mmExportTransaction::mm_acc_type(type);
+                //Model_Account::all_type()[Model_Account::CHECKING];
             account->ACCOUNTNAME = item.first;
             account->INITIALBAL = 0;
+
             account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
+            const wxString c = (item.second.find(Description) == item.second.end() ? "" : item.second.at(Description));
             for (const auto& curr : Model_Currency::instance().all())
             {
-                const wxString c = (item.second.find(Date) == item.second.end() ? "" : item.second.at(Date));
                 if (wxString::Format("[%s]", curr.CURRENCY_SYMBOL) == c) {
                     account->CURRENCYID = curr.CURRENCYID;
-                    item.second[curr.CURRENCYID] = curr.CURRENCY_SYMBOL;
                     break;
                 }
             }
+
             accountID = Model_Account::instance().save(account);
             wxString sMsg = wxString::Format(_("Added account: %s"), item.first);
             *log_field_ << sMsg << "\n";
