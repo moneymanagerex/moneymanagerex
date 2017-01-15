@@ -12,14 +12,34 @@ import codecs
 
 # http://stackoverflow.com/questions/196345/how-to-check-if-a-string-in-python-is-in-ascii
 def is_ascii(s):
+    """Class: Check for Ascii String"""
     if isinstance(s, unicode):
         return all(ord(c) < 128 for c in s)
-    return False 
+    return False
 
 def is_trans(s):
-    if not is_ascii(s): return False
-    if not s.replace(" ", "").replace("/","").isalnum(): return False
-    return True
+    """Check translation requirements for cpp"""
+    if isinstance(s, int):
+        return False
+
+    if not is_ascii(s): # it is unicode string
+        return True
+
+    if len(s) > 4 and s[0:4] == "_tr_": # requires wxTRANSLATE for cpp
+        return True
+
+    return False
+
+
+def translation_for(s):
+    """Return the correct translated syntax for c++"""
+    if not is_ascii(s):  # it is unicode string
+        trans_str = 'L"%s"' % s
+    else:
+        trans_str = s.replace("_tr_", "")
+        trans_str = 'wxTRANSLATE("' + trans_str + '")'
+
+    return trans_str
 
 # https://github.com/django/django/blob/master/django/db/backends/sqlite3/introspection.py
 def get_table_list(cursor):
@@ -37,11 +57,11 @@ def _table_info(cursor, name):
     cursor.execute('PRAGMA table_info(%s)' % name)
     # cid, name, type, notnull, dflt_value, pk
     return [{'cid': field[0],
-        'name': field[1],
-        'type': field[2].upper(),
-        'null_ok': not field[3],
-        'pk': field[5]     # undocumented
-        } for field in cursor.fetchall()]
+             'name': field[1],
+             'type': field[2].upper(),
+             'null_ok': not field[3],
+             'pk': field[5]     # undocumented
+            } for field in cursor.fetchall()]
 
 def get_index_list(cursor, tbl_name):
     "Returns a list of table names in the current database."
@@ -75,6 +95,7 @@ base_data_types_function = {
 }
 
 class DB_Table:
+    """ Class: Defines the database table in SQLite3"""
     def __init__(self, table, fields, index, data):
         self._table = table
         self._fields = fields
@@ -83,13 +104,19 @@ class DB_Table:
         self._data = data
 
     def generate_class(self, header, sql):
-        fp = codecs.open('DB_Table_' + self._table.title() + '.h', 'w', 'utf8')
-        fp.write(header + self.to_string(sql))
-        fp.close()
-    
-    def to_string(self, sql = None):
-        
+        """ Write the data to the appropriate .h file"""
+        rfp = codecs.open('DB_Table_' + self._table.title() + '.h', 'w', 'utf-8-sig')
+        rfp.write(header + self.to_string(sql))
+        rfp.close()
+
+    def to_string(self, sql=None):
+        """Create the data for the .h file"""
+        utfc = ''
+        if self._table.upper() == 'CURRENCYFORMATS_V1':
+            utfc = '#pragma execution_character_set("UTF-8")\n'
+
         s = '''
+%s
 #ifndef DB_TABLE_%s_H
 #define DB_TABLE_%s_H
 
@@ -136,8 +163,8 @@ struct DB_Table_%s : public DB_Table
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
-''' % (self._table.upper(), self._table.upper(), self._table, self._table, self._table)
-        
+''' % (utfc, self._table.upper(), self._table.upper(), self._table, self._table, self._table)
+
         s += '''
     /** Creates the database table if the table does not exist*/
     bool ensure(wxSQLite3Database* db)
@@ -187,14 +214,24 @@ struct DB_Table_%s : public DB_Table
         return true;
     }
 ''' % (self._table)
-    
+
         s += '''
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();'''
+
+        rf1, rf2, rf3 = '', '', ''
         for r in self._data:
+            rf2 = ', '.join(["'%s'" if is_trans(i) else "'%s'" % i for i in r])
+            rf3 = ', '.join([translation_for(i) for i in r if is_trans(i)])
+            if rf2.find('%s') >= 0:
+                rf3 = ', ' + rf3
+            rf1 = '"INSERT INTO %s VALUES (%s)"%s' % (self._table, rf2, rf3)
+            if rf2.find('%s') >= 0:
+                rf1 = 'wxString::Format(' + rf1 + ')'
             s += '''
-        db->ExecuteUpdate(wxString::Format("INSERT INTO %s VALUES (%s)", %s));''' % (self._table, ', '.join(["'%s'" if is_trans(i) else "'%s'" % i for i in r]), ', '.join([ 'wxTRANSLATE("' + i + '")' for i in r if is_trans(i)]))
+        db->ExecuteUpdate(%s);''' % (rf1)
+
         s += '''
         db->Commit();
     }
@@ -206,8 +243,9 @@ struct DB_Table_%s : public DB_Table
     { 
         static wxString name() { return "%s"; } 
         explicit %s(const %s &v, OP op = EQUAL): DB_Column<%s>(v, op) {}
-    };''' % (field['name'], base_data_types_reverse[field['type']], field['name']
-            , field['name'], base_data_types_reverse[field['type']], base_data_types_reverse[field['type']])
+    };''' % (field['name'], base_data_types_reverse[field['type']], field['name'],
+             field['name'], base_data_types_reverse[field['type']],
+             base_data_types_reverse[field['type']])
 
         s += '''
     typedef %s PRIMARY;''' % self._primay_key
@@ -216,12 +254,12 @@ struct DB_Table_%s : public DB_Table
     enum COLUMN
     {
         COL_%s = 0''' % self._primay_key.upper()
-        
+
         for index, name in enumerate([field['name'] for field in self._fields if not field['pk']]):
             s += '''
         , COL_%s = %d''' % (name.upper(), index +1)
 
-        s +='''
+        s += '''
     };
 '''
         s += '''
@@ -235,14 +273,14 @@ struct DB_Table_%s : public DB_Table
         for index, name in enumerate([field['name'] for field in self._fields if not field['pk']]):
             s += '''
             case COL_%s: return "%s";''' %(name.upper(), name)
-        s +='''
+        s += '''
             default: break;
         }
         
         return "UNKNOWN";
     }
 '''
-        s +='''
+        s += '''
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
@@ -267,9 +305,11 @@ struct DB_Table_%s : public DB_Table
     ''' % self._table.upper()
         for field in self._fields:
             s += '''
-        %s %s;%s''' % (base_data_types_reverse[field['type']], field['name'], field['pk'] and '//  primary key' or '')
+        %s %s;%s''' % (
+            base_data_types_reverse[field['type']],
+            field['name'], field['pk'] and '//  primary key' or '')
 
-        s +='''
+        s += '''
         int id() const { return %s; }
         void id(int id) { %s = id; }
         bool operator < (const Data& r) const
@@ -281,7 +321,7 @@ struct DB_Table_%s : public DB_Table
             return this->id() < r->id();
         }
 ''' % (self._primay_key, self._primay_key)
-        
+
         s += '''
         explicit Data(Self* table = 0) 
         {
@@ -289,16 +329,16 @@ struct DB_Table_%s : public DB_Table
         '''
 
         for field in self._fields:
-            type = base_data_types_reverse[field['type']]
-            if type == 'wxString': 
+            ftype = base_data_types_reverse[field['type']]
+            if ftype == 'wxString':
                 continue
-            elif type == 'double':
+            elif ftype == 'double':
                 s += '''
             %s = 0.0;''' % field['name']
-            elif type == 'int':
+            elif ftype == 'int':
                 s += '''
             %s = -1;''' % field['name']
-                
+
 
         s += '''
         }
@@ -331,10 +371,10 @@ struct DB_Table_%s : public DB_Table
         bool match(const C &c) const
         {
             return false;
-        }''' 
+        }'''
         for field in self._fields:
-            type = base_data_types_reverse[field['type']]
-            if type == 'wxString':
+            ftype = base_data_types_reverse[field['type']]
+            if ftype == 'wxString':
                 s += '''
         bool match(const Self::%s &in) const
         {
@@ -368,12 +408,12 @@ struct DB_Table_%s : public DB_Table
             else:
                 s += '''
             o[L"%s"] = json::Number(this->%s);''' % (field['name'], field['name'])
-            
-        s +='''
+
+        s += '''
             return 0;
         }'''
 
-        s +='''
+        s += '''
         row_t to_row_t() const
         {
             row_t row;'''
@@ -381,18 +421,18 @@ struct DB_Table_%s : public DB_Table
             s += '''
             row(L"%s") = %s;'''%(field['name'], field['name'])
 
-        s+='''
+        s += '''
             return row;
         }'''
 
-        s +='''
+        s += '''
         void to_template(html_template& t) const
         {'''
         for field in self._fields:
             s += '''
             t(L"%s") = %s;''' % (field['name'], field['name'])
 
-        s +='''
+        s += '''
         }'''
 
         s += '''
@@ -430,7 +470,7 @@ struct DB_Table_%s : public DB_Table
         }
     };
 ''' % (self._table.upper(), self._table.upper())
-        s +='''
+        s += '''
     enum
     {
         NUM_COLUMNS = %d
@@ -443,15 +483,15 @@ struct DB_Table_%s : public DB_Table
     /** Name of the table*/    
     wxString name() const { return "%s"; }
 ''' % self._table
-        
-        s +='''
+
+        s += '''
     DB_Table_%s() : fake_(new Data())
     {
         query_ = "SELECT %s FROM %s ";
     }
 ''' % (self._table, ', '.join([field['name'] for field in self._fields]), self._table)
-        
-        s +='''
+
+        s += '''
     /** Create a new Data record and add to memory table (cache)*/
     Self::Data* create()
     {
@@ -469,7 +509,7 @@ struct DB_Table_%s : public DB_Table
         return entity;
     }
 '''
-        s +='''
+        s += '''
     /**
     * Saves the Data record to the database table.
     * Either create a new record or update the existing record.
@@ -481,9 +521,11 @@ struct DB_Table_%s : public DB_Table
         if (entity->id() <= 0) //  new & insert
         {
             sql = "INSERT INTO %s(%s) VALUES(%s)";
-        }''' % (self._table, ', '.join([field['name'] for field in self._fields if not field['pk']]), ', '.join(['?' for field in self._fields if not field['pk']]))
-        
-        s +='''
+        }''' % (self._table, ', '.join([field['name']\
+                for field in self._fields if not field['pk']]),
+                ', '.join(['?' for field in self._fields if not field['pk']]))
+
+        s += '''
         else
         {
             sql = "UPDATE %s SET %s WHERE %s = ?";
@@ -492,14 +534,15 @@ struct DB_Table_%s : public DB_Table
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
-''' % (self._table, ', '.join([field['name'] + ' = ?' for field in self._fields if not field['pk']]), self._primay_key)
-        
+''' % (self._table, ', '.join([field['name'] + ' = ?'\
+        for field in self._fields if not field['pk']]), self._primay_key)
+
         for index, name in enumerate([field['name'] for field in self._fields if not field['pk']]):
-            s +='''
+            s += '''
             stmt.Bind(%d, entity->%s);'''% (index + 1, name)
-            
-        
-        s +='''
+
+
+        s += '''
             if (entity->id() > 0)
                 stmt.Bind(%d, entity->%s);
 
@@ -530,7 +573,7 @@ struct DB_Table_%s : public DB_Table
         return true;
     }
 ''' % (len(self._fields), self._primay_key, self._table)
-        s +='''
+        s += '''
     /** Remove the Data record from the database and the memory table (cache) */
     bool remove(int id, wxSQLite3Database* db)
     {
@@ -581,7 +624,7 @@ struct DB_Table_%s : public DB_Table
         return false;
     }
 ''' % (self._table, self._primay_key, self._table)
-        
+
         s += '''
     template<typename... Args>
     Self::Data* get_one(const Args& ... args)
@@ -600,8 +643,8 @@ struct DB_Table_%s : public DB_Table
 
         return 0;
     }'''
-        
-        s +='''
+
+        s += '''
     
     /**
     * Search the memory table (Cache) for the data record.
@@ -653,7 +696,7 @@ struct DB_Table_%s : public DB_Table
         return entity;
     }
 '''
-        s +='''
+        s += '''
     /**
     * Return a list of Data records (Data_Set) derived directly from the database.
     * The Data_Set is sorted based on the column number.
@@ -683,11 +726,12 @@ struct DB_Table_%s : public DB_Table
 '''
         s += '''};
 #endif //
-''' 
+'''
         return s
 
 def generate_base_class(header, fields=set):
-    fp = open('DB_Table.h', 'wb')
+    """Generate the base class"""
+    rfp = open('DB_Table.h', 'wb')
     code = header + '''
 #ifndef DB_TABLE_H
 #define DB_TABLE_H
@@ -843,15 +887,16 @@ struct SorterBy%s
     code += '''
 #endif // 
 '''
-    fp = open('db_table.h', 'w')
-    fp.write(code)
-    fp.close
+    rfp = open('db_table.h', 'w')
+    rfp.write(code)
+    rfp.close()
 
 if __name__ == '__main__':
-    header =  '''// -*- C++ -*-
+    header = '''// -*- C++ -*-
 //=============================================================================
 /**
  *      Copyright (c) 2013 - %s Guan Lisheng (guanlisheng@gmail.com)
+ *      Modifications: (c) 2017 Stefano Giorgio
  *
  *      @file
  *
@@ -870,7 +915,7 @@ if __name__ == '__main__':
     try:
         sql_file = sys.argv[1]
         conn = sqlite3.connect(":memory:")
-        conn.row_factory = sqlite3.Row 
+        conn.row_factory = sqlite3.Row
         cur = conn.cursor()
     except:
         print __doc__
@@ -878,16 +923,17 @@ if __name__ == '__main__':
 
     sql = ""
     for line in open(sql_file, 'rb'):
-        sql = sql + line;
+        sql = sql + line
 
     cur.executescript(sql)
-  
+
     all_fields = set()
     for table, sql in get_table_list(cur):
         fields = _table_info(cur, table)
         index = get_index_list(cur, table)
         data = get_data_initializer_list(cur, table)
         table = DB_Table(table, fields, index, data)
+        print 'Generate Table: %s' % table._table
         table.generate_class(header, sql)
         for field in fields:
             all_fields.add(field['name'])
@@ -895,4 +941,3 @@ if __name__ == '__main__':
     generate_base_class(header, all_fields)
 
     conn.close()
-
