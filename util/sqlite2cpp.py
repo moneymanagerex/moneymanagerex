@@ -10,6 +10,8 @@ import datetime
 import sqlite3
 import codecs
 
+db_version_upgrade_file_name = 'database_version_8.sql'
+
 # http://stackoverflow.com/questions/196345/how-to-check-if-a-string-in-python-is-in-ascii
 def is_ascii(s):
     """Class: Check for Ascii String"""
@@ -102,6 +104,44 @@ class DB_Table:
         self._primay_key = [field['name'] for field in self._fields if field['pk']][0]
         self._index = index
         self._data = data
+
+    def generate_currency_table_data(self, sf1, utf_only):
+        """Extract currency table data from table_v1
+           Return string of insert commands
+           Will only get unicode data line when utf_only is true"""
+
+        for row in self._data:
+            values = ', '.join(["'%s'" % i if is_trans(i) else "'%s'" % i for i in row])
+            values = values.replace('_tr_', '')
+            values = 'INSERT OR REPLACE INTO %s VALUES(%s)' % (self._table, values)
+
+            if utf_only and not is_ascii(values): # Write UTF currency data data only
+                sf1 += '''
+%s;''' % (values)
+
+            if not utf_only: # Write all currency data
+                sf1 += '''
+%s;''' % (values)
+
+        return sf1
+
+    def generate_database_version_file(self):
+        """Write database_version data to file
+           Only extract unicode data"""
+        if self._table.upper() == 'CURRENCYFORMATS_V1':
+            rfp = codecs.open(db_version_upgrade_file_name, 'w', 'utf-8')
+            sf1 = ''
+            rfp.write(self.generate_currency_table_data(sf1, True))
+            rfp.close()
+
+    def generate_currency_upgrade_patch(self):
+        """Write currency_table_upgrade_patch file
+           Extract all currency data"""
+        if self._table.upper() == 'CURRENCYFORMATS_V1':
+            rfp = codecs.open('currency_table_upgrade_patch.mmdbg', 'w', 'utf-8')
+            sf1 = '-- MMEX Debug SQL - Update --'
+            rfp.write(self.generate_currency_table_data(sf1, False))
+            rfp.close()
 
     def generate_class(self, header, sql):
         """ Write the data to the appropriate .h file"""
@@ -935,6 +975,8 @@ if __name__ == '__main__':
         table = DB_Table(table, fields, index, data)
         print 'Generate Table: %s' % table._table
         table.generate_class(header, sql)
+        table.generate_database_version_file()
+        table.generate_currency_upgrade_patch()
         for field in fields:
             all_fields.add(field['name'])
 
