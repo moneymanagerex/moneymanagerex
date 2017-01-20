@@ -37,9 +37,9 @@ public:
     virtual void RefreshData() {}
     virtual wxString title() const;
     virtual bool has_date_range() { return false; }
-	virtual bool has_budget_dates() { return false; }
-	virtual bool has_only_years() { return false; }
-	virtual void date_range(const mmDateRange* date_range, int selection) { this->m_date_range = date_range; this->m_date_selection = selection; }
+    virtual bool has_budget_dates() { return false; }
+    virtual bool has_only_years() { return false; }
+    virtual void date_range(const mmDateRange* date_range, int selection) { this->m_date_range = date_range; this->m_date_selection = selection; }
     int getDateSelection() { return this->m_date_selection; }
     void initial_report(bool initial) { m_initial = initial; }
 protected:

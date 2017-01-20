@@ -62,7 +62,7 @@ const wxString  mmReportBudgetingPerformance::DisplayActualMonths(double estimat
 
 bool mmReportBudgetingPerformance::has_only_years()
 {
-	return true;
+    return true;
 }
 
 wxString mmReportBudgetingPerformance::getHTMLText()

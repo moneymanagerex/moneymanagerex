@@ -117,7 +117,7 @@ void mmReportBudget::AdjustDateForEndFinancialYear(wxDateTime& date)
 
 bool mmReportBudget::has_budget_dates()
 {
-	return true;
+    return true;
 }
 
 wxString mmReportBudget::getHTMLText()
