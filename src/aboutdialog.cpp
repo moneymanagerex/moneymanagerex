@@ -114,33 +114,36 @@ void mmAboutDialog::InitControls()
 
     //Read data from file
     wxString filePath = mmex::getPathDoc(mmex::F_CONTRIB);
-    wxFileInputStream input(filePath);
-    wxTextInputStream text(input);
-
-    while (!input.Eof())
+    if (wxFileName::FileExists(filePath))
     {
-        wxString line = text.ReadLine();
-        if (line.StartsWith("============="))
-            line = "<hr>\n";
-        else if (line.StartsWith("##"))
-        {
-            line.Replace("##", "<H3>");
-            line.Append("</H3>\n");
-        }
-        else
-            line << "<br>\n";
+        wxFileInputStream input(filePath);
+        wxTextInputStream text(input);
 
-        if (line.StartsWith("-------------"))
+        while (input.IsOk() && !input.Eof())
         {
-            hb.addText(data[part]);
-            hb.end();
-            data[part] = hb.getHTMLText();
-            ++part;
-            hb.clear();
-            data.Add("");
+            wxString line = text.ReadLine();
+            if (line.StartsWith("============="))
+                line = "<hr>\n";
+            else if (line.StartsWith("##"))
+            {
+                line.Replace("##", "<H3>");
+                line.Append("</H3>\n");
+            }
+            else
+                line << "<br>\n";
+
+            if (line.StartsWith("-------------"))
+            {
+                hb.addText(data[part]);
+                hb.end();
+                data[part] = hb.getHTMLText();
+                ++part;
+                hb.clear();
+                data.Add("");
+            }
+            else
+                data[part] << line;
         }
-        else
-            data[part] << line;
     }
 
     developers_text_->SetPage(data[0]);
