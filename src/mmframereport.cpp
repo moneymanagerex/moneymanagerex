@@ -2,7 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2012 Stefano Giorgio
  Copyright (C) 2013, 2015 Nikolay
- Copyright (C) 2014 James Higley
+ Copyright (C) 2014, 2017 James Higley
  Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
@@ -174,21 +174,19 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         , new mmReportIncomeExpensesMonthlySpecificAccounts()));
 
     //////////////////////////////////////////////////////////////////
-    wxTreeItemId budgetPerformance;
-    wxTreeItemId budgetSetupPerformance;
 
     size_t i = 0;
     for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
     {
         if (!i)
         { // first loop only
-            budgetPerformance = m_nav_tree_ctrl->AppendItem(reports
+			wxTreeItemId budgetPerformance = m_nav_tree_ctrl->AppendItem(reports
                 , _("Budget Performance"), img::PIECHART_PNG, img::PIECHART_PNG);
-            m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance"));
+            m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance", new mmReportBudgetingPerformance()));
 
-            budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(reports
+			wxTreeItemId budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(reports
                 , _("Budget Category Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
-            m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance"));
+            m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance", new mmReportBudgetCategorySummary()));
         }
 
         int id = e.BUDGETYEARID;
@@ -197,17 +195,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         wxTreeItemId bYear = m_nav_tree_ctrl->AppendItem(budgeting, name, img::CALENDAR_PNG, img::CALENDAR_PNG);
         m_nav_tree_ctrl->SetItemData(bYear, new mmTreeItemData(id, true));
 
-        // Only add YEARS for Budget Performance
-        if (name.length() < 5)
-        {
-            wxTreeItemId bYearData = m_nav_tree_ctrl->AppendItem(budgetPerformance
-                , name, img::PIECHART_PNG, img::PIECHART_PNG);
-            m_nav_tree_ctrl->SetItemData(bYearData, new mmTreeItemData(id, true));
-        }
-        wxTreeItemId bYearSetupData = m_nav_tree_ctrl->AppendItem(budgetSetupPerformance
-            , name, img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(bYearSetupData, new mmTreeItemData(id, true));
-        ++i;
+		++i;
     }
 
     ///////////////////////////////////////////////////////////////////

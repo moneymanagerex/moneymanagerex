@@ -1,5 +1,6 @@
 /*************************************************************************
  Copyright (C) 2012 Stefano Giorgio
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -29,8 +30,7 @@
 #include "model/Model_Subcategory.h"
 #include "reports/mmDateRange.h"
 
-mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(int budgetYearID)
-: budgetYearID_(budgetYearID)
+mmReportBudgetCategorySummary::mmReportBudgetCategorySummary()
 {}
 
 mmReportBudgetCategorySummary::~mmReportBudgetCategorySummary()
@@ -62,7 +62,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     int endMonth = wxDateTime::Dec;
 
     long startYear;
-    wxString startYearStr = Model_Budgetyear::instance().Get(budgetYearID_);
+    wxString startYearStr = Model_Budgetyear::instance().Get(m_date_selection);
     startYearStr.ToLong(&startYear);
 
     const wxString& headingStr = AdjustYearValues(startDay, startMonth, startYear, startYearStr);
@@ -88,7 +88,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     //Get statistics
     std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod;
     std::map<int, std::map<int, double> > budgetAmt;
-    Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod, budgetAmt);
+    Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats, &date_range, Option::instance().IgnoreFutureTransactions(),
         false, true, (evaluateTransfer ? &budgetAmt : nullptr));

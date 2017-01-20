@@ -1,5 +1,6 @@
 /*************************************************************************
  Copyright (C) 2012 Stefano Giorgio
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -21,7 +22,7 @@
 #include "mmframe.h"
 #include "htmlbuilder.h"
 
-mmReportBudget::mmReportBudget(): mmPrintableBase("mmReportBudget") 
+mmReportBudget::mmReportBudget(): mmPrintableBase("mmReportBudget")
 {}
 
 mmReportBudget::~mmReportBudget()
@@ -112,6 +113,11 @@ void mmReportBudget::AdjustDateForEndFinancialYear(wxDateTime& date)
         GetFinancialYearValues(day, month);
         SetDateToEndOfYear(day, month, date);
     }
+}
+
+bool mmReportBudget::has_budget_dates()
+{
+	return true;
 }
 
 wxString mmReportBudget::getHTMLText()
