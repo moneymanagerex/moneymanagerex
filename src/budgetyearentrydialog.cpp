@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011,2012 Nikolay & Stefano Giorgio
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -116,6 +117,7 @@ void mmBudgetYearEntryDialog::CreateControls()
         const wxString& budgetYearString = e.BUDGETYEARNAME;
         itemChoice_->Insert(budgetYearString, index++);
     }
+	itemChoice_->SetSelection(0);
     
     wxStaticLine* line = new wxStaticLine ( this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
     itemBoxSizer2->Add(line, 0, wxGROW|wxALL, 5);

@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012
+Copyright (C) 2017 James Higley
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,8 +27,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Subcategory.h"
 #include "reports/mmDateRange.h"
 
-mmReportBudgetingPerformance::mmReportBudgetingPerformance(int budgetYearID)
-: budgetYearID_(budgetYearID)
+mmReportBudgetingPerformance::mmReportBudgetingPerformance()
 {}
 
 mmReportBudgetingPerformance::~mmReportBudgetingPerformance()
@@ -60,6 +60,11 @@ const wxString  mmReportBudgetingPerformance::DisplayActualMonths(double estimat
     return hb.getHTMLText();
 }
 
+bool mmReportBudgetingPerformance::has_only_years()
+{
+	return true;
+}
+
 wxString mmReportBudgetingPerformance::getHTMLText()
 {
     int startDay = 1;
@@ -68,7 +73,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     int endMonth = wxDateTime::Dec;
 
     long startYear;
-    wxString startYearStr = Model_Budgetyear::instance().Get(budgetYearID_);
+    wxString startYearStr = Model_Budgetyear::instance().Get(m_date_selection);
     startYearStr.ToLong(&startYear);
 
     const wxString& headingStr = AdjustYearValues(startDay, startMonth, startYear, startYearStr);
@@ -86,7 +91,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     //Get statistics
     std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod;
     std::map<int, std::map<int, double> > budgetAmt;
-    Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod, budgetAmt);
+    Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats, &date_range, Option::instance().IgnoreFutureTransactions(),
         true, true, (evaluateTransfer ? &budgetAmt : nullptr));

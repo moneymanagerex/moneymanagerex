@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -66,6 +67,7 @@ protected:
 
 private:
     bool cleanup_;
+	bool cleanupmem_;
     wxString htmlreport_;
 public:
     mmGUIFrame *m_frame;
