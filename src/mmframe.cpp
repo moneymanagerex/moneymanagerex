@@ -1071,13 +1071,13 @@ void mmGUIFrame::OnPopupAccountBaseBalance(wxCommandEvent& WXUNUSED(event))
         double acc_base_bal = acc_bal * acc_currency->BASECONVRATE;
 
         wxString message = wxString::Format(
-            wxTRANSLATE("Account: %s\n\n"
-                        "Balance at currency %s: %s\n"
-                        "Balance at currency %s: %s"),
+            _("Account: %s\n\n"
+              "Balance at currency %s: %s\n"
+              "Balance at currency %s: %s"),
             account->ACCOUNTNAME,
             acc_currency->CURRENCY_SYMBOL, Model_Currency::toCurrency(acc_bal, acc_currency),
             base_currency->CURRENCY_SYMBOL, Model_Currency::toCurrency(acc_base_bal));
-        wxMessageBox(message, wxTRANSLATE("Foreign Currency Account Balance"));
+        wxMessageBox(message, _("Foreign Currency Account Balance"));
     }
 }
 
