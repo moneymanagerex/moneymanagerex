@@ -227,6 +227,7 @@ private:
     void OnPopupDeleteAccount(wxCommandEvent& event);
     void OnPopupEditAccount(wxCommandEvent& event);
     void OnPopupReallocateAccount(wxCommandEvent& event);
+    void OnPopupAccountBaseBalance(wxCommandEvent& event);
 
     void OnViewAccountsTemporaryChange(wxCommandEvent& event);
 
@@ -313,6 +314,7 @@ private:
         MENU_TREEPOPUP_MOVE,
         MENU_TREEPOPUP_DELETE,
         MENU_TREEPOPUP_REALLOCATE,
+        MENU_TREEPOPUP_ACCOUNT_BASE_BALANCE,
 
         //
         MENU_TREEPOPUP_ACCOUNT_NEW,

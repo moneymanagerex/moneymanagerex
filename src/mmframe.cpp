@@ -147,6 +147,7 @@ EVT_UPDATE_UI(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinksUpdateUI)
 EVT_MENU(MENU_TREEPOPUP_NEW, mmGUIFrame::OnNewTransaction)
 EVT_MENU(MENU_TREEPOPUP_EDIT, mmGUIFrame::OnPopupEditAccount)
 EVT_MENU(MENU_TREEPOPUP_REALLOCATE, mmGUIFrame::OnPopupReallocateAccount)
+EVT_MENU(MENU_TREEPOPUP_ACCOUNT_BASE_BALANCE, mmGUIFrame::OnPopupAccountBaseBalance)
 EVT_MENU(MENU_TREEPOPUP_DELETE, mmGUIFrame::OnPopupDeleteAccount)
 
 EVT_TREE_ITEM_MENU(wxID_ANY, mmGUIFrame::OnItemMenu)
@@ -1056,6 +1057,30 @@ void mmGUIFrame::OnPopupReallocateAccount(wxCommandEvent& WXUNUSED(event))
         ReallocateAccount(account_id);
     }
 }
+
+void mmGUIFrame::OnPopupAccountBaseBalance(wxCommandEvent& WXUNUSED(event))
+{
+    if (selectedItemData_)
+    {
+        int account_id = selectedItemData_->getData();
+        Model_Account::Data* account = Model_Account::instance().get(account_id);
+        Model_Currency::Data* acc_currency = Model_Account::currency(account);
+        Model_Currency::Data* base_currency = Model_Currency::GetBaseCurrency();
+
+        double acc_bal = Model_Account::balance(account);
+        double acc_base_bal = acc_bal * acc_currency->BASECONVRATE;
+
+        wxString message = wxString::Format(
+            wxTRANSLATE("Account: %s\n\n"
+                        "Balance at currency %s: %s\n"
+                        "Balance at currency %s: %s"),
+            account->ACCOUNTNAME,
+            acc_currency->CURRENCY_SYMBOL, Model_Currency::toCurrency(acc_bal, acc_currency),
+            base_currency->CURRENCY_SYMBOL, Model_Currency::toCurrency(acc_base_bal));
+        wxMessageBox(message, wxTRANSLATE("Foreign Currency Account Balance"));
+    }
+}
+
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
@@ -1132,6 +1157,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 menu.Append(MENU_TREEPOPUP_REALLOCATE, _("&Reallocate Account"));
                 menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account"));
                 menu.AppendSeparator();
+                menu.Append(MENU_TREEPOPUP_ACCOUNT_BASE_BALANCE, _("&Foreign Currency Balance"));
                 menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
                 // Enable menu item only if a website exists for the account.
                 bool webStatus = !account->WEBSITE.IsEmpty();
