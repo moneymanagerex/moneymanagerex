@@ -180,11 +180,11 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     {
         if (!i)
         { // first loop only
-			wxTreeItemId budgetPerformance = m_nav_tree_ctrl->AppendItem(reports
+            wxTreeItemId budgetPerformance = m_nav_tree_ctrl->AppendItem(reports
                 , _("Budget Performance"), img::PIECHART_PNG, img::PIECHART_PNG);
             m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance", new mmReportBudgetingPerformance()));
 
-			wxTreeItemId budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(reports
+            wxTreeItemId budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(reports
                 , _("Budget Category Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
             m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance", new mmReportBudgetCategorySummary()));
         }
@@ -195,7 +195,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         wxTreeItemId bYear = m_nav_tree_ctrl->AppendItem(budgeting, name, img::CALENDAR_PNG, img::CALENDAR_PNG);
         m_nav_tree_ctrl->SetItemData(bYear, new mmTreeItemData(id, true));
 
-		++i;
+        ++i;
     }
 
     ///////////////////////////////////////////////////////////////////

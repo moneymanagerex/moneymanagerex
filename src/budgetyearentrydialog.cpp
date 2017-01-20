@@ -117,7 +117,7 @@ void mmBudgetYearEntryDialog::CreateControls()
         const wxString& budgetYearString = e.BUDGETYEARNAME;
         itemChoice_->Insert(budgetYearString, index++);
     }
-	itemChoice_->SetSelection(0);
+    itemChoice_->SetSelection(0);
     
     wxStaticLine* line = new wxStaticLine ( this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
     itemBoxSizer2->Add(line, 0, wxGROW|wxALL, 5);

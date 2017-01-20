@@ -29,8 +29,8 @@ public:
     mmReportBudgetingPerformance();
     virtual ~mmReportBudgetingPerformance();
 
-	virtual bool has_only_years();
-	virtual wxString getHTMLText();
+    virtual bool has_only_years();
+    virtual wxString getHTMLText();
 
 private:
     const wxString DisplayEstimateMonths(double estimated);

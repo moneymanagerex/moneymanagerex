@@ -55,8 +55,8 @@ public:
     /// sets the start and end dates for a budget month
     void SetBudgetMonth(wxString budgetYearStr, wxDateTime& startDate, wxDateTime& endDate);
 
-	virtual bool has_budget_dates();
-	virtual wxString getHTMLText();
+    virtual bool has_budget_dates();
+    virtual wxString getHTMLText();
 };
 
 #endif // MM_EX_REPORTBUDGETING_H_
