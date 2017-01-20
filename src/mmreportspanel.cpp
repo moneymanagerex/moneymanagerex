@@ -114,6 +114,7 @@ mmReportsPanel::mmReportsPanel(
     : rb_(rb)
     , m_date_ranges(nullptr)
     , cleanup_(cleanupReport)
+	, cleanupmem_(false)
     , m_frame(frame)
 {
     m_all_date_ranges.push_back(new mmCurrentMonth());
@@ -141,11 +142,11 @@ mmReportsPanel::mmReportsPanel(
 
 mmReportsPanel::~mmReportsPanel()
 {
-	if (rb_ && rb_->has_budget_dates() && m_date_ranges)
+	if (cleanupmem_ && m_date_ranges)
 	{
-		for (unsigned int i = 0; i < this->m_date_ranges->GetCount(); i++)
+		for (unsigned int i = 0; i < m_date_ranges->GetCount(); i++)
 		{
-			int *id = reinterpret_cast<int*>(this->m_date_ranges->GetClientData(i));
+			int *id = reinterpret_cast<int*>(m_date_ranges->GetClientData(i));
 			delete id;
 		}
 	}
@@ -248,6 +249,7 @@ void mmReportsPanel::CreateControls()
 		}
 		else if (rb_->has_budget_dates())
 		{
+			cleanupmem_ = true;
 			m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE, wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
 
 			for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))

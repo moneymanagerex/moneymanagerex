@@ -67,6 +67,7 @@ protected:
 
 private:
     bool cleanup_;
+	bool cleanupmem_;
     wxString htmlreport_;
 public:
     mmGUIFrame *m_frame;
