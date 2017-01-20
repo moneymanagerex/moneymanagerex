@@ -141,6 +141,14 @@ mmReportsPanel::mmReportsPanel(
 
 mmReportsPanel::~mmReportsPanel()
 {
+	if (rb_ && rb_->has_budget_dates() && m_date_ranges)
+	{
+		for (unsigned int i = 0; i < this->m_date_ranges->GetCount(); i++)
+		{
+			int *id = reinterpret_cast<int*>(this->m_date_ranges->GetClientData(i));
+			delete id;
+		}
+	}
     if (cleanup_ && rb_)
         delete rb_;
     std::for_each(m_all_date_ranges.begin(), m_all_date_ranges.end(), std::mem_fun(&mmDateRange::destroy));
@@ -180,7 +188,7 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
 			if (rb_->has_date_range())
 				rb_->date_range(static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())), this->m_date_ranges->GetSelection());
 			else if (rb_->has_budget_dates())
-				rb_->date_range(nullptr, reinterpret_cast<int>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
+				rb_->date_range(nullptr, *reinterpret_cast<int*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
 		}
 
         json::Object o;
@@ -250,12 +258,12 @@ void mmReportsPanel::CreateControls()
 					continue;
 
 				int id = e.BUDGETYEARID;
-				m_date_ranges->Append(name, reinterpret_cast<void *>(id));
+				m_date_ranges->Append(name, reinterpret_cast<void *>(new int(id)));
 			}
 			// Set to latest budget
 			m_date_ranges->GetCount();
 			m_date_ranges->SetSelection(m_date_ranges->GetCount() - 1);
-			rb_->date_range(nullptr, reinterpret_cast<int>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
+			rb_->date_range(nullptr, *reinterpret_cast<int*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
 
 			itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
 		}
