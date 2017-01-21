@@ -221,6 +221,7 @@ void mmReportsPanel::CreateControls()
         , wxID_ANY, _("REPORTS"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerHeader->Add(itemStaticText9, 0, wxALL, 1);
+    itemBoxSizerHeader->AddSpacer(20);
 
     if (rb_)
     {
@@ -235,6 +236,7 @@ void mmReportsPanel::CreateControls()
             m_date_ranges->SetSelection(rb_->getDateSelection());
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
             const mmDateRange* date_range = *m_all_date_ranges.begin();
             m_start_date = new wxDatePickerCtrl(itemPanel3, wxID_ANY);
             m_start_date->SetValue(date_range->start_date());
@@ -245,6 +247,7 @@ void mmReportsPanel::CreateControls()
             m_end_date->Enable(false);
 
             itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
             itemBoxSizerHeader->Add(m_end_date, 0, wxALL, 1);
         }
         else if (rb_->has_budget_dates())
@@ -252,6 +255,9 @@ void mmReportsPanel::CreateControls()
             cleanupmem_ = true;
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE, wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
 
+            int prev_selection = rb_->getDateSelection();
+            int cur_selection = 0;
+            bool sel_found = false;
             for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
             {
                 const wxString& name = e.BUDGETYEARNAME;
@@ -261,11 +267,20 @@ void mmReportsPanel::CreateControls()
 
                 int id = e.BUDGETYEARID;
                 m_date_ranges->Append(name, reinterpret_cast<void *>(new int(id)));
+
+                if ((prev_selection != -1) && (!sel_found))
+                {
+                    if (prev_selection == id)
+                        sel_found = true;
+                    else
+                        cur_selection++;
+                }
             }
-            // Set to latest budget
-            m_date_ranges->GetCount();
-            m_date_ranges->SetSelection(m_date_ranges->GetCount() - 1);
-            rb_->date_range(nullptr, *reinterpret_cast<int*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
+            if (prev_selection == -1)
+                m_date_ranges->SetSelection(m_date_ranges->GetCount() - 1); // Set to latest budget
+            else
+                m_date_ranges->SetSelection(cur_selection);
+            rb_->date_range(nullptr, *reinterpret_cast<int*>(m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
         }

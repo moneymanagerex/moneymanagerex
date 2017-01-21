@@ -721,11 +721,22 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData("Budgeting"));
     m_nav_tree_ctrl->SetItemBold(budgeting, true);
 
+    const DB_Table_BUDGETYEAR_V1::Data_Set all_budgets = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
+    bool have_budget = (all_budgets.size() > 0);
+    for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
+    {
+        int id = e.BUDGETYEARID;
+        const wxString& name = e.BUDGETYEARNAME;
+
+        wxTreeItemId bYear = m_nav_tree_ctrl->AppendItem(budgeting, name, img::CALENDAR_PNG, img::CALENDAR_PNG);
+        m_nav_tree_ctrl->SetItemData(bYear, new mmTreeItemData(id, true));
+    }
+
     wxTreeItemId reports = m_nav_tree_ctrl->AppendItem(root, _("Reports"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemBold(reports, true);
     m_nav_tree_ctrl->SetItemData(reports, new mmTreeItemData("Reports"));
 
-    this->updateReportNavigation(reports, budgeting);
+    this->updateReportNavigation(reports, have_budget);
 
     ///////////////////////////////////////////////////////////////////
 

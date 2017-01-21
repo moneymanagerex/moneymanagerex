@@ -107,7 +107,7 @@ private:
     Model_Report::Data_Set m_sub_reports;
 };
 
-void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting)
+void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
 {
     //////////////////////////////////////////////////////////////////
     wxTreeItemId myusage = m_nav_tree_ctrl->AppendItem(reports
@@ -175,27 +175,15 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
 
     //////////////////////////////////////////////////////////////////
 
-    size_t i = 0;
-    for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
+    if (budget)
     {
-        if (!i)
-        { // first loop only
-            wxTreeItemId budgetPerformance = m_nav_tree_ctrl->AppendItem(reports
-                , _("Budget Performance"), img::PIECHART_PNG, img::PIECHART_PNG);
-            m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance", new mmReportBudgetingPerformance()));
+        wxTreeItemId budgetPerformance = m_nav_tree_ctrl->AppendItem(reports
+            , _("Budget Performance"), img::PIECHART_PNG, img::PIECHART_PNG);
+        m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance", new mmReportBudgetingPerformance()));
 
-            wxTreeItemId budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(reports
-                , _("Budget Category Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
-            m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance", new mmReportBudgetCategorySummary()));
-        }
-
-        int id = e.BUDGETYEARID;
-        const wxString& name = e.BUDGETYEARNAME;
-
-        wxTreeItemId bYear = m_nav_tree_ctrl->AppendItem(budgeting, name, img::CALENDAR_PNG, img::CALENDAR_PNG);
-        m_nav_tree_ctrl->SetItemData(bYear, new mmTreeItemData(id, true));
-
-        ++i;
+        wxTreeItemId budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(reports
+            , _("Budget Category Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
+        m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance", new mmReportBudgetCategorySummary()));
     }
 
     ///////////////////////////////////////////////////////////////////
