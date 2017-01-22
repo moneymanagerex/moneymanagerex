@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012
+Copyright (C) 2017 James Higley
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,7 +28,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
 mmReportIncomeExpenses::mmReportIncomeExpenses()
-    : mmPrintableBaseSpecificAccounts(_("Income vs Expenses"))
+    : mmPrintableBase(_("Income vs Expenses"))
 {
 }
 
@@ -36,6 +37,11 @@ mmReportIncomeExpenses::~mmReportIncomeExpenses()
 }
 
 bool mmReportIncomeExpenses::has_date_range()
+{
+    return true;
+}
+
+bool mmReportIncomeExpenses::has_accounts()
 {
     return true;
 }
@@ -69,6 +75,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.addDivContainer();
     hb.addHeader(2, this->title());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.addHeader(3, headerMsg);
     hb.addDateNow();
 
     std::pair<double, double> income_expenses_pair;
@@ -154,24 +161,8 @@ wxString mmReportIncomeExpenses::getHTMLText()
     return "";
 }
 
-mmReportIncomeExpensesSpecificAccounts::mmReportIncomeExpensesSpecificAccounts()
-    : mmReportIncomeExpenses()
-{
-}
-
-mmReportIncomeExpensesSpecificAccounts::~mmReportIncomeExpensesSpecificAccounts()
-{
-}
-
-wxString mmReportIncomeExpensesSpecificAccounts::getHTMLText()
-{
-    if (m_initial)
-        getSpecificAccounts();
-    return mmReportIncomeExpenses::getHTMLText();
-}
-
 mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly()
-    : mmPrintableBaseSpecificAccounts(_("Income vs Expenses"))
+    : mmPrintableBase(_("Income vs Expenses"))
 {
 }
 
@@ -180,6 +171,11 @@ mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 }
 
 bool mmReportIncomeExpensesMonthly::has_date_range()
+{
+    return true;
+}
+
+bool mmReportIncomeExpensesMonthly::has_accounts()
 {
     return true;
 }
@@ -293,20 +289,4 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
     Model_Report::outputReportFile(hb.getHTMLText());
     return "";
-}
-
-mmReportIncomeExpensesMonthlySpecificAccounts::mmReportIncomeExpensesMonthlySpecificAccounts()
-    : mmReportIncomeExpensesMonthly()
-{
-}
-
-mmReportIncomeExpensesMonthlySpecificAccounts::~mmReportIncomeExpensesMonthlySpecificAccounts()
-{
-}
-
-wxString mmReportIncomeExpensesMonthlySpecificAccounts::getHTMLText()
-{
-    if (m_initial)
-        getSpecificAccounts();
-    return mmReportIncomeExpensesMonthly::getHTMLText();
 }

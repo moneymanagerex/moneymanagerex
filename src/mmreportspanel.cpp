@@ -100,11 +100,13 @@ private:
 enum
 {
     ID_CHOICE_DATE_RANGE = wxID_HIGHEST + 1,
+    ID_CHOICE_ACCOUNTS = wxID_HIGHEST + 2,
 };
 
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
-wxEND_EVENT_TABLE()
+    EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
+    wxEND_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
     mmPrintableBase* rb, bool cleanupReport, wxWindow *parent, mmGUIFrame* frame,
@@ -249,6 +251,7 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             itemBoxSizerHeader->Add(m_end_date, 0, wxALL, 1);
+            itemBoxSizerHeader->AddSpacer(20);
         }
         else if (rb_->has_budget_dates())
         {
@@ -284,6 +287,21 @@ void mmReportsPanel::CreateControls()
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
         }
+
+        if (rb_->has_accounts())
+        {
+            m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
+            m_accounts->Append(_("All Accounts"));
+            m_accounts->Append(_("Specific Accounts"));
+            for (const auto& e : Model_Account::instance().TYPE_CHOICES)
+            {
+                if (e.first != Model_Account::INVESTMENT)
+                    m_accounts->Append(e.second);
+            }
+            m_accounts->SetSelection(rb_->getAccountSelection());
+
+            itemBoxSizerHeader->Add(m_accounts, 0, wxALL, 1);
+        }
     }
 
     browser_ = wxWebView::New(this, mmID_BROWSER);
@@ -316,5 +334,24 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
             browser_->LoadURL(getURL(mmex::getReportIndex()));
         else
             browser_->SetPage(error, "");
+    }
+}
+
+void mmReportsPanel::OnAccountChanged(wxCommandEvent& /*event*/)
+{
+    if (rb_)
+    {
+        int sel = m_accounts->GetSelection();
+        if (sel != rb_->getAccountSelection())
+        {
+            wxString accountSelection = m_accounts->GetString(sel);
+            rb_->accounts(sel, accountSelection);
+
+            wxString error;
+            if (this->saveReportText(error, false))
+                browser_->LoadURL(getURL(mmex::getReportIndex()));
+            else
+                browser_->SetPage(error, "");
+        }
     }
 }

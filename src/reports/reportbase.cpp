@@ -23,6 +23,65 @@
 #include "model/Model_Account.h"
 #include "mmSimpleDialogs.h"
 
+mmPrintableBase::mmPrintableBase(const wxString& title)
+    : m_title(title)
+    , m_date_range(nullptr)
+    , m_initial(true)
+    , m_date_selection(0)
+    , m_account_selection(0)
+    , accountArray_(nullptr)
+{
+}
+
+mmPrintableBase::~mmPrintableBase()
+{
+    if (accountArray_)
+        delete accountArray_;
+}
+
+void mmPrintableBase::accounts(int selection, wxString& name)
+{
+    if (m_account_selection != selection)
+    {
+        m_account_selection = selection;
+        if (accountArray_)
+        {
+            delete accountArray_;
+            accountArray_ = nullptr;
+        }
+
+        switch (selection)
+        {
+        case 0: // All Accounts
+            break;
+        case 1: // Select Accounts
+            {
+                wxArrayString* accountSelections = new wxArrayString();
+                auto accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL));
+
+                mmMultiChoiceDialog mcd(0, _("Choose Accounts"), m_title, accounts);
+
+                if (mcd.ShowModal() == wxID_OK)
+                {
+                    for (const auto &i : mcd.GetSelections())
+                        accountSelections->Add(accounts.at(i).ACCOUNTNAME);
+                }
+
+                accountArray_ = accountSelections;
+            }
+            break;
+        default: // All of Account type
+            {
+                wxArrayString* accountSelections = new wxArrayString();
+                auto accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(name));
+                for (const auto &i : accounts)
+                    accountSelections->Add(i.ACCOUNTNAME);
+                accountArray_ = accountSelections;
+            }
+        }
+    }
+}
+
 wxString mmPrintableBase::title() const
 {
     if (!m_date_range) 
@@ -42,7 +101,7 @@ wxString mmGeneralReport::getHTMLText()
     return Model_Report::instance().get_html(this->m_report);
 }
 
-mmPrintableBaseSpecificAccounts::mmPrintableBaseSpecificAccounts(const wxString& report_name, int sort_column)
+mmPrintableBaseSpecificAccounts::mmPrintableBaseSpecificAccounts(const wxString& report_name)
 : mmPrintableBase(report_name)
 , accountArray_(0)
 {

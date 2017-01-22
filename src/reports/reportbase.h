@@ -31,22 +31,27 @@ class wxArrayString;
 class mmPrintableBase
 {
 public:
-    mmPrintableBase(const wxString& title): m_title(title), m_date_range(nullptr), m_initial(true), m_date_selection(0) {}
-    virtual ~mmPrintableBase() {}
+    mmPrintableBase(const wxString& title);
+    virtual ~mmPrintableBase();
     virtual wxString getHTMLText() = 0;
     virtual void RefreshData() {}
     virtual wxString title() const;
     virtual bool has_date_range() { return false; }
     virtual bool has_budget_dates() { return false; }
     virtual bool has_only_years() { return false; }
+    virtual bool has_accounts() { return false; }
     virtual void date_range(const mmDateRange* date_range, int selection) { this->m_date_range = date_range; this->m_date_selection = selection; }
+    void accounts(int selection, wxString& name);
     int getDateSelection() { return this->m_date_selection; }
+    int getAccountSelection() { return this->m_account_selection; }
     void initial_report(bool initial) { m_initial = initial; }
 protected:
     wxString m_title;
     const mmDateRange* m_date_range;
     bool m_initial;
     int m_date_selection;
+    int m_account_selection;
+    const wxArrayString* accountArray_;
 
 public:
     static const char * m_template;
@@ -67,7 +72,7 @@ private:
 class mmPrintableBaseSpecificAccounts : public mmPrintableBase
 {
 public:
-    explicit mmPrintableBaseSpecificAccounts(const wxString& report_name, int sort_column = 0);
+    explicit mmPrintableBaseSpecificAccounts(const wxString& report_name);
     virtual ~mmPrintableBaseSpecificAccounts();
 
 protected:

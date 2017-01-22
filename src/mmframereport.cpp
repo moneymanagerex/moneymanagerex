@@ -160,19 +160,6 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
         , new mmTreeItemData("Income vs Expenses - Monthly"
         , new mmReportIncomeExpensesMonthly()));
 
-    ///////////////////////////////////////////////////////////////////
-
-    wxTreeItemId incexpOverTimeSpecificAccounts = m_nav_tree_ctrl->AppendItem(reports
-        , _("Income vs Expenses - Specific Accounts"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(incexpOverTimeSpecificAccounts, new mmTreeItemData("Income vs Expenses - Specific Accounts"
-        , new mmReportIncomeExpensesSpecificAccounts()));
-
-    wxTreeItemId incexpOverTimeLastYearSpecificAccounts = m_nav_tree_ctrl->AppendItem(incexpOverTimeSpecificAccounts
-        , _("Monthly"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(incexpOverTimeLastYearSpecificAccounts
-        , new mmTreeItemData("Income vs Expenses - Monthly - Specific Accounts"
-        , new mmReportIncomeExpensesMonthlySpecificAccounts()));
-
     //////////////////////////////////////////////////////////////////
 
     if (budget)

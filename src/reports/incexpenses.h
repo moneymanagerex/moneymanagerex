@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006-2012
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -21,38 +22,24 @@
 
 #include "reportbase.h"
 
-class mmReportIncomeExpenses : public mmPrintableBaseSpecificAccounts
+class mmReportIncomeExpenses : public mmPrintableBase
 {
 public:
     mmReportIncomeExpenses();
     virtual ~mmReportIncomeExpenses();
     virtual bool has_date_range();
-    virtual wxString getHTMLText();
-};
-
-class mmReportIncomeExpensesSpecificAccounts : public mmReportIncomeExpenses
-{
-public:
-    mmReportIncomeExpensesSpecificAccounts();
-    virtual ~mmReportIncomeExpensesSpecificAccounts();
+    virtual bool has_accounts();
     virtual wxString getHTMLText();
 };
 
 /////////////////////////////////////////////////////////////////////////////////////
-class mmReportIncomeExpensesMonthly : public mmPrintableBaseSpecificAccounts
+class mmReportIncomeExpensesMonthly : public mmPrintableBase
 {
 public:
     mmReportIncomeExpensesMonthly();
     virtual ~mmReportIncomeExpensesMonthly();
     virtual bool has_date_range();
-    virtual wxString getHTMLText();
-};
-
-class mmReportIncomeExpensesMonthlySpecificAccounts : public mmReportIncomeExpensesMonthly
-{
-public:
-    mmReportIncomeExpensesMonthlySpecificAccounts();
-    virtual ~mmReportIncomeExpensesMonthlySpecificAccounts();
+    virtual bool has_accounts();
     virtual wxString getHTMLText();
 };
 
