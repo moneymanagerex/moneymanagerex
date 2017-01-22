@@ -20,7 +20,6 @@
 #pragma once
 
 #include "util.h"
-#include <wx/listctrl.h>
 #include "wx/event.h"
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>

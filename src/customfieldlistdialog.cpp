@@ -253,7 +253,7 @@ void mmCustomFieldListDialog::OnMenuSelected(wxCommandEvent& event)
 
 void mmCustomFieldListDialog::OnMagicButton(wxCommandEvent& event)
 {
-    wxDataViewEvent evt(wxEVT_NULL);
+    wxDataViewEvent evt;
     OnItemRightClick(evt);
 }
 
