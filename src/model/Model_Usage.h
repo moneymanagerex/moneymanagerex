@@ -71,7 +71,6 @@ public:
     std::wstring to_string() const;
 
 public:
-    void pageview(const std::string& documentPath, const std::string& documentTitle);
     void pageview(const wxString& documentPath, const wxString& documentTitle);
     void pageview(const wxWindow* window);
 };
