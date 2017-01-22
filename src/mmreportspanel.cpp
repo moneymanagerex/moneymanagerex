@@ -342,7 +342,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& /*event*/)
     if (rb_)
     {
         int sel = m_accounts->GetSelection();
-        if (sel != rb_->getAccountSelection())
+        if ((sel == 1) || (sel != rb_->getAccountSelection()))
         {
             wxString accountSelection = m_accounts->GetString(sel);
             rb_->accounts(sel, accountSelection);

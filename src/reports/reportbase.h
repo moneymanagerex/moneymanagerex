@@ -52,6 +52,7 @@ protected:
     int m_date_selection;
     int m_account_selection;
     const wxArrayString* accountArray_;
+    bool m_only_active;
 
 public:
     static const char * m_template;
@@ -67,18 +68,6 @@ public:
 
 private:
     const Model_Report::Data* m_report;
-};
-
-class mmPrintableBaseSpecificAccounts : public mmPrintableBase
-{
-public:
-    explicit mmPrintableBaseSpecificAccounts(const wxString& report_name);
-    virtual ~mmPrintableBaseSpecificAccounts();
-
-protected:
-    const wxArrayString* accountArray_;
-
-    void getSpecificAccounts();
 };
 
 #include "html_template.h"

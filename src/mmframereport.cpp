@@ -176,27 +176,12 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
     ///////////////////////////////////////////////////////////////////
     wxTreeItemId cashFlow = m_nav_tree_ctrl->AppendItem(reports
         , _("Cash Flow"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(cashFlow, new mmTreeItemData("Cash Flow", new mmReportCashFlowAllAccounts()));
-
-    wxTreeItemId cashflowWithBankAccounts = m_nav_tree_ctrl->AppendItem(cashFlow
-        , _("Cash Flow - With Bank Accounts"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(cashflowWithBankAccounts, new mmTreeItemData("Cash Flow - With Bank Accounts"
-        , new mmReportCashFlowBankAccounts()));
-
-    wxTreeItemId cashflowWithTermAccounts = m_nav_tree_ctrl->AppendItem(cashFlow
-        , _("Cash Flow - With Term Accounts"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(cashflowWithTermAccounts, new mmTreeItemData("Cash Flow - With Term Accounts"
-        , new mmReportCashFlowTermAccounts()));
-
-    wxTreeItemId cashflowSpecificAccounts = m_nav_tree_ctrl->AppendItem(cashFlow
-        , _("Cash Flow - Specific Accounts"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(cashflowSpecificAccounts, new mmTreeItemData("Cash Flow - Specific Accounts"
-        , new mmReportCashFlowSpecificAccounts()));
+    m_nav_tree_ctrl->SetItemData(cashFlow, new mmTreeItemData("Cash Flow", new mmReportCashFlow(0)));
 
     wxTreeItemId cashflowSpecificAccountsDaily = m_nav_tree_ctrl->AppendItem(cashFlow
-        , _("Daily Cash Flow - Specific Accounts"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(cashflowSpecificAccountsDaily, new mmTreeItemData("Daily Cash Flow - Specific Accounts"
-        , new mmReportDailyCashFlowSpecificAccounts()));
+        , _("Daily Cash Flow"), img::PIECHART_PNG, img::PIECHART_PNG);
+    m_nav_tree_ctrl->SetItemData(cashflowSpecificAccountsDaily, new mmTreeItemData("Daily Cash Flow"
+        , new mmReportCashFlow(1)));
 
     ///////////////////////////////////////////////////////////////////
 
