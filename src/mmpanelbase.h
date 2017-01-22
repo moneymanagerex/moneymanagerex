@@ -21,11 +21,10 @@
 
 #include "util.h"
 #include "wx/event.h"
+#include <wx/listctrl.h>
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
 //----------------------------------------------------------------------------
-
-class wxListItemAttr;
 
 struct PANEL_COLUMN
 {
