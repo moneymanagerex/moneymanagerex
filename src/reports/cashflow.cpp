@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012
+Copyright (C) 2017 James Higley
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,27 +31,21 @@ static const wxString COLORS [] = {
 };
 
 mmReportCashFlow::mmReportCashFlow(int cashflowreporttype)
-    : mmPrintableBaseSpecificAccounts(_("Cash Flow"))
-    , activeTermAccounts_(false)
-    , activeBankAccounts_(false)
+    : mmPrintableBase(_("Cash Flow"))
     , cashFlowReportType_(cashflowreporttype)
-    , m_cashflowSpecificAccounts(false)
     , today_(wxDateTime::Today())
     , colorId_(0)
-{}
+{
+    m_only_active = true;
+}
 
 mmReportCashFlow::~mmReportCashFlow()
 {
 }
 
-void mmReportCashFlow::activateTermAccounts() 
+bool mmReportCashFlow::has_accounts()
 {
-    activeTermAccounts_ = true;
-}
-
-void mmReportCashFlow::activateBankAccounts() 
-{
-    activeBankAccounts_ = true;
+    return true;
 }
 
 wxString mmReportCashFlow::getHTMLText()
@@ -72,14 +67,6 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         if (accountArray_)
         {
             if (wxNOT_FOUND == accountArray_->Index(account.ACCOUNTNAME)) continue;
-        }
-        else
-        {
-            if (! activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM)
-                continue;
-            if (!activeBankAccounts_ && (Model_Account::type(account) != Model_Account::INVESTMENT && Model_Account::type(account) != Model_Account::TERM))
-                continue;
-            //wxLogDebug("%s - %s", account.ACCOUNTNAME, account.ACCOUNTTYPE);
         }
 
         const Model_Currency::Data* currency = Model_Account::currency(account);
@@ -236,12 +223,7 @@ wxString mmReportCashFlow::getHTMLText_i()
     } 
     else 
     {
-        if (activeBankAccounts_ && activeTermAccounts_)
-            accountsMsg << _("All Accounts");
-        else if (activeBankAccounts_ && !activeTermAccounts_)
-            accountsMsg << _("All Bank Accounts");
-        else if (activeTermAccounts_ && !activeBankAccounts_)
-            accountsMsg << _("All Term Accounts");
+        accountsMsg << _("All Accounts");
     }
     
     if (accountsMsg.empty())
@@ -299,46 +281,4 @@ wxString mmReportCashFlow::getHTMLText_i()
 
     Model_Report::outputReportFile(hb.getHTMLText());
     return "";
-}
-
-//-----------------------------------------------------------------------------
-mmReportCashFlowAllAccounts::mmReportCashFlowAllAccounts()
-: mmReportCashFlow(0)
-{
-    this->activateBankAccounts();
-    this->activateTermAccounts();
-}
-
-mmReportCashFlowBankAccounts::mmReportCashFlowBankAccounts()
-: mmReportCashFlow(0)
-{
-    this->activateBankAccounts();
-}
-
-mmReportCashFlowTermAccounts::mmReportCashFlowTermAccounts()
-: mmReportCashFlow(0)
-{
-    this->activateTermAccounts();
-}
-
-//-----------------------------------------------------------------------------
-mmReportCashFlowSpecificAccounts::mmReportCashFlowSpecificAccounts()
-: mmReportCashFlow(0)
-{
-    this->cashFlowReportType_ = YEARLY;
-    this->m_cashflowSpecificAccounts = true;
-}
-
-wxString mmReportCashFlowSpecificAccounts::getHTMLText()
-{
-    this->getSpecificAccounts();
-    return this->getHTMLText_i();
-}
-
-//-----------------------------------------------------------------------------
-mmReportDailyCashFlowSpecificAccounts::mmReportDailyCashFlowSpecificAccounts()
-: mmReportCashFlowSpecificAccounts()
-{
-    this->cashFlowReportType_ = DAILY;
-    this->m_cashflowSpecificAccounts = true;
 }

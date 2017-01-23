@@ -55,11 +55,13 @@ public:
 
 public:
     void OnDateRangeChanged(wxCommandEvent& event);
+    void OnAccountChanged(wxCommandEvent& event);
 
 protected:
     std::vector<mmDateRange*> m_all_date_ranges;
     wxChoice* m_date_ranges;
     wxDatePickerCtrl *m_start_date, *m_end_date;
+    wxChoice* m_accounts;
     wxWebView * browser_;
     mmPrintableBase* rb_;
 

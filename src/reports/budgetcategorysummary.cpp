@@ -31,7 +31,9 @@
 #include "reports/mmDateRange.h"
 
 mmReportBudgetCategorySummary::mmReportBudgetCategorySummary()
-{}
+{
+    m_date_selection = -1;
+}
 
 mmReportBudgetCategorySummary::~mmReportBudgetCategorySummary()
 {}

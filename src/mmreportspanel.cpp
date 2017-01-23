@@ -100,11 +100,13 @@ private:
 enum
 {
     ID_CHOICE_DATE_RANGE = wxID_HIGHEST + 1,
+    ID_CHOICE_ACCOUNTS = wxID_HIGHEST + 2,
 };
 
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
-wxEND_EVENT_TABLE()
+    EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
+    wxEND_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
     mmPrintableBase* rb, bool cleanupReport, wxWindow *parent, mmGUIFrame* frame,
@@ -221,6 +223,7 @@ void mmReportsPanel::CreateControls()
         , wxID_ANY, _("REPORTS"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerHeader->Add(itemStaticText9, 0, wxALL, 1);
+    itemBoxSizerHeader->AddSpacer(20);
 
     if (rb_)
     {
@@ -235,6 +238,7 @@ void mmReportsPanel::CreateControls()
             m_date_ranges->SetSelection(rb_->getDateSelection());
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
             const mmDateRange* date_range = *m_all_date_ranges.begin();
             m_start_date = new wxDatePickerCtrl(itemPanel3, wxID_ANY);
             m_start_date->SetValue(date_range->start_date());
@@ -245,13 +249,18 @@ void mmReportsPanel::CreateControls()
             m_end_date->Enable(false);
 
             itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
             itemBoxSizerHeader->Add(m_end_date, 0, wxALL, 1);
+            itemBoxSizerHeader->AddSpacer(20);
         }
         else if (rb_->has_budget_dates())
         {
             cleanupmem_ = true;
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE, wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
 
+            int prev_selection = rb_->getDateSelection();
+            int cur_selection = 0;
+            bool sel_found = false;
             for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
             {
                 const wxString& name = e.BUDGETYEARNAME;
@@ -261,13 +270,37 @@ void mmReportsPanel::CreateControls()
 
                 int id = e.BUDGETYEARID;
                 m_date_ranges->Append(name, reinterpret_cast<void *>(new int(id)));
+
+                if ((prev_selection != -1) && (!sel_found))
+                {
+                    if (prev_selection == id)
+                        sel_found = true;
+                    else
+                        cur_selection++;
+                }
             }
-            // Set to latest budget
-            m_date_ranges->GetCount();
-            m_date_ranges->SetSelection(m_date_ranges->GetCount() - 1);
-            rb_->date_range(nullptr, *reinterpret_cast<int*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
+            if (prev_selection == -1)
+                m_date_ranges->SetSelection(m_date_ranges->GetCount() - 1); // Set to latest budget
+            else
+                m_date_ranges->SetSelection(cur_selection);
+            rb_->date_range(nullptr, *reinterpret_cast<int*>(m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
+        }
+
+        if (rb_->has_accounts())
+        {
+            m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
+            m_accounts->Append(_("All Accounts"));
+            m_accounts->Append(_("Specific Accounts"));
+            for (const auto& e : Model_Account::instance().TYPE_CHOICES)
+            {
+                if (e.first != Model_Account::INVESTMENT)
+                    m_accounts->Append(e.second);
+            }
+            m_accounts->SetSelection(rb_->getAccountSelection());
+
+            itemBoxSizerHeader->Add(m_accounts, 0, wxALL, 1);
         }
     }
 
@@ -301,5 +334,24 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
             browser_->LoadURL(getURL(mmex::getReportIndex()));
         else
             browser_->SetPage(error, "");
+    }
+}
+
+void mmReportsPanel::OnAccountChanged(wxCommandEvent& /*event*/)
+{
+    if (rb_)
+    {
+        int sel = m_accounts->GetSelection();
+        if ((sel == 1) || (sel != rb_->getAccountSelection()))
+        {
+            wxString accountSelection = m_accounts->GetString(sel);
+            rb_->accounts(sel, accountSelection);
+
+            wxString error;
+            if (this->saveReportText(error, false))
+                browser_->LoadURL(getURL(mmex::getReportIndex()));
+            else
+                browser_->SetPage(error, "");
+        }
     }
 }
