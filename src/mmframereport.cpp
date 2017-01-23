@@ -132,13 +132,13 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
         , new mmReportCategoryExpensesComes()));
     
     wxTreeItemId categs = m_nav_tree_ctrl->AppendItem(reports
-        , _("Categories"), img::PIECHART_PNG, img::PIECHART_PNG);
+        , _("Categories (Summary)"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(categs
         , new mmTreeItemData("Categories"
         , new mmReportCategoryExpensesCategories()));
 
-    wxTreeItemId categsOverTime = m_nav_tree_ctrl->AppendItem(categs
-        , _("Over Time"), img::PIECHART_PNG, img::PIECHART_PNG);
+    wxTreeItemId categsOverTime = m_nav_tree_ctrl->AppendItem(reports
+        , _("Categories (Monthly)"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(categsOverTime
         , new mmTreeItemData("Categories - Over Time"
         , new mmReportCategoryOverTimePerformance()));
@@ -149,13 +149,13 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
         , new mmTreeItemData("Payee Report"
         , new mmReportPayeeExpenses()));
 
-    wxTreeItemId incexpOverTime = m_nav_tree_ctrl->AppendItem(reports, _("Income vs Expenses")
+    wxTreeItemId incexpOverTime = m_nav_tree_ctrl->AppendItem(reports, _("Income vs Expenses (Summary)")
         , img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(incexpOverTime, new mmTreeItemData("Income vs Expenses"
         , new mmReportIncomeExpenses()));
 
-    wxTreeItemId incexpMonthly = m_nav_tree_ctrl->AppendItem(incexpOverTime
-        , _("Monthly"), img::PIECHART_PNG, img::PIECHART_PNG);
+    wxTreeItemId incexpMonthly = m_nav_tree_ctrl->AppendItem(reports
+        , _("Income vs Expenses (Monthly)"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(incexpMonthly
         , new mmTreeItemData("Income vs Expenses - Monthly"
         , new mmReportIncomeExpensesMonthly()));
@@ -175,13 +175,13 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
 
     ///////////////////////////////////////////////////////////////////
     wxTreeItemId cashFlow = m_nav_tree_ctrl->AppendItem(reports
-        , _("Cash Flow"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(cashFlow, new mmTreeItemData("Cash Flow", new mmReportCashFlow(0)));
+        , _("Cash Flow (Monthly)"), img::PIECHART_PNG, img::PIECHART_PNG);
+    m_nav_tree_ctrl->SetItemData(cashFlow, new mmTreeItemData("Cash Flow", new mmReportCashFlow(mmReportCashFlow::MONTHLY)));
 
-    wxTreeItemId cashflowSpecificAccountsDaily = m_nav_tree_ctrl->AppendItem(cashFlow
-        , _("Daily Cash Flow"), img::PIECHART_PNG, img::PIECHART_PNG);
+    wxTreeItemId cashflowSpecificAccountsDaily = m_nav_tree_ctrl->AppendItem(reports
+        , _("Cash Flow (Daily)"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(cashflowSpecificAccountsDaily, new mmTreeItemData("Daily Cash Flow"
-        , new mmReportCashFlow(1)));
+        , new mmReportCashFlow(mmReportCashFlow::DAILY)));
 
     ///////////////////////////////////////////////////////////////////
 
@@ -192,12 +192,12 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
     //////////////////////////////////////////////////////////////////
 
     wxTreeItemId stocksReport = m_nav_tree_ctrl->AppendItem(reports
-        , _("Stocks Report"), img::PIECHART_PNG, img::PIECHART_PNG);
+        , _("Stocks Report (Performance)"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(stocksReport, new mmTreeItemData("Stocks Report",
         new mmReportChartStocks()));
 
-    wxTreeItemId stocksReportSummary = m_nav_tree_ctrl->AppendItem(stocksReport
-        , _("Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
+    wxTreeItemId stocksReportSummary = m_nav_tree_ctrl->AppendItem(reports
+        , _("Stocks Report (Summary)"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(stocksReportSummary, new mmTreeItemData("Summary of Stocks"
         , new mmReportSummaryStocks()));
 
