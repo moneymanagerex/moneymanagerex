@@ -382,7 +382,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick( wxCommandEvent& event )
         toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
     }
 
-    if (accountCheckBox_->IsChecked())
+    if (accountCheckBox_->IsChecked() && accountDropDown_->GetSelection() < 0)
         accountDropDown_->SetSelection(0);
 
     event.Skip();
