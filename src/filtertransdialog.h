@@ -42,46 +42,28 @@ public:
 
     virtual int ShowModal();
 
-    bool checkAll(const Model_Checking::Data &tran, int accountID, const std::map<int, Model_Splittransaction::Data_Set>& split);
-    bool checkAll(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& split);
+    bool checkAll(const Model_Checking::Data &tran, int accountID
+        , const std::map<int, Model_Splittransaction::Data_Set>& split);
+    bool checkAll(const Model_Billsdeposits::Data &tran
+        , const std::map<int, Model_Budgetsplittransaction::Data_Set>& split);
     void getDescription(mmHTMLBuilder &hb);
     bool somethingSelected();
     void setAccountToolTip(const wxString& tip) const;
-    bool getStatusCheckBox()
-    {
-        return statusCheckBox_->IsChecked();
-    }
-    bool getAccountCheckBox()
-    {
-        return accountCheckBox_->GetValue();
-    }
-    int getAccountID()
-    {
-        return refAccountID_;
-    }
-    bool getCategoryCheckBox()
-    {
-        return categoryCheckBox_->IsChecked();
-    }
-    bool getSimilarStatus() { return bSimilarCategoryStatus_; }
-    int getCategId() { return categID_; }
-    int getSubCategId() { return subcategID_; }
+    bool getStatusCheckBox();
+    bool getAccountCheckBox();
+    int getAccountID();
+    bool getCategoryCheckBox();
+  
+    bool getSimilarStatus();
+    int getCategId();
+    int getSubCategId();
 
 private:
     void BuildPayeeList();
 
-    bool getDateRangeCheckBox()
-    {
-        return dateRangeCheckBox_->GetValue();
-    }
-    bool getAmountRangeCheckBoxMin()
-    {
-        return amountRangeCheckBox_->GetValue() && !amountMinEdit_->GetValue().IsEmpty();
-    }
-    bool getAmountRangeCheckBoxMax()
-    {
-        return amountRangeCheckBox_->GetValue() && !amountMaxEdit_->GetValue().IsEmpty();
-    }
+    bool getDateRangeCheckBox();
+    bool getAmountRangeCheckBoxMin();
+    bool getAmountRangeCheckBoxMax();
     double getAmountMax();
     double getAmountMin();
 
@@ -92,42 +74,19 @@ private:
 
     wxString getStatus() const;
 
-    wxString getNumber()
-    {
-        return transNumberEdit_->GetValue();
-    }
-    wxString getNotes()
-    {
-        return notesEdit_->GetValue();
-    }
+    wxString getNumber();
+    wxString getNotes();
 
 private:
     void OnDateChanged(wxDateEvent& event);
     /// Returns true if Status string matches.
     bool compareStatus(const wxString& itemStatus) const;
 
-    bool getTypeCheckBox()
-    {
-        return typeCheckBox_->IsChecked();
-    }
-
+    bool getTypeCheckBox();
     bool allowType(const wxString& typeState, bool sameAccount) const;
-
-    bool getPayeeCheckBox()
-    {
-        return payeeCheckBox_->IsChecked();
-    }
-
-    bool getNumberCheckBox()
-    {
-        return transNumberCheckBox_->IsChecked();
-    }
-
-    bool getNotesCheckBox()
-    {
-        return notesCheckBox_->IsChecked();
-    }
-
+    bool getPayeeCheckBox();
+    bool getNumberCheckBox();
+    bool getNotesCheckBox();
     void setPresettings(const wxString& view);
     void clearSettings();
 

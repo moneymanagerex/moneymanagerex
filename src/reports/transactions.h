@@ -36,9 +36,8 @@ public:
 private:
     void Run(mmFilterTransactionsDialog* transDialog);
     Model_Checking::Full_Data_Set trans_;
-    bool ignoreDate_;
-    int refAccountID_;
-    mmFilterTransactionsDialog* transDialog_;
+    int m_refAccountID;
+    mmFilterTransactionsDialog* m_transDialog;
 };
 
 #endif // MM_EX_REPORTTRANSACT_H_
