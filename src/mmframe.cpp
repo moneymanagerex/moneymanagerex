@@ -180,6 +180,8 @@ EVT_MENU(MENU_RECENT_FILES_CLEAR, mmGUIFrame::OnClearRecentFiles)
 EVT_MENU(MENU_VIEW_TOGGLE_FULLSCREEN, mmGUIFrame::OnToggleFullScreen)
 EVT_CLOSE(mmGUIFrame::OnClose)
 
+EVT_MENU(MENU_TREEPOPUP_HIDE_SHOW_REPORT, mmGUIFrame::OnHideShowReport)
+
 wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
@@ -1193,6 +1195,10 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         {
             wxMenu menu;
             menu.Append(wxID_VIEW_LIST, _("General Report Manager"));
+            wxMenu *hideShowReport = new wxMenu;
+            hideShowReport->Append(MENU_TREEPOPUP_HIDE_SHOW_REPORT, _("Report Name"), wxEmptyString, wxITEM_CHECK);
+            hideShowReport->Check(MENU_TREEPOPUP_HIDE_SHOW_REPORT, !Option::instance().HideReport(0));
+            menu.AppendSubMenu(hideShowReport, _("Hide/Show Report"));
             PopupMenu(&menu, pt);
         }
         else if (iData->getString() == "item@Bank Accounts" ||
@@ -2892,3 +2898,7 @@ void mmGUIFrame::OnClose(wxCloseEvent&)
     Destroy();
 }
 
+void mmGUIFrame::OnHideShowReport(wxCommandEvent& WXUNUSED(event))
+{
+    Option::instance().HideReport(0, !Option::instance().HideReport(0));
+}

@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -46,6 +47,7 @@ Option::Option()
     , m_sharePrecision(4)
     , m_html_font_size(100)
     , m_ico_size(16)
+    , m_hideReport(0)
 {}
 
 //----------------------------------------------------------------------------
@@ -109,6 +111,8 @@ void Option::LoadOptions(bool include_infotable)
     {
         m_ico_size = 24;
     }
+
+    m_hideReport = Model_Setting::instance().GetIntSetting("HIDE_REPORT", 0);
 }
 
 void Option::DateFormat(const wxString& dateformat)
@@ -406,4 +410,29 @@ const int Option::AccountImageId(int account_id, bool def)
         wxASSERT(false);
     }
     return selectedImage;
+}
+
+void Option::HideReport(int report, bool value)
+{
+    if ((report >= 0) && (report < 32))
+    {
+        int bitField = 1 << report;
+        if (value)
+            m_hideReport |= bitField;
+        else
+            m_hideReport &= ~bitField;
+
+        Model_Setting::instance().Set("HIDE_REPORT", m_hideReport);
+    }
+}
+
+bool Option::HideReport(int report)
+{
+    bool hideReport = false;
+    if ((report >= 0) && (report < 32))
+    {
+        int bitField = 1 << report;
+        hideReport = ((m_hideReport & bitField) != 0);
+    }
+    return hideReport;
 }

@@ -115,10 +115,15 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
     m_nav_tree_ctrl->SetItemData(myusage, new mmTreeItemData(new mmReportMyUsage()));
 
     //////////////////////////////////////////////////////////////////
-    wxTreeItemId reportsSummary = m_nav_tree_ctrl->AppendItem(reports
-        , _("Monthly Summary of Accounts"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(reportsSummary, new mmTreeItemData("Monthly Summary of Accounts"
+    wxTreeItemId reportsSummaryMonthly = m_nav_tree_ctrl->AppendItem(reports
+        , _("Summary of Accounts (Monthly)"), img::PIECHART_PNG, img::PIECHART_PNG);
+    m_nav_tree_ctrl->SetItemData(reportsSummaryMonthly, new mmTreeItemData("Monthly Summary of Accounts"
         , new mmReportSummaryByDate(this, 0)));
+
+    wxTreeItemId reportsSummaryYearly = m_nav_tree_ctrl->AppendItem(reports
+        , _("Summary of Accounts (Yearly)"), img::PIECHART_PNG, img::PIECHART_PNG);
+    m_nav_tree_ctrl->SetItemData(reportsSummaryYearly, new mmTreeItemData("Yearly Summary of Accounts"
+        , new mmReportSummaryByDate(this, 1)));
 
     wxTreeItemId categsGoes = m_nav_tree_ctrl->AppendItem(reports
         , _("Where the Money Goes"), img::PIECHART_PNG, img::PIECHART_PNG);
