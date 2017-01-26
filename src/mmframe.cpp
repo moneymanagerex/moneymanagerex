@@ -2348,7 +2348,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     if (!m_db) return;
     if (Model_Account::instance().all().empty()) return;
 
-    mmFilterTransactionsDialog* dlg = new mmFilterTransactionsDialog(this);
+    mmFilterTransactionsDialog* dlg = new mmFilterTransactionsDialog(this, gotoAccountID_);
     if (dlg->ShowModal() == wxID_OK)
     {
         mmReportTransactions* rs = new mmReportTransactions(dlg->getAccountID(), dlg);

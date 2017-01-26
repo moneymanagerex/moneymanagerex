@@ -168,8 +168,8 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
     const auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
     {
-        if (!dlg->checkAll(tran, m_refAccountID, splits)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
+        if (!dlg->checkAll(full_tran, m_refAccountID)) continue;
         full_tran.PAYEENAME = full_tran.real_payee_name(m_refAccountID);
         if (m_transDialog->getCategoryCheckBox() && full_tran.has_split()) 
         {
