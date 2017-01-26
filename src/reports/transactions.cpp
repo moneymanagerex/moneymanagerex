@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011, 2012 Nikolay & Stefano Giorgio
- Copyright (C) 2015 Nikolay
+ Copyright (C) 2015, 2017 Nikolay Akimov
 
  This program is free software; you can redistribute transcation and/or modify
  transcation under the terms of the GNU General Public License as published by
@@ -29,19 +29,18 @@
 
 mmReportTransactions::mmReportTransactions(int refAccountID, mmFilterTransactionsDialog* transDialog)
     : mmPrintableBase("mmReportTransactions")
-    , refAccountID_(refAccountID)
-    , transDialog_(transDialog)
-    , ignoreDate_(false)
+    , m_refAccountID(refAccountID)
+    , m_transDialog(transDialog)
     , trans_()
 {
-    Run(transDialog_);
+    Run(m_transDialog);
 }
 
 mmReportTransactions::~mmReportTransactions()
 {
     // incase the user wants to print a report, we maintain the transaction dialog
     // until we are finished with the report.
-    transDialog_->Destroy();
+    m_transDialog->Destroy();
 }
 
 wxString mmReportTransactions::getHTMLText()
@@ -49,10 +48,11 @@ wxString mmReportTransactions::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    wxString transHeading = _("Transaction List ");
-    const Model_Account::Data* acc = Model_Account::instance().get(refAccountID_);
-    if (acc)
-        transHeading = wxString::Format(_("Transaction List for Account: %s"), acc->ACCOUNTNAME);
+    const auto account = Model_Account::instance().get(m_transDialog->getAccountID());
+    //wxASSERT(account);
+    const wxString transHeading = account
+        ? wxString::Format(_("Transaction List for Account: %s"), account->ACCOUNTNAME)
+        : _("Transaction List ");
 
     hb.addHeader(2, transHeading);
 
@@ -79,10 +79,12 @@ wxString mmReportTransactions::getHTMLText()
     hb.startTbody();
 
     double total = 0;
-    Model_Account::Data* account = nullptr;
-    bool monoAcc = transDialog_->getAccountCheckBox();
-    if (monoAcc)
-        account = Model_Account::instance().get(transDialog_->getAccountID());
+    bool monoAcc = m_transDialog->getAccountCheckBox() && account;
+
+    const Model_Currency::Data* currency = account
+        ? Model_Account::currency(account)
+        : Model_Currency::GetBaseCurrency();
+
     const wxString& AttRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 
     // Display the data for each row
@@ -90,7 +92,8 @@ wxString mmReportTransactions::getHTMLText()
     {
         hb.startTableRow();
         hb.addTableCellDate(transaction.TRANSDATE);
-        hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID), transaction.ACCOUNTNAME);
+        hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)
+            , transaction.ACCOUNTNAME);
         hb.addTableCell(transaction.PAYEENAME);
         hb.addTableCell(transaction.STATUS);
         hb.addTableCell(transaction.CATEGNAME);
@@ -116,43 +119,43 @@ wxString mmReportTransactions::getHTMLText()
         hb.addTableCell(AttachmentsLink + transaction.NOTES);
 
         // Get the exchange rate for the account
-        if (!monoAcc)
+        if (monoAcc)
         {
-            account = Model_Account::instance().get(transaction.ACCOUNTID);
-            if (account)
+            double amount = Model_Checking::balance(transaction, account->ACCOUNTID);
+            hb.addCurrencyCell(amount, currency);
+            total += amount;
+        }
+        else
+        {
+            const auto acc = Model_Account::instance().get(transaction.ACCOUNTID);
+            if (acc)
             {
-                const Model_Currency::Data* currency = Model_Account::currency(account);
+                const Model_Currency::Data* curr = Model_Account::currency(acc);
                 double convRate = 1;
-                if (currency)
-                    convRate = currency->BASECONVRATE;
+                if (curr)
+                    convRate = curr->BASECONVRATE;
 
-                double amount = Model_Checking::balance(transaction, transaction.ACCOUNTID) * convRate;
-                hb.addCurrencyCell(amount);
-                total += amount;
+                double amount = Model_Checking::balance(transaction
+                    , transaction.ACCOUNTID) * convRate;
+                hb.addCurrencyCell(amount, curr);
+                total += amount * convRate;
             }
             else
                 hb.addTableCell("");
         }
-        else
-        {
-            double amount = Model_Checking::balance(transaction, account->ACCOUNTID);
-            const Model_Currency::Data* currency = Model_Account::currency(account);
-            hb.addCurrencyCell(amount, currency);
-            total += amount;
-        }
         hb.endTableRow();
-
     }
     hb.endTbody();
 
     // display the total balance.
-    const wxString totalStr = Model_Currency::toCurrency(total, (monoAcc ? Model_Account::currency(account) : Model_Currency::GetBaseCurrency()));
+    const wxString totalStr = Model_Currency::toCurrency(total
+        , (monoAcc ? Model_Account::currency(account) : Model_Currency::GetBaseCurrency()));
     const std::vector<wxString> v{ totalStr };
     hb.addTotalRow(_("Total Amount: "), 9, v);
 
     hb.endTable();
 
-    transDialog_->getDescription(hb);
+    m_transDialog->getDescription(hb);
     hb.endDiv();
     hb.end();
 
@@ -165,10 +168,11 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
     const auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
     {
-        if (!dlg->checkAll(tran, refAccountID_, splits)) continue;
+        if (!dlg->checkAll(tran, m_refAccountID, splits)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
-        full_tran.PAYEENAME = full_tran.real_payee_name(refAccountID_);
-        if (transDialog_->getCategoryCheckBox() && full_tran.has_split()) {
+        full_tran.PAYEENAME = full_tran.real_payee_name(m_refAccountID);
+        if (m_transDialog->getCategoryCheckBox() && full_tran.has_split()) 
+        {
             full_tran.CATEGNAME.clear();
             full_tran.TRANSAMOUNT = 0;
             for (const auto& split : full_tran.m_splits)
@@ -177,8 +181,9 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
                     , Model_Category::full_name(split.CATEGID, split.SUBCATEGID)
                     , wxString::Format("%.2f", split.SPLITTRANSAMOUNT));
                 full_tran.CATEGNAME.Append(split_info);
-                if (split.CATEGID != transDialog_->getCategId() ) continue;
-                if (split.SUBCATEGID != transDialog_->getSubCategId() && !transDialog_->getSimilarStatus()) continue;
+                if (split.CATEGID != m_transDialog->getCategId() ) continue;
+                if (split.SUBCATEGID != m_transDialog->getSubCategId() 
+                    && !m_transDialog->getSimilarStatus()) continue;
 
                 full_tran.TRANSAMOUNT += split.SPLITTRANSAMOUNT;
             }

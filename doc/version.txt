@@ -1,5 +1,14 @@
 Version History of Money Manager Ex
 
+1.3.2 (tba)
+- Fix: Programs and Features icon in Windows (SF Issue 972)
+- Fix: Albanian lang file
+- Fix: Prevent Crash on Home page Issue #1019
+- Fix: Hebrew, Hungarian Translations
+- Fix: Displayed Latin Currency symbols Issue #739
+- Fix: Crash on startup when files not found Issue #1033
+- Fix: Transaction Filter Crash, Account checked, none supplied. Issue #1043
+
 1.3.1 (Jan 7, 2017)
 - Fix: Automatic database backup on start-up.
 - Fix: Crash after adding first level category.

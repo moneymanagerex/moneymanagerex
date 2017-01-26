@@ -14,9 +14,9 @@
 ; Copyright (C) 2012-2017 Nikolay
 
 ; Note: MyWinVersionInfo - use numbers only
-#define MyWinVersionInfo "1.3.1"
+#define MyWinVersionInfo "1.3.2"
 
-#define MyAppVersion "1.3.1"
+#define MyAppVersion "1.3.2"
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
 #define MyAppPublisher "Money Manager EX"
@@ -31,10 +31,10 @@
 #define my_output_root "..\..\mmex_release"
 
 ; Note: This is the path where MMEX.exe will be found
-#define my_output_path "\mmex_1.3.1_win32_portable\MoneyManagerEx"
+#define my_output_path "\mmex_1.3.2_win32_portable\MoneyManagerEx"
 
 ; Note: Any revision mods can be added here
-#define my_output_filename "mmex_1.3.1_win32_setup"
+#define my_output_filename "mmex_1.3.2_win32_setup"
 
 ;===============================================================================
 
@@ -42,9 +42,6 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-
-; Development ID
-;AppId={{37153D93-6D91-4763-82BB-0DF646211ED0}
 
 ; Release ID
 AppId={{2C48DC11-E113-4912-8AFC-366D1918101E}

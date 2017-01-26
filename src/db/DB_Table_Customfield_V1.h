@@ -1,7 +1,8 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2016 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
+ *      Modifications: (c) 2017 Stefano Giorgio
  *
  *      @file
  *
@@ -10,10 +11,11 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-07-28 23:49:41.803626.
+ *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
  *          DO NOT EDIT!
  */
 //=============================================================================
+
 
 #ifndef DB_TABLE_CUSTOMFIELD_V1_H
 #define DB_TABLE_CUSTOMFIELD_V1_H
@@ -69,7 +71,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELD_V1 (FIELDID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */, DESCRIPTION TEXT COLLATE NOCASE, TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoice, MultiChoice */, PROPERTIES TEXT NOT NULL)");
+                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELD_V1 (FIELDID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */, DESCRIPTION TEXT COLLATE NOCASE, TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoiche, MultiChoiche */, PROPERTIES TEXT NOT NULL)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
