@@ -531,7 +531,8 @@ bool mmFilterTransactionsDialog::getAmountRangeCheckBox()
         && (!amountMinEdit_->GetValue().IsEmpty()) || !amountMaxEdit_->GetValue().IsEmpty());
 }
 
-bool mmFilterTransactionsDialog::checkAmount(const Model_Checking::Full_Data &tran)
+template<class MODEL, class FULL_DATA>
+bool mmFilterTransactionsDialog::checkAmount(const FULL_DATA& tran)
 {
     bool ok = true, split_ok = false;
     if (!amountMinEdit_->GetValue().IsEmpty() && m_min_amount > tran.TRANSAMOUNT)
@@ -553,11 +554,6 @@ bool mmFilterTransactionsDialog::checkAmount(const Model_Checking::Full_Data &tr
     }
 
     return ok || split_ok;
-}
-
-bool mmFilterTransactionsDialog::checkAmount(const Model_Billsdeposits::Full_Data &tran)
-{
-    return m_min_amount <= tran.TRANSAMOUNT;
 }
 
 void mmFilterTransactionsDialog::OnButtonSaveClick( wxCommandEvent& /*event*/ )
@@ -723,28 +719,43 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Full_Data &tran,
         ok = false;
     else if (getDateRangeCheckBox() && (tran.TRANSDATE < m_begin_date || tran.TRANSDATE > m_end_date))
         ok = false;
-    else if (getPayeeCheckBox() && !checkPayee<Model_Checking>(tran)) ok = false;
-    else if (getCategoryCheckBox() && !checkCategory<Model_Checking>(tran)) ok = false;
-    else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
-    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false;
-    else if (getAmountRangeCheckBox() && !checkAmount(tran)) ok = false;
-    else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;
-    else if (getNotesCheckBox() && !tran.NOTES.Lower().Contains(getNotes().Lower())) ok = false;
+    else if (getPayeeCheckBox() && !checkPayee<Model_Checking>(tran))
+        ok = false;
+    else if (getCategoryCheckBox() && !checkCategory<Model_Checking>(tran))
+        ok = false;
+    else if (getStatusCheckBox() && !compareStatus(tran.STATUS))
+        ok = false;
+    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) 
+        ok = false;
+    else if (getAmountRangeCheckBox() && !checkAmount<Model_Checking>(tran))
+        ok = false;
+    else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) 
+        ok = false;
+    else if (getNotesCheckBox() && !tran.NOTES.Lower().Contains(getNotes().Lower())) 
+        ok = false;
     return ok;
 }
 bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Full_Data &tran)
 {
     bool ok = true;
-    if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID)) ok = false;
+    if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID)) 
+        ok = false;
     else if (getDateRangeCheckBox() && (tran.TRANSDATE < m_begin_date && tran.TRANSDATE > m_end_date))
         ok = false;
-    else if (getPayeeCheckBox() && !checkPayee<Model_Billsdeposits>(tran)) ok = false;
-    else if (getCategoryCheckBox() && !checkCategory<Model_Billsdeposits>(tran)) ok = false;
-    else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
-    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, true)) ok = false;
-    else if (getAmountRangeCheckBox() && checkAmount(tran)) ok = false;
-    else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;
-    else if (getNotesCheckBox() && !tran.NOTES.Lower().Contains(getNotes().Lower())) ok = false;
+    else if (getPayeeCheckBox() && !checkPayee<Model_Billsdeposits>(tran)) 
+        ok = false;
+    else if (getCategoryCheckBox() && !checkCategory<Model_Billsdeposits>(tran))
+        ok = false;
+    else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) 
+        ok = false;
+    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, true))
+        ok = false;
+    else if (getAmountRangeCheckBox() && !checkAmount<Model_Billsdeposits>(tran))
+        ok = false;
+    else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER)
+        ok = false;
+    else if (getNotesCheckBox() && !tran.NOTES.Lower().Contains(getNotes().Lower()))
+        ok = false;
     return ok;
 }
 

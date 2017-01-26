@@ -61,15 +61,13 @@ private:
 
     bool getDateRangeCheckBox();
     bool getAmountRangeCheckBox();
-    bool checkAmount(const Model_Billsdeposits::Full_Data &tran);
-    bool checkAmount(const Model_Checking::Full_Data &tran);
 
     template<class MODEL, class FULL_DATA = typename MODEL::Full_Data>
     bool checkPayee(const FULL_DATA &tran);
-    //bool checkPayee(const Model_Checking::Full_Data &tran);
     template<class MODEL, class FULL_DATA = typename MODEL::Full_Data>
     bool checkCategory(const FULL_DATA &tran);
-    //bool checkCategory(const Model_Checking::Full_Data &tran);
+    template<class MODEL, class FULL_DATA = typename MODEL::Full_Data>
+    bool checkAmount(const FULL_DATA &tran);
 
     wxString getStatus() const;
 
