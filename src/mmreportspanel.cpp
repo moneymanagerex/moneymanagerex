@@ -164,6 +164,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
+    wxDateTime start = wxDateTime::UNow();
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -175,7 +176,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     else
         browser_->SetPage(error, "");
 
-    Model_Usage::instance().pageview(this);
+    Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
     return TRUE;
 }

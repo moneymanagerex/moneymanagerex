@@ -175,6 +175,7 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
     wxPanel::Create(parent, winid, pos, size, style, name);
 
     this->windowsFreezeThaw();
+    wxDateTime start = wxDateTime::UNow();
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -188,7 +189,7 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
     initVirtualListControl();
 
     this->windowsFreezeThaw();
-    Model_Usage::instance().pageview(this);
+    Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
     return TRUE;
 }

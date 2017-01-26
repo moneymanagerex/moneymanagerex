@@ -498,6 +498,7 @@ bool mmStocksPanel::Create(wxWindow *parent
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
+    wxDateTime start = wxDateTime::UNow();
 
     strLastUpdate_ = Model_Infotable::instance().GetStringInfo("STOCKS_LAST_REFRESH_DATETIME", "");
     this->windowsFreezeThaw();
@@ -513,7 +514,7 @@ bool mmStocksPanel::Create(wxWindow *parent
     GetSizer()->SetSizeHints(this);
 
     this->windowsFreezeThaw();
-    Model_Usage::instance().pageview(this);
+    Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
     return TRUE;
 }
 

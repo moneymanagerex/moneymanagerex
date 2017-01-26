@@ -124,6 +124,7 @@ bool mmCheckingPanel::Create(
     if (! wxPanel::Create(parent, winid, pos, size, style, name)) return false;
 
     this->windowsFreezeThaw();
+    wxDateTime start = wxDateTime::UNow();
     CreateControls();
 
     m_transFilterActive = false;
@@ -138,7 +139,7 @@ bool mmCheckingPanel::Create(
     GetSizer()->SetSizeHints(this);
     this->windowsFreezeThaw();
 
-    Model_Usage::instance().pageview(this);
+    Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
     return true;
 }
