@@ -109,85 +109,6 @@ private:
 
 void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
 {
-    //////////////////////////////////////////////////////////////////
-    wxTreeItemId myusage = m_nav_tree_ctrl->AppendItem(reports
-        , _("My Usage"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(myusage, new mmTreeItemData(new mmReportMyUsage()));
-
-    //////////////////////////////////////////////////////////////////
-    wxTreeItemId reportsSummaryMonthly = m_nav_tree_ctrl->AppendItem(reports
-        , _("Summary of Accounts (Monthly)"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(reportsSummaryMonthly, new mmTreeItemData("Monthly Summary of Accounts"
-        , new mmReportSummaryByDate(this, 0)));
-
-    wxTreeItemId reportsSummaryYearly = m_nav_tree_ctrl->AppendItem(reports
-        , _("Summary of Accounts (Yearly)"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(reportsSummaryYearly, new mmTreeItemData("Yearly Summary of Accounts"
-        , new mmReportSummaryByDate(this, 1)));
-
-    wxTreeItemId categsGoes = m_nav_tree_ctrl->AppendItem(reports
-        , _("Where the Money Goes"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(categsGoes, new mmTreeItemData("Where the Money Goes"
-        , new mmReportCategoryExpensesGoes()));
-
-    wxTreeItemId categsComes = m_nav_tree_ctrl->AppendItem(reports
-        , _("Where the Money Comes From"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(categsComes
-        , new mmTreeItemData("Where the Money Comes From"
-        , new mmReportCategoryExpensesComes()));
-    
-    wxTreeItemId categs = m_nav_tree_ctrl->AppendItem(reports
-        , _("Categories (Summary)"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(categs
-        , new mmTreeItemData("Categories"
-        , new mmReportCategoryExpensesCategories()));
-
-    wxTreeItemId categsOverTime = m_nav_tree_ctrl->AppendItem(reports
-        , _("Categories (Monthly)"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(categsOverTime
-        , new mmTreeItemData("Categories - Over Time"
-        , new mmReportCategoryOverTimePerformance()));
-
-    wxTreeItemId payeesOverTime = m_nav_tree_ctrl->AppendItem(reports
-        , _("Payees"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(payeesOverTime
-        , new mmTreeItemData("Payee Report"
-        , new mmReportPayeeExpenses()));
-
-    wxTreeItemId incexpOverTime = m_nav_tree_ctrl->AppendItem(reports, _("Income vs Expenses (Summary)")
-        , img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(incexpOverTime, new mmTreeItemData("Income vs Expenses"
-        , new mmReportIncomeExpenses()));
-
-    wxTreeItemId incexpMonthly = m_nav_tree_ctrl->AppendItem(reports
-        , _("Income vs Expenses (Monthly)"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(incexpMonthly
-        , new mmTreeItemData("Income vs Expenses - Monthly"
-        , new mmReportIncomeExpensesMonthly()));
-
-    //////////////////////////////////////////////////////////////////
-
-    if (budget)
-    {
-        wxTreeItemId budgetPerformance = m_nav_tree_ctrl->AppendItem(reports
-            , _("Budget Performance"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance", new mmReportBudgetingPerformance()));
-
-        wxTreeItemId budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(reports
-            , _("Budget Category Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance", new mmReportBudgetCategorySummary()));
-    }
-
-    ///////////////////////////////////////////////////////////////////
-    wxTreeItemId cashFlow = m_nav_tree_ctrl->AppendItem(reports
-        , _("Cash Flow (Monthly)"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(cashFlow, new mmTreeItemData("Cash Flow", new mmReportCashFlow(mmReportCashFlow::MONTHLY)));
-
-    wxTreeItemId cashflowSpecificAccountsDaily = m_nav_tree_ctrl->AppendItem(reports
-        , _("Cash Flow (Daily)"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(cashflowSpecificAccountsDaily, new mmTreeItemData("Daily Cash Flow"
-        , new mmReportCashFlow(mmReportCashFlow::DAILY)));
-
     ///////////////////////////////////////////////////////////////////
 
     wxTreeItemId transactionList = m_nav_tree_ctrl->AppendItem(reports
@@ -196,22 +117,44 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
 
     //////////////////////////////////////////////////////////////////
 
-    wxTreeItemId stocksReport = m_nav_tree_ctrl->AppendItem(reports
-        , _("Stocks Report (Performance)"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(stocksReport, new mmTreeItemData("Stocks Report",
-        new mmReportChartStocks()));
-
-    wxTreeItemId stocksReportSummary = m_nav_tree_ctrl->AppendItem(reports
-        , _("Stocks Report (Summary)"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(stocksReportSummary, new mmTreeItemData("Summary of Stocks"
-        , new mmReportSummaryStocks()));
-
-    //////////////////////////////////////////////////////////////////
-
-    wxTreeItemId forecastReport = m_nav_tree_ctrl->AppendItem(reports
-        , _("Forecast Report"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(forecastReport, new mmTreeItemData("Forecast Report"
-        , new mmReportForecast()));
+    wxTreeItemId reportGroup;
+    wxString reportGroupName;
+    for (int r = 0; r < Option::instance().ReportCount(); r++)
+    {
+        int image = Option::instance().ReportImage(r);
+        wxString groupName = Option::instance().ReportGroup(r);
+        bool no_group = groupName.IsEmpty();
+        if (reportGroupName != groupName && !no_group)
+        {
+            bool bAdd = true;
+            for (int s = r; (s < Option::instance().ReportCount()) && bAdd; s++)
+            {
+                if (Option::instance().ReportGroup(s) == groupName)
+                {
+                    bAdd = !Option::instance().HideReport(s);
+                    if (bAdd && Option::instance().BudgetReport(r))
+                        bAdd = budget;
+                }
+                else
+                    break;
+            }
+            if (bAdd)
+            {
+                reportGroup = m_nav_tree_ctrl->AppendItem(reports, groupName, image, image);
+                m_nav_tree_ctrl->SetItemData(reportGroup, new mmTreeItemData(groupName));
+                reportGroupName = groupName;
+            }
+        }
+        bool bShow = !Option::instance().HideReport(r);
+        if (bShow && Option::instance().BudgetReport(r))
+            bShow = budget;
+        if (bShow)
+        {
+            wxString reportName = Option::instance().ReportName(r);
+            wxTreeItemId item = m_nav_tree_ctrl->AppendItem(no_group ? reports : reportGroup, reportName, image, image);
+            m_nav_tree_ctrl->SetItemData(item, new mmTreeItemData(reportName, Option::instance().ReportFunction(r)));
+        }
+    }
 
     //////////////////////////////////////////////////////////////////
     

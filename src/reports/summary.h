@@ -50,12 +50,11 @@ private:
 class mmReportSummaryByDate : public mmPrintableBase
 {
 public:
-    mmReportSummaryByDate(mmGUIFrame* frame, int mode);
+    mmReportSummaryByDate(int mode);
     wxString getHTMLText();
 
 private:
     int mode_;
-    mmGUIFrame* frame_;
 
     typedef std::map<wxDate, double> balanceMap;
 };
