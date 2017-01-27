@@ -22,6 +22,8 @@
 
 #include "defs.h"
 
+class mmPrintableBase;
+
 /*
    mmOptions caches the options for MMEX
    so that we don't hit the DB that often
@@ -34,6 +36,7 @@ public:
 
 public:
     Option();
+    ~Option();
     static Option& instance();
     void LoadOptions(bool include_infotable = true);
 
@@ -110,6 +113,12 @@ public:
 
     void HideReport(int report, bool value);
     bool HideReport(int report);
+    int ReportCount();
+    wxString ReportGroup(int report);
+    wxString ReportName(int report);
+    bool BudgetReport(int report);
+    int ReportImage(int report);
+    mmPrintableBase* ReportFunction(int report);
 
 private:
     wxString m_dateFormat;
@@ -137,6 +146,7 @@ private:
     int m_ico_size;
 
     int m_hideReport;
+    wxArrayPtrVoid m_reports;
 };
 
 #endif // MM_EX_OPTION_H_

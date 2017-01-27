@@ -28,6 +28,17 @@
 #include "maincurrencydialog.h"
 #include "model/Model_Currency.h"
 #include "model/Model_CurrencyHistory.h"
+#include "reports/allreport.h"
+
+struct ReportInfo
+{
+    ReportInfo(wxString g, wxString n, bool t, int i, mmPrintableBase *r) { group = g; name = n; type = t; image = i; report = r; }
+    wxString group;
+    wxString name;
+    bool type;
+    int image;
+    mmPrintableBase *report;
+};
 
 //----------------------------------------------------------------------------
 Option::Option()
@@ -48,7 +59,37 @@ Option::Option()
     , m_html_font_size(100)
     , m_ico_size(16)
     , m_hideReport(0)
-{}
+{
+    m_reports.Add(new ReportInfo("", _("My Usage"), false, img::PIECHART_PNG, new mmReportMyUsage()));
+    m_reports.Add(new ReportInfo(_("Summary of Accounts"), _("Monthly"), false, img::PIECHART_PNG, new mmReportSummaryByDate(0)));
+    m_reports.Add(new ReportInfo(_("Summary of Accounts"), _("Yearly"), false, img::PIECHART_PNG, new mmReportSummaryByDate(1)));
+    m_reports.Add(new ReportInfo("", _("Where the Money Goes"), false, img::PIECHART_PNG, new mmReportCategoryExpensesGoes()));
+    m_reports.Add(new ReportInfo("", _("Where the Money Comes From"), false, img::PIECHART_PNG, new mmReportCategoryExpensesComes()));
+    m_reports.Add(new ReportInfo(_("Categories"), _("Summary"), false, img::PIECHART_PNG, new mmReportCategoryExpensesCategories()));
+    m_reports.Add(new ReportInfo(_("Categories"), _("Monthly"), false, img::PIECHART_PNG, new mmReportCategoryOverTimePerformance()));
+    m_reports.Add(new ReportInfo("", _("Payees"), false, img::PIECHART_PNG, new mmReportPayeeExpenses()));
+    m_reports.Add(new ReportInfo(_("Income vs Expenses"), _("Summary"), false, img::PIECHART_PNG, new mmReportIncomeExpenses()));
+    m_reports.Add(new ReportInfo(_("Income vs Expenses"), _("Monthly"), false, img::PIECHART_PNG, new mmReportIncomeExpensesMonthly()));
+    m_reports.Add(new ReportInfo(_("Budget"), _("Performance"), true, img::PIECHART_PNG, new mmReportBudgetingPerformance()));
+    m_reports.Add(new ReportInfo(_("Budget"), _("Category Summary"), true, img::PIECHART_PNG, new mmReportBudgetCategorySummary()));
+    m_reports.Add(new ReportInfo(_("Cash Flow"), _("Monthly"), false, img::PIECHART_PNG, new mmReportCashFlow(mmReportCashFlow::MONTHLY)));
+    m_reports.Add(new ReportInfo(_("Cash Flow"), _("Daily"), false, img::PIECHART_PNG, new mmReportCashFlow(mmReportCashFlow::DAILY)));
+//    m_reports.Add(new ReportInfo("", _("Transaction Report"), false, img::FILTER_PNG, nullptr));
+    m_reports.Add(new ReportInfo(_("Stocks Report"), _("Performance"), false, img::PIECHART_PNG, new mmReportChartStocks()));
+    m_reports.Add(new ReportInfo(_("Stocks Report"), _("Summary"), false, img::PIECHART_PNG, new mmReportSummaryStocks()));
+    m_reports.Add(new ReportInfo("", _("Forecast Report"), false, img::PIECHART_PNG, new mmReportForecast()));
+}
+
+Option::~Option()
+{
+    for (int i = 0; i < ReportCount(); i++)
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[i]);
+//        if (r->report)
+//            delete r->report;
+        delete r;
+    }
+}
 
 //----------------------------------------------------------------------------
 Option& Option::instance()
@@ -414,7 +455,7 @@ const int Option::AccountImageId(int account_id, bool def)
 
 void Option::HideReport(int report, bool value)
 {
-    if ((report >= 0) && (report < 32))
+    if ((report >= 0) && (report < ReportCount()))
     {
         int bitField = 1 << report;
         if (value)
@@ -429,10 +470,70 @@ void Option::HideReport(int report, bool value)
 bool Option::HideReport(int report)
 {
     bool hideReport = false;
-    if ((report >= 0) && (report < 32))
+    if ((report >= 0) && (report < ReportCount()))
     {
         int bitField = 1 << report;
         hideReport = ((m_hideReport & bitField) != 0);
     }
     return hideReport;
+}
+
+int Option::ReportCount()
+{
+    return static_cast<int>(m_reports.size());
+}
+
+wxString Option::ReportGroup(int report)
+{
+    wxString group = "";
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        group = r->group;
+    }
+    return group;
+}
+
+wxString Option::ReportName(int report)
+{
+    wxString name = "";
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        name = r->name;
+    }
+    return name;
+}
+
+bool Option::BudgetReport(int report)
+{
+    bool budget = false;
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        budget = r->type;
+    }
+    return budget;
+}
+
+int Option::ReportImage(int report)
+{
+    int image = -1;
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        image = r->image;
+    }
+    return image;
+}
+
+mmPrintableBase* Option::ReportFunction(int report)
+{
+    mmPrintableBase* function = nullptr;
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        function = r->report;
+    }
+    return function;
 }

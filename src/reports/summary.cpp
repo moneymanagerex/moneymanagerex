@@ -281,9 +281,8 @@ double mmHistoryData::getDailyBalanceAt(const Model_Account::Data *account, cons
     return balance;
 }
 
-mmReportSummaryByDate::mmReportSummaryByDate(mmGUIFrame* frame, int mode)
+mmReportSummaryByDate::mmReportSummaryByDate(int mode)
 : mmPrintableBase("mmReportSummaryByDate")
-, frame_(frame)
 , mode_(mode)
 {}
 

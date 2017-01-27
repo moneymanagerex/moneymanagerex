@@ -1196,8 +1196,16 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             wxMenu menu;
             menu.Append(wxID_VIEW_LIST, _("General Report Manager"));
             wxMenu *hideShowReport = new wxMenu;
-            hideShowReport->Append(MENU_TREEPOPUP_HIDE_SHOW_REPORT, _("Report Name"), wxEmptyString, wxITEM_CHECK);
-            hideShowReport->Check(MENU_TREEPOPUP_HIDE_SHOW_REPORT, !Option::instance().HideReport(0));
+            for (int r = 0; r < Option::instance().ReportCount(); r++)
+            {
+                wxString name = Option::instance().ReportGroup(r);
+                if (name.IsEmpty())
+                    name = Option::instance().ReportName(r);
+                else
+                    name += wxString(" (") + Option::instance().ReportName(r) + wxString(")");
+                hideShowReport->Append(MENU_TREEPOPUP_HIDE_SHOW_REPORT + r, name, wxEmptyString, wxITEM_CHECK);
+                hideShowReport->Check(MENU_TREEPOPUP_HIDE_SHOW_REPORT + r, !Option::instance().HideReport(r));
+            }
             menu.AppendSubMenu(hideShowReport, _("Hide/Show Report"));
             PopupMenu(&menu, pt);
         }
