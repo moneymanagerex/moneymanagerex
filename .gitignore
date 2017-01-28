@@ -75,3 +75,4 @@ bk-deps
 /release
 mmex.VC.db
 /build/msw-vc-2015/mmex_mmex.vcxproj.user
+/build/msw-vc-2015/.vs/config/applicationhost.config

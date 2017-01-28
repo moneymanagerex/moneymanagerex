@@ -65,8 +65,12 @@ const std::vector<std::pair<Model_Budget::PERIOD_ENUM, wxString> > Model_Budget:
 
 wxArrayString Model_Budget::all_period()
 {
-    wxArrayString period;
-    for (const auto& item : PERIOD_ENUM_CHOICES) period.Add(wxGetTranslation(item.second));
+    static wxArrayString period;
+    if (period.empty())
+    {
+        for (const auto& item : PERIOD_ENUM_CHOICES)
+            period.Add(wxGetTranslation(item.second));
+    }
     return period;
 }
 

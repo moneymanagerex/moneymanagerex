@@ -1038,7 +1038,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     {
         wxString s = t[Status];
         if (s == "X" || s == "R")
-            status = "R";
+            status = Model_Checking::toShortStatus(Model_Checking::RECONCILED);
         /*else if (s == "*" || s == "c")
         {
             TODO: What does 'cleared' status mean?

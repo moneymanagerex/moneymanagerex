@@ -108,8 +108,12 @@ Model_CustomField::FIELDTYPE Model_CustomField::type(const Data& r)
 
 wxArrayString Model_CustomField::all_type()
 {
-    wxArrayString types;
-    for (const auto& item : FIELDTYPE_CHOICES) types.Add(item.second);
+    static wxArrayString types;
+    if (types.empty())
+    {
+        for (const auto& item : FIELDTYPE_CHOICES)
+            types.Add(item.second);
+    }
     return types;
 }
 

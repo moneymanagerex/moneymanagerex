@@ -157,10 +157,10 @@ R"(<!DOCTYPE html>
 
 </table>
 </div>
+</div>
 <TMPL_LOOP ERRORS>
     <TMPL_VAR ERROR>
 </TMPL_LOOP>
-</div>
 </div>
 </body>
 <script>
