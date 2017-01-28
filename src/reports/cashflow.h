@@ -27,7 +27,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class mmReportCashFlow : public mmPrintableBase
 {
 public:
-    explicit mmReportCashFlow(int cashflowreporttype);
+    enum TYPE { MONTHLY = 0, DAILY };
+    explicit mmReportCashFlow(TYPE cashflowreporttype);
     virtual ~mmReportCashFlow();
 
     virtual bool has_accounts();
@@ -47,8 +48,7 @@ protected:
     typedef std::vector<mmRepeatForecast> forecastVec;
     std::vector<forecastVec> bdForecastVec;
 
-    int cashFlowReportType_;
-    enum { YEARLY = 0, DAILY };
+    TYPE cashFlowReportType_;
 
     static const int yearsNum_ = 10;
     const wxDateTime today_;

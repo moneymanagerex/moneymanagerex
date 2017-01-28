@@ -30,7 +30,7 @@ static const wxString COLORS [] = {
     , "rgba(240, 248, 255, 0.5)"
 };
 
-mmReportCashFlow::mmReportCashFlow(int cashflowreporttype)
+mmReportCashFlow::mmReportCashFlow(TYPE cashflowreporttype)
     : mmPrintableBase(_("Cash Flow"))
     , cashFlowReportType_(cashflowreporttype)
     , today_(wxDateTime::Today())
@@ -55,7 +55,7 @@ wxString mmReportCashFlow::getHTMLText()
 
 void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>& forecastVector)
 {
-    int years = cashFlowReportType_ == YEARLY ? 10 : 1;// Monthly for 10 years or Daily for 1 year
+    int years = cashFlowReportType_ == MONTHLY ? 10 : 1;// Monthly for 10 years or Daily for 1 year
     std::map<wxDateTime, double> daily_balance;
     wxArrayInt account_id;
 
@@ -181,7 +181,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
     const wxDateTime& dtBegin = today_;
     for (int idx = 0; idx < (int) forecastVector.size(); idx++)
     {
-        wxDateTime dtEnd = cashFlowReportType_ == YEARLY 
+        wxDateTime dtEnd = cashFlowReportType_ == MONTHLY
             ? dtBegin.Add(wxDateSpan::Months(idx)) : dtBegin.Add(wxDateSpan::Days(idx));
 
         for (const auto& balance : fvec)
@@ -201,11 +201,11 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
 
 wxString mmReportCashFlow::getHTMLText_i()
 {
-    int years = cashFlowReportType_ == YEARLY ? 10 : 1;// Monthly for 10 years or Daily for 1 year
+    int years = cashFlowReportType_ == MONTHLY ? 10 : 1;// Monthly for 10 years or Daily for 1 year
     double tInitialBalance = 0.0;
 
     // Now we have a vector of dates and amounts over next year
-    int forecastItemsNum = cashFlowReportType_ == YEARLY ? 12 * years : 366 * years;
+    int forecastItemsNum = cashFlowReportType_ == MONTHLY ? 12 * years : 366 * years;
     std::vector<ValueTrio> forecastVector(forecastItemsNum, {"", "", 0.0});
     getStats(tInitialBalance, forecastVector);
 
@@ -251,11 +251,11 @@ wxString mmReportCashFlow::getHTMLText_i()
     {        
         double balance = forecastVector[idx].amount + tInitialBalance;
         double diff = (idx == 0 ? 0 : forecastVector[idx].amount - forecastVector[idx-1].amount) ;
-        const wxDateTime dtEnd = cashFlowReportType_ == YEARLY
+        const wxDateTime dtEnd = cashFlowReportType_ == MONTHLY
             ? today_.Add(wxDateSpan::Months(idx)) : today_.Add(wxDateSpan::Days(idx));
 
         // Add a separator for each year/month in daily cash flow report
-        if (cashFlowReportType_ == YEARLY)
+        if (cashFlowReportType_ == MONTHLY)
         {
             colorId_ = dtEnd.GetYear() % 2;
         }

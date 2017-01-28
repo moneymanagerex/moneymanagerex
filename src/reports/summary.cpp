@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -280,9 +281,8 @@ double mmHistoryData::getDailyBalanceAt(const Model_Account::Data *account, cons
     return balance;
 }
 
-mmReportSummaryByDate::mmReportSummaryByDate(mmGUIFrame* frame, int mode)
+mmReportSummaryByDate::mmReportSummaryByDate(int mode)
 : mmPrintableBase("mmReportSummaryByDate")
-, frame_(frame)
 , mode_(mode)
 {}
 

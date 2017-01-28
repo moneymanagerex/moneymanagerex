@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -21,6 +22,8 @@
 
 #include "defs.h"
 
+class mmPrintableBase;
+
 /*
    mmOptions caches the options for MMEX
    so that we don't hit the DB that often
@@ -33,6 +36,7 @@ public:
 
 public:
     Option();
+    ~Option();
     static Option& instance();
     void LoadOptions(bool include_infotable = true);
 
@@ -107,6 +111,14 @@ public:
 
     const int AccountImageId(int account_id, bool def = false);
 
+    void HideReport(int report, bool value);
+    bool HideReport(int report);
+    int ReportCount();
+    wxString ReportGroup(int report);
+    wxString ReportName(int report);
+    bool BudgetReport(int report);
+    mmPrintableBase* ReportFunction(int report);
+
 private:
     wxString m_dateFormat;
     wxString m_language;
@@ -131,6 +143,9 @@ private:
 
     int m_html_font_size;
     int m_ico_size;
+
+    int m_hideReport;
+    wxArrayPtrVoid m_reports;
 };
 
 #endif // MM_EX_OPTION_H_
