@@ -146,8 +146,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.endDiv();
     hb.end();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+    return hb.getHTMLText();
 }
 
 void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats

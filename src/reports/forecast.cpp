@@ -86,8 +86,7 @@ wxString mmReportForecast::getHTMLText()
         return _("Caught exception");
     }
 
-    Model_Report::outputReportFile(out);
-    return "";
+    return out;
 }
 
 const char * mmReportForecast::m_template = R"(

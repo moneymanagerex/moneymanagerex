@@ -464,6 +464,5 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.endTable();
     hb.end();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+    return hb.getHTMLText();
 }

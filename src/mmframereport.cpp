@@ -99,8 +99,7 @@ public:
             return _("Caught exception");
         }
 
-        Model_Report::outputReportFile(out);
-        return "";
+        return out;
     }
 private:
     wxString m_group_name;

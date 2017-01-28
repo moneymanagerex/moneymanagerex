@@ -54,7 +54,8 @@ public:
                 if (transaction)
                 {
                     const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
-                    if (account) {
+                    if (account)
+                    {
                         frame->setAccountNavTreeSection(account->ACCOUNTNAME);
                         frame->setGotoAccountID(transaction->ACCOUNTID, transID);
                         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
@@ -75,7 +76,7 @@ public:
                     {
                         m_reportPanel->rb_->getHTMLText();
                     }
-                    m_reportPanel->browser_->LoadURL(getURL(mmex::getReportIndex()));
+                    m_reportPanel->browser_->LoadURL(getURL(mmex::getReportFullName(this->GetName())));
                 }
             }
         }
@@ -87,7 +88,7 @@ public:
             if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
             {
                 mmAttachmentManage::OpenAttachmentFromPanelIcon(nullptr, RefType, RefId);
-                m_reportPanel->browser_->LoadURL(getURL(mmex::getReportIndex()));
+                m_reportPanel->browser_->LoadURL(getURL(mmex::getReportFullName(this->GetName())));
             }
         }
 
@@ -106,7 +107,7 @@ enum
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
     EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
-    wxEND_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
     mmPrintableBase* rb, bool cleanupReport, wxWindow *parent, mmGUIFrame* frame,
@@ -172,7 +173,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
 
     wxString error;
     if (saveReportText(error))
-        browser_->LoadURL(getURL(mmex::getReportIndex()));
+        browser_->LoadURL(getURL(mmex::getReportFullName(rb_->file_name())));
     else
         browser_->SetPage(error, "");
 
@@ -190,7 +191,8 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
         if (this->m_date_ranges)
         {
             if (rb_->has_date_range())
-                rb_->date_range(static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())), this->m_date_ranges->GetSelection());
+                rb_->date_range(static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()))
+                    , this->m_date_ranges->GetSelection());
             else if (rb_->has_budget_dates())
                 rb_->date_range(nullptr, *reinterpret_cast<int*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
         }
@@ -200,7 +202,10 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
         o[L"name"] = json::String(rb_->title().ToStdWstring());
         o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
 
-        error = rb_->getHTMLText();
+        const auto file_name = rb_->file_name();
+        wxLogDebug("Report File Name: %s", file_name);
+        if (!Model_Report::outputReportFile(rb_->getHTMLText(), file_name))
+            error = _("Error");
 
         o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
         Model_Usage::instance().append(o);
@@ -344,7 +349,7 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
 
         wxString error;
         if (this->saveReportText(error, false))
-            browser_->LoadURL(getURL(mmex::getReportIndex()));
+            browser_->LoadURL(getURL(mmex::getReportFullName(rb_->file_name())));
         else
             browser_->SetPage(error, "");
     }
@@ -362,7 +367,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& /*event*/)
 
             wxString error;
             if (this->saveReportText(error, false))
-                browser_->LoadURL(getURL(mmex::getReportIndex()));
+                browser_->LoadURL(getURL(mmex::getReportFullName(rb_->file_name())));
             else
                 browser_->SetPage(error, "");
         }

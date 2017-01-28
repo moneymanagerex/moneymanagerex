@@ -197,6 +197,5 @@ wxString mmReportMyUsage::getHTMLText()
         return _("Caught exception");
     }
 
-    Model_Report::outputReportFile(out);
-    return "";
+    return out;
 }

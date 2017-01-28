@@ -97,6 +97,15 @@ wxString mmPrintableBase::title() const
         return m_title + " - " + m_date_range->title();
 }
 
+wxString mmPrintableBase::file_name() const
+{
+    wxString file_name = title();
+    file_name.Replace(" - ", "-");
+    file_name.Replace(" ", "_");
+    file_name.Replace("/", "-");
+    return file_name;
+}
+
 mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
 : mmPrintableBase(report->REPORTNAME)
 , m_report(report)

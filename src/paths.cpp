@@ -230,9 +230,11 @@ const wxString mmex::getTempFolder()
     return wxString::Format("%s%s%s%s", path, wxString(wxFILE_SEP_PATH), folder, wxString(wxFILE_SEP_PATH));
 }
 
-const wxString mmex::getReportIndex()
+const wxString mmex::getReportFullName(const wxString& name)
 {
-    return wxString::Format("%sindex%shtml", mmex::getTempFolder(), wxString(wxFILE_SEP_EXT));
+    return wxString::Format("%s%s%shtml", mmex::getTempFolder()
+        , "index"
+        , wxString(wxFILE_SEP_EXT));
 }
 
 //----------------------------------------------------------------------------

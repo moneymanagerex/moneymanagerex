@@ -279,6 +279,5 @@ wxString mmReportCashFlow::getHTMLText_i()
     hb.endDiv();
     hb.end();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+    return hb.getHTMLText();
 }

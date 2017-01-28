@@ -618,9 +618,8 @@ void mmHomePagePanel::fillData()
     {
         m_templateText.Replace(wxString::Format("<TMPL_VAR %s>", entry.first), entry.second);
     }
-    Model_Report::outputReportFile(m_templateText);
-    browser_->LoadURL(getURL(mmex::getReportIndex()));
-    wxLogDebug("Loading file:%s", mmex::getReportIndex());
+    Model_Report::outputReportFile(m_templateText, "index");
+    browser_->LoadURL(getURL(mmex::getReportFullName("index")));
 }
 
 void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> > &accountStats)

@@ -36,6 +36,7 @@ public:
     virtual wxString getHTMLText() = 0;
     virtual void RefreshData() {}
     virtual wxString title() const;
+    virtual wxString file_name() const;
     virtual bool has_date_range() { return false; }
     virtual bool has_budget_dates() { return false; }
     virtual bool has_only_years() { return false; }
