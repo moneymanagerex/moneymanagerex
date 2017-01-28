@@ -67,15 +67,23 @@ Model_Asset& Model_Asset::instance()
 
 wxArrayString Model_Asset::all_rate()
 {
-    wxArrayString rates;
-    for (const auto& item: RATE_CHOICES) rates.Add(item.second);
+    static wxArrayString rates;
+    if (rates.empty())
+    {
+        for (const auto& item : RATE_CHOICES)
+            rates.Add(item.second);
+    }
     return rates;
 }
 
 wxArrayString Model_Asset::all_type()
 {
-    wxArrayString types;
-    for (const auto& item: TYPE_CHOICES) types.Add(item.second);
+    static wxArrayString types;
+    if (types.empty())
+    {
+        for (const auto& item : TYPE_CHOICES)
+            types.Add(item.second);
+    }
     return types;
 }
 
