@@ -32,12 +32,30 @@
 
 struct ReportInfo
 {
-    ReportInfo(wxString g, wxString n, bool t, int i, mmPrintableBase *r) { group = g; name = n; type = t; image = i; report = r; }
+    enum Reports {
+        MyUsage,
+        MonthlySummaryofAccounts,
+        YearlySummaryofAccounts,
+        WheretheMoneyGoes,
+        WheretheMoneyComesFrom,
+        CategoriesSummary,
+        CategoriesMonthly,
+        Payees,
+        IncomevsExpensesSummary,
+        IncomevsExpensesMonthly,
+        BudgetPerformance,
+        BudgetCategorySummary,
+        MonthlyCashFlow,
+        DailyCashFlow,
+        StocksReportPerformance,
+        StocksReportSummary,
+        ForecastReport,
+    };
+    ReportInfo(wxString g, wxString n, bool t, Reports r) { group = g; name = n; type = t; report = r; }
     wxString group;
     wxString name;
     bool type;
-    int image;
-    mmPrintableBase *report;
+    Reports report;
 };
 
 //----------------------------------------------------------------------------
@@ -60,24 +78,23 @@ Option::Option()
     , m_ico_size(16)
     , m_hideReport(0)
 {
-    m_reports.Add(new ReportInfo("", _("My Usage"), false, img::PIECHART_PNG, new mmReportMyUsage()));
-    m_reports.Add(new ReportInfo(_("Summary of Accounts"), _("Monthly"), false, img::PIECHART_PNG, new mmReportSummaryByDate(0)));
-    m_reports.Add(new ReportInfo(_("Summary of Accounts"), _("Yearly"), false, img::PIECHART_PNG, new mmReportSummaryByDate(1)));
-    m_reports.Add(new ReportInfo("", _("Where the Money Goes"), false, img::PIECHART_PNG, new mmReportCategoryExpensesGoes()));
-    m_reports.Add(new ReportInfo("", _("Where the Money Comes From"), false, img::PIECHART_PNG, new mmReportCategoryExpensesComes()));
-    m_reports.Add(new ReportInfo(_("Categories"), _("Summary"), false, img::PIECHART_PNG, new mmReportCategoryExpensesCategories()));
-    m_reports.Add(new ReportInfo(_("Categories"), _("Monthly"), false, img::PIECHART_PNG, new mmReportCategoryOverTimePerformance()));
-    m_reports.Add(new ReportInfo("", _("Payees"), false, img::PIECHART_PNG, new mmReportPayeeExpenses()));
-    m_reports.Add(new ReportInfo(_("Income vs Expenses"), _("Summary"), false, img::PIECHART_PNG, new mmReportIncomeExpenses()));
-    m_reports.Add(new ReportInfo(_("Income vs Expenses"), _("Monthly"), false, img::PIECHART_PNG, new mmReportIncomeExpensesMonthly()));
-    m_reports.Add(new ReportInfo(_("Budget"), _("Performance"), true, img::PIECHART_PNG, new mmReportBudgetingPerformance()));
-    m_reports.Add(new ReportInfo(_("Budget"), _("Category Summary"), true, img::PIECHART_PNG, new mmReportBudgetCategorySummary()));
-    m_reports.Add(new ReportInfo(_("Cash Flow"), _("Monthly"), false, img::PIECHART_PNG, new mmReportCashFlow(mmReportCashFlow::MONTHLY)));
-    m_reports.Add(new ReportInfo(_("Cash Flow"), _("Daily"), false, img::PIECHART_PNG, new mmReportCashFlow(mmReportCashFlow::DAILY)));
-//    m_reports.Add(new ReportInfo("", _("Transaction Report"), false, img::FILTER_PNG, nullptr));
-    m_reports.Add(new ReportInfo(_("Stocks Report"), _("Performance"), false, img::PIECHART_PNG, new mmReportChartStocks()));
-    m_reports.Add(new ReportInfo(_("Stocks Report"), _("Summary"), false, img::PIECHART_PNG, new mmReportSummaryStocks()));
-    m_reports.Add(new ReportInfo("", _("Forecast Report"), false, img::PIECHART_PNG, new mmReportForecast()));
+    m_reports.Add(new ReportInfo("", _("My Usage"), false, ReportInfo::MyUsage));
+    m_reports.Add(new ReportInfo(_("Summary of Accounts"), _("Monthly"), false, ReportInfo::MonthlySummaryofAccounts));
+    m_reports.Add(new ReportInfo(_("Summary of Accounts"), _("Yearly"), false, ReportInfo::YearlySummaryofAccounts));
+    m_reports.Add(new ReportInfo("", _("Where the Money Goes"), false, ReportInfo::WheretheMoneyGoes));
+    m_reports.Add(new ReportInfo("", _("Where the Money Comes From"), false, ReportInfo::WheretheMoneyComesFrom));
+    m_reports.Add(new ReportInfo(_("Categories"), _("Summary"), false, ReportInfo::CategoriesSummary));
+    m_reports.Add(new ReportInfo(_("Categories"), _("Monthly"), false, ReportInfo::CategoriesMonthly));
+    m_reports.Add(new ReportInfo("", _("Payees"), false, ReportInfo::Payees));
+    m_reports.Add(new ReportInfo(_("Income vs Expenses"), _("Summary"), false, ReportInfo::IncomevsExpensesSummary));
+    m_reports.Add(new ReportInfo(_("Income vs Expenses"), _("Monthly"), false, ReportInfo::IncomevsExpensesMonthly));
+    m_reports.Add(new ReportInfo(_("Budget"), _("Performance"), true, ReportInfo::BudgetPerformance));
+    m_reports.Add(new ReportInfo(_("Budget"), _("Category Summary"), true, ReportInfo::BudgetCategorySummary));
+    m_reports.Add(new ReportInfo(_("Cash Flow"), _("Monthly"), false, ReportInfo::MonthlyCashFlow));
+    m_reports.Add(new ReportInfo(_("Cash Flow"), _("Daily"), false, ReportInfo::DailyCashFlow));
+    m_reports.Add(new ReportInfo(_("Stocks Report"), _("Performance"), false, ReportInfo::StocksReportPerformance));
+    m_reports.Add(new ReportInfo(_("Stocks Report"), _("Summary"), false, ReportInfo::StocksReportSummary));
+    m_reports.Add(new ReportInfo("", _("Forecast Report"), false, ReportInfo::ForecastReport));
 }
 
 Option::~Option()
@@ -85,8 +102,6 @@ Option::~Option()
     for (int i = 0; i < ReportCount(); i++)
     {
         ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[i]);
-//        if (r->report)
-//            delete r->report;
         delete r;
     }
 }
@@ -516,24 +531,68 @@ bool Option::BudgetReport(int report)
     return budget;
 }
 
-int Option::ReportImage(int report)
-{
-    int image = -1;
-    if ((report >= 0) && (report < ReportCount()))
-    {
-        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
-        image = r->image;
-    }
-    return image;
-}
-
 mmPrintableBase* Option::ReportFunction(int report)
 {
     mmPrintableBase* function = nullptr;
     if ((report >= 0) && (report < ReportCount()))
     {
         ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
-        function = r->report;
+        switch (r->report)
+        {
+        case ReportInfo::MyUsage:
+            function = new mmReportMyUsage();
+            break;
+        case ReportInfo::MonthlySummaryofAccounts:
+            function = new mmReportSummaryByDate(0);
+            break;
+        case ReportInfo::YearlySummaryofAccounts:
+            function = new mmReportSummaryByDate(1);
+            break;
+        case ReportInfo::WheretheMoneyGoes:
+            function = new mmReportCategoryExpensesGoes();
+            break;
+        case ReportInfo::WheretheMoneyComesFrom:
+            function = new mmReportCategoryExpensesComes();
+            break;
+        case ReportInfo::CategoriesSummary:
+            function = new mmReportCategoryExpensesCategories();
+            break;
+        case ReportInfo::CategoriesMonthly:
+            function = new mmReportCategoryOverTimePerformance();
+            break;
+        case ReportInfo::Payees:
+            function = new mmReportPayeeExpenses();
+            break;
+        case ReportInfo::IncomevsExpensesSummary:
+            function = new mmReportIncomeExpenses();
+            break;
+        case ReportInfo::IncomevsExpensesMonthly:
+            function = new mmReportIncomeExpensesMonthly();
+            break;
+        case ReportInfo::BudgetPerformance:
+            function = new mmReportBudgetingPerformance();
+            break;
+        case ReportInfo::BudgetCategorySummary:
+            function = new mmReportBudgetCategorySummary();
+            break;
+        case ReportInfo::MonthlyCashFlow:
+            function = new mmReportCashFlow(mmReportCashFlow::MONTHLY);
+            break;
+        case ReportInfo::DailyCashFlow:
+            function = new mmReportCashFlow(mmReportCashFlow::DAILY);
+            break;
+        case ReportInfo::StocksReportPerformance:
+            function = new mmReportChartStocks();
+            break;
+        case ReportInfo::StocksReportSummary:
+            function = new mmReportSummaryStocks();
+            break;
+        case ReportInfo::ForecastReport:
+            function = new mmReportForecast();
+            break;
+        default:
+            break;
+        }
     }
     return function;
 }

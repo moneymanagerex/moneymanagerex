@@ -245,7 +245,7 @@ private:
     void OnRecentFiles(wxCommandEvent& event);
     void OnClearRecentFiles(wxCommandEvent& /*event*/);
 
-    void OnHideShowReport(wxCommandEvent& WXUNUSED(event));
+    void OnHideShowReport(wxCommandEvent& event);
 
     /** Sets the database to the new database selected by the user */
     void SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false);

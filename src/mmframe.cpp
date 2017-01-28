@@ -180,7 +180,7 @@ EVT_MENU(MENU_RECENT_FILES_CLEAR, mmGUIFrame::OnClearRecentFiles)
 EVT_MENU(MENU_VIEW_TOGGLE_FULLSCREEN, mmGUIFrame::OnToggleFullScreen)
 EVT_CLOSE(mmGUIFrame::OnClose)
 
-EVT_MENU(MENU_TREEPOPUP_HIDE_SHOW_REPORT, mmGUIFrame::OnHideShowReport)
+EVT_MENU_RANGE(MENU_TREEPOPUP_HIDE_SHOW_REPORT, MENU_TREEPOPUP_HIDE_SHOW_REPORT32, mmGUIFrame::OnHideShowReport)
 
 wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
@@ -2906,7 +2906,10 @@ void mmGUIFrame::OnClose(wxCloseEvent&)
     Destroy();
 }
 
-void mmGUIFrame::OnHideShowReport(wxCommandEvent& WXUNUSED(event))
+void mmGUIFrame::OnHideShowReport(wxCommandEvent& event)
 {
-    Option::instance().HideReport(0, !Option::instance().HideReport(0));
+    int report = event.GetId() - MENU_TREEPOPUP_HIDE_SHOW_REPORT;
+    Option::instance().HideReport(report, !Option::instance().HideReport(report));
+    updateNavTreeControl();
+    createHomePage();
 }

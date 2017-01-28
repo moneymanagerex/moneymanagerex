@@ -121,26 +121,25 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
     wxString reportGroupName;
     for (int r = 0; r < Option::instance().ReportCount(); r++)
     {
-        int image = Option::instance().ReportImage(r);
         wxString groupName = Option::instance().ReportGroup(r);
         bool no_group = groupName.IsEmpty();
         if (reportGroupName != groupName && !no_group)
         {
-            bool bAdd = true;
-            for (int s = r; (s < Option::instance().ReportCount()) && bAdd; s++)
+            bool bAdd = false;
+            for (int s = 0; (s < Option::instance().ReportCount()) && !bAdd; s++)
             {
                 if (Option::instance().ReportGroup(s) == groupName)
                 {
-                    bAdd = !Option::instance().HideReport(s);
-                    if (bAdd && Option::instance().BudgetReport(r))
-                        bAdd = budget;
+                    bool a = !Option::instance().HideReport(s);
+                    if (a && Option::instance().BudgetReport(r))
+                        a = budget;
+                    if (a)
+                        bAdd = true;
                 }
-                else
-                    break;
             }
             if (bAdd)
             {
-                reportGroup = m_nav_tree_ctrl->AppendItem(reports, groupName, image, image);
+                reportGroup = m_nav_tree_ctrl->AppendItem(reports, groupName, img::PIECHART_PNG, img::PIECHART_PNG);
                 m_nav_tree_ctrl->SetItemData(reportGroup, new mmTreeItemData(groupName));
                 reportGroupName = groupName;
             }
@@ -151,7 +150,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
         if (bShow)
         {
             wxString reportName = Option::instance().ReportName(r);
-            wxTreeItemId item = m_nav_tree_ctrl->AppendItem(no_group ? reports : reportGroup, reportName, image, image);
+            wxTreeItemId item = m_nav_tree_ctrl->AppendItem(no_group ? reports : reportGroup, reportName, img::PIECHART_PNG, img::PIECHART_PNG);
             m_nav_tree_ctrl->SetItemData(item, new mmTreeItemData(reportName, Option::instance().ReportFunction(r)));
         }
     }

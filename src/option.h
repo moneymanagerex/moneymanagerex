@@ -117,7 +117,6 @@ public:
     wxString ReportGroup(int report);
     wxString ReportName(int report);
     bool BudgetReport(int report);
-    int ReportImage(int report);
     mmPrintableBase* ReportFunction(int report);
 
 private:
