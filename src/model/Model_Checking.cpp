@@ -295,11 +295,6 @@ wxString Model_Checking::toShortStatus(const wxString& fullStatus)
     return fullStatus.Left(1) == "N" ? "" : fullStatus.Left(1);
 }
 
-wxString Model_Checking::toShortStatus(const int num)
-{
-    return toShortStatus(all_status()[num]);
-}
-
 Model_Checking::Full_Data::Full_Data() : Data(0), BALANCE(0), AMOUNT(0)
 {
 }
