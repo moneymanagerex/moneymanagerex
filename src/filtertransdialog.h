@@ -75,7 +75,6 @@ private:
     wxString getNotes();
 
 private:
-    void OnDateChanged(wxDateEvent& event);
     /// Returns true if Status string matches.
     bool compareStatus(const wxString& itemStatus) const;
 
@@ -122,9 +121,9 @@ private:
     wxTextCtrl* m_settingLabel;
     wxCheckBox* accountCheckBox_;
     wxChoice* accountDropDown_;
-    wxCheckBox* dateRangeCheckBox_;
-    wxDatePickerCtrl* fromDateCtrl_;
-    wxDatePickerCtrl* toDateControl_;
+    wxCheckBox* m_dateRangeCheckBox;
+    wxDatePickerCtrl* m_fromDateCtrl;
+    wxDatePickerCtrl* m_toDateControl;
     wxCheckBox* payeeCheckBox_;
     wxComboBox* cbPayee_;
     wxCheckBox* categoryCheckBox_;
