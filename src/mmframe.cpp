@@ -1468,6 +1468,19 @@ void mmGUIFrame::createMenu()
     menuView->AppendSeparator();
     menuView->Append(menuItemToggleFullscreen);
 #endif
+    menuView->AppendSeparator();
+    wxMenu *hideShowReport = new wxMenu;
+    for (int r = 0; r < Option::instance().ReportCount(); r++)
+    {
+        wxString name = Option::instance().ReportGroup(r);
+        if (name.IsEmpty())
+            name = Option::instance().ReportName(r);
+        else
+            name += wxString(" (") + Option::instance().ReportName(r) + wxString(")");
+        hideShowReport->Append(MENU_TREEPOPUP_HIDE_SHOW_REPORT + r, name, wxEmptyString, wxITEM_CHECK);
+        hideShowReport->Check(MENU_TREEPOPUP_HIDE_SHOW_REPORT + r, !Option::instance().HideReport(Option::instance().ReportID(r)));
+    }
+    menuView->AppendSubMenu(hideShowReport, _("Hide/Show Report"));
     wxMenu *menuAccounts = new wxMenu;
 
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST
