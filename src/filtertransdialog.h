@@ -38,96 +38,52 @@ class mmFilterTransactionsDialog: public wxDialog
 public:
     /// Constructors
     mmFilterTransactionsDialog();
-    mmFilterTransactionsDialog(wxWindow* parent);
+    mmFilterTransactionsDialog(wxWindow* parent, int account_id);
 
     virtual int ShowModal();
 
-    bool checkAll(const Model_Checking::Data &tran, int accountID, const std::map<int, Model_Splittransaction::Data_Set>& split);
-    bool checkAll(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& split);
+    bool checkAll(const Model_Checking::Full_Data &tran, int accountID);
+    bool checkAll(const Model_Billsdeposits::Full_Data &tran);
     void getDescription(mmHTMLBuilder &hb);
     bool somethingSelected();
     void setAccountToolTip(const wxString& tip) const;
-    bool getStatusCheckBox()
-    {
-        return statusCheckBox_->IsChecked();
-    }
-    bool getAccountCheckBox()
-    {
-        return accountCheckBox_->GetValue();
-    }
-    int getAccountID()
-    {
-        return refAccountID_;
-    }
-    bool getCategoryCheckBox()
-    {
-        return categoryCheckBox_->IsChecked();
-    }
-    bool getSimilarStatus() { return bSimilarCategoryStatus_; }
-    int getCategId() { return categID_; }
-    int getSubCategId() { return subcategID_; }
+    bool getStatusCheckBox();
+    bool getAccountCheckBox();
+    int getAccountID();
+    bool getCategoryCheckBox();
+  
+    bool getSimilarStatus();
+    int getCategId();
+    int getSubCategId();
 
 private:
     void BuildPayeeList();
 
-    bool getDateRangeCheckBox()
-    {
-        return dateRangeCheckBox_->GetValue();
-    }
-    bool getAmountRangeCheckBoxMin()
-    {
-        return amountRangeCheckBox_->GetValue() && !amountMinEdit_->GetValue().IsEmpty();
-    }
-    bool getAmountRangeCheckBoxMax()
-    {
-        return amountRangeCheckBox_->GetValue() && !amountMaxEdit_->GetValue().IsEmpty();
-    }
-    double getAmountMax();
-    double getAmountMin();
+    bool getDateRangeCheckBox();
+    bool getAmountRangeCheckBox();
 
-    template<class MODEL, class DATA = typename MODEL::DATA>
-    bool checkPayee(const DATA &tran);
-    template<class MODEL, class DATA = typename MODEL::Data>
-    bool checkCategory(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set>& splits);
+    template<class MODEL, class FULL_DATA = typename MODEL::Full_Data>
+    bool checkPayee(const FULL_DATA &tran);
+    template<class MODEL, class FULL_DATA = typename MODEL::Full_Data>
+    bool checkCategory(const FULL_DATA &tran);
+    template<class MODEL, class FULL_DATA = typename MODEL::Full_Data>
+    bool checkAmount(const FULL_DATA &tran);
 
     wxString getStatus() const;
 
-    wxString getNumber()
-    {
-        return transNumberEdit_->GetValue();
-    }
-    wxString getNotes()
-    {
-        return notesEdit_->GetValue();
-    }
+    wxString getNumber();
+    wxString getNotes();
 
 private:
     void OnDateChanged(wxDateEvent& event);
     /// Returns true if Status string matches.
     bool compareStatus(const wxString& itemStatus) const;
 
-    bool getTypeCheckBox()
-    {
-        return typeCheckBox_->IsChecked();
-    }
-
+    bool getTypeCheckBox();
     bool allowType(const wxString& typeState, bool sameAccount) const;
-
-    bool getPayeeCheckBox()
-    {
-        return payeeCheckBox_->IsChecked();
-    }
-
-    bool getNumberCheckBox()
-    {
-        return transNumberCheckBox_->IsChecked();
-    }
-
-    bool getNotesCheckBox()
-    {
-        return notesCheckBox_->IsChecked();
-    }
-
+    bool getPayeeCheckBox();
+    bool getNumberCheckBox();
+    bool getNotesCheckBox();
     void setPresettings(const wxString& view);
     void clearSettings();
 
@@ -189,9 +145,9 @@ private:
     wxRadioBox* m_radio_box_;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
+
     wxString m_begin_date;
     wxString m_end_date;
-
     int categID_;
     int subcategID_;
     bool bSimilarCategoryStatus_;
@@ -199,6 +155,8 @@ private:
     wxString payeeStr_;
     int refAccountID_;
     wxString refAccountStr_;
+    double m_min_amount;
+    double m_max_amount;
 };
 
 #endif

@@ -94,6 +94,7 @@ bool mmBudgetingPanel::Create(wxWindow *parent
     wxPanel::Create(parent, winid, pos, size, style, name);
 
     this->windowsFreezeThaw();
+    wxDateTime start = wxDateTime::UNow();
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -103,7 +104,7 @@ bool mmBudgetingPanel::Create(wxWindow *parent
         listCtrlBudget_->EnsureVisible(0);
 
     this->windowsFreezeThaw();
-    Model_Usage::instance().pageview(this);
+    Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
     return TRUE;
 }
 

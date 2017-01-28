@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -27,6 +28,35 @@
 #include "maincurrencydialog.h"
 #include "model/Model_Currency.h"
 #include "model/Model_CurrencyHistory.h"
+#include "reports/allreport.h"
+
+struct ReportInfo
+{
+    enum Reports {
+        MyUsage,
+        MonthlySummaryofAccounts,
+        YearlySummaryofAccounts,
+        WheretheMoneyGoes,
+        WheretheMoneyComesFrom,
+        CategoriesSummary,
+        CategoriesMonthly,
+        Payees,
+        IncomevsExpensesSummary,
+        IncomevsExpensesMonthly,
+        BudgetPerformance,
+        BudgetCategorySummary,
+        MonthlyCashFlow,
+        DailyCashFlow,
+        StocksReportPerformance,
+        StocksReportSummary,
+        ForecastReport,
+    };
+    ReportInfo(wxString g, wxString n, bool t, Reports r) { group = g; name = n; type = t; report = r; }
+    wxString group;
+    wxString name;
+    bool type;
+    Reports report;
+};
 
 //----------------------------------------------------------------------------
 Option::Option()
@@ -46,7 +76,35 @@ Option::Option()
     , m_sharePrecision(4)
     , m_html_font_size(100)
     , m_ico_size(16)
-{}
+    , m_hideReport(0)
+{
+    m_reports.Add(new ReportInfo("", _("My Usage"), false, ReportInfo::MyUsage));
+    m_reports.Add(new ReportInfo(_("Summary of Accounts"), _("Monthly"), false, ReportInfo::MonthlySummaryofAccounts));
+    m_reports.Add(new ReportInfo(_("Summary of Accounts"), _("Yearly"), false, ReportInfo::YearlySummaryofAccounts));
+    m_reports.Add(new ReportInfo("", _("Where the Money Goes"), false, ReportInfo::WheretheMoneyGoes));
+    m_reports.Add(new ReportInfo("", _("Where the Money Comes From"), false, ReportInfo::WheretheMoneyComesFrom));
+    m_reports.Add(new ReportInfo(_("Categories"), _("Summary"), false, ReportInfo::CategoriesSummary));
+    m_reports.Add(new ReportInfo(_("Categories"), _("Monthly"), false, ReportInfo::CategoriesMonthly));
+    m_reports.Add(new ReportInfo("", _("Payees"), false, ReportInfo::Payees));
+    m_reports.Add(new ReportInfo(_("Income vs Expenses"), _("Summary"), false, ReportInfo::IncomevsExpensesSummary));
+    m_reports.Add(new ReportInfo(_("Income vs Expenses"), _("Monthly"), false, ReportInfo::IncomevsExpensesMonthly));
+    m_reports.Add(new ReportInfo(_("Budget"), _("Performance"), true, ReportInfo::BudgetPerformance));
+    m_reports.Add(new ReportInfo(_("Budget"), _("Category Summary"), true, ReportInfo::BudgetCategorySummary));
+    m_reports.Add(new ReportInfo(_("Cash Flow"), _("Monthly"), false, ReportInfo::MonthlyCashFlow));
+    m_reports.Add(new ReportInfo(_("Cash Flow"), _("Daily"), false, ReportInfo::DailyCashFlow));
+    m_reports.Add(new ReportInfo(_("Stocks Report"), _("Performance"), false, ReportInfo::StocksReportPerformance));
+    m_reports.Add(new ReportInfo(_("Stocks Report"), _("Summary"), false, ReportInfo::StocksReportSummary));
+    m_reports.Add(new ReportInfo("", _("Forecast Report"), false, ReportInfo::ForecastReport));
+}
+
+Option::~Option()
+{
+    for (int i = 0; i < ReportCount(); i++)
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[i]);
+        delete r;
+    }
+}
 
 //----------------------------------------------------------------------------
 Option& Option::instance()
@@ -109,6 +167,8 @@ void Option::LoadOptions(bool include_infotable)
     {
         m_ico_size = 24;
     }
+
+    m_hideReport = Model_Setting::instance().GetIntSetting("HIDE_REPORT", 0);
 }
 
 void Option::DateFormat(const wxString& dateformat)
@@ -406,4 +466,133 @@ const int Option::AccountImageId(int account_id, bool def)
         wxASSERT(false);
     }
     return selectedImage;
+}
+
+void Option::HideReport(int report, bool value)
+{
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        int bitField = 1 << report;
+        if (value)
+            m_hideReport |= bitField;
+        else
+            m_hideReport &= ~bitField;
+
+        Model_Setting::instance().Set("HIDE_REPORT", m_hideReport);
+    }
+}
+
+bool Option::HideReport(int report)
+{
+    bool hideReport = false;
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        int bitField = 1 << report;
+        hideReport = ((m_hideReport & bitField) != 0);
+    }
+    return hideReport;
+}
+
+int Option::ReportCount()
+{
+    return static_cast<int>(m_reports.size());
+}
+
+wxString Option::ReportGroup(int report)
+{
+    wxString group = "";
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        group = r->group;
+    }
+    return group;
+}
+
+wxString Option::ReportName(int report)
+{
+    wxString name = "";
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        name = r->name;
+    }
+    return name;
+}
+
+bool Option::BudgetReport(int report)
+{
+    bool budget = false;
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        budget = r->type;
+    }
+    return budget;
+}
+
+mmPrintableBase* Option::ReportFunction(int report)
+{
+    mmPrintableBase* function = nullptr;
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        switch (r->report)
+        {
+        case ReportInfo::MyUsage:
+            function = new mmReportMyUsage();
+            break;
+        case ReportInfo::MonthlySummaryofAccounts:
+            function = new mmReportSummaryByDate(0);
+            break;
+        case ReportInfo::YearlySummaryofAccounts:
+            function = new mmReportSummaryByDate(1);
+            break;
+        case ReportInfo::WheretheMoneyGoes:
+            function = new mmReportCategoryExpensesGoes();
+            break;
+        case ReportInfo::WheretheMoneyComesFrom:
+            function = new mmReportCategoryExpensesComes();
+            break;
+        case ReportInfo::CategoriesSummary:
+            function = new mmReportCategoryExpensesCategories();
+            break;
+        case ReportInfo::CategoriesMonthly:
+            function = new mmReportCategoryOverTimePerformance();
+            break;
+        case ReportInfo::Payees:
+            function = new mmReportPayeeExpenses();
+            break;
+        case ReportInfo::IncomevsExpensesSummary:
+            function = new mmReportIncomeExpenses();
+            break;
+        case ReportInfo::IncomevsExpensesMonthly:
+            function = new mmReportIncomeExpensesMonthly();
+            break;
+        case ReportInfo::BudgetPerformance:
+            function = new mmReportBudgetingPerformance();
+            break;
+        case ReportInfo::BudgetCategorySummary:
+            function = new mmReportBudgetCategorySummary();
+            break;
+        case ReportInfo::MonthlyCashFlow:
+            function = new mmReportCashFlow(mmReportCashFlow::MONTHLY);
+            break;
+        case ReportInfo::DailyCashFlow:
+            function = new mmReportCashFlow(mmReportCashFlow::DAILY);
+            break;
+        case ReportInfo::StocksReportPerformance:
+            function = new mmReportChartStocks();
+            break;
+        case ReportInfo::StocksReportSummary:
+            function = new mmReportSummaryStocks();
+            break;
+        case ReportInfo::ForecastReport:
+            function = new mmReportForecast();
+            break;
+        default:
+            break;
+        }
+    }
+    return function;
 }

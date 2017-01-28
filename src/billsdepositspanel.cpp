@@ -175,6 +175,7 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
     wxPanel::Create(parent, winid, pos, size, style, name);
 
     this->windowsFreezeThaw();
+    wxDateTime start = wxDateTime::UNow();
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -183,12 +184,12 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
     /* Set up the transaction filter.  The transFilter dialog will be destroyed
        when the checking panel is destroyed. */
     transFilterActive_ = false;
-    transFilterDlg_ = new mmFilterTransactionsDialog(this);
+    transFilterDlg_ = new mmFilterTransactionsDialog(this, -1);
 
     initVirtualListControl();
 
     this->windowsFreezeThaw();
-    Model_Usage::instance().pageview(this);
+    Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
     return TRUE;
 }
@@ -322,10 +323,9 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
     for (const Model_Billsdeposits::Data& data
         : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
-        if (transFilterActive_ && !transFilterDlg_->checkAll(data, split))
-            continue;
-
         Model_Billsdeposits::Full_Data r(data);
+        if (transFilterActive_ && !transFilterDlg_->checkAll(r))
+            continue;
 
         if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), r.BDID))
             r.NOTES = r.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());

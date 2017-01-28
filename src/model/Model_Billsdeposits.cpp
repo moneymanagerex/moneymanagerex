@@ -207,6 +207,11 @@ const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::splittransacti
     return Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(r.BDID));
 }
 
+bool Model_Billsdeposits::Full_Data::has_split() const
+{
+    return !this->m_splits.empty();
+}
+
 void Model_Billsdeposits::decode_fields(const Data& q1)
 {
     m_autoExecuteManual = false; // Used when decoding: REPEATS
@@ -441,10 +446,10 @@ Model_Billsdeposits::Full_Data::Full_Data()
 
 Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
 {
-    m_bill_splits = splittransaction(r);
-    if (!m_bill_splits.empty())
+    m_splits = splittransaction(r);
+    if (!m_splits.empty())
     {
-        for (const auto& entry : m_bill_splits)
+        for (const auto& entry : m_splits)
             CATEGNAME += (CATEGNAME.empty() ? " * " : ", ")
             + Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID);
     }

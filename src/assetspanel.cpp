@@ -67,7 +67,7 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     m_columns.push_back(PANEL_COLUMN(_("Current Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 450, wxLIST_FORMAT_LEFT));
 
-    m_col_width = "ASSETS_COL%d_WIDTH";
+    m_col_width = "ASSETS_COL%ld_WIDTH";
     m_default_sort_column = m_panel->col_sort();
 
     for (const auto& entry : m_columns)
@@ -380,6 +380,7 @@ bool mmAssetsPanel::Create(wxWindow *parent
     if (!wxPanel::Create(parent, winid, pos, size, style, name)) return false;
 
     this->windowsFreezeThaw();
+    wxDateTime start = wxDateTime::UNow();
 
     tips_ = _("MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth.");
     CreateControls();
@@ -394,7 +395,7 @@ bool mmAssetsPanel::Create(wxWindow *parent
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    Model_Usage::instance().pageview(this);
+    Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
     return true;
 }

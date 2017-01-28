@@ -165,6 +165,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
+    wxDateTime start = wxDateTime::UNow();
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -176,7 +177,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     else
         browser_->SetPage(error, "");
 
-    Model_Usage::instance().pageview(this);
+    Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
     return TRUE;
 }
@@ -225,12 +226,16 @@ void mmReportsPanel::CreateControls()
         , wxID_ANY, _("REPORTS"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerHeader->Add(itemStaticText9, 0, wxALL, 1);
-    itemBoxSizerHeader->AddSpacer(20);
+    itemBoxSizerHeader->AddSpacer(30);
 
     if (rb_)
     {
         if (rb_->has_date_range())
         {
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3, wxID_ANY, _("Period:"));
+            itemStaticTextH1->SetFont(this->GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE);
 
             for (const auto & date_range: m_all_date_ranges)
@@ -253,11 +258,15 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             itemBoxSizerHeader->Add(m_end_date, 0, wxALL, 1);
-            itemBoxSizerHeader->AddSpacer(20);
+            itemBoxSizerHeader->AddSpacer(30);
         }
         else if (rb_->has_budget_dates())
         {
             cleanupmem_ = true;
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3, wxID_ANY, _("Period:"));
+            itemStaticTextH1->SetFont(this->GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE, wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
 
             int prev_selection = rb_->getDateSelection();
@@ -292,6 +301,10 @@ void mmReportsPanel::CreateControls()
 
         if (rb_->has_accounts())
         {
+            wxStaticText* itemStaticTextH2 = new wxStaticText(itemPanel3, wxID_ANY, _("Accounts:"));
+            itemStaticTextH2->SetFont(this->GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH2, 0, wxALL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
             m_accounts->Append(_("All Accounts"));
             m_accounts->Append(_("Specific Accounts"));

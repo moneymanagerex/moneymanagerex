@@ -124,10 +124,11 @@ bool mmCheckingPanel::Create(
     if (! wxPanel::Create(parent, winid, pos, size, style, name)) return false;
 
     this->windowsFreezeThaw();
+    wxDateTime start = wxDateTime::UNow();
     CreateControls();
 
     m_transFilterActive = false;
-    m_trans_filter_dlg = new mmFilterTransactionsDialog(this);
+    m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_AccountID);
     SetTransactionFilterState(true);
 
     initViewTransactionsHeader();
@@ -138,7 +139,7 @@ bool mmCheckingPanel::Create(
     GetSizer()->SetSizeHints(this);
     this->windowsFreezeThaw();
 
-    Model_Usage::instance().pageview(this);
+    Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
     return true;
 }
@@ -205,9 +206,10 @@ void mmCheckingPanel::filterTable()
         if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
             m_reconciled_balance += transaction_amount;
 
+        Model_Checking::Full_Data full_tran(tran, splits);
         if (m_transFilterActive)
         {
-            if (!m_trans_filter_dlg->checkAll(tran, m_AccountID, splits))
+            if (!m_trans_filter_dlg->checkAll(full_tran, m_AccountID))
                 continue;
         }
         else
@@ -219,7 +221,6 @@ void mmCheckingPanel::filterTable()
             }
         }
 
-        Model_Checking::Full_Data full_tran(tran, splits);
         full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
         full_tran.BALANCE = m_account_balance;
         full_tran.AMOUNT = transaction_amount;

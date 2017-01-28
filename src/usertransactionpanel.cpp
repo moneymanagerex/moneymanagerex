@@ -60,9 +60,10 @@ UserTransactionPanel::UserTransactionPanel(wxWindow *parent
     , m_subcategory_id(-1)
 {
     wxPanel::Create(parent, win_id, pos, size, style, name);
+    wxDateTime start = wxDateTime::UNow();
     Create();
     DataToControls();
-    Model_Usage::instance().pageview(this);
+    Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 }
 
 UserTransactionPanel::~UserTransactionPanel()

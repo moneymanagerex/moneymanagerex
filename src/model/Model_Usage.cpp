@@ -120,7 +120,7 @@ void SendStatsThread::ev_handler(struct mg_connection *nc, int ev, void *ev_data
     }
 }
 
-void Model_Usage::pageview(const wxWindow* window)
+void Model_Usage::pageview(const wxWindow* window, int plt /* = 0 msec*/)
 {
     if (!window) return;
     if (window->GetName().IsEmpty()) return;
@@ -142,10 +142,10 @@ void Model_Usage::pageview(const wxWindow* window)
         current = current->GetParent();
     }
 
-    return pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI());
+    return pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
 }
 
-void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle)
+void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle, int plt /* = 0 msec*/)
 {
     if (!Option::instance().SendUsageStatistics())
     {
@@ -173,6 +173,7 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
         { "av", mmex::version::string }, // application version
                                          // custom dimensions
         { "cd1", wxPlatformInfo::Get().GetPortIdShortName() },
+        { "plt", wxString::Format("%d", plt)}
     };
 
     for (const auto& kv : parameters)
