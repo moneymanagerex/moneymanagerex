@@ -618,7 +618,7 @@ void mmHomePagePanel::fillData()
     {
         m_templateText.Replace(wxString::Format("<TMPL_VAR %s>", entry.first), entry.second);
     }
-    Model_Report::outputReportFile(m_templateText);
+    Model_Report::outputReportFile(m_templateText, "index");
     browser_->LoadURL(getURL(mmex::getReportFullName("index")));
 }
 

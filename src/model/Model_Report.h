@@ -57,7 +57,7 @@ public:
     wxString get_html(const Data& r);
     static void prepareTempFolder();
     static bool WindowsUpdateRegistry();
-    static bool outputReportFile(const wxString& str, const wxString& name = "index");
+    static bool outputReportFile(const wxString& str, const wxString& name);
 
 public:
     Data* get(const wxString& name);
