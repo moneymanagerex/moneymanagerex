@@ -50,16 +50,24 @@ Model_Checking::~Model_Checking()
 
 wxArrayString Model_Checking::all_type()
 {
-    wxArrayString types;
-    for (const auto& r : TYPE_CHOICES) types.Add(r.second);
-
+    static wxArrayString types;
+    if (types.empty())
+    {
+        for (const auto& r : TYPE_CHOICES)
+            types.Add(r.second);
+    }
     return types;
 }
 
 wxArrayString Model_Checking::all_status()
 {
-    wxArrayString status;
-    for (const auto& r : STATUS_ENUM_CHOICES) status.Add(r.second);
+    static wxArrayString status;
+
+    if (status.empty())
+    {
+        for (const auto& r : STATUS_ENUM_CHOICES)
+            status.Add(r.second);
+    }
 
     return status;
 }
@@ -284,9 +292,12 @@ bool Model_Checking::is_deposit(const Data* r)
 
 wxString Model_Checking::toShortStatus(const wxString& fullStatus)
 {
-    wxString s = fullStatus.Left(1);
-    s.Replace("N", "");
-    return s;
+    return fullStatus.Left(1) == "N" ? "" : fullStatus.Left(1);
+}
+
+wxString Model_Checking::toShortStatus(const int num)
+{
+    return toShortStatus(all_status()[num]);
 }
 
 Model_Checking::Full_Data::Full_Data() : Data(0), BALANCE(0), AMOUNT(0)

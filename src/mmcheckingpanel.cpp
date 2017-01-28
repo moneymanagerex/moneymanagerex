@@ -1185,11 +1185,11 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     int evt = event.GetId();
     wxString org_status = "";
     wxString status = "";
-    if (evt == MENU_TREEPOPUP_MARKRECONCILED)              status = "R";
-    else if (evt == MENU_TREEPOPUP_MARKUNRECONCILED)       status = "";
-    else if (evt == MENU_TREEPOPUP_MARKVOID)               status = "V";
-    else if (evt == MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP) status = "F";
-    else if (evt == MENU_TREEPOPUP_MARKDUPLICATE)          status = "D";
+    if (evt == MENU_TREEPOPUP_MARKRECONCILED)              status = Model_Checking::toShortStatus(Model_Checking::RECONCILED);
+    else if (evt == MENU_TREEPOPUP_MARKUNRECONCILED)       status = Model_Checking::toShortStatus(Model_Checking::NONE);
+    else if (evt == MENU_TREEPOPUP_MARKVOID)               status = Model_Checking::toShortStatus(Model_Checking::VOID_);
+    else if (evt == MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP) status = Model_Checking::toShortStatus(Model_Checking::FOLLOWUP);
+    else if (evt == MENU_TREEPOPUP_MARKDUPLICATE)          status = Model_Checking::toShortStatus(Model_Checking::DUPLICATE_);
     else wxASSERT(false);
 
     Model_Checking::Data *trx = Model_Checking::instance().get(m_cp->m_trans[m_selectedIndex].TRANSID);
@@ -1220,11 +1220,16 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
 {
     int evt =  event.GetId();
     wxString status = "";
-    if (evt ==  MENU_TREEPOPUP_MARKRECONCILED_ALL)             status = "R";
-    else if (evt == MENU_TREEPOPUP_MARKUNRECONCILED_ALL)       status = "";
-    else if (evt == MENU_TREEPOPUP_MARKVOID_ALL)               status = "V";
-    else if (evt == MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP_ALL) status = "F";
-    else if (evt == MENU_TREEPOPUP_MARKDUPLICATE_ALL)          status = "D";
+    if (evt ==  MENU_TREEPOPUP_MARKRECONCILED_ALL)             
+        status = Model_Checking::toShortStatus(Model_Checking::RECONCILED);
+    else if (evt == MENU_TREEPOPUP_MARKUNRECONCILED_ALL)       
+        status = Model_Checking::toShortStatus(Model_Checking::NONE);
+    else if (evt == MENU_TREEPOPUP_MARKVOID_ALL)
+        status = Model_Checking::toShortStatus(Model_Checking::VOID_);
+    else if (evt == MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP_ALL)
+        status = Model_Checking::toShortStatus(Model_Checking::FOLLOWUP);
+    else if (evt == MENU_TREEPOPUP_MARKDUPLICATE_ALL)
+        status = Model_Checking::toShortStatus(Model_Checking::DUPLICATE_);
     else if (evt == MENU_TREEPOPUP_DELETE_VIEWED)              status = "X";
     else if (evt == MENU_TREEPOPUP_DELETE_FLAGGED)             status = "M";
     else if (evt == MENU_TREEPOPUP_DELETE_UNRECONCILED)        status = "0";
@@ -1327,13 +1332,13 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
         wxString status = m_cp->getItem(item, COL_STATUS);
         if (status.length() > 1)
             status = status.Mid(2, 1);
-        if ( status == "F")
+        if ( status == Model_Checking::toShortStatus(Model_Checking::FOLLOWUP))
             res = ICON_FOLLOWUP;
-        else if (status == "R")
+        else if (status == Model_Checking::toShortStatus(Model_Checking::RECONCILED))
             res = ICON_RECONCILED;
-        else if (status == "V")
+        else if (status == Model_Checking::toShortStatus(Model_Checking::VOID_))
             res = ICON_VOID;
-        else if (status == "D")
+        else if (status == Model_Checking::toShortStatus(Model_Checking::DUPLICATE_))
             res = ICON_DUPLICATE;
     }
 
@@ -1534,27 +1539,38 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
     //Read status of the selected transaction
     wxString status = m_cp->m_trans[m_selectedIndex].STATUS;
 
-    if (wxGetKeyState(wxKeyCode('R')) && status != "R") {
+    if (wxGetKeyState(wxKeyCode('R')) 
+        && status != Model_Checking::toShortStatus(Model_Checking::RECONCILED))
+    {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKRECONCILED);
         OnMarkTransaction(evt);
     }
-    else if (wxGetKeyState(wxKeyCode('U')) && status != "") {
+    else if (wxGetKeyState(wxKeyCode('U')) 
+        && status != Model_Checking::toShortStatus(Model_Checking::NONE))
+    {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKUNRECONCILED);
         OnMarkTransaction(evt);
     }
-    else if (wxGetKeyState(wxKeyCode('F')) && status != "F") {
+    else if (wxGetKeyState(wxKeyCode('F')) 
+        && status != Model_Checking::toShortStatus(Model_Checking::FOLLOWUP))
+    {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP);
         OnMarkTransaction(evt);
     }
-    else if (wxGetKeyState(wxKeyCode('D')) && status != "D") {
+    else if (wxGetKeyState(wxKeyCode('D')) 
+        && status != Model_Checking::toShortStatus(Model_Checking::DUPLICATE_))
+    {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKDUPLICATE);
         OnMarkTransaction(evt);
     }
-    else if (wxGetKeyState(wxKeyCode('V')) && status != "V") {
+    else if (wxGetKeyState(wxKeyCode('V')) 
+        && status != Model_Checking::toShortStatus(Model_Checking::VOID_))
+    {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
         OnMarkTransaction(evt);
     }
-    else if ((wxGetKeyState(WXK_DELETE) || wxGetKeyState(WXK_NUMPAD_DELETE)) && status != "V")
+    else if ((wxGetKeyState(WXK_DELETE) || wxGetKeyState(WXK_NUMPAD_DELETE)) 
+        && status != Model_Checking::toShortStatus(Model_Checking::VOID_))
     {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
         OnMarkTransaction(evt);
