@@ -182,8 +182,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.endDiv();
     hb.end();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+    return hb.getHTMLText();
 }
 
 mmReportCategoryExpensesGoes::mmReportCategoryExpensesGoes()

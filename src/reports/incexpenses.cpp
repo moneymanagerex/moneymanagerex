@@ -157,8 +157,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.endDiv();
     hb.end();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+    return hb.getHTMLText();
 }
 
 mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly()
@@ -287,6 +286,5 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.endDiv(); 
     hb.end();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+    return hb.getHTMLText();
 }

@@ -54,7 +54,8 @@ public:
                 if (transaction)
                 {
                     const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
-                    if (account) {
+                    if (account)
+                    {
                         frame->setAccountNavTreeSection(account->ACCOUNTNAME);
                         frame->setGotoAccountID(transaction->ACCOUNTID, transID);
                         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
@@ -75,7 +76,7 @@ public:
                     {
                         m_reportPanel->rb_->getHTMLText();
                     }
-                    m_reportPanel->browser_->LoadURL(getURL(mmex::getReportIndex()));
+                    m_reportPanel->browser_->LoadURL(getURL(mmex::getReportFullName(this->GetName())));
                 }
             }
         }
@@ -87,7 +88,7 @@ public:
             if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
             {
                 mmAttachmentManage::OpenAttachmentFromPanelIcon(nullptr, RefType, RefId);
-                m_reportPanel->browser_->LoadURL(getURL(mmex::getReportIndex()));
+                m_reportPanel->browser_->LoadURL(getURL(mmex::getReportFullName(this->GetName())));
             }
         }
 
@@ -171,7 +172,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
 
     wxString error;
     if (saveReportText(error))
-        browser_->LoadURL(getURL(mmex::getReportIndex()));
+        browser_->LoadURL(getURL(mmex::getReportFullName(name)));
     else
         browser_->SetPage(error, "");
 
@@ -199,7 +200,8 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
         o[L"name"] = json::String(rb_->title().ToStdWstring());
         o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
 
-        error = rb_->getHTMLText();
+        if (!Model_Report::outputReportFile(rb_->getHTMLText(), rb_->title()))
+            error = _("Error");
 
         o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
         Model_Usage::instance().append(o);
@@ -331,7 +333,7 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
 
         wxString error;
         if (this->saveReportText(error, false))
-            browser_->LoadURL(getURL(mmex::getReportIndex()));
+            browser_->LoadURL(getURL(mmex::getReportFullName(rb_->title())));
         else
             browser_->SetPage(error, "");
     }
@@ -349,7 +351,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& /*event*/)
 
             wxString error;
             if (this->saveReportText(error, false))
-                browser_->LoadURL(getURL(mmex::getReportIndex()));
+                browser_->LoadURL(getURL(mmex::getReportFullName(rb_->title())));
             else
                 browser_->SetPage(error, "");
         }
