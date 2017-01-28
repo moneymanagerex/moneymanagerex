@@ -1204,7 +1204,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 else
                     name += wxString(" (") + Option::instance().ReportName(r) + wxString(")");
                 hideShowReport->Append(MENU_TREEPOPUP_HIDE_SHOW_REPORT + r, name, wxEmptyString, wxITEM_CHECK);
-                hideShowReport->Check(MENU_TREEPOPUP_HIDE_SHOW_REPORT + r, !Option::instance().HideReport(r));
+                hideShowReport->Check(MENU_TREEPOPUP_HIDE_SHOW_REPORT + r, !Option::instance().HideReport(Option::instance().ReportID(r)));
             }
             menu.AppendSubMenu(hideShowReport, _("Hide/Show Report"));
             PopupMenu(&menu, pt);
@@ -2909,7 +2909,8 @@ void mmGUIFrame::OnClose(wxCloseEvent&)
 void mmGUIFrame::OnHideShowReport(wxCommandEvent& event)
 {
     int report = event.GetId() - MENU_TREEPOPUP_HIDE_SHOW_REPORT;
-    Option::instance().HideReport(report, !Option::instance().HideReport(report));
+    int id = Option::instance().ReportID(report);
+    Option::instance().HideReport(id, !Option::instance().HideReport(id));
     updateNavTreeControl();
     createHomePage();
 }

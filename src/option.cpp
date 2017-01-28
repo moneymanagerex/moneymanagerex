@@ -33,7 +33,7 @@
 struct ReportInfo
 {
     enum Reports {
-        MyUsage,
+        MyUsage = 0,
         MonthlySummaryofAccounts,
         YearlySummaryofAccounts,
         WheretheMoneyGoes,
@@ -50,12 +50,13 @@ struct ReportInfo
         StocksReportPerformance,
         StocksReportSummary,
         ForecastReport,
+        LastReportID,
     };
-    ReportInfo(wxString g, wxString n, bool t, Reports r) { group = g; name = n; type = t; report = r; }
+    ReportInfo(wxString g, wxString n, bool t, Reports r) { group = g; name = n; type = t; id = r; }
     wxString group;
     wxString name;
     bool type;
-    Reports report;
+    Reports id;
 };
 
 //----------------------------------------------------------------------------
@@ -468,11 +469,11 @@ const int Option::AccountImageId(int account_id, bool def)
     return selectedImage;
 }
 
-void Option::HideReport(int report, bool value)
+void Option::HideReport(int id, bool value)
 {
-    if ((report >= 0) && (report < ReportCount()))
+    if ((id >= 0) && (id < ReportInfo::LastReportID))
     {
-        int bitField = 1 << report;
+        int bitField = 1 << id;
         if (value)
             m_hideReport |= bitField;
         else
@@ -482,12 +483,12 @@ void Option::HideReport(int report, bool value)
     }
 }
 
-bool Option::HideReport(int report)
+bool Option::HideReport(int id)
 {
     bool hideReport = false;
-    if ((report >= 0) && (report < ReportCount()))
+    if ((id >= 0) && (id < ReportInfo::LastReportID))
     {
-        int bitField = 1 << report;
+        int bitField = 1 << id;
         hideReport = ((m_hideReport & bitField) != 0);
     }
     return hideReport;
@@ -496,6 +497,17 @@ bool Option::HideReport(int report)
 int Option::ReportCount()
 {
     return static_cast<int>(m_reports.size());
+}
+
+int Option::ReportID(int report)
+{
+    int id = -1;
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        id = r->id;
+    }
+    return id;
 }
 
 wxString Option::ReportGroup(int report)
@@ -531,13 +543,13 @@ bool Option::BudgetReport(int report)
     return budget;
 }
 
-mmPrintableBase* Option::ReportFunction(int report)
+mmPrintableBase* Option::ReportFunction(int id)
 {
     mmPrintableBase* function = nullptr;
-    if ((report >= 0) && (report < ReportCount()))
+    if ((id >= 0) && (id < ReportInfo::LastReportID))
     {
-        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
-        switch (r->report)
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[id]);
+        switch (r->id)
         {
         case ReportInfo::MyUsage:
             function = new mmReportMyUsage();
