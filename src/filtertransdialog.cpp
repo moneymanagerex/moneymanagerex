@@ -411,22 +411,23 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
 
     if (amountRangeCheckBox_->IsChecked())
     {
-        Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-
         m_min_amount = m_max_amount = 0;
-        wxString minamt = amountMinEdit_->GetValue().Trim();
-        wxString maxamt = amountMaxEdit_->GetValue().Trim();
-        if (!minamt.IsEmpty())
+
+        if (!amountMinEdit_->GetValue().Trim().IsEmpty() 
+            && !amountMinEdit_->checkValue(m_min_amount, true))
         {
-            if (!Model_Currency::fromString(minamt, m_min_amount, currency) || m_min_amount < 0)
-                return mmErrorDialogs::MessageInvalid(amountMinEdit_, _("Amount"));
+            return;
         }
 
-        if (!maxamt.IsEmpty())
+        if (!amountMaxEdit_->GetValue().Trim().IsEmpty() 
+            && !amountMaxEdit_->checkValue(m_max_amount, true))
+
         {
-            if (!Model_Currency::fromString(maxamt, m_max_amount, currency) || m_max_amount < 0 || m_min_amount > m_max_amount)
-                return mmErrorDialogs::MessageInvalid(amountMaxEdit_, _("Amount"));
+            return;
         }
+
+        if (m_min_amount > m_max_amount)
+            return mmErrorDialogs::MessageInvalid(this, _("Amount"));
     }
 
     if (m_dateRangeCheckBox->IsChecked())
