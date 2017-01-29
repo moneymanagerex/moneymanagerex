@@ -78,7 +78,7 @@ wxString mmReportTransactions::getHTMLText()
 
     hb.startTbody();
 
-    double total = 0;
+    std::map<int, double> total;
     bool monoAcc = m_transDialog->getAccountCheckBox() && account;
 
     const Model_Currency::Data* currency = account
@@ -123,7 +123,7 @@ wxString mmReportTransactions::getHTMLText()
         {
             double amount = Model_Checking::balance(transaction, account->ACCOUNTID);
             hb.addCurrencyCell(amount, currency);
-            total += amount;
+            total[currency->CURRENCYID] += amount;
         }
         else
         {
@@ -131,14 +131,10 @@ wxString mmReportTransactions::getHTMLText()
             if (acc)
             {
                 const Model_Currency::Data* curr = Model_Account::currency(acc);
-                double convRate = 1;
-                if (curr)
-                    convRate = curr->BASECONVRATE;
-
                 double amount = Model_Checking::balance(transaction
-                    , transaction.ACCOUNTID) * convRate;
+                    , transaction.ACCOUNTID);
                 hb.addCurrencyCell(amount, curr);
-                total += amount * convRate;
+                total[curr->CURRENCYID] += amount;
             }
             else
                 hb.addTableCell("");
@@ -147,12 +143,25 @@ wxString mmReportTransactions::getHTMLText()
     }
     hb.endTbody();
 
+    hb.startTfoot();
     // display the total balance.
-    const wxString totalStr = Model_Currency::toCurrency(total
-        , (monoAcc ? Model_Account::currency(account) : Model_Currency::GetBaseCurrency()));
+    double grand_total = 0;
+    for (const auto& curr_total : total)
+    {
+        const auto curr = Model_Currency::instance().get(curr_total.first);
+        const wxString totalStr = Model_Currency::toCurrency(curr_total.second, curr);
+        grand_total += curr_total.second * curr->BASECONVRATE;
+        const std::vector<wxString> v{ totalStr };
+        if (total.size() > 1 
+            || (curr->CURRENCY_SYMBOL != Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL))
+            hb.addTotalRow(curr->CURRENCY_SYMBOL, 9, v);
+    }
+    const wxString totalStr = Model_Currency::toCurrency(grand_total
+        , Model_Currency::GetBaseCurrency());
     const std::vector<wxString> v{ totalStr };
-    hb.addTotalRow(_("Total Amount: "), 9, v);
+    hb.addTotalRow(_("Grand Total:"), 9, v);
 
+    hb.endTfoot();
     hb.endTable();
 
     m_transDialog->getDescription(hb);
@@ -170,7 +179,7 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
         Model_Checking::Full_Data full_tran(tran, splits);
         if (!dlg->checkAll(full_tran, m_refAccountID)) continue;
         full_tran.PAYEENAME = full_tran.real_payee_name(m_refAccountID);
-        if (m_transDialog->getCategoryCheckBox() && full_tran.has_split()) 
+        if (full_tran.has_split()) 
         {
             full_tran.CATEGNAME.clear();
             full_tran.TRANSAMOUNT = 0;
@@ -188,7 +197,7 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
             }
             full_tran.CATEGNAME.RemoveLast(2);
         }
-
+        full_tran.TRANSAMOUNT = tran.TRANSAMOUNT;
         trans_.push_back(full_tran);
     }
     std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());

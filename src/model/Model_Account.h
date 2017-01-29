@@ -106,7 +106,7 @@ public:
     static bool is_used(const Model_Currency::Data* c);
     static bool is_used(const Model_Currency::Data& c);
 
-    static int checking_account_num();
+    static int money_accounts_num();
 
     static bool Exist(const wxString& account_name);
 
