@@ -129,8 +129,8 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
             {
                 if (Option::instance().ReportGroup(s) == groupName)
                 {
-                    bool a = !Option::instance().HideReport(Option::instance().ReportID(s));
-                    if (a && Option::instance().BudgetReport(r))
+                    bool a = !Option::instance().HideReport(s);
+                    if (a && Option::instance().BudgetReport(s))
                         a = budget;
                     if (a)
                         bAdd = true;
@@ -143,15 +143,14 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
                 reportGroupName = groupName;
             }
         }
-        int id = Option::instance().ReportID(r);
-        bool bShow = !Option::instance().HideReport(id);
+        bool bShow = !Option::instance().HideReport(r);
         if (bShow && Option::instance().BudgetReport(r))
             bShow = budget;
         if (bShow)
         {
             wxString reportName = Option::instance().ReportName(r);
             wxTreeItemId item = m_nav_tree_ctrl->AppendItem(no_group ? reports : reportGroup, reportName, img::PIECHART_PNG, img::PIECHART_PNG);
-            m_nav_tree_ctrl->SetItemData(item, new mmTreeItemData(reportName, Option::instance().ReportFunction(id)));
+            m_nav_tree_ctrl->SetItemData(item, new mmTreeItemData(reportName, Option::instance().ReportFunction(r)));
         }
     }
 

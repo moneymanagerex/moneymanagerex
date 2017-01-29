@@ -156,7 +156,7 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
 
     std::string url = GA_URL_ENDPOINT;
 
-    std::unordered_map<wxString, wxString> parameters = {
+    std::vector<std::pair<wxString, wxString>> parameters = {
         { "v", "1" },
         { "t", "pageview" },
         { "tid", "UA-51521761-6" },
