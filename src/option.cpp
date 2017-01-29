@@ -33,7 +33,7 @@
 struct ReportInfo
 {
     enum Reports {
-        MyUsage,
+        MyUsage = 0,
         MonthlySummaryofAccounts,
         YearlySummaryofAccounts,
         WheretheMoneyGoes,
@@ -50,13 +50,39 @@ struct ReportInfo
         StocksReportPerformance,
         StocksReportSummary,
         ForecastReport,
+        LastReportID,
     };
-    ReportInfo(wxString g, wxString n, bool t, Reports r) { group = g; name = n; type = t; report = r; }
+    ReportInfo(wxString g, wxString n, bool t, Reports r) { group = g; name = n; type = t; id = r; }
     wxString group;
     wxString name;
     bool type;
-    Reports report;
+    Reports id;
 };
+
+int ReportCompare(_wxArraywxArrayPtrVoid *first, _wxArraywxArrayPtrVoid *second)
+{
+    ReportInfo *f = reinterpret_cast<ReportInfo*>(*first);
+    ReportInfo *s = reinterpret_cast<ReportInfo*>(*second);
+    if (f->group.IsEmpty())
+    {
+        if (s->group.IsEmpty())
+            return f->name.Cmp(s->name);
+        else
+            return f->name.Cmp(s->group);
+    }
+    else
+    {
+        if (s->group.IsEmpty())
+            return f->group.Cmp(s->name);
+        else
+        {
+            int r = f->group.Cmp(s->group);
+            if (r == 0)
+                r = f->name.Cmp(s->name);
+            return r;
+        }
+    }
+}
 
 //----------------------------------------------------------------------------
 Option::Option()
@@ -95,6 +121,8 @@ Option::Option()
     m_reports.Add(new ReportInfo(_("Stocks Report"), _("Performance"), false, ReportInfo::StocksReportPerformance));
     m_reports.Add(new ReportInfo(_("Stocks Report"), _("Summary"), false, ReportInfo::StocksReportSummary));
     m_reports.Add(new ReportInfo("", _("Forecast Report"), false, ReportInfo::ForecastReport));
+    //Sort by group name and report name
+    m_reports.Sort(ReportCompare);
 }
 
 Option::~Option()
@@ -468,11 +496,11 @@ const int Option::AccountImageId(int account_id, bool def)
     return selectedImage;
 }
 
-void Option::HideReport(int report, bool value)
+void Option::HideReport(int id, bool value)
 {
-    if ((report >= 0) && (report < ReportCount()))
+    if ((id >= 0) && (id < ReportInfo::LastReportID))
     {
-        int bitField = 1 << report;
+        int bitField = 1 << id;
         if (value)
             m_hideReport |= bitField;
         else
@@ -482,12 +510,12 @@ void Option::HideReport(int report, bool value)
     }
 }
 
-bool Option::HideReport(int report)
+bool Option::HideReport(int id)
 {
     bool hideReport = false;
-    if ((report >= 0) && (report < ReportCount()))
+    if ((id >= 0) && (id < ReportInfo::LastReportID))
     {
-        int bitField = 1 << report;
+        int bitField = 1 << id;
         hideReport = ((m_hideReport & bitField) != 0);
     }
     return hideReport;
@@ -496,6 +524,17 @@ bool Option::HideReport(int report)
 int Option::ReportCount()
 {
     return static_cast<int>(m_reports.size());
+}
+
+int Option::ReportID(int report)
+{
+    int id = -1;
+    if ((report >= 0) && (report < ReportCount()))
+    {
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        id = r->id;
+    }
+    return id;
 }
 
 wxString Option::ReportGroup(int report)
@@ -531,13 +570,12 @@ bool Option::BudgetReport(int report)
     return budget;
 }
 
-mmPrintableBase* Option::ReportFunction(int report)
+mmPrintableBase* Option::ReportFunction(int id)
 {
     mmPrintableBase* function = nullptr;
-    if ((report >= 0) && (report < ReportCount()))
+    if ((id >= 0) && (id < ReportInfo::LastReportID))
     {
-        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
-        switch (r->report)
+        switch (id)
         {
         case ReportInfo::MyUsage:
             function = new mmReportMyUsage();
