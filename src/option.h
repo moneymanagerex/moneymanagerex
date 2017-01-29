@@ -111,14 +111,14 @@ public:
 
     const int AccountImageId(int account_id, bool def = false);
 
-    void HideReport(int id, bool value);
-    bool HideReport(int id);
+    void HideReport(int report, bool value);
+    bool HideReport(int report);
     int ReportCount();
-    int ReportID(int report);
+    wxString ReportFullName(int report);
     wxString ReportGroup(int report);
     wxString ReportName(int report);
     bool BudgetReport(int report);
-    mmPrintableBase* ReportFunction(int id);
+    mmPrintableBase* ReportFunction(int report);
 
 private:
     wxString m_dateFormat;

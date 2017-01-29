@@ -50,7 +50,6 @@ struct ReportInfo
         StocksReportPerformance,
         StocksReportSummary,
         ForecastReport,
-        LastReportID,
     };
     ReportInfo(wxString g, wxString n, bool t, Reports r) { group = g; name = n; type = t; id = r; }
     wxString group;
@@ -496,11 +495,12 @@ const int Option::AccountImageId(int account_id, bool def)
     return selectedImage;
 }
 
-void Option::HideReport(int id, bool value)
+void Option::HideReport(int report, bool value)
 {
-    if ((id >= 0) && (id < ReportInfo::LastReportID))
+    if ((report >= 0) && (report < ReportCount()))
     {
-        int bitField = 1 << id;
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        int bitField = 1 << static_cast<int>(r->id);
         if (value)
             m_hideReport |= bitField;
         else
@@ -510,12 +510,13 @@ void Option::HideReport(int id, bool value)
     }
 }
 
-bool Option::HideReport(int id)
+bool Option::HideReport(int report)
 {
     bool hideReport = false;
-    if ((id >= 0) && (id < ReportInfo::LastReportID))
+    if ((report >= 0) && (report < ReportCount()))
     {
-        int bitField = 1 << id;
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        int bitField = 1 << static_cast<int>(r->id);
         hideReport = ((m_hideReport & bitField) != 0);
     }
     return hideReport;
@@ -526,15 +527,19 @@ int Option::ReportCount()
     return static_cast<int>(m_reports.size());
 }
 
-int Option::ReportID(int report)
+wxString Option::ReportFullName(int report)
 {
-    int id = -1;
+    wxString name = "";
     if ((report >= 0) && (report < ReportCount()))
     {
         ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
-        id = r->id;
+        name = r->group;
+        if (name.IsEmpty())
+            name = r->name;
+        else
+            name += wxString(" (") + r->name + wxString(")");
     }
-    return id;
+    return name;
 }
 
 wxString Option::ReportGroup(int report)
@@ -570,12 +575,13 @@ bool Option::BudgetReport(int report)
     return budget;
 }
 
-mmPrintableBase* Option::ReportFunction(int id)
+mmPrintableBase* Option::ReportFunction(int report)
 {
     mmPrintableBase* function = nullptr;
-    if ((id >= 0) && (id < ReportInfo::LastReportID))
+    if ((report >= 0) && (report < ReportCount()))
     {
-        switch (id)
+        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        switch (r->id)
         {
         case ReportInfo::MyUsage:
             function = new mmReportMyUsage();
