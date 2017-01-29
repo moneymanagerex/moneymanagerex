@@ -181,5 +181,10 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
             , wxGetTranslation(record.REPORTNAME), img::CUSTOMSQL_PNG, img::CUSTOMSQL_PNG);
         m_nav_tree_ctrl->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
     }
+
+    //////////////////////////////////////////////////////////////////
+
+    // Sort the list of reports
+    m_nav_tree_ctrl->SortChildren(reports);
 }
 
