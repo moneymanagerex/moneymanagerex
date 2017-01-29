@@ -61,9 +61,12 @@ Model_Attachment& Model_Attachment::instance()
 /** Return all attachments references */
 wxArrayString Model_Attachment::all_type()
 {
-    wxArrayString types;
-    for (const auto& item : REFTYPE_CHOICES)
-        types.Add(item.second);
+    static wxArrayString types;
+    if (types.empty())
+    {
+        for (const auto& item : REFTYPE_CHOICES)
+            types.Add(item.second);
+    }
     return types;
 }
 

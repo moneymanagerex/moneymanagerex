@@ -83,15 +83,22 @@ wxArrayString Model_Account::all_checking_account_names(bool skip_closed)
 
 wxArrayString Model_Account::all_status()
 {
-    wxArrayString status;
-    for (const auto& item : STATUS_CHOICES) status.Add(item.second);
+    static wxArrayString status;
+    if (status.empty())
+    {
+        for (const auto& item : STATUS_CHOICES) status.Add(item.second);
+    }
     return status;
 }
 
 wxArrayString Model_Account::all_type()
 {
-    wxArrayString type;
-    for (const auto& item : TYPE_CHOICES) type.Add(item.second);
+    static wxArrayString type;
+    if (type.empty())
+    {
+        for (const auto& item : TYPE_CHOICES) 
+            type.Add(item.second);
+    }
     return type;
 }
 
