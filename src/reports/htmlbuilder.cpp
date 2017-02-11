@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel, Paulo Lopes
  copyright (C) 2012 Nikolay
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -205,11 +206,13 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, const std::ve
     this->addTotalRow(caption, cols, data_str);
 }
 
-void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool numeric, const bool sortable)
+void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool numeric, const bool sortable, const int cols, const bool center)
 {
     const wxString sort = (sortable ? "" : " class='sorttable_nosort'");
-    const wxString align = (numeric ? " class='text-right'" : " class='text-left'");
-    html_ += wxString::Format(tags::TABLE_HEADER, sort + align);
+    const wxString align = (center ? " class='text-center'" : (numeric ? " class='text-right'" : " class='text-left'"));
+    const wxString cspan = (cols > 1 ? wxString::Format(" colspan=\"%i\"", cols) : "");
+
+    html_ += wxString::Format(tags::TABLE_HEADER, sort + align + cspan);
     html_ += (value);
     html_+= tags::TABLE_HEADER_END;
 }
@@ -244,9 +247,9 @@ void mmHTMLBuilder::addTableCellDate(const wxString& iso_date)
     this->endTableCell();
 }
 
-void mmHTMLBuilder::addTableCell(const wxString& value, const bool numeric)
+void mmHTMLBuilder::addTableCell(const wxString& value, const bool numeric, const bool center)
 {
-    const wxString align = numeric ? " class='text-right' nowrap" : " class='text-left'";
+    const wxString align = (center ? " class='text-center'" : (numeric ? " class='text-right' nowrap" : " class='text-left'"));
     html_ += wxString::Format(tags::TABLE_CELL, align);
     html_ += value;
     this->endTableCell();
