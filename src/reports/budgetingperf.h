@@ -31,6 +31,9 @@ public:
 
     virtual bool has_only_years();
     virtual wxString getHTMLText();
+
+private:
+    void DisplayRows(mmHTMLBuilder &hb, const double estimated, const double actual, wxString catName, std::map<int, double> stats);
 };
 
 #endif // MM_EX_REPORTBUDGETING_PERFORMANCE_H_
