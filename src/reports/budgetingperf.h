@@ -33,7 +33,7 @@ public:
     virtual wxString getHTMLText();
 
 private:
-    void DisplayRows(mmHTMLBuilder &hb, const double estimated, const double actual, wxString catName, std::map<int, double> stats);
+    void DisplayRow(mmHTMLBuilder &hb, const double estimated, const double actual, wxString catName, std::map<int, double> stats, const bool bTotalRow = false);
 };
 
 #endif // MM_EX_REPORTBUDGETING_PERFORMANCE_H_

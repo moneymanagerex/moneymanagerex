@@ -35,11 +35,14 @@ mmReportBudgetingPerformance::mmReportBudgetingPerformance()
 mmReportBudgetingPerformance::~mmReportBudgetingPerformance()
 {}
 
-void mmReportBudgetingPerformance::DisplayRows(mmHTMLBuilder &hb, const double estimated, const double actual, wxString catName, std::map<int, double> stats)
+void mmReportBudgetingPerformance::DisplayRow(mmHTMLBuilder &hb, const double estimated, const double actual, wxString catName, std::map<int, double> stats, const bool bTotalRow)
 {
     if ((estimated != 0.0) || (actual != 0.0))
     {
-        hb.startTableRow();
+        if (bTotalRow)
+            hb.startTotalTableRow();
+        else
+            hb.startTableRow();
         hb.addTableCell(catName);
 
         const double est = estimated / 12.0;
@@ -120,6 +123,8 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     const auto &allCategories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);
     const auto &allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
     std::map<int, std::map<int, double> > totals;
+    double monthlyEst = 0, monthlyAct = 0;
+    std::map<int, double> monthlyActual;
     for (const auto& category : allCategories)
     {
         totals[category.CATEGID][-1] = 0;
@@ -184,7 +189,12 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         // set the actual amount for the year
         double actual = totals[category.CATEGID][-1];
 
-        DisplayRows(hb, estimated, actual, category.CATEGNAME, categoryStats[category.CATEGID][-1]);
+        monthlyEst += estimated;
+        monthlyAct += actual;
+        for (const auto &i : categoryStats[category.CATEGID][-1])
+            monthlyActual[i.first] += i.second;
+
+        DisplayRow(hb, estimated, actual, category.CATEGNAME, categoryStats[category.CATEGID][-1]);
 
         for (const Model_Subcategory::Data& subcategory : allSubcategories)
         {
@@ -197,10 +207,18 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             // set the actual abount for the year
             actual = totals[category.CATEGID][subcategory.SUBCATEGID];
 
-            DisplayRows(hb, estimated, actual, category.CATEGNAME + ": " + subcategory.SUBCATEGNAME, categoryStats[category.CATEGID][subcategory.SUBCATEGID]);
+            monthlyEst += estimated;
+            monthlyAct += actual;
+            for (const auto &i : categoryStats[category.CATEGID][subcategory.SUBCATEGID])
+                monthlyActual[i.first] += i.second;
+
+            DisplayRow(hb, estimated, actual, category.CATEGNAME + ": " + subcategory.SUBCATEGNAME, categoryStats[category.CATEGID][subcategory.SUBCATEGID]);
         }
     }
     hb.endTbody();
+    hb.startTfoot();
+    DisplayRow(hb, monthlyEst, monthlyAct, _("Monthly Total"), monthlyActual, true);
+    hb.endTfoot();
 
     hb.endTable();
     hb.endDiv();
