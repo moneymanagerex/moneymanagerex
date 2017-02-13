@@ -206,7 +206,7 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
                     {
                         // Reinitialize to first date selection
                         this->m_date_ranges->SetSelection(0);
-                        date = static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
+                        date = *m_all_date_ranges.begin();
                         this->m_start_date->SetValue(date->start_date());
                         this->m_end_date->SetValue(date->end_date());
                     }
@@ -273,11 +273,12 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             const mmDateRange* date_range = *m_all_date_ranges.begin();
-            m_start_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE);
+            long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
+            m_start_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
             m_start_date->SetValue(date_range->start_date());
             m_start_date->Enable(false);
 
-            m_end_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_END_DATE);
+            m_end_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_END_DATE, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
             m_end_date->SetValue(date_range->end_date());
             m_end_date->Enable(false);
 
