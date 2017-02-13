@@ -35,7 +35,7 @@ mmReportBudgetingPerformance::mmReportBudgetingPerformance()
 mmReportBudgetingPerformance::~mmReportBudgetingPerformance()
 {}
 
-void mmReportBudgetingPerformance::DisplayRow(mmHTMLBuilder &hb, const double estimated, const double actual, wxString catName, std::map<int, double> stats, const bool bTotalRow)
+void mmReportBudgetingPerformance::DisplayRow(mmHTMLBuilder &hb, double estimated, double actual, const wxString& catName, const std::map<int, double>& stats, bool bTotalRow)
 {
     if ((estimated != 0.0) || (actual != 0.0))
     {
