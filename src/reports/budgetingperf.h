@@ -33,8 +33,7 @@ public:
     virtual wxString getHTMLText();
 
 private:
-    const wxString DisplayEstimateMonths(double estimated);
-    const wxString DisplayActualMonths(double estimated, std::map<int, double>& actual);
+    void DisplayRow(mmHTMLBuilder &hb, const double estimated, const double actual, wxString catName, std::map<int, double> stats, const bool bTotalRow = false);
 };
 
 #endif // MM_EX_REPORTBUDGETING_PERFORMANCE_H_

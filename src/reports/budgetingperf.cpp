@@ -35,31 +35,53 @@ mmReportBudgetingPerformance::mmReportBudgetingPerformance()
 mmReportBudgetingPerformance::~mmReportBudgetingPerformance()
 {}
 
-const wxString mmReportBudgetingPerformance::DisplayEstimateMonths(double estimated)
+void mmReportBudgetingPerformance::DisplayRow(mmHTMLBuilder &hb, const double estimated, const double actual, wxString catName, std::map<int, double> stats, const bool bTotalRow)
 {
-    mmHTMLBuilder hb;
-    double amount = estimated / 12;
-    const auto val = Model_Currency::toString(amount, Model_Currency::GetBaseCurrency());
-    for (int yidx = 0; yidx < 12; yidx++)
+    if ((estimated != 0.0) || (actual != 0.0))
     {
-        hb.addTableCell(val, true);
-    }
+        if (bTotalRow)
+            hb.startTotalTableRow();
+        else
+            hb.startTableRow();
+        hb.addTableCell(catName);
 
-    return hb.getHTMLText();
-}
+        const double est = estimated / 12.0;
+        for (const auto &i : stats)
+        {
+            const auto estVal = Model_Currency::toString(est, Model_Currency::GetBaseCurrency());
+            hb.startTableCell(" style='text-align:right;' nowrap");
+            hb.addText(estVal);
+            hb.endTableCell();
 
-const wxString  mmReportBudgetingPerformance::DisplayActualMonths(double estimated, std::map<int, double>& actual)
-{
-    mmHTMLBuilder hb;
-    double est = estimated / 12;
-    for (const auto &i : actual)
-    {
-        hb.startTableCell(wxString::Format(" style='text-align:right;%s' nowrap", (i.second - est < 0) ? "color:#FF0000;" : ""));
-        const auto val = Model_Currency::toString(i.second, Model_Currency::GetBaseCurrency());
+            const auto val = Model_Currency::toString(i.second, Model_Currency::GetBaseCurrency());
+            hb.startTableCell(wxString::Format(" style='text-align:right;%s' nowrap", (i.second - est < 0) ? "color:#FF0000;" : ""));
+            hb.addText(val);
+            hb.endTableCell();
+        }
+
+        // year end
+        const auto estVal = Model_Currency::toString(estimated, Model_Currency::GetBaseCurrency());
+        hb.startTableCell(" style='text-align:right;' nowrap");
+        hb.addText(estVal);
+        hb.endTableCell();
+
+        const auto val = Model_Currency::toString(actual, Model_Currency::GetBaseCurrency());
+        hb.startTableCell(wxString::Format(" style='text-align:right;%s' nowrap", (actual - estimated < 0) ? "color:#FF0000;" : "color:#009900;"));
         hb.addText(val);
         hb.endTableCell();
+
+        if (((estimated < 0) && (actual < 0)) ||
+            ((estimated > 0) && (actual > 0)))
+        {
+            double percent = (fabs(actual) / fabs(estimated)) * 100.0;
+            hb.addTableCell(wxString::Format("%.0f", percent));
+        }
+        else
+        {
+            hb.addTableCell("-");
+        }
+        hb.endTableRow();
     }
-    return hb.getHTMLText();
 }
 
 bool mmReportBudgetingPerformance::has_only_years()
@@ -71,7 +93,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 {
     int startDay = 1;
     int startMonth = wxDateTime::Jan;
-    int endDay   = 31;
+    int endDay = 31;
     int endMonth = wxDateTime::Dec;
 
     long startYear;
@@ -101,6 +123,8 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     const auto &allCategories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);
     const auto &allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
     std::map<int, std::map<int, double> > totals;
+    double monthlyEst = 0, monthlyAct = 0;
+    std::map<int, double> monthlyActual;
     for (const auto& category : allCategories)
     {
         totals[category.CATEGID][-1] = 0;
@@ -134,18 +158,27 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Category"));
-    hb.addTableHeaderCell(_("Type"));
 
     for (int yidx = 0; yidx < 12; yidx++)
     {
         int m = startMonth + yidx;
         if (m >= 12) m -= 12;
-        hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(wxDateTime::Month(m), wxDateTime::Name_Abbr)), true);
+        hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(wxDateTime::Month(m), wxDateTime::Name_Abbr)), false, true, 2, true);
     }
-    hb.addTableHeaderCell(_("Overall"), true);
-    hb.addTableHeaderCell(_("%"), true);
+    hb.addTableHeaderCell(_("Total"), false, true, 3, true);
     hb.endTableRow();
     hb.endThead();
+    hb.startTableRow();
+    hb.addEmptyTableCell();
+    for (int yidx = 0; yidx < 12; yidx++)
+    {
+        hb.addTableCell(_("Est."), false, true);
+        hb.addTableCell(_("Act."), false, true);
+    }
+    hb.addTableCell(_("Est."), false, true);
+    hb.addTableCell(_("Act."), false, true);
+    hb.addTableCell(_("%"), false, true);
+    hb.endTableRow();
 
     hb.startTbody();
     for (const Model_Category::Data& category : allCategories)
@@ -156,50 +189,12 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         // set the actual amount for the year
         double actual = totals[category.CATEGID][-1];
 
-        // estimated stuff
-        if ((estimated != 0.0) || (actual != 0.0))
-        {
-            hb.startTableRow();
-            hb.addTableCell(category.CATEGNAME);
-            hb.addTableCell(_("Estimated"));
+        monthlyEst += estimated;
+        monthlyAct += actual;
+        for (const auto &i : categoryStats[category.CATEGID][-1])
+            monthlyActual[i.first] += i.second;
 
-            //hb.addText(DisplayEstimateMonths(estimated));
-            hb.startTableCell(" style='text-align:right;' nowrap");
-            const auto estVal = Model_Currency::toString(estimated, Model_Currency::GetBaseCurrency());
-            hb.addText(estVal);
-            hb.endTableCell();
-
-            hb.addMoneyCell(estimated);
-            hb.addTableCell("-");
-            hb.endTableRow();
-
-            // actual stuff
-            hb.startTableRow();
-            hb.addTableCell(category.CATEGNAME);
-            hb.addTableCell(_("Actual"));
-
-            hb.addText(DisplayActualMonths(estimated, categoryStats[category.CATEGID][-1]));
-
-            // year end
-            hb.startTableCell(wxString::Format(" style='text-align:right;%s' nowrap"
-                , (actual - estimated < 0) ? "color:#FF0000;" : "color:#009900;"));
-            const auto val = Model_Currency::toString(actual, Model_Currency::GetBaseCurrency());
-            hb.addText(val);
-            hb.endTableCell();
-
-            if (((estimated < 0) && (actual < 0)) ||
-                ((estimated > 0) && (actual > 0)))
-            {
-                double percent = (fabs(actual) / fabs(estimated)) * 100.0;
-                hb.addTableCell(wxString::Format("%.0f", percent));
-            }
-            else
-            {
-                hb.addTableCell("-");
-            }
-
-            hb.endTableRow();
-        }
+        DisplayRow(hb, estimated, actual, category.CATEGNAME, categoryStats[category.CATEGID][-1]);
 
         for (const Model_Subcategory::Data& subcategory : allSubcategories)
         {
@@ -212,53 +207,18 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             // set the actual abount for the year
             actual = totals[category.CATEGID][subcategory.SUBCATEGID];
 
-            if ((estimated != 0.0) || (actual != 0.0))
-            {
-                hb.startTableRow();
-                hb.addTableCell(category.CATEGNAME + ": " + subcategory.SUBCATEGNAME);
-                hb.addTableCell(_("Estimated"));
+            monthlyEst += estimated;
+            monthlyAct += actual;
+            for (const auto &i : categoryStats[category.CATEGID][subcategory.SUBCATEGID])
+                monthlyActual[i.first] += i.second;
 
-                hb.addText(DisplayEstimateMonths(estimated));
-
-                //hb.addMoneyCell(estimated);
-                hb.startTableCell(" style='text-align:right;' nowrap");
-                const auto estVal = Model_Currency::toString(estimated, Model_Currency::GetBaseCurrency());
-                hb.addText(estVal);
-                hb.endTableCell();
-
-                hb.addTableCell("-");
-                hb.endTableRow();
-
-                hb.startTableRow();
-                hb.addTableCell(category.CATEGNAME + ": " + subcategory.SUBCATEGNAME);
-                hb.addTableCell(_("Actual"));
-
-                hb.addText(DisplayActualMonths(estimated, categoryStats[category.CATEGID][subcategory.SUBCATEGID]));
-
-                // year end
-                hb.startTableCell(wxString::Format(" style='text-align:right;%s' nowrap"
-                    , ((actual - estimated < 0)) ? "color:#FF0000;" : "color:#009900;"));
-                const auto val = Model_Currency::toString(actual, Model_Currency::GetBaseCurrency());
-                hb.addText(val);
-                hb.endTableCell();
-
-
-                if (((estimated < 0) && (actual < 0)) ||
-                    ((estimated > 0) && (actual > 0)))
-                {
-                    double percent = (fabs(actual) / fabs(estimated)) * 100.0;
-                    hb.addTableCell(wxString::Format("%.0f", percent));
-                }
-                else
-                {
-                    hb.addTableCell("-");
-                }
-
-                hb.endTableRow();
-            }
+            DisplayRow(hb, estimated, actual, category.CATEGNAME + ": " + subcategory.SUBCATEGNAME, categoryStats[category.CATEGID][subcategory.SUBCATEGID]);
         }
     }
     hb.endTbody();
+    hb.startTfoot();
+    DisplayRow(hb, monthlyEst, monthlyAct, _("Monthly Total"), monthlyActual, true);
+    hb.endTfoot();
 
     hb.endTable();
     hb.endDiv();
