@@ -217,21 +217,24 @@ wxThread::ExitCode SendStatsThread::Entry()
 	std::cout << user_agent << std::endl;
 	nc = mg_connect_http(&mgr, SendStatsThread::ev_handler, m_url.c_str(), user_agent.c_str(), NULL); // GET
 
-	mg_set_protocol_http_websocket(nc);
+    if (nc != nullptr)
+    {
+	    mg_set_protocol_http_websocket(nc);
 
-	time_t ts_start = time(NULL);
-	time_t ts_end = ts_start;
-	this->m_end = false;
+	    time_t ts_start = time(NULL);
+	    time_t ts_end = ts_start;
+	    this->m_end = false;
 
-	while (!this->m_end)
-	{
-		if ((ts_end - ts_start) >= 1) // 1 sec
-		{
-			std::cout << "timeout" << std::endl;
-			break;
-		}
-		ts_end = mg_mgr_poll(&mgr, 1000);
-	}
+	    while (!this->m_end)
+	    {
+		    if ((ts_end - ts_start) >= 1) // 1 sec
+		    {
+			    std::cout << "timeout" << std::endl;
+			    break;
+		    }
+		    ts_end = mg_mgr_poll(&mgr, 1000);
+	    }
+    }
 	mg_mgr_free(&mgr);
 
 	return nullptr;
