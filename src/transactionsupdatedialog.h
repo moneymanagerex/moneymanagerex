@@ -29,7 +29,7 @@ class transactionsUpdateDialog : public wxDialog
 
 public:
     transactionsUpdateDialog();
-    transactionsUpdateDialog::~transactionsUpdateDialog();
+    ~transactionsUpdateDialog();
     transactionsUpdateDialog(wxWindow* parent, int account_id, std::vector<int>& transaction_id);
 
 private:
