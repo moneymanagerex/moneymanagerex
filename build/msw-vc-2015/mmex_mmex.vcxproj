@@ -355,6 +355,7 @@
     <ClCompile Include="..\..\src\reports\summary.cpp" />
     <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
     <ClCompile Include="..\..\src\sharetransactiondialog.cpp" />
+    <ClCompile Include="..\..\src\transactionsupdatedialog.cpp" />
     <ClCompile Include="..\..\src\usertransactionpanel.cpp" />
     <ClCompile Include="..\..\src\webappdialog.cpp" />
     <ClCompile Include="..\..\src\win\platfdep.cpp" />
@@ -512,6 +513,7 @@
     <ClInclude Include="..\..\src\stockdialog.h" />
     <ClInclude Include="..\..\src\stockspanel.h" />
     <ClInclude Include="..\..\src\reports\transactions.h" />
+    <ClInclude Include="..\..\src\transactionsupdatedialog.h" />
     <ClInclude Include="..\..\src\transdialog.h" />
     <ClInclude Include="..\..\src\import_export\univcsvdialog.h" />
     <ClInclude Include="..\..\src\usertransactionpanel.h" />

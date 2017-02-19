@@ -17,24 +17,26 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "filtertransdialog.h"
-#include "mmcheckingpanel.h"
-#include "paths.h"
+#include "assetdialog.h"
+#include "attachmentdialog.h"
+#include "billsdepositsdialog.h"
 #include "constants.h"
+#include "filtertransdialog.h"
 #include "images_list.h"
-#include "util.h"
+#include "mmcheckingpanel.h"
 #include "mmex.h"
 #include "mmframe.h"
-#include "mmTips.h"
 #include "mmSimpleDialogs.h"
+#include "mmTips.h"
+#include "model/allmodel.h"
+#include "paths.h"
+#include "sharetransactiondialog.h"
 #include "splittransactionsdialog.h"
 #include "transdialog.h"
+#include "transactionsupdatedialog.h"
+#include "util.h"
 #include "validators.h"
-#include "attachmentdialog.h"
-#include "model/allmodel.h"
-#include "sharetransactiondialog.h"
-#include "assetdialog.h"
-#include "billsdepositsdialog.h"
+
 #include <wx/clipbrd.h>
 
 //----------------------------------------------------------------------------
@@ -562,8 +564,6 @@ void mmCheckingPanel::enableEditDeleteButtons(bool en)
 {
     if (m_listCtrlAccount->GetSelectedItemCount()>1)
     {
-        m_btnEdit->Enable(false);
-        m_btnDelete->Enable(true);
         m_btnDuplicate->Enable(false);
         m_btnAttachment->Enable(false);
     }
@@ -1033,8 +1033,7 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
     m_cp->updateExtraTransactionData(m_selectedIndex);
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 
-    if (GetSelectedItemCount() > 1)
-        m_cp->enableEditDeleteButtons(true);
+    //m_cp->enableEditDeleteButtons(true);
 
     m_selectedID = m_cp->m_trans[m_selectedIndex].TRANSID;
 }
@@ -1049,16 +1048,9 @@ void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
         m_selectedIndex = -1;
         m_cp->updateExtraTransactionData(m_selectedIndex);
     }
-    // Workaround for wxWidgets bug #4541 which affects MSW build
-    if ((m_selectedIndex >= 0) && (index != m_selectedIndex) && event.ShiftDown())
-    {
-        // Note: GetSelectedItemCount() does not return correct count at this time
-        // so we can't call enableEditDeleteButtons() or updateExtraTransactionData()
-        m_cp->m_btnEdit->Enable(false);
-        m_cp->m_btnDelete->Enable(true);
-        m_cp->m_btnDuplicate->Enable(false);
-        m_cp->m_btnAttachment->Enable(false);
-    }
+
+    //m_cp->enableEditDeleteButtons(true);
+    
     event.Skip();
 }
 
@@ -1104,7 +1096,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
 
     menu.Append(MENU_TREEPOPUP_EDIT2, _("&Edit Transaction"));
-    if (hide_menu_item || multiselect) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
+    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
     menu.Append(MENU_ON_COPY_TRANSACTION, _("&Copy Transaction"));
     if (hide_menu_item) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
@@ -1644,7 +1636,29 @@ bool TransactionListCtrl::TransactionLocked(const wxString& transdate)
 
 void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 {
-    if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
+    if (GetSelectedItemCount() > 1)
+    {
+        std::vector<int> v;
+        long x = 0;
+        for (const auto& i : m_cp->m_trans)
+        {
+            if (GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+            {
+                v.push_back( i.TRANSID);
+            }
+            x++;
+        }
+
+        transactionsUpdateDialog dlg(this, m_cp->m_AccountID, v);
+        if (dlg.ShowModal() == wxID_OK)
+        {
+            refreshVisualList();
+        }
+        return;
+    }
+
+    if (m_selectedIndex < 0) return;
+
     Model_Checking::Data checking_entry = m_cp->m_trans[m_selectedIndex];
     int transaction_id = checking_entry.TRANSID;
 
@@ -1847,8 +1861,11 @@ void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
 
 void TransactionListCtrl::OnListItemFocused(wxListEvent& event)
 {
+    m_cp->enableEditDeleteButtons(true);
+
     long count = this->GetSelectedItemCount();
-    if (count < 2) return;
+    if (count < 2)
+        return;
 
     long x = 0;
     wxString maxDate, minDate;
