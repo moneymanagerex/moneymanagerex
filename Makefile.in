@@ -166,6 +166,7 @@ MMEX_OBJECTS =  \
 	mmex_stockdialog.o \
 	mmex_stockspanel.o \
 	mmex_transdialog.o \
+	mmex_transactionsupdatedialog.o \
 	mmex_usertransactionpanel.o \
 	mmex_util.o \
 	mmex_webapp.o \
@@ -631,6 +632,9 @@ mmex_stockspanel.o: $(srcdir)/src/stockspanel.cpp
 
 mmex_transdialog.o: $(srcdir)/src/transdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/transdialog.cpp
+
+mmex_transactionsupdatedialog.o: $(srcdir)/src/transactionsupdatedialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/transactionsupdatedialog.cpp
 
 mmex_usertransactionpanel.o: $(srcdir)/src/usertransactionpanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/usertransactionpanel.cpp
