@@ -1101,7 +1101,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     if (hide_menu_item || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
     menu.Append(MENU_TREEPOPUP_MOVE2, _("&Move Transaction"));
-    if (hide_menu_item || multiselect || type_transfer || (Model_Account::checking_account_num() < 2) || is_foreign)
+    if (hide_menu_item || multiselect || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
         menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
     menu.AppendSeparator();
