@@ -46,6 +46,7 @@ public:
     int getDateSelection() { return this->m_date_selection; }
     int getAccountSelection() { return this->m_account_selection; }
     void initial_report(bool initial) { m_initial = initial; }
+    void setSettings(const wxString& settings);
 protected:
     wxString m_title;
     const mmDateRange* m_date_range;
@@ -54,6 +55,7 @@ protected:
     int m_account_selection;
     const wxArrayString* accountArray_;
     bool m_only_active;
+    wxString m_settings;
 
 public:
     static const char * m_template;
