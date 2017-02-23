@@ -378,12 +378,12 @@ void mmFilterTransactionsDialog::OnCheckboxClick( wxCommandEvent& event )
         amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
         notesEdit_->Enable(notesCheckBox_->IsChecked());
         transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
-        accountDropDown_->Enable(accountCheckBox_->IsChecked());
         fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
-        m_begin_date = fromDateCtrl_->GetValue().FormatISODate();
         toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
-        m_end_date = toDateControl_->GetValue().FormatISODate();
     }
+
+    if (accountCheckBox_->IsChecked() && accountDropDown_->GetSelection() < 0)
+        accountDropDown_->SetSelection(0);
 
     event.Skip();
 }
@@ -394,7 +394,8 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
     {
         refAccountStr_ = accountDropDown_->GetStringSelection();
         Model_Account::Data* account = Model_Account::instance().get(refAccountStr_);
-        if (account) refAccountID_ = account->ACCOUNTID;
+        if (account) 
+            refAccountID_ = account->ACCOUNTID;
     }
 
     if (payeeCheckBox_->IsChecked())
@@ -715,7 +716,8 @@ bool mmFilterTransactionsDialog::checkCategory(const DATA& tran, const std::map<
     return true;
 }
 
-bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, const int accountID, const std::map<int, Model_Splittransaction::Data_Set>& split)
+bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
+    , const int accountID, const std::map<int, Model_Splittransaction::Data_Set>& split)
 {
     bool ok = true;
     //wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(), getToDateControl().GetDateOnly().FormatISODate());
@@ -958,4 +960,85 @@ void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)
     case wxID_LAST: m_end_date = event.GetDate().FormatISODate(); break;
     }
 
+}
+
+int mmFilterTransactionsDialog::getAccountID()
+{
+    return refAccountID_;
+}
+
+bool mmFilterTransactionsDialog::getStatusCheckBox()
+{
+    return statusCheckBox_->IsChecked();
+}
+
+bool mmFilterTransactionsDialog::getAccountCheckBox()
+{
+    const auto s = accountDropDown_->GetStringSelection();
+    return accountCheckBox_->GetValue() && !s.empty();
+}
+
+bool mmFilterTransactionsDialog::getCategoryCheckBox()
+{
+    return categoryCheckBox_->IsChecked();
+}
+
+bool mmFilterTransactionsDialog::getSimilarStatus()
+{ 
+    return bSimilarCategoryStatus_; 
+}
+
+int mmFilterTransactionsDialog::getCategId()
+{ 
+    return categID_; 
+}
+
+int mmFilterTransactionsDialog::getSubCategId()
+{ 
+    return subcategID_; 
+}
+
+bool mmFilterTransactionsDialog::getDateRangeCheckBox()
+{
+    return dateRangeCheckBox_->GetValue();
+}
+
+bool mmFilterTransactionsDialog::getAmountRangeCheckBoxMin()
+{
+    return amountRangeCheckBox_->GetValue() && !amountMinEdit_->GetValue().IsEmpty();
+}
+
+bool mmFilterTransactionsDialog::getAmountRangeCheckBoxMax()
+{
+    return amountRangeCheckBox_->GetValue() && !amountMaxEdit_->GetValue().IsEmpty();
+}
+
+wxString mmFilterTransactionsDialog::getNumber()
+{
+    return transNumberEdit_->GetValue();
+}
+
+wxString mmFilterTransactionsDialog::getNotes()
+{
+    return notesEdit_->GetValue();
+}
+
+bool mmFilterTransactionsDialog::getTypeCheckBox()
+{
+    return typeCheckBox_->IsChecked();
+}
+
+bool mmFilterTransactionsDialog::getPayeeCheckBox()
+{
+    return payeeCheckBox_->IsChecked();
+}
+
+bool mmFilterTransactionsDialog::getNumberCheckBox()
+{
+    return transNumberCheckBox_->IsChecked();
+}
+
+bool mmFilterTransactionsDialog::getNotesCheckBox()
+{
+    return notesCheckBox_->IsChecked();
 }

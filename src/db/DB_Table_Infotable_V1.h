@@ -1,7 +1,8 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2016 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
+ *      Modifications: (c) 2017 Stefano Giorgio
  *
  *      @file
  *
@@ -10,10 +11,11 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-07-28 23:49:41.803626.
+ *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
  *          DO NOT EDIT!
  */
 //=============================================================================
+
 
 #ifndef DB_TABLE_INFOTABLE_V1_H
 #define DB_TABLE_INFOTABLE_V1_H
@@ -102,7 +104,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
-        db->ExecuteUpdate(wxString::Format("INSERT INTO INFOTABLE_V1 VALUES ('1', '%s', '%s')", wxTRANSLATE("DATAVERSION"), wxTRANSLATE("3")));
+        db->ExecuteUpdate("INSERT INTO INFOTABLE_V1 VALUES ('1', 'DATAVERSION', '3')");
         db->Commit();
     }
     

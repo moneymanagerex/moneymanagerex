@@ -9,13 +9,14 @@
 
 ; Copyright (C) 2006 Madhan Kanagavel
 ; Copyright (C) 2009 VaDiM
-; Copyright (C) 2011-2016 Stefano Giorgio
+; Copyright (C) 2011-2017 Stefano Giorgio
 ; Copyright (C) 2013 James Higley
+; Copyright (C) 2012-2017 Nikolay
 
 ; Note: MyWinVersionInfo - use numbers only
-#define MyWinVersionInfo "1.3.1"
+#define MyWinVersionInfo "1.3.2"
 
-#define MyAppVersion "1.3.1"
+#define MyAppVersion "1.3.2"
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
 #define MyAppPublisher "Money Manager EX"
@@ -30,10 +31,10 @@
 #define my_output_root "..\..\mmex_release"
 
 ; Note: This is the path where MMEX.exe will be found
-#define my_output_path "\mmex_1.3.1_x64_portable\MoneyManagerEx"
+#define my_output_path "\mmex_1.3.2_x64_portable\MoneyManagerEx"
 
 ; Note: Any revision mods can be added here
-#define my_output_filename "mmex_1.3.1_x64_setup"
+#define my_output_filename "mmex_1.3.2_x64_setup"
 
 ;===============================================================================
 
@@ -41,9 +42,6 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-
-; Development ID
-;AppId={{37153D93-6D91-4763-82BB-0DF646211ED0}
 
 ; Release ID
 AppId={{2C48DC11-E113-4912-8AFC-366D1918101E}
@@ -63,6 +61,8 @@ InfoAfterFile={#my_output_root}{#my_output_path}\version.txt
 OutputDir={#my_output_root}
 OutputBaseFilename={#my_output_filename}
 SetupIconFile={#my_output_root}{#my_output_path}\res\mmex.ico
+UninstallDisplayIcon={app}\bin\{#MyAppExeName},0
+
 Compression=lzma/Max
 SolidCompression=true
 VersionInfoVersion={#MyWinVersionInfo}.0
@@ -77,29 +77,34 @@ ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64 
 
 [Languages]
-Name: english; MessagesFile: compiler:Default.isl; 
-Name: russian; MessagesFile: compiler:Languages\Russian.isl;
-Name: brazilianportuguese; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; 
-Name: catalan; MessagesFile: compiler:Languages\Catalan.isl; 
-Name: czech; MessagesFile: compiler:Languages\Czech.isl; 
-Name: danish; MessagesFile: compiler:Languages\Danish.isl; 
-Name: dutch; MessagesFile: compiler:Languages\Dutch.isl; 
-Name: finnish; MessagesFile: compiler:Languages\Finnish.isl; 
-Name: french; MessagesFile: compiler:Languages\French.isl; 
-Name: german; MessagesFile: compiler:Languages\German.isl; 
-Name: greek; MessagesFile: compiler:Languages\Greek.isl; 
-Name: hebrew; MessagesFile: compiler:Languages\Hebrew.isl; 
-Name: hungarian; MessagesFile: compiler:Languages\Hungarian.isl; 
-Name: italian; MessagesFile: compiler:Languages\Italian.isl; 
-Name: japanese; MessagesFile: compiler:Languages\Japanese.isl; 
-Name: norwegian; MessagesFile: compiler:Languages\Norwegian.isl; 
-Name: polish; MessagesFile: compiler:Languages\Polish.isl; 
-Name: portuguese; MessagesFile: compiler:Languages\Portuguese.isl; 
-Name: serbiancyrillic; MessagesFile: compiler:Languages\SerbianCyrillic.isl; 
-Name: serbianlatin; MessagesFile: compiler:Languages\SerbianLatin.isl; 
-Name: slovenian; MessagesFile: compiler:Languages\Slovenian.isl; 
-Name: spanish; MessagesFile: compiler:Languages\Spanish.isl; 
-Name: ukrainian; MessagesFile: compiler:Languages\Ukrainian.isl; 
+Name: "english"; MessagesFile: "compiler:Default.isl"
+Name: "basque"; MessagesFile: "compiler:Languages\Basque.isl"
+Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
+Name: "catalan"; MessagesFile: "compiler:Languages\Catalan.isl"
+Name: "corsican"; MessagesFile: "compiler:Languages\Corsican.isl"
+Name: "czech"; MessagesFile: "compiler:Languages\Czech.isl"
+Name: "danish"; MessagesFile: "compiler:Languages\Danish.isl"
+Name: "dutch"; MessagesFile: "compiler:Languages\Dutch.isl"
+Name: "finnish"; MessagesFile: "compiler:Languages\Finnish.isl"
+Name: "french"; MessagesFile: "compiler:Languages\French.isl"
+Name: "german"; MessagesFile: "compiler:Languages\German.isl"
+Name: "greek"; MessagesFile: "compiler:Languages\Greek.isl"
+Name: "hebrew"; MessagesFile: "compiler:Languages\Hebrew.isl"
+Name: "hungarian"; MessagesFile: "compiler:Languages\Hungarian.isl"
+Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
+Name: "japanese"; MessagesFile: "compiler:Languages\Japanese.isl"
+Name: "norwegian"; MessagesFile: "compiler:Languages\Norwegian.isl"
+Name: "polish"; MessagesFile: "compiler:Languages\Polish.isl"
+Name: "portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"
+Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
+Name: "scottishgaelic"; MessagesFile: "compiler:Languages\ScottishGaelic.isl"
+Name: "serbiancyrillic"; MessagesFile: "compiler:Languages\SerbianCyrillic.isl"
+Name: "serbianlatin"; MessagesFile: "compiler:Languages\SerbianLatin.isl"
+Name: "slovak"; MessagesFile: "compiler:Languages\Slovak.isl"
+Name: "slovenian"; MessagesFile: "compiler:Languages\Slovenian.isl"
+Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
+Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
+Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 
 [Types]

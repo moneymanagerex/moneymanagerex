@@ -556,7 +556,10 @@ void mmHomePagePanel::getData()
     m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().HtmlFontSize());
 
     vAccts_ = Model_Setting::instance().ViewAccounts();
-    date_range_->destroy();
+    
+    if (date_range_)
+        date_range_->destroy();
+ 
     if (Option::instance().IgnoreFutureTransactions())
         date_range_ = new mmCurrentMonthToDate;
     else
