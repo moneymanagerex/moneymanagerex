@@ -637,6 +637,25 @@ mmPrintableBase* Option::ReportFunction(int report)
         default:
             break;
         }
+        if (function != nullptr)
+            function->setSettings(ReportSettings(r->id));
     }
     return function;
+}
+
+wxString Option::ReportSettings(int id)
+{
+    wxString name = wxString::Format("REPORT_%d", id);
+    wxString settings = Model_Infotable::instance().GetStringInfo(name, "");
+    if (!(settings.StartsWith("{") && settings.EndsWith("}")))
+        settings = "{}";
+
+    json::Object o;
+    o.Clear();
+    if (!name.empty()) o[L"SETTINGSNAME"] = json::String(name.ToStdWstring());
+    o[L"SETTINGSDATA"] = json::String(settings.ToStdWstring());
+
+    std::wstringstream ss;
+    json::Writer::Write(o, ss);
+    return ss.str();
 }

@@ -31,11 +31,24 @@ mmPrintableBase::mmPrintableBase(const wxString& title)
     , m_account_selection(0)
     , accountArray_(nullptr)
     , m_only_active(false)
+    , m_settings("")
 {
 }
 
 mmPrintableBase::~mmPrintableBase()
 {
+    if (!m_settings.IsEmpty())
+    {
+        std::wstringstream ss;
+        ss << m_settings.ToStdWstring();
+        json::Object o;
+        json::Reader::Read(o, ss);
+
+        // TODO: Update settings data
+
+        Model_Infotable::instance().Set(wxString(json::String(o[L"SETTINGSNAME"])), wxString(json::String(o[L"SETTINGSDATA"])));
+    }
+
     if (accountArray_)
         delete accountArray_;
 }
@@ -104,6 +117,13 @@ wxString mmPrintableBase::file_name() const
     file_name.Replace(" ", "_");
     file_name.Replace("/", "-");
     return file_name;
+}
+
+void mmPrintableBase::setSettings(const wxString& settings)
+{
+    m_settings = settings;
+
+    // TODO: extract settings data
 }
 
 mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
