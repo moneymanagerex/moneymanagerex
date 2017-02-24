@@ -122,7 +122,7 @@ http://www.famfamfam.com/lab/icons/silk
 6. David Stacey
 7. Michelle Kamber
 8. Barry Petersen
-9. GIUSEPPE MAFFIONE
+9. Giuseppe Maffione
 10. Simon Bleasdale
 11. Gisle Turcotte
 12. Paul Greig
@@ -131,18 +131,19 @@ http://www.famfamfam.com/lab/icons/silk
 15. Phillip Andrew
 16. Clifford Dawson
 17. Michel Patenaude
-18. Michel EVERS
+18. Michel Evers
 19. Robert Van Etterijck
 20. John Stewart
+21. Willem Dubelaar
 
 2016
 1. Fabio Giorgieri
-2. BRET ADAMS
+2. Bret Adams
 3. Vic Forte
 4. Osman Goni
 5. Dorothy Dean
 6. Veli Tokmen
-7. CARLOS MARTIN RECIO
+7. Carlos Martin Recio
 8. Garry Smith
 9. Angela Ruyle
 10. Gisèle Turcotte
@@ -380,11 +381,11 @@ willmetz
 ---------------------------------------
 
 ##GNU general public license
-Copyright (C) 2009-2017 Nikolay
-Copyright (C) 2011-2017 LiSheng [guanlisheng]
-Copyright (C) 2013-2016 James [siena123]
-Copyright (C) 2013-2017 Gabriele[gabriele-v]
+Copyright (C) 2009-2017 Nikolay Akimov
 Copyright (C) 2010-2017 Stefano [stef145g]
+Copyright (C) 2011-2017 LiSheng [guanlisheng]
+Copyright (C) 2013-2017 James [siena123]
+Copyright (C) 2013-2017 Gabriele[gabriele-v]
 Copyright (C) 2009-2010 VaDiM, Wesley Ellis
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
