@@ -39,14 +39,18 @@ mmPrintableBase::~mmPrintableBase()
 {
     if (!m_settings.IsEmpty())
     {
-        std::wstringstream ss;
-        ss << m_settings.ToStdWstring();
-        json::Object o;
-        json::Reader::Read(o, ss);
+        std::wstringstream ss1;
+        ss1 << m_settings.ToStdWstring();
+        json::Object o1;
+        json::Reader::Read(o1, ss1);
 
-        // TODO: Update settings data
+        json::Object o2;
+        o2.Clear();
+        o2[L"REPORTPERIOD"] = json::Number(static_cast<double>(m_date_selection));
+        std::wstringstream ss2;
+        json::Writer::Write(o2, ss2);
 
-        Model_Infotable::instance().Set(wxString(json::String(o[L"SETTINGSNAME"])), wxString(json::String(o[L"SETTINGSDATA"])));
+        Model_Infotable::instance().Set(wxString(json::String(o1[L"SETTINGSNAME"])), wxString(ss2.str()));
     }
 
     if (accountArray_)
@@ -123,7 +127,18 @@ void mmPrintableBase::setSettings(const wxString& settings)
 {
     m_settings = settings;
 
-    // TODO: extract settings data
+    // Extract settings from data
+    std::wstringstream ss1;
+    ss1 << m_settings.ToStdWstring();
+    json::Object o1;
+    json::Reader::Read(o1, ss1);
+
+    std::wstringstream ss2;
+    ss2 << wxString(json::String(o1[L"SETTINGSDATA"])).ToStdWstring();
+    json::Object o2;
+    json::Reader::Read(o2, ss2);
+
+    m_date_selection = static_cast<int>(json::Number(o2[L"REPORTPERIOD"]));
 }
 
 mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
