@@ -2463,8 +2463,10 @@ void mmGUIFrame::OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
 {
-    wxString fileName = wxFileSelector(_("Choose HTML file to Export"),
-        wxEmptyString, wxEmptyString, wxEmptyString, "*.html", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+    wxString fileName = wxFileSelector(_("Choose HTML file to Export")
+        , wxEmptyString, wxEmptyString, wxEmptyString
+        , "*.html", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+    
     if (!fileName.empty())
     {
         wxString htmlText = panelCurrent_->BuildPage();
