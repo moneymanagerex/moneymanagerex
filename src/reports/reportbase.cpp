@@ -88,10 +88,11 @@ void mmPrintableBase::accounts(int selection, wxString& name)
         case 1: // Select Accounts
             {
                 wxArrayString* accountSelections = new wxArrayString();
-                const Model_Account::Data_Set accounts = 
+                Model_Account::Data_Set accounts = 
                     (m_only_active ? Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL), Model_Account::STATUS(Model_Account::OPEN))
                     : Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)));
- 
+                std::stable_sort(accounts.begin(), accounts.end(), SorterByACCOUNTNAME());
+
                 mmMultiChoiceDialog mcd(0, _("Choose Accounts"), m_title, accounts);
 
                 if (mcd.ShowModal() == wxID_OK)
