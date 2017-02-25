@@ -52,6 +52,14 @@ mmPrintableBase::~mmPrintableBase()
         o2[L"REPORTPERIOD"] = json::Number(static_cast<double>(m_date_selection));
         o2[L"DATE1"] = json::String(m_begin_date.FormatISODate().ToStdWstring());
         o2[L"DATE2"] = json::String(m_end_date.FormatISODate().ToStdWstring());
+        o2[L"ACCOUNTSELECTION"] = json::Number(static_cast<double>(m_account_selection));
+        size_t count = (accountArray_ ? accountArray_->size() : 0);
+        o2[L"NAMECOUNT"] = json::Number(static_cast<double>(count));
+        for (size_t i = 0; i < count; i++)
+        {
+            wxString name = wxString::Format("NAME%d", i);
+            o2[name.ToStdWstring()] = json::String(accountArray_->Item(i).ToStdWstring());
+        }
         std::wstringstream ss2;
         json::Writer::Write(o2, ss2);
 
@@ -83,7 +91,7 @@ void mmPrintableBase::accounts(int selection, wxString& name)
                 const Model_Account::Data_Set accounts = 
                     (m_only_active ? Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL), Model_Account::STATUS(Model_Account::OPEN))
                     : Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)));
-
+ 
                 mmMultiChoiceDialog mcd(0, _("Choose Accounts"), m_title, accounts);
 
                 if (mcd.ShowModal() == wxID_OK)
@@ -146,6 +154,20 @@ void mmPrintableBase::setSettings(const wxString& settings)
     m_date_selection = static_cast<int>(json::Number(o2[L"REPORTPERIOD"]));
     m_begin_date = mmParseISODate(wxString(json::String(o2[L"DATE1"])));
     m_end_date = mmParseISODate(wxString(json::String(o2[L"DATE2"])));
+    m_account_selection = static_cast<int>(json::Number(o2[L"ACCOUNTSELECTION"]));
+    size_t count = static_cast<size_t>(json::Number(o2[L"NAMECOUNT"]));
+    if (count > 0)
+    {
+        if (accountArray_)
+            delete accountArray_;
+        wxArrayString* accountSelections = new wxArrayString();
+        for (size_t i = 0; i < count; i++)
+        {
+            wxString name = wxString::Format("NAME%d", i);
+            accountSelections->Add(wxString(json::String(o2[name.ToStdWstring()])));
+        }
+        accountArray_ = accountSelections;
+    }
 }
 
 void mmPrintableBase::date_range(const mmDateRange* date_range, int selection)
