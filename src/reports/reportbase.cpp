@@ -22,6 +22,7 @@
 #include "mmDateRange.h"
 #include "model/Model_Account.h"
 #include "mmSimpleDialogs.h"
+#include "util.h"
 
 mmPrintableBase::mmPrintableBase(const wxString& title)
     : m_title(title)
@@ -32,6 +33,8 @@ mmPrintableBase::mmPrintableBase(const wxString& title)
     , accountArray_(nullptr)
     , m_only_active(false)
     , m_settings("")
+    , m_begin_date(wxDateTime::Today())
+    , m_end_date(wxDateTime::Today())
 {
 }
 
@@ -47,6 +50,8 @@ mmPrintableBase::~mmPrintableBase()
         json::Object o2;
         o2.Clear();
         o2[L"REPORTPERIOD"] = json::Number(static_cast<double>(m_date_selection));
+        o2[L"DATE1"] = json::String(m_begin_date.FormatISODate().ToStdWstring());
+        o2[L"DATE2"] = json::String(m_end_date.FormatISODate().ToStdWstring());
         std::wstringstream ss2;
         json::Writer::Write(o2, ss2);
 
@@ -139,6 +144,31 @@ void mmPrintableBase::setSettings(const wxString& settings)
     json::Reader::Read(o2, ss2);
 
     m_date_selection = static_cast<int>(json::Number(o2[L"REPORTPERIOD"]));
+    m_begin_date = mmParseISODate(wxString(json::String(o2[L"DATE1"])));
+    m_end_date = mmParseISODate(wxString(json::String(o2[L"DATE2"])));
+}
+
+void mmPrintableBase::date_range(const mmDateRange* date_range, int selection)
+{
+    m_date_range = date_range;
+    if (date_range != nullptr)
+    {
+        m_begin_date = date_range->start_date();
+        m_end_date = date_range->end_date();
+    }
+    else
+    {
+        wxDateTime today = wxDateTime::Today();
+        m_begin_date = today;
+        m_end_date = today;
+    }
+    m_date_selection = selection;
+}
+
+void mmPrintableBase::getDates(wxDateTime &begin, wxDateTime &end)
+{
+    begin = m_begin_date;
+    end = m_end_date;
 }
 
 mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
