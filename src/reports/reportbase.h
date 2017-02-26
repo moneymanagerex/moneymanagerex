@@ -41,11 +41,13 @@ public:
     virtual bool has_budget_dates() { return false; }
     virtual bool has_only_years() { return false; }
     virtual bool has_accounts() { return false; }
-    virtual void date_range(const mmDateRange* date_range, int selection) { this->m_date_range = date_range; this->m_date_selection = selection; }
+    virtual void date_range(const mmDateRange* date_range, int selection);
     void accounts(int selection, wxString& name);
     int getDateSelection() { return this->m_date_selection; }
     int getAccountSelection() { return this->m_account_selection; }
     void initial_report(bool initial) { m_initial = initial; }
+    void setSettings(const wxString& settings);
+    void getDates(wxDateTime &begin, wxDateTime &end);
 protected:
     wxString m_title;
     const mmDateRange* m_date_range;
@@ -54,6 +56,9 @@ protected:
     int m_account_selection;
     const wxArrayString* accountArray_;
     bool m_only_active;
+    wxString m_settings;
+    wxDateTime m_begin_date;
+    wxDateTime m_end_date;
 
 public:
     static const char * m_template;

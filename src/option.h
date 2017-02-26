@@ -147,6 +147,8 @@ private:
 
     int m_hideReport;
     wxArrayPtrVoid m_reports;
+
+    wxString ReportSettings(int id);
 };
 
 #endif // MM_EX_OPTION_H_
