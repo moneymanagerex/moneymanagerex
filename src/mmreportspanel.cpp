@@ -204,11 +204,28 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
                 {
                     if (m_cust_date == nullptr)
                     {
-                        // Reinitialize to first date selection
-                        this->m_date_ranges->SetSelection(0);
-                        date = *m_all_date_ranges.begin();
-                        this->m_start_date->SetValue(date->start_date());
-                        this->m_end_date->SetValue(date->end_date());
+                        wxDateTime begin_date;
+                        wxDateTime end_date;
+                        rb_->getDates(begin_date, end_date);
+                        if (begin_date.IsValid() && end_date.IsValid())
+                        {
+                            m_cust_date = new mmSpecifiedRange(begin_date, end_date);
+                            date = m_cust_date;
+                            this->m_start_date->SetValue(begin_date);
+                            this->m_end_date->SetValue(end_date);
+                            m_start_date->Enable(true);
+                            m_end_date->Enable(true);
+                        }
+                        else
+                        {
+                            // Reinitialize to first date selection
+                            this->m_date_ranges->SetSelection(0);
+                            date = *m_all_date_ranges.begin();
+                            this->m_start_date->SetValue(date->start_date());
+                            this->m_end_date->SetValue(date->end_date());
+                            m_start_date->Enable(false);
+                            m_end_date->Enable(false);
+                        }
                     }
                     else
                         date = m_cust_date;
@@ -309,7 +326,7 @@ void mmReportsPanel::CreateControls()
                 int id = e.BUDGETYEARID;
                 m_date_ranges->Append(name, reinterpret_cast<void *>(new int(id)));
 
-                if ((prev_selection != -1) && (!sel_found))
+                if (!sel_found)
                 {
                     if (prev_selection == id)
                         sel_found = true;
@@ -317,7 +334,7 @@ void mmReportsPanel::CreateControls()
                         cur_selection++;
                 }
             }
-            if (prev_selection == -1)
+            if (!sel_found)
                 m_date_ranges->SetSelection(m_date_ranges->GetCount() - 1); // Set to latest budget
             else
                 m_date_ranges->SetSelection(cur_selection);
