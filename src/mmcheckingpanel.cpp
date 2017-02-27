@@ -830,26 +830,39 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
     const wxString search_string = event.GetString().Lower();
     if (search_string.IsEmpty()) return;
 
-    long last = m_listCtrlAccount->GetItemCount() - 1;
+    long last = (long)(m_listCtrlAccount->GetItemCount() - 1);
     long selectedItem = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
     if (selectedItem <= 0 || selectedItem >= last) //nothing selected
         selectedItem = m_listCtrlAccount->g_asc ? last : 0;
 
     while (selectedItem >= 0 && selectedItem <= last)
     {
-        m_listCtrlAccount->g_asc ?  selectedItem-- : selectedItem++;
-        const wxString t = getItem(selectedItem, m_listCtrlAccount->COL_NOTES).Lower();
-        if (t.Matches(search_string + "*"))
-        {
-            //First of all any items should be unselected
-            long cursel = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-            if (cursel != wxNOT_FOUND)
-                m_listCtrlAccount->SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+        m_listCtrlAccount->g_asc ? selectedItem-- : selectedItem++;
 
-            //Then finded item will be selected
-            m_listCtrlAccount->SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-            m_listCtrlAccount->EnsureVisible(selectedItem);
-            break;
+        for (const auto& t : {
+            getItem(selectedItem, m_listCtrlAccount->COL_NOTES)
+            , getItem(selectedItem, m_listCtrlAccount->COL_NUMBER)
+            , getItem(selectedItem, m_listCtrlAccount->COL_PAYEE_STR)
+            , getItem(selectedItem, m_listCtrlAccount->COL_CATEGORY)
+            , getItem(selectedItem, m_listCtrlAccount->COL_DATE)
+            , getItem(selectedItem, m_listCtrlAccount->COL_WITHDRAWAL)
+            , getItem(selectedItem, m_listCtrlAccount->COL_DEPOSIT)})
+        {
+            if (t.Lower().Matches(search_string + "*"))
+            {
+                //First of all any items should be unselected
+                long cursel = m_listCtrlAccount->GetNextItem(-1
+                    , wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+                if (cursel != wxNOT_FOUND)
+                    m_listCtrlAccount->SetItemState(cursel, 0
+                        , wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+
+                //Then finded item will be selected
+                m_listCtrlAccount->SetItemState(selectedItem
+                    , wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+                m_listCtrlAccount->EnsureVisible(selectedItem);
+                return;
+            }
         }
     }
 }
