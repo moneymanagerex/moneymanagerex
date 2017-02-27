@@ -113,7 +113,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     
     for (const auto& entry : m_columns)
     {
-        long count = GetColumnCount();
+        int count = GetColumnCount();
         InsertColumn(count
             , entry.HEADER
             , entry.FORMAT
