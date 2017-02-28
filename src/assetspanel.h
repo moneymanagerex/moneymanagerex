@@ -1,4 +1,7 @@
 /*******************************************************
+ Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2015, 2017 Nikolay Akimov
+
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
@@ -49,6 +52,18 @@ protected:
     virtual void OnColClick(wxListEvent& event);
 
 private:
+    enum EIcons
+    {
+        ICON_PROPERTY,
+        ICON_CAR,
+        ICON_HOUSEHOLD_OBJ,
+        ICON_ART,
+        ICON_JEWELLERY,
+        ICON_CASH,
+        ICON_OTHER,
+        ICON_UPARROW,
+        ICON_DOWNARROW,
+    };
     mmAssetsPanel* m_panel;
 
     /* required overrides for virtual style list control */
@@ -104,7 +119,7 @@ private:
     void OnSearchTxtEntered(wxCommandEvent& event);
     mmAssetsListCtrl* m_listCtrlAssets;
 
-    wxStaticText* itemStaticTextMainFilter_;
+    wxStaticText* m_itemStaticTextMainFilter;
 
     wxScopedPtr<wxImageList> m_imageList;
 
@@ -129,8 +144,9 @@ private:
     void SetAccountParameters(const Model_Account::Data* account);
 
 private:
-    wxString tips_;
-    enum {
+    wxString m_tips;
+    enum
+    {
         IDC_PANEL_ASSET_STATIC_DETAILS = wxID_HIGHEST + 1220,
         IDC_PANEL_ASSET_STATIC_DETAILS_MINI,
     };
