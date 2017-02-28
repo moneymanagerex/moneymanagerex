@@ -67,12 +67,12 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     m_columns.push_back(PANEL_COLUMN(_("Current Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 450, wxLIST_FORMAT_LEFT));
 
-    m_col_width = "ASSETS_COL%ld_WIDTH";
+    m_col_width = "ASSETS_COL%d_WIDTH";
     m_default_sort_column = m_panel->col_sort();
 
     for (const auto& entry : m_columns)
     {
-        long count = GetColumnCount();
+        int count = GetColumnCount();
         InsertColumn(count
             , entry.HEADER
             , entry.FORMAT
