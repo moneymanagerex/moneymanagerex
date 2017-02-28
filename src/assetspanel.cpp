@@ -54,10 +54,6 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
 {
     ToggleWindowStyle(wxLC_EDIT_LABELS);
 
-    // load the global variables
-    m_selected_col = Model_Setting::instance().GetIntSetting("ASSETS_SORT_COL", m_default_sort_column);
-    m_asc = Model_Setting::instance().GetBoolSetting("ASSETS_ASC", true);
-
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT));
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Name"), 150, wxLIST_FORMAT_LEFT));
@@ -68,8 +64,6 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 450, wxLIST_FORMAT_LEFT));
 
     m_col_width = "ASSETS_COL%d_WIDTH";
-    m_default_sort_column = m_panel->col_sort();
-
     for (const auto& entry : m_columns)
     {
         int count = GetColumnCount();
@@ -78,6 +72,11 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
             , entry.FORMAT
             , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, count), entry.WIDTH));
     }
+
+    // load the global variables
+    m_default_sort_column = m_panel->col_sort();
+    m_selected_col = Model_Setting::instance().GetIntSetting("ASSETS_SORT_COL", m_default_sort_column);
+    m_asc = Model_Setting::instance().GetBoolSetting("ASSETS_ASC", true);
 }
 
 void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
