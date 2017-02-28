@@ -122,10 +122,17 @@ void mmPrintableBase::accounts(int selection, wxString& name)
 
 wxString mmPrintableBase::title() const
 {
-    if (!m_date_range) 
-        return m_title; 
-    else 
-        return m_title + " - " + m_date_range->title();
+    wxString title;
+    if (!m_date_range)
+        title = m_title;
+    else
+    {
+        if (m_date_range->title().IsEmpty())
+            title = m_title + " - " + _T("Custom");
+        else
+            title = m_title + " - " + m_date_range->title();
+    }
+    return title;
 }
 
 wxString mmPrintableBase::file_name() const
