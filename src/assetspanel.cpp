@@ -72,7 +72,7 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
 
     for (const auto& entry : m_columns)
     {
-        long count = GetColumnCount();
+        int count = GetColumnCount();
         InsertColumn(count
             , entry.HEADER
             , entry.FORMAT
