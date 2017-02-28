@@ -43,6 +43,7 @@ public:
     void OnGotoAssetAccount(wxCommandEvent& WXUNUSED(event));
 
     void doRefreshItems(int trx_id = -1);
+    int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);
 
 protected:
     virtual void OnColClick(wxListEvent& event);
@@ -83,7 +84,6 @@ public:
     mmGUIFrame* m_frame;
 
     void updateExtraAssetData(int selIndex);
-    int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);
     wxString getItem(long item, long column);
 
     Model_Asset::Data_Set m_assets;
@@ -96,14 +96,15 @@ public:
     void AddAssetTrans(const int selected_index);
     void ViewAssetTrans(const int selected_index);
     void GotoAssetAccount(const int selected_index);
+    void sortTable();
 
+    wxStaticText* m_header_text;
 private:
     void enableEditDeleteButtons(bool enable);
     void OnSearchTxtEntered(wxCommandEvent& event);
     mmAssetsListCtrl* m_listCtrlAssets;
 
     wxStaticText* itemStaticTextMainFilter_;
-    wxStaticText* header_text_;
 
     wxScopedPtr<wxImageList> m_imageList;
 
@@ -125,7 +126,6 @@ private:
     void OnViewAssetTrans(wxCommandEvent& event);
 
     void OnViewPopupSelected(wxCommandEvent& event);
-    void sortTable();
     void SetAccountParameters(const Model_Account::Data* account);
 
 private:

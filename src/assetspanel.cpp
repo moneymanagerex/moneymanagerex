@@ -171,7 +171,7 @@ void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
 
 void mmAssetsListCtrl::doRefreshItems(int trx_id)
 {
-    int selectedIndex = m_panel->initVirtualListControl(trx_id, m_selected_col, m_asc);
+    int selectedIndex = initVirtualListControl(trx_id, m_selected_col, m_asc);
 
     long cnt = static_cast<long>(m_panel->m_assets.size());
 
@@ -208,7 +208,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::ASSET), asset.ASSETID);
         Model_Translink::RemoveTransLinkRecords(Model_Attachment::ASSET, asset.ASSETID);
 
-        m_panel->initVirtualListControl(m_selected_row, m_selected_col, m_asc);
+        initVirtualListControl(m_selected_row, m_selected_col, m_asc);
         m_selected_row = -1;
         m_panel->updateExtraAssetData(m_selected_row);
     }
@@ -231,7 +231,7 @@ void mmAssetsListCtrl::OnDuplicateAsset(wxCommandEvent& /*event*/)
 
     if (EditAsset(duplicate_asset))
     {
-        m_panel->initVirtualListControl();
+        initVirtualListControl();
         doRefreshItems(duplicate_asset->ASSETID);
     }
 }
@@ -343,6 +343,37 @@ void mmAssetsListCtrl::OnEndLabelEdit(wxListEvent& event)
     RefreshItems(event.GetIndex(), event.GetIndex());
 }
 
+int mmAssetsListCtrl::initVirtualListControl(int id, int col, bool asc)
+{
+    /* Clear all the records */
+    DeleteAllItems();
+
+    wxListItem item;
+    item.SetMask(wxLIST_MASK_IMAGE);
+    item.SetImage(asc ? 8 : 7);
+    SetColumn(col, item);
+
+    if (m_panel->m_filter_type == Model_Asset::TYPE(-1)) // ALL
+        m_panel->m_assets = Model_Asset::instance().all();
+    else
+        m_panel->m_assets = Model_Asset::instance().find(Model_Asset::ASSETTYPE(m_panel->m_filter_type));
+    m_panel->sortTable();
+
+    SetItemCount(m_panel->m_assets.size());
+
+    double balance = 0.0;
+    for (const auto& asset : m_panel->m_assets) balance += Model_Asset::value(asset);
+    m_panel->m_header_text->SetLabelText(wxString::Format(_("Total: %s"), Model_Currency::toCurrency(balance))); // balance
+
+    int selected_item = 0;
+    for (const auto& asset : m_panel->m_assets)
+    {
+        if (asset.ASSETID == id) return selected_item;
+        ++selected_item;
+    }
+    return -1;
+}
+
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
     EVT_BUTTON(wxID_NEW, mmAssetsPanel::OnNewAsset)
@@ -362,7 +393,7 @@ mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID win
     , m_frame(frame)
     , m_listCtrlAssets()
     , itemStaticTextMainFilter_()
-    , header_text_()
+    , m_header_text()
     , tips_()
 {
     Create(parent, winid, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, name);
@@ -387,7 +418,7 @@ bool mmAssetsPanel::Create(wxWindow *parent
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    initVirtualListControl(-1, m_listCtrlAssets->m_selected_col, m_listCtrlAssets->m_asc);
+    m_listCtrlAssets->initVirtualListControl(-1, m_listCtrlAssets->m_selected_col, m_listCtrlAssets->m_asc);
     if (!this->m_assets.empty())
         m_listCtrlAssets->EnsureVisible(this->m_assets.size() - 1);
 
@@ -427,8 +458,8 @@ void mmAssetsPanel::CreateControls()
     itemStaticTextMainFilter_ = new wxStaticText(headerPanel, wxID_STATIC, _("All"));
     itemBoxSizerHHeader2->Add(itemStaticTextMainFilter_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 1);
 
-    header_text_ = new wxStaticText(headerPanel, wxID_STATIC, "");
-    itemBoxSizerVHeader->Add(header_text_, g_flagsBorder1V);
+    m_header_text = new wxStaticText(headerPanel, wxID_STATIC, "");
+    itemBoxSizerVHeader->Add(m_header_text, g_flagsBorder1V);
 
     /* ---------------------- */
 
@@ -550,37 +581,6 @@ void mmAssetsPanel::sortTable()
     }
 
     if (!this->m_listCtrlAssets->m_asc) std::reverse(this->m_assets.begin(), this->m_assets.end());
-}
-
-int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
-{
-    /* Clear all the records */
-    m_listCtrlAssets->DeleteAllItems();
-
-    wxListItem item;
-    item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(asc ? 8 : 7);
-    m_listCtrlAssets->SetColumn(col, item);
-
-    if (this->m_filter_type == Model_Asset::TYPE(-1)) // ALL
-        this->m_assets = Model_Asset::instance().all();
-    else
-        this->m_assets = Model_Asset::instance().find(Model_Asset::ASSETTYPE(m_filter_type));
-    this->sortTable();
-
-    m_listCtrlAssets->SetItemCount(this->m_assets.size());
-
-    double balance = 0.0;
-    for (const auto& asset: this->m_assets) balance += Model_Asset::value(asset); 
-    header_text_->SetLabelText(wxString::Format(_("Total: %s"), Model_Currency::toCurrency(balance))); // balance
-
-    int selected_item = 0;
-    for (const auto& asset: this->m_assets)
-    {
-        if (asset.ASSETID == id) return selected_item;
-        ++ selected_item;
-    }
-    return -1;
 }
 
 void mmAssetsPanel::OnDeleteAsset(wxCommandEvent& event)
