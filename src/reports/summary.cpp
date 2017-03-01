@@ -315,6 +315,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.addTableHeaderCell(_("Cash"), true);
     hb.addTableHeaderCell(_("Bank Accounts"), true);
     hb.addTableHeaderCell(_("Credit Card Accounts"), true);
+    hb.addTableHeaderCell(_("Loan Accounts"), true);
     hb.addTableHeaderCell(_("Term Accounts"), true);
     hb.addTableHeaderCell(_("Total"), true);
     hb.addTableHeaderCell(_("Stocks"), true);
@@ -433,8 +434,10 @@ wxString mmReportSummaryByDate::getHTMLText()
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CASH]));
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CHECKING]));
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CREDIT_CARD]));
+        totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::LOAN]));
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::TERM]));
-        total = balancePerDay[Model_Account::CASH] + balancePerDay[Model_Account::CHECKING] + balancePerDay[Model_Account::CREDIT_CARD] + balancePerDay[Model_Account::TERM];
+        total = balancePerDay[Model_Account::CASH] + balancePerDay[Model_Account::CHECKING] + balancePerDay[Model_Account::CREDIT_CARD]
+            + balancePerDay[Model_Account::LOAN] + balancePerDay[Model_Account::TERM];
         totBalanceData.push_back(Model_Currency::toCurrency(total));
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::INVESTMENT]));
         total += balancePerDay[Model_Account::INVESTMENT];
@@ -442,19 +445,19 @@ wxString mmReportSummaryByDate::getHTMLText()
     }
 
     hb.startTbody();
-    for (i = totBalanceData.size() - 8; i >= 0; i -= 8)
+    for (i = totBalanceData.size() - 9; i >= 0; i -= 9)
     {
         if (datePrec.Left(4) != totBalanceData[i].Left(4))
         {
             hb.startTotalTableRow();
             hb.addTableCell(totBalanceData[i].Left(4));
-            for (j = 0; j < 7; j++)
+            for (j = 0; j < 8; j++)
                 hb.addTableCell("");
             hb.endTableRow();
         }
         hb.startTableRow();
         hb.addTableCellDate(totBalanceData[i]);
-        for (j = 0; j < 7; j++)
+        for (j = 0; j < 8; j++)
             hb.addTableCell(totBalanceData[i + j + 1], true);
         hb.endTableRow();
         datePrec = totBalanceData[i];
