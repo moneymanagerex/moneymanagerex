@@ -128,7 +128,7 @@ wxString mmPrintableBase::title() const
     else
     {
         if (m_date_range->title().IsEmpty())
-            title = m_title + " - " + _T("Custom");
+            title = m_title + " - " + _("Custom");
         else
             title = m_title + " - " + m_date_range->title();
     }
