@@ -146,7 +146,7 @@ IF (CMAKE_SYSTEM_NAME STREQUAL "Linux")
 		SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.15), libgcc1 (>=1:4.1.1), libstdc++6 (>= 4.6), libwxgtk3.0-0v5 (>= 3.0.0) | libwxgtk3.0-0 (>=3.0.0), libwxgtk-webview3.0-0v5 (>= 3.0.0) | libwxgtk-webview3.0-0 (>= 3.0.0)")
 	ELSEIF (EXISTS "/etc/redhat-release")
 		SET(CPACK_GENERATOR "RPM")
-		SET(CPACK_RPM_PACKAGE_REQUIRES "gcc-c++, wxgtk3-devel, rpmbuild, cmake >= 3.1")
+		SET(CPACK_RPM_PACKAGE_REQUIRES "gcc-c++, wxGTK3-devel")
 		SET(CPACK_RPM_PACKAGE_LICENSE "GPL-2+")
 	ELSE ()
 		#TODO: tar.gz
