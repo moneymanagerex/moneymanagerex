@@ -42,16 +42,16 @@
 
         <if cond="FORMAT=='msvc'">
 
-            <set var="VSTUDIO_VER_DEFAULT" overwrite="0">2013</set>
+            <set var="VSTUDIO_VER_DEFAULT" overwrite="0">2015</set>
 
             <option name="VSTUDIO_VER">
-                <values>2013</values>
+                <values>2015</values>
                 <default-value>$(VSTUDIO_VER_DEFAULT)</default-value>
                 <description>The version of Visual Studio</description>
             </option>
 
             <set var="CRT_VERSION">
-                <if cond="VSTUDIO_VER=='2013'">120</if>
+                <if cond="VSTUDIO_VER=='2015'">120</if>
             </set>
 
         </if>

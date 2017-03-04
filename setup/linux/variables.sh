@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Specify the build version of mmex
-MMEX_VERSION="1.3.1"
+MMEX_VERSION="1.3.3"
 MMEX_RELEASE_DATE="2017-01-05"
 MMEX_EMAIL="moneymanagerex@moneymanagerex.org"
 MMEX_HOMEPAGE="http://www.moneymanagerex.org"   

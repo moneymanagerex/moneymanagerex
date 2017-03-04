@@ -16,7 +16,7 @@ cls
 
 REM To reflect the currect version for manual setup
 REM set the variable: release_version
-set release_version=mmex_1.3.2
+set release_version=mmex_1.3.3
 set manual_delay=30
 
 REM ------------------------------------------------ 

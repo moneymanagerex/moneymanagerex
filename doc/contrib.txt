@@ -135,6 +135,11 @@ http://www.famfamfam.com/lab/icons/silk
 19. Robert Van Etterijck
 20. John Stewart
 21. Willem Dubelaar
+22. Peter Pfister
+23. Alexander Prog
+24. Enrico De Tomasi
+25. Guillaume Levasseur
+26. Jose Manuel Marrero León
 
 2016
 1. Fabio Giorgieri
