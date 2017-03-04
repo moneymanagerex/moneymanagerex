@@ -1,0 +1,78 @@
+div#page {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2em;
+    right: 0px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 12px;
+    padding: 1em;
+    display: none;
+}
+
+    .back-to-top:hover {
+        text-decoration: none;
+    }
+
+div#toc ul {
+    list-style-type: none;
+}
+
+img.shadow {
+  box-shadow: 8px 8px 10px #aaa;
+}
+
+.notes{
+  text-decoration:none;
+  color:#000;
+  background:#ffc;
+  display:block;
+  height:15em;
+  width:15em;
+  padding:1em;
+  /* Firefox */
+  -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+  /* Safari+Chrome */
+  -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  /* Opera */
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+
+  -ms-transform:rotate(-6deg);
+  -webkit-transform:rotate(-6deg);
+  -o-transform:rotate(-6deg);
+  -moz-transform:rotate(-6deg);
+}
+
+.tips{
+  text-decoration:none;
+  color:#000;
+  background:#bafbc0;
+  display:block;
+  height:15em;
+  width:15em;
+  padding:1em;
+  /* Firefox */
+  -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+  /* Safari+Chrome */
+  -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  /* Opera */
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+
+  -ms-transform:rotate(-6deg);
+  -webkit-transform:rotate(-6deg);
+  -o-transform:rotate(-6deg);
+  -moz-transform:rotate(-6deg);
+}
+
+header.tips_header{
+    color:#00f
+}
+header.notes_header {
+    color: #f00;
+}
