@@ -1,179 +1,63 @@
 ﻿<!DOCTYPE HTML>
-<HTML>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Money Manager Ex User Manual</title>
-    <link href="../../res/master.css" rel="stylesheet" type="text/css">
-    <script src="../contents.js"></script>
+    <link href="master.css" rel="stylesheet" type="text/css">
+    <script src="js/translator.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/toc.js"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
-    <!--Smooth Back to Top Button Start-->
+    <script src="js/back_to_top.js"></script>
+    <link href="back_to_top.css" rel="stylesheet" type="text/css">
+
     <script>
-        jQuery(document).ready(function () {
-            var offset = 220;
-            var duration = 500;
-            jQuery(window).scroll(function () {
-                if (jQuery(this).scrollTop() > offset) {
-                    jQuery('.back-to-top').fadeIn(duration);
-                } else {
-                    jQuery('.back-to-top').fadeOut(duration);
-                }
-            });
-            jQuery('.back-to-top').click(function (event) {
-                event.preventDefault();
-                jQuery('html, body').animate({ scrollTop: 0 }, duration);
-                return false;
-            })
-        });
+        var lang = getParameterValue("lang").substring(0, 3).toLowerCase();
+   	// Javascript URL redirection
+        if (lang == 'fre')
+            window.location.replace("index_fr.html");
+        else if (lang == 'ger')
+            window.location.replace("index_de.html");
+        else if (lang == 'hun')
+            window.location.replace("index_hu.html");
+        else if (lang == 'ita')
+            window.location.replace("index_it.html");
+        else if (lang == 'pol')
+            window.location.replace("index_pl.html");
+        else if (lang == 'spa')
+            window.location.replace("index_sp.html");
     </script>
-    <style>
-        div#page {
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 20px;
-        }
 
-        .back-to-top {
-            position: fixed;
-            bottom: 2em;
-            right: 0px;
-            text-decoration: none;
-            color: #000000;
-            font-size: 12px;
-            padding: 1em;
-            display: none;
-        }
-
-            .back-to-top:hover {
-                text-decoration: none;
-            }
-    </style>
 </head>
-<BODY LANG="en-US" DIR="LTR">
-    <a href="#" class="back-to-top"><img src="../backtotop.png" alt="Back to Top"/></a>
+
+<body dir="ltr" lang="en-US" onload="translate();generateTOC(document.getElementById('toc'));">
+
+    
+    <a href="#" class="back-to-top"><img src="img/backtotop.png" alt="Back to Top" /></a>
     <!--Smooth Back to Top Button End-->
 
-<H2 CLASS="western" ALIGN=CENTER><A NAME="top"></A><FONT FACE="Verdana"><BR>Money
-Manager Ex felhasználói kézikönyv<BR><FONT SIZE=3>MMEX 1.3.0</FONT></FONT></H2>
-<HR>
-<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
-	<COL WIDTH=208*>
-	<COL WIDTH=48*>
-	<TR VALIGN=TOP>
-		<TD WIDTH=81%>
-			<UL>
-				<LI><P STYLE="margin-bottom: 0in"><A HREF="#introduction"><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">Bevezető</SPAN></FONT></A></P>
-				<LI><P STYLE="margin-bottom: 0in"><A HREF="#financial_health"><FONT FACE="Verdana">A jobb pénzügyekért</FONT></A></P>
-				<LI><P STYLE="margin-bottom: 0in"><A HREF="#concepts"><FONT FACE="Verdana">Money
-				Manager Ex koncepciója</FONT></A></P>
-				<LI><P><A HREF="#recommendation"><FONT FACE="Verdana">Ajánlások</FONT></A></P>
-			</UL>
-		</TD>
-		<TD WIDTH=19%>
+    <table class="table, small">
+        <tr>
+            <td class="label label-info">Languages:</td>
+            <td><a href="index.html?lang=english">English</a></td>
+            <td><a href="index.html?lang=german">German</a></td>
+            <td><a href="index.html?lang=french">French</a></td>
+            <td><a href="index.html?lang=hungarian">Hungarian</a></td>
+            <td><a href="index.html?lang=italian">Italian</a></td>
+            <td><a href="index.html?lang=polish">Polish</a></td>
+            <td><a href="index.html?lang=russian">Russian</a></td>
+            <td><a href="index.html?lang=spanish">Spanish</a></td>
+        </tr>
+    </table>
 
-			<A HREF="../french/index.html">Francia változat</A><BR>
-			<A HREF="../italian/index.html">Olasz változat</A><BR>
-			<A HREF="../russian/index.html">Orosz változat</A><BR>
-			<A HREF="../spanish/index.html">Spanyol változat</A><BR>
-			<A HREF="../polish/index.html">Lengyel változat</A><BR>
-		</TD>
-	</TR>
-</TABLE>
-<P STYLE="margin-bottom: 0in"><BR>
-</P>
-<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=3>
-	<COL WIDTH=128*>
-	<COL WIDTH=128*>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<UL>
-				<LI><P><FONT FACE="Verdana"><B>Adatbázis kezelés</B></FONT><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal"><BR>*
-				<A HREF="#create_database">Új adatbázis felállítása</A><BR>*
-				<A HREF="#encrypting_database">Adatbázis titkosítása</A><BR>*
-				<A HREF="#switching_databases">Váltás adatbázisok között</A></SPAN></FONT></P>
-			</UL>
-		</TD>
-		<TD WIDTH=50%>
-			<UL>
-				<LI><P><FONT FACE="Verdana"><B>Munka</B></FONT><FONT FACE="Verdana">:<BR>*
-				<A HREF="#currencies">pénznemekkel</A><BR>* <A HREF="#categories">kategóriákkal</A><BR>*
-				<A HREF="#payees">kedvezményezettekkel</A></FONT></P>
-			</UL>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<UL>
-				<LI><P><FONT FACE="Verdana"><B>Számlakazelés</B></FONT><FONT FACE="Verdana"><BR>*
-				<A HREF="#create_account">Új számla felállítása</A><BR>* <A HREF="#editaccounts">Számlainformációk szerkesztése</A>
-				<BR>* <A HREF="#creating_new_transaction">Új tranzakció indítása</A><BR>* <A HREF="#edittrans">Tranzakciók szerkesztése és frissítése</A>
-				<BR>* <A HREF="#rectrans">Tranzakció visszaigazolása és kiegyenlítése</A><BR>* <A HREF="#followup">Tranzakció megjelölése figyelésre</A></FONT></P>
-				<LI><P><A HREF="#account_setup"><FONT FACE="Verdana"><B>Példa számla szerkezetére</B></FONT></A></P>
-			</UL>
-		</TD>
-		<TD WIDTH=50%>
-			<UL>
-				<LI><P><FONT FACE="Verdana"><B>Importálás</B></FONT> <FONT FACE="Verdana"><BR>*
-				<A HREF="#importQIF">QIF fájlból</A> <BR>* <A HREF="#importUnivCSV">CSV fájlból</A> </FONT>
-				</P>
-				<LI><P><A HREF="#importcsvtips"><FONT FACE="Verdana"><B>Ötletek CSV fájl készítéséhez</B></FONT></A></P>
-				<LI><P><FONT FACE="Verdana"><B>Exportálás</B></FONT> <FONT FACE="Verdana"><BR>*
-				<A HREF="#exportcsv">CSV fájlba</A> <BR>* <A HREF="#export_qif">QIF
-				fájlba</A></FONT></P>
-			</UL>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<UL>
-				<LI><P><A HREF="#reports"><FONT FACE="Verdana"><B>Jelentések, kimutatások</B></FONT></A><FONT FACE="Verdana"><BR>*
-				<A HREF="#financialYearReport">Éves pénzügyi kimutatások</A><BR>*
-				<A HREF="#transaction_report">Tranzakciós kimutatások</A><BR>* <A HREF="#cashFlowReport">Cash
-				Flow jelentések</A></FONT></P>
-			</UL>
-		</TD>
-		<TD WIDTH=50%>
-			<UL>
-				<LI><P><A HREF="investment.html"><FONT FACE="Verdana"><B>Részvény befektetések</B></FONT></A></P>
-				<LI><P><A HREF="#assets"><FONT FACE="Verdana"><B>Vagyoni eszközök</B></FONT></A></P>
-			</UL>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<UL>
-				<LI><P><A HREF="#recurring_transactions"><FONT FACE="Verdana"><B>Rendszeres ügyletek</B></FONT></A></P>
-				<LI><P><A HREF="#transfilter"><FONT FACE="Verdana"><B>Tranzakciók szűrt kimutatása </B></FONT></A></P>
-			</UL>
-		</TD>
-		<TD WIDTH=50%>
-			<UL>
-				<LI><P><A HREF="budget.html"><FONT FACE="Verdana"><B>Költségvetés készítése</B></FONT></A></P>
-				<LI><P><A HREF="#print"><FONT FACE="Verdana"><B>Nyomtatás</B></FONT></A></P>
-			</UL>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<UL>
-				<LI><P><A HREF="#options"><FONT FACE="Verdana"><B>MMEX beállítási opciók</B></FONT></A></P>
-			</UL>
-		</TD>
-		<TD WIDTH=50%>
-			<P><BR>
-			</P>
-		</TD>
-	</TR>
-</TABLE>
-<P STYLE="margin-bottom: 0in"><BR>
-</P>
-<UL>
-	<LI><P STYLE="margin-bottom: 0in"><A HREF="#faq"><FONT FACE="Verdana">Gyakran Ismételt Kérdések (GYIK)</FONT></A></P>
-</UL>
-<P STYLE="margin-bottom: 0in"><BR>
-</P>
-<HR>
-<H3 CLASS="western"><A NAME="introduction"></A><FONT FACE="Verdana"><BR>Bevezető</FONT></H3>
+    <h1 class="i18n">Money Manager Ex felhasználói kézikönyv</h1>
+    
+    <div id="toc">
+        <!-- ToC generated by Javascript -->
+    </div>
+    <hr>
+
+<H2>Bevezető</H2>
 <P><FONT FACE="Verdana, sans-serif"><B>Money Manager Ex (MMEX) </B>személyre szabott pénzkezelő
  rendszer bárki számára, aki figyelemmel szeretné kísérni pénzmozgásait és költési szokásait. 
  Célja, hogy azoknak is, akiknek kevés, vagy semmilyen tapasztalatuk sincs pénzügyekben, illetve
@@ -194,10 +78,9 @@ jelentéseket, kimutatásokat készítsen a pénzügyeiről.</FONT>
 Ez a kézikönyv a programmal együtt fejlődik, ezért javasolt a súgó tanulmányozás minden programfrissítés után, hogy lássa
 az újdonságokat, és az MMEX sikeresebb alkalmazásának módszereit.</FONT>
 </P>
-<H5 CLASS="western"><FONT FACE="Verdana"><A HREF="#top">Vissza a tetejére</A><BR></FONT><BR><BR>
-</H5>
 <HR>
-<H3 CLASS="western"><A NAME="financial_health"></A><FONT FACE="Verdana"><BR>A jobb pénzügyekért</FONT></H3>
+
+<H2>A jobb pénzügyekért</H2>
 <P><FONT FACE="Verdana">A pénzügyi rendezettség elérése bizonyos eltökéltséget igényel. A pénzügyek
 zavarossá válhatnak, ha nincs tiszta képünk arról, hogy a bevételi oldalon mennyi pénzt kapunk, összevetve azzal, hogy mennyit költünk a kiadási oldalon.
 Adósság akkor keletkezik, amikor a pénzmozgásban a kiadásaink meghaladják a bevételeinket. Ilyenkor a fizetőképességünk fenntartása érdekében 
@@ -217,8 +100,7 @@ gondolkodik, hogy személyes pénzügyi programot használjon, már jó úton j�
 <P><FONT FACE="Verdana">Olvassa el, hogyan kell a Money Manager Ex-kszel dolgozni.</FONT></P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="concepts"></A><FONT FACE="Verdana"><BR>Money
-Manager Ex koncepciója</FONT></H3>
+<H2>Money Manager Ex koncepciója</H2>
 <P><FONT FACE="Verdana">Money Manager EX a való világot modelezi számunkra, hogy segítsen a pénzügyeinket kézben tartani.</FONT></P>
 <P><FONT FACE="Verdana">Általában pénzt valamilyen szolgáltatásért, vagy termékért kapunk másoktól. 
 Ezt bevételnek, vagy </FONT><A HREF="#trans_types"><FONT FACE="Verdana"><B>letétnek</B></FONT></A>
@@ -245,7 +127,7 @@ a fajta ügylet </SPAN></I></FONT><A HREF="#trans_types"><FONT FACE="Verdana"><I
 </I></FONT></P>
 		</TD>
 		<TD WIDTH=80%>
-			<P><IMG SRC="./mmex_concept_hu.png" NAME="graphics1" ALIGN=BOTTOM WIDTH=581 HEIGHT=338 BORDER=0>
+			<P><img class="shadow" id="mmex_concept" alt='MMEX Concept' SRC="img/mmex_concept_hu.png" NAME="graphics1" ALIGN=BOTTOM WIDTH=581 HEIGHT=338 BORDER=0>
 						</P>
 		</TD>
 	</TR>
@@ -257,7 +139,7 @@ a fajta ügylet </SPAN></I></FONT><A HREF="#trans_types"><FONT FACE="Verdana"><I
 <FONT FACE="Verdana">, ahol ezeket a egységeket tárolja és egymáshoz rendeli.</FONT></P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="recommendation"></A><FONT FACE="Verdana"><BR>Ajánlások</FONT></H3>
+<H2>Ajánlások</H2>
 <P><FONT FACE="Verdana">Az MMEX által készített adatbázis <B>.mmb</B> kiterjesztésű, és a legfontosabb fájl, 
 amit kezelnie kell. A körülményektől függően titkosítás is alkalmazható, ami <B>.emb</B> kiterjesztésről ismerhető fel. 
 Itt jelszóval védhetjük az adatbázist és az MMEX minden megnyitásánál jelszóra lesz szükség. </FONT></P>
@@ -276,7 +158,7 @@ megnyitásakor és vagy akkor, amikor az adatbázisban változást észlel. Legf
 </UL>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="create_database"></A><FONT FACE="Verdana"><BR>Új adatbázis készítése</FONT></H3>
+<H2>Új adatbázis készítése</H2>
 <P><FONT FACE="Verdana">Az MMEX indításakor megpróbálja az utoljára megnyitott adatbázist betölteni. 
 Amennyiben nem lenne ilyen, akkor a felhasználónak lehetővé teszi vagy egy létező adatbázis megnyitását, 
 vagy új készítését.</FONT></P>
@@ -300,7 +182,7 @@ szükséges. Ez tetszőleges lehet, mivel csak a Összesítő lap és a kimutat�
 <BR></FONT><FONT FACE="Verdana"><B>Az új adatbázis fájl nem titkosított.</B></FONT></P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="encrypting_database"></A><FONT FACE="Verdana"><BR>Adatbázisfájl titkosítása</FONT></H3>
+<H2>Adatbázisfájl titkosítása</H2>
 <P STYLE="font-weight: normal"><FONT FACE="Verdana">
 Az adatbázis fájl a következő módon titkosítható: a menüben kiválasztva <B>Fájl-&gt;Adatbázis mentése másként</B></FONT></P>
 <OL>
@@ -322,7 +204,7 @@ Az adatbázis fájl a következő módon titkosítható: a menüben kiválasztva
 </OL>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="switching_databases"></A><BR><FONT FACE="Verdana, sans-serif">Adatbázis váltás</FONT></H3>
+<H2>Adatbázis váltás</H2>
 <P STYLE="margin-bottom: 0in"><BR>
 </P>
 <P STYLE="font-weight: normal"><FONT FACE="Verdana">Azok a felhsználok, akiknek több 
@@ -337,7 +219,7 @@ Az MMEX bezárásakor az éppen nyitott fájl bekerül a listába mint utoljára
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="create_account"></A><FONT FACE="Verdana"><BR>Új számla nyitása</FONT></H3>
+<H2>Új számla nyitása</H2>
 <P><FONT FACE="Verdana">Új adatbázis készítésekor automatikusan kérni fogja egy új számla nyitását. </FONT></P>
 <P><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">Számla kézzel történő nyitásához a menüben 
 </SPAN></FONT><FONT FACE="Verdana"><B>Számlák-&gt;Új számla</B></FONT>
@@ -410,7 +292,7 @@ javaslatok</A></FONT></P>
 </OL>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="account_setup"></A><FONT FACE="Verdana"><B><BR>Számla beállítás példa</B></FONT></H3>
+<H2>Számla beállítás példa</H2>
 <P><FONT FACE="Verdana">Legyen egy megtakarítási számlánk 1250 USD-vel, egy csekkszámlánk 
 500 USD-vel, egy Master Cardunk 250 USD értékkel, egy Visa kártyánk 475 USD-vel, a 
 házra 235 965 USD kölcsön van és egy oktatási alapunk, amelyet a gyerekek főiskolai 
@@ -517,8 +399,8 @@ törlesztésére, az Összesítő lap megjeleníti a kifizetést. Vagyis napi sz
 pontosan mennyi pénze van. Rendszeres kifizetések a megtakarítási számláról a 
 lakáskölcsönre beállíthatók a <A HREF="#recurring_transactions">Rendszeres 
 ügyletek</A>.</FONT></P> aktiválásával.
-<H3 CLASS="western"><A NAME="navTreeTips"></A><FONT FACE="Verdana"><B><BR>Javaslat a</B></FONT> 
-<FONT FACE="Verdana">Navigációs fa és az Összesítő lap használatára:</FONT></H3>
+<H2>Javaslat a</FONT> 
+<FONT FACE="Verdana">Navigációs fa és az Összesítő lap használatára:</H2>
 <P><FONT FACE="Verdana">Ahogy több számlát fektetünk fel a Navigációs fa és az 
 Összesítő lap nagyon nagy lehet. <BR>Ezek kinézete megfelelő részek ki-, vagy bekapcsolásával 
 időlegesen megváltoztathatók:</FONT></P>
@@ -557,8 +439,7 @@ időlegesen megváltoztathatók:</FONT></P>
 Eszközök -&gt;Beállítások --&gt;Nézet beállításai részben.</FONT></P> 
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="editaccounts"></A><FONT FACE="Verdana"><BR>Számlainformációk 
-szerkesztése</FONT></H3>
+<H2>Számlainformációk szerkesztése</H2>
 <P><FONT FACE="Verdana">Mihelyst létrehoz egy számlát, bármely információs mezőjét 
 megváltoztathatja a következő módon:</FONT></P>
 <OL>
@@ -579,8 +460,7 @@ a szükséges mezők módosíthatók.</FONT></P>
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="creating_new_transaction"></A><FONT FACE="Verdana"><BR>
-Új ügyletek bevitele</FONT></H3>
+<H2>Új ügyletek bevitele</H2>
 <P><FONT FACE="Verdana">Mihelyst kész egy új számla és kiválasztotta a Navigációs 
 fában, vagy az Összesítő lapon, a megjelenített számlán új ügyletet indíthat a 
 következő módon:</FONT></P>
@@ -684,7 +564,7 @@ teljes egyenleg számait.</B></FONT></P>
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="edittrans"></A><FONT FACE="Verdana"><BR>Ügylet szerkesztése és frissítése</FONT></H3>
+<H2>Ügylet szerkesztése és frissítése</H2>
 <P><FONT FACE="Verdana">Az ügyletek szerkesztését és frissítését több módon érheti el:</FONT></P>
 <UL>
 	<LI><P><FONT FACE="Verdana">válassza ki az ügyletet és kattintson a szerkesztés 
@@ -696,7 +576,7 @@ teljes egyenleg számait.</B></FONT></P>
 <P><FONT FACE="Verdana">A fenti műveletek bármelyike ügylet párbeszédablakot, ami 
 a kiválasztott tranzakció részleteit tartalmazza. Végezze el a változtatásokat és 
 kattintson a rendben gombra, azok mentéséhez.</FONT></P>
-<P><A NAME="transaction_filtering"></A><FONT FACE="Verdana"><BR><B>Ügyletek szűrése a 
+<P><A NAME="transaction_filtering"><B>Ügyletek szűrése a 
 számlákon</B></FONT></P>
 <P><FONT FACE="Verdana">Az ügyletek szűrése lehetséges akár beépített szűrőkkel, akár 
 a számlanézetben található ügyletek szűrésével, ami lehetővé teszi az megjelenített 
@@ -710,8 +590,7 @@ is.<BR>Megjegyzés: <FONT COLOR="#ff0000">Az ügyletek törlésekor járjon el �
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="rectrans"></A><FONT FACE="Verdana"><BR>Tranzakciók 
-visszaigazolása és kiegyenlítése</FONT></H3>
+<H2>Tranzakciók visszaigazolása és kiegyenlítése</H2>
 <P><FONT FACE="Verdana"><B>Rendezetlen ügyletek:</B></FONT></P>
 <UL>
 	<LI><P><FONT FACE="Verdana">azt jelenti, hogy a pénzintézet még nem igazolta 
@@ -734,8 +613,7 @@ indításánál beállíthatja alapértelmezettnek a rendezetlen státuszt.</FON
 </UL>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="followup"></A><FONT FACE="Verdana"><BR>Ügylet kijelölése 
-egyeztetésre</FONT></H3>
+<H2>Ügylet kijelölése egyeztetésre</H2>
 <P><FONT FACE="Verdana">Egyes tranzakciókkal kapcsolatban lehetnek olyan ügyek, 
 amik miatt egyeztetésre jelölheti őket. Ezeket az MMEX eltérő ikonnal jelöli.</FONT></P>
 <P STYLE="font-style: normal; font-weight: normal; text-decoration: none">
@@ -747,8 +625,7 @@ amik miatt egyeztetésre jelölheti őket. Ezeket az MMEX eltérő ikonnal jelö
 </UL>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="currencies"></A><FONT FACE="Verdana"><BR>Munka valutákkal 
-</FONT></H3>
+<H2>Munka valutákkal</H2>
 <P STYLE="font-weight: normal"><FONT FACE="Verdana">Minthogy az MMEX-et számos 
 országban használhatják, ezért foglalkoznia kell a használó ország valutájával is.
 Új adatbázis felállításakor az </FONT><FONT FACE="Verdana"><B>alap pénznem</B></FONT>
@@ -806,8 +683,7 @@ valutaárfolyam online frissítése</B> menüt használja, a következőket kell
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="categories"></A><FONT FACE="Verdana"><BR>Kategóriák 
-kezelése</FONT></H3>
+<H2>Kategóriák kezelése</H2>
 <P><FONT FACE="Verdana"><B>A kategóriák mutatják a kifizetés, vagy bevétel okát.</B></FONT> 
 </P>
 <P><FONT FACE="Verdana">A kategóriák általában a bevételek, vagy kiadások rögzítéséhez 
@@ -892,7 +768,7 @@ kategóriát, ezután törölhetővé válik.</FONT></P>
 </OL>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="payees"></A><FONT FACE="Verdana"><BR>Munka kedvezményezettekkel</FONT></H3>
+<H2>Munka kedvezményezettekkel</H2>
 <P><FONT FACE="Verdana"><B>Kedvezményezettek emberek, vagy szervezetek, akik pénzt adnak, vagy 
 emberek, vagy szervezetek akik fizetnek termékeinkért és szolgáltatásainkért.</B></FONT></P>
 <P><FONT FACE="Verdana">A kedvezményezetteket szerkesztheti:
@@ -942,8 +818,7 @@ kedvezményezettet, tehát törölhető.</FONT></P>
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="importQIF"></A><FONT FACE="Verdana"><BR>Importálás QIF 
-fájlból</FONT></H3>
+<H2>Importálás QIF fájlból</H2>
 <P><FONT FACE="Verdana">Quicken Interchange Format (QIF) egy nyílt specifikáció 
 adatok médiára (pl. fájlba) történő írásához, olvasásához. A QIF fájl jellemzően az 
 alábbi szerkezeti felépítésű:<BR><BR>!Type: típusazonosító sztring
@@ -970,8 +845,7 @@ a jobb bilentyűvel aktivizálva a csoportos beállítás paranccsal számlanéz
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="importUnivCSV"></A><FONT FACE="Verdana"><BR>Importálás 
-CSV formátumból</FONT></H3>
+<H2>Importálás CSV formátumból</H2>
 <P><FONT FACE="Verdana">Az MMEX, hogy egyszerűsítse a felhasználók dolgát, amellett 
 hogy a banki tranzakcióikat tartalmazó CSV fájlt az MMEX által előírt, meghatározott 
 szerkezetűre formálják, megengedi a teljesen szabadon kialakított szerkezetű CSV 
@@ -1006,8 +880,7 @@ a jobb billentyűvel aktivizálva a csoportos beállítás paranccsal számlané
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="importcsvtips"></A><FONT FACE="Verdana"><BR>Javaslatok 
-CSV fájlok készítéséhez</FONT></H3>
+<H2>Javaslatok CSV fájlok készítéséhez</H2>
 <UL>
 	<LI><P><FONT FACE="Verdana">CSV fájlok készítésekor győződjön meg arról, hogy az 
 	összes vesszőt eltávolította a bevételeiből és kivétjeiből. Ezt könnyen elvégezheti akár Excel, akér OpenOffice/LibreOffice 
@@ -1031,8 +904,7 @@ CSV fájlok készítéséhez</FONT></H3>
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="exportcsv"></A><FONT FACE="Verdana"><BR>Exportálás CSV 
-fájlba</FONT></H3>
+<H2>Exportálás CSV fájlba</H2>
 <P><FONT FACE="Verdana">Az MMEX fix szerkezetű CSV fájlba tud exportálni. Ez a 
 formátum megegyezik a CSV import formátumával. Vagyis jól használható egyik .mmb 
 fájlból másikba való adatátvitelre. Hogy könnyedén megtekinthesse a CSV fájlok 
@@ -1052,8 +924,7 @@ ez vagy azt a számlát jelzi, ahonnan az átutalás származik, vagy amelyikre 
 <BR>Jegyezze meg, hogy a CSV fájlba csak egy MMEX számláról lehet importálni.</FONT></P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="export_qif"></A><FONT FACE="Verdana"><BR>Exportálás QIF 
-fájlba</FONT></H3>
+<H2>Exportálás QIF fájlba</H2>
 <P><FONT FACE="Verdana">Az MMEX képes QIF fájlba exportálni.</FONT></P>
 <P><FONT FACE="Verdana">Ez a formátum arra is használható, hogy 
 <A HREF="#importQIF">újra feltöltsön egy számlát</A>.</FONT></P>
@@ -1063,8 +934,7 @@ visszatöltésre, nem lesz pontos. (Gondolom az ellenszámla is kellene! )</FONT
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="recurring_transactions"></A><FONT FACE="Verdana"><BR>Rendszeres 
-ügyletek</FONT></H3>
+<H2>Rendszeres ügyletek</H2>
 <P><FONT FACE="Verdana">Ezek olyan különleges tranzakciók, amiket az adatbázisba, egy jövőbeni 
 dátumra viszünk be. Azek az ügyletek általában szabályos időközönkénti számlafizetés formájában 
 jelennek meg.</FONT></P>
@@ -1126,7 +996,7 @@ lap.</FONT></P>
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="assets"></A><FONT FACE="Verdana"><BR>Vagyoni eszközök</FONT></H3>
+<H2>Vagyoni eszközök</H2>
 <P><FONT FACE="Verdana">Az MMEX lehetővé teszi az olyan vagyontárgyak, mint autók, házak, telkek stb. 
 nyomon követését. A vagyontárgyak értéke változatlanul hagyható, vagy évente egy meghatározott 
 százalékkal módosítható. A vagyoni eszközeinek értéke hozzáadódik az Ön teljes értékéhez.
@@ -1134,7 +1004,7 @@ százalékkal módosítható. A vagyoni eszközeinek értéke hozzáadódik az �
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="transfilter"></A><FONT FACE="Verdana"><BR>Tranzakciók szűrt kimutatása</FONT></H3>
+<H2>Tranzakciók szűrt kimutatása</H2>
 <P><FONT FACE="Verdana">Az MMEX lehetővé teszi ügyletek meghatározott feltételek szerinti keresését. 
 Ezt megtehetjük a <A HREF="#transaction_filtering">Ügyletek szűrése</A> használatával, számlanézetben, 
 vagy a <A HREF="#transaction_report">Ügyletek kimutatása formájában.</A>  </FONT>
@@ -1147,14 +1017,13 @@ fájl formájában menthető.</FONT></P>
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="reports"></A><A NAME="budgeting"></A><FONT FACE="Verdana"><BR>Jelentések, 
-kimutatások</FONT></H3>
+<H2>Jelentések, kimutatások</H2>
 <P><FONT FACE="Verdana">Az MMEX-ben számos kimutatási formát tesz elérhetővé. <BR>Az összes kimutatás, 
 szükség esetén ki is nyomtatható menüből: <B>File-&gt;Nyomtatás... --&gt;Jelenlegi nézet.</B></FONT></P>
 <P><FONT FACE="Verdana">A navigációs ablakban a Kimutatásoknál válassza ki a megfelelőt. Egyes 
 jelentések felhasználótól kérnek információkat, mások nem. Mihelyst látja a kimutatást, kinyomtathatja 
 azt a menüben a nyotatási opció kiválasztásával.</FONT></P>
-<P><A NAME="financialYearReport"></A><FONT FACE="Verdana"><BR><B>Éves pénzügyi jelentések:
+<P><A NAME="financialYearReport"><B>Éves pénzügyi jelentések:
 </B> (számos országban követelmény)</FONT></P>
 <P><FONT FACE="Verdana">Ezek a jelentések általában nem a naptári évvel kezdődnek és a fő kimutatáshoz 
 kapcsolódóan jelennek meg. Ezek a jelentések lefedik:</FONT></P>
@@ -1199,7 +1068,7 @@ bontásban. Ez, a várható fizetések alapján, a rendelkezésre álló pénzre
 </P>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="print"></A><FONT FACE="Verdana"><BR>Nyomtatás</FONT></H3>
+<H2>Nyomtatás</H2>
 <P><FONT FACE="Verdana">Az MMEX lehetővé teszi valamennyi megjeleníthető kimutatás nyomtatását. </FONT>
 </P>
 <P><FONT FACE="Verdana">A nyomtatási beállítások elérhetők a menü Fájl-&gt;Nyomtatás Jelenlegi nézet alatt.
@@ -1211,7 +1080,7 @@ bontásban. Ez, a várható fizetések alapján, a rendelkezésre álló pénzre
 </UL>
 <H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Vissza a tetejére</FONT></A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="options"></A><FONT FACE="Verdana"><BR>MMEX Beállítások</FONT></H3>
+<H2>MMEX Beállítások</H2>
 <P><FONT FACE="Verdana">A Beállítások párbeszéd kiválasztásával módosíthatja az MMEX viselkedését.</FONT></P>
 <P><FONT FACE="Verdana">A menüben az <B>Eszközök-&gt;Beállítások</B> alatt érhető el.</FONT></P>
 <TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=GROUPS>
@@ -1466,8 +1335,8 @@ bontásban. Ez, a várható fizetések alapján, a rendelkezésre álló pénzre
 </TABLE>
 <H5 CLASS="western"><FONT FACE="Verdana"><BR><A HREF="#top">Vissza a tetejére</A></FONT></H5>
 <HR>
-<H3 CLASS="western"><A NAME="faq"></A><FONT FACE="Verdana"><BR>Gyakran Ismételt
-Kérdések (GYIK)</FONT></H3>
+<H2>Gyakran Ismételt
+Kérdések (GYIK)</H2>
 <OL>
 	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Verdana"><A HREF="#contribute">Hogyan 
 	segíthetek?</A> </FONT>
@@ -1489,7 +1358,7 @@ Kérdések (GYIK)</FONT></H3>
 	</P>
 </OL>
 <HR>
-<H3 CLASS="western"><A NAME="contribute"></A><FONT FACE="Verdana"><BR>Hogyan segíthetek?</FONT></H3>
+<H2>Hogyan segíthetek?</H2>
 <P><A NAME="contribute1"></A><FONT FACE="Verdana">Segíthet</FONT>
 </P>
 <UL>
@@ -1526,8 +1395,7 @@ Kérdések (GYIK)</FONT></H3>
 	</TR>
 </TABLE>
 <HR>
-<H3 CLASS="western"><A NAME="nameex"></A><FONT FACE="Verdana"><BR>Mit
-jelent az EX a szoftver nevében?</FONT></H3>
+<H2>Mit jelent az EX a szoftver nevében?</H2>
 <P><FONT FACE="Verdana">Kezdetben magamnak fejlesztettem egy pénzkezelő
 programot Money Manager néven. .NET alatt írtam és inkább tanulási céllal
 mintsem komoly programnak. Alaposan túlnőtt az eredeti elképzelésen. A
@@ -1561,9 +1429,7 @@ EX-el jelöli mint például legyen doSomething() and doSomethingEx().
 	</TR>
 </TABLE>
 <HR>
-<H3 CLASS="western"><A NAME="database1"></A><FONT FACE="Verdana"><BR>Az
-	.mmb formátum zárt? Biztonságban vannak az adataim?</FONT>
-</H3>
+<H2>Az .mmb formátum zárt? Biztonságban vannak az adataim?</H2>
 <TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
 	<COL WIDTH=13*>
 	<COL WIDTH=243*>
@@ -1638,8 +1504,7 @@ EX-el jelöli mint például legyen doSomething() and doSomethingEx().
 	</TR>
 </TABLE>
 <HR>
-<H3 CLASS="western"><A NAME="usbkey"></A><FONT FACE="Verdana"><BR>Az
-MMEX futtatható-e USB meghajtóról?</FONT></H3>
+<H2>Az MMEX futtatható-e USB meghajtóról?</H2>
 <P><A NAME="usbkey1"></A><FONT FACE="Verdana"><B>Igen.</B></FONT></P>
 <P><FONT FACE="Verdana">AzMMEX hordozható, ami annyit tesz, hogy telepítés
 nélkül is futhat, például USB-kulcsról. Amennyiben az MMEX a könyvtárában
@@ -1683,8 +1548,7 @@ veszi a hordozható formát. Másolja az MMEX-et és annak a könyvtárába az
 	</TR>
 </TABLE>
 <HR>
-<H3 CLASS="western"><A NAME="safety"></A><FONT FACE="Verdana"><BR>Honnan
-	tudom, hogy az MMEX nem próbálja ellopni érzékeny pénzügyi információimat?</FONT></H3>
+<H2>Honnan tudom, hogy az MMEX nem próbálja ellopni érzékeny pénzügyi információimat?</H2>
 <P><A NAME="safety1"></A><FONT FACE="Verdana">A zárt forráskódú programoknál
 Ön csak a forgalmazó biztonsággal kapcsolatos kijelentésére támaszkodhat.
 Az MMEX esetében a nyílt forráskód azt jelenti, hogy személyesen meggyőződhet
@@ -1716,8 +1580,7 @@ frissítések ellenőrzése céljából stb.<BR></FONT><BR><BR>
 	</TR>
 </TABLE>
 <HR>
-<H3 CLASS="western"><A NAME="statements"></A><FONT FACE="Verdana">
-<BR>Hogyan nyomtathatok számlakivonatot MMEX alól?</FONT></H3>
+<H2>Hogyan nyomtathatok számlakivonatot MMEX alól?</H2>
 <P><A NAME="statements1"></A><FONT FACE="Verdana">Bármilyen meggondolás 
 alapján szűrhet, kiválogathatja a tranzakciókat, amit aztán a menüből
 kinyomtathat. Fájl -&gt;Nyomtat... -&gt;Aktuális nézet</FONT></P>
@@ -1726,16 +1589,7 @@ a navigációs ablak Kimutatások részében, vagy menü alatti ikonnal,<BR>ille
 Eszközökben az Ügyletek szűrése pontból éri el.</FONT></P>
 <P><BR><BR>
 </P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<P STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
 	<COL WIDTH=128*>
 	<COL WIDTH=128*>
@@ -1749,10 +1603,9 @@ Eszközökben az Ügyletek szűrése pontból éri el.</FONT></P>
 		</TD>
 	</TR>
 </TABLE>
-        <h5>
-            Madhan Kanagavel<br>
-            Copyright &#9400; 2005-2016, CodeLathe LLC. All rights reserved.
-        </h5>
+<HR>
+<H5 CLASS="western"><FONT FACE="Verdana">Copyright &ordf; 2005-2011&nbsp;
+CodeLathe LLC. All rights reserved.</FONT></H5>
 </BODY>
 </HTML>
 

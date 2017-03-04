@@ -1,218 +1,78 @@
 ﻿<!DOCTYPE HTML>
-<HTML>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Money Manager Ex User Manual</title>
-    <link href="../../res/master.css" rel="stylesheet" type="text/css">
-    <script src="../contents.js"></script>
+    <link href="master.css" rel="stylesheet" type="text/css">
+    <script src="js/translator.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/toc.js"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
-    <!--Smooth Back to Top Button Start-->
-    <script>
-        jQuery(document).ready(function () {
-            var offset = 220;
-            var duration = 500;
-            jQuery(window).scroll(function () {
-                if (jQuery(this).scrollTop() > offset) {
-                    jQuery('.back-to-top').fadeIn(duration);
-                } else {
-                    jQuery('.back-to-top').fadeOut(duration);
-                }
-            });
-            jQuery('.back-to-top').click(function (event) {
-                event.preventDefault();
-                jQuery('html, body').animate({ scrollTop: 0 }, duration);
-                return false;
-            })
-        });
+    <script src="js/back_to_top.js"></script>
+    <link href="back_to_top.css" rel="stylesheet" type="text/css">
+	
+	<script>
+        var lang = getParameterValue("lang").substring(0, 3).toLowerCase();
+   	// Javascript URL redirection
+        if (lang == 'fre')
+            window.location.replace("index_fr.html");
+        else if (lang == 'ger')
+            window.location.replace("index_de.html");
+        else if (lang == 'hun')
+            window.location.replace("index_hu.html");
+        else if (lang == 'ita')
+            window.location.replace("index_it.html");
+        else if (lang == 'pol')
+            window.location.replace("index_pl.html");
+        else if (lang == 'spa')
+            window.location.replace("index_sp.html");
     </script>
-    <style>
-        div#page {
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 20px;
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 2em;
-            right: 0px;
-            text-decoration: none;
-            color: #000000;
-            font-size: 12px;
-            padding: 1em;
-            display: none;
-        }
-
-            .back-to-top:hover {
-                text-decoration: none;
-            }
-    </style>
 </head>
 
-<BODY LANG="pl-PL" DIR="LTR">
-<table class="table, small"><tr>
-    <TD><span class="label label-info">Jezyk:</span></TD>
-    <TD> </TD><TD><A HREF="../index.html">Angielski</A><BR>
-    <TD> </TD><TD><A HREF="../french/index.html">Francuski</A><BR>
-    <TD> </TD><TD><A HREF="../italian/index.html">Włoski</A></TD>
-    <TD> </TD><TD><A HREF="../russian/index.html">Rosyjski</A></TD>
-    <TD> </TD><TD><A HREF="../spanish/index.html">Hiszpański</A></TD>
-</tr></table>
-<div class="page-header">
-    <H2>Instrukcja użytkowania Money Manager <small>MMEX 1.3.0</small></H2>
-</div>
-  <UL>
-    <LI>
-      <A HREF="#introduction">Wstęp</A>
-    </LI>
-    <LI>
-      <A HREF="#financial_health">Działania na rzecz lepszej kondycji finansowej</A>
-    </LI>
-    <LI>
-      <A HREF="#concepts">Pojęcia Money Manager Ex</A>
-    </LI>
-    <LI>
-      <A HREF="#recommendation">Zalecenia</A>
-    </LI>
-  </UL>
-  <UL>
-    <LI>Zarzadzanie danymi</LI>
-      <UL>
-        <li>
-          <A HREF="#create_database">Tworzenie nowej bazy danych</A>
-        </li>
-        <li>
-          <A HREF="#encrypting_database">Szyfrowanie bazy danych</A>
-        </li>
-        <li>
-          <A HREF="#switching_databases">Korzystanie z wielu plików baz</A>
-        </li>
-      </UL>
-    </UL>
-  <UL>
-    <LI>Praca z:</LI>
-    <UL>
-      <li>
-        <A HREF="#currencies">Walutami</A>
-      </li>
-      <li>
-        <A HREF="#categories">Kategoriami</A>
-      </li>
-      <li>
-        <A HREF="#payees">Beneficjentami</A>
-      </li>
-    </UL>
-  </UL>
-  <UL>
-    <LI>Zarządzanie kontem</LI>
-    <UL>
-      <LI>
-        <A HREF="#create_account">Tworzenie nowego konta</A>
-      </LI>
-      <LI>
-        <A HREF="#editaccounts">Edycja informacji o koncie</A>
-      </LI>
-      <LI>
-        <A HREF="#creating_new_transaction">
-          Tworzenie nowej transakcji
-        </A>
-      </LI>
-      <LI>
-        <A HREF="#edittrans">Edycja i uaktualnianie transakcji</A>
-      </LI>
-      <LI>
-        <A HREF="#rectrans">
-          Uzgadnianie i bilansowanie transakcji
-        </A>
-      </LI>
-      <LI>
-        <A HREF="#followup">
-          Oznaczanie transakcji jako do wyjaśnienia
-        </A>
-      </LI>
-      <LI>
-        <P>
-          <A HREF="#account_setup">
-            Przykład ustawień kont
-          </A>
-      </LI>
-    </UL>
-  </UL>
-  <UL>
-    <LI>Import z</LI>
-    <UL>
-	  <LI>
-		<A HREF="#WebApp">WebApp</A>
-      <LI>
-        <A HREF="#importQIF">Plików QIF</A>
-        <LI>
-          <A HREF="#importUnivCSV">
-            Uniwersalny importer CSV
-          </A>
-        </LI>
-        <LI>
-          <A HREF="#importcsvtips">
-            Porady do tworzenia plików CSV
-          </A>
-        </LI>
-    </UL>
-    <LI>Eksport do</LI>
-    <UL>
-      <LI>
-        <A HREF="#exportcsv">Plików CSV</A>
-      </LI>
-      <LI>
-        <A HREF="#export_qif">Plików QIF</A>
-      </LI>
-    </UL>
-  </UL>
-  <UL>
-    <LI>
-      <A HREF="#reports">Raporty</A>
-    </LI>
-    <UL>
-      <LI>
-        <A HREF="#financialYearReport">Raporty roku finansowego</A>
-      </LI>
-      <LI>
-        <A HREF="#transaction_report">Raporty transakcji</A>
-      </LI>
-      <LI>
-        <A HREF="#cashFlowReport">Raport przepływu pieniędzy</A>
-      </LI>
-      <LI>
-        <A HREF="general_report_manager.html">Menedżer raportów</A>
-      </LI>
-    </UL>
-  </UL>
-  <UL>
-    <LI><A HREF="investment.html">Inwestycje w papiery wartościowe</A></LI>
-    <LI><A HREF="#assets">Aktywa (środki trwałe)</A></LI>
-    <LI>
-      <A HREF="#recurring_transactions">
-        Transakcje powtarzane</A>
-    </LI>
-    <LI>
-      <A HREF="#transfilter">Filtr transakcji</A>
-    </LI>
-    <LI>
-      <A HREF="budget.html">Budżetowanie</A>
-      </li>
-      <LI>
-        <A HREF="#print">Drukowanie</A>
-        </LI>
-    <LI>
-      <A HREF="#options">Opcje MMEX</A>
-    </LI>
-    <LI>
-      <A HREF="#faq">
-        Często zadawane pytania (FAQ)
-      </A>
-    </LI>
-  </UL>
-  <HR>
-<H3><A NAME="introduction"></A>Wstęp</H3>
+<body dir="ltr" lang="en-US" onload="translate();generateTOC(document.getElementById('toc'));">
+
+    <script>
+        var lang = getParameterValue("lang").substring(0, 3);
+   	// Javascript URL redirection
+        if (lang == 'fre')
+            window.location.replace("index_fr.html");
+        else if (lang == 'ger')
+            window.location.replace("index_de.html");
+        else if (lang == 'hun')
+            window.location.replace("index_hu.html");
+        else if (lang == 'ita')
+            window.location.replace("index_it.html");
+        else if (lang == 'pol')
+            window.location.replace("index_pl.html");
+        else if (lang == 'spa')
+            window.location.replace("index_sp.html");
+    </script>
+    
+    <a href="#" class="back-to-top"><img src="img/backtotop.png" alt="Back to Top" /></a>
+    <!--Smooth Back to Top Button End-->
+
+    <table class="table, small">
+        <tr>
+            <td class="label label-info">Languages:</td>
+            <td><a href="index.html?lang=english">English</a></td>
+            <td><a href="index.html?lang=german">German</a></td>
+            <td><a href="index.html?lang=french">French</a></td>
+            <td><a href="index.html?lang=hungarian">Hungarian</a></td>
+            <td><a href="index.html?lang=italian">Italian</a></td>
+            <td><a href="index.html?lang=polish">Polish</a></td>
+            <td><a href="index.html?lang=russian">Russian</a></td>
+            <td><a href="index.html?lang=spanish">Spanish</a></td>
+        </tr>
+    </table>
+
+    <h1 class="i18n">Money Manager Ex User Manual</h1>
+
+    <div id="toc">
+        <!-- ToC generated by Javascript -->
+    </div>
+    <hr>
+
+<H2>Wstęp</H2>
 <P><B>Money Manager Ex (MMEX) </B>
 jest osobistym programem do zarządzania finansami dla każdego, kto chce
 śledzić przepływ swoich środków i swoje wydatki. Bazując na prostych
@@ -2058,9 +1918,8 @@ górnym lewym rogu interfejsu MMEX.</P>
 		</TD>
 	</TR>
 </TABLE>
-        <h5>
-            Madhan Kanagavel<br>
-            Copyright &#9400; 2005-2016, CodeLathe LLC. All rights reserved.
-        </h5>
+<HR>
+<H5>Copyright &ordf; 2005-2013&nbsp;
+CodeLathe LLC. All rights reserved.</H5>
 </BODY>
 </HTML>
