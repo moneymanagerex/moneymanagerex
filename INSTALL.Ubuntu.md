@@ -15,14 +15,15 @@
 	sudo apt-get install build-essential automake
 	sudo apt-get install libwxbase3.0-dev libwxgtk3.0-dev libwxgtk-webview3.0-dev
 	sudo apt-get install python-dev
+
+### Ubuntu 16.04
+	sudo apt-get update && sudo apt-get install -y build-essential cmake git libgtk-3-dev libwebkitgtk-dev libwxgtk3.0-dev libwxgtk-webview3.0-dev
 		
 ## Download Source
-
-	cd ~/Development
 	git clone https://github.com/moneymanagerex/moneymanagerex
 	cd moneymanagerex
+	git checkout cmake
 	git submodule update --init
 	
 ## Compile & Install
-	cmake .
-	make && sudo make install
+	cmake . && make package
