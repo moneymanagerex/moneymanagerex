@@ -1,4 +1,10 @@
 Version History of Money Manager Ex
+
+1.3.4 (Mar 11, 2017)
+- Fix: Monthly Summary of Accounts crash #1086
+- Fix: Loan accounts missing in Monthly Summary of Accounts report #1082
+- Update: Albanian and Swedish languages
+
 1.3.3 (Mar 04, 2017)
 - Fix: assets #1074 #1070
 - Feature: Search box not working #1060
