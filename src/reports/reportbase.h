@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2017 James Higley
+ Copyright (C) 2017 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -37,11 +38,7 @@ public:
     virtual void RefreshData() {}
     virtual wxString title() const;
     virtual wxString file_name() const;
-    virtual int report_parameters() { return false;  }
-    /*virtual bool has_date_range() { return false; }
-    virtual bool has_budget_dates() { return false; }
-    virtual bool has_only_years() { return false; }
-    virtual bool has_accounts() { return false; }*/
+    virtual int report_parameters() { return RepParams::NONE;  }
     virtual void date_range(const mmDateRange* date_range, int selection);
     void accounts(int selection, wxString& name);
     int getDateSelection() { return this->m_date_selection; }
@@ -65,7 +62,8 @@ public:
     static const char * m_template;
     enum RepParams 
     {
-        SINGLE_DATE = 1
+        NONE = 0
+        , SINGLE_DATE = 1
         , DATE_RANGE = 2
         , BUDGET_DATES = 4
         , ONLY_YEARS = 8
@@ -95,8 +93,6 @@ public:
 private:
     void load_context();
 };
-
-
 
 //----------------------------------------------------------------------------
 #endif // MM_EX_REPORTBASE_H_
