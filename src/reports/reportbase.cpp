@@ -220,8 +220,6 @@ int mmGeneralReport::report_parameters()
     if (content.Contains("&begin_date")
         || content.Contains("&end_date"))
         params = params | RepParams::DATE_RANGE;
-    if (content.Contains("&accounts_list"))
-        params = params | RepParams::ACCOUNTS_LIST;
     if (content.Contains("&budget_dates"))
         params = params | RepParams::BUDGET_DATES;
     if (content.Contains("&only_years"))

@@ -98,14 +98,6 @@ private:
     mmReportsPanel *m_reportPanel;
 };
 
-enum
-{
-    ID_CHOICE_DATE_RANGE = wxID_HIGHEST + 1,
-    ID_CHOICE_ACCOUNTS,
-    ID_CHOICE_START_DATE,
-    ID_CHOICE_END_DATE,
-};
-
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
     EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
@@ -291,7 +283,8 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->AddSpacer(5);
             const mmDateRange* date_range = *m_all_date_ranges.begin();
             long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
-            m_start_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
+            m_start_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE
+                , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
             m_start_date->SetValue(date_range->start_date());
             m_start_date->Enable(false);
 
@@ -307,11 +300,13 @@ void mmReportsPanel::CreateControls()
         else if (int(rb_->report_parameters() / rb_->RepParams::BUDGET_DATES) % 2)
         {
             cleanupmem_ = true;
-            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3, wxID_ANY, _("Period:"));
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3, wxID_ANY
+                , _("Period:"));
             itemStaticTextH1->SetFont(this->GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(5);
-            m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE, wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
+            m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE
+                , wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
 
             int prev_selection = rb_->getDateSelection();
             int cur_selection = 0;
@@ -320,7 +315,7 @@ void mmReportsPanel::CreateControls()
             {
                 const wxString& name = e.BUDGETYEARNAME;
 
-                if ((int(rb_->report_parameters() / rb_->RepParams::ONLY_YEARS)% 2)
+                if ((int(rb_->report_parameters() / rb_->RepParams::ONLY_YEARS) % 2)
                     && name.length() >= 5) // Only add YEARS
                     continue;
 

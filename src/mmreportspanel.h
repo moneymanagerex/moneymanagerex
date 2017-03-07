@@ -75,6 +75,15 @@ private:
     wxString htmlreport_;
 public:
     mmGUIFrame *m_frame;
+
+    enum RepPanel
+    {
+        ID_CHOICE_DATE_RANGE = wxID_HIGHEST + 1,
+        ID_CHOICE_ACCOUNTS,
+        ID_CHOICE_START_DATE,
+        ID_CHOICE_END_DATE,
+    };
+
 };
 
 #endif

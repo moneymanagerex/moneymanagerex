@@ -58,9 +58,10 @@ public:
     static void prepareTempFolder();
     static bool WindowsUpdateRegistry();
     static bool outputReportFile(const wxString& str, const wxString& name);
-
-public:
     Data* get(const wxString& name);
+
+private:
+    bool PrepareSQL(wxString& sql);
 };
 
 #endif // 
