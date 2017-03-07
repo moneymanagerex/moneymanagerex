@@ -25,6 +25,6 @@ public:
     mmReportMyUsage();
     virtual ~mmReportMyUsage();
 
-    virtual bool has_date_range();
+    virtual int report_parameters();
     virtual wxString getHTMLText();
 };

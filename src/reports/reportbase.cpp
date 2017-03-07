@@ -212,6 +212,23 @@ wxString mmGeneralReport::getHTMLText()
     return Model_Report::instance().get_html(this->m_report);
 }
 
+int mmGeneralReport::report_parameters()
+{
+    int params = 0;
+    const auto content = this->m_report->SQLCONTENT.Lower();
+    if (content.Contains("&begin_date")
+        || content.Contains("&end_date"))
+        params = params | RepParams::DATE_RANGE;
+    if (content.Contains("&accounts_list"))
+        params = params | RepParams::ACCOUNTS_LIST;
+    if (content.Contains("&budget_dates"))
+        params = params | RepParams::BUDGET_DATES;
+    if (content.Contains("&only_years"))
+        params = params | RepParams::ONLY_YEARS;
+
+    return params;
+}
+
 mm_html_template::mm_html_template(const wxString& arg_template): html_template(arg_template.ToStdWstring())
 {
     this->load_context();

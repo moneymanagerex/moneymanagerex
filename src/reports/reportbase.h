@@ -37,10 +37,11 @@ public:
     virtual void RefreshData() {}
     virtual wxString title() const;
     virtual wxString file_name() const;
-    virtual bool has_date_range() { return false; }
+    virtual int report_parameters() { return false;  }
+    /*virtual bool has_date_range() { return false; }
     virtual bool has_budget_dates() { return false; }
     virtual bool has_only_years() { return false; }
-    virtual bool has_accounts() { return false; }
+    virtual bool has_accounts() { return false; }*/
     virtual void date_range(const mmDateRange* date_range, int selection);
     void accounts(int selection, wxString& name);
     int getDateSelection() { return this->m_date_selection; }
@@ -62,6 +63,14 @@ protected:
 
 public:
     static const char * m_template;
+    enum RepParams 
+    {
+        SINGLE_DATE = 1
+        , DATE_RANGE = 2
+        , BUDGET_DATES = 4
+        , ONLY_YEARS = 8
+        , ACCOUNTS_LIST = 16
+    };
 };
 
 class mmGeneralReport : public mmPrintableBase
@@ -71,6 +80,7 @@ public:
 
 public:
     wxString getHTMLText();
+    virtual int report_parameters();
 
 private:
     const Model_Report::Data* m_report;

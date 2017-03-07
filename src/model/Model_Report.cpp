@@ -165,6 +165,10 @@ wxString Model_Report::get_html(const Data* r)
         wxString sql = r->SQLCONTENT;
         sql.Trim();
         if (!sql.empty() && sql.Last() != ';') sql += ';';
+
+        wxString name = wxString::Format("REPORT_%d", r->id());
+        wxString settings = Model_Infotable::instance().GetStringInfo(name, "");
+
         wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
         if (!stmt.IsReadOnly())
         {

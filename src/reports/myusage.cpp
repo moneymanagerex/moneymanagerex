@@ -115,9 +115,9 @@ mmReportMyUsage::~mmReportMyUsage()
 {
 }
 
-bool mmReportMyUsage::has_date_range()
+int mmReportMyUsage::report_parameters()
 {
-    return true;
+    return RepParams::DATE_RANGE;
 }
 
 wxString mmReportMyUsage::getHTMLText()
