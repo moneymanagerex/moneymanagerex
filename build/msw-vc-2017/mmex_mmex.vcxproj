@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectName>mmex</ProjectName>
     <ProjectGuid>{23918169-892B-5A86-9E95-79789698518E}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -355,6 +356,7 @@
     <ClCompile Include="..\..\src\reports\summary.cpp" />
     <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
     <ClCompile Include="..\..\src\sharetransactiondialog.cpp" />
+    <ClCompile Include="..\..\src\transactionsupdatedialog.cpp" />
     <ClCompile Include="..\..\src\usertransactionpanel.cpp" />
     <ClCompile Include="..\..\src\webappdialog.cpp" />
     <ClCompile Include="..\..\src\win\platfdep.cpp" />
@@ -512,6 +514,7 @@
     <ClInclude Include="..\..\src\stockdialog.h" />
     <ClInclude Include="..\..\src\stockspanel.h" />
     <ClInclude Include="..\..\src\reports\transactions.h" />
+    <ClInclude Include="..\..\src\transactionsupdatedialog.h" />
     <ClInclude Include="..\..\src\transdialog.h" />
     <ClInclude Include="..\..\src\import_export\univcsvdialog.h" />
     <ClInclude Include="..\..\src\usertransactionpanel.h" />

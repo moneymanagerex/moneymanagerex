@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectName>lua</ProjectName>
     <ProjectGuid>{4B5CA777-A685-561F-BC81-282D83A5C463}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

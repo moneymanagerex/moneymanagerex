@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectName>wxsqlite</ProjectName>
     <ProjectGuid>{C45512B5-AEF8-5C27-BB1E-E97B298FFF91}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
