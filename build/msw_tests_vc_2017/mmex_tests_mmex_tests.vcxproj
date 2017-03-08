@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectName>mmex_tests</ProjectName>
     <ProjectGuid>{41FC52EC-2DA2-5289-AB6A-BB921FCA4B7D}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -318,6 +319,7 @@
     <ClCompile Include="..\..\src\reports\summary.cpp" />
     <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
     <ClCompile Include="..\..\src\sharetransactiondialog.cpp" />
+    <ClCompile Include="..\..\src\transactionsupdatedialog.cpp" />
     <ClCompile Include="..\..\src\usertransactionpanel.cpp" />
     <ClCompile Include="..\..\src\wizard_update.cpp" />
     <ClCompile Include="..\..\tests\cpu_timer.cpp" />
@@ -472,6 +474,7 @@
     <ClInclude Include="..\..\src\reports\summary.h" />
     <ClInclude Include="..\..\src\reports\summarystocks.h" />
     <ClInclude Include="..\..\src\sharetransactiondialog.h" />
+    <ClInclude Include="..\..\src\transactionsupdatedialog.h" />
     <ClInclude Include="..\..\src\usertransactionpanel.h" />
     <ClInclude Include="..\..\src\wizard_update.h" />
     <ClInclude Include="..\..\tests\cpu_timer.h" />

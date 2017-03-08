@@ -381,6 +381,9 @@
     <ClCompile Include="..\..\src\sharetransactiondialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\transactionsupdatedialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -810,6 +813,9 @@
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\sharetransactiondialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\transactionsupdatedialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

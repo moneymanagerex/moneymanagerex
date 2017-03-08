@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectName>cppunit</ProjectName>
     <ProjectGuid>{C625FFD9-6E76-569F-92BB-DEB3A6A647C5}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
