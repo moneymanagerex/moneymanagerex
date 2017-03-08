@@ -36,9 +36,9 @@ mmReportPayeeExpenses::~mmReportPayeeExpenses()
 {
 }
 
-bool mmReportPayeeExpenses::has_date_range()
+int mmReportPayeeExpenses::report_parameters()
 {
-    return true;
+    return RepParams::DATE_RANGE;
 }
 
 void  mmReportPayeeExpenses::RefreshData()

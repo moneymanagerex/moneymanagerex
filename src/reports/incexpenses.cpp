@@ -36,14 +36,9 @@ mmReportIncomeExpenses::~mmReportIncomeExpenses()
 {
 }
 
-bool mmReportIncomeExpenses::has_date_range()
+int mmReportIncomeExpenses::report_parameters()
 {
-    return true;
-}
-
-bool mmReportIncomeExpenses::has_accounts()
-{
-    return true;
+    return RepParams::DATE_RANGE | RepParams::ACCOUNTS_LIST;
 }
 
 wxString mmReportIncomeExpenses::getHTMLText()
@@ -169,14 +164,9 @@ mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 {
 }
 
-bool mmReportIncomeExpensesMonthly::has_date_range()
+int mmReportIncomeExpensesMonthly::report_parameters()
 {
-    return true;
-}
-
-bool mmReportIncomeExpensesMonthly::has_accounts()
-{
-    return true;
+    return RepParams::DATE_RANGE | RepParams::ACCOUNTS_LIST;
 }
 
 wxString mmReportIncomeExpensesMonthly::getHTMLText()

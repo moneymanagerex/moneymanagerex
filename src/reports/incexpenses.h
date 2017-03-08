@@ -27,8 +27,7 @@ class mmReportIncomeExpenses : public mmPrintableBase
 public:
     mmReportIncomeExpenses();
     virtual ~mmReportIncomeExpenses();
-    virtual bool has_date_range();
-    virtual bool has_accounts();
+    virtual int report_parameters();
     virtual wxString getHTMLText();
 };
 
@@ -38,8 +37,7 @@ class mmReportIncomeExpensesMonthly : public mmPrintableBase
 public:
     mmReportIncomeExpensesMonthly();
     virtual ~mmReportIncomeExpensesMonthly();
-    virtual bool has_date_range();
-    virtual bool has_accounts();
+    virtual int report_parameters();
     virtual wxString getHTMLText();
 };
 

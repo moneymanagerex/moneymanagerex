@@ -25,6 +25,7 @@
 #include "model/Model_Setting.h"
 #include "LuaGlue/LuaGlue.h"
 #include "sqlite3.h"
+#include "mmreportspanel.h"
 
 #if defined (__WXMSW__)
     #include <wx/msw/registry.h>
@@ -148,6 +149,33 @@ wxArrayString Model_Report::allGroupNames()
     return groups;
 }
 
+bool Model_Report::PrepareSQL(wxString& sql)
+{
+    sql.Trim();
+    if (sql.empty()) return false;
+    if (sql.Last() != ';') sql += ';';
+
+    if (sql.Lower().Find("&begin_date") != wxNOT_FOUND)
+    {
+        auto date = wxDateTime::Today().FormatISODate();
+        wxDatePickerCtrl* start_date = (wxDatePickerCtrl*)wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE);
+        if (start_date)
+            date = start_date->GetValue().FormatISODate();
+        sql.Replace("&begin_date", date);
+    }
+    if (sql.Lower().Find("&end_date") != wxNOT_FOUND)
+    {
+        wxString date = wxDateTime::Today().FormatISODate();
+        wxDatePickerCtrl* end_date = (wxDatePickerCtrl*)wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_END_DATE);
+        if (end_date)
+            date = end_date->GetValue().FormatISODate();
+        sql.Replace("&end_date", date);
+    }
+
+    //TODO: other parameters
+    return true;
+}
+
 wxString Model_Report::get_html(const Data* r)
 {
     mm_html_template report(r->TEMPLATECONTENT);
@@ -163,8 +191,8 @@ wxString Model_Report::get_html(const Data* r)
     try
     {
         wxString sql = r->SQLCONTENT;
-        sql.Trim();
-        if (!sql.empty() && sql.Last() != ';') sql += ';';
+        PrepareSQL(sql);
+
         wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
         if (!stmt.IsReadOnly())
         {

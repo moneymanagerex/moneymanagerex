@@ -46,7 +46,7 @@ class mmReportChartStocks : public mmPrintableBase
 public:
     mmReportChartStocks();
     ~mmReportChartStocks();
-    virtual bool has_date_range();
+    virtual int report_parameters();
     wxString getHTMLText();
 };
 

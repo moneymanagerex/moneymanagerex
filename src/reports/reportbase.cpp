@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2017 James Higley
+ Copyright (C) 2017 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -210,6 +211,21 @@ mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
 wxString mmGeneralReport::getHTMLText()
 {
     return Model_Report::instance().get_html(this->m_report);
+}
+
+int mmGeneralReport::report_parameters()
+{
+    int params = 0;
+    const auto content = this->m_report->SQLCONTENT.Lower();
+    if (content.Contains("&begin_date")
+        || content.Contains("&end_date"))
+        params = params | RepParams::DATE_RANGE;
+    if (content.Contains("&budget_dates"))
+        params = params | RepParams::BUDGET_DATES;
+    if (content.Contains("&only_years"))
+        params = params | RepParams::ONLY_YEARS;
+
+    return params;
 }
 
 mm_html_template::mm_html_template(const wxString& arg_template): html_template(arg_template.ToStdWstring())
