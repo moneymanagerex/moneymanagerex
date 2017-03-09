@@ -163,7 +163,7 @@ bool Model_Report::PrepareSQL(wxString& sql)
             wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE);
         if (start_date)
             date = start_date->GetValue().FormatISODate();
-        sql.Replace("&begin_date", date);
+        sql.Replace("&begin_date", date); //TODO: case sensitive
         sql.Replace("&single_date", date);
     }
     if (sql.Lower().Find("&end_date") != wxNOT_FOUND)
@@ -392,7 +392,9 @@ bool Model_Report::outputReportFile(const wxString& str, const wxString& name)
         index_output.Close();
     }
     else
+    {
         ok = false;
+    }
     return ok;
 }
 
