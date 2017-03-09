@@ -155,18 +155,22 @@ bool Model_Report::PrepareSQL(wxString& sql)
     if (sql.empty()) return false;
     if (sql.Last() != ';') sql += ';';
 
-    if (sql.Lower().Find("&begin_date") != wxNOT_FOUND)
+    if ((sql.Lower().Find("&begin_date") != wxNOT_FOUND) 
+        || (sql.Lower().Find("&single_date") != wxNOT_FOUND))
     {
         auto date = wxDateTime::Today().FormatISODate();
-        wxDatePickerCtrl* start_date = (wxDatePickerCtrl*)wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE);
+        wxDatePickerCtrl* start_date = (wxDatePickerCtrl*)
+            wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE);
         if (start_date)
             date = start_date->GetValue().FormatISODate();
         sql.Replace("&begin_date", date);
+        sql.Replace("&single_date", date);
     }
     if (sql.Lower().Find("&end_date") != wxNOT_FOUND)
     {
         wxString date = wxDateTime::Today().FormatISODate();
-        wxDatePickerCtrl* end_date = (wxDatePickerCtrl*)wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_END_DATE);
+        wxDatePickerCtrl* end_date = (wxDatePickerCtrl*)
+            wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_END_DATE);
         if (end_date)
             date = end_date->GetValue().FormatISODate();
         sql.Replace("&end_date", date);
