@@ -60,8 +60,8 @@ public:
     static bool outputReportFile(const wxString& str, const wxString& name);
     Data* get(const wxString& name);
 
-private:
-    bool PrepareSQL(wxString& sql);
+public:
+    static bool PrepareSQL(wxString& sql);
 };
 
 #endif // 

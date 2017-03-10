@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2011 Stefano Giorgio
- Copyright (C) 2014 -2016 Nikolay
+ Copyright (C) 2014 -2017 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -650,11 +650,10 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
         m_outputHTML->ClearBackground();
 
         mmGeneralReport gr(report); //TODO: limit 500 line
-        wxString error;
-        if (Model_Report::outputReportFile(error, "grm"))
+        if (Model_Report::outputReportFile(gr.getHTMLText(), "grm"))
             m_outputHTML->LoadURL(getURL(mmex::getReportFullName("grm")));
         else
-            m_outputHTML->SetPage(error, "");
+            m_outputHTML->SetPage(_("Error"), "");
     }
 }
 
@@ -1079,15 +1078,16 @@ void mmGeneralReportManager::getSqlTableInfo(std::vector<std::pair<wxString, wxA
     }
 }
 
-bool mmGeneralReportManager::getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData, wxString &SqlError)
+bool mmGeneralReportManager::getSqlQuery(/*in*/ const wxString& sql
+    , /*out*/ std::vector <std::vector <wxString> > &sqlQueryData
+    , wxString &SqlError)
 {
     wxSQLite3ResultSet q;
     int columnCount = 0;
     try
     {
         wxString temp = sql;
-        temp.Trim();
-        if (temp.Last() != ';') temp += ';';
+        Model_Report::PrepareSQL(temp);
         wxSQLite3Statement stmt = this->m_db->PrepareStatement(temp);
         if (!stmt.IsReadOnly())
             return false;
