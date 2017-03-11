@@ -118,7 +118,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     wxTreeItemId reportsSummary = m_nav_tree_ctrl->AppendItem(reports
         , _("Monthly Summary of Accounts"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(reportsSummary, new mmTreeItemData("Monthly Summary of Accounts"
-        , new mmReportSummaryByDate(this, 0)));
+        , new mmReportSummaryByDate(0)));
 
     wxTreeItemId categsGoes = m_nav_tree_ctrl->AppendItem(reports
         , _("Where the Money Goes"), img::PIECHART_PNG, img::PIECHART_PNG);
