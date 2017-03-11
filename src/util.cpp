@@ -269,7 +269,7 @@ const wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
     dateFmt.Replace(",", " ");
     dateFmt.Replace("/", " ");
     dateFmt.Replace("-", " ");
-    dateFmt.Replace("%d", wxString::Format("%d", dt.GetDay()));
+    dateFmt.Replace("%d", wxString::Format("%hu", dt.GetDay()));
     dateFmt.Replace("%Y", wxString::Format("%d", dt.GetYear()));
     dateFmt.Replace("%y", wxString::Format("%d", dt.GetYear()).Mid(2,2));
     dateFmt.Replace("%m", wxGetTranslation(wxDateTime::GetEnglishMonthName(dt.GetMonth())));
