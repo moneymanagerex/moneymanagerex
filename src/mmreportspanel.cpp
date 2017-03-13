@@ -387,7 +387,7 @@ void mmReportsPanel::PrintPage()
     browser_->Print();
 }
 
-void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& event)
+void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
 {
     if (rb_)
     {
