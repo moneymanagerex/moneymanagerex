@@ -58,7 +58,7 @@ mmPrintableBase::~mmPrintableBase()
         o2[L"NAMECOUNT"] = json::Number(static_cast<double>(count));
         for (size_t i = 0; i < count; i++)
         {
-            wxString name = wxString::Format("NAME%d", i);
+            const auto name = wxString::Format("NAME%zu", i);
             o2[name.ToStdWstring()] = json::String(accountArray_->Item(i).ToStdWstring());
         }
         std::wstringstream ss2;
@@ -172,7 +172,7 @@ void mmPrintableBase::setSettings(const wxString& settings)
         wxArrayString* accountSelections = new wxArrayString();
         for (size_t i = 0; i < count; i++)
         {
-            wxString name = wxString::Format("NAME%d", i);
+            const auto name = wxString::Format("NAME%zu", i);
             accountSelections->Add(wxString(json::String(o2[name.ToStdWstring()])));
         }
         accountArray_ = accountSelections;
