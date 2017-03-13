@@ -34,11 +34,11 @@ public:
     virtual ~mmReportBudget();
 
     /// Returns correct values for day and month, adjusted to financial year if required.
-    void AdjustYearValues(int& day, int& month, wxDateTime& year);
+    void AdjustYearValues(int day, int month, wxDateTime& year);
 
     /// Returns correct values for day and month, adjusted to financial year if required.
     /// Also returns a heading string for Month or Year reports.
-    wxString AdjustYearValues(int& day, int& month, long year, const wxString& yearStr);
+    wxString AdjustYearValues(int day, int month, long year, const wxString& yearStr);
 
     /// Sets date to end of financial year if required by user.
     void AdjustDateForEndFinancialYear(wxDateTime& date);
@@ -55,7 +55,6 @@ public:
     /// sets the start and end dates for a budget month
     void SetBudgetMonth(wxString budgetYearStr, wxDateTime& startDate, wxDateTime& endDate);
 
-    virtual bool has_budget_dates();
     virtual wxString getHTMLText();
 };
 
