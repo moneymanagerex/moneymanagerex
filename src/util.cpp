@@ -349,6 +349,7 @@ const std::map<wxString, wxString> &date_formats_regex()
     date_regex["%Y.%m.%d"] = wxString::Format("^%s\x2E%s\x2E%s*", yyyy, mm, dd);
     date_regex["%Y %m %d"] = wxString::Format("^%s %s %s*", yyyy, mm, dd);
     date_regex["%Y%m%d"] = wxString::Format("^%s%s%s*", yyyy, mm, dd);
+    date_regex["%Y%d%m"] = wxString::Format("^%s%s%s*", yyyy, mm, dd);
 
     return date_regex;
 }
@@ -376,6 +377,7 @@ const std::map<wxString, wxString> g_date_formats_map = {
     , { "%Y.%m.%d", "YYYY.MM.DD" }
     , { "%Y %m %d", "YYYY MM DD" }
     , { "%Y%m%d", "YYYYMMDD" }
+    , { "%Y%d%m", "YYYYDDMM" }
 };
 
 const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding = {
