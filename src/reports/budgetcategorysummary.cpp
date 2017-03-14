@@ -37,6 +37,11 @@ mmReportBudgetCategorySummary::mmReportBudgetCategorySummary()
 mmReportBudgetCategorySummary::~mmReportBudgetCategorySummary()
 {}
 
+int mmReportBudgetCategorySummary::report_parameters()
+{
+    return RepParams::BUDGET_DATES;
+}
+
 wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double actual, double estimated, bool total)
 {
     wxString actAmtColStr = "black";
@@ -57,28 +62,40 @@ wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double
 
 wxString mmReportBudgetCategorySummary::getHTMLText()
 {
-    int startDay = 1;
-    int startMonth = wxDateTime::Jan;
-    int endDay   = 31;
-    int endMonth = wxDateTime::Dec;
+    unsigned short startDay = 1;
+    long startMonth, startYear;
 
-    long startYear;
-    wxString startYearStr = Model_Budgetyear::instance().Get(m_date_selection);
-    startYearStr.ToLong(&startYear);
+    wxString value = Model_Budgetyear::instance().Get(m_date_selection);
+    wxString budget_month, budget_year = value;
 
-    const wxString& headingStr = AdjustYearValues(startDay, startMonth, startYear, startYearStr);
-    wxDateTime yearBegin(startDay, (wxDateTime::Month)startMonth, startYear);
-    wxDateTime yearEnd(endDay, (wxDateTime::Month)endMonth, startYear);
-
-    bool monthlyBudget = (startYearStr.length() > 5);
-    if (monthlyBudget)
+    wxRegEx pattern("^([0-9]{4})(|-[0-9]{2})$");
+    if (pattern.Matches(value))
     {
-        SetBudgetMonth(startYearStr, yearBegin, yearEnd);
+        budget_year = pattern.GetMatch(value, 1);
+        budget_month = pattern.GetMatch(value, 2);
+        budget_month.Replace("-", "");
     }
+
+    if (!budget_year.ToLong(&startYear)) {
+        startYear = static_cast<long>(wxDateTime::Today().GetYear());
+        budget_year = wxString::Format("%ld", startYear);
+    }
+
+    if (!budget_month.ToLong(&startMonth))
+        startMonth = static_cast<long>(wxDateTime::Jan);
     else
-    {
-        AdjustDateForEndFinancialYear(yearEnd);
-    }
+        startMonth--;
+
+    wxDateTime yearBegin(startDay, (wxDateTime::Month)startMonth
+        , static_cast<int>(startYear));
+    wxDateTime yearEnd = yearBegin;
+
+    bool monthlyBudget = (!budget_month.empty());
+    if (monthlyBudget)
+        yearEnd.Add(wxDateSpan::Month()).Subtract(wxDateSpan::Day());
+    else
+        yearEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
+
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
@@ -91,16 +108,23 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     std::map<int, std::map<int, double> > budgetAmt;
     Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
-    Model_Category::instance().getCategoryStats(categoryStats, &date_range, Option::instance().IgnoreFutureTransactions(),
-        false, true, (evaluateTransfer ? &budgetAmt : nullptr));
+    Model_Category::instance().getCategoryStats(categoryStats
+        , &date_range, Option::instance().IgnoreFutureTransactions()
+        , false, true, (evaluateTransfer ? &budgetAmt : nullptr));
 
+    //---------------------------------
+    const wxString& headingStr = AdjustYearValues(static_cast<int>(startDay)
+        , startMonth, startYear, budget_year);
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
     bool amply = Option::instance().BudgetReportWithSummaries();
-    const wxString& headerStartupMsg = amply ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
+    const wxString& headerStartupMsg = amply 
+        ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
 
-    hb.addHeader(2, wxString::Format(headerStartupMsg,  headingStr + "<br>" + _("( Estimated Vs Actual )")));
+    hb.addHeader(2, wxString::Format(headerStartupMsg
+        ,  headingStr + "<br>" + _("( Estimated Vs Actual )")));
+    hb.addDateNow();
     hb.DisplayDateHeading(yearBegin, yearEnd);
 
     double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;

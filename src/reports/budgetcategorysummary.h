@@ -32,6 +32,7 @@ public:
     virtual ~mmReportBudgetCategorySummary();
 
     virtual wxString getHTMLText();
+    virtual int report_parameters();
 
 private:
     wxString actualAmountColour(double amount, double actual, double estimated, bool total = false);

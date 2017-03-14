@@ -225,8 +225,9 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
                 }
                 rb_->date_range(date, this->m_date_ranges->GetSelection());
             }
-            else if (rp & rb_->RepParams::BUDGET_DATES)
-                rb_->date_range(nullptr, *reinterpret_cast<int*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
+            else if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
+                rb_->date_range(nullptr
+                    , *reinterpret_cast<int*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
         }
 
         json::Object o;
@@ -316,7 +317,7 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
-        else if (rp & rb_->RepParams::BUDGET_DATES)
+        else if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
         {
             cleanupmem_ = true;
             itemStaticTextH1->SetLabel(_("Period:"));
@@ -399,15 +400,13 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
             {
                 this->m_start_date->SetValue(date_range->start_date());
                 this->m_end_date->SetValue(date_range->end_date());
-                m_start_date->Enable(false);
-                m_end_date->Enable(false);
             }
             else
             {
                 bGenReport = false;
-                m_start_date->Enable(true);
-                m_end_date->Enable(true);
             }
+            m_start_date->Enable(!bGenReport);
+            m_end_date->Enable(!bGenReport);
         }
 
         if (bGenReport)

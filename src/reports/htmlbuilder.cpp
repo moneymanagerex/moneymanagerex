@@ -112,7 +112,7 @@ static const wxString COLORS [] = {
 
 mmHTMLBuilder::mmHTMLBuilder()
 {
-    today_.date = wxDateTime::Today();
+    today_.date = wxDateTime::Now();
     today_.todays_date = wxString::Format(_("Today's Date: %s")
 		, mmGetNiceDateSimpleString(today_.date));
 }
@@ -145,7 +145,7 @@ void mmHTMLBuilder::addHeader(int level, const wxString& header)
 
 void mmHTMLBuilder::addDateNow()
 {
-    addHeader(4, today_.todays_date);
+    addHeader(4, today_.todays_date + " " + today_.date.FormatISOTime());
     addLineBreak();
 }
 
@@ -306,7 +306,7 @@ void mmHTMLBuilder::addTableCellLink(const wxString& href
 void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange)
 {
 
-    wxString todaysDate = today_.todays_date + tags::BR + tags::BR;
+    wxString todaysDate = "";
     if (withDateRange)
     {
         todaysDate << wxString::Format(_("From %s till %s")
