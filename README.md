@@ -15,12 +15,9 @@ Platforms
 [![AppVeyor](https://img.shields.io/appveyor/ci/guanlisheng/moneymanagerex/master.svg?label=Windows)](https://ci.appveyor.com/project/guanlisheng/moneymanagerex)
 [![Travis](https://img.shields.io/travis/moneymanagerex/moneymanagerex/master.svg?label=OSX)](http://travis-ci.org/moneymanagerex/moneymanagerex)
 [![Ohloh](http://www.ohloh.net/p/moneymanagerex/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/moneymanagerex)
-[![Download Money Manager Ex From Sourceforge](https://img.shields.io/sourceforge/dm/moneymanagerex.svg)](https://sourceforge.net/projects/moneymanagerex/files/latest/download)
-
-Stats
----------
-Github All Releases ![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)
-latest Release ![Github latest Release](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/latest/total.svg)
+[![Download Money Manager Ex From Sourceforge](https://img.shields.io/sourceforge/dm/moneymanagerex.svg?label=Sourceforge)](https://sourceforge.net/projects/moneymanagerex/files/latest/download)
+![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg?label=GithubAllReleases)
+![Github latest Release](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/latest/total.svg?label=GithubLatestRelease)
 
 
 ### MMEX is mainly written in C++11 and built on:
