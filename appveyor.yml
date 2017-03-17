@@ -1,69 +1,36 @@
-version: 1.3.{build}
+version: 1.3.3.{build}
 
-pull_requests:
-  do_not_increment_build_number: true
-  
 image: Visual Studio 2015
-configuration: Release
 platform:
   - Win32
   - x64
 
-matrix:
-  fast_finish: true
+branches:
+  only:
+  - v1.3.x-cmake
 
 environment:
   wxwin: c:\projects\wxwidgets
+  # GETTEXT library can be obtained normaly via official
+  # https://www.gnu.org/software/gettext/
+  # where is mentioned that for windows it can be downloaded from
+  # https://mlocati.github.io/articles/gettext-iconv-windows.html
 
-install:
+  # But for appveyor we need to install cygwin that contains
+  # embeded GETTEXT library
+  path: C:\cygwin64\bin;C:\cygwin\bin;%path%
+
+build_script:
+- if "%PLATFORM%" == "Win32" call "c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
+- if "%PLATFORM%" == "x64" call "c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64
 # wxWidgets
-- cmd: IF %PLATFORM%==x64 (SET WXLIBFOLDER=vc_x64_lib) ELSE (SET WXLIBFOLDER=vc_lib)
-## REMOVE BELOW COMMENT TO CLEANUP CACHE WHEN WXWIDGETS UPGRADED
-# - cmd: DEL %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip /F /Q
-- cmd: git clone https://github.com/wxWidgets/wxWidgets.git %WXWIN%
-- cmd: cd %WXWIN%
-- cmd: git checkout tags/v3.1.0
-- cmd: copy "%WXWIN%\include\wx\msw\setup0.h" "%WXWIN%\include\wx\msw\setup.h"
-- cmd: IF EXIST %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (7z x %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip -o%WXWIN%\lib\%WXLIBFOLDER%)
-- cmd: >-
-    IF NOT EXIST %WXWIN%\lib\%WXLIBFOLDER% msbuild "%WXWIN%\build\msw\wx_vc14.sln" /m /p:Configuration=Release /p:Platform="%PLATFORM%" /verbosity:quiet /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-- cmd: IF NOT EXIST %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (7z a %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip %WXWIN%\lib\%WXLIBFOLDER%\*)
+- git clone https://github.com/wxWidgets/wxWidgets.git %WXWIN%
+- cd %WXWIN%
+- git checkout tags/v3.1.0
+- cd build/msw
+- nmake /f makefile.vc TARGET_CPU=%PLATFORM%
 # MMEX
-- cmd: cd %APPVEYOR_BUILD_FOLDER%
-- cmd: git submodule update --init
-- cmd: SET PUBLISH_BINARY=false
-- cmd: git describe --tags > _git_tag.tmp
-- cmd: SET /p GIT_TAG=<_git_tag.tmp
-- cmd: ECHO %GIT_TAG%
-- cmd: ECHO %APPVEYOR_REPO_BRANCH%
-- cmd: DEL _git_tag.tmp
-- cmd: IF x%APPVEYOR_REPO_TAG_NAME%==x%GIT_TAG% SET PUBLISH_BINARY=true
-- cmd: ECHO %PUBLISH_BINARY%
-
-cache:
-  - '%APPVEYOR_BUILD_FOLDER%\vc_lib.zip'
-  - '%APPVEYOR_BUILD_FOLDER%\vc_x64_lib.zip'
-
-build:
-  project: build\msw-vc-2015\mmex.sln
-  parallel: true
-  verbosity: normal
-
-after_build:
-- cmd: SET PATH=%PATH%;C:\cygwin64\bin
-- cmd: cd %APPVEYOR_BUILD_FOLDER%\po
-- cmd: C:\cygwin64\bin\make.exe
-- cmd: cd %APPVEYOR_BUILD_FOLDER%\setup\win
-- ps: Start-FileDownload https://web.archive.org/web/20150506065200/http://www.matcode.com/mpress.219.zip
-- cmd: 7z x mpress.219.zip -o%APPVEYOR_BUILD_FOLDER%\setup\win\mpress.219
-- cmd: update_mmex_build_files.bat
-- cmd: cd %APPVEYOR_BUILD_FOLDER%
-- cmd: ECHO %APPVEYOR_BUILD_FOLDER%\mmex_release\mmex_%GIT_TAG%_%PLATFORM%_portable
-- cmd: 7z a mmex_%GIT_TAG%_%PLATFORM%_portable_build%APPVEYOR_BUILD_NUMBER%.zip %APPVEYOR_BUILD_FOLDER%\mmex_release\mmex_%GIT_TAG%_%PLATFORM%_portable\*
-- cmd: ECHO mmex_%GIT_TAG%_${env:platform}_portable_build${env:appveyor_build_number}.zip
-- ps: Push-AppveyorArtifact "mmex_${env:git_tag}_${env:platform}_portable_build${env:appveyor_build_number}.zip" -FileName "mmex_${env:git_tag}_${env:platform}_portable_build${env:appveyor_build_number}.zip"
-- ps: Push-AppveyorArtifact "mmex_release\mmex_${env:git_tag}_${env:platform}_portable\MoneyManagerEX\bin\mmex.exe" -FileName "mmex_${env:platform}_build${env:appveyor_build_number}.exe"
-
-# Debug
-#on_finish:
-#- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+- cd %APPVEYOR_BUILD_FOLDER%
+- git submodule update --init
+- cmake -G "NMake Makefiles"
+- nmake /f Makefile TARGET_CPU=%PLATFORM%
