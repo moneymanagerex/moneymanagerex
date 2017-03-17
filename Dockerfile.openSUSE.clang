@@ -1,0 +1,16 @@
+FROM opensuse:leap
+MAINTAINER developers@moneymanagerex.org
+
+RUN zypper update -y && zypper install -y cmake gettext-tools git llvm-clang make wxWidgets-3_0-devel
+
+# First comment uder the solution also applies to fedora and opensuse http://stackoverflow.com/a/1712803
+RUN ln -sf /usr/bin/clang /usr/bin/cc
+RUN ln -sf /usr/bin/clang++ /usr/bin/c++
+
+# copy MMEX source code to the container:
+ADD . /moneymanagerex
+
+# Define working directory:
+WORKDIR /moneymanagerex
+
+CMD cmake . && make

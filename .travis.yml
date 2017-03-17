@@ -1,25 +1,48 @@
-language: objective-c
+language: cpp
+
+dist: trusty
+
+os:
+  - linux
+  - osx
+
 compiler:
   - clang
-  
+  - gcc
+
+env:
+- WXWIDGETS = wxwidgets
+
 before_install:
   - echo $TRAVIS_OS_NAME
-  - brew update
-  - brew install wxwidgets
-  - brew install gettext
-  - brew link --force gettext
+  # Linux
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-key adv --fetch-keys http://repos.codelite.org/CodeLite.asc; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-add-repository 'deb http://repos.codelite.org/wx3.1.0/ubuntu/ trusty universe' -y; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update -q; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install libwxbase3.1-dev libwxgtk3.1-dev libwxgtk-webview3.1-dev; fi
+  # MacOS
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install wxmac; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install gettext; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew link --force gettext; fi
+
 before_script:
-  - travis_retry ./configure
+  #- cd $TRAVIS_BUILD_DIR
+  - pwd && ls -l
+  - cmake .
+
 script:
-  - ./configure && make -j4
+  - make -j4
+
+# blacklist
 branches:
   except:
     - legacy
-notifications:
-  recipients:
-    - developers@moneymanagerex.org
+
+notifications: # set notification options
   email:
+    recipients:
+      - developers@moneymanagerex.org
+    # change is when the repo status goes from pass to fail or vice versa
     on_success: change
     on_failure: always
-os:
-  - osx

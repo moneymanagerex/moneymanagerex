@@ -1,0 +1,16 @@
+FROM fedora:25
+MAINTAINER developers@moneymanagerex.org
+
+RUN yum -y update && yum -y install cmake clang gettext git gtk3-devel make rpm-build webkitgtk3-devel wxGTK3-devel
+
+# First comment uder the solution http://stackoverflow.com/a/1712803
+RUN ln -sf /usr/bin/clang /usr/bin/cc
+RUN ln -sf /usr/bin/clang++ /usr/bin/c++
+
+# copy MMEX source code to the container:
+ADD . /moneymanagerex
+
+# Define working directory:
+WORKDIR /moneymanagerex
+
+CMD cmake . && make
