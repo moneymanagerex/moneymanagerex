@@ -3,11 +3,10 @@
 ## Install Prerequisites
 
 ### Ubuntu 14.04
-	sudo apt-add-repository ppa:costamagnagianfranco/locutusofborg-ppa
-	sudo apt-get update
-	sudo apt-get install git
-	sudo apt-get install build-essential automake
-	sudo apt-get install libwxbase3.0-dev libwxgtk3.0-dev libwxgtk-webview3.0-dev
+	sudo apt-key adv --fetch-keys http://repos.codelite.org/CodeLite.asc
+	sudo apt-add-repository 'deb http://repos.codelite.org/wx3.1.0/ubuntu/ trusty universe' -y
+	sudo apt-get update && sudo apt-get install -y \
+	build-essential cmake git libwxbase3.1-dev libwxgtk3.1-dev libwxgtk-webview3.1-dev
 	sudo apt-get install python-dev
 
 ### Ubuntu 15.04 & 15.10
