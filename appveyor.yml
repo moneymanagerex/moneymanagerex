@@ -1,13 +1,14 @@
-version: 1.3.3.{build}
+version: 1.4.x{build}
 
 image: Visual Studio 2015
 platform:
   - Win32
   - x64
 
-branches:
-  only:
-  - v1.3.x-cmake
+#branches:
+#  only:
+#  - v1.3
+#  - master
 
 environment:
   wxwin: c:\projects\wxwidgets

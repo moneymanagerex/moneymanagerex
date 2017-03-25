@@ -118,6 +118,8 @@ TARGET_SOURCES(mmex PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/stockdialog.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/stockspanel.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/stockspanel.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/transactionsupdatedialog.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/transactionsupdatedialog.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/transdialog.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/transdialog.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/usertransactionpanel.cpp"
