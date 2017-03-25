@@ -1,11 +1,3 @@
-# CMake stuff
-bin/
-CMakeFiles
-CMakeCache.txt
-*.cmake
-install_manifest.txt
-_CPack_Packages
-
 # Compiled Object files
 *.slo
 *.lo
@@ -30,7 +22,6 @@ _CPack_Packages
 
 # I18n
 *.mo
-*.gmo
 
 # Makefiles
 makefile
@@ -55,6 +46,9 @@ makefile
 /build/msw-vc-2017/.vs
 /mmex_release
 
+# JetBrains CLion IDE
+.idea
+
 # Extra files used for testing
 /build/msw_tests-vc-2013e/Win32
 /build/msw_tests-vc-2013e/x64
@@ -74,12 +68,9 @@ shared-ld-sh
 bk-deps
 /build/bakefiles/.bakefile_gen.state
 
-
 #dist
 *.dmg
 /build/macosx/dmg/
-*.deb
-*.rpm
 
 #backups & tmp file
 *~
