@@ -25,13 +25,18 @@
 ## Download Source
 	git clone https://github.com/moneymanagerex/moneymanagerex
 	cd moneymanagerex
-	git checkout v1.3.x
+	git checkout cmake
 	git submodule update --init
 	
 ## Compile
-	cmake -G "NMake Makefiles"
+	cmake -G "NMake Makefiles" -D ARG_VER_MAJOR=1 -D ARG_VER_MINOR=3 -D ARG_VER_PATCH=3 .
 
 	Choose your architecture and via visual studio developer console run command
 
 	#nmake /f Makefile TARGET_CPU=Win32
 	nmake /f Makefile TARGET_CPU=x64
+
+## Build package
+    For building installable package, you need to have NSIS installed http://nsis.sourceforge.net/Download
+
+	cpack .

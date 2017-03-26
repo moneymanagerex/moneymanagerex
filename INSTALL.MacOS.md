@@ -13,8 +13,9 @@ Install required packages. You can choose which compiler you want to use:
 ## Download Source
 	git clone https://github.com/moneymanagerex/moneymanagerex
 	cd moneymanagerex
-	git checkout cmake_v1.3.x
+	git checkout cmake
 	git submodule update --init
 	
 ## Compile 
-	cmake . && make package
+	cmake -D ARG_VER_MAJOR=1 -D ARG_VER_MINOR=3 -D ARG_VER_PATCH=3 .
+    make package
