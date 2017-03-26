@@ -1,16 +1,23 @@
-version: 1.4.x{build}
+version: 1.3.3.{build}
+
+pull_requests:
+  do_not_increment_build_number: true
 
 image: Visual Studio 2015
+configuration: Release
 platform:
   - Win32
   - x64
 
-#branches:
-#  only:
-#  - v1.3
-#  - master
+matrix:
+  fast_finish: true
 
 environment:
+  # This Semantic Versioning represent version from the top
+  major: 1
+  minor: 3
+  patch: 3
+
   wxwin: c:\projects\wxwidgets
   # GETTEXT library can be obtained normaly via official
   # https://www.gnu.org/software/gettext/
@@ -33,5 +40,10 @@ build_script:
 # MMEX
 - cd %APPVEYOR_BUILD_FOLDER%
 - git submodule update --init
-- cmake -G "NMake Makefiles"
+- cmake -G "NMake Makefiles" -D ARG_VER_MAJOR=%major% -D ARG_VER_MINOR=%minor% -D ARG_VER_PATCH=%patch% .
 - nmake /f Makefile TARGET_CPU=%PLATFORM%
+- cpack .
+
+after_build:
+- if "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-%major%.%minor%.%patch%-win32.exe" -FileName "mmex-%major%.%minor%.%patch%-win32_build%appveyor_build_number%.exe
+- if "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-%major%.%minor%.%patch%-win64.exe" -FileName "mmex-%major%.%minor%.%patch%-win64_build%appveyor_build_number%.exe"
