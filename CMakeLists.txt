@@ -3,10 +3,12 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.1)
 SET(InMMEX TRUE)
 
 PROJECT(MoneyManagerEx)
+
 # Semantic versioning
-SET(MoneyManagerEx_VERSION_MAJOR 1)
-SET(MoneyManagerEx_VERSION_MINOR 3)
-SET(MoneyManagerEx_VERSION_PATCH 3)
+SET(MoneyManagerEx_VERSION_MAJOR ${ARG_VER_MAJOR})
+SET(MoneyManagerEx_VERSION_MINOR ${ARG_VER_MINOR})
+SET(MoneyManagerEx_VERSION_PATCH ${ARG_VER_PATCH})
+SET(MoneyManagerEx_VERSION "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VERSION_MINOR}.${MoneyManagerEx_VERSION_PATCH}")
 
 OPTION(BuildTests "Whether to build automatic unit tests" OFF)
 
@@ -65,7 +67,8 @@ SET(LIBRARY_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin/lib")
 SET(INSTALL_BIN_DIR "bin")
 SET(INSTALL_DOC_DIR "share/doc/mmex")
 SET(INSTALL_RES_DIR "share/mmex/res")
-SET(INSTALL_MO_DIR "share/mmex/po")
+SET(INSTALL_PO_DIR "share/mmex/po")
+SET(INSTALL_MO_DIR "share/mmex/po/en")
 
 
 # --------- Check for required libraries ---------
@@ -127,73 +130,90 @@ ENDIF ()
 IF (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     #TODO:
 ENDIF ()
-# Linux
-IF (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+# Linux and Windows
+IF (CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "Windows")
 
     # Binary
-    INSTALL(PROGRAMS "${CMAKE_SOURCE_DIR}/bin/mmex"
-            DESTINATION bin)
+    IF (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+        INSTALL(PROGRAMS
+                "${CMAKE_SOURCE_DIR}/bin/mmex"
+                DESTINATION "${INSTALL_BIN_DIR}")
+    ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+        INSTALL(PROGRAMS
+                "${CMAKE_SOURCE_DIR}/bin/mmex.exe"
+                DESTINATION "${INSTALL_BIN_DIR}")
+    ENDIF()
 
     # Help Files
-    INSTALL(FILES "${CMAKE_SOURCE_DIR}/doc/contrib.txt"
+    INSTALL(FILES
+            "${CMAKE_SOURCE_DIR}/doc/contrib.txt"
             "${CMAKE_SOURCE_DIR}/doc/license.txt"
             "${CMAKE_SOURCE_DIR}/doc/version.txt"
+            "${CMAKE_SOURCE_DIR}/README.TXT"
             DESTINATION "${INSTALL_DOC_DIR}")
-    INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/doc/help"
+    INSTALL(DIRECTORY
+            "${CMAKE_SOURCE_DIR}/doc/help"
             DESTINATION "${INSTALL_DOC_DIR}")
-    INSTALL(FILES "${CMAKE_SOURCE_DIR}/resources/master.css"
+    INSTALL(FILES
+            "${CMAKE_SOURCE_DIR}/resources/master.css"
             DESTINATION "${INSTALL_DOC_DIR}/help")
 
     # Resources
-    INSTALL(FILES "${CMAKE_SOURCE_DIR}/3rd/ChartNew.js/ChartNew.js"
+    INSTALL(FILES
+            "${CMAKE_SOURCE_DIR}/3rd/ChartNew.js/ChartNew.js"
             "${CMAKE_SOURCE_DIR}/3rd/sorttable.js/sorttable.js"
             "${CMAKE_SOURCE_DIR}/resources/home_page.htt"
             "${CMAKE_SOURCE_DIR}/resources/kaching.wav"
             "${CMAKE_SOURCE_DIR}/resources/master.css"
-            "${CMAKE_SOURCE_DIR}/resources/mmex.ico"
-            DESTINATION "${INSTALL_RES_DIR}/")
+            DESTINATION "${INSTALL_RES_DIR}")
 
-    # .desktop File
-    INSTALL(FILES "${CMAKE_SOURCE_DIR}/resources/mmex.desktop"
-            DESTINATION "share/applications")
+    IF (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+        # .desktop File
+        INSTALL(FILES
+                "${CMAKE_SOURCE_DIR}/resources/mmex.desktop"
+                DESTINATION "share/applications")
+    ENDIF()
 
     # Icons
-    INSTALL(FILES "${CMAKE_SOURCE_DIR}/resources/mmex.svg"
-            DESTINATION "share/icons/hicolor/scalable/apps")
-
-ENDIF ()
-# Windows
-IF (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    #TODO:
+    IF (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+        INSTALL(FILES
+                "${CMAKE_SOURCE_DIR}/resources/mmex.svg"
+                DESTINATION "share/icons/hicolor/scalable/apps")
+    ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+        INSTALL(FILES
+                "${CMAKE_SOURCE_DIR}/resources/mmex.ico"
+                DESTINATION "${INSTALL_RES_DIR}")
+    ENDIF()
 ENDIF ()
 
 
 # --------- CPack ---------
 SET(CPACK_PACKAGE_NAME "mmex")
-SET(CPACK_PACKAGE_VERSION "1.3.3")
+# CPACK_PACKAGE_VERSION "1.2.3") # to produce something like this
+set(CPACK_PACKAGE_VERSION "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VERSION_MINOR}.${MoneyManagerEx_VERSION_PATCH}")
+set(CPACK_PACKAGE_VERSION_MAJOR "${MoneyManagerEx_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${MoneyManagerEx_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${MoneyManagerEx_VERSION_PATCH}")
 SET(CPACK_PACKAGE_CONTACT "MoneyManagerEx Developers <developers@moneymanagerex.org>")
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple to use financial management software")
 SET(CPACK_PACKAGE_DESCRIPTION "Money Manager Ex (MMEX) is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. MMEX includes all the basic features that 90% of users would want to see in a personal finance application. The design goals are to concentrate on simplicity and user friendliness - something one can use everyday.")
 
+# Linux
 # Set package dependencies
 IF (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     IF (EXISTS "/etc/debian_version")
         SET(CPACK_GENERATOR "DEB")
-
         # Ubuntu
         SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.15), libgcc1 (>=1:4.1.1), libstdc++6 (>= 4.6), libwxgtk3.0-0v5 (>= 3.0.0) | libwxgtk3.0-0 (>=3.0.0), libwxgtk-webview3.0-0v5 (>= 3.0.0) | libwxgtk-webview3.0-0 (>= 3.0.0)")
-
     ELSEIF (EXISTS "/etc/redhat-release" OR LINUX_DISTRO MATCHES "openSUSE")
         SET(CPACK_GENERATOR "RPM")
         SET(CPACK_RPM_PACKAGE_LICENSE "GPL-2+")
-
         # Fedora
         IF ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND LINUX_DISTRO MATCHES "Fedora")
             SET(CPACK_RPM_PACKAGE_REQUIRES "clang, wxGTK3-devel")
         ELSE ()
             SET(CPACK_RPM_PACKAGE_REQUIRES "gcc-c++, wxGTK3-devel")
         ENDIF ()
-
         # openSUSE
         IF ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND LINUX_DISTRO MATCHES "openSUSE")
             SET(CPACK_RPM_PACKAGE_REQUIRES "llvm-clang, wxWidgets-3_0-devel")
@@ -205,15 +225,27 @@ IF (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     ENDIF ()
 ENDIF ()
 
+# macOS
 IF (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    SET(CPACK_GENERATOR "DMG")
+    SET(CPACK_GENERATOR "DragNDrop")
     SET(CPACK_DMG_VOLUME_NAME "MMEX")
     SET(CPACK_DMG_FORMAT "UDZO")
     #TODO:
 ENDIF ()
 
+# Windows
 IF (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    #TODO:
+    # With using http://nsis.sourceforge.net/Main_Page
+    SET(CPACK_GENERATOR "NSIS")
+    SET(CPACK_PACKAGE_INSTALL_DIRECTORY "Money Manager EX")
+    SET(CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/resources\\\\mmex.ico")
+    SET(CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/resources\\\\mmex.ico")
+    SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/resources\\\\mmex.ico")
+    SET(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\\\mmex.exe")
+    SET(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/LICENSE)
+    SET(CPACK_NSIS_CREATE_ICONS_EXTRA
+            "CreateShortCut '$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\Money Manager EX.lnk' '$INSTDIR\\\\bin\\\\mmex.exe'")
+    SET(CPACK_NSIS_DELETE_ICONS_EXTRA "Delete '$SMPROGRAMS\\\\$START_MENU\\\\Money Manager EX.lnk'")
 ENDIF ()
 
 INCLUDE(CPack)

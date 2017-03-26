@@ -11,7 +11,8 @@ compiler:
   - gcc
 
 env:
-- WXWIDGETS = wxwidgets
+# This Semantic Versioning represent version from the top
+  - major=1 minor=3 patch=3
 
 before_install:
   - echo $TRAVIS_OS_NAME
@@ -27,12 +28,11 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew link --force gettext; fi
 
 before_script:
-  #- cd $TRAVIS_BUILD_DIR
-  - pwd && ls -l
-  - cmake .
+  - cd $TRAVIS_BUILD_DIR
+  - cmake -D ARG_VER_MAJOR=$major -D ARG_VER_MINOR=$minor -D ARG_VER_PATCH=$patch .
 
 script:
-  - make -j4
+  - make package -j4
 
 # blacklist
 branches:
