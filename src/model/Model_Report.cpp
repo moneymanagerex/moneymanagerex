@@ -149,31 +149,84 @@ wxArrayString Model_Report::allGroupNames()
     return groups;
 }
 
-bool Model_Report::PrepareSQL(wxString& sql)
+bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_params)
 {
     sql.Trim();
     if (sql.empty()) return false;
     if (sql.Last() != ';') sql += ';';
 
-    if ((sql.Lower().Find("&begin_date") != wxNOT_FOUND) 
-        || (sql.Lower().Find("&single_date") != wxNOT_FOUND))
+    size_t pos = sql.Lower().Find("&begin_date");
+    size_t len = wxString("&begin_date").size();
+
+    if (pos != wxNOT_FOUND)
     {
-        auto date = wxDateTime::Today().FormatISODate();
         wxDatePickerCtrl* start_date = (wxDatePickerCtrl*)
             wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE);
-        if (start_date)
-            date = start_date->GetValue().FormatISODate();
-        sql.Replace("&begin_date", date); //TODO: case sensitive
-        sql.Replace("&single_date", date);
+        const auto data = start_date ? start_date->GetValue().FormatISODate()
+            : wxDateTime::Today().FormatISODate();
+
+        rep_params["begin_date"] = data;
+
+        while (pos != wxNOT_FOUND)
+        {
+            sql.replace(pos, len, data);
+            pos = sql.Lower().Find("&begin_date");
+        }
     }
-    if (sql.Lower().Find("&end_date") != wxNOT_FOUND)
+
+    pos = sql.Lower().Find("&single_date");
+    len = wxString("&single_date").size();
+    if (pos != wxNOT_FOUND)
     {
-        wxString date = wxDateTime::Today().FormatISODate();
+        wxDatePickerCtrl* start_date = (wxDatePickerCtrl*)
+            wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE);
+        const auto data = start_date ? start_date->GetValue().FormatISODate()
+            : wxDateTime::Today().FormatISODate();
+
+        rep_params["single_date"] = data;
+
+        while (pos != wxNOT_FOUND)
+        {
+            sql.replace(pos, len, data);
+            pos = sql.Lower().Find("&single_date");
+        }
+    }
+
+    pos = sql.Lower().Find("&end_date");
+    len = wxString("&end_date").size();
+    
+    if (pos != wxNOT_FOUND)
+    {
         wxDatePickerCtrl* end_date = (wxDatePickerCtrl*)
             wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_END_DATE);
-        if (end_date)
-            date = end_date->GetValue().FormatISODate();
-        sql.Replace("&end_date", date);
+        const auto data = end_date ? end_date->GetValue().FormatISODate()
+            : wxDateTime::Today().FormatISODate();
+
+        rep_params["end_date"] = data;
+
+        while (pos != wxNOT_FOUND)
+        {
+            sql.replace(pos, len, data);
+            pos = sql.Lower().Find("&end_date");
+        }
+    }
+
+    pos = sql.Lower().Find("&only_years");
+    len = wxString("&only_years").size();
+    if (pos != wxNOT_FOUND)
+    {
+        wxChoice* years = (wxChoice*)
+            wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_DATE_RANGE);
+        const auto data = years ? years->GetStringSelection()
+            : wxString::Format("%s", wxDate::Today().GetYear());
+
+        rep_params["only_years"] = data;
+
+        while (pos != wxNOT_FOUND)
+        {
+            sql.replace(pos, len, data);
+            pos = sql.Lower().Find("&only_years");
+        }
     }
 
     //TODO: other parameters
@@ -192,10 +245,11 @@ wxString Model_Report::get_html(const Data* r)
 
     wxSQLite3ResultSet q;
     int columnCount = 0;
+    wxString sql = r->SQLCONTENT;
+    std::map <wxString, wxString> rep_params;
     try
     {
-        wxString sql = r->SQLCONTENT;
-        PrepareSQL(sql);
+        PrepareSQL(sql, rep_params);
 
         wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
         if (!stmt.IsReadOnly())
@@ -313,6 +367,10 @@ wxString Model_Report::get_html(const Data* r)
 
     report(L"CONTENTS") = contents;
     {
+        for (const auto& item : rep_params)
+        {
+            report(item.first.Upper().ToStdWstring()) = item.second;
+        }
         auto p = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
         //javascript does not handle backslashs
         p.Replace("\\", "\\\\");
