@@ -58,7 +58,7 @@ mmPrintableBase::~mmPrintableBase()
         o2[L"NAMECOUNT"] = json::Number(static_cast<double>(count));
         for (size_t i = 0; i < count; i++)
         {
-            wxString name = wxString::Format("NAME%d", i);
+            const auto name = wxString::Format("NAME%zu", i);
             o2[name.ToStdWstring()] = json::String(accountArray_->Item(i).ToStdWstring());
         }
         std::wstringstream ss2;
@@ -172,7 +172,7 @@ void mmPrintableBase::setSettings(const wxString& settings)
         wxArrayString* accountSelections = new wxArrayString();
         for (size_t i = 0; i < count; i++)
         {
-            wxString name = wxString::Format("NAME%d", i);
+            const auto name = wxString::Format("NAME%zu", i);
             accountSelections->Add(wxString(json::String(o2[name.ToStdWstring()])));
         }
         accountArray_ = accountSelections;
@@ -222,8 +222,6 @@ int mmGeneralReport::report_parameters()
         params |= RepParams::DATE_RANGE;
     else if (content.Contains("&single_date"))
         params |= RepParams::SINGLE_DATE;
-    else if (content.Contains("&budget_dates"))
-        params |= RepParams::BUDGET_DATES;
     else if (content.Contains("&only_years"))
         params |= RepParams::ONLY_YEARS;
 
@@ -237,7 +235,8 @@ mm_html_template::mm_html_template(const wxString& arg_template): html_template(
 
 void mm_html_template::load_context()
 {
-    (*this)(L"TODAY") = wxDate::Now().FormatISODate();
+    (*this)(L"TODAY") = wxDate::Today().FormatISODate() 
+        + " " + wxDate::Now().FormatISOTime();
     for (const auto &r: Model_Infotable::instance().all())
         (*this)(r.INFONAME.ToStdWstring()) = r.INFOVALUE;
     (*this)(L"INFOTABLE") = Model_Infotable::to_loop_t();

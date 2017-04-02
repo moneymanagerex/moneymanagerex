@@ -450,6 +450,9 @@
     <ClCompile Include="..\..\src\reports\forecast.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\transactionsupdatedialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -940,6 +943,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\db\DB_Upgrade.h">
       <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\transactionsupdatedialog.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

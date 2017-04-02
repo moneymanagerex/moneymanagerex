@@ -1,109 +1,61 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Money Manager Ex User Manual</title>
-    <link href="../../res/master.css" rel="stylesheet" type="text/css">
-    <script src="../contents.js"></script>
+    <link href="master.css" rel="stylesheet" type="text/css">
+    <script src="js/translator.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/toc.js"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
-    <!--Smooth Back to Top Button Start-->
-    <script>
-        jQuery(document).ready(function () {
-            var offset = 220;
-            var duration = 500;
-            jQuery(window).scroll(function () {
-                if (jQuery(this).scrollTop() > offset) {
-                    jQuery('.back-to-top').fadeIn(duration);
-                } else {
-                    jQuery('.back-to-top').fadeOut(duration);
-                }
-            });
-            jQuery('.back-to-top').click(function (event) {
-                event.preventDefault();
-                jQuery('html, body').animate({ scrollTop: 0 }, duration);
-                return false;
-            })
-        });
+    <script src="js/back_to_top.js"></script>
+    <link href="back_to_top.css" rel="stylesheet" type="text/css">
+	
+	<script>
+        var lang = getParameterValue("lang").substring(0, 3).toLowerCase();
+   	// Javascript URL redirection
+        if (lang == 'fre')
+            window.location.replace("index_fr.html");
+        else if (lang == 'ger')
+            window.location.replace("index_de.html");
+        else if (lang == 'hun')
+            window.location.replace("index_hu.html");
+        else if (lang == 'ita')
+            window.location.replace("index_it.html");
+        else if (lang == 'pol')
+            window.location.replace("index_pl.html");
+        else if (lang == 'spa')
+            window.location.replace("index_sp.html");
     </script>
-    <style>
-        div#page {
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 20px;
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 2em;
-            right: 0px;
-            text-decoration: none;
-            color: #000000;
-            font-size: 12px;
-            padding: 1em;
-            display: none;
-        }
-
-            .back-to-top:hover {
-                text-decoration: none;
-            }
-    </style>
 </head>
 
-<body>
-    <a href="#" class="back-to-top"><img src="../backtotop.png" alt="Back to Top"/></a>
+<body dir="ltr" lang="en-US" onload="translate();generateTOC(document.getElementById('toc'));">
+
+    <a href="#" class="back-to-top"><img src="img/backtotop.png" alt="Back to Top" /></a>
     <!--Smooth Back to Top Button End-->
 
-<h2><font face="Verdana"><a name="top">Manuel utilisateur de Money Manager Ex</a></font></h2>
-<hr>
-<ol>
-<font face="Verdana"> <li><a href="#introduction">Pr&eacute;sentation</a></li>
-<li><a href="#recommendations">Recommandations</a></li>
-<li><a href="#better">Vers une meilleure sant&eacute; financi&egrave;re</a></li>
-<li><a href="#concepts">Les principes de Money Manager Ex</a></li>
-<li>Utiliser Money Manager Ex</li>
-</font>
-<ol type="a">
-<font face="Verdana"> <li><a href="#database">Cr&eacute;er une base de donn&eacute;es</a></li>
-<li><a href="#accounts">Cr&eacute;er de nouveaux comptes</a></li>
-<li><a href="#editaccounts">&Eacute;diter les informations de comptes</a></li>
-<li><a href="#trans">Cr&eacute;er de nouvelles op&eacute;rations</a></li>
-<li><a href="#edittrans">&Eacute;diter et modifier les op&eacute;rations</a></li>
-<li><a href="#rectrans">Rapprochement et &eacute;quilibre des comptes</a></li>
-<li><a href="#followup">Des op&eacute;rations &agrave; suivre</a></li>
-<li><a href="#payee">Utiliser les tiers</a></li>
-<li><a href="#categ">Utiliser les cat&eacute;gories</a></li>
-<li>Import</li>
-</font>
-<ul>
-<font face="Verdana"> <li><a href="#importCSV">&agrave; partir de fichiers CSV Format strict</a></li>
-<li><a href="#importQIF">&agrave partir de fichiers QIF</a></li>
-<li><a href="#importMMNET">&agrave; partir de fichiers CSV Money Manager.NET</a></li>
-<li><a href="#importUnivCSV">&agrave; partir de fichiers CSV Format Universel</a></li>
-<li><a href="#importcsvtips">des astuces pour cr&eacute;er des fichiers CSV</a></li>
-</font>
-</ul>
-<font face="Verdana"> <li>Export</li>
-</font>
-<ul>
-<font face="Verdana"> <li><a href="#exportcsv">vers des fichiers CSV</a> </li>
-</font>
-</ul>
-<font face="Verdana"> <li><a href="#stock">Les titres</a></li>
-<li><a href="#bills">Les &eacute;ch&eacute;anciers</a></li>
-<li><a href="#assets">Les biens</a></li>
-<li><a href="./budget.html">Les budgets</a></li>
-<li><a href="#reports">Les rapports</a></li>
-<li><a href="#transfilter">Les rapports sp&eacute;cifiques</a></li>
-<li><a href="#print">Les impressions</a></li>
-<li><a href="#options">Les options de Money Manager Ex</a></li>
-</font>
-</ol>
-<font face="Verdana"> <li><a href="#faq">FAQ - la Foire Aux Questions</a></li>
-</font>
-</ol>
-<hr>
-<h3><font face="Verdana"><a name="introduction">Pr&eacute;sentation</a></font></h3>
+    <table class="table, small">
+        <tr>
+            <td class="label label-info">Languages:</td>
+            <td><a href="index.html?lang=english">English</a></td>
+            <td><a href="index.html?lang=german">German</a></td>
+            <td><a href="index.html?lang=french">French</a></td>
+            <td><a href="index.html?lang=hungarian">Hungarian</a></td>
+            <td><a href="index.html?lang=italian">Italian</a></td>
+            <td><a href="index.html?lang=polish">Polish</a></td>
+            <td><a href="index.html?lang=russian">Russian</a></td>
+            <td><a href="index.html?lang=spanish">Spanish</a></td>
+        </tr>
+    </table>
+
+    <h1 class="i18n">Money Manager Ex User Manual</h1>
+
+    <div id="toc">
+        <!-- ToC generated by Javascript -->
+    </div>
+    <hr>
+
+<h2>Pr&eacute;sentation</h2>
 <p>
 <font face="Verdana">Money Manager Ex est un logiciel libre de gestion de comptes personnels. 
 Il permet de g&eacute;rer de fa&ccedil;on conviviale ses finances. Son but est de vous aider &agrave; organiser 
@@ -123,16 +75,14 @@ comme c'est le cas pour certains logiciels de gestion de comptes personnels bien
 Ce manuel &eacute;voluera en m&ecirc;me temps que le logiciel, aussi n'h&eacute;sitez pas &agrave; consulter l'aide lors de chaque mise &agrave; 
 jour afin de d&eacute;couvrir les nouveaut&eacute;s et ainsi tirer le meilleur parti de MMEX.</font></p>
 <!-- end of new section added by Terry Wick 9/16/2007 -->
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5><br>
-<h3><font face="Verdana"><a name="recommendations">Recommandations</a></font></h3>
+<br>
+<h3>Recommandations</h3>
 <p>
 <font face="Verdana">- Sauvegardez toujours de fa&ccedil;on r&eacute;guli&egrave;re votre fichier de donn&eacute;es .mmb<br>
 - Lorsque vous faites &eacute;voluer la version de MMEX, assurez-vous d'avoir auparavant sauvegard&eacute; votre fichier 
 base de donn&eacute;es .mmb</font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="better">Vers une meilleure sant&eacute; financi&egrave;re</a></font></h3>
+
+<h2>Vers une meilleure sant&eacute; financi&egrave;re</h2>
 <p><font face="Verdana">&Ecirc;tre organis&eacute; financi&egrave;rement requiert un minimum de discipline. 
 La gestion financi&egrave;re est difficile d&egrave;s l'instant o&ugrave; l'on n'a pas une vision claire de la 
 tr&eacute;sorerie et de l'&eacute;quilibre entre les revenus et les d&eacute;penses. Les dettes r&eacute;sultent 
@@ -157,16 +107,14 @@ r&eacute;sultats faux. Mais d&eacute;j&agrave;, si vous avez commenc&eacute; &ag
 vous &ecirc;tes sur la bonne voie pour une meilleure utilisation de chacun de vos euros.&nbsp;</font></p>
 <p><font face="Verdana">Alors continuons la lecture pour voir comment travailler avec Money Manager Ex.</font></p>
 <p><font face="Verdana">&nbsp;</font>&nbsp;</p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="concepts">Les principes de Money Manager Ex</a></font></h3>
+
+<h2>Les principes de Money Manager Ex</h2>
 <p><font face="Verdana">Money Manager Ex traduit le monde financier r&eacute;el sous forme d'une succession d'op&eacute;rations. 
 Une <b><i>op&eacute;ration</i></b> est un &eacute;v&eacute;nement financier au cours duquel de l'argent/des services sont 
 &eacute;chang&eacute;s. Ces op&eacute;rations seront des remboursements d'emprunts, l'achat d'une nouvelle voiture, 
 un repas dans un restaurant et bien d'autres choses.  A chaque op&eacute;ration on va associer un <i>compte</i> et une 
 <i>cat&eacute;gorie</i>.&nbsp;</font></p>
-<font face="Verdana"><img src="../mmex_concept.png">
+<font face="Verdana"><img src="img/mmex_concept_fr.png">
 </font>
 <p><font face="Verdana">Un <b><i>compte</i></b> est l'enregistrement de ce que vous poss&eacute;dez et ce que vous devez. 
 Ainsi,
@@ -193,18 +141,15 @@ base, c'est &agrave; dire un nouveau fichier
 de donn&eacute;es. Toutes les informations que vous fournirez &agrave; MMEX seront stock&eacute;es dans ce fichier (un fichier 
 avec une extension en .mmb) sur votre disque dur. Il contiendra tous les &eacute;l&eacute;ments, comptes, 
 cat&eacute;gories et toutes les op&eacute;rations qui d&eacute;finissent votre situation financi&egrave;re.</font></p>
-<p><font face="Verdana"> Bien qu'il soit possible de cr&eacute;er plusieurs fichiers de donn&eacute;es MMEX, ce n'est 
+<p>Bien qu'il soit possible de cr&eacute;er plusieurs fichiers de donn&eacute;es MMEX, ce n'est 
 habituellement pas n&eacute;cessaire. Un seul fichier peut contenir tous vos comptes et toutes vos op&eacute;rations. 
 Il n'y a pas de limite ni au nombre de comptes ni au nombre d'op&eacute;rations qui peuvent &ecirc;tre contenus. 
 Les seuls cas o&ugrave; plusieurs fichiers pourraient se r&eacute;v&eacute;ler utiles seraient de distinguer vos comptes 
 personnels de ceux de votre petite entreprise, ou encore si vous partagiez votre ordinateur avec 
 d'autres personnes dont vous souhaiteriez distinguer les comptes personnels.&nbsp;<br>
 <br>
-</font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="database">Cr&eacute;er une base de donn&eacute;es</a></font></h3>
+</p>
+<h2>Cr&eacute;er une base de donn&eacute;es</h2>
 <p><font face="Verdana">Pour cr&eacute;er une nouvelle base, dans le Menu, s&eacute;lectionnez 
 la fonction Fichier-&gt;Nouvelle base...
 Il vous sera demand&eacute; de d&eacute;finir l'endroit o&ugrave; sera log&eacute; le fichier .mmb. D&egrave;s que ceci sera fait, 
@@ -216,10 +161,7 @@ s&eacute;curit&eacute; de votre fichier .mmb.&nbsp;<br>
 2) Le fichier .mmb n'est pas crypt&eacute;. Cela signifie que toute personne disposant des connaissances suffisantes 
 peut acc&eacute;der facilement aux informations contenues. Aussi, assurez-vous que les acc&egrave;s &agrave; vos informations 
 financi&egrave;res critiques soient correctement prot&eacute;g&eacute;s.&nbsp;&nbsp;</font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="accounts">Cr&eacute;er de nouveaux comptes</a></font></h3>
+<h2>Cr&eacute;er de nouveaux comptes</h2>
 <p><font face="Verdana">Juste apr&egrave;s avoir cr&eacute;&eacute; le fichier, la premi&egrave;re chose &agrave; faire 
 est d'y cr&eacute;er un nouveau compte. MMEX propose actuellement deux types de comptes.
 Le premier type est celui qui autorise les op&eacute;rations de d&eacute;bit, de cr&eacute;dit et de virement. 
@@ -267,19 +209,13 @@ Ceci est un autre moyen pour clarifier l'affichage des comptes figurant dans l'a
 <p><font face="Verdana">L'autre type de compte existant dans MMEX est le "Compte de titres". 
 Ce type de compte est fait pour g&eacute;rer les informations provenant des organismes financiers &agrave; qui vous avez 
 confi&eacute; vos diff&eacute;rents types d'actions, d'obligations, de fonds commun de placement, etc..</font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="editaccounts">Editer les informations de comptes</a></font></h3>
+<h3>Editer les informations de comptes</h3>
 <p><font face="Verdana">Une fois un compte cr&eacute;&eacute;, vous pouvez &agrave; tout moment &eacute;diter et modifier 
 les informations 
 de celui-ci en s&eacute;lectionnant le nom du compte dans l'arbre de navigation par un clic droit pour 
 ouvrir le menu contextuel. S&eacute;lectionnez "&Eacute;diter le compte" dans celui-ci pour ouvrir la fen&ecirc;tre de dialogue.
  Modifiez les informations et cliquez sur "OK" pour sauvegarder les informations.&nbsp;&nbsp;</font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="trans">Cr&eacute;er de nouvelles op&eacute;rations</a></font></h3>
+<h3>Cr&eacute;er de nouvelles op&eacute;rations</h3>
 <p><font face="Verdana">Une fois un compte cr&eacute;&eacute;, vous pouvez commencer &agrave; saisir des op&eacute;rations 
 dans celui-ci.
 S&eacute;lectionnez par un clic gauche le compte sur lequel ces op&eacute;rations doivent &ecirc;tre effectu&eacute;es dans 
@@ -337,20 +273,14 @@ qu'elle requiert une action vis-&agrave;-vis de votre banque. </li>
 </ul>
 </font></p>
 <!-- end of format by terry wick 9/14/2007 -->
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="edittrans">Editer et modifier les op&eacute;rations</a></font></h3>
+<h3>Editer et modifier les op&eacute;rations</h3>
 <p><font face="Verdana">Pour modifier une op&eacute;ration, il suffit de la s&eacute;lectionner en utilisant 
 le bouton "&Eacute;diter". 
 Une autre fa&ccedil;on de faire est de double-cliquer sur l'op&eacute;ration pour ouvrir sa fen&ecirc;tre de dialogue. 
 Un troisi&egrave;me moyen consiste &agrave; la s&eacute;lectionner et appuyer sur le bouton "Entr&eacute;e" avec le m&ecirc;me 
 r&eacute;sultat. 
 Effectuez alors les modifications et cliquez sur "OK" pour enregistrer les changements effectu&eacute;s. </font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="rectrans">Rapprochement et &eacute;quilibre des comptes</a></font></h3>
+<h3>Rapprochement et &eacute;quilibre des comptes</h3>
 <p><font face="Verdana">Les op&eacute;rations que vous saisissez dans MMEX sont consid&eacute;r&eacute;es comme 
 non-rapproch&eacute;es. 
 Cela signifie qu'elles doivent &ecirc;tre v&eacute;rifi&eacute;es avec vos relev&eacute;s de comptes bancaires. 
@@ -368,10 +298,8 @@ la touche "r" ou "R".<br>
 Pour marquer une op&eacute;ration comme non-rapproch&eacute;e, il suffit de la s&eacute;lectionner et de taper la touche 
 "u" ou "U".
 </font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="followup">Des op&eacute;rations &agrave; suivre</a></font></h3>
+
+<h3>Des op&eacute;rations &agrave; suivre</h3>
 <p><font face="Verdana">Certaines op&eacute;rations peuvent vous causer quelques soucis et 
 n&eacute;cessiter un suivi. Rep&eacute;rez-les avec le statut "&agrave; suivre". Elles appara&icirc;tront 
 avec une ic&ocirc;ne diff&eacute;rente.
@@ -383,10 +311,7 @@ avec une ic&ocirc;ne diff&eacute;rente.
 de s&eacute;lectionner l'op&eacute;ration et de taper la touche "f" ou "F".
 </font></li>
 </ul>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="payee">Utiliser les Tiers</a></font></h3>
+<h2>Utiliser les Tiers</h2>
 <p><font face="Verdana">Les Tiers repr&eacute;sentent des entit&eacute;s du monde r&eacute;el avec lesquelles 
 vous avez eu des d&eacute;bits ou des cr&eacute;dits.
 Vous pouvez &eacute;diter les Tiers dans MMEX en ouvrant le Menu, Outils -&gt;
@@ -398,10 +323,7 @@ Notez toutefois que vous ne pourrez pas supprimer un tiers figurant dans
 des op&eacute;rations d&eacute;j&agrave; existantes. La solution si vous tenez &agrave; le faire dispara&icirc;tre 
 consiste auparavant, soit &agrave; supprimer les op&eacute;rations en question, soit &agrave; 
 supprimer dans celles-ci la r&eacute;f&eacute;rence &agrave; ce tiers.</font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="categ">Utiliser les Cat&eacute;gories</a></font></h3>
+<h2>Utiliser les Cat&eacute;gories</h2>
 <p><font face="Verdana">Les Cat&eacute;gories indiquent d'o&ugrave; vient l'argent et o&ugrave; il va. 
 Vous pouvez &eacute;diter les Cat&eacute;gories dans MMEX en ouvrant le Menu, Outils -&gt;
 Cat&eacute;gories. Une fois la fen&ecirc;tre de dialogue des Cat&eacute;gories ouverte, 
@@ -412,8 +334,8 @@ nom ou m&ecirc;me la supprimer. Notez toutefois que vous ne pourrez pas supprime
 une cat&eacute;gorie  figurant dans des op&eacute;rations d&eacute;j&agrave; existantes. 
 La solution si vous tenez &agrave; la supprimer consiste auparavant, &agrave; faire dispara&icirc;tre 
 toutes les op&eacute;rations qui l'utilisent.</font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5><br>
-<h3><font face="Verdana"><a name="importCSV">Import &agrave; partir de fichiers CSV Format strict</a></font></h3>
+<br>
+<h2>Import &agrave; partir de fichiers CSV Format strict</h2>
 <p><font face="Verdana">MMEX peut importer des donn&eacute;es &agrave; partir d'une grande vari&eacute;t&eacute; 
 de formats. L'un d'entre eux est le format strict des fichiers CSV. Ce format de fichier est aussi celui 
 utilis&eacute; par MMEX pour exporter des donn&eacute;es. Ceci offre la possibilit&eacute; de pouvoir 
@@ -439,8 +361,7 @@ Il est &agrave; noter que les op&eacute;rations contenues dans un fichier CSV ne
 qu'&agrave; l'int&eacute;rieur 
 d'un seul compte MMEX.<br>
 </font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5><br>
-<h3><font face="Verdana"><a name="importQIF">Import &agrave partir de fichiers QIF</a></font></h3>
+<h3>Import &agrave partir de fichiers QIF</h3>
 <p><font face="Verdana">Le format QIF (Quicken Interchange Format) est un standard libre de transmission destin&eacute; 
 &agrave; la lecture et l'&eacute;criture de donn&eacute;es financi&egrave;res sous forme de fichiers. Un fichier QIF se 
 pr&eacute;sente g&eacute;n&eacute;ralement de la fa&ccedil;on suivante:<br>
@@ -486,8 +407,8 @@ affect&eacute;es du statut "A suivre" (F pour "Follow Flag").
 Vous pouvez changer le statut de toutes ces op&eacute;rations en utilisant la commande globale "tout s&eacute;lectionner" par 
 le menu contextuel (clic droit) dans la fen&ecirc;tre du compte. </font>
 </p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5><br>
-<h3><font face="Verdana"><a name="importMMNET">Import &agrave; partir d'un fichier CSV MM.NET</a></font></h3>
+<br>
+<h3>Import &agrave; partir d'un fichier CSV MM.NET</h3>
 <p><font face="Verdana">MMEX peut aussi importer des donn&eacute;es de fichiers CSV produits par le logiciel Money 
 Manager.NET. Ce type d'import a &eacute;t&eacute; pr&eacute;vu pour faciliter le travail des utilisateurs de 
 ce logiciel qui ont voulu migrer vers MMEX sans perdre leurs donn&eacute;es. <br>
@@ -512,8 +433,8 @@ qu'&agrave; l'int&eacute;rieur d'un seul compte MMEX.<br>
 <br>
 </font>
 </p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5><br>
-<h3><font face="Verdana"><a name="importUnivCSV">Import &agrave; partir d'un fichier CSV Format Universel</a></font></h3>
+<br>
+<h3>Import &agrave; partir d'un fichier CSV Format Universel</h3>
 <p><font face="Verdana">Pour soulager la t&acirc;che des utilisateurs qui doivent pr&eacute;formater 
 les fichiers CSV de leur banque de fa&ccedil;on &agrave; les rendre compatibles avec le format attendu par MMEX, 
 l'import des fichiers CSV dans lesquels l'ordre des diff&eacute;rents champs est compl&egrave;tement libre a 
@@ -554,8 +475,8 @@ statuts dans le menu contextuel "Tout s&eacute;lectionner" (clic droit dans la v
 <p></p>
 
 <!-- creating csv tips added by terry wick 9/14/2007 -->
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5><br>
-<h3><font face="Verdana"><a name="importcsvtips">Des astuces pour cr&eacute;er des fichiers CSV</a></font></h3>
+<br>
+<h3>Des astuces pour cr&eacute;er des fichiers CSV</h3>
 <p><font face="Verdana">
 <ul>
 	<li>Lorsque vous cr&eacute;ez un fichier CSV, assurez-vous de bien retirer les virgules de s&eacute;paration des 
@@ -575,8 +496,8 @@ qu'&agrave; l'int&eacute;rieur d'un seul compte MMEX.<br></li>
 </font></p>
 
 <!-- end of tips addition from terry wick -->
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5><br>
-<h3><font face="Verdana"><a name="exportcsv">Export des donn&eacute;es vers un fichier CSV</a></font></h3>
+<br>
+<h2>Export des donn&eacute;es vers un fichier CSV</h2>
 <p><font face="Verdana">MMEX peut exporter des donn&eacute;es vers un fichier CSV Format strict. Ce format de fichier 
 correspond exactement au format des fichiers que MMEX peut importer, ce qui peut &ecirc;tre tr&egrave;s utile pour 
 d&eacute;placer des donn&eacute;es d'un fichier .mmb vers un autre.
@@ -601,10 +522,7 @@ Il est &agrave; pr&eacute;ciser que les op&eacute;rations d'un compte ne peuvent
 que vers un seul fichier CSV.<br>
 
 </font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="stock">Les titres</a></font></h3>
+<h2>Les titres</h2>
 <p><font face="Verdana">MMEX peut &ecirc;tre utilis&eacute; pour g&eacute;rer les actions et fonds communs de placement.&nbsp;<br>
 - Pour commencer, il vous faut cr&eacute;er un compte de titres. Pour ce faire, cr&eacute;ez un nouveau compte et pour le 
 type de compte, choisissez l'option "Titres".&nbsp;<br>
@@ -614,37 +532,25 @@ Compl&eacute;tez la fen&ecirc;tre de dialogue avec les informations sur ce nouve
 <br>
 Pour mettre &agrave; jour le cours d'un titre, il suffit d'afficher la fen&ecirc;tre de dialogue du compte et de changer 
 la valeur courante du cours de celui-ci.</font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="bills">Les &Eacute;ch&eacute;anciers</a></font></h3>
+<h2>Les &Eacute;ch&eacute;anciers</h2>
 <p><font face="Verdana">MMEX vous permet de mettre en place des rappels pour les op&eacute;rations r&eacute;guli&egrave;res. 
 Pour cela s&eacute;lectionnez "&Eacute;ch&eacute;ancier" dans l'arbre de navigation et d&eacute;finissez ces 
 op&eacute;rations r&eacute;p&eacute;titives. Les rappels pour les factures 
 ou d&eacute;p&ocirc;ts pour les deux semaines &agrave; venir seront affich&eacute;s sur la page d'accueil de MMEX. 
 </font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="assets">Les Biens</a></font></h3>
+<h2>Les Biens</h2>
 <p><font face="Verdana">MMEX permet de suivre votre portefeuille de biens tels que v&eacute;hicules, maisons, propri&eacute;t&eacute;s 
 et autres.
 Chaque bien est caract&eacute;ris&eacute; par une valeur et une &eacute;volution de celle-ci : en diminution d'un certain taux annuel, stable 
 ou en augmentation d'un certain taux annuel. Le montant de vos biens est ajout&eacute; &agrave; la valeur de vos avoirs.
 </font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="transfilter">Les rapports sp&eacute;cifiques</a></font></h3>
+<h2>Les rapports sp&eacute;cifiques</h2>
 <p><font face="Verdana">MMEX comporte un outil de recherche, vous permettant de retrouver vos op&eacute;rations 
 qui r&eacute;pondent &agrave; certains crit&egrave;res. Pour cela utilisez la fonction Rapports Sp&eacute;cifiques. 
 La liste des op&eacute;rations 
 r&eacute;sultante peut &ecirc;tre imprim&eacute;e ou export&eacute;e sous forme d'un fichier HTML.
 </font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="budgeting">Les Budgets</a></font></h3>
+<h2>Les Budgets</h2>
 <p><font face="Verdana">MMEX vous permet de mettre en place un budget pr&eacute;visionnel annuel 
 et de suivre vos r&eacute;sultats par rapport &agrave; cette anticipation. Pour &eacute;tablir ce budget, 
 s&eacute;lectionnez la fonction "Budget" dans l'arbre de navigation et ajoutez un budget annuel. Une fois celui-ci 
@@ -654,27 +560,18 @@ l'ann&eacute;e.&nbsp;<br>
 <br>
 En utilisant le bouton Rapport de la fonction Budget, vous pouvez comparer vos d&eacute;penses r&eacute;alis&eacute;es par rapport &agrave; 
 votre budget. </font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="reports">Les Rapports</a></font></h3>
+<h2>Les Rapports</h2>
 <p><font face="Verdana">MMEX comporte diff&eacute;rents types de rapports. Choisissez le type du rapport &agrave; 
 &eacute;tablir parmi ceux figurant dans l'arbre de navigation. Certains rapports requi&egrave;rent des donn&eacute;es 
 pr&eacute;alables de la part de l'utilisateur, 
 d'autres non. Une fois le rapport affich&eacute;, vous pouvez en garder une trace en utilisant les fonctions 
 d'impression du Menu. </font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="print">Les Impressions</a></font></h3>
+<h2>Les Impressions</h2>
 <p><font face="Verdana">MMEX permet d'imprimer tous les rapports qui peuvent &ecirc;tre affich&eacute;s. Les options d'impression 
 sont disponibles dans le Menu Fichier-&gt;Imprimer. </font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
-<h3><font face="Verdana"><a name="options">Les Options</a></font></h3>
+<h2>Les Options</h2>
 <p>
-<font face="Verdana">Vous pouvez modifier certaines configurations de MMEX &agrave; l'aide de la fen&ecirc;tre de dialogue 
+Vous pouvez modifier certaines configurations de MMEX &agrave; l'aide de la fen&ecirc;tre de dialogue 
 d'options. <br>
 <br>
 <b><i> G&eacute;n&eacute;ral-&gt;Devise principale </i> </b>
@@ -715,39 +612,16 @@ de vos placements,
 en appuyant sur le bouton d'acc&egrave;s. Pr&eacute;cisez ici l'adresse URL. Par d&eacute;faut, l'adresse est celle de Google 
 Finances.
 <br>
-<br>
-</font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5>
-<font face="Verdana"><br>
-</font>
+</p>
 <hr>
-<h3><font face="Verdana"><a name="faq">La Foire Aux Questions</a></font></h3>
-<ol>
-<font face="Verdana"> <li><a href="#contribute">Comment puis-je contribuer ?</a></li>
-<li><a href="#nameex">Quelle est la signification de EX dans le nom de l'application ?</a></li>
-<li><a href="#database">Mes donn&eacute;es sont-elles en s&eacute;curit&eacute; ? .mmb est-il un format propri&eacute;taire ?</a></li>
-<li><a href="#usbkey">MMEX peut-il &ecirc;tre utilis&eacute; sur une cl&eacute; USB ?</a></li>
-<li><a href="#safety">Comment puis-je &ecirc;tre s&ucirc;r que MMEX n'essaye pas de vendre des informations sur ma situation financi&egrave;re ?</a></li>
-<li><a href="#statements">Comment puis-je imprimer des &eacute;tats de compte &agrave; partir de MMEX ?</a></li>
-</font>
-</ol>
-<h3><font face="Verdana"><a name="contribute">Comment puis-je contribuer ?<!--</a--></a></font></h3>
+
+<h2>La Foire Aux Questions</h2>
+<h3>Comment puis-je contribuer ?</h3>
 <p>
-<font face="Verdana"><a name="contribute">Vous pouvez contribuer en :
-</a></font></p>
-<ul>
-<li><font face="Verdana"><a name="contribute">faisant part des bugs rencontr&eacute;s</a></font></li>
-<li><font face="Verdana"><a name="contribute">faisant des traductions dans votre langue</a></font></li>
-<li><font face="Verdana"><a name="contribute">faisant de la publicit&eacute; sur le logiciel</a></font></li>
-<li><font face="Verdana"><a name="contribute">Si vous &ecirc;tes un expert C++, en participant au d&eacute;veloppement 
-du code de MMEX. </a></font></li>
-<li><font face="Verdana">Si vous &ecirc;tes vraiment tr&egrave;s satisfait parce que MMEX vous a permis d'&eacute;conomiser beaucoup 
-d'argent, vous pouvez faire un don au projet MMEX. <br>
-</font></li>
-</ul>
-<font face="Verdana"> </font>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5><br>
-<h3><font face="Verdana"><a name="nameex">Quelle est la signification de EX dans le nom de l'application ?</a></font></h3>
+Vous pouvez contribuer en :
+</p>
+<br>
+<h3>Quelle est la signification de EX dans le nom de l'application ?</h3>
 <p>
 <font face="Verdana">Au tout d&eacute;but, j'ai d&eacute;velopp&eacute; un logiciel de gestion de comptes personnels nomm&eacute; Money Manager. 
 Il &eacute;tait &eacute;crit en .NET et &eacute;tait davantage un exercice d'apprentissage qu'un projet s&eacute;rieux de d&eacute;veloppement. 
@@ -759,10 +633,11 @@ caract&eacute;ristiques, mais &eacute;crite en C++.&nbsp; </font></p>
 la terminaison Ex, comme extension, par exemple comme dans FaitQuelqueChose() et FaitQuelqueChoseEx(). 
 J'ai juste suivi le mod&egrave;le et compl&eacute;t&eacute; le nom par "Ex".
 </font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5><br>
-<h3><font face="Verdana"><a name="database">Mes donn&eacute;es sont-elles en s&eacute;curit&eacute; ? .mmb est-il un format propri&eacute;taire ?<!--</a--></a></font></h3>
+<br>
+<h3>Mes donn&eacute;es sont-elles en s&eacute;curit&eacute; ? .mmb est-il un format propri&eacute;taire ?</h3>
 <p>
-<font face="Verdana"><a name="database">Oui, vos donn&eacute;es sont bien en s&eacute;curit&eacute;.
+<a name="database"></a>
+Oui, vos donn&eacute;es sont bien en s&eacute;curit&eacute;.
 Et, non, le format des fichiers .mmb n'est pas un format propri&eacute;taire. Pour stocker les donn&eacute;es, MMEX 
 utilise des bases donn&eacute;es SQLite. Cela signifie que le fichier .mmb est une base de donn&eacute;es 
 SQLite parfaitement standard. SQLite est un des plus simples syst&egrave;mes de base de donn&eacute;es libre 
@@ -770,22 +645,22 @@ SQLite parfaitement standard. SQLite est un des plus simples syst&egrave;mes de 
 d'applications pour les ouvrir et les consulter.
 SQLiteSpy et SQLite Browser (http://sqlitebrowser.sourceforge.net/)
 en sont deux exemples. Une fois que vous acc&eacute;dez &agrave; la base de donn&eacute;es, vous pouvez faire tout ce que vous voulez 
-avec les donn&eacute;es.  </a></font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5><br>
-<h3><font face="Verdana"><a name="usbkey">MMEX peut-il &ecirc;tre utilis&eacute; sur une cl&eacute; USB ?<!--</a--></a>
-</font></h3><p>
-<font face="Verdana"><a name="usbkey">Oui, MMEX a &eacute;t&eacute; d&eacute;velopp&eacute; en &eacute;vitant soigneusement tout recours aux 
+avec les donn&eacute;es.</p>
+<br>
+
+<h3>MMEX peut-il &ecirc;tre utilis&eacute; sur une cl&eacute; USB ?</h3>
+<p>
+Oui, MMEX a &eacute;t&eacute; d&eacute;velopp&eacute; en &eacute;vitant soigneusement tout recours aux 
 registres Windows. MMEX est compl&egrave;tement portable et pour le faire travailler &agrave; partir d'une cl&eacute; USB 
 il suffit 
 de d&eacute;placer le dossier o&ugrave; il est install&eacute; sur une cl&eacute;, et de lancer l'application &agrave; 
 partir de l'ex&eacute;cutable 
-mmex. </a></font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5><br>
-<h3><font face="Verdana"><a name="safety">Comment puis-je &ecirc;tre s&ucirc;r que MMEX n'essaye pas de vendre des 
+mmex.</p>
+<br>
+<h3>Comment puis-je &ecirc;tre s&ucirc;r que MMEX n'essaye pas de vendre des 
 informations sur ma 
-situation financi&egrave;re?<!--</a--></a></font></h3>
+situation financi&egrave;re?</h3>
 <p>
-<font face="Verdana"><a name="safety">
 De fa&ccedil;on g&eacute;n&eacute;rale, avec un logiciel propri&eacute;taire, vous n'avez que la parole du vendeur pour 
 ce qui concerne la s&eacute;curit&eacute; 
 de vos donn&eacute;es. Dans le cas de MMEX, vous avez affaire &agrave; un logiciel libre (Open Source), vous 
@@ -797,20 +672,17 @@ des d&eacute;veloppeurs de MMEX.
 MMEX ne se connecte jamais &agrave; internet sans vous l'avoir explicitement demand&eacute; auparavant (par exemple pour 
 v&eacute;rifier 
 s'il n'existe pas une version plus &agrave; jour).
-</a></font></p>
-<h5><font face="Verdana"><a href="#top">Haut de la page</a></font></h5><br>
-<h3><font face="Verdana"><a name="statements">Comment puis-je imprimer des &eacute;tats de compte &agrave; partir de 
-MMEX ?<!--</a--></a></font></h3>
+</p>
+<br>
+<h3>Comment puis-je imprimer des &eacute;tats de compte &agrave; partir de MMEX ?</h3>
 <p>
-<font face="Verdana"><a name="statements"> Pour imprimer une liste d'op&eacute;rations &agrave; partir d'un ensemble de 
+<font face="Verdana">Pour imprimer une liste d'op&eacute;rations &agrave; partir d'un ensemble de 
 crit&egrave;res, 
 utilisez le filtre sp&eacute;cifique pour s&eacute;lectionner les op&eacute;rations que vous recherchez et imprimez 
 ensuite &agrave; partir 
 des options du Menu.
 </a></font></p>
-        <h5>
-            Madhan Kanagavel<br>
-            Copyright &#9400; 2005-2016, CodeLathe LLC. All rights reserved.
-        </h5>
-</body>
-</html>
+<h5><font face="Verdana">
+Copyright - 2005-2008&nbsp; CodeLathe LLC. Tous droits r&eacute;serv&eacute;s.<br>
+</font></h5>
+</body></html>

@@ -73,7 +73,7 @@ void mmReportBudget::GetFinancialYearValues(int& day, int& month)
     }
 }
 
-wxString mmReportBudget::AdjustYearValues(int& day, int& month, long year, const wxString& yearStr)
+wxString mmReportBudget::AdjustYearValues(int day, int month, long year, const wxString& yearStr)
 {
     wxString ret = yearStr;
     if ((ret.length() < 5))
@@ -96,7 +96,7 @@ wxString mmReportBudget::AdjustYearValues(int& day, int& month, long year, const
     return ret;
 }
 
-void mmReportBudget::AdjustYearValues(int& day, int& month, wxDateTime& date)
+void mmReportBudget::AdjustYearValues(int day, int month, wxDateTime& date)
 {
     if (Option::instance().BudgetFinancialYears())
     {
@@ -113,11 +113,6 @@ void mmReportBudget::AdjustDateForEndFinancialYear(wxDateTime& date)
         GetFinancialYearValues(day, month);
         SetDateToEndOfYear(day, month, date);
     }
-}
-
-bool mmReportBudget::has_budget_dates()
-{
-    return true;
 }
 
 wxString mmReportBudget::getHTMLText()
