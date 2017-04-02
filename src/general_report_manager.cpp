@@ -1087,7 +1087,8 @@ bool mmGeneralReportManager::getSqlQuery(/*in*/ const wxString& sql
     try
     {
         wxString temp = sql;
-        Model_Report::PrepareSQL(temp);
+        std::map <wxString, wxString> rep_params;
+        Model_Report::PrepareSQL(temp, rep_params);
         wxSQLite3Statement stmt = this->m_db->PrepareStatement(temp);
         if (!stmt.IsReadOnly())
             return false;

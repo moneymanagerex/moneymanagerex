@@ -149,7 +149,7 @@ wxArrayString Model_Report::allGroupNames()
     return groups;
 }
 
-bool Model_Report::PrepareSQL(wxString& sql)
+bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_params)
 {
     sql.Trim();
     if (sql.empty()) return false;
@@ -164,6 +164,8 @@ bool Model_Report::PrepareSQL(wxString& sql)
             wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE);
         const auto data = start_date ? start_date->GetValue().FormatISODate()
             : wxDateTime::Today().FormatISODate();
+
+        rep_params["begin_date"] = data;
 
         while (pos != wxNOT_FOUND)
         {
@@ -180,6 +182,8 @@ bool Model_Report::PrepareSQL(wxString& sql)
             wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE);
         const auto data = start_date ? start_date->GetValue().FormatISODate()
             : wxDateTime::Today().FormatISODate();
+
+        rep_params["single_date"] = data;
 
         while (pos != wxNOT_FOUND)
         {
@@ -198,6 +202,8 @@ bool Model_Report::PrepareSQL(wxString& sql)
         const auto data = end_date ? end_date->GetValue().FormatISODate()
             : wxDateTime::Today().FormatISODate();
 
+        rep_params["end_date"] = data;
+
         while (pos != wxNOT_FOUND)
         {
             sql.replace(pos, len, data);
@@ -213,6 +219,8 @@ bool Model_Report::PrepareSQL(wxString& sql)
             wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_DATE_RANGE);
         const auto data = years ? years->GetStringSelection()
             : wxString::Format("%s", wxDate::Today().GetYear());
+
+        rep_params["only_years"] = data;
 
         while (pos != wxNOT_FOUND)
         {
@@ -237,10 +245,11 @@ wxString Model_Report::get_html(const Data* r)
 
     wxSQLite3ResultSet q;
     int columnCount = 0;
+    wxString sql = r->SQLCONTENT;
+    std::map <wxString, wxString> rep_params;
     try
     {
-        wxString sql = r->SQLCONTENT;
-        PrepareSQL(sql);
+        PrepareSQL(sql, rep_params);
 
         wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
         if (!stmt.IsReadOnly())
@@ -358,6 +367,10 @@ wxString Model_Report::get_html(const Data* r)
 
     report(L"CONTENTS") = contents;
     {
+        for (const auto& item : rep_params)
+        {
+            report(item.first.Upper().ToStdWstring()) = item.second;
+        }
         auto p = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
         //javascript does not handle backslashs
         p.Replace("\\", "\\\\");

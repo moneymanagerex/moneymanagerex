@@ -61,7 +61,7 @@ public:
     Data* get(const wxString& name);
 
 public:
-    static bool PrepareSQL(wxString& sql);
+    static bool PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_params);
 };
 
 #endif // 
