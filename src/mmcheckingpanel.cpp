@@ -587,6 +587,11 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
         m_info_panel->SetLabelText(tran.NOTES);
         wxString miniStr = full_tran.info();
 
+		if (Model_Checking::foreignTransaction(tran))
+		{
+			m_btnDuplicate->Enable(false);
+		}
+
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty())
         {
