@@ -27,8 +27,17 @@ If you installed CLang furthermore you need to change your default compiler via:
 	git submodule update --init
 	
 ## Compile
-	cmake -D ARG_VER_MAJOR=1 -D ARG_VER_MINOR=3 -D ARG_VER_PATCH=3 .
-    make package
+    If you want build the project with debug create debug dir in build directory
+    and replace cmake flag
+    -DCMAKE_BUILD_TYPE=Release
+    with
+     -DCMAKE_BUILD_TYPE=Debug
+
+    cd build
+    mkdir release
+    cd release
+    cmake -DCMAKE_BUILD_TYPE=Release ../../
+	make package
 	
 ## Install
 Now you can install the produced packaged via command:

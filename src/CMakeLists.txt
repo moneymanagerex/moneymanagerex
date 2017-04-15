@@ -2,7 +2,7 @@ IF(NOT InMMEX)
     MESSAGE(FATAL_ERROR "Use the top-level CMake script!")
 ENDIF(NOT InMMEX)
 
-TARGET_SOURCES(mmex PRIVATE
+TARGET_SOURCES(${PROJECT_TARGET_BIN} PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/aboutdialog.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/aboutdialog.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/accountdialog.cpp"
@@ -270,15 +270,15 @@ TARGET_SOURCES(mmex PRIVATE
         )
 #OSX
 IF (UNIX AND APPLE)
-    TARGET_SOURCES(mmex PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mac/platfdep.cpp")
+    TARGET_SOURCES(${PROJECT_TARGET_BIN} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mac/platfdep.cpp")
 ENDIF ()
 #*nix
 IF (UNIX AND NOT APPLE)
-    TARGET_SOURCES(mmex PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/unix/platfdep.cpp")
+    TARGET_SOURCES(${PROJECT_TARGET_BIN} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/unix/platfdep.cpp")
 ENDIF ()
 #Windows
 IF (WIN32)
-    TARGET_SOURCES(mmex PRIVATE
+    TARGET_SOURCES(${PROJECT_TARGET_BIN} PRIVATE
             "${CMAKE_CURRENT_SOURCE_DIR}/win/platfdep.cpp"
             "resources/mmex.rc")
 

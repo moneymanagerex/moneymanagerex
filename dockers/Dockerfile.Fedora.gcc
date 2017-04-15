@@ -9,4 +9,4 @@ ADD . /moneymanagerex
 # Define working directory:
 WORKDIR /moneymanagerex
 
-CMD cmake -D ARG_VER_MAJOR=1 -D ARG_VER_MINOR=3 -D ARG_VER_PATCH=3 . && make
+CMD cmake -DCMAKE_BUILD_TYPE=Release . && make package
