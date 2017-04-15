@@ -29,7 +29,16 @@
 	git submodule update --init
 	
 ## Compile
-	cmake -G "NMake Makefiles" -D ARG_VER_MAJOR=1 -D ARG_VER_MINOR=3 -D ARG_VER_PATCH=3 .
+    If you want build the project with debug create debug dir in build directory
+    and replace cmake flag
+    -DCMAKE_BUILD_TYPE=Release
+    with
+     -DCMAKE_BUILD_TYPE=Debug
+
+    cd build
+    mkdir release
+    cd release
+	cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ../../
 
 	Choose your architecture and via visual studio developer console run command
 

@@ -4,10 +4,13 @@ SET(InMMEX TRUE)
 
 PROJECT(MoneyManagerEx)
 
+# Name of the resulted binary
+SET(PROJECT_TARGET_BIN "mmex")
+
 # Semantic versioning
-SET(MoneyManagerEx_VERSION_MAJOR ${ARG_VER_MAJOR})
-SET(MoneyManagerEx_VERSION_MINOR ${ARG_VER_MINOR})
-SET(MoneyManagerEx_VERSION_PATCH ${ARG_VER_PATCH})
+SET(MoneyManagerEx_VERSION_MAJOR 1)
+SET(MoneyManagerEx_VERSION_MINOR 3)
+SET(MoneyManagerEx_VERSION_PATCH 3)
 SET(MoneyManagerEx_VERSION "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VERSION_MINOR}.${MoneyManagerEx_VERSION_PATCH}")
 
 OPTION(BuildTests "Whether to build automatic unit tests" OFF)
@@ -18,7 +21,7 @@ MESSAGE(STATUS "OS = ${CMAKE_SYSTEM_NAME}")
 
 IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
     # Detect Linux distribution (if possible)
-    EXECUTE_PROCESS(COMMAND sh getDistroName.sh
+    EXECUTE_PROCESS(COMMAND sh "util/getDistroName.sh"
             TIMEOUT 4
             OUTPUT_VARIABLE LINUX_DISTRO
             #ERROR_QUIET
@@ -79,6 +82,14 @@ IF (CMAKE_SYSTEM_NAME STREQUAL "Windows")
 ELSE ()
     FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv stc webview base REQUIRED)
 ENDIF ()
+
+# Configure a header file to pass some of the CMake settings
+# to the source code
+CONFIGURE_FILE(
+        "${PROJECT_SOURCE_DIR}/src/constants.h.in"
+        "${PROJECT_SOURCE_DIR}/src/constants.h"
+)
+
 INCLUDE(${wxWidgets_USE_FILE})
 SET(wxWidgets_USE_DEBUG false)
 
@@ -100,7 +111,7 @@ INCLUDE_DIRECTORIES(
 ## Targets ##
 ADD_LIBRARY(LUA STATIC "")
 ADD_LIBRARY(wxSQLite3 STATIC "")
-ADD_EXECUTABLE(mmex WIN32 "")
+ADD_EXECUTABLE(${PROJECT_TARGET_BIN} WIN32 "")
 IF (BuildTests)
     ADD_LIBRARY(CPPUnit STATIC "")
     ADD_EXECUTABLE(MMEXTest "")
@@ -119,7 +130,7 @@ ENDIF ()
 IF (NOT WIN32)
     TARGET_LINK_LIBRARIES(wxSQLite3 dl)
 ENDIF ()
-TARGET_LINK_LIBRARIES(mmex ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
+TARGET_LINK_LIBRARIES(${PROJECT_TARGET_BIN} ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
 IF (BuildTests)
     TARGET_LINK_LIBRARIES(MMEXTest CPPUnit ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
 ENDIF ()
@@ -136,11 +147,11 @@ IF (CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Binary
     IF (CMAKE_SYSTEM_NAME STREQUAL "Linux")
         INSTALL(PROGRAMS
-                "${CMAKE_SOURCE_DIR}/bin/mmex"
+                "${CMAKE_SOURCE_DIR}/bin/${PROJECT_TARGET_BIN}"
                 DESTINATION "${INSTALL_BIN_DIR}")
     ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         INSTALL(PROGRAMS
-                "${CMAKE_SOURCE_DIR}/bin/mmex.exe"
+                "${CMAKE_SOURCE_DIR}/bin/${PROJECT_TARGET_BIN}.exe"
                 DESTINATION "${INSTALL_BIN_DIR}")
     ENDIF()
 
@@ -188,7 +199,7 @@ ENDIF ()
 
 
 # --------- CPack ---------
-SET(CPACK_PACKAGE_NAME "mmex")
+SET(CPACK_PACKAGE_NAME "${PROJECT_TARGET_BIN}")
 # CPACK_PACKAGE_VERSION "1.2.3") # to produce something like this
 set(CPACK_PACKAGE_VERSION "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VERSION_MINOR}.${MoneyManagerEx_VERSION_PATCH}")
 set(CPACK_PACKAGE_VERSION_MAJOR "${MoneyManagerEx_VERSION_MAJOR}")
@@ -228,9 +239,9 @@ ENDIF ()
 # macOS
 IF (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     SET(CPACK_GENERATOR "DragNDrop")
-    SET(CPACK_DMG_VOLUME_NAME "MMEX")
+    SET(CPACK_DMG_VOLUME_NAME "Money Manager Ex")
     SET(CPACK_DMG_FORMAT "UDZO")
-    #TODO:
+    SET(CPACK_DMG_BACKGROUND_IMAGE "${CMAKE_SOURCE_DIR}/resources/mmex-background.png")
 ENDIF ()
 
 # Windows
@@ -241,10 +252,10 @@ IF (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     SET(CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/resources\\\\mmex.ico")
     SET(CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/resources\\\\mmex.ico")
     SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/resources\\\\mmex.ico")
-    SET(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\\\mmex.exe")
+    SET(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\\\${PROJECT_TARGET_BIN}.exe")
     SET(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/LICENSE)
     SET(CPACK_NSIS_CREATE_ICONS_EXTRA
-            "CreateShortCut '$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\Money Manager EX.lnk' '$INSTDIR\\\\bin\\\\mmex.exe'")
+            "CreateShortCut '$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\Money Manager EX.lnk' '$INSTDIR\\\\bin\\\\${PROJECT_TARGET_BIN}.exe'")
     SET(CPACK_NSIS_DELETE_ICONS_EXTRA "Delete '$SMPROGRAMS\\\\$START_MENU\\\\Money Manager EX.lnk'")
 ENDIF ()
 
