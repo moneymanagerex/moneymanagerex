@@ -3,12 +3,12 @@ IF(NOT InMMEX)
 ENDIF(NOT InMMEX)
 
 ADD_CUSTOM_TARGET(Translations ALL)
-FILE(GLOB POFiles *.po)
+FILE(GLOB POFiles "${CMAKE_CURRENT_SOURCE_DIR}/*.po")
 
 FOREACH(POFile ${POFiles})
 
     GET_FILENAME_COMPONENT(CurrentFile ${POFile} NAME_WE)
-    SET(MOFile ${CurrentFile}.mo)
+    SET(MOFile "${CMAKE_CURRENT_SOURCE_DIR}/${CurrentFile}.mo")
 
     ADD_CUSTOM_COMMAND(TARGET Translations
             COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} -o ${MOFile} ${POFile}

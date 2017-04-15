@@ -18,9 +18,10 @@
 	cd build/msw
 
 	Choose your architecture and via visual studio developer console run command
+	with "Native Tools Command Prompt for VS 2017" or "Developer Command Prompt for VS 2017"
 
-	#nmake /f makefile.vc TARGET_CPU=Win32
-	nmake /f makefile.vc TARGET_CPU=x64
+	#nmake /f makefile.vc TARGET_CPU=Win32 BUILD=release
+	nmake /f makefile.vc TARGET_CPU=x64 BUILD=release
 
 ## Download Source
 	git clone https://github.com/moneymanagerex/moneymanagerex
@@ -43,8 +44,11 @@
 	Choose your architecture and via visual studio developer console run command
 
 	#nmake /f Makefile TARGET_CPU=Win32
-	nmake /f Makefile TARGET_CPU=x64
+	nmake /f Makefile TARGET_CPU=x64 BUILD=release
 
+    # If you are interested in producing Visual Studio project file, you can run
+    # this command instead of previous one
+    #cmake -G "Visual Studio 14 2015" -DCMAKE_BUILD_TYPE=Release ../../
 ## Build package
     For building installable package, you need to have NSIS installed http://nsis.sourceforge.net/Download
 
