@@ -19,7 +19,7 @@ compiler:
 
 env:
 # This Semantic Versioning represent version from the top
-  - major=1 minor=3 patch=3
+  - major=@MoneyManagerEx_VERSION_MAJOR@ minor=@MoneyManagerEx_VERSION_MINOR@ patch=@MoneyManagerEx_VERSION_PATCH@
 
 before_install:
   - echo $TRAVIS_OS_NAME

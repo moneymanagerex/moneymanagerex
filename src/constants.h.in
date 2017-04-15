@@ -1,3 +1,10 @@
+//----------------------------------------------------------------------------
+// WARNING: File constants.h is produced by CMake. If you want to make
+//          some changes in this file please use the templated version
+//          constants.h.in and rerun the cmake to produce refreshed
+//          version of constants.h
+//----------------------------------------------------------------------------
+
 /*******************************************************
 Copyright (C) 2009 VaDiM
 
