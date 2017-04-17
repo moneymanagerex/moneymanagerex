@@ -18,8 +18,45 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "mmpanelbase.h"
+#include "reports/htmlbuilder.h"
 #include "model/Model_Setting.h"
 #include "mmreportspanel.h"
+
+const char *panel_template = R"(
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http - equiv = "Content-Type" content = "text/html" />
+    <title><TMPL_VAR REPORTNAME></title>
+    <script src = "sorttable.js"></script>
+    <link href = "master.css" rel = "stylesheet" />
+    <style>
+        body {font-size: <TMPL_VAR HTMLSCALE>%;};
+    </style>
+</head>
+<body>
+
+<div class = "container">
+<h3><TMPL_VAR REPORTNAME></h3>
+<TMPL_VAR TODAY><hr>
+
+<div class = "row">
+<div class = "col-xs-1"></div>
+<div class = "col-xs-10">
+
+<table class = "table">
+    <thead>
+        <tr><TMPL_LOOP NAME=HEADERS><th><TMPL_VAR "HEADER"></th></TMPL_LOOP></tr>
+    </thead>
+    <tbody>
+        <TMPL_LOOP NAME=CONTENTS><tr><TMPL_VAR "ROW"><tr></TMPL_LOOP>
+    </tbody>
+</table>
+</div></div></div></div></body>
+</html>
+)";
+
 
 wxBEGIN_EVENT_TABLE(mmListCtrl, wxListCtrl)
 EVT_LIST_COL_END_DRAG(wxID_ANY, mmListCtrl::OnItemResize)
@@ -66,38 +103,55 @@ wxListItemAttr* mmListCtrl::OnGetItemAttr(long row) const
 
 wxString mmListCtrl::BuildPage(const wxString &title) const
 {
-    const wxString eol = wxTextFile::GetEOL();
-    wxString text = eol;
-    text << "<head>" + eol + "<title>" + title + "</title>" + eol;
-    text << "<meta charset = 'utf-8'>" + eol + "</head>" + eol;
-    text << "<body>" << eol;
-    text << wxString::Format("<table border=%s cellpadding=4 cellspacing=0 >"
-        , (GetWindowStyle() & wxLC_HRULES) || (GetWindowStyle() & wxLC_VRULES) ? "1" : "0") + eol;
 
-    text << "<tr>" << eol;
+    loop_t headers;
+    wxString h;
     for (int c = 0; c < GetColumnCount(); c++)
     {
+        row_t r;
         wxListItem col;
         col.SetMask(wxLIST_MASK_TEXT);
         GetColumn(c, col);
-        text << "<th><i>" << col.GetText() << "</i></th>" << eol;
+        h = col.GetText();
+        r(L"HEADER") = h;
+        headers += r;
     }
-    text << "</tr>" << eol;
 
+    loop_t contents;
     for (int i = 0; i < GetItemCount(); i++)
     {
-        text << "<tr>" << eol;
+        wxString row;
+        row_t r;
         for (int col = 0; col < GetColumnCount(); col++)
         {
-            text << "<td>" << wxListCtrl::GetItemText(i, col) << "</td>" << eol;
+            row += "<td>" + wxListCtrl::GetItemText(i, col) + "</td>";
         }
-        text << eol << "</tr>" << eol;
+        r(L"ROW") = row;
+        contents += r;
     }
-    text << "</table>" << eol;
-    text << "</body>" << eol;
-    text = wxString::Format("<!DOCTYPE html>%s<html>%s</html>%s", eol, text, eol);
 
-    return text;
+    mm_html_template report(panel_template);
+    report(L"REPORTNAME") = title;
+    report(L"HEADERS") = headers;
+    report(L"CONTENTS") = contents;
+    report(L"HTMLSCALE") = wxString::Format("%d", mmIniOptions::instance().html_font_size_);
+
+    wxString out = wxEmptyString;
+    try
+    {
+        out = report.Process();
+    }
+    catch (const syntax_ex& e)
+    {
+        out = e.what();
+    }
+    catch (...)
+    {
+        // TODO
+    }
+
+    Model_Report::outputReportFile(out);
+    return out;
 }
 
 void mmListCtrl::OnItemResize(wxListEvent& event)
