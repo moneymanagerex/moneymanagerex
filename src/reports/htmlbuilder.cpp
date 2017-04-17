@@ -541,6 +541,72 @@ void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxStr
         wxString::Format(opt, datasetFill ? "true" : "false", pointDot ? "true" : "false", showGridLines ? "true" : "false")));
 }
 
+void mmHTMLBuilder::addBarLineChart(const wxString &labels, const std::vector<ValueTrioList>& data, const wxString& id, const int x, const int y)
+{
+    static const wxString data_item =
+        "{\n"
+        "  fillColor : '%s',\n"
+        "  strokeColor : '%s',\n"
+        "  pointColor : '%s',\n"
+        "  pointStrokeColor : 'yellow',\n"
+        "  data : [%s],\n"
+        "  title : '%s',\n"
+        "  type : '%s'\n"
+        "},\n";
+    static const wxString js = "<script type='text/javascript'>\n"
+        "var data = {\n"
+        "  labels : [%s],\n"
+        "  datasets : [%s]\n"
+        "};\n"
+        "var options = {\n"
+        "  scaleOverride: true,\n"
+        "  annotateDisplay : true,\n"
+        "  scaleStartValue : %i,\n"
+        "  scaleSteps : [%i],\n"
+        "  responsive: true,\n"
+        "  scaleStepWidth : [%i]\n"
+        "};\n"
+        "var ctx = document.getElementById('%s').getContext('2d');\n"
+        "var reportChart = new Chart(ctx).Bar(data, options);\n"
+        "</script>\n";
+
+    double steps = 10.0;
+    double scaleStepWidth = 1;
+    double maxValue = 0.0;
+    double minValue = 0.0;
+
+    wxString datasets = "";
+    for (const auto& entry : data)
+    {
+        wxString values = "";
+
+        for (const auto& value : entry.amountList)
+        {
+            values += wxString::Format("%.2f,", value);
+            maxValue = std::max(value, maxValue);
+            minValue = std::min(value, minValue);
+        }
+
+        datasets += wxString::Format(data_item, entry.color, entry.color, entry.color, values, entry.label, (wxString)(entry.isLine ? "Line" : ""));
+    }
+
+    scaleStepWidth = ceil((maxValue - minValue) / steps);
+    // Compute chart spacing and interval
+    if (scaleStepWidth <= 1.0)
+        scaleStepWidth = 1.0;
+    else {
+        double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
+        if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
+    }
+
+    if (minValue < 0) {
+        minValue = -(ceil(std::abs(minValue) / scaleStepWidth) * scaleStepWidth);
+    }
+
+    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
+    this->addText(wxString::Format(js, labels, datasets, (int)minValue, (int)steps, (int)scaleStepWidth, id));
+}
+
 const wxString mmHTMLBuilder::getHTMLText() const
 {
     return html_;

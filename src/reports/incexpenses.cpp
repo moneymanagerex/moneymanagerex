@@ -219,6 +219,37 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             incomeExpensesStats[idx].second += transaction.TRANSAMOUNT * convRate;
     }
 
+    ValueTrioList vtl_income, vtl_expenses, vtl_difference;
+    std::vector<ValueTrioList> valueList;
+    wxString labels = "";
+
+    vtl_income.color = "rgba(151,187,205,0.5)";
+    vtl_income.label = _("Income");
+    vtl_income.isLine = false;
+
+    vtl_expenses.color = "rgba(220,66,66,0.5)";
+    vtl_expenses.label = _("Expenses");
+    vtl_expenses.isLine = false;
+
+    vtl_difference.color = "rgba(66,220,66,1)";
+    vtl_difference.label = _("Difference");
+    vtl_difference.isLine = true;
+
+    for (const auto &stats : incomeExpensesStats)
+    {
+        vtl_income.amountList.push_back(stats.second.first);
+        vtl_expenses.amountList.push_back(stats.second.second);
+        vtl_difference.amountList.push_back(stats.second.first - stats.second.second);
+        wxString year = wxString() << (int) (stats.first / 100);
+        wxString month = wxGetTranslation(wxDateTime::GetMonthName((wxDateTime::Month)(stats.first % 100)));
+        labels += (wxString)"'" + year + (wxString)" " + month + (wxString)"',";
+    }
+
+    valueList.push_back(vtl_income);
+    valueList.push_back(vtl_expenses);
+    valueList.push_back(vtl_difference);
+
+
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
@@ -229,6 +260,10 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.addLineBreak();
     hb.addDivRow();
     hb.addDivCol17_67();
+
+    hb.addDivRow();
+    hb.addBarLineChart(labels, valueList, "BarLineChart", 800, 400);
+    hb.endDiv();
 
     hb.startSortTable();
     {
@@ -274,7 +309,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.endTable();
     hb.endDiv();
     hb.endDiv();
-    hb.endDiv(); 
+    hb.endDiv();
     hb.end();
 
     return hb.getHTMLText();
