@@ -24,15 +24,14 @@ Install required packages. You can choose which compiler you want to use:
 ## Download Source
 	git clone https://github.com/moneymanagerex/moneymanagerex
 	cd moneymanagerex
-	git checkout cmake
 	git submodule update --init
 	
 ## Compile
-    If you want build the project with debug create debug dir in build directory
-    and replace cmake flag
-    -DCMAKE_BUILD_TYPE=Release
-    with
-     -DCMAKE_BUILD_TYPE=Debug
+If you want build the project with debug create debug dir in build directory
+and replace cmake flag
+`-DCMAKE_BUILD_TYPE=Release`
+with
+`-DCMAKE_BUILD_TYPE=Debug`
 
     cd build
     mkdir release
