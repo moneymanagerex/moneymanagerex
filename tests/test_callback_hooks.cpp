@@ -119,7 +119,7 @@ void Test_Callback_Hooks::test_Init_Payee_Data()
 Test_Hooks::Test_Hooks()
 {
     msg_header = "Test Result: Test_Model_Currency ";
-    wxSQLite3Hook::wxSQLite3Hook();
+    //wxSQLite3Hook::wxSQLite3Hook();
 }
 
 bool Test_Hooks::CommitCallback()

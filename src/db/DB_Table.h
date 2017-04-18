@@ -29,7 +29,7 @@
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
 #include "cajun/json/writer.h"
-#include "html_template.h"
+#include "cgitemplate/html_template.h"
 using namespace tmpl;
 
 class wxString;

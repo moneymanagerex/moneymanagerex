@@ -16,7 +16,6 @@ ARCHITECTURE="amd64"
 
 # Specify the build version of mmex
 RELEASE_DIR="$HOME/release"
-BUILD_DIR="compile"
 
 PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
 
@@ -24,22 +23,14 @@ PACKAGE_NAME="mmex-$MMEX_VERSION-$ARCHITECTURE"
 cd ../..
 MMEX_DIR=`pwd`
 
-./bootstrap.sh
-if [ $? -gt 0 ]; then
-    echo "ERROR!"
-    exit 1
-fi
-
-mkdir $BUILD_DIR
-cd $BUILD_DIR
 rm -rf "$RELEASE_DIR/$PACKAGE_NAME"
-../configure --prefix="$RELEASE_DIR/$PACKAGE_NAME/usr"
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=RELEASE -DBuildTests=OFF
 
 if [ $? -gt 0 ]; then
     echo "ERROR!"
     exit 1
 fi
-make && make install
+make DESTDIR="$RELEASE_DIR/$PACKAGE_NAME" install
 if [ $? -gt 0 ]; then
     echo "ERROR!"
     exit 1
@@ -60,11 +51,6 @@ cp "usr/share/doc/mmex/contrib.txt" "usr/share/doc/mmex/copyright"
 sed -i "s/See the GNU General Public License for more details./A copy of the GPLv2 can be found in \"\/usr\/share\/common-licenses\/GPL-2\"/g" "usr/share/doc/mmex/copyright"
 sed -i 's/\r//g' "usr/share/doc/mmex/copyright"
 
-#Remove OSX files
-rm "usr/share/mmex/mmdb.icns"
-rm "usr/share/mmex/mmex.icns"
-rm "usr/share/mmex/Info.plist"
-
 #Calculate installed size
 INSTALLED_SIZE=$(du -sb $RELEASE_DIR/ | cut -f1)
 INSTALLED_SIZE=`expr $INSTALLED_SIZE / 1024`
@@ -82,6 +68,28 @@ Depends: $MMEX_DEB_DEPENDS
 Installed-Size: $INSTALLED_SIZE
 Maintainer: MoneyManagerEx <$MMEX_EMAIL>
 Description: $MMEX_DESCRIPTION" > "DEBIAN/control"
+
+#Make sure permissions are coorect
+chmod 0755 usr
+chmod 0755 usr/bin
+chmod 0755 usr/share
+chmod 0755 usr/share/applications
+chmod 0755 usr/share/doc
+chmod 0755 usr/share/doc/mmex
+chmod 0755 usr/share/doc/mmex/help
+chmod 0755 usr/share/doc/mmex/help/french
+chmod 0755 usr/share/doc/mmex/help/polish
+chmod 0755 usr/share/doc/mmex/help/russian
+chmod 0755 usr/share/doc/mmex/help/spanish
+chmod 0755 usr/share/doc/mmex/help/hungarian
+chmod 0755 usr/share/doc/mmex/help/italian
+chmod 0755 usr/share/icons
+chmod 0755 usr/share/icons/hicolor
+chmod 0755 usr/share/icons/hicolor/scalable
+chmod 0755 usr/share/icons/hicolor/scalable/apps
+chmod 0755 usr/share/mmex
+chmod 0755 usr/share/mmex/po
+chmod 0755 usr/share/mmex/res
 
 #Generate md5sums
 md5sum `find . -type f | grep -v '^[.]/DEBIAN/'` > DEBIAN/md5sums
