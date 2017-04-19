@@ -46,6 +46,9 @@ makefile
 /build/msw-vc-2017/.vs
 /mmex_release
 
+# JetBrains CLion IDE
+.idea
+
 # Extra files used for testing
 /build/msw_tests-vc-2013e/Win32
 /build/msw_tests-vc-2013e/x64

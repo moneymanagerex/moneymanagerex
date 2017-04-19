@@ -16,37 +16,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifdef __WXMSW__
-#define WIN32_LEAN_AND_MEAN
-#endif
-
 #include "constants.h"
 #include <wx/string.h>
 #include <wx/filefn.h>
 #include "lua.hpp"
 #include "mongoose/mongoose.h"
 
-/*************************************************************************
- MMEX_VERSION
- Update the version definition for the program as follows:
- Version Format = MAJOR.MINOR.PATCH, increment the:
- 1. MAJOR version when you make incompatible API changes,
- 2. MINOR version when you add functionality in a backwards-compatible manner, and
- 3. PATCH version when you make backwards-compatible bug fixes.
- Ref: http://semver.org
-
- Alpha, Beta, RC  = -1 (Stable) won't add any suffix
- Alpha, Beta, RC  = 0 (Unstable) will add suffix to version without number
- Alpha, Beta, RC  > 0 (Unstable) will add suffix to version with number
-
- For Internet Format for update checking read in util.cpp
- *************************************************************************/
-const int mmex::version::Major = 1;
-const int mmex::version::Minor = 3;
-const int mmex::version::Patch = 1;
-const int mmex::version::Alpha = -1;
-const int mmex::version::Beta  = -1;
-const int mmex::version::RC    = -1;
 const wxString mmex::version::string = mmex::version::generateProgramVersion(mmex::version::Major, mmex::version::Minor, mmex::version::Patch
     ,mmex::version::Alpha, mmex::version::Beta, mmex::version::RC);
 
