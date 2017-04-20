@@ -15,7 +15,7 @@ https://mlocati.github.io/articles/gettext-iconv-windows.html
 	git checkout tags/v3.1.0
 	cd build/msw
 
-Choose your architecture and via visual studio developer console run command
+Choose your architecture and via [visual studio developer console](https://msdn.microsoft.com/en-us/library/ms229859(v=vs.110).aspx) run command
 from *Native Tools Command Prompt for VS 2017* or *Developer Command Prompt for VS 2017* for 32 bit
 
 	nmake /f makefile.vc TARGET_CPU=Win32 BUILD=release
@@ -26,7 +26,6 @@ or 64 bit
 ## Download Source
 	git clone https://github.com/moneymanagerex/moneymanagerex
 	cd moneymanagerex
-	git checkout cmake
 	git submodule update --init
 	
 ## Compile
