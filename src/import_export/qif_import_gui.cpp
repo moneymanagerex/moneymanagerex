@@ -333,7 +333,7 @@ void mmQIFImportDialog::fillControls()
 bool mmQIFImportDialog::mmReadQIFFile()
 {
     int numLines = 0;
-    std::unordered_map<wxString, wxString> date_formats_temp = g_date_formats_map;
+    std::map<wxString, wxString> date_formats_temp = g_date_formats_map;
     vQIF_trxs_.clear();
     m_QIFaccounts.clear();
     m_QIFcategoryNames.clear();
@@ -657,11 +657,12 @@ void mmQIFImportDialog::refreshTabs(int tabs)
     }
 }
 
-void mmQIFImportDialog::parseDate(const wxString &dateStr, std::unordered_map<wxString, wxString> &date_formats_temp)
+void mmQIFImportDialog::parseDate(const wxString &dateStr
+    , std::map<wxString, wxString> &date_formats_temp)
 {
     if (date_formats_temp.size() == 1) return;
     wxArrayString invalidMask;
-    const std::unordered_map<wxString, wxString> date_formats = date_formats_temp;
+    const std::map<wxString, wxString> date_formats = date_formats_temp;
     for (const auto& date_mask : date_formats)
     {
         const wxString mask = date_mask.first;
