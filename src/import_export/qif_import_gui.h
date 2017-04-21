@@ -71,7 +71,7 @@ private:
     void saveSplit();
     void getDateMask();
     void refreshTabs(int tabs);
-    void parseDate(const wxString &dateStr, std::unordered_map<wxString, wxString> &date_formats_temp);
+    void parseDate(const wxString &dateStr, std::map<wxString, wxString> &date_formats_temp);
 
     //QIF paragraphs represented like maps type = data
     std::vector <std::unordered_map <int, wxString> > vQIF_trxs_;
