@@ -7,12 +7,30 @@ PROJECT(MoneyManagerEx)
 # Name of the resulted binary
 SET(PROJECT_TARGET_BIN "mmex")
 
+# ---------------------------------------------------------------------------
 # Semantic versioning
-# By setting application version here the CMake can transfer this variables
-# to other files where their name are similar (see bellow)
+# Ref: http://semver.org
+
+# MMEX_VERSION - Format: MAJOR.MINOR.PATCH
+# Update the version definition for the program as follows:
+# 1. MAJOR version when incompatible API changes are made.
+# 2. MINOR version adding functionality in a backwards-compatible manner.
+# 3. PATCH version makeing backwards-compatible bug fixes.
+
+# Alpha, Beta, RC  = -1 (Stable) won't add any suffix
+# Alpha, Beta, RC  = 0 (Unstable) will add suffix to version without number
+# Alpha, Beta, RC  > 0 (Unstable) will add suffix to version with number
+# ---------------------------------------------------------------------------
+# By setting the application version here, CMake will transfer the variable
+# values to the corresponding variable names in the following files:
+# ./src/constant.h
+# ./appveyor.yml
+# ./travis.yml
+# ---------------------------------------------------------------------------
 SET(MoneyManagerEx_VERSION_MAJOR 1)
 SET(MoneyManagerEx_VERSION_MINOR 3)
 SET(MoneyManagerEx_VERSION_PATCH 3)
+
 SET(MoneyManagerEx_VERSION "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VERSION_MINOR}.${MoneyManagerEx_VERSION_PATCH}")
 
 # Passing CMake variables (specificaly current version numbers) to files

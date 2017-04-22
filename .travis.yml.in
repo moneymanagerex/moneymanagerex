@@ -1,8 +1,10 @@
 #----------------------------------------------------------------------------
-# WARNING: File .travis.yml is produced by CMake. If you want to make
+# WARNING: The file travis.yml is produced by CMake. If you want to make
 #          some changes in this file please use the templated version
-#          .travis.yml.in and rerun the cmake to produce refreshed
-#          version of .travis.yml
+#          travis.yml.in and rerun cmake to produce a refreshed
+#          version of travis.yml
+#
+# Note:    MMEX version changes are made in the file: ./CMakeLists.txt
 #----------------------------------------------------------------------------
 
 language: cpp

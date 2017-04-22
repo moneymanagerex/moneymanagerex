@@ -1,8 +1,10 @@
 #----------------------------------------------------------------------------
-# WARNING: File appveyor.yml is produced by CMake. If you want to make
+# WARNING: The file appveyor.yml is produced by CMake. If you want to make
 #          some changes in this file please use the templated version
-#          appveyor.yml.in and rerun the cmake to produce refreshed
+#          appveyor.yml.in and rerun cmake to produce a refreshed
 #          version of appveyor.yml
+#
+# Note:    MMEX version changes are made in the file: ./CMakeLists.txt
 #----------------------------------------------------------------------------
 
 version: 1.3.{build}
