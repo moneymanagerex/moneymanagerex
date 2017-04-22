@@ -18,6 +18,9 @@ Platforms
 [![Download Money Manager Ex From Sourceforge](https://img.shields.io/sourceforge/dm/moneymanagerex.svg?label=Sourceforge)](https://sourceforge.net/projects/moneymanagerex/files/latest/download)
 ![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg?label=GithubAllReleases)
 ![Github latest Release](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/latest/total.svg?label=GithubLatestRelease)
+<a href="https://packagecloud.io/moneymanagerex/moneymanagerex" title="DEB, RPM Repository | packagecloud">
+	<img alt="Private Maven, RPM, DEB, PyPi and RubyGem Repository | packagecloud" height="24" src="https://packagecloud.io/images/packagecloud-badge.png" width="82" />
+</a>
 
 
 ### MMEX is mainly written in C++11 and built on:
