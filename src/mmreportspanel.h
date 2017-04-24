@@ -73,6 +73,10 @@ private:
     bool cleanup_;
     bool cleanupmem_;
     wxString htmlreport_;
+
+	void OnPrevReport(wxCommandEvent& event);
+	void OnNextReport(wxCommandEvent& event);
+
 public:
     mmGUIFrame *m_frame;
 
@@ -82,7 +86,9 @@ public:
         ID_CHOICE_ACCOUNTS,
         ID_CHOICE_START_DATE,
         ID_CHOICE_END_DATE,
-    };
+		ID_PREV_REPORT,
+		ID_NEXT_REPORT,
+	};
 
 };
 
