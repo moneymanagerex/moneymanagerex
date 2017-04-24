@@ -102,9 +102,9 @@ wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
     EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
     EVT_DATE_CHANGED(wxID_ANY, mmReportsPanel::OnStartEndDateChanged)
-	EVT_BUTTON(ID_PREV_REPORT, mmReportsPanel::OnPrevReport)
-	EVT_BUTTON(ID_NEXT_REPORT, mmReportsPanel::OnNextReport)
-	wxEND_EVENT_TABLE()
+    EVT_BUTTON(ID_PREV_REPORT, mmReportsPanel::OnPrevReport)
+    EVT_BUTTON(ID_NEXT_REPORT, mmReportsPanel::OnNextReport)
+    wxEND_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
     mmPrintableBase* rb, bool cleanupReport, wxWindow *parent, mmGUIFrame* frame,
@@ -356,8 +356,8 @@ void mmReportsPanel::CreateControls()
             rb_->date_range(nullptr, *reinterpret_cast<int*>(m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
-			itemBoxSizerHeader->AddSpacer(30);
-		}
+            itemBoxSizerHeader->AddSpacer(30);
+        }
 
         if (rp & rb_->RepParams::ACCOUNTS_LIST)
         {
@@ -373,18 +373,18 @@ void mmReportsPanel::CreateControls()
             m_accounts->SetSelection(rb_->getAccountSelection());
 
             itemBoxSizerHeader->Add(m_accounts, 0, wxALL, 1);
-			itemBoxSizerHeader->AddSpacer(30);
-		}
+            itemBoxSizerHeader->AddSpacer(30);
+        }
     }
 
-	itemBoxSizerHeader->AddSpacer(60);
-	wxButton *btnPrev = new wxButton(itemPanel3, ID_PREV_REPORT, _("Previous Report"));
-	btnPrev->SetToolTip(_("Previous Report"));
-	itemBoxSizerHeader->Add(btnPrev, 0, wxRIGHT, 5);
-	itemBoxSizerHeader->AddSpacer(5);
-	wxButton *btnNext = new wxButton(itemPanel3, ID_NEXT_REPORT, _("Next Report"));
-	btnNext->SetToolTip(_("Next Report"));
-	itemBoxSizerHeader->Add(btnNext, 0, wxRIGHT, 5);
+    itemBoxSizerHeader->AddSpacer(60);
+    wxButton *btnPrev = new wxButton(itemPanel3, ID_PREV_REPORT, _("Previous Report"));
+    btnPrev->SetToolTip(_("Previous Report"));
+    itemBoxSizerHeader->Add(btnPrev, 0, wxRIGHT, 5);
+    itemBoxSizerHeader->AddSpacer(5);
+    wxButton *btnNext = new wxButton(itemPanel3, ID_NEXT_REPORT, _("Next Report"));
+    btnNext->SetToolTip(_("Next Report"));
+    itemBoxSizerHeader->Add(btnNext, 0, wxRIGHT, 5);
 
     browser_ = wxWebView::New(this, mmID_BROWSER);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
@@ -471,10 +471,10 @@ void mmReportsPanel::OnStartEndDateChanged(wxDateEvent& /*event*/)
 
 void mmReportsPanel::OnPrevReport(wxCommandEvent& event)
 {
-	m_frame->PrevReport();
+    m_frame->PrevReport();
 }
 
 void mmReportsPanel::OnNextReport(wxCommandEvent& event)
 {
-	m_frame->NextReport();
+    m_frame->NextReport();
 }
