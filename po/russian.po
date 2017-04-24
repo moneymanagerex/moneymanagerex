@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2017-01-29 14:02+0300\n"
-"PO-Revision-Date: 2017-01-29 14:30+0300\n"
+"PO-Revision-Date: 2017-04-24 18:33+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-03-10 20:08+0000\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
@@ -203,11 +203,11 @@ msgstr "Мин. баланс:"
 
 #: src/accountdialog.cpp:324
 msgid "Credit"
-msgstr "Кредитная карта"
+msgstr "Кредит"
 
 #: src/accountdialog.cpp:332
 msgid "Credit Limit:"
-msgstr "Средитный лимит:"
+msgstr "Кредитный лимит:"
 
 #: src/accountdialog.cpp:337
 msgid "Interest Rate:"
