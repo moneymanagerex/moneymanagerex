@@ -10,10 +10,8 @@ https://mlocati.github.io/articles/gettext-iconv-windows.html
 
 ## Download wxWidgets
 
-	git clone https://github.com/wxWidgets/wxWidgets.git %WXWIN%
-	cd %WXWIN%
-	git checkout tags/v3.1.0
-	cd build/msw
+    git clone -b "v3.1.0" https://github.com/wxWidgets/wxWidgets.git %WXWIN%
+	cd %WXWIN%\build\msw
 
 Choose your architecture and via [visual studio developer console](https://msdn.microsoft.com/en-us/library/ms229859(v=vs.110).aspx) run command
 from *Native Tools Command Prompt for VS 2017* or *Developer Command Prompt for VS 2017* for 32 bit
@@ -24,10 +22,8 @@ or 64 bit
 	nmake /f makefile.vc TARGET_CPU=x64 BUILD=release
 
 ## Download Source
-	git clone https://github.com/moneymanagerex/moneymanagerex
-	cd moneymanagerex
-	git submodule update --init
-	
+	git clone --recursive https://github.com/moneymanagerex/moneymanagerex
+
 ## Compile
 If you want build the project with debug create debug dir in build directory
 and replace cmake flag
@@ -35,7 +31,7 @@ and replace cmake flag
 with
 `-DCMAKE_BUILD_TYPE=Debug`
 
-    cd build
+    cd moneymanagerex\build
     mkdir release
     cd release
     cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ../../
