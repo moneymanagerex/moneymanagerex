@@ -76,8 +76,6 @@ public:
     std::vector<WebsiteNews> g_WebsiteNewsList;
 
     void RefreshNavigationTree();
-    void PrevReport();
-    void NextReport();
 
 private:
     std::vector<const ModelBase*> m_all_models;
@@ -94,9 +92,6 @@ private:
 
     /* There are 2 kinds of reports */
     bool activeReport_;
-
-    wxTreeItemId m_reports;
-    wxTreeItemId getTreeItemforReport(const wxTreeItemId& itemID) const;
 
     /* Repeat Transactions automatic processing delay */
     wxTimer autoRepeatTransactionsTimer_;

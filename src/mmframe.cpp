@@ -734,11 +734,11 @@ void mmGUIFrame::updateNavTreeControl()
         m_nav_tree_ctrl->SetItemData(bYear, new mmTreeItemData(id, true));
     }
 
-    m_reports = m_nav_tree_ctrl->AppendItem(root, _("Reports"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemBold(m_reports, true);
-    m_nav_tree_ctrl->SetItemData(m_reports, new mmTreeItemData("Reports"));
+    wxTreeItemId reports = m_nav_tree_ctrl->AppendItem(root, _("Reports"), img::PIECHART_PNG, img::PIECHART_PNG);
+    m_nav_tree_ctrl->SetItemBold(reports, true);
+    m_nav_tree_ctrl->SetItemData(reports, new mmTreeItemData("Reports"));
 
-    this->updateReportNavigation(m_reports, have_budget);
+    this->updateReportNavigation(reports, have_budget);
 
     ///////////////////////////////////////////////////////////////////
 
@@ -2917,80 +2917,4 @@ void mmGUIFrame::OnHideShowReport(wxCommandEvent& event)
     Option::instance().HideReport(report, !Option::instance().HideReport(report));
     updateNavTreeControl();
     createHomePage();
-}
-
-void mmGUIFrame::PrevReport()
-{
-    wxTreeItemId item = getTreeItemforReport(m_reports);
-    if (item.IsOk())
-    {
-        wxTreeItemId prevItem = m_nav_tree_ctrl->GetPrevSibling(item);
-        if (!prevItem.IsOk())
-        {
-            wxTreeItemId parent = m_nav_tree_ctrl->GetItemParent(item);
-            if (parent != m_reports)
-            {
-                prevItem = m_nav_tree_ctrl->GetPrevSibling(parent);
-                if (prevItem.IsOk())
-                {
-                    if (m_nav_tree_ctrl->ItemHasChildren(prevItem))
-                        prevItem = m_nav_tree_ctrl->GetLastChild(prevItem);
-                }
-            }
-        }
-        if (prevItem.IsOk())
-            m_nav_tree_ctrl->SelectItem(prevItem, true);
-    }
-}
-
-void mmGUIFrame::NextReport()
-{
-    wxTreeItemId item = getTreeItemforReport(m_reports);
-    if (item.IsOk())
-    {
-        wxTreeItemId nextItem = m_nav_tree_ctrl->GetNextSibling(item);
-        if (!nextItem.IsOk())
-        {
-            wxTreeItemId parent = m_nav_tree_ctrl->GetItemParent(item);
-            if (parent != m_reports)
-            {
-                nextItem = m_nav_tree_ctrl->GetNextSibling(parent);
-                if (nextItem.IsOk())
-                {
-                    if (m_nav_tree_ctrl->ItemHasChildren(nextItem))
-                    {
-                        wxTreeItemIdValue cookie;
-                        nextItem = m_nav_tree_ctrl->GetFirstChild(nextItem, cookie);
-                    }
-                }
-            }
-        }
-        if (nextItem.IsOk())
-            m_nav_tree_ctrl->SelectItem(nextItem, true);
-    }
-}
-
-wxTreeItemId mmGUIFrame::getTreeItemforReport(const wxTreeItemId& item) const
-{
-    wxTreeItemId searchItem = item;
-    while (searchItem.IsOk())
-    {
-        if (m_nav_tree_ctrl->ItemHasChildren(searchItem))
-        {
-            wxTreeItemIdValue cookie;
-            wxTreeItemId childitem = m_nav_tree_ctrl->GetFirstChild(searchItem, cookie);
-            wxTreeItemId item2 = getTreeItemforReport(childitem);
-            if (item2.IsOk())
-                return item2;
-        }
-        mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(searchItem));
-        mmReportsPanel* rb = dynamic_cast<mmReportsPanel*>(panelCurrent_);
-        if (iData && rb)
-        {
-            if (iData->get_report() == rb->getPrintableBase())
-                return searchItem;
-        }
-        searchItem = m_nav_tree_ctrl->GetNextSibling(searchItem);
-    }
-    return searchItem;
 }
