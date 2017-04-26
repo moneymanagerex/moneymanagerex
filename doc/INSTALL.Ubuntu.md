@@ -34,9 +34,7 @@ If you installed CLang furthermore you need to change your default compiler via:
     sudo update-alternatives --set c++ /usr/bin/clang++
 
 ## Download Source
-	git clone https://github.com/moneymanagerex/moneymanagerex
-	cd moneymanagerex
-	git submodule update --init
+	git clone --recursive https://github.com/moneymanagerex/moneymanagerex
 	
 ## Compile
 If you want build the project with debug create debug dir in build directory
@@ -45,7 +43,7 @@ and replace cmake flag
 with
 `-DCMAKE_BUILD_TYPE=Debug`
 
-    cd build
+    cd moneymanagerex/build
     mkdir release
     cd release
     cmake -DCMAKE_BUILD_TYPE=Release ../../

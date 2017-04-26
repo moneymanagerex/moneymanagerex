@@ -26,6 +26,7 @@ SET(PROJECT_TARGET_BIN "mmex")
 # ./src/constant.h
 # ./appveyor.yml
 # ./travis.yml
+# ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 SET(MoneyManagerEx_VERSION_MAJOR 1)
 SET(MoneyManagerEx_VERSION_MINOR 3)
@@ -48,6 +49,11 @@ CONFIGURE_FILE(
 CONFIGURE_FILE(
         "${PROJECT_SOURCE_DIR}/src/constants.h.in"
         "${PROJECT_SOURCE_DIR}/src/constants.h"
+)
+# VS resource script
+CONFIGURE_FILE(
+        "${PROJECT_SOURCE_DIR}/resources/mmex.rc.in"
+        "${PROJECT_SOURCE_DIR}/resources/mmex.rc"
 )
 
 OPTION(BuildTests "Whether to build automatic unit tests" OFF)
