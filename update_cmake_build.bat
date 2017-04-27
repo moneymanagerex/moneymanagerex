@@ -31,7 +31,7 @@ copy ".\readme.*"  %mmex_build_dir%
 @echo Updating Help files for: %current_build_type%
 @echo ------------------------------------------------------------------------
 if not exist %mmex_build_dir%\help mkdir %mmex_build_dir%\help
-xcopy /s ".\docs\*.*"                   "%mmex_build_dir%\help"
+xcopy /Y /I /S ".\docs\*.*"                   "%mmex_build_dir%\help"
 @echo.
 @echo ------------------------------------------------------------------------
 @echo Copying Language files for: %current_build_type%
