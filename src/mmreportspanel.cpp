@@ -304,6 +304,15 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->AddSpacer(5);
             itemBoxSizerHeader->Add(m_end_date, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(30);
+
+            wxButton *btnPrev = new wxButton(itemPanel3, ID_PREV_REPORT, _("Previous Period"));
+            btnPrev->SetToolTip(_("Previous Period"));
+            itemBoxSizerHeader->Add(btnPrev, 0, wxRIGHT, 5);
+            itemBoxSizerHeader->AddSpacer(5);
+            wxButton *btnNext = new wxButton(itemPanel3, ID_NEXT_REPORT, _("Next Period"));
+            btnNext->SetToolTip(_("Next Period"));
+            itemBoxSizerHeader->Add(btnNext, 0, wxRIGHT, 5);
+            itemBoxSizerHeader->AddSpacer(30);
         }
         else if (rp & rb_->RepParams::SINGLE_DATE)
         {
@@ -317,6 +326,15 @@ void mmReportsPanel::CreateControls()
             m_end_date = nullptr;
 
             itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
+            itemBoxSizerHeader->AddSpacer(30);
+
+            wxButton *btnPrev = new wxButton(itemPanel3, ID_PREV_REPORT, _("Previous Period"));
+            btnPrev->SetToolTip(_("Previous Period"));
+            itemBoxSizerHeader->Add(btnPrev, 0, wxRIGHT, 5);
+            itemBoxSizerHeader->AddSpacer(5);
+            wxButton *btnNext = new wxButton(itemPanel3, ID_NEXT_REPORT, _("Next Period"));
+            btnNext->SetToolTip(_("Next Period"));
+            itemBoxSizerHeader->Add(btnNext, 0, wxRIGHT, 5);
             itemBoxSizerHeader->AddSpacer(30);
         }
         else if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
@@ -357,6 +375,15 @@ void mmReportsPanel::CreateControls()
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(30);
+
+            wxButton *btnPrev = new wxButton(itemPanel3, ID_PREV_REPORT, _("Previous Period"));
+            btnPrev->SetToolTip(_("Previous Period"));
+            itemBoxSizerHeader->Add(btnPrev, 0, wxRIGHT, 5);
+            itemBoxSizerHeader->AddSpacer(5);
+            wxButton *btnNext = new wxButton(itemPanel3, ID_NEXT_REPORT, _("Next Period"));
+            btnNext->SetToolTip(_("Next Period"));
+            itemBoxSizerHeader->Add(btnNext, 0, wxRIGHT, 5);
+            itemBoxSizerHeader->AddSpacer(30);
         }
 
         if (rp & rb_->RepParams::ACCOUNTS_LIST)
@@ -376,15 +403,6 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->AddSpacer(30);
         }
     }
-
-    itemBoxSizerHeader->AddSpacer(60);
-    wxButton *btnPrev = new wxButton(itemPanel3, ID_PREV_REPORT, _("Previous Report"));
-    btnPrev->SetToolTip(_("Previous Report"));
-    itemBoxSizerHeader->Add(btnPrev, 0, wxRIGHT, 5);
-    itemBoxSizerHeader->AddSpacer(5);
-    wxButton *btnNext = new wxButton(itemPanel3, ID_NEXT_REPORT, _("Next Report"));
-    btnNext->SetToolTip(_("Next Report"));
-    itemBoxSizerHeader->Add(btnNext, 0, wxRIGHT, 5);
 
     browser_ = wxWebView::New(this, mmID_BROWSER);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
@@ -471,10 +489,20 @@ void mmReportsPanel::OnStartEndDateChanged(wxDateEvent& /*event*/)
 
 void mmReportsPanel::OnPrevReport(wxCommandEvent& event)
 {
-    m_frame->PrevReport();
+    int curSel = m_date_ranges->GetCurrentSelection();
+    if (curSel > 0)
+    {
+        m_date_ranges->SetSelection(curSel - 1);
+        OnDateRangeChanged(event);
+    }
 }
 
 void mmReportsPanel::OnNextReport(wxCommandEvent& event)
 {
-    m_frame->NextReport();
+    int curSel = m_date_ranges->GetCurrentSelection();
+    if (curSel + 1 < static_cast<int>(m_date_ranges->GetStrings().GetCount()))
+    {
+        m_date_ranges->SetSelection(curSel + 1);
+        OnDateRangeChanged(event);
+    }
 }
