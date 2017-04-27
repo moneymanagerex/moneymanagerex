@@ -29,8 +29,11 @@ SET(PROJECT_TARGET_BIN "mmex")
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 SET(MoneyManagerEx_VERSION_MAJOR 1)
-SET(MoneyManagerEx_VERSION_MINOR 3)
-SET(MoneyManagerEx_VERSION_PATCH 3)
+SET(MoneyManagerEx_VERSION_MINOR 4)
+SET(MoneyManagerEx_VERSION_PATCH 0)
+SET(MoneyManagerEx_VERSION_ALPHA 0)
+SET(MoneyManagerEx_VERSION_BETA -1)
+SET(MoneyManagerEx_VERSION_RC -1)
 
 SET(MoneyManagerEx_VERSION "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VERSION_MINOR}.${MoneyManagerEx_VERSION_PATCH}")
 
@@ -265,8 +268,8 @@ INSTALL(FILES
         "${CMAKE_SOURCE_DIR}/README.TXT"
         DESTINATION "${INSTALL_DOC_DIR}")
 INSTALL(DIRECTORY
-        "${CMAKE_SOURCE_DIR}/doc/help"
-        DESTINATION "${INSTALL_DOC_DIR}")
+        "${CMAKE_SOURCE_DIR}/docs"
+        DESTINATION "${INSTALL_DOC_DIR}/help")
 INSTALL(FILES
         "${CMAKE_SOURCE_DIR}/resources/master.css"
         DESTINATION "${INSTALL_DOC_DIR}/help")

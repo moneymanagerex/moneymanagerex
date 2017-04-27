@@ -7,7 +7,7 @@ REM          Allows MMEX to be run successfilly within MSVC 2015 IDE
 REM --------------------------------------------------------------------------
 
 REM Current Build Types: Debug, Release
-set cmake_build_location=.\bin
+set cmake_build_location=.\build
 set current_build_type=Debug
 set pause_delay=60
 
@@ -16,7 +16,7 @@ REM This will collect the required files for existing build locations.
 REM --------------------------------------------------------------------------  
 :Update_Files
 set mmex_build_dir=%cmake_build_location%\%current_build_type%
-if not exist %mmex_build_dir% goto Next_Update
+if not exist %mmex_build_dir% mkdir %mmex_build_dir%
 @echo.
 @echo ------------------------------------------------------------------------
 @echo Collect MMEX Support files for: %mmex_build_dir%
@@ -31,12 +31,7 @@ copy ".\readme.*"  %mmex_build_dir%
 @echo Updating Help files for: %current_build_type%
 @echo ------------------------------------------------------------------------
 if not exist %mmex_build_dir%\help mkdir %mmex_build_dir%\help
-copy ".\doc\help\*.*"                   "%mmex_build_dir%\help"
-@echo.
-for /f %%d IN ('dir /A:D /B .\doc\help') do (
-    if not exist "%mmex_build_dir%\help\%%d" mkdir "%mmex_build_dir%\help\%%d"
-    copy ".\doc\help\%%d\*.*"  "%mmex_build_dir%\help\%%d"
-)
+xcopy /s ".\docs\*.*"                   "%mmex_build_dir%\help"
 @echo.
 @echo ------------------------------------------------------------------------
 @echo Copying Language files for: %current_build_type%
@@ -57,11 +52,17 @@ copy ".\resources\home_page.htt"       "%mmex_build_dir%\res"
 copy ".\3rd\ChartNew.js\ChartNew.js"   "%mmex_build_dir%\res"
 copy ".\3rd\sorttable.js\sorttable.js" "%mmex_build_dir%\res"
 
+@echo ------------------------------------------------------------------------
+@echo Creating CMake files for: %current_build_type%
+@echo ------------------------------------------------------------------------
+@echo cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=%current_build_type% ../../ > %mmex_build_dir%\cmake_init.bat
+
 REM Runtime files for x64 - MSCV_2015
 rem copy "C:\Windows\system32\msvcp140.dll"     %mmex_build_dir%
 rem copy "C:\Windows\system32\vcruntime140.dll" %mmex_build_dir%
 timeout /t %pause_delay%
 cls
+
 REM Work out what to do next.
 :Next_Update
 REM Continue from already processed, Debug
