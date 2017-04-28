@@ -81,6 +81,6 @@ bk-deps
 
 /release
 mmex.VC.db
+
 /build/Debug
 /build/Release
-/src/constants.h
