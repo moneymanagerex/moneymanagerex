@@ -268,7 +268,7 @@ INSTALL(FILES
         "${CMAKE_SOURCE_DIR}/README.TXT"
         DESTINATION "${INSTALL_DOC_DIR}")
 INSTALL(DIRECTORY
-        "${CMAKE_SOURCE_DIR}/docs"
+        "${CMAKE_SOURCE_DIR}/docs/"
         DESTINATION "${INSTALL_DOC_DIR}/help")
 INSTALL(FILES
         "${CMAKE_SOURCE_DIR}/resources/master.css"
