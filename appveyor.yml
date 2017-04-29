@@ -59,7 +59,7 @@ cache:
 - '%APPVEYOR_BUILD_FOLDER%\vc_x64_lib.zip'
 
 after_build:
-- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-1.3.3-win32.exe" -FileName "mmex-1.3.3-win32_build%appveyor_build_number%.exe"
-- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-1.3.3-win64.exe" -FileName "mmex-1.3.3-win64_build%appveyor_build_number%.exe"
-- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-1.3.3-win32.zip" -FileName "mmex-1.3.3-win32_portable_build%appveyor_build_number%.zip"
-- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-1.3.3-win64.zip" -FileName "mmex-1.3.3-win64_portable_build%appveyor_build_number%.zip"
+- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-1.4.0-win32.exe" -FileName "mmex-1.4.0-win32_build%appveyor_build_number%.exe"
+- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-1.4.0-win64.exe" -FileName "mmex-1.4.0-win64_build%appveyor_build_number%.exe"
+- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-1.4.0-win32.zip" -FileName "mmex-1.4.0-win32_portable_build%appveyor_build_number%.zip"
+- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-1.4.0-win64.zip" -FileName "mmex-1.4.0-win64_portable_build%appveyor_build_number%.zip"

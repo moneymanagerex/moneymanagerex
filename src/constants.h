@@ -76,12 +76,12 @@ const wxString getProgramDescription();
  *************************************************************************/
 namespace version
 {
-    const int Major = @MoneyManagerEx_VERSION_MAJOR@;
-    const int Minor = @MoneyManagerEx_VERSION_MINOR@;
-    const int Patch = @MoneyManagerEx_VERSION_PATCH@;
-    const int Alpha = @MoneyManagerEx_VERSION_ALPHA@;
-    const int Beta  = @MoneyManagerEx_VERSION_BETA@;
-    const int RC    = @MoneyManagerEx_VERSION_RC@;
+    const int Major = 1;
+    const int Minor = 4;
+    const int Patch = 0;
+    const int Alpha = 0;
+    const int Beta  = -1;
+    const int RC    = -1;
     extern const wxString string;
     extern const wxString generateProgramVersion
         (int vMajor, int vMinor, int vPatch, int vAlpha, int vBeta, int vRC);
