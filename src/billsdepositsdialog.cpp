@@ -390,7 +390,7 @@ void mmBDDialog::CreateControls()
 
     spinNextOccDate_ = new wxSpinButton( this, ID_DIALOG_BD_REPEAT_DATE_SPINNER
         , wxDefaultPosition, spinCtrlSize, spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
-    spinNextOccDate_->SetToolTip(_("Retard or advance the date of the 'next occurrence"));
+    spinNextOccDate_->SetToolTip(_("Retard or advance the date of the 'next occurrence'"));
 
     wxBoxSizer* dueDateDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     dueDateDateBoxSizer->Add(m_date_due, g_flagsH);
