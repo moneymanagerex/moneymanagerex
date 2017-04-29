@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 14:40+0300\n"
-"PO-Revision-Date: 2017-01-14 14:40+0300\n"
+"POT-Creation-Date: 2017-04-29 13:16+0300\n"
+"PO-Revision-Date: 2017-04-29 13:16+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Avi Markovitz <Avi.Markovitz@gmail.com>\n"
 "Language: he_IL\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2013-03-26 09:12+0000\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-Basepath: ../src\n"
@@ -58,56 +58,56 @@ msgstr "תרום"
 msgid "Buy us a coffee"
 msgstr "תזמין אותנו לקפה"
 
-#: aboutdialog.cpp:159
+#: aboutdialog.cpp:162
 #, c-format
 msgid "(DB v.%i)"
 msgstr "(DB v.%i)"
 
-#: aboutdialog.cpp:171
+#: aboutdialog.cpp:174
 msgid "About"
 msgstr "אודות"
 
-#: aboutdialog.cpp:176
+#: aboutdialog.cpp:179
 msgid "Developers"
 msgstr "מפתחים"
 
-#: aboutdialog.cpp:181
+#: aboutdialog.cpp:184
 msgid "Artwork"
 msgstr "גרפיקה"
 
-#: aboutdialog.cpp:186
+#: aboutdialog.cpp:189
 msgid "Sponsors"
 msgstr "נותני חסות"
 
-#: aboutdialog.cpp:191
+#: aboutdialog.cpp:194
 msgid "License"
 msgstr "רישיון"
 
-#: aboutdialog.cpp:196
+#: aboutdialog.cpp:199
 msgid "Privacy"
 msgstr "פרטיות"
 
-#: aboutdialog.cpp:234 accountdialog.cpp:373 appstartdialog.cpp:136
+#: aboutdialog.cpp:237 accountdialog.cpp:373 appstartdialog.cpp:136
 #: assetdialog.cpp:301 attachmentdialog.cpp:118 billsdepositsdialog.cpp:629
-#: budgetentrydialog.cpp:156 budgetyeardialog.cpp:116
-#: budgetyearentrydialog.cpp:126 currencydialog.cpp:208
+#: budgetentrydialog.cpp:156 budgetyeardialog.cpp:112
+#: budgetyearentrydialog.cpp:128 currencydialog.cpp:208
 #: customfieldeditdialog.cpp:170 customfieldlistdialog.cpp:98
-#: filtertransdialog.cpp:339 import_export/qif_export.cpp:219
-#: import_export/qif_export.cpp:242 import_export/qif_import_gui.cpp:304
+#: filtertransdialog.cpp:340 import_export/qif_export.cpp:213
+#: import_export/qif_export.cpp:236 import_export/qif_import_gui.cpp:306
 #: mmSimpleDialogs.cpp:51 mmSimpleDialogs.cpp:71 optiondialog.cpp:150
 #: payeedialog.cpp:125 relocatecategorydialog.cpp:111
 #: relocatepayeedialog.cpp:113 sharetransactiondialog.cpp:309
 #: splitdetailsdialog.cpp:151 splittransactionsdialog.cpp:170
-#: transdialog.cpp:516
+#: transactionsupdatedialog.cpp:213 transdialog.cpp:516
 msgid "&OK "
 msgstr "&אשר"
 
-#: accountdialog.cpp:86 mmframe.cpp:1443 mmframe.cpp:1636
+#: accountdialog.cpp:86 mmframe.cpp:1481 mmframe.cpp:1674
 #: wizard_newaccount.cpp:79 wizard_newaccount.cpp:86 wizard_newaccount.cpp:158
 msgid "New Account"
 msgstr "חשבון חדש"
 
-#: accountdialog.cpp:106 mmframe.cpp:1447
+#: accountdialog.cpp:106 mmframe.cpp:1485
 msgid "Edit Account"
 msgstr "ערוך חשבון"
 
@@ -140,18 +140,19 @@ msgstr "בחר מטבע"
 msgid "Favorite Account"
 msgstr "חשבון מועדף"
 
-#: accountdialog.cpp:249 assetdialog.cpp:249 assetspanel.cpp:68
+#: accountdialog.cpp:249 assetdialog.cpp:249 assetspanel.cpp:64
 #: billsdepositsdialog.cpp:596 billsdepositspanel.cpp:109
-#: filtertransdialog.cpp:304 import_export/qif_import_gui.cpp:95
-#: import_export/univcsvdialog.cpp:92 mmcheckingpanel.cpp:1001
+#: filtertransdialog.cpp:305 import_export/qif_import_gui.cpp:96
+#: import_export/univcsvdialog.cpp:92 mmcheckingpanel.cpp:1021
 #: reports/transactions.cpp:74 sharetransactiondialog.cpp:252
-#: stockdialog.cpp:269 stockspanel.cpp:103 transdialog.cpp:485
-#: usertransactionpanel.cpp:204 webappdialog.cpp:85
+#: stockdialog.cpp:269 stockspanel.cpp:103 transactionsupdatedialog.cpp:184
+#: transdialog.cpp:485 usertransactionpanel.cpp:205 webappdialog.cpp:85
 msgid "Notes"
 msgstr "הערות"
 
-#: accountdialog.cpp:259 optiondialog.cpp:134 db/DB_Table_Subcategory_V1.h:123
-#: db/DB_Table_Subcategory_V1.h:126 db/DB_Table_Subcategory_V1.h:142
+#: accountdialog.cpp:259 db/DB_Table_Subcategory_V1.h:125
+#: db/DB_Table_Subcategory_V1.h:128 db/DB_Table_Subcategory_V1.h:144
+#: optiondialog.cpp:134
 msgid "Others"
 msgstr "אחר"
 
@@ -302,7 +303,7 @@ msgstr "יתרת אשראי מינימלית. אפס כדי להשבית"
 msgid "Account Name "
 msgstr "שם חשבון "
 
-#: accountdialog.cpp:444 import_export/qif_import_gui.cpp:234
+#: accountdialog.cpp:444 import_export/qif_import_gui.cpp:236
 #: optionsettingsgeneral.cpp:92
 msgid "Currency"
 msgstr "מטבע"
@@ -316,8 +317,8 @@ msgstr "צלמית ברירת מחדל"
 msgid "Image #%i"
 msgstr "צלמית #%i"
 
-#: appstartdialog.cpp:47 mmframe.cpp:1769 mmframe.cpp:1811 mmframe.cpp:1832
-#: mmframe.cpp:1834 mmhelppanel.cpp:68
+#: appstartdialog.cpp:47 mmframe.cpp:1807 mmframe.cpp:1849 mmframe.cpp:1870
+#: mmframe.cpp:1872 mmhelppanel.cpp:69
 #, c-format
 msgid "%1$s - %2$s"
 msgstr "%1$s - %2$s"
@@ -373,15 +374,15 @@ msgstr "&צא "
 msgid "Open the previously opened database : %s"
 msgstr "פתח את מסד הנתונים שנפתח לאחרונה: %s"
 
-#: assetdialog.cpp:59 assetdialog.cpp:406 assetspanel.cpp:468
+#: assetdialog.cpp:59 assetdialog.cpp:406 assetspanel.cpp:506
 msgid "New Asset"
 msgstr "נכס חדש"
 
-#: assetdialog.cpp:63 assetspanel.cpp:482
+#: assetdialog.cpp:63 assetspanel.cpp:520
 msgid "Edit Asset"
 msgstr "ערוך נכס"
 
-#: assetdialog.cpp:67 assetdialog.cpp:89 assetspanel.cpp:472
+#: assetdialog.cpp:67 assetdialog.cpp:89 assetspanel.cpp:510
 msgid "Add Asset Transaction"
 msgstr "הוסף תנועת נכס"
 
@@ -393,8 +394,8 @@ msgstr "ערוך תנועת נכס"
 msgid "Asset Details"
 msgstr "פרטי הנכס"
 
-#: assetdialog.cpp:189 assetspanel.cpp:63 import_export/qif_import_gui.cpp:233
-#: import_export/qif_import_gui.cpp:246 import_export/qif_import_gui.cpp:257
+#: assetdialog.cpp:189 assetspanel.cpp:59 import_export/qif_import_gui.cpp:234
+#: import_export/qif_import_gui.cpp:248 import_export/qif_import_gui.cpp:259
 #: maincurrencydialog.cpp:71 payeedialog.cpp:63 reports/summarystocks.cpp:173
 msgid "Name"
 msgstr "שם"
@@ -403,13 +404,13 @@ msgstr "שם"
 msgid "Enter the name of the asset"
 msgstr "הזן את שם הנכס"
 
-#: assetdialog.cpp:197 assetspanel.cpp:64 import_export/qif_import_gui.cpp:89
+#: assetdialog.cpp:197 assetspanel.cpp:60 import_export/qif_import_gui.cpp:90
 #: import_export/univcsvdialog.cpp:86 maincurrencydialog.cpp:235
-#: maincurrencydialog.cpp:258 mmcheckingpanel.cpp:993
-#: model/Model_CustomField.cpp:29 reports/cashflow.cpp:261
-#: reports/summary.cpp:314 reports/transactions.cpp:67 stockdialog.cpp:302
-#: stockdialog.cpp:658 transdialog.cpp:377 usertransactionpanel.cpp:106
-#: webappdialog.cpp:78
+#: maincurrencydialog.cpp:258 mmcheckingpanel.cpp:1013 mmreportspanel.cpp:319
+#: model/Model_CustomField.cpp:29 reports/cashflow.cpp:243
+#: reports/summary.cpp:147 reports/transactions.cpp:67 stockdialog.cpp:302
+#: stockdialog.cpp:658 transactionsupdatedialog.cpp:106 transdialog.cpp:377
+#: usertransactionpanel.cpp:107 webappdialog.cpp:78
 msgid "Date"
 msgstr "תאריך"
 
@@ -425,7 +426,7 @@ msgstr "סוג נכס"
 msgid "Select type of asset"
 msgstr "בחר סוג נכס"
 
-#: assetdialog.cpp:215 import_export/qif_import_gui.cpp:94
+#: assetdialog.cpp:215 import_export/qif_import_gui.cpp:95
 #: maincurrencydialog.cpp:241 maincurrencydialog.cpp:265
 msgid "Value"
 msgstr "ערך"
@@ -447,6 +448,8 @@ msgid "% Rate"
 msgstr "% שער"
 
 #: assetdialog.cpp:243
+#, fuzzy, c-format
+#| msgid "Enter the rate at which the asset changes its value in % per year"
 msgid "Enter the rate at which the asset changes its value in % per year"
 msgstr "הזן באחוזים (%) את השיעור בו הנכס משנה את ערכו כל שנה "
 
@@ -466,7 +469,7 @@ msgstr "פרטי תנועה חדשה"
 msgid "Edit Transaction Details"
 msgstr "ערוך פרטי תנועה"
 
-#: assetdialog.cpp:302 constants.cpp:82 sharetransactiondialog.cpp:310
+#: assetdialog.cpp:302 constants.cpp:57 sharetransactiondialog.cpp:310
 msgid "&Cancel "
 msgstr "&בטל "
 
@@ -483,71 +486,77 @@ msgstr ""
 "לא נמצא חשבון לנכס.\n"
 "האם לייצןא חשבון נכס?"
 
-#: assetspanel.cpp:62 billsdepositspanel.cpp:95 mmcheckingpanel.cpp:992
+#: assetspanel.cpp:58 billsdepositspanel.cpp:95 mmcheckingpanel.cpp:1012
 #: stockspanel.cpp:91
 msgid "ID"
 msgstr "מספר מזהה"
 
-#: assetspanel.cpp:65 billsdepositsdialog.cpp:521 billsdepositspanel.cpp:102
-#: customfieldlistdialog.cpp:56 filtertransdialog.cpp:249
-#: import_export/qif_import_gui.cpp:92 mmhomepagepanel.cpp:787
-#: reports/budgetingperf.cpp:130 reports/incexpenses.cpp:129
-#: reports/transactions.cpp:72 splitdetailsdialog.cpp:113 transdialog.cpp:410
-#: usertransactionpanel.cpp:136 webappdialog.cpp:81
+#: assetspanel.cpp:61 billsdepositsdialog.cpp:521 billsdepositspanel.cpp:102
+#: customfieldlistdialog.cpp:56 filtertransdialog.cpp:250
+#: import_export/qif_import_gui.cpp:93 import_export/qif_import_gui.cpp:235
+#: mmhomepagepanel.cpp:787 reports/incexpenses.cpp:131
+#: reports/transactions.cpp:72 splitdetailsdialog.cpp:113
+#: transactionsupdatedialog.cpp:133 transdialog.cpp:410
+#: usertransactionpanel.cpp:137 webappdialog.cpp:81
 msgid "Type"
 msgstr "סוג"
 
-#: assetspanel.cpp:66 reports/summarystocks.cpp:177
+#: assetspanel.cpp:62 reports/summarystocks.cpp:177
 msgid "Initial Value"
 msgstr "ערך התחלתי"
 
-#: assetspanel.cpp:67 reports/summarystocks.cpp:147
+#: assetspanel.cpp:63 reports/summarystocks.cpp:147
 #: reports/summarystocks.cpp:181 stockdialog.cpp:264
 msgid "Current Value"
 msgstr "ערך נוכחי"
 
-#: assetspanel.cpp:97
+#: assetspanel.cpp:98
 msgid "&New Asset"
 msgstr "נ&כס חדש"
 
-#: assetspanel.cpp:99
+#: assetspanel.cpp:100
 msgid "D&uplicate Asset"
 msgstr "שכ&פל נכס"
 
-#: assetspanel.cpp:101
+#: assetspanel.cpp:102
 msgid "&Add Asset Transaction"
 msgstr "&הוסף תנועת נכס"
 
-#: assetspanel.cpp:102
+#: assetspanel.cpp:103
 msgid "&View Asset Transactions"
 msgstr "ה&צג תנועת נכס"
 
-#: assetspanel.cpp:103
+#: assetspanel.cpp:104
 msgid "&Open Asset Account"
 msgstr "&פתח חשבון נכס"
 
-#: assetspanel.cpp:105
+#: assetspanel.cpp:106
 msgid "&Edit Asset"
 msgstr "ע&רוך נכס"
 
-#: assetspanel.cpp:106
+#: assetspanel.cpp:107
 msgid "&Delete Asset"
 msgstr "מח&ק נכס"
 
-#: assetspanel.cpp:108 billsdepositspanel.cpp:408 mmcheckingpanel.cpp:1126
-#: mmframe.cpp:1155 payeedialog.cpp:370 stockspanel.cpp:148
+#: assetspanel.cpp:109 billsdepositspanel.cpp:408 mmcheckingpanel.cpp:1138
+#: mmframe.cpp:1178 payeedialog.cpp:370 stockspanel.cpp:148
 msgid "&Organize Attachments"
 msgstr "&נהל צרופות"
 
-#: assetspanel.cpp:200
+#: assetspanel.cpp:201
 msgid "Do you really want to delete the Asset?"
 msgstr "האם למחוק את הנכס?"
 
-#: assetspanel.cpp:201
+#: assetspanel.cpp:202
 msgid "Confirm Asset Deletion"
 msgstr "אשר מחיקת נכס"
 
-#: assetspanel.cpp:384
+#: assetspanel.cpp:367 stockspanel.cpp:765 stockspanel.cpp:993
+#, c-format
+msgid "Total: %s"
+msgstr "סך כל: %s"
+
+#: assetspanel.cpp:417
 msgid ""
 "MMEX allows you to track fixed assets like cars, houses, land and others. "
 "Each asset can have its value appreciate by a certain rate per year, "
@@ -558,77 +567,71 @@ msgstr ""
 "נכס יכול לגדול או לקטון בשיעור מסויים בשנה, או, לא לשנות ערך כלל. סך כל ערכם "
 "של הנכסים מתווסף  לשווי הפיננסיי הכולל."
 
-#: assetspanel.cpp:414 general_report_manager.cpp:671
-#: general_report_manager.cpp:946 mmframe.cpp:466 mmframe.cpp:711
-#: mmframe.cpp:1510 mmhomepagepanel.cpp:423 mmhomepagepanel.cpp:814
-#: reports/summary.cpp:176 assetspanel.h:94
+#: assetspanel.cpp:452 assetspanel.h:109 general_report_manager.cpp:670
+#: general_report_manager.cpp:945 mmframe.cpp:469 mmframe.cpp:714
+#: mmframe.cpp:1548 mmhomepagepanel.cpp:423 mmhomepagepanel.cpp:814
 msgid "Assets"
 msgstr "נכסים"
 
-#: assetspanel.cpp:426 assetspanel.cpp:695 assetspanel.cpp:712
-#: import_export/qif_export.cpp:75 import_export/qif_export.cpp:76
-#: import_export/qif_export.cpp:136 mmframe.cpp:1209
+#: assetspanel.cpp:464 assetspanel.cpp:702 assetspanel.cpp:719
+#: import_export/qif_export.cpp:62 import_export/qif_export.cpp:63
+#: import_export/qif_export.cpp:130 mmframe.cpp:1239
 msgid "All"
 msgstr "כולם"
 
-#: assetspanel.cpp:467 billsdepositspanel.cpp:268 mmcheckingpanel.cpp:477
-#: stockspanel.cpp:569
+#: assetspanel.cpp:505 billsdepositspanel.cpp:269 mmcheckingpanel.cpp:481
+#: stockspanel.cpp:570
 msgid "&New "
 msgstr "&חדש "
 
-#: assetspanel.cpp:471 stockspanel.cpp:573
+#: assetspanel.cpp:509 stockspanel.cpp:574
 msgid "&Add Trans "
 msgstr "&הוסף תנועה"
 
-#: assetspanel.cpp:476 stockspanel.cpp:578
+#: assetspanel.cpp:514 stockspanel.cpp:579
 msgid "&View Trans "
 msgstr "הצג& תנועה"
 
-#: assetspanel.cpp:477
+#: assetspanel.cpp:515
 msgid "View Asset Transactions"
 msgstr "הצג תנועות רכוש"
 
-#: assetspanel.cpp:481 attachmentdialog.cpp:287 billsdepositspanel.cpp:272
+#: assetspanel.cpp:519 attachmentdialog.cpp:287 billsdepositspanel.cpp:273
 #: categdialog.cpp:228 customfieldlistdialog.cpp:271 maincurrencydialog.cpp:196
-#: maincurrencydialog.cpp:579 mmcheckingpanel.cpp:481 payeedialog.cpp:364
-#: splittransactionsdialog.cpp:164 stockspanel.cpp:583
+#: maincurrencydialog.cpp:579 mmcheckingpanel.cpp:485 payeedialog.cpp:364
+#: splittransactionsdialog.cpp:164 stockspanel.cpp:584
 msgid "&Edit "
 msgstr "&ערוך "
 
-#: assetspanel.cpp:486 billsdepositspanel.cpp:277 budgetyeardialog.cpp:103
-#: categdialog.cpp:232 maincurrencydialog.cpp:283 mmcheckingpanel.cpp:486
-#: mmcheckingpanel.cpp:1142 stockdialog.cpp:330 stockspanel.cpp:588
+#: assetspanel.cpp:524 billsdepositspanel.cpp:278 budgetyeardialog.cpp:99
+#: categdialog.cpp:232 maincurrencydialog.cpp:283 mmcheckingpanel.cpp:490
+#: mmcheckingpanel.cpp:1154 stockdialog.cpp:330 stockspanel.cpp:589
 msgid "&Delete "
 msgstr "&מחק"
 
-#: assetspanel.cpp:487
+#: assetspanel.cpp:525
 msgid "Delete Asset"
 msgstr "מחק נכס"
 
-#: assetspanel.cpp:494 billsdepositspanel.cpp:295 mmcheckingpanel.cpp:499
-#: stockspanel.cpp:601
+#: assetspanel.cpp:532 billsdepositspanel.cpp:296 mmcheckingpanel.cpp:503
+#: stockspanel.cpp:602
 msgid "Open attachments"
 msgstr "פתח צרופות"
 
-#: assetspanel.cpp:501 assetspanel.cpp:502 mmcheckingpanel.cpp:507
+#: assetspanel.cpp:539 assetspanel.cpp:540 mmcheckingpanel.cpp:511
 msgid "Search"
 msgstr "חפש"
 
-#: assetspanel.cpp:504
+#: assetspanel.cpp:542
 msgid "Enter any string to find related assets"
 msgstr "הזן מחרוזת כל שהיא לחיפוש נכס מסויים"
 
-#: assetspanel.cpp:574 stockspanel.cpp:764 stockspanel.cpp:992
-#, c-format
-msgid "Total: %s"
-msgstr "סך כל: %s"
-
-#: assetspanel.cpp:656
+#: assetspanel.cpp:663
 #, c-format
 msgid "Change in Value: %s %s"
 msgstr "שינוי ערך: %s %s"
 
-#: assetspanel.cpp:770
+#: assetspanel.cpp:777
 msgid ""
 "This asset does not have its own account\n"
 "\n"
@@ -638,18 +641,18 @@ msgstr ""
 "\n"
 "לא מומלץ לבצע תנועות מרובות לנכס זה."
 
-#: assetspanel.cpp:772
+#: assetspanel.cpp:779
 msgid "Asset Management"
 msgstr "ניהול נכסים"
 
-#: assetspanel.cpp:791
+#: assetspanel.cpp:798
 msgid ""
 "Account \t Date\t   Value\n"
 "\n"
 msgstr "תאריך ערך חשבון\n"
 
 #: attachmentdialog.cpp:54 customfieldlistdialog.cpp:54
-#: import_export/qif_import_gui.cpp:87 import_export/univcsvdialog.cpp:996
+#: import_export/qif_import_gui.cpp:88 import_export/univcsvdialog.cpp:996
 #: payeedialog.cpp:62
 msgid "#"
 msgstr "#"
@@ -659,7 +662,7 @@ msgstr "#"
 msgid "Description"
 msgstr "תאור"
 
-#: attachmentdialog.cpp:56 import_export/qif_export.cpp:183
+#: attachmentdialog.cpp:56 import_export/qif_export.cpp:177
 #: import_export/univcsvdialog.cpp:158
 msgid "File"
 msgstr "קובץ"
@@ -817,7 +820,7 @@ msgstr "הזן תנועה מחזורית"
 #: filtertransdialog.cpp:43 model/Model_Asset.cpp:23
 #: model/Model_Billsdeposits.cpp:38 model/Model_Budget.cpp:55
 #: model/Model_Checking.cpp:36 optionsettingsmisc.cpp:87
-#: reports/cashflow.cpp:248
+#: reports/cashflow.cpp:230
 msgid "None"
 msgstr "ללא"
 
@@ -830,8 +833,9 @@ msgstr "שבועי"
 msgid "Fortnightly"
 msgstr "דו שבועי"
 
-#: billsdepositsdialog.cpp:316 billsdepositspanel.cpp:42 mmframereport.cpp:158
-#: mmframereport.cpp:171 model/Model_Budget.cpp:58
+#: billsdepositsdialog.cpp:316 billsdepositspanel.cpp:42
+#: model/Model_Budget.cpp:58 option.cpp:107 option.cpp:112 option.cpp:115
+#: option.cpp:118
 msgid "Monthly"
 msgstr "חודשי"
 
@@ -851,7 +855,7 @@ msgid "Half-Yearly"
 msgstr "חצי שנתי"
 
 #: billsdepositsdialog.cpp:320 billsdepositspanel.cpp:46
-#: model/Model_Budget.cpp:62
+#: model/Model_Budget.cpp:62 option.cpp:108
 msgid "Yearly"
 msgstr "שנתי"
 
@@ -864,7 +868,7 @@ msgid "Four Weeks"
 msgstr "ארבעה שבועות"
 
 #: billsdepositsdialog.cpp:323 billsdepositspanel.cpp:49
-#: model/Model_Budget.cpp:63
+#: model/Model_Budget.cpp:63 option.cpp:119
 msgid "Daily"
 msgstr "יומי"
 
@@ -913,8 +917,8 @@ msgid "Specify the date when this bill or deposit is due"
 msgstr "הזן את תאריך הערך של המשיכה או ההפקדה"
 
 #: billsdepositsdialog.cpp:393
-msgid "Retard or advance the date of the 'next occurrence"
-msgstr "אחר או קדם את התאריך של המופע הבא"
+msgid "Retard or advance the date of the 'next occurrence'"
+msgstr ""
 
 #: billsdepositsdialog.cpp:399 billsdepositspanel.cpp:97
 msgid "Date Due"
@@ -968,15 +972,16 @@ msgstr "החלף  את 'שולם בתאריך' ב 'תאריך של היום'"
 msgid "Date Paid"
 msgstr "תאריך תשלום"
 
-#: billsdepositsdialog.cpp:493 filtertransdialog.cpp:246 transdialog.cpp:1176
+#: billsdepositsdialog.cpp:493 filtertransdialog.cpp:247 transdialog.cpp:1176
 msgid "Specify the status for the transaction"
 msgstr "הגדר  סטאטוס תנועה"
 
 #: billsdepositsdialog.cpp:495 billsdepositspanel.cpp:100
-#: filtertransdialog.cpp:236 import_export/qif_import_gui.cpp:235
-#: import_export/qif_import_gui.cpp:247 import_export/qif_import_gui.cpp:258
-#: mmcheckingpanel.cpp:996 reports/transactions.cpp:70 transdialog.cpp:391
-#: usertransactionpanel.cpp:176 webappdialog.cpp:80
+#: filtertransdialog.cpp:237 import_export/qif_import_gui.cpp:237
+#: import_export/qif_import_gui.cpp:249 import_export/qif_import_gui.cpp:260
+#: mmcheckingpanel.cpp:1016 reports/transactions.cpp:70
+#: transactionsupdatedialog.cpp:119 transdialog.cpp:391
+#: usertransactionpanel.cpp:177 webappdialog.cpp:80
 msgid "Status"
 msgstr "סטאטוס"
 
@@ -993,7 +998,7 @@ msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "מאפשר הגדרה של סכומים שונים בחשבון 'שולח' ובחשבון 'מקבל'."
 
 #: billsdepositsdialog.cpp:525 billsdepositsdialog.cpp:800 transdialog.cpp:1165
-#: usertransactionpanel.cpp:144
+#: usertransactionpanel.cpp:145
 msgid "Specify the amount for this transaction"
 msgstr "הזן את סכום התנועה"
 
@@ -1002,11 +1007,12 @@ msgid "Specify the amount to be transferred"
 msgstr "הזן את הסכום ל'העברה'"
 
 #: billsdepositsdialog.cpp:528 billsdepositspanel.cpp:103
-#: budgetingpanel.cpp:309 mmhomepagepanel.cpp:387 mmhomepagepanel.cpp:788
-#: reports/budgetcategorysummary.cpp:113 reports/categexp.cpp:133
-#: reports/incexpenses.cpp:130 reports/transactions.cpp:75
-#: splitdetailsdialog.cpp:128 splittransactionsdialog.cpp:136
-#: transdialog.cpp:428 usertransactionpanel.cpp:140 webappdialog.cpp:84
+#: budgetingpanel.cpp:311 filtertransdialog.cpp:430 mmhomepagepanel.cpp:387
+#: mmhomepagepanel.cpp:788 reports/budgetcategorysummary.cpp:138
+#: reports/categexp.cpp:134 reports/incexpenses.cpp:132
+#: reports/transactions.cpp:75 splitdetailsdialog.cpp:128
+#: splittransactionsdialog.cpp:136 transactionsupdatedialog.cpp:148
+#: transdialog.cpp:428 usertransactionpanel.cpp:141 webappdialog.cpp:84
 msgid "Amount"
 msgstr "סכום"
 
@@ -1015,17 +1021,17 @@ msgid "Specify the transfer amount in the To Account"
 msgstr "הזן את הסכום להעברה בחשבון ה'מקבל'"
 
 #: billsdepositsdialog.cpp:552 billsdepositspanel.cpp:98
-#: filtertransdialog.cpp:174 import_export/qif_import_gui.cpp:88
-#: import_export/qif_import_gui.cpp:148 import_export/qif_import_gui.cpp:227
-#: import_export/qif_import_gui.cpp:803 reports/transactions.cpp:68
-#: transdialog.cpp:246 transdialog.cpp:435 usertransactionpanel.cpp:110
+#: filtertransdialog.cpp:175 import_export/qif_import_gui.cpp:89
+#: import_export/qif_import_gui.cpp:149 import_export/qif_import_gui.cpp:228
+#: import_export/qif_import_gui.cpp:817 reports/transactions.cpp:68
+#: transdialog.cpp:246 transdialog.cpp:435 usertransactionpanel.cpp:111
 #: webappdialog.cpp:79
 msgid "Account"
 msgstr "חשבון"
 
 #: billsdepositsdialog.cpp:553 billsdepositsdialog.cpp:682
 #: billsdepositsdialog.cpp:714 billsdepositsdialog.cpp:764
-#: usertransactionpanel.cpp:111
+#: usertransactionpanel.cpp:112
 msgid "Select Account"
 msgstr "בחר חשבון"
 
@@ -1034,17 +1040,18 @@ msgid "Specify the Account that will own the recurring transaction"
 msgstr "בחר 'חשבון' עבור התנועה המחזורית"
 
 #: billsdepositsdialog.cpp:558 billsdepositsdialog.cpp:863
-#: billsdepositspanel.cpp:99 filtertransdialog.cpp:203
-#: import_export/qif_import_gui.cpp:91 import_export/qif_import_gui.cpp:240
-#: import_export/univcsvdialog.cpp:87 mmcheckingpanel.cpp:995
-#: mmhomepagepanel.cpp:387 model/Model_Attachment.cpp:29 reports/payee.cpp:115
-#: reports/transactions.cpp:69 transdialog.cpp:239 transdialog.cpp:440
-#: usertransactionpanel.cpp:180 webappdialog.cpp:82
+#: billsdepositspanel.cpp:99 filtertransdialog.cpp:204
+#: import_export/qif_import_gui.cpp:92 import_export/qif_import_gui.cpp:242
+#: import_export/univcsvdialog.cpp:87 mmcheckingpanel.cpp:1015
+#: mmhomepagepanel.cpp:387 model/Model_Attachment.cpp:29 reports/payee.cpp:116
+#: reports/transactions.cpp:69 transactionsupdatedialog.cpp:160
+#: transdialog.cpp:239 transdialog.cpp:440 usertransactionpanel.cpp:181
+#: webappdialog.cpp:82
 msgid "Payee"
 msgstr "מוטב"
 
 #: billsdepositsdialog.cpp:560 billsdepositsdialog.cpp:893
-#: usertransactionpanel.cpp:181
+#: usertransactionpanel.cpp:182
 msgid "Select Payee"
 msgstr "בחר מוטב"
 
@@ -1061,19 +1068,21 @@ msgid "Use split Categories"
 msgstr "השתמש בפיצול קטגוריות"
 
 #: billsdepositsdialog.cpp:579 billsdepositspanel.cpp:101
-#: budgetingpanel.cpp:306 filtertransdialog.cpp:214
-#: import_export/qif_import_gui.cpp:93 import_export/qif_import_gui.cpp:252
-#: import_export/univcsvdialog.cpp:89 mmcheckingpanel.cpp:997
-#: mmhomepagepanel.cpp:218 reports/budgetcategorysummary.cpp:112
-#: reports/budgetingperf.cpp:129 reports/categexp.cpp:132
+#: budgetingpanel.cpp:308 filtertransdialog.cpp:215
+#: import_export/qif_import_gui.cpp:94 import_export/qif_import_gui.cpp:254
+#: import_export/univcsvdialog.cpp:89 mmcheckingpanel.cpp:1017
+#: mmhomepagepanel.cpp:218 reports/budgetcategorysummary.cpp:137
+#: reports/budgetingperf.cpp:175 reports/categexp.cpp:133
 #: reports/categovertimeperf.cpp:108 reports/transactions.cpp:71
 #: splitdetailsdialog.cpp:136 splittransactionsdialog.cpp:135
-#: transdialog.cpp:463 usertransactionpanel.cpp:187 webappdialog.cpp:83
+#: transactionsupdatedialog.cpp:172 transdialog.cpp:463
+#: usertransactionpanel.cpp:188 webappdialog.cpp:83
 msgid "Category"
 msgstr "קטגוריה"
 
-#: billsdepositsdialog.cpp:580 billsdepositsdialog.cpp:1478 transdialog.cpp:328
-#: transdialog.cpp:863 usertransactionpanel.cpp:188
+#: billsdepositsdialog.cpp:580 billsdepositsdialog.cpp:1478
+#: transactionsupdatedialog.cpp:175 transdialog.cpp:328 transdialog.cpp:863
+#: usertransactionpanel.cpp:189
 msgid "Select Category"
 msgstr "בחר קטגוריה"
 
@@ -1082,9 +1091,9 @@ msgid "Specify any associated check number or transaction number"
 msgstr "הזן כאסמכתא מספר שק או מספר תנועה"
 
 #: billsdepositsdialog.cpp:592 billsdepositspanel.cpp:108
-#: filtertransdialog.cpp:296 import_export/qif_import_gui.cpp:90
-#: import_export/univcsvdialog.cpp:91 mmcheckingpanel.cpp:994
-#: reports/transactions.cpp:73 transdialog.cpp:478 usertransactionpanel.cpp:200
+#: filtertransdialog.cpp:297 import_export/qif_import_gui.cpp:91
+#: import_export/univcsvdialog.cpp:91 mmcheckingpanel.cpp:1014
+#: reports/transactions.cpp:73 transdialog.cpp:478 usertransactionpanel.cpp:201
 msgid "Number"
 msgstr "אסמכתא"
 
@@ -1092,12 +1101,12 @@ msgstr "אסמכתא"
 msgid "Organize attachments of this recurring transaction"
 msgstr "נהל צרופות לתנועה המחזורית"
 
-#: billsdepositsdialog.cpp:605 transdialog.cpp:489 usertransactionpanel.cpp:215
+#: billsdepositsdialog.cpp:605 transdialog.cpp:489 usertransactionpanel.cpp:216
 msgid "Select one of the frequently used notes"
 msgstr "בחר באחת מההערות שבשימוש תכוף"
 
 #: billsdepositsdialog.cpp:615 transdialog.cpp:1180
-#: usertransactionpanel.cpp:224
+#: usertransactionpanel.cpp:225
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "הקלד הערת טקסט שתרצה לצרף לתנועה זו."
 
@@ -1185,18 +1194,18 @@ msgid ""
 msgstr ""
 
 #: billsdepositsdialog.cpp:1446 transdialog.cpp:1138
-#: usertransactionpanel.cpp:190
+#: usertransactionpanel.cpp:191
 msgid "Specify the category for this transaction"
 msgstr "בחר קטגוריה עבור תנועה זו"
 
 #: billsdepositsdialog.cpp:1468 categdialog.cpp:118
-#: import_export/qif_export.cpp:128 mmframereport.cpp:135
+#: import_export/qif_export.cpp:122 option.cpp:111 option.cpp:112
 #: reports/categexp.cpp:200 transdialog.cpp:318
 msgid "Categories"
 msgstr "קטגוריות"
 
-#: billsdepositspanel.cpp:104 budgetingpanel.cpp:308
-#: reports/budgetcategorysummary.cpp:114
+#: billsdepositspanel.cpp:104 budgetingpanel.cpp:310
+#: reports/budgetcategorysummary.cpp:139
 msgid "Frequency"
 msgstr "תדירות"
 
@@ -1232,40 +1241,40 @@ msgstr ""
 "עצה:  ניתן להגדיר תנועות אלו שיפעלו אוטומטית – תהיה אפשרות להתאים את כל "
 "הערכים בתנועה  בתאריך היעד."
 
-#: billsdepositspanel.cpp:218 billsdepositspanel.cpp:882 mmframe.cpp:715
+#: billsdepositspanel.cpp:219 billsdepositspanel.cpp:882 mmframe.cpp:718
 #: mmhomepagepanel.cpp:429
 msgid "Recurring Transactions"
 msgstr "תנועות מחזרית"
 
-#: billsdepositspanel.cpp:234 filtertransdialog.cpp:94 mmcheckingpanel.cpp:397
+#: billsdepositspanel.cpp:235 filtertransdialog.cpp:95 mmcheckingpanel.cpp:401
 msgid "Transaction Filter"
 msgstr "מסנן תנועות"
 
-#: billsdepositspanel.cpp:269
+#: billsdepositspanel.cpp:270
 msgid "New Bills & Deposit Series"
 msgstr "סידרת משיכות/הפקדות חדשה"
 
-#: billsdepositspanel.cpp:273
+#: billsdepositspanel.cpp:274
 msgid "Edit Bills & Deposit Series"
 msgstr "ערוך סידרת משיכות/הפקדות"
 
-#: billsdepositspanel.cpp:278
+#: billsdepositspanel.cpp:279
 msgid "Delete Bills & Deposit Series"
 msgstr "מחק סידרת משיכות/הפקדות"
 
-#: billsdepositspanel.cpp:282
+#: billsdepositspanel.cpp:283
 msgid "En&ter"
 msgstr "הז&ן"
 
-#: billsdepositspanel.cpp:283
+#: billsdepositspanel.cpp:284
 msgid "Enter Next Bills & Deposit Occurrence"
 msgstr "הזן את המופע הבא של משיכות/הפקדות"
 
-#: billsdepositspanel.cpp:287
+#: billsdepositspanel.cpp:288
 msgid "&Skip"
 msgstr "&דלג"
 
-#: billsdepositspanel.cpp:288
+#: billsdepositspanel.cpp:289
 msgid "Skip Next Bills & Deposit Occurrence"
 msgstr "דלג על המופע הבא של משיכות/הפקדות"
 
@@ -1360,9 +1369,9 @@ msgstr "סוג:"
 msgid "Expense"
 msgstr "הוצאה"
 
-#: budgetentrydialog.cpp:128 mmhomepagepanel.cpp:789
-#: reports/incexpenses.cpp:103 reports/incexpenses.cpp:254
-#: db/DB_Table_Category_V1.h:117
+#: budgetentrydialog.cpp:128 db/DB_Table_Category_V1.h:119
+#: mmhomepagepanel.cpp:789 reports/incexpenses.cpp:105
+#: reports/incexpenses.cpp:240
 msgid "Income"
 msgstr "הכנסה"
 
@@ -1410,101 +1419,99 @@ msgstr "הצג קטגוריות תקציב הוצאות"
 msgid "View Budget Category Summary"
 msgstr "הצג סיכום קטגוריות תקציב"
 
-#: budgetingpanel.cpp:179 reports/budget.cpp:83
+#: budgetingpanel.cpp:180 reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
 msgstr "שנה פיננסית:  %s - %i"
 
-#: budgetingpanel.cpp:183 reports/budget.cpp:87
+#: budgetingpanel.cpp:184 reports/budget.cpp:88
 #, c-format
 msgid "Year: %s"
 msgstr "שנה: %s"
 
-#: budgetingpanel.cpp:188 reports/budget.cpp:92
+#: budgetingpanel.cpp:189 reports/budget.cpp:93
 #, c-format
 msgid "Month: %s"
 msgstr "חודש: %s"
 
-#: budgetingpanel.cpp:190
+#: budgetingpanel.cpp:191
 #, c-format
 msgid "Budget Setup for %s"
 msgstr "הגדרת תקציב עבור  %s"
 
-#: budgetingpanel.cpp:255
+#: budgetingpanel.cpp:256
 msgid "Income: "
 msgstr "הכנסה: "
 
-#: budgetingpanel.cpp:256 budgetingpanel.cpp:264
+#: budgetingpanel.cpp:257 budgetingpanel.cpp:265
 msgid "Estimated: "
 msgstr "תחזית: "
 
-#: budgetingpanel.cpp:258 budgetingpanel.cpp:266
+#: budgetingpanel.cpp:259 budgetingpanel.cpp:267
 msgid "Actual: "
 msgstr "בפועל: "
 
-#: budgetingpanel.cpp:260 budgetingpanel.cpp:268
+#: budgetingpanel.cpp:261 budgetingpanel.cpp:269
 msgid "Difference: "
 msgstr "הפרש: "
 
-#: budgetingpanel.cpp:263
+#: budgetingpanel.cpp:264
 msgid "Expenses: "
 msgstr "הוצאות: "
 
-#: budgetingpanel.cpp:305
+#: budgetingpanel.cpp:307
 msgid "Icon"
 msgstr "צלמית"
 
-#: budgetingpanel.cpp:307
+#: budgetingpanel.cpp:309
 msgid "Sub Category"
 msgstr "קטגורית משנה"
 
-#: budgetingpanel.cpp:310 reports/budgetcategorysummary.cpp:115
-#: reports/budgetingperf.cpp:157 reports/budgetingperf.cpp:212
+#: budgetingpanel.cpp:312 reports/budgetcategorysummary.cpp:140
 msgid "Estimated"
 msgstr "תחזית"
 
-#: budgetingpanel.cpp:311 reports/budgetcategorysummary.cpp:116
-#: reports/budgetingperf.cpp:172 reports/budgetingperf.cpp:227
+#: budgetingpanel.cpp:313 reports/budgetcategorysummary.cpp:141
 msgid "Actual"
 msgstr "בפועל"
 
-#: budgetyeardialog.cpp:46
+#: budgetyeardialog.cpp:44
 msgid "Budget Editor"
 msgstr "עורך תקציב"
 
-#: budgetyeardialog.cpp:93
+#: budgetyeardialog.cpp:89
 msgid "&Add Year"
 msgstr "&הוסף שנה"
 
-#: budgetyeardialog.cpp:95
+#: budgetyeardialog.cpp:91
 msgid "Add a new budget year"
 msgstr "הוסף שנת תקציב חדשה"
 
-#: budgetyeardialog.cpp:98
+#: budgetyeardialog.cpp:94
 msgid "&Add Month"
 msgstr "הוסף &חודש"
 
-#: budgetyeardialog.cpp:100
+#: budgetyeardialog.cpp:96
 msgid "Add a new budget month"
 msgstr "הוסף חודש תקציב חדש"
 
-#: budgetyeardialog.cpp:105
+#: budgetyeardialog.cpp:101
 msgid "Delete existing budget"
 msgstr "מחק תקציב קיים"
 
-#: budgetyearentrydialog.cpp:42 budgetyearentrydialog.cpp:151
+#: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
 msgstr "חלון דו שיח הזנת תקציב"
 
-#: budgetyearentrydialog.cpp:44
+#: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
 msgstr "הזן חודש תקציב"
 
-#: budgetyearentrydialog.cpp:71
+#: budgetyearentrydialog.cpp:72
 msgid "Budget Year:"
 msgstr "שנת תקציב:"
 
-#: budgetyearentrydialog.cpp:78
+#: budgetyearentrydialog.cpp:79
 msgid ""
 "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
@@ -1512,11 +1519,11 @@ msgstr ""
 "הזן את השנה הנדרשת.\n"
 "השתמש בלחצני גלילה כדי להגדיל או להקטין את השנה."
 
-#: budgetyearentrydialog.cpp:85
+#: budgetyearentrydialog.cpp:86
 msgid "Budget Month:"
 msgstr "חודש תקציב:"
 
-#: budgetyearentrydialog.cpp:94
+#: budgetyearentrydialog.cpp:95
 msgid ""
 "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
@@ -1524,23 +1531,23 @@ msgstr ""
 "הזן את החודש הנדרש.\n"
 "השתמש בלחצנים ספין כדי להגדיל או להקטין את החודש."
 
-#: budgetyearentrydialog.cpp:101
+#: budgetyearentrydialog.cpp:102
 msgid "Base Budget On:"
 msgstr "בסס תקציב על:"
 
-#: budgetyearentrydialog.cpp:111
+#: budgetyearentrydialog.cpp:112
 msgid "Specify year to base budget on."
 msgstr "הזן שנת בסיס לתקציב."
 
-#: budgetyearentrydialog.cpp:150
+#: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
 msgstr "שנת תקציב קיימת"
 
-#: categdialog.cpp:92 mmframe.cpp:1469 mmframe.cpp:1639
+#: categdialog.cpp:92 mmframe.cpp:1507 mmframe.cpp:1677
 msgid "Organize Categories"
 msgstr "נהל קטגוריות"
 
-#: categdialog.cpp:187 mmframe.cpp:1486
+#: categdialog.cpp:187 mmframe.cpp:1524
 msgid "Reassign all categories to another category"
 msgstr "הקצא מחדש של כל הקטגוריות לקטגוריה אחרת"
 
@@ -1661,16 +1668,16 @@ msgstr "ערוך קטגוריה"
 msgid "Organise Categories: Editing Error"
 msgstr "נהל קטגוריות: שגיאת עריכה"
 
-#: categdialog.cpp:567 mmframe.cpp:2770
+#: categdialog.cpp:567 mmframe.cpp:2810
 msgid "Category Relocation Completed."
 msgstr "העברת קטגוריה הושלמה."
 
-#: categdialog.cpp:568 mmframe.cpp:2771 mmframe.cpp:2786 payeedialog.cpp:314
+#: categdialog.cpp:568 mmframe.cpp:2811 mmframe.cpp:2826 payeedialog.cpp:314
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "רשומות עודכנו במסד הנתונים:  %i"
 
-#: categdialog.cpp:570 mmframe.cpp:2773
+#: categdialog.cpp:570 mmframe.cpp:2813
 msgid "Category Relocation Result"
 msgstr "התוצאה העברת קטגוריה"
 
@@ -1686,89 +1693,89 @@ msgstr "הצג את הקטגוריה הנבחרת"
 msgid "Clear Settings"
 msgstr "נקה הגדרות"
 
-#: constants.cpp:80
+#: constants.cpp:55
 msgid "Cancel"
 msgstr "בטל"
 
-#: constants.cpp:86 customfielddialog.cpp:211
+#: constants.cpp:61 customfielddialog.cpp:211
 msgid "Close"
 msgstr "סגור"
 
-#: constants.cpp:88
+#: constants.cpp:63
 msgid "&Close "
 msgstr "&סגור"
 
-#: constants.cpp:102
+#: constants.cpp:77
 #, c-format
 msgid "Version: %s"
 msgstr "גרסה:  %s"
 
-#: constants.cpp:112
+#: constants.cpp:87
 msgid "MMEX is using the following support products"
 msgstr "MMEX  משתמש במוצרי התמיכה הבאים"
 
-#: constants.cpp:185 mmcheckingpanel.h:267
+#: constants.cpp:160 mmcheckingpanel.h:267
 msgid "View All Transactions"
 msgstr "הצג את כל התנועות"
 
-#: constants.cpp:186 mmcheckingpanel.h:268
+#: constants.cpp:161 mmcheckingpanel.h:268
 msgid "View Today"
 msgstr "הצג את היום"
 
-#: constants.cpp:187 mmcheckingpanel.h:269
+#: constants.cpp:162 mmcheckingpanel.h:269
 msgid "View Current Month"
 msgstr "הצג חודש נוכחי"
 
-#: constants.cpp:188 mmcheckingpanel.h:270
+#: constants.cpp:163 mmcheckingpanel.h:270
 msgid "View Last 30 days"
 msgstr "הצג 30 יום"
 
-#: constants.cpp:189 mmcheckingpanel.h:271
+#: constants.cpp:164 mmcheckingpanel.h:271
 msgid "View Last 90 days"
 msgstr "הצג 90 יום"
 
-#: constants.cpp:190 mmcheckingpanel.h:272
+#: constants.cpp:165 mmcheckingpanel.h:272
 msgid "View Last Month"
 msgstr "הצג חודש קודם"
 
-#: constants.cpp:191 mmcheckingpanel.h:273
+#: constants.cpp:166 mmcheckingpanel.h:273
 msgid "View Last 3 Months"
 msgstr "הצג 3 חודשים קודמים"
 
-#: constants.cpp:192 mmcheckingpanel.h:274
+#: constants.cpp:167 mmcheckingpanel.h:274
 msgid "View Last 12 Months"
 msgstr "הצג 12 חודשים קודמים"
 
-#: constants.cpp:193 mmcheckingpanel.h:275
+#: constants.cpp:168 mmcheckingpanel.h:275
 msgid "View Current Year"
 msgstr "הצג שנה נוכחית"
 
-#: constants.cpp:194 mmcheckingpanel.h:276
+#: constants.cpp:169 mmcheckingpanel.h:276
 msgid "View Current Financial Year"
 msgstr "הצג שנה פיננסית נוכחית"
 
-#: constants.cpp:195 mmcheckingpanel.h:277
+#: constants.cpp:170 mmcheckingpanel.h:277
 msgid "View Last Year"
 msgstr "הצג שנה קודמת"
 
-#: constants.cpp:196 mmcheckingpanel.h:278
+#: constants.cpp:171 mmcheckingpanel.h:278
 msgid "View Last Financial Year"
 msgstr "הצג שנה פיננסית קודמת"
 
-#: constants.cpp:198 db/DB_Table_Currencyformats_V1.h:111
+#: constants.cpp:173
 msgid "ALL"
 msgstr "הכל"
 
-#: constants.cpp:199 mmframe.cpp:1211 mmframe.cpp:1634
+#: constants.cpp:174 mmframe.cpp:1241 mmframe.cpp:1672
 #: model/Model_Account.cpp:26
 msgid "Open"
 msgstr "פעיל"
 
-#: constants.cpp:200 mmframe.cpp:1212 model/Model_Account.cpp:27
+#: constants.cpp:175 mmframe.cpp:1242 model/Model_Account.cpp:27
 msgid "Closed"
 msgstr "סגור"
 
-#: constants.cpp:201 mmframe.cpp:1210
+#: constants.cpp:176 mmframe.cpp:1240
 msgid "Favorites"
 msgstr "מועדפים"
 
@@ -1899,7 +1906,7 @@ msgstr "השלמה אוטומטית"
 msgid "Enables autocomplete on custom field"
 msgstr "מאפשר השלמת טקסט אוטומטית בשדות מותאמים"
 
-#: customfieldeditdialog.cpp:153 util.cpp:433
+#: customfieldeditdialog.cpp:153 util.cpp:435
 msgid "Default"
 msgstr "ברירת מחדל"
 
@@ -1923,8 +1930,8 @@ msgstr "הזן אפשרויות עבור שדה זה, הפרד בין האפשר
 msgid "Changing field type will delete all content!"
 msgstr "שינוי סוג שדה תמחק את כל התוכן!"
 
-#: customfieldeditdialog.cpp:203 customfieldeditdialog.cpp:225 mmframe.cpp:1987
-#: mmframe.cpp:2006
+#: customfieldeditdialog.cpp:203 customfieldeditdialog.cpp:225 mmframe.cpp:2025
+#: mmframe.cpp:2044
 msgid "Do you want to proceed?"
 msgstr "האם להמשיך?"
 
@@ -2012,6 +2019,807 @@ msgstr "כדי להחיל את השינויים החדשים, סגור ופתח 
 msgid "Custom Field"
 msgstr "שדה מותאם אישית"
 
+#: db/DB_Table_Category_V1.h:107
+msgid "Bills"
+msgstr "חשבונות, תשלומים"
+
+#: db/DB_Table_Category_V1.h:108
+msgid "Food"
+msgstr "מזון"
+
+#: db/DB_Table_Category_V1.h:109
+msgid "Leisure"
+msgstr "פנאי"
+
+#: db/DB_Table_Category_V1.h:110 model/Model_Asset.cpp:31
+msgid "Automobile"
+msgstr "רכב"
+
+#: db/DB_Table_Category_V1.h:111
+msgid "Education"
+msgstr "השכלה"
+
+#: db/DB_Table_Category_V1.h:112
+msgid "Homeneeds"
+msgstr "משק בית"
+
+#: db/DB_Table_Category_V1.h:113
+msgid "Healthcare"
+msgstr "בריאות"
+
+#: db/DB_Table_Category_V1.h:114
+msgid "Insurance"
+msgstr "ביטוח"
+
+#: db/DB_Table_Category_V1.h:115
+msgid "Vacation"
+msgstr "חופשה"
+
+#: db/DB_Table_Category_V1.h:116
+msgid "Taxes"
+msgstr "מיסים"
+
+#: db/DB_Table_Category_V1.h:117
+msgid "Miscellaneous"
+msgstr "שונות"
+
+#: db/DB_Table_Category_V1.h:118
+msgid "Gifts"
+msgstr "מתנות"
+
+#: db/DB_Table_Category_V1.h:120
+msgid "Other Income"
+msgstr "הכנסות אחרות"
+
+#: db/DB_Table_Category_V1.h:121
+msgid "Other Expenses"
+msgstr "הוצאות אחרות"
+
+#: db/DB_Table_Category_V1.h:122 model/Model_Billsdeposits.cpp:33
+#: model/Model_Checking.cpp:31
+msgid "Transfer"
+msgstr "העברה"
+
+#: db/DB_Table_Currencyformats_V1.h:108
+msgid "United States dollar"
+msgstr "דולר ארצות הברית"
+
+#: db/DB_Table_Currencyformats_V1.h:109
+msgid "European euro"
+msgstr "אירו"
+
+#: db/DB_Table_Currencyformats_V1.h:110
+msgid "UK Pound"
+msgstr "פאונד בריטי"
+
+#: db/DB_Table_Currencyformats_V1.h:111
+msgid "Russian Ruble"
+msgstr "רובל רוסי"
+
+#: db/DB_Table_Currencyformats_V1.h:112
+msgid "Ukrainian hryvnia"
+msgstr "הריבניה אוקראיני"
+
+#: db/DB_Table_Currencyformats_V1.h:113
+msgid "Afghan afghani"
+msgstr "אפגני"
+
+#: db/DB_Table_Currencyformats_V1.h:114
+msgid "Albanian lek"
+msgstr "לק אלבני"
+
+#: db/DB_Table_Currencyformats_V1.h:115
+msgid "Algerian dinar"
+msgstr "דינר אלג'ירי"
+
+#: db/DB_Table_Currencyformats_V1.h:116
+msgid "Angolan kwanza"
+msgstr "קואנזה אנגולי"
+
+#: db/DB_Table_Currencyformats_V1.h:117
+msgid "East Caribbean dollar"
+msgstr "דולר מזרח קריבי"
+
+#: db/DB_Table_Currencyformats_V1.h:118
+msgid "Argentine peso"
+msgstr "פסו ארגנטינאי"
+
+#: db/DB_Table_Currencyformats_V1.h:119
+msgid "Armenian dram"
+msgstr "דראם ארמני"
+
+#: db/DB_Table_Currencyformats_V1.h:120
+msgid "Aruban florin"
+msgstr "פלורין של ארובה"
+
+#: db/DB_Table_Currencyformats_V1.h:121
+msgid "Australian dollar"
+msgstr "דולר אוסטרלי"
+
+#: db/DB_Table_Currencyformats_V1.h:122
+msgid "Azerbaijani manat"
+msgstr "מאנאט אזרבייג`ני חדש"
+
+#: db/DB_Table_Currencyformats_V1.h:123
+msgid "Bahamian dollar"
+msgstr "דולר בהאמי"
+
+#: db/DB_Table_Currencyformats_V1.h:124
+msgid "Bahraini dinar"
+msgstr "דינר בחרני"
+
+#: db/DB_Table_Currencyformats_V1.h:125
+msgid "Bangladeshi taka"
+msgstr "טאקה בנגלדשי"
+
+#: db/DB_Table_Currencyformats_V1.h:126
+msgid "Barbadian dollar"
+msgstr "דולר ברבדי"
+
+#: db/DB_Table_Currencyformats_V1.h:127
+msgid "Belarusian ruble"
+msgstr "רובל בלארוסי"
+
+#: db/DB_Table_Currencyformats_V1.h:128
+msgid "Belize dollar"
+msgstr "דולר בליזי"
+
+#: db/DB_Table_Currencyformats_V1.h:129
+msgid "West African CFA franc"
+msgstr "פרנק CFA מערב אפריקני"
+
+#: db/DB_Table_Currencyformats_V1.h:130
+msgid "Bermudian dollar"
+msgstr "דולר ברמודה"
+
+#: db/DB_Table_Currencyformats_V1.h:131
+msgid "Bhutanese ngultrum"
+msgstr "נגולטרום של בהוטן"
+
+#: db/DB_Table_Currencyformats_V1.h:132
+msgid "Bolivian boliviano"
+msgstr "בוליביאנו בוליבי"
+
+#: db/DB_Table_Currencyformats_V1.h:133
+msgid "Bosnia and Herzegovina konvertibilna marka"
+msgstr "המרק הסחיר"
+
+#: db/DB_Table_Currencyformats_V1.h:134
+msgid "Botswana pula"
+msgstr "פולה"
+
+#: db/DB_Table_Currencyformats_V1.h:135
+msgid "Brazilian real"
+msgstr "ריאל ברזילאי"
+
+#: db/DB_Table_Currencyformats_V1.h:136
+msgid "Brunei dollar"
+msgstr "דולר ברוניי"
+
+#: db/DB_Table_Currencyformats_V1.h:137
+msgid "Bulgarian lev"
+msgstr "לב בולגרי"
+
+#: db/DB_Table_Currencyformats_V1.h:138
+msgid "Burundi franc"
+msgstr "פרנק בורונדי"
+
+#: db/DB_Table_Currencyformats_V1.h:139
+msgid "Cambodian riel"
+msgstr "ריאל קולומביאני"
+
+#: db/DB_Table_Currencyformats_V1.h:140
+msgid "Central African CFA franc"
+msgstr "פרנק CFA מערב אפריקני"
+
+#: db/DB_Table_Currencyformats_V1.h:141
+msgid "Canadian dollar"
+msgstr "דולר קנדי"
+
+#: db/DB_Table_Currencyformats_V1.h:142
+msgid "Cape Verdean escudo"
+msgstr "אסקודו של כף ורדה"
+
+#: db/DB_Table_Currencyformats_V1.h:143
+msgid "Cayman Islands dollar"
+msgstr "דולר של איי קיימן"
+
+#: db/DB_Table_Currencyformats_V1.h:144
+msgid "Chilean peso"
+msgstr "פסו צ'יליאני"
+
+#: db/DB_Table_Currencyformats_V1.h:145
+msgid "Chinese renminbi"
+msgstr "רנמינבי"
+
+#: db/DB_Table_Currencyformats_V1.h:146
+msgid "Colombian peso"
+msgstr "פסו קולומביאני"
+
+#: db/DB_Table_Currencyformats_V1.h:147
+msgid "Comorian franc"
+msgstr "פרנק של קומורו"
+
+#: db/DB_Table_Currencyformats_V1.h:148
+msgid "Congolese franc"
+msgstr "פרנק קונגולזי"
+
+#: db/DB_Table_Currencyformats_V1.h:149
+msgid "Costa Rican colon"
+msgstr "קולון קוסטה ריקאי"
+
+#: db/DB_Table_Currencyformats_V1.h:150
+msgid "Croatian kuna"
+msgstr "קונה קרואטי"
+
+#: db/DB_Table_Currencyformats_V1.h:151
+msgid "Czech koruna"
+msgstr "קורונה צכי"
+
+#: db/DB_Table_Currencyformats_V1.h:152
+msgid "Danish krone"
+msgstr "קרונה דני"
+
+#: db/DB_Table_Currencyformats_V1.h:153
+msgid "Djiboutian franc"
+msgstr "פרנק של ג'יבוטי"
+
+#: db/DB_Table_Currencyformats_V1.h:154
+msgid "Dominican peso"
+msgstr "פסו דומיניקאני"
+
+#: db/DB_Table_Currencyformats_V1.h:155
+msgid "Egyptian pound"
+msgstr "לירה  מיצרי"
+
+#: db/DB_Table_Currencyformats_V1.h:156
+msgid "Eritrean nakfa"
+msgstr "נאקפה אריתראית"
+
+#: db/DB_Table_Currencyformats_V1.h:157
+msgid "Ethiopian birr"
+msgstr "ביר אתיופי"
+
+#: db/DB_Table_Currencyformats_V1.h:158
+msgid "Falkland Islands pound"
+msgstr "פאונד של איי פוקלאנד"
+
+#: db/DB_Table_Currencyformats_V1.h:159
+msgid "Fijian dollar"
+msgstr "דולר של פיג'י"
+
+#: db/DB_Table_Currencyformats_V1.h:160
+msgid "CFP franc"
+msgstr "CFP פרנק"
+
+#: db/DB_Table_Currencyformats_V1.h:161
+msgid "Gambian dalasi"
+msgstr "דאלאסי של גמביה"
+
+#: db/DB_Table_Currencyformats_V1.h:162
+msgid "Georgian lari"
+msgstr "לארי גאורגי"
+
+#: db/DB_Table_Currencyformats_V1.h:163
+msgid "Ghanaian cedi"
+msgstr "סדי של גאנה"
+
+#: db/DB_Table_Currencyformats_V1.h:164
+msgid "Gibraltar pound"
+msgstr "פאונד ל גיברלטר"
+
+#: db/DB_Table_Currencyformats_V1.h:165
+msgid "Guatemalan quetzal"
+msgstr "קצאל של גואטמלה"
+
+#: db/DB_Table_Currencyformats_V1.h:166
+msgid "Guinean franc"
+msgstr "פרנק של גיניאה"
+
+#: db/DB_Table_Currencyformats_V1.h:167
+msgid "Guyanese dollar"
+msgstr "דולר גינאי"
+
+#: db/DB_Table_Currencyformats_V1.h:168
+msgid "Haitian gourde"
+msgstr "גורדה האיטי"
+
+#: db/DB_Table_Currencyformats_V1.h:169
+msgid "Honduran lempira"
+msgstr "למפירה הונדורית"
+
+#: db/DB_Table_Currencyformats_V1.h:170
+msgid "Hong Kong dollar"
+msgstr "דולר של הונג קונג"
+
+#: db/DB_Table_Currencyformats_V1.h:171
+msgid "Hungarian forint"
+msgstr "פורינט הונגרי"
+
+#: db/DB_Table_Currencyformats_V1.h:173
+msgid "Indian rupee"
+msgstr "רופי הודי"
+
+#: db/DB_Table_Currencyformats_V1.h:174
+msgid "Indonesian rupiah"
+msgstr "רופיה אינדונזית"
+
+#: db/DB_Table_Currencyformats_V1.h:175
+msgid "Special Drawing Rights"
+msgstr "זכויות משיכה מיוחדות"
+
+#: db/DB_Table_Currencyformats_V1.h:176
+msgid "Iranian rial"
+msgstr "ריאל אירני"
+
+#: db/DB_Table_Currencyformats_V1.h:177
+msgid "Iraqi dinar"
+msgstr "דינר עירקי"
+
+#: db/DB_Table_Currencyformats_V1.h:178
+msgid "Israeli new shekel"
+msgstr "שקל חדש"
+
+#: db/DB_Table_Currencyformats_V1.h:179
+msgid "Jamaican dollar"
+msgstr "דולר של איי ג'מיקה"
+
+#: db/DB_Table_Currencyformats_V1.h:180
+msgid "Japanese yen"
+msgstr "יין יפני"
+
+#: db/DB_Table_Currencyformats_V1.h:181
+msgid "Jordanian dinar"
+msgstr "דינר ירדני"
+
+#: db/DB_Table_Currencyformats_V1.h:182
+msgid "Kazakhstani tenge"
+msgstr "טנגה קזחסטני"
+
+#: db/DB_Table_Currencyformats_V1.h:183
+msgid "Kenyan shilling"
+msgstr "שילינג קניתי"
+
+#: db/DB_Table_Currencyformats_V1.h:184
+msgid "North Korean won"
+msgstr "וון צפון קוריאני"
+
+#: db/DB_Table_Currencyformats_V1.h:185
+msgid "South Korean won"
+msgstr "וון דרום קוריאני"
+
+#: db/DB_Table_Currencyformats_V1.h:186
+msgid "Kuwaiti dinar"
+msgstr "דינר קוויתי"
+
+#: db/DB_Table_Currencyformats_V1.h:187
+msgid "Kyrgyzstani som"
+msgstr "סום קירגיסטני"
+
+#: db/DB_Table_Currencyformats_V1.h:188
+msgid "Lao kip"
+msgstr "קיפ של לאוס"
+
+#: db/DB_Table_Currencyformats_V1.h:189
+msgid "Latvian lats"
+msgstr "לאטס של לאטוויה"
+
+#: db/DB_Table_Currencyformats_V1.h:190
+msgid "Lebanese lira"
+msgstr "לירה לבנונית"
+
+#: db/DB_Table_Currencyformats_V1.h:191
+msgid "Lesotho loti"
+msgstr "לוטי של לסוטו"
+
+#: db/DB_Table_Currencyformats_V1.h:192
+msgid "Liberian dollar"
+msgstr "דולר ליברי"
+
+#: db/DB_Table_Currencyformats_V1.h:193
+msgid "Libyan dinar"
+msgstr "דינר לובי"
+
+#: db/DB_Table_Currencyformats_V1.h:194
+msgid "Lithuanian litas"
+msgstr "ליטאס ליטאי"
+
+#: db/DB_Table_Currencyformats_V1.h:195
+msgid "Macanese pataca"
+msgstr "פאטאקה של מקאו"
+
+#: db/DB_Table_Currencyformats_V1.h:196
+msgid "Macedonian denar"
+msgstr "דינר מקדוני"
+
+#: db/DB_Table_Currencyformats_V1.h:197
+msgid "Malagasy ariary"
+msgstr "אריארי של מדגסקר"
+
+#: db/DB_Table_Currencyformats_V1.h:198
+msgid "Malawian kwacha"
+msgstr "קוואצ’ה מלאווי"
+
+#: db/DB_Table_Currencyformats_V1.h:199
+msgid "Malaysian ringgit"
+msgstr "רינגיט מלאזי"
+
+#: db/DB_Table_Currencyformats_V1.h:200
+msgid "Maldivian rufiyaa"
+msgstr "רופיאה מלדיבית"
+
+#: db/DB_Table_Currencyformats_V1.h:201
+msgid "Mauritanian ouguiya"
+msgstr "אואוגויה של מאוריטניה"
+
+#: db/DB_Table_Currencyformats_V1.h:202
+msgid "Mauritian rupee"
+msgstr "רופי מאוריציאני"
+
+#: db/DB_Table_Currencyformats_V1.h:203
+msgid "Mexican peso"
+msgstr "פסו מקסיקני"
+
+#: db/DB_Table_Currencyformats_V1.h:204
+msgid "Moldovan leu"
+msgstr "ליאו מולדובני"
+
+#: db/DB_Table_Currencyformats_V1.h:205
+msgid "Mongolian tugrik"
+msgstr "טוגריק מונגולי"
+
+#: db/DB_Table_Currencyformats_V1.h:206
+msgid "Moroccan dirham"
+msgstr "דירהם מרוקאי,"
+
+#: db/DB_Table_Currencyformats_V1.h:207
+msgid "Myanma kyat"
+msgstr "צ'אט של מיאנמר"
+
+#: db/DB_Table_Currencyformats_V1.h:208
+msgid "Namibian dollar"
+msgstr "דולר נמיבי"
+
+#: db/DB_Table_Currencyformats_V1.h:209
+msgid "Nepalese rupee"
+msgstr "רופי נפלי"
+
+#: db/DB_Table_Currencyformats_V1.h:210
+msgid "Netherlands Antillean gulden"
+msgstr "גילדן של  הולנד אנטיליאני"
+
+#: db/DB_Table_Currencyformats_V1.h:211
+msgid "New Zealand dollar"
+msgstr "דולר ניו זילנדי"
+
+#: db/DB_Table_Currencyformats_V1.h:213
+msgid "Nigerian naira"
+msgstr "נאירה ניגרי"
+
+#: db/DB_Table_Currencyformats_V1.h:214
+msgid "Norwegian krone"
+msgstr "קרונה נורוגית"
+
+#: db/DB_Table_Currencyformats_V1.h:215
+msgid "Omani rial"
+msgstr "ריאל אומני"
+
+#: db/DB_Table_Currencyformats_V1.h:216
+msgid "Pakistani rupee"
+msgstr "רופי פקיסטני"
+
+#: db/DB_Table_Currencyformats_V1.h:217
+msgid "Panamanian balboa"
+msgstr "בלבואה פנמי"
+
+#: db/DB_Table_Currencyformats_V1.h:218
+msgid "Papua New Guinean kina"
+msgstr "קינה פפואה גיאני"
+
+#: db/DB_Table_Currencyformats_V1.h:219
+msgid "Paraguayan guarani"
+msgstr "גוארני פרגוואי "
+
+#: db/DB_Table_Currencyformats_V1.h:220
+msgid "Peruvian nuevo sol"
+msgstr "נואבו סול פרואני "
+
+#: db/DB_Table_Currencyformats_V1.h:221
+msgid "Philippine peso"
+msgstr "פסו פיליפיני"
+
+#: db/DB_Table_Currencyformats_V1.h:222
+msgid "Polish zloty"
+msgstr "זלוטי פולני"
+
+#: db/DB_Table_Currencyformats_V1.h:223
+msgid "Qatari riyal"
+msgstr "ריאל קאטארי"
+
+#: db/DB_Table_Currencyformats_V1.h:224
+msgid "Romanian leu"
+msgstr "לאי רומני"
+
+#: db/DB_Table_Currencyformats_V1.h:225
+msgid "Rwandan franc"
+msgstr "פרנק של רואנדה"
+
+#: db/DB_Table_Currencyformats_V1.h:227
+msgid "Saudi riyal"
+msgstr "ריאל סעודי"
+
+#: db/DB_Table_Currencyformats_V1.h:228
+msgid "Serbian dinar"
+msgstr "דינר סרבי"
+
+#: db/DB_Table_Currencyformats_V1.h:229
+msgid "Seychellois rupee"
+msgstr "רופי סיילוני"
+
+#: db/DB_Table_Currencyformats_V1.h:230
+msgid "Sierra Leonean leone"
+msgstr "ליאונה של סיירה ליאונה"
+
+#: db/DB_Table_Currencyformats_V1.h:231
+msgid "Singapore dollar"
+msgstr "דולר סינגפורי"
+
+#: db/DB_Table_Currencyformats_V1.h:232
+msgid "Solomon Islands dollar"
+msgstr "דולר של איי שלמה"
+
+#: db/DB_Table_Currencyformats_V1.h:233
+msgid "Somali shilling"
+msgstr "שילינג סומאלי"
+
+#: db/DB_Table_Currencyformats_V1.h:234
+msgid "South African rand"
+msgstr "רנד דרום אפריקני"
+
+#: db/DB_Table_Currencyformats_V1.h:235
+msgid "Sri Lankan rupee"
+msgstr "רופי של סרילנקה"
+
+#: db/DB_Table_Currencyformats_V1.h:236
+msgid "Saint Helena pound"
+msgstr "פאונד סנט הלני"
+
+#: db/DB_Table_Currencyformats_V1.h:237
+msgid "Sudanese pound"
+msgstr "פאונד סודאני"
+
+#: db/DB_Table_Currencyformats_V1.h:238
+msgid "Surinamese dollar"
+msgstr "דולר סורינאמי"
+
+#: db/DB_Table_Currencyformats_V1.h:239
+msgid "Swazi lilangeni"
+msgstr "אילאנגני סוואזי"
+
+#: db/DB_Table_Currencyformats_V1.h:240
+msgid "Swedish krona"
+msgstr "קרונה שבדית"
+
+#: db/DB_Table_Currencyformats_V1.h:241
+msgid "Swiss franc"
+msgstr "פרנק שוויצרי"
+
+#: db/DB_Table_Currencyformats_V1.h:242
+msgid "Syrian pound"
+msgstr "פאונד סורי"
+
+#: db/DB_Table_Currencyformats_V1.h:243
+msgid "New Taiwan dollar"
+msgstr "דולר טאיוואני חדש"
+
+#: db/DB_Table_Currencyformats_V1.h:244
+msgid "Tajikistani somoni"
+msgstr "סומוני טג׳יקיסטאני"
+
+#: db/DB_Table_Currencyformats_V1.h:245
+msgid "Tanzanian shilling"
+msgstr "שילינג של טנזניה"
+
+#: db/DB_Table_Currencyformats_V1.h:246
+msgid "Thai baht"
+msgstr "בהט תאילנדי"
+
+#: db/DB_Table_Currencyformats_V1.h:247
+msgid "Trinidad and Tobago dollar"
+msgstr "דולר של טרינידד וטובגו"
+
+#: db/DB_Table_Currencyformats_V1.h:248
+msgid "Tunisian dinar"
+msgstr "דינר טוניסאי"
+
+#: db/DB_Table_Currencyformats_V1.h:249
+msgid "Turkish lira"
+msgstr "לירה תורכית"
+
+#: db/DB_Table_Currencyformats_V1.h:250
+msgid "Turkmen manat"
+msgstr "מהנאת טורקמני"
+
+#: db/DB_Table_Currencyformats_V1.h:251
+msgid "Ugandan shilling"
+msgstr "שילינג אוגנדי"
+
+#: db/DB_Table_Currencyformats_V1.h:252
+msgid "UAE dirham"
+msgstr "דירהם איחוד האמירויות הערביות"
+
+#: db/DB_Table_Currencyformats_V1.h:253
+msgid "Uruguayan peso"
+msgstr "פסו אורוגוואי"
+
+#: db/DB_Table_Currencyformats_V1.h:254
+msgid "Uzbekistani som"
+msgstr "סום אוזבקי"
+
+#: db/DB_Table_Currencyformats_V1.h:255
+msgid "Vanuatu vatu"
+msgstr "ואטו ונואטו"
+
+#: db/DB_Table_Currencyformats_V1.h:256
+msgid "Vietnamese dong"
+msgstr "דונג ויאטנמי"
+
+#: db/DB_Table_Currencyformats_V1.h:257
+msgid "Samoan tala"
+msgstr "טאלא של סמוא"
+
+#: db/DB_Table_Currencyformats_V1.h:258
+msgid "Yemeni rial"
+msgstr "ריאל תימני"
+
+#: db/DB_Table_Currencyformats_V1.h:260
+msgid "Bitcoin"
+msgstr ""
+
+#: db/DB_Table_Subcategory_V1.h:107
+msgid "Telephone"
+msgstr "טלפון"
+
+#: db/DB_Table_Subcategory_V1.h:108
+msgid "Electricity"
+msgstr "חשמל"
+
+#: db/DB_Table_Subcategory_V1.h:109 db/DB_Table_Subcategory_V1.h:120
+msgid "Gas"
+msgstr "דלק"
+
+#: db/DB_Table_Subcategory_V1.h:110
+msgid "Internet"
+msgstr "אינטרנט"
+
+#: db/DB_Table_Subcategory_V1.h:111
+msgid "Rent"
+msgstr "שכירות"
+
+#: db/DB_Table_Subcategory_V1.h:112
+msgid "Cable TV"
+msgstr "כבלים"
+
+#: db/DB_Table_Subcategory_V1.h:113
+msgid "Water"
+msgstr "מים"
+
+#: db/DB_Table_Subcategory_V1.h:114
+msgid "Groceries"
+msgstr "מצרכים"
+
+#: db/DB_Table_Subcategory_V1.h:115
+msgid "Dining out"
+msgstr "מסעדות"
+
+#: db/DB_Table_Subcategory_V1.h:116
+msgid "Movies"
+msgstr "סרטים"
+
+#: db/DB_Table_Subcategory_V1.h:117
+msgid "Video Rental"
+msgstr "השכרת סרטי וידאו"
+
+#: db/DB_Table_Subcategory_V1.h:118
+msgid "Magazines"
+msgstr "כתבי עט"
+
+#: db/DB_Table_Subcategory_V1.h:119
+msgid "Maintenance"
+msgstr "אחזקה"
+
+#: db/DB_Table_Subcategory_V1.h:121
+msgid "Parking"
+msgstr "חניה"
+
+#: db/DB_Table_Subcategory_V1.h:122
+msgid "Registration"
+msgstr "רישום"
+
+#: db/DB_Table_Subcategory_V1.h:123
+msgid "Books"
+msgstr "ספרים"
+
+#: db/DB_Table_Subcategory_V1.h:124
+msgid "Tuition"
+msgstr "שכר לימוד"
+
+#: db/DB_Table_Subcategory_V1.h:126
+msgid "Clothing"
+msgstr "הלבשה"
+
+#: db/DB_Table_Subcategory_V1.h:127
+msgid "Furnishing"
+msgstr "ריהוט"
+
+#: db/DB_Table_Subcategory_V1.h:129 db/DB_Table_Subcategory_V1.h:137
+msgid "Health"
+msgstr "בריאות"
+
+#: db/DB_Table_Subcategory_V1.h:130
+msgid "Dental"
+msgstr "שיניים"
+
+#: db/DB_Table_Subcategory_V1.h:131
+msgid "Eyecare"
+msgstr "עינים וראיה"
+
+#: db/DB_Table_Subcategory_V1.h:132
+msgid "Physician"
+msgstr "רופא"
+
+#: db/DB_Table_Subcategory_V1.h:133
+msgid "Prescriptions"
+msgstr "מרשמים"
+
+#: db/DB_Table_Subcategory_V1.h:134
+msgid "Auto"
+msgstr "רכב"
+
+#: db/DB_Table_Subcategory_V1.h:135
+msgid "Life"
+msgstr "חיים"
+
+#: db/DB_Table_Subcategory_V1.h:136
+msgid "Home"
+msgstr "בית"
+
+#: db/DB_Table_Subcategory_V1.h:138
+msgid "Travel"
+msgstr "נסיעה"
+
+#: db/DB_Table_Subcategory_V1.h:139
+msgid "Lodging"
+msgstr "לינה"
+
+#: db/DB_Table_Subcategory_V1.h:140
+msgid "Sightseeing"
+msgstr "תיור"
+
+#: db/DB_Table_Subcategory_V1.h:141
+msgid "Income Tax"
+msgstr "מס הכנסה"
+
+#: db/DB_Table_Subcategory_V1.h:142
+msgid "House Tax"
+msgstr "ארנונה"
+
+#: db/DB_Table_Subcategory_V1.h:143
+msgid "Water Tax"
+msgstr "מיסי מים"
+
+#: db/DB_Table_Subcategory_V1.h:145
+msgid "Salary"
+msgstr "משכורת"
+
+#: db/DB_Table_Subcategory_V1.h:146
+msgid "Reimbursement/Refunds"
+msgstr "החזרים"
+
+#: db/DB_Table_Subcategory_V1.h:147
+msgid "Investment Income"
+msgstr "רוח הון"
+
 #: dbupgrade.cpp:71
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
@@ -2044,8 +2852,8 @@ msgstr ""
 
 #: dbupgrade.cpp:125
 #, c-format
-msgid "MMEX database succesfully upgraded to version %i"
-msgstr "שדרוג מסד נתונים MMEX   לגירסה %i עבר בהצלחה!"
+msgid "MMEX database successfully upgraded to version %i"
+msgstr ""
 
 #: dbupgrade.cpp:126
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
@@ -2119,13 +2927,13 @@ msgstr ""
 "\n"
 "הנך מנסה לפתוח קובץ שאינו קובץ מסד נתונים \n"
 
-#: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:848 webapp.cpp:119
+#: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:862 webapp.cpp:119
 #: wizard_update.cpp:225
 #, c-format
 msgid "Error: %s"
 msgstr "שגיאה: %s"
 
-#: dbwrapper.cpp:85 mmframe.cpp:1726
+#: dbwrapper.cpp:85 mmframe.cpp:1764
 msgid "Opening MMEX Database - Error"
 msgstr "שגיאה בפתיחת מסד נתונים - MMEX"
 
@@ -2157,62 +2965,51 @@ msgstr "לא מותאם"
 msgid "All Except Reconciled"
 msgstr "הכל למעט מותאמים"
 
-#: filtertransdialog.cpp:155
+#: filtertransdialog.cpp:156 transactionsupdatedialog.cpp:100
 msgid "Specify"
 msgstr " הגדר "
 
-#: filtertransdialog.cpp:185 reports/mmDateRange.cpp:27
+#: filtertransdialog.cpp:186 reports/mmDateRange.cpp:27
 msgid "Date Range"
 msgstr "טווח תאריכים"
 
-#: filtertransdialog.cpp:227
+#: filtertransdialog.cpp:228
 msgid "Include Similar"
 msgstr "כולל דומה"
 
-#: filtertransdialog.cpp:229
+#: filtertransdialog.cpp:230
 msgid "Include all subcategories for the selected category."
 msgstr "כלול את כל קטגוריות המשנה לקטגוריה שבחרה."
 
-#: filtertransdialog.cpp:255 import_export/univcsvdialog.cpp:94
-#: mmcheckingpanel.cpp:998 model/Model_Billsdeposits.cpp:31
+#: filtertransdialog.cpp:256 import_export/univcsvdialog.cpp:94
+#: mmcheckingpanel.cpp:1018 model/Model_Billsdeposits.cpp:31
 #: model/Model_Checking.cpp:29 splitdetailsdialog.cpp:118
 msgid "Withdrawal"
 msgstr "משיכה"
 
-#: filtertransdialog.cpp:257 import_export/univcsvdialog.cpp:95
-#: mmcheckingpanel.cpp:999 model/Model_Billsdeposits.cpp:32
+#: filtertransdialog.cpp:258 import_export/univcsvdialog.cpp:95
+#: mmcheckingpanel.cpp:1019 model/Model_Billsdeposits.cpp:32
 #: model/Model_Checking.cpp:30 splitdetailsdialog.cpp:119
 msgid "Deposit"
 msgstr "הפקדה"
 
-#: filtertransdialog.cpp:259
+#: filtertransdialog.cpp:260
 msgid "Transfer To"
 msgstr "העבר ל"
 
-#: filtertransdialog.cpp:261
+#: filtertransdialog.cpp:262
 msgid "Transfer From"
 msgstr "העבר מ"
 
-#: filtertransdialog.cpp:274
+#: filtertransdialog.cpp:275
 msgid "Amount Range"
 msgstr "טווח סכומים"
 
-#: filtertransdialog.cpp:344
+#: filtertransdialog.cpp:345
 msgid "&Clear "
 msgstr "&נקה "
 
-#: filtertransdialog.cpp:423 filtertransdialog.cpp:433
-msgid "Invalid Amount Entered "
-msgstr "הוזן סכום לא תקין "
-
-#: filtertransdialog.cpp:423 filtertransdialog.cpp:433
-#: import_export/qif_import_gui.cpp:719 maincurrencydialog.cpp:531
-#: mmSimpleDialogs.cpp:175 mmframe.cpp:2844 splittransactionsdialog.cpp:206
-#: stockspanel.cpp:813 stockspanel.cpp:814
-msgid "Error"
-msgstr "שגיאה"
-
-#: filtertransdialog.cpp:764
+#: filtertransdialog.cpp:772
 msgid "Filtering Details: "
 msgstr "פרטי סינון: "
 
@@ -2220,12 +3017,12 @@ msgstr "פרטי סינון: "
 msgid "General Reports Manager"
 msgstr "מנהל דוחות כללי"
 
-#: general_report_manager.cpp:278 mmframe.cpp:723 mmframe.cpp:2335
+#: general_report_manager.cpp:278 mmframe.cpp:737 mmframe.cpp:2373
 msgid "Reports"
 msgstr "דוחות"
 
 #: general_report_manager.cpp:365 import_export/univcsvdialog.cpp:376
-#: mmframe.cpp:1204 mmframe.cpp:1383
+#: mmframe.cpp:1234 mmframe.cpp:1413
 msgid "&Import"
 msgstr "יבא&"
 
@@ -2234,7 +3031,7 @@ msgid "Locate and load a report file."
 msgstr "אתר וטען קובץ דוח."
 
 #: general_report_manager.cpp:369 import_export/univcsvdialog.cpp:383
-#: mmframe.cpp:1199 mmframe.cpp:1376
+#: mmframe.cpp:1229 mmframe.cpp:1406
 msgid "&Export"
 msgstr "&יצא"
 
@@ -2306,77 +3103,84 @@ msgstr ""
 "%s\n"
 "\n"
 
-#: general_report_manager.cpp:674
+#: general_report_manager.cpp:656 import_export/qif_import_gui.cpp:733
+#: maincurrencydialog.cpp:531 mmSimpleDialogs.cpp:175 mmframe.cpp:2884
+#: mmreportspanel.cpp:243 splittransactionsdialog.cpp:206 stockspanel.cpp:814
+#: stockspanel.cpp:815
+msgid "Error"
+msgstr "שגיאה"
+
+#: general_report_manager.cpp:673
 msgid "New Empty Report"
 msgstr "דוח (ריק) חדש"
 
-#: general_report_manager.cpp:675
+#: general_report_manager.cpp:674
 msgid "New Sample Report"
 msgstr "דוח דוגמא חדש"
 
-#: general_report_manager.cpp:678
+#: general_report_manager.cpp:677
 msgid "Change Group"
 msgstr "שנה קבוצה"
 
-#: general_report_manager.cpp:680 general_report_manager.cpp:846
+#: general_report_manager.cpp:679 general_report_manager.cpp:845
 msgid "Rename Group"
 msgstr "שנה שם קבוצה"
 
-#: general_report_manager.cpp:681
+#: general_report_manager.cpp:680
 msgid "UnGroup"
 msgstr "פרק קבוצה"
 
-#: general_report_manager.cpp:682
+#: general_report_manager.cpp:681
 msgid "Rename Report"
 msgstr "שנה שם דוח"
 
-#: general_report_manager.cpp:684
+#: general_report_manager.cpp:683
 msgid "Delete Report"
 msgstr "מחק דוח"
 
-#: general_report_manager.cpp:780 general_report_manager.cpp:925
+#: general_report_manager.cpp:779 general_report_manager.cpp:924
 msgid "Enter the name for the report"
 msgstr "הזן את שם הדוח"
 
-#: general_report_manager.cpp:781 general_report_manager.cpp:926
-#: mmframe.cpp:1174 mmframe.cpp:1524 mmframe.cpp:1645
+#: general_report_manager.cpp:780 general_report_manager.cpp:925
+#: mmframe.cpp:1197 mmframe.cpp:1562 mmframe.cpp:1683
 msgid "General Report Manager"
 msgstr "מנהל דוחות כללי"
 
-#: general_report_manager.cpp:799
+#: general_report_manager.cpp:798
 msgid "Delete the Report Title:"
 msgstr "מחק כותרת דוח:"
 
-#: general_report_manager.cpp:828 general_report_manager.cpp:906
+#: general_report_manager.cpp:827 general_report_manager.cpp:905
 msgid "Enter or choose name for the new report group"
 msgstr "הזן או בחר שם עבור קבוצת הדוחות החדשה"
 
-#: general_report_manager.cpp:829
+#: general_report_manager.cpp:828
 msgid "Change report group"
 msgstr "שנה קבוצת דוחות"
 
-#: general_report_manager.cpp:845
+#: general_report_manager.cpp:844
 msgid "Enter or choose name for the new group"
 msgstr "הזן או בחר שם עבור הקבוצה החדשה"
 
-#: general_report_manager.cpp:907
+#: general_report_manager.cpp:906
 msgid "Add Report Group"
 msgstr "הוסף קבוצת דוחות"
 
-#: general_report_manager.cpp:920
+#: general_report_manager.cpp:919
 #, c-format
 msgid "New Report %s"
 msgstr "דוח חדש %s"
 
-#: general_report_manager.cpp:933
+#: general_report_manager.cpp:932
 msgid "Report Name already exists"
 msgstr "שם דוח קיים כבר"
 
-#: general_report_manager.cpp:933 general_report_manager.cpp:940
+#: general_report_manager.cpp:932 general_report_manager.cpp:939
 msgid "New Report"
 msgstr "דוח חדש"
 
-#: general_report_manager.cpp:971
+#: general_report_manager.cpp:970
 msgid "Choose file to Save As Report"
 msgstr "בחר קובץ לשמירה כדוח"
 
@@ -2386,7 +3190,7 @@ msgid "Unable to open file."
 msgstr "לא ניתן לפתוח קובץ."
 
 #: import_export/parsers.cpp:44 import_export/parsers.cpp:87
-#: import_export/univcsvdialog.cpp:751 mmframe.cpp:2138 mmframe.cpp:2157
+#: import_export/univcsvdialog.cpp:751 mmframe.cpp:2176 mmframe.cpp:2195
 msgid "Universal CSV Import"
 msgstr "אוניברסלי  CSV יבוא"
 
@@ -2427,148 +3231,140 @@ msgstr "לא נמצאה טבלה."
 msgid "Transactions"
 msgstr "תנועות"
 
-#: import_export/qif_export.cpp:54 import_export/qif_export.cpp:240
-#: import_export/qif_export.cpp:318
+#: import_export/qif_export.cpp:41 import_export/qif_export.cpp:234
+#: import_export/qif_export.cpp:311
 msgid "QIF Export"
 msgstr "QIF יצא"
 
-#: import_export/qif_export.cpp:105
+#: import_export/qif_export.cpp:98
 msgid "Parameters"
 msgstr "פרמטרים"
 
-#: import_export/qif_export.cpp:110 import_export/qif_import_gui.cpp:199
+#: import_export/qif_export.cpp:103 import_export/qif_import_gui.cpp:200
 msgid "Log"
 msgstr "לוג"
 
-#: import_export/qif_export.cpp:117
+#: import_export/qif_export.cpp:110
 msgid "QIF"
 msgstr "QIF"
 
-#: import_export/qif_export.cpp:117
+#: import_export/qif_export.cpp:110
 msgid "CSV"
 msgstr "CSV"
 
-#: import_export/qif_export.cpp:134 mmframe.cpp:2611 mmframe.cpp:2615
-#: mmframe.cpp:2634 mmframe.cpp:2638
+#: import_export/qif_export.cpp:128 mmframe.cpp:2651 mmframe.cpp:2655
+#: mmframe.cpp:2674 mmframe.cpp:2678
 msgid "Accounts"
 msgstr "חשבונות"
 
-#: import_export/qif_export.cpp:145 import_export/qif_import_gui.cpp:177
+#: import_export/qif_export.cpp:139 import_export/qif_import_gui.cpp:178
 msgid "From Date"
 msgstr "מתאריך"
 
-#: import_export/qif_export.cpp:154 import_export/qif_import_gui.cpp:186
+#: import_export/qif_export.cpp:148 import_export/qif_import_gui.cpp:187
 msgid "To Date"
 msgstr "עד תאריך"
 
-#: import_export/qif_export.cpp:167 import_export/qif_import_gui.cpp:273
+#: import_export/qif_export.cpp:161 import_export/qif_import_gui.cpp:275
 #: optionsettingsgeneral.cpp:111
 msgid "Date Format"
 msgstr "פורמט תאריך"
 
-#: import_export/qif_export.cpp:179
+#: import_export/qif_export.cpp:173
 msgid "Write to File"
 msgstr "כתוב לקובץ"
 
-#: import_export/qif_export.cpp:182 import_export/qif_import_gui.cpp:122
+#: import_export/qif_export.cpp:176 import_export/qif_import_gui.cpp:123
 #: import_export/univcsvdialog.cpp:146
 msgid "File Name:"
 msgstr "שם קובץ:"
 
-#: import_export/qif_export.cpp:205 import_export/univcsvdialog.cpp:402
+#: import_export/qif_export.cpp:199 import_export/univcsvdialog.cpp:402
 msgid "Clear"
 msgstr "נקה"
 
-#: import_export/qif_export.cpp:239
+#: import_export/qif_export.cpp:233
 msgid "Choose Account to Export from:"
 msgstr "בחר חשבון לייצא:"
 
-#: import_export/qif_export.cpp:285 import_export/qif_import_gui.cpp:702
+#: import_export/qif_export.cpp:278 import_export/qif_import_gui.cpp:716
 msgid "QIF Files"
 msgstr "QIF קובצי"
 
-#: import_export/qif_export.cpp:285 import_export/univcsvdialog.cpp:1247
-msgid "CSV Files"
-msgstr "קובצי CSV"
-
-#: import_export/qif_export.cpp:288
+#: import_export/qif_export.cpp:279
 msgid "Choose QIF data file to Export"
 msgstr "ליצוא QIF בחר מבנה נתונים"
 
-#: import_export/qif_export.cpp:289 import_export/univcsvdialog.cpp:161
-msgid "Choose CSV data file to Export"
-msgstr "בחר קובץ נתונים CSV לייצא"
-
-#: import_export/qif_export.cpp:307
+#: import_export/qif_export.cpp:300
 msgid "No Account available for export"
 msgstr "אין חשבון זמין ליצוא"
 
-#: import_export/qif_export.cpp:309
+#: import_export/qif_export.cpp:302
 msgid "No Accounts selected for export"
 msgstr "לא נבחר חשבון ליצוא"
 
-#: import_export/qif_export.cpp:311
+#: import_export/qif_export.cpp:304
 msgid "To Date less than From Date"
 msgstr "שדה 'עד תאריך 'קטן משדה 'מתאריך'"
 
-#: import_export/qif_export.cpp:393
+#: import_export/qif_export.cpp:382
 msgid "Categories exported"
 msgstr "קטגוריות יוצאו"
 
-#: import_export/qif_export.cpp:401 import_export/qif_import_gui.cpp:348
-#: import_export/qif_import_gui.cpp:797
+#: import_export/qif_export.cpp:391 import_export/qif_import_gui.cpp:350
+#: import_export/qif_import_gui.cpp:811
 msgid "Please wait"
 msgstr "נא המתן"
 
-#: import_export/qif_export.cpp:401
+#: import_export/qif_export.cpp:391
 msgid "Exporting"
 msgstr "מייצא"
 
-#: import_export/qif_export.cpp:423
+#: import_export/qif_export.cpp:419
 #, c-format
 msgid "Exporting transaction %i"
 msgstr "מייצא תנועות %i"
 
-#: import_export/qif_export.cpp:473
+#: import_export/qif_export.cpp:474
 #, c-format
 msgid "Number of transactions exported: %ld"
 msgstr "מספר תנועות שיוצאו: %ld"
 
-#: import_export/qif_export.cpp:474 mmframe.cpp:1374
+#: import_export/qif_export.cpp:475 mmframe.cpp:1404
 msgid "Export to QIF"
 msgstr "QIF יצא ל"
 
-#: import_export/qif_import_gui.cpp:73 import_export/qif_import_gui.cpp:897
+#: import_export/qif_import_gui.cpp:74 import_export/qif_import_gui.cpp:911
 msgid "QIF Import"
 msgstr "יבוא QIF"
 
-#: import_export/qif_import_gui.cpp:123
+#: import_export/qif_import_gui.cpp:124
 msgid "Choose &file"
 msgstr "בחר &קובץ"
 
-#: import_export/qif_import_gui.cpp:136 import_export/univcsvdialog.cpp:300
+#: import_export/qif_import_gui.cpp:137 import_export/univcsvdialog.cpp:300
 msgid "Encoding:"
 msgstr "קידוד:"
 
-#: import_export/qif_import_gui.cpp:162
+#: import_export/qif_import_gui.cpp:163
 msgid "Use account number instead of account name"
 msgstr "השתמש במספר חשבון במקום שם חשבון"
 
-#: import_export/qif_import_gui.cpp:166
+#: import_export/qif_import_gui.cpp:167
 msgid "Include payee field in notes"
 msgstr "כלול שדה מוטב בהערות"
 
-#: import_export/qif_import_gui.cpp:171
+#: import_export/qif_import_gui.cpp:172
 msgid "Filtering Details:"
 msgstr "פרטי סינון: "
 
-#: import_export/qif_import_gui.cpp:208
+#: import_export/qif_import_gui.cpp:209
 msgid "Data"
 msgstr "נתונים"
 
-#: import_export/qif_import_gui.cpp:338 import_export/qif_import_gui.cpp:341
-#: import_export/qif_import_gui.cpp:491 import_export/qif_import_gui.cpp:494
-#: import_export/qif_import_gui.cpp:500 import_export/qif_import_gui.cpp:1093
+#: import_export/qif_import_gui.cpp:340 import_export/qif_import_gui.cpp:343
+#: import_export/qif_import_gui.cpp:495 import_export/qif_import_gui.cpp:498
+#: import_export/qif_import_gui.cpp:504 import_export/qif_import_gui.cpp:1107
 #: import_export/univcsvdialog.cpp:602 import_export/univcsvdialog.cpp:678
 #: import_export/univcsvdialog.cpp:682 import_export/univcsvdialog.cpp:702
 #: import_export/univcsvdialog.cpp:708 transdialog.cpp:262 webapp.cpp:384
@@ -2576,145 +3372,145 @@ msgstr "נתונים"
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: import_export/qif_import_gui.cpp:348
+#: import_export/qif_import_gui.cpp:350
 msgid "Scanning"
 msgstr "סורק"
 
-#: import_export/qif_import_gui.cpp:366
+#: import_export/qif_import_gui.cpp:368
 #, c-format
 msgid "Reading line %i, %ld ms"
 msgstr "קורא שורה %i, %ld ms"
 
-#: import_export/qif_import_gui.cpp:372
+#: import_export/qif_import_gui.cpp:374
 #, c-format
 msgid "Line %i \t %s\n"
 msgstr ""
 "שורה %i \t %s\n"
 " \n"
 
-#: import_export/qif_import_gui.cpp:431
+#: import_export/qif_import_gui.cpp:434
 #, c-format
 msgid "Number of lines read from QIF file: %i in %ld ms"
 msgstr "מספר תנועות שנקראו QIF מקובץ : %i ב %ld ms"
 
-#: import_export/qif_import_gui.cpp:434
+#: import_export/qif_import_gui.cpp:437
 msgid "Press OK Button to continue"
 msgstr "לחץ על לחצן 'אשר' כדי להמשיך"
 
-#: import_export/qif_import_gui.cpp:601 import_export/qif_import_gui.cpp:624
-#: import_export/qif_import_gui.cpp:641
+#: import_export/qif_import_gui.cpp:608 import_export/qif_import_gui.cpp:637
+#: import_export/qif_import_gui.cpp:654
 msgid "OK"
 msgstr "אשר"
 
-#: import_export/qif_import_gui.cpp:603
+#: import_export/qif_import_gui.cpp:610 import_export/qif_import_gui.cpp:613
 msgid "Warning"
 msgstr "התראה"
 
-#: import_export/qif_import_gui.cpp:607 import_export/qif_import_gui.cpp:624
+#: import_export/qif_import_gui.cpp:618 import_export/qif_import_gui.cpp:637
 msgid "Missing"
 msgstr "חסר"
 
-#: import_export/qif_import_gui.cpp:704
+#: import_export/qif_import_gui.cpp:718
 msgid "Choose QIF data file to Import"
 msgstr "בחר בקובץ נתונים QIF ליבוא"
 
-#: import_export/qif_import_gui.cpp:719
+#: import_export/qif_import_gui.cpp:733
 msgid "Can't determine date mask"
 msgstr "מסכת תאריך לא ניתנת לזיהוי"
 
-#: import_export/qif_import_gui.cpp:722
+#: import_export/qif_import_gui.cpp:736
 msgid "Date Mask has several values"
 msgstr "מסכת תאריך מכילה מספר ערכים"
 
-#: import_export/qif_import_gui.cpp:790
+#: import_export/qif_import_gui.cpp:804
 msgid "Do you want to import all transaction ?"
 msgstr "האם לייבא את כל התנועות?"
 
-#: import_export/qif_import_gui.cpp:791
+#: import_export/qif_import_gui.cpp:805
 msgid "All missing account, payees and categories will be created."
 msgstr "כל החשבונות, המוטבים והקטגוריות החסרות ייווצרו."
 
-#: import_export/qif_import_gui.cpp:792
+#: import_export/qif_import_gui.cpp:806
 msgid "Confirm Import"
 msgstr "אשר יבוא"
 
-#: import_export/qif_import_gui.cpp:797
+#: import_export/qif_import_gui.cpp:811
 msgid "Importing"
 msgstr "מייבא"
 
-#: import_export/qif_import_gui.cpp:799
+#: import_export/qif_import_gui.cpp:813
 msgid "Importing Accounts"
 msgstr "מייבא חשבונות"
 
-#: import_export/qif_import_gui.cpp:806
+#: import_export/qif_import_gui.cpp:820
 msgid "Importing Payees"
 msgstr "מייבא מוטבים"
 
-#: import_export/qif_import_gui.cpp:809
+#: import_export/qif_import_gui.cpp:823
 msgid "Importing Categories"
 msgstr "מייבא קטגוריות"
 
-#: import_export/qif_import_gui.cpp:826
+#: import_export/qif_import_gui.cpp:840
 #, c-format
 msgid "Importing transaction %i of %i"
 msgstr "מייבא תנועות %i of %i"
 
-#: import_export/qif_import_gui.cpp:859
+#: import_export/qif_import_gui.cpp:873
 msgid "Importing Transfers"
 msgstr "מייבא העברות"
 
-#: import_export/qif_import_gui.cpp:883
+#: import_export/qif_import_gui.cpp:897
 msgid "Importing Split transactions"
 msgstr "מייבא תנועות מפוצלות"
 
-#: import_export/qif_import_gui.cpp:887
+#: import_export/qif_import_gui.cpp:901
 msgid "Import finished successfully"
 msgstr "היבוא הסתיים בהצלחה"
 
-#: import_export/qif_import_gui.cpp:887 import_export/univcsvdialog.cpp:819
+#: import_export/qif_import_gui.cpp:901 import_export/univcsvdialog.cpp:819
 #: stockdialog.cpp:656
 #, c-format
 msgid "Total Imported : %ld"
 msgstr "סך כל יובאו : %ld"
 
-#: import_export/qif_import_gui.cpp:895 import_export/univcsvdialog.cpp:847
+#: import_export/qif_import_gui.cpp:909 import_export/univcsvdialog.cpp:847
 msgid "Imported transactions discarded by user!"
 msgstr "נמחקו על-ידי המשתמש תנועות מיובאות"
 
-#: import_export/qif_import_gui.cpp:977
+#: import_export/qif_import_gui.cpp:991
 msgid "Transaction code is missing"
 msgstr "קוד תנועה חסר"
 
-#: import_export/qif_import_gui.cpp:986
+#: import_export/qif_import_gui.cpp:1000
 msgid "Transaction Payee is missing or incorrect"
 msgstr "המוטב בתנועה חסר או שגוי"
 
-#: import_export/qif_import_gui.cpp:998
+#: import_export/qif_import_gui.cpp:1012
 msgid "Date format or date mask is incorrect"
 msgstr "מתארך או מסיכת תאריך שגויים"
 
-#: import_export/qif_import_gui.cpp:1009
+#: import_export/qif_import_gui.cpp:1023
 msgid "Transaction Account is incorrect"
 msgstr "חשבון תנועה שגוי"
 
-#: import_export/qif_import_gui.cpp:1016
+#: import_export/qif_import_gui.cpp:1030
 msgid "Transaction Account for transfer is incorrect"
 msgstr "חשבון תנועה להעברה שגוי"
 
-#: import_export/qif_import_gui.cpp:1043
+#: import_export/qif_import_gui.cpp:1057
 msgid "Transaction Amount is incorrect"
 msgstr "חשבון תנועה שגוי"
 
-#: import_export/qif_import_gui.cpp:1061
+#: import_export/qif_import_gui.cpp:1075
 msgid "Transaction Category is incorrect"
 msgstr "קטגורית התנועה שגויה"
 
-#: import_export/qif_import_gui.cpp:1150
+#: import_export/qif_import_gui.cpp:1164
 #, c-format
 msgid "Added account: %s"
 msgstr "התווסף חשבון: %s"
 
-#: import_export/qif_import_gui.cpp:1179 import_export/univcsvdialog.cpp:686
+#: import_export/qif_import_gui.cpp:1193 import_export/univcsvdialog.cpp:686
 #, c-format
 msgid "Added payee: %s"
 msgstr "התווסף מוטב:  %s"
@@ -2731,9 +3527,8 @@ msgstr "תת קטגוריה"
 msgid "Don't Care"
 msgstr "התעלם"
 
-#: import_export/univcsvdialog.cpp:96 mmcheckingpanel.cpp:1000
-#: mmhomepagepanel.cpp:717 reports/summary.cpp:132 reports/summary.cpp:134
-#: reports/summary.cpp:321
+#: import_export/univcsvdialog.cpp:96 mmcheckingpanel.cpp:1020
+#: mmhomepagepanel.cpp:717 reports/summary.cpp:155
 msgid "Balance"
 msgstr "יתרה"
 
@@ -2752,6 +3547,10 @@ msgstr "&דפדף"
 #: import_export/univcsvdialog.cpp:161
 msgid "Choose CSV data file to Import"
 msgstr "בחר קובץ נתוני CSV לייבא"
+
+#: import_export/univcsvdialog.cpp:161
+msgid "Choose CSV data file to Export"
+msgstr "בחר קובץ נתונים CSV לייצא"
 
 #: import_export/univcsvdialog.cpp:183
 msgid "Save Template"
@@ -2964,6 +3763,10 @@ msgstr "בחר קובץ נתונים XML ליצוא"
 msgid "XML Files (*.xml) | *.xml;*.XML | All files | *.*"
 msgstr "קבצי XML (*. xml) | *. xml; *. XML | כל הקבצים | *.*"
 
+#: import_export/univcsvdialog.cpp:1247
+msgid "CSV Files"
+msgstr "קובצי CSV"
+
 #: maincurrencydialog.cpp:70 reports/summarystocks.cpp:174 stockdialog.cpp:416
 #: stockspanel.cpp:94
 msgid "Symbol"
@@ -3158,7 +3961,7 @@ msgstr "נא בחר את חשבון התנועה."
 msgid "Please specify which account the transfer is going to."
 msgstr "נא בחר את החשבון ה'מקבל' של התנועה."
 
-#: mmSimpleDialogs.cpp:258
+#: mmSimpleDialogs.cpp:258 transactionsupdatedialog.cpp:248
 msgid "Selection can be made by using the dropdown button."
 msgstr "בחירה יכולה להתבצע על ידי שימוש בלחצן תיבת בחירה."
 
@@ -3190,215 +3993,368 @@ msgstr "נא הזן שם (לא ריק)"
 msgid "Please type in a non empty symbol."
 msgstr "נא הזן סמל (לא ריק)"
 
-#: mmcheckingpanel.cpp:407 mmcheckingpanel.cpp:551
+#: mmTips.h:22
+msgid "Recommendation: Always backup your .mmb database file regularly."
+msgstr "המלצה: דאג תמיד לגבות את קובץ מסד הנתונים .mmb באופן סדיר."
+
+#: mmTips.h:23
+msgid ""
+"Recommendation: If upgrading to a new version of MMEX, make sure you backup "
+"your .mmb database file before doing so."
+msgstr ""
+"המלצה: לקראת שדרוג לגירסה חדשה של MMEX, הקפד לגבות את קובץ מסד הנתונים  .mmb "
+"לפני ביצוע פעולה זו."
+
+#: mmTips.h:24
+msgid ""
+"Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used "
+"transactions."
+msgstr "המלצה: השתמש בעותק (Ctrl + C) ולהדביק (Ctrl + V) לתנועות בשימוש תכוף."
+
+#: mmTips.h:25
+msgid "Tip: Remember to make backups of your .mmb."
+msgstr "עצה: זכור לבצע גיבויים של קובץ ה .mmb שלך."
+
+#: mmTips.h:26
+msgid ""
+"Tip: The .mmb file is not encrypted. That means anyone else having the "
+"proper know how can actually open the file and read the contents. So make "
+"sure that if you are storing any sensitive financial information it is "
+"properly guarded."
+msgstr ""
+"טיפ: הקובץ .mmb אינו מוצפן. כלומר, כל אחד בעל ידע  כיצד לפתוח את הקובץ יוכל "
+"לעשות כן ולקרוא את התוכנו. לכן, ודא כי אם אתה מאחסן מידע פיננסי רגיש, הוא "
+"מאובטח אותו כראוי."
+
+#: mmTips.h:27
+msgid ""
+"Tip: To mark a transaction as reconciled, just select the transaction and "
+"hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select "
+"the transaction and hit the 'u' or 'U' key."
+msgstr ""
+"עצה: כדי לסמן טרנזקציה כמותאמת, פשוט בחר את בתנועה והקש על מקש 'r' או 'R'. "
+"כדי לסמן טרנזקציה כלא-מותאמת, בחור את התנועה והקש על מקש 'u' או 'U'."
+
+#: mmTips.h:28
+msgid ""
+"Tip: To mark a transaction as requiring followup, just select the "
+"transaction and hit the 'f' or 'F' key."
+msgstr ""
+"עצה: על מנת לסמן תנועה 'למעקב', רק לבחור את התנועה והקש על מקש ה 'f' או 'F' "
+"במקלדת."
+
+#: mmTips.h:29
+msgid ""
+"Tip: MMEX supports printing of all reports that can be viewed. The print "
+"options are available under the menu, File->Print."
+msgstr ""
+"עצה: MMEX תומכת בהדפסה של כל הדוחות הניתנים להצגה. אפשרויות ההדפסה זמינים "
+"מתפריט, קובץ -> הדפסה."
+
+#: mmTips.h:30
+msgid ""
+"Tip: You can modify some runtime behavior of MMEX by changing the options in "
+"the Options Dialog. "
+msgstr ""
+"עצה: ניתן לשנות  את התנהגות  של MMEX על-ידי שינוי האפשרויות בתיבת הדו-שיח "
+"'אפשרויות'. "
+
+#: mmTips.h:31
+msgid ""
+"Tip: To print a statement with transactions from any arbitrary set of "
+"criteria, use the transaction filter to select the transactions you want and "
+"then do a print from the menu."
+msgstr ""
+"עצה: כדי להדפיס דוח מצב לתנועות לפי קריטריונים שונים , השתמש במסנן תנועות "
+"כדי לבחור את התנועות הרצויות ולאחר מכן בחר בהדפסה מהתפריט. "
+
+#: mmTips.h:32
+msgid ""
+"Tip: Set exchange rate for currencies in case if you have accounts with "
+"different currencies."
+msgstr ""
+"עצה: הגדר שערי מטח למטבעות למקרה שתרצה להשתמש בחשבונות עם מטבעות שונים."
+
+#: mmTips.h:34
+msgid ""
+"Organize Categories Dialog Tip: Pressing the h key will cycle through all "
+"categories starting with the letter h"
+msgstr ""
+"עצה למסך ניהול קטגוריות: לחיצה על המקה 'י', תקפיץ את הסמן לקטגוריה הראשונה "
+"שמתחילה באות 'י'."
+
+#: mmTips.h:35
+msgid ""
+"Organize Categories Dialog Tip: Pressing 2 key combination will cycle "
+"through all categories starting with that key combination. Example: Pressing "
+"ho will select Homeneeds, Home, House Tax, etc..."
+msgstr ""
+"עצה עבור חלון ניהול קטגוריות: הקשה על צרוף של שתי אותיות בו זמנית תציב את "
+"הסמן על הקטגוריה שמתחילה באותיות אלו. לדוגמה: הקשה על 'ד' ו- 'י' בו זמנית "
+"יציבו את הסמן על קטגוריה 'דיור'."
+
+#: mmTips.h:37
+#, c-format
+msgid ""
+"Tip to get out of debt: Pay yourself 10% first. Put this into an account "
+"that is hard to touch. Make sure it is a chore to get the money out (you "
+"have to drive to the bank), so you will only tap it consciously and for "
+"major expenses."
+msgstr ""
+"Tip to get out of debt: Pay yourself 10% first. Put this into an account "
+"that is hard to touch. Make sure it is a chore to get the money out (you "
+"have to drive to the bank), so you will only tap it consciously and for "
+"major expenses."
+
+#: mmTips.h:38
+msgid "Tip to get out of debt: Establish an emergency fund."
+msgstr "עצה לצאת מחוב: הקם קרן לשעת חרום."
+
+#: mmTips.h:39
+msgid "Tip to get out of debt: Stop acquiring new debt."
+msgstr "עצה לצאת מחובות: הפסק לצבור חוב חדש."
+
+#: mmTips.h:40
+msgid "Tip to get out of debt: Create a realistic budget for your expenses."
+msgstr "עצה לצאת מחוב: צור תקציב הוצאות ריאלי"
+
+#: mmTips.h:41
+msgid "Tip to get out of debt: Spend less than you earn."
+msgstr "עצה לצאת מחוב: הוצא פחות ממה שאתה מרוויח."
+
+#: mmTips.h:42
+msgid "Tip to get out of debt: Pay more than the minimum."
+msgstr "עצה לצאת מחוב: פרע יותר מהמינימום הנדרש."
+
+#: mmTips.h:43
+msgid ""
+"Before going to a shop and buy something: take the time making a list of "
+"what you really need. In the shop buy what is in your list."
+msgstr ""
+"לפני שאתם הולכים לחנות לקנות משהו: קחו את הזמן, הכנינו רשימה של מה שאתם באמת "
+"צריכים. בחנות קנו רק מה ברשימה שלכם."
+
+#: mmcheckingpanel.cpp:411 mmcheckingpanel.cpp:555
 msgid "Displayed Bal: "
 msgstr "תצוגת יתרה: "
 
-#: mmcheckingpanel.cpp:413
+#: mmcheckingpanel.cpp:417
 msgid "Account Bal: "
 msgstr ":יתרת חשבון "
 
-#: mmcheckingpanel.cpp:415
+#: mmcheckingpanel.cpp:419
 msgid "Reconciled Bal: "
 msgstr "יתרה מותאמת: "
 
-#: mmcheckingpanel.cpp:417
+#: mmcheckingpanel.cpp:421
 msgid "Diff: "
 msgstr "הפרש: "
 
-#: mmcheckingpanel.cpp:478 mmframe.cpp:1649 transdialog.cpp:140
+#: mmcheckingpanel.cpp:482 mmframe.cpp:1687 transdialog.cpp:140
 msgid "New Transaction"
 msgstr "תנועה חדשה"
 
-#: mmcheckingpanel.cpp:482
+#: mmcheckingpanel.cpp:486
 msgid "Edit selected transaction"
 msgstr "ערוך תנועה"
 
-#: mmcheckingpanel.cpp:487
+#: mmcheckingpanel.cpp:491
 msgid "Delete selected transaction"
 msgstr "מחק תנועות נבחרות"
 
-#: mmcheckingpanel.cpp:491
+#: mmcheckingpanel.cpp:495
 msgid "D&uplicate "
 msgstr "שכ&פל "
 
-#: mmcheckingpanel.cpp:492
+#: mmcheckingpanel.cpp:496
 msgid "Duplicate selected transaction"
 msgstr "שכפל תנועה"
 
-#: mmcheckingpanel.cpp:509
+#: mmcheckingpanel.cpp:513
 msgid "Enter any string to find it in the nearest transaction notes"
 msgstr "הזן מחרוזת לחיפוש בשדה הערות שברשומת התנועה"
 
-#: mmcheckingpanel.cpp:526
+#: mmcheckingpanel.cpp:530
 #, c-format
 msgid "Account View : %s"
 msgstr "מציג חשבון:  %s"
 
-#: mmcheckingpanel.cpp:791
+#: mmcheckingpanel.cpp:798
 msgid "Select account used in transfer transactions"
 msgstr "בחר את חשבון תנועת העברה"
 
-#: mmcheckingpanel.cpp:1097
+#: mmcheckingpanel.cpp:1109
 msgid "&New Withdrawal"
 msgstr "&משיכה חדשה"
 
-#: mmcheckingpanel.cpp:1098
+#: mmcheckingpanel.cpp:1110
 msgid "&New Deposit"
 msgstr "הפקדה &חדשה"
 
-#: mmcheckingpanel.cpp:1100
+#: mmcheckingpanel.cpp:1112
 msgid "&New Transfer"
 msgstr "העברה ח&דשה"
 
-#: mmcheckingpanel.cpp:1104
+#: mmcheckingpanel.cpp:1116
 msgid "&Edit Transaction"
 msgstr "ע&רוך תנועה"
 
-#: mmcheckingpanel.cpp:1107
+#: mmcheckingpanel.cpp:1119
 msgid "&Copy Transaction"
 msgstr "העת&ק תנועה"
 
-#: mmcheckingpanel.cpp:1110
+#: mmcheckingpanel.cpp:1122
 msgid "&Paste Transaction"
 msgstr "הד&בק תנועה"
 
-#: mmcheckingpanel.cpp:1113
+#: mmcheckingpanel.cpp:1125
 msgid "D&uplicate Transaction"
 msgstr "שכ&פל תנועה"
 
-#: mmcheckingpanel.cpp:1116
+#: mmcheckingpanel.cpp:1128
 msgid "&Move Transaction"
 msgstr "ה&עבר תנועה"
 
-#: mmcheckingpanel.cpp:1122
+#: mmcheckingpanel.cpp:1134
 msgid "&View Split Categories"
 msgstr "ה&צג פיצול קטגוריות"
 
-#: mmcheckingpanel.cpp:1130
+#: mmcheckingpanel.cpp:1142
 msgid "Create Reoccuring T&ransaction"
 msgstr "צור &תנועות מחזורית"
 
-#: mmcheckingpanel.cpp:1136
+#: mmcheckingpanel.cpp:1148
 msgid "&Delete Transaction"
 msgstr "מ&חק תנועה"
 
-#: mmcheckingpanel.cpp:1139
+#: mmcheckingpanel.cpp:1151
 msgid "Delete all transactions in current view"
 msgstr "מחק את כל התנועות שבתצוגה הנוכחית"
 
-#: mmcheckingpanel.cpp:1140
+#: mmcheckingpanel.cpp:1152
 msgid "Delete Viewed \"Follow Up\" Trans."
 msgstr "מחק תנועות מוצגות ל\"טיפול\"."
 
-#: mmcheckingpanel.cpp:1141
+#: mmcheckingpanel.cpp:1153
 msgid "Delete Viewed \"Unreconciled\" Trans."
 msgstr "מחק תנועות \"לא מותאם\" מוצגות."
 
-#: mmcheckingpanel.cpp:1147
+#: mmcheckingpanel.cpp:1159
 msgid "Mark As &Reconciled"
 msgstr "סמן כמות&אם"
 
-#: mmcheckingpanel.cpp:1149
+#: mmcheckingpanel.cpp:1161
 msgid "Mark As &Unreconciled"
 msgstr "סמן כלא& מותאם"
 
-#: mmcheckingpanel.cpp:1151
+#: mmcheckingpanel.cpp:1163
 msgid "Mark As &Void"
 msgstr "סמן במבוט&ל"
 
-#: mmcheckingpanel.cpp:1153
+#: mmcheckingpanel.cpp:1165
 msgid "Mark For &Followup"
 msgstr "מסומן לב&ירור"
 
-#: mmcheckingpanel.cpp:1155
+#: mmcheckingpanel.cpp:1167
 msgid "Mark As &Duplicate"
 msgstr "סמן כ&כפילות"
 
-#: mmcheckingpanel.cpp:1157
+#: mmcheckingpanel.cpp:1169
 msgid "Mark"
 msgstr "סמן"
 
-#: mmcheckingpanel.cpp:1160
+#: mmcheckingpanel.cpp:1172
 msgid "as Reconciled"
 msgstr "כמותאם"
 
-#: mmcheckingpanel.cpp:1161
+#: mmcheckingpanel.cpp:1173
 msgid "as Unreconciled"
 msgstr "כלא מותאם"
 
-#: mmcheckingpanel.cpp:1162
+#: mmcheckingpanel.cpp:1174
 msgid "as Void"
 msgstr "כמבוטל"
 
-#: mmcheckingpanel.cpp:1163
+#: mmcheckingpanel.cpp:1175
 msgid "as needing Followup"
 msgstr "למעקב"
 
-#: mmcheckingpanel.cpp:1164
+#: mmcheckingpanel.cpp:1176
 msgid "as Duplicate"
 msgstr "ככפילות"
 
-#: mmcheckingpanel.cpp:1165
+#: mmcheckingpanel.cpp:1177
 msgid "Mark all being viewed"
 msgstr "סמן את כל התנועות המוצגות"
 
-#: mmcheckingpanel.cpp:1235
+#: mmcheckingpanel.cpp:1247
 msgid "Do you really want to delete all the transactions shown?"
 msgstr "האם למחוק את כל התנועות המוצגות?"
 
-#: mmcheckingpanel.cpp:1236 mmcheckingpanel.cpp:1249 mmcheckingpanel.cpp:1589
+#: mmcheckingpanel.cpp:1248 mmcheckingpanel.cpp:1261 mmcheckingpanel.cpp:1601
 msgid "Confirm Transaction Deletion"
 msgstr "אשר מחיקת תנועה"
 
-#: mmcheckingpanel.cpp:1245
+#: mmcheckingpanel.cpp:1257
 msgid "Follow Up"
 msgstr "מעקב"
 
-#: mmcheckingpanel.cpp:1245
+#: mmcheckingpanel.cpp:1257
 msgid "Unreconciled"
 msgstr "לא מותאם"
 
-#: mmcheckingpanel.cpp:1248
+#: mmcheckingpanel.cpp:1260
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "האם למחוק את כל  \"%s\" התנועות המוצגות?"
 
-#: mmcheckingpanel.cpp:1588
+#: mmcheckingpanel.cpp:1600
 msgid "Do you really want to delete the selected transaction?"
 msgstr "האם למחוק את התנועות הנבחרות?"
 
-#: mmcheckingpanel.cpp:1635 transdialog.cpp:1050 transdialog.cpp:1082
+#: mmcheckingpanel.cpp:1647 transdialog.cpp:1050 transdialog.cpp:1082
 msgid "MMEX Transaction Check"
 msgstr "בדיקת תנועות MMEX"
 
-#: mmcheckingpanel.cpp:1776 stockspanel.cpp:287
+#: mmcheckingpanel.cpp:1810 stockspanel.cpp:287
 #, c-format
 msgid "Moving Transaction from %s to..."
 msgstr "מעביר תנועה מ  %s ל..."
 
-#: mmcheckingpanel.cpp:1779 stockspanel.cpp:288
+#: mmcheckingpanel.cpp:1813 stockspanel.cpp:288
 msgid "Select the destination Account "
 msgstr "בחר בחשבון היעד "
 
-#: mmcheckingpanel.cpp:1833
+#: mmcheckingpanel.cpp:1867
 msgid "Reoccuring Transaction saved."
 msgstr "תנועות מחזוריות נשמרו."
 
-#: mmcheckingpanel.cpp:1873
+#: mmcheckingpanel.cpp:1910
 #, c-format
 msgid "Transactions selected: %ld"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1875
+#: mmcheckingpanel.cpp:1912
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1878
+#: mmcheckingpanel.cpp:1915
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
+
+#: mmcheckingpanel.h:279
+msgid "View Since Statement Date"
+msgstr "הצג ממועד דף החשבון"
+
+#: mmcombobox.h:78
+msgid ""
+"Please type in an exiting payee name,\n"
+"or make a selection using the dropdown button."
+msgstr ""
+"נא הזן שם מוטב קיים ,\n"
+"או בחר באמצעות לחצן תיבת בחירה."
 
 #: mmex.cpp:85
 msgid ""
@@ -3420,446 +4376,468 @@ msgstr ""
 msgid "MMEX Instance Check"
 msgstr "בדיקה מהירה של MMEX"
 
-#: mmframe.cpp:262
+#: mmframe.cpp:265
 msgid "Navigation"
 msgstr "סרגל ניווט"
 
-#: mmframe.cpp:263
+#: mmframe.cpp:266
 msgid "Toolbar"
 msgstr "סרגל כלים"
 
-#: mmframe.cpp:454 mmframe.cpp:683 mmhomepagepanel.cpp:704
-#: reports/summary.cpp:316
+#: mmframe.cpp:457 mmframe.cpp:686 mmhomepagepanel.cpp:704
+#: reports/summary.cpp:149
 msgid "Bank Accounts"
 msgstr "חשבונות בנק "
 
-#: mmframe.cpp:456 mmframe.cpp:687 mmhomepagepanel.cpp:705
-#: reports/summary.cpp:317
+#: mmframe.cpp:459 mmframe.cpp:690 mmhomepagepanel.cpp:705
+#: reports/summary.cpp:150
 msgid "Credit Card Accounts"
 msgstr "כרטיסי אשראי"
 
-#: mmframe.cpp:458 mmframe.cpp:699 mmhomepagepanel.cpp:707
-#: reports/summary.cpp:318
+#: mmframe.cpp:461 mmframe.cpp:702 mmhomepagepanel.cpp:707
+#: reports/summary.cpp:152
 msgid "Term Accounts"
 msgstr "חשבונות חיסכון"
 
-#: mmframe.cpp:460 mmframe.cpp:703
+#: mmframe.cpp:463 mmframe.cpp:706
 msgid "Stock Portfolios"
 msgstr "תיק נירות ערך"
 
-#: mmframe.cpp:462 mmframe.cpp:691 mmhomepagepanel.cpp:703
+#: mmframe.cpp:465 mmframe.cpp:694 mmhomepagepanel.cpp:703
 msgid "Cash Accounts"
 msgstr "מזומנים"
 
-#: mmframe.cpp:464 mmframe.cpp:695 mmhomepagepanel.cpp:706
+#: mmframe.cpp:467 mmframe.cpp:698 mmhomepagepanel.cpp:706
+#: reports/summary.cpp:151
 msgid "Loan Accounts"
 msgstr "חשבונות הלוואה"
 
-#: mmframe.cpp:514
+#: mmframe.cpp:517
 msgid "Auto Repeat Transactions"
 msgstr " תנועות מחזורית אוטומטית"
 
-#: mmframe.cpp:678
+#: mmframe.cpp:681
 msgid "Home Page"
 msgstr "דף הבית"
 
-#: mmframe.cpp:707
+#: mmframe.cpp:710
 msgid "Share Accounts"
 msgstr "חשבונות  נ\"ע מנוהלים"
 
-#: mmframe.cpp:719 mmframe.cpp:1500
+#: mmframe.cpp:722 mmframe.cpp:1538
 msgid "Budget Setup"
 msgstr "הגדרת תקציב"
 
-#: mmframe.cpp:731 mmframe.cpp:2380 mmhelppanel.cpp:68
+#: mmframe.cpp:745 mmframe.cpp:2418 mmhelppanel.cpp:69
 msgid "Help"
 msgstr "עזרה"
 
-#: mmframe.cpp:1085
+#: mmframe.cpp:1087
+#, c-format
+msgid ""
+"Account: %s\n"
+"\n"
+"Balance at currency %s: %s\n"
+"Balance at currency %s: %s"
+msgstr ""
+
+#: mmframe.cpp:1093
+msgid "Foreign Currency Account Balance"
+msgstr ""
+
+#: mmframe.cpp:1107
 msgid "Do you really want to delete the account?"
 msgstr "האם למחוק את החשבון?"
 
-#: mmframe.cpp:1092 mmframe.cpp:2646
+#: mmframe.cpp:1114 mmframe.cpp:2686
 msgid "Confirm Account Deletion"
 msgstr "אשר מחיקת חשבון"
 
-#: mmframe.cpp:1112
+#: mmframe.cpp:1134
 msgid "MMEX has been opened without an active database."
 msgstr "MMEX נפתחה ללא מסד נתונים פעיל."
 
-#: mmframe.cpp:1113
+#: mmframe.cpp:1135
 msgid "MMEX: Menu Popup Error"
 msgstr "MMEX: שגיאת תפריט מוקפץ"
 
-#: mmframe.cpp:1144
+#: mmframe.cpp:1166
 msgid "&New Transaction"
 msgstr "ת&נועה חדשה"
 
-#: mmframe.cpp:1147 mmframe.cpp:1188 mmframe.cpp:1447
+#: mmframe.cpp:1169 mmframe.cpp:1218 mmframe.cpp:1485
 msgid "&Edit Account"
 msgstr "ע&רוך חשבון"
 
-#: mmframe.cpp:1148 mmframe.cpp:1451
+#: mmframe.cpp:1170 mmframe.cpp:1489
 msgid "&Reallocate Account"
 msgstr "&שנה סוג חשבון"
 
-#: mmframe.cpp:1149 mmframe.cpp:1187 mmframe.cpp:1455
+#: mmframe.cpp:1171 mmframe.cpp:1217 mmframe.cpp:1493
 msgid "&Delete Account"
 msgstr "מח&ק חשבון"
 
-#: mmframe.cpp:1151
+#: mmframe.cpp:1173
+msgid "&Foreign Currency Balance"
+msgstr ""
+
+#: mmframe.cpp:1174
 msgid "&Launch Account Website"
 msgstr "פתח את א&תר החשבון"
 
-#: mmframe.cpp:1186 mmframe.cpp:1443
+#: mmframe.cpp:1204 mmframe.cpp:1473
+msgid "Hide/Show Report"
+msgstr ""
+
+#: mmframe.cpp:1216 mmframe.cpp:1481
 msgid "New &Account"
 msgstr "חשבון ח&דש"
 
-#: mmframe.cpp:1189
+#: mmframe.cpp:1219
 msgid "Account &List (Home)"
 msgstr "רשימת חש&בונות - בית"
 
-#: mmframe.cpp:1196 mmframe.cpp:1201 mmframe.cpp:1372 mmframe.cpp:1379
+#: mmframe.cpp:1226 mmframe.cpp:1231 mmframe.cpp:1402 mmframe.cpp:1409
 msgid "&CSV Files..."
 msgstr "...CSV קובצ&י"
 
-#: mmframe.cpp:1197 mmframe.cpp:1202 mmframe.cpp:1373 mmframe.cpp:1380
+#: mmframe.cpp:1227 mmframe.cpp:1232 mmframe.cpp:1403 mmframe.cpp:1410
 msgid "&XML Files..."
 msgstr "...XML קובצ&י"
 
-#: mmframe.cpp:1198 mmframe.cpp:1203 mmframe.cpp:1374 mmframe.cpp:1381
+#: mmframe.cpp:1228 mmframe.cpp:1233 mmframe.cpp:1404 mmframe.cpp:1411
 msgid "&QIF Files..."
 msgstr "...QIF קובצי"
 
-#: mmframe.cpp:1202 mmframe.cpp:1380
+#: mmframe.cpp:1232 mmframe.cpp:1410
 msgid "Import from XML (Excel format)"
 msgstr "ייברא מ XML (פורמט אקסל)"
 
-#: mmframe.cpp:1213 optionsettingsview.cpp:61
+#: mmframe.cpp:1243 optionsettingsview.cpp:61
 msgid "Accounts Visible"
 msgstr "חשבונות גלויים"
 
-#: mmframe.cpp:1353
+#: mmframe.cpp:1383
 msgid "&New Database\tCtrl-N"
 msgstr "מס&ד נתונים חדש\tCtrl-N"
 
-#: mmframe.cpp:1353 mmframe.cpp:1633 wizard_newdb.cpp:164
+#: mmframe.cpp:1383 mmframe.cpp:1671 wizard_newdb.cpp:164
 msgid "New Database"
 msgstr "מסד נתונים חדש"
 
-#: mmframe.cpp:1355
+#: mmframe.cpp:1385
 msgid "&Open Database\tCtrl-O"
 msgstr "פ&תח מסד נתונים\tCtrl-O"
 
-#: mmframe.cpp:1355 mmframe.cpp:1634
+#: mmframe.cpp:1385 mmframe.cpp:1672
 msgid "Open Database"
 msgstr "פתח מסד נתונים"
 
-#: mmframe.cpp:1357
+#: mmframe.cpp:1387
 msgid "Save Database &As"
 msgstr "שמור &מסד נתונים בשם"
 
-#: mmframe.cpp:1357
+#: mmframe.cpp:1387
 msgid "Save Database As"
 msgstr "שמור מסד נתונים כ"
 
-#: mmframe.cpp:1365
+#: mmframe.cpp:1395
 msgid "&Recent Files..."
 msgstr "&קבצים אחרונים ..."
 
-#: mmframe.cpp:1366
+#: mmframe.cpp:1396
 msgid "&Clear Recent Files"
 msgstr "&נקה רשימת קבצים אחרונים"
 
-#: mmframe.cpp:1372
+#: mmframe.cpp:1402
 msgid "Export to CSV"
 msgstr "יצא ל CAV"
 
-#: mmframe.cpp:1373
+#: mmframe.cpp:1403
 msgid "Export to XML"
 msgstr "יצא ל XML"
 
-#: mmframe.cpp:1375
+#: mmframe.cpp:1405
 msgid "&Report to HTML"
 msgstr "ד&וח HTML"
 
-#: mmframe.cpp:1375
+#: mmframe.cpp:1405
 msgid "Export to HTML"
 msgstr "יצא ל HTML"
 
-#: mmframe.cpp:1379
+#: mmframe.cpp:1409
 msgid "Import from any CSV file"
 msgstr "יבא מקובץ CSV כלשהו"
 
-#: mmframe.cpp:1381
+#: mmframe.cpp:1411
 msgid "Import from QIF"
 msgstr "יבא מ QIF"
 
-#: mmframe.cpp:1382
+#: mmframe.cpp:1412
 msgid "&WebApp..."
 msgstr "אפליקציית &רשת..."
 
-#: mmframe.cpp:1382
+#: mmframe.cpp:1412
 msgid "Import from WebApp"
 msgstr "יבא מאפליקצית WEB"
 
-#: mmframe.cpp:1388 mmframe.cpp:1668
+#: mmframe.cpp:1418 mmframe.cpp:1706
 msgid "&Print..."
 msgstr "הדפס&..."
 
-#: mmframe.cpp:1388 mmframe.cpp:1668
+#: mmframe.cpp:1418 mmframe.cpp:1706
 msgid "Print current view"
 msgstr "הדפס תצוגה נוכחית"
 
-#: mmframe.cpp:1395
+#: mmframe.cpp:1425
 msgid "E&xit\tAlt-X"
 msgstr "&צא tab]Alt-X]"
 
-#: mmframe.cpp:1395
+#: mmframe.cpp:1425
 msgid "Quit this program"
 msgstr "צא מתוכנית זו"
 
-#: mmframe.cpp:1402
+#: mmframe.cpp:1432
 msgid "&Toolbar"
 msgstr "ס&רגל כלים"
 
-#: mmframe.cpp:1402
+#: mmframe.cpp:1432
 msgid "Show/Hide the toolbar"
 msgstr "הצג/הסתר סרגל כלים"
 
-#: mmframe.cpp:1404
+#: mmframe.cpp:1434
 msgid "&Navigation"
 msgstr "סרגל ניווט&"
 
-#: mmframe.cpp:1404
+#: mmframe.cpp:1434
 msgid "Show/Hide the Navigation tree control"
 msgstr "הצג/הסתר את חלון הניווט"
 
-#: mmframe.cpp:1406
+#: mmframe.cpp:1436
 msgid "&Display Share Accounts"
 msgstr "&הצג חשבונות  נ\"ע מנוהלים"
 
-#: mmframe.cpp:1406
+#: mmframe.cpp:1436
 msgid "Show/Hide Share Accounts in the navigation tree"
 msgstr "הצג/הסתר חשבונות נירות ערך בסרגל הניווט"
 
-#: mmframe.cpp:1409
+#: mmframe.cpp:1439
 msgid "Budgets: As &Financial Years"
 msgstr "תקציב: כשנה &פיננסית"
 
-#: mmframe.cpp:1409
+#: mmframe.cpp:1439
 msgid "Display Budgets in Financial Year Format"
 msgstr "הצג תקציב בתבנית שנה פיננסית"
 
-#: mmframe.cpp:1411
+#: mmframe.cpp:1441
 msgid "Budgets: &Include Transfers in Totals"
 msgstr "תקציבים: &כולל סיכום תנועות 'העברה'"
 
-#: mmframe.cpp:1411
+#: mmframe.cpp:1441
 msgid "Include the transfer transactions in the Budget Totals"
 msgstr "כל תנועות מסוג העברה ביתרות התקציב"
 
-#: mmframe.cpp:1413
+#: mmframe.cpp:1443
 msgid "Budget Setup: &Without Summaries"
 msgstr "הגדרת תקציב: ללא סיכומים"
 
-#: mmframe.cpp:1413
+#: mmframe.cpp:1443
 msgid "Display the Budget Setup without category summaries"
 msgstr "הצג את הגדרות התקציב ללא סיכום קטגוריות"
 
-#: mmframe.cpp:1415
+#: mmframe.cpp:1445
 msgid "Budget Category Report: with &Summaries"
 msgstr "דוח תקציב לפי קטגוריה: עם &סיכומים"
 
-#: mmframe.cpp:1415
+#: mmframe.cpp:1445
 msgid "Include the category summaries in the Budget Category Summary"
 msgstr "כלול סיכומי קטגוריות בדוח תקציב על פי קטגוריות"
 
-#: mmframe.cpp:1417
+#: mmframe.cpp:1447
 msgid "Ignore F&uture Transactions"
 msgstr "התעלם& מתנועות עתידיות"
 
-#: mmframe.cpp:1417
+#: mmframe.cpp:1447
 msgid "Ignore Future transactions"
 msgstr "התעלם מתנועות עתידיות"
 
-#: mmframe.cpp:1432 mmframe.cpp:1665
+#: mmframe.cpp:1462 mmframe.cpp:1703
 msgid "Toggle Fullscreen\tF11"
 msgstr "עבור/חזור מסך מלא\tF11"
 
-#: mmframe.cpp:1432 mmframe.cpp:1665
+#: mmframe.cpp:1462 mmframe.cpp:1703
 msgid "Toggle Fullscreen"
 msgstr "עבור/חזור מסך מלא"
 
-#: mmframe.cpp:1439
+#: mmframe.cpp:1477
 msgid "Account &List"
 msgstr "רשימת חש&בונות"
 
-#: mmframe.cpp:1439 mmframe.cpp:1637
+#: mmframe.cpp:1477 mmframe.cpp:1675
 msgid "Show Account List"
 msgstr "הצג רשימת חשבונות"
 
-#: mmframe.cpp:1451
+#: mmframe.cpp:1489
 msgid "Change the account type of an account."
 msgstr "שנה את סוג החשבון"
 
-#: mmframe.cpp:1455
+#: mmframe.cpp:1493
 msgid "Delete Account from database"
 msgstr "מחק חשבון ממסד הנתונים"
 
-#: mmframe.cpp:1469
+#: mmframe.cpp:1507
 msgid "Organize &Categories..."
 msgstr "נהל ק&טגוריות..."
 
-#: mmframe.cpp:1474
+#: mmframe.cpp:1512
 msgid "Organize &Payees..."
 msgstr "נהל מוט&בים..."
 
-#: mmframe.cpp:1474 mmframe.cpp:1640 payeedialog.cpp:74
+#: mmframe.cpp:1512 mmframe.cpp:1678 payeedialog.cpp:74
 msgid "Organize Payees"
 msgstr "נהל מוטבים"
 
-#: mmframe.cpp:1479
+#: mmframe.cpp:1517
 msgid "Organize Currency..."
 msgstr "נהל& מטבעות..."
 
-#: mmframe.cpp:1479 mmframe.cpp:1641
+#: mmframe.cpp:1517 mmframe.cpp:1679
 msgid "Organize Currency"
 msgstr "נהל מטבעות"
 
-#: mmframe.cpp:1485
+#: mmframe.cpp:1523
 msgid "&Categories..."
 msgstr "&קטגוריות..."
 
-#: mmframe.cpp:1489
+#: mmframe.cpp:1527
 msgid "&Payees..."
 msgstr "&מוטבים..."
 
-#: mmframe.cpp:1490
+#: mmframe.cpp:1528
 msgid "Reassign all payees to another payee"
 msgstr "הקצא מחדש את כל הקטגוריות לקטגוריה אחרת"
 
-#: mmframe.cpp:1494
+#: mmframe.cpp:1532
 msgid "Relocation of..."
 msgstr "העברה של..."
 
-#: mmframe.cpp:1495
+#: mmframe.cpp:1533
 msgid "Relocate Categories && Payees"
 msgstr "העבר קטגוריות &ומוטבים"
 
-#: mmframe.cpp:1500
+#: mmframe.cpp:1538
 msgid "&Budget Setup"
 msgstr "הגדרת תקציב&"
 
-#: mmframe.cpp:1505
+#: mmframe.cpp:1543
 msgid "&Recurring Transactions"
 msgstr "תנועות מ&חזרית"
 
-#: mmframe.cpp:1505
+#: mmframe.cpp:1543
 msgid "Bills && Deposits"
 msgstr "משיכות והפקדות"
 
-#: mmframe.cpp:1510
+#: mmframe.cpp:1548
 msgid "&Assets"
 msgstr "נכסים&"
 
-#: mmframe.cpp:1517
+#: mmframe.cpp:1555
 msgid "&Transaction Report Filter..."
 msgstr "מסנן דוח &תנועות..."
 
-#: mmframe.cpp:1517 mmframe.cpp:1643
+#: mmframe.cpp:1555 mmframe.cpp:1681
 msgid "Transaction Report Filter"
 msgstr "מסנן דוח תנועות"
 
-#: mmframe.cpp:1524
+#: mmframe.cpp:1562
 msgid "&General Report Manager..."
 msgstr "מ&נהל דוחות כללי..."
 
-#: mmframe.cpp:1531 mmframe.cpp:1647
+#: mmframe.cpp:1569 mmframe.cpp:1685
 msgid "&Options..."
 msgstr "&אפשרויות..."
 
-#: mmframe.cpp:1531 mmframe.cpp:1647
+#: mmframe.cpp:1569 mmframe.cpp:1685
 msgid "Show the Options Dialog"
 msgstr "הצג חלון אפשרויות"
 
-#: mmframe.cpp:1539
+#: mmframe.cpp:1577
 msgid "Convert Encrypted &DB"
 msgstr "הצפן &מסד נתונים"
 
-#: mmframe.cpp:1540
+#: mmframe.cpp:1578
 msgid "Convert Encrypted DB to Non-Encrypted DB"
 msgstr "המר מסד נתונים מוצפן למסד נתונים לא מוצפן"
 
-#: mmframe.cpp:1543
+#: mmframe.cpp:1581
 msgid "Change Encrypted &Password"
 msgstr "שנה &סיסמה מוצפנת"
 
-#: mmframe.cpp:1544
+#: mmframe.cpp:1582
 msgid "Change the password of an encrypted database"
 msgstr "החלף  סיסמה למסד נתונים מוצפן"
 
-#: mmframe.cpp:1547
+#: mmframe.cpp:1585
 msgid "Optimize &Database"
 msgstr "מטב מסד נ&תונים"
 
-#: mmframe.cpp:1548
+#: mmframe.cpp:1586
 msgid "Optimize database space and performance"
 msgstr "מטב את שטח וביצועי מסד הנתונים"
 
-#: mmframe.cpp:1551
+#: mmframe.cpp:1589
 msgid "Database Debug"
 msgstr "ניפוי מסד נתונים"
 
-#: mmframe.cpp:1552
+#: mmframe.cpp:1590
 msgid "Generate database report or fix errors"
 msgstr "חולל דוח מסד נתונים או תקן שגויים"
 
-#: mmframe.cpp:1558
+#: mmframe.cpp:1596
 msgid "Database"
 msgstr "מסד נתונים"
 
-#: mmframe.cpp:1559
+#: mmframe.cpp:1597
 msgid "Database management"
 msgstr "ניהול מסד נתונים"
 
-#: mmframe.cpp:1566 mmframe.cpp:1652
+#: mmframe.cpp:1604 mmframe.cpp:1690
 msgid "&Help\tF1"
 msgstr "ע&זרה\tF1"
 
-#: mmframe.cpp:1566 mmframe.cpp:1652
+#: mmframe.cpp:1604 mmframe.cpp:1690
 msgid "Show the Help file"
 msgstr "הצג קובץ עזרה"
 
-#: mmframe.cpp:1571
+#: mmframe.cpp:1609
 msgid "&Show App Start Dialog"
 msgstr "הצג חלון פתיחה&"
 
-#: mmframe.cpp:1571
+#: mmframe.cpp:1609
 msgid "App Start Dialog"
 msgstr "מסך פתיחה"
 
-#: mmframe.cpp:1578
+#: mmframe.cpp:1616
 msgid "Check for &Updates"
 msgstr "בד&וק עדכונים"
 
-#: mmframe.cpp:1578
+#: mmframe.cpp:1616
 msgid "Check For Updates"
 msgstr "בדוק עדכונים"
 
-#: mmframe.cpp:1583
+#: mmframe.cpp:1621
 msgid "Get Android Version"
 msgstr "קבל גרסת אנדרואיד "
 
-#: mmframe.cpp:1584
+#: mmframe.cpp:1622
 msgid "Run this program in your Android smart phone or tablet"
 msgstr "הרץ תכנית זו בטלפון החכם או מחשב לוח אנדרואיד"
 
-#: mmframe.cpp:1589
+#: mmframe.cpp:1627
 msgid "Visit MMEX Forum"
 msgstr "בקר בפורום MMEX"
 
-#: mmframe.cpp:1590
+#: mmframe.cpp:1628
 msgid ""
 "Visit the MMEX forum. See existing user comments, or report new issues with "
 "the software."
@@ -3867,71 +4845,71 @@ msgstr ""
 "בקר בפורום MMEX, צפה בתגובות משתמשים אחרים או דווח על בעיות חדשות בנוגע "
 "לתוכנה."
 
-#: mmframe.cpp:1595 mmframe.cpp:1657
+#: mmframe.cpp:1633 mmframe.cpp:1695
 msgid "Register/View Release &Notifications"
 msgstr "הרשם / צפה במהדורות חדשות והודעות"
 
-#: mmframe.cpp:1596
+#: mmframe.cpp:1634
 msgid "Sign up to Notification Mailing List or View existing announcements."
 msgstr ".הרשם לרשימת תופצה לקבלת הודעות או צפה בהכרזות קיימות"
 
-#: mmframe.cpp:1601
+#: mmframe.cpp:1639
 msgid "Visit us on Facebook"
 msgstr "Facebookבקר אותנו ב"
 
-#: mmframe.cpp:1606 mmframe.cpp:1651
+#: mmframe.cpp:1644 mmframe.cpp:1689
 msgid "&About..."
 msgstr "אוד&ות..."
 
-#: mmframe.cpp:1606 mmframe.cpp:1651
+#: mmframe.cpp:1644 mmframe.cpp:1689
 msgid "Show about dialog"
 msgstr "הצג חלון אודות"
 
-#: mmframe.cpp:1611
+#: mmframe.cpp:1649
 msgid "&File"
 msgstr "ק&ובץ"
 
-#: mmframe.cpp:1612
+#: mmframe.cpp:1650
 msgid "&Accounts"
 msgstr "חש&בונות"
 
-#: mmframe.cpp:1613
+#: mmframe.cpp:1651
 msgid "&Tools"
 msgstr "כ&לים"
 
-#: mmframe.cpp:1614
+#: mmframe.cpp:1652
 msgid "&View"
 msgstr "תצוגה&"
 
-#: mmframe.cpp:1615
+#: mmframe.cpp:1653
 msgid "&Help"
 msgstr "ע&זרה"
 
-#: mmframe.cpp:1633 mmframe.cpp:1649
+#: mmframe.cpp:1671 mmframe.cpp:1687
 msgid "New"
 msgstr "חדש"
 
-#: mmframe.cpp:1637
+#: mmframe.cpp:1675
 msgid "Account List"
 msgstr "רשימת חשבונות"
 
-#: mmframe.cpp:1639
+#: mmframe.cpp:1677
 msgid "Show Organize Categories Dialog"
 msgstr "הצג חלון ניהול קטגוריות"
 
-#: mmframe.cpp:1640
+#: mmframe.cpp:1678
 msgid "Show Organize Payees Dialog"
 msgstr "הצג חלון נוהל מוטבים"
 
-#: mmframe.cpp:1641
+#: mmframe.cpp:1679
 msgid "Show Organize Currency Dialog"
 msgstr "הצג חלון ניהול מטבעות"
 
-#: mmframe.cpp:1662
+#: mmframe.cpp:1700
 msgid "News"
 msgstr "חדשות"
 
-#: mmframe.cpp:1720
+#: mmframe.cpp:1758
 #, c-format
 msgid ""
 "Please enter password for Database\n"
@@ -3942,76 +4920,76 @@ msgstr ""
 "\n"
 "%s"
 
-#: mmframe.cpp:1721 mmframe.cpp:1927 mmframe.cpp:2060
+#: mmframe.cpp:1759 mmframe.cpp:1965 mmframe.cpp:2098
 msgid "MMEX: Encrypted Database"
 msgstr "MMEX: מסד נתונים מוצפן"
 
-#: mmframe.cpp:1755
+#: mmframe.cpp:1793
 msgid "Have MMEX support provided you a debug/patch file?"
 msgstr "הם תמיכת MMEX סיפקה לך קובץ איתור באגים/תיקון?"
 
-#: mmframe.cpp:1755
+#: mmframe.cpp:1793
 msgid "MMEX upgrade"
 msgstr "שדרוג MMEX "
 
-#: mmframe.cpp:1769 mmframe.cpp:1811
+#: mmframe.cpp:1807 mmframe.cpp:1849
 msgid "No File opened"
 msgstr "קובץ לא נפתח "
 
-#: mmframe.cpp:1771
+#: mmframe.cpp:1809
 msgid ""
 "Sorry. The Database version is too old or Database password is incorrect"
 msgstr "מצטער, גרסת מסד הנתונים ישנה מדי או שהסיסמה שגויה"
 
-#: mmframe.cpp:1801
+#: mmframe.cpp:1839
 msgid "&Next ->"
 msgstr "&הבא ->"
 
-#: mmframe.cpp:1814
+#: mmframe.cpp:1852
 msgid "Cannot locate previously opened database.\n"
 msgstr "מסד נתונים שנפתח לאחרונה לא נמצא.\n"
 
-#: mmframe.cpp:1816
+#: mmframe.cpp:1854
 msgid "Password not entered for encrypted Database.\n"
 msgstr ".לא הוזנה סיסמה למסד נתונים מוצפן\n"
 
-#: mmframe.cpp:1834
+#: mmframe.cpp:1872
 msgid "portable mode"
 msgstr "מצב נייד"
 
-#: mmframe.cpp:1877
+#: mmframe.cpp:1915
 msgid "Choose database file to create"
 msgstr "בחר קובץ מסד נתונים ליצירה"
 
-#: mmframe.cpp:1900
+#: mmframe.cpp:1938
 msgid "Choose database file to open"
 msgstr "בחר קובץ מסד נתונים לפתיחה"
 
-#: mmframe.cpp:1917
+#: mmframe.cpp:1955
 msgid "Choose Encrypted database file to open"
 msgstr "בחר מסד נתונים מוצפן לפתיחה"
 
-#: mmframe.cpp:1927
+#: mmframe.cpp:1965
 msgid "Enter password for database"
 msgstr "הזן סיסמת מסד נתונים"
 
-#: mmframe.cpp:1932
+#: mmframe.cpp:1970
 msgid "Choose database file to Save As"
 msgstr "בחר קובץ מסד נתונים לשמירה בשם"
 
-#: mmframe.cpp:1954
+#: mmframe.cpp:1992
 msgid "Converted DB!"
 msgstr "המר מסד נתונים!"
 
-#: mmframe.cpp:1954
+#: mmframe.cpp:1992
 msgid "MMEX message"
 msgstr "הודעת MMEX"
 
-#: mmframe.cpp:1960
+#: mmframe.cpp:1998
 msgid "MMEX: Encryption Password Change"
 msgstr "MMEX : שינוי סיסמתהצפנה"
 
-#: mmframe.cpp:1961
+#: mmframe.cpp:1999
 #, c-format
 msgid ""
 "New password for database\n"
@@ -4022,31 +5000,31 @@ msgstr ""
 "\n"
 "%s"
 
-#: mmframe.cpp:1966
+#: mmframe.cpp:2004
 msgid "New password must not be empty."
 msgstr "סיסמה חדשה, לא יכול להישאר ריק."
 
-#: mmframe.cpp:1970
+#: mmframe.cpp:2008
 msgid "Please confirm new password"
 msgstr "נא אשר סיסמה חדשה..."
 
-#: mmframe.cpp:1974
+#: mmframe.cpp:2012
 msgid "Password change completed."
 msgstr "שינוי הסיסמה הושלם."
 
-#: mmframe.cpp:1978
+#: mmframe.cpp:2016
 msgid "Confirm password failed."
 msgstr "אשר סיסמה נכשל."
 
-#: mmframe.cpp:1987
+#: mmframe.cpp:2025
 msgid "Make sure you have a backup of DB before optimize it"
 msgstr "ודא שקיים גיבוי עדכני של מסד הנתונים  לפני ביצוע המיטוב"
 
-#: mmframe.cpp:1988 mmframe.cpp:1998
+#: mmframe.cpp:2026 mmframe.cpp:2036
 msgid "DB Optimization"
 msgstr "מטב את מסד הנתונים"
 
-#: mmframe.cpp:1995
+#: mmframe.cpp:2033
 #, c-format
 msgid ""
 "Database Optimization Completed!\n"
@@ -4058,31 +5036,31 @@ msgstr ""
 "\n"
 "גודל לפני: %s גודל לאחר: %s\n"
 
-#: mmframe.cpp:2006
+#: mmframe.cpp:2044
 msgid "Please use this function only if explicitly requested by MMEX support"
 msgstr "השתמש בפונקציה זו רק אם נתבקשת במפורש על ידי תמיכת MMEX"
 
-#: mmframe.cpp:2007
+#: mmframe.cpp:2045
 msgid "DB Debug"
 msgstr "ניפוי מסד נתונים"
 
-#: mmframe.cpp:2026 mmframe.cpp:2047
+#: mmframe.cpp:2064 mmframe.cpp:2085
 msgid "Save database file as"
 msgstr "שמור קובץ מסד נתונים בשם"
 
-#: mmframe.cpp:2047
+#: mmframe.cpp:2085
 msgid "Can't copy file to itself"
 msgstr "לא ניתן להעתיק קובץ לתוך עצמו"
 
-#: mmframe.cpp:2060
+#: mmframe.cpp:2098
 msgid "Enter password for new database"
 msgstr "הזן סיסמה למסד נתונים חדש"
 
-#: mmframe.cpp:2138 mmframe.cpp:2157
+#: mmframe.cpp:2176 mmframe.cpp:2195
 msgid "No account available to import"
 msgstr "אין חשבון זמין ליבוא"
 
-#: mmframe.cpp:2208
+#: mmframe.cpp:2246
 msgid ""
 "Asset Accounts hold Asset transactions\n"
 "\n"
@@ -4098,11 +5076,11 @@ msgstr ""
 "\n"
 "חשבונות נכסים יכולת לכלול גם תנועות רגילות לחשבונות רגילים."
 
-#: mmframe.cpp:2212
+#: mmframe.cpp:2250
 msgid "Asset Account Creation"
 msgstr "יצירת חשבון נכס"
 
-#: mmframe.cpp:2218
+#: mmframe.cpp:2256
 msgid ""
 "Share Accounts hold Share transactions\n"
 "\n"
@@ -4123,39 +5101,39 @@ msgstr ""
 "או באמצעות תפריט תצוגה--> 'הצג חשבונות נירות ערך'\n"
 "חשבונות נירות ערך יכולים להכיל גם תנועות רגילות לחשבון רגיל."
 
-#: mmframe.cpp:2224
+#: mmframe.cpp:2262
 msgid "Share Account Creation"
 msgstr "יצירת חשבון נירות ערך"
 
-#: mmframe.cpp:2370
+#: mmframe.cpp:2408
 msgid "MMEX Options have been updated."
 msgstr "עודכנו MMEX אפשרויות"
 
-#: mmframe.cpp:2371 optiondialog.cpp:55 optiondialog.cpp:190
+#: mmframe.cpp:2409 optiondialog.cpp:55 optiondialog.cpp:190
 msgid "MMEX Options"
 msgstr "אפשרויות MMEX"
 
-#: mmframe.cpp:2465
+#: mmframe.cpp:2503
 msgid "Choose HTML file to Export"
 msgstr "בחר קובץ HTML לייצוא"
 
-#: mmframe.cpp:2611
+#: mmframe.cpp:2651
 msgid "No account available to edit!"
 msgstr "אין חשבון זמין לעריכה!"
 
-#: mmframe.cpp:2615
+#: mmframe.cpp:2655
 msgid "Choose Account to Edit"
 msgstr "בחר חשבוון לעריכה"
 
-#: mmframe.cpp:2634
+#: mmframe.cpp:2674
 msgid "No account available to delete!"
 msgstr "אין חשבון זמין למחיקה!"
 
-#: mmframe.cpp:2638
+#: mmframe.cpp:2678
 msgid "Choose Account to Delete"
 msgstr "בחר חשבון למחיקה"
 
-#: mmframe.cpp:2643
+#: mmframe.cpp:2683
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -4164,28 +5142,28 @@ msgstr ""
 "האם למחוק את\n"
 " %s חשבון: %s ?"
 
-#: mmframe.cpp:2662
+#: mmframe.cpp:2702
 msgid "Select the account to reallocate"
 msgstr "בחר את החשבון עבורו יבוצע שינוי סוג"
 
-#: mmframe.cpp:2662 mmframe.cpp:2685
+#: mmframe.cpp:2702 mmframe.cpp:2725
 msgid "Account Reallocation"
 msgstr "שנה סוג חשבון"
 
-#: mmframe.cpp:2684
+#: mmframe.cpp:2724
 #, c-format
 msgid "Account: %s - Select new type."
 msgstr "חשבון:  %s  - בחר סוג חדש."
 
-#: mmframe.cpp:2785 payeedialog.cpp:313
+#: mmframe.cpp:2825 payeedialog.cpp:313
 msgid "Payee Relocation Completed."
 msgstr "העברת מוטב הושלמה."
 
-#: mmframe.cpp:2789 payeedialog.cpp:317
+#: mmframe.cpp:2829 payeedialog.cpp:317
 msgid "Payee Relocation Result"
 msgstr "תוצאת העברת מוטבים"
 
-#: mmframe.cpp:2844
+#: mmframe.cpp:2884
 #, c-format
 msgid "File %s not found"
 msgstr "קובץ %s לא נמצא"
@@ -4194,97 +5172,24 @@ msgstr "קובץ %s לא נמצא"
 msgid "General Group Report"
 msgstr "בטל  קבוצת דוחות"
 
-#: mmframereport.cpp:99 model/Model_Report.cpp:307 reports/forecast.cpp:86
+#: mmframereport.cpp:99 model/Model_Report.cpp:397 reports/forecast.cpp:86
 #: reports/myusage.cpp:197
 msgid "Caught exception"
 msgstr "נמצא חריג"
 
-#: mmframereport.cpp:114 reports/myusage.cpp:110
-msgid "My Usage"
-msgstr "השימוש שלי"
-
-#: mmframereport.cpp:119
-msgid "Monthly Summary of Accounts"
-msgstr "סיכום חשבונות חודשי"
-
-#: mmframereport.cpp:124 reports/categexp.cpp:190
-msgid "Where the Money Goes"
-msgstr "לאן הולך הכסף"
-
-#: mmframereport.cpp:129 reports/categexp.cpp:195
-msgid "Where the Money Comes From"
-msgstr "מאין מגיע הכסף"
-
-#: mmframereport.cpp:141 reports/htmlbuilder.cpp:315
-#: reports/mmDateRange.cpp:209
-msgid "Over Time"
-msgstr "לאורך זמן"
-
-#: mmframereport.cpp:147
-msgid "Payees"
-msgstr "מוטבים"
-
-#: mmframereport.cpp:152 reports/incexpenses.cpp:30 reports/incexpenses.cpp:174
-msgid "Income vs Expenses"
-msgstr "הכנסות מול הוצאות"
-
-#: mmframereport.cpp:166
-msgid "Income vs Expenses - Specific Accounts"
-msgstr "הכנסות מול הוצאות - לחשבונות מסויימים"
-
-#: mmframereport.cpp:186
-msgid "Budget Performance"
-msgstr "בצועי תקציב"
-
-#: mmframereport.cpp:190
-msgid "Budget Category Summary"
-msgstr "סיכום קטגוריות תקציב"
-
-#: mmframereport.cpp:215 reports/cashflow.cpp:33
-msgid "Cash Flow"
-msgstr "תזרים מזומנים"
-
-#: mmframereport.cpp:219
-msgid "Cash Flow - With Bank Accounts"
-msgstr "תזרים מזומנים - כולל חשבונות בנק"
-
-#: mmframereport.cpp:224
-msgid "Cash Flow - With Term Accounts"
-msgstr "תזרים מזומנים - כולל חשבונות חיסכון"
-
-#: mmframereport.cpp:229
-msgid "Cash Flow - Specific Accounts"
-msgstr "תזרים מזומנים - חשבונות נבחרים"
-
-#: mmframereport.cpp:234
-msgid "Daily Cash Flow - Specific Accounts"
-msgstr "תזרים מזומנים יומי - חשבונות נבחרים"
-
-#: mmframereport.cpp:241
+#: mmframereport.cpp:114
 msgid "Transaction Report"
 msgstr "דוח תנועות"
 
-#: mmframereport.cpp:247
-msgid "Stocks Report"
-msgstr "דוח נירות ערך"
-
-#: mmframereport.cpp:252 mmhomepagepanel.cpp:218
-msgid "Summary"
-msgstr "סיכום"
-
-#: mmframereport.cpp:259
-msgid "Forecast Report"
-msgstr "דוח תחזית"
-
-#: mmhelppanel.cpp:65
+#: mmhelppanel.cpp:66
 msgid "&Back"
 msgstr "&אחורה"
 
-#: mmhelppanel.cpp:66
+#: mmhelppanel.cpp:67
 msgid "&Forward"
 msgstr "&קדימה"
 
-#: mmhomepagepanel.cpp:81 mmhomepagepanel.cpp:99 reports/summary.cpp:320
+#: mmhomepagepanel.cpp:81 mmhomepagepanel.cpp:99 reports/summary.cpp:154
 msgid "Stocks"
 msgstr "נירות ערך"
 
@@ -4293,13 +5198,14 @@ msgstr "נירות ערך"
 msgid "Gain/Loss"
 msgstr "רוח/הפסד"
 
-#: mmhomepagepanel.cpp:100 reports/cashflow.cpp:262 reports/categexp.cpp:134
-#: reports/categovertimeperf.cpp:139 reports/summary.cpp:319
+#: mmhomepagepanel.cpp:100 reports/budgetingperf.cpp:184
+#: reports/cashflow.cpp:244 reports/categexp.cpp:135
+#: reports/categovertimeperf.cpp:139 reports/summary.cpp:153
 msgid "Total"
 msgstr "סך הכל"
 
-#: mmhomepagepanel.cpp:123 mmhomepagepanel.cpp:751 reports/incexpenses.cpp:285
-#: reports/payee.cpp:140 reports/summarystocks.cpp:131
+#: mmhomepagepanel.cpp:123 mmhomepagepanel.cpp:751 reports/incexpenses.cpp:271
+#: reports/payee.cpp:141 reports/summarystocks.cpp:131
 #: splittransactionsdialog.cpp:141
 msgid "Total:"
 msgstr "סך הכל:"
@@ -4309,7 +5215,11 @@ msgstr "סך הכל:"
 msgid "Top Withdrawals: %s"
 msgstr "משיכות מובילות: %s"
 
-#: mmhomepagepanel.cpp:597
+#: mmhomepagepanel.cpp:218 option.cpp:111 option.cpp:114 option.cpp:121
+msgid "Summary"
+msgstr "סיכום"
+
+#: mmhomepagepanel.cpp:598
 msgid "Upcoming Transactions"
 msgstr "תנועות עתידיות"
 
@@ -4319,12 +5229,12 @@ msgid "Income vs Expenses: %s"
 msgstr "הכנסות מול הוצאות: %s"
 
 #: mmhomepagepanel.cpp:791 reports/categovertimeperf.cpp:138
-#: reports/incexpenses.cpp:107 reports/incexpenses.cpp:255
-#: reports/payee.cpp:117
+#: reports/incexpenses.cpp:109 reports/incexpenses.cpp:241
+#: reports/payee.cpp:118
 msgid "Expenses"
 msgstr "הוצאות"
 
-#: mmhomepagepanel.cpp:793 reports/incexpenses.cpp:137
+#: mmhomepagepanel.cpp:793 reports/incexpenses.cpp:139
 msgid "Difference:"
 msgstr "הפרש:"
 
@@ -4344,32 +5254,79 @@ msgstr "המשך טיפול בתנועות: "
 msgid "Total Transactions: "
 msgstr "סך כל תנועות: "
 
-#: mmhomepagepanel.cpp:844 reports/categexp.cpp:176
-#: reports/summarystocks.cpp:141
+#: mmhomepagepanel.cpp:844 reports/categexp.cpp:177
+#: reports/summarystocks.cpp:141 reports/transactions.cpp:162
 msgid "Grand Total:"
 msgstr "סך הכל כללי:"
 
-#: mmpanelbase.cpp:130
+#: mmpanelbase.cpp:131
 msgid "Hide/Show Columns"
 msgstr "הצג/הסתר עמודה"
 
-#: mmpanelbase.cpp:131
+#: mmpanelbase.cpp:132
 msgid "Hide this column"
 msgstr "הסתר עמודה זו"
 
-#: mmpanelbase.cpp:133
+#: mmpanelbase.cpp:134
 msgid "Order by this column"
 msgstr "מיין לפי עמודה זו"
 
-#: mmpanelbase.cpp:134
+#: mmpanelbase.cpp:135
 msgid "Reset columns"
 msgstr "אפס עמודות"
 
-#: mmreportspanel.cpp:206
+#: mmreportspanel.cpp:264
 msgid "REPORTS"
 msgstr "דוחות"
 
-#: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:315
+#: mmreportspanel.cpp:280 mmreportspanel.cpp:343
+msgid "Period:"
+msgstr ""
+
+#: mmreportspanel.cpp:308 mmreportspanel.cpp:309 mmreportspanel.cpp:331
+#: mmreportspanel.cpp:332 mmreportspanel.cpp:379 mmreportspanel.cpp:380
+msgid "Previous Period"
+msgstr ""
+
+#: mmreportspanel.cpp:312 mmreportspanel.cpp:313 mmreportspanel.cpp:335
+#: mmreportspanel.cpp:336 mmreportspanel.cpp:383 mmreportspanel.cpp:384
+msgid "Next Period"
+msgstr ""
+
+#: mmreportspanel.cpp:391
+msgid "Accounts:"
+msgstr ""
+
+#: mmreportspanel.cpp:393 reports/cashflow.cpp:226 reports/incexpenses.cpp:49
+#: reports/incexpenses.cpp:177
+msgid "All Accounts"
+msgstr "כל החשבונות"
+
+#: mmreportspanel.cpp:394
+msgid "Specific Accounts"
+msgstr ""
+
+#: mmtextctrl.h:92
+msgid "Invalid Amount."
+msgstr "סכום לא תקין."
+
+#: mmtextctrl.h:93
+msgid "Please enter a positive or calculated value."
+msgstr "נא הזן ערך חיובי או ערך מחושב ."
+
+#: mmtextctrl.h:93
+msgid "Please enter a calculated value."
+msgstr "נא הזן ערך מחושב ."
+
+#: mmtextctrl.h:95
+msgid ""
+"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
+"Calculations will be evaluated and the result used as the entry."
+msgstr ""
+"טיפ : לחישובים הזן ביטויים כמו ( 2 + 2 ) * ( 2 + 2 )\n"
+"חישובים יתבצעו והתוצאה תשמש כהזנה."
+
+#: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:148
 msgid "Cash"
 msgstr "מזומן"
 
@@ -4401,7 +5358,7 @@ msgstr "נכס"
 msgid "Shares"
 msgstr "ניר ערך"
 
-#: model/Model_Account.cpp:126
+#: model/Model_Account.cpp:133
 msgid "Account Error"
 msgstr "שגיאת חשבון "
 
@@ -4416,10 +5373,6 @@ msgstr "פחת"
 #: model/Model_Asset.cpp:30
 msgid "Property"
 msgstr "נדל\"ן"
-
-#: model/Model_Asset.cpp:31 db/DB_Table_Category_V1.h:108
-msgid "Automobile"
-msgstr "רכב"
 
 #: model/Model_Asset.cpp:32
 msgid "Household Object"
@@ -4453,12 +5406,7 @@ msgstr "חשבון הבנק"
 msgid "RecurringTransaction"
 msgstr "תנועות מחזורית"
 
-#: model/Model_Billsdeposits.cpp:33 model/Model_Checking.cpp:31
-#: db/DB_Table_Category_V1.h:120
-msgid "Transfer"
-msgstr "העברה"
-
-#: model/Model_Billsdeposits.cpp:302
+#: model/Model_Billsdeposits.cpp:313
 msgid ""
 "A recurring transaction will exceed your account limit.\n"
 "\n"
@@ -4468,7 +5416,7 @@ msgstr ""
 "\n"
 "האם להמשיך?"
 
-#: model/Model_Billsdeposits.cpp:304
+#: model/Model_Billsdeposits.cpp:315
 msgid "MMEX Recurring Transaction Check"
 msgstr "בדיקת תנועות מחזוריות של MMEX"
 
@@ -4508,7 +5456,7 @@ msgstr "אפשרויות מרובות"
 msgid "Payee Error"
 msgstr "שגיאת  מוטב"
 
-#: model/Model_Report.cpp:171
+#: model/Model_Report.cpp:257
 #, c-format
 msgid ""
 "The SQL script:\n"
@@ -4518,6 +5466,55 @@ msgstr ""
 "תסריט SQL:\n"
 "% s\n"
 "יישנא את מסד הנתונים! בוטל!"
+
+#: option.cpp:106 reports/myusage.cpp:110
+msgid "My Usage"
+msgstr "השימוש שלי"
+
+#: option.cpp:107 option.cpp:108
+msgid "Summary of Accounts"
+msgstr "יתרת חשבונות"
+
+#: option.cpp:109 reports/categexp.cpp:190
+msgid "Where the Money Goes"
+msgstr "לאן הולך הכסף"
+
+#: option.cpp:110 reports/categexp.cpp:195
+msgid "Where the Money Comes From"
+msgstr "מאין מגיע הכסף"
+
+#: option.cpp:113
+msgid "Payees"
+msgstr "מוטבים"
+
+#: option.cpp:114 option.cpp:115 reports/incexpenses.cpp:31
+#: reports/incexpenses.cpp:159
+msgid "Income vs Expenses"
+msgstr "הכנסות מול הוצאות"
+
+#: option.cpp:116 option.cpp:117
+msgid "Budget"
+msgstr ""
+
+#: option.cpp:116 option.cpp:120
+msgid "Performance"
+msgstr ""
+
+#: option.cpp:117
+msgid "Category Summary"
+msgstr ""
+
+#: option.cpp:118 option.cpp:119 reports/cashflow.cpp:34
+msgid "Cash Flow"
+msgstr "תזרים מזומנים"
+
+#: option.cpp:120 option.cpp:121
+msgid "Stocks Report"
+msgstr "דוח נירות ערך"
+
+#: option.cpp:122
+msgid "Forecast Report"
+msgstr "דוח תחזית"
 
 #: optiondialog.cpp:130
 msgid "General"
@@ -5011,7 +6008,7 @@ msgstr "1"
 msgid "2"
 msgstr "2"
 
-#: optionsettingsview.cpp:164 db/DB_Table_Infotable_V1.h:105
+#: optionsettingsview.cpp:164
 msgid "3"
 msgstr "3"
 
@@ -5179,93 +6176,88 @@ msgstr ""
 msgid "Payee Relocation Confirmation"
 msgstr "אישור העברת מוטב"
 
-#: reports/budgetcategorysummary.cpp:100
+#: reports/budgetcategorysummary.cpp:123
 #, c-format
 msgid "Budget Categories for %s"
 msgstr "קטגוריות התקציב ל %s"
 
-#: reports/budgetcategorysummary.cpp:100
+#: reports/budgetcategorysummary.cpp:123
 #, c-format
 msgid "Budget Category Summary for %s"
 msgstr "סיכום קטגוריות תקציב ל %s"
 
-#: reports/budgetcategorysummary.cpp:102
+#: reports/budgetcategorysummary.cpp:126
 msgid "( Estimated Vs Actual )"
 msgstr "(תחזית מול בפועל)"
 
-#: reports/budgetcategorysummary.cpp:193
+#: reports/budgetcategorysummary.cpp:218
 msgid "Estimated Income:"
 msgstr "הכנסות צפויות:"
 
-#: reports/budgetcategorysummary.cpp:195
+#: reports/budgetcategorysummary.cpp:220
 msgid "Actual Income:"
 msgstr "הכנסות בפועל:"
 
-#: reports/budgetcategorysummary.cpp:197
+#: reports/budgetcategorysummary.cpp:222
 msgid "Difference Income:"
 msgstr "הפרש הכנסות:"
 
-#: reports/budgetcategorysummary.cpp:202
+#: reports/budgetcategorysummary.cpp:227
 msgid "Estimated Expenses:"
 msgstr "הוצאות צפויות:"
 
-#: reports/budgetcategorysummary.cpp:204
+#: reports/budgetcategorysummary.cpp:229
 msgid "Actual Expenses:"
 msgstr "הוצאות בפועל:"
 
-#: reports/budgetcategorysummary.cpp:206
+#: reports/budgetcategorysummary.cpp:231
 msgid "Difference Expenses:"
 msgstr "הפרש הוצאות:"
 
-#: reports/budgetingperf.cpp:123
+#: reports/budgetingperf.cpp:168
 #, c-format
 msgid "Budget Performance for %s"
 msgstr "בצועי תקציב ל %s"
 
-#: reports/budgetingperf.cpp:138 reports/categovertimeperf.cpp:115
-msgid "Overall"
-msgstr "כללי"
+#: reports/budgetingperf.cpp:191 reports/budgetingperf.cpp:194
+msgid "Est."
+msgstr ""
 
-#: reports/budgetingperf.cpp:139
+#: reports/budgetingperf.cpp:192 reports/budgetingperf.cpp:195
+msgid "Act."
+msgstr ""
+
+#: reports/budgetingperf.cpp:196
 msgid "%"
 msgstr "%"
 
-#: reports/cashflow.cpp:229
+#: reports/budgetingperf.cpp:238
+msgid "Monthly Total"
+msgstr ""
+
+#: reports/cashflow.cpp:216
 #, c-format
 msgid "Cash Flow Forecast for %i Years Ahead"
 msgstr "תחזית תזרים מזומנים ל %i שנים"
 
-#: reports/cashflow.cpp:240 reports/incexpenses.cpp:48
-#: reports/incexpenses.cpp:192
-msgid "All Accounts"
-msgstr "כל החשבונות"
-
-#: reports/cashflow.cpp:242
-msgid "All Bank Accounts"
-msgstr "כל חשבונות הבנק"
-
-#: reports/cashflow.cpp:244
-msgid "All Term Accounts"
-msgstr "כל חשבונות החיסכון"
-
-#: reports/cashflow.cpp:249
+#: reports/cashflow.cpp:231
 #, c-format
 msgid "Accounts: %s"
 msgstr "חשבונות: %s"
 
-#: reports/cashflow.cpp:263 reports/incexpenses.cpp:256 reports/payee.cpp:118
+#: reports/cashflow.cpp:245 reports/incexpenses.cpp:242 reports/payee.cpp:119
 msgid "Difference"
 msgstr "הפרש"
 
-#: reports/categexp.cpp:158
+#: reports/categexp.cpp:159
 msgid "Category Total: "
 msgstr "סך כל קטגוריה: "
 
-#: reports/categexp.cpp:173
+#: reports/categexp.cpp:174
 msgid "Total Expenses:"
 msgstr "סך כל הוצאות:"
 
-#: reports/categexp.cpp:174
+#: reports/categexp.cpp:175
 msgid "Total Income:"
 msgstr "סך כל הכנסות:"
 
@@ -5273,7 +6265,11 @@ msgstr "סך כל הכנסות:"
 msgid "Category Income/Expenses"
 msgstr "קטגוריה הכנסות/הוצאות"
 
-#: reports/categovertimeperf.cpp:137 reports/payee.cpp:116
+#: reports/categovertimeperf.cpp:115
+msgid "Overall"
+msgstr "כללי"
+
+#: reports/categovertimeperf.cpp:137 reports/payee.cpp:117
 msgid "Incomes"
 msgstr "הכנסות"
 
@@ -5281,33 +6277,37 @@ msgstr "הכנסות"
 msgid "Forecast"
 msgstr "תחזית"
 
-#: reports/htmlbuilder.cpp:115
+#: reports/htmlbuilder.cpp:116
 #, c-format
 msgid "Today's Date: %s"
 msgstr "תאריך היום: %s"
 
-#: reports/htmlbuilder.cpp:309
+#: reports/htmlbuilder.cpp:312
 #, c-format
 msgid "From %s till %s"
 msgstr "מ %s עד %s"
 
-#: reports/incexpenses.cpp:45 reports/incexpenses.cpp:189
+#: reports/htmlbuilder.cpp:318 reports/mmDateRange.cpp:209
+msgid "Over Time"
+msgstr "לאורך זמן"
+
+#: reports/incexpenses.cpp:46 reports/incexpenses.cpp:174
 msgid "Accounts: "
 msgstr "חשבונות: "
 
-#: reports/incexpenses.cpp:134
+#: reports/incexpenses.cpp:136
 msgid "Income:"
 msgstr "הכנסה:"
 
-#: reports/incexpenses.cpp:135
+#: reports/incexpenses.cpp:137
 msgid "Expenses:"
 msgstr "הוצאות:"
 
-#: reports/incexpenses.cpp:252
+#: reports/incexpenses.cpp:238
 msgid "Year"
 msgstr "שנה"
 
-#: reports/incexpenses.cpp:253
+#: reports/incexpenses.cpp:239
 msgid "Month"
 msgstr "חודש"
 
@@ -5375,44 +6375,24 @@ msgstr "365  ימים אחרונים"
 msgid "Payee Report"
 msgstr "דוח מוטב"
 
-#: reports/reportbase.cpp:66
+#: reports/reportbase.cpp:97
 msgid "Choose Accounts"
 msgstr "בחר חשבונות"
 
-#: reports/summary.cpp:119
-msgid "Summary of Accounts"
-msgstr "יתרת חשבונות"
+#: reports/reportbase.cpp:132
+msgid "Custom"
+msgstr ""
 
-#: reports/summary.cpp:128 reports/summary.cpp:130
-msgid "Account Name"
-msgstr "שם חשבון"
-
-#: reports/summary.cpp:147
-msgid "Bank Accounts Total:"
-msgstr "סך כל חשבונות בנק:"
-
-#: reports/summary.cpp:164
-msgid "Term Accounts Total:"
-msgstr "סך כל חשבונות חיסכון:"
-
-#: reports/summary.cpp:170
-msgid "Stocks Total:"
-msgstr "סך הכל השקעות:"
-
-#: reports/summary.cpp:182
-msgid "Total Balance on all Accounts"
-msgstr "יתרה כוללת לכל החשבונות"
-
-#: reports/summary.cpp:307
+#: reports/summary.cpp:139
 #, c-format
 msgid "Accounts Balance - %s"
 msgstr "יתרת חשבונות  - %s"
 
-#: reports/summary.cpp:307
+#: reports/summary.cpp:140
 msgid "Monthly Report"
 msgstr "דוח חודשי"
 
-#: reports/summary.cpp:307
+#: reports/summary.cpp:140
 msgid "Yearly Report"
 msgstr "דוח שנתי"
 
@@ -5441,18 +6421,14 @@ msgstr "עמלה"
 msgid "Stocks Performance Charts"
 msgstr "גרף בצועי נירות ערך "
 
-#: reports/transactions.cpp:52
-msgid "Transaction List "
-msgstr "רשימת תנועות "
-
-#: reports/transactions.cpp:55
+#: reports/transactions.cpp:54
 #, c-format
 msgid "Transaction List for Account: %s"
 msgstr "רשימת תנועות לחשבון: %s"
 
-#: reports/transactions.cpp:151
-msgid "Total Amount: "
-msgstr "סכום כולל: "
+#: reports/transactions.cpp:55
+msgid "Transaction List "
+msgstr "רשימת תנועות "
 
 #: sharetransactiondialog.cpp:67 sharetransactiondialog.cpp:85
 msgid "Add Share Transaction"
@@ -5546,11 +6522,11 @@ msgstr "פרטי פיצול קטגוריות"
 msgid "Invalid Total Amount"
 msgstr "סכום כולל לא תקין: "
 
-#: stockdialog.cpp:132 stockdialog.cpp:493 stockspanel.cpp:584
+#: stockdialog.cpp:132 stockdialog.cpp:493 stockspanel.cpp:585
 msgid "Edit Stock Investment"
 msgstr "ערוך תיק נירות ערך"
 
-#: stockdialog.cpp:132 stockdialog.cpp:481 stockspanel.cpp:570
+#: stockdialog.cpp:132 stockdialog.cpp:481 stockspanel.cpp:571
 msgid "New Stock Investment"
 msgstr "השקעה חדשה"
 
@@ -5807,94 +6783,106 @@ msgstr ""
 "תאריך          לוט          מניה          מחיר          עמלה\n"
 "      \n"
 
-#: stockspanel.cpp:574
+#: stockspanel.cpp:575
 msgid "Add Stock Transactions"
 msgstr "הוסף תנועות בנירות ערך"
 
-#: stockspanel.cpp:579
+#: stockspanel.cpp:580
 msgid "View Stock Transactions"
 msgstr "הצג תנועות בנירות ערך"
 
-#: stockspanel.cpp:589
+#: stockspanel.cpp:590
 msgid "Delete Stock Investment"
 msgstr "מחק תיק נירות ערך"
 
-#: stockspanel.cpp:593
+#: stockspanel.cpp:594
 msgid "&Move"
 msgstr "העבר&"
 
-#: stockspanel.cpp:594
+#: stockspanel.cpp:595
 msgid "Move selected transaction to another account"
 msgstr "העבר תנועות שנבחרו לחשבון אחר"
 
-#: stockspanel.cpp:607
+#: stockspanel.cpp:608
 msgid "Refresh"
 msgstr "רענן"
 
-#: stockspanel.cpp:608
+#: stockspanel.cpp:609
 msgid "Refresh Stock Prices from Yahoo"
 msgstr "ריענון שערי נ\"ע מYahoo "
 
-#: stockspanel.cpp:721
+#: stockspanel.cpp:722
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr "תיק השקעות: %s"
 
-#: stockspanel.cpp:763
+#: stockspanel.cpp:764
 #, c-format
 msgid "Total Shares: %s"
 msgstr "סה\"כ מניות: %s"
 
-#: stockspanel.cpp:765
+#: stockspanel.cpp:766
 #, c-format
 msgid "Invested: %s"
 msgstr "הושקע:  %s"
 
-#: stockspanel.cpp:766
+#: stockspanel.cpp:767
 #, c-format
 msgid "Gain: %s"
 msgstr "רווח: %s"
 
-#: stockspanel.cpp:766
+#: stockspanel.cpp:767
 #, c-format
 msgid "Loss: %s"
 msgstr "הפסד: %s"
 
-#: stockspanel.cpp:803
+#: stockspanel.cpp:804
 msgid "Stock prices successfully updated"
 msgstr "שערי מניות עודכנו בהצלחה"
 
-#: stockspanel.cpp:805 stockspanel.cpp:1032
+#: stockspanel.cpp:806 stockspanel.cpp:1033
 #, c-format
 msgid "Last updated %s"
 msgstr "עודכן לאחרונה  %s"
 
-#: stockspanel.cpp:823
+#: stockspanel.cpp:824
 msgid "Nothing to update"
 msgstr "לא נמצאו עדכונים"
 
-#: stockspanel.cpp:851
+#: stockspanel.cpp:852
 msgid "Connecting..."
 msgstr "מתחבר..."
 
-#: stockspanel.cpp:896
+#: stockspanel.cpp:897
 #, c-format
 msgid "%s\t -> %s\n"
 msgstr "%s\t -> %s\n"
 
-#: stockspanel.cpp:904
+#: stockspanel.cpp:905
 msgid "Quotes not found"
 msgstr "מחירי נירות ערך לא נמצוא"
 
-#: stockspanel.cpp:934
+#: stockspanel.cpp:935
 #, c-format
 msgid "%s on %s"
 msgstr "%s ב %s"
 
-#: stockspanel.cpp:991
+#: stockspanel.cpp:992
 #, c-format
 msgid "Symbol: %s"
 msgstr "סמל: %s"
+
+#: transactionsupdatedialog.cpp:72
+msgid "Multi Transactions Update"
+msgstr ""
+
+#: transactionsupdatedialog.cpp:186
+msgid "Append"
+msgstr ""
+
+#: transactionsupdatedialog.cpp:249
+msgid "Invalid type"
+msgstr ""
 
 #: transdialog.cpp:139
 msgid "Duplicate Transaction"
@@ -5908,7 +6896,7 @@ msgstr "ערוך תנועה"
 msgid "Populate Transaction #"
 msgstr "אכלס תנועה #"
 
-#: transdialog.cpp:497 usertransactionpanel.cpp:208
+#: transdialog.cpp:497 usertransactionpanel.cpp:209
 msgid "Organize attachments of this transaction"
 msgstr "ארגן צרופות לתנועה זו"
 
@@ -5959,51 +6947,51 @@ msgstr "הזן את חשבון התנועה"
 msgid "Specify to whom the transaction is going to"
 msgstr "הגדר למי הולכת התנועה"
 
-#: transdialog.cpp:1174 usertransactionpanel.cpp:96
+#: transdialog.cpp:1174 usertransactionpanel.cpp:97
 msgid "Specify the date of the transaction"
 msgstr "הזן את תאריך התנועה"
 
-#: transdialog.cpp:1175 usertransactionpanel.cpp:100
+#: transdialog.cpp:1175 usertransactionpanel.cpp:101
 msgid "Retard or advance the date of the transaction"
 msgstr "אחר או קדם את תאריך התנועה"
 
-#: usertransactionpanel.cpp:113
+#: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
 msgstr "בחר 'חשבון' עבור התנועה זו"
 
-#: usertransactionpanel.cpp:125
+#: usertransactionpanel.cpp:126
 msgid "Withdraw funds from or deposit funds to this Account."
 msgstr "הפקד או משוך כספים מחשבון זה."
 
-#: usertransactionpanel.cpp:127
+#: usertransactionpanel.cpp:128
 msgid "&Transfer"
 msgstr "&העבר"
 
-#: usertransactionpanel.cpp:130
+#: usertransactionpanel.cpp:131
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
 msgstr "העברת כספים מ/אל חשבון זה. הסר סימון כדי להגדיר כ 'הוצאות/הכנסות'."
 
-#: usertransactionpanel.cpp:155
+#: usertransactionpanel.cpp:156
 msgid "Currency used for this transaction."
 msgstr "המטבע עבור תנועה זו."
 
-#: usertransactionpanel.cpp:174
+#: usertransactionpanel.cpp:175
 msgid "Specify the status for this transaction"
 msgstr "הזן סטאטוס לתנועה זו"
 
-#: usertransactionpanel.cpp:182
+#: usertransactionpanel.cpp:183
 msgid "Specify a person, Company or Organisation for this transaction."
 msgstr "הזן ישות, אדם, חברה או ארגון עבור תנועה זו."
 
-#: usertransactionpanel.cpp:198
+#: usertransactionpanel.cpp:199
 msgid "Specify a transaction code or associated check details"
 msgstr "הזן מספר שק או מספר מסמך כאסמכתא לתנועה"
 
-#: usertransactionpanel.cpp:289
+#: usertransactionpanel.cpp:290
 msgid "Select the required account"
 msgstr "בחר בחשבון הדרוש "
 
-#: usertransactionpanel.cpp:290
+#: usertransactionpanel.cpp:291
 msgid "Account Selection"
 msgstr "בחירת חשבון"
 
@@ -6039,159 +7027,159 @@ msgstr "לא מצליח לקבל נתונים מהאתר!"
 msgid "Unknown error"
 msgstr "שגיאה לא מוכרת"
 
-#: util.cpp:434
+#: util.cpp:436
 msgid "UTF-8"
 msgstr "UTF-8"
 
-#: util.cpp:435
+#: util.cpp:437
 msgid "1250"
 msgstr "1250"
 
-#: util.cpp:436
+#: util.cpp:438
 msgid "1251"
 msgstr "1251"
 
-#: util.cpp:437
+#: util.cpp:439
 msgid "1252"
 msgstr "1252"
 
-#: util.cpp:438
+#: util.cpp:440
 msgid "1253"
 msgstr "1253"
 
-#: util.cpp:439
+#: util.cpp:441
 msgid "1254"
 msgstr "1254"
 
-#: util.cpp:440
+#: util.cpp:442
 msgid "1255"
 msgstr "1255"
 
-#: util.cpp:441
+#: util.cpp:443
 msgid "1256"
 msgstr "1256"
 
-#: util.cpp:442
+#: util.cpp:444
 msgid "1257"
 msgstr "1257"
 
-#: util.cpp:447
+#: util.cpp:449
 msgid "January"
 msgstr "ינואר"
 
-#: util.cpp:447
+#: util.cpp:449
 msgid "February"
 msgstr "פברואר"
 
-#: util.cpp:447
+#: util.cpp:449
 msgid "March"
 msgstr "מרץ"
 
-#: util.cpp:448
+#: util.cpp:450
 msgid "April"
 msgstr "אפריל"
 
-#: util.cpp:448 util.cpp:456
+#: util.cpp:450 util.cpp:458
 msgid "May"
 msgstr "מאי"
 
-#: util.cpp:448
+#: util.cpp:450
 msgid "June"
 msgstr "יוני"
 
-#: util.cpp:449
+#: util.cpp:451
 msgid "July"
 msgstr "יולי"
 
-#: util.cpp:449
+#: util.cpp:451
 msgid "August"
 msgstr "אוגוסט"
 
-#: util.cpp:449
+#: util.cpp:451
 msgid "September"
 msgstr "ספטמבר"
 
-#: util.cpp:450
+#: util.cpp:452
 msgid "October"
 msgstr "אוקטובר"
 
-#: util.cpp:450
+#: util.cpp:452
 msgid "November"
 msgstr "נובמבר"
 
-#: util.cpp:450
+#: util.cpp:452
 msgid "December"
 msgstr "דצמבר"
 
-#: util.cpp:455
+#: util.cpp:457
 msgid "Jan"
 msgstr "ינו"
 
-#: util.cpp:455
+#: util.cpp:457
 msgid "Feb"
 msgstr "פבר"
 
-#: util.cpp:455
+#: util.cpp:457
 msgid "Mar"
 msgstr "מרץ"
 
-#: util.cpp:456
+#: util.cpp:458
 msgid "Apr"
 msgstr "אפר"
 
-#: util.cpp:456
+#: util.cpp:458
 msgid "Jun"
 msgstr "יונ"
 
-#: util.cpp:457
+#: util.cpp:459
 msgid "Jul"
 msgstr "יול"
 
-#: util.cpp:457
+#: util.cpp:459
 msgid "Aug"
 msgstr "אוג"
 
-#: util.cpp:457
+#: util.cpp:459
 msgid "Sep"
 msgstr "ספט"
 
-#: util.cpp:458
+#: util.cpp:460
 msgid "Oct"
 msgstr "אוק"
 
-#: util.cpp:458
+#: util.cpp:460
 msgid "Nov"
 msgstr "נוב"
 
-#: util.cpp:458
+#: util.cpp:460
 msgid "Dec"
 msgstr "דצמ"
 
-#: util.cpp:463
+#: util.cpp:465
 msgid "Sunday"
 msgstr "ראשון"
 
-#: util.cpp:463
+#: util.cpp:465
 msgid "Monday"
 msgstr "שני"
 
-#: util.cpp:463
+#: util.cpp:465
 msgid "Tuesday"
 msgstr "שלישי"
 
-#: util.cpp:464
+#: util.cpp:466
 msgid "Wednesday"
 msgstr "רביעי"
 
-#: util.cpp:464
+#: util.cpp:466
 msgid "Thursday"
 msgstr "חמישי"
 
-#: util.cpp:464
+#: util.cpp:466
 msgid "Friday"
 msgstr "שישי"
 
-#: util.cpp:465
+#: util.cpp:467
 msgid "Saturday"
 msgstr "שבת"
 
@@ -6530,1784 +7518,674 @@ msgstr "בודק עדכונים ל MMEX"
 msgid "You already have the latest version %s"
 msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
-#: db/DB_Table_Category_V1.h:105
-msgid "Bills"
-msgstr "חשבונות, תשלומים"
-
-#: db/DB_Table_Category_V1.h:106
-msgid "Food"
-msgstr "מזון"
-
-#: db/DB_Table_Category_V1.h:107
-msgid "Leisure"
-msgstr "פנאי"
-
-#: db/DB_Table_Category_V1.h:109
-msgid "Education"
-msgstr "השכלה"
-
-#: db/DB_Table_Category_V1.h:110
-msgid "Homeneeds"
-msgstr "משק בית"
-
-#: db/DB_Table_Category_V1.h:111
-msgid "Healthcare"
-msgstr "בריאות"
-
-#: db/DB_Table_Category_V1.h:112
-msgid "Insurance"
-msgstr "ביטוח"
-
-#: db/DB_Table_Category_V1.h:113
-msgid "Vacation"
-msgstr "חופשה"
-
-#: db/DB_Table_Category_V1.h:114
-msgid "Taxes"
-msgstr "מיסים"
-
-#: db/DB_Table_Category_V1.h:115
-msgid "Miscellaneous"
-msgstr "שונות"
-
-#: db/DB_Table_Category_V1.h:116
-msgid "Gifts"
-msgstr "מתנות"
-
-#: db/DB_Table_Category_V1.h:118
-msgid "Other Income"
-msgstr "הכנסות אחרות"
-
-#: db/DB_Table_Category_V1.h:119
-msgid "Other Expenses"
-msgstr "הוצאות אחרות"
-
-#: db/DB_Table_Currencyformats_V1.h:105
-msgid "United States dollar"
-msgstr "דולר ארצות הברית"
-
-#: db/DB_Table_Currencyformats_V1.h:105
-msgid "USD"
-msgstr "USD"
-
-#: db/DB_Table_Currencyformats_V1.h:106
-msgid "European euro"
-msgstr "אירו"
-
-#: db/DB_Table_Currencyformats_V1.h:106
-msgid "EUR"
-msgstr "EUR"
-
-#: db/DB_Table_Currencyformats_V1.h:107
-msgid "UK Pound"
-msgstr "פאונד בריטי"
-
-#: db/DB_Table_Currencyformats_V1.h:107
-msgid "Pound"
-msgstr "פאונד"
-
-#: db/DB_Table_Currencyformats_V1.h:107
-msgid "Pence"
-msgstr "פנס"
-
-#: db/DB_Table_Currencyformats_V1.h:107
-msgid "GBP"
-msgstr "GBP"
-
-#: db/DB_Table_Currencyformats_V1.h:108
-msgid "Russian Ruble"
-msgstr "רובל רוסי"
-
-#: db/DB_Table_Currencyformats_V1.h:108
-msgid "RUB"
-msgstr "RUB"
-
-#: db/DB_Table_Currencyformats_V1.h:109
-msgid "Ukrainian hryvnia"
-msgstr "הריבניה אוקראיני"
-
-#: db/DB_Table_Currencyformats_V1.h:109
-msgid "UAH"
-msgstr "UAH"
-
-#: db/DB_Table_Currencyformats_V1.h:110
-msgid "Afghan afghani"
-msgstr "אפגני"
-
-#: db/DB_Table_Currencyformats_V1.h:110
-msgid "pul"
-msgstr "pul"
-
-#: db/DB_Table_Currencyformats_V1.h:110
-msgid "AFN"
-msgstr "AFN"
-
-#: db/DB_Table_Currencyformats_V1.h:111
-msgid "Albanian lek"
-msgstr "לק אלבני"
-
-#: db/DB_Table_Currencyformats_V1.h:111 db/DB_Table_Currencyformats_V1.h:166
-#: db/DB_Table_Currencyformats_V1.h:221
-msgid "L"
-msgstr "L"
-
-#: db/DB_Table_Currencyformats_V1.h:112
-msgid "Algerian dinar"
-msgstr "דינר אלג'ירי"
-
-#: db/DB_Table_Currencyformats_V1.h:112
-msgid "DZD"
-msgstr "DZD"
-
-#: db/DB_Table_Currencyformats_V1.h:113
-msgid "Angolan kwanza"
-msgstr "קואנזה אנגולי"
-
-#: db/DB_Table_Currencyformats_V1.h:113
-msgid "Kz"
-msgstr "Kz"
-
-#: db/DB_Table_Currencyformats_V1.h:113
-msgid "AOA"
-msgstr "AOA"
-
-#: db/DB_Table_Currencyformats_V1.h:114
-msgid "East Caribbean dollar"
-msgstr "דולר מזרח קריבי"
-
-#: db/DB_Table_Currencyformats_V1.h:114
-msgid "XCD"
-msgstr "XCD"
-
-#: db/DB_Table_Currencyformats_V1.h:115
-msgid "Argentine peso"
-msgstr "פסו ארגנטינאי"
-
-#: db/DB_Table_Currencyformats_V1.h:115
-msgid "centavo"
-msgstr "סנטאבו"
-
-#: db/DB_Table_Currencyformats_V1.h:115
-msgid "ARS"
-msgstr "ARS"
-
-#: db/DB_Table_Currencyformats_V1.h:116
-msgid "Armenian dram"
-msgstr "דראם ארמני"
-
-#: db/DB_Table_Currencyformats_V1.h:116
-msgid "AMD"
-msgstr "AMD"
-
-#: db/DB_Table_Currencyformats_V1.h:117
-msgid "Aruban florin"
-msgstr "פלורין של ארובה"
-
-#: db/DB_Table_Currencyformats_V1.h:117
-msgid "AWG"
-msgstr "AWG"
-
-#: db/DB_Table_Currencyformats_V1.h:118
-msgid "Australian dollar"
-msgstr "דולר אוסטרלי"
-
-#: db/DB_Table_Currencyformats_V1.h:118
-msgid "AUD"
-msgstr "AUD"
-
-#: db/DB_Table_Currencyformats_V1.h:119
-msgid "Azerbaijani manat"
-msgstr "מאנאט אזרבייג`ני חדש"
-
-#: db/DB_Table_Currencyformats_V1.h:119
-msgid "AZN"
-msgstr "AZN"
-
-#: db/DB_Table_Currencyformats_V1.h:120
-msgid "Bahamian dollar"
-msgstr "דולר בהאמי"
-
-#: db/DB_Table_Currencyformats_V1.h:120
-msgid "BSD"
-msgstr "BSD"
-
-#: db/DB_Table_Currencyformats_V1.h:121
-msgid "Bahraini dinar"
-msgstr "דינר בחרני"
-
-#: db/DB_Table_Currencyformats_V1.h:121
-msgid "BHD"
-msgstr "BHD"
-
-#: db/DB_Table_Currencyformats_V1.h:122
-msgid "Bangladeshi taka"
-msgstr "טאקה בנגלדשי"
-
-#: db/DB_Table_Currencyformats_V1.h:122
-msgid "BDT"
-msgstr "BDT"
-
-#: db/DB_Table_Currencyformats_V1.h:123
-msgid "Barbadian dollar"
-msgstr "דולר ברבדי"
-
-#: db/DB_Table_Currencyformats_V1.h:123
-msgid "BBD"
-msgstr "BBD"
-
-#: db/DB_Table_Currencyformats_V1.h:124
-msgid "Belarusian ruble"
-msgstr "רובל בלארוסי"
-
-#: db/DB_Table_Currencyformats_V1.h:124 db/DB_Table_Currencyformats_V1.h:154
-msgid "Br"
-msgstr "Br"
-
-#: db/DB_Table_Currencyformats_V1.h:124
-msgid "BYR"
-msgstr "BYR"
-
-#: db/DB_Table_Currencyformats_V1.h:125
-msgid "Belize dollar"
-msgstr "דולר בליזי"
-
-#: db/DB_Table_Currencyformats_V1.h:125
-msgid "BZD"
-msgstr "BZD"
-
-#: db/DB_Table_Currencyformats_V1.h:126
-msgid "West African CFA franc"
-msgstr "פרנק CFA מערב אפריקני"
-
-#: db/DB_Table_Currencyformats_V1.h:126 db/DB_Table_Currencyformats_V1.h:137
-msgid "CFA"
-msgstr "CFA"
-
-#: db/DB_Table_Currencyformats_V1.h:126
-msgid "XOF"
-msgstr "XOF"
-
-#: db/DB_Table_Currencyformats_V1.h:127
-msgid "Bermudian dollar"
-msgstr "דולר ברמודה"
-
-#: db/DB_Table_Currencyformats_V1.h:127
-msgid "BMD"
-msgstr "BMD"
-
-#: db/DB_Table_Currencyformats_V1.h:128
-msgid "Bhutanese ngultrum"
-msgstr "נגולטרום של בהוטן"
-
-#: db/DB_Table_Currencyformats_V1.h:128
-msgid "BTN"
-msgstr "BTN"
-
-#: db/DB_Table_Currencyformats_V1.h:129
-msgid "Bolivian boliviano"
-msgstr "בוליביאנו בוליבי"
-
-#: db/DB_Table_Currencyformats_V1.h:129
-msgid "BOB"
-msgstr "BOB"
-
-#: db/DB_Table_Currencyformats_V1.h:130
-msgid "Bosnia and Herzegovina konvertibilna marka"
-msgstr "המרק הסחיר"
-
-#: db/DB_Table_Currencyformats_V1.h:130
-msgid "KM"
-msgstr "KM"
-
-#: db/DB_Table_Currencyformats_V1.h:130
-msgid "BAM"
-msgstr "BAM"
-
-#: db/DB_Table_Currencyformats_V1.h:131
-msgid "Botswana pula"
-msgstr "פולה"
-
-#: db/DB_Table_Currencyformats_V1.h:131 db/DB_Table_Currencyformats_V1.h:192
-msgid "P"
-msgstr "P"
-
-#: db/DB_Table_Currencyformats_V1.h:131
-msgid "BWP"
-msgstr "BWP"
-
-#: db/DB_Table_Currencyformats_V1.h:132
-msgid "Brazilian real"
-msgstr "ריאל ברזילאי"
-
-#: db/DB_Table_Currencyformats_V1.h:132
-msgid "BRL"
-msgstr "BRL"
-
-#: db/DB_Table_Currencyformats_V1.h:133
-msgid "Brunei dollar"
-msgstr "דולר ברוניי"
-
-#: db/DB_Table_Currencyformats_V1.h:133
-msgid "BND"
-msgstr "BND"
-
-#: db/DB_Table_Currencyformats_V1.h:134
-msgid "Bulgarian lev"
-msgstr "לב בולגרי"
-
-#: db/DB_Table_Currencyformats_V1.h:134
-msgid "BGN"
-msgstr "BGN"
-
-#: db/DB_Table_Currencyformats_V1.h:135
-msgid "Burundi franc"
-msgstr "פרנק בורונדי"
-
-#: db/DB_Table_Currencyformats_V1.h:135
-msgid "FBu"
-msgstr "FBu"
-
-#: db/DB_Table_Currencyformats_V1.h:135
-msgid "BIF"
-msgstr "BIF"
-
-#: db/DB_Table_Currencyformats_V1.h:136
-msgid "Cambodian riel"
-msgstr "ריאל קולומביאני"
-
-#: db/DB_Table_Currencyformats_V1.h:136
-msgid "KHR"
-msgstr "KHR"
-
-#: db/DB_Table_Currencyformats_V1.h:137
-msgid "Central African CFA franc"
-msgstr "פרנק CFA מערב אפריקני"
-
-#: db/DB_Table_Currencyformats_V1.h:137
-msgid "XAF"
-msgstr "XAF"
-
-#: db/DB_Table_Currencyformats_V1.h:138
-msgid "Canadian dollar"
-msgstr "דולר קנדי"
-
-#: db/DB_Table_Currencyformats_V1.h:138
-msgid "CAD"
-msgstr "CAD"
-
-#: db/DB_Table_Currencyformats_V1.h:139
-msgid "Cape Verdean escudo"
-msgstr "אסקודו של כף ורדה"
-
-#: db/DB_Table_Currencyformats_V1.h:139
-msgid "Esc"
-msgstr "Esc"
-
-#: db/DB_Table_Currencyformats_V1.h:139
-msgid "CVE"
-msgstr "CVE"
-
-#: db/DB_Table_Currencyformats_V1.h:140
-msgid "Cayman Islands dollar"
-msgstr "דולר של איי קיימן"
-
-#: db/DB_Table_Currencyformats_V1.h:140
-msgid "KYD"
-msgstr "KYD"
-
-#: db/DB_Table_Currencyformats_V1.h:141
-msgid "Chilean peso"
-msgstr "פסו צ'יליאני"
-
-#: db/DB_Table_Currencyformats_V1.h:141
-msgid "CLP"
-msgstr "CLP"
-
-#: db/DB_Table_Currencyformats_V1.h:142
-msgid "Chinese renminbi"
-msgstr "רנמינבי"
-
-#: db/DB_Table_Currencyformats_V1.h:142
-msgid "CNY"
-msgstr "CNY"
-
-#: db/DB_Table_Currencyformats_V1.h:143
-msgid "Colombian peso"
-msgstr "פסו קולומביאני"
-
-#: db/DB_Table_Currencyformats_V1.h:143
-msgid "COP"
-msgstr "COP"
-
-#: db/DB_Table_Currencyformats_V1.h:144
-msgid "Comorian franc"
-msgstr "פרנק של קומורו"
-
-#: db/DB_Table_Currencyformats_V1.h:144
-msgid "KMF"
-msgstr "KMF"
-
-#: db/DB_Table_Currencyformats_V1.h:145
-msgid "Congolese franc"
-msgstr "פרנק קונגולזי"
-
-#: db/DB_Table_Currencyformats_V1.h:145 db/DB_Table_Currencyformats_V1.h:157
-msgid "F"
-msgstr "F"
-
-#: db/DB_Table_Currencyformats_V1.h:145
-msgid "CDF"
-msgstr "CDF"
-
-#: db/DB_Table_Currencyformats_V1.h:146
-msgid "Costa Rican colon"
-msgstr "קולון קוסטה ריקאי"
-
-#: db/DB_Table_Currencyformats_V1.h:146
-msgid "CRC"
-msgstr "CRC"
-
-#: db/DB_Table_Currencyformats_V1.h:147
-msgid "Croatian kuna"
-msgstr "קונה קרואטי"
-
-#: db/DB_Table_Currencyformats_V1.h:147
-msgid "kn"
-msgstr "kn"
-
-#: db/DB_Table_Currencyformats_V1.h:147
-msgid "HRK"
-msgstr "HRK"
-
-#: db/DB_Table_Currencyformats_V1.h:148
-msgid "Czech koruna"
-msgstr "קורונה צכי"
-
-#: db/DB_Table_Currencyformats_V1.h:148
-msgid "CZK"
-msgstr "CZK"
-
-#: db/DB_Table_Currencyformats_V1.h:149
-msgid "Danish krone"
-msgstr "קרונה דני"
-
-#: db/DB_Table_Currencyformats_V1.h:149
-msgid "Kr"
-msgstr "Kr"
-
-#: db/DB_Table_Currencyformats_V1.h:149
-msgid "DKK"
-msgstr "DKK"
-
-#: db/DB_Table_Currencyformats_V1.h:150
-msgid "Djiboutian franc"
-msgstr "פרנק של ג'יבוטי"
-
-#: db/DB_Table_Currencyformats_V1.h:150
-msgid "Fdj"
-msgstr "Fdj"
-
-#: db/DB_Table_Currencyformats_V1.h:150
-msgid "DJF"
-msgstr "DJF"
-
-#: db/DB_Table_Currencyformats_V1.h:151
-msgid "Dominican peso"
-msgstr "פסו דומיניקאני"
-
-#: db/DB_Table_Currencyformats_V1.h:151
-msgid "DOP"
-msgstr "DOP"
-
-#: db/DB_Table_Currencyformats_V1.h:152
-msgid "Egyptian pound"
-msgstr "לירה  מיצרי"
-
-#: db/DB_Table_Currencyformats_V1.h:152
-msgid "EGP"
-msgstr "EGP"
-
-#: db/DB_Table_Currencyformats_V1.h:153
-msgid "Eritrean nakfa"
-msgstr "נאקפה אריתראית"
-
-#: db/DB_Table_Currencyformats_V1.h:153
-msgid "Nfa"
-msgstr "Nfa"
-
-#: db/DB_Table_Currencyformats_V1.h:153
-msgid "ERN"
-msgstr "ERN"
-
-#: db/DB_Table_Currencyformats_V1.h:154
-msgid "Ethiopian birr"
-msgstr "ביר אתיופי"
-
-#: db/DB_Table_Currencyformats_V1.h:154
-msgid "ETB"
-msgstr "ETB"
-
-#: db/DB_Table_Currencyformats_V1.h:155
-msgid "Falkland Islands pound"
-msgstr "פאונד של איי פוקלאנד"
-
-#: db/DB_Table_Currencyformats_V1.h:155
-msgid "FKP"
-msgstr "FKP"
-
-#: db/DB_Table_Currencyformats_V1.h:156
-msgid "Fijian dollar"
-msgstr "דולר של פיג'י"
-
-#: db/DB_Table_Currencyformats_V1.h:156
-msgid "FJD"
-msgstr "FJD"
-
-#: db/DB_Table_Currencyformats_V1.h:157
-msgid "CFP franc"
-msgstr "CFP פרנק"
-
-#: db/DB_Table_Currencyformats_V1.h:157
-msgid "XPF"
-msgstr "XPF"
-
-#: db/DB_Table_Currencyformats_V1.h:158
-msgid "Gambian dalasi"
-msgstr "דאלאסי של גמביה"
-
-#: db/DB_Table_Currencyformats_V1.h:158
-msgid "D"
-msgstr "D"
-
-#: db/DB_Table_Currencyformats_V1.h:158
-msgid "GMD"
-msgstr "GMD"
-
-#: db/DB_Table_Currencyformats_V1.h:159
-msgid "Georgian lari"
-msgstr "לארי גאורגי"
-
-#: db/DB_Table_Currencyformats_V1.h:159
-msgid "GEL"
-msgstr "GEL"
-
-#: db/DB_Table_Currencyformats_V1.h:160
-msgid "Ghanaian cedi"
-msgstr "סדי של גאנה"
-
-#: db/DB_Table_Currencyformats_V1.h:160
-msgid "GHS"
-msgstr "GHS"
-
-#: db/DB_Table_Currencyformats_V1.h:161
-msgid "Gibraltar pound"
-msgstr "פאונד ל גיברלטר"
-
-#: db/DB_Table_Currencyformats_V1.h:161
-msgid "GIP"
-msgstr "GIP"
-
-#: db/DB_Table_Currencyformats_V1.h:162
-msgid "Guatemalan quetzal"
-msgstr "קצאל של גואטמלה"
-
-#: db/DB_Table_Currencyformats_V1.h:162
-msgid "Q"
-msgstr "Q"
-
-#: db/DB_Table_Currencyformats_V1.h:162
-msgid "GTQ"
-msgstr "GTQ"
-
-#: db/DB_Table_Currencyformats_V1.h:163
-msgid "Guinean franc"
-msgstr "פרנק של גיניאה"
-
-#: db/DB_Table_Currencyformats_V1.h:163
-msgid "FG"
-msgstr "FG"
-
-#: db/DB_Table_Currencyformats_V1.h:163
-msgid "GNF"
-msgstr "GNF"
-
-#: db/DB_Table_Currencyformats_V1.h:164
-msgid "Guyanese dollar"
-msgstr "דולר גינאי"
-
-#: db/DB_Table_Currencyformats_V1.h:164
-msgid "GYD"
-msgstr "GYD"
-
-#: db/DB_Table_Currencyformats_V1.h:165
-msgid "Haitian gourde"
-msgstr "גורדה האיטי"
-
-#: db/DB_Table_Currencyformats_V1.h:165
-msgid "G"
-msgstr "G"
-
-#: db/DB_Table_Currencyformats_V1.h:165
-msgid "HTG"
-msgstr "HTG"
-
-#: db/DB_Table_Currencyformats_V1.h:166
-msgid "Honduran lempira"
-msgstr "למפירה הונדורית"
-
-#: db/DB_Table_Currencyformats_V1.h:166
-msgid "HNL"
-msgstr "HNL"
-
-#: db/DB_Table_Currencyformats_V1.h:167
-msgid "Hong Kong dollar"
-msgstr "דולר של הונג קונג"
-
-#: db/DB_Table_Currencyformats_V1.h:167
-msgid "HKD"
-msgstr "HKD"
-
-#: db/DB_Table_Currencyformats_V1.h:168
-msgid "Hungarian forint"
-msgstr "פורינט הונגרי"
-
-#: db/DB_Table_Currencyformats_V1.h:168
-msgid "Ft"
-msgstr "Ft"
-
-#: db/DB_Table_Currencyformats_V1.h:168
-msgid "HUF"
-msgstr "HUF"
-
-#: db/DB_Table_Currencyformats_V1.h:169 db/DB_Table_Currencyformats_V1.h:211
-#: db/DB_Table_Currencyformats_V1.h:237
-msgid "kr"
-msgstr "kr"
-
-#: db/DB_Table_Currencyformats_V1.h:169
-msgid "ISK"
-msgstr "ISK"
-
-#: db/DB_Table_Currencyformats_V1.h:170
-msgid "Indian rupee"
-msgstr "רופי הודי"
-
-#: db/DB_Table_Currencyformats_V1.h:170
-msgid "INR"
-msgstr "INR"
-
-#: db/DB_Table_Currencyformats_V1.h:171
-msgid "Indonesian rupiah"
-msgstr "רופיה אינדונזית"
-
-#: db/DB_Table_Currencyformats_V1.h:171
-msgid "Rp"
-msgstr "Rp"
-
-#: db/DB_Table_Currencyformats_V1.h:171
-msgid "IDR"
-msgstr "IDR"
-
-#: db/DB_Table_Currencyformats_V1.h:172
-msgid "Special Drawing Rights"
-msgstr "זכויות משיכה מיוחדות"
-
-#: db/DB_Table_Currencyformats_V1.h:172
-msgid "SDR"
-msgstr "SDR"
-
-#: db/DB_Table_Currencyformats_V1.h:172
-msgid "XDR"
-msgstr "XDR"
-
-#: db/DB_Table_Currencyformats_V1.h:173
-msgid "Iranian rial"
-msgstr "ריאל אירני"
-
-#: db/DB_Table_Currencyformats_V1.h:173
-msgid "IRR"
-msgstr "IRR"
-
-#: db/DB_Table_Currencyformats_V1.h:174
-msgid "Iraqi dinar"
-msgstr "דינר עירקי"
-
-#: db/DB_Table_Currencyformats_V1.h:174
-msgid "IQD"
-msgstr "IQD"
-
-#: db/DB_Table_Currencyformats_V1.h:175
-msgid "Israeli new shekel"
-msgstr "שקל חדש"
-
-#: db/DB_Table_Currencyformats_V1.h:175
-msgid "ILS"
-msgstr "ILS"
-
-#: db/DB_Table_Currencyformats_V1.h:176
-msgid "Jamaican dollar"
-msgstr "דולר של איי ג'מיקה"
-
-#: db/DB_Table_Currencyformats_V1.h:176
-msgid "JMD"
-msgstr "JMD"
-
-#: db/DB_Table_Currencyformats_V1.h:177
-msgid "Japanese yen"
-msgstr "יין יפני"
-
-#: db/DB_Table_Currencyformats_V1.h:177
-msgid "JPY"
-msgstr "JPY"
-
-#: db/DB_Table_Currencyformats_V1.h:178
-msgid "Jordanian dinar"
-msgstr "דינר ירדני"
-
-#: db/DB_Table_Currencyformats_V1.h:178
-msgid "JOD"
-msgstr "JOD"
-
-#: db/DB_Table_Currencyformats_V1.h:179
-msgid "Kazakhstani tenge"
-msgstr "טנגה קזחסטני"
-
-#: db/DB_Table_Currencyformats_V1.h:179
-msgid "T"
-msgstr "T"
-
-#: db/DB_Table_Currencyformats_V1.h:179
-msgid "KZT"
-msgstr "KZT"
-
-#: db/DB_Table_Currencyformats_V1.h:180
-msgid "Kenyan shilling"
-msgstr "שילינג קניתי"
-
-#: db/DB_Table_Currencyformats_V1.h:180
-msgid "KSh"
-msgstr "KSh"
-
-#: db/DB_Table_Currencyformats_V1.h:180
-msgid "KES"
-msgstr "KES"
-
-#: db/DB_Table_Currencyformats_V1.h:181
-msgid "North Korean won"
-msgstr "וון צפון קוריאני"
-
-#: db/DB_Table_Currencyformats_V1.h:181 db/DB_Table_Currencyformats_V1.h:182
-msgid "W"
-msgstr "W"
-
-#: db/DB_Table_Currencyformats_V1.h:181
-msgid "KPW"
-msgstr "KPW"
-
-#: db/DB_Table_Currencyformats_V1.h:182
-msgid "South Korean won"
-msgstr "וון דרום קוריאני"
-
-#: db/DB_Table_Currencyformats_V1.h:182
-msgid "KRW"
-msgstr "KRW"
-
-#: db/DB_Table_Currencyformats_V1.h:183
-msgid "Kuwaiti dinar"
-msgstr "דינר קוויתי"
-
-#: db/DB_Table_Currencyformats_V1.h:183
-msgid "KWD"
-msgstr "KWD"
-
-#: db/DB_Table_Currencyformats_V1.h:184
-msgid "Kyrgyzstani som"
-msgstr "סום קירגיסטני"
-
-#: db/DB_Table_Currencyformats_V1.h:184
-msgid "KGS"
-msgstr "KGS"
-
-#: db/DB_Table_Currencyformats_V1.h:185
-msgid "Lao kip"
-msgstr "קיפ של לאוס"
-
-#: db/DB_Table_Currencyformats_V1.h:185
-msgid "KN"
-msgstr "KN"
-
-#: db/DB_Table_Currencyformats_V1.h:185
-msgid "LAK"
-msgstr "LAK"
-
-#: db/DB_Table_Currencyformats_V1.h:186
-msgid "Latvian lats"
-msgstr "לאטס של לאטוויה"
-
-#: db/DB_Table_Currencyformats_V1.h:186
-msgid "Ls"
-msgstr "Ls"
-
-#: db/DB_Table_Currencyformats_V1.h:186
-msgid "LVL"
-msgstr "LVL"
-
-#: db/DB_Table_Currencyformats_V1.h:187
-msgid "Lebanese lira"
-msgstr "לירה לבנונית"
-
-#: db/DB_Table_Currencyformats_V1.h:187
-msgid "LBP"
-msgstr "LBP"
-
-#: db/DB_Table_Currencyformats_V1.h:188
-msgid "Lesotho loti"
-msgstr "לוטי של לסוטו"
-
-#: db/DB_Table_Currencyformats_V1.h:188
-msgid "M"
-msgstr "M"
-
-#: db/DB_Table_Currencyformats_V1.h:188
-msgid "LSL"
-msgstr "LSL"
-
-#: db/DB_Table_Currencyformats_V1.h:189
-msgid "Liberian dollar"
-msgstr "דולר ליברי"
-
-#: db/DB_Table_Currencyformats_V1.h:189
-msgid "LRD"
-msgstr "LRD"
-
-#: db/DB_Table_Currencyformats_V1.h:190
-msgid "Libyan dinar"
-msgstr "דינר לובי"
-
-#: db/DB_Table_Currencyformats_V1.h:190
-msgid "LD"
-msgstr "LD"
-
-#: db/DB_Table_Currencyformats_V1.h:190
-msgid "LYD"
-msgstr "LYD"
-
-#: db/DB_Table_Currencyformats_V1.h:191
-msgid "Lithuanian litas"
-msgstr "ליטאס ליטאי"
-
-#: db/DB_Table_Currencyformats_V1.h:191
-msgid "Lt"
-msgstr "Lt"
-
-#: db/DB_Table_Currencyformats_V1.h:191
-msgid "LTL"
-msgstr "LTL"
-
-#: db/DB_Table_Currencyformats_V1.h:192
-msgid "Macanese pataca"
-msgstr "פאטאקה של מקאו"
-
-#: db/DB_Table_Currencyformats_V1.h:192
-msgid "MOP"
-msgstr "MOP"
-
-#: db/DB_Table_Currencyformats_V1.h:193
-msgid "Macedonian denar"
-msgstr "דינר מקדוני"
-
-#: db/DB_Table_Currencyformats_V1.h:193
-msgid "MKD"
-msgstr "MKD"
-
-#: db/DB_Table_Currencyformats_V1.h:194
-msgid "Malagasy ariary"
-msgstr "אריארי של מדגסקר"
-
-#: db/DB_Table_Currencyformats_V1.h:194
-msgid "FMG"
-msgstr "FMG"
-
-#: db/DB_Table_Currencyformats_V1.h:194
-msgid "MGA"
-msgstr "MGA"
-
-#: db/DB_Table_Currencyformats_V1.h:195
-msgid "Malawian kwacha"
-msgstr "קוואצ’ה מלאווי"
-
-#: db/DB_Table_Currencyformats_V1.h:195
-msgid "MK"
-msgstr "MK"
-
-#: db/DB_Table_Currencyformats_V1.h:195
-msgid "MWK"
-msgstr "MWK"
-
-#: db/DB_Table_Currencyformats_V1.h:196
-msgid "Malaysian ringgit"
-msgstr "רינגיט מלאזי"
-
-#: db/DB_Table_Currencyformats_V1.h:196
-msgid "RM"
-msgstr "RM"
-
-#: db/DB_Table_Currencyformats_V1.h:196
-msgid "MYR"
-msgstr "MYR"
-
-#: db/DB_Table_Currencyformats_V1.h:197
-msgid "Maldivian rufiyaa"
-msgstr "רופיאה מלדיבית"
-
-#: db/DB_Table_Currencyformats_V1.h:197
-msgid "Rf"
-msgstr "Rf"
-
-#: db/DB_Table_Currencyformats_V1.h:197
-msgid "MVR"
-msgstr "MVR"
-
-#: db/DB_Table_Currencyformats_V1.h:198
-msgid "Mauritanian ouguiya"
-msgstr "אואוגויה של מאוריטניה"
-
-#: db/DB_Table_Currencyformats_V1.h:198
-msgid "UM"
-msgstr "UM"
-
-#: db/DB_Table_Currencyformats_V1.h:198
-msgid "MRO"
-msgstr "MRO"
-
-#: db/DB_Table_Currencyformats_V1.h:199
-msgid "Mauritian rupee"
-msgstr "רופי מאוריציאני"
-
-#: db/DB_Table_Currencyformats_V1.h:199 db/DB_Table_Currencyformats_V1.h:232
-msgid "Rs"
-msgstr "Rs"
-
-#: db/DB_Table_Currencyformats_V1.h:199
-msgid "MUR"
-msgstr "MUR"
-
-#: db/DB_Table_Currencyformats_V1.h:200
-msgid "Mexican peso"
-msgstr "פסו מקסיקני"
-
-#: db/DB_Table_Currencyformats_V1.h:200
-msgid "MXN"
-msgstr "MXN"
-
-#: db/DB_Table_Currencyformats_V1.h:201
-msgid "Moldovan leu"
-msgstr "ליאו מולדובני"
-
-#: db/DB_Table_Currencyformats_V1.h:201
-msgid "MDL"
-msgstr "MDL"
-
-#: db/DB_Table_Currencyformats_V1.h:202
-msgid "Mongolian tugrik"
-msgstr "טוגריק מונגולי"
-
-#: db/DB_Table_Currencyformats_V1.h:202
-msgid "MNT"
-msgstr "MNT"
-
-#: db/DB_Table_Currencyformats_V1.h:203
-msgid "Moroccan dirham"
-msgstr "דירהם מרוקאי,"
-
-#: db/DB_Table_Currencyformats_V1.h:203
-msgid "MAD"
-msgstr "MAD"
-
-#: db/DB_Table_Currencyformats_V1.h:204
-msgid "Myanma kyat"
-msgstr "צ'אט של מיאנמר"
-
-#: db/DB_Table_Currencyformats_V1.h:204 db/DB_Table_Currencyformats_V1.h:215
-msgid "K"
-msgstr "K"
-
-#: db/DB_Table_Currencyformats_V1.h:204
-msgid "MMK"
-msgstr "MMK"
-
-#: db/DB_Table_Currencyformats_V1.h:205
-msgid "Namibian dollar"
-msgstr "דולר נמיבי"
-
-#: db/DB_Table_Currencyformats_V1.h:205
-msgid "NAD"
-msgstr "NAD"
-
-#: db/DB_Table_Currencyformats_V1.h:206
-msgid "Nepalese rupee"
-msgstr "רופי נפלי"
-
-#: db/DB_Table_Currencyformats_V1.h:206
-msgid "NRs"
-msgstr "NRs"
-
-#: db/DB_Table_Currencyformats_V1.h:206
-msgid "NPR"
-msgstr "NPR"
-
-#: db/DB_Table_Currencyformats_V1.h:207
-msgid "Netherlands Antillean gulden"
-msgstr "גילדן של  הולנד אנטיליאני"
-
-#: db/DB_Table_Currencyformats_V1.h:207
-msgid "ANG"
-msgstr "ANG"
-
-#: db/DB_Table_Currencyformats_V1.h:208
-msgid "New Zealand dollar"
-msgstr "דולר ניו זילנדי"
-
-#: db/DB_Table_Currencyformats_V1.h:208
-msgid "NZD"
-msgstr "NZD"
-
-#: db/DB_Table_Currencyformats_V1.h:209
-msgid "NIO"
-msgstr "NIO"
-
-#: db/DB_Table_Currencyformats_V1.h:210
-msgid "Nigerian naira"
-msgstr "נאירה ניגרי"
-
-#: db/DB_Table_Currencyformats_V1.h:210
-msgid "NGN"
-msgstr "NGN"
-
-#: db/DB_Table_Currencyformats_V1.h:211
-msgid "Norwegian krone"
-msgstr "קרונה נורוגית"
-
-#: db/DB_Table_Currencyformats_V1.h:211
-msgid "NOK"
-msgstr "NOK"
-
-#: db/DB_Table_Currencyformats_V1.h:212
-msgid "Omani rial"
-msgstr "ריאל אומני"
-
-#: db/DB_Table_Currencyformats_V1.h:212
-msgid "OMR"
-msgstr "OMR"
-
-#: db/DB_Table_Currencyformats_V1.h:213
-msgid "Pakistani rupee"
-msgstr "רופי פקיסטני"
-
-#: db/DB_Table_Currencyformats_V1.h:213
-msgid "PKR"
-msgstr "PKR"
-
-#: db/DB_Table_Currencyformats_V1.h:214
-msgid "Panamanian balboa"
-msgstr "בלבואה פנמי"
-
-#: db/DB_Table_Currencyformats_V1.h:214
-msgid "PAB"
-msgstr "PAB"
-
-#: db/DB_Table_Currencyformats_V1.h:215
-msgid "Papua New Guinean kina"
-msgstr "קינה פפואה גיאני"
-
-#: db/DB_Table_Currencyformats_V1.h:215
-msgid "PGK"
-msgstr "PGK"
-
-#: db/DB_Table_Currencyformats_V1.h:216
-msgid "Paraguayan guarani"
-msgstr "גוארני פרגוואי "
-
-#: db/DB_Table_Currencyformats_V1.h:216
-msgid "PYG"
-msgstr "PYG"
-
-#: db/DB_Table_Currencyformats_V1.h:217
-msgid "Peruvian nuevo sol"
-msgstr "נואבו סול פרואני "
-
-#: db/DB_Table_Currencyformats_V1.h:217
-msgid "PEN"
-msgstr "PEN"
-
-#: db/DB_Table_Currencyformats_V1.h:218
-msgid "Philippine peso"
-msgstr "פסו פיליפיני"
-
-#: db/DB_Table_Currencyformats_V1.h:218
-msgid "PHP"
-msgstr "PHP"
-
-#: db/DB_Table_Currencyformats_V1.h:219
-msgid "Polish zloty"
-msgstr "זלוטי פולני"
-
-#: db/DB_Table_Currencyformats_V1.h:219
-msgid "PLN"
-msgstr "PLN"
-
-#: db/DB_Table_Currencyformats_V1.h:220
-msgid "Qatari riyal"
-msgstr "ריאל קאטארי"
-
-#: db/DB_Table_Currencyformats_V1.h:220
-msgid "QR"
-msgstr "QR"
-
-#: db/DB_Table_Currencyformats_V1.h:220
-msgid "QAR"
-msgstr "QAR"
-
-#: db/DB_Table_Currencyformats_V1.h:221
-msgid "Romanian leu"
-msgstr "לאי רומני"
-
-#: db/DB_Table_Currencyformats_V1.h:221
-msgid "RON"
-msgstr "RON"
-
-#: db/DB_Table_Currencyformats_V1.h:222
-msgid "Rwandan franc"
-msgstr "פרנק של רואנדה"
-
-#: db/DB_Table_Currencyformats_V1.h:222
-msgid "RF"
-msgstr "RF"
-
-#: db/DB_Table_Currencyformats_V1.h:222
-msgid "RWF"
-msgstr "RWF"
-
-#: db/DB_Table_Currencyformats_V1.h:223
-msgid "Db"
-msgstr "מסד נתונים"
-
-#: db/DB_Table_Currencyformats_V1.h:223
-msgid "STD"
-msgstr "STD"
-
-#: db/DB_Table_Currencyformats_V1.h:224
-msgid "Saudi riyal"
-msgstr "ריאל סעודי"
-
-#: db/DB_Table_Currencyformats_V1.h:224 db/DB_Table_Currencyformats_V1.h:226
-msgid "SR"
-msgstr "SR"
-
-#: db/DB_Table_Currencyformats_V1.h:224
-msgid "SAR"
-msgstr "SAR"
-
-#: db/DB_Table_Currencyformats_V1.h:225
-msgid "Serbian dinar"
-msgstr "דינר סרבי"
-
-#: db/DB_Table_Currencyformats_V1.h:225
-msgid "RSD"
-msgstr "RSD"
-
-#: db/DB_Table_Currencyformats_V1.h:226
-msgid "Seychellois rupee"
-msgstr "רופי סיילוני"
-
-#: db/DB_Table_Currencyformats_V1.h:226
-msgid "SCR"
-msgstr "SCR"
-
-#: db/DB_Table_Currencyformats_V1.h:227
-msgid "Sierra Leonean leone"
-msgstr "ליאונה של סיירה ליאונה"
-
-#: db/DB_Table_Currencyformats_V1.h:227
-msgid "Le"
-msgstr "Le"
-
-#: db/DB_Table_Currencyformats_V1.h:227
-msgid "SLL"
-msgstr "SLL"
-
-#: db/DB_Table_Currencyformats_V1.h:228
-msgid "Singapore dollar"
-msgstr "דולר סינגפורי"
-
-#: db/DB_Table_Currencyformats_V1.h:228
-msgid "SGD"
-msgstr "SGD"
-
-#: db/DB_Table_Currencyformats_V1.h:229
-msgid "Solomon Islands dollar"
-msgstr "דולר של איי שלמה"
-
-#: db/DB_Table_Currencyformats_V1.h:229
-msgid "SBD"
-msgstr "SBD"
-
-#: db/DB_Table_Currencyformats_V1.h:230
-msgid "Somali shilling"
-msgstr "שילינג סומאלי"
-
-#: db/DB_Table_Currencyformats_V1.h:230
-msgid "SOS"
-msgstr "SOS"
-
-#: db/DB_Table_Currencyformats_V1.h:231
-msgid "South African rand"
-msgstr "רנד דרום אפריקני"
-
-#: db/DB_Table_Currencyformats_V1.h:231
-msgid "R"
-msgstr "R"
-
-#: db/DB_Table_Currencyformats_V1.h:231
-msgid "ZAR"
-msgstr "ZAR"
-
-#: db/DB_Table_Currencyformats_V1.h:232
-msgid "Sri Lankan rupee"
-msgstr "רופי של סרילנקה"
-
-#: db/DB_Table_Currencyformats_V1.h:232
-msgid "LKR"
-msgstr "LKR"
-
-#: db/DB_Table_Currencyformats_V1.h:233
-msgid "Saint Helena pound"
-msgstr "פאונד סנט הלני"
-
-#: db/DB_Table_Currencyformats_V1.h:233
-msgid "SHP"
-msgstr "SHP"
-
-#: db/DB_Table_Currencyformats_V1.h:234
-msgid "Sudanese pound"
-msgstr "פאונד סודאני"
-
-#: db/DB_Table_Currencyformats_V1.h:234
-msgid "SDG"
-msgstr "SDG"
-
-#: db/DB_Table_Currencyformats_V1.h:235
-msgid "Surinamese dollar"
-msgstr "דולר סורינאמי"
-
-#: db/DB_Table_Currencyformats_V1.h:235
-msgid "SRD"
-msgstr "SRD"
-
-#: db/DB_Table_Currencyformats_V1.h:236
-msgid "Swazi lilangeni"
-msgstr "אילאנגני סוואזי"
-
-#: db/DB_Table_Currencyformats_V1.h:236
-msgid "E"
-msgstr "E"
-
-#: db/DB_Table_Currencyformats_V1.h:236
-msgid "SZL"
-msgstr "SZL"
-
-#: db/DB_Table_Currencyformats_V1.h:237
-msgid "Swedish krona"
-msgstr "קרונה שבדית"
-
-#: db/DB_Table_Currencyformats_V1.h:237
-msgid "SEK"
-msgstr "SEK"
-
-#: db/DB_Table_Currencyformats_V1.h:238
-msgid "Swiss franc"
-msgstr "פרנק שוויצרי"
-
-#: db/DB_Table_Currencyformats_V1.h:238
-msgid "CHF"
-msgstr "CHF"
-
-#: db/DB_Table_Currencyformats_V1.h:239
-msgid "Syrian pound"
-msgstr "פאונד סורי"
-
-#: db/DB_Table_Currencyformats_V1.h:239
-msgid "SYP"
-msgstr "SYP"
-
-#: db/DB_Table_Currencyformats_V1.h:240
-msgid "New Taiwan dollar"
-msgstr "דולר טאיוואני חדש"
-
-#: db/DB_Table_Currencyformats_V1.h:240
-msgid "TWD"
-msgstr "TWD"
-
-#: db/DB_Table_Currencyformats_V1.h:241
-msgid "Tajikistani somoni"
-msgstr "סומוני טג׳יקיסטאני"
-
-#: db/DB_Table_Currencyformats_V1.h:241
-msgid "TJS"
-msgstr "TJS"
-
-#: db/DB_Table_Currencyformats_V1.h:242
-msgid "Tanzanian shilling"
-msgstr "שילינג של טנזניה"
-
-#: db/DB_Table_Currencyformats_V1.h:242
-msgid "TZS"
-msgstr "TZS"
-
-#: db/DB_Table_Currencyformats_V1.h:243
-msgid "Thai baht"
-msgstr "בהט תאילנדי"
-
-#: db/DB_Table_Currencyformats_V1.h:243
-msgid "THB"
-msgstr "THB"
-
-#: db/DB_Table_Currencyformats_V1.h:244
-msgid "Trinidad and Tobago dollar"
-msgstr "דולר של טרינידד וטובגו"
-
-#: db/DB_Table_Currencyformats_V1.h:244
-msgid "TTD"
-msgstr "TTD"
-
-#: db/DB_Table_Currencyformats_V1.h:245
-msgid "Tunisian dinar"
-msgstr "דינר טוניסאי"
-
-#: db/DB_Table_Currencyformats_V1.h:245
-msgid "DT"
-msgstr "DT"
-
-#: db/DB_Table_Currencyformats_V1.h:245
-msgid "TND"
-msgstr "TND"
-
-#: db/DB_Table_Currencyformats_V1.h:246
-msgid "Turkish lira"
-msgstr "לירה תורכית"
-
-#: db/DB_Table_Currencyformats_V1.h:246
-msgid "TRY"
-msgstr "TRY"
-
-#: db/DB_Table_Currencyformats_V1.h:247
-msgid "Turkmen manat"
-msgstr "מהנאת טורקמני"
-
-#: db/DB_Table_Currencyformats_V1.h:247
-msgid "m"
-msgstr "m"
-
-#: db/DB_Table_Currencyformats_V1.h:247
-msgid "TMT"
-msgstr "TMT"
-
-#: db/DB_Table_Currencyformats_V1.h:248
-msgid "Ugandan shilling"
-msgstr "שילינג אוגנדי"
-
-#: db/DB_Table_Currencyformats_V1.h:248
-msgid "USh"
-msgstr "USh"
-
-#: db/DB_Table_Currencyformats_V1.h:248
-msgid "UGX"
-msgstr "UGX"
-
-#: db/DB_Table_Currencyformats_V1.h:249
-msgid "UAE dirham"
-msgstr "דירהם איחוד האמירויות הערביות"
-
-#: db/DB_Table_Currencyformats_V1.h:249
-msgid "AED"
-msgstr "AED"
-
-#: db/DB_Table_Currencyformats_V1.h:250
-msgid "Uruguayan peso"
-msgstr "פסו אורוגוואי"
-
-#: db/DB_Table_Currencyformats_V1.h:250
-msgid "UYU"
-msgstr "UYU"
-
-#: db/DB_Table_Currencyformats_V1.h:251
-msgid "Uzbekistani som"
-msgstr "סום אוזבקי"
-
-#: db/DB_Table_Currencyformats_V1.h:251
-msgid "UZS"
-msgstr "UZS"
-
-#: db/DB_Table_Currencyformats_V1.h:252
-msgid "Vanuatu vatu"
-msgstr "ואטו ונואטו"
-
-#: db/DB_Table_Currencyformats_V1.h:252
-msgid "VT"
-msgstr "VT"
-
-#: db/DB_Table_Currencyformats_V1.h:252
-msgid "VUV"
-msgstr "VUV"
-
-#: db/DB_Table_Currencyformats_V1.h:253
-msgid "Vietnamese dong"
-msgstr "דונג ויאטנמי"
-
-#: db/DB_Table_Currencyformats_V1.h:253
-msgid "VND"
-msgstr "VND"
-
-#: db/DB_Table_Currencyformats_V1.h:254
-msgid "Samoan tala"
-msgstr "טאלא של סמוא"
-
-#: db/DB_Table_Currencyformats_V1.h:254
-msgid "WST"
-msgstr "WST"
-
-#: db/DB_Table_Currencyformats_V1.h:255
-msgid "Yemeni rial"
-msgstr "ריאל תימני"
-
-#: db/DB_Table_Currencyformats_V1.h:255
-msgid "YER"
-msgstr "YER"
-
-#: db/DB_Table_Currencyformats_V1.h:256
-msgid "VEF"
-msgstr "VEF"
-
-#: db/DB_Table_Infotable_V1.h:105
-msgid "DATAVERSION"
-msgstr "גרסת נתונים"
-
-#: db/DB_Table_Subcategory_V1.h:105
-msgid "Telephone"
-msgstr "טלפון"
-
-#: db/DB_Table_Subcategory_V1.h:106
-msgid "Electricity"
-msgstr "חשמל"
-
-#: db/DB_Table_Subcategory_V1.h:107 db/DB_Table_Subcategory_V1.h:118
-msgid "Gas"
-msgstr "דלק"
-
-#: db/DB_Table_Subcategory_V1.h:108
-msgid "Internet"
-msgstr "אינטרנט"
-
-#: db/DB_Table_Subcategory_V1.h:109
-msgid "Rent"
-msgstr "שכירות"
-
-#: db/DB_Table_Subcategory_V1.h:110
-msgid "Cable TV"
-msgstr "כבלים"
-
-#: db/DB_Table_Subcategory_V1.h:111
-msgid "Water"
-msgstr "מים"
-
-#: db/DB_Table_Subcategory_V1.h:112
-msgid "Groceries"
-msgstr "מצרכים"
-
-#: db/DB_Table_Subcategory_V1.h:113
-msgid "Dining out"
-msgstr "מסעדות"
-
-#: db/DB_Table_Subcategory_V1.h:114
-msgid "Movies"
-msgstr "סרטים"
-
-#: db/DB_Table_Subcategory_V1.h:115
-msgid "Video Rental"
-msgstr "השכרת סרטי וידאו"
-
-#: db/DB_Table_Subcategory_V1.h:116
-msgid "Magazines"
-msgstr "כתבי עט"
-
-#: db/DB_Table_Subcategory_V1.h:117
-msgid "Maintenance"
-msgstr "אחזקה"
-
-#: db/DB_Table_Subcategory_V1.h:119
-msgid "Parking"
-msgstr "חניה"
-
-#: db/DB_Table_Subcategory_V1.h:120
-msgid "Registration"
-msgstr "רישום"
-
-#: db/DB_Table_Subcategory_V1.h:121
-msgid "Books"
-msgstr "ספרים"
-
-#: db/DB_Table_Subcategory_V1.h:122
-msgid "Tuition"
-msgstr "שכר לימוד"
-
-#: db/DB_Table_Subcategory_V1.h:124
-msgid "Clothing"
-msgstr "הלבשה"
-
-#: db/DB_Table_Subcategory_V1.h:125
-msgid "Furnishing"
-msgstr "ריהוט"
-
-#: db/DB_Table_Subcategory_V1.h:127 db/DB_Table_Subcategory_V1.h:135
-msgid "Health"
-msgstr "בריאות"
-
-#: db/DB_Table_Subcategory_V1.h:128
-msgid "Dental"
-msgstr "שיניים"
-
-#: db/DB_Table_Subcategory_V1.h:129
-msgid "Eyecare"
-msgstr "עינים וראיה"
-
-#: db/DB_Table_Subcategory_V1.h:130
-msgid "Physician"
-msgstr "רופא"
-
-#: db/DB_Table_Subcategory_V1.h:131
-msgid "Prescriptions"
-msgstr "מרשמים"
-
-#: db/DB_Table_Subcategory_V1.h:132
-msgid "Auto"
-msgstr "רכב"
-
-#: db/DB_Table_Subcategory_V1.h:133
-msgid "Life"
-msgstr "חיים"
-
-#: db/DB_Table_Subcategory_V1.h:134
-msgid "Home"
-msgstr "בית"
-
-#: db/DB_Table_Subcategory_V1.h:136
-msgid "Travel"
-msgstr "נסיעה"
-
-#: db/DB_Table_Subcategory_V1.h:137
-msgid "Lodging"
-msgstr "לינה"
-
-#: db/DB_Table_Subcategory_V1.h:138
-msgid "Sightseeing"
-msgstr "תיור"
-
-#: db/DB_Table_Subcategory_V1.h:139
-msgid "Income Tax"
-msgstr "מס הכנסה"
-
-#: db/DB_Table_Subcategory_V1.h:140
-msgid "House Tax"
-msgstr "ארנונה"
-
-#: db/DB_Table_Subcategory_V1.h:141
-msgid "Water Tax"
-msgstr "מיסי מים"
-
-#: db/DB_Table_Subcategory_V1.h:143
-msgid "Salary"
-msgstr "משכורת"
-
-#: db/DB_Table_Subcategory_V1.h:144
-msgid "Reimbursement/Refunds"
-msgstr "החזרים"
-
-#: db/DB_Table_Subcategory_V1.h:145
-msgid "Investment Income"
-msgstr "רוח הון"
-
-#: mmTips.h:22
-msgid "Recommendation: Always backup your .mmb database file regularly."
-msgstr "המלצה: דאג תמיד לגבות את קובץ מסד הנתונים .mmb באופן סדיר."
-
-#: mmTips.h:23
-msgid ""
-"Recommendation: If upgrading to a new version of MMEX, make sure you backup "
-"your .mmb database file before doing so."
-msgstr ""
-"המלצה: לקראת שדרוג לגירסה חדשה של MMEX, הקפד לגבות את קובץ מסד הנתונים  .mmb "
-"לפני ביצוע פעולה זו."
-
-#: mmTips.h:24
-msgid ""
-"Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used "
-"transactions."
-msgstr "המלצה: השתמש בעותק (Ctrl + C) ולהדביק (Ctrl + V) לתנועות בשימוש תכוף."
-
-#: mmTips.h:25
-msgid "Tip: Remember to make backups of your .mmb."
-msgstr "עצה: זכור לבצע גיבויים של קובץ ה .mmb שלך."
-
-#: mmTips.h:26
-msgid ""
-"Tip: The .mmb file is not encrypted. That means anyone else having the "
-"proper know how can actually open the file and read the contents. So make "
-"sure that if you are storing any sensitive financial information it is "
-"properly guarded."
-msgstr ""
-"טיפ: הקובץ .mmb אינו מוצפן. כלומר, כל אחד בעל ידע  כיצד לפתוח את הקובץ יוכל "
-"לעשות כן ולקרוא את התוכנו. לכן, ודא כי אם אתה מאחסן מידע פיננסי רגיש, הוא "
-"מאובטח אותו כראוי."
-
-#: mmTips.h:27
-msgid ""
-"Tip: To mark a transaction as reconciled, just select the transaction and "
-"hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select "
-"the transaction and hit the 'u' or 'U' key."
-msgstr ""
-"עצה: כדי לסמן טרנזקציה כמותאמת, פשוט בחר את בתנועה והקש על מקש 'r' או 'R'. "
-"כדי לסמן טרנזקציה כלא-מותאמת, בחור את התנועה והקש על מקש 'u' או 'U'."
-
-#: mmTips.h:28
-msgid ""
-"Tip: To mark a transaction as requiring followup, just select the "
-"transaction and hit the 'f' or 'F' key."
-msgstr ""
-"עצה: על מנת לסמן תנועה 'למעקב', רק לבחור את התנועה והקש על מקש ה 'f' או 'F' "
-"במקלדת."
-
-#: mmTips.h:29
-msgid ""
-"Tip: MMEX supports printing of all reports that can be viewed. The print "
-"options are available under the menu, File->Print."
-msgstr ""
-"עצה: MMEX תומכת בהדפסה של כל הדוחות הניתנים להצגה. אפשרויות ההדפסה זמינים "
-"מתפריט, קובץ -> הדפסה."
-
-#: mmTips.h:30
-msgid ""
-"Tip: You can modify some runtime behavior of MMEX by changing the options in "
-"the Options Dialog. "
-msgstr ""
-"עצה: ניתן לשנות  את התנהגות  של MMEX על-ידי שינוי האפשרויות בתיבת הדו-שיח "
-"'אפשרויות'. "
-
-#: mmTips.h:31
-msgid ""
-"Tip: To print a statement with transactions from any arbitrary set of "
-"criteria, use the transaction filter to select the transactions you want and "
-"then do a print from the menu."
-msgstr ""
-"עצה: כדי להדפיס דוח מצב לתנועות לפי קריטריונים שונים , השתמש במסנן תנועות "
-"כדי לבחור את התנועות הרצויות ולאחר מכן בחר בהדפסה מהתפריט. "
-
-#: mmTips.h:32
-msgid ""
-"Tip: Set exchange rate for currencies in case if you have accounts with "
-"different currencies."
-msgstr ""
-"עצה: הגדר שערי מטח למטבעות למקרה שתרצה להשתמש בחשבונות עם מטבעות שונים."
-
-#: mmTips.h:34
-msgid ""
-"Organize Categories Dialog Tip: Pressing the h key will cycle through all "
-"categories starting with the letter h"
-msgstr ""
-"עצה למסך ניהול קטגוריות: לחיצה על המקה 'י', תקפיץ את הסמן לקטגוריה הראשונה "
-"שמתחילה באות 'י'."
-
-#: mmTips.h:35
-msgid ""
-"Organize Categories Dialog Tip: Pressing 2 key combination will cycle "
-"through all categories starting with that key combination. Example: Pressing "
-"ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
-"עצה עבור חלון ניהול קטגוריות: הקשה על צרוף של שתי אותיות בו זמנית תציב את "
-"הסמן על הקטגוריה שמתחילה באותיות אלו. לדוגמה: הקשה על 'ד' ו- 'י' בו זמנית "
-"יציבו את הסמן על קטגוריה 'דיור'."
-
-#: mmTips.h:37
-#, c-format
-msgid ""
-"Tip to get out of debt: Pay yourself 10% first. Put this into an account "
-"that is hard to touch. Make sure it is a chore to get the money out (you "
-"have to drive to the bank), so you will only tap it consciously and for "
-"major expenses."
-msgstr ""
-"Tip to get out of debt: Pay yourself 10% first. Put this into an account "
-"that is hard to touch. Make sure it is a chore to get the money out (you "
-"have to drive to the bank), so you will only tap it consciously and for "
-"major expenses."
-
-#: mmTips.h:38
-msgid "Tip to get out of debt: Establish an emergency fund."
-msgstr "עצה לצאת מחוב: הקם קרן לשעת חרום."
-
-#: mmTips.h:39
-msgid "Tip to get out of debt: Stop acquiring new debt."
-msgstr "עצה לצאת מחובות: הפסק לצבור חוב חדש."
-
-#: mmTips.h:40
-msgid "Tip to get out of debt: Create a realistic budget for your expenses."
-msgstr "עצה לצאת מחוב: צור תקציב הוצאות ריאלי"
-
-#: mmTips.h:41
-msgid "Tip to get out of debt: Spend less than you earn."
-msgstr "עצה לצאת מחוב: הוצא פחות ממה שאתה מרוויח."
-
-#: mmTips.h:42
-msgid "Tip to get out of debt: Pay more than the minimum."
-msgstr "עצה לצאת מחוב: פרע יותר מהמינימום הנדרש."
-
-#: mmTips.h:43
-msgid ""
-"Before going to a shop and buy something: take the time making a list of "
-"what you really need. In the shop buy what is in your list."
-msgstr ""
-"לפני שאתם הולכים לחנות לקנות משהו: קחו את הזמן, הכנינו רשימה של מה שאתם באמת "
-"צריכים. בחנות קנו רק מה ברשימה שלכם."
-
-#: mmcheckingpanel.h:279
-msgid "View Since Statement Date"
-msgstr "הצג ממועד דף החשבון"
-
-#: mmcombobox.h:78
-msgid ""
-"Please type in an exiting payee name,\n"
-"or make a selection using the dropdown button."
-msgstr ""
-"נא הזן שם מוטב קיים ,\n"
-"או בחר באמצעות לחצן תיבת בחירה."
-
-#: mmtextctrl.h:92
-msgid "Invalid Amount."
-msgstr "סכום לא תקין."
-
-#: mmtextctrl.h:93
-msgid "Please enter a positive or calculated value."
-msgstr "נא הזן ערך חיובי או ערך מחושב ."
-
-#: mmtextctrl.h:93
-msgid "Please enter a calculated value."
-msgstr "נא הזן ערך מחושב ."
-
-#: mmtextctrl.h:95
-msgid ""
-"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
-"Calculations will be evaluated and the result used as the entry."
-msgstr ""
-"טיפ : לחישובים הזן ביטויים כמו ( 2 + 2 ) * ( 2 + 2 )\n"
-"חישובים יתבצעו והתוצאה תשמש כהזנה."
+#~ msgid "Retard or advance the date of the 'next occurrence"
+#~ msgstr "אחר או קדם את התאריך של המופע הבא"
+
+#~ msgid "MMEX database succesfully upgraded to version %i"
+#~ msgstr "שדרוג מסד נתונים MMEX   לגירסה %i עבר בהצלחה!"
+
+#~ msgid "Invalid Amount Entered "
+#~ msgstr "הוזן סכום לא תקין "
+
+#~ msgid "Monthly Summary of Accounts"
+#~ msgstr "סיכום חשבונות חודשי"
+
+#~ msgid "Income vs Expenses - Specific Accounts"
+#~ msgstr "הכנסות מול הוצאות - לחשבונות מסויימים"
+
+#~ msgid "Budget Performance"
+#~ msgstr "בצועי תקציב"
+
+#~ msgid "Budget Category Summary"
+#~ msgstr "סיכום קטגוריות תקציב"
+
+#~ msgid "Cash Flow - With Bank Accounts"
+#~ msgstr "תזרים מזומנים - כולל חשבונות בנק"
+
+#~ msgid "Cash Flow - With Term Accounts"
+#~ msgstr "תזרים מזומנים - כולל חשבונות חיסכון"
+
+#~ msgid "Cash Flow - Specific Accounts"
+#~ msgstr "תזרים מזומנים - חשבונות נבחרים"
+
+#~ msgid "Daily Cash Flow - Specific Accounts"
+#~ msgstr "תזרים מזומנים יומי - חשבונות נבחרים"
+
+#~ msgid "All Bank Accounts"
+#~ msgstr "כל חשבונות הבנק"
+
+#~ msgid "All Term Accounts"
+#~ msgstr "כל חשבונות החיסכון"
+
+#~ msgid "Account Name"
+#~ msgstr "שם חשבון"
+
+#~ msgid "Bank Accounts Total:"
+#~ msgstr "סך כל חשבונות בנק:"
+
+#~ msgid "Term Accounts Total:"
+#~ msgstr "סך כל חשבונות חיסכון:"
+
+#~ msgid "Stocks Total:"
+#~ msgstr "סך הכל השקעות:"
+
+#~ msgid "Total Balance on all Accounts"
+#~ msgstr "יתרה כוללת לכל החשבונות"
+
+#~ msgid "Total Amount: "
+#~ msgstr "סכום כולל: "
+
+#~ msgid "USD"
+#~ msgstr "USD"
+
+#~ msgid "EUR"
+#~ msgstr "EUR"
+
+#~ msgid "Pound"
+#~ msgstr "פאונד"
+
+#~ msgid "Pence"
+#~ msgstr "פנס"
+
+#~ msgid "GBP"
+#~ msgstr "GBP"
+
+#~ msgid "RUB"
+#~ msgstr "RUB"
+
+#~ msgid "UAH"
+#~ msgstr "UAH"
+
+#~ msgid "pul"
+#~ msgstr "pul"
+
+#~ msgid "AFN"
+#~ msgstr "AFN"
+
+#~ msgid "L"
+#~ msgstr "L"
+
+#~ msgid "DZD"
+#~ msgstr "DZD"
+
+#~ msgid "Kz"
+#~ msgstr "Kz"
+
+#~ msgid "AOA"
+#~ msgstr "AOA"
+
+#~ msgid "XCD"
+#~ msgstr "XCD"
+
+#~ msgid "centavo"
+#~ msgstr "סנטאבו"
+
+#~ msgid "ARS"
+#~ msgstr "ARS"
+
+#~ msgid "AMD"
+#~ msgstr "AMD"
+
+#~ msgid "AWG"
+#~ msgstr "AWG"
+
+#~ msgid "AUD"
+#~ msgstr "AUD"
+
+#~ msgid "AZN"
+#~ msgstr "AZN"
+
+#~ msgid "BSD"
+#~ msgstr "BSD"
+
+#~ msgid "BHD"
+#~ msgstr "BHD"
+
+#~ msgid "BDT"
+#~ msgstr "BDT"
+
+#~ msgid "BBD"
+#~ msgstr "BBD"
+
+#~ msgid "Br"
+#~ msgstr "Br"
+
+#~ msgid "BYR"
+#~ msgstr "BYR"
+
+#~ msgid "BZD"
+#~ msgstr "BZD"
+
+#~ msgid "CFA"
+#~ msgstr "CFA"
+
+#~ msgid "XOF"
+#~ msgstr "XOF"
+
+#~ msgid "BMD"
+#~ msgstr "BMD"
+
+#~ msgid "BTN"
+#~ msgstr "BTN"
+
+#~ msgid "BOB"
+#~ msgstr "BOB"
+
+#~ msgid "KM"
+#~ msgstr "KM"
+
+#~ msgid "BAM"
+#~ msgstr "BAM"
+
+#~ msgid "P"
+#~ msgstr "P"
+
+#~ msgid "BWP"
+#~ msgstr "BWP"
+
+#~ msgid "BRL"
+#~ msgstr "BRL"
+
+#~ msgid "BND"
+#~ msgstr "BND"
+
+#~ msgid "BGN"
+#~ msgstr "BGN"
+
+#~ msgid "FBu"
+#~ msgstr "FBu"
+
+#~ msgid "BIF"
+#~ msgstr "BIF"
+
+#~ msgid "KHR"
+#~ msgstr "KHR"
+
+#~ msgid "XAF"
+#~ msgstr "XAF"
+
+#~ msgid "CAD"
+#~ msgstr "CAD"
+
+#~ msgid "Esc"
+#~ msgstr "Esc"
+
+#~ msgid "CVE"
+#~ msgstr "CVE"
+
+#~ msgid "KYD"
+#~ msgstr "KYD"
+
+#~ msgid "CLP"
+#~ msgstr "CLP"
+
+#~ msgid "CNY"
+#~ msgstr "CNY"
+
+#~ msgid "COP"
+#~ msgstr "COP"
+
+#~ msgid "KMF"
+#~ msgstr "KMF"
+
+#~ msgid "F"
+#~ msgstr "F"
+
+#~ msgid "CDF"
+#~ msgstr "CDF"
+
+#~ msgid "CRC"
+#~ msgstr "CRC"
+
+#~ msgid "kn"
+#~ msgstr "kn"
+
+#~ msgid "HRK"
+#~ msgstr "HRK"
+
+#~ msgid "CZK"
+#~ msgstr "CZK"
+
+#~ msgid "Kr"
+#~ msgstr "Kr"
+
+#~ msgid "DKK"
+#~ msgstr "DKK"
+
+#~ msgid "Fdj"
+#~ msgstr "Fdj"
+
+#~ msgid "DJF"
+#~ msgstr "DJF"
+
+#~ msgid "DOP"
+#~ msgstr "DOP"
+
+#~ msgid "EGP"
+#~ msgstr "EGP"
+
+#~ msgid "Nfa"
+#~ msgstr "Nfa"
+
+#~ msgid "ERN"
+#~ msgstr "ERN"
+
+#~ msgid "ETB"
+#~ msgstr "ETB"
+
+#~ msgid "FKP"
+#~ msgstr "FKP"
+
+#~ msgid "FJD"
+#~ msgstr "FJD"
+
+#~ msgid "XPF"
+#~ msgstr "XPF"
+
+#~ msgid "D"
+#~ msgstr "D"
+
+#~ msgid "GMD"
+#~ msgstr "GMD"
+
+#~ msgid "GEL"
+#~ msgstr "GEL"
+
+#~ msgid "GHS"
+#~ msgstr "GHS"
+
+#~ msgid "GIP"
+#~ msgstr "GIP"
+
+#~ msgid "Q"
+#~ msgstr "Q"
+
+#~ msgid "GTQ"
+#~ msgstr "GTQ"
+
+#~ msgid "FG"
+#~ msgstr "FG"
+
+#~ msgid "GNF"
+#~ msgstr "GNF"
+
+#~ msgid "GYD"
+#~ msgstr "GYD"
+
+#~ msgid "G"
+#~ msgstr "G"
+
+#~ msgid "HTG"
+#~ msgstr "HTG"
+
+#~ msgid "HNL"
+#~ msgstr "HNL"
+
+#~ msgid "HKD"
+#~ msgstr "HKD"
+
+#~ msgid "Ft"
+#~ msgstr "Ft"
+
+#~ msgid "HUF"
+#~ msgstr "HUF"
+
+#~ msgid "kr"
+#~ msgstr "kr"
+
+#~ msgid "ISK"
+#~ msgstr "ISK"
+
+#~ msgid "INR"
+#~ msgstr "INR"
+
+#~ msgid "Rp"
+#~ msgstr "Rp"
+
+#~ msgid "IDR"
+#~ msgstr "IDR"
+
+#~ msgid "SDR"
+#~ msgstr "SDR"
+
+#~ msgid "XDR"
+#~ msgstr "XDR"
+
+#~ msgid "IRR"
+#~ msgstr "IRR"
+
+#~ msgid "IQD"
+#~ msgstr "IQD"
+
+#~ msgid "ILS"
+#~ msgstr "ILS"
+
+#~ msgid "JMD"
+#~ msgstr "JMD"
+
+#~ msgid "JPY"
+#~ msgstr "JPY"
+
+#~ msgid "JOD"
+#~ msgstr "JOD"
+
+#~ msgid "T"
+#~ msgstr "T"
+
+#~ msgid "KZT"
+#~ msgstr "KZT"
+
+#~ msgid "KSh"
+#~ msgstr "KSh"
+
+#~ msgid "KES"
+#~ msgstr "KES"
+
+#~ msgid "W"
+#~ msgstr "W"
+
+#~ msgid "KPW"
+#~ msgstr "KPW"
+
+#~ msgid "KRW"
+#~ msgstr "KRW"
+
+#~ msgid "KWD"
+#~ msgstr "KWD"
+
+#~ msgid "KGS"
+#~ msgstr "KGS"
+
+#~ msgid "KN"
+#~ msgstr "KN"
+
+#~ msgid "LAK"
+#~ msgstr "LAK"
+
+#~ msgid "Ls"
+#~ msgstr "Ls"
+
+#~ msgid "LVL"
+#~ msgstr "LVL"
+
+#~ msgid "LBP"
+#~ msgstr "LBP"
+
+#~ msgid "M"
+#~ msgstr "M"
+
+#~ msgid "LSL"
+#~ msgstr "LSL"
+
+#~ msgid "LRD"
+#~ msgstr "LRD"
+
+#~ msgid "LD"
+#~ msgstr "LD"
+
+#~ msgid "LYD"
+#~ msgstr "LYD"
+
+#~ msgid "Lt"
+#~ msgstr "Lt"
+
+#~ msgid "LTL"
+#~ msgstr "LTL"
+
+#~ msgid "MOP"
+#~ msgstr "MOP"
+
+#~ msgid "MKD"
+#~ msgstr "MKD"
+
+#~ msgid "FMG"
+#~ msgstr "FMG"
+
+#~ msgid "MGA"
+#~ msgstr "MGA"
+
+#~ msgid "MK"
+#~ msgstr "MK"
+
+#~ msgid "MWK"
+#~ msgstr "MWK"
+
+#~ msgid "RM"
+#~ msgstr "RM"
+
+#~ msgid "MYR"
+#~ msgstr "MYR"
+
+#~ msgid "Rf"
+#~ msgstr "Rf"
+
+#~ msgid "MVR"
+#~ msgstr "MVR"
+
+#~ msgid "UM"
+#~ msgstr "UM"
+
+#~ msgid "MRO"
+#~ msgstr "MRO"
+
+#~ msgid "Rs"
+#~ msgstr "Rs"
+
+#~ msgid "MUR"
+#~ msgstr "MUR"
+
+#~ msgid "MXN"
+#~ msgstr "MXN"
+
+#~ msgid "MDL"
+#~ msgstr "MDL"
+
+#~ msgid "MNT"
+#~ msgstr "MNT"
+
+#~ msgid "MAD"
+#~ msgstr "MAD"
+
+#~ msgid "K"
+#~ msgstr "K"
+
+#~ msgid "MMK"
+#~ msgstr "MMK"
+
+#~ msgid "NAD"
+#~ msgstr "NAD"
+
+#~ msgid "NRs"
+#~ msgstr "NRs"
+
+#~ msgid "NPR"
+#~ msgstr "NPR"
+
+#~ msgid "ANG"
+#~ msgstr "ANG"
+
+#~ msgid "NZD"
+#~ msgstr "NZD"
+
+#~ msgid "NIO"
+#~ msgstr "NIO"
+
+#~ msgid "NGN"
+#~ msgstr "NGN"
+
+#~ msgid "NOK"
+#~ msgstr "NOK"
+
+#~ msgid "OMR"
+#~ msgstr "OMR"
+
+#~ msgid "PKR"
+#~ msgstr "PKR"
+
+#~ msgid "PAB"
+#~ msgstr "PAB"
+
+#~ msgid "PGK"
+#~ msgstr "PGK"
+
+#~ msgid "PYG"
+#~ msgstr "PYG"
+
+#~ msgid "PEN"
+#~ msgstr "PEN"
+
+#~ msgid "PHP"
+#~ msgstr "PHP"
+
+#~ msgid "PLN"
+#~ msgstr "PLN"
+
+#~ msgid "QR"
+#~ msgstr "QR"
+
+#~ msgid "QAR"
+#~ msgstr "QAR"
+
+#~ msgid "RON"
+#~ msgstr "RON"
+
+#~ msgid "RF"
+#~ msgstr "RF"
+
+#~ msgid "RWF"
+#~ msgstr "RWF"
+
+#~ msgid "Db"
+#~ msgstr "מסד נתונים"
+
+#~ msgid "STD"
+#~ msgstr "STD"
+
+#~ msgid "SR"
+#~ msgstr "SR"
+
+#~ msgid "SAR"
+#~ msgstr "SAR"
+
+#~ msgid "RSD"
+#~ msgstr "RSD"
+
+#~ msgid "SCR"
+#~ msgstr "SCR"
+
+#~ msgid "Le"
+#~ msgstr "Le"
+
+#~ msgid "SLL"
+#~ msgstr "SLL"
+
+#~ msgid "SGD"
+#~ msgstr "SGD"
+
+#~ msgid "SBD"
+#~ msgstr "SBD"
+
+#~ msgid "SOS"
+#~ msgstr "SOS"
+
+#~ msgid "R"
+#~ msgstr "R"
+
+#~ msgid "ZAR"
+#~ msgstr "ZAR"
+
+#~ msgid "LKR"
+#~ msgstr "LKR"
+
+#~ msgid "SHP"
+#~ msgstr "SHP"
+
+#~ msgid "SDG"
+#~ msgstr "SDG"
+
+#~ msgid "SRD"
+#~ msgstr "SRD"
+
+#~ msgid "E"
+#~ msgstr "E"
+
+#~ msgid "SZL"
+#~ msgstr "SZL"
+
+#~ msgid "SEK"
+#~ msgstr "SEK"
+
+#~ msgid "CHF"
+#~ msgstr "CHF"
+
+#~ msgid "SYP"
+#~ msgstr "SYP"
+
+#~ msgid "TWD"
+#~ msgstr "TWD"
+
+#~ msgid "TJS"
+#~ msgstr "TJS"
+
+#~ msgid "TZS"
+#~ msgstr "TZS"
+
+#~ msgid "THB"
+#~ msgstr "THB"
+
+#~ msgid "TTD"
+#~ msgstr "TTD"
+
+#~ msgid "DT"
+#~ msgstr "DT"
+
+#~ msgid "TND"
+#~ msgstr "TND"
+
+#~ msgid "TRY"
+#~ msgstr "TRY"
+
+#~ msgid "m"
+#~ msgstr "m"
+
+#~ msgid "TMT"
+#~ msgstr "TMT"
+
+#~ msgid "USh"
+#~ msgstr "USh"
+
+#~ msgid "UGX"
+#~ msgstr "UGX"
+
+#~ msgid "AED"
+#~ msgstr "AED"
+
+#~ msgid "UYU"
+#~ msgstr "UYU"
+
+#~ msgid "UZS"
+#~ msgstr "UZS"
+
+#~ msgid "VT"
+#~ msgstr "VT"
+
+#~ msgid "VUV"
+#~ msgstr "VUV"
+
+#~ msgid "VND"
+#~ msgstr "VND"
+
+#~ msgid "WST"
+#~ msgstr "WST"
+
+#~ msgid "YER"
+#~ msgstr "YER"
+
+#~ msgid "VEF"
+#~ msgstr "VEF"
+
+#~ msgid "DATAVERSION"
+#~ msgstr "גרסת נתונים"
 
 #~ msgid "Specify period in Days to activate.Becomes blank when not active."
 #~ msgstr "הזן תקופה בימים כדי להפעיל. השאר ריק כאשר לא פעיל."
