@@ -25,7 +25,6 @@ SET(PROJECT_TARGET_BIN "mmex")
 # values to the corresponding variable names in the following files:
 # ./src/constant.h
 # ./appveyor.yml
-# ./travis.yml
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 SET(MoneyManagerEx_VERSION_MAJOR 1)
@@ -42,11 +41,6 @@ SET(MoneyManagerEx_VERSION "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VER
 CONFIGURE_FILE(
         "${PROJECT_SOURCE_DIR}/appveyor.yml.in"
         "${PROJECT_SOURCE_DIR}/appveyor.yml"
-)
-# Travis
-CONFIGURE_FILE(
-        "${PROJECT_SOURCE_DIR}/.travis.yml.in"
-        "${PROJECT_SOURCE_DIR}/.travis.yml"
 )
 # Header file
 CONFIGURE_FILE(

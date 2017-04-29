@@ -5,8 +5,3 @@ RUN yum -y update && yum -y install cmake gcc-c++ gettext git gtk3-devel make rp
 
 # copy MMEX source code to the container:
 ADD . /moneymanagerex
-
-# Define working directory:
-WORKDIR /moneymanagerex
-
-CMD cmake -DCMAKE_BUILD_TYPE=Release . && make package
