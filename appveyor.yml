@@ -41,16 +41,16 @@ build_script:
 - if /I "%PLATFORM%" == "x64" SET WXLIBFOLDER=vc_x64_lib
 - echo "PLATFORM = %PLATFORM%"
 - echo "WXLIBFOLDER = %WXLIBFOLDER%"
-- git clone https://github.com/wxWidgets/wxWidgets.git %WXWIN%
-- cd %WXWIN%
-- git checkout tags/v3.1.0
+- git clone -b "v3.1.0" https://github.com/wxWidgets/wxWidgets.git %WXWIN%
 - if exist %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (echo "unpacking wxWidgets from cache" & 7z x %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip -o%WXWIN%\lib\%WXLIBFOLDER%)
 - if not exist %WXWIN%\lib\%WXLIBFOLDER% (echo "building wxWidgets" & cd build/msw & nmake /f "%WXWIN%\build\msw\makefile.vc" TARGET_CPU=%PLATFORM% BUILD=release)
 - if not exist %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (echo "packing wxWidgets to cache" & 7z a %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip %WXWIN%\lib\%WXLIBFOLDER%\*)
 # MMEX
-- cd %APPVEYOR_BUILD_FOLDER%
+- cd %APPVEYOR_BUILD_FOLDER%\build
+- mkdir release
+- cd release
 - git submodule update --init
-- cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release .
+- cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..\..\
 - nmake /f Makefile TARGET_CPU=%PLATFORM% BUILD=release
 - cpack .
 
@@ -58,8 +58,24 @@ cache:
 - '%APPVEYOR_BUILD_FOLDER%\vc_lib.zip'
 - '%APPVEYOR_BUILD_FOLDER%\vc_x64_lib.zip'
 
+artifacts:
+  - path: 'build\release\*.exe'
+    name: StandardApp
+  - path: 'build\release\*.zip'
+    name: PortableApp
+
 after_build:
-- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-1.4.0-win32.exe" -FileName "mmex-1.4.0-win32_build%appveyor_build_number%.exe"
-- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-1.4.0-win64.exe" -FileName "mmex-1.4.0-win64_build%appveyor_build_number%.exe"
-- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-1.4.0-win32.zip" -FileName "mmex-1.4.0-win32_portable_build%appveyor_build_number%.zip"
-- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-1.4.0-win64.zip" -FileName "mmex-1.4.0-win64_portable_build%appveyor_build_number%.zip"
+- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-1.4.0-ALPHA.exe" -FileName "mmex-1.4.0-ALPHA-win32_build%appveyor_build_number%.exe"
+- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-1.4.0-ALPHA.exe" -FileName "mmex-1.4.0-ALPHA-win64_build%appveyor_build_number%.exe"
+- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-1.4.0-ALPHA.zip" -FileName "mmex-1.4.0-ALPHA-win32_portable_build%appveyor_build_number%.zip"
+- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-1.4.0-ALPHA.zip" -FileName "mmex-1.4.0-ALPHA-win64_portable_build%appveyor_build_number%.zip"
+
+deploy:
+  description: 'Release description'
+  provider: GitHub
+  artifact: build\release\*.exe, build\release\*.zip
+  draft: false                              
+  prerelease: false                               
+  on:                                                   
+    branch: master                 # release from master branch only
+    appveyor_repo_tag: true        # deploy on tag push only
