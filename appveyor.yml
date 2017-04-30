@@ -7,7 +7,7 @@
 # Note:    MMEX version changes are made in the file: ./CMakeLists.txt
 #----------------------------------------------------------------------------
 
-version: 1.3.{build}
+version: mmex-1.4.0-ALPHA.{build}
 
 pull_requests:
   do_not_increment_build_number: true
@@ -50,7 +50,7 @@ build_script:
 - mkdir release
 - cd release
 - git submodule update --init
-- cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..\..\
+- cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ../../
 - nmake /f Makefile TARGET_CPU=%PLATFORM% BUILD=release
 - cpack .
 
@@ -58,24 +58,32 @@ cache:
 - '%APPVEYOR_BUILD_FOLDER%\vc_lib.zip'
 - '%APPVEYOR_BUILD_FOLDER%\vc_x64_lib.zip'
 
+after_build:
+# Renaming
+- if /I "%PLATFORM%" == "Win32" ren "mmex-1.4.0-ALPHA.exe" "win32-mmex-1.4.0-ALPHA.exe"
+- if /I "%PLATFORM%" == "Win32" ren "mmex-1.4.0-ALPHA.zip" "win32-mmex-1.4.0-ALPHA-portable.zip"
+- if /I "%PLATFORM%" == "x64" ren "mmex-1.4.0-ALPHA.exe" "win64-mmex-1.4.0-ALPHA.exe"
+- if /I "%PLATFORM%" == "x64" ren "mmex-1.4.0-ALPHA.zip" "win64-mmex-1.4.0-ALPHA-portable.zip"
+# Publishing artifacts
+#- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "win32-mmex-1.4.0-ALPHA.exe" -FileName "win32-mmex-1.4.0-ALPHA%appveyor_build_number%.exe"
+#- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "win32-mmex-1.4.0-ALPHA-portable.zip" -FileName "win32-mmex-1.4.0-ALPHA-portable%appveyor_build_number%.zip"
+#- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "win64-mmex-1.4.0-ALPHA.exe" -FileName "win64-mmex-1.4.0-ALPHA%appveyor_build_number%.exe"
+#- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "win64-mmex-1.4.0-ALPHA-portable.zip" -FileName "win64-mmex-1.4.0-ALPHA-portable%appveyor_build_number%.zip"
+
 artifacts:
   - path: 'build\release\*.exe'
     name: StandardApp
   - path: 'build\release\*.zip'
     name: PortableApp
 
-after_build:
-- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-1.4.0-ALPHA.exe" -FileName "mmex-1.4.0-ALPHA-win32_build%appveyor_build_number%.exe"
-- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-1.4.0-ALPHA.exe" -FileName "mmex-1.4.0-ALPHA-win64_build%appveyor_build_number%.exe"
-- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-1.4.0-ALPHA.zip" -FileName "mmex-1.4.0-ALPHA-win32_portable_build%appveyor_build_number%.zip"
-- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-1.4.0-ALPHA.zip" -FileName "mmex-1.4.0-ALPHA-win64_portable_build%appveyor_build_number%.zip"
-
 deploy:
   description: 'Release description'
   provider: GitHub
-  artifact: build\release\*.exe, build\release\*.zip
+  auth_token:
+      secure: A/7+ysFnZgdLSozyE90C0OMNIu/F4NtrMBxi/qz+vXW2uWMou1rmTdgxI4oQFzwr
   draft: false                              
   prerelease: false                               
   on:                                                   
-    branch: master                 # release from master branch only
+    #branch: master                 # release from master branch only
     appveyor_repo_tag: true        # deploy on tag push only
+

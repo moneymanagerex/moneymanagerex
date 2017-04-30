@@ -23,8 +23,9 @@ matrix:
 
 before_install:
   - echo $TRAVIS_OS_NAME
-  # Linux
+  - mkdir -p $TRAVIS_BUILD_DIR/build/release
   - cd $TRAVIS_BUILD_DIR
+  # Linux
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then docker build -f dockers/Dockerfile.$OS.$DIST . -t moneymanagerex:$OS.$DIST; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then docker run -it -v $PWD/build/release:/moneymanagerex/build/release moneymanagerex:$OS.$DIST bash -c "cd moneymanagerex/build/release;cmake -DCMAKE_BUILD_TYPE=Release ../../;make package"; fi
   # MacOS
@@ -34,9 +35,7 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew link --force gettext; fi
 
 script:
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then cd $TRAVIS_BUILD_DIR/build; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then mkdir release; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then cd release; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then cd $TRAVIS_BUILD_DIR/build/release; fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then cmake -DCMAKE_BUILD_TYPE=Release ../../; fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then make package -j4; fi
 
@@ -53,11 +52,20 @@ notifications: # set notification options
     on_success: change
     on_failure: always
 
+after_success:
+  - cd $TRAVIS_BUILD_DIR/build/release 
+  # Renames the artifact according to their facility
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then find . -maxdepth 1 \( -name "*.deb" -or -name "*.rpm" \) | sed 's#.*/##' | awk '{print "mv {,${OS}-${DIST}-}"$1}' | sudo bash; ls -la; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then find . -maxdepth 1 -name "*.dmg" | sed 's#.*/##' | awk '{print "mv {,macos-}"$1}' | sudo bash; fi
+
 deploy:
     provider: releases
+    api_key: ${api_key}
+    file_glob: true
     file: $TRAVIS_BUILD_DIR/build/release/*.{deb,rpm,dmg}
     skip_cleanup: true
     # Set deploy conditions
     on:
         # Deploy only when tag is specified
         tags: true
+

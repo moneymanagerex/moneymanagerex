@@ -7,7 +7,7 @@
 # Note:    MMEX version changes are made in the file: ./CMakeLists.txt
 #----------------------------------------------------------------------------
 
-version: 1.3.{build}
+version: @CPACK_PACKAGE_FILE_NAME@.{build}
 
 pull_requests:
   do_not_increment_build_number: true
@@ -50,7 +50,7 @@ build_script:
 - mkdir release
 - cd release
 - git submodule update --init
-- cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..\..\
+- cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ../../
 - nmake /f Makefile TARGET_CPU=%PLATFORM% BUILD=release
 - cpack .
 
@@ -58,24 +58,32 @@ cache:
 - '%APPVEYOR_BUILD_FOLDER%\vc_lib.zip'
 - '%APPVEYOR_BUILD_FOLDER%\vc_x64_lib.zip'
 
+after_build:
+# Renaming
+- if /I "%PLATFORM%" == "Win32" ren "@CPACK_PACKAGE_FILE_NAME@.exe" "win32-@CPACK_PACKAGE_FILE_NAME@.exe"
+- if /I "%PLATFORM%" == "Win32" ren "@CPACK_PACKAGE_FILE_NAME@.zip" "win32-@CPACK_PACKAGE_FILE_NAME@-portable.zip"
+- if /I "%PLATFORM%" == "x64" ren "@CPACK_PACKAGE_FILE_NAME@.exe" "win64-@CPACK_PACKAGE_FILE_NAME@.exe"
+- if /I "%PLATFORM%" == "x64" ren "@CPACK_PACKAGE_FILE_NAME@.zip" "win64-@CPACK_PACKAGE_FILE_NAME@-portable.zip"
+# Publishing artifacts
+#- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "win32-@CPACK_PACKAGE_FILE_NAME@.exe" -FileName "win32-@CPACK_PACKAGE_FILE_NAME@%appveyor_build_number%.exe"
+#- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "win32-@CPACK_PACKAGE_FILE_NAME@-portable.zip" -FileName "win32-@CPACK_PACKAGE_FILE_NAME@-portable%appveyor_build_number%.zip"
+#- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "win64-@CPACK_PACKAGE_FILE_NAME@.exe" -FileName "win64-@CPACK_PACKAGE_FILE_NAME@%appveyor_build_number%.exe"
+#- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "win64-@CPACK_PACKAGE_FILE_NAME@-portable.zip" -FileName "win64-@CPACK_PACKAGE_FILE_NAME@-portable%appveyor_build_number%.zip"
+
 artifacts:
   - path: 'build\release\*.exe'
     name: StandardApp
   - path: 'build\release\*.zip'
     name: PortableApp
 
-after_build:
-- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "@CPACK_PACKAGE_FILE_NAME@.exe" -FileName "@CPACK_PACKAGE_FILE_NAME@-win32_build%appveyor_build_number%.exe"
-- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "@CPACK_PACKAGE_FILE_NAME@.exe" -FileName "@CPACK_PACKAGE_FILE_NAME@-win64_build%appveyor_build_number%.exe"
-- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "@CPACK_PACKAGE_FILE_NAME@.zip" -FileName "@CPACK_PACKAGE_FILE_NAME@-win32_portable_build%appveyor_build_number%.zip"
-- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "@CPACK_PACKAGE_FILE_NAME@.zip" -FileName "@CPACK_PACKAGE_FILE_NAME@-win64_portable_build%appveyor_build_number%.zip"
-
 deploy:
   description: 'Release description'
   provider: GitHub
-  artifact: build\release\*.exe, build\release\*.zip
+  auth_token:
+      secure: A/7+ysFnZgdLSozyE90C0OMNIu/F4NtrMBxi/qz+vXW2uWMou1rmTdgxI4oQFzwr
   draft: false                              
   prerelease: false                               
   on:                                                   
-    branch: master                 # release from master branch only
+    #branch: master                 # release from master branch only
     appveyor_repo_tag: true        # deploy on tag push only
+
