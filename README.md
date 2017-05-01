@@ -40,7 +40,7 @@ Platforms
 * https://hub.docker.com/r/moneymanagerex/moneymanagerex/
 
 #### Public links:
-* [Slack](http://moneymanagerex.slack.com)
+* [Slack](https://moneymanagerex-slackin.herokuapp.com)
 * [Forum](http://forum.moneymanagerex.org)
 * [Wiki](https://sourceforge.net/p/moneymanagerex/wiki/mmex)
 * [Facebook](https://www.facebook.com/MoneyManagerEx)
