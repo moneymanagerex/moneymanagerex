@@ -7,7 +7,7 @@
 # Note:    MMEX version changes are made in the file: ./CMakeLists.txt
 #----------------------------------------------------------------------------
 
-version: 1.3.{build}
+version: @CPACK_PACKAGE_FILE_NAME@.{build}
 
 pull_requests:
   do_not_increment_build_number: true
@@ -41,16 +41,16 @@ build_script:
 - if /I "%PLATFORM%" == "x64" SET WXLIBFOLDER=vc_x64_lib
 - echo "PLATFORM = %PLATFORM%"
 - echo "WXLIBFOLDER = %WXLIBFOLDER%"
-- git clone https://github.com/wxWidgets/wxWidgets.git %WXWIN%
-- cd %WXWIN%
-- git checkout tags/v3.1.0
+- git clone -b "v3.1.0" https://github.com/wxWidgets/wxWidgets.git %WXWIN%
 - if exist %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (echo "unpacking wxWidgets from cache" & 7z x %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip -o%WXWIN%\lib\%WXLIBFOLDER%)
 - if not exist %WXWIN%\lib\%WXLIBFOLDER% (echo "building wxWidgets" & cd build/msw & nmake /f "%WXWIN%\build\msw\makefile.vc" TARGET_CPU=%PLATFORM% BUILD=release)
 - if not exist %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (echo "packing wxWidgets to cache" & 7z a %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip %WXWIN%\lib\%WXLIBFOLDER%\*)
 # MMEX
-- cd %APPVEYOR_BUILD_FOLDER%
+- cd %APPVEYOR_BUILD_FOLDER%\build
+- mkdir release
+- cd release
 - git submodule update --init
-- cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release .
+- cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ../../
 - nmake /f Makefile TARGET_CPU=%PLATFORM% BUILD=release
 - cpack .
 
@@ -59,7 +59,31 @@ cache:
 - '%APPVEYOR_BUILD_FOLDER%\vc_x64_lib.zip'
 
 after_build:
-- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-@MoneyManagerEx_VERSION_MAJOR@.@MoneyManagerEx_VERSION_MINOR@.@MoneyManagerEx_VERSION_PATCH@-win32.exe" -FileName "mmex-@MoneyManagerEx_VERSION_MAJOR@.@MoneyManagerEx_VERSION_MINOR@.@MoneyManagerEx_VERSION_PATCH@-win32_build%appveyor_build_number%.exe"
-- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-@MoneyManagerEx_VERSION_MAJOR@.@MoneyManagerEx_VERSION_MINOR@.@MoneyManagerEx_VERSION_PATCH@-win64.exe" -FileName "mmex-@MoneyManagerEx_VERSION_MAJOR@.@MoneyManagerEx_VERSION_MINOR@.@MoneyManagerEx_VERSION_PATCH@-win64_build%appveyor_build_number%.exe"
-- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "mmex-@MoneyManagerEx_VERSION_MAJOR@.@MoneyManagerEx_VERSION_MINOR@.@MoneyManagerEx_VERSION_PATCH@-win32.zip" -FileName "mmex-@MoneyManagerEx_VERSION_MAJOR@.@MoneyManagerEx_VERSION_MINOR@.@MoneyManagerEx_VERSION_PATCH@-win32_portable_build%appveyor_build_number%.zip"
-- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "mmex-@MoneyManagerEx_VERSION_MAJOR@.@MoneyManagerEx_VERSION_MINOR@.@MoneyManagerEx_VERSION_PATCH@-win64.zip" -FileName "mmex-@MoneyManagerEx_VERSION_MAJOR@.@MoneyManagerEx_VERSION_MINOR@.@MoneyManagerEx_VERSION_PATCH@-win64_portable_build%appveyor_build_number%.zip"
+# Renaming
+- if /I "%PLATFORM%" == "Win32" ren "@CPACK_PACKAGE_FILE_NAME@.exe" "win32-@CPACK_PACKAGE_FILE_NAME@.exe"
+- if /I "%PLATFORM%" == "Win32" ren "@CPACK_PACKAGE_FILE_NAME@.zip" "win32-@CPACK_PACKAGE_FILE_NAME@-portable.zip"
+- if /I "%PLATFORM%" == "x64" ren "@CPACK_PACKAGE_FILE_NAME@.exe" "win64-@CPACK_PACKAGE_FILE_NAME@.exe"
+- if /I "%PLATFORM%" == "x64" ren "@CPACK_PACKAGE_FILE_NAME@.zip" "win64-@CPACK_PACKAGE_FILE_NAME@-portable.zip"
+# Publishing artifacts
+#- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "win32-@CPACK_PACKAGE_FILE_NAME@.exe" -FileName "win32-@CPACK_PACKAGE_FILE_NAME@%appveyor_build_number%.exe"
+#- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "win32-@CPACK_PACKAGE_FILE_NAME@-portable.zip" -FileName "win32-@CPACK_PACKAGE_FILE_NAME@-portable%appveyor_build_number%.zip"
+#- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "win64-@CPACK_PACKAGE_FILE_NAME@.exe" -FileName "win64-@CPACK_PACKAGE_FILE_NAME@%appveyor_build_number%.exe"
+#- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "win64-@CPACK_PACKAGE_FILE_NAME@-portable.zip" -FileName "win64-@CPACK_PACKAGE_FILE_NAME@-portable%appveyor_build_number%.zip"
+
+artifacts:
+  - path: 'build\release\*.exe'
+    name: StandardApp
+  - path: 'build\release\*.zip'
+    name: PortableApp
+
+deploy:
+  description: 'Release description'
+  provider: GitHub
+  auth_token:
+      secure: ww6MhE3nBwP80/ujJIJnYl6cBLOvpL8NtMWjpSUj5L6H8kbSZ31PAM58+lQqkKEq
+  draft: false                              
+  prerelease: false                               
+  on:                                                   
+    #branch: master                 # release from master branch only
+    appveyor_repo_tag: true        # deploy on tag push only
+

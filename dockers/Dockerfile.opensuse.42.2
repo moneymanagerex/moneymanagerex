@@ -1,0 +1,7 @@
+FROM opensuse:42.2
+MAINTAINER developers@moneymanagerex.org
+
+RUN zypper update -y && zypper install -y cmake gettext-tools gcc-c++ git make rpm-build wxWidgets-3_0-devel
+
+# copy MMEX source code to the container:
+ADD . /moneymanagerex

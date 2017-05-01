@@ -25,7 +25,6 @@ SET(PROJECT_TARGET_BIN "mmex")
 # values to the corresponding variable names in the following files:
 # ./src/constant.h
 # ./appveyor.yml
-# ./travis.yml
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 SET(MoneyManagerEx_VERSION_MAJOR 1)
@@ -37,16 +36,32 @@ SET(MoneyManagerEx_VERSION_RC -1)
 
 SET(MoneyManagerEx_VERSION "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VERSION_MINOR}.${MoneyManagerEx_VERSION_PATCH}")
 
+# Adjusting semantic versioning for ALPHA version release
+IF(${MoneyManagerEx_VERSION_ALPHA} EQUAL 0)
+	SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-ALPHA")
+ELSEIF(${MoneyManagerEx_VERSION_ALPHA} GREATER 0)
+	SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-ALPHA-${MoneyManagerEx_VERSION_ALPHA}")
+ENDIF()
+
+# Adjusting semantic versioning for BETA version release
+IF(${MoneyManagerEx_VERSION_BETA} EQUAL 0)
+	SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-BETA")
+ELSEIF(${MoneyManagerEx_VERSION_BETA} GREATER 0)
+	SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-BETA-${MoneyManagerEx_VERSION_BETA}")
+ENDIF()
+
+# Adjusting semantic versioning for RC version release
+IF(${MoneyManagerEx_VERSION_RC} EQUAL 0)
+	SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-RC")
+ELSEIF(${MoneyManagerEx_VERSION_RC} GREATER 0)
+	SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-RC-${MoneyManagerEx_VERSION_RC}")
+ENDIF()
+
 # Passing CMake variables (specificaly current version numbers) to files
 # AppVeyor
 CONFIGURE_FILE(
         "${PROJECT_SOURCE_DIR}/appveyor.yml.in"
         "${PROJECT_SOURCE_DIR}/appveyor.yml"
-)
-# Travis
-CONFIGURE_FILE(
-        "${PROJECT_SOURCE_DIR}/.travis.yml.in"
-        "${PROJECT_SOURCE_DIR}/.travis.yml"
 )
 # Header file
 CONFIGURE_FILE(
@@ -207,13 +222,13 @@ IF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_TARGET_BIN}")
 
     # Set CFBundleVersion to the git describe output. Apple docs say it should be "three non-negative, period-separated integers with the first integer being greater than zero"
-    SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_BUNDLE_VERSION "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VERSION_MINOR}.${MoneyManagerEx_VERSION_PATCH}")
+	SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_BUNDLE_VERSION "${MoneyManagerEx_VERSION}")
 
     # Set CFBundleExecutable
     #SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_EXECUTABLE_NAME "${OUTPUT_NAME}")
 
     # Set CFBundleShortVersionString to "2.0.0". This is displayed in the Finder and Spotlight.
-    SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_SHORT_VERSION_STRING "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VERSION_MINOR}.${MoneyManagerEx_VERSION_PATCH}")
+	SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_SHORT_VERSION_STRING "${MoneyManagerEx_VERSION}")
 
     # Set the path to the plist template
     SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/resources/Info.plist")
@@ -309,7 +324,7 @@ ENDIF()
 # --------- CPack ---------
 SET(CPACK_PACKAGE_NAME "${PROJECT_TARGET_BIN}")
 # CPACK_PACKAGE_VERSION "1.2.3") # to produce something like this
-SET(CPACK_PACKAGE_VERSION "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VERSION_MINOR}.${MoneyManagerEx_VERSION_PATCH}")
+SET(CPACK_PACKAGE_VERSION "${MoneyManagerEx_VERSION}")
 SET(CPACK_PACKAGE_VERSION_MAJOR "${MoneyManagerEx_VERSION_MAJOR}")
 SET(CPACK_PACKAGE_VERSION_MINOR "${MoneyManagerEx_VERSION_MINOR}")
 SET(CPACK_PACKAGE_VERSION_PATCH "${MoneyManagerEx_VERSION_PATCH}")
