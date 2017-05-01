@@ -16,7 +16,7 @@ matrix:
       env: OS=fedora DIST=25
       compiler: gcc
     - os: linux
-      env: OS=opensuse DIST=leap
+      env: OS=opensuse DIST=42.2
       compiler: gcc
     - os: osx
       compiler: gcc
