@@ -61,11 +61,11 @@ private:
     Split split_;
     Model_Currency::Data *m_currency;
     int transType_;
-    int accountID_;
 
-    wxChoice* choiceType_;
-    mmTextCtrl* textAmount_;
-    wxButton* bCategory_;
+    wxChoice* m_choice_type;
+    mmTextCtrl* m_text_mount;
+    wxButton* m_bcategory;
+    wxButton* m_cancel_button;
 };
 
 #endif

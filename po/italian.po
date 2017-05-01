@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex Italian Translation\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2017-04-24 18:31+0300\n"
-"PO-Revision-Date: 2017-04-24 18:32+0300\n"
+"POT-Creation-Date: 2017-04-29 13:17+0300\n"
+"PO-Revision-Date: 2017-04-29 13:17+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: amaseb <amaseb@tiscali.it>\n"
 "Language: it\n"
@@ -418,7 +418,7 @@ msgstr "Inserire il nome del Cespite"
 #: src/import_export/qif_import_gui.cpp:90
 #: src/import_export/univcsvdialog.cpp:86 src/maincurrencydialog.cpp:235
 #: src/maincurrencydialog.cpp:258 src/mmcheckingpanel.cpp:1013
-#: src/mmreportspanel.cpp:310 src/model/Model_CustomField.cpp:29
+#: src/mmreportspanel.cpp:319 src/model/Model_CustomField.cpp:29
 #: src/reports/cashflow.cpp:243 src/reports/summary.cpp:147
 #: src/reports/transactions.cpp:67 src/stockdialog.cpp:302
 #: src/stockdialog.cpp:658 src/transactionsupdatedialog.cpp:106
@@ -946,8 +946,8 @@ msgid "Specify the date when this bill or deposit is due"
 msgstr "Inserire la data della prossima scadenza"
 
 #: src/billsdepositsdialog.cpp:393
-msgid "Retard or advance the date of the 'next occurrence"
-msgstr "Ritarda o anticipa la data della Prossima scadenza"
+msgid "Retard or advance the date of the 'next occurrence'"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:399 src/billsdepositspanel.cpp:97
 msgid "Date Due"
@@ -5407,29 +5407,33 @@ msgstr "Ripristina colonne"
 msgid "REPORTS"
 msgstr "RESOCONTI"
 
-#: src/mmreportspanel.cpp:280 src/mmreportspanel.cpp:325
+#: src/mmreportspanel.cpp:280 src/mmreportspanel.cpp:343
 msgid "Period:"
 msgstr "Periodo:"
 
-#: src/mmreportspanel.cpp:364
+#: src/mmreportspanel.cpp:308 src/mmreportspanel.cpp:309
+#: src/mmreportspanel.cpp:331 src/mmreportspanel.cpp:332
+#: src/mmreportspanel.cpp:379 src/mmreportspanel.cpp:380
+msgid "Previous Period"
+msgstr ""
+
+#: src/mmreportspanel.cpp:312 src/mmreportspanel.cpp:313
+#: src/mmreportspanel.cpp:335 src/mmreportspanel.cpp:336
+#: src/mmreportspanel.cpp:383 src/mmreportspanel.cpp:384
+msgid "Next Period"
+msgstr ""
+
+#: src/mmreportspanel.cpp:391
 msgid "Accounts:"
 msgstr "Account:"
 
-#: src/mmreportspanel.cpp:366 src/reports/cashflow.cpp:226
+#: src/mmreportspanel.cpp:393 src/reports/cashflow.cpp:226
 #: src/reports/incexpenses.cpp:49 src/reports/incexpenses.cpp:177
 msgid "All Accounts"
 msgstr "Tutti i Conti"
 
-#: src/mmreportspanel.cpp:367
+#: src/mmreportspanel.cpp:394
 msgid "Specific Accounts"
-msgstr ""
-
-#: src/mmreportspanel.cpp:381 src/mmreportspanel.cpp:382
-msgid "Previous Report"
-msgstr ""
-
-#: src/mmreportspanel.cpp:385 src/mmreportspanel.cpp:386
-msgid "Next Report"
 msgstr ""
 
 #: src/mmtextctrl.h:92
@@ -7679,6 +7683,9 @@ msgstr "Controllo aggiornamenti MMEX"
 #, c-format
 msgid "You already have the latest version %s"
 msgstr "Hai già l'ultima versione %s"
+
+#~ msgid "Retard or advance the date of the 'next occurrence"
+#~ msgstr "Ritarda o anticipa la data della Prossima scadenza"
 
 #~ msgid "Specify period in Days to activate.Becomes blank when not active."
 #~ msgstr ""

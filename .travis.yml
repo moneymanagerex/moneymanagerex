@@ -55,8 +55,8 @@ notifications: # set notification options
 after_success:
   - cd $TRAVIS_BUILD_DIR/build/release 
   # Renames the artifact according to their facility
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then find . -maxdepth 1 \( -name "*.deb" -or -name "*.rpm" \) | sed 's#.*/##' | awk '{print "mv {,${OS}-${DIST}-}"$1}' | sudo bash; ls -la; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then find . -maxdepth 1 -name "*.dmg" | sed 's#.*/##' | awk '{print "mv {,macos-}"$1}' | sudo bash; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then find . -maxdepth 1 \( -name "*.deb" -or -name "*.rpm" \) | sed 's#.*/##' | awk '{print "mv {,${OS}-${DIST}-}"$1}' | bash; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then find . -maxdepth 1 -name "*.dmg" | sed 's#.*/##' | awk '{print "mv {,macos-}"$1}' | bash; fi
 
 deploy:
     provider: releases
