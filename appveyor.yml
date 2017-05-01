@@ -80,7 +80,7 @@ deploy:
   description: 'Release description'
   provider: GitHub
   auth_token:
-      secure: A/7+ysFnZgdLSozyE90C0OMNIu/F4NtrMBxi/qz+vXW2uWMou1rmTdgxI4oQFzwr
+      secure: ww6MhE3nBwP80/ujJIJnYl6cBLOvpL8NtMWjpSUj5L6H8kbSZ31PAM58+lQqkKEq
   draft: false                              
   prerelease: false                               
   on:                                                   
