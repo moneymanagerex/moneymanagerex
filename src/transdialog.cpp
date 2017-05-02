@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
- Copyright (C) 2011-2016 Nikolay Akimov
+ Copyright (C) 2011-2017 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -112,7 +112,9 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         if (to_acc) 
             m_to_currency = Model_Account::currency(to_acc);
         if (m_to_currency) 
-            m_advanced = !m_new_trx && (m_currency->CURRENCYID != m_to_currency->CURRENCYID || m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
+            m_advanced = !m_new_trx 
+                && (m_currency->CURRENCYID != m_to_currency->CURRENCYID
+                    || m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
     }
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -177,8 +179,12 @@ void mmTransDialog::dataToControls()
         if (m_transfer)
         {
             if (!m_advanced)
-                m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT 
-                    * (m_to_currency ? m_currency->BASECONVRATE / m_to_currency->BASECONVRATE : 1);
+            {
+                double exch = 1;
+                if (m_to_currency && m_to_currency->BASECONVRATE > 0)
+                    exch = m_currency->BASECONVRATE / m_to_currency->BASECONVRATE;
+                m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT * exch;
+            }
             toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT, Model_Currency::precision(m_trx_data.TOACCOUNTID));
         }
         else
@@ -397,7 +403,8 @@ void mmTransDialog::CreateControls()
 
     for (const auto& i : Model_Checking::all_type())
     {
-        if (i != Model_Checking::all_type()[Model_Checking::TRANSFER] || Model_Account::instance().all().size() > 1)
+        if (i != Model_Checking::all_type()[Model_Checking::TRANSFER] 
+            || Model_Account::instance().all().size() > 1)
             transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
 
@@ -488,7 +495,8 @@ void mmTransDialog::CreateControls()
         , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()), 0);
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
-        , wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
+        , wxEVT_COMMAND_BUTTON_CLICKED
+        , wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
     
     // Attachments ---------------------------------------------
     bAttachments_ = new wxBitmapButton(this, wxID_FILE
@@ -501,7 +509,8 @@ void mmTransDialog::CreateControls()
     RightAlign_sizer->Add(bAttachments_, wxSizerFlags().Border(wxRIGHT, 5));
     RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
 
-    textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, "", wxDefaultPosition, wxSize(-1, 120), wxTE_MULTILINE);
+    textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES
+        , "", wxDefaultPosition, wxSize(-1, 120), wxTE_MULTILINE);
     box_sizer->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
     /**********************************************************************************************
@@ -606,7 +615,8 @@ bool mmTransDialog::validateData()
     else //transfer
     {
         Model_Account::Data *to_account = Model_Account::instance().get(cbPayee_->GetValue());
-        if (!to_account || to_account->ACCOUNTID == m_trx_data.ACCOUNTID || Model_Account::type(to_account) == Model_Account::INVESTMENT)
+        if (!to_account || to_account->ACCOUNTID == m_trx_data.ACCOUNTID
+            || Model_Account::type(to_account) == Model_Account::INVESTMENT)
         {
             mmErrorDialogs::InvalidAccount((wxWindow*)cbPayee_, true);
             return false;
