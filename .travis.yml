@@ -20,6 +20,9 @@ matrix:
       env: OS=ubuntu DIST=xenial
       compiler: gcc
     - os: linux
+      env: OS=ubuntu DIST=zesty
+      compiler: gcc
+    - os: linux
       env: OS=fedora DIST=25
       compiler: gcc
     - os: linux
