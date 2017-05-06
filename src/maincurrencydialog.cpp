@@ -476,7 +476,7 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
             {
                 CurrencySymbol = pattern.GetMatch(csvline, 1);
                 pattern.GetMatch(csvline, 2).ToDouble(&dRate);
-                currency_data[CurrencySymbol] = dRate;
+                currency_data[CurrencySymbol] = (dRate <= 0 ? 1 : dRate);
             }
         }
 
@@ -816,7 +816,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     Model_Currency::instance().save(BaseCurrency);
 
     Model_Currency::Data* BaseCurrencyOLD = Model_Currency::instance().get(baseCurrencyOLD);
-    BaseCurrencyOLD->BASECONVRATE = 0;
+    BaseCurrencyOLD->BASECONVRATE = 1;
     Model_Currency::instance().save(BaseCurrencyOLD);
 
     Model_CurrencyHistory::instance().Savepoint();
@@ -830,9 +830,10 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
         return true;
     OnlineUpdateCurRate();
 
-    if (wxMessageBox(_("Do you want to update all currency history? Any custom currency rate will be deleted!")
+    if (wxMessageBox(_("Do you want to update all currency history?"
+        " Any custom currency rate will be deleted!")
             , _("Currency Dialog")
-            , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR) != wxYES)
+            , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR) != wxYES)
         return true;
 
     Model_CurrencyHistory::ResetCurrencyHistory();

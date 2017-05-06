@@ -50,7 +50,8 @@ mmCurrencyDialog::~mmCurrencyDialog()
 {
 }
 
-mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, Model_Currency::Data * currency)
+mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent
+    , Model_Currency::Data * currency)
     : m_currency(currency)
         , m_scale(SCALE)
         , m_currencyName(nullptr)
@@ -183,11 +184,13 @@ void mmCurrencyDialog::CreateControls()
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC
         , _("Decimal Char")), g_flagsH);
     decTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, "");
+    decTx_->SetMaxLength(1);
     itemFlexGridSizer3->Add(decTx_, g_flagsExpand);
 
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC
         , _("Grouping Char")), g_flagsH);
     grpTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, "");
+    grpTx_->SetMaxLength(1);
     itemFlexGridSizer3->Add(grpTx_, g_flagsExpand);
 
     wxIntegerValidator<int> valInt(&m_scale,
@@ -247,13 +250,32 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
     if (!currency_symb.empty() && m_currency->CURRENCYID == -1)
         return mmErrorDialogs::InvalidSymbol(m_currencySymbol, true);
 
-    if (m_base_conv_rate->Calculate(SCALE))
-        m_base_conv_rate->GetDouble(m_currency->BASECONVRATE);
-    if (!m_base_conv_rate->checkValue(m_currency->BASECONVRATE)
-        || m_currency->BASECONVRATE <= 0.0)
-        return mmErrorDialogs::MessageInvalid(m_base_conv_rate
-            , _("Conversion to Base Rate"));
+    bool base_currency = (Model_Currency::GetBaseCurrency()->CURRENCYID == m_currency->CURRENCYID);
+    if (!base_currency)
+    {
+        if (m_base_conv_rate->Calculate(SCALE))
+            m_base_conv_rate->GetDouble(m_currency->BASECONVRATE);
+        if (!m_base_conv_rate->checkValue(m_currency->BASECONVRATE)
+            || m_currency->BASECONVRATE <= 0.0)
+            return mmErrorDialogs::ToolTip4Object(m_base_conv_rate
+                , _("Invalid Amount.")
+                , _("Conversion to Base Rate"));
+    }
+    else
+        m_currency->BASECONVRATE = 1;
     
+    if ((m_currency->GROUP_SEPARATOR == m_currency->DECIMAL_POINT)
+        || (!wxString(" .,").Contains(m_currency->GROUP_SEPARATOR)))
+        return mmErrorDialogs::ToolTip4Object(grpTx_
+            , _("Invalid Entry")
+            , _("Grouping Char"));
+
+    if (!wxString(".,").Contains(m_currency->DECIMAL_POINT)
+        || m_currency->DECIMAL_POINT.empty())
+        return mmErrorDialogs::ToolTip4Object(decTx_
+            , _("Invalid Entry")
+            , _("Decimal Char"));
+
     Model_Currency::instance().save(m_currency);
     EndModal(wxID_OK);
 }
