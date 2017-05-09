@@ -333,27 +333,26 @@ SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple to use financial management softwa
 SET(CPACK_PACKAGE_DESCRIPTION "Money Manager Ex (MMEX) is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. MMEX includes all the basic features that 90% of users would want to see in a personal finance application. The design goals are to concentrate on simplicity and user friendliness - something one can use everyday.")
 
 # Linux
-# Set package dependencies
+# Set package run time dependencies
 IF(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+
+    # Ubuntu
     IF(EXISTS "/etc/debian_version")
         SET(CPACK_GENERATOR "DEB")
-        # Ubuntu
-        SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.15), libgcc1 (>=1:4.1.1), libstdc++6 (>= 4.6), libwxgtk3.0-0v5 (>= 3.0.0) | libwxgtk3.0-0 (>=3.0.0), libwxgtk-webview3.0-0v5 (>= 3.0.0) | libwxgtk-webview3.0-0 (>= 3.0.0)")
+		SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libwxgtk3.0-0v5, libwxgtk-webview3.0-0v5")
+
+    # Fedora
+    ELSEIF(EXISTS "/etc/redhat-release" OR LINUX_DISTRO MATCHES "Fedora")
+        SET(CPACK_GENERATOR "RPM")
+        SET(CPACK_RPM_PACKAGE_LICENSE "GPL-2+")
+		SET(CPACK_RPM_PACKAGE_REQUIRES "wxGTK3 webkitgtk3")
+
+    # openSUSE
     ELSEIF(EXISTS "/etc/redhat-release" OR LINUX_DISTRO MATCHES "openSUSE")
         SET(CPACK_GENERATOR "RPM")
         SET(CPACK_RPM_PACKAGE_LICENSE "GPL-2+")
-        # Fedora
-        IF("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND LINUX_DISTRO MATCHES "Fedora")
-            SET(CPACK_RPM_PACKAGE_REQUIRES "clang, wxGTK3-devel")
-        ELSE()
-            SET(CPACK_RPM_PACKAGE_REQUIRES "gcc-c++, wxGTK3-devel")
-        ENDIF()
-        # openSUSE
-        IF("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND LINUX_DISTRO MATCHES "openSUSE")
-            SET(CPACK_RPM_PACKAGE_REQUIRES "llvm-clang, wxWidgets-3_0-devel")
-        ELSE()
-            SET(CPACK_RPM_PACKAGE_REQUIRES "gcc-c++, wxWidgets-3_0-devel")
-        ENDIF()
+		SET(CPACK_RPM_PACKAGE_REQUIRES "wxWidgets-3_0-devel")
+
     ELSE()
         #TODO: tar.gz
     ENDIF()

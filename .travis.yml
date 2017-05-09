@@ -11,7 +11,7 @@ env:
   global:
      # Change to true if you want to deploy artifacts
      # and ensure that the tag is present
-     deploy2github: false
+     deploy2github: true
      deploy2packagecloud: false
 
 matrix:
