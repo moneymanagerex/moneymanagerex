@@ -568,31 +568,31 @@ void mmStocksPanel::CreateControls()
     BoxSizerVBottom->Add(BoxSizerHBottom, g_flagsBorder1V);
 
     wxButton* itemButton6 = new wxButton(BottomPanel, wxID_NEW, _("&New "));
-    itemButton6->SetToolTip(_("New Stock Investment"));
+    itemButton6->SetToolTip(_("Create a new Stock investment in this portfolio"));
     BoxSizerHBottom->Add(itemButton6, 0, wxRIGHT, 5);
 
     wxButton* add_trans_btn = new wxButton(BottomPanel, wxID_ADD, _("&Add Trans "));
-    add_trans_btn->SetToolTip(_("Add Stock Transactions"));
+    add_trans_btn->SetToolTip(_("Add or remove shares to the selected Stock"));
     BoxSizerHBottom->Add(add_trans_btn, 0, wxRIGHT, 5);
     add_trans_btn->Enable(false);
 
     wxButton* view_trans_btn = new wxButton(BottomPanel, wxID_VIEW_DETAILS, _("&View Trans "));
-    view_trans_btn->SetToolTip(_("View Stock Transactions"));
+    view_trans_btn->SetToolTip(_("View selected stock's share transactions"));
     BoxSizerHBottom->Add(view_trans_btn, 0, wxRIGHT, 5);
     view_trans_btn->Enable(false);
 
     wxButton* itemButton81 = new wxButton(BottomPanel, wxID_EDIT, _("&Edit "));
-    itemButton81->SetToolTip(_("Edit Stock Investment"));
+    itemButton81->SetToolTip(_("Edit selected stock investment and readjust current prices"));
     BoxSizerHBottom->Add(itemButton81, 0, wxRIGHT, 5);
     itemButton81->Enable(false);
 
     wxButton* itemButton7 = new wxButton(BottomPanel, wxID_DELETE, _("&Delete "));
-    itemButton7->SetToolTip(_("Delete Stock Investment"));
+    itemButton7->SetToolTip(_("Delete selected stock investment"));
     BoxSizerHBottom->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
     wxButton* bMove = new wxButton(BottomPanel, wxID_MOVE_FRAME, _("&Move"));
-    bMove->SetToolTip(_("Move selected transaction to another account"));
+    bMove->SetToolTip(_("Move the selected Stock to another portfolio"));
     BoxSizerHBottom->Add(bMove, 0, wxRIGHT, 5);
     bMove->Enable(false);
 
