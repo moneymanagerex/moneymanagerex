@@ -62,7 +62,6 @@ private:
     void OnHistoryDeleteButton(wxCommandEvent& event);
     void OnListItemSelected(wxListEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
-    void OnTextEntered(wxCommandEvent& event);
 
     void CreateControls();
     void UpdateControls();
@@ -74,7 +73,8 @@ private:
     mmTextCtrl* m_stock_symbol_ctrl;
     wxDatePickerCtrl* m_purchase_date_ctrl;
     mmTextCtrl* m_num_shares_ctrl;
-    mmTextCtrl* m_purchase_price_ctrl;
+    mmTextCtrl* m_share_price_ctrl;
+    wxStaticText* m_share_price_txt;
     mmTextCtrl* m_notes_ctrl;
     mmTextCtrl* m_current_price_ctrl;
     wxDatePickerCtrl* m_current_date_ctrl;

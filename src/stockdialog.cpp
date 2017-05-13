@@ -69,7 +69,8 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     , m_stock_symbol_ctrl(nullptr)
     , m_purchase_date_ctrl(nullptr)
     , m_num_shares_ctrl(nullptr)
-    , m_purchase_price_ctrl(nullptr)
+    , m_share_price_ctrl(nullptr)
+    , m_share_price_txt(nullptr)
     , m_notes_ctrl(nullptr)
     , m_current_price_ctrl(nullptr)
     , m_current_date_ctrl(nullptr)
@@ -120,7 +121,7 @@ void mmStockDialog::DataToControls()
     int currency_precision = Model_Currency::precision(currency);
     if (currency_precision < Option::instance().SharePrecision())
         currency_precision = Option::instance().SharePrecision();
-    m_purchase_price_ctrl->SetValue(m_stock->PURCHASEPRICE, account, currency_precision);
+    m_share_price_ctrl->SetValue(m_stock->PURCHASEPRICE, account, currency_precision);
     m_current_price_ctrl->SetValue(m_stock->CURRENTPRICE, account, currency_precision);
     m_commission_ctrl->SetValue(m_stock->COMMISSION, account, currency_precision);
     
@@ -138,7 +139,6 @@ void mmStockDialog::UpdateControls()
     m_value_investment->SetLabelText(Model_Account::toCurrency(numShares*pPrice, account));
 
     //Disable history buttons on new stocks
-
     wxBitmapButton* buttonDownload = (wxBitmapButton*) FindWindow(ID_BUTTON_DOWNLOAD);
     buttonDownload->Enable(m_edit);
     wxBitmapButton* buttonImport = (wxBitmapButton*) FindWindow(ID_BUTTON_IMPORT);
@@ -151,11 +151,16 @@ void mmStockDialog::UpdateControls()
     bool initial_shares = !Model_Translink::HasShares(m_stock_id);
     m_num_shares_ctrl->Enable(!m_edit || initial_shares);
     m_purchase_date_ctrl->Enable(!m_edit || initial_shares);
-    m_purchase_price_ctrl->Enable(!m_edit || initial_shares);
+    m_share_price_ctrl->Enable(!m_edit || initial_shares);
     m_commission_ctrl->Enable(!m_edit || initial_shares);
 
+    if (m_share_price_ctrl->IsEnabled())
+        m_share_price_txt->SetToolTip(_("Initial share price.\nRecorded in share transaction"));
+    else
+        m_share_price_txt->SetToolTip(_("Invalid in this view.\nView Transactions for values"));
+
     m_current_date_ctrl->Enable(!m_purchase_date_ctrl->IsEnabled());
-    m_current_price_ctrl->Enable(!m_purchase_price_ctrl->IsEnabled());
+    m_current_price_ctrl->Enable(!m_share_price_ctrl->IsEnabled());
 
     m_stock_symbol_ctrl->SetValue(m_stock_symbol_ctrl->GetValue().Upper());
 }
@@ -188,10 +193,12 @@ void mmStockDialog::CreateControls()
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
     // Name
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Company Name")), g_flagsH);
+    wxStaticText* company_name_txt = new wxStaticText(itemPanel5, wxID_STATIC, _("Company Name"));
+    company_name_txt->SetToolTip(_("Name of the company issuing Shares"));
+    itemFlexGridSizer6->Add(company_name_txt, g_flagsH);
     m_stock_name_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCKNAME, "");
     itemFlexGridSizer6->Add(m_stock_name_ctrl, g_flagsExpand);
-    m_stock_name_ctrl->SetToolTip(_("Enter the stock company name"));
+    m_stock_name_ctrl->SetToolTip(_("Enter the associated Share Account name\nAn account can be created on Save"));
 
     //Symbol
     wxStaticText* symbol = new wxStaticText(itemPanel5, wxID_STATIC, _("Stock Symbol"));
@@ -201,66 +208,69 @@ void mmStockDialog::CreateControls()
     m_stock_symbol_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL
         , "", wxDefaultPosition, wxSize(150, -1), 0);
     itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsH);
-    m_stock_symbol_ctrl->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
+    m_stock_symbol_ctrl->SetToolTip(_("Enter the Company's stock exchange symbol.\n(Optional) Include exchange. eg: IBM.BE"));
 
     //Date
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("*Date")), g_flagsH);
+    wxStaticText* date_txt = new wxStaticText(itemPanel5, wxID_STATIC, _("*Date"));
+    date_txt->SetToolTip(_("Initial purchase date of shares.\nRecorded in share transaction"));
+    itemFlexGridSizer6->Add(date_txt, g_flagsH);
     m_purchase_date_ctrl = new wxDatePickerCtrl(itemPanel5, ID_DPC_STOCK_PDATE
         , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+
     itemFlexGridSizer6->Add(m_purchase_date_ctrl, g_flagsH);
-    m_purchase_date_ctrl->SetToolTip(_("Specify the initial date of the stock investment\nUsed when creating the initial Share transaction."));
+    m_purchase_date_ctrl->SetToolTip(_("Specify the date of this initial share purchase"));
     m_purchase_date_ctrl->Enable(initial_stock_transaction);
 
     //Number of Shares
-    wxStaticText* number = new wxStaticText(itemPanel5, wxID_STATIC, _("*Share Number"));
-    itemFlexGridSizer6->Add(number, g_flagsH);
-    number->SetFont(this->GetFont().Bold());
+    wxStaticText* number_txt = new wxStaticText(itemPanel5, wxID_STATIC, _("*Share Number"));
+    number_txt->SetToolTip(_("Total number of shares.\nRecorded in share transaction"));
+    itemFlexGridSizer6->Add(number_txt, g_flagsH);
+    number_txt->SetFont(this->GetFont().Bold());
     m_num_shares_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_NUMBER_SHARES, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(m_num_shares_ctrl, g_flagsH);
-    m_num_shares_ctrl->SetToolTip(_("Enter number of shares.\nUsed when creating the initial Share transaction."));
-    m_num_shares_ctrl->Connect(ID_TEXTCTRL_NUMBER_SHARES, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
+    m_num_shares_ctrl->SetToolTip(_("Enter the initial number of shares."));
     m_num_shares_ctrl->Enable(initial_stock_transaction);
 
     //Purchase Price
-    wxStaticText* pprice = new wxStaticText(itemPanel5, wxID_STATIC, _("*Share Price"));
-    itemFlexGridSizer6->Add(pprice, g_flagsH);
-    pprice->SetFont(this->GetFont().Bold());
-    m_purchase_price_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_PP, ""
+    m_share_price_txt = new wxStaticText(itemPanel5, wxID_STATIC, _("*Share Price"));
+    // m_share_price_txt ToolTip is set in method: mmStockDialog::UpdateControls()
+    itemFlexGridSizer6->Add(m_share_price_txt, g_flagsH);
+    m_share_price_txt->SetFont(this->GetFont().Bold());
+    m_share_price_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_PP, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemFlexGridSizer6->Add(m_purchase_price_ctrl, g_flagsH);
-    m_purchase_price_ctrl->SetToolTip(_("Enter the initial price per share.\nUsed when creating the initial Share transaction."));
-    m_purchase_price_ctrl->Connect(ID_TEXTCTRL_STOCK_PP, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
-    m_purchase_price_ctrl->Enable(initial_stock_transaction);
+    itemFlexGridSizer6->Add(m_share_price_ctrl, g_flagsH);
+    m_share_price_ctrl->SetToolTip(_("Enter the initial price per share."));
+    m_share_price_ctrl->Enable(initial_stock_transaction);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("*Commission")), g_flagsH);
+    //Commission
+    wxStaticText* commission_txt = new wxStaticText(itemPanel5, wxID_STATIC, _("*Commission"));
+    commission_txt->SetToolTip(_("Remainder of funds from share investment.\nRecorded in share transaction"));
+    itemFlexGridSizer6->Add(commission_txt, g_flagsH);
     m_commission_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_COMMISSION, "0"
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(m_commission_ctrl, g_flagsH);
-    m_commission_ctrl->SetToolTip(_("Enter any commission paid.\nUsed when creating the initial Share transaction."));
-    m_commission_ctrl->Connect(ID_TEXTCTRL_STOCK_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
+    m_commission_ctrl->SetToolTip(_("Enter any commission paid or left over money from the purchase of shares."));
     m_commission_ctrl->Enable(initial_stock_transaction);
 
-    //
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Price Date")), g_flagsH);
-    m_current_date_ctrl = new wxDatePickerCtrl(itemPanel5, ID_DPC_CP_PDATE
-        , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-    itemFlexGridSizer6->Add(m_current_date_ctrl, g_flagsH);
-    m_current_date_ctrl->SetToolTip(_("Specify the stock/share price date."));
-
-    //
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Current Price")), g_flagsH);
+    //Current Price
+    wxStaticText* current_price_txt = new wxStaticText(itemPanel5, wxID_STATIC, _("Current Price"));
+    current_price_txt->SetToolTip(_("Share price after the initial share purchase"));
+    itemFlexGridSizer6->Add(current_price_txt, g_flagsH);
     m_current_price_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_CP, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(m_current_price_ctrl, g_flagsH);
-    m_current_price_ctrl->SetToolTip(_("Enter current stock/share price."));
-    m_current_price_ctrl->Connect(ID_TEXTCTRL_STOCK_CP, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
+    m_current_price_ctrl->SetToolTip(_("Enter current share price."));
 
-    //
+    //Price Date
+    wxStaticText* price_date_txt = new wxStaticText(itemPanel5, wxID_STATIC, _("Price Date"));
+    price_date_txt->SetToolTip(_("Actual date of the Current Price"));
+    itemFlexGridSizer6->Add(price_date_txt, g_flagsH);
+    m_current_date_ctrl = new wxDatePickerCtrl(itemPanel5, ID_DPC_CP_PDATE
+        , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    itemFlexGridSizer6->Add(m_current_date_ctrl, g_flagsH);
+
+    //Current Value
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Current Value")), g_flagsH);
     m_value_investment = new wxStaticText(itemPanel5, ID_STATIC_STOCK_VALUE, "--");
     itemFlexGridSizer6->Add(m_value_investment, g_flagsH);
@@ -426,7 +436,7 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
         return;
 
     double initPrice;
-    if (!m_purchase_price_ctrl->checkValue(initPrice))
+    if (!m_share_price_ctrl->checkValue(initPrice))
         return;
 
     double currentPrice;
@@ -437,7 +447,7 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
         {
             currentPrice = initPrice;
             m_current_date_ctrl->SetValue(m_purchase_date_ctrl->GetValue());
-            m_current_price_ctrl->SetValue(m_purchase_price_ctrl->GetValue());
+            m_current_price_ctrl->SetValue(m_share_price_ctrl->GetValue());
         }
     }
 
@@ -477,8 +487,10 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
     Model_Account::Data* share_account = Model_Account::instance().get(m_stock_name_ctrl->GetValue());
     if (!share_account && !m_edit)
     {
-        if (wxMessageBox(_("Share Account not found.\n\nWould you want to create one?")
-            , _("New Stock Investment"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
+        if (wxMessageBox(_(
+            "A Share Account as the Company name has not been found.\n\n"
+            "Do you want to create one?")
+            , _("New Stock Investment"), wxYES_NO | wxICON_INFORMATION) == wxYES)
         {
             CreateShareAccount(account);
         }
@@ -486,11 +498,11 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
     else if (!share_account)
     {
         if (wxMessageBox(_(
-            "Share Account not found.\n\n"
-            "Would you want to create one?\n"
-            "Creating a new account will affect Share Account connections\n"
-            "and will therefore require manual readjustment.")
-            , _("Edit Stock Investment"), wxOK | wxCANCEL | wxICON_WARNING) == wxOK)
+            "The Company name does not have an associated Share Account.\n\n"
+            "You may want to readjust the Company Name to an existing Share Account with the same name. "
+            "If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
+            "Do you want to create a new Share Acccount?\n")
+            , _("Edit Stock Investment"), wxYES_NO | wxICON_WARNING) == wxYES)
         {
             CreateShareAccount(account);
         }
@@ -518,33 +530,7 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account)
     ShareTransactionDialog share_dialog(this, m_stock);
     share_dialog.ShowModal();
     m_gui_frame->RefreshNavigationTree();
-}
-
-void mmStockDialog::OnTextEntered(wxCommandEvent& event)
-{
-    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    Model_Account::Data *account = Model_Account::instance().get(m_account_id);
-    if (account) currency = Model_Account::currency(account);
-    int currency_precision = Model_Currency::precision(currency);
-    if (currency_precision < Option::instance().SharePrecision())
-        currency_precision = Option::instance().SharePrecision();
-
-    if (event.GetId() == m_num_shares_ctrl->GetId())
-    {
-        m_num_shares_ctrl->Calculate(Option::instance().SharePrecision());
-    }
-    else if (event.GetId() == m_purchase_price_ctrl->GetId())
-    {
-        m_purchase_price_ctrl->Calculate(currency_precision);
-    }
-    else if (event.GetId() == m_current_price_ctrl->GetId())
-    {
-        m_current_price_ctrl->Calculate(currency_precision);
-    }
-    else if (event.GetId() == m_commission_ctrl->GetId())
-    {
-        m_commission_ctrl->Calculate(currency_precision);
-    }
+	EndModal(wxID_OK);
 }
 
 void mmStockDialog::OnListItemSelected(wxListEvent& event)
