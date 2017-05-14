@@ -49,6 +49,8 @@ wxBEGIN_EVENT_TABLE(mmStockDialog, wxDialog)
     EVT_BUTTON(wxID_DELETE, mmStockDialog::OnHistoryDeleteButton)
     EVT_CHILD_FOCUS(mmStockDialog::OnFocusChange)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, mmStockDialog::OnListItemSelected)
+    EVT_DATE_CHANGED(ID_DPC_STOCK_PDATE, mmStockDialog::OnDateChanged)
+    EVT_TEXT(ID_TEXTCTRL_STOCK_PP, mmStockDialog::OnSharePriceChanged)
 wxEND_EVENT_TABLE()
 
 mmStockDialog::mmStockDialog( )
@@ -909,4 +911,15 @@ void mmStockDialog::OnFocusChange(wxChildFocusEvent& event)
 {
     UpdateControls();
     event.Skip();
+}
+
+void mmStockDialog::OnDateChanged(wxDateEvent& WXUNUSED(event))
+{
+    m_current_date_ctrl->SetValue(m_purchase_date_ctrl->GetValue());
+}
+
+void mmStockDialog::OnSharePriceChanged(wxCommandEvent& WXUNUSED(event))
+{
+    m_current_price_ctrl->ChangeValue(m_share_price_ctrl->GetValue());
+    UpdateControls();
 }
