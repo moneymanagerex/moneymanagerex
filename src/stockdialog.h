@@ -62,6 +62,8 @@ private:
     void OnHistoryDeleteButton(wxCommandEvent& event);
     void OnListItemSelected(wxListEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
+    void OnDateChanged(wxDateEvent& WXUNUSED(event));
+    void OnSharePriceChanged(wxCommandEvent& WXUNUSED(event));
 
     void CreateControls();
     void UpdateControls();
