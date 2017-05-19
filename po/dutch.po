@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2017-04-29 13:19+0300\n"
-"PO-Revision-Date: 2017-04-29 13:20+0300\n"
+"PO-Revision-Date: 2017-05-19 22:57+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: mmex <developers@moneymanagerex.org>\n"
 "Language: nl_NL\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Launchpad-Export-Date: 2011-10-25 16:24+0000\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: src\n"
@@ -57,7 +57,7 @@ msgstr "Doneer"
 
 #: src/aboutdialog.cpp:102
 msgid "Buy us a coffee"
-msgstr ""
+msgstr "Koof voor ons een koffie"
 
 #: src/aboutdialog.cpp:162
 #, c-format
@@ -951,7 +951,7 @@ msgstr "Specificeer de vervaldatum van deze rekening of storting"
 
 #: src/billsdepositsdialog.cpp:393
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr ""
+msgstr "Ga naar de 'volgende gebeurtenis' datum"
 
 #: src/billsdepositsdialog.cpp:399 src/billsdepositspanel.cpp:97
 msgid "Date Due"
@@ -1211,6 +1211,8 @@ msgid ""
 "Specify period in Days to activate.\n"
 "Becomes blank when not active."
 msgstr ""
+"Geef een periode in dagen om te activeren.\n"
+"Blijft leeg bij inactief."
 
 #: src/billsdepositsdialog.cpp:1323
 msgid ""
@@ -1241,6 +1243,8 @@ msgid ""
 "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
 msgstr ""
+"Het aantal uit te voeren betalingen ingeven.\n"
+"Leeg laten als de betaling oneindig door moet lopen."
 
 #: src/billsdepositsdialog.cpp:1446 src/transdialog.cpp:1138
 #: src/usertransactionpanel.cpp:191
@@ -1649,7 +1653,7 @@ msgstr "Naam voor de nieuwe categorie invoeren: "
 
 #: src/categdialog.cpp:253
 msgid "Tip: If category added now, check bottom of list."
-msgstr ""
+msgstr "TIP: Na toevoegen van een categorie, controleer einde van de lijst"
 
 #: src/categdialog.cpp:256
 msgid "Add Category"
@@ -1978,11 +1982,12 @@ msgstr ""
 
 #: src/customfieldeditdialog.cpp:159
 msgid "Choices"
-msgstr ""
+msgstr "Keuzes"
 
 #: src/customfieldeditdialog.cpp:161
 msgid "Enter the choices for this field separated with a semicolon"
 msgstr ""
+"Keuzemogelijkheden voor dit veld invoeren, gescheiden door een puntkomma"
 
 #: src/customfieldeditdialog.cpp:202
 msgid "Changing field type will delete all content!"
@@ -2733,7 +2738,7 @@ msgstr "Jemenitische rial"
 
 #: src/db/DB_Table_Currencyformats_V1.h:260
 msgid "Bitcoin"
-msgstr ""
+msgstr "Bitcoin"
 
 #: src/db/DB_Table_Subcategory_V1.h:107
 msgid "Telephone"
@@ -2912,7 +2917,7 @@ msgstr ""
 #: src/dbupgrade.cpp:125
 #, c-format
 msgid "MMEX database successfully upgraded to version %i"
-msgstr ""
+msgstr "MMEX databestand succesvol bijgewerkt naar versie %i"
 
 #: src/dbupgrade.cpp:126
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
@@ -3557,11 +3562,11 @@ msgstr "Ingelezen transacties door de gebruiker verworpen!"
 
 #: src/import_export/qif_import_gui.cpp:991
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "De transactiecode ontbreekt"
 
 #: src/import_export/qif_import_gui.cpp:1000
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "Transactie begunstigde ontbreekt of is onjuist"
 
 #: src/import_export/qif_import_gui.cpp:1012
 msgid "Date format or date mask is incorrect"
@@ -3569,19 +3574,19 @@ msgstr "Datumopmaak of datummasker is foutief"
 
 #: src/import_export/qif_import_gui.cpp:1023
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "Transactie rekening is incorrect"
 
 #: src/import_export/qif_import_gui.cpp:1030
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "Transactie rekening voor overboeking is incorrect"
 
 #: src/import_export/qif_import_gui.cpp:1057
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "Transactie berag is incorrect"
 
 #: src/import_export/qif_import_gui.cpp:1075
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "Transactie categorie is incorrect"
 
 #: src/import_export/qif_import_gui.cpp:1164
 #, c-format
@@ -3772,7 +3777,7 @@ msgstr "Een datum-, bedrag- of type-veld ontbreekt, overslaan"
 #: src/import_export/univcsvdialog.cpp:809
 #, c-format
 msgid "Line: %ld imported OK."
-msgstr ""
+msgstr "Regel: %ld is goed geïmporteerd."
 
 #: src/import_export/univcsvdialog.cpp:817 src/stockdialog.cpp:654
 #, c-format
@@ -3842,11 +3847,11 @@ msgstr "Selecteer CSV-bestand om te exporteren"
 
 #: src/import_export/univcsvdialog.cpp:1236
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "Selecteer het te importeren XML-bestand"
 
 #: src/import_export/univcsvdialog.cpp:1239
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "Selecteer het te exporteren XML-bestand"
 
 #: src/import_export/univcsvdialog.cpp:1246
 msgid "XML Files (*.xml) | *.xml;*.XML | All files | *.*"
@@ -3930,7 +3935,7 @@ msgstr "Standaardvaluta selectie"
 #: src/maincurrencydialog.cpp:406
 #, c-format
 msgid "Currency History Options: %s "
-msgstr ""
+msgstr "Valutahistorie opties: %s "
 
 #: src/maincurrencydialog.cpp:436 src/maincurrencydialog.cpp:708
 msgid "Could not find base currency symbol!"
@@ -3938,7 +3943,7 @@ msgstr "Kan het standaard valutasymbool niet vinden!"
 
 #: src/maincurrencydialog.cpp:483 src/maincurrencydialog.cpp:523
 msgid "Currency rates have been updated"
-msgstr ""
+msgstr "Valutakoersen zijn bijgewerkt"
 
 #: src/maincurrencydialog.cpp:513
 #, c-format
@@ -3952,12 +3957,13 @@ msgstr "Foutieve waarde"
 #: src/maincurrencydialog.cpp:553
 msgid "Unable to update history currency rates. Please update them manually!"
 msgstr ""
+"Kon de historische valutakoersen niet bijwerken. Probeer dit handmatig."
 
 #: src/maincurrencydialog.cpp:554 src/maincurrencydialog.cpp:695
 #: src/maincurrencydialog.cpp:708 src/maincurrencydialog.cpp:754
 #: src/maincurrencydialog.cpp:874 src/maincurrencydialog.cpp:944
 msgid "Currency history error"
-msgstr ""
+msgstr "Valuta historie fout"
 
 #: src/maincurrencydialog.cpp:577
 msgid "Set as Base Currency"
@@ -3969,7 +3975,7 @@ msgstr "Online wisselkoersen bijwerken"
 
 #: src/maincurrencydialog.cpp:695
 msgid "Unable to download currency rates!"
-msgstr ""
+msgstr "Kon de valutakoersen niet downloaden!"
 
 #: src/maincurrencydialog.cpp:720
 msgid "Do you want to add also dates without any transaction?"
@@ -3979,6 +3985,8 @@ msgstr "Wilt u ook datums zonder transacties invoeren?"
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr ""
+"Kon de historie voor symbool %s niet downloaden. Historische koersen niet "
+"beschikbaar!"
 
 #: src/maincurrencydialog.cpp:827
 msgid "Do you want to update today currency rates?"
@@ -3997,6 +4005,8 @@ msgstr ""
 msgid ""
 "Unable to download history for base symbol %s. History rates not available!"
 msgstr ""
+"Kon de historie voor basissymbool %s niet downloaden. Historische koersen "
+"niet beschikbaar!"
 
 #: src/mmSimpleDialogs.cpp:174
 #, c-format
@@ -4437,17 +4447,17 @@ msgstr "Herhalende transactie opgeslagen."
 #: src/mmcheckingpanel.cpp:1910
 #, c-format
 msgid "Transactions selected: %ld"
-msgstr ""
+msgstr "Geselecteerde transacties: %ld"
 
 #: src/mmcheckingpanel.cpp:1912
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Geselecteerde transacties balans: %s"
 
 #: src/mmcheckingpanel.cpp:1915
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Dagen tussen geselecteerde transacties: %d"
 
 #: src/mmcheckingpanel.h:279
 msgid "View Since Statement Date"
@@ -4547,10 +4557,14 @@ msgid ""
 "Balance at currency %s: %s\n"
 "Balance at currency %s: %s"
 msgstr ""
+"Rekening: %s\n"
+"\n"
+"Balans per valuta %s: %s\n"
+"Balans per valuta %s: %s"
 
 #: src/mmframe.cpp:1093
 msgid "Foreign Currency Account Balance"
-msgstr ""
+msgstr "Vreemde valuta rekening balans"
 
 #: src/mmframe.cpp:1107
 msgid "Do you really want to delete the account?"
@@ -4586,7 +4600,7 @@ msgstr "&Verwijder rekening"
 
 #: src/mmframe.cpp:1173
 msgid "&Foreign Currency Balance"
-msgstr ""
+msgstr "&Vreemde valuta balans"
 
 #: src/mmframe.cpp:1174
 msgid "&Launch Account Website"
@@ -4594,7 +4608,7 @@ msgstr "&Open website van de rekening"
 
 #: src/mmframe.cpp:1204 src/mmframe.cpp:1473
 msgid "Hide/Show Report"
-msgstr ""
+msgstr "Rapport verbergen/tonen"
 
 #: src/mmframe.cpp:1216 src/mmframe.cpp:1481
 msgid "New &Account"
@@ -5382,7 +5396,7 @@ msgstr "Eindtotaal:"
 
 #: src/mmpanelbase.cpp:131
 msgid "Hide/Show Columns"
-msgstr "Verberg/Toon kolommen"
+msgstr "Kolommen verbergen/tonen"
 
 #: src/mmpanelbase.cpp:132
 msgid "Hide this column"
@@ -5402,23 +5416,23 @@ msgstr "RAPPORTEN"
 
 #: src/mmreportspanel.cpp:280 src/mmreportspanel.cpp:343
 msgid "Period:"
-msgstr ""
+msgstr "Periode:"
 
 #: src/mmreportspanel.cpp:308 src/mmreportspanel.cpp:309
 #: src/mmreportspanel.cpp:331 src/mmreportspanel.cpp:332
 #: src/mmreportspanel.cpp:379 src/mmreportspanel.cpp:380
 msgid "Previous Period"
-msgstr ""
+msgstr "Vorige periode"
 
 #: src/mmreportspanel.cpp:312 src/mmreportspanel.cpp:313
 #: src/mmreportspanel.cpp:335 src/mmreportspanel.cpp:336
 #: src/mmreportspanel.cpp:383 src/mmreportspanel.cpp:384
 msgid "Next Period"
-msgstr ""
+msgstr "Volgende periode"
 
 #: src/mmreportspanel.cpp:391
 msgid "Accounts:"
-msgstr ""
+msgstr "Rekeningen:"
 
 #: src/mmreportspanel.cpp:393 src/reports/cashflow.cpp:226
 #: src/reports/incexpenses.cpp:49 src/reports/incexpenses.cpp:177
@@ -5427,7 +5441,7 @@ msgstr "Alle rekeningen"
 
 #: src/mmreportspanel.cpp:394
 msgid "Specific Accounts"
-msgstr ""
+msgstr "Specifieke rekeningen"
 
 #: src/mmtextctrl.h:92
 msgid "Invalid Amount."
@@ -5570,11 +5584,11 @@ msgstr "Tijd"
 
 #: src/model/Model_CustomField.cpp:31
 msgid "SingleChoice"
-msgstr ""
+msgstr "Enkele keuze"
 
 #: src/model/Model_CustomField.cpp:32
 msgid "MultiChoice"
-msgstr ""
+msgstr "Meerkeuze"
 
 #: src/model/Model_Payee.cpp:80
 msgid "Payee Error"
@@ -5618,15 +5632,15 @@ msgstr "Inkomsten t.o.v uitgaven"
 
 #: src/option.cpp:116 src/option.cpp:117
 msgid "Budget"
-msgstr ""
+msgstr "Budget"
 
 #: src/option.cpp:116 src/option.cpp:120
 msgid "Performance"
-msgstr ""
+msgstr "Prestaties"
 
 #: src/option.cpp:117
 msgid "Category Summary"
-msgstr ""
+msgstr "Categorie subtotaal"
 
 #: src/option.cpp:118 src/option.cpp:119 src/reports/cashflow.cpp:34
 msgid "Cash Flow"
@@ -6356,11 +6370,11 @@ msgstr "Begrotingsresultaat voor %s"
 
 #: src/reports/budgetingperf.cpp:191 src/reports/budgetingperf.cpp:194
 msgid "Est."
-msgstr ""
+msgstr "Verw."
 
 #: src/reports/budgetingperf.cpp:192 src/reports/budgetingperf.cpp:195
 msgid "Act."
-msgstr ""
+msgstr "Werk."
 
 #: src/reports/budgetingperf.cpp:196
 msgid "%"
@@ -6368,7 +6382,7 @@ msgstr "%"
 
 #: src/reports/budgetingperf.cpp:238
 msgid "Monthly Total"
-msgstr ""
+msgstr "Maandelijks totaal"
 
 #: src/reports/cashflow.cpp:216
 #, c-format
@@ -6517,7 +6531,7 @@ msgstr "Kies rekeningen"
 
 #: src/reports/reportbase.cpp:132
 msgid "Custom"
-msgstr ""
+msgstr "Eigen veld"
 
 #: src/reports/summary.cpp:139
 #, c-format
@@ -7017,15 +7031,15 @@ msgstr "Symbool: %s"
 
 #: src/transactionsupdatedialog.cpp:72
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Meerdere transacties bijwerken"
 
 #: src/transactionsupdatedialog.cpp:186
 msgid "Append"
-msgstr ""
+msgstr "Toevoegen"
 
 #: src/transactionsupdatedialog.cpp:249
 msgid "Invalid type"
-msgstr ""
+msgstr "Ongeldige type"
 
 #: src/transdialog.cpp:139
 msgid "Duplicate Transaction"
