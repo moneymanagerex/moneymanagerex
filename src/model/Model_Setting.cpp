@@ -179,3 +179,29 @@ void Model_Setting::SetViewTransactions(const wxString& value)
 {
     Set("VIEWTRANSACTIONS", value);
 }
+
+void Model_Setting::ShrinkUsageTable()
+{
+    const wxULongLong max_size = 524287;    //500K
+    const wxULongLong file_size = wxFileName(mmex::getPathUser(mmex::SETTINGS)).GetSize();
+    if (file_size < max_size)
+    {
+        return;
+    }
+
+    const wxString save_point = "SETTINGS_TRIM_USAGE";
+    wxDate date(wxDate::Now());
+    date.Subtract(wxDateSpan::Months(2));
+    db_->Savepoint(save_point);
+    try
+    {
+        wxString sql = wxString::Format("delete from USAGE_V1 where USAGEDATE < \"%s\";", date.FormatISODate());
+        db_->ExecuteUpdate(sql);
+    }
+    catch (const wxSQLite3Exception& /*e*/)
+    {
+        db_->Rollback(save_point);
+    }
+    db_->ReleaseSavepoint(save_point);
+    db_->Vacuum();
+}

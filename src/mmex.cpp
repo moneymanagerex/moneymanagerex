@@ -159,6 +159,8 @@ bool OnInitImpl(mmGUIApp* app)
     app->m_setting_db = new wxSQLite3Database();
     app->m_setting_db->Open(mmex::getPathUser(mmex::SETTINGS));
     Model_Setting::instance(app->m_setting_db);
+    Model_Setting::instance().ShrinkUsageTable();
+
     Model_Usage::instance(app->m_setting_db);
 
     /* Force setting MMEX language parameter if it has not been set. */
