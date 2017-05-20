@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2016 Gabriele-V
+Copyright (C) 2017 Stefano Giorgio [stef145g]
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,13 +28,31 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #include <wx/textfile.h>
 #include <wx/tokenzr.h>
 
+int dbUpgrade::FixVersionStatus(wxSQLite3Database* db, int version)
+{
+    if (version = 7)
+    {
+        wxSQLite3Table account_table = db->GetTable("select * from ACCOUNTLIST_V1");
+        // database version 7 has 20 columns
+        // database version 6 has 13 columns
+        if (account_table.GetColumnCount() < 20)
+        {
+            version = 6;
+        }
+    }
+
+    return version;
+}
+
 int dbUpgrade::GetCurrentVersion(wxSQLite3Database * db)
 {
     try
     {
         wxSQLite3Statement stmt = db->PrepareStatement("PRAGMA user_version");
         wxSQLite3ResultSet rs = stmt.ExecuteQuery();
-        return rs.GetInt(0);
+        int ver = FixVersionStatus(db, rs.GetInt(0));
+
+        return ver;
     }
     catch (const wxSQLite3Exception& /*e*/)
     {
@@ -96,14 +115,14 @@ bool dbUpgrade::InitializeVersion(wxSQLite3Database* db, int version)
     }
 }
 
-bool dbUpgrade::CheckUpgradeDB(wxSQLite3Database * db)
+bool dbUpgrade::CheckUpgradeDB(wxSQLite3Database* db)
 {
     int ver = GetCurrentVersion(db);
 
     return (ver != dbLatestVersion) ? true : false;
 }
 
-bool dbUpgrade::UpgradeDB(wxSQLite3Database * db, const wxString& DbFileName)
+bool dbUpgrade::UpgradeDB(wxSQLite3Database* db, const wxString& DbFileName)
 {
     int ver = GetCurrentVersion(db);
 
@@ -198,7 +217,7 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
     }
 }
 
-void dbUpgrade::SqlFileDebug(wxSQLite3Database * db)
+void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
 {
     wxFileDialog fileDlgLoad(nullptr,_("Load debug file"),"","","MMDBG Files(*.mmdbg) | *.mmdbg", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
     if (fileDlgLoad.ShowModal() != wxID_OK)
