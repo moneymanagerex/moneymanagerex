@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2016 Gabriele-V
+Copyright (C) 2017 Stefano Giorgio [stef145g]
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,16 +29,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 class dbUpgrade
 {
-    static int GetCurrentVersion(wxSQLite3Database * db);
+    static int FixVersionStatus(wxSQLite3Database* db, int version);
+    static int GetCurrentVersion(wxSQLite3Database* db);
     static std::vector<wxString> SplitQueries(const wxString& statement);
-    static bool UpgradeToVersion(wxSQLite3Database * db, int version);
+    static bool UpgradeToVersion(wxSQLite3Database* db, int version);
 public:
     static bool InitializeVersion(wxSQLite3Database* db, int version = dbLatestVersion);
     static bool CheckUpgradeDB(wxSQLite3Database* db);
     static bool UpgradeDB(wxSQLite3Database* db, const wxString& DbFileName);
     static void BackupDB(const wxString& Filename, int BackupType, int FilesToKeep, int UpgradeVersion = 0);
     enum BACKUPTYPE { START = 0, CLOSE, VERSION_UPGRADE };
-    static void SqlFileDebug(wxSQLite3Database * db);
+    static void SqlFileDebug(wxSQLite3Database* db);
 };
 
 #endif // MM_EX_DBUPGRADE_H_
