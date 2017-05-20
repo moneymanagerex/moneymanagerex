@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 int dbUpgrade::FixVersionStatus(wxSQLite3Database* db, int version)
 {
-    if (version = 7)
+    if (version == 7)
     {
         wxSQLite3Table account_table = db->GetTable("select * from ACCOUNTLIST_V1");
         // database version 7 has 20 columns
