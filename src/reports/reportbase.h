@@ -41,8 +41,10 @@ public:
     virtual int report_parameters() { return RepParams::NONE;  }
     virtual void date_range(const mmDateRange* date_range, int selection);
     void accounts(int selection, wxString& name);
+    void chart(int selection);
     int getDateSelection() { return this->m_date_selection; }
     int getAccountSelection() { return this->m_account_selection; }
+    int getChartSelection() { return this->m_chart_selection; }
     void initial_report(bool initial) { m_initial = initial; }
     void setSettings(const wxString& settings);
     void getDates(wxDateTime &begin, wxDateTime &end);
@@ -52,6 +54,7 @@ protected:
     bool m_initial;
     int m_date_selection;
     int m_account_selection;
+    int m_chart_selection;
     const wxArrayString* accountArray_;
     bool m_only_active;
     wxString m_settings;
@@ -68,6 +71,7 @@ public:
         , BUDGET_DATES = 4
         , ONLY_YEARS = 8
         , ACCOUNTS_LIST = 16
+        , CHART = 32
     };
 };
 
