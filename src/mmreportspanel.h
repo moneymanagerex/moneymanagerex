@@ -57,6 +57,7 @@ public:
     void OnDateRangeChanged(wxCommandEvent& event);
     void OnAccountChanged(wxCommandEvent& event);
     void OnStartEndDateChanged(wxDateEvent& event);
+    void OnChartChanged(wxCommandEvent& event);
 
 protected:
     std::vector<mmDateRange*> m_all_date_ranges;
@@ -64,6 +65,7 @@ protected:
     wxDatePickerCtrl *m_start_date, *m_end_date;
     mmDateRange* m_cust_date;
     wxChoice* m_accounts;
+    wxChoice* m_chart;
     wxWebView * browser_;
     mmPrintableBase* rb_;
 
@@ -88,6 +90,7 @@ public:
         ID_CHOICE_END_DATE,
         ID_PREV_REPORT,
         ID_NEXT_REPORT,
+        ID_CHOICE_CHART,
     };
 
 };

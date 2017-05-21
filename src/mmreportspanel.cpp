@@ -104,6 +104,7 @@ wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_DATE_CHANGED(wxID_ANY, mmReportsPanel::OnStartEndDateChanged)
     EVT_BUTTON(ID_PREV_REPORT, mmReportsPanel::OnPrevReport)
     EVT_BUTTON(ID_NEXT_REPORT, mmReportsPanel::OnNextReport)
+    EVT_CHOICE(ID_CHOICE_CHART, mmReportsPanel::OnChartChanged)
     wxEND_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
@@ -402,6 +403,18 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(m_accounts, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
+
+        if (rp & rb_->RepParams::CHART)
+        {
+            itemStaticTextH1->SetLabel(_("Chart:"));
+            m_chart = new wxChoice(itemPanel3, ID_CHOICE_CHART);
+            m_chart->Append(_("Show"));
+            m_chart->Append(_("Hide"));
+            m_chart->SetSelection(rb_->getChartSelection());
+
+            itemBoxSizerHeader->Add(m_chart, 0, wxALL, 1);
+            itemBoxSizerHeader->AddSpacer(30);
+        }
     }
 
     browser_ = wxWebView::New(this, mmID_BROWSER);
@@ -506,3 +519,22 @@ void mmReportsPanel::OnNextReport(wxCommandEvent& event)
         OnDateRangeChanged(event);
     }
 }
+
+void mmReportsPanel::OnChartChanged(wxCommandEvent& /*event*/)
+{
+    if (rb_)
+    {
+        int sel = m_chart->GetSelection();
+        if ((sel == 1) || (sel != rb_->getChartSelection()))
+        {
+            rb_->chart(sel);
+
+            wxString error;
+            if (this->saveReportText(error, false))
+                browser_->LoadURL(getURL(mmex::getReportFullName(rb_->file_name())));
+            else
+                browser_->SetPage(error, "");
+        }
+    }
+}
+
