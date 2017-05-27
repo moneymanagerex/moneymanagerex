@@ -1,7 +1,41 @@
 Version History of Money Manager Ex
 
 (TBA)
-- Feat: Transactions multi select info #675
+- New: Addition of show/hide chart option in reports
+
+1.4.0-Alpha-1(May 24, 2017)
+- Fix: Currency issues #1154 #1155 #1156 #1153
+- Fix: Issue #1120, Set focus
+- Fix: Issue #1099, time for grm
+- Fix: various issue in report #1085
+- Fix: Disallow duplicate shares transactions in Account View
+- New: Reduce table size of mmexini.db3 file
+- New: Provide automatic database version correction (Various reports)
+- New: Improve tooltips and functionality of Stock dialogue.
+- New: Add CMake support to build system
+- New: Add report functionality prev/next option (#1130)
+- New: Transactions multi select info #675
+
+1.3.4 (Mar 11, 2017)
+- Fix: Monthly Summary of Accounts crash #1086
+- Fix: Loan accounts missing in Monthly Summary of Accounts report #1082
+- Update: Albanian and Swedish languages
+
+1.3.3 (Mar 04, 2017)
+- Fix: assets #1074 #1070
+- Feature: Search box not working #1060
+
+1.3.2 (Feb 25, 2017)
+- Fix: Programs and Features icon in Windows (SF Issue 972)
+- Fix: Albanian lang file
+- Fix: Prevent Crash on Home page Issue #1019
+- Fix: Hebrew, Hungarian Translations
+- Fix: Displayed Latin Currency symbols Issue #739
+- Fix: Crash on startup when files not found Issue #1033
+- Fix: Transaction Filter Crash, Account checked, none supplied. Issue #1043
+- Fix: Check for null pointer. Issue #979
+- Fix: Move Transaction. Issue #1063
+- Fix: HTML report expor. Issue #1064
 
 1.3.1 (Jan 7, 2017)
 - Fix: Automatic database backup on start-up.
