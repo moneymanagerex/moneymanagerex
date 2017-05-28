@@ -29,7 +29,7 @@
 #define CATEGORY_SORT_BY_AMOUNT      2
 
 mmReportCategoryExpenses::mmReportCategoryExpenses
-(const wxString& title, int type)
+(const wxString& title, enum TYPE type)
     : mmPrintableBase(title)
     , type_(type)
 {
@@ -41,7 +41,7 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
 
 int mmReportCategoryExpenses::report_parameters()
 {
-    return RepParams::DATE_RANGE;
+    return RepParams::DATE_RANGE | RepParams::CHART;
 }
 
 void  mmReportCategoryExpenses::RefreshData()
@@ -63,8 +63,8 @@ void  mmReportCategoryExpenses::RefreshData()
     {
         const wxString& sCategName = category.CATEGNAME;
         double amt = categoryStats[category.CATEGID][-1][0];
-        if (type_ == GOES && amt < 0.0) amt = 0;
-        if (type_ == COME && amt > 0.0) amt = 0;
+        if (type_ == COME && amt < 0.0) amt = 0;
+        if (type_ == GOES && amt > 0.0) amt = 0;
         if (amt != 0.0)
             data_.push_back({ hb.getColor(i++), sCategName, amt, groupID });
 
@@ -74,8 +74,8 @@ void  mmReportCategoryExpenses::RefreshData()
         {
             wxString sFullCategName = Model_Category::full_name(category.CATEGID, sub_category.SUBCATEGID);
             amt = categoryStats[category.CATEGID][sub_category.SUBCATEGID][0];
-            if (type_ == GOES && amt < 0.0) amt = 0;
-            if (type_ == COME && amt > 0.0) amt = 0;
+            if (type_ == COME && amt < 0.0) amt = 0;
+            if (type_ == GOES && amt > 0.0) amt = 0;
             if (amt != 0.0)
                 data_.push_back({ hb.getColor(i++), sFullCategName, amt, groupID });
         }
@@ -122,7 +122,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.addDivCol17_67();
     // Add the graph
     hb.addDivCol25_50();
-    if (type_ != NONE && !valueList_.empty())
+    if (type_ != NONE && !valueList_.empty() && (getChartSelection() == 0))
         hb.addPieChart(valueList_, "Categories");
     hb.endDiv();
 
@@ -187,17 +187,23 @@ wxString mmReportCategoryExpenses::getHTMLText()
 }
 
 mmReportCategoryExpensesGoes::mmReportCategoryExpensesGoes()
-    : mmReportCategoryExpenses(_("Where the Money Goes"), 2)
+    : mmReportCategoryExpenses(_("Where the Money Goes"), TYPE::GOES)
 {
 }
 
 mmReportCategoryExpensesComes::mmReportCategoryExpensesComes()
-    : mmReportCategoryExpenses(_("Where the Money Comes From"), 1)
+    : mmReportCategoryExpenses(_("Where the Money Comes From"), TYPE::COME)
 {
 }
 
 mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories()
-    : mmReportCategoryExpenses(_("Categories"), 0)
+    : mmReportCategoryExpenses(_("Categories"), TYPE::NONE)
 {
+    m_chart_selection = 1;
 }
 
+void mmReportCategoryExpensesCategories::chart(int selection)
+{
+    type_ = (selection != 0 ? NONE : CATEGORY);
+    mmPrintableBase::chart(selection);
+}

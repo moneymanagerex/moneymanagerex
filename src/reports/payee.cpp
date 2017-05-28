@@ -38,7 +38,7 @@ mmReportPayeeExpenses::~mmReportPayeeExpenses()
 
 int mmReportPayeeExpenses::report_parameters()
 {
-    return RepParams::DATE_RANGE;
+    return RepParams::DATE_RANGE | RepParams::CHART;
 }
 
 void  mmReportPayeeExpenses::RefreshData()
@@ -105,7 +105,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.addDivCol17_67();
     // Add the graph
     hb.addDivCol25_50();
-    if (!valueList_.empty())
+    if (!valueList_.empty() && (getChartSelection() == 0))
         hb.addPieChart(valueList_, "Withdrawal");
     hb.endDiv();
 

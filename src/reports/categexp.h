@@ -26,18 +26,16 @@
 class mmReportCategoryExpenses : public mmPrintableBase
 {
 public:
-    explicit mmReportCategoryExpenses(const wxString& title, int type);
+    enum TYPE { NONE = 0, GOES, COME, CATEGORY };
+    explicit mmReportCategoryExpenses(const wxString& title, enum TYPE type);
     virtual ~mmReportCategoryExpenses();
 
     virtual void RefreshData();
     virtual int report_parameters();
     virtual wxString getHTMLText();
 
-public:
-    enum TYPE { NONE = 0, GOES, COME, CATEGORY};
-
 protected:
-    int type_;
+    enum TYPE type_;
 
 private:
     // structure for sorting of data
@@ -62,6 +60,7 @@ class mmReportCategoryExpensesCategories : public mmReportCategoryExpenses
 {
 public:
     mmReportCategoryExpensesCategories();
+    virtual void chart(int selection);
 };
 
 #endif // MM_EX_REPORTCATEGEXP_H_
