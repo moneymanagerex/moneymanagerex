@@ -32,6 +32,7 @@
 
 mmReportBudgetCategorySummary::mmReportBudgetCategorySummary()
 {
+    m_chart_selection = 1;
 }
 
 mmReportBudgetCategorySummary::~mmReportBudgetCategorySummary()
@@ -39,7 +40,7 @@ mmReportBudgetCategorySummary::~mmReportBudgetCategorySummary()
 
 int mmReportBudgetCategorySummary::report_parameters()
 {
-    return RepParams::BUDGET_DATES;
+    return RepParams::BUDGET_DATES | RepParams::CHART;
 }
 
 wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double actual, double estimated, bool total)
@@ -62,6 +63,7 @@ wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double
 
 wxString mmReportBudgetCategorySummary::getHTMLText()
 {
+    valueList_.clear();
     unsigned short startDay = 1;
     long startMonth, startYear;
 
@@ -112,10 +114,27 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         , &date_range, Option::instance().IgnoreFutureTransactions()
         , false, true, (evaluateTransfer ? &budgetAmt : nullptr));
 
+    int categID = -1;
+    auto categs = Model_Category::all_categories();
+    categs[L"\uF8FF"] = std::make_pair(-1, -1); //last alphabetical charicter
+    mmHTMLBuilder hb;
+    for (const auto& category : categs)
+    {
+        if (category.second.first != -1)
+        {
+            double actual = categoryStats[category.second.first][category.second.second][0];
+
+            ValueTrio vt;
+            vt.label = category.first;
+            vt.amount = actual;
+            vt.color = hb.getRandomColor(actual > 0);
+            valueList_.push_back(vt);
+        }
+        categID = category.second.first;
+    }
     //---------------------------------
     const wxString& headingStr = AdjustYearValues(static_cast<int>(startDay)
         , startMonth, startYear, budget_year);
-    mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
     bool amply = Option::instance().BudgetReportWithSummaries();
@@ -131,6 +150,11 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
     hb.addDivRow();
     hb.addDivCol17_67();
+    // Add the graph
+    hb.addDivCol25_50();
+    if (!valueList_.empty() && (getChartSelection() == 0))
+        hb.addPieChart(valueList_, "Categories");
+    hb.endDiv();
     hb.startTable();
     hb.startThead();
     hb.startTableRow();
@@ -142,11 +166,9 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.endTableRow();
     hb.endThead();
 
-    int categID = -1;
+    categID = -1;
     double catTotalsAmt = 0.0, catTotalsEstimated = 0.0, catTotalsActual = 0.0;
 
-    auto categs = Model_Category::all_categories();
-    categs[L"\uF8FF"] = std::make_pair(-1, -1); //last alphabetical charicter
     for (const auto& category : categs)
     {
         double estimated = (monthlyBudget

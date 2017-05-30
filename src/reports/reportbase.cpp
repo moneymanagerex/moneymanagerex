@@ -31,6 +31,7 @@ mmPrintableBase::mmPrintableBase(const wxString& title)
     , m_initial(true)
     , m_date_selection(0)
     , m_account_selection(0)
+    , m_chart_selection(0)
     , accountArray_(nullptr)
     , m_only_active(false)
     , m_settings("")
@@ -61,6 +62,7 @@ mmPrintableBase::~mmPrintableBase()
             const auto name = wxString::Format("NAME%zu", i);
             o2[name.ToStdWstring()] = json::String(accountArray_->Item(i).ToStdWstring());
         }
+        o2[L"CHART"] = json::Number(static_cast<double>(m_chart_selection));
         std::wstringstream ss2;
         json::Writer::Write(o2, ss2);
 
@@ -121,6 +123,11 @@ void mmPrintableBase::accounts(int selection, wxString& name)
     }
 }
 
+void mmPrintableBase::chart(int selection)
+{
+    m_chart_selection = selection;
+}
+
 wxString mmPrintableBase::title() const
 {
     wxString title;
@@ -177,6 +184,7 @@ void mmPrintableBase::setSettings(const wxString& settings)
         }
         accountArray_ = accountSelections;
     }
+    m_chart_selection = static_cast<int>(json::Number(o2[L"CHART"]));
 }
 
 void mmPrintableBase::date_range(const mmDateRange* date_range, int selection)
