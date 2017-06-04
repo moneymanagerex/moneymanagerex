@@ -112,7 +112,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.startSortTable();
     hb.startThead();
     hb.startTableRow();
-        hb.addTableHeaderCell(" ", false, false);
+        if (getChartSelection() == 0) hb.addTableHeaderCell(" ", false, false);
         hb.addTableHeaderCell(_("Payee"));
         hb.addTableHeaderCell(_("Incomes"), true);
         hb.addTableHeaderCell(_("Expenses"), true);
@@ -124,7 +124,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     for (const auto& entry : data_)
     {
         hb.startTableRow();
-        hb.addColorMarker(entry.color);
+        if (getChartSelection() == 0) hb.addColorMarker(entry.color);
         hb.addTableCell(entry.name);
         hb.addMoneyCell(entry.incomes);
         hb.addMoneyCell(entry.expenses);
@@ -138,7 +138,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     totals.push_back(positiveTotal_);
     totals.push_back(negativeTotal_);
     totals.push_back(positiveTotal_ + negativeTotal_);
-    hb.addTotalRow(_("Total:"), 5, totals);
+    hb.addTotalRow(_("Total:"), (getChartSelection() == 0) ? 5 : 4, totals);
     hb.endTfoot();
 
     hb.endTable();
