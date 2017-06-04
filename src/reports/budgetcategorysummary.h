@@ -36,7 +36,6 @@ public:
     virtual int report_parameters();
 
 private:
-    std::vector<ValueTrio> valueList_;
     wxString actualAmountColour(double amount, double actual, double estimated, bool total = false);
 };
 

@@ -416,6 +416,54 @@ void mmHTMLBuilder::endTableCell()
     html_+= tags::TABLE_CELL_END;
 }
 
+void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, const int x, const int y)
+{
+    static const wxString data_item =
+        "{\n"
+        "  'label' : '%s',\n"
+        "  'fillColor' : '%s',\n"
+        "  'strokeColor' : '%s',\n"
+        "  'pointColor' : '%s',\n"
+        "  'pointStrokeColor' : '#fff',\n"
+        "  'data' : [%s],\n"
+        "},\n";
+
+    static const wxString js = "<script type='text/javascript'>\n"
+        "var data = {\n"
+        "  labels : [%s],\n"
+        "  datasets : [%s]\n"
+        "};\n"
+        "var ctx = document.getElementById('%s').getContext('2d');\n"
+        "var reportChart = new Chart(ctx).Radar(data, %s);\n"
+        "</script>\n";
+    static const wxString opt =
+        "{datasetFill: false,\n"
+        "inGraphDataShow : false,\n"
+        "annotateDisplay : true,\n"
+        "responsive: true,\n"
+        "pointDot : false,\n"
+        "showGridLines: true}";
+
+    wxString labels = "";
+    wxString actValues = "";
+    wxString estValues = "";
+
+    for (const auto& entry : actData)
+    {
+        labels += wxString::Format("'%s',", entry.label);
+        actValues += wxString::Format("%.2f,", entry.amount);
+    }
+    for (const auto& entry : estData)
+    {
+        estValues += wxString::Format("%.2f,", entry.amount);
+    }
+
+    wxString datasets = wxString::Format(data_item, _("Actual"), getColor(8), getColor(8), getColor(8), actValues);
+    datasets += wxString::Format(data_item, _("Estimated"), getColor(6), getColor(6), getColor(6), estValues);
+    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
+    this->addText(wxString::Format(js, labels, datasets, id, opt));
+}
+
 void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int x, const int y)
 {
     static const wxString data_item =

@@ -41,7 +41,7 @@ public:
     virtual int report_parameters() { return RepParams::NONE;  }
     virtual void date_range(const mmDateRange* date_range, int selection);
     void accounts(int selection, wxString& name);
-    virtual void chart(int selection);
+    void chart(int selection);
     int getDateSelection() { return this->m_date_selection; }
     int getAccountSelection() { return this->m_account_selection; }
     int getChartSelection() { return this->m_chart_selection; }
