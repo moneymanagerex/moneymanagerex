@@ -104,10 +104,12 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.addDivRow();
     hb.addDivCol17_67();
     // Add the graph
-    hb.addDivCol25_50();
     if (!valueList_.empty() && (getChartSelection() == 0))
+    {
+        hb.addDivCol25_50();
         hb.addPieChart(valueList_, "Withdrawal");
-    hb.endDiv();
+        hb.endDiv();
+    }
 
     hb.startSortTable();
     hb.startThead();
