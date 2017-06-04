@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -26,7 +27,7 @@
 class mmReportCategoryExpenses : public mmPrintableBase
 {
 public:
-    enum TYPE { NONE = 0, GOES, COME, CATEGORY };
+    enum TYPE { CATEGORY = 0, GOES, COME };
     explicit mmReportCategoryExpenses(const wxString& title, enum TYPE type);
     virtual ~mmReportCategoryExpenses();
 
@@ -41,7 +42,6 @@ private:
     // structure for sorting of data
     struct data_holder { wxString color;  wxString name; double amount; int categs; };
     std::vector<data_holder> data_;
-    std::vector<ValueTrio> valueList_;
 };
 
 class mmReportCategoryExpensesGoes: public mmReportCategoryExpenses
@@ -60,7 +60,6 @@ class mmReportCategoryExpensesCategories : public mmReportCategoryExpenses
 {
 public:
     mmReportCategoryExpensesCategories();
-    virtual void chart(int selection);
 };
 
 #endif // MM_EX_REPORTCATEGEXP_H_

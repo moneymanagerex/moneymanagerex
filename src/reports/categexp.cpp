@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -83,13 +84,21 @@ void  mmReportCategoryExpenses::RefreshData()
     }
 }
 
+bool DataSorter(const ValueTrio& x, const ValueTrio& y)
+{
+    if (x.amount != y.amount)
+        return fabs(x.amount) > fabs(y.amount);
+    else
+        return x.label < y.label;
+}
+
 wxString mmReportCategoryExpenses::getHTMLText()
 {
     RefreshData();
-    valueList_.clear();
     // Data is presorted by name
     std::vector<data_holder> sortedData(data_);
 
+    std::vector<ValueTrio> expensesList, incomeList;
     std::map <int, int> group_counter;
     std::map <int, double> group_total;
     for (const auto& entry : sortedData)
@@ -98,18 +107,17 @@ wxString mmReportCategoryExpenses::getHTMLText()
         group_total[entry.categs] += entry.amount;
         group_total[-1] += entry.amount < 0 ? entry.amount : 0;
         group_total[-2] += entry.amount > 0 ? entry.amount : 0;
-        if (type_ != NONE) valueList_.push_back({ entry.color, entry.name, entry.amount });
+        if (getChartSelection() == 0)
+        {
+            if (entry.amount < 0)
+                expensesList.push_back({ entry.color, entry.name, entry.amount });
+            else if (entry.amount > 0)
+                incomeList.push_back({ entry.color, entry.name, entry.amount });
+        }
     }
 
-    std::stable_sort(valueList_.begin(), valueList_.end()
-        , [](const ValueTrio& x, const ValueTrio& y)
-        {
-        if (x.amount != y.amount)
-                return fabs(x.amount) > fabs(y.amount);
-            else
-                return x.label < y.label;
-        }
-    );
+    std::stable_sort(expensesList.begin(), expensesList.end(), DataSorter);
+    std::stable_sort(incomeList.begin(), incomeList.end(), DataSorter);
 
     mmHTMLBuilder hb;
     hb.init();
@@ -121,15 +129,27 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.addDivRow();
     hb.addDivCol17_67();
     // Add the graph
-    hb.addDivCol25_50();
-    if (type_ != NONE && !valueList_.empty() && (getChartSelection() == 0))
-        hb.addPieChart(valueList_, "Categories");
-    hb.endDiv();
+    if (getChartSelection() == 0)
+    {
+        hb.addDivCol17_67();
+        hb.addText("<table><tr><th style='text-align: center'>");
+        hb.addText(_("Expenses"));
+        hb.addText("</th><th /><th style='text-align: center'>");
+        hb.addText(_("Income"));
+        hb.addText("</th></tr><tr><td>");
+        if (!expensesList.empty())
+            hb.addPieChart(expensesList, "Expenses");
+        hb.addText("</td><td /><td>");
+        if (!incomeList.empty())
+            hb.addPieChart(incomeList, "Income");
+        hb.addText("</td></tr></table>");
+        hb.endDiv();
+    }
 
     hb.startTable();
     hb.startThead();
     hb.startTableRow();
-    if (type_ != NONE) hb.addTableHeaderCell(" ");
+    if (getChartSelection() == 0) hb.addTableHeaderCell(" ");
     hb.addTableHeaderCell(_("Category"));
     hb.addTableHeaderCell(_("Amount"), true);
     hb.addTableHeaderCell(_("Total"), true);
@@ -142,7 +162,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
     {
         group++;
         hb.startTableRow();
-        if (type_ != NONE) hb.addColorMarker(entry.color);
+        if (getChartSelection() == 0) hb.addColorMarker(entry.color);
         hb.addTableCell(entry.name);
         hb.addMoneyCell(entry.amount);
         if (group_counter[entry.categs] > 1)
@@ -155,7 +175,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
         {
             group = 0;
             hb.startTableRow();
-            if (type_ != NONE) hb.addTableCell("");
+            if (getChartSelection() == 0) hb.addTableCell("");
             hb.addTableCell(_("Category Total: "));
             hb.addTableCell("");
             hb.addMoneyCell(group_total[entry.categs]);
@@ -167,13 +187,10 @@ wxString mmReportCategoryExpenses::getHTMLText()
     }
     hb.endTbody();
 
-    int span = (type_ != NONE) ? 4 : 3;
+    int span = (getChartSelection() == 0) ? 4 : 3;
     hb.startTfoot();
-    if (type_ == NONE)
-    {
-        hb.addTotalRow(_("Total Expenses:"), span, group_total[-1]);
-        hb.addTotalRow(_("Total Income:"), span, group_total[-2]);
-    }
+    hb.addTotalRow(_("Total Expenses:"), span, group_total[-1]);
+    hb.addTotalRow(_("Total Income:"), span, group_total[-2]);
     hb.addTotalRow(_("Grand Total:"), span, group_total[-1] + group_total[-2]);
     hb.endTfoot();
 
@@ -197,13 +214,8 @@ mmReportCategoryExpensesComes::mmReportCategoryExpensesComes()
 }
 
 mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories()
-    : mmReportCategoryExpenses(_("Categories"), TYPE::NONE)
+    : mmReportCategoryExpenses(_("Categories"), TYPE::CATEGORY)
 {
     m_chart_selection = 1;
 }
 
-void mmReportCategoryExpensesCategories::chart(int selection)
-{
-    type_ = (selection != 0 ? NONE : CATEGORY);
-    mmPrintableBase::chart(selection);
-}
