@@ -131,19 +131,31 @@ wxString mmReportCategoryExpenses::getHTMLText()
     // Add the graph
     if (getChartSelection() == 0)
     {
-        hb.addDivCol17_67();
-        hb.addText("<table><tr><th style='text-align: center'>");
-        hb.addText(_("Expenses"));
-        hb.addText("</th><th /><th style='text-align: center'>");
-        hb.addText(_("Income"));
-        hb.addText("</th></tr><tr><td>");
-        if (!expensesList.empty())
-            hb.addPieChart(expensesList, "Expenses");
-        hb.addText("</td><td /><td>");
-        if (!incomeList.empty())
-            hb.addPieChart(incomeList, "Income");
-        hb.addText("</td></tr></table>");
-        hb.endDiv();
+        if (type_ == CATEGORY)
+        {
+            hb.addDivCol17_67();
+            hb.addText("<table><tr><th style='text-align: center'>");
+            hb.addText(_("Expenses"));
+            hb.addText("</th><th /><th style='text-align: center'>");
+            hb.addText(_("Income"));
+            hb.addText("</th></tr><tr><td>");
+            if (!expensesList.empty())
+                hb.addPieChart(expensesList, "Expenses");
+            hb.addText("</td><td /><td>");
+            if (!incomeList.empty())
+                hb.addPieChart(incomeList, "Income");
+            hb.addText("</td></tr></table>");
+            hb.endDiv();
+        }
+        else
+        {
+            hb.addDivCol25_50();
+            if (!expensesList.empty())
+                hb.addPieChart(expensesList, "Expenses");
+            if (!incomeList.empty())
+                hb.addPieChart(incomeList, "Income");
+            hb.endDiv();
+        }
     }
 
     hb.startTable();
@@ -189,8 +201,11 @@ wxString mmReportCategoryExpenses::getHTMLText()
 
     int span = (getChartSelection() == 0) ? 4 : 3;
     hb.startTfoot();
-    hb.addTotalRow(_("Total Expenses:"), span, group_total[-1]);
-    hb.addTotalRow(_("Total Income:"), span, group_total[-2]);
+    if (type_ == CATEGORY)
+    {
+        hb.addTotalRow(_("Total Expenses:"), span, group_total[-1]);
+        hb.addTotalRow(_("Total Income:"), span, group_total[-2]);
+    }
     hb.addTotalRow(_("Grand Total:"), span, group_total[-1] + group_total[-2]);
     hb.endTfoot();
 

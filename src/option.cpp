@@ -106,8 +106,8 @@ Option::Option()
     m_reports.Add(new ReportInfo("", _("My Usage"), false, ReportInfo::MyUsage));
     m_reports.Add(new ReportInfo(_("Summary of Accounts"), _("Monthly"), false, ReportInfo::MonthlySummaryofAccounts));
     m_reports.Add(new ReportInfo(_("Summary of Accounts"), _("Yearly"), false, ReportInfo::YearlySummaryofAccounts));
-    m_reports.Add(new ReportInfo("", _("Where the Money Goes"), false, ReportInfo::WheretheMoneyGoes));
-    m_reports.Add(new ReportInfo("", _("Where the Money Comes From"), false, ReportInfo::WheretheMoneyComesFrom));
+    m_reports.Add(new ReportInfo(_("Categories"), _("Where the Money Goes"), false, ReportInfo::WheretheMoneyGoes));
+    m_reports.Add(new ReportInfo(_("Categories"), _("Where the Money Comes From"), false, ReportInfo::WheretheMoneyComesFrom));
     m_reports.Add(new ReportInfo(_("Categories"), _("Summary"), false, ReportInfo::CategoriesSummary));
     m_reports.Add(new ReportInfo(_("Categories"), _("Monthly"), false, ReportInfo::CategoriesMonthly));
     m_reports.Add(new ReportInfo("", _("Payees"), false, ReportInfo::Payees));
