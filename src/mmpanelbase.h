@@ -56,6 +56,7 @@ public:
     wxString BuildPage(const wxString &title) const;
     int GetColumnWidthSetting(int column_number, int default_size = wxLIST_AUTOSIZE);
     void SetColumnWidthSetting(int column_number, int column_width);
+	std::vector<long> GetSelected();
 
 protected:
     void OnItemResize(wxListEvent& event);
