@@ -1126,7 +1126,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     if (hide_menu_item || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
     menu.Append(MENU_TREEPOPUP_MOVE2, _("&Move Transaction"));
-    if (hide_menu_item || multiselect || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
+    if (hide_menu_item || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
         menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
     menu.AppendSeparator();
@@ -1797,13 +1797,16 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
 
 void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 {
-    if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
+    if ((m_selectedIndex < 0)) return;
 
-    Model_Checking::Data checking_entry = m_cp->m_trans[m_selectedIndex];
-    if (TransactionLocked(checking_entry.TRANSDATE))
-    {
-        return;
-    }
+	
+	// Abort if any transaction is locked.
+	for (long index : GetSelected()) {
+		Model_Checking::Data checking_entry = m_cp->m_trans[index];
+		if (TransactionLocked(checking_entry.TRANSDATE)){
+			return;
+		}
+	}
 
     const Model_Account::Data* source_account = Model_Account::instance().get(m_cp->m_AccountID);
     wxString source_name = source_account->ACCOUNTNAME;
@@ -1824,9 +1827,19 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
         else
             return;
 
-        Model_Checking::Full_Data& tran = m_cp->m_trans[m_selectedIndex];
-        tran.ACCOUNTID = dest_account_id;
-        Model_Checking::instance().save(&tran);
+		// Update all selected transactions, first grab all transactions as we want to modify multiple ones in sequence and indices can change.
+		std::vector<Model_Checking::Full_Data> transactions;
+		for (long index : GetSelected()) {
+			Model_Checking::Full_Data& tran = m_cp->m_trans[index];
+			transactions.push_back(tran);
+		}
+		
+		// Save the modification
+		for (auto transaction : transactions) {
+			transaction.ACCOUNTID = dest_account_id;
+			Model_Checking::instance().save(&transaction);
+		}
+
         refreshVisualList();
     }
 }
