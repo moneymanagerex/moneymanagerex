@@ -50,7 +50,7 @@ public:
     wxDateTime TransactionDate();
     void TransactionDate(const wxDateTime& trans_date);
 
-    void SetTransactionValue(const double& trans_value, bool fixed_value = false);
+    void SetTransactionValue(const double& trans_value, const double& commission, bool fixed_value = false);
     void SetTransactionNumber(const wxString& trans_number);
     void SetTransactionAccount(const wxString& trans_account);
 
@@ -66,6 +66,8 @@ private:
     int m_payee_id;
     int m_category_id;
     int m_subcategory_id;
+    double m_trans_value;
+    double m_commission;
 
 private:
     void Create();
@@ -81,6 +83,7 @@ private:
     void SetNewDate(wxDatePickerCtrl* dpc, bool forward = true);
 
     void OnEnteredText(wxCommandEvent& event);
+    void OnTypeChoice(wxCommandEvent& WXUNUSED(event));
     void OnFrequentNotes(wxCommandEvent& event);
     void onSelectedNote(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& WXUNUSED(event));
