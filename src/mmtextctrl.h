@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2006-2012
+Copyright (C) 2006-2017
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ class mmTextCtrl : public wxTextCtrl
 public:
     using wxTextCtrl::SetValue;
 
-    mmTextCtrl() : currency_(0) {}
+    mmTextCtrl() : m_currency(0) {}
     mmTextCtrl(wxWindow *parent, wxWindowID id
         , const wxString &value = wxEmptyString
         , const wxPoint &pos = wxDefaultPosition
@@ -38,51 +38,64 @@ public:
         , const wxValidator &validator = wxDefaultValidator
         , const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency()
         , const wxString &name = wxTextCtrlNameStr)
-        : wxTextCtrl(parent, id, value, pos, size, style, validator, name)
-        , currency_(currency)
+    : wxTextCtrl(parent, id, value, pos, size, style, validator, name)
+        , m_currency(currency)
     {}
+
     void SetValue(double value)
     {
-        this->SetValue(Model_Currency::toString(value, currency_));
+        this->SetValue(Model_Currency::toString(value, m_currency));
     }
+
     void SetValue(double value, int precision)
     {
-        this->SetValue(Model_Currency::toString(value, currency_, precision));
+        this->SetValue(Model_Currency::toString(value, m_currency, precision));
     }
+
+    //SetValue without generating an event
+    void SetValueNoEvent(double value, int precision)
+    {
+        this->ChangeValue(Model_Currency::toString(value, m_currency, precision));
+    }
+
     void SetValue(double value, const Model_Account::Data* account, int precision = -1)
     {
-        if (account) currency_ = Model_Currency::instance().get(account->CURRENCYID);
-        this->SetValue(value, precision > -1 ? precision : log10(currency_->SCALE));
+        if (account) m_currency = Model_Currency::instance().get(account->CURRENCYID);
+        this->SetValue(value, precision > -1 ? precision : log10(m_currency->SCALE));
     }
+
     void SetValue(double value, const Model_Currency::Data* currency, int precision = -1)
     {
-        currency_ = (currency ? currency : Model_Currency::GetBaseCurrency());
-        this->SetValue(value, precision > -1 ? precision : log10(currency_->SCALE));
+        m_currency = (currency ? currency : Model_Currency::GetBaseCurrency());
+        this->SetValue(value, precision > -1 ? precision : log10(m_currency->SCALE));
     }
+
     bool Calculate(int alt_precision = -1)
     {
         if (this->GetValue().empty()) return false;
         mmCalculator calc;
-        int precision = alt_precision >= 0 ? alt_precision : log10(currency_->SCALE);
-        const wxString str = Model_Currency::fromString2Default(this->GetValue(), currency_);
+        int precision = alt_precision >= 0 ? alt_precision : log10(m_currency->SCALE);
+        const wxString str = Model_Currency::fromString2Default(this->GetValue(), m_currency);
         if (calc.is_ok(str))
         {
-            this->ChangeValue(Model_Currency::toString(calc.get_result(), currency_, precision));
+            this->ChangeValue(Model_Currency::toString(calc.get_result(), m_currency, precision));
             this->SetInsertionPoint(this->GetValue().Len());
             return true;
         }
         return false;
     }
+
     wxString GetValue() const
     {
         // Remove prefix and suffix characters from value
         // Base class handles the thousands seperator
         return /*Model_Currency::fromString(*/wxTextCtrl::GetValue()/*, currency_)*/;
     }
+
     bool GetDouble(double &amount) const
     {
         wxString amountStr = this->GetValue().Trim();
-        return Model_Currency::fromString(amountStr, amount, currency_);
+        return Model_Currency::fromString(amountStr, amount, m_currency);
     }
 
     bool checkValue(double &amount, bool positive_value = true)
@@ -101,7 +114,7 @@ public:
         return true;
     }
 
-    const Model_Currency::Data* currency_;
+    const Model_Currency::Data* m_currency;
 };
 
 

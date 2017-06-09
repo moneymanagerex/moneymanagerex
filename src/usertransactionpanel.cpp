@@ -37,6 +37,7 @@ wxBEGIN_EVENT_TABLE(UserTransactionPanel, wxPanel)
     EVT_BUTTON(ID_TRANS_ACCOUNT_BUTTON, UserTransactionPanel::OnTransAccountButton)
     EVT_BUTTON(ID_TRANS_PAYEE_BUTTON, UserTransactionPanel::OnTransPayeeButton)
     EVT_BUTTON(ID_TRANS_CATEGORY_BUTTON, UserTransactionPanel::OnTransCategoryButton)
+    EVT_CHOICE(wxID_VIEW_DETAILS, UserTransactionPanel::OnTypeChoice)
     EVT_MENU(wxID_ANY, UserTransactionPanel::onSelectedNote)
     EVT_BUTTON(wxID_FILE, UserTransactionPanel::OnAttachments)
 wxEND_EVENT_TABLE()
@@ -58,6 +59,8 @@ UserTransactionPanel::UserTransactionPanel(wxWindow *parent
     , m_payee_id(-1)
     , m_category_id(-1)
     , m_subcategory_id(-1)
+    , m_trans_value(0.0)
+    , m_commission(0.0)
 {
     wxPanel::Create(parent, win_id, pos, size, style, name);
     wxDateTime start = wxDateTime::UNow();
@@ -241,7 +244,7 @@ void UserTransactionPanel::DataToControls()
     m_account->SetLabelText(Model_Account::get_account_name(m_account_id));
     m_type_selector->SetSelection(Model_Checking::type(m_checking_entry->TRANSCODE));
 
-    SetTransactionValue(m_checking_entry->TRANSAMOUNT);
+    SetTransactionValue(m_checking_entry->TRANSAMOUNT, 0);
     m_status_selector->SetSelection(Model_Checking::status(m_checking_entry->STATUS));
 
     m_payee_id = m_checking_entry->PAYEEID;
@@ -426,9 +429,18 @@ void UserTransactionPanel::TransactionDate(const wxDateTime& trans_date)
     m_date_selector->SetValue(trans_date);
 }
 
-void UserTransactionPanel::SetTransactionValue(const double& trans_value, bool fixed_value)
+void UserTransactionPanel::SetTransactionValue(const double& trans_value, const double& commission, bool fixed_value)
 {
-    m_entered_amount->SetValue(trans_value, 2);
+    m_trans_value = trans_value;
+    m_commission = commission;
+
+    double value = m_trans_value + m_commission;
+    if ((commission > 0) && (m_type_selector->GetSelection() == Model_Checking::DEPOSIT))
+    {
+        value = m_trans_value - m_commission;
+    }
+
+    m_entered_amount->SetValueNoEvent(value, 2);
     if (fixed_value)
     {
         m_entered_amount->Enable(false);
@@ -501,4 +513,9 @@ int UserTransactionPanel::SaveChecking()
 int UserTransactionPanel::TransactionType()
 {
     return m_type_selector->GetSelection();
+}
+
+void UserTransactionPanel::OnTypeChoice(wxCommandEvent& WXUNUSED(event))
+{
+    SetTransactionValue(m_trans_value, m_commission);
 }

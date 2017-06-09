@@ -148,7 +148,7 @@ void mmAssetDialog::dataToControls()
     // Set up the transaction if this is the first entry.
     if (Model_Translink::TranslinkList(Model_Attachment::ASSET, m_asset->ASSETID).empty())
     {
-        m_transaction_panel->SetTransactionValue(m_asset->VALUE);
+        m_transaction_panel->SetTransactionValue(m_asset->VALUE, 0);
     }
 
     if (!m_hidden_trans_entry)
