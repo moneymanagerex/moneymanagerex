@@ -207,7 +207,7 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsH);
     m_stock_symbol_ctrl->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
-    //Share Unit Number 
+    //Share Unit Number
     wxStaticText* number = new wxStaticText(stock_details_panel, wxID_STATIC, _("Share Number"));
     itemFlexGridSizer6->Add(number, g_flagsH);
     number->SetFont(this->GetFont().Bold());
@@ -437,7 +437,7 @@ void ShareTransactionDialog::OnTextEntered(wxCommandEvent& event)
     }
 
     double share_commission = 0;
-    if (!m_commission_ctrl->GetValue().empty())
+    if (m_commission_ctrl != NULL && !m_commission_ctrl->GetValue().empty())
     {
         m_commission_ctrl->GetDouble(share_commission);
     }
