@@ -104,7 +104,7 @@ private:
 
     void OnButtonokClick(wxCommandEvent& event);
     void OnButtoncancelClick(wxCommandEvent& event);
-    void OnButtonSaveClick(wxCommandEvent& event);
+    void SaveSettings();
     void OnButtonClearClick(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
     void datePresetMenu(wxMouseEvent& event);

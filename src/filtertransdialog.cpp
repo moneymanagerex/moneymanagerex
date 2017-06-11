@@ -71,7 +71,6 @@ wxBEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
     EVT_CHECKBOX(wxID_ANY, mmFilterTransactionsDialog::OnCheckboxClick)
     EVT_BUTTON(wxID_OK, mmFilterTransactionsDialog::OnButtonokClick)
     EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtoncancelClick)
-    EVT_BUTTON(wxID_SAVE, mmFilterTransactionsDialog::OnButtonSaveClick)
     EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
     EVT_MENU(wxID_ANY, mmFilterTransactionsDialog::datePresetMenuSelected)
 wxEND_EVENT_TABLE()
@@ -337,19 +336,16 @@ void mmFilterTransactionsDialog::CreateControls()
     wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonPanel->SetSizer(buttonPanelSizer);
 
-    wxButton* itemButtonOK = new wxButton( buttonPanel, wxID_OK, _("&OK "));
+    wxButton* itemButtonOK = new wxButton(buttonPanel, wxID_OK, _("&Activate "));
+    itemButtonOK->SetToolTip(_("Activate the filter with these settings"));
 
-    wxButton* itemButtonCancel = new wxButton( buttonPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    wxButton* itemButtonCancel = new wxButton(buttonPanel, wxID_CANCEL, _("&Deactivate "));
+    itemButtonCancel->SetToolTip(_("Deactivate the filter"));
     itemButtonCancel->SetFocus();
 
-    wxButton* itemButtonClear = new wxButton( buttonPanel, wxID_CLEAR, _("&Clear "));
+    wxButton* itemButtonClear = new wxButton(buttonPanel, wxID_CLEAR, _("&Clear "));
+    itemButtonClear->SetToolTip(_("Clear the settings for the allocated position"));
 
-    wxBitmapButton* save_button = new wxBitmapButton(buttonPanel
-        , wxID_SAVE, mmBitmap(png::SAVE));
-
-    save_button->Show(true);
-
-    buttonPanelSizer->Add(save_button,g_flagsH);
     buttonPanelSizer->Add(itemButtonOK, g_flagsH);
     buttonPanelSizer->Add(itemButtonCancel, g_flagsH);
     buttonPanelSizer->Add(itemButtonClear, g_flagsH);
@@ -435,6 +431,9 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
         m_begin_date = m_fromDateCtrl->GetValue().FormatISODate();
         m_end_date = m_toDateControl->GetValue().FormatISODate();
     }
+
+    // Save the settings for the allocated position
+    SaveSettings();
 
     EndModal(wxID_OK);
 }
@@ -555,7 +554,7 @@ bool mmFilterTransactionsDialog::checkAmount(const FULL_DATA& tran)
     return ok || split_ok;
 }
 
-void mmFilterTransactionsDialog::OnButtonSaveClick( wxCommandEvent& /*event*/ )
+void mmFilterTransactionsDialog::SaveSettings()
 {
     int i = m_radio_box_->GetSelection();
     settings_string_ = to_json();
@@ -599,7 +598,11 @@ void mmFilterTransactionsDialog::clearSettings()
 {
     settings_string_.Clear();
     dataToControls();
+
+    // Clear the settings for the allocated position
+    SaveSettings();
 }
+
 void mmFilterTransactionsDialog::datePresetMenuSelected( wxCommandEvent& event )
 {
     int id =  event.GetId();
@@ -677,8 +680,8 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
     event.Skip();
 }
 
-template<class MODEL, class DATA>
-bool mmFilterTransactionsDialog::checkPayee(const DATA &tran)
+template<class MODEL, class FULL_DATA>
+bool mmFilterTransactionsDialog::checkPayee(const FULL_DATA &tran)
 {
     const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
     if (payee)
