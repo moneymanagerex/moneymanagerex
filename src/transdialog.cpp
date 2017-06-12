@@ -638,6 +638,54 @@ bool mmTransDialog::validateData()
         return false;
     }
 
+    /* Check if transaction is to proceed.*/
+    if (Model_Account::BoolOf(account->STATEMENTLOCKED))
+    {
+        if (dpc_->GetValue() <= Model_Account::DateOf(account->STATEMENTDATE))
+        {
+            if (wxMessageBox(_(wxString::Format(
+                "Locked transaction to date: %s\n\n"
+                "Do you wish to continue ? "
+                , mmGetDateForDisplay(account->STATEMENTDATE)))
+                , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
+            {
+                return false;
+            }
+        }
+    }
+
+    //Checking account does not exceed limits
+    if (m_new_trx || m_duplicate)
+    {
+        bool abort_transaction = false;
+        double new_value = m_trx_data.TRANSAMOUNT;
+
+        if (m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
+        {
+            new_value *= -1;
+        }
+
+        new_value += m_current_balance;
+
+        if ((account->MINIMUMBALANCE != 0) && (new_value < account->MINIMUMBALANCE))
+        {
+            abort_transaction = true;
+        }
+
+        if ((account->CREDITLIMIT != 0) && (new_value < (account->CREDITLIMIT * -1)))
+        {
+            abort_transaction = true;
+        }
+
+        if (abort_transaction && wxMessageBox(_(
+            "This transaction will exceed your account limit.\n\n"
+            "Do you wish to continue?")
+            , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
+        {
+            return false;
+        }
+    }
+
     return true;
 }
 
@@ -1046,55 +1094,6 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
         r = Model_Checking::instance().create();
 
     Model_Checking::putDataToTransaction(r, m_trx_data);
-
-    /* Check if transaction is to proceed.*/
-    Model_Account::Data* account = Model_Account::instance().get(m_trx_data.ACCOUNTID);
-    if (Model_Account::BoolOf(account->STATEMENTLOCKED))
-    {
-        if (dpc_->GetValue() <= Model_Account::DateOf(account->STATEMENTDATE))
-        {
-            if (wxMessageBox(_(wxString::Format(
-                "Locked transaction to date: %s\n\n"
-                "Do you wish to continue ? "
-                , mmGetDateForDisplay(account->STATEMENTDATE)))
-                , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
-            {
-                return;
-            }
-        }
-    }
-
-    if (m_new_trx || m_duplicate)
-    {
-        bool abort_transaction = false;
-        double new_value = m_trx_data.TRANSAMOUNT;
-
-        if (m_trx_data.TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
-        {
-            new_value *= -1;
-        }
-
-        new_value += m_current_balance;
-
-        if ((account->MINIMUMBALANCE != 0) && (new_value < account->MINIMUMBALANCE))
-        {
-            abort_transaction = true;
-        }
-
-        if ((account->CREDITLIMIT != 0) && (new_value < (account->CREDITLIMIT * -1)))
-        {
-            abort_transaction = true;
-        }
-
-        if (abort_transaction && wxMessageBox( _(
-            "This transaction will exceed your account limit.\n\n"
-            "Do you wish to continue?")
-            , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
-        {
-            return;
-        }
-    }
-
     m_trx_data.TRANSID = Model_Checking::instance().save(r);
 
     Model_Splittransaction::Data_Set splt;
