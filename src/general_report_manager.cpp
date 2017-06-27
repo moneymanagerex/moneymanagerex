@@ -574,7 +574,7 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
         wxTextFile reportFile(reportFileName);
         if (reportFile.Open())
         {
-            std::auto_ptr<wxZipEntry> entry;
+            std::unique_ptr<wxZipEntry> entry;
             wxFFileInputStream in(reportFileName);
             wxZipInputStream zip(in);
             while (entry.reset(zip.GetNextEntry()), entry.get() != nullptr)
