@@ -1281,18 +1281,10 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& /*event*/)
 
 void mmUnivCSVDialog::OnListBox(wxCommandEvent& event)
 {
-    int sel = event.GetSelection();
-    const wxString& object = event.GetString();
-    //TODO: Add/Remove item if double clicked
     if (m_oject_in_focus == ID_LISTBOX_CANDICATE)
-    {
-        wxLogDebug("Selected Left Control item: %i %s", sel, object);
-    }
+        OnAdd(event);
     else if (m_oject_in_focus == ID_LISTBOX)
-    {
-        wxLogDebug("Selected Right Control item: %i %s", sel, object);
-    }
-
+        OnRemove(event);
 }
 
 void mmUnivCSVDialog::OnDelimiterChange(wxCommandEvent& event)
