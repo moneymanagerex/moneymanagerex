@@ -48,9 +48,7 @@ int dbUpgrade::GetCurrentVersion(wxSQLite3Database * db)
 {
     try
     {
-        wxSQLite3ResultSet rs = db->ExecuteQuery("PRAGMA user_version;");
-        int ver = FixVersionStatus(db, rs.GetInt(0));
-
+        int ver = FixVersionStatus(db, db->ExecuteScalar("PRAGMA user_version;"));
         return ver;
     }
     catch (const wxSQLite3Exception& /*e*/)
