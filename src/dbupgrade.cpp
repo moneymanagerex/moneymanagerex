@@ -107,6 +107,7 @@ bool dbUpgrade::InitializeVersion(wxSQLite3Database* db, int version)
     {
         wxSQLite3Statement stmt = db->PrepareStatement(wxString::Format("PRAGMA user_version = %i", version));
         stmt.ExecuteUpdate();
+        db->ExecuteUpdate("PRAGMA application_id = 0x4d4d4558;");
         return true;
     }
     catch (const wxSQLite3Exception& /*e*/)
