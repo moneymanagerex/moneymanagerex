@@ -1060,16 +1060,14 @@ void mmGeneralReportManager::getSqlTableInfo(std::vector<std::pair<wxString, wxA
     sqlTableInfo.clear();
 
     // Get a list of the database tables
-    wxSQLite3Statement stmtTables = this->m_db->PrepareStatement(sqlTables);
-    wxSQLite3ResultSet qTables = stmtTables.ExecuteQuery();
+    wxSQLite3ResultSet qTables = this->m_db->ExecuteQuery(sqlTables);
     while (qTables.NextRow())
     {
         const wxString table_name = qTables.GetAsString(1);
 
         // Get a list of the table columns
         const wxString& sql = wxString::Format(sqlColumns, table_name);
-        wxSQLite3Statement stmtColumns = this->m_db->PrepareStatement(sql);
-        wxSQLite3ResultSet qColumns = stmtColumns.ExecuteQuery();
+        wxSQLite3ResultSet qColumns = this->m_db->ExecuteQuery(sql);
         wxArrayString column_names;
         while (qColumns.NextRow())
             column_names.push_back(qColumns.GetAsString(1));
