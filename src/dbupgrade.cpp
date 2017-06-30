@@ -48,8 +48,7 @@ int dbUpgrade::GetCurrentVersion(wxSQLite3Database * db)
 {
     try
     {
-        wxSQLite3Statement stmt = db->PrepareStatement("PRAGMA user_version");
-        wxSQLite3ResultSet rs = stmt.ExecuteQuery();
+        wxSQLite3ResultSet rs = db->ExecuteQuery("PRAGMA user_version;");
         int ver = FixVersionStatus(db, rs.GetInt(0));
 
         return ver;
@@ -82,8 +81,7 @@ bool dbUpgrade::UpgradeToVersion(wxSQLite3Database * db, int version)
     {
         try
         {
-            wxSQLite3Statement stmt = db->PrepareStatement(query);
-            stmt.ExecuteUpdate();
+            db->ExecuteUpdate(query);
         }
         catch (const wxSQLite3Exception& e)
         {
@@ -105,8 +103,7 @@ bool dbUpgrade::InitializeVersion(wxSQLite3Database* db, int version)
 {
     try
     {
-        wxSQLite3Statement stmt = db->PrepareStatement(wxString::Format("PRAGMA user_version = %i", version));
-        stmt.ExecuteUpdate();
+        db->ExecuteUpdate(wxString::Format("PRAGMA user_version = %i;", version));
         db->ExecuteUpdate("PRAGMA application_id = 0x4d4d4558;");
         return true;
     }
@@ -302,8 +299,7 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
         {
             try
             {
-                wxSQLite3Statement stmt = db->PrepareStatement(txtLine);
-                stmt.ExecuteUpdate();
+                db->ExecuteUpdate(txtLine);
             }
             catch (const wxSQLite3Exception& e)
             {
