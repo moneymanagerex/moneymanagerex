@@ -1,5 +1,6 @@
 /*******************************************************
- Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2013-2016 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2013-2017 Stefano Giorgio [stef145g]
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -299,51 +300,46 @@ Model_Checking::Full_Data::Full_Data() : Data(0), BALANCE(0), AMOUNT(0)
 {
 }
 
-Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUNT(0)
+Model_Checking::Full_Data::Full_Data(int account_id, const Data& r) : Data(r), BALANCE(0), AMOUNT(0)
     , m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
 {
-    ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
-
-    if (Model_Checking::type(r) == Model_Checking::TRANSFER)
-    {
-        TOACCOUNTNAME = Model_Account::get_account_name(r.TOACCOUNTID);
-        PAYEENAME = TOACCOUNTNAME;
-    }
-    else
-    {
-        PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
-    }
-    
-    if (!m_splits.empty())
-    {
-        for (const auto& entry : m_splits)
-            this->CATEGNAME += (this->CATEGNAME.empty() ? " * " : ", ")
-            + Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID);
-    }
-    else
-    {
-        this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID, r.SUBCATEGID);
-    }
+    Initialise(account_id, r);
 }
 
-Model_Checking::Full_Data::Full_Data(const Data& r
+Model_Checking::Full_Data::Full_Data(int account_id, const Data& r
     , const std::map<int /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits)
     : Data(r), BALANCE(0), AMOUNT(0)
 {
     const auto it = splits.find(this->id());
     if (it != splits.end()) m_splits = it->second;
 
+    Initialise(account_id, r);
+}
+
+void Model_Checking::Full_Data::Initialise(int account_id, const Data& r)
+{
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
     if (Model_Checking::type(r) == Model_Checking::TRANSFER)
     {
         TOACCOUNTNAME = Model_Account::get_account_name(r.TOACCOUNTID);
         PAYEENAME = TOACCOUNTNAME;
+        if (account_id == r.TOACCOUNTID)
+        {
+            STATUSFD = r.STATUS.Right(1);
+        }
+        else
+        {
+            STATUSFD = r.STATUS.Left(1);
+        }
+
+        if (STATUSFD == "N") STATUSFD = "";
     }
     else
     {
         PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
+        STATUSFD = r.STATUS == "N" ? "" : r.STATUS;
     }
-    
+
     if (!m_splits.empty())
     {
         for (const auto& entry : m_splits)
@@ -553,4 +549,65 @@ const bool Model_Checking::foreignTransaction(const Data& data)
 const bool Model_Checking::foreignTransactionAsTransfer(const Data& data)
 {
     return foreignTransaction(data) && (data.TOACCOUNTID == Model_Translink::AS_TRANSFER);
+}
+
+//===========================================================================================//
+TransactionStatus::TransactionStatus()
+: m_account_b(-1)
+, m_status_a("N")
+, m_status_b("N")
+{
+}
+
+TransactionStatus::TransactionStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data)
+{
+    InitStatus(&data);
+}
+
+void TransactionStatus::InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data)
+{
+    InitStatus(&data);
+}
+
+void TransactionStatus::InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data* data)
+{
+    m_account_b = data->TOACCOUNTID;
+    m_status_a = data->STATUS.Left(1);
+    if (Model_Checking::type(data) == Model_Checking::TRANSFER)
+    {
+        m_status_b = data->STATUS.Right(1);
+    }
+}
+
+void TransactionStatus::SetStatus(const wxString& status, int account_id, DB_Table_CHECKINGACCOUNT_V1::Data& data)
+{
+    if (Model_Checking::type(data) == Model_Checking::TRANSFER)
+    {
+        if (data.ACCOUNTID == account_id)
+        {
+            m_status_a = (status.empty() ? "N" : status);
+        }
+        else
+        {
+            m_status_b = (status.empty() ? "N" : status);
+        }
+        data.STATUS = wxString::Format("%s%s", m_status_a, m_status_b);
+    }
+    else
+    {
+        m_status_a = (status.empty() ? "N" : status);
+        data.STATUS = m_status_a;
+    }
+}
+
+wxString TransactionStatus::Status(int account_id)
+{
+    if (account_id == m_account_b)
+    {
+        return m_status_b == "N" ? "" : m_status_b;
+    }
+    else
+    {
+        return m_status_a == "N" ? "" : m_status_a;
+    }
 }

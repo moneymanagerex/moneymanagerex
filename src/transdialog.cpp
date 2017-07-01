@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2011 Stefano Giorgio
  Copyright (C) 2011-2017 Nikolay Akimov
+ Copyright (C) 2011-2017 Stefano Giorgio [stef145g]
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -76,6 +76,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , m_advanced(false)
     , m_current_balance(current_balance)
     , m_duplicate(duplicate)
+    , m_account_id(account_id)
     , skip_account_init_(false)
     , skip_payee_init_(false)
     , skip_status_init_(false)
@@ -162,7 +163,8 @@ void mmTransDialog::dataToControls()
 
     if (!skip_status_init_) //Status
     {
-        choiceStatus_->SetSelection(Model_Checking::status(m_trx_data.STATUS));
+        m_status.InitStatus(m_trx_data);
+        choiceStatus_->SetSelection(Model_Checking::status(m_status.Status(m_account_id)));
         skip_status_init_ = true;
     }
 
@@ -1085,7 +1087,10 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     m_trx_data.TRANSACTIONNUMBER = textNumber_->GetValue();
     m_trx_data.TRANSDATE = dpc_->GetValue().FormatISODate();
     wxStringClientData* status_obj = (wxStringClientData*) choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
-    if (status_obj) m_trx_data.STATUS = Model_Checking::toShortStatus(status_obj->GetData());
+    if (status_obj)
+    {
+        m_status.SetStatus(Model_Checking::toShortStatus(status_obj->GetData()), m_account_id, m_trx_data);
+    }
 
     if (!validateData()) return;
 
@@ -1118,7 +1123,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     }
 
     const Model_Checking::Data& tran(*r);
-    Model_Checking::Full_Data trx(tran);
+    Model_Checking::Full_Data trx(m_account_id, tran);
     wxLogDebug("%s", trx.to_json());
     EndModal(wxID_OK);
 }

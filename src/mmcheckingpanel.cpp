@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2014-2016 Nikolay Akimov
+ Copyright (C) 2017 Stefano Giorgio [stef145g]
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -203,13 +204,14 @@ void mmCheckingPanel::filterTable()
     for (const auto& tran : Model_Account::transaction(this->m_account))
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
+        Model_Checking::Full_Data full_tran(m_AccountID, tran, splits);
+
+        if (Model_Checking::status(full_tran.STATUSFD) != Model_Checking::VOID_)
             m_account_balance += transaction_amount;
 
-        if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
+        if (Model_Checking::status(full_tran.STATUSFD) == Model_Checking::RECONCILED)
             m_reconciled_balance += transaction_amount;
 
-        Model_Checking::Full_Data full_tran(tran, splits);
         if (m_transFilterActive)
         {
             if (!m_trans_filter_dlg->checkAll(full_tran, m_AccountID))
@@ -582,12 +584,12 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
     if (selIndex > -1)
     {
         enableEditDeleteButtons(true);
-        const Model_Checking::Data& tran = this->m_trans.at(selIndex);
-        Model_Checking::Full_Data full_tran(tran);
-        m_info_panel->SetLabelText(tran.NOTES);
+
+        Model_Checking::Full_Data& full_tran = this->m_trans.at(selIndex);
+        m_info_panel->SetLabelText(full_tran.NOTES);
         wxString miniStr = full_tran.info();
 
-		if (Model_Checking::foreignTransaction(tran))
+		if (Model_Checking::foreignTransaction(full_tran))
 		{
 			m_btnDuplicate->Enable(false);
 		}
@@ -603,7 +605,6 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
             m_info_panel_mini->SetLabelText(miniStr);
             m_info_panel_mini->SetToolTip(miniStr);
         }
-
     }
     else
     {
@@ -831,7 +832,7 @@ const wxString mmCheckingPanel::getItem(long item, long column)
     case TransactionListCtrl::COL_PAYEE_STR:
         return tran.is_foreign_transfer() ? "< " + tran.PAYEENAME : tran.PAYEENAME;
     case TransactionListCtrl::COL_STATUS:
-        return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
+        return tran.is_foreign() ? "< " + tran.STATUSFD : tran.STATUSFD;
     case TransactionListCtrl::COL_WITHDRAWAL:
         return tran.AMOUNT <= 0 ? Model_Currency::toString(std::fabs(tran.AMOUNT), this->m_currency) : "";
     case TransactionListCtrl::COL_DEPOSIT:
@@ -1203,14 +1204,12 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     else if (evt == MENU_TREEPOPUP_MARKDUPLICATE)          status = "D";
     else wxASSERT(false);
 
-    Model_Checking::Data *trx = Model_Checking::instance().get(m_cp->m_trans[m_selectedIndex].TRANSID);
-    if (trx)
-    {
-        org_status = trx->STATUS;
-        m_cp->m_trans[m_selectedIndex].STATUS = status;
-        trx->STATUS = status;
-        Model_Checking::instance().save(trx);
-    }
+    Model_Checking::Full_Data& trx = m_cp->m_trans[m_selectedIndex];
+    TransactionStatus trx_status(trx);
+    org_status = trx_status.Status(m_cp->m_AccountID);
+    trx_status.SetStatus(status, m_cp->m_AccountID, trx);
+    trx.STATUSFD = trx_status.Status(m_cp->m_AccountID);
+    Model_Checking::instance().save(&trx);
 
     bool bRefreshRequired = (status == "V") || (org_status == "V");
 
@@ -1267,10 +1266,12 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
     }
     else
     {
-        for (auto& tran : m_cp->m_trans)
+        for (auto& trx : m_cp->m_trans)
         {
-            tran.NOTES.Replace(mmAttachmentManage::GetAttachmentNoteSign(), wxEmptyString, true);
-            tran.STATUS = status;
+            trx.NOTES.Replace(mmAttachmentManage::GetAttachmentNoteSign(), wxEmptyString, true);
+            TransactionStatus trx_status(trx);
+            trx_status.SetStatus(status, m_cp->m_AccountID, trx);
+            trx.STATUSFD = trx_status.Status(m_cp->m_AccountID);
         }
         Model_Checking::instance().save(m_cp->m_trans);
     }

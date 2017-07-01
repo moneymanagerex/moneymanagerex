@@ -920,7 +920,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
 
         pTxFile->AddNewLine();
 
-        Model_Checking::Full_Data tran(pBankTransaction, split);
+        Model_Checking::Full_Data tran(0, pBankTransaction, split);
 
         double value = Model_Checking::balance(pBankTransaction, fromAccountID);
         account_balance += value;
@@ -1080,7 +1080,7 @@ void mmUnivCSVDialog::update_preview()
                 if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_)
                     continue;
 
-                Model_Checking::Full_Data tran(pBankTransaction, split);
+                Model_Checking::Full_Data tran(0, pBankTransaction, split);
 
                 double value = Model_Checking::balance(pBankTransaction, fromAccountID);
                 account_balance += value;
