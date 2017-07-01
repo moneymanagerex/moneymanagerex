@@ -420,7 +420,7 @@ void mmQIFExportDialog::mmExportQIF()
                 break; // abort processing
 
             wxString trx_str;
-            Model_Checking::Full_Data full_tran(transaction, splits);
+            Model_Checking::Full_Data full_tran(0, transaction, splits);
 
             int accID = transaction.ACCOUNTID;
             bool reverce = false;

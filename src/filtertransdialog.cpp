@@ -725,7 +725,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Full_Data &tran,
         ok = false;
     else if (getCategoryCheckBox() && !checkCategory<Model_Checking>(tran))
         ok = false;
-    else if (getStatusCheckBox() && !compareStatus(tran.STATUS))
+    else if (getStatusCheckBox() && !compareStatus(tran.STATUSFD))
         ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) 
         ok = false;

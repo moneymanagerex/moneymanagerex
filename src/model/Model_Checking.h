@@ -1,5 +1,6 @@
 /*******************************************************
- Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2013-2016 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2013-2017 Stefano Giorgio [stef145g]
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,8 +17,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_CHECKING_H
-#define MODEL_CHECKING_H
+#pragma once
 
 #include "Model.h"
 #include "db/DB_Table_Checkingaccount_V1.h"
@@ -40,15 +40,16 @@ public:
     struct Full_Data: public Data
     {
         Full_Data();
-        explicit Full_Data(const Data& r);
-        Full_Data(const Data& r
+        explicit Full_Data(int account_id, const Data& r);
+        Full_Data(int account_id, const Data& r
             , const std::map<int /*trans id*/
                 , Model_Splittransaction::Data_Set /*split trans*/ > & splits);
-
         ~Full_Data();
         wxString ACCOUNTNAME, TOACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
+        //Modified Status for a Transfer transaction.
+        wxString STATUSFD;
         double AMOUNT;
         double BALANCE;
         Model_Splittransaction::Data_Set m_splits;
@@ -59,6 +60,9 @@ public:
 
         wxString info() const;
         const wxString to_json();
+
+    private:
+        void Initialise(int account_id, const Data& r);
     };
     typedef std::vector<Full_Data> Full_Data_Set;
 
@@ -164,4 +168,18 @@ public:
     static const bool foreignTransactionAsTransfer(const Data& data);
 };
 
-#endif // 
+class TransactionStatus
+{
+private:
+    int m_account_b;
+    wxString m_status_a;
+    wxString m_status_b;
+
+public:
+    TransactionStatus();
+    TransactionStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data);
+    void InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data);
+    void InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data* data);
+    void SetStatus(const wxString& status, int account_id, DB_Table_CHECKINGACCOUNT_V1::Data& data);
+    wxString Status(int account_id);
+};

@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2011 Nikolay & Stefano Giorgio
+ Copyright (C) 2011-2017 Nikolay
+ Copyright (C) 2011-2017 Stefano Giorgio [stef145g]
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -124,6 +125,8 @@ private:
     double m_current_balance;
 
     int object_in_focus_;
+    int m_account_id;
+    TransactionStatus m_status;
 
     DB_Table_CHECKINGACCOUNT_V1::Data m_trx_data;
     std::vector<Split> local_splits;
