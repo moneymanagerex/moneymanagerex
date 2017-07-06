@@ -101,6 +101,7 @@ namespace weblink
     extern const wxString Wiki;
     extern const wxString BugReport;
     extern const wxString Donate;
+    extern const wxString SquareCashGuan;
     extern const wxString Twitter;
     extern const wxString Facebook;
     extern const wxString YahooQuotes;

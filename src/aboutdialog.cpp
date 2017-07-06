@@ -24,6 +24,7 @@
 #include <wx/statline.h>
 #include <wx/version.h>
 #include <wx/wxsqlite3.h>
+#include <wx/regex.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmAboutDialog, wxDialog);
 
@@ -78,29 +79,25 @@ void mmAboutDialog::InitControls()
 {
     mmHTMLBuilder hb;
     wxString html = mmex::getProgramDescription();
-    html.Replace("======================================\n", "");
     html.Replace("\n", "<br>");
-    html << "<br><hr>" << "\n";
-    hb.addHeader(1, "Money Manager Ex");
+    hb.addHeader(1, mmex::getProgramName());
     hb.addText(html);
-    hb.addLineBreak();
+    hb.addHeader(3, _("Web links"));
     hb.addTableCellLink(mmex::weblink::WebSite, _("Website"));
-    hb.addLineBreak();
+    hb.addText(L" \u2022 ");
     hb.addTableCellLink(mmex::weblink::Forum, _("Forum"));
-    hb.addLineBreak();
+    hb.addText(L" \u2022 ");
     hb.addTableCellLink(mmex::weblink::Wiki, _("Wiki page"));
-    hb.addLineBreak();
+    hb.addText(L" \u2022 ");
     hb.addTableCellLink(mmex::weblink::BugReport, _("Bug reports"));
     hb.addLineBreak();
-    hb.addLineBreak();
-    hb.addTableCellLink(mmex::weblink::Facebook, _("Follow MMEX on Facebook"));
-    hb.addLineBreak();
-    hb.addTableCellLink(mmex::weblink::Twitter, _("Follow MMEX on Twitter"));
+    hb.addText(_("Follow MMEX on: "));
+    hb.addTableCellLink(mmex::weblink::Facebook, _("Facebook"));
+    hb.addTableCellLink(mmex::weblink::Twitter, _("Twitter"));
     hb.addLineBreak();
     hb.addTableCellLink(mmex::weblink::Donate, _("Donate"));
-    hb.addLineBreak();
-    hb.addTableCellLink("https://cash.me/$guanlisheng/1", _("Buy us a coffee"));
-    hb.addLineBreak();
+    hb.addText(L" \u2022 ");
+    hb.addTableCellLink(mmex::weblink::SquareCashGuan, _("Buy us a coffee"));
 
     hb.end();
     html = hb.getHTMLText();
@@ -118,12 +115,13 @@ void mmAboutDialog::InitControls()
     {
         wxFileInputStream input(filePath);
         wxTextInputStream text(input);
+        wxRegEx link ("\\[([^][]+)\\]\\(([^\\(\\)]+)\\)", wxRE_EXTENDED);
 
         while (input.IsOk() && !input.Eof())
         {
             wxString line = text.ReadLine();
             if (line.StartsWith("============="))
-                line = "<hr>\n";
+                line = "";
             else if (line.StartsWith("##"))
             {
                 line.Replace("##", "<H3>");
@@ -142,7 +140,10 @@ void mmAboutDialog::InitControls()
                 data.Add("");
             }
             else
+            {
+                link.Replace(&line,"<a href='\\2'>\\1</a>");
                 data[part] << line;
+            }
         }
     }
 
@@ -157,11 +158,6 @@ void mmAboutDialog::CreateControls(int TabToOpen)
 {
     wxBoxSizer* itemBoxSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer);
-
-    wxStaticText* versionStaticText = new wxStaticText( this, wxID_STATIC
-        , "Money Manager EX - " + mmex::getTitleProgramVersion() + " " + wxString::Format(_("(DB v.%i)"), dbLatestVersion));
-    versionStaticText->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizer->Add(versionStaticText, g_flagsCenter);
 
     wxStaticText* itemStaticText88 = new wxStaticText(this
         , wxID_STATIC, mmex::getProgramCopyright());
@@ -234,7 +230,7 @@ void mmAboutDialog::CreateControls(int TabToOpen)
 
     itemBoxSizer->Add(itemStaticText88, g_flagsCenter);
 
-    wxButton* button_OK = new wxButton(this, wxID_OK, _("&OK "));
+    wxButton* button_OK = new wxButton(this, wxID_OK, _("&OK"));
     button_OK->SetDefault();
     button_OK->SetFocus();
     itemBoxSizer->Add(button_OK, g_flagsCenter);

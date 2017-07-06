@@ -107,9 +107,8 @@ Spanish
 ---------------------------------------
 ##Art and Icons
 Greg Chapman
-
-http://openclipart.org
-http://www.famfamfam.com/lab/icons/silk
+[Mark James](http://www.famfamfam.com/lab/icons/silk)
+[openclipart.org](http://openclipart.org)
 
 ---------------------------------------
 ##Sponsors
@@ -348,7 +347,7 @@ Peter Robinson
 Steve Light
 Andrew Ireland
 David Adams
-FusedNet(fusednetwork.com)
+[FusedNet](fusednetwork.com)
 William Metz
 Emmanuel Poirier
 Jamshed S

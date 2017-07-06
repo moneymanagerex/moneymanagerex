@@ -215,7 +215,7 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
 
 void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
 {
-    wxFileDialog fileDlgLoad(nullptr,_("Load debug file"),"","","MMDBG Files(*.mmdbg) | *.mmdbg", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+    wxFileDialog fileDlgLoad(nullptr,_("Load debug file"),"","","MMDBG Files (*.mmdbg)|*.mmdbg", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
     if (fileDlgLoad.ShowModal() != wxID_OK)
         return;
 
@@ -233,9 +233,8 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
     {
         wxString txtLine, txtLog = "";
 
-        txtLog << wxString::Format("MMEX Version: %s", mmex::version::string) + wxTextFile::GetEOL();
-        txtLog << wxString::Format("DB Version: %i", dbUpgrade::GetCurrentVersion(db)) + wxTextFile::GetEOL();
-        txtLog << wxString::Format("Operating System: %s", wxGetOsDescription()) + wxTextFile::GetEOL() + wxTextFile::GetEOL();
+        txtLog << wxString::Format("Current DB file version: %i", dbUpgrade::GetCurrentVersion(db)) + wxTextFile::GetEOL();
+        txtLog << mmex::getProgramDescription();
 
         for (txtLine = txtFile.GetNextLine(); !txtFile.Eof(); txtLine = txtFile.GetNextLine())
         {
@@ -262,16 +261,13 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
                     wxMessageBox(_("Query error, please contact MMEX support!") + "\n\n" + e.GetMessage(), _("MMEX debug error"), wxOK | wxICON_ERROR);
                     return;
                 }
-                
             }
             else
             {
-                wxMessageBox(_("Invalid file content, please contact MMEX support!"), _("MMEX debug error"), wxOK | wxICON_ERROR);
+                wxMessageBox(_("Invalid debug file content, please contact MMEX support!"), _("MMEX debug error"), wxOK | wxICON_ERROR);
                 return;
             }
         }
-
-        txtLog << wxTextFile::GetEOL() << wxTextFile::GetEOL() << wxTextFile::GetEOL() << mmex::getProgramDescription();
 
         wxTextEntryDialog dlg(nullptr, _("Send this log to MMEX support team:\npress OK to save to file or Cancel to exit"),
             _("MMEX debug"), txtLog, wxOK | wxCANCEL | wxCENTRE | wxTE_MULTILINE);
@@ -311,7 +307,7 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
     }
     else
     {
-        wxMessageBox(_("Invalid file content, please contact MMEX support!"), _("MMEX debug error"), wxOK | wxICON_ERROR);
+        wxMessageBox(_("Invalid debug file content, please contact MMEX support!"), _("MMEX debug error"), wxOK | wxICON_ERROR);
         return;
     }
 }
