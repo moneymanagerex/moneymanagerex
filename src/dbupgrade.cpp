@@ -234,7 +234,7 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
         wxString txtLine, txtLog = "";
 
         txtLog << wxString::Format("Current DB file version: %i", dbUpgrade::GetCurrentVersion(db)) + wxTextFile::GetEOL();
-        txtLog << mmex::getProgramDescription();
+        txtLog << mmex::getProgramDescription() + wxTextFile::GetEOL();
 
         for (txtLine = txtFile.GetNextLine(); !txtFile.Eof(); txtLine = txtFile.GetNextLine())
         {

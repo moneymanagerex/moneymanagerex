@@ -130,6 +130,7 @@ const wxString mmex::getProgramDescription()
         << L" \u2022 GNU Make " MAKE_VERSION << "\n"
 #endif
     ;
+    description.RemoveLast();
 
     return description;
 }

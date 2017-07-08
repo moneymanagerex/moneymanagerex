@@ -42,7 +42,7 @@ mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen, const wxString &na
     const wxString caption = (TabToOpen == 4)
         ? _("License agreement") : wxString::Format(_("About %s"), mmex::getProgramName());
     Create(parent, wxID_ANY, caption, wxDefaultPosition
-        , wxSize(440, 600), wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, TabToOpen, name);
+        , wxSize(390, 550), wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, TabToOpen, name);
     SetMinClientSize(wxSize(300, 400));
 }
 
@@ -201,7 +201,7 @@ void mmAboutDialog::CreateControls(int TabToOpen)
 
     itemBoxSizer->Add(itemStaticText88, g_flagsCenter);
 
-    wxButton* button_OK = new wxButton(this, wxID_OK, _("&OK"));
+    wxButton* button_OK = new wxButton(this, wxID_OK, _("&OK "));
     button_OK->SetDefault();
     button_OK->SetFocus();
     itemBoxSizer->Add(button_OK, g_flagsCenter);
