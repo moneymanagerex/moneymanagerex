@@ -1334,8 +1334,8 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             if (!Model_Currency::fromString(token, holder.Amount, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
 
             Model_Checking::TYPE txType = Model_Checking::WITHDRAWAL;
-            if (holder.Amount > 0.0 && m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsDeposit ||
-                holder.Amount <= 0.0 && m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal)
+            if ((holder.Amount > 0.0 && m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsDeposit) ||
+                (holder.Amount <= 0.0 && m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal))
             {
                 txType = Model_Checking::DEPOSIT;
             }
