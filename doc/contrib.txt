@@ -82,8 +82,8 @@ Ukrainian
 -- Leonid Shturma
 Vietnamese
 -- Nicky, Luu Cong Thanh, Toan [nktvnvn]
-=======================================
 
+=======================================
 ##User Manual
 English
 -- Stefano 	 [stef145g]
@@ -104,7 +104,7 @@ Polish
 Spanish
 -- jorgeb, kolmo7
 
----------------------------------------
+=======================================
 ##Art and Icons
 Greg Chapman
 [Mark James](http://www.famfamfam.com/lab/icons/silk)

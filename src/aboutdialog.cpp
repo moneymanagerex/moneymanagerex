@@ -34,8 +34,7 @@ wxEND_EVENT_TABLE()
 
 mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen, const wxString &name)
 : about_text_(nullptr)
-, developers_text_(nullptr)
-, artwork_text_(nullptr)
+, authors_text_(nullptr)
 , sponsors_text_(nullptr)
 , license_text_(nullptr)
 , privacy_text_(nullptr)
@@ -147,11 +146,10 @@ void mmAboutDialog::InitControls()
         }
     }
 
-    developers_text_->SetPage(data[0]);
-    if (data.GetCount() > 1) artwork_text_->SetPage(data[1]);
-    if (data.GetCount() > 2) sponsors_text_->SetPage(data[2]);
-    if (data.GetCount() > 3) license_text_->SetPage(data[3]);
-    if (data.GetCount() > 4) privacy_text_->SetPage(data[4]);
+    authors_text_->SetPage(data[0]);
+    if (data.GetCount() > 1) sponsors_text_->SetPage(data[1]);
+    if (data.GetCount() > 2) license_text_->SetPage(data[2]);
+    if (data.GetCount() > 3) privacy_text_->SetPage(data[3]);
 }
 
 void mmAboutDialog::CreateControls(int TabToOpen)
@@ -171,15 +169,10 @@ void mmAboutDialog::CreateControls(int TabToOpen)
     wxBoxSizer *about_sizer = new wxBoxSizer(wxVERTICAL);
     about_tab->SetSizer(about_sizer);
 
-    wxPanel* developers_tab = new wxPanel(about_notebook, wxID_ANY);
-    about_notebook->AddPage(developers_tab, _("Developers"));
-    wxBoxSizer *developers_sizer = new wxBoxSizer(wxVERTICAL);
-    developers_tab->SetSizer(developers_sizer);
-
-    wxPanel* artwork_tab = new wxPanel(about_notebook, wxID_ANY);
-    about_notebook->AddPage(artwork_tab, _("Artwork"));
-    wxBoxSizer *artwork_sizer = new wxBoxSizer(wxVERTICAL);
-    artwork_tab->SetSizer(artwork_sizer);
+    wxPanel* authors_tab = new wxPanel(about_notebook, wxID_ANY);
+    about_notebook->AddPage(authors_tab, _("Authors"));
+    wxBoxSizer *authors_sizer = new wxBoxSizer(wxVERTICAL);
+    authors_tab->SetSizer(authors_sizer);
 
     wxPanel* sponsors_tab = new wxPanel(about_notebook, wxID_ANY);
     about_notebook->AddPage(sponsors_tab, _("Sponsors"));
@@ -201,15 +194,10 @@ void mmAboutDialog::CreateControls(int TabToOpen)
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
     about_sizer->Add(about_text_, g_flagsExpand);
 
-    developers_text_ = new wxHtmlWindow(developers_tab
+    authors_text_ = new wxHtmlWindow(authors_tab
         , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    developers_sizer->Add(developers_text_, g_flagsExpand);
-
-    artwork_text_ = new wxHtmlWindow(artwork_tab
-        , wxID_ANY, wxDefaultPosition, wxDefaultSize
-        , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    artwork_sizer->Add(artwork_text_, g_flagsExpand);
+    authors_sizer->Add(authors_text_, g_flagsExpand);
 
     sponsors_text_ = new wxHtmlWindow(sponsors_tab
         , wxID_ANY, wxDefaultPosition, wxDefaultSize
