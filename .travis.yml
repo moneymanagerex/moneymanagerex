@@ -27,11 +27,11 @@ install:
   - if [ $TRAVIS_OS_NAME = osx ]; then brew update; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install wxmac; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install gettext && brew link --force gettext; fi
-  - mkdir -p build/release && cd build/release
+  - mkdir -p build/Release
 
 script:
-  - if [ $TRAVIS_OS_NAME = linux ]; then docker run -it -w /moneymanagerex/build/release -e MAKEFLAGS -v $PWD:/moneymanagerex/build/release mmex_build_env bash -c "cmake -DCMAKE_BUILD_TYPE=Release ../../ && make package"; fi
-  - if [ $TRAVIS_OS_NAME = osx ]; then cmake -DCMAKE_BUILD_TYPE=Release ../../ && make package; fi
+  - if [ $TRAVIS_OS_NAME = linux ]; then docker run -it --rm -w /moneymanagerex/build/Release -e MAKEFLAGS -v $PWD:/moneymanagerex mmex_build_env bash -c "cmake -DCMAKE_BUILD_TYPE=Release ../../ && make package"; fi
+  - if [ $TRAVIS_OS_NAME = osx ]; then cd build/Release && cmake -DCMAKE_BUILD_TYPE=Release ../../ && make package; fi
 
 notifications: # set notification options
   email:
