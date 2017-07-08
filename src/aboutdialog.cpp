@@ -81,23 +81,6 @@ void mmAboutDialog::InitControls()
     html.Replace("\n", "<br>");
     hb.addHeader(1, mmex::getProgramName());
     hb.addText(html);
-    hb.addHeader(3, _("Web links"));
-    hb.addTableCellLink(mmex::weblink::WebSite, _("Website"));
-    hb.addText(L" \u2022 ");
-    hb.addTableCellLink(mmex::weblink::Forum, _("Forum"));
-    hb.addText(L" \u2022 ");
-    hb.addTableCellLink(mmex::weblink::Wiki, _("Wiki page"));
-    hb.addText(L" \u2022 ");
-    hb.addTableCellLink(mmex::weblink::BugReport, _("Bug reports"));
-    hb.addLineBreak();
-    hb.addText(_("Follow MMEX on: "));
-    hb.addTableCellLink(mmex::weblink::Facebook, _("Facebook"));
-    hb.addTableCellLink(mmex::weblink::Twitter, _("Twitter"));
-    hb.addLineBreak();
-    hb.addTableCellLink(mmex::weblink::Donate, _("Donate"));
-    hb.addText(L" \u2022 ");
-    hb.addTableCellLink(mmex::weblink::SquareCashGuan, _("Buy us a coffee"));
-
     hb.end();
     html = hb.getHTMLText();
     about_text_->SetPage(html);

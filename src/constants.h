@@ -99,6 +99,9 @@ namespace weblink
     extern const wxString NewsRSS;
     extern const wxString Forum;
     extern const wxString Wiki;
+    extern const wxString GitHub;
+    extern const wxString YouTube;
+    extern const wxString Slack;
     extern const wxString BugReport;
     extern const wxString Donate;
     extern const wxString SquareCashGuan;

@@ -158,6 +158,9 @@ const wxString mmex::weblink::News = mmex::weblink::addReferralToURL("http://www
 const wxString mmex::weblink::NewsRSS = "http://www.moneymanagerex.org/news?format=feed";
 const wxString mmex::weblink::Forum = mmex::weblink::addReferralToURL("http://forum.moneymanagerex.org", "Forum");
 const wxString mmex::weblink::Wiki = "http://wiki.moneymanagerex.org";
+const wxString mmex::weblink::GitHub = "https://github.com/moneymanagerex/moneymanagerex";
+const wxString mmex::weblink::YouTube = "http://www.youtube.com/user/moneymanagerex";
+const wxString mmex::weblink::Slack = "http://slack.moneymanagerex.org/";
 const wxString mmex::weblink::BugReport = "http://bugreport.moneymanagerex.org";
 const wxString mmex::weblink::Donate = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";
 const wxString mmex::weblink::SquareCashGuan = "https://cash.me/$guanlisheng/1";
