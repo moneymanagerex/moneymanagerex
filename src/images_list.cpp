@@ -40,6 +40,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/options_png.h"
 #include "../resources/about_png.h"
 #include "../resources/help_png.h"
+#include "../resources/community_png.h"
+#include "../resources/github_png.h"
+#include "../resources/slack_png.h"
+#include "../resources/bug_png.h"
 #include "../resources/news_png.h"
 #include "../resources/nnews_png.h"
 #include "../resources/fullscreen_png.h"
@@ -112,6 +116,10 @@ static const std::map<int, wxBitmap> navtree_images()
         , { CALENDAR_PNG, mmBitmap(png::BUDGET) }
         , { PIECHART_PNG, mmBitmap(png::PIE_CHART) }
         , { HELP_PNG, mmBitmap(png::HELP) }
+        , { COMMUNITY_PNG, mmBitmap(png::COMMUNITY) }
+        , { GITHUB_PNG, mmBitmap(png::GITHUB) }
+        , { SLACK_PNG, mmBitmap(png::SLACK) }
+        , { BUG_PNG, mmBitmap(png::BUG) }
         , { FILTER_PNG, mmBitmap(png::FILTER) }
         , { ASSET_PNG, mmBitmap(png::ASSET) }
         , { CUSTOMSQL_PNG, mmBitmap(png::GRM) }
@@ -202,6 +210,10 @@ const wxBitmap mmBitmap(int ref)
     case NEW_TRX: return x == 16 ? wxBITMAP_PNG_FROM_DATA(new_trx) : x == 24 ? wxBITMAP_PNG_FROM_DATA(new_trx24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(new_trx32) : wxBITMAP_PNG_FROM_DATA(new_trx48);
     case ABOUT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(about) : x == 24 ? wxBITMAP_PNG_FROM_DATA(about24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(about32) : wxBITMAP_PNG_FROM_DATA(about48);
     case HELP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(help) : x == 24 ? wxBITMAP_PNG_FROM_DATA(help24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(help32) : wxBITMAP_PNG_FROM_DATA(help48);
+    case COMMUNITY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(community) : x == 24 ? wxBITMAP_PNG_FROM_DATA(community24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(community32) : wxBITMAP_PNG_FROM_DATA(community48);
+    case GITHUB: return x == 16 ? wxBITMAP_PNG_FROM_DATA(github) : x == 24 ? wxBITMAP_PNG_FROM_DATA(github24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(github32) : wxBITMAP_PNG_FROM_DATA(github48);
+    case SLACK: return x == 16 ? wxBITMAP_PNG_FROM_DATA(slack) : x == 24 ? wxBITMAP_PNG_FROM_DATA(slack24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(slack32) : wxBITMAP_PNG_FROM_DATA(slack48);
+    case BUG: return x == 16 ? wxBITMAP_PNG_FROM_DATA(bug) : x == 24 ? wxBITMAP_PNG_FROM_DATA(bug24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(bug32) : wxBITMAP_PNG_FROM_DATA(bug48);
     case FULLSCREEN: return x == 16 ? wxBITMAP_PNG_FROM_DATA(fullscreen) : x == 24 ? wxBITMAP_PNG_FROM_DATA(fullscreen24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(fullscreen32) : wxBITMAP_PNG_FROM_DATA(fullscreen48);
     case NEW_NEWS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(nnews) : x == 24 ? wxBITMAP_PNG_FROM_DATA(nnews24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(nnews32) : wxBITMAP_PNG_FROM_DATA(nnews48);
     case PIE_CHART: return x == 16 ? wxBITMAP_PNG_FROM_DATA(pie_chart) : x == 24 ? wxBITMAP_PNG_FROM_DATA(pie_chart24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(pie_chart32) : wxBITMAP_PNG_FROM_DATA(pie_chart48);

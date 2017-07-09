@@ -279,6 +279,7 @@ private:
         MENU_IMPORT_WEBAPP,
         MENU_ANNOUNCEMENTMAILING,
         MENU_FACEBOOK, // start range for OnSimpleURLOpen
+        MENU_COMMUNITY,
         MENU_WEBSITE,
         MENU_WIKI,
         MENU_YOUTUBE,

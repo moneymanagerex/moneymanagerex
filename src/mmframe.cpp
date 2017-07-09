@@ -1603,9 +1603,7 @@ void mmGUIFrame::createMenu()
         _("&Help\tF1"), _("Read the User Manual"));
     menuItemHelp->SetBitmap(mmBitmap(png::HELP));
     menuHelp->Append(menuItemHelp);
-
-    wxMenu *menuCommunity = new wxMenu;
-
+    //Community Submenu
     wxMenuItem* menuItemWebsite = new wxMenuItem(menuTools, MENU_WEBSITE
         , _("Website")
         , _("Open the Money Manager EX website for latest news, updates etc"));
@@ -1621,10 +1619,10 @@ void mmGUIFrame::createMenu()
     // menuItemYouTube->SetBitmap(mmBitmap(png::YOUTUBE));
     wxMenuItem* menuItemSlack = new wxMenuItem(menuTools, MENU_SLACK
         , _("Slack"), _("Communicate online with MMEX team from your desktop or mobile device"));
-    // menuItemSlack->SetBitmap(mmBitmap(png::SLACK));
+    menuItemSlack->SetBitmap(mmBitmap(png::SLACK));
     wxMenuItem* menuItemGitHub = new wxMenuItem(menuTools, MENU_GITHUB
         , _("GitHub"), _("Access open source code repository and track reported bug statuses"));
-    // menuItemGitHub->SetBitmap(mmBitmap(png::GITHUB));
+    menuItemGitHub->SetBitmap(mmBitmap(png::GITHUB));
     wxMenuItem* menuItemWiki = new wxMenuItem(menuTools, MENU_WIKI
         , _("Wiki pages"), _("Read and update wiki pages"));
     // menuItemWiki->SetBitmap(mmBitmap(png::WIKI));
@@ -1652,6 +1650,11 @@ void mmGUIFrame::createMenu()
         , _("Buy key developer a coffee"));
     // menuItemDonate->SetBitmap(mmBitmap(png::COFFEE));
 
+    wxMenuItem* menuItemCommunity = new wxMenuItem(menuTools, MENU_COMMUNITY
+        , _("Community")
+        , _("Stay in touch with MMEX community"));
+    menuItemCommunity->SetBitmap(mmBitmap(png::COMMUNITY));
+    wxMenu *menuCommunity = new wxMenu;
     menuCommunity->Append(menuItemWebsite);
     menuCommunity->Append(menuItemReportIssues);
     menuCommunity->Append(menuItemWiki);
@@ -1665,13 +1668,13 @@ void mmGUIFrame::createMenu()
     menuCommunity->Append(menuItemRSS);
     menuCommunity->Append(menuItemDonate);
     menuCommunity->Append(menuItemBuyCoffee);
-    menuHelp->AppendSubMenu(menuCommunity, _("Community")
-        , _("Stay in touch with MMEX community"));
+    menuItemCommunity->SetSubMenu(menuCommunity);
+    menuHelp->Append(menuItemCommunity);
 
     wxMenuItem* menuItemReportBug = new wxMenuItem(menuTools, MENU_REPORT_BUG
         , _("Report a Bug")
         , _("Report an error in application to the developers"));
-    // menuItemReportBug->SetBitmap(mmBitmap(png::BUG));
+    menuItemReportBug->SetBitmap(mmBitmap(png::BUG));
     menuHelp->Append(menuItemReportBug);
 
     wxMenuItem* menuItemAppStart = new wxMenuItem(menuTools, MENU_SHOW_APPSTART
