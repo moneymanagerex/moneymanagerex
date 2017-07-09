@@ -23,7 +23,7 @@ matrix:
       compiler: gcc
 
 install:
-  - if [ $TRAVIS_OS_NAME = linux ]; then docker build -f dockers/Dockerfile.$OS.$DIST . -t mmex_build_env; fi
+  - if [ $TRAVIS_OS_NAME = linux ]; then docker build -f dockers/Dockerfile.$OS.$DIST dockers -t mmex_build_env; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew update; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install wxmac; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install gettext && brew link --force gettext; fi
