@@ -100,34 +100,34 @@ const wxString mmex::getProgramDescription()
 #endif
 
         << "\n" << _("MMEX is using the following support products:") << "\n"
-        << L" \u2022 " << wxVERSION_STRING << "\n"
-        << L" \u2022 SQLite " << wxSQLite3Database::GetVersion() << "\n"
-        << L" \u2022 " << wxSQLITE3_VERSION_STRING << "\n"
-        << L" \u2022 Mongoose " << MG_VERSION << "\n"
-        << L" \u2022 " << LUA_RELEASE << "\n\n"
+        << L" \u2b25 " << wxVERSION_STRING << "\n"
+        << L" \u2b25 SQLite " << wxSQLite3Database::GetVersion() << "\n"
+        << L" \u2b25 " << wxSQLITE3_VERSION_STRING << "\n"
+        << L" \u2b25 Mongoose " << MG_VERSION << "\n"
+        << L" \u2b25 " << LUA_RELEASE << "\n\n"
 
         << _("Running on:") << "\n"
 #ifdef __LINUX__
-        << L" \u2022 " << wxGetLinuxDistributionInfo().Description
+        << L" \u2b25 " << wxGetLinuxDistributionInfo().Description
         << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
 #endif
-        << L" \u2022 " << wxGetOsDescription() << "\n"
-        << L" \u2022 " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
+        << L" \u2b25 " << wxGetOsDescription() << "\n"
+        << L" \u2b25 " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
         << " " << wxLocale::GetSystemEncodingName() << _(" locale") << "\n\n"
 
         << wxString::Format(_("Build on %s %s with:"), __DATE__, __TIME__) << "\n"
 #if defined(_MSC_VER)
-        << L" \u2022 Microsoft Visual Studio " << _MSC_VER << "\n"
+        << L" \u2b25 Microsoft Visual Studio " << _MSC_VER << "\n"
 #elif defined(__clang__)
-        << L" \u2022 Clang/LLVM " << __VERSION__ << "\n"
+        << L" \u2b25 Clang/LLVM " << __VERSION__ << "\n"
 #elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
-        << L" \u2022 GNU GCC/G++ " << __VERSION__ << "\n"
+        << L" \u2b25 GNU GCC/G++ " << __VERSION__ << "\n"
 #endif
 #ifdef CMAKE_VERSION
-        << L" \u2022 CMake " CMAKE_VERSION << "\n"
+        << L" \u2b25 CMake " CMAKE_VERSION << "\n"
 #endif
 #ifdef MAKE_VERSION
-        << L" \u2022 GNU Make " MAKE_VERSION << "\n"
+        << L" \u2b25 GNU Make " MAKE_VERSION << "\n"
 #endif
     ;
     description.RemoveLast();
@@ -162,7 +162,7 @@ const wxString mmex::weblink::Wiki = "http://wiki.moneymanagerex.org";
 const wxString mmex::weblink::GitHub = "https://github.com/moneymanagerex/moneymanagerex";
 const wxString mmex::weblink::YouTube = "http://www.youtube.com/user/moneymanagerex";
 const wxString mmex::weblink::Slack = "http://slack.moneymanagerex.org/";
-const wxString mmex::weblink::BugReport = "http://bugreport.moneymanagerex.org";
+const wxString mmex::weblink::BugReport = "https://github.com/moneymanagerex/moneymanagerex/issues";
 const wxString mmex::weblink::Donate = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";
 const wxString mmex::weblink::SquareCashGuan = "https://cash.me/$guanlisheng/1";
 const wxString mmex::weblink::Twitter = "https://twitter.com/MoneyManagerEx";
