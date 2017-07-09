@@ -2521,9 +2521,9 @@ void mmGUIFrame::OnReportBug(wxCommandEvent& /*event*/)
         { "Git commit:", "\u2b25 git" },
         { "Git branch: ", "" },
         { "MMEX is using the following support products: \u2b25", "<b>Libs</b>:" },
-        { "Running on: \u2b25", "<b>OS</b>:" },
-        { "locale<br>Build on", "<br><b>Build</b>:" },
+        { "<br>Build on", "<br><b>Build</b>:" },
         { " with:", "" },
+        { "Running on: \u2b25", "<b>OS</b>:" },
         { "(.)$", "\\1</small>" }
     };
     wxRegEx re;

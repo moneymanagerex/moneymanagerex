@@ -100,20 +100,15 @@ const wxString mmex::getProgramDescription()
 #endif
 
         << "\n" << _("MMEX is using the following support products:") << "\n"
-        << L" \u2b25 " << wxVERSION_STRING << "\n"
-        << L" \u2b25 SQLite " << wxSQLite3Database::GetVersion() << "\n"
-        << L" \u2b25 " << wxSQLITE3_VERSION_STRING << "\n"
+        << L" \u2b25 " << wxVERSION_STRING
+        << wxString::Format(" (%s %d.%d)\n",
+            wxPlatformInfo::Get().GetPortIdName(),
+            wxPlatformInfo::Get().GetToolkitMajorVersion(),
+            wxPlatformInfo::Get().GetToolkitMinorVersion())
+        << L" \u2b25 " << wxSQLITE3_VERSION_STRING
+        << " (SQLite " << wxSQLite3Database::GetVersion() << ")\n"
         << L" \u2b25 Mongoose " << MG_VERSION << "\n"
         << L" \u2b25 " << LUA_RELEASE << "\n\n"
-
-        << _("Running on:") << "\n"
-#ifdef __LINUX__
-        << L" \u2b25 " << wxGetLinuxDistributionInfo().Description
-        << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
-#endif
-        << L" \u2b25 " << wxGetOsDescription() << "\n"
-        << L" \u2b25 " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
-        << " " << wxLocale::GetSystemEncodingName() << _(" locale") << "\n\n"
 
         << wxString::Format(_("Build on %s %s with:"), __DATE__, __TIME__) << "\n"
 #if defined(_MSC_VER)
@@ -129,6 +124,23 @@ const wxString mmex::getProgramDescription()
 #ifdef MAKE_VERSION
         << L" \u2b25 GNU Make " MAKE_VERSION << "\n"
 #endif
+
+        << "\n" << _("Running on:") << "\n"
+#ifdef __LINUX__
+        << L" \u2b25 " << wxGetLinuxDistributionInfo().Description
+        << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
+#endif
+        << L" \u2b25 " << wxGetOsDescription()
+        << " " << wxPlatformInfo::Get().GetEndiannessName() << "\n"
+        << L" \u2b25 " << wxPlatformInfo::Get().GetDesktopEnvironment()
+        << " " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
+        << " " << wxLocale::GetSystemEncodingName() 
+        << wxString::Format(L"\n \u2b25 %ix%ix%ibit %ix%ippi\n",
+            wxGetDisplaySize().GetX(),
+            wxGetDisplaySize().GetY(),
+            wxDisplayDepth(),
+            wxGetDisplayPPI().GetX(),
+            wxGetDisplayPPI().GetY())
     ;
     description.RemoveLast();
 
