@@ -2514,7 +2514,7 @@ void mmGUIFrame::OnReportBug(wxCommandEvent& /*event*/)
         _("5. Include steps to reproduce your issue, attach screenshots where appropriate."),
         _("6. Please do not remove information attached below this text.")
     };
-    std::vector<std::array<std::string, 2>> fixes = {
+    std::vector<std::pair<wxString, wxString>> fixes = {
         { "\n\n", "<br>" }, { "\n", " " }, { "  ", " " },
         { "^Version", "\n<hr><small><b>Version</b>" },
         { "Database version supported:", "\u2b25 db" },
@@ -2528,10 +2528,10 @@ void mmGUIFrame::OnReportBug(wxCommandEvent& /*event*/)
     };
     wxRegEx re;
     wxString diag = mmex::getProgramDescription();
-    for (auto const& fix: fixes)
-        if (re.Compile(fix[0], wxRE_EXTENDED)) re.Replace(&diag,fix[1]);
+    for (const auto& kv: fixes)
+        if (re.Compile(kv.first, wxRE_EXTENDED)) re.Replace(&diag, kv.second);
     wxString api = "/new?body=";
-    for (auto const& text: texts)
+    for (const auto& text: texts)
         api << "> " << text << "\n";
     api << diag;
     wxURI req = mmex::weblink::BugReport + api;
