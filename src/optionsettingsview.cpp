@@ -152,33 +152,33 @@ void OptionSettingsView::Create()
     wxStaticBoxSizer* userColourSettingStBoxSizer = new wxStaticBoxSizer(userColourSettingStBox, wxHORIZONTAL);
     viewsPanelSizer->Add(userColourSettingStBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    int size_x = 30;
-    m_UDFCB1 = new wxButton(this, wxID_HIGHEST + 11, _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB1->SetBackgroundColour(mmColors::userDefColor1);
+    int size_x = 55;
+    m_UDFCB1 = new wxButton(this, wxID_HIGHEST + 11, _("1")+"  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB1->SetForegroundColour(mmColors::userDefColor1);
     userColourSettingStBoxSizer->Add(m_UDFCB1, g_flagsH);
 
-    m_UDFCB2 = new wxButton(this, wxID_HIGHEST + 22, _("2"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB2->SetBackgroundColour(mmColors::userDefColor2);
+    m_UDFCB2 = new wxButton(this, wxID_HIGHEST + 22, _("2")+"  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB2->SetForegroundColour(mmColors::userDefColor2);
     userColourSettingStBoxSizer->Add(m_UDFCB2, g_flagsH);
 
-    m_UDFCB3 = new wxButton(this, wxID_HIGHEST + 33, _("3"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB3->SetBackgroundColour(mmColors::userDefColor3);
+    m_UDFCB3 = new wxButton(this, wxID_HIGHEST + 33, _("3")+"  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB3->SetForegroundColour(mmColors::userDefColor3);
     userColourSettingStBoxSizer->Add(m_UDFCB3, g_flagsH);
 
-    m_UDFCB4 = new wxButton(this, wxID_HIGHEST + 44, _("4"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB4->SetBackgroundColour(mmColors::userDefColor4);
+    m_UDFCB4 = new wxButton(this, wxID_HIGHEST + 44, _("4")+"  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB4->SetForegroundColour(mmColors::userDefColor4);
     userColourSettingStBoxSizer->Add(m_UDFCB4, g_flagsH);
 
-    m_UDFCB5 = new wxButton(this, wxID_HIGHEST + 55, _("5"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB5->SetBackgroundColour(mmColors::userDefColor5);
+    m_UDFCB5 = new wxButton(this, wxID_HIGHEST + 55, _("5")+"  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB5->SetForegroundColour(mmColors::userDefColor5);
     userColourSettingStBoxSizer->Add(m_UDFCB5, g_flagsH);
 
-    m_UDFCB6 = new wxButton(this, wxID_HIGHEST + 66, _("6"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB6->SetBackgroundColour(mmColors::userDefColor6);
+    m_UDFCB6 = new wxButton(this, wxID_HIGHEST + 66, _("6")+"  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB6->SetForegroundColour(mmColors::userDefColor6);
     userColourSettingStBoxSizer->Add(m_UDFCB6, g_flagsH);
 
-    m_UDFCB7 = new wxButton(this, wxID_HIGHEST + 77, _("7"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
+    m_UDFCB7 = new wxButton(this, wxID_HIGHEST + 77, _("7")+"  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB7->SetForegroundColour(mmColors::userDefColor7);
     userColourSettingStBoxSizer->Add(m_UDFCB7, g_flagsH);
 
     this->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
@@ -190,7 +190,7 @@ void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
     wxButton* button = wxDynamicCast(FindWindow(event.GetId()), wxButton);
     if (button)
     {
-        wxColour colour = button->GetBackgroundColour();
+        wxColour colour = button->GetForegroundColour();
         wxColourData data;
         data.SetChooseFull(true);
         data.SetColour(colour);
@@ -199,7 +199,7 @@ void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
         if (dialog.ShowModal() == wxID_OK)
         {
             colour = dialog.GetColourData().GetColour();
-            button->SetBackgroundColour(colour);
+            button->SetForegroundColour(colour);
         }
     }
 }
@@ -227,13 +227,13 @@ void OptionSettingsView::SaveSettings()
     Option::instance().BudgetReportWithSummaries(m_budget_summary_without_category->GetValue());
     Option::instance().IgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
 
-    mmColors::userDefColor1 = m_UDFCB1->GetBackgroundColour();
-    mmColors::userDefColor2 = m_UDFCB2->GetBackgroundColour();
-    mmColors::userDefColor3 = m_UDFCB3->GetBackgroundColour();
-    mmColors::userDefColor4 = m_UDFCB4->GetBackgroundColour();
-    mmColors::userDefColor5 = m_UDFCB5->GetBackgroundColour();
-    mmColors::userDefColor6 = m_UDFCB6->GetBackgroundColour();
-    mmColors::userDefColor7 = m_UDFCB7->GetBackgroundColour();
+    mmColors::userDefColor1 = m_UDFCB1->GetForegroundColour();
+    mmColors::userDefColor2 = m_UDFCB2->GetForegroundColour();
+    mmColors::userDefColor3 = m_UDFCB3->GetForegroundColour();
+    mmColors::userDefColor4 = m_UDFCB4->GetForegroundColour();
+    mmColors::userDefColor5 = m_UDFCB5->GetForegroundColour();
+    mmColors::userDefColor6 = m_UDFCB6->GetForegroundColour();
+    mmColors::userDefColor7 = m_UDFCB7->GetForegroundColour();
 
     Model_Infotable::instance().Set("USER_COLOR1", mmColors::userDefColor1);
     Model_Infotable::instance().Set("USER_COLOR2", mmColors::userDefColor2);
