@@ -117,10 +117,6 @@ static const std::map<int, wxBitmap> navtree_images()
         , { CALENDAR_PNG, mmBitmap(png::BUDGET) }
         , { PIECHART_PNG, mmBitmap(png::PIE_CHART) }
         , { HELP_PNG, mmBitmap(png::HELP) }
-        , { COMMUNITY_PNG, mmBitmap(png::COMMUNITY) }
-        , { GITHUB_PNG, mmBitmap(png::GITHUB) }
-        , { SLACK_PNG, mmBitmap(png::SLACK) }
-        , { BUG_PNG, mmBitmap(png::BUG) }
         , { FILTER_PNG, mmBitmap(png::FILTER) }
         , { ASSET_PNG, mmBitmap(png::ASSET) }
         , { CUSTOMSQL_PNG, mmBitmap(png::GRM) }
