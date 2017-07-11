@@ -46,6 +46,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/bug_png.h"
 #include "../resources/news_png.h"
 #include "../resources/nnews_png.h"
+#include "../resources/pp_png.h"
 #include "../resources/fullscreen_png.h"
 #include "../resources/pie_chart_png.h"
 #include "../resources/budget_png.h"
@@ -214,6 +215,7 @@ const wxBitmap mmBitmap(int ref)
     case GITHUB: return x == 16 ? wxBITMAP_PNG_FROM_DATA(github) : x == 24 ? wxBITMAP_PNG_FROM_DATA(github24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(github32) : wxBITMAP_PNG_FROM_DATA(github48);
     case SLACK: return x == 16 ? wxBITMAP_PNG_FROM_DATA(slack) : x == 24 ? wxBITMAP_PNG_FROM_DATA(slack24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(slack32) : wxBITMAP_PNG_FROM_DATA(slack48);
     case BUG: return x == 16 ? wxBITMAP_PNG_FROM_DATA(bug) : x == 24 ? wxBITMAP_PNG_FROM_DATA(bug24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(bug32) : wxBITMAP_PNG_FROM_DATA(bug48);
+    case PP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(pp) : x == 24 ? wxBITMAP_PNG_FROM_DATA(pp24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(pp32) : wxBITMAP_PNG_FROM_DATA(pp48);
     case FULLSCREEN: return x == 16 ? wxBITMAP_PNG_FROM_DATA(fullscreen) : x == 24 ? wxBITMAP_PNG_FROM_DATA(fullscreen24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(fullscreen32) : wxBITMAP_PNG_FROM_DATA(fullscreen48);
     case NEW_NEWS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(nnews) : x == 24 ? wxBITMAP_PNG_FROM_DATA(nnews24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(nnews32) : wxBITMAP_PNG_FROM_DATA(nnews48);
     case PIE_CHART: return x == 16 ? wxBITMAP_PNG_FROM_DATA(pie_chart) : x == 24 ? wxBITMAP_PNG_FROM_DATA(pie_chart24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(pie_chart32) : wxBITMAP_PNG_FROM_DATA(pie_chart48);
