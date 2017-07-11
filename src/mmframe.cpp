@@ -2504,7 +2504,38 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
 
 void mmGUIFrame::OnReportBug(wxCommandEvent& /*event*/)
 {
-    wxLaunchDefaultBrowser(mmex::weblink::BugReport);
+    std::vector<wxString> texts = {
+        _("Please follow these tasks before submitting new bug:"),
+        _("1. Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."),
+        _("2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue for similar problem - update existing issue instead of creating new one."),
+        _("3. Put some descriptive name for your issue in the Title field above."),
+        _("4. Replace this text (marked with >) with detailed description of your problem."),
+        _("Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."),
+        _("5. Include steps to reproduce your issue, attach screenshots where appropriate."),
+        _("6. Please do not remove information attached below this text.")
+    };
+    std::vector<std::pair<wxString, wxString>> fixes = {
+        { "\n\n", "<br>" }, { "\n", " " }, { "  ", " " },
+        { "^Version", "\n<hr><small><b>Version</b>" },
+        { "Database version supported:", "\u2b25 db" },
+        { "Git commit:", "\u2b25 git" },
+        { "Git branch: ", "" },
+        { "MMEX is using the following support products: \u2b25", "<b>Libs</b>:" },
+        { "<br>Build on", "<br><b>Build</b>:" },
+        { " with:", "" },
+        { "Running on: \u2b25", "<b>OS</b>:" },
+        { "(.)$", "\\1</small>" }
+    };
+    wxRegEx re;
+    wxString diag = mmex::getProgramDescription();
+    for (const auto& kv: fixes)
+        if (re.Compile(kv.first, wxRE_EXTENDED)) re.Replace(&diag, kv.second);
+    wxString api = "/new?body=";
+    for (const auto& text: texts)
+        api << "> " << text << "\n";
+    api << diag;
+    wxURI req = mmex::weblink::BugReport + api;
+    wxLaunchDefaultBrowser(req.BuildURI());
 }
 
 //----------------------------------------------------------------------------
