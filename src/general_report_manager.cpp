@@ -669,34 +669,33 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     wxMenu* samplesMenu = new wxMenu;
     samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, _("Assets"));
 
-    wxMenu* customReportMenu = new wxMenu;
-    customReportMenu->Append(ID_NEW_EMPTY, _("New Empty Report"));
-    customReportMenu->Append(wxID_ANY, _("New Sample Report"), samplesMenu);
-    customReportMenu->AppendSeparator();
+    wxMenu customReportMenu;
+    customReportMenu.Append(ID_NEW_EMPTY, _("New Empty Report"));
+    customReportMenu.Append(wxID_ANY, _("New Sample Report"), samplesMenu);
+    customReportMenu.AppendSeparator();
     if (report)
-        customReportMenu->Append(ID_GROUP, _("Change Group"));
+        customReportMenu.Append(ID_GROUP, _("Change Group"));
     else
-        customReportMenu->Append(ID_GROUP, _("Rename Group"));
-    customReportMenu->Append(ID_UNGROUP, _("UnGroup"));
-    customReportMenu->Append(ID_RENAME, _("Rename Report"));
-    customReportMenu->AppendSeparator();
-    customReportMenu->Append(ID_DELETE, _("Delete Report"));
+        customReportMenu.Append(ID_GROUP, _("Rename Group"));
+    customReportMenu.Append(ID_UNGROUP, _("UnGroup"));
+    customReportMenu.Append(ID_RENAME, _("Rename Report"));
+    customReportMenu.AppendSeparator();
+    customReportMenu.Append(ID_DELETE, _("Delete Report"));
 
     if (report)
     {
-        customReportMenu->Enable(ID_UNGROUP, !report->GROUPNAME.empty());
+        customReportMenu.Enable(ID_UNGROUP, !report->GROUPNAME.empty());
     }
     else
     {
         if (m_selectedGroup == "")
-            customReportMenu->Enable(ID_GROUP, false);
+            customReportMenu.Enable(ID_GROUP, false);
 
-        customReportMenu->Enable(ID_UNGROUP, false);
-        customReportMenu->Enable(ID_RENAME, false);
-        customReportMenu->Enable(ID_DELETE, false);
+        customReportMenu.Enable(ID_UNGROUP, false);
+        customReportMenu.Enable(ID_RENAME, false);
+        customReportMenu.Enable(ID_DELETE, false);
     }
-    PopupMenu(customReportMenu);
-    delete customReportMenu;
+    PopupMenu(&customReportMenu);
 }
 
 void mmGeneralReportManager::viewControls(bool enable)

@@ -500,13 +500,13 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
     ev.SetEventObject(this);
 
     wxMenu* mainMenu = new wxMenu;
-    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + acc_img::MONEY_DOLLAR_XPM - 1, _("Default Image"));
-    menuItem->SetBitmap(m_imageList->GetBitmap(Option::instance().AccountImageId(this->m_account->ACCOUNTID, true)));
-    mainMenu->Append(menuItem);
+    wxMenuItem* root_menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + acc_img::MONEY_DOLLAR_XPM - 1, _("Default Image"));
+    root_menuItem->SetBitmap(m_imageList->GetBitmap(Option::instance().AccountImageId(this->m_account->ACCOUNTID, true)));
+    mainMenu->Append(root_menuItem);
 
     for (int i = img::LAST_NAVTREE_PNG; i < acc_img::MAX_XPM; ++i)
     {
-        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i
+        wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i
             , wxString::Format(_("Image #%i"), i - img::LAST_NAVTREE_PNG + 1));
         menuItem->SetBitmap(m_imageList->GetBitmap(i));
         mainMenu->Append(menuItem);
