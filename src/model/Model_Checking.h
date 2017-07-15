@@ -178,6 +178,7 @@ private:
 public:
     TransactionStatus();
     TransactionStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data);
+    TransactionStatus(const DB_Table_CHECKINGACCOUNT_V1::Data* data);
     void InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data);
     void InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data* data);
     void SetStatus(const wxString& status, int account_id, DB_Table_CHECKINGACCOUNT_V1::Data& data);
