@@ -266,7 +266,8 @@ double Model_Checking::deposit(const Data& r, int account_id)
 
 double Model_Checking::reconciled(const Data* r, int account_id)
 {
-    return (Model_Checking::status(r->STATUS) == Model_Checking::RECONCILED) ? balance(r, account_id) : 0;
+    TransactionStatus status(r);
+    return (Model_Checking::status(status.Status(account_id)) == Model_Checking::RECONCILED) ? balance(r, account_id) : 0;
 }
 
 double Model_Checking::reconciled(const Data& r, int account_id)
@@ -562,6 +563,11 @@ TransactionStatus::TransactionStatus()
 TransactionStatus::TransactionStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data)
 {
     InitStatus(&data);
+}
+
+TransactionStatus::TransactionStatus(const DB_Table_CHECKINGACCOUNT_V1::Data* data)
+{
+    InitStatus(data);
 }
 
 void TransactionStatus::InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data)

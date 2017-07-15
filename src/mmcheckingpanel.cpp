@@ -247,10 +247,10 @@ void mmCheckingPanel::updateTable()
         m_account_balance = m_account->INITIALBAL;
         m_reconciled_balance = m_account_balance;
     }
-    for (const auto& tran : Model_Account::transaction(m_account))
+    for (const auto& tran : m_trans /*Model_Account::transaction(m_account)*/)
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
+        if (Model_Checking::status(tran.STATUSFD) != Model_Checking::VOID_)
             m_account_balance += transaction_amount;
         m_reconciled_balance += Model_Checking::reconciled(tran, m_AccountID);
     }
