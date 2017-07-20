@@ -30,8 +30,8 @@ install:
   - mkdir -p build/Release
 
 script:
-  - if [ $TRAVIS_OS_NAME = linux ]; then docker run -it --rm -w /moneymanagerex/build/Release -e MAKEFLAGS -v $PWD:/moneymanagerex mmex_build_env bash -c "cmake -DCMAKE_BUILD_TYPE=Release ../../ && make package"; fi
-  - if [ $TRAVIS_OS_NAME = osx ]; then cd build/Release && cmake -DCMAKE_BUILD_TYPE=Release ../../ && make package; fi
+  - if [ $TRAVIS_OS_NAME = linux ]; then docker run -it --rm -w /moneymanagerex/build/Release -e MAKEFLAGS -v $PWD:/moneymanagerex mmex_build_env bash -c "cmake -DBuildTests=ON -DCMAKE_BUILD_TYPE=Release ../.. && make package"; fi
+  - if [ $TRAVIS_OS_NAME = osx ]; then cd build/Release && cmake -DBuildTests=ON -DCMAKE_BUILD_TYPE=Release ../.. && make package; fi
 
 notifications: # set notification options
   email:
