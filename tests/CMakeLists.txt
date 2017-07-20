@@ -2,11 +2,6 @@ IF(NOT InMMEX)
     MESSAGE(FATAL_ERROR "Use the top-level CMake script!")
 ENDIF(NOT InMMEX)
 
-FILE(GLOB CPPUnit_SRC
-    "${CMAKE_SOURCE_DIR}/lib/cppunit/src/cppunit/*.h"
-    "${CMAKE_SOURCE_DIR}/lib/cppunit/src/cppunit/*.cpp"
-    )
-
 FILE(GLOB MMEXTest_SRC
     "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
@@ -22,10 +17,6 @@ LIST(REMOVE_ITEM MMEX_SRC
     "${CMAKE_SOURCE_DIR}/src/win/platfdep.cpp"
     )
 
-TARGET_SOURCES(CPPUnit PRIVATE
-    ${CPPUnit_SRC}
-    )
-
 TARGET_SOURCES(MMEXTest PRIVATE
     ${MMEXTest_SRC}
     ${MMEX_SRC}
@@ -34,6 +25,8 @@ TARGET_SOURCES(MMEXTest PRIVATE
     )
 
 TARGET_COMPILE_DEFINITIONS(MMEXTest PRIVATE wxIMPLEMENT_WXWIN_MAIN=)
+# hide warnings from cppunit includes
+TARGET_COMPILE_OPTIONS(MMEXTest PRIVATE "-Wno-deprecated-declarations")
 
 #OSX
 IF (UNIX AND APPLE)

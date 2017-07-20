@@ -226,7 +226,18 @@ ADD_LIBRARY(LUA STATIC "")
 ADD_LIBRARY(wxSQLite3 STATIC "")
 ADD_EXECUTABLE(${PROJECT_TARGET_BIN} WIN32 MACOSX_BUNDLE ${MACOSX_APP_ICON_FILE} "")
 IF(BuildTests)
-    ADD_LIBRARY(CPPUnit STATIC "")
+    INCLUDE(ExternalProject)
+    ExternalProject_ADD(CPPUnit
+        SOURCE_DIR ${CMAKE_SOURCE_DIR}/lib/cppunit
+        CONFIGURE_COMMAND sh autogen.sh && ./configure -q --disable-shared --disable-doxygen --enable-silent-rules --prefix=${CMAKE_CURRENT_BINARY_DIR}/cppunit
+        INSTALL_COMMAND make install-exec
+        BUILD_IN_SOURCE 1
+        )
+    ADD_LIBRARY(CPPUnitLib STATIC IMPORTED)
+    SET_TARGET_PROPERTIES(CPPUnitLib PROPERTIES
+        IMPORTED_LOCATION ${CMAKE_CURRENT_BINARY_DIR}/cppunit/lib/libcppunit.a
+        )
+    ADD_DEPENDENCIES(CPPUnitLib CPPUnit)
     ADD_EXECUTABLE(MMEXTest "")
 ENDIF()
 
@@ -250,7 +261,7 @@ IF(CMAKE_SYSTEM_NAME MATCHES "Linux")
 ENDIF()
 TARGET_LINK_LIBRARIES(${PROJECT_TARGET_BIN} ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
 IF(BuildTests)
-    TARGET_LINK_LIBRARIES(MMEXTest CPPUnit ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
+    TARGET_LINK_LIBRARIES(MMEXTest CPPUnitLib ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
 ENDIF()
 
 
