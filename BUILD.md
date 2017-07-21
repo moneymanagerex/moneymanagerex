@@ -225,13 +225,13 @@ Linux
 All required packages should be installed from official distribution
 using native package manager:
 
-| Distribution   | Update packages list  | Install package             |
-|----------------|-----------------------|-----------------------------|
-| Debian, Ubuntu | `sudo apt update`     | `sudo apt install <pkg>`    |
-| openSUSE       | `sudo zypper refresh` | `sudo zypper install <pkg>` |
-| Fedora         | `sudo dnf --refresh repolist` | `sudo dnf install <pkg>` |
-| CentOS         | `sudo yum update`     | `sudo yum install <pkg>`    |
-| Arch           | `sudo pacman -Syy`    | `sudo pacman -Syu <pkg>`    |
+| Distribution         | Update packages list  | Install package             |
+|----------------------|-----------------------|-----------------------------|
+| Debian, Ubuntu, Mint | `sudo apt update`     | `sudo apt install <pkg>`    |
+| openSUSE             | `sudo zypper refresh` | `sudo zypper install <pkg>` |
+| Fedora               | `sudo dnf --refresh repolist` | `sudo dnf install <pkg>` |
+| CentOS               | `sudo yum clean expire-cache` | `sudo yum install <pkg>` |
+| Arch                 | `sudo pacman -Syy`    | `sudo pacman -Syu <pkg>`    |
 
 It is good practise to update packages list before installing new packages.
 This allows install or update required dependencies to the latest versions.
@@ -251,12 +251,12 @@ You can choose which compiler you want to use: GCC (default in most Linux
 distributions) or CLang (optional). If you want use CLang you should install
 additional package and select it as default compiler:
 
-| Distribution   | CLang pkg  | Change compiler to CLang |
-|----------------|------------|--------------------------|
-| Debian, Ubuntu | clang      | `sudo update-alternatives --set cc /usr/bin/clang`<br>`sudo update-alternatives --set c++ /usr/bin/clang++`|
-| openSUSE       | llvm-clang | `sudo ln -sf /usr/bin/clang /usr/bin/cc`<br>`sudo ln -sf /usr/bin/clang++ /usr/bin/c++`|
-| Fedora, CentOS | clang      | `sudo ln -sf /usr/bin/clang /usr/bin/cc`<br>`sudo ln -sf /usr/bin/clang++ /usr/bin/c++`|
-| Arch           | clang      | `export CC=clang CXX=clang++`|
+| Distribution         | CLang pkg  | Change compiler to CLang |
+|----------------------|------------|--------------------------|
+| Debian, Ubuntu, Mint | clang      | `sudo update-alternatives --set cc /usr/bin/clang`<br>`sudo update-alternatives --set c++ /usr/bin/clang++`|
+| openSUSE             | llvm-clang | `sudo ln -sf /usr/bin/clang /usr/bin/cc`<br>`sudo ln -sf /usr/bin/clang++ /usr/bin/c++`|
+| Fedora, CentOS       | clang      | `sudo ln -sf /usr/bin/clang /usr/bin/cc`<br>`sudo ln -sf /usr/bin/clang++ /usr/bin/c++`|
+| Arch                 | clang      | `export CC=clang CXX=clang++`|
 
 #### 3. Download Sources
 
@@ -268,13 +268,13 @@ Same as for [macOS](#3-compile-and-create-package)
 
 #### 5. Install MMEX Package
 
-| Distribution   | Install package from local file              |
-|----------------|----------------------------------------------|
-| Debian, Ubuntu | `sudo apt install ./mmex-<version>.deb`      |
-| openSUSE       | `sudo rpm -i ./mmex-<version>.rpm`           |
-| Fedora         | `sudo dnf install ./mmex-<version>.rpm`      |
-| CentOS         | `sudo yum localinstall ./mmex-<version>.rpm` |
-| Arch           | `sudo pacman -U ./mmex-<version>.pkg.tar.xz` |
+| Distribution         | Install package from local file              |
+|----------------------|----------------------------------------------|
+| Debian, Ubuntu, Mint | `sudo apt install ./mmex-<version>.deb`      |
+| openSUSE             | `sudo zypper install ./mmex-<version>.rpm`   |
+| Fedora               | `sudo dnf install ./mmex-<version>.rpm`      |
+| CentOS               | `sudo yum install ./mmex-<version>.rpm`       |
+| Arch                 | `sudo pacman -U ./mmex-<version>.pkg.tar.xz` |
 
 [Windows]: #microsoft-windows
 [Visual Studio CLI]: #visual-studio-command-line
