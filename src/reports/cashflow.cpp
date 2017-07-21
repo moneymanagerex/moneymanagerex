@@ -43,9 +43,9 @@ mmReportCashFlow::~mmReportCashFlow()
 {
 }
 
-bool mmReportCashFlow::has_accounts()
+int mmReportCashFlow::report_parameters()
 {
-    return true;
+    return RepParams::ACCOUNTS_LIST;
 }
 
 wxString mmReportCashFlow::getHTMLText()

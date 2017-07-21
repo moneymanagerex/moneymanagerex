@@ -31,8 +31,8 @@ public:
     explicit mmReportCashFlow(TYPE cashflowreporttype);
     virtual ~mmReportCashFlow();
 
-    virtual bool has_accounts();
     virtual wxString getHTMLText();
+    virtual int report_parameters();
 
 protected:
     wxString getHTMLText_i();
