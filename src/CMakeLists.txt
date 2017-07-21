@@ -2,33 +2,36 @@ IF(NOT InMMEX)
     MESSAGE(FATAL_ERROR "Use the top-level CMake script!")
 ENDIF(NOT InMMEX)
 
-FILE(GLOB_RECURSE MMEX_SRC
-    "${CMAKE_SOURCE_DIR}/src/*.h"
-    "${CMAKE_SOURCE_DIR}/src/*.cpp"
+FILE(GLOB_RECURSE MMEXLib_SRC
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
     )
-LIST(REMOVE_ITEM MMEX_SRC
-    "${CMAKE_SOURCE_DIR}/src/mac/platfdep.cpp"
-    "${CMAKE_SOURCE_DIR}/src/unix/platfdep.cpp"
-    "${CMAKE_SOURCE_DIR}/src/win/platfdep.cpp"
+LIST(REMOVE_ITEM MMEXLib_SRC
+    "${CMAKE_CURRENT_SOURCE_DIR}/mac/platfdep.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/unix/platfdep.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/win/platfdep.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/mmex.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/mmex.cpp"
     )
 
+TARGET_SOURCES(MMEXLib PRIVATE ${MMEXLib_SRC})
+
 TARGET_SOURCES(${PROJECT_TARGET_BIN} PRIVATE
-        ${MMEX_SRC}
+        "${CMAKE_CURRENT_SOURCE_DIR}/mmex.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/mmex.h"
         "${CMAKE_SOURCE_DIR}/3rd/cgitemplate/html_template.cpp"
         "${CMAKE_SOURCE_DIR}/3rd/mongoose/mongoose.c"
         )
 #OSX
 IF (UNIX AND APPLE)
-    TARGET_SOURCES(${PROJECT_TARGET_BIN} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mac/platfdep.cpp")
+    TARGET_SOURCES(MMEXLib PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mac/platfdep.cpp")
 ENDIF ()
 #*nix
 IF (UNIX AND NOT APPLE)
-    TARGET_SOURCES(${PROJECT_TARGET_BIN} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/unix/platfdep.cpp")
+    TARGET_SOURCES(MMEXLib PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/unix/platfdep.cpp")
 ENDIF ()
 #Windows
 IF (WIN32)
-    TARGET_SOURCES(${PROJECT_TARGET_BIN} PRIVATE
-            "${CMAKE_CURRENT_SOURCE_DIR}/win/platfdep.cpp"
-            "resources/mmex.rc")
-
+    TARGET_SOURCES(MMEXLib PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/win/platfdep.cpp")
+    TARGET_SOURCES(${PROJECT_TARGET_BIN} PRIVATE "${CMAKE_SOURCE_DIR}/resources/mmex.rc")
 ENDIF ()
