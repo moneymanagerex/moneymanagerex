@@ -1,3 +1,6 @@
 FROM ubuntu:xenial
 MAINTAINER developers@moneymanagerex.org
-RUN apt-get update && apt-get install -y --no-install-recommends cmake gettext g++ git libwebkitgtk-dev libwxgtk3.0-dev libwxgtk-webview3.0-dev make
+RUN apt-get update && apt-get install -y --no-install-recommends cmake g++ gettext git libwebkitgtk-dev libwxgtk3.0-dev libwxgtk-webview3.0-dev make
+# add autotools toolchain for compiling cppunit
+RUN apt-get install -y --no-install-recommends automake libtool
+RUN apt-get clean

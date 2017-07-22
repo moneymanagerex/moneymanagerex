@@ -68,7 +68,7 @@ void Test_About_Dialog::test_about_dialog()
     wxString file_name = mmex::getPathDoc(mmex::F_CONTRIB);
     if (wxFileExists(file_name))
     {
-        mmAboutDialog* dlg = new mmAboutDialog(m_base_frame, 4);
+        mmAboutDialog* dlg = new mmAboutDialog(m_base_frame, 3);
         int id = dlg->ShowModal();
         if (id == wxID_OK)
         {

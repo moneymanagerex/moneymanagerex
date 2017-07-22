@@ -50,7 +50,7 @@ build_script:
 - mkdir release
 - cd release
 - git submodule update --init
-- cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ../../
+- cmake -G "NMake Makefiles" -DBuildTests=ON -DCMAKE_BUILD_TYPE=Release ../..
 - nmake /f Makefile TARGET_CPU=%PLATFORM% BUILD=release
 - cpack .
 
@@ -81,9 +81,9 @@ deploy:
   provider: GitHub
   auth_token:
       secure: ww6MhE3nBwP80/ujJIJnYl6cBLOvpL8NtMWjpSUj5L6H8kbSZ31PAM58+lQqkKEq
-  draft: false                              
-  prerelease: false                               
-  on:                                                   
+  draft: false
+  prerelease: false
+  on:
     #branch: master                 # release from master branch only
     appveyor_repo_tag: true        # deploy on tag push only
 

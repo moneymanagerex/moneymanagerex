@@ -1,3 +1,5 @@
 FROM opensuse:42.2
 MAINTAINER developers@moneymanagerex.org
 RUN zypper update -y && zypper install -y --no-recommends cmake gettext-tools gcc-c++ git make rpm-build wxWidgets-3_0-devel
+# add autotools toolchain for compiling cppunit
+RUN zypper install -y --no-recommends automake libtool
