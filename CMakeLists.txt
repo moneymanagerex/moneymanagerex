@@ -118,6 +118,15 @@ MESSAGE(STATUS "Build Type = ${CMAKE_BUILD_TYPE}")
 MESSAGE(STATUS "Building Tests = ${BuildTests}")
 MESSAGE(STATUS "OS = ${CMAKE_SYSTEM_NAME}")
 
+IF(NOT APPLE)
+    IF(CMAKE_SIZEOF_VOID_P EQUAL 4)
+        SET(TARGET_ARCH "x86")
+    ELSE(CMAKE_SIZEOF_VOID_P EQUAL 4)
+        SET(TARGET_ARCH "x64")
+    ENDIF(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    MESSAGE(STATUS "Build arch = ${TARGET_ARCH}")
+ENDIF(NOT APPLE)
+
 IF(CMAKE_SYSTEM_NAME MATCHES "Linux")
     # Detect Linux distribution (if possible)
     EXECUTE_PROCESS(COMMAND sh "${PROJECT_SOURCE_DIR}/util/getDistroName.sh"
@@ -299,24 +308,21 @@ ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
             "${CMAKE_CURRENT_BINARY_DIR}/mmexini.db3"
             DESTINATION "${INSTALL_DOC_DIR}")
 
-    SET(MSVCP "C:\\\\Windows\\\\System32\\\\msvcp140.dll")
-    SET(VCRUNTIME "C:\\\\Windows\\\\System32\\\\vcruntime140.dll")
+    IF(MSVC)
+        FILE(TO_CMAKE_PATH "$ENV{VCINSTALLDIR}redist" REDISTDIR)
+        SET(REDISTDIR "${REDISTDIR}/${TARGET_ARCH}/Microsoft.VC140.CRT")
+        SET(VCRUNTIME
+            "${REDISTDIR}/msvcp140.dll"
+            "${REDISTDIR}/vcruntime140.dll"
+            )
+        FOREACH(f IN LISTS VCRUNTIME)
+            IF(NOT EXISTS ${f})
+                MESSAGE(WARNING "Can not copy ${f}. File does not exist.")
+            ENDIF()
+        ENDFOREACH(f)
+        INSTALL(FILES ${VCRUNTIME} DESTINATION "${INSTALL_BIN_DIR}" OPTIONAL)
+    ENDIF(MSVC)
 
-    IF(EXISTS ${MSVCP})
-        INSTALL(FILES
-                "${MSVCP}"
-                DESTINATION "${INSTALL_BIN_DIR}")
-    ELSE()
-        MESSAGE(WARNING "Can not copy ${MSVCP}. File does not exist")
-    ENDIF()
-
-    IF(EXISTS ${VCRUNTIME})
-        INSTALL(FILES
-                ${VCRUNTIME}
-                DESTINATION "${INSTALL_BIN_DIR}")
-    ELSE()
-        MESSAGE(WARNING "Can not copy ${VCRUNTIME}. File does not exist")
-    ENDIF()
 ENDIF()
 
 # Help Files
