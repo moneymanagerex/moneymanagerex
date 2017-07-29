@@ -38,23 +38,23 @@ SET(MoneyManagerEx_VERSION "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VER
 
 # Adjusting semantic versioning for ALPHA version release
 IF(${MoneyManagerEx_VERSION_ALPHA} EQUAL 0)
-	SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-ALPHA")
+    SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-ALPHA")
 ELSEIF(${MoneyManagerEx_VERSION_ALPHA} GREATER 0)
-	SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-ALPHA-${MoneyManagerEx_VERSION_ALPHA}")
+    SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-ALPHA-${MoneyManagerEx_VERSION_ALPHA}")
 ENDIF()
 
 # Adjusting semantic versioning for BETA version release
 IF(${MoneyManagerEx_VERSION_BETA} EQUAL 0)
-	SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-BETA")
+    SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-BETA")
 ELSEIF(${MoneyManagerEx_VERSION_BETA} GREATER 0)
-	SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-BETA-${MoneyManagerEx_VERSION_BETA}")
+    SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-BETA-${MoneyManagerEx_VERSION_BETA}")
 ENDIF()
 
 # Adjusting semantic versioning for RC version release
 IF(${MoneyManagerEx_VERSION_RC} EQUAL 0)
-	SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-RC")
+    SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-RC")
 ELSEIF(${MoneyManagerEx_VERSION_RC} GREATER 0)
-	SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-RC-${MoneyManagerEx_VERSION_RC}")
+    SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-RC-${MoneyManagerEx_VERSION_RC}")
 ENDIF()
 
 # Get the current working branch
@@ -63,8 +63,7 @@ EXECUTE_PROCESS(
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
   OUTPUT_VARIABLE GIT_BRANCH
   OUTPUT_STRIP_TRAILING_WHITESPACE
-  TIMEOUT 4
-  ERROR_QUIET
+  TIMEOUT 4 ERROR_QUIET
 )
 
 # Get the latest abbreviated commit hash of the working branch
@@ -73,8 +72,7 @@ EXECUTE_PROCESS(
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
   OUTPUT_VARIABLE GIT_COMMIT_HASH
   OUTPUT_STRIP_TRAILING_WHITESPACE
-  TIMEOUT 4
-  ERROR_QUIET
+  TIMEOUT 4 ERROR_QUIET
 )
 
 # Get the latest commit date of the working branch
@@ -83,8 +81,7 @@ EXECUTE_PROCESS(
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
   OUTPUT_VARIABLE GIT_COMMIT_DATE
   OUTPUT_STRIP_TRAILING_WHITESPACE
-  TIMEOUT 4
-  ERROR_QUIET
+  TIMEOUT 4 ERROR_QUIET
 )
 
 IF(GIT_COMMIT_HASH)
@@ -98,17 +95,17 @@ ADD_DEFINITIONS(-DCMAKE_VERSION="${CMAKE_VERSION}" -DMAKE_VERSION="$(MAKE_VERSIO
 # Passing CMake variables (specificaly current version numbers) to files
 # AppVeyor
 CONFIGURE_FILE(
-        "${PROJECT_SOURCE_DIR}/appveyor.yml.in"
+        appveyor.yml.in
         "${PROJECT_SOURCE_DIR}/appveyor.yml"
 )
 # Header file
 CONFIGURE_FILE(
-        "${PROJECT_SOURCE_DIR}/src/constants.h.in"
+        src/constants.h.in
         "${PROJECT_SOURCE_DIR}/src/constants.h"
 )
 # VS resource script
 CONFIGURE_FILE(
-        "${PROJECT_SOURCE_DIR}/resources/mmex.rc.in"
+        resources/mmex.rc.in
         "${PROJECT_SOURCE_DIR}/resources/mmex.rc"
 )
 
@@ -205,9 +202,10 @@ ENDIF()
 
 # --------- Check for required libraries ---------
 FIND_PACKAGE(Gettext REQUIRED)
-#wxScintilla is needed on Windows
+
 IF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv scintilla stc webview base REQUIRED)
+    #wxScintilla is needed on Windows
+    FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv stc webview base scintilla REQUIRED)
 ELSE()
     FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv stc webview base REQUIRED)
 ENDIF()
@@ -275,13 +273,13 @@ IF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_TARGET_BIN}")
 
     # Set CFBundleVersion to the git describe output. Apple docs say it should be "three non-negative, period-separated integers with the first integer being greater than zero"
-	SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_BUNDLE_VERSION "${MoneyManagerEx_VERSION}")
+    SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_BUNDLE_VERSION "${MoneyManagerEx_VERSION}")
 
     # Set CFBundleExecutable
     #SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_EXECUTABLE_NAME "${OUTPUT_NAME}")
 
     # Set CFBundleShortVersionString to "2.0.0". This is displayed in the Finder and Spotlight.
-	SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_SHORT_VERSION_STRING "${MoneyManagerEx_VERSION}")
+    SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_SHORT_VERSION_STRING "${MoneyManagerEx_VERSION}")
 
     # Set the path to the plist template
     SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/resources/Info.plist")
@@ -382,6 +380,7 @@ SET(CPACK_PACKAGE_CONTACT "MoneyManagerEx Developers <developers@moneymanagerex.
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple to use financial management software")
 SET(CPACK_PACKAGE_DESCRIPTION "Money Manager Ex (MMEX) is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. MMEX includes all the basic features that 90% of users would want to see in a personal finance application. The design goals are to concentrate on simplicity and user friendliness - something one can use everyday.")
 SET(CPACK_RPM_PACKAGE_LICENSE "GPL-2+")
+SET(CPACK_STRIP_FILES ON)
 
 # Linux
 # Set package run time dependencies
@@ -390,17 +389,17 @@ IF(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     # Ubuntu
     IF(EXISTS "/etc/debian_version")
         SET(CPACK_GENERATOR "DEB")
-		SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libwxgtk3.0-0v5, libwxgtk-webview3.0-0v5")
+        SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libwxgtk3.0-0v5, libwxgtk-webview3.0-0v5")
 
     # Fedora
     ELSEIF(EXISTS "/etc/redhat-release" OR LINUX_DISTRO MATCHES "Fedora")
         SET(CPACK_GENERATOR "RPM")
-		SET(CPACK_RPM_PACKAGE_REQUIRES "wxGTK3 webkitgtk3")
+        SET(CPACK_RPM_PACKAGE_REQUIRES "wxGTK3 webkitgtk3")
 
     # openSUSE
     ELSEIF(EXISTS "/etc/redhat-release" OR LINUX_DISTRO MATCHES "openSUSE")
         SET(CPACK_GENERATOR "RPM")
-		SET(CPACK_RPM_PACKAGE_REQUIRES "wxWidgets-3_0-devel")
+        SET(CPACK_RPM_PACKAGE_REQUIRES "wxWidgets-3_0-devel")
 
     ELSEIF(NOT LINUX_DISTRO STREQUAL "Arch Linux")
         MESSAGE(WARNING "Unknown Linux distribution - generating generic package.")
