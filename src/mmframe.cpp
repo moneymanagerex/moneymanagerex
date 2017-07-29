@@ -649,6 +649,9 @@ void mmGUIFrame::menuEnableItems(bool enable)
     toolBar_->EnableTool(MENU_ORGCATEGS, enable);
     toolBar_->EnableTool(MENU_CURRENCY, enable);
     toolBar_->EnableTool(wxID_VIEW_LIST, enable);
+    toolBar_->EnableTool(MENU_TRANSACTIONREPORT, enable);
+    toolBar_->EnableTool(wxID_PREFERENCES, enable);
+    toolBar_->EnableTool(wxID_NEW, enable);
     toolBar_->EnableTool(wxID_PRINT, enable);
 }
 //----------------------------------------------------------------------------
@@ -2536,13 +2539,13 @@ void mmGUIFrame::OnReportBug(wxCommandEvent& /*event*/)
     std::vector<std::pair<wxString, wxString>> fixes = {
         { "\n\n", "<br>" }, { "\n", " " }, { "  ", " " },
         { "^Version", "\n<hr><small><b>Version</b>" },
-        { "Database version supported:", "\u2b25 db" },
-        { "Git commit:", "\u2b25 git" },
+        { "Database version supported:", L"\u2b25 db" },
+        { "Git commit:", L"\u2b25 git" },
         { "Git branch: ", "" },
-        { "MMEX is using the following support products: \u2b25", "<b>Libs</b>:" },
+        { L"MMEX is using the following support products: \u2b25", "<b>Libs</b>:" },
         { "<br>Build on", "<br><b>Build</b>:" },
         { " with:", "" },
-        { "Running on: \u2b25", "<b>OS</b>:" },
+        { L"Running on: \u2b25", "<b>OS</b>:" },
         { "(.)$", "\\1</small>" }
     };
     wxRegEx re;
