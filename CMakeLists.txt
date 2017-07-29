@@ -381,6 +381,7 @@ SET(CPACK_PACKAGE_VERSION_PATCH "${MoneyManagerEx_VERSION_PATCH}")
 SET(CPACK_PACKAGE_CONTACT "MoneyManagerEx Developers <developers@moneymanagerex.org>")
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple to use financial management software")
 SET(CPACK_PACKAGE_DESCRIPTION "Money Manager Ex (MMEX) is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. MMEX includes all the basic features that 90% of users would want to see in a personal finance application. The design goals are to concentrate on simplicity and user friendliness - something one can use everyday.")
+SET(CPACK_RPM_PACKAGE_LICENSE "GPL-2+")
 
 # Linux
 # Set package run time dependencies
@@ -394,17 +395,15 @@ IF(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     # Fedora
     ELSEIF(EXISTS "/etc/redhat-release" OR LINUX_DISTRO MATCHES "Fedora")
         SET(CPACK_GENERATOR "RPM")
-        SET(CPACK_RPM_PACKAGE_LICENSE "GPL-2+")
 		SET(CPACK_RPM_PACKAGE_REQUIRES "wxGTK3 webkitgtk3")
 
     # openSUSE
     ELSEIF(EXISTS "/etc/redhat-release" OR LINUX_DISTRO MATCHES "openSUSE")
         SET(CPACK_GENERATOR "RPM")
-        SET(CPACK_RPM_PACKAGE_LICENSE "GPL-2+")
 		SET(CPACK_RPM_PACKAGE_REQUIRES "wxWidgets-3_0-devel")
 
-    ELSE()
-        #TODO: tar.gz
+    ELSEIF(NOT LINUX_DISTRO STREQUAL "Arch Linux")
+        MESSAGE(WARNING "Unknown Linux distribution - generating generic package.")
     ENDIF()
 ENDIF()
 
@@ -435,4 +434,25 @@ IF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     SET(CPACK_NSIS_DELETE_ICONS_EXTRA "Delete '$SMPROGRAMS\\\\$START_MENU\\\\Money Manager EX.lnk'")
 ENDIF()
 
-INCLUDE(CPack)
+IF(NOT LINUX_DISTRO STREQUAL "Arch Linux")
+    INCLUDE(CPack)
+ELSE()
+    # Use dedicated tool to build Arch Linux package
+    IF (TARGET_ARCH STREQUAL "x64")
+        SET(ARCHLINUX_ARCH "x86_64")
+    ELSE()
+        SET(ARCHLINUX_ARCH "i686")
+    ENDIF()
+    CONFIGURE_FILE(util/PKGBUILD.in PKGBUILD @ONLY)
+    SET(CMAKE_INSTALL_PREFIX /usr)
+
+    # allow use reserved for cpack package target
+    CMAKE_POLICY(PUSH)
+    IF(POLICY CMP0037)
+        CMAKE_POLICY(SET CMP0037 OLD)
+    ENDIF()
+    ADD_CUSTOM_TARGET(package
+        COMMAND sh -c "if [ `id -u` -eq 0 ]; then chown nobody -R . ${EXECUTABLE_OUTPUT_PATH} ${LIBRARY_OUTPUT_PATH} ${PROJECT_SOURCE_DIR}/po && su nobody -c makepkg; else makepkg; fi"
+        VERBATIM)
+    CMAKE_POLICY(POP)
+ENDIF()
