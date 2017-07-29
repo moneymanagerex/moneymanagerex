@@ -15,15 +15,16 @@ env:
     - OS=ubuntu DIST=zesty
     - OS=fedora DIST=25
     - OS=opensuse DIST=42.2
+    - OS=archlinux
 
 matrix:
   include: # add non-linux targets
     - os: osx
-      env:
+      env: OS=macos
       compiler: gcc
 
 install:
-  - if [ $TRAVIS_OS_NAME = linux ]; then docker build -f dockers/Dockerfile.$OS.$DIST dockers -t mmex_build_env; fi
+  - if [ $TRAVIS_OS_NAME = linux ]; then docker build -f dockers/Dockerfile.$OS${DIST:+.$DIST} dockers -t mmex_build_env; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew update; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install wxmac; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install gettext && brew link --force gettext; fi
@@ -42,8 +43,7 @@ notifications: # set notification options
 
 before_deploy:
   # Renames the artifact according to their facility
-  - case $TRAVIS_OS_NAME in linux) prefix="$OS-$DIST-";; osx) prefix="macos-";; esac
-  - shopt -s nullglob extglob; for p in !($prefix*).{deb,rpm,dmg}; do mv -v {,$prefix}$p; done
+  - shopt -s nullglob extglob; for p in !($OS${DIST:+-$DIST}-*).{deb,rpm,dmg}; do mv -v {,$OS${DIST:+-$DIST}-}$p; done
 
 # Set encrypted variable 'api_key' in Travis repo settings to deploy packages
 # for tagged commits to GitHub Releases.

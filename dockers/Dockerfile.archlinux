@@ -1,0 +1,4 @@
+FROM base/archlinux:latest
+MAINTAINER developers@moneymanagerex.org
+RUN pacman -Syuq --noprogressbar --needed --noconfirm git cmake make gcc gettext webkit2gtk wxgtk2 \
+    && pacman -Qdtq | xargs -r pacman -Rns && pacman -Sc --noconfirm
