@@ -17,12 +17,12 @@ MSGMERGE_ARGS="--quiet \
                --backup=none"
 POT=MoneyManagerEx.pot
 
-echo "Extracting strings into ./po/$POT..."
-find ./src -name \*.cpp -o -name \*.h | xgettext -f - $XGETTEXT_ARGS -o ./po/$POT
+echo "Extracting strings into ../po/$POT..."
+find ../src -name \*.cpp -o -name \*.h | xgettext -f - $XGETTEXT_ARGS -o ../po/$POT
 
 echo "Merging into *.po..."
-for p in ./po/*.po ; do
+for p in ../po/*.po ; do
     echo "Merging $p ..."
-    msgmerge $MSGMERGE_ARGS $p ./po/$POT
+    msgmerge $MSGMERGE_ARGS $p ../po/$POT
 done
 echo "Finished"
