@@ -1,1 +1,0 @@
-AC_CONFIG_MACRO_DIR([m4])
