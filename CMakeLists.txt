@@ -164,18 +164,14 @@ IF(APPLE)
     SET(MACOSX_APP_ICON_FILE "${PROJECT_SOURCE_DIR}/resources/${MACOSX_APP_ICON_NAME}")
     # Real setting of icons
     SET(MACOSX_BUNDLE_ICON_FILE "${MACOSX_APP_ICON_NAME}")
-
     SET(MMEX_DOC_DIR ${MMEX_EXE}.app/Contents/SharedSupport/doc)
     SET(MMEX_RES_DIR ${MMEX_EXE}.app/Contents/Resources)
-    SET(MMEX_LOCALE_DIR ${MMEX_EXE}.app/Contents/SharedSupport/locale/en)
 ELSEIF(WIN32)
     SET(MMEX_DOC_DIR .)
     SET(MMEX_RES_DIR res)
-    SET(MMEX_LOCALE_DIR locale/en)
 ELSE()
     SET(MMEX_DOC_DIR share/doc/mmex)
     SET(MMEX_RES_DIR share/mmex/res)
-    SET(MMEX_LOCALE_DIR share/mmex/locale/en)
 ENDIF()
 
 

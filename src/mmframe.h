@@ -181,6 +181,7 @@ private:
 
     bool m_hide_share_accounts;
     void OnHideShareAccounts(wxCommandEvent &event);
+    void OnChangeGUILanguage(wxCommandEvent &event);
 
     void OnViewToolbar(wxCommandEvent &event);
     void OnViewStatusbar(wxCommandEvent &event);
@@ -298,6 +299,8 @@ private:
         MENU_SHOW_APPSTART,
         MENU_EXPORT_HTML,
         MENU_CURRENCY,
+        MENU_LANG,
+        MENU_LANG_MAX = MENU_LANG + wxLANGUAGE_USER_DEFINED,
 
         MENU_IMPORT_MMNETCSV,
         MENU_IMPORT_QIF,

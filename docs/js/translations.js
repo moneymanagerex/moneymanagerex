@@ -1,25 +1,25 @@
 ﻿var localization = {
-    "french": [{
+    "fr": [{
         "Money Manager Ex User Manual":"Manuel utilisateur de Money Manager Ex"
     }],
-    "hungarian": [{
+    "hu": [{
         "Money Manager Ex User Manual":"Money Manager Ex felhasználói kézikönyv"
     }],
-    "italian": [{
+    "it": [{
         "Money Manager Ex User Manual":"Manuale Utente di Money Manager Ex"
     }],
-    "polish": [{
+    "pl": [{
         "Money Manager Ex User Manual":"Instrukcja użytkowania Money Manager"    
     }],
-    "spanish": [{
+    "sp": [{
         "Money Manager Ex User Manual":"Manual de usuario de Money Manager Ex"    
     }],
-    "german": [{
+    "de": [{
         "Money Manager Ex User Manual":"Money Manager Ex-Benutzerhandbuch"
         , "Contents": "Inhalt"
         , "Introduction": "Einführung" 
     }],
-    "russian": [{
+    "ru": [{
         "Money Manager Ex User Manual": "Руководство пользователя Money Manager Ex"
         , "Contents": "Содержание"
         , "Introduction": "Введение"

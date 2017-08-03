@@ -35,7 +35,6 @@ mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow *parent, const wxString& mes
     const wxString& caption, const wxArrayString& choices)
 {
     wxSingleChoiceDialog::Create(parent, message, caption, choices);
-    fix_translation();
 }
 mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& message,
     const wxString& caption, const Model_Account::Data_Set& accounts)
@@ -43,14 +42,6 @@ mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& mes
     wxArrayString choices;
     for (const auto & item : accounts) choices.Add(item.ACCOUNTNAME);
     wxSingleChoiceDialog::Create(parent, message, caption, choices);
-    fix_translation();
-}
-void mmSingleChoiceDialog::fix_translation()
-{
-    wxButton* ok = (wxButton*)FindWindow(wxID_OK);
-    if (ok) ok->SetLabel(_("&OK "));
-    wxButton* ca = (wxButton*)FindWindow(wxID_CANCEL);
-    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
 }
 
 //mmMultiChoiceDialog
@@ -63,16 +54,7 @@ mmMultiChoiceDialog::mmMultiChoiceDialog(wxWindow* parent, const wxString& messa
     wxArrayString choices;
     for (const auto & item : accounts) choices.Add(item.ACCOUNTNAME);
     wxMultiChoiceDialog::Create(parent, message, caption, choices);
-    fix_translation();
 }
-void mmMultiChoiceDialog::fix_translation()
-{
-    wxButton* ok = (wxButton*)FindWindow(wxID_OK);
-    if (ok) ok->SetLabel(_("&OK "));
-    wxButton* ca = (wxButton*)FindWindow(wxID_CANCEL);
-    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
-}
-
 
 //  mmDialogComboBoxAutocomplete
 mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete()
@@ -114,94 +96,6 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     GetSizer()->SetSizeHints(this);
     Centre();
     return true;
-}
-
-const wxString mmDialogs::selectLanguageDlg(wxWindow *parent, const wxString &langPath, bool verbose)
-{
-    wxArrayString lang_files;
-    wxFileName fn(langPath, "");
-    fn.AppendDir("en");
-    size_t cnt = wxDir::GetAllFiles(fn.GetPath(), &lang_files, "*.mo");
-
-    if (!cnt)
-    {
-        if (verbose)
-        {
-            wxString s = wxString::Format("Can't find language files (.mo) at \"%s\"", fn.GetPath());
-
-            wxMessageDialog dlg(parent, s, "Error", wxOK | wxICON_ERROR);
-            dlg.ShowModal();
-        }
-        return "english";
-    }
-
-    int os_lang_id = wxLocale::GetSystemLanguage();
-    const wxString os_language_name = wxLocale::GetLanguageName(os_lang_id);
-    int sel = 0;
-
-    for (size_t i = 0; i < cnt; ++i)
-    {
-        wxFileName fname(lang_files[i]);
-        lang_files[i] = fname.GetName().Capitalize();
-        //wxLogDebug("%s | %s | %s", lang_files[i], fname.GetFullName(), os_language_name);
-        if (lang_files[i] == os_language_name)
-            sel = i;
-    }
-    lang_files.Sort(CaseInsensitiveCmp);
-
-    const wxString lang = wxGetSingleChoice("Please choose language", "Languages", lang_files, sel, parent);
-    return lang.Lower();
-}
-
-/*
-locale.AddCatalog(lang) calls wxLogWarning and returns true for corrupted .mo file,
-so I should use locale.IsLoaded(lang) also.
-*/
-const wxString mmDialogs::mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool forced_show_dlg, bool save_setting)
-{
-    const wxString langPath = mmex::getPathShared(mmex::LANG_DIR);
-    wxLocale &locale = app->getLocale();
-
-    if (wxDir::Exists(langPath))
-    {
-        locale.AddCatalogLookupPathPrefix(langPath);
-    }
-    else
-    {
-        if (forced_show_dlg)
-        {
-            wxMessageDialog dlg(window
-                , wxString::Format(_("Directory of language files does not exist:\n%s"), langPath)
-                , _("Error"), wxOK | wxICON_ERROR);
-            dlg.ShowModal();
-        }
-
-        return wxEmptyString;
-    }
-
-    if (!forced_show_dlg)
-    {
-//TODO: Determine how this functions using class
-        //wxString lang = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
-
-        wxString lang = Option::instance().Language(true);
-        if (!lang.empty() && locale.AddCatalog(lang) && locale.IsLoaded(lang))
-        {
-            Option::instance().Language(lang);
-            return lang;
-        }
-    }
-
-    wxString lang = selectLanguageDlg(window, langPath, forced_show_dlg);
-    if (save_setting && !lang.empty())
-    {
-        bool ok = locale.AddCatalog(lang) && locale.IsLoaded(lang);
-        if (!ok)  lang.clear(); // bad .mo file
-        Option::instance().Language(lang);
-       // Model_Setting::instance().Set(LANGUAGE_PARAMETER, lang);
-    }
-
-    return lang;
 }
 
 /* Error Messages --------------------------------------------------------*/

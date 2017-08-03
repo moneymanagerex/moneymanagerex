@@ -45,7 +45,8 @@ static const wxCmdLineEntryDesc g_cmdLineDesc [] =
 
 //----------------------------------------------------------------------------
 
-mmGUIApp::mmGUIApp(): m_frame(0), m_setting_db(0), m_optParam("")
+mmGUIApp::mmGUIApp(): m_frame(0), m_setting_db(0), m_optParam(wxEmptyString)
+    ,m_lang(wxLANGUAGE_UNKNOWN)
 {
 #if wxUSE_ON_FATAL_EXCEPTION
     // catch fatal exceptions
@@ -53,9 +54,31 @@ mmGUIApp::mmGUIApp(): m_frame(0), m_setting_db(0), m_optParam("")
 #endif
 }
 
-wxLocale& mmGUIApp::getLocale()
+wxLanguage mmGUIApp::getGUILanguage() const
 {
-    return this->m_locale;
+    return this->m_lang;
+}
+
+bool mmGUIApp::setGUILanguage(wxLanguage lang)
+{
+    if (lang == wxLANGUAGE_UNKNOWN) lang=wxLANGUAGE_DEFAULT;
+    if (lang == this->m_lang) return false;
+    wxTranslations *trans = new wxTranslations;
+    trans->SetLanguage(lang);
+    trans->AddStdCatalog();
+    if (!trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US))
+    {
+        mmErrorDialogs::MessageWarning(NULL
+            ,wxString::Format(_("Can not load translation for selected language %s"),
+                (lang>wxLANGUAGE_UNKNOWN)?wxLocale::GetLanguageCanonicalName(lang).Prepend("(").Append(")"):"")
+            ,_("Language change"));
+        wxDELETE(trans);
+        return false;
+    }
+    wxTranslations::Set(trans);
+    this->m_lang=lang;
+    Option::instance().Language(lang);
+    return true;
 }
 
 void mmGUIApp::OnInitCmdLine(wxCmdLineParser& parser)
@@ -141,8 +164,12 @@ bool OnInitImpl(mmGUIApp* app)
 {
     app->SetAppName(mmex::GetAppName());
 
-    /* Setting Locale causes unexpected problems, so default to English Locale */
-    app->getLocale().Init(wxLANGUAGE_ENGLISH);
+    /* initialize GUI with best language */
+    wxTranslations *trans = new wxTranslations;
+    trans->SetLanguage(wxLANGUAGE_DEFAULT);
+    trans->AddStdCatalog();
+    trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US);
+    wxTranslations::Set(trans);
 
     Model_Report::prepareTempFolder();
     Model_Report::WindowsUpdateRegistry();
@@ -163,11 +190,11 @@ bool OnInitImpl(mmGUIApp* app)
 
     Model_Usage::instance(app->m_setting_db);
 
-    /* Force setting MMEX language parameter if it has not been set. */
-    mmDialogs::mmSelectLanguage(app, 0, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
-
     /* Load general MMEX Custom Settings */
     Option::instance().LoadOptions(false);
+
+    /* set preffered GUI language */
+    app->setGUILanguage(Option::instance().Language());
 
     /* Was App Maximized? */
     bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", true);
