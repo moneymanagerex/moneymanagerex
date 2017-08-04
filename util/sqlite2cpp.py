@@ -10,7 +10,8 @@ import datetime
 import sqlite3
 import codecs
 
-db_version_upgrade_file_name = 'database_version_8.sql'
+currency_unicode_patch_filename = 'currency_table_unicode_fix_patch.mmdbg'
+currency_table_patch_filename = 'currency_table_upgrade_patch.mmdbg'
 
 # http://stackoverflow.com/questions/196345/how-to-check-if-a-string-in-python-is-in-ascii
 def is_ascii(s):
@@ -55,7 +56,7 @@ def get_table_list(cursor):
     return [(row[0], row[1]) for row in cursor.fetchall()]
 
 
-def _table_info(cursor, name):
+def get_table_info(cursor, name):
     cursor.execute('PRAGMA table_info(%s)' % name)
     # cid, name, type, notnull, dflt_value, pk
     return [{'cid': field[0],
@@ -125,12 +126,13 @@ class DB_Table:
 
         return sf1
 
-    def generate_database_version_file(self):
+    def generate_unicode_currency_upgrade_patch(self):
         """Write database_version data to file
            Only extract unicode data"""
         if self._table.upper() == 'CURRENCYFORMATS_V1':
-            rfp = codecs.open(db_version_upgrade_file_name, 'w', 'utf-8')
-            sf1 = ''
+            print 'Generate patch file: %s' % currency_unicode_patch_filename
+            rfp = codecs.open(currency_unicode_patch_filename, 'w', 'utf-8')
+            sf1 = '-- MMEX Debug SQL - Update --'
             rfp.write(self.generate_currency_table_data(sf1, True))
             rfp.close()
 
@@ -138,13 +140,15 @@ class DB_Table:
         """Write currency_table_upgrade_patch file
            Extract all currency data"""
         if self._table.upper() == 'CURRENCYFORMATS_V1':
-            rfp = codecs.open('currency_table_upgrade_patch.mmdbg', 'w', 'utf-8')
+            print 'Generate patch file: %s' % currency_table_patch_filename
+            rfp = codecs.open(currency_table_patch_filename, 'w', 'utf-8')
             sf1 = '-- MMEX Debug SQL - Update --'
             rfp.write(self.generate_currency_table_data(sf1, False))
             rfp.close()
 
     def generate_class(self, header, sql):
         """ Write the data to the appropriate .h file"""
+        print 'Generate Table: %s' % self._table
         rfp = codecs.open('DB_Table_' + self._table.title() + '.h', 'w', 'utf-8-sig')
         rfp.write(header + self.to_string(sql))
         rfp.close()
@@ -969,13 +973,12 @@ if __name__ == '__main__':
 
     all_fields = set()
     for table, sql in get_table_list(cur):
-        fields = _table_info(cur, table)
+        fields = get_table_info(cur, table)
         index = get_index_list(cur, table)
         data = get_data_initializer_list(cur, table)
         table = DB_Table(table, fields, index, data)
-        print 'Generate Table: %s' % table._table
         table.generate_class(header, sql)
-        table.generate_database_version_file()
+        table.generate_unicode_currency_upgrade_patch()
         table.generate_currency_upgrade_patch()
         for field in fields:
             all_fields.add(field['name'])
@@ -983,3 +986,4 @@ if __name__ == '__main__':
     generate_base_class(header, all_fields)
 
     conn.close()
+    print 'End of Run'
