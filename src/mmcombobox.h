@@ -39,7 +39,7 @@ public:
         , const wxSize &size = wxDefaultSize
         , long style = 0
         , const wxValidator &validator = wxDefaultValidator
-        , const wxString &name = wxTextCtrlNameStr)
+        , const wxString &name = "mmComboBox")
         : wxTextCtrl(parent, id, value, pos, size, style, validator, name)
         , m_payee(payee)
     {
