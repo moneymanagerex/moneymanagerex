@@ -138,6 +138,13 @@ void Model_Usage::pageview(const wxWindow* window, int plt /* = 0 msec*/)
         current = current->GetParent();
     }
 
+    if (documentPath.Right(6) == "dialog")
+    {
+        documentPath += "/" + documentTitle;
+    }
+
+    wxLogDebug("Title: " + documentTitle);
+    wxLogDebug("Path : " + documentPath);
     return pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
 }
 
