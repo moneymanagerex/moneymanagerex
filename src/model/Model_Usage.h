@@ -72,6 +72,7 @@ public:
 
 public:
     void pageview(const wxString& documentPath, const wxString& documentTitle, int plt = 0 /*msec*/);
+    void timing(const wxString& documentPath, const wxString& documentTitle, int plt = 0 /*msec*/);
     void pageview(const wxWindow* window, int plt = 0 /*msec*/);
 };
 

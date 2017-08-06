@@ -138,7 +138,53 @@ void Model_Usage::pageview(const wxWindow* window, int plt /* = 0 msec*/)
         current = current->GetParent();
     }
 
+    timing(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
     return pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
+}
+
+void Model_Usage::timing(const wxString& documentPath, const wxString& documentTitle, int plt /* = 0 msec*/)
+{
+    if (!Option::instance().SendUsageStatistics())
+    {
+        return;
+    }
+
+    static std::string GA_URL_ENDPOINT = "http://www.google-analytics.com/collect?";
+
+    std::string url = GA_URL_ENDPOINT;
+
+    std::vector<std::pair<wxString, wxString>> parameters = {
+        { "v", "1" },
+        { "t", "timing" },
+        { "tid", "UA-51521761-6" },
+        { "cid", uuid() },
+        { "dp", documentPath },
+        { "dt", documentTitle },
+        //        {"geoid", },
+        { "ul", Option::instance().Language() },
+        { "sr", wxString::Format("%ix%i", wxGetDisplaySize().GetX(), wxGetDisplaySize().GetY()) },
+        { "vp", "" },
+        { "sd", wxString::Format("%i-bits", wxDisplayDepth()) },
+        // application
+        { "an", "MoneyManagerEx" },
+        { "av", mmex::version::string }, // application version
+                                         // custom dimensions
+        { "cd1", wxPlatformInfo::Get().GetPortIdShortName() },
+        { "plt", wxString::Format("%d", plt)}
+    };
+
+    for (const auto& kv : parameters)
+    {
+        if (kv.second.empty()) continue;
+        url += wxString::Format("%s=%s&", kv.first, kv.second).ToStdString();
+    }
+
+    url.back() = ' '; // override the last &
+
+	// Spawn thread to send statistics
+	SendStatsThread* thread = new SendStatsThread(url);
+	if (thread)
+		thread->Run();
 }
 
 void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle, int plt /* = 0 msec*/)
