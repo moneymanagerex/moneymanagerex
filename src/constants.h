@@ -79,7 +79,7 @@ namespace version
     const int Major = 1;
     const int Minor = 4;
     const int Patch = 0;
-    const int Alpha = 1;
+    const int Alpha = 2;
     const int Beta  = -1;
     const int RC    = -1;
     extern const wxString string;
