@@ -138,7 +138,8 @@ void Model_Usage::pageview(const wxWindow* window, int plt /* = 0 msec*/)
         current = current->GetParent();
     }
 
-    timing(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
+    if (plt)
+        timing(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
     return pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
 }
 
