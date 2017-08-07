@@ -509,7 +509,7 @@ bool mmHomePagePanel::Create(wxWindow *parent
 
     createHTML();
 
-    Model_Usage::instance().pageview(this);
+    Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
     return TRUE;
 }
