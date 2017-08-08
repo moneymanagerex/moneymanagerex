@@ -84,3 +84,6 @@ mmex.VC.db
 
 /build/Debug
 /build/Release
+
+/resources/mmex.rc
+/src/constants.h
