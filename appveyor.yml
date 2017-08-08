@@ -7,7 +7,7 @@
 # Note:    MMEX version changes are made in the file: ./CMakeLists.txt
 #----------------------------------------------------------------------------
 
-version: mmex-1.4.0-ALPHA-2.{build}
+version: '{build}'
 
 pull_requests:
   do_not_increment_build_number: true
@@ -31,6 +31,9 @@ environment:
   # But for appveyor we need to install cygwin that contains
   # embeded GETTEXT library
   path: C:\cygwin64\bin;C:\cygwin\bin;%path%
+
+init:
+- if %PLATFORM:~-2%==64 (set "BITS=64") else (set "BITS=32")
 
 build_script:
 # wxWidgets
@@ -60,15 +63,7 @@ cache:
 
 after_build:
 # Renaming
-- if /I "%PLATFORM%" == "Win32" ren "mmex-1.4.0-ALPHA-2.exe" "win32-mmex-1.4.0-ALPHA-2.exe"
-- if /I "%PLATFORM%" == "Win32" ren "mmex-1.4.0-ALPHA-2.zip" "win32-mmex-1.4.0-ALPHA-2-portable.zip"
-- if /I "%PLATFORM%" == "x64" ren "mmex-1.4.0-ALPHA-2.exe" "win64-mmex-1.4.0-ALPHA-2.exe"
-- if /I "%PLATFORM%" == "x64" ren "mmex-1.4.0-ALPHA-2.zip" "win64-mmex-1.4.0-ALPHA-2-portable.zip"
-# Publishing artifacts
-#- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "win32-mmex-1.4.0-ALPHA-2.exe" -FileName "win32-mmex-1.4.0-ALPHA-2%appveyor_build_number%.exe"
-#- if /I "%PLATFORM%" == "Win32" appveyor PushArtifact "win32-mmex-1.4.0-ALPHA-2-portable.zip" -FileName "win32-mmex-1.4.0-ALPHA-2-portable%appveyor_build_number%.zip"
-#- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "win64-mmex-1.4.0-ALPHA-2.exe" -FileName "win64-mmex-1.4.0-ALPHA-2%appveyor_build_number%.exe"
-#- if /I "%PLATFORM%" == "x64" appveyor PushArtifact "win64-mmex-1.4.0-ALPHA-2-portable.zip" -FileName "win64-mmex-1.4.0-ALPHA-2-portable%appveyor_build_number%.zip"
+- for %%f in (mmex-*.exe mmex-*.zip) do if /i %%~xf==.exe (ren "%%f" "win%BITS%-%%f") else (ren "%%f" "win%BITS%-%%~nf-portable.zip")
 
 artifacts:
   - path: 'build\release\*.exe'

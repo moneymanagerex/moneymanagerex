@@ -24,7 +24,6 @@ SET(PROJECT_TARGET_BIN "mmex")
 # By setting the application version here, CMake will transfer the variable
 # values to the corresponding variable names in the following files:
 # ./src/constant.h
-# ./appveyor.yml
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 SET(MoneyManagerEx_VERSION_MAJOR 1)
@@ -93,11 +92,6 @@ ENDIF()
 ADD_DEFINITIONS(-DCMAKE_VERSION="${CMAKE_VERSION}" -DMAKE_VERSION="$(MAKE_VERSION)")
 
 # Passing CMake variables (specificaly current version numbers) to files
-# AppVeyor
-CONFIGURE_FILE(
-        appveyor.yml.in
-        "${PROJECT_SOURCE_DIR}/appveyor.yml"
-)
 # Header file
 CONFIGURE_FILE(
         src/constants.h.in
