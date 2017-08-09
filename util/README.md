@@ -43,7 +43,19 @@
   .pot files in `../po` directory with new or changed strings to be
   translated.
 
-+ To compress mmex executable file use [mpress] or [upx].
++ **[Doxyfile]**
+
+  Configuration file for [doxygen] tool used to generate the documentation
+  for future developers from the source code.
+
+  To generate HTML documentation into new html subdirectory simply run
+  `doxygen` in this directory then open `./html/index.html` with any DHTML,
+  Javascript and CSS enabled web browser.
+
+  To see all avaiable doxygen options and their descriptions update Doxyfile
+  with `doxygen -u`.
+
++ To compress mmex Windows executable file use [mpress] or [upx].
 
 [sqlite2cpp.py]: sqlite2cpp.py
 [sqliteupgrade2cpp.py]: sqliteupgrade2cpp.py
@@ -51,5 +63,7 @@
 [build_db_upgrade.bat]: build_db_upgrade.bat
 [checkEOL.bat]: checkEOL.bat
 [update-po-files.sh]: update-po-files.sh
+[Doxyfile]: Doxyfile
+[doxygen]: http://www.stack.nl/~dimitri/doxygen/index.html
 [mpress]: http://www.matcode.com/mpress.htm
 [upx]: http://upx.sourceforge.net/

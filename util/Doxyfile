@@ -1,0 +1,16 @@
+# Doxyfile 1.8.9.1
+
+PROJECT_NAME           = "Money Manager EX"
+PROJECT_NUMBER         = 1.4.0
+TAB_SIZE               = 8
+EXTRACT_ALL            = YES
+INPUT                  = ../src
+FILE_PATTERNS          = *.h *.cpp
+RECURSIVE              = YES
+CASE_SENSE_NAMES       = NO
+GENERATE_HTML          = YES
+GENERATE_TREEVIEW      = YES
+SEARCHENGINE           = NO
+HTML_TIMESTAMP         = YES
+HAVE_DOT               = NO
+GENERATE_LATEX         = NO
