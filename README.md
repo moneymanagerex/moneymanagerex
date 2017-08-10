@@ -50,7 +50,7 @@ MMEX is mainly written in C++11 and built on:
   http://moneymanagerex.org
   "MMEX website"
 [AppVeyor]:
-  https://ci.appveyor.com/project/guanlisheng/moneymanagerex
+  https://ci.appveyor.com/project/moneymanagerex/moneymanagerex
   "AppVeyor CI"
 [Travis]:
   http://travis-ci.org/moneymanagerex/moneymanagerex
@@ -95,7 +95,7 @@ MMEX is mainly written in C++11 and built on:
 [general report]: https://github.com/moneymanagerex/general-reports
 [stargazers]: https://github.com/moneymanagerex/moneymanagerex/stargazers
 <!-- icons -->
-[a]: https://img.shields.io/appveyor/ci/guanlisheng/moneymanagerex/master.svg?label=windows&logoWidth=0.01
+[a]: https://img.shields.io/appveyor/ci/moneymanagerex/moneymanagerex/master.svg?label=windows&logoWidth=0.01
 [t]: https://img.shields.io/travis/moneymanagerex/moneymanagerex/master.svg?label=linux/mac
 [o]: http://www.openhub.net/p/moneymanagerex/widgets/project_thin_badge.gif
 [i]: https://img.shields.io/github/issues-raw/moneymanagerex/moneymanagerex.svg?label=gh%20issues
