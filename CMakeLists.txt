@@ -319,9 +319,9 @@ ENDIF()
 
 # Help Files
 INSTALL(FILES
-        "${CMAKE_SOURCE_DIR}/doc/contrib.txt"
-        "${CMAKE_SOURCE_DIR}/doc/license.txt"
-        "${CMAKE_SOURCE_DIR}/doc/version.txt"
+        "${CMAKE_SOURCE_DIR}/contrib.txt"
+        "${CMAKE_SOURCE_DIR}/license.txt"
+        "${CMAKE_SOURCE_DIR}/version.txt"
         "${CMAKE_SOURCE_DIR}/README.TXT"
         DESTINATION "${INSTALL_DOC_DIR}")
 INSTALL(DIRECTORY
@@ -418,7 +418,7 @@ IF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     SET(CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/resources\\\\mmex.ico")
     SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/resources\\\\mmex.ico")
     SET(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\\\${PROJECT_TARGET_BIN}.exe")
-    SET(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/doc\\\\license.txt)
+    SET(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}\\\\license.txt)
     # Probably bug
     # https://public.kitware.com/Bug/bug_relationship_graph.php?bug_id=7880&graph=relation
     SET(CPACK_RESOURCE_FILE_README ${CMAKE_SOURCE_DIR}/README.TXT)
