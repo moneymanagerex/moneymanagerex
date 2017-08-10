@@ -178,6 +178,8 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     else
         browser_->SetPage(error, "");
 
+    if (rb_)
+        this->SetLabel(rb_->title());
     Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
     return TRUE;

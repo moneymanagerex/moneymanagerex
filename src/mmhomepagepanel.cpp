@@ -514,7 +514,7 @@ bool mmHomePagePanel::Create(wxWindow *parent
     return TRUE;
 }
 
-void  mmHomePagePanel::createHTML()
+void mmHomePagePanel::createHTML()
 {
     getTemplate();
     getData();
