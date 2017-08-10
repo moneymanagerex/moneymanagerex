@@ -371,7 +371,7 @@ Version History of Money Manager Ex
 - Ability to select language during setup, native HTML help will be installed if one presents
 - OnSaveAs refactoring & bugfix
 - x64 build on Windows
-- Ability to build rmp package on Linux
+- Ability to build rpm package on Linux
 - Installation directory changed to %ProgramFiles% (C:\Program Files\MoneyManagerEx)
 - User's database and settings files default location is %APPDATA%\MoneyManagerEx
 - Check whether user has write access on database's file

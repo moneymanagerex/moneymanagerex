@@ -29,11 +29,11 @@ install:
   - if [ $TRAVIS_OS_NAME = osx ]; then brew update; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install wxmac; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install gettext && brew link --force gettext; fi
-  - mkdir -p build/$BUILD_TYPE && cd build/$BUILD_TYPE
+  - mkdir build && cd build
 
 script:
-  - if [ $TRAVIS_OS_NAME = linux ]; then docker run -it --rm -w /moneymanagerex/build/$BUILD_TYPE -e MAKEFLAGS -v $TRAVIS_BUILD_DIR:/moneymanagerex mmex_build_env bash -c "cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE ../.. && make package"; fi
-  - if [ $TRAVIS_OS_NAME = osx ]; then cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE ../.. && make package; fi
+  - if [ $TRAVIS_OS_NAME = linux ]; then docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS -v $TRAVIS_BUILD_DIR:/moneymanagerex mmex_build_env bash -c "cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE .. && make package"; fi
+  - if [ $TRAVIS_OS_NAME = osx ]; then cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE .. && make package; fi
 
 notifications: # set notification options
   email:
@@ -54,7 +54,7 @@ deploy:
   - provider: releases
     api_key: $GitHub_auth_token
     file_glob: true
-    file: $TRAVIS_BUILD_DIR/build/$BUILD_TYPE/*.{deb,rpm,dmg,pkg.tar.xz}
+    file: $TRAVIS_BUILD_DIR/build/*.{deb,rpm,dmg,pkg.tar.xz}
     skip_cleanup: true
     on: # Set deploy conditions
         # Deploy only when tag is specified
@@ -66,7 +66,7 @@ deploy:
     username: ${TRAVIS_REPO_SLUG%/*}
     token: $PACKAGECLOUD_TOKEN
     dist: $OS/$DIST
-    package_glob: $TRAVIS_BUILD_DIR/build/$BUILD_TYPE/*.{deb,rpm}
+    package_glob: $TRAVIS_BUILD_DIR/build/*.{deb,rpm}
     skip_cleanup: true
     force: true
     on: # Set deploy conditions
