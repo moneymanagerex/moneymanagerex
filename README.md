@@ -4,8 +4,8 @@ Money Manager Ex
 
 [![stable]][GitHubLatest] [![unstable]][GitHubDL] [![a]][AppVeyor]
 [![t]][Travis] [![s]][SourceForgeDL] [![gha]][GitHubDL] [![ghl]][GitHubLatest]
-[![p]][packagecloud] [![w]][website] [![i]][GitHubIssues] [![c]][contributors]
-[![l]](LICENSE) [![o]][OpenHub]
+[![p]][packagecloud] [![w]][website] [![i]][GitHubIssues] [![cd]][CodeDocs]
+[![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
 
 Money Manager Ex is a free, open-source, cross-platform, easy-to-use personal
 finance software. It primarily helps organize one's finances and keeps track
@@ -76,6 +76,9 @@ MMEX is mainly written in C++11 and built on:
 [packagecloud]:
   https://packagecloud.io/moneymanagerex/
   "packagecloud DEB & RPM repository"
+[CodeDocs]:
+  https://codedocs.xyz/slodki/moneymanagerex/
+  "doxygen generated source code documentation"
 [Slack]: https://moneymanagerex-slackin.herokuapp.com
 [Forum]: http://forum.moneymanagerex.org
 [Wiki]: https://sourceforge.net/p/moneymanagerex/wiki/mmex
@@ -100,6 +103,7 @@ MMEX is mainly written in C++11 and built on:
 [o]: http://www.openhub.net/p/moneymanagerex/widgets/project_thin_badge.gif
 [i]: https://img.shields.io/github/issues-raw/moneymanagerex/moneymanagerex.svg?label=gh%20issues
 [c]: https://img.shields.io/github/contributors/moneymanagerex/moneymanagerex.svg
+[cd]: https://codedocs.xyz/slodki/moneymanagerex.svg
 [l]: https://img.shields.io/badge/license-GPL2-blue.svg
 [s]: https://img.shields.io/sourceforge/dt/moneymanagerex.svg?label=sf%20🡇
 [gha]: https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg?label=gh%20🡇

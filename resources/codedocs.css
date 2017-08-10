@@ -1,0 +1,10 @@
+#projectlogo img {
+  height: 55px;
+  margin: 8px;
+}
+#projectbrief {
+  font-style: italic;
+}
+.sm-dox a {
+  color: inherit;
+}
