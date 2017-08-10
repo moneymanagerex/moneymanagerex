@@ -64,9 +64,9 @@ You can select MMEX version by adding `-b v1.4.0` parameter.
 
 Generate build enviroment for [NMake] tool using [CMake]:
 
-    mkdir c:\projects\mmex\build\release
-    cd c:\projects\mmex\build\release
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..\..
+    mkdir c:\projects\mmex\build
+    cd c:\projects\mmex\build
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..
 
 If you want build the project with for debugging proposes replace cmake flag
 `-DCMAKE_BUILD_TYPE=Release` with `-DCMAKE_BUILD_TYPE=Debug`.
@@ -82,7 +82,7 @@ Replace `x86` with `x64` for 64-bits arch.
 For building installable package, you need to have [NSIS] installed.
 Then you can create it using:
 
-    cd c:\projects\mmex\build\release
+    cd c:\projects\mmex\build
     cpack .
 
 #### Loading MMEX Project into Visual Studio GUI
@@ -90,13 +90,13 @@ Then you can create it using:
 If you are interested in producing *Visual Studio project file*, you can run
 following command:
 
-    cd c:\projects\mmex\build\release
-    cmake -G "Visual Studio 14 2015" -DCMAKE_BUILD_TYPE=Release ..\..
+    cd c:\projects\mmex\build
+    cmake -G "Visual Studio 14 2015" -DCMAKE_BUILD_TYPE=Release ..
 
 or for 64-bits build:
 
-    cd c:\projects\mmex\build\release
-    cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release ..\..
+    cd c:\projects\mmex\build
+    cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release ..
 
 .vcproj file will be generated ready to be load into Visual Studio.
 
@@ -134,10 +134,10 @@ You can select MMEX version by adding `-b v1.4.0` parameter.
 
 #### 3. Compile and Create Package
 
-    mkdir moneymanagerex/build/release
-    cd moneymanagerex/build/release
+    mkdir moneymanagerex/build
+    cd moneymanagerex/build
     export MAKEFLAGS=-j4
-    cmake -DCMAKE_BUILD_TYPE=Release ../..
+    cmake -DCMAKE_BUILD_TYPE=Release ..
     make package
 
 If you want build the project with for debugging proposes replace cmake flag

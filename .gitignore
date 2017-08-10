@@ -15,75 +15,23 @@
 *.a
 *.lib
 
-# Executables
-*.exe
-*.out
-*.app
-
-# I18n
+# Compiled message catalogs
 *.mo
 
-# Makefiles
-makefile
-/po/Makefile
-/setup/win/Makefile
+# default build dir
+/build/
+/bin/
 
-# Python
-*.pyc
-
-# MSVC Compiler and Build files
-*.opensdf
-*.suo
-*.sdf
-.deps
-/build/msw-vc-2013e/Win32
-/build/msw-vc-2013e/x64
-/build/msw-vc-2015/mmex_mmex.vcxproj.user
-/build/msw-vc-2015/x64
-/build/msw-vc-2015/Win32
-/build/msw-vc-2017/x64
-/build/msw-vc-2017/Win32
-/build/msw-vc-2017/.vs
-/mmex_release
+# generated source files
+/resources/mmex.rc
+/src/constants.h
 
 # JetBrains CLion IDE
 .idea
 
-# Extra files used for testing
-/build/msw_tests-vc-2013e/Win32
-/build/msw_tests-vc-2013e/x64
-/build/msw_tests-vc-2013e/test_*.mmb
-/build/msw_tests-vc-2013e/test_*.emb
-/build/msw_tests-vc-2013e/test_*.txt
-/build/msw_tests-vc-2013e/test_*.sql
-*.patch
-*.zip
-
-#autoconf
-aclocal.m4
-/autom4te.cache/
-config.log
-config.status
-shared-ld-sh
-bk-deps
-/build/bakefiles/.bakefile_gen.state
-
-#dist
-*.dmg
-/build/macosx/dmg/
-
-#backups & tmp file
+# backups & tmp files
 *~
 *.bak
 *.swp
-
 *.d
 
-/release
-mmex.VC.db
-
-/build/Debug
-/build/Release
-
-/resources/mmex.rc
-/src/constants.h

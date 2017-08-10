@@ -36,11 +36,10 @@ build_script:
 - if not exist %WXWIN%\lib\%WXLIBFOLDER% (echo "building wxWidgets" & cd %WXWIN%\build\msw & nmake /f "%WXWIN%\build\msw\makefile.vc" TARGET_CPU=%PLATFORM% BUILD=release)
 - if not exist %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip (echo "packing wxWidgets to cache" & 7z a %APPVEYOR_BUILD_FOLDER%\%WXLIBFOLDER%.zip %WXWIN%\lib\%WXLIBFOLDER%\*)
 # MMEX
-- cd %APPVEYOR_BUILD_FOLDER%\build
-- mkdir release
-- cd release
+- cd %APPVEYOR_BUILD_FOLDER%
+- mkdir build & cd build
 - git submodule update --init
-- cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ../../
+- cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..
 - nmake /f Makefile TARGET_CPU=%PLATFORM% BUILD=release
 - cpack .
 
@@ -53,9 +52,9 @@ after_build:
 - for %%f in (mmex-*.exe mmex-*.zip) do if /i %%~xf==.exe (ren "%%f" "win%BITS%-%%f") else (ren "%%f" "win%BITS%-%%~nf-portable.zip")
 
 artifacts:
-  - path: build\release\*.exe
+  - path: build\*.exe
     name: installer
-  - path: build\release\*.zip
+  - path: build\*.zip
     name: portable
 
 deploy:
