@@ -3,7 +3,10 @@ Version History of Money Manager Ex
 (TBA)
 - New: Addition of show/hide chart option in reports
 
-1.4.0-Alpha-1(May 24, 2017)
+1.4.0-Alpha-3 (Aug 11, 2017)
+(TBA)
+
+1.4.0-Alpha-1 (May 24, 2017)
 - Fix: Currency issues #1154 #1155 #1156 #1153
 - Fix: Issue #1120, Set focus
 - Fix: Issue #1099, time for grm

@@ -54,9 +54,9 @@ after_build:
 
 artifacts:
   - path: build\release\*.exe
-    name: StandardApp
+    name: installer
   - path: build\release\*.zip
-    name: PortableApp
+    name: portable
 
 deploy:
   description: 'release created by AppVeyor CI'

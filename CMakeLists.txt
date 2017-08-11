@@ -29,7 +29,7 @@ SET(PROJECT_TARGET_BIN "mmex")
 SET(MoneyManagerEx_VERSION_MAJOR 1)
 SET(MoneyManagerEx_VERSION_MINOR 4)
 SET(MoneyManagerEx_VERSION_PATCH 0)
-SET(MoneyManagerEx_VERSION_ALPHA 2)
+SET(MoneyManagerEx_VERSION_ALPHA 3)
 SET(MoneyManagerEx_VERSION_BETA -1)
 SET(MoneyManagerEx_VERSION_RC -1)
 
