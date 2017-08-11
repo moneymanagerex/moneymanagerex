@@ -79,7 +79,7 @@ MMEX is mainly written in C++11 and built on:
 [CodeDocs]:
   https://codedocs.xyz/slodki/moneymanagerex/
   "doxygen generated source code documentation"
-[Slack]: https://moneymanagerex-slackin.herokuapp.com
+[Slack]: http://slack.moneymanagerex.org/
 [Forum]: http://forum.moneymanagerex.org
 [Wiki]: https://sourceforge.net/p/moneymanagerex/wiki/mmex
 [Facebook]: https://www.facebook.com/MoneyManagerEx
