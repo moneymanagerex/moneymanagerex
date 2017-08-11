@@ -179,24 +179,19 @@ IF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 
     SET(INSTALL_DOC_DIR "${PROJECT_TARGET_BIN}.app/Contents/SharedSupport/doc")
     SET(INSTALL_RES_DIR "${PROJECT_TARGET_BIN}.app/Contents/Resources")
-    SET(INSTALL_PO_DIR "${PROJECT_TARGET_BIN}.app/Contents/SharedSupport/po")
     SET(INSTALL_MO_DIR "${PROJECT_TARGET_BIN}.app/Contents/SharedSupport/po/en")
 ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     SET(INSTALL_DOC_DIR ".")
     SET(INSTALL_RES_DIR "res")
-    SET(INSTALL_PO_DIR "po")
     SET(INSTALL_MO_DIR "po/en")
 ELSE()
     SET(INSTALL_DOC_DIR "share/doc/mmex")
     SET(INSTALL_RES_DIR "share/mmex/res")
-    SET(INSTALL_PO_DIR "share/mmex/po")
     SET(INSTALL_MO_DIR "share/mmex/po/en")
 ENDIF()
 
 
 # --------- Check for required libraries ---------
-FIND_PACKAGE(Gettext REQUIRED)
-
 IF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     #wxScintilla is needed on Windows
     FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv stc webview base scintilla REQUIRED)
