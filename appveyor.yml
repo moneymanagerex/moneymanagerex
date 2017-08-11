@@ -1,17 +1,4 @@
-#----------------------------------------------------------------------------
-# WARNING: The file appveyor.yml is produced by CMake. If you want to make
-#          some changes in this file please use the templated version
-#          appveyor.yml.in and rerun cmake to produce a refreshed
-#          version of appveyor.yml
-#
-# Note:    MMEX version changes are made in the file: ./CMakeLists.txt
-#----------------------------------------------------------------------------
-
 version: '{build}'
-
-pull_requests:
-  do_not_increment_build_number: true
-
 image: Visual Studio 2015
 configuration: Release
 platform:
@@ -66,19 +53,17 @@ after_build:
 - for %%f in (mmex-*.exe mmex-*.zip) do if /i %%~xf==.exe (ren "%%f" "win%BITS%-%%f") else (ren "%%f" "win%BITS%-%%~nf-portable.zip")
 
 artifacts:
-  - path: 'build\release\*.exe'
+  - path: build\release\*.exe
     name: StandardApp
-  - path: 'build\release\*.zip'
+  - path: build\release\*.zip
     name: PortableApp
 
 deploy:
-  description: 'Release description'
+  description: 'release created by AppVeyor CI'
   provider: GitHub
-  auth_token:
-      secure: ww6MhE3nBwP80/ujJIJnYl6cBLOvpL8NtMWjpSUj5L6H8kbSZ31PAM58+lQqkKEq
-  draft: false                              
-  prerelease: false                               
-  on:                                                   
-    #branch: master                 # release from master branch only
-    appveyor_repo_tag: true        # deploy on tag push only
-
+  auth_token: '%GITHUB_AUTH_TOKEN%'
+  draft: true
+  prerelease: true
+  on:
+    appveyor_repo_tag: true # deploy on tag push only
+    configuration: Release

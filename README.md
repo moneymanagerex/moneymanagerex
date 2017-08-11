@@ -50,7 +50,7 @@ MMEX is mainly written in C++11 and built on:
   http://moneymanagerex.org
   "MMEX website"
 [AppVeyor]:
-  https://ci.appveyor.com/project/guanlisheng/moneymanagerex
+  https://ci.appveyor.com/project/moneymanagerex/moneymanagerex
   "AppVeyor CI"
 [Travis]:
   http://travis-ci.org/moneymanagerex/moneymanagerex
