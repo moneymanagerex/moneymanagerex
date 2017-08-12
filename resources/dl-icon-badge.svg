@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny"
+viewBox="0 0 4 5"><g style="stroke:none;shape-rendering:crispEdges">
+<path d="M1 1h2v2h1l-2 2l-2 -2h1z" fill="#010101" fill-opacity=".3"/>
+<path d="M1 0.5h2v2h1l-2 2l-2 -2h1z" fill="white"/>
+</g></svg>
