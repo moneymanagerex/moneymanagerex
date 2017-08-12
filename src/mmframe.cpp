@@ -2242,7 +2242,7 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
 {
     if (Model_Account::instance().all().empty())
     {
-        wxMessageBox(_("No account available to import"), _("Universal CSV Import"), wxOK | wxICON_WARNING);
+        wxMessageBox(_("No account available to import to"), _("Universal CSV Import"), wxOK | wxICON_WARNING);
         return;
     }
 
@@ -2261,7 +2261,7 @@ void mmGUIFrame::OnImportXML(wxCommandEvent& /*event*/)
 {
     if (Model_Account::instance().all().empty())
     {
-        wxMessageBox(_("No account available to import"), _("Universal CSV Import"), wxOK | wxICON_WARNING);
+        wxMessageBox(_("No account available to import to"), _("Universal CSV Import"), wxOK | wxICON_WARNING);
         return;
     }
 

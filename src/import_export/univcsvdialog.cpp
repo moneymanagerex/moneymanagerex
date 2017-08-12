@@ -85,7 +85,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 {
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
     CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");
-    CSVFieldName_[UNIV_CSV_AMOUNT] = wxTRANSLATE("Amount(+/-)");
+    CSVFieldName_[UNIV_CSV_AMOUNT] = wxTRANSLATE(L"Amount \u00b1");
     CSVFieldName_[UNIV_CSV_CATEGORY] = wxTRANSLATE("Category");
     CSVFieldName_[UNIV_CSV_SUBCATEGORY] = wxTRANSLATE("SubCategory");
     CSVFieldName_[UNIV_CSV_TRANSNUM] = wxTRANSLATE("Number");
@@ -320,7 +320,7 @@ void mmUnivCSVDialog::CreateControls()
     if (IsImporter())
     {
         // Text title.
-        wxStaticText* itemStaticTextAmount = new wxStaticText(itemPanel7, wxID_ANY, _("Amount(+/-): "));
+        wxStaticText* itemStaticTextAmount = new wxStaticText(itemPanel7, wxID_ANY, _(L"Amount \u00b1: "));
         flex_sizer->Add(itemStaticTextAmount, g_flagsH);
         itemStaticTextAmount->SetFont(staticBoxFontSetting);
 
@@ -716,143 +716,181 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder)
 void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 {
     // date and amount are required
-    if (!isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT) 
-        && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) || !isIndexPresent(UNIV_CSV_DEPOSIT))))
+    bool datefield = isIndexPresent(UNIV_CSV_DATE);
+    bool amountfields = isIndexPresent(UNIV_CSV_AMOUNT)
+                    || (isIndexPresent(UNIV_CSV_WITHDRAWAL)
+                     && isIndexPresent(UNIV_CSV_DEPOSIT));
+    if (!datefield || !amountfields) 
     {
         mmErrorDialogs::MessageWarning(this
-            , _("Incorrect fields specified for import! Requires at least Date and Amount.")
+            , _("Incorrect fields specified for import!")
+                + (!datefield ? "\n" + _("Date field is required.") : "")
+                + (!amountfields ? "\n" + _("Amount field or both Withdrawal and Deposit fields are required.") : "")
             , _("Import"));
          return;
     }
 
     bool canceledbyuser = false;
+    long countImported = 0;    
     const wxString acctName = m_choice_account_->GetStringSelection();
     Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
-    if (from_account)
+    if (!from_account)
     {
-        fromAccountID_ = from_account->ACCOUNTID;
-        const wxString fileName = m_text_ctrl_->GetValue();
- 
-        // Open and parse file
-        ITransactionsFile *pParser = CreateFileHandler();
-        pParser->Load(fileName, m_list_ctrl_->GetColumnCount());
-
-        wxFileName logFile = mmex::GetLogDir(true);
-        logFile.SetFullName(fileName);
-        logFile.SetExt("txt");
-
-        wxFileOutputStream outputLog(logFile.GetFullPath());
-        wxTextOutputStream log(outputLog);
-
-        /* date, payeename, amount(+/-), Number, status, category : subcategory, notes */
-        long countImported = 0;
-
-        wxProgressDialog progressDlg(_("Universal CSV Import")
-            , _("Transactions imported from file: "), 100
-            , nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
-        Model_Checking::instance().Savepoint();
-
-        int firstRow = 0;
-        int lastRow = pParser->GetLinesCount();
-
-        firstRow += m_spinIgnoreFirstRows_->GetValue();
-        lastRow -= m_spinIgnoreLastRows_->GetValue();
-
-        for (int lineNum = firstRow; lineNum < lastRow; lineNum++)
-        {
-            const wxString& progressMsg = wxString::Format(_("Transactions imported from file\nto account %s : %ld")
-                , "'" + acctName + "'", countImported);
-            if (!progressDlg.Pulse(progressMsg))
-            {
-                canceledbyuser = true;
-                break; // abort processing
-            }
-
-            unsigned int numTokens = pParser->GetItemsCount(lineNum);
-            if (numTokens ==0)
-                continue;
-
-            tran_holder holder;
-            for (size_t i = 0; i < csvFieldOrder_.size() && i < numTokens; ++i)
-                parseToken(csvFieldOrder_[i], pParser->GetItem(lineNum, i).Trim(false /*from left*/), holder);
-
-            if (!validateData(holder)) 
-            {
-                // TODO: print a more specific error.
-                log << wxString::Format(_("Line: %ld"), lineNum+1)
-                    << _("One of the following fields: Date, Amount, Type is missing, skipping") << endl;
-                *log_field_ << wxString::Format(_("Line: %ld"), lineNum+1)
-                    << _("One of the following fields: Date, Amount, Type is missing, skipping") << "\n";
-
-                continue;
-            }
-
-            Model_Checking::Data *pTransaction = Model_Checking::instance().create();
-            pTransaction->TRANSDATE = holder.Date.FormatISODate();
-            pTransaction->ACCOUNTID = fromAccountID_;
-            pTransaction->TOACCOUNTID = holder.ToAccountID;
-            pTransaction->PAYEEID = holder.PayeeID;
-            pTransaction->TRANSCODE = holder.Type;
-            pTransaction->TRANSAMOUNT = holder.Amount;
-            pTransaction->TOTRANSAMOUNT = holder.ToAmount;
-            pTransaction->CATEGID = holder.CategoryID;
-            pTransaction->SUBCATEGID = holder.SubCategoryID;
-            pTransaction->STATUS = holder.Status;
-            pTransaction->TRANSACTIONNUMBER = holder.Number;
-            pTransaction->NOTES = holder.Notes;
-
-            Model_Checking::instance().save(pTransaction);
-
-            countImported++;
-            log << wxString::Format(_("Line: %ld imported OK."), lineNum+1) << endl;
-            *log_field_ << wxString::Format(_("Line: %ld imported OK."), lineNum+1) << "\n";
-        }
-
-        delete pParser;
-        pParser = nullptr;
-
-        progressDlg.Update(100);
-
-        wxString msg = wxString::Format(_("Total Lines : %ld"), lastRow-firstRow+1);
-        msg << "\n";
-        msg << wxString::Format(_("Total Imported : %ld"), countImported);
-        msg << "\n\n";
-        msg << wxString::Format(_("Log file written to : %s"), logFile.GetFullPath());
-        msg << "\n\n";
-
-        wxString confirmMsg = msg + _("Please confirm saving...");
-        if (!canceledbyuser && wxMessageBox(confirmMsg
-            , _("Import"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxCANCEL)
-            canceledbyuser = true;
-
-        if (countImported > 0)
-            msg << _("Imported transactions have been flagged so you can review them.");
-
-        // Since all database transactions are only in memory,
-        if (!canceledbyuser)
-        {
-            // we need to save them to the database.
-            Model_Checking::instance().ReleaseSavepoint();
-            mmWebApp::MMEX_WebApp_UpdateAccount();
-            mmWebApp::MMEX_WebApp_UpdatePayee();
-            mmWebApp::MMEX_WebApp_UpdateCategory();
-            importSuccessful_ = true;
-            msg << wxString::Format(_("Transactions saved to database in account: %s"), acctName);
-        }
-        else
-        {
-            // and discard the database changes.
-            Model_Checking::instance().Rollback();
-            msg << _("Imported transactions discarded by user!");
-        }
-
-        *log_field_ << msg;
-
-        outputLog.Close();
+        Close();
+        return;
     }
 
-    if (!canceledbyuser) Close();
+    fromAccountID_ = from_account->ACCOUNTID;
+    const wxString fileName = m_text_ctrl_->GetValue();
+
+    // Open and parse file
+    ITransactionsFile *pParser = CreateFileHandler();
+    pParser->Load(fileName, m_list_ctrl_->GetColumnCount());
+
+    wxFileName logFile = mmex::GetLogDir(true);
+    logFile.SetFullName(fileName);
+    logFile.SetExt("txt");
+
+    wxFileOutputStream outputLog(logFile.GetFullPath());
+    wxTextOutputStream log(outputLog);
+
+    /* date, payeename, amount(+/-), Number, status, category : subcategory, notes */
+    const long totalLines = pParser->GetLinesCount();
+    long firstRow = m_spinIgnoreFirstRows_->GetValue();
+    long lastRow = totalLines - m_spinIgnoreLastRows_->GetValue();
+    const long linesToImport = lastRow-firstRow;
+    long countEmptyLines = 0;
+
+    Model_Checking::instance().Savepoint();
+
+    wxProgressDialog progressDlg(_("Universal CSV Import")
+        , wxEmptyString, linesToImport
+        , nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT
+                 | wxPD_ELAPSED_TIME | wxPD_REMAINING_TIME
+        );
+
+    for (long lineNum = firstRow; lineNum < lastRow; lineNum++)
+    {
+        const wxString& progressMsg = wxString::Format(_("Transactions imported to account %s : %ld")
+            , "'" + acctName + "'", countImported);
+        if (!progressDlg.Update(lineNum-firstRow,progressMsg))
+        {
+            canceledbyuser = true;
+            break; // abort processing
+        }
+
+        unsigned int numTokens = pParser->GetItemsCount(lineNum);
+        if (numTokens ==0)
+        {
+            wxString msg = wxString::Format(_("Line %ld: Empty"), lineNum+1);
+            log << msg << endl;
+            *log_field_ << msg << "\n";
+            countEmptyLines++;
+            continue;
+        }
+
+        tran_holder holder;
+        for (size_t i = 0; i < csvFieldOrder_.size() && i < numTokens; ++i)
+            parseToken(csvFieldOrder_[i], pParser->GetItem(lineNum, i).Trim(false /*from left*/), holder);
+
+        if (!validateData(holder)) 
+        {
+            wxString msg = wxString::Format(_("Line %ld: Error:"), lineNum+1);
+            if (!holder.Date.IsValid())
+                msg << " " << _("Invalid Date.");
+            if (!holder.Amount) msg << " " << _("Invalid Amount.");
+            if (holder.Type.Trim().IsEmpty())
+                msg << " " << _("Type (withdrawal/deposit) unknown.");
+
+            log << msg << endl;
+            *log_field_ << msg << "\n";
+
+            continue;
+        }
+
+        Model_Checking::Data *pTransaction = Model_Checking::instance().create();
+        pTransaction->TRANSDATE = holder.Date.FormatISODate();
+        pTransaction->ACCOUNTID = fromAccountID_;
+        pTransaction->TOACCOUNTID = holder.ToAccountID;
+        pTransaction->PAYEEID = holder.PayeeID;
+        pTransaction->TRANSCODE = holder.Type;
+        pTransaction->TRANSAMOUNT = holder.Amount;
+        pTransaction->TOTRANSAMOUNT = holder.ToAmount;
+        pTransaction->CATEGID = holder.CategoryID;
+        pTransaction->SUBCATEGID = holder.SubCategoryID;
+        pTransaction->STATUS = holder.Status;
+        pTransaction->TRANSACTIONNUMBER = holder.Number;
+        pTransaction->NOTES = holder.Notes;
+
+        Model_Checking::instance().save(pTransaction);
+
+        countImported++;
+        wxString msg = wxString::Format(_("Line %ld: OK, imported."), lineNum+1);
+        log << msg << endl;
+        *log_field_ << msg << "\n";
+    }
+
+    delete pParser;
+    pParser = nullptr;
+
+    progressDlg.Update(linesToImport);
+
+    wxString msg = wxString::Format(_("Total Lines : %ld"), totalLines);
+    msg << "\n";
+    msg << wxString::Format(_("Lines Selected to Import: %ld"), linesToImport);
+    msg << "\n\n";
+    msg << wxString::Format(_("Empty Lines : %ld"), countEmptyLines);
+    msg << "\n";
+    msg << wxString::Format(_("Imported : %ld"), countImported);
+    msg << "\n";
+    msg << wxString::Format(_("Errored : %ld")
+        , linesToImport-countEmptyLines-countImported);
+    msg << "\n\n";
+    msg << wxString::Format(_("Log file written to : %s"), logFile.GetFullPath());
+
+    if (!canceledbyuser && wxMessageBox(
+        msg + (countImported > 0 ? "\n\n" + _("Please confirm saving...") : "")
+        , _("Import")
+        , wxOK | (countImported > 0 ? wxCANCEL : 0)
+            | (countImported ==0 ? wxICON_ERROR :
+                countImported < linesToImport-countEmptyLines
+                    ? wxICON_EXCLAMATION
+                    : wxICON_INFORMATION
+                )
+        ) == wxCANCEL)
+            canceledbyuser = true;
+
+    msg << "\n\n";
+
+    // Since all database transactions are only in memory,
+    if (!canceledbyuser && countImported > 0)
+    {
+        // we need to save them to the database.
+        Model_Checking::instance().ReleaseSavepoint();
+        mmWebApp::MMEX_WebApp_UpdateAccount();
+        mmWebApp::MMEX_WebApp_UpdatePayee();
+        mmWebApp::MMEX_WebApp_UpdateCategory();
+        importSuccessful_ = true;
+        // TODO: user cannot see following messages because dialog
+        // will be closed (?)
+        // msg << _("Imported transactions have been flagged so you can review them.") << "\n";
+        // msg << wxString::Format(_("Transactions saved to database in account: %s"), acctName);
+    }
+    else
+    {
+        // and discard the database changes.
+        Model_Checking::instance().Rollback();
+        if (canceledbyuser) msg << _("Imported transactions discarded by user!");
+        else msg << _("No imported transactions!");
+        msg << "\n\n";           
+    }
+
+    *log_field_ << "\n" << msg;
+
+    outputLog.Close();
+
+    if (!canceledbyuser && countImported > 0) Close();
 }
 
 void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
