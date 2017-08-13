@@ -720,33 +720,30 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
     bool amountfields = isIndexPresent(UNIV_CSV_AMOUNT)
                     || (isIndexPresent(UNIV_CSV_WITHDRAWAL)
                      && isIndexPresent(UNIV_CSV_DEPOSIT));
-    if (!datefield || !amountfields) 
-    {
-        mmErrorDialogs::MessageWarning(this
+    if (!datefield || !amountfields)
+        return mmErrorDialogs::ToolTip4Object(csvListBox_
             , _("Incorrect fields specified for import!")
                 + (!datefield ? "\n" + _("Date field is required.") : "")
                 + (!amountfields ? "\n" + _("Amount field or both Withdrawal and Deposit fields are required.") : "")
-            , _("Import"));
-         return;
-    }
+            , _("Import"), wxICON_WARNING);
 
     bool canceledbyuser = false;
     long countImported = 0;    
     const wxString acctName = m_choice_account_->GetStringSelection();
     Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
-    if (!from_account)
-    {
-        Close();
-        return;
-    }
-
+    if (!from_account) { Close(); return; }
     fromAccountID_ = from_account->ACCOUNTID;
+
     const wxString fileName = m_text_ctrl_->GetValue();
+    if (fileName.IsEmpty())
+        return mmErrorDialogs::InvalidFile(m_text_ctrl_);
 
     // Open and parse file
     ITransactionsFile *pParser = CreateFileHandler();
-    pParser->Load(fileName, m_list_ctrl_->GetColumnCount());
+    if (!pParser) return; // is this possible?
+    if (!pParser->Load(fileName, m_list_ctrl_->GetColumnCount()))
+        return wxDELETE(pParser);
 
     wxFileName logFile = mmex::GetLogDir(true);
     logFile.SetFullName(fileName);
@@ -831,9 +828,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
         *log_field_ << msg << "\n";
     }
 
-    delete pParser;
-    pParser = nullptr;
-
+    wxDELETE(pParser);
     progressDlg.Update(linesToImport);
 
     wxString msg = wxString::Format(_("Total Lines : %ld"), totalLines);
