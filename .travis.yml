@@ -8,7 +8,7 @@ compiler: gcc
 
 env:
   global:
-    - MAKEFLAGS="-j4"
+    - MAKEFLAGS=-j4
     - BUILD_TYPE=Release
   matrix:
     # targets for linux
@@ -25,14 +25,15 @@ matrix:
       compiler: gcc
 
 install:
-  - if [ $TRAVIS_OS_NAME = linux ]; then docker build -f dockers/Dockerfile.$OS${DIST:+.$DIST} dockers -t mmex_build_env; fi
+  - DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}
+  - if [ $TRAVIS_OS_NAME = linux ]; then docker pull ${DOCKER}; docker build dockers/$OS${DIST:+.$DIST} --cache-from ${DOCKER} -t ${DOCKER}; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew update; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install wxmac; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install gettext && brew link --force gettext; fi
   - mkdir build && cd build
 
 script:
-  - if [ $TRAVIS_OS_NAME = linux ]; then docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS -v $TRAVIS_BUILD_DIR:/moneymanagerex mmex_build_env bash -c "cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE .. && make package"; fi
+  - if [ $TRAVIS_OS_NAME = linux ]; then docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} bash -c "cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE .. && make package"; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE .. && make package; fi
 
 notifications: # set notification options

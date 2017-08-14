@@ -167,7 +167,8 @@ This allows install or update required dependencies to the latest versions.
 
 List of required packages for each distribution is avaiable in *dockerfiles*
 in [dockers] subdirectory. Look for file
-`Dockerfile.<distribution>.<codename>` - ie. [Dockerfile.ubuntu.zesty].
+`dockers/<distribution>.<codename>/Dockerfile` - i.e. [Dockerfile for Ubuntu
+zesty].
 
 Sometimes additional steps / workarounds are needed for specific distribution
 or version - they are inclued in above mentioned dockerfiles. Please run them
@@ -208,7 +209,7 @@ Same as for [macOS](#3-compile-and-create-package)
 [Linux]: #linux
 [macOS]: #macos-with-homebrew
 [dockers]: dockers/
-[Dockerfile.ubuntu.zesty]: dockers/Dockerfile.ubuntu.zesty
+[Dockerfile for Ubuntu zesty]: dockers/ubuntu.zesty/Dockerfile
 [Microsoft Visual Studio]:
     https://www.visualstudio.com/downloads/
 [Git for Windows]:
