@@ -60,7 +60,7 @@ Simply clone [official Git repository] with submodules using:
 
 You can select MMEX version by adding `-b v1.4.0` parameter.
 
-#### 4. Compile
+#### 4. Option 1: Compile with NMake
 
 Generate build enviroment for [NMake] tool using [CMake]:
 
@@ -77,15 +77,12 @@ Then start build process with:
 
 Replace `x86` with `x64` for 64-bits arch.
 
-#### 5. Build Package
+#### 4. Option 2: Load MMEX Project into Visual Studio GUI with Native CMake support **(ONLY VISUAL STUDIO 2017)**
 
-For building installable package, you need to have [NSIS] installed.
-Then you can create it using:
+Simply open Visual Studio, then File > Open > Folder > Choose c:\projects\mmex
+Wait for cache generation, then click on CMake > Build All
 
-    cd c:\projects\mmex\build
-    cpack .
-
-#### Loading MMEX Project into Visual Studio GUI
+#### 4. Option 3: Generate MMEX Project for Visual Studio GUI
 
 If you are interested in producing *Visual Studio project file*, you can run
 following command:
@@ -100,7 +97,15 @@ or for 64-bits build:
 
 .vcproj file will be generated ready to be load into Visual Studio.
 
-You can also try native [CMake support in Visual Studio 2017].
+
+
+#### 5. Build Package
+
+For building installable package, you need to have [NSIS] installed.
+Then you can create it using:
+
+    cd c:\projects\mmex\build
+    cpack .
 
 
 macOS with Homebrew
@@ -232,7 +237,7 @@ Same as for [macOS](#3-compile-and-create-package)
     https://wxwidgets.org/
 [NSIS]:
     http://nsis.sourceforge.net/Download
-[CMake support in Visual Studio 2017]:
-    https://blogs.msdn.microsoft.com/vcblog/2016/10/05/cmake-support-in-visual-studio/
 [Homebrew]:
     https://brew.sh
+[GnuWin Make]:
+    http://gnuwin32.sourceforge.net/downlinks/make.php

@@ -89,7 +89,7 @@ ENDIF()
 IF(GIT_BRANCH)
   ADD_DEFINITIONS(-DGIT_BRANCH="${GIT_BRANCH}")
 ENDIF()
-ADD_DEFINITIONS(-DCMAKE_VERSION="${CMAKE_VERSION}" -DMAKE_VERSION="$(MAKE_VERSION)")
+ADD_DEFINITIONS(-DCMAKE_VERSION="${CMAKE_VERSION}" -DMAKE_VERSION="${MAKE_VERSION}")
 
 # Passing CMake variables (specificaly current version numbers) to files
 # Header file
@@ -200,7 +200,11 @@ ELSE()
 ENDIF()
 
 INCLUDE(${wxWidgets_USE_FILE})
-SET(wxWidgets_USE_DEBUG false)
+IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    SET(wxWidgets_USE_DEBUG true)
+ELSE()
+    SET(wxWidgets_USE_DEBUG false)
+ENDIF()
 
 MESSAGE(STATUS "Base Directory =  ${CMAKE_SOURCE_DIR}")
 
@@ -274,21 +278,42 @@ IF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/resources/Info.plist")
 ENDIF()
 
+# Fixes for Visual Studio 2017 immediate build\execution\debug directly opening CMake folder without project
+# Initialize IS_VS_2017CMAKE to 0, it will be override by Visual Studio cmake with -D command line parameter
+SET(IS_VS_2017CMAKE 0 CACHE BOOL "Executed from VS2017 IDE")
+IF(IS_VS_2017CMAKE EQUAL 1)
+    SET(CONFIGURATION_NAME "${TARGET_ARCH}-${CMAKE_BUILD_TYPE}")
+    SET(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin/${CONFIGURATION_NAME}/bin")
+    SET(LIBRARY_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin/${CONFIGURATION_NAME}/bin/lib")
+    SET(INSTALL_BIN_DIR "${CMAKE_SOURCE_DIR}/bin/${CONFIGURATION_NAME}/bin")
+    SET(INSTALL_DOC_DIR "${CMAKE_SOURCE_DIR}/bin/${CONFIGURATION_NAME}")
+    SET(INSTALL_RES_DIR "${CMAKE_SOURCE_DIR}/bin/${CONFIGURATION_NAME}/res")
+    SET(INSTALL_MO_DIR "${CMAKE_SOURCE_DIR}/bin/${CONFIGURATION_NAME}/po/en")
+    ADD_CUSTOM_COMMAND(
+        TARGET ${PROJECT_TARGET_BIN} POST_BUILD
+        COMMAND cmake -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_install.cmake"
+        WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+        COMMENT "Copying files to output directory" VERBATIM
+    )
+ENDIF()
 # Finally set ups for multiplatform INSTALL
 # Binary
 IF(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     INSTALL(PROGRAMS
-            "${CMAKE_SOURCE_DIR}/bin/${PROJECT_TARGET_BIN}"
+            "${EXECUTABLE_OUTPUT_PATH}/${PROJECT_TARGET_BIN}"
             DESTINATION "${INSTALL_BIN_DIR}")
 ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     INSTALL(TARGETS
             "${PROJECT_TARGET_BIN}"
             BUNDLE DESTINATION .)
 ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    INSTALL(PROGRAMS
-            "${CMAKE_SOURCE_DIR}/bin/${PROJECT_TARGET_BIN}.exe"
-            DESTINATION "${INSTALL_BIN_DIR}")
-
+    # For VS2017 with cmake mmex.exe it's already in the right place
+    IF(NOT IS_VS_2017CMAKE EQUAL 1)
+        INSTALL(PROGRAMS
+                "${EXECUTABLE_OUTPUT_PATH}/${PROJECT_TARGET_BIN}.exe"
+                DESTINATION "${INSTALL_BIN_DIR}")
+    ENDIF()
+    
     # Besides normal installable version, for windows the portable version needs additionally files
     FILE(WRITE "${CMAKE_CURRENT_BINARY_DIR}/mmexini.db3" "")
     INSTALL(FILES
@@ -296,8 +321,18 @@ ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
             DESTINATION "${INSTALL_DOC_DIR}")
 
     IF(MSVC)
-        FILE(TO_CMAKE_PATH "$ENV{VCINSTALLDIR}redist" REDISTDIR)
-        SET(REDISTDIR "${REDISTDIR}/${TARGET_ARCH}/Microsoft.VC140.CRT")
+        FILE(TO_CMAKE_PATH "$ENV{VCINSTALLDIR}redist" BASEREDISTDIR)
+        SET(REDISTDIR "${BASEREDISTDIR}/${TARGET_ARCH}/Microsoft.VC140.CRT")
+        IF(NOT EXISTS REDISTDIR)
+            # Visual Studio 2017 with VC 14.1 has changed redist path
+            SET(REDISTDIR "${BASEREDISTDIR}/MSVC")
+            FILE(GLOB REDISTSUBDIRS RELATIVE ${REDISTDIR} ${REDISTDIR}/*)
+            FOREACH(REDISTSUBDIR ${REDISTSUBDIRS})
+                IF(IS_DIRECTORY ${REDISTDIR}/${REDISTSUBDIR})
+                    SET(REDISTDIR "${REDISTDIR}/${REDISTSUBDIR}/${TARGET_ARCH}/Microsoft.VC141.CRT")
+                ENDIF()
+            ENDFOREACH()
+        ENDIF()
         SET(VCRUNTIME
             "${REDISTDIR}/msvcp140.dll"
             "${REDISTDIR}/vcruntime140.dll"
@@ -309,7 +344,6 @@ ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         ENDFOREACH(f)
         INSTALL(FILES ${VCRUNTIME} DESTINATION "${INSTALL_BIN_DIR}" OPTIONAL)
     ENDIF(MSVC)
-
 ENDIF()
 
 # Help Files
