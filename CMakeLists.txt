@@ -286,7 +286,7 @@ ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
             BUNDLE DESTINATION .)
 ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     INSTALL(PROGRAMS
-            "${CMAKE_SOURCE_DIR}/bin/${PROJECT_TARGET_BIN}.exe"
+            "${CMAKE_SOURCE_DIR}/bin/Release/${PROJECT_TARGET_BIN}.exe"
             DESTINATION "${INSTALL_BIN_DIR}")
 
     # Besides normal installable version, for windows the portable version needs additionally files
