@@ -15,19 +15,15 @@
 *.a
 *.lib
 
-# Compiled message catalogs
-*.mo
-
 # default build dir
 /build/
-/bin/
-
-# generated source files
-/resources/mmex.rc
-/src/constants.h
 
 # JetBrains CLion IDE
 .idea
+
+# Visual Studio tools
+/.vs
+/.vscode
 
 # backups & tmp files
 *~

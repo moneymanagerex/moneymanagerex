@@ -43,12 +43,13 @@ Microsoft Windows with Visual Studio
 
 #### 2. Build wxWidgets
 
-To download [wxWidgets] 3.1.0 from Git repository and compile it run:
+To download [wxWidgets] 3.1.0 from Git repository and compile it with [NMake]
+run:
 
     mkdir c:\projects
     git clone --depth 1 -b v3.1.0 https://github.com/wxWidgets/wxWidgets.git %WXWIN%
     cd %WXWIN%\build\msw
-    nmake /f makefile.vc TARGET_CPU=x86 BUILD=Release
+    nmake /s /f makefile.vc TARGET_CPU=x86 BUILD=Release SHARED=0 COMPILER_VERSION=140 OFFICIAL_BUILD=1 CPPFLAGS=/arch:SSE CFLAGS=/arch:SSE
 
 Replace `x86` with `x64` for 64-bits arch.
 
@@ -60,45 +61,27 @@ Simply clone [official Git repository] with submodules using:
 
 You can select MMEX version by adding `-b v1.4.0` parameter.
 
-#### 4. Compile
+#### 4. Compile and Build Package
 
-Generate build enviroment for [NMake] tool using [CMake]:
+Generate build enviroment using [CMake] and build binary package (you need
+to have [NSIS] installed):
 
     mkdir c:\projects\mmex\build
     cd c:\projects\mmex\build
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+    set "CL=/MP"
+    cmake -T v140 -G "Visual Studio 14 2015" ..
+    cmake --build . --target package --config Release -- -m:4 -p:PreferredToolArchitecture=x64
 
-If you want build the project with for debugging proposes replace cmake flag
-`-DCMAKE_BUILD_TYPE=Release` with `-DCMAKE_BUILD_TYPE=Debug`.
+Replace `Visual Studio 14 2015` with `Visual Studio 14 2015 Win64`
+for 64-bits arch.
 
-Then start build process with:
-
-    nmake /f Makefile TARGET_CPU=x86
-
-Replace `x86` with `x64` for 64-bits arch.
-
-#### 5. Build Package
-
-For building installable package, you need to have [NSIS] installed.
-Then you can create it using:
-
-    cd c:\projects\mmex\build
-    cpack .
+If you want build the project for debugging proposes replace `Release`
+with `Debug`.
 
 #### Loading MMEX Project into Visual Studio GUI
 
-If you are interested in producing *Visual Studio project file*, you can run
-following command:
-
-    cd c:\projects\mmex\build
-    cmake -G "Visual Studio 14 2015" -DCMAKE_BUILD_TYPE=Release ..
-
-or for 64-bits build:
-
-    cd c:\projects\mmex\build
-    cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release ..
-
-.vcproj file will be generated ready to be load into Visual Studio.
+Above steps produce *Visual Studio project file* in `c:\projects\mmex\build`
+directory ready to be load into Visual Studio.
 
 You can also try native [CMake support in Visual Studio 2017].
 

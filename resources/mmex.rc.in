@@ -50,8 +50,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION @MoneyManagerEx_VERSION_MAJOR@,@MoneyManagerEx_VERSION_MINOR@,@MoneyManagerEx_VERSION_PATCH@
- PRODUCTVERSION @MoneyManagerEx_VERSION_MAJOR@,@MoneyManagerEx_VERSION_MINOR@,@MoneyManagerEx_VERSION_PATCH@
+ FILEVERSION @MMEX_VERSION_MAJOR@,@MMEX_VERSION_MINOR@,@MMEX_VERSION_PATCH@
+ PRODUCTVERSION @MMEX_VERSION_MAJOR@,@MMEX_VERSION_MINOR@,@MMEX_VERSION_PATCH@
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -68,12 +68,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "MoneyManagerEX"
             VALUE "FileDescription", "Money Management Software"
-            VALUE "FileVersion", "@MoneyManagerEx_VERSION_MAJOR@, @MoneyManagerEx_VERSION_MINOR@, @MoneyManagerEx_VERSION_PATCH@"
-            VALUE "InternalName", "@PROJECT_TARGET_BIN@"
+            VALUE "FileVersion", "@MMEX_VERSION_MAJOR@, @MMEX_VERSION_MINOR@, @MMEX_VERSION_PATCH@"
+            VALUE "InternalName", "@MMEX_EXE@"
             VALUE "LegalCopyright", "Copyright (C) 2017 Money Manager EX (http://www.moneymanagerex.org/)"
-            VALUE "OriginalFilename", "@PROJECT_TARGET_BIN@.exe"
+            VALUE "OriginalFilename", "@MMEX_EXE@@CMAKE_EXECUTABLE_SUFFIX@"
             VALUE "ProductName", "MoneyManagerEx"
-            VALUE "ProductVersion", "@MoneyManagerEx_VERSION_MAJOR@, @MoneyManagerEx_VERSION_MINOR@, @MoneyManagerEx_VERSION_PATCH@"
+            VALUE "ProductVersion", "@MMEX_VERSION_MAJOR@, @MMEX_VERSION_MINOR@, @MMEX_VERSION_PATCH@"
         END
     END
     BLOCK "VarFileInfo"

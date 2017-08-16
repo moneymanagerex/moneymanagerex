@@ -121,9 +121,6 @@ const wxString mmex::getProgramDescription()
 #ifdef CMAKE_VERSION
         << L" \u2b25 CMake " CMAKE_VERSION << "\n"
 #endif
-#ifdef MAKE_VERSION
-        << L" \u2b25 GNU Make " MAKE_VERSION << "\n"
-#endif
 
         << "\n" << _("Running on:") << "\n"
 #ifdef __LINUX__

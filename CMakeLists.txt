@@ -1,140 +1,124 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.1)
-
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0 FATAL_ERROR)
 SET(InMMEX TRUE)
 
-PROJECT(MoneyManagerEx)
-
-# Name of the resulted binary
-SET(PROJECT_TARGET_BIN "mmex")
+PROJECT(MMEX VERSION 1.4.0)
+OPTION(MMEX_BUILD_TESTS "Whether to build automatic unit tests" OFF)
+# Name of the resulted executable binary
+SET(MMEX_EXE mmex)
 
 # ---------------------------------------------------------------------------
-# Semantic versioning
-# Ref: http://semver.org
-
-# MMEX_VERSION - Format: MAJOR.MINOR.PATCH
-# Update the version definition for the program as follows:
+# MMEX uses semantic versioning Ref: http://semver.org
+#
+# PROJECT VERSION - Format: MAJOR.MINOR.PATCH
+# Update the version definition for the PROJECT as follows:
 # 1. MAJOR version when incompatible API changes are made.
 # 2. MINOR version adding functionality in a backwards-compatible manner.
 # 3. PATCH version makeing backwards-compatible bug fixes.
-
-# Alpha, Beta, RC  = -1 (Stable) won't add any suffix
-# Alpha, Beta, RC  = 0 (Unstable) will add suffix to version without number
-# Alpha, Beta, RC  > 0 (Unstable) will add suffix to version with number
+#
+# Alpha, Beta, RC = -1 (Stable) won't add any suffix
+# Alpha, Beta, RC = 0 (Unstable) will add suffix to version without number
+# Alpha, Beta, RC > 0 (Unstable) will add suffix to version with number
 # ---------------------------------------------------------------------------
 # By setting the application version here, CMake will transfer the variable
 # values to the corresponding variable names in the following files:
-# ./src/constant.h
+# ./src/versions.h
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
-SET(MoneyManagerEx_VERSION_MAJOR 1)
-SET(MoneyManagerEx_VERSION_MINOR 4)
-SET(MoneyManagerEx_VERSION_PATCH 0)
-SET(MoneyManagerEx_VERSION_ALPHA 3)
-SET(MoneyManagerEx_VERSION_BETA -1)
-SET(MoneyManagerEx_VERSION_RC -1)
+SET(MMEX_VERSION_ALPHA 3)
+SET(MMEX_VERSION_BETA -1)
+SET(MMEX_VERSION_RC -1)
 
-SET(MoneyManagerEx_VERSION "${MoneyManagerEx_VERSION_MAJOR}.${MoneyManagerEx_VERSION_MINOR}.${MoneyManagerEx_VERSION_PATCH}")
-
-# Adjusting semantic versioning for ALPHA version release
-IF(${MoneyManagerEx_VERSION_ALPHA} EQUAL 0)
-    SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-ALPHA")
-ELSEIF(${MoneyManagerEx_VERSION_ALPHA} GREATER 0)
-    SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-ALPHA-${MoneyManagerEx_VERSION_ALPHA}")
+# Adjusting semantic versioning for alpha/beta/rc version
+IF(MMEX_VERSION_ALPHA EQUAL 0)
+    SET(MMEX_VERSION_UNSTABLE alpha)
+ELSEIF(MMEX_VERSION_ALPHA GREATER 0)
+    SET(MMEX_VERSION_UNSTABLE alpha${MMEX_VERSION_ALPHA})
+ELSEIF(MMEX_VERSION_BETA EQUAL 0)
+    SET(MMEX_VERSION_UNSTABLE beta)
+ELSEIF(MMEX_VERSION_BETA GREATER 0)
+    SET(MMEX_VERSION_UNSTABLE beta${MMEX_VERSION_BETA})
+ELSEIF(MMEX_VERSION_RC EQUAL 0)
+    SET(MMEX_VERSION_UNSTABLE rc)
+ELSEIF(MMEX_VERSION_RC GREATER 0)
+    SET(MMEX_VERSION_UNSTABLE rc${MMEX_VERSION_RC})
+ENDIF()
+SET(MMEX_VERSION_WITH_UNSTABLE ${MMEX_VERSION})
+IF(MMEX_VERSION_UNSTABLE)
+    SET(MMEX_VERSION_WITH_UNSTABLE "${MMEX_VERSION}~${MMEX_VERSION_UNSTABLE}")
 ENDIF()
 
-# Adjusting semantic versioning for BETA version release
-IF(${MoneyManagerEx_VERSION_BETA} EQUAL 0)
-    SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-BETA")
-ELSEIF(${MoneyManagerEx_VERSION_BETA} GREATER 0)
-    SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-BETA-${MoneyManagerEx_VERSION_BETA}")
-ENDIF()
-
-# Adjusting semantic versioning for RC version release
-IF(${MoneyManagerEx_VERSION_RC} EQUAL 0)
-    SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-RC")
-ELSEIF(${MoneyManagerEx_VERSION_RC} GREATER 0)
-    SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_TARGET_BIN}-${MoneyManagerEx_VERSION}-RC-${MoneyManagerEx_VERSION_RC}")
-ENDIF()
-
+# Find Git commit details to put into versions.h later
 # Get the current working branch
-EXECUTE_PROCESS(
-  COMMAND git symbolic-ref --short -q HEAD
-  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-  OUTPUT_VARIABLE GIT_BRANCH
-  OUTPUT_STRIP_TRAILING_WHITESPACE
-  TIMEOUT 4 ERROR_QUIET
-)
-
+EXECUTE_PROCESS(COMMAND git symbolic-ref --short -q HEAD
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_BRANCH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    TIMEOUT 4 ERROR_QUIET)
 # Get the latest abbreviated commit hash of the working branch
-EXECUTE_PROCESS(
-  COMMAND git log -1 --format=%h
-  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-  OUTPUT_VARIABLE GIT_COMMIT_HASH
-  OUTPUT_STRIP_TRAILING_WHITESPACE
-  TIMEOUT 4 ERROR_QUIET
-)
-
+EXECUTE_PROCESS(COMMAND git log -1 --format=%h
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_COMMIT_HASH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    TIMEOUT 4 ERROR_QUIET)
 # Get the latest commit date of the working branch
-EXECUTE_PROCESS(
-  COMMAND git log -1 --format=%cd --date=short
-  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-  OUTPUT_VARIABLE GIT_COMMIT_DATE
-  OUTPUT_STRIP_TRAILING_WHITESPACE
-  TIMEOUT 4 ERROR_QUIET
-)
+EXECUTE_PROCESS(COMMAND git log -1 --format=%cd --date=short
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_COMMIT_DATE
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    TIMEOUT 4 ERROR_QUIET)
 
-IF(GIT_COMMIT_HASH)
-  ADD_DEFINITIONS(-DGIT_COMMIT_DATE="${GIT_COMMIT_DATE}" -DGIT_COMMIT_HASH="${GIT_COMMIT_HASH}")
-ENDIF()
-IF(GIT_BRANCH)
-  ADD_DEFINITIONS(-DGIT_BRANCH="${GIT_BRANCH}")
-ENDIF()
-ADD_DEFINITIONS(-DCMAKE_VERSION="${CMAKE_VERSION}" -DMAKE_VERSION="$(MAKE_VERSION)")
-
-# Passing CMake variables (specificaly current version numbers) to files
-# Header file
-CONFIGURE_FILE(
-        src/constants.h.in
-        "${PROJECT_SOURCE_DIR}/src/constants.h"
-)
-# VS resource script
-CONFIGURE_FILE(
-        resources/mmex.rc.in
-        "${PROJECT_SOURCE_DIR}/resources/mmex.rc"
-)
-
-OPTION(BuildTests "Whether to build automatic unit tests" OFF)
-
-MESSAGE(STATUS "Build Type = ${CMAKE_BUILD_TYPE}")
-MESSAGE(STATUS "Building Tests = ${BuildTests}")
-MESSAGE(STATUS "OS = ${CMAKE_SYSTEM_NAME}")
-
+# detect target arch
 IF(NOT APPLE)
     IF(CMAKE_SIZEOF_VOID_P EQUAL 4)
-        SET(TARGET_ARCH "x86")
+        SET(TARGET_ARCH x86)
     ELSE(CMAKE_SIZEOF_VOID_P EQUAL 4)
-        SET(TARGET_ARCH "x64")
+        SET(TARGET_ARCH x64)
     ENDIF(CMAKE_SIZEOF_VOID_P EQUAL 4)
-    MESSAGE(STATUS "Build arch = ${TARGET_ARCH}")
 ENDIF(NOT APPLE)
 
-IF(CMAKE_SYSTEM_NAME MATCHES "Linux")
+IF(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    # define shortcut
+    SET(LINUX TRUE)
+
     # Detect Linux distribution (if possible)
-    EXECUTE_PROCESS(COMMAND sh "${PROJECT_SOURCE_DIR}/util/getDistroName.sh"
-            TIMEOUT 4
+    FIND_PROGRAM(LSB_RELEASE lsb_release
+        DOC "tool to read linux distribution name")
+    IF(LSB_RELEASE-NOTFOUND)
+        MESSAGE(SEND_ERROR "lsb_release tool not found.")
+    ELSE()
+        EXECUTE_PROCESS(COMMAND lsb_release -is
             OUTPUT_VARIABLE LINUX_DISTRO
-            #ERROR_QUIET
             OUTPUT_STRIP_TRAILING_WHITESPACE)
-    MESSAGE(STATUS "Distro = ${LINUX_DISTRO}")
+        EXECUTE_PROCESS(COMMAND lsb_release -cs
+            OUTPUT_VARIABLE LINUX_DISTRO_CODENAME
+            OUTPUT_STRIP_TRAILING_WHITESPACE)
+        EXECUTE_PROCESS(COMMAND lsb_release -rs
+            OUTPUT_VARIABLE LINUX_DISTRO_REL
+            OUTPUT_STRIP_TRAILING_WHITESPACE)
+        IF(NOT LINUX_DISTRO OR NOT LINUX_DISTRO_CODENAME OR NOT LINUX_DISTRO_REL)
+            MESSAGE(SEND_ERROR "Could not find a GNU/Linux distribution info")
+        ENDIF()
+        IF(LINUX_DISTRO_CODENAME STREQUAL "n/a")
+            UNSET(LINUX_DISTRO_CODENAME)
+        ENDIF()
+    ENDIF()
 ENDIF()
 
 
 # --------- Set compiler parameters ---------
-SET(CMAKE_CXX_STANDARD 11)
+IF(CMAKE_VERSION VERSION_LESS 3.1)
+    IF(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 5)
+        # for Debian jessie
+        SET(CMAKE_CXX_FLAGS "-std=gnu++11 ${CMAKE_CXX_FLAGS}")
+        MESSAGE(STATUS "Enabling CXX C++11 standard")
+    ENDIF()
+ELSE()
+    SET(CMAKE_CXX_STANDARD 11)
+    SET(CMAKE_CXX_STANDARD_REQUIRED ON)
+ENDIF()
 
 IF(MSVC)
     # using Visual Studio C++
-    MESSAGE(STATUS "Compiler = MSVC")
     # Based on this http://stackoverflow.com/a/8294669
     # added solution to compile problems due to
     # conflict between winsock and winsock2
@@ -142,34 +126,24 @@ IF(MSVC)
     # commit 06accae1273e66ced469672151522e45eee685a9
     ADD_DEFINITIONS(-DWIN32_LEAN_AND_MEAN)
     ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
-
-ELSEIF("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-    # using GCC
-    MESSAGE(STATUS "Compiler = GNU")
-    #TODO:
-
-ELSEIF("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+    ADD_DEFINITIONS(-D_WINSOCK_DEPRECATED_NO_WARNINGS) # mongoose
+ELSEIF(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     # using regular Clang or AppleClang
-    MESSAGE(STATUS "Compiler = Clang")
-
-    IF(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND LINUX_DISTRO STREQUAL "Ubuntu")
+    IF(LINUX_DISTRO STREQUAL "Ubuntu")
         # Due to bug in Ubuntu
         # http://stackoverflow.com/questions/37096062/get-a-basic-c-program-to-compile-using-clang-on-ubuntu-16
-        SET(CMAKE_CXX_FLAGS "-stdlib=libstdc++")
-    ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-        SET(CMAKE_CXX_FLAGS "-stdlib=libc++")
+        SET(CMAKE_CXX_FLAGS "-stdlib=libstdc++ ${CMAKE_CXX_FLAGS}")
+    ELSEIF(APPLE)
+        SET(CMAKE_CXX_FLAGS "-stdlib=libc++ ${CMAKE_CXX_FLAGS}")
     ENDIF()
 ENDIF()
 
 
-# --------- Set various location ---------
-SET(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin")
-SET(LIBRARY_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin/lib")
-SET(INSTALL_BIN_DIR "bin")
 
-IF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+# --------- Set various location ---------
+IF(APPLE)
     # Preparing for configure icons
-    SET(MACOSX_APP_ICON_NAME "mmex.icns")
+    SET(MACOSX_APP_ICON_NAME mmex.icns)
     # Setting path to icon
     SET(MACOSX_APP_ICON_FILE "${CMAKE_SOURCE_DIR}/resources/${MACOSX_APP_ICON_NAME}")
     # Real setting of icons
@@ -177,259 +151,260 @@ IF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     SET(MACOSX_BUNDLE_ICON_FILE "${MACOSX_APP_ICON_NAME}")
     SET(CPACK_BUNDLE_PLIST "${CMAKE_SOURCE_DIR}/resources/Info.plist")
 
-    SET(INSTALL_DOC_DIR "${PROJECT_TARGET_BIN}.app/Contents/SharedSupport/doc")
-    SET(INSTALL_RES_DIR "${PROJECT_TARGET_BIN}.app/Contents/Resources")
-    SET(INSTALL_MO_DIR "${PROJECT_TARGET_BIN}.app/Contents/SharedSupport/po/en")
-ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    SET(INSTALL_DOC_DIR ".")
-    SET(INSTALL_RES_DIR "res")
-    SET(INSTALL_MO_DIR "po/en")
+    SET(MMEX_DOC_DIR ${MMEX_EXE}.app/Contents/SharedSupport/doc)
+    SET(MMEX_RES_DIR ${MMEX_EXE}.app/Contents/Resources)
+    SET(MMEX_LOCALE_DIR ${MMEX_EXE}.app/Contents/SharedSupport/locale/en)
+ELSEIF(WIN32)
+    SET(MMEX_DOC_DIR .)
+    SET(MMEX_RES_DIR res)
+    SET(MMEX_LOCALE_DIR locale/en)
 ELSE()
-    SET(INSTALL_DOC_DIR "share/doc/mmex")
-    SET(INSTALL_RES_DIR "share/mmex/res")
-    SET(INSTALL_MO_DIR "share/mmex/po/en")
+    SET(MMEX_DOC_DIR share/doc/mmex)
+    SET(MMEX_RES_DIR share/mmex/res)
+    SET(MMEX_LOCALE_DIR share/mmex/locale/en)
 ENDIF()
 
 
 # --------- Check for required libraries ---------
-IF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+SET(wxWidgets_USE_REL_AND_DBG ON)
+IF(WIN32)
     #wxScintilla is needed on Windows
     FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv stc webview base scintilla REQUIRED)
 ELSE()
     FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv stc webview base REQUIRED)
 ENDIF()
-
 INCLUDE(${wxWidgets_USE_FILE})
-SET(wxWidgets_USE_DEBUG false)
 
-MESSAGE(STATUS "Base Directory =  ${CMAKE_SOURCE_DIR}")
-
+# --------- Collect sources and targets ---------
+SET(MMEX_BIN_DIR bin)
 INCLUDE_DIRECTORIES(
-        ${wxWidgets_INCLUDE_DIRS}
-        "src"
-        "3rd"
-        "3rd/cgitemplate"
-        "3rd/csv-parser/include"
-        "3rd/LuaGlue/include"
-        "lib/cppunit/include"
-        "lib/lua/src"
-        "lib/wxsqlite3/include"
-        "lib/wxsqlite3/sqlite3/secure/src/"
+    src
+    3rd
+    3rd/cgitemplate
+    3rd/csv-parser/include
+    3rd/LuaGlue/include
+    lib/cppunit/include
+    lib/lua/src
+    lib/wxsqlite3/include
+    lib/wxsqlite3/sqlite3/secure/src
 )
 
-## Targets ##
-ADD_LIBRARY(LUA STATIC "")
-ADD_LIBRARY(wxSQLite3 STATIC "")
-ADD_EXECUTABLE(${PROJECT_TARGET_BIN} WIN32 MACOSX_BUNDLE ${MACOSX_APP_ICON_FILE} "")
-IF(BuildTests)
-    ADD_LIBRARY(CPPUnit STATIC "")
-    ADD_EXECUTABLE(MMEXTest "")
-ENDIF()
-
-## Subdirectories ##
-ADD_SUBDIRECTORY(po)
+## Subdirectories with targets ##
 ADD_SUBDIRECTORY(lib)
 ADD_SUBDIRECTORY(src)
-IF(BuildTests)
+ADD_SUBDIRECTORY(po)
+IF(MMEX_BUILD_TESTS)
+    ENABLE_TESTING()
     ADD_SUBDIRECTORY(tests)
-ENDIF()
-
-## Build and Link ##
-IF(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    INCLUDE(CheckLibraryExists)
-    CHECK_LIBRARY_EXISTS(${CMAKE_DL_LIBS} dlopen "" HAVE_DLOPEN)
-    IF(NOT HAVE_DLOPEN)
-        MESSAGE(FATAL_ERROR "Could not find required dl library.")
-    ENDIF()
-    TARGET_LINK_LIBRARIES(wxSQLite3 ${CMAKE_DL_LIBS})
-    TARGET_LINK_LIBRARIES(LUA ${CMAKE_DL_LIBS})
-ENDIF()
-TARGET_LINK_LIBRARIES(${PROJECT_TARGET_BIN} ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
-IF(BuildTests)
-    TARGET_LINK_LIBRARIES(MMEXTest CPPUnit ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
 ENDIF()
 
 
 # --------- Install ---------
 # Before moving to INSTALL commands for macOS bundle this needs to be set
-IF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    #
+IF(APPLE)
     # Configure variables that are substituted into the plist
     # https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE_INFO_PLIST.html
-    #
 
-    # Set CFBundleName, which controls the application menu label
-    SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_TARGET_BIN}")
-
-    # Set CFBundleVersion to the git describe output. Apple docs say it should be "three non-negative, period-separated integers with the first integer being greater than zero"
-    SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_BUNDLE_VERSION "${MoneyManagerEx_VERSION}")
-
-    # Set CFBundleExecutable
-    #SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_EXECUTABLE_NAME "${OUTPUT_NAME}")
-
-    # Set CFBundleShortVersionString to "2.0.0". This is displayed in the Finder and Spotlight.
-    SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_SHORT_VERSION_STRING "${MoneyManagerEx_VERSION}")
-
-    # Set the path to the plist template
-    SET_TARGET_PROPERTIES(${PROJECT_TARGET_BIN} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/resources/Info.plist")
+    SET_TARGET_PROPERTIES(${MMEX_EXE} PROPERTIES
+        # Set CFBundleName, which controls the application menu label
+        MACOSX_BUNDLE_BUNDLE_NAME ${MMEX_EXE}
+        # Set CFBundleVersion to the git describe output. Apple docs say it should be "three non-negative, period-separated integers with the first integer being greater than zero"
+        MACOSX_BUNDLE_BUNDLE_VERSION ${MMEX_VERSION}
+        # Set CFBundleExecutable
+        #MACOSX_BUNDLE_EXECUTABLE_NAME "${OUTPUT_NAME}"
+        # Set CFBundleShortVersionString to "2.0.0". This is displayed in the Finder and Spotlight.
+        MACOSX_BUNDLE_SHORT_VERSION_STRING ${MMEX_VERSION}
+        # Set the path to the plist template
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/resources/Info.plist")
 ENDIF()
 
-# Finally set ups for multiplatform INSTALL
-# Binary
-IF(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    INSTALL(PROGRAMS
-            "${CMAKE_SOURCE_DIR}/bin/${PROJECT_TARGET_BIN}"
-            DESTINATION "${INSTALL_BIN_DIR}")
-ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    INSTALL(TARGETS
-            "${PROJECT_TARGET_BIN}"
-            BUNDLE DESTINATION .)
-ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    INSTALL(PROGRAMS
-            "${CMAKE_SOURCE_DIR}/bin/${PROJECT_TARGET_BIN}.exe"
-            DESTINATION "${INSTALL_BIN_DIR}")
-
-    # Besides normal installable version, for windows the portable version needs additionally files
+# Besides normal installable version, for windows the portable version needs additionally files
+IF(WIN32)
+    # TODO: werify if we need this empty file in installer package
     FILE(WRITE "${CMAKE_CURRENT_BINARY_DIR}/mmexini.db3" "")
     INSTALL(FILES
-            "${CMAKE_CURRENT_BINARY_DIR}/mmexini.db3"
-            DESTINATION "${INSTALL_DOC_DIR}")
+        "${CMAKE_CURRENT_BINARY_DIR}/mmexini.db3"
+        DESTINATION "${MMEX_DOC_DIR}")
 
-    IF(MSVC)
-        FILE(TO_CMAKE_PATH "$ENV{VCINSTALLDIR}redist" REDISTDIR)
-        SET(REDISTDIR "${REDISTDIR}/${TARGET_ARCH}/Microsoft.VC140.CRT")
-        SET(VCRUNTIME
-            "${REDISTDIR}/msvcp140.dll"
-            "${REDISTDIR}/vcruntime140.dll"
-            )
-        FOREACH(f IN LISTS VCRUNTIME)
-            IF(NOT EXISTS ${f})
-                MESSAGE(WARNING "Can not copy ${f}. File does not exist.")
-            ENDIF()
-        ENDFOREACH(f)
-        INSTALL(FILES ${VCRUNTIME} DESTINATION "${INSTALL_BIN_DIR}" OPTIONAL)
-    ENDIF(MSVC)
+    # This may be required to run on old Windows version like XP
+    # SET(CMAKE_INSTALL_UCRT_LIBRARIES ON)
 
+    # Following can be used for Debug builds, but
+    # cannot be redistributed according to
+    # https://www.visualstudio.com/productinfo/2017-redistribution-vs#visual-c-runtime-files
+    # https://www.visualstudio.com/license-terms/distributable-code-microsoft-visual-studio-2015-rc-microsoft-visual-studio-2015-sdk-rc-includes-utilities-buildserver-files/#visual-c-runtime
+    # https://docs.microsoft.com/cpp/ide/determining-which-dlls-to-redistribute
+    # SET(CMAKE_INSTALL_DEBUG_LIBRARIES ON)
+    # SET(CMAKE_INSTALL_DEBUG_LIBRARIES_ONLY ON)
+
+    INCLUDE(InstallRequiredSystemLibraries)
 ENDIF()
 
 # Help Files
 INSTALL(FILES
-        "${CMAKE_SOURCE_DIR}/contrib.txt"
-        "${CMAKE_SOURCE_DIR}/license.txt"
-        "${CMAKE_SOURCE_DIR}/version.txt"
-        "${CMAKE_SOURCE_DIR}/README.TXT"
-        DESTINATION "${INSTALL_DOC_DIR}")
+    contrib.txt
+    license.txt
+    version.txt
+    README.TXT
+    DESTINATION "${MMEX_DOC_DIR}")
 INSTALL(DIRECTORY
-        "${CMAKE_SOURCE_DIR}/docs/"
-        DESTINATION "${INSTALL_DOC_DIR}/help")
+    docs/
+    DESTINATION "${MMEX_DOC_DIR}/help")
 INSTALL(FILES
-        "${CMAKE_SOURCE_DIR}/resources/master.css"
-        DESTINATION "${INSTALL_DOC_DIR}/help")
+    resources/master.css
+    DESTINATION "${MMEX_DOC_DIR}/help")
 
 # Resources
 INSTALL(FILES
-        "${CMAKE_SOURCE_DIR}/3rd/ChartNew.js/ChartNew.js"
-        "${CMAKE_SOURCE_DIR}/3rd/sorttable.js/sorttable.js"
-        "${CMAKE_SOURCE_DIR}/resources/home_page.htt"
-        "${CMAKE_SOURCE_DIR}/resources/kaching.wav"
-        "${CMAKE_SOURCE_DIR}/resources/master.css"
-        DESTINATION "${INSTALL_RES_DIR}")
+    3rd/ChartNew.js/ChartNew.js
+    3rd/sorttable.js/sorttable.js
+    resources/home_page.htt
+    resources/kaching.wav
+    resources/master.css
+    DESTINATION "${MMEX_RES_DIR}")
 
-IF(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+IF(LINUX)
     # .desktop File
     INSTALL(FILES
-            "${CMAKE_SOURCE_DIR}/resources/mmex.desktop"
-            DESTINATION "share/applications")
+        resources/mmex.desktop
+        DESTINATION share/applications)
 ENDIF()
 
 # Icons
-IF(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+IF(LINUX)
     INSTALL(FILES
-            "${CMAKE_SOURCE_DIR}/resources/mmex.svg"
-            DESTINATION "share/icons/hicolor/scalable/apps")
-ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+        resources/mmex.svg
+        DESTINATION share/icons/hicolor/scalable/apps)
+ELSEIF(APPLE)
     INSTALL(FILES
-            "${MACOSX_APP_ICON_FILE}"
-            DESTINATION ${INSTALL_RES_DIR})
-ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+        "${MACOSX_APP_ICON_FILE}"
+        DESTINATION "${MMEX_RES_DIR}")
+ELSEIF(WIN32)
     INSTALL(FILES
-            "${CMAKE_SOURCE_DIR}/resources/mmex.ico"
-            DESTINATION "${INSTALL_RES_DIR}")
+        resources/mmex.ico
+        DESTINATION "${MMEX_RES_DIR}")
 ENDIF()
+
+
+# --------- Tuning for VisualStudio IDE ---------
+IF(MSVC_IDE)
+    MESSAGE(STATUS "Tuning for VisualStudio IDE:")
+
+    IF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+        SET(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/ide"
+            CACHE PATH "Install directory used by INSTALL target" FORCE)
+    ENDIF()
+    MESSAGE(STATUS "* Install will copy files to ${CMAKE_INSTALL_PREFIX}")
+
+    SET(EXECUTABLE_OUTPUT_PATH "${CMAKE_INSTALL_PREFIX}/${MMEX_BIN_DIR}")
+    MESSAGE(STATUS "* Executables will be put in ${EXECUTABLE_OUTPUT_PATH}")
+
+    IF(CMAKE_VERSION VERSION_GREATER_EQUAL 3.3)
+        SET(CMAKE_VS_INCLUDE_INSTALL_TO_DEFAULT_BUILD ON)
+        MESSAGE(STATUS "* INSTALL target added to default build")
+    ELSE()
+        MESSAGE(WARNING "INSTALL target can't be added to default build!")
+    ENDIF()
+ENDIF(MSVC_IDE)
 
 
 # --------- CPack ---------
-SET(CPACK_PACKAGE_NAME "${PROJECT_TARGET_BIN}")
-# CPACK_PACKAGE_VERSION "1.2.3") # to produce something like this
-SET(CPACK_PACKAGE_VERSION "${MoneyManagerEx_VERSION}")
-SET(CPACK_PACKAGE_VERSION_MAJOR "${MoneyManagerEx_VERSION_MAJOR}")
-SET(CPACK_PACKAGE_VERSION_MINOR "${MoneyManagerEx_VERSION_MINOR}")
-SET(CPACK_PACKAGE_VERSION_PATCH "${MoneyManagerEx_VERSION_PATCH}")
+SET(CPACK_PACKAGE_NAME ${MMEX_EXE})
+SET(CPACK_PACKAGE_VERSION ${MMEX_VERSION_WITH_UNSTABLE})
+SET(CPACK_PACKAGE_VERSION_MAJOR ${MMEX_VERSION_MAJOR})
+SET(CPACK_PACKAGE_VERSION_MINOR ${MMEX_VERSION_MINOR})
+SET(CPACK_PACKAGE_VERSION_PATCH ${MMEX_VERSION_PATCH})
 SET(CPACK_PACKAGE_CONTACT "MoneyManagerEx Developers <developers@moneymanagerex.org>")
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple to use financial management software")
 SET(CPACK_PACKAGE_DESCRIPTION "Money Manager Ex (MMEX) is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. MMEX includes all the basic features that 90% of users would want to see in a personal finance application. The design goals are to concentrate on simplicity and user friendliness - something one can use everyday.")
-SET(CPACK_RPM_PACKAGE_LICENSE "GPL-2+")
+SET(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/resources/mmex.ico")
+SET(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/license.txt")
+SET(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.TXT")
+# TODO: do we package Debug builds with stripped binaries?
 SET(CPACK_STRIP_FILES ON)
+SET(CPACK_DEBIAN_PACKAGE_SECTION misc)
+SET(CPACK_DEBIAN_PACKAGE_PRIORITY extra)
+SET(CPACK_DEBIAN_PACKAGE_HOMEPAGE http://www.moneymanagerex.org/)
+SET(CPACK_DEBIAN_PACKAGE_REPLACES moneymanagerex)
+SET(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+SET(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+SET(CPACK_RPM_FILE_NAME RPM-DEFAULT)
+SET(CPACK_RPM_PACKAGE_LICENSE GPL-2+)
+SET(CPACK_RPM_PACKAGE_URL ${CPACK_DEBIAN_PACKAGE_HOMEPAGE})
+SET(CPACK_RPM_PACKAGE_OBSOLETES ${CPACK_DEBIAN_PACKAGE_REPLACES})
+SET(CPACK_RPM_PACKAGE_AUTOREQ ON)
+# TODO: distribute dbg packages
+# SET(CPACK_RPM_DEBUGINFO_PACKAGE ON)
+# SET(CPACK_RPM_DEBUGINFO_FILE_NAME RPM-DEFAULT)
 
-# Linux
-# Set package run time dependencies
-IF(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-
-    # Ubuntu
-    IF(EXISTS "/etc/debian_version")
-        SET(CPACK_GENERATOR "DEB")
-        SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libwxgtk3.0-0v5, libwxgtk-webview3.0-0v5")
-
-    # Fedora
-    ELSEIF(EXISTS "/etc/redhat-release" OR LINUX_DISTRO MATCHES "Fedora")
-        SET(CPACK_GENERATOR "RPM")
-        SET(CPACK_RPM_PACKAGE_REQUIRES "wxGTK3 webkitgtk3")
-
-    # openSUSE
-    ELSEIF(EXISTS "/etc/redhat-release" OR LINUX_DISTRO MATCHES "openSUSE")
-        SET(CPACK_GENERATOR "RPM")
-        SET(CPACK_RPM_PACKAGE_REQUIRES "wxWidgets-3_0-devel")
-
-    ELSEIF(NOT LINUX_DISTRO STREQUAL "Arch Linux")
+IF(LINUX)
+    IF(LINUX_DISTRO STREQUAL "Ubuntu")
+        SET(CPACK_GENERATOR DEB)
+        SET(CPACK_DEBIAN_PACKAGE_RELEASE "0ubuntu1~${LINUX_DISTRO_CODENAME}")
+    ELSEIF(LINUX_DISTRO STREQUAL "Debian")
+        SET(CPACK_GENERATOR DEB)
+        SET(CPACK_DEBIAN_PACKAGE_RELEASE "1~${LINUX_DISTRO_CODENAME}")
+    ELSEIF(LINUX_DISTRO STREQUAL "Fedora")
+        SET(CPACK_GENERATOR RPM)
+        SET(CPACK_RPM_PACKAGE_RELEASE_DIST ".fc${LINUX_DISTRO_REL}")
+    ELSEIF(LINUX_DISTRO MATCHES "SUSE")
+        SET(CPACK_GENERATOR RPM)
+        SET(CPACK_RPM_PACKAGE_RELEASE_DIST ".suse${LINUX_DISTRO_REL}")
+        SET(CPACK_RPM_PACKAGE_RELEASE 1)
+    ELSEIF(NOT LINUX_DISTRO STREQUAL "Arch")
         MESSAGE(WARNING "Unknown Linux distribution - generating generic package.")
     ENDIF()
-ENDIF()
-
-# macOS
-IF(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    SET(CPACK_GENERATOR "DragNDrop")
+ELSEIF(APPLE)
+    SET(CPACK_GENERATOR DragNDrop)
     SET(CPACK_DMG_VOLUME_NAME "Money Manager Ex")
-    SET(CPACK_DMG_FORMAT "UDZO")
-    SET(CPACK_DMG_BACKGROUND_IMAGE "${CMAKE_SOURCE_DIR}/resources/dmg-background.png")
-    SET(CPACK_DMG_DS_STORE "${CMAKE_SOURCE_DIR}/resources/.DS_Store")
-ENDIF()
-
-# Windows
-IF(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    SET(CPACK_DMG_FORMAT UDZO)
+    SET(CPACK_DMG_BACKGROUND_IMAGE "${PROJECT_SOURCE_DIR}/resources/dmg-background.png")
+    SET(CPACK_DMG_DS_STORE "${PROJECT_SOURCE_DIR}/resources/.DS_Store")
+ELSEIF(WIN32)
     # With using http://nsis.sourceforge.net/Main_Page
-    SET(CPACK_GENERATOR "NSIS;ZIP")
+    SET(CPACK_GENERATOR NSIS ZIP)
     SET(CPACK_PACKAGE_INSTALL_DIRECTORY "Money Manager EX")
-    SET(CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/resources\\\\mmex.ico")
-    SET(CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/resources\\\\mmex.ico")
-    SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/resources\\\\mmex.ico")
-    SET(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\\\${PROJECT_TARGET_BIN}.exe")
-    SET(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}\\\\license.txt)
-    # Probably bug
-    # https://public.kitware.com/Bug/bug_relationship_graph.php?bug_id=7880&graph=relation
-    SET(CPACK_RESOURCE_FILE_README ${CMAKE_SOURCE_DIR}/README.TXT)
+    SET(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/resources\\\\mmex.ico")
+    SET(CPACK_NSIS_MUI_ICON "${CPACK_PACKAGE_ICON}")
+    SET(CPACK_NSIS_MUI_UNIICON "${CPACK_PACKAGE_ICON}")
+    SET(CPACK_NSIS_INSTALLED_ICON_NAME "${MMEX_BIN_DIR}\\\\${MMEX_EXE}${CMAKE_EXECUTABLE_SUFFIX}")
+    SET(CPACK_NSIS_MUI_FINISHPAGE_RUN ${MMEX_EXE}${CMAKE_EXECUTABLE_SUFFIX})
+    SET(CPACK_NSIS_URL_INFO_ABOUT ${CPACK_DEBIAN_PACKAGE_HOMEPAGE})
+    SET(CPACK_NSIS_CONTACT "${CPACK_PACKAGE_CONTACT}")
     SET(CPACK_NSIS_CREATE_ICONS_EXTRA
-            "CreateShortCut '$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\Money Manager EX.lnk' '$INSTDIR\\\\bin\\\\${PROJECT_TARGET_BIN}.exe'")
+            "CreateShortCut '$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\Money Manager EX.lnk' '$INSTDIR\\\\${MMEX_BIN_DIR}\\\\${MMEX_EXE}${CMAKE_EXECUTABLE_SUFFIX}'")
     SET(CPACK_NSIS_DELETE_ICONS_EXTRA "Delete '$SMPROGRAMS\\\\$START_MENU\\\\Money Manager EX.lnk'")
+    SET(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
 ENDIF()
 
-IF(NOT LINUX_DISTRO STREQUAL "Arch Linux")
+IF(NOT LINUX_DISTRO STREQUAL "Arch")
+    # workarount for old CMake without DEB-DEFAULT/RPM-DEFAULT support
+    IF(CMAKE_VERSION VERSION_LESS 3.6.0)
+        IF(CPACK_GENERATOR STREQUAL "DEB")
+            FIND_PROGRAM(DPKG_CMD dpkg DOC "Debian packaging tool")
+            IF(DPKG_CMD-NOTFOUND)
+                MESSAGE("CPackDeb: Can not find dpkg in your path, default architecture to i386.")
+                SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE i386)
+            ENDIF()
+            EXECUTE_PROCESS(COMMAND "${DPKG_CMD}" --print-architecture
+                OUTPUT_VARIABLE CPACK_DEBIAN_PACKAGE_ARCHITECTURE
+                OUTPUT_STRIP_TRAILING_WHITESPACE)
+            SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}_${CPACK_PACKAGE_VERSION}-${CPACK_DEBIAN_PACKAGE_RELEASE}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}")
+        ELSEIF(CPACK_GENERATOR STREQUAL "RPM")
+            EXECUTE_PROCESS(COMMAND uname -m
+                OUTPUT_VARIABLE CPACK_RPM_PACKAGE_ARCHITECTURE
+                OUTPUT_STRIP_TRAILING_WHITESPACE)
+            SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-${CPACK_RPM_PACKAGE_RELEASE}${CPACK_RPM_PACKAGE_RELEASE_DIST}-${CPACK_RPM_PACKAGE_ARCHITECTURE}")
+        ENDIF()
+    ENDIF(CMAKE_VERSION VERSION_LESS 3.6.0)
+
     INCLUDE(CPack)
 ELSE()
     # Use dedicated tool to build Arch Linux package
     IF (TARGET_ARCH STREQUAL "x64")
-        SET(ARCHLINUX_ARCH "x86_64")
+        SET(ARCHLINUX_ARCH x86_64)
     ELSE()
-        SET(ARCHLINUX_ARCH "i686")
+        SET(ARCHLINUX_ARCH i686)
     ENDIF()
     CONFIGURE_FILE(util/PKGBUILD.in PKGBUILD @ONLY)
     SET(CMAKE_INSTALL_PREFIX /usr)
@@ -440,7 +415,75 @@ ELSE()
         CMAKE_POLICY(SET CMP0037 OLD)
     ENDIF()
     ADD_CUSTOM_TARGET(package
-        COMMAND sh -c "if [ `id -u` -eq 0 ]; then chown nobody -R . ${EXECUTABLE_OUTPUT_PATH} ${LIBRARY_OUTPUT_PATH} ${PROJECT_SOURCE_DIR}/po && su nobody -c makepkg; else makepkg; fi"
+        COMMAND sh -c "if [ `id -u` -eq 0 ]; then chown nobody -R . && su nobody -c makepkg; else makepkg; fi"
         VERBATIM)
     CMAKE_POLICY(POP)
 ENDIF()
+
+
+# --------- Print summary after configuration stage ---------
+MESSAGE(STATUS "")
+MESSAGE(STATUS "MMEX configuration summary")
+MESSAGE(STATUS "==========================")
+MESSAGE(STATUS "Version        : ${MMEX_VERSION_WITH_UNSTABLE}")
+IF(GIT_COMMIT_HASH)
+    MESSAGE(STATUS "Commit         : ${GIT_COMMIT_HASH} (${GIT_COMMIT_DATE})")
+ENDIF()
+IF(GIT_BRANCH)
+    MESSAGE(STATUS "Branch         : ${GIT_BRANCH}")
+ENDIF()
+MESSAGE(STATUS "Build tests    : ${MMEX_BUILD_TESTS}")
+MESSAGE(STATUS "Host system    : ${CMAKE_HOST_SYSTEM_NAME} ${CMAKE_HOST_SYSTEM_PROCESSOR}")
+MESSAGE(STATUS "Target system  : ${CMAKE_SYSTEM_NAME} ${TARGET_ARCH}")
+IF(CMAKE_BUILD_TYPE)
+    MESSAGE(STATUS "Build types    : ${CMAKE_BUILD_TYPE}")
+ELSE()
+    MESSAGE(STATUS "Build types    : ${CMAKE_CONFIGURATION_TYPES}")
+ENDIF()
+MESSAGE(STATUS "Generator      : ${CMAKE_GENERATOR}")
+GET_FILENAME_COMPONENT(m_make "${CMAKE_MAKE_PROGRAM}" NAME)
+MESSAGE(STATUS "Build command  : ${m_make}")
+IF(MSVC)
+    IF(CMAKE_VS_PLATFORM_TOOLSET)
+        MESSAGE(STATUS "Toolset        : ${CMAKE_VS_PLATFORM_TOOLSET}")
+        IF(CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE)
+            MESSAGE(STATUS "Toolset host   : ${CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE}")
+        ENDIF()
+    ENDIF()
+    IF(CMAKE_VS_PLATFORM_NAME)
+        MESSAGE(STATUS "Platform       : ${CMAKE_VS_PLATFORM_NAME}")
+    ENDIF()
+    MESSAGE(STATUS "VC installed   : $ENV{VCINSTALLDIR}")
+    IF(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
+        FOREACH(m_dll ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS})
+            GET_FILENAME_COMPONENT(m_dll ${m_dll} NAME)
+            SET(m_dlls "${m_dlls} ${m_dll}")
+        ENDFOREACH()
+        MESSAGE(STATUS "Run-time DLLs  :${m_dlls}")
+    ENDIF()
+ENDIF()
+MESSAGE(STATUS "Install prefix : ${CMAKE_INSTALL_PREFIX}")
+
+MESSAGE(STATUS "")
+MESSAGE(STATUS "Versions")
+MESSAGE(STATUS "========")
+MESSAGE(STATUS "${CMAKE_HOST_SYSTEM_NAME} : ${CMAKE_HOST_SYSTEM_VERSION}")
+IF(LINUX_DISTRO)
+    IF(LINUX_DISTRO_CODENAME)
+        MESSAGE(STATUS "${LINUX_DISTRO} : ${LINUX_DISTRO_REL} \"${LINUX_DISTRO_CODENAME}\"")
+    ELSE()
+        MESSAGE(STATUS "${LINUX_DISTRO} : ${LINUX_DISTRO_REL}")
+    ENDIF()
+ENDIF()
+MESSAGE(STATUS "CMake : ${CMAKE_VERSION}")
+MESSAGE(STATUS "${CMAKE_CXX_COMPILER_ID} : ${CMAKE_CXX_COMPILER_VERSION}")
+IF(CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION)
+    MESSAGE(STATUS "Win SDK : ${CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION}")
+ENDIF()
+IF(wxWidgets_VERSION_STRING)
+    MESSAGE(STATUS "wxWidgets : ${wxWidgets_VERSION_STRING}")
+ENDIF()
+IF(GETTEXT_VERSION_STRING)
+    MESSAGE(STATUS "gettext : ${GETTEXT_VERSION_STRING}")
+ENDIF()
+MESSAGE(STATUS "")

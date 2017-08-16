@@ -162,7 +162,7 @@ wxString mmex::getPathResource(EResFile f)
 const wxString mmex::getPathShared(ESharedFile f)
 {
     static const wxString files[SHARED_FILES_MAX] = {
-      "po"
+      "locale"
     };
 
     wxASSERT(f >= 0 && f < SHARED_FILES_MAX);

@@ -1,12 +1,3 @@
-//----------------------------------------------------------------------------
-// WARNING: The file constants.h is produced by CMake. If you want to make
-//          some changes in this file please use the templated version
-//          constants.h.in and rerun cmake to produce a refreshed
-//          version of constants.h
-//
-// Note:    MMEX version changes are made in the file: ./CMakeLists.txt
-//----------------------------------------------------------------------------
-
 /*******************************************************
 Copyright (C) 2009 VaDiM
 
@@ -27,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include "defs.h"
+#include "versions.h"
 //----------------------------------------------------------------------------
 
 class wxString;
@@ -61,27 +53,17 @@ const wxString getProgramDescription();
 
 /*************************************************************************
  MMEX_VERSION
- Update the version definition for the program as follows:
- Version Format = MAJOR.MINOR.PATCH, increment the:
- 1. MAJOR version when you make incompatible API changes,
- 2. MINOR version when you add functionality in a backwards-compatible manner, and
- 3. PATCH version when you make backwards-compatible bug fixes.
- Ref: http://semver.org
-
- Alpha, Beta, RC  = -1 (Stable) won't add any suffix
- Alpha, Beta, RC  = 0 (Unstable) will add suffix to version without number
- Alpha, Beta, RC  > 0 (Unstable) will add suffix to version with number
-
+ Defined in versions.h and values taken from main CMakeLists.txt
  For Internet Format for update checking read in util.cpp
  *************************************************************************/
 namespace version
 {
-    const int Major = @MoneyManagerEx_VERSION_MAJOR@;
-    const int Minor = @MoneyManagerEx_VERSION_MINOR@;
-    const int Patch = @MoneyManagerEx_VERSION_PATCH@;
-    const int Alpha = @MoneyManagerEx_VERSION_ALPHA@;
-    const int Beta  = @MoneyManagerEx_VERSION_BETA@;
-    const int RC    = @MoneyManagerEx_VERSION_RC@;
+    const int Major = MMEX_VERSION_MAJOR;
+    const int Minor = MMEX_VERSION_MINOR;
+    const int Patch = MMEX_VERSION_PATCH;
+    const int Alpha = MMEX_VERSION_ALPHA;
+    const int Beta  = MMEX_VERSION_BETA;
+    const int RC    = MMEX_VERSION_RC;
     extern const wxString string;
     extern const wxString generateProgramVersion
         (int vMajor, int vMinor, int vPatch, int vAlpha, int vBeta, int vRC);
