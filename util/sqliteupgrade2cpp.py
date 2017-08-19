@@ -10,9 +10,12 @@ import os
 import sys
 
 def getVersion(FileName):
-    FileName = FileName[17:]
-    Version = FileName.partition(".")[0]
-    return int(Version) if Version else 0
+	if fnmatch.fnmatch(FileName, 'database_version_*.sql'):
+		FileName = FileName[17:]
+		Version = FileName.partition(".")[0]
+		return int(Version) if Version else 0
+	else:
+		return 0
 
 def getFileContent(FileName):
   if os.path.exists(FileName):

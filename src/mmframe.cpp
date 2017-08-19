@@ -270,7 +270,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     // Show license agreement at first open
     if (Model_Setting::instance().GetStringSetting(INIDB_SEND_USAGE_STATS, "") == "")
     {
-        mmAboutDialog(this, 5).ShowModal();
+        mmAboutDialog(this, 4).ShowModal();
         Option::instance().SendUsageStatistics(true);
     }
 
@@ -708,7 +708,7 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
     m_nav_tree_ctrl->SetItemBold(accounts, true);
 
-    wxTreeItemId cardAccounts = m_nav_tree_ctrl->AppendItem(root, _("Credit Card Accounts"), img::CARD_ACC_PNG, img::CARD_ACC_PNG);
+    wxTreeItemId cardAccounts = m_nav_tree_ctrl->AppendItem(root, _("Credit Card Accounts"), img::CARD_ACC_NORMAL_PNG, img::CARD_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
     m_nav_tree_ctrl->SetItemBold(cardAccounts, true);
 
@@ -720,15 +720,19 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(loanAccounts, new mmTreeItemData("Loan Accounts"));
     m_nav_tree_ctrl->SetItemBold(loanAccounts, true);
 
-    wxTreeItemId termAccounts = m_nav_tree_ctrl->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_PNG, img::TERMACCOUNT_PNG);
+    wxTreeItemId termAccounts = m_nav_tree_ctrl->AppendItem(root, _("Term Accounts"), img::TERM_ACC_NORMAL_PNG, img::TERM_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(termAccounts, new mmTreeItemData("Term Accounts"));
     m_nav_tree_ctrl->SetItemBold(termAccounts, true);
     
-    wxTreeItemId stocks = m_nav_tree_ctrl->AppendItem(root, _("Stock Portfolios"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
+    wxTreeItemId cryptoWallets = m_nav_tree_ctrl->AppendItem(root, _("Crypto Wallets"), img::CASH_ACC_NORMAL_PNG, img::CASH_ACC_NORMAL_PNG);
+    m_nav_tree_ctrl->SetItemData(cryptoWallets, new mmTreeItemData("Crypto Wallets"));
+    m_nav_tree_ctrl->SetItemBold(cryptoWallets, true);
+
+    wxTreeItemId stocks = m_nav_tree_ctrl->AppendItem(root, _("Stock Portfolios"), img::STOCK_ACC_NORMAL_PNG, img::STOCK_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(stocks, new mmTreeItemData("Stocks"));
     m_nav_tree_ctrl->SetItemBold(stocks, true);
 
-    wxTreeItemId shareAccounts = m_nav_tree_ctrl->AppendItem(root, _("Share Accounts"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
+    wxTreeItemId shareAccounts = m_nav_tree_ctrl->AppendItem(root, _("Share Accounts"), img::STOCK_ACC_NORMAL_PNG, img::STOCK_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(shareAccounts, new mmTreeItemData("Share Accounts"));
     m_nav_tree_ctrl->SetItemBold(shareAccounts, true);
 
@@ -827,6 +831,9 @@ void mmGUIFrame::updateNavTreeControl()
                 break;
             case Model_Account::LOAN:
                 tacct = m_nav_tree_ctrl->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                break;
+            case Model_Account::CRYPTO_WALLET:
+                tacct = m_nav_tree_ctrl->AppendItem(cryptoWallets, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             default:
                 tacct = m_nav_tree_ctrl->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);

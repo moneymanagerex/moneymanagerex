@@ -34,6 +34,7 @@ const std::vector<std::pair<Model_Account::TYPE, wxString> > Model_Account::TYPE
     {Model_Account::CREDIT_CARD, wxString(wxTRANSLATE("Credit Card"))},
     {Model_Account::LOAN, wxString(wxTRANSLATE("Loan"))},
     {Model_Account::TERM, wxString(wxTRANSLATE("Term"))},
+    {Model_Account::CRYPTO_WALLET, wxString(wxTRANSLATE("Crypto Wallet"))},
     {Model_Account::INVESTMENT, wxString(wxTRANSLATE("Investment"))},
     {Model_Account::ASSET, wxString(wxTRANSLATE("Asset"))},
     {Model_Account::SHARES, wxString(wxTRANSLATE("Shares"))},
@@ -317,7 +318,8 @@ int Model_Account::money_accounts_num()
         + Model_Account::instance().find(ACCOUNTTYPE(all_type()[CHECKING])).size()
         + Model_Account::instance().find(ACCOUNTTYPE(all_type()[CREDIT_CARD])).size()
         + Model_Account::instance().find(ACCOUNTTYPE(all_type()[LOAN])).size()
-        + Model_Account::instance().find(ACCOUNTTYPE(all_type()[TERM])).size();
+        + Model_Account::instance().find(ACCOUNTTYPE(all_type()[TERM])).size()
+        + Model_Account::instance().find(ACCOUNTTYPE(all_type()[CRYPTO_WALLET])).size();
 }
 
 bool Model_Account::Exist(const wxString& account_name)

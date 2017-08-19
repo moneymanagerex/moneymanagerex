@@ -566,7 +566,7 @@ void mmHomePagePanel::getData()
     else
         date_range_ = new mmCurrentMonth;
 
-    double tBalance = 0.0, cardBalance = 0.0, termBalance = 0.0, cashBalance = 0.0, loanBalance = 0.0;
+    double tBalance = 0.0, cardBalance = 0.0, termBalance = 0.0, cashBalance = 0.0, loanBalance = 0.0, cryptoBalance = 0.0;
 
     std::map<int, std::pair<double, double> > accountStats;
     get_account_stats(accountStats);
@@ -583,6 +583,9 @@ void mmHomePagePanel::getData()
 
     m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
     tBalance += termBalance;
+
+    m_frames["CRYPTO_WALLETS_INFO"] = displayAccounts(cryptoBalance, accountStats, Model_Account::CRYPTO_WALLET);
+    tBalance += cryptoBalance;
 
     //Stocks
     htmlWidgetStocks stocks_widget;
@@ -705,6 +708,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
         { "CARD_ACCOUNTS_INFO", _("Credit Card Accounts") },
         { "LOAN_ACCOUNTS_INFO", _("Loan Accounts") },
         { "TERM_ACCOUNTS_INFO", _("Term Accounts") },
+        { "CRYPTO_WALLETS_INFO", _("Crypto Wallets") },
     };
 
     const wxString idStr = typeStr[type].first;
