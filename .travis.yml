@@ -91,7 +91,6 @@ deploy:
   dist: $OS/$DIST
   package_glob: $TRAVIS_BUILD_DIR/build/*.{deb,rpm}
   skip_cleanup: true
-  force: true
   on: # Set deploy conditions
       # Deploy only when tag is specified
       tags: true
