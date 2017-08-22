@@ -10,21 +10,25 @@ env:
   global:
   - MAKEFLAGS=-j4
   - BUILD_TYPE=Release
+  - BUILD_TESTS=OFF
   matrix:
   # targets for linux
   - OS=debian DIST=jessie
   - OS=debian DIST=stretch
+  - OS=debian DIST=buster
   - OS=ubuntu DIST=xenial
   - OS=ubuntu DIST=zesty
   - OS=ubuntu DIST=artful
+  - OS=fedora
   - OS=fedora DIST=24
   - OS=fedora DIST=25
   - OS=fedora DIST=26
-  - OS=opensuse DIST=42.1
+  - OS=opensuse
   - OS=opensuse DIST=42.2
   - OS=opensuse DIST=42.3
   - OS=archlinux
-  - OS=ubuntu DIST=zesty BUILD_TYPE=Debug
+  - OS=el DIST=7 # DIST=6 doesn't provide webview in wxGTK3
+  - OS=mint DIST=18.1
 
 matrix:
   fast_finish: true
@@ -34,16 +38,19 @@ matrix:
     compiler: gcc
   allow_failures:
   - env: OS=debian DIST=jessie
+  - env: OS=debian DIST=stretch
+  - env: OS=debian DIST=buster
   - env: OS=ubuntu DIST=xenial
   - env: OS=ubuntu DIST=artful
+  - env: OS=fedora
   - env: OS=fedora DIST=24
   - env: OS=fedora DIST=25
   - env: OS=fedora DIST=26
-  - env: OS=opensuse DIST=42.1
+  - env: OS=opensuse
   - env: OS=opensuse DIST=42.2
   - env: OS=opensuse DIST=42.3
   - env: OS=archlinux
-  - env: OS=ubuntu DIST=zesty BUILD_TYPE=Debug
+  - env: OS=mint DIST=18.1
 
 install:
 - DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}
@@ -54,8 +61,8 @@ install:
 - mkdir build && cd build
 
 script:
-- if [ $TRAVIS_OS_NAME = linux ]; then docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} bash -c "cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE .. && make package"; fi
-- if [ $TRAVIS_OS_NAME = osx ]; then cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE .. && make package; fi
+- if [ $TRAVIS_OS_NAME = linux ]; then docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} bash -c "cmake -DMMEX_BUILD_TESTS=$BUILD_TESTS -DCMAKE_BUILD_TYPE=$BUILD_TYPE .. && make package"; fi
+- if [ $TRAVIS_OS_NAME = osx ]; then cmake -DMMEX_BUILD_TESTS=$BUILD_TESTS -DCMAKE_BUILD_TYPE=$BUILD_TYPE .. && make package; fi
 
 notifications: # set notification options
   email:

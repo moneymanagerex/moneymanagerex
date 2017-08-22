@@ -1,7 +1,7 @@
-FROM fedora:26
+FROM fedora:rawhide
 MAINTAINER developers@moneymanagerex.org
-RUN dnf -y install --setopt=install_weak_deps=False \
+RUN dnf -y --refresh --nogpg install --setopt=install_weak_deps=False \
         cmake gcc-c++ gettext git make rpm-build redhat-lsb-core \
-        webkitgtk3-devel wxGTK3-devel \
+        webkitgtk4-devel wxGTK3-devel \
         automake libtool \
  && dnf clean all

@@ -2,13 +2,11 @@ version: '{build}'
 branches: { except: [ gh-pages ] }
 clone_depth: 10 # to allow queued build jobs
 image:
-# tested and working but now use only latest version
-- Previous Visual Studio 2017
-- Previous Visual Studio 2015
-- Previous Visual Studio 2013
+- Visual Studio 2017
+- Visual Studio 2015
 configuration:
 - Release
-- Debug
+# - Debug
 platform:
 - x64
 - Win32
@@ -16,96 +14,88 @@ platform:
 matrix:
   fast_finish: true
   exclude:
-  # prefer matched VS version with toolchain
-  - comp: 141
-    image: Previous Visual Studio 2013
-  - comp: 141
-    image: Previous Visual Studio 2015
-  - comp: 140
-    image: Previous Visual Studio 2013
-  - comp: 140
-    image: Previous Visual Studio 2017
-  - comp: 120
-    image: Previous Visual Studio 2015
-  - comp: 120
-    image: Previous Visual Studio 2017
-  # there are no debug versions of ucrt libs
-  - comp: 140
-    xp: _xp
-    configuration: Debug
-  - comp: 141
-    xp: _xp
-    configuration: Debug
+  # not installed
+  - { comp: 110, image: Visual Studio 2017 }
+  - { comp: 141, image: Visual Studio 2015 }
+  # duplicated - select only one
+  - { comp: 120, image: Visual Studio 2015 }
+  - { comp: 140, image: Visual Studio 2015 }
   allow_failures:
-  - image: Previous Visual Studio 2013
-  - image: Previous Visual Studio 2015
-  - image: Previous Visual Studio 2017
-    configuration: Debug
+  - configuration: Debug
 
 environment:
   # use cache with 7z compression
   APPVEYOR_CACHE_ENTRY_ZIP_ARGS: -t7z -m0=lzma -mx=9
   # wxWidgets config
   wxVer: 3.1.0
-  wxwin: c:\projects\wxwidgets-%wxVer%
+  wxwin: C:\wxWidgets
   wxShared: 0
-  # Use cygwin embeded gettext library
-  path: '%path%;C:\cygwin64\bin;C:\cygwin\bin'
+  wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxver)
+  # Use cygwin embeded gettext tools
+  path: '%path%;C:\cygwin64\bin'
   # Microsoft toolchain options
-  msbuild_opts: /maxcpucount /verbosity:minimal /p:PreferredToolArchitecture=x64
+  msbuild_opts: /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
   CL: /MP
   build_tests: OFF
   matrix:
-  - comp: 141
-  - comp: 141
-    xp: _xp
-    configuration: Release
+  # - comp: 141
+  - { comp: 141, wxShared: 1 }
+  # - { comp: 141, xp: _xp }
+  # - { comp: 141, xp: _xp, wxShared: 1 }
   # - comp: 140
-  # - comp: 140
-  #   xp: _xp
-  #   configuration: Release
+  # - { comp: 140, wxShared: 1 }
+  # - { comp: 140, xp: _xp }
+  # - { comp: 140, xp: _xp, wxShared: 1 }
   # - comp: 120
-  - comp: 120
-    xp: _xp
+  # - { comp: 120, wxShared: 1 }
+  # - { comp: 120, xp: _xp }
+  - { comp: 120, xp: _xp, wxShared: 1 }
+  # v110 not working so far - see issue #1307 on GitHub
+  # - comp: 110
+  # - { comp: 110, wxShared: 1 }
+  # - { comp: 110, xp: _xp }
+  # - { comp: 110, xp: _xp, wxShared: 1 }
 
 init:
-- if %platform:~-2%==64 (set arch=amd64) else (set arch=amd64_x86)
-- echo %APPVEYOR_BUILD_WORKER_IMAGE% %platform% v%comp%%xp% %configuration% %arch%
-# Set MSVS environment
+# AppVeyor missing paths
 - if "%VS150COMNTOOLS%"=="" set "VS150COMNTOOLS=%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\Tools\"
-- if "%WINDOWS71SDK%"=="" set "WINDOWS71SDK=%ProgramFiles%\Microsoft SDKs\Windows\v7.1\Bin\"
-- if "%WINDOWS61SDK%"=="" set "WINDOWS61SDK=%ProgramFiles%\Microsoft SDKs\Windows\v6.1\Bin\"
-- if %comp%==141  call "%VS150COMNTOOLS%..\..\VC\Auxiliary\Build\vcvarsall.bat" %arch%
-- if %comp%==140 (call "%VS140COMNTOOLS%VsDevCmd.bat" & call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" %arch%)
-- if %comp%==120 (call "%VS120COMNTOOLS%VsDevCmd.bat" & call "%VS120COMNTOOLS%..\..\VC\vcvarsall.bat" %arch%)
-- if %comp%==110 (call "%VS110COMNTOOLS%VsDevCmd.bat" & call "%VS110COMNTOOLS%..\..\VC\vcvarsall.bat" %arch%)
-- if %comp%==100  call "%WINDOWS71SDK%SetEnv.cmd" /%arch% /%configuration%
-- if %comp%==90   call "%WINDOWS61SDK%SetEnv.cmd" /%arch% /%configuration%
+# Set developer command prompt
+- if %platform:~-2%==64 (set arch=amd64) else (set arch=amd64_x86)
+- if %comp% LSS 120 if %platform:~-2%==64 (set arch=x86_amd64) else (set arch=x86)
+- call set "vcvarsall=%%VS%comp%COMNTOOLS%%..\..\VC\vcvarsall.bat"
+- if %comp%==141 set "vcvarsall=%VS150COMNTOOLS%..\..\VC\Auxiliary\Build\vcvarsall.bat"
+- call "%vcvarsall%" %arch%
 # Set wxWidgets library paths
-- set "wxLibFolder=vc%comp%%xp%"
-- if %platform:~-2%==64 set "wxLibFolder=%wxLibFolder%_x64"
-- if %wxShared%==0 (set wxLibFolder=%wxLibFolder%_lib) else (set wxLibFolder=%wxLibFolder%_dll)
-- set "wxCache=C:\cache\wxwidgets-%wxVer%-%configuration%"
+- set "wxLibFolder=%wxwin%\lib\vc%comp%%xp%"
+- if %platform:~-2%==64 set wxSuff=_x64
+- if %wxShared%==0 (set wxLibFolder=%wxLibFolder%%wxSuff%_lib) else (set wxLibFolder=%wxLibFolder%%wxSuff%_dll)
+# Print some info
+- echo %APPVEYOR_BUILD_WORKER_IMAGE% %platform% v%comp%%xp% %configuration% %arch%
 
 cache:
-- '%wxCache%\%wxLibFolder%'
+- '%wxwin%\lib'
 
 install:
 # Patch CMake
-- patch -d "%ProgramFiles(x86)%\CMake\share\cmake-3.8\Modules" --verbose < util\FindwxWidgets-SupportWinXPBuilds.patch
+- for /d %%d in ("%ProgramFiles(x86)%\CMake\share\cmake-*") do (
+    type util\*.cmake-*.patch 2>nul | patch -d "%%d\Modules" )
+# wxWidgets, try to download pre-compiled version first
+- if %wxShared%==1 (
+    curl -fsL --fail-early
+      -O %wxURL%/wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
+      -O %wxURL%/wxWidgets-%wxVer%-headers.7z &&
+    if %configuration%==Release curl -fsL -O %wxURL%/wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_ReleaseDLL.7z
+  ) || exit 0
+- if not exist wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z curl -fsSL -O %wxURL%/wxWidgets-%wxVer%.7z
+- 7z x -y "-o%wxwin%" wx*-%wxVer%*.7z
 # wxWidgets, build script from build/tools/msvs/officialbuild.bat
-- |-
-  git clone -q --depth 1 --branch "v%wxVer%" https://github.com/wxWidgets/wxWidgets.git "%wxwin%"
-  if %configuration%==Release set "wxConf=BUILD=release"
-  if not %platform:~-2%==64 set "wxFlags=CPPFLAGS=/arch:SSE CFLAGS=/arch:SSE"
-  if exist "%wxCache%\%wxLibFolder%" (set wxB=rem) else (set wxC=rem)
-  %wxC% echo Using wxWidgets from %wxCache%\%wxLibFolder%
-  %wxC% xcopy /i /s /q /y "%wxCache%\%wxLibFolder%" "%wxwin%\lib\%wxLibFolder%"
-  %wxB% echo Building wxWidgets %wxVer%
-  %wxB% cd %wxwin%\build\msw
-  %wxB% nmake /s /f makefile.vc %wxConf% COMPILER_VERSION=%comp%%xp% TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% %wxFlags%
-  %wxB% echo Copying wxWidgets to %wxCache%\%wxLibFolder%
-  %wxB% xcopy /i /s /q /y "%wxwin%\lib\%wxLibFolder%" "%wxCache%\%wxLibFolder%"
+- if %configuration%==Release set "wxConf=BUILD=release"
+- if not %platform:~-2%==64 set "wxFlags=CPPFLAGS=/arch:SSE CFLAGS=/arch:SSE"
+- if not exist "%wxLibFolder%" (
+    echo Building wxWidgets %wxVer% &
+    cd %wxwin%\build\msw &&
+    nmake /nologo /s /f makefile.vc %wxConf% COMPILER_VERSION=%comp%%xp% TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% %wxFlags%
+  )
 
 before_build:
 - cd %APPVEYOR_BUILD_FOLDER%
@@ -113,16 +103,14 @@ before_build:
 
 build_script:
 - mkdir build & cd build
-- if "%APPVEYOR_BUILD_WORKER_IMAGE:~-4%"=="2013" set "gen=12 2013"
-- if "%APPVEYOR_BUILD_WORKER_IMAGE:~-4%"=="2015" set "gen=14 2015"
-- if "%APPVEYOR_BUILD_WORKER_IMAGE:~-4%"=="2017" set "gen=15 2017"
+- if %comp%==110 (set "gen=11 2012" & set "tool=v%comp%%xp%")
+- if %comp%==120 (set "gen=12 2013" & set "tool=v%comp%%xp%,host=x64")
+- if %comp%==140 (set "gen=14 2015" & set "tool=v%comp%%xp%,host=x64")
+- if %comp%==141 (set "gen=15 2017" & set "tool=v%comp%%xp%,host=x64")
 - if %platform:~-2%==64 set "gen=%gen% Win64"
-- if %configuration%==Debug set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON -DCMAKE_INSTALL_UCRT_LIBRARIES=ON"
-- if "%xp%"=="_xp" set "cmake_def=%cmake_def% -DCMAKE_INSTALL_UCRT_LIBRARIES=ON"
-- cmake -T v%comp%%xp%,host=x64 -G "Visual Studio %gen%" %cmake_def% ..
+- if %configuration%==Debug set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON"
+- cmake -T %tool% -G "Visual Studio %gen%" -DMMEX_BUILD_TESTS=%build_tests% %cmake_def% ..
 - cmake --build . --target package --config %configuration% -- %msbuild_opts%
-
-test: off
 
 after_build:
 # rename and move
@@ -131,6 +119,14 @@ after_build:
 # calculate checksums
 - cd %APPVEYOR_BUILD_FOLDER%
 - for %%f in (*.exe *.zip) do sha512sum "%%f" > "%%f.sha512"
+
+test: off
+
+on_success:
+# don't cache downloaded wxWidgets binaries
+- if %wxShared%==1 (
+    if exist wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z rmdir /s /q "%wxLibFolder%"
+  )
 
 artifacts:
   - path: '*.exe'

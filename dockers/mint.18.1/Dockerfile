@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM vcatechnology/linux-mint:18.1
 MAINTAINER developers@moneymanagerex.org
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \

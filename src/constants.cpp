@@ -111,15 +111,21 @@ const wxString mmex::getProgramDescription()
         << L" \u2b25 " << LUA_RELEASE << "\n\n"
 
         << wxString::Format(_("Build on %s %s with:"), __DATE__, __TIME__) << "\n"
+        << L" \u2b25 " << CMAKE_VERSION << "\n"
+        << L" \u2b25 " << MAKE_VERSION << "\n"
+        << L" \u2b25 " << GETTEXT_VERSION << "\n"
 #if defined(_MSC_VER)
-        << L" \u2b25 Microsoft Visual Studio " << _MSC_VER << "\n"
-#elif defined(__clang__)
-        << L" \u2b25 Clang/LLVM " << __VERSION__ << "\n"
-#elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
-        << L" \u2b25 GNU GCC/G++ " << __VERSION__ << "\n"
+#ifdef VS_VERSION
+        << L" \u2b25 Microsoft Visual Studio " << VS_VERSION << "\n"
 #endif
-#ifdef CMAKE_VERSION
-        << L" \u2b25 CMake " CMAKE_VERSION << "\n"
+        << L" \u2b25 Microsoft Visual C++ " << CXX_VERSION << "\n"
+#elif defined(__clang__)
+        << L" \u2b25 Clang " << __VERSION__ << "\n"
+#elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
+        << L" \u2b25 GCC " << __VERSION__ << "\n"
+#endif
+#ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
+        << L" \u2b25 " << CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << "\n"
 #endif
 
         << "\n" << _("Running on:") << "\n"

@@ -4,86 +4,173 @@ Building Money Manager Ex from sources
 Jump to [Windows] | [Linux] | [macOS] instructions.
 
 
+Microsoft Windows
+-----------------
 
-Microsoft Windows with Visual Studio
-------------------------------------
+### Prerequisites
 
-#### 1. Install Prerequisites
+1. Install free [Microsoft Visual Studio] Community 2017. Select following
+   components during install:
+   * Windows: Desktop development with C++
+     * Visual Studio Core Editor
+     * Desktop development with C++ options
+       * VC++ 2017 v141 toolset (x86,x64)
+       * Windows 10 SDK (10.0.x.x) for Desktop C++ x86 and x64
+       * Visual C++ tools for CMake
 
-1. Install [Microsoft Visual Studio]. Free *Visual Studio Community*
-   version should be enough.
+   Older versions of Visual Studio should work but some settings must be
+   adjusted. Please remember different VS versions uses different toolsets.
 
-2. Download and install [Git for Windows]. Once installed, you’ll be able
-   to use Git from the command prompt or *PowerShell*. Use the defaults
-     selected during the installation.
+   | Name               | Version | Toolset |
+   |--------------------|:-------:|:-------:|
+   | Visual Studio 2008 |   9.0   |    90   |
+   | Visual Studio 2010 |  10.0   |   100   |
+   | Visual Studio 2012 |  11.0   |   110   |
+   | Visual Studio 2013 |  12.0   |   120   |
+   | Visual Studio 2015 |  14.0   |   140   |
+   | Visual Studio 2017 |  15.0   |   141   |
 
-3. Obtain [gettext precompiled binaries] as recommended at [gettext] library
-   home page.
+2. If you use Visual Studio older then 2013 Update 1 download and install
+   [Git for Windows] with default options.
 
-4. Set [system environment variable] `wxwin` to `c:\projects\wxwidgets`.
+3. Download and install [gettext pre-compiled binaries] with default options.
 
-5. Setup [Developer Command Prompt]:
+4. Download [wxWidgets 3.x binaries]:
+   - `wxWidgets-3.*.*_Headers.7z`
+   - one of `wxMSW-3.*.*-vc141_Dev.7z` or `wxMSW-3.*.*-vc141_x64_Dev.7z`
+   - one of `wxMSW-3.*.*-vc141_ReleaseDLL.7z`
+     or `wxMSW-3.*.*-vc141_x64_ReleaseDLL.7z`
+   
+   Unpack archives to `c:\wxWidgets\` or `c:\Program Files\wxWidgets\`.
 
-       %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat x86"
+   You may select different directory but then `wxwin` environment variable
+   must be set:
 
-   Change `x86` parameter to `amd64` for native 64-bits build.
+       setx wxwin c:\path\to\unpacked\wxwidgets\files
 
-   Above value needs to be changed according to your *Visual Studio* version
-   and installation location.
-   For example VS 2017 uses:
+5. Developer Command Prompt
 
-       %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
-       %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-       
-   Or simply start it from *Start Menu* using *VS2015 x64 Native Tools
-   Command Prompt* or *VS2015 x86 Native Tools Command Prompt* (names my vary
-   in different VS installed versions).
+   Start it from *Start Menu* using *VS2017 x64 Native Tools Command Prompt*
+   or *VS2017 x86 Native Tools Command Prompt* (names my vary in different VS
+   versions).
 
-   **All following commands must be run from this command prompt!**
+   Or start the following command from start menu:
 
-#### 2. Build wxWidgets
+       %comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat x86"
 
-To download [wxWidgets] 3.1.0 from Git repository and compile it with [NMake]
-run:
+   Following command can be used with older VS versions (change 14.0 for
+   correct version number):
 
-    mkdir c:\projects
-    git clone --depth 1 -b v3.1.0 https://github.com/wxWidgets/wxWidgets.git %WXWIN%
-    cd %WXWIN%\build\msw
-    nmake /s /f makefile.vc TARGET_CPU=x86 BUILD=Release SHARED=0 COMPILER_VERSION=140 OFFICIAL_BUILD=1 CPPFLAGS=/arch:SSE CFLAGS=/arch:SSE
+       %comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat x86"
 
-Replace `x86` with `x64` for 64-bits arch.
+   Change `x86` parameter to `amd64` for native 64-bit build.
 
-#### 3. Download MMEX Source
+**IMPORTANT**  
+__All following commands must be run from this command prompt!__
 
-Simply clone [official Git repository] with submodules using:
+6. Clone [MMEX official Git repository] with submodules using command-line:
 
-    git clone --recursive https://github.com/moneymanagerex/moneymanagerex c:\projects\mmex
+       git clone --recursive https://github.com/moneymanagerex/moneymanagerex c:\projects\mmex
 
-You can select MMEX version by adding `-b v1.4.0` parameter.
+   You can select MMEX version by adding `--branch v1.4.0` parameter.
 
-#### 4. Compile and Build Package
+   If git command is not recognized and you want to use git installed with VS
+   you should find `git.exe` file and add its directory to the `PATH` variable
 
-Generate build enviroment using [CMake] and build binary package (you need
-to have [NSIS] installed):
+       dir /n/b/s c:\%ProgramFiles(x86)%\git.exe
+       set "PATH=%PATH%;c:\path\to\git\dir"
 
-    mkdir c:\projects\mmex\build
-    cd c:\projects\mmex\build
-    set "CL=/MP"
-    cmake -T v140 -G "Visual Studio 14 2015" ..
-    cmake --build . --target package --config Release -- -m:4 -p:PreferredToolArchitecture=x64
+   Or use build-in Visual Studio [IDE Team Services] to clone:
+   - Open Team Explorer using `Team`->`Manage Connections...`
+   - Select `Clone` under `Local Git Repositories`
+   - Put `https://github.com/moneymanagerex/moneymanagerex.git` into URL field
+   - Select `c:\projects\mmex` directory in field below URL
+   - Select `Recursively Clone Submodule` check-box
+   - Click `Clone` button below
 
-Replace `Visual Studio 14 2015` with `Visual Studio 14 2015 Win64`
-for 64-bits arch.
+7. Apply patches from `util` directory to CMake modules
 
-If you want build the project for debugging proposes replace `Release`
-with `Debug`.
+       cd "%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.8\Modules"
+       for %p in (c:\projects\mmex\util\*.cmake-*.patch) do git apply --ignore-space-change --ignore-whitespace --whitespace=nowarn %p
 
-#### Loading MMEX Project into Visual Studio GUI
+   See previous step for instructions if git command is not recognized.
 
-Above steps produce *Visual Studio project file* in `c:\projects\mmex\build`
-directory ready to be load into Visual Studio.
+8. Then you should follow one of  
+   [Visual Studio project] | [Visual Studio CLI] | [Visual Studio CMake]
 
-You can also try native [CMake support in Visual Studio 2017].
+### Visual Studio GUI with project file
+
+This should work with different versions of Visual Studio and uses native
+tools to manage projects in VS IDE.
+
+1. Generate build environment using [CMake]
+
+       mkdir c:\projects\mmex\build
+       cd c:\projects\mmex\build
+       set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
+       cmake -G "Visual Studio 15 2017" ..
+
+   Replace `Visual Studio 15 2017` with `Visual Studio 15 2017 Win64`
+   for 64-bit.
+
+   This produce `c:\projects\mmex\build\MMEX.sln` file ready to be loaded into
+   Visual Studio GUI.
+
+2. Open above solution file with `File`->`Open`->`Project/Solution...` menu
+   command (or `Ctrl+Shift+O`).
+
+3. Run `Build`->`Build Solution` menu command (or `Ctrl+Shift+B`). This will
+   compile MMEX and propagate support files into right directories.
+
+4. Now you can run MMEX with `Debug`->`Start Without Debugging` menu command
+   (`Ctrl+F5`) or start debugging session with `Debug`->`Start Debugging`
+   (`F5`).
+
+5. To create binary package (you need to have [NSIS] installed for this) build
+   `PACKAGE` project.
+
+### Visual Studio command-line
+
+Use this method if you don't want to use Visual Studio GUI at all. It's very
+similar to Unix compile methods and can be useful for batch builds, CI etc.
+
+Look at [.appveyor.yml] file for more complicated command line builds
+scenarios examples (debug builds, using different toolset version, Windows
+XP/2003 compatible builds, compile wxWidgets from sources, shared DLL
+or static linking).
+
+1. Execute step 1 from [Visual Studio project] above
+
+2. Compile with
+
+       set "CL=/MP"
+       cmake --build . --target install --config Release -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
+
+   Now you can run MMEX starting `c:\projects\mmex\build\install\bin\mmex.exe`
+   file. `c:\projects\mmex\build\install` directory contains portable version.
+
+3. Build binary package (you need to have [NSIS] installed for this)
+
+       cpack .
+
+   Windows installer and zip archive with portable package should be produced.
+
+
+### Visual Studio 2017 GUI with native CMake support
+
+This will work in Visual Studio 2017 or newer with _Visual C++ tools for
+CMake_ option installed.
+
+1. Open `c:\projects\mmex` with `File`->`Open`->`Folder...` menu command
+   (or `Ctrl+Shift+Alt+O`).
+
+2. Select target like `x64-Debug` in project settings drop-down.
+
+3. Run `CMake`->`Install`->`Project MMEX` menu command before debugging
+   session start with `CMake`->`Debug`->`src\mmex.exe`.
+
+4. Select `src\mmex.exe` in `Select Startup Item` drop-down to unlock commands
+   in Debug menu.
 
 
 macOS with Homebrew
@@ -95,11 +182,11 @@ macOS with Homebrew
    terminal and type `git --version` if it shows something like
    `git version 2.11.0 (Apple Git-81)`
    you are fine. If not, you will be prompted to *Install* them via your
-   operating system. Alternativelly, you can install those tools via command:
+   operating system. Alternatively, you can install those tools via command:
 
        xcode-select --install
 
-2. After that, for comfortable installing softare we use [Homebrew].
+2. After that, for comfortable installing software we use [Homebrew].
    Run the command:
 
        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -113,7 +200,7 @@ macOS with Homebrew
 
     git clone --recursive https://github.com/moneymanagerex/moneymanagerex
 
-You can select MMEX version by adding `-b v1.4.0` parameter.
+You can select MMEX version by adding `--branch v1.4.0` parameter.
 
 #### 3. Compile and Create Package
 
@@ -121,9 +208,9 @@ You can select MMEX version by adding `-b v1.4.0` parameter.
     cd moneymanagerex/build
     export MAKEFLAGS=-j4
     cmake -DCMAKE_BUILD_TYPE=Release ..
-    make package
+    cmake --build . --target package
 
-If you want build the project with for debugging proposes replace cmake flag
+If you want build the project with for debugging proposes replace CMake flag
 `-DCMAKE_BUILD_TYPE=Release` with `-DCMAKE_BUILD_TYPE=Debug`.
 
 You could tune `-j4` option to different number to use all processor cores
@@ -135,26 +222,27 @@ Linux
 
 #### 1. Install Prerequisites
 
-All required packages should be installed from offical distribution
+All required packages should be installed from official distribution
 using native package manager:
 
-| Distribution | Update packages list | Install package             |
-|--------------|----------------------|-----------------------------|
-| Ubuntu       | `sudo apt-get update`| `sudo apt-get install <pkg>`|
-| openSUSE     | `sudo zypper update` | `sudo zypper install <pkg>` |
-| Fedora       | `sudo yum update`    | `sudo yum install <pkg>`    |
-| Arch         | `sudo pacman -Syy`   | `sudo pacman -Syu <pkg>`    |
+| Distribution   | Update packages list  | Install package             |
+|----------------|-----------------------|-----------------------------|
+| Debian, Ubuntu | `sudo apt update`     | `sudo apt install <pkg>`    |
+| openSUSE       | `sudo zypper refresh` | `sudo zypper install <pkg>` |
+| Fedora         | `sudo dnf --refresh repolist` | `sudo dnf install <pkg>` |
+| CentOS         | `sudo yum update`     | `sudo yum install <pkg>`    |
+| Arch           | `sudo pacman -Syy`    | `sudo pacman -Syu <pkg>`    |
 
 It is good practise to update packages list before installing new packages.
 This allows install or update required dependencies to the latest versions.
 
-List of required packages for each distribution is avaiable in *dockerfiles*
+List of required packages for each distribution is available in *dockerfiles*
 in [dockers] subdirectory. Look for file
 `dockers/<distribution>.<codename>/Dockerfile` - i.e. [Dockerfile for Ubuntu
 zesty].
 
 Sometimes additional steps / workarounds are needed for specific distribution
-or version - they are inclued in above mentioned dockerfiles. Please run them
+or version - they are included in above mentioned dockerfiles. Please run them
 before next steps.
 
 #### 2. Select C++ Compiler
@@ -163,12 +251,12 @@ You can choose which compiler you want to use: GCC (default in most Linux
 distributions) or CLang (optional). If you want use CLang you should install
 additional package and select it as default compiler:
 
-| Distribution | CLang pkg  | Change compiler to CLang |
-|--------------|------------|--------------------------|
-| Ubuntu       | clang      | `sudo update-alternatives --set cc /usr/bin/clang`<br>`sudo update-alternatives --set c++ /usr/bin/clang++`|
-| openSUSE     | llvm-clang | `sudo ln -sf /usr/bin/clang /usr/bin/cc`<br>`sudo ln -sf /usr/bin/clang++ /usr/bin/c++`|
-| Fedora       | clang      | `sudo ln -sf /usr/bin/clang /usr/bin/cc`<br>`sudo ln -sf /usr/bin/clang++ /usr/bin/c++`|
-| Arch         | clang      | `export CC=clang CXX=clang++`|
+| Distribution   | CLang pkg  | Change compiler to CLang |
+|----------------|------------|--------------------------|
+| Debian, Ubuntu | clang      | `sudo update-alternatives --set cc /usr/bin/clang`<br>`sudo update-alternatives --set c++ /usr/bin/clang++`|
+| openSUSE       | llvm-clang | `sudo ln -sf /usr/bin/clang /usr/bin/cc`<br>`sudo ln -sf /usr/bin/clang++ /usr/bin/c++`|
+| Fedora, CentOS | clang      | `sudo ln -sf /usr/bin/clang /usr/bin/cc`<br>`sudo ln -sf /usr/bin/clang++ /usr/bin/c++`|
+| Arch           | clang      | `export CC=clang CXX=clang++`|
 
 #### 3. Download Sources
 
@@ -180,15 +268,18 @@ Same as for [macOS](#3-compile-and-create-package)
 
 #### 5. Install MMEX Package
 
-| Distribution | Install package from local file             |
-|--------------|---------------------------------------------|
-| Ubuntu       | `sudo apt-get install ./mmex-<version>.deb` |
-| openSUSE     | `sudo rpm -i ./mmex-<version>.rpm`          |
-| Fedora       | `sudo rpm -i ./mmex-<version>.rpm`          |
-| Arch         | `sudo pacman -U ./mmex-<version>.pkg.tar.xz`|
+| Distribution   | Install package from local file              |
+|----------------|----------------------------------------------|
+| Debian, Ubuntu | `sudo apt install ./mmex-<version>.deb`      |
+| openSUSE       | `sudo rpm -i ./mmex-<version>.rpm`           |
+| Fedora         | `sudo dnf install ./mmex-<version>.rpm`      |
+| CentOS         | `sudo yum localinstall ./mmex-<version>.rpm` |
+| Arch           | `sudo pacman -U ./mmex-<version>.pkg.tar.xz` |
 
-<!-- links -->
-[Windows]: #microsoft-windows-with-visual-studio
+[Windows]: #microsoft-windows
+[Visual Studio CLI]: #visual-studio-command-line
+[Visual Studio project]: #visual-studio-gui-with-project-file
+[Visual Studio CMake]: #visual-studio-2017-gui-with-native-cmake-support
 [Linux]: #linux
 [macOS]: #macos-with-homebrew
 [dockers]: dockers/
@@ -197,18 +288,14 @@ Same as for [macOS](#3-compile-and-create-package)
     https://www.visualstudio.com/downloads/
 [Git for Windows]:
     https://git-scm.com/download/win
-[system environment variable]:
-    http://www.computerhope.com/issues/ch000549.htm
-[gettext]:
-    https://www.gnu.org/software/gettext/#downloading
-[gettext precompiled binaries]:
+[gettext pre-compiled binaries]:
     https://mlocati.github.io/articles/gettext-iconv-windows.html
+[wxWidgets 3.x binaries]:
+    https://github.com/wxWidgets/wxWidgets/releases/
 [Developer Command Prompt]:
     https://docs.microsoft.com/en-us/dotnet/framework/tools/developer-command-prompt-for-vs
-[official Git repository]:
+[MMEX official Git repository]:
     https://github.com/moneymanagerex/moneymanagerex
-[NMake]:
-    https://docs.microsoft.com/cpp/build/nmake-reference
 [CMake]:
     https://cmake.org/
 [wxWidgets]:
@@ -219,3 +306,8 @@ Same as for [macOS](#3-compile-and-create-package)
     https://blogs.msdn.microsoft.com/vcblog/2016/10/05/cmake-support-in-visual-studio/
 [Homebrew]:
     https://brew.sh
+[.appveyor.yml]:
+    .appveyor.yml
+[IDE Team Services]:
+    https://www.visualstudio.com/en-us/docs/git/tutorial/clone#clone-a-repo
+    
