@@ -284,8 +284,6 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
 ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     mmex.cpp
     mmex.h
-    "${CMAKE_SOURCE_DIR}/3rd/cgitemplate/html_template.cpp"
-    "${CMAKE_SOURCE_DIR}/3rd/mongoose/mongoose.c"
     "${MACOSX_APP_ICON_FILE}"
     "${MMEX_RC}")
 
@@ -312,7 +310,28 @@ ELSE()
     TARGET_COMPILE_FEATURES(MMEXLib PUBLIC cxx_std_11)
 ENDIF()
 
-TARGET_LINK_LIBRARIES(${MMEX_EXE} MMEXLib ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
+TARGET_INCLUDE_DIRECTORIES(MMEXLib PUBLIC .)
+TARGET_LINK_LIBRARIES(${MMEX_EXE} MMEXLib)
+TARGET_LINK_LIBRARIES(MMEXLib
+    PUBLIC
+        wxSQLite3
+        cajun
+        HTML-template
+    PRIVATE
+        LuaGlue
+        Lua
+        csv_parser
+        Mongoose)
+
+IF(MSVC)
+    # Based on this http://stackoverflow.com/a/8294669
+    # added solution to compile problems due to
+    # conflict between winsock and winsock2
+    # Partialy reinvented fix from commit
+    # commit 06accae1273e66ced469672151522e45eee685a9
+    TARGET_COMPILE_DEFINITIONS(MMEXLib PRIVATE WIN32_LEAN_AND_MEAN)
+ENDIF()
+
 INSTALL(TARGETS ${MMEX_EXE}
     RUNTIME DESTINATION ${MMEX_BIN_DIR}
     BUNDLE  DESTINATION .)

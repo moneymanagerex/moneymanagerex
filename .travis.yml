@@ -11,8 +11,7 @@ env:
   - MAKEFLAGS=-j4
   - BUILD_TYPE=Release
   - BUILD_TESTS=OFF
-  matrix:
-  # targets for linux
+  matrix: # targets for linux
   - OS=debian DIST=jessie
   - OS=debian DIST=stretch
   - OS=debian DIST=buster
@@ -28,14 +27,16 @@ env:
   - OS=opensuse DIST=42.3
   - OS=archlinux
   - OS=el DIST=7 # DIST=6 doesn't provide webview in wxGTK3
-  - OS=mint DIST=18.1
+  - OS=linuxmint DIST=serena
 
 matrix:
   fast_finish: true
   include: # add non-linux targets
-  - os: osx
-    env: OS=macos
-    compiler: gcc
+  - { os: osx, osx_image: xcode6.4, env: OS=osx DIST=yosemite }
+  - { os: osx, osx_image: xcode8, env: OS=osx DIST=el_capitan }
+  - { os: osx, osx_image: xcode9, env: OS=macos DIST=sierra }
+  exclude:
+  - { osx_image: xcode6.4, env: BUILD_TESTS=ON } # libtoolize problems
   allow_failures:
   - env: OS=debian DIST=jessie
   - env: OS=debian DIST=stretch
@@ -50,19 +51,37 @@ matrix:
   - env: OS=opensuse DIST=42.2
   - env: OS=opensuse DIST=42.3
   - env: OS=archlinux
-  - env: OS=mint DIST=18.1
+  - env: OS=linuxmint DIST=serena
+  - env: OS=osx DIST=yosemite
+  - env: OS=osx DIST=el_capitan
 
-install:
-- DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}
-- if [ $TRAVIS_OS_NAME = linux ]; then docker pull ${DOCKER}; docker build dockers/$OS${DIST:+.$DIST} --cache-from ${DOCKER} -t ${DOCKER}; fi
-- if [ $TRAVIS_OS_NAME = osx ]; then brew update; fi
-- if [ $TRAVIS_OS_NAME = osx ]; then brew install wxmac; fi
-- if [ $TRAVIS_OS_NAME = osx ]; then brew install gettext && brew link --force gettext; fi
-- mkdir build && cd build
+install: |-
+  DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}
+  case $TRAVIS_OS_NAME in
+    linux)
+      docker pull ${DOCKER}
+      docker build dockers/$OS${DIST:+.$DIST} --cache-from ${DOCKER} -t ${DOCKER}
+      ;;
+    osx)
+      BREW=wxmac
+      brew list gettext >/dev/null || BREW="$BREW gettext"
+      brew list libtool >/dev/null || BREW="$BREW libtool"
+      brew list automake >/dev/null || BREW="$BREW automake"
+      brew install $BREW && brew link --force gettext libtool
+      ;;
+  esac
+  mkdir build && cd build
 
-script:
-- if [ $TRAVIS_OS_NAME = linux ]; then docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} bash -c "cmake -DMMEX_BUILD_TESTS=$BUILD_TESTS -DCMAKE_BUILD_TYPE=$BUILD_TYPE .. && make package"; fi
-- if [ $TRAVIS_OS_NAME = osx ]; then cmake -DMMEX_BUILD_TESTS=$BUILD_TESTS -DCMAKE_BUILD_TYPE=$BUILD_TYPE .. && make package; fi
+script: |-
+  CMAKE_CMD="cmake -DMMEX_BUILD_TESTS=$BUILD_TESTS -DCMAKE_BUILD_TYPE=$BUILD_TYPE .."
+  case $TRAVIS_OS_NAME in
+    linux)
+      docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS \
+                 -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} \
+        bash -c "$CMAKE_CMD && make package" ;;
+    osx)
+      $CMAKE_CMD && make package ;;
+  esac
 
 notifications: # set notification options
   email:
@@ -72,9 +91,13 @@ notifications: # set notification options
     on_failure: always
 
 after_success:
+# Rename mac packages
+- if [ $TRAVIS_OS_NAME = osx ]; then
+    for p in *.dmg; do mv $p ${p%Darwin.*}$OS.$DIST.dmg; done; fi
 # Generate checksums
 - if [ $TRAVIS_OS_NAME = osx ]; then sha=gsha512sum; else sha=sha512sum; fi
-- shopt -s nullglob; for p in *.{deb,rpm,dmg,pkg.tar.xz}; do ${sha} $p | tee $p.sha512; done
+- shopt -s nullglob;
+  for p in *.{deb,rpm,dmg,pkg.tar.xz}; do ${sha} $p | tee $p.sha512; done
 
 # Set encrypted variable 'GitHub_auth_token' in Travis repo settings to deploy packages
 # for tagged commits to GitHub Releases.

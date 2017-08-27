@@ -7,7 +7,12 @@ IF(WIN32)
     SET(MMEX_RC mmex_tests.rc)
 ENDIF()
 
-ADD_EXECUTABLE(${MMEX_EXE}-tests WIN32 MACOSX_BUNDLE
+# Pass version numbers to the sources
+# TODO: find better way for this
+CONFIGURE_FILE("${PROJECT_SOURCE_DIR}/src/versions.h.in" versions.h @ONLY)
+INCLUDE_DIRECTORIES("${CMAKE_CURRENT_BINARY_DIR}")
+
+ADD_EXECUTABLE(${MMEX_EXE}-tests MACOSX_BUNDLE
     cpu_timer.cpp
     cpu_timer.h
     db_init_model.cpp
@@ -46,25 +51,20 @@ ADD_EXECUTABLE(${MMEX_EXE}-tests WIN32 MACOSX_BUNDLE
     test_stocks.h
     test_translink.cpp
     test_translink.h
-    ${MMEX_RC}
 
-    "${CMAKE_SOURCE_DIR}/src/mmex.cpp"
-    "${CMAKE_SOURCE_DIR}/src/mmex.h"
-
-    "${CMAKE_SOURCE_DIR}/3rd/cgitemplate/html_template.cpp"
-    "${CMAKE_SOURCE_DIR}/3rd/mongoose/mongoose.c"
-    "${MACOSX_APP_ICON_FILE}")
+    "${PROJECT_SOURCE_DIR}/src/mmex.cpp"
+    "${PROJECT_SOURCE_DIR}/src/mmex.h"
+    "${MACOSX_APP_ICON_FILE}"
+    ${MMEX_RC})
 
 TARGET_COMPILE_DEFINITIONS(${MMEX_EXE}-tests PRIVATE wxIMPLEMENT_WXWIN_MAIN=)
-TARGET_LINK_LIBRARIES(${MMEX_EXE}-tests MMEXLib CPPUnitLib ${wxWidgets_LIBRARIES} wxSQLite3 LUA)
-
-# hide warnings from cppunit includes
-IF(CMAKE_COMPILER_IS_GNUCXX)
-    TARGET_COMPILE_OPTIONS(${MMEX_EXE}-tests PRIVATE -Wno-deprecated-declarations)
+IF(MSVC)
+    TARGET_COMPILE_OPTIONS(${MMEX_EXE}-tests PRIVATE /wd4005)
 ENDIF()
+
+TARGET_INCLUDE_DIRECTORIES(${MMEX_EXE}-tests PRIVATE .)
+TARGET_LINK_LIBRARIES(${MMEX_EXE}-tests MMEXLib CPPUnitLib)
 
 INSTALL(TARGETS ${MMEX_EXE}-tests
     RUNTIME DESTINATION ${MMEX_BIN_DIR}
     BUNDLE  DESTINATION .)
-
-MESSAGE(STATUS "Using cppunit lib: ${CMAKE_BINARY_DIR}/cppunit/lib/${CMAKE_STATIC_LIBRARY_PREFIX}cppunit${CMAKE_STATIC_LIBRARY_SUFFIX}")
