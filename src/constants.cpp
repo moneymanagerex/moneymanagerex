@@ -127,6 +127,9 @@ const wxString mmex::getProgramDescription()
 #ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
         << L" \u2b25 " << CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << "\n"
 #endif
+#ifdef LINUX_DISTRO_STRING
+        << L" \u2b25 " << LINUX_DISTRO_STRING << "\n"
+#endif
 
         << "\n" << _("Running on:") << "\n"
 #ifdef __LINUX__

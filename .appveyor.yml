@@ -124,9 +124,6 @@ after_build:
 - for %%f in (*.exe *.zip) do
     if /i %%~xf==.exe (move "%%f" "..\%%~nf%xp%%pkgsuff%.exe")
     else (move "%%f" "..\%%~nf%xp%%pkgsuff%-portable.zip")
-# calculate checksums
-- cd %APPVEYOR_BUILD_FOLDER%
-- for %%f in (*.exe *.zip) do sha512sum "%%f" > "%%f.sha512"
 
 test: off
 
@@ -142,8 +139,6 @@ artifacts:
     name: installer
   - path: '*.zip'
     name: portable
-  - path: '*.sha512'
-    name: checksum
   - path: build\mmex.dot
     name: build dependency graph
 
@@ -151,6 +146,7 @@ deploy:
   description: 'release created by AppVeyor CI'
   provider: GitHub
   auth_token: '%GitHub_auth_token%'
+  artifact: installer,portable
   draft: true
   prerelease: true
   on:

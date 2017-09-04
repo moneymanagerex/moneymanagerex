@@ -100,7 +100,8 @@ configuration.
 
 Download package for your distribution from [GitHub Releases][GitHubDL].
 Arch, Debian 8/9/10, CentOS 7, Fedora 24/25/26/rawhide, Mint 18.1, openSUSE
-Leap 42.2/42.3/tumbleweed, Ubuntu 16/17 are supported for now, 64-bit only.
+Leap 42.2/42.3/tumbleweed, Ubuntu 16/17, Slackware 14.2 are supported for now,
+64-bit only.
 
 > Use unstable pre-release version (*alpha*, *beta*, *rc*) at your risk
 > (work on your database copies!) to check or test newly added functions.
@@ -114,6 +115,11 @@ To install downloaded package file run following command from terminal window:
 | Fedora               | `sudo dnf install ./mmex-<version>.rpm`      |
 | CentOS               | `sudo yum install ./mmex-<version>.rpm`      |
 | Arch                 | `sudo pacman -U ./mmex-<version>.pkg.tar.xz` |
+| Slackware            | `sudo installpkg ./mmex-<version>.txz`       |
+
+Slackware requires additional dependency packages to be installed: libwebp,
+webkitgtk and wxGTK3 (with webview support). They can be build from
+[slackbuilds.org] repo.
 
 OS X / macOS
 ------------
@@ -142,3 +148,4 @@ Yosemite, OS X 10.11 El Capitan, or macOS 10.12 Sierra.
 [packagecloud.io]: https://packagecloud.io/moneymanagerex/moneymanagerex
 [add MMEX repository]: https://packagecloud.io/moneymanagerex/moneymanagerex/install#bash
 [manually add MMEX repo]: https://packagecloud.io/moneymanagerex/moneymanagerex/install#manual
+[slackbuilds.org]: https://slackbuilds.org/

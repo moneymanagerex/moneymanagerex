@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+    |-----handy-ruler------------------------------------------------------|
+mmex: Money Manager EX (Simple to use financial management software)
+mmex:
+mmex: Money Manager Ex (MMEX) is a free, open-source, cross-platform,
+mmex: easy-to-use personal finance software. It primarily helps organize
+mmex: one's finances and keeps track of where, when and how the money goes.
+mmex: MMEX includes all the basic features that 90% of users would want to
+mmex: see in a personal finance application. The design goals are to
+mmex: concentrate on simplicity and user friendliness - something one can
+mmex: use everyday.
+mmex:
+mmex: Homepage: http://www.moneymanagerex.org/

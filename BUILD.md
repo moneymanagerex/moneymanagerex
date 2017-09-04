@@ -225,13 +225,14 @@ Linux
 All required packages should be installed from official distribution
 using native package manager:
 
-| Distribution         | Update packages list  | Install package             |
-|----------------------|-----------------------|-----------------------------|
-| Debian, Ubuntu, Mint | `sudo apt update`     | `sudo apt install <pkg>`    |
-| openSUSE             | `sudo zypper refresh` | `sudo zypper install <pkg>` |
+| Distribution         | Update packages list  | Install package              |
+|----------------------|-----------------------|------------------------------|
+| Debian, Ubuntu, Mint | `sudo apt update`     | `sudo apt install <pkg>`     |
+| openSUSE             | `sudo zypper refresh` | `sudo zypper install <pkg>`  |
 | Fedora               | `sudo dnf --refresh repolist` | `sudo dnf install <pkg>` |
 | CentOS               | `sudo yum clean expire-cache` | `sudo yum install <pkg>` |
-| Arch                 | `sudo pacman -Syy`    | `sudo pacman -Syu <pkg>`    |
+| Arch                 | `sudo pacman -Syy`    | `sudo pacman -Syu <pkg>`     |
+| Slackware            | `sudo slackpkg update`| `sudo slackpkg install <pkg>`|
 
 It is good practise to update packages list before installing new packages.
 This allows install or update required dependencies to the latest versions.
@@ -256,7 +257,8 @@ additional package and select it as default compiler:
 | Debian, Ubuntu, Mint | clang      | `sudo update-alternatives --set cc /usr/bin/clang`<br>`sudo update-alternatives --set c++ /usr/bin/clang++`|
 | openSUSE             | llvm-clang | `sudo ln -sf /usr/bin/clang /usr/bin/cc`<br>`sudo ln -sf /usr/bin/clang++ /usr/bin/c++`|
 | Fedora, CentOS       | clang      | `sudo ln -sf /usr/bin/clang /usr/bin/cc`<br>`sudo ln -sf /usr/bin/clang++ /usr/bin/c++`|
-| Arch                 | clang      | `export CC=clang CXX=clang++`|
+| Arch                 | clang      | `export CC=clang CXX=clang++` |
+| Slackware            | llvm       | `export CC=clang CXX=clang++` |
 
 #### 3. Download Sources
 
@@ -273,8 +275,9 @@ Same as for [macOS](#3-compile-and-create-package)
 | Debian, Ubuntu, Mint | `sudo apt install ./mmex-<version>.deb`      |
 | openSUSE             | `sudo zypper install ./mmex-<version>.rpm`   |
 | Fedora               | `sudo dnf install ./mmex-<version>.rpm`      |
-| CentOS               | `sudo yum install ./mmex-<version>.rpm`       |
+| CentOS               | `sudo yum install ./mmex-<version>.rpm`      |
 | Arch                 | `sudo pacman -U ./mmex-<version>.pkg.tar.xz` |
+| Slackware            | `sudo installpkg ./mmex-<version>.txz`       |
 
 [Windows]: #microsoft-windows
 [Visual Studio CLI]: #visual-studio-command-line
