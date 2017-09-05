@@ -48,24 +48,27 @@ IF(MMEX_VERSION_UNSTABLE)
 ENDIF()
 
 # Find Git commit details to put into versions.h later
-# Get the current working branch
-EXECUTE_PROCESS(COMMAND git symbolic-ref --short -q HEAD
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_BRANCH
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-    TIMEOUT 4 ERROR_QUIET)
-# Get the latest abbreviated commit hash of the working branch
-EXECUTE_PROCESS(COMMAND git log -1 --format=%h
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_COMMIT_HASH
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-    TIMEOUT 4 ERROR_QUIET)
-# Get the latest commit date of the working branch
-EXECUTE_PROCESS(COMMAND git log -1 --format=%cd --date=short
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_COMMIT_DATE
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-    TIMEOUT 4 ERROR_QUIET)
+FIND_PACKAGE(Git)
+IF(Git_FOUND)
+    # Get the current working branch
+    EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} symbolic-ref --short -q HEAD
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_BRANCH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        TIMEOUT 4 ERROR_QUIET)
+    # Get the latest abbreviated commit hash of the working branch
+    EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} log -1 --format=%h
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_COMMIT_HASH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        TIMEOUT 4 ERROR_QUIET)
+    # Get the latest commit date of the working branch
+    EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} log -1 --format=%cd --date=short
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_COMMIT_DATE
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        TIMEOUT 4 ERROR_QUIET)
+ENDIF()
 
 # detect target arch
 IF(NOT APPLE)
@@ -129,14 +132,7 @@ ENDIF()
 # --------- Set compiler parameters ---------
 IF(MSVC)
     # using Visual Studio C++
-    # Based on this http://stackoverflow.com/a/8294669
-    # added solution to compile problems due to
-    # conflict between winsock and winsock2
-    # Partialy reinvented fix from commit
-    # commit 06accae1273e66ced469672151522e45eee685a9
-    ADD_DEFINITIONS(-DWIN32_LEAN_AND_MEAN)
     ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
-    ADD_DEFINITIONS(-D_WINSOCK_DEPRECATED_NO_WARNINGS) # mongoose
 ELSEIF(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     # using regular Clang or AppleClang
     IF(LINUX_DISTRO STREQUAL "Ubuntu")
@@ -149,17 +145,21 @@ ELSEIF(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 ENDIF()
 
 
+# --------- cmake --grapgviz settings ---------
+FILE(WRITE "${CMAKE_BINARY_DIR}/CMakeGraphVizOptions.cmake" "
+    SET(GRAPHVIZ_GRAPH_NAME \"MMEX build dependency graph\")
+    SET(GRAPHVIZ_GENERATE_PER_TARGET FALSE)
+    SET(GRAPHVIZ_GENERATE_DEPENDERS FALSE)
+")
 
 # --------- Set various location ---------
 IF(APPLE)
     # Preparing for configure icons
     SET(MACOSX_APP_ICON_NAME mmex.icns)
     # Setting path to icon
-    SET(MACOSX_APP_ICON_FILE "${CMAKE_SOURCE_DIR}/resources/${MACOSX_APP_ICON_NAME}")
+    SET(MACOSX_APP_ICON_FILE "${PROJECT_SOURCE_DIR}/resources/${MACOSX_APP_ICON_NAME}")
     # Real setting of icons
-    SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/resources/mmex-package.icns")
     SET(MACOSX_BUNDLE_ICON_FILE "${MACOSX_APP_ICON_NAME}")
-    SET(CPACK_BUNDLE_PLIST "${CMAKE_SOURCE_DIR}/resources/Info.plist")
 
     SET(MMEX_DOC_DIR ${MMEX_EXE}.app/Contents/SharedSupport/doc)
     SET(MMEX_RES_DIR ${MMEX_EXE}.app/Contents/Resources)
@@ -175,7 +175,7 @@ ELSE()
 ENDIF()
 
 
-# --------- Check for required libraries ---------
+# --------- wxWidgets dependency ---------
 SET(wxWidgets_USE_REL_AND_DBG ON)
 IF(WIN32)
     #wxScintilla is needed on Windows
@@ -186,29 +186,23 @@ ENDIF()
 IF(wxWidgets_VERSION_STRING AND wxWidgets_VERSION_STRING VERSION_LESS 2.9.2)
     MESSAGE(SEND_ERROR "wxWidget version to old.")
 ENDIF()
-INCLUDE(${wxWidgets_USE_FILE})
+ADD_LIBRARY(wxWidgets INTERFACE)
+TARGET_INCLUDE_DIRECTORIES(wxWidgets INTERFACE ${wxWidgets_INCLUDE_DIRS})
+TARGET_LINK_LIBRARIES(wxWidgets INTERFACE ${wxWidgets_LIBRARIES})
+TARGET_COMPILE_OPTIONS(wxWidgets INTERFACE ${wxWidgets_CXX_FLAGS})
+TARGET_COMPILE_DEFINITIONS(wxWidgets INTERFACE ${wxWidgets_DEFINITIONS}
+    $<$<CONFIG:Debug>:${wxWidgets_DEFINITIONS_DEBUG}>)
+
 
 # --------- Collect sources and targets ---------
 SET(MMEX_BIN_DIR bin)
-INCLUDE_DIRECTORIES(
-    src
-    3rd
-    3rd/cgitemplate
-    3rd/csv-parser/include
-    3rd/LuaGlue/include
-    lib/cppunit/include
-    lib/lua/src
-    lib/wxsqlite3/include
-    lib/wxsqlite3/sqlite3/secure/src
-)
-
 
 ## Tuning for VisualStudio IDE ##
 IF(MSVC)
     MESSAGE(STATUS "Tuning for Visual Studio IDE")
 
     IF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-        SET(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install"
+        SET(CMAKE_INSTALL_PREFIX "${PROJECT_BINARY_DIR}/install"
             CACHE PATH "Install directory used by INSTALL target" FORCE)
     ENDIF()
     SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_INSTALL_PREFIX}/${MMEX_BIN_DIR}>)
@@ -219,11 +213,13 @@ ENDIF()
 
 
 ## Subdirectories with targets ##
-ADD_SUBDIRECTORY(lib)
+ADD_SUBDIRECTORY(3rd)
 ADD_SUBDIRECTORY(po)
 ADD_SUBDIRECTORY(src)
 IF(MMEX_BUILD_TESTS)
-    ENABLE_TESTING()
+    IF(MSVC AND CMAKE_SIZEOF_VOID_P EQUAL 8)
+        MESSAGE(SEND_ERROR "MMEX_BUILD_TESTS not supported under MSVC x64.")
+    ENDIF()
     ADD_SUBDIRECTORY(tests)
 ENDIF()
 
@@ -248,7 +244,7 @@ IF(APPLE)
         # Set CFBundleShortVersionString to "2.0.0". This is displayed in the Finder and Spotlight.
         MACOSX_BUNDLE_SHORT_VERSION_STRING ${MMEX_VERSION}
         # Set the path to the plist template
-        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/resources/Info.plist")
+        MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/resources/Info.plist")
 ENDIF()
 
 # Besides normal installable version, for windows the portable version needs additionally files
@@ -427,6 +423,8 @@ ELSEIF(APPLE)
     SET(CPACK_DMG_FORMAT UDZO)
     SET(CPACK_DMG_BACKGROUND_IMAGE "${PROJECT_SOURCE_DIR}/resources/dmg-background.png")
     SET(CPACK_DMG_DS_STORE "${PROJECT_SOURCE_DIR}/resources/.DS_Store")
+    SET(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/resources/mmex-package.icns")
+    SET(CPACK_BUNDLE_PLIST "${PROJECT_SOURCE_DIR}/resources/Info.plist")
 ELSEIF(WIN32)
     # With using http://nsis.sourceforge.net/Main_Page
     SET(CPACK_GENERATOR NSIS ZIP)
@@ -482,7 +480,7 @@ ELSE()
         CMAKE_POLICY(SET CMP0037 OLD)
     ENDIF()
     ADD_CUSTOM_TARGET(package
-        COMMAND sh -c "if [ `id -u` -eq 0 ]; then chown nobody -R . && su nobody -c makepkg; else makepkg; fi"
+        COMMAND sh -c "if [ `id -u` -eq 0 ]; then chown nobody -R . ../3rd/cppunit && su nobody -c makepkg; else makepkg; fi"
         VERBATIM)
     CMAKE_POLICY(POP)
 ENDIF()

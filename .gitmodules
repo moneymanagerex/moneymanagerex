@@ -1,5 +1,5 @@
-[submodule "lib/wxsqlite3"]
-	path = lib/wxsqlite3
+[submodule "3rd/wxsqlite3"]
+	path = 3rd/wxsqlite3
 	url = https://github.com/utelle/wxsqlite3.git
 [submodule "3rd/mongoose"]
 	path = 3rd/mongoose
@@ -16,8 +16,8 @@
 [submodule "3rd/csv-parser"]
 	path = 3rd/csv-parser
 	url = https://github.com/moneymanagerex/csv-parser.git
-[submodule "lib/cppunit"]
-	path = lib/cppunit
+[submodule "3rd/cppunit"]
+	path = 3rd/cppunit
 	url = https://github.com/moneymanagerex/cppunit.git
 [submodule "3rd/sorttable.js"]
 	path = 3rd/sorttable.js
@@ -25,15 +25,6 @@
 [submodule "3rd/ChartNew.js"]
 	path = 3rd/ChartNew.js
 	url = https://github.com/FVANCOP/ChartNew.js
-[submodule "3rd/ctpp"]
-	path = 3rd/ctpp
-	url = https://github.com/moneymanagerex/ctpp.git
 [submodule "database"]
 	path = database
 	url = https://github.com/moneymanagerex/database
-[submodule "3rd/sqlcipher"]
-	path = 3rd/sqlcipher
-	url = https://github.com/sqlcipher/sqlcipher.git
-[submodule "3rd/json11"]
-	path = 3rd/json11
-	url = https://github.com/dropbox/json11.git

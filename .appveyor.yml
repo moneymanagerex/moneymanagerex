@@ -1,5 +1,4 @@
 version: '{build}'
-branches: { except: [ gh-pages ] }
 clone_depth: 10 # to allow queued build jobs
 image:
 - Visual Studio 2017
@@ -18,23 +17,25 @@ matrix:
   - { comp: 110, image: Visual Studio 2017 }
   - { comp: 141, image: Visual Studio 2015 }
   # duplicated - select only one
-  - { comp: 120, image: Visual Studio 2015 }
+  - { comp: 120, image: Visual Studio 2017 }
   - { comp: 140, image: Visual Studio 2015 }
+  # not supported by cppunit
+  - { platform: x64, build_tests: ON }
   allow_failures:
   - configuration: Debug
+  - build_tests: ON
 
 environment:
   # use cache with 7z compression
   APPVEYOR_CACHE_ENTRY_ZIP_ARGS: -t7z -m0=lzma -mx=9
+  # Use cygwin embeded gettext tools
+  path: '%path%;C:\cygwin64\bin'
   # wxWidgets config
   wxVer: 3.1.0
   wxwin: C:\wxWidgets
   wxShared: 0
   wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxver)
-  # Use cygwin embeded gettext tools
-  path: '%path%;C:\cygwin64\bin'
-  # Microsoft toolchain options
-  msbuild_opts: /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
+  # Microsoft compiler options
   CL: /MP
   build_tests: OFF
   matrix:
@@ -68,12 +69,12 @@ init:
 # Set wxWidgets library paths
 - set "wxLibFolder=%wxwin%\lib\vc%comp%%xp%"
 - if %platform:~-2%==64 set wxSuff=_x64
-- if %wxShared%==0 (set wxLibFolder=%wxLibFolder%%wxSuff%_lib) else (set wxLibFolder=%wxLibFolder%%wxSuff%_dll)
+- if %wxShared%==0 (set wxLibFolder=%wxLibFolder%%wxSuff%_lib)
+  else (set wxLibFolder=%wxLibFolder%%wxSuff%_dll)
 # Print some info
 - echo %APPVEYOR_BUILD_WORKER_IMAGE% %platform% v%comp%%xp% %configuration% %arch%
 
-cache:
-- '%wxwin%\lib'
+cache: '%wxwin%\lib'
 
 install:
 # Patch CMake
@@ -84,9 +85,11 @@ install:
     curl -fsL --fail-early
       -O %wxURL%/wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
       -O %wxURL%/wxWidgets-%wxVer%-headers.7z &&
-    if %configuration%==Release curl -fsL -O %wxURL%/wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_ReleaseDLL.7z
+    if %configuration%==Release
+      curl -fsL -O %wxURL%/wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_ReleaseDLL.7z
   ) || exit 0
-- if not exist wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z curl -fsSL -O %wxURL%/wxWidgets-%wxVer%.7z
+- if not exist wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
+    curl -fsSL -O %wxURL%/wxWidgets-%wxVer%.7z
 - 7z x -y "-o%wxwin%" wx*-%wxVer%*.7z
 # wxWidgets, build script from build/tools/msvs/officialbuild.bat
 - if %configuration%==Release set "wxConf=BUILD=release"
@@ -94,7 +97,8 @@ install:
 - if not exist "%wxLibFolder%" (
     echo Building wxWidgets %wxVer% &
     cd %wxwin%\build\msw &&
-    nmake /nologo /s /f makefile.vc %wxConf% COMPILER_VERSION=%comp%%xp% TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% %wxFlags%
+    nmake /nologo /s /f makefile.vc %wxConf% COMPILER_VERSION=%comp%%xp%
+      TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% %wxFlags%
   )
 
 before_build:
@@ -108,14 +112,18 @@ build_script:
 - if %comp%==140 (set "gen=14 2015" & set "tool=v%comp%%xp%,host=x64")
 - if %comp%==141 (set "gen=15 2017" & set "tool=v%comp%%xp%,host=x64")
 - if %platform:~-2%==64 set "gen=%gen% Win64"
-- if %configuration%==Debug set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON"
-- cmake -T %tool% -G "Visual Studio %gen%" -DMMEX_BUILD_TESTS=%build_tests% %cmake_def% ..
-- cmake --build . --target package --config %configuration% -- %msbuild_opts%
+- if %configuration%==Debug
+    set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON"
+- cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" -DMMEX_BUILD_TESTS=%build_tests% %cmake_def% ..
+- cmake --build . --target package --config %configuration%
+    -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
 
 after_build:
 # rename and move
 - if %configuration%==Debug set "pkgsuff=-debug"
-- for %%f in (*.exe *.zip) do if /i %%~xf==.exe (move "%%f" "..\%%~nf%xp%%pkgsuff%.exe") else (move "%%f" "..\%%~nf%xp%%pkgsuff%-portable.zip")
+- for %%f in (*.exe *.zip) do
+    if /i %%~xf==.exe (move "%%f" "..\%%~nf%xp%%pkgsuff%.exe")
+    else (move "%%f" "..\%%~nf%xp%%pkgsuff%-portable.zip")
 # calculate checksums
 - cd %APPVEYOR_BUILD_FOLDER%
 - for %%f in (*.exe *.zip) do sha512sum "%%f" > "%%f.sha512"
@@ -125,7 +133,8 @@ test: off
 on_success:
 # don't cache downloaded wxWidgets binaries
 - if %wxShared%==1 (
-    if exist wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z rmdir /s /q "%wxLibFolder%"
+    if exist wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
+      rmdir /s /q "%wxLibFolder%"
   )
 
 artifacts:
@@ -135,6 +144,8 @@ artifacts:
     name: portable
   - path: '*.sha512'
     name: checksum
+  - path: build\mmex.dot
+    name: build dependency graph
 
 deploy:
   description: 'release created by AppVeyor CI'

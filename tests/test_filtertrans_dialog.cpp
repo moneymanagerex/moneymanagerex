@@ -134,7 +134,7 @@ void Test_FilterTrans_Dialog::test_mmFilterTransactionsDialog()
     user_request->Show();
 
     // Create it here because we want it to remember last actions.
-    mmFilterTransactionsDialog test_dialog(m_base_frame);
+    mmFilterTransactionsDialog test_dialog(m_base_frame, -1);
 
     bool testing_dialog = true;
     int test_count = 0;
