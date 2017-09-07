@@ -16,28 +16,17 @@ personal finance application. The design goals are to concentrate on
 simplicity and user-friendliness - something one can use everyday.
 
 MMEX is mainly written in C++11 and built on:  
-  [wxWidgets] 3.0+
-| [wxSqlite3]
-| [SQLite3]
-| [Mongoose]
-| [ChartNew.JS]
+[wxWidgets] 3.0+ | [wxSqlite3] | [SQLite3] | [Mongoose] | [ChartNew.JS]
 | [html-template]
 
 #### Supported platforms ####
-- Windows XP, Vista, 7, 8 and 10
+- Windows XP, 2003, Vista, 7, 8 and 10
 - Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x)
 - OS X (10.7 or newer) and macOS using Cocoa
 
 #### External public resources ####
-  [Slack]
-| [Forum]
-| [Wiki]
-| [Facebook]
-| [YouTube]
-| [SourceForge]
-| [GitHub]
-| [Docker images]
-| [Twitter] [![tw]][Twitter]
+[Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [SourceForge] | [GitHub]
+| [Docker images] | [Twitter] [![tw]][Twitter]
 
 #### Tips ####
 * You can open database file (both regular and encrypted) directly
@@ -45,7 +34,6 @@ MMEX is mainly written in C++11 and built on:
 * You can download dozen of cool reports from [general report] repository
 * Star it if you feel it is helpful [![st]][stargazers]
 
-<!-- links -->
 [website]:
   http://moneymanagerex.org
   "MMEX website"
@@ -77,7 +65,7 @@ MMEX is mainly written in C++11 and built on:
   https://packagecloud.io/moneymanagerex/
   "packagecloud DEB & RPM repository"
 [CodeDocs]:
-  https://codedocs.xyz/slodki/moneymanagerex/
+  https://codedocs.xyz/moneymanagerex/moneymanagerex/
   "doxygen generated source code documentation"
 [Slack]: http://slack.moneymanagerex.org/
 [Forum]: http://forum.moneymanagerex.org
@@ -86,24 +74,23 @@ MMEX is mainly written in C++11 and built on:
 [YouTube]: https://www.youtube.com/channel/UCAqVC0fOt6C5OnGv_DzE0wg
 [SourceForge]: https://sourceforge.net/p/moneymanagerex
 [GitHub]: https://github.com/moneymanagerex
-[Docker images]: https://hub.docker.com/r/moneymanagerex/moneymanagerex/
+[Docker images]: https://hub.docker.com/r/moneymanagerex/
 [Twitter]: https://twitter.com/MoneyManagerEx
 [wxWidgets]: http://wxwidgets.org/
 [wxSqlite3]: https://github.com/utelle/wxsqlite3
 [SQLite3]: http://sqlite.org/
-[Mongoose]: https://www.cesanta.com/
+[Mongoose]: https://github.com/cesanta/mongoose
 [ChartNew.JS]: https://github.com/FVANCOP/ChartNew.js
 [html-template]: https://github.com/moneymanagerex/html-template
 [wxsqliteplus]: https://github.com/guanlisheng/wxsqliteplus
 [general report]: https://github.com/moneymanagerex/general-reports
 [stargazers]: https://github.com/moneymanagerex/moneymanagerex/stargazers
-<!-- icons -->
 [a]: https://img.shields.io/appveyor/ci/moneymanagerex/moneymanagerex/master.svg?label=windows&logoWidth=0.01
 [t]: https://img.shields.io/travis/moneymanagerex/moneymanagerex/master.svg?label=linux/mac
 [o]: http://www.openhub.net/p/moneymanagerex/widgets/project_thin_badge.gif
 [i]: https://img.shields.io/github/issues-raw/moneymanagerex/moneymanagerex.svg?label=gh%20issues
 [c]: https://img.shields.io/github/contributors/moneymanagerex/moneymanagerex.svg
-[cd]: https://codedocs.xyz/slodki/moneymanagerex.svg
+[cd]: https://codedocs.xyz/moneymanagerex/moneymanagerex.svg
 [l]: https://img.shields.io/badge/license-GPL2-blue.svg
 [s]: https://img.shields.io/sourceforge/dt/moneymanagerex.svg?label=%20sf&logoWidth=8&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAC0AAAA4CAMAAABe34GAAAAACVBMVEUAAAAAAAD%2F%2F%2F%2BD3c%2FSAAAAAnRSTlMATX7%2B8BUAAABeSURBVHgB7coxCoBAAAOw0%2F8%2FWtA1tLs0c85Et21vb%2F9pe1jsyP7OrSOzI5eOfL1K%2FlLuyO7O7s7oLbs7uzu7O7s7uzv37uzu7O7sjly6szty6s7uzoZcurMhJ87nAdpRCKWC0tGVAAAAAElFTkSuQmCC
 [gha]: https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg?label=%20gh&logoWidth=8&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAC0AAAA4CAMAAABe34GAAAAACVBMVEUAAAAAAAD%2F%2F%2F%2BD3c%2FSAAAAAnRSTlMATX7%2B8BUAAABeSURBVHgB7coxCoBAAAOw0%2F8%2FWtA1tLs0c85Et21vb%2F9pe1jsyP7OrSOzI5eOfL1K%2FlLuyO7O7s7oLbs7uzu7O7s7uzv37uzu7O7sjly6szty6s7uzoZcurMhJ87nAdpRCKWC0tGVAAAAAElFTkSuQmCC
