@@ -3,6 +3,8 @@ SET(InMMEX TRUE)
 
 PROJECT(MMEX VERSION 1.4.0)
 OPTION(MMEX_BUILD_TESTS "Whether to build automatic unit tests" OFF)
+OPTION(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the installation" ON) 
+
 # Name of the resulted executable binary
 SET(MMEX_EXE mmex)
 
@@ -249,11 +251,12 @@ ENDIF()
 
 # Besides normal installable version, for windows the portable version needs additionally files
 IF(WIN32)
-    # TODO: werify if we need this empty file in installer package
-    FILE(WRITE "${CMAKE_CURRENT_BINARY_DIR}/mmexini.db3" "")
-    INSTALL(FILES
-        "${CMAKE_CURRENT_BINARY_DIR}/mmexini.db3"
-        DESTINATION "${MMEX_DOC_DIR}")
+    IF(MMEX_PORTABLE_INSTALL)
+        FILE(WRITE "${CMAKE_CURRENT_BINARY_DIR}/mmexini.db3" "")
+        INSTALL(FILES
+            "${CMAKE_CURRENT_BINARY_DIR}/mmexini.db3"
+            DESTINATION "${MMEX_DOC_DIR}")
+    ENDIF()
 
     # add shared wxWidgets DLLs
     GET_FILENAME_COMPONENT(WXDLLSUFF "${wxWidgets_LIB_DIR}" NAME)
@@ -526,6 +529,7 @@ IF(MSVC)
     ENDIF()
 ENDIF()
 MESSAGE(STATUS "Install prefix : ${CMAKE_INSTALL_PREFIX}")
+MESSAGE(STATUS "Portable State : ${MMEX_PORTABLE_INSTALL}")
 
 MESSAGE(STATUS "")
 MESSAGE(STATUS "Versions")
