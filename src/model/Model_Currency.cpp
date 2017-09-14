@@ -24,6 +24,12 @@
 #include "option.h"
 #include <wx/numformatter.h>
 
+const std::vector<std::pair<Model_Currency::CURRENCYTYPE, wxString> > Model_Currency::CURRENCYTYPE_CHOICES =
+{
+    { Model_Currency::TRADITIONAL, wxString(wxTRANSLATE("Traditional")) },
+    { Model_Currency::CRYPTO, wxString(wxTRANSLATE("Crypto")) }
+};
+
 Model_Currency::Model_Currency()
 : Model<DB_Table_CURRENCYFORMATS_V1>()
 {
@@ -230,3 +236,39 @@ int Model_Currency::precision(int account_id)
     else return 2;
 }
 
+/**
+* Currency type
+*/
+wxString Model_Currency::currencytype_desc(const int FieldTypeEnum)
+{
+    const auto& item = CURRENCYTYPE_CHOICES[FieldTypeEnum];
+    const wxString reftype_desc = item.second;
+    return reftype_desc;
+}
+
+Model_Currency::CURRENCYTYPE Model_Currency::type(const Data* r)
+{
+    for (const auto& item : CURRENCYTYPE_CHOICES)
+    {
+        if (item.second.CmpNoCase(r->CURRENCY_TYPE) == 0)
+            return item.first;
+    }
+
+    return CURRENCYTYPE(-1);
+}
+
+Model_Currency::CURRENCYTYPE Model_Currency::type(const Data& r)
+{
+    return type(&r);
+}
+
+wxArrayString Model_Currency::all_type()
+{
+    static wxArrayString types;
+    if (types.empty())
+    {
+        for (const auto& item : CURRENCYTYPE_CHOICES)
+            types.Add(item.second);
+    }
+    return types;
+}

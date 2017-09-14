@@ -28,6 +28,11 @@ class Model_Currency : public Model<DB_Table_CURRENCYFORMATS_V1>
 {
 public:
     using Model<DB_Table_CURRENCYFORMATS_V1>::remove;
+
+    enum CURRENCYTYPE { TRADITIONAL = 0, CRYPTO};
+    static const std::vector<std::pair<CURRENCYTYPE, wxString> > CURRENCYTYPE_CHOICES;
+
+public:
     Model_Currency();
     ~Model_Currency();
 
@@ -81,5 +86,10 @@ public:
     static int precision(const Data* r);
     static int precision(const Data& r);
     static int precision(int account_id);
+
+    static wxString currencytype_desc(const int FieldTypeEnum);
+    static CURRENCYTYPE type(const Data* r);
+    static CURRENCYTYPE type(const Data& r);
+    static wxArrayString all_type();
 };
 #endif // 

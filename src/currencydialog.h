@@ -62,9 +62,9 @@ private:
 
 private:
     mmTextCtrl* m_currencyName;
-    wxStaticText* m_sample_text;
     mmTextCtrl* m_currencySymbol;
     mmTextCtrl* m_base_conv_rate;
+    wxChoice* m_currencyType;
     wxTextCtrl* pfxTx_;
     wxTextCtrl* sfxTx_;
     wxTextCtrl* decTx_;
@@ -72,6 +72,7 @@ private:
     wxTextCtrl* unitTx_;
     wxTextCtrl* centTx_;
     wxTextCtrl* scaleTx_;
+    wxStaticText* m_sample_text;
 
 };
 

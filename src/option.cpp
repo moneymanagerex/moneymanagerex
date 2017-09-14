@@ -457,17 +457,17 @@ const int Option::AccountImageId(int account_id, bool def)
     case (Model_Account::TERM) :
         if (closed) selectedImage = img::TERM_ACC_CLOSED_PNG;
         else if (favorite) selectedImage = img::TERM_ACC_FAVORITE_PNG;
-        else  selectedImage = img::TERMACCOUNT_PNG;
+        else  selectedImage = img::TERM_ACC_NORMAL_PNG;
         break;
     case (Model_Account::INVESTMENT) :
         if (closed) selectedImage = img::STOCK_ACC_CLOSED_PNG;
         else if (favorite) selectedImage = img::STOCK_ACC_FAVORITE_PNG;
-        else  selectedImage = img::STOCK_ACC_PNG;
+        else  selectedImage = img::STOCK_ACC_NORMAL_PNG;
         break;
     case (Model_Account::CREDIT_CARD) :
         if (closed) selectedImage = img::CARD_ACC_CLOSED_PNG;
         else if (favorite)   selectedImage = img::CARD_ACC_FAVORITE_PNG;
-        else   selectedImage = img::CARD_ACC_PNG;
+        else   selectedImage = img::CARD_ACC_NORMAL_PNG;
         break;
     case (Model_Account::CASH) :
         if (closed) selectedImage = img::CASH_ACC_CLOSED_PNG;
@@ -488,6 +488,12 @@ const int Option::AccountImageId(int account_id, bool def)
         if (closed) selectedImage = img::LOAN_ACC_CLOSED_PNG;
         else if (favorite) selectedImage = img::LOAN_ACC_FAVORITE_PNG;
         else selectedImage = img::LOAN_ACC_NORMAL_PNG;
+        break;
+    case (Model_Account::CRYPTO_WALLET):
+        //TODO: Add Crypto Wallet icons
+        if (closed) selectedImage = img::CASH_ACC_CLOSED_PNG;
+        else if (favorite)   selectedImage = img::CASH_ACC_FAVORITE_PNG;
+        else   selectedImage = img::CASH_ACC_NORMAL_PNG;
         break;
     default:
         wxASSERT(false);

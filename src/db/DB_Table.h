@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
+ *          AUTO GENERATED at 2017-08-15 22:46:16.970000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -413,6 +413,15 @@ struct SorterByCURRENCY_SYMBOL
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.CURRENCY_SYMBOL < y.CURRENCY_SYMBOL;
+    }
+};
+
+struct SorterByCURRENCY_TYPE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.CURRENCY_TYPE < y.CURRENCY_TYPE;
     }
 };
 

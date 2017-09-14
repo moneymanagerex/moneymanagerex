@@ -124,13 +124,13 @@ static const std::map<int, wxBitmap> navtree_images()
         , { SAVINGS_ACC_NORMAL_PNG, mmBitmap(png::SAVINGS_NORMAL) }
         , { SAVINGS_ACC_FAVORITE_PNG, mmBitmap(png::SAVINGS_FAVORITES) }
         , { SAVINGS_ACC_CLOSED_PNG, mmBitmap(png::SAVINGS_CLOSED) }
-        , { CARD_ACC_PNG, mmBitmap(png::CC_NORMAL) }
+        , { CARD_ACC_NORMAL_PNG, mmBitmap(png::CC_NORMAL) }
         , { CARD_ACC_FAVORITE_PNG, mmBitmap(png::CC_FAVORITE) }
         , { CARD_ACC_CLOSED_PNG, mmBitmap(png::CC_CLOSED) }
-        , { TERMACCOUNT_PNG, mmBitmap(png::TERM_NORMAL) }
+        , { TERM_ACC_NORMAL_PNG, mmBitmap(png::TERM_NORMAL) }
         , { TERM_ACC_FAVORITE_PNG, mmBitmap(png::TERM_FAVORITE) }
         , { TERM_ACC_CLOSED_PNG, mmBitmap(png::TERM_CLOSED) }
-        , { STOCK_ACC_PNG, mmBitmap(png::STOCKS_NORMAL) }
+        , { STOCK_ACC_NORMAL_PNG, mmBitmap(png::STOCKS_NORMAL) }
         , { STOCK_ACC_FAVORITE_PNG, mmBitmap(png::STOCKS_FAVORITE) }
         , { STOCK_ACC_CLOSED_PNG, mmBitmap(png::STOCKS_CLOSED) }
         , { CASH_ACC_NORMAL_PNG, mmBitmap(png::CASH_NORMAL) }

@@ -1,13 +1,13 @@
 //=============================================================================
 /**
- *      Copyright (c) 2016 - 2016 Gabriele-V
+ *      Copyright (c) 2016 - 2017 Gabriele-V
  *
  *      @author [sqliteupgrade2cpp.py]
  *
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-07-16 22:51:32.920000.
+ *          AUTO GENERATED at 2017-08-15 22:44:52.224000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -18,7 +18,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 7;
+const int dbLatestVersion = 8;
 
 const std::vector<wxString> dbUpgradeQuery =
 {
@@ -70,7 +70,7 @@ const std::vector<wxString> dbUpgradeQuery =
         FIELDID INTEGER NOT NULL PRIMARY KEY
         , REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */
         , DESCRIPTION TEXT COLLATE NOCASE
-        , TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoice, MultiChoice */
+        , TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoiche, MultiChoiche */
         , PROPERTIES TEXT NOT NULL
         );
         CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELD_REF ON CUSTOMFIELD_V1 (REFTYPE);
@@ -120,6 +120,13 @@ const std::vector<wxString> dbUpgradeQuery =
         alter table ACCOUNTLIST_V1 add column PAYMENTDUEDATE text;
         alter table ACCOUNTLIST_V1 add column MINIMUMPAYMENT numeric;
         
+    )",
+
+    // Upgrade to version 8
+    R"(
+        alter table CURRENCYFORMATS_V1 add column CURRENCY_TYPE TEXT;
+        update CURRENCYFORMATS_V1 set CURRENCY_TYPE = 'Traditional';
+        update CURRENCYFORMATS_V1 set CURRENCY_TYPE = 'Crypto' where CURRENCY_SYMBOL = 'BTC';
     )",
 
 };
