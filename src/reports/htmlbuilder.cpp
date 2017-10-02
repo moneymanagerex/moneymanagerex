@@ -114,7 +114,7 @@ mmHTMLBuilder::mmHTMLBuilder()
 {
     today_.date = wxDateTime::Now();
     today_.todays_date = wxString::Format(_("The report was formed on %s at %s")
-		, mmGetDateForDisplay(today_.date.FormatISODate())
+        , mmGetDateForDisplay(today_.date.FormatISODate())
         , today_.date.FormatISOTime());
 }
 
