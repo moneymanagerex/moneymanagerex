@@ -286,7 +286,7 @@ void mmReportsPanel::CreateControls()
             {
                 m_date_ranges->Append(date_range->local_title(), date_range);
             }
-            m_date_ranges->Append(_T("Custom"), (mmDateRange *)nullptr);
+            m_date_ranges->Append(_("Custom"), (mmDateRange *)nullptr);
             m_date_ranges->SetSelection(rb_->getDateSelection());
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);

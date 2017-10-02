@@ -130,15 +130,13 @@ void mmPrintableBase::chart(int selection)
 
 wxString mmPrintableBase::title() const
 {
-    wxString title;
-    if (!m_date_range)
-        title = m_title;
-    else
+    wxString title = m_title;
+    if (m_date_range)
     {
         if (m_date_range->title().IsEmpty())
-            title = m_title + " - " + _("Custom");
+            title += " - " + _("Custom");
         else
-            title = m_title + " - " + m_date_range->title();
+            title += " - " + wxGetTranslation(m_date_range->title());
     }
     return title;
 }
