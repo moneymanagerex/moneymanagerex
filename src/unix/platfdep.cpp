@@ -34,7 +34,7 @@ void SetInstallPrefix()
     
     const wxArrayString &dirs = fname.GetDirs();
 
-    if (dirs.Last().Upper() == "BIN") // something like a /usr/bin or /usr/local/bin
+    if (dirs.Last().Lower() == "bin") // something like a /usr/bin or /usr/local/bin
         fname.RemoveLastDir();
     
     if (wxStandardPaths *pp = dynamic_cast<wxStandardPaths*>(&p))

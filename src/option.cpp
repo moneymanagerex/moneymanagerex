@@ -86,7 +86,7 @@ int ReportCompare(_wxArraywxArrayPtrVoid *first, _wxArraywxArrayPtrVoid *second)
 //----------------------------------------------------------------------------
 Option::Option()
 :   m_dateFormat(mmex::DEFDATEFORMAT)
-    , m_language("english")
+    , m_language(wxLANGUAGE_UNKNOWN)
     , m_databaseUpdated(false)
     , m_budgetFinancialYears(false)
     , m_budgetIncludeTransfers(false)
@@ -162,7 +162,7 @@ void Option::LoadOptions(bool include_infotable)
         }
     }
 
-    m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
+    m_language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
 
     m_budgetFinancialYears = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
     m_budgetIncludeTransfers = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
@@ -209,20 +209,30 @@ wxString Option::DateFormat()
     return m_dateFormat;
 }
 
-void Option::Language(wxString& language)
+void Option::Language(wxLanguage& language)
 {
     m_language = language;
     Model_Setting::instance().Set(LANGUAGE_PARAMETER, language);
 }
 
-wxString Option::Language(bool get_db)
+wxLanguage Option::Language(bool get_db)
 {
     if (get_db)
     {
-        m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
+        m_language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
     }
 
     return m_language;
+}
+
+wxString Option::LanguageISO6391(bool get_db)
+{
+    Option::Language(get_db);
+    if (m_language==wxLANGUAGE_UNKNOWN)
+        return wxEmptyString;
+    if (m_language==wxLANGUAGE_DEFAULT)
+        return wxTranslations::Get()->GetBestTranslation("mmex", wxLANGUAGE_ENGLISH_US).Left(2);
+    return wxLocale::GetLanguageCanonicalName(m_language).Left(2);
 }
 
 void Option::UserName(const wxString& username)

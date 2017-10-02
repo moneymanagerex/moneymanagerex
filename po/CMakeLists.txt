@@ -24,11 +24,27 @@ FILE(GLOB POFiles RELATIVE "${CMAKE_CURRENT_BINARY_DIR}" *.po)
 FOREACH(POFile ${POFiles})
     GET_FILENAME_COMPONENT(CurrentFile "${POFile}" NAME_WE)
     ADD_CUSTOM_COMMAND(OUTPUT ${CurrentFile}.mo
+#        COMMAND ${GETTEXT_MSGMERGE_EXECUTABLE} --quiet --update --backup=none -s "${POFile}" ${MMEX_EXE}.pot
         COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} -o ${CurrentFile}.mo "${POFile}"
-		COMMENT "Generating ${CurrentFile} translation"
+        COMMENT "Generating ${CurrentFile} translation"
         MAIN_DEPENDENCY "${POFile}")
-	LIST(APPEND MOFiles "${CMAKE_CURRENT_BINARY_DIR}/${CurrentFile}.mo")
+
+    # wxWidgets standard paths
+    # https://github.com/wxWidgets/wxWidgets/blob/master/docs/doxygen/overviews/internationalization.h#L86
+    IF(APPLE)
+        set(MODir ${MMEX_EXE}.app/Contents/Resources/${CurrentFile}.lproj)
+    ELSEIF(WIN32)
+        set(MODir bin/${CurrentFile})
+    ELSE()
+        set(MODir share/${MMEX_EXE}/${CurrentFile})
+    #    set(MODir share/locale/${CurrentFile}/LC_MESSAGES)
+    ENDIF()
+    INSTALL(FILES "${CMAKE_CURRENT_BINARY_DIR}/${CurrentFile}.mo"
+        DESTINATION ${MODir}
+        RENAME ${MMEX_EXE}.mo)
+
+    LIST(APPEND MOFiles "${CMAKE_CURRENT_BINARY_DIR}/${CurrentFile}.mo")
 ENDFOREACH()
 
-ADD_CUSTOM_TARGET(Translations ALL DEPENDS ${MOFiles} COMMENT "Generated translations")
-INSTALL(FILES ${MOFiles} DESTINATION "${MMEX_LOCALE_DIR}")
+ADD_CUSTOM_TARGET(Translations ALL DEPENDS ${MOFiles}
+    COMMENT "Generated translations")

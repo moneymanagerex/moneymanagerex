@@ -180,6 +180,7 @@ EVT_MENU(MENU_VIEW_TOGGLE_FULLSCREEN, mmGUIFrame::OnToggleFullScreen)
 EVT_CLOSE(mmGUIFrame::OnClose)
 
 EVT_MENU_RANGE(MENU_TREEPOPUP_HIDE_SHOW_REPORT, MENU_TREEPOPUP_HIDE_SHOW_REPORT32, mmGUIFrame::OnHideShowReport)
+EVT_MENU_RANGE(MENU_LANG+1, MENU_LANG_MAX, mmGUIFrame::OnChangeGUILanguage)
 
 wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
@@ -1485,6 +1486,28 @@ void mmGUIFrame::createMenu()
     menuView->Append(menuItemToggleFullscreen);
 #endif
     menuView->AppendSeparator();
+
+    wxMenuItem* menuItemLang = new wxMenuItem(menuView, MENU_LANG
+        , _("Switch Application Language"), _("Change language used for MMEX GUI"));
+    // menuItemCheck->SetBitmap(mmBitmap(png::LANG));
+    wxMenu *menuLang = new wxMenu;
+    wxArrayString lang_files = wxTranslations::Get()->GetAvailableTranslations("mmex");
+    std::map<wxString, std::pair<int, wxString>> langs;
+    menuLang->AppendRadioItem(MENU_LANG+1+wxLANGUAGE_DEFAULT, _("system default"))
+        ->Check(m_app->getGUILanguage()==wxLANGUAGE_DEFAULT);
+    for (auto & file : lang_files)
+    {
+        const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
+        if (info)
+            langs[info->Description]=std::make_pair(info->Language,info->CanonicalName);
+    }
+    langs[wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US)]=std::make_pair(wxLANGUAGE_ENGLISH_US,"en_US");
+    for (auto const& lang : langs)
+        menuLang->AppendRadioItem(MENU_LANG+1+lang.second.first, lang.first, lang.second.second)
+            ->Check(lang.second.first==m_app->getGUILanguage());
+    menuItemLang->SetSubMenu(menuLang);
+    menuView->Append(menuItemLang);
+
     wxMenu *hideShowReport = new wxMenu;
     for (int r = 0; r < Option::instance().ReportCount(); r++)
     {
@@ -1621,58 +1644,58 @@ void mmGUIFrame::createMenu()
     // Help Menu
     wxMenu *menuHelp = new wxMenu;
 
-    wxMenuItem* menuItemHelp = new wxMenuItem(menuTools, wxID_HELP,
+    wxMenuItem* menuItemHelp = new wxMenuItem(menuHelp, wxID_HELP,
         _("&Help\tF1"), _("Read the User Manual"));
     menuItemHelp->SetBitmap(mmBitmap(png::HELP));
     menuHelp->Append(menuItemHelp);
     //Community Submenu
-    wxMenuItem* menuItemWebsite = new wxMenuItem(menuTools, MENU_WEBSITE
+    wxMenuItem* menuItemWebsite = new wxMenuItem(menuHelp, MENU_WEBSITE
         , _("Website")
         , _("Open the Money Manager EX website for latest news, updates etc"));
     // menuItemFacebook->SetBitmap(mmBitmap(png::WEBSITE));
-    wxMenuItem* menuItemFacebook = new wxMenuItem(menuTools, MENU_FACEBOOK
+    wxMenuItem* menuItemFacebook = new wxMenuItem(menuHelp, MENU_FACEBOOK
         , _("Facebook"), _("Visit us on Facebook"));
     menuItemFacebook->SetBitmap(mmBitmap(png::FACEBOOK));
-    wxMenuItem* menuItemTwitter = new wxMenuItem(menuTools, MENU_TWITTER
+    wxMenuItem* menuItemTwitter = new wxMenuItem(menuHelp, MENU_TWITTER
         , _("Twitter"), _("Follow us on Twitter"));
     // menuItemTwitter->SetBitmap(mmBitmap(png::TWITTER));
-    wxMenuItem* menuItemYouTube = new wxMenuItem(menuTools, MENU_YOUTUBE
+    wxMenuItem* menuItemYouTube = new wxMenuItem(menuHelp, MENU_YOUTUBE
         , _("YouTube"), _("Watch free video materials about MMEX"));
     // menuItemYouTube->SetBitmap(mmBitmap(png::YOUTUBE));
-    wxMenuItem* menuItemSlack = new wxMenuItem(menuTools, MENU_SLACK
+    wxMenuItem* menuItemSlack = new wxMenuItem(menuHelp, MENU_SLACK
         , _("Slack"), _("Communicate online with MMEX team from your desktop or mobile device"));
     menuItemSlack->SetBitmap(mmBitmap(png::SLACK));
-    wxMenuItem* menuItemGitHub = new wxMenuItem(menuTools, MENU_GITHUB
+    wxMenuItem* menuItemGitHub = new wxMenuItem(menuHelp, MENU_GITHUB
         , _("GitHub"), _("Access open source code repository and track reported bug statuses"));
     menuItemGitHub->SetBitmap(mmBitmap(png::GITHUB));
-    wxMenuItem* menuItemWiki = new wxMenuItem(menuTools, MENU_WIKI
+    wxMenuItem* menuItemWiki = new wxMenuItem(menuHelp, MENU_WIKI
         , _("Wiki pages"), _("Read and update wiki pages"));
     // menuItemWiki->SetBitmap(mmBitmap(png::WIKI));
-    wxMenuItem* menuItemReportIssues = new wxMenuItem(menuTools, MENU_REPORTISSUES
+    wxMenuItem* menuItemReportIssues = new wxMenuItem(menuHelp, MENU_REPORTISSUES
         , _("Forum")
         , _("Visit the MMEX forum to see existing user comments or report new issues with the software"));
     menuItemReportIssues->SetBitmap(mmBitmap(png::FORUM));
-    wxMenuItem* menuItemGooglePlay = new wxMenuItem(menuTools, MENU_GOOGLEPLAY
+    wxMenuItem* menuItemGooglePlay = new wxMenuItem(menuHelp, MENU_GOOGLEPLAY
         , _("Google Play")
         , _("Get free Android version and run MMEX on your smart phone or tablet"));
     menuItemGooglePlay->SetBitmap(mmBitmap(png::GOOGLE_PLAY));
-    wxMenuItem* menuItemNotify = new wxMenuItem(menuTools, MENU_ANNOUNCEMENTMAILING
+    wxMenuItem* menuItemNotify = new wxMenuItem(menuHelp, MENU_ANNOUNCEMENTMAILING
         , _("&Newsletter")
         , _("Subscribe to e-mail newsletter or view existing announcements"));
     menuItemNotify->SetBitmap(mmBitmap(png::NEWS));
-    wxMenuItem* menuItemRSS = new wxMenuItem(menuTools, MENU_RSS
+    wxMenuItem* menuItemRSS = new wxMenuItem(menuHelp, MENU_RSS
         , _("RSS Feed"), _("Connect RSS web feed to news aggregator"));
     menuItemRSS->SetBitmap(mmBitmap(png::NEWS));
-    wxMenuItem* menuItemDonate = new wxMenuItem(menuTools, MENU_DONATE
+    wxMenuItem* menuItemDonate = new wxMenuItem(menuHelp, MENU_DONATE
         , _("Donate via PayPal")
         , _("Donate the team to support infrastructure etc"));
     menuItemDonate->SetBitmap(mmBitmap(png::PP));
-    wxMenuItem* menuItemBuyCoffee = new wxMenuItem(menuTools, MENU_BUY_COFFEE
+    wxMenuItem* menuItemBuyCoffee = new wxMenuItem(menuHelp, MENU_BUY_COFFEE
         , _("Buy us a Coffee")
         , _("Buy key developer a coffee"));
     // menuItemDonate->SetBitmap(mmBitmap(png::COFFEE));
 
-    wxMenuItem* menuItemCommunity = new wxMenuItem(menuTools, MENU_COMMUNITY
+    wxMenuItem* menuItemCommunity = new wxMenuItem(menuHelp, MENU_COMMUNITY
         , _("Community")
         , _("Stay in touch with MMEX community"));
     menuItemCommunity->SetBitmap(mmBitmap(png::COMMUNITY));
@@ -1693,23 +1716,23 @@ void mmGUIFrame::createMenu()
     menuItemCommunity->SetSubMenu(menuCommunity);
     menuHelp->Append(menuItemCommunity);
 
-    wxMenuItem* menuItemReportBug = new wxMenuItem(menuTools, MENU_REPORT_BUG
+    wxMenuItem* menuItemReportBug = new wxMenuItem(menuHelp, MENU_REPORT_BUG
         , _("Report a Bug")
         , _("Report an error in application to the developers"));
     menuItemReportBug->SetBitmap(mmBitmap(png::BUG));
     menuHelp->Append(menuItemReportBug);
 
-    wxMenuItem* menuItemAppStart = new wxMenuItem(menuTools, MENU_SHOW_APPSTART
+    wxMenuItem* menuItemAppStart = new wxMenuItem(menuHelp, MENU_SHOW_APPSTART
         , _("Reopen &Start-up Dialog"), _("Show application start-up dialog"));
     menuItemAppStart->SetBitmap(mmBitmap(png::APPSTART));
     menuHelp->Append(menuItemAppStart);
 
-    wxMenuItem* menuItemCheck = new wxMenuItem(menuTools, MENU_CHECKUPDATE
+    wxMenuItem* menuItemCheck = new wxMenuItem(menuHelp, MENU_CHECKUPDATE
         , _("Check for &Updates"), _("Check if a new MMEX version is avaiable"));
     menuItemCheck->SetBitmap(mmBitmap(png::UPDATE));
     menuHelp->Append(menuItemCheck);
 
-    wxMenuItem* menuItemAbout = new wxMenuItem(menuTools, wxID_ABOUT
+    wxMenuItem* menuItemAbout = new wxMenuItem(menuHelp, wxID_ABOUT
         , _("&About..."), _("Show about dialog"));
     menuItemAbout->SetBitmap(mmBitmap(png::ABOUT));
     menuHelp->Append(menuItemAbout);
@@ -3028,4 +3051,13 @@ void mmGUIFrame::OnHideShowReport(wxCommandEvent& event)
     Option::instance().HideReport(report, !Option::instance().HideReport(report));
     updateNavTreeControl();
     createHomePage();
+}
+
+void mmGUIFrame::OnChangeGUILanguage(wxCommandEvent& event)
+{
+    wxLanguage lang = static_cast<wxLanguage>(event.GetId()-MENU_LANG-1);
+    if (lang!=m_app->getGUILanguage() && m_app->setGUILanguage(lang))
+        mmErrorDialogs::MessageWarning(this
+            , _("The language for this application has been changed. The change will take effect the next time the application is started.")
+            , _("Language change"));
 }

@@ -136,12 +136,11 @@ const wxString mmex::getProgramDescription()
         << L" \u2b25 " << wxGetLinuxDistributionInfo().Description
         << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
 #endif
-        << L" \u2b25 " << wxGetOsDescription()
-        << " " << wxPlatformInfo::Get().GetEndiannessName() << "\n"
+        << L" \u2b25 " << wxGetOsDescription() << "\n"
         << L" \u2b25 " << wxPlatformInfo::Get().GetDesktopEnvironment()
         << " " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
-        << " " << wxLocale::GetSystemEncodingName() 
-        << wxString::Format(L"\n \u2b25 %ix%ix%ibit %ix%ippi\n",
+        << " (" << wxLocale::GetSystemEncodingName() << ")\n"
+        << wxString::Format(L" \u2b25 %ix%ix%ibit %ix%ippi\n",
             wxGetDisplaySize().GetX(),
             wxGetDisplaySize().GetY(),
             wxDisplayDepth(),
