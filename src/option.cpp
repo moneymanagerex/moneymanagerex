@@ -103,23 +103,23 @@ Option::Option()
     , m_ico_size(16)
     , m_hideReport(0)
 {
-    m_reports.Add(new ReportInfo("", _("My Usage"), false, ReportInfo::MyUsage));
-    m_reports.Add(new ReportInfo(_("Summary of Accounts"), _("Monthly"), false, ReportInfo::MonthlySummaryofAccounts));
-    m_reports.Add(new ReportInfo(_("Summary of Accounts"), _("Yearly"), false, ReportInfo::YearlySummaryofAccounts));
-    m_reports.Add(new ReportInfo(_("Categories"), _("Where the Money Goes"), false, ReportInfo::WheretheMoneyGoes));
-    m_reports.Add(new ReportInfo(_("Categories"), _("Where the Money Comes From"), false, ReportInfo::WheretheMoneyComesFrom));
-    m_reports.Add(new ReportInfo(_("Categories"), _("Summary"), false, ReportInfo::CategoriesSummary));
-    m_reports.Add(new ReportInfo(_("Categories"), _("Monthly"), false, ReportInfo::CategoriesMonthly));
-    m_reports.Add(new ReportInfo("", _("Payees"), false, ReportInfo::Payees));
-    m_reports.Add(new ReportInfo(_("Income vs Expenses"), _("Summary"), false, ReportInfo::IncomevsExpensesSummary));
-    m_reports.Add(new ReportInfo(_("Income vs Expenses"), _("Monthly"), false, ReportInfo::IncomevsExpensesMonthly));
-    m_reports.Add(new ReportInfo(_("Budget"), _("Performance"), true, ReportInfo::BudgetPerformance));
-    m_reports.Add(new ReportInfo(_("Budget"), _("Category Summary"), true, ReportInfo::BudgetCategorySummary));
-    m_reports.Add(new ReportInfo(_("Cash Flow"), _("Monthly"), false, ReportInfo::MonthlyCashFlow));
-    m_reports.Add(new ReportInfo(_("Cash Flow"), _("Daily"), false, ReportInfo::DailyCashFlow));
-    m_reports.Add(new ReportInfo(_("Stocks Report"), _("Performance"), false, ReportInfo::StocksReportPerformance));
-    m_reports.Add(new ReportInfo(_("Stocks Report"), _("Summary"), false, ReportInfo::StocksReportSummary));
-    m_reports.Add(new ReportInfo("", _("Forecast Report"), false, ReportInfo::ForecastReport));
+    m_reports.Add(new ReportInfo("", wxTRANSLATE("My Usage"), false, ReportInfo::MyUsage));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Summary of Accounts"), wxTRANSLATE("Monthly"), false, ReportInfo::MonthlySummaryofAccounts));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Summary of Accounts"), wxTRANSLATE("Yearly"), false, ReportInfo::YearlySummaryofAccounts));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Where the Money Goes"), false, ReportInfo::WheretheMoneyGoes));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Where the Money Comes From"), false, ReportInfo::WheretheMoneyComesFrom));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Summary"), false, ReportInfo::CategoriesSummary));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Monthly"), false, ReportInfo::CategoriesMonthly));
+    m_reports.Add(new ReportInfo("", wxTRANSLATE("Payees"), false, ReportInfo::Payees));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Income vs Expenses"), wxTRANSLATE("Summary"), false, ReportInfo::IncomevsExpensesSummary));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Income vs Expenses"), wxTRANSLATE("Monthly"), false, ReportInfo::IncomevsExpensesMonthly));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Budget"), wxTRANSLATE("Performance"), true, ReportInfo::BudgetPerformance));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Budget"), wxTRANSLATE("Category Summary"), true, ReportInfo::BudgetCategorySummary));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Cash Flow"), wxTRANSLATE("Monthly"), false, ReportInfo::MonthlyCashFlow));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Cash Flow"), wxTRANSLATE("Daily"), false, ReportInfo::DailyCashFlow));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Stocks Report"), wxTRANSLATE("Performance"), false, ReportInfo::StocksReportPerformance));
+    m_reports.Add(new ReportInfo(wxTRANSLATE("Stocks Report"), wxTRANSLATE("Summary"), false, ReportInfo::StocksReportSummary));
+    m_reports.Add(new ReportInfo("", wxTRANSLATE("Forecast Report"), false, ReportInfo::ForecastReport));
     //Sort by group name and report name
     m_reports.Sort(ReportCompare);
 }
