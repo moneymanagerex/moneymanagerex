@@ -34,39 +34,17 @@ MMEX is mainly written in C++11 and built on:
 * You can download dozen of cool reports from [general report] repository
 * Star it if you feel it is helpful [![st]][stargazers]
 
-[website]:
-  http://moneymanagerex.org
-  "MMEX website"
-[AppVeyor]:
-  https://ci.appveyor.com/project/moneymanagerex/moneymanagerex
-  "AppVeyor CI"
-[Travis]:
-  http://travis-ci.org/moneymanagerex/moneymanagerex
-  "Travis CI"
-[OpenHub]:
-  https://www.openhub.net/p/moneymanagerex
-  "Open Hub report"
-[GitHubIssues]:
-  https://github.com/moneymanagerex/moneymanagerex/issues
-  "open issues on GitHub"
-[SourceForgeDL]:
-  https://sourceforge.net/projects/moneymanagerex/files/latest
-  "SourceForge downloads"
-[GitHubDL]:
-  https://github.com/moneymanagerex/moneymanagerex/releases
-  "GitHub downloads"
-[contributors]:
-  https://github.com/moneymanagerex/moneymanagerex/graphs/contributors
-  "contributors to Git repo"
-[GitHubLatest]:
-  https://github.com/moneymanagerex/moneymanagerex/releases/latest
-  "GitHub latest stable downloads"
-[packagecloud]:
-  https://packagecloud.io/moneymanagerex/
-  "packagecloud DEB & RPM repository"
-[CodeDocs]:
-  https://codedocs.xyz/moneymanagerex/moneymanagerex/
-  "doxygen generated source code documentation"
+[website]: http://moneymanagerex.org "MMEX website"
+[AppVeyor]: https://ci.appveyor.com/project/moneymanagerex/moneymanagerex "AppVeyor CI"
+[Travis]: http://travis-ci.org/moneymanagerex/moneymanagerex "Travis CI"
+[OpenHub]: https://www.openhub.net/p/moneymanagerex "Open Hub report"
+[GitHubIssues]: https://github.com/moneymanagerex/moneymanagerex/issues "open issues on GitHub"
+[SourceForgeDL]: https://sourceforge.net/projects/moneymanagerex/files/latest "SourceForge downloads"
+[GitHubDL]: https://github.com/moneymanagerex/moneymanagerex/releases "GitHub downloads"
+[contributors]: https://github.com/moneymanagerex/moneymanagerex/graphs/contributors "contributors to Git repo"
+[GitHubLatest]: https://github.com/moneymanagerex/moneymanagerex/releases/latest "GitHub latest stable downloads"
+[packagecloud]: https://packagecloud.io/moneymanagerex/ "packagecloud DEB & RPM repository"
+[CodeDocs]: https://codedocs.xyz/moneymanagerex/moneymanagerex/ "doxygen generated source code documentation"
 [Slack]: http://slack.moneymanagerex.org/
 [Forum]: http://forum.moneymanagerex.org
 [Wiki]: https://sourceforge.net/p/moneymanagerex/wiki/mmex
