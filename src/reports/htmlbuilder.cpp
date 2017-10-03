@@ -113,7 +113,7 @@ static const wxString COLORS [] = {
 mmHTMLBuilder::mmHTMLBuilder()
 {
     today_.date = wxDateTime::Now();
-    today_.todays_date = wxString::Format(_("The report was formed on %s at %s")
+    today_.todays_date = wxString::Format(_("Report Generated %s %s")
         , mmGetDateForDisplay(today_.date.FormatISODate())
         , today_.date.FormatISOTime());
 }
