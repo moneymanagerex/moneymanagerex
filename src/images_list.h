@@ -91,6 +91,7 @@ enum png {
     GRM,
     OPTIONS,
     NEW_TRX,
+    LANG,
     ABOUT,
     HELP,
     COMMUNITY,
