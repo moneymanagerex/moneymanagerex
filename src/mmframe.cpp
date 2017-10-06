@@ -1481,16 +1481,19 @@ void mmGUIFrame::createMenu()
     menuView->Append(menuItemIgnoreFutureTransactions);
 #if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
     wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN
-        , _("Toggle Fullscreen\tF11"), _("Toggle Fullscreen"), wxITEM_CHECK);
+        , _("Toggle Fullscreen\tF11"), _("Toggle Fullscreen"));
+    menuItemToggleFullscreen->SetBitmap(mmBitmap(png::FULLSCREEN));
     menuView->AppendSeparator();
     menuView->Append(menuItemToggleFullscreen);
 #endif
     menuView->AppendSeparator();
 
-    wxMenuItem* menuItemLang = new wxMenuItem(menuView, MENU_LANG
-        , _("Switch Application Language"), _("Change language used for MMEX GUI"));
-    // menuItemCheck->SetBitmap(mmBitmap(png::LANG));
+    wxMenuItem* menuItemLanguage = new wxMenuItem(menuView, MENU_LANG
+        , _("Switch Application Language")
+        , _("Change language used for MMEX GUI"));
+    menuItemLanguage->SetBitmap(mmBitmap(png::LANG));
     wxMenu *menuLang = new wxMenu;
+
     wxArrayString lang_files = wxTranslations::Get()->GetAvailableTranslations("mmex");
     std::map<wxString, std::pair<int, wxString>> langs;
     menuLang->AppendRadioItem(MENU_LANG+1+wxLANGUAGE_DEFAULT, _("system default"))
@@ -1503,10 +1506,12 @@ void mmGUIFrame::createMenu()
     }
     langs[wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US)]=std::make_pair(wxLANGUAGE_ENGLISH_US,"en_US");
     for (auto const& lang : langs)
-        menuLang->AppendRadioItem(MENU_LANG+1+lang.second.first, lang.first, lang.second.second)
-            ->Check(lang.second.first==m_app->getGUILanguage());
-    menuItemLang->SetSubMenu(menuLang);
-    menuView->Append(menuItemLang);
+    {
+        menuLang->AppendRadioItem(MENU_LANG + 1 + lang.second.first, lang.first, lang.second.second)
+            ->Check(lang.second.first == m_app->getGUILanguage());
+    }
+    menuItemLanguage->SetSubMenu(menuLang);
+    menuView->Append(menuItemLanguage);
 
     wxMenu *hideShowReport = new wxMenu;
     for (int r = 0; r < Option::instance().ReportCount(); r++)
