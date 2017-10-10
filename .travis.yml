@@ -65,6 +65,7 @@ install: |-
       docker build dockers/$OS${DIST:+.$DIST} --cache-from ${DOCKER} -t ${DOCKER}
       ;;
     osx)
+      brew update # see travis-ci/travis-ci#8552
       BREW=wxmac
       brew list gettext >/dev/null || BREW="$BREW gettext"
       brew list libtool >/dev/null || BREW="$BREW libtool"
