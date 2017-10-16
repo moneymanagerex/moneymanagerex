@@ -85,9 +85,9 @@ TARGET_INCLUDE_DIRECTORIES(HTML-template INTERFACE cgitemplate)
 
 ADD_LIBRARY(Mongoose STATIC EXCLUDE_FROM_ALL mongoose/mongoose.c)
 
-FIND_PACKAGE(PkgConfig QUIET)
+FIND_PACKAGE(PkgConfig)
 IF(PkgConfig_FOUND)
-    PKG_SEARCH_MODULE(wxSQLite3 QUIET wxsqlite3-3.0 wxsqlite3 wxsqlite>=3)
+    PKG_SEARCH_MODULE(wxSQLite3 wxsqlite3-3.0 wxsqlite3 wxsqlite>=3)
 ENDIF()
 IF(wxSQLite3_FOUND)
     ADD_LIBRARY(wxSQLite3 INTERFACE)

@@ -18,6 +18,9 @@ env:
   - OS=ubuntu DIST=xenial
   - OS=ubuntu DIST=zesty
   # - OS=ubuntu DIST=artful # see issue #1331 on GitHub
+  - OS=ubuntu DIST=xenial ARCH=x86
+  - OS=ubuntu DIST=zesty ARCH=x86
+  # - OS=ubuntu DIST=artful ARCH=x86 # see issue #1331 on GitHub
   - OS=fedora
   - OS=fedora DIST=24
   - OS=fedora DIST=25
@@ -45,6 +48,9 @@ matrix:
   - env: OS=debian DIST=buster
   - env: OS=ubuntu DIST=xenial
   - env: OS=ubuntu DIST=artful
+  - env: OS=ubuntu DIST=xenial ARCH=x86
+  - env: OS=ubuntu DIST=zesty ARCH=x86
+  - env: OS=ubuntu DIST=artful ARCH=x86
   - env: OS=fedora
   - env: OS=fedora DIST=24
   - env: OS=fedora DIST=25
@@ -60,11 +66,11 @@ matrix:
   - env: OS=slackware DIST=14.2
 
 install: |-
-  DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}
+  DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
   case $TRAVIS_OS_NAME in
     linux)
       docker pull ${DOCKER}
-      docker build dockers/$OS${DIST:+.$DIST} --cache-from ${DOCKER} -t ${DOCKER}
+      docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}
       ;;
     osx)
       MACOSX_DEPLOYMENT_TARGET=$DIST
@@ -78,7 +84,7 @@ install: |-
   mkdir build && cd build
 
 script: |-
-  CMAKE_CMD="cmake -DMMEX_BUILD_TESTS=$BUILD_TESTS -DCMAKE_BUILD_TYPE=$BUILD_TYPE .."
+  CMAKE_CMD="cmake ${ARCH:+-DCMAKE_TOOLCHAIN_FILE=util/toolchain-$TRAVIS_OS_NAME-$ARCH.cmake} -DMMEX_BUILD_TESTS=$BUILD_TESTS -DCMAKE_BUILD_TYPE=$BUILD_TYPE .."
   case $TRAVIS_OS_NAME in
     linux)
       docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS \
