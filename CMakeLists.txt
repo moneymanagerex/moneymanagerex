@@ -179,12 +179,26 @@ ENDIF()
 SET(wxWidgets_USE_REL_AND_DBG ON)
 IF(WIN32)
     #wxScintilla is needed on Windows
-    FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv stc webview base scintilla REQUIRED)
+    FIND_PACKAGE(wxWidgets REQUIRED
+        core qa net html xml aui adv stc webview base scintilla REQUIRED)
 ELSE()
-    FIND_PACKAGE(wxWidgets REQUIRED core qa net html xml aui adv stc webview base REQUIRED)
+    FIND_PACKAGE(wxWidgets REQUIRED
+        core qa net html xml aui adv stc webview base REQUIRED)
 ENDIF()
 IF(wxWidgets_VERSION_STRING AND wxWidgets_VERSION_STRING VERSION_LESS 2.9.2)
     MESSAGE(SEND_ERROR "wxWidget version to old.")
+ENDIF()
+IF(APPLE AND wxWidgets_LIBRARIES MATCHES "${CMAKE_STATIC_LIBRARY_PREFIX}wx_baseu-[0-9\\.]+${CMAKE_STATIC_LIBRARY_SUFFIX}")
+    # use static libs in place of dynamic if using static wxMac
+    FOREACH(deplib png jpeg tiff z)
+        FIND_LIBRARY(${deplib}path ${CMAKE_STATIC_LIBRARY_PREFIX}${deplib}${CMAKE_STATIC_LIBRARY_SUFFIX})
+        IF(${deplib}path)
+            STRING(REPLACE "-l${deplib}" "${${deplib}path}"
+                wxWidgets_LIBRARIES "${wxWidgets_LIBRARIES}")
+        ENDIF()
+    ENDFOREACH()
+    UNSET(deplib)
+    UNSET(${deplib}path)
 ENDIF()
 ADD_LIBRARY(wxWidgets INTERFACE)
 TARGET_INCLUDE_DIRECTORIES(wxWidgets INTERFACE ${wxWidgets_INCLUDE_DIRS})

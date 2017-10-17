@@ -33,9 +33,10 @@ env:
 matrix:
   fast_finish: true
   include: # add non-linux targets
-  - { os: osx, osx_image: xcode6.4, env: OS=osx DIST=yosemite }
-  - { os: osx, osx_image: xcode8, env: OS=osx DIST=el_capitan }
-  - { os: osx, osx_image: xcode9, env: OS=macos DIST=sierra }
+  - { os: osx, osx_image: xcode6.4, env: OS=osx DIST=10.10 }
+  - { os: osx, osx_image: xcode8,   env: OS=osx DIST=10.11 }
+  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.12 }
+  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.13 }
   exclude:
   - { osx_image: xcode6.4, env: BUILD_TESTS=ON } # libtoolize problems
   allow_failures:
@@ -53,8 +54,9 @@ matrix:
   - env: OS=opensuse DIST=42.3
   - env: OS=archlinux
   - env: OS=linuxmint DIST=serena
-  - env: OS=osx DIST=yosemite
-  - env: OS=osx DIST=el_capitan
+  - env: OS=osx DIST=10.10
+  - env: OS=osx DIST=10.11
+  - env: OS=macos DIST=10.12
   - env: OS=slackware DIST=14.2
 
 install: |-
@@ -65,12 +67,12 @@ install: |-
       docker build dockers/$OS${DIST:+.$DIST} --cache-from ${DOCKER} -t ${DOCKER}
       ;;
     osx)
+      MACOSX_DEPLOYMENT_TARGET=$DIST
       brew update # see travis-ci/travis-ci#8552
-      BREW=wxmac
-      brew list gettext >/dev/null || BREW="$BREW gettext"
-      brew list libtool >/dev/null || BREW="$BREW libtool"
-      brew list automake >/dev/null || BREW="$BREW automake"
-      brew install $BREW && brew link --force gettext libtool
+      for p in gettext libtool automake zlib;
+        do brew list $p >/dev/null || brew install --verbose $p; done
+      brew link --force gettext libtool zlib
+      brew install --verbose wxmac --with-static --with-stl
       ;;
   esac
   mkdir build && cd build
@@ -96,7 +98,7 @@ notifications: # set notification options
 after_success:
 # Rename mac packages
 - if [ $TRAVIS_OS_NAME = osx ]; then
-    for p in *.dmg; do mv -v $p ${p%Darwin.*}$OS.$DIST.dmg; done; fi
+    for p in *.dmg; do mv -v $p ${p%Darwin.*}$OS$DIST.dmg; done; fi
 # Rename Slackware packages
 - if [ $OS = slackware ]; then
     for p in *.tar.xz; do mv -v $p ${p%.tar.xz}.txz; done; fi
