@@ -1,12 +1,13 @@
 FROM vbatts/slackware:14.2
 MAINTAINER developers@moneymanagerex.org
 RUN echo -e 'quiet=on\ncheck_certificate=off' >> ~/.wgetrc \
- && wget -O slackpkg+-1.7.0-noarch-4mt.txz \
-      https://sourceforge.net/projects/slackpkgplus/files/slackpkg%2B-1.7.0-noarch-4mt.txz/download \
+ && wget -O slackpkg+-1.7.0-noarch-5mt.txz \
+      https://sourceforge.net/projects/slackpkgplus/files/slackpkg%2B-1.7.0-noarch-5mt.txz/download \
  && installpkg slackpkg+*.t?z \
  && sed -i 's/VERBOSE=1/VERBOSE=0/' /etc/slackpkg/slackpkgplus.conf \
  && slackpkg update gpg && slackpkg update \
  && slackpkg -default_answer=y -batch=on upgrade-all \
+ && slackpkg update gpg && slackpkg update \
  && slackpkg -default_answer=y -batch=on install \
       cmake-3 libarchive-3 nettle lzo libxml2 cyrus-sasl make-4 \
       binutils gcc-5 gcc-g++ guile gc libffi libmpc glibc-2 gettext-tools \
