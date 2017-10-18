@@ -5,7 +5,7 @@ RUN rpm --import https://getfedora.org/static/352C64E5.txt \
  && yum -y install --setopt=tsflags=nodocs \
         cmake3 gcc-c++ gettext git make rpm-build redhat-lsb-core \
         webkitgtk3-devel wxGTK3-devel \
-        automake libtool \
+        automake libtool ccache \
  && yum clean all
 
 # cmake3 installed from EPEL

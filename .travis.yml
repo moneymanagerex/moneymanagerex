@@ -5,6 +5,7 @@ services: [ docker ]
 git: { depth: 10 } # don't clone all history from repo, leave 10 for build queue
 os: linux # default build params for matrix
 compiler: gcc
+cache: ccache
 
 env:
   global:
@@ -69,15 +70,17 @@ install: |-
   DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
   case $TRAVIS_OS_NAME in
     linux)
+      ccache -s || true
       docker pull ${DOCKER}
       docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}
       ;;
     osx)
       MACOSX_DEPLOYMENT_TARGET=$DIST
       brew update # see travis-ci/travis-ci#8552
-      for p in gettext libtool automake zlib;
+      for p in gettext libtool automake ccache zlib;
         do brew list $p >/dev/null || brew install --verbose $p; done
       brew link --force gettext libtool zlib
+      ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"
       brew install --verbose wxmac --with-static --with-stl
       ;;
   esac
@@ -87,7 +90,9 @@ script: |-
   CMAKE_CMD="cmake ${ARCH:+-DCMAKE_TOOLCHAIN_FILE=util/toolchain-$TRAVIS_OS_NAME-$ARCH.cmake} -DMMEX_BUILD_TESTS=$BUILD_TESTS -DCMAKE_BUILD_TYPE=$BUILD_TYPE .."
   case $TRAVIS_OS_NAME in
     linux)
+      chmod -fR a+rwX $HOME/.ccache
       docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS \
+                 -v $HOME/.ccache:/root/.ccache \
                  -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} \
         bash -c "$CMAKE_CMD && make package" ;;
     osx)
@@ -102,6 +107,7 @@ notifications: # set notification options
     on_failure: always
 
 after_success:
+- ccache -s || true
 # Rename mac packages
 - if [ $TRAVIS_OS_NAME = osx ]; then
     for p in *.dmg; do mv -v $p ${p%Darwin.*}$OS$DIST.dmg; done; fi

@@ -30,6 +30,8 @@ environment:
   APPVEYOR_CACHE_ENTRY_ZIP_ARGS: -t7z -m0=lzma -mx=9
   # Use cygwin embeded gettext tools
   path: '%path%;C:\cygwin64\bin'
+  # clcache config
+  clcVer: 4.1.0
   # wxWidgets config
   wxVer: 3.1.0
   wxwin: C:\wxWidgets
@@ -73,10 +75,19 @@ init:
   else (set wxLibFolder=%wxLibFolder%%wxSuff%_dll)
 # Print some info
 - echo %APPVEYOR_BUILD_WORKER_IMAGE% %platform% v%comp%%xp% %configuration% %arch%
+# clcache unique directory
+- set "CLCACHE_DIR=C:\clcache-%APPVEYOR_BUILD_WORKER_IMAGE%-%platform%-v%comp%%xp%"
 
-cache: '%wxwin%\lib'
+cache:
+- '%wxwin%\lib'
+- '%CLCACHE_DIR%'
 
 install:
+# setup clcache
+- nuget install clcache -Version %clcVer% -ExcludeVersion -Verbosity quiet
+- copy clcache\clcache-%clcVer%\clcache.exe clcache\clcache-%clcVer%\cl.exe
+- if exist %APPVEYOR_BUILD_FOLDER%\clcache\clcache-%clcVer%\cl.exe set "PATH=%APPVEYOR_BUILD_FOLDER%\clcache\clcache-%clcVer%;%PATH%"
+- clcache -s
 # Patch CMake
 - for /d %%d in ("%ProgramFiles(x86)%\CMake\share\cmake-*") do (
     type util\*.cmake-*.patch 2>nul | patch -d "%%d\Modules" )
@@ -119,6 +130,7 @@ build_script:
     -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
 
 after_build:
+- clcache -s
 # rename and move
 - if %configuration%==Debug set "pkgsuff=-debug"
 - for %%f in (*.exe *.zip) do

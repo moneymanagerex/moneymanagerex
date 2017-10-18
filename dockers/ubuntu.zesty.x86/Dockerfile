@@ -5,5 +5,5 @@ RUN dpkg --add-architecture i386 && apt-get update && \
       cmake build-essential g++-multilib gettext git pkg-config lsb-release \
       libwxgtk3.0-dev:i386 libwxgtk-webview3.0-dev:i386 \
       libwxsqlite3-3.0-dev:i386 liblua5.2-dev:i386 \
-      automake libtool && \
+      automake libtool ccache && \
     apt-get clean
