@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2016 - 2017 Stefano Giorgio [stef145g]
  Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
@@ -108,6 +109,12 @@ public:
     void HtmlFontSize(int value);
     int HtmlFontSize();
 
+    // Allows a year or financial year to start before or after the 1st of the month.
+    void BudgetDaysOffset(int value);
+    int BudgetDaysOffset();
+    /**Re-adjust date by the date offset value*/
+    void BudgetDateOffset(wxDateTime& date);
+
     void IconSize(int value);
     int IconSize();
 
@@ -146,7 +153,7 @@ private:
 
     int m_html_font_size;
     int m_ico_size;
-
+    int m_budget_days_offset;
     int m_hideReport;
     wxArrayPtrVoid m_reports;
 

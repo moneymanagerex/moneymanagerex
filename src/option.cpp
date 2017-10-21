@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2016 - 2017 Stefano Giorgio [stef145g]
  Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
@@ -148,6 +149,7 @@ void Option::LoadOptions(bool include_infotable)
         m_userNameString = Model_Infotable::instance().GetStringInfo("USERNAME", "");
         m_financialYearStartDayString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
         m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
+        m_budget_days_offset = Model_Infotable::instance().GetIntInfo("BUDGET_DAYS_OFFSET", 0);
         m_sharePrecision = Model_Infotable::instance().GetIntInfo("SHARE_PRECISION", 4);
         m_baseCurrency = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
         // Ensure that base currency is set for the database.
@@ -180,7 +182,13 @@ void Option::LoadOptions(bool include_infotable)
     m_transDateDefault = Model_Setting::instance().GetIntSetting("TRANSACTION_DATE_DEFAULT", 0);
     m_usageStatistics = Model_Setting::instance().GetBoolSetting(INIDB_SEND_USAGE_STATS, true);
 
-    m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", 100);
+    // Windows problem on high res screens Ref Issue #478
+    int default_font_size = 100;
+#ifdef _WINDOWS
+    default_font_size = 116;
+#endif
+
+    m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", default_font_size);
     m_ico_size = 16;
     if (m_html_font_size >= 300)
     {
@@ -345,7 +353,6 @@ bool Option::IgnoreFutureTransactions()
     return m_ignoreFutureTransactions;
 }
 
-
 void Option::TransPayeeSelection(int value)
 {
     Model_Setting::instance().Set("TRANSACTION_PAYEE_NONE", value);
@@ -356,7 +363,6 @@ int Option::TransPayeeSelection()
 {
     return m_transPayeeSelection;
 }
-
 
 void Option::TransCategorySelection(int value)
 {
@@ -422,6 +428,23 @@ void Option::HtmlFontSize(int value)
 int Option::HtmlFontSize()
 {
     return m_html_font_size;
+}
+
+void Option::BudgetDaysOffset(int value)
+{
+    Model_Infotable::instance().Set("BUDGET_DAYS_OFFSET", value);
+    m_budget_days_offset = value;
+}
+
+int Option::BudgetDaysOffset()
+{
+    return m_budget_days_offset;
+}
+
+void Option::BudgetDateOffset(wxDateTime& date)
+{
+    if (m_budget_days_offset != 0)
+        date.Add(wxDateSpan::Days(m_budget_days_offset));
 }
 
 void Option::IconSize(int value)
