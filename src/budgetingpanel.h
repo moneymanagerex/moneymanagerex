@@ -102,6 +102,8 @@ private:
     budgetingListCtrl* listCtrlBudget_;
     wxString currentView_;
     int budgetYearID_;
+    wxString m_budget_offset_date;
+
     wxImageList* m_imageList;
     wxStaticText* budgetReportHeading_;
     wxStaticText* income_estimated_;
