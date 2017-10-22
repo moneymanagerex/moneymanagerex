@@ -16,6 +16,9 @@ env:
   - OS=debian DIST=jessie
   - OS=debian DIST=stretch
   # - OS=debian DIST=buster # see issue #1331 on GitHub
+  - OS=debian DIST=jessie ARCH=x86
+  - OS=debian DIST=stretch ARCH=x86
+  # - OS=debian DIST=buster ARCH=x86 # see issue #1331 on GitHub
   - OS=ubuntu DIST=xenial
   - OS=ubuntu DIST=zesty
   # - OS=ubuntu DIST=artful # see issue #1331 on GitHub
@@ -47,6 +50,9 @@ matrix:
   - env: OS=debian DIST=jessie
   - env: OS=debian DIST=stretch
   - env: OS=debian DIST=buster
+  - env: OS=debian DIST=jessie ARCH=x86
+  - env: OS=debian DIST=stretch ARCH=x86
+  - env: OS=debian DIST=buster ARCH=x86
   - env: OS=ubuntu DIST=xenial
   - env: OS=ubuntu DIST=artful
   - env: OS=ubuntu DIST=xenial ARCH=x86
