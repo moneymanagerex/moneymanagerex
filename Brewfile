@@ -1,0 +1,5 @@
+brew 'gettext', link: true
+brew 'libtool', link: true
+brew 'automake'
+brew 'zlib', link: true
+brew 'wxmac', args: ["with-static", "with-stl"]
