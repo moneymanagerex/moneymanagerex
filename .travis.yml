@@ -25,7 +25,7 @@ env:
   - OS=fedora DIST=24
   - OS=fedora DIST=25
   - OS=fedora DIST=26
-  - OS=opensuse
+  # - OS=opensuse # see issue #1331 on GitHub
   - OS=opensuse DIST=42.2
   - OS=opensuse DIST=42.3
   - OS=archlinux
