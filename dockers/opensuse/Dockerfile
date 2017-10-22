@@ -3,5 +3,5 @@ MAINTAINER developers@moneymanagerex.org
 RUN zypper refresh && zypper install -y --no-recommends \
       cmake gettext-tools gcc-c++ git make rpm-build lsb-release \
       wxWidgets-devel \
-      automake libtool \
+      automake libtool ccache \
  && zypper clean --all
