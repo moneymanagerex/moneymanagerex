@@ -75,10 +75,8 @@ install: |-
     osx)
       MACOSX_DEPLOYMENT_TARGET=$DIST
       brew update # see travis-ci/travis-ci#8552
-      for p in gettext libtool automake zlib;
-        do brew list $p >/dev/null || brew install --verbose $p; done
-      brew link --force gettext libtool zlib
-      brew install --verbose wxmac --with-static --with-stl
+      brew bundle --verbose --file=util/Brewfile
+      ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"
       ;;
   esac
   mkdir build && cd build
