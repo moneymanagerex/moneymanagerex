@@ -90,7 +90,7 @@ install:
 - clcache -s
 # Patch CMake
 - for /d %%d in ("%ProgramFiles(x86)%\CMake\share\cmake-*") do (
-    type util\*.cmake-*.patch 2>nul | patch -d "%%d\Modules" )
+    type util\F*.cmake-*.patch 2>nul | patch -Nf -d "%%d\Modules" )
 # wxWidgets, try to download pre-compiled version first
 - if %wxShared%==1 (
     curl -fsL --fail-early
