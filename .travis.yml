@@ -5,7 +5,10 @@ services: [ docker ]
 git: { depth: 10 } # don't clone all history from repo, leave 10 for build queue
 os: linux # default build params for matrix
 compiler: gcc
-cache: ccache
+cache:
+  - ccache
+  directories:
+    - /usr/local/Cellar/wxmac
 
 env:
   global:
@@ -77,7 +80,7 @@ install: |-
     osx)
       MACOSX_DEPLOYMENT_TARGET=$DIST
       brew update # see travis-ci/travis-ci#8552
-      brew bundle --verbose --file=util/Brewfile
+      travis_wait 20 brew bundle --verbose --file=util/Brewfile
       ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"
       ;;
   esac
