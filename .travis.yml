@@ -7,7 +7,7 @@ os: linux # default build params for matrix
 compiler: gcc
 cache:
   - ccache
-  directories:
+  - directories:
     - /usr/local/Cellar/wxmac
 
 env:
