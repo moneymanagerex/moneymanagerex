@@ -45,8 +45,8 @@ matrix:
   include: # add non-linux targets
   - { os: osx, osx_image: xcode6.4, env: OS=osx DIST=10.10 }
   - { os: osx, osx_image: xcode8,   env: OS=osx DIST=10.11 }
-  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.12 CACHE_NAME=macos10.12 }
-  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.13 CACHE_NAME=macos10.13 }
+  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.12 }
+  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.13 }
   exclude:
   - { osx_image: xcode6.4, env: BUILD_TESTS=ON } # libtoolize problems
   allow_failures:
