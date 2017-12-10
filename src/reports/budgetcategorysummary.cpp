@@ -252,8 +252,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
     hb.endTable();
 
-    double difIncome = estIncome - actIncome;
-    double difExpense = estExpenses - actExpenses;
+    double difIncome = actIncome - estIncome;
+    double difExpense = actExpenses - estExpenses;
 
     //Summary of Estimated Vs Actual totals
     hb.startTfoot();

@@ -485,7 +485,7 @@ void mmBudgetingPanel::initVirtualListControl()
     wxString est_amount, act_amount, diff_amount;
     est_amount = Model_Currency::toCurrency(estIncome);
     act_amount = Model_Currency::toCurrency(actIncome);
-    diff_amount = Model_Currency::toCurrency(estIncome - actIncome);
+    diff_amount = Model_Currency::toCurrency(actIncome - estIncome);
 
     income_estimated_->SetLabelText(est_amount);
     income_actual_->SetLabelText(act_amount);
@@ -495,7 +495,7 @@ void mmBudgetingPanel::initVirtualListControl()
     if (actExpenses < 0.0) actExpenses = -actExpenses;
     est_amount = Model_Currency::toCurrency(estExpenses);
     act_amount = Model_Currency::toCurrency(actExpenses);
-    diff_amount = Model_Currency::toCurrency(estExpenses - actExpenses);
+    diff_amount = Model_Currency::toCurrency(actExpenses - estExpenses);
 
     expenses_estimated_->SetLabelText(est_amount);
     expenses_actual_->SetLabelText(act_amount);
