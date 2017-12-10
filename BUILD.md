@@ -105,7 +105,8 @@ tools to manage projects in VS IDE.
 
 1. Generate build environment using [CMake]
 
-       cd c:\projects\mmex
+       mkdir c:\projects\mmex\build
+       cd c:\projects\mmex\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
        cmake -G "Visual Studio 15 2017" ..
 
