@@ -20,7 +20,6 @@
 
 #include "maincurrencydialog.h"
 #include "currencydialog.h"
-#include "constants.h"
 #include "defs.h"
 #include "images_list.h"
 #include "mmCalculator.h"
@@ -424,112 +423,76 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
 {
     wxString base_symbol = wxEmptyString;
     wxString msg = wxEmptyString;
-    wxString site = mmex::weblink::YahooQuotes;
-    bool ok = true;
 
     Model_Currency::Data * base_currency = Model_Currency::GetBaseCurrency();
     if (base_currency)
         base_symbol = base_currency->CURRENCY_SYMBOL.Upper();
 
-    ok = !base_symbol.empty();
+    bool ok = !base_symbol.empty();
     if (!ok)
         msg = _("Could not find base currency symbol!");
 
-    auto currencies = Model_Currency::instance().all();
-    wxString sOutput;
+    std::vector<CurrencyHistoryRate> CurrencyRatesList;
     if (ok)
     {
-        wxString buffer = wxEmptyString;
-        for (const auto &currency : currencies)
+        _BceCurrencyHistoryRatesList.clear();
+        if (HistoryDownloadBce(mmex::weblink::BceCurrency))
         {
-            const wxString symbol = currency.CURRENCY_SYMBOL.Upper();
-            if (curr_id > 0 && currency.CURRENCYID != curr_id) continue;
-            if (!symbol.IsEmpty()) buffer << symbol << base_symbol << "=X+";
+            if (base_symbol == "EUR")
+                CurrencyRatesList = _BceCurrencyHistoryRatesList;
+            else if (!ConvertHistoryRates(_BceCurrencyHistoryRatesList, CurrencyRatesList, base_symbol))
+            {
+                ok = false;
+                msg = _("Failed to convert rates from EUR to base currency");
+            }
         }
-        if (buffer.Right(1).Contains("+")) buffer.RemoveLast(1);
-        site = wxString::Format(site, buffer);
-
-        int err_code = site_content(site, sOutput);
-        if (err_code != wxURL_NOERR)
+        else
         {
-            msg = sOutput;
+            msg = _("Cannot get data from website");
             ok = false;
         }
     }
 
     if (ok)
     {
-        wxString CurrencySymbol;
-        double dRate = 1;
-
-        std::map<wxString, double> currency_data;
-
-        // Break it up into lines
-        wxStringTokenizer tkz(sOutput, "\r\n");
-
-        while (tkz.HasMoreTokens())
-        {
-            wxString csvline = tkz.GetNextToken();
-
-            wxRegEx pattern("\"(...)...=X\",([^,][0-9.]+)");
-            if (pattern.Matches(csvline))
-            {
-                CurrencySymbol = pattern.GetMatch(csvline, 1);
-                pattern.GetMatch(csvline, 2).ToDouble(&dRate);
-                currency_data[CurrencySymbol] = (dRate <= 0 ? 1 : dRate);
-            }
-        }
-
         msg = _("Currency rates have been updated");
         msg << "\n\n";
 
         const wxDateTime today = wxDateTime::Today();
         Model_CurrencyHistory::instance().Savepoint();
-        for (auto &currency : currencies)
+        for (auto &CurrencyRate : CurrencyRatesList)
         {
-            bool unused_currency = !cbShowAll_->IsChecked() && !Model_Account::is_used(currency);
+            if (base_symbol == CurrencyRate.Currency) continue;
+            auto currency = Model_Currency::instance().GetCurrencyRecord(CurrencyRate.Currency);
+            if (!currency) continue;
+            if (curr_id > 0 && currency->CURRENCYID != curr_id) continue;
+            bool unused_currency = !cbShowAll_->IsChecked() && !Model_Account::is_used(*currency);
             if (unused_currency) continue;
 
-            const wxString currency_symbol = currency.CURRENCY_SYMBOL.Upper();
-            if (!currency_symbol.IsEmpty())
-            {
-                if (currency_data.find(currency_symbol) != currency_data.end())
-                {
-                    if (Model_Account::is_used(currency))
-                    {
-                        msg << wxString::Format("%s\t: %0.6f -> %0.6f\n"
-                            , currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol]);
-                    }
-                    currency.BASECONVRATE = currency_data[currency_symbol];
-                    if (base_symbol == currency_symbol)
-                        continue;
-                    Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID,
-                        today, currency.BASECONVRATE, Model_CurrencyHistory::ONLINE);
-                    Model_Currency::instance().save(&currency);
-                }
-                else
-                {
-                    if (curr_id < 0)
-                        msg << wxString::Format(_("%s\t: %s\n"), currency_symbol, _("Invalid value"));
-                }
-            }
+            
+            msg << wxString::Format("%s\t: %0.6f -> %0.6f\n"
+                , CurrencyRate.Currency, currency->BASECONVRATE, CurrencyRate.Rate);
+            currency->BASECONVRATE = CurrencyRate.Rate;
+            
+            Model_CurrencyHistory::instance().addUpdate(currency->CURRENCYID,
+                        today, currency->BASECONVRATE, Model_CurrencyHistory::ONLINE);
+            Model_Currency::instance().save(currency);
         }
-
-        //Model_Currency::instance().save(currencies);  BASECONVRATE IS FIXED AND USED IF HISTORY NOT FOUND 
         Model_CurrencyHistory::instance().ReleaseSavepoint();
-
-        if (!hide)
-        {
-            wxMessageDialog msgDlg(this, msg, _("Currency rates have been updated"));
-            msgDlg.ShowModal();
-        }
-        fillControls();
-        ShowCurrencyHistory();
+          
     }
-    else
+
+    if (!ok)
     {
         wxMessageDialog msgDlg(this, msg, _("Error"), wxOK | wxICON_ERROR);
         msgDlg.ShowModal();
+    }
+    else if (!hide)
+    {
+        wxMessageDialog msgDlg(this, msg, _("Currency rates have been updated"));
+            msgDlg.ShowModal();
+        fillControls();
+        ShowCurrencyHistory();
     }
     return ok;
 }
@@ -882,10 +845,10 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     return true;
 }
 
-bool mmMainCurrencyDialog::HistoryDownloadBce()
+bool mmMainCurrencyDialog::HistoryDownloadBce(const wxString& url)
 {
     wxString XmlContent;
-    if (site_content(mmex::weblink::BceCurrencyHistory, XmlContent) != wxURL_NOERR)
+    if (site_content(url, XmlContent) != wxURL_NOERR)
         return false;
 
     wxStringInputStream XmlContentStream(XmlContent);
@@ -896,7 +859,7 @@ bool mmMainCurrencyDialog::HistoryDownloadBce()
         return false;
 
     wxXmlNode* XmlRoot = XmlDocument.GetRoot()->GetChildren();
-    while (XmlRoot->GetName() != "Cube")
+    while (XmlRoot && (XmlRoot->GetName() != "Cube"))
         XmlRoot = XmlRoot->GetNext();
     if (XmlRoot->GetName() != "Cube")
         return false;

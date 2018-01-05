@@ -92,6 +92,7 @@ namespace weblink
     extern const wxString YahooQuotes;
     extern const wxString YahooQuotesHistory;
     extern const wxString BceCurrencyHistory;
+    extern const wxString BceCurrency;
     extern const wxString DefStockUrl;
     extern const wxString GooglePlay;
     extern const wxString WebApp;
