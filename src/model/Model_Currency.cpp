@@ -94,7 +94,8 @@ Model_Currency::Data* Model_Currency::GetCurrencyRecord(const wxString& currency
     if (record) return record;
 
     Model_Currency::Data_Set items = Model_Currency::instance().find(CURRENCY_SYMBOL(currency_symbol));
-    if (items.empty()) record = this->get(items[0].id(), this->db_);
+    if (!items.empty())
+        record = this->get(items[0].id(), this->db_);
 
     return record;
 }
