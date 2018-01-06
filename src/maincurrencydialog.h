@@ -24,7 +24,6 @@
 #include <map>
 #include <vector>
 #include <wx/dataview.h>
-#include "constants.h"
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
@@ -122,7 +121,9 @@ private:
     bool m_static_dialog;
 
     std::vector<CurrencyHistoryRate> _BceCurrencyHistoryRatesList;
-    bool HistoryDownloadBce(const wxString& url = mmex::weblink::BceCurrencyHistory);
+    bool HistoryDownloadBce();
+    bool CurrentDownloadBce();
+    bool ParseDownloadedBce(wxString &XmlContent);
     bool ConvertHistoryRates(const std::vector<CurrencyHistoryRate>& Bce, std::vector<CurrencyHistoryRate>& ConvertedRate, const wxString& BaseCurrencySymbol);
 };
 
