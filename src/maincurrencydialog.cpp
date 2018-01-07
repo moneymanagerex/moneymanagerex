@@ -20,6 +20,7 @@
 
 #include "maincurrencydialog.h"
 #include "currencydialog.h"
+#include "constants.h"
 #include "defs.h"
 #include "images_list.h"
 #include "mmCalculator.h"
@@ -436,7 +437,7 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
     if (ok)
     {
         _BceCurrencyHistoryRatesList.clear();
-        if (HistoryDownloadBce(mmex::weblink::BceCurrency))
+        if (CurrentDownloadBce())
         {
             if (base_symbol == "EUR")
                 CurrencyRatesList = _BceCurrencyHistoryRatesList;
@@ -469,17 +470,16 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
             bool unused_currency = !cbShowAll_->IsChecked() && !Model_Account::is_used(*currency);
             if (unused_currency) continue;
 
-            
             msg << wxString::Format("%s\t: %0.6f -> %0.6f\n"
                 , CurrencyRate.Currency, currency->BASECONVRATE, CurrencyRate.Rate);
             currency->BASECONVRATE = CurrencyRate.Rate;
-            
+
             Model_CurrencyHistory::instance().addUpdate(currency->CURRENCYID,
                         today, currency->BASECONVRATE, Model_CurrencyHistory::ONLINE);
             Model_Currency::instance().save(currency);
         }
         Model_CurrencyHistory::instance().ReleaseSavepoint();
-          
+
     }
 
     if (!ok)
@@ -845,12 +845,24 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     return true;
 }
 
-bool mmMainCurrencyDialog::HistoryDownloadBce(const wxString& url)
+bool mmMainCurrencyDialog::HistoryDownloadBce()
 {
     wxString XmlContent;
-    if (site_content(url, XmlContent) != wxURL_NOERR)
+    if (site_content(mmex::weblink::BceCurrencyHistory, XmlContent) != wxURL_NOERR)
         return false;
+    return ParseDownloadedBce(XmlContent);
+}
 
+bool mmMainCurrencyDialog::CurrentDownloadBce()
+{
+    wxString XmlContent;
+    if (site_content(mmex::weblink::BceCurrency, XmlContent) != wxURL_NOERR)
+        return false;
+    return ParseDownloadedBce(XmlContent);
+}
+
+bool mmMainCurrencyDialog::ParseDownloadedBce(wxString &XmlContent)
+{
     wxStringInputStream XmlContentStream(XmlContent);
     wxXmlDocument XmlDocument;
     if (!XmlDocument.Load(XmlContentStream))
