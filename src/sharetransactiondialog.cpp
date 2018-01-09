@@ -382,7 +382,8 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Stock::instance().save(m_stock);
     }
 
-    if (m_transaction_panel->ValidCheckingAccountEntry())
+    UserTransactionPanel::GUI_ERROR g_err = UserTransactionPanel::GUI_ERROR::NONE;
+    if (m_transaction_panel->ValidCheckingAccountEntry(g_err))
     {
         // addition or removal shares
         if ((num_shares > 0) && (m_transaction_panel->TransactionType() == Model_Checking::DEPOSIT))
@@ -415,7 +416,23 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
     else
     {
-        mmErrorDialogs::MessageWarning(this, _("Invalid Transaction"), m_dialog_heading);
+        if (g_err == UserTransactionPanel::GUI_ERROR::ACCOUNT)
+        {
+            mmErrorDialogs::InvalidAccount((wxWindow*)m_transaction_panel->m_account, false, mmErrorDialogs::MESSAGE_POPUP_BOX);
+        }
+        else if (g_err == UserTransactionPanel::GUI_ERROR::PAYEE)
+        {
+            mmErrorDialogs::InvalidPayee((wxWindow*)m_transaction_panel->m_payee, mmErrorDialogs::MESSAGE_POPUP_BOX);
+        }
+        else if (g_err == UserTransactionPanel::GUI_ERROR::CATEGORY)
+        {
+            mmErrorDialogs::InvalidCategory((wxWindow*)m_transaction_panel->m_category, true);
+        }
+        else if (g_err == UserTransactionPanel::GUI_ERROR::ENTRY)
+        {
+            mmErrorDialogs::InvalidAmount((wxWindow*)m_transaction_panel->m_entered_amount);
+        }
+
         return;
     }
 

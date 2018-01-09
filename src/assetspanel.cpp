@@ -775,7 +775,8 @@ void mmAssetsPanel::AddAssetTrans(const int selected_index)
         {
             wxMessageBox(_(
                 "This asset does not have its own account\n\n"
-                "Multiple transactions for this asset are not recommended.")
+                "Multiple transactions for this asset are not recommended.\n"
+                "Please use the popup: 'Open Asset Account' to track the transaction.")
                 , _("Asset Management"), wxOK | wxICON_INFORMATION);
 
             return; // abort process

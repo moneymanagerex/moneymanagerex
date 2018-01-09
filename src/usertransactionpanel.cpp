@@ -114,7 +114,7 @@ void UserTransactionPanel::Create()
     transPanelSizer->Add(new wxStaticText(this, ID_TRANS_ACCOUNT_BUTTON_TEXT, _("Account")), g_flagsH);
     m_account = new wxButton(this, ID_TRANS_ACCOUNT_BUTTON, _("Select Account")
         , wxDefaultPosition, std_size);
-    m_account->SetToolTip(_("Specify the associated Account that will contain this transaction"));
+    m_account->SetToolTip(_("Please select the Account that will be associated with this transaction"));
     transPanelSizer->Add(m_account, g_flagsH);
 
     // Type --------------------------------------------
@@ -407,16 +407,33 @@ void UserTransactionPanel::OnAttachments(wxCommandEvent& WXUNUSED(event))
     dlg.ShowModal();
 }
 
-bool UserTransactionPanel::ValidCheckingAccountEntry()
+bool UserTransactionPanel::ValidCheckingAccountEntry(GUI_ERROR& g_err)
 {
-    if ((m_account_id != -1) && (m_payee_id != -1) && (m_category_id != -1) && (!m_entered_amount->GetValue().IsEmpty()))
+    if (m_account_id < 0)
     {
-        return true;
-    }
-    else
-    {
+        g_err = GUI_ERROR::ACCOUNT;
         return false;
     }
+
+    if (m_payee_id < 0)
+    {
+        g_err = GUI_ERROR::PAYEE;
+        return false;
+    }
+
+    if (m_category_id < 0)
+    {
+        g_err = GUI_ERROR::CATEGORY;
+        return false;
+    }
+
+    if (m_entered_amount->GetValue().IsEmpty())
+    {
+        g_err = GUI_ERROR::ENTRY;
+        return false;
+    }
+
+    return true;
 }
 
 wxDateTime UserTransactionPanel::TransactionDate()
