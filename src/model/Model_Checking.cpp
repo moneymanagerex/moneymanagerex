@@ -606,6 +606,11 @@ void TransactionStatus::SetStatus(const wxString& status, int account_id, DB_Tab
     }
 }
 
+void TransactionStatus::SetStatusA(const wxString& status)
+{
+    m_status_a = (status.empty() ? "N" : status);
+}
+
 wxString TransactionStatus::Status(int account_id)
 {
     if (account_id == m_account_b)

@@ -46,7 +46,6 @@ public:
     ~UserTransactionPanel();
 
     int SaveChecking();
-    bool ValidCheckingAccountEntry();
     wxDateTime TransactionDate();
     void TransactionDate(const wxDateTime& trans_date);
 
@@ -88,18 +87,30 @@ private:
     void onSelectedNote(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& WXUNUSED(event));
 
+public:
+    enum GUI_ERROR
+    {
+        ENTRY,
+        ACCOUNT,
+        PAYEE,
+        CATEGORY,
+        NONE,
+    };
+
+    mmTextCtrl* m_entered_amount;
+    wxButton* m_account;
+    wxButton* m_payee;
+    wxButton* m_category;
+
+    bool ValidCheckingAccountEntry(GUI_ERROR& g_err);
+
 private:
     wxDatePickerCtrl* m_date_selector;
     wxSpinButton* m_date_controller;
-
-    wxButton* m_account;
     wxChoice* m_status_selector;
     wxChoice* m_type_selector;
-    mmTextCtrl* m_entered_amount;
     wxCheckBox* m_transfer;
-    wxButton* m_trans_currency;
-    wxButton* m_payee;
-    wxButton* m_category;
+    wxStaticText* m_trans_currency;
     wxTextCtrl* m_entered_number;
     wxTextCtrl* m_entered_notes;
     std::vector<wxString> m_frequent_notes;
@@ -120,6 +131,5 @@ private:
         ID_TRANS_ENTERED_NOTES,
         ID_TRANS_FREQUENT_NOTES,
         ID_TRANS_TRANSFER,
-        ID_TRANS_CURRENCY_BUTTON,
     };
 };
