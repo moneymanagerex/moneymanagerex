@@ -97,7 +97,7 @@ private:
     wxChoice* m_type_selector;
     mmTextCtrl* m_entered_amount;
     wxCheckBox* m_transfer;
-    wxButton* m_trans_currency;
+    wxStaticText* m_trans_currency;
     wxButton* m_payee;
     wxButton* m_category;
     wxTextCtrl* m_entered_number;
@@ -120,6 +120,5 @@ private:
         ID_TRANS_ENTERED_NOTES,
         ID_TRANS_FREQUENT_NOTES,
         ID_TRANS_TRANSFER,
-        ID_TRANS_CURRENCY_BUTTON,
     };
 };

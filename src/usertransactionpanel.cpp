@@ -154,8 +154,8 @@ void UserTransactionPanel::Create()
     {
         currency = Model_Account::currency(Model_Account::instance().get(m_account_id));
     }
-    m_trans_currency = new wxButton(this, ID_TRANS_CURRENCY_BUTTON, currency->CURRENCY_SYMBOL
-        , wxDefaultPosition, std_half_size);
+    m_trans_currency = new wxStaticText(this, wxID_ANY, currency->CURRENCY_SYMBOL
+        , wxDefaultPosition, std_half_size, wxBORDER_SUNKEN|wxALIGN_CENTRE);
     m_trans_currency->SetToolTip(_("Currency used for this transaction."));
 
     wxBoxSizer* entered_amount_sizer = new wxBoxSizer(wxHORIZONTAL);
