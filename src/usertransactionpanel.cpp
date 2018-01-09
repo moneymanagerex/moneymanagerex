@@ -498,7 +498,11 @@ int UserTransactionPanel::SaveChecking()
     m_checking_entry->PAYEEID = m_payee_id;
     m_checking_entry->TRANSCODE = Model_Checking::instance().all_type()[TransactionType()];
     m_checking_entry->TRANSAMOUNT = initial_amount;
-    m_checking_entry->STATUS = Model_Checking::all_status()[TransactionType()].Mid(0, 1);
+
+    TransactionStatus status(m_checking_entry);
+    status.SetStatusA(Model_Checking::all_status()[m_status_selector->GetSelection()].Mid(0, 1));
+    m_checking_entry->STATUS = status.Status(m_account_id);
+
     m_checking_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();
     m_checking_entry->NOTES = m_entered_notes->GetValue();
     m_checking_entry->CATEGID = m_category_id;
