@@ -119,83 +119,90 @@ wxArrayString Model_CustomField::all_type()
 
 wxString Model_CustomField::getTooltip(const wxString& Properties)
 {
-    json::Object jsonProperties;
-    std::wstringstream jsonPropertiesStream;
+    Document json_doc;
+    json_doc.Parse(Properties);
 
-    jsonPropertiesStream << Properties.ToStdWstring();
-    json::Reader::Read(jsonProperties, jsonPropertiesStream);
-    return wxString(json::String(jsonProperties[L"Tooltip"]));
+    Value& s = json_doc["Tooltip"];
+
+    return s.GetString();
 }
 
 wxString Model_CustomField::getRegEx(const wxString& Properties)
 {
-    json::Object jsonProperties;
-    std::wstringstream jsonPropertiesStream;
+    Document json_doc;
+    json_doc.Parse(Properties);
 
-    jsonPropertiesStream << Properties.ToStdWstring();
-    json::Reader::Read(jsonProperties, jsonPropertiesStream);
-    return wxString(json::String(jsonProperties[L"RegEx"]));
+    Value& s = json_doc["RegEx"];
+
+    return s.GetString();
 }
 
 bool Model_CustomField::getAutocomplete(const wxString& Properties)
 {
-    json::Object jsonProperties;
-    std::wstringstream jsonPropertiesStream;
+    Document json_doc;
+    json_doc.Parse(Properties);
 
-    jsonPropertiesStream << Properties.ToStdWstring();
-    json::Reader::Read(jsonProperties, jsonPropertiesStream);
-    return json::Boolean(jsonProperties[L"Autocomplete"]);
+    Value& b = json_doc["Autocomplete"];
+
+    return b.GetBool();
 }
 
 wxString Model_CustomField::getDefault(const wxString& Properties)
 {
-    json::Object jsonProperties;
-    std::wstringstream jsonPropertiesStream;
+    Document json_doc;
+    json_doc.Parse(Properties);
 
-    jsonPropertiesStream << Properties.ToStdWstring();
-    json::Reader::Read(jsonProperties, jsonPropertiesStream);
-    return wxString(json::String(jsonProperties[L"Default"]));
+    Value& s = json_doc["Default"];
+
+    return s.GetString();
 }
 
 wxArrayString Model_CustomField::getChoices(const wxString& Properties)
 {
-    json::Object jsonProperties;
-    std::wstringstream jsonPropertiesStream;
-    wxArrayString Choices;
+    Document json_doc;
+    json_doc.Parse(Properties);
 
-    jsonPropertiesStream << Properties.ToStdWstring();
-    json::Reader::Read(jsonProperties, jsonPropertiesStream);
+    Value& sa = json_doc["Choice"];
 
-    const json::Array& jsonChoices = jsonProperties[L"Choices"];
-    for (json::Array::const_iterator it = jsonChoices.Begin(); it != jsonChoices.End(); ++it)
+    wxArrayString choices;
+
+    for (SizeType i = 0; i < sa.Size(); i++)
     {
-        const json::Object& obj = *it;
-        Choices.Add(wxString(json::String(obj[L"Choice"])));
+        choices.Add(sa[i].GetString());
     }
 
-    return Choices;
+    return choices;
 }
 
 wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choices)
 {
-    json::Object jsonProperties;
-    std::wstringstream jsonPropertiesStream;
-    json::Array jsonChoices;
-    wxString outputMessage;
+    StringBuffer json_buffer;
+    Writer<StringBuffer> json_writer(json_buffer);
 
-    jsonProperties[L"Tooltip"] = json::String(Tooltip.ToStdWstring());
-    jsonProperties[L"RegEx"] = json::String(RegEx.ToStdWstring());
-    jsonProperties[L"Autocomplete"] = json::Boolean(Autocomplete);
-    jsonProperties[L"Default"] = json::String(Default.ToStdWstring());
+    json_writer.StartObject();
+    json_writer.Key("Tooltip");
+    json_writer.String(Tooltip);
 
-    for (const auto &choice : Choices)
+    json_writer.Key("RegEx");
+    json_writer.String(RegEx);
+
+    json_writer.Key("Autocomplete");
+    json_writer.Bool(Autocomplete);
+
+    json_writer.Key("Default");
+    json_writer.String(Default);
+
+    if (!Choices.empty())
     {
-        json::Object o;
-        o[L"Choice"] = json::String(choice.ToStdWstring());
-        jsonChoices.Insert(o);
+        json_writer.Key("Choice");
+        json_writer.StartArray();
+        for (const auto &choice : Choices)
+        {
+            json_writer.String(choice);
+        }
+        json_writer.EndArray();
     }
-    jsonProperties[L"Choices"] = json::Array(jsonChoices);
+    json_writer.EndObject();
 
-    json::Writer::Write(jsonProperties, jsonPropertiesStream);
-    return jsonPropertiesStream.str();
+    return json_buffer.GetString();
 }
