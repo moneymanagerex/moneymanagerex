@@ -76,15 +76,22 @@ private:
 class mmErrorDialogs
 {
 public:
+    enum TOOL_TIP
+    {
+        MESSAGE_DROPDOWN_BOX,
+        MESSAGE_POPUP_BOX,
+    };
+
     static void MessageInvalid(wxWindow *parent, const wxString &message);
     static void MessageError(wxWindow *parent, const wxString &message, const wxString &title);
     static void MessageWarning(wxWindow *parent, const wxString &message, const wxString &title);
     static void InvalidCategory(wxWindow *button, bool simple = true);
-    static void InvalidAccount(wxWindow *object, bool transfer = false);
+    static void InvalidAccount(wxWindow *object, bool transfer = false, TOOL_TIP tm = MESSAGE_DROPDOWN_BOX);
     static void InvalidFile(wxWindow *object, bool open = false);
-    static void InvalidPayee(wxWindow *object);
+    static void InvalidPayee(wxWindow *object, TOOL_TIP tm = MESSAGE_DROPDOWN_BOX);
     static void InvalidName(wxTextCtrl *textBox, bool alreadyexist = false);
     static void InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist = false);
     static void ToolTip4Object(wxWindow *object, const wxString &message, const wxString &title, int ico = wxICON_WARNING);
+    static void InvalidAmount(wxWindow *object);
 };
 #endif // MM_EX_MMSIMPLEDIALOGS_H_

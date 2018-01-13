@@ -943,7 +943,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     Model_Account::Data *acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     if (!acc)
     {
-        return mmErrorDialogs::InvalidAccount((wxWindow*) bAccount_);
+        return mmErrorDialogs::InvalidAccount((wxWindow*) bAccount_, m_transfer, mmErrorDialogs::MESSAGE_POPUP_BOX);
     }
 
     Model_Billsdeposits::Data bill_data;
