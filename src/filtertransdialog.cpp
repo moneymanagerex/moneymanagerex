@@ -1,6 +1,7 @@
 ﻿/*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
-Copyright (C) 2016 Nikolay Akimov
+Copyright (C) 2016 - 2018 Nikolay Akimov
+Copyright (C) 2018 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -145,6 +146,7 @@ void mmFilterTransactionsDialog::dataToControls()
     BuildPayeeList();
     from_json(settings_string_);
 }
+
 void mmFilterTransactionsDialog::CreateControls()
 {
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
@@ -790,48 +792,64 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
 
 wxString mmFilterTransactionsDialog::to_json()
 {
-    json::Object o;
-    o.Clear();
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartObject();
+
     const wxString label = m_settingLabel->GetValue().Trim();
-    if (!label.empty()) o[L"LABEL"] = json::String(label.ToStdWstring());
+    if (!label.empty())
+    {
+        json_writer.Key("LABEL");
+        json_writer.String(label);
+    }
+
     if (accountCheckBox_->IsChecked())
     {
         const wxString acc = accountDropDown_->GetStringSelection();
-        if (!acc.empty()) o[L"ACCOUNT"] = json::String(acc.ToStdWstring());
+        if (!acc.empty())
+        {
+            json_writer.Key("ACCOUNT");
+            json_writer.String(acc);
+        }
     }
+
     if (m_dateRangeCheckBox->IsChecked())
     {
-        o[L"DATE1"] = json::String(m_fromDateCtrl->GetValue().FormatISODate().ToStdWstring());
-        o[L"DATE2"] = json::String(m_toDateControl->GetValue().FormatISODate().ToStdWstring());
+        json_writer.Key("DATE1");
+        json_writer.String(m_fromDateCtrl->GetValue().FormatISODate());
+        json_writer.Key("DATE2");
+        json_writer.String(m_toDateControl->GetValue().FormatISODate());
     }
+
     if (payeeCheckBox_->IsChecked())
     {
-        wxString wxpayee = cbPayee_->GetValue();
-        //TODO: Here is big problem for UTF8 usage!!! wxString::ToStdString() does not working
-        //for some strings like Kubalíková
-        //but cyrillic working Николай = Николай (РќРёРєРѕР»Р°Р№)
-        //Kubalíková ----> KubalГ­kovГЎ
-        wxCharBuffer buffer = wxpayee.ToUTF8();
-        std::string str_std(buffer.data(), strlen(buffer.data()));
-        std::wstring test = wxpayee.ToStdWstring();
-        wxLogDebug("utf8: %s|to_chars %s|from_chars %s|std::string: %s"
-            , wxpayee, str_std, wxString(str_std.c_str(), wxConvUTF8), test);
-
-        if (!test.empty()) o[L"PAYEE"] = json::String(test);
+        json_writer.Key("PAYEE");
+        json_writer.String(cbPayee_->GetValue());
     }
+
     if (categoryCheckBox_->IsChecked())
     {
-        o[L"SIMILAR_YN"] = json::Boolean(bSimilarCategoryStatus_);
-        o[L"CATEGORY"] = json::String(btnCategory_->GetLabel().ToStdWstring());
+        json_writer.Key("SIMILAR_YN");
+        json_writer.Bool(bSimilarCategoryStatus_);
+        json_writer.Key("CATEGORY");
+        json_writer.String(btnCategory_->GetLabel());
     }
+
     if (statusCheckBox_->IsChecked())
     {
         int item = choiceStatus_->GetSelection();
         wxString status;
         if (0 <= item && item < (int)Model_Checking::all_status().size())
             status = Model_Checking::all_status()[item];
-        if (!status.empty()) o[L"STATUS"] = json::String(status.ToStdWstring());
+        if (!status.empty())
+        {
+            //o[L"STATUS"] = json::String(status.ToStdWstring());
+
+            json_writer.Key("STATUS");
+            json_writer.String(status);
+        }
     }
+
     if (typeCheckBox_->IsChecked())
     {
         wxString type = wxString()
@@ -839,82 +857,127 @@ wxString mmFilterTransactionsDialog::to_json()
             << (cbTypeDeposit_->GetValue() && typeCheckBox_->GetValue() ? "D" : "")
             << (cbTypeTransferTo_->GetValue() && typeCheckBox_->GetValue() ? "T" : "")
             << (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "");
-        if (!type.empty()) o[L"TYPE"] = json::String(type.ToStdWstring());
+        if (!type.empty())
+        {
+            json_writer.Key("TYPE");
+            json_writer.String(type);
+        }
     }
-
     if (amountRangeCheckBox_->IsChecked())
     {
         if (!amountMinEdit_->GetValue().empty())
         {
             double amount_min;
             amountMinEdit_->GetDouble(amount_min);
-            o[L"AMOUNT_MIN"] = json::Number(amount_min);
+            json_writer.Key("AMOUNT_MIN");
+            json_writer.Double(amount_min);
         }
+
         if (!amountMaxEdit_->GetValue().empty())
         {
             double amount_max;
             amountMaxEdit_->GetDouble(amount_max);
-            o[L"AMOUNT_MAX"] = json::Number(amount_max);
+            json_writer.Key("AMOUNT_MAX");
+            json_writer.Double(amount_max);
         }
     }
+
     if (transNumberCheckBox_->IsChecked())
     {
         const wxString num = transNumberEdit_->GetValue();
-        if (!num.empty()) o[L"NUMBER"] = json::String(num.ToStdWstring());
-    }
-    if (notesCheckBox_->IsChecked())
-    {
-        const wxString notes = notesEdit_->GetValue();
-        if (!notes.empty()) o[L"NOTES"] = json::String(notes.ToStdWstring());
+        if (!num.empty())
+        {
+            json_writer.Key("NUMBER");
+            json_writer.String(num);
+        }
     }
 
-    std::wstringstream ss;
-    json::Writer::Write(o, ss);
-    return ss.str();
+    if (notesCheckBox_->IsChecked())
+    {
+        wxString notes = notesEdit_->GetValue();
+        if (!notes.empty())
+        {
+            json_writer.Key("NOTES");
+            json_writer.String(notes);
+        }
+    }
+
+    json_writer.EndObject();
+
+    return json_buffer.GetString();
 }
 
 void mmFilterTransactionsDialog::from_json(const wxString &data)
 {
     wxString str = data;
-    if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
-    std::wstringstream ss;
-    ss << str.ToStdWstring();
-    json::Object o;
-    json::Reader::Read(o, ss);
+    if (!(str.StartsWith("{") && str.EndsWith("}")))
+    {
+        str = "{}";
+    }
+
+    Document j_doc;
+    j_doc.Parse(data);
+
+//-------------------------------------------------------------------------------
+//  Debug code for rapidjson
+    //StringBuffer json_buffer;
+    //PrettyWriter<StringBuffer> json_writer(json_buffer);
+    //j_doc.Accept(json_writer);
+
+    //wxString str_json = json_buffer.GetString();
+//-------------------------------------------------------------------------------
     
     //Label
-    m_settingLabel->ChangeValue(wxString(json::String(o[L"LABEL"])));
-    
+    Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
+    m_settingLabel->ChangeValue(j_label.GetString());
+
     //Account
-    accountCheckBox_->SetValue(!wxString(json::String(o[L"ACCOUNT"])).empty());
+    Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
+    wxString s_account = j_account.GetString();
+    accountCheckBox_->SetValue(!s_account.empty());
     accountDropDown_->Enable(accountCheckBox_->IsChecked());
-    accountDropDown_->SetStringSelection(wxString(json::String(o[L"ACCOUNT"])));
+    accountDropDown_->SetStringSelection(s_account);
 
     //Dates
-    m_dateRangeCheckBox->SetValue(!wxString(json::String(o[L"DATE"])).empty() || !wxString(json::String(o[L"DATE2"])).empty());
+    Value& j_date = GetValueByPointerWithDefault(j_doc, "/DATE", "");
+    wxString s_date = j_date.GetString();
+    Value& j_date1 = GetValueByPointerWithDefault(j_doc, "/DATE1", "");
+    m_begin_date = j_date1.GetString();
+    Value& j_date2 = GetValueByPointerWithDefault(j_doc, "/DATE2", "");
+    m_end_date = j_date2.GetString();
+    m_dateRangeCheckBox->SetValue(!s_date.empty() || !m_end_date.empty());
     m_fromDateCtrl->Enable(m_dateRangeCheckBox->IsChecked());
-    m_begin_date = wxString(json::String(o[L"DATE1"]));
     m_fromDateCtrl->SetValue(mmParseISODate(m_begin_date));
     m_toDateControl->Enable(m_dateRangeCheckBox->IsChecked());
-    m_end_date = wxString(json::String(o[L"DATE2"]));
     m_toDateControl->SetValue(mmParseISODate(m_end_date));
 
     //Payee
-    payeeCheckBox_->SetValue(!wxString(json::String(o[L"PAYEE"])).empty());
+    Value& j_payee = GetValueByPointerWithDefault(j_doc, "/PAYEE", "");
+    wxString s_payee = j_payee.GetString();
+    payeeCheckBox_->SetValue(!s_payee.empty());
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
-    cbPayee_->SetValue(wxString(json::String(o[L"PAYEE"])));
+    cbPayee_->SetValue(s_payee);
 
     //Category
-    wxString value = wxString(json::String(o[L"CATEGORY"]));
-    categoryCheckBox_->SetValue(!value.empty());
+    Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
+    wxString s_category = j_category.GetString();
+    categoryCheckBox_->SetValue(!s_category.empty());
     btnCategory_->Enable(categoryCheckBox_->IsChecked());
-    bSimilarCategoryStatus_ = json::Boolean(o[L"SIMILAR_YN"]);
+
+    bSimilarCategoryStatus_ = false;
+    if (j_doc.HasMember("SIMILAR_YN"))
+    {
+        bSimilarCategoryStatus_ = j_doc["SIMILAR_YN"].GetBool();
+    }
     similarCategCheckBox_->SetValue(bSimilarCategoryStatus_);
     similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
-    wxStringTokenizer categ_token(value, ":", wxTOKEN_RET_EMPTY_ALL);
+
+    wxStringTokenizer categ_token(s_category, ":", wxTOKEN_RET_EMPTY_ALL);
     Model_Category::Data* category = Model_Category::instance().get(categ_token.GetNextToken().Trim());
     if (category)
+    {
         categID_ = category->CATEGID;
+    }
     Model_Subcategory::Data* sub_category = 0;
     wxString subcateg_name = categ_token.GetNextToken().Trim(false);
     if (!subcateg_name.IsEmpty())
@@ -926,46 +989,74 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     btnCategory_->SetLabelText(Model_Category::full_name(categID_, subcategID_));
 
     //Status
-    statusCheckBox_->SetValue(!wxString(json::String(o[L"STATUS"])).empty());
+    Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
+    wxString s_status = j_status.GetString();
+    statusCheckBox_->SetValue(!s_status.empty());
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
-    choiceStatus_->SetStringSelection(wxGetTranslation(wxString(json::String(o[L"STATUS"]))));
+    choiceStatus_->SetStringSelection(wxGetTranslation(s_status));
 
     //Type
-    wxString type = wxString(json::String(o[L"TYPE"]));
-    typeCheckBox_->SetValue(!type.empty());
-    cbTypeWithdrawal_->SetValue(type.Contains("W"));
+    Value& j_type = GetValueByPointerWithDefault(j_doc, "/TYPE", "");
+    wxString s_type = j_type.GetString();
+    typeCheckBox_->SetValue(!s_type.empty());
+    cbTypeWithdrawal_->SetValue(s_type.Contains("W"));
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
-    cbTypeDeposit_->SetValue(type.Contains("D"));
+    cbTypeDeposit_->SetValue(s_type.Contains("D"));
     cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
-    cbTypeTransferTo_->SetValue(type.Contains("T"));
+    cbTypeTransferTo_->SetValue(s_type.Contains("T"));
     cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
-    cbTypeTransferFrom_->SetValue(type.Contains("F"));
+    cbTypeTransferFrom_->SetValue(s_type.Contains("F"));
     cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
 
     //Amounts
-    bool amt1 = 0.0 != json::Number(o[L"AMOUNT_MIN"]);
-    bool amt2 = 0.0 != json::Number(o[L"AMOUNT_MAX"]);
+    bool amt1 = false;
+    if (j_doc.HasMember("AMOUNT_MIN"))
+    {
+        amt1 = true;
+    }
+
+    bool amt2 = false;
+    if (j_doc.HasMember("AMOUNT_MAX"))
+    {
+        amt2 = true;
+    }
+
     amountRangeCheckBox_->SetValue(amt1 || amt2);
     amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
     amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
-    if (amt1)
-        amountMinEdit_->SetValue(json::Number(o[L"AMOUNT_MIN"]));
+
+    if (amt1 && j_doc["AMOUNT_MIN"].IsNumber())
+    {
+        amountMinEdit_->SetValue(j_doc["AMOUNT_MIN"].GetDouble());
+    }
     else
+    {
         amountMinEdit_->ChangeValue("");
-    if (amt2)
-        amountMaxEdit_->SetValue(json::Number(o[L"AMOUNT_MAX"]));
+    }
+
+    if (amt2 && j_doc["AMOUNT_MAX"].IsNumber())
+    {
+        amountMaxEdit_->SetValue(j_doc["AMOUNT_MAX"].GetDouble());
+    }
     else
+    {
         amountMaxEdit_->ChangeValue("");
+    }
 
     //Number
-    transNumberCheckBox_->SetValue(!wxString(json::String(o[L"NUMBER"])).empty());
+    Value& j_number = GetValueByPointerWithDefault(j_doc, "/NUMBER", "");
+    wxString s_number = j_number.GetString();
+    transNumberCheckBox_->SetValue(!s_number.empty());
     transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
-    transNumberEdit_->ChangeValue(wxString(json::String(o[L"NUMBER"])));
+    transNumberEdit_->ChangeValue(s_number);
 
     //Notes
-    notesCheckBox_->SetValue(!wxString(json::String(o[L"NOTES"])).empty());
+    Value& j_notes = GetValueByPointerWithDefault(j_doc, "/NOTES", "");
+    wxString s_notes = j_notes.GetString();
+
+    notesCheckBox_->SetValue(!s_notes.empty());
     notesEdit_->Enable(notesCheckBox_->IsChecked());
-    notesEdit_->ChangeValue(wxString(json::String(o[L"NOTES"])));
+    notesEdit_->ChangeValue(s_notes);
 }
 
 int mmFilterTransactionsDialog::getAccountID()
