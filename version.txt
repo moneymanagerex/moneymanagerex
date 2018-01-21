@@ -1,11 +1,31 @@
 Version History of Money Manager Ex
 
-(TBA)
-- New: Addition of show/hide chart option in reports
+1.4.0 (Jan 28, 2018)
+- New: Addition of new option Budget Offset(days) (#1292)
+- New: CMake Builds for other Linux systems
+- Fix: CMake Builds for MSVS 2017
+- Fix: (#1291) Universal CSV Dialog error messages 
+- Fix: (#1328) Date formats for reports
+- Fix: (#1301 & #1336) Icon Updates
+- Fix: (#1334) Reports sorting
+- Fix: (#1311) budget summary variance values
+- Fix: (#1367) Update currency rates using European Central Bank's site as a source
 
 1.4.0-Alpha-3 (Aug 11, 2017)
-(TBA)
+- Fix: CMake build updates
 
+1.4.0-Alpha-2 (Aug 7, 2017)
+- New: Improved category report charts
+- New: Improved graphs for budget category reports
+- New: Checking panel multiple move support
+- New: Addition of show/hide chart option in reports
+- New: Split status on transfer transactions (#1180)
+- New: Integration of other Linux builds using CMake
+- Fix: About dialog information update
+- Fix: Menu selection for external internet links
+- Fix: Update various icons
+- Fix: General fixes and updates
+  
 1.4.0-Alpha-1 (May 24, 2017)
 - Fix: Currency issues #1154 #1155 #1156 #1153
 - Fix: Issue #1120, Set focus
