@@ -68,6 +68,11 @@ init:
 - call set "vcvarsall=%%VS%comp%COMNTOOLS%%..\..\VC\vcvarsall.bat"
 - if %comp%==141 set "vcvarsall=%VS150COMNTOOLS%..\..\VC\Auxiliary\Build\vcvarsall.bat"
 - call "%vcvarsall%" %arch%
+# detect MSVC compiler version
+- for /f "tokens=1,2 delims=." %%a in ('cl 2^>^&1 ^| findstr /r "\<[0-9][0-9]*\.[0-9][0-9]*\."') do (
+    for %%c in (%%a%%b) do set "clver=%%c"
+  )
+- echo %clver% > ..\MSVC_ver.txt
 # Set wxWidgets library paths
 - set "wxLibFolder=%wxwin%\lib\vc%comp%%xp%"
 - if %platform:~-2%==64 set wxSuff=_x64
@@ -79,7 +84,7 @@ init:
 - set "CLCACHE_DIR=C:\clcache-%APPVEYOR_BUILD_WORKER_IMAGE%-%platform%-v%comp%%xp%"
 
 cache:
-- '%wxwin%\lib'
+- '%wxwin%\lib -> ..\MSVC_ver.txt'
 - '%CLCACHE_DIR%'
 
 install:
