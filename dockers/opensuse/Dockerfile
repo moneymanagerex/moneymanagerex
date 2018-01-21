@@ -5,3 +5,5 @@ RUN zypper refresh && zypper install -y --no-recommends \
       wxWidgets-devel libcurl-devel \
       automake libtool ccache \
  && zypper clean --all
+
+ENV MMEX_INST_CMD zypper --no-refresh --no-gpg-checks install -y ./mmex-*.rpm
