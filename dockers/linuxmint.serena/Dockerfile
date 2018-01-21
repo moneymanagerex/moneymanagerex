@@ -7,3 +7,5 @@ RUN apt-get update && \
       libcurl4-openssl-dev \
       automake libtool ccache && \
     apt-get clean
+
+ENV MMEX_INST_CMD apt install -yqV ./mmex_*.deb

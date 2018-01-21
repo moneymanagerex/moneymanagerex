@@ -12,3 +12,5 @@ RUN usermod nobody -s /usr/bin/bash
 
 # fix broken wxgtk3
 RUN ln -sf /usr/bin/wx-config{-gtk3,} || true
+
+ENV MMEX_INST_CMD pacman -U --noconfirm ./mmex-*.pkg.tar.xz

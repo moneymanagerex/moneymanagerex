@@ -104,7 +104,7 @@ script: |-
       docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS \
                  -v $HOME/.ccache:/root/.ccache \
                  -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} \
-        bash -c "$CMAKE_CMD && make package" ;;
+        bash -c "$CMAKE_CMD && make package && eval \$MMEX_INST_CMD" ;;
     osx)
       $CMAKE_CMD && make package ;;
   esac
@@ -121,9 +121,6 @@ after_success:
 # Rename mac packages
 - if [ $TRAVIS_OS_NAME = osx ]; then
     for p in *.dmg; do mv -v $p ${p%Darwin.*}$OS$DIST.dmg; done; fi
-# Rename Slackware packages
-- if [ $OS = slackware ]; then
-    for p in *.tar.xz; do mv -v $p ${p%.tar.xz}.txz; done; fi
 
 # Set encrypted variable 'GitHub_auth_token' in Travis repo settings to deploy packages
 # for tagged commits to GitHub Releases.

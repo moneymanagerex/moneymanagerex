@@ -7,3 +7,5 @@ RUN dpkg --add-architecture i386 && apt-get update && \
       libwxsqlite3-3.0-dev:i386 liblua5.2-dev:i386 libcurl4-openssl-dev:i386 \
       automake libtool ccache && \
     apt-get clean
+
+ENV MMEX_INST_CMD apt install -yqV ./mmex_*.deb

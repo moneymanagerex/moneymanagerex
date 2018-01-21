@@ -8,3 +8,5 @@ RUN sed -i -re 's/(([a-z]{2}\.)?archive|security)\.ubuntu\.com/old-releases.ubun
       libwxsqlite3-3.0-dev liblua5.2-dev libcurl4-openssl-dev \
       automake libtool ccache && \
     apt-get clean
+
+ENV MMEX_INST_CMD apt install -yqV ./mmex_*.deb

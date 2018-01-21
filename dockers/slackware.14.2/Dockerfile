@@ -31,3 +31,5 @@ RUN echo -e 'quiet=on\ncheck_certificate=off' >> ~/.wgetrc \
  && rm -rf /var/cache/packages/* /var/lib/slackpkg/* \
            /usr/share/locale/* /usr/man/* \
            /tmp/* ~/.wgetrc slackpkg+*.t?z
+
+ENV MMEX_INST_CMD for p in *.tar.xz; do mv -v \$p \${p%.tar.xz}.txz; done && installpkg ./mmex-*.txz
