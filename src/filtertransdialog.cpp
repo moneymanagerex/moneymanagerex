@@ -843,8 +843,6 @@ wxString mmFilterTransactionsDialog::to_json()
             status = Model_Checking::all_status()[item];
         if (!status.empty())
         {
-            //o[L"STATUS"] = json::String(status.ToStdWstring());
-
             json_writer.Key("STATUS");
             json_writer.String(status);
         }
@@ -920,11 +918,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
 //-------------------------------------------------------------------------------
 //  Debug code for rapidjson
-    //StringBuffer json_buffer;
-    //PrettyWriter<StringBuffer> json_writer(json_buffer);
-    //j_doc.Accept(json_writer);
-
-    //wxString str_json = json_buffer.GetString();
+    wxMessageBox(JSON_PrettyFormated(j_doc), "RapidJSON: Show JSON String");
 //-------------------------------------------------------------------------------
     
     //Label
