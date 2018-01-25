@@ -704,7 +704,7 @@ wxString Option::ReportSettings(int id)
     //j_doc_sub.Parse(settings);
     //j_doc_main.AddMember("SETTINGSDATA", j_doc_sub, j_doc_main_allocator);
 
-    //return JSON_PrettyFormated(j_doc_main);
+    //return JSON_Formated(j_doc_main);
 
     wxString name = wxString::Format("REPORT_%d", id);
     wxString settings = Model_Infotable::instance().GetStringInfo(name, "");

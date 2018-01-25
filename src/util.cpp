@@ -38,6 +38,15 @@ wxString JSON_PrettyFormated(Document& j_doc)
     return j_buffer.GetString();
 }
 
+wxString JSON_Formated(Document& j_doc)
+{
+    StringBuffer j_buffer;
+    Writer<StringBuffer> j_writer(j_buffer);
+    j_doc.Accept(j_writer);
+
+    return j_buffer.GetString();
+}
+
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
 {
     return s1.CmpNoCase(s2);
