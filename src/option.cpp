@@ -683,40 +683,26 @@ mmPrintableBase* Option::ReportFunction(int report)
 
 wxString Option::ReportSettings(int id)
 {
-    //wxString name = wxString::Format("REPORT_%d", id);
-    //wxString settings = Model_Infotable::instance().GetStringInfo(name, "");
-    //if (!(settings.StartsWith("{") && settings.EndsWith("}")))
-    //{
-    //    settings = "{}";
-    //}
-
-    //Document j_doc_main;
-    //j_doc_main.SetObject();
-    //Document::AllocatorType& j_doc_main_allocator = j_doc_main.GetAllocator();
- 
-    //if (!name.empty())
-    //{
-    //    Value j_name(name, j_doc_main_allocator);
-    //    j_doc_main.AddMember("SETTINGSNAME", j_name, j_doc_main_allocator);
-    //}
-
-    //Document j_doc_sub(&j_doc_main.GetAllocator());
-    //j_doc_sub.Parse(settings);
-    //j_doc_main.AddMember("SETTINGSDATA", j_doc_sub, j_doc_main_allocator);
-
-    //return JSON_Formated(j_doc_main);
-
     wxString name = wxString::Format("REPORT_%d", id);
     wxString settings = Model_Infotable::instance().GetStringInfo(name, "");
     if (!(settings.StartsWith("{") && settings.EndsWith("}")))
+    {
         settings = "{}";
+    }
 
-    json::Object o;
-    o.Clear();
-    if (!name.empty()) o[L"SETTINGSNAME"] = json::String(name.ToStdWstring());
-    o[L"SETTINGSDATA"] = json::String(settings.ToStdWstring());
+    Document j_doc_main;
+    j_doc_main.SetObject();
+    Document::AllocatorType& j_doc_main_allocator = j_doc_main.GetAllocator();
+ 
+    if (!name.empty())
+    {
+        Value j_name(name, j_doc_main_allocator);
+        j_doc_main.AddMember("SETTINGSNAME", j_name, j_doc_main_allocator);
+    }
 
-    std::wstringstream ss;
-    json::Writer::Write(o, ss);
-    return ss.str();
+    Document j_doc_sub(&j_doc_main.GetAllocator());
+    j_doc_sub.Parse(settings);
+    j_doc_main.AddMember("SETTINGSDATA", j_doc_sub, j_doc_main_allocator);
+
+    return JSON_PrettyFormated(j_doc_main);
 }

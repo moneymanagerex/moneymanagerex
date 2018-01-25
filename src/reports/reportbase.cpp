@@ -154,35 +154,32 @@ void mmPrintableBase::setSettings(const wxString& settings)
 {
     m_settings = settings;
 
-    // Extract settings from data
-    std::wstringstream ss1;
-    ss1 << m_settings.ToStdWstring();
-    json::Object o1;
-    json::Reader::Read(o1, ss1);
+    Document j_doc_main;
+    j_doc_main.Parse(settings);
 
-    std::wstringstream ss2;
-    ss2 << wxString(json::String(o1[L"SETTINGSDATA"])).ToStdWstring();
-    json::Object o2;
-    json::Reader::Read(o2, ss2);
+    m_date_selection = j_doc_main["SETTINGSDATA"]["REPORTPERIOD"].GetInt();
+    m_begin_date = mmParseISODate(j_doc_main["SETTINGSDATA"]["DATE1"].GetString());
+    m_end_date = mmParseISODate(j_doc_main["SETTINGSDATA"]["DATE2"].GetString());
+    m_account_selection = j_doc_main["SETTINGSDATA"]["ACCOUNTSELECTION"].GetInt();
 
-    m_date_selection = static_cast<int>(json::Number(o2[L"REPORTPERIOD"]));
-    m_begin_date = mmParseISODate(wxString(json::String(o2[L"DATE1"])));
-    m_end_date = mmParseISODate(wxString(json::String(o2[L"DATE2"])));
-    m_account_selection = static_cast<int>(json::Number(o2[L"ACCOUNTSELECTION"]));
-    size_t count = static_cast<size_t>(json::Number(o2[L"NAMECOUNT"]));
+    size_t count = j_doc_main["SETTINGSDATA"]["NAMECOUNT"].GetInt64();
     if (count > 0)
     {
         if (accountArray_)
+        {
             delete accountArray_;
+        }
+
         wxArrayString* accountSelections = new wxArrayString();
         for (size_t i = 0; i < count; i++)
         {
             const auto name = wxString::Format("NAME%zu", i);
-            accountSelections->Add(wxString(json::String(o2[name.ToStdWstring()])));
+            Value j_name(name, j_doc_main.GetAllocator());
+            accountSelections->Add(j_doc_main["SETTINGSDATA"][j_name].GetString());
         }
         accountArray_ = accountSelections;
     }
-    m_chart_selection = static_cast<int>(json::Number(o2[L"CHART"]));
+    m_chart_selection = j_doc_main["SETTINGSDATA"]["CHART"].GetInt();
 }
 
 void mmPrintableBase::date_range(const mmDateRange* date_range, int selection)
