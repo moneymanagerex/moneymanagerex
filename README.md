@@ -17,7 +17,7 @@ simplicity and user-friendliness - something one can use everyday.
 
 MMEX is mainly written in C++11 and built on:  
 [wxWidgets] 3.0+ | [wxSqlite3] | [SQLite3] | [Mongoose] | [ChartNew.JS]
-| [html-template]
+| [html-template] | [libcurl]
 
 #### Supported platforms ####
 - Windows XP, 2003, Vista, 7, 8 and 10
@@ -60,6 +60,7 @@ MMEX is mainly written in C++11 and built on:
 [Mongoose]: https://github.com/cesanta/mongoose
 [ChartNew.JS]: https://github.com/FVANCOP/ChartNew.js
 [html-template]: https://github.com/moneymanagerex/html-template
+[libcurl]: https://curl.haxx.se/libcurl/
 [wxsqliteplus]: https://github.com/guanlisheng/wxsqliteplus
 [general report]: https://github.com/moneymanagerex/general-reports
 [stargazers]: https://github.com/moneymanagerex/moneymanagerex/stargazers

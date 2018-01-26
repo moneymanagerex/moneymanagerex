@@ -23,6 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "lua.hpp"
 #include "mongoose/mongoose.h"
 #include "db/DB_Upgrade.h" /* for dbLatestVersion */
+#include <curl/curl.h>
 
 const wxString mmex::version::string = mmex::version::generateProgramVersion(mmex::version::Major, mmex::version::Minor, mmex::version::Patch
     ,mmex::version::Alpha, mmex::version::Beta, mmex::version::RC);
@@ -91,6 +92,10 @@ const wxString mmex::getProgramDescription()
 {
     const wxString bull = L" \u2022 ";
     wxString description;
+    wxString curl = curl_version();
+        curl.Replace(" ","\n" + bull);
+        curl.Replace("/", " ");
+
     description << mmex::getTitleProgramVersion() << "\n"
         << wxString::Format(_("Database version supported: %i"), dbLatestVersion) << "\n"
 #ifdef GIT_COMMIT_HASH
@@ -109,7 +114,8 @@ const wxString mmex::getProgramDescription()
         << bull + wxSQLITE3_VERSION_STRING
         << " (SQLite " << wxSQLite3Database::GetVersion() << ")\n"
         << bull + "Mongoose " << MG_VERSION << "\n"
-        << bull + LUA_RELEASE << "\n\n"
+        << bull + LUA_RELEASE << "\n"
+        << bull + curl << "\n\n"
 
         << wxString::Format(_("Build on %s %s with:"), __DATE__, __TIME__) << "\n"
         << bull + CMAKE_VERSION << "\n"
@@ -188,8 +194,8 @@ const wxString mmex::weblink::Facebook = "http://www.facebook.com/pages/Money-Ma
 // https://greenido.wordpress.com/2009/12/22/yahoo-finance-hidden-api/
 const wxString mmex::weblink::YahooQuotes = "http://download.finance.yahoo.com/d/quotes.csv?s=%s&f=sl1c4n&e=.csv";
 const wxString mmex::weblink::YahooQuotesHistory = "http://ichart.finance.yahoo.com/table.csv?s=";
-const wxString mmex::weblink::BceCurrencyHistory = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml";
-const wxString mmex::weblink::BceCurrency = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
+const wxString mmex::weblink::BceCurrencyHistory = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml";
+const wxString mmex::weblink::BceCurrency = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
 //const wxString mmex::weblink::BceCurrencyHistory = "http://192.168.6.1/eurofxref-hist.xml"; // used for debug
 const wxString mmex::weblink::GooglePlay = "https://play.google.com/store/apps/details?id=com.money.manager.ex";
 const wxString mmex::weblink::WebApp = "https://github.com/moneymanagerex/web-money-manager-ex";

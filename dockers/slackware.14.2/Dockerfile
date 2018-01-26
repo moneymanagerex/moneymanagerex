@@ -18,7 +18,7 @@ RUN echo -e 'quiet=on\ncheck_certificate=off' >> ~/.wgetrc \
       libXcursor libXcomposite pixman mesa libxcb libXrender libxshmfence \
       libXdamage libXfixes libXext libdrm libXau libXdmcp harfbuzz libICE \
       enchant gstreamer gst-plugins-base libsecret libxslt sqlite-3 icu4c \
-      orc libgcrypt libgpg-error \
+      orc libgcrypt libgpg-error curl \
  && sed -i 's/REPOPLUS=( slackpkgplus )/REPOPLUS=( slackpkgplus slackonly slackel )/' \
       /etc/slackpkg/slackpkgplus.conf \
  && echo "MIRRORPLUS['slackonly']=http://slackonly.com/pub/packages/14.2-x86_64/" \
