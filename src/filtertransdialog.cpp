@@ -916,11 +916,6 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     Document j_doc;
     j_doc.Parse(data);
 
-//-------------------------------------------------------------------------------
-//  Debug code for rapidjson
-    wxMessageBox(JSON_PrettyFormated(j_doc), "RapidJSON: Show JSON String");
-//-------------------------------------------------------------------------------
-    
     //Label
     Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
     m_settingLabel->ChangeValue(j_label.GetString());
