@@ -271,7 +271,20 @@ int mmGUIApp::OnExit()
     wxLogDebug("OnExit()");
     Model_Usage::Data* usage = Model_Usage::instance().create();
     usage->USAGEDATE = wxDate::Today().FormatISODate();
-    usage->JSONCONTENT = Model_Usage::instance().to_string();
+
+    wxString cj = Model_Usage::instance().to_string();
+    Document cajun;
+    cajun.Parse(cj);
+    wxLogDebug("=== Model_Usage from CajunJson ================================");
+    wxLogDebug("%s", JSON_PrettyFormated(cajun));
+
+    wxString rj = Model_Usage::instance().To_JSON_String();
+    Document rapidjson;
+    rapidjson.Parse(rj);
+    wxLogDebug("=== Model_Usage from RapidJson=================================");
+    wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(rapidjson));
+
+    usage->JSONCONTENT = cj;
     Model_Usage::instance().save(usage);
 
     if (m_setting_db) delete m_setting_db;

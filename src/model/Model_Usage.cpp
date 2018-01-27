@@ -56,6 +56,20 @@ Model_Usage& Model_Usage::instance()
     return Singleton<Model_Usage>::instance();
 }
 
+void Model_Usage::AppendToUsage(const wxString& json_string)
+{
+    this->m_json_usage.Add(json_string);
+    wxLogDebug("=== Usage ==================================================");
+    wxLogDebug("%s", json_string);
+}
+
+void Model_Usage::AppendToCache(const wxString& json_string)
+{
+    this->m_json_cache.Add(json_string);
+    wxLogDebug("===== Cache ================================================");
+    wxLogDebug("%s", json_string);
+}
+
 void Model_Usage::json_append(const json::Object& o)
 {
     this->m_array.Insert(o);
@@ -66,20 +80,44 @@ void Model_Usage::append_cache_usage(const json::Object& o)
     this->m_cache.Insert(o);
 }
 
-std::wstring Model_Usage::to_string() const
+wxString Model_Usage::To_JSON_String() const
 {
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
 
     json_writer.StartObject();
-    json_writer.Key("start");   json_writer.String(m_start.FormatISOCombined(' '));
-    json_writer.Key("end");     json_writer.String(wxDateTime::Now().FormatISOCombined(' '));
-    json_writer.Key("usage");   json_writer.String("TODO: Add data to RapidJson usage");
-    json_writer.Key("cache");   json_writer.String("TODO: Add data to RapidJson cache");
+    json_writer.Key("start");
+    json_writer.String(m_start.FormatISOCombined(' '));
+
+    json_writer.Key("end");
+    json_writer.String(wxDateTime::Now().FormatISOCombined(' '));
+
+    json_writer.Key("usage");
+    {
+        json_writer.StartArray();
+        for (size_t i = 0; i < m_json_usage.GetCount(); i++)
+        {
+            wxString item = m_json_usage.Item(i);
+            json_writer.String(item);
+        }
+        json_writer.EndArray();
+    }
+    json_writer.Key("cache");
+    {
+        json_writer.StartArray();
+        for (size_t i = 0; i < m_json_cache.GetCount(); i++)
+        {
+            wxString item = m_json_cache.Item(i);
+            json_writer.String(item);
+        }
+        json_writer.EndArray();
+    }
     json_writer.EndObject();
+    return json_buffer.GetString();
+}
 
-    //return json_buffer.GetString();
-
+std::wstring Model_Usage::to_string() const
+{
     json::Object o;
     o[L"start"] = json::String(m_start.FormatISOCombined(' ').ToStdWstring());
     o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined(' ').ToStdWstring());
@@ -88,9 +126,6 @@ std::wstring Model_Usage::to_string() const
 
     std::wstringstream ss;
     json::Writer::Write(o, ss);
-
-    wxLogDebug("=== Model_Usage ============================================");
-    wxLogDebug("CajunJson\n%s\n\nRapidJson\n%s", ss.str(), json_buffer.GetString());
 
     return ss.str();
 }

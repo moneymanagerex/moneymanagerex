@@ -260,7 +260,7 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
         json_writer.EndObject();
         wxLogDebug("===== mmreportpanel =============================================");
         wxLogDebug("%s", json_buffer.GetString());
-
+        Model_Usage::instance().AppendToUsage(json_buffer.GetString());
     }
     return error.empty();
 }

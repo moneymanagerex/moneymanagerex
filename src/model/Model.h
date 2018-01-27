@@ -90,6 +90,7 @@ protected:
     }
 public:
     virtual json::Object cache_to_json() const = 0;
+    virtual wxString  GetTableStatsAsJson() const = 0;
     virtual void show_statistics() const = 0;
 protected:
     wxSQLite3Database* db_;
@@ -206,10 +207,11 @@ public:
         }       
     }
 
-    json::Object cache_to_json() const
+    // will replace cache_to_json() for rapidjson conversion
+    wxString  GetTableStatsAsJson() const
     {
         StringBuffer json_buffer;
-        PrettyWriter<StringBuffer> json_writer(json_buffer);
+        Writer<StringBuffer> json_writer(json_buffer);
         json_writer.StartObject();
         json_writer.Key("table");        json_writer.String(this->name());
         json_writer.Key("cached");       json_writer.Int(this->cache_.size());
@@ -219,8 +221,14 @@ public:
         json_writer.Key("skip");         json_writer.Int(this->skip_);
         json_writer.EndObject();
 
-        wxLogDebug("===== Model.h : 222 ====================================");
+        wxLogDebug("========== Model.h : GetTableStatsAsJson() ==========");
         wxLogDebug("%s", json_buffer.GetString());
+
+        return json_buffer.GetString();
+    }
+
+    json::Object cache_to_json() const
+    {
 
         json::Object o;
         o[L"table"] = json::String(this->name().ToStdWstring());
@@ -232,6 +240,7 @@ public:
 
         return o;
     }
+
     /** Show table statistics*/
     void show_statistics() const
     {

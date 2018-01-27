@@ -64,12 +64,23 @@ public:
 private:
     wxDateTime m_start;
     json::Array m_array, m_cache;
+    wxArrayString m_json_usage, m_json_cache;
 
 public:
-    // Appends to an array
+    // Appends to usage array 
+    void AppendToUsage(const wxString& json_string);
+    // Appends to cache array 
+    void AppendToCache(const wxString& json_string);
+
+    // appends to cajun:json usage array
     void json_append(const json::Object& o);
+    // appends to cajun:json cache array
     void append_cache_usage(const json::Object& o);
+    
+    //Return a json string from cajun json
     std::wstring to_string() const;
+    //Return a json string from rapidjson
+    wxString To_JSON_String() const;
 
 public:
     void pageview(const wxString& documentPath, const wxString& documentTitle, int plt = 0 /*msec*/);
