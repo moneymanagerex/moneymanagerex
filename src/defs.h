@@ -15,9 +15,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
-
-#ifndef MM_EX_DEFS_H_
-#define MM_EX_DEFS_H_
+#pragma once
 
 // For compilers that support precompilation, includes "wx/wx.h>.
 #include <wx/wxprec.h>
@@ -64,10 +62,3 @@
 #include <wx/statline.h>
 #include <wx/dialog.h>
 #include <wx/numformatter.h>
-
-#ifdef _MSC_VER
-#pragma warning (disable:4100)
-#endif
-
-#endif // MM_EX_DEFS_H_
-
