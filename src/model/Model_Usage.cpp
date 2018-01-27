@@ -1,5 +1,6 @@
 /*******************************************************
- Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2018 Stefano Giorgio (stef145g)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -59,25 +60,15 @@ Model_Usage& Model_Usage::instance()
 void Model_Usage::AppendToUsage(const wxString& json_string)
 {
     this->m_json_usage.Add(json_string);
-    wxLogDebug("=== Usage ==================================================");
+    wxLogDebug("===== Model_Usage::AppendToUsage =================");
     wxLogDebug("%s", json_string);
 }
 
 void Model_Usage::AppendToCache(const wxString& json_string)
 {
     this->m_json_cache.Add(json_string);
-    wxLogDebug("===== Cache ================================================");
+    wxLogDebug("===== Model_Usage::AppendToCache =================");
     wxLogDebug("%s", json_string);
-}
-
-void Model_Usage::json_append(const json::Object& o)
-{
-    this->m_array.Insert(o);
-}
-
-void Model_Usage::append_cache_usage(const json::Object& o)
-{
-    this->m_cache.Insert(o);
 }
 
 wxString Model_Usage::To_JSON_String() const
@@ -114,20 +105,6 @@ wxString Model_Usage::To_JSON_String() const
     }
     json_writer.EndObject();
     return json_buffer.GetString();
-}
-
-std::wstring Model_Usage::to_string() const
-{
-    json::Object o;
-    o[L"start"] = json::String(m_start.FormatISOCombined(' ').ToStdWstring());
-    o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined(' ').ToStdWstring());
-    o[L"usage"] = m_array;
-    o[L"cache"] = m_cache;
-
-    std::wstringstream ss;
-    json::Writer::Write(o, ss);
-
-    return ss.str();
 }
 
 wxString uuid()

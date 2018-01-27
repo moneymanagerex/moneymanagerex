@@ -236,32 +236,29 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
         }
 
         StringBuffer json_buffer;
-        PrettyWriter<StringBuffer> json_writer(json_buffer);
+        Writer<StringBuffer> json_writer(json_buffer);
 
         json_writer.StartObject();
-        json_writer.Key("module");  json_writer.String("Report");
-        json_writer.Key("name");    json_writer.String(rb_->title());
-        json_writer.Key("start");   json_writer.String(wxDateTime::Now().FormatISOCombined());
-
-        json::Object o;
-        o[L"module"] = json::String(L"Report");
-        o[L"name"] = json::String(rb_->title().ToStdWstring());
-        o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
+        json_writer.Key("module");
+        json_writer.String("Report");
+        json_writer.Key("name");
+        json_writer.String(rb_->title());
+        json_writer.Key("start");
+        json_writer.String(wxDateTime::Now().FormatISOCombined());
 
         const auto file_name = rb_->file_name();
         wxLogDebug("Report File Name: %s", file_name);
         if (!Model_Report::outputReportFile(rb_->getHTMLText(), file_name))
             error = _("Error");
 
-        o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
-        Model_Usage::instance().json_append(o);
-
         json_writer.Key("end"); json_writer.String(wxDateTime::Now().FormatISOCombined());
         json_writer.EndObject();
-        wxLogDebug("===== mmreportpanel =============================================");
+
+        wxLogDebug("===== mmReportsPanel::saveReportText =========");
         wxLogDebug("%s", json_buffer.GetString());
         Model_Usage::instance().AppendToUsage(json_buffer.GetString());
     }
+
     return error.empty();
 }
 

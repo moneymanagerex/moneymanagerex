@@ -1,5 +1,6 @@
 /*******************************************************
- Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2018 Stefano Giorgio (stef145g)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -15,13 +16,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
-
-#ifndef MODEL_H
-#define MODEL_H
-
-#ifdef _MSC_VER
-#pragma warning (disable:4100)
-#endif
+#pragma once
 
 #include <vector>
 #include <map>
@@ -76,6 +71,7 @@ public:
     {
         this->db_->Rollback("MMEX");
     }
+
 protected:
     static wxDate to_date(const wxString& str_date)
     {
@@ -88,10 +84,11 @@ protected:
         cache.insert(std::make_pair(str_date, date));
         return date;
     }
+
 public:
-    virtual json::Object cache_to_json() const = 0;
     virtual wxString  GetTableStatsAsJson() const = 0;
     virtual void show_statistics() const = 0;
+
 protected:
     wxSQLite3Database* db_;
 };
@@ -207,7 +204,7 @@ public:
         }       
     }
 
-    // will replace cache_to_json() for rapidjson conversion
+    // Return accomulated table stats as a json string
     wxString  GetTableStatsAsJson() const
     {
         StringBuffer json_buffer;
@@ -221,24 +218,10 @@ public:
         json_writer.Key("skip");         json_writer.Int(this->skip_);
         json_writer.EndObject();
 
-        wxLogDebug("========== Model.h : GetTableStatsAsJson() ==========");
+        wxLogDebug("======== Model.h : GetTableStatsAsJson =======");
         wxLogDebug("%s", json_buffer.GetString());
 
         return json_buffer.GetString();
-    }
-
-    json::Object cache_to_json() const
-    {
-
-        json::Object o;
-        o[L"table"] = json::String(this->name().ToStdWstring());
-        o[L"cached"] = json::Number(this->cache_.size());
-        o[L"index_by_id"] = json::Number(this->index_by_id_.size());
-        o[L"hit"] = json::Number(this->hit_);
-        o[L"miss"] = json::Number(this->miss_);
-        o[L"skip"] = json::Number(this->skip_);
-
-        return o;
     }
 
     /** Show table statistics*/
@@ -253,5 +236,3 @@ public:
 #endif
     }
 };
-
-#endif // 
