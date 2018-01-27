@@ -208,6 +208,20 @@ public:
 
     json::Object cache_to_json() const
     {
+        StringBuffer json_buffer;
+        PrettyWriter<StringBuffer> json_writer(json_buffer);
+        json_writer.StartObject();
+        json_writer.Key("table");        json_writer.String(this->name());
+        json_writer.Key("cached");       json_writer.Int(this->cache_.size());
+        json_writer.Key("index_by_id");  json_writer.Int(this->index_by_id_.size());
+        json_writer.Key("hit");          json_writer.Int(this->hit_);
+        json_writer.Key("miss");         json_writer.Int(this->miss_);
+        json_writer.Key("skip");         json_writer.Int(this->skip_);
+        json_writer.EndObject();
+
+        wxLogDebug("===== Model.h : 222 ====================================");
+        wxLogDebug("%s", json_buffer.GetString());
+
         json::Object o;
         o[L"table"] = json::String(this->name().ToStdWstring());
         o[L"cached"] = json::Number(this->cache_.size());

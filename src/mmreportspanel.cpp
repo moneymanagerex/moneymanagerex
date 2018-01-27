@@ -235,6 +235,14 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
                     , *reinterpret_cast<int*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
         }
 
+        StringBuffer json_buffer;
+        PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+        json_writer.StartObject();
+        json_writer.Key("module");  json_writer.String("Report");
+        json_writer.Key("name");    json_writer.String(rb_->title());
+        json_writer.Key("start");   json_writer.String(wxDateTime::Now().FormatISOCombined());
+
         json::Object o;
         o[L"module"] = json::String(L"Report");
         o[L"name"] = json::String(rb_->title().ToStdWstring());
@@ -246,7 +254,13 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
             error = _("Error");
 
         o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
-        Model_Usage::instance().append(o);
+        Model_Usage::instance().json_append(o);
+
+        json_writer.Key("end"); json_writer.String(wxDateTime::Now().FormatISOCombined());
+        json_writer.EndObject();
+        wxLogDebug("===== mmreportpanel =============================================");
+        wxLogDebug("%s", json_buffer.GetString());
+
     }
     return error.empty();
 }

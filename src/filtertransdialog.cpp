@@ -569,7 +569,7 @@ void mmFilterTransactionsDialog::SaveSettings()
     settings_string_ = to_json();
     Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
     Model_Infotable::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", i);
-    wxLogDebug("Settings Saved to registry %i\n %s", i, settings_string_);
+    wxLogDebug("========== Settings Saved to registry %i ==========\n %s", i, settings_string_);
 }
 
 void mmFilterTransactionsDialog::OnButtonClearClick( wxCommandEvent& /*event*/ )
