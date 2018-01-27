@@ -254,8 +254,6 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
         json_writer.Key("end"); json_writer.String(wxDateTime::Now().FormatISOCombined());
         json_writer.EndObject();
 
-        wxLogDebug("===== mmReportsPanel::saveReportText =========");
-        wxLogDebug("%s", json_buffer.GetString());
         Model_Usage::instance().AppendToUsage(json_buffer.GetString());
     }
 

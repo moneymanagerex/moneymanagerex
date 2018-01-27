@@ -59,16 +59,18 @@ Model_Usage& Model_Usage::instance()
 
 void Model_Usage::AppendToUsage(const wxString& json_string)
 {
-    this->m_json_usage.Add(json_string);
     wxLogDebug("===== Model_Usage::AppendToUsage =================");
     wxLogDebug("%s", json_string);
+    wxLogDebug("\n");
+    this->m_json_usage.Add(json_string);
 }
 
 void Model_Usage::AppendToCache(const wxString& json_string)
 {
-    this->m_json_cache.Add(json_string);
     wxLogDebug("===== Model_Usage::AppendToCache =================");
     wxLogDebug("%s", json_string);
+    wxLogDebug("\n");
+    this->m_json_cache.Add(json_string);
 }
 
 wxString Model_Usage::To_JSON_String() const
