@@ -896,15 +896,9 @@ void mmGUIFrame::loadNavTreeItemsStatus()
     wxString str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
     if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
     wxLogDebug("%s", str);
-    std::wstringstream ss;
-    ss << str.ToStdWstring();
-    json::Object o;
-    json::Reader::Read(o, ss);
 
     Document j_doc;
     j_doc.Parse(str);
-
-    wxMessageBox(JSON_PrettyFormated(j_doc), "RapidJson: mmFrame @ line 879");
 
     std::stack<wxTreeItemId> items;
     if (m_nav_tree_ctrl->GetRootItem().IsOk())
@@ -925,12 +919,18 @@ void mmGUIFrame::loadNavTreeItemsStatus()
 
         mmTreeItemData* iData =
             dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
-
         if (iData)
         {
-            auto index = iData->getString().ToStdWstring();
-            if (!index.empty() && json::Boolean(o[index]))
-                m_nav_tree_ctrl->Expand(next);
+            const wxString nav_key = iData->getString();
+            wxLogDebug("%s", nav_key);
+            if (j_doc.HasMember(nav_key))
+            {
+                Value json_key(nav_key, j_doc.GetAllocator());
+                if (j_doc[json_key].GetBool())
+                {
+                    m_nav_tree_ctrl->Expand(next);
+                }
+            }
         }
     };
 
@@ -957,7 +957,7 @@ void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
 void mmGUIFrame::navTreeStateToJson()
 {
     StringBuffer json_buffer;
-    Writer<StringBuffer> json_writer(json_buffer);
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
 
     std::stack<wxTreeItemId> items;
