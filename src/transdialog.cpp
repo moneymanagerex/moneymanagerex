@@ -477,9 +477,8 @@ void mmTransDialog::CreateControls()
         , ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition
         , wxDefaultSize, wxTE_PROCESS_ENTER);
 
-    wxButton* bAuto = new wxButton(this
-        , ID_DIALOG_TRANS_BUTTONTRANSNUM, "...", wxDefaultPosition
-        , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()));
+	wxBitmapButton* bAuto = new wxBitmapButton(this
+        , ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM));
     bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM,
         wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
     bAuto->SetToolTip(_("Populate Transaction #"));
