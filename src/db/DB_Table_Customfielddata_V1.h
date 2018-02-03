@@ -1,8 +1,8 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -11,14 +11,11 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
+ *          AUTO GENERATED at 2018-02-04 00:24:26.427000.
  *          DO NOT EDIT!
  */
 //=============================================================================
-
-
-#ifndef DB_TABLE_CUSTOMFIELDDATA_V1_H
-#define DB_TABLE_CUSTOMFIELDDATA_V1_H
+#pragma once
 
 #include "DB_Table.h"
 
@@ -26,22 +23,24 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
 {
     struct Data;
     typedef DB_Table_CUSTOMFIELDDATA_V1 Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
-        {
-            for (const auto & item: *this)
-            {
-                json::Object o;
-                item.to_json(o);
-                a.Insert(o);
-            }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
-        }
+//        std::wstring to_json(json::Array& a) const
+//        {
+//            for (const auto & item: *this)
+//            {
+//                json::Object o;
+//                item.to_json(o);
+//                a.Insert(o);
+//            }
+//            std::wstringstream ss;
+//            json::Writer::Write(a, ss);
+//            return ss.str();
+//        }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -112,21 +111,25 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         static wxString name() { return "FIELDATADID"; } 
         explicit FIELDATADID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct FIELDID : public DB_Column<int>
     { 
         static wxString name() { return "FIELDID"; } 
         explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct REFID : public DB_Column<int>
     { 
         static wxString name() { return "REFID"; } 
         explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct CONTENT : public DB_Column<wxString>
     { 
         static wxString name() { return "CONTENT"; } 
         explicit CONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     typedef FIELDATADID PRIMARY;
     enum COLUMN
     {
@@ -173,12 +176,22 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         int FIELDID;
         int REFID;
         wxString CONTENT;
-        int id() const { return FIELDATADID; }
-        void id(int id) { FIELDATADID = id; }
+
+        int id() const
+        {
+            return FIELDATADID;
+        }
+
+        void id(int id)
+        {
+            FIELDATADID = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -219,39 +232,53 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         {
             return false;
         }
+
         bool match(const Self::FIELDATADID &in) const
         {
             return this->FIELDATADID == in.v_;
         }
+
         bool match(const Self::FIELDID &in) const
         {
             return this->FIELDID == in.v_;
         }
+
         bool match(const Self::REFID &in) const
         {
             return this->REFID == in.v_;
         }
+
         bool match(const Self::CONTENT &in) const
         {
             return this->CONTENT.CmpNoCase(in.v_) == 0;
         }
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->to_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
         }
-        
-        int to_json(json::Object& o) const
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            o[L"FIELDATADID"] = json::Number(this->FIELDATADID);
-            o[L"FIELDID"] = json::Number(this->FIELDID);
-            o[L"REFID"] = json::Number(this->REFID);
-            o[L"CONTENT"] = json::String(this->CONTENT.ToStdWstring());
-            return 0;
+            json_writer.Key("FIELDATADID");
+            json_writer.Int(this->FIELDATADID);
+            json_writer.Key("FIELDID");
+            json_writer.Int(this->FIELDID);
+            json_writer.Key("REFID");
+            json_writer.Int(this->REFID);
+            json_writer.Key("CONTENT");
+            json_writer.String(this->CONTENT);
         }
+
         row_t to_row_t() const
         {
             row_t row;
@@ -261,6 +288,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
             row(L"CONTENT") = CONTENT;
             return row;
         }
+
         void to_template(html_template& t) const
         {
             t(L"FIELDATADID") = FIELDATADID;
@@ -296,8 +324,6 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -533,4 +559,4 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         return result;
     }
 };
-#endif //
+

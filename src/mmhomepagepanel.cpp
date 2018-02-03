@@ -770,6 +770,9 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
 //* Income vs Expenses *//
 const wxString mmHomePagePanel::displayIncomeVsExpenses()
 {
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+
     json::Object o;
     o.Clear();
     std::wstringstream ss;
@@ -810,27 +813,49 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     o[L"13"] = json::Number(scaleStepWidth);
 
     json::Writer::Write(o, ss);
+
+    wxLogDebug("======= mmHomePagePanel::displayIncomeVsExpenses =======");
+    wxLogDebug("RapidJson\n%s\ncajun:json\n%s", json_buffer.GetString(), ss.str());
+
     return ss.str();
 }
 
 //* Assets *//
 const wxString mmHomePagePanel::displayAssets(double& tBalance)
 {
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+
     json::Object o;
     std::wstringstream ss;
 
     double asset_balance = Model_Asset::instance().balance();
     tBalance += asset_balance;
 
+    json_writer.StartObject();
+    json_writer.Key("NAME");
+    json_writer.String(_("Assets"));
+
+    json_writer.Key("VALUE");
+    json_writer.String(Model_Currency::toCurrency(asset_balance));
+    json_writer.EndObject();
+
     o[L"NAME"] = json::String(_("Assets").ToStdWstring());
     o[L"VALUE"] = json::String(Model_Currency::toCurrency(asset_balance).ToStdWstring());
 
     json::Writer::Write(o, ss);
+
+    wxLogDebug("======= mmHomePagePanel::displayAssets =======");
+    wxLogDebug("RapidJson\n%s\ncajun:json\n%s", json_buffer.GetString(), ss.str());
+
     return ss.str();
 }
 
 const wxString mmHomePagePanel::getStatWidget()
 {
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+
     json::Object o;
     std::wstringstream ss;
 
@@ -842,11 +867,19 @@ const wxString mmHomePagePanel::getStatWidget()
     o[json::String(_("Total Transactions: ").ToStdWstring())] = json::Number(this->total_transactions_);
 
     json::Writer::Write(o, ss);
+
+
+    wxLogDebug("======= mmHomePagePanel::getStatWidget =======");
+    wxLogDebug("RapidJson\n%s\ncajun:json\n%s", json_buffer.GetString(), ss.str());
+
     return ss.str();
 }
 
 const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 {
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+
     json::Object o;
     std::wstringstream ss;
 
@@ -856,6 +889,10 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
     o[L"VALUE"] = json::String(tBalanceStr.ToStdWstring());
 
     json::Writer::Write(o, ss);
+
+    wxLogDebug("======= mmHomePagePanel::displayGrandTotals =======");
+    wxLogDebug("RapidJson\n%s\ncajun:json\n%s", json_buffer.GetString(), ss.str());
+
     return ss.str();
 }
 

@@ -1,8 +1,8 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -11,13 +11,11 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
+ *          AUTO GENERATED at 2018-02-04 00:24:26.427000.
  *          DO NOT EDIT!
  */
 //=============================================================================
-
-#ifndef DB_TABLE_H
-#define DB_TABLE_H
+#pragma once
 
 #include <vector>
 #include <map>
@@ -41,6 +39,7 @@ using namespace tmpl;
 
 class wxString;
 enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };
+
 template<class V>
 struct DB_Column
 {
@@ -1223,5 +1222,3 @@ struct SorterByWEBSITE
         return x.WEBSITE < y.WEBSITE;
     }
 };
-
-#endif // 

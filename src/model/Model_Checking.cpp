@@ -513,8 +513,33 @@ void Model_Checking::putDataToTransaction(Data *r, const Data &data)
 
 const wxString Model_Checking::Full_Data::to_json()
 {
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartObject();
+
+    Model_Checking::Data::as_json(json_writer);
+
+    json_writer.Key("ACCOUNTNAME");
+    json_writer.String(this->ACCOUNTNAME);
+
+    if (is_transfer(this))
+    {
+        json_writer.Key("TOACCOUNTNAME");
+        json_writer.String(this->TOACCOUNTNAME);
+    }
+    else
+    {
+        json_writer.Key("PAYEENAME");
+        json_writer.String(this->PAYEENAME);
+    }
+    
+    json_writer.EndObject();
+
+    wxLogDebug("======= Model_Checking::FullData::to_json =======");
+    wxLogDebug("%s", json_buffer.GetString());
+
     json::Object o;
-    Model_Checking::Data::to_json(o);
+//    Model_Checking::Data::to_json(o);
     o[L"ACCOUNTNAME"] = json::String(this->ACCOUNTNAME.ToStdWstring());
     if (is_transfer(this))
         o[L"TOACCOUNTNAME"] = json::String(this->TOACCOUNTNAME.ToStdWstring());

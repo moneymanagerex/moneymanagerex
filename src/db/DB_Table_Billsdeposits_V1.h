@@ -1,8 +1,8 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -11,14 +11,11 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
+ *          AUTO GENERATED at 2018-02-04 00:24:26.427000.
  *          DO NOT EDIT!
  */
 //=============================================================================
-
-
-#ifndef DB_TABLE_BILLSDEPOSITS_V1_H
-#define DB_TABLE_BILLSDEPOSITS_V1_H
+#pragma once
 
 #include "DB_Table.h"
 
@@ -26,22 +23,24 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
 {
     struct Data;
     typedef DB_Table_BILLSDEPOSITS_V1 Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
-        {
-            for (const auto & item: *this)
-            {
-                json::Object o;
-                item.to_json(o);
-                a.Insert(o);
-            }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
-        }
+//        std::wstring to_json(json::Array& a) const
+//        {
+//            for (const auto & item: *this)
+//            {
+//                json::Object o;
+//                item.to_json(o);
+//                a.Insert(o);
+//            }
+//            std::wstringstream ss;
+//            json::Writer::Write(a, ss);
+//            return ss.str();
+//        }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -112,86 +111,103 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         static wxString name() { return "BDID"; } 
         explicit BDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct ACCOUNTID : public DB_Column<int>
     { 
         static wxString name() { return "ACCOUNTID"; } 
         explicit ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct TOACCOUNTID : public DB_Column<int>
     { 
         static wxString name() { return "TOACCOUNTID"; } 
         explicit TOACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct PAYEEID : public DB_Column<int>
     { 
         static wxString name() { return "PAYEEID"; } 
         explicit PAYEEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct TRANSCODE : public DB_Column<wxString>
     { 
         static wxString name() { return "TRANSCODE"; } 
         explicit TRANSCODE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct TRANSAMOUNT : public DB_Column<double>
     { 
         static wxString name() { return "TRANSAMOUNT"; } 
         explicit TRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct STATUS : public DB_Column<wxString>
     { 
         static wxString name() { return "STATUS"; } 
         explicit STATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct TRANSACTIONNUMBER : public DB_Column<wxString>
     { 
         static wxString name() { return "TRANSACTIONNUMBER"; } 
         explicit TRANSACTIONNUMBER(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct NOTES : public DB_Column<wxString>
     { 
         static wxString name() { return "NOTES"; } 
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
         explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct SUBCATEGID : public DB_Column<int>
     { 
         static wxString name() { return "SUBCATEGID"; } 
         explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct TRANSDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "TRANSDATE"; } 
         explicit TRANSDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct FOLLOWUPID : public DB_Column<int>
     { 
         static wxString name() { return "FOLLOWUPID"; } 
         explicit FOLLOWUPID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct TOTRANSAMOUNT : public DB_Column<double>
     { 
         static wxString name() { return "TOTRANSAMOUNT"; } 
         explicit TOTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct REPEATS : public DB_Column<int>
     { 
         static wxString name() { return "REPEATS"; } 
         explicit REPEATS(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct NEXTOCCURRENCEDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "NEXTOCCURRENCEDATE"; } 
         explicit NEXTOCCURRENCEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct NUMOCCURRENCES : public DB_Column<int>
     { 
         static wxString name() { return "NUMOCCURRENCES"; } 
         explicit NUMOCCURRENCES(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     typedef BDID PRIMARY;
     enum COLUMN
     {
@@ -290,12 +306,22 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         int REPEATS;
         wxString NEXTOCCURRENCEDATE;
         int NUMOCCURRENCES;
-        int id() const { return BDID; }
-        void id(int id) { BDID = id; }
+
+        int id() const
+        {
+            return BDID;
+        }
+
+        void id(int id)
+        {
+            BDID = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -370,104 +396,144 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         {
             return false;
         }
+
         bool match(const Self::BDID &in) const
         {
             return this->BDID == in.v_;
         }
+
         bool match(const Self::ACCOUNTID &in) const
         {
             return this->ACCOUNTID == in.v_;
         }
+
         bool match(const Self::TOACCOUNTID &in) const
         {
             return this->TOACCOUNTID == in.v_;
         }
+
         bool match(const Self::PAYEEID &in) const
         {
             return this->PAYEEID == in.v_;
         }
+
         bool match(const Self::TRANSCODE &in) const
         {
             return this->TRANSCODE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::TRANSAMOUNT &in) const
         {
             return this->TRANSAMOUNT == in.v_;
         }
+
         bool match(const Self::STATUS &in) const
         {
             return this->STATUS.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::TRANSACTIONNUMBER &in) const
         {
             return this->TRANSACTIONNUMBER.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::NOTES &in) const
         {
             return this->NOTES.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::CATEGID &in) const
         {
             return this->CATEGID == in.v_;
         }
+
         bool match(const Self::SUBCATEGID &in) const
         {
             return this->SUBCATEGID == in.v_;
         }
+
         bool match(const Self::TRANSDATE &in) const
         {
             return this->TRANSDATE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::FOLLOWUPID &in) const
         {
             return this->FOLLOWUPID == in.v_;
         }
+
         bool match(const Self::TOTRANSAMOUNT &in) const
         {
             return this->TOTRANSAMOUNT == in.v_;
         }
+
         bool match(const Self::REPEATS &in) const
         {
             return this->REPEATS == in.v_;
         }
+
         bool match(const Self::NEXTOCCURRENCEDATE &in) const
         {
             return this->NEXTOCCURRENCEDATE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::NUMOCCURRENCES &in) const
         {
             return this->NUMOCCURRENCES == in.v_;
         }
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->to_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
         }
-        
-        int to_json(json::Object& o) const
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            o[L"BDID"] = json::Number(this->BDID);
-            o[L"ACCOUNTID"] = json::Number(this->ACCOUNTID);
-            o[L"TOACCOUNTID"] = json::Number(this->TOACCOUNTID);
-            o[L"PAYEEID"] = json::Number(this->PAYEEID);
-            o[L"TRANSCODE"] = json::String(this->TRANSCODE.ToStdWstring());
-            o[L"TRANSAMOUNT"] = json::Number(this->TRANSAMOUNT);
-            o[L"STATUS"] = json::String(this->STATUS.ToStdWstring());
-            o[L"TRANSACTIONNUMBER"] = json::String(this->TRANSACTIONNUMBER.ToStdWstring());
-            o[L"NOTES"] = json::String(this->NOTES.ToStdWstring());
-            o[L"CATEGID"] = json::Number(this->CATEGID);
-            o[L"SUBCATEGID"] = json::Number(this->SUBCATEGID);
-            o[L"TRANSDATE"] = json::String(this->TRANSDATE.ToStdWstring());
-            o[L"FOLLOWUPID"] = json::Number(this->FOLLOWUPID);
-            o[L"TOTRANSAMOUNT"] = json::Number(this->TOTRANSAMOUNT);
-            o[L"REPEATS"] = json::Number(this->REPEATS);
-            o[L"NEXTOCCURRENCEDATE"] = json::String(this->NEXTOCCURRENCEDATE.ToStdWstring());
-            o[L"NUMOCCURRENCES"] = json::Number(this->NUMOCCURRENCES);
-            return 0;
+            json_writer.Key("BDID");
+            json_writer.Int(this->BDID);
+            json_writer.Key("ACCOUNTID");
+            json_writer.Int(this->ACCOUNTID);
+            json_writer.Key("TOACCOUNTID");
+            json_writer.Int(this->TOACCOUNTID);
+            json_writer.Key("PAYEEID");
+            json_writer.Int(this->PAYEEID);
+            json_writer.Key("TRANSCODE");
+            json_writer.String(this->TRANSCODE);
+            json_writer.Key("TRANSAMOUNT");
+            json_writer.Double(this->TRANSAMOUNT);
+            json_writer.Key("STATUS");
+            json_writer.String(this->STATUS);
+            json_writer.Key("TRANSACTIONNUMBER");
+            json_writer.String(this->TRANSACTIONNUMBER);
+            json_writer.Key("NOTES");
+            json_writer.String(this->NOTES);
+            json_writer.Key("CATEGID");
+            json_writer.Int(this->CATEGID);
+            json_writer.Key("SUBCATEGID");
+            json_writer.Int(this->SUBCATEGID);
+            json_writer.Key("TRANSDATE");
+            json_writer.String(this->TRANSDATE);
+            json_writer.Key("FOLLOWUPID");
+            json_writer.Int(this->FOLLOWUPID);
+            json_writer.Key("TOTRANSAMOUNT");
+            json_writer.Double(this->TOTRANSAMOUNT);
+            json_writer.Key("REPEATS");
+            json_writer.Int(this->REPEATS);
+            json_writer.Key("NEXTOCCURRENCEDATE");
+            json_writer.String(this->NEXTOCCURRENCEDATE);
+            json_writer.Key("NUMOCCURRENCES");
+            json_writer.Int(this->NUMOCCURRENCES);
         }
+
         row_t to_row_t() const
         {
             row_t row;
@@ -490,6 +556,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             row(L"NUMOCCURRENCES") = NUMOCCURRENCES;
             return row;
         }
+
         void to_template(html_template& t) const
         {
             t(L"BDID") = BDID;
@@ -538,8 +605,6 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -788,4 +853,4 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         return result;
     }
 };
-#endif //
+

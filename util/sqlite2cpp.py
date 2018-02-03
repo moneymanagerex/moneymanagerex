@@ -172,18 +172,18 @@ struct DB_Table_%s : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
-        {
-            for (const auto & item: *this)
-            {
-                json::Object o;
-                item.to_json(o);
-                a.Insert(o);
-            }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
-        }
+//        std::wstring to_json(json::Array& a) const
+//        {
+//            for (const auto & item: *this)
+//            {
+//                json::Object o;
+//                item.to_json(o);
+//                a.Insert(o);
+//            }
+//            std::wstringstream ss;
+//            json::Writer::Write(a, ss);
+//            return ss.str();
+//        }
     };
 
     /** A container to hold a list of Data record pointers for the table in memory*/
@@ -355,8 +355,17 @@ struct DB_Table_%s : public DB_Table
             field['name'], field['pk'] and '//  primary key' or '')
 
         s += '''
-        int id() const { return %s; }
-        void id(int id) { %s = id; }
+
+        int id() const
+        {
+            return %s;
+        }
+
+        void id(int id)
+        {
+            %s = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
@@ -436,29 +445,41 @@ struct DB_Table_%s : public DB_Table
         }''' % (field['name'], field['name'])
 
         s += '''
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->to_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
-        }
-        
-        int to_json(json::Object& o) const
-        {'''
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
 
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
+        }
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
+        {'''
         for field in self._fields:
             type = base_data_types_reverse[field['type']]
-            if type == 'wxString':
+            if type == 'int':
                 s += '''
-            o[L"%s"] = json::String(this->%s.ToStdWstring());''' % (field['name'], field['name'])
+            json_writer.Key("%s");
+            json_writer.Int(this->%s);''' % (field['name'], field['name'])
+            elif type == 'double':
+                s += '''
+            json_writer.Key("%s");
+            json_writer.Double(this->%s);''' % (field['name'], field['name'])
+            elif type == 'wxString':
+                s += '''
+            json_writer.Key("%s");
+            json_writer.String(this->%s);''' % (field['name'], field['name'])
             else:
-                s += '''
-            o[L"%s"] = json::Number(this->%s);''' % (field['name'], field['name'])
+                assert "Field type Error"
 
         s += '''
-            return 0;
         }'''
 
         s += '''

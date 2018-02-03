@@ -1,8 +1,8 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -11,14 +11,11 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
+ *          AUTO GENERATED at 2018-02-04 00:24:26.427000.
  *          DO NOT EDIT!
  */
 //=============================================================================
-
-
-#ifndef DB_TABLE_BUDGETTABLE_V1_H
-#define DB_TABLE_BUDGETTABLE_V1_H
+#pragma once
 
 #include "DB_Table.h"
 
@@ -26,22 +23,24 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
 {
     struct Data;
     typedef DB_Table_BUDGETTABLE_V1 Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
-        {
-            for (const auto & item: *this)
-            {
-                json::Object o;
-                item.to_json(o);
-                a.Insert(o);
-            }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
-        }
+//        std::wstring to_json(json::Array& a) const
+//        {
+//            for (const auto & item: *this)
+//            {
+//                json::Object o;
+//                item.to_json(o);
+//                a.Insert(o);
+//            }
+//            std::wstringstream ss;
+//            json::Writer::Write(a, ss);
+//            return ss.str();
+//        }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -112,31 +111,37 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         static wxString name() { return "BUDGETENTRYID"; } 
         explicit BUDGETENTRYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct BUDGETYEARID : public DB_Column<int>
     { 
         static wxString name() { return "BUDGETYEARID"; } 
         explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
         explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct SUBCATEGID : public DB_Column<int>
     { 
         static wxString name() { return "SUBCATEGID"; } 
         explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct PERIOD : public DB_Column<wxString>
     { 
         static wxString name() { return "PERIOD"; } 
         explicit PERIOD(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct AMOUNT : public DB_Column<double>
     { 
         static wxString name() { return "AMOUNT"; } 
         explicit AMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     typedef BUDGETENTRYID PRIMARY;
     enum COLUMN
     {
@@ -191,12 +196,22 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         int SUBCATEGID;
         wxString PERIOD;
         double AMOUNT;
-        int id() const { return BUDGETENTRYID; }
-        void id(int id) { BUDGETENTRYID = id; }
+
+        int id() const
+        {
+            return BUDGETENTRYID;
+        }
+
+        void id(int id)
+        {
+            BUDGETENTRYID = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -243,49 +258,67 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         {
             return false;
         }
+
         bool match(const Self::BUDGETENTRYID &in) const
         {
             return this->BUDGETENTRYID == in.v_;
         }
+
         bool match(const Self::BUDGETYEARID &in) const
         {
             return this->BUDGETYEARID == in.v_;
         }
+
         bool match(const Self::CATEGID &in) const
         {
             return this->CATEGID == in.v_;
         }
+
         bool match(const Self::SUBCATEGID &in) const
         {
             return this->SUBCATEGID == in.v_;
         }
+
         bool match(const Self::PERIOD &in) const
         {
             return this->PERIOD.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::AMOUNT &in) const
         {
             return this->AMOUNT == in.v_;
         }
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->to_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
         }
-        
-        int to_json(json::Object& o) const
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            o[L"BUDGETENTRYID"] = json::Number(this->BUDGETENTRYID);
-            o[L"BUDGETYEARID"] = json::Number(this->BUDGETYEARID);
-            o[L"CATEGID"] = json::Number(this->CATEGID);
-            o[L"SUBCATEGID"] = json::Number(this->SUBCATEGID);
-            o[L"PERIOD"] = json::String(this->PERIOD.ToStdWstring());
-            o[L"AMOUNT"] = json::Number(this->AMOUNT);
-            return 0;
+            json_writer.Key("BUDGETENTRYID");
+            json_writer.Int(this->BUDGETENTRYID);
+            json_writer.Key("BUDGETYEARID");
+            json_writer.Int(this->BUDGETYEARID);
+            json_writer.Key("CATEGID");
+            json_writer.Int(this->CATEGID);
+            json_writer.Key("SUBCATEGID");
+            json_writer.Int(this->SUBCATEGID);
+            json_writer.Key("PERIOD");
+            json_writer.String(this->PERIOD);
+            json_writer.Key("AMOUNT");
+            json_writer.Double(this->AMOUNT);
         }
+
         row_t to_row_t() const
         {
             row_t row;
@@ -297,6 +330,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
             row(L"AMOUNT") = AMOUNT;
             return row;
         }
+
         void to_template(html_template& t) const
         {
             t(L"BUDGETENTRYID") = BUDGETENTRYID;
@@ -334,8 +368,6 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -573,4 +605,4 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         return result;
     }
 };
-#endif //
+

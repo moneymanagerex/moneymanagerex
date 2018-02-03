@@ -1,8 +1,8 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -11,14 +11,11 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
+ *          AUTO GENERATED at 2018-02-04 00:24:26.427000.
  *          DO NOT EDIT!
  */
 //=============================================================================
-
-
-#ifndef DB_TABLE_ACCOUNTLIST_V1_H
-#define DB_TABLE_ACCOUNTLIST_V1_H
+#pragma once
 
 #include "DB_Table.h"
 
@@ -26,22 +23,24 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 {
     struct Data;
     typedef DB_Table_ACCOUNTLIST_V1 Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
-        {
-            for (const auto & item: *this)
-            {
-                json::Object o;
-                item.to_json(o);
-                a.Insert(o);
-            }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
-        }
+//        std::wstring to_json(json::Array& a) const
+//        {
+//            for (const auto & item: *this)
+//            {
+//                json::Object o;
+//                item.to_json(o);
+//                a.Insert(o);
+//            }
+//            std::wstringstream ss;
+//            json::Writer::Write(a, ss);
+//            return ss.str();
+//        }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -112,101 +111,121 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         static wxString name() { return "ACCOUNTID"; } 
         explicit ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct ACCOUNTNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "ACCOUNTNAME"; } 
         explicit ACCOUNTNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct ACCOUNTTYPE : public DB_Column<wxString>
     { 
         static wxString name() { return "ACCOUNTTYPE"; } 
         explicit ACCOUNTTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct ACCOUNTNUM : public DB_Column<wxString>
     { 
         static wxString name() { return "ACCOUNTNUM"; } 
         explicit ACCOUNTNUM(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct STATUS : public DB_Column<wxString>
     { 
         static wxString name() { return "STATUS"; } 
         explicit STATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct NOTES : public DB_Column<wxString>
     { 
         static wxString name() { return "NOTES"; } 
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct HELDAT : public DB_Column<wxString>
     { 
         static wxString name() { return "HELDAT"; } 
         explicit HELDAT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct WEBSITE : public DB_Column<wxString>
     { 
         static wxString name() { return "WEBSITE"; } 
         explicit WEBSITE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct CONTACTINFO : public DB_Column<wxString>
     { 
         static wxString name() { return "CONTACTINFO"; } 
         explicit CONTACTINFO(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct ACCESSINFO : public DB_Column<wxString>
     { 
         static wxString name() { return "ACCESSINFO"; } 
         explicit ACCESSINFO(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct INITIALBAL : public DB_Column<double>
     { 
         static wxString name() { return "INITIALBAL"; } 
         explicit INITIALBAL(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct FAVORITEACCT : public DB_Column<wxString>
     { 
         static wxString name() { return "FAVORITEACCT"; } 
         explicit FAVORITEACCT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct CURRENCYID : public DB_Column<int>
     { 
         static wxString name() { return "CURRENCYID"; } 
         explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct STATEMENTLOCKED : public DB_Column<int>
     { 
         static wxString name() { return "STATEMENTLOCKED"; } 
         explicit STATEMENTLOCKED(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct STATEMENTDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "STATEMENTDATE"; } 
         explicit STATEMENTDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct MINIMUMBALANCE : public DB_Column<double>
     { 
         static wxString name() { return "MINIMUMBALANCE"; } 
         explicit MINIMUMBALANCE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct CREDITLIMIT : public DB_Column<double>
     { 
         static wxString name() { return "CREDITLIMIT"; } 
         explicit CREDITLIMIT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct INTERESTRATE : public DB_Column<double>
     { 
         static wxString name() { return "INTERESTRATE"; } 
         explicit INTERESTRATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct PAYMENTDUEDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "PAYMENTDUEDATE"; } 
         explicit PAYMENTDUEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct MINIMUMPAYMENT : public DB_Column<double>
     { 
         static wxString name() { return "MINIMUMPAYMENT"; } 
         explicit MINIMUMPAYMENT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     typedef ACCOUNTID PRIMARY;
     enum COLUMN
     {
@@ -317,12 +336,22 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         double INTERESTRATE;
         wxString PAYMENTDUEDATE;
         double MINIMUMPAYMENT;
-        int id() const { return ACCOUNTID; }
-        void id(int id) { ACCOUNTID = id; }
+
+        int id() const
+        {
+            return ACCOUNTID;
+        }
+
+        void id(int id)
+        {
+            ACCOUNTID = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -400,119 +429,165 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         {
             return false;
         }
+
         bool match(const Self::ACCOUNTID &in) const
         {
             return this->ACCOUNTID == in.v_;
         }
+
         bool match(const Self::ACCOUNTNAME &in) const
         {
             return this->ACCOUNTNAME.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::ACCOUNTTYPE &in) const
         {
             return this->ACCOUNTTYPE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::ACCOUNTNUM &in) const
         {
             return this->ACCOUNTNUM.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::STATUS &in) const
         {
             return this->STATUS.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::NOTES &in) const
         {
             return this->NOTES.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::HELDAT &in) const
         {
             return this->HELDAT.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::WEBSITE &in) const
         {
             return this->WEBSITE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::CONTACTINFO &in) const
         {
             return this->CONTACTINFO.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::ACCESSINFO &in) const
         {
             return this->ACCESSINFO.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::INITIALBAL &in) const
         {
             return this->INITIALBAL == in.v_;
         }
+
         bool match(const Self::FAVORITEACCT &in) const
         {
             return this->FAVORITEACCT.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::CURRENCYID &in) const
         {
             return this->CURRENCYID == in.v_;
         }
+
         bool match(const Self::STATEMENTLOCKED &in) const
         {
             return this->STATEMENTLOCKED == in.v_;
         }
+
         bool match(const Self::STATEMENTDATE &in) const
         {
             return this->STATEMENTDATE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::MINIMUMBALANCE &in) const
         {
             return this->MINIMUMBALANCE == in.v_;
         }
+
         bool match(const Self::CREDITLIMIT &in) const
         {
             return this->CREDITLIMIT == in.v_;
         }
+
         bool match(const Self::INTERESTRATE &in) const
         {
             return this->INTERESTRATE == in.v_;
         }
+
         bool match(const Self::PAYMENTDUEDATE &in) const
         {
             return this->PAYMENTDUEDATE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::MINIMUMPAYMENT &in) const
         {
             return this->MINIMUMPAYMENT == in.v_;
         }
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->to_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
         }
-        
-        int to_json(json::Object& o) const
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            o[L"ACCOUNTID"] = json::Number(this->ACCOUNTID);
-            o[L"ACCOUNTNAME"] = json::String(this->ACCOUNTNAME.ToStdWstring());
-            o[L"ACCOUNTTYPE"] = json::String(this->ACCOUNTTYPE.ToStdWstring());
-            o[L"ACCOUNTNUM"] = json::String(this->ACCOUNTNUM.ToStdWstring());
-            o[L"STATUS"] = json::String(this->STATUS.ToStdWstring());
-            o[L"NOTES"] = json::String(this->NOTES.ToStdWstring());
-            o[L"HELDAT"] = json::String(this->HELDAT.ToStdWstring());
-            o[L"WEBSITE"] = json::String(this->WEBSITE.ToStdWstring());
-            o[L"CONTACTINFO"] = json::String(this->CONTACTINFO.ToStdWstring());
-            o[L"ACCESSINFO"] = json::String(this->ACCESSINFO.ToStdWstring());
-            o[L"INITIALBAL"] = json::Number(this->INITIALBAL);
-            o[L"FAVORITEACCT"] = json::String(this->FAVORITEACCT.ToStdWstring());
-            o[L"CURRENCYID"] = json::Number(this->CURRENCYID);
-            o[L"STATEMENTLOCKED"] = json::Number(this->STATEMENTLOCKED);
-            o[L"STATEMENTDATE"] = json::String(this->STATEMENTDATE.ToStdWstring());
-            o[L"MINIMUMBALANCE"] = json::Number(this->MINIMUMBALANCE);
-            o[L"CREDITLIMIT"] = json::Number(this->CREDITLIMIT);
-            o[L"INTERESTRATE"] = json::Number(this->INTERESTRATE);
-            o[L"PAYMENTDUEDATE"] = json::String(this->PAYMENTDUEDATE.ToStdWstring());
-            o[L"MINIMUMPAYMENT"] = json::Number(this->MINIMUMPAYMENT);
-            return 0;
+            json_writer.Key("ACCOUNTID");
+            json_writer.Int(this->ACCOUNTID);
+            json_writer.Key("ACCOUNTNAME");
+            json_writer.String(this->ACCOUNTNAME);
+            json_writer.Key("ACCOUNTTYPE");
+            json_writer.String(this->ACCOUNTTYPE);
+            json_writer.Key("ACCOUNTNUM");
+            json_writer.String(this->ACCOUNTNUM);
+            json_writer.Key("STATUS");
+            json_writer.String(this->STATUS);
+            json_writer.Key("NOTES");
+            json_writer.String(this->NOTES);
+            json_writer.Key("HELDAT");
+            json_writer.String(this->HELDAT);
+            json_writer.Key("WEBSITE");
+            json_writer.String(this->WEBSITE);
+            json_writer.Key("CONTACTINFO");
+            json_writer.String(this->CONTACTINFO);
+            json_writer.Key("ACCESSINFO");
+            json_writer.String(this->ACCESSINFO);
+            json_writer.Key("INITIALBAL");
+            json_writer.Double(this->INITIALBAL);
+            json_writer.Key("FAVORITEACCT");
+            json_writer.String(this->FAVORITEACCT);
+            json_writer.Key("CURRENCYID");
+            json_writer.Int(this->CURRENCYID);
+            json_writer.Key("STATEMENTLOCKED");
+            json_writer.Int(this->STATEMENTLOCKED);
+            json_writer.Key("STATEMENTDATE");
+            json_writer.String(this->STATEMENTDATE);
+            json_writer.Key("MINIMUMBALANCE");
+            json_writer.Double(this->MINIMUMBALANCE);
+            json_writer.Key("CREDITLIMIT");
+            json_writer.Double(this->CREDITLIMIT);
+            json_writer.Key("INTERESTRATE");
+            json_writer.Double(this->INTERESTRATE);
+            json_writer.Key("PAYMENTDUEDATE");
+            json_writer.String(this->PAYMENTDUEDATE);
+            json_writer.Key("MINIMUMPAYMENT");
+            json_writer.Double(this->MINIMUMPAYMENT);
         }
+
         row_t to_row_t() const
         {
             row_t row;
@@ -538,6 +613,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             row(L"MINIMUMPAYMENT") = MINIMUMPAYMENT;
             return row;
         }
+
         void to_template(html_template& t) const
         {
             t(L"ACCOUNTID") = ACCOUNTID;
@@ -589,8 +665,6 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -842,4 +916,4 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         return result;
     }
 };
-#endif //
+
