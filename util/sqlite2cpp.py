@@ -160,10 +160,7 @@ class DB_Table:
         if self._table.upper() == 'CURRENCYFORMATS_V1':
             utfc = '#pragma execution_character_set("UTF-8")\n'
 
-        s = '''
-%s
-#ifndef DB_TABLE_%s_H
-#define DB_TABLE_%s_H
+        s = '''%s#pragma once
 
 #include "DB_Table.h"
 
@@ -171,6 +168,7 @@ struct DB_Table_%s : public DB_Table
 {
     struct Data;
     typedef DB_Table_%s Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
@@ -187,6 +185,7 @@ struct DB_Table_%s : public DB_Table
             return ss.str();
         }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -208,7 +207,7 @@ struct DB_Table_%s : public DB_Table
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
-''' % (utfc, self._table.upper(), self._table.upper(), self._table, self._table, self._table)
+''' % (utfc, self._table, self._table, self._table)
 
         s += '''
     /** Creates the database table if the table does not exist*/
@@ -288,7 +287,8 @@ struct DB_Table_%s : public DB_Table
     { 
         static wxString name() { return "%s"; } 
         explicit %s(const %s &v, OP op = EQUAL): DB_Column<%s>(v, op) {}
-    };''' % (field['name'], base_data_types_reverse[field['type']], field['name'],
+    };
+    ''' % (field['name'], base_data_types_reverse[field['type']], field['name'],
              field['name'], base_data_types_reverse[field['type']],
              base_data_types_reverse[field['type']])
 
@@ -361,6 +361,7 @@ struct DB_Table_%s : public DB_Table
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -421,12 +422,14 @@ struct DB_Table_%s : public DB_Table
             ftype = base_data_types_reverse[field['type']]
             if ftype == 'wxString':
                 s += '''
+
         bool match(const Self::%s &in) const
         {
             return this->%s.CmpNoCase(in.v_) == 0;
         }''' % (field['name'], field['name'])
             else:
                 s += '''
+
         bool match(const Self::%s &in) const
         {
             return this->%s == in.v_;
@@ -459,6 +462,7 @@ struct DB_Table_%s : public DB_Table
         }'''
 
         s += '''
+
         row_t to_row_t() const
         {
             row_t row;'''
@@ -471,6 +475,7 @@ struct DB_Table_%s : public DB_Table
         }'''
 
         s += '''
+
         void to_template(html_template& t) const
         {'''
         for field in self._fields:
@@ -509,8 +514,6 @@ struct DB_Table_%s : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -770,16 +773,14 @@ struct DB_Table_%s : public DB_Table
     }
 '''
         s += '''};
-#endif //
+
 '''
         return s
 
 def generate_base_class(header, fields=set):
     """Generate the base class"""
     rfp = open('DB_Table.h', 'wb')
-    code = header + '''
-#ifndef DB_TABLE_H
-#define DB_TABLE_H
+    code = header + '''#pragma once
 
 #include <vector>
 #include <map>
@@ -791,11 +792,19 @@ def generate_base_class(header, fields=set):
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
 #include "cajun/json/writer.h"
+
+#include "rapidjson/document.h"
+#include "rapidjson/pointer.h"
+#include "rapidjson/prettywriter.h"
+#include "rapidjson/stringbuffer.h"
+using namespace rapidjson;
+
 #include "html_template.h"
 using namespace tmpl;
 
 class wxString;
 enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };
+
 template<class V>
 struct DB_Column
 {
@@ -929,9 +938,6 @@ struct SorterBy%s
 };
 ''' % (field, field, field)
 
-    code += '''
-#endif // 
-'''
     rfp = open('db_table.h', 'w')
     rfp.write(code)
     rfp.close()
@@ -940,8 +946,8 @@ if __name__ == '__main__':
     header = '''// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - %s Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - %s Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
