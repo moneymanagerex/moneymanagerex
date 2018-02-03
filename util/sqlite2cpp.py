@@ -12,6 +12,7 @@ import codecs
 
 currency_unicode_patch_filename = 'currency_table_unicode_fix_patch.mmdbg'
 currency_table_patch_filename = 'currency_table_upgrade_patch.mmdbg'
+sql_tables_data_filename = 'sql_tables_v1.sql'
 
 # http://stackoverflow.com/questions/196345/how-to-check-if-a-string-in-python-is-in-ascii
 def is_ascii(s):
@@ -966,8 +967,26 @@ if __name__ == '__main__':
         sys.exit(1)
 
     sql = ""
+    sql_txt = '''-- NOTE:
+-- This file has been AUTO GENERATED from database/tables_v1.sql
+-- All translation identifers "_tr_" have been removed.
+-- This file can be used to manually generate a database.
+
+'''
+
     for line in open(sql_file, 'rb'):
         sql = sql + line
+
+        if line.find('_tr_') > 0: # Remove _tr_ identifyer for wxTRANSLATE
+            line = line.replace('_tr_', '')
+
+        sql_txt = sql_txt + line
+    
+    # Generate a table that does not contain translation code identifyer
+    print 'Generate SQL file: %s that can generate a clean database.' % sql_tables_data_filename
+    file_data = codecs.open(sql_tables_data_filename, 'w')
+    file_data.write(sql_txt)
+    file_data.close()
 
     cur.executescript(sql)
 
