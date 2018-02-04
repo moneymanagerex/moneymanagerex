@@ -168,7 +168,7 @@ void mmErrorDialogs::InvalidPayee(wxWindow *object, TOOL_TIP tm)
             "or make a selection using the dropdown button.")
         + "\n";
 
-    if (tm = TOOL_TIP::MESSAGE_POPUP_BOX)
+    if (tm == TOOL_TIP::MESSAGE_POPUP_BOX)
     {
         errorMessage = _("Activating the button will provide a selection box where the payee can be selected.");
     }
