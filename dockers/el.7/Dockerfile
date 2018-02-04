@@ -1,7 +1,6 @@
 FROM centos:7
 MAINTAINER developers@moneymanagerex.org
-RUN rpm --import https://getfedora.org/static/352C64E5.txt \
- && yum -y install http://download.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
+RUN yum -y --enablerepo=extras install epel-release \
  && yum -y install --setopt=tsflags=nodocs \
         cmake3 gcc-c++ gettext git make rpm-build redhat-lsb-core \
         webkitgtk3-devel wxGTK3-devel \
