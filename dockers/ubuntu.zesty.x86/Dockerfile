@@ -1,6 +1,7 @@
 FROM ubuntu:zesty
 MAINTAINER developers@moneymanagerex.org
-RUN dpkg --add-architecture i386 && apt-get update && \
+RUN sed -i -re 's/(([a-z]{2}\.)?archive|security)\.ubuntu\.com/old-releases.ubuntu.com/g' /etc/apt/sources.list && \
+    dpkg --add-architecture i386 && apt-get update && \
     apt-get install -y --no-install-recommends \
       cmake build-essential g++-multilib gettext git pkg-config lsb-release \
       libwxgtk3.0-dev:i386 libwxgtk-webview3.0-dev:i386 \
