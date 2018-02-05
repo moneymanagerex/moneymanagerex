@@ -89,6 +89,7 @@ const wxString mmex::getProgramCopyright()
 }
 const wxString mmex::getProgramDescription()
 {
+    const wxString bull = L" \u2022 ";
     wxString description;
     description << mmex::getTitleProgramVersion() << "\n"
         << wxString::Format(_("Database version supported: %i"), dbLatestVersion) << "\n"
@@ -100,47 +101,47 @@ const wxString mmex::getProgramDescription()
 #endif
 
         << "\n" << _("MMEX is using the following support products:") << "\n"
-        << L" \u2b25 " << wxVERSION_STRING
+        << bull + wxVERSION_STRING
         << wxString::Format(" (%s %d.%d)\n",
             wxPlatformInfo::Get().GetPortIdName(),
             wxPlatformInfo::Get().GetToolkitMajorVersion(),
             wxPlatformInfo::Get().GetToolkitMinorVersion())
-        << L" \u2b25 " << wxSQLITE3_VERSION_STRING
+        << bull + wxSQLITE3_VERSION_STRING
         << " (SQLite " << wxSQLite3Database::GetVersion() << ")\n"
-        << L" \u2b25 Mongoose " << MG_VERSION << "\n"
-        << L" \u2b25 " << LUA_RELEASE << "\n\n"
+        << bull + "Mongoose " << MG_VERSION << "\n"
+        << bull + LUA_RELEASE << "\n\n"
 
         << wxString::Format(_("Build on %s %s with:"), __DATE__, __TIME__) << "\n"
-        << L" \u2b25 " << CMAKE_VERSION << "\n"
-        << L" \u2b25 " << MAKE_VERSION << "\n"
-        << L" \u2b25 " << GETTEXT_VERSION << "\n"
+        << bull + CMAKE_VERSION << "\n"
+        << bull + MAKE_VERSION << "\n"
+        << bull + GETTEXT_VERSION << "\n"
 #if defined(_MSC_VER)
 #ifdef VS_VERSION
-        << L" \u2b25 Microsoft Visual Studio " << VS_VERSION << "\n"
+        << bull + "Microsoft Visual Studio " + VS_VERSION << "\n"
 #endif
-        << L" \u2b25 Microsoft Visual C++ " << CXX_VERSION << "\n"
+        << bull + "Microsoft Visual C++ " + CXX_VERSION << "\n"
 #elif defined(__clang__)
-        << L" \u2b25 Clang " << __VERSION__ << "\n"
+        << bull + "Clang " + __VERSION__ << "\n"
 #elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
-        << L" \u2b25 GCC " << __VERSION__ << "\n"
+        << bull + "GCC " + __VERSION__ << "\n"
 #endif
 #ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
-        << L" \u2b25 " << CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << "\n"
+        << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << "\n"
 #endif
 #ifdef LINUX_DISTRO_STRING
-        << L" \u2b25 " << LINUX_DISTRO_STRING << "\n"
+        << bull + LINUX_DISTRO_STRING << "\n"
 #endif
 
         << "\n" << _("Running on:") << "\n"
 #ifdef __LINUX__
-        << L" \u2b25 " << wxGetLinuxDistributionInfo().Description
+        << bull + wxGetLinuxDistributionInfo().Description
         << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
 #endif
-        << L" \u2b25 " << wxGetOsDescription() << "\n"
-        << L" \u2b25 " << wxPlatformInfo::Get().GetDesktopEnvironment()
+        << bull + wxGetOsDescription() << "\n"
+        << bull + wxPlatformInfo::Get().GetDesktopEnvironment()
         << " " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
         << " (" << wxLocale::GetSystemEncodingName() << ")\n"
-        << wxString::Format(L" \u2b25 %ix%ix%ibit %ix%ippi\n",
+        << wxString::Format(bull + "%ix%ix%ibit %ix%ippi\n",
             wxGetDisplaySize().GetX(),
             wxGetDisplaySize().GetY(),
             wxDisplayDepth(),
