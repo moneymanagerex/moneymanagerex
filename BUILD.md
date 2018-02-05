@@ -56,12 +56,12 @@ Microsoft Windows
 
    Or start the following command from start menu:
 
-       %comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat x86"
+       %comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x86
 
    Following command can be used with older VS versions (change 14.0 for
    correct version number):
 
-       %comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat x86"
+       %comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
 
    Change `x86` parameter to `amd64` for native 64-bit build.
 
