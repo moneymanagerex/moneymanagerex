@@ -76,6 +76,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/profit_png.h"
 #include "../resources/property_png.h"
 #include "../resources/puzzle_png.h"
+#include "../resources/currates_png.h"
 #include "../resources/reallocate_acc_png.h"
 #include "../resources/recurring_png.h"
 #include "../resources/rightarrow_png.h"
@@ -90,6 +91,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/status_v_png.h"
 #include "../resources/stocks_png.h"
 #include "../resources/term_png.h"
+#include "../resources/trxnum_png.h"
 #include "../resources/uparrow_png.h"
 #include "../resources/update_png.h"
 #include "../resources/web_png.h"
@@ -250,11 +252,13 @@ const wxBitmap mmBitmap(int ref)
     case VOID_STAT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(status_v) : x == 24 ? wxBITMAP_PNG_FROM_DATA(status_v24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(status_v32) : wxBITMAP_PNG_FROM_DATA(status_v48);
     case FOLLOW_UP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(status_f) : x == 24 ? wxBITMAP_PNG_FROM_DATA(status_f24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(status_f32) : wxBITMAP_PNG_FROM_DATA(status_f48);
     case DUPLICATE_STAT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(status_d) : x == 24 ? wxBITMAP_PNG_FROM_DATA(status_d24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(status_d32) : wxBITMAP_PNG_FROM_DATA(status_d48);
-    case RIGHTARROW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(rightarrow) : x == 24 ? wxBITMAP_PNG_FROM_DATA(rightarrow24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(rightarrow32) : wxBITMAP_PNG_FROM_DATA(rightarrow48);
+	case TRXNUM: return x == 16 ? wxBITMAP_PNG_FROM_DATA(trxnum) : x == 24 ? wxBITMAP_PNG_FROM_DATA(trxnum24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(trxnum32) : wxBITMAP_PNG_FROM_DATA(trxnum48);
+	case RIGHTARROW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(rightarrow) : x == 24 ? wxBITMAP_PNG_FROM_DATA(rightarrow24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(rightarrow32) : wxBITMAP_PNG_FROM_DATA(rightarrow48);
     case RIGHTARROW_ACTIVE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(rightarrow_active) : x == 24 ? wxBITMAP_PNG_FROM_DATA(rightarrow_active24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(rightarrow_active32) : wxBITMAP_PNG_FROM_DATA(rightarrow_active48);
     case GOOGLE_PLAY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(google_play) : x == 24 ? wxBITMAP_PNG_FROM_DATA(google_play24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(google_play32) : wxBITMAP_PNG_FROM_DATA(google_play48);
     case UPDATE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(update) : x == 24 ? wxBITMAP_PNG_FROM_DATA(update24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(update32) : wxBITMAP_PNG_FROM_DATA(update48);
-    case FORUM: return x == 16 ? wxBITMAP_PNG_FROM_DATA(forum) : x == 24 ? wxBITMAP_PNG_FROM_DATA(forum24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(forum32) : wxBITMAP_PNG_FROM_DATA(forum48);
+	case CURRATES: return x == 16 ? wxBITMAP_PNG_FROM_DATA(currates) : x == 24 ? wxBITMAP_PNG_FROM_DATA(currates24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(currates32) : wxBITMAP_PNG_FROM_DATA(currates48);
+	case FORUM: return x == 16 ? wxBITMAP_PNG_FROM_DATA(forum) : x == 24 ? wxBITMAP_PNG_FROM_DATA(forum24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(forum32) : wxBITMAP_PNG_FROM_DATA(forum48);
     case CLIP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(clip) : x == 24 ? wxBITMAP_PNG_FROM_DATA(clip24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(clip32) : wxBITMAP_PNG_FROM_DATA(clip48);
     case PROFIT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(profit) : x == 24 ? wxBITMAP_PNG_FROM_DATA(profit24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(profit32) : wxBITMAP_PNG_FROM_DATA(profit48);
     case LOSS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(loss) : x == 24 ? wxBITMAP_PNG_FROM_DATA(loss24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(loss32) : wxBITMAP_PNG_FROM_DATA(loss48);
