@@ -182,5 +182,6 @@ public:
     void InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data);
     void InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data* data);
     void SetStatus(const wxString& status, int account_id, DB_Table_CHECKINGACCOUNT_V1::Data& data);
+    void SetStatusA(const wxString& status);
     wxString Status(int account_id);
 };

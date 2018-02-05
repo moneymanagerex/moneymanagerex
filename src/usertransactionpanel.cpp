@@ -114,7 +114,7 @@ void UserTransactionPanel::Create()
     transPanelSizer->Add(new wxStaticText(this, ID_TRANS_ACCOUNT_BUTTON_TEXT, _("Account")), g_flagsH);
     m_account = new wxButton(this, ID_TRANS_ACCOUNT_BUTTON, _("Select Account")
         , wxDefaultPosition, std_size);
-    m_account->SetToolTip(_("Specify the associated Account that will contain this transaction"));
+    m_account->SetToolTip(_("Please select the Account that will be associated with this transaction"));
     transPanelSizer->Add(m_account, g_flagsH);
 
     // Type --------------------------------------------
@@ -154,8 +154,8 @@ void UserTransactionPanel::Create()
     {
         currency = Model_Account::currency(Model_Account::instance().get(m_account_id));
     }
-    m_trans_currency = new wxButton(this, ID_TRANS_CURRENCY_BUTTON, currency->CURRENCY_SYMBOL
-        , wxDefaultPosition, std_half_size);
+    m_trans_currency = new wxStaticText(this, wxID_ANY, currency->CURRENCY_SYMBOL
+        , wxDefaultPosition, std_half_size, wxBORDER_SUNKEN|wxALIGN_CENTRE);
     m_trans_currency->SetToolTip(_("Currency used for this transaction."));
 
     wxBoxSizer* entered_amount_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -407,16 +407,33 @@ void UserTransactionPanel::OnAttachments(wxCommandEvent& WXUNUSED(event))
     dlg.ShowModal();
 }
 
-bool UserTransactionPanel::ValidCheckingAccountEntry()
+bool UserTransactionPanel::ValidCheckingAccountEntry(GUI_ERROR& g_err)
 {
-    if ((m_account_id != -1) && (m_payee_id != -1) && (m_category_id != -1) && (!m_entered_amount->GetValue().IsEmpty()))
+    if (m_account_id < 0)
     {
-        return true;
-    }
-    else
-    {
+        g_err = GUI_ERROR::ACCOUNT;
         return false;
     }
+
+    if (m_payee_id < 0)
+    {
+        g_err = GUI_ERROR::PAYEE;
+        return false;
+    }
+
+    if (m_category_id < 0)
+    {
+        g_err = GUI_ERROR::CATEGORY;
+        return false;
+    }
+
+    if (m_entered_amount->GetValue().IsEmpty())
+    {
+        g_err = GUI_ERROR::ENTRY;
+        return false;
+    }
+
+    return true;
 }
 
 wxDateTime UserTransactionPanel::TransactionDate()
@@ -498,7 +515,11 @@ int UserTransactionPanel::SaveChecking()
     m_checking_entry->PAYEEID = m_payee_id;
     m_checking_entry->TRANSCODE = Model_Checking::instance().all_type()[TransactionType()];
     m_checking_entry->TRANSAMOUNT = initial_amount;
-    m_checking_entry->STATUS = Model_Checking::all_status()[TransactionType()].Mid(0, 1);
+
+    TransactionStatus status(m_checking_entry);
+    status.SetStatusA(Model_Checking::all_status()[m_status_selector->GetSelection()].Mid(0, 1));
+    m_checking_entry->STATUS = status.Status(m_account_id);
+
     m_checking_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();
     m_checking_entry->NOTES = m_entered_notes->GetValue();
     m_checking_entry->CATEGID = m_category_id;

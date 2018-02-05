@@ -383,7 +383,9 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, new_asset_id);
     }
-    if (m_transaction_panel->ValidCheckingAccountEntry())
+
+    UserTransactionPanel::GUI_ERROR g_err = UserTransactionPanel::GUI_ERROR::NONE;
+    if (m_transaction_panel->ValidCheckingAccountEntry(g_err))
     {
         int checking_id = m_transaction_panel->SaveChecking();
         if (!m_transfer_entry)
@@ -395,14 +397,34 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     }
     else if (!m_hidden_trans_entry)
     {
-        mmErrorDialogs::MessageWarning(this, _("Invalid Transaction"), m_dialog_heading);
+        if (g_err == UserTransactionPanel::GUI_ERROR::ACCOUNT)
+        {
+            mmErrorDialogs::InvalidAccount((wxWindow*)m_transaction_panel->m_account, false, mmErrorDialogs::MESSAGE_POPUP_BOX);
+        }
+        else if (g_err == UserTransactionPanel::GUI_ERROR::PAYEE)
+        {
+            mmErrorDialogs::InvalidPayee((wxWindow*)m_transaction_panel->m_payee, mmErrorDialogs::MESSAGE_POPUP_BOX);
+        }
+        else if (g_err == UserTransactionPanel::GUI_ERROR::CATEGORY)
+        {
+            mmErrorDialogs::InvalidCategory((wxWindow*)m_transaction_panel->m_category, true);
+        }
+        else if (g_err == UserTransactionPanel::GUI_ERROR::ENTRY)
+        {
+            mmErrorDialogs::InvalidAmount((wxWindow*)m_transaction_panel->m_entered_amount);
+        }
+
         return;
     }
 
     Model_Account::Data* asset_account = Model_Account::instance().get(name);
     if (is_new && !asset_account)
     {
-        if (wxMessageBox(_("Asset Account not found.\n\nWould you want to create one?")
+        if (wxMessageBox(_("An asset account having the same name has not been found.\n\n"
+            "A single transaction for this asset can be associated with any account.\n"
+            "Multiple asset transactions need to be associated with an asset account.\n\n"
+            "Would you want to create one?\n\n"
+        )
             , _("New Asset"), wxYES_NO | wxICON_INFORMATION) == wxYES)
         {
             CreateAssetAccount();
