@@ -46,7 +46,7 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const wxString& NewVersion)
     wxString URL, Changelog;
     if (Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 1)
         URL = mmex::weblink::Changelog + "unstable";
-    else
+    else //TODO: something...
         URL = mmex::weblink::Changelog + "unstable";
     site_content(URL, Changelog);
 
@@ -210,8 +210,8 @@ const bool mmUpdate::IsUpdateAvailable(const bool bSilent, wxString& NewVersion)
     NewVersion = "error";
 
     wxString page;
-    int err_code = site_content(mmex::weblink::Update, page);
-    if (err_code != wxURL_NOERR || page.Find("Unstable") == wxNOT_FOUND)
+    CURLcode err_code = site_content(mmex::weblink::Update, page);
+    if (err_code != CURLE_OK || page.Find("Unstable") == wxNOT_FOUND)
     {
         if (bSilent)
             return false;

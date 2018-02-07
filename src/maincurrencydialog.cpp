@@ -848,7 +848,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
 bool mmMainCurrencyDialog::HistoryDownloadBce()
 {
     wxString XmlContent;
-    if (site_content(mmex::weblink::BceCurrencyHistory, XmlContent) != wxURL_NOERR)
+    if (site_content(mmex::weblink::BceCurrencyHistory, XmlContent) != CURLE_OK)
         return false;
     return ParseDownloadedBce(XmlContent);
 }
@@ -856,7 +856,7 @@ bool mmMainCurrencyDialog::HistoryDownloadBce()
 bool mmMainCurrencyDialog::CurrentDownloadBce()
 {
     wxString XmlContent;
-    if (site_content(mmex::weblink::BceCurrency, XmlContent) != wxURL_NOERR)
+    if (site_content(mmex::weblink::BceCurrency, XmlContent) != CURLE_OK)
         return false;
     return ParseDownloadedBce(XmlContent);
 }

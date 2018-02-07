@@ -754,10 +754,9 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
     URL += "&ignore=.csv";
     wxLogDebug("Start Date:%s End Date:%s URL:%s", StartDate.FormatISODate(), EndDate.FormatISODate(), URL);
 
-    int err_code = site_content(URL, CSVQuotes);
-    if (err_code != wxURL_NOERR)
+    if (site_content(URL, CSVQuotes) != CURLE_OK)
     {
-        if (err_code == -1) CSVQuotes = _("Stock history not found!");
+        if (CSVQuotes == wxEmptyString) CSVQuotes = _("Stock history not found!"); //TODO: ?
         mmErrorDialogs::MessageError(this, CSVQuotes, _("Stock History Error"));
         return;
     }

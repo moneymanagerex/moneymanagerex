@@ -852,8 +852,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     stock_details_->SetLabelText(_("Connecting..."));
     wxString sOutput;
 
-    int err_code = site_content(site, sOutput);
-    if (err_code != wxURL_NOERR)
+    if (site_content(site, sOutput) != CURLE_OK)
     {
         sError = sOutput;
         return false;
