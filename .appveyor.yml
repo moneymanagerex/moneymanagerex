@@ -38,7 +38,7 @@ environment:
   curlStatic: ON
   # wxWidgets config
   wxVer: 3.1.0
-  wxwin: C:\wxWidgets-$(wxver)
+  wxwin: C:\wxWidgets-$(wxver)-$(configuration)
   wxShared: 0
   wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxver)
   # Microsoft compiler options
@@ -78,14 +78,14 @@ init:
   )
 - echo %clver% > ..\MSVC_ver.txt
 # Set wxWidgets library paths
-- set "wxLibFolder=%wxwin%\lib\vc%comp%%xp%"
 - if %platform:~-2%==64 set wxSuff=_x64
-- if %wxShared%==0 (set wxLibFolder=%wxLibFolder%%wxSuff%_lib)
-  else (set wxLibFolder=%wxLibFolder%%wxSuff%_dll)
+- set "wxLibFolder=%wxwin%\lib\vc%comp%%xp%%wxSuff%"
+- if %wxShared%==0 (set wxLibFolder=%wxLibFolder%_lib)
+  else (set wxLibFolder=%wxLibFolder%_dll)
 # Set curl library paths
-- set "curlLibFolder=%curldir%\vc%comp%%xp%"
-- if %curlStatic%==ON (set curlLibFolder=%curlLibFolder%%wxSuff%_lib)
-  else (set curlLibFolder=%curlLibFolder%%wxSuff%_dll)
+- set "curlLibFolder=%curldir%\vc%comp%%xp%%wxSuff%_%configuration%"
+- if %curlStatic%==ON (set curlLibFolder=%curlLibFolder%_lib)
+  else (set curlLibFolder=%curlLibFolder%_dll)
 # Print some info
 - echo %APPVEYOR_BUILD_WORKER_IMAGE% %platform% v%comp%%xp% %configuration% %arch%
 # clcache unique directory
@@ -100,7 +100,7 @@ init:
 cache:
 - '%wxwin%\lib -> ..\MSVC_ver.txt'
 - '%curlLibFolder%'
-- '%CLCACHE_DIR%'
+- '%CLCACHE_DIR% -> ..\MSVC_ver.txt'
 
 install:
 # setup clcache
@@ -132,11 +132,15 @@ install:
       TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% VENDOR=mmex %wxFlags%
   )
 # libcurl
+- if %configuration%==Debug (
+    set "curlConf=-DENABLE_DEBUG=ON" &&
+    set "curlFlags=/Z7"
+  )
 - if not exist "%curlLibFolder%" (
     echo Building libcurl %curlVer% &
     git clone -q --depth=1 --branch=curl-%curlVer% https://github.com/curl/curl.git %curldir%-src &&
     mkdir %curldir%-src\build && cd %curldir%-src\build &&
-    cmake -T %tool% -G "Visual Studio %gen%"
+    cmake -T %tool% -G "Visual Studio %gen%" %curlConf%
       -DBUILD_CURL_EXE=OFF
       -DCURL_STATICLIB=%curlStatic%
       -DHTTP_ONLY=ON
@@ -145,8 +149,8 @@ install:
       -DBUILD_TESTING=OFF
       -DCMAKE_INSTALL_PREFIX=%curlLibFolder%
       .. &&
-    cmake --build . --target install --config %configuration% --clean-first
-      -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
+    cmake --build . --target install --config %configuration%
+      -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64 %curlFlags%
   )
 
 before_build:
