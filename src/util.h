@@ -22,6 +22,7 @@
 #include "defs.h"
 #include "reports/reportbase.h"
 #include <wx/valnum.h>
+#include <curl/curl.h>
 #include <map>
 
 class mmGUIApp;
@@ -158,7 +159,7 @@ public:
 //----------------------------------------------------------------------------
 
 const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
-int site_content(const wxString& site, wxString& output);
+CURLcode site_content(const wxString& site, wxString& output);
 bool download_file(const wxString& site, const wxString& path);
 const wxString getURL(const wxString& file);
 

@@ -32,9 +32,13 @@ environment:
   path: '%path%;C:\cygwin64\bin'
   # clcache config
   clcVer: 4.1.0
+  # libcurl config
+  curlVer: 7_58_0
+  curldir: C:\curl-$(curlVer)
+  curlStatic: ON
   # wxWidgets config
   wxVer: 3.1.0
-  wxwin: C:\wxWidgets
+  wxwin: C:\wxWidgets-$(wxver)
   wxShared: 0
   wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxver)
   # Microsoft compiler options
@@ -78,13 +82,24 @@ init:
 - if %platform:~-2%==64 set wxSuff=_x64
 - if %wxShared%==0 (set wxLibFolder=%wxLibFolder%%wxSuff%_lib)
   else (set wxLibFolder=%wxLibFolder%%wxSuff%_dll)
+# Set curl library paths
+- set "curlLibFolder=%curldir%\vc%comp%%xp%"
+- if %curlStatic%==ON (set curlLibFolder=%curlLibFolder%%wxSuff%_lib)
+  else (set curlLibFolder=%curlLibFolder%%wxSuff%_dll)
 # Print some info
 - echo %APPVEYOR_BUILD_WORKER_IMAGE% %platform% v%comp%%xp% %configuration% %arch%
 # clcache unique directory
 - set "CLCACHE_DIR=C:\clcache-%APPVEYOR_BUILD_WORKER_IMAGE%-%platform%-v%comp%%xp%"
+# prepare cmake options
+- if %comp%==110 (set "gen=11 2012" & set "tool=v%comp%%xp%")
+- if %comp%==120 (set "gen=12 2013" & set "tool=v%comp%%xp%,host=x64")
+- if %comp%==140 (set "gen=14 2015" & set "tool=v%comp%%xp%,host=x64")
+- if %comp%==141 (set "gen=15 2017" & set "tool=v%comp%%xp%,host=x64")
+- if %platform:~-2%==64 set "gen=%gen% Win64"
 
 cache:
 - '%wxwin%\lib -> ..\MSVC_ver.txt'
+- '%curlLibFolder%'
 - '%CLCACHE_DIR%'
 
 install:
@@ -116,6 +131,23 @@ install:
     nmake /nologo /s /f makefile.vc %wxConf% COMPILER_VERSION=%comp%%xp%
       TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% %wxFlags%
   )
+# libcurl
+- if not exist "%curlLibFolder%" (
+    echo Building libcurl %curlVer% &
+    git clone -q --depth=1 --branch=curl-%curlVer% https://github.com/curl/curl.git %curldir%-src &&
+    mkdir %curldir%-src\build && cd %curldir%-src\build &&
+    cmake -T %tool% -G "Visual Studio %gen%"
+      -DBUILD_CURL_EXE=OFF
+      -DCURL_STATICLIB=%curlStatic%
+      -DHTTP_ONLY=ON
+      -DENABLE_MANUAL=OFF
+      -DCMAKE_USE_WINSSL=ON
+      -DBUILD_TESTING=OFF
+      -DCMAKE_INSTALL_PREFIX=%curlLibFolder%
+      .. &&
+    cmake --build . --target install --config %configuration% --clean-first
+      -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
+  )
 
 before_build:
 - cd %APPVEYOR_BUILD_FOLDER%
@@ -123,13 +155,9 @@ before_build:
 
 build_script:
 - mkdir build & cd build
-- if %comp%==110 (set "gen=11 2012" & set "tool=v%comp%%xp%")
-- if %comp%==120 (set "gen=12 2013" & set "tool=v%comp%%xp%,host=x64")
-- if %comp%==140 (set "gen=14 2015" & set "tool=v%comp%%xp%,host=x64")
-- if %comp%==141 (set "gen=15 2017" & set "tool=v%comp%%xp%,host=x64")
-- if %platform:~-2%==64 set "gen=%gen% Win64"
 - if %configuration%==Debug
     set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON"
+- set "cmake_def=%cmake_def% -DCMAKE_PREFIX_PATH=%curlLibFolder%"
 - cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" -DMMEX_BUILD_TESTS=%build_tests% %cmake_def% ..
 - cmake --build . --target package --config %configuration%
     -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64

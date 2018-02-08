@@ -317,6 +317,7 @@ TARGET_LINK_LIBRARIES(MMEXLib
         wxSQLite3
         cajun
         HTML-template
+        CURL::libcurl
     PRIVATE
         LuaGlue
         Lua

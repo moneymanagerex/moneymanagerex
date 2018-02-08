@@ -70,7 +70,7 @@ const wxString mmWebApp::WebApp_getApiVersion()
 {
     wxString outputMessage;
     site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::CheckApiVersion, outputMessage);
-
+    // TODO: check for errors?
     return outputMessage;
 }
 
@@ -345,9 +345,9 @@ bool mmWebApp::WebApp_UpdateCategory()
 bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly)
 {
     wxString NewTransactionJSON;
-    int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadNewTransaction, NewTransactionJSON);
+    CURLcode ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadNewTransaction, NewTransactionJSON);
 
-    if (NewTransactionJSON == "null" || NewTransactionJSON.IsEmpty() || ErrorCode != 0)
+    if (NewTransactionJSON == "null" || NewTransactionJSON.IsEmpty() || ErrorCode != CURLE_OK)
         return false;
     else if (CheckOnly)
         return true;

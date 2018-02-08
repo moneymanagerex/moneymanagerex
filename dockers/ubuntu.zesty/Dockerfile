@@ -5,6 +5,6 @@ RUN sed -i -re 's/(([a-z]{2}\.)?archive|security)\.ubuntu\.com/old-releases.ubun
     apt-get install -y --no-install-recommends \
       cmake build-essential gettext git pkg-config lsb-release \
       libwxgtk3.0-dev libwxgtk-webview3.0-dev \
-      libwxsqlite3-3.0-dev liblua5.2-dev \
+      libwxsqlite3-3.0-dev liblua5.2-dev libcurl4-openssl-dev \
       automake libtool ccache && \
     apt-get clean

@@ -86,46 +86,70 @@ wxColour mmColors::userDefColor7;
 
 //*-------------------------------------------------------------------------*//
 
-int site_content(const wxString& sSite, wxString& sOutput)
+struct curlBuff {
+  char *memory;
+  size_t size;
+};
+ 
+static size_t
+curlWriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+  size_t realsize = size * nmemb;
+  struct curlBuff *mem = (struct curlBuff *)userp;
+ 
+  mem->memory = (char *)realloc(mem->memory, mem->size + realsize + 1);
+  if(mem->memory == NULL) {
+    /* out of memory! */ 
+    // printf("not enough memory (realloc returned NULL)\n");
+    return 0;
+  }
+ 
+  memcpy(&(mem->memory[mem->size]), contents, realsize);
+  mem->size += realsize;
+  mem->memory[mem->size] = 0;
+ 
+  return realsize;
+}
+
+
+CURLcode site_content(const wxString& sSite, wxString& sOutput)
  {
+    CURL *curl = curl_easy_init();
+    if (!curl) return CURLE_FAILED_INIT;
+
     wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
     if (!proxyName.empty())
     {
         int proxyPort = Model_Setting::instance().GetIntSetting("PROXYPORT", 0);
         const wxString& proxySettings = wxString::Format("%s:%d", proxyName, proxyPort);
-        wxURL::SetDefaultProxy(proxySettings);
-    }
-    else
-        wxURL::SetDefaultProxy(""); // Remove prior proxy
-
-    wxURL url(sSite);
-    int err_code = url.GetError();
-    if (err_code == wxURL_NOERR)
-    {
-        int networkTimeout = Model_Setting::instance().GetIntSetting("NETWORKTIMEOUT", 10); // default 10 secs
-        url.GetProtocol().SetTimeout(networkTimeout);
-        wxInputStream* in_stream = url.GetInputStream();
-        if (in_stream)
-        {
-            wxStringOutputStream out_stream(&sOutput);
-            in_stream->Read(out_stream);
-        }
-        else
-            err_code = -1; //Cannot get data from WWW!
-        delete in_stream;
+        curl_easy_setopt(curl, CURLOPT_PROXY, static_cast<const char*>(proxySettings.mb_str()));
     }
 
-    if (err_code != wxURL_NOERR)
-    {
-        if      (err_code == wxURL_SNTXERR ) sOutput = _("Syntax error in the URL string");
-        else if (err_code == wxURL_NOPROTO ) sOutput = _("Found no protocol which can get this URL");
-        else if (err_code == wxURL_NOHOST  ) sOutput = _("A host name is required for this protocol");
-        else if (err_code == wxURL_NOPATH  ) sOutput = _("A path is required for this protocol");
-        else if (err_code == wxURL_CONNERR ) sOutput = _("Connection error");
-        else if (err_code == wxURL_PROTOERR) sOutput = _("An error occurred during negotiation");
-        else if (err_code == -1) sOutput = _("Cannot get data from WWW!");
-        else sOutput = _("Unknown error");
+    int networkTimeout = Model_Setting::instance().GetIntSetting("NETWORKTIMEOUT", 10); // default 10 secs
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, networkTimeout); 
+
+    struct curlBuff chunk;
+    chunk.memory = (char *)malloc(1);
+    chunk.size = 0;
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlWriteMemoryCallback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&chunk);
+
+#ifdef _DEBUG
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+#endif
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,
+        static_cast<const char*>(wxString::Format("%s/%s", mmex::getProgramName(), mmex::version::string).mb_str()));
+    curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(sSite.mb_str()));
+    CURLcode err_code = curl_easy_perform(curl);
+    if (err_code == CURLE_OK)
+        sOutput = wxString::FromUTF8(chunk.memory);
+    else {
+        sOutput = curl_easy_strerror(err_code); //TODO: translation
+        wxLogDebug("site_content: URL = %s error = %s", sSite, sOutput);
     }
+
+    free(chunk.memory);
+    curl_easy_cleanup(curl);
     return err_code;
 }
 
@@ -154,7 +178,7 @@ bool download_file(const wxString& site, const wxString& path)
 const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 {
     wxString RssContent;
-    if (site_content(mmex::weblink::NewsRSS, RssContent) != wxURL_NOERR)
+    if (site_content(mmex::weblink::NewsRSS, RssContent) != CURLE_OK)
         return false;
 
     wxStringInputStream RssContentStream(RssContent);
