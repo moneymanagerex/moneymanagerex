@@ -826,7 +826,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     }
 
     //Symbol, (Amount, Name)
-    std::map<wxString, std::pair<double, wxString> > stocks_data;
+    std::map<wxString, double > stocks_data;
     wxString site = "";
 
     Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
@@ -837,15 +837,13 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
         {
             if (stocks_data.find(symbol) == stocks_data.end())
             {
-                stocks_data[symbol] = std::make_pair(0, "");
-                site << symbol << "+";
+                stocks_data[symbol] = 0;
+                site << symbol << ",";
             }
         }
     }
-    if (site.Right(1).Contains("+")) site.RemoveLast(1);
 
-    //Sample: http://finance.yahoo.com/d/quotes.csv?s=SBER.ME+GAZP.ME&f=sl1c4n&e=.csv
-    //Sample CSV: "SBER.ME",85.49,"RUB","SBERBANK"
+    if (site.Right(1).Contains(",")) site.RemoveLast(1);
     site = wxString::Format(mmex::weblink::YahooQuotes, site);
 
     refresh_button_->SetBitmapLabel(mmBitmap(png::LED_YELLOW));
@@ -859,47 +857,32 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     }
 
     //--//
-    wxString stock_symbol_with_suffix, sName, stock_quote_currency;
+    wxString stock_symbol_with_suffix, stock_quote_currency;
     double dPrice = 0.0;
-    int count = 0;
 
-    wxStringTokenizer tkz(sOutput, "\r\n");
-    while (tkz.HasMoreTokens())
-    {
-        const wxString csvline = tkz.GetNextToken();
-        stock_symbol_with_suffix = "";
-        stock_quote_currency = "";
-        wxRegEx pattern("\"([^\"]+)\",([^,][0-9.]+),\"([^\"]*)\",\"([^\"]*)\"");
-        if (pattern.Matches(csvline))
-        {
-            stock_symbol_with_suffix = pattern.GetMatch(csvline, 1);
-            pattern.GetMatch(csvline, 2).ToDouble(&dPrice);
-            stock_quote_currency = pattern.GetMatch(csvline, 3);
-            sName = pattern.GetMatch(csvline, 4);
-        }
+	std::wstringstream ss;
+	ss << sOutput.ToStdWstring();
+	json::Object o;
+	json::Reader::Read(o, ss);
 
-        bool updated = !stock_symbol_with_suffix.IsEmpty();
+	json::Object r = o[L"quoteResponse"];
+	wxString error = wxString(json::String(r[L"error"]));
+	if (!error.empty()) return false;
 
-        /* HACK FOR GBP
-        http://sourceforge.net/p/moneymanagerex/bugs/414/
-        http://sourceforge.net/p/moneymanagerex/bugs/360/
-        1. If the share has GBp as currency, its downloaded value in pence
-        2. If the share has another currency, we don't need to modify the price
-        */
+	json::Array e = r[L"result"];
 
-        if (updated && dPrice > 0)
-        {
-            if (stock_quote_currency == "GBp")
-                dPrice = dPrice / 100;
-            stocks_data[stock_symbol_with_suffix].first = dPrice;
-            stocks_data[stock_symbol_with_suffix].second = sName;
-            sError << wxString::Format(_("%s\t -> %s\n")
-                , stock_symbol_with_suffix, wxString::Format("%0.4f", dPrice));
-            count++;
-        }
-    }
+	for (int i = 0; i < e.Size(); i++) {
+		const json::Object test = e[i];
+		//if (test.Size() < 17) continue;
+		const wxString symbol = wxString(json::String(test[L"symbol"]).Value());
 
-    if (count == 0)
+		const auto price = test[L"regularMarketPrice"];
+		const auto rate = json::Number(price).Value();
+		wxLogDebug("item: %d %s %.2f", i, symbol, rate);
+		stocks_data[symbol] = (rate <= 0 ? 1 : rate);
+	}
+
+    if (stocks_data.empty())
     {
         sError = _("Quotes not found");
         return false;
@@ -907,14 +890,14 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
 
     for (auto &s : stock_list)
     {
-        std::map<wxString, std::pair<double, wxString> >::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
+        std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
         if (it == stocks_data.end()) continue;
-        dPrice = it->second.first;
+        dPrice = it->second;
 
         if (dPrice != 0)
         {
             s.CURRENTPRICE = dPrice;
-            if (s.STOCKNAME.empty()) s.STOCKNAME = it->second.second;
+            if (s.STOCKNAME.empty()) s.STOCKNAME = s.SYMBOL;
             Model_Stock::instance().save(&s);
             Model_StockHistory::instance().addUpdate(s.SYMBOL, wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
         }
