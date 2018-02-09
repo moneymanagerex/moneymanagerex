@@ -98,12 +98,15 @@ __All following commands must be run from this command prompt!__
 8. [Download sources of curl], unpack them to `c:\` and build [libcurl]
    library with following commands:
 
-       mkdir c:\curl-*.**.*\build
-       cd c:\curl-*.**.*\build
+       mkdir c:\curl-<version>\build
+       cd c:\curl-<version>\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
-       cmake -G "Visual Studio 15 2017" -DBUILD_CURL_EXE=OFF -DCURL_STATICLIB=ON -DCMAKE_USE_WINSSL=ON -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
+       cmake -G "Visual Studio 15 2017" -DBUILD_CURL_EXE=OFF -DHTTP_ONLY=ON ^
+         -DENABLE_MANUAL=OFF -DBUILD_TESTING=OFF -DCURL_STATICLIB=ON ^
+         -DCMAKE_USE_WINSSL=ON -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
        set "CL=/MP"
-       cmake --build . --target install --config Release --clean-first -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
+       cmake --build . --target install --config Release --clean-first ^
+         -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
 
    Replace `Visual Studio 15 2017` with `Visual Studio 15 2017 Win64`
    for 64-bit.
