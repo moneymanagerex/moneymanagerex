@@ -129,7 +129,7 @@ install:
     echo Building wxWidgets %wxVer% &
     cd %wxwin%\build\msw &&
     nmake /nologo /s /f makefile.vc %wxConf% COMPILER_VERSION=%comp%%xp%
-      TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% %wxFlags%
+      TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% VENDOR=mmex %wxFlags%
   )
 # libcurl
 - if not exist "%curlLibFolder%" (
