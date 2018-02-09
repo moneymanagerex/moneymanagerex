@@ -77,6 +77,17 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
     return currency;
 }
 
+const wxString Model_Currency::GetBaseCurrencySymbol()
+{
+	const auto base_currency = GetBaseCurrency();
+	if (base_currency)
+	{
+		return base_currency->CURRENCY_SYMBOL.Upper();
+	}
+	else
+		return "";
+}
+
 void Model_Currency::ResetBaseConversionRates()
 {
     Model_Currency::instance().Savepoint();

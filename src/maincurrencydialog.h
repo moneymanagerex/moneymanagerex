@@ -102,6 +102,8 @@ private:
     void OnItemRightClick(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     bool SetBaseCurrency(int& baseCurrencyID);
+	bool GetOnlineRates(wxString &msg, int curr_id = -1);
+	bool GetOnlineHistory(wxString &msg, wxString &symbol);
 
     wxDataViewListCtrl* currencyListBox_;
     std::map<int, wxString> ColName_;
@@ -120,11 +122,6 @@ private:
     int selectedIndex_;
     bool m_static_dialog;
 
-    std::vector<CurrencyHistoryRate> _BceCurrencyHistoryRatesList;
-    bool HistoryDownloadBce();
-    bool CurrentDownloadBce();
-    bool ParseDownloadedBce(wxString &XmlContent);
-    bool ConvertHistoryRates(const std::vector<CurrencyHistoryRate>& Bce, std::vector<CurrencyHistoryRate>& ConvertedRate, const wxString& BaseCurrencySymbol);
 };
 
 #endif // MM_EX_MAINCURRENCY_DIALOG_H_
