@@ -353,7 +353,9 @@ IF(WIN32)
     IF(WXDLLSUFF MATCHES "_dll$")
         STRING(REPLACE _dll .dll WXDLLSUFF ${WXDLLSUFF})
         SET(WXDLLPREF ${wxWidgets_VERSION_MAJOR}${wxWidgets_VERSION_MINOR})
-        IF(NOT WXDLLPREF STREQUAL "30")
+        # DLL filenames are different for different versions
+        # see https://github.com/wxWidgets/wxWidgets/blob/master/build/tools/msvs/package.bat#L42
+        IF(wxWidgets_VERSION_MINOR MATCHES "^[13579]$")
             SET(WXDLLPREF ${WXDLLPREF}${wxWidgets_VERSION_PATCH})
         ENDIF()
         SET(WXDLLPREF ${WXDLLPREF}u)
