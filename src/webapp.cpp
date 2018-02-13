@@ -206,28 +206,36 @@ bool mmWebApp::WebApp_DeleteAllAccount()
 // Update Account on WebApp
 bool mmWebApp::WebApp_UpdateAccount()
 {
-    int i = 0;
-    json::Object jsonAccountList;
-    std::wstringstream jsonAccountStream;
-    wxString outputMessage;
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-    wxString UpdateAccountUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportAccount + "=true";
+    json_writer.StartObject();
+    json_writer.Key("Accounts");
 
-    mmWebApp::WebApp_DeleteAllAccount();
+    json_writer.StartArray();
 
-    for (const auto &Account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+    for (const auto &account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
-        if (Model_Account::type(Account) != Model_Account::INVESTMENT && Model_Account::status(Account) != Model_Account::CLOSED)
-            jsonAccountList[L"Accounts"][i][L"AccountName"] = json::String(Account.ACCOUNTNAME.ToStdWstring());
-        i++;
+        if (Model_Account::type(account) != Model_Account::INVESTMENT && Model_Account::status(account) != Model_Account::CLOSED)
+        {
+            json_writer.StartObject();
+            json_writer.Key("AccountName");
+            json_writer.String(account.ACCOUNTNAME);
+            json_writer.EndObject();
+        }
     }
 
-    json::Writer::Write(jsonAccountList, jsonAccountStream);
-    wxString AccountList = jsonAccountStream.str();
+    json_writer.EndArray();
+    json_writer.EndObject();
 
-    int ErrorCode = mmWebApp::WebApp_SendJson(UpdateAccountUrl, AccountList, outputMessage);
+    mmWebApp::WebApp_DeleteAllAccount();
+    wxString update_account_url = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportAccount + "=true";
+    wxString json_account_list = json_buffer.GetString();
+    wxString output_message;
 
-    return mmWebApp::returnResult(ErrorCode, outputMessage);
+    int error_code = mmWebApp::WebApp_SendJson(update_account_url, json_account_list, output_message);
+
+    return mmWebApp::returnResult(error_code, output_message);
 }
 
 //Delete all payee on WebApp
@@ -242,42 +250,49 @@ bool mmWebApp::WebApp_DeleteAllPayee()
 //Update payee on WebApp
 bool mmWebApp::WebApp_UpdatePayee()
 {
-    int i = 0;
-    json::Object jsonPayeeList;
-    std::wstringstream jsonPayeeStream;
-    wxString outputMessage, DefCategoryName, DefSubCategoryName;
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-    wxString UpdatePayeeUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportPayee + "=true";
+    json_writer.StartObject();
+    json_writer.Key("Payees");
 
-    mmWebApp::WebApp_DeleteAllPayee();
+    json_writer.StartArray();
 
-    for (const auto &Payee : Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
+    wxString def_category_name, def_subcategory_name;
+    for (const auto &payee : Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
     {
-        const Model_Category::Data* DefCategory = Model_Category::instance().get(Payee.CATEGID);
-        if (DefCategory != nullptr)
-            DefCategoryName = DefCategory->CATEGNAME;
+        const Model_Category::Data* def_category = Model_Category::instance().get(payee.CATEGID);
+        if (def_category != nullptr)
+            def_category_name = def_category->CATEGNAME;
         else
-            DefCategoryName = "None";
+            def_category_name = "None";
 
-        const Model_Subcategory::Data* DefSubCategory = Model_Subcategory::instance().get(Payee.SUBCATEGID);
-        if (DefSubCategory != nullptr)
-            DefSubCategoryName = DefSubCategory->SUBCATEGNAME;
+        const Model_Subcategory::Data* def_subcategory = Model_Subcategory::instance().get(payee.SUBCATEGID);
+        if (def_subcategory != nullptr)
+            def_subcategory_name = def_subcategory->SUBCATEGNAME;
         else
-            DefSubCategoryName = "None";
-        
-        jsonPayeeList[L"Payees"][i][L"PayeeName"] = json::String(Payee.PAYEENAME.ToStdWstring());
-        jsonPayeeList[L"Payees"][i][L"DefCateg"] = json::String(DefCategoryName.ToStdWstring());
-        jsonPayeeList[L"Payees"][i][L"DefSubCateg"] = json::String(DefSubCategoryName.ToStdWstring());
+            def_subcategory_name = "None";
 
-        i++;
+        json_writer.StartObject();
+        json_writer.Key("PayeeName");
+        json_writer.String(payee.PAYEENAME);
+        json_writer.Key("DefCateg");
+        json_writer.String(def_category_name);
+        json_writer.Key("DefSubCateg");
+        json_writer.String(def_subcategory_name);
+        json_writer.EndObject();
     }
 
-    json::Writer::Write(jsonPayeeList, jsonPayeeStream);
-    wxString PayeesList = jsonPayeeStream.str();
+    json_writer.EndArray();
+    json_writer.EndObject();
 
-    int ErrorCode = mmWebApp::WebApp_SendJson(UpdatePayeeUrl, PayeesList, outputMessage);
+    mmWebApp::WebApp_DeleteAllPayee();
+    wxString update_payee_url = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportPayee + "=true";
+    wxString json_payee_list = json_buffer.GetString();
+    wxString output_message;
+    int error_code = mmWebApp::WebApp_SendJson(update_payee_url, json_payee_list, output_message);
 
-    return mmWebApp::returnResult(ErrorCode, outputMessage);
+    return mmWebApp::returnResult(error_code, output_message);
 }
 
 //Delete all category on WebApp
@@ -292,53 +307,66 @@ bool mmWebApp::WebApp_DeleteAllCategory()
 //Update category on WebApp
 bool mmWebApp::WebApp_UpdateCategory()
 {
-    int i = 0;
-    json::Object jsonCategoryList;
-    std::wstringstream jsonCategoryStream;
-    wxString outputMessage, SubCategoryName;
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-    wxString UpdateCategoryUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportCategory + "=true";
+    json_writer.StartObject();
+    json_writer.Key("Categories");
 
-    mmWebApp::WebApp_DeleteAllCategory();
-
+    json_writer.StartArray();
     const auto &categories = Model_Category::instance().all();
     for (const Model_Category::Data& category : categories)
     {
-        bool FirstCategoryRun = true;
-        bool SubCategoryFound = false;
-        jsonCategoryList[L"Categories"][i][L"CategoryName"] = json::String(category.CATEGNAME.ToStdWstring());
+        bool first_category_run = true;
+        bool sub_category_found = false;
+
+        json_writer.StartObject();
+        json_writer.Key("CategoryName");
+        json_writer.String(category.CATEGNAME);
+
         for (const auto &sub_category : Model_Category::sub_category(category))
         {
-            SubCategoryFound = true;
-            if (FirstCategoryRun == true)
+            sub_category_found = true;
+            if (first_category_run == true)
             {
-                jsonCategoryList[L"Categories"][i][L"SubCategoryName"] = json::String(sub_category.SUBCATEGNAME.ToStdWstring());
-                i++;
-                FirstCategoryRun = false;
+                json_writer.Key("SubCategoryName");
+                json_writer.String(sub_category.SUBCATEGNAME);
+                json_writer.EndObject();
+
+                first_category_run = false;
             }
             else
             {
-                jsonCategoryList[L"Categories"][i][L"CategoryName"] = json::String(category.CATEGNAME.ToStdWstring());
-                jsonCategoryList[L"Categories"][i][L"SubCategoryName"] = json::String(sub_category.SUBCATEGNAME.ToStdWstring());
-                i++;
-                FirstCategoryRun = false;
+                json_writer.StartObject();
+                json_writer.Key("CategoryName");
+                json_writer.String(category.CATEGNAME);
+
+                json_writer.Key("SubCategoryName");
+                json_writer.String(sub_category.SUBCATEGNAME);
+                json_writer.EndObject();
+
+                first_category_run = false;
             }
         }
 
-        if (SubCategoryFound == false)
-            jsonCategoryList[L"Categories"][i][L"SubCategoryName"] = json::String(L"None");
-        else
-            i--;
-
-        i++;
+        if (sub_category_found == false)
+        {
+            json_writer.Key("SubCategoryName");
+            json_writer.String("None");
+            json_writer.EndObject();
+        }
     }
 
-    json::Writer::Write(jsonCategoryList, jsonCategoryStream);
-    wxString CategoryList = jsonCategoryStream.str();
+    json_writer.EndArray();
+    json_writer.EndObject();
 
-    int ErrorCode = mmWebApp::WebApp_SendJson(UpdateCategoryUrl, CategoryList, outputMessage);
+    mmWebApp::WebApp_DeleteAllCategory();
+    wxString update_category_url = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportCategory + "=true";
+    wxString category_list = json_buffer.GetString();
+    wxString output_message;
+    int error_code = mmWebApp::WebApp_SendJson(update_category_url, category_list, output_message);
 
-    return mmWebApp::returnResult(ErrorCode, outputMessage);
+    return mmWebApp::returnResult(error_code, output_message);
 }
 
 //Download new transactions
