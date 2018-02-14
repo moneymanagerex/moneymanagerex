@@ -103,7 +103,7 @@ private:
     void OnMenuSelected(wxCommandEvent& event);
     bool SetBaseCurrency(int& baseCurrencyID);
 	bool GetOnlineRates(wxString &msg, int curr_id = -1);
-	bool GetOnlineHistory(wxString &msg, wxString &symbol);
+	bool GetOnlineHistory(std::vector<CurrencyHistoryRate> &CurrencyHistoryRatesList, wxString &symbol, wxString &msg);
 
     wxDataViewListCtrl* currencyListBox_;
     std::map<int, wxString> ColName_;
