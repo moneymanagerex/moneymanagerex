@@ -731,7 +731,6 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 		return false;
 	}
 
-	wxString site = mmex::weblink::YahooQuotes;
 	wxString sOutput;
 	wxString buffer = wxEmptyString;
 
@@ -744,16 +743,16 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 		if (!symbol.IsEmpty()) buffer << symbol << base_symbol << "=X,";
 	}
 	if (buffer.Right(1).Contains(",")) buffer.RemoveLast(1);
-	site = wxString::Format(site, buffer);
 
-	auto err_code = site_content(site, sOutput);
+	const wxString URL = wxString::Format(mmex::weblink::YahooQuotes
+		, buffer);
+
+	auto err_code = site_content(URL, sOutput);
 	if (err_code != CURLE_OK)
 	{
 		msg = sOutput;
 		return false;
 	}
-
-	std::map<wxString, double> currency_data;
 
 	std::wstringstream ss;
 	ss << sOutput.ToStdWstring();
@@ -761,23 +760,24 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 	json::Reader::Read(o, ss);
 
 	json::Object r = o[L"quoteResponse"];
-	wxString error = wxString(json::String(r[L"error"]));
-	if (!error.empty()) return false;
+	//TODO:     "error": null
+	//bool error = json::Boolean(r[L"error"]);
+	//if (!error) return false;
 
 	json::Array e = r[L"result"];
 
+	std::map<wxString, double> currency_data;
 	for (int i = 0; i < e.Size(); i++) {
-		const json::Object test = e[i];
-		//if (test.Size() < 17) continue;
-		wxString CurrencySymbol = wxString(json::String(test[L"symbol"]).Value());
+		const json::Object symbol = e[i];
+		wxString currency_symbol = wxString(json::String(symbol[L"symbol"]).Value());
 
 		wxRegEx pattern("^(...)...=X$");
-		if (pattern.Matches(CurrencySymbol)) {
-			CurrencySymbol = pattern.GetMatch(CurrencySymbol, 1);
-			const auto price = test[L"regularMarketPrice"];
+		if (pattern.Matches(currency_symbol)) {
+			currency_symbol = pattern.GetMatch(currency_symbol, 1);
+			const auto price = symbol[L"regularMarketPrice"];
 			const auto rate = json::Number(price).Value();
-			wxLogDebug("item: %d %s %.2f", i, CurrencySymbol, rate);
-			currency_data[CurrencySymbol] = (rate <= 0 ? 1 : rate);
+			wxLogDebug("item: %d %s %.2f", i, currency_symbol, rate);
+			currency_data[currency_symbol] = (rate <= 0 ? 1 : rate);
 		}
 	}
 
@@ -826,45 +826,69 @@ bool mmMainCurrencyDialog::GetOnlineHistory(wxString &msg, wxString &symbol)
 		return false;
 	}
 
-	const wxString site = wxString::Format(mmex::weblink::YahooQuotesHistory
+	const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
 		, wxString::Format("%s%s=X", symbol, base_symbol)
 		, "1y", "1d");
 	
 	wxString sOutput;
-	auto err_code = site_content(site, sOutput);
+	auto err_code = site_content(URL, sOutput);
 	if (err_code != CURLE_OK)
 	{
 		msg = sOutput;
 		return false;
 	}
 
-	std::map<double, double> currency_hist;
-
 	std::wstringstream ss;
 	ss << sOutput.ToStdWstring();
 	json::Object o;
 	json::Reader::Read(o, ss);
 
-	json::Object r = o[L"chart"]; //result error
-	wxString error = wxString(json::String(r[L"error"]));
-	if (!error.empty()) return false;
+	json::Object r = o[L"chart"]; 
+	//TODO:
+	//bool error = (json::Null(r[L"error"]) == NULL);
+	//if (!error) return false;
 
 	json::Object result = r[L"result"][0]; //meta timestamp indicators
 	json::Array timestamp = result[L"timestamp"];
 	json::Object indicators = result[L"indicators"];
 	json::Array quote = indicators[L"quote"][0][L"close"];
 
+	wxASSERT(timestamp.Size() == quote.Size());
+
+	std::map<double, double> history;
 	for (int i = 0; i < timestamp.Size(); ++i)
 	{
 		const time_t time = json::Number(timestamp[i]).Value();
 		double rate = json::Number(quote[i]).Value();
-		//wxString date = asctime(gmtime(&time));
-		struct tm *tm = localtime(&time);
-		char date[20];
-		strftime(date, sizeof(date), "%Y-%m-%d", tm);
-		const wxString date_str = wxString::FromUTF8(date);
-		wxLogDebug("date: %s price: %.2f", date_str, rate);
+		history[time] = rate;
 	}
 
-	return false;
+	const wxString today = wxDate::Today().FormatISODate();
+	Model_CurrencyHistory::instance().Savepoint();
+	for (const auto &entry : history)
+	{
+
+		double dPrice = entry.second;
+		const wxString date_str = wxDateTime((time_t)entry.first).FormatISODate();
+		if (date_str == today) continue;
+
+		if (Model_StockHistory::instance()
+			.find(
+				Model_StockHistory::SYMBOL(symbol)
+				, Model_StockHistory::DB_Table_STOCKHISTORY_V1::DATE(date_str)
+			).size() == 0
+			&& dPrice > 0
+			)
+		{
+			Model_CurrencyHistory::Data *data = Model_CurrencyHistory::instance().create();
+			data->CURRENCYID = m_currency_id;
+			data->CURRDATE = date_str;
+			data->CURRVALUE = dPrice;
+			data->CURRUPDTYPE = Model_CurrencyHistory::ONLINE;
+			Model_CurrencyHistory::instance().save(data);
+		}
+	}
+	Model_CurrencyHistory::instance().ReleaseSavepoint();
+
+	return true;
 }

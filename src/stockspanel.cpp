@@ -826,10 +826,10 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     }
 
     //Symbol, (Amount, Name)
-    std::map<wxString, double > stocks_data;
     wxString site = "";
 
-    Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
+	std::map<wxString, double > stocks_data;
+	Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
     for (const auto &stock : stock_list)
     {
         const wxString symbol = stock.SYMBOL.Upper();
@@ -856,28 +856,22 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
         return false;
     }
 
-    //--//
-    wxString stock_symbol_with_suffix, stock_quote_currency;
-    double dPrice = 0.0;
-
 	std::wstringstream ss;
 	ss << sOutput.ToStdWstring();
 	json::Object o;
 	json::Reader::Read(o, ss);
 
 	json::Object r = o[L"quoteResponse"];
-	wxString error = wxString(json::String(r[L"error"]));
-	if (!error.empty()) return false;
+	//TODO: 
+	//bool error = json::Boolean(r[L"error"]);
+	//if (!error) return false;
 
 	json::Array e = r[L"result"];
 
 	for (int i = 0; i < e.Size(); i++) {
-		const json::Object test = e[i];
-		//if (test.Size() < 17) continue;
-		const wxString symbol = wxString(json::String(test[L"symbol"]).Value());
-
-		const auto price = test[L"regularMarketPrice"];
-		const auto rate = json::Number(price).Value();
+		const json::Object entry = e[i];
+		const wxString symbol = wxString(json::String(entry[L"symbol"]).Value());
+		double rate = json::Number(entry[L"regularMarketPrice"]).Value();
 		wxLogDebug("item: %d %s %.2f", i, symbol, rate);
 		stocks_data[symbol] = (rate <= 0 ? 1 : rate);
 	}
@@ -892,7 +886,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     {
         std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
         if (it == stocks_data.end()) continue;
-        dPrice = it->second;
+        double dPrice = it->second;
 
         if (dPrice != 0)
         {

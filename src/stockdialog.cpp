@@ -731,7 +731,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 
     }
 
-	wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
+	const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
 		, m_stock->SYMBOL, range, interval);
 
 	wxLogDebug("URL:%s", URL);
@@ -743,8 +743,6 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 		mmErrorDialogs::MessageError(this, sOutput, _("Stock History Error"));
 		return;
 	}
-
-	std::map<time_t, double> stock_hist;
 
 	std::wstringstream ss;
 	ss << sOutput.ToStdWstring();
@@ -760,34 +758,31 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 	json::Object indicators = result[L"indicators"];
 	json::Array quote = indicators[L"quote"][0][L"close"];
 
+	wxASSERT(timestamp.Size() == quote.Size());
+
+	std::map<time_t, double> history;
 	for (int i = 0; i < timestamp.Size(); ++i)
 	{
-		const time_t time = json::Number(timestamp[i]).Value();
+		time_t time = json::Number(timestamp[i]).Value();
 		double rate = json::Number(quote[i]).Value();
-		//wxString date = asctime(gmtime(&time));
-		struct tm *tm = localtime(&time);
-		char date[20];
-		strftime(date, sizeof(date), "%Y-%m-%d", tm);
-		const wxString date_str = wxString::FromUTF8(date);
-		wxLogDebug("date: %s price: %.2f", date_str, rate);
-		stock_hist[time] = rate;
+		history[time] = rate;
 	}
 
-
+	const wxString today = wxDate::Today().FormatISODate();
     Model_StockHistory::instance().Savepoint();
-    for (const auto &entry: stock_hist)
+    for (const auto &entry: history)
     {
 		double dPrice = entry.second;
-		struct tm *tm = localtime(&entry.first);
-		char date[20];
-		strftime(date, sizeof(date), "%Y-%m-%d", tm);
-		const wxString date_str = wxString::FromUTF8(date);
+		const wxString date_str = wxDateTime((time_t)entry.first).FormatISODate();
+		if (date_str == today) continue;
 
-		if (Model_StockHistory::instance().find(
-			Model_StockHistory::SYMBOL(m_stock->SYMBOL),
-			Model_StockHistory::DB_Table_STOCKHISTORY_V1::DATE(date_str)
-		).size() == 0
-			&& dPrice > 0)
+		if (Model_StockHistory::instance()
+			    .find(
+			        Model_StockHistory::SYMBOL(m_stock->SYMBOL)
+			        , Model_StockHistory::DB_Table_STOCKHISTORY_V1::DATE(date_str)
+		        ).size() == 0
+			    && dPrice > 0
+			)
 		{
 			Model_StockHistory::Data *data = Model_StockHistory::instance().create();
 			data->SYMBOL = m_stock->SYMBOL;
