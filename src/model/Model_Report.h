@@ -51,7 +51,7 @@ public:
     static Model_Report& instance();
 
 public:
-    bool get_objects_from_sql(const wxString& query, json::Object& o);
+    bool get_objects_from_sql(const wxString& query, PrettyWriter<StringBuffer>& json_writer);
     wxArrayString allGroupNames();
     wxString get_html(const Data* r);
     wxString get_html(const Data& r);

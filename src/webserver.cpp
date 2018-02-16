@@ -28,10 +28,6 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 
-#include "cajun/json/elements.h"
-#include "cajun/json/reader.h"
-#include "cajun/json/writer.h"
-
 static struct mg_serve_http_opts s_http_server_opts;
 
 static void handle_sql(struct mg_connection* nc, struct http_message* hm)
@@ -40,23 +36,31 @@ static void handle_sql(struct mg_connection* nc, struct http_message* hm)
     mg_get_http_var(&hm->query_string, "query", query, sizeof(query));
     std::cout<<query<<std::endl;
 
-    json::Object result;
-    result[L"query"] = json::String(wxString(query).ToStdWstring());
-    bool ret = Model_Report::instance().get_objects_from_sql(wxString(query), result); 
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+    json_writer.StartObject();
+
+    json_writer.Key("query");
+    json_writer.String(wxString(query));
+
+    bool ret = Model_Report::instance().get_objects_from_sql(wxString(query), json_writer);
 
     for (const auto & r : Model_Setting::instance().all())
     {
-        result[r.SETTINGNAME.ToStdWstring()] = json::String(r.SETTINGVALUE.ToStdWstring());
+        json_writer.Key(r.SETTINGNAME);
+        json_writer.String(r.SETTINGVALUE);
     }
 
     for (const auto & r : Model_Infotable::instance().all())
     {
-        result[r.INFONAME.ToStdWstring()] = json::String(r.INFOVALUE.ToStdWstring());
+        json_writer.Key(r.INFONAME);
+        json_writer.String(r.INFOVALUE);
     }
-     
-    std::wstringstream ss;
-    json::Writer::Write(result, ss);
-    std::wstring str = ss.str();
+    
+    json_writer.EndObject();
+
+    wxString str = json_buffer.GetString();
     std::cout<<str<<std::endl;
 
     mg_printf(nc, "HTTP/1.1 200 OK\r\n"

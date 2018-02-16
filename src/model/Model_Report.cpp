@@ -75,7 +75,7 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
     return ins;
 }
 
-bool Model_Report::get_objects_from_sql(const wxString& query, json::Object& o)
+bool Model_Report::get_objects_from_sql(const wxString& query, PrettyWriter<StringBuffer>& json_writer)
 {
     wxSQLite3Statement stmt;
     try
@@ -83,24 +83,28 @@ bool Model_Report::get_objects_from_sql(const wxString& query, json::Object& o)
         stmt = this->db_->PrepareStatement(query);
         if (!stmt.IsReadOnly())
         {
-            o[L"msg"] = json::String(L"the sql is not readonly");
+            json_writer.Key("msg");
+            json_writer.String("the sql is not readonly");
             return false;
         }
     }
     catch (const wxSQLite3Exception& e)
     {
-        o[L"msg"] = json::String(e.GetMessage().ToStdWstring());
+        json_writer.Key("msg");
+        json_writer.String(e.GetMessage());
         return false;
     }
 
     try
     {
-        json::Array results;
+        json_writer.Key("results");
+        json_writer.StartArray();
+
         wxSQLite3ResultSet q = stmt.ExecuteQuery();
         int columns = q.GetColumnCount();
         while (q.NextRow())
         {
-            json::Object r;
+            json_writer.StartObject();
 
             for (int i = 0; i < columns; ++i)
             {
@@ -108,26 +112,29 @@ bool Model_Report::get_objects_from_sql(const wxString& query, json::Object& o)
 
                 switch (q.GetColumnType(i))
                 {
+                    json_writer.Key(column_name);
                     case WXSQLITE_INTEGER:
-                        r[column_name.ToStdWstring()] = json::Number(q.GetInt(i));
+                        json_writer.Int(q.GetInt(i));
                         break;
                     case WXSQLITE_FLOAT:
-                        r[column_name.ToStdWstring()] = json::Number(q.GetDouble(i));
+                        json_writer.Double(q.GetDouble(i));
                         break;
                     default:
-                        r[column_name.ToStdWstring()] = json::String(q.GetString(i).ToStdWstring());
+                        json_writer.String(q.GetString(i));
                         break;
                 }
             }
 
-            results.Insert(r);
+            json_writer.EndObject();
         }
         q.Finalize();
-        o[L"results"] = results;
+
+        json_writer.EndArray();
     }
     catch (const wxSQLite3Exception& e)
     {
-        o[L"msg"] = json::String(e.GetMessage().ToStdWstring());
+        json_writer.Key("msg");
+        json_writer.String(e.GetMessage());
         return false;
     }
 
