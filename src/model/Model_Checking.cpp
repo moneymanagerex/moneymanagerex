@@ -533,38 +533,31 @@ const wxString Model_Checking::Full_Data::to_json()
         json_writer.String(this->PAYEENAME);
     }
     
+    if (this->has_split())
+    {
+        json_writer.Key("CATEGS");
+        json_writer.StartArray();
+        for (const auto & item : m_splits)
+        {
+            json_writer.StartObject();
+            json_writer.Key(Model_Category::full_name(item.CATEGID, item.SUBCATEGID));
+            json_writer.Double(item.SPLITTRANSAMOUNT);
+            json_writer.EndObject();
+        }
+        json_writer.EndArray();
+    }
+    else
+    {
+        json_writer.Key("CATEG");
+        json_writer.String(Model_Category::full_name(this->CATEGID, this->SUBCATEGID));
+    }
+
     json_writer.EndObject();
 
     wxLogDebug("======= Model_Checking::FullData::to_json =======");
-    wxLogDebug("%s", json_buffer.GetString());
-
-    json::Object o;
-//    Model_Checking::Data::to_json(o);
-    o[L"ACCOUNTNAME"] = json::String(this->ACCOUNTNAME.ToStdWstring());
-    if (is_transfer(this))
-        o[L"TOACCOUNTNAME"] = json::String(this->TOACCOUNTNAME.ToStdWstring());
-    else
-        o[L"PAYEENAME"] = json::String(this->PAYEENAME.ToStdWstring());
-
-    if (this->has_split())
-    {
-        json::Array a;
-        for (const auto & item : m_splits)
-        {
-            json::Object s;
-            const std::wstring categ = Model_Category::full_name(item.CATEGID, item.SUBCATEGID).ToStdWstring();
-            s[categ] = json::Number(item.SPLITTRANSAMOUNT);
-            a.Insert(s);
-        }
-        o[L"CATEGS"] = json::Array(a);
-    }
-    else
-        o[L"CATEG"] = json::String(Model_Category::full_name(this->CATEGID, this->SUBCATEGID).ToStdWstring());
-
-    std::wstringstream ss;
-    json::Writer::Write(o, ss);
-
-    return ss.str();
+    wxLogDebug("FullData using rapidjson:\n%s", json_buffer.GetString());
+    
+    return json_buffer.GetString();
 }
 
 const bool Model_Checking::foreignTransaction(const Data& data)
