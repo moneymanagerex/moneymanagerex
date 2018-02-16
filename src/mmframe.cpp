@@ -76,10 +76,6 @@
 #include <wx/fs_mem.h>
 #include <stack>
 
-#include "cajun/json/elements.h"
-#include "cajun/json/reader.h"
-#include "cajun/json/writer.h"
-
 //----------------------------------------------------------------------------
 
 int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds

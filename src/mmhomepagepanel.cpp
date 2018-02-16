@@ -33,10 +33,6 @@ Copyright (C) 2014 Nikolay
 
 #include "model/allmodel.h"
 
-#include "cajun/json/elements.h"
-#include "cajun/json/reader.h"
-#include "cajun/json/writer.h"
-
 static const wxString TOP_CATEGS = R"(
 <table class = 'table'>
   <tr class='active'>
