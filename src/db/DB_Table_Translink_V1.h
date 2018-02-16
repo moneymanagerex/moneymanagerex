@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-04 00:24:26.427000.
+ *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,18 +27,23 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-//        std::wstring to_json(json::Array& a) const
-//        {
-//            for (const auto & item: *this)
-//            {
-//                json::Object o;
-//                item.to_json(o);
-//                a.Insert(o);
-//            }
-//            std::wstringstream ss;
-//            json::Writer::Write(a, ss);
-//            return ss.str();
-//        }
+        /**Return the data records as a json array string */
+        wxString to_json() const
+        {
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+            json_writer.StartArray();
+            for (const auto & item: *this)
+            {
+                json_writer.StartObject();
+                item.as_json(json_writer);
+                json_writer.EndObject();
+            }
+            json_writer.EndArray();
+
+            return json_buffer.GetString();
+        }
     };
 
     /** A container to hold a list of Data record pointers for the table in memory*/
