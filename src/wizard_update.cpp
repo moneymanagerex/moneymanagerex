@@ -28,18 +28,18 @@ wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxWizard)
     EVT_WIZARD_PAGE_CHANGED(wxID_ANY, mmUpdateWizard::PageChanged)
 wxEND_EVENT_TABLE()
 
-mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const wxString& NewVersion)
+mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const wxString& new_version)
     : wxWizard(frame, wxID_ANY, _("Update Wizard")
     , wxBitmap(wxNullBitmap), wxDefaultPosition, wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER)
-    , NewVersion()
+    , m_new_version()
 {
-    mmUpdateWizard::NewVersion = NewVersion;
+    mmUpdateWizard::m_new_version = new_version;
     page1 = new wxWizardPageSimple(this);
 
     const wxString displayMsg = wxString()
         << _("A new version of MMEX is available!") << "\n\n"
         << wxString::Format(_("Your version is %s"), mmex::version::string) << "\n"
-        << wxString::Format(_("New version is %s"), NewVersion) << "\n\n\n"
+        << wxString::Format(_("New version is %s"), m_new_version) << "\n\n\n"
         << _("Click on finish to open our website and download.") << "\n\n";
         //<< _("Click on next to download it now or visit our website to download.") << "\n\n"; //TODO: Download file in wizard page2
     
@@ -103,38 +103,45 @@ wxEND_EVENT_TABLE()
 
 mmUpdateWizardPage2::mmUpdateWizardPage2(mmUpdateWizard* parent)
     : wxWizardPageSimple(parent)
-    , parent_(parent)
 {
-    wxString strLinks, InstallerType;
-    site_content(mmex::weblink::UpdateLinks, strLinks);
+    wxString json_links, installer_type;
+    site_content(mmex::weblink::UpdateLinks, json_links);
 
-    json::Object jsonLinks;
-    std::wstringstream jsonLinksStream;
-    std::wstring Platform = mmPlatformType().ToStdWstring();
-    std::wstring ReleaseType = L"Stable";
+    Document json_doc;
+    json_doc.Parse(json_links);
 
-    if (parent->NewVersion.Contains("-"))
-        ReleaseType = L"Unstable";
+    wxLogDebug("======= mmUpdateWizardPage2::mmUpdateWizardPage2 =======");
+    wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
 
-    jsonLinksStream << strLinks.ToStdWstring();
-    json::Reader::Read(jsonLinks, jsonLinksStream);
+    wxString platform = mmPlatformType();
+    wxString release_type = "Stable";
 
-    if (Platform != "Win")
-        InstallerType = "Setup";
+    if (parent->m_new_version.Contains("-"))
+    {
+        release_type = "Unstable";
+    }
+
+    if (platform != "Win")
+        installer_type = "Setup";
     else
     {
         if (mmex::isPortableMode())
-            InstallerType = "Portable";
+            installer_type = "Portable";
         else
-            InstallerType = "Setup";
+            installer_type = "Setup";
         #if _WIN64
-            InstallerType.Append("64");
+            installer_type.Append("64");
         #else
-            InstallerType.Append("32");
+            installer_type.Append("32");
         #endif
     }
 
-    DownloadURL = wxString(json::String(jsonLinks[ReleaseType][Platform][InstallerType.ToStdWstring()]));
+    auto& json_doc_allocator = json_doc.GetAllocator();
+    Value v_release_type(release_type, json_doc_allocator);
+    Value v_platform(platform, json_doc_allocator);
+    Value v_installer_type(installer_type, json_doc_allocator);
+
+    m_download_url = json_doc[v_release_type][v_platform][v_installer_type].GetString();
 
     wxBoxSizer *page2_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -151,7 +158,7 @@ mmUpdateWizardPage2::mmUpdateWizardPage2(mmUpdateWizard* parent)
 void mmUpdateWizardPage2::OnDownload()
 {
     wxGauge* progressBar = (wxGauge*)FindWindow(wxID_SAVE);
-    wxURL url(DownloadURL);
+    wxURL url(m_download_url);
     wxInputStream *in = url.GetInputStream();
     if (in && in->IsOk())
     {
@@ -204,25 +211,25 @@ void mmUpdateWizardPage2::OnDownload()
 //--------------
 //mmUpdate Class
 //--------------
-const bool mmUpdate::IsUpdateAvailable(const bool bSilent, wxString& NewVersion)
+const bool mmUpdate::IsUpdateAvailable(const bool bSilent, wxString& new_version)
 {
     bool isUpdateAvailable = false;
-    NewVersion = "error";
+    new_version = "error";
 
-    wxString page;
-    CURLcode err_code = site_content(mmex::weblink::Update, page);
-    if (err_code != CURLE_OK || page.Find("Unstable") == wxNOT_FOUND)
+    wxString json_links;
+    CURLcode err_code = site_content(mmex::weblink::Update, json_links);
+    if (err_code != CURL_OK || json_links.Find("Unstable") == wxNOT_FOUND)
     {
         if (bSilent)
             return false;
         else
         {
-            if (page == wxEmptyString)
-                page = "Page not found";
+            if (json_links == wxEmptyString)
+                json_links = "Page not found";
 
             const wxString& msgStr = wxString::Format("%s\n\n%s"
                 , _("Unable to check for updates!")
-                , wxString::Format(_("Error: %s"), "\n" + page));
+                , wxString::Format(_("Error: %s"), "\n" + json_links));
             wxMessageBox(msgStr, _("MMEX Update Check"));
             return false;
         }
@@ -231,16 +238,16 @@ const bool mmUpdate::IsUpdateAvailable(const bool bSilent, wxString& NewVersion)
     /*************************************************************************
     Sample JSON:
     {
-    "Stable": {
-    "Win": {"Major": 1, "Minor": 2, "Patch": 0},
-    "Uni": {"Major": 1, "Minor": 2, "Patch": 0},
-    "Mac": {"Major": 1, "Minor": 2, "Patch": 0}
-    },
-    "Unstable": {
-    "Win": {"Major": 1, "Minor": 3, "Patch": 0, "Alpha": 0, "Beta": 0, "RC": 1},
-    "Uni": {"Major": 1, "Minor": 3, "Patch": 0, "Alpha": 0, "Beta": 0, "RC": 1},
-    "Mac": {"Major": 1, "Minor": 3, "Patch": 0, "Alpha": 0, "Beta": 0, "RC": 1}
-    }
+      "Stable": {
+        "Win": {"Major": 1, "Minor": 2, "Patch": 0},
+        "Uni": {"Major": 1, "Minor": 2, "Patch": 0},
+        "Mac": {"Major": 1, "Minor": 2, "Patch": 0}
+      },
+      "Unstable": {
+        "Win": {"Major": 1, "Minor": 3, "Patch": 0, "Alpha": 0, "Beta": 0, "RC": 1},
+        "Uni": {"Major": 1, "Minor": 3, "Patch": 0, "Alpha": 0, "Beta": 0, "RC": 1},
+        "Mac": {"Major": 1, "Minor": 3, "Patch": 0, "Alpha": 0, "Beta": 0, "RC": 1}
+      }
     }
 
     ************
@@ -250,32 +257,39 @@ const bool mmUpdate::IsUpdateAvailable(const bool bSilent, wxString& NewVersion)
     insert in unstable the same version number of stable with Alpha\Beta\RC= -1
     **************************************************************************/
 
-    json::Object jsonVersion;
-    std::wstringstream jsonVersionStream;
-    std::wstring platform = mmPlatformType().ToStdWstring();
-    std::wstring ReleaseType = L"Stable";
+    wxString platform_type = mmPlatformType();
+    wxString release_type = "Stable";
 
     int alpha = -1;
     int beta = -1;
     int rc = -1;
 
-    if (!(page.StartsWith("{") && page.EndsWith("}")))
+    Document json_doc;
+    if (json_doc.Parse(json_links).HasParseError())
+    {
         return false;
-    jsonVersionStream << page.ToStdWstring();
-    json::Reader::Read(jsonVersion, jsonVersionStream);
+    }
 
+    wxLogDebug("======= mmUpdate::IsUpdateAvailable =======");
+    wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
+
+    auto& json_doc_allocator = json_doc.GetAllocator();
+    Value key_platform_type(platform_type, json_doc_allocator);
     if (Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 1
         || mmex::version::Alpha != -1 || mmex::version::Beta != -1 || mmex::version::RC != -1)
     {
-        ReleaseType = L"Unstable";
-        alpha = int(json::Number(jsonVersion[ReleaseType][platform][L"Alpha"]));
-        beta = int(json::Number(jsonVersion[ReleaseType][platform][L"Beta"]));
-        rc = int(json::Number(jsonVersion[ReleaseType][platform][L"RC"]));
+        release_type = "Unstable";
+        Value key_release_type(release_type, json_doc_allocator);
+        alpha = json_doc[key_release_type][key_platform_type]["Alpha"].GetInt();
+        beta = json_doc[key_release_type][key_platform_type]["Beta"].GetInt();
+        rc = json_doc[key_release_type][key_platform_type]["RC"].GetInt();
     }
 
-    int major = int(json::Number(jsonVersion[ReleaseType][platform][L"Major"]));
-    int minor = int(json::Number(jsonVersion[ReleaseType][platform][L"Minor"]));
-    int patch = int(json::Number(jsonVersion[ReleaseType][platform][L"Patch"]));
+    // Value needs to be redefined due to release_type value change.
+    Value key_release_type(release_type, json_doc_allocator);
+    int major = json_doc[key_release_type][key_platform_type]["Major"].GetInt();
+    int minor = json_doc[key_release_type][key_platform_type]["Minor"].GetInt();
+    int patch = json_doc[key_release_type][key_platform_type]["Patch"].GetInt();
 
     if (major > mmex::version::Major)
         isUpdateAvailable = true;
@@ -287,7 +301,7 @@ const bool mmUpdate::IsUpdateAvailable(const bool bSilent, wxString& NewVersion)
         {
             if (patch > mmex::version::Patch)
                 isUpdateAvailable = true;
-            else if (patch == mmex::version::Patch && ReleaseType == L"Unstable")
+            else if (patch == mmex::version::Patch && release_type == "Unstable")
             {
                 if ((mmex::version::Alpha != -1 || mmex::version::Beta != -1 || mmex::version::RC != -1)
                     && alpha == -1 && beta == -1 && rc == -1)
@@ -307,9 +321,9 @@ const bool mmUpdate::IsUpdateAvailable(const bool bSilent, wxString& NewVersion)
 
     // define new version
     if (isUpdateAvailable)
-        NewVersion = mmex::version::generateProgramVersion(major, minor, patch, alpha, beta, rc);
+        new_version = mmex::version::generateProgramVersion(major, minor, patch, alpha, beta, rc);
     else
-        NewVersion = mmex::version::string;
+        new_version = mmex::version::string;
 
     return isUpdateAvailable;
 }
