@@ -28,14 +28,6 @@
 class wxDatePickerCtrl;
 class mmTextCtrl;
 
-struct CurrencyHistoryRate
-{
-    wxString BaseCurrency;
-    wxDateTime Date;
-    wxString Currency;
-    double Rate;
-};
-
 class mmMainCurrencyDialog: public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmMainCurrencyDialog);
@@ -103,7 +95,7 @@ private:
     void OnMenuSelected(wxCommandEvent& event);
     bool SetBaseCurrency(int& baseCurrencyID);
 	bool GetOnlineRates(wxString &msg, int curr_id = -1);
-	bool GetOnlineHistory(std::vector<CurrencyHistoryRate> &CurrencyHistoryRatesList, wxString &symbol, wxString &msg);
+	bool GetOnlineHistory(std::map<wxDateTime, double> &historical_rates, const wxString &symbol, wxString &msg);
 
     wxDataViewListCtrl* currencyListBox_;
     std::map<int, wxString> ColName_;
@@ -116,6 +108,7 @@ private:
     mmTextCtrl* valueTextBox_;
     wxStaticBox* historyStaticBox_;
     wxButton* historyButtonAdd_;
+	wxBitmapButton* m_button_download_history;
     wxButton* historyButtonDelete_;
 
     int m_currency_id;
