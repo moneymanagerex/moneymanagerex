@@ -798,21 +798,21 @@ void mmStocksPanel::OnOpenAttachment(wxCommandEvent& event)
 
 void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
 {
-    wxString sError = "";
-    if (onlineQuoteRefresh(sError))
+    wxString output = "";
+    if (onlineQuoteRefresh(output))
     {
         const wxString header = _("Stock prices successfully updated");
         stock_details_->SetLabelText(header);
         stock_details_short_->SetLabelText(wxString::Format(_("Last updated %s"), strLastUpdate_));
-        wxMessageDialog msgDlg(this, sError, header);
+        wxMessageDialog msgDlg(this, output, header);
         msgDlg.ShowModal();
     }
     else
     {
         refresh_button_->SetBitmapLabel(mmBitmap(png::LED_RED));
-        stock_details_->SetLabelText(sError);
+        stock_details_->SetLabelText(output);
         stock_details_short_->SetLabelText(_("Error"));
-        mmErrorDialogs::MessageError(this, sError, _("Error"));
+        mmErrorDialogs::MessageError(this, output, _("Error"));
     }
 }
 
@@ -894,6 +894,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
             if (s.STOCKNAME.empty()) s.STOCKNAME = s.SYMBOL;
             Model_Stock::instance().save(&s);
             Model_StockHistory::instance().addUpdate(s.SYMBOL, wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
+			sError += wxString::Format("%s %.2f\n", s.SYMBOL, dPrice);
         }
     }
 
