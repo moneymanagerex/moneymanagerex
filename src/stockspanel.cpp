@@ -893,7 +893,8 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
             s.CURRENTPRICE = dPrice;
             if (s.STOCKNAME.empty()) s.STOCKNAME = s.SYMBOL;
             Model_Stock::instance().save(&s);
-            Model_StockHistory::instance().addUpdate(s.SYMBOL, wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
+            Model_StockHistory::instance().addUpdate(s.SYMBOL
+				, wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
 			sError += wxString::Format("%s %.2f\n", s.SYMBOL, dPrice);
         }
     }

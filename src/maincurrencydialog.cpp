@@ -128,6 +128,7 @@ void mmMainCurrencyDialog::fillControls()
             currencyListBox_->SelectRow(selectedIndex_);
             itemButtonEdit_->Enable();
         }
+		m_button_download_history->Enable(baseCurrencyID == currencyID);
     }
 
     //Ensure that the selected item is visible.
@@ -391,7 +392,9 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
             currName = currency->CURRENCYNAME;
             itemButtonEdit_->Enable();
         }
+		m_button_download_history->Enable(currency->CURRENCYID != Model_Currency::GetBaseCurrency()->CURRENCYID);
     }
+
     if (!bEnableSelect_)    // prevent user deleting currencies when editing accounts.
     {
         int baseCurrencyID = Option::instance().BaseCurrency();
