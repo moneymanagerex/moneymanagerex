@@ -676,61 +676,56 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
     if (m_stock->SYMBOL.IsEmpty())
         return;
 
-    //Define frequency
-    enum { DAILY, WEEKLY, MONTHLY };
-    wxArrayString FreqStrs;
-    FreqStrs.Add(_("Days"));
-    FreqStrs.Add(_("Weeks"));
-    FreqStrs.Add(_("Months"));
+	/*"ValidRanges":["1d","5d","1mo","3mo","6mo","1y","2y","5y","10y","ytd","max"]*/
+	enum { DAY5, MON, MON3, MON6, YEAR, YEAR2, YEAR5, YEAR10, YTD, MAX };
+	const wxString ranges[] = { "5d","1mo","3mo","6mo","1y","2y","5y","10y","ytd","max" };
+	const std::vector<std::pair<int, wxString> > RANGE_PAIRS =
+	{
+		{ DAY5, wxString(wxTRANSLATE("5 Days")) }
+		,{ MON, wxString(wxTRANSLATE("1 Month")) }
+		,{ MON3, wxString(wxTRANSLATE("3 Months")) }
+		,{ MON6, wxString(wxTRANSLATE("6 Months")) }
+		,{ YEAR, wxString(wxTRANSLATE("1 Year")) }
+		,{ YEAR2, wxString(wxTRANSLATE("2 Years")) }
+		,{ YEAR5, wxString(wxTRANSLATE("5 Years")) }
+		,{ YEAR10, wxString(wxTRANSLATE("10 Years")) }
+		,{ YTD, wxString(wxTRANSLATE("Current Year to Date")) }
+		,{ MAX, wxString(wxTRANSLATE("Max")) }
+	};
 
-    int freq = wxGetSingleChoiceIndex(_("Specify type frequency of stock history")
-        , _("Stock History Update"), FreqStrs);
+    wxArrayString items;
+	for (const auto& entry : RANGE_PAIRS) { items.Add(entry.second); }
 
-    wxString interval = "1d", range = "1d";
-    switch (freq)
-    {
-    case DAILY: interval = "1d"; break;
-    case WEEKLY: interval = "1wk"; break;
-    case MONTHLY: interval = "1mo"; break;
-    default: return;
-    }
+    int range_menu_item_no = wxGetSingleChoiceIndex(_("Specify type frequency of stock history")
+        , _("Stock History Update"), items);
 
-    int nrPrices = (int) wxGetNumberFromUser(_("Specify how many stock history prices download from purchase date")
-        , wxString::Format(_("Number of %s:"), FreqStrs.Item(freq).Lower()), _("Stock History Update")
-        , 1L, 1L, 9999L, this, wxDefaultPosition);
+	if (range_menu_item_no < 0) return;
+	const wxString range = ranges[range_menu_item_no];
 
-    if (nrPrices <= 0)
-    {
-        return mmErrorDialogs::MessageInvalid(this, FreqStrs[freq]);
-    }
-    else
-    {
-		// ValidRanges:["1d","5d","1mo","3mo","6mo","1y","2y","5y","10y","ytd","max"]
-        if (nrPrices <= 1)
-			range = "1d"; 
-		else if (nrPrices <= 5)
-			range = "5d";
-		else if (nrPrices <= 7)
-			range = "1wk";
-		else if (nrPrices <= 30)
-			range = "1mo";
-		else if (nrPrices <= 90)
-			range = "3mo";
-		else if (nrPrices <= 180)
-			range = "6mo";
-		else if (nrPrices <= 360)
-			range = "1y";
-		else if (nrPrices <= 720)
-			range = "2y";
-		else if (nrPrices <= 1800)
-			range = "5y";
-		else if (nrPrices <= 3600)
-			range = "10y";
-		else if (nrPrices <= 3601)
-			range = "max";
+	wxString interval = "1d";
+	if (range != "5d")
+	{
+		/* Valid intervals : [1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo] */
+		enum { IDAILY, IDAY5, IWEEK, IMON, IMON3 };
+		const wxString intervals[] = { "1d","5d","1wk", "1mo","3mo" };
+		const std::vector<std::pair<int, wxString> > INTERVAL_PAIRS =
+		{
+			{ IDAILY, wxString(wxTRANSLATE("1 Day")) }
+			,{ IDAY5, wxString(wxTRANSLATE("5 Days")) }
+			,{ IWEEK, wxString(wxTRANSLATE("1 Week")) }
+			,{ IMON, wxString(wxTRANSLATE("1 Month")) }
+			,{ IMON3, wxString(wxTRANSLATE("3 Months")) }
+		};
 
-    }
+		items.clear();
+		for (const auto& entry : INTERVAL_PAIRS) { items.Add(entry.second); }
 
+		int interval_menu_item_no = wxGetSingleChoiceIndex(_("Specify interval of stock history")
+			, _("Stock History Update"), items);
+
+		if (interval_menu_item_no < 0) return;
+		interval = intervals[interval_menu_item_no];
+	}
 	const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
 		, m_stock->SYMBOL, range, interval);
 
