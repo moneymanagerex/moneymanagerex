@@ -681,16 +681,16 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 	const wxString ranges[] = { "5d","1mo","3mo","6mo","1y","2y","5y","10y","ytd","max" };
 	const std::vector<std::pair<int, wxString> > RANGE_PAIRS =
 	{
-		{ DAY5, wxString(wxTRANSLATE("5 Days")) }
-		,{ MON, wxString(wxTRANSLATE("1 Month")) }
-		,{ MON3, wxString(wxTRANSLATE("3 Months")) }
-		,{ MON6, wxString(wxTRANSLATE("6 Months")) }
-		,{ YEAR, wxString(wxTRANSLATE("1 Year")) }
-		,{ YEAR2, wxString(wxTRANSLATE("2 Years")) }
-		,{ YEAR5, wxString(wxTRANSLATE("5 Years")) }
-		,{ YEAR10, wxString(wxTRANSLATE("10 Years")) }
-		,{ YTD, wxString(wxTRANSLATE("Current Year to Date")) }
-		,{ MAX, wxString(wxTRANSLATE("Max")) }
+		{ DAY5, _("5 Days") }
+		,{ MON, _("1 Month") }
+		,{ MON3, _("3 Months") }
+		,{ MON6, _("6 Months") }
+		,{ YEAR, _("1 Year") }
+		,{ YEAR2, _("2 Years") }
+		,{ YEAR5, _("5 Years") }
+		,{ YEAR10, _("10 Years") }
+		,{ YTD, _("Current Year to Date") }
+		,{ MAX, _("Max") }
 	};
 
     wxArrayString items;
@@ -710,11 +710,11 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 		const wxString intervals[] = { "1d","5d","1wk", "1mo","3mo" };
 		const std::vector<std::pair<int, wxString> > INTERVAL_PAIRS =
 		{
-			{ IDAILY, wxString(wxTRANSLATE("1 Day")) }
-			,{ IDAY5, wxString(wxTRANSLATE("5 Days")) }
-			,{ IWEEK, wxString(wxTRANSLATE("1 Week")) }
-			,{ IMON, wxString(wxTRANSLATE("1 Month")) }
-			,{ IMON3, wxString(wxTRANSLATE("3 Months")) }
+			{ IDAILY, _("1 Day") }
+			,{ IDAY5, _("5 Days") }
+			,{ IWEEK, _("1 Week") }
+			,{ IMON, _("1 Month") }
+			,{ IMON3, _("3 Months") }
 		};
 
 		items.clear();
