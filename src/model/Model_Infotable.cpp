@@ -118,17 +118,19 @@ int Model_Infotable::GetIntInfo(const wxString& key, int default_value)
 
 wxString Model_Infotable::GetStringInfo(const wxString& key, const wxString& default_value)
 {
+	wxString output = default_value;
     Data* info = this->get_one(INFONAME(key));
     if (info)
-        return info->INFOVALUE;
+        output = info->INFOVALUE;
     else // not cached
     {
         Data_Set items = this->find(INFONAME(key));
         if (!items.empty())
-            return items[0].INFOVALUE;
+             output = items[0].INFOVALUE;
     }
-
-    return default_value;
+	output.Replace("\n", "");
+	output.Replace("\t", "");
+    return output;
 }
 
 const wxColour Model_Infotable::GetColourSetting(const wxString& key, const wxColour& default_value)
