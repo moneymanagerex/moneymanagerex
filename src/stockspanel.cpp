@@ -798,21 +798,21 @@ void mmStocksPanel::OnOpenAttachment(wxCommandEvent& event)
 
 void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
 {
-    wxString sError = "";
-    if (onlineQuoteRefresh(sError))
+    wxString output = "";
+    if (onlineQuoteRefresh(output))
     {
         const wxString header = _("Stock prices successfully updated");
         stock_details_->SetLabelText(header);
         stock_details_short_->SetLabelText(wxString::Format(_("Last updated %s"), strLastUpdate_));
-        wxMessageDialog msgDlg(this, sError, header);
+        wxMessageDialog msgDlg(this, output, header);
         msgDlg.ShowModal();
     }
     else
     {
         refresh_button_->SetBitmapLabel(mmBitmap(png::LED_RED));
-        stock_details_->SetLabelText(sError);
+        stock_details_->SetLabelText(output);
         stock_details_short_->SetLabelText(_("Error"));
-        mmErrorDialogs::MessageError(this, sError, _("Error"));
+        mmErrorDialogs::MessageError(this, output, _("Error"));
     }
 }
 
@@ -826,10 +826,10 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     }
 
     //Symbol, (Amount, Name)
-    std::map<wxString, std::pair<double, wxString> > stocks_data;
     wxString site = "";
 
-    Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
+	std::map<wxString, double > stocks_data;
+	Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
     for (const auto &stock : stock_list)
     {
         const wxString symbol = stock.SYMBOL.Upper();
@@ -837,69 +837,48 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
         {
             if (stocks_data.find(symbol) == stocks_data.end())
             {
-                stocks_data[symbol] = std::make_pair(0, "");
-                site << symbol << "+";
+                stocks_data[symbol] = 0;
+                site << symbol << ",";
             }
         }
     }
-    if (site.Right(1).Contains("+")) site.RemoveLast(1);
 
-    //Sample: http://finance.yahoo.com/d/quotes.csv?s=SBER.ME+GAZP.ME&f=sl1c4n&e=.csv
-    //Sample CSV: "SBER.ME",85.49,"RUB","SBERBANK"
-    site = wxString::Format(mmex::weblink::YahooQuotes, site);
+    if (site.Right(1).Contains(",")) site.RemoveLast(1);
+    const auto URL = wxString::Format(mmex::weblink::YahooQuotes, site);
 
     refresh_button_->SetBitmapLabel(mmBitmap(png::LED_YELLOW));
     stock_details_->SetLabelText(_("Connecting..."));
     wxString sOutput;
 
-    if (site_content(site, sOutput) != CURLE_OK)
+    if (site_content(URL, sOutput) != CURLE_OK)
     {
         sError = sOutput;
         return false;
     }
 
-    //--//
-    wxString stock_symbol_with_suffix, sName, stock_quote_currency;
-    double dPrice = 0.0;
-    int count = 0;
+	std::wstringstream ss;
+	ss << sOutput.ToStdWstring();
+	json::Object o;
+	json::Reader::Read(o, ss);
 
-    wxStringTokenizer tkz(sOutput, "\r\n");
-    while (tkz.HasMoreTokens())
-    {
-        const wxString csvline = tkz.GetNextToken();
-        stock_symbol_with_suffix = "";
-        stock_quote_currency = "";
-        wxRegEx pattern("\"([^\"]+)\",([^,][0-9.]+),\"([^\"]*)\",\"([^\"]*)\"");
-        if (pattern.Matches(csvline))
-        {
-            stock_symbol_with_suffix = pattern.GetMatch(csvline, 1);
-            pattern.GetMatch(csvline, 2).ToDouble(&dPrice);
-            stock_quote_currency = pattern.GetMatch(csvline, 3);
-            sName = pattern.GetMatch(csvline, 4);
-        }
+	json::Object r = o[L"quoteResponse"];
+	//TODO: 
+	//bool error = json::Boolean(r[L"error"]);
+	//if (!error) return false;
 
-        bool updated = !stock_symbol_with_suffix.IsEmpty();
+	json::Array e = r[L"result"];
 
-        /* HACK FOR GBP
-        http://sourceforge.net/p/moneymanagerex/bugs/414/
-        http://sourceforge.net/p/moneymanagerex/bugs/360/
-        1. If the share has GBp as currency, its downloaded value in pence
-        2. If the share has another currency, we don't need to modify the price
-        */
+	for (int i = 0; i < e.Size(); i++) {
+		const json::Object entry = e[i];
+		const wxString symbol = wxString(json::String(entry[L"symbol"]).Value());
+		double rate = json::Number(entry[L"regularMarketPrice"]).Value();
+		const wxString currency = wxString(json::String(entry[L"currency"]).Value());
+		double d = currency == "GBp" ? 100 : 1;
+		wxLogDebug("item: %d %s %.2f %s", i, symbol, rate, currency);
+		stocks_data[symbol] = (rate <= 0 ? 1 : rate/d);
+	}
 
-        if (updated && dPrice > 0)
-        {
-            if (stock_quote_currency == "GBp")
-                dPrice = dPrice / 100;
-            stocks_data[stock_symbol_with_suffix].first = dPrice;
-            stocks_data[stock_symbol_with_suffix].second = sName;
-            sError << wxString::Format(_("%s\t -> %s\n")
-                , stock_symbol_with_suffix, wxString::Format("%0.4f", dPrice));
-            count++;
-        }
-    }
-
-    if (count == 0)
+    if (stocks_data.empty())
     {
         sError = _("Quotes not found");
         return false;
@@ -907,16 +886,18 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
 
     for (auto &s : stock_list)
     {
-        std::map<wxString, std::pair<double, wxString> >::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
+        std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
         if (it == stocks_data.end()) continue;
-        dPrice = it->second.first;
+        double dPrice = it->second;
 
         if (dPrice != 0)
         {
             s.CURRENTPRICE = dPrice;
-            if (s.STOCKNAME.empty()) s.STOCKNAME = it->second.second;
+            if (s.STOCKNAME.empty()) s.STOCKNAME = s.SYMBOL;
             Model_Stock::instance().save(&s);
-            Model_StockHistory::instance().addUpdate(s.SYMBOL, wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
+            Model_StockHistory::instance().addUpdate(s.SYMBOL
+				, wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
+			sError += wxString::Format("%s %.2f\n", s.SYMBOL, dPrice);
         }
     }
 
@@ -1013,13 +994,12 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
 }
 void mmStocksPanel::enableEditDeleteButtons(bool en)
 {
-    wxButton* bN = (wxButton*) FindWindow(wxID_NEW);
     wxButton* bE = (wxButton*) FindWindow(wxID_EDIT);
     wxButton* bA = (wxButton*) FindWindow(wxID_ADD);
     wxButton* bV = (wxButton*)FindWindow(wxID_VIEW_DETAILS);
     wxButton* bD = (wxButton*)FindWindow(wxID_DELETE);
     wxButton* bM = (wxButton*)FindWindow(wxID_MOVE_FRAME);
-    if (bN) bN->Enable(!en);
+
     if (bE) bE->Enable(en);
     if (bA) bA->Enable(en);
     if (bV) bV->Enable(en);
