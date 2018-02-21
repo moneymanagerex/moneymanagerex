@@ -5,7 +5,10 @@ services: [ docker ]
 git: { depth: 10 } # don't clone all history from repo, leave 10 for build queue
 os: linux # default build params for matrix
 compiler: gcc
-cache: ccache
+cache:
+  ccache: true
+  directories:
+    - /usr/local/Cellar/wxmac
 
 env:
   global:
@@ -87,11 +90,8 @@ install: |-
     osx)
       MACOSX_DEPLOYMENT_TARGET=$DIST
       brew update # see travis-ci/travis-ci#8552
-      for p in gettext libtool automake ccache zlib;
-        do brew list $p >/dev/null || brew install --verbose $p; done
-      brew link --force gettext libtool zlib
+      travis_wait 20 brew bundle --verbose --file=util/Brewfile
       ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"
-      brew install --verbose wxmac --with-static --with-stl
       ;;
   esac
   mkdir build && cd build
