@@ -37,7 +37,7 @@ environment:
   curldir: C:\curl-$(curlVer)
   curlStatic: ON
   # wxWidgets config
-  wxVer: 3.1.0
+  wxVer: 3.1.1-rc
   wxwin: C:\wxWidgets-$(wxver)-$(configuration)
   wxShared: 0
   wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxver)
@@ -130,6 +130,7 @@ install:
     cd %wxwin%\build\msw &&
     nmake /nologo /s /f makefile.vc %wxConf% COMPILER_VERSION=%comp%%xp%
       TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% VENDOR=mmex %wxFlags%
+      wxUSE_UNSAFE_WXSTRING_CONV=0
   )
 # libcurl
 - if %configuration%==Debug (
