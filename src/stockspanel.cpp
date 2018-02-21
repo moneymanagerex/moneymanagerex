@@ -844,13 +844,13 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     }
 
     if (site.Right(1).Contains(",")) site.RemoveLast(1);
-    site = wxString::Format(mmex::weblink::YahooQuotes, site);
+    const auto URL = wxString::Format(mmex::weblink::YahooQuotes, site);
 
     refresh_button_->SetBitmapLabel(mmBitmap(png::LED_YELLOW));
     stock_details_->SetLabelText(_("Connecting..."));
     wxString sOutput;
 
-    if (site_content(site, sOutput) != CURLE_OK)
+    if (site_content(URL, sOutput) != CURLE_OK)
     {
         sError = sOutput;
         return false;
@@ -872,8 +872,10 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
 		const json::Object entry = e[i];
 		const wxString symbol = wxString(json::String(entry[L"symbol"]).Value());
 		double rate = json::Number(entry[L"regularMarketPrice"]).Value();
-		wxLogDebug("item: %d %s %.2f", i, symbol, rate);
-		stocks_data[symbol] = (rate <= 0 ? 1 : rate);
+		const wxString currency = wxString(json::String(entry[L"currency"]).Value());
+		double d = currency == "GBp" ? 100 : 1;
+		wxLogDebug("item: %d %s %.2f %s", i, symbol, rate, currency);
+		stocks_data[symbol] = (rate <= 0 ? 1 : rate/d);
 	}
 
     if (stocks_data.empty())

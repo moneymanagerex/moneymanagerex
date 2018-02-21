@@ -707,7 +707,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 	{
 		/* Valid intervals : [1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo] */
 		enum { IDAILY, IDAY5, IWEEK, IMON, IMON3 };
-		const wxString intervals[] = { "1d","5d","1wk", "1mo","3mo" };
+		const wxString intervals[] = { "1d","5d","1wk","1mo","3mo" };
 		const std::vector<std::pair<int, wxString> > INTERVAL_PAIRS =
 		{
 			{ IDAILY, _("1 Day") }
@@ -749,17 +749,21 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 	if (!error.empty()) return;
 
 	json::Object result = r[L"result"][0]; //meta timestamp indicators
+	json::Object meta = result[L"meta"];
 	json::Array timestamp = result[L"timestamp"];
 	json::Object indicators = result[L"indicators"];
 	json::Array quote = indicators[L"quote"][0][L"close"];
 
 	wxASSERT(timestamp.Size() == quote.Size());
 
+	const wxString currency = wxString(json::String(meta[L"currency"]));
+	double d = currency == "GBp" ? 100 : 1;
+
 	std::map<time_t, double> history;
 	for (int i = 0; i < timestamp.Size(); ++i)
 	{
 		time_t time = json::Number(timestamp[i]).Value();
-		double rate = json::Number(quote[i]).Value();
+		double rate = json::Number(quote[i]).Value() / d;
 		history[time] = rate;
 	}
 
