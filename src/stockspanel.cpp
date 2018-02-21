@@ -994,13 +994,12 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
 }
 void mmStocksPanel::enableEditDeleteButtons(bool en)
 {
-    wxButton* bN = (wxButton*) FindWindow(wxID_NEW);
     wxButton* bE = (wxButton*) FindWindow(wxID_EDIT);
     wxButton* bA = (wxButton*) FindWindow(wxID_ADD);
     wxButton* bV = (wxButton*)FindWindow(wxID_VIEW_DETAILS);
     wxButton* bD = (wxButton*)FindWindow(wxID_DELETE);
     wxButton* bM = (wxButton*)FindWindow(wxID_MOVE_FRAME);
-    if (bN) bN->Enable(!en);
+
     if (bE) bE->Enable(en);
     if (bA) bA->Enable(en);
     if (bV) bV->Enable(en);
