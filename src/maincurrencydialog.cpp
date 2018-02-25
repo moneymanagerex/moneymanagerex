@@ -392,7 +392,8 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
             currName = currency->CURRENCYNAME;
             itemButtonEdit_->Enable();
         }
-		m_button_download_history->Enable(currency->CURRENCYID != Model_Currency::GetBaseCurrency()->CURRENCYID);
+        auto baseCurrency = Model_Currency::GetBaseCurrency();
+        m_button_download_history->Enable(baseCurrency == nullptr || currency->CURRENCYID != baseCurrency->CURRENCYID);
     }
 
     if (!bEnableSelect_)    // prevent user deleting currencies when editing accounts.
