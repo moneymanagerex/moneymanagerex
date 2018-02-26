@@ -855,9 +855,9 @@ void mmGUIFrame::updateNavTreeControl()
                 break;
             }
 
-            const wxString account_string = wxString::Format("%s_%i", account.ACCOUNTTYPE, account.ACCOUNTID);
-            m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(account_string));
-            //m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+            //TODO: const wxString account_string = wxString::Format("%s_%i", account.ACCOUNTTYPE, account.ACCOUNTID);
+            // m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(account_string));
+            m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
         }
 
         loadNavTreeItemsStatus();
