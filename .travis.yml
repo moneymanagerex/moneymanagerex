@@ -15,6 +15,7 @@ env:
   - MAKEFLAGS=-j4
   - BUILD_TYPE=Release
   - BUILD_TESTS=OFF
+  - DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
   matrix: # targets for linux
   - OS=debian DIST=jessie
   - OS=debian DIST=stretch
@@ -79,22 +80,18 @@ matrix:
   - env: OS=macos DIST=10.12
   - env: OS=slackware DIST=14.2
 
-install: |-
-  DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
-  case $TRAVIS_OS_NAME in
-    linux)
-      ccache -s || true
-      docker pull ${DOCKER}
-      docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}
-      ;;
-    osx)
-      MACOSX_DEPLOYMENT_TARGET=$DIST
-      brew update # see travis-ci/travis-ci#8552
-      travis_wait 20 brew bundle --verbose --file=util/Brewfile
-      ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"
-      ;;
-  esac
-  mkdir build && cd build
+install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      exit 1 && \
+      ccache -s || true && \
+      docker pull ${DOCKER} && \
+      docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
+      exit 1 && \
+      brew update && \
+      travis_wait 20 brew bundle --verbose --file=util/Brewfile && \
+      ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
+  - mkdir build && cd build
 
 script: |-
   CMAKE_CMD="cmake ${ARCH:+-DCMAKE_TOOLCHAIN_FILE=util/toolchain-$TRAVIS_OS_NAME-$ARCH.cmake} -DMMEX_BUILD_TESTS=$BUILD_TESTS -DCMAKE_BUILD_TYPE=$BUILD_TYPE .."
