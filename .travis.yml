@@ -82,14 +82,12 @@ matrix:
 
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      exit 1 && \
       ccache -s || true && \
       docker pull ${DOCKER} && \
       docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
-      exit 1 && \
       brew update && \
-      travis_wait 20 brew bundle --verbose --file=util/Brewfile && \
+      travis_wait 60 brew bundle --verbose --file=util/Brewfile && \
       ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
   - mkdir build && cd build
 
