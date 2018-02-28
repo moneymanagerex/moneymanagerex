@@ -81,6 +81,7 @@ matrix:
   - env: OS=slackware DIST=14.2
 
 install:
+  - echo ${DOCKER}
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       ccache -s | true &&
       docker pull ${DOCKER} &&
