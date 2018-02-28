@@ -15,7 +15,6 @@ env:
   - MAKEFLAGS=-j4
   - BUILD_TYPE=Release
   - BUILD_TESTS=OFF
-  - DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
   matrix: # targets for linux
   - OS=debian DIST=jessie
   - OS=debian DIST=stretch
@@ -81,7 +80,7 @@ matrix:
   - env: OS=slackware DIST=14.2
 
 install:
-  - echo ${DOCKER}
+  - export DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       ccache -s | true &&
       docker pull ${DOCKER} &&
