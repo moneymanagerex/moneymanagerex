@@ -705,31 +705,38 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemBold(root, true);
     m_nav_tree_ctrl->SetFocus();
 
-    wxTreeItemId accounts = m_nav_tree_ctrl->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
+    wxTreeItemId accounts = m_nav_tree_ctrl->AppendItem(root, _("Bank Accounts")
+        , img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
     m_nav_tree_ctrl->SetItemBold(accounts, true);
 
-    wxTreeItemId cardAccounts = m_nav_tree_ctrl->AppendItem(root, _("Credit Card Accounts"), img::CARD_ACC_PNG, img::CARD_ACC_PNG);
+    wxTreeItemId cardAccounts = m_nav_tree_ctrl->AppendItem(root, _("Credit Card Accounts")
+        , img::CARD_ACC_PNG, img::CARD_ACC_PNG);
     m_nav_tree_ctrl->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
     m_nav_tree_ctrl->SetItemBold(cardAccounts, true);
 
-    wxTreeItemId cashAccounts = m_nav_tree_ctrl->AppendItem(root, _("Cash Accounts"), img::CASH_ACC_NORMAL_PNG, img::CASH_ACC_NORMAL_PNG);
+    wxTreeItemId cashAccounts = m_nav_tree_ctrl->AppendItem(root, _("Cash Accounts")
+        , img::CASH_ACC_NORMAL_PNG, img::CASH_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(cashAccounts, new mmTreeItemData("Cash Accounts"));
     m_nav_tree_ctrl->SetItemBold(cashAccounts, true);
 
-    wxTreeItemId loanAccounts = m_nav_tree_ctrl->AppendItem(root, _("Loan Accounts"), img::LOAN_ACC_NORMAL_PNG, img::LOAN_ACC_NORMAL_PNG);
+    wxTreeItemId loanAccounts = m_nav_tree_ctrl->AppendItem(root, _("Loan Accounts")
+        , img::LOAN_ACC_NORMAL_PNG, img::LOAN_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(loanAccounts, new mmTreeItemData("Loan Accounts"));
     m_nav_tree_ctrl->SetItemBold(loanAccounts, true);
 
-    wxTreeItemId termAccounts = m_nav_tree_ctrl->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_PNG, img::TERMACCOUNT_PNG);
+    wxTreeItemId termAccounts = m_nav_tree_ctrl->AppendItem(root, _("Term Accounts")
+        , img::TERMACCOUNT_PNG, img::TERMACCOUNT_PNG);
     m_nav_tree_ctrl->SetItemData(termAccounts, new mmTreeItemData("Term Accounts"));
     m_nav_tree_ctrl->SetItemBold(termAccounts, true);
     
-    wxTreeItemId stocks = m_nav_tree_ctrl->AppendItem(root, _("Stock Portfolios"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
+    wxTreeItemId stocks = m_nav_tree_ctrl->AppendItem(root, _("Stock Portfolios")
+        , img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
     m_nav_tree_ctrl->SetItemData(stocks, new mmTreeItemData("Stocks"));
     m_nav_tree_ctrl->SetItemBold(stocks, true);
 
-    wxTreeItemId shareAccounts = m_nav_tree_ctrl->AppendItem(root, _("Share Accounts"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
+    wxTreeItemId shareAccounts = m_nav_tree_ctrl->AppendItem(root, _("Share Accounts")
+        , img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
     m_nav_tree_ctrl->SetItemData(shareAccounts, new mmTreeItemData("Share Accounts"));
     m_nav_tree_ctrl->SetItemBold(shareAccounts, true);
 
@@ -737,26 +744,31 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(assets, new mmTreeItemData("Assets"));
     m_nav_tree_ctrl->SetItemBold(assets, true);
 
-    wxTreeItemId bills = m_nav_tree_ctrl->AppendItem(root, _("Recurring Transactions"), img::SCHEDULE_PNG, img::SCHEDULE_PNG);
+    wxTreeItemId bills = m_nav_tree_ctrl->AppendItem(root, _("Recurring Transactions")
+        , img::SCHEDULE_PNG, img::SCHEDULE_PNG);
     m_nav_tree_ctrl->SetItemData(bills, new mmTreeItemData("Bills & Deposits"));
     m_nav_tree_ctrl->SetItemBold(bills, true);
 
-    wxTreeItemId budgeting = m_nav_tree_ctrl->AppendItem(root, _("Budget Setup"), img::CALENDAR_PNG, img::CALENDAR_PNG);
+    wxTreeItemId budgeting = m_nav_tree_ctrl->AppendItem(root, _("Budget Setup")
+        , img::CALENDAR_PNG, img::CALENDAR_PNG);
     m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData("Budgeting"));
     m_nav_tree_ctrl->SetItemBold(budgeting, true);
 
-    const DB_Table_BUDGETYEAR_V1::Data_Set all_budgets = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
+    const DB_Table_BUDGETYEAR_V1::Data_Set all_budgets 
+        = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
     bool have_budget = (all_budgets.size() > 0);
     for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
     {
         int id = e.BUDGETYEARID;
         const wxString& name = e.BUDGETYEARNAME;
 
-        wxTreeItemId bYear = m_nav_tree_ctrl->AppendItem(budgeting, name, img::CALENDAR_PNG, img::CALENDAR_PNG);
+        wxTreeItemId bYear = m_nav_tree_ctrl->AppendItem(budgeting
+            , name, img::CALENDAR_PNG, img::CALENDAR_PNG);
         m_nav_tree_ctrl->SetItemData(bYear, new mmTreeItemData(id, true));
     }
 
-    wxTreeItemId reports = m_nav_tree_ctrl->AppendItem(root, _("Reports"), img::PIECHART_PNG, img::PIECHART_PNG);
+    wxTreeItemId reports = m_nav_tree_ctrl->AppendItem(root
+        , _("Reports"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemBold(reports, true);
     m_nav_tree_ctrl->SetItemData(reports, new mmTreeItemData("Reports"));
 
@@ -792,7 +804,8 @@ void mmGUIFrame::updateNavTreeControl()
             {
             case Model_Account::INVESTMENT:
                 {
-                    tacct = m_nav_tree_ctrl->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
+                    tacct = m_nav_tree_ctrl->AppendItem(stocks
+                        , account.ACCOUNTNAME, selectedImage, selectedImage);
                     // find all the accounts associated with this stock portfolio
                     Model_Stock::Data_Set stock_account_list = Model_Stock::instance()
                         .find(Model_Stock::HELDAT(account.ACCOUNTID));
@@ -801,7 +814,8 @@ void mmGUIFrame::updateNavTreeControl()
                     {
                         if (Model_Translink::HasShares(stock_entry.STOCKID))
                         {
-                            wxTreeItemId se = m_nav_tree_ctrl->AppendItem(tacct, stock_entry.STOCKNAME, selectedImage, selectedImage);
+                            wxTreeItemId se = m_nav_tree_ctrl->AppendItem(tacct
+                                , stock_entry.STOCKNAME, selectedImage, selectedImage);
                             int account_id = stock_entry.STOCKID;
                             if (Model_Translink::ShareAccountId(account_id))
                             {
@@ -812,28 +826,37 @@ void mmGUIFrame::updateNavTreeControl()
                 }
                 break;
             case Model_Account::SHARES:
-                tacct = m_nav_tree_ctrl->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(shareAccounts
+                    , account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             case Model_Account::ASSET:
-                tacct = m_nav_tree_ctrl->AppendItem(assets, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(assets
+                    , account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             case Model_Account::TERM:
-                tacct = m_nav_tree_ctrl->AppendItem(termAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(termAccounts
+                    , account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             case Model_Account::CREDIT_CARD:
-                tacct = m_nav_tree_ctrl->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(cardAccounts
+                    , account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             case Model_Account::CASH:
-                tacct = m_nav_tree_ctrl->AppendItem(cashAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(cashAccounts
+                    , account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             case Model_Account::LOAN:
-                tacct = m_nav_tree_ctrl->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(loanAccounts
+                    , account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             default:
-                tacct = m_nav_tree_ctrl->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                tacct = m_nav_tree_ctrl->AppendItem(accounts
+                    , account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
             }
 
+            //TODO: const wxString account_string = wxString::Format("%s_%i", account.ACCOUNTTYPE, account.ACCOUNTID);
+            // m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(account_string));
             m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
         }
 
@@ -844,6 +867,7 @@ void mmGUIFrame::updateNavTreeControl()
         if (!m_nav_tree_ctrl->ItemHasChildren(stocks)) m_nav_tree_ctrl->Delete(stocks);
         if (!m_nav_tree_ctrl->ItemHasChildren(cashAccounts)) m_nav_tree_ctrl->Delete(cashAccounts);
         if (!m_nav_tree_ctrl->ItemHasChildren(loanAccounts)) m_nav_tree_ctrl->Delete(loanAccounts);
+        if (!m_nav_tree_ctrl->ItemHasChildren(assets)) m_nav_tree_ctrl->Delete(assets);
 
         if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts) || m_hide_share_accounts)
         {
@@ -940,7 +964,7 @@ void mmGUIFrame::navTreeStateToJson()
 
         mmTreeItemData* iData =
             dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
-        if (iData && json::Boolean(m_nav_tree_ctrl->IsExpanded(next)))
+        if (iData && iData->isStringData() && json::Boolean(m_nav_tree_ctrl->IsExpanded(next)))
             o[iData->getString().ToStdWstring()] = json::Boolean(m_nav_tree_ctrl->IsExpanded(next));
     };
     std::wstringstream ss;
