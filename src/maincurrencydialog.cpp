@@ -128,9 +128,9 @@ void mmMainCurrencyDialog::fillControls()
             currencyListBox_->SelectRow(selectedIndex_);
             itemButtonEdit_->Enable();
         }
-		m_button_download_history->Enable(baseCurrencyID == currencyID);
     }
 
+    m_button_download_history->Enable(false);
     //Ensure that the selected item is visible.
     wxDataViewItem item(currencyListBox_->GetCurrentItem());
     currencyListBox_->EnsureVisible(item);
@@ -382,7 +382,7 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
     wxDataViewItem item = event.GetItem();
     selectedIndex_ = currencyListBox_->ItemToRow(item);
 
-    wxString currName;
+    wxString currName = "";
     if (selectedIndex_ >= 0)
     {
         m_currency_id = (int) currencyListBox_->GetItemData(item);
@@ -391,8 +391,9 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
         {
             currName = currency->CURRENCYNAME;
             itemButtonEdit_->Enable();
+            auto base_currency_symbol = Model_Currency::GetBaseCurrencySymbol();
+            m_button_download_history->Enable(currency->CURRENCY_SYMBOL != base_currency_symbol);
         }
-		m_button_download_history->Enable(currency->CURRENCYID != Model_Currency::GetBaseCurrency()->CURRENCYID);
     }
 
     if (!bEnableSelect_)    // prevent user deleting currencies when editing accounts.
