@@ -44,13 +44,14 @@ public:
 
 private:
     void reportFatalException(wxDebugReport::Context);
-    wxLanguage m_lang; // GUI translation language displayed
     bool OnInit();
     int OnExit();
     void OnFatalException(); // called when a crash occurs in this application
     void HandleEvent(wxEvtHandler *handler, wxEventFunction func, wxEvent& event) const;
     wxSingleInstanceChecker* m_checker;
 
+    wxLanguage m_lang; // GUI translation language displayed
+    wxLocale m_locale;
 public:
     virtual int FilterEvent(wxEvent& event);
 };
