@@ -3087,6 +3087,7 @@ void mmGUIFrame::OnChangeGUILanguage(wxCommandEvent& event)
     wxLanguage lang = static_cast<wxLanguage>(event.GetId()-MENU_LANG-1);
     if (lang!=m_app->getGUILanguage() && m_app->setGUILanguage(lang))
         mmErrorDialogs::MessageWarning(this
-            , _("The language for this application has been changed. The change will take effect the next time the application is started.")
+            , _("The language for this application has been changed. "
+                "The change will take effect the next time the application is started.")
             , _("Language change"));
 }
