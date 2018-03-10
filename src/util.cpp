@@ -259,6 +259,7 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
     ss << output.ToStdWstring();
     json::Object o;
     json::Reader::Read(o, ss);
+    output.clear();
 
     json::Object r = o[L"quoteResponse"];
     //TODO:     "error": null
@@ -276,9 +277,9 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
 
     for (int i = 0; i < e.Size(); i++)
     {
-        const json::Object symbol = e[i];
-        auto currency_symbol = wxString(json::String(symbol[L"symbol"]).Value());
-        const auto short_name = wxString(json::String(symbol[L"shortName"]).Value());
+        const json::Object entry = e[i];
+        auto currency_symbol = wxString(json::String(entry[L"symbol"]).Value());
+        const auto short_name = wxString(json::String(entry[L"shortName"]).Value());
 
         wxRegEx pattern("^(...)...=X$");
         if (pattern.Matches(currency_symbol))
@@ -286,8 +287,9 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
             currency_symbol = pattern.GetMatch(currency_symbol, 1);
             if (short_name != crypto_marker)
             {
-                const auto price = symbol[L"regularMarketPrice"];
+                const auto price = entry[L"regularMarketPrice"];
                 const auto rate = json::Number(price).Value();
+
                 wxLogDebug("item: %d %s %.2f", i, currency_symbol, rate);
                 out[currency_symbol] = (rate <= 0 ? 1 : rate);
             }
@@ -297,6 +299,19 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
                 out[currency_symbol] = -1;
                 missing_symbols.push_back(currency_symbol);
             }
+        }
+        else
+        {
+            const auto price = entry[L"regularMarketPrice"];
+            const auto rate = json::Number(price).Value();
+            const wxString currency = wxString(json::String(entry[L"currency"]).Value());
+            double d = currency == "GBp" ? 100 : 1;
+
+            wxLogDebug("item: %d %s %.2f", i, currency_symbol, rate);
+            double dPrice = (rate <= 0 ? 1 : rate / d);
+            out[currency_symbol] = dPrice;
+            output += wxString::Format("%s %.2f\n", currency_symbol, dPrice);
+
         }
     }
 
