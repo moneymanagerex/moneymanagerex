@@ -236,6 +236,122 @@ const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
     return true;
 }
 
+/* Currencies & stock prices */
+
+bool get_yahoo_prices(std::vector<wxString>& symbols
+    , std::map<wxString, double>& out
+    , wxString& output)
+{
+    std::vector<wxString> missing_symbols;
+    wxString buffer;
+    for (const auto& entry : symbols)
+        buffer += entry + ",";
+    if (buffer.Right(1).Contains(",")) buffer.RemoveLast(1);
+
+    const auto URL = wxString::Format(mmex::weblink::YahooQuotes
+        , buffer);
+
+    auto err_code = site_content(URL, output);
+    if (err_code != CURLE_OK)
+        return false;
+
+    std::wstringstream ss;
+    ss << output.ToStdWstring();
+    json::Object o;
+    json::Reader::Read(o, ss);
+
+    json::Object r = o[L"quoteResponse"];
+    //TODO:     "error": null
+    //bool error = json::Boolean(r[L"error"]);
+    //if (!error) return false;
+
+    json::Array e = r[L"result"];
+
+    wxString base_currency_symbol;
+    Model_Currency::GetBaseCurrencySymbol(base_currency_symbol);
+
+    const auto crypto_marker = wxString::Format("%s/%s"
+        , base_currency_symbol, base_currency_symbol);
+    std::vector<wxString> crypto_currencies;
+
+    for (int i = 0; i < e.Size(); i++)
+    {
+        const json::Object symbol = e[i];
+        auto currency_symbol = wxString(json::String(symbol[L"symbol"]).Value());
+        const auto short_name = wxString(json::String(symbol[L"shortName"]).Value());
+
+        wxRegEx pattern("^(...)...=X$");
+        if (pattern.Matches(currency_symbol))
+        {
+            currency_symbol = pattern.GetMatch(currency_symbol, 1);
+            if (short_name != crypto_marker)
+            {
+                const auto price = symbol[L"regularMarketPrice"];
+                const auto rate = json::Number(price).Value();
+                wxLogDebug("item: %d %s %.2f", i, currency_symbol, rate);
+                out[currency_symbol] = (rate <= 0 ? 1 : rate);
+            }
+            else
+            {
+                wxLogDebug("Crypto item: %d %s", i, currency_symbol);
+                out[currency_symbol] = -1;
+                missing_symbols.push_back(currency_symbol);
+            }
+        }
+    }
+
+    symbols = missing_symbols;
+    return true;
+}
+
+bool get_crypto_currency_prices(std::map<wxString, double>& data
+    , wxString& output)
+{
+    bool ok = true;
+    const auto URL = mmex::weblink::CoinCap;
+
+    auto err_code = site_content(URL, output);
+    if (err_code != CURLE_OK)
+        return false;
+
+    std::wstringstream ss;
+    ss << output.ToStdWstring();
+    json::Array e;
+    json::Reader::Read(e, ss);
+    output.clear();
+
+    double usd_rate;
+    Model_Currency::GetUSDrate(usd_rate); //TODO: if false
+
+    std::map<wxString, double> currency_data;
+
+    for (int i = 0; i < e.Size(); i++)
+    {
+        const json::Object item = e[i];
+        auto currency_symbol = wxString(json::String(item[L"short"]).Value());
+        auto price = item[L"price"];
+        const auto rate = json::Number(price).Value();
+        currency_data[currency_symbol] = rate;
+        wxLogDebug("item: %d %s %.8f", i, currency_symbol, rate);
+    }
+
+    for (auto& entry : data)
+    {
+        if (entry.second >= 0) continue; //Fiat
+        const auto symbol = entry.first;
+        if (currency_data.find(symbol) != currency_data.end())
+            entry.second = currency_data.at(symbol) * usd_rate;
+        else
+        {
+            entry.second = 1;
+            ok = false;
+            output << wxString::Format(_("%s\t: %s\n"), symbol, _("Invalid value"));
+        }
+    }
+
+    return ok;
+}
+
 /*--- CSV specific ---------*/
 void csv2tab_separated_values(wxString& line, const wxString& delimit)
 {

@@ -88,6 +88,21 @@ bool Model_Currency::GetBaseCurrencySymbol(wxString& base_currency_symbol)
 	return false;
 }
 
+bool Model_Currency::GetUSDrate(double& rate)
+{
+    Model_Currency::Data_Set usd = Model_Currency::instance().find(CURRENCY_SYMBOL("USD"));
+    if (!usd.empty())
+    {
+        rate = usd.begin()->BASECONVRATE;
+        return true;
+    }
+    else
+    {
+        rate = 1;
+        return false;
+    }
+}
+
 void Model_Currency::ResetBaseConversionRates()
 {
     Model_Currency::instance().Savepoint();

@@ -433,7 +433,7 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
 	{
 		if (!hide)
 		{
-			wxMessageDialog msgDlg(this, msg, _("Currency rates have been updated"));
+			wxMessageDialog msgDlg(this, msg, _("Online update currency rate"));
 			msgDlg.ShowModal();
 		}
 		fillControls();
@@ -750,9 +750,7 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 		return false;
 	}
 
-	wxString sOutput;
-	wxString buffer = wxEmptyString;
-
+    std::vector<wxString> symbols;
 	auto currencies = Model_Currency::instance()
 		.find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
 	for (const auto &currency : currencies)
@@ -760,61 +758,26 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 		if (curr_id > 0 && currency.CURRENCYID != curr_id) continue;
 		const auto symbol = currency.CURRENCY_SYMBOL.Upper();
 		if (!symbol.IsEmpty()) 
-            buffer += wxString::Format("%s%s=X,", symbol ,base_currency_symbol);
-	}
-	if (buffer.Right(1).Contains(",")) buffer.RemoveLast(1);
-
-	const auto URL = wxString::Format(mmex::weblink::YahooQuotes
-		, buffer);
-
-	auto err_code = site_content(URL, sOutput);
-	if (err_code != CURLE_OK)
-	{
-		msg = sOutput;
-		return false;
+            symbols.push_back(wxString::Format("%s%s=X", symbol, base_currency_symbol));
 	}
 
-	std::wstringstream ss;
-	ss << sOutput.ToStdWstring();
-	json::Object o;
-	json::Reader::Read(o, ss);
-
-	json::Object r = o[L"quoteResponse"];
-	//TODO:     "error": null
-	//bool error = json::Boolean(r[L"error"]);
-	//if (!error) return false;
-
-	json::Array e = r[L"result"];
-
-    const auto crypto_marker = wxString::Format("%s/%s"
-        , base_currency_symbol, base_currency_symbol);
+    wxString output;
     std::map<wxString, double> currency_data;
-    std::vector<wxString> crypto_currencies;
-
-    for (int i = 0; i < e.Size(); i++) 
+    if (!get_yahoo_prices(symbols, currency_data, output))
     {
-		const json::Object symbol = e[i];
-		auto currency_symbol = wxString(json::String(symbol[L"symbol"]).Value());
-        const auto short_name = wxString(json::String(symbol[L"shortName"]).Value());
+        msg = output;
+        return false;
+    }
 
-        wxRegEx pattern("^(...)...=X$");
-        if (pattern.Matches(currency_symbol))
+    if (!symbols.empty())
+    {
+        if (!get_crypto_currency_prices(currency_data, output))
         {
-            currency_symbol = pattern.GetMatch(currency_symbol, 1);
-            if (short_name != crypto_marker)
-            {
-                const auto price = symbol[L"regularMarketPrice"];
-                const auto rate = json::Number(price).Value();
-                wxLogDebug("item: %d %s %.2f", i, currency_symbol, rate);
-                currency_data[currency_symbol] = (rate <= 0 ? 1 : rate);
-            }
-            else
-            {
-                wxLogDebug("Crypto: %s", currency_symbol);
-                crypto_currencies.push_back(currency_symbol);
-            }
+            //TODO: names
+            msg = output;
+            mmErrorDialogs::MessageError(this, msg, _("Online update currency rate"));
         }
-	}
+    }
 
 	msg = _("Currency rates have been updated");
 	msg << "\n\n";

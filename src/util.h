@@ -158,6 +158,12 @@ public:
 };
 //----------------------------------------------------------------------------
 
+bool get_yahoo_prices(std::vector<wxString>& symbols
+    , std::map<wxString, double>& out
+    , wxString& output);
+bool get_crypto_currency_prices(std::map<wxString, double>& data
+    , wxString& output);
+
 const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
 CURLcode site_content(const wxString& site, wxString& output);
 bool download_file(const wxString& site, const wxString& path);

@@ -54,6 +54,8 @@ public:
     static Data* GetBaseCurrency();
 	static bool GetBaseCurrencySymbol(wxString& base_currency_symbol);
 
+    static bool GetUSDrate(double& rate);
+
     /** Resets all BASECONVRATE to 1 */
     static void ResetBaseConversionRates();
 
