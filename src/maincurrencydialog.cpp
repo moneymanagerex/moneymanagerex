@@ -758,12 +758,13 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 	for (const auto &currency : currencies)
 	{
 		if (curr_id > 0 && currency.CURRENCYID != curr_id) continue;
-		const wxString symbol = currency.CURRENCY_SYMBOL.Upper();
-		if (!symbol.IsEmpty()) buffer << symbol << base_currency_symbol << "=X,";
+		const auto symbol = currency.CURRENCY_SYMBOL.Upper();
+		if (!symbol.IsEmpty()) 
+            buffer += wxString::Format("%s%s=X,", symbol ,base_currency_symbol);
 	}
 	if (buffer.Right(1).Contains(",")) buffer.RemoveLast(1);
 
-	const wxString URL = wxString::Format(mmex::weblink::YahooQuotes
+	const auto URL = wxString::Format(mmex::weblink::YahooQuotes
 		, buffer);
 
 	auto err_code = site_content(URL, sOutput);
@@ -785,19 +786,34 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 
 	json::Array e = r[L"result"];
 
-	std::map<wxString, double> currency_data;
-	for (int i = 0; i < e.Size(); i++) {
-		const json::Object symbol = e[i];
-		wxString currency_symbol = wxString(json::String(symbol[L"symbol"]).Value());
+    const auto crypto_marker = wxString::Format("%s/%s"
+        , base_currency_symbol, base_currency_symbol);
+    std::map<wxString, double> currency_data;
+    std::vector<wxString> crypto_currencies;
 
-		wxRegEx pattern("^(...)...=X$");
-		if (pattern.Matches(currency_symbol)) {
-			currency_symbol = pattern.GetMatch(currency_symbol, 1);
-			const auto price = symbol[L"regularMarketPrice"];
-			const auto rate = json::Number(price).Value();
-			wxLogDebug("item: %d %s %.2f", i, currency_symbol, rate);
-			currency_data[currency_symbol] = (rate <= 0 ? 1 : rate);
-		}
+    for (int i = 0; i < e.Size(); i++) 
+    {
+		const json::Object symbol = e[i];
+		auto currency_symbol = wxString(json::String(symbol[L"symbol"]).Value());
+        const auto short_name = wxString(json::String(symbol[L"shortName"]).Value());
+
+        wxRegEx pattern("^(...)...=X$");
+        if (pattern.Matches(currency_symbol))
+        {
+            currency_symbol = pattern.GetMatch(currency_symbol, 1);
+            if (short_name != crypto_marker)
+            {
+                const auto price = symbol[L"regularMarketPrice"];
+                const auto rate = json::Number(price).Value();
+                wxLogDebug("item: %d %s %.2f", i, currency_symbol, rate);
+                currency_data[currency_symbol] = (rate <= 0 ? 1 : rate);
+            }
+            else
+            {
+                wxLogDebug("Crypto: %s", currency_symbol);
+                crypto_currencies.push_back(currency_symbol);
+            }
+        }
 	}
 
 	msg = _("Currency rates have been updated");
