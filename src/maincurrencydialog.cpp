@@ -391,7 +391,8 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
         {
             currName = currency->CURRENCYNAME;
             itemButtonEdit_->Enable();
-            auto base_currency_symbol = Model_Currency::GetBaseCurrencySymbol();
+            wxString base_currency_symbol; 
+            Model_Currency::GetBaseCurrencySymbol(base_currency_symbol);
             m_button_download_history->Enable(currency->CURRENCY_SYMBOL != base_currency_symbol);
         }
     }
@@ -592,7 +593,8 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
 	Model_Currency::Data* CurrentCurrency = Model_Currency::instance().get(m_currency_id);
 	if (!CurrentCurrency) return; //No currency selected
 
-	if (Model_Currency::GetBaseCurrencySymbol().empty())
+    wxString base_currency_symbol;
+	if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
 	{
 		return mmErrorDialogs::MessageError(this
 			, _("Could not find base currency symbol!")
@@ -740,9 +742,9 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
 
 bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 {
-	wxString base_symbol = Model_Currency::GetBaseCurrencySymbol();
-
-	if (base_symbol.empty())
+    wxString base_currency_symbol;
+    
+	if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
 	{
 		msg = _("Could not find base currency symbol!");
 		return false;
@@ -752,12 +754,12 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 	wxString buffer = wxEmptyString;
 
 	auto currencies = Model_Currency::instance()
-		.find(Model_Currency::CURRENCY_SYMBOL(base_symbol, NOT_EQUAL));
+		.find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
 	for (const auto &currency : currencies)
 	{
 		if (curr_id > 0 && currency.CURRENCYID != curr_id) continue;
 		const wxString symbol = currency.CURRENCY_SYMBOL.Upper();
-		if (!symbol.IsEmpty()) buffer << symbol << base_symbol << "=X,";
+		if (!symbol.IsEmpty()) buffer << symbol << base_currency_symbol << "=X,";
 	}
 	if (buffer.Right(1).Contains(",")) buffer.RemoveLast(1);
 
@@ -836,16 +838,16 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &historical_rates
 	, const wxString &symbol, wxString &msg)
 {
-	wxString base_symbol = Model_Currency::GetBaseCurrencySymbol();
+    wxString base_currency_symbol;
 
-	if (base_symbol.empty())
+	if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
 	{
 		msg = _("Could not find base currency symbol!");
 		return false;
 	}
 
 	const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
-		, wxString::Format("%s%s=X", symbol, base_symbol)
+		, wxString::Format("%s%s=X", symbol, base_currency_symbol)
 		, "1y", "1d"); //TODO: aks range and interval
 	
 	wxString sOutput;
