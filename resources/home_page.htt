@@ -37,6 +37,7 @@
                 <TMPL_VAR CASH_ACCOUNTS_INFO>
                 <TMPL_VAR LOAN_ACCOUNTS_INFO>
                 <TMPL_VAR TERM_ACCOUNTS_INFO>
+                <TMPL_VAR CRYPTO_ACCOUNTS_INFO>
                 <!--Stocks-->
                 <TMPL_VAR STOCKS_INFO>
                 <!--Assets-->

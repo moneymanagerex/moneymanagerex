@@ -465,6 +465,17 @@ wxBEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
 EVT_WEBVIEW_NAVIGATING(wxID_ANY, mmHomePagePanel::OnLinkClicked)
 wxEND_EVENT_TABLE()
 
+const std::vector < std::pair <wxString, wxString> > mmHomePagePanel::typeStr
+{
+    //    enum TYPE { CASH = 0, CHECKING, CREDIT_CARD, LOAN, TERM, CRYPTO, INVESTMENT, ASSET, SHARES };
+    { "CASH_ACCOUNTS_INFO", _("Cash Accounts") },
+    { "ACCOUNTS_INFO", _("Bank Accounts") },
+    { "CARD_ACCOUNTS_INFO", _("Credit Card Accounts") },
+    { "LOAN_ACCOUNTS_INFO", _("Loan Accounts") },
+    { "TERM_ACCOUNTS_INFO", _("Term Accounts") },
+    { "CRYPTO_ACCOUNTS_INFO", _("Crypto Accounts") },
+};
+
 mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
     , wxWindowID winid
     , const wxPoint& pos
@@ -566,23 +577,26 @@ void mmHomePagePanel::getData()
     else
         date_range_ = new mmCurrentMonth;
 
-    double tBalance = 0.0, cardBalance = 0.0, termBalance = 0.0, cashBalance = 0.0, loanBalance = 0.0;
+    double tBalance = 0.0;
 
     std::map<int, std::pair<double, double> > accountStats;
     get_account_stats(accountStats);
 
     m_frames["ACCOUNTS_INFO"] = displayAccounts(tBalance, accountStats);
-    m_frames["CARD_ACCOUNTS_INFO"] = displayAccounts(cardBalance, accountStats, Model_Account::CREDIT_CARD);
-    tBalance += cardBalance;
+    m_frames["CARD_ACCOUNTS_INFO"] = displayAccounts(tBalance
+        , accountStats, Model_Account::CREDIT_CARD);
 
-    m_frames["CASH_ACCOUNTS_INFO"] = displayAccounts(cashBalance, accountStats, Model_Account::CASH);
-    tBalance += cashBalance;
+    m_frames["CASH_ACCOUNTS_INFO"] = displayAccounts(tBalance
+        , accountStats, Model_Account::CASH);
 
-    m_frames["LOAN_ACCOUNTS_INFO"] = displayAccounts(loanBalance, accountStats, Model_Account::LOAN);
-    tBalance += loanBalance;
+    m_frames["LOAN_ACCOUNTS_INFO"] = displayAccounts(tBalance
+        , accountStats, Model_Account::LOAN);
 
-    m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
-    tBalance += termBalance;
+    m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(tBalance
+        , accountStats, Model_Account::TERM);
+    
+    m_frames["CRYPTO_ACCOUNTS_INFO"] = displayAccounts(tBalance
+        , accountStats, Model_Account::CRYPTO);
 
     //Stocks
     htmlWidgetStocks stocks_widget;
@@ -696,17 +710,10 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 }
 
 /* Accounts */
-const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
+const wxString mmHomePagePanel::displayAccounts(double& tBalance
+    , std::map<int, std::pair<double, double> > &accountStats, int type)
 {
-    static const std::vector < std::pair <wxString, wxString> > typeStr
-    {
-        { "CASH_ACCOUNTS_INFO", _("Cash Accounts") },
-        { "ACCOUNTS_INFO", _("Bank Accounts") },
-        { "CARD_ACCOUNTS_INFO", _("Credit Card Accounts") },
-        { "LOAN_ACCOUNTS_INFO", _("Loan Accounts") },
-        { "TERM_ACCOUNTS_INFO", _("Term Accounts") },
-    };
-
+    wxASSERT(typeStr.size() >= (size_t)type );
     const wxString idStr = typeStr[type].first;
     wxString output = "<table class = 'sortable table'>\n";
     output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
