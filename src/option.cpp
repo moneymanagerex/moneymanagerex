@@ -522,6 +522,11 @@ const int Option::AccountImageId(int account_id, bool def)
         else if (favorite) selectedImage = img::LOAN_ACC_FAVORITE_PNG;
         else selectedImage = img::LOAN_ACC_NORMAL_PNG;
         break;
+    case (Model_Account::CRYPTO):
+        if (closed) selectedImage = img::CRYPTO_ACC_CLOSED_PNG;
+        else if (favorite) selectedImage = img::CRYPTO_ACC_FAVORITE_PNG;
+        else selectedImage = img::CRYPTO_ACC_NORMAL_PNG;
+        break;
     default:
         wxASSERT(false);
     }
