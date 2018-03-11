@@ -121,7 +121,9 @@ mmReportSummaryByDate::mmReportSummaryByDate(int mode)
 
 wxString mmReportSummaryByDate::getHTMLText()
 {
-    double          total, balancePerDay[6];
+    size_t account_types_num = Model_Account::INVESTMENT + 1;
+    double          total = 0.0;
+    std::map<size_t, double> balancePerDay;
     mmHTMLBuilder   hb;
     wxString        datePrec;
     wxDate          date, dateStart = wxDate::Today(), dateEnd = wxDate::Today();
@@ -150,6 +152,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.addTableHeaderCell(_("Credit Card Accounts"), true);
     hb.addTableHeaderCell(_("Loan Accounts"), true);
     hb.addTableHeaderCell(_("Term Accounts"), true);
+    hb.addTableHeaderCell(_("Crypto Accounts"), true);
     hb.addTableHeaderCell(_("Total"), true);
     hb.addTableHeaderCell(_("Stocks"), true);
     hb.addTableHeaderCell(_("Balance"), true);
@@ -263,23 +266,26 @@ wxString mmReportSummaryByDate::getHTMLText()
 
         // prepare columns for report: date, cash, checking, credit card, term, partial total, investment, grand total
         totBalanceData.push_back(dd.FormatISODate());
-        for (int j = 0; j < 6; j++)
+        for (size_t j = 0; j < account_types_num; j++)
             balancePerDay[j] = 0.0;
         int a = 0;
         for (const auto& account: Model_Account::instance().all())
         {
-            balancePerDay[Model_Account::type(account)] += arBalance[a++];
+            double t = arBalance[a++];
+            balancePerDay[Model_Account::type(account)] += t;
         }
+
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CASH]));
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CHECKING]));
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CREDIT_CARD]));
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::LOAN]));
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::TERM]));
-        total = balancePerDay[Model_Account::CASH] 
-            + balancePerDay[Model_Account::CHECKING] 
-            + balancePerDay[Model_Account::CREDIT_CARD]
-            + balancePerDay[Model_Account::LOAN] 
-            + balancePerDay[Model_Account::TERM];
+        totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CRYPTO]));
+
+        total = balancePerDay[Model_Account::CASH] + balancePerDay[Model_Account::CHECKING] 
+            + balancePerDay[Model_Account::CREDIT_CARD] + balancePerDay[Model_Account::LOAN] 
+            + balancePerDay[Model_Account::TERM] + +balancePerDay[Model_Account::CRYPTO];
+
         totBalanceData.push_back(Model_Currency::toCurrency(total));
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::INVESTMENT]));
         total += balancePerDay[Model_Account::INVESTMENT];
@@ -287,19 +293,20 @@ wxString mmReportSummaryByDate::getHTMLText()
     }
 
     hb.startTbody();
-    for (int k = totBalanceData.size() - 9; k >= 0; k -= 9)
+    int x = 1 + (account_types_num) + 2;
+    for (int k = totBalanceData.size() - x; k >= 0; k -= x)
     {
         if (datePrec.Left(4) != totBalanceData[k].Left(4))
         {
             hb.startTotalTableRow();
             hb.addTableCell(totBalanceData[k].Left(4));
-            for (int j = 0; j < 8; j++)
+            for (int j = 0; j < x-1; j++)
                 hb.addTableCell("");
             hb.endTableRow();
         }
         hb.startTableRow();
         hb.addTableCellDate(totBalanceData[k]);
-        for (int j = 0; j < 8; j++)
+        for (int j = 0; j < x-1; j++)
             hb.addTableCell(totBalanceData[k + j + 1], true);
         hb.endTableRow();
         datePrec = totBalanceData[k];
