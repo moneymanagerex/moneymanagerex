@@ -745,9 +745,9 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(assets, new mmTreeItemData("Assets"));
     m_nav_tree_ctrl->SetItemBold(assets, true);
     
-    wxTreeItemId cryptoAccounts = m_nav_tree_ctrl->AppendItem(root, _("Crypto")
+    wxTreeItemId cryptoAccounts = m_nav_tree_ctrl->AppendItem(root, _("Crypto Wallets")
         , img::CRYPTO_PNG, img::CRYPTO_PNG);
-    m_nav_tree_ctrl->SetItemData(cryptoAccounts, new mmTreeItemData("Crypto"));
+    m_nav_tree_ctrl->SetItemData(cryptoAccounts, new mmTreeItemData("Crypto Wallets"));
     m_nav_tree_ctrl->SetItemBold(cryptoAccounts, true);
 
     wxTreeItemId bills = m_nav_tree_ctrl->AppendItem(root, _("Recurring Transactions")
@@ -1805,7 +1805,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_OPEN, _("Open"), mmBitmap(png::OPEN), _("Open Database"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_NEWACCT, _("New Account"), mmBitmap(png::NEW_ACC), _("New Account"));
-    toolBar_->AddTool(MENU_ACCTLIST, _("Account List"), mmBitmap(png::HOME), _("Show Account List"));
+    toolBar_->AddTool(MENU_ACCTLIST, _("Home Page"), mmBitmap(png::HOME), _("Show Home Page"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmap(png::CATEGORY), _("Show Organize Categories Dialog"));
     toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmap(png::PAYEE), _("Show Organize Payees Dialog"));

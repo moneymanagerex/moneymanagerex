@@ -465,15 +465,15 @@ wxBEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
 EVT_WEBVIEW_NAVIGATING(wxID_ANY, mmHomePagePanel::OnLinkClicked)
 wxEND_EVENT_TABLE()
 
-const std::vector < std::pair <wxString, wxString> > mmHomePagePanel::typeStr
+const std::vector < std::pair <wxString, wxString> > mmHomePagePanel::acc_type_str
 {
     //    enum TYPE { CASH = 0, CHECKING, CREDIT_CARD, LOAN, TERM, CRYPTO, INVESTMENT, ASSET, SHARES };
-    { "CASH_ACCOUNTS_INFO", _("Cash Accounts") },
-    { "ACCOUNTS_INFO", _("Bank Accounts") },
-    { "CARD_ACCOUNTS_INFO", _("Credit Card Accounts") },
-    { "LOAN_ACCOUNTS_INFO", _("Loan Accounts") },
-    { "TERM_ACCOUNTS_INFO", _("Term Accounts") },
-    { "CRYPTO_ACCOUNTS_INFO", _("Crypto Accounts") },
+    { "CASH_ACCOUNTS_INFO", wxTRANSLATE("Cash Accounts") },
+    { "ACCOUNTS_INFO", wxTRANSLATE("Bank Accounts") },
+    { "CARD_ACCOUNTS_INFO", wxTRANSLATE("Credit Card Accounts") },
+    { "LOAN_ACCOUNTS_INFO", wxTRANSLATE("Loan Accounts") },
+    { "TERM_ACCOUNTS_INFO", wxTRANSLATE("Term Accounts") },
+    { "CRYPTO_WALLETS_INFO", wxTRANSLATE("Crypto Wallets") },
 };
 
 mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
@@ -595,7 +595,7 @@ void mmHomePagePanel::getData()
     m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(tBalance
         , accountStats, Model_Account::TERM);
     
-    m_frames["CRYPTO_ACCOUNTS_INFO"] = displayAccounts(tBalance
+    m_frames["CRYPTO_WALLETS_INFO"] = displayAccounts(tBalance
         , accountStats, Model_Account::CRYPTO);
 
     //Stocks
@@ -713,12 +713,12 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 const wxString mmHomePagePanel::displayAccounts(double& tBalance
     , std::map<int, std::pair<double, double> > &accountStats, int type)
 {
-    wxASSERT(typeStr.size() >= (size_t)type );
-    const wxString idStr = typeStr[type].first;
+    wxASSERT(acc_type_str.size() >= (size_t)type );
+    const wxString idStr = acc_type_str[type].first;
     wxString output = "<table class = 'sortable table'>\n";
     output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
     output += "<thead><tr><th nowrap>";
-    output += typeStr[type].second;
+    output += wxGetTranslation(acc_type_str[type].second);
 
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
     output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";
@@ -727,7 +727,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
     output += "</tr></thead>\n";
     output += wxString::Format("<tbody id = '%s'>\n", idStr);
 
-    double tReconciled = 0;
+    double tReconciled = 0, bal = 0;
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
@@ -736,7 +736,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
         Model_Currency::Data* currency = Model_Account::currency(account);
         if (!currency) currency = Model_Currency::GetBaseCurrency();
         double currency_rate = currency->BASECONVRATE;
-        double bal = account.INITIALBAL + accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
+        bal = account.INITIALBAL + accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
         double reconciledBal = account.INITIALBAL + accountStats[account.ACCOUNTID].first;
         tBalance += bal * currency_rate;
         tReconciled += reconciledBal * currency_rate;
@@ -749,15 +749,18 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
             body += "<tr>";
             body += wxString::Format("<td sorttable_customkey='*%s*' nowrap><a href='acct:%i' oncontextmenu='return false;'>%s</a></td>\n"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
-            body += wxString::Format("<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
-            body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));
+            body += wxString::Format("<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n"
+                , reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
+            body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n"
+                , bal, Model_Currency::toCurrency(bal, currency));
             body += "</tr>\n";
         }
     }
     output += body;
     output += "</tbody><tfoot><tr class ='total'><td>" + _("Total:") + "</td>\n";
     output += "<td class='money'>" + Model_Currency::toCurrency(tReconciled) + "</td>\n";
-    output += "<td class='money' colspan='2'>" + Model_Currency::toCurrency(tBalance) + "</td></tr></tfoot></table>\n";
+    output += "<td class='money' colspan='2'>" + Model_Currency::toCurrency(bal) 
+        + "</td></tr></tfoot></table>\n";
     if (body.empty()) output.clear();
 
     return output;

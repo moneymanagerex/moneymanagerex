@@ -755,7 +755,10 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 		.find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
 	for (const auto &currency : currencies)
 	{
-		if (curr_id > 0 && currency.CURRENCYID != curr_id) continue;
+		if (curr_id > 0 && currency.CURRENCYID != curr_id) 
+            continue;
+        if (curr_id < 0 && !Model_Account::is_used(currency))
+            continue;
 		const auto symbol = currency.CURRENCY_SYMBOL.Upper();
 		if (!symbol.IsEmpty()) 
             symbols.push_back(wxString::Format("%s%s=X", symbol, base_currency_symbol));
@@ -794,11 +797,8 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 		{
 			if (currency_data.find(currency_symbol) != currency_data.end())
 			{
-				if (Model_Account::is_used(currency)) //ignore unused currencies to have compact preview
-				{
-					msg << wxString::Format("%s\t: %0.6f -> %0.6f\n"
-						, currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol]);
-				}
+                msg << wxString::Format("%s\t: %0.6f -> %0.6f\n"
+                    , currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol]);
 				currency.BASECONVRATE = currency_data[currency_symbol];
 
 				Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID,

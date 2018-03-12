@@ -152,7 +152,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.addTableHeaderCell(_("Credit Card Accounts"), true);
     hb.addTableHeaderCell(_("Loan Accounts"), true);
     hb.addTableHeaderCell(_("Term Accounts"), true);
-    hb.addTableHeaderCell(_("Crypto Accounts"), true);
+    hb.addTableHeaderCell(_("Crypto Wallets"), true);
     hb.addTableHeaderCell(_("Total"), true);
     hb.addTableHeaderCell(_("Stocks"), true);
     hb.addTableHeaderCell(_("Balance"), true);
@@ -284,7 +284,7 @@ wxString mmReportSummaryByDate::getHTMLText()
 
         total = balancePerDay[Model_Account::CASH] + balancePerDay[Model_Account::CHECKING] 
             + balancePerDay[Model_Account::CREDIT_CARD] + balancePerDay[Model_Account::LOAN] 
-            + balancePerDay[Model_Account::TERM] + +balancePerDay[Model_Account::CRYPTO];
+            + balancePerDay[Model_Account::TERM] + balancePerDay[Model_Account::CRYPTO];
 
         totBalanceData.push_back(Model_Currency::toCurrency(total));
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::INVESTMENT]));

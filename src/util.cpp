@@ -311,7 +311,6 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
             double dPrice = (rate <= 0 ? 1 : rate / d);
             out[currency_symbol] = dPrice;
             output += wxString::Format("%s %.2f\n", currency_symbol, dPrice);
-
         }
     }
 

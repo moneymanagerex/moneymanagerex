@@ -55,7 +55,7 @@ public:
 public:
     mmGUIFrame* m_frame;
 private:
-    static const std::vector < std::pair <wxString, wxString> > typeStr;
+    static const std::vector < std::pair <wxString, wxString> > acc_type_str;
     wxString GetHomePageText() const;
     wxWebView* browser_;
     mmDateRange* date_range_;
