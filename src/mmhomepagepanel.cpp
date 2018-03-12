@@ -727,7 +727,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
     output += "</tr></thead>\n";
     output += wxString::Format("<tbody id = '%s'>\n", idStr);
 
-    double tReconciled = 0, bal = 0;
+    double total_reconciled = 0.0, total_balance = 0.0;
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
@@ -736,10 +736,10 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
         Model_Currency::Data* currency = Model_Account::currency(account);
         if (!currency) currency = Model_Currency::GetBaseCurrency();
         double currency_rate = currency->BASECONVRATE;
-        bal = currency_rate * (account.INITIALBAL + accountStats[account.ACCOUNTID].second); //Model_Account::balance(account);
+        double acc_bal = account.INITIALBAL + accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
         double reconciledBal = account.INITIALBAL + accountStats[account.ACCOUNTID].first;
-        tBalance += bal;
-        tReconciled += reconciledBal * currency_rate;
+        total_balance += acc_bal * currency_rate;
+        total_reconciled += reconciledBal * currency_rate;
 
         // show the actual amount in that account
         if (((vAccts_ == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status(account) == Model_Account::OPEN) ||
@@ -752,17 +752,18 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
             body += wxString::Format("<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n"
                 , reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
             body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n"
-                , bal, Model_Currency::toCurrency(bal, currency));
+                , acc_bal, Model_Currency::toCurrency(acc_bal, currency));
             body += "</tr>\n";
         }
     }
     output += body;
     output += "</tbody><tfoot><tr class ='total'><td>" + _("Total:") + "</td>\n";
-    output += "<td class='money'>" + Model_Currency::toCurrency(tReconciled) + "</td>\n";
-    output += "<td class='money' colspan='2'>" + Model_Currency::toCurrency(bal) 
+    output += "<td class='money'>" + Model_Currency::toCurrency(total_reconciled) + "</td>\n";
+    output += "<td class='money' colspan='2'>" + Model_Currency::toCurrency(total_balance)
         + "</td></tr></tfoot></table>\n";
     if (body.empty()) output.clear();
 
+    tBalance += total_balance;
     return output;
 }
 
