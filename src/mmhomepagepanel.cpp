@@ -736,9 +736,9 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
         Model_Currency::Data* currency = Model_Account::currency(account);
         if (!currency) currency = Model_Currency::GetBaseCurrency();
         double currency_rate = currency->BASECONVRATE;
-        bal = account.INITIALBAL + accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
+        bal = currency_rate * (account.INITIALBAL + accountStats[account.ACCOUNTID].second); //Model_Account::balance(account);
         double reconciledBal = account.INITIALBAL + accountStats[account.ACCOUNTID].first;
-        tBalance += bal * currency_rate;
+        tBalance += bal;
         tReconciled += reconciledBal * currency_rate;
 
         // show the actual amount in that account
@@ -902,6 +902,10 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         else if (name == "TERM_ACCOUNTS_INFO") {
             bool entry = !json::Boolean(o[L"TERM_ACCOUNTS_INFO"]);
             o[L"TERM_ACCOUNTS_INFO"] = json::Boolean(entry);
+        }
+        else if (name == "CRYPTO_WALLETS_INFO") {
+            bool entry = !json::Boolean(o[L"CRYPTO_WALLETS_INFO"]);
+            o[L"CRYPTO_WALLETS_INFO"] = json::Boolean(entry);
         }
 
         std::wstringstream wss;
