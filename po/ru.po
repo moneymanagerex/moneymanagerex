@@ -1,21 +1,27 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the MMEX package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: mmex\n"
+"Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2018-03-12 14:18+0300\n"
-"PO-Revision-Date: 2018-03-12 14:20+0300\n"
-"Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
-"Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Nikolay <vomikan@mail.ru>, 2018\n"
+"Language-Team: Russian (https://www.transifex.com/mmex/teams/84279/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-10 20:08+0000\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Poedit 2.0.6\n"
-"X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #: src/aboutdialog.cpp:43
 msgid "License agreement"
@@ -46,13 +52,13 @@ msgstr "Лицензия"
 msgid "Privacy"
 msgstr "Конфиденциальность"
 
-#: src/aboutdialog.cpp:204 src/accountdialog.cpp:373 src/appstartdialog.cpp:136
-#: src/assetdialog.cpp:301 src/attachmentdialog.cpp:118
-#: src/billsdepositsdialog.cpp:629 src/budgetentrydialog.cpp:156
-#: src/budgetyeardialog.cpp:112 src/budgetyearentrydialog.cpp:128
-#: src/currencydialog.cpp:227 src/customfieldeditdialog.cpp:170
-#: src/customfieldlistdialog.cpp:98 src/import_export/qif_export.cpp:213
-#: src/import_export/qif_export.cpp:236
+#: src/aboutdialog.cpp:204 src/accountdialog.cpp:373
+#: src/appstartdialog.cpp:136 src/assetdialog.cpp:301
+#: src/attachmentdialog.cpp:118 src/billsdepositsdialog.cpp:629
+#: src/budgetentrydialog.cpp:156 src/budgetyeardialog.cpp:112
+#: src/budgetyearentrydialog.cpp:128 src/currencydialog.cpp:227
+#: src/customfieldeditdialog.cpp:170 src/customfieldlistdialog.cpp:98
+#: src/import_export/qif_export.cpp:213 src/import_export/qif_export.cpp:236
 #: src/import_export/qif_import_gui.cpp:306 src/optiondialog.cpp:150
 #: src/payeedialog.cpp:125 src/relocatecategorydialog.cpp:111
 #: src/relocatepayeedialog.cpp:113 src/sharetransactiondialog.cpp:309
@@ -211,8 +217,8 @@ msgstr "Укажите валюту, которая будет использо�
 
 #: src/accountdialog.cpp:386
 msgid ""
-"Select whether this is an account that is used often. This is used to filter "
-"accounts display view."
+"Select whether this is an account that is used often. This is used to filter"
+" accounts display view."
 msgstr ""
 "Отметьте, если данный счёт используется часто. Это нужно для фильтрации "
 "отображения счетов."
@@ -416,7 +422,7 @@ msgid "% Rate"
 msgstr "% изменения"
 
 #: src/assetdialog.cpp:243
-#| msgid "Enter the rate at which the asset changes its value in % per year"
+#, c-format
 msgid "Enter the rate at which the asset changes its value in % per year"
 msgstr "Введите ежегодное изменение стоимости имущества в %"
 
@@ -451,6 +457,13 @@ msgid ""
 "Would you want to create one?\n"
 "\n"
 msgstr ""
+"Счёт актива с таким же именем не найден.\n"
+"\n"
+"Единичная транзакция для этого актива может быть связана с любым счётом.\n"
+"Несколько транзакций актива должны быть связаны со счётом актива.\n"
+"\n"
+"Вы хотите создать его?\n"
+"\n"
 
 #: src/assetspanel.cpp:58 src/billsdepositspanel.cpp:95
 #: src/mmcheckingpanel.cpp:1013 src/stockspanel.cpp:91
@@ -533,8 +546,8 @@ msgid ""
 msgstr ""
 "MMEX позволяет отслеживать активы (и пассивы), такие как автомобили, дома, "
 "земельные участки и прочее. Каждый объект может иметь начальную стоимость и "
-"определённое её изменение в год. Суммарная стоимость активов будет добавлена "
-"в финансовую сводку."
+"определённое её изменение в год. Суммарная стоимость активов будет добавлена"
+" в финансовую сводку."
 
 #: src/assetspanel.cpp:452 src/assetspanel.h:109
 #: src/general_report_manager.cpp:670 src/general_report_manager.cpp:944
@@ -578,7 +591,8 @@ msgstr "&Редактировать "
 #: src/assetspanel.cpp:524 src/billsdepositspanel.cpp:278
 #: src/budgetyeardialog.cpp:99 src/categdialog.cpp:232
 #: src/maincurrencydialog.cpp:284 src/mmcheckingpanel.cpp:492
-#: src/mmcheckingpanel.cpp:1155 src/stockdialog.cpp:342 src/stockspanel.cpp:589
+#: src/mmcheckingpanel.cpp:1155 src/stockdialog.cpp:342
+#: src/stockspanel.cpp:589
 msgid "&Delete "
 msgstr "&Удалить "
 
@@ -605,20 +619,16 @@ msgid "Change in Value: %s %s"
 msgstr "Изменение стоимости: %s %s"
 
 #: src/assetspanel.cpp:777
-#, fuzzy
-#| msgid ""
-#| "This asset does not have its own account\n"
-#| "\n"
-#| "Multiple transactions for this asset are not recommended."
 msgid ""
 "This asset does not have its own account\n"
 "\n"
 "Multiple transactions for this asset are not recommended.\n"
 "Please use the popup: 'Open Asset Account' to track the transaction."
 msgstr ""
-"Этот актив не имеет свой собственный счет\n"
+"У этого актива нет собственной учетной записи\n"
 "\n"
-"Не рекомендуется использовать несколько транзакций для этого актива."
+"Несколько транзакций для этого актива не рекомендуется.\n"
+"Пожалуйста, используйте всплывающее окно: 'Открыть счёт актива' для отслеживания транзакции."
 
 #: src/assetspanel.cpp:780
 msgid "Asset Management"
@@ -741,8 +751,8 @@ msgid ""
 "This directory and its files are automatically managed by Money Manager EX "
 "software."
 msgstr ""
-"Эта директория и все файлы в ней автоматически управляются приложением Money "
-"Manager EX."
+"Эта директория и все файлы в ней автоматически управляются приложением Money"
+" Manager EX."
 
 #: src/attachmentdialog.cpp:349
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -1231,8 +1241,8 @@ msgid ""
 "is due. "
 msgstr ""
 "MMEX позволяет планировать регулярные платежи. В день начисления можно "
-"преобразовать запись из планировщика в обычную транзакцию. Напоминания за 14 "
-"дней до наступления платежа можно увидеть в сводке. "
+"преобразовать запись из планировщика в обычную транзакцию. Напоминания за 14"
+" дней до наступления платежа можно увидеть в сводке. "
 
 #: src/billsdepositspanel.cpp:165
 msgid ""
@@ -1439,7 +1449,7 @@ msgstr "Месяц: %s"
 #: src/budgetingpanel.cpp:194
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s Дата начала: %s"
 
 #: src/budgetingpanel.cpp:197
 #, c-format
@@ -1621,8 +1631,7 @@ msgid ""
 "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
 msgstr ""
-"Заметка: Если категория добавлена только что, то она окажется в самом низу "
-"списка. \n"
+"Заметка: Если категория добавлена только что, то она окажется в самом низу списка. \n"
 "Сортировка будет произведена, когда диалог будет вызван повторно"
 
 #: src/categdialog.cpp:268 src/categdialog.cpp:292 src/categdialog.cpp:310
@@ -2151,27 +2160,27 @@ msgstr "Украинская гривна"
 
 #: src/db/DB_Table_Currencyformats_V1.h:113
 msgid "Afghan afghani"
-msgstr ""
+msgstr "Афганские афгани"
 
 #: src/db/DB_Table_Currencyformats_V1.h:114
 msgid "Albanian lek"
-msgstr ""
+msgstr "Албанский лек"
 
 #: src/db/DB_Table_Currencyformats_V1.h:115
 msgid "Algerian dinar"
-msgstr ""
+msgstr "Algerian dinar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:116
 msgid "Angolan kwanza"
-msgstr ""
+msgstr "Angolan kwanza"
 
 #: src/db/DB_Table_Currencyformats_V1.h:117
 msgid "East Caribbean dollar"
-msgstr ""
+msgstr "East Caribbean dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:118
 msgid "Argentine peso"
-msgstr ""
+msgstr "Argentine peso"
 
 #: src/db/DB_Table_Currencyformats_V1.h:119
 msgid "Armenian dram"
@@ -2179,7 +2188,7 @@ msgstr "Армянский драм"
 
 #: src/db/DB_Table_Currencyformats_V1.h:120
 msgid "Aruban florin"
-msgstr ""
+msgstr "Aruban florin"
 
 #: src/db/DB_Table_Currencyformats_V1.h:121
 msgid "Australian dollar"
@@ -2191,19 +2200,19 @@ msgstr "Азербайджанский манат"
 
 #: src/db/DB_Table_Currencyformats_V1.h:123
 msgid "Bahamian dollar"
-msgstr ""
+msgstr "Bahamian dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:124
 msgid "Bahraini dinar"
-msgstr ""
+msgstr "Bahraini dinar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:125
 msgid "Bangladeshi taka"
-msgstr ""
+msgstr "Bangladeshi taka"
 
 #: src/db/DB_Table_Currencyformats_V1.h:126
 msgid "Barbadian dollar"
-msgstr ""
+msgstr "Barbadian dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:127
 msgid "Belarusian ruble"
@@ -2211,55 +2220,55 @@ msgstr "Белорусский рубль"
 
 #: src/db/DB_Table_Currencyformats_V1.h:128
 msgid "Belize dollar"
-msgstr ""
+msgstr "Belize dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:129
 msgid "West African CFA franc"
-msgstr ""
+msgstr "West African CFA franc"
 
 #: src/db/DB_Table_Currencyformats_V1.h:130
 msgid "Bermudian dollar"
-msgstr ""
+msgstr "Bermudian dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:131
 msgid "Bhutanese ngultrum"
-msgstr ""
+msgstr "Bhutanese ngultrum"
 
 #: src/db/DB_Table_Currencyformats_V1.h:132
 msgid "Bolivian boliviano"
-msgstr ""
+msgstr "Bolivian boliviano"
 
 #: src/db/DB_Table_Currencyformats_V1.h:133
 msgid "Bosnia and Herzegovina konvertibilna marka"
-msgstr ""
+msgstr "Bosnia and Herzegovina konvertibilna marka"
 
 #: src/db/DB_Table_Currencyformats_V1.h:134
 msgid "Botswana pula"
-msgstr ""
+msgstr "Botswana pula"
 
 #: src/db/DB_Table_Currencyformats_V1.h:135
 msgid "Brazilian real"
-msgstr ""
+msgstr "Brazilian real"
 
 #: src/db/DB_Table_Currencyformats_V1.h:136
 msgid "Brunei dollar"
-msgstr ""
+msgstr "Brunei dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:137
 msgid "Bulgarian lev"
-msgstr ""
+msgstr "Bulgarian lev"
 
 #: src/db/DB_Table_Currencyformats_V1.h:138
 msgid "Burundi franc"
-msgstr ""
+msgstr "Burundi franc"
 
 #: src/db/DB_Table_Currencyformats_V1.h:139
 msgid "Cambodian riel"
-msgstr ""
+msgstr "Cambodian riel"
 
 #: src/db/DB_Table_Currencyformats_V1.h:140
 msgid "Central African CFA franc"
-msgstr ""
+msgstr "Central African CFA franc"
 
 #: src/db/DB_Table_Currencyformats_V1.h:141
 msgid "Canadian dollar"
@@ -2267,83 +2276,83 @@ msgstr "Канадский доллар"
 
 #: src/db/DB_Table_Currencyformats_V1.h:142
 msgid "Cape Verdean escudo"
-msgstr ""
+msgstr "Cape Verdean escudo"
 
 #: src/db/DB_Table_Currencyformats_V1.h:143
 msgid "Cayman Islands dollar"
-msgstr ""
+msgstr "Cayman Islands dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:144
 msgid "Chilean peso"
-msgstr ""
+msgstr "Chilean peso"
 
 #: src/db/DB_Table_Currencyformats_V1.h:145
 msgid "Chinese renminbi"
-msgstr ""
+msgstr "Chinese renminbi"
 
 #: src/db/DB_Table_Currencyformats_V1.h:146
 msgid "Colombian peso"
-msgstr ""
+msgstr "Colombian peso"
 
 #: src/db/DB_Table_Currencyformats_V1.h:147
 msgid "Comorian franc"
-msgstr ""
+msgstr "Comorian franc"
 
 #: src/db/DB_Table_Currencyformats_V1.h:148
 msgid "Congolese franc"
-msgstr ""
+msgstr "Congolese franc"
 
 #: src/db/DB_Table_Currencyformats_V1.h:149
 msgid "Costa Rican colon"
-msgstr ""
+msgstr "Costa Rican colon"
 
 #: src/db/DB_Table_Currencyformats_V1.h:150
 msgid "Croatian kuna"
-msgstr ""
+msgstr "Croatian kuna"
 
 #: src/db/DB_Table_Currencyformats_V1.h:151
 msgid "Czech koruna"
-msgstr ""
+msgstr "Czech koruna"
 
 #: src/db/DB_Table_Currencyformats_V1.h:152
 msgid "Danish krone"
-msgstr ""
+msgstr "Danish krone"
 
 #: src/db/DB_Table_Currencyformats_V1.h:153
 msgid "Djiboutian franc"
-msgstr ""
+msgstr "Djiboutian franc"
 
 #: src/db/DB_Table_Currencyformats_V1.h:154
 msgid "Dominican peso"
-msgstr ""
+msgstr "Dominican peso"
 
 #: src/db/DB_Table_Currencyformats_V1.h:155
 msgid "Egyptian pound"
-msgstr ""
+msgstr "Egyptian pound"
 
 #: src/db/DB_Table_Currencyformats_V1.h:156
 msgid "Eritrean nakfa"
-msgstr ""
+msgstr "Eritrean nakfa"
 
 #: src/db/DB_Table_Currencyformats_V1.h:157
 msgid "Ethiopian birr"
-msgstr ""
+msgstr "Ethiopian birr"
 
 #: src/db/DB_Table_Currencyformats_V1.h:158
 msgid "Falkland Islands pound"
-msgstr ""
+msgstr "Falkland Islands pound"
 
 #: src/db/DB_Table_Currencyformats_V1.h:159
 msgid "Fijian dollar"
-msgstr ""
+msgstr "Fijian dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:160
 msgid "CFP franc"
-msgstr ""
+msgstr "CFP franc"
 
 #: src/db/DB_Table_Currencyformats_V1.h:161
 msgid "Gambian dalasi"
-msgstr ""
+msgstr "Gambian dalasi"
 
 #: src/db/DB_Table_Currencyformats_V1.h:162
 msgid "Georgian lari"
@@ -2351,39 +2360,39 @@ msgstr "Грузинский лари"
 
 #: src/db/DB_Table_Currencyformats_V1.h:163
 msgid "Ghanaian cedi"
-msgstr ""
+msgstr "Ghanaian cedi"
 
 #: src/db/DB_Table_Currencyformats_V1.h:164
 msgid "Gibraltar pound"
-msgstr ""
+msgstr "Gibraltar pound"
 
 #: src/db/DB_Table_Currencyformats_V1.h:165
 msgid "Guatemalan quetzal"
-msgstr ""
+msgstr "Guatemalan quetzal"
 
 #: src/db/DB_Table_Currencyformats_V1.h:166
 msgid "Guinean franc"
-msgstr ""
+msgstr "Guinean franc"
 
 #: src/db/DB_Table_Currencyformats_V1.h:167
 msgid "Guyanese dollar"
-msgstr ""
+msgstr "Guyanese dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:168
 msgid "Haitian gourde"
-msgstr ""
+msgstr "Haitian gourde"
 
 #: src/db/DB_Table_Currencyformats_V1.h:169
 msgid "Honduran lempira"
-msgstr ""
+msgstr "Honduran lempira"
 
 #: src/db/DB_Table_Currencyformats_V1.h:170
 msgid "Hong Kong dollar"
-msgstr ""
+msgstr "Hong Kong dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:171
 msgid "Hungarian forint"
-msgstr ""
+msgstr "Hungarian forint"
 
 #: src/db/DB_Table_Currencyformats_V1.h:173
 msgid "Indian rupee"
@@ -2391,11 +2400,11 @@ msgstr "Индийская рупия"
 
 #: src/db/DB_Table_Currencyformats_V1.h:174
 msgid "Indonesian rupiah"
-msgstr ""
+msgstr "Indonesian rupiah"
 
 #: src/db/DB_Table_Currencyformats_V1.h:175
 msgid "Special Drawing Rights"
-msgstr ""
+msgstr "Special Drawing Rights"
 
 #: src/db/DB_Table_Currencyformats_V1.h:176
 msgid "Iranian rial"
@@ -2403,7 +2412,7 @@ msgstr "Иранский риал"
 
 #: src/db/DB_Table_Currencyformats_V1.h:177
 msgid "Iraqi dinar"
-msgstr ""
+msgstr "Iraqi dinar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:178
 msgid "Israeli new shekel"
@@ -2411,7 +2420,7 @@ msgstr "Израильский новый шекель"
 
 #: src/db/DB_Table_Currencyformats_V1.h:179
 msgid "Jamaican dollar"
-msgstr ""
+msgstr "Jamaican dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:180
 msgid "Japanese yen"
@@ -2419,7 +2428,7 @@ msgstr "Японская иена"
 
 #: src/db/DB_Table_Currencyformats_V1.h:181
 msgid "Jordanian dinar"
-msgstr ""
+msgstr "Jordanian dinar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:182
 msgid "Kazakhstani tenge"
@@ -2427,223 +2436,223 @@ msgstr "Казахстанский тенге"
 
 #: src/db/DB_Table_Currencyformats_V1.h:183
 msgid "Kenyan shilling"
-msgstr ""
+msgstr "Kenyan shilling"
 
 #: src/db/DB_Table_Currencyformats_V1.h:184
 msgid "North Korean won"
-msgstr ""
+msgstr "North Korean won"
 
 #: src/db/DB_Table_Currencyformats_V1.h:185
 msgid "South Korean won"
-msgstr ""
+msgstr "South Korean won"
 
 #: src/db/DB_Table_Currencyformats_V1.h:186
 msgid "Kuwaiti dinar"
-msgstr ""
+msgstr "Kuwaiti dinar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:187
 msgid "Kyrgyzstani som"
-msgstr ""
+msgstr "Kyrgyzstani som"
 
 #: src/db/DB_Table_Currencyformats_V1.h:188
 msgid "Lao kip"
-msgstr ""
+msgstr "Lao kip"
 
 #: src/db/DB_Table_Currencyformats_V1.h:189
 msgid "Latvian lats"
-msgstr ""
+msgstr "Latvian lats"
 
 #: src/db/DB_Table_Currencyformats_V1.h:190
 msgid "Lebanese lira"
-msgstr ""
+msgstr "Lebanese lira"
 
 #: src/db/DB_Table_Currencyformats_V1.h:191
 msgid "Lesotho loti"
-msgstr ""
+msgstr "Lesotho loti"
 
 #: src/db/DB_Table_Currencyformats_V1.h:192
 msgid "Liberian dollar"
-msgstr ""
+msgstr "Liberian dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:193
 msgid "Libyan dinar"
-msgstr ""
+msgstr "Libyan dinar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:194
 msgid "Lithuanian litas"
-msgstr ""
+msgstr "Lithuanian litas"
 
 #: src/db/DB_Table_Currencyformats_V1.h:195
 msgid "Macanese pataca"
-msgstr ""
+msgstr "Macanese pataca"
 
 #: src/db/DB_Table_Currencyformats_V1.h:196
 msgid "Macedonian denar"
-msgstr ""
+msgstr "Macedonian denar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:197
 msgid "Malagasy ariary"
-msgstr ""
+msgstr "Malagasy ariary"
 
 #: src/db/DB_Table_Currencyformats_V1.h:198
 msgid "Malawian kwacha"
-msgstr ""
+msgstr "Malawian kwacha"
 
 #: src/db/DB_Table_Currencyformats_V1.h:199
 msgid "Malaysian ringgit"
-msgstr ""
+msgstr "Malaysian ringgit"
 
 #: src/db/DB_Table_Currencyformats_V1.h:200
 msgid "Maldivian rufiyaa"
-msgstr ""
+msgstr "Maldivian rufiyaa"
 
 #: src/db/DB_Table_Currencyformats_V1.h:201
 msgid "Mauritanian ouguiya"
-msgstr ""
+msgstr "Mauritanian ouguiya"
 
 #: src/db/DB_Table_Currencyformats_V1.h:202
 msgid "Mauritian rupee"
-msgstr ""
+msgstr "Mauritian rupee"
 
 #: src/db/DB_Table_Currencyformats_V1.h:203
 msgid "Mexican peso"
-msgstr ""
+msgstr "Mexican peso"
 
 #: src/db/DB_Table_Currencyformats_V1.h:204
 msgid "Moldovan leu"
-msgstr ""
+msgstr "Moldovan leu"
 
 #: src/db/DB_Table_Currencyformats_V1.h:205
 msgid "Mongolian tugrik"
-msgstr ""
+msgstr "Mongolian tugrik"
 
 #: src/db/DB_Table_Currencyformats_V1.h:206
 msgid "Moroccan dirham"
-msgstr ""
+msgstr "Moroccan dirham"
 
 #: src/db/DB_Table_Currencyformats_V1.h:207
 msgid "Myanma kyat"
-msgstr ""
+msgstr "Myanma kyat"
 
 #: src/db/DB_Table_Currencyformats_V1.h:208
 msgid "Namibian dollar"
-msgstr ""
+msgstr "Namibian dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:209
 msgid "Nepalese rupee"
-msgstr ""
+msgstr "Nepalese rupee"
 
 #: src/db/DB_Table_Currencyformats_V1.h:210
 msgid "Netherlands Antillean gulden"
-msgstr ""
+msgstr "Netherlands Antillean gulden"
 
 #: src/db/DB_Table_Currencyformats_V1.h:211
 msgid "New Zealand dollar"
-msgstr ""
+msgstr "New Zealand dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:213
 msgid "Nigerian naira"
-msgstr ""
+msgstr "Nigerian naira"
 
 #: src/db/DB_Table_Currencyformats_V1.h:214
 msgid "Norwegian krone"
-msgstr ""
+msgstr "Norwegian krone"
 
 #: src/db/DB_Table_Currencyformats_V1.h:215
 msgid "Omani rial"
-msgstr ""
+msgstr "Omani rial"
 
 #: src/db/DB_Table_Currencyformats_V1.h:216
 msgid "Pakistani rupee"
-msgstr ""
+msgstr "Pakistani rupee"
 
 #: src/db/DB_Table_Currencyformats_V1.h:217
 msgid "Panamanian balboa"
-msgstr ""
+msgstr "Panamanian balboa"
 
 #: src/db/DB_Table_Currencyformats_V1.h:218
 msgid "Papua New Guinean kina"
-msgstr ""
+msgstr "Papua New Guinean kina"
 
 #: src/db/DB_Table_Currencyformats_V1.h:219
 msgid "Paraguayan guarani"
-msgstr ""
+msgstr "Paraguayan guarani"
 
 #: src/db/DB_Table_Currencyformats_V1.h:220
 msgid "Peruvian nuevo sol"
-msgstr ""
+msgstr "Peruvian nuevo sol"
 
 #: src/db/DB_Table_Currencyformats_V1.h:221
 msgid "Philippine peso"
-msgstr ""
+msgstr "Philippine peso"
 
 #: src/db/DB_Table_Currencyformats_V1.h:222
 msgid "Polish zloty"
-msgstr ""
+msgstr "Polish zloty"
 
 #: src/db/DB_Table_Currencyformats_V1.h:223
 msgid "Qatari riyal"
-msgstr ""
+msgstr "Qatari riyal"
 
 #: src/db/DB_Table_Currencyformats_V1.h:224
 msgid "Romanian leu"
-msgstr ""
+msgstr "Romanian leu"
 
 #: src/db/DB_Table_Currencyformats_V1.h:225
 msgid "Rwandan franc"
-msgstr ""
+msgstr "Rwandan franc"
 
 #: src/db/DB_Table_Currencyformats_V1.h:227
 msgid "Saudi riyal"
-msgstr ""
+msgstr "Saudi riyal"
 
 #: src/db/DB_Table_Currencyformats_V1.h:228
 msgid "Serbian dinar"
-msgstr ""
+msgstr "Serbian dinar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:229
 msgid "Seychellois rupee"
-msgstr ""
+msgstr "Seychellois rupee"
 
 #: src/db/DB_Table_Currencyformats_V1.h:230
 msgid "Sierra Leonean leone"
-msgstr ""
+msgstr "Sierra Leonean leone"
 
 #: src/db/DB_Table_Currencyformats_V1.h:231
 msgid "Singapore dollar"
-msgstr ""
+msgstr "Singapore dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:232
 msgid "Solomon Islands dollar"
-msgstr ""
+msgstr "Solomon Islands dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:233
 msgid "Somali shilling"
-msgstr ""
+msgstr "Somali shilling"
 
 #: src/db/DB_Table_Currencyformats_V1.h:234
 msgid "South African rand"
-msgstr ""
+msgstr "South African rand"
 
 #: src/db/DB_Table_Currencyformats_V1.h:235
 msgid "Sri Lankan rupee"
-msgstr ""
+msgstr "Sri Lankan rupee"
 
 #: src/db/DB_Table_Currencyformats_V1.h:236
 msgid "Saint Helena pound"
-msgstr ""
+msgstr "Saint Helena pound"
 
 #: src/db/DB_Table_Currencyformats_V1.h:237
 msgid "Sudanese pound"
-msgstr ""
+msgstr "Sudanese pound"
 
 #: src/db/DB_Table_Currencyformats_V1.h:238
 msgid "Surinamese dollar"
-msgstr ""
+msgstr "Surinamese dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:239
 msgid "Swazi lilangeni"
-msgstr ""
+msgstr "Swazi lilangeni"
 
 #: src/db/DB_Table_Currencyformats_V1.h:240
 msgid "Swedish krona"
@@ -2655,51 +2664,51 @@ msgstr "Швейцарский франк"
 
 #: src/db/DB_Table_Currencyformats_V1.h:242
 msgid "Syrian pound"
-msgstr ""
+msgstr "Syrian pound"
 
 #: src/db/DB_Table_Currencyformats_V1.h:243
 msgid "New Taiwan dollar"
-msgstr ""
+msgstr "New Taiwan dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:244
 msgid "Tajikistani somoni"
-msgstr ""
+msgstr "Tajikistani somoni"
 
 #: src/db/DB_Table_Currencyformats_V1.h:245
 msgid "Tanzanian shilling"
-msgstr ""
+msgstr "Tanzanian shilling"
 
 #: src/db/DB_Table_Currencyformats_V1.h:246
 msgid "Thai baht"
-msgstr ""
+msgstr "Thai baht"
 
 #: src/db/DB_Table_Currencyformats_V1.h:247
 msgid "Trinidad and Tobago dollar"
-msgstr ""
+msgstr "Trinidad and Tobago dollar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:248
 msgid "Tunisian dinar"
-msgstr ""
+msgstr "Tunisian dinar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:249
 msgid "Turkish lira"
-msgstr ""
+msgstr "Turkish lira"
 
 #: src/db/DB_Table_Currencyformats_V1.h:250
 msgid "Turkmen manat"
-msgstr ""
+msgstr "Turkmen manat"
 
 #: src/db/DB_Table_Currencyformats_V1.h:251
 msgid "Ugandan shilling"
-msgstr ""
+msgstr "Ugandan shilling"
 
 #: src/db/DB_Table_Currencyformats_V1.h:252
 msgid "UAE dirham"
-msgstr ""
+msgstr "UAE dirham"
 
 #: src/db/DB_Table_Currencyformats_V1.h:253
 msgid "Uruguayan peso"
-msgstr ""
+msgstr "Uruguayan peso"
 
 #: src/db/DB_Table_Currencyformats_V1.h:254
 msgid "Uzbekistani som"
@@ -2707,19 +2716,19 @@ msgstr "Узбекский сом"
 
 #: src/db/DB_Table_Currencyformats_V1.h:255
 msgid "Vanuatu vatu"
-msgstr ""
+msgstr "Vanuatu vatu"
 
 #: src/db/DB_Table_Currencyformats_V1.h:256
 msgid "Vietnamese dong"
-msgstr ""
+msgstr "Vietnamese dong"
 
 #: src/db/DB_Table_Currencyformats_V1.h:257
 msgid "Samoan tala"
-msgstr ""
+msgstr "Samoan tala"
 
 #: src/db/DB_Table_Currencyformats_V1.h:258
 msgid "Yemeni rial"
-msgstr ""
+msgstr "Yemeni rial"
 
 #: src/db/DB_Table_Currencyformats_V1.h:260
 msgid "Bitcoin"
@@ -2951,7 +2960,8 @@ msgstr "Сохранить отладочный файл"
 
 #: src/dbupgrade.cpp:306
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr "Обслуживание БД завершено, пожалуйста, закройте и снова откройте MMEX!"
+msgstr ""
+"Обслуживание БД завершено, пожалуйста, закройте и снова откройте MMEX!"
 
 #: src/dbwrapper.cpp:70
 msgid "When database file opening:"
@@ -3356,7 +3366,8 @@ msgstr "Запись в файл"
 msgid "File Name:"
 msgstr "Имя файла:"
 
-#: src/import_export/qif_export.cpp:199 src/import_export/univcsvdialog.cpp:402
+#: src/import_export/qif_export.cpp:199
+#: src/import_export/univcsvdialog.cpp:402
 msgid "Clear"
 msgstr "О&чистить"
 
@@ -3492,7 +3503,6 @@ msgstr "OK"
 msgid "Warning"
 msgstr "Внимание"
 
-# отсутсвует что?
 #: src/import_export/qif_import_gui.cpp:618
 #: src/import_export/qif_import_gui.cpp:637
 msgid "Missing"
@@ -3993,7 +4003,7 @@ msgstr "Вы хотите добавить значения для не испо
 #: src/maincurrencydialog.cpp:662
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr "Невозможно загрузить курсы для валюты %s. История курсов не доступна."
+msgstr "Невозможно загрузить курсы для валюты %s. История курсов не доступна!"
 
 #: src/maincurrencydialog.cpp:785
 msgid "Currency rates have been updated"
@@ -4049,6 +4059,7 @@ msgid ""
 "Activating the button will provide a selection box where the account can be "
 "selected."
 msgstr ""
+"Активация кнопки предоставляет окно выбора, в котором можно выбрать счёт."
 
 #: src/mmSimpleDialogs.cpp:166 src/mmcombobox.h:77
 msgid "Invalid Payee"
@@ -4067,6 +4078,8 @@ msgid ""
 "Activating the button will provide a selection box where the payee can be "
 "selected."
 msgstr ""
+"Активация кнопки предоставляет окно выбора, в котором может быть выбран "
+"получатель."
 
 #: src/mmSimpleDialogs.cpp:183 src/mmSimpleDialogs.cpp:197
 msgid "Invalid Name"
@@ -4101,8 +4114,8 @@ msgid ""
 "Recommendation: If upgrading to a new version of MMEX, make sure you backup "
 "your .mmb database file before doing so."
 msgstr ""
-"Рекомендация: При обновлении до новой версии MMEX, убедитесь, что вы сделали "
-"резервное копирование .mmb файла базы данных, прежде чем продолжать.."
+"Рекомендация: При обновлении до новой версии MMEX, убедитесь, что вы сделали"
+" резервное копирование .mmb файла базы данных, прежде чем продолжать.."
 
 #: src/mmTips.h:24
 msgid ""
@@ -4124,8 +4137,8 @@ msgid ""
 "properly guarded."
 msgstr ""
 "Заметка: Файл базы данных .mmb не зашифрован. Это значит, что любой "
-"обладающий соответствующими навыками может открыть этот файл и прочитать его "
-"содержимое. Позаботьтесь о сохранности ваших финансовых данных."
+"обладающий соответствующими навыками может открыть этот файл и прочитать его"
+" содержимое. Позаботьтесь о сохранности ваших финансовых данных."
 
 #: src/mmTips.h:27
 msgid ""
@@ -4154,8 +4167,8 @@ msgstr ""
 
 #: src/mmTips.h:30
 msgid ""
-"Tip: You can modify some runtime behavior of MMEX by changing the options in "
-"the Options Dialog. "
+"Tip: You can modify some runtime behavior of MMEX by changing the options in"
+" the Options Dialog. "
 msgstr ""
 "Подсказка: Вы можете изменить поведение MMEX путем изменения параметров в "
 "диалоговом окне Настройки."
@@ -4163,8 +4176,8 @@ msgstr ""
 #: src/mmTips.h:31
 msgid ""
 "Tip: To print a statement with transactions from any arbitrary set of "
-"criteria, use the transaction filter to select the transactions you want and "
-"then do a print from the menu."
+"criteria, use the transaction filter to select the transactions you want and"
+" then do a print from the menu."
 msgstr ""
 "Подсказка: Чтобы распечатать сводку по транзакциям исходя из определённых "
 "критериев, используйте фильтр проводок, а затем выполните печать из "
@@ -4181,36 +4194,32 @@ msgid ""
 "Organize Categories Dialog Tip: Pressing the h key will cycle through all "
 "categories starting with the letter h"
 msgstr ""
-"Совет: В менеджере категорий нажимая последовательно клавишу соответствующую "
-"первой букве названия, курсор будет переключаться между соответствующими "
+"Совет: В менеджере категорий нажимая последовательно клавишу соответствующую"
+" первой букве названия, курсор будет переключаться между соответствующими "
 "категориями."
 
 #: src/mmTips.h:35
 msgid ""
 "Organize Categories Dialog Tip: Pressing 2 key combination will cycle "
-"through all categories starting with that key combination. Example: Pressing "
-"ho will select Homeneeds, Home, House Tax, etc..."
+"through all categories starting with that key combination. Example: Pressing"
+" ho will select Homeneeds, Home, House Tax, etc..."
 msgstr ""
-"Совет: В менеджере категорий нажимая последовательно клавишу или более можно "
-"циклически переключаться  между соответствующими названиями. Например, "
+"Совет: В менеджере категорий нажимая последовательно клавишу или более можно"
+" циклически переключаться  между соответствующими названиями. Например, "
 "клавиша О переключит между Отель, Отдых, Одежда и т.д."
 
 #: src/mmTips.h:37
-#, fuzzy, c-format
-#| msgid ""
-#| "Tip to get out of debt: Pay yourself 10% first. Put this into an account "
-#| "that is hard to touch. Make sure it is a chore to get the money out (you "
-#| "have to drive to the bank), so you will only tap it consciously and for "
-#| "major expenses."
+#, c-format
 msgid ""
 "Tip to get out of debt: Pay yourself 10% first. Put this into an account "
 "that is hard to touch. Make sure it is a chore to get the money out (you "
 "have to drive to the bank), so you will only tap it consciously and for "
 "major expenses."
 msgstr ""
-"Как избегать долгов: Платите себе 10% от вашего дохода. Разместите эти "
-"средства на счёте, который труднодоступен и используйте его только для "
-"крупных целевых расходов."
+"Совет, чтобы выйти из долгов: Сохраняйте 10% заработка. Поместите это в "
+"трудно доступное место. Такое, чтобы получить деньги было затруднительно "
+"(вам нужно проехать в банк, например).  В этом случае вы будете использовать"
+" эти деньги сознательно и только для основных расходов."
 
 #: src/mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -4231,8 +4240,8 @@ msgstr "Как избегать долгов: Тратьте меньше чем
 #: src/mmTips.h:42
 msgid "Tip to get out of debt: Pay more than the minimum."
 msgstr ""
-"Совет как избегать долгов: Оплачивайте больше чем минимум (делайте авансовые "
-"платежи)."
+"Совет как избегать долгов: Оплачивайте больше чем минимум (делайте авансовые"
+" платежи)."
 
 #: src/mmTips.h:43
 msgid ""
@@ -4373,23 +4382,23 @@ msgstr "Отметить"
 
 #: src/mmcheckingpanel.cpp:1173
 msgid "as Reconciled"
-msgstr "Выверено"
+msgstr "выверено"
 
 #: src/mmcheckingpanel.cpp:1174
 msgid "as Unreconciled"
-msgstr "Не выверено"
+msgstr "не выверено"
 
 #: src/mmcheckingpanel.cpp:1175
 msgid "as Void"
-msgstr "Не учитывать"
+msgstr "не учитывать"
 
 #: src/mmcheckingpanel.cpp:1176
 msgid "as needing Followup"
-msgstr "Отслеживать"
+msgstr "отслеживать"
 
 #: src/mmcheckingpanel.cpp:1177
 msgid "as Duplicate"
-msgstr "Повтор"
+msgstr "повтор"
 
 #: src/mmcheckingpanel.cpp:1178
 msgid "Mark all being viewed"
@@ -4421,7 +4430,8 @@ msgstr "Вы действительно хотите удалить все по�
 msgid "Do you really want to delete the selected transaction?"
 msgstr "Вы действительно хотите удалить выбранную транзакцию?"
 
-#: src/mmcheckingpanel.cpp:1648 src/transdialog.cpp:651 src/transdialog.cpp:684
+#: src/mmcheckingpanel.cpp:1648 src/transdialog.cpp:651
+#: src/transdialog.cpp:684
 msgid "MMEX Transaction Check"
 msgstr "Проверка транзакций"
 
@@ -5019,8 +5029,8 @@ msgstr "Форум"
 
 #: src/mmframe.cpp:1717
 msgid ""
-"Visit the MMEX forum to see existing user comments or report new issues with "
-"the software"
+"Visit the MMEX forum to see existing user comments or report new issues with"
+" the software"
 msgstr ""
 "Посетите форум MMEX, чтобы увидеть существующие комментарии пользователей "
 "или сообщить о новых проблемах с программным обеспечением"
@@ -5342,8 +5352,7 @@ msgid ""
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n"
 "\n"
-"These accounts only become visible after associating a Stock to the Share "
-"Account\n"
+"These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr ""
@@ -5382,12 +5391,13 @@ msgstr ""
 
 #: src/mmframe.cpp:2596
 msgid ""
-"2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue "
-"for similar problem - update existing issue instead of creating new one."
+"2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue"
+" for similar problem - update existing issue instead of creating new one."
 msgstr ""
-"2. На сайте https://github.com/moneymanagerex/moneymanagerex/issues?q=is:"
-"issue уже может быть зарегистрирована аналогичная проблема - обновите "
-"информацию, а не создавайте новую заявку."
+"2. На сайте "
+"https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue уже может"
+" быть зарегистрирована аналогичная проблема - обновите информацию, а не "
+"создавайте новую заявку."
 
 #: src/mmframe.cpp:2597
 msgid "3. Put some descriptive name for your issue in the Title field above."
@@ -5679,7 +5689,7 @@ msgstr "Срочный"
 
 #: src/model/Model_Account.cpp:37
 msgid "Crypto"
-msgstr ""
+msgstr "Крипта"
 
 #: src/model/Model_Account.cpp:38
 msgid "Investment"
@@ -5693,7 +5703,6 @@ msgstr "Вклад"
 msgid "Shares"
 msgstr "Паи"
 
-# FIXME:
 #: src/model/Model_Account.cpp:134
 msgid "Account Error"
 msgstr "Счёт не определён"
@@ -6032,7 +6041,7 @@ msgstr "Установить валюту"
 
 #: src/optionsettingsgeneral.cpp:92
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr "Устанавливает валюту по умолчанию с помощью менеджера валют"
+msgstr "Устанавливает валюту по умолчанию с помощью 'Менеджера Валют'"
 
 #: src/optionsettingsgeneral.cpp:94
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
@@ -6098,7 +6107,7 @@ msgstr "Установить значение по умолчанию."
 
 #: src/optionsettingsmisc.cpp:69
 msgid "Share Precision"
-msgstr "знаков после запятой"
+msgstr "Знаков после запятой"
 
 #: src/optionsettingsmisc.cpp:74
 msgid "Set the precision for Share prices"
@@ -6162,8 +6171,7 @@ msgid ""
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
 msgstr ""
 "При закрытии MMEX, если сделаны изменения, \n"
-"создать или обновить резервную копию базы данных: dbFile_update_YYYY-MM-DD."
-"ext."
+"создать или обновить резервную копию базы данных: dbFile_update_YYYY-MM-DD.ext."
 
 #: src/optionsettingsmisc.cpp:159
 msgid "Specify max number of backup files"
@@ -6313,58 +6321,44 @@ msgid "Specify which scale factor is used for the report pages"
 msgstr "Определите, какой масштаб использовать для отчётов"
 
 #: src/optionsettingsview.cpp:120
-#, fuzzy
-#| msgid "Budgeting"
 msgid "Budget Options"
-msgstr "Бюджет"
+msgstr "Варианты бюджета"
 
 #: src/optionsettingsview.cpp:126
-#, fuzzy
-#| msgid "View Last Financial Year"
 msgid "View as Financial Years"
-msgstr "Прошлый финансовый год"
+msgstr "Просмотр согласно финансовым годам"
 
 #: src/optionsettingsview.cpp:132
-#, fuzzy
-#| msgid "View Budgets with 'transfer' transactions"
 msgid "View with 'transfer' transactions"
-msgstr "Показывать бюджет с учётом переводов"
+msgstr "Просмотр с транзакциями перевода"
 
 #: src/optionsettingsview.cpp:138
-#, fuzzy
-#| msgid "View Budgets Setup Without Budget Summaries"
 msgid "View Setup Without Budget Summaries"
-msgstr "Отображать бюджет без сумм по категориям"
+msgstr "Просмотр настроек без сводок бюджета"
 
 #: src/optionsettingsview.cpp:144
-#, fuzzy
-#| msgid "View Budget Category Report with Summaries"
 msgid "View Category Report with Summaries"
-msgstr "Отображать сумму по категориям в бюджете"
+msgstr "Просмотр отчета по категориям с итогами"
 
 #: src/optionsettingsview.cpp:153
-#, fuzzy
-#| msgid "Budget Year:"
 msgid "Budget Offset (days):"
-msgstr "Бюджетный год:"
+msgstr "Смещение бюджета (дней):"
 
 #: src/optionsettingsview.cpp:157
 msgid ""
 "Advance or retard the start date from the 1st of the month or year by the "
 "number of days"
 msgstr ""
+"Смещение или сдвиг даты начала с 1-го числа месяца или года на указанное "
+"количество дней"
 
 #: src/optionsettingsview.cpp:162
-#, fuzzy
-#| msgid "Repetitions"
 msgid "Report Options"
-msgstr "Повторения"
+msgstr "Параметры отчета"
 
 #: src/optionsettingsview.cpp:168
-#, fuzzy
-#| msgid "View Reports without Future Transactions"
 msgid "View without Future Transactions"
-msgstr "Отображать отчёты без будущих проводок"
+msgstr "Просмотр без будущих транзакций"
 
 #: src/optionsettingsview.cpp:174
 msgid "User Colors"
@@ -6560,7 +6554,7 @@ msgstr "Итоги бюджета на %s"
 
 #: src/reports/budgetcategorysummary.cpp:133
 msgid "( Estimated Vs Actual )"
-msgstr " (Оценочно/Фактически)"
+msgstr "(Оценочно/Фактически)"
 
 #: src/reports/budgetcategorysummary.cpp:262
 msgid "Estimated Income:"
@@ -6624,7 +6618,7 @@ msgstr "Разница"
 
 #: src/reports/categexp.cpp:191
 msgid "Category Total: "
-msgstr "Всего по категории:"
+msgstr "Всего по категории: "
 
 #: src/reports/categexp.cpp:206
 msgid "Total Expenses:"
@@ -6653,7 +6647,7 @@ msgstr "Прогноз"
 #: src/reports/htmlbuilder.cpp:116
 #, c-format
 msgid "Report Generated %s %s"
-msgstr ""
+msgstr "Отчёт сформирован %s %s"
 
 #: src/reports/htmlbuilder.cpp:313
 #, c-format
@@ -6862,7 +6856,7 @@ msgstr "Менеджер воложений для инвестиций"
 
 #: src/sharetransactiondialog.cpp:261 src/stockdialog.cpp:287
 msgid "Display the web page for the specified Stock symbol"
-msgstr "Отобразит веб-страницу для выбранного тикера "
+msgstr "Отобразит веб-страницу для выбранного тикера"
 
 #: src/sharetransactiondialog.cpp:271 src/stockdialog.cpp:294
 msgid "Enter notes associated with this investment"
@@ -7055,19 +7049,15 @@ msgstr ""
 msgid ""
 "The Company name does not have an associated Share Account.\n"
 "\n"
-"You may want to readjust the Company Name to an existing Share Account with "
-"the same name. If this is an existing Stock without a Share Account, it is "
-"recommended that a Share Account is created.\n"
+"You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n"
 "\n"
 "Do you want to create a new Share Acccount?\n"
 msgstr ""
 "У компании нет связанного Аккаунта Акций.\n"
 "\n"
-"Вы можете перенаправить название компании на существующую Акцию Аккаунта с "
-"тем же именем. Если это уже существующая Акция без Аккаунта Акций, "
-"рекомендуется создать Аккаунт Акций.\n"
+"Вы можете перенаправить название компании на существующую Акцию Аккаунта с тем же именем. Если это уже существующая Акция без Аккаунта Акций, рекомендуется создать Аккаунт Акций.\n"
 "\n"
-"Вы хотите создать новый Аккаунт Акций?\v\n"
+"Вы хотите создать новый Аккаунт Акций?\\v\n"
 
 #: src/stockdialog.cpp:571
 msgid "Stock History CSV Import"
@@ -7075,59 +7065,43 @@ msgstr "CSV импорт истории котировок"
 
 #: src/stockdialog.cpp:572 src/stockdialog.cpp:586
 msgid "Quotes imported from CSV: "
-msgstr "Котировок импортировано из CSV:"
+msgstr "Котировок импортировано из CSV: "
 
 #: src/stockdialog.cpp:652
 msgid "Importing CSV"
 msgstr "Импорт CSV"
 
 #: src/stockdialog.cpp:684 src/stockdialog.cpp:714
-#, fuzzy
-#| msgid "Days"
 msgid "5 Days"
-msgstr "Дней"
+msgstr "5 дней"
 
 #: src/stockdialog.cpp:685 src/stockdialog.cpp:716
-#, fuzzy
-#| msgid "Month"
 msgid "1 Month"
-msgstr "Месяц"
+msgstr "1 месяц"
 
 #: src/stockdialog.cpp:686 src/stockdialog.cpp:717
-#, fuzzy
-#| msgid "Months"
 msgid "3 Months"
-msgstr "Месяцев"
+msgstr "3 месяца"
 
 #: src/stockdialog.cpp:687
-#, fuzzy
-#| msgid "Months"
 msgid "6 Months"
-msgstr "Месяцев"
+msgstr "6 месяцев"
 
 #: src/stockdialog.cpp:688
-#, fuzzy
-#| msgid "Year"
 msgid "1 Year"
-msgstr "Год"
+msgstr "1 год"
 
 #: src/stockdialog.cpp:689
-#, fuzzy
-#| msgid "Year"
 msgid "2 Years"
-msgstr "Год"
+msgstr "2 года"
 
 #: src/stockdialog.cpp:690
-#, fuzzy
-#| msgid "Year"
 msgid "5 Years"
-msgstr "Год"
+msgstr "5 лет"
 
 #: src/stockdialog.cpp:691
-#, fuzzy
-#| msgid "Year"
 msgid "10 Years"
-msgstr "Год"
+msgstr "10 лет"
 
 #: src/stockdialog.cpp:693
 msgid "Max"
@@ -7143,19 +7117,15 @@ msgstr "Обновить историю котировок"
 
 #: src/stockdialog.cpp:713
 msgid "1 Day"
-msgstr ""
+msgstr "1 день"
 
 #: src/stockdialog.cpp:715
-#, fuzzy
-#| msgid "Weeks"
 msgid "1 Week"
-msgstr "Недель"
+msgstr "1 неделя"
 
 #: src/stockdialog.cpp:723
-#, fuzzy
-#| msgid "Specify type frequency of stock history"
 msgid "Specify interval of stock history"
-msgstr "Выберите период истории котировок"
+msgstr "Укажите интервал для истории акций"
 
 #: src/stockdialog.cpp:737
 msgid "Stock history not found!"
@@ -7168,8 +7138,8 @@ msgstr "Ошибка истории котировок"
 #: src/stockspanel.cpp:32
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
 msgstr ""
-"Используя MMEX можно отслеживать инвестиции, такие как акции, облигации и т."
-"п."
+"Используя MMEX можно отслеживать инвестиции, такие как акции, облигации и "
+"т.п."
 
 #: src/stockspanel.cpp:33
 msgid ""
@@ -7362,7 +7332,7 @@ msgstr "Редактирование транзакции"
 
 #: src/transdialog.cpp:484
 msgid "Populate Transaction #"
-msgstr "Присвоить номер"
+msgstr "Присвоить №"
 
 #: src/transdialog.cpp:506 src/usertransactionpanel.cpp:212
 msgid "Organize attachments of this transaction"
@@ -7424,7 +7394,8 @@ msgid "Retard or advance the date of the transaction"
 msgstr "Укажите дату проводки"
 
 #: src/usertransactionpanel.cpp:117
-msgid "Please select the Account that will be associated with this transaction"
+msgid ""
+"Please select the Account that will be associated with this transaction"
 msgstr "Пожалуйста, выберите счёт для данной транзакции"
 
 #: src/usertransactionpanel.cpp:129
@@ -7468,7 +7439,7 @@ msgstr "Выбор счёта"
 #: src/util.cpp:362
 #, c-format
 msgid "%s\t: %s\n"
-msgstr "%s\t: %s\n"
+msgstr "%s\\t: %s\\n"
 
 #: src/util.cpp:362 src/webapp.cpp:186
 msgid "Invalid value"
@@ -7654,7 +7625,6 @@ msgstr "пожалуйста проверьте настройки и / или �
 msgid "WebApp connection error"
 msgstr "Ошибка соединения WebApp"
 
-# Wrong WebApp API version used as well
 #: src/webapp.cpp:130
 msgid "Wrong WebApp API version:"
 msgstr "Не правильная WebApp API версия:"
@@ -7898,10 +7868,8 @@ msgstr ""
 "\n"
 "Файл базы данных хранится с расширением .mmb.\n"
 "Поскольку этот файл содержит важную финансовую информацию,\n"
-"мы рекомендовали создавать ежедневные резервные копии. Настройте это в "
-"опциях:\n"
-"\"Резервное копирование перед открытием\". Также копируйте и храните "
-"резервные копии\n"
+"мы рекомендовали создавать ежедневные резервные копии. Настройте это в опциях:\n"
+"\"Резервное копирование перед открытием\". Также копируйте и храните резервные копии\n"
 "в отдельном месте.\n"
 "\n"
 "В базе данных может быть зашифрована, при необходимости,\n"
@@ -7978,2715 +7946,3 @@ msgstr "MMEX проверка версии"
 #, c-format
 msgid "You already have the latest version %s"
 msgstr "У вас установлена новейшая версия %s"
-
-#~ msgid "Account List"
-#~ msgstr "Список счетов"
-
-#, fuzzy
-#~| msgid "Stock Accounts"
-#~ msgid "Crypto Accounts"
-#~ msgstr "Инвестиционные счета "
-
-#~ msgid "Invalid Transaction"
-#~ msgstr "Недействительная транзакция"
-
-#~ msgid ""
-#~ "Asset Account not found.\n"
-#~ "\n"
-#~ "Would you want to create one?"
-#~ msgstr ""
-#~ "Счет активов не найден.\n"
-#~ "\n"
-#~ "Вы хотели бы создать его?"
-
-#~ msgid "Do you want to update today currency rates?"
-#~ msgstr "Хотите обновить сегодняшние курсы валют?"
-
-#~ msgid ""
-#~ "Do you want to update all currency history? Any custom currency rate will "
-#~ "be deleted!"
-#~ msgstr ""
-#~ "Вы хотите обновить всю историю валют? Все пользовательские курсы будут "
-#~ "удалены!"
-
-#~ msgid ""
-#~ "Unable to download history for base symbol %s. History rates not "
-#~ "available!"
-#~ msgstr ""
-#~ "Невозможно загрузить курсы для базовой валюты %s. История курсов не "
-#~ "доступна."
-
-#~ msgid "View Budgets as Financial Years"
-#~ msgstr "Показывать бюджеты на финансовый год"
-
-#~ msgid "Today's Date: %s"
-#~ msgstr "Сегодня: %s"
-
-#~ msgid "Specify how many stock history prices download from purchase date"
-#~ msgstr "Укажите, сколько цен скачать с даты покупки"
-
-#~ msgid "Number of %s:"
-#~ msgstr "Кол-во %s:"
-
-#~ msgid ""
-#~ "End date is in the future\n"
-#~ "Quotes will be updated until today"
-#~ msgstr ""
-#~ "Дата окончания в будущем\n"
-#~ "Котировки будут обновляться до сегодняшнего дня"
-
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
-
-#~ msgid "Specify the associated Account that will contain this transaction"
-#~ msgstr "Укажите счёт для данной транзакции"
-
-#~ msgid "Syntax error in the URL string"
-#~ msgstr "Синтаксическая ошибка в URL"
-
-#~ msgid "Found no protocol which can get this URL"
-#~ msgstr "Не найден подходящий протокол для данного URL"
-
-#~ msgid "A host name is required for this protocol"
-#~ msgstr "Хост не задан для данного протокола"
-
-#~ msgid "A path is required for this protocol"
-#~ msgstr "Путь не задан для данного протокола"
-
-#~ msgid "Connection error"
-#~ msgstr "Ошибка соединения"
-
-#~ msgid "Cannot get data from WWW!"
-#~ msgstr "Не могу получить данные из сети!"
-
-#~ msgid "Wiki page"
-#~ msgstr "Wiki страница"
-
-#~ msgid "Bug reports"
-#~ msgstr "Отчёты об ошибках"
-
-#~ msgid "Follow MMEX on Facebook"
-#~ msgstr "Посетите нас на Facebook"
-
-#~ msgid "Follow MMEX on Twitter"
-#~ msgstr "Посетите MMEX Twitter"
-
-#~ msgid "Donate"
-#~ msgstr "Вклад в развитие"
-
-#~ msgid "Buy us a coffee"
-#~ msgstr "Купите нам кофе"
-
-#~ msgid "(DB v.%i)"
-#~ msgstr "(БД вер.%i)"
-
-#~ msgid "Developers"
-#~ msgstr "Разработчики"
-
-#~ msgid "Artwork"
-#~ msgstr "Графика"
-
-#~ msgid "MMEX is using the following support products"
-#~ msgstr "MMEX использует следующие компоненты"
-
-#~ msgid "Dot"
-#~ msgstr "Точка"
-
-#~ msgid "Comma"
-#~ msgstr "Запятая"
-
-#~ msgid "Space"
-#~ msgstr "Пробел"
-
-#~ msgid "Invalid file content, please contact MMEX support!"
-#~ msgstr ""
-#~ "Неверное содержимое файла, пожалуйста, обратитесь в службу поддержки MMEX!"
-
-#~ msgid "Amount(+/-)"
-#~ msgstr "Сумма(+/-)"
-
-#~ msgid "Amount(+/-): "
-#~ msgstr "Сумма(+/-): "
-
-#~ msgid ""
-#~ "Incorrect fields specified for import! Requires at least Date and Amount."
-#~ msgstr "Указаны неверные поля для импорта! Обязательны дата и сумма."
-
-#~ msgid "Transactions imported from file: "
-#~ msgstr "Проводок импортировано из файла: "
-
-#~ msgid ""
-#~ "Transactions imported from file\n"
-#~ "to account %s : %ld"
-#~ msgstr ""
-#~ "Проводок импортировано из файла\n"
-#~ "в счёт %s : %ld"
-
-#~ msgid "Line: %ld"
-#~ msgstr "Строка: %ld"
-
-#~ msgid "One of the following fields: Date, Amount, Type is missing, skipping"
-#~ msgstr "Одно из полей (дата, тип проводки, сумма) отсутствует, пропущено"
-
-#~ msgid "Line: %ld imported OK."
-#~ msgstr "Строка: %ld успешно импортирована."
-
-#~ msgid "Imported transactions have been flagged so you can review them."
-#~ msgstr "Импортированные проводки отмечены как требующие уточнения."
-
-#~ msgid "Transactions saved to database in account: %s"
-#~ msgstr "Транзакции сохранены в счёт: %s"
-
-#~ msgid ""
-#~ "Directory of language files does not exist:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Каталог с файлами переводов отсутсвует:\n"
-#~ "%s"
-
-#~ msgid "&Show App Start Dialog"
-#~ msgstr "Показать стартовый &диалог.."
-
-#~ msgid "App Start Dialog"
-#~ msgstr "Стартовый диалог"
-
-#~ msgid "Check For Updates"
-#~ msgstr "Проверка обновлений"
-
-#~ msgid "Get Android Version"
-#~ msgstr "Получить версию для Android"
-
-#~ msgid "Run this program in your Android smart phone or tablet"
-#~ msgstr "Запустите эту программу в вашем Android смартфоне или планшете"
-
-#~ msgid "Visit MMEX Forum"
-#~ msgstr "Посетите форум MMEX"
-
-#~ msgid ""
-#~ "Visit the MMEX forum. See existing user comments, or report new issues "
-#~ "with the software."
-#~ msgstr ""
-#~ "Посетить MMEX форум. Смотрите комментарии пользователей, либо оставьте "
-#~ "своё сообщение о проблемах с программой."
-
-#~ msgid "Sign up to Notification Mailing List or View existing announcements."
-#~ msgstr "Подпишитесь на список рассылки уведомлений или обзор объявлений."
-
-#~ msgid "No account available to import"
-#~ msgstr "Не выбран счёт. Нечего загружать. "
-
-#~ msgid "Language"
-#~ msgstr "Язык"
-
-#~ msgid "Specify the language to use"
-#~ msgstr "Выберите язык интерфейса"
-
-#~ msgid ""
-#~ "Specify the initial date of the stock investment\n"
-#~ "Used when creating the initial Share transaction."
-#~ msgstr ""
-#~ "Укажите начальную дату фондовой инвестиции\n"
-#~ "Используется при создании первоначальной транзакции."
-
-#~ msgid ""
-#~ "Enter number of shares.\n"
-#~ "Used when creating the initial Share transaction."
-#~ msgstr ""
-#~ "Введите количество акций.\n"
-#~ "Используется при создании первоначальных долей сделки."
-
-#~ msgid ""
-#~ "Enter the initial price per share.\n"
-#~ "Used when creating the initial Share transaction."
-#~ msgstr ""
-#~ "Введите начальную цену на одну акцию.\n"
-#~ "Используется при создании первоначальной долей сделки."
-
-#~ msgid ""
-#~ "Enter any commission paid.\n"
-#~ "Used when creating the initial Share transaction."
-#~ msgstr ""
-#~ "Введите любую уплаченной комиссию.\n"
-#~ "Используется при создании первоначальной сделки."
-
-#~ msgid "Specify the stock/share price date."
-#~ msgstr "Укажите дату цены актива."
-
-#~ msgid "Enter current stock/share price."
-#~ msgstr "Введите цену акции."
-
-#~ msgid ""
-#~ "Share Account not found.\n"
-#~ "\n"
-#~ "Would you want to create one?"
-#~ msgstr ""
-#~ "Счет не найден.\n"
-#~ "\n"
-#~ "Вы хотели бы создать?"
-
-#~ msgid ""
-#~ "Share Account not found.\n"
-#~ "\n"
-#~ "Would you want to create one?\n"
-#~ "Creating a new account will affect Share Account connections\n"
-#~ "and will therefore require manual readjustment."
-#~ msgstr ""
-#~ "Паевой Счет не найден.\n"
-#~ "\n"
-#~ "Вы хотели бы создать его?\n"
-#~ "Создание новой учетной записи будут влиять на связи Паевого Счёта\n"
-#~ "поэтому потребует ручной настройки."
-
-#~ msgid "Add Stock Transactions"
-#~ msgstr "Добавить транзакцию"
-
-#~ msgid "View Stock Transactions"
-#~ msgstr "Показать транзакцию"
-
-#~ msgid "Delete Stock Investment"
-#~ msgstr "Удаление инвестиции"
-
-#~ msgid "Move selected transaction to another account"
-#~ msgstr "Переместить выделенную транзакцию в другой счёт"
-
-#~ msgid "Retard or advance the date of the 'next occurrence"
-#~ msgstr " Расширенные настройки следующей даты"
-
-#~ msgid "MMEX database succesfully upgraded to version %i"
-#~ msgstr "База данных MMEX успешно обновлен до версии%i"
-
-#~ msgid "Account Name"
-#~ msgstr "Наименование счёта"
-
-#~ msgid "Bank Accounts Total:"
-#~ msgstr "Итого по счетам:"
-
-#~ msgid "Term Accounts Total:"
-#~ msgstr "Итого по вкладам:"
-
-#~ msgid "Stocks Total:"
-#~ msgstr "Итого акции:"
-
-#~ msgid "Total Balance on all Accounts"
-#~ msgstr "Общий баланс по всем счетам"
-
-#~ msgid "Specify period in Days to activate.Becomes blank when not active."
-#~ msgstr ""
-#~ "Укажите период в днях до исполнения. Оставьте пустым, чтобы не "
-#~ "использовать."
-
-#~ msgid ""
-#~ "Specify the number of payments to be made.Leave blank if the payments "
-#~ "continue forever."
-#~ msgstr "Введите количество повторов. Оставьте поле пустым, если бесконечно."
-
-#~ msgid "Invalid Amount Entered "
-#~ msgstr "Введена неверная сумма"
-
-#~ msgid "Monthly Summary of Accounts"
-#~ msgstr "Месячная сводка по счетам"
-
-#~ msgid "Income vs Expenses - Specific Accounts"
-#~ msgstr "Доходы/Расходы - определённые счета"
-
-#~ msgid "Budget Performance"
-#~ msgstr "Представление бюджета "
-
-#~ msgid "Budget Category Summary"
-#~ msgstr "Бюджет по категории"
-
-#~ msgid "Cash Flow - With Bank Accounts"
-#~ msgstr "Движение средств - Основные счета"
-
-#~ msgid "Cash Flow - With Term Accounts"
-#~ msgstr "Движение средств - Включая вклады"
-
-#~ msgid "Cash Flow - Specific Accounts"
-#~ msgstr "Движение средств - Определённые Счета"
-
-#~ msgid "Daily Cash Flow - Specific Accounts"
-#~ msgstr "Движение средств - Определённые Счета"
-
-#~ msgid "All Bank Accounts"
-#~ msgstr "Все банковские счета"
-
-#~ msgid "All Term Accounts"
-#~ msgstr "Все счета вкладов"
-
-#~ msgid "Total Amount: "
-#~ msgstr "Всего: "
-
-#~ msgid "Currency History Options: "
-#~ msgstr "Опции истории валют:"
-
-#~ msgid "Currency rate updated"
-#~ msgstr "Курсы валют обновлены"
-
-#~ msgid "Invalid value "
-#~ msgstr "Неверное значение "
-
-#~ msgid "Line : %ld imported OK."
-#~ msgstr "Строка: %ld успешно импортирована."
-
-#~ msgid "SingleChoiche"
-#~ msgstr "Выбор"
-
-#~ msgid "MultiChoiche"
-#~ msgstr "Множественный выбор"
-
-#~ msgid "Enter the name of the category to add or edit here"
-#~ msgstr "Введите название категории для добавления или редактирования"
-
-#~ msgid "Rename group"
-#~ msgstr "Переименовать группу"
-
-#~ msgid "Workbook"
-#~ msgstr "Тетрадь"
-
-#~ msgid "Worksheet"
-#~ msgstr "Лист"
-
-#~ msgid "Row"
-#~ msgstr "Строка"
-
-#~ msgid "Cell"
-#~ msgstr "Ячейка"
-
-#, fuzzy
-#~ msgid "Default account \""
-#~ msgstr "в счёт "
-
-#~ msgid ""
-#~ "\n"
-#~ "%s\n"
-#~ "Not a writeable database\n"
-#~ "You must have write permission to that file"
-#~ msgstr ""
-#~ "\n"
-#~ "%s\n"
-#~ "База открыта только для чтения\n"
-#~ "Вы должны иметь право записи в файл базы"
-
-#, fuzzy
-#~ msgid " "
-#~ msgstr "?"
-
-#~ msgid "  and contributors from around the world"
-#~ msgstr "  и соратники :-) со всего мира."
-
-#~ msgid " - "
-#~ msgstr " - "
-
-#~ msgid " : Requires MMEX Restart"
-#~ msgstr " : Необходим перезапуск MMEX"
-
-#~ msgid " : Restart"
-#~ msgstr " : Перезапуск"
-
-#~ msgid " Filter Settings "
-#~ msgstr "Параметры фильтра "
-
-#~ msgid " Help"
-#~ msgstr " Помощь"
-
-#~ msgid ""
-#~ " One of the following fields: date, payee, transaction type, amount, "
-#~ "category strings is empty, skipping"
-#~ msgstr ""
-#~ " Одно из следующих полей: дата, получатель, тип операции, сумма, "
-#~ "категория отсутствует, пропущено"
-
-#~ msgid " Start Page"
-#~ msgstr " Начальная страница"
-
-#~ msgid " To: "
-#~ msgstr " по: "
-
-#~ msgid " Total:"
-#~ msgstr "Итого:"
-
-#~ msgid " Unknown QIF line: "
-#~ msgstr "Неизвестная QIF строка: "
-
-#~ msgid " account name "
-#~ msgstr " название счёта"
-
-#~ msgid " account: "
-#~ msgstr " счёт: "
-
-#~ msgid " amount "
-#~ msgstr " количество"
-
-#~ msgid " cannot process Account Types yet "
-#~ msgstr " обработка типов счетов пока не поддерживается"
-
-#~ msgid " check delimiters. Possible amount error, skipping."
-#~ msgstr " проверка разделителей. Возможно ошибка в сумме, пропущено."
-
-#~ msgid " date "
-#~ msgstr " дата"
-
-#~ msgid ""
-#~ " entry location:\n"
-#~ "\n"
-#~ "OK....: Insert before selected entry\n"
-#~ "Cancel: Add at bottom of List."
-#~ msgstr ""
-#~ " расположение записи:\n"
-#~ "\n"
-#~ "OK....: Вставить перед выделенной записью\n"
-#~ "Cancel: Вставить вниз списка."
-
-#~ msgid " file contains insufficient number of tokens"
-#~ msgstr "файл содержит неправильное количество разделителей"
-
-#~ msgid " has excessive items. Check delimiters in numbers, skipping."
-#~ msgstr " значение не распознано. Проверьте разделители, пропущено."
-
-#~ msgid " invalid date, skipping."
-#~ msgstr " неверная дата, пропущено."
-
-#~ msgid " missing amount, skipping."
-#~ msgstr " отсутствует сумма, пропущено."
-
-#~ msgid " missing category, skipping."
-#~ msgstr " отсутствует категория, пропущено."
-
-#~ msgid " missing date, skipping."
-#~ msgstr " отсутствует дата, пропущено."
-
-#~ msgid " missing payee, skipping."
-#~ msgstr " отсутствует получатель, пропущено."
-
-#~ msgid " missing transaction type, skipping."
-#~ msgstr " отсутствует тип транзакции, пропущено."
-
-#~ msgid " payee "
-#~ msgstr " получатель "
-
-#~ msgid " starts"
-#~ msgstr " "
-
-#~ msgid ""
-#~ " to\n"
-#~ "another "
-#~ msgstr ""
-#~ "В\n"
-#~ "другой"
-
-#~ msgid " to "
-#~ msgstr " по "
-
-#~ msgid " to Edit:"
-#~ msgstr " к редактированию:"
-
-#~ msgid " to..."
-#~ msgstr "в..."
-
-#~ msgid " type "
-#~ msgstr "тип"
-
-#~ msgid " unrecognized transaction type, skipping."
-#~ msgstr " неопознанный тип транзакции, пропущено."
-
-#~ msgid " using the relocate command:"
-#~ msgstr " используя команду по замене:"
-
-#~ msgid "%d"
-#~ msgstr "%d"
-
-#~ msgid "%s\t: %0.4f -> %0.4f\n"
-#~ msgstr "%s\t: %0.4f -> %0.4f\n"
-
-#~ msgid "%s - copy - %s"
-#~ msgstr "%s - копия - %s"
-
-#~ msgid "%s Converted to: %s"
-#~ msgstr "%s преобразуется в: %s"
-
-#~ msgid "&Bank Accounts"
-#~ msgstr "Счета"
-
-#~ msgid "&Cancel"
-#~ msgstr "&Отмена"
-
-#~ msgid "&Delete Budget Year"
-#~ msgstr "&Удалить бюджетный год"
-
-#~ msgid "&Delete Series"
-#~ msgstr "&Удалить расписание"
-
-#~ msgid "&Duplicate Transaction"
-#~ msgstr "&Дублировать транзакцию"
-
-#~ msgid "&Edit Series"
-#~ msgstr "&Редактировать расписание"
-
-#~ msgid "&Go To.."
-#~ msgstr "&Перейти к.."
-
-#~ msgid "&Help\tCtrl-F1"
-#~ msgstr "&Помощь\tCtrl-F1"
-
-#~ msgid "&Load"
-#~ msgstr "&Загрузить "
-
-#~ msgid "&MMEX CSV Files"
-#~ msgstr "MMEX CSV &файлы"
-
-#~ msgid "&New Series"
-#~ msgstr "&Новое расписание"
-
-#~ msgid "&OK"
-#~ msgstr "&OK"
-
-#~ msgid "&Open"
-#~ msgstr "&Открыть"
-
-#~ msgid "&Refresh prices every"
-#~ msgstr "&Обновлять каждые"
-
-#~ msgid "&Report Issues or Feedback"
-#~ msgstr "&Сообщить об ошибке или обратная связь"
-
-#~ msgid "&Run Query"
-#~ msgstr "&Выполнить запрос"
-
-#~ msgid "&Search"
-#~ msgstr "Поиск"
-
-#~ msgid "&Select Category"
-#~ msgstr "Выберите &категорию"
-
-#~ msgid "&Settings"
-#~ msgstr "&Параметры"
-
-#~ msgid "&Stock Accounts"
-#~ msgstr "&Инвестиционные счета"
-
-#~ msgid "&Stock Investments"
-#~ msgstr "&Инвестиции"
-
-#~ msgid "&Universal CSV Files"
-#~ msgstr "&Универсальные CSV файлы"
-
-#~ msgid "&nbsp to: "
-#~ msgstr "&nbsp по: "
-
-#~ msgid ""
-#~ "(Optional)Specify your name. Mainly used for reporting and in printing "
-#~ "reports.\n"
-#~ msgstr ""
-#~ "(Необязательно) Укажите свое имя. В основном будет использоваться в "
-#~ "отчётах.\n"
-
-#~ msgid "..."
-#~ msgstr "..."
-
-#, fuzzy
-#~ msgid "1000"
-#~ msgstr "1000 преобразуется в:"
-
-#~ msgid "123456.78"
-#~ msgstr "1234567.89"
-
-#~ msgid "123456.78   Shown As:"
-#~ msgstr "123456.78  отобразится как:"
-
-#~ msgid ":"
-#~ msgstr ":"
-
-#~ msgid ""
-#~ "<b>Note:</b> Transactions contain <b>'transfers'</b> may either be added "
-#~ "or subtracted to the <b>'Total Amount'</b> depending on last selected "
-#~ "account."
-#~ msgstr ""
-#~ "<b>Заметка:</b> Проводки типа <b>'перевод'</b> могут быть добавлены или "
-#~ "вычтены из итогового значения. Зависит от последнего выбранного счёта."
-
-#~ msgid "Accessing Database"
-#~ msgstr "Обращение к Базе данных"
-
-#~ msgid "Account  :"
-#~ msgstr "Счёт :"
-
-#, fuzzy
-#~ msgid ""
-#~ "Account Bal: %s      Reconciled Bal: %s      Diff: %s      Displayed Bal: "
-#~ "%s"
-#~ msgstr "Баланс счёта: %s      Выверенный баланс: %s"
-
-#~ msgid "Account missing"
-#~ msgstr "Счёт отсутсвует"
-
-#~ msgid "Account name: %s"
-#~ msgstr "Название счёта: %s"
-
-#~ msgid "Account:"
-#~ msgstr "Счет: "
-
-#~ msgid "Activates the filter: Will add selected items to display"
-#~ msgstr "Включение фильтра: Будет отображать только выбранные элементы"
-
-#~ msgid "Add"
-#~ msgstr "Добавить"
-
-#, fuzzy
-#~ msgid "Add Budget Entry. Error: %s"
-#~ msgstr "Добавление нового бюджетного года"
-
-#, fuzzy
-#~ msgid "Add Budget Year. Error: %s"
-#~ msgstr "Добавление нового бюджетного года"
-
-#~ msgid "Add CSV field"
-#~ msgstr "Добавить CSV поле"
-
-#~ msgid "Add Category. Error: %s"
-#~ msgstr "Добавление категории. Ошибка: %s"
-
-#~ msgid "Add Currency"
-#~ msgstr "Добавить валюту"
-
-#~ msgid "Add a new payee name"
-#~ msgstr "Добавление нового получателя"
-
-#~ msgid "Added category: %s"
-#~ msgstr "Добавлена категория: %s"
-
-#~ msgid "Added subcategory: %s"
-#~ msgstr "Добавлена подкатегория: %s"
-
-#~ msgid "Adding payee "
-#~ msgstr "Добавление плательщика "
-
-#~ msgid "Advanced Amount"
-#~ msgstr "Другое значение"
-
-#~ msgid "All Others"
-#~ msgstr "Остальное"
-
-#~ msgid "All Time"
-#~ msgstr "Весь период"
-
-#~ msgid "Allow for any delay in quotes"
-#~ msgstr "Допустимый диапазон времени для обновления котировок"
-
-#~ msgid "Amount Range:"
-#~ msgstr "Диапазон цен:"
-
-#~ msgid "Amount is missing"
-#~ msgstr "Сумма отсутсвует"
-
-#~ msgid "Amount to be recorded in To Account"
-#~ msgstr "Сумма, которая попадет на счёт-получатель"
-
-#~ msgid "An incorrect password given for an encrypted file"
-#~ msgstr "Не правильный пароль для зашифрованной базы данных"
-
-#~ msgid "Any"
-#~ msgstr "Любой"
-
-#~ msgid "App"
-#~ msgstr "MMEX"
-
-#~ msgid "Are you are sure you want to proceed with the import?"
-#~ msgstr "Вы действительно хотите произвести импорт?"
-
-#~ msgid "Attempt to Add a currency which already exists!"
-#~ msgstr "Название валюты уже существует!"
-
-#~ msgid ""
-#~ "Attempt to delete a currency being used by an account\n"
-#~ " or as the base currency."
-#~ msgstr ""
-#~ "Попытка удалить использующуюся валюту\n"
-#~ " или базовую валюту."
-
-#~ msgid "Automatic Execution will require user acknowledgement."
-#~ msgstr "Автовыполнение с подтверждением пользователя."
-
-#~ msgid ""
-#~ "Automatic stock quote refresh Failed. \n"
-#~ "Last successful update: %s"
-#~ msgstr ""
-#~ "Автоматическое обновление котировок дало сбой. \n"
-#~ "Последнее успешное обновление: %s"
-
-#~ msgid ""
-#~ "Automatic stock quote refresh idle - Out of Hours. \n"
-#~ "Last update: %s"
-#~ msgstr ""
-#~ "Автоматическое обновление котировок остановлено - нерабочее время. \n"
-#~ "Последнее обновление: %s"
-
-#~ msgid "Automatic stock quote refresh in progress..."
-#~ msgstr "Идёт автоматическое обновление котировок..."
-
-#~ msgid ""
-#~ "Automatic stock quote refresh is disabled. \n"
-#~ "Last update: %s"
-#~ msgstr ""
-#~ "Автоматическое обновление котировок отключено. \n"
-#~ "Последнее обновление: %s"
-
-#~ msgid ""
-#~ "Automatic stock quote refresh not started. \n"
-#~ "Last update: %s"
-#~ msgstr ""
-#~ "Автоматическое обновление котировок не стартовало. \n"
-#~ "Последнее обновление: %s"
-
-#~ msgid ""
-#~ "Automatic stock quote refresh successful. \n"
-#~ "Last update: %s"
-#~ msgstr ""
-#~ "Автоматическое обновление котировок прошло успешно. \n"
-#~ "Последнее обновление: %s"
-
-#~ msgid "Backup before opening"
-#~ msgstr "Резервное копирование перед открытием"
-
-#~ msgid "Base Conversion Rate should be positive"
-#~ msgstr "Основной обменный курс должен быть положительным"
-
-#~ msgid "Base Rate Conversion Sample:"
-#~ msgstr "Пример пересчёта:"
-
-#~ msgid "Base conversion for currency symbol: %s has not been set."
-#~ msgstr "Обменный курс для валюты: %s не задан."
-
-#~ msgid "Be &notified of new releases"
-#~ msgstr "&Знать о новых версиях ;-)"
-
-#~ msgid "Becomes blank when not active."
-#~ msgstr "Не заполняйте без необходимости."
-
-#~ msgid "Budget Entry Dialog"
-#~ msgstr "Бюджет"
-
-#~ msgid "Budget Performance for Year : "
-#~ msgstr "Представление годового бюджета на : "
-
-#~ msgid "Budget Setup and Performance"
-#~ msgstr "Исполнение бюджета"
-
-#~ msgid "Budget Summary: Include &Categories"
-#~ msgstr "Итоги бюджета: Включая категории"
-
-#~ msgid "Budget report being generated... Please wait."
-#~ msgstr "Отчёт по бюджету формируется, пожалуйста подождите."
-
-#~ msgid "Budget setup for Year : "
-#~ msgstr "Годовой бюджетный план на : "
-
-#~ msgid "C  "
-#~ msgstr "Статус"
-
-#~ msgid "CSV Export"
-#~ msgstr "CSV экспорт"
-
-#~ msgid "CSV Import"
-#~ msgstr "CSV импорт"
-
-#~ msgid "Calendar"
-#~ msgstr "Календарь"
-
-#, fuzzy
-#~ msgid "Cancel "
-#~ msgstr "&Отмена "
-
-#~ msgid "Cannot decode binary"
-#~ msgstr "Невозможно раскодировать файл"
-
-#~ msgid "Cannot execute unknown Script type"
-#~ msgstr "Не могу выполнить неизвестный тип скрипта"
-
-#~ msgid "Cannot locate file: "
-#~ msgstr "Не могу найти файл:"
-
-#~ msgid "Cannot process these QIF Account Types yet."
-#~ msgstr "Обработка этих QIF типов счетов пока не поддерживается."
-
-#~ msgid "Cash Flow Filter"
-#~ msgstr "Движение средств"
-
-#~ msgid "Categories - %s"
-#~ msgstr "Категории - %s"
-
-#~ msgid "Categories - Current Financial Year"
-#~ msgstr "Категории - Текущий финансовый год"
-
-#~ msgid "Categories - Current Month"
-#~ msgstr "Категории - Текущий месяц"
-
-#~ msgid "Categories - Current Month to Date"
-#~ msgstr "Категории - текущий месяц по сегодня"
-
-#~ msgid "Categories - Current Year"
-#~ msgstr "Категории - Текущий год"
-
-#~ msgid "Categories - Current Year to Date"
-#~ msgstr "Категории - текущий год по сегодня"
-
-#~ msgid "Categories - Last 30 Days"
-#~ msgstr "Категории - 30 дней"
-
-#~ msgid "Categories - Last Calendar Month"
-#~ msgstr "Категории  - Прошлый месяц"
-
-#~ msgid "Categories - Last Financial Year"
-#~ msgstr "Категории - Прошлый финансовый год"
-
-#~ msgid "Categories - Last Month"
-#~ msgstr "Категории  - Прошлый месяц"
-
-#~ msgid "Categories - Last Year"
-#~ msgstr "Категории - Прошлый год"
-
-#~ msgid "Categories - Over Time"
-#~ msgstr "Категории - Всё время"
-
-#~ msgid "Category "
-#~ msgstr "Категория "
-
-#~ msgid "Category         : "
-#~ msgstr "Категория       : "
-
-#~ msgid "Category Default: Set to Select"
-#~ msgstr "Начальная категория: Выбрать"
-
-#~ msgid "Category Report"
-#~ msgstr "Отчёт по категориям"
-
-#~ msgid "Category Report being generated... Please wait."
-#~ msgstr "Отчёт по бюджету формируется... Пожалуйста подождите."
-
-#~ msgid "Category cannot be empty"
-#~ msgstr "Категория не выбрана"
-
-#~ msgid "Category is empty, marking transaction as Unknown category"
-#~ msgstr ""
-#~ "Категория не выбрана, транзакция будет отнесена к категории Неопознанные"
-
-#~ msgid "Category is missing"
-#~ msgstr "Категория отсутсвует"
-
-#~ msgid "Category:"
-#~ msgstr "Категория: "
-
-#~ msgid "Change all transactions using one Payee to another Payee"
-#~ msgstr "Замена получателя во всех транзакциях"
-
-#~ msgid "Change settings for automatic refresh"
-#~ msgstr "Изменение настроек автоматического обновления"
-
-#~ msgid "Change the name of an existing payee"
-#~ msgstr "Изменение названия существующего получателя"
-
-#~ msgid "Changing all categories of: "
-#~ msgstr "Сменить все категории в: "
-
-#~ msgid "Checking of QIF file failed"
-#~ msgstr "QIF файл не прошёл проверку"
-
-#~ msgid "Checking of QIF file finished successfully"
-#~ msgstr "Проверка QIF файла завершена успешно"
-
-#~ msgid "Checking of QIF file started. Please wait..."
-#~ msgstr "Проверка QIF файла начата. Пожалуйста подождите..."
-
-#~ msgid "Checking/Savings"
-#~ msgstr "Чековый"
-
-#~ msgid "Choose Account to Import to"
-#~ msgstr "Выберите счёт для импорта"
-
-#~ msgid "Choose Investment Account"
-#~ msgstr "Выберите инвестиционный счёт"
-
-#~ msgid "Choose MM.NET CSV data file to import"
-#~ msgstr "Выберите MM.NET CSV файл данных для импорта"
-
-#~ msgid "Choose Universal CSV format file to load"
-#~ msgstr "Выберите файл CSV для загрузки"
-
-#~ msgid "Choose Universal CSV format file to save"
-#~ msgstr "Выберите файл CSV для сохранения"
-
-#~ msgid "Choose the new type for account: %s"
-#~ msgstr "Выберитет новый тип для счёта: %s"
-
-#~ msgid "Clear the Source script area"
-#~ msgstr "Очистить поле запроса"
-
-#~ msgid "Colors"
-#~ msgstr "Цвета"
-
-#~ msgid "Colour Settings"
-#~ msgstr "Цветовые настройки"
-
-#~ msgid "Continue ?"
-#~ msgstr "Продолжить?"
-
-#~ msgid "Contributors"
-#~ msgstr "Участники"
-
-#, fuzzy
-#~ msgid "Copy Budget Year. Error: %s"
-#~ msgstr "Добавление нового бюджетного года"
-
-#, fuzzy
-#~ msgid "Create SplitTransactionsV1Table. Error: %s"
-#~ msgstr "ОШИБКА БАЗЫ ДАННЫХ"
-
-#~ msgid "Create a new SQL report"
-#~ msgstr "Создать SQL отчёт"
-
-#~ msgid "Create a suitable account first!"
-#~ msgstr "Создайте соответствующий счёт сначала!"
-
-#, fuzzy
-#~ msgid "Create default Categories. Error: %s"
-#~ msgstr "Редактор категорий: Ошибка добавления"
-
-#~ msgid "Create new Custom Reports"
-#~ msgstr "Создать отчёт"
-
-#~ msgid "Create or modify reports for the Reports section"
-#~ msgstr "Создать или изменить отчёт"
-
-#, fuzzy
-#~ msgid "CreateBudgetingV1Table. Error: %s"
-#~ msgstr "ОШИБКА БАЗЫ ДАННЫХ"
-
-#~ msgid "Curr. unit price"
-#~ msgstr "Текущая цена"
-
-#, fuzzy
-#~ msgid "Curr. unit value"
-#~ msgstr "Текущая сумма"
-
-#~ msgid "Currency List"
-#~ msgstr "Список валют"
-
-#~ msgid "Currency with same name exists"
-#~ msgstr "Валюта с таким названием существует"
-
-#~ msgid "Current"
-#~ msgstr "Котировка"
-
-#~ msgid "Current &View"
-#~ msgstr "Текущий &вид"
-
-#~ msgid "Current filtering has been set to: "
-#~ msgstr "Фильтр установлен в: "
-
-#~ msgid "Custom Report: "
-#~ msgstr "Отчёт пользователя: "
-
-#~ msgid "Custom Reports"
-#~ msgstr "Отчёты пользователя"
-
-#~ msgid "Custom Reports..."
-#~ msgstr "Отчёты пользователя..."
-
-#~ msgid "Custom script:"
-#~ msgstr "Скрипт:"
-
-#~ msgid "Dababase updated succesfully"
-#~ msgstr "База данных успешно обновлена"
-
-#~ msgid "Daily Update, before opening"
-#~ msgstr "Ежедневный бэкап перед открытием"
-
-#~ msgid "Database::open: %s"
-#~ msgstr "База данных::открытие: %s"
-
-#~ msgid "Date Range:"
-#~ msgstr "Диапазон дат: "
-
-#~ msgid "Date is missing"
-#~ msgstr "Датам отсутсвует"
-
-#~ msgid "Deactivates the filter"
-#~ msgstr "Отключение фильтра"
-
-#~ msgid "Delete Account"
-#~ msgstr "&Удалить счёт"
-
-#, fuzzy
-#~ msgid "Delete Asset. Error: %s"
-#~ msgstr "Редактор категорий: Ошибка удаления"
-
-#, fuzzy
-#~ msgid "Delete Budget Year. Error: %s"
-#~ msgstr "Удалить бюджет на указанный год"
-
-#, fuzzy
-#~ msgid "Delete Stock Investment. Error: %s"
-#~ msgstr "Подтвердите удаление инвестиции"
-
-#~ msgid "Delete all \"Follow Up\" transactions"
-#~ msgstr "Удалить все транзакции с лампочкой"
-
-#, fuzzy
-#~ msgid "Delete attachment file failed"
-#~ msgstr "Удалить название запроса:"
-
-#~ msgid ""
-#~ "Delete the selected payee. The payee cannot be used by an existing "
-#~ "transaction."
-#~ msgstr ""
-#~ "Удаление выбранного получателя. Получателю не должны принадлежать "
-#~ "транзакции."
-
-#~ msgid "Delete..."
-#~ msgstr "&Удалить..."
-
-#, fuzzy
-#~ msgid "DeleteTransaction. Error: %s"
-#~ msgstr "ОШИБКА БАЗЫ ДАННЫХ"
-
-#~ msgid "Diference: "
-#~ msgstr "Баланс: "
-
-#~ msgid "Display MMEX News on home page"
-#~ msgstr "Отображать носости MMEX на главной странице"
-
-#~ msgid "Display Stock Web Page"
-#~ msgstr "Web-страница"
-
-#~ msgid ""
-#~ "Do not enter anything except the server name (or IP address, if you're "
-#~ "feeling lucky)"
-#~ msgstr "Не вводите ничего, кроме имени сервера (или ip адрес, если хотите)"
-
-#~ msgid ""
-#~ "Do you really want to delete all the \"Follow Up\" transactions shown?"
-#~ msgstr "Вы действительно хотите удалить все проводки с лампочкой?"
-
-#~ msgid "Do you want to delete the Lua file as well?"
-#~ msgstr "Удалить и Lua файл тоже?"
-
-#~ msgid "Do you want to scan all transaction ?"
-#~ msgstr "Вы хотите просканировать все проводки?"
-
-#~ msgid "Download WebApp new transaction"
-#~ msgstr "Загрузить новую транзакцию с WebApp"
-
-#~ msgid "Edit Payee Name"
-#~ msgstr "Изменение получателя"
-
-#~ msgid "Edit an existing SQL report"
-#~ msgstr "Редактировать существующий SQL отчёт"
-
-#~ msgid "Edit..."
-#~ msgstr "&Редактировать..."
-
-#~ msgid "Empty"
-#~ msgstr "Пусто"
-
-#~ msgid "Enable online currency update"
-#~ msgstr "Разрешить обновление валют онлайн"
-
-#~ msgid ""
-#~ "Enable online currency update \n"
-#~ "(Get data from European Central Bank)"
-#~ msgstr ""
-#~ "Включить онлайн обновление курсов валют \n"
-#~ "(Получать данные из Европейского Центрального Банка)"
-
-#~ msgid "Enable or disable get data from Yahoo.com to update currency rate"
-#~ msgstr "Обновление курсов валют с Yahoo.com"
-
-#~ msgid "Enter &Transaction"
-#~ msgstr "Н&ачислить"
-
-#~ msgid ""
-#~ "Enter a search string.  You can use * as a wildcard to match zero or more "
-#~ "characters or ? to match a single character."
-#~ msgstr ""
-#~ "Введите строку поиска. Вы можете использовать *, как маску 0 или более "
-#~ "символов или ?, как маску одного символа."
-
-#~ msgid "Enter name for account to import to"
-#~ msgstr "Выберите счёт для импорта"
-
-#~ msgid "Enter purchase price for each stock"
-#~ msgstr "Введите покупную цену каждой ценной бумаги"
-
-#, fuzzy
-#~ msgid "Enter the default for this field"
-#~ msgstr "Введите название отчёта"
-
-#~ msgid ""
-#~ "Enter the name of the financial institution where the investment is held"
-#~ msgstr "Введите название финансового учреждения, в котором размещён вклад"
-
-#~ msgid ""
-#~ "Enter the payee name to be added or make edits to an existing payee name"
-#~ msgstr ""
-#~ "Введите имя плательщика платежа, которое будет добавлено к существующему "
-#~ "или будет изменено"
-
-#~ msgid ""
-#~ "Enter the suffix used by Yahoo for the market of your stocks. \n"
-#~ "If your stocks are in multiple markets, leave this blank and add  the "
-#~ "suffix to each symbol in your portfolio."
-#~ msgstr ""
-#~ "Введите суффикс, используемый Yahoo для рынка Ваших акций. \n"
-#~ "Если Ваши акции находятся во многих рынках, оставьте это поле пустым и "
-#~ "добавьте суффикс к тикеру каждой акции в Вашем портфеле."
-
-#~ msgid "Enter the year in YYYY format to specify year"
-#~ msgstr "Укажите год в формате ГГГГ"
-
-#~ msgid "Entry "
-#~ msgstr "Запись "
-
-#~ msgid "Error adding Category"
-#~ msgstr "Ошибка добавления категории"
-
-#~ msgid "Error binding NULL param"
-#~ msgstr "Ошибка привязки параметра NULL"
-
-#~ msgid "Error binding blob param"
-#~ msgstr "Ошибка привязки параметра blob"
-
-#~ msgid "Error binding date/time param"
-#~ msgstr "Ошибка формата даты/времени"
-
-#~ msgid "Error binding double param"
-#~ msgstr "Ошибка привязки параметра с плавающей точкой"
-
-#~ msgid "Error binding int param"
-#~ msgstr "Ошибка параметров инициализации"
-
-#~ msgid "Error binding int64 param"
-#~ msgstr "Ошибка привязки целочисленного параметра"
-
-#~ msgid "Error binding string param"
-#~ msgstr "Ошибка привязки строкового параметра"
-
-#~ msgid "Error clearing bindings"
-#~ msgstr "Ошибка очистки привязок"
-
-#~ msgid "Error code:"
-#~ msgstr "Код ошибки:"
-
-#~ msgid "Error opening database"
-#~ msgstr "Ошибка открытия базы данных"
-
-#~ msgid "Error:\n"
-#~ msgstr "Ошибка:\n"
-
-#~ msgid "Error: %s\n"
-#~ msgstr "Ошибка: %s\n"
-
-#~ msgid "Estimated Expenses: %s Actual Expenses:  %s"
-#~ msgstr "Ожидаемый расход: %s Фактический расходы: %s"
-
-#~ msgid "Estimated Income: %s Actual Income:  %s"
-#~ msgstr "Ожидаемый доход: %s Фактический доход: %s"
-
-#~ msgid "Every "
-#~ msgstr "Каждые"
-
-#~ msgid "Expand Bank Accounts in Trew View when tree is refreshed"
-#~ msgstr "Отображать счета в панели навигации"
-
-#~ msgid "Expand Bank Accounts on home page when page is refreshed"
-#~ msgstr "Отображать счета на начальной странице"
-
-#~ msgid "Expand Stock Accounts on navigation tree"
-#~ msgstr "Развернуть инвестиционные счета"
-
-#~ msgid "Expand Stocks Accounts in Trew View when tree is refreshed"
-#~ msgstr "Развернуть список счетов в панели навигации"
-
-#~ msgid "Expand Term Accounts in Trew View when tree is refreshed"
-#~ msgstr "Отображать счета вкладов в панели навигации"
-
-#~ msgid "Expand Term Accounts on home page when page is refreshed"
-#~ msgstr "Отображать счета вкладов на начальной странице"
-
-#~ msgid "Expand Term Accounts on navigation tree"
-#~ msgstr "Счета вкладов развернуть"
-
-#~ msgid "Expenses..."
-#~ msgstr "Расход...."
-
-#~ msgid "File name is empty"
-#~ msgstr "Файл не указан"
-
-#~ msgid "Filter"
-#~ msgstr "Фильтр"
-
-#~ msgid "Filter Payees: "
-#~ msgstr "Фильтр получателей: "
-
-#~ msgid "Filter Split categories. Include the category for further filtering."
-#~ msgstr "Фильтр составных транзакций. "
-
-#~ msgid "Filter Transactions"
-#~ msgstr "Фильтр транзакций"
-
-#~ msgid "Financial Year Settings"
-#~ msgstr "Параметры финансового года"
-
-#~ msgid "Financial Year: "
-#~ msgstr "Финансовый год: "
-
-#~ msgid "Find Payee: "
-#~ msgstr "Найти получателя: "
-
-#~ msgid "Follow Up On "
-#~ msgstr "Отследить: "
-
-#~ msgid "Font Size Options"
-#~ msgstr "Параметры шрифтов"
-
-#~ msgid ""
-#~ "For same day, select to update the backup before opening the database."
-#~ msgstr "Для одного дня, отметьте для сохранения копии базы перед открытием."
-
-#~ msgid "Forecast Initial Date:"
-#~ msgstr "Начальная дата прогноза:"
-
-#~ msgid "From "
-#~ msgstr "С "
-
-#~ msgid "From %s to %s"
-#~ msgstr "Из %s в %s"
-
-#~ msgid "From Account"
-#~ msgstr "Со счёта"
-
-#~ msgid "From and To Account cannot be the same."
-#~ msgstr "Счета плательщика и получателя не могут совпадать"
-
-#~ msgid "Future Transactions"
-#~ msgstr "Предстоящие транзакции"
-
-#~ msgid "Gain Loss"
-#~ msgstr "Доход/Убытки"
-
-#~ msgid "Grand Total: "
-#~ msgstr "Итого:"
-
-#~ msgid "HTML_BUILDER: Syntax error function: %s"
-#~ msgstr "HTML_BUILDER: Синтаксическая ошибка функции: %s"
-
-#~ msgid "Heading"
-#~ msgstr "Раздел"
-
-#~ msgid "Hide Deleted (Void)"
-#~ msgstr "Скрыть удалённые"
-
-#~ msgid "Home Page Expansion Options"
-#~ msgstr "Параметры начальной страницы"
-
-#~ msgid "Huge"
-#~ msgstr "Огромный"
-
-#~ msgid "Idle"
-#~ msgstr "Простой"
-
-#~ msgid "Import &QIF File"
-#~ msgstr "&Импорт QIF файла"
-
-#~ msgid "Import from CSV"
-#~ msgstr "Импорт из CSV"
-
-#~ msgid "Import from MM.NET CSV"
-#~ msgstr "Импорт из MM.NET CSV"
-
-#~ msgid "Import/Export"
-#~ msgstr "Импорта/Экспорт"
-
-#~ msgid "Import/Export Settings"
-#~ msgstr "Параметры импорта/экспорта"
-
-#~ msgid "Important note"
-#~ msgstr "Важное замечание"
-
-#~ msgid "Importing CSV MM.NET"
-#~ msgstr "Импорт из MM.NET CSV"
-
-#~ msgid "In "
-#~ msgstr "В "
-
-#~ msgid "Income account for security \"%s\""
-#~ msgstr "Доходный счёт для ценной бумаги \"%s\""
-
-#~ msgid "Income vs Expenses - 30 Days"
-#~ msgstr "Доходы/Расходы - 30 дней"
-
-#~ msgid "Income vs Expenses - All Time"
-#~ msgstr "За всё время"
-
-#~ msgid "Income vs Expenses - Current Financial Year"
-#~ msgstr "Доход/Расход - Текущий финансовый год"
-
-#~ msgid "Income vs Expenses - Current Month to Date"
-#~ msgstr "Доходы/Расходы - текущий месяц по сегодня"
-
-#~ msgid "Income vs Expenses - Current Year"
-#~ msgstr "Доходы/Расходы - Текущий год"
-
-#~ msgid "Income vs Expenses - Last 12 months"
-#~ msgstr "Доход/Расход - Последние 12 месяцев"
-
-#~ msgid "Income vs Expenses - Last Calendar Month"
-#~ msgstr "Доход/Расход - прошлый месяц"
-
-#~ msgid "Income vs Expenses - Last Financial Year"
-#~ msgstr "Доход/Расход - Прошлый финансовый год"
-
-#~ msgid "Income vs Expenses - Last Year"
-#~ msgstr "Доходы/Расходы - Последние год"
-
-#, fuzzy
-#~ msgid "Income vs Expenses for Financial Year: %s"
-#~ msgstr "Доход/Расход за финансовый год: "
-
-#~ msgid "Income vs Expenses for Year: %d"
-#~ msgstr "Доход/Расход за год: %d"
-
-#~ msgid "Income......."
-#~ msgstr "Доход....."
-
-#~ msgid "Incorrect XML data (#1)!"
-#~ msgstr "Неправильные XML данные (#1)!"
-
-#~ msgid "Incorrect XML data (#2)!"
-#~ msgstr "Неправильные XML данные (#2)!"
-
-#~ msgid "Incorrect XML data (#3)!"
-#~ msgstr "Неправильные XML данные (#3)!"
-
-#~ msgid "Incorrect XML data (#4)!"
-#~ msgstr "Неправильные XML данные (#4)!"
-
-#~ msgid "Incorrect XML data (#5)!"
-#~ msgstr "Неправильные XML данные (#5)!"
-
-#~ msgid "Incorrect XML data (#6)!"
-#~ msgstr "Неправильные XML данные (#6)!"
-
-#~ msgid "Incorrect XML data (#7)!"
-#~ msgstr "Неправильные XML данные (#7)!"
-
-#~ msgid "Init Balance "
-#~ msgstr "Начальный баланс"
-
-#~ msgid "Initial Term Account Activation"
-#~ msgstr "Активирование счетов вкладов"
-
-#~ msgid "Invalid Conversion Rate"
-#~ msgstr "Неверный обменный курс"
-
-#~ msgid "Invalid Value "
-#~ msgstr "Неверное значение"
-
-#~ msgid "Invalid commission entered "
-#~ msgstr "Введена ошибочная комиссия"
-
-#~ msgid "Invalid current price entered "
-#~ msgstr "Введена ошибочная цена"
-
-#~ msgid "Invalid field index"
-#~ msgstr "Неверный индекс"
-
-#~ msgid "Invalid field name"
-#~ msgstr "Неверное имя поля"
-
-#~ msgid "Invalid number of shares entered "
-#~ msgstr "Введено неправильное число акций"
-
-#~ msgid "Invalid purchase price entered "
-#~ msgstr "Введена неправильная цена покупки акций"
-
-#~ msgid "Invalid row index"
-#~ msgstr "Неверный индекс строки"
-
-#~ msgid "Invalid scalar query"
-#~ msgstr "Неверный запрос"
-
-#~ msgid "Investment Accounts"
-#~ msgstr " Инвестиционные счета"
-
-#~ msgid "Investment accounts are specialized accounts that only"
-#~ msgstr "Инвестиционные счета - это специальные счета,  "
-
-#~ msgid "JanFebMarAprMayJunJulAugSepOctNovDec"
-#~ msgstr "ЯнвФевМарАпрМайИюнИюлАвгСенОктНояДек"
-
-#~ msgid "Large"
-#~ msgstr "Большой"
-
-#~ msgid "Last Calendar Month"
-#~ msgstr "Прошлый месяц"
-
-#~ msgid "Leave blank when not active."
-#~ msgstr "Не заполняйте без необходимости."
-
-#~ msgid "Legend:"
-#~ msgstr "     Легенда:"
-
-#~ msgid "Line %i"
-#~ msgstr "Строка %i"
-
-#~ msgid "Line : "
-#~ msgstr "Строка: "
-
-#~ msgid "Line: "
-#~ msgstr "Строка: "
-
-#~ msgid "Line: %i"
-#~ msgstr "Строка %i"
-
-#~ msgid "Line: %i invalid amount, skipping."
-#~ msgstr "Спрока: %i неверная сумма, пропущено."
-
-#~ msgid "Line: %ld position: %ld"
-#~ msgstr "Строка %ld позиция %ld"
-
-#~ msgid "List Background"
-#~ msgstr "Справочная информация"
-
-#~ msgid "List Border"
-#~ msgstr "Граница"
-
-#~ msgid "List Row 0"
-#~ msgstr "Строка 0"
-
-#~ msgid "List Row 1"
-#~ msgstr "Строка 1"
-
-#~ msgid "Load Custom Lua file:"
-#~ msgstr "Загрузить Lua файл:"
-
-#~ msgid "Load Custom SQL file:"
-#~ msgstr "Загрузить SQL файл:"
-
-#~ msgid "Load Template"
-#~ msgstr "Загрузить шаблон"
-
-#~ msgid "Log file written to : "
-#~ msgstr "Файл журнала записан в : "
-
-#~ msgid "MM.&NET CSV Files"
-#~ msgstr "MM.NET CSV ф&айлы"
-
-#~ msgid "MMEX Account View: Transaction Filter"
-#~ msgstr "MMEX счёт: Фильтр проводок"
-
-#~ msgid "MMEX DATABASE ERROR"
-#~ msgstr "ОШИБКА БАЗЫ ДАННЫХ"
-
-#~ msgid "MMEX System Information Check"
-#~ msgstr "Проверка системной информации"
-
-#~ msgid "MMEX must be shutdown and restarted for all the changes to be seen."
-#~ msgstr "Сделайте перезапуск программы, чтобы отобразились изменения."
-
-#~ msgid "Market open from"
-#~ msgstr "Рынок открыт с"
-
-#~ msgid "May "
-#~ msgstr "Май"
-
-#~ msgid "Min: "
-#~ msgstr "Минимум: "
-
-#~ msgid "Modify the description for the attachment:"
-#~ msgstr "Изменить описание данного вложения:"
-
-#~ msgid "Month: "
-#~ msgstr "Месяц: "
-
-#~ msgid "Move to Trash"
-#~ msgstr "Переместить в конзину"
-
-#~ msgid "Name of Currency to Add"
-#~ msgstr "Название добавляемой валюты"
-
-#~ msgid "Nav Tree"
-#~ msgstr "Дерево навигации"
-
-#~ msgid "Navigation Tree Expansion Options"
-#~ msgstr "Свойства навигатора"
-
-#, fuzzy
-#~ msgid "New Custom SQL report: Stage 1:"
-#~ msgstr "Свой SQL отчёт"
-
-#~ msgid "New Lua Custom Report"
-#~ msgstr "Новый Lua отчёт"
-
-#~ msgid "New MMEX Options"
-#~ msgstr "Обновление MMEX настроек"
-
-#~ msgid "New transactions found on web app"
-#~ msgstr "Новая транзакция найдена на WebApp"
-
-#~ msgid "New update available: "
-#~ msgstr "Доступна новая версия:"
-
-#~ msgid "New version is: %s"
-#~ msgstr "Новая версия: %s"
-
-#~ msgid "New version of MMEX is available"
-#~ msgstr "Новая версия доступна"
-
-#~ msgid "New..."
-#~ msgstr "Новый..."
-
-#~ msgid "New/Edit Asset"
-#~ msgstr "Редактор актива"
-
-#~ msgid "New/Edit Stock Investment"
-#~ msgstr "Редактор инвестиций"
-
-#~ msgid "New/Edit Transaction"
-#~ msgstr "Редактор транзакции"
-
-#~ msgid "Next Occurrence"
-#~ msgstr "Следующее начисление"
-
-#~ msgid "No Account available! Cannot Export!"
-#~ msgstr "Не выбран счёт. Нечего выгружать. "
-
-#~ msgid "No Account available! Cannot Import! Create a new account first!"
-#~ msgstr "Не выбран счёт! Не могу импортировать! Создайте новый счёт сначала!"
-
-#~ msgid "No account available for export!"
-#~ msgstr "Не выбран счёт. Нечего выгружать!"
-
-#~ msgid "No account available for import."
-#~ msgstr "Не выбран счёт. Нечего загружать. "
-
-#~ msgid "No account available to reallocate!"
-#~ msgstr "Нет доступного счёта для переопределения!"
-
-#~ msgid "No database!"
-#~ msgstr "Нет базы данных!"
-
-#~ msgid ""
-#~ "No investment accounts found. You can create one using the Accounts menu."
-#~ msgstr ""
-#~ "Нет ни одного инвестиционного счёта. Создайте его через меню счетов."
-
-#~ msgid "No software found for file extension .%s"
-#~ msgstr "Не сопоставлено приложение файлу с расширением .%s"
-
-#~ msgid "No suitable account available to import to!"
-#~ msgstr "Не выбран счёт. Нечего загружать. "
-
-#~ msgid "None "
-#~ msgstr "Нет"
-
-#~ msgid "Normal"
-#~ msgstr "Нормальный"
-
-#~ msgid "Note: Split transactions not set"
-#~ msgstr "Заметка: нет разделённых транзакций"
-
-#~ msgid "Notes               : "
-#~ msgstr "Примечания     : "
-
-#~ msgid "Notes:"
-#~ msgstr "Примечания:"
-
-#~ msgid "Notes: "
-#~ msgstr "Примечания: "
-
-#~ msgid "Null Results pointer"
-#~ msgstr "Нулевой указатель результата"
-
-#~ msgid "Number Shares"
-#~ msgstr "Кол-во"
-
-#~ msgid "Number of Shares"
-#~ msgstr "Кол-во"
-
-#~ msgid "O&rganize Currency"
-#~ msgstr "&Валюта"
-
-#~ msgid "OFX Import"
-#~ msgstr "OFX импорт"
-
-#~ msgid "Opening Database File && Verifying Integrity"
-#~ msgstr "Открытие и проверка целостности базы данных "
-
-#~ msgid "Options"
-#~ msgstr "Настройки"
-
-#~ msgid "Options Dialog"
-#~ msgstr "Настройки"
-
-#~ msgid "Organise Categories"
-#~ msgstr "Редактор категорий"
-
-#~ msgid "Organize C&urrency"
-#~ msgstr "&Валюта"
-
-#~ msgid "Organize Currency: Add Currency"
-#~ msgstr "Менеджер валют: Добавить"
-
-#~ msgid ""
-#~ "Organize Payees Dialog Tip: Using the * key as a wildcard when using the "
-#~ "filter. Example: *c shows Chemist and Doctor, *c*m shows Chemist only."
-#~ msgstr ""
-#~ "Совет: В менеджере получателей используйте * для поиска. Этот знак "
-#~ "заменяет любые символы. Например, *Я это и Я и семьЯ."
-
-#~ msgid "Other currency conversion rate. Set Base Currency to 1."
-#~ msgstr "Задайте курс обмена валюты, если он не равен 1."
-
-#~ msgid "Out of memory"
-#~ msgstr "Недостаточно памяти"
-
-#~ msgid "Overwrite?"
-#~ msgstr "Переписать?"
-
-#~ msgid "Page Set&up..."
-#~ msgstr "&Настройка печати..."
-
-#~ msgid "Payee Added: %s"
-#~ msgstr "Добавлен получатель: %s"
-
-#~ msgid "Payee Default: Set to Select"
-#~ msgstr "Плательщик: Выбрать"
-
-#~ msgid "Payee Report - %s"
-#~ msgstr "Отчёт по получателям - %s"
-
-#~ msgid "Payee Report - Current Financial Year"
-#~ msgstr "Получатели - Текущий финансовый год"
-
-#~ msgid "Payee Report - Current Month"
-#~ msgstr "Получатели - Текущий месяц"
-
-#~ msgid "Payee Report - Current Month to Date"
-#~ msgstr "Получатели - Текущий месяц по сегодня"
-
-#~ msgid "Payee Report - Current Year"
-#~ msgstr "Получатели - Текущий год"
-
-#~ msgid "Payee Report - Last 30 Days"
-#~ msgstr "Получатели - Последние 30 дней"
-
-#~ msgid "Payee Report - Last Financial Year"
-#~ msgstr "Получатели - Прошлый финансовый год"
-
-#~ msgid "Payee Report - Last Month"
-#~ msgstr "Получатели - Прошлый месяц"
-
-#~ msgid "Payee Report - Last Year"
-#~ msgstr "Получатели - Прошлый год"
-
-#~ msgid "Payee missing"
-#~ msgstr "Получатель отсутсвует"
-
-#~ msgid "Payee not found in database for Account: "
-#~ msgstr "Получатель не найден для счёта: "
-
-#~ msgid "Payee:"
-#~ msgstr "Получатель:"
-
-#~ msgid "Payees - Current Financial Year"
-#~ msgstr "Получатели - Текущий финансовый год"
-
-#~ msgid "Payees - Current Month"
-#~ msgstr "Получатели - Текущий месяц"
-
-#~ msgid "Payees - Current Month to Date"
-#~ msgstr "Получатели - Текущий месяц по сегодня"
-
-#~ msgid "Payees - Current Year"
-#~ msgstr "Получатели - Текущий год"
-
-#~ msgid "Payees - Last 30 Days"
-#~ msgstr "Получатели - Последние 30 дней"
-
-#~ msgid "Payees - Last Calendar Month"
-#~ msgstr "Получатели - Прошлый месяц"
-
-#~ msgid "Payees - Last Financial Year"
-#~ msgstr "Получатели - Прошлый финансовый год"
-
-#~ msgid "Payees - Last Year"
-#~ msgstr "Получатели - Прошлый год"
-
-#~ msgid "Payees Total:"
-#~ msgstr "Получатели итог: "
-
-#~ msgid "Percent/Year: "
-#~ msgstr "Процентов в год: "
-
-#~ msgid "Please confirm deletion of a selected Currency"
-#~ msgstr "Пожалуйста, подтвердите удаление выбранной категории"
-
-#~ msgid "Please deactivate Transaction Filter"
-#~ msgstr "Пожалуйста устраните основной фильтр"
-
-#~ msgid "Please deactivate: "
-#~ msgstr "Дезактивируйте: "
-
-#~ msgid "Please set filtering to: "
-#~ msgstr "Пожалуйста, установите фильтр в: "
-
-#~ msgid "Please supply the Report Title before saving"
-#~ msgstr "Пожалуйста задайте название отчёта перед сохранением"
-
-#~ msgid "Please use the stock link on the Navigation Tree"
-#~ msgstr "Пожалуйста, используйте ссылку на биржу в панели навигации"
-
-#~ msgid ""
-#~ "Please verify that operating system is able to handle this type of file."
-#~ msgstr "Пожалуйста убедитесь, что ОС умеет отображать данный тип файлов."
-
-#~ msgid ""
-#~ "Please verify that the CSV file from MMEX.NET contains only one account!"
-#~ msgstr ""
-#~ "Пожалуйста проверьте, что CSV файл из MMEX.NET содержит только один счёт!"
-
-#~ msgid "Please wait while the new database is being loaded."
-#~ msgstr "Пожалуйста, подождите, пока новая база данных будет загружена."
-
-#~ msgid "Please, use read only access to DB in this function"
-#~ msgstr "Пожалуйста, используйте запросы только для чтения"
-
-#~ msgid "Powered by wxWidgets, SQLite, wxSQLite(by Ulrich Telle), Boost C++"
-#~ msgstr ""
-#~ "С использованием wxWidgets, SQLite, wxSQLite(by Ulrich Telle), Boost C++"
-
-#~ msgid "Preview current report"
-#~ msgstr "Просмотр текущего отчёта"
-
-#~ msgid "Print Pre&view..."
-#~ msgstr "П&редварительный просмотр печати..."
-
-#~ msgid "Proceed to website: "
-#~ msgstr "Перейти на Web-сайт: "
-
-#~ msgid "QIF Files "
-#~ msgstr "QIF файлы "
-
-#~ msgid "REGEXP called with wrong number of arguments: %d instead of 2."
-#~ msgstr "REGEXP вызван с неправильным количеством аргументов: %d вместо 2."
-
-#~ msgid "Rate of Change"
-#~ msgstr "Процент изменения стоимости"
-
-#~ msgid "Rate of Change in Value"
-#~ msgstr "Оценить изменения в стоимости"
-
-#~ msgid "Reading data from file"
-#~ msgstr "Читаю данные из файла"
-
-#~ msgid "Recommendation: Shut down and restart MMEX."
-#~ msgstr "Рекомендация: Перезапустите приложение."
-
-#~ msgid "Regular expression invalid: '"
-#~ msgstr "Неправильное регулярное выражение: '"
-
-#~ msgid "Released under the GNU GPL License"
-#~ msgstr "Распространяется на правах лицензии GNU GPL"
-
-#~ msgid "Remaining Days"
-#~ msgstr "Дней до события"
-
-#, fuzzy
-#~ msgid "Remove Cruft. Error: %s"
-#~ msgstr "ОШИБКА БАЗЫ ДАННЫХ"
-
-#~ msgid "Remove a file from the Custom SQL Reports menu"
-#~ msgstr "Удалить файл из меню запросов SQL"
-
-#~ msgid "Reoccuring Transaction Creation"
-#~ msgstr "Создание периодической транзакции"
-
-#~ msgid "Repeat Transaction - Auto Execution Checking"
-#~ msgstr "Повторяющиеся проводки - Проверка самовыполнения"
-
-#~ msgid "Repeat Transaction Auto Execution Check"
-#~ msgstr "Повторяющиеся проводки самовыполнение"
-
-#~ msgid "Repeating Transactions"
-#~ msgstr "Планирование"
-
-#, fuzzy
-#~ msgid "Repeating Transactions-menu"
-#~ msgstr "Планирование"
-
-#~ msgid "Report Font Size"
-#~ msgstr "Размер шрифта отчёта"
-
-#~ msgid "Report Name[|Report Filename.sql[|SUB]]"
-#~ msgstr "Название отчёта[|Report Filename.sql[|SUB]]"
-
-#~ msgid "Report Title is used as the file name of the SQL script."
-#~ msgstr "Заголовок отчёта используется как имя файла SQL скрипта."
-
-#~ msgid "Report with same name exists"
-#~ msgstr "Отчёт с таким названием существует"
-
-#~ msgid "Restore Default Colors"
-#~ msgstr "Восстановить исходные цвета"
-
-#~ msgid "Restore Defaults"
-#~ msgstr "Сбросить"
-
-#~ msgid "SQL Query will modify your Data. Proceed??"
-#~ msgstr "Запрос SQL изменит Ваши данные. Продолжить??"
-
-#~ msgid "SQL Source Script:"
-#~ msgstr "SQL скрипт:"
-
-#~ msgid "SQL query discarded by user"
-#~ msgstr "SQL запрос прерван пользователем"
-
-#~ msgid "Sample Date"
-#~ msgstr "Пример даты"
-
-#~ msgid "Save As..."
-#~ msgstr "Сохранить как..."
-
-#~ msgid "Save Custom SQL file:"
-#~ msgstr "Сохранить SQL файл:"
-
-#~ msgid ""
-#~ "Save Heading details to the Index File, and SQL script file as required."
-#~ msgstr "Сохранить название отчёта и запрос в файл."
-
-#~ msgid "Save changes before closing. Changes without Save will be lost."
-#~ msgstr ""
-#~ "Сохраните изменения перед закрытием. Без этого изменения будут потеряны."
-
-#~ msgid "Save the script to file name set by the Report Title."
-#~ msgstr "Сохранить скрипт с именем заданным в заголовке."
-
-#~ msgid "Scale should be greater than zero"
-#~ msgstr "Основной обменный курс должен быть больше нуля"
-
-#~ msgid "Script type:"
-#~ msgstr "Тип скрипта:"
-
-#~ msgid "Select From"
-#~ msgstr "Выберите откуда"
-
-#~ msgid "Select From Account"
-#~ msgstr "Со счёта"
-
-#~ msgid "Select To"
-#~ msgstr "Выберите куда"
-
-#, fuzzy
-#~ msgid "Select To Account-"
-#~ msgstr "На счёт"
-
-#~ msgid "Select To Acct"
-#~ msgstr "Выберите счёт"
-
-#~ msgid "Select accounts"
-#~ msgstr "Выберите счета"
-
-#~ msgid "Select an OFX/QFX file to process"
-#~ msgstr "Выберите OFX/QFX файл для обработки"
-
-#~ msgid "Select the Custom Report %s"
-#~ msgstr "Выбрать отчёт %s"
-
-#~ msgid ""
-#~ "Select the currently selected payee as the selected payee for the "
-#~ "transaction"
-#~ msgstr "Выберите из списка получателя для этой транзакции"
-
-#~ msgid ""
-#~ "Select whether to create a _YYYY-MM-DD.bak file before opening the "
-#~ "database"
-#~ msgstr ""
-#~ "Отметьте, если нужно создавать *ГГГГ-ММ-ДД.bak файл перед открытием базы "
-#~ "данных"
-
-#~ msgid "Selection can be made by using Search button."
-#~ msgstr "Выбор может быть сделан с помощью кнопки Поиск."
-
-#~ msgid "Semicolon"
-#~ msgstr "Точка с запятой"
-
-#~ msgid "Set"
-#~ msgstr "Установить"
-
-#~ msgid "Set 'Auto Execute' without user acknowlegement."
-#~ msgstr "Самовыполнение без подтверждения пользователя."
-
-#, fuzzy
-#~ msgid "Set Base Currency Settings. Error: %s"
-#~ msgstr "Основная валюта не установлена."
-
-#~ msgid "Set Info Setting Value %s = %s. Error: %s"
-#~ msgstr "Установка значения настроек %s = %s. Ошибка: %s"
-
-#~ msgid "Set to 'Auto Execute' on the 'Next Occurrence' date."
-#~ msgstr "Установить самовыполнение в день начисления."
-
-#~ msgid "Sets the default currency for the database."
-#~ msgstr "Установите базовую валюту."
-
-#~ msgid "Setting new Database file"
-#~ msgstr "Настройки новой базы данных"
-
-#~ msgid "Setup page printing options"
-#~ msgstr "Параметры страницы"
-
-#~ msgid "Show Deleted (Void)"
-#~ msgstr "Показать удалённые"
-
-#~ msgid "Show all hidden payees"
-#~ msgstr "Показать скрытых получателей"
-
-#~ msgid "Show/Hide Bank Accounts on Summary page"
-#~ msgstr "Показать/скрыть счета в сводке"
-
-#~ msgid "Show/Hide Stock Accounts on Summary page"
-#~ msgstr "Показать/скрыть инвестиционные счета в сводке"
-
-#~ msgid "Show/Hide Term Accounts on Summary page"
-#~ msgstr "Показать/скрыть счета вкладов в сводке"
-
-#~ msgid "Sign up for the announcement mailing list"
-#~ msgstr "Подписаться на рассылку уведомлений"
-
-#~ msgid "Size after"
-#~ msgstr "Размер после"
-
-#~ msgid "Size before"
-#~ msgstr "Размер до"
-
-#~ msgid ""
-#~ "Skipping QIF transaction because date, type, amount is empty/invalid, "
-#~ "transaction skipped had "
-#~ msgstr ""
-#~ "Пропуск QIF проводки, поскольку дата, тип, сумма отсутствует или "
-#~ "некорректны, транзакция была пропущена"
-
-#~ msgid "Small"
-#~ msgstr "Маленький"
-
-#~ msgid "Sort by"
-#~ msgstr "Сортировать по"
-
-#~ msgid "Source Payee"
-#~ msgstr "Исходный получатель"
-
-#~ msgid "Specify Account"
-#~ msgstr "Укажите счёт"
-
-#~ msgid "Specify Category"
-#~ msgstr "Укажите категорию"
-
-#~ msgid "Specify Notes"
-#~ msgstr "Укажите заметки"
-
-#~ msgid "Specify Payee"
-#~ msgstr "Укажите плательщика"
-
-#~ msgid "Specify Status"
-#~ msgstr "Укажите статус"
-
-#~ msgid "Specify advanced settings for transaction"
-#~ msgstr "Укажите дополнительные параметры транзакции"
-
-#~ msgid "Specify categories for this transaction"
-#~ msgstr "Выберите категорию данной проводки"
-
-#~ msgid "Specify the color for future transactions"
-#~ msgstr "Выберите цвет для будущих проводок"
-
-#~ msgid "Specify the color for the list Border"
-#~ msgstr "Укажите цвет границы списка"
-
-#~ msgid "Specify the color for the list background"
-#~ msgstr "Укажите цвет фона окна справочной информации"
-
-#~ msgid "Specify the color for the list details"
-#~ msgstr "Выберите цвет деталей списка"
-
-#~ msgid "Specify the color for the list row 0"
-#~ msgstr "Укажите цвет нечётного ряда в списке"
-
-#~ msgid "Specify the color for the list row 1"
-#~ msgstr "Укажите цвет парного ряда в списке"
-
-#~ msgid "Specify the color for the nav tree"
-#~ msgstr "Укажите цвет окна навигации"
-
-#, fuzzy
-#~ msgid "Specify the folder to use when archive attachments"
-#~ msgstr "Укажите цвет окна навигации"
-
-#, fuzzy
-#~ msgid "Specify the number of payments to be made."
-#~ msgstr "Укажите тип создаваемого счёта"
-
-#~ msgid "Specify the number of times this series repeats."
-#~ msgstr "Укажите количество повторов для данной серии."
-
-#~ msgid "Specify the purchase date of the stock investment"
-#~ msgstr "Укажите дату покупки ценных бумаг"
-
-#~ msgid "Specify the starting date of the forecast"
-#~ msgstr "Укажите дату начала прогноза"
-
-#~ msgid "Specify where the transaction is going to or coming from "
-#~ msgstr "Выберите получателя данной проводки"
-
-#~ msgid "Specify which account the transfer is coming from"
-#~ msgstr "Определите счёт откуда будет произведено перечисление"
-
-#~ msgid "Specify which account the transfer is comming from"
-#~ msgstr "Определите счёт откуда будет произведено перечисление"
-
-#~ msgid "Split Category"
-#~ msgstr "Разделить категорию"
-
-#~ msgid "Statement not accessible"
-#~ msgstr "Выражение не доступно"
-
-#~ msgid "Status Default: Set to Reconciled"
-#~ msgstr "Начальный статус: Выверено"
-
-#~ msgid "Status:"
-#~ msgstr "Статус: "
-
-#~ msgid "Stock Download"
-#~ msgstr "Загрузка котировок"
-
-#~ msgid "Stock Investment Page Selection"
-#~ msgstr "Страница акций"
-
-#~ msgid "Stock Investments"
-#~ msgstr "Инвестиции"
-
-#~ msgid "Stock Investments: %s"
-#~ msgstr "Инвестиции: %s"
-
-#~ msgid "Stock Name"
-#~ msgstr "Выпуск"
-
-#~ msgid "Stock account for security \"%s\""
-#~ msgstr "Инвестиционный счёт для ценной бумаги \"%s\""
-
-#~ msgid "Sub-Category"
-#~ msgstr "Подкатегория"
-
-#~ msgid "Sub-Menu"
-#~ msgstr "Подменю"
-
-#~ msgid "Subcategories"
-#~ msgstr "Подкатегории"
-
-#~ msgid "Subcategory:"
-#~ msgstr "Подкатегория:"
-
-#~ msgid "Subsequent errors not displayed."
-#~ msgstr "Последующие ошибки не отображаются."
-
-#~ msgid "Summary of Assets"
-#~ msgstr "Итоги по активам"
-
-#~ msgid "System: "
-#~ msgstr "Система: "
-
-#~ msgid "Tempoary message."
-#~ msgstr "Tempoary message."
-
-#~ msgid "Term &Accounts"
-#~ msgstr "Счета вкладов"
-
-#~ msgid "Term Account"
-#~ msgstr "Счета вкладов"
-
-#~ msgid "Term Account views have been temporarly turned on."
-#~ msgstr "Счёта вкладов временно будут показаны."
-
-#~ msgid "Term account"
-#~ msgstr "Счёт вклада"
-
-#~ msgid "Test script. Save before running."
-#~ msgstr "Проверка запроса. Сохраните его перед запуском."
-
-#~ msgid "Thank you! "
-#~ msgstr "Спасибо! "
-
-#~ msgid ""
-#~ "The database can later be encrypted if required, by\n"
-#~ "using the option: 'Save database as' and changing the\n"
-#~ "file type before saving."
-#~ msgstr ""
-#~ "База данных в дальнейшем может быть зашифрована. \n"
-#~ "Для этого используйте опцию 'Сохранить БД как...' \n"
-#~ "Измените тип перед сохранением."
-
-#~ msgid "The next pages will help you create a new database."
-#~ msgstr "Следующие страницы помогут создать новую базу данных."
-
-#~ msgid ""
-#~ "The next pages will help you create a new database.\n"
-#~ "\n"
-#~ "Your database file is stored with an extension of .mmb.\n"
-#~ "\n"
-#~ "Make sure to make backups of this file \n"
-#~ "and to store it carefully as it contains important \n"
-#~ "financial information."
-#~ msgstr ""
-#~ "Следующие страницы помогут Вам создать новую базу данных.\n"
-#~ "\n"
-#~ "Ваш файл базы данных хранится с расширением .mmb.\n"
-#~ "Удостоверьтесь, что сделана резервная копия этого \n"
-#~ "файла и надёжно сохранена, поскольку этот файл содержит важную \n"
-#~ "финансовую информацию."
-
-#~ msgid "There are no accounts available for import to"
-#~ msgstr "Не выбран счёт. Нечего загружать. "
-
-#~ msgid "This is generally the name of a financial institution"
-#~ msgstr "Обычно это название организации"
-
-#~ msgid "This message will not be displayed in future."
-#~ msgstr "Это сообщение не будет отображаться в дальнейшем."
-
-#~ msgid "This will allow all MMEX option updates to take effect."
-#~ msgstr "Это позволит всем обновлениям параметров вступить в силу."
-
-#~ msgid "Times Repeated"
-#~ msgstr "Количество повторов"
-
-#~ msgid "Tip: Change all transactions using this "
-#~ msgstr "Совет: Измените все транзакции используя "
-
-#~ msgid "Title: "
-#~ msgstr "Заголовок:"
-
-#~ msgid "To Account"
-#~ msgstr "На счёт"
-
-#~ msgid "To Account Amount Entry"
-#~ msgstr "Сумма на другом счёте"
-
-#~ msgid "To Whom the Money Goes"
-#~ msgstr "Плательщики"
-
-#~ msgid ""
-#~ "To import QIF files correctly, the date format in the QIF file must match "
-#~ "the date option set in MMEX."
-#~ msgstr ""
-#~ "Для импорта QIF файла, формат даты в файле и настройках MMEX должен быть "
-#~ "аналогичным."
-
-#~ msgid ""
-#~ "To import QIF files correctly, the date option set in MMEX \n"
-#~ " must match the format of the date in the QIF file.\n"
-#~ "Are you are sure you want to proceed with the import?"
-#~ msgstr ""
-#~ "Для корректного импорта файлов QIF, формат даты в MMEX \n"
-#~ " должен соответствовать формату даты в QIF файле. \n"
-#~ " Вы уверены, что хотите произвести импорт?"
-
-#~ msgid ""
-#~ "To maintain this view, change the defaults by using:\n"
-#~ "\n"
-#~ "Tools -> Options\n"
-#~ "View Options"
-#~ msgstr ""
-#~ "Для изменения опций просмотра, можно изменить в настройках:\n"
-#~ "\n"
-#~ "Инструменты -> Настройки программы\n"
-#~ "Вид"
-
-#~ msgid "To/From(+/-)"
-#~ msgstr "Из/В(+/-)"
-
-#~ msgid "Today's Date: <b>"
-#~ msgstr "Сегодня: <b>"
-
-#~ msgid "Tools -> Options"
-#~ msgstr "Инструменты -> Настройки"
-
-#~ msgid "Top Transactions Last 30 Days"
-#~ msgstr "Самые значимые транзакции за 30 дней"
-
-#~ msgid "Total Imported : "
-#~ msgstr "Всего импортировано: "
-
-#~ msgid "Total Imported : %d"
-#~ msgstr "Всего импортировано:  %d"
-
-#~ msgid ""
-#~ "Total Lines : %d \n"
-#~ "Total Imported : %d\n"
-#~ "\n"
-#~ "Log file written to : %s.\n"
-#~ "\n"
-#~ "Imported transactions have been flagged so you can review them. "
-#~ msgstr ""
-#~ "Всего строк : %d.\n"
-#~ "Всего импортировано : %d\n"
-#~ "Лог-файл : %s.\n"
-#~ "\n"
-#~ "Импортированные транзакции отмечены как требующие уточнения."
-
-#~ msgid ""
-#~ "Total Lines : %d.\n"
-#~ "Total Imported : %d\n"
-#~ "Log file written to : %s.\n"
-#~ "\n"
-#~ "Imported transactions have been flagged so you can review them."
-#~ msgstr ""
-#~ "Всего строк : %d.\n"
-#~ "Всего импортировано : %d\n"
-#~ "Лог-файл : %s.\n"
-#~ "\n"
-#~ "Импортированные транзакции отмечены как требующие уточнения."
-
-#~ msgid "Total Lines : %i"
-#~ msgstr "Всего строк: %i"
-
-#, fuzzy
-#~ msgid "Total Price"
-#~ msgstr "Цена"
-
-#~ msgid "Total Stock Investments: "
-#~ msgstr "Всего средств в инвестициях: "
-
-#~ msgid "Total Value"
-#~ msgstr "Итоговое значение"
-
-#~ msgid "Total number of lines: %i"
-#~ msgstr "Всего строк: %i "
-
-#~ msgid "Total of Accounts:"
-#~ msgstr "Всего:"
-
-#~ msgid "Total: "
-#~ msgstr "Всего:"
-
-#~ msgid "Total: %s Invested: %s Gain: %s "
-#~ msgstr "Всего: %s Инвестировано: %s Прибыль: %s "
-
-#~ msgid "Total: %s Invested: %s Loss: %s "
-#~ msgstr "Всего: %s Инвестировано: %s Убытки: %s "
-
-#~ msgid "Transaction Filter will interfere with this filtering."
-#~ msgstr "Фильтр транзакций противоречит основному фильтру."
-
-#~ msgid "Transaction Number"
-#~ msgstr "Tранзакция №"
-
-#~ msgid "Transaction Statistics for %i - %i"
-#~ msgstr "Статистика проводок за %i - %i"
-
-#~ msgid "Transaction Type"
-#~ msgstr "Тип транзакции"
-
-#~ msgid "Transaction Type is empty"
-#~ msgstr "Тип проводки не выбран"
-
-#~ msgid "Transaction View Options"
-#~ msgstr "Параметры просмотра проводок"
-
-#~ msgid "Transactions imported from CSV"
-#~ msgstr "транзакций импортировано из CSV"
-
-#~ msgid "Transactions imported from QIF"
-#~ msgstr " Проводок импортировано из QIF"
-
-#~ msgid "Transactions imported from QIF: %ld"
-#~ msgstr "Проводок импортировано из QIF: %ld"
-
-#~ msgid "Translators"
-#~ msgstr "Перевод"
-
-#~ msgid "Tree View Options: Expand Section"
-#~ msgstr "Вид в навигаторе: Разворачивать секцию"
-
-#~ msgid "Type a Payee Name in the Text Box and then press Add."
-#~ msgstr ""
-#~ "Напишите имя плательщика в текстовом поле, затем нажмите кнопку Добавить."
-
-#~ msgid "Type: "
-#~ msgstr "Тип: "
-
-#~ msgid "Unable to convert db successfully. Check Password!"
-#~ msgstr "Не могу соединиться с БД. Проверьте пароль!"
-
-#, fuzzy
-#~ msgid "Unable to copy file:"
-#~ msgstr "Невозможно открыть файл."
-
-#, fuzzy
-#~ msgid "Unable to delete file:"
-#~ msgstr "Невозможно открыть файл."
-
-#~ msgid "Unable to download new transaction from WebApp"
-#~ msgstr "Не могу загрузить новую транзакцию с WebApp"
-
-#, fuzzy
-#~ msgid "Unable to move file:"
-#~ msgstr "Невозможно открыть файл."
-
-#, fuzzy
-#~ msgid ""
-#~ "Unable to open file \n"
-#~ "%s\n"
-#~ "\n"
-#~ msgstr "Невозможно открыть файл."
-
-#~ msgid "Unit Price"
-#~ msgstr "Цена"
-
-#~ msgid "Universal CSV Dialog"
-#~ msgstr "Импорт Universal CSV"
-
-#~ msgid "Universal CSV Export"
-#~ msgstr "Экспорт CSV"
-
-#~ msgid "Unknown OFX CMA account"
-#~ msgstr "Неизвестный OFX CMA счёт"
-
-#~ msgid "Unknown OFX checking account"
-#~ msgstr "Неизвестный OFX текущий счёт"
-
-#~ msgid "Unknown OFX credit card account"
-#~ msgstr "Неизвестный OFX счёт кредитной карты"
-
-#~ msgid "Unknown OFX credit line account"
-#~ msgstr "Неизвестный OFX счёт кредитной линии"
-
-#~ msgid "Unknown OFX investment account"
-#~ msgstr "Неизвестный OFX инвестиционный счёт"
-
-#~ msgid "Unknown OFX money market account"
-#~ msgstr "Неизвестный OFX денежный счёт"
-
-#~ msgid "Unknown OFX savings account"
-#~ msgstr "Неизвестный OFX накопительный счёт"
-
-#~ msgid "Update Category. Error: %s"
-#~ msgstr "Обновление категории. Ошибка: %s"
-
-#~ msgid "Update Failed"
-#~ msgstr "Обновление не удалось"
-
-#, fuzzy
-#~ msgid "Update Payee. Error: %s"
-#~ msgstr "ОШИБКА БАЗЫ ДАННЫХ"
-
-#, fuzzy
-#~ msgid "Update Transaction With Status. Error: %s"
-#~ msgstr "Статистика транзакций за "
-
-#~ msgid "Update database changes to database backup on exit."
-#~ msgstr "Обновление резервной копии базы данных при выходе."
-
-#~ msgid "Using Language : "
-#~ msgstr "Текущий язык: "
-
-#, fuzzy
-#~ msgid "Value Date"
-#~ msgstr "Очередная дата"
-
-#~ msgid "Value of 123456.78 will be"
-#~ msgstr "Значение 123456.78 будет выглядеть так: "
-
-#~ msgid "Version History"
-#~ msgstr "История версий"
-
-#~ msgid "View \"Follow Up\" Transactions"
-#~ msgstr "Показать все транзакции с лампочкой"
-
-#~ msgid "View All Except Reconciled Transactions"
-#~ msgstr "Показать все транзакции, кроме выверенных"
-
-#~ msgid "View All transactions"
-#~ msgstr "Показать все транзакции"
-
-#~ msgid "View Budget Summary Report without Categories"
-#~ msgstr "Показывать отчёт по категориям без подитогов"
-
-#~ msgid "View Duplicate Transactions"
-#~ msgstr "Показать повторяющиеся транзакции"
-
-#~ msgid "View Duplicates"
-#~ msgstr "Показать дубликаты"
-
-#~ msgid "View File Contents"
-#~ msgstr "Просмотр файла"
-
-#~ msgid "View Flagged"
-#~ msgstr "Показать отмеченные"
-
-#~ msgid "View Last 365 days"
-#~ msgstr "Показать последние 365 дней"
-
-#~ msgid "View Not-Reconciled"
-#~ msgstr "Показать кроме выверенных"
-
-#~ msgid "View Reconciled"
-#~ msgstr "Показать выверенные"
-
-#~ msgid "View Reconciled Transactions"
-#~ msgstr "Показать выверенные транзакции"
-
-#~ msgid "View Transactions for current month"
-#~ msgstr "Показать транзакции за текущий месяц"
-
-#~ msgid "View Transactions for last 3 months"
-#~ msgstr "Показать транзакции за последние 3 месяца"
-
-#~ msgid "View Transactions for last 30 days"
-#~ msgstr "Показать транзакции за последние 30 дней"
-
-#~ msgid "View Transactions for last 90 days"
-#~ msgstr "Показать транзакции за последние 90 дней"
-
-#~ msgid "View Transactions for last month"
-#~ msgstr "Показать транзакции за предыдущий месяц"
-
-#~ msgid "View Transactions for today"
-#~ msgstr "Показать транзакции за сегодня"
-
-#~ msgid "View Un-Reconciled"
-#~ msgstr "Показать не выверенные"
-
-#~ msgid "View Un-Reconciled Transactions"
-#~ msgstr "Показать не выверенные транзакции"
-
-#~ msgid "View UnReconciled"
-#~ msgstr "Показать не выверенные"
-
-#~ msgid "View Void"
-#~ msgstr "Показать отменённые"
-
-#~ msgid "Viewing All Budget Categories"
-#~ msgstr "Показать все категории бюджета"
-
-#~ msgid "Viewing All Except Reconciled Transactions"
-#~ msgstr "Просмотр всех проводок, кроме выверенных"
-
-#~ msgid "Viewing All Transactions"
-#~ msgstr "Просмотр всех транзакций"
-
-#~ msgid "Viewing All except Reconciled Transactions"
-#~ msgstr "Просмотр всех проводок, кроме выверенных"
-
-#~ msgid "Viewing Flagged transactions"
-#~ msgstr "Просмотр отмеченных транзакций"
-
-#~ msgid "Viewing Follow-Up transactions"
-#~ msgstr "Показ отслеживаемых проводок:"
-
-#~ msgid "Viewing Reconciled transactions"
-#~ msgstr "Просмотр выверенных проводок"
-
-#~ msgid "Viewing Un-Reconciled transactions"
-#~ msgstr "Просмотр не выверенных проводок"
-
-#~ msgid "Viewing Void transactions"
-#~ msgstr "Просмотр неучтённых проводок"
-
-#~ msgid "Viewing all transactions"
-#~ msgstr "Просмотр всех проводок"
-
-#~ msgid "Viewing transactions for current month"
-#~ msgstr "Просмотр проводок за текущий месяц"
-
-#~ msgid "Viewing transactions for last 3 months"
-#~ msgstr "Просмотр проводок за последние 3 месяца"
-
-#~ msgid "Viewing transactions for last 30 days"
-#~ msgstr "Просмотр проводок за последние 30 дней"
-
-#~ msgid "Viewing transactions for last 90 days"
-#~ msgstr "Просмотр проводок за последние 90 дней"
-
-#~ msgid "Viewing transactions for last month"
-#~ msgstr "Просмотр проводок за прошлый месяц"
-
-#~ msgid "Visit MMEX Forum or &Report New Issues."
-#~ msgstr "Посетить форум или сообщить об ошибке."
-
-#~ msgid "Waiting Correct Implementation"
-#~ msgstr "Ожидается правильный реализация"
-
-#~ msgid "Web Page"
-#~ msgstr "Web-страница"
-
-#~ msgid "Week#%d"
-#~ msgstr "Неделя№%d"
-
-#~ msgid ""
-#~ "When not selected, the payee default is set to the most frequently used "
-#~ "payee for the current account."
-#~ msgstr ""
-#~ "Если не отмечено, то будет использоваться часто используемый плательщик "
-#~ "для текущего счёта."
-
-#~ msgid "Where the Money Comes From - %s"
-#~ msgstr "Доходы - %s"
-
-#~ msgid "Where the Money Comes From - 30 Days"
-#~ msgstr "Доходы - 30 дней"
-
-#~ msgid "Where the Money Comes From - Current Financial Year"
-#~ msgstr "Доходы - Текущий финансовый год"
-
-#~ msgid "Where the Money Comes From - Current Month"
-#~ msgstr "Доходы - текущий месяц"
-
-#~ msgid "Where the Money Comes From - Current Month to Date"
-#~ msgstr "Доходы - текущий месяц по сегодня"
-
-#~ msgid "Where the Money Comes From - Current Year"
-#~ msgstr "Доходы - текущий год"
-
-#~ msgid "Where the Money Comes From - Current Year to Date"
-#~ msgstr "Доходы - текущий год по сегодня"
-
-#~ msgid "Where the Money Comes From - Last Calendar Month"
-#~ msgstr "Доходы - прошлый месяц"
-
-#~ msgid "Where the Money Comes From - Last Financial Year"
-#~ msgstr "Доходы - Прошлый финансовый год"
-
-#~ msgid "Where the Money Comes From - Last Month"
-#~ msgstr "Доходы - прошлый месяц"
-
-#~ msgid "Where the Money Comes From - Last Year"
-#~ msgstr "Доходы - Прошлый год"
-
-#~ msgid "Where the Money Goes - %s"
-#~ msgstr "Расходы - %s"
-
-#~ msgid "Where the Money Goes - 30 Days"
-#~ msgstr "Расходы - 30 дней"
-
-#~ msgid "Where the Money Goes - Current Financial Year"
-#~ msgstr "Расходы - Текущий финансовый год"
-
-#~ msgid "Where the Money Goes - Current Month"
-#~ msgstr "Расходы - текущий месяц"
-
-#~ msgid "Where the Money Goes - Current Month to Date"
-#~ msgstr "Расходы - текущий месяц по сегодня"
-
-#~ msgid "Where the Money Goes - Current Year"
-#~ msgstr "Расходы - текущий год"
-
-#~ msgid "Where the Money Goes - Current Year to Date"
-#~ msgstr "Расходы - текущий год по сегодня"
-
-#~ msgid "Where the Money Goes - Last 30 Days"
-#~ msgstr "Расходы - 30 дней"
-
-#~ msgid "Where the Money Goes - Last Calendar Month"
-#~ msgstr "Расходы  - Прошлый месяц"
-
-#~ msgid "Where the Money Goes - Last Financial Year"
-#~ msgstr "Расходы - Прошлый финансовый год"
-
-#~ msgid "Where the Money Goes - Last Month"
-#~ msgstr "Расходы  - Прошлый месяц"
-
-#~ msgid "Where the Money Goes - Last Year"
-#~ msgstr "Расходы - прошлый год"
-
-#~ msgid "Will search for the given text in the Notes field"
-#~ msgstr "Поиск по заметкам в текущем счёте"
-
-#~ msgid "Would you like to download it now ?"
-#~ msgstr "Хотите загрузить сейчас?"
-
-#~ msgid "Write error: %s"
-#~ msgstr "Ошибка записи: %s"
-
-#~ msgid "XLarge"
-#~ msgstr "Оч. большой"
-
-#~ msgid "XSmall"
-#~ msgstr "Микро"
-
-#~ msgid "XXLarge"
-#~ msgstr "Ооч. Большой"
-
-#~ msgid "Yahoo Suffix"
-#~ msgstr "Суффикс Yahoo"
-
-#~ msgid "Year is not valid"
-#~ msgstr "Неверный год"
-
-#~ msgid "Year: "
-#~ msgstr "Год: "
-
-#~ msgid "Years to Forecast:"
-#~ msgstr "Кол-во лет для прогноза:"
-
-#~ msgid "Your current version is: %s"
-#~ msgstr "Ваша версия: %s"
-
-#~ msgid "Your database file is stored with an extension of .mmb."
-#~ msgstr "Ваша база данных хранится с расширением (*.mmb)"
-
-#~ msgid "database file"
-#~ msgstr "файл базы данных"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
-
-#~ msgid "for Account: "
-#~ msgstr "для счёта: "
-
-#~ msgid "minutes while market is open"
-#~ msgstr "минут пока торги открыты"
-
-#~ msgid "mmGetColumnChoice: This is not a 2 dimentional array"
-#~ msgstr "mmGetColumnChoice: Это не 2-х мерный массив"
-
-#~ msgid "mmGetTableChoice: Array not recognised"
-#~ msgstr "mmGetTableChoice: Массив не распознан"
-
-#~ msgid "must match the date option set in MMEX."
-#~ msgstr "соответствовать формату даты в файле."
-
-#~ msgid "never!"
-#~ msgstr "никогда!"
-
-#~ msgid ""
-#~ "one of the following fields: date, payee, transaction type, amount "
-#~ "strings is empty, skipping"
-#~ msgstr ""
-#~ "одно из следующих полей: дата, получатель, тип транзакции, количество "
-#~ "строк не заполнено, пропущено"
-
-#~ msgid "or"
-#~ msgstr "или"
-
-#~ msgid "to"
-#~ msgstr "до"
-
-#~ msgid "to "
-#~ msgstr "по "
-
-#~ msgid "to category: "
-#~ msgstr "в категорию: "
-
-#~ msgid "to payee: "
-#~ msgstr "на получателя: "
-
-#~ msgid "to: "
-#~ msgstr " по: "
