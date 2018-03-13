@@ -52,7 +52,9 @@ public:
 
     /** Return the Data record of the base currency.*/
     static Data* GetBaseCurrency();
-	static const wxString GetBaseCurrencySymbol();
+	static bool GetBaseCurrencySymbol(wxString& base_currency_symbol);
+
+    static bool GetUSDrate(double& rate);
 
     /** Resets all BASECONVRATE to 1 */
     static void ResetBaseConversionRates();

@@ -77,15 +77,30 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
     return currency;
 }
 
-const wxString Model_Currency::GetBaseCurrencySymbol()
+bool Model_Currency::GetBaseCurrencySymbol(wxString& base_currency_symbol)
 {
 	const auto base_currency = GetBaseCurrency();
 	if (base_currency)
 	{
-		return base_currency->CURRENCY_SYMBOL.Upper();
+        base_currency_symbol = base_currency->CURRENCY_SYMBOL.Upper();
+        return true;
 	}
-	else
-		return "";
+	return false;
+}
+
+bool Model_Currency::GetUSDrate(double& rate)
+{
+    Model_Currency::Data_Set usd = Model_Currency::instance().find(CURRENCY_SYMBOL("USD"));
+    if (!usd.empty())
+    {
+        rate = usd.begin()->BASECONVRATE;
+        return true;
+    }
+    else
+    {
+        rate = 1;
+        return false;
+    }
 }
 
 void Model_Currency::ResetBaseConversionRates()

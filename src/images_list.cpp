@@ -90,6 +90,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/status_r_png.h"
 #include "../resources/status_v_png.h"
 #include "../resources/stocks_png.h"
+#include "../resources/bitcoin_png.h"
 #include "../resources/term_png.h"
 #include "../resources/trxnum_png.h"
 #include "../resources/uparrow_png.h"
@@ -122,6 +123,7 @@ static const std::map<int, wxBitmap> navtree_images()
         , { HELP_PNG, mmBitmap(png::HELP) }
         , { FILTER_PNG, mmBitmap(png::FILTER) }
         , { ASSET_PNG, mmBitmap(png::ASSET) }
+        , { CRYPTO_PNG, mmBitmap(png::CRYPTO) }
         , { CUSTOMSQL_PNG, mmBitmap(png::GRM) }
         , { CUSTOMSQL_GRP_PNG, mmBitmap(png::GRM) } //TODO: GRM rep group ico
         , { SAVINGS_ACC_NORMAL_PNG, mmBitmap(png::SAVINGS_NORMAL) }
@@ -142,6 +144,9 @@ static const std::map<int, wxBitmap> navtree_images()
         , { LOAN_ACC_NORMAL_PNG, mmBitmap(png::LOAN_ACC_NORMAL) }
         , { LOAN_ACC_FAVORITE_PNG, mmBitmap(png::LOAN_ACC_FAVORITE) }
         , { LOAN_ACC_CLOSED_PNG, mmBitmap(png::LOAN_ACC_CLOSED) }
+        , { CRYPTO_ACC_NORMAL_PNG, mmBitmap(png::CRYPTO_ACC_NORMAL) }
+        , { CRYPTO_ACC_FAVORITE_PNG, mmBitmap(png::CRYPTO_ACC_FAVORITE) }
+        , { CRYPTO_ACC_CLOSED_PNG, mmBitmap(png::CRYPTO_ACC_CLOSED) }
     };
 };
 
@@ -248,6 +253,10 @@ const wxBitmap mmBitmap(int ref)
     case STOCKS_NORMAL: return x == 16 ? wxBITMAP_PNG_FROM_DATA(stocks) : x == 24 ? wxBITMAP_PNG_FROM_DATA(stocks24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(stocks32) : wxBITMAP_PNG_FROM_DATA(stocks48);
     case STOCKS_FAVORITE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(stocks_favorite) : x == 24 ? wxBITMAP_PNG_FROM_DATA(stocks_favorite24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(stocks_favorite32) : wxBITMAP_PNG_FROM_DATA(stocks_favorite48);
     case STOCKS_CLOSED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(stocks_closed) : x == 24 ? wxBITMAP_PNG_FROM_DATA(stocks_closed24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(stocks_closed32) : wxBITMAP_PNG_FROM_DATA(stocks_closed48);
+    case CRYPTO: return x == 16 ? wxBITMAP_PNG_FROM_DATA(bitcoin) : x == 24 ? wxBITMAP_PNG_FROM_DATA(bitcoin24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(bitcoin32) : wxBITMAP_PNG_FROM_DATA(bitcoin48);
+    case CRYPTO_ACC_NORMAL: return x == 16 ? wxBITMAP_PNG_FROM_DATA(bitcoin) : x == 24 ? wxBITMAP_PNG_FROM_DATA(bitcoin24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(bitcoin32) : wxBITMAP_PNG_FROM_DATA(bitcoin48);
+    case CRYPTO_ACC_FAVORITE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(bitcoin) : x == 24 ? wxBITMAP_PNG_FROM_DATA(bitcoin24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(bitcoin32) : wxBITMAP_PNG_FROM_DATA(bitcoin48);
+    case CRYPTO_ACC_CLOSED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(bitcoin) : x == 24 ? wxBITMAP_PNG_FROM_DATA(bitcoin24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(bitcoin32) : wxBITMAP_PNG_FROM_DATA(bitcoin48);
     case RECONCILED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(status_r) : x == 24 ? wxBITMAP_PNG_FROM_DATA(status_r24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(status_r32) : wxBITMAP_PNG_FROM_DATA(status_r48);
     case VOID_STAT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(status_v) : x == 24 ? wxBITMAP_PNG_FROM_DATA(status_v24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(status_v32) : wxBITMAP_PNG_FROM_DATA(status_v48);
     case FOLLOW_UP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(status_f) : x == 24 ? wxBITMAP_PNG_FROM_DATA(status_f24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(status_f32) : wxBITMAP_PNG_FROM_DATA(status_f48);

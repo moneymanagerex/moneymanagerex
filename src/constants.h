@@ -91,8 +91,8 @@ namespace weblink
     extern const wxString Facebook;
     extern const wxString YahooQuotes;
     extern const wxString YahooQuotesHistory;
-    extern const wxString BceCurrencyHistory;
-    extern const wxString BceCurrency;
+    extern const wxString CoinCapHistory;
+    extern const wxString CoinCap;
     extern const wxString DefStockUrl;
     extern const wxString GooglePlay;
     extern const wxString WebApp;

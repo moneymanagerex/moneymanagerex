@@ -465,6 +465,17 @@ wxBEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
 EVT_WEBVIEW_NAVIGATING(wxID_ANY, mmHomePagePanel::OnLinkClicked)
 wxEND_EVENT_TABLE()
 
+const std::vector < std::pair <wxString, wxString> > mmHomePagePanel::acc_type_str
+{
+    //    enum TYPE { CASH = 0, CHECKING, CREDIT_CARD, LOAN, TERM, CRYPTO, INVESTMENT, ASSET, SHARES };
+    { "CASH_ACCOUNTS_INFO", wxTRANSLATE("Cash Accounts") },
+    { "ACCOUNTS_INFO", wxTRANSLATE("Bank Accounts") },
+    { "CARD_ACCOUNTS_INFO", wxTRANSLATE("Credit Card Accounts") },
+    { "LOAN_ACCOUNTS_INFO", wxTRANSLATE("Loan Accounts") },
+    { "TERM_ACCOUNTS_INFO", wxTRANSLATE("Term Accounts") },
+    { "CRYPTO_WALLETS_INFO", wxTRANSLATE("Crypto Wallets") },
+};
+
 mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
     , wxWindowID winid
     , const wxPoint& pos
@@ -566,23 +577,26 @@ void mmHomePagePanel::getData()
     else
         date_range_ = new mmCurrentMonth;
 
-    double tBalance = 0.0, cardBalance = 0.0, termBalance = 0.0, cashBalance = 0.0, loanBalance = 0.0;
+    double tBalance = 0.0;
 
     std::map<int, std::pair<double, double> > accountStats;
     get_account_stats(accountStats);
 
     m_frames["ACCOUNTS_INFO"] = displayAccounts(tBalance, accountStats);
-    m_frames["CARD_ACCOUNTS_INFO"] = displayAccounts(cardBalance, accountStats, Model_Account::CREDIT_CARD);
-    tBalance += cardBalance;
+    m_frames["CARD_ACCOUNTS_INFO"] = displayAccounts(tBalance
+        , accountStats, Model_Account::CREDIT_CARD);
 
-    m_frames["CASH_ACCOUNTS_INFO"] = displayAccounts(cashBalance, accountStats, Model_Account::CASH);
-    tBalance += cashBalance;
+    m_frames["CASH_ACCOUNTS_INFO"] = displayAccounts(tBalance
+        , accountStats, Model_Account::CASH);
 
-    m_frames["LOAN_ACCOUNTS_INFO"] = displayAccounts(loanBalance, accountStats, Model_Account::LOAN);
-    tBalance += loanBalance;
+    m_frames["LOAN_ACCOUNTS_INFO"] = displayAccounts(tBalance
+        , accountStats, Model_Account::LOAN);
 
-    m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
-    tBalance += termBalance;
+    m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(tBalance
+        , accountStats, Model_Account::TERM);
+    
+    m_frames["CRYPTO_WALLETS_INFO"] = displayAccounts(tBalance
+        , accountStats, Model_Account::CRYPTO);
 
     //Stocks
     htmlWidgetStocks stocks_widget;
@@ -696,22 +710,15 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 }
 
 /* Accounts */
-const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
+const wxString mmHomePagePanel::displayAccounts(double& tBalance
+    , std::map<int, std::pair<double, double> > &accountStats, int type)
 {
-    static const std::vector < std::pair <wxString, wxString> > typeStr
-    {
-        { "CASH_ACCOUNTS_INFO", _("Cash Accounts") },
-        { "ACCOUNTS_INFO", _("Bank Accounts") },
-        { "CARD_ACCOUNTS_INFO", _("Credit Card Accounts") },
-        { "LOAN_ACCOUNTS_INFO", _("Loan Accounts") },
-        { "TERM_ACCOUNTS_INFO", _("Term Accounts") },
-    };
-
-    const wxString idStr = typeStr[type].first;
+    wxASSERT(acc_type_str.size() >= (size_t)type );
+    const wxString idStr = acc_type_str[type].first;
     wxString output = "<table class = 'sortable table'>\n";
     output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
     output += "<thead><tr><th nowrap>";
-    output += typeStr[type].second;
+    output += wxGetTranslation(acc_type_str[type].second);
 
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
     output += "<th class = 'text-right'>" + _("Balance") + "</th>\n";
@@ -720,7 +727,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     output += "</tr></thead>\n";
     output += wxString::Format("<tbody id = '%s'>\n", idStr);
 
-    double tReconciled = 0;
+    double total_reconciled = 0.0, total_balance = 0.0;
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
@@ -729,10 +736,10 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
         Model_Currency::Data* currency = Model_Account::currency(account);
         if (!currency) currency = Model_Currency::GetBaseCurrency();
         double currency_rate = currency->BASECONVRATE;
-        double bal = account.INITIALBAL + accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
+        double acc_bal = account.INITIALBAL + accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
         double reconciledBal = account.INITIALBAL + accountStats[account.ACCOUNTID].first;
-        tBalance += bal * currency_rate;
-        tReconciled += reconciledBal * currency_rate;
+        total_balance += acc_bal * currency_rate;
+        total_reconciled += reconciledBal * currency_rate;
 
         // show the actual amount in that account
         if (((vAccts_ == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status(account) == Model_Account::OPEN) ||
@@ -742,17 +749,21 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
             body += "<tr>";
             body += wxString::Format("<td sorttable_customkey='*%s*' nowrap><a href='acct:%i' oncontextmenu='return false;'>%s</a></td>\n"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
-            body += wxString::Format("<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
-            body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));
+            body += wxString::Format("<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n"
+                , reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
+            body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n"
+                , acc_bal, Model_Currency::toCurrency(acc_bal, currency));
             body += "</tr>\n";
         }
     }
     output += body;
     output += "</tbody><tfoot><tr class ='total'><td>" + _("Total:") + "</td>\n";
-    output += "<td class='money'>" + Model_Currency::toCurrency(tReconciled) + "</td>\n";
-    output += "<td class='money' colspan='2'>" + Model_Currency::toCurrency(tBalance) + "</td></tr></tfoot></table>\n";
+    output += "<td class='money'>" + Model_Currency::toCurrency(total_reconciled) + "</td>\n";
+    output += "<td class='money' colspan='2'>" + Model_Currency::toCurrency(total_balance)
+        + "</td></tr></tfoot></table>\n";
     if (body.empty()) output.clear();
 
+    tBalance += total_balance;
     return output;
 }
 
@@ -892,6 +903,10 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         else if (name == "TERM_ACCOUNTS_INFO") {
             bool entry = !json::Boolean(o[L"TERM_ACCOUNTS_INFO"]);
             o[L"TERM_ACCOUNTS_INFO"] = json::Boolean(entry);
+        }
+        else if (name == "CRYPTO_WALLETS_INFO") {
+            bool entry = !json::Boolean(o[L"CRYPTO_WALLETS_INFO"]);
+            o[L"CRYPTO_WALLETS_INFO"] = json::Boolean(entry);
         }
 
         std::wstringstream wss;

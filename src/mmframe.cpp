@@ -740,9 +740,15 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(shareAccounts, new mmTreeItemData("Share Accounts"));
     m_nav_tree_ctrl->SetItemBold(shareAccounts, true);
 
-    wxTreeItemId assets = m_nav_tree_ctrl->AppendItem(root, _("Assets"), img::ASSET_PNG, img::ASSET_PNG);
+    wxTreeItemId assets = m_nav_tree_ctrl->AppendItem(root, _("Assets")
+        , img::ASSET_PNG, img::ASSET_PNG);
     m_nav_tree_ctrl->SetItemData(assets, new mmTreeItemData("Assets"));
     m_nav_tree_ctrl->SetItemBold(assets, true);
+    
+    wxTreeItemId cryptoAccounts = m_nav_tree_ctrl->AppendItem(root, _("Crypto Wallets")
+        , img::CRYPTO_PNG, img::CRYPTO_PNG);
+    m_nav_tree_ctrl->SetItemData(cryptoAccounts, new mmTreeItemData("Crypto Wallets"));
+    m_nav_tree_ctrl->SetItemBold(cryptoAccounts, true);
 
     wxTreeItemId bills = m_nav_tree_ctrl->AppendItem(root, _("Recurring Transactions")
         , img::SCHEDULE_PNG, img::SCHEDULE_PNG);
@@ -776,7 +782,8 @@ void mmGUIFrame::updateNavTreeControl()
 
     ///////////////////////////////////////////////////////////////////
 
-    wxTreeItemId help = m_nav_tree_ctrl->AppendItem(root, _("Help"), img::HELP_PNG, img::HELP_PNG);
+    wxTreeItemId help = m_nav_tree_ctrl->AppendItem(root, _("Help")
+        , img::HELP_PNG, img::HELP_PNG);
     m_nav_tree_ctrl->SetItemData(help, new mmTreeItemData("Help"));
     m_nav_tree_ctrl->SetItemBold(help, true);
 
@@ -825,6 +832,10 @@ void mmGUIFrame::updateNavTreeControl()
                     }
                 }
                 break;
+            case Model_Account::CRYPTO:
+                tacct = m_nav_tree_ctrl->AppendItem(cryptoAccounts
+                    , account.ACCOUNTNAME, selectedImage, selectedImage);
+                break;
             case Model_Account::SHARES:
                 tacct = m_nav_tree_ctrl->AppendItem(shareAccounts
                     , account.ACCOUNTNAME, selectedImage, selectedImage);
@@ -868,6 +879,7 @@ void mmGUIFrame::updateNavTreeControl()
         if (!m_nav_tree_ctrl->ItemHasChildren(cashAccounts)) m_nav_tree_ctrl->Delete(cashAccounts);
         if (!m_nav_tree_ctrl->ItemHasChildren(loanAccounts)) m_nav_tree_ctrl->Delete(loanAccounts);
         if (!m_nav_tree_ctrl->ItemHasChildren(assets)) m_nav_tree_ctrl->Delete(assets);
+        if (!m_nav_tree_ctrl->ItemHasChildren(cryptoAccounts)) m_nav_tree_ctrl->Delete(cryptoAccounts);
 
         if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts) || m_hide_share_accounts)
         {
@@ -1793,7 +1805,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_OPEN, _("Open"), mmBitmap(png::OPEN), _("Open Database"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_NEWACCT, _("New Account"), mmBitmap(png::NEW_ACC), _("New Account"));
-    toolBar_->AddTool(MENU_ACCTLIST, _("Account List"), mmBitmap(png::HOME), _("Show Account List"));
+    toolBar_->AddTool(MENU_ACCTLIST, _("Home Page"), mmBitmap(png::HOME), _("Show Home Page"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmap(png::CATEGORY), _("Show Organize Categories Dialog"));
     toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmap(png::PAYEE), _("Show Organize Payees Dialog"));

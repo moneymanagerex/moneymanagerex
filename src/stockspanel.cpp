@@ -817,77 +817,48 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
 }
 
 /*** Trigger a quote download ***/
-bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
+bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
 {
     if(listCtrlAccount_->m_stocks.empty())
     {
-        sError = _("Nothing to update");
+        msg = _("Nothing to update");
         return false;
     }
 
-    //Symbol, (Amount, Name)
-    wxString site = "";
-
-	std::map<wxString, double > stocks_data;
+    std::vector<wxString> symbols;
 	Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
     for (const auto &stock : stock_list)
     {
         const wxString symbol = stock.SYMBOL.Upper();
         if (!symbol.IsEmpty())
         {
-            if (stocks_data.find(symbol) == stocks_data.end())
+            if (std::find(symbols.begin(), symbols.end(), symbol) == symbols.end())
             {
-                stocks_data[symbol] = 0;
-                site << symbol << ",";
+                symbols.push_back(symbol);
             }
         }
     }
 
-    if (site.Right(1).Contains(",")) site.RemoveLast(1);
-    const auto URL = wxString::Format(mmex::weblink::YahooQuotes, site);
-
     refresh_button_->SetBitmapLabel(mmBitmap(png::LED_YELLOW));
     stock_details_->SetLabelText(_("Connecting..."));
-    wxString sOutput;
 
-    if (site_content(URL, sOutput) != CURLE_OK)
+    std::map<wxString, double > stocks_data;
+    if (!get_yahoo_prices(symbols, stocks_data, msg))
     {
-        sError = sOutput;
         return false;
     }
 
-	std::wstringstream ss;
-	ss << sOutput.ToStdWstring();
-	json::Object o;
-	json::Reader::Read(o, ss);
-
-	json::Object r = o[L"quoteResponse"];
-	//TODO: 
-	//bool error = json::Boolean(r[L"error"]);
-	//if (!error) return false;
-
-	json::Array e = r[L"result"];
-
-	for (int i = 0; i < e.Size(); i++) {
-		const json::Object entry = e[i];
-		const wxString symbol = wxString(json::String(entry[L"symbol"]).Value());
-		double rate = json::Number(entry[L"regularMarketPrice"]).Value();
-		const wxString currency = wxString(json::String(entry[L"currency"]).Value());
-		double d = currency == "GBp" ? 100 : 1;
-		wxLogDebug("item: %d %s %.2f %s", i, symbol, rate, currency);
-		stocks_data[symbol] = (rate <= 0 ? 1 : rate/d);
-	}
-
     if (stocks_data.empty())
     {
-        sError = _("Quotes not found");
+        msg = _("Quotes not found");
         return false;
     }
 
     for (auto &s : stock_list)
     {
         std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
-        if (it == stocks_data.end()) continue;
+        if (it == stocks_data.end()) 
+            continue;
         double dPrice = it->second;
 
         if (dPrice != 0)
@@ -897,7 +868,6 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
             Model_Stock::instance().save(&s);
             Model_StockHistory::instance().addUpdate(s.SYMBOL
 				, wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
-			sError += wxString::Format("%s %.2f\n", s.SYMBOL, dPrice);
         }
     }
 

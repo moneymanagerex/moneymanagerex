@@ -391,7 +391,8 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
         {
             currName = currency->CURRENCYNAME;
             itemButtonEdit_->Enable();
-            auto base_currency_symbol = Model_Currency::GetBaseCurrencySymbol();
+            wxString base_currency_symbol; 
+            Model_Currency::GetBaseCurrencySymbol(base_currency_symbol);
             m_button_download_history->Enable(currency->CURRENCY_SYMBOL != base_currency_symbol);
         }
     }
@@ -432,7 +433,7 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
 	{
 		if (!hide)
 		{
-			wxMessageDialog msgDlg(this, msg, _("Currency rates have been updated"));
+			wxMessageDialog msgDlg(this, msg, _("Online update currency rate"));
 			msgDlg.ShowModal();
 		}
 		fillControls();
@@ -592,7 +593,8 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
 	Model_Currency::Data* CurrentCurrency = Model_Currency::instance().get(m_currency_id);
 	if (!CurrentCurrency) return; //No currency selected
 
-	if (Model_Currency::GetBaseCurrencySymbol().empty())
+    wxString base_currency_symbol;
+	if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
 	{
 		return mmErrorDialogs::MessageError(this
 			, _("Could not find base currency symbol!")
@@ -740,63 +742,45 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
 
 bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 {
-	wxString base_symbol = Model_Currency::GetBaseCurrencySymbol();
-
-	if (base_symbol.empty())
+    wxString base_currency_symbol;
+    
+	if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
 	{
 		msg = _("Could not find base currency symbol!");
 		return false;
 	}
 
-	wxString sOutput;
-	wxString buffer = wxEmptyString;
-
+    std::vector<wxString> symbols;
 	auto currencies = Model_Currency::instance()
-		.find(Model_Currency::CURRENCY_SYMBOL(base_symbol, NOT_EQUAL));
+		.find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
 	for (const auto &currency : currencies)
 	{
-		if (curr_id > 0 && currency.CURRENCYID != curr_id) continue;
-		const wxString symbol = currency.CURRENCY_SYMBOL.Upper();
-		if (!symbol.IsEmpty()) buffer << symbol << base_symbol << "=X,";
-	}
-	if (buffer.Right(1).Contains(",")) buffer.RemoveLast(1);
-
-	const wxString URL = wxString::Format(mmex::weblink::YahooQuotes
-		, buffer);
-
-	auto err_code = site_content(URL, sOutput);
-	if (err_code != CURLE_OK)
-	{
-		msg = sOutput;
-		return false;
+		if (curr_id > 0 && currency.CURRENCYID != curr_id) 
+            continue;
+        if (curr_id < 0 && !Model_Account::is_used(currency))
+            continue;
+		const auto symbol = currency.CURRENCY_SYMBOL.Upper();
+		if (!symbol.IsEmpty()) 
+            symbols.push_back(wxString::Format("%s%s=X", symbol, base_currency_symbol));
 	}
 
-	std::wstringstream ss;
-	ss << sOutput.ToStdWstring();
-	json::Object o;
-	json::Reader::Read(o, ss);
+    wxString output;
+    std::map<wxString, double> currency_data;
+    if (!get_yahoo_prices(symbols, currency_data, output))
+    {
+        msg = output;
+        return false;
+    }
 
-	json::Object r = o[L"quoteResponse"];
-	//TODO:     "error": null
-	//bool error = json::Boolean(r[L"error"]);
-	//if (!error) return false;
-
-	json::Array e = r[L"result"];
-
-	std::map<wxString, double> currency_data;
-	for (int i = 0; i < e.Size(); i++) {
-		const json::Object symbol = e[i];
-		wxString currency_symbol = wxString(json::String(symbol[L"symbol"]).Value());
-
-		wxRegEx pattern("^(...)...=X$");
-		if (pattern.Matches(currency_symbol)) {
-			currency_symbol = pattern.GetMatch(currency_symbol, 1);
-			const auto price = symbol[L"regularMarketPrice"];
-			const auto rate = json::Number(price).Value();
-			wxLogDebug("item: %d %s %.2f", i, currency_symbol, rate);
-			currency_data[currency_symbol] = (rate <= 0 ? 1 : rate);
-		}
-	}
+    if (!symbols.empty())
+    {
+        if (!get_crypto_currency_prices(currency_data, output))
+        {
+            //TODO: names
+            msg = output;
+            mmErrorDialogs::MessageError(this, msg, _("Online update currency rate"));
+        }
+    }
 
 	msg = _("Currency rates have been updated");
 	msg << "\n\n";
@@ -813,11 +797,8 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 		{
 			if (currency_data.find(currency_symbol) != currency_data.end())
 			{
-				if (Model_Account::is_used(currency)) //ignore unused currencies to have compact preview
-				{
-					msg << wxString::Format("%s\t: %0.6f -> %0.6f\n"
-						, currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol]);
-				}
+                msg << wxString::Format("%s\t: %0.6f -> %0.6f\n"
+                    , currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol]);
 				currency.BASECONVRATE = currency_data[currency_symbol];
 
 				Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID,
@@ -836,16 +817,16 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &historical_rates
 	, const wxString &symbol, wxString &msg)
 {
-	wxString base_symbol = Model_Currency::GetBaseCurrencySymbol();
+    wxString base_currency_symbol;
 
-	if (base_symbol.empty())
+	if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
 	{
 		msg = _("Could not find base currency symbol!");
 		return false;
 	}
 
 	const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
-		, wxString::Format("%s%s=X", symbol, base_symbol)
+		, wxString::Format("%s%s=X", symbol, base_currency_symbol)
 		, "1y", "1d"); //TODO: aks range and interval
 	
 	wxString sOutput;
