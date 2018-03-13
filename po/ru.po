@@ -936,7 +936,7 @@ msgstr "Дата оплаты"
 
 #: src/billsdepositsdialog.cpp:493 src/filtertransdialog.cpp:246 src/transdialog.cpp:1189
 msgid "Specify the status for the transaction"
-msgstr "Выберите статус проводки"
+msgstr "Выберите статус транзакции"
 
 #: src/billsdepositsdialog.cpp:495 src/billsdepositspanel.cpp:100
 #: src/filtertransdialog.cpp:236 src/import_export/qif_import_gui.cpp:237
@@ -949,7 +949,7 @@ msgstr "Статус"
 
 #: src/billsdepositsdialog.cpp:511 src/splitdetailsdialog.cpp:134 src/transdialog.cpp:1190
 msgid "Specify the type of transactions to be created."
-msgstr "Выберите тип новой проводки."
+msgstr "Выберите тип новой транзакции."
 
 #: src/billsdepositsdialog.cpp:512 src/transdialog.cpp:414
 msgid "&Advanced"
@@ -962,7 +962,7 @@ msgstr "Определите сумму которая будет перевед
 #: src/billsdepositsdialog.cpp:525 src/billsdepositsdialog.cpp:800 src/transdialog.cpp:1178
 #: src/usertransactionpanel.cpp:148
 msgid "Specify the amount for this transaction"
-msgstr "Введите сумму для данной проводки"
+msgstr "Введите сумму для данной транзакции"
 
 #: src/billsdepositsdialog.cpp:526
 msgid "Specify the amount to be transferred"
@@ -998,7 +998,7 @@ msgstr "Выберите счёт"
 
 #: src/billsdepositsdialog.cpp:555
 msgid "Specify the Account that will own the recurring transaction"
-msgstr "Укажите счёт для данной повторяющейся проводки"
+msgstr "Укажите счёт для данной повторяющейся транзакции"
 
 #: src/billsdepositsdialog.cpp:558 src/billsdepositsdialog.cpp:863
 #: src/billsdepositspanel.cpp:99 src/filtertransdialog.cpp:203
@@ -1067,7 +1067,7 @@ msgstr "Часто используемые заметки"
 
 #: src/billsdepositsdialog.cpp:615 src/transdialog.cpp:1193 src/usertransactionpanel.cpp:228
 msgid "Specify any text notes you want to add to this transaction."
-msgstr "Введите текстовые примечания к этой проводке."
+msgstr "Введите текстовые примечания к этой транзакции."
 
 #: src/billsdepositsdialog.cpp:681
 msgid "Choose Bank Account or Term Account"
@@ -1158,7 +1158,7 @@ msgstr "Введите количество повторов. Оставьте �
 
 #: src/billsdepositsdialog.cpp:1446 src/transdialog.cpp:1151 src/usertransactionpanel.cpp:194
 msgid "Specify the category for this transaction"
-msgstr "Выберите категорию данной проводки"
+msgstr "Выберите категорию данной транзакции"
 
 #: src/billsdepositsdialog.cpp:1468 src/categdialog.cpp:118
 #: src/import_export/qif_export.cpp:122 src/option.cpp:110 src/option.cpp:111
@@ -1209,7 +1209,7 @@ msgstr "Повторяющиеся транзакции"
 
 #: src/billsdepositspanel.cpp:235 src/filtertransdialog.cpp:94 src/mmcheckingpanel.cpp:403
 msgid "Transaction Filter"
-msgstr "Фильтр проводок"
+msgstr "Фильтр транзакций"
 
 #: src/billsdepositspanel.cpp:270
 msgid "New Bills & Deposit Series"
@@ -1549,7 +1549,7 @@ msgstr "&Выбрать"
 
 #: src/categdialog.cpp:241
 msgid "Select the currently selected category as the selected category for the transaction"
-msgstr "Выбор выделенной категории для текущей проводки"
+msgstr "Выбор выделенной категории для текущей транзакции"
 
 #: src/categdialog.cpp:250
 msgid "Enter the name for the new category:"
@@ -1608,7 +1608,7 @@ msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
 msgstr ""
-"Совет: Меняйте плательщика всех проводок на другого,\n"
+"Совет: Меняйте плательщика всех транзакций на другого,\n"
 "используя команду замены:"
 
 #: src/categdialog.cpp:324
@@ -3436,7 +3436,7 @@ msgstr "Маска даты имеет несколько значений"
 
 #: src/import_export/qif_import_gui.cpp:804
 msgid "Do you want to import all transaction ?"
-msgstr "Вы хотите импортировать все проводки?"
+msgstr "Вы хотите импортировать все транзакции?"
 
 #: src/import_export/qif_import_gui.cpp:805
 msgid "All missing account, payees and categories will be created."
@@ -3465,7 +3465,7 @@ msgstr "Импортирую категории"
 #: src/import_export/qif_import_gui.cpp:840
 #, c-format
 msgid "Importing transaction %i of %i"
-msgstr "Импортировано проводок %i из %i"
+msgstr "Импортировано транзакций %i из %i"
 
 #: src/import_export/qif_import_gui.cpp:873
 msgid "Importing Transfers"
@@ -4019,7 +4019,7 @@ msgstr ""
 #: src/mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
 msgstr ""
-"Совет: Используйте копирование  (Ctrl+С) и вставку (Ctrl+V) для часто используемых проводок."
+"Совет: Используйте копирование  (Ctrl+С) и вставку (Ctrl+V) для часто используемых транзакций."
 
 #: src/mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
@@ -4074,7 +4074,7 @@ msgid ""
 "transaction filter to select the transactions you want and then do a print from the menu."
 msgstr ""
 "Подсказка: Чтобы распечатать сводку по транзакциям исходя из определённых критериев, "
-"используйте фильтр проводок, а затем выполните печать из основного меню."
+"используйте фильтр транзакций, а затем выполните печать из основного меню."
 
 #: src/mmTips.h:32
 msgid ""
@@ -4235,15 +4235,15 @@ msgstr "&Удалить"
 
 #: src/mmcheckingpanel.cpp:1152
 msgid "Delete all transactions in current view"
-msgstr "Удалить все показанные проводки"
+msgstr "Удалить все показанные транзакции"
 
 #: src/mmcheckingpanel.cpp:1153
 msgid "Delete Viewed \"Follow Up\" Trans."
-msgstr "Удалить показанные проводки с лампочкой."
+msgstr "Удалить показанные транзакции с лампочкой."
 
 #: src/mmcheckingpanel.cpp:1154
 msgid "Delete Viewed \"Unreconciled\" Trans."
-msgstr "Удалить показанные не выверенные проводки."
+msgstr "Удалить показанные не выверенные транзакции."
 
 #: src/mmcheckingpanel.cpp:1160
 msgid "Mark As &Reconciled"
@@ -4295,11 +4295,11 @@ msgstr "Статус видимых в"
 
 #: src/mmcheckingpanel.cpp:1246
 msgid "Do you really want to delete all the transactions shown?"
-msgstr "Вы действительно хотите удалить все показанные проводки?"
+msgstr "Вы действительно хотите удалить все показанные транзакции?"
 
 #: src/mmcheckingpanel.cpp:1247 src/mmcheckingpanel.cpp:1260 src/mmcheckingpanel.cpp:1602
 msgid "Confirm Transaction Deletion"
-msgstr "Подтверждение удаления проводки"
+msgstr "Подтверждение удаления транзакции"
 
 #: src/mmcheckingpanel.cpp:1256
 msgid "Follow Up"
@@ -4312,7 +4312,7 @@ msgstr "Не выверено"
 #: src/mmcheckingpanel.cpp:1259
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr "Вы действительно хотите удалить все показанные \"%s\" проводки?"
+msgstr "Вы действительно хотите удалить все показанные \"%s\" транзакции?"
 
 #: src/mmcheckingpanel.cpp:1601
 msgid "Do you really want to delete the selected transaction?"
@@ -4680,7 +4680,7 @@ msgstr "Отображать сумму по категориям в бюдже�
 
 #: src/mmframe.cpp:1505
 msgid "Ignore F&uture Transactions"
-msgstr "Игнорировать предстоящие проводки"
+msgstr "Игнорировать предстоящие транзакции"
 
 #: src/mmframe.cpp:1505
 msgid "Ignore Future transactions"
@@ -4780,7 +4780,7 @@ msgstr "&Активы"
 
 #: src/mmframe.cpp:1640
 msgid "&Transaction Report Filter..."
-msgstr "&Фильтр проводок..."
+msgstr "&Фильтр транзакций..."
 
 #: src/mmframe.cpp:1640 src/mmframe.cpp:1814
 msgid "Transaction Report Filter"
@@ -5971,7 +5971,7 @@ msgstr "Установить точность для цен на акции"
 
 #: src/optionsettingsmisc.cpp:80
 msgid "New Transaction Dialog Settings"
-msgstr "Параметры диалога новых проводок"
+msgstr "Параметры диалога новых транзакций"
 
 #: src/optionsettingsmisc.cpp:88
 msgid "Last Used"
@@ -6159,7 +6159,7 @@ msgstr "Выберите, какие счета будут видны"
 
 #: src/optionsettingsview.cpp:80
 msgid "Transactions Visible"
-msgstr "Отображение проводок"
+msgstr "Отображение транзакций"
 
 #: src/optionsettingsview.cpp:106
 msgid "Specify which transactions are visible by default"
@@ -6635,11 +6635,11 @@ msgstr "Представление которовок"
 #: src/reports/transactions.cpp:54
 #, c-format
 msgid "Transaction List for Account: %s"
-msgstr "Список проводок счёта: %s"
+msgstr "Список транзакций счёта: %s"
 
 #: src/reports/transactions.cpp:55
 msgid "Transaction List "
-msgstr "Список проводок "
+msgstr "Список транзакций "
 
 #: src/sharetransactiondialog.cpp:67 src/sharetransactiondialog.cpp:85
 msgid "Add Share Transaction"
@@ -6719,7 +6719,7 @@ msgstr "Детали чека"
 
 #: src/splitdetailsdialog.cpp:111
 msgid "Split Transaction Details"
-msgstr "Свойства разделённой проводки"
+msgstr "Свойства разделённой транзакции"
 
 #: src/splittransactionsdialog.cpp:74
 msgid "Split Transaction Dialog"
@@ -7232,11 +7232,11 @@ msgstr "Укажите кому будет произведено перечис
 
 #: src/transdialog.cpp:1187 src/usertransactionpanel.cpp:100
 msgid "Specify the date of the transaction"
-msgstr "Укажите дату проводки"
+msgstr "Укажите дату транзакции"
 
 #: src/transdialog.cpp:1188 src/usertransactionpanel.cpp:104
 msgid "Retard or advance the date of the transaction"
-msgstr "Укажите дату проводки"
+msgstr "Отставание или опережение даты транзакции"
 
 #: src/usertransactionpanel.cpp:117
 msgid "Please select the Account that will be associated with this transaction"
@@ -7262,7 +7262,7 @@ msgstr "Укажите валюту, которая будет использо�
 
 #: src/usertransactionpanel.cpp:178
 msgid "Specify the status for this transaction"
-msgstr "Выберите статус проводки"
+msgstr "Выберите статус транзакции"
 
 #: src/usertransactionpanel.cpp:186
 msgid "Specify a person, Company or Organisation for this transaction."
