@@ -2,27 +2,26 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the MMEX package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2018-03-13 12:31+0300\n"
-"PO-Revision-Date: 2018-03-13 12:39+0300\n"
+"POT-Creation-Date: 2018-03-12 14:18+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Nikolay <vomikan@mail.ru>, 2018\n"
 "Language-Team: Russian (https://www.transifex.com/mmex/teams/84279/ru/)\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
-"X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: src\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #: src/aboutdialog.cpp:43
 msgid "License agreement"
@@ -53,13 +52,13 @@ msgstr "Лицензия"
 msgid "Privacy"
 msgstr "Конфиденциальность"
 
-#: src/aboutdialog.cpp:204 src/accountdialog.cpp:373 src/appstartdialog.cpp:136
-#: src/assetdialog.cpp:301 src/attachmentdialog.cpp:118
-#: src/billsdepositsdialog.cpp:629 src/budgetentrydialog.cpp:156
-#: src/budgetyeardialog.cpp:112 src/budgetyearentrydialog.cpp:128
-#: src/currencydialog.cpp:227 src/customfieldeditdialog.cpp:170
-#: src/customfieldlistdialog.cpp:98 src/import_export/qif_export.cpp:213
-#: src/import_export/qif_export.cpp:236
+#: src/aboutdialog.cpp:204 src/accountdialog.cpp:373
+#: src/appstartdialog.cpp:136 src/assetdialog.cpp:301
+#: src/attachmentdialog.cpp:118 src/billsdepositsdialog.cpp:629
+#: src/budgetentrydialog.cpp:156 src/budgetyeardialog.cpp:112
+#: src/budgetyearentrydialog.cpp:128 src/currencydialog.cpp:227
+#: src/customfieldeditdialog.cpp:170 src/customfieldlistdialog.cpp:98
+#: src/import_export/qif_export.cpp:213 src/import_export/qif_export.cpp:236
 #: src/import_export/qif_import_gui.cpp:306 src/optiondialog.cpp:150
 #: src/payeedialog.cpp:125 src/relocatecategorydialog.cpp:111
 #: src/relocatepayeedialog.cpp:113 src/sharetransactiondialog.cpp:309
@@ -218,8 +217,8 @@ msgstr "Укажите валюту, которая будет использо�
 
 #: src/accountdialog.cpp:386
 msgid ""
-"Select whether this is an account that is used often. This is used to filter "
-"accounts display view."
+"Select whether this is an account that is used often. This is used to filter"
+" accounts display view."
 msgstr ""
 "Отметьте, если данный счёт используется часто. Это нужно для фильтрации "
 "отображения счетов."
@@ -423,6 +422,7 @@ msgid "% Rate"
 msgstr "% изменения"
 
 #: src/assetdialog.cpp:243
+#, c-format
 msgid "Enter the rate at which the asset changes its value in % per year"
 msgstr "Введите ежегодное изменение стоимости имущества в %"
 
@@ -473,7 +473,7 @@ msgstr "ID"
 #: src/assetspanel.cpp:61 src/billsdepositsdialog.cpp:521
 #: src/billsdepositspanel.cpp:102 src/customfieldlistdialog.cpp:56
 #: src/filtertransdialog.cpp:249 src/import_export/qif_import_gui.cpp:93
-#: src/import_export/qif_import_gui.cpp:235 src/mmhomepagepanel.cpp:798
+#: src/import_export/qif_import_gui.cpp:235 src/mmhomepagepanel.cpp:797
 #: src/reports/incexpenses.cpp:131 src/reports/transactions.cpp:72
 #: src/splitdetailsdialog.cpp:122 src/transactionsupdatedialog.cpp:133
 #: src/transdialog.cpp:419 src/usertransactionpanel.cpp:140
@@ -546,13 +546,13 @@ msgid ""
 msgstr ""
 "MMEX позволяет отслеживать активы (и пассивы), такие как автомобили, дома, "
 "земельные участки и прочее. Каждый объект может иметь начальную стоимость и "
-"определённое её изменение в год. Суммарная стоимость активов будет добавлена "
-"в финансовую сводку."
+"определённое её изменение в год. Суммарная стоимость активов будет добавлена"
+" в финансовую сводку."
 
 #: src/assetspanel.cpp:452 src/assetspanel.h:109
 #: src/general_report_manager.cpp:670 src/general_report_manager.cpp:944
 #: src/mmframe.cpp:471 src/mmframe.cpp:743 src/mmframe.cpp:1633
-#: src/mmhomepagepanel.cpp:423 src/mmhomepagepanel.cpp:825
+#: src/mmhomepagepanel.cpp:423 src/mmhomepagepanel.cpp:824
 msgid "Assets"
 msgstr "Активы"
 
@@ -591,7 +591,8 @@ msgstr "&Редактировать "
 #: src/assetspanel.cpp:524 src/billsdepositspanel.cpp:278
 #: src/budgetyeardialog.cpp:99 src/categdialog.cpp:232
 #: src/maincurrencydialog.cpp:284 src/mmcheckingpanel.cpp:492
-#: src/mmcheckingpanel.cpp:1155 src/stockdialog.cpp:342 src/stockspanel.cpp:589
+#: src/mmcheckingpanel.cpp:1155 src/stockdialog.cpp:342
+#: src/stockspanel.cpp:589
 msgid "&Delete "
 msgstr "&Удалить "
 
@@ -627,8 +628,7 @@ msgstr ""
 "У этого актива нет собственной учетной записи\n"
 "\n"
 "Несколько транзакций для этого актива не рекомендуется.\n"
-"Пожалуйста, используйте всплывающее окно: 'Открыть счёт актива' для "
-"отслеживания транзакции."
+"Пожалуйста, используйте всплывающее окно: 'Открыть счёт актива' для отслеживания транзакции."
 
 #: src/assetspanel.cpp:780
 msgid "Asset Management"
@@ -751,8 +751,8 @@ msgid ""
 "This directory and its files are automatically managed by Money Manager EX "
 "software."
 msgstr ""
-"Эта директория и все файлы в ней автоматически управляются приложением Money "
-"Manager EX."
+"Эта директория и все файлы в ней автоматически управляются приложением Money"
+" Manager EX."
 
 #: src/attachmentdialog.cpp:349
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -1006,7 +1006,7 @@ msgstr "Сумма, которая будет переведена"
 
 #: src/billsdepositsdialog.cpp:528 src/billsdepositspanel.cpp:103
 #: src/budgetingpanel.cpp:317 src/filtertransdialog.cpp:426
-#: src/mmhomepagepanel.cpp:387 src/mmhomepagepanel.cpp:799
+#: src/mmhomepagepanel.cpp:387 src/mmhomepagepanel.cpp:798
 #: src/reports/budgetcategorysummary.cpp:184 src/reports/categexp.cpp:166
 #: src/reports/incexpenses.cpp:132 src/reports/transactions.cpp:75
 #: src/splitdetailsdialog.cpp:138 src/splittransactionsdialog.cpp:136
@@ -1241,8 +1241,8 @@ msgid ""
 "is due. "
 msgstr ""
 "MMEX позволяет планировать регулярные платежи. В день начисления можно "
-"преобразовать запись из планировщика в обычную транзакцию. Напоминания за 14 "
-"дней до наступления платежа можно увидеть в сводке. "
+"преобразовать запись из планировщика в обычную транзакцию. Напоминания за 14"
+" дней до наступления платежа можно увидеть в сводке. "
 
 #: src/billsdepositspanel.cpp:165
 msgid ""
@@ -1382,7 +1382,7 @@ msgid "Expense"
 msgstr "Расход"
 
 #: src/budgetentrydialog.cpp:128 src/db/DB_Table_Category_V1.h:119
-#: src/mmhomepagepanel.cpp:800 src/reports/categexp.cpp:140
+#: src/mmhomepagepanel.cpp:799 src/reports/categexp.cpp:140
 #: src/reports/incexpenses.cpp:105 src/reports/incexpenses.cpp:240
 msgid "Income"
 msgstr "Доход"
@@ -1631,8 +1631,7 @@ msgid ""
 "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
 msgstr ""
-"Заметка: Если категория добавлена только что, то она окажется в самом низу "
-"списка. \n"
+"Заметка: Если категория добавлена только что, то она окажется в самом низу списка. \n"
 "Сортировка будет произведена, когда диалог будет вызван повторно"
 
 #: src/categdialog.cpp:268 src/categdialog.cpp:292 src/categdialog.cpp:310
@@ -2961,7 +2960,8 @@ msgstr "Сохранить отладочный файл"
 
 #: src/dbupgrade.cpp:306
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr "Обслуживание БД завершено, пожалуйста, закройте и снова откройте MMEX!"
+msgstr ""
+"Обслуживание БД завершено, пожалуйста, закройте и снова откройте MMEX!"
 
 #: src/dbwrapper.cpp:70
 msgid "When database file opening:"
@@ -3366,7 +3366,8 @@ msgstr "Запись в файл"
 msgid "File Name:"
 msgstr "Имя файла:"
 
-#: src/import_export/qif_export.cpp:199 src/import_export/univcsvdialog.cpp:402
+#: src/import_export/qif_export.cpp:199
+#: src/import_export/univcsvdialog.cpp:402
 msgid "Clear"
 msgstr "О&чистить"
 
@@ -4113,8 +4114,8 @@ msgid ""
 "Recommendation: If upgrading to a new version of MMEX, make sure you backup "
 "your .mmb database file before doing so."
 msgstr ""
-"Рекомендация: При обновлении до новой версии MMEX, убедитесь, что вы сделали "
-"резервное копирование .mmb файла базы данных, прежде чем продолжать.."
+"Рекомендация: При обновлении до новой версии MMEX, убедитесь, что вы сделали"
+" резервное копирование .mmb файла базы данных, прежде чем продолжать.."
 
 #: src/mmTips.h:24
 msgid ""
@@ -4136,8 +4137,8 @@ msgid ""
 "properly guarded."
 msgstr ""
 "Заметка: Файл базы данных .mmb не зашифрован. Это значит, что любой "
-"обладающий соответствующими навыками может открыть этот файл и прочитать его "
-"содержимое. Позаботьтесь о сохранности ваших финансовых данных."
+"обладающий соответствующими навыками может открыть этот файл и прочитать его"
+" содержимое. Позаботьтесь о сохранности ваших финансовых данных."
 
 #: src/mmTips.h:27
 msgid ""
@@ -4166,8 +4167,8 @@ msgstr ""
 
 #: src/mmTips.h:30
 msgid ""
-"Tip: You can modify some runtime behavior of MMEX by changing the options in "
-"the Options Dialog. "
+"Tip: You can modify some runtime behavior of MMEX by changing the options in"
+" the Options Dialog. "
 msgstr ""
 "Подсказка: Вы можете изменить поведение MMEX путем изменения параметров в "
 "диалоговом окне Настройки."
@@ -4175,8 +4176,8 @@ msgstr ""
 #: src/mmTips.h:31
 msgid ""
 "Tip: To print a statement with transactions from any arbitrary set of "
-"criteria, use the transaction filter to select the transactions you want and "
-"then do a print from the menu."
+"criteria, use the transaction filter to select the transactions you want and"
+" then do a print from the menu."
 msgstr ""
 "Подсказка: Чтобы распечатать сводку по транзакциям исходя из определённых "
 "критериев, используйте фильтр проводок, а затем выполните печать из "
@@ -4193,21 +4194,22 @@ msgid ""
 "Organize Categories Dialog Tip: Pressing the h key will cycle through all "
 "categories starting with the letter h"
 msgstr ""
-"Совет: В менеджере категорий нажимая последовательно клавишу соответствующую "
-"первой букве названия, курсор будет переключаться между соответствующими "
+"Совет: В менеджере категорий нажимая последовательно клавишу соответствующую"
+" первой букве названия, курсор будет переключаться между соответствующими "
 "категориями."
 
 #: src/mmTips.h:35
 msgid ""
 "Organize Categories Dialog Tip: Pressing 2 key combination will cycle "
-"through all categories starting with that key combination. Example: Pressing "
-"ho will select Homeneeds, Home, House Tax, etc..."
+"through all categories starting with that key combination. Example: Pressing"
+" ho will select Homeneeds, Home, House Tax, etc..."
 msgstr ""
-"Совет: В менеджере категорий нажимая последовательно клавишу или более можно "
-"циклически переключаться  между соответствующими названиями. Например, "
+"Совет: В менеджере категорий нажимая последовательно клавишу или более можно"
+" циклически переключаться  между соответствующими названиями. Например, "
 "клавиша О переключит между Отель, Отдых, Одежда и т.д."
 
 #: src/mmTips.h:37
+#, c-format
 msgid ""
 "Tip to get out of debt: Pay yourself 10% first. Put this into an account "
 "that is hard to touch. Make sure it is a chore to get the money out (you "
@@ -4216,8 +4218,8 @@ msgid ""
 msgstr ""
 "Совет, чтобы выйти из долгов: Сохраняйте 10% заработка. Поместите это в "
 "трудно доступное место. Такое, чтобы получить деньги было затруднительно "
-"(вам нужно проехать в банк, например).  В этом случае вы будете использовать "
-"эти деньги сознательно и только для основных расходов."
+"(вам нужно проехать в банк, например).  В этом случае вы будете использовать"
+" эти деньги сознательно и только для основных расходов."
 
 #: src/mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -4238,8 +4240,8 @@ msgstr "Как избегать долгов: Тратьте меньше чем
 #: src/mmTips.h:42
 msgid "Tip to get out of debt: Pay more than the minimum."
 msgstr ""
-"Совет как избегать долгов: Оплачивайте больше чем минимум (делайте авансовые "
-"платежи)."
+"Совет как избегать долгов: Оплачивайте больше чем минимум (делайте авансовые"
+" платежи)."
 
 #: src/mmTips.h:43
 msgid ""
@@ -4428,7 +4430,8 @@ msgstr "Вы действительно хотите удалить все по�
 msgid "Do you really want to delete the selected transaction?"
 msgstr "Вы действительно хотите удалить выбранную транзакцию?"
 
-#: src/mmcheckingpanel.cpp:1648 src/transdialog.cpp:651 src/transdialog.cpp:684
+#: src/mmcheckingpanel.cpp:1648 src/transdialog.cpp:651
+#: src/transdialog.cpp:684
 msgid "MMEX Transaction Check"
 msgstr "Проверка транзакций"
 
@@ -4472,16 +4475,16 @@ msgstr ""
 "Пожалуйста, введите название получателя\n"
 "или выберите получателя из выпадающего списка."
 
-#: src/mmex.cpp:75
+#: src/mmex.cpp:72
 #, c-format
 msgid "Can not load translation for selected language %s"
 msgstr "Невозможно загрузить перевод для выбранного языка %s"
 
-#: src/mmex.cpp:77 src/mmframe.cpp:3104
+#: src/mmex.cpp:74 src/mmframe.cpp:3103
 msgid "Language change"
 msgstr "Изменение языка"
 
-#: src/mmex.cpp:111
+#: src/mmex.cpp:108
 msgid ""
 "Fatal error occured.\n"
 "Application will be terminated."
@@ -4489,7 +4492,7 @@ msgstr ""
 "Произошел критический сбой.\n"
 "Программа будет закрыта."
 
-#: src/mmex.cpp:245
+#: src/mmex.cpp:242
 msgid ""
 "MMEX is already running...\n"
 "\n"
@@ -4499,7 +4502,7 @@ msgstr ""
 "\n"
 "Запуск нескольких экземпляров больше не поддерживается."
 
-#: src/mmex.cpp:246
+#: src/mmex.cpp:243
 msgid "MMEX Instance Check"
 msgstr "Проверка MMEX"
 
@@ -4553,7 +4556,7 @@ msgstr "Счёта активов"
 
 #: src/mmframe.cpp:748 src/mmhomepagepanel.cpp:476 src/reports/summary.cpp:155
 msgid "Crypto Wallets"
-msgstr ""
+msgstr "Крипто Валюта"
 
 #: src/mmframe.cpp:758 src/mmframe.cpp:1623
 msgid "Budget Setup"
@@ -5026,8 +5029,8 @@ msgstr "Форум"
 
 #: src/mmframe.cpp:1717
 msgid ""
-"Visit the MMEX forum to see existing user comments or report new issues with "
-"the software"
+"Visit the MMEX forum to see existing user comments or report new issues with"
+" the software"
 msgstr ""
 "Посетите форум MMEX, чтобы увидеть существующие комментарии пользователей "
 "или сообщить о новых проблемах с программным обеспечением"
@@ -5141,10 +5144,8 @@ msgid "New"
 msgstr "С&оздать"
 
 #: src/mmframe.cpp:1808
-#, fuzzy
-#| msgid "Home Page"
 msgid "Show Home Page"
-msgstr "Сводка"
+msgstr "Показать сводку"
 
 #: src/mmframe.cpp:1810
 msgid "Show Organize Categories Dialog"
@@ -5351,8 +5352,7 @@ msgid ""
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n"
 "\n"
-"These accounts only become visible after associating a Stock to the Share "
-"Account\n"
+"These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr ""
@@ -5391,12 +5391,13 @@ msgstr ""
 
 #: src/mmframe.cpp:2596
 msgid ""
-"2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue "
-"for similar problem - update existing issue instead of creating new one."
+"2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue"
+" for similar problem - update existing issue instead of creating new one."
 msgstr ""
-"2. На сайте https://github.com/moneymanagerex/moneymanagerex/issues?q=is:"
-"issue уже может быть зарегистрирована аналогичная проблема - обновите "
-"информацию, а не создавайте новую заявку."
+"2. На сайте "
+"https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue уже может"
+" быть зарегистрирована аналогичная проблема - обновите информацию, а не "
+"создавайте новую заявку."
 
 #: src/mmframe.cpp:2597
 msgid "3. Put some descriptive name for your issue in the Title field above."
@@ -5548,38 +5549,38 @@ msgstr "Сводка"
 msgid "Upcoming Transactions"
 msgstr "Предстоящие транзакции"
 
-#: src/mmhomepagepanel.cpp:797
+#: src/mmhomepagepanel.cpp:796
 #, c-format
 msgid "Income vs Expenses: %s"
 msgstr "Доходы/Расходы: %s"
 
-#: src/mmhomepagepanel.cpp:802 src/reports/categexp.cpp:138
+#: src/mmhomepagepanel.cpp:801 src/reports/categexp.cpp:138
 #: src/reports/categovertimeperf.cpp:138 src/reports/incexpenses.cpp:109
 #: src/reports/incexpenses.cpp:241 src/reports/payee.cpp:120
 msgid "Expenses"
 msgstr "Расход"
 
-#: src/mmhomepagepanel.cpp:804 src/reports/incexpenses.cpp:139
+#: src/mmhomepagepanel.cpp:803 src/reports/incexpenses.cpp:139
 msgid "Difference:"
 msgstr "Баланс:"
 
-#: src/mmhomepagepanel.cpp:806
+#: src/mmhomepagepanel.cpp:805
 msgid "Income/Expenses"
 msgstr "Доходы/Расходы"
 
-#: src/mmhomepagepanel.cpp:837
+#: src/mmhomepagepanel.cpp:836
 msgid "Transaction Statistics"
 msgstr "Статистика транзакций"
 
-#: src/mmhomepagepanel.cpp:840
+#: src/mmhomepagepanel.cpp:839
 msgid "Follow Up On Transactions: "
 msgstr "Отследить транзакций: "
 
-#: src/mmhomepagepanel.cpp:842
+#: src/mmhomepagepanel.cpp:841
 msgid "Total Transactions: "
 msgstr "Транзакций всего: "
 
-#: src/mmhomepagepanel.cpp:855 src/reports/categexp.cpp:209
+#: src/mmhomepagepanel.cpp:854 src/reports/categexp.cpp:209
 #: src/reports/summarystocks.cpp:141 src/reports/transactions.cpp:162
 msgid "Grand Total:"
 msgstr "Всего:"
@@ -5688,7 +5689,7 @@ msgstr "Срочный"
 
 #: src/model/Model_Account.cpp:37
 msgid "Crypto"
-msgstr ""
+msgstr "Крипта"
 
 #: src/model/Model_Account.cpp:38
 msgid "Investment"
@@ -6170,8 +6171,7 @@ msgid ""
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
 msgstr ""
 "При закрытии MMEX, если сделаны изменения, \n"
-"создать или обновить резервную копию базы данных: dbFile_update_YYYY-MM-DD."
-"ext."
+"создать или обновить резервную копию базы данных: dbFile_update_YYYY-MM-DD.ext."
 
 #: src/optionsettingsmisc.cpp:159
 msgid "Specify max number of backup files"
@@ -7049,17 +7049,13 @@ msgstr ""
 msgid ""
 "The Company name does not have an associated Share Account.\n"
 "\n"
-"You may want to readjust the Company Name to an existing Share Account with "
-"the same name. If this is an existing Stock without a Share Account, it is "
-"recommended that a Share Account is created.\n"
+"You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n"
 "\n"
 "Do you want to create a new Share Acccount?\n"
 msgstr ""
 "У компании нет связанного Аккаунта Акций.\n"
 "\n"
-"Вы можете перенаправить название компании на существующую Акцию Аккаунта с "
-"тем же именем. Если это уже существующая Акция без Аккаунта Акций, "
-"рекомендуется создать Аккаунт Акций.\n"
+"Вы можете перенаправить название компании на существующую Акцию Аккаунта с тем же именем. Если это уже существующая Акция без Аккаунта Акций, рекомендуется создать Аккаунт Акций.\n"
 "\n"
 "Вы хотите создать новый Аккаунт Акций?\\v\n"
 
@@ -7142,8 +7138,8 @@ msgstr "Ошибка истории котировок"
 #: src/stockspanel.cpp:32
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
 msgstr ""
-"Используя MMEX можно отслеживать инвестиции, такие как акции, облигации и т."
-"п."
+"Используя MMEX можно отслеживать инвестиции, такие как акции, облигации и "
+"т.п."
 
 #: src/stockspanel.cpp:33
 msgid ""
@@ -7398,7 +7394,8 @@ msgid "Retard or advance the date of the transaction"
 msgstr "Укажите дату проводки"
 
 #: src/usertransactionpanel.cpp:117
-msgid "Please select the Account that will be associated with this transaction"
+msgid ""
+"Please select the Account that will be associated with this transaction"
 msgstr "Пожалуйста, выберите счёт для данной транзакции"
 
 #: src/usertransactionpanel.cpp:129
@@ -7442,7 +7439,7 @@ msgstr "Выбор счёта"
 #: src/util.cpp:362
 #, c-format
 msgid "%s\t: %s\n"
-msgstr "%s\t: %s\n"
+msgstr "%s\\t: %s\\n"
 
 #: src/util.cpp:362 src/webapp.cpp:186
 msgid "Invalid value"
@@ -7871,10 +7868,8 @@ msgstr ""
 "\n"
 "Файл базы данных хранится с расширением .mmb.\n"
 "Поскольку этот файл содержит важную финансовую информацию,\n"
-"мы рекомендовали создавать ежедневные резервные копии. Настройте это в "
-"опциях:\n"
-"\"Резервное копирование перед открытием\". Также копируйте и храните "
-"резервные копии\n"
+"мы рекомендовали создавать ежедневные резервные копии. Настройте это в опциях:\n"
+"\"Резервное копирование перед открытием\". Также копируйте и храните резервные копии\n"
 "в отдельном месте.\n"
 "\n"
 "В базе данных может быть зашифрована, при необходимости,\n"
@@ -7951,6 +7946,3 @@ msgstr "MMEX проверка версии"
 #, c-format
 msgid "You already have the latest version %s"
 msgstr "У вас установлена новейшая версия %s"
-
-#~ msgid "Account List"
-#~ msgstr "Список счетов"
