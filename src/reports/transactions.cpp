@@ -27,7 +27,8 @@
 #include <algorithm>
 #include <vector>
 
-mmReportTransactions::mmReportTransactions(int refAccountID, mmFilterTransactionsDialog* transDialog)
+mmReportTransactions::mmReportTransactions(int refAccountID
+    , mmFilterTransactionsDialog* transDialog)
     : mmPrintableBase("mmReportTransactions")
     , m_refAccountID(refAccountID)
     , m_transDialog(transDialog)
@@ -48,9 +49,10 @@ wxString mmReportTransactions::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
+
     const auto account = Model_Account::instance().get(m_transDialog->getAccountID());
-    //wxASSERT(account);
-    const wxString transHeading = account
+    bool monoAcc = m_transDialog->getAccountCheckBox() && account;
+    const wxString transHeading = monoAcc
         ? wxString::Format(_("Transaction List for Account: %s"), account->ACCOUNTNAME)
         : _("Transaction List ");
 
@@ -79,7 +81,6 @@ wxString mmReportTransactions::getHTMLText()
     hb.startTbody();
 
     std::map<int, double> total;
-    bool monoAcc = m_transDialog->getAccountCheckBox() && account;
 
     const Model_Currency::Data* currency = account
         ? Model_Account::currency(account)
