@@ -750,36 +750,54 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 		return false;
 	}
 
-    std::vector<wxString> symbols;
+    std::vector<wxString> fiat;
+    std::vector<wxString> crypto;
+
 	auto currencies = Model_Currency::instance()
 		.find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
 	for (const auto &currency : currencies)
 	{
-		if (curr_id > 0 && currency.CURRENCYID != curr_id) 
+        if (curr_id > 0 && currency.CURRENCYID != curr_id)
             continue;
         if (curr_id < 0 && !Model_Account::is_used(currency))
             continue;
 		const auto symbol = currency.CURRENCY_SYMBOL.Upper();
-		if (!symbol.IsEmpty()) 
-            symbols.push_back(wxString::Format("%s%s=X", symbol, base_currency_symbol));
+        if (symbol.IsEmpty())
+            continue;
+
+        if (Model_Account::is_crypto(currency))
+            crypto.push_back(symbol);
+        else
+            fiat.push_back(symbol);
 	}
 
     wxString output;
     std::map<wxString, double> currency_data;
-    if (!get_yahoo_prices(symbols, currency_data, output))
-    {
-        msg = output;
-        return false;
-    }
 
-    if (!symbols.empty())
+
+    if (!fiat.empty())
     {
-        if (!get_crypto_currency_prices(currency_data, output))
+        if (!get_yahoo_prices(fiat, currency_data
+            , base_currency_symbol, output, yahoo_price_type::FIAT))
         {
-            //TODO: names
             msg = output;
             mmErrorDialogs::MessageError(this, msg, _("Online update currency rate"));
         }
+    }
+
+    if (!crypto.empty())
+    {
+        if (!get_crypto_currency_prices(crypto, currency_data, output))
+        {
+            msg = output;
+            mmErrorDialogs::MessageError(this, msg, _("Online update currency rate"));
+        }
+    }
+
+    if (fiat.empty() && crypto.empty())
+    {
+        msg = _("Nothing to update");
+        return false;
     }
 
 	msg = _("Currency rates have been updated");

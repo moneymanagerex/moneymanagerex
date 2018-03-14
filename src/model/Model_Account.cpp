@@ -311,6 +311,26 @@ bool Model_Account::is_used(const Model_Currency::Data& c)
     return is_used(&c);
 }
 
+bool Model_Account::is_crypto(const Model_Currency::Data* c)
+{
+    const auto &accounts = Model_Account::instance().find(CURRENCYID(c->CURRENCYID));
+    const auto cr = Model_Account::all_type()[Model_Account::CRYPTO];
+    for (const auto& entry : accounts)
+    {
+        if (entry.ACCOUNTTYPE == cr)
+        {
+            wxLogDebug("Currency : %s found in acc: %s", c->CURRENCY_SYMBOL, entry.ACCOUNTNAME);
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Model_Account::is_crypto(const Model_Currency::Data& c)
+{
+    return is_crypto(&c);
+}
+
 int Model_Account::money_accounts_num()
 {
     return

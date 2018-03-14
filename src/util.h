@@ -157,11 +157,14 @@ public:
     static wxColour userDefColor7;
 };
 //----------------------------------------------------------------------------
-
+enum yahoo_price_type {FIAT = 0, SHARES};
 bool get_yahoo_prices(std::vector<wxString>& symbols
     , std::map<wxString, double>& out
-    , wxString& output);
-bool get_crypto_currency_prices(std::map<wxString, double>& data
+    , const wxString base_currency_symbol
+    , wxString& output
+    , int type);
+bool get_crypto_currency_prices(std::vector<wxString>& symbols
+    , std::map<wxString, double>& out
     , wxString& output);
 
 const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
