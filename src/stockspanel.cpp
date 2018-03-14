@@ -830,20 +830,16 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
     for (const auto &stock : stock_list)
     {
         const wxString symbol = stock.SYMBOL.Upper();
-        if (!symbol.IsEmpty())
-        {
-            if (std::find(symbols.begin(), symbols.end(), symbol) == symbols.end())
-            {
-                symbols.push_back(symbol);
-            }
-        }
+        if (symbol.IsEmpty()) continue;
+        if (std::find(symbols.begin(), symbols.end(), symbol) == symbols.end())
+            symbols.push_back(symbol);
     }
 
     refresh_button_->SetBitmapLabel(mmBitmap(png::LED_YELLOW));
     stock_details_->SetLabelText(_("Connecting..."));
 
     std::map<wxString, double > stocks_data;
-    if (!get_yahoo_prices(symbols, stocks_data, msg))
+    if (!get_yahoo_prices(symbols, stocks_data, "", msg, yahoo_price_type::SHARES))
     {
         return false;
     }
@@ -863,6 +859,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
 
         if (dPrice != 0)
         {
+            msg += wxString::Format("%s\t: %0.6f -> %0.6f\n", s.SYMBOL, s.CURRENTPRICE, dPrice);
             s.CURRENTPRICE = dPrice;
             if (s.STOCKNAME.empty()) s.STOCKNAME = s.SYMBOL;
             Model_Stock::instance().save(&s);

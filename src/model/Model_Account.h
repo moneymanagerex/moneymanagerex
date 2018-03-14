@@ -105,6 +105,8 @@ public:
 
     static bool is_used(const Model_Currency::Data* c);
     static bool is_used(const Model_Currency::Data& c);
+    static bool is_crypto(const Model_Currency::Data* c);
+    static bool is_crypto(const Model_Currency::Data& c);
 
     static int money_accounts_num();
 
