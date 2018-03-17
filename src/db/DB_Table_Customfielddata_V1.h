@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -281,7 +281,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
             json_writer.Key("REFID");
             json_writer.Int(this->REFID);
             json_writer.Key("CONTENT");
-            json_writer.String(this->CONTENT);
+            json_writer.String(this->CONTENT.c_str());
         }
 
         row_t to_row_t() const

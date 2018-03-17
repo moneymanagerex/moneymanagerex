@@ -800,7 +800,7 @@ wxString mmFilterTransactionsDialog::to_json()
     if (!label.empty())
     {
         json_writer.Key("LABEL");
-        json_writer.String(label);
+        json_writer.String(label.c_str());
     }
 
     if (accountCheckBox_->IsChecked())
@@ -809,22 +809,22 @@ wxString mmFilterTransactionsDialog::to_json()
         if (!acc.empty())
         {
             json_writer.Key("ACCOUNT");
-            json_writer.String(acc);
+            json_writer.String(acc.c_str());
         }
     }
 
     if (m_dateRangeCheckBox->IsChecked())
     {
         json_writer.Key("DATE1");
-        json_writer.String(m_fromDateCtrl->GetValue().FormatISODate());
+        json_writer.String(m_fromDateCtrl->GetValue().FormatISODate().c_str());
         json_writer.Key("DATE2");
-        json_writer.String(m_toDateControl->GetValue().FormatISODate());
+        json_writer.String(m_toDateControl->GetValue().FormatISODate().c_str());
     }
 
     if (payeeCheckBox_->IsChecked())
     {
         json_writer.Key("PAYEE");
-        json_writer.String(cbPayee_->GetValue());
+        json_writer.String(cbPayee_->GetValue().c_str());
     }
 
     if (categoryCheckBox_->IsChecked())
@@ -832,7 +832,7 @@ wxString mmFilterTransactionsDialog::to_json()
         json_writer.Key("SIMILAR_YN");
         json_writer.Bool(bSimilarCategoryStatus_);
         json_writer.Key("CATEGORY");
-        json_writer.String(btnCategory_->GetLabel());
+        json_writer.String(btnCategory_->GetLabel().c_str());
     }
 
     if (statusCheckBox_->IsChecked())
@@ -844,7 +844,7 @@ wxString mmFilterTransactionsDialog::to_json()
         if (!status.empty())
         {
             json_writer.Key("STATUS");
-            json_writer.String(status);
+            json_writer.String(status.c_str());
         }
     }
 
@@ -858,7 +858,7 @@ wxString mmFilterTransactionsDialog::to_json()
         if (!type.empty())
         {
             json_writer.Key("TYPE");
-            json_writer.String(type);
+            json_writer.String(type.c_str());
         }
     }
     if (amountRangeCheckBox_->IsChecked())
@@ -886,7 +886,7 @@ wxString mmFilterTransactionsDialog::to_json()
         if (!num.empty())
         {
             json_writer.Key("NUMBER");
-            json_writer.String(num);
+            json_writer.String(num.c_str());
         }
     }
 
@@ -896,7 +896,7 @@ wxString mmFilterTransactionsDialog::to_json()
         if (!notes.empty())
         {
             json_writer.Key("NOTES");
-            json_writer.String(notes);
+            json_writer.String(notes.c_str());
         }
     }
 
@@ -914,7 +914,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     }
 
     Document j_doc;
-    j_doc.Parse(data);
+    j_doc.Parse(str.c_str());
 
     //Label
     Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");

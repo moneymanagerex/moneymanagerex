@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -277,7 +277,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             json_writer.Key("PAYEEID");
             json_writer.Int(this->PAYEEID);
             json_writer.Key("PAYEENAME");
-            json_writer.String(this->PAYEENAME);
+            json_writer.String(this->PAYEENAME.c_str());
             json_writer.Key("CATEGID");
             json_writer.Int(this->CATEGID);
             json_writer.Key("SUBCATEGID");

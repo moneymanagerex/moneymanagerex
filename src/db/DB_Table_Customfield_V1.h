@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -292,13 +292,13 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
             json_writer.Key("FIELDID");
             json_writer.Int(this->FIELDID);
             json_writer.Key("REFTYPE");
-            json_writer.String(this->REFTYPE);
+            json_writer.String(this->REFTYPE.c_str());
             json_writer.Key("DESCRIPTION");
-            json_writer.String(this->DESCRIPTION);
+            json_writer.String(this->DESCRIPTION.c_str());
             json_writer.Key("TYPE");
-            json_writer.String(this->TYPE);
+            json_writer.String(this->TYPE.c_str());
             json_writer.Key("PROPERTIES");
-            json_writer.String(this->PROPERTIES);
+            json_writer.String(this->PROPERTIES.c_str());
         }
 
         row_t to_row_t() const

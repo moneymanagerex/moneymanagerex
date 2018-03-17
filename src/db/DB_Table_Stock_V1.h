@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -402,17 +402,17 @@ struct DB_Table_STOCK_V1 : public DB_Table
             json_writer.Key("HELDAT");
             json_writer.Int(this->HELDAT);
             json_writer.Key("PURCHASEDATE");
-            json_writer.String(this->PURCHASEDATE);
+            json_writer.String(this->PURCHASEDATE.c_str());
             json_writer.Key("STOCKNAME");
-            json_writer.String(this->STOCKNAME);
+            json_writer.String(this->STOCKNAME.c_str());
             json_writer.Key("SYMBOL");
-            json_writer.String(this->SYMBOL);
+            json_writer.String(this->SYMBOL.c_str());
             json_writer.Key("NUMSHARES");
             json_writer.Double(this->NUMSHARES);
             json_writer.Key("PURCHASEPRICE");
             json_writer.Double(this->PURCHASEPRICE);
             json_writer.Key("NOTES");
-            json_writer.String(this->NOTES);
+            json_writer.String(this->NOTES.c_str());
             json_writer.Key("CURRENTPRICE");
             json_writer.Double(this->CURRENTPRICE);
             json_writer.Key("VALUE");

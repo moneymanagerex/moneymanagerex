@@ -42,20 +42,20 @@ static void handle_sql(struct mg_connection* nc, struct http_message* hm)
     json_writer.StartObject();
 
     json_writer.Key("query");
-    json_writer.String(wxString(query));
+    json_writer.String(wxString(query).c_str());
 
     bool ret = Model_Report::instance().get_objects_from_sql(wxString(query), json_writer);
 
     for (const auto & r : Model_Setting::instance().all())
     {
-        json_writer.Key(r.SETTINGNAME);
-        json_writer.String(r.SETTINGVALUE);
+        json_writer.Key(r.SETTINGNAME.c_str());
+        json_writer.String(r.SETTINGVALUE.c_str());
     }
 
     for (const auto & r : Model_Infotable::instance().all())
     {
-        json_writer.Key(r.INFONAME);
-        json_writer.String(r.INFOVALUE);
+        json_writer.Key(r.INFONAME.c_str());
+        json_writer.String(r.INFOVALUE.c_str());
     }
     
     json_writer.EndObject();

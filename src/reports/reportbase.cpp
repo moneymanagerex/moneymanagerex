@@ -45,7 +45,7 @@ mmPrintableBase::~mmPrintableBase()
     if (!m_settings.IsEmpty())
     {
         Document j_doc;
-        j_doc.Parse(m_settings);
+        j_doc.Parse(m_settings.c_str());
 
         wxString jds = JSON_PrettyFormated(j_doc);
 
@@ -57,10 +57,10 @@ mmPrintableBase::~mmPrintableBase()
         json_writer.Int(m_date_selection);
 
         json_writer.Key("DATE1");
-        json_writer.String(m_begin_date.FormatISODate());
+        json_writer.String(m_begin_date.FormatISODate().c_str());
 
         json_writer.Key("DATE2");
-        json_writer.String(m_end_date.FormatISODate());
+        json_writer.String(m_end_date.FormatISODate().c_str());
 
         json_writer.Key("ACCOUNTSELECTION");
         json_writer.Int(m_account_selection);
@@ -72,8 +72,8 @@ mmPrintableBase::~mmPrintableBase()
         for (size_t i = 0; i < rcount; i++)
         {
             const auto name = wxString::Format("NAME%zu", i);
-            json_writer.Key(name);
-            json_writer.String(accountArray_->Item(i));
+            json_writer.Key(name.c_str());
+            json_writer.String(accountArray_->Item(i).c_str());
         }
 
         json_writer.Key("CHART");
@@ -171,7 +171,7 @@ void mmPrintableBase::setSettings(const wxString& settings)
     m_settings = settings;
 
     Document j_doc;
-    j_doc.Parse(settings);
+    j_doc.Parse(settings.c_str());
 
     m_date_selection = j_doc["SETTINGSDATA"]["REPORTPERIOD"].GetInt();
     m_begin_date = mmParseISODate(j_doc["SETTINGSDATA"]["DATE1"].GetString());
@@ -190,7 +190,7 @@ void mmPrintableBase::setSettings(const wxString& settings)
         for (size_t i = 0; i < count; i++)
         {
             const auto name = wxString::Format("NAME%zu", i);
-            Value j_name(name, j_doc.GetAllocator());
+            Value j_name(name.c_str(), j_doc.GetAllocator());
             accountSelections->Add(j_doc["SETTINGSDATA"][j_name].GetString());
         }
         accountArray_ = accountSelections;

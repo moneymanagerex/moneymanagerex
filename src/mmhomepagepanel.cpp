@@ -790,29 +790,29 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
     json_writer.Key("0");
-    json_writer.String(wxString::Format(_("Income vs Expenses: %s"), date_range_->local_title()));
+    json_writer.String(wxString::Format(_("Income vs Expenses: %s"), date_range_->local_title()).c_str());
     json_writer.Key("1");
-    json_writer.String(_("Type"));
+    json_writer.String(_("Type").c_str());
     json_writer.Key("2");
-    json_writer.String(_("Amount"));
+    json_writer.String(_("Amount").c_str());
     json_writer.Key("3");
-    json_writer.String(_("Income"));
+    json_writer.String(_("Income").c_str());
     json_writer.Key("4");
-    json_writer.String(Model_Currency::toCurrency(tIncome));
+    json_writer.String(Model_Currency::toCurrency(tIncome).c_str());
     json_writer.Key("5");
-    json_writer.String(_("Expenses"));
+    json_writer.String(_("Expenses").c_str());
     json_writer.Key("6");
-    json_writer.String(Model_Currency::toCurrency(tExpenses));
+    json_writer.String(Model_Currency::toCurrency(tExpenses).c_str());
     json_writer.Key("7");
-    json_writer.String(_("Difference:"));
+    json_writer.String(_("Difference:").c_str());
     json_writer.Key("8");
-    json_writer.String(Model_Currency::toCurrency(tIncome - tExpenses));
+    json_writer.String(Model_Currency::toCurrency(tIncome - tExpenses).c_str());
     json_writer.Key("9");
-    json_writer.String(_("Income/Expenses"));
+    json_writer.String(_("Income/Expenses").c_str());
     json_writer.Key("10");
-    json_writer.String(wxString::Format("%.2f", tIncome));
+    json_writer.String(wxString::Format("%.2f", tIncome).c_str());
     json_writer.Key("11");
-    json_writer.String(wxString::Format("%.2f", tExpenses));
+    json_writer.String(wxString::Format("%.2f", tExpenses).c_str());
     json_writer.Key("12");
     json_writer.Int(steps);
     json_writer.Key("13");
@@ -835,9 +835,9 @@ const wxString mmHomePagePanel::displayAssets(double& tBalance)
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
     json_writer.Key("NAME");
-    json_writer.String(_("Assets"));
+    json_writer.String(_("Assets").c_str());
     json_writer.Key("VALUE");
-    json_writer.String(Model_Currency::toCurrency(asset_balance));
+    json_writer.String(Model_Currency::toCurrency(asset_balance).c_str());
     json_writer.EndObject();
 
     wxLogDebug("======= mmHomePagePanel::displayAssets =======");
@@ -853,15 +853,15 @@ const wxString mmHomePagePanel::getStatWidget()
     json_writer.StartObject();
 
     json_writer.Key("NAME");
-    json_writer.String(_("Transaction Statistics"));
+    json_writer.String(_("Transaction Statistics").c_str());
 
     if (this->countFollowUp_ > 0)
     {
-        json_writer.Key(_("Follow Up On Transactions: "));
+        json_writer.Key(_("Follow Up On Transactions: ").c_str());
         json_writer.Double(this->countFollowUp_);
     }
 
-    json_writer.Key(_("Total Transactions: "));
+    json_writer.Key(_("Total Transactions: ").c_str());
     json_writer.Int(this->total_transactions_);
     json_writer.EndObject();
 
@@ -879,9 +879,9 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
     json_writer.Key("NAME");
-    json_writer.String(_("Grand Total:"));
+    json_writer.String(_("Grand Total:").c_str());
     json_writer.Key("VALUE");
-    json_writer.String(tBalanceStr);
+    json_writer.String(tBalanceStr.c_str());
     json_writer.EndObject();
 
     wxLogDebug("======= mmHomePagePanel::displayGrandTotals =======");
@@ -908,7 +908,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
 
         Document json_doc;
         Document::AllocatorType& json_allocator = json_doc.GetAllocator();
-        json_doc.Parse(str);
+        json_doc.Parse(str.c_str());
         wxLogDebug("RapidJson Input\n%s", JSON_PrettyFormated(json_doc));
 
         if (name == "TOP_CATEGORIES")
@@ -996,8 +996,8 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
             }
         }
         else if (name == "CRYPTO_WALLETS_INFO") {
-            bool entry = !json::Boolean(o[L"CRYPTO_WALLETS_INFO"]);
-            o[L"CRYPTO_WALLETS_INFO"] = json::Boolean(entry);
+            bool entry = !json_doc["CRYPTO_WALLETS_INFO"].GetBool();
+            json_doc["CRYPTO_WALLETS_INFO"] = entry;
         }
 
         wxLogDebug("Saving updated RapidJson\n%s", JSON_PrettyFormated(json_doc));

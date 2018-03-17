@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -293,13 +293,13 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
             json_writer.Key("ATTACHMENTID");
             json_writer.Int(this->ATTACHMENTID);
             json_writer.Key("REFTYPE");
-            json_writer.String(this->REFTYPE);
+            json_writer.String(this->REFTYPE.c_str());
             json_writer.Key("REFID");
             json_writer.Int(this->REFID);
             json_writer.Key("DESCRIPTION");
-            json_writer.String(this->DESCRIPTION);
+            json_writer.String(this->DESCRIPTION.c_str());
             json_writer.Key("FILENAME");
-            json_writer.String(this->FILENAME);
+            json_writer.String(this->FILENAME.c_str());
         }
 
         row_t to_row_t() const

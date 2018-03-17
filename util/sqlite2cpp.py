@@ -480,7 +480,7 @@ struct DB_Table_%s : public DB_Table
             elif type == 'wxString':
                 s += '''
             json_writer.Key("%s");
-            json_writer.String(this->%s);''' % (field['name'], field['name'])
+            json_writer.String(this->%s.c_str());''' % (field['name'], field['name'])
             else:
                 assert "Field type Error"
 

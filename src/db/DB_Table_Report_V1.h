@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -326,17 +326,17 @@ struct DB_Table_REPORT_V1 : public DB_Table
             json_writer.Key("REPORTID");
             json_writer.Int(this->REPORTID);
             json_writer.Key("REPORTNAME");
-            json_writer.String(this->REPORTNAME);
+            json_writer.String(this->REPORTNAME.c_str());
             json_writer.Key("GROUPNAME");
-            json_writer.String(this->GROUPNAME);
+            json_writer.String(this->GROUPNAME.c_str());
             json_writer.Key("SQLCONTENT");
-            json_writer.String(this->SQLCONTENT);
+            json_writer.String(this->SQLCONTENT.c_str());
             json_writer.Key("LUACONTENT");
-            json_writer.String(this->LUACONTENT);
+            json_writer.String(this->LUACONTENT.c_str());
             json_writer.Key("TEMPLATECONTENT");
-            json_writer.String(this->TEMPLATECONTENT);
+            json_writer.String(this->TEMPLATECONTENT.c_str());
             json_writer.Key("DESCRIPTION");
-            json_writer.String(this->DESCRIPTION);
+            json_writer.String(this->DESCRIPTION.c_str());
         }
 
         row_t to_row_t() const

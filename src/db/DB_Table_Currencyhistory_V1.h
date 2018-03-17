@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -297,7 +297,7 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
             json_writer.Key("CURRENCYID");
             json_writer.Int(this->CURRENCYID);
             json_writer.Key("CURRDATE");
-            json_writer.String(this->CURRDATE);
+            json_writer.String(this->CURRDATE.c_str());
             json_writer.Key("CURRVALUE");
             json_writer.Double(this->CURRVALUE);
             json_writer.Key("CURRUPDTYPE");

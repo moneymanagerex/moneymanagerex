@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -258,9 +258,9 @@ struct DB_Table_SETTING_V1 : public DB_Table
             json_writer.Key("SETTINGID");
             json_writer.Int(this->SETTINGID);
             json_writer.Key("SETTINGNAME");
-            json_writer.String(this->SETTINGNAME);
+            json_writer.String(this->SETTINGNAME.c_str());
             json_writer.Key("SETTINGVALUE");
-            json_writer.String(this->SETTINGVALUE);
+            json_writer.String(this->SETTINGVALUE.c_str());
         }
 
         row_t to_row_t() const

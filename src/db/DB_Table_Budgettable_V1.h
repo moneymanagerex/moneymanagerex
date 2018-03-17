@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -319,7 +319,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
             json_writer.Key("SUBCATEGID");
             json_writer.Int(this->SUBCATEGID);
             json_writer.Key("PERIOD");
-            json_writer.String(this->PERIOD);
+            json_writer.String(this->PERIOD.c_str());
             json_writer.Key("AMOUNT");
             json_writer.Double(this->AMOUNT);
         }

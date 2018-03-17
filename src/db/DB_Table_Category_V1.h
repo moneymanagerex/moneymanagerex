@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -257,7 +257,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
             json_writer.Key("CATEGID");
             json_writer.Int(this->CATEGID);
             json_writer.Key("CATEGNAME");
-            json_writer.String(this->CATEGNAME);
+            json_writer.String(this->CATEGNAME.c_str());
         }
 
         row_t to_row_t() const

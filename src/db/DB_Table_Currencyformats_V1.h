@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -550,25 +550,25 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             json_writer.Key("CURRENCYID");
             json_writer.Int(this->CURRENCYID);
             json_writer.Key("CURRENCYNAME");
-            json_writer.String(this->CURRENCYNAME);
+            json_writer.String(this->CURRENCYNAME.c_str());
             json_writer.Key("PFX_SYMBOL");
-            json_writer.String(this->PFX_SYMBOL);
+            json_writer.String(this->PFX_SYMBOL.c_str());
             json_writer.Key("SFX_SYMBOL");
-            json_writer.String(this->SFX_SYMBOL);
+            json_writer.String(this->SFX_SYMBOL.c_str());
             json_writer.Key("DECIMAL_POINT");
-            json_writer.String(this->DECIMAL_POINT);
+            json_writer.String(this->DECIMAL_POINT.c_str());
             json_writer.Key("GROUP_SEPARATOR");
-            json_writer.String(this->GROUP_SEPARATOR);
+            json_writer.String(this->GROUP_SEPARATOR.c_str());
             json_writer.Key("UNIT_NAME");
-            json_writer.String(this->UNIT_NAME);
+            json_writer.String(this->UNIT_NAME.c_str());
             json_writer.Key("CENT_NAME");
-            json_writer.String(this->CENT_NAME);
+            json_writer.String(this->CENT_NAME.c_str());
             json_writer.Key("SCALE");
             json_writer.Int(this->SCALE);
             json_writer.Key("BASECONVRATE");
             json_writer.Double(this->BASECONVRATE);
             json_writer.Key("CURRENCY_SYMBOL");
-            json_writer.String(this->CURRENCY_SYMBOL);
+            json_writer.String(this->CURRENCY_SYMBOL.c_str());
         }
 
         row_t to_row_t() const

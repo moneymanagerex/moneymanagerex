@@ -120,7 +120,7 @@ wxArrayString Model_CustomField::all_type()
 wxString Model_CustomField::getTooltip(const wxString& Properties)
 {
     Document json_doc;
-    json_doc.Parse(Properties);
+    json_doc.Parse(Properties.c_str());
 
     Value& s = json_doc["Tooltip"];
 
@@ -130,7 +130,7 @@ wxString Model_CustomField::getTooltip(const wxString& Properties)
 wxString Model_CustomField::getRegEx(const wxString& Properties)
 {
     Document json_doc;
-    json_doc.Parse(Properties);
+    json_doc.Parse(Properties.c_str());
 
     Value& s = json_doc["RegEx"];
 
@@ -140,7 +140,7 @@ wxString Model_CustomField::getRegEx(const wxString& Properties)
 bool Model_CustomField::getAutocomplete(const wxString& Properties)
 {
     Document json_doc;
-    json_doc.Parse(Properties);
+    json_doc.Parse(Properties.c_str());
 
     Value& b = json_doc["Autocomplete"];
 
@@ -150,7 +150,7 @@ bool Model_CustomField::getAutocomplete(const wxString& Properties)
 wxString Model_CustomField::getDefault(const wxString& Properties)
 {
     Document json_doc;
-    json_doc.Parse(Properties);
+    json_doc.Parse(Properties.c_str());
 
     Value& s = json_doc["Default"];
 
@@ -160,7 +160,7 @@ wxString Model_CustomField::getDefault(const wxString& Properties)
 wxArrayString Model_CustomField::getChoices(const wxString& Properties)
 {
     Document json_doc;
-    json_doc.Parse(Properties);
+    json_doc.Parse(Properties.c_str());
 
     Value& sa = json_doc["Choice"];
 
@@ -181,16 +181,16 @@ wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxSt
 
     json_writer.StartObject();
     json_writer.Key("Tooltip");
-    json_writer.String(Tooltip);
+    json_writer.String(Tooltip.c_str());
 
     json_writer.Key("RegEx");
-    json_writer.String(RegEx);
+    json_writer.String(RegEx.c_str());
 
     json_writer.Key("Autocomplete");
     json_writer.Bool(Autocomplete);
 
     json_writer.Key("Default");
-    json_writer.String(Default);
+    json_writer.String(Default.c_str());
 
     if (!Choices.empty())
     {
@@ -198,7 +198,7 @@ wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxSt
         json_writer.StartArray();
         for (const auto &choice : Choices)
         {
-            json_writer.String(choice);
+            json_writer.String(choice.c_str());
         }
         json_writer.EndArray();
     }

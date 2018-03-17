@@ -133,6 +133,15 @@ wxString mmReportMyUsage::getHTMLText()
     {
         usage_by_day[usage.USAGEDATE].first += 1;
 
+        Document json_doc;
+        json_doc.Parse(usage.JSONCONTENT.c_str());
+
+        wxLogDebug("======= mmReportMyUsage::getHTMLText =======");
+        wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
+
+
+
+
         std::wstringstream ss ;
         ss << usage.JSONCONTENT.ToStdWstring();
         json::Object o;

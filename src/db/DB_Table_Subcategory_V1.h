@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -300,7 +300,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             json_writer.Key("SUBCATEGID");
             json_writer.Int(this->SUBCATEGID);
             json_writer.Key("SUBCATEGNAME");
-            json_writer.String(this->SUBCATEGNAME);
+            json_writer.String(this->SUBCATEGNAME.c_str());
             json_writer.Key("CATEGID");
             json_writer.Int(this->CATEGID);
         }

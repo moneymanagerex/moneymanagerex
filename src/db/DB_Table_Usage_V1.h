@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -258,9 +258,9 @@ struct DB_Table_USAGE_V1 : public DB_Table
             json_writer.Key("USAGEID");
             json_writer.Int(this->USAGEID);
             json_writer.Key("USAGEDATE");
-            json_writer.String(this->USAGEDATE);
+            json_writer.String(this->USAGEDATE.c_str());
             json_writer.Key("JSONCONTENT");
-            json_writer.String(this->JSONCONTENT);
+            json_writer.String(this->JSONCONTENT.c_str());
         }
 
         row_t to_row_t() const

@@ -894,7 +894,7 @@ void mmGUIFrame::loadNavTreeItemsStatus()
     wxLogDebug("%s", str);
 
     Document j_doc;
-    j_doc.Parse(str);
+    j_doc.Parse(str.c_str());
 
     std::stack<wxTreeItemId> items;
     if (m_nav_tree_ctrl->GetRootItem().IsOk())
@@ -919,9 +919,9 @@ void mmGUIFrame::loadNavTreeItemsStatus()
         {
             const wxString nav_key = iData->getString();
             wxLogDebug("%s", nav_key);
-            if (j_doc.HasMember(nav_key))
+            if (j_doc.HasMember(nav_key.c_str()))
             {
-                Value json_key(nav_key, j_doc.GetAllocator());
+                Value json_key(nav_key.c_str(), j_doc.GetAllocator());
                 if (j_doc[json_key].GetBool())
                 {
                     m_nav_tree_ctrl->Expand(next);
@@ -976,7 +976,7 @@ void mmGUIFrame::navTreeStateToJson()
         mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
         if (iData && iData->isStringData() && json::Boolean(m_nav_tree_ctrl->IsExpanded(next)))
         {
-            json_writer.Key(iData->getString());
+            json_writer.Key(iData->getString().c_str());
             json_writer.Bool(m_nav_tree_ctrl->IsExpanded(next));
         }
     };
@@ -1340,7 +1340,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     json_writer.String("Budget Panel");
     
     json_writer.Key("start");
-    json_writer.String(wxDateTime::Now().FormatISOCombined());
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_->GetId() == mmID_BUDGET)
@@ -1361,7 +1361,8 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
         windowsFreezeThaw(homePanel_);
     }
 
-    json_writer.Key("end"); json_writer.String(wxDateTime::Now().FormatISOCombined());
+    json_writer.Key("end");
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
     json_writer.EndObject();
 
     Model_Usage::instance().AppendToUsage(json_buffer.GetString());
@@ -1381,7 +1382,7 @@ void mmGUIFrame::createHomePage()
     json_writer.String("Home Page");
     
     json_writer.Key("start");
-    json_writer.String(wxDateTime::Now().FormatISOCombined());
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
@@ -1407,7 +1408,8 @@ void mmGUIFrame::createHomePage()
     m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 
-    json_writer.Key("end"); json_writer.String(wxDateTime::Now().FormatISOCombined());
+    json_writer.Key("end");
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
     json_writer.EndObject();
     
     Model_Usage::instance().AppendToUsage(json_buffer.GetString());
@@ -2721,7 +2723,7 @@ void mmGUIFrame::createBillsDeposits()
     json_writer.String("Bills & Deposits Panel");
 
     json_writer.Key("start");
-    json_writer.String(wxDateTime::Now().FormatISOCombined());
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
     if (panelCurrent_->GetId() == mmID_BILLS)
     {
@@ -2740,7 +2742,8 @@ void mmGUIFrame::createBillsDeposits()
         menuPrintingEnable(true);
     }
 
-    json_writer.Key("end"); json_writer.String(wxDateTime::Now().FormatISOCombined());
+    json_writer.Key("end");
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
     json_writer.EndObject();
 
     Model_Usage::instance().AppendToUsage(json_buffer.GetString());
@@ -2757,7 +2760,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     json_writer.String("Checking Panel");
 
     json_writer.Key("start");
-    json_writer.String(wxDateTime::Now().FormatISOCombined());
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
     if (panelCurrent_->GetId() == mmID_CHECKING)
     {
@@ -2775,7 +2778,8 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
         windowsFreezeThaw(homePanel_);
     }
 
-    json_writer.Key("end"); json_writer.String(wxDateTime::Now().FormatISOCombined());
+    json_writer.Key("end");
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
     json_writer.EndObject();
 
     Model_Usage::instance().AppendToUsage(json_buffer.GetString());
@@ -2797,7 +2801,7 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
     json_writer.String("Stock Panel");
     
     json_writer.Key("start");
-    json_writer.String(wxDateTime::Now().FormatISOCombined());
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
     //TODO: Refresh Panel
     {
@@ -2810,7 +2814,8 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
         windowsFreezeThaw(homePanel_);
     }
 
-    json_writer.Key("end"); json_writer.String(wxDateTime::Now().FormatISOCombined());
+    json_writer.Key("end");
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
     json_writer.EndObject();
     
     Model_Usage::instance().AppendToUsage(json_buffer.GetString());
@@ -2848,7 +2853,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     json_writer.String("Asset Panel");
     
     json_writer.Key("start");
-    json_writer.String(wxDateTime::Now().FormatISOCombined());
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
     windowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
@@ -2858,7 +2863,8 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     windowsFreezeThaw(homePanel_);
     menuPrintingEnable(true);
 
-    json_writer.Key("end"); json_writer.String(wxDateTime::Now().FormatISOCombined());
+    json_writer.Key("end");
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
     json_writer.EndObject();
 
     Model_Usage::instance().AppendToUsage(json_buffer.GetString());

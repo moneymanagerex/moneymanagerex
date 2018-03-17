@@ -220,7 +220,7 @@ bool mmWebApp::WebApp_UpdateAccount()
         {
             json_writer.StartObject();
             json_writer.Key("AccountName");
-            json_writer.String(account.ACCOUNTNAME);
+            json_writer.String(account.ACCOUNTNAME.c_str());
             json_writer.EndObject();
         }
     }
@@ -275,11 +275,11 @@ bool mmWebApp::WebApp_UpdatePayee()
 
         json_writer.StartObject();
         json_writer.Key("PayeeName");
-        json_writer.String(payee.PAYEENAME);
+        json_writer.String(payee.PAYEENAME.c_str());
         json_writer.Key("DefCateg");
-        json_writer.String(def_category_name);
+        json_writer.String(def_category_name.c_str());
         json_writer.Key("DefSubCateg");
-        json_writer.String(def_subcategory_name);
+        json_writer.String(def_subcategory_name.c_str());
         json_writer.EndObject();
     }
 
@@ -322,7 +322,7 @@ bool mmWebApp::WebApp_UpdateCategory()
 
         json_writer.StartObject();
         json_writer.Key("CategoryName");
-        json_writer.String(category.CATEGNAME);
+        json_writer.String(category.CATEGNAME.c_str());
 
         for (const auto &sub_category : Model_Category::sub_category(category))
         {
@@ -330,7 +330,7 @@ bool mmWebApp::WebApp_UpdateCategory()
             if (first_category_run == true)
             {
                 json_writer.Key("SubCategoryName");
-                json_writer.String(sub_category.SUBCATEGNAME);
+                json_writer.String(sub_category.SUBCATEGNAME.c_str());
                 json_writer.EndObject();
 
                 first_category_run = false;
@@ -339,10 +339,10 @@ bool mmWebApp::WebApp_UpdateCategory()
             {
                 json_writer.StartObject();
                 json_writer.Key("CategoryName");
-                json_writer.String(category.CATEGNAME);
+                json_writer.String(category.CATEGNAME.c_str());
 
                 json_writer.Key("SubCategoryName");
-                json_writer.String(sub_category.SUBCATEGNAME);
+                json_writer.String(sub_category.SUBCATEGNAME.c_str());
                 json_writer.EndObject();
 
                 first_category_run = false;

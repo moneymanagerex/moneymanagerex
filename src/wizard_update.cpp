@@ -108,7 +108,7 @@ mmUpdateWizardPage2::mmUpdateWizardPage2(mmUpdateWizard* parent)
     site_content(mmex::weblink::UpdateLinks, json_links);
 
     Document json_doc;
-    json_doc.Parse(json_links);
+    json_doc.Parse(json_links.c_str());
 
     wxLogDebug("======= mmUpdateWizardPage2::mmUpdateWizardPage2 =======");
     wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
@@ -137,9 +137,9 @@ mmUpdateWizardPage2::mmUpdateWizardPage2(mmUpdateWizard* parent)
     }
 
     auto& json_doc_allocator = json_doc.GetAllocator();
-    Value v_release_type(release_type, json_doc_allocator);
-    Value v_platform(platform, json_doc_allocator);
-    Value v_installer_type(installer_type, json_doc_allocator);
+    Value v_release_type(release_type.c_str(), json_doc_allocator);
+    Value v_platform(platform.c_str(), json_doc_allocator);
+    Value v_installer_type(installer_type.c_str(), json_doc_allocator);
 
     m_download_url = json_doc[v_release_type][v_platform][v_installer_type].GetString();
 
@@ -218,7 +218,7 @@ const bool mmUpdate::IsUpdateAvailable(const bool bSilent, wxString& new_version
 
     wxString json_links;
     CURLcode err_code = site_content(mmex::weblink::Update, json_links);
-    if (err_code != CURL_OK || json_links.Find("Unstable") == wxNOT_FOUND)
+    if (err_code != CURLE_OK || json_links.Find("Unstable") == wxNOT_FOUND)
     {
         if (bSilent)
             return false;
@@ -265,7 +265,7 @@ const bool mmUpdate::IsUpdateAvailable(const bool bSilent, wxString& new_version
     int rc = -1;
 
     Document json_doc;
-    if (json_doc.Parse(json_links).HasParseError())
+    if (json_doc.Parse(json_links.c_str()).HasParseError())
     {
         return false;
     }
@@ -274,19 +274,19 @@ const bool mmUpdate::IsUpdateAvailable(const bool bSilent, wxString& new_version
     wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
 
     auto& json_doc_allocator = json_doc.GetAllocator();
-    Value key_platform_type(platform_type, json_doc_allocator);
+    Value key_platform_type(platform_type.c_str(), json_doc_allocator);
     if (Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 1
         || mmex::version::Alpha != -1 || mmex::version::Beta != -1 || mmex::version::RC != -1)
     {
         release_type = "Unstable";
-        Value key_release_type(release_type, json_doc_allocator);
+        Value key_release_type(release_type.c_str(), json_doc_allocator);
         alpha = json_doc[key_release_type][key_platform_type]["Alpha"].GetInt();
         beta = json_doc[key_release_type][key_platform_type]["Beta"].GetInt();
         rc = json_doc[key_release_type][key_platform_type]["RC"].GetInt();
     }
 
     // Value needs to be redefined due to release_type value change.
-    Value key_release_type(release_type, json_doc_allocator);
+    Value key_release_type(release_type.c_str(), json_doc_allocator);
     int major = json_doc[key_release_type][key_platform_type]["Major"].GetInt();
     int minor = json_doc[key_release_type][key_platform_type]["Minor"].GetInt();
     int patch = json_doc[key_release_type][key_platform_type]["Patch"].GetInt();

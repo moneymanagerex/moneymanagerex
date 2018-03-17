@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -241,7 +241,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
             json_writer.Key("BUDGETYEARID");
             json_writer.Int(this->BUDGETYEARID);
             json_writer.Key("BUDGETYEARNAME");
-            json_writer.String(this->BUDGETYEARNAME);
+            json_writer.String(this->BUDGETYEARNAME.c_str());
         }
 
         row_t to_row_t() const

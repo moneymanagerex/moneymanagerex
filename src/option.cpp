@@ -696,12 +696,12 @@ wxString Option::ReportSettings(int id)
  
     if (!name.empty())
     {
-        Value j_name(name, j_doc_main_allocator);
+        Value j_name(name.c_str(), j_doc_main_allocator);
         j_doc_main.AddMember("SETTINGSNAME", j_name, j_doc_main_allocator);
     }
 
     Document j_doc_sub(&j_doc_main.GetAllocator());
-    j_doc_sub.Parse(settings);
+    j_doc_sub.Parse(settings.c_str());
     j_doc_main.AddMember("SETTINGSDATA", j_doc_sub, j_doc_main_allocator);
 
     return JSON_PrettyFormated(j_doc_main);

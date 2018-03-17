@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -345,19 +345,19 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             json_writer.Key("ASSETID");
             json_writer.Int(this->ASSETID);
             json_writer.Key("STARTDATE");
-            json_writer.String(this->STARTDATE);
+            json_writer.String(this->STARTDATE.c_str());
             json_writer.Key("ASSETNAME");
-            json_writer.String(this->ASSETNAME);
+            json_writer.String(this->ASSETNAME.c_str());
             json_writer.Key("VALUE");
             json_writer.Double(this->VALUE);
             json_writer.Key("VALUECHANGE");
-            json_writer.String(this->VALUECHANGE);
+            json_writer.String(this->VALUECHANGE.c_str());
             json_writer.Key("NOTES");
-            json_writer.String(this->NOTES);
+            json_writer.String(this->NOTES.c_str());
             json_writer.Key("VALUECHANGERATE");
             json_writer.Double(this->VALUECHANGERATE);
             json_writer.Key("ASSETTYPE");
-            json_writer.String(this->ASSETTYPE);
+            json_writer.String(this->ASSETTYPE.c_str());
         }
 
         row_t to_row_t() const

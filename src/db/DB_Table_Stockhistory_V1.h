@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -294,9 +294,9 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
             json_writer.Key("HISTID");
             json_writer.Int(this->HISTID);
             json_writer.Key("SYMBOL");
-            json_writer.String(this->SYMBOL);
+            json_writer.String(this->SYMBOL.c_str());
             json_writer.Key("DATE");
-            json_writer.String(this->DATE);
+            json_writer.String(this->DATE.c_str());
             json_writer.Key("VALUE");
             json_writer.Double(this->VALUE);
             json_writer.Key("UPDTYPE");

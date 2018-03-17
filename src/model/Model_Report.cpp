@@ -91,7 +91,7 @@ bool Model_Report::get_objects_from_sql(const wxString& query, PrettyWriter<Stri
     catch (const wxSQLite3Exception& e)
     {
         json_writer.Key("msg");
-        json_writer.String(e.GetMessage());
+        json_writer.String(e.GetMessage().c_str());
         return false;
     }
 
@@ -112,7 +112,7 @@ bool Model_Report::get_objects_from_sql(const wxString& query, PrettyWriter<Stri
 
                 switch (q.GetColumnType(i))
                 {
-                    json_writer.Key(column_name);
+                    json_writer.Key(column_name.c_str());
                     case WXSQLITE_INTEGER:
                         json_writer.Int(q.GetInt(i));
                         break;
@@ -120,7 +120,7 @@ bool Model_Report::get_objects_from_sql(const wxString& query, PrettyWriter<Stri
                         json_writer.Double(q.GetDouble(i));
                         break;
                     default:
-                        json_writer.String(q.GetString(i));
+                        json_writer.String(q.GetString(i).c_str());
                         break;
                 }
             }
@@ -134,7 +134,7 @@ bool Model_Report::get_objects_from_sql(const wxString& query, PrettyWriter<Stri
     catch (const wxSQLite3Exception& e)
     {
         json_writer.Key("msg");
-        json_writer.String(e.GetMessage());
+        json_writer.String(e.GetMessage().c_str());
         return false;
     }
 

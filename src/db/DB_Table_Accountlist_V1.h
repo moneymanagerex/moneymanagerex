@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -554,33 +554,33 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             json_writer.Key("ACCOUNTID");
             json_writer.Int(this->ACCOUNTID);
             json_writer.Key("ACCOUNTNAME");
-            json_writer.String(this->ACCOUNTNAME);
+            json_writer.String(this->ACCOUNTNAME.c_str());
             json_writer.Key("ACCOUNTTYPE");
-            json_writer.String(this->ACCOUNTTYPE);
+            json_writer.String(this->ACCOUNTTYPE.c_str());
             json_writer.Key("ACCOUNTNUM");
-            json_writer.String(this->ACCOUNTNUM);
+            json_writer.String(this->ACCOUNTNUM.c_str());
             json_writer.Key("STATUS");
-            json_writer.String(this->STATUS);
+            json_writer.String(this->STATUS.c_str());
             json_writer.Key("NOTES");
-            json_writer.String(this->NOTES);
+            json_writer.String(this->NOTES.c_str());
             json_writer.Key("HELDAT");
-            json_writer.String(this->HELDAT);
+            json_writer.String(this->HELDAT.c_str());
             json_writer.Key("WEBSITE");
-            json_writer.String(this->WEBSITE);
+            json_writer.String(this->WEBSITE.c_str());
             json_writer.Key("CONTACTINFO");
-            json_writer.String(this->CONTACTINFO);
+            json_writer.String(this->CONTACTINFO.c_str());
             json_writer.Key("ACCESSINFO");
-            json_writer.String(this->ACCESSINFO);
+            json_writer.String(this->ACCESSINFO.c_str());
             json_writer.Key("INITIALBAL");
             json_writer.Double(this->INITIALBAL);
             json_writer.Key("FAVORITEACCT");
-            json_writer.String(this->FAVORITEACCT);
+            json_writer.String(this->FAVORITEACCT.c_str());
             json_writer.Key("CURRENCYID");
             json_writer.Int(this->CURRENCYID);
             json_writer.Key("STATEMENTLOCKED");
             json_writer.Int(this->STATEMENTLOCKED);
             json_writer.Key("STATEMENTDATE");
-            json_writer.String(this->STATEMENTDATE);
+            json_writer.String(this->STATEMENTDATE.c_str());
             json_writer.Key("MINIMUMBALANCE");
             json_writer.Double(this->MINIMUMBALANCE);
             json_writer.Key("CREDITLIMIT");
@@ -588,7 +588,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             json_writer.Key("INTERESTRATE");
             json_writer.Double(this->INTERESTRATE);
             json_writer.Key("PAYMENTDUEDATE");
-            json_writer.String(this->PAYMENTDUEDATE);
+            json_writer.String(this->PAYMENTDUEDATE.c_str());
             json_writer.Key("MINIMUMPAYMENT");
             json_writer.Double(this->MINIMUMPAYMENT);
         }

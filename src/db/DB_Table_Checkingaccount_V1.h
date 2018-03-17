@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -460,21 +460,21 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             json_writer.Key("PAYEEID");
             json_writer.Int(this->PAYEEID);
             json_writer.Key("TRANSCODE");
-            json_writer.String(this->TRANSCODE);
+            json_writer.String(this->TRANSCODE.c_str());
             json_writer.Key("TRANSAMOUNT");
             json_writer.Double(this->TRANSAMOUNT);
             json_writer.Key("STATUS");
-            json_writer.String(this->STATUS);
+            json_writer.String(this->STATUS.c_str());
             json_writer.Key("TRANSACTIONNUMBER");
-            json_writer.String(this->TRANSACTIONNUMBER);
+            json_writer.String(this->TRANSACTIONNUMBER.c_str());
             json_writer.Key("NOTES");
-            json_writer.String(this->NOTES);
+            json_writer.String(this->NOTES.c_str());
             json_writer.Key("CATEGID");
             json_writer.Int(this->CATEGID);
             json_writer.Key("SUBCATEGID");
             json_writer.Int(this->SUBCATEGID);
             json_writer.Key("TRANSDATE");
-            json_writer.String(this->TRANSDATE);
+            json_writer.String(this->TRANSDATE.c_str());
             json_writer.Key("FOLLOWUPID");
             json_writer.Int(this->FOLLOWUPID);
             json_writer.Key("TOTRANSAMOUNT");

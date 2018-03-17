@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-02-16 22:44:47.531000.
+ *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -321,7 +321,7 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
             json_writer.Key("SHARECOMMISSION");
             json_writer.Double(this->SHARECOMMISSION);
             json_writer.Key("SHARELOT");
-            json_writer.String(this->SHARELOT);
+            json_writer.String(this->SHARELOT.c_str());
         }
 
         row_t to_row_t() const
