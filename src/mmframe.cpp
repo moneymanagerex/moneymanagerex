@@ -418,8 +418,9 @@ wxTreeItemId mmGUIFrame::getTreeItemfor(const wxTreeItemId& itemID, const wxStri
 bool mmGUIFrame::setAccountInSection(const wxString& sectionName, const wxString& accountName)
 {
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    bool accountNotFound = true;
-    wxTreeItemId rootItem = getTreeItemfor(m_nav_tree_ctrl->GetRootItem(), sectionName);
+    bool accountFound = false;
+    wxTreeItemId rootItem = getTreeItemfor(m_nav_tree_ctrl->GetRootItem()
+        , wxGetTranslation(sectionName));
     if (rootItem.IsOk() && m_nav_tree_ctrl->ItemHasChildren(rootItem))
     {
         m_nav_tree_ctrl->ExpandAllChildren(rootItem);
@@ -429,11 +430,11 @@ bool mmGUIFrame::setAccountInSection(const wxString& sectionName, const wxString
             // Set the NavTreeCtrl and prevent any event code being executed for now.
             m_nav_tree_ctrl->SelectItem(accountItem);
             //processPendingEvents();
-            accountNotFound = false;
+            accountFound = true;
         }
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-    return accountNotFound;
+    return accountFound;
 }
 
 //----------------------------------------------------------------------------
@@ -456,25 +457,14 @@ bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 //----------------------------------------------------------------------------
 void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 {
-    if (setAccountInSection(_("Bank Accounts"), accountName))
-    {
-        if (setAccountInSection(_("Credit Card Accounts"), accountName))
-        {
-            if (setAccountInSection(_("Term Accounts"), accountName))
-            {
-                if (setAccountInSection(_("Stock Portfolios"), accountName))
-                {
-                    if (setAccountInSection(_("Cash Accounts"), accountName))
-                    {
-                        if (setAccountInSection(_("Loan Accounts"), accountName))
-                        {
-                            setAccountInSection(_("Assets"), accountName);
-                        }
-                    }
-                }
-            }
-        }
-    }
+    if (setAccountInSection(wxTRANSLATE("Bank Accounts"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Credit Card Accounts"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Term Accounts"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Stock Portfolios"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Cash Accounts"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Loan Accounts"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Assets"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Crypto Wallets"), accountName)) return;
 }
 
 //----------------------------------------------------------------------------
