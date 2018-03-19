@@ -412,24 +412,31 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
         if (!amountMinEdit_->GetValue().Trim().IsEmpty() 
             && !amountMinEdit_->checkValue(m_min_amount, true))
         {
-            return;
+            return mmErrorDialogs::ToolTip4Object(amountMinEdit_
+                , _("Invalid value"), _("Amount"));
         }
 
         if (!amountMaxEdit_->GetValue().Trim().IsEmpty() 
             && !amountMaxEdit_->checkValue(m_max_amount, true))
 
         {
-            return;
+            return mmErrorDialogs::ToolTip4Object(amountMaxEdit_
+                , _("Invalid value"), _("Amount"));
         }
-
-        if (m_min_amount > m_max_amount)
-            return mmErrorDialogs::MessageInvalid(this, _("Amount"));
     }
 
     if (m_dateRangeCheckBox->IsChecked())
     {
         m_begin_date = m_fromDateCtrl->GetValue().FormatISODate();
         m_end_date = m_toDateControl->GetValue().FormatISODate();
+        if (m_begin_date > m_end_date)
+        {
+            const auto today = wxDate::Today().FormatISODate();
+            int id = m_begin_date >= today 
+                ? m_fromDateCtrl->GetId() : m_toDateControl->GetId();
+            return mmErrorDialogs::ToolTip4Object(FindWindow(id)
+                , _("Invalid value"), _("Date"));
+        }
     }
 
     // Save the settings for the allocated position
