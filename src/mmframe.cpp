@@ -868,7 +868,6 @@ void mmGUIFrame::updateNavTreeControl()
         if (!m_nav_tree_ctrl->ItemHasChildren(stocks)) m_nav_tree_ctrl->Delete(stocks);
         if (!m_nav_tree_ctrl->ItemHasChildren(cashAccounts)) m_nav_tree_ctrl->Delete(cashAccounts);
         if (!m_nav_tree_ctrl->ItemHasChildren(loanAccounts)) m_nav_tree_ctrl->Delete(loanAccounts);
-        if (!m_nav_tree_ctrl->ItemHasChildren(assets)) m_nav_tree_ctrl->Delete(assets);
         if (!m_nav_tree_ctrl->ItemHasChildren(cryptoAccounts)) m_nav_tree_ctrl->Delete(cryptoAccounts);
 
         if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts) || m_hide_share_accounts)
