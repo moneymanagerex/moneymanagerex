@@ -181,6 +181,10 @@ const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
     if (site_content(mmex::weblink::NewsRSS, RssContent) != CURLE_OK)
         return false;
 
+    //simple validation to avoid bug #1083
+    if (!RssContent.Contains("</rss>")) 
+        return false;
+
     wxStringInputStream RssContentStream(RssContent);
     wxXmlDocument RssDocument;
     if (!RssDocument.Load(RssContentStream))
