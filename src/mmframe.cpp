@@ -276,8 +276,11 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     }
 
     //Check for new version at startup
+    //TODO: fix bug #1323
+#if defined(_MSC_VER)
     if (Model_Setting::instance().GetBoolSetting("UPDATECHECK", true))
-        mmUpdate::checkUpdates(true,this);
+        mmUpdate::checkUpdates(true, this);
+#endif
 
     //Show appstart
     if (from_scratch || !dbpath.IsOk())
@@ -917,8 +920,13 @@ void mmGUIFrame::loadNavTreeItemsStatus()
 
         mmTreeItemData* iData =
             dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
-        if (iData && json::Boolean(o[iData->getString().ToStdWstring()]))
-            m_nav_tree_ctrl->Expand(next);
+
+        if (iData)
+        {
+            auto index = iData->getString().ToStdWstring();
+            if (!index.empty() && json::Boolean(o[index]))
+                m_nav_tree_ctrl->Expand(next);
+        }
     };
 
     SetEvtHandlerEnabled(true);
