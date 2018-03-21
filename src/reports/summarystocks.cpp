@@ -237,7 +237,7 @@ wxString mmReportChartStocks::getHTMLText()
                 if (histData.size() <= 30)
                     val.label = mmGetDateForDisplay(hist.DATE);
                 else if (precDateDt.IsValid() && dateDt.GetMonth() != precDateDt.GetMonth())
-                    val.label = dateDt.GetMonthName(dateDt.GetMonth());
+                    val.label = dateDt.GetEnglishMonthName(dateDt.GetMonth());
                 else
                     val.label = "";
                 val.amount = hist.VALUE;
