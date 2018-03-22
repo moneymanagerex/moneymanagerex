@@ -112,7 +112,7 @@ wxThread::ExitCode WebServerThread::Entry()
     }
     
     mg_set_protocol_http_websocket(nc);
-    std::string document_root(wxFileName(mmex::getReportFullName("index")).GetPath().c_str());
+    std::string document_root(wxFileName(mmex::getReportFullFileName("index")).GetPath().c_str());
     s_http_server_opts.document_root = document_root.c_str();
     s_http_server_opts.enable_directory_listing = "yes";
 

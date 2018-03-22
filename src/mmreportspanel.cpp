@@ -76,7 +76,7 @@ public:
                     {
                         m_reportPanel->rb_->getHTMLText();
                     }
-                    m_reportPanel->browser_->LoadURL(getURL(mmex::getReportFullName(this->GetName())));
+                    m_reportPanel->browser_->LoadURL(getURL(mmex::getReportFullFileName(this->GetName())));
                 }
             }
         }
@@ -88,7 +88,7 @@ public:
             if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
             {
                 mmAttachmentManage::OpenAttachmentFromPanelIcon(nullptr, RefType, RefId);
-                m_reportPanel->browser_->LoadURL(getURL(mmex::getReportFullName(this->GetName())));
+                m_reportPanel->browser_->LoadURL(getURL(mmex::getReportFullFileName(this->GetName())));
             }
         }
 
@@ -174,7 +174,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
 
     wxString error;
     if (saveReportText(error))
-        browser_->LoadURL(getURL(mmex::getReportFullName(rb_->file_name())));
+        browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
     else
         browser_->SetPage(error, "");
 
@@ -478,7 +478,7 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
         {
             wxString error;
             if (this->saveReportText(error, false))
-                browser_->LoadURL(getURL(mmex::getReportFullName(rb_->file_name())));
+                browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
             else
                 browser_->SetPage(error, "");
         }
@@ -497,7 +497,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& /*event*/)
 
             wxString error;
             if (this->saveReportText(error, false))
-                browser_->LoadURL(getURL(mmex::getReportFullName(rb_->file_name())));
+                browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
             else
                 browser_->SetPage(error, "");
         }
@@ -515,7 +515,7 @@ void mmReportsPanel::OnStartEndDateChanged(wxDateEvent& /*event*/)
 
         wxString error;
         if (this->saveReportText(error, false))
-            browser_->LoadURL(getURL(mmex::getReportFullName(rb_->file_name())));
+            browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
         else
             browser_->SetPage(error, "");
     }
@@ -552,7 +552,7 @@ void mmReportsPanel::OnChartChanged(wxCommandEvent& /*event*/)
 
             wxString error;
             if (this->saveReportText(error, false))
-                browser_->LoadURL(getURL(mmex::getReportFullName(rb_->file_name())));
+                browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
             else
                 browser_->SetPage(error, "");
         }

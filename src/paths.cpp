@@ -227,7 +227,7 @@ const wxString mmex::getTempFolder()
     return wxString::Format("%s%s%s%s", path, wxString(wxFILE_SEP_PATH), folder, wxString(wxFILE_SEP_PATH));
 }
 
-const wxString mmex::getReportFullName(const wxString& name)
+const wxString mmex::getReportFullFileName(const wxString& name)
 {
     return wxString::Format("%s%s%shtml", mmex::getTempFolder()
         , "index"

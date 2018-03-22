@@ -571,11 +571,11 @@ wxString Option::ReportFullName(int report)
     if ((report >= 0) && (report < ReportCount()))
     {
         ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
-        name = r->group;
+        name = wxGetTranslation(r->group);
         if (name.IsEmpty())
-            name = r->name;
+            name = wxGetTranslation(r->name);
         else
-            name += wxString(" (") + r->name + wxString(")");
+            name += wxString(" (") + wxGetTranslation(r->name) + wxString(")");
     }
     return name;
 }
