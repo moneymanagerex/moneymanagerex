@@ -215,17 +215,20 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
 const wxString Model_Currency::fromString2Default(const wxString &s, const Data* currency)
 {
     wxString str = s;
-    const Data* c = currency ? currency : Model_Currency::GetBaseCurrency();;
+    const auto bc = Model_Currency::GetBaseCurrency();
+    const Data* c = currency ? currency : bc;
 
-    if (!c->GROUP_SEPARATOR.empty())
-        str.Replace(c->GROUP_SEPARATOR, "");
-    if (!c->DECIMAL_POINT.empty())
-        str.Replace(c->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
+    if(c)
+    {
+        if (!c->GROUP_SEPARATOR.empty())
+            str.Replace(c->GROUP_SEPARATOR, "");
+        if (!c->DECIMAL_POINT.empty())
+            str.Replace(c->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
 
-    wxRegEx pattern(R"([^0-9.,+-\/\*\(\)])");
-    pattern.ReplaceAll(&str, "");
-    //wxLogDebug("%s = %s", s, str);
-    
+        wxRegEx pattern(R"([^0-9.,+-\/\*\(\)])");
+        pattern.ReplaceAll(&str, "");
+        //wxLogDebug("%s = %s", s, str);
+    }
     return str;
 }
 

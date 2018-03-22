@@ -245,13 +245,17 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
     if (!currency_name.empty() && m_currency->CURRENCYID == -1)
         return mmErrorDialogs::InvalidName(m_currencyName, true);
 
+    const wxString symbol = m_currencySymbol->GetValue().Trim();
+    if (name.empty() || symbol.empty())
+        return mmErrorDialogs::InvalidName(m_currencySymbol);
+
     const auto currency_symb = Model_Currency::instance()
-        .find(Model_Currency::CURRENCY_SYMBOL(m_currencyName->GetValue()));
+        .find(Model_Currency::CURRENCY_SYMBOL(symbol));
     if (!currency_symb.empty() && m_currency->CURRENCYID == -1)
         return mmErrorDialogs::InvalidSymbol(m_currencySymbol, true);
 
-    bool base_currency = (Model_Currency::GetBaseCurrency()->CURRENCYID == m_currency->CURRENCYID);
-    if (!base_currency)
+    const auto bc = Model_Currency::GetBaseCurrency();
+    if (bc != m_currency)
     {
         if (m_base_conv_rate->Calculate(SCALE))
             m_base_conv_rate->GetDouble(m_currency->BASECONVRATE);
@@ -264,17 +268,17 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
     else
         m_currency->BASECONVRATE = 1;
     
-    if ((m_currency->GROUP_SEPARATOR == m_currency->DECIMAL_POINT)
-        || (!wxString(" .,").Contains(m_currency->GROUP_SEPARATOR)))
-        return mmErrorDialogs::ToolTip4Object(grpTx_
-            , _("Invalid Entry")
-            , _("Grouping Char"));
-
     if (!wxString(".,").Contains(m_currency->DECIMAL_POINT)
         || m_currency->DECIMAL_POINT.empty())
         return mmErrorDialogs::ToolTip4Object(decTx_
             , _("Invalid Entry")
             , _("Decimal Char"));
+
+    if ((m_currency->GROUP_SEPARATOR == m_currency->DECIMAL_POINT)
+        || (!wxString(" .,").Contains(m_currency->GROUP_SEPARATOR)))
+        return mmErrorDialogs::ToolTip4Object(grpTx_
+            , _("Invalid Entry")
+            , _("Grouping Char"));
 
     Model_Currency::instance().save(m_currency);
     EndModal(wxID_OK);
