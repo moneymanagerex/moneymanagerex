@@ -281,8 +281,8 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
     else
         m_currency->BASECONVRATE = 1;
     
-    if (!wxString(".,").Contains(m_currency->DECIMAL_POINT)
-        || m_currency->DECIMAL_POINT.empty())
+    if (m_currency->DECIMAL_POINT.empty()
+        || !wxString(".,").Contains(m_currency->DECIMAL_POINT))
         return mmErrorDialogs::ToolTip4Object(decTx_
             , _("Invalid Entry")
             , _("Decimal Char"));
