@@ -51,9 +51,8 @@ mmCurrencyDialog::~mmCurrencyDialog()
 }
 
 mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent
-    , Model_Currency::Data * currency)
-    : m_currency(currency)
-        , m_scale(SCALE)
+    , const Model_Currency::Data * currency)
+        : m_scale(SCALE)
         , m_currencyName(nullptr)
         , m_sample_text(nullptr)
         , m_currencySymbol(nullptr)
@@ -66,7 +65,13 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent
         , centTx_(nullptr)
         , scaleTx_(nullptr)
 {
-    if (!m_currency)
+
+    if (currency)
+    {
+        m_currency = Model_Currency::instance().clone(currency);
+        m_currency->CURRENCYID = currency->CURRENCYID;
+    }
+    else
     {
         m_currency = Model_Currency::instance().create();
         m_currency->BASECONVRATE = 1;
@@ -181,15 +186,23 @@ void mmCurrencyDialog::CreateControls()
     sfxTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, "");
     itemFlexGridSizer3->Add(sfxTx_, g_flagsExpand);
 
+    wxTextValidator valid(wxFILTER_INCLUDE_CHAR_LIST);
+    wxArrayString chars;
+    chars.Add(".");
+    chars.Add(",");
+    valid.SetIncludes(chars);
+
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC
         , _("Decimal Char")), g_flagsH);
-    decTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, "");
+    decTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, ""
+        , wxDefaultPosition, wxDefaultSize, 0L, valid );
     decTx_->SetMaxLength(1);
     itemFlexGridSizer3->Add(decTx_, g_flagsExpand);
 
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC
         , _("Grouping Char")), g_flagsH);
-    grpTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, "");
+    grpTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, ""
+        , wxDefaultPosition, wxDefaultSize, 0L, valid);
     grpTx_->SetMaxLength(1);
     itemFlexGridSizer3->Add(grpTx_, g_flagsExpand);
 

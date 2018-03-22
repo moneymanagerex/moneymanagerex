@@ -38,7 +38,7 @@ class mmCurrencyDialog : public wxDialog
 public:
     mmCurrencyDialog();
     ~mmCurrencyDialog();
-    mmCurrencyDialog(wxWindow* parent, Model_Currency::Data * currency);
+    mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data * currency);
 
     int getCurrencyID() { return m_currency->CURRENCYID; };
 
