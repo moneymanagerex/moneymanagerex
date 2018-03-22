@@ -50,6 +50,7 @@ const wxString getProgramName();
 const wxString getTitleProgramVersion();
 const wxString getProgramCopyright();
 const wxString getProgramDescription();
+const wxString getCaption(const wxString& caption);
 
 /*************************************************************************
  MMEX_VERSION

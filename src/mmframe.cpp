@@ -1934,8 +1934,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         // Mantained only for really old compatibility reason and replaced by dbupgrade.cpp
         if (!Model_Infotable::instance().checkDBVersion())
         {
-            const wxString note = wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), _("No File opened"));
-            this->SetTitle(note);
+            this->SetTitle(mmex::getCaption(_("No File opened")));
             wxMessageBox(_("Sorry. The Database version is too old or Database password is incorrect")
                 , dialogErrorMessageHeading
                 , wxOK | wxICON_EXCLAMATION);
@@ -1976,8 +1975,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
     }
     else // open of existing database failed
     {
-        const wxString note = wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), _("No File opened"));
-        this->SetTitle(note);
+        this->SetTitle(mmex::getCaption(_("No File opened")));
 
         wxString msgStr = _("Cannot locate previously opened database.\n");
         if (!passwordCheckPassed)
@@ -1997,11 +1995,8 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
 void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
 {
-    wxString title = wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), fileName);
-    if (mmex::isPortableMode())
-        title = wxString::Format(_("%1$s - %2$s"), title,  (" [" + _("portable mode") + ']'));
-
-    SetTitle(title);
+    SetTitle(mmex::getCaption(fileName +
+        (mmex::isPortableMode() ? " " + _("[portable mode]") : "")));
 
     if (m_db)
     {

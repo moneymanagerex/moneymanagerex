@@ -134,7 +134,7 @@ private:
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2);
 const wxString inQuotes(const wxString& label, const wxString& delimiter);
 void csv2tab_separated_values(wxString& line, const wxString& delimit);
-void correctEmptyFileExt(const wxString& ext, wxString & fileName );
+void correctEmptyFileExt(const wxString& ext, wxString & fileName);
 
 void mmLoadColorsFromDatabase();
 

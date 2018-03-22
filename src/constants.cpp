@@ -159,6 +159,11 @@ const wxString mmex::getProgramDescription()
     return description;
 }
 
+const wxString mmex::getCaption(const wxString& caption)
+{
+    return mmex::getProgramName() + " - " + caption;
+}
+
 /* Namespace weblink */
 const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wxString& CampSource)
 {
