@@ -29,6 +29,24 @@
 #include <map>
 //----------------------------------------------------------------------------
 
+const wxString JSON_PrettyFormated(const Document& j_doc)
+{
+    StringBuffer j_buffer;
+    PrettyWriter<StringBuffer> j_writer(j_buffer);
+    j_doc.Accept(j_writer);
+
+    return j_buffer.GetString();
+}
+
+const wxString JSON_Formated(const Document& j_doc)
+{
+    StringBuffer j_buffer;
+    Writer<StringBuffer> j_writer(j_buffer);
+    j_doc.Accept(j_writer);
+
+    return j_buffer.GetString();
+}
+
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
 {
     return s1.CmpNoCase(s2);
