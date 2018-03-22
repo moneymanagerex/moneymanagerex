@@ -412,7 +412,7 @@ void mmReportsPanel::CreateControls()
             for (const auto& e : Model_Account::instance().TYPE_CHOICES)
             {
                 if (e.first != Model_Account::INVESTMENT)
-                    m_accounts->Append(e.second);
+                    m_accounts->Append(wxGetTranslation(e.second));
             }
             m_accounts->SetSelection(rb_->getAccountSelection());
 
