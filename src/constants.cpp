@@ -77,7 +77,7 @@ const wxString mmex::getProgramName()
 }
 const wxString mmex::getTitleProgramVersion()
 {
-    return wxString::Format(_("Version: %s"), mmex::version::string);
+    return _("Version: ") + mmex::version::string;
 }
 
 const wxString mmex::getProgramCopyright()
@@ -97,12 +97,13 @@ const wxString mmex::getProgramDescription()
         curl.Replace("/", " ");
 
     description << mmex::getTitleProgramVersion() << "\n"
-        << wxString::Format(_("Database version supported: %i"), dbLatestVersion) << "\n"
+        << _("Database version supported: ") << dbLatestVersion << "\n"
 #ifdef GIT_COMMIT_HASH
-        << wxString::Format(_("Git commit: %s (%s)"), GIT_COMMIT_HASH, GIT_COMMIT_DATE) << "\n"
+        << _("Git commit: ") << GIT_COMMIT_HASH
+        << " (" << GIT_COMMIT_DATE << ")\n"
 #endif
 #ifdef GIT_BRANCH
-        << wxString::Format(_("Git branch: %s"), GIT_BRANCH) << "\n"
+        << _("Git branch: ") << GIT_BRANCH << "\n"
 #endif
 
         << "\n" << _("MMEX is using the following support products:") << "\n"
@@ -117,7 +118,7 @@ const wxString mmex::getProgramDescription()
         << bull + LUA_RELEASE << "\n"
         << bull + curl << "\n\n"
 
-        << wxString::Format(_("Build on %s %s with:"), __DATE__, __TIME__) << "\n"
+        << _("Build on") << " " << __DATE__ << " " << __TIME__  << " " << _("with:") << "\n"
         << bull + CMAKE_VERSION << "\n"
         << bull + MAKE_VERSION << "\n"
         << bull + GETTEXT_VERSION << "\n"
@@ -147,7 +148,7 @@ const wxString mmex::getProgramDescription()
         << bull + wxPlatformInfo::Get().GetDesktopEnvironment()
         << " " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
         << " (" << wxLocale::GetSystemEncodingName() << ")\n"
-        << wxString::Format(bull + "%ix%ix%ibit %ix%ippi\n",
+        << wxString::Format(bull + "%ix%i %ibit %ix%ippi\n",
             wxGetDisplaySize().GetX(),
             wxGetDisplaySize().GetY(),
             wxDisplayDepth(),
