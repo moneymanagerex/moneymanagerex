@@ -604,7 +604,7 @@ void mmStocksPanel::CreateControls()
     attachment_button_->Enable(false);
 
     refresh_button_ = new wxBitmapButton(BottomPanel
-        , wxID_REFRESH, mmBitmap (png::LED_OFF), wxDefaultPosition, wxSize(30, bMove->GetSize().GetY()));
+        , wxID_REFRESH, mmBitmap (png::CURRATES), wxDefaultPosition, wxSize(30, bMove->GetSize().GetY()));
     refresh_button_->SetLabelText(_("Refresh"));
     refresh_button_->SetToolTip(_("Refresh Stock Prices from Yahoo"));
     BoxSizerHBottom->Add(refresh_button_, 0, wxRIGHT, 5);
@@ -801,6 +801,7 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
     wxString output = "";
     if (onlineQuoteRefresh(output))
     {
+        refresh_button_->SetBitmapLabel(mmBitmap(png::LED_GREEN));
         const wxString header = _("Stock prices successfully updated");
         stock_details_->SetLabelText(header);
         stock_details_short_->SetLabelText(wxString::Format(_("Last updated %s"), strLastUpdate_));
@@ -877,7 +878,6 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
     // We are done!
     LastRefreshDT_       = wxDateTime::Now();
     StocksRefreshStatus_ = true;
-    refresh_button_->SetBitmapLabel(mmBitmap(png::LED_GREEN));
 
     strLastUpdate_.Printf(_("%s on %s"), LastRefreshDT_.FormatTime()
         , mmGetDateForDisplay(LastRefreshDT_.FormatISODate()));
