@@ -405,7 +405,7 @@ void mmReportsPanel::CreateControls()
             itemStaticTextH1->SetFont(this->GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(5);
-            itemStaticTextH1->SetLabel(_("Accounts:"));
+            itemStaticTextH1->SetLabel(_("Accounts: "));
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
             m_accounts->Append(_("All Accounts"));
             m_accounts->Append(_("Specific Accounts"));

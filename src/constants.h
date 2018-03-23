@@ -112,6 +112,7 @@ extern const wxString VIEW_TRANS_CURRENT_YEAR_STR;
 extern const wxString VIEW_TRANS_CURRENT_FIN_YEAR_STR;
 extern const wxString VIEW_TRANS_LAST_YEAR_STR;
 extern const wxString VIEW_TRANS_LAST_FIN_YEAR_STR;
+extern const wxString VIEW_TRANS_SINCE_STATEMENT_STR;
 
 extern const wxString VIEW_ACCOUNTS_ALL_STR;
 extern const wxString VIEW_ACCOUNTS_OPEN_STR;

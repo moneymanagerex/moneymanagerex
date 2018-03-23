@@ -150,7 +150,7 @@ void mmAppStartDialog::CreateControls()
     }
     else
     {
-        itemButton61->SetToolTip(wxString::Format(_("Open the previously opened database : %s"), val));
+        itemButton61->SetToolTip(wxString::Format(_("Open the previously opened database: %s"), val));
     }
 }
 
