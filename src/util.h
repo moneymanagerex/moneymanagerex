@@ -25,6 +25,12 @@
 #include <curl/curl.h>
 #include <map>
 
+//Returns a JSON formatted string in readable form
+const wxString JSON_PrettyFormated(const Document& j_doc);
+//Returns a JSON formatted string from RapidJson DOM
+const wxString JSON_Formated(const Document& j_doc);
+
+
 class mmGUIApp;
 struct ValuePair
 {
