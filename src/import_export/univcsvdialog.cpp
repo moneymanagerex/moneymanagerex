@@ -769,7 +769,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
     for (long lineNum = firstRow; lineNum < lastRow; lineNum++)
     {
-        const wxString& progressMsg = wxString::Format(_("Transactions imported to account %s : %ld")
+        const wxString& progressMsg = wxString::Format(_("Transactions imported to account %s: %ld")
             , "'" + acctName + "'", countImported);
         if (!progressDlg.Update(lineNum-firstRow,progressMsg))
         {
@@ -831,18 +831,18 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
     wxDELETE(pParser);
     progressDlg.Update(linesToImport);
 
-    wxString msg = wxString::Format(_("Total Lines : %ld"), totalLines);
+    wxString msg = wxString::Format(_("Total Lines: %ld"), totalLines);
     msg << "\n";
     msg << wxString::Format(_("Lines Selected to Import: %ld"), linesToImport);
     msg << "\n\n";
-    msg << wxString::Format(_("Empty Lines : %ld"), countEmptyLines);
+    msg << wxString::Format(_("Empty Lines: %ld"), countEmptyLines);
     msg << "\n";
-    msg << wxString::Format(_("Imported : %ld"), countImported);
+    msg << wxString::Format(_("Imported: %ld"), countImported);
     msg << "\n";
-    msg << wxString::Format(_("Errored : %ld")
+    msg << wxString::Format(_("Errored: %ld")
         , linesToImport-countEmptyLines-countImported);
     msg << "\n\n";
-    msg << wxString::Format(_("Log file written to : %s"), logFile.GetFullPath());
+    msg << wxString::Format(_("Log file written to: %s"), logFile.GetFullPath());
 
     if (!canceledbyuser && wxMessageBox(
         msg + (countImported > 0 ? "\n\n" + _("Please confirm saving...") : "")

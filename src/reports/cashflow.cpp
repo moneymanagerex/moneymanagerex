@@ -228,7 +228,7 @@ wxString mmReportCashFlow::getHTMLText_i()
     
     if (accountsMsg.empty())
         accountsMsg = _("None");
-    accountsMsg = wxString::Format(_("Accounts: %s"), accountsMsg);
+    accountsMsg.Prepend(_("Accounts: "));
 
     hb.addHeader(2, accountsMsg);
     hb.addDateNow();

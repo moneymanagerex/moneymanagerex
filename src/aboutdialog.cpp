@@ -97,7 +97,7 @@ void mmAboutDialog::InitControls()
     {
         wxFileInputStream input(filePath);
         wxTextInputStream text(input);
-        wxRegEx link ("\\[([^][]+)\\]\\(([^\\(\\)]+)\\)", wxRE_EXTENDED);
+        wxRegEx link (R"(\[([^][]+)\]\(([^\(\)]+)\))", wxRE_EXTENDED);
 
         while (input.IsOk() && !input.Eof())
         {

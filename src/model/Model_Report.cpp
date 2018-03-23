@@ -442,7 +442,7 @@ bool Model_Report::WindowsUpdateRegistry()
 bool Model_Report::outputReportFile(const wxString& str, const wxString& name)
 {
     bool ok = true;
-    wxFileOutputStream index_output(mmex::getReportFullName(name));
+    wxFileOutputStream index_output(mmex::getReportFullFileName(name));
     if (index_output.IsOk())
     {
         wxTextOutputStream index_file(index_output);

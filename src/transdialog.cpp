@@ -832,7 +832,7 @@ void mmTransDialog::OnDateChanged(wxDateEvent& event)
     wxDateTime date = dpc_->GetValue();
     if (event.GetDate().IsValid())
     {
-        itemStaticTextWeek_->SetLabelText(wxGetTranslation(date.GetWeekDayName(date.GetWeekDay())));
+        itemStaticTextWeek_->SetLabelText(wxGetTranslation(date.GetEnglishWeekDayName(date.GetWeekDay())));
         m_trx_data.TRANSDATE = date.FormatISODate();
     }
 }

@@ -128,7 +128,7 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
     wxString textMsg = "\n";
     textMsg << _("Select the type of account you want to create:") << "\n\n"
             << _("General bank accounts cover a wide variety of account\n"
-            "types like Checking, Savings and Credit card type accounts.");
+            "types like Checking, Savings etc.");
     mainSizer->Add(new wxStaticText(this, wxID_ANY, textMsg), 0, wxALL, 5);
 
     textMsg = "\n";

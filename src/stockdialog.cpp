@@ -639,9 +639,9 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
 
         progressDlg->Destroy();       
 
-        wxString msg = wxString::Format(_("Total Lines : %ld"), countNumTotal); 
+        wxString msg = wxString::Format(_("Total Lines: %ld"), countNumTotal); 
         msg << "\n";
-        msg << wxString::Format(_("Total Imported : %ld"), countImported); 
+        msg << wxString::Format(_("Total Imported: %ld"), countImported); 
         msg << "\n";
         msg << _("Date") << "              " << _("Price");
         msg << "\n";

@@ -264,19 +264,19 @@ private:
     static wxArrayString menu_labels()
     {
         wxArrayString items;
-        items.Add(wxTRANSLATE("View All Transactions"));
-        items.Add(wxTRANSLATE("View Today"));
-        items.Add(wxTRANSLATE("View Current Month"));
-        items.Add(wxTRANSLATE("View Last 30 days"));
-        items.Add(wxTRANSLATE("View Last 90 days"));
-        items.Add(wxTRANSLATE("View Last Month"));
-        items.Add(wxTRANSLATE("View Last 3 Months"));
-        items.Add(wxTRANSLATE("View Last 12 Months"));
-        items.Add(wxTRANSLATE("View Current Year"));
-        items.Add(wxTRANSLATE("View Current Financial Year"));
-        items.Add(wxTRANSLATE("View Last Year"));
-        items.Add(wxTRANSLATE("View Last Financial Year"));
-        items.Add(wxTRANSLATE("View Since Statement Date"));
+        items.Add(VIEW_TRANS_ALL_STR);
+        items.Add(VIEW_TRANS_TODAY_STR);
+        items.Add(VIEW_TRANS_CURRENT_MONTH_STR);
+        items.Add(VIEW_TRANS_LAST_30_DAYS_STR);
+        items.Add(VIEW_TRANS_LAST_90_DAYS_STR);
+        items.Add(VIEW_TRANS_LAST_MONTH_STR);
+        items.Add(VIEW_TRANS_LAST_3MONTHS_STR);
+        items.Add(VIEW_TRANS_LAST_12MONTHS_STR);
+        items.Add(VIEW_TRANS_CURRENT_YEAR_STR);
+        items.Add(VIEW_TRANS_CURRENT_FIN_YEAR_STR);
+        items.Add(VIEW_TRANS_LAST_YEAR_STR);
+        items.Add(VIEW_TRANS_LAST_FIN_YEAR_STR);
+        items.Add(VIEW_TRANS_SINCE_STATEMENT_STR);
         return items;
     }
     wxDECLARE_EVENT_TABLE();
