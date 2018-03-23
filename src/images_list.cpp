@@ -275,7 +275,7 @@ const wxBitmap mmBitmap(int ref)
     case UPARROW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(uparrow) : x == 24 ? wxBITMAP_PNG_FROM_DATA(uparrow24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(uparrow32) : wxBITMAP_PNG_FROM_DATA(uparrow48);
     case DOWNARROW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(downarrow) : x == 24 ? wxBITMAP_PNG_FROM_DATA(downarrow24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(downarrow32) : wxBITMAP_PNG_FROM_DATA(downarrow48);
     case IMPORT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(import) : x == 24 ? wxBITMAP_PNG_FROM_DATA(import24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(import32) : wxBITMAP_PNG_FROM_DATA(import48);
-    case LED_OFF: return x == 16 ? wxBITMAP_PNG_FROM_DATA(led_off) : x == 24 ? wxBITMAP_PNG_FROM_DATA(led_off24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(led_off32) : wxBITMAP_PNG_FROM_DATA(led_off48);
+    // case LED_OFF: return x == 16 ? wxBITMAP_PNG_FROM_DATA(led_off) : x == 24 ? wxBITMAP_PNG_FROM_DATA(led_off24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(led_off32) : wxBITMAP_PNG_FROM_DATA(led_off48);
     case LED_RED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(led_red) : x == 24 ? wxBITMAP_PNG_FROM_DATA(led_red24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(led_red32) : wxBITMAP_PNG_FROM_DATA(led_red48);
     case LED_YELLOW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(led_yellow) : x == 24 ? wxBITMAP_PNG_FROM_DATA(led_yellow24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(led_yellow32) : wxBITMAP_PNG_FROM_DATA(led_yellow48);
     case LED_GREEN: return x == 16 ? wxBITMAP_PNG_FROM_DATA(led_green) : x == 24 ? wxBITMAP_PNG_FROM_DATA(led_green24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(led_green32) : wxBITMAP_PNG_FROM_DATA(led_green48);
