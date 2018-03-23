@@ -177,38 +177,32 @@ wxString Model_Currency::toCurrency(double value, const Data* currency, int prec
     return d2s;
 }
 
-wxString Model_Currency::os_group_separator()
-{
-    wxString sys_thousand_separator = " ";
-    wxChar sep = ' ';
-    if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
-        sys_thousand_separator = wxString::Format("%c", sep);
-    return sys_thousand_separator;
-}
-
 wxString Model_Currency::toStringNoFormatting(double value, const Data* currency, int precision)
 {
     precision = (precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2));
-    int style = wxNumberFormatter::Style_None;
-    wxString s = wxNumberFormatter::ToString(value, precision, style);
-    if (s == "-0.00") s = "0.00";
-    else if (s == "-0.0") s = "0.0";
+    wxString s = wxString::FromCDouble(value, precision);
+
+    // remove minus from -0 or -0.0000 that comes from printf("%.Nf")
+    wxRegEx re ("^-(?=0(\\.0+)?$)", wxRE_ADVANCED);
+    re.Replace(&s, wxEmptyString);
     return s;
 }
 wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
-    precision = (precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2));
-    int style = wxNumberFormatter::Style_WithThousandsSep;
-    wxString s = wxNumberFormatter::ToString(value, precision, style);
-    if (s == "-0.00") s = "0.00";
-    else if (s == "-0.0") s = "0.0";
-    if (currency)
+    wxString sep = currency ? currency->DECIMAL_POINT : ".",
+        s = Model_Currency::toStringNoFormatting(value, currency, precision);
+
+    if (sep!=".") // protect decimal point
     {
-        s.Replace(os_group_separator(), "\t");
-        s.Replace(wxNumberFormatter::GetDecimalSeparator(), "\x05");
-        s.Replace("\t", currency->GROUP_SEPARATOR);
-        s.Replace("\x05", currency->DECIMAL_POINT);
+        sep="\t";
+        s.Replace(".", sep);
     }
+
+    // add proper group separator
+    wxRegEx re ("(\\d)(?=(\\d{3})+[" + sep + "$])", wxRE_ADVANCED);
+    re.Replace(&s, "\\1" + (currency ? currency->GROUP_SEPARATOR : ","));
+
+    if (sep!=".") s.Replace(sep, currency->DECIMAL_POINT);
     return s;
 }
 

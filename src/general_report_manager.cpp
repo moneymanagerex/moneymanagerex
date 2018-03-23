@@ -651,7 +651,7 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
 
         mmGeneralReport gr(report); //TODO: limit 500 line
         if (Model_Report::outputReportFile(gr.getHTMLText(), "grm"))
-            m_outputHTML->LoadURL(getURL(mmex::getReportFullName("grm")));
+            m_outputHTML->LoadURL(getURL(mmex::getReportFullFileName("grm")));
         else
             m_outputHTML->SetPage(_("Error"), "");
     }

@@ -66,9 +66,8 @@ void mmHelpPanel::CreateControls()
     wxButton* buttonBack     = new wxButton(itemPanel3, wxID_BACKWARD, _("&Back"));
     wxButton* buttonFordward = new wxButton(itemPanel3, wxID_FORWARD, _("&Forward") );
 
-    wxString helpHeader = wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), _("Help"));
     wxStaticText* itemStaticText9 = new wxStaticText(itemPanel3, wxID_ANY
-        , helpHeader);
+        , mmex::getCaption(_("Help")));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
 
     itemBoxSizerHeader->Add(buttonBack, 0, wxLEFT, 5);

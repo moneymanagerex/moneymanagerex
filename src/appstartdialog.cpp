@@ -44,9 +44,9 @@ mmAppStartDialog::mmAppStartDialog(wxWindow* parent, const wxString& name)
     , m_buttonExit(nullptr)
     , m_buttonClose(nullptr)
 {
-    wxString caption = wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), mmex::getTitleProgramVersion());
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, caption, wxDefaultPosition, wxSize(400, 300), style, name);
+    Create(parent, wxID_ANY, mmex::getCaption(mmex::getTitleProgramVersion()),
+        wxDefaultPosition, wxSize(400, 300), style, name);
 }
 
 bool mmAppStartDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
@@ -150,7 +150,7 @@ void mmAppStartDialog::CreateControls()
     }
     else
     {
-        itemButton61->SetToolTip(wxString::Format(_("Open the previously opened database : %s"), val));
+        itemButton61->SetToolTip(wxString::Format(_("Open the previously opened database: %s"), val));
     }
 }
 
