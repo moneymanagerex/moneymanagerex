@@ -174,7 +174,7 @@ void OptionSettingsAttachment::Create()
 void OptionSettingsAttachment::OnAttachmentsButton(wxCommandEvent& /*event*/)
 {
     wxMenu * attachmentsMenu = new wxMenu;
-    wxMenuItem* menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST, _("System documents directory"));
+    wxMenuItem* menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST, _("User documents directory"));
     attachmentsMenu->Append(menuItem);
     menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST + 1, _("Application data directory"));
     attachmentsMenu->Append(menuItem);
