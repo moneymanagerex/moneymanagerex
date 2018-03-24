@@ -15,9 +15,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
-
-#ifndef MODEL_CUSTOMFIELD_H
-#define MODEL_CUSTOMFIELD_H
+#pragma once
 
 #include "Model.h"
 #include "db/DB_Table_Customfield_V1.h"
@@ -62,5 +60,3 @@ public:
     static wxArrayString getChoices(const wxString& Properties);
     static wxString formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choices);
 };
-
-#endif // 

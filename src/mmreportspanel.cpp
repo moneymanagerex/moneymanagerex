@@ -235,19 +235,29 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
                     , *reinterpret_cast<int*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
         }
 
-        json::Object o;
-        o[L"module"] = json::String(L"Report");
-        o[L"name"] = json::String(rb_->title().ToStdWstring());
-        o[L"start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
+        StringBuffer json_buffer;
+        Writer<StringBuffer> json_writer(json_buffer);
+
+        json_writer.StartObject();
+        json_writer.Key("module");
+        json_writer.String("Report");
+        json_writer.Key("name");
+        json_writer.String(rb_->title().c_str());
+        json_writer.Key("start");
+        json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
         const auto file_name = rb_->file_name();
         wxLogDebug("Report File Name: %s", file_name);
         if (!Model_Report::outputReportFile(rb_->getHTMLText(), file_name))
             error = _("Error");
 
-        o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdWstring());
-        Model_Usage::instance().append(o);
+        json_writer.Key("end");
+        json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
+        json_writer.EndObject();
+
+        Model_Usage::instance().AppendToUsage(json_buffer.GetString());
     }
+
     return error.empty();
 }
 

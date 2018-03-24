@@ -12,6 +12,7 @@ import codecs
 
 currency_unicode_patch_filename = 'currency_table_unicode_fix_patch.mmdbg'
 currency_table_patch_filename = 'currency_table_upgrade_patch.mmdbg'
+sql_tables_data_filename = 'sql_tables_v1.sql'
 
 # http://stackoverflow.com/questions/196345/how-to-check-if-a-string-in-python-is-in-ascii
 def is_ascii(s):
@@ -159,10 +160,7 @@ class DB_Table:
         if self._table.upper() == 'CURRENCYFORMATS_V1':
             utfc = '#pragma execution_character_set("UTF-8")\n'
 
-        s = '''
-%s
-#ifndef DB_TABLE_%s_H
-#define DB_TABLE_%s_H
+        s = '''%s#pragma once
 
 #include "DB_Table.h"
 
@@ -170,22 +168,29 @@ struct DB_Table_%s : public DB_Table
 {
     struct Data;
     typedef DB_Table_%s Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
+        /**Return the data records as a json array string */
+        wxString to_json() const
         {
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+            json_writer.StartArray();
             for (const auto & item: *this)
             {
-                json::Object o;
-                item.to_json(o);
-                a.Insert(o);
+                json_writer.StartObject();
+                item.as_json(json_writer);
+                json_writer.EndObject();
             }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
+            json_writer.EndArray();
+
+            return json_buffer.GetString();
         }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -207,7 +212,7 @@ struct DB_Table_%s : public DB_Table
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
-''' % (utfc, self._table.upper(), self._table.upper(), self._table, self._table, self._table)
+''' % (utfc, self._table, self._table, self._table)
 
         s += '''
     /** Creates the database table if the table does not exist*/
@@ -287,7 +292,8 @@ struct DB_Table_%s : public DB_Table
     { 
         static wxString name() { return "%s"; } 
         explicit %s(const %s &v, OP op = EQUAL): DB_Column<%s>(v, op) {}
-    };''' % (field['name'], base_data_types_reverse[field['type']], field['name'],
+    };
+    ''' % (field['name'], base_data_types_reverse[field['type']], field['name'],
              field['name'], base_data_types_reverse[field['type']],
              base_data_types_reverse[field['type']])
 
@@ -354,12 +360,22 @@ struct DB_Table_%s : public DB_Table
             field['name'], field['pk'] and '//  primary key' or '')
 
         s += '''
-        int id() const { return %s; }
-        void id(int id) { %s = id; }
+
+        int id() const
+        {
+            return %s;
+        }
+
+        void id(int id)
+        {
+            %s = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -420,44 +436,59 @@ struct DB_Table_%s : public DB_Table
             ftype = base_data_types_reverse[field['type']]
             if ftype == 'wxString':
                 s += '''
+
         bool match(const Self::%s &in) const
         {
             return this->%s.CmpNoCase(in.v_) == 0;
         }''' % (field['name'], field['name'])
             else:
                 s += '''
+
         bool match(const Self::%s &in) const
         {
             return this->%s == in.v_;
         }''' % (field['name'], field['name'])
 
         s += '''
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->to_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
-        }
-        
-        int to_json(json::Object& o) const
-        {'''
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
 
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
+        }
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
+        {'''
         for field in self._fields:
             type = base_data_types_reverse[field['type']]
-            if type == 'wxString':
+            if type == 'int':
                 s += '''
-            o[L"%s"] = json::String(this->%s.ToStdWstring());''' % (field['name'], field['name'])
+            json_writer.Key("%s");
+            json_writer.Int(this->%s);''' % (field['name'], field['name'])
+            elif type == 'double':
+                s += '''
+            json_writer.Key("%s");
+            json_writer.Double(this->%s);''' % (field['name'], field['name'])
+            elif type == 'wxString':
+                s += '''
+            json_writer.Key("%s");
+            json_writer.String(this->%s.c_str());''' % (field['name'], field['name'])
             else:
-                s += '''
-            o[L"%s"] = json::Number(this->%s);''' % (field['name'], field['name'])
+                assert "Field type Error"
 
         s += '''
-            return 0;
         }'''
 
         s += '''
+
         row_t to_row_t() const
         {
             row_t row;'''
@@ -470,6 +501,7 @@ struct DB_Table_%s : public DB_Table
         }'''
 
         s += '''
+
         void to_template(html_template& t) const
         {'''
         for field in self._fields:
@@ -508,8 +540,6 @@ struct DB_Table_%s : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -769,16 +799,14 @@ struct DB_Table_%s : public DB_Table
     }
 '''
         s += '''};
-#endif //
+
 '''
         return s
 
 def generate_base_class(header, fields=set):
     """Generate the base class"""
     rfp = open('DB_Table.h', 'wb')
-    code = header + '''
-#ifndef DB_TABLE_H
-#define DB_TABLE_H
+    code = header + '''#pragma once
 
 #include <vector>
 #include <map>
@@ -790,11 +818,19 @@ def generate_base_class(header, fields=set):
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
 #include "cajun/json/writer.h"
+
+#include "rapidjson/document.h"
+#include "rapidjson/pointer.h"
+#include "rapidjson/prettywriter.h"
+#include "rapidjson/stringbuffer.h"
+using namespace rapidjson;
+
 #include "html_template.h"
 using namespace tmpl;
 
 class wxString;
 enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };
+
 template<class V>
 struct DB_Column
 {
@@ -928,9 +964,6 @@ struct SorterBy%s
 };
 ''' % (field, field, field)
 
-    code += '''
-#endif // 
-'''
     rfp = open('db_table.h', 'w')
     rfp.write(code)
     rfp.close()
@@ -939,8 +972,8 @@ if __name__ == '__main__':
     header = '''// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - %s Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - %s Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -966,8 +999,26 @@ if __name__ == '__main__':
         sys.exit(1)
 
     sql = ""
+    sql_txt = '''-- NOTE:
+-- This file has been AUTO GENERATED from database/tables_v1.sql
+-- All translation identifers "_tr_" have been removed.
+-- This file can be used to manually generate a database.
+
+'''
+
     for line in open(sql_file, 'rb'):
         sql = sql + line
+
+        if line.find('_tr_') > 0: # Remove _tr_ identifyer for wxTRANSLATE
+            line = line.replace('_tr_', '')
+
+        sql_txt = sql_txt + line
+    
+    # Generate a table that does not contain translation code identifyer
+    print 'Generate SQL file: %s that can generate a clean database.' % sql_tables_data_filename
+    file_data = codecs.open(sql_tables_data_filename, 'w')
+    file_data.write(sql_txt)
+    file_data.close()
 
     cur.executescript(sql)
 

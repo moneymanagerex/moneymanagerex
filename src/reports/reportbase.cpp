@@ -44,29 +44,45 @@ mmPrintableBase::~mmPrintableBase()
 {
     if (!m_settings.IsEmpty())
     {
-        std::wstringstream ss1;
-        ss1 << m_settings.ToStdWstring();
-        json::Object o1;
-        json::Reader::Read(o1, ss1);
+        Document j_doc;
+        j_doc.Parse(m_settings.c_str());
 
-        json::Object o2;
-        o2.Clear();
-        o2[L"REPORTPERIOD"] = json::Number(static_cast<double>(m_date_selection));
-        o2[L"DATE1"] = json::String(m_begin_date.FormatISODate().ToStdWstring());
-        o2[L"DATE2"] = json::String(m_end_date.FormatISODate().ToStdWstring());
-        o2[L"ACCOUNTSELECTION"] = json::Number(static_cast<double>(m_account_selection));
-        size_t count = (accountArray_ ? accountArray_->size() : 0);
-        o2[L"NAMECOUNT"] = json::Number(static_cast<double>(count));
-        for (size_t i = 0; i < count; i++)
+        wxString jds = JSON_PrettyFormated(j_doc);
+
+        StringBuffer json_buffer;
+        PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+        json_writer.StartObject();
+        json_writer.Key("REPORTPERIOD");
+        json_writer.Int(m_date_selection);
+
+        json_writer.Key("DATE1");
+        json_writer.String(m_begin_date.FormatISODate().c_str());
+
+        json_writer.Key("DATE2");
+        json_writer.String(m_end_date.FormatISODate().c_str());
+
+        json_writer.Key("ACCOUNTSELECTION");
+        json_writer.Int(m_account_selection);
+
+        size_t rcount = (accountArray_ ? accountArray_->size() : 0);
+        json_writer.Key("NAMECOUNT");
+        json_writer.Int(rcount);
+
+        for (size_t i = 0; i < rcount; i++)
         {
             const auto name = wxString::Format("NAME%zu", i);
-            o2[name.ToStdWstring()] = json::String(accountArray_->Item(i).ToStdWstring());
+            json_writer.Key(name.c_str());
+            json_writer.String(accountArray_->Item(i).c_str());
         }
-        o2[L"CHART"] = json::Number(static_cast<double>(m_chart_selection));
-        std::wstringstream ss2;
-        json::Writer::Write(o2, ss2);
 
-        Model_Infotable::instance().Set(wxString(json::String(o1[L"SETTINGSNAME"])), wxString(ss2.str()));
+        json_writer.Key("CHART");
+        json_writer.Int(m_chart_selection);
+        json_writer.EndObject();
+
+        const wxString rj_key = j_doc["SETTINGSNAME"].GetString();
+        const wxString rj_value = json_buffer.GetString();
+        Model_Infotable::instance().Set(rj_key, rj_value);
     }
 
     if (accountArray_)
@@ -154,35 +170,32 @@ void mmPrintableBase::setSettings(const wxString& settings)
 {
     m_settings = settings;
 
-    // Extract settings from data
-    std::wstringstream ss1;
-    ss1 << m_settings.ToStdWstring();
-    json::Object o1;
-    json::Reader::Read(o1, ss1);
+    Document j_doc;
+    j_doc.Parse(settings.c_str());
 
-    std::wstringstream ss2;
-    ss2 << wxString(json::String(o1[L"SETTINGSDATA"])).ToStdWstring();
-    json::Object o2;
-    json::Reader::Read(o2, ss2);
+    m_date_selection = j_doc["SETTINGSDATA"]["REPORTPERIOD"].GetInt();
+    m_begin_date = mmParseISODate(j_doc["SETTINGSDATA"]["DATE1"].GetString());
+    m_end_date = mmParseISODate(j_doc["SETTINGSDATA"]["DATE2"].GetString());
+    m_account_selection = j_doc["SETTINGSDATA"]["ACCOUNTSELECTION"].GetInt();
 
-    m_date_selection = static_cast<int>(json::Number(o2[L"REPORTPERIOD"]));
-    m_begin_date = mmParseISODate(wxString(json::String(o2[L"DATE1"])));
-    m_end_date = mmParseISODate(wxString(json::String(o2[L"DATE2"])));
-    m_account_selection = static_cast<int>(json::Number(o2[L"ACCOUNTSELECTION"]));
-    size_t count = static_cast<size_t>(json::Number(o2[L"NAMECOUNT"]));
+    size_t count = j_doc["SETTINGSDATA"]["NAMECOUNT"].GetInt64();
     if (count > 0)
     {
         if (accountArray_)
+        {
             delete accountArray_;
+        }
+
         wxArrayString* accountSelections = new wxArrayString();
         for (size_t i = 0; i < count; i++)
         {
             const auto name = wxString::Format("NAME%zu", i);
-            accountSelections->Add(wxString(json::String(o2[name.ToStdWstring()])));
+            Value j_name(name.c_str(), j_doc.GetAllocator());
+            accountSelections->Add(j_doc["SETTINGSDATA"][j_name].GetString());
         }
         accountArray_ = accountSelections;
     }
-    m_chart_selection = static_cast<int>(json::Number(o2[L"CHART"]));
+    m_chart_selection = j_doc["SETTINGSDATA"]["CHART"].GetInt();
 }
 
 void mmPrintableBase::date_range(const mmDateRange* date_range, int selection)

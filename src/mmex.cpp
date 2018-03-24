@@ -271,7 +271,17 @@ int mmGUIApp::OnExit()
     wxLogDebug("OnExit()");
     Model_Usage::Data* usage = Model_Usage::instance().create();
     usage->USAGEDATE = wxDate::Today().FormatISODate();
-    usage->JSONCONTENT = Model_Usage::instance().to_string();
+
+    wxString rj = Model_Usage::instance().To_JSON_String();
+    wxLogDebug("===== mmGUIApp::OnExit ===========================");
+    wxLogDebug("RapidJson\n%s", rj);
+
+    //Document rapidjson;
+    //rapidjson.Parse(rj);
+    //wxLogDebug("===== mmGUIApp::OnExit ======== DOM Check ========");
+    //wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(rapidjson));
+
+    usage->JSONCONTENT = rj;
     Model_Usage::instance().save(usage);
 
     if (m_setting_db) delete m_setting_db;

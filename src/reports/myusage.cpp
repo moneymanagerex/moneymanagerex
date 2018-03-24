@@ -20,8 +20,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Usage.h"
 #include "reports/htmlbuilder.h"
 #include "model/Model_Report.h"
-#include "cajun/json/elements.h"
-#include "cajun/json/reader.h"
 
 const char *usage_template = R"(
 <!DOCTYPE html>
@@ -134,6 +132,15 @@ wxString mmReportMyUsage::getHTMLText()
     for (const auto & usage : all_usage)
     {
         usage_by_day[usage.USAGEDATE].first += 1;
+
+        Document json_doc;
+        json_doc.Parse(usage.JSONCONTENT.c_str());
+
+        wxLogDebug("======= mmReportMyUsage::getHTMLText =======");
+        wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
+
+
+
 
         std::wstringstream ss ;
         ss << usage.JSONCONTENT.ToStdWstring();

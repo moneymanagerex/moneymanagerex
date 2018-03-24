@@ -316,6 +316,7 @@ TARGET_LINK_LIBRARIES(MMEXLib
     PUBLIC
         wxSQLite3
         cajun
+        JSONlib
         HTML-template
         CURL::libcurl
     PRIVATE

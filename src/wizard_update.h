@@ -15,9 +15,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
-
-#ifndef MM_EX_WIZARD_UPDATE_H_
-#define MM_EX_WIZARD_UPDATE_H_
+#pragma once
 
 #include <wx/wizard.h>
 #include <wx/frame.h>
@@ -29,16 +27,16 @@ public:
     static void checkUpdates(const bool bSilent, wxFrame *frame);
 
 private:
-    static const bool IsUpdateAvailable(const bool bSilent, wxString& NewVersion);
+    static const bool IsUpdateAvailable(const bool bSilent, wxString& new_version);
 };
 
 class mmUpdateWizard : public wxWizard
 {
 public:
-    mmUpdateWizard(wxFrame *frame, const wxString& NewVersion);
+    mmUpdateWizard(wxFrame *frame, const wxString& new_version);
     void RunIt(bool modal);
 
-    wxString NewVersion;
+    wxString m_new_version;
 
 private:
     wxWizardPageSimple* page1;
@@ -55,12 +53,7 @@ public:
     void OnDownload();
 
 private:
-    mmUpdateWizard* parent_;
-    wxString DownloadURL;
+    wxString m_download_url;
 
     wxDECLARE_EVENT_TABLE();
 };
-
-//----------------------------------------------------------------------------
-#endif // MM_EX_WIZARD_NEWDB_H_
-//----------------------------------------------------------------------------

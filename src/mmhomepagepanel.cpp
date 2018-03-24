@@ -33,10 +33,6 @@ Copyright (C) 2014 Nikolay
 
 #include "model/allmodel.h"
 
-#include "cajun/json/elements.h"
-#include "cajun/json/reader.h"
-#include "cajun/json/writer.h"
-
 static const wxString TOP_CATEGS = R"(
 <table class = 'table'>
   <tr class='active'>
@@ -770,10 +766,6 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
 //* Income vs Expenses *//
 const wxString mmHomePagePanel::displayIncomeVsExpenses()
 {
-    json::Object o;
-    o.Clear();
-    std::wstringstream ss;
-
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     getExpensesIncomeStats(incomeExpensesStats, date_range_);
@@ -794,69 +786,108 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
         if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
     }
 
-    o[L"0"] = json::String(wxString::Format(_("Income vs Expenses: %s"), date_range_->local_title()).ToStdWstring());
-    o[L"1"] = json::String(_("Type").ToStdWstring());
-    o[L"2"] = json::String(_("Amount").ToStdWstring());
-    o[L"3"] = json::String(_("Income").ToStdWstring());
-    o[L"4"] = json::String(Model_Currency::toCurrency(tIncome).ToStdWstring());
-    o[L"5"] = json::String(_("Expenses").ToStdWstring());
-    o[L"6"] = json::String(Model_Currency::toCurrency(tExpenses).ToStdWstring());
-    o[L"7"] = json::String(_("Difference:").ToStdWstring());
-    o[L"8"] = json::String(Model_Currency::toCurrency(tIncome - tExpenses).ToStdWstring());
-    o[L"9"] = json::String(_("Income/Expenses").ToStdWstring());
-    o[L"10"] = json::String(wxString::Format("%.2f", tIncome).ToStdWstring());
-    o[L"11"] = json::String(wxString::Format("%.2f", tExpenses).ToStdWstring());
-    o[L"12"] = json::Number(steps);
-    o[L"13"] = json::Number(scaleStepWidth);
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartObject();
+    json_writer.Key("0");
+    json_writer.String(wxString::Format(_("Income vs Expenses: %s"), date_range_->local_title()).c_str());
+    json_writer.Key("1");
+    json_writer.String(_("Type").c_str());
+    json_writer.Key("2");
+    json_writer.String(_("Amount").c_str());
+    json_writer.Key("3");
+    json_writer.String(_("Income").c_str());
+    json_writer.Key("4");
+    json_writer.String(Model_Currency::toCurrency(tIncome).c_str());
+    json_writer.Key("5");
+    json_writer.String(_("Expenses").c_str());
+    json_writer.Key("6");
+    json_writer.String(Model_Currency::toCurrency(tExpenses).c_str());
+    json_writer.Key("7");
+    json_writer.String(_("Difference:").c_str());
+    json_writer.Key("8");
+    json_writer.String(Model_Currency::toCurrency(tIncome - tExpenses).c_str());
+    json_writer.Key("9");
+    json_writer.String(_("Income/Expenses").c_str());
+    json_writer.Key("10");
+    json_writer.String(wxString::Format("%.2f", tIncome).c_str());
+    json_writer.Key("11");
+    json_writer.String(wxString::Format("%.2f", tExpenses).c_str());
+    json_writer.Key("12");
+    json_writer.Int(steps);
+    json_writer.Key("13");
+    json_writer.Int(scaleStepWidth);
+    json_writer.EndObject();
 
-    json::Writer::Write(o, ss);
-    return ss.str();
+    wxLogDebug("======= mmHomePagePanel::displayIncomeVsExpenses =======");
+    wxLogDebug("RapidJson\n%s", json_buffer.GetString());
+
+    return json_buffer.GetString();
 }
 
 //* Assets *//
 const wxString mmHomePagePanel::displayAssets(double& tBalance)
 {
-    json::Object o;
-    std::wstringstream ss;
-
     double asset_balance = Model_Asset::instance().balance();
     tBalance += asset_balance;
 
-    o[L"NAME"] = json::String(_("Assets").ToStdWstring());
-    o[L"VALUE"] = json::String(Model_Currency::toCurrency(asset_balance).ToStdWstring());
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartObject();
+    json_writer.Key("NAME");
+    json_writer.String(_("Assets").c_str());
+    json_writer.Key("VALUE");
+    json_writer.String(Model_Currency::toCurrency(asset_balance).c_str());
+    json_writer.EndObject();
 
-    json::Writer::Write(o, ss);
-    return ss.str();
+    wxLogDebug("======= mmHomePagePanel::displayAssets =======");
+    wxLogDebug("RapidJson\n%s", json_buffer.GetString());
+
+    return json_buffer.GetString();
 }
 
 const wxString mmHomePagePanel::getStatWidget()
 {
-    json::Object o;
-    std::wstringstream ss;
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartObject();
 
-    o[L"NAME"] = json::String(_("Transaction Statistics").ToStdWstring());
+    json_writer.Key("NAME");
+    json_writer.String(_("Transaction Statistics").c_str());
+
     if (this->countFollowUp_ > 0)
     {
-        o[json::String(_("Follow Up On Transactions: ").ToStdWstring())] = json::Number(this->countFollowUp_);
+        json_writer.Key(_("Follow Up On Transactions: ").c_str());
+        json_writer.Double(this->countFollowUp_);
     }
-    o[json::String(_("Total Transactions: ").ToStdWstring())] = json::Number(this->total_transactions_);
 
-    json::Writer::Write(o, ss);
-    return ss.str();
+    json_writer.Key(_("Total Transactions: ").c_str());
+    json_writer.Int(this->total_transactions_);
+    json_writer.EndObject();
+
+    wxLogDebug("======= mmHomePagePanel::getStatWidget =======");
+    wxLogDebug("RapidJson\n%s", json_buffer.GetString());
+
+    return json_buffer.GetString();
 }
 
 const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 {
-    json::Object o;
-    std::wstringstream ss;
-
     const wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
 
-    o[L"NAME"] = json::String(_("Grand Total:").ToStdWstring());
-    o[L"VALUE"] = json::String(tBalanceStr.ToStdWstring());
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartObject();
+    json_writer.Key("NAME");
+    json_writer.String(_("Grand Total:").c_str());
+    json_writer.Key("VALUE");
+    json_writer.String(tBalanceStr.c_str());
+    json_writer.EndObject();
 
-    json::Writer::Write(o, ss);
-    return ss.str();
+    wxLogDebug("======= mmHomePagePanel::displayGrandTotals =======");
+    wxLogDebug("RapidJson\n%s", json_buffer.GetString());
+
+    return json_buffer.GetString();
 }
 
 void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
@@ -866,53 +897,112 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
     if (url.Contains("#"))
     {
         wxString name = url.AfterLast('#');
-        wxLogDebug("%s", name);
 
-        //Read data from ini DB as JSON then convert it to json::Object
+        //Convert the JSON string from database to a json object
         wxString str = Model_Infotable::instance().GetStringInfo("HOME_PAGE_STATUS", "");
-        if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
-        std::wstringstream ss;
-        ss << str.ToStdWstring();
-        json::Object o;
-        json::Reader::Read(o, ss);
 
-        if (name == "TOP_CATEGORIES") {
-            bool entry = !json::Boolean(o[L"TOP_CATEGORIES"]);
-            o[L"TOP_CATEGORIES"] = json::Boolean(entry);
+        wxLogDebug("======= mmHomePagePanel::OnLinkClicked =======");
+        wxLogDebug("Name = %s", name);
+
+        if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
+
+        Document json_doc;
+        Document::AllocatorType& json_allocator = json_doc.GetAllocator();
+        json_doc.Parse(str.c_str());
+        wxLogDebug("RapidJson Input\n%s", JSON_PrettyFormated(json_doc));
+
+        if (name == "TOP_CATEGORIES")
+        {
+            if (json_doc.HasMember("TOP_CATEGORIES"))
+            {
+                bool entry = !json_doc["TOP_CATEGORIES"].GetBool();
+                json_doc["TOP_CATEGORIES"] = entry;
+            }
+            else
+            {
+                json_doc.AddMember("TOP_CATEGORIES", true, json_allocator);
+            }
         }
-        else if (name == "INVEST") {
-            bool entry = !json::Boolean(o[L"INVEST"]);
-            o[L"INVEST"] = json::Boolean(entry);
+        else if (name == "INVEST")
+        {
+            if (json_doc.HasMember("INVEST"))
+            {
+                bool entry = !json_doc["INVEST"].GetBool();
+                json_doc["INVEST"] = entry;
+            }
+            else
+            {
+                json_doc.AddMember("INVEST", true, json_allocator);
+            }
         }
-        else if (name == "ACCOUNTS_INFO") {
-            bool entry = !json::Boolean(o[L"ACCOUNTS_INFO"]);
-            o[L"ACCOUNTS_INFO"] = json::Boolean(entry);
+        else if (name == "ACCOUNTS_INFO")
+        {
+            if (json_doc.HasMember("ACCOUNTS_INFO"))
+            {
+                bool entry = !json_doc["ACCOUNTS_INFO"].GetBool();
+                json_doc["ACCOUNTS_INFO"] = entry;
+            }
+            else
+            {
+                json_doc.AddMember("ACCOUNTS_INFO", true, json_allocator);
+            }
         }
-        else if (name == "CARD_ACCOUNTS_INFO") {
-            bool entry = !json::Boolean(o[L"CARD_ACCOUNTS_INFO"]);
-            o[L"CARD_ACCOUNTS_INFO"] = json::Boolean(entry);
+        else if (name == "CARD_ACCOUNTS_INFO")
+        {
+            if (json_doc.HasMember("CARD_ACCOUNTS_INFO"))
+            {
+                bool entry = !json_doc["CARD_ACCOUNTS_INFO"].GetBool();
+                json_doc["CARD_ACCOUNTS_INFO"] = entry;
+            }
+            else
+            {
+                json_doc.AddMember("CARD_ACCOUNTS_INFO", true, json_allocator);
+            }
         }
-        else if (name == "CASH_ACCOUNTS_INFO") {
-            bool entry = !json::Boolean(o[L"CASH_ACCOUNTS_INFO"]);
-            o[L"CASH_ACCOUNTS_INFO"] = json::Boolean(entry);
+        else if (name == "CASH_ACCOUNTS_INFO")
+        {
+            if (json_doc.HasMember("CASH_ACCOUNTS_INFO"))
+            {
+                bool entry = !json_doc["CASH_ACCOUNTS_INFO"].GetBool();
+                json_doc["CASH_ACCOUNTS_INFO"] = entry;
+            }
+            else
+            {
+                json_doc.AddMember("CASH_ACCOUNTS_INFO", true, json_allocator);
+            }
         }
-        else if (name == "LOAN_ACCOUNTS_INFO") {
-            bool entry = !json::Boolean(o[L"LOAN_ACCOUNTS_INFO"]);
-            o[L"LOAN_ACCOUNTS_INFO"] = json::Boolean(entry);
+        else if (name == "LOAN_ACCOUNTS_INFO")
+        {
+            if (json_doc.HasMember("LOAN_ACCOUNTS_INFO"))
+            {
+                bool entry = !json_doc["LOAN_ACCOUNTS_INFO"].GetBool();
+                json_doc["LOAN_ACCOUNTS_INFO"] = entry;
+            }
+            else
+            {
+                json_doc.AddMember("LOAN_ACCOUNTS_INFO", true, json_allocator);
+            }
         }
-        else if (name == "TERM_ACCOUNTS_INFO") {
-            bool entry = !json::Boolean(o[L"TERM_ACCOUNTS_INFO"]);
-            o[L"TERM_ACCOUNTS_INFO"] = json::Boolean(entry);
+        else if (name == "TERM_ACCOUNTS_INFO")
+        {
+            if (json_doc.HasMember("TERM_ACCOUNTS_INFO"))
+            {
+                bool entry = !json_doc["TERM_ACCOUNTS_INFO"].GetBool();
+                json_doc["TERM_ACCOUNTS_INFO"] = entry;
+            }
+            else
+            {
+                json_doc.AddMember("TERM_ACCOUNTS_INFO", true, json_allocator);
+            }
         }
         else if (name == "CRYPTO_WALLETS_INFO") {
-            bool entry = !json::Boolean(o[L"CRYPTO_WALLETS_INFO"]);
-            o[L"CRYPTO_WALLETS_INFO"] = json::Boolean(entry);
+            bool entry = !json_doc["CRYPTO_WALLETS_INFO"].GetBool();
+            json_doc["CRYPTO_WALLETS_INFO"] = entry;
         }
 
-        std::wstringstream wss;
-        json::Writer::Write(o, wss);
-        wxLogDebug("%s", wss.str());
-        wxLogDebug("==========================================");
-        Model_Infotable::instance().Set("HOME_PAGE_STATUS", wss.str());
+        wxLogDebug("Saving updated RapidJson\n%s", JSON_PrettyFormated(json_doc));
+        wxLogDebug("======= mmHomePagePanel::OnLinkClicked =======");
+
+        Model_Infotable::instance().Set("HOME_PAGE_STATUS", JSON_PrettyFormated(json_doc));
     }
 }

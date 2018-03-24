@@ -1,5 +1,6 @@
 /*******************************************************
- Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2018 Stefano Giorgio (stef145g)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -56,27 +57,56 @@ Model_Usage& Model_Usage::instance()
     return Singleton<Model_Usage>::instance();
 }
 
-void Model_Usage::append(const json::Object& o)
+void Model_Usage::AppendToUsage(const wxString& json_string)
 {
-    this->a.Insert(o);
+    wxLogDebug("===== Model_Usage::AppendToUsage =================");
+    wxLogDebug("%s", json_string);
+    wxLogDebug("\n");
+    this->m_json_usage.Add(json_string);
 }
 
-void Model_Usage::append_cache_usage(const json::Object& o)
+void Model_Usage::AppendToCache(const wxString& json_string)
 {
-    this->m_cache.Insert(o);
+    wxLogDebug("===== Model_Usage::AppendToCache =================");
+    wxLogDebug("%s", json_string);
+    wxLogDebug("\n");
+    this->m_json_cache.Add(json_string);
 }
 
-std::wstring Model_Usage::to_string() const
+wxString Model_Usage::To_JSON_String() const
 {
-    json::Object o;
-    o[L"start"] = json::String(m_start.FormatISOCombined(' ').ToStdWstring());
-    o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined(' ').ToStdWstring());
-    o[L"usage"] = a;
-    o[L"cache"] = m_cache;
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-    std::wstringstream ss;
-    json::Writer::Write(o, ss);
-    return ss.str();
+    json_writer.StartObject();
+    json_writer.Key("start");
+    json_writer.String(m_start.FormatISOCombined(' ').c_str());
+
+    json_writer.Key("end");
+    json_writer.String(wxDateTime::Now().FormatISOCombined(' ').c_str());
+
+    json_writer.Key("usage");
+    {
+        json_writer.StartArray();
+        for (size_t i = 0; i < m_json_usage.GetCount(); i++)
+        {
+            wxString item = m_json_usage.Item(i);
+            json_writer.String(item.c_str());
+        }
+        json_writer.EndArray();
+    }
+    json_writer.Key("cache");
+    {
+        json_writer.StartArray();
+        for (size_t i = 0; i < m_json_cache.GetCount(); i++)
+        {
+            wxString item = m_json_cache.Item(i);
+            json_writer.String(item.c_str());
+        }
+        json_writer.EndArray();
+    }
+    json_writer.EndObject();
+    return json_buffer.GetString();
 }
 
 wxString uuid()
