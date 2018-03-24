@@ -60,12 +60,12 @@ static void handle_sql(struct mg_connection* nc, struct http_message* hm)
     
     json_writer.EndObject();
 
-    wxString str = json_buffer.GetString();
+    const char* str = json_buffer.GetString();
     std::cout<<str<<std::endl;
 
     mg_printf(nc, "HTTP/1.1 200 OK\r\n"
                 "Content-Type: application/json; charset=utf-8\r\n"
-                "Content-Length: %zu\r\n\r\n%ls", str.length(), str.c_str());
+                "Content-Length: %zu\r\n\r\n%s", sizeof(str) / sizeof(char), str);
 }
 
 static void ev_handler(struct mg_connection *nc, int ev, void *ev_data) 
