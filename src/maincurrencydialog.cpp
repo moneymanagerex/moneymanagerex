@@ -846,7 +846,7 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
 
     const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
 		, wxString::Format("%s%s=X", symbol, base_currency_symbol)
-		, "1y", "1d"); //TODO: aks range and interval 
+		, "1y", "1d"); //TODO: ask range and interval
 	
     wxString json_data;
     auto err_code = site_content(URL, json_data);

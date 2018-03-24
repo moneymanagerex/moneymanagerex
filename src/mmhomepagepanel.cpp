@@ -904,11 +904,11 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         wxLogDebug("======= mmHomePagePanel::OnLinkClicked =======");
         wxLogDebug("Name = %s", name);
 
-        if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
-
         Document json_doc;
+        if (json_doc.Parse(str.c_str()).HasParseError())
+            return;
+
         Document::AllocatorType& json_allocator = json_doc.GetAllocator();
-        json_doc.Parse(str.c_str());
         wxLogDebug("RapidJson Input\n%s", JSON_PrettyFormated(json_doc));
 
         if (name == "TOP_CATEGORIES")
