@@ -85,7 +85,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 {
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
     CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");
-    CSVFieldName_[UNIV_CSV_AMOUNT] = wxTRANSLATE(L"Amount \u00b1");
+    CSVFieldName_[UNIV_CSV_AMOUNT] = wxTRANSLATE("Amount +/-");
     CSVFieldName_[UNIV_CSV_CATEGORY] = wxTRANSLATE("Category");
     CSVFieldName_[UNIV_CSV_SUBCATEGORY] = wxTRANSLATE("SubCategory");
     CSVFieldName_[UNIV_CSV_TRANSNUM] = wxTRANSLATE("Number");
@@ -320,7 +320,7 @@ void mmUnivCSVDialog::CreateControls()
     if (IsImporter())
     {
         // Text title.
-        wxStaticText* itemStaticTextAmount = new wxStaticText(itemPanel7, wxID_ANY, _(L"Amount \u00b1: "));
+        wxStaticText* itemStaticTextAmount = new wxStaticText(itemPanel7, wxID_ANY, _("Amount +/-:"));
         flex_sizer->Add(itemStaticTextAmount, g_flagsH);
         itemStaticTextAmount->SetFont(staticBoxFontSetting);
 
@@ -433,35 +433,46 @@ wxString mmUnivCSVDialog::GetStoredSettings(int id)
     if (id < 0) id = 0;
     const wxString& setting_id = wxString::Format(GetSettingsPrfix() +"%d", id);
     const wxString& settings_string = Model_Setting::instance().GetStringSetting(setting_id, "");
-    wxLogDebug("%s :\n %s", setting_id, settings_string);
+    wxLogDebug("%s", setting_id);
     return settings_string;
 }
 
-void mmUnivCSVDialog::SetSettings(const wxString &data)
+void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 {
-    wxString str = data;
-    if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
-    std::wstringstream ss;
-    ss << str.ToStdWstring();
-    json::Object o;
-    json::Reader::Read(o, ss);
+    Document o;
+    if (o.Parse(json_data.c_str()).HasParseError())
+    {
+        return;
+    }
+
+    wxLogDebug("======= mmUnivCSVDialog::SetSettings =======");
+    wxLogDebug("json = %s", json_data);
 
     //Date Mask
-    const auto df = json::String(o[L"DATE_MASK"]);
-    if (!df.Value().empty()) date_format_ = wxString(df);
-    initDateMask();
+    if (o.HasMember("DATE_MASK") && o["DATE_MASK"].IsString())
+    {
+        const auto df = wxString::FromUTF8(o["DATE_MASK"].GetString());
+        if (!df.empty()) date_format_ = df;
+        initDateMask();
+    }
 
     //File
-    m_text_ctrl_->ChangeValue(wxString(json::String(o[L"FILE_NAME"])));
+    if (o.HasMember("FILE_NAME") && o["FILE_NAME"].IsString())
+    {
+        const auto fn = wxString::FromUTF8(o["FILE_NAME"].GetString());
+        m_text_ctrl_->ChangeValue(fn);
+    }
 
     // Account
-    const wxString accountName = wxString(json::String(o[L"ACCOUNT_NAME"]));
-    if (!accountName.IsEmpty())
+    if (o.HasMember("ACCOUNT_NAME") && o["ACCOUNT_NAME"].IsString())
     {
-        int itemIndex = m_choice_account_->FindString(accountName);
+        const auto an = wxString::FromUTF8(o["ACCOUNT_NAME"].GetString());
+
+        int itemIndex = m_choice_account_->FindString(an);
         if (wxNOT_FOUND == itemIndex)
             mmErrorDialogs::MessageError(m_choice_account_
-                , wxString::Format(_("Default account '%s' for this template does not exist.\nPlease select a new account."), accountName)
+                , wxString::Format(_("Default account '%s' for this template does not exist.\n"
+                    "Please select a new account."), an)
                 ,_("Account does not exist"));
         else
             m_choice_account_->Select(itemIndex);
@@ -470,19 +481,24 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
     //Delimiter
     if (IsCSV())
     {
-        const auto d = json::String(o[L"DELIMITER"]);
-        if (!d.Value().empty()) delimit_ = wxString(d);
-        initDelimiter();
+        if (o.HasMember("DELIMITER") && o["DELIMITER"].IsString())
+        {
+            const auto d = wxString::FromUTF8(o["DELIMITER"].GetString());
+            if (!d.empty()) delimit_ = d;
+            initDelimiter();
+        }
     }
+
 
     //CSV fields
     csvFieldOrder_.clear();
-    for (int i = 0; i < 99; i++)
+    for (size_t i = 0; i <= 9; i++)
     {
-        const std::wstring w = to_wstring(i);
-        const wxString& value = wxString(json::String(o[w]));
-        if (!value.empty())
+        char str[2];
+        sprintf(str, "%zu", i);
+        if (o.HasMember(str) && o[str].IsString())
         {
+            const auto value = wxString::FromUTF8(o[str].GetString());
             int key = -1;
 
             for (const auto& entry : CSVFieldName_)
@@ -502,33 +518,36 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
     if (IsImporter())
     {
         // Amount sign.
-        std::wstring stdStr;
-        stdStr = json::String(o[L"AMOUNT_SIGN"]);
-        if (!stdStr.empty())
+        if (o.HasMember("AMOUNT_SIGN") && o["AMOUNT_SIGN"].IsInt())
         {
-            int val = std::stoi(stdStr);
+            int val = o["AMOUNT_SIGN"].GetInt();
             m_choiceAmountFieldSign->Select(val);
         }
 
         // Row selection settings.
-        stdStr = json::String(o[L"IGNORE_FIRST_ROWS"]);
-        if (!stdStr.empty())
+        if (o.HasMember("IGNORE_FIRST_ROWS") && o["IGNORE_FIRST_ROWS"].IsInt())
         {
-            int val = std::stoi(stdStr);
-            m_spinIgnoreFirstRows_->SetRange(m_spinIgnoreFirstRows_->GetMin(), std::max(val, m_spinIgnoreFirstRows_->GetMax())); // Called before file is loaded so max might still be 0.
+            int val = o["IGNORE_FIRST_ROWS"].GetInt();
+            m_spinIgnoreFirstRows_->SetRange(m_spinIgnoreFirstRows_->GetMin()
+                , std::max(val, m_spinIgnoreFirstRows_->GetMax())); // Called before file is loaded so max might still be 0.
             m_spinIgnoreFirstRows_->SetValue(val);
         }
-        stdStr = json::String(o[L"IGNORE_LAST_ROWS"]);
-        if (!stdStr.empty())
+
+        if (o.HasMember("IGNORE_LAST_ROWS") && o["IGNORE_LAST_ROWS"].IsInt())
         {
-            int val = std::stoi(stdStr);
-            m_spinIgnoreLastRows_->SetRange(m_spinIgnoreLastRows_->GetMin(), std::max(val, m_spinIgnoreLastRows_->GetMax())); // Called before file is loaded so max might still be 0.
+            
+            int val = o["IGNORE_LAST_ROWS"].GetInt();
+            m_spinIgnoreLastRows_->SetRange(m_spinIgnoreLastRows_->GetMin()
+                , std::max(val, m_spinIgnoreLastRows_->GetMax())); // Called before file is loaded so max might still be 0.
             m_spinIgnoreLastRows_->SetValue(val);
         }
     }
     else
     {
-        m_checkBoxExportTitles->SetValue(json::Boolean(o[L"EXPORT_TITLES"]));
+        if (o.HasMember("EXPORT_TITLES") && o["EXPORT_TITLES"].IsBool())
+        {
+            m_checkBoxExportTitles->SetValue(o["EXPORT_TITLES"].GetBool());
+        }
     }
 
     OnLoad();
@@ -644,7 +663,6 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
         const auto w = to_wstring(count++);
         int i = *it;
         o[w] = json::String(CSVFieldName_[i].ToStdWstring());
-        wxLogDebug("%i - %i - %s", count-1, i, CSVFieldName_[i]);
     }
 
     if (IsImporter())

@@ -280,21 +280,24 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
 
     const auto URL = wxString::Format(mmex::weblink::YahooQuotes, buffer);
 
-    auto err_code = site_content(URL, output);
+    wxString json_data;
+    auto err_code = site_content(URL, json_data);
     if (err_code != CURLE_OK)
+    {
+        output = json_data;
+        return false;
+    }
+
+    Document json_doc;
+    if (json_doc.Parse(json_data.c_str()).HasParseError())
         return false;
 
-    std::wstringstream ss;
-    ss << output.ToStdWstring();
-    json::Object o;
-    json::Reader::Read(o, ss);
-    output.clear();
 
-    json::Object r = o[L"quoteResponse"];
-    //TODO:     "error": null
-    //bool error = json::Boolean(r[L"error"]);
-    //if (!error) return false;
-    json::Array e = r[L"result"];
+    Value r = json_doc["quoteResponse"].GetObject();
+    //if (!r.HasMember("error") || !r["error"].IsNull())
+    //    return false;
+
+    Value e = r["result"].GetArray();
 
     if (e.Empty()) {
         output = _("Nothing to update");
@@ -304,36 +307,50 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
     if (type == yahoo_price_type::FIAT)
     {
         wxRegEx pattern("^(...)...=X$");
-        for (int i = 0; i < e.Size(); i++)
+        for (rapidjson::SizeType i = 0; i < e.Size(); i++)
         {
-            const json::Object entry = e[i];
-            auto currency_symbol = wxString(json::String(entry[L"symbol"]).Value());
+            if (!e[i].IsObject()) continue;
+            Value v = e[i].GetObject();
+
+            if (!v.HasMember("symbol") || !v["symbol"].IsString())
+                continue;
+            auto currency_symbol = wxString::FromUTF8(v["symbol"].GetString());
             if (pattern.Matches(currency_symbol))
             {
+                if (!v.HasMember("regularMarketPrice")
+                    || !v["regularMarketPrice"].IsFloat())
+                    continue;
+                const auto price = v["regularMarketPrice"].GetFloat();
                 currency_symbol = pattern.GetMatch(currency_symbol, 1);
-                const auto price = entry[L"regularMarketPrice"];
-                const auto rate = json::Number(price).Value();
 
-                wxLogDebug("item: %d %s %.2f", i, currency_symbol, rate);
-                out[currency_symbol] = (rate <= 0 ? 1 : rate);
+                wxLogDebug("item: %zu %s %.2f", (size_t)i, currency_symbol, price);
+                out[currency_symbol] = (price <= 0 ? 1 : price);
             }
         }
     }
     else
     {
-        for (int i = 0; i < e.Size(); i++)
+        for (rapidjson::SizeType i = 0; i < e.Size(); i++)
         {
-            const json::Object entry = e[i];
-            const auto price = entry[L"regularMarketPrice"];
-            const auto rate = json::Number(price).Value();
-            //const auto short_name = wxString(json::String(entry[L"shortName"]).Value());
-            const auto currency_symbol = wxString(json::String(entry[L"symbol"]).Value());
-            const wxString currency = wxString(json::String(entry[L"currency"]).Value());
-            double d = currency == "GBp" ? 100 : 1;
+            if (!e[i].IsObject()) continue;
+            Value v = e[i].GetObject();
 
-            wxLogDebug("item: %d %s %.2f", i, currency_symbol, rate);
-            double dPrice = (rate <= 0 ? 1 : rate / d);
-            out[currency_symbol] = dPrice;
+            if (!v.HasMember("regularMarketPrice")
+                || !v["regularMarketPrice"].IsFloat())
+                continue;
+            auto price = v["regularMarketPrice"].GetFloat();
+
+            if (!v.HasMember("symbol") || !v["symbol"].IsString())
+                continue;
+            const auto symbol = wxString::FromUTF8(v["symbol"].GetString());
+
+            if (!v.HasMember("currency") || !v["currency"].IsString())
+                continue;
+            const auto currency = wxString::FromUTF8(v["currency"].GetString());
+            double k = currency == "GBp" ? 100 : 1;
+
+            wxLogDebug("item: %zu %s %.2f", (size_t)i, symbol, price);
+            out[symbol] = price <= 0 ? 1 : price / k;
         }
     }
 
@@ -344,42 +361,51 @@ bool get_crypto_currency_prices(std::vector<wxString>& symbols
     , std::map<wxString, double>& out
     , wxString& output)
 {
-    bool ok = true;
+    bool ok = false;
     const auto URL = mmex::weblink::CoinCap;
 
-    auto err_code = site_content(URL, output);
+    wxString json_data;
+    auto err_code = site_content(URL, json_data);
     if (err_code != CURLE_OK)
-        return false;
-
-    std::wstringstream ss;
-    ss << output.ToStdWstring();
-    json::Array e;
-    json::Reader::Read(e, ss);
-    output.clear();
-
-    if (e.Empty()) {
-        output = _("Nothing to update");
+    {
+        output = json_data;
         return false;
     }
+
+    Document json_doc;
+    if (json_doc.Parse(json_data.c_str()).HasParseError())
+        return false;
+
+    if (!json_doc.IsArray())
+        return false;
+    Value e = json_doc.GetArray();
 
     double usd_rate;
     Model_Currency::GetUSDrate(usd_rate); //TODO: if false
 
-    std::map<wxString, double> all_crypto_data;
-    for (int i = 0; i < e.Size(); i++)
+    std::map<wxString, float> all_crypto_data;
+
+    for (rapidjson::SizeType i = 0; i < e.Size(); i++)
     {
-        const json::Object item = e[i];
-        auto currency_symbol = wxString(json::String(item[L"short"]).Value());
-        auto price = item[L"price"];
-        const auto rate = json::Number(price).Value();
-        all_crypto_data[currency_symbol] = rate;
-        wxLogDebug("item: %d %s %.8f", i, currency_symbol, rate);
+        if (!e[i].IsObject())
+            continue;
+        Value v = e[i].GetObject();
+
+        if (!v["short"].IsString())  continue;
+        auto currency_symbol = wxString::FromUTF8(v["short"].GetString());
+        if (!v["price"].IsFloat()) continue;
+        auto price = v["price"].GetFloat();
+        all_crypto_data[currency_symbol] = price;
+        wxLogDebug("item: %zu %s %.8f", (size_t)i, currency_symbol, price);
     }
 
     for (auto& entry : symbols)
     {
         if (all_crypto_data.find(entry) != all_crypto_data.end())
+        {
             out[entry] = all_crypto_data.at(entry) * usd_rate;
+            ok = true;
+        }
         else
             output << entry << "\t: " << _("Invalid value") << "\n";
     }

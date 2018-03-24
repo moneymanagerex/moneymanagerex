@@ -128,7 +128,6 @@ void mmMainCurrencyDialog::fillControls()
         }
     }
 
-    m_button_download_history->Enable(false);
     //Ensure that the selected item is visible.
     wxDataViewItem item(currencyListBox_->GetCurrentItem());
     currencyListBox_->EnsureVisible(item);
@@ -688,7 +687,7 @@ void mmMainCurrencyDialog::OnHistoryDeleteUnused(wxCommandEvent& /*event*/)
     }
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 
-    fillControls();
+    //fillControls();
     ShowCurrencyHistory();
 }
 
@@ -845,49 +844,85 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
 		return false;
 	}
 
-	const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
+    const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
 		, wxString::Format("%s%s=X", symbol, base_currency_symbol)
-		, "1y", "1d"); //TODO: aks range and interval
+		, "1y", "1d"); //TODO: ask range and interval
 	
-	wxString sOutput;
-	auto err_code = site_content(URL, sOutput);
+    wxString json_data;
+    auto err_code = site_content(URL, json_data);
 	if (err_code != CURLE_OK)
 	{
-		msg = sOutput;
+		msg = json_data;
 		return false;
 	}
 
-	std::wstringstream ss;
-	ss << sOutput.ToStdWstring();
-	json::Object o;
-	json::Reader::Read(o, ss);
+    Document json_doc;
+    if (json_doc.Parse(json_data.c_str()).HasParseError())
+    {
+        return false;
+    }
 
-	json::Object r = o[L"chart"]; 
-	//TODO:
-	//bool error = (json::Null(r[L"error"]) == NULL);
-	//if (!error) return false;
+    if (!json_doc.HasMember("chart") || !json_doc["chart"].IsObject())
+        return false;
+    Value chart = json_doc["chart"].GetObject();
 
-	json::Object result = r[L"result"][0]; //meta timestamp indicators
-	json::Array timestamp = result[L"timestamp"];
-	json::Object indicators = result[L"indicators"];
-	json::Array quote = indicators[L"quote"][0][L"close"];
+    wxASSERT(chart.HasMember("error"));
+    if (!chart.HasMember("error") || !chart["error"].IsNull())
+        return false;
 
-	wxASSERT(timestamp.Size() == quote.Size());
+    if (!chart.HasMember("result") || !chart["result"].IsArray())
+        return false;
+    Value result = chart["result"].GetArray();
+
+    if (!result.IsArray() || !result.Begin()->IsObject())
+        return false;
+    Value data = result.Begin()->GetObject();
+
+    if (!data.HasMember("timestamp") || !data["timestamp"].IsArray())
+        return false;
+    Value timestamp = data["timestamp"].GetArray();
+
+    if (!data.HasMember("indicators") || !data.IsObject())
+        return false;
+    Value indicators = data["indicators"].GetObject();
+
+    if (!indicators.HasMember("adjclose") || !indicators["adjclose"].IsArray())
+        return false;
+    Value quote_array = indicators["adjclose"].GetArray();
+    Value quotes = quote_array.Begin()->GetObject();
+    if (!quotes.HasMember("adjclose") || !quotes["adjclose"].IsArray())
+        return false;
+    Value quotes_closed = quotes["adjclose"].GetArray();
+
+    if (timestamp.Size() != quotes_closed.Size())
+        return false;
 
 	std::map<wxDate, double> history;
 	const wxDateTime today = wxDateTime::Today().GetDateOnly();
 	wxDateTime first_date = today;
 	double first_price = 0;
-	for (int i = 0; i < timestamp.Size(); ++i)
+
+	for (rapidjson::SizeType i = 0; i < timestamp.Size(); i++)
 	{
-		const wxDateTime time = wxDateTime((time_t)json::Number(timestamp[i]).Value()).GetDateOnly();
-		double rate = json::Number(quote[i]).Value();
-		history[time] = rate;
-		if (first_date > time)
-		{
-			first_date = time;
-			first_price = rate;
-		}
+        wxASSERT(timestamp[i].IsInt());
+		const auto time = wxDateTime((time_t)timestamp[i].GetInt()).GetDateOnly();
+        if (quotes_closed[i].IsFloat())
+        {
+            double rate = quotes_closed[i].GetFloat();
+            history[time] = rate;
+            if (first_date > time)
+            {
+                first_date = time;
+                first_price = rate;
+            }
+        }
+        else
+        {
+            wxDateTime dt = wxDateTime((time_t)timestamp[i].GetInt());
+            wxLogDebug("%s %s"
+                , dt.FormatISODate()
+                , wxDateTime::GetWeekDayName(dt.GetWeekDay()));
+        }
 	}
 
 	double closed_price = first_price;
