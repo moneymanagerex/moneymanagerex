@@ -729,41 +729,71 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 	const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
 		, m_stock->SYMBOL, range, interval);
 
-	wxLogDebug("URL:%s", URL);
-	wxString sOutput;
-	auto err_code = site_content(URL, sOutput);
-	if (err_code != CURLE_OK)
+    wxString json_data, sOutput;
+    auto err_code = site_content(URL, json_data);
+    if (err_code != CURLE_OK)
+    {
+        if (sOutput == wxEmptyString) sOutput = _("Stock history not found!"); //TODO: ?
+        mmErrorDialogs::MessageError(this, sOutput, _("Stock History Error"));
+        return;
+    }
+
+    Document json_doc;
+    if (json_doc.Parse(json_data.c_str()).HasParseError())
+    {
+        return;
+    }
+
+    if (!json_doc.HasMember("chart") || !json_doc["chart"].IsObject())
+        return;
+    Value chart = json_doc["chart"].GetObject();
+
+    wxASSERT(chart.HasMember("error"));
+    if (!chart.HasMember("error") || !chart["error"].IsNull())
+        return;
+
+    if (!chart.HasMember("result") || !chart["result"].IsArray())
+        return;
+    Value result = chart["result"].GetArray();
+    if (!result.IsArray() || !result.Begin()->IsObject())
+        return;
+    Value data = result.Begin()->GetObject();
+
+    if (!data.HasMember("meta") || !data["meta"].IsObject())
+        return;
+    Value meta = data["meta"].GetObject();
+
+    if (!meta.HasMember("currency") || !meta["currency"].IsString())
+        return;
+    const auto currency = wxString::FromUTF8(meta["currency"].GetString());
+    float k = currency == "GBp" ? 100 : 1;
+
+    if (!data.HasMember("timestamp") || !data["timestamp"].IsArray())
+        return;
+    Value timestamp = data["timestamp"].GetArray();
+
+    if (!data.HasMember("indicators") || !data.IsObject())
+        return;
+    Value indicators = data["indicators"].GetObject();
+
+    if (!indicators.HasMember("adjclose") || !indicators["adjclose"].IsArray())
+        return;
+    Value quote_array = indicators["adjclose"].GetArray();
+    Value quotes = quote_array.Begin()->GetObject();
+    if (!quotes.HasMember("adjclose") || !quotes["adjclose"].IsArray())
+        return;
+    Value quotes_closed = quotes["adjclose"].GetArray();
+
+    if (timestamp.Size() != quotes_closed.Size())
+        return;
+
+	std::map<time_t, float> history;
+	for (rapidjson::SizeType i = 0; i < timestamp.Size(); i++)
 	{
-		if (sOutput == wxEmptyString) sOutput = _("Stock history not found!"); //TODO: ?
-		mmErrorDialogs::MessageError(this, sOutput, _("Stock History Error"));
-		return;
-	}
-
-	std::wstringstream ss;
-	ss << sOutput.ToStdWstring();
-	json::Object o;
-	json::Reader::Read(o, ss);
-
-	json::Object r = o[L"chart"]; //result error
-	wxString error = wxString(json::String(r[L"error"]));
-	if (!error.empty()) return;
-
-	json::Object result = r[L"result"][0]; //meta timestamp indicators
-	json::Object meta = result[L"meta"];
-	json::Array timestamp = result[L"timestamp"];
-	json::Object indicators = result[L"indicators"];
-	json::Array quote = indicators[L"quote"][0][L"close"];
-
-	wxASSERT(timestamp.Size() == quote.Size());
-
-	const wxString currency = wxString(json::String(meta[L"currency"]));
-	double d = currency == "GBp" ? 100 : 1;
-
-	std::map<time_t, double> history;
-	for (int i = 0; i < timestamp.Size(); ++i)
-	{
-		time_t time = json::Number(timestamp[i]).Value();
-		double rate = json::Number(quote[i]).Value() / d;
+        if (!timestamp[i].IsInt()) continue;
+		time_t time = timestamp[i].GetInt();
+        if (!quotes_closed[i].IsFloat()) continue;
+        float rate = quotes_closed[i].GetFloat() / k;
 		history[time] = rate;
 	}
 
@@ -771,7 +801,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
     Model_StockHistory::instance().Savepoint();
     for (const auto &entry: history)
     {
-		double dPrice = entry.second;
+		float dPrice = entry.second;
 		const wxString date_str = wxDateTime((time_t)entry.first).FormatISODate();
 		if (date_str == today) continue;
 
@@ -787,7 +817,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 			data->SYMBOL = m_stock->SYMBOL;
 			
 			data->DATE = date_str;
-			data->VALUE = dPrice;
+			data->VALUE = (double)dPrice;
 			data->UPDTYPE = Model_StockHistory::ONLINE;
 			Model_StockHistory::instance().save(data);
 		}

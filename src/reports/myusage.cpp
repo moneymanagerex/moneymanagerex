@@ -134,36 +134,42 @@ wxString mmReportMyUsage::getHTMLText()
         usage_by_day[usage.USAGEDATE].first += 1;
 
         Document json_doc;
-        json_doc.Parse(usage.JSONCONTENT.c_str());
+        if (json_doc.Parse(usage.JSONCONTENT.c_str()).HasParseError())
+        {
+            return "";
+        }
 
         wxLogDebug("======= mmReportMyUsage::getHTMLText =======");
         wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
 
+        if (!json_doc.HasMember("usage") || !json_doc["usage"].IsArray())
+            return "";
+        Value u = json_doc["usage"].GetArray();
 
-
-
-        std::wstringstream ss ;
-        ss << usage.JSONCONTENT.ToStdWstring();
-        json::Object o;
-        json::Reader::Read(o, ss);
-        if (o.Find(L"usage") == o.End()) continue;
-        const json::Array& u = o[L"usage"];
-
-        for (json::Array::const_iterator it = u.Begin(); it != u.End(); ++it)
+        for (Value::ConstValueIterator it = u.Begin(); it != u.End(); ++it)
         {
-            const json::Object& pobj = *it;
+            if (!it->IsObject()) continue;
+            const auto pobj = it->GetObject();
 
-            if (pobj.Find(L"module") == pobj.End()) continue;
-            if (pobj.Find(L"start") == pobj.End()) continue;
-            if (pobj.Find(L"end") == pobj.End()) continue;
+            if (!pobj.HasMember("module") || !pobj["module"].IsString())
+                continue;
+            auto module = wxString::FromUTF8(pobj["symbol"].GetString());
 
-            wxString module = (wxString)((json::String)pobj[L"module"]).Value();
-            if (pobj.Find(L"name") != pobj.End())
-                module += (wxString)((json::String)pobj[L"name"]).Value();
-        
+            if (!pobj.HasMember("module") || !pobj["module"].IsString())
+                continue;
+            module += wxString::FromUTF8(pobj["name"].GetString());
+
+            if (!pobj.HasMember("start") || !pobj["start"].IsString())
+                continue;
+            const auto s = wxString::FromUTF8(pobj["start"].GetString());
+            
+            if (!pobj.HasMember("end") || !pobj["end"].IsString())
+                continue;
+            const auto e = wxString::FromUTF8(pobj["end"].GetString());
+
             wxDateTime start, end;
-            start.ParseISOCombined((wxString)((json::String)pobj[L"start"]).Value());
-            end.ParseISOCombined((wxString)((json::String)pobj[L"end"]).Value());
+            start.ParseISOCombined(s);
+            end.ParseISOCombined(e);
 
             long delta = end.Subtract(start).GetSeconds().ToLong();
             if (delta < 1)
