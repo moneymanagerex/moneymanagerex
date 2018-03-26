@@ -320,7 +320,7 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
     wxString dispAmount = "";
     double base_amount = 123456.78;
 
-    dispAmount = wxString::Format(_("%.2f Shown As: %s"), base_amount
+    dispAmount = wxString::Format(_("%s Shown As: %s"), wxString::FromCDouble(base_amount, 2)
         , Model_Currency::toCurrency(base_amount, m_currency));
     m_sample_text->SetLabelText(dispAmount);
 }

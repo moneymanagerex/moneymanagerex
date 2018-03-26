@@ -46,9 +46,9 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         const auto curr_to = Model_Currency::instance().get(acc_to->CURRENCYID);
 
         categ = "[" + (reverce ? full_tran.ACCOUNTNAME : full_tran.TOACCOUNTNAME) + "]";
-        payee = wxString::Format("%.2f %s %s -> %.2f %s %s"
-            , full_tran.TRANSAMOUNT, curr_in->CURRENCY_SYMBOL, acc_in->ACCOUNTNAME
-            , full_tran.TOTRANSAMOUNT, curr_to->CURRENCY_SYMBOL, acc_to->ACCOUNTNAME);
+        payee = wxString::Format("%s %s %s -> %s %s %s"
+            , wxString::FromCDouble(full_tran.TRANSAMOUNT, 2), curr_in->CURRENCY_SYMBOL, acc_in->ACCOUNTNAME
+            , wxString::FromCDouble(full_tran.TOTRANSAMOUNT, 2), curr_to->CURRENCY_SYMBOL, acc_to->ACCOUNTNAME);
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty())
@@ -59,8 +59,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
     buffer << "C" << (full_tran.STATUS == "R" ? "R" : "") << "\n";
     double value = Model_Checking::balance(full_tran
         , (reverce ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID));
-    int style = wxNumberFormatter::Style_None;
-    const wxString& s = wxNumberFormatter::ToString(value, 2, style);
+    const wxString& s = wxString::FromCDouble(value, 2);
     buffer << "T" << s << "\n";
     if (!payee.empty())
         buffer << "P" << payee << "\n";
@@ -80,7 +79,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         double valueSplit = split_entry.SPLITTRANSAMOUNT;
         if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
             valueSplit = -valueSplit;
-        const wxString split_amount = wxNumberFormatter::ToString(valueSplit, 2, style);
+        const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
         const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
         buffer << "S" << split_categ << "\n"
             << "$" << split_amount << "\n";

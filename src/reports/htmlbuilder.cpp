@@ -452,11 +452,11 @@ void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<V
     for (const auto& entry : actData)
     {
         labels += wxString::Format("'%s',", entry.label);
-        actValues += wxString::Format("%.2f,", entry.amount);
+        actValues += wxString::FromCDouble(entry.amount, 2) + ",";
     }
     for (const auto& entry : estData)
     {
-        estValues += wxString::Format("%.2f,", entry.amount);
+        estValues += wxString::FromCDouble(entry.amount, 2) + ",";
     }
 
     wxString datasets = wxString::Format(data_item, _("Actual"), getColor(8), getColor(8), getColor(8), actValues);
@@ -469,7 +469,7 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
 {
     static const wxString data_item =
         "{\n"
-        "value : %.2f,\n"
+        "value : %s,\n"
         "color : '%s',\n"
         "title : '%s',\n"
         "},\n";
@@ -492,7 +492,7 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
         label.Replace("'", " ");
 
         data += wxString::Format(data_item
-            , fabs(entry.amount), entry.color
+            , wxString::FromCDouble(fabs(entry.amount), 2), entry.color
             , label );
     }
     this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>\n", id, x, y, x, y));
@@ -531,7 +531,7 @@ void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueT
     wxString values = "";
     for (const auto& entry : data)
     {
-        values += wxString::Format(data_item, entry.color, entry.color, wxString::Format("%.2f", entry.amount), entry.label);
+        values += wxString::Format(data_item, entry.color, entry.color, wxString::FromCDouble(entry.amount, 2), entry.label);
         scaleStepWidth = std::max(entry.amount, scaleStepWidth);
     }
     scaleStepWidth = ceil(scaleStepWidth / steps);
@@ -581,7 +581,7 @@ void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxStr
     for (const auto& entry : data)
     {
         labels += wxString::Format("'%s',", entry.label);
-        values += wxString::Format("%.2f,", entry.amount);
+        values += wxString::FromCDouble(entry.amount, 2) + ",";
     }
 
     wxString datasets = wxString::Format(data_item, "LineChart", getColor(index), getColor(index), getColor(index), values);

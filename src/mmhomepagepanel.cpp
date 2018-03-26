@@ -810,9 +810,9 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     json_writer.Key("9");
     json_writer.String(_("Income/Expenses").c_str());
     json_writer.Key("10");
-    json_writer.String(wxString::Format("%.2f", tIncome).c_str());
+    json_writer.String(wxString::FromCDouble(tIncome, 2).c_str());
     json_writer.Key("11");
-    json_writer.String(wxString::Format("%.2f", tExpenses).c_str());
+    json_writer.String(wxString::FromCDouble(tExpenses, 2).c_str());
     json_writer.Key("12");
     json_writer.Int(steps);
     json_writer.Key("13");
