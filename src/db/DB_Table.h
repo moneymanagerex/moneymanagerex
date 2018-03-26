@@ -22,11 +22,7 @@
 #include <algorithm>
 #include <functional>
 #include <wx/wxsqlite3.h>
-#include <wx/intl.h> 
-
-#include "cajun/json/elements.h"
-#include "cajun/json/reader.h"
-#include "cajun/json/writer.h"
+#include <wx/intl.h>
 
 #include "rapidjson/document.h"
 #include "rapidjson/pointer.h"
