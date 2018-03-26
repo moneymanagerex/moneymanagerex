@@ -25,8 +25,7 @@ ADD_LIBRARY(LuaGlue INTERFACE)
 TARGET_INCLUDE_DIRECTORIES(LuaGlue INTERFACE LuaGlue/include)
 
 FIND_PACKAGE(Lua QUIET)
-# LuaGlue supports Lua 5.2 only
-IF(LUA_FOUND AND LUA_VERSION_MAJOR EQUAL 5 AND LUA_VERSION_MINOR EQUAL 2)
+IF(LUA_FOUND)
     MESSAGE(STATUS "Found Lua: ${LUA_LIBRARIES} (found version \"${LUA_VERSION_STRING}\")") 
     ADD_LIBRARY(Lua INTERFACE)
     TARGET_INCLUDE_DIRECTORIES(Lua INTERFACE ${LUA_INCLUDE_DIR})
@@ -64,6 +63,7 @@ ELSE()
         lua/ltm.c
         lua/lua.c
         lua/lundump.c
+        lua/lutf8lib.c
         lua/lvm.c
         lua/lzio.c)
     #add C++ wrapper for Lua include files
@@ -87,6 +87,7 @@ ELSE()
         TARGET_LINK_LIBRARIES(Lua PRIVATE ${CMAKE_DL_LIBS})
     ENDIF()
 ENDIF()
+TARGET_COMPILE_DEFINITIONS(Lua INTERFACE LUA_COMPAT_5_2)
 
 ADD_LIBRARY(HTML-template STATIC EXCLUDE_FROM_ALL cgitemplate/html_template.cpp)
 TARGET_INCLUDE_DIRECTORIES(HTML-template INTERFACE cgitemplate)
