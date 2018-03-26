@@ -977,7 +977,7 @@ void mmTransDialog::OnAutoTransNum(wxCommandEvent& /*event*/)
     }
 
     next_number++;
-    textNumber_->SetValue(wxNumberFormatter::ToString(next_number, 0, wxNumberFormatter::Style_None));
+    textNumber_->SetValue(wxString::FromDouble(next_number, 0));
 }
 
 void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
