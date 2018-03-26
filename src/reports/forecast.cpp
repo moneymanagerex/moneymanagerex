@@ -60,8 +60,8 @@ wxString mmReportForecast::getHTMLText()
     {
         row_t r;
         r(L"DATE") = kv.first;
-        r(L"WITHDRAWAL") = wxString::Format("%f", kv.second.first);
-        r(L"DEPOSIT") = wxString::Format("%f", kv.second.second);
+        r(L"WITHDRAWAL") = wxString::FromCDouble(kv.second.first, 6);
+        r(L"DEPOSIT") = wxString::FromCDouble(kv.second.second, 6);
 
         contents += r;
     }
