@@ -16,7 +16,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 #pragma once
-#include "db/DB_Table.h"
+
+#include "cajun/json/elements.h"
+#include "cajun/json/reader.h"
+#include "cajun/json/writer.h"
 
 class SearchBase
 {

@@ -431,9 +431,9 @@ void mmUnivCSVDialog::OnSettingsSelected(wxCommandEvent& event)
 wxString mmUnivCSVDialog::GetStoredSettings(int id)
 {
     if (id < 0) id = 0;
-    const wxString& setting_id = wxString::Format(GetSettingsPrfix() +"%d", id);
+    const wxString& setting_id = wxString::Format(GetSettingsPrfix() + "%d", id);
     const wxString& settings_string = Model_Setting::instance().GetStringSetting(setting_id, "");
-    wxLogDebug("%s", setting_id);
+    wxLogDebug("%s \n %s", setting_id, settings_string);
     return settings_string;
 }
 
@@ -643,46 +643,80 @@ void mmUnivCSVDialog::OnLoad()
 //Saves the field order to a template file
 void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
 {
-    json::Object o;
 
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartObject();
+    
     wxRadioBox* c = (wxRadioBox*) FindWindow(wxID_APPLY);
     int id = c->GetSelection();
     const wxString& settingsPrefix = GetSettingsPrfix();
     const wxString& setting_id = wxString::Format(settingsPrefix +"%d", id);
     wxLogDebug("%s", setting_id);
 
-    o[L"ACCOUNT_NAME"] = json::String(m_choice_account_->GetStringSelection().ToStdWstring());
-    o[L"DATE_MASK"] = json::String(date_format_.ToStdWstring());
-    o[L"DELIMITER"] = json::String(delimit_.ToStdWstring());
-    const wxString fileName = m_text_ctrl_->GetValue();
-    if (!fileName.empty()) o[L"FILE_NAME"] = json::String(fileName.ToStdWstring());
+    const auto an = m_choice_account_->GetStringSelection();
+    if (!an.empty())
+    {
+        json_writer.Key("ACCOUNT_NAME");
+        json_writer.String(an.c_str());
+    }
+    if (!date_format_.empty())
+    {
+        json_writer.Key("DATE_MASK");
+        json_writer.String(date_format_.c_str());
+    }
+    if (!delimit_.empty())
+    {
+        json_writer.Key("DELIMITER");
+        json_writer.String(delimit_.c_str());
+    }
 
-    int count = 0;
+    const auto fileName = m_text_ctrl_->GetValue();
+    if (!fileName.empty())
+    {
+        json_writer.Key("FILE_NAME");
+        json_writer.String(fileName.c_str());
+    }
+
+    size_t count = 0;
     for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
     {
-        const auto w = to_wstring(count++);
+        char key[2];
+        sprintf(key, "%zu", count++);
         int i = *it;
-        o[w] = json::String(CSVFieldName_[i].ToStdWstring());
+
+        json_writer.Key(key);
+        json_writer.String(CSVFieldName_[i].c_str());
     }
 
     if (IsImporter())
     {
         // Amount sign
-        o[L"AMOUNT_SIGN"] = json::String(to_wstring(m_choiceAmountFieldSign->GetCurrentSelection()));
+        const auto s = m_choiceAmountFieldSign->GetCurrentSelection();
+        json_writer.Key("AMOUNT_SIGN");
+        json_writer.Int(s);
 
         // Rows to ignore
-        o[L"IGNORE_FIRST_ROWS"] = json::String(to_wstring(m_spinIgnoreFirstRows_->GetValue()));
-        o[L"IGNORE_LAST_ROWS"] = json::String(to_wstring(m_spinIgnoreLastRows_->GetValue()));
+        const auto ifr = m_spinIgnoreFirstRows_->GetValue();
+        json_writer.Key("IGNORE_FIRST_ROWS");
+        json_writer.Int(ifr);
+
+        const auto ilr = m_spinIgnoreLastRows_->GetValue();
+        json_writer.Key("IGNORE_LAST_ROWS");
+        json_writer.Int(ifr);
     }
     else
     {
-        o[L"EXPORT_TITLES"] = json::Boolean(m_checkBoxExportTitles->IsChecked());
+        const auto et = m_checkBoxExportTitles->IsChecked();
+        json_writer.Key("EXPORT_TITLES");
+        json_writer.Bool(et);
     }
+    json_writer.EndObject();
 
-    std::wstringstream ss;
-    json::Writer::Write(o, ss);
-    Model_Setting::instance().Set(wxString::Format(settingsPrefix+"%d", id), ss.str());
-    Model_Setting::instance().Set(settingsPrefix+"CURRENT", id); // TODO: is this ever used?
+    const wxString json_data = json_buffer.GetString();
+
+    Model_Setting::instance().Set(wxString::Format(settingsPrefix + "%d", id), json_data);
+    //Model_Setting::instance().Set(settingsPrefix + "CURRENT", id); // TODO: is this ever used?
 }
 
 bool mmUnivCSVDialog::validateData(tran_holder & holder)

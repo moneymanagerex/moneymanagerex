@@ -26,6 +26,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/sstream.h>
 #include <wx/protocol/http.h>
 
+#include "cajun/json/elements.h"
+#include "cajun/json/reader.h"
+#include "cajun/json/writer.h"
+
 //Expected WebAppVersion
 const wxString WebAppParam::ApiExpectedVersion = "1.0.1";
 

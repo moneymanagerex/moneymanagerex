@@ -971,7 +971,7 @@ void mmGUIFrame::navTreeStateToJson()
         }
 
         mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
-        if (iData && iData->isStringData() && json::Boolean(m_nav_tree_ctrl->IsExpanded(next)))
+        if (iData && iData->isStringData() && m_nav_tree_ctrl->IsExpanded(next))
         {
             json_writer.Key(iData->getString().c_str());
             json_writer.Bool(m_nav_tree_ctrl->IsExpanded(next));
