@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/string.h>
 #include <wx/filefn.h>
 #include <wx/utils.h>
-#include "lua.hpp"
+#include "lua.h"
 #include "mongoose/mongoose.h"
 #include "db/DB_Upgrade.h" /* for dbLatestVersion */
 #include <curl/curl.h>

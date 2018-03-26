@@ -27,46 +27,48 @@ TARGET_INCLUDE_DIRECTORIES(LuaGlue INTERFACE LuaGlue/include)
 FIND_PACKAGE(Lua QUIET)
 # LuaGlue supports Lua 5.2 only
 IF(LUA_FOUND AND LUA_VERSION_MAJOR EQUAL 5 AND LUA_VERSION_MINOR EQUAL 2)
+    MESSAGE(STATUS "Found Lua: ${LUA_LIBRARIES} (found version \"${LUA_VERSION_STRING}\")") 
     ADD_LIBRARY(Lua INTERFACE)
     TARGET_INCLUDE_DIRECTORIES(Lua INTERFACE ${LUA_INCLUDE_DIR})
     TARGET_LINK_LIBRARIES(Lua INTERFACE ${LUA_LIBRARIES})
 ELSE()
     ADD_LIBRARY(Lua STATIC EXCLUDE_FROM_ALL
-        lua/src/lapi.c
-        lua/src/lauxlib.c
-        lua/src/lbaselib.c
-        lua/src/lbitlib.c
-        lua/src/lcode.c
-        lua/src/lcorolib.c
-        lua/src/lctype.c
-        lua/src/ldblib.c
-        lua/src/ldebug.c
-        lua/src/ldo.c
-        lua/src/ldump.c
-        lua/src/lfunc.c
-        lua/src/lgc.c
-        lua/src/linit.c
-        lua/src/liolib.c
-        lua/src/llex.c
-        lua/src/lmathlib.c
-        lua/src/lmem.c
-        lua/src/loadlib.c
-        lua/src/lobject.c
-        lua/src/lopcodes.c
-        lua/src/loslib.c
-        lua/src/lparser.c
-        lua/src/lstate.c
-        lua/src/lstring.c
-        lua/src/lstrlib.c
-        lua/src/ltable.c
-        lua/src/ltablib.c
-        lua/src/ltm.c
-        lua/src/lua.c
-        lua/src/luac.c
-        lua/src/lundump.c
-        lua/src/lvm.c
-        lua/src/lzio.c)
-    TARGET_INCLUDE_DIRECTORIES(Lua INTERFACE lua/src)
+        lua/lapi.c
+        lua/lauxlib.c
+        lua/lbaselib.c
+        lua/lbitlib.c
+        lua/lcode.c
+        lua/lcorolib.c
+        lua/lctype.c
+        lua/ldblib.c
+        lua/ldebug.c
+        lua/ldo.c
+        lua/ldump.c
+        lua/lfunc.c
+        lua/lgc.c
+        lua/linit.c
+        lua/liolib.c
+        lua/llex.c
+        lua/lmathlib.c
+        lua/lmem.c
+        lua/loadlib.c
+        lua/lobject.c
+        lua/lopcodes.c
+        lua/loslib.c
+        lua/lparser.c
+        lua/lstate.c
+        lua/lstring.c
+        lua/lstrlib.c
+        lua/ltable.c
+        lua/ltablib.c
+        lua/ltm.c
+        lua/lua.c
+        lua/lundump.c
+        lua/lvm.c
+        lua/lzio.c)
+    #add C++ wrapper for Lua include files
+    CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/resources/lua.hpp lua.hpp COPYONLY)
+    TARGET_INCLUDE_DIRECTORIES(Lua INTERFACE lua ${CMAKE_CURRENT_BINARY_DIR})
     IF(NOT WIN32)
         TARGET_COMPILE_DEFINITIONS(Lua PRIVATE
             LUA_USE_POSIX
