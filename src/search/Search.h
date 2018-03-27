@@ -16,10 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 #pragma once
-
-#include "cajun/json/elements.h"
-#include "cajun/json/reader.h"
-#include "cajun/json/writer.h"
+#include "db/DB_Table.h"
 
 class SearchBase
 {
@@ -35,10 +32,13 @@ protected:
 public:
     virtual wxString name() const { return this->table_; };
     // http://www.sqlite.org/fts3.html#section_3
-    virtual json::Array search(const wxString& query)
+    virtual Value::Array search(const wxString& query)
     {
+        Document document;
+        Document::AllocatorType& json_allocator = document.GetAllocator();
+        Value& a = document["a"];
+
         wxString sql = wxString::Format("SELECT * FROM %s WHERE %s MATCH ?", this->name(), this->name());;
-        json::Array a;
         try
         {
             wxSQLite3Statement stmt = db_->PrepareStatement(sql);
@@ -47,7 +47,7 @@ public:
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
             while (q.NextRow())
             {
-                json::Object o;
+                //json::Object o;
                 for (int i = 0; i < q.GetColumnCount(); ++i)
                 {
                     int column_type = q.GetColumnType(i);
@@ -55,23 +55,23 @@ public:
                     switch (column_type)
                     {
                     case WXSQLITE_INTEGER:
-                        o[column_name] = json::Number(q.GetInt(i));
+                        //o[column_name] = json::Number(q.GetInt(i));
                         break;
                     case WXSQLITE_FLOAT:
-                        o[column_name] = json::Number(q.GetDouble(i));
+                        //o[column_name] = json::Number(q.GetDouble(i));
                         break;
                     case WXSQLITE_TEXT:
-                        o[column_name] = json::String(q.GetString(i).ToStdWstring());
+                        //o[column_name] = json::String(q.GetString(i).ToStdWstring());
                         break;
                     case WXSQLITE_BLOB:
-                        o[column_name] = json::String(q.GetString(i).ToStdWstring());
+                        //o[column_name] = json::String(q.GetString(i).ToStdWstring());
                         break;
                     case WXSQLITE_NULL:
                     default:
                         break;
                     }
                 }
-                a.Insert(o);
+                //a.Insert(o);
             }
             q.Finalize();
         }
@@ -80,6 +80,6 @@ public:
             wxLogError("%s: Exception %s", this->name(), e.GetMessage());
         }
 
-        return a;
+        return a.GetArray();
     }
 };
