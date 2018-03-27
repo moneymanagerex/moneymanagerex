@@ -907,14 +907,10 @@ wxString mmFilterTransactionsDialog::to_json()
 
 void mmFilterTransactionsDialog::from_json(const wxString &data)
 {
-    wxString str = data;
-    if (!(str.StartsWith("{") && str.EndsWith("}")))
-    {
-        str = "{}";
-    }
-
     Document j_doc;
-    j_doc.Parse(str.c_str());
+    if (j_doc.Parse(data.c_str()).HasParseError()) {
+        j_doc.Parse("{}");
+    }
 
     //Label
     Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
@@ -922,18 +918,18 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Account
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
-    wxString s_account = j_account.GetString();
+    const wxString s_account = j_account.IsString() ? j_account.GetString() : "";
     accountCheckBox_->SetValue(!s_account.empty());
     accountDropDown_->Enable(accountCheckBox_->IsChecked());
     accountDropDown_->SetStringSelection(s_account);
 
     //Dates
     Value& j_date = GetValueByPointerWithDefault(j_doc, "/DATE", "");
-    wxString s_date = j_date.GetString();
+    wxString s_date = j_date.IsString() ? j_date.GetString() : "";
     Value& j_date1 = GetValueByPointerWithDefault(j_doc, "/DATE1", "");
-    m_begin_date = j_date1.GetString();
+    m_begin_date = j_date1.IsString() ? j_date1.GetString() : "";
     Value& j_date2 = GetValueByPointerWithDefault(j_doc, "/DATE2", "");
-    m_end_date = j_date2.GetString();
+    m_end_date = j_date2.IsString() ? j_date2.GetString() : "";
     m_dateRangeCheckBox->SetValue(!s_date.empty() || !m_end_date.empty());
     m_fromDateCtrl->Enable(m_dateRangeCheckBox->IsChecked());
     m_fromDateCtrl->SetValue(mmParseISODate(m_begin_date));
@@ -942,19 +938,19 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Payee
     Value& j_payee = GetValueByPointerWithDefault(j_doc, "/PAYEE", "");
-    wxString s_payee = j_payee.GetString();
+    wxString s_payee = j_payee.IsString() ? j_payee.GetString() : "";
     payeeCheckBox_->SetValue(!s_payee.empty());
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
     cbPayee_->SetValue(s_payee);
 
     //Category
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
-    wxString s_category = j_category.GetString();
+    wxString s_category = j_category.IsString() ? j_category.GetString() : "";
     categoryCheckBox_->SetValue(!s_category.empty());
     btnCategory_->Enable(categoryCheckBox_->IsChecked());
 
     bSimilarCategoryStatus_ = false;
-    if (j_doc.HasMember("SIMILAR_YN"))
+    if (j_doc.HasMember("SIMILAR_YN") && j_doc["SIMILAR_YN"].IsBool())
     {
         bSimilarCategoryStatus_ = j_doc["SIMILAR_YN"].GetBool();
     }
@@ -968,7 +964,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
         categID_ = category->CATEGID;
     }
     Model_Subcategory::Data* sub_category = 0;
-    wxString subcateg_name = categ_token.GetNextToken().Trim(false);
+    const wxString subcateg_name = categ_token.GetNextToken().Trim(false);
     if (!subcateg_name.IsEmpty())
     {
         sub_category = Model_Subcategory::instance().get(subcateg_name, categID_);
@@ -979,14 +975,14 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Status
     Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
-    wxString s_status = j_status.GetString();
+    const wxString s_status = j_status.IsString() ? j_status.GetString() : "";
     statusCheckBox_->SetValue(!s_status.empty());
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
     choiceStatus_->SetStringSelection(wxGetTranslation(s_status));
 
     //Type
     Value& j_type = GetValueByPointerWithDefault(j_doc, "/TYPE", "");
-    wxString s_type = j_type.GetString();
+    const wxString s_type = j_type.IsString() ? j_type.GetString() : "";
     typeCheckBox_->SetValue(!s_type.empty());
     cbTypeWithdrawal_->SetValue(s_type.Contains("W"));
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
@@ -998,23 +994,14 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
 
     //Amounts
-    bool amt1 = false;
-    if (j_doc.HasMember("AMOUNT_MIN"))
-    {
-        amt1 = true;
-    }
-
-    bool amt2 = false;
-    if (j_doc.HasMember("AMOUNT_MAX"))
-    {
-        amt2 = true;
-    }
+    bool amt1 = (j_doc.HasMember("AMOUNT_MIN") && j_doc["AMOUNT_MIN"].IsBool());
+    bool amt2 = (j_doc.HasMember("AMOUNT_MAX") && j_doc["AMOUNT_MAX"].IsBool());
 
     amountRangeCheckBox_->SetValue(amt1 || amt2);
     amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
     amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
 
-    if (amt1 && j_doc["AMOUNT_MIN"].IsNumber())
+    if (amt1 && j_doc.HasMember("AMOUNT_MIN") && j_doc["AMOUNT_MIN"].IsDouble())
     {
         amountMinEdit_->SetValue(j_doc["AMOUNT_MIN"].GetDouble());
     }
@@ -1023,7 +1010,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
         amountMinEdit_->ChangeValue("");
     }
 
-    if (amt2 && j_doc["AMOUNT_MAX"].IsNumber())
+    if (amt2 && j_doc.HasMember("AMOUNT_MAX") && j_doc["AMOUNT_MAX"].IsDouble())
     {
         amountMaxEdit_->SetValue(j_doc["AMOUNT_MAX"].GetDouble());
     }
@@ -1034,14 +1021,14 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Number
     Value& j_number = GetValueByPointerWithDefault(j_doc, "/NUMBER", "");
-    wxString s_number = j_number.GetString();
+    wxString s_number = j_number.IsString() ? j_number.GetString() : "";
     transNumberCheckBox_->SetValue(!s_number.empty());
     transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
     transNumberEdit_->ChangeValue(s_number);
 
     //Notes
     Value& j_notes = GetValueByPointerWithDefault(j_doc, "/NOTES", "");
-    wxString s_notes = j_notes.GetString();
+    wxString s_notes = j_notes.IsString() ? j_notes.GetString() : "";
 
     notesCheckBox_->SetValue(!s_notes.empty());
     notesEdit_->Enable(notesCheckBox_->IsChecked());

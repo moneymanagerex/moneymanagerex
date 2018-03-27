@@ -10,9 +10,6 @@
 [submodule "3rd/cgitemplate"]
 	path = 3rd/cgitemplate
 	url = https://github.com/moneymanagerex/html-template.git
-[submodule "3rd/cajun"]
-	path = 3rd/cajun
-	url = https://github.com/moneymanagerex/cajun.git
 [submodule "3rd/csv-parser"]
 	path = 3rd/csv-parser
 	url = https://github.com/moneymanagerex/csv-parser.git
