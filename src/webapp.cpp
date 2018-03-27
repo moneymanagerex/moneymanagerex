@@ -26,10 +26,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/sstream.h>
 #include <wx/protocol/http.h>
 
-#include "cajun/json/elements.h"
-#include "cajun/json/reader.h"
-#include "cajun/json/writer.h"
-
 //Expected WebAppVersion
 const wxString WebAppParam::ApiExpectedVersion = "1.0.1";
 
@@ -385,52 +381,81 @@ bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_,
         return true;
     else
     {
-        json::Object jsonTransaction;
-        std::wstringstream jsonTransactionStream;
+        Document j_doc;
+        if (j_doc.Parse(NewTransactionJSON.c_str()).HasParseError())
+            return true;
+        Document::AllocatorType& j_doc_main_allocator = j_doc.GetAllocator();
 
-        if (!(NewTransactionJSON.StartsWith("{") && NewTransactionJSON.EndsWith("}"))) return true;
-        jsonTransactionStream << NewTransactionJSON.ToStdWstring();
-        json::Reader::Read(jsonTransaction, jsonTransactionStream);
 
         //Define variables
         webtran_holder WebTran;
         WebAppTransactions_.clear();
-        std::wstring TrProgrStr;
-        wxString dtStr,Payee,Category,SubCategory;
 
-        for (int i = 0; i < static_cast<int>(jsonTransaction.Size()); i++)
+        for (auto& m : j_doc.GetObject())
         {
-            TrProgrStr = std::to_wstring(i);
-            
-            WebTran.ID = wxAtoi(wxString(json::String(jsonTransaction[TrProgrStr][L"ID"])));
-            
-            dtStr = wxString(json::String(jsonTransaction[TrProgrStr][L"Date"]));
-            WebTran.Date = mmParseISODate(dtStr);
-      
-            WebTran.Account = wxString(json::String(jsonTransaction[TrProgrStr][L"Account"]));
-            WebTran.ToAccount = wxString(json::String(jsonTransaction[TrProgrStr][L"ToAccount"]));
-            WebTran.Status = wxString(json::String(jsonTransaction[TrProgrStr][L"Status"]));
-            WebTran.Type = wxString(json::String(jsonTransaction[TrProgrStr][L"Type"]));
+            const char* TrProgrStr = m.name.GetString();
+            Value trx = m.value.GetObject();
 
-            Payee = wxString(json::String(jsonTransaction[TrProgrStr][L"Payee"]));
-            if (Payee == "None" || Payee.IsEmpty()) Payee = _("Unknown");
-            WebTran.Payee = Payee;
+            if (trx.HasMember("ID") && trx["ID"].IsInt()) {
+                WebTran.ID = trx["ID"].GetInt();
+            }
 
-            Category = wxString(json::String(jsonTransaction[TrProgrStr][L"Category"]));
-            if (Category == "None" || Category.IsEmpty()) Category = _("Unknown");
-            WebTran.Category = Category;
+            if (trx.HasMember("Date") && trx["Date"].IsString()) {
+                WebTran.Date = mmParseISODate(wxString::FromUTF8(trx["Date"].GetString()));
+            }
 
-            SubCategory = wxString(json::String(jsonTransaction[TrProgrStr][L"SubCategory"]));
-            if (SubCategory == "None" || SubCategory.IsEmpty()) SubCategory = wxEmptyString;
-            WebTran.SubCategory = SubCategory;
+            if (trx.HasMember("Amount") && trx["Amount"].IsDouble()) {
+                WebTran.Amount = trx["Amount"].GetDouble();
+            }
 
-            //Amount -> TODO: Test with json::Number
-            wxString jsonAmount = wxString(json::String(jsonTransaction[TrProgrStr][L"Amount"]));
-            double TransactionAmount; jsonAmount.ToDouble(&TransactionAmount);
-            WebTran.Amount = TransactionAmount;
+            if (trx.HasMember("Account") && trx["Account"].IsString()) {
+                WebTran.Account =wxString::FromUTF8(trx["Account"].GetString());
+            }
 
-            WebTran.Notes = wxString(json::String(jsonTransaction[TrProgrStr][L"Notes"]));
-            WebTran.Attachments = wxString(json::String(jsonTransaction[TrProgrStr][L"Attachments"]));
+            if (trx.HasMember("ToAccount") && trx["ToAccount"].IsString()) {
+                WebTran.ToAccount = wxString::FromUTF8(trx["ToAccount"].GetString());
+            }
+
+            if (trx.HasMember("Status") && trx["Status"].IsString()) {
+                WebTran.Status = wxString::FromUTF8(trx["Status"].GetString());
+            }
+
+            if (trx.HasMember("Type") && trx["Type"].IsString()) {
+                WebTran.Type = wxString::FromUTF8(trx["Type"].GetString());
+            }
+
+
+            if (trx.HasMember("Payee") && trx["Payee"].IsString()) {
+                wxString Payee = wxString::FromUTF8(trx["Payee"].GetString());
+                if (Payee == "None" || Payee.IsEmpty()) {
+                    Payee = _("Unknown");
+                }
+                WebTran.Payee = Payee;
+            }
+
+            if (trx.HasMember("Category") && trx["Category"].IsString()) {
+                wxString Category = wxString::FromUTF8(trx["Category"].GetString());
+                if (Category == "None" || Category.IsEmpty()) {
+                    Category = _("Unknown");
+                }
+                WebTran.Category = Category;
+            }
+
+            if (trx.HasMember("SubCategory") && trx["SubCategory"].IsString()) {
+                wxString SubCategory = wxString::FromUTF8(trx["SubCategory"].GetString());
+                if (SubCategory == "None" || SubCategory.IsEmpty()) {
+                    SubCategory = _("Unknown");
+                }
+                WebTran.SubCategory = SubCategory;
+            }
+
+            if (trx.HasMember("Notes") && trx["Notes"].IsString()) {
+                WebTran.Notes = wxString::FromUTF8(trx["Notes"].GetString());
+            }
+
+            if (trx.HasMember("Attachments") && trx["Attachments"].IsString()) {
+                WebTran.Attachments = wxString::FromUTF8(trx["Attachments"].GetString());
+            }
 
             WebAppTransactions_.push_back(WebTran);
         }
