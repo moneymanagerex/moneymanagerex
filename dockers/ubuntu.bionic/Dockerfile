@@ -1,10 +1,9 @@
-FROM ubuntu:zesty
+FROM ubuntu:bionic
 MAINTAINER developers@moneymanagerex.org
-RUN sed -i -re 's/(([a-z]{2}\.)?archive|security)\.ubuntu\.com/old-releases.ubuntu.com/g' /etc/apt/sources.list && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       cmake build-essential gettext git pkg-config lsb-release \
-      libwxgtk-webview3.0-dev liblua5.3-dev libcurl4-openssl-dev \
+      libwxgtk-webview3.0-gtk3-dev liblua5.3-dev libcurl4-openssl-dev \
       automake libtool ccache && \
     apt-get clean
 
