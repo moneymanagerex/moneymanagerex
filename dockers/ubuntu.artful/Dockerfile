@@ -1,10 +1,12 @@
 FROM ubuntu:artful
 MAINTAINER developers@moneymanagerex.org
-RUN apt-get update && \
+ADD --chown=_apt:root https://repos.codelite.org/CodeLite.asc /etc/apt/trusted.gpg.d/
+RUN echo 'deb http://repos.codelite.org/wx3.1/ubuntu/ artful universe' \
+      >/etc/apt/sources.list.d/CodeLite.list && \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
       cmake build-essential gettext git pkg-config lsb-release file \
-      libwxgtk3.0-dev libwxgtk-webview3.0-dev \
-      libwxsqlite3-3.0-dev liblua5.3-dev libcurl4-openssl-dev \
+      libwxgtk-webview3.1-dev liblua5.3-dev libcurl4-openssl-dev \
       automake libtool ccache && \
     apt-get clean
 

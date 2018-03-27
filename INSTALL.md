@@ -92,6 +92,12 @@ for RPM based Linux distributions.
 There are instructions to [manually add MMEX repo] to system configuration
 available too.
 
+> Important: in Ubuntu Artful (17.10) you need to manually add CodeLite
+> wxWidgets repo with following commands
+>
+>     sudo apt-key adv --fetch-keys http://repos.codelite.org/CodeLite.asc
+>     sudo apt-add-repository 'deb http://repos.codelite.org/wx3.1/ubuntu/ artful universe'
+
 You can use package manager from your distribution to install MMEX as
 described in previous section above **after** adding MMEX repository to your
 configuration.
