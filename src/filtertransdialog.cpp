@@ -914,18 +914,19 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Label
     Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
-    m_settingLabel->ChangeValue(j_label.GetString());
+    const wxString& s_label = j_label.IsString() ? j_label.GetString() : "";
+    m_settingLabel->ChangeValue(s_label);
 
     //Account
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
-    const wxString s_account = j_account.IsString() ? j_account.GetString() : "";
+    const wxString& s_account = j_account.IsString() ? j_account.GetString() : "";
     accountCheckBox_->SetValue(!s_account.empty());
     accountDropDown_->Enable(accountCheckBox_->IsChecked());
     accountDropDown_->SetStringSelection(s_account);
 
     //Dates
     Value& j_date = GetValueByPointerWithDefault(j_doc, "/DATE", "");
-    wxString s_date = j_date.IsString() ? j_date.GetString() : "";
+    const wxString& s_date = j_date.IsString() ? j_date.GetString() : "";
     Value& j_date1 = GetValueByPointerWithDefault(j_doc, "/DATE1", "");
     m_begin_date = j_date1.IsString() ? j_date1.GetString() : "";
     Value& j_date2 = GetValueByPointerWithDefault(j_doc, "/DATE2", "");
@@ -938,14 +939,14 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Payee
     Value& j_payee = GetValueByPointerWithDefault(j_doc, "/PAYEE", "");
-    wxString s_payee = j_payee.IsString() ? j_payee.GetString() : "";
+    const wxString& s_payee = j_payee.IsString() ? j_payee.GetString() : "";
     payeeCheckBox_->SetValue(!s_payee.empty());
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
     cbPayee_->SetValue(s_payee);
 
     //Category
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
-    wxString s_category = j_category.IsString() ? j_category.GetString() : "";
+    const wxString& s_category = j_category.IsString() ? j_category.GetString() : "";
     categoryCheckBox_->SetValue(!s_category.empty());
     btnCategory_->Enable(categoryCheckBox_->IsChecked());
 
@@ -964,7 +965,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
         categID_ = category->CATEGID;
     }
     Model_Subcategory::Data* sub_category = 0;
-    const wxString subcateg_name = categ_token.GetNextToken().Trim(false);
+    const wxString& subcateg_name = categ_token.GetNextToken().Trim(false);
     if (!subcateg_name.IsEmpty())
     {
         sub_category = Model_Subcategory::instance().get(subcateg_name, categID_);
@@ -975,14 +976,14 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Status
     Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
-    const wxString s_status = j_status.IsString() ? j_status.GetString() : "";
+    const wxString& s_status = j_status.IsString() ? j_status.GetString() : "";
     statusCheckBox_->SetValue(!s_status.empty());
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
     choiceStatus_->SetStringSelection(wxGetTranslation(s_status));
 
     //Type
     Value& j_type = GetValueByPointerWithDefault(j_doc, "/TYPE", "");
-    const wxString s_type = j_type.IsString() ? j_type.GetString() : "";
+    const wxString& s_type = j_type.IsString() ? j_type.GetString() : "";
     typeCheckBox_->SetValue(!s_type.empty());
     cbTypeWithdrawal_->SetValue(s_type.Contains("W"));
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
@@ -1021,14 +1022,14 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Number
     Value& j_number = GetValueByPointerWithDefault(j_doc, "/NUMBER", "");
-    wxString s_number = j_number.IsString() ? j_number.GetString() : "";
+    const wxString& s_number = j_number.IsString() ? j_number.GetString() : "";
     transNumberCheckBox_->SetValue(!s_number.empty());
     transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
     transNumberEdit_->ChangeValue(s_number);
 
     //Notes
     Value& j_notes = GetValueByPointerWithDefault(j_doc, "/NOTES", "");
-    wxString s_notes = j_notes.IsString() ? j_notes.GetString() : "";
+    const wxString& s_notes = j_notes.IsString() ? j_notes.GetString() : "";
 
     notesCheckBox_->SetValue(!s_notes.empty());
     notesEdit_->Enable(notesCheckBox_->IsChecked());

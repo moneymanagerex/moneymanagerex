@@ -886,16 +886,16 @@ void mmGUIFrame::loadNavTreeItemsStatus()
     wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
     m_nav_tree_ctrl->Expand(root);
 
-    wxString str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
-    if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
-    wxLogDebug("%s", str);
-
-    Document j_doc;
-    j_doc.Parse(str.c_str());
+    const wxString& str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
+    Document json_doc;
+    if (json_doc.Parse(str.c_str()).HasParseError()) {
+        json_doc.Parse("{}");
+    }
 
     std::stack<wxTreeItemId> items;
-    if (m_nav_tree_ctrl->GetRootItem().IsOk())
+    if (m_nav_tree_ctrl->GetRootItem().IsOk()) {
         items.push(m_nav_tree_ctrl->GetRootItem());
+    }
 
     while (!items.empty())
     {
@@ -914,18 +914,18 @@ void mmGUIFrame::loadNavTreeItemsStatus()
             dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
         if (iData)
         {
-            const wxString nav_key = iData->getString();
+            const wxString& nav_key = iData->getString();
             wxLogDebug("%s", nav_key);
-            if (j_doc.HasMember(nav_key.c_str()))
+            if (json_doc.HasMember(nav_key.c_str()))
             {
-                Value json_key(nav_key.c_str(), j_doc.GetAllocator());
-                if (j_doc[json_key].GetBool())
+                Value json_key(nav_key.c_str(), json_doc.GetAllocator());
+                if (json_doc[json_key].GetBool())
                 {
                     m_nav_tree_ctrl->Expand(next);
                 }
             }
         }
-    };
+    }
 
     SetEvtHandlerEnabled(true);
 }
