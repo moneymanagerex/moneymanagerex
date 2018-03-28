@@ -485,7 +485,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
         Value& v_delimiter = GetValueByPointerWithDefault(json_doc, "/DELIMITER", "");
         const wxString& de = v_delimiter.IsString() ? v_delimiter.GetString() : "";
         const wxString& def_delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
-        delimit_ = de.empty() ? def_delimiter : v_delimiter.GetString();
+        delimit_ = de.empty() ? def_delimiter : wxString::FromUTF8(v_delimiter.GetString());
         initDelimiter();
     }
 
