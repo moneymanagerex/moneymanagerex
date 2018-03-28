@@ -315,7 +315,7 @@ TARGET_LINK_LIBRARIES(${MMEX_EXE} MMEXLib)
 TARGET_LINK_LIBRARIES(MMEXLib
     PUBLIC
         wxSQLite3
-        JSONlib
+        RapidJSON
         HTML-template
         CURL::libcurl
     PRIVATE

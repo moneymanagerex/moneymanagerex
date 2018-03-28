@@ -16,8 +16,8 @@ personal finance application. The design goals are to concentrate on
 simplicity and user-friendliness - something one can use everyday.
 
 MMEX is mainly written in C++11 and built on:  
-[wxWidgets] 3.0+ | [wxSqlite3] | [SQLite3] | [Mongoose] | [ChartNew.JS]
-| [html-template] | [libcurl]
+[wxWidgets] 3.0+ | [wxSqlite3] | [SQLite3] | [Mongoose] | [RapidJSON]
+| [ChartNew.JS] | [html-template] | [libcurl]
 
 #### Supported platforms ####
 - Windows XP, 2003, Vista, 7, 8 and 10
@@ -58,6 +58,7 @@ MMEX is mainly written in C++11 and built on:
 [wxSqlite3]: https://github.com/utelle/wxsqlite3
 [SQLite3]: http://sqlite.org/
 [Mongoose]: https://github.com/cesanta/mongoose
+[RapidJSON]: http://rapidjson.org/
 [ChartNew.JS]: https://github.com/FVANCOP/ChartNew.js
 [html-template]: https://github.com/moneymanagerex/html-template
 [libcurl]: https://curl.haxx.se/libcurl/
