@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/utils.h>
 #include "lua.h"
 #include "mongoose/mongoose.h"
+#include "rapidjson/rapidjson.h"
 #include "db/DB_Upgrade.h" /* for dbLatestVersion */
 #include <curl/curl.h>
 
@@ -115,6 +116,7 @@ const wxString mmex::getProgramDescription()
         << bull + wxSQLITE3_VERSION_STRING
         << " (SQLite " << wxSQLite3Database::GetVersion() << ")\n"
         << bull + "Mongoose " << MG_VERSION << "\n"
+        << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << "\n"
         << bull + LUA_RELEASE << "\n"
         << bull + curl << "\n\n"
 
