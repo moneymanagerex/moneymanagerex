@@ -36,7 +36,7 @@ def is_trans(s):
 
 def adjust_translate(s):
     """Return the correct translated syntax for c++"""
-    trans_str = s.replace("_tr_", "")
+    trans_str = s.replace("_tr_", "").replace('"','')
     trans_str = 'wxTRANSLATE("' + trans_str + '")'
 
     return trans_str
@@ -954,16 +954,17 @@ bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 }
 '''
     for field in sorted(fields):
+        transl = 'wxGetTranslation' if field == 'CURRENCYNAME' else ''
         code += '''
 struct SorterBy%s
 { 
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return x.%s < y.%s;
+        return %s(x.%s) < %s(y.%s);
     }
 };
-''' % (field, field, field)
+''' % (field, transl, field, transl, field)
 
     rfp = open('db_table.h', 'w')
     rfp.write(code)

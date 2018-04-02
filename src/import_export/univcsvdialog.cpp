@@ -1568,7 +1568,7 @@ void mmUnivCSVDialog::OnDateFormatChanged(wxCommandEvent& event)
         wxString acctName = m_choice_account_->GetStringSelection();
         Model_Account::Data* account = Model_Account::instance().get(acctName);
         Model_Currency::Data* currency = Model_Account::currency(account);
-        *log_field_ << _("Currency:") << " " << currency->CURRENCYNAME << "\n";
+        *log_field_ << _("Currency:") << " " << wxGetTranslation(currency->CURRENCYNAME) << "\n";
     }
     else if (i == ID_ENCODING)
     {
