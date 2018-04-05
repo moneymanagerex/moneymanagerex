@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-04-03 22:36:58.027000.
+ *          AUTO GENERATED at 2018-04-06 08:48:36.749000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -263,6 +263,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES ('152', '%s', 'Bs.', '', '.', ',', '%s', '%s', '100', '1', 'VEF')", wxTRANSLATE("Bolívar"), L"bolívar", L"céntimos"));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES ('153', '%s', '%s', '', '.', ',', '', '', '100000000', '1', 'BTC')", wxTRANSLATE("Bitcoin"), L"Ƀ"));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES ('154', '%s', '', '', '.', ',', '', '', '100', '1', 'BOV')", wxTRANSLATE("Mvdol")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES ('155', '%s', '', '', '.', ',', '', '', '100', '1', 'BYN')", wxTRANSLATE("Belarusian  Ruble")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES ('156', '%s', '', '', '.', ',', '', '', '100', '1', 'CHE')", wxTRANSLATE("WIR Euro")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES ('157', '%s', '', '', '.', ',', '', '', '100', '1', 'CHW')", wxTRANSLATE("WIR Franc")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS_V1 VALUES ('158', '%s', '', '', '.', ',', '', '', '10000', '1', 'CLF')", wxTRANSLATE("Unidad de Fomento")));
