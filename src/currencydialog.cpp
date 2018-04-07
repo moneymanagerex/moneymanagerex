@@ -126,7 +126,7 @@ void mmCurrencyDialog::fillControls()
         pfxTx_->ChangeValue(m_currency->PFX_SYMBOL);
         sfxTx_->ChangeValue(m_currency->SFX_SYMBOL);
 
-        const wxChar& decimal_separator = wxNumberFormatter::GetDecimalSeparator();
+        const wxString& decimal_separator = wxString::FromAscii(wxNumberFormatter::GetDecimalSeparator());
         const wxString& ds = m_currency->DECIMAL_POINT.empty() ? decimal_separator : m_currency->DECIMAL_POINT;
         decTx_->ChangeValue(ds);
         grpTx_->ChangeValue(m_currency->GROUP_SEPARATOR);
@@ -324,10 +324,8 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
     m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue().Trim().Upper();
     m_currency->CURRENCYNAME = m_currencyName->GetValue();
 
-    wxString dispAmount = "";
     double base_amount = 123456.78;
-
-    dispAmount = wxString::Format(_("%s Shown As: %s"), wxString::FromCDouble(base_amount, 2)
+    const wxString& dispAmount = wxString::Format(_("%s Shown As: %s"), wxString::FromCDouble(base_amount, 2)
         , Model_Currency::toCurrency(base_amount, m_currency));
     m_sample_text->SetLabelText(dispAmount);
 }
