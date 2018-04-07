@@ -112,14 +112,16 @@ bool Model_Report::get_objects_from_sql(const wxString& query, PrettyWriter<Stri
 
                 switch (q.GetColumnType(i))
                 {
-                    json_writer.Key(column_name.c_str());
                     case WXSQLITE_INTEGER:
+                        json_writer.Key(column_name.c_str());
                         json_writer.Int(q.GetInt(i));
                         break;
                     case WXSQLITE_FLOAT:
+                        json_writer.Key(column_name.c_str());
                         json_writer.Double(q.GetDouble(i));
                         break;
                     default:
+                        json_writer.Key(column_name.c_str());
                         json_writer.String(q.GetString(i).c_str());
                         break;
                 }
