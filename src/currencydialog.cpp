@@ -125,8 +125,12 @@ void mmCurrencyDialog::fillControls()
 
         pfxTx_->ChangeValue(m_currency->PFX_SYMBOL);
         sfxTx_->ChangeValue(m_currency->SFX_SYMBOL);
-        decTx_->ChangeValue(m_currency->DECIMAL_POINT);
+
+        const wxChar& decimal_separator = wxNumberFormatter::GetDecimalSeparator();
+        const wxString& ds = m_currency->DECIMAL_POINT.empty() ? decimal_separator : m_currency->DECIMAL_POINT;
+        decTx_->ChangeValue(ds);
         grpTx_->ChangeValue(m_currency->GROUP_SEPARATOR);
+
         unitTx_->ChangeValue(m_currency->UNIT_NAME);
         centTx_->ChangeValue(m_currency->CENT_NAME);
         m_scale = log10(m_currency->SCALE);
@@ -198,7 +202,7 @@ void mmCurrencyDialog::CreateControls()
     itemFlexGridSizer3->Add(decimal_label, g_flagsH);
     decimal_label->SetFont(this->GetFont().Bold());
     decTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, ""
-        , wxDefaultPosition, wxDefaultSize, 0L, valid );
+        , wxDefaultPosition, wxDefaultSize, 0L, valid);
     decTx_->SetMaxLength(1);
     itemFlexGridSizer3->Add(decTx_, g_flagsExpand);
 
@@ -317,7 +321,7 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
     m_currency->UNIT_NAME = unitTx_->GetValue();
     m_currency->CENT_NAME = centTx_->GetValue();
     m_currency->SCALE = static_cast<int>(pow(10, scale));
-    m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue().Trim();
+    m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue().Trim().Upper();
     m_currency->CURRENCYNAME = m_currencyName->GetValue();
 
     wxString dispAmount = "";
