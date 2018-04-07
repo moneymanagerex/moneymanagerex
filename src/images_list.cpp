@@ -79,6 +79,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/currates_png.h"
 #include "../resources/reallocate_acc_png.h"
 #include "../resources/recurring_png.h"
+#include "../resources/reloc_png.h"
 #include "../resources/rightarrow_png.h"
 #include "../resources/run_png.h"
 #include "../resources/save_png.h"
@@ -203,6 +204,7 @@ const wxBitmap mmBitmap(int ref)
     case SAVEAS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(saveas) : x == 24 ? wxBITMAP_PNG_FROM_DATA(saveas24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(saveas32) : wxBITMAP_PNG_FROM_DATA(saveas48);
     case NEW_ACC: return x == 16 ? wxBITMAP_PNG_FROM_DATA(new_acc) : x == 24 ? wxBITMAP_PNG_FROM_DATA(new_acc24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(new_acc32) : wxBITMAP_PNG_FROM_DATA(new_acc48);
     case HOME: return x == 16 ? wxBITMAP_PNG_FROM_DATA(home) : x == 24 ? wxBITMAP_PNG_FROM_DATA(home24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(home32) : wxBITMAP_PNG_FROM_DATA(home48);
+    case RELOCATION: return x == 16 ? wxBITMAP_PNG_FROM_DATA(reloc) : x == 24 ? wxBITMAP_PNG_FROM_DATA(reloc24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(reloc32) : wxBITMAP_PNG_FROM_DATA(reloc48);
     case CATEGORY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(category) : x == 24 ? wxBITMAP_PNG_FROM_DATA(category24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(category32) : wxBITMAP_PNG_FROM_DATA(category48);
     case CATEGORY_RELOCATION: return x == 16 ? wxBITMAP_PNG_FROM_DATA(category_relocation) : x == 24 ? wxBITMAP_PNG_FROM_DATA(category_relocation24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(category_relocation32) : wxBITMAP_PNG_FROM_DATA(category_relocation48);
     case PAYEE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(payee) : x == 24 ? wxBITMAP_PNG_FROM_DATA(payee24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(payee32) : wxBITMAP_PNG_FROM_DATA(payee48);
