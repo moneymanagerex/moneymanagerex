@@ -120,7 +120,8 @@ wxArrayString Model_CustomField::all_type()
 wxString Model_CustomField::getTooltip(const wxString& Properties)
 {
     Document json_doc;
-    json_doc.Parse(Properties.c_str());
+    if (json_doc.Parse(Properties.c_str()).HasParseError())
+        return "";
 
     Value& s = json_doc["Tooltip"];
 
@@ -130,7 +131,8 @@ wxString Model_CustomField::getTooltip(const wxString& Properties)
 wxString Model_CustomField::getRegEx(const wxString& Properties)
 {
     Document json_doc;
-    json_doc.Parse(Properties.c_str());
+    if (json_doc.Parse(Properties.c_str()).HasParseError())
+        return "";
 
     Value& s = json_doc["RegEx"];
 
@@ -140,7 +142,8 @@ wxString Model_CustomField::getRegEx(const wxString& Properties)
 bool Model_CustomField::getAutocomplete(const wxString& Properties)
 {
     Document json_doc;
-    json_doc.Parse(Properties.c_str());
+    if (json_doc.Parse(Properties.c_str()).HasParseError())
+        return false;
 
     Value& b = json_doc["Autocomplete"];
 
@@ -150,7 +153,8 @@ bool Model_CustomField::getAutocomplete(const wxString& Properties)
 wxString Model_CustomField::getDefault(const wxString& Properties)
 {
     Document json_doc;
-    json_doc.Parse(Properties.c_str());
+    if (json_doc.Parse(Properties.c_str()).HasParseError())
+        return "";
 
     Value& s = json_doc["Default"];
 
@@ -159,16 +163,15 @@ wxString Model_CustomField::getDefault(const wxString& Properties)
 
 wxArrayString Model_CustomField::getChoices(const wxString& Properties)
 {
-    Document json_doc;
-    json_doc.Parse(Properties.c_str());
-
-    Value& sa = json_doc["Choice"];
-
     wxArrayString choices;
-
-    for (SizeType i = 0; i < sa.Size(); i++)
+    Document json_doc;
+    if (!json_doc.Parse(Properties.c_str()).HasParseError()) 
     {
-        choices.Add(sa[i].GetString());
+        Value& sa = json_doc["Choice"];
+        for (SizeType i = 0; i < sa.Size(); i++)
+        {
+            choices.Add(sa[i].GetString());
+        }
     }
 
     return choices;

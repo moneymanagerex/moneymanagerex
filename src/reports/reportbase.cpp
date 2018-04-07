@@ -171,7 +171,9 @@ void mmPrintableBase::setSettings(const wxString& settings)
     m_settings = settings;
 
     Document j_doc;
-    j_doc.Parse(settings.c_str());
+    if (j_doc.Parse(settings.c_str()).HasParseError())
+        return;
+
 
     m_date_selection = j_doc["SETTINGSDATA"]["REPORTPERIOD"].GetInt();
     m_begin_date = mmParseISODate(j_doc["SETTINGSDATA"]["DATE1"].GetString());

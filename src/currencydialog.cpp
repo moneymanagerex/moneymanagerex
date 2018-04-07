@@ -125,8 +125,12 @@ void mmCurrencyDialog::fillControls()
 
         pfxTx_->ChangeValue(m_currency->PFX_SYMBOL);
         sfxTx_->ChangeValue(m_currency->SFX_SYMBOL);
-        decTx_->ChangeValue(m_currency->DECIMAL_POINT);
+
+        const wxString& decimal_separator = wxString::FromAscii(wxNumberFormatter::GetDecimalSeparator());
+        const wxString& ds = m_currency->DECIMAL_POINT.empty() ? decimal_separator : m_currency->DECIMAL_POINT;
+        decTx_->ChangeValue(ds);
         grpTx_->ChangeValue(m_currency->GROUP_SEPARATOR);
+
         unitTx_->ChangeValue(m_currency->UNIT_NAME);
         centTx_->ChangeValue(m_currency->CENT_NAME);
         m_scale = log10(m_currency->SCALE);
@@ -153,14 +157,16 @@ void mmCurrencyDialog::CreateControls()
     itemBoxSizer2->Add(itemFlexGridSizer3, g_flagsV);
 
     //--------------------------
-    itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC
-        , _("Currency Name")), g_flagsH);
+    wxStaticText* name_label = new wxStaticText(this, wxID_STATIC, _("Currency Name"));
+    itemFlexGridSizer3->Add(name_label, g_flagsH);
+    name_label->SetFont(this->GetFont().Bold());
     m_currencyName = new mmTextCtrl(this, ID_DIALOG_CURRENCY, ""
         , wxDefaultPosition, wxSize(220, -1));
     itemFlexGridSizer3->Add(m_currencyName, g_flagsH);
 
-    itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC
-        , _("Currency Symbol")), g_flagsH);
+    wxStaticText* symbol_label = new wxStaticText(this, wxID_STATIC, _("Currency Symbol"));
+    itemFlexGridSizer3->Add(symbol_label, g_flagsH);
+    symbol_label->SetFont(this->GetFont().Bold());
     m_currencySymbol = new mmTextCtrl(this, ID_DIALOG_CURRENCY, ""
         , wxDefaultPosition, wxSize(220, -1));
     m_currencySymbol->SetMaxLength(3);
@@ -192,10 +198,11 @@ void mmCurrencyDialog::CreateControls()
     chars.Add(",");
     valid.SetIncludes(chars);
 
-    itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC
-        , _("Decimal Char")), g_flagsH);
+    wxStaticText* decimal_label = new wxStaticText(this, wxID_STATIC, _("Decimal Char"));
+    itemFlexGridSizer3->Add(decimal_label, g_flagsH);
+    decimal_label->SetFont(this->GetFont().Bold());
     decTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, ""
-        , wxDefaultPosition, wxDefaultSize, 0L, valid );
+        , wxDefaultPosition, wxDefaultSize, 0L, valid);
     decTx_->SetMaxLength(1);
     itemFlexGridSizer3->Add(decTx_, g_flagsExpand);
 
@@ -314,13 +321,11 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
     m_currency->UNIT_NAME = unitTx_->GetValue();
     m_currency->CENT_NAME = centTx_->GetValue();
     m_currency->SCALE = static_cast<int>(pow(10, scale));
-    m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue().Trim();
+    m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue().Trim().Upper();
     m_currency->CURRENCYNAME = m_currencyName->GetValue();
 
-    wxString dispAmount = "";
     double base_amount = 123456.78;
-
-    dispAmount = wxString::Format(_("%s Shown As: %s"), wxString::FromCDouble(base_amount, 2)
+    const wxString& dispAmount = wxString::Format(_("%s Shown As: %s"), wxString::FromCDouble(base_amount, 2)
         , Model_Currency::toCurrency(base_amount, m_currency));
     m_sample_text->SetLabelText(dispAmount);
 }
