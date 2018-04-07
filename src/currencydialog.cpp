@@ -153,14 +153,16 @@ void mmCurrencyDialog::CreateControls()
     itemBoxSizer2->Add(itemFlexGridSizer3, g_flagsV);
 
     //--------------------------
-    itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC
-        , _("Currency Name")), g_flagsH);
+    wxStaticText* name_label = new wxStaticText(this, wxID_STATIC, _("Currency Name"));
+    itemFlexGridSizer3->Add(name_label, g_flagsH);
+    name_label->SetFont(this->GetFont().Bold());
     m_currencyName = new mmTextCtrl(this, ID_DIALOG_CURRENCY, ""
         , wxDefaultPosition, wxSize(220, -1));
     itemFlexGridSizer3->Add(m_currencyName, g_flagsH);
 
-    itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC
-        , _("Currency Symbol")), g_flagsH);
+    wxStaticText* symbol_label = new wxStaticText(this, wxID_STATIC, _("Currency Symbol"));
+    itemFlexGridSizer3->Add(symbol_label, g_flagsH);
+    symbol_label->SetFont(this->GetFont().Bold());
     m_currencySymbol = new mmTextCtrl(this, ID_DIALOG_CURRENCY, ""
         , wxDefaultPosition, wxSize(220, -1));
     m_currencySymbol->SetMaxLength(3);
@@ -192,8 +194,9 @@ void mmCurrencyDialog::CreateControls()
     chars.Add(",");
     valid.SetIncludes(chars);
 
-    itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC
-        , _("Decimal Char")), g_flagsH);
+    wxStaticText* decimal_label = new wxStaticText(this, wxID_STATIC, _("Currency Symbol"));
+    itemFlexGridSizer3->Add(decimal_label, g_flagsH);
+    decimal_label->SetFont(this->GetFont().Bold());
     decTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, ""
         , wxDefaultPosition, wxDefaultSize, 0L, valid );
     decTx_->SetMaxLength(1);
