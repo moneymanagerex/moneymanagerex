@@ -194,7 +194,7 @@ void mmCurrencyDialog::CreateControls()
     chars.Add(",");
     valid.SetIncludes(chars);
 
-    wxStaticText* decimal_label = new wxStaticText(this, wxID_STATIC, _("Currency Symbol"));
+    wxStaticText* decimal_label = new wxStaticText(this, wxID_STATIC, _("Decimal Char"));
     itemFlexGridSizer3->Add(decimal_label, g_flagsH);
     decimal_label->SetFont(this->GetFont().Bold());
     decTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, ""
