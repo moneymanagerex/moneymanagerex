@@ -671,7 +671,6 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 {
     //Initialization
     bool ignoreFuture = Option::instance().IgnoreFutureTransactions();
-    wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
 
     //Calculations
     const auto &transactions = Model_Checking::instance().find(

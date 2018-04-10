@@ -44,7 +44,7 @@ static void handle_sql(struct mg_connection* nc, struct http_message* hm)
     json_writer.Key("query");
     json_writer.String(wxString(query).c_str());
 
-    bool ret = Model_Report::instance().get_objects_from_sql(wxString(query), json_writer);
+    Model_Report::instance().get_objects_from_sql(wxString(query), json_writer);
 
     for (const auto & r : Model_Setting::instance().all())
     {

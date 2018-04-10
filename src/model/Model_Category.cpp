@@ -188,7 +188,6 @@ void Model_Category::getCategoryStats(
         }
     }
     //Calculations
-    const wxDate today = date_range->today();
     auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& transaction: Model_Checking::instance().find(
         Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)

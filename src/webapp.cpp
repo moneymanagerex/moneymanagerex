@@ -384,8 +384,6 @@ bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_,
         Document j_doc;
         if (j_doc.Parse(NewTransactionJSON.c_str()).HasParseError())
             return true;
-        Document::AllocatorType& j_doc_main_allocator = j_doc.GetAllocator();
-
 
         //Define variables
         webtran_holder WebTran;
@@ -393,7 +391,6 @@ bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_,
 
         for (auto& m : j_doc.GetObject())
         {
-            const char* TrProgrStr = m.name.GetString();
             Value trx = m.value.GetObject();
 
             if (trx.HasMember("ID") && trx["ID"].IsInt()) {
