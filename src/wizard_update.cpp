@@ -108,7 +108,8 @@ mmUpdateWizardPage2::mmUpdateWizardPage2(mmUpdateWizard* parent)
     site_content(mmex::weblink::UpdateLinks, json_links);
 
     Document json_doc;
-    json_doc.Parse(json_links.c_str());
+    if (json_doc.Parse(json_links.c_str()).HasParseError())
+        json_doc.Parse("{}");
 
     wxLogDebug("======= mmUpdateWizardPage2::mmUpdateWizardPage2 =======");
     wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));

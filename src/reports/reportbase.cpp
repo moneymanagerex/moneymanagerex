@@ -42,47 +42,51 @@ mmPrintableBase::mmPrintableBase(const wxString& title)
 
 mmPrintableBase::~mmPrintableBase()
 {
-    if (!m_settings.IsEmpty())
-    {
-        Document j_doc;
-        j_doc.Parse(m_settings.c_str());
+    Document j_doc;
+    if (!j_doc.Parse(m_settings.c_str()).HasParseError()) {
 
-        wxString jds = JSON_PrettyFormated(j_doc);
+        int id = -1;
+        if (j_doc.HasMember("ID") && j_doc["ID"].IsInt()) {
+            id = j_doc["ID"].GetInt();
 
-        StringBuffer json_buffer;
-        PrettyWriter<StringBuffer> json_writer(json_buffer);
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-        json_writer.StartObject();
-        json_writer.Key("REPORTPERIOD");
-        json_writer.Int(m_date_selection);
+            json_writer.StartObject();
+            json_writer.Key("ID");
+            json_writer.Int(id);
 
-        json_writer.Key("DATE1");
-        json_writer.String(m_begin_date.FormatISODate().c_str());
+            json_writer.Key("REPORTPERIOD");
+            json_writer.Int(m_date_selection);
 
-        json_writer.Key("DATE2");
-        json_writer.String(m_end_date.FormatISODate().c_str());
+            json_writer.Key("DATE1");
+            json_writer.String(m_begin_date.FormatISODate().c_str());
 
-        json_writer.Key("ACCOUNTSELECTION");
-        json_writer.Int(m_account_selection);
+            json_writer.Key("DATE2");
+            json_writer.String(m_end_date.FormatISODate().c_str());
 
-        size_t rcount = (accountArray_ ? accountArray_->size() : 0);
-        json_writer.Key("NAMECOUNT");
-        json_writer.Int(rcount);
+            json_writer.Key("ACCOUNTSELECTION");
+            json_writer.Int(m_account_selection);
 
-        for (size_t i = 0; i < rcount; i++)
-        {
-            const auto name = wxString::Format("NAME%zu", i);
-            json_writer.Key(name.c_str());
-            json_writer.String(accountArray_->Item(i).c_str());
+            size_t rcount = (accountArray_ ? accountArray_->size() : 0);
+            json_writer.Key("NAMECOUNT");
+            json_writer.Int(rcount);
+
+            for (size_t i = 0; i < rcount; i++)
+            {
+                const auto name = wxString::Format("NAME%zu", i);
+                json_writer.Key(name.c_str());
+                json_writer.String(accountArray_->Item(i).c_str());
+            }
+
+            json_writer.Key("CHART");
+            json_writer.Int(m_chart_selection);
+            json_writer.EndObject();
+
+            const wxString rj_key = wxString::Format("REPORT_%d", id);
+            const wxString rj_value = json_buffer.GetString();
+            Model_Infotable::instance().Set(rj_key, rj_value);
         }
-
-        json_writer.Key("CHART");
-        json_writer.Int(m_chart_selection);
-        json_writer.EndObject();
-
-        const wxString rj_key = j_doc["SETTINGSNAME"].GetString();
-        const wxString rj_value = json_buffer.GetString();
-        Model_Infotable::instance().Set(rj_key, rj_value);
     }
 
     if (accountArray_)
@@ -174,13 +178,27 @@ void mmPrintableBase::setSettings(const wxString& settings)
     if (j_doc.Parse(settings.c_str()).HasParseError())
         return;
 
+    if (j_doc.HasMember("REPORTPERIOD") && j_doc["REPORTPERIOD"].IsInt()) {
+        m_date_selection = j_doc["REPORTPERIOD"].GetInt();
+    }
 
-    m_date_selection = j_doc["SETTINGSDATA"]["REPORTPERIOD"].GetInt();
-    m_begin_date = mmParseISODate(j_doc["SETTINGSDATA"]["DATE1"].GetString());
-    m_end_date = mmParseISODate(j_doc["SETTINGSDATA"]["DATE2"].GetString());
-    m_account_selection = j_doc["SETTINGSDATA"]["ACCOUNTSELECTION"].GetInt();
+    if (j_doc.HasMember("DATE1") && j_doc["DATE1"].IsString()) {
+        m_begin_date = mmParseISODate(j_doc["DATE1"].GetString());
+    }
 
-    size_t count = j_doc["SETTINGSDATA"]["NAMECOUNT"].GetInt64();
+    if (j_doc.HasMember("DATE2") && j_doc["DATE2"].IsString()) {
+        m_end_date = mmParseISODate(j_doc["DATE2"].GetString());
+    }
+
+    if (j_doc.HasMember("ACCOUNTSELECTION") && j_doc["ACCOUNTSELECTION"].IsInt()) {
+        m_account_selection = j_doc["ACCOUNTSELECTION"].GetInt();
+    }
+
+    size_t count = 0;
+    if (j_doc.HasMember("NAMECOUNT") && j_doc["NAMECOUNT"].IsInt()) {
+        size_t count = j_doc["NAMECOUNT"].GetInt64();
+    }
+
     if (count > 0)
     {
         if (accountArray_)
@@ -191,13 +209,18 @@ void mmPrintableBase::setSettings(const wxString& settings)
         wxArrayString* accountSelections = new wxArrayString();
         for (size_t i = 0; i < count; i++)
         {
-            const auto name = wxString::Format("NAME%zu", i);
-            Value j_name(name.c_str(), j_doc.GetAllocator());
-            accountSelections->Add(j_doc["SETTINGSDATA"][j_name].GetString());
+            const wxString& name = wxString::Format("NAME%zu", i);
+            if (j_doc.HasMember(name) /*&& j_doc[name.c_str()].IsString*/) {
+                Value j_name(name.c_str(), j_doc.GetAllocator());
+                accountSelections->Add(j_doc[j_name].GetString());
+            }
         }
         accountArray_ = accountSelections;
     }
-    m_chart_selection = j_doc["SETTINGSDATA"]["CHART"].GetInt();
+
+    if (j_doc.HasMember("CHART") && j_doc["CHART"].IsInt()) {
+        m_chart_selection = j_doc["CHART"].GetInt();
+    }
 }
 
 void mmPrintableBase::date_range(const mmDateRange* date_range, int selection)

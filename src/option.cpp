@@ -687,7 +687,9 @@ wxString Option::ReportSettings(int id)
     const wxString& settings = Model_Infotable::instance().GetStringInfo(name, "");
     Document j_doc_main;
     if (j_doc_main.Parse(settings.c_str()).HasParseError()) {
-        return "";
+        const wxString j = wxString::Format("{\"ID\":%i}", id);
+        wxLogDebug("%s", j);
+        return j;
     }
 
     return JSON_PrettyFormated(j_doc_main);
