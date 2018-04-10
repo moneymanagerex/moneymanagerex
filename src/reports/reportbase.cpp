@@ -210,9 +210,11 @@ void mmPrintableBase::setSettings(const wxString& settings)
         for (size_t i = 0; i < count; i++)
         {
             const wxString& name = wxString::Format("NAME%zu", i);
-            if (j_doc.HasMember(name) /*&& j_doc[name.c_str()].IsString*/) {
+            if (j_doc.HasMember(name.c_str())) {
                 Value j_name(name.c_str(), j_doc.GetAllocator());
-                accountSelections->Add(j_doc[j_name].GetString());
+                if (j_doc[j_name].IsString()) {
+                    accountSelections->Add(j_doc[j_name].GetString());
+                }
             }
         }
         accountArray_ = accountSelections;

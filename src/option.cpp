@@ -681,16 +681,19 @@ mmPrintableBase* Option::ReportFunction(int report)
     return function;
 }
 
-wxString Option::ReportSettings(int id)
+const wxString Option::ReportSettings(int id)
 {
     const wxString& name = wxString::Format("REPORT_%d", id);
     const wxString& settings = Model_Infotable::instance().GetStringInfo(name, "");
     Document j_doc_main;
     if (j_doc_main.Parse(settings.c_str()).HasParseError()) {
-        const wxString j = wxString::Format("{\"ID\":%i}", id);
-        wxLogDebug("%s", j);
-        return j;
+        j_doc_main.Parse(wxString::Format("{\"ID\":%i}", id).c_str());
     }
 
-    return JSON_PrettyFormated(j_doc_main);
+    if (!j_doc_main.HasMember("ID")) {
+        Value v_id(id);
+        j_doc_main.AddMember("ID", v_id, j_doc_main.GetAllocator());
+    }
+    const auto& json_data = JSON_PrettyFormated(j_doc_main);
+    return json_data;
 }
