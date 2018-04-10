@@ -167,7 +167,6 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
         Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
         , Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(m_date_range->end_date(), LESS_OR_EQUAL));
-    const wxDateTime today = m_date_range->today();
     const auto all_splits = Model_Splittransaction::instance().get_all();
     for (const auto& trx: transactions)
     {

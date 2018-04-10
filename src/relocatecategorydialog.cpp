@@ -80,7 +80,6 @@ void relocateCategoryDialog::CreateControls()
     flagsH.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Center();
     flagsV.Align(wxALIGN_LEFT).Border(wxALL, 5).Center();
     flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
-    wxSize btnSize = wxSize(180,-1);
 
     wxStaticText* headerText = new wxStaticText(this, wxID_STATIC
         , _("Relocate all source categories to the destination category"));

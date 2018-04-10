@@ -494,7 +494,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     csvFieldOrder_.clear();
     for (size_t i = 0; i <= 9; i++)
     {
-        char str[2];
+        char str[3];
         sprintf(str, "%zu", i);
         if (json_doc.HasMember(str) && json_doc[str].IsString())
         {
@@ -713,7 +713,7 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
 
         const auto ilr = m_spinIgnoreLastRows_->GetValue();
         json_writer.Key("IGNORE_LAST_ROWS");
-        json_writer.Int(ifr);
+        json_writer.Int(ilr);
     }
     else
     {

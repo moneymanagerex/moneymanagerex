@@ -210,7 +210,7 @@ wxString mmReportChartStocks::getHTMLText()
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), true);
     hb.addHorizontalLine();
 
-    int count = 0, heldAt = -1;
+    int count = 0;
     bool pointDot = false, showGridLines = false;
     wxTimeSpan dist;
     wxDate precDateDt = wxInvalidDateTime;
@@ -257,7 +257,6 @@ wxString mmReportChartStocks::getHTMLText()
             hb.endDiv();
         }
 
-        heldAt = stock.HELDAT;
         count++;
     }
 
