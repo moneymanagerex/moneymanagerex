@@ -71,8 +71,6 @@
 
 #include "model/allmodel.h"
 
-#include "search/Search.h"
-
 #include <wx/fs_mem.h>
 #include <stack>
 
