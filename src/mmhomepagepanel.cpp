@@ -913,7 +913,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
 
         if (name == "TOP_CATEGORIES")
         {
-            if (json_doc.HasMember("TOP_CATEGORIES"))
+            if (json_doc.HasMember("TOP_CATEGORIES") && json_doc["TOP_CATEGORIES"].IsBool())
             {
                 bool entry = !json_doc["TOP_CATEGORIES"].GetBool();
                 json_doc["TOP_CATEGORIES"] = entry;
@@ -925,7 +925,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         }
         else if (name == "INVEST")
         {
-            if (json_doc.HasMember("INVEST"))
+            if (json_doc.HasMember("INVEST") && json_doc["INVEST"].IsBool())
             {
                 bool entry = !json_doc["INVEST"].GetBool();
                 json_doc["INVEST"] = entry;
@@ -937,7 +937,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         }
         else if (name == "ACCOUNTS_INFO")
         {
-            if (json_doc.HasMember("ACCOUNTS_INFO"))
+            if (json_doc.HasMember("ACCOUNTS_INFO") && json_doc["ACCOUNTS_INFO"].IsBool())
             {
                 bool entry = !json_doc["ACCOUNTS_INFO"].GetBool();
                 json_doc["ACCOUNTS_INFO"] = entry;
@@ -949,7 +949,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         }
         else if (name == "CARD_ACCOUNTS_INFO")
         {
-            if (json_doc.HasMember("CARD_ACCOUNTS_INFO"))
+            if (json_doc.HasMember("CARD_ACCOUNTS_INFO") && json_doc["CARD_ACCOUNTS_INFO"].IsBool())
             {
                 bool entry = !json_doc["CARD_ACCOUNTS_INFO"].GetBool();
                 json_doc["CARD_ACCOUNTS_INFO"] = entry;
@@ -961,7 +961,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         }
         else if (name == "CASH_ACCOUNTS_INFO")
         {
-            if (json_doc.HasMember("CASH_ACCOUNTS_INFO"))
+            if (json_doc.HasMember("CASH_ACCOUNTS_INFO") && json_doc["CASH_ACCOUNTS_INFO"].IsBool())
             {
                 bool entry = !json_doc["CASH_ACCOUNTS_INFO"].GetBool();
                 json_doc["CASH_ACCOUNTS_INFO"] = entry;
@@ -973,7 +973,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         }
         else if (name == "LOAN_ACCOUNTS_INFO")
         {
-            if (json_doc.HasMember("LOAN_ACCOUNTS_INFO"))
+            if (json_doc.HasMember("LOAN_ACCOUNTS_INFO") && json_doc["LOAN_ACCOUNTS_INFO"].IsBool())
             {
                 bool entry = !json_doc["LOAN_ACCOUNTS_INFO"].GetBool();
                 json_doc["LOAN_ACCOUNTS_INFO"] = entry;
@@ -985,7 +985,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         }
         else if (name == "TERM_ACCOUNTS_INFO")
         {
-            if (json_doc.HasMember("TERM_ACCOUNTS_INFO"))
+            if (json_doc.HasMember("TERM_ACCOUNTS_INFO") && json_doc["TERM_ACCOUNTS_INFO"].IsBool())
             {
                 bool entry = !json_doc["TERM_ACCOUNTS_INFO"].GetBool();
                 json_doc["TERM_ACCOUNTS_INFO"] = entry;
@@ -996,8 +996,10 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
             }
         }
         else if (name == "CRYPTO_WALLETS_INFO") {
-            bool entry = !json_doc["CRYPTO_WALLETS_INFO"].GetBool();
-            json_doc["CRYPTO_WALLETS_INFO"] = entry;
+            if (json_doc.HasMember("CRYPTO_WALLETS_INFO") && json_doc["CRYPTO_WALLETS_INFO"].IsBool()) {
+                bool entry = !json_doc["CRYPTO_WALLETS_INFO"].GetBool();
+                json_doc["CRYPTO_WALLETS_INFO"] = entry;
+            }
         }
 
         wxLogDebug("Saving updated RapidJson\n%s", JSON_PrettyFormated(json_doc));

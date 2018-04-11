@@ -913,11 +913,11 @@ void mmGUIFrame::loadNavTreeItemsStatus()
         if (iData)
         {
             const wxString& nav_key = iData->getString();
-            wxLogDebug("%s", nav_key);
+            wxLogDebug("-%s-", nav_key);
             if (json_doc.HasMember(nav_key.c_str()))
             {
                 Value json_key(nav_key.c_str(), json_doc.GetAllocator());
-                if (json_doc[json_key].GetBool())
+                if (json_doc[json_key].IsBool() && json_doc[json_key].GetBool())
                 {
                     m_nav_tree_ctrl->Expand(next);
                 }
@@ -1406,8 +1406,9 @@ void mmGUIFrame::createHomePage()
     json_writer.Key("end");
     json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
     json_writer.EndObject();
-    
-    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+
+    const auto  j = json_buffer.GetString();
+    Model_Usage::instance().AppendToUsage(j);
 }
 //----------------------------------------------------------------------------
 
@@ -2039,19 +2040,19 @@ void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
 bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxString &password)
 {
     menuBar_->FindItem(MENU_CHANGE_ENCRYPT_PASSWORD)->Enable(false);
-    if (createDataStore(fileName, password, openingNew))
-    {
+    if (createDataStore(fileName, password, openingNew)) {
         m_recentFiles->AddFileToHistory(fileName);
         menuEnableItems(true);
         menuPrintingEnable(false);
         autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
 
-        if (m_db->IsEncrypted())
-        {
+        if (m_db->IsEncrypted()) {
             menuBar_->FindItem(MENU_CHANGE_ENCRYPT_PASSWORD)->Enable(true);
         }
     }
-    else return false;
+    else {
+        return false;
+    }
 
     return true;
 }
