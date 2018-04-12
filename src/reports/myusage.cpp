@@ -122,11 +122,13 @@ wxString mmReportMyUsage::getHTMLText()
 {
     Model_Usage::Data_Set all_usage;
 
-    if (m_date_range && m_date_range->is_with_date())
+    if (m_date_range && m_date_range->is_with_date()) {
         all_usage = Model_Usage::instance().find(Model_Usage::USAGEDATE(m_date_range->start_date().FormatISODate(), GREATER_OR_EQUAL)
-                    , Model_Usage::USAGEDATE(m_date_range->end_date().FormatISODate(), LESS_OR_EQUAL));
-    else
+            , Model_Usage::USAGEDATE(m_date_range->end_date().FormatISODate(), LESS_OR_EQUAL));
+    }
+    else {
         all_usage = Model_Usage::instance().all();
+    }
     std::map<wxString, std::pair<int, wxString> > usage_by_day;
 
     for (const auto & usage : all_usage)
@@ -134,16 +136,15 @@ wxString mmReportMyUsage::getHTMLText()
         usage_by_day[usage.USAGEDATE].first += 1;
 
         Document json_doc;
-        if (json_doc.Parse(usage.JSONCONTENT.c_str()).HasParseError())
-        {
-            return "";
+        if (json_doc.Parse(usage.JSONCONTENT.c_str()).HasParseError()) {
+            continue;
         }
 
         wxLogDebug("======= mmReportMyUsage::getHTMLText =======");
         wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
 
         if (!json_doc.HasMember("usage") || !json_doc["usage"].IsArray())
-            return "";
+            continue;
         Value u = json_doc["usage"].GetArray();
 
         for (Value::ConstValueIterator it = u.Begin(); it != u.End(); ++it)
@@ -177,6 +178,10 @@ wxString mmReportMyUsage::getHTMLText()
 
             usage_by_day[usage.USAGEDATE].second += module + ";";
         }
+    }
+
+    if (usage_by_day.empty()) {
+        usage_by_day[wxDateTime::Today().FormatDate()] = std::make_pair(0, "");
     }
 
     loop_t contents;
