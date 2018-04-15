@@ -673,35 +673,55 @@ void mmCheckingPanel::initViewTransactionsHeader()
 void mmCheckingPanel::initFilterSettings()
 {
     mmDateRange* date_range = NULL;
+    bool show_future = !Option::instance().IgnoreFutureTransactions();
+    const wxString& future_date_string = wxDateTime(31, wxDateTime::Dec, 9999).FormatISODate();
+    m_begin_date = "";
+    m_end_date = "";
 
     if (!m_transFilterActive)
     {
-        if (m_currentView == MENU_VIEW_TODAY)
+        switch (m_currentView) {
+        case MENU_VIEW_TODAY:
             date_range = new mmToday;
-        else if (m_currentView == MENU_VIEW_CURRENTMONTH)
+            break;
+        case MENU_VIEW_CURRENTMONTH:
             date_range = new mmCurrentMonth;
-        else if (m_currentView == MENU_VIEW_LAST30)
+            if (show_future) m_end_date = future_date_string;
+            break;
+        case MENU_VIEW_LAST30:
             date_range = new mmLast30Days;
-        else if (m_currentView == MENU_VIEW_LAST90)
+            if (show_future) m_end_date = future_date_string;
+            break;
+        case MENU_VIEW_LAST90:
             date_range = new mmLast90Days;
-        else if (m_currentView == MENU_VIEW_LASTMONTH)
+            if (show_future) m_end_date = future_date_string;
+            break;
+        case MENU_VIEW_LASTMONTH:
             date_range = new mmLastMonth;
-        else if (m_currentView == MENU_VIEW_LAST3MONTHS)
+            break;
+        case MENU_VIEW_LAST3MONTHS:
             date_range = new mmLast3Months;
-        else if (m_currentView == MENU_VIEW_LAST12MONTHS)
+            break;
+        case MENU_VIEW_LAST12MONTHS:
             date_range = new mmLast12Months;
-        else if (m_currentView == MENU_VIEW_CURRENTYEAR)
+            break;
+        case  MENU_VIEW_CURRENTYEAR:
             date_range = new mmCurrentYear;
-        else if (m_currentView == MENU_VIEW_CURRENTFINANCIALYEAR)
+            if (show_future) m_end_date = future_date_string;
+            break;
+        case  MENU_VIEW_CURRENTFINANCIALYEAR:
             date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
                 , wxAtoi(Option::instance().FinancialYearStartMonth()));
-        else if (m_currentView == MENU_VIEW_LASTYEAR)
+            if (show_future) m_end_date = future_date_string;
+            break;
+        case  MENU_VIEW_LASTYEAR:
             date_range = new mmLastYear;
-        else if (m_currentView == MENU_VIEW_LASTFINANCIALYEAR)
+            break;
+        case  MENU_VIEW_LASTFINANCIALYEAR:
             date_range = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
                 , wxAtoi(Option::instance().FinancialYearStartMonth()));
-        else if (m_currentView == MENU_VIEW_STATEMENTDATE)
-        {
+            break;
+        case  MENU_VIEW_STATEMENTDATE:
             if (Model_Account::BoolOf(m_account->STATEMENTLOCKED))
             {
                 date_range = new mmSpecifiedRange(Model_Account::DateOf(m_account->STATEMENTDATE)
@@ -709,16 +729,18 @@ void mmCheckingPanel::initFilterSettings()
             }
         }
     }
-	if (date_range == NULL)
-	{
+
+    if (date_range == NULL) {
 		date_range = new mmAllTime;
 	}
 
-    m_begin_date = date_range->start_date().FormatISODate();
-    bool ignore_future = Option::instance().IgnoreFutureTransactions();
-    m_end_date = ignore_future 
-        ? date_range->end_date().FormatISODate()
-        : "9999-12-31";
+    if (m_begin_date.empty()) {
+        m_begin_date = date_range->start_date().FormatISODate();
+    }
+
+    if (m_end_date.empty()) {
+        m_end_date = date_range->end_date().FormatISODate();
+    }
     delete date_range;
 }
 
