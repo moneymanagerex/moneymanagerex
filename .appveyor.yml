@@ -110,7 +110,9 @@ install:
 - clcache -s
 # Patch CMake
 - for /d %%d in ("%ProgramFiles(x86)%\CMake\share\cmake-*") do (
-    type util\FindwxWidgets.cmake-SupportMSVC1911.patch 2>nul | patch -Nf -d "%%d\Modules" )
+    type util\FindwxWidgets.cmake-SupportMSVC1911.patch 2>nul | patch -Nf -d "%%d\Modules" &&
+    type util\MSVC-C.cmake.patch 2>nul | patch -Nf -d "%%d\Modules\Compiler"
+  )
 # wxWidgets, try to download pre-compiled version first
 - if %wxShared%==1 (
     curl -fsL --fail-early

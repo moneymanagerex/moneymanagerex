@@ -19,9 +19,9 @@ TARGET_INCLUDE_DIRECTORIES(csv_parser INTERFACE csv-parser/include)
 ADD_LIBRARY(LuaGlue INTERFACE)
 TARGET_INCLUDE_DIRECTORIES(LuaGlue INTERFACE LuaGlue/include)
 
-FIND_PACKAGE(Lua QUIET)
+FIND_PACKAGE(Lua)
 IF(LUA_FOUND)
-    MESSAGE(STATUS "Found Lua: ${LUA_LIBRARIES} (found version \"${LUA_VERSION_STRING}\")") 
+    # MESSAGE(STATUS "Found Lua: ${LUA_LIBRARIES} (found version \"${LUA_VERSION_STRING}\")") 
     ADD_LIBRARY(Lua INTERFACE)
     TARGET_INCLUDE_DIRECTORIES(Lua INTERFACE ${LUA_INCLUDE_DIR})
     TARGET_LINK_LIBRARIES(Lua INTERFACE ${LUA_LIBRARIES})
@@ -81,7 +81,7 @@ ELSE()
         ENDIF()
         TARGET_LINK_LIBRARIES(Lua PRIVATE ${CMAKE_DL_LIBS})
     ENDIF()
-ENDIF()
+ENDIF(LUA_FOUND)
 TARGET_COMPILE_DEFINITIONS(Lua INTERFACE LUA_COMPAT_5_2)
 
 ADD_LIBRARY(HTML-template STATIC EXCLUDE_FROM_ALL cgitemplate/html_template.cpp)
@@ -99,20 +99,26 @@ TARGET_COMPILE_DEFINITIONS(Mongoose
 
 FIND_PACKAGE(PkgConfig)
 IF(PkgConfig_FOUND)
-    PKG_SEARCH_MODULE(wxSQLite3 wxsqlite3-3.0 wxsqlite3 wxsqlite>=3)
+    PKG_SEARCH_MODULE(wxSQLite3 QUIET wxsqlite3-3.0 wxsqlite3 wxsqlite>=3)
 ENDIF()
 IF(wxSQLite3_FOUND)
+    MESSAGE(STATUS "Found wxSQLite3: ${wxSQLite3_LIBRARIES} (found version \"${wxSQLite3_VERSION}\")")
     ADD_LIBRARY(wxSQLite3 INTERFACE)
     TARGET_INCLUDE_DIRECTORIES(wxSQLite3 INTERFACE ${wxSQLite3_INCLUDE_DIRS})
     TARGET_LINK_LIBRARIES(wxSQLite3 INTERFACE ${wxSQLite3_LIBRARIES} wxWidgets)
-    TARGET_COMPILE_OPTIONS(wxSQLite3 INTERFACE ${wxSQLite3_CFLAGS_OTHER})
+    TARGET_COMPILE_OPTIONS(wxSQLite3 INTERFACE ${wxSQLite3_CFLAGS})
 ELSE()
-    ADD_LIBRARY(wxSQLite3 STATIC EXCLUDE_FROM_ALL
-        wxsqlite3/src/wxsqlite3.cpp
-        wxsqlite3/sqlite3/secure/src/sqlite3secure.c)
-    TARGET_INCLUDE_DIRECTORIES(wxSQLite3
-        PUBLIC wxsqlite3/include wxsqlite3/sqlite3/secure/src)
-    TARGET_LINK_LIBRARIES(wxSQLite3 PUBLIC wxWidgets)
+    FILE(STRINGS wxsqlite3/include/wx/wxsqlite3_version.h
+        wxSQLite3_VERSION LIMIT_COUNT 1
+            REGEX "#define WXSQLITE3_VERSION_STRING[\t ]+\"[^\"]+ [0-9.]+\"")
+    STRING(REGEX REPLACE ".+\"[^\"]+ ([0-9.]+)\".*" \\1 wxSQLite3_VERSION ${wxSQLite3_VERSION})
+    IF(wxSQLite3_VERSION VERSION_LESS 4)
+        SET(sqlite3_dir sqlite3/secure)
+    ELSE()
+        SET(sqlite3_dir sqlite3secure)
+    ENDIF()
+    ADD_LIBRARY(SQLite3 STATIC EXCLUDE_FROM_ALL wxsqlite3/${sqlite3_dir}/src/sqlite3secure.c)
+    TARGET_INCLUDE_DIRECTORIES(SQLite3 PUBLIC wxsqlite3/${sqlite3_dir}/src)
 
     IF(LINUX)
         INCLUDE(CheckLibraryExists)
@@ -120,15 +126,18 @@ ELSE()
         IF(NOT HAVE_DLOPEN)
             MESSAGE(SEND_ERROR "Could not find required dl library.")
         ENDIF()
-        TARGET_LINK_LIBRARIES(wxSQLite3 PRIVATE ${CMAKE_DL_LIBS})
+        TARGET_LINK_LIBRARIES(SQLite3 PRIVATE ${CMAKE_DL_LIBS})
     ENDIF()
 
-    TARGET_COMPILE_DEFINITIONS(wxSQLite3
+    ADD_LIBRARY(wxSQLite3 STATIC EXCLUDE_FROM_ALL wxsqlite3/src/wxsqlite3.cpp)
+    TARGET_INCLUDE_DIRECTORIES(wxSQLite3 PUBLIC wxsqlite3/include)
+    TARGET_LINK_LIBRARIES(wxSQLite3 PUBLIC wxWidgets SQLite3)
+
+    TARGET_COMPILE_DEFINITIONS(SQLite3
         PRIVATE
             NOPCH
             SQLITE_CORE
-            SQLITE_ENABLE_FTS3
-            SQLITE_ENABLE_FTS3_PARENTHESIS
+            SQLITE_ENABLE_FTS5
             SQLITE_HAS_CODEC
             SQLITE_ENABLE_EXTFUNC
             SQLITE_ENABLE_COLUMN_METADATA
@@ -136,7 +145,8 @@ ELSE()
             HAVE_ACOSH
             HAVE_ASINH
             HAVE_ATANH
-            HAVE_ISBLANK
+            HAVE_ISBLANK)
+    TARGET_COMPILE_DEFINITIONS(wxSQLite3
         PUBLIC
             WXSQLITE3_HAVE_CODEC
             WXSQLITE3_HAVE_METADATA
@@ -149,22 +159,31 @@ ELSE()
         CHECK_CXX_COMPILER_FLAG("-std=gnu++0x" COMPILER_SUPPORTS_GXX0X)
         CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
         IF(COMPILER_SUPPORTS_GXX11)
-            TARGET_COMPILE_OPTIONS(wxSQLite3 PUBLIC -std=gnu++11)
+            TARGET_COMPILE_OPTIONS(wxSQLite3 PRIVATE -std=gnu++11)
         ELSEIF(COMPILER_SUPPORTS_CXX11)
-            TARGET_COMPILE_OPTIONS(wxSQLite3 PUBLIC -std=c++11)
+            TARGET_COMPILE_OPTIONS(wxSQLite3 PRIVATE -std=c++11)
         ELSEIF(COMPILER_SUPPORTS_GXX0X)
-            TARGET_COMPILE_OPTIONS(wxSQLite3 PUBLIC -std=gnu++0x)
+            TARGET_COMPILE_OPTIONS(wxSQLite3 PRIVATE -std=gnu++0x)
         ELSEIF(COMPILER_SUPPORTS_CXX0X)
-            TARGET_COMPILE_OPTIONS(wxSQLite3 PUBLIC -std=c++0x)
+            TARGET_COMPILE_OPTIONS(wxSQLite3 PRIVATE -std=c++0x)
         ELSE()
             MESSAGE(SEND_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support.")
         ENDIF()
+        INCLUDE(CheckCCompilerFlag)
+        CHECK_C_COMPILER_FLAG("-std=c99" COMPILER_SUPPORTS_C99)
+        IF(COMPILER_SUPPORTS_C99)
+            TARGET_COMPILE_OPTIONS(SQLite3 PRIVATE -std=c99)
+        ELSE()
+            MESSAGE(SEND_ERROR "The compiler ${CMAKE_C_COMPILER} has no C99 support.")
+        ENDIF()
     ELSEIF(CMAKE_VERSION VERSION_LESS 3.8)
-        TARGET_COMPILE_FEATURES(wxSQLite3 PUBLIC cxx_range_for)
+        TARGET_COMPILE_FEATURES(wxSQLite3 PRIVATE cxx_range_for)
+        TARGET_COMPILE_FEATURES(SQLite3 PRIVATE c_restrict)
     ELSE()
-        TARGET_COMPILE_FEATURES(wxSQLite3 PUBLIC cxx_std_11)
+        TARGET_COMPILE_FEATURES(wxSQLite3 PRIVATE cxx_std_11)
+        TARGET_COMPILE_FEATURES(SQLite3 PRIVATE c_std_99)
     ENDIF()        
-ENDIF()
+ENDIF(wxSQLite3_FOUND)
 
 
 IF(MMEX_BUILD_TESTS)
