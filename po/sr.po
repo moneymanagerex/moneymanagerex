@@ -1929,14 +1929,6 @@ msgstr "Име валуте"
 msgid "Currency Symbol"
 msgstr "Симбол валуте"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Назив новчане јединице"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Назив цента"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Префикс валуте"

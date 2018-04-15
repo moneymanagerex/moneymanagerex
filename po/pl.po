@@ -1850,15 +1850,7 @@ msgstr "Nazwa waluty"
 msgid "Currency Symbol"
 msgstr "Symbol waluty"
 
-#: src/currencydialog.cpp:176
-msgid "Unit Name"
-msgstr "Nazwa jedn. podstawowej"
-
-#: src/currencydialog.cpp:181
-msgid "Cents Name"
-msgstr "Nazwa jedn. zdawkowej"
-
-#: src/currencydialog.cpp:186
+#: src/currencydialog.cpp:180
 msgid "Prefix Symbol"
 msgstr "Symbol prefiksu"
 

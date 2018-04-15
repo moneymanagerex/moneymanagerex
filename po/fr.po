@@ -1884,14 +1884,6 @@ msgstr "Nom de la devise"
 msgid "Currency Symbol"
 msgstr "Symbole monétaire"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Nom de l'unité"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Nom des centimes"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Symbole (PREFIXE)"
@@ -8628,10 +8620,6 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgstr "Tabulation"
 
 #, fuzzy
-#~ msgid "DATAVERSION"
-#~ msgstr "Version des données"
-
-#, fuzzy
 #~ msgid "Currency History Options: "
 #~ msgstr "Options de l'historique des devises :"
 
@@ -8646,20 +8634,8 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgid "Line : %ld imported OK."
 #~ msgstr "Ligne : %ld bien importées."
 
-#, fuzzy
-#~ msgid "SingleChoiche"
-#~ msgstr "Choix unique"
-
-#, fuzzy
-#~ msgid "MultiChoiche"
-#~ msgstr "Choix multiple"
-
 #~ msgid "Enter the name of the category to add or edit here"
 #~ msgstr "Introduire le nom de la catégorie à ajouter ou à éditer"
-
-#, fuzzy
-#~ msgid "You have modified choiches: ones removed will be cleaned!"
-#~ msgstr "Vous avez modifié les choix : une fois enlevé ils seront nettoyés !"
 
 #, fuzzy
 #~ msgid "%i occurrencies founded and replaced!"

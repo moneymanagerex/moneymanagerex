@@ -1821,14 +1821,6 @@ msgstr "Para Birimi"
 msgid "Currency Symbol"
 msgstr "Para Birimi Simgesi "
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Yüzdelik Birim Adı"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Ondalık Birimi Adı"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Önek Sembolü"

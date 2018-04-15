@@ -249,12 +249,6 @@
         <row name="group_separator" null="1" autoincrement="0">
             <datatype>TEXT</datatype>
             <default>NULL</default></row>
-        <row name="unit_name" null="1" autoincrement="0">
-            <datatype>TEXT</datatype>
-            <default>NULL</default></row>
-        <row name="cent_name" null="1" autoincrement="0">
-            <datatype>TEXT</datatype>
-            <default>NULL</default></row>
         <row name="scale" null="1" autoincrement="0">
             <datatype>NUMERIC</datatype>
             <default>NULL</default></row>

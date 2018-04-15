@@ -1850,14 +1850,6 @@ msgstr "Nome Valuta"
 msgid "Currency Symbol"
 msgstr "Simbolo Valuta"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Nome Unità"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Nome dei centesimi"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Simbolo prefisso"
@@ -8942,9 +8934,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "VEF"
 #~ msgstr "VEF"
 
-#~ msgid "DATAVERSION"
-#~ msgstr "DATAVERSION"
-
 #~ msgid "Currency History Options: "
 #~ msgstr "Opzioni storico tassi di cambio:"
 
@@ -8956,12 +8945,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Line : %ld imported OK."
 #~ msgstr "Riga: %ld importata con successo."
-
-#~ msgid "SingleChoiche"
-#~ msgstr "Scelta Singola"
-
-#~ msgid "MultiChoiche"
-#~ msgstr "Scelta Multipla"
 
 #~ msgid "Enter the name of the category to add or edit here"
 #~ msgstr "Inserire il nome della categoria da aggiungere o modificare"

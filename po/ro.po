@@ -1939,14 +1939,6 @@ msgstr "Numele Valutei"
 msgid "Currency Symbol"
 msgstr "Simbolul Valutei"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Numele Unității"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Numele Cenților"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Simbolul Prefixului"

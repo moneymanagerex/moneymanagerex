@@ -1928,14 +1928,6 @@ msgstr "貨幣名稱"
 msgid "Currency Symbol"
 msgstr "貨幣名稱"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "單位名稱"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "貨幣名稱"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "前綴符號"

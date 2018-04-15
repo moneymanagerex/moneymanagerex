@@ -1883,14 +1883,6 @@ msgstr "Valiutos pavadinimas"
 msgid "Currency Symbol"
 msgstr "Valiutos simbolis"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Vieneto pavadinimas"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Centų pavadinimas"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Priešdėlio simbolis"

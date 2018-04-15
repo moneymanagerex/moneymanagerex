@@ -1890,14 +1890,6 @@ msgstr "நாணயத்தின் பெயர்"
 msgid "Currency Symbol"
 msgstr "நாணயத்தின் பெயர்"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "அலகு பெயர்"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "காசு பெயர்"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "முன் குறியீடு"

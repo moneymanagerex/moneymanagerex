@@ -1818,14 +1818,6 @@ msgstr "Emri I Monedhës"
 msgid "Currency Symbol"
 msgstr "Simboli I Monedhës"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Emri I Njësisë"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Emri I qindarkave"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Parashtesa e Simbolit"

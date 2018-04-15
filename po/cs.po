@@ -1871,14 +1871,6 @@ msgstr "Název měny"
 msgid "Currency Symbol"
 msgstr "Symbol měny"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Název jednotky"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Název setiny jednotky"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Symbol před"

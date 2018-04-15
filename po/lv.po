@@ -1939,14 +1939,6 @@ msgstr "Valūtas nosaukums"
 msgid "Currency Symbol"
 msgstr "Valūtas simbols"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Vienības nosaukums"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Centa nosaukums"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Priedēkļa simbols"

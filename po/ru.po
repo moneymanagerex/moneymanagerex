@@ -1844,14 +1844,6 @@ msgstr "Название валюты"
 msgid "Currency Symbol"
 msgstr "Обозначение валюты"
 
-#: src/currencydialog.cpp:170
-msgid "Unit Name"
-msgstr "Наименование целых"
-
-#: src/currencydialog.cpp:175
-msgid "Cents Name"
-msgstr "Наименование дробных"
-
 #: src/currencydialog.cpp:180
 msgid "Prefix Symbol"
 msgstr "Символы префикса"
