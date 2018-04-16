@@ -141,6 +141,8 @@ const wxString inQuotes(const wxString& label, const wxString& delimiter);
 void csv2tab_separated_values(wxString& line, const wxString& delimit);
 void correctEmptyFileExt(const wxString& ext, wxString & fileName);
 
+const wxString readPasswordFromUser(const bool confirm = false);
+
 void mmLoadColorsFromDatabase();
 
 class mmColors
