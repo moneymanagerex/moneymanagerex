@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-04-16 12:09:39.602482.
+ *          AUTO GENERATED at 2018-04-16 14:47:03.861665.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -559,6 +559,15 @@ struct SorterByHISTID
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.HISTID < y.HISTID;
+    }
+};
+
+struct SorterByHISTORIC
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.HISTORIC < y.HISTORIC;
     }
 };
 

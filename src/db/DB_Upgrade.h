@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-04-16 12:54:26.715742.
+ *          AUTO GENERATED at 2018-04-16 14:36:32.217797.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -176,6 +176,7 @@ const std::vector<wxString> dbUpgradeQuery =
         , BASECONVRATE numeric
         , CURRENCY_SYMBOL TEXT COLLATE NOCASE NOT NULL UNIQUE
         , CURRENCY_TYPE TEXT /* Traditional, Crypto */
+        , HISTORIC integer /* 1 if this is historical currency no longer official */
         );
         
         INSERT INTO CURRENCYFORMATS_V1_NEW SELECT
@@ -189,6 +190,7 @@ const std::vector<wxString> dbUpgradeQuery =
         , BASECONVRATE
         , CURRENCY_SYMBOL
         , CURRENCY_TYPE
+        , 0
         FROM CURRENCYFORMATS_V1;
         
         DROP TABLE CURRENCYFORMATS_V1;
