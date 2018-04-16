@@ -248,11 +248,6 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
     if (name.empty())
         return mmErrorDialogs::InvalidName(m_currencyName);
 
-    const auto &currency_name = Model_Currency::instance()
-        .find(Model_Currency::CURRENCYNAME(name));
-    if (!currency_name.empty() && m_currency->CURRENCYID == -1)
-        return mmErrorDialogs::InvalidName(m_currencyName, true);
-
     const wxString symbol = m_currencySymbol->GetValue().Trim();
     if (name.empty() || symbol.empty())
         return mmErrorDialogs::InvalidName(m_currencySymbol);
