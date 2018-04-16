@@ -138,14 +138,17 @@ ELSE()
             NOPCH
             SQLITE_CORE
             SQLITE_ENABLE_FTS5
-            SQLITE_HAS_CODEC
             SQLITE_ENABLE_EXTFUNC
             SQLITE_ENABLE_COLUMN_METADATA
             SQLITE_ENABLE_JSON1
             HAVE_ACOSH
             HAVE_ASINH
             HAVE_ATANH
-            HAVE_ISBLANK)
+            HAVE_ISBLANK
+        PUBLIC
+            SQLITE_HAS_CODEC
+            CODEC_TYPE=CODEC_TYPE_AES256
+            WXSQLITE3_USE_SQLCIPHER_LEGACY)
     TARGET_COMPILE_DEFINITIONS(wxSQLite3
         PUBLIC
             WXSQLITE3_HAVE_CODEC

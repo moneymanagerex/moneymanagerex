@@ -74,6 +74,29 @@ const wxString inQuotes(const wxString& l, const wxString& delimiter)
     return label;
 }
 
+const wxString readPasswordFromUser(const bool confirm)
+{
+    const wxString& caption = _("Encrypted database password");
+    const wxString new_password = wxGetPasswordFromUser(
+        _("Enter password for database file"),
+        caption);
+    wxString msg;
+    if (!new_password.IsEmpty())
+    {
+        if (!confirm) return new_password;
+        const wxString confirm_password = wxGetPasswordFromUser(
+            _("Re-enter password for database file"),
+            caption);
+        if (!confirm_password.IsEmpty() && (new_password == confirm_password))
+            return new_password;
+        msg=_("Confirm password failed.");
+    }
+    else msg=_("Password must not be empty.");
+    wxMessageBox(msg, caption, wxOK | wxICON_WARNING);
+    return wxEmptyString;
+}
+
+
 void mmLoadColorsFromDatabase()
 {
     mmColors::userDefColor1 = Model_Infotable::instance().GetColourSetting("USER_COLOR1", wxColour(255, 0, 0));

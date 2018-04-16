@@ -85,7 +85,6 @@ private:
 
     /* Currently open file name */
     wxString m_filename;
-    wxString m_password;
 
     int gotoAccountID_;
     int gotoTransID_;
@@ -121,7 +120,7 @@ private:
     void resetNavTreeControl();
     void cleanupNavTreeControl(wxTreeItemId& item);
     wxSizer* cleanupHomePanel(bool new_sizer = true);
-    bool openFile(const wxString& fileName, bool openingNew, const wxString &password = "");
+    bool openFile(const wxString& fileName, bool openingNew, const wxString &password = wxEmptyString);
     void InitializeModelTables();
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
     void createMenu();
