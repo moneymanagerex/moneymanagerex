@@ -92,8 +92,6 @@ __All following commands must be run from this command prompt!__
 
        cd "%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.8\Modules"
        for %p in (c:\projects\mmex\util\*.cmake-*.patch) do git apply --ignore-space-change --ignore-whitespace --whitespace=nowarn %p
-       cd Compiler
-       git apply --ignore-space-change --ignore-whitespace --whitespace=nowarn c:\projects\mmex\util\MSVC-C.cmake.patch
 
    See previous step for instructions if git command is not recognized.
 
