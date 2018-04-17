@@ -120,7 +120,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
     wxString reportGroupName;
     for (int r = 0; r < Option::instance().ReportCount(); r++)
     {
-        wxString groupName = Option::instance().ReportGroup(r);
+        const wxString& groupName = Option::instance().ReportGroup(r);
         bool no_group = groupName.IsEmpty();
         if (reportGroupName != groupName && !no_group)
         {
@@ -150,7 +150,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
         
         if (bShow)
         {
-            const auto reportName = Option::instance().ReportName(r);
+            const auto& reportName = Option::instance().ReportName(r);
             wxTreeItemId item = m_nav_tree_ctrl->AppendItem(no_group ? reports : reportGroup
                 , wxGetTranslation(reportName), img::PIECHART_PNG, img::PIECHART_PNG);
             m_nav_tree_ctrl->SetItemData(item
