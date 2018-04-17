@@ -74,7 +74,7 @@ mmPrintableBase::~mmPrintableBase()
 
             for (size_t i = 0; i < rcount; i++)
             {
-                const auto name = wxString::Format("NAME%zu", i);
+                const auto& name = wxString::Format("NAME%zu", i);
                 json_writer.Key(name.c_str());
                 json_writer.String(accountArray_->Item(i).c_str());
             }
@@ -83,8 +83,8 @@ mmPrintableBase::~mmPrintableBase()
             json_writer.Int(m_chart_selection);
             json_writer.EndObject();
 
-            const wxString rj_key = wxString::Format("REPORT_%d", id);
-            const wxString rj_value = json_buffer.GetString();
+            const wxString& rj_key = wxString::Format("REPORT_%d", id);
+            const wxString& rj_value = json_buffer.GetString();
             Model_Infotable::instance().Set(rj_key, rj_value);
         }
     }
@@ -112,7 +112,8 @@ void mmPrintableBase::accounts(int selection, wxString& name)
             {
                 wxArrayString* accountSelections = new wxArrayString();
                 Model_Account::Data_Set accounts = 
-                    (m_only_active ? Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL), Model_Account::STATUS(Model_Account::OPEN))
+                    (m_only_active ? Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
+                        , Model_Account::STATUS(Model_Account::OPEN))
                     : Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)));
                 std::stable_sort(accounts.begin(), accounts.end(), SorterByACCOUNTNAME());
 
@@ -120,8 +121,9 @@ void mmPrintableBase::accounts(int selection, wxString& name)
 
                 if (mcd.ShowModal() == wxID_OK)
                 {
-                    for (const auto &i : mcd.GetSelections())
+                    for (const auto &i : mcd.GetSelections()) {
                         accountSelections->Add(accounts.at(i).ACCOUNTNAME);
+                    }
                 }
 
                 accountArray_ = accountSelections;
@@ -130,11 +132,9 @@ void mmPrintableBase::accounts(int selection, wxString& name)
         default: // All of Account type
             {
                 wxArrayString* accountSelections = new wxArrayString();
-                auto accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(name));
-                for (const auto &i : accounts)
-                {
-                    if (m_only_active && (i.STATUS == Model_Account::all_status()[Model_Account::CLOSED]))
-                        continue;
+                auto accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(name)
+                    , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL));
+                for (const auto &i : accounts) {
                     accountSelections->Add(i.ACCOUNTNAME);
                 }
                 accountArray_ = accountSelections;
@@ -195,8 +195,8 @@ void mmPrintableBase::setSettings(const wxString& settings)
     }
 
     size_t count = 0;
-    if (j_doc.HasMember("NAMECOUNT") && j_doc["NAMECOUNT"].IsInt()) {
-        size_t count = j_doc["NAMECOUNT"].GetInt64();
+    if (j_doc.HasMember("NAMECOUNT") && j_doc["NAMECOUNT"].IsInt64()) {
+        count = j_doc["NAMECOUNT"].GetInt64();
     }
 
     if (count > 0)

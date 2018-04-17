@@ -178,20 +178,14 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     }
     else
     {
-        int arrIdx = 0;
         if ((int)accountArray_->size() == 0)
             headerMsg << "?";
 
-        if (!accountArray_->empty())
-        {
-            headerMsg << accountArray_->Item(arrIdx);
-            arrIdx++;
+        for (const auto& entry : *accountArray_)
+        { 
+            headerMsg << entry << ", ";
         }
-        while (arrIdx < (int)accountArray_->size())
-        {
-            headerMsg << ", " << accountArray_->Item(arrIdx);
-            arrIdx++;
-        }
+        if (headerMsg.Mid(headerMsg.size() - 2, 2) == ", ") headerMsg.RemoveLast(2);
     }
 
     std::map<int, std::pair<double, double> > incomeExpensesStats;
