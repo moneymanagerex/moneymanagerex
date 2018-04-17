@@ -80,7 +80,7 @@ mmPrintableBase::~mmPrintableBase()
                     json_writer.StartArray();
                     for (const auto& entry : *accountArray_)
                     {
-                        json_writer.String(entry);
+                        json_writer.String(entry.c_str());
                     }
                     json_writer.EndArray();
                 }
