@@ -48,7 +48,7 @@ public:
     int updatedCategoriesCount() const;
 
 private:
-
+    void IsOkOk();
     int m_sourceCatID;
     int m_sourceSubCatID;
     wxButton* m_buttonSource;

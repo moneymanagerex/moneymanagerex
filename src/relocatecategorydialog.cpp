@@ -112,6 +112,7 @@ void relocateCategoryDialog::CreateControls()
     boxSizer->Add(lineBottom, flagsExpand);
 
     wxButton* okButton = new wxButton(this, wxID_OK, _("&OK "));
+    okButton->Enable(false);
     wxButton* cancelButton = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     cancelButton-> SetFocus();
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -134,8 +135,8 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
         Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(m_sourceSubCatID);
 
         m_buttonSource->SetLabelText(Model_Category::full_name(category, sub_category));
+        IsOkOk();
     }
-    sourceCat.Destroy();
 }
 
 void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
@@ -147,6 +148,7 @@ void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
         m_destCatID    = destCat.getCategId();
         m_destSubCatID = destCat.getSubCategId();
         m_buttonDest->SetLabelText(Model_Category::full_name(m_destCatID, m_destSubCatID));
+        IsOkOk();
     }
 }
 
@@ -157,11 +159,6 @@ int relocateCategoryDialog::updatedCategoriesCount() const
 
 void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    if (m_sourceCatID == m_destCatID && m_sourceSubCatID == m_destSubCatID)
-        return;
-    if (m_destCatID < 0)
-        return;
-    
     auto transactions = Model_Checking::instance()
         .find(Model_Checking::CATEGID(m_sourceCatID)
             , Model_Checking::SUBCATEGID(m_sourceSubCatID));
@@ -257,4 +254,15 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
 
         EndModal(wxID_OK);
     }
+}
+
+void relocateCategoryDialog::IsOkOk()
+{
+    bool e = true;
+    if (m_sourceCatID == m_destCatID && m_sourceSubCatID == m_destSubCatID)
+        e = false;
+    if (m_destCatID < 0 || m_sourceCatID < 0)
+        e = false;
+    wxButton* ok = wxStaticCast(FindWindow(wxID_OK), wxButton);
+    ok->Enable(e);
 }
