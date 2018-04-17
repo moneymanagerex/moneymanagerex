@@ -39,8 +39,9 @@ relocateCategoryDialog::relocateCategoryDialog( )
 
 relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent
     , int sourceCatID, int sourceSubCatID)
-    : m_buttonSource()
-    , m_buttonDest()
+    : m_buttonSource(nullptr)
+    , m_buttonDest(nullptr)
+    , m_info(nullptr)
 {
 
     m_sourceCatID    = sourceCatID;
@@ -65,6 +66,7 @@ bool relocateCategoryDialog::Create(wxWindow* parent
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
+    IsOkOk();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
@@ -111,6 +113,12 @@ void relocateCategoryDialog::CreateControls()
 
     boxSizer->Add(lineBottom, flagsExpand);
 
+    m_info = new wxStaticText(this, wxID_STATIC, "");
+    boxSizer->Add(m_info, flagsExpand);
+
+    wxStaticLine* lineBottom2 = new wxStaticLine(this, wxID_STATIC);
+    boxSizer->Add(lineBottom2, flagsExpand);
+
     wxButton* okButton = new wxButton(this, wxID_OK, _("&OK "));
     wxButton* cancelButton = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     cancelButton-> SetFocus();
@@ -134,8 +142,8 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
         Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(m_sourceSubCatID);
 
         m_buttonSource->SetLabelText(Model_Category::full_name(category, sub_category));
+        IsOkOk();
     }
-    sourceCat.Destroy();
 }
 
 void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
@@ -147,6 +155,7 @@ void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
         m_destCatID    = destCat.getCategId();
         m_destSubCatID = destCat.getSubCategId();
         m_buttonDest->SetLabelText(Model_Category::full_name(m_destCatID, m_destSubCatID));
+        IsOkOk();
     }
 }
 
@@ -157,62 +166,28 @@ int relocateCategoryDialog::updatedCategoriesCount() const
 
 void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    if (m_sourceCatID == m_destCatID && m_sourceSubCatID == m_destSubCatID)
-        return;
-    if (m_destCatID < 0)
-        return;
-    
-    auto transactions = Model_Checking::instance()
-        .find(Model_Checking::CATEGID(m_sourceCatID)
-            , Model_Checking::SUBCATEGID(m_sourceSubCatID));
-    auto checking_split = Model_Splittransaction::instance()
-        .find(Model_Splittransaction::CATEGID(m_sourceCatID)
-            , Model_Splittransaction::SUBCATEGID(m_sourceSubCatID));
-    auto billsdeposits = Model_Billsdeposits::instance()
-        .find(Model_Billsdeposits::CATEGID(m_sourceCatID)
-            , Model_Billsdeposits::SUBCATEGID(m_sourceSubCatID));
-    auto budget = Model_Budget::instance()
-        .find(Model_Budget::CATEGID(m_sourceCatID)
-            , Model_Budget::SUBCATEGID(m_sourceSubCatID));
-    auto budget_split = Model_Budgetsplittransaction::instance()
-        .find(Model_Budgetsplittransaction::CATEGID(m_sourceCatID)
-            , Model_Budgetsplittransaction::SUBCATEGID(m_sourceSubCatID));
-    auto payees = Model_Payee::instance()
-        .find(Model_Payee::CATEGID(m_sourceCatID)
-            , Model_Payee::SUBCATEGID(m_sourceSubCatID));
-    
-    int trxs_size = int(transactions.size());
-    int checks_size = int(checking_split.size());
-    int bills_size = int(billsdeposits.size());
-    int budget_split_size = int(budget_split.size());
-    int payees_size = int(payees.size());
-    int budget_size = int(budget.size());
 
-    int total = trxs_size + checks_size + bills_size + budget_split_size + payees_size + budget_size;
-
-    wxString msgStr = wxString()
-        << _("Please Confirm:")
-        << "\n\n"
-        << wxString::Format(_("Records found in transactions: %i"), trxs_size) << "\n"
-        << wxString::Format(_("Records found in split transactions: %i"), checks_size) << "\n"
-        << wxString::Format(_("Records found in recurring transactions: %i"), bills_size) << "\n"
-        << wxString::Format(_("Records found in recurring split transactions: %i"), budget_split_size) << "\n"
-        << wxString::Format(_("Records found as Default Payee Category: %i"), payees_size) << "\n"
-        << wxString::Format(_("Records found in budget: %i"), budget_size) << "\n\n"
-        << wxString::Format(_("Changing all categories of: \n%s to category: %s")
-            , m_buttonSource->GetLabelText(), m_buttonDest->GetLabelText());
-
-    long style = wxOK | wxCANCEL | wxICON_QUESTION;
-    if (total == 0) {
-        style = wxCANCEL | wxICON_ERROR | wxCANCEL_DEFAULT;
-    }
-
-    wxMessageDialog msgDlg(this, msgStr
-        , _("Category Relocation Confirmation")
-        , style);
-
-    if (msgDlg.ShowModal() == wxOK && total > 0)
+    if (wxMessageBox(_("Please Confirm:"), _("Category Relocation Confirmation"), wxOK | wxCANCEL) == wxOK)
     {
+        auto transactions = Model_Checking::instance()
+            .find(Model_Checking::CATEGID(m_sourceCatID)
+                , Model_Checking::SUBCATEGID(m_sourceSubCatID));
+        auto checking_split = Model_Splittransaction::instance()
+            .find(Model_Splittransaction::CATEGID(m_sourceCatID)
+                , Model_Splittransaction::SUBCATEGID(m_sourceSubCatID));
+        auto billsdeposits = Model_Billsdeposits::instance()
+            .find(Model_Billsdeposits::CATEGID(m_sourceCatID)
+                , Model_Billsdeposits::SUBCATEGID(m_sourceSubCatID));
+        auto budget = Model_Budget::instance()
+            .find(Model_Budget::CATEGID(m_sourceCatID)
+                , Model_Budget::SUBCATEGID(m_sourceSubCatID));
+        auto budget_split = Model_Budgetsplittransaction::instance()
+            .find(Model_Budgetsplittransaction::CATEGID(m_sourceCatID)
+                , Model_Budgetsplittransaction::SUBCATEGID(m_sourceSubCatID));
+        auto payees = Model_Payee::instance()
+            .find(Model_Payee::CATEGID(m_sourceCatID)
+                , Model_Payee::SUBCATEGID(m_sourceSubCatID));
+
         for (auto &entry : transactions)
         {
             entry.CATEGID = m_destCatID;
@@ -257,4 +232,57 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
 
         EndModal(wxID_OK);
     }
+}
+
+void relocateCategoryDialog::IsOkOk()
+{
+    auto transactions = Model_Checking::instance()
+        .find(Model_Checking::CATEGID(m_sourceCatID)
+            , Model_Checking::SUBCATEGID(m_sourceSubCatID));
+    auto checking_split = Model_Splittransaction::instance()
+        .find(Model_Splittransaction::CATEGID(m_sourceCatID)
+            , Model_Splittransaction::SUBCATEGID(m_sourceSubCatID));
+    auto billsdeposits = Model_Billsdeposits::instance()
+        .find(Model_Billsdeposits::CATEGID(m_sourceCatID)
+            , Model_Billsdeposits::SUBCATEGID(m_sourceSubCatID));
+    auto budget = Model_Budget::instance()
+        .find(Model_Budget::CATEGID(m_sourceCatID)
+            , Model_Budget::SUBCATEGID(m_sourceSubCatID));
+    auto budget_split = Model_Budgetsplittransaction::instance()
+        .find(Model_Budgetsplittransaction::CATEGID(m_sourceCatID)
+            , Model_Budgetsplittransaction::SUBCATEGID(m_sourceSubCatID));
+    auto payees = Model_Payee::instance()
+        .find(Model_Payee::CATEGID(m_sourceCatID)
+            , Model_Payee::SUBCATEGID(m_sourceSubCatID));
+
+    int trxs_size = (m_sourceCatID < 0 && m_sourceSubCatID < 0) ? 0 : int(transactions.size());
+    int checks_size = int(checking_split.size());
+    int bills_size = int(billsdeposits.size());
+    int budget_split_size = int(budget_split.size());
+    int payees_size = (m_sourceCatID < 0 && m_sourceSubCatID < 0) ? 0 : int(payees.size());
+    int budget_size = int(budget.size());
+
+    int total = trxs_size + checks_size + bills_size + budget_split_size + payees_size + budget_size;
+
+    wxString msgStr = wxString()
+        << wxString::Format(_("Records found in transactions: %i"), trxs_size) << "\n"
+        << wxString::Format(_("Records found in split transactions: %i"), checks_size) << "\n"
+        << wxString::Format(_("Records found in recurring transactions: %i"), bills_size) << "\n"
+        << wxString::Format(_("Records found in recurring split transactions: %i"), budget_split_size) << "\n"
+        << wxString::Format(_("Records found as Default Payee Category: %i"), payees_size) << "\n"
+        << wxString::Format(_("Records found in budget: %i"), budget_size) << "\n\n"
+        << wxString::Format(_("Changing all categories of: \n%s to category: %s")
+            , m_buttonSource->GetLabelText(), m_buttonDest->GetLabelText());
+
+    m_info->SetLabel(msgStr);
+
+    bool e = true;
+    if (total == 0)
+        e = false;
+    else if (m_sourceCatID == m_destCatID && m_sourceSubCatID == m_destSubCatID)
+        e = false;
+    else if (m_destCatID < 0 || m_sourceCatID < 0)
+        e = false;
+    wxButton* ok = wxStaticCast(FindWindow(wxID_OK), wxButton);
+    ok->Enable(e);
 }
