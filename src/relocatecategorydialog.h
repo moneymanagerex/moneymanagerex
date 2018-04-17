@@ -52,6 +52,7 @@ private:
     int m_sourceCatID;
     int m_sourceSubCatID;
     wxButton* m_buttonSource;
+    wxStaticText* m_info;
 
     int m_destCatID;
     int m_destSubCatID;
