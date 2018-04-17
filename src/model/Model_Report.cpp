@@ -171,14 +171,14 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
     {
         wxDatePickerCtrl* start_date = (wxDatePickerCtrl*)
             wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE);
-        const auto data = start_date ? start_date->GetValue().FormatISODate()
+        const auto& date = start_date ? start_date->GetValue().FormatISODate()
             : wxDateTime::Today().FormatISODate();
 
-        rep_params["begin_date"] = data;
+        rep_params["begin_date"] = date;
 
         while (pos != wxNOT_FOUND)
         {
-            sql.replace(pos, len, data);
+            sql.replace(pos, len, date);
             pos = sql.Lower().Find("&begin_date");
         }
     }
@@ -189,14 +189,14 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
     {
         wxDatePickerCtrl* start_date = (wxDatePickerCtrl*)
             wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE);
-        const auto data = start_date ? start_date->GetValue().FormatISODate()
+        const auto& date = start_date ? start_date->GetValue().FormatISODate()
             : wxDateTime::Today().FormatISODate();
 
-        rep_params["single_date"] = data;
+        rep_params["single_date"] = date;
 
         while (pos != wxNOT_FOUND)
         {
-            sql.replace(pos, len, data);
+            sql.replace(pos, len, date);
             pos = sql.Lower().Find("&single_date");
         }
     }
@@ -208,14 +208,14 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
     {
         wxDatePickerCtrl* end_date = (wxDatePickerCtrl*)
             wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_END_DATE);
-        const auto data = end_date ? end_date->GetValue().FormatISODate()
+        const auto& date = end_date ? end_date->GetValue().FormatISODate()
             : wxDateTime::Today().FormatISODate();
 
-        rep_params["end_date"] = data;
+        rep_params["end_date"] = date;
 
         while (pos != wxNOT_FOUND)
         {
-            sql.replace(pos, len, data);
+            sql.replace(pos, len, date);
             pos = sql.Lower().Find("&end_date");
         }
     }
@@ -226,14 +226,14 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
     {
         wxChoice* years = (wxChoice*)
             wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_DATE_RANGE);
-        const auto data = years ? years->GetStringSelection()
+        const auto& date = years ? years->GetStringSelection()
             : wxString::Format("%s", wxDate::Today().GetYear());
 
-        rep_params["only_years"] = data;
+        rep_params["only_years"] = date;
 
         while (pos != wxNOT_FOUND)
         {
-            sql.replace(pos, len, data);
+            sql.replace(pos, len, date);
             pos = sql.Lower().Find("&only_years");
         }
     }
