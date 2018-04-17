@@ -56,8 +56,11 @@ mmPrintableBase::~mmPrintableBase()
             json_writer.Key("ID");
             json_writer.Int(id);
 
-            json_writer.Key("REPORTPERIOD");
-            json_writer.Int(m_date_selection);
+            if (m_date_selection)
+            {
+                json_writer.Key("REPORTPERIOD");
+                json_writer.Int(m_date_selection);
+            }
 
             json_writer.Key("DATE1");
             json_writer.String(m_begin_date.FormatISODate().c_str());
@@ -65,22 +68,30 @@ mmPrintableBase::~mmPrintableBase()
             json_writer.Key("DATE2");
             json_writer.String(m_end_date.FormatISODate().c_str());
 
-            json_writer.Key("ACCOUNTSELECTION");
-            json_writer.Int(m_account_selection);
-
-            size_t rcount = (accountArray_ ? accountArray_->size() : 0);
-            json_writer.Key("NAMECOUNT");
-            json_writer.Int(rcount);
-
-            for (size_t i = 0; i < rcount; i++)
+            if (m_account_selection)
             {
-                const auto& name = wxString::Format("NAME%zu", i);
-                json_writer.Key(name.c_str());
-                json_writer.String(accountArray_->Item(i).c_str());
+                json_writer.Key("ACCOUNTSELECTION");
+                json_writer.Int(m_account_selection);
+
+                if (accountArray_ && !accountArray_->empty())
+                {
+                    json_writer.Key("ACCOUNTS");
+
+                    json_writer.StartArray();
+                    for (const auto& entry : *accountArray_)
+                    {
+                        json_writer.String(entry);
+                    }
+                    json_writer.EndArray();
+                }
             }
 
-            json_writer.Key("CHART");
-            json_writer.Int(m_chart_selection);
+            if (m_chart_selection)
+            {
+                json_writer.Key("CHART");
+                json_writer.Int(m_chart_selection);
+            }
+
             json_writer.EndObject();
 
             const wxString& rj_key = wxString::Format("REPORT_%d", id);
@@ -194,28 +205,16 @@ void mmPrintableBase::setSettings(const wxString& settings)
         m_account_selection = j_doc["ACCOUNTSELECTION"].GetInt();
     }
 
-    size_t count = 0;
-    if (j_doc.HasMember("NAMECOUNT") && j_doc["NAMECOUNT"].IsInt64()) {
-        count = j_doc["NAMECOUNT"].GetInt64();
+    if (accountArray_)
+    {
+        delete accountArray_;
     }
 
-    if (count > 0)
-    {
-        if (accountArray_)
-        {
-            delete accountArray_;
-        }
-
+    if (j_doc.HasMember("ACCOUNTS") && j_doc["ACCOUNTS"].IsArray()) {
         wxArrayString* accountSelections = new wxArrayString();
-        for (size_t i = 0; i < count; i++)
-        {
-            const wxString& name = wxString::Format("NAME%zu", i);
-            if (j_doc.HasMember(name.c_str())) {
-                Value j_name(name.c_str(), j_doc.GetAllocator());
-                if (j_doc[j_name].IsString()) {
-                    accountSelections->Add(j_doc[j_name].GetString());
-                }
-            }
+        const Value& a = j_doc["ACCOUNTS"].GetArray();
+        for (const auto& v : a.GetArray()) {
+            accountSelections->Add(v.GetString());
         }
         accountArray_ = accountSelections;
     }
