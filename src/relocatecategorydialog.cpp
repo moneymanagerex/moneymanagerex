@@ -84,15 +84,15 @@ void relocateCategoryDialog::CreateControls()
     flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
 
     wxStaticText* headerText = new wxStaticText(this, wxID_STATIC
-        , _("Relocate all source categories to the destination category"));
+        , _("Relocate source category to the destination category"));
     wxStaticLine* lineTop = new wxStaticLine(this, wxID_STATIC);
 
-    m_buttonSource = new wxButton(this, wxID_CLEAR, _("Source Category"), wxDefaultPosition, wxSize(200, -1));
+    m_buttonSource = new wxButton(this, wxID_CLEAR, _("Select Source Category"), wxDefaultPosition, wxSize(200, -1));
     Model_Category::Data* category = Model_Category::instance().get(m_sourceCatID);
     if (category)
         m_buttonSource->SetLabelText(Model_Category::full_name(m_sourceCatID, m_sourceSubCatID));
 
-    m_buttonDest = new wxButton(this, wxID_NEW, _("Destination Category"), wxDefaultPosition, wxSize(200, -1));
+    m_buttonDest = new wxButton(this, wxID_NEW, _("Select Destination Category"), wxDefaultPosition, wxSize(200, -1));
     wxStaticLine* lineBottom = new wxStaticLine(this, wxID_STATIC);
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
@@ -270,9 +270,7 @@ void relocateCategoryDialog::IsOkOk()
         << wxString::Format(_("Records found in recurring transactions: %i"), bills_size) << "\n"
         << wxString::Format(_("Records found in recurring split transactions: %i"), budget_split_size) << "\n"
         << wxString::Format(_("Records found as Default Payee Category: %i"), payees_size) << "\n"
-        << wxString::Format(_("Records found in budget: %i"), budget_size) << "\n\n"
-        << wxString::Format(_("Changing all categories of: \n%s to category: %s")
-            , m_buttonSource->GetLabelText(), m_buttonDest->GetLabelText());
+        << wxString::Format(_("Records found in budget: %i"), budget_size);
 
     m_info->SetLabel(msgStr);
 
