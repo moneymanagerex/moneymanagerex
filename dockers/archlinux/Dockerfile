@@ -2,8 +2,7 @@ FROM base/archlinux:latest
 MAINTAINER developers@moneymanagerex.org
 RUN pacman -Syuq --noprogressbar --needed --noconfirm \
       git cmake make gcc gettext fakeroot lsb-release \
-      webkit2gtk wxgtk3 \
-      automake autoconf libtool && \
+      webkit2gtk wxgtk3 && \
     pacman -Qdtq | xargs -r pacman -Rns && \
     pacman -Sc --noconfirm
 
