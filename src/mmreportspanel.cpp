@@ -487,10 +487,12 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
         if (bGenReport)
         {
             wxString error;
-            if (this->saveReportText(error, false))
+            if (this->saveReportText(error, false)) {
                 browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
-            else
+            }
+            else {
                 browser_->SetPage(error, "");
+            }
         }
     }
 }
