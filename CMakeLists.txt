@@ -2,7 +2,6 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.0 FATAL_ERROR)
 SET(InMMEX TRUE)
 
 PROJECT(MMEX VERSION 1.4.0)
-OPTION(MMEX_BUILD_TESTS "Whether to build automatic unit tests" OFF)
 OPTION(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the Windows installation" ON) 
 
 # Name of the resulted executable binary
@@ -308,12 +307,6 @@ ENDIF()
 ADD_SUBDIRECTORY(3rd)
 ADD_SUBDIRECTORY(po)
 ADD_SUBDIRECTORY(src)
-IF(MMEX_BUILD_TESTS)
-    IF(MSVC AND CMAKE_SIZEOF_VOID_P EQUAL 8)
-        MESSAGE(SEND_ERROR "MMEX_BUILD_TESTS not supported under MSVC x64.")
-    ENDIF()
-    ADD_SUBDIRECTORY(tests)
-ENDIF()
 
 ## Tuning for VisualStudio IDE ##
 IF(NOT CMAKE_VERSION VERSION_LESS 3.6)
@@ -585,7 +578,7 @@ IF(LINUX_DISTRO STREQUAL "Arch")
         CMAKE_POLICY(SET CMP0037 OLD)
     ENDIF()
     ADD_CUSTOM_TARGET(package
-        COMMAND sh -c "if [ `id -u` -eq 0 ]; then chown nobody -R . ../3rd/cppunit && runuser nobody -c makepkg; else makepkg; fi"
+        COMMAND sh -c "if [ `id -u` -eq 0 ]; then chown nobody -R . && runuser nobody -c makepkg; else makepkg; fi"
         VERBATIM)
     CMAKE_POLICY(POP)
 ELSE()
@@ -628,7 +621,6 @@ ENDIF()
 IF(GIT_BRANCH)
     MESSAGE(STATUS "Branch         : ${GIT_BRANCH}")
 ENDIF()
-MESSAGE(STATUS "Build tests    : ${MMEX_BUILD_TESTS}")
 MESSAGE(STATUS "Host system    : ${CMAKE_HOST_SYSTEM_NAME} ${CMAKE_HOST_SYSTEM_PROCESSOR}")
 IF(CMAKE_SIZEOF_VOID_P EQUAL 8)
     MESSAGE(STATUS "Target system  : ${CMAKE_SYSTEM_NAME} x86_64")

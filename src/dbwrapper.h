@@ -20,7 +20,7 @@
 #ifndef MM_EX_DBWRAPPER_H_
 #define MM_EX_DBWRAPPER_H_
 //----------------------------------------------------------------------------
-#include <wx/arrstr.h>
+#include <wx/string.h>
 #include <wx/sharedptr.h>
 
 class wxSQLite3Database;
@@ -28,7 +28,8 @@ class wxSQLite3Database;
 namespace mmDBWrapper
 {
 
-wxSharedPtr<wxSQLite3Database> Open(const wxString &dbpath, const wxString &key = "");
+wxSharedPtr<wxSQLite3Database> Open(const wxString &dbpath,
+                                    const wxString &key = wxEmptyString);
 
 } // namespace mmDBWrapper
 

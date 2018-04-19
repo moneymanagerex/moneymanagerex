@@ -1888,6 +1888,16 @@ void mmGUIFrame::InitializeModelTables()
 
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)
 {
+    const wxFileName checkFile(fileName);
+    wxString password(pwd);
+    const bool encrypted = (checkFile.GetExt().Lower() == "emb");
+    if (encrypted && password.IsEmpty())
+    {
+        password = readPasswordFromUser(openingNew);
+        if (password.IsEmpty())
+            return false;
+    }
+
     if (m_db)
     {
         ShutdownDatabase();
@@ -1900,84 +1910,63 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         }
     }
 
-    wxFileName checkExt(fileName);
-    wxString password;
-    bool passwordCheckPassed = true;
-    if (checkExt.GetExt().Lower() == "emb" && wxFileName::FileExists(fileName))
+    if (!openingNew)
     {
-        wxString password_message = wxString::Format(_("Please enter password for Database\n\n%s"), fileName);
-        password = !pwd.empty() ? pwd : wxGetPasswordFromUser(password_message, _("MMEX: Encrypted Database"));
-        if (password.IsEmpty())
-            passwordCheckPassed = false;
-    }
-
-    const wxString& dialogErrorMessageHeading = _("Opening MMEX Database - Error");
-
-    // Existing Database
-    if (!openingNew
-        && !fileName.IsEmpty()
-        && wxFileName::FileExists(fileName)
-        && passwordCheckPassed)
-    {
-        /* Do a backup before opening */
-        if (Model_Setting::instance().GetBoolSetting("BACKUPDB", false))
-        {
-            dbUpgrade::BackupDB(fileName, dbUpgrade::BACKUPTYPE::START, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
-        }
-
-        m_db = mmDBWrapper::Open(fileName, password);
-        // if the database pointer has been reset, the password is possibly incorrect
-        if (!m_db) return false;
-
-        m_commit_callback_hook = new CommitCallbackHook();
-        m_db->SetCommitHook(m_commit_callback_hook);
-        m_update_callback_hook = new UpdateCallbackHook();
-        m_db->SetUpdateHook(m_update_callback_hook);
-
-        //Check if DB upgrade needed
-        if (dbUpgrade::CheckUpgradeDB(m_db.get()))
-        {
-            //DB backup is handled inside UpgradeDB
-            if (!dbUpgrade::UpgradeDB(m_db.get(), fileName))
-            {
-                int response = wxMessageBox(_("Have MMEX support provided you a debug/patch file?"), _("MMEX upgrade"), wxYES_NO);
-                if (response == wxYES)
-                    dbUpgrade::SqlFileDebug(m_db.get());
-                ShutdownDatabase();
-                return false;
-            }
-        }
-
-        InitializeModelTables();
-
-        // ** OBSOLETE **
-        // Mantained only for really old compatibility reason and replaced by dbupgrade.cpp
-        if (!Model_Infotable::instance().checkDBVersion())
+        if (!checkFile.FileExists()) // Nothing to open
         {
             this->SetTitle(mmex::getCaption(_("No File opened")));
-            wxMessageBox(_("Sorry. The Database version is too old or Database password is incorrect")
-                , dialogErrorMessageHeading
-                , wxOK | wxICON_EXCLAMATION);
-
-            ShutdownDatabase();
+            wxMessageBox(_("Cannot locate database file to open.")
+                + "\n" + fileName,
+                _("Opening MMEX Database - Error"), wxOK | wxICON_ERROR);
+            menuEnableItems(false);
             return false;
         }
+        else // Existing Database
+        {
+            /* Do a backup before opening */
+            if (Model_Setting::instance().GetBoolSetting("BACKUPDB", false))
+            {
+                dbUpgrade::BackupDB(fileName, dbUpgrade::BACKUPTYPE::START, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
+            }
 
-        m_password = password;
+            m_db = mmDBWrapper::Open(fileName, password);
+            // if the database pointer has been reset, the password is possibly incorrect
+            if (!m_db) return false;
+
+            m_commit_callback_hook = new CommitCallbackHook();
+            m_db->SetCommitHook(m_commit_callback_hook);
+            m_update_callback_hook = new UpdateCallbackHook();
+            m_db->SetUpdateHook(m_update_callback_hook);
+
+            //Check if DB upgrade needed
+            if (dbUpgrade::CheckUpgradeDB(m_db.get()))
+            {
+                //DB backup is handled inside UpgradeDB
+                if (!dbUpgrade::UpgradeDB(m_db.get(), fileName))
+                {
+                    int response = wxMessageBox(_("Have MMEX support provided you a debug/patch file?"), _("MMEX upgrade"), wxYES_NO);
+                    if (response == wxYES)
+                        dbUpgrade::SqlFileDebug(m_db.get());
+                    ShutdownDatabase();
+                    return false;
+                }
+            }
+
+            InitializeModelTables();
+        }
     }
-    else if (openingNew) // New Database
+    else // New Database
     {
         // Remove file so we can replace it instead of opening it
-        if (wxFileName::FileExists(fileName))
+        if (checkFile.FileExists())
             wxRemoveFile(fileName);
 
-        m_db = mmDBWrapper::Open(fileName, password);
+        m_db = mmDBWrapper::Open(fileName, encrypted ? password : "");
         m_commit_callback_hook = new CommitCallbackHook();
         m_db->SetCommitHook(m_commit_callback_hook);
         m_update_callback_hook = new UpdateCallbackHook();
         m_db->SetUpdateHook(m_update_callback_hook);
 
-        m_password = password;
         dbUpgrade::InitializeVersion(m_db.get());
         InitializeModelTables();
 
@@ -1992,19 +1981,6 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         wxCommandEvent evt;
         OnNewAccount(evt);
         return true;
-    }
-    else // open of existing database failed
-    {
-        this->SetTitle(mmex::getCaption(_("No File opened")));
-
-        wxString msgStr = _("Cannot locate previously opened database.\n");
-        if (!passwordCheckPassed)
-            msgStr = _("Password not entered for encrypted Database.\n");
-
-        msgStr << fileName;
-        wxMessageBox(msgStr, dialogErrorMessageHeading, wxOK | wxICON_ERROR);
-        menuEnableItems(false);
-        return false;
     }
 
     SetDataBaseParameters(fileName);
@@ -2027,7 +2003,6 @@ void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
     else
     {
         m_filename.Clear();
-        m_password.Clear();
     }
 }
 //----------------------------------------------------------------------------
@@ -2060,20 +2035,22 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
         _("Choose database file to create"),
         wxEmptyString,
         wxEmptyString,
-        "MMB Files(*.mmb)|*.mmb",
+        _("MMB files (*.mmb)") + "|*.mmb"
+            + (wxSQLite3Database::HasEncryptionSupport()
+                ? "|" + _("Encrypted MMB files (*.emb)") + "|*.emb"
+                : wxString()),
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
         );
 
     if (dlg.ShowModal() != wxID_OK)
         return;
 
-    wxString fileName = dlg.GetPath();
+    const bool encrypted = dlg.GetFilterIndex() != 0; // emb -> Encrypted mMB
+    wxFileName newFileName(dlg.GetPath());
+    newFileName.SetExt(encrypted ? "emb" : "mmb");
 
-    if (!fileName.EndsWith(".mmb"))
-        fileName += ".mmb";
-
-    SetDatabaseFile(fileName, true);
-    Model_Setting::instance().Set("LASTFILENAME", fileName);
+    SetDatabaseFile(newFileName.GetFullPath(), true);
+    Model_Setting::instance().Set("LASTFILENAME", newFileName.GetFullPath());
 }
 //----------------------------------------------------------------------------
 
@@ -2082,7 +2059,10 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     autoRepeatTransactionsTimer_.Stop();
     wxString fileName = wxFileSelector(_("Choose database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , "MMB Files(*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb"
+        , _("MMB files (*.mmb)") + "|*.mmb"
+            + (wxSQLite3Database::HasEncryptionSupport()
+                ? "|" + _("Encrypted MMB files (*.emb)") + "|*.emb"
+                : wxString())
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
         , this
         );
@@ -2099,7 +2079,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
 {
     wxString encFileName = wxFileSelector(_("Choose Encrypted database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , "Encrypted MMB files (*.emb)|*.emb"
+        , _("Encrypted MMB files (*.emb)") + "|*.emb"
         , wxFD_FILE_MUST_EXIST
         , this
         );
@@ -2107,7 +2087,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
     if (encFileName.empty())
         return;
 
-    wxString password = wxGetPasswordFromUser(_("Enter password for database"), _("MMEX: Encrypted Database"));
+    wxString password = readPasswordFromUser(false);
     if (password.empty())
         return;
 
@@ -2115,22 +2095,20 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
         , _("Choose database file to Save As")
         , wxEmptyString
         , wxEmptyString
-        , "MMB Files(*.mmb)|*.mmb"
+        , _("MMB files (*.mmb)") + "|*.mmb"
         , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
         );
 
     if (dlg.ShowModal() != wxID_OK)
         return;
 
-    wxString fileName = dlg.GetPath();
+    wxFileName newFileName(dlg.GetPath());
+    newFileName.SetExt("mmb");
 
-    if (!dlg.GetPath().EndsWith(".mmb"))
-        fileName += ".mmb";
-
-    wxCopyFile(encFileName, fileName);
+    wxCopyFile(encFileName, newFileName.GetFullPath());
 
     wxSQLite3Database db;
-    db.Open(fileName, password);
+    db.Open(newFileName.GetFullPath(), password);
     db.ReKey(wxEmptyString);
     db.Close();
 
@@ -2140,26 +2118,11 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
 {
-    wxString password_change_heading = _("MMEX: Encryption Password Change");
-    wxString password_message = wxString::Format(_("New password for database\n\n%s"), m_filename);
-
-    wxString new_password = wxGetPasswordFromUser(password_message, password_change_heading);
-    if (new_password.IsEmpty())
+    wxString new_password = readPasswordFromUser(true);
+    if (!new_password.IsEmpty())
     {
-        wxMessageBox(_("New password must not be empty."), password_change_heading, wxOK | wxICON_WARNING);
-    }
-    else
-    {
-        wxString confirm_password = wxGetPasswordFromUser(_("Please confirm new password"), password_change_heading);
-        if (!confirm_password.IsEmpty() && (new_password == confirm_password))
-        {
-            m_db->ReKey(confirm_password);
-            wxMessageBox(_("Password change completed."), password_change_heading);
-        }
-        else
-        {
-            wxMessageBox(_("Confirm password failed."), password_change_heading);
-        }
+        m_db->ReKey(new_password);
+        wxMessageBox(_("Password change completed."), _("Encryption Password Change"));
     }
 }
 //----------------------------------------------------------------------------
@@ -2198,79 +2161,69 @@ void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
 {
     wxASSERT(m_db);
-
-    if (m_filename.empty())
-    {
-        wxASSERT(false);
-        return;
-    }
+    wxASSERT(!m_filename.empty());
 
     wxFileDialog dlg(this,
         _("Save database file as"),
         wxEmptyString,
         wxEmptyString,
-        "MMB Files(*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb",
+        _("MMB files (*.mmb)") + "|*.mmb"
+            + (wxSQLite3Database::HasEncryptionSupport()
+                ? "|" + _("Encrypted MMB files (*.emb)") + "|*.emb"
+                : wxString()),
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
         );
 
-    if (dlg.ShowModal() != wxID_OK) return;
+    wxFileName newFileName;
+    bool encrypted, fileOK;
+    wxString msg;
+    do {
+        if (dlg.ShowModal() != wxID_OK) return;
 
-    // Ensure database is in a steady state first
-    createHomePage();
+        fileOK=false;
+        encrypted = dlg.GetFilterIndex() != 0; // emb -> Encrypted mMB
+        newFileName=dlg.GetPath();
+        newFileName.SetExt(encrypted ? "emb" : "mmb");
 
-    bool encrypt = dlg.GetFilterIndex() != 0; // emb -> Encrypted mMB
-    wxFileName newFileName(dlg.GetPath());
-    wxString ext = encrypt ? "emb" : "mmb";
-    if (newFileName.GetExt().Lower() != ext) newFileName.SetExt(ext);
+        if (newFileName == m_filename) // on case-sensitive FS uses case-sensitive comparison
+            msg = _("Can't copy file to itself");
+        else if (newFileName.FileExists() && !wxRemoveFile(newFileName.GetFullPath()))
+            msg = _("Can't overwrite selected file");
+        else fileOK=true;
+        if (!fileOK)
+        {
+            wxMessageDialog dlgMsg(this, msg, _("Save database file as"), wxOK | wxICON_WARNING);
+            dlgMsg.ShowModal();
+        }
 
-    wxFileName oldFileName(m_filename); // opened db's file
-
-    if (newFileName == oldFileName) // on case-sensitive FS uses case-sensitive comparison
-    {
-        wxMessageDialog dlgMsg(this, _("Can't copy file to itself"), _("Save database file as"), wxOK | wxICON_WARNING);
-        dlgMsg.ShowModal();
-        return;
-    }
+    } while (!fileOK);
 
     // prepare to copy
-    wxString new_password;
-    bool rekey = encrypt ^ m_db->IsEncrypted();
-
-    if (encrypt)
+    wxString password;
+    if (encrypted)
     {
-        if (rekey)
-        {
-            new_password = wxGetPasswordFromUser(_("Enter password for new database"), _("MMEX: Encrypted Database"));
-            if (new_password.empty())
-                return;
-        }
-        else
-        {
-            new_password = m_password;
-        }
+        password = readPasswordFromUser(true);
+        if (password.empty())
+            return;
     }
 
-    // copying db
-    ShutdownDatabase(); // database must be closed before copying its file
-
-    if (!wxCopyFile(oldFileName.GetFullPath(), newFileName.GetFullPath(), true))  // true -> overwrite if file exists
+    // create backup database
+    try {
+        m_db->Backup(newFileName.GetFullPath(), password);
+    }
+    catch (wxSQLite3Exception& e) {
+        wxMessageBox(e.GetMessage());
         return;
-
-    if (rekey) // encrypt or reset encryption
-    {
-        wxSQLite3Database dbx;
-        dbx.Open(newFileName.GetFullPath(), m_password);
-        dbx.ReKey(new_password); // empty password resets encryption
-        dbx.Close();
     }
 
-    m_password.clear();
-    if (openFile(newFileName.GetFullPath(), false, new_password))
+    // load new database file created
+    if (openFile(newFileName.GetFullPath(), false, password))
     {
         updateNavTreeControl();
         createHomePage();
     }
 }
+
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnExportToCSV(wxCommandEvent& /*event*/)
@@ -2615,7 +2568,7 @@ void mmGUIFrame::OnReportBug(wxCommandEvent& /*event*/)
     std::vector<std::pair<wxString, wxString>> fixes = {
         { "\n\n", "<br>" }, { "\n", " " }, { "  ", " " },
         { "^" + _("Version: "), "\n<hr><small><b>Version</b>: " },
-        { _("Database version supported: "), L"\u2022 db " },
+        { _("Database version: "), L"\u2022 db " },
         { _("Git commit: "), L"\u2022 git " },
         { _("Git branch: "), "" },
         { _("MMEX is using the following support products:") + L" \u2022", "<b>Libs</b>:" },

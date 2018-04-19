@@ -23,7 +23,6 @@
 #include "db/DB_Upgrade.h"
 #include <wx/statline.h>
 #include <wx/version.h>
-#include <wx/wxsqlite3.h>
 #include <wx/regex.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmAboutDialog, wxDialog);

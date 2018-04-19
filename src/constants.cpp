@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "rapidjson/rapidjson.h"
 #include "db/DB_Upgrade.h" /* for dbLatestVersion */
 #include <curl/curl.h>
+#include <sqlite3secure.h>
 
 const wxString mmex::version::string = mmex::version::generateProgramVersion(mmex::version::Major, mmex::version::Minor, mmex::version::Patch
     ,mmex::version::Alpha, mmex::version::Beta, mmex::version::RC);
@@ -98,7 +99,8 @@ const wxString mmex::getProgramDescription()
         curl.Replace("/", " ");
 
     description << mmex::getTitleProgramVersion() << "\n"
-        << _("Database version supported: ") << dbLatestVersion << "\n"
+        << _("Database version: ") << dbLatestVersion
+        << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")\n"
 #ifdef GIT_COMMIT_HASH
         << _("Git commit: ") << GIT_COMMIT_HASH
         << " (" << GIT_COMMIT_DATE << ")\n"

@@ -5,8 +5,7 @@ RUN rpm --import https://getfedora.org/static/0608B895.txt \
  && yum -y install centos-release-scl \
  && yum -y install --setopt=tsflags=nodocs \
         cmake3 devtoolset-6-gcc-c++ gettext git devtoolset-6-make rpm-build redhat-lsb-core \
-        webkitgtk-devel wxGTK3-devel \
-        automake libtool ccache \
+        webkitgtk-devel wxGTK3-devel ccache \
  && yum clean all
 
 # cmake3 installed from EPEL
