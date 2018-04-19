@@ -70,6 +70,8 @@ void Model_Infotable::Set(const wxString& key, const wxDateTime& date)
 
 void Model_Infotable::Set(const wxString& key, const wxString& value)
 {
+    if (this->db_) return;
+
     Data* info = this->get_one(INFONAME(key));
     if (!info) // not cached
     {
