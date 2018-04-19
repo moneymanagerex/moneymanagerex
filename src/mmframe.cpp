@@ -280,21 +280,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
         showBeginAppDialog(dbpath.GetFullName().IsEmpty());
     }
     else
-    {
-        if (openFile(dbpath.GetFullPath(), false))
-        {
-            updateNavTreeControl();
-            //setHomePageActive(false);
-            createHomePage();
-            mmLoadColorsFromDatabase();
-        }
-        else
-        {
-            resetNavTreeControl();
-            cleanupHomePanel();
-            showBeginAppDialog(true);
-        }
-    }
+        SetDatabaseFile(dbpath.GetFullPath());
 
     const wxAcceleratorEntry entries [] =
     {
@@ -1889,6 +1875,15 @@ void mmGUIFrame::InitializeModelTables()
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)
 {
     const wxFileName checkFile(fileName);
+
+    if (!openingNew && !checkFile.FileExists()) // Nothing to open
+    {
+        wxMessageBox(_("Cannot locate database file to open.")
+            + "\n" + fileName,
+            _("Opening MMEX Database - Error"), wxOK | wxICON_ERROR);
+        return false;
+    }
+
     wxString password(pwd);
     const bool encrypted = (checkFile.GetExt().Lower() == "emb");
     if (encrypted && password.IsEmpty())
@@ -1900,6 +1895,12 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
     if (m_db)
     {
+        this->SetTitle(mmex::getCaption(mmex::isPortableMode() ? _("[portable mode]") : ""));
+        resetNavTreeControl();
+        cleanupHomePanel(false);
+        menuEnableItems(false);
+        menuPrintingEnable(false);
+
         ShutdownDatabase();
         /// Backup the database according to user requirements
         if (Option::instance().DatabaseUpdated() &&
@@ -1910,50 +1911,38 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         }
     }
 
-    if (!openingNew)
+    if (!openingNew) // Existing Database
     {
-        if (!checkFile.FileExists()) // Nothing to open
+        /* Do a backup before opening */
+        if (Model_Setting::instance().GetBoolSetting("BACKUPDB", false))
         {
-            this->SetTitle(mmex::getCaption(_("No File opened")));
-            wxMessageBox(_("Cannot locate database file to open.")
-                + "\n" + fileName,
-                _("Opening MMEX Database - Error"), wxOK | wxICON_ERROR);
-            menuEnableItems(false);
-            return false;
+            dbUpgrade::BackupDB(fileName, dbUpgrade::BACKUPTYPE::START, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
         }
-        else // Existing Database
+
+        m_db = mmDBWrapper::Open(fileName, password);
+        // if the database pointer has been reset, the password is possibly incorrect
+        if (!m_db) return false;
+
+        m_commit_callback_hook = new CommitCallbackHook();
+        m_db->SetCommitHook(m_commit_callback_hook);
+        m_update_callback_hook = new UpdateCallbackHook();
+        m_db->SetUpdateHook(m_update_callback_hook);
+
+        //Check if DB upgrade needed
+        if (dbUpgrade::CheckUpgradeDB(m_db.get()))
         {
-            /* Do a backup before opening */
-            if (Model_Setting::instance().GetBoolSetting("BACKUPDB", false))
+            //DB backup is handled inside UpgradeDB
+            if (!dbUpgrade::UpgradeDB(m_db.get(), fileName))
             {
-                dbUpgrade::BackupDB(fileName, dbUpgrade::BACKUPTYPE::START, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
+                int response = wxMessageBox(_("Have MMEX support provided you a debug/patch file?"), _("MMEX upgrade"), wxYES_NO);
+                if (response == wxYES)
+                    dbUpgrade::SqlFileDebug(m_db.get());
+                ShutdownDatabase();
+                return false;
             }
-
-            m_db = mmDBWrapper::Open(fileName, password);
-            // if the database pointer has been reset, the password is possibly incorrect
-            if (!m_db) return false;
-
-            m_commit_callback_hook = new CommitCallbackHook();
-            m_db->SetCommitHook(m_commit_callback_hook);
-            m_update_callback_hook = new UpdateCallbackHook();
-            m_db->SetUpdateHook(m_update_callback_hook);
-
-            //Check if DB upgrade needed
-            if (dbUpgrade::CheckUpgradeDB(m_db.get()))
-            {
-                //DB backup is handled inside UpgradeDB
-                if (!dbUpgrade::UpgradeDB(m_db.get(), fileName))
-                {
-                    int response = wxMessageBox(_("Have MMEX support provided you a debug/patch file?"), _("MMEX upgrade"), wxYES_NO);
-                    if (response == wxYES)
-                        dbUpgrade::SqlFileDebug(m_db.get());
-                    ShutdownDatabase();
-                    return false;
-                }
-            }
-
-            InitializeModelTables();
         }
+
+        InitializeModelTables();
     }
     else // New Database
     {
@@ -2217,11 +2206,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
     }
 
     // load new database file created
-    if (openFile(newFileName.GetFullPath(), false, password))
-    {
-        updateNavTreeControl();
-        createHomePage();
-    }
+    SetDatabaseFile(newFileName.GetFullPath(), false, password);
 }
 
 //----------------------------------------------------------------------------
@@ -3031,32 +3016,27 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
+void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase, const wxString& password)
 {
     autoRepeatTransactionsTimer_.Stop();
 
-    resetNavTreeControl();
-    if (openFile(dbFileName, newDatabase))
+    if (openFile(dbFileName, newDatabase, password))
     {
         updateNavTreeControl();
         createHomePage();
         mmLoadColorsFromDatabase();
     }
-    else
-    {
-        cleanupHomePanel();
-        showBeginAppDialog(true);
-    }
+    else if (!m_db)
+        showBeginAppDialog();
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
 {
     int fileNum = event.GetId() - m_recentFiles->GetBaseId();
-    if (fileNum == 0)
-        return;
     const wxString file_name = m_recentFiles->GetHistoryFile(fileNum);
     wxFileName file(file_name);
+    if (m_db && file == m_filename) return; // already open
     if (file.FileExists())
     {
         SetDatabaseFile(file_name);

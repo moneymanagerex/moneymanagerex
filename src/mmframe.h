@@ -247,7 +247,7 @@ private:
     void OnHideShowReport(wxCommandEvent& event);
 
     /** Sets the database to the new database selected by the user */
-    void SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false);
+    void SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false, const wxString& password = wxEmptyString);
     
     // Required to prevent memory leaks.
     CommitCallbackHook* m_commit_callback_hook;
