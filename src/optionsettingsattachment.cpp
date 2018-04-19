@@ -101,7 +101,7 @@ void OptionSettingsAttachment::Create()
 
     wxString legend = ATTACHMENTS_FOLDER_DOCUMENTS + " -> " + _("User documents directory");
     legend += "\n" + ATTACHMENTS_FOLDER_USERPROFILE + " -> " + _("User profile folder");
-    legend += "\n" + ATTACHMENTS_FOLDER_DATABASE + " -> " + _("Folder of.MMB database file");
+    legend += "\n" + ATTACHMENTS_FOLDER_DATABASE + " -> " + _("Folder of .mmb database file");
     legend += "\n" + ATTACHMENTS_FOLDER_APPDATA + " -> " + _("MMEX Application data folder");
     wxStaticText* legendStaticText = new wxStaticText(this, wxID_STATIC, legend);
     attachmentStaticBoxSizerLegend->Add(legendStaticText);

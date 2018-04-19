@@ -120,9 +120,9 @@ private:
     void resetNavTreeControl();
     void cleanupNavTreeControl(wxTreeItemId& item);
     wxSizer* cleanupHomePanel(bool new_sizer = true);
-    bool openFile(const wxString& fileName, bool openingNew, const wxString &password = wxEmptyString);
+    bool openFile(const wxString& fileName, const bool openingNew, const bool encrypt, const wxString &password = wxEmptyString);
+    bool createDataStore(const wxString& fileName, const bool openingNew, const bool encrypt, const wxString &passwd);
     void InitializeModelTables();
-    bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
     void createMenu();
     void CreateToolBar();
     void createReportsPage(mmPrintableBase* rb, bool cleanup);
@@ -157,8 +157,8 @@ private:
 
     void OnNew(wxCommandEvent& event);
     void OnOpen(wxCommandEvent& event);
-    void OnConvertEncryptedDB(wxCommandEvent& event);
-    void OnChangeEncryptPassword(wxCommandEvent& event);
+    void OnSetPassword(wxCommandEvent& event);
+    void OnRemovePassword(wxCommandEvent& event);
     void OnVacuumDB(wxCommandEvent& event);
     void OnDebugDB(wxCommandEvent& event);
     void OnSaveAs(wxCommandEvent& event);
@@ -247,7 +247,7 @@ private:
     void OnHideShowReport(wxCommandEvent& event);
 
     /** Sets the database to the new database selected by the user */
-    void SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false, const wxString& password = wxEmptyString);
+    void SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false, bool eencrypt = false, const wxString& password = wxEmptyString);
     
     // Required to prevent memory leaks.
     CommitCallbackHook* m_commit_callback_hook;
@@ -311,8 +311,8 @@ private:
         MENU_VIEW_HIDE_SHARE_ACCOUNTS,
         MENU_CATEGORY_RELOCATION,
         MENU_PAYEE_RELOCATION,
-        MENU_CONVERT_ENC_DB,
-        MENU_CHANGE_ENCRYPT_PASSWORD,
+        MENU_SET_PASSWORD,
+        MENU_REMOVE_PASSWORD,
         MENU_DB_VACUUM,
         MENU_DB_DEBUG,
         MENU_ONLINE_UPD_CURRENCY_RATE,
