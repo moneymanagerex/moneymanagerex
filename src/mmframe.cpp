@@ -3035,6 +3035,7 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
 {
     autoRepeatTransactionsTimer_.Stop();
 
+    resetNavTreeControl();
     if (openFile(dbFileName, newDatabase))
     {
         updateNavTreeControl();
@@ -3043,7 +3044,6 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
     }
     else
     {
-        resetNavTreeControl();
         cleanupHomePanel();
         showBeginAppDialog(true);
     }
