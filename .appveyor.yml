@@ -19,11 +19,8 @@ matrix:
   # duplicated - select only one
   - { comp: 120, image: Visual Studio 2017 }
   - { comp: 140, image: Visual Studio 2015 }
-  # not supported by cppunit
-  - { platform: x64, build_tests: ON }
   allow_failures:
   - configuration: Debug
-  - build_tests: ON
 
 environment:
   # use cache with 7z compression
@@ -43,7 +40,6 @@ environment:
   wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxver)
   # Microsoft compiler options
   CL: /MP
-  build_tests: OFF
   matrix:
   # - comp: 141
   - { comp: 141, wxShared: 1 }
@@ -164,7 +160,7 @@ build_script:
 - if %configuration%==Debug
     set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON"
 - set "cmake_def=%cmake_def% -DCMAKE_PREFIX_PATH=%curlLibFolder%"
-- cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" -DMMEX_BUILD_TESTS=%build_tests% %cmake_def% ..
+- cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" %cmake_def% ..
 - cmake --build . --target package --config %configuration%
     -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
 
