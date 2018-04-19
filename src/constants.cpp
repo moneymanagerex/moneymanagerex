@@ -166,7 +166,7 @@ const wxString mmex::getProgramDescription()
 
 const wxString mmex::getCaption(const wxString& caption)
 {
-    return mmex::getProgramName() + " - " + caption;
+    return mmex::getProgramName() + (caption.IsEmpty() ? wxGetEmptyString() : " - " + caption);
 }
 
 /* Namespace weblink */
