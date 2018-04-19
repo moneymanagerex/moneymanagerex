@@ -29,13 +29,16 @@ wxIMPLEMENT_DYNAMIC_CLASS(relocatePayeeDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(relocatePayeeDialog, wxDialog)
     EVT_BUTTON(wxID_OK, relocatePayeeDialog::OnOk)
+    EVT_TEXT(wxID_BOTTOM, relocatePayeeDialog::OnSelectSource)
+    EVT_TEXT(wxID_NEW, relocatePayeeDialog::OnSelectDest)
 wxEND_EVENT_TABLE()
 
 relocatePayeeDialog::relocatePayeeDialog( )
 : sourcePayeeID_(-1)
 , destPayeeID_(-1)
-, cbSourcePayee_()
-, cbDestPayee_()
+, cbSourcePayee_(nullptr)
+, cbDestPayee_(nullptr)
+, m_info(nullptr)
 {
     changedRecords_  = 0;
 }
@@ -58,6 +61,7 @@ bool relocatePayeeDialog::Create( wxWindow* parent, wxWindowID id,
     wxDialog::Create( parent, id, caption, pos, size, style );
 
     CreateControls();
+    IsOkOk();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
@@ -80,18 +84,16 @@ void relocatePayeeDialog::CreateControls()
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
-    cbSourcePayee_ = new mmComboBox(this, wxID_ANY, ""
-        , true //payee mode
-        , wxDefaultPosition, btnSize);
-    cbSourcePayee_->setSelection(sourcePayeeID_);
+    cbSourcePayee_ = new wxComboBox(this, wxID_BOTTOM, ""
+        , wxDefaultPosition, btnSize
+        , Model_Payee::instance().all_payee_names());
+    cbSourcePayee_->AutoComplete(Model_Payee::instance().all_payee_names());
+    cbSourcePayee_->Enable();
 
     cbDestPayee_ = new wxComboBox(this, wxID_NEW, ""
         , wxDefaultPosition, btnSize
         , Model_Payee::instance().all_payee_names());
     cbDestPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
-
-    wxStaticLine* lineBottom = new wxStaticLine(this,wxID_STATIC
-        , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
@@ -107,12 +109,23 @@ void relocatePayeeDialog::CreateControls()
     request_sizer->Add(cbSourcePayee_, flagsH);
     request_sizer->Add(cbDestPayee_, flagsH);
 
+    
+    wxStaticLine* lineMiddle = new wxStaticLine(this, wxID_STATIC
+        , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
+
     boxSizer->Add(request_sizer, flagsExpand);
+    boxSizer->Add(lineMiddle, flagsExpand);
+
+    m_info = new wxStaticText(this, wxID_STATIC, "test");
+    boxSizer->Add(m_info, flagsExpand);
+
+    wxStaticLine* lineBottom = new wxStaticLine(this, wxID_STATIC
+        , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     boxSizer->Add(lineBottom, flagsExpand);
 
-    wxButton* okButton = new wxButton(this,wxID_OK, _("&OK "));
+    wxButton* okButton = new wxButton(this, wxID_OK, _("&OK "));
     wxButton* cancelButton = new wxButton(this,wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    cancelButton-> SetFocus () ;
+    cancelButton->SetFocus();
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonBoxSizer->Add(okButton, flagsH);
     buttonBoxSizer->Add(cancelButton, flagsH);
@@ -126,33 +139,74 @@ int relocatePayeeDialog::updatedPayeesCount()
 
 void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    const wxString destPayeeName = cbDestPayee_->GetValue();
-    const wxString sourcePayeeName = cbSourcePayee_->GetValue();
-
-    Model_Payee::Data* dest_payee = Model_Payee::instance().get(destPayeeName);
-    sourcePayeeID_ = cbSourcePayee_->getID();
-
-    if (dest_payee &&  sourcePayeeID_ != -1)
+    int ans = wxMessageBox(_("Payee Relocation Confirmation")
+        , _("Please Confirm:")
+        , wxOK | wxCANCEL | wxICON_QUESTION);
+    
+    if (ans == wxOK)
     {
-        wxString msgStr = _("Please Confirm:") ;
-        msgStr << "\n\n";
-        msgStr << wxString::Format( _("Changing all payees of: %s \n\n  to payee: %s"),
-             sourcePayeeName, destPayeeName);
-
-        int ans = wxMessageBox(msgStr, _("Payee Relocation Confirmation"), wxOK | wxCANCEL | wxICON_QUESTION);
-        if (ans == wxOK)
-        {
-            auto transactions = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_));
-            for (auto &entry : transactions)
-                entry.PAYEEID = dest_payee->PAYEEID;
-            changedRecords_ += Model_Checking::instance().save(transactions);
-
-            auto billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_));
-            for (auto &entry : billsdeposits)
-                entry.PAYEEID = dest_payee->PAYEEID;
-            changedRecords_ += Model_Billsdeposits::instance().save(billsdeposits);
-
-            EndModal(wxID_OK);
+        auto transactions = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_));
+        for (auto &entry : transactions) {
+            entry.PAYEEID = destPayeeID_;
         }
+        changedRecords_ += Model_Checking::instance().save(transactions);
+
+        auto billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_));
+        for (auto &entry : billsdeposits) {
+            entry.PAYEEID = destPayeeID_;
+        }
+        changedRecords_ += Model_Billsdeposits::instance().save(billsdeposits);
+
+        EndModal(wxID_OK);
     }
+}
+
+void relocatePayeeDialog::IsOkOk()
+{
+    bool e = true;
+    const wxString& destPayeeName = cbDestPayee_->GetValue();
+    const wxString& sourcePayeeName = cbSourcePayee_->GetValue();
+
+    Model_Payee::Data* source_payee = Model_Payee::instance().get(sourcePayeeName);
+    Model_Payee::Data* dest_payee = Model_Payee::instance().get(destPayeeName);
+    if (source_payee) {
+        sourcePayeeID_ = source_payee->PAYEEID;
+    }
+    if (dest_payee) {
+        destPayeeID_ = dest_payee->PAYEEID;
+    }
+
+    if (!dest_payee || !source_payee || dest_payee == source_payee) {
+        e = false;
+    }
+
+    auto transactions = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_));
+    auto billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_));
+
+    int trxs_size = transactions.size();
+    int bills_size = billsdeposits.size();
+    int total = trxs_size + bills_size;
+
+    if (total < 1) {
+        e = false;
+    }
+
+    wxString msgStr = wxString()
+        << wxString::Format(_("Records found in transactions: %i"), trxs_size) << "\n"
+        << wxString::Format(_("Records found in recurring transactions: %i"), bills_size);
+
+    m_info->SetLabel(msgStr);
+
+    wxButton* ok = wxStaticCast(FindWindow(wxID_OK), wxButton);
+    ok->Enable(e);
+}
+
+void relocatePayeeDialog::OnSelectSource(wxCommandEvent& /*event*/)
+{
+    IsOkOk();
+}
+
+void relocatePayeeDialog::OnSelectDest(wxCommandEvent& /*event*/)
+{
+    IsOkOk();
 }

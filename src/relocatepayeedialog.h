@@ -43,16 +43,20 @@ private:
         , long style);
 
     void CreateControls();
+    void IsOkOk();
     void OnOk(wxCommandEvent& event);
+
+    void OnSelectSource(wxCommandEvent& event);
+    void OnSelectDest(wxCommandEvent& event);
 
     int sourcePayeeID_;
     int destPayeeID_;
 
-    mmComboBox* cbSourcePayee_;
+    wxComboBox* cbSourcePayee_;
     wxComboBox* cbDestPayee_;
     int changedRecords_;
     wxString prev_value_;
-
+    wxStaticText* m_info;
 };
 
 #endif
