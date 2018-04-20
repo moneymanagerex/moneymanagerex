@@ -46,8 +46,7 @@ private:
     void IsOkOk();
     void OnOk(wxCommandEvent& event);
 
-    void OnSelectSource(wxCommandEvent& event);
-    void OnSelectDest(wxCommandEvent& event);
+    void OnPayeeChanged(wxCommandEvent& event);
 
     int sourcePayeeID_;
     int destPayeeID_;

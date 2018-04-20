@@ -20,6 +20,7 @@
 #include "relocatepayeedialog.h"
 #include "paths.h"
 #include "constants.h"
+#include "mmSimpleDialogs.h"
 #include "wx/statline.h"
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Checking.h"
@@ -29,8 +30,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(relocatePayeeDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(relocatePayeeDialog, wxDialog)
     EVT_BUTTON(wxID_OK, relocatePayeeDialog::OnOk)
-    EVT_TEXT(wxID_BOTTOM, relocatePayeeDialog::OnSelectSource)
-    EVT_TEXT(wxID_NEW, relocatePayeeDialog::OnSelectDest)
+    EVT_TEXT(wxID_ANY, relocatePayeeDialog::OnPayeeChanged)
 wxEND_EVENT_TABLE()
 
 relocatePayeeDialog::relocatePayeeDialog( )
@@ -53,9 +53,9 @@ relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int source_payee_id)
     Create(parent, wxID_STATIC, _("Relocate Payee Dialog"), wxDefaultPosition, wxSize(500, 300), style);
 }
 
-bool relocatePayeeDialog::Create( wxWindow* parent, wxWindowID id,
-                           const wxString& caption, const wxPoint& pos,
-                           const wxSize& size, long style )
+bool relocatePayeeDialog::Create(wxWindow* parent
+    , wxWindowID id, const wxString& caption
+    , const wxPoint& pos, const wxSize& size, long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
@@ -79,10 +79,10 @@ void relocatePayeeDialog::CreateControls()
 	flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
     wxSize btnSize = wxSize(180,-1);
 
-    wxStaticText* headerText = new wxStaticText( this, wxID_STATIC,
-        _("Relocate all source payees to the destination payee"));
-    wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC,
-        wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
+    wxStaticText* headerText = new wxStaticText( this, wxID_STATIC
+        , _("Relocate all source payee to the destination payee"));
+    wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC
+        , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
     cbSourcePayee_ = new wxComboBox(this, wxID_BOTTOM, ""
         , wxDefaultPosition, btnSize
@@ -142,7 +142,7 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
     int ans = wxMessageBox(_("Payee Relocation Confirmation")
         , _("Please Confirm:")
         , wxOK | wxCANCEL | wxICON_QUESTION);
-    
+
     if (ans == wxOK)
     {
         auto transactions = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_));
@@ -201,12 +201,7 @@ void relocatePayeeDialog::IsOkOk()
     ok->Enable(e);
 }
 
-void relocatePayeeDialog::OnSelectSource(wxCommandEvent& /*event*/)
-{
-    IsOkOk();
-}
-
-void relocatePayeeDialog::OnSelectDest(wxCommandEvent& /*event*/)
+void relocatePayeeDialog::OnPayeeChanged(wxCommandEvent& WXUNUSED(event))
 {
     IsOkOk();
 }
