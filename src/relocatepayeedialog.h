@@ -21,7 +21,6 @@
 #define MM_EX_RELOCATEPAYEEDIALOG_H_
 
 #include "defs.h"
-#include "mmcombobox.h"
 
 class relocatePayeeDialog : public wxDialog
 {
@@ -46,15 +45,14 @@ private:
     void IsOkOk();
     void OnOk(wxCommandEvent& event);
 
-    void OnSelectSource(wxCommandEvent& event);
-    void OnSelectDest(wxCommandEvent& event);
+    void OnPayeeChanged(wxCommandEvent& event);
 
     int sourcePayeeID_;
     int destPayeeID_;
 
     wxComboBox* cbSourcePayee_;
     wxComboBox* cbDestPayee_;
-    int changedRecords_;
+    int m_changed_records;
     wxString prev_value_;
     wxStaticText* m_info;
 };
