@@ -1856,14 +1856,6 @@ msgstr "Nome da Moeda"
 msgid "Currency Symbol"
 msgstr "Símbolo da moeda"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Nome Unitário"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Nome dos Centavos"
-
 #: src/currencydialog.cpp:175 src/maincurrencydialog.cpp:70
 #: src/reports/summarystocks.cpp:174 src/stockdialog.cpp:416
 #: src/stockspanel.cpp:94
@@ -8399,9 +8391,6 @@ msgstr "Você já tem a versão mais recente instalada %s"
 
 #~ msgid "VEF"
 #~ msgstr "VER"
-
-#~ msgid "DATAVERSION"
-#~ msgstr "DATAVERSION"
 
 #~ msgid "Currency rate updated"
 #~ msgstr "Taxa de câmbio atualizada"

@@ -1853,14 +1853,6 @@ msgstr "Valutanaam"
 msgid "Currency Symbol"
 msgstr "Valutasymbool"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Eenheid-naam"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Cent-naam"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Voorvoegsel symbool"
@@ -8947,9 +8939,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "VEF"
 #~ msgstr "VEF"
 
-#~ msgid "DATAVERSION"
-#~ msgstr "DATAVERSIE"
-
 #~ msgid "Currency History Options: "
 #~ msgstr "Valutahistorie opties: "
 
@@ -8959,10 +8948,7 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Invalid value "
 #~ msgstr "Ongeldige waarde"
 
-#~ msgid "Choiches"
-#~ msgstr "Keuzes"
-
-#~ msgid "Enter the choiches for this field separated with a semi-colon"
+#~ msgid "Enter the choices for this field separated with a semi-colon"
 #~ msgstr ""
 #~ "Keuzemogelijkheden voor dit veld invoeren, gescheiden door een puntkomma"
 
@@ -8975,17 +8961,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Choose MXL data file to export"
 #~ msgstr "Selecteer MXL-bestand om te exporteren"
 
-#~ msgid "SingleChoiche"
-#~ msgstr "Keuze"
-
-#~ msgid "MultiChoiche"
-#~ msgstr "Meerkeuzelijst"
-
 #~ msgid "Enter the name of the category to add or edit here"
 #~ msgstr "Vul categorienaam in om te wijzigen of toe te voegen"
-
-#~ msgid "You have modified choiches: ones removed will be cleaned!"
-#~ msgstr "U hebt de keuzelijst bijgewerkt: De verwijderde worden gewist!"
 
 #~ msgid "%i occurrencies founded and replaced!"
 #~ msgstr "%i overeenkomsten gevonden en vervangen!"

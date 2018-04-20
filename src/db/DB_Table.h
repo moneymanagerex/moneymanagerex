@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-04-16 12:09:39.602482.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -328,15 +328,6 @@ struct SorterByCATEGNAME
     }
 };
 
-struct SorterByCENT_NAME
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return x.CENT_NAME < y.CENT_NAME;
-    }
-};
-
 struct SorterByCHECKINGACCOUNTID
 { 
     template<class DATA>
@@ -415,6 +406,15 @@ struct SorterByCURRENCY_SYMBOL
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.CURRENCY_SYMBOL < y.CURRENCY_SYMBOL;
+    }
+};
+
+struct SorterByCURRENCY_TYPE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.CURRENCY_TYPE < y.CURRENCY_TYPE;
     }
 };
 
@@ -1144,15 +1144,6 @@ struct SorterByTYPE
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.TYPE < y.TYPE;
-    }
-};
-
-struct SorterByUNIT_NAME
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return x.UNIT_NAME < y.UNIT_NAME;
     }
 };
 

@@ -1892,14 +1892,6 @@ msgstr "当前名字"
 msgid "Currency Symbol"
 msgstr "现金符号"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "单位名称"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "分币名称"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "前缀"

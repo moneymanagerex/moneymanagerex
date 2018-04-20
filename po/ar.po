@@ -1926,14 +1926,6 @@ msgstr "اسم العملة"
 msgid "Currency Symbol"
 msgstr "رمز العملة"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "اسم الوحدة"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "اجزاء الوحدة"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "رمز البدء"

@@ -1924,14 +1924,6 @@ msgstr "Naam"
 msgid "Currency Symbol"
 msgstr "Symbool"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Eenheid"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Subeenheid"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Voorvoegsel"

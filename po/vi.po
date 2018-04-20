@@ -1907,14 +1907,6 @@ msgstr "Tên tiền tệ"
 msgid "Currency Symbol"
 msgstr "Ký hiệu tiền tệ"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Tên đơn vị"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Tên gọi tiền xu"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Ký hiệu phía trước"

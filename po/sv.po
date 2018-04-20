@@ -1931,14 +1931,6 @@ msgstr "Valutanamn"
 msgid "Currency Symbol"
 msgstr "Valutanamn"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Valutasymbol"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Centnamn"
-
 #: src/currencydialog.cpp:175
 #, fuzzy
 msgid "Prefix Symbol"

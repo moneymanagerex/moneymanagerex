@@ -1829,14 +1829,6 @@ msgstr "通貨名"
 msgid "Currency Symbol"
 msgstr "通貨シンボル"
 
-#: currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "単位名"
-
-#: currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "セント名"
-
 #: currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "接頭語シンボル"

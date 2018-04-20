@@ -1791,14 +1791,6 @@ msgstr "שם מטבע"
 msgid "Currency Symbol"
 msgstr "סמל מטבע"
 
-#: currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "שם היחידה"
-
-#: currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "שם אגורות"
-
 #: currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "סמל קידומת"
@@ -8763,9 +8755,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "VEF"
 #~ msgstr "VEF"
 
-#~ msgid "DATAVERSION"
-#~ msgstr "גרסת נתונים"
-
 #~ msgid "Specify period in Days to activate.Becomes blank when not active."
 #~ msgstr "הזן תקופה בימים כדי להפעיל. השאר ריק כאשר לא פעיל."
 
@@ -8786,17 +8775,8 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Line : %ld imported OK."
 #~ msgstr " שורה: %ld יובא בהצלחה."
 
-#~ msgid "SingleChoiche"
-#~ msgstr "בחירה יחידנית"
-
-#~ msgid "MultiChoiche"
-#~ msgstr "בחירה מרובה"
-
 #~ msgid "Enter the name of the category to add or edit here"
 #~ msgstr "הזן את שם הקטגוריה להוספה או עריכה"
-
-#~ msgid "You have modified choiches: ones removed will be cleaned!"
-#~ msgstr "ערכת שינוים באפשרויות: הם ינוקו לאחר שהוסרו!"
 
 #~ msgid "%i occurrencies founded and replaced!"
 #~ msgstr "%i  שערי מטבע נמצאו והוחלפו"

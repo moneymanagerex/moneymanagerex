@@ -1,13 +1,13 @@
 //=============================================================================
 /**
- *      Copyright (c) 2016 - 2016 Gabriele-V
+ *      Copyright (c) 2016 - 2018 Gabriele-V
  *
  *      @author [sqliteupgrade2cpp.py]
  *
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2016-07-16 22:51:32.920000.
+ *          AUTO GENERATED at 2018-04-16 12:06:55.012770.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -18,7 +18,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 7;
+const int dbLatestVersion = 9;
 
 const std::vector<wxString> dbUpgradeQuery =
 {
@@ -119,6 +119,48 @@ const std::vector<wxString> dbUpgradeQuery =
         alter table ACCOUNTLIST_V1 add column INTERESTRATE numeric;
         alter table ACCOUNTLIST_V1 add column PAYMENTDUEDATE text;
         alter table ACCOUNTLIST_V1 add column MINIMUMPAYMENT numeric;
+        
+    )",
+
+    // Upgrade to version 8
+    R"(
+        alter table CURRENCYFORMATS_V1 add column CURRENCY_TYPE TEXT;
+        update CURRENCYFORMATS_V1 set CURRENCY_TYPE = 'Traditional';
+        update CURRENCYFORMATS_V1 set CURRENCY_TYPE = 'Crypto' where CURRENCY_SYMBOL = 'BTC';
+    )",
+
+    // Upgrade to version 9
+    R"(
+        CREATE TABLE CURRENCYFORMATS_V1_NEW(
+        CURRENCYID integer primary key
+        , CURRENCYNAME TEXT COLLATE NOCASE NOT NULL UNIQUE
+        , PFX_SYMBOL TEXT
+        , SFX_SYMBOL TEXT
+        , DECIMAL_POINT TEXT
+        , GROUP_SEPARATOR TEXT
+        , SCALE integer
+        , BASECONVRATE numeric
+        , CURRENCY_SYMBOL TEXT COLLATE NOCASE NOT NULL UNIQUE
+        , CURRENCY_TYPE TEXT /* Traditional, Crypto */
+        );
+        
+        INSERT INTO CURRENCYFORMATS_V1_NEW SELECT
+        CURRENCYID
+        , CURRENCYNAME
+        , PFX_SYMBOL
+        , SFX_SYMBOL
+        , DECIMAL_POINT
+        , GROUP_SEPARATOR
+        , SCALE
+        , BASECONVRATE
+        , CURRENCY_SYMBOL
+        , CURRENCY_TYPE
+        FROM CURRENCYFORMATS_V1;
+        
+        DROP TABLE CURRENCYFORMATS_V1;
+        ALTER TABLE CURRENCYFORMATS_V1_NEW RENAME TO CURRENCYFORMATS_V1;
+        CREATE INDEX IDX_CURRENCYFORMATS_SYMBOL ON CURRENCYFORMATS_V1(CURRENCY_SYMBOL);
+        PRAGMA user_version = 9;
         
     )",
 

@@ -1883,14 +1883,6 @@ msgstr "Name der Währung"
 msgid "Currency Symbol"
 msgstr "Währungskürzel"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Einheitsname"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Name für Rappen"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Präfix-Symbol"

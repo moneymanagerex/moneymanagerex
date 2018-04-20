@@ -1932,14 +1932,6 @@ msgstr "Όνομα του νομίσματος"
 msgid "Currency Symbol"
 msgstr "Σύμβολο νομίσματος"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Όνομα της μονάδας"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Όνομα των υποδιαιρέσεων"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Σύμβολο προθέματος"

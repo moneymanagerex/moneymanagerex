@@ -1776,14 +1776,6 @@ msgstr ""
 msgid "Currency Symbol"
 msgstr ""
 
-#: currencydialog.cpp:165
-msgid "Unit Name"
-msgstr ""
-
-#: currencydialog.cpp:170
-msgid "Cents Name"
-msgstr ""
-
 #: currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr ""
