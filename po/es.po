@@ -1949,14 +1949,6 @@ msgstr "Nombre de la moneda"
 msgid "Currency Symbol"
 msgstr "Símbolo de la moneda"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Nombre de la unidad"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Nombre de los céntimos"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Símbolo del prefijo"
@@ -6137,11 +6129,11 @@ msgstr "Tiempo"
 
 #: src/model/Model_CustomField.cpp:31
 msgid "SingleChoice"
-msgstr ""
+msgstr "Opción simple"
 
 #: src/model/Model_CustomField.cpp:32
 msgid "MultiChoice"
-msgstr ""
+msgstr "Multiples opciones"
 
 #: src/model/Model_Payee.cpp:80
 #, fuzzy
@@ -8804,12 +8796,6 @@ msgstr "Tiene la última versión instalada %s"
 
 #~ msgid "Invalid value "
 #~ msgstr "Valor no válido "
-
-#~ msgid "SingleChoiche"
-#~ msgstr "Opción simple"
-
-#~ msgid "MultiChoiche"
-#~ msgstr "Multiples opciones"
 
 #~ msgid "Enter the name of the category to add or edit here"
 #~ msgstr "Introduzca aquí el nombre de la categoría a añadir o editar"

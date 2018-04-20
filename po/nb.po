@@ -1936,14 +1936,6 @@ msgstr "Valuta navn"
 msgid "Currency Symbol"
 msgstr "Valuta navn"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Enhet"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Under enhet (1/100)"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Prefiks notasjon"

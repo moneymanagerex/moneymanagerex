@@ -1936,14 +1936,6 @@ msgstr "Naziv valute."
 msgid "Currency Symbol"
 msgstr "Simbol valute"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Naziv denarne enote"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Naziv stotine denarne enote"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Simbol predpone"

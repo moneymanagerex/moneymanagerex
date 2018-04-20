@@ -1834,14 +1834,6 @@ msgstr "Pénznem neve"
 msgid "Currency Symbol"
 msgstr "Pénz jele"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Pénzegység"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Váltópénz"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Pénznem előtag"
@@ -1969,7 +1961,7 @@ msgstr ""
 
 #: src/customfieldeditdialog.cpp:159
 msgid "Choices"
-msgstr ""
+msgstr "Választék"
 
 #: src/customfieldeditdialog.cpp:161
 msgid "Enter the choices for this field separated with a semicolon"
@@ -1990,7 +1982,7 @@ msgstr "Felhasználói mező változtatása"
 
 #: src/customfieldeditdialog.cpp:224
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "Módosítottad a választásokat: az eltávolítottak törölve lesznek!"
 
 #: src/customfieldlistdialog.cpp:57
 msgid "Properties"
@@ -5828,11 +5820,11 @@ msgstr "Idő"
 
 #: src/model/Model_CustomField.cpp:31
 msgid "SingleChoice"
-msgstr ""
+msgstr "EgyesKiválasztás"
 
 #: src/model/Model_CustomField.cpp:32
 msgid "MultiChoice"
-msgstr ""
+msgstr "TöbbesVálasztás"
 
 #: src/model/Model_Payee.cpp:80
 msgid "Payee Error"
@@ -8361,9 +8353,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Cell"
 #~ msgstr "Cella"
 
-#~ msgid "Choiches"
-#~ msgstr "Választék"
-
 #~ msgid "Choose MXL data file to export"
 #~ msgstr "Válasszon MXL adatfájlt az exporthoz!"
 
@@ -8378,9 +8367,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "D"
 #~ msgstr "D"
-
-#~ msgid "DATAVERSION"
-#~ msgstr "DATAVERSION"
 
 #~ msgid "DJF"
 #~ msgstr "DJF"
@@ -8421,7 +8407,7 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "EUR"
 #~ msgstr "EUR"
 
-#~ msgid "Enter the choiches for this field separated with a semi-colon"
+#~ msgid "Enter the choices for this field separated with a semi-colon"
 #~ msgstr "Adja meg a mezőhöz tartozó választásokat pontosvesszővel tagolva"
 
 #~ msgid "Enter the name of the category to add or edit here"
@@ -8667,9 +8653,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Monthly Summary of Accounts"
 #~ msgstr "Számlák havi összesítése"
 
-#~ msgid "MultiChoiche"
-#~ msgstr "TöbbesVálasztás"
-
 #~ msgid "NAD"
 #~ msgstr "NAD"
 
@@ -8820,9 +8803,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "SZL"
 #~ msgstr "SZL"
 
-#~ msgid "SingleChoiche"
-#~ msgstr "EgyesKiválasztás"
-
 #~ msgid "Specify period in Days to activate.Becomes blank when not active."
 #~ msgstr ""
 #~ "Az aktiváláshoz adja meg az időszakot napokban! Üres lesz, ha nem aktív."
@@ -8942,9 +8922,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "YER"
 #~ msgstr "YER"
-
-#~ msgid "You have modified choiches: ones removed will be cleaned!"
-#~ msgstr "Módosítottad a választásokat: az eltávolítottak törölve lesznek!"
 
 #~ msgid "ZAR"
 #~ msgstr "ZAR"

@@ -1950,14 +1950,6 @@ msgstr "Назва валюти"
 msgid "Currency Symbol"
 msgstr "Назва валюти"
 
-#: src/currencydialog.cpp:165
-msgid "Unit Name"
-msgstr "Назва"
-
-#: src/currencydialog.cpp:170
-msgid "Cents Name"
-msgstr "Назва копійок"
-
 #: src/currencydialog.cpp:175
 msgid "Prefix Symbol"
 msgstr "Символ-префікс"

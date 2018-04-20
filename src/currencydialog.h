@@ -69,8 +69,6 @@ private:
     wxTextCtrl* sfxTx_;
     wxTextCtrl* decTx_;
     wxTextCtrl* grpTx_;
-    wxTextCtrl* unitTx_;
-    wxTextCtrl* centTx_;
     wxTextCtrl* scaleTx_;
 
 };
