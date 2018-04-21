@@ -95,6 +95,7 @@ enum png {
     CURR,
     FILTER,
     GRM,
+    CUSTOM,
     OPTIONS,
     NEW_TRX,
     LANG,

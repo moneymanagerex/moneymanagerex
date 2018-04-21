@@ -290,14 +290,10 @@ void mmCustomFieldListDialog::OnListItemActivated(wxDataViewEvent& event)
 
 void mmCustomFieldListDialog::OnCancel(wxCommandEvent& /*event*/)
 {
-    if (m_refresh)
-        wxMessageBox( _("To apply new changes close and re-open Custom Field panel"), _("Custom Field"), wxICON_INFORMATION);
     EndModal(wxID_CANCEL);
 }
 
 void mmCustomFieldListDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    if (m_refresh)
-        wxMessageBox(_("To apply new changes close and re-open Custom Field panel"), _("Custom Field"), wxICON_INFORMATION);
     EndModal(wxID_OK);
 }

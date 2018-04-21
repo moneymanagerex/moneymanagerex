@@ -51,6 +51,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/github_png.h"
 #include "../resources/google_play_png.h"
 #include "../resources/grm_png.h"
+#include "../resources/custom_fields_png.h"
 #include "../resources/help_png.h"
 #include "../resources/home_png.h"
 #include "../resources/household_obj_png.h"
@@ -212,6 +213,7 @@ const wxBitmap mmBitmap(int ref)
     case CURR: return x == 16 ? wxBITMAP_PNG_FROM_DATA(currency) : x == 24 ? wxBITMAP_PNG_FROM_DATA(currency24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(currency32) : wxBITMAP_PNG_FROM_DATA(currency48);
     case FILTER: return x == 16 ? wxBITMAP_PNG_FROM_DATA(filter) : x == 24 ? wxBITMAP_PNG_FROM_DATA(filter24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(filter32) : wxBITMAP_PNG_FROM_DATA(filter48);
     case GRM: return x == 16 ? wxBITMAP_PNG_FROM_DATA(grm) : x == 24 ? wxBITMAP_PNG_FROM_DATA(grm24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(grm32) : wxBITMAP_PNG_FROM_DATA(grm48);
+    case CUSTOM: return x == 16 ? wxBITMAP_PNG_FROM_DATA(custom_fields) : x == 24 ? wxBITMAP_PNG_FROM_DATA(custom_fields24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(custom_fields32) : wxBITMAP_PNG_FROM_DATA(custom_fields48);
     case OPTIONS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(options) : x == 24 ? wxBITMAP_PNG_FROM_DATA(options24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(options32) : wxBITMAP_PNG_FROM_DATA(options48);
     case NEW_TRX: return x == 16 ? wxBITMAP_PNG_FROM_DATA(new_trx) : x == 24 ? wxBITMAP_PNG_FROM_DATA(new_trx24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(new_trx32) : wxBITMAP_PNG_FROM_DATA(new_trx48);
     case LANG: return x == 16 ? wxBITMAP_PNG_FROM_DATA(language) : x == 24 ? wxBITMAP_PNG_FROM_DATA(language24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(language32) : wxBITMAP_PNG_FROM_DATA(language48);
