@@ -1000,34 +1000,6 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
     dataToControls();
 }
 
-void mmTransDialog::OnMultiChoice(wxCommandEvent& event)
-{
-    long id = event.GetId();
-
-    Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance()
-        .get(Model_CustomFieldData::COL_CONTENT, m_trx_data.TRANSID);
-
-    Model_CustomField::Data *field = Model_CustomField::instance().get(Model_CustomFieldData::COL_CONTENT);
-    wxArrayString choices = Model_CustomField::getChoices(field->PROPERTIES);
-
-    wxButton* button = (wxButton*)FindWindow(id);
-    if (!button) {
-        return;
-    }
-
-    wxString info;
-    wxMultiChoiceDialog* MultiChoice = new wxMultiChoiceDialog(this, _("Please select"), _("Multi Choice"), choices);
-    if (MultiChoice->ShowModal() == wxID_OK)
-    {
-        for (const auto &i : MultiChoice->GetSelections()) {
-            info += choices[i] + ";";
-        }
-        info.RemoveLast();
-    }
-
-    button->SetLabel(info);
-}
-
 void mmTransDialog::OnAutoTransNum(wxCommandEvent& /*event*/)
 {
     double next_number = 0, temp_num;
@@ -1453,4 +1425,46 @@ bool  mmTransDialog::SaveCustomValues()
     }
 
     return !fields.empty();
+}
+
+void mmTransDialog::OnMultiChoice(wxCommandEvent& event)
+{
+    long id = event.GetId();
+
+    Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance()
+        .get(Model_CustomFieldData::COL_CONTENT, m_trx_data.TRANSID);
+
+    Model_CustomField::Data *field = Model_CustomField::instance().get(Model_CustomFieldData::COL_CONTENT);
+    wxArrayString all_choices = Model_CustomField::getChoices(field->PROPERTIES);
+
+    wxButton* button = (wxButton*)FindWindow(id);
+    if (!button) {
+        return;
+    }
+
+    const wxString& label = button->GetLabelText();
+    wxArrayInt arr_selections;
+    int i = 0;
+    for (const auto& entry: all_choices) {
+        if (label.Contains(entry)) {
+            arr_selections.Add(i);
+        }
+        i++;
+    }
+
+    wxString info = label;
+    wxMultiChoiceDialog* MultiChoice = new wxMultiChoiceDialog(this
+        , _("Please select"), _("Multi Choice"), all_choices);
+    MultiChoice->SetSelections(arr_selections);
+
+    if (MultiChoice->ShowModal() == wxID_OK)
+    {
+        info.clear();
+        for (const auto &i : MultiChoice->GetSelections()) {
+            info += all_choices[i] + ";";
+        }
+        info.RemoveLast();
+    }
+
+    button->SetLabel(info);
 }
