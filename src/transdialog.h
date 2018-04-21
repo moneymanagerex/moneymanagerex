@@ -70,6 +70,7 @@ private:
     void CreateControls();
     void dataToControls();
     bool validateData();
+    bool SaveCustomValues();
     void FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSizer* grid_sizer
         , const wxString& ref_type, int ref_id);
 

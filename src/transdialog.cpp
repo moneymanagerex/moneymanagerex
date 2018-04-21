@@ -1129,6 +1129,8 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     }
     Model_Splittransaction::instance().update(splt, m_trx_data.TRANSID);
 
+    SaveCustomValues();
+
     if (m_new_trx || m_duplicate)
     {
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
@@ -1323,4 +1325,77 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
         default: break;
         }
     }
+}
+
+bool  mmTransDialog::SaveCustomValues()
+{
+    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    int ref_id = m_trx_data.TRANSID;
+    if (m_duplicate) ref_id = -1;
+
+    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(ref_type));
+
+    for (const auto &field : fields)
+    {
+        Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
+        if (!fieldData)
+            fieldData = Model_CustomFieldData::instance().create();
+
+        int controlID = ID_CUSTOMFIELD + fieldData->FIELDATADID;
+        wxString Data = wxEmptyString;
+
+        switch (Model_CustomField::type(field))
+        {
+        case Model_CustomField::STRING:
+            {
+                wxTextCtrl* CustomString = (wxTextCtrl*)FindWindow(controlID);
+                if (CustomString != nullptr)
+                    Data = CustomString->GetValue().Trim();
+            }
+            break;
+        case Model_CustomField::INTEGER:
+            {
+                wxSpinCtrl* CustomInteger = (wxSpinCtrl*)FindWindow(controlID);
+                if (CustomInteger) Data = wxString::Format("%i", CustomInteger->GetValue());
+            }
+            break;
+        case Model_CustomField::DECIMAL:
+            {
+                wxSpinCtrlDouble* CustomDecimal = (wxSpinCtrlDouble*)FindWindow(controlID);
+                if (CustomDecimal) Data = wxString::Format("%f", CustomDecimal->GetValue());
+            }
+            break;
+        case Model_CustomField::BOOLEAN:
+            {
+                wxCheckBox* CustomBoolean = (wxCheckBox*)FindWindow(controlID);
+                if (CustomBoolean) Data = (CustomBoolean->GetValue()) ? "TRUE" : "FALSE";
+            }
+            break;
+        case Model_CustomField::DATE:
+            {
+                wxDatePickerCtrl* CustomDate = (wxDatePickerCtrl*)FindWindow(controlID);
+                if (CustomDate) Data = CustomDate->GetValue().FormatISODate();
+            }
+            break;
+        case Model_CustomField::TIME:
+            {
+                wxTimePickerCtrl* CustomTime = (wxTimePickerCtrl*)FindWindow(controlID);
+                if (CustomTime) Data = CustomTime->GetValue().FormatISOTime();
+            }
+            break;
+        case Model_CustomField::SINGLECHOICE:
+            {
+                wxChoice* CustomSingleChoice = (wxChoice*)FindWindow(controlID);
+                if (CustomSingleChoice) Data = CustomSingleChoice->GetStringSelection();
+            }
+            break;
+        default: break;
+        }
+
+        fieldData->FIELDID = field.FIELDID;
+        fieldData->CONTENT = Data;
+        Model_CustomFieldData::instance().save(fieldData);
+    }
+
+    return !fields.empty();
 }
