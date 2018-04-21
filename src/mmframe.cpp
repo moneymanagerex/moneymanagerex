@@ -33,6 +33,7 @@
 #include "budgetyeardialog.h"
 #include "categdialog.h"
 #include "constants.h"
+#include "customfieldlistdialog.h"
 #include "dbcheck.h"
 #include "dbupgrade.h"
 #include "dbwrapper.h"
@@ -121,6 +122,7 @@ EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
 EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
 EVT_MENU(MENU_TRANSACTIONREPORT, mmGUIFrame::OnTransactionReport)
 EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
+EVT_MENU(wxID_BROWSE, mmGUIFrame::OnCustomFieldsManager)
 EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
 EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
@@ -1637,8 +1639,6 @@ void mmGUIFrame::createMenu()
     menuItemAssets->SetBitmap(mmBitmap(png::ASSET));
     menuTools->Append(menuItemAssets);
 
-    menuTools->AppendSeparator();
-
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
         , _("&Transaction Report Filter..."), _("Transaction Report Filter"));
     menuItemTransactions->SetBitmap(mmBitmap(png::FILTER));
@@ -1650,6 +1650,11 @@ void mmGUIFrame::createMenu()
         , _("&General Report Manager..."), _("General Report Manager"));
     menuItemGRM->SetBitmap(mmBitmap(png::GRM));
     menuTools->Append(menuItemGRM);
+
+    wxMenuItem* menuItemCF = new wxMenuItem(menuTools, MENU_CUSTOMFIELDS
+        , _("&Custom Fielsd Manager..."), _("Custom Fielsd Manager"));
+    menuItemGRM->SetBitmap(mmBitmap(png::CUSTOM));
+    menuTools->Append(menuItemCF);
 
     menuTools->AppendSeparator();
 
@@ -1813,10 +1818,10 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmap(png::CATEGORY), _("Show Organize Categories Dialog"));
     toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmap(png::PAYEE), _("Show Organize Payees Dialog"));
     toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), mmBitmap(png::CURR), _("Show Organize Currency Dialog"));
+    toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), mmBitmap(png::GRM), _("General Report Manager"));
+    toolBar_->AddTool(wxID_BROWSE, _("Custom Fields Manager"), mmBitmap(png::CUSTOM), _("Custom Fields Manager"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), mmBitmap(png::FILTER), _("Transaction Report Filter"));
-    toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), mmBitmap(png::GRM), _("General Report Manager"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), mmBitmap(png::OPTIONS), _("Show the Options Dialog"));
     toolBar_->AddSeparator();
@@ -2430,6 +2435,17 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
         createReportsPage(rs, true);
         setNavTreeSection(_("Reports"));
     }
+}
+
+
+void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event)) 
+{
+    if (!m_db) return;
+    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+
+    mmCustomFieldListDialog dlg(this, ref_type);
+    dlg.ShowModal();
+
 }
 
 void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)

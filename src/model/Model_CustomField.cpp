@@ -120,23 +120,27 @@ wxArrayString Model_CustomField::all_type()
 wxString Model_CustomField::getTooltip(const wxString& Properties)
 {
     Document json_doc;
-    if (json_doc.Parse(Properties.c_str()).HasParseError())
-        return "";
-
-    Value& s = json_doc["Tooltip"];
-
-    return s.GetString();
+    if (!json_doc.Parse(Properties.c_str()).HasParseError())
+    {
+        if (json_doc.HasMember("Tooltip") && json_doc["Tooltip"].IsString()) {
+            Value& s = json_doc["Tooltip"];
+            return s.GetString();
+        }
+    }
+    return "";
 }
 
 wxString Model_CustomField::getRegEx(const wxString& Properties)
 {
     Document json_doc;
-    if (json_doc.Parse(Properties.c_str()).HasParseError())
-        return "";
-
-    Value& s = json_doc["RegEx"];
-
-    return s.GetString();
+    if (!json_doc.Parse(Properties.c_str()).HasParseError())
+    {
+        if (json_doc.HasMember("RegEx") && json_doc["RegEx"].IsString()) {
+            Value& s = json_doc["RegEx"];
+            return s.GetString();
+        }
+    }
+    return "";
 }
 
 bool Model_CustomField::getAutocomplete(const wxString& Properties)
@@ -145,20 +149,23 @@ bool Model_CustomField::getAutocomplete(const wxString& Properties)
     if (json_doc.Parse(Properties.c_str()).HasParseError())
         return false;
 
-    Value& b = json_doc["Autocomplete"];
-
-    return b.GetBool();
+    if (json_doc.HasMember("Autocomplete") && json_doc["Autocomplete"].IsBool()) {
+        Value& b = json_doc["Autocomplete"];
+        return b.GetBool();
+    }
 }
 
 wxString Model_CustomField::getDefault(const wxString& Properties)
 {
     Document json_doc;
-    if (json_doc.Parse(Properties.c_str()).HasParseError())
-        return "";
-
-    Value& s = json_doc["Default"];
-
-    return s.GetString();
+    if (!json_doc.Parse(Properties.c_str()).HasParseError())
+    {
+        if (json_doc.HasMember("Default") && json_doc["Default"].IsString()) {
+            Value& s = json_doc["Default"];
+            return s.GetString();
+        }
+    }
+    return "";
 }
 
 wxArrayString Model_CustomField::getChoices(const wxString& Properties)
@@ -167,10 +174,13 @@ wxArrayString Model_CustomField::getChoices(const wxString& Properties)
     Document json_doc;
     if (!json_doc.Parse(Properties.c_str()).HasParseError()) 
     {
-        Value& sa = json_doc["Choice"];
-        for (SizeType i = 0; i < sa.Size(); i++)
+        if (json_doc.HasMember("Choice") && json_doc["Choice"].IsArray())
         {
-            choices.Add(sa[i].GetString());
+            Value& sa = json_doc["Choice"];
+            for (SizeType i = 0; i < sa.Size(); i++)
+            {
+                choices.Add(sa[i].GetString());
+            }
         }
     }
 

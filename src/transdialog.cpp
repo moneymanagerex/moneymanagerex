@@ -20,7 +20,6 @@
 
 #include "transdialog.h"
 #include "attachmentdialog.h"
-#include "customfielddialog.h"
 #include "categdialog.h"
 #include "constants.h"
 #include "images_list.h"
@@ -36,10 +35,13 @@
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
+#include "model/Model_CustomField.h"
 #include "model/Model_CustomFieldData.h"
 #include "model/Model_Subcategory.h"
 
 #include <wx/numformatter.h>
+#include <wx/timectrl.h>
+#include <wx/collpane.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
 
@@ -48,13 +50,11 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
     EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
-    EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnCustomFields)
     EVT_CLOSE(mmTransDialog::OnQuit)
-    EVT_MOVE(mmTransDialog::OnMove)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
     EVT_CHECKBOX(wxID_FORWARD, mmTransDialog::OnSplitChecked)
-    EVT_CHILD_FOCUS(mmTransDialog::onFocusChange)
+    EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
     EVT_SPIN(wxID_ANY,mmTransDialog::OnSpin)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_COMBOBOX(wxID_ANY, mmTransDialog::OnAccountOrPayeeUpdated)
@@ -70,7 +70,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , const wxString& name
 ) : m_currency(nullptr)
     , m_to_currency(nullptr)
-    , CustomFieldDialog_(nullptr)
     , categUpdated_(false)
     , m_transfer(false)
     , m_advanced(false)
@@ -121,7 +120,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(500, 400), style, name);
     dataToControls();
-    CallAfter(&mmTransDialog::OnStartupCustomFields);
 }
 
 mmTransDialog::~mmTransDialog()
@@ -351,7 +349,7 @@ void mmTransDialog::dataToControls()
     }
 
     if (!skip_tooltips_init_)
-        setTooltips();
+        SetTooltips();
 }
 
 void mmTransDialog::CreateControls()
@@ -489,30 +487,73 @@ void mmTransDialog::CreateControls()
     number_sizer->Add(textNumber_, g_flagsExpand);
     number_sizer->Add(bAuto, g_flagsH);
 
-    // Notes ---------------------------------------------
-    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
-    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
+    // Notes tab ---------------------------------------------
+    wxNotebook* trx_notebook = new wxNotebook(this
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
+    wxPanel* notes_tab = new wxPanel(trx_notebook, wxID_ANY);
+    trx_notebook->AddPage(notes_tab, _("Notes"));
+    wxBoxSizer *notes_sizer = new wxBoxSizer(wxVERTICAL);
+    notes_tab->SetSizer(notes_sizer);
+
+    textNotes_ = new wxTextCtrl(notes_tab, ID_DIALOG_TRANS_TEXTNOTES, ""
+        , wxDefaultPosition, wxSize(-1, 120), wxTE_MULTILINE);
+    notes_sizer->Add(textNotes_, g_flagsExpand);
+   
+    // Others tab ---------------------------------------------
+
+    wxPanel* others_tab = new wxPanel(trx_notebook, wxID_ANY);
+    trx_notebook->AddPage(others_tab, _("Others"));
+    wxBoxSizer *others_sizer = new wxBoxSizer(wxVERTICAL);
+    others_tab->SetSizer(others_sizer);
+
+    wxFlexGridSizer* grid_sizer2 = new wxFlexGridSizer(0, 2, 0, 0);
+    grid_sizer2->AddGrowableCol(1, 1);
+    others_sizer->Add(grid_sizer2, g_flagsExpand);
+    // Frequent used notes
+    grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC
+        , _("Frequent used notes")), g_flagsExpand);
+    wxButton* bFrequentUsedNotes = new wxButton(others_tab, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , "...", wxDefaultPosition
-        , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()), 0);
+        , wxSize(-1, -1));
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
+    grid_sizer2->Add(bFrequentUsedNotes, g_flagsExpand);
+
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
-    
+
     // Attachments ---------------------------------------------
-    bAttachments_ = new wxBitmapButton(this, wxID_FILE
+    grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC
+        , _("Attachments")), g_flagsExpand);
+    bAttachments_ = new wxBitmapButton(others_tab, wxID_FILE
         , mmBitmap(png::CLIP), wxDefaultPosition
-        , wxSize(bFrequentUsedNotes->GetSize().GetY(), bFrequentUsedNotes->GetSize().GetY()));
+        , wxSize(-1, -1));
     bAttachments_->SetToolTip(_("Organize attachments of this transaction"));
 
-    wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
-    flex_sizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
-    RightAlign_sizer->Add(bAttachments_, wxSizerFlags().Border(wxRIGHT, 5));
-    RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
+    grid_sizer2->Add(bAttachments_, g_flagsExpand);
 
-    textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES
-        , "", wxDefaultPosition, wxSize(-1, 120), wxTE_MULTILINE);
-    box_sizer->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
+    // Custom fields
+    wxScrolledWindow* custom_tab = new wxScrolledWindow(trx_notebook, wxID_ANY);
+    trx_notebook->AddPage(custom_tab, _("Custom"));
+    custom_tab->SetMaxSize(wxSize(-1, 120));
+    wxBoxSizer *custom_sizer = new wxBoxSizer(wxVERTICAL);
+    custom_tab->SetScrollbar(wxSB_VERTICAL, wxALIGN_RIGHT, 1, -1);
+    custom_tab->SetSizer(custom_sizer);
+
+    wxFlexGridSizer* grid_sizer3 = new wxFlexGridSizer(0, 2, 0, 0);
+    grid_sizer3->AddGrowableCol(1, 1);
+    custom_sizer->Add(grid_sizer3, g_flagsExpand);
+
+    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    int ref_id = m_trx_data.TRANSID;
+    if (m_duplicate) ref_id = -1;
+
+    FillCustomFields(custom_tab, grid_sizer3, ref_type, ref_id);
+
+    custom_tab->FitInside();
+    custom_tab->SetScrollRate(5, 5);
+
+    box_sizer->Add(trx_notebook, g_flagsExpand);
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
@@ -526,14 +567,8 @@ void mmTransDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
-    // Custom Fields ---------------------------------------------
-    bCustomFields_ = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS
-        , mmBitmap(png::EDIT_ACC));
-    bCustomFields_->SetToolTip(_("Open custom fields window"));
-
     buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
     buttons_sizer->Add(itemButtonCancel_, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
-    buttons_sizer->Add(bCustomFields_, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
 
     if (!m_new_trx && !m_duplicate) itemButtonCancel_->SetFocus();
 
@@ -544,11 +579,11 @@ void mmTransDialog::CreateControls()
     cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), nullptr, this);
     m_textAmount->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
+        , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
     toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
+        , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
     textNumber_->Connect(ID_DIALOG_TRANS_TEXTNUMBER, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
+        , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
 
 #ifdef __WXGTK__ // Workaround for bug http://trac.wxwidgets.org/ticket/11630
     dpc_->Connect(ID_DIALOG_TRANS_BUTTONDATE, wxEVT_KILL_FOCUS
@@ -714,7 +749,7 @@ void mmTransDialog::OnDpcKillFocus(wxFocusEvent& event)
         event.Skip();
 }
 
-void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
+void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
 {
     wxWindow *w = event.GetWindow();
     if (w)
@@ -744,7 +779,7 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         if (payee) 
         {
             cbPayee_->ChangeValue(payee->PAYEENAME);
-            setCategoryForPayee(payee);
+            SetCategoryForPayee(payee);
         }
         toTextAmount_->ChangeValue("");
     }
@@ -788,7 +823,7 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
     event.Skip();
 }
 
-void mmTransDialog::activateSplitTransactionsDlg()
+void mmTransDialog::ActivateSplitTransactionsDlg()
 {
     bool bDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
 
@@ -895,10 +930,10 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
         }
     #endif
     wxChildFocusEvent evt;
-    onFocusChange(evt);
+    OnFocusChange(evt);
 }
 
-void mmTransDialog::setCategoryForPayee(const Model_Payee::Data *payee)
+void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 {
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
@@ -930,7 +965,7 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
 {
     if (cSplit_->IsChecked())
     {
-        activateSplitTransactionsDlg();
+        ActivateSplitTransactionsDlg();
     }
     else
     {
@@ -991,7 +1026,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
 {
     if (cSplit_->IsChecked())
     {
-        activateSplitTransactionsDlg();
+        ActivateSplitTransactionsDlg();
     }
     else
     {
@@ -1018,16 +1053,7 @@ void mmTransDialog::OnAttachments(wxCommandEvent& /*event*/)
     dlg.ShowModal();
 }
 
-void mmTransDialog::OnCustomFields(wxCommandEvent& /*event*/)
-{
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    int TransID = m_trx_data.TRANSID;
-    if (m_duplicate) TransID = -1;
-    CustomFieldDialog_ = new mmCustomFieldDialog(this, GetScreenPosition(), GetSize(), RefType, TransID);
-    CustomFieldDialog_->Show();
-}
-
-void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
+void mmTransDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
 {
     if (object_in_focus_ == m_textAmount->GetId())
     {
@@ -1070,15 +1096,6 @@ void mmTransDialog::onNoteSelected(wxCommandEvent& event)
         textNotes_->ChangeValue(frequentNotes_[i - 1]);
 }
 
-void mmTransDialog::OnStartupCustomFields()
-{
-    if (Model_Infotable::instance().OpenCustomDialog(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)))
-    {
-        wxCommandEvent evt;
-        mmTransDialog::OnCustomFields(evt);
-    }
-}
-
 void mmTransDialog::OnOk(wxCommandEvent& event)
 {
     m_trx_data.STATUS = "";
@@ -1111,8 +1128,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     }
     Model_Splittransaction::instance().update(splt, m_trx_data.TRANSID);
 
-    if (CustomFieldDialog_)
-        CustomFieldDialog_->OnSave(true);
+    SaveCustomValues();
 
     if (m_new_trx || m_duplicate)
     {
@@ -1143,7 +1159,7 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmTransDialog::setTooltips()
+void mmTransDialog::SetTooltips()
 {
     bCategory_->UnsetToolTip();
     skip_tooltips_init_ = true;
@@ -1202,8 +1218,253 @@ void mmTransDialog::OnQuit(wxCloseEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmTransDialog::OnMove(wxMoveEvent& /*event*/)
+void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSizer* grid_sizer
+    , const wxString& ref_type, int ref_id)
 {
-    if (CustomFieldDialog_)
-        CustomFieldDialog_->OnMove(GetScreenPosition(), GetSize());
+    Model_CustomField::Data_Set fields = Model_CustomField::instance()
+        .find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(ref_type));
+    std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
+
+    for (const auto &field : fields)
+    {
+        Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
+        if (!fieldData)
+        {
+            fieldData = Model_CustomFieldData::instance().create();
+            fieldData->FIELDID = field.FIELDID;
+            fieldData->REFID = ref_id;
+            fieldData->CONTENT = Model_CustomField::getDefault(field.PROPERTIES);
+            Model_CustomFieldData::instance().save(fieldData);
+        }
+
+        int controlID = ID_CUSTOMFIELD + fieldData->FIELDATADID;
+        wxStaticText* Description = new wxStaticText(custom_tab, wxID_STATIC, field.DESCRIPTION);
+        grid_sizer->Add(Description, g_flagsH);
+
+        switch (Model_CustomField::type(field))
+        {
+        case Model_CustomField::STRING:
+        {
+            wxTextCtrl* CustomString = new wxTextCtrl(custom_tab, controlID
+                , fieldData->CONTENT, wxDefaultPosition, wxDefaultSize);
+            CustomString->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            if (Model_CustomField::getAutocomplete(field.PROPERTIES))
+            {
+                const wxArrayString& values = Model_CustomFieldData::instance().allValue(field.FIELDID);
+                CustomString->AutoComplete(values);
+            }
+            grid_sizer->Add(CustomString, g_flagsExpand);
+            break;
+        }
+        case Model_CustomField::INTEGER:
+        {
+            int value = (wxAtoi(fieldData->CONTENT)) ? wxAtoi(fieldData->CONTENT) : 0;
+            wxSpinCtrl* CustomInteger = new wxSpinCtrl(custom_tab, controlID,
+                wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -2147483647, 2147483647, value);
+            CustomInteger->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            grid_sizer->Add(CustomInteger, g_flagsExpand);
+            break;
+        }
+        case Model_CustomField::DECIMAL:
+        {
+            double value;
+            if (!fieldData->CONTENT.ToDouble(&value)) value = 0;
+            wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(custom_tab, controlID
+                , wxEmptyString, wxDefaultPosition, wxDefaultSize
+                , wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 0.01);
+            CustomDecimal->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            grid_sizer->Add(CustomDecimal, g_flagsExpand);
+            break;
+        }
+        case Model_CustomField::BOOLEAN:
+        {
+            wxCheckBox* CustomBoolean = new wxCheckBox(custom_tab, controlID
+                , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+            CustomBoolean->SetValue((fieldData->CONTENT == "TRUE") ? TRUE : FALSE);
+            CustomBoolean->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            grid_sizer->Add(CustomBoolean, g_flagsExpand);
+            break;
+        }
+        case Model_CustomField::DATE:
+        {
+            wxDate value;
+            if (fieldData->CONTENT.CmpNoCase("Now") == 0)
+                value = wxDate::Today();
+            else if (!value.ParseDate(fieldData->CONTENT))
+                value.ParseDate("1900-01-01");
+            wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(custom_tab, controlID
+                , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+            CustomDate->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            grid_sizer->Add(CustomDate, g_flagsExpand);
+            break;
+        }
+        case Model_CustomField::TIME:
+        {
+            wxDateTime value;
+            if (fieldData->CONTENT.CmpNoCase("Now") == 0)
+                value = wxDateTime::Now();
+            else if (!value.ParseTime(fieldData->CONTENT))
+                value.ParseTime("00:00:00");
+            wxTimePickerCtrl* CustomDate = new wxTimePickerCtrl(custom_tab, controlID
+                , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
+            CustomDate->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            grid_sizer->Add(CustomDate, g_flagsExpand);
+            break;
+        }
+        case Model_CustomField::SINGLECHOICE:
+        {
+            wxArrayString Choices = Model_CustomField::getChoices(field.PROPERTIES);
+            Choices.Sort();
+
+            wxChoice* CustomChoice = new wxChoice(custom_tab, controlID
+                , wxDefaultPosition, wxDefaultSize, Choices);
+            CustomChoice->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            grid_sizer->Add(CustomChoice, g_flagsExpand);
+
+            if (Choices.size() == 0)
+                CustomChoice->Enable(false);
+
+            CustomChoice->SetStringSelection(fieldData->CONTENT);
+            break;
+        }
+        case Model_CustomField::MULTICHOICE:
+        {
+            const auto& content = fieldData->CONTENT;
+
+            wxButton* multi_choice_button = new wxButton(custom_tab, controlID, content);
+            multi_choice_button->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            grid_sizer->Add(multi_choice_button, g_flagsExpand);
+
+            multi_choice_button->Connect(controlID, wxEVT_COMMAND_BUTTON_CLICKED
+                , wxCommandEventHandler(mmTransDialog::OnMultiChoice), nullptr, this);
+
+            break;
+        }
+        default: break;
+        }
+    }
+}
+
+bool  mmTransDialog::SaveCustomValues()
+{
+    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    int ref_id = m_trx_data.TRANSID;
+    if (m_duplicate) ref_id = -1;
+
+    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(ref_type));
+
+    for (const auto &field : fields)
+    {
+        Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
+        if (!fieldData)
+            fieldData = Model_CustomFieldData::instance().create();
+
+        int controlID = ID_CUSTOMFIELD + fieldData->FIELDATADID;
+        wxString Data = wxEmptyString;
+
+        switch (Model_CustomField::type(field))
+        {
+        case Model_CustomField::STRING:
+        {
+            wxTextCtrl* CustomString = (wxTextCtrl*)FindWindow(controlID);
+            if (CustomString != nullptr)
+                Data = CustomString->GetValue().Trim();
+            break;
+        }
+        case Model_CustomField::INTEGER:
+        {
+            wxSpinCtrl* CustomInteger = (wxSpinCtrl*)FindWindow(controlID);
+            if (CustomInteger) Data = wxString::Format("%i", CustomInteger->GetValue());
+            break;
+        }
+        case Model_CustomField::DECIMAL:
+        {
+            wxSpinCtrlDouble* CustomDecimal = (wxSpinCtrlDouble*)FindWindow(controlID);
+            if (CustomDecimal) Data = wxString::Format("%f", CustomDecimal->GetValue());
+            break;
+        }
+        case Model_CustomField::BOOLEAN:
+        {
+            wxCheckBox* CustomBoolean = (wxCheckBox*)FindWindow(controlID);
+            if (CustomBoolean) Data = (CustomBoolean->GetValue()) ? "TRUE" : "FALSE";
+            break;
+        }
+        case Model_CustomField::DATE:
+        {
+            wxDatePickerCtrl* CustomDate = (wxDatePickerCtrl*)FindWindow(controlID);
+            if (CustomDate) Data = CustomDate->GetValue().FormatISODate();
+            break;
+        }
+        case Model_CustomField::TIME:
+        {
+            wxTimePickerCtrl* CustomTime = (wxTimePickerCtrl*)FindWindow(controlID);
+            if (CustomTime) Data = CustomTime->GetValue().FormatISOTime();
+            break;
+        }
+        case Model_CustomField::SINGLECHOICE:
+        {
+            wxChoice* CustomSingleChoice = (wxChoice*)FindWindow(controlID);
+            if (CustomSingleChoice) Data = CustomSingleChoice->GetStringSelection();
+            break;
+        }
+        case Model_CustomField::MULTICHOICE:
+        {
+            wxButton* CustomMultiChoice = (wxButton*)FindWindow(controlID);
+            if (CustomMultiChoice) Data = CustomMultiChoice->GetLabelText();
+            break;
+        }
+        default: break;
+        }
+
+        if (!Data.empty())
+        {
+            fieldData->FIELDID = field.FIELDID;
+            fieldData->CONTENT = Data;
+            Model_CustomFieldData::instance().save(fieldData);
+        }
+    }
+
+    return !fields.empty();
+}
+
+void mmTransDialog::OnMultiChoice(wxCommandEvent& event)
+{
+    long id = event.GetId();
+
+    Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance()
+        .get(Model_CustomFieldData::COL_CONTENT, m_trx_data.TRANSID);
+
+    Model_CustomField::Data *field = Model_CustomField::instance().get(Model_CustomFieldData::COL_CONTENT);
+    wxArrayString all_choices = Model_CustomField::getChoices(field->PROPERTIES);
+
+    wxButton* button = (wxButton*)FindWindow(id);
+    if (!button) {
+        return;
+    }
+
+    const wxString& label = button->GetLabelText();
+    wxArrayInt arr_selections;
+    int i = 0;
+    for (const auto& entry: all_choices) {
+        if (label.Contains(entry)) {
+            arr_selections.Add(i);
+        }
+        i++;
+    }
+
+    wxString info = label;
+    wxMultiChoiceDialog* MultiChoice = new wxMultiChoiceDialog(this
+        , _("Please select"), _("Multi Choice"), all_choices);
+    MultiChoice->SetSelections(arr_selections);
+
+    if (MultiChoice->ShowModal() == wxID_OK)
+    {
+        info.clear();
+        for (const auto &i : MultiChoice->GetSelections()) {
+            info += all_choices[i] + ";";
+        }
+        info.RemoveLast();
+    }
+
+    button->SetLabel(info);
 }

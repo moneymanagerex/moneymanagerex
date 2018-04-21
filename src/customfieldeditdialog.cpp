@@ -89,12 +89,13 @@ void mmCustomFieldEditDialog::dataToControls()
         m_itemAutocomplete->SetValue(Model_CustomField::getAutocomplete(m_field->PROPERTIES));
         m_itemDefault->SetValue(Model_CustomField::getDefault(m_field->PROPERTIES));
 
-        wxString Choices = wxEmptyString;
-        for (const auto ArrChoices : Model_CustomField::getChoices(m_field->PROPERTIES))
+        wxString choices = wxEmptyString;
+        for (const auto& arrChoices : Model_CustomField::getChoices(m_field->PROPERTIES))
         {
-            Choices << ArrChoices << ";";
+            choices << arrChoices << ";";
         }
-        m_itemChoices->SetValue(Choices);
+        choices.RemoveLast(1);
+        m_itemChoices->ChangeValue(choices);
     }
     else
     {
@@ -267,32 +268,36 @@ void mmCustomFieldEditDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
 {
+    m_itemRegEx->Enable(false);
+    m_itemAutocomplete->Enable(false);
+    m_itemChoices->Enable(false);
+
     switch (m_itemType->GetSelection())
     {
     case Model_CustomField::STRING:
-        {
-            m_itemRegEx->Enable(false);
-            m_itemAutocomplete->Enable(true);
-            m_itemChoices->Enable(false);
-            m_itemChoices->SetValue(wxEmptyString);
-        }
+    {
+        m_itemRegEx->Enable(true);
+        m_itemAutocomplete->Enable(true);
+        m_itemChoices->SetValue(wxEmptyString);
         break;
+    }
     case Model_CustomField::SINGLECHOICE:
-        {
-            m_itemRegEx->Enable(false);
-            m_itemAutocomplete->Enable(false);
-            m_itemAutocomplete->SetValue(false);
-            m_itemChoices->Enable(true);
-        }
+    {
+        m_itemAutocomplete->SetValue(false);
+        m_itemChoices->Enable(true);
+        m_itemDefault->ChangeValue(wxEmptyString);
+        m_itemDefault->Enable(false);
         break;
+    }
+    case Model_CustomField::MULTICHOICE:
+    {
+        m_itemAutocomplete->SetValue(false);
+        m_itemChoices->Enable(true);
+        m_itemDefault->ChangeValue(wxEmptyString);
+        m_itemDefault->Enable(false);
+        break;
+    }
     default:
-        {
-            m_itemRegEx->Enable(false);
-            m_itemAutocomplete->Enable(false);
-            m_itemAutocomplete->SetValue(false);
-            m_itemChoices->Enable(false);
-            m_itemChoices->SetValue(wxEmptyString);
-        }
         break;
     }
 }

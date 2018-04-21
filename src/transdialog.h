@@ -22,7 +22,6 @@
 #define MM_EX_TRANSDIALOG_H_
 
 #include "defs.h"
-#include "customfielddialog.h"
 
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
@@ -70,30 +69,31 @@ private:
     void CreateControls();
     void dataToControls();
     bool validateData();
+    bool SaveCustomValues();
+    void FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSizer* grid_sizer
+        , const wxString& ref_type, int ref_id);
 
     void OnSplitChecked(wxCommandEvent& event);
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
-    void OnStartupCustomFields();
-    void OnMove(wxMoveEvent& event);
     void OnCategs(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
-    void OnCustomFields(wxCommandEvent& event);
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
+    void OnMultiChoice(wxCommandEvent& event);
     void OnFrequentUsedNotes(wxCommandEvent& event);
     void onNoteSelected(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnSpin(wxSpinEvent&);
     void OnDateChanged(wxDateEvent& event);
-    void onFocusChange(wxChildFocusEvent& event);
-    void onTextEntered(wxCommandEvent& event);
+    void OnFocusChange(wxChildFocusEvent& event);
+    void OnTextEntered(wxCommandEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
-    void activateSplitTransactionsDlg();
-    void setTooltips();
-    void setCategoryForPayee(const Model_Payee::Data *payee);
+    void ActivateSplitTransactionsDlg();
+    void SetTooltips();
+    void SetCategoryForPayee(const Model_Payee::Data *payee);
 
     mmTextCtrl* textNumber_;
     mmTextCtrl* m_textAmount;
@@ -101,7 +101,6 @@ private:
     wxTextCtrl* textNotes_;
     wxButton* bCategory_;
     wxButton* bAttachments_;
-    wxButton* bCustomFields_;
     wxComboBox* cbAccount_;
     wxComboBox* cbPayee_;
     wxCheckBox* cSplit_;
@@ -114,7 +113,6 @@ private:
     wxStaticText* itemStaticTextWeek_;
     wxStaticText* account_label_;
     wxStaticText* payee_label_;
-    mmCustomFieldDialog* CustomFieldDialog_;
 
     int m_type;
     bool m_transfer;
@@ -166,6 +164,7 @@ private:
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
         ID_DIALOG_TRANS_DATE_SPINNER,
         ID_DIALOG_TRANS_CUSTOMFIELDS,
+        ID_CUSTOMFIELD,
     };
 };
 

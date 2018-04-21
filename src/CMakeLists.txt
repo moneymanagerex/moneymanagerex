@@ -49,8 +49,6 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
     constants.h
     currencydialog.cpp
     currencydialog.h
-    customfielddialog.cpp
-    customfielddialog.h
     customfieldeditdialog.cpp
     customfieldeditdialog.h
     customfieldlistdialog.cpp
