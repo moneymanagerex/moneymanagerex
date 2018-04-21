@@ -20,7 +20,6 @@
 
 #include "transdialog.h"
 #include "attachmentdialog.h"
-#include "customfielddialog.h"
 #include "categdialog.h"
 #include "constants.h"
 #include "images_list.h"

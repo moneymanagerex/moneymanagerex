@@ -22,7 +22,6 @@
 #define MM_EX_TRANSDIALOG_H_
 
 #include "defs.h"
-#include "customfielddialog.h"
 
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
@@ -164,6 +163,7 @@ private:
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
         ID_DIALOG_TRANS_DATE_SPINNER,
         ID_DIALOG_TRANS_CUSTOMFIELDS,
+        ID_CUSTOMFIELD,
     };
 };
 
