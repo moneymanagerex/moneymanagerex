@@ -82,6 +82,7 @@ private:
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
+    void OnMultiChoice(wxCommandEvent& event);
     void OnFrequentUsedNotes(wxCommandEvent& event);
     void onNoteSelected(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);

@@ -167,10 +167,13 @@ wxArrayString Model_CustomField::getChoices(const wxString& Properties)
     Document json_doc;
     if (!json_doc.Parse(Properties.c_str()).HasParseError()) 
     {
-        Value& sa = json_doc["Choice"];
-        for (SizeType i = 0; i < sa.Size(); i++)
+        if (json_doc.HasMember("Choice") && json_doc["Choice"].IsArray())
         {
-            choices.Add(sa[i].GetString());
+            Value& sa = json_doc["Choice"];
+            for (SizeType i = 0; i < sa.Size(); i++)
+            {
+                choices.Add(sa[i].GetString());
+            }
         }
     }
 

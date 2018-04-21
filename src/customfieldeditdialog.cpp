@@ -90,9 +90,9 @@ void mmCustomFieldEditDialog::dataToControls()
         m_itemDefault->SetValue(Model_CustomField::getDefault(m_field->PROPERTIES));
 
         wxString Choices = wxEmptyString;
-        for (const auto ArrChoices : Model_CustomField::getChoices(m_field->PROPERTIES))
+        for (const auto& arrChoices : Model_CustomField::getChoices(m_field->PROPERTIES))
         {
-            Choices << ArrChoices << ";";
+            Choices << arrChoices << ";";
         }
         m_itemChoices->SetValue(Choices);
     }
@@ -267,32 +267,33 @@ void mmCustomFieldEditDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
 {
+    m_itemRegEx->Enable(false);
+    m_itemAutocomplete->Enable(false);
+    m_itemChoices->Enable(false);
+    m_itemChoices->SetValue(wxEmptyString);
+
     switch (m_itemType->GetSelection())
     {
     case Model_CustomField::STRING:
-        {
-            m_itemRegEx->Enable(false);
-            m_itemAutocomplete->Enable(true);
-            m_itemChoices->Enable(false);
-            m_itemChoices->SetValue(wxEmptyString);
-        }
+    {
+        m_itemRegEx->Enable(true);
+        m_itemAutocomplete->Enable(true);
+        m_itemChoices->SetValue(wxEmptyString);
         break;
+    }
     case Model_CustomField::SINGLECHOICE:
-        {
-            m_itemRegEx->Enable(false);
-            m_itemAutocomplete->Enable(false);
-            m_itemAutocomplete->SetValue(false);
-            m_itemChoices->Enable(true);
-        }
+    {
+        m_itemAutocomplete->SetValue(false);
+        m_itemChoices->Enable(true);
         break;
+    }
+    case Model_CustomField::MULTICHOICE:
+    {
+        m_itemAutocomplete->SetValue(false);
+        m_itemChoices->Enable(true);
+        break;
+    }
     default:
-        {
-            m_itemRegEx->Enable(false);
-            m_itemAutocomplete->Enable(false);
-            m_itemAutocomplete->SetValue(false);
-            m_itemChoices->Enable(false);
-            m_itemChoices->SetValue(wxEmptyString);
-        }
         break;
     }
 }
