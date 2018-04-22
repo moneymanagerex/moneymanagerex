@@ -10,8 +10,8 @@ import datetime
 import sqlite3
 import codecs
 
-currency_unicode_patch_filename = 'currency_table_unicode_fix_patch.mmdbg'
-currency_table_patch_filename = 'currency_table_upgrade_patch.mmdbg'
+currency_unicode_patch_filename = 'currencies_update_patch_unicode_only.mmdbg'
+currency_table_patch_filename = 'currencies_update_patch.mmdbg'
 sql_tables_data_filename = 'sql_tables_v1.sql'
 
 # http://stackoverflow.com/questions/196345/how-to-check-if-a-string-in-python-is-in-ascii
@@ -109,21 +109,17 @@ class DB_Table:
 
     def generate_currency_table_data(self, sf1, utf_only):
         """Extract currency table data from table_v1
-           Return string of insert commands
+           Return string of update commands
            Will only get unicode data line when utf_only is true"""
 
         for row in self._data:
-            values = ', '.join(["'%s'" % i if is_trans(i) else "'%s'" % i for i in row])
+            values = ', '.join(["%s='%s'" % (k, row[k]) for k in row.keys() if k.upper() != 'CURRENCYID' and k.upper() != 'CURRENCY_SYMBOL'])
             values = values.replace('_tr_', '')
-            values = 'INSERT OR REPLACE INTO %s VALUES(%s)' % (self._table, values)
 
-            if utf_only and not is_ascii(values): # Write UTF currency data data only
+            if not utf_only or not is_ascii(values):
                 sf1 += '''
-%s;''' % (values)
-
-            if not utf_only: # Write all currency data
-                sf1 += '''
-%s;''' % (values)
+INSERT OR IGNORE INTO %s (CURRENCY_SYMBOL) VALUES ('%s');
+UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['CURRENCY_SYMBOL'], self._table, values, row['CURRENCY_SYMBOL'])
 
         return sf1
 
