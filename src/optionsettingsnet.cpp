@@ -19,6 +19,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "optionsettingsnet.h"
 #include "constants.h"
 #include "option.h"
+#include "webapp.h"
+
 
 #include <wx/hyperlink.h>
 #include <wx/spinctrl.h>
@@ -28,6 +30,7 @@ wxBEGIN_EVENT_TABLE(OptionSettingsNet, wxPanel)
     EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_PROXY, OptionSettingsNet::OnProxyChanged)
     EVT_CHECKBOX(ID_DIALOG_OPTIONS_ENABLE_WEBSERVER, OptionSettingsNet::OnEnableWebserverChanged)
     EVT_CHECKBOX(ID_DIALOG_OPTIONS_UPDATES_CHECK, OptionSettingsNet::OnUpdateCheckChanged)
+    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_WEBAPP_TEST, OptionSettingsNet::OnWebAppTest)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
@@ -76,8 +79,14 @@ void OptionSettingsNet::Create()
     WebAppGUIDTextCtr->SetToolTip(_("Specify the Web App GUID"));
     WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
 
+    wxFlexGridSizer* WebAppStaticBoxSizerGridBottom = new wxFlexGridSizer(0, 2, 0, 10);
+    WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGridBottom, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    wxButton* WebAppTestButton = new wxButton(this, ID_DIALOG_OPTIONS_BUTTON_WEBAPP_TEST, _("Test connection"));
+    WebAppStaticBoxSizerGridBottom->Add(WebAppTestButton, 1, wxEXPAND | wxALL);
+
     wxHyperlinkCtrl* WebAppLink = new wxHyperlinkCtrl(this, wxID_STATIC, _("More information about WebApp"), mmex::weblink::WebApp);
-    WebAppStaticBoxSizer->Add(WebAppLink, wxSizerFlags(g_flagsV).Border(wxLEFT, 10));
+    WebAppStaticBoxSizerGridBottom->Add(WebAppLink, 1, wxEXPAND | wxALL);
 
     // Proxy Settings
     wxStaticBox* proxyStaticBox = new wxStaticBox(this, wxID_STATIC, _("Proxy Settings"));
@@ -203,6 +212,22 @@ void OptionSettingsNet::OnEnableWebserverChanged(wxCommandEvent& event)
 void OptionSettingsNet::OnUpdateCheckChanged(wxCommandEvent& event)
 {
     m_update_source->Enable(m_check_update->GetValue());
+}
+
+void OptionSettingsNet::OnWebAppTest(wxCommandEvent& /*event*/)
+{
+    OptionSettingsNet::SaveSettings();
+    if (mmWebApp::WebApp_CheckEnabled())
+    {
+        if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
+        {
+            wxMessageBox(_("WebApp connection tested succesfully!"), _("WebApp connection test"));
+        }
+    }
+    else
+    {
+        wxMessageBox(_("Some parameters are missing."), _("WebApp connection test"));
+    }
 }
 
 void OptionSettingsNet::SaveSettings()

@@ -393,16 +393,20 @@ bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_,
         {
             Value trx = m.value.GetObject();
 
-            if (trx.HasMember("ID") && trx["ID"].IsInt()) {
-                WebTran.ID = trx["ID"].GetInt();
+            if (trx.HasMember("ID") && trx["ID"].IsString()) {
+                WebTran.ID = wxAtoi(trx["ID"].GetString());
             }
 
             if (trx.HasMember("Date") && trx["Date"].IsString()) {
                 WebTran.Date = mmParseISODate(wxString::FromUTF8(trx["Date"].GetString()));
             }
 
-            if (trx.HasMember("Amount") && trx["Amount"].IsDouble()) {
-                WebTran.Amount = trx["Amount"].GetDouble();
+            if (trx.HasMember("Amount") && trx["Amount"].IsString()) {
+                wxString sAmount = trx["Amount"].GetString();
+                double dAmount;
+                if (!sAmount.ToDouble(&dAmount))
+                    dAmount = 0;
+                WebTran.Amount = dAmount;
             }
 
             if (trx.HasMember("Account") && trx["Account"].IsString()) {

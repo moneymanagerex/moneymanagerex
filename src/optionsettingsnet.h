@@ -48,6 +48,8 @@ private:
     void OnUpdateCheckChanged(wxCommandEvent& event);
     void OnEnableWebserverChanged(wxCommandEvent& event);
 
+    void OnWebAppTest(wxCommandEvent& event);
+
 private:
     wxSpinCtrl* m_network_timeout;
     wxCheckBox* m_send_data;
@@ -64,6 +66,7 @@ private:
         ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
         ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
         ID_DIALOG_OPTIONS_ENABLE_WEBSERVER,
-        ID_DIALOG_OPTIONS_UPDATES_CHECK
+        ID_DIALOG_OPTIONS_UPDATES_CHECK,
+        ID_DIALOG_OPTIONS_BUTTON_WEBAPP_TEST
     };
 };
