@@ -34,14 +34,23 @@ def is_trans(s):
 
     return False
 
+def adjust_translate(s):
+    """Return the correct translated syntax for c++"""
+    trans_str = s.replace("_tr_", "")
+    trans_str = 'wxTRANSLATE("' + trans_str + '")'
+
+    return trans_str
 
 def translation_for(s):
     """Return the correct translated syntax for c++"""
+    trans_str = ''
     if not is_ascii(s):  # it is unicode string
-        trans_str = 'L"%s"' % s
+        if len(s) > 4 and s[0:4] == "_tr_": # requires wxTRANSLATE for cpp
+            trans_str = adjust_translate(s)
+        else:
+            trans_str = 'L"%s"' % s
     else:
-        trans_str = s.replace("_tr_", "")
-        trans_str = 'wxTRANSLATE("' + trans_str + '")'
+        trans_str = adjust_translate(s)
 
     return trans_str
 
