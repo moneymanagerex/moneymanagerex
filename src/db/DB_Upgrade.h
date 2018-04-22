@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-04-16 14:36:32.217797.
+ *          AUTO GENERATED at 2018-04-22 18:37:50.445741.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -161,6 +161,7 @@ const std::vector<wxString> dbUpgradeQuery =
         ALTER TABLE CURRENCYFORMATS_V1_NEW RENAME TO CURRENCYFORMATS_V1;
         CREATE INDEX IDX_CURRENCYFORMATS_SYMBOL ON CURRENCYFORMATS_V1(CURRENCY_SYMBOL);
         PRAGMA user_version = 9;
+        
     )",
 
     // Upgrade to version 10
@@ -176,7 +177,7 @@ const std::vector<wxString> dbUpgradeQuery =
         , BASECONVRATE numeric
         , CURRENCY_SYMBOL TEXT COLLATE NOCASE NOT NULL UNIQUE
         , CURRENCY_TYPE TEXT /* Traditional, Crypto */
-        , HISTORIC integer /* 1 if this is historical currency no longer official */
+        , HISTORIC integer DEFAULT 0 /* 1 if no longer official */
         );
         
         INSERT INTO CURRENCYFORMATS_V1_NEW SELECT
