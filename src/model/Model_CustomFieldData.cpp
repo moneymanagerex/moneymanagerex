@@ -81,6 +81,8 @@ bool Model_CustomFieldData::RelocateAllData(const wxString& RefType, int OldRefI
 {
     auto fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(RefType));
 
+    /*{"Tooltip":"Multi Choice","RegEx":"","Autocomplete":false,"Default":"","Choice":["one","two","three"]}*/
+
     this->Savepoint();
     for (auto &field : fields)
     {

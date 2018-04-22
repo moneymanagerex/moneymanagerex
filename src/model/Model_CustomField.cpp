@@ -146,12 +146,13 @@ wxString Model_CustomField::getRegEx(const wxString& Properties)
 bool Model_CustomField::getAutocomplete(const wxString& Properties)
 {
     Document json_doc;
-    if (json_doc.Parse(Properties.c_str()).HasParseError())
+    if (!json_doc.Parse(Properties.c_str()).HasParseError())
+    {
+        if (json_doc.HasMember("Autocomplete") && json_doc["Autocomplete"].IsBool()) {
+            Value& b = json_doc["Autocomplete"];
+            return b.GetBool();
+        }
         return false;
-
-    if (json_doc.HasMember("Autocomplete") && json_doc["Autocomplete"].IsBool()) {
-        Value& b = json_doc["Autocomplete"];
-        return b.GetBool();
     }
 }
 

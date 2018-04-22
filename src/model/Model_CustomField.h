@@ -24,8 +24,8 @@ class Model_CustomField : public Model<DB_Table_CUSTOMFIELD_V1>
 {
 public:
     using Model<DB_Table_CUSTOMFIELD_V1>::get;
-    enum FIELDTYPE { STRING = 0, INTEGER, DECIMAL, BOOLEAN, DATE, TIME, SINGLECHOICE, MULTICHOICE};
 
+    enum FIELDTYPE { STRING = 0, INTEGER, DECIMAL, BOOLEAN, DATE, TIME, SINGLECHOICE, MULTICHOICE};
     static const std::vector<std::pair<FIELDTYPE, wxString> > FIELDTYPE_CHOICES;
 
 public:
