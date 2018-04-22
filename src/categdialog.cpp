@@ -345,14 +345,20 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
         if (Model_Category::is_used(categID) || categID == m_init_selected_categ_id)
             return showCategDialogDeleteError();
         else
+        {
             Model_Category::instance().remove(categID);
+            mmWebApp::MMEX_WebApp_UpdateCategory();
+        }
     }
     else
     {
         if (Model_Category::is_used(categID, subcategID) || ((categID == m_init_selected_categ_id) && (subcategID == m_init_selected_subcateg_id)))
             return showCategDialogDeleteError(false);
         else
+        {
             Model_Subcategory::instance().remove(subcategID);
+            mmWebApp::MMEX_WebApp_UpdateCategory();
+        }
     }
 
     m_refresh_requested = true;

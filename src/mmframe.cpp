@@ -87,6 +87,7 @@ EVT_MENU(MENU_SAVE_AS, mmGUIFrame::OnSaveAs)
 EVT_MENU(MENU_EXPORT_CSV, mmGUIFrame::OnExportToCSV)
 EVT_MENU(MENU_EXPORT_XML, mmGUIFrame::OnExportToXML)
 EVT_MENU(MENU_EXPORT_QIF, mmGUIFrame::OnExportToQIF)
+EVT_MENU(MENU_EXPORT_WEBAPP, mmGUIFrame::OnExportToWebApp)
 EVT_MENU(MENU_IMPORT_QIF, mmGUIFrame::OnImportQIF)
 EVT_MENU(MENU_IMPORT_UNIVCSV, mmGUIFrame::OnImportUniversalCSV)
 EVT_MENU(MENU_IMPORT_XML, mmGUIFrame::OnImportXML)
@@ -1462,6 +1463,7 @@ void mmGUIFrame::createMenu()
     exportMenu->Append(MENU_EXPORT_XML, _("&XML Files..."), _("Export to XML"));
     exportMenu->Append(MENU_EXPORT_QIF, _("&QIF Files..."), _("Export to QIF"));
     exportMenu->Append(MENU_EXPORT_HTML, _("&Report to HTML"), _("Export to HTML"));
+    exportMenu->Append(MENU_EXPORT_WEBAPP, _("&Force WebApp sync"), _("Force sync of accounts, payees and categories to WebApp"));
     menu_file->Append(MENU_EXPORT, _("&Export"), exportMenu);
 
     wxMenu* importMenu = new wxMenu;
@@ -2207,6 +2209,21 @@ void mmGUIFrame::OnExportToQIF(wxCommandEvent& /*event*/)
 {
     mmQIFExportDialog dlg(this);
     dlg.ShowModal();
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnExportToWebApp(wxCommandEvent& /*event*/)
+{
+    if (mmWebApp::WebApp_CheckEnabled())
+    {
+        if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
+        {
+            mmWebApp::WebApp_UpdateAccount();
+            mmWebApp::WebApp_UpdatePayee();
+            mmWebApp::WebApp_UpdateCategory();
+            wxMessageBox(_("Accounts, payees and categories succesfully syncronized to WebApp!"), _("WebApp export"));
+        }
+    }
 }
 //----------------------------------------------------------------------------
 

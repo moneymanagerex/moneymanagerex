@@ -268,7 +268,10 @@ void mmPayeeDialog::DeletePayee()
             return;
         }
         else
+        {
             mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), m_payee_id);
+            mmWebApp::MMEX_WebApp_UpdatePayee();
+        }
 
         m_payee_id = -1;
         refreshRequested_ = true;

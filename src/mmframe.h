@@ -166,7 +166,7 @@ private:
     void OnExportToXML(wxCommandEvent& event);
     void OnExportToQIF(wxCommandEvent& event);
     void OnExportToHtml(wxCommandEvent& event);
-    void OnImportQFX(wxCommandEvent& event);
+    void OnExportToWebApp(wxCommandEvent& event);
     void OnImportUniversalCSV(wxCommandEvent& event);
     void OnImportXML(wxCommandEvent& event);
     void OnImportQIF(wxCommandEvent& event);
@@ -183,7 +183,6 @@ private:
     void OnChangeGUILanguage(wxCommandEvent &event);
 
     void OnViewToolbar(wxCommandEvent &event);
-    void OnViewStatusbar(wxCommandEvent &event);
     void OnViewLinks(wxCommandEvent &event);
     void OnViewBudgetFinancialYears(wxCommandEvent &event);
     void OnViewBudgetTransferTotal(wxCommandEvent &event);
@@ -296,6 +295,7 @@ private:
         MENU_EXPORT_CSV,
         MENU_EXPORT_XML,
         MENU_EXPORT_QIF,
+        MENU_EXPORT_WEBAPP,
         MENU_SHOW_APPSTART,
         MENU_EXPORT_HTML,
         MENU_CURRENCY,
