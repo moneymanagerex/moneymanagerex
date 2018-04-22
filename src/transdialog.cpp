@@ -1128,13 +1128,18 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     }
     Model_Splittransaction::instance().update(splt, m_trx_data.TRANSID);
 
-    SaveCustomValues();
-
+    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     if (m_new_trx || m_duplicate)
     {
-        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
         mmAttachmentManage::RelocateAllAttachments(RefType, -1, m_trx_data.TRANSID);
-        Model_CustomFieldData::instance().RelocateAllData(RefType, -1, m_trx_data.TRANSID);
+    }
+
+    if (SaveCustomValues())
+    {
+        if (m_new_trx || m_duplicate)
+        {
+            Model_CustomFieldData::instance().RelocateAllData(RefType, -1, m_trx_data.TRANSID);
+        }
     }
 
     const Model_Checking::Data& tran(*r);
@@ -1237,7 +1242,7 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
             Model_CustomFieldData::instance().save(fieldData);
         }
 
-        int controlID = ID_CUSTOMFIELD + fieldData->FIELDATADID;
+        int controlID = ID_CUSTOMFIELD + field.FIELDID;
         wxStaticText* Description = new wxStaticText(custom_tab, wxID_STATIC, field.DESCRIPTION);
         grid_sizer->Add(Description, g_flagsH);
 
@@ -1347,11 +1352,14 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
 
 bool  mmTransDialog::SaveCustomValues()
 {
+    bool ok = true;
     const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     int ref_id = m_trx_data.TRANSID;
-    if (m_duplicate) ref_id = -1;
+    if (m_duplicate || m_new_trx) ref_id = -1;
 
     Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(ref_type));
+
+    Model_CustomFieldData::instance().Savepoint();
 
     for (const auto &field : fields)
     {
@@ -1359,8 +1367,8 @@ bool  mmTransDialog::SaveCustomValues()
         if (!fieldData)
             fieldData = Model_CustomFieldData::instance().create();
 
-        int controlID = ID_CUSTOMFIELD + fieldData->FIELDATADID;
-        wxString Data = wxEmptyString;
+        int controlID = ID_CUSTOMFIELD + field.FIELDID;
+        wxString data = wxEmptyString;
 
         switch (Model_CustomField::type(field))
         {
@@ -1368,74 +1376,80 @@ bool  mmTransDialog::SaveCustomValues()
         {
             wxTextCtrl* CustomString = (wxTextCtrl*)FindWindow(controlID);
             if (CustomString != nullptr)
-                Data = CustomString->GetValue().Trim();
+                data = CustomString->GetValue().Trim();
             break;
         }
         case Model_CustomField::INTEGER:
         {
             wxSpinCtrl* CustomInteger = (wxSpinCtrl*)FindWindow(controlID);
-            if (CustomInteger) Data = wxString::Format("%i", CustomInteger->GetValue());
+            if (CustomInteger) data = wxString::Format("%i", CustomInteger->GetValue());
             break;
         }
         case Model_CustomField::DECIMAL:
         {
             wxSpinCtrlDouble* CustomDecimal = (wxSpinCtrlDouble*)FindWindow(controlID);
-            if (CustomDecimal) Data = wxString::Format("%f", CustomDecimal->GetValue());
+            if (CustomDecimal) data = wxString::Format("%f", CustomDecimal->GetValue());
             break;
         }
         case Model_CustomField::BOOLEAN:
         {
             wxCheckBox* CustomBoolean = (wxCheckBox*)FindWindow(controlID);
-            if (CustomBoolean) Data = (CustomBoolean->GetValue()) ? "TRUE" : "FALSE";
+            if (CustomBoolean) data = (CustomBoolean->GetValue()) ? "TRUE" : "FALSE";
             break;
         }
         case Model_CustomField::DATE:
         {
             wxDatePickerCtrl* CustomDate = (wxDatePickerCtrl*)FindWindow(controlID);
-            if (CustomDate) Data = CustomDate->GetValue().FormatISODate();
+            if (CustomDate) data = CustomDate->GetValue().FormatISODate();
             break;
         }
         case Model_CustomField::TIME:
         {
             wxTimePickerCtrl* CustomTime = (wxTimePickerCtrl*)FindWindow(controlID);
-            if (CustomTime) Data = CustomTime->GetValue().FormatISOTime();
+            if (CustomTime) data = CustomTime->GetValue().FormatISOTime();
             break;
         }
         case Model_CustomField::SINGLECHOICE:
         {
             wxChoice* CustomSingleChoice = (wxChoice*)FindWindow(controlID);
-            if (CustomSingleChoice) Data = CustomSingleChoice->GetStringSelection();
+            if (CustomSingleChoice) data = CustomSingleChoice->GetStringSelection();
             break;
         }
         case Model_CustomField::MULTICHOICE:
         {
             wxButton* CustomMultiChoice = (wxButton*)FindWindow(controlID);
-            if (CustomMultiChoice) Data = CustomMultiChoice->GetLabelText();
+            if (CustomMultiChoice) data = CustomMultiChoice->GetLabelText();
             break;
         }
         default: break;
         }
 
-        if (!Data.empty())
+        if (!data.empty())
         {
             fieldData->FIELDID = field.FIELDID;
-            fieldData->CONTENT = Data;
-            Model_CustomFieldData::instance().save(fieldData);
+            fieldData->CONTENT = data;
+            wxLogDebug("%s", data);
+            int i = Model_CustomFieldData::instance().save(fieldData);
+        }
+        else {
+            ok = false;
         }
     }
 
-    return !fields.empty();
+    Model_CustomFieldData::instance().ReleaseSavepoint();
+    return ok;
 }
 
 void mmTransDialog::OnMultiChoice(wxCommandEvent& event)
 {
     long id = event.GetId();
 
-    Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance()
-        .get(Model_CustomFieldData::COL_CONTENT, m_trx_data.TRANSID);
-
-    Model_CustomField::Data *field = Model_CustomField::instance().get(Model_CustomFieldData::COL_CONTENT);
-    wxArrayString all_choices = Model_CustomField::getChoices(field->PROPERTIES);
+    const wxString& type = Model_CustomField::FIELDTYPE_CHOICES[Model_CustomField::MULTICHOICE].second;
+    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    Model_CustomField::Data_Set fields = Model_CustomField::instance()
+        .find(Model_CustomField::REFTYPE(ref_type)
+        ,  Model_CustomField::TYPE(type));
+    wxArrayString all_choices = Model_CustomField::getChoices(fields.begin()->PROPERTIES);
 
     wxButton* button = (wxButton*)FindWindow(id);
     if (!button) {
