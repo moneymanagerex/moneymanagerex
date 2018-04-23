@@ -46,7 +46,7 @@
 wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
-    EVT_BUTTON(wxID_HOME, mmTransDialog::OnMoreFields)
+    EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnMoreFields)
     EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
@@ -499,64 +499,42 @@ void mmTransDialog::CreateControls()
         , ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition
         , wxDefaultSize, wxTE_PROCESS_ENTER);
 
-	wxBitmapButton* m_bAuto = new wxBitmapButton(this
+    wxBitmapButton* bAuto = new wxBitmapButton(this
         , ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM));
-    m_bAuto->SetToolTip(_("Populate Transaction #"));
-    m_bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
+    bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM,
+        wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
+    bAuto->SetToolTip(_("Populate Transaction #"));
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flagsH);
     wxBoxSizer* number_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(number_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
     number_sizer->Add(textNumber_, g_flagsExpand);
-    number_sizer->Add(m_bAuto, g_flagsH);
+    number_sizer->Add(bAuto, g_flagsH);
 
-    // Notes tab ---------------------------------------------
-    wxNotebook* trx_notebook = new wxNotebook(this
-        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
-    wxPanel* notes_tab = new wxPanel(trx_notebook, wxID_ANY);
-    trx_notebook->AddPage(notes_tab, _("Notes"));
-    wxBoxSizer *notes_sizer = new wxBoxSizer(wxVERTICAL);
-    notes_tab->SetSizer(notes_sizer);
-
-    textNotes_ = new wxTextCtrl(notes_tab, ID_DIALOG_TRANS_TEXTNOTES, ""
-        , wxDefaultPosition, wxSize(-1, 120), wxTE_MULTILINE);
-    notes_sizer->Add(textNotes_, g_flagsExpand);
-   
-    // Others tab ---------------------------------------------
-
-    wxPanel* others_tab = new wxPanel(trx_notebook, wxID_ANY);
-    trx_notebook->AddPage(others_tab, _("Others"));
-    wxBoxSizer *others_sizer = new wxBoxSizer(wxVERTICAL);
-    others_tab->SetSizer(others_sizer);
-
-    wxFlexGridSizer* grid_sizer2 = new wxFlexGridSizer(0, 2, 0, 0);
-    grid_sizer2->AddGrowableCol(1, 1);
-    others_sizer->Add(grid_sizer2, g_flagsExpand);
-    // Frequent used notes
-    grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC
-        , _("Frequent used notes")), g_flagsExpand);
-    wxButton* bFrequentUsedNotes = new wxButton(others_tab, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
+    // Notes ---------------------------------------------
+    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
+    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , "...", wxDefaultPosition
-        , wxSize(-1, -1));
+        , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()), 0);
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
-    grid_sizer2->Add(bFrequentUsedNotes, g_flagsExpand);
-
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
 
     // Attachments ---------------------------------------------
-    grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC
-        , _("Attachments")), g_flagsExpand);
-    bAttachments_ = new wxBitmapButton(others_tab, wxID_FILE
+    bAttachments_ = new wxBitmapButton(this, wxID_FILE
         , mmBitmap(png::CLIP), wxDefaultPosition
-        , wxSize(-1, -1));
+        , wxSize(bFrequentUsedNotes->GetSize().GetY(), bFrequentUsedNotes->GetSize().GetY()));
     bAttachments_->SetToolTip(_("Organize attachments of this transaction"));
 
-    grid_sizer2->Add(bAttachments_, g_flagsExpand);
+    wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
+    flex_sizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
+    RightAlign_sizer->Add(bAttachments_, wxSizerFlags().Border(wxRIGHT, 5));
+    RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
 
-    box_sizer_left->Add(trx_notebook, g_flagsExpand);
+    textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES
+        , "", wxDefaultPosition, wxSize(-1, 120), wxTE_MULTILINE);
+    box_sizer_left->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
@@ -570,8 +548,10 @@ void mmTransDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
-    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel, wxID_HOME, mmBitmap(png::CLIP));
-    itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel
+        , ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::EDIT_ACC));
+    itemButtonHide->SetToolTip(_("Open custom fields window"));
+
 
     buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
     buttons_sizer->Add(itemButtonCancel_, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
@@ -1514,17 +1494,15 @@ void mmTransDialog::OnMultiChoice(wxCommandEvent& event)
 void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 {
     wxStaticBox* static_box2 = (wxStaticBox*)FindWindow(wxID_FILEDLGG);
-    wxBitmapButton* button = (wxBitmapButton*)FindWindow(wxID_HOME);
+    //wxBitmapButton* button = (wxBitmapButton*)FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS);
 
     if (static_box2->IsShown())
     {
         static_box2->Hide();
-        button->SetLabelText(">");
     }
     else
     {
         static_box2->Show();
-        button->SetLabelText("<");
     }
 
     this->SetMinSize(wxSize(0, 0));
