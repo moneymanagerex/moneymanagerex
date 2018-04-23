@@ -69,6 +69,7 @@ private:
     void CreateControls();
     void dataToControls();
     bool validateData();
+    void SetEventHandlers();
     bool SaveCustomValues();
     void FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSizer* grid_sizer
         , const wxString& ref_type, int ref_id);
@@ -76,6 +77,7 @@ private:
     void OnSplitChecked(wxCommandEvent& event);
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
+    void OnMoreFields(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnCategs(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
@@ -99,6 +101,7 @@ private:
     mmTextCtrl* m_textAmount;
     mmTextCtrl* toTextAmount_;
     wxTextCtrl* textNotes_;
+    wxBitmapButton* m_bAuto;
     wxButton* bCategory_;
     wxButton* bAttachments_;
     wxComboBox* cbAccount_;

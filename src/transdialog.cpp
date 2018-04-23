@@ -46,6 +46,7 @@
 wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
+    EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnMoreFields)
     EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
@@ -60,6 +61,23 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_COMBOBOX(wxID_ANY, mmTransDialog::OnAccountOrPayeeUpdated)
     EVT_MENU(wxID_ANY, mmTransDialog::onNoteSelected)
 wxEND_EVENT_TABLE()
+
+void mmTransDialog::SetEventHandlers()
+{
+    cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED
+        , wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), nullptr, this);
+    m_textAmount->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
+    toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
+    textNumber_->Connect(ID_DIALOG_TRANS_TEXTNUMBER, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
+
+#ifdef __WXGTK__ // Workaround for bug http://trac.wxwidgets.org/ticket/11630
+    dpc_->Connect(ID_DIALOG_TRANS_BUTTONDATE, wxEVT_KILL_FOCUS
+        , wxFocusEventHandler(mmTransDialog::OnDpcKillFocus), nullptr, this);
+#endif
+}
 
 mmTransDialog::mmTransDialog(wxWindow* parent
     , int account_id
@@ -142,6 +160,7 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
     Centre();
     Fit();
+    SetEventHandlers();
     return TRUE;
 }
 
@@ -354,16 +373,21 @@ void mmTransDialog::dataToControls()
 
 void mmTransDialog::CreateControls()
 {
-    wxBoxSizer* box_sizer1 = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* box_sizer = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* box_sizer1 = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* box_sizer2 = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* box_sizer3 = new wxBoxSizer(wxVERTICAL);
+    box_sizer->Add(box_sizer1, g_flagsExpand);
     box_sizer1->Add(box_sizer2, g_flagsExpand);
+    box_sizer1->Add(box_sizer3, g_flagsExpand);
 
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Transaction Details"));
-    wxStaticBoxSizer* box_sizer = new wxStaticBoxSizer(static_box, wxVERTICAL);
-    box_sizer2->Add(box_sizer, g_flagsExpand);
+    wxStaticBoxSizer* box_sizer_left = new wxStaticBoxSizer(static_box, wxVERTICAL);
+
+    box_sizer2->Add(box_sizer_left, g_flagsExpand);
 
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
-    box_sizer->Add(flex_sizer, g_flagsV);
+    box_sizer_left->Add(flex_sizer, g_flagsV);
 
     // Date --------------------------------------------
     long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
@@ -475,7 +499,7 @@ void mmTransDialog::CreateControls()
         , ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition
         , wxDefaultSize, wxTE_PROCESS_ENTER);
 
-	wxBitmapButton* bAuto = new wxBitmapButton(this
+    wxBitmapButton* bAuto = new wxBitmapButton(this
         , ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM));
     bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM,
         wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
@@ -487,79 +511,36 @@ void mmTransDialog::CreateControls()
     number_sizer->Add(textNumber_, g_flagsExpand);
     number_sizer->Add(bAuto, g_flagsH);
 
-    // Notes tab ---------------------------------------------
-    wxNotebook* trx_notebook = new wxNotebook(this
-        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
-    wxPanel* notes_tab = new wxPanel(trx_notebook, wxID_ANY);
-    trx_notebook->AddPage(notes_tab, _("Notes"));
-    wxBoxSizer *notes_sizer = new wxBoxSizer(wxVERTICAL);
-    notes_tab->SetSizer(notes_sizer);
-
-    textNotes_ = new wxTextCtrl(notes_tab, ID_DIALOG_TRANS_TEXTNOTES, ""
-        , wxDefaultPosition, wxSize(-1, 120), wxTE_MULTILINE);
-    notes_sizer->Add(textNotes_, g_flagsExpand);
-   
-    // Others tab ---------------------------------------------
-
-    wxPanel* others_tab = new wxPanel(trx_notebook, wxID_ANY);
-    trx_notebook->AddPage(others_tab, _("Others"));
-    wxBoxSizer *others_sizer = new wxBoxSizer(wxVERTICAL);
-    others_tab->SetSizer(others_sizer);
-
-    wxFlexGridSizer* grid_sizer2 = new wxFlexGridSizer(0, 2, 0, 0);
-    grid_sizer2->AddGrowableCol(1, 1);
-    others_sizer->Add(grid_sizer2, g_flagsExpand);
-    // Frequent used notes
-    grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC
-        , _("Frequent used notes")), g_flagsExpand);
-    wxButton* bFrequentUsedNotes = new wxButton(others_tab, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
+    // Notes ---------------------------------------------
+    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
+    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , "...", wxDefaultPosition
-        , wxSize(-1, -1));
+        , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()), 0);
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
-    grid_sizer2->Add(bFrequentUsedNotes, g_flagsExpand);
-
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
 
     // Attachments ---------------------------------------------
-    grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC
-        , _("Attachments")), g_flagsExpand);
-    bAttachments_ = new wxBitmapButton(others_tab, wxID_FILE
+    bAttachments_ = new wxBitmapButton(this, wxID_FILE
         , mmBitmap(png::CLIP), wxDefaultPosition
-        , wxSize(-1, -1));
+        , wxSize(bFrequentUsedNotes->GetSize().GetY(), bFrequentUsedNotes->GetSize().GetY()));
     bAttachments_->SetToolTip(_("Organize attachments of this transaction"));
 
-    grid_sizer2->Add(bAttachments_, g_flagsExpand);
+    wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
+    flex_sizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
+    RightAlign_sizer->Add(bAttachments_, wxSizerFlags().Border(wxRIGHT, 5));
+    RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
 
-    // Custom fields
-    wxScrolledWindow* custom_tab = new wxScrolledWindow(trx_notebook, wxID_ANY);
-    trx_notebook->AddPage(custom_tab, _("Custom"));
-    custom_tab->SetMaxSize(wxSize(-1, 120));
-    wxBoxSizer *custom_sizer = new wxBoxSizer(wxVERTICAL);
-    custom_tab->SetScrollbar(wxSB_VERTICAL, wxALIGN_RIGHT, 1, -1);
-    custom_tab->SetSizer(custom_sizer);
-
-    wxFlexGridSizer* grid_sizer3 = new wxFlexGridSizer(0, 2, 0, 0);
-    grid_sizer3->AddGrowableCol(1, 1);
-    custom_sizer->Add(grid_sizer3, g_flagsExpand);
-
-    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    int ref_id = m_trx_data.TRANSID;
-    if (m_duplicate) ref_id = -1;
-
-    FillCustomFields(custom_tab, grid_sizer3, ref_type, ref_id);
-
-    custom_tab->FitInside();
-    custom_tab->SetScrollRate(5, 5);
-
-    box_sizer->Add(trx_notebook, g_flagsExpand);
+    textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES
+        , "", wxDefaultPosition, wxSize(-1, 120), wxTE_MULTILINE);
+    box_sizer_left->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
     ***********************************************************************************************/
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    box_sizer1->Add(buttons_panel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 0));
+    box_sizer_left->Add(buttons_panel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 0));
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
@@ -567,29 +548,52 @@ void mmTransDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
+    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel
+        , ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::EDIT_ACC));
+    itemButtonHide->SetToolTip(_("Open custom fields window"));
+
+
     buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
     buttons_sizer->Add(itemButtonCancel_, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(itemButtonHide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
 
     if (!m_new_trx && !m_duplicate) itemButtonCancel_->SetFocus();
 
     buttons_sizer->Realize();
+
+    // Custom fields -----------------------------------
+
+    wxStaticBox* static_box2 = new wxStaticBox(this, wxID_FILEDLGG, _("Custom"));
+    static_box2->Hide();
+    wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(static_box2, wxVERTICAL);
+    box_sizer3->Add(box_sizer_right, g_flagsExpand);
+
+    wxScrolledWindow* custom_tab = new wxScrolledWindow(static_box2, wxID_ANY);
+    custom_tab->SetMaxSize(wxSize(-1, 120));
+    wxBoxSizer *custom_sizer = new wxBoxSizer(wxVERTICAL);
+    custom_tab->SetScrollbar(wxSB_VERTICAL, wxALIGN_RIGHT, 1, -1);
+    custom_tab->SetSizer(custom_sizer);
+
+    wxFlexGridSizer* grid_sizer_custom = new wxFlexGridSizer(0, 2, 0, 0);
+    grid_sizer_custom->AddGrowableCol(1, 1);
+    custom_sizer->Add(grid_sizer_custom, g_flagsExpand);
+
+    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    int ref_id = m_trx_data.TRANSID;
+    if (m_duplicate) ref_id = -1;
+
+    FillCustomFields(custom_tab, grid_sizer_custom, ref_type, ref_id);
+
+    custom_tab->FitInside();
+    custom_tab->SetScrollRate(5, 5);
+    box_sizer_right->Add(custom_tab, g_flagsExpand);
+
+    // =============== //
+
+
+
     Center();
-    this->SetSizer(box_sizer1);
-
-    cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), nullptr, this);
-    m_textAmount->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
-    toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
-    textNumber_->Connect(ID_DIALOG_TRANS_TEXTNUMBER, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmTransDialog::OnTextEntered), nullptr, this);
-
-#ifdef __WXGTK__ // Workaround for bug http://trac.wxwidgets.org/ticket/11630
-    dpc_->Connect(ID_DIALOG_TRANS_BUTTONDATE, wxEVT_KILL_FOCUS
-        , wxFocusEventHandler(mmTransDialog::OnDpcKillFocus), nullptr, this);
-#endif
-
+    this->SetSizer(box_sizer);
 }
 
 bool mmTransDialog::validateData()
@@ -1335,8 +1339,10 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
         case Model_CustomField::MULTICHOICE:
         {
             const auto& content = fieldData->CONTENT;
+            const auto& name = field.DESCRIPTION;
 
-            wxButton* multi_choice_button = new wxButton(custom_tab, controlID, content);
+            wxButton* multi_choice_button = new wxButton(custom_tab, controlID, content
+                , wxDefaultPosition, wxDefaultSize, 0L, wxDefaultValidator, name);
             multi_choice_button->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer->Add(multi_choice_button, g_flagsExpand);
 
@@ -1443,18 +1449,20 @@ bool  mmTransDialog::SaveCustomValues()
 void mmTransDialog::OnMultiChoice(wxCommandEvent& event)
 {
     long id = event.GetId();
-
-    const wxString& type = Model_CustomField::FIELDTYPE_CHOICES[Model_CustomField::MULTICHOICE].second;
-    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    Model_CustomField::Data_Set fields = Model_CustomField::instance()
-        .find(Model_CustomField::REFTYPE(ref_type)
-        ,  Model_CustomField::TYPE(type));
-    wxArrayString all_choices = Model_CustomField::getChoices(fields.begin()->PROPERTIES);
-
     wxButton* button = (wxButton*)FindWindow(id);
     if (!button) {
         return;
     }
+
+    const auto& name = button->GetName();
+    const wxString& type = Model_CustomField::FIELDTYPE_CHOICES[Model_CustomField::MULTICHOICE].second;
+    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+
+    Model_CustomField::Data_Set fields = Model_CustomField::instance()
+        .find(Model_CustomField::REFTYPE(ref_type)
+        , Model_CustomField::TYPE(type)
+        , Model_CustomField::DESCRIPTION(name));
+    wxArrayString all_choices = Model_CustomField::getChoices(fields.begin()->PROPERTIES);
 
     const wxString& label = button->GetLabelText();
     wxArrayInt arr_selections;
@@ -1481,4 +1489,22 @@ void mmTransDialog::OnMultiChoice(wxCommandEvent& event)
     }
 
     button->SetLabel(info);
+}
+
+void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
+{
+    wxStaticBox* static_box2 = (wxStaticBox*)FindWindow(wxID_FILEDLGG);
+    //wxBitmapButton* button = (wxBitmapButton*)FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS);
+
+    if (static_box2->IsShown())
+    {
+        static_box2->Hide();
+    }
+    else
+    {
+        static_box2->Show();
+    }
+
+    this->SetMinSize(wxSize(0, 0));
+    this->Fit();
 }
