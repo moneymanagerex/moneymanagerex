@@ -1335,8 +1335,10 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
         case Model_CustomField::MULTICHOICE:
         {
             const auto& content = fieldData->CONTENT;
+            const auto& name = field.DESCRIPTION;
 
-            wxButton* multi_choice_button = new wxButton(custom_tab, controlID, content);
+            wxButton* multi_choice_button = new wxButton(custom_tab, controlID, content
+                , wxDefaultPosition, wxDefaultSize, 0L, wxDefaultValidator, name);
             multi_choice_button->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer->Add(multi_choice_button, g_flagsExpand);
 
@@ -1443,18 +1445,20 @@ bool  mmTransDialog::SaveCustomValues()
 void mmTransDialog::OnMultiChoice(wxCommandEvent& event)
 {
     long id = event.GetId();
-
-    const wxString& type = Model_CustomField::FIELDTYPE_CHOICES[Model_CustomField::MULTICHOICE].second;
-    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    Model_CustomField::Data_Set fields = Model_CustomField::instance()
-        .find(Model_CustomField::REFTYPE(ref_type)
-        ,  Model_CustomField::TYPE(type));
-    wxArrayString all_choices = Model_CustomField::getChoices(fields.begin()->PROPERTIES);
-
     wxButton* button = (wxButton*)FindWindow(id);
     if (!button) {
         return;
     }
+
+    const auto& name = button->GetName();
+    const wxString& type = Model_CustomField::FIELDTYPE_CHOICES[Model_CustomField::MULTICHOICE].second;
+    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+
+    Model_CustomField::Data_Set fields = Model_CustomField::instance()
+        .find(Model_CustomField::REFTYPE(ref_type)
+        , Model_CustomField::TYPE(type)
+        , Model_CustomField::DESCRIPTION(name));
+    wxArrayString all_choices = Model_CustomField::getChoices(fields.begin()->PROPERTIES);
 
     const wxString& label = button->GetLabelText();
     wxArrayInt arr_selections;
