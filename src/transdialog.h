@@ -31,6 +31,28 @@
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
+class wxString;
+
+class mmCustomData : public wxDialog
+{
+
+public:
+    mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id)
+        : wxDialog()
+        , m_ref_type(ref_type)
+        , m_ref_id(ref_id) 
+    {
+    }
+    void FillCustomFields(wxDialog* parent, wxBoxSizer* box_sizer);
+    bool SaveCustomValues();
+    void OnMultiChoice(wxCommandEvent& event);
+
+private:
+    const wxString GetRefTypr() { return m_ref_type; }
+protected:
+    const wxString m_ref_type;
+    int m_ref_id;
+};
 
 class mmTransDialog : public wxDialog
 {
@@ -71,8 +93,6 @@ private:
     bool validateData();
     void SetEventHandlers();
     bool SaveCustomValues();
-    void FillCustomFields(wxDialog* parent, wxBoxSizer* box_sizer
-        , const wxString& ref_type, int ref_id);
 
     void OnSplitChecked(wxCommandEvent& event);
     void OnOk(wxCommandEvent& event);
@@ -97,6 +117,7 @@ private:
     void SetTooltips();
     void SetCategoryForPayee(const Model_Payee::Data *payee);
 
+    mmCustomData* m_custom_fields;
     mmTextCtrl* textNumber_;
     mmTextCtrl* m_textAmount;
     mmTextCtrl* toTextAmount_;

@@ -43,6 +43,7 @@
 #include <wx/timectrl.h>
 #include <wx/collpane.h>
 
+
 wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
@@ -103,6 +104,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_tooltips_init_(false)
     , skip_amount_init_(false)
 {
+
     Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);
     m_new_trx = (transaction || m_duplicate) ? false : true;
     m_transfer = m_new_trx ? type == Model_Checking::TRANSFER : Model_Checking::is_transfer(transaction);
@@ -135,6 +137,11 @@ mmTransDialog::mmTransDialog(wxWindow* parent
                     || m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
     }
 
+    const wxString ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    int ref_id = m_trx_data.TRANSID;
+    if (m_duplicate || m_new_trx) ref_id = -1;
+    m_custom_fields = new mmCustomData(this, ref_type, ref_id);
+
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(500, 400), style, name);
     dataToControls();
@@ -142,6 +149,8 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 
 mmTransDialog::~mmTransDialog()
 {
+    if (m_custom_fields)
+        delete m_custom_fields;
 }
 
 bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
@@ -561,11 +570,8 @@ void mmTransDialog::CreateControls()
     buttons_sizer->Realize();
 
     // Custom fields -----------------------------------
-    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    int ref_id = m_trx_data.TRANSID;
-    if (m_duplicate) ref_id = -1;
 
-    FillCustomFields(this, box_sizer3, ref_type, ref_id);
+    m_custom_fields->FillCustomFields(this, box_sizer3);
 
     Center();
     this->SetSizer(box_sizer);
@@ -1207,6 +1213,8 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     wxStaticBox* static_box2 = (wxStaticBox*)FindWindow(wxID_FILEDLGG);
     wxBitmapButton* button = (wxBitmapButton*)FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS);
 
+    if (!static_box2) return;
+
     if (static_box2->IsShown())
     {
         static_box2->Hide();
@@ -1222,11 +1230,12 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     this->Fit();
 }
 
-void mmTransDialog::FillCustomFields(wxDialog* parent, wxBoxSizer* box_sizer
-    , const wxString& ref_type, int ref_id)
+// ===============================
+
+void mmCustomData::FillCustomFields(wxDialog* parent, wxBoxSizer* box_sizer)
 {
-    wxStaticBox* static_box2 = new wxStaticBox(this, wxID_FILEDLGG, _("Custom"));
-    static_box2->Hide();
+    wxStaticBox* static_box2 = new wxStaticBox(parent, wxID_FILEDLGG, _("Custom"));
+    //static_box2->Hide();
     wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(static_box2, wxVERTICAL);
     box_sizer->Add(box_sizer_right, g_flagsExpand);
 
@@ -1240,22 +1249,22 @@ void mmTransDialog::FillCustomFields(wxDialog* parent, wxBoxSizer* box_sizer
     custom_sizer->Add(grid_sizer_custom, g_flagsExpand);
 
     Model_CustomField::Data_Set fields = Model_CustomField::instance()
-        .find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(ref_type));
+        .find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
     std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
 
     for (const auto &field : fields)
     {
-        Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
+        Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, m_ref_id);
         if (!fieldData)
         {
             fieldData = Model_CustomFieldData::instance().create();
             fieldData->FIELDID = field.FIELDID;
-            fieldData->REFID = ref_id;
+            fieldData->REFID = m_ref_id;
             fieldData->CONTENT = Model_CustomField::getDefault(field.PROPERTIES);
             Model_CustomFieldData::instance().save(fieldData);
         }
 
-        int controlID = ID_CUSTOMFIELD + field.FIELDID;
+        int controlID = /*ID_CUSTOMFIELD*/ 6918 + field.FIELDID;
         wxStaticText* Description = new wxStaticText(custom_tab, wxID_STATIC, field.DESCRIPTION);
         grid_sizer_custom->Add(Description, g_flagsH);
 
@@ -1356,7 +1365,7 @@ void mmTransDialog::FillCustomFields(wxDialog* parent, wxBoxSizer* box_sizer
             grid_sizer_custom->Add(multi_choice_button, g_flagsExpand);
 
             multi_choice_button->Connect(controlID, wxEVT_COMMAND_BUTTON_CLICKED
-                , wxCommandEventHandler(mmTransDialog::OnMultiChoice), nullptr, parent);
+                , wxCommandEventHandler(mmCustomData::OnMultiChoice), nullptr, parent);
 
             break;
         }
@@ -1460,7 +1469,7 @@ bool  mmTransDialog::SaveCustomValues()
     return ok;
 }
 
-void mmTransDialog::OnMultiChoice(wxCommandEvent& event)
+void mmCustomData::OnMultiChoice(wxCommandEvent& event)
 {
     long id = event.GetId();
     wxButton* button = (wxButton*)FindWindow(id);
@@ -1470,10 +1479,9 @@ void mmTransDialog::OnMultiChoice(wxCommandEvent& event)
 
     const auto& name = button->GetName();
     const wxString& type = Model_CustomField::FIELDTYPE_CHOICES[Model_CustomField::MULTICHOICE].second;
-    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 
     Model_CustomField::Data_Set fields = Model_CustomField::instance()
-        .find(Model_CustomField::REFTYPE(ref_type)
+        .find(Model_CustomField::REFTYPE(/*GetRefTypr()*/ /*m_ref_type*/ "Transaction")
         , Model_CustomField::TYPE(type)
         , Model_CustomField::DESCRIPTION(name));
     wxArrayString all_choices = Model_CustomField::getChoices(fields.begin()->PROPERTIES);
