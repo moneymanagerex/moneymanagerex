@@ -95,19 +95,24 @@ bool mmMainCurrencyDialog::Create(wxWindow* parent
 
 void mmMainCurrencyDialog::fillControls()
 {
-    int selected_index = currencyListBox_->GetSelectedRow();
     currencyListBox_->DeleteAllItems();
+    itemButtonEdit_->Disable();
+    itemButtonDelete_->Disable();
+
     int baseCurrencyID = Option::instance().BaseCurrency();
 
-    cbShowAll_->SetValue(Model_Infotable::instance().GetBoolInfo("SHOW_HIDDEN_CURRENCIES", true));
+    cbShowAll_->SetValue(!Model_Infotable::instance().GetBoolInfo("SHOW_HIDDEN_CURRENCIES", true));
+    cbHideHistoric_->SetValue(Model_Infotable::instance().GetBoolInfo("HIDE_HISTORIC_CURRENCIES", true));
 
-    bool skip_unused = !cbShowAll_->IsChecked();
+    bool skip_unused = cbShowAll_->IsChecked();
+    bool skip_historic = cbHideHistoric_->IsChecked();
     for (const auto& currency : Model_Currency::instance().all(Model_Currency::COL_CURRENCYNAME))
     {
         int currencyID = currency.CURRENCYID;
         bool currency_is_base = baseCurrencyID == currencyID;
 
-        if (skip_unused && !(Model_Account::is_used(currency) || currency_is_base)) continue;
+        if (skip_unused && !currency_is_base && !Model_Account::is_used(currency)) continue;
+        if (skip_historic && (currency.HISTORIC == 1)) continue;
 
         wxVector<wxVariant> data;
         data.push_back(wxVariant(baseCurrencyID == currencyID));
@@ -115,15 +120,12 @@ void mmMainCurrencyDialog::fillControls()
         data.push_back(wxVariant(wxGetTranslation(currency.CURRENCYNAME)));
         data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID)));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
-        if (selected_index == currencyListBox_->GetItemCount() - 1)
-        {
-            itemButtonEdit_->Enable();
-            m_currency_id = currencyID;
-        }
         if (m_currency_id == currencyID)
         {
+            currencyListBox_->SelectRow(currencyListBox_->GetItemCount() - 1);
             itemButtonEdit_->Enable();
-            currencyListBox_->SelectRow(selected_index);
+            if (!skip_unused)
+                itemButtonDelete_->Enable(!currency_is_base && !Model_Account::is_used(currency));
         }
     }
 
@@ -149,19 +151,27 @@ void mmMainCurrencyDialog::CreateControls()
     update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
     update_button->SetToolTip(_("Online update currency rate"));
-    itemBoxSizer22->AddSpacer(4);
 
     itemBoxSizer22->Add(new wxStaticText(this, wxID_STATIC
         , _("Online Update")), g_flagsH);
 
-    itemBoxSizer22->AddSpacer(15);
-    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition
+    itemBoxSizer22->AddSpacer(10);
+    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Hide Unused"), wxDefaultPosition
         , wxDefaultSize, wxCHK_2STATE);
-    cbShowAll_->SetToolTip(_("Show all even the unused currencies"));
+    cbShowAll_->SetToolTip(_("Hide currencies unused in this database"));
     cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED,
         wxCommandEventHandler(mmMainCurrencyDialog::OnShowHiddenChbClick), nullptr, this);
 
     itemBoxSizer22->Add(cbShowAll_, g_flagsH);
+
+    itemBoxSizer22->AddSpacer(10);
+    cbHideHistoric_ = new wxCheckBox(this, wxID_SELECTALL, _("Hide Historic"), wxDefaultPosition
+        , wxDefaultSize, wxCHK_2STATE);
+    cbHideHistoric_->SetToolTip(_("Hide historical currencies"));
+    cbHideHistoric_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED,
+        wxCommandEventHandler(mmMainCurrencyDialog::OnHideHistoricClick), nullptr, this);
+
+    itemBoxSizer22->Add(cbHideHistoric_, g_flagsH);
 
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer3, g_flagsExpand);
@@ -498,7 +508,13 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
 
 void mmMainCurrencyDialog::OnShowHiddenChbClick(wxCommandEvent& event)
 {
-    Model_Infotable::instance().Set("SHOW_HIDDEN_CURRENCIES", cbShowAll_->IsChecked());
+    Model_Infotable::instance().Set("SHOW_HIDDEN_CURRENCIES", !cbShowAll_->IsChecked());
+    fillControls();
+}
+
+void mmMainCurrencyDialog::OnHideHistoricClick(wxCommandEvent& event)
+{
+    Model_Infotable::instance().Set("HIDE_HISTORIC_CURRENCIES", cbHideHistoric_->IsChecked());
     fillControls();
 }
 
@@ -807,7 +823,7 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
     Model_CurrencyHistory::instance().Savepoint();
     for (auto &currency : currencies)
     {
-        bool unused_currency = !cbShowAll_->IsChecked() && !Model_Account::is_used(currency);
+        bool unused_currency = cbShowAll_->IsChecked() && !Model_Account::is_used(currency);
         if (unused_currency) continue;
 
         const wxString currency_symbol = currency.CURRENCY_SYMBOL.Upper();
