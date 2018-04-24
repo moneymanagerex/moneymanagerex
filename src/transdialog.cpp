@@ -549,9 +549,8 @@ void mmTransDialog::CreateControls()
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
     wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel
-        , ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::EDIT_ACC));
+        , ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW));
     itemButtonHide->SetToolTip(_("Open custom fields window"));
-
 
     buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
     buttons_sizer->Add(itemButtonCancel_, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
@@ -562,35 +561,11 @@ void mmTransDialog::CreateControls()
     buttons_sizer->Realize();
 
     // Custom fields -----------------------------------
-
-    wxStaticBox* static_box2 = new wxStaticBox(this, wxID_FILEDLGG, _("Custom"));
-    static_box2->Hide();
-    wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(static_box2, wxVERTICAL);
-    box_sizer3->Add(box_sizer_right, g_flagsExpand);
-
-    wxScrolledWindow* custom_tab = new wxScrolledWindow(static_box2, wxID_ANY);
-    custom_tab->SetMaxSize(wxSize(-1, 120));
-    wxBoxSizer *custom_sizer = new wxBoxSizer(wxVERTICAL);
-    custom_tab->SetScrollbar(wxSB_VERTICAL, wxALIGN_RIGHT, 1, -1);
-    custom_tab->SetSizer(custom_sizer);
-
-    wxFlexGridSizer* grid_sizer_custom = new wxFlexGridSizer(0, 2, 0, 0);
-    grid_sizer_custom->AddGrowableCol(1, 1);
-    custom_sizer->Add(grid_sizer_custom, g_flagsExpand);
-
     const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     int ref_id = m_trx_data.TRANSID;
     if (m_duplicate) ref_id = -1;
 
-    FillCustomFields(custom_tab, grid_sizer_custom, ref_type, ref_id);
-
-    custom_tab->FitInside();
-    custom_tab->SetScrollRate(5, 5);
-    box_sizer_right->Add(custom_tab, g_flagsExpand);
-
-    // =============== //
-
-
+    FillCustomFields(this, box_sizer3, ref_type, ref_id);
 
     Center();
     this->SetSizer(box_sizer);
@@ -1227,9 +1202,43 @@ void mmTransDialog::OnQuit(wxCloseEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSizer* grid_sizer
+void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
+{
+    wxStaticBox* static_box2 = (wxStaticBox*)FindWindow(wxID_FILEDLGG);
+    wxBitmapButton* button = (wxBitmapButton*)FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS);
+
+    if (static_box2->IsShown())
+    {
+        static_box2->Hide();
+        button->SetBitmap(mmBitmap(png::RIGHTARROW));
+    }
+    else
+    {
+        static_box2->Show();
+        button->SetBitmap(mmBitmap(png::RIGHTARROW_ACTIVE));
+    }
+
+    this->SetMinSize(wxSize(0, 0));
+    this->Fit();
+}
+
+void mmTransDialog::FillCustomFields(wxDialog* parent, wxBoxSizer* box_sizer
     , const wxString& ref_type, int ref_id)
 {
+    wxStaticBox* static_box2 = new wxStaticBox(this, wxID_FILEDLGG, _("Custom"));
+    static_box2->Hide();
+    wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(static_box2, wxVERTICAL);
+    box_sizer->Add(box_sizer_right, g_flagsExpand);
+
+    wxScrolledWindow* custom_tab = new wxScrolledWindow(static_box2, wxID_ANY);
+    wxBoxSizer *custom_sizer = new wxBoxSizer(wxVERTICAL);
+    custom_tab->SetScrollbar(wxSB_VERTICAL, wxALIGN_RIGHT, 1, -1);
+    custom_tab->SetSizer(custom_sizer);
+
+    wxFlexGridSizer* grid_sizer_custom = new wxFlexGridSizer(0, 2, 0, 0);
+    grid_sizer_custom->AddGrowableCol(1, 1);
+    custom_sizer->Add(grid_sizer_custom, g_flagsExpand);
+
     Model_CustomField::Data_Set fields = Model_CustomField::instance()
         .find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(ref_type));
     std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
@@ -1248,7 +1257,7 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
 
         int controlID = ID_CUSTOMFIELD + field.FIELDID;
         wxStaticText* Description = new wxStaticText(custom_tab, wxID_STATIC, field.DESCRIPTION);
-        grid_sizer->Add(Description, g_flagsH);
+        grid_sizer_custom->Add(Description, g_flagsH);
 
         switch (Model_CustomField::type(field))
         {
@@ -1262,7 +1271,7 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
                 const wxArrayString& values = Model_CustomFieldData::instance().allValue(field.FIELDID);
                 CustomString->AutoComplete(values);
             }
-            grid_sizer->Add(CustomString, g_flagsExpand);
+            grid_sizer_custom->Add(CustomString, g_flagsExpand);
             break;
         }
         case Model_CustomField::INTEGER:
@@ -1271,7 +1280,7 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
             wxSpinCtrl* CustomInteger = new wxSpinCtrl(custom_tab, controlID,
                 wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -2147483647, 2147483647, value);
             CustomInteger->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
-            grid_sizer->Add(CustomInteger, g_flagsExpand);
+            grid_sizer_custom->Add(CustomInteger, g_flagsExpand);
             break;
         }
         case Model_CustomField::DECIMAL:
@@ -1282,7 +1291,7 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize
                 , wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 0.01);
             CustomDecimal->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
-            grid_sizer->Add(CustomDecimal, g_flagsExpand);
+            grid_sizer_custom->Add(CustomDecimal, g_flagsExpand);
             break;
         }
         case Model_CustomField::BOOLEAN:
@@ -1291,12 +1300,12 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
             CustomBoolean->SetValue((fieldData->CONTENT == "TRUE") ? TRUE : FALSE);
             CustomBoolean->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
-            grid_sizer->Add(CustomBoolean, g_flagsExpand);
+            grid_sizer_custom->Add(CustomBoolean, g_flagsExpand);
             break;
         }
         case Model_CustomField::DATE:
         {
-            wxDate value;
+            wxDate value = wxDate::Today();
             if (fieldData->CONTENT.CmpNoCase("Now") == 0)
                 value = wxDate::Today();
             else if (!value.ParseDate(fieldData->CONTENT))
@@ -1304,7 +1313,7 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
             wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(custom_tab, controlID
                 , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
             CustomDate->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
-            grid_sizer->Add(CustomDate, g_flagsExpand);
+            grid_sizer_custom->Add(CustomDate, g_flagsExpand);
             break;
         }
         case Model_CustomField::TIME:
@@ -1317,7 +1326,7 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
             wxTimePickerCtrl* CustomDate = new wxTimePickerCtrl(custom_tab, controlID
                 , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
             CustomDate->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
-            grid_sizer->Add(CustomDate, g_flagsExpand);
+            grid_sizer_custom->Add(CustomDate, g_flagsExpand);
             break;
         }
         case Model_CustomField::SINGLECHOICE:
@@ -1328,7 +1337,7 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
             wxChoice* CustomChoice = new wxChoice(custom_tab, controlID
                 , wxDefaultPosition, wxDefaultSize, Choices);
             CustomChoice->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
-            grid_sizer->Add(CustomChoice, g_flagsExpand);
+            grid_sizer_custom->Add(CustomChoice, g_flagsExpand);
 
             if (Choices.size() == 0)
                 CustomChoice->Enable(false);
@@ -1344,16 +1353,21 @@ void mmTransDialog::FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSiz
             wxButton* multi_choice_button = new wxButton(custom_tab, controlID, content
                 , wxDefaultPosition, wxDefaultSize, 0L, wxDefaultValidator, name);
             multi_choice_button->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
-            grid_sizer->Add(multi_choice_button, g_flagsExpand);
+            grid_sizer_custom->Add(multi_choice_button, g_flagsExpand);
 
             multi_choice_button->Connect(controlID, wxEVT_COMMAND_BUTTON_CLICKED
-                , wxCommandEventHandler(mmTransDialog::OnMultiChoice), nullptr, this);
+                , wxCommandEventHandler(mmTransDialog::OnMultiChoice), nullptr, parent);
 
             break;
         }
         default: break;
         }
     }
+
+    custom_tab->FitInside();
+    custom_tab->SetScrollRate(5, 5);
+    box_sizer_right->Add(custom_tab, g_flagsExpand);
+
 }
 
 bool  mmTransDialog::SaveCustomValues()
@@ -1370,8 +1384,9 @@ bool  mmTransDialog::SaveCustomValues()
     for (const auto &field : fields)
     {
         Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
-        if (!fieldData)
+        if (!fieldData) {
             fieldData = Model_CustomFieldData::instance().create();
+        }
 
         int controlID = ID_CUSTOMFIELD + field.FIELDID;
         wxString data = wxEmptyString;
@@ -1381,8 +1396,7 @@ bool  mmTransDialog::SaveCustomValues()
         case Model_CustomField::STRING:
         {
             wxTextCtrl* CustomString = (wxTextCtrl*)FindWindow(controlID);
-            if (CustomString != nullptr)
-                data = CustomString->GetValue().Trim();
+            if (CustomString != nullptr) data = CustomString->GetValue().Trim();
             break;
         }
         case Model_CustomField::INTEGER:
@@ -1489,22 +1503,4 @@ void mmTransDialog::OnMultiChoice(wxCommandEvent& event)
     }
 
     button->SetLabel(info);
-}
-
-void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
-{
-    wxStaticBox* static_box2 = (wxStaticBox*)FindWindow(wxID_FILEDLGG);
-    //wxBitmapButton* button = (wxBitmapButton*)FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS);
-
-    if (static_box2->IsShown())
-    {
-        static_box2->Hide();
-    }
-    else
-    {
-        static_box2->Show();
-    }
-
-    this->SetMinSize(wxSize(0, 0));
-    this->Fit();
 }

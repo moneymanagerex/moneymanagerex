@@ -71,7 +71,7 @@ private:
     bool validateData();
     void SetEventHandlers();
     bool SaveCustomValues();
-    void FillCustomFields(wxScrolledWindow* custom_tab, wxFlexGridSizer* grid_sizer
+    void FillCustomFields(wxDialog* parent, wxBoxSizer* box_sizer
         , const wxString& ref_type, int ref_id);
 
     void OnSplitChecked(wxCommandEvent& event);
