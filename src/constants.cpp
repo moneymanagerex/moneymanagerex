@@ -249,7 +249,7 @@ const wxString VIEW_TRANS_LAST_YEAR_STR      = wxTRANSLATE("View Last Year");
 const wxString VIEW_TRANS_LAST_FIN_YEAR_STR  = wxTRANSLATE("View Last Financial Year");
 const wxString VIEW_TRANS_SINCE_STATEMENT_STR = wxTRANSLATE("View Since Statement Date");
 
-const wxString VIEW_ACCOUNTS_ALL_STR = wxTRANSLATE("ALL");
+const wxString VIEW_ACCOUNTS_ALL_STR = wxTRANSLATE("All");
 const wxString VIEW_ACCOUNTS_OPEN_STR = wxTRANSLATE("Open");
 const wxString VIEW_ACCOUNTS_CLOSED_STR = wxTRANSLATE("Closed");
 const wxString VIEW_ACCOUNTS_FAVORITES_STR = wxTRANSLATE("Favorites");

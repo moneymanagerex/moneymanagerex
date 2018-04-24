@@ -1654,7 +1654,7 @@ void mmGUIFrame::createMenu()
     menuTools->Append(menuItemGRM);
 
     wxMenuItem* menuItemCF = new wxMenuItem(menuTools, MENU_CUSTOMFIELDS
-        , _("&Custom Fielsd Manager..."), _("Custom Fielsd Manager"));
+        , _("&Custom Fields Manager..."), _("Custom Fields Manager"));
     menuItemGRM->SetBitmap(mmBitmap(png::CUSTOM));
     menuTools->Append(menuItemCF);
 

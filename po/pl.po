@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2018-04-18 03:50+0200\n"
-"PO-Revision-Date: 2018-04-18 03:52+0100\n"
+"POT-Creation-Date: 2018-04-25 00:13+0200\n"
+"PO-Revision-Date: 2018-04-24 19:49+0100\n"
 "Last-Translator: Tomasz Słodkowicz\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
@@ -16,57 +16,57 @@ msgstr ""
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
-#: src/aboutdialog.cpp:43
+#: src/aboutdialog.cpp:42
 #, c-format
 msgid "About %s"
 msgstr "O %s"
 
-#: src/aboutdialog.cpp:43
+#: src/aboutdialog.cpp:42
 msgid "License agreement"
 msgstr "Warunki licencji"
 
-#: src/aboutdialog.cpp:151
+#: src/aboutdialog.cpp:150
 msgid "About"
 msgstr "O programie..."
 
-#: src/aboutdialog.cpp:156
+#: src/aboutdialog.cpp:155
 msgid "Authors"
 msgstr "Autorzy"
 
-#: src/aboutdialog.cpp:161
+#: src/aboutdialog.cpp:160
 msgid "Sponsors"
 msgstr "Sponsorzy"
 
-#: src/aboutdialog.cpp:166
+#: src/aboutdialog.cpp:165
 msgid "License"
 msgstr "Licencja"
 
-#: src/aboutdialog.cpp:171
+#: src/aboutdialog.cpp:170
 msgid "Privacy"
 msgstr "Prywatność"
 
-#: src/aboutdialog.cpp:204 src/accountdialog.cpp:373
+#: src/aboutdialog.cpp:203 src/accountdialog.cpp:373
 #: src/appstartdialog.cpp:136 src/assetdialog.cpp:301
 #: src/attachmentdialog.cpp:118 src/billsdepositsdialog.cpp:629
 #: src/budgetentrydialog.cpp:156 src/budgetyeardialog.cpp:112
-#: src/budgetyearentrydialog.cpp:128 src/currencydialog.cpp:249
-#: src/customfieldeditdialog.cpp:170 src/customfieldlistdialog.cpp:98
+#: src/budgetyearentrydialog.cpp:128 src/currencydialog.cpp:235
+#: src/customfieldeditdialog.cpp:171 src/customfieldlistdialog.cpp:97
 #: src/import_export/qif_export.cpp:213 src/import_export/qif_export.cpp:236
 #: src/import_export/qif_import_gui.cpp:306 src/optiondialog.cpp:150
 #: src/payeedialog.cpp:125 src/relocatecategorydialog.cpp:122
-#: src/relocatepayeedialog.cpp:113 src/sharetransactiondialog.cpp:309
+#: src/relocatepayeedialog.cpp:122 src/sharetransactiondialog.cpp:309
 #: src/splitdetailsdialog.cpp:162 src/splittransactionsdialog.cpp:170
-#: src/transactionsupdatedialog.cpp:213 src/transdialog.cpp:526
+#: src/transactionsupdatedialog.cpp:213 src/transdialog.cpp:548
 msgid "&OK "
 msgstr "&OK"
 
-#: src/accountdialog.cpp:86 src/mmframe.cpp:1579 src/mmframe.cpp:1824
+#: src/accountdialog.cpp:86 src/mmframe.cpp:1569 src/mmframe.cpp:1817
 #: src/wizard_newaccount.cpp:79 src/wizard_newaccount.cpp:86
 #: src/wizard_newaccount.cpp:158
 msgid "New Account"
 msgstr "Nowe konto"
 
-#: src/accountdialog.cpp:106 src/mmframe.cpp:1583
+#: src/accountdialog.cpp:106 src/mmframe.cpp:1573
 msgid "Edit Account"
 msgstr "Edytuj konto"
 
@@ -91,7 +91,7 @@ msgstr "Początkowe saldo: %s"
 msgid "Currency:"
 msgstr "Waluta:"
 
-#: src/accountdialog.cpp:228 src/currencydialog.cpp:98
+#: src/accountdialog.cpp:228 src/currencydialog.cpp:96
 msgid "Select Currency"
 msgstr "Wybierz walutę"
 
@@ -105,7 +105,7 @@ msgstr "Ulubione konto"
 #: src/import_export/univcsvdialog.cpp:92 src/mmcheckingpanel.cpp:1047
 #: src/reports/transactions.cpp:76 src/sharetransactiondialog.cpp:252
 #: src/stockdialog.cpp:281 src/stockspanel.cpp:103
-#: src/transactionsupdatedialog.cpp:184 src/transdialog.cpp:493
+#: src/transactionsupdatedialog.cpp:184 src/transdialog.cpp:515
 #: src/usertransactionpanel.cpp:208 src/webappdialog.cpp:85
 msgid "Notes"
 msgstr "Notatki"
@@ -364,13 +364,13 @@ msgstr "Wprowadź nazwę aktywów"
 
 #: src/assetdialog.cpp:197 src/assetspanel.cpp:60
 #: src/filtertransdialog.cpp:440 src/import_export/qif_import_gui.cpp:90
-#: src/import_export/univcsvdialog.cpp:86 src/maincurrencydialog.cpp:233
-#: src/maincurrencydialog.cpp:256 src/mmcheckingpanel.cpp:1039
+#: src/import_export/univcsvdialog.cpp:86 src/maincurrencydialog.cpp:243
+#: src/maincurrencydialog.cpp:266 src/mmcheckingpanel.cpp:1039
 #: src/mmreportspanel.cpp:336 src/model/Model_CustomField.cpp:29
 #: src/reports/cashflow.cpp:243 src/reports/summary.cpp:149
 #: src/reports/transactions.cpp:69 src/stockdialog.cpp:314
 #: src/stockdialog.cpp:646 src/transactionsupdatedialog.cpp:106
-#: src/transdialog.cpp:385 src/usertransactionpanel.cpp:110
+#: src/transdialog.cpp:407 src/usertransactionpanel.cpp:110
 #: src/webappdialog.cpp:78
 msgid "Date"
 msgstr "Data"
@@ -388,7 +388,7 @@ msgid "Select type of asset"
 msgstr "Wybierz rodzaj aktywów"
 
 #: src/assetdialog.cpp:215 src/import_export/qif_import_gui.cpp:95
-#: src/maincurrencydialog.cpp:239 src/maincurrencydialog.cpp:263
+#: src/maincurrencydialog.cpp:249 src/maincurrencydialog.cpp:273
 msgid "Value"
 msgstr "Wartość"
 
@@ -460,12 +460,12 @@ msgid "ID"
 msgstr ""
 
 #: src/assetspanel.cpp:61 src/billsdepositsdialog.cpp:521
-#: src/billsdepositspanel.cpp:102 src/customfieldlistdialog.cpp:56
+#: src/billsdepositspanel.cpp:102 src/customfieldlistdialog.cpp:55
 #: src/filtertransdialog.cpp:251 src/import_export/qif_import_gui.cpp:93
 #: src/import_export/qif_import_gui.cpp:235 src/mmhomepagepanel.cpp:794
 #: src/reports/incexpenses.cpp:131 src/reports/transactions.cpp:74
 #: src/splitdetailsdialog.cpp:122 src/transactionsupdatedialog.cpp:133
-#: src/transdialog.cpp:419 src/usertransactionpanel.cpp:140
+#: src/transdialog.cpp:441 src/usertransactionpanel.cpp:140
 #: src/webappdialog.cpp:81
 msgid "Type"
 msgstr "Rodzaj"
@@ -508,7 +508,7 @@ msgid "&Delete Asset"
 msgstr "Usuń aktywa"
 
 #: src/assetspanel.cpp:109 src/billsdepositspanel.cpp:408
-#: src/mmcheckingpanel.cpp:1164 src/mmframe.cpp:1232 src/payeedialog.cpp:370
+#: src/mmcheckingpanel.cpp:1164 src/mmframe.cpp:1221 src/payeedialog.cpp:373
 #: src/stockspanel.cpp:148
 msgid "&Organize Attachments"
 msgstr "&Organizuj załączniki"
@@ -540,14 +540,15 @@ msgstr ""
 
 #: src/assetspanel.cpp:452 src/assetspanel.h:109
 #: src/general_report_manager.cpp:670 src/general_report_manager.cpp:944
-#: src/mmframe.cpp:460 src/mmframe.cpp:727 src/mmframe.cpp:1650
+#: src/mmframe.cpp:449 src/mmframe.cpp:716 src/mmframe.cpp:1640
 #: src/mmhomepagepanel.cpp:419 src/mmhomepagepanel.cpp:837
 msgid "Assets"
 msgstr "Aktywa"
 
 #: src/assetspanel.cpp:464 src/assetspanel.cpp:702 src/assetspanel.cpp:719
-#: src/import_export/qif_export.cpp:62 src/import_export/qif_export.cpp:63
-#: src/import_export/qif_export.cpp:130 src/mmframe.cpp:1293
+#: src/constants.cpp:252 src/import_export/qif_export.cpp:62
+#: src/import_export/qif_export.cpp:63 src/import_export/qif_export.cpp:130
+#: src/mmframe.cpp:1282
 msgid "All"
 msgstr "Wszystkie"
 
@@ -570,16 +571,16 @@ msgstr "Pokaż transakcje aktywów"
 
 #: src/assetspanel.cpp:519 src/attachmentdialog.cpp:287
 #: src/billsdepositspanel.cpp:273 src/categdialog.cpp:228
-#: src/customfieldlistdialog.cpp:271 src/maincurrencydialog.cpp:194
-#: src/maincurrencydialog.cpp:489 src/mmcheckingpanel.cpp:487
-#: src/payeedialog.cpp:364 src/splittransactionsdialog.cpp:164
+#: src/customfieldlistdialog.cpp:266 src/maincurrencydialog.cpp:204
+#: src/maincurrencydialog.cpp:499 src/mmcheckingpanel.cpp:487
+#: src/payeedialog.cpp:367 src/splittransactionsdialog.cpp:164
 #: src/stockspanel.cpp:584
 msgid "&Edit "
 msgstr "&Edytuj"
 
 #: src/assetspanel.cpp:524 src/billsdepositspanel.cpp:278
 #: src/budgetyeardialog.cpp:99 src/categdialog.cpp:232
-#: src/maincurrencydialog.cpp:281 src/mmcheckingpanel.cpp:492
+#: src/maincurrencydialog.cpp:291 src/mmcheckingpanel.cpp:492
 #: src/mmcheckingpanel.cpp:1180 src/stockdialog.cpp:342
 #: src/stockspanel.cpp:589
 msgid "&Delete "
@@ -632,14 +633,14 @@ msgstr ""
 "Konto \t Data\t   Watość\n"
 "\n"
 
-#: src/attachmentdialog.cpp:54 src/customfieldlistdialog.cpp:54
+#: src/attachmentdialog.cpp:54 src/customfieldlistdialog.cpp:53
 #: src/import_export/qif_import_gui.cpp:88
 #: src/import_export/univcsvdialog.cpp:1093 src/payeedialog.cpp:62
 msgid "#"
 msgstr "Nr"
 
-#: src/attachmentdialog.cpp:55 src/customfieldeditdialog.cpp:125
-#: src/customfieldlistdialog.cpp:55 src/general_report_manager.cpp:407
+#: src/attachmentdialog.cpp:55 src/customfieldeditdialog.cpp:126
+#: src/customfieldlistdialog.cpp:54 src/general_report_manager.cpp:407
 msgid "Description"
 msgstr "Opis"
 
@@ -682,7 +683,7 @@ msgstr "Organizuj załączniki | %s %i"
 msgid "Organize Attachments | New %s"
 msgstr "Organizuj załączniki | Nowy %s"
 
-#: src/attachmentdialog.cpp:125 src/customfieldlistdialog.cpp:104
+#: src/attachmentdialog.cpp:125 src/customfieldlistdialog.cpp:103
 #: src/payeedialog.cpp:115
 msgid "Other tools"
 msgstr "Inne narzędzia"
@@ -716,8 +717,8 @@ msgid "Confirm Attachment Deletion"
 msgstr "Potwierdź usunięcie załącznika"
 
 #: src/attachmentdialog.cpp:284 src/categdialog.cpp:224
-#: src/customfieldlistdialog.cpp:269 src/import_export/univcsvdialog.cpp:210
-#: src/maincurrencydialog.cpp:191 src/payeedialog.cpp:363
+#: src/customfieldlistdialog.cpp:264 src/import_export/univcsvdialog.cpp:210
+#: src/maincurrencydialog.cpp:201 src/payeedialog.cpp:366
 #: src/splittransactionsdialog.cpp:163 src/stockdialog.cpp:344
 msgid "&Add "
 msgstr "Dod&aj"
@@ -726,9 +727,9 @@ msgstr "Dod&aj"
 msgid "&Open "
 msgstr "&Otwórz"
 
-#: src/attachmentdialog.cpp:289 src/customfieldlistdialog.cpp:272
-#: src/import_export/univcsvdialog.cpp:214 src/maincurrencydialog.cpp:198
-#: src/payeedialog.cpp:366 src/splittransactionsdialog.cpp:165
+#: src/attachmentdialog.cpp:289 src/customfieldlistdialog.cpp:267
+#: src/import_export/univcsvdialog.cpp:214 src/maincurrencydialog.cpp:208
+#: src/payeedialog.cpp:369 src/splittransactionsdialog.cpp:165
 msgid "&Remove "
 msgstr "Usuń"
 
@@ -888,7 +889,7 @@ msgstr "Miesięcznie (ostatni dzień)"
 msgid "Monthly (last business day)"
 msgstr "Miesięcznie (ostatni dzień roboczy)"
 
-#: src/billsdepositsdialog.cpp:340 src/transdialog.cpp:363
+#: src/billsdepositsdialog.cpp:340 src/transdialog.cpp:384
 msgid "Transaction Details"
 msgstr "Szczegóły transakcji"
 
@@ -976,7 +977,7 @@ msgstr "Określ status dla tej transakcji"
 #: src/import_export/qif_import_gui.cpp:249
 #: src/import_export/qif_import_gui.cpp:260 src/mmcheckingpanel.cpp:1042
 #: src/reports/transactions.cpp:72 src/transactionsupdatedialog.cpp:119
-#: src/transdialog.cpp:399 src/usertransactionpanel.cpp:180
+#: src/transdialog.cpp:421 src/usertransactionpanel.cpp:180
 #: src/webappdialog.cpp:80
 msgid "Status"
 msgstr "Status"
@@ -986,7 +987,7 @@ msgstr "Status"
 msgid "Specify the type of transactions to be created."
 msgstr "Wybierz rodzaj transakcji do utworzenia."
 
-#: src/billsdepositsdialog.cpp:512 src/transdialog.cpp:414
+#: src/billsdepositsdialog.cpp:512 src/transdialog.cpp:436
 msgid "&Advanced"
 msgstr "Za&awansowane"
 
@@ -1011,7 +1012,7 @@ msgstr "Określ kwotę dla przelewu"
 #: src/reports/categexp.cpp:166 src/reports/incexpenses.cpp:132
 #: src/reports/transactions.cpp:77 src/splitdetailsdialog.cpp:138
 #: src/splittransactionsdialog.cpp:136 src/transactionsupdatedialog.cpp:148
-#: src/transdialog.cpp:437 src/usertransactionpanel.cpp:144
+#: src/transdialog.cpp:459 src/usertransactionpanel.cpp:144
 #: src/webappdialog.cpp:84
 msgid "Amount"
 msgstr "Kwota"
@@ -1025,7 +1026,7 @@ msgstr "Określ kwotę przelewu na koncie docelowym"
 #: src/import_export/qif_import_gui.cpp:149
 #: src/import_export/qif_import_gui.cpp:228
 #: src/import_export/qif_import_gui.cpp:817 src/reports/transactions.cpp:70
-#: src/transdialog.cpp:254 src/transdialog.cpp:444
+#: src/transdialog.cpp:271 src/transdialog.cpp:466
 #: src/usertransactionpanel.cpp:114 src/webappdialog.cpp:79
 msgid "Account"
 msgstr "Konto"
@@ -1047,8 +1048,8 @@ msgstr "Określ konto powiązane z transakcją powtarzaną"
 #: src/import_export/univcsvdialog.cpp:87 src/mmcheckingpanel.cpp:1041
 #: src/mmhomepagepanel.cpp:383 src/model/Model_Attachment.cpp:29
 #: src/reports/payee.cpp:118 src/reports/transactions.cpp:71
-#: src/transactionsupdatedialog.cpp:160 src/transdialog.cpp:247
-#: src/transdialog.cpp:449 src/usertransactionpanel.cpp:184
+#: src/transactionsupdatedialog.cpp:160 src/transdialog.cpp:264
+#: src/transdialog.cpp:471 src/usertransactionpanel.cpp:184
 #: src/webappdialog.cpp:82
 msgid "Payee"
 msgstr "Beneficjent"
@@ -1062,7 +1063,7 @@ msgstr "Wybierz beneficjenta"
 msgid "Specify where the transaction is going to"
 msgstr "Określ cel transakcji"
 
-#: src/billsdepositsdialog.cpp:570 src/transdialog.cpp:462
+#: src/billsdepositsdialog.cpp:570 src/transdialog.cpp:484
 msgid "Split"
 msgstr "Podział"
 
@@ -1079,14 +1080,14 @@ msgstr "Użyj podziału kategorii"
 #: src/reports/budgetingperf.cpp:178 src/reports/categexp.cpp:165
 #: src/reports/categovertimeperf.cpp:108 src/reports/transactions.cpp:73
 #: src/splitdetailsdialog.cpp:147 src/splittransactionsdialog.cpp:135
-#: src/transactionsupdatedialog.cpp:172 src/transdialog.cpp:472
+#: src/transactionsupdatedialog.cpp:172 src/transdialog.cpp:494
 #: src/usertransactionpanel.cpp:191 src/webappdialog.cpp:83
 msgid "Category"
 msgstr "Kategoria"
 
 #: src/billsdepositsdialog.cpp:580 src/billsdepositsdialog.cpp:1478
-#: src/transactionsupdatedialog.cpp:175 src/transdialog.cpp:336
-#: src/transdialog.cpp:922 src/usertransactionpanel.cpp:192
+#: src/transactionsupdatedialog.cpp:175 src/transdialog.cpp:353
+#: src/transdialog.cpp:936 src/usertransactionpanel.cpp:192
 msgid "Select Category"
 msgstr "Wybierz kategorię"
 
@@ -1097,7 +1098,7 @@ msgstr "Określ powiązany numer czeku lub transakcji"
 #: src/billsdepositsdialog.cpp:592 src/billsdepositspanel.cpp:108
 #: src/filtertransdialog.cpp:298 src/import_export/qif_import_gui.cpp:91
 #: src/import_export/univcsvdialog.cpp:91 src/mmcheckingpanel.cpp:1040
-#: src/reports/transactions.cpp:75 src/transdialog.cpp:486
+#: src/reports/transactions.cpp:75 src/transdialog.cpp:508
 #: src/usertransactionpanel.cpp:204
 msgid "Number"
 msgstr "Numer"
@@ -1106,7 +1107,7 @@ msgstr "Numer"
 msgid "Organize attachments of this recurring transaction"
 msgstr "Organizuj załączniki dla tej transakcji powtarzanej"
 
-#: src/billsdepositsdialog.cpp:605 src/transdialog.cpp:497
+#: src/billsdepositsdialog.cpp:605 src/transdialog.cpp:519
 #: src/usertransactionpanel.cpp:219
 msgid "Select one of the frequently used notes"
 msgstr "Wybierz jedną z często uzywanych notatek"
@@ -1133,12 +1134,12 @@ msgid "Specify to whom the transaction is going to or coming from "
 msgstr "Oznacz dokąd lub skąd pochodzi transakcja"
 
 #: src/billsdepositsdialog.cpp:840 src/billsdepositsdialog.cpp:851
-#: src/billsdepositsdialog.cpp:874 src/transdialog.cpp:251
-#: src/transdialog.cpp:313
+#: src/billsdepositsdialog.cpp:874 src/transdialog.cpp:268
+#: src/transdialog.cpp:330
 msgid "From"
 msgstr "Z"
 
-#: src/billsdepositsdialog.cpp:850 src/transdialog.cpp:311
+#: src/billsdepositsdialog.cpp:850 src/transdialog.cpp:328
 msgid "To"
 msgstr "Do"
 
@@ -1214,7 +1215,7 @@ msgstr "Określ kategorię dla tej transakcji"
 #: src/billsdepositsdialog.cpp:1468 src/categdialog.cpp:118
 #: src/import_export/qif_export.cpp:122 src/option.cpp:110 src/option.cpp:111
 #: src/option.cpp:112 src/option.cpp:113 src/reports/categexp.cpp:232
-#: src/transdialog.cpp:326
+#: src/transdialog.cpp:343
 msgid "Categories"
 msgstr "Kategorie"
 
@@ -1257,7 +1258,7 @@ msgstr ""
 "uzytkownikowi wybrać dowolną wartość daty realizacji."
 
 #: src/billsdepositspanel.cpp:219 src/billsdepositspanel.cpp:882
-#: src/mmframe.cpp:737 src/mmhomepagepanel.cpp:425
+#: src/mmframe.cpp:726 src/mmhomepagepanel.cpp:425
 msgid "Recurring Transactions"
 msgstr "Transakcje powtarzane"
 
@@ -1566,11 +1567,11 @@ msgstr "Określ rok na którym ma bazować budżet."
 msgid "Budget Year already exists"
 msgstr "Rok budżetowy już istnieje"
 
-#: src/categdialog.cpp:92 src/mmframe.cpp:1605 src/mmframe.cpp:1827
+#: src/categdialog.cpp:92 src/mmframe.cpp:1595 src/mmframe.cpp:1820
 msgid "Organize Categories"
 msgstr "Organizuj kategorie"
 
-#: src/categdialog.cpp:187 src/mmframe.cpp:1621
+#: src/categdialog.cpp:187 src/mmframe.cpp:1611
 msgid "Reassign all categories to another category"
 msgstr "Przypisz wszystkie kategorie do innej kategorii"
 
@@ -1578,7 +1579,7 @@ msgstr "Przypisz wszystkie kategorie do innej kategorii"
 msgid "Expand"
 msgstr "Rozwiń"
 
-#: src/categdialog.cpp:194 src/maincurrencydialog.cpp:159
+#: src/categdialog.cpp:194
 msgid "Show All"
 msgstr "Pokaż wszystko"
 
@@ -1602,7 +1603,7 @@ msgstr ""
 "Usuń istniejącą kategorię. Kategoria nie może być używana przez istniejące "
 "transakcje."
 
-#: src/categdialog.cpp:239 src/maincurrencydialog.cpp:205
+#: src/categdialog.cpp:239 src/maincurrencydialog.cpp:215
 msgid "&Select"
 msgstr "Wybierz"
 
@@ -1624,7 +1625,7 @@ msgstr "Podpowiedź: nowo dodanej kategorii szukaj na końcu listy."
 msgid "Add Category"
 msgstr "Dodaj kategorię"
 
-#: src/categdialog.cpp:265 src/categdialog.cpp:473
+#: src/categdialog.cpp:265 src/categdialog.cpp:479
 msgid "Category with same name exists"
 msgstr "Kategoria o tej nazwie już istnieje"
 
@@ -1640,7 +1641,7 @@ msgstr ""
 msgid "Organise Categories: Adding Error"
 msgstr "Organizuj kategorie: Błąd dodawania"
 
-#: src/categdialog.cpp:291 src/categdialog.cpp:490
+#: src/categdialog.cpp:291 src/categdialog.cpp:496
 msgid "Sub Category with same name exists"
 msgstr "Podkategoria o tej nazwie już istnieje"
 
@@ -1682,42 +1683,42 @@ msgstr "Narzędzia -> Przeniesienie -> Kategorie"
 msgid "Organise Categories: Delete Error"
 msgstr "Organizuj kategorie: Bląd usuwania"
 
-#: src/categdialog.cpp:459
+#: src/categdialog.cpp:465
 #, c-format
 msgid "Enter a new name for %s"
 msgstr "Wprowadź nową nazwę dla %s"
 
-#: src/categdialog.cpp:461
+#: src/categdialog.cpp:467
 msgid "Edit Category"
 msgstr "Edytuj kategorię"
 
-#: src/categdialog.cpp:474 src/categdialog.cpp:491
+#: src/categdialog.cpp:480 src/categdialog.cpp:497
 msgid "Organise Categories: Editing Error"
 msgstr "Organizuj kategorie: Błąd edycji"
 
-#: src/categdialog.cpp:567 src/mmframe.cpp:2993
+#: src/categdialog.cpp:573 src/mmframe.cpp:2986
 msgid "Category Relocation Completed."
 msgstr "Zakończono przenoszenie kategorii."
 
-#: src/categdialog.cpp:568 src/mmframe.cpp:2994 src/mmframe.cpp:3009
-#: src/payeedialog.cpp:314
+#: src/categdialog.cpp:574 src/mmframe.cpp:2987 src/mmframe.cpp:3002
+#: src/payeedialog.cpp:317
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Zapisy w bazie danych zostały uaktualnione: %i"
 
-#: src/categdialog.cpp:570 src/mmframe.cpp:2996
+#: src/categdialog.cpp:576 src/mmframe.cpp:2989
 msgid "Category Relocation Result"
 msgstr "Wynik przenoszenia kategorii"
 
-#: src/categdialog.cpp:635
+#: src/categdialog.cpp:641
 msgid "Hide Selected Category"
 msgstr "Ukryj wybraną kategorię"
 
-#: src/categdialog.cpp:636
+#: src/categdialog.cpp:642
 msgid "Unhide Selected Category"
 msgstr "Odkryj wybraną kategorię"
 
-#: src/categdialog.cpp:638
+#: src/categdialog.cpp:644
 msgid "Clear Settings"
 msgstr "Wyzeruj ustawienia"
 
@@ -1725,7 +1726,7 @@ msgstr "Wyzeruj ustawienia"
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: src/constants.cpp:66 src/customfielddialog.cpp:211
+#: src/constants.cpp:66
 msgid "Close"
 msgstr "Zamknij"
 
@@ -1733,35 +1734,35 @@ msgstr "Zamknij"
 msgid "&Close "
 msgstr "Zamknij"
 
-#: src/constants.cpp:82 src/mmframe.cpp:2570
+#: src/constants.cpp:82 src/mmframe.cpp:2563
 msgid "Version: "
 msgstr "Wersja: "
 
-#: src/constants.cpp:102 src/mmframe.cpp:2571
+#: src/constants.cpp:102 src/mmframe.cpp:2564
 msgid "Database version: "
 msgstr "Wersja bazy danych: "
 
-#: src/constants.cpp:105 src/mmframe.cpp:2572
+#: src/constants.cpp:105 src/mmframe.cpp:2565
 msgid "Git commit: "
 msgstr "Migawka Git: "
 
-#: src/constants.cpp:109 src/mmframe.cpp:2573
+#: src/constants.cpp:109 src/mmframe.cpp:2566
 msgid "Git branch: "
 msgstr "Gałąź Git: "
 
-#: src/constants.cpp:112 src/mmframe.cpp:2574
+#: src/constants.cpp:112 src/mmframe.cpp:2567
 msgid "MMEX is using the following support products:"
 msgstr "MMEX wykorzystuje następujące produkty:"
 
-#: src/constants.cpp:125 src/mmframe.cpp:2575
+#: src/constants.cpp:125 src/mmframe.cpp:2568
 msgid "Build on"
 msgstr "Zbudowany"
 
-#: src/constants.cpp:125 src/mmframe.cpp:2576
+#: src/constants.cpp:125 src/mmframe.cpp:2569
 msgid "with:"
 msgstr "za pomocą:"
 
-#: src/constants.cpp:146 src/mmframe.cpp:2577
+#: src/constants.cpp:146 src/mmframe.cpp:2570
 msgid "Running on:"
 msgstr "Działający na:"
 
@@ -1817,157 +1818,135 @@ msgstr "Pokaż poprzedni rok finansowy"
 msgid "View Since Statement Date"
 msgstr "Pokaż od daty wyciągu"
 
-#: src/constants.cpp:252
-msgid "ALL"
-msgstr "Wszystkie"
-
-#: src/constants.cpp:253 src/mmframe.cpp:1295 src/mmframe.cpp:1822
+#: src/constants.cpp:253 src/mmframe.cpp:1284 src/mmframe.cpp:1815
 #: src/model/Model_Account.cpp:26
 msgid "Open"
 msgstr "Otwarte"
 
-#: src/constants.cpp:254 src/mmframe.cpp:1296 src/model/Model_Account.cpp:27
+#: src/constants.cpp:254 src/mmframe.cpp:1285 src/model/Model_Account.cpp:27
 msgid "Closed"
 msgstr "Zamknięte"
 
-#: src/constants.cpp:255 src/mmframe.cpp:1294
+#: src/constants.cpp:255 src/mmframe.cpp:1283
 msgid "Favorites"
 msgstr "Ulubione"
 
-#: src/currencydialog.cpp:82
+#: src/currencydialog.cpp:80
 msgid "Currency Manager"
 msgstr "Zarządzanie walutami"
 
-#: src/currencydialog.cpp:97
+#: src/currencydialog.cpp:95
 msgid "Currency name"
 msgstr "Nazwa waluty"
 
-#: src/currencydialog.cpp:160
+#: src/currencydialog.cpp:156
 msgid "Currency Name"
 msgstr "Nazwa waluty"
 
-#: src/currencydialog.cpp:167
+#: src/currencydialog.cpp:163
 msgid "Currency Symbol"
 msgstr "Symbol waluty"
 
-#: src/currencydialog.cpp:180
+#: src/currencydialog.cpp:172
 msgid "Prefix Symbol"
 msgstr "Symbol prefiksu"
 
-#: src/currencydialog.cpp:191
+#: src/currencydialog.cpp:177
 msgid "Suffix Symbol"
 msgstr "Symbol sufiksu"
 
-#: src/currencydialog.cpp:201 src/currencydialog.cpp:297
+#: src/currencydialog.cpp:187 src/currencydialog.cpp:278
 msgid "Decimal Char"
 msgstr "Znak dziesiętny"
 
-#: src/currencydialog.cpp:212 src/currencydialog.cpp:303
+#: src/currencydialog.cpp:198 src/currencydialog.cpp:284
 msgid "Grouping Char"
 msgstr "Znak grupowania"
 
-#: src/currencydialog.cpp:223
+#: src/currencydialog.cpp:209
 msgid "Scale"
 msgstr "Skala"
 
-#: src/currencydialog.cpp:230 src/currencydialog.cpp:288
+#: src/currencydialog.cpp:216 src/currencydialog.cpp:269
 msgid "Conversion to Base Rate"
 msgstr "Kowersja do kursu bazowego"
 
-#: src/currencydialog.cpp:238
+#: src/currencydialog.cpp:224
 msgid "Value Display Sample:"
 msgstr "Przykład wyświetlania wartości:"
 
-#: src/currencydialog.cpp:251
+#: src/currencydialog.cpp:237
 msgid "Save any changes made"
 msgstr "Zapisz wszystkie zmiany"
 
-#: src/currencydialog.cpp:256
+#: src/currencydialog.cpp:242
 msgid "Any changes will be lost without update"
 msgstr "Wszystkie zmiany zostaną utracone bez zauktalizowania"
 
-#: src/currencydialog.cpp:287 src/import_export/univcsvdialog.cpp:863
+#: src/currencydialog.cpp:268 src/import_export/univcsvdialog.cpp:863
 #: src/mmtextctrl.h:105
 msgid "Invalid Amount."
 msgstr "Nieprawidłowa kwota."
 
-#: src/currencydialog.cpp:296 src/currencydialog.cpp:302
+#: src/currencydialog.cpp:277 src/currencydialog.cpp:283
 #: src/mmSimpleDialogs.cpp:119
 msgid "Invalid Entry"
 msgstr "Nieprawidłowy wpis"
 
-#: src/currencydialog.cpp:328
+#: src/currencydialog.cpp:307
 #, c-format
 msgid "%s Shown As: %s"
 msgstr "%s wyświetlane jako: %s"
-
-#: src/customfielddialog.cpp:72
-#, c-format
-msgid "Custom Fields | %s %i"
-msgstr "Pola własne | %s %i"
-
-#: src/customfielddialog.cpp:74
-#, c-format
-msgid "Custom Fields | New %s"
-msgstr "Pola własne | Nowe %s"
-
-#: src/customfielddialog.cpp:213
-msgid "Close custom field window"
-msgstr "Zanknij okno pola własnego"
-
-#: src/customfielddialog.cpp:218
-msgid "Add, edit and delete custom fields"
-msgstr "Dodaj,edytuj lub usuń własne pola"
 
 #: src/customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
 msgstr "Nowe/Edycja pola własnego"
 
-#: src/customfieldeditdialog.cpp:115
+#: src/customfieldeditdialog.cpp:116
 msgid "Custom Field Details"
 msgstr "Szczegóły pola własnego"
 
-#: src/customfieldeditdialog.cpp:127
+#: src/customfieldeditdialog.cpp:128
 msgid "Enter the name of the custom field"
 msgstr "Wprowadź nazwę własnego pola"
 
-#: src/customfieldeditdialog.cpp:130
+#: src/customfieldeditdialog.cpp:131
 msgid "Field Type"
 msgstr "Typ pola"
 
-#: src/customfieldeditdialog.cpp:134
+#: src/customfieldeditdialog.cpp:135
 msgid "Select type of custom field"
 msgstr "Wybierz typ pola własnego"
 
-#: src/customfieldeditdialog.cpp:137
+#: src/customfieldeditdialog.cpp:138
 msgid "ToolTip"
 msgstr "Podpowiedź"
 
-#: src/customfieldeditdialog.cpp:139
+#: src/customfieldeditdialog.cpp:140
 msgid "Enter the tooltip that will be shown"
 msgstr "Wprowadź podpowiedź, która będzie pokazana"
 
-#: src/customfieldeditdialog.cpp:142
+#: src/customfieldeditdialog.cpp:143
 msgid "RegEx"
 msgstr "RegEx"
 
-#: src/customfieldeditdialog.cpp:144
+#: src/customfieldeditdialog.cpp:145
 msgid "Enter the RegEx to validate field"
 msgstr "Wprowadź RegEx aby sprawdzić pole"
 
-#: src/customfieldeditdialog.cpp:147
+#: src/customfieldeditdialog.cpp:148
 msgid "Autocomplete"
 msgstr "Auto-uzupełnianie"
 
-#: src/customfieldeditdialog.cpp:150
+#: src/customfieldeditdialog.cpp:151
 msgid "Enables autocomplete on custom field"
 msgstr "Włącza autouzupełnianie we własnych polach"
 
-#: src/customfieldeditdialog.cpp:153 src/util.cpp:644
+#: src/customfieldeditdialog.cpp:154 src/util.cpp:644
 msgid "Default"
 msgstr "Domyślnie"
 
-#: src/customfieldeditdialog.cpp:155
+#: src/customfieldeditdialog.cpp:156
 msgid ""
 "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
@@ -1975,49 +1954,49 @@ msgstr ""
 "Wprowadź domyślną dla tego pola \n"
 "Dla czasu/daty wpisz 'Now' aby ustawić datę bieżącą jako domyślną"
 
-#: src/customfieldeditdialog.cpp:159
+#: src/customfieldeditdialog.cpp:160
 msgid "Choices"
 msgstr "Dobór"
 
-#: src/customfieldeditdialog.cpp:161
+#: src/customfieldeditdialog.cpp:162
 msgid "Enter the choices for this field separated with a semicolon"
 msgstr "Wprowadź wybrane do tego pola przedzielając średnikiem"
 
-#: src/customfieldeditdialog.cpp:202
+#: src/customfieldeditdialog.cpp:203
 msgid "Changing field type will delete all content!"
 msgstr "Zmiana typu pola skutkuje skasowaniem zawartości!"
 
-#: src/customfieldeditdialog.cpp:203 src/customfieldeditdialog.cpp:225
-#: src/mmframe.cpp:2133 src/mmframe.cpp:2152
+#: src/customfieldeditdialog.cpp:204 src/customfieldeditdialog.cpp:226
+#: src/mmframe.cpp:2104 src/mmframe.cpp:2123
 msgid "Do you want to proceed?"
 msgstr "Czy chcesz kontynuować?"
 
-#: src/customfieldeditdialog.cpp:204 src/customfieldeditdialog.cpp:226
+#: src/customfieldeditdialog.cpp:205 src/customfieldeditdialog.cpp:227
 msgid "Custom Field Change"
 msgstr "Zmiana własnego pola"
 
-#: src/customfieldeditdialog.cpp:224
+#: src/customfieldeditdialog.cpp:225
 msgid "You have modified choices: ones removed will be cleaned!"
 msgstr "Zmodyfikowano wybór: elementy usunięte zostaną wyczyszczone!"
 
-#: src/customfieldlistdialog.cpp:57
+#: src/customfieldlistdialog.cpp:56
 msgid "Properties"
 msgstr "Własności"
 
-#: src/customfieldlistdialog.cpp:67
+#: src/customfieldlistdialog.cpp:66
 #, c-format
 msgid "Personalize custom fields | %s"
 msgstr "Personalizuj własne pola | %s"
 
-#: src/customfieldlistdialog.cpp:178
+#: src/customfieldlistdialog.cpp:175
 msgid "Do you really want to delete this custom field and all its data?"
 msgstr "Czy na pewno chcesz usunąć to pole i jego zawartość?"
 
-#: src/customfieldlistdialog.cpp:179
+#: src/customfieldlistdialog.cpp:176
 msgid "Confirm Custom Field Deletion"
 msgstr "Potwierdź usunięcie pola"
 
-#: src/customfieldlistdialog.cpp:198
+#: src/customfieldlistdialog.cpp:194
 msgid ""
 "Do you really want to massive update field content?\n"
 "Please consider that there isn't any validation!"
@@ -2025,21 +2004,21 @@ msgstr ""
 "Na pewno chcesz dokonać masowego uaktualnienia pól?\n"
 "Zauważ, że nie ma tu żadnego sprawdzenia poprawności!"
 
-#: src/customfieldlistdialog.cpp:200
+#: src/customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
 msgstr "Potwierdź uaktualnienie pola"
 
-#: src/customfieldlistdialog.cpp:205
+#: src/customfieldlistdialog.cpp:201
 msgid "Find what"
 msgstr "Znajdź co"
 
-#: src/customfieldlistdialog.cpp:205 src/customfieldlistdialog.cpp:211
-#: src/customfieldlistdialog.cpp:217 src/customfieldlistdialog.cpp:223
-#: src/customfieldlistdialog.cpp:238
+#: src/customfieldlistdialog.cpp:201 src/customfieldlistdialog.cpp:207
+#: src/customfieldlistdialog.cpp:213 src/customfieldlistdialog.cpp:219
+#: src/customfieldlistdialog.cpp:234
 msgid "Update Custom Field Content"
 msgstr "Uaktualnij zawartość własnego pola"
 
-#: src/customfieldlistdialog.cpp:209
+#: src/customfieldlistdialog.cpp:205
 msgid ""
 "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
@@ -2047,11 +2026,11 @@ msgstr ""
 "Czy chcesz zaktualizować puste pola? \n"
 "Naciśnij Nie, jeśli chcesz przerwać procedurę zastąpienia!"
 
-#: src/customfieldlistdialog.cpp:217
+#: src/customfieldlistdialog.cpp:213
 msgid "Replace with"
 msgstr "Zastąp przez"
 
-#: src/customfieldlistdialog.cpp:221
+#: src/customfieldlistdialog.cpp:217
 msgid ""
 "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
@@ -2059,22 +2038,14 @@ msgstr ""
 "Czy chcesz zaktualizować do pustych? \n"
 "Naciśnij Nie, jeśli chcesz przerwać procedurę zastąpienia!"
 
-#: src/customfieldlistdialog.cpp:237
+#: src/customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
 msgstr "%i wystąpień znaleziono i zamieniono!"
 
-#: src/customfieldlistdialog.cpp:273
+#: src/customfieldlistdialog.cpp:268
 msgid "&Massive content update "
 msgstr "&Masowe uaktualnianie zawartości"
-
-#: src/customfieldlistdialog.cpp:294 src/customfieldlistdialog.cpp:301
-msgid "Custom Field"
-msgstr "Własne pole"
-
-#: src/customfieldlistdialog.cpp:294 src/customfieldlistdialog.cpp:301
-msgid "To apply new changes close and re-open Custom Field panel"
-msgstr "Aby wprowadzić zmiany, zamknij i otwórz ponownie panel własnego pola"
 
 #: src/db/DB_Table_Category_V1.h:111
 msgid "Bills"
@@ -2133,20 +2104,20 @@ msgid "Other Expenses"
 msgstr "Inne wydatki"
 
 #: src/db/DB_Table_Category_V1.h:126 src/model/Model_Billsdeposits.cpp:33
-#: src/model/Model_Checking.cpp:32 src/transdialog.cpp:294
+#: src/model/Model_Checking.cpp:32 src/transdialog.cpp:311
 msgid "Transfer"
 msgstr "Przelew"
 
 #: src/db/DB_Table_Currencyformats_V1.h:112
-msgid "United States dollar"
+msgid "US Dollar"
 msgstr "dolar amerykański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:113
-msgid "European euro"
+msgid "Euro"
 msgstr "euro"
 
 #: src/db/DB_Table_Currencyformats_V1.h:114
-msgid "UK Pound"
+msgid "Pound Sterling"
 msgstr "funt szterling"
 
 #: src/db/DB_Table_Currencyformats_V1.h:115
@@ -2154,251 +2125,255 @@ msgid "Russian Ruble"
 msgstr "rubel rosyjski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:116
-msgid "Ukrainian hryvnia"
-msgstr "hrywna ukraińska"
+msgid "Hryvnia"
+msgstr "hrywna"
 
 #: src/db/DB_Table_Currencyformats_V1.h:117
-msgid "Afghan afghani"
-msgstr "afgani afgański"
+msgid "Afghani"
+msgstr "afgani"
 
 #: src/db/DB_Table_Currencyformats_V1.h:118
-msgid "Albanian lek"
-msgstr "lek albański"
+msgid "Lek"
+msgstr "lek"
 
 #: src/db/DB_Table_Currencyformats_V1.h:119
-msgid "Algerian dinar"
+msgid "Algerian Dinar"
 msgstr "dinar algierski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:120
-msgid "Angolan kwanza"
-msgstr "kwanza angolska"
+msgid "Kwanza"
+msgstr "kwanza"
 
 #: src/db/DB_Table_Currencyformats_V1.h:121
-msgid "East Caribbean dollar"
+msgid "East Caribbean Dollar"
 msgstr "dolar wschodniokaraibski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:122
-msgid "Argentine peso"
+msgid "Argentine Peso"
 msgstr "peso argentyńskie"
 
 #: src/db/DB_Table_Currencyformats_V1.h:123
-msgid "Armenian dram"
+msgid "Armenian Dram"
 msgstr "dram armeński"
 
 #: src/db/DB_Table_Currencyformats_V1.h:124
-msgid "Aruban florin"
+msgid "Aruban Florin"
 msgstr "florin arubański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:125
-msgid "Australian dollar"
+msgid "Australian Dollar"
 msgstr "dolar australijski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:126
-msgid "Azerbaijani manat"
+msgid "Azerbaijan Manat"
 msgstr "manat azerbejdżański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:127
-msgid "Bahamian dollar"
+msgid "Bahamian Dollar"
 msgstr "dolar bahamski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:128
-msgid "Bahraini dinar"
+msgid "Bahraini Dinar"
 msgstr "dinar bahrajski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:129
-msgid "Bangladeshi taka"
-msgstr "taka bangladeska"
+msgid "Taka"
+msgstr "taka"
 
 #: src/db/DB_Table_Currencyformats_V1.h:130
-msgid "Barbadian dollar"
+msgid "Barbados Dollar"
 msgstr "dolar Barbadosu"
 
 #: src/db/DB_Table_Currencyformats_V1.h:131
-msgid "Belarusian ruble"
-msgstr "rubel białoruski"
+msgid "Belarusian Ruble (before 2017-01)"
+msgstr "rubel białoruski (do 2017-01)"
 
 #: src/db/DB_Table_Currencyformats_V1.h:132
-msgid "Belize dollar"
+msgid "Belize Dollar"
 msgstr "dolar Belize"
 
 #: src/db/DB_Table_Currencyformats_V1.h:133
-msgid "West African CFA franc"
+msgid "CFA Franc BCEAO"
 msgstr "frank CFA Afryki Zachodniej"
 
 #: src/db/DB_Table_Currencyformats_V1.h:134
-msgid "Bermudian dollar"
+msgid "Bermudian Dollar"
 msgstr "dolar bermudzki"
 
 #: src/db/DB_Table_Currencyformats_V1.h:135
-msgid "Bhutanese ngultrum"
-msgstr "ngultrum bhutański"
+msgid "Ngultrum"
+msgstr "ngultrum"
 
 #: src/db/DB_Table_Currencyformats_V1.h:136
-msgid "Bolivian boliviano"
-msgstr "boliviano boliwijskie"
+msgid "Boliviano"
+msgstr "boliviano"
 
 #: src/db/DB_Table_Currencyformats_V1.h:137
-msgid "Bosnia and Herzegovina konvertibilna marka"
-msgstr "bośniacka marka zamienna"
+msgid "Convertible Mark"
+msgstr "marka zamienna"
 
 #: src/db/DB_Table_Currencyformats_V1.h:138
-msgid "Botswana pula"
-msgstr "pula botswańska"
+msgid "Pula"
+msgstr "pula"
 
 #: src/db/DB_Table_Currencyformats_V1.h:139
-msgid "Brazilian real"
+msgid "Brazilian Real"
 msgstr "real brazylijski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:140
-msgid "Brunei dollar"
+msgid "Brunei Dollar"
 msgstr "dolar brunejski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:141
-msgid "Bulgarian lev"
-msgstr "lew bułgarski"
+msgid "Bulgarian Lev"
+msgstr "lew"
 
 #: src/db/DB_Table_Currencyformats_V1.h:142
-msgid "Burundi franc"
+msgid "Burundi Franc"
 msgstr "frank burundyjski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:143
-msgid "Cambodian riel"
-msgstr "riel kambodżański"
+msgid "Riel"
+msgstr "riel"
 
 #: src/db/DB_Table_Currencyformats_V1.h:144
-msgid "Central African CFA franc"
+msgid "CFA Franc BEAC"
 msgstr "frank CFA Afryki Środkowej"
 
 #: src/db/DB_Table_Currencyformats_V1.h:145
-msgid "Canadian dollar"
+msgid "Canadian Dollar"
 msgstr "dolar kanadyjski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:146
-msgid "Cape Verdean escudo"
+msgid "Cabo Verde Escudo"
 msgstr "escudo zielonoprzylądkowe"
 
 #: src/db/DB_Table_Currencyformats_V1.h:147
-msgid "Cayman Islands dollar"
+msgid "Cayman Islands Dollar"
 msgstr "dolar kajmański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:148
-msgid "Chilean peso"
+msgid "Chilean Peso"
 msgstr "peso chilijskie"
 
 #: src/db/DB_Table_Currencyformats_V1.h:149
-msgid "Chinese renminbi"
+msgid "Yuan Renminbi"
 msgstr "juan chiński"
 
 #: src/db/DB_Table_Currencyformats_V1.h:150
-msgid "Colombian peso"
+msgid "Colombian Peso"
 msgstr "peso kolumbijskie"
 
 #: src/db/DB_Table_Currencyformats_V1.h:151
-msgid "Comorian franc"
+msgid "Comorian Franc "
 msgstr "frank komoryjski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:152
-msgid "Congolese franc"
+msgid "Congolese Franc"
 msgstr "frank kongijski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:153
-msgid "Costa Rican colon"
+msgid "Costa Rican Colon"
 msgstr "colón kostarykański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:154
-msgid "Croatian kuna"
-msgstr "kuna chorwacka"
+msgid "Kuna"
+msgstr "kuna"
 
 #: src/db/DB_Table_Currencyformats_V1.h:155
-msgid "Czech koruna"
+msgid "Czech Koruna"
 msgstr "korona czeska"
 
 #: src/db/DB_Table_Currencyformats_V1.h:156
-msgid "Danish krone"
+msgid "Danish Krone"
 msgstr "korona duńska"
 
 #: src/db/DB_Table_Currencyformats_V1.h:157
-msgid "Djiboutian franc"
+msgid "Djibouti Franc"
 msgstr "frank dżibutyjski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:158
-msgid "Dominican peso"
+msgid "Dominican Peso"
 msgstr "peso dominikańskie"
 
 #: src/db/DB_Table_Currencyformats_V1.h:159
-msgid "Egyptian pound"
+msgid "Egyptian Pound"
 msgstr "funt egipski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:160
-msgid "Eritrean nakfa"
-msgstr "nakfa erytrejska"
+msgid "Nakfa"
+msgstr "nakfa"
 
 #: src/db/DB_Table_Currencyformats_V1.h:161
-msgid "Ethiopian birr"
+msgid "Ethiopian Birr"
 msgstr "birr etiopski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:162
-msgid "Falkland Islands pound"
+msgid "Falkland Islands Pound"
 msgstr "funt falklandzki"
 
 #: src/db/DB_Table_Currencyformats_V1.h:163
-msgid "Fijian dollar"
+msgid "Fiji Dollar"
 msgstr "dolar Fidżi"
 
 #: src/db/DB_Table_Currencyformats_V1.h:164
-msgid "CFP franc"
+msgid "CFP Franc"
 msgstr "frank CFP"
 
 #: src/db/DB_Table_Currencyformats_V1.h:165
-msgid "Gambian dalasi"
-msgstr "dalasi gambijskie"
+msgid "Dalasi"
+msgstr "dalasi"
 
 #: src/db/DB_Table_Currencyformats_V1.h:166
-msgid "Georgian lari"
-msgstr "lari gruziński"
+msgid "Lari"
+msgstr "lari"
 
 #: src/db/DB_Table_Currencyformats_V1.h:167
-msgid "Ghanaian cedi"
+msgid "Ghana Cedi"
 msgstr "cedi ghańskie"
 
 #: src/db/DB_Table_Currencyformats_V1.h:168
-msgid "Gibraltar pound"
+msgid "Gibraltar Pound"
 msgstr "funt gibraltarski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:169
-msgid "Guatemalan quetzal"
-msgstr "quetzal gwatemalski"
+msgid "Quetzal"
+msgstr "quetzal"
 
 #: src/db/DB_Table_Currencyformats_V1.h:170
-msgid "Guinean franc"
+msgid "Guinean Franc"
 msgstr "frank gwinejski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:171
-msgid "Guyanese dollar"
+msgid "Guyana Dollar"
 msgstr "dolar gujański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:172
-msgid "Haitian gourde"
-msgstr "gourde haitański"
+msgid "Gourde"
+msgstr "gourde"
 
 #: src/db/DB_Table_Currencyformats_V1.h:173
-msgid "Honduran lempira"
-msgstr "lempira honduraska"
+msgid "Lempira"
+msgstr "lempira"
 
 #: src/db/DB_Table_Currencyformats_V1.h:174
-msgid "Hong Kong dollar"
+msgid "Hong Kong Dollar"
 msgstr "dolar hongkoński"
 
 #: src/db/DB_Table_Currencyformats_V1.h:175
-msgid "Hungarian forint"
-msgstr "forint węgierski"
+msgid "Forint"
+msgstr "forint"
+
+#: src/db/DB_Table_Currencyformats_V1.h:176
+msgid "Iceland Krona"
+msgstr "korona islandzka"
 
 #: src/db/DB_Table_Currencyformats_V1.h:177
-msgid "Indian rupee"
+msgid "Indian Rupee"
 msgstr "rupia indyjska"
 
 #: src/db/DB_Table_Currencyformats_V1.h:178
-msgid "Indonesian rupiah"
+msgid "Rupiah"
 msgstr "rupia indonezyjska"
 
 #: src/db/DB_Table_Currencyformats_V1.h:179
@@ -2406,332 +2381,888 @@ msgid "Special Drawing Rights"
 msgstr "specjalne prawa ciągnienia"
 
 #: src/db/DB_Table_Currencyformats_V1.h:180
-msgid "Iranian rial"
+msgid "Iranian Rial"
 msgstr "rial irański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:181
-msgid "Iraqi dinar"
+msgid "Iraqi Dinar"
 msgstr "dinar iracki"
 
 #: src/db/DB_Table_Currencyformats_V1.h:182
-msgid "Israeli new shekel"
+msgid "New Israeli Sheqel"
 msgstr "nowy szekel izraelski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:183
-msgid "Jamaican dollar"
+msgid "Jamaican Dollar"
 msgstr "dolar jamajski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:184
-msgid "Japanese yen"
-msgstr "jen japoński"
+msgid "Yen"
+msgstr "jen"
 
 #: src/db/DB_Table_Currencyformats_V1.h:185
-msgid "Jordanian dinar"
+msgid "Jordanian Dinar"
 msgstr "dinar jordański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:186
-msgid "Kazakhstani tenge"
-msgstr "tenge kazachski"
+msgid "Tenge"
+msgstr "tenge"
 
 #: src/db/DB_Table_Currencyformats_V1.h:187
-msgid "Kenyan shilling"
+msgid "Kenyan Shilling"
 msgstr "szyling kenijski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:188
-msgid "North Korean won"
+msgid "North Korean Won"
 msgstr "won północnokoreański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:189
-msgid "South Korean won"
+msgid "Won"
 msgstr "won południowokoreański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:190
-msgid "Kuwaiti dinar"
+msgid "Kuwaiti Dinar"
 msgstr "dinar kuwejcki"
 
 #: src/db/DB_Table_Currencyformats_V1.h:191
-msgid "Kyrgyzstani som"
-msgstr "som kirgiski"
+msgid "Som"
+msgstr "som"
 
 #: src/db/DB_Table_Currencyformats_V1.h:192
-msgid "Lao kip"
+msgid "Lao Kip"
 msgstr "kip laotański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:193
-msgid "Latvian lats"
-msgstr "łat łotewski"
+msgid "Latvian Lats (before 2014-01)"
+msgstr "łat łotewski (do 2014-01)"
 
 #: src/db/DB_Table_Currencyformats_V1.h:194
-msgid "Lebanese lira"
+msgid "Lebanese Pound"
 msgstr "funt libański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:195
-msgid "Lesotho loti"
-msgstr "loti sotyjskie"
+msgid "Loti"
+msgstr "loti"
 
 #: src/db/DB_Table_Currencyformats_V1.h:196
-msgid "Liberian dollar"
+msgid "Liberian Dollar"
 msgstr "dolar liberyjski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:197
-msgid "Libyan dinar"
+msgid "Libyan Dinar"
 msgstr "dinar libijski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:198
-msgid "Lithuanian litas"
-msgstr "lit litewski"
+msgid "Lithuanian Litas (before 2014-12)"
+msgstr "lit litewski (do 2014-12)"
 
 #: src/db/DB_Table_Currencyformats_V1.h:199
-msgid "Macanese pataca"
-msgstr "pataca Makau"
+msgid "Pataca"
+msgstr "pataca"
 
 #: src/db/DB_Table_Currencyformats_V1.h:200
-msgid "Macedonian denar"
-msgstr "denar macedoński"
+msgid "Denar"
+msgstr "denar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:201
-msgid "Malagasy ariary"
+msgid "Malagasy Ariary"
 msgstr "ariary malgaski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:202
-msgid "Malawian kwacha"
+msgid "Malawi Kwacha"
 msgstr "kwacha malawijska"
 
 #: src/db/DB_Table_Currencyformats_V1.h:203
-msgid "Malaysian ringgit"
+msgid "Malaysian Ringgit"
 msgstr "ringgit malezyjski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:204
-msgid "Maldivian rufiyaa"
+msgid "Rufiyaa"
 msgstr "rupia malediwska"
 
 #: src/db/DB_Table_Currencyformats_V1.h:205
-msgid "Mauritanian ouguiya"
-msgstr "ugija mauretańska"
+msgid "Ouguiya (before 2017-12)"
+msgstr "ugija (do 2017-12)"
 
 #: src/db/DB_Table_Currencyformats_V1.h:206
-msgid "Mauritian rupee"
+msgid "Mauritius Rupee"
 msgstr "rupia maurytyjska"
 
 #: src/db/DB_Table_Currencyformats_V1.h:207
-msgid "Mexican peso"
+msgid "Mexican Peso"
 msgstr "peso meksykańskie"
 
 #: src/db/DB_Table_Currencyformats_V1.h:208
-msgid "Moldovan leu"
+msgid "Moldovan Leu"
 msgstr "lej mołdawski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:209
-msgid "Mongolian tugrik"
-msgstr "tugrik mongolski"
+msgid "Tugrik"
+msgstr "tugrik"
 
 #: src/db/DB_Table_Currencyformats_V1.h:210
-msgid "Moroccan dirham"
+msgid "Moroccan Dirham"
 msgstr "dirham marokański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:211
-msgid "Myanma kyat"
-msgstr "kiat mianmański"
+msgid "Kyat"
+msgstr "kiat"
 
 #: src/db/DB_Table_Currencyformats_V1.h:212
-msgid "Namibian dollar"
+msgid "Namibia Dollar"
 msgstr "dolar namibijski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:213
-msgid "Nepalese rupee"
+msgid "Nepalese Rupee"
 msgstr "rupia nepalska"
 
 #: src/db/DB_Table_Currencyformats_V1.h:214
-msgid "Netherlands Antillean gulden"
+msgid "Netherlands Antillean Guilder"
 msgstr "gulden antylski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:215
-msgid "New Zealand dollar"
+msgid "New Zealand Dollar"
 msgstr "dolar nowozelandzki"
 
+#: src/db/DB_Table_Currencyformats_V1.h:216
+msgid "Cordoba Oro"
+msgstr "córdoba"
+
 #: src/db/DB_Table_Currencyformats_V1.h:217
-msgid "Nigerian naira"
-msgstr "naira nigeryjska"
+msgid "Naira"
+msgstr "naira"
 
 #: src/db/DB_Table_Currencyformats_V1.h:218
-msgid "Norwegian krone"
+msgid "Norwegian Krone"
 msgstr "korona norweska"
 
 #: src/db/DB_Table_Currencyformats_V1.h:219
-msgid "Omani rial"
+msgid "Rial Omani"
 msgstr "rial omański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:220
-msgid "Pakistani rupee"
+msgid "Pakistan Rupee"
 msgstr "rupia pakistańska"
 
 #: src/db/DB_Table_Currencyformats_V1.h:221
-msgid "Panamanian balboa"
-msgstr "balboa panamska"
+msgid "Balboa"
+msgstr "balboa"
 
 #: src/db/DB_Table_Currencyformats_V1.h:222
-msgid "Papua New Guinean kina"
-msgstr "kina papuaska"
+msgid "Kina"
+msgstr "kina"
 
 #: src/db/DB_Table_Currencyformats_V1.h:223
-msgid "Paraguayan guarani"
-msgstr "guaraní paragwajski"
+msgid "Guarani"
+msgstr "guaraní"
 
 #: src/db/DB_Table_Currencyformats_V1.h:224
-msgid "Peruvian nuevo sol"
-msgstr "sol peruwiański"
+msgid "Sol"
+msgstr "sol"
 
 #: src/db/DB_Table_Currencyformats_V1.h:225
-msgid "Philippine peso"
+msgid "Philippine Piso"
 msgstr "peso filipińskie"
 
 #: src/db/DB_Table_Currencyformats_V1.h:226
-msgid "Polish zloty"
-msgstr "złoty polski"
+msgid "Zloty"
+msgstr "złoty"
 
 #: src/db/DB_Table_Currencyformats_V1.h:227
-msgid "Qatari riyal"
+msgid "Qatari Rial"
 msgstr "rial katarski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:228
-msgid "Romanian leu"
+msgid "Romanian Leu"
 msgstr "lej rumuński"
 
 #: src/db/DB_Table_Currencyformats_V1.h:229
-msgid "Rwandan franc"
+msgid "Rwanda Franc"
 msgstr "frank rwandyjski"
 
+#: src/db/DB_Table_Currencyformats_V1.h:230
+msgid "Dobra (before 2017-12)"
+msgstr "dobra (do 2017-12)"
+
 #: src/db/DB_Table_Currencyformats_V1.h:231
-msgid "Saudi riyal"
+msgid "Saudi Riyal"
 msgstr "rial saudyjski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:232
-msgid "Serbian dinar"
+msgid "Serbian Dinar"
 msgstr "dinar serbski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:233
-msgid "Seychellois rupee"
+msgid "Seychelles Rupee"
 msgstr "rupia seszelska"
 
 #: src/db/DB_Table_Currencyformats_V1.h:234
-msgid "Sierra Leonean leone"
-msgstr "leone sierraleoński"
+msgid "Leone"
+msgstr "leone"
 
 #: src/db/DB_Table_Currencyformats_V1.h:235
-msgid "Singapore dollar"
+msgid "Singapore Dollar"
 msgstr "dolar singapurski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:236
-msgid "Solomon Islands dollar"
+msgid "Solomon Islands Dollar"
 msgstr "dolar Wysp Salomona"
 
 #: src/db/DB_Table_Currencyformats_V1.h:237
-msgid "Somali shilling"
+msgid "Somali Shilling"
 msgstr "szyling somalijski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:238
-msgid "South African rand"
-msgstr "rand południowoafrykański"
+msgid "Rand"
+msgstr "rand"
 
 #: src/db/DB_Table_Currencyformats_V1.h:239
-msgid "Sri Lankan rupee"
+msgid "Sri Lanka Rupee"
 msgstr "rupia lankijska"
 
 #: src/db/DB_Table_Currencyformats_V1.h:240
-msgid "Saint Helena pound"
+msgid "Saint Helena Pound"
 msgstr "funt Świętej Heleny"
 
 #: src/db/DB_Table_Currencyformats_V1.h:241
-msgid "Sudanese pound"
+msgid "Sudanese Pound"
 msgstr "funt sudański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:242
-msgid "Surinamese dollar"
+msgid "Surinam Dollar"
 msgstr "dolar surinamski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:243
-msgid "Swazi lilangeni"
-msgstr "lilangeni Swazilandu"
+msgid "Lilangeni"
+msgstr "lilangeni"
 
 #: src/db/DB_Table_Currencyformats_V1.h:244
-msgid "Swedish krona"
+msgid "Swedish Krona"
 msgstr "korona szwedzka"
 
 #: src/db/DB_Table_Currencyformats_V1.h:245
-msgid "Swiss franc"
+msgid "Swiss Franc"
 msgstr "frank szwajcarski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:246
-msgid "Syrian pound"
+msgid "Syrian Pound"
 msgstr "funt syryjski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:247
-msgid "New Taiwan dollar"
+msgid "New Taiwan Dollar"
 msgstr "dolar tajwański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:248
-msgid "Tajikistani somoni"
-msgstr "somoni tadżycki"
+msgid "Somoni"
+msgstr "somoni"
 
 #: src/db/DB_Table_Currencyformats_V1.h:249
-msgid "Tanzanian shilling"
+msgid "Tanzanian Shilling"
 msgstr "szyling tanzański"
 
 #: src/db/DB_Table_Currencyformats_V1.h:250
-msgid "Thai baht"
-msgstr "bat tajski"
+msgid "Baht"
+msgstr "bat"
 
 #: src/db/DB_Table_Currencyformats_V1.h:251
-msgid "Trinidad and Tobago dollar"
+msgid "Trinidad and Tobago Dollar"
 msgstr "dolar Trynidadu i Tobago"
 
 #: src/db/DB_Table_Currencyformats_V1.h:252
-msgid "Tunisian dinar"
+msgid "Tunisian Dinar"
 msgstr "dinar tunezyjski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:253
-msgid "Turkish lira"
+msgid "Turkish Lira"
 msgstr "lira turecka"
 
 #: src/db/DB_Table_Currencyformats_V1.h:254
-msgid "Turkmen manat"
+msgid "Turkmenistan New Manat"
 msgstr "manat turkmeński"
 
 #: src/db/DB_Table_Currencyformats_V1.h:255
-msgid "Ugandan shilling"
+msgid "Uganda Shilling"
 msgstr "szyling ugandyjski"
 
 #: src/db/DB_Table_Currencyformats_V1.h:256
-msgid "UAE dirham"
+msgid "UAE Dirham"
 msgstr "dirham ZEA"
 
 #: src/db/DB_Table_Currencyformats_V1.h:257
-msgid "Uruguayan peso"
+msgid "Peso Uruguayo"
 msgstr "peso urugwajskie"
 
 #: src/db/DB_Table_Currencyformats_V1.h:258
-msgid "Uzbekistani som"
+msgid "Uzbekistan Sum"
 msgstr "sum uzbecki"
 
 #: src/db/DB_Table_Currencyformats_V1.h:259
-msgid "Vanuatu vatu"
-msgstr "vatu vanuatuańskie"
+msgid "Vatu"
+msgstr "vatu"
 
 #: src/db/DB_Table_Currencyformats_V1.h:260
-msgid "Vietnamese dong"
-msgstr "đồng wietnamski"
+msgid "Dong"
+msgstr "đồng"
 
 #: src/db/DB_Table_Currencyformats_V1.h:261
-msgid "Samoan tala"
-msgstr "tala samoańska"
+msgid "Tala"
+msgstr "tala"
 
 #: src/db/DB_Table_Currencyformats_V1.h:262
-msgid "Yemeni rial"
+msgid "Yemeni Rial"
 msgstr "rial jemeński"
+
+#: src/db/DB_Table_Currencyformats_V1.h:263
+msgid "Bolívar"
+msgstr "boliwar"
 
 #: src/db/DB_Table_Currencyformats_V1.h:264
 msgid "Bitcoin"
+msgstr "bitcoin"
+
+#: src/db/DB_Table_Currencyformats_V1.h:265
+msgid "Andorran Peseta (before 2003-07)"
+msgstr "peseta andorska (do 2003-07)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:266
+msgid "Afghani (before 2003-01)"
+msgstr "afgani (do 2003-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:267
+msgid "Old Lek (before 1989-12)"
+msgstr "lek (do 1989-12)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:268
+msgid "Kwanza (before 1991-03)"
+msgstr "kwanza (do 1991-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:269
+msgid "New Kwanza (before 2000-02)"
+msgstr "kwanza (do 2000-02)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:270
+msgid "Kwanza Reajustado (before 2000-02)"
+msgstr "kwanza (do 2000-02)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:271
+msgid "Austral (before 1992-01)"
+msgstr "austral (do 1992-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:272
+msgid "Peso Argentino (before 1985-07)"
+msgstr "peso argentyńskie (do 1985-07)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:273
+msgid "Peso (1989 to 1990)"
+msgstr "peso argentyńskie (1989 do 1990)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:274
+msgid "Schilling (before 2002-03)"
+msgstr "szyling austriacki (do 2002-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:275
+msgid "Azerbaijan Manat (before 2005-10)"
+msgstr "manat azerbejdżański (do 2005-10)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:276
+msgid "Azerbaijanian Manat (before 2005-12)"
+msgstr "manat azerbejdżański (do 2005-12)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:277
+msgid "Dinar (before 1998-07)"
+msgstr "dinar bośniacki (do 1998-07)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:278
+msgid "Convertible Franc (before 1990-03)"
+msgstr "frank belgijski (do 1990-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:279
+msgid "Belgian Franc (before 2002-03)"
+msgstr "frank belgijski (do 2002-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:280
+msgid "Financial Franc (before 1990-03)"
+msgstr "frank belgijski finansowy (do 1990-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:281
+msgid "Lev A/52 (1989 to 1990)"
+msgstr "lew A/52 (1989 do 1990)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:282
+msgid "Lev A/62 (1989 to 1990)"
+msgstr "lew A/62 (1989 do 1990)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:283
+msgid "Lev (before 2003-11)"
+msgstr "lew (do 2003-11)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:284
+msgid "Peso boliviano (before 1987-02)"
+msgstr "peso boliwijskie (do 1987-02)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:285
+msgid "Mvdol"
 msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:286
+msgid "Cruzeiro (before 1986-03)"
+msgstr "cruzeiro (do 1986-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:287
+msgid "Cruzado (before 1989-02)"
+msgstr "cruzeiro (do 1989-02)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:288
+msgid "Cruzeiro (before 1993-03)"
+msgstr "cruzeiro (do 1993-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:289
+msgid "New Cruzado (before 1990-03)"
+msgstr "cruzeiro (do 1990-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:290
+msgid "Cruzeiro Real (before 1994-07)"
+msgstr "cruzeiro real (do 1994-07)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:291
+msgid "Kyat (before 1990-02)"
+msgstr "kiat (do 1990-02)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:292
+msgid "Belarusian Ruble (before 2001-01)"
+msgstr "rubel białoruski (do 2001-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:293
+msgid "Belarusian Ruble"
+msgstr "rubel białoruski"
+
+#: src/db/DB_Table_Currencyformats_V1.h:294
+msgid "WIR Franc (for electronic) (before 2004-11)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:295
+msgid "WIR Euro"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:296
+msgid "WIR Franc"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:297
+msgid "Unidad de Fomento"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:298
+msgid "Unidad de Valor Real"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:299
+msgid "Serbian Dinar (before 2006-10)"
+msgstr "dinar serbski (do 2006-10)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:300
+msgid "Krona A/53 (1989 to 1990)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:301
+msgid "Koruna (before 1993-03)"
+msgstr "korona czechosłowacka (do 1993-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:302
+msgid "Peso Convertible"
+msgstr "peso kubańskie wymienialne"
+
+#: src/db/DB_Table_Currencyformats_V1.h:303
+msgid "Cuban Peso"
+msgstr "peso kubańskie"
+
+#: src/db/DB_Table_Currencyformats_V1.h:304
+msgid "Cyprus Pound (before 2008-01)"
+msgstr "funt cypryjski (do 2008-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:305
+msgid "Mark der DDR (1990-07 to 1990-09)"
+msgstr "marka NRD (1990-07 do 1990-09)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:306
+msgid "Deutsche Mark (before 2002-03)"
+msgstr "marka niemiecka (do 2002-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:307
+msgid "Sucre (before 2000-09)"
+msgstr "sucre (do 2000-09)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:308
+msgid "Unidad de Valor Constante (UVC) (before 2000-09)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:309
+msgid "Kroon (before 2011-01)"
+msgstr "korona estońska (do 2011-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:310
+msgid "Spanish Peseta (1978 to 1981)"
+msgstr "peseta hiszpańska (1978 do 1981)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:311
+msgid "A Account (convertible Peseta Account) (before 1994-12)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:312
+msgid "Spanish Peseta (before 2002-03)"
+msgstr "peseta hiszpańska (do 2002-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:313
+msgid "Markka (before 2002-03)"
+msgstr "marka fińska (do 2002-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:314
+msgid "French Franc (before 1999-01)"
+msgstr "frank francuski (do 1999-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:315
+msgid "Georgian Coupon (before 1995-10)"
+msgstr "kupony lari (do 1995-10)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:316
+msgid "Cedi (before 2008-01)"
+msgstr "cedi ghańskie (do 2008-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:317
+msgid "Ghana Cedi (before 2007-06)"
+msgstr "cedi ghańskie (do 2007-06)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:318
+msgid "Syli (before 1989-12)"
+msgstr "syli (do 1989-12)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:319
+msgid "Syli (before 1986-02)"
+msgstr "syli (do 1986-02)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:320
+msgid "Ekwele (before 1986-06)"
+msgstr "ekwele (do 1986-06)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:321
+msgid "Drachma (before 2002-03)"
+msgstr "drachma (do 2002-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:322
+msgid "Guinea Escudo (1978 to 1981)"
+msgstr "escudo gwinejskie (1978 do 1981)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:323
+msgid "Guinea-Bissau Peso (before 1997-05)"
+msgstr "peso gwinejskie (do 1997-05)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:324
+msgid "Croatian Dinar (before 1995-01)"
+msgstr "dinar chorwacki (do 1995-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:325
+msgid "Irish Pound (before 2002-03)"
+msgstr "funt irlandzki (do 2002-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:326
+msgid "Pound (1978 to 1981)"
+msgstr "lira izraelska (1978 do 1981)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:327
+msgid "Old Shekel (1989 to 1990)"
+msgstr "szekel (1989 do 1990)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:328
+msgid "Old Krona (1989 to 1990)"
+msgstr "korona islandzka (1989 do 1990)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:329
+msgid "Italian Lira (before 2002-03)"
+msgstr "lir włoski (do 2002-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:330
+msgid "Pathet Lao Kip (before 1979-12)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:331
+msgid "Loti (before 1985-05)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:332
+msgid "Talonas (before 1993-07)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:333
+msgid "Luxembourg Convertible Franc (before 1990-03)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:334
+msgid "Luxembourg Franc (before 2002-03)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:335
+msgid "Luxembourg Financial Franc (before 1990-03)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:336
+msgid "Latvian Ruble (before 1994-12)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:337
+msgid "Malagasy Franc (before 2004-12)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:338
+msgid "Mali Franc (before 1984-11)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:339
+msgid "Ouguiya"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:340
+msgid "Maltese Lira (before 2008-01)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:341
+msgid "Maltese Pound (before 1983-06)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:342
+msgid "Maldive Rupee (before 1989-12)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:343
+msgid "Mexican Peso (before 1993-01)"
+msgstr "peso meksykańskie (do 1993-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:344
+msgid "Mexican Unidad de Inversion (UDI)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:345
+msgid "Mozambique Escudo (1978 to 1981)"
+msgstr "escudo mozambickie (1978 do 1981)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:346
+msgid "Mozambique Metical (before 2006-06)"
+msgstr "metical (do 2006-06)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:347
+msgid "Mozambique Metical"
+msgstr "metical"
+
+#: src/db/DB_Table_Currencyformats_V1.h:348
+msgid "Cordoba (before 1990-10)"
+msgstr "córdoba (do 1990-10)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:349
+msgid "Netherlands Guilder (before 2002-03)"
+msgstr "gulden holenderski (do 2002-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:350
+msgid "Sol (1989 to 1990)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:351
+msgid "Inti (before 1991-07)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:352
+msgid "Sol (before 1986-02)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:353
+msgid "Zloty (before 1997-01)"
+msgstr "złoty (do 1997-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:354
+msgid "Portuguese Escudo (before 2002-03)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:355
+msgid "Rhodesian Dollar (1978 to 1981)"
+msgstr "dolar rodezyjski (1978 do 1981)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:356
+msgid "Leu A/52 (1989 to 1990)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:357
+msgid "Old Leu (before 2005-06)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:358
+msgid "Russian Ruble (before 1994-07)"
+msgstr "rubel rosyjski (do 1994-07)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:359
+msgid "Sudanese Dinar (before 2007-07)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:360
+msgid "Sudanese Pound (before 1998-06)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:361
+msgid "Tolar (before 2007-01)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:362
+msgid "Slovak Koruna (before 2009-01)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:363
+msgid "Surinam Guilder (before 2003-12)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:364
+msgid "South Sudanese Pound"
+msgstr "funt południowosudański"
+
+#: src/db/DB_Table_Currencyformats_V1.h:365
+msgid "Dobra"
+msgstr "dobra"
+
+#: src/db/DB_Table_Currencyformats_V1.h:366
+msgid "Rouble (before 1990-12)"
+msgstr "rubel (do 1990-12)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:367
+msgid "El Salvador Colon"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:368
+msgid "Tajik Ruble (before 2001-04)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:369
+msgid "Turkmenistan Manat (before 2009-01)"
+msgstr "manat turkmeński (do 2009-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:370
+msgid "Pa’anga"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:371
+msgid "Timor Escudo (before 2002-11)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:372
+msgid "Old Turkish Lira (before 2005-12)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:373
+msgid "Karbovanet (before 1996-09)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:374
+msgid "Uganda Shilling (before 1987-05)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:375
+msgid "Old Shilling (1989 to 1990)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:376
+msgid "US Dollar (Next day)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:377
+msgid "US Dollar (Same day) (before 2014-03)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:378
+msgid "Uruguay Peso en Unidades Indexadas (URUIURUI)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:379
+msgid "Old Uruguay Peso (before 1989-12)"
+msgstr "peso urugwajskie (do 1989-12)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:380
+msgid "Uruguayan Peso (before 1993-03)"
+msgstr "peso urugwajskie (1993-03)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:381
+msgid "Bolivar (before 2008-01)"
+msgstr "boliwar (do 2008-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:382
+msgid "Old Dong (1989-1990)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:383
+msgid "European Currency Unit (E.C.U) (before 1999-01)"
+msgstr "European Currency Unit (do 1999-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:384
+msgid "Gold-Franc (before 2006-10)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:385
+msgid "UIC-Franc (before 2013-11)"
+msgstr "frank UIC (do 2013-11)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:386
+msgid "RINET Funds Code (before 1999-11)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:387
+msgid "Yemeni Dinar (before 1991-09)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:388
+msgid "New Yugoslavian Dinar (before 1990-01)"
+msgstr "dinar jugosłowiański (do 1990-01)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:389
+msgid "New Dinar (before 2003-07)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:390
+msgid "Yugoslavian Dinar (before 1995-11)"
+msgstr "dinar jugosłowiański (do 1995-11)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:391
+msgid "Financial Rand (before 1995-03)"
+msgstr ""
+
+#: src/db/DB_Table_Currencyformats_V1.h:392
+msgid "Zambian Kwacha (before 2012-12)"
+msgstr "kwacha zambijska (do 2012-12)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:393
+msgid "Zambian Kwacha"
+msgstr "kwacha zambijska"
+
+#: src/db/DB_Table_Currencyformats_V1.h:394
+msgid "New Zaire (before 1999-06)"
+msgstr "zair (do 1999-06)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:395
+msgid "Zaire (before 1994-02)"
+msgstr "zair (do 1994-02)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:396
+msgid "Rhodesian Dollar (before 1989-12)"
+msgstr "dolar rodezyjski (do 1989-12)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:397
+msgid "Zimbabwe Dollar (before 2008-08)"
+msgstr "dolar Zimbabwe (do 2008-08)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:398
+msgid "Zimbabwe Dollar"
+msgstr "dolar Zimbabwe"
+
+#: src/db/DB_Table_Currencyformats_V1.h:399
+msgid "Zimbabwe Dollar (new) (before 2006-09)"
+msgstr "dolar Zimbabwe (do 2006-09)"
+
+#: src/db/DB_Table_Currencyformats_V1.h:400
+msgid "Zimbabwe Dollar (before 2009-06)"
+msgstr "dolar Zimbabwe (do 2009-06)"
 
 #: src/db/DB_Table_Subcategory_V1.h:111
 msgid "Telephone"
@@ -2972,15 +3503,23 @@ msgstr "Nie można otworzyc pliku"
 msgid "You must specify path to another database file"
 msgstr "Musisz określić ścieżkę do innego pliku"
 
-#: src/dbwrapper.cpp:66
+#: src/dbwrapper.cpp:88
+msgid "Possible reasons:"
+msgstr "Możliwe przyczyny:"
+
+#: src/dbwrapper.cpp:89
 msgid "An incorrect password given for an encrypted file"
 msgstr "Podano błędne hasło do zaszyfrowanej bazy danych"
 
-#: src/dbwrapper.cpp:68
+#: src/dbwrapper.cpp:90
 msgid "Attempt to open a file that is not a database file"
 msgstr "Próba otwarcia pliku nie będącego bazą danych"
 
-#: src/dbwrapper.cpp:75 src/mmframe.cpp:1920
+#: src/dbwrapper.cpp:91
+msgid "Corrupted database file"
+msgstr "Uszkodzony plik bazy danych"
+
+#: src/dbwrapper.cpp:98 src/mmframe.cpp:1890
 msgid "Opening MMEX Database - Error"
 msgstr "Błąd otwierania bazy danych MMEX"
 
@@ -3089,12 +3628,12 @@ msgstr "Szczegóły filtrowania: "
 msgid "General Reports Manager"
 msgstr "Menedżer raportów"
 
-#: src/general_report_manager.cpp:278 src/mmframe.cpp:761 src/mmframe.cpp:2471
+#: src/general_report_manager.cpp:278 src/mmframe.cpp:750 src/mmframe.cpp:2453
 msgid "Reports"
 msgstr "Raporty"
 
 #: src/general_report_manager.cpp:365 src/import_export/univcsvdialog.cpp:376
-#: src/mmframe.cpp:1288 src/mmframe.cpp:1484
+#: src/mmframe.cpp:1277 src/mmframe.cpp:1474
 msgid "&Import"
 msgstr "&Importuj"
 
@@ -3103,7 +3642,7 @@ msgid "Locate and load a report file."
 msgstr "Zlokalizuj i załaduj plik raportu."
 
 #: src/general_report_manager.cpp:369 src/import_export/univcsvdialog.cpp:383
-#: src/mmframe.cpp:1283 src/mmframe.cpp:1477
+#: src/mmframe.cpp:1272 src/mmframe.cpp:1467
 msgid "&Export"
 msgstr "&Eksportuj"
 
@@ -3176,7 +3715,7 @@ msgstr ""
 "\n"
 
 #: src/general_report_manager.cpp:656 src/import_export/qif_import_gui.cpp:733
-#: src/maincurrencydialog.cpp:436 src/mmframe.cpp:3067
+#: src/maincurrencydialog.cpp:446 src/mmframe.cpp:3055
 #: src/mmreportspanel.cpp:252 src/splittransactionsdialog.cpp:206
 #: src/stockspanel.cpp:815 src/stockspanel.cpp:816
 msgid "Error"
@@ -3215,7 +3754,7 @@ msgid "Enter the name for the report"
 msgstr "Wprowadź nazwę dla raportu"
 
 #: src/general_report_manager.cpp:779 src/general_report_manager.cpp:924
-#: src/mmframe.cpp:1251 src/mmframe.cpp:1664 src/mmframe.cpp:1833
+#: src/mmframe.cpp:1240 src/mmframe.cpp:1652 src/mmframe.cpp:1823
 msgid "General Report Manager"
 msgstr "Menedżer raportów"
 
@@ -3262,8 +3801,8 @@ msgid "Unable to open file."
 msgstr "Nie można otworzyc pliku."
 
 #: src/import_export/parsers.cpp:44 src/import_export/parsers.cpp:87
-#: src/import_export/univcsvdialog.cpp:828 src/mmframe.cpp:2274
-#: src/mmframe.cpp:2293
+#: src/import_export/univcsvdialog.cpp:828 src/mmframe.cpp:2256
+#: src/mmframe.cpp:2275
 msgid "Universal CSV Import"
 msgstr "Import uniwersalnego formatu CSV"
 
@@ -3326,8 +3865,8 @@ msgstr ""
 msgid "QIF"
 msgstr ""
 
-#: src/import_export/qif_export.cpp:128 src/mmframe.cpp:2834
-#: src/mmframe.cpp:2838 src/mmframe.cpp:2857 src/mmframe.cpp:2861
+#: src/import_export/qif_export.cpp:128 src/mmframe.cpp:2827
+#: src/mmframe.cpp:2831 src/mmframe.cpp:2850 src/mmframe.cpp:2854
 msgid "Accounts"
 msgstr "Konta"
 
@@ -3410,7 +3949,7 @@ msgstr "Najbliższe transakcje do wykonania %i"
 msgid "Number of transactions exported: %ld"
 msgstr "Ilość wyeksportowanych transakcji: %ld"
 
-#: src/import_export/qif_export.cpp:475 src/mmframe.cpp:1475
+#: src/import_export/qif_export.cpp:475 src/mmframe.cpp:1464
 msgid "Export to QIF"
 msgstr "Eksport do QIF"
 
@@ -3454,8 +3993,8 @@ msgstr "Dane"
 #: src/import_export/univcsvdialog.cpp:741
 #: src/import_export/univcsvdialog.cpp:744
 #: src/import_export/univcsvdialog.cpp:765
-#: src/import_export/univcsvdialog.cpp:772 src/transdialog.cpp:270
-#: src/webapp.cpp:428 src/webapp.cpp:436 src/webapp.cpp:444
+#: src/import_export/univcsvdialog.cpp:772 src/transdialog.cpp:287
+#: src/webapp.cpp:432 src/webapp.cpp:440 src/webapp.cpp:448
 msgid "Unknown"
 msgstr "Nieznane"
 
@@ -3898,115 +4437,127 @@ msgstr "Symbol"
 msgid "Last Rate"
 msgstr "Kurs waluty"
 
-#: src/maincurrencydialog.cpp:76 src/maincurrencydialog.cpp:330
-#: src/maincurrencydialog.cpp:615
+#: src/maincurrencydialog.cpp:76 src/maincurrencydialog.cpp:340
+#: src/maincurrencydialog.cpp:631
 msgid "Currency Dialog"
 msgstr "Ustawienia waluty"
 
-#: src/maincurrencydialog.cpp:152 src/maincurrencydialog.cpp:428
-#: src/maincurrencydialog.cpp:785 src/maincurrencydialog.cpp:794
+#: src/maincurrencydialog.cpp:154 src/maincurrencydialog.cpp:438
+#: src/maincurrencydialog.cpp:801 src/maincurrencydialog.cpp:810
 msgid "Online update currency rate"
 msgstr "Odśwież online kursy walut"
 
-#: src/maincurrencydialog.cpp:156
+#: src/maincurrencydialog.cpp:157
 msgid "Online Update"
 msgstr "Uaktualnienie online"
 
-#: src/maincurrencydialog.cpp:161
-msgid "Show all even the unused currencies"
-msgstr "Pokaż wszystkie, nawet nieużywane waluty"
+#: src/maincurrencydialog.cpp:160
+msgid "Hide Unused"
+msgstr "Ukryj nieużyw."
 
-#: src/maincurrencydialog.cpp:221
+#: src/maincurrencydialog.cpp:162
+msgid "Hide currencies unused in this database"
+msgstr "Ukryj waluty nie używane w tej bazie danych"
+
+#: src/maincurrencydialog.cpp:169
+msgid "Hide Historic"
+msgstr "Ukryj historyczne"
+
+#: src/maincurrencydialog.cpp:171
+msgid "Hide historical currencies"
+msgstr "Ukryj waluty historyczne"
+
+#: src/maincurrencydialog.cpp:231
 msgid "Currency History Options"
 msgstr "Opcje historii waluty"
 
-#: src/maincurrencydialog.cpp:245 src/stockdialog.cpp:328
+#: src/maincurrencydialog.cpp:255 src/stockdialog.cpp:328
 msgid "Diff."
 msgstr "Różnica"
 
-#: src/maincurrencydialog.cpp:261
+#: src/maincurrencydialog.cpp:271
 msgid "Specify the date of currency value"
 msgstr "Określ datę kursu waluty"
 
-#: src/maincurrencydialog.cpp:268
+#: src/maincurrencydialog.cpp:278
 msgid "Enter the currency value"
 msgstr "Wprowadź wartość kursu waluty"
 
-#: src/maincurrencydialog.cpp:277
+#: src/maincurrencydialog.cpp:287
 msgid "Download Currency Values history"
 msgstr "Pobierz historię kursów walut"
 
-#: src/maincurrencydialog.cpp:278
+#: src/maincurrencydialog.cpp:288
 msgid "&Add / Update "
 msgstr "&Dodaj / Uaktualnij"
 
-#: src/maincurrencydialog.cpp:280
+#: src/maincurrencydialog.cpp:290
 msgid "Add Currency Values to history"
 msgstr "Dodaj wartość walut do historii"
 
-#: src/maincurrencydialog.cpp:283
+#: src/maincurrencydialog.cpp:293
 msgid "Delete selected Currency Values"
 msgstr "Usuń wybrane wartości Waluty"
 
-#: src/maincurrencydialog.cpp:287
+#: src/maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies"
 msgstr "Usuń historię wartości walut dla nieużywanych walut"
 
-#: src/maincurrencydialog.cpp:329
+#: src/maincurrencydialog.cpp:339
 msgid "Do you really want to delete the selected Currency?"
 msgstr "Czy na pewno chcesz usunąć wybraną walutę?"
 
-#: src/maincurrencydialog.cpp:355
+#: src/maincurrencydialog.cpp:365
 msgid "Base Currency Selection"
 msgstr "Wybór waluty bazowej"
 
-#: src/maincurrencydialog.cpp:403
+#: src/maincurrencydialog.cpp:413
 #, c-format
 msgid "Currency History Options: %s "
 msgstr "Opcje historii walut: %s"
 
-#: src/maincurrencydialog.cpp:458
+#: src/maincurrencydialog.cpp:468
 msgid "Unable to update history currency rates. Please update them manually!"
 msgstr "Aktualizacja historii kursów walut niemożliwa. Uaktualnij je ręcznie!"
 
-#: src/maincurrencydialog.cpp:460 src/maincurrencydialog.cpp:598
-#: src/maincurrencydialog.cpp:611 src/maincurrencydialog.cpp:661
+#: src/maincurrencydialog.cpp:470 src/maincurrencydialog.cpp:614
+#: src/maincurrencydialog.cpp:627 src/maincurrencydialog.cpp:677
 msgid "Currency history error"
 msgstr "Błąd historii waluty"
 
-#: src/maincurrencydialog.cpp:487
+#: src/maincurrencydialog.cpp:497
 msgid "Set as Base Currency"
 msgstr "Ustaw jako walutę bazową"
 
-#: src/maincurrencydialog.cpp:488
+#: src/maincurrencydialog.cpp:498
 msgid "Online Update Currency Rate"
 msgstr "Uaktualnij kursy walut online"
 
-#: src/maincurrencydialog.cpp:597 src/maincurrencydialog.cpp:750
-#: src/maincurrencydialog.cpp:843
+#: src/maincurrencydialog.cpp:613 src/maincurrencydialog.cpp:766
+#: src/maincurrencydialog.cpp:859
 msgid "Could not find base currency symbol!"
 msgstr "Nie można ustalić symbolu podstawowej waluty"
 
-#: src/maincurrencydialog.cpp:609
+#: src/maincurrencydialog.cpp:625
 #, c-format
 msgid "Unable to download %s currency rates"
 msgstr "Nie można pobrać kursów waluty %s"
 
-#: src/maincurrencydialog.cpp:614
+#: src/maincurrencydialog.cpp:630
 msgid "Do you want to add also dates without any transaction?"
 msgstr "Chcesz zdodać także daty bez żadnej transakcji?"
 
-#: src/maincurrencydialog.cpp:659
+#: src/maincurrencydialog.cpp:675
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr ""
 "Nie można pobrać historii dla symbolu %s. Historia notowań niedostępna!"
 
-#: src/maincurrencydialog.cpp:800 src/stockspanel.cpp:825 src/util.cpp:326
+#: src/maincurrencydialog.cpp:816 src/stockspanel.cpp:825 src/util.cpp:326
 msgid "Nothing to update"
 msgstr "Brak elementów do aktualizacji"
 
-#: src/maincurrencydialog.cpp:804
+#: src/maincurrencydialog.cpp:820
 msgid "Currency rates have been updated"
 msgstr "Notowania walut zaktualizowane"
 
@@ -4129,14 +4680,14 @@ msgstr "Porada: Pamiętaj o wykonywaniu kopii swojego pliku .mmb."
 
 #: src/mmTips.h:26
 msgid ""
-"Tip: The .mmb file is not encrypted. That means anyone else having the "
-"proper know how can actually open the file and read the contents. So make "
-"sure that if you are storing any sensitive financial information it is "
+"Tip: The not encrypted .mmb file is insecure. That means anyone else having "
+"the proper know how can actually open the file and read the contents. So "
+"make sure that if you are storing any sensitive financial information it is "
 "properly guarded."
 msgstr ""
-"Porada: Plik .mmb nie jest zaszyfrowany. Znaczy to, że każdy, kto wie jak "
-"to zrobić, może odczytać jego zawartość. Upewnij się więc, że plik z Twoimi "
-"ważnymi danymi finansowymi jest bezpiecznie przechowany."
+"Porada: Niezaszyfrowany plik .mmb nie jest bezpieczny. Znaczy to, że każdy, "
+"kto wie jak to zrobić, może odczytać jego zawartość. Upewnij się więc, że "
+"plik z Twoimi poufnymi danymi finansowymi jest dobrze zabezpieczony."
 
 #: src/mmTips.h:27
 msgid ""
@@ -4193,8 +4744,8 @@ msgid ""
 "Organize Categories Dialog Tip: Pressing the h key will cycle through all "
 "categories starting with the letter h"
 msgstr ""
-"Porada dla okna Organizuj Kategorie: Wcisnięcie np. klawisza 'h' przenosi do "
-"kategorii o nazwie rozpoczynającej się na literę 'h'"
+"Porada dla okna Organizuj Kategorie: Wcisnięcie np. klawisza 'h' przenosi "
+"do kategorii o nazwie rozpoczynającej się na literę 'h'"
 
 #: src/mmTips.h:35
 msgid ""
@@ -4263,7 +4814,7 @@ msgstr "Bilans uzgodnionych:"
 msgid "Diff: "
 msgstr "Różnica: "
 
-#: src/mmcheckingpanel.cpp:484 src/mmframe.cpp:1837 src/transdialog.cpp:143
+#: src/mmcheckingpanel.cpp:484 src/mmframe.cpp:1830 src/transdialog.cpp:159
 msgid "New Transaction"
 msgstr "Nowa transakcja"
 
@@ -4426,8 +4977,8 @@ msgstr "Jesteś pewien że chcesz usunąć wszystkie \"%s\" pokazane transakcje?
 msgid "Do you really want to delete the selected transaction?"
 msgstr "Czy na pewno chcesz usunąć wybraną transakcję?"
 
-#: src/mmcheckingpanel.cpp:1673 src/transdialog.cpp:651
-#: src/transdialog.cpp:684
+#: src/mmcheckingpanel.cpp:1673 src/transdialog.cpp:665
+#: src/transdialog.cpp:698
 msgid "MMEX Transaction Check"
 msgstr "Sprawdzanie transakcji MMEX"
 
@@ -4472,7 +5023,7 @@ msgstr ""
 msgid "Can not load translation for selected language %s"
 msgstr "Nie można załadować tłumaczenia dla wybranego języka %s"
 
-#: src/mmex.cpp:77 src/mmframe.cpp:3112
+#: src/mmex.cpp:77 src/mmframe.cpp:3100
 msgid "Language change"
 msgstr "Zmiana języka"
 
@@ -4498,68 +5049,68 @@ msgstr ""
 msgid "MMEX Instance Check"
 msgstr "Sprawdzanie instancji MMEX"
 
-#: src/mmframe.cpp:261
+#: src/mmframe.cpp:264
 msgid "Navigation"
 msgstr "Drzewo nawigacji"
 
-#: src/mmframe.cpp:262
+#: src/mmframe.cpp:265
 msgid "Toolbar"
 msgstr "Pasek narzędzi"
 
-#: src/mmframe.cpp:454 src/mmframe.cpp:692 src/mmhomepagepanel.cpp:468
+#: src/mmframe.cpp:443 src/mmframe.cpp:681 src/mmhomepagepanel.cpp:468
 #: src/reports/summary.cpp:151
 msgid "Bank Accounts"
 msgstr "Konta bankowe"
 
-#: src/mmframe.cpp:455 src/mmframe.cpp:697 src/mmhomepagepanel.cpp:469
+#: src/mmframe.cpp:444 src/mmframe.cpp:686 src/mmhomepagepanel.cpp:469
 #: src/reports/summary.cpp:152
 msgid "Credit Card Accounts"
 msgstr "Konta kart kredytowych"
 
-#: src/mmframe.cpp:456 src/mmframe.cpp:712 src/mmhomepagepanel.cpp:471
+#: src/mmframe.cpp:445 src/mmframe.cpp:701 src/mmhomepagepanel.cpp:471
 #: src/reports/summary.cpp:154
 msgid "Term Accounts"
 msgstr "Konta terminowe"
 
-#: src/mmframe.cpp:457 src/mmframe.cpp:717
+#: src/mmframe.cpp:446 src/mmframe.cpp:706
 msgid "Stock Portfolios"
 msgstr "Konta inwestycyjne"
 
-#: src/mmframe.cpp:458 src/mmframe.cpp:702 src/mmhomepagepanel.cpp:467
+#: src/mmframe.cpp:447 src/mmframe.cpp:691 src/mmhomepagepanel.cpp:467
 msgid "Cash Accounts"
 msgstr "Konta gotówkowe"
 
-#: src/mmframe.cpp:459 src/mmframe.cpp:707 src/mmhomepagepanel.cpp:470
+#: src/mmframe.cpp:448 src/mmframe.cpp:696 src/mmhomepagepanel.cpp:470
 #: src/reports/summary.cpp:153
 msgid "Loan Accounts"
 msgstr "Konta pożyczek"
 
-#: src/mmframe.cpp:461 src/mmframe.cpp:732 src/mmhomepagepanel.cpp:472
+#: src/mmframe.cpp:450 src/mmframe.cpp:721 src/mmhomepagepanel.cpp:472
 #: src/reports/summary.cpp:155
 msgid "Crypto Wallets"
 msgstr "Portfele kryptowalut"
 
-#: src/mmframe.cpp:503
+#: src/mmframe.cpp:492
 msgid "Auto Repeat Transactions"
 msgstr "Transakcje auto-powtarzane"
 
-#: src/mmframe.cpp:687 src/mmframe.cpp:1825
+#: src/mmframe.cpp:676 src/mmframe.cpp:1818
 msgid "Home Page"
 msgstr "Strona główna"
 
-#: src/mmframe.cpp:722
+#: src/mmframe.cpp:711
 msgid "Share Accounts"
 msgstr "Konta giełdowe"
 
-#: src/mmframe.cpp:742 src/mmframe.cpp:1640
+#: src/mmframe.cpp:731 src/mmframe.cpp:1630
 msgid "Budget Setup"
 msgstr "Ustawienia budżetu"
 
-#: src/mmframe.cpp:769 src/mmframe.cpp:2516 src/mmhelppanel.cpp:70
+#: src/mmframe.cpp:758 src/mmframe.cpp:2509 src/mmhelppanel.cpp:70
 msgid "Help"
 msgstr "Pomoc"
 
-#: src/mmframe.cpp:1141
+#: src/mmframe.cpp:1130
 #, c-format
 msgid ""
 "Account: %s\n"
@@ -4572,453 +5123,469 @@ msgstr ""
 "Saldo w walucie %s: %s\n"
 "Saldo w walucie %s: %s"
 
-#: src/mmframe.cpp:1147
+#: src/mmframe.cpp:1136
 msgid "Foreign Currency Account Balance"
 msgstr "Saldo konta w walucie obcej"
 
-#: src/mmframe.cpp:1161
+#: src/mmframe.cpp:1150
 msgid "Do you really want to delete the account?"
 msgstr "Czy na pewno chcesz usunąć konto?"
 
-#: src/mmframe.cpp:1168 src/mmframe.cpp:2869
+#: src/mmframe.cpp:1157 src/mmframe.cpp:2862
 msgid "Confirm Account Deletion"
 msgstr "Potwierdź usunięcie konta"
 
-#: src/mmframe.cpp:1188
+#: src/mmframe.cpp:1177
 msgid "MMEX has been opened without an active database."
 msgstr "MMEX został otwarty bez aktywnej bazy danych."
 
-#: src/mmframe.cpp:1189
+#: src/mmframe.cpp:1178
 msgid "MMEX: Menu Popup Error"
 msgstr "MMEX: Błąd menu podręcznego"
 
-#: src/mmframe.cpp:1220
+#: src/mmframe.cpp:1209
 msgid "&New Transaction"
 msgstr "&Nowa transakcja"
 
-#: src/mmframe.cpp:1223 src/mmframe.cpp:1272 src/mmframe.cpp:1583
+#: src/mmframe.cpp:1212 src/mmframe.cpp:1261 src/mmframe.cpp:1573
 msgid "&Edit Account"
 msgstr "&Edytuj konto"
 
-#: src/mmframe.cpp:1224 src/mmframe.cpp:1587
+#: src/mmframe.cpp:1213 src/mmframe.cpp:1577
 msgid "&Reallocate Account"
 msgstr "Zmień typ konta"
 
-#: src/mmframe.cpp:1225 src/mmframe.cpp:1271 src/mmframe.cpp:1591
+#: src/mmframe.cpp:1214 src/mmframe.cpp:1260 src/mmframe.cpp:1581
 msgid "&Delete Account"
 msgstr "&Usuń konto"
 
-#: src/mmframe.cpp:1227
+#: src/mmframe.cpp:1216
 msgid "&Foreign Currency Balance"
 msgstr "Saldo w walucie obcej"
 
-#: src/mmframe.cpp:1228
+#: src/mmframe.cpp:1217
 msgid "&Launch Account Website"
 msgstr "&Otwórz stronę www konta"
 
-#: src/mmframe.cpp:1258 src/mmframe.cpp:1571
+#: src/mmframe.cpp:1247 src/mmframe.cpp:1561
 msgid "Hide/Show Report"
 msgstr "Ukryj/pokaż raport"
 
-#: src/mmframe.cpp:1270 src/mmframe.cpp:1579
+#: src/mmframe.cpp:1259 src/mmframe.cpp:1569
 msgid "New &Account"
 msgstr "Nowe konto"
 
-#: src/mmframe.cpp:1273
+#: src/mmframe.cpp:1262
 msgid "Account &List (Home)"
 msgstr "&Lista kont"
 
-#: src/mmframe.cpp:1280 src/mmframe.cpp:1285 src/mmframe.cpp:1473
-#: src/mmframe.cpp:1480
+#: src/mmframe.cpp:1269 src/mmframe.cpp:1274 src/mmframe.cpp:1462
+#: src/mmframe.cpp:1470
 msgid "&CSV Files..."
 msgstr "Pliki &CSV..."
 
-#: src/mmframe.cpp:1281 src/mmframe.cpp:1286 src/mmframe.cpp:1474
-#: src/mmframe.cpp:1481
+#: src/mmframe.cpp:1270 src/mmframe.cpp:1275 src/mmframe.cpp:1463
+#: src/mmframe.cpp:1471
 msgid "&XML Files..."
 msgstr "Pliki &XML..."
 
-#: src/mmframe.cpp:1282 src/mmframe.cpp:1287 src/mmframe.cpp:1475
-#: src/mmframe.cpp:1482
+#: src/mmframe.cpp:1271 src/mmframe.cpp:1276 src/mmframe.cpp:1464
+#: src/mmframe.cpp:1472
 msgid "&QIF Files..."
 msgstr "Pliki &QIF..."
 
-#: src/mmframe.cpp:1286 src/mmframe.cpp:1481
+#: src/mmframe.cpp:1275 src/mmframe.cpp:1471
 msgid "Import from XML (Excel format)"
 msgstr "Import z XML (format Excel)"
 
-#: src/mmframe.cpp:1297 src/optionsettingsview.cpp:61
+#: src/mmframe.cpp:1286 src/optionsettingsview.cpp:61
 msgid "Accounts Visible"
 msgstr "Widoczne konta"
 
-#: src/mmframe.cpp:1454
+#: src/mmframe.cpp:1443
 msgid "&New Database\tCtrl-N"
 msgstr "&Nowa baza danych\tCtrl-N"
 
-#: src/mmframe.cpp:1454 src/mmframe.cpp:1821 src/wizard_newdb.cpp:164
+#: src/mmframe.cpp:1443 src/mmframe.cpp:1814 src/wizard_newdb.cpp:164
 msgid "New Database"
 msgstr "Nowa baza danych"
 
-#: src/mmframe.cpp:1456
+#: src/mmframe.cpp:1445
 msgid "&Open Database\tCtrl-O"
 msgstr "&Otwórz bazę danych\tCtrl-O"
 
-#: src/mmframe.cpp:1456 src/mmframe.cpp:1822
+#: src/mmframe.cpp:1445 src/mmframe.cpp:1815
 msgid "Open Database"
 msgstr "Otwórz bazę danych"
 
-#: src/mmframe.cpp:1458
+#: src/mmframe.cpp:1447
 msgid "Save Database &As"
 msgstr "Z&apisz bazę danych jako"
 
-#: src/mmframe.cpp:1458
+#: src/mmframe.cpp:1447
 msgid "Save Database As"
 msgstr "Zapisz bazę danych jako"
 
-#: src/mmframe.cpp:1466
+#: src/mmframe.cpp:1455
 msgid "&Recent Files..."
 msgstr "Ostanio używane pliki..."
 
-#: src/mmframe.cpp:1467
+#: src/mmframe.cpp:1456
 msgid "&Clear Recent Files"
 msgstr "Wyczyść listę ostatnio używanych"
 
-#: src/mmframe.cpp:1473
+#: src/mmframe.cpp:1462
 msgid "Export to CSV"
 msgstr "Eksport do CSV"
 
-#: src/mmframe.cpp:1474
+#: src/mmframe.cpp:1463
 msgid "Export to XML"
 msgstr "Eksport do XML"
 
-#: src/mmframe.cpp:1476
+#: src/mmframe.cpp:1465
 msgid "&Report to HTML"
 msgstr "&Raport do HTML"
 
-#: src/mmframe.cpp:1476
+#: src/mmframe.cpp:1465
 msgid "Export to HTML"
 msgstr "Eksport do HTML"
 
-#: src/mmframe.cpp:1480
+#: src/mmframe.cpp:1466
+msgid "&Force WebApp sync"
+msgstr "Wymuś synchronizację WebApp"
+
+#: src/mmframe.cpp:1466
+msgid "Force sync of accounts, payees and categories to WebApp"
+msgstr "Wymuś synchronizację kont, beneficjentów i kategorii z WebApp"
+
+#: src/mmframe.cpp:1470
 msgid "Import from any CSV file"
 msgstr "Importuj z pliku CSV"
 
-#: src/mmframe.cpp:1482
+#: src/mmframe.cpp:1472
 msgid "Import from QIF"
 msgstr "Importuj z QIF"
 
-#: src/mmframe.cpp:1483
+#: src/mmframe.cpp:1473
 msgid "&WebApp..."
 msgstr "&WebApp..."
 
-#: src/mmframe.cpp:1483
+#: src/mmframe.cpp:1473
 msgid "Import from WebApp"
 msgstr "Importuj z WebApp"
 
-#: src/mmframe.cpp:1489 src/mmframe.cpp:1856
+#: src/mmframe.cpp:1479 src/mmframe.cpp:1849
 msgid "&Print..."
 msgstr "Drukuj..."
 
-#: src/mmframe.cpp:1489 src/mmframe.cpp:1856
+#: src/mmframe.cpp:1479 src/mmframe.cpp:1849
 msgid "Print current view"
 msgstr "Drukuj aktualny widok"
 
-#: src/mmframe.cpp:1496
+#: src/mmframe.cpp:1486
 msgid "E&xit\tAlt-X"
 msgstr "W&yjście\tAlt-X"
 
-#: src/mmframe.cpp:1496
+#: src/mmframe.cpp:1486
 msgid "Quit this program"
 msgstr "Wyjdź z programu"
 
-#: src/mmframe.cpp:1503
+#: src/mmframe.cpp:1493
 msgid "&Toolbar"
 msgstr "&Pasek narzędzi"
 
-#: src/mmframe.cpp:1503
+#: src/mmframe.cpp:1493
 msgid "Show/Hide the toolbar"
 msgstr "Pokaż/ukryj pasek narzędzi"
 
-#: src/mmframe.cpp:1505
+#: src/mmframe.cpp:1495
 msgid "&Navigation"
 msgstr "Drzewo &nawigacji"
 
-#: src/mmframe.cpp:1505
+#: src/mmframe.cpp:1495
 msgid "Show/Hide the Navigation tree control"
 msgstr "Pokaż/ukryj drzewo nawigacji"
 
-#: src/mmframe.cpp:1507
+#: src/mmframe.cpp:1497
 msgid "&Display Share Accounts"
 msgstr "&Pokaż udziały giełdowe"
 
-#: src/mmframe.cpp:1507
+#: src/mmframe.cpp:1497
 msgid "Show/Hide Share Accounts in the navigation tree"
 msgstr "Pokaż/ukryj konta akcji w drzewie nawigacji"
 
-#: src/mmframe.cpp:1510
+#: src/mmframe.cpp:1500
 msgid "Budgets: As &Financial Years"
 msgstr "Budżet: jako rok &finansowy"
 
-#: src/mmframe.cpp:1510
+#: src/mmframe.cpp:1500
 msgid "Display Budgets in Financial Year Format"
 msgstr "Wyświetlanie budżetu w ramach roku finansowego"
 
-#: src/mmframe.cpp:1512
+#: src/mmframe.cpp:1502
 msgid "Budgets: &Include Transfers in Totals"
 msgstr "Budżet: Uwzględnij przelewy w podsumowaniach"
 
-#: src/mmframe.cpp:1512
+#: src/mmframe.cpp:1502
 msgid "Include the transfer transactions in the Budget Totals"
 msgstr "Uwzględnij przelewy w podsumowaniach budżetu"
 
-#: src/mmframe.cpp:1514
+#: src/mmframe.cpp:1504
 msgid "Budget Setup: &Without Summaries"
 msgstr "Ustawienia budżetu: bez podsumowań"
 
-#: src/mmframe.cpp:1514
+#: src/mmframe.cpp:1504
 msgid "Display the Budget Setup without category summaries"
 msgstr "Wyświetla ustawienia budżetu bez podsumowań kategorii"
 
-#: src/mmframe.cpp:1516
+#: src/mmframe.cpp:1506
 msgid "Budget Category Report: with &Summaries"
 msgstr "Raport kategorii budżetu: z podsumowaniami"
 
-#: src/mmframe.cpp:1516
+#: src/mmframe.cpp:1506
 msgid "Include the category summaries in the Budget Category Summary"
 msgstr "Włącz szczegóły budżetu w raporcie podsumowania kategorii"
 
-#: src/mmframe.cpp:1518
+#: src/mmframe.cpp:1508
 msgid "Ignore F&uture Transactions"
 msgstr "Ignoruj przyszłe transakcje"
 
-#: src/mmframe.cpp:1518
+#: src/mmframe.cpp:1508
 msgid "Ignore Future transactions"
 msgstr "Ignoruj przyszłe transakcje"
 
-#: src/mmframe.cpp:1533 src/mmframe.cpp:1853
+#: src/mmframe.cpp:1523 src/mmframe.cpp:1846
 msgid "Toggle Fullscreen"
 msgstr "Tryb pełnoekranowy"
 
-#: src/mmframe.cpp:1533 src/mmframe.cpp:1853
+#: src/mmframe.cpp:1523 src/mmframe.cpp:1846
 msgid "Toggle Fullscreen\tF11"
 msgstr "Tryb pełnoekranowy\tF11"
 
-#: src/mmframe.cpp:1541
+#: src/mmframe.cpp:1531
 msgid "Switch Application Language"
 msgstr "Zmień język programu"
 
-#: src/mmframe.cpp:1542
+#: src/mmframe.cpp:1532
 msgid "Change language used for MMEX GUI"
 msgstr "Zmień język używany w GUI MMEX"
 
-#: src/mmframe.cpp:1548
+#: src/mmframe.cpp:1538
 msgid "system default"
 msgstr "domyślny systemowy"
 
-#: src/mmframe.cpp:1575
+#: src/mmframe.cpp:1565
 msgid "Account &List"
 msgstr "&Lista kont"
 
-#: src/mmframe.cpp:1575
+#: src/mmframe.cpp:1565
 msgid "Show Account List"
 msgstr "Pokaż listę kont"
 
-#: src/mmframe.cpp:1587
+#: src/mmframe.cpp:1577
 msgid "Change the account type of an account."
 msgstr "Zmień typ konta."
 
-#: src/mmframe.cpp:1591
+#: src/mmframe.cpp:1581
 msgid "Delete Account from database"
 msgstr "Usuń konto z bazy danych"
 
-#: src/mmframe.cpp:1605
+#: src/mmframe.cpp:1595
 msgid "Organize &Categories..."
 msgstr "Organizuj &kategorie..."
 
-#: src/mmframe.cpp:1610
+#: src/mmframe.cpp:1600
 msgid "Organize &Payees..."
 msgstr "Organizuj &beneficjentów..."
 
-#: src/mmframe.cpp:1610 src/mmframe.cpp:1828 src/payeedialog.cpp:74
+#: src/mmframe.cpp:1600 src/mmframe.cpp:1821 src/payeedialog.cpp:74
 msgid "Organize Payees"
 msgstr "Organizuj beneficjentów"
 
-#: src/mmframe.cpp:1615 src/mmframe.cpp:1829
+#: src/mmframe.cpp:1605 src/mmframe.cpp:1822
 msgid "Organize Currency"
 msgstr "Organizuj waluty"
 
-#: src/mmframe.cpp:1615
+#: src/mmframe.cpp:1605
 msgid "Organize Currency..."
 msgstr "Organizuj waluty..."
 
-#: src/mmframe.cpp:1620
+#: src/mmframe.cpp:1610
 msgid "&Categories..."
 msgstr "Kategorie..."
 
-#: src/mmframe.cpp:1624
+#: src/mmframe.cpp:1614
 msgid "&Payees..."
 msgstr "Beneficjenci..."
 
-#: src/mmframe.cpp:1625
+#: src/mmframe.cpp:1615
 msgid "Reassign all payees to another payee"
 msgstr "Przypisz wszystkich beneficjentów do innego beneficjenta"
 
-#: src/mmframe.cpp:1628
+#: src/mmframe.cpp:1618
 msgid "Relocation of..."
 msgstr "Przenoszenie..."
 
-#: src/mmframe.cpp:1629
+#: src/mmframe.cpp:1619
 msgid "Relocate Categories && Payees"
 msgstr "Przenieś kategorie i beneficjentów"
 
-#: src/mmframe.cpp:1640
+#: src/mmframe.cpp:1630
 msgid "&Budget Setup"
 msgstr "Edytor &budżetu"
 
-#: src/mmframe.cpp:1645
+#: src/mmframe.cpp:1635
 msgid "&Recurring Transactions"
 msgstr "T&ransakcje powtarzane"
 
-#: src/mmframe.cpp:1645
+#: src/mmframe.cpp:1635
 msgid "Bills && Deposits"
 msgstr "Wypłaty i wpłaty"
 
-#: src/mmframe.cpp:1650
+#: src/mmframe.cpp:1640
 msgid "&Assets"
 msgstr "&Aktywa"
 
-#: src/mmframe.cpp:1657
+#: src/mmframe.cpp:1645
 msgid "&Transaction Report Filter..."
 msgstr "Filtr &transakcji..."
 
-#: src/mmframe.cpp:1657 src/mmframe.cpp:1831
+#: src/mmframe.cpp:1645 src/mmframe.cpp:1826
 msgid "Transaction Report Filter"
 msgstr "Fitr raportu transakcji"
 
-#: src/mmframe.cpp:1664
+#: src/mmframe.cpp:1652
 msgid "&General Report Manager..."
 msgstr "Menedżer raportów..."
 
-#: src/mmframe.cpp:1671 src/mmframe.cpp:1835
+#: src/mmframe.cpp:1657
+msgid "&Custom Fields Manager..."
+msgstr "Menedżer pól własnych..."
+
+#: src/mmframe.cpp:1657 src/mmframe.cpp:1824
+msgid "Custom Fields Manager"
+msgstr "Menedżer pól własnych"
+
+#: src/mmframe.cpp:1664 src/mmframe.cpp:1828
 msgid "&Options..."
 msgstr "&Opcje..."
 
-#: src/mmframe.cpp:1671 src/mmframe.cpp:1835
+#: src/mmframe.cpp:1664 src/mmframe.cpp:1828
 msgid "Show the Options Dialog"
 msgstr "Pokaż dialog opcji"
 
-#: src/mmframe.cpp:1679
-msgid "Convert Encrypted &DB"
-msgstr "Odszyfruj"
+#: src/mmframe.cpp:1672
+msgid "Set &Password"
+msgstr "Ustaw hasło"
+
+#: src/mmframe.cpp:1673
+msgid "Encrypt database or change password for database file"
+msgstr "Zaszyfruj bazę danych lub zmień hasło pliku bazy danych"
+
+#: src/mmframe.cpp:1676
+msgid "Remove Password"
+msgstr "Usuń hasło"
+
+#: src/mmframe.cpp:1677
+msgid "Remove password and decrypt database file"
+msgstr "Usuń hasło i odszyfruj plik bazy danych"
 
 #: src/mmframe.cpp:1680
-msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr "Odszyfruj bazę danych i zapisz w nowym pliku"
-
-#: src/mmframe.cpp:1683
-msgid "Change Encrypted &Password"
-msgstr "Zmień hasło szyfrowania"
-
-#: src/mmframe.cpp:1684
-msgid "Change the password of an encrypted database"
-msgstr "Zmiana hasła do zaszyfrowanej bazy danych"
-
-#: src/mmframe.cpp:1687
 msgid "Optimize &Database"
 msgstr "Optymalizuj"
 
-#: src/mmframe.cpp:1688
+#: src/mmframe.cpp:1681
 msgid "Optimize database space and performance"
 msgstr "Optymalizuj bazę danych i wydajność"
 
-#: src/mmframe.cpp:1691
+#: src/mmframe.cpp:1684
 msgid "Database Debug"
 msgstr "Debugowanie"
 
-#: src/mmframe.cpp:1692
+#: src/mmframe.cpp:1685
 msgid "Generate database report or fix errors"
 msgstr "Generowanie raportu z bazy danych lub naprawa błędów"
 
-#: src/mmframe.cpp:1698
+#: src/mmframe.cpp:1691
 msgid "Database"
 msgstr "Baza danych"
 
-#: src/mmframe.cpp:1699
+#: src/mmframe.cpp:1692
 msgid "Database management"
 msgstr "Zarządznie plikiem bazy danych"
 
-#: src/mmframe.cpp:1706 src/mmframe.cpp:1840
+#: src/mmframe.cpp:1699 src/mmframe.cpp:1833
 msgid "&Help\tF1"
 msgstr "&Pomoc\tF1"
 
-#: src/mmframe.cpp:1706
+#: src/mmframe.cpp:1699
 msgid "Read the User Manual"
 msgstr "Przeczytaj 'Podręcznik użytkownika'"
 
-#: src/mmframe.cpp:1711
+#: src/mmframe.cpp:1704
 msgid "Website"
 msgstr "Strona domowa"
 
-#: src/mmframe.cpp:1712
+#: src/mmframe.cpp:1705
 msgid "Open the Money Manager EX website for latest news, updates etc"
 msgstr ""
 "Otwórz witrynę Money Manager EX aby odnaleźć nowości, uaktualnienia itp."
 
-#: src/mmframe.cpp:1715
+#: src/mmframe.cpp:1708
 msgid "Facebook"
 msgstr ""
 
-#: src/mmframe.cpp:1715
+#: src/mmframe.cpp:1708
 msgid "Visit us on Facebook"
 msgstr "Odwiedź nas na Facebook-u"
 
-#: src/mmframe.cpp:1718
+#: src/mmframe.cpp:1711
 msgid "Follow us on Twitter"
 msgstr "Śledź nas na Twitterze"
 
-#: src/mmframe.cpp:1718
+#: src/mmframe.cpp:1711
 msgid "Twitter"
 msgstr ""
 
-#: src/mmframe.cpp:1721
+#: src/mmframe.cpp:1714
 msgid "Watch free video materials about MMEX"
 msgstr "Obejrzyj darmowe materiały filmowe o MMEX"
 
-#: src/mmframe.cpp:1721
+#: src/mmframe.cpp:1714
 msgid "YouTube"
 msgstr ""
 
-#: src/mmframe.cpp:1724
+#: src/mmframe.cpp:1717
 msgid "Communicate online with MMEX team from your desktop or mobile device"
 msgstr ""
 "Skontaktuj się on-line z zespołem MMEX przez komputer lub urządzenie mobilne"
 
-#: src/mmframe.cpp:1724
+#: src/mmframe.cpp:1717
 msgid "Slack"
 msgstr ""
 
-#: src/mmframe.cpp:1727
+#: src/mmframe.cpp:1720
 msgid "Access open source code repository and track reported bug statuses"
 msgstr ""
 "Przeglądaj repozytorium kodu źródłowego i śledź statusy zgłoszonych błędów"
 
-#: src/mmframe.cpp:1727
+#: src/mmframe.cpp:1720
 msgid "GitHub"
 msgstr ""
 
-#: src/mmframe.cpp:1730
+#: src/mmframe.cpp:1723
 msgid "Read and update wiki pages"
 msgstr "Przeczytaj i uzupełnij strony wiki"
 
-#: src/mmframe.cpp:1730
+#: src/mmframe.cpp:1723
 msgid "Wiki pages"
 msgstr "Strony wiki"
 
-#: src/mmframe.cpp:1733
+#: src/mmframe.cpp:1726
 msgid "Forum"
 msgstr ""
 
-#: src/mmframe.cpp:1734
+#: src/mmframe.cpp:1727
 msgid ""
 "Visit the MMEX forum to see existing user comments or report new issues "
 "with the software"
@@ -5026,215 +5593,205 @@ msgstr ""
 "Odwiedź forum MMEX aby poznać komentarze użytkowników, zgłosić błędy lub "
 "zaproponować ulepszenia."
 
-#: src/mmframe.cpp:1737
+#: src/mmframe.cpp:1730
 msgid "Google Play"
 msgstr ""
 
-#: src/mmframe.cpp:1738
+#: src/mmframe.cpp:1731
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
 msgstr ""
 "Pobierz darmową wersję na Androida i korzystaj z MMEX na swoim smartfonie "
 "lub tablecie"
 
-#: src/mmframe.cpp:1741
+#: src/mmframe.cpp:1734
 msgid "&Newsletter"
 msgstr "Powiadomienia o &nowościach"
 
-#: src/mmframe.cpp:1742
+#: src/mmframe.cpp:1735
 msgid "Subscribe to e-mail newsletter or view existing announcements"
 msgstr "Zapisz się do listy mailingowej z powiadomieniami lub zobacz aktualne"
 
-#: src/mmframe.cpp:1745
+#: src/mmframe.cpp:1738
 msgid "Connect RSS web feed to news aggregator"
 msgstr "Otwórz kanał RSS w czytniku wiadomości"
 
-#: src/mmframe.cpp:1745
+#: src/mmframe.cpp:1738
 msgid "RSS Feed"
 msgstr "Kanał RSS"
 
-#: src/mmframe.cpp:1748
+#: src/mmframe.cpp:1741
 msgid "Donate via PayPal"
 msgstr "Wspomóż przez PayPal"
 
-#: src/mmframe.cpp:1749
+#: src/mmframe.cpp:1742
 msgid "Donate the team to support infrastructure etc"
 msgstr "Wspomóż zespół na potrzeby infrastruktury itp."
 
-#: src/mmframe.cpp:1752
+#: src/mmframe.cpp:1745
 msgid "Buy us a Coffee"
 msgstr "Postaw nam kawę"
 
-#: src/mmframe.cpp:1753
+#: src/mmframe.cpp:1746
 msgid "Buy key developer a coffee"
 msgstr "Postaw kawę programiście"
 
-#: src/mmframe.cpp:1757
+#: src/mmframe.cpp:1750
 msgid "Community"
 msgstr "Społeczność"
 
-#: src/mmframe.cpp:1758
+#: src/mmframe.cpp:1751
 msgid "Stay in touch with MMEX community"
 msgstr "Pozostań w kontakcie ze społecznością MMEX"
 
-#: src/mmframe.cpp:1778
+#: src/mmframe.cpp:1771
 msgid "Report a Bug"
 msgstr "Zgłoś błąd"
 
-#: src/mmframe.cpp:1779
+#: src/mmframe.cpp:1772
 msgid "Report an error in application to the developers"
 msgstr "Zgłoś programistom błąd w programie"
 
-#: src/mmframe.cpp:1784
+#: src/mmframe.cpp:1777
 msgid "Reopen &Start-up Dialog"
 msgstr "Otwórz ekran startowy"
 
-#: src/mmframe.cpp:1784
+#: src/mmframe.cpp:1777
 msgid "Show application start-up dialog"
 msgstr "Pokaż ekran startowy aplikacji"
 
-#: src/mmframe.cpp:1789
+#: src/mmframe.cpp:1782
 msgid "Check for &Updates"
 msgstr "Sprawdź &uaktualnienia"
 
-#: src/mmframe.cpp:1789
+#: src/mmframe.cpp:1782
 msgid "Check if a new MMEX version is avaiable"
 msgstr "Sprawdź czy jest dostępna nowa wersja MMEX"
 
-#: src/mmframe.cpp:1794 src/mmframe.cpp:1839
+#: src/mmframe.cpp:1787 src/mmframe.cpp:1832
 msgid "&About..."
 msgstr "O programie..."
 
-#: src/mmframe.cpp:1794 src/mmframe.cpp:1839
+#: src/mmframe.cpp:1787 src/mmframe.cpp:1832
 msgid "Show about dialog"
 msgstr "Pokaż informacje o programie"
 
-#: src/mmframe.cpp:1799
+#: src/mmframe.cpp:1792
 msgid "&File"
 msgstr "&Plik"
 
-#: src/mmframe.cpp:1800
+#: src/mmframe.cpp:1793
 msgid "&Accounts"
 msgstr "&Konta"
 
-#: src/mmframe.cpp:1801
+#: src/mmframe.cpp:1794
 msgid "&Tools"
 msgstr "&Narzędzia"
 
-#: src/mmframe.cpp:1802
+#: src/mmframe.cpp:1795
 msgid "&View"
 msgstr "&Wygląd"
 
-#: src/mmframe.cpp:1803
+#: src/mmframe.cpp:1796
 msgid "&Help"
 msgstr "&Pomoc"
 
-#: src/mmframe.cpp:1821 src/mmframe.cpp:1837
+#: src/mmframe.cpp:1814 src/mmframe.cpp:1830
 msgid "New"
 msgstr "Nowy"
 
-#: src/mmframe.cpp:1825
+#: src/mmframe.cpp:1818
 msgid "Show Home Page"
 msgstr "Pokaż stronę główną"
 
-#: src/mmframe.cpp:1827
+#: src/mmframe.cpp:1820
 msgid "Show Organize Categories Dialog"
 msgstr "Pokaż okno Organizuj Kategorie"
 
-#: src/mmframe.cpp:1828
+#: src/mmframe.cpp:1821
 msgid "Show Organize Payees Dialog"
 msgstr "Pokaż okno Organizuj Beneficjentów"
 
-#: src/mmframe.cpp:1829
+#: src/mmframe.cpp:1822
 msgid "Show Organize Currency Dialog"
 msgstr "Pokaż okno Organizuj waluty"
 
-#: src/mmframe.cpp:1840
+#: src/mmframe.cpp:1833
 msgid "Show the Help file"
 msgstr "Pokaż plik pomocy"
 
-#: src/mmframe.cpp:1845
+#: src/mmframe.cpp:1838
 msgid "Register/View Release &Notifications"
 msgstr "Rejestracja/Zobacz powiadomienia o wydaniach"
 
-#: src/mmframe.cpp:1850
+#: src/mmframe.cpp:1843
 msgid "News"
 msgstr "Nowości"
 
-#: src/mmframe.cpp:1917
-msgid "No File opened"
-msgstr "Brak otwartych plików"
-
-#: src/mmframe.cpp:1918
+#: src/mmframe.cpp:1888
 msgid "Cannot locate database file to open."
 msgstr "Nie można odnaleźć pliku bazy do otwarcia"
 
-#: src/mmframe.cpp:1947
-msgid "Have MMEX support provided you a debug/patch file?"
-msgstr "Czy wsparcie MMEX dostarczyło Ci plik łatki?"
-
-#: src/mmframe.cpp:1947
-msgid "MMEX upgrade"
-msgstr "Aktualizacja MMEX"
-
-#: src/mmframe.cpp:1977
-msgid "&Next ->"
-msgstr "&Następny ->"
-
-#: src/mmframe.cpp:1995
+#: src/mmframe.cpp:1896 src/mmframe.cpp:1990
 msgid "[portable mode]"
 msgstr "[tryb przenośny]"
 
-#: src/mmframe.cpp:2035
+#: src/mmframe.cpp:1935
+msgid "Have MMEX support provided you a debug/patch file?"
+msgstr "Czy wsparcie MMEX dostarczyło Ci plik łatki?"
+
+#: src/mmframe.cpp:1935
+msgid "MMEX upgrade"
+msgstr "Aktualizacja MMEX"
+
+#: src/mmframe.cpp:1972
+msgid "&Next ->"
+msgstr "&Następny ->"
+
+#: src/mmframe.cpp:2030
 msgid "Choose database file to create"
 msgstr "Wybierz plik bazy do utworzenia"
 
-#: src/mmframe.cpp:2038 src/mmframe.cpp:2062 src/mmframe.cpp:2098
-#: src/mmframe.cpp:2170
+#: src/mmframe.cpp:2033 src/mmframe.cpp:2057 src/mmframe.cpp:2141
 msgid "MMB files (*.mmb)"
 msgstr "Pliki MMB (*.mmb)"
 
-#: src/mmframe.cpp:2040 src/mmframe.cpp:2064 src/mmframe.cpp:2082
-#: src/mmframe.cpp:2172
-msgid "Encrypted MMB files (*.emb)"
-msgstr "Zaszyfrowane pliki MMB (*.emb)"
+#: src/mmframe.cpp:2035 src/mmframe.cpp:2143
+msgid "Encrypted MMB files (*.mmb)"
+msgstr "Zaszyfrowane pliki MMB (*.mmb)"
 
-#: src/mmframe.cpp:2060
+#: src/mmframe.cpp:2055
 msgid "Choose database file to open"
 msgstr "Wybierz plik bazy do otwarcia"
 
 #: src/mmframe.cpp:2080
-msgid "Choose Encrypted database file to open"
-msgstr "Wybierz do otwarcia plik z zaszyfrowaną bazą"
-
-#: src/mmframe.cpp:2095
-msgid "Choose database file to Save As"
-msgstr "Wybierz plik bazy do Zapisania jako"
-
-#: src/mmframe.cpp:2115
-msgid "Converted DB!"
-msgstr "Przekonwerowano bazę!"
-
-#: src/mmframe.cpp:2115
-msgid "MMEX message"
-msgstr "Komunikat MMEX"
-
-#: src/mmframe.cpp:2125
 msgid "Encryption Password Change"
 msgstr "Zmiana hasła szyfrowania"
 
-#: src/mmframe.cpp:2125
+#: src/mmframe.cpp:2080
 msgid "Password change completed."
 msgstr "Zmiana hasła ukończona."
 
-#: src/mmframe.cpp:2133
+#: src/mmframe.cpp:2088
+msgid "Please confirm database decryption and password removal."
+msgstr "Potwierdź proszę odszyfrowanie bazy danych i usunięcie hasła."
+
+#: src/mmframe.cpp:2089 src/mmframe.cpp:2096
+msgid "Encryption Password Removal"
+msgstr "Usuwanie hasła szyfrowania"
+
+#: src/mmframe.cpp:2096
+msgid "Password removed and database decrypted."
+msgstr "Hasło usunięte a baza danych odszyfrowana."
+
+#: src/mmframe.cpp:2104
 msgid "Make sure you have a backup of DB before optimize it"
 msgstr "Przed opymalizacją bazy danych upewnij się, że masz jej kopię"
 
-#: src/mmframe.cpp:2134 src/mmframe.cpp:2144
+#: src/mmframe.cpp:2105 src/mmframe.cpp:2115
 msgid "DB Optimization"
 msgstr "Optymalizacja bazy danych"
 
-#: src/mmframe.cpp:2141
+#: src/mmframe.cpp:2112
 #, c-format
 msgid ""
 "Database Optimization Completed!\n"
@@ -5247,31 +5804,39 @@ msgstr ""
 "Wielkość przed: %s\n"
 "Wielkość po: %s\n"
 
-#: src/mmframe.cpp:2152
+#: src/mmframe.cpp:2123
 msgid "Please use this function only if explicitly requested by MMEX support"
 msgstr "Użyj tej funkcji tylko na wyraźne żądanie wsparcia MMEX"
 
-#: src/mmframe.cpp:2153
+#: src/mmframe.cpp:2124
 msgid "DB Debug"
 msgstr "Debugowanie bazy danych"
 
-#: src/mmframe.cpp:2167 src/mmframe.cpp:2195
+#: src/mmframe.cpp:2138 src/mmframe.cpp:2166
 msgid "Save database file as"
 msgstr "Zapisz bazę danych jako"
 
-#: src/mmframe.cpp:2189
+#: src/mmframe.cpp:2160
 msgid "Can't copy file to itself"
 msgstr "Nie można kopiować pliku na siebie samego"
 
-#: src/mmframe.cpp:2191
+#: src/mmframe.cpp:2162
 msgid "Can't overwrite selected file"
 msgstr "Nie można zastąpić wybrenego pliku"
 
-#: src/mmframe.cpp:2274 src/mmframe.cpp:2293
+#: src/mmframe.cpp:2224
+msgid "Accounts, payees and categories succesfully syncronized to WebApp!"
+msgstr "Konta, beneficjencji i kategorie poprawnie zsynchronizowane z WebApp!"
+
+#: src/mmframe.cpp:2224
+msgid "WebApp export"
+msgstr "Eksport do WebApp"
+
+#: src/mmframe.cpp:2256 src/mmframe.cpp:2275
 msgid "No account available to import to"
 msgstr "Brak dostępnych kont dla importu"
 
-#: src/mmframe.cpp:2344
+#: src/mmframe.cpp:2326
 msgid ""
 "Asset Accounts hold Asset transactions\n"
 "\n"
@@ -5286,11 +5851,11 @@ msgstr ""
 "\n"
 "Konta aktywów mogą także przechowywać zwykłe transakcje kont."
 
-#: src/mmframe.cpp:2348
+#: src/mmframe.cpp:2330
 msgid "Asset Account Creation"
 msgstr "Tworzenie konta aktywów"
 
-#: src/mmframe.cpp:2354
+#: src/mmframe.cpp:2336
 msgid ""
 "Share Accounts hold Share transactions\n"
 "\n"
@@ -5311,23 +5876,23 @@ msgstr ""
 "Lub za pomocą menu Widok -> 'Pokaż konta akcji'\n"
 "Rachunki te mogą również obsługiwać normalne transakcje na zwykłe konta."
 
-#: src/mmframe.cpp:2360
+#: src/mmframe.cpp:2342
 msgid "Share Account Creation"
 msgstr "Tworzenie konta giełdowego"
 
-#: src/mmframe.cpp:2506
+#: src/mmframe.cpp:2499
 msgid "MMEX Options have been updated."
 msgstr "Opcje MMEX zostały uaktualnione."
 
-#: src/mmframe.cpp:2507 src/optiondialog.cpp:55 src/optiondialog.cpp:190
+#: src/mmframe.cpp:2500 src/optiondialog.cpp:55 src/optiondialog.cpp:190
 msgid "MMEX Options"
 msgstr "Opcje MMEX"
 
-#: src/mmframe.cpp:2559
+#: src/mmframe.cpp:2552
 msgid "Please follow these tasks before submitting new bug:"
 msgstr "Wykonaj poniższe kroki przed zgłoszeniem nowego błędu:"
 
-#: src/mmframe.cpp:2560
+#: src/mmframe.cpp:2553
 msgid ""
 "1. Use Help->Check for Updates in MMEX to get latest version - your problem "
 "can be fixed already."
@@ -5335,7 +5900,7 @@ msgstr ""
 "1. Użyj menu Pomoc->Sprawdź uaktualnienia w MMEX aby pobrać najnowszą "
 "wersję - twój problem może być już rozwiązany."
 
-#: src/mmframe.cpp:2561
+#: src/mmframe.cpp:2554
 msgid ""
 "2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:"
 "issue for similar problem - update existing issue instead of creating new "
@@ -5345,24 +5910,24 @@ msgstr ""
 "moneymanagerex/issues?q=is:issue - uzupełnij istniejące zgłoszenie zamiast "
 "tworzyć nowe."
 
-#: src/mmframe.cpp:2562
+#: src/mmframe.cpp:2555
 msgid "3. Put some descriptive name for your issue in the Title field above."
 msgstr "3. Umieść opisową nazwę twojego problemu w polu Title powyżej."
 
-#: src/mmframe.cpp:2563
+#: src/mmframe.cpp:2556
 msgid ""
 "4. Replace this text (marked with >) with detailed description of your "
 "problem."
 msgstr "4. Zastąp ten tekst (oznaczony >) dokładnym opisem twojego problemu."
 
-#: src/mmframe.cpp:2564
+#: src/mmframe.cpp:2557
 msgid ""
 "Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."
 msgstr ""
 "Przeczytaj https://www.chiark.greenend.org.uk/~sgtatham/bugs-pl.html dla "
 "cennych wskazówek."
 
-#: src/mmframe.cpp:2565
+#: src/mmframe.cpp:2558
 msgid ""
 "5. Include steps to reproduce your issue, attach screenshots where "
 "appropriate."
@@ -5370,31 +5935,31 @@ msgstr ""
 "5. Opisz kroki pozwalające odtworzyć twój problem, dołącz zrzuty ekranu "
 "jeśli są przydatne."
 
-#: src/mmframe.cpp:2566
+#: src/mmframe.cpp:2559
 msgid "6. Please do not remove information attached below this text."
 msgstr "6. Nie usuwaj informacji załączonych poniżej tego tekstu."
 
-#: src/mmframe.cpp:2643
+#: src/mmframe.cpp:2636
 msgid "Choose HTML file to Export"
 msgstr "Wybierz plik HTML do eksportu"
 
-#: src/mmframe.cpp:2834
+#: src/mmframe.cpp:2827
 msgid "No account available to edit!"
 msgstr "Brak konta do edycji!"
 
-#: src/mmframe.cpp:2838
+#: src/mmframe.cpp:2831
 msgid "Choose Account to Edit"
 msgstr "Wybierz konto do edycji"
 
-#: src/mmframe.cpp:2857
+#: src/mmframe.cpp:2850
 msgid "No account available to delete!"
 msgstr "Brak konta do usunięcia!"
 
-#: src/mmframe.cpp:2861
+#: src/mmframe.cpp:2854
 msgid "Choose Account to Delete"
 msgstr "Wybierz konto do usunięcia"
 
-#: src/mmframe.cpp:2866
+#: src/mmframe.cpp:2859
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -5403,33 +5968,33 @@ msgstr ""
 "Czy na pewno chcesz usunąć\n"
 " %s konto: %s ?"
 
-#: src/mmframe.cpp:2885 src/mmframe.cpp:2908
+#: src/mmframe.cpp:2878 src/mmframe.cpp:2901
 msgid "Account Reallocation"
 msgstr "Zmiana typu konta"
 
-#: src/mmframe.cpp:2885
+#: src/mmframe.cpp:2878
 msgid "Select the account to reallocate"
 msgstr "Wybierz konto do realokacji"
 
-#: src/mmframe.cpp:2907
+#: src/mmframe.cpp:2900
 #, c-format
 msgid "Account: %s - Select new type."
 msgstr "Konto: %s - Wybierz nowy typ."
 
-#: src/mmframe.cpp:3008 src/payeedialog.cpp:313
+#: src/mmframe.cpp:3001 src/payeedialog.cpp:316
 msgid "Payee Relocation Completed."
 msgstr "Zakończono przenoszenie beneficjenta."
 
-#: src/mmframe.cpp:3012 src/payeedialog.cpp:317
+#: src/mmframe.cpp:3005 src/payeedialog.cpp:320
 msgid "Payee Relocation Result"
 msgstr "Wynik przenoszenia beneficjenta"
 
-#: src/mmframe.cpp:3067
+#: src/mmframe.cpp:3055
 #, c-format
 msgid "File %s not found"
 msgstr "Pliku %s nie odnaleziono"
 
-#: src/mmframe.cpp:3110
+#: src/mmframe.cpp:3098
 msgid ""
 "The language for this application has been changed. The change will take "
 "effect the next time the application is started."
@@ -5441,7 +6006,7 @@ msgstr ""
 msgid "General Group Report"
 msgstr "General Group Raport"
 
-#: src/mmframereport.cpp:99 src/model/Model_Report.cpp:406
+#: src/mmframereport.cpp:99 src/model/Model_Report.cpp:411
 #: src/reports/forecast.cpp:86 src/reports/myusage.cpp:215
 msgid "Caught exception"
 msgstr "Wystąpił wyjątek"
@@ -5555,6 +6120,7 @@ msgid "Period:"
 msgstr "Okres:"
 
 #: src/mmreportspanel.cpp:299 src/reports/reportbase.cpp:168
+#: src/transdialog.cpp:1228
 msgid "Custom"
 msgstr "własny"
 
@@ -5747,7 +6313,7 @@ msgstr "Wielokrotnego wyboru"
 msgid "Payee Error"
 msgstr "Błąd beneficjenta"
 
-#: src/model/Model_Report.cpp:266
+#: src/model/Model_Report.cpp:271
 #, c-format
 msgid ""
 "The SQL script:\n"
@@ -5866,7 +6432,7 @@ msgid "User profile folder"
 msgstr "Katalog profilu użytkownika"
 
 #: src/optionsettingsattachment.cpp:104
-msgid "Folder of.MMB database file"
+msgid "Folder of .mmb database file"
 msgstr "Katalog pliku bazy danych .mmb"
 
 #: src/optionsettingsattachment.cpp:105
@@ -6127,115 +6693,131 @@ msgstr "Ustawienia CSV"
 msgid "Delimiter"
 msgstr "Separator pól CSV"
 
-#: src/optionsettingsnet.cpp:58
+#: src/optionsettingsnet.cpp:61
 msgid "WebApp Settings"
 msgstr "Ustawienia WebApp"
 
-#: src/optionsettingsnet.cpp:65
+#: src/optionsettingsnet.cpp:68
 msgid "Url"
 msgstr "URL"
 
-#: src/optionsettingsnet.cpp:69
+#: src/optionsettingsnet.cpp:72
 msgid "Specify the Web App URL without final slash"
 msgstr "Wpisz URL Web App bez końcowego ukośnika"
 
-#: src/optionsettingsnet.cpp:72
+#: src/optionsettingsnet.cpp:75
 msgid "GUID"
 msgstr ""
 
-#: src/optionsettingsnet.cpp:76
+#: src/optionsettingsnet.cpp:79
 msgid "Specify the Web App GUID"
 msgstr "Wpisz Web App GUID"
 
-#: src/optionsettingsnet.cpp:79
+#: src/optionsettingsnet.cpp:85
+msgid "Test connection"
+msgstr "Test połączenia"
+
+#: src/optionsettingsnet.cpp:88
 msgid "More information about WebApp"
 msgstr "Więcej informacji o WebApp"
 
-#: src/optionsettingsnet.cpp:83
+#: src/optionsettingsnet.cpp:92
 msgid "Proxy Settings"
 msgstr "Ustawienia proxy"
 
-#: src/optionsettingsnet.cpp:91
+#: src/optionsettingsnet.cpp:100
 msgid "Specify the proxy IP address"
 msgstr "Określ adres IP proxy"
 
-#: src/optionsettingsnet.cpp:97
+#: src/optionsettingsnet.cpp:106
 msgid "Specify proxy port number"
 msgstr "Określ numer portu proxy"
 
-#: src/optionsettingsnet.cpp:100
+#: src/optionsettingsnet.cpp:109
 msgid "Proxy"
 msgstr "Adres"
 
-#: src/optionsettingsnet.cpp:102 src/optionsettingsnet.cpp:126
+#: src/optionsettingsnet.cpp:111 src/optionsettingsnet.cpp:135
 msgid "Port"
 msgstr "Port"
 
-#: src/optionsettingsnet.cpp:108
+#: src/optionsettingsnet.cpp:117
 msgid "Web Server"
 msgstr "Serwer Web"
 
-#: src/optionsettingsnet.cpp:114
+#: src/optionsettingsnet.cpp:123
 msgid "Enable"
 msgstr "Włącz"
 
-#: src/optionsettingsnet.cpp:116
+#: src/optionsettingsnet.cpp:125
 msgid "Enable internal web server when MMEX Starts."
 msgstr "Włącz wewnętrzny serwer web w czasie uruchomienia MMEX."
 
-#: src/optionsettingsnet.cpp:122
+#: src/optionsettingsnet.cpp:131
 msgid "Specify web server port number"
 msgstr "Określ numer portu serwera web"
 
-#: src/optionsettingsnet.cpp:132
+#: src/optionsettingsnet.cpp:141
 msgid "Usage statistics"
 msgstr "Statystyka użycia"
 
-#: src/optionsettingsnet.cpp:138
+#: src/optionsettingsnet.cpp:147
 msgid "Send anonymous statistics usage data"
 msgstr "Wysyłaj anonimowe statystyki korzystania z programu"
 
-#: src/optionsettingsnet.cpp:140
+#: src/optionsettingsnet.cpp:149
 msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "Włącz aby pomóc nam przesyłając anonimowe dane o używaniu MMEX."
 
-#: src/optionsettingsnet.cpp:145
+#: src/optionsettingsnet.cpp:154
 msgid "Timeout"
 msgstr "Limit czasu"
 
-#: src/optionsettingsnet.cpp:154
+#: src/optionsettingsnet.cpp:163
 msgid "Specify a network communication timeout value to use."
 msgstr "Określ limit czasu dla komunikacji sieciowej."
 
-#: src/optionsettingsnet.cpp:157
+#: src/optionsettingsnet.cpp:166
 msgid "Seconds"
 msgstr "Sekund"
 
-#: src/optionsettingsnet.cpp:163
+#: src/optionsettingsnet.cpp:172
 msgid "Updates"
 msgstr "Uaktualnienia"
 
-#: src/optionsettingsnet.cpp:169
+#: src/optionsettingsnet.cpp:178
 msgid "Check for updates at StartUp"
 msgstr "Sprawdź uaktualnienia przy starcie"
 
-#: src/optionsettingsnet.cpp:171
+#: src/optionsettingsnet.cpp:180
 msgid ""
 "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr ""
 "Zaznacz, aby sprawdzać dostepność nowej wersji MMWX w czasie uruchomienia"
 
-#: src/optionsettingsnet.cpp:174
+#: src/optionsettingsnet.cpp:183
 msgid "Stable"
 msgstr "wersje stabilne"
 
-#: src/optionsettingsnet.cpp:175
+#: src/optionsettingsnet.cpp:184
 msgid "Unstable"
 msgstr "wersje rozwojowe"
 
-#: src/optionsettingsnet.cpp:179
+#: src/optionsettingsnet.cpp:188
 msgid "Updates source"
 msgstr "Źródło uaktualnień"
+
+#: src/optionsettingsnet.cpp:224 src/optionsettingsnet.cpp:229
+msgid "WebApp connection test"
+msgstr "Test połączenia z WebApp"
+
+#: src/optionsettingsnet.cpp:224
+msgid "WebApp connection tested succesfully!"
+msgstr "Połączenie z WebApp przetestowane!"
+
+#: src/optionsettingsnet.cpp:229
+msgid "Some parameters are missing."
+msgstr "Brakuje niektórych parametrów."
 
 #: src/optionsettingsview.cpp:78
 msgid "Specify which accounts are visible"
@@ -6350,11 +6932,11 @@ msgstr "Narzędzia -> Przenoszenie -> Beneficjenci"
 msgid "Organize Payees: Delete Error"
 msgstr "Organizuj beneficjentów: Błąd usuwania"
 
-#: src/payeedialog.cpp:359
+#: src/payeedialog.cpp:362
 msgid "Define Default Category"
 msgstr "Definiuj domyślną kategorię"
 
-#: src/payeedialog.cpp:374
+#: src/payeedialog.cpp:377
 msgid "Relocate Payee"
 msgstr "Przenoszenie beneficjentów"
 
@@ -6363,22 +6945,22 @@ msgid "Relocate Category Dialog"
 msgstr "Okno przenoszenia kategorii"
 
 #: src/relocatecategorydialog.cpp:87
-msgid "Relocate all source categories to the destination category"
-msgstr "Przeoszenie wszystkich kategorii źródłowych do kategorii docelowych"
+msgid "Relocate source category to the destination category"
+msgstr "Przenoszenie kategorii źródłej do kategorii docelowej"
 
 #: src/relocatecategorydialog.cpp:90
-msgid "Source Category"
-msgstr "Kategoria źródłowa"
+msgid "Select Source Category"
+msgstr "Wybierz kategorię źródłową"
 
 #: src/relocatecategorydialog.cpp:95
-msgid "Destination Category"
-msgstr "Kategoria docelowa"
+msgid "Select Destination Category"
+msgstr "Wybierz kategorię docelową"
 
-#: src/relocatecategorydialog.cpp:108 src/relocatepayeedialog.cpp:105
+#: src/relocatecategorydialog.cpp:108 src/relocatepayeedialog.cpp:103
 msgid "Relocate:"
 msgstr "Przenoszenie:"
 
-#: src/relocatecategorydialog.cpp:109 src/relocatepayeedialog.cpp:106
+#: src/relocatecategorydialog.cpp:109 src/relocatepayeedialog.cpp:104
 msgid "to:"
 msgstr "do:"
 
@@ -6386,11 +6968,11 @@ msgstr "do:"
 msgid "Category Relocation Confirmation"
 msgstr "Potwierdzenie przenoszenia kategorii"
 
-#: src/relocatecategorydialog.cpp:170 src/relocatepayeedialog.cpp:137
+#: src/relocatecategorydialog.cpp:170 src/relocatepayeedialog.cpp:142
 msgid "Please Confirm:"
 msgstr "Proszę potwierdzić:"
 
-#: src/relocatecategorydialog.cpp:268
+#: src/relocatecategorydialog.cpp:268 src/relocatepayeedialog.cpp:195
 #, c-format
 msgid "Records found in transactions: %i"
 msgstr "Wpisy znaleziono w transakcach: %i"
@@ -6400,7 +6982,7 @@ msgstr "Wpisy znaleziono w transakcach: %i"
 msgid "Records found in split transactions: %i"
 msgstr "Wpisy znaleziono w dzielonych transakcach: %i"
 
-#: src/relocatecategorydialog.cpp:270
+#: src/relocatecategorydialog.cpp:270 src/relocatepayeedialog.cpp:196
 #, c-format
 msgid "Records found in recurring transactions: %i"
 msgstr "Wpisy znaleziono w transakcach powtarzanych: %i"
@@ -6420,36 +7002,20 @@ msgstr "Zapis znaleziony jako domyślnla kategoria beneficjenta: %i"
 msgid "Records found in budget: %i"
 msgstr "Zapis znaleziony w budźecie: %i"
 
-#: src/relocatecategorydialog.cpp:274
-#, c-format
-msgid ""
-"Changing all categories of: \n"
-"%s to category: %s"
-msgstr ""
-"Zmiana wszystkich kategorii: \n"
-"%s na kategorię: %s"
-
-#: src/relocatepayeedialog.cpp:50
+#: src/relocatepayeedialog.cpp:49
 msgid "Relocate Payee Dialog"
 msgstr "Okno przenoszenia beneficjentów"
 
 #: src/relocatepayeedialog.cpp:79
-msgid "Relocate all source payees to the destination payee"
-msgstr ""
-"Przenoszenie wszystkich beneficjentów źródłowych do beneficjenta docelowego"
+msgid "Relocate all source payee to the destination payee"
+msgstr "Przenoszenie beneficjenta źródłowego do beneficjenta docelowego"
 
-#: src/relocatepayeedialog.cpp:139
+#: src/relocatepayeedialog.cpp:138
 #, c-format
-msgid ""
-"Changing all payees of: %s \n"
-"\n"
-"  to payee: %s"
-msgstr ""
-"Zmiana wszystkich beneficjentów: %s \n"
-"\n"
-"na beneficjenta: %s"
+msgid "From %s to %s"
+msgstr "Z %s do %s"
 
-#: src/relocatepayeedialog.cpp:142
+#: src/relocatepayeedialog.cpp:143
 msgid "Payee Relocation Confirmation"
 msgstr "Potwierdzenie przeniesienia beneficjenta"
 
@@ -7223,27 +7789,27 @@ msgstr "Dodaj"
 msgid "Invalid type"
 msgstr "Niepoprawny typ"
 
-#: src/transdialog.cpp:142
+#: src/transdialog.cpp:158
 msgid "Duplicate Transaction"
 msgstr "Duplikuj transakcję"
 
-#: src/transdialog.cpp:143
+#: src/transdialog.cpp:159
 msgid "Edit Transaction"
 msgstr "Edytuj transakcję"
 
-#: src/transdialog.cpp:484
+#: src/transdialog.cpp:506
 msgid "Populate Transaction #"
 msgstr "Podaj numer transakcji"
 
-#: src/transdialog.cpp:506 src/usertransactionpanel.cpp:212
+#: src/transdialog.cpp:528 src/usertransactionpanel.cpp:212
 msgid "Organize attachments of this transaction"
 msgstr "Organizuj załączniki dla tej transakcji"
 
-#: src/transdialog.cpp:532
+#: src/transdialog.cpp:553
 msgid "Open custom fields window"
 msgstr "Otwórz okno własnego pola"
 
-#: src/transdialog.cpp:591
+#: src/transdialog.cpp:605
 #, c-format
 msgid ""
 "Do you want to add new payee: \n"
@@ -7252,11 +7818,11 @@ msgstr ""
 "Czy chcesz dodać nowego beneficjenta: \n"
 "%s?"
 
-#: src/transdialog.cpp:592
+#: src/transdialog.cpp:606
 msgid "Confirm to add new payee"
 msgstr "Potwierdź dodanie odbiorcy"
 
-#: src/transdialog.cpp:682
+#: src/transdialog.cpp:696
 msgid ""
 "This transaction will exceed your account limit.\n"
 "\n"
@@ -7293,6 +7859,14 @@ msgstr "Określ datę transakcji"
 #: src/transdialog.cpp:1188 src/usertransactionpanel.cpp:104
 msgid "Retard or advance the date of the transaction"
 msgstr "Określ datę transakcji"
+
+#: src/transdialog.cpp:1493
+msgid "Multi Choice"
+msgstr "Wielokrotnego wyboru"
+
+#: src/transdialog.cpp:1493
+msgid "Please select"
+msgstr "Proszę wybrać"
 
 #: src/usertransactionpanel.cpp:117
 msgid ""
@@ -7554,12 +8128,12 @@ msgstr "Nie można otrzymać danych z WWW"
 msgid "Unknown error"
 msgstr "Nieznany błąd"
 
-#: src/webapp.cpp:499
+#: src/webapp.cpp:503
 #, c-format
 msgid "Account '%s' not found!"
 msgstr "Konto '%s' nie znalezione!"
 
-#: src/webapp.cpp:501
+#: src/webapp.cpp:505
 #, c-format
 msgid ""
 "Transaction will be inserted with the first bank account:\n"
@@ -7568,39 +8142,39 @@ msgstr ""
 "Transakcja będzie dodana do pierwszego konta bankowego:\n"
 "'%s' oraz zaznaczona jako 'Do wyjaśnienia'"
 
-#: src/webapp.cpp:504
+#: src/webapp.cpp:508
 msgid "Wrong WebApp account"
 msgstr "Niewłaściwe konto WebApp"
 
-#: src/webapp.cpp:586 src/webapp.cpp:619
+#: src/webapp.cpp:590 src/webapp.cpp:623
 msgid "Unable to download attachments from webapp."
 msgstr "Nie można pobrać załączników z WebApp."
 
-#: src/webapp.cpp:587
+#: src/webapp.cpp:591
 msgid "Attachments folder not set or unavailable"
 msgstr "Katalog załączników nieokreślony lub niedostępny"
 
-#: src/webapp.cpp:588
+#: src/webapp.cpp:592
 msgid "Transaction not downloaded:"
 msgstr "Transakcja nie pobrana:"
 
-#: src/webapp.cpp:589
+#: src/webapp.cpp:593
 msgid "please fix attachments folder or delete attachments from WebApp"
 msgstr "proszę poprawić katalog załączników lub usunąć załaczniki z WebApp"
 
-#: src/webapp.cpp:590
+#: src/webapp.cpp:594
 msgid "Attachment folder error"
 msgstr "Błąd w katalogu załączników"
 
-#: src/webapp.cpp:610
+#: src/webapp.cpp:614
 msgid "Attachment"
 msgstr "Załącznik"
 
-#: src/webapp.cpp:620
+#: src/webapp.cpp:624
 msgid "Communication error"
 msgstr "Błąd komunikacji"
 
-#: src/webapp.cpp:621
+#: src/webapp.cpp:625
 msgid ""
 "Transaction not downloaded: please close and open MMEX to try re-download "
 "transaction"
@@ -7608,7 +8182,7 @@ msgstr ""
 "Transakcja nie pobrana; proszę zamknąć i uruchomić MMEX aby pobrać "
 "transakcję ponownie."
 
-#: src/webapp.cpp:622
+#: src/webapp.cpp:626
 msgid "Attachment download error"
 msgstr "Błąd pobierania załącznika"
 

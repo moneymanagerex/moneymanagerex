@@ -139,8 +139,8 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
         , Model_Payee::instance().get(sourcePayeeID_)->PAYEENAME
         , Model_Payee::instance().get(destPayeeID_)->PAYEENAME);
 
-    int ans = wxMessageBox(_("Payee Relocation Confirmation")
-        , _("Please Confirm:") + "\n" + info
+    int ans = wxMessageBox(_("Please Confirm:") + "\n" + info
+        , _("Payee Relocation Confirmation")
         , wxOK | wxCANCEL | wxICON_INFORMATION);
 
     if (ans == wxOK)
