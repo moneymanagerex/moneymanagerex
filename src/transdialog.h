@@ -62,7 +62,7 @@ class wxString;
 class mmCustomData : public wxDialog
 {
 protected:
-    wxString m_ref_type;
+    const wxString m_ref_type;
     int m_ref_id;
     wxDialog* m_dialog;
     Model_CustomField::Data_Set m_fields;
