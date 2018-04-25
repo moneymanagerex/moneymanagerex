@@ -75,6 +75,8 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
     mmcheckingpanel.cpp
     mmcheckingpanel.h
     mmcombobox.h
+    mmcustomdata.cpp
+    mmcustomdata.h
     mmframe.cpp
     mmframe.h
     mmframereport.cpp
