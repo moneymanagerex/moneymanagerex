@@ -25,9 +25,35 @@
 
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
+#include "model/Model_CustomField.h"
 #include "model/Model_Splittransaction.h"
 
 #include <wx/spinbutt.h>
+
+enum
+{
+    /* Transaction Dialog */
+    ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 900,
+    ID_DIALOG_TRANS_TEXTNUMBER,
+    ID_DIALOG_TRANS_BUTTONDATE,
+    ID_DIALOG_TRANS_TEXTNOTES,
+    ID_DIALOG_TRANS_TEXTAMOUNT,
+    ID_DIALOG_TRANS_TOTEXTAMOUNT,
+    ID_DIALOG_TRANS_STATIC_PAYEE,
+    ID_DIALOG_TRANS_BUTTONPAYEE,
+    ID_DIALOG_TRANS_BUTTONTO,
+    ID_DIALOG_TRANS_STATUS,
+    ID_DIALOG_TRANS_ADVANCED_CHECKBOX,
+    ID_DIALOG_TRANS_ADVANCED_FROM,
+    ID_DIALOG_TRANS_ADVANCED_TO,
+    ID_DIALOG_TRANS_SPLITCHECKBOX,
+    ID_DIALOG_TRANS_BUTTONTRANSNUM,
+    ID_DIALOG_TRANS_PAYEECOMBO,
+    ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
+    ID_DIALOG_TRANS_DATE_SPINNER,
+    ID_DIALOG_TRANS_CUSTOMFIELDS,
+    ID_CUSTOMFIELD,
+};
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
@@ -35,23 +61,20 @@ class wxString;
 
 class mmCustomData : public wxDialog
 {
+protected:
+    wxString m_ref_type;
+    int m_ref_id;
+    wxDialog* m_dialog;
+    Model_CustomField::Data_Set m_fields;
 
 public:
-    mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id)
-        : wxDialog()
-        , m_ref_type(ref_type)
-        , m_ref_id(ref_id) 
-    {
-    }
-    void FillCustomFields(wxDialog* parent, wxBoxSizer* box_sizer);
-    bool SaveCustomValues();
+    mmCustomData();
+    mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id);
+    bool FillCustomFields(wxBoxSizer* box_sizer);
     void OnMultiChoice(wxCommandEvent& event);
+    bool SaveCustomValues();
+    int GetCustomFieldsTotal() { return m_fields.size(); }
 
-private:
-    const wxString GetRefTypr() { return m_ref_type; }
-protected:
-    const wxString m_ref_type;
-    int m_ref_id;
 };
 
 class mmTransDialog : public wxDialog
@@ -88,11 +111,11 @@ public:
     int getTransactionID() { return m_trx_data.TRANSID; }
 
 private:
+    mmCustomData* m_custom_fields;
     void CreateControls();
     void dataToControls();
     bool validateData();
     void SetEventHandlers();
-    bool SaveCustomValues();
 
     void OnSplitChecked(wxCommandEvent& event);
     void OnOk(wxCommandEvent& event);
@@ -104,7 +127,6 @@ private:
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
-    void OnMultiChoice(wxCommandEvent& event);
     void OnFrequentUsedNotes(wxCommandEvent& event);
     void onNoteSelected(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
@@ -117,7 +139,6 @@ private:
     void SetTooltips();
     void SetCategoryForPayee(const Model_Payee::Data *payee);
 
-    mmCustomData* m_custom_fields;
     mmTextCtrl* textNumber_;
     mmTextCtrl* m_textAmount;
     mmTextCtrl* toTextAmount_;
@@ -166,30 +187,6 @@ private:
     bool skip_category_init_;
     bool skip_tooltips_init_;
 
-    enum
-    {
-        /* Transaction Dialog */
-        ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 900,
-        ID_DIALOG_TRANS_TEXTNUMBER,
-        ID_DIALOG_TRANS_BUTTONDATE,
-        ID_DIALOG_TRANS_TEXTNOTES,
-        ID_DIALOG_TRANS_TEXTAMOUNT,
-        ID_DIALOG_TRANS_TOTEXTAMOUNT,
-        ID_DIALOG_TRANS_STATIC_PAYEE,
-        ID_DIALOG_TRANS_BUTTONPAYEE,
-        ID_DIALOG_TRANS_BUTTONTO,
-        ID_DIALOG_TRANS_STATUS,
-        ID_DIALOG_TRANS_ADVANCED_CHECKBOX,
-        ID_DIALOG_TRANS_ADVANCED_FROM,
-        ID_DIALOG_TRANS_ADVANCED_TO,
-        ID_DIALOG_TRANS_SPLITCHECKBOX,
-        ID_DIALOG_TRANS_BUTTONTRANSNUM,
-        ID_DIALOG_TRANS_PAYEECOMBO,
-        ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
-        ID_DIALOG_TRANS_DATE_SPINNER,
-        ID_DIALOG_TRANS_CUSTOMFIELDS,
-        ID_CUSTOMFIELD,
-    };
 };
 
 #endif
