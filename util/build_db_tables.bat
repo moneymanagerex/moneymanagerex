@@ -17,9 +17,9 @@ python %buildfile_name% %buildfile_location%
 @echo.
 copy DB_Table*.* ..\src\db
 @echo.
-copy currency_table_*.* ..\database
+copy *.mmdbg ..\database
 del DB_Table*.*
-del currency_table_*.*
+del *.mmdbg
 @echo -------------------------------------------
 @echo %buildfile_name% installation completed.
 @echo.

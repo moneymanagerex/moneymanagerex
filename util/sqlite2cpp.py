@@ -810,7 +810,6 @@ struct DB_Table_%s : public DB_Table
 
 def generate_base_class(header, fields=set):
     """Generate the base class"""
-    rfp = open('DB_Table.h', 'wb')
     code = header + '''#pragma once
 
 #include <vector>
@@ -966,7 +965,7 @@ struct SorterBy%s
 };
 ''' % (field, transl, field, transl, field)
 
-    rfp = open('db_table.h', 'w')
+    rfp = open('DB_Table.h', 'w')
     rfp.write(code)
     rfp.close()
 
