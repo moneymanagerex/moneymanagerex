@@ -152,8 +152,8 @@ bool Model_CustomField::getAutocomplete(const wxString& Properties)
             Value& b = json_doc["Autocomplete"];
             return b.GetBool();
         }
+        return false;
     }
-    return false;
 }
 
 wxString Model_CustomField::getDefault(const wxString& Properties)
