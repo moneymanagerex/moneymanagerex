@@ -106,15 +106,15 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int getAccountID() { return m_trx_data.ACCOUNTID; }
-    int getToAccountID() { return m_trx_data.TOACCOUNTID; }
-    int getTransactionID() { return m_trx_data.TRANSID; }
+    int GetAccountID() { return m_trx_data.ACCOUNTID; }
+    int GetToAccountID() { return m_trx_data.TOACCOUNTID; }
+    int GetTransactionID() { return m_trx_data.TRANSID; }
 
 private:
     mmCustomData* m_custom_fields;
     void CreateControls();
     void dataToControls();
-    bool validateData();
+    bool ValidateData();
     void SetEventHandlers();
 
     void OnSplitChecked(wxCommandEvent& event);
@@ -128,7 +128,7 @@ private:
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
     void OnFrequentUsedNotes(wxCommandEvent& event);
-    void onNoteSelected(wxCommandEvent& event);
+    void OnNoteSelected(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnSpin(wxSpinEvent&);
     void OnDateChanged(wxDateEvent& event);

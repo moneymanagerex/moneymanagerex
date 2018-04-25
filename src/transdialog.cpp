@@ -59,7 +59,7 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_SPIN(wxID_ANY,mmTransDialog::OnSpin)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_COMBOBOX(wxID_ANY, mmTransDialog::OnAccountOrPayeeUpdated)
-    EVT_MENU(wxID_ANY, mmTransDialog::onNoteSelected)
+    EVT_MENU(wxID_ANY, mmTransDialog::OnNoteSelected)
 wxEND_EVENT_TABLE()
 
 void mmTransDialog::SetEventHandlers()
@@ -128,21 +128,20 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     if (m_transfer) 
     {
         Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
-        if (to_acc) 
+        if (to_acc) {
             m_to_currency = Model_Account::currency(to_acc);
-        if (m_to_currency) 
-            m_advanced = !m_new_trx 
+        }
+        if (m_to_currency) {
+            m_advanced = !m_new_trx
                 && (m_currency->CURRENCYID != m_to_currency->CURRENCYID
                     || m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
+        }
     }
 
     const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     int ref_id = m_trx_data.TRANSID;
     if (m_duplicate || m_new_trx) ref_id = -1;
     m_custom_fields = new mmCustomData(this, ref_type, ref_id);
-    //m_custom_fields->SetRefType(ref_type);
-    //m_custom_fields->SetRefId(ref_id);
-    //m_custom_fields->SetDialog(this);
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(500, 400), style, name);
@@ -582,7 +581,7 @@ void mmTransDialog::CreateControls()
     this->SetSizer(box_sizer);
 }
 
-bool mmTransDialog::validateData()
+bool mmTransDialog::ValidateData()
 {
     if (!m_textAmount->checkValue(m_trx_data.TRANSAMOUNT))
         return false;
@@ -1079,7 +1078,7 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
         PopupMenu(&menu);
 }
 
-void mmTransDialog::onNoteSelected(wxCommandEvent& event)
+void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_HIGHEST;
     if (i > 0 && i <= (int)frequentNotes_.size())
@@ -1098,7 +1097,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
         m_status.SetStatus(Model_Checking::toShortStatus(status_obj->GetData()), m_account_id, m_trx_data);
     }
 
-    if (!validateData()) return;
+    if (!ValidateData()) return;
 
     Model_Checking::Data *r = Model_Checking::instance().get(m_trx_data.TRANSID);
     if (m_new_trx || m_duplicate)
