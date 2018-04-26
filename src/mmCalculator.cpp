@@ -18,44 +18,29 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "mmCalculator.h"
 #include "LuaGlue/LuaGlue.h"
+#include <wx/log.h>
 
 mmCalculator::mmCalculator()
 {
     output_ = 0;
 }
 
+const double mmCalculator::get_result()
+{
+    return output_;
+}
+
 const bool mmCalculator::is_ok(const wxString& input)
 {
-    bool ok = check_syntax(input);
     LuaGlue state;
     state.open().glue();
     std::string lua_f = "function calc() return " + input.ToStdString() + "; end";
     if(!state.doString(lua_f))
     {
-        printf("err: %s\n", state.lastError().c_str());
+        wxLogDebug("lua calc() err: %s", state.lastError().c_str());
         return false;
     }
 
     this->output_ = state.invokeFunction<double>("calc");
-    return ok;
-}
-
-const bool mmCalculator::check_syntax(const wxString& input) const
-{
-    wxString temp = input;
-    int a = temp.Replace("(", "(");
-    int b = temp.Replace(")", ")");
-    bool ok = (a == b);
-    if (ok && a > 0)
-    {
-        for (size_t i = 0; i < input.Len(); i++)
-        {
-            if (input[i] == '(') a += i;
-            else if (input[i] == ')') b += i;
-            if (i > 0 && input[i] == '(') ok = (ok && (wxString("(+-*/").Contains(input[i-1])));
-            if (i < input.Len()-1 && input[i] == ')') ok = (ok && wxString(")+-*/").Contains(input[i+1]));
-        }
-        ok = (a < b);
-    }
-    return ok;
+    return true;
 }

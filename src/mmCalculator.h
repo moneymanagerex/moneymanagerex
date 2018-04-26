@@ -26,13 +26,10 @@ class mmCalculator
 public:
     mmCalculator();
     const virtual bool is_ok(const wxString& input);
-    const virtual double get_result() {return output_;}
-
-protected:
+    const virtual double get_result();
 
 private:
     double output_;
-    const virtual bool check_syntax(const wxString& input) const;
 };
 
 #endif 
