@@ -24,7 +24,7 @@
 #include "constants.h"
 #include "images_list.h"
 #include "mmSimpleDialogs.h"
-#include "mmtextctrl.h"
+#include "mmTextCtrl.h"
 #include "paths.h"
 #include "splittransactionsdialog.h"
 #include "util.h"

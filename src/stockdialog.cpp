@@ -21,7 +21,7 @@
 #include "attachmentdialog.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
-#include "mmtextctrl.h"
+#include "mmTextCtrl.h"
 #include "paths.h"
 #include "util.h"
 #include "validators.h"
