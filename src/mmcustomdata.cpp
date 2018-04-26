@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmcustomdata.h"
 #include "constants.h"
 #include "model/Model_CustomFieldData.h"
+#include "model/Model_Attachment.h"
 #include <wx/numformatter.h>
 #include <wx/timectrl.h>
 #include <wx/collpane.h>
@@ -41,6 +42,14 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
     std::sort(m_fields.begin(), m_fields.end(), SorterByDESCRIPTION());
 }
 
+mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, wxWindowID base_id)
+    : mmCustomData(dialog
+        , Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)
+        , ref_id)
+{
+    SetBaseID(base_id);
+}
+
 bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 {
     wxStaticBox* static_box2 = new wxStaticBox(m_dialog, wxID_FILEDLGG, _("Custom"));
@@ -48,10 +57,10 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
     wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(static_box2, wxVERTICAL);
     box_sizer->Add(box_sizer_right, g_flagsExpand);
 
-    wxScrolledWindow* custom_tab = new wxScrolledWindow(static_box2, wxID_ANY);
+    wxScrolledWindow* scrolled_window = new wxScrolledWindow(static_box2, wxID_ANY);
     wxBoxSizer *custom_sizer = new wxBoxSizer(wxVERTICAL);
-    custom_tab->SetScrollbar(wxSB_VERTICAL, wxALIGN_RIGHT, 1, -1);
-    custom_tab->SetSizer(custom_sizer);
+    scrolled_window->SetScrollbar(wxSB_VERTICAL, wxALIGN_RIGHT, 1, -1);
+    scrolled_window->SetSizer(custom_sizer);
 
     wxFlexGridSizer* grid_sizer_custom = new wxFlexGridSizer(0, 2, 0, 0);
     grid_sizer_custom->AddGrowableCol(1, 1);
@@ -69,15 +78,15 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             Model_CustomFieldData::instance().save(fieldData);
         }
 
-        int controlID = ID_CUSTOMFIELD + field.FIELDID;
-        wxStaticText* Description = new wxStaticText(custom_tab, wxID_STATIC, field.DESCRIPTION);
+        wxWindowID controlID = m_init_control_id + (wxWindowID)field.FIELDID;
+        wxStaticText* Description = new wxStaticText(scrolled_window, wxID_STATIC, field.DESCRIPTION);
         grid_sizer_custom->Add(Description, g_flagsH);
 
         switch (Model_CustomField::type(field))
         {
         case Model_CustomField::STRING:
         {
-            wxTextCtrl* CustomString = new wxTextCtrl(custom_tab, controlID
+            wxTextCtrl* CustomString = new wxTextCtrl(scrolled_window, controlID
                 , fieldData->CONTENT, wxDefaultPosition, wxDefaultSize);
             CustomString->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             if (Model_CustomField::getAutocomplete(field.PROPERTIES))
@@ -91,7 +100,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         case Model_CustomField::INTEGER:
         {
             int value = (wxAtoi(fieldData->CONTENT)) ? wxAtoi(fieldData->CONTENT) : 0;
-            wxSpinCtrl* CustomInteger = new wxSpinCtrl(custom_tab, controlID,
+            wxSpinCtrl* CustomInteger = new wxSpinCtrl(scrolled_window, controlID,
                 wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -2147483647, 2147483647, value);
             CustomInteger->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomInteger, g_flagsExpand);
@@ -101,7 +110,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         {
             double value;
             if (!fieldData->CONTENT.ToDouble(&value)) value = 0;
-            wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(custom_tab, controlID
+            wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(scrolled_window, controlID
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize
                 , wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 0.01);
             CustomDecimal->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
@@ -110,7 +119,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::BOOLEAN:
         {
-            wxCheckBox* CustomBoolean = new wxCheckBox(custom_tab, controlID
+            wxCheckBox* CustomBoolean = new wxCheckBox(scrolled_window, controlID
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
             CustomBoolean->SetValue((fieldData->CONTENT == "TRUE") ? TRUE : FALSE);
             CustomBoolean->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
@@ -125,7 +134,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             else
                 value.ParseDate(fieldData->CONTENT);
 
-            wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(custom_tab, controlID
+            wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(scrolled_window, controlID
                 , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
             CustomDate->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDate, g_flagsExpand);
@@ -138,7 +147,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 value = wxDateTime::Now();
             else if (!value.ParseTime(fieldData->CONTENT))
                 value.ParseTime("00:00:00");
-            wxTimePickerCtrl* CustomDate = new wxTimePickerCtrl(custom_tab, controlID
+            wxTimePickerCtrl* CustomDate = new wxTimePickerCtrl(scrolled_window, controlID
                 , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
             CustomDate->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDate, g_flagsExpand);
@@ -149,7 +158,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             wxArrayString Choices = Model_CustomField::getChoices(field.PROPERTIES);
             Choices.Sort();
 
-            wxChoice* CustomChoice = new wxChoice(custom_tab, controlID
+            wxChoice* CustomChoice = new wxChoice(scrolled_window, controlID
                 , wxDefaultPosition, wxDefaultSize, Choices);
             CustomChoice->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomChoice, g_flagsExpand);
@@ -165,7 +174,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             const auto& content = fieldData->CONTENT;
             const auto& name = field.DESCRIPTION;
 
-            wxButton* multi_choice_button = new wxButton(custom_tab, controlID, content
+            wxButton* multi_choice_button = new wxButton(scrolled_window, controlID, content
                 , wxDefaultPosition, wxDefaultSize, 0L, wxDefaultValidator, name);
             multi_choice_button->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(multi_choice_button, g_flagsExpand);
@@ -179,9 +188,9 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
     }
 
-    custom_tab->FitInside();
-    custom_tab->SetScrollRate(5, 5);
-    box_sizer_right->Add(custom_tab, g_flagsExpand);
+    scrolled_window->FitInside();
+    scrolled_window->SetScrollRate(5, 5);
+    box_sizer_right->Add(scrolled_window, g_flagsExpand);
 
     return true;
 }
@@ -233,8 +242,6 @@ void mmCustomData::OnMultiChoice(wxCommandEvent& event)
 
 bool mmCustomData::SaveCustomValues()
 {
-    bool ok = true;
-
     Model_CustomFieldData::instance().Savepoint();
 
     for (const auto &field : m_fields)
@@ -245,7 +252,7 @@ bool mmCustomData::SaveCustomValues()
             fieldData = Model_CustomFieldData::instance().create();
         }
 
-        int controlID = ID_CUSTOMFIELD + field.FIELDID;
+        wxWindowID controlID = m_init_control_id + (wxWindowID)field.FIELDID;
         wxString data = wxEmptyString;
 
         switch (Model_CustomField::type(field))
@@ -283,7 +290,9 @@ bool mmCustomData::SaveCustomValues()
         case Model_CustomField::TIME:
         {
             wxTimePickerCtrl* CustomTime = (wxTimePickerCtrl*)m_dialog->FindWindow(controlID);
-            if (CustomTime) data = CustomTime->GetValue().FormatISOTime();
+            if (CustomTime) {
+                data = CustomTime->GetValue().FormatISOTime();
+            }
             break;
         }
         case Model_CustomField::SINGLECHOICE:
@@ -307,14 +316,14 @@ bool mmCustomData::SaveCustomValues()
         {
             fieldData->FIELDID = field.FIELDID;
             fieldData->CONTENT = data;
-            wxLogDebug("%s", data);
+            wxLogDebug("Control:%i Type:%s Value:%s"
+                , controlID
+                , Model_CustomField::all_type()[Model_CustomField::type(field)]
+                , data);
             Model_CustomFieldData::instance().save(fieldData);
-        }
-        else {
-            ok = false;
         }
     }
 
     Model_CustomFieldData::instance().ReleaseSavepoint();
-    return ok;
+    return true;
 }

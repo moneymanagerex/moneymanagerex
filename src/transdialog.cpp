@@ -139,13 +139,13 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         }
     }
 
-    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     int ref_id = m_trx_data.TRANSID;
     if (m_duplicate || m_new_trx) ref_id = -1;
-    m_custom_fields = new mmCustomData(this, ref_type, ref_id);
+    m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(500, 400), style, name);
+
     dataToControls();
 }
 

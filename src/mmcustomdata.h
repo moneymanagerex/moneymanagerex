@@ -19,7 +19,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 #include "defs.h"
-#include "transdialog.h"
 #include "model/Model_CustomField.h"
 
 
@@ -31,18 +30,26 @@ class wxDialog;
 class mmCustomData : public wxDialog
 {
 protected:
+    mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id);
+private:
+    wxDialog * m_dialog;
     const wxString m_ref_type;
     int m_ref_id;
-    wxDialog* m_dialog;
     Model_CustomField::Data_Set m_fields;
+    wxWindowID m_init_control_id;
 
 public:
     mmCustomData();
-    mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id);
     bool FillCustomFields(wxBoxSizer* box_sizer);
     void OnMultiChoice(wxCommandEvent& event);
     bool SaveCustomValues();
     int GetCustomFieldsTotal() { return m_fields.size(); }
+    void SetBaseID(wxWindowID id) { m_init_control_id = id; }
 
 };
 
+class mmCustomDataTransaction : public mmCustomData
+{
+public:
+    mmCustomDataTransaction(wxDialog* dialog, int ref_id, wxWindowID base_id);
+};
