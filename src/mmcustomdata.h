@@ -26,9 +26,9 @@ class wxDatePickerCtrl;
 class mmTextCtrl;
 class wxDialog;
 
-
 class mmCustomData : public wxDialog
 {
+
 protected:
     mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id);
 private:
@@ -36,12 +36,17 @@ private:
     const wxString m_ref_type;
     int m_ref_id;
     Model_CustomField::Data_Set m_fields;
+    std::map<wxWindowID, int> m_date_time_changed;
     wxWindowID m_init_control_id;
+    void OnDateChanged(wxDateEvent& event);
+    void OnTimeChanged(wxDateEvent& event);
+    void OnMultiChoice(wxCommandEvent& event);
+    bool IsDateTimeChanged(wxWindowID id);
+    void SetDateTimeChanged(wxWindowID id);
 
 public:
     mmCustomData();
     bool FillCustomFields(wxBoxSizer* box_sizer);
-    void OnMultiChoice(wxCommandEvent& event);
     bool SaveCustomValues();
     int GetCustomFieldsTotal() { return m_fields.size(); }
     void SetBaseID(wxWindowID id) { m_init_control_id = id; }

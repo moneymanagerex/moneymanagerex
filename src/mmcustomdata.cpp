@@ -26,20 +26,21 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/collpane.h>
 #include <wx/spinctrl.h>
 
-
 mmCustomData::mmCustomData()
     :wxDialog()
 {
 }
 
 mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id)
-    : m_ref_type(ref_type)
+    : wxDialog()
+    , m_ref_type(ref_type)
     , m_ref_id(ref_id)
 {
     m_dialog = dialog;
     m_fields = Model_CustomField::instance()
         .find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
     std::sort(m_fields.begin(), m_fields.end(), SorterByDESCRIPTION());
+    m_date_time_changed.clear();
 }
 
 mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, wxWindowID base_id)
@@ -128,6 +129,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::DATE:
         {
+            m_date_time_changed[controlID] = 0;
             wxDate value = wxDate::Today();
             if (fieldData->CONTENT.CmpNoCase("Now") == 0)
                 value = wxDate::Today();
@@ -138,19 +140,28 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
             CustomDate->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDate, g_flagsExpand);
+
+            CustomDate->Connect(controlID, wxEVT_DATE_CHANGED
+                , wxDateEventHandler(mmCustomData::OnDateChanged), nullptr, m_dialog);
+
             break;
         }
         case Model_CustomField::TIME:
         {
             wxDateTime value;
+            m_date_time_changed[controlID] = 0;
             if (fieldData->CONTENT.CmpNoCase("Now") == 0)
                 value = wxDateTime::Now();
             else if (!value.ParseTime(fieldData->CONTENT))
                 value.ParseTime("00:00:00");
-            wxTimePickerCtrl* CustomDate = new wxTimePickerCtrl(scrolled_window, controlID
+            wxTimePickerCtrl* CustomTime = new wxTimePickerCtrl(scrolled_window, controlID
                 , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
-            CustomDate->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
-            grid_sizer_custom->Add(CustomDate, g_flagsExpand);
+            CustomTime->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            grid_sizer_custom->Add(CustomTime, g_flagsExpand);
+
+            CustomTime->Connect(controlID, wxEVT_TIME_CHANGED
+                , wxDateEventHandler(mmCustomData::OnTimeChanged), nullptr, m_dialog);
+
             break;
         }
         case Model_CustomField::SINGLECHOICE:
@@ -248,10 +259,6 @@ bool mmCustomData::SaveCustomValues()
     {
         Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, m_ref_id);
 
-        if (!fieldData) {
-            fieldData = Model_CustomFieldData::instance().create();
-        }
-
         wxWindowID controlID = m_init_control_id + (wxWindowID)field.FIELDID;
         wxString data = wxEmptyString;
 
@@ -284,13 +291,15 @@ bool mmCustomData::SaveCustomValues()
         case Model_CustomField::DATE:
         {
             wxDatePickerCtrl* CustomDate = (wxDatePickerCtrl*)m_dialog->FindWindow(controlID);
-            if (CustomDate) data = CustomDate->GetValue().FormatISODate();
+            if (CustomDate && IsDateTimeChanged(controlID)) {
+                data = CustomDate->GetValue().FormatISODate();
+            }
             break;
         }
         case Model_CustomField::TIME:
         {
             wxTimePickerCtrl* CustomTime = (wxTimePickerCtrl*)m_dialog->FindWindow(controlID);
-            if (CustomTime) {
+            if (CustomTime && IsDateTimeChanged(controlID)) {
                 data = CustomTime->GetValue().FormatISOTime();
             }
             break;
@@ -314,6 +323,10 @@ bool mmCustomData::SaveCustomValues()
 
         if (!data.empty())
         {
+            if (!fieldData) {
+                fieldData = Model_CustomFieldData::instance().create();
+            }
+
             fieldData->FIELDID = field.FIELDID;
             fieldData->CONTENT = data;
             wxLogDebug("Control:%i Type:%s Value:%s"
@@ -327,3 +340,31 @@ bool mmCustomData::SaveCustomValues()
     Model_CustomFieldData::instance().ReleaseSavepoint();
     return true;
 }
+
+void mmCustomData::OnDateChanged(wxDateEvent& event)
+{
+    wxLogDebug("Date Changed of widget: %i", event.GetId());
+    SetDateTimeChanged(event.GetId());
+}
+
+void mmCustomData::OnTimeChanged(wxDateEvent& event)
+{
+    wxLogDebug("Time Changed of widget: %i", event.GetId());
+    SetDateTimeChanged(event.GetId());
+}
+
+bool mmCustomData::IsDateTimeChanged(wxWindowID id)
+{
+    int count = m_date_time_changed.at(id);
+    return count > 0;
+}
+
+void mmCustomData::SetDateTimeChanged(wxWindowID id)
+{ 
+    //TODO: here is not initialized variables. How to fix?
+    //m_date_time_changed[id]++;
+    m_dialog;
+    m_ref_type;
+    m_ref_id;
+    m_fields;
+};
