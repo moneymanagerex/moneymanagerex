@@ -23,7 +23,7 @@
 #include "defs.h"
 #include <wx/spinbutt.h>
 #include <wx/dialog.h>
-#include "mmtextctrl.h"
+#include "mmTextCtrl.h"
 #include "splittransactionsdialog.h"
 #include "model/Model_Budgetsplittransaction.h"
 #include "model/Model_Billsdeposits.h"

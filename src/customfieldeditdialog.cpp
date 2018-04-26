@@ -21,7 +21,7 @@ Copyright (C) 2016 Gabriele-V
 #include "constants.h"
 #include "images_list.h"
 #include "mmSimpleDialogs.h"
-#include "mmtextctrl.h"
+#include "mmTextCtrl.h"
 #include "paths.h"
 #include "util.h"
 #include "validators.h"

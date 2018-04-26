@@ -1080,7 +1080,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             s->SUBCATEGID = m_QIFcategoryNames[c].second;
             double amount;
             const wxString& amtSplit = Model_Currency::fromString2Default(amtToken.GetNextToken());
-            amtSplit.ToDouble(&amount);
+            amtSplit.ToCDouble(&amount);
             s->SPLITTRANSAMOUNT = (Model_Checking::is_deposit(trx) ? amount : -amount);
             s->TRANSID = trx->TRANSID;
             split.push_back(s);

@@ -70,8 +70,6 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
     maincurrencydialog.h
     minimal_editor.cpp
     minimal_editor.h
-    mmCalculator.cpp
-    mmCalculator.h
     mmcheckingpanel.cpp
     mmcheckingpanel.h
     mmcombobox.h
@@ -89,7 +87,8 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
     mmreportspanel.h
     mmSimpleDialogs.cpp
     mmSimpleDialogs.h
-    mmtextctrl.h
+    mmTextCtrl.cpp
+    mmTextCtrl.h
     mmTips.h
     option.cpp
     option.h

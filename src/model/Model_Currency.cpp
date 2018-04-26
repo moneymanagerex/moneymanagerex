@@ -215,23 +215,19 @@ const wxString Model_Currency::fromString2Default(const wxString &s, const Data*
     if(c)
     {
         if (!c->GROUP_SEPARATOR.empty())
-            str.Replace(c->GROUP_SEPARATOR, "");
+            str.Replace(c->GROUP_SEPARATOR, wxEmptyString);
         if (!c->DECIMAL_POINT.empty())
-            str.Replace(c->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
+            str.Replace(c->DECIMAL_POINT, wxS("."));
 
-        wxRegEx pattern(R"([^0-9.,+-\/\*\(\)])");
-        pattern.ReplaceAll(&str, "");
-        //wxLogDebug("%s = %s", s, str);
+        wxRegEx pattern(R"([^0-9.+-/*()])");
+        pattern.ReplaceAll(&str, wxEmptyString);
     }
     return str;
 }
 
 bool Model_Currency::fromString(wxString s, double& val, const Data* currency)
 {
-    bool done = true;
-    if (!wxNumberFormatter::FromString(fromString2Default(s, currency), &val))
-        done = false;
-    return done;
+    return fromString2Default(s, currency).ToCDouble(&val);
 }
 
 int Model_Currency::precision(const Data* r)
