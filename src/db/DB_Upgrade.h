@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-04-22 18:37:50.445741.
+ *          AUTO GENERATED at 2018-04-28 01:13:08.914898.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -157,11 +157,11 @@ const std::vector<wxString> dbUpgradeQuery =
         , CURRENCY_TYPE
         FROM CURRENCYFORMATS_V1;
         
+        DROP INDEX IDX_CURRENCYFORMATS_SYMBOL;
         DROP TABLE CURRENCYFORMATS_V1;
         ALTER TABLE CURRENCYFORMATS_V1_NEW RENAME TO CURRENCYFORMATS_V1;
         CREATE INDEX IDX_CURRENCYFORMATS_SYMBOL ON CURRENCYFORMATS_V1(CURRENCY_SYMBOL);
         PRAGMA user_version = 9;
-        
     )",
 
     // Upgrade to version 10
@@ -194,6 +194,7 @@ const std::vector<wxString> dbUpgradeQuery =
         , 0
         FROM CURRENCYFORMATS_V1;
         
+        DROP INDEX IDX_CURRENCYFORMATS_SYMBOL;
         DROP TABLE CURRENCYFORMATS_V1;
         ALTER TABLE CURRENCYFORMATS_V1_NEW RENAME TO CURRENCYFORMATS_V1;
         CREATE INDEX IDX_CURRENCYFORMATS_SYMBOL ON CURRENCYFORMATS_V1(CURRENCY_SYMBOL);
