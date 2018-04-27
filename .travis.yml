@@ -100,7 +100,14 @@ install: |-
       ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"
       brew install --verbose wxmac --with-static --with-stl
       ;;
-  esac && mkdir build && cd build
+  esac
+
+before_script:
+- cd src/db
+- python ../../util/sqlite2cpp.py ../../database/tables_v1.sql
+- python ../../util/sqliteupgrade2cpp.py ../../database
+- rm sql*.sql *.mmdbg
+- cd ../.. && mkdir build && cd build
 
 script: |-
   CMAKE_CMD="cmake ${ARCH:+-DCMAKE_TOOLCHAIN_FILE=util/toolchain-$TRAVIS_OS_NAME-$ARCH.cmake} -DCMAKE_BUILD_TYPE=$BUILD_TYPE .."
