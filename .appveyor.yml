@@ -154,6 +154,12 @@ install:
 before_build:
 - cd %APPVEYOR_BUILD_FOLDER%
 - git submodule update -q --init
+# regenerate database files
+- cd src\db &&
+  python ..\..\util\sqlite2cpp.py ..\..\database\tables_v1.sql &&
+  python ..\..\util\sqliteupgrade2cpp.py ..\..\database &&
+  del *.mmdbg sql*.sql 
+- cd %APPVEYOR_BUILD_FOLDER%
 
 build_script:
 - mkdir build & cd build
