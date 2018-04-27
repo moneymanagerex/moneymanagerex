@@ -11,7 +11,7 @@ RUN echo -e 'quiet=on\ncheck_certificate=off' >> ~/.wgetrc \
  && slackpkg -default_answer=y -batch=on install \
       cmake-3 libarchive-3 nettle lzo libxml2 cyrus-sasl make-4 ccache \
       binutils gcc-5 gcc-g++ guile gc libffi libmpc glibc-2 gettext-tools \
-      git kernel-headers libcroco \
+      git flex kernel-headers libcroco \
       \
       gtk+2 glib2 pango atk-2 cairo gdk-pixbuf2 freetype fontconfig libX11 \
       libXxf86vm libSM libnotify libsoup libXinerama libXi libXt libXrandr \
