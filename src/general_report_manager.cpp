@@ -969,7 +969,7 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
             , _("Choose file to Save As Report")
             , wxEmptyString
             , file_name
-            , "GRM Files (*.grm)|*.grm|ZIP files (*.zip)|*.zip"
+            , _("General Report Manager files (*.grm)")+"|*.grm|"+_("ZIP files (*.zip)")+"|*.zip"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
             );
 
