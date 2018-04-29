@@ -2030,9 +2030,9 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
         _("Choose database file to create"),
         wxEmptyString,
         wxEmptyString,
-        _("MMB files (*.mmb)") + "|*.mmb"
+        _("MMEX database files (*.mmb)") + "|*.mmb"
             + (wxSQLite3Database::HasEncryptionSupport()
-                ? "|" + _("Encrypted MMB files (*.mmb)") + "|*.mmb"
+                ? "|" + _("Encrypted MMEX database files (*.mmb)") + "|*.mmb"
                 : wxString()),
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
         );
@@ -2138,9 +2138,9 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
         _("Save database file as"),
         wxEmptyString,
         wxEmptyString,
-        _("MMB files (*.mmb)") + "|*.mmb"
+        _("MMEX database files (*.mmb)") + "|*.mmb"
             + (wxSQLite3Database::HasEncryptionSupport()
-                ? "|" + _("Encrypted MMB files (*.mmb)") + "|*.mmb"
+                ? "|" + _("Encrypted MMEX database files (*.mmb)") + "|*.mmb"
                 : wxString()),
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
         );

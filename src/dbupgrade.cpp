@@ -215,7 +215,7 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
 
 void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
 {
-    wxFileDialog fileDlgLoad(nullptr,_("Load debug file"),"","","MMDBG Files (*.mmdbg)|*.mmdbg", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+    wxFileDialog fileDlgLoad(nullptr,_("Load debug file"),"","",_("MMEX debug files (*.mmdbg)")+"|*.mmdbg", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
     if (fileDlgLoad.ShowModal() != wxID_OK)
         return;
 
@@ -273,7 +273,7 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
             _("MMEX debug"), txtLog, wxOK | wxCANCEL | wxCENTRE | wxTE_MULTILINE);
         if (dlg.ShowModal() == wxID_OK)
         {
-            wxFileDialog fileDlgSave(nullptr, _("Save debug file"), "", "", "*.txt", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+            wxFileDialog fileDlgSave(nullptr, _("Save debug file"), "", "", _("Text files (*.txt)")+"|*.txt", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
             if (fileDlgSave.ShowModal() == wxID_OK)
             {
                 wxFile file(fileDlgSave.GetPath(), wxFile::write);
