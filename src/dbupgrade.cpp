@@ -219,24 +219,39 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
     if (fileDlgLoad.ShowModal() != wxID_OK)
         return;
 
-    wxString filePath = fileDlgLoad.GetPath();
-    if (wxFileName(filePath).GetExt().MakeLower() != "mmdbg")
+    wxTextFile txtFile;
+    txtFile.Open(fileDlgLoad.GetPath());
+    bool readonly;
+
+    wxString txtLine = txtFile.GetFirstLine();
+    if (txtLine == "-- MMEX Debug SQL - Read --") readonly=true;
+    else if (txtLine == "-- MMEX Debug SQL - Update --") readonly=false;
+    else
     {
-        wxMessageBox(_("Wrong file type!"), _("MMEX debug error"), wxOK | wxICON_ERROR);
+        wxMessageBox(_("Invalid debug file content, please contact MMEX support!"), _("MMEX debug error"), wxOK | wxICON_ERROR);
         return;
     }
 
-    wxTextFile txtFile;
-    txtFile.Open(filePath);
-
-    if (txtFile.GetFirstLine().Contains("-- MMEX Debug SQL - Read --"))
+    wxString txtMsg;
+    for (txtLine = txtFile.GetNextLine(); !txtFile.Eof() && txtLine.StartsWith("-- ",&txtLine); txtLine = txtFile.GetNextLine())
     {
-        wxString txtLine, txtLog = "";
+            txtMsg << txtLine << "\n";
+
+    }
+    if (!txtMsg.IsEmpty())
+        if (wxMessageBox(_("Debug script description:") + "\n\n" + txtMsg + "\n" + _("Please confirm running this SQL script."), _("MMEX debug"), wxOK | wxCANCEL) != wxOK)
+            return;
+
+    if (txtFile.Eof()) return; // only comments in file
+
+    if (readonly)
+    {
+        wxString txtLog = wxEmptyString;
 
         txtLog << wxString::Format("Current db file version: %i", dbUpgrade::GetCurrentVersion(db)) + wxTextFile::GetEOL();
         txtLog << mmex::getProgramDescription() + wxTextFile::GetEOL();
 
-        for (txtLine = txtFile.GetNextLine(); !txtFile.Eof(); txtLine = txtFile.GetNextLine())
+        for (; !txtFile.Eof(); txtLine = txtFile.GetNextLine())
         {
             txtLog << wxTextFile::GetEOL() << "=== Query ===" << wxTextFile::GetEOL() << txtLine << wxTextFile::GetEOL();
 
@@ -285,11 +300,10 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
             }
         }
     }
-    else if (txtFile.GetFirstLine().Contains("-- MMEX Debug SQL - Update --"))
+    else
     {
         db->Savepoint("MMEX_Debug");
-        wxString txtLine;
-        for (txtLine = txtFile.GetNextLine(); !txtFile.Eof(); txtLine = txtFile.GetNextLine())
+        for (; !txtFile.Eof(); txtLine = txtFile.GetNextLine())
         {
             try
             {
@@ -304,10 +318,5 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
         }
         db->ReleaseSavepoint("MMEX_Debug");
         wxMessageBox(_("DB maintenance completed, please close and re-open MMEX!"), _("MMEX debug"), wxOK | wxICON_INFORMATION);
-    }
-    else
-    {
-        wxMessageBox(_("Invalid debug file content, please contact MMEX support!"), _("MMEX debug error"), wxOK | wxICON_ERROR);
-        return;
     }
 }
