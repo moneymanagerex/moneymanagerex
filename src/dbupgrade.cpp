@@ -232,8 +232,31 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
         return;
     }
 
+    if (!txtFile.Eof())
+    {
+        txtLine = txtFile.GetNextLine();
+        if (txtLine.StartsWith("-- MMEX db version required ",&txtLine))
+        {
+            int ver = GetCurrentVersion(db);
+            unsigned long reqver;
+            if (!txtLine.ToCULong(&reqver))
+            {
+                wxMessageBox(_("Invalid debug file content, please contact MMEX support!"), _("MMEX debug error"), wxOK | wxICON_ERROR);
+                return;
+            }
+            if (ver != reqver)
+            {
+                wxString msg = wxString::Format(_("This SQL debug script requires %li database version, but current database is version %i."), reqver, ver);
+                wxMessageBox(msg, _("MMEX debug error"), wxOK | wxICON_ERROR);
+                return;
+            }
+            if (!txtFile.Eof())
+                txtLine = txtFile.GetNextLine();
+        }
+    } 
+
     wxString txtMsg;
-    for (txtLine = txtFile.GetNextLine(); !txtFile.Eof() && txtLine.StartsWith("-- ",&txtLine); txtLine = txtFile.GetNextLine())
+    for (; !txtFile.Eof() && txtLine.StartsWith("-- ",&txtLine); txtLine = txtFile.GetNextLine())
     {
             txtMsg << txtLine << "\n";
 
