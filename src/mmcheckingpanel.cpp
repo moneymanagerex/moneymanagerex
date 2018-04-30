@@ -1645,7 +1645,14 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
+
+                // remove attachments
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
+
+                // remove custom data
+                const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+                Model_CustomFieldData::instance().DeleteAllData(ref_type, transID);
+
                 if (x <= m_topItemIndex) m_topItemIndex--;
                 if (!m_cp->m_trans.empty() && m_selectedIndex > 0) m_selectedIndex--;
                 if (m_selectedForCopy == transID) m_selectedForCopy = -1;

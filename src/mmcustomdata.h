@@ -32,7 +32,7 @@ class mmCustomData : public wxDialog
 protected:
     mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id);
 private:
-    wxDialog * m_dialog;
+    wxDialog* m_dialog;
     const wxString m_ref_type;
     int m_ref_id;
     Model_CustomField::Data_Set m_fields;
