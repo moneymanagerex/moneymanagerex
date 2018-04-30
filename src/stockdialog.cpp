@@ -556,7 +556,7 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
 
     bool canceledbyuser = false;
     const wxString fileName = wxFileSelector(_("Choose CSV data file to import")
-        , wxEmptyString, wxEmptyString, wxEmptyString, "*.csv", wxFD_FILE_MUST_EXIST);
+        , wxEmptyString, wxEmptyString, wxEmptyString, _("CSV Files (*.csv)") + "|*.csv;*.CSV", wxFD_FILE_MUST_EXIST);
     Model_Account::Data *account = Model_Account::instance().get(m_stock->HELDAT);
     Model_Currency::Data *currency = Model_Account::currency(account);
 

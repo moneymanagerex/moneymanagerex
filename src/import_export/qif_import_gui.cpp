@@ -713,11 +713,10 @@ void mmQIFImportDialog::getDateMask()
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 {
     m_FileNameStr = file_name_ctrl_->GetValue();
-    const wxString choose_ext = _("QIF Files");
 
     m_FileNameStr = wxFileSelector(_("Choose QIF data file to Import")
         , wxEmptyString, m_FileNameStr, wxEmptyString
-        , choose_ext + " (*.qif)|*.qif;*.QIF"
+        , _("QIF Files (*.qif)") + "|*.qif;*.QIF"
         , wxFD_OPEN | wxFD_CHANGE_DIR | wxFD_FILE_MUST_EXIST, this); //TODO: Remove UI Blinking
 
     if (!m_FileNameStr.IsEmpty()) {

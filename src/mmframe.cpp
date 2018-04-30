@@ -2054,10 +2054,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     autoRepeatTransactionsTimer_.Stop();
     wxString fileName = wxFileSelector(_("Choose database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , _("MMB files (*.mmb)") + "|*.mmb;*.emb"
-            // + (wxSQLite3Database::HasEncryptionSupport()
-            //     ? "|" + _("Encrypted MMB files (*.emb)") + "|*.emb"
-            //     : wxString())
+        , _("MMEX database files (*.mmb)") + "|*.mmb;*.emb"
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
         , this
         );

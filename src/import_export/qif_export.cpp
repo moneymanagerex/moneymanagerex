@@ -275,10 +275,9 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 {
     wxString fileName = m_text_ctrl_->GetValue();
 
-    const wxString choose_ext = _("QIF Files");
     fileName = wxFileSelector(_("Choose QIF data file to Export")
         , wxEmptyString, fileName, wxEmptyString
-        , choose_ext + (" (*.qif)|*.qif;*.QIF")
+        , _("QIF Files (*.qif)") + "|*.qif;*.QIF"
         , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
 
     if (!fileName.IsEmpty())
