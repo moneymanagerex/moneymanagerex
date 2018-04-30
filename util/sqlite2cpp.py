@@ -127,8 +127,8 @@ class DB_Table:
 
             if not utf_only or not is_ascii(values):
                 sf1 += '''
-INSERT OR IGNORE INTO %s (CURRENCY_SYMBOL) VALUES ('%s');
-UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['CURRENCY_SYMBOL'], self._table, values, row['CURRENCY_SYMBOL'])
+INSERT OR IGNORE INTO %s (CURRENCYNAME, CURRENCY_SYMBOL) VALUES ('%s', '%s');
+UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['CURRENCYNAME'].replace('_tr_', ''), row['CURRENCY_SYMBOL'], self._table, values, row['CURRENCY_SYMBOL'])
 
         return sf1
 
@@ -138,7 +138,9 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
         if self._table.upper() == 'CURRENCYFORMATS_V1':
             print 'Generate patch file: %s' % currency_unicode_patch_filename
             rfp = codecs.open(currency_unicode_patch_filename, 'w', 'utf-8')
-            sf1 = '-- MMEX Debug SQL - Update --'
+            sf1 = '''-- MMEX Debug SQL - Update --
+-- MMEX db version required 10
+-- This script will add missing currencies and will overwrite all currencies params containing UTF8 in your database.'''
             rfp.write(self.generate_currency_table_data(sf1, True))
             rfp.close()
 
@@ -148,7 +150,9 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
         if self._table.upper() == 'CURRENCYFORMATS_V1':
             print 'Generate patch file: %s' % currency_table_patch_filename
             rfp = codecs.open(currency_table_patch_filename, 'w', 'utf-8')
-            sf1 = '-- MMEX Debug SQL - Update --'
+            sf1 = '''-- MMEX Debug SQL - Update --
+-- MMEX db version required 10
+-- This script will add missing currencies and will overwrite all currencies params in your database.'''
             rfp.write(self.generate_currency_table_data(sf1, False))
             rfp.close()
 
