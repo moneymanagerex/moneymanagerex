@@ -1124,13 +1124,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
         mmAttachmentManage::RelocateAllAttachments(RefType, -1, m_trx_data.TRANSID);
     }
 
-    if (m_custom_fields->SaveCustomValues())
-    {
-        if (m_new_trx || m_duplicate)
-        {
-            Model_CustomFieldData::instance().RelocateAllData(RefType, -1, m_trx_data.TRANSID);
-        }
-    }
+    m_custom_fields->SaveCustomValues(m_trx_data.TRANSID);
 
     const Model_Checking::Data& tran(*r);
     Model_Checking::Full_Data trx(m_account_id, tran);

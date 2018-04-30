@@ -1647,10 +1647,9 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
                 Model_Checking::instance().remove(transID);
 
                 // remove attachments
-                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
-
-                // remove custom data
                 const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+                mmAttachmentManage::DeleteAllAttachments(ref_type, transID);
+                // remove custom data
                 Model_CustomFieldData::instance().DeleteAllData(ref_type, transID);
 
                 if (x <= m_topItemIndex) m_topItemIndex--;

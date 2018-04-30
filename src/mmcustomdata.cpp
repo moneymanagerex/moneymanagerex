@@ -76,7 +76,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             fieldData->FIELDID = field.FIELDID;
             fieldData->REFID = m_ref_id;
             fieldData->CONTENT = Model_CustomField::getDefault(field.PROPERTIES);
-            Model_CustomFieldData::instance().save(fieldData);
         }
 
         wxWindowID controlID = m_init_control_id + (wxWindowID)field.FIELDID;
@@ -253,7 +252,7 @@ void mmCustomData::OnMultiChoice(wxCommandEvent& event)
 }
 
 
-bool mmCustomData::SaveCustomValues()
+bool mmCustomData::SaveCustomValues(int ref_id)
 {
     Model_CustomFieldData::instance().Savepoint();
 
@@ -328,6 +327,7 @@ bool mmCustomData::SaveCustomValues()
                 fieldData = Model_CustomFieldData::instance().create();
             }
 
+            fieldData->REFID = ref_id;
             fieldData->FIELDID = field.FIELDID;
             fieldData->CONTENT = data;
             wxLogDebug("Control:%i Type:%s Value:%s"
@@ -344,13 +344,11 @@ bool mmCustomData::SaveCustomValues()
 
 void mmCustomData::OnDateChanged(wxDateEvent& event)
 {
-    wxLogDebug("Date Changed of widget: %i", event.GetId());
     SetDateTimeChanged(event.GetId());
 }
 
 void mmCustomData::OnTimeChanged(wxDateEvent& event)
 {
-    wxLogDebug("Time Changed of widget: %i", event.GetId());
     SetDateTimeChanged(event.GetId());
 }
 

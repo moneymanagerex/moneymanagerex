@@ -49,7 +49,6 @@ public:
 public:
     Data* get(int FieldID, int RefID);
     wxArrayString allValue(const int FieldID);
-    bool RelocateAllData(const wxString& RefType, int OldRefId, int NewRefId);
     bool DeleteAllData(const wxString& RefType, int RefID);
 };
 
