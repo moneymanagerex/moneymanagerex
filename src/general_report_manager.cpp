@@ -542,7 +542,7 @@ void mmGeneralReportManager::importReport()
 {
     const wxString reportFileName = wxFileSelector(_("Load report file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
-        , "GRM Files (*.grm)|*.grm|ZIP files (*.zip)|*.zip"
+        , _("General Report Manager files (*.grm)")+"|*.grm|"+_("ZIP files (*.zip)")+"|*.zip"
         , wxFD_FILE_MUST_EXIST);
 
     if (reportFileName.empty()) return;
@@ -969,7 +969,7 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
             , _("Choose file to Save As Report")
             , wxEmptyString
             , file_name
-            , "GRM Files (*.grm)|*.grm|ZIP files (*.zip)|*.zip"
+            , _("General Report Manager files (*.grm)")+"|*.grm|"+_("ZIP files (*.zip)")+"|*.zip"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
             );
 

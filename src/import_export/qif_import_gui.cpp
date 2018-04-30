@@ -713,11 +713,10 @@ void mmQIFImportDialog::getDateMask()
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 {
     m_FileNameStr = file_name_ctrl_->GetValue();
-    const wxString choose_ext = _("QIF Files");
 
     m_FileNameStr = wxFileSelector(_("Choose QIF data file to Import")
         , wxEmptyString, m_FileNameStr, wxEmptyString
-        , choose_ext + " (*.qif)|*.qif;*.QIF"
+        , _("QIF Files (*.qif)") + "|*.qif;*.QIF"
         , wxFD_OPEN | wxFD_CHANGE_DIR | wxFD_FILE_MUST_EXIST, this); //TODO: Remove UI Blinking
 
     if (!m_FileNameStr.IsEmpty()) {
@@ -1080,7 +1079,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             s->SUBCATEGID = m_QIFcategoryNames[c].second;
             double amount;
             const wxString& amtSplit = Model_Currency::fromString2Default(amtToken.GetNextToken());
-            amtSplit.ToDouble(&amount);
+            amtSplit.ToCDouble(&amount);
             s->SPLITTRANSAMOUNT = (Model_Checking::is_deposit(trx) ? amount : -amount);
             s->TRANSID = trx->TRANSID;
             split.push_back(s);

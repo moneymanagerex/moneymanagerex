@@ -80,6 +80,7 @@ private:
     void OnListItemSelected(wxDataViewEvent& event);
     void fillControls();
     void OnShowHiddenChbClick(wxCommandEvent& event);
+    void OnHideHistoricClick(wxCommandEvent& event);
 
     void ShowCurrencyHistory();
     void OnHistoryAdd(wxCommandEvent& event);
@@ -103,6 +104,7 @@ private:
     wxButton* itemButtonEdit_;
     wxButton* itemButtonDelete_;
     wxCheckBox* cbShowAll_;
+    wxCheckBox* cbHideHistoric_;
     wxListCtrl* valueListBox_;
     wxDatePickerCtrl* valueDatePicker_;
     mmTextCtrl* valueTextBox_;

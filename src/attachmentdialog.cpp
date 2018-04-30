@@ -163,7 +163,7 @@ void mmAttachmentDialog::AddAttachment()
 {
     const wxString attachmentFilePath = wxFileSelector(_("Import attachment:")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , "All Files |*.*"
+        , _("All Files")+ "|" + wxFileSelectorDefaultWildcardStr
         , wxFD_FILE_MUST_EXIST);
 
     if (attachmentFilePath.empty()) return;

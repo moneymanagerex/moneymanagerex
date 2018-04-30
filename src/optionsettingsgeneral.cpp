@@ -86,7 +86,7 @@ void OptionSettingsGeneral::Create()
     wxString currName = _("Set Currency");
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
     if (currency)
-        currName = currency->CURRENCYNAME;
+        currName = wxGetTranslation(currency->CURRENCYNAME);
     wxButton* baseCurrencyButton = new wxButton(this, ID_DIALOG_OPTIONS_BUTTON_CURRENCY
         , currName, wxDefaultPosition, wxDefaultSize);
     baseCurrencyButton->SetToolTip(_("Sets the database default Currency using the 'Currency Dialog'"));
@@ -170,7 +170,7 @@ void OptionSettingsGeneral::OnCurrency(wxCommandEvent& /*event*/)
         currencyID = Option::instance().BaseCurrency();
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID);
         wxButton* bn = (wxButton*) FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
-        bn->SetLabelText(currency->CURRENCYNAME);
+        bn->SetLabelText(wxGetTranslation(currency->CURRENCYNAME));
         m_currency_id = currencyID;
 
         //wxMessageDialog msgDlg(this, _("Remember to update currency rate"), _("Important note"));

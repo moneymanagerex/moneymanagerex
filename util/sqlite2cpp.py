@@ -10,8 +10,8 @@ import datetime
 import sqlite3
 import codecs
 
-currency_unicode_patch_filename = 'currency_table_unicode_fix_patch.mmdbg'
-currency_table_patch_filename = 'currency_table_upgrade_patch.mmdbg'
+currency_unicode_patch_filename = 'currencies_update_patch_unicode_only.mmdbg'
+currency_table_patch_filename = 'currencies_update_patch.mmdbg'
 sql_tables_data_filename = 'sql_tables_v1.sql'
 
 # http://stackoverflow.com/questions/196345/how-to-check-if-a-string-in-python-is-in-ascii
@@ -34,14 +34,23 @@ def is_trans(s):
 
     return False
 
+def adjust_translate(s):
+    """Return the correct translated syntax for c++"""
+    trans_str = s.replace("_tr_", "").replace('"','')
+    trans_str = 'wxTRANSLATE("' + trans_str + '")'
+
+    return trans_str
 
 def translation_for(s):
     """Return the correct translated syntax for c++"""
+    trans_str = ''
     if not is_ascii(s):  # it is unicode string
-        trans_str = 'L"%s"' % s
+        if len(s) > 4 and s[0:4] == "_tr_": # requires wxTRANSLATE for cpp
+            trans_str = adjust_translate(s)
+        else:
+            trans_str = 'L"%s"' % s
     else:
-        trans_str = s.replace("_tr_", "")
-        trans_str = 'wxTRANSLATE("' + trans_str + '")'
+        trans_str = adjust_translate(s)
 
     return trans_str
 
@@ -109,21 +118,17 @@ class DB_Table:
 
     def generate_currency_table_data(self, sf1, utf_only):
         """Extract currency table data from table_v1
-           Return string of insert commands
+           Return string of update commands
            Will only get unicode data line when utf_only is true"""
 
         for row in self._data:
-            values = ', '.join(["'%s'" % i if is_trans(i) else "'%s'" % i for i in row])
+            values = ', '.join(["%s='%s'" % (k, row[k]) for k in row.keys() if k.upper() != 'CURRENCYID' and k.upper() != 'CURRENCY_SYMBOL'])
             values = values.replace('_tr_', '')
-            values = 'INSERT OR REPLACE INTO %s VALUES(%s)' % (self._table, values)
 
-            if utf_only and not is_ascii(values): # Write UTF currency data data only
+            if not utf_only or not is_ascii(values):
                 sf1 += '''
-%s;''' % (values)
-
-            if not utf_only: # Write all currency data
-                sf1 += '''
-%s;''' % (values)
+INSERT OR IGNORE INTO %s (CURRENCYNAME, CURRENCY_SYMBOL) VALUES ('%s', '%s');
+UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['CURRENCYNAME'].replace('_tr_', ''), row['CURRENCY_SYMBOL'], self._table, values, row['CURRENCY_SYMBOL'])
 
         return sf1
 
@@ -133,7 +138,9 @@ class DB_Table:
         if self._table.upper() == 'CURRENCYFORMATS_V1':
             print 'Generate patch file: %s' % currency_unicode_patch_filename
             rfp = codecs.open(currency_unicode_patch_filename, 'w', 'utf-8')
-            sf1 = '-- MMEX Debug SQL - Update --'
+            sf1 = '''-- MMEX Debug SQL - Update --
+-- MMEX db version required 10
+-- This script will add missing currencies and will overwrite all currencies params containing UTF8 in your database.'''
             rfp.write(self.generate_currency_table_data(sf1, True))
             rfp.close()
 
@@ -143,7 +150,9 @@ class DB_Table:
         if self._table.upper() == 'CURRENCYFORMATS_V1':
             print 'Generate patch file: %s' % currency_table_patch_filename
             rfp = codecs.open(currency_table_patch_filename, 'w', 'utf-8')
-            sf1 = '-- MMEX Debug SQL - Update --'
+            sf1 = '''-- MMEX Debug SQL - Update --
+-- MMEX db version required 10
+-- This script will add missing currencies and will overwrite all currencies params in your database.'''
             rfp.write(self.generate_currency_table_data(sf1, False))
             rfp.close()
 
@@ -805,7 +814,6 @@ struct DB_Table_%s : public DB_Table
 
 def generate_base_class(header, fields=set):
     """Generate the base class"""
-    rfp = open('DB_Table.h', 'wb')
     code = header + '''#pragma once
 
 #include <vector>
@@ -949,18 +957,19 @@ bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 }
 '''
     for field in sorted(fields):
+        transl = 'wxGetTranslation' if field == 'CURRENCYNAME' else ''
         code += '''
 struct SorterBy%s
 { 
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return x.%s < y.%s;
+        return %s(x.%s) < %s(y.%s);
     }
 };
-''' % (field, field, field)
+''' % (field, transl, field, transl, field)
 
-    rfp = open('db_table.h', 'w')
+    rfp = open('DB_Table.h', 'w')
     rfp.write(code)
     rfp.close()
 

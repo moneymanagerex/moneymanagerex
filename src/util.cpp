@@ -19,7 +19,7 @@
 
 #include "util.h"
 #include "constants.h"
-#include "mmtextctrl.h"
+#include "mmTextCtrl.h"
 #include "validators.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
@@ -748,7 +748,7 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
     if (!m_validatorWindow || !text_field)
         return event.Skip();
 
-    wxChar decChar = text_field->m_currency->DECIMAL_POINT[0];
+    wxChar decChar = text_field->GetDecimalPoint();
     bool numpad_dec_swap = (wxGetKeyState(wxKeyCode(WXK_NUMPAD_DECIMAL)) && decChar != str);
     
     if (numpad_dec_swap)

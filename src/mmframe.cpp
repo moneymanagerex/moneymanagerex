@@ -591,6 +591,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_CATEGORY_RELOCATION)->Enable(enable);
     menuBar_->FindItem(MENU_PAYEE_RELOCATION)->Enable(enable);
     menuBar_->FindItem(wxID_VIEW_LIST)->Enable(enable);
+    menuBar_->FindItem(wxID_BROWSE)->Enable(enable);
     menuBar_->FindItem(MENU_SET_PASSWORD)->Enable(enable);
 
     menuBar_->FindItem(MENU_IMPORT)->Enable(enable);
@@ -623,6 +624,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     toolBar_->EnableTool(MENU_ORGCATEGS, enable);
     toolBar_->EnableTool(MENU_CURRENCY, enable);
     toolBar_->EnableTool(wxID_VIEW_LIST, enable);
+    toolBar_->EnableTool(wxID_BROWSE, enable);
     toolBar_->EnableTool(MENU_TRANSACTIONREPORT, enable);
     toolBar_->EnableTool(wxID_PREFERENCES, enable);
     toolBar_->EnableTool(wxID_NEW, enable);
@@ -1653,9 +1655,9 @@ void mmGUIFrame::createMenu()
     menuItemGRM->SetBitmap(mmBitmap(png::GRM));
     menuTools->Append(menuItemGRM);
 
-    wxMenuItem* menuItemCF = new wxMenuItem(menuTools, MENU_CUSTOMFIELDS
-        , _("&Custom Fielsd Manager..."), _("Custom Fielsd Manager"));
-    menuItemGRM->SetBitmap(mmBitmap(png::CUSTOM));
+    wxMenuItem* menuItemCF = new wxMenuItem(menuTools, wxID_BROWSE
+        , _("&Custom Fields Manager..."), _("Custom Fields Manager"));
+    menuItemCF->SetBitmap(mmBitmap(png::CUSTOM));
     menuTools->Append(menuItemCF);
 
     menuTools->AppendSeparator();
@@ -2030,9 +2032,9 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
         _("Choose database file to create"),
         wxEmptyString,
         wxEmptyString,
-        _("MMB files (*.mmb)") + "|*.mmb"
+        _("MMEX database files (*.mmb)") + "|*.mmb"
             + (wxSQLite3Database::HasEncryptionSupport()
-                ? "|" + _("Encrypted MMB files (*.mmb)") + "|*.mmb"
+                ? "|" + _("Encrypted MMEX database files (*.mmb)") + "|*.mmb"
                 : wxString()),
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
         );
@@ -2054,10 +2056,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     autoRepeatTransactionsTimer_.Stop();
     wxString fileName = wxFileSelector(_("Choose database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , _("MMB files (*.mmb)") + "|*.mmb;*.emb"
-            // + (wxSQLite3Database::HasEncryptionSupport()
-            //     ? "|" + _("Encrypted MMB files (*.emb)") + "|*.emb"
-            //     : wxString())
+        , _("MMEX database files (*.mmb)") + "|*.mmb;*.emb"
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
         , this
         );
@@ -2138,9 +2137,9 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
         _("Save database file as"),
         wxEmptyString,
         wxEmptyString,
-        _("MMB files (*.mmb)") + "|*.mmb"
+        _("MMEX database files (*.mmb)") + "|*.mmb"
             + (wxSQLite3Database::HasEncryptionSupport()
-                ? "|" + _("Encrypted MMB files (*.mmb)") + "|*.mmb"
+                ? "|" + _("Encrypted MMEX database files (*.mmb)") + "|*.mmb"
                 : wxString()),
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
         );

@@ -25,7 +25,7 @@
 #include "defs.h"
 #include "paths.h"
 #include "validators.h"
-#include "mmtextctrl.h"
+#include "mmTextCtrl.h"
 #include "mmSimpleDialogs.h"
 
 #include <wx/combobox.h>
@@ -247,11 +247,6 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
     const wxString name = m_currencyName->GetValue().Trim();
     if (name.empty())
         return mmErrorDialogs::InvalidName(m_currencyName);
-
-    const auto &currency_name = Model_Currency::instance()
-        .find(Model_Currency::CURRENCYNAME(name));
-    if (!currency_name.empty() && m_currency->CURRENCYID == -1)
-        return mmErrorDialogs::InvalidName(m_currencyName, true);
 
     const wxString symbol = m_currencySymbol->GetValue().Trim();
     if (name.empty() || symbol.empty())

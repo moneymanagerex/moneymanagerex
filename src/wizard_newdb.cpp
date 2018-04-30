@@ -115,7 +115,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     if (base_currency)
     {
         currencyID_ = base_currency->CURRENCYID;
-        currName = base_currency->CURRENCYNAME;
+        currName = wxGetTranslation(base_currency->CURRENCYNAME);
 	    Option::instance().BaseCurrency(currencyID_);
     }
 
@@ -179,7 +179,7 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
         if (currency)
         {
-            itemButtonCurrency_->SetLabelText(currency->CURRENCYNAME);
+            itemButtonCurrency_->SetLabelText(wxGetTranslation(currency->CURRENCYNAME));
             currencyID_ = currency->CURRENCYID;
             Option::instance().BaseCurrency(currencyID_);
             break;

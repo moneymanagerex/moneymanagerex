@@ -1340,9 +1340,9 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& /*event*/)
     }
 
     long flags = IsImporter() ? wxFD_FILE_MUST_EXIST | wxFD_OPEN : wxFD_SAVE;
-    const wxString chooseExt = IsXML() ? wxString() << _("XML Files (*.xml) | *.xml;*.XML | All files | *.*") :
-        wxString() << _("CSV Files") << " (*.csv)|*.csv;*.CSV";
-    const wxString defaultWildcard = IsXML() ? "*.xml" : "*.csv";
+    const wxString defaultWildcard = IsXML() ? wxString() << _("XML Files (*.xml)") << "|*.xml;*.XML|" << _("All Files") << "|" << wxFileSelectorDefaultWildcardStr :
+        wxString() << _("CSV Files (*.csv)") << "|*.csv;*.CSV";
+    const wxString chooseExt = IsXML() ? "*.xml" : "*.csv";
 
     if (!IsImporter()) correctEmptyFileExt("csv", fileName);
 
@@ -1568,7 +1568,7 @@ void mmUnivCSVDialog::OnDateFormatChanged(wxCommandEvent& event)
         wxString acctName = m_choice_account_->GetStringSelection();
         Model_Account::Data* account = Model_Account::instance().get(acctName);
         Model_Currency::Data* currency = Model_Account::currency(account);
-        *log_field_ << _("Currency:") << " " << currency->CURRENCYNAME << "\n";
+        *log_field_ << _("Currency:") << " " << wxGetTranslation(currency->CURRENCYNAME) << "\n";
     }
     else if (i == ID_ENCODING)
     {

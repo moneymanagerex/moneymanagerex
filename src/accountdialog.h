@@ -20,7 +20,7 @@
 #define MM_EX_NEWACCTDIALOG_H_
 
 #include "model/Model_Account.h"
-#include "mmtextctrl.h"
+#include "mmTextCtrl.h"
 
 class mmNewAcctDialog : public wxDialog
 {

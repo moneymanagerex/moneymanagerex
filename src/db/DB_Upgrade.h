@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-04-16 12:06:55.012770.
+ *          AUTO GENERATED at 2018-04-28 01:13:08.914898.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -18,7 +18,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 9;
+const int dbLatestVersion = 10;
 
 const std::vector<wxString> dbUpgradeQuery =
 {
@@ -157,11 +157,48 @@ const std::vector<wxString> dbUpgradeQuery =
         , CURRENCY_TYPE
         FROM CURRENCYFORMATS_V1;
         
+        DROP INDEX IDX_CURRENCYFORMATS_SYMBOL;
         DROP TABLE CURRENCYFORMATS_V1;
         ALTER TABLE CURRENCYFORMATS_V1_NEW RENAME TO CURRENCYFORMATS_V1;
         CREATE INDEX IDX_CURRENCYFORMATS_SYMBOL ON CURRENCYFORMATS_V1(CURRENCY_SYMBOL);
         PRAGMA user_version = 9;
+    )",
+
+    // Upgrade to version 10
+    R"(
+        CREATE TABLE CURRENCYFORMATS_V1_NEW(
+        CURRENCYID integer primary key
+        , CURRENCYNAME TEXT COLLATE NOCASE NOT NULL
+        , PFX_SYMBOL TEXT
+        , SFX_SYMBOL TEXT
+        , DECIMAL_POINT TEXT
+        , GROUP_SEPARATOR TEXT
+        , SCALE integer
+        , BASECONVRATE numeric
+        , CURRENCY_SYMBOL TEXT COLLATE NOCASE NOT NULL UNIQUE
+        , CURRENCY_TYPE TEXT /* Traditional, Crypto */
+        , HISTORIC integer DEFAULT 0 /* 1 if no longer official */
+        );
         
+        INSERT INTO CURRENCYFORMATS_V1_NEW SELECT
+        CURRENCYID
+        , CURRENCYNAME
+        , PFX_SYMBOL
+        , SFX_SYMBOL
+        , DECIMAL_POINT
+        , GROUP_SEPARATOR
+        , SCALE
+        , BASECONVRATE
+        , CURRENCY_SYMBOL
+        , CURRENCY_TYPE
+        , 0
+        FROM CURRENCYFORMATS_V1;
+        
+        DROP INDEX IDX_CURRENCYFORMATS_SYMBOL;
+        DROP TABLE CURRENCYFORMATS_V1;
+        ALTER TABLE CURRENCYFORMATS_V1_NEW RENAME TO CURRENCYFORMATS_V1;
+        CREATE INDEX IDX_CURRENCYFORMATS_SYMBOL ON CURRENCYFORMATS_V1(CURRENCY_SYMBOL);
+        PRAGMA user_version = 10;
     )",
 
 };

@@ -19,7 +19,7 @@
 #include "categdialog.h"
 #include "constants.h"
 #include "paths.h"
-#include "mmtextctrl.h"
+#include "mmTextCtrl.h"
 #include "transactionsupdatedialog.h"
 #include "validators.h"
 #include "wx/statline.h"
