@@ -25,7 +25,7 @@ SET(MMEX_EXE mmex)
 # ./src/versions.h
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
-SET(MMEX_VERSION_ALPHA 3)
+SET(MMEX_VERSION_ALPHA 4)
 SET(MMEX_VERSION_BETA -1)
 SET(MMEX_VERSION_RC -1)
 
