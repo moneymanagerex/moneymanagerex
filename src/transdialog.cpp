@@ -562,7 +562,7 @@ void mmTransDialog::CreateControls()
     wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel
         , ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROWSIMPLE));
     itemButtonHide->SetToolTip(_("Open custom fields window"));
-    if (m_custom_fields->GetCustomFieldsTotal() == 0) {
+    if (m_custom_fields->GetCustomFieldsCount() == 0) {
         itemButtonHide->Hide();
     }
 
@@ -577,6 +577,10 @@ void mmTransDialog::CreateControls()
     // Custom fields -----------------------------------
 
     m_custom_fields->FillCustomFields(box_sizer3);
+    if (m_custom_fields->GetActiveCustomFieldsCount() > 0) {
+        wxCommandEvent evt(wxEVT_BUTTON, ID_DIALOG_TRANS_CUSTOMFIELDS);
+        this->GetEventHandler()->AddPendingEvent(evt);
+    }
 
     Center();
     this->SetSizer(box_sizer);

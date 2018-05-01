@@ -53,12 +53,12 @@ mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, w
 
 bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 {
-    wxStaticBox* static_box2 = new wxStaticBox(m_dialog, wxID_FILEDLGG, _("Custom"));
-    static_box2->Hide();
-    wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(static_box2, wxVERTICAL);
+    wxStaticBox* static_box = new wxStaticBox(m_dialog, wxID_FILEDLGG, _("Custom fields"));
+    static_box->Hide();
+    wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(static_box, wxVERTICAL);
     box_sizer->Add(box_sizer_right, g_flagsExpand);
 
-    wxScrolledWindow* scrolled_window = new wxScrolledWindow(static_box2, wxID_ANY);
+    wxScrolledWindow* scrolled_window = new wxScrolledWindow(static_box, wxID_ANY);
     wxBoxSizer *custom_sizer = new wxBoxSizer(wxVERTICAL);
     scrolled_window->SetScrollbar(wxSB_VERTICAL, wxALIGN_RIGHT, 1, -1);
     scrolled_window->SetSizer(custom_sizer);
@@ -297,6 +297,11 @@ void mmCustomData::OnMultiChoice(wxCommandEvent& event)
     button->SetLabel(info);
 }
 
+size_t mmCustomData::GetActiveCustomFieldsCount()
+{ 
+    const auto& data_set = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(m_ref_id));
+    return data_set.size();
+}
 
 bool mmCustomData::SaveCustomValues(int ref_id)
 {
