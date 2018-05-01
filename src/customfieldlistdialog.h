@@ -65,8 +65,7 @@ private:
     void EditField();
     void DeleteField();
     void UpdateField();
-    void OnCancel(wxCommandEvent& /*event*/);
-    void OnOk(wxCommandEvent& /*event*/);
+    void OnClose(wxCommandEvent& /*event*/);
 
     void OnListItemSelected(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);

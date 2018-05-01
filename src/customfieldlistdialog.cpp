@@ -31,8 +31,7 @@ Copyright (C) 2016 Gabriele-V
 wxIMPLEMENT_DYNAMIC_CLASS(mmCustomFieldListDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE( mmCustomFieldListDialog, wxDialog )
-    EVT_BUTTON(wxID_CANCEL, mmCustomFieldListDialog::OnCancel)
-    EVT_BUTTON(wxID_OK, mmCustomFieldListDialog::OnOk)
+    EVT_BUTTON(wxID_CLOSE, mmCustomFieldListDialog::OnClose)
     EVT_BUTTON(wxID_APPLY, mmCustomFieldListDialog::OnMagicButton)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmCustomFieldListDialog::OnListItemSelected)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmCustomFieldListDialog::OnItemRightClick)
@@ -94,10 +93,8 @@ void mmCustomFieldListDialog::CreateControls()
     wxStdDialogButtonSizer* buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
-    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    buttons_sizer->Add(buttonOK, g_flagsH);
-    buttons_sizer->Add(btnCancel, g_flagsH);
+    wxButton* btnClose = new wxButton(buttons_panel, wxID_CLOSE, wxGetTranslation(g_CloseLabel));
+    buttons_sizer->Add(btnClose, g_flagsH);
 
     wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel, wxID_APPLY, mmBitmap(png::RUN));
     magicButton->SetToolTip(_("Other tools"));
@@ -283,12 +280,7 @@ void mmCustomFieldListDialog::OnListItemActivated(wxDataViewEvent& event)
     mmCustomFieldListDialog::EditField();
 }
 
-void mmCustomFieldListDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmCustomFieldListDialog::OnClose(wxCommandEvent& /*event*/)
 {
-    EndModal(wxID_CANCEL);
-}
-
-void mmCustomFieldListDialog::OnOk(wxCommandEvent& /*event*/)
-{
-    EndModal(wxID_OK);
+    EndModal(wxID_CLOSE);
 }
