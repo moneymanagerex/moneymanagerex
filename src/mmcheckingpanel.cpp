@@ -1499,7 +1499,7 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& event)
     mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, m_cp->m_account_balance, true);
     if (dlg.ShowModal() == wxID_OK)
     {
-        m_selectedIndex = dlg.getTransactionID();
+        m_selectedIndex = dlg.GetTransactionID();
         refreshVisualList(m_selectedIndex);
     }
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
@@ -1645,7 +1645,13 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
-                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
+
+                // remove attachments
+                const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+                mmAttachmentManage::DeleteAllAttachments(ref_type, transID);
+                // remove custom data
+                Model_CustomFieldData::instance().DeleteAllData(ref_type, transID);
+
                 if (x <= m_topItemIndex) m_topItemIndex--;
                 if (!m_cp->m_trans.empty() && m_selectedIndex > 0) m_selectedIndex--;
                 if (m_selectedForCopy == transID) m_selectedForCopy = -1;
@@ -1749,7 +1755,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
     if (dlg.ShowModal() == wxID_OK)
     {
         m_cp->mmPlayTransactionSound();
-        refreshVisualList(dlg.getTransactionID());
+        refreshVisualList(dlg.GetTransactionID());
     }
 }
 
@@ -1759,7 +1765,7 @@ void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         m_cp->mmPlayTransactionSound();
-        refreshVisualList(dlg.getTransactionID());
+        refreshVisualList(dlg.GetTransactionID());
     }
 }
 //----------------------------------------------------------------------------
