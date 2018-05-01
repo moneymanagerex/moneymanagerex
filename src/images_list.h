@@ -150,6 +150,8 @@ enum png {
 	TRXNUM,
     RIGHTARROW,
     RIGHTARROW_ACTIVE,
+    SIMPLEARROWLEFT,
+    SIMPLEARROWRIGHT,
     GOOGLE_PLAY,
     UPDATE,
 	CURRATES,
@@ -170,6 +172,7 @@ enum png {
     PRINT,
     EXIT,
     EMPTY,
+    
 };
 
 wxImageList* navtree_images_list();
