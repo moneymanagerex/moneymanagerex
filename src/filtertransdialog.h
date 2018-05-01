@@ -23,6 +23,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "reports/mmDateRange.h"
 #include "reports/htmlbuilder.h"
+//#include "model/Model_CustomFieldData.h"
+#include "mmcustomdata.h"
 
 #include <wx/dialog.h>
 #include "mmTextCtrl.h"
@@ -36,6 +38,7 @@ class mmFilterTransactionsDialog: public wxDialog
 public:
     /// Constructors
     mmFilterTransactionsDialog();
+    ~mmFilterTransactionsDialog();
     mmFilterTransactionsDialog(wxWindow* parent, int account_id);
 
     virtual int ShowModal();
@@ -104,9 +107,10 @@ private:
     void OnButtoncancelClick(wxCommandEvent& event);
     void SaveSettings();
     void OnButtonClearClick(wxCommandEvent& event);
+    void OnMoreFields(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
     void datePresetMenu(wxMouseEvent& event);
-    void datePresetMenuSelected(wxCommandEvent& event);
+    void DatePresetMenuSelected(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
 
@@ -154,4 +158,6 @@ private:
     wxString refAccountStr_;
     double m_min_amount;
     double m_max_amount;
+
+    mmCustomData* m_custom_fields;
 };

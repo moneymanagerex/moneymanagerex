@@ -73,11 +73,18 @@ wxBEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmFilterTransactionsDialog::OnButtonokClick)
     EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtoncancelClick)
     EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
-    EVT_MENU(wxID_ANY, mmFilterTransactionsDialog::datePresetMenuSelected)
+    EVT_BUTTON(wxID_SEPARATOR, mmFilterTransactionsDialog::OnMoreFields)
+    EVT_MENU(wxID_ANY, mmFilterTransactionsDialog::DatePresetMenuSelected)
 wxEND_EVENT_TABLE()
 
-mmFilterTransactionsDialog::mmFilterTransactionsDialog( )
+mmFilterTransactionsDialog::mmFilterTransactionsDialog()
 {
+}
+
+mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
+{
+    if (m_custom_fields)
+        delete m_custom_fields;
 }
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int account_id)
@@ -91,6 +98,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     , m_max_amount(0)
     , bSimilarCategoryStatus_(false)
 {
+    m_custom_fields = new mmCustomDataTransaction(this, -1, wxID_HIGHEST - 100);
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Transaction Filter"), wxDefaultPosition, wxSize(400, 300), style);
 }
@@ -149,16 +157,20 @@ void mmFilterTransactionsDialog::dataToControls()
 
 void mmFilterTransactionsDialog::CreateControls()
 {
-    wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
 
-    wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
-    itemBoxSizer2->Add(itemBoxSizer3, g_flagsExpand);
+    wxBoxSizer* box_sizer = new wxBoxSizer(wxVERTICAL);
+    this->SetSizer(box_sizer);
+
+    wxBoxSizer* box_sizer1 = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* box_sizer2 = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* box_sizer3 = new wxBoxSizer(wxVERTICAL);
+    box_sizer->Add(box_sizer1, g_flagsExpand);
+    box_sizer1->Add(box_sizer2, g_flagsExpand);
+    box_sizer1->Add(box_sizer3, g_flagsExpand);
 
     wxStaticBox* static_box_sizer = new wxStaticBox(this, wxID_ANY, _("Specify"));
     wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(static_box_sizer, wxVERTICAL);
-    itemBoxSizer3->Add(itemStaticBoxSizer4, 1, wxGROW|wxALL, 10);
-
-    this->SetSizer(itemBoxSizer2);
+    box_sizer2->Add(itemStaticBoxSizer4, 1, wxGROW|wxALL, 10);
 
     /******************************************************************************
      Items Panel
@@ -325,15 +337,15 @@ void mmFilterTransactionsDialog::CreateControls()
     m_radio_box_->SetSelection(view_no);
     m_radio_box_->Show(true);
 
-    itemBoxSizer3->Add(settings_box_sizer, wxSizerFlags(g_flagsV).Center());
+    box_sizer2->Add(settings_box_sizer, wxSizerFlags(g_flagsV).Center());
     settings_box_sizer->Add(m_settingLabel, wxSizerFlags(g_flagsExpand).Border(0));
     settings_box_sizer->Add(m_radio_box_, g_flagsV);
 
     /******************************************************************************
      Button Panel with OK/Cancel buttons
     *******************************************************************************/
-    wxPanel* buttonPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemBoxSizer3->Add(buttonPanel, wxSizerFlags(g_flagsV).Center());
+    wxPanel* buttonPanel = new wxPanel(this, wxID_ANY);
+    box_sizer2->Add(buttonPanel, wxSizerFlags(g_flagsV).Center());
 
     wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonPanel->SetSizer(buttonPanelSizer);
@@ -348,9 +360,23 @@ void mmFilterTransactionsDialog::CreateControls()
     wxButton* itemButtonClear = new wxButton(buttonPanel, wxID_CLEAR, _("&Clear "));
     itemButtonClear->SetToolTip(_("Clear the settings for the allocated position"));
 
+    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttonPanel
+        , wxID_SEPARATOR, mmBitmap(png::RIGHTARROWSIMPLE));
+    itemButtonHide->SetToolTip(_("Open custom fields window"));
+    if (m_custom_fields->GetCustomFieldsCount() == 0) {
+        itemButtonHide->Hide();
+    }
+
     buttonPanelSizer->Add(itemButtonOK, g_flagsH);
     buttonPanelSizer->Add(itemButtonCancel, g_flagsH);
     buttonPanelSizer->Add(itemButtonClear, g_flagsH);
+    buttonPanelSizer->Add(itemButtonHide, g_flagsH);
+
+    // Custom fields -----------------------------------
+
+    m_custom_fields->FillCustomFields(box_sizer3);
+
+    Center();
 }
 
 void mmFilterTransactionsDialog::OnCheckboxClick( wxCommandEvent& event )
@@ -612,7 +638,7 @@ void mmFilterTransactionsDialog::clearSettings()
     SaveSettings();
 }
 
-void mmFilterTransactionsDialog::datePresetMenuSelected( wxCommandEvent& event )
+void mmFilterTransactionsDialog::DatePresetMenuSelected( wxCommandEvent& event )
 {
     int id =  event.GetId();
     setPresettings(DATE_PRESETTINGS[id]);
@@ -1110,4 +1136,26 @@ bool mmFilterTransactionsDialog::getNumberCheckBox()
 bool mmFilterTransactionsDialog::getNotesCheckBox()
 {
     return notesCheckBox_->IsChecked();
+}
+
+void mmFilterTransactionsDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
+{
+    wxStaticBox* static_box2 = (wxStaticBox*)FindWindow(wxID_FILEDLGG);
+    wxBitmapButton* button = (wxBitmapButton*)FindWindow(wxID_SEPARATOR);
+
+    if (!static_box2) return;
+
+    if (static_box2->IsShown())
+    {
+        static_box2->Hide();
+        button->SetBitmap(mmBitmap(png::RIGHTARROWSIMPLE));
+    }
+    else
+    {
+        static_box2->Show();
+        button->SetBitmap(mmBitmap(png::LEFTARROWSIMPLE));
+    }
+
+    this->SetMinSize(wxSize(0, 0));
+    this->Fit();
 }
