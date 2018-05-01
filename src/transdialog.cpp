@@ -560,7 +560,7 @@ void mmTransDialog::CreateControls()
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
     wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel
-        , ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW));
+        , ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROWSIMPLE));
     itemButtonHide->SetToolTip(_("Open custom fields window"));
     if (m_custom_fields->GetCustomFieldsTotal() == 0) {
         itemButtonHide->Hide();
@@ -1218,12 +1218,12 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     if (static_box2->IsShown())
     {
         static_box2->Hide();
-        button->SetBitmap(mmBitmap(png::SIMPLEARROWRIGHT));
+        button->SetBitmap(mmBitmap(png::RIGHTARROWSIMPLE));
     }
     else
     {
         static_box2->Show();
-        button->SetBitmap(mmBitmap(png::SIMPLEARROWLEFT));
+        button->SetBitmap(mmBitmap(png::LEFTARROWSIMPLE));
     }
 
     this->SetMinSize(wxSize(0, 0));
