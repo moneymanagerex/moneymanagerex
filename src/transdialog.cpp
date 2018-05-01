@@ -560,7 +560,7 @@ void mmTransDialog::CreateControls()
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
     wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel
-        , ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW));
+        , ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROWSIMPLE));
     itemButtonHide->SetToolTip(_("Open custom fields window"));
     if (m_custom_fields->GetCustomFieldsTotal() == 0) {
         itemButtonHide->Hide();
@@ -1188,7 +1188,7 @@ void mmTransDialog::SetTooltips()
             cbPayee_->SetToolTip(_("Specify where the transaction is coming from"));
     }
 
-    //Permanent
+    // Not dynamically changed tooltips
     dpc_->SetToolTip(_("Specify the date of the transaction"));
     spinCtrl_->SetToolTip(_("Retard or advance the date of the transaction"));
     choiceStatus_->SetToolTip(_("Specify the status for the transaction"));
@@ -1202,8 +1202,9 @@ void mmTransDialog::SetTooltips()
 void mmTransDialog::OnQuit(wxCloseEvent& /*event*/)
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    if (m_new_trx || m_duplicate)
+    if (m_new_trx || m_duplicate) {
         mmAttachmentManage::DeleteAllAttachments(RefType, m_trx_data.TRANSID);
+    }
     EndModal(wxID_CANCEL);
 }
 
@@ -1217,12 +1218,12 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     if (static_box2->IsShown())
     {
         static_box2->Hide();
-        button->SetBitmap(mmBitmap(png::RIGHTARROW));
+        button->SetBitmap(mmBitmap(png::RIGHTARROWSIMPLE));
     }
     else
     {
         static_box2->Show();
-        button->SetBitmap(mmBitmap(png::RIGHTARROW_ACTIVE));
+        button->SetBitmap(mmBitmap(png::LEFTARROWSIMPLE));
     }
 
     this->SetMinSize(wxSize(0, 0));
