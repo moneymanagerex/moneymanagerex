@@ -73,7 +73,7 @@ wxBEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmFilterTransactionsDialog::OnButtonokClick)
     EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtoncancelClick)
     EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
-    EVT_BUTTON(wxID_SEPARATOR, mmFilterTransactionsDialog::OnMoreFields)
+    EVT_BUTTON(wxID_MORE, mmFilterTransactionsDialog::OnMoreFields)
     EVT_MENU(wxID_ANY, mmFilterTransactionsDialog::DatePresetMenuSelected)
 wxEND_EVENT_TABLE()
 
@@ -98,8 +98,8 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     , m_max_amount(0)
     , bSimilarCategoryStatus_(false)
 {
-    m_custom_fields = new mmCustomDataTransaction(this, -1, wxID_HIGHEST - 100);
-    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
+    m_custom_fields = new mmCustomDataTransaction(this, -1, wxID_HIGHEST);
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Transaction Filter"), wxDefaultPosition, wxSize(400, 300), style);
 }
 
@@ -361,7 +361,7 @@ void mmFilterTransactionsDialog::CreateControls()
     itemButtonClear->SetToolTip(_("Clear the settings for the allocated position"));
 
     wxBitmapButton* itemButtonHide = new wxBitmapButton(buttonPanel
-        , wxID_SEPARATOR, mmBitmap(png::RIGHTARROWSIMPLE));
+        , wxID_MORE, mmBitmap(png::RIGHTARROWSIMPLE));
     itemButtonHide->SetToolTip(_("Open custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
         itemButtonHide->Hide();
@@ -1141,7 +1141,7 @@ bool mmFilterTransactionsDialog::getNotesCheckBox()
 void mmFilterTransactionsDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 {
     wxStaticBox* static_box2 = (wxStaticBox*)FindWindow(wxID_FILEDLGG);
-    wxBitmapButton* button = (wxBitmapButton*)FindWindow(wxID_SEPARATOR);
+    wxBitmapButton* button = (wxBitmapButton*)FindWindow(wxID_MORE);
 
     if (!static_box2) return;
 
