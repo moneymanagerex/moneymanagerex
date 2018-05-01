@@ -50,7 +50,7 @@ mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent, const wxStri
     #endif
 {
     if (debug_) ColName_[FIELD_ID] = _("#");
-    ColName_[FIELD_DESCRIPTION] = _("Description");
+    ColName_[FIELD_DESCRIPTION] = _("Name");
     ColName_[FIELD_TYPE] = _("Type");
     if (debug_) ColName_[FIELD_PROPERTIES] = _("Properties");
 

@@ -123,7 +123,7 @@ void mmCustomFieldEditDialog::CreateControls()
     wxFlexGridSizer* itemFlexGridSizer6 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Description")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Name")), g_flagsH);
     m_itemDescription = new wxTextCtrl(itemPanel5, wxID_ANY, wxGetEmptyString());
     m_itemDescription->SetToolTip(_("Enter the name of the custom field"));
     itemFlexGridSizer6->Add(m_itemDescription, g_flagsExpand);
