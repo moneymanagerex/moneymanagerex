@@ -123,7 +123,7 @@ void mmCustomFieldEditDialog::CreateControls()
     wxFlexGridSizer* itemFlexGridSizer6 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Description")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Name")), g_flagsH);
     m_itemDescription = new wxTextCtrl(itemPanel5, wxID_ANY, wxGetEmptyString());
     m_itemDescription->SetToolTip(_("Enter the name of the custom field"));
     itemFlexGridSizer6->Add(m_itemDescription, g_flagsExpand);
@@ -271,11 +271,13 @@ void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
     m_itemRegEx->Enable(false);
     m_itemAutocomplete->Enable(false);
     m_itemChoices->Enable(false);
+    m_itemDefault->Enable(false);
 
     switch (m_itemType->GetSelection())
     {
     case Model_CustomField::STRING:
     {
+        m_itemDefault->Enable(true);
         m_itemRegEx->Enable(true);
         m_itemAutocomplete->Enable(true);
         m_itemChoices->SetValue(wxEmptyString);
@@ -286,7 +288,6 @@ void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
         m_itemAutocomplete->SetValue(false);
         m_itemChoices->Enable(true);
         m_itemDefault->ChangeValue(wxEmptyString);
-        m_itemDefault->Enable(false);
         break;
     }
     case Model_CustomField::MULTICHOICE:
@@ -294,10 +295,12 @@ void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
         m_itemAutocomplete->SetValue(false);
         m_itemChoices->Enable(true);
         m_itemDefault->ChangeValue(wxEmptyString);
-        m_itemDefault->Enable(false);
         break;
     }
     default:
+    {
+        m_itemDefault->ChangeValue(wxEmptyString);
         break;
+    }
     }
 }
