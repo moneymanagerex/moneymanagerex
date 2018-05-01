@@ -77,32 +77,12 @@ wxArrayString Model_CustomFieldData::allValue(const int FieldID)
     return values;
 }
 
-bool Model_CustomFieldData::RelocateAllData(const wxString& RefType, int OldRefId, int NewRefId)
-{
-    auto fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(RefType));
-
-    /*{"Tooltip":"Multi Choice","RegEx":"","Autocomplete":false,"Default":"","Choice":["one","two","three"]}*/
-
-    this->Savepoint();
-    for (auto &field : fields)
-    {
-        Data* data = Model_CustomFieldData::instance().get(field.FIELDID, OldRefId);
-        if (data)
-        {
-            data->REFID = NewRefId;
-            Model_CustomFieldData::instance().save(data);
-        }
-    }
-    this->ReleaseSavepoint();
-    return true;
-}
-
 bool Model_CustomFieldData::DeleteAllData(const wxString& RefType, int RefID)
 {
-    auto fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(RefType));
+    const auto& fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(RefType));
 
     this->Savepoint();
-    for (auto &field : fields)
+    for (const auto& field : fields)
     {
         Data* data = Model_CustomFieldData::instance().get(field.FIELDID, RefID);
         if (data)

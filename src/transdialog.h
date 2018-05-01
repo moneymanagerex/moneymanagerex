@@ -21,16 +21,20 @@
 #ifndef MM_EX_TRANSDIALOG_H_
 #define MM_EX_TRANSDIALOG_H_
 
+#include "mmcustomdata.h"
 #include "defs.h"
 
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
+#include "model/Model_CustomFieldData.h"
 #include "model/Model_Splittransaction.h"
 
 #include <wx/spinbutt.h>
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
+class wxString;
+class mmCustomData;
 
 class mmTransDialog : public wxDialog
 {
@@ -61,18 +65,16 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int getAccountID() { return m_trx_data.ACCOUNTID; }
-    int getToAccountID() { return m_trx_data.TOACCOUNTID; }
-    int getTransactionID() { return m_trx_data.TRANSID; }
+    int GetAccountID() { return m_trx_data.ACCOUNTID; }
+    int GetToAccountID() { return m_trx_data.TOACCOUNTID; }
+    int GetTransactionID() { return m_trx_data.TRANSID; }
 
 private:
+    mmCustomData* m_custom_fields;
     void CreateControls();
     void dataToControls();
-    bool validateData();
+    bool ValidateData();
     void SetEventHandlers();
-    bool SaveCustomValues();
-    void FillCustomFields(wxDialog* parent, wxBoxSizer* box_sizer
-        , const wxString& ref_type, int ref_id);
 
     void OnSplitChecked(wxCommandEvent& event);
     void OnOk(wxCommandEvent& event);
@@ -84,9 +86,8 @@ private:
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
-    void OnMultiChoice(wxCommandEvent& event);
     void OnFrequentUsedNotes(wxCommandEvent& event);
-    void onNoteSelected(wxCommandEvent& event);
+    void OnNoteSelected(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnSpin(wxSpinEvent&);
     void OnDateChanged(wxDateEvent& event);
@@ -169,6 +170,8 @@ private:
         ID_DIALOG_TRANS_CUSTOMFIELDS,
         ID_CUSTOMFIELD,
     };
+
+
 };
 
 #endif

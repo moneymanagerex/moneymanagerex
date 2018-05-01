@@ -2416,8 +2416,8 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
 
         if (dlg.ShowModal() == wxID_OK)
         {
-            gotoAccountID_ = dlg.getAccountID();
-            gotoTransID_ = dlg.getTransactionID();
+            gotoAccountID_ = dlg.GetAccountID();
+            gotoTransID_ = dlg.GetTransactionID();
             Model_Account::Data * account = Model_Account::instance().get(gotoAccountID_);
             if (account)
             {
