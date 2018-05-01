@@ -298,6 +298,9 @@ void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
         break;
     }
     default:
+    {
+        m_itemDefault->ChangeValue(wxEmptyString);
         break;
+    }
     }
 }
