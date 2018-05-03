@@ -108,8 +108,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 value = 0;
             }
             else {
-                SetWidgetChanged(controlID);
                 value = (int)test;
+                SetWidgetChanged(controlID, wxString::Format("%i", value));
             }
 
             wxSpinCtrl* CustomInteger = new wxSpinCtrl(scrolled_window, controlID,
@@ -124,14 +124,14 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::DECIMAL:
         {
-            m_data_changed[controlID] = 0;
+            m_data_changed[controlID] = wxEmptyString;
 
             double value;
             if (!fieldData->CONTENT.ToDouble(&value)) {
                 value = 0;
             }
             else {
-                SetWidgetChanged(controlID);
+                SetWidgetChanged(controlID, wxString::Format("%d", value));
             }
             wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(scrolled_window, controlID
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize
@@ -146,20 +146,21 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::BOOLEAN:
         {
-            m_data_changed[controlID] = 0;
+            m_data_changed[controlID] = wxEmptyString;
 
             wxCheckBox* CustomBoolean = new wxCheckBox(scrolled_window, controlID
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
-            if (fieldData->CONTENT == "TRUE")
+            const auto& data = fieldData->CONTENT;
+            if ( data == "TRUE")
             {
                 CustomBoolean->SetValue(true);
-                SetWidgetChanged(controlID);
+                SetWidgetChanged(controlID, data);
             }
-            else if (fieldData->CONTENT == "FALSE")
+            else if (data == "FALSE")
             {
                 CustomBoolean->SetValue(true);
-                SetWidgetChanged(controlID);
+                SetWidgetChanged(controlID, data);
             }
 
             CustomBoolean->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
@@ -172,14 +173,14 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::DATE:
         {
-            m_data_changed[controlID] = 0;
+            m_data_changed[controlID] = wxEmptyString;
 
             wxDate value;
             if (!value.ParseDate(fieldData->CONTENT)) {
                 value = wxDate::Today();
             }
             else {
-                SetWidgetChanged(controlID);
+                SetWidgetChanged(controlID, value.FormatISODate());
             }
 
             wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(scrolled_window, controlID
@@ -194,14 +195,14 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::TIME:
         {
-            m_data_changed[controlID] = 0;
+            m_data_changed[controlID] = wxEmptyString;
 
             wxDateTime value;
             if (!value.ParseTime(fieldData->CONTENT)) {
                 value.ParseTime("00:00:00");
             }
             else {
-                SetWidgetChanged(controlID);
+                SetWidgetChanged(controlID, value.FormatISOTime());
             }
 
             wxTimePickerCtrl* CustomTime = new wxTimePickerCtrl(scrolled_window, controlID
@@ -228,7 +229,9 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 CustomChoice->Enable(false);
             }
 
-            CustomChoice->SetStringSelection(fieldData->CONTENT);
+            const auto& data = fieldData->CONTENT;
+            CustomChoice->SetStringSelection(data);
+            SetWidgetChanged(controlID, data);
             
             
             CustomChoice->Connect(controlID, wxEVT_CHOICE
@@ -247,6 +250,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             multi_choice_button->Connect(controlID, wxEVT_COMMAND_BUTTON_CLICKED
                 , wxCommandEventHandler(mmCustomData::OnMultiChoice), nullptr, this);
+
+            SetWidgetChanged(controlID, content);
 
             break;
         }
@@ -413,7 +418,6 @@ void mmCustomData::OnStringChanged(wxCommandEvent& event)
 {
     int controlID = event.GetId();
     wxString data = wxEmptyString;
-    SetWidgetChanged(controlID);
     wxTextCtrl* CustomString = (wxTextCtrl*)m_dialog->FindWindow(controlID);
     if (CustomString != nullptr) {
         data = CustomString->GetValue().Trim();
@@ -421,11 +425,15 @@ void mmCustomData::OnStringChanged(wxCommandEvent& event)
     if (data.empty()) {
         ResetWidgetChanged(controlID);
     }
+    else
+    {
+        SetWidgetChanged(controlID, data);
+    }
 }
 
 void mmCustomData::ResetWidgetChanged(wxWindowID id)
 {
-    m_data_changed[id] = 0;
+    m_data_changed[id] = wxEmptyString;
 }
 
 void mmCustomData::ResetWidgetsChanged()
@@ -435,56 +443,65 @@ void mmCustomData::ResetWidgetsChanged()
 
 void mmCustomData::OnSingleChoice(wxCommandEvent& event)
 {
-    SetWidgetChanged(event.GetId());
+    const wxString& data = event.GetString();
+    SetWidgetChanged(event.GetId(), data);
 }
 
 void mmCustomData::OnDoubleChanged(wxCommandEvent& event)
 {
-    SetWidgetChanged(event.GetId());
+    const auto& data = event.GetString();
+    SetWidgetChanged(event.GetId(), data);
 }
 
 void mmCustomData::OnIntegerChanged(wxCommandEvent& event)
 {
-    SetWidgetChanged(event.GetId());
+    auto data = event.GetInt();
+    SetWidgetChanged(event.GetId(), wxString::Format("%i", data));
 }
 
 void mmCustomData::OnCheckBoxChanged(wxCommandEvent& event)
 {
-    SetWidgetChanged(event.GetId());
+    const auto& data = event.IsChecked() ? "TRUE" : "FALSE";
+    SetWidgetChanged(event.GetId(), data);
 }
 
 void mmCustomData::OnDateChanged(wxDateEvent& event)
 {
-    SetWidgetChanged(event.GetId());
+    const auto data = event.GetDate();
+    SetWidgetChanged(event.GetId(), data.FormatISODate());
 }
 
 void mmCustomData::OnTimeChanged(wxDateEvent& event)
 {
-    SetWidgetChanged(event.GetId());
+    auto data = event.GetDate();
+    SetWidgetChanged(event.GetId(), data.FormatISOTime());
 }
 
 bool mmCustomData::IsWidgetChanged(wxWindowID id)
 {
-    int count = m_data_changed.at(id);
-    return count > 0;
+    const wxString& value = m_data_changed.at(id);
+    return !value.empty();
 }
 
 bool mmCustomData::IsSomeWidgetChanged()
 {
     for (const auto& entry : m_data_changed)
     {
-        if (entry.second > 0) return true;
+        if (!entry.second.empty()) return true;
     }
     return false;
 }
 
-void mmCustomData::SetWidgetChanged(wxWindowID id)
+void mmCustomData::SetWidgetChanged(wxWindowID id, const wxString& data)
 { 
-    m_data_changed[id]++;
+    m_data_changed[id] = data;
 };
 
 bool mmCustomData::IsDataFound(const Model_Checking::Full_Data &tran)
 {
+    for (const auto& entry : m_data_changed)
+    {
+        wxLogDebug("Values: %s", entry.second);
+    }
     return true;
-    m_data_changed;
 }

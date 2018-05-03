@@ -37,7 +37,7 @@ private:
     const wxString m_ref_type;
     int m_ref_id;
     Model_CustomField::Data_Set m_fields;
-    std::map<wxWindowID, int> m_data_changed;
+    std::map<wxWindowID, wxString> m_data_changed;
     wxWindowID m_init_control_id;
     void OnStringChanged(wxCommandEvent& event);
     void OnDateChanged(wxDateEvent& event);
@@ -48,7 +48,7 @@ private:
     void OnDoubleChanged(wxCommandEvent& event);
     void OnIntegerChanged(wxCommandEvent& event);
     bool IsWidgetChanged(wxWindowID id);
-    void SetWidgetChanged(wxWindowID id);
+    void SetWidgetChanged(wxWindowID id, const wxString& data);
     void ResetWidgetChanged(wxWindowID id);
 
 public:
