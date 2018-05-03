@@ -31,7 +31,7 @@ Copyright (C) 2016 Gabriele-V
 wxIMPLEMENT_DYNAMIC_CLASS(mmCustomFieldListDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE( mmCustomFieldListDialog, wxDialog )
-    EVT_BUTTON(wxID_CLOSE, mmCustomFieldListDialog::OnClose)
+    EVT_BUTTON(wxID_OK, mmCustomFieldListDialog::OnClose)
     EVT_BUTTON(wxID_APPLY, mmCustomFieldListDialog::OnMagicButton)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmCustomFieldListDialog::OnListItemSelected)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmCustomFieldListDialog::OnItemRightClick)
@@ -93,7 +93,7 @@ void mmCustomFieldListDialog::CreateControls()
     wxStdDialogButtonSizer* buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxButton* btnClose = new wxButton(buttons_panel, wxID_CLOSE, wxGetTranslation(g_CloseLabel));
+    wxButton* btnClose = new wxButton(buttons_panel, wxID_OK, wxGetTranslation(g_CloseLabel));
     buttons_sizer->Add(btnClose, g_flagsH);
 
     wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel, wxID_APPLY, mmBitmap(png::RUN));
@@ -282,5 +282,5 @@ void mmCustomFieldListDialog::OnListItemActivated(wxDataViewEvent& event)
 
 void mmCustomFieldListDialog::OnClose(wxCommandEvent& /*event*/)
 {
-    EndModal(wxID_CLOSE);
+    EndModal(wxID_OK);
 }
