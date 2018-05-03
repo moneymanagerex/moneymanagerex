@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 #include "defs.h"
 #include "model/Model_CustomField.h"
+#include "model/Model_Checking.h"
 
 
 class wxDatePickerCtrl;
@@ -38,14 +39,17 @@ private:
     Model_CustomField::Data_Set m_fields;
     std::map<wxWindowID, int> m_data_changed;
     wxWindowID m_init_control_id;
+    void OnStringChanged(wxCommandEvent& event);
     void OnDateChanged(wxDateEvent& event);
     void OnTimeChanged(wxDateEvent& event);
     void OnMultiChoice(wxCommandEvent& event);
+    void OnSingleChoice(wxCommandEvent& event);
     void OnCheckBoxChanged(wxCommandEvent& event);
     void OnDoubleChanged(wxCommandEvent& event);
     void OnIntegerChanged(wxCommandEvent& event);
     bool IsWidgetChanged(wxWindowID id);
     void SetWidgetChanged(wxWindowID id);
+    void ResetWidgetChanged(wxWindowID id);
 
 public:
     mmCustomData();
@@ -54,7 +58,9 @@ public:
     size_t GetCustomFieldsCount() { return m_fields.size(); }
     size_t GetActiveCustomFieldsCount();
     void SetBaseID(wxWindowID id) { m_init_control_id = id; }
-
+    bool IsSomeWidgetChanged();
+    bool IsDataFound(const Model_Checking::Full_Data &tran);
+    void ResetWidgetsChanged();
 };
 
 class mmCustomDataTransaction : public mmCustomData

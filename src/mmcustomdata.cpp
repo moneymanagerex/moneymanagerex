@@ -95,6 +95,9 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 CustomString->AutoComplete(values);
             }
             grid_sizer_custom->Add(CustomString, g_flagsExpand);
+
+            CustomString->Connect(controlID, wxEVT_TEXT
+                , wxCommandEventHandler(mmCustomData::OnStringChanged), nullptr, this);
             break;
         }
         case Model_CustomField::INTEGER:
@@ -221,10 +224,15 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             CustomChoice->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomChoice, g_flagsExpand);
 
-            if (Choices.size() == 0)
+            if (Choices.size() == 0) {
                 CustomChoice->Enable(false);
+            }
 
             CustomChoice->SetStringSelection(fieldData->CONTENT);
+            
+            
+            CustomChoice->Connect(controlID, wxEVT_CHOICE
+                , wxCommandEventHandler(mmCustomData::OnSingleChoice), nullptr, this);
             break;
         }
         case Model_CustomField::MULTICHOICE:
@@ -401,6 +409,35 @@ bool mmCustomData::SaveCustomValues(int ref_id)
     return true;
 }
 
+void mmCustomData::OnStringChanged(wxCommandEvent& event)
+{
+    int controlID = event.GetId();
+    wxString data = wxEmptyString;
+    SetWidgetChanged(controlID);
+    wxTextCtrl* CustomString = (wxTextCtrl*)m_dialog->FindWindow(controlID);
+    if (CustomString != nullptr) {
+        data = CustomString->GetValue().Trim();
+    }
+    if (data.empty()) {
+        ResetWidgetChanged(controlID);
+    }
+}
+
+void mmCustomData::ResetWidgetChanged(wxWindowID id)
+{
+    m_data_changed[id] = 0;
+}
+
+void mmCustomData::ResetWidgetsChanged()
+{
+    m_data_changed.clear();
+}
+
+void mmCustomData::OnSingleChoice(wxCommandEvent& event)
+{
+    SetWidgetChanged(event.GetId());
+}
+
 void mmCustomData::OnDoubleChanged(wxCommandEvent& event)
 {
     SetWidgetChanged(event.GetId());
@@ -432,7 +469,22 @@ bool mmCustomData::IsWidgetChanged(wxWindowID id)
     return count > 0;
 }
 
+bool mmCustomData::IsSomeWidgetChanged()
+{
+    for (const auto& entry : m_data_changed)
+    {
+        if (entry.second > 0) return true;
+    }
+    return false;
+}
+
 void mmCustomData::SetWidgetChanged(wxWindowID id)
 { 
     m_data_changed[id]++;
 };
+
+bool mmCustomData::IsDataFound(const Model_Checking::Full_Data &tran)
+{
+    return true;
+    m_data_changed;
+}

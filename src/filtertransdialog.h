@@ -46,7 +46,8 @@ public:
     bool checkAll(const Model_Checking::Full_Data &tran, int accountID);
     bool checkAll(const Model_Billsdeposits::Full_Data &tran);
     void getDescription(mmHTMLBuilder &hb);
-    bool somethingSelected();
+    bool SomethingSelected();
+    void ResetFilterStatus();
     void setAccountToolTip(const wxString& tip) const;
     bool getStatusCheckBox();
     bool getAccountCheckBox();

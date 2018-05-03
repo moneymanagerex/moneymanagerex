@@ -856,7 +856,7 @@ void mmBillsDepositsPanel::OnFilterTransactions(wxMouseEvent& event)
     if (e == wxEVT_LEFT_DOWN)
     {
 
-        if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->somethingSelected())
+        if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->SomethingSelected())
         {
             transFilterActive_ = true;
             bitmapFilterIcon = mmBitmap(png::RIGHTARROW_ACTIVE);

@@ -497,7 +497,14 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
     }
 }
 
-bool mmFilterTransactionsDialog::somethingSelected()
+void mmFilterTransactionsDialog::ResetFilterStatus()
+{
+    m_custom_fields->ResetWidgetsChanged();
+    wxCommandEvent evt(wxEVT_BUTTON, wxID_MORE);
+    this->GetEventHandler()->AddPendingEvent(evt);
+}
+
+bool mmFilterTransactionsDialog::SomethingSelected()
 {
     return
         getAccountCheckBox()
@@ -508,7 +515,8 @@ bool mmFilterTransactionsDialog::somethingSelected()
         || getTypeCheckBox()
         || getAmountRangeCheckBox()
         || getNumberCheckBox()
-        || getNotesCheckBox();
+        || getNotesCheckBox()
+        || m_custom_fields->IsSomeWidgetChanged();
 }
 
 wxString mmFilterTransactionsDialog::getStatus() const
@@ -762,13 +770,15 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Full_Data &tran,
         ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUSFD))
         ok = false;
-    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) 
+    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID))
         ok = false;
     else if (getAmountRangeCheckBox() && !checkAmount<Model_Checking>(tran))
         ok = false;
-    else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) 
+    else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER)
         ok = false;
-    else if (getNotesCheckBox() && !tran.NOTES.Lower().Contains(getNotes().Lower())) 
+    else if (getNotesCheckBox() && !tran.NOTES.Lower().Contains(getNotes().Lower()))
+        ok = false;
+    else if (m_custom_fields->IsSomeWidgetChanged() && !m_custom_fields->IsDataFound(tran))
         ok = false;
     return ok;
 }
