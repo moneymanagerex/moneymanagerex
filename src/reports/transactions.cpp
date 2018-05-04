@@ -175,6 +175,9 @@ wxString mmReportTransactions::getHTMLText()
 void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
 {
     const auto splits = Model_Splittransaction::instance().get_all();
+    auto categ = m_transDialog->getCategId();
+    auto subcateg = m_transDialog->getSubCategId();
+    auto similar = !m_transDialog->getSimilarStatus();
     for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
     {
         Model_Checking::Full_Data full_tran(m_refAccountID, tran, splits);
@@ -190,15 +193,16 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
                     , Model_Category::full_name(split.CATEGID, split.SUBCATEGID)
                     , wxString::Format("%.2f", split.SPLITTRANSAMOUNT));
                 full_tran.CATEGNAME.Append(split_info);
-                if (split.CATEGID != m_transDialog->getCategId() ) continue;
-                if (split.SUBCATEGID != m_transDialog->getSubCategId() 
-                    && !m_transDialog->getSimilarStatus()) continue;
+                if (split.CATEGID != categ ) continue;
+                if (split.SUBCATEGID !=  subcateg && similar) continue;
 
                 full_tran.TRANSAMOUNT += split.SPLITTRANSAMOUNT;
             }
             full_tran.CATEGNAME.RemoveLast(2);
         }
-        full_tran.TRANSAMOUNT = tran.TRANSAMOUNT;
+        else {
+            full_tran.TRANSAMOUNT = tran.TRANSAMOUNT;
+        }
         trans_.push_back(full_tran);
     }
     std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
