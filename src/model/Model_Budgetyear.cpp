@@ -20,7 +20,7 @@
 #include "Model_Budget.h"
 
 Model_Budgetyear::Model_Budgetyear()
-: Model<DB_Table_BUDGETYEAR_V1>()
+: Model<DB_Table_BUDGETYEAR>()
 {
 }
 

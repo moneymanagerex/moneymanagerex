@@ -107,15 +107,15 @@ with b as  (<br>
 &nbsp;&nbsp;select ACCOUNTID, STATUS <br>
 &nbsp;&nbsp;&nbsp;&nbsp;, (case when TRANSCODE = 'Deposit' then TRANSAMOUNT else -TRANSAMOUNT end) as TRANSAMOUNT<br>
 &nbsp;&nbsp;&nbsp;&nbsp;, TRANSDATE <br>
-&nbsp;&nbsp;from CHECKINGACCOUNT_V1 <br>
+&nbsp;&nbsp;from CHECKINGACCOUNT <br>
 &nbsp;&nbsp;union all <br>
 &nbsp;&nbsp;select TOACCOUNTID, STATUS, TOTRANSAMOUNT ,TRANSDATE <br>
-&nbsp;&nbsp;from CHECKINGACCOUNT_V1 <br>
+&nbsp;&nbsp;from CHECKINGACCOUNT <br>
 &nbsp;&nbsp;where TRANSCODE = 'Transfer' <br>
 &nbsp;&nbsp;) <br>
 select a.ACCOUNTNAME, <br>
 total(TRANSAMOUNT) + a.INITIALBAL as Balance <br>
-from ACCOUNTLIST_V1 as a, b <br>
+from ACCOUNTLIST as a, b <br>
 where a.STATUS = 'Open' <br>
 &nbsp;&nbsp;and b.ACCOUNTID = a.ACCOUNTID <br>
 &nbsp;&nbsp;and b.STATUS <> 'V' <br>

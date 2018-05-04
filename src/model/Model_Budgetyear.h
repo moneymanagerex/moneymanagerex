@@ -20,12 +20,12 @@
 #define MODEL_BUDGETYEAR_H
 
 #include "Model.h"
-#include "db/DB_Table_Budgetyear_V1.h"
+#include "db/DB_Table_Budgetyear.h"
 
-class Model_Budgetyear : public Model<DB_Table_BUDGETYEAR_V1>
+class Model_Budgetyear : public Model<DB_Table_BUDGETYEAR>
 {
 public:
-    using Model<DB_Table_BUDGETYEAR_V1>::remove;
+    using Model<DB_Table_BUDGETYEAR>::remove;
 
 public:
     Model_Budgetyear();

@@ -21,7 +21,7 @@
 #include "Model_Subcategory.h"
 
 Model_Splittransaction::Model_Splittransaction()
-: Model<DB_Table_SPLITTRANSACTIONS_V1>()
+: Model<DB_Table_SPLITTRANSACTIONS>()
 {
 }
 

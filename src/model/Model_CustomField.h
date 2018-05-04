@@ -18,12 +18,12 @@
 #pragma once
 
 #include "Model.h"
-#include "db/DB_Table_Customfield_V1.h"
+#include "db/DB_Table_Customfield.h"
 
-class Model_CustomField : public Model<DB_Table_CUSTOMFIELD_V1>
+class Model_CustomField : public Model<DB_Table_CUSTOMFIELD>
 {
 public:
-    using Model<DB_Table_CUSTOMFIELD_V1>::get;
+    using Model<DB_Table_CUSTOMFIELD>::get;
 
     enum FIELDTYPE { STRING = 0, INTEGER, DECIMAL, BOOLEAN, DATE, TIME, SINGLECHOICE, MULTICHOICE};
     static const std::vector<std::pair<FIELDTYPE, wxString> > FIELDTYPE_CHOICES;

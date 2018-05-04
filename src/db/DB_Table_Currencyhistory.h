@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -19,10 +19,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
+struct DB_Table_CURRENCYHISTORY : public DB_Table
 {
     struct Data;
-    typedef DB_Table_ASSETCLASS_STOCK_V1 Self;
+    typedef DB_Table_CURRENCYHISTORY Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_ASSETCLASS_STOCK_V1() 
+    ~DB_Table_CURRENCYHISTORY() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE ASSETCLASS_STOCK_V1 (ID INTEGER primary key, ASSETCLASSID INTEGER NOT NULL, STOCKSYMBOL TEXT UNIQUE)");
+                db->ExecuteUpdate("CREATE TABLE CURRENCYHISTORY(CURRHISTID INTEGER PRIMARY KEY, CURRENCYID INTEGER NOT NULL, CURRDATE TEXT NOT NULL, CURRVALUE NUMERIC NOT NULL, CURRUPDTYPE INTEGER, UNIQUE(CURRENCYID, CURRDATE))");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("ASSETCLASS_STOCK_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("CURRENCYHISTORY: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,10 +94,11 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
     {
         try
         {
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CURRENCYHISTORY_CURRENCYID_CURRDATE ON CURRENCYHISTORY(CURRENCYID, CURRDATE)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETCLASS_STOCK_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CURRENCYHISTORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -110,30 +111,44 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
         db->Commit();
     }
     
-    struct ID : public DB_Column<int>
+    struct CURRHISTID : public DB_Column<int>
     { 
-        static wxString name() { return "ID"; } 
-        explicit ID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CURRHISTID"; } 
+        explicit CURRHISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct ASSETCLASSID : public DB_Column<int>
+    struct CURRENCYID : public DB_Column<int>
     { 
-        static wxString name() { return "ASSETCLASSID"; } 
-        explicit ASSETCLASSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CURRENCYID"; } 
+        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct STOCKSYMBOL : public DB_Column<wxString>
+    struct CURRDATE : public DB_Column<wxString>
     { 
-        static wxString name() { return "STOCKSYMBOL"; } 
-        explicit STOCKSYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "CURRDATE"; } 
+        explicit CURRDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    typedef ID PRIMARY;
+    struct CURRVALUE : public DB_Column<double>
+    { 
+        static wxString name() { return "CURRVALUE"; } 
+        explicit CURRVALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    
+    struct CURRUPDTYPE : public DB_Column<int>
+    { 
+        static wxString name() { return "CURRUPDTYPE"; } 
+        explicit CURRUPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    
+    typedef CURRHISTID PRIMARY;
     enum COLUMN
     {
-        COL_ID = 0
-        , COL_ASSETCLASSID = 1
-        , COL_STOCKSYMBOL = 2
+        COL_CURRHISTID = 0
+        , COL_CURRENCYID = 1
+        , COL_CURRDATE = 2
+        , COL_CURRVALUE = 3
+        , COL_CURRUPDTYPE = 4
     };
 
     /** Returns the column name as a string*/
@@ -141,9 +156,11 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_ID: return "ID";
-            case COL_ASSETCLASSID: return "ASSETCLASSID";
-            case COL_STOCKSYMBOL: return "STOCKSYMBOL";
+            case COL_CURRHISTID: return "CURRHISTID";
+            case COL_CURRENCYID: return "CURRENCYID";
+            case COL_CURRDATE: return "CURRDATE";
+            case COL_CURRVALUE: return "CURRVALUE";
+            case COL_CURRUPDTYPE: return "CURRUPDTYPE";
             default: break;
         }
         
@@ -153,9 +170,11 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("ID" == name) return COL_ID;
-        else if ("ASSETCLASSID" == name) return COL_ASSETCLASSID;
-        else if ("STOCKSYMBOL" == name) return COL_STOCKSYMBOL;
+        if ("CURRHISTID" == name) return COL_CURRHISTID;
+        else if ("CURRENCYID" == name) return COL_CURRENCYID;
+        else if ("CURRDATE" == name) return COL_CURRDATE;
+        else if ("CURRVALUE" == name) return COL_CURRVALUE;
+        else if ("CURRUPDTYPE" == name) return COL_CURRUPDTYPE;
 
         return COLUMN(-1);
     }
@@ -163,22 +182,24 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_ASSETCLASS_STOCK_V1;
+        friend struct DB_Table_CURRENCYHISTORY;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ID;//  primary key
-        int ASSETCLASSID;
-        wxString STOCKSYMBOL;
+        int CURRHISTID;//  primary key
+        int CURRENCYID;
+        wxString CURRDATE;
+        double CURRVALUE;
+        int CURRUPDTYPE;
 
         int id() const
         {
-            return ID;
+            return CURRHISTID;
         }
 
         void id(int id)
         {
-            ID = id;
+            CURRHISTID = id;
         }
 
         bool operator < (const Data& r) const
@@ -195,26 +216,32 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
         {
             table_ = table;
         
-            ID = -1;
-            ASSETCLASSID = -1;
+            CURRHISTID = -1;
+            CURRENCYID = -1;
+            CURRVALUE = 0.0;
+            CURRUPDTYPE = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            ID = q.GetInt(0); // ID
-            ASSETCLASSID = q.GetInt(1); // ASSETCLASSID
-            STOCKSYMBOL = q.GetString(2); // STOCKSYMBOL
+            CURRHISTID = q.GetInt(0); // CURRHISTID
+            CURRENCYID = q.GetInt(1); // CURRENCYID
+            CURRDATE = q.GetString(2); // CURRDATE
+            CURRVALUE = q.GetDouble(3); // CURRVALUE
+            CURRUPDTYPE = q.GetInt(4); // CURRUPDTYPE
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            ID = other.ID;
-            ASSETCLASSID = other.ASSETCLASSID;
-            STOCKSYMBOL = other.STOCKSYMBOL;
+            CURRHISTID = other.CURRHISTID;
+            CURRENCYID = other.CURRENCYID;
+            CURRDATE = other.CURRDATE;
+            CURRVALUE = other.CURRVALUE;
+            CURRUPDTYPE = other.CURRUPDTYPE;
             return *this;
         }
 
@@ -224,19 +251,29 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::ID &in) const
+        bool match(const Self::CURRHISTID &in) const
         {
-            return this->ID == in.v_;
+            return this->CURRHISTID == in.v_;
         }
 
-        bool match(const Self::ASSETCLASSID &in) const
+        bool match(const Self::CURRENCYID &in) const
         {
-            return this->ASSETCLASSID == in.v_;
+            return this->CURRENCYID == in.v_;
         }
 
-        bool match(const Self::STOCKSYMBOL &in) const
+        bool match(const Self::CURRDATE &in) const
         {
-            return this->STOCKSYMBOL.CmpNoCase(in.v_) == 0;
+            return this->CURRDATE.CmpNoCase(in.v_) == 0;
+        }
+
+        bool match(const Self::CURRVALUE &in) const
+        {
+            return this->CURRVALUE == in.v_;
+        }
+
+        bool match(const Self::CURRUPDTYPE &in) const
+        {
+            return this->CURRUPDTYPE == in.v_;
         }
 
         // Return the data record as a json string
@@ -255,28 +292,36 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("ID");
-            json_writer.Int(this->ID);
-            json_writer.Key("ASSETCLASSID");
-            json_writer.Int(this->ASSETCLASSID);
-            json_writer.Key("STOCKSYMBOL");
-            json_writer.String(this->STOCKSYMBOL.c_str());
+            json_writer.Key("CURRHISTID");
+            json_writer.Int(this->CURRHISTID);
+            json_writer.Key("CURRENCYID");
+            json_writer.Int(this->CURRENCYID);
+            json_writer.Key("CURRDATE");
+            json_writer.String(this->CURRDATE.c_str());
+            json_writer.Key("CURRVALUE");
+            json_writer.Double(this->CURRVALUE);
+            json_writer.Key("CURRUPDTYPE");
+            json_writer.Int(this->CURRUPDTYPE);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"ID") = ID;
-            row(L"ASSETCLASSID") = ASSETCLASSID;
-            row(L"STOCKSYMBOL") = STOCKSYMBOL;
+            row(L"CURRHISTID") = CURRHISTID;
+            row(L"CURRENCYID") = CURRENCYID;
+            row(L"CURRDATE") = CURRDATE;
+            row(L"CURRVALUE") = CURRVALUE;
+            row(L"CURRUPDTYPE") = CURRUPDTYPE;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"ID") = ID;
-            t(L"ASSETCLASSID") = ASSETCLASSID;
-            t(L"STOCKSYMBOL") = STOCKSYMBOL;
+            t(L"CURRHISTID") = CURRHISTID;
+            t(L"CURRENCYID") = CURRENCYID;
+            t(L"CURRDATE") = CURRDATE;
+            t(L"CURRVALUE") = CURRVALUE;
+            t(L"CURRUPDTYPE") = CURRUPDTYPE;
         }
 
         /** Save the record instance in memory to the database. */
@@ -285,7 +330,7 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save ASSETCLASS_STOCK_V1");
+                wxLogError("can not save CURRENCYHISTORY");
                 return false;
             }
 
@@ -297,7 +342,7 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove ASSETCLASS_STOCK_V1");
+                wxLogError("can not remove CURRENCYHISTORY");
                 return false;
             }
             
@@ -312,17 +357,17 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 3
+        NUM_COLUMNS = 5
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "ASSETCLASS_STOCK_V1"; }
+    wxString name() const { return "CURRENCYHISTORY"; }
 
-    DB_Table_ASSETCLASS_STOCK_V1() : fake_(new Data())
+    DB_Table_CURRENCYHISTORY() : fake_(new Data())
     {
-        query_ = "SELECT ID, ASSETCLASSID, STOCKSYMBOL FROM ASSETCLASS_STOCK_V1 ";
+        query_ = "SELECT CURRHISTID, CURRENCYID, CURRDATE, CURRVALUE, CURRUPDTYPE FROM CURRENCYHISTORY ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -352,21 +397,23 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO ASSETCLASS_STOCK_V1(ASSETCLASSID, STOCKSYMBOL) VALUES(?, ?)";
+            sql = "INSERT INTO CURRENCYHISTORY(CURRENCYID, CURRDATE, CURRVALUE, CURRUPDTYPE) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE ASSETCLASS_STOCK_V1 SET ASSETCLASSID = ?, STOCKSYMBOL = ? WHERE ID = ?";
+            sql = "UPDATE CURRENCYHISTORY SET CURRENCYID = ?, CURRDATE = ?, CURRVALUE = ?, CURRUPDTYPE = ? WHERE CURRHISTID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->ASSETCLASSID);
-            stmt.Bind(2, entity->STOCKSYMBOL);
+            stmt.Bind(1, entity->CURRENCYID);
+            stmt.Bind(2, entity->CURRDATE);
+            stmt.Bind(3, entity->CURRVALUE);
+            stmt.Bind(4, entity->CURRUPDTYPE);
             if (entity->id() > 0)
-                stmt.Bind(3, entity->ID);
+                stmt.Bind(5, entity->CURRHISTID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -383,7 +430,7 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETCLASS_STOCK_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("CURRENCYHISTORY: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -401,7 +448,7 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM ASSETCLASS_STOCK_V1 WHERE ID = ?";
+            wxString sql = "DELETE FROM CURRENCYHISTORY WHERE CURRHISTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -426,7 +473,7 @@ struct DB_Table_ASSETCLASS_STOCK_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETCLASS_STOCK_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CURRENCYHISTORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

@@ -20,16 +20,16 @@
 #define MODEL_ACCOUNT_H
 
 #include "Model.h"
-#include "db/DB_Table_Accountlist_V1.h"
+#include "db/DB_Table_Accountlist.h"
 #include "Model_Currency.h" // detect base currency
 #include "Model_Checking.h"
 #include "Model_Billsdeposits.h"
 
-class Model_Account : public Model<DB_Table_ACCOUNTLIST_V1>
+class Model_Account : public Model<DB_Table_ACCOUNTLIST>
 {
 public:
-    using Model<DB_Table_ACCOUNTLIST_V1>::remove;
-    using Model<DB_Table_ACCOUNTLIST_V1>::get;
+    using Model<DB_Table_ACCOUNTLIST>::remove;
+    using Model<DB_Table_ACCOUNTLIST>::get;
 
     enum STATUS_ENUM { OPEN = 0, CLOSED };
     enum TYPE { CASH = 0, CHECKING, CREDIT_CARD, LOAN, TERM, CRYPTO, INVESTMENT, ASSET, SHARES };
@@ -95,7 +95,7 @@ public:
 
     static STATUS_ENUM status(const Data* account);
     static STATUS_ENUM status(const Data& account);
-    static DB_Table_ACCOUNTLIST_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL);
+    static DB_Table_ACCOUNTLIST::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL);
 
     static TYPE type(const Data* account);
     static TYPE type(const Data& account);

@@ -20,7 +20,7 @@
 #include "Model_StockHistory.h"
 
 Model_Stock::Model_Stock()
-: Model<DB_Table_STOCK_V1>()
+: Model<DB_Table_STOCK>()
 {
 }
 

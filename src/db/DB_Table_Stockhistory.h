@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -19,10 +19,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_BUDGETYEAR_V1 : public DB_Table
+struct DB_Table_STOCKHISTORY : public DB_Table
 {
     struct Data;
-    typedef DB_Table_BUDGETYEAR_V1 Self;
+    typedef DB_Table_STOCKHISTORY Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_BUDGETYEAR_V1() 
+    ~DB_Table_STOCKHISTORY() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE BUDGETYEAR_V1(BUDGETYEARID integer primary key, BUDGETYEARNAME TEXT NOT NULL UNIQUE)");
+                db->ExecuteUpdate("CREATE TABLE STOCKHISTORY(HISTID integer primary key, SYMBOL TEXT NOT NULL, DATE TEXT NOT NULL, VALUE numeric NOT NULL, UPDTYPE integer, UNIQUE(SYMBOL, DATE))");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("BUDGETYEAR_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("STOCKHISTORY: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETYEAR_BUDGETYEARNAME ON BUDGETYEAR_V1(BUDGETYEARNAME)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_STOCKHISTORY_SYMBOL ON STOCKHISTORY(SYMBOL)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETYEAR_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("STOCKHISTORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,23 +111,44 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         db->Commit();
     }
     
-    struct BUDGETYEARID : public DB_Column<int>
+    struct HISTID : public DB_Column<int>
     { 
-        static wxString name() { return "BUDGETYEARID"; } 
-        explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "HISTID"; } 
+        explicit HISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct BUDGETYEARNAME : public DB_Column<wxString>
+    struct SYMBOL : public DB_Column<wxString>
     { 
-        static wxString name() { return "BUDGETYEARNAME"; } 
-        explicit BUDGETYEARNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "SYMBOL"; } 
+        explicit SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    typedef BUDGETYEARID PRIMARY;
+    struct DATE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "DATE"; } 
+        explicit DATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
+    struct VALUE : public DB_Column<double>
+    { 
+        static wxString name() { return "VALUE"; } 
+        explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    
+    struct UPDTYPE : public DB_Column<int>
+    { 
+        static wxString name() { return "UPDTYPE"; } 
+        explicit UPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    
+    typedef HISTID PRIMARY;
     enum COLUMN
     {
-        COL_BUDGETYEARID = 0
-        , COL_BUDGETYEARNAME = 1
+        COL_HISTID = 0
+        , COL_SYMBOL = 1
+        , COL_DATE = 2
+        , COL_VALUE = 3
+        , COL_UPDTYPE = 4
     };
 
     /** Returns the column name as a string*/
@@ -135,8 +156,11 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_BUDGETYEARID: return "BUDGETYEARID";
-            case COL_BUDGETYEARNAME: return "BUDGETYEARNAME";
+            case COL_HISTID: return "HISTID";
+            case COL_SYMBOL: return "SYMBOL";
+            case COL_DATE: return "DATE";
+            case COL_VALUE: return "VALUE";
+            case COL_UPDTYPE: return "UPDTYPE";
             default: break;
         }
         
@@ -146,8 +170,11 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("BUDGETYEARID" == name) return COL_BUDGETYEARID;
-        else if ("BUDGETYEARNAME" == name) return COL_BUDGETYEARNAME;
+        if ("HISTID" == name) return COL_HISTID;
+        else if ("SYMBOL" == name) return COL_SYMBOL;
+        else if ("DATE" == name) return COL_DATE;
+        else if ("VALUE" == name) return COL_VALUE;
+        else if ("UPDTYPE" == name) return COL_UPDTYPE;
 
         return COLUMN(-1);
     }
@@ -155,21 +182,24 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_BUDGETYEAR_V1;
+        friend struct DB_Table_STOCKHISTORY;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int BUDGETYEARID;//  primary key
-        wxString BUDGETYEARNAME;
+        int HISTID;//  primary key
+        wxString SYMBOL;
+        wxString DATE;
+        double VALUE;
+        int UPDTYPE;
 
         int id() const
         {
-            return BUDGETYEARID;
+            return HISTID;
         }
 
         void id(int id)
         {
-            BUDGETYEARID = id;
+            HISTID = id;
         }
 
         bool operator < (const Data& r) const
@@ -186,23 +216,31 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         {
             table_ = table;
         
-            BUDGETYEARID = -1;
+            HISTID = -1;
+            VALUE = 0.0;
+            UPDTYPE = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            BUDGETYEARID = q.GetInt(0); // BUDGETYEARID
-            BUDGETYEARNAME = q.GetString(1); // BUDGETYEARNAME
+            HISTID = q.GetInt(0); // HISTID
+            SYMBOL = q.GetString(1); // SYMBOL
+            DATE = q.GetString(2); // DATE
+            VALUE = q.GetDouble(3); // VALUE
+            UPDTYPE = q.GetInt(4); // UPDTYPE
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            BUDGETYEARID = other.BUDGETYEARID;
-            BUDGETYEARNAME = other.BUDGETYEARNAME;
+            HISTID = other.HISTID;
+            SYMBOL = other.SYMBOL;
+            DATE = other.DATE;
+            VALUE = other.VALUE;
+            UPDTYPE = other.UPDTYPE;
             return *this;
         }
 
@@ -212,14 +250,29 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::BUDGETYEARID &in) const
+        bool match(const Self::HISTID &in) const
         {
-            return this->BUDGETYEARID == in.v_;
+            return this->HISTID == in.v_;
         }
 
-        bool match(const Self::BUDGETYEARNAME &in) const
+        bool match(const Self::SYMBOL &in) const
         {
-            return this->BUDGETYEARNAME.CmpNoCase(in.v_) == 0;
+            return this->SYMBOL.CmpNoCase(in.v_) == 0;
+        }
+
+        bool match(const Self::DATE &in) const
+        {
+            return this->DATE.CmpNoCase(in.v_) == 0;
+        }
+
+        bool match(const Self::VALUE &in) const
+        {
+            return this->VALUE == in.v_;
+        }
+
+        bool match(const Self::UPDTYPE &in) const
+        {
+            return this->UPDTYPE == in.v_;
         }
 
         // Return the data record as a json string
@@ -238,24 +291,36 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("BUDGETYEARID");
-            json_writer.Int(this->BUDGETYEARID);
-            json_writer.Key("BUDGETYEARNAME");
-            json_writer.String(this->BUDGETYEARNAME.c_str());
+            json_writer.Key("HISTID");
+            json_writer.Int(this->HISTID);
+            json_writer.Key("SYMBOL");
+            json_writer.String(this->SYMBOL.c_str());
+            json_writer.Key("DATE");
+            json_writer.String(this->DATE.c_str());
+            json_writer.Key("VALUE");
+            json_writer.Double(this->VALUE);
+            json_writer.Key("UPDTYPE");
+            json_writer.Int(this->UPDTYPE);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"BUDGETYEARID") = BUDGETYEARID;
-            row(L"BUDGETYEARNAME") = BUDGETYEARNAME;
+            row(L"HISTID") = HISTID;
+            row(L"SYMBOL") = SYMBOL;
+            row(L"DATE") = DATE;
+            row(L"VALUE") = VALUE;
+            row(L"UPDTYPE") = UPDTYPE;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"BUDGETYEARID") = BUDGETYEARID;
-            t(L"BUDGETYEARNAME") = BUDGETYEARNAME;
+            t(L"HISTID") = HISTID;
+            t(L"SYMBOL") = SYMBOL;
+            t(L"DATE") = DATE;
+            t(L"VALUE") = VALUE;
+            t(L"UPDTYPE") = UPDTYPE;
         }
 
         /** Save the record instance in memory to the database. */
@@ -264,7 +329,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save BUDGETYEAR_V1");
+                wxLogError("can not save STOCKHISTORY");
                 return false;
             }
 
@@ -276,7 +341,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove BUDGETYEAR_V1");
+                wxLogError("can not remove STOCKHISTORY");
                 return false;
             }
             
@@ -291,17 +356,17 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 2
+        NUM_COLUMNS = 5
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "BUDGETYEAR_V1"; }
+    wxString name() const { return "STOCKHISTORY"; }
 
-    DB_Table_BUDGETYEAR_V1() : fake_(new Data())
+    DB_Table_STOCKHISTORY() : fake_(new Data())
     {
-        query_ = "SELECT BUDGETYEARID, BUDGETYEARNAME FROM BUDGETYEAR_V1 ";
+        query_ = "SELECT HISTID, SYMBOL, DATE, VALUE, UPDTYPE FROM STOCKHISTORY ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -331,20 +396,23 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO BUDGETYEAR_V1(BUDGETYEARNAME) VALUES(?)";
+            sql = "INSERT INTO STOCKHISTORY(SYMBOL, DATE, VALUE, UPDTYPE) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE BUDGETYEAR_V1 SET BUDGETYEARNAME = ? WHERE BUDGETYEARID = ?";
+            sql = "UPDATE STOCKHISTORY SET SYMBOL = ?, DATE = ?, VALUE = ?, UPDTYPE = ? WHERE HISTID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->BUDGETYEARNAME);
+            stmt.Bind(1, entity->SYMBOL);
+            stmt.Bind(2, entity->DATE);
+            stmt.Bind(3, entity->VALUE);
+            stmt.Bind(4, entity->UPDTYPE);
             if (entity->id() > 0)
-                stmt.Bind(2, entity->BUDGETYEARID);
+                stmt.Bind(5, entity->HISTID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -361,7 +429,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETYEAR_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("STOCKHISTORY: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -379,7 +447,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM BUDGETYEAR_V1 WHERE BUDGETYEARID = ?";
+            wxString sql = "DELETE FROM STOCKHISTORY WHERE HISTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -404,7 +472,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETYEAR_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("STOCKHISTORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

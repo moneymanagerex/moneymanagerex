@@ -166,30 +166,30 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
     import_export/univcsvdialog.cpp
     import_export/univcsvdialog.h
 
-    db/DB_Table_Accountlist_V1.h
-    db/DB_Table_Assets_V1.h
-    db/DB_Table_Attachment_V1.h
-    db/DB_Table_Billsdeposits_V1.h
-    db/DB_Table_Budgetsplittransactions_V1.h
-    db/DB_Table_Budgettable_V1.h
-    db/DB_Table_Budgetyear_V1.h
-    db/DB_Table_Category_V1.h
-    db/DB_Table_Checkingaccount_V1.h
-    db/DB_Table_Currencyformats_V1.h
-    db/DB_Table_Currencyhistory_V1.h
-    db/DB_Table_Customfielddata_V1.h
-    db/DB_Table_Customfield_V1.h
+    db/DB_Table_Accountlist.h
+    db/DB_Table_Assets.h
+    db/DB_Table_Attachment.h
+    db/DB_Table_Billsdeposits.h
+    db/DB_Table_Budgetsplittransactions.h
+    db/DB_Table_Budgettable.h
+    db/DB_Table_Budgetyear.h
+    db/DB_Table_Category.h
+    db/DB_Table_Checkingaccount.h
+    db/DB_Table_Currencyformats.h
+    db/DB_Table_Currencyhistory.h
+    db/DB_Table_Customfielddata.h
+    db/DB_Table_Customfield.h
     db/DB_Table.h
-    db/DB_Table_Infotable_V1.h
-    db/DB_Table_Payee_V1.h
-    db/DB_Table_Report_V1.h
+    db/DB_Table_Infotable.h
+    db/DB_Table_Payee.h
+    db/DB_Table_Report.h
     db/DB_Table_Setting_V1.h
-    db/DB_Table_Shareinfo_V1.h
-    db/DB_Table_Splittransactions_V1.h
-    db/DB_Table_Stockhistory_V1.h
-    db/DB_Table_Stock_V1.h
-    db/DB_Table_Subcategory_V1.h
-    db/DB_Table_Translink_V1.h
+    db/DB_Table_Shareinfo.h
+    db/DB_Table_Splittransactions.h
+    db/DB_Table_Stockhistory.h
+    db/DB_Table_Stock.h
+    db/DB_Table_Subcategory.h
+    db/DB_Table_Translink.h
     db/DB_Table_Usage_V1.h
 
     reports/allreport.h

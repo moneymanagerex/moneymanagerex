@@ -21,7 +21,7 @@
 #include "Model_Billsdeposits.h"
 
 Model_Payee::Model_Payee()
-: Model<DB_Table_PAYEE_V1>()
+: Model<DB_Table_PAYEE>()
 {
 }
 

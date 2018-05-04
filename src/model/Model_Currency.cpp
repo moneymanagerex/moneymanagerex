@@ -32,7 +32,7 @@ const std::vector<std::pair<Model_Currency::CURRTYPE, wxString> > Model_Currency
 
 
 Model_Currency::Model_Currency()
-: Model<DB_Table_CURRENCYFORMATS_V1>()
+: Model<DB_Table_CURRENCYFORMATS>()
 {
 }
 

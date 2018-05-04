@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -19,10 +19,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_PAYEE_V1 : public DB_Table
+struct DB_Table_BUDGETYEAR : public DB_Table
 {
     struct Data;
-    typedef DB_Table_PAYEE_V1 Self;
+    typedef DB_Table_BUDGETYEAR Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_PAYEE_V1() 
+    ~DB_Table_BUDGETYEAR() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE PAYEE_V1(PAYEEID integer primary key, PAYEENAME TEXT COLLATE NOCASE NOT NULL UNIQUE, CATEGID integer, SUBCATEGID integer)");
+                db->ExecuteUpdate("CREATE TABLE BUDGETYEAR(BUDGETYEARID integer primary key, BUDGETYEARNAME TEXT NOT NULL UNIQUE)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("PAYEE_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("BUDGETYEAR: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_PAYEE_INFONAME ON PAYEE_V1(PAYEENAME)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETYEAR_BUDGETYEARNAME ON BUDGETYEAR(BUDGETYEARNAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("PAYEE_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("BUDGETYEAR: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,37 +111,23 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         db->Commit();
     }
     
-    struct PAYEEID : public DB_Column<int>
+    struct BUDGETYEARID : public DB_Column<int>
     { 
-        static wxString name() { return "PAYEEID"; } 
-        explicit PAYEEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "BUDGETYEARID"; } 
+        explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct PAYEENAME : public DB_Column<wxString>
+    struct BUDGETYEARNAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "PAYEENAME"; } 
-        explicit PAYEENAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "BUDGETYEARNAME"; } 
+        explicit BUDGETYEARNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
-    { 
-        static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    struct SUBCATEGID : public DB_Column<int>
-    { 
-        static wxString name() { return "SUBCATEGID"; } 
-        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    typedef PAYEEID PRIMARY;
+    typedef BUDGETYEARID PRIMARY;
     enum COLUMN
     {
-        COL_PAYEEID = 0
-        , COL_PAYEENAME = 1
-        , COL_CATEGID = 2
-        , COL_SUBCATEGID = 3
+        COL_BUDGETYEARID = 0
+        , COL_BUDGETYEARNAME = 1
     };
 
     /** Returns the column name as a string*/
@@ -149,10 +135,8 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_PAYEEID: return "PAYEEID";
-            case COL_PAYEENAME: return "PAYEENAME";
-            case COL_CATEGID: return "CATEGID";
-            case COL_SUBCATEGID: return "SUBCATEGID";
+            case COL_BUDGETYEARID: return "BUDGETYEARID";
+            case COL_BUDGETYEARNAME: return "BUDGETYEARNAME";
             default: break;
         }
         
@@ -162,10 +146,8 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("PAYEEID" == name) return COL_PAYEEID;
-        else if ("PAYEENAME" == name) return COL_PAYEENAME;
-        else if ("CATEGID" == name) return COL_CATEGID;
-        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
+        if ("BUDGETYEARID" == name) return COL_BUDGETYEARID;
+        else if ("BUDGETYEARNAME" == name) return COL_BUDGETYEARNAME;
 
         return COLUMN(-1);
     }
@@ -173,23 +155,21 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_PAYEE_V1;
+        friend struct DB_Table_BUDGETYEAR;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int PAYEEID;//  primary key
-        wxString PAYEENAME;
-        int CATEGID;
-        int SUBCATEGID;
+        int BUDGETYEARID;//  primary key
+        wxString BUDGETYEARNAME;
 
         int id() const
         {
-            return PAYEEID;
+            return BUDGETYEARID;
         }
 
         void id(int id)
         {
-            PAYEEID = id;
+            BUDGETYEARID = id;
         }
 
         bool operator < (const Data& r) const
@@ -206,29 +186,23 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         {
             table_ = table;
         
-            PAYEEID = -1;
-            CATEGID = -1;
-            SUBCATEGID = -1;
+            BUDGETYEARID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            PAYEEID = q.GetInt(0); // PAYEEID
-            PAYEENAME = q.GetString(1); // PAYEENAME
-            CATEGID = q.GetInt(2); // CATEGID
-            SUBCATEGID = q.GetInt(3); // SUBCATEGID
+            BUDGETYEARID = q.GetInt(0); // BUDGETYEARID
+            BUDGETYEARNAME = q.GetString(1); // BUDGETYEARNAME
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            PAYEEID = other.PAYEEID;
-            PAYEENAME = other.PAYEENAME;
-            CATEGID = other.CATEGID;
-            SUBCATEGID = other.SUBCATEGID;
+            BUDGETYEARID = other.BUDGETYEARID;
+            BUDGETYEARNAME = other.BUDGETYEARNAME;
             return *this;
         }
 
@@ -238,24 +212,14 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::PAYEEID &in) const
+        bool match(const Self::BUDGETYEARID &in) const
         {
-            return this->PAYEEID == in.v_;
+            return this->BUDGETYEARID == in.v_;
         }
 
-        bool match(const Self::PAYEENAME &in) const
+        bool match(const Self::BUDGETYEARNAME &in) const
         {
-            return this->PAYEENAME.CmpNoCase(in.v_) == 0;
-        }
-
-        bool match(const Self::CATEGID &in) const
-        {
-            return this->CATEGID == in.v_;
-        }
-
-        bool match(const Self::SUBCATEGID &in) const
-        {
-            return this->SUBCATEGID == in.v_;
+            return this->BUDGETYEARNAME.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -274,32 +238,24 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("PAYEEID");
-            json_writer.Int(this->PAYEEID);
-            json_writer.Key("PAYEENAME");
-            json_writer.String(this->PAYEENAME.c_str());
-            json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
-            json_writer.Key("SUBCATEGID");
-            json_writer.Int(this->SUBCATEGID);
+            json_writer.Key("BUDGETYEARID");
+            json_writer.Int(this->BUDGETYEARID);
+            json_writer.Key("BUDGETYEARNAME");
+            json_writer.String(this->BUDGETYEARNAME.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"PAYEEID") = PAYEEID;
-            row(L"PAYEENAME") = PAYEENAME;
-            row(L"CATEGID") = CATEGID;
-            row(L"SUBCATEGID") = SUBCATEGID;
+            row(L"BUDGETYEARID") = BUDGETYEARID;
+            row(L"BUDGETYEARNAME") = BUDGETYEARNAME;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"PAYEEID") = PAYEEID;
-            t(L"PAYEENAME") = PAYEENAME;
-            t(L"CATEGID") = CATEGID;
-            t(L"SUBCATEGID") = SUBCATEGID;
+            t(L"BUDGETYEARID") = BUDGETYEARID;
+            t(L"BUDGETYEARNAME") = BUDGETYEARNAME;
         }
 
         /** Save the record instance in memory to the database. */
@@ -308,7 +264,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save PAYEE_V1");
+                wxLogError("can not save BUDGETYEAR");
                 return false;
             }
 
@@ -320,7 +276,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove PAYEE_V1");
+                wxLogError("can not remove BUDGETYEAR");
                 return false;
             }
             
@@ -335,17 +291,17 @@ struct DB_Table_PAYEE_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 4
+        NUM_COLUMNS = 2
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "PAYEE_V1"; }
+    wxString name() const { return "BUDGETYEAR"; }
 
-    DB_Table_PAYEE_V1() : fake_(new Data())
+    DB_Table_BUDGETYEAR() : fake_(new Data())
     {
-        query_ = "SELECT PAYEEID, PAYEENAME, CATEGID, SUBCATEGID FROM PAYEE_V1 ";
+        query_ = "SELECT BUDGETYEARID, BUDGETYEARNAME FROM BUDGETYEAR ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -375,22 +331,20 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO PAYEE_V1(PAYEENAME, CATEGID, SUBCATEGID) VALUES(?, ?, ?)";
+            sql = "INSERT INTO BUDGETYEAR(BUDGETYEARNAME) VALUES(?)";
         }
         else
         {
-            sql = "UPDATE PAYEE_V1 SET PAYEENAME = ?, CATEGID = ?, SUBCATEGID = ? WHERE PAYEEID = ?";
+            sql = "UPDATE BUDGETYEAR SET BUDGETYEARNAME = ? WHERE BUDGETYEARID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->PAYEENAME);
-            stmt.Bind(2, entity->CATEGID);
-            stmt.Bind(3, entity->SUBCATEGID);
+            stmt.Bind(1, entity->BUDGETYEARNAME);
             if (entity->id() > 0)
-                stmt.Bind(4, entity->PAYEEID);
+                stmt.Bind(2, entity->BUDGETYEARID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -407,7 +361,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("PAYEE_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("BUDGETYEAR: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -425,7 +379,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM PAYEE_V1 WHERE PAYEEID = ?";
+            wxString sql = "DELETE FROM BUDGETYEAR WHERE BUDGETYEARID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -450,7 +404,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("PAYEE_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("BUDGETYEAR: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

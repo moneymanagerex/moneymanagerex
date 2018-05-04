@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -19,10 +19,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
+struct DB_Table_CATEGORY : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CUSTOMFIELDDATA_V1 Self;
+    typedef DB_Table_CATEGORY Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CUSTOMFIELDDATA_V1() 
+    ~DB_Table_CATEGORY() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELDDATA_V1 (FIELDATADID INTEGER NOT NULL PRIMARY KEY, FIELDID INTEGER NOT NULL, REFID INTEGER NOT NULL, CONTENT TEXT, UNIQUE(FIELDID, REFID))");
+                db->ExecuteUpdate("CREATE TABLE CATEGORY(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("CUSTOMFIELDDATA_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("CATEGORY: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELDDATA_REF ON CUSTOMFIELDDATA_V1 (FIELDID, REFID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CATEGORY_CATEGNAME ON CATEGORY(CATEGNAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELDDATA_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CATEGORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -108,40 +108,42 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('1', '%s')", wxTRANSLATE("Bills")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('2', '%s')", wxTRANSLATE("Food")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('3', '%s')", wxTRANSLATE("Leisure")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('4', '%s')", wxTRANSLATE("Automobile")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('5', '%s')", wxTRANSLATE("Education")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('6', '%s')", wxTRANSLATE("Homeneeds")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('7', '%s')", wxTRANSLATE("Healthcare")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('8', '%s')", wxTRANSLATE("Insurance")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('9', '%s')", wxTRANSLATE("Vacation")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('10', '%s')", wxTRANSLATE("Taxes")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('11', '%s')", wxTRANSLATE("Miscellaneous")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('12', '%s')", wxTRANSLATE("Gifts")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('13', '%s')", wxTRANSLATE("Income")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('14', '%s')", wxTRANSLATE("Other Income")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('15', '%s')", wxTRANSLATE("Other Expenses")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('16', '%s')", wxTRANSLATE("Transfer")));
         db->Commit();
     }
     
-    struct FIELDATADID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int>
     { 
-        static wxString name() { return "FIELDATADID"; } 
-        explicit FIELDATADID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CATEGID"; } 
+        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct FIELDID : public DB_Column<int>
+    struct CATEGNAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "FIELDID"; } 
-        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CATEGNAME"; } 
+        explicit CATEGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct REFID : public DB_Column<int>
-    { 
-        static wxString name() { return "REFID"; } 
-        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    struct CONTENT : public DB_Column<wxString>
-    { 
-        static wxString name() { return "CONTENT"; } 
-        explicit CONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    
-    typedef FIELDATADID PRIMARY;
+    typedef CATEGID PRIMARY;
     enum COLUMN
     {
-        COL_FIELDATADID = 0
-        , COL_FIELDID = 1
-        , COL_REFID = 2
-        , COL_CONTENT = 3
+        COL_CATEGID = 0
+        , COL_CATEGNAME = 1
     };
 
     /** Returns the column name as a string*/
@@ -149,10 +151,8 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_FIELDATADID: return "FIELDATADID";
-            case COL_FIELDID: return "FIELDID";
-            case COL_REFID: return "REFID";
-            case COL_CONTENT: return "CONTENT";
+            case COL_CATEGID: return "CATEGID";
+            case COL_CATEGNAME: return "CATEGNAME";
             default: break;
         }
         
@@ -162,10 +162,8 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("FIELDATADID" == name) return COL_FIELDATADID;
-        else if ("FIELDID" == name) return COL_FIELDID;
-        else if ("REFID" == name) return COL_REFID;
-        else if ("CONTENT" == name) return COL_CONTENT;
+        if ("CATEGID" == name) return COL_CATEGID;
+        else if ("CATEGNAME" == name) return COL_CATEGNAME;
 
         return COLUMN(-1);
     }
@@ -173,23 +171,21 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CUSTOMFIELDDATA_V1;
+        friend struct DB_Table_CATEGORY;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int FIELDATADID;//  primary key
-        int FIELDID;
-        int REFID;
-        wxString CONTENT;
+        int CATEGID;//  primary key
+        wxString CATEGNAME;
 
         int id() const
         {
-            return FIELDATADID;
+            return CATEGID;
         }
 
         void id(int id)
         {
-            FIELDATADID = id;
+            CATEGID = id;
         }
 
         bool operator < (const Data& r) const
@@ -206,29 +202,23 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         {
             table_ = table;
         
-            FIELDATADID = -1;
-            FIELDID = -1;
-            REFID = -1;
+            CATEGID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            FIELDATADID = q.GetInt(0); // FIELDATADID
-            FIELDID = q.GetInt(1); // FIELDID
-            REFID = q.GetInt(2); // REFID
-            CONTENT = q.GetString(3); // CONTENT
+            CATEGID = q.GetInt(0); // CATEGID
+            CATEGNAME = q.GetString(1); // CATEGNAME
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            FIELDATADID = other.FIELDATADID;
-            FIELDID = other.FIELDID;
-            REFID = other.REFID;
-            CONTENT = other.CONTENT;
+            CATEGID = other.CATEGID;
+            CATEGNAME = other.CATEGNAME;
             return *this;
         }
 
@@ -238,24 +228,14 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::FIELDATADID &in) const
+        bool match(const Self::CATEGID &in) const
         {
-            return this->FIELDATADID == in.v_;
+            return this->CATEGID == in.v_;
         }
 
-        bool match(const Self::FIELDID &in) const
+        bool match(const Self::CATEGNAME &in) const
         {
-            return this->FIELDID == in.v_;
-        }
-
-        bool match(const Self::REFID &in) const
-        {
-            return this->REFID == in.v_;
-        }
-
-        bool match(const Self::CONTENT &in) const
-        {
-            return this->CONTENT.CmpNoCase(in.v_) == 0;
+            return this->CATEGNAME.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -274,32 +254,24 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("FIELDATADID");
-            json_writer.Int(this->FIELDATADID);
-            json_writer.Key("FIELDID");
-            json_writer.Int(this->FIELDID);
-            json_writer.Key("REFID");
-            json_writer.Int(this->REFID);
-            json_writer.Key("CONTENT");
-            json_writer.String(this->CONTENT.c_str());
+            json_writer.Key("CATEGID");
+            json_writer.Int(this->CATEGID);
+            json_writer.Key("CATEGNAME");
+            json_writer.String(this->CATEGNAME.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"FIELDATADID") = FIELDATADID;
-            row(L"FIELDID") = FIELDID;
-            row(L"REFID") = REFID;
-            row(L"CONTENT") = CONTENT;
+            row(L"CATEGID") = CATEGID;
+            row(L"CATEGNAME") = CATEGNAME;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"FIELDATADID") = FIELDATADID;
-            t(L"FIELDID") = FIELDID;
-            t(L"REFID") = REFID;
-            t(L"CONTENT") = CONTENT;
+            t(L"CATEGID") = CATEGID;
+            t(L"CATEGNAME") = CATEGNAME;
         }
 
         /** Save the record instance in memory to the database. */
@@ -308,7 +280,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save CUSTOMFIELDDATA_V1");
+                wxLogError("can not save CATEGORY");
                 return false;
             }
 
@@ -320,7 +292,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove CUSTOMFIELDDATA_V1");
+                wxLogError("can not remove CATEGORY");
                 return false;
             }
             
@@ -335,17 +307,17 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 4
+        NUM_COLUMNS = 2
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "CUSTOMFIELDDATA_V1"; }
+    wxString name() const { return "CATEGORY"; }
 
-    DB_Table_CUSTOMFIELDDATA_V1() : fake_(new Data())
+    DB_Table_CATEGORY() : fake_(new Data())
     {
-        query_ = "SELECT FIELDATADID, FIELDID, REFID, CONTENT FROM CUSTOMFIELDDATA_V1 ";
+        query_ = "SELECT CATEGID, CATEGNAME FROM CATEGORY ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -375,22 +347,20 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CUSTOMFIELDDATA_V1(FIELDID, REFID, CONTENT) VALUES(?, ?, ?)";
+            sql = "INSERT INTO CATEGORY(CATEGNAME) VALUES(?)";
         }
         else
         {
-            sql = "UPDATE CUSTOMFIELDDATA_V1 SET FIELDID = ?, REFID = ?, CONTENT = ? WHERE FIELDATADID = ?";
+            sql = "UPDATE CATEGORY SET CATEGNAME = ? WHERE CATEGID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->FIELDID);
-            stmt.Bind(2, entity->REFID);
-            stmt.Bind(3, entity->CONTENT);
+            stmt.Bind(1, entity->CATEGNAME);
             if (entity->id() > 0)
-                stmt.Bind(4, entity->FIELDATADID);
+                stmt.Bind(2, entity->CATEGID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -407,7 +377,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELDDATA_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("CATEGORY: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -425,7 +395,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CUSTOMFIELDDATA_V1 WHERE FIELDATADID = ?";
+            wxString sql = "DELETE FROM CATEGORY WHERE CATEGID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -450,7 +420,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELDDATA_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CATEGORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

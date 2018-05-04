@@ -6,13 +6,13 @@ from datetime import date, timedelta
 conn = sqlite3.connect(sys.argv[1])
 curs = conn.cursor()
 
-curs.execute("select * from ACCOUNTLIST_V1 where ACCOUNTTYPE != 'Investment'")
+curs.execute("select * from ACCOUNTLIST where ACCOUNTTYPE != 'Investment'")
 all_account = [account[0] for account in curs.fetchall()]
 
-curs.execute("select * from PAYEE_V1")
+curs.execute("select * from PAYEE")
 all_payee = [payee[0] for payee in curs.fetchall()]
 
-curs.execute("select c.CATEGID, ifnull(s.SUBCATEGID, -1) from CATEGORY_V1 as c left join SUBCATEGORY_V1 as s ON (c.CATEGID = s.CATEGID)")
+curs.execute("select c.CATEGID, ifnull(s.SUBCATEGID, -1) from CATEGORY as c left join SUBCATEGORY as s ON (c.CATEGID = s.CATEGID)")
 all_category = [(c[0], c[1]) for c in curs.fetchall()]
 
 all_type = ("Withdrawal", "Deposit", "Transfer")
@@ -29,7 +29,7 @@ for x in range(1, 100000):
     type = all_status[random.randint(0, len(all_status) -1)]
     transdate = today + timedelta(days = random.randint(-1000,10)) 
     
-    sql = '''INSERT INTO CHECKINGACCOUNT_V1(ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT)
+    sql = '''INSERT INTO CHECKINGACCOUNT(ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT)
     VALUES(%d, -1, %d, "%s", %f, "%s", "%d", "", %d, %d, "%s", -1, %f)''' % (account_id, payee_id, transcode, amount, type, x, category[0], category[1], transdate, amount)
     curs.execute(sql)
     

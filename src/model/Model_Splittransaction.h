@@ -21,7 +21,7 @@
 
 #include "Model.h"
 #include "Model_Currency.h"
-#include "db/DB_Table_Splittransactions_V1.h"
+#include "db/DB_Table_Splittransactions.h"
 
 struct Split
 {
@@ -30,7 +30,7 @@ struct Split
     double SPLITTRANSAMOUNT;
 };
 
-class Model_Splittransaction : public Model<DB_Table_SPLITTRANSACTIONS_V1>
+class Model_Splittransaction : public Model<DB_Table_SPLITTRANSACTIONS>
 {
 public:
     Model_Splittransaction();

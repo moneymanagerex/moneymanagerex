@@ -41,7 +41,7 @@ const std::vector<std::pair<Model_Account::TYPE, wxString> > Model_Account::TYPE
 };
 
 Model_Account::Model_Account()
-: Model<DB_Table_ACCOUNTLIST_V1>()
+: Model<DB_Table_ACCOUNTLIST>()
 {
 }
 
@@ -261,9 +261,9 @@ Model_Account::STATUS_ENUM Model_Account::status(const Data& account)
     return status(&account);
 }
 
-DB_Table_ACCOUNTLIST_V1::STATUS Model_Account::STATUS(STATUS_ENUM status, OP op)
+DB_Table_ACCOUNTLIST::STATUS Model_Account::STATUS(STATUS_ENUM status, OP op)
 {
-    return DB_Table_ACCOUNTLIST_V1::STATUS(all_status()[status], op);
+    return DB_Table_ACCOUNTLIST::STATUS(all_status()[status], op);
 }
 
 Model_Account::TYPE Model_Account::type(const Data* account)

@@ -30,7 +30,7 @@ const std::vector<std::pair<Model_Attachment::REFTYPE, wxString> > Model_Attachm
 };
 
 Model_Attachment::Model_Attachment()
-    : Model<DB_Table_ATTACHMENT_V1>()
+    : Model<DB_Table_ATTACHMENT>()
 {
 }
 
@@ -85,7 +85,7 @@ const Model_Attachment::Data_Set Model_Attachment::FilterAttachments(const wxStr
 /** Return the number of attachments linked to a specific object */
 int Model_Attachment::NrAttachments(const wxString& RefType, const int RefId)
 {
-    return Model_Attachment::instance().find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(RefType), Model_Attachment::REFID(RefId)).size();
+    return Model_Attachment::instance().find(Model_Attachment::DB_Table_ATTACHMENT::REFTYPE(RefType), Model_Attachment::REFID(RefId)).size();
 }
 
 /** Return the last attachment number linked to a specific object */
@@ -118,7 +118,7 @@ std::map<int, Model_Attachment::Data_Set> Model_Attachment::get_all(REFTYPE reft
 {
     std::map<int, Model_Attachment::Data_Set> data;
     wxString reftype_desc = Model_Attachment::reftype_desc(reftype);
-    for (const auto & attachment : this->find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(reftype_desc)))
+    for (const auto & attachment : this->find(Model_Attachment::DB_Table_ATTACHMENT::REFTYPE(reftype_desc)))
     {
         data[attachment.REFID].push_back(attachment);
     }

@@ -41,8 +41,8 @@ wxString mmReportForecast::getHTMLText()
     Model_Checking::Data_Set all_trans;
     
     if (m_date_range && m_date_range->is_with_date())
-        all_trans = Model_Checking::instance().find(DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(m_date_range->start_date().FormatISODate(), GREATER_OR_EQUAL)
-                    , DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(m_date_range->end_date().FormatISODate(), LESS_OR_EQUAL));
+        all_trans = Model_Checking::instance().find(DB_Table_CHECKINGACCOUNT::TRANSDATE(m_date_range->start_date().FormatISODate(), GREATER_OR_EQUAL)
+                    , DB_Table_CHECKINGACCOUNT::TRANSDATE(m_date_range->end_date().FormatISODate(), LESS_OR_EQUAL));
     else
         all_trans = Model_Checking::instance().all();
 

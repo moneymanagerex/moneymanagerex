@@ -41,7 +41,7 @@ const std::vector<std::pair<Model_Checking::STATUS_ENUM, wxString> > Model_Check
     , {Model_Checking::DUPLICATE_, wxString(wxTRANSLATE("Duplicate"))}
 };
 
-Model_Checking::Model_Checking(): Model<DB_Table_CHECKINGACCOUNT_V1>()
+Model_Checking::Model_Checking(): Model<DB_Table_CHECKINGACCOUNT>()
 {
 }
 
@@ -112,24 +112,24 @@ const Model_Splittransaction::Data_Set Model_Checking::splittransaction(const Da
     return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID));
 }
 
-DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxDate& date, OP op)
+DB_Table_CHECKINGACCOUNT::TRANSDATE Model_Checking::TRANSDATE(const wxDate& date, OP op)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op);
+    return DB_Table_CHECKINGACCOUNT::TRANSDATE(date.FormatISODate(), op);
 }
 
-DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxString& date, OP op)
+DB_Table_CHECKINGACCOUNT::TRANSDATE Model_Checking::TRANSDATE(const wxString& date, OP op)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date, op);
+    return DB_Table_CHECKINGACCOUNT::TRANSDATE(date, op);
 }
 
-DB_Table_CHECKINGACCOUNT_V1::STATUS Model_Checking::STATUS(STATUS_ENUM status, OP op)
+DB_Table_CHECKINGACCOUNT::STATUS Model_Checking::STATUS(STATUS_ENUM status, OP op)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::STATUS(toShortStatus(all_status()[status]), op);
+    return DB_Table_CHECKINGACCOUNT::STATUS(toShortStatus(all_status()[status]), op);
 }
 
-DB_Table_CHECKINGACCOUNT_V1::TRANSCODE Model_Checking::TRANSCODE(TYPE type, OP op)
+DB_Table_CHECKINGACCOUNT::TRANSCODE Model_Checking::TRANSCODE(TYPE type, OP op)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(all_type()[type], op);
+    return DB_Table_CHECKINGACCOUNT::TRANSCODE(all_type()[type], op);
 }
 
 wxDate Model_Checking::TRANSDATE(const Data* r)
@@ -578,22 +578,22 @@ TransactionStatus::TransactionStatus()
 {
 }
 
-TransactionStatus::TransactionStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data)
+TransactionStatus::TransactionStatus(const DB_Table_CHECKINGACCOUNT::Data& data)
 {
     InitStatus(&data);
 }
 
-TransactionStatus::TransactionStatus(const DB_Table_CHECKINGACCOUNT_V1::Data* data)
+TransactionStatus::TransactionStatus(const DB_Table_CHECKINGACCOUNT::Data* data)
 {
     InitStatus(data);
 }
 
-void TransactionStatus::InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data)
+void TransactionStatus::InitStatus(const DB_Table_CHECKINGACCOUNT::Data& data)
 {
     InitStatus(&data);
 }
 
-void TransactionStatus::InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data* data)
+void TransactionStatus::InitStatus(const DB_Table_CHECKINGACCOUNT::Data* data)
 {
     m_account_b = data->TOACCOUNTID;
     m_status_a = data->STATUS.Left(1);
@@ -603,7 +603,7 @@ void TransactionStatus::InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data* data
     }
 }
 
-void TransactionStatus::SetStatus(const wxString& status, int account_id, DB_Table_CHECKINGACCOUNT_V1::Data& data)
+void TransactionStatus::SetStatus(const wxString& status, int account_id, DB_Table_CHECKINGACCOUNT::Data& data)
 {
     if (Model_Checking::type(data) == Model_Checking::TRANSFER)
     {

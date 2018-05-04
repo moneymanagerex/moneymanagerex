@@ -32,7 +32,7 @@ int dbUpgrade::FixVersionStatus(wxSQLite3Database* db, int version)
 {
     if (version == 7)
     {
-        wxSQLite3Table account_table = db->GetTable("select * from ACCOUNTLIST_V1");
+        wxSQLite3Table account_table = db->GetTable("select * from ACCOUNTLIST");
         // database version 7 has 20 columns
         // database version 6 has 13 columns
         if ((account_table.GetColumnCount() < 20) && (account_table.GetColumnCount() > 0))

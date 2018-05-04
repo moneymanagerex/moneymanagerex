@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -19,10 +19,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_SHAREINFO_V1 : public DB_Table
+struct DB_Table_CUSTOMFIELDDATA : public DB_Table
 {
     struct Data;
-    typedef DB_Table_SHAREINFO_V1 Self;
+    typedef DB_Table_CUSTOMFIELDDATA Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_SHAREINFO_V1() 
+    ~DB_Table_CUSTOMFIELDDATA() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE SHAREINFO_V1 (SHAREINFOID integer NOT NULL primary key, CHECKINGACCOUNTID integer NOT NULL, SHARENUMBER numeric, SHAREPRICE numeric, SHARECOMMISSION numeric, SHARELOT TEXT)");
+                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELDDATA (FIELDATADID INTEGER NOT NULL PRIMARY KEY, FIELDID INTEGER NOT NULL, REFID INTEGER NOT NULL, CONTENT TEXT, UNIQUE(FIELDID, REFID))");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("SHAREINFO_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("CUSTOMFIELDDATA: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_SHAREINFO ON SHAREINFO_V1 (CHECKINGACCOUNTID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELDDATA_REF ON CUSTOMFIELDDATA (FIELDID, REFID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SHAREINFO_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CUSTOMFIELDDATA: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,51 +111,37 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
         db->Commit();
     }
     
-    struct SHAREINFOID : public DB_Column<int>
+    struct FIELDATADID : public DB_Column<int>
     { 
-        static wxString name() { return "SHAREINFOID"; } 
-        explicit SHAREINFOID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "FIELDATADID"; } 
+        explicit FIELDATADID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct CHECKINGACCOUNTID : public DB_Column<int>
+    struct FIELDID : public DB_Column<int>
     { 
-        static wxString name() { return "CHECKINGACCOUNTID"; } 
-        explicit CHECKINGACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "FIELDID"; } 
+        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SHARENUMBER : public DB_Column<double>
+    struct REFID : public DB_Column<int>
     { 
-        static wxString name() { return "SHARENUMBER"; } 
-        explicit SHARENUMBER(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        static wxString name() { return "REFID"; } 
+        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SHAREPRICE : public DB_Column<double>
+    struct CONTENT : public DB_Column<wxString>
     { 
-        static wxString name() { return "SHAREPRICE"; } 
-        explicit SHAREPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        static wxString name() { return "CONTENT"; } 
+        explicit CONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct SHARECOMMISSION : public DB_Column<double>
-    { 
-        static wxString name() { return "SHARECOMMISSION"; } 
-        explicit SHARECOMMISSION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
-    };
-    
-    struct SHARELOT : public DB_Column<wxString>
-    { 
-        static wxString name() { return "SHARELOT"; } 
-        explicit SHARELOT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    
-    typedef SHAREINFOID PRIMARY;
+    typedef FIELDATADID PRIMARY;
     enum COLUMN
     {
-        COL_SHAREINFOID = 0
-        , COL_CHECKINGACCOUNTID = 1
-        , COL_SHARENUMBER = 2
-        , COL_SHAREPRICE = 3
-        , COL_SHARECOMMISSION = 4
-        , COL_SHARELOT = 5
+        COL_FIELDATADID = 0
+        , COL_FIELDID = 1
+        , COL_REFID = 2
+        , COL_CONTENT = 3
     };
 
     /** Returns the column name as a string*/
@@ -163,12 +149,10 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_SHAREINFOID: return "SHAREINFOID";
-            case COL_CHECKINGACCOUNTID: return "CHECKINGACCOUNTID";
-            case COL_SHARENUMBER: return "SHARENUMBER";
-            case COL_SHAREPRICE: return "SHAREPRICE";
-            case COL_SHARECOMMISSION: return "SHARECOMMISSION";
-            case COL_SHARELOT: return "SHARELOT";
+            case COL_FIELDATADID: return "FIELDATADID";
+            case COL_FIELDID: return "FIELDID";
+            case COL_REFID: return "REFID";
+            case COL_CONTENT: return "CONTENT";
             default: break;
         }
         
@@ -178,12 +162,10 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("SHAREINFOID" == name) return COL_SHAREINFOID;
-        else if ("CHECKINGACCOUNTID" == name) return COL_CHECKINGACCOUNTID;
-        else if ("SHARENUMBER" == name) return COL_SHARENUMBER;
-        else if ("SHAREPRICE" == name) return COL_SHAREPRICE;
-        else if ("SHARECOMMISSION" == name) return COL_SHARECOMMISSION;
-        else if ("SHARELOT" == name) return COL_SHARELOT;
+        if ("FIELDATADID" == name) return COL_FIELDATADID;
+        else if ("FIELDID" == name) return COL_FIELDID;
+        else if ("REFID" == name) return COL_REFID;
+        else if ("CONTENT" == name) return COL_CONTENT;
 
         return COLUMN(-1);
     }
@@ -191,25 +173,23 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_SHAREINFO_V1;
+        friend struct DB_Table_CUSTOMFIELDDATA;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SHAREINFOID;//  primary key
-        int CHECKINGACCOUNTID;
-        double SHARENUMBER;
-        double SHAREPRICE;
-        double SHARECOMMISSION;
-        wxString SHARELOT;
+        int FIELDATADID;//  primary key
+        int FIELDID;
+        int REFID;
+        wxString CONTENT;
 
         int id() const
         {
-            return SHAREINFOID;
+            return FIELDATADID;
         }
 
         void id(int id)
         {
-            SHAREINFOID = id;
+            FIELDATADID = id;
         }
 
         bool operator < (const Data& r) const
@@ -226,35 +206,29 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
         {
             table_ = table;
         
-            SHAREINFOID = -1;
-            CHECKINGACCOUNTID = -1;
-            SHARENUMBER = 0.0;
-            SHAREPRICE = 0.0;
-            SHARECOMMISSION = 0.0;
+            FIELDATADID = -1;
+            FIELDID = -1;
+            REFID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            SHAREINFOID = q.GetInt(0); // SHAREINFOID
-            CHECKINGACCOUNTID = q.GetInt(1); // CHECKINGACCOUNTID
-            SHARENUMBER = q.GetDouble(2); // SHARENUMBER
-            SHAREPRICE = q.GetDouble(3); // SHAREPRICE
-            SHARECOMMISSION = q.GetDouble(4); // SHARECOMMISSION
-            SHARELOT = q.GetString(5); // SHARELOT
+            FIELDATADID = q.GetInt(0); // FIELDATADID
+            FIELDID = q.GetInt(1); // FIELDID
+            REFID = q.GetInt(2); // REFID
+            CONTENT = q.GetString(3); // CONTENT
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            SHAREINFOID = other.SHAREINFOID;
-            CHECKINGACCOUNTID = other.CHECKINGACCOUNTID;
-            SHARENUMBER = other.SHARENUMBER;
-            SHAREPRICE = other.SHAREPRICE;
-            SHARECOMMISSION = other.SHARECOMMISSION;
-            SHARELOT = other.SHARELOT;
+            FIELDATADID = other.FIELDATADID;
+            FIELDID = other.FIELDID;
+            REFID = other.REFID;
+            CONTENT = other.CONTENT;
             return *this;
         }
 
@@ -264,34 +238,24 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::SHAREINFOID &in) const
+        bool match(const Self::FIELDATADID &in) const
         {
-            return this->SHAREINFOID == in.v_;
+            return this->FIELDATADID == in.v_;
         }
 
-        bool match(const Self::CHECKINGACCOUNTID &in) const
+        bool match(const Self::FIELDID &in) const
         {
-            return this->CHECKINGACCOUNTID == in.v_;
+            return this->FIELDID == in.v_;
         }
 
-        bool match(const Self::SHARENUMBER &in) const
+        bool match(const Self::REFID &in) const
         {
-            return this->SHARENUMBER == in.v_;
+            return this->REFID == in.v_;
         }
 
-        bool match(const Self::SHAREPRICE &in) const
+        bool match(const Self::CONTENT &in) const
         {
-            return this->SHAREPRICE == in.v_;
-        }
-
-        bool match(const Self::SHARECOMMISSION &in) const
-        {
-            return this->SHARECOMMISSION == in.v_;
-        }
-
-        bool match(const Self::SHARELOT &in) const
-        {
-            return this->SHARELOT.CmpNoCase(in.v_) == 0;
+            return this->CONTENT.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -310,40 +274,32 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("SHAREINFOID");
-            json_writer.Int(this->SHAREINFOID);
-            json_writer.Key("CHECKINGACCOUNTID");
-            json_writer.Int(this->CHECKINGACCOUNTID);
-            json_writer.Key("SHARENUMBER");
-            json_writer.Double(this->SHARENUMBER);
-            json_writer.Key("SHAREPRICE");
-            json_writer.Double(this->SHAREPRICE);
-            json_writer.Key("SHARECOMMISSION");
-            json_writer.Double(this->SHARECOMMISSION);
-            json_writer.Key("SHARELOT");
-            json_writer.String(this->SHARELOT.c_str());
+            json_writer.Key("FIELDATADID");
+            json_writer.Int(this->FIELDATADID);
+            json_writer.Key("FIELDID");
+            json_writer.Int(this->FIELDID);
+            json_writer.Key("REFID");
+            json_writer.Int(this->REFID);
+            json_writer.Key("CONTENT");
+            json_writer.String(this->CONTENT.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"SHAREINFOID") = SHAREINFOID;
-            row(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
-            row(L"SHARENUMBER") = SHARENUMBER;
-            row(L"SHAREPRICE") = SHAREPRICE;
-            row(L"SHARECOMMISSION") = SHARECOMMISSION;
-            row(L"SHARELOT") = SHARELOT;
+            row(L"FIELDATADID") = FIELDATADID;
+            row(L"FIELDID") = FIELDID;
+            row(L"REFID") = REFID;
+            row(L"CONTENT") = CONTENT;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"SHAREINFOID") = SHAREINFOID;
-            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
-            t(L"SHARENUMBER") = SHARENUMBER;
-            t(L"SHAREPRICE") = SHAREPRICE;
-            t(L"SHARECOMMISSION") = SHARECOMMISSION;
-            t(L"SHARELOT") = SHARELOT;
+            t(L"FIELDATADID") = FIELDATADID;
+            t(L"FIELDID") = FIELDID;
+            t(L"REFID") = REFID;
+            t(L"CONTENT") = CONTENT;
         }
 
         /** Save the record instance in memory to the database. */
@@ -352,7 +308,7 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save SHAREINFO_V1");
+                wxLogError("can not save CUSTOMFIELDDATA");
                 return false;
             }
 
@@ -364,7 +320,7 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove SHAREINFO_V1");
+                wxLogError("can not remove CUSTOMFIELDDATA");
                 return false;
             }
             
@@ -379,17 +335,17 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 6
+        NUM_COLUMNS = 4
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "SHAREINFO_V1"; }
+    wxString name() const { return "CUSTOMFIELDDATA"; }
 
-    DB_Table_SHAREINFO_V1() : fake_(new Data())
+    DB_Table_CUSTOMFIELDDATA() : fake_(new Data())
     {
-        query_ = "SELECT SHAREINFOID, CHECKINGACCOUNTID, SHARENUMBER, SHAREPRICE, SHARECOMMISSION, SHARELOT FROM SHAREINFO_V1 ";
+        query_ = "SELECT FIELDATADID, FIELDID, REFID, CONTENT FROM CUSTOMFIELDDATA ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -419,24 +375,22 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO SHAREINFO_V1(CHECKINGACCOUNTID, SHARENUMBER, SHAREPRICE, SHARECOMMISSION, SHARELOT) VALUES(?, ?, ?, ?, ?)";
+            sql = "INSERT INTO CUSTOMFIELDDATA(FIELDID, REFID, CONTENT) VALUES(?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE SHAREINFO_V1 SET CHECKINGACCOUNTID = ?, SHARENUMBER = ?, SHAREPRICE = ?, SHARECOMMISSION = ?, SHARELOT = ? WHERE SHAREINFOID = ?";
+            sql = "UPDATE CUSTOMFIELDDATA SET FIELDID = ?, REFID = ?, CONTENT = ? WHERE FIELDATADID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->CHECKINGACCOUNTID);
-            stmt.Bind(2, entity->SHARENUMBER);
-            stmt.Bind(3, entity->SHAREPRICE);
-            stmt.Bind(4, entity->SHARECOMMISSION);
-            stmt.Bind(5, entity->SHARELOT);
+            stmt.Bind(1, entity->FIELDID);
+            stmt.Bind(2, entity->REFID);
+            stmt.Bind(3, entity->CONTENT);
             if (entity->id() > 0)
-                stmt.Bind(6, entity->SHAREINFOID);
+                stmt.Bind(4, entity->FIELDATADID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -453,7 +407,7 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SHAREINFO_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("CUSTOMFIELDDATA: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -471,7 +425,7 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM SHAREINFO_V1 WHERE SHAREINFOID = ?";
+            wxString sql = "DELETE FROM CUSTOMFIELDDATA WHERE FIELDATADID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -496,7 +450,7 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SHAREINFO_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CUSTOMFIELDDATA: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

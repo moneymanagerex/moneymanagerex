@@ -20,14 +20,14 @@
 #define MODEL_CURRENCY_H
 
 #include "Model.h"
-#include "db/DB_Table_Currencyformats_V1.h"
+#include "db/DB_Table_Currencyformats.h"
 #include "Model_Infotable.h" // detect base currency setting BASECURRENCYID
 #include <map>
 
-class Model_Currency : public Model<DB_Table_CURRENCYFORMATS_V1>
+class Model_Currency : public Model<DB_Table_CURRENCYFORMATS>
 {
 public:
-    using Model<DB_Table_CURRENCYFORMATS_V1>::remove;
+    using Model<DB_Table_CURRENCYFORMATS>::remove;
 
     enum CURRTYPE { FIAT = 0, CRYPTO};
 

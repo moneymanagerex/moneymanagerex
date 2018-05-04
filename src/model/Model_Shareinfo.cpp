@@ -20,7 +20,7 @@
 #include "Model_Shareinfo.h"
 
 Model_Shareinfo::Model_Shareinfo()
-: Model<DB_Table_SHAREINFO_V1>()
+: Model<DB_Table_SHAREINFO>()
 {
 }
 

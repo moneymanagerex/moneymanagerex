@@ -23,7 +23,7 @@
 #include "reports/mmDateRange.h"
 #include <tuple>
 
-Model_Category::Model_Category(): Model<DB_Table_CATEGORY_V1>()
+Model_Category::Model_Category(): Model<DB_Table_CATEGORY>()
 {
 }
 

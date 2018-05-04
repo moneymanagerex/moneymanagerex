@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -19,10 +19,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
+struct DB_Table_CHECKINGACCOUNT : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CHECKINGACCOUNT_V1 Self;
+    typedef DB_Table_CHECKINGACCOUNT Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CHECKINGACCOUNT_V1() 
+    ~DB_Table_CHECKINGACCOUNT() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CHECKINGACCOUNT_V1(TRANSID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL /* Withdrawal, Deposit, Transfer */, TRANSAMOUNT numeric NOT NULL, STATUS TEXT /* None, Reconciled, Void, Follow up, Duplicate */, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric)");
+                db->ExecuteUpdate("CREATE TABLE CHECKINGACCOUNT(TRANSID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL /* Withdrawal, Deposit, Transfer */, TRANSAMOUNT numeric NOT NULL, STATUS TEXT /* None, Reconciled, Void, Follow up, Duplicate */, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("CHECKINGACCOUNT: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,12 +94,12 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CHECKINGACCOUNT_ACCOUNT ON CHECKINGACCOUNT_V1 (ACCOUNTID, TOACCOUNTID)");
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CHECKINGACCOUNT_TRANSDATE ON CHECKINGACCOUNT_V1 (TRANSDATE)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CHECKINGACCOUNT_ACCOUNT ON CHECKINGACCOUNT (ACCOUNTID, TOACCOUNTID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CHECKINGACCOUNT_TRANSDATE ON CHECKINGACCOUNT (TRANSDATE)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CHECKINGACCOUNT: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -264,7 +264,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CHECKINGACCOUNT_V1;
+        friend struct DB_Table_CHECKINGACCOUNT;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
@@ -525,7 +525,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save CHECKINGACCOUNT_V1");
+                wxLogError("can not save CHECKINGACCOUNT");
                 return false;
             }
 
@@ -537,7 +537,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove CHECKINGACCOUNT_V1");
+                wxLogError("can not remove CHECKINGACCOUNT");
                 return false;
             }
             
@@ -558,11 +558,11 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "CHECKINGACCOUNT_V1"; }
+    wxString name() const { return "CHECKINGACCOUNT"; }
 
-    DB_Table_CHECKINGACCOUNT_V1() : fake_(new Data())
+    DB_Table_CHECKINGACCOUNT() : fake_(new Data())
     {
-        query_ = "SELECT TRANSID, ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT FROM CHECKINGACCOUNT_V1 ";
+        query_ = "SELECT TRANSID, ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT FROM CHECKINGACCOUNT ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -592,11 +592,11 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CHECKINGACCOUNT_V1(ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO CHECKINGACCOUNT(ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CHECKINGACCOUNT_V1 SET ACCOUNTID = ?, TOACCOUNTID = ?, PAYEEID = ?, TRANSCODE = ?, TRANSAMOUNT = ?, STATUS = ?, TRANSACTIONNUMBER = ?, NOTES = ?, CATEGID = ?, SUBCATEGID = ?, TRANSDATE = ?, FOLLOWUPID = ?, TOTRANSAMOUNT = ? WHERE TRANSID = ?";
+            sql = "UPDATE CHECKINGACCOUNT SET ACCOUNTID = ?, TOACCOUNTID = ?, PAYEEID = ?, TRANSCODE = ?, TRANSAMOUNT = ?, STATUS = ?, TRANSACTIONNUMBER = ?, NOTES = ?, CATEGID = ?, SUBCATEGID = ?, TRANSDATE = ?, FOLLOWUPID = ?, TOTRANSAMOUNT = ? WHERE TRANSID = ?";
         }
 
         try
@@ -634,7 +634,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CHECKINGACCOUNT_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("CHECKINGACCOUNT: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -652,7 +652,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CHECKINGACCOUNT_V1 WHERE TRANSID = ?";
+            wxString sql = "DELETE FROM CHECKINGACCOUNT WHERE TRANSID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -677,7 +677,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CHECKINGACCOUNT: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

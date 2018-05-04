@@ -20,9 +20,9 @@
 #define MODEL_BUDGET_H
 
 #include "Model.h"
-#include "db/DB_Table_Budgettable_V1.h"
+#include "db/DB_Table_Budgettable.h"
 
-class Model_Budget : public Model<DB_Table_BUDGETTABLE_V1>
+class Model_Budget : public Model<DB_Table_BUDGETTABLE>
 {
 public:
     Model_Budget();
@@ -50,7 +50,7 @@ public:
     static wxArrayString all_period();
     static PERIOD_ENUM period(const Data* r);
     static PERIOD_ENUM period(const Data& r);
-    static DB_Table_BUDGETTABLE_V1::PERIOD PERIOD(PERIOD_ENUM period, OP op = EQUAL);
+    static DB_Table_BUDGETTABLE::PERIOD PERIOD(PERIOD_ENUM period, OP op = EQUAL);
 
     static void getBudgetEntry(int budgetYearID, std::map<int,
         std::map<int, PERIOD_ENUM> > &budgetPeriod,
