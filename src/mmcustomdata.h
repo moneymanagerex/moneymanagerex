@@ -57,6 +57,7 @@ public:
     bool SaveCustomValues(int ref_id);
     size_t GetCustomFieldsCount() { return m_fields.size(); }
     size_t GetActiveCustomFieldsCount();
+    std::map<wxString, wxString> mmCustomData::GetActiveCustomFields();
     void SetBaseID(wxWindowID id) { m_init_control_id = id; }
     bool IsSomeWidgetChanged();
     bool IsDataFound(const Model_Checking::Full_Data &tran);

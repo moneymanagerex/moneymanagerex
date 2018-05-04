@@ -310,6 +310,23 @@ size_t mmCustomData::GetActiveCustomFieldsCount()
     return data_set.size();
 }
 
+std::map<wxString, wxString> mmCustomData::GetActiveCustomFields()
+{
+    wxString data;
+    std::map<wxString, wxString> values;
+    for (const auto& entry : m_data_changed)
+    {
+        int id = entry.first - m_init_control_id;
+        Model_CustomField::Data *item = Model_CustomField::instance().get(id);
+        if (item) {
+            data = item->DESCRIPTION;
+        }
+        values[data] = entry.second;
+    }
+    
+    return values;
+}
+
 bool mmCustomData::SaveCustomValues(int ref_id)
 {
     Model_CustomFieldData::instance().Savepoint();

@@ -897,6 +897,7 @@ wxString mmFilterTransactionsDialog::to_json()
             json_writer.String(type.c_str());
         }
     }
+
     if (amountRangeCheckBox_->IsChecked())
     {
         if (!amountMinEdit_->GetValue().empty())
@@ -934,6 +935,12 @@ wxString mmFilterTransactionsDialog::to_json()
             json_writer.Key("NOTES");
             json_writer.String(notes.c_str());
         }
+    }
+
+    for (const auto& entry : m_custom_fields->GetActiveCustomFields())
+    {
+        json_writer.Key(entry.first);
+        json_writer.Key(entry.second);
     }
 
     json_writer.EndObject();
