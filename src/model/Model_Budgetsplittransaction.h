@@ -20,9 +20,9 @@
 #define MODEL_BUDGETSPLITTRANSACTIONS_H
 
 #include "Model.h"
-#include "db/DB_Table_Budgetsplittransactions_V1.h"
+#include "db/DB_Table_Budgetsplittransactions.h"
 
-class Model_Budgetsplittransaction : public Model<DB_Table_BUDGETSPLITTRANSACTIONS_V1>
+class Model_Budgetsplittransaction : public Model<DB_Table_BUDGETSPLITTRANSACTIONS>
 {
 public:
     Model_Budgetsplittransaction();

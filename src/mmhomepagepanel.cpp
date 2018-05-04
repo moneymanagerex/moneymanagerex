@@ -638,7 +638,7 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
     if (Option::instance().IgnoreFutureTransactions())
     {
         all_trans = Model_Checking::instance().find(
-            DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range_->today().FormatISODate(), LESS_OR_EQUAL));
+            DB_Table_CHECKINGACCOUNT::TRANSDATE(date_range_->today().FormatISODate(), LESS_OR_EQUAL));
     }
     else
     {

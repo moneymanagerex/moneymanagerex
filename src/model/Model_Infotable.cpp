@@ -21,7 +21,7 @@
 #include "util.h"
 
 Model_Infotable::Model_Infotable()
-: Model<DB_Table_INFOTABLE_V1>()
+: Model<DB_Table_INFOTABLE>()
 {
 }
 

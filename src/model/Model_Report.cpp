@@ -47,7 +47,7 @@ public:
     }
 };
 
-Model_Report::Model_Report(): Model<DB_Table_REPORT_V1>()
+Model_Report::Model_Report(): Model<DB_Table_REPORT>()
 {
 }
 

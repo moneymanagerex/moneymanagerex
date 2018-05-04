@@ -12,7 +12,7 @@ import codecs
 
 currency_unicode_patch_filename = 'currencies_update_patch_unicode_only.mmdbg'
 currency_table_patch_filename = 'currencies_update_patch.mmdbg'
-sql_tables_data_filename = 'sql_tables_v1.sql'
+sql_tables_data_filename = 'sql_tables.sql'
 
 # http://stackoverflow.com/questions/196345/how-to-check-if-a-string-in-python-is-in-ascii
 def is_ascii(s):
@@ -117,7 +117,7 @@ class DB_Table:
         self._data = data
 
     def generate_currency_table_data(self, sf1, utf_only):
-        """Extract currency table data from table_v1
+        """Extract currency table data from table.sql
            Return string of update commands
            Will only get unicode data line when utf_only is true"""
 
@@ -135,7 +135,7 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
     def generate_unicode_currency_upgrade_patch(self):
         """Write database_version data to file
            Only extract unicode data"""
-        if self._table.upper() == 'CURRENCYFORMATS_V1':
+        if self._table.upper() == 'CURRENCYFORMATS':
             print 'Generate patch file: %s' % currency_unicode_patch_filename
             rfp = codecs.open(currency_unicode_patch_filename, 'w', 'utf-8')
             sf1 = '''-- MMEX Debug SQL - Update --
@@ -147,7 +147,7 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
     def generate_currency_upgrade_patch(self):
         """Write currency_table_upgrade_patch file
            Extract all currency data"""
-        if self._table.upper() == 'CURRENCYFORMATS_V1':
+        if self._table.upper() == 'CURRENCYFORMATS':
             print 'Generate patch file: %s' % currency_table_patch_filename
             rfp = codecs.open(currency_table_patch_filename, 'w', 'utf-8')
             sf1 = '''-- MMEX Debug SQL - Update --
@@ -166,7 +166,7 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
     def to_string(self, sql=None):
         """Create the data for the .h file"""
         utfc = ''
-        if self._table.upper() == 'CURRENCYFORMATS_V1':
+        if self._table.upper() == 'CURRENCYFORMATS':
             utfc = '#pragma execution_character_set("UTF-8")\n'
 
         s = '''%s#pragma once
@@ -1005,7 +1005,7 @@ if __name__ == '__main__':
 
     sql = ""
     sql_txt = '''-- NOTE:
--- This file has been AUTO GENERATED from database/tables_v1.sql
+-- This file has been AUTO GENERATED from database/tables.sql
 -- All translation identifers "_tr_" have been removed.
 -- This file can be used to manually generate a database.
 

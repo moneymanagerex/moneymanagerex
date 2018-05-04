@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -19,10 +19,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_STOCKHISTORY_V1 : public DB_Table
+struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
 {
     struct Data;
-    typedef DB_Table_STOCKHISTORY_V1 Self;
+    typedef DB_Table_BUDGETSPLITTRANSACTIONS Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_STOCKHISTORY_V1() 
+    ~DB_Table_BUDGETSPLITTRANSACTIONS() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE STOCKHISTORY_V1(HISTID integer primary key, SYMBOL TEXT NOT NULL, DATE TEXT NOT NULL, VALUE numeric NOT NULL, UPDTYPE integer, UNIQUE(SYMBOL, DATE))");
+                db->ExecuteUpdate("CREATE TABLE BUDGETSPLITTRANSACTIONS(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_STOCKHISTORY_SYMBOL ON STOCKHISTORY_V1(SYMBOL)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETSPLITTRANSACTIONS_TRANSID ON BUDGETSPLITTRANSACTIONS(TRANSID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,44 +111,44 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         db->Commit();
     }
     
-    struct HISTID : public DB_Column<int>
+    struct SPLITTRANSID : public DB_Column<int>
     { 
-        static wxString name() { return "HISTID"; } 
-        explicit HISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "SPLITTRANSID"; } 
+        explicit SPLITTRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SYMBOL : public DB_Column<wxString>
+    struct TRANSID : public DB_Column<int>
     { 
-        static wxString name() { return "SYMBOL"; } 
-        explicit SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "TRANSID"; } 
+        explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct DATE : public DB_Column<wxString>
+    struct CATEGID : public DB_Column<int>
     { 
-        static wxString name() { return "DATE"; } 
-        explicit DATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "CATEGID"; } 
+        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct VALUE : public DB_Column<double>
+    struct SUBCATEGID : public DB_Column<int>
     { 
-        static wxString name() { return "VALUE"; } 
-        explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        static wxString name() { return "SUBCATEGID"; } 
+        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct UPDTYPE : public DB_Column<int>
+    struct SPLITTRANSAMOUNT : public DB_Column<double>
     { 
-        static wxString name() { return "UPDTYPE"; } 
-        explicit UPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "SPLITTRANSAMOUNT"; } 
+        explicit SPLITTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
-    typedef HISTID PRIMARY;
+    typedef SPLITTRANSID PRIMARY;
     enum COLUMN
     {
-        COL_HISTID = 0
-        , COL_SYMBOL = 1
-        , COL_DATE = 2
-        , COL_VALUE = 3
-        , COL_UPDTYPE = 4
+        COL_SPLITTRANSID = 0
+        , COL_TRANSID = 1
+        , COL_CATEGID = 2
+        , COL_SUBCATEGID = 3
+        , COL_SPLITTRANSAMOUNT = 4
     };
 
     /** Returns the column name as a string*/
@@ -156,11 +156,11 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_HISTID: return "HISTID";
-            case COL_SYMBOL: return "SYMBOL";
-            case COL_DATE: return "DATE";
-            case COL_VALUE: return "VALUE";
-            case COL_UPDTYPE: return "UPDTYPE";
+            case COL_SPLITTRANSID: return "SPLITTRANSID";
+            case COL_TRANSID: return "TRANSID";
+            case COL_CATEGID: return "CATEGID";
+            case COL_SUBCATEGID: return "SUBCATEGID";
+            case COL_SPLITTRANSAMOUNT: return "SPLITTRANSAMOUNT";
             default: break;
         }
         
@@ -170,11 +170,11 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("HISTID" == name) return COL_HISTID;
-        else if ("SYMBOL" == name) return COL_SYMBOL;
-        else if ("DATE" == name) return COL_DATE;
-        else if ("VALUE" == name) return COL_VALUE;
-        else if ("UPDTYPE" == name) return COL_UPDTYPE;
+        if ("SPLITTRANSID" == name) return COL_SPLITTRANSID;
+        else if ("TRANSID" == name) return COL_TRANSID;
+        else if ("CATEGID" == name) return COL_CATEGID;
+        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
+        else if ("SPLITTRANSAMOUNT" == name) return COL_SPLITTRANSAMOUNT;
 
         return COLUMN(-1);
     }
@@ -182,24 +182,24 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_STOCKHISTORY_V1;
+        friend struct DB_Table_BUDGETSPLITTRANSACTIONS;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int HISTID;//  primary key
-        wxString SYMBOL;
-        wxString DATE;
-        double VALUE;
-        int UPDTYPE;
+        int SPLITTRANSID;//  primary key
+        int TRANSID;
+        int CATEGID;
+        int SUBCATEGID;
+        double SPLITTRANSAMOUNT;
 
         int id() const
         {
-            return HISTID;
+            return SPLITTRANSID;
         }
 
         void id(int id)
         {
-            HISTID = id;
+            SPLITTRANSID = id;
         }
 
         bool operator < (const Data& r) const
@@ -216,31 +216,33 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         {
             table_ = table;
         
-            HISTID = -1;
-            VALUE = 0.0;
-            UPDTYPE = -1;
+            SPLITTRANSID = -1;
+            TRANSID = -1;
+            CATEGID = -1;
+            SUBCATEGID = -1;
+            SPLITTRANSAMOUNT = 0.0;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            HISTID = q.GetInt(0); // HISTID
-            SYMBOL = q.GetString(1); // SYMBOL
-            DATE = q.GetString(2); // DATE
-            VALUE = q.GetDouble(3); // VALUE
-            UPDTYPE = q.GetInt(4); // UPDTYPE
+            SPLITTRANSID = q.GetInt(0); // SPLITTRANSID
+            TRANSID = q.GetInt(1); // TRANSID
+            CATEGID = q.GetInt(2); // CATEGID
+            SUBCATEGID = q.GetInt(3); // SUBCATEGID
+            SPLITTRANSAMOUNT = q.GetDouble(4); // SPLITTRANSAMOUNT
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            HISTID = other.HISTID;
-            SYMBOL = other.SYMBOL;
-            DATE = other.DATE;
-            VALUE = other.VALUE;
-            UPDTYPE = other.UPDTYPE;
+            SPLITTRANSID = other.SPLITTRANSID;
+            TRANSID = other.TRANSID;
+            CATEGID = other.CATEGID;
+            SUBCATEGID = other.SUBCATEGID;
+            SPLITTRANSAMOUNT = other.SPLITTRANSAMOUNT;
             return *this;
         }
 
@@ -250,29 +252,29 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::HISTID &in) const
+        bool match(const Self::SPLITTRANSID &in) const
         {
-            return this->HISTID == in.v_;
+            return this->SPLITTRANSID == in.v_;
         }
 
-        bool match(const Self::SYMBOL &in) const
+        bool match(const Self::TRANSID &in) const
         {
-            return this->SYMBOL.CmpNoCase(in.v_) == 0;
+            return this->TRANSID == in.v_;
         }
 
-        bool match(const Self::DATE &in) const
+        bool match(const Self::CATEGID &in) const
         {
-            return this->DATE.CmpNoCase(in.v_) == 0;
+            return this->CATEGID == in.v_;
         }
 
-        bool match(const Self::VALUE &in) const
+        bool match(const Self::SUBCATEGID &in) const
         {
-            return this->VALUE == in.v_;
+            return this->SUBCATEGID == in.v_;
         }
 
-        bool match(const Self::UPDTYPE &in) const
+        bool match(const Self::SPLITTRANSAMOUNT &in) const
         {
-            return this->UPDTYPE == in.v_;
+            return this->SPLITTRANSAMOUNT == in.v_;
         }
 
         // Return the data record as a json string
@@ -291,36 +293,36 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("HISTID");
-            json_writer.Int(this->HISTID);
-            json_writer.Key("SYMBOL");
-            json_writer.String(this->SYMBOL.c_str());
-            json_writer.Key("DATE");
-            json_writer.String(this->DATE.c_str());
-            json_writer.Key("VALUE");
-            json_writer.Double(this->VALUE);
-            json_writer.Key("UPDTYPE");
-            json_writer.Int(this->UPDTYPE);
+            json_writer.Key("SPLITTRANSID");
+            json_writer.Int(this->SPLITTRANSID);
+            json_writer.Key("TRANSID");
+            json_writer.Int(this->TRANSID);
+            json_writer.Key("CATEGID");
+            json_writer.Int(this->CATEGID);
+            json_writer.Key("SUBCATEGID");
+            json_writer.Int(this->SUBCATEGID);
+            json_writer.Key("SPLITTRANSAMOUNT");
+            json_writer.Double(this->SPLITTRANSAMOUNT);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"HISTID") = HISTID;
-            row(L"SYMBOL") = SYMBOL;
-            row(L"DATE") = DATE;
-            row(L"VALUE") = VALUE;
-            row(L"UPDTYPE") = UPDTYPE;
+            row(L"SPLITTRANSID") = SPLITTRANSID;
+            row(L"TRANSID") = TRANSID;
+            row(L"CATEGID") = CATEGID;
+            row(L"SUBCATEGID") = SUBCATEGID;
+            row(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"HISTID") = HISTID;
-            t(L"SYMBOL") = SYMBOL;
-            t(L"DATE") = DATE;
-            t(L"VALUE") = VALUE;
-            t(L"UPDTYPE") = UPDTYPE;
+            t(L"SPLITTRANSID") = SPLITTRANSID;
+            t(L"TRANSID") = TRANSID;
+            t(L"CATEGID") = CATEGID;
+            t(L"SUBCATEGID") = SUBCATEGID;
+            t(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
         }
 
         /** Save the record instance in memory to the database. */
@@ -329,7 +331,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save STOCKHISTORY_V1");
+                wxLogError("can not save BUDGETSPLITTRANSACTIONS");
                 return false;
             }
 
@@ -341,7 +343,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove STOCKHISTORY_V1");
+                wxLogError("can not remove BUDGETSPLITTRANSACTIONS");
                 return false;
             }
             
@@ -362,11 +364,11 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "STOCKHISTORY_V1"; }
+    wxString name() const { return "BUDGETSPLITTRANSACTIONS"; }
 
-    DB_Table_STOCKHISTORY_V1() : fake_(new Data())
+    DB_Table_BUDGETSPLITTRANSACTIONS() : fake_(new Data())
     {
-        query_ = "SELECT HISTID, SYMBOL, DATE, VALUE, UPDTYPE FROM STOCKHISTORY_V1 ";
+        query_ = "SELECT SPLITTRANSID, TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT FROM BUDGETSPLITTRANSACTIONS ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -396,23 +398,23 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO STOCKHISTORY_V1(SYMBOL, DATE, VALUE, UPDTYPE) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO BUDGETSPLITTRANSACTIONS(TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE STOCKHISTORY_V1 SET SYMBOL = ?, DATE = ?, VALUE = ?, UPDTYPE = ? WHERE HISTID = ?";
+            sql = "UPDATE BUDGETSPLITTRANSACTIONS SET TRANSID = ?, CATEGID = ?, SUBCATEGID = ?, SPLITTRANSAMOUNT = ? WHERE SPLITTRANSID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->SYMBOL);
-            stmt.Bind(2, entity->DATE);
-            stmt.Bind(3, entity->VALUE);
-            stmt.Bind(4, entity->UPDTYPE);
+            stmt.Bind(1, entity->TRANSID);
+            stmt.Bind(2, entity->CATEGID);
+            stmt.Bind(3, entity->SUBCATEGID);
+            stmt.Bind(4, entity->SPLITTRANSAMOUNT);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->HISTID);
+                stmt.Bind(5, entity->SPLITTRANSID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -429,7 +431,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCKHISTORY_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -447,7 +449,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM STOCKHISTORY_V1 WHERE HISTID = ?";
+            wxString sql = "DELETE FROM BUDGETSPLITTRANSACTIONS WHERE SPLITTRANSID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -472,7 +474,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

@@ -21,7 +21,7 @@
 #include "Model_Shareinfo.h"
 
 Model_Translink::Model_Translink()
-    : Model<DB_Table_TRANSLINK_V1>()
+    : Model<DB_Table_TRANSLINK>()
 {
 }
 

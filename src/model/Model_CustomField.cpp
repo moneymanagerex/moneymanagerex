@@ -33,7 +33,7 @@ const std::vector<std::pair<Model_CustomField::FIELDTYPE, wxString> > Model_Cust
 };
 
 Model_CustomField::Model_CustomField()
-    : Model<DB_Table_CUSTOMFIELD_V1>()
+    : Model<DB_Table_CUSTOMFIELD>()
 {
 }
 
@@ -66,7 +66,7 @@ Model_CustomField& Model_CustomField::instance()
 //{
 //    Data_Set fields;
 //    wxString reftype_desc = Model_Attachment::reftype_desc(RefType);
-//    for (const auto & field : this->find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)))
+//    for (const auto & field : this->find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(RefType)))
 //    {
 //        fields.push_back(field);
 //    }

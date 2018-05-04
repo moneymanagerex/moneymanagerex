@@ -21,7 +21,7 @@
 #include "Model_Billsdeposits.h"
 
 Model_Subcategory::Model_Subcategory()
-: Model<DB_Table_SUBCATEGORY_V1>()
+: Model<DB_Table_SUBCATEGORY>()
 {
 }
 

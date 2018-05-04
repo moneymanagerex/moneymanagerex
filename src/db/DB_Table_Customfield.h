@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -19,10 +19,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
+struct DB_Table_CUSTOMFIELD : public DB_Table
 {
     struct Data;
-    typedef DB_Table_SPLITTRANSACTIONS_V1 Self;
+    typedef DB_Table_CUSTOMFIELD Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_SPLITTRANSACTIONS_V1() 
+    ~DB_Table_CUSTOMFIELD() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE SPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
+                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELD (FIELDID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */, DESCRIPTION TEXT COLLATE NOCASE, TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoice, MultiChoice */, PROPERTIES TEXT NOT NULL)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("SPLITTRANSACTIONS_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_SPLITTRANSACTIONS_TRANSID ON SPLITTRANSACTIONS_V1(TRANSID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELD_REF ON CUSTOMFIELD (REFTYPE)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SPLITTRANSACTIONS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,44 +111,44 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         db->Commit();
     }
     
-    struct SPLITTRANSID : public DB_Column<int>
+    struct FIELDID : public DB_Column<int>
     { 
-        static wxString name() { return "SPLITTRANSID"; } 
-        explicit SPLITTRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "FIELDID"; } 
+        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct TRANSID : public DB_Column<int>
+    struct REFTYPE : public DB_Column<wxString>
     { 
-        static wxString name() { return "TRANSID"; } 
-        explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "REFTYPE"; } 
+        explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct DESCRIPTION : public DB_Column<wxString>
     { 
-        static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "DESCRIPTION"; } 
+        explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct SUBCATEGID : public DB_Column<int>
+    struct TYPE : public DB_Column<wxString>
     { 
-        static wxString name() { return "SUBCATEGID"; } 
-        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "TYPE"; } 
+        explicit TYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct SPLITTRANSAMOUNT : public DB_Column<double>
+    struct PROPERTIES : public DB_Column<wxString>
     { 
-        static wxString name() { return "SPLITTRANSAMOUNT"; } 
-        explicit SPLITTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        static wxString name() { return "PROPERTIES"; } 
+        explicit PROPERTIES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    typedef SPLITTRANSID PRIMARY;
+    typedef FIELDID PRIMARY;
     enum COLUMN
     {
-        COL_SPLITTRANSID = 0
-        , COL_TRANSID = 1
-        , COL_CATEGID = 2
-        , COL_SUBCATEGID = 3
-        , COL_SPLITTRANSAMOUNT = 4
+        COL_FIELDID = 0
+        , COL_REFTYPE = 1
+        , COL_DESCRIPTION = 2
+        , COL_TYPE = 3
+        , COL_PROPERTIES = 4
     };
 
     /** Returns the column name as a string*/
@@ -156,11 +156,11 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_SPLITTRANSID: return "SPLITTRANSID";
-            case COL_TRANSID: return "TRANSID";
-            case COL_CATEGID: return "CATEGID";
-            case COL_SUBCATEGID: return "SUBCATEGID";
-            case COL_SPLITTRANSAMOUNT: return "SPLITTRANSAMOUNT";
+            case COL_FIELDID: return "FIELDID";
+            case COL_REFTYPE: return "REFTYPE";
+            case COL_DESCRIPTION: return "DESCRIPTION";
+            case COL_TYPE: return "TYPE";
+            case COL_PROPERTIES: return "PROPERTIES";
             default: break;
         }
         
@@ -170,11 +170,11 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("SPLITTRANSID" == name) return COL_SPLITTRANSID;
-        else if ("TRANSID" == name) return COL_TRANSID;
-        else if ("CATEGID" == name) return COL_CATEGID;
-        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
-        else if ("SPLITTRANSAMOUNT" == name) return COL_SPLITTRANSAMOUNT;
+        if ("FIELDID" == name) return COL_FIELDID;
+        else if ("REFTYPE" == name) return COL_REFTYPE;
+        else if ("DESCRIPTION" == name) return COL_DESCRIPTION;
+        else if ("TYPE" == name) return COL_TYPE;
+        else if ("PROPERTIES" == name) return COL_PROPERTIES;
 
         return COLUMN(-1);
     }
@@ -182,24 +182,24 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_SPLITTRANSACTIONS_V1;
+        friend struct DB_Table_CUSTOMFIELD;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SPLITTRANSID;//  primary key
-        int TRANSID;
-        int CATEGID;
-        int SUBCATEGID;
-        double SPLITTRANSAMOUNT;
+        int FIELDID;//  primary key
+        wxString REFTYPE;
+        wxString DESCRIPTION;
+        wxString TYPE;
+        wxString PROPERTIES;
 
         int id() const
         {
-            return SPLITTRANSID;
+            return FIELDID;
         }
 
         void id(int id)
         {
-            SPLITTRANSID = id;
+            FIELDID = id;
         }
 
         bool operator < (const Data& r) const
@@ -216,33 +216,29 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         {
             table_ = table;
         
-            SPLITTRANSID = -1;
-            TRANSID = -1;
-            CATEGID = -1;
-            SUBCATEGID = -1;
-            SPLITTRANSAMOUNT = 0.0;
+            FIELDID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            SPLITTRANSID = q.GetInt(0); // SPLITTRANSID
-            TRANSID = q.GetInt(1); // TRANSID
-            CATEGID = q.GetInt(2); // CATEGID
-            SUBCATEGID = q.GetInt(3); // SUBCATEGID
-            SPLITTRANSAMOUNT = q.GetDouble(4); // SPLITTRANSAMOUNT
+            FIELDID = q.GetInt(0); // FIELDID
+            REFTYPE = q.GetString(1); // REFTYPE
+            DESCRIPTION = q.GetString(2); // DESCRIPTION
+            TYPE = q.GetString(3); // TYPE
+            PROPERTIES = q.GetString(4); // PROPERTIES
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            SPLITTRANSID = other.SPLITTRANSID;
-            TRANSID = other.TRANSID;
-            CATEGID = other.CATEGID;
-            SUBCATEGID = other.SUBCATEGID;
-            SPLITTRANSAMOUNT = other.SPLITTRANSAMOUNT;
+            FIELDID = other.FIELDID;
+            REFTYPE = other.REFTYPE;
+            DESCRIPTION = other.DESCRIPTION;
+            TYPE = other.TYPE;
+            PROPERTIES = other.PROPERTIES;
             return *this;
         }
 
@@ -252,29 +248,29 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::SPLITTRANSID &in) const
+        bool match(const Self::FIELDID &in) const
         {
-            return this->SPLITTRANSID == in.v_;
+            return this->FIELDID == in.v_;
         }
 
-        bool match(const Self::TRANSID &in) const
+        bool match(const Self::REFTYPE &in) const
         {
-            return this->TRANSID == in.v_;
+            return this->REFTYPE.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::CATEGID &in) const
+        bool match(const Self::DESCRIPTION &in) const
         {
-            return this->CATEGID == in.v_;
+            return this->DESCRIPTION.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::SUBCATEGID &in) const
+        bool match(const Self::TYPE &in) const
         {
-            return this->SUBCATEGID == in.v_;
+            return this->TYPE.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::SPLITTRANSAMOUNT &in) const
+        bool match(const Self::PROPERTIES &in) const
         {
-            return this->SPLITTRANSAMOUNT == in.v_;
+            return this->PROPERTIES.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -293,36 +289,36 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("SPLITTRANSID");
-            json_writer.Int(this->SPLITTRANSID);
-            json_writer.Key("TRANSID");
-            json_writer.Int(this->TRANSID);
-            json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
-            json_writer.Key("SUBCATEGID");
-            json_writer.Int(this->SUBCATEGID);
-            json_writer.Key("SPLITTRANSAMOUNT");
-            json_writer.Double(this->SPLITTRANSAMOUNT);
+            json_writer.Key("FIELDID");
+            json_writer.Int(this->FIELDID);
+            json_writer.Key("REFTYPE");
+            json_writer.String(this->REFTYPE.c_str());
+            json_writer.Key("DESCRIPTION");
+            json_writer.String(this->DESCRIPTION.c_str());
+            json_writer.Key("TYPE");
+            json_writer.String(this->TYPE.c_str());
+            json_writer.Key("PROPERTIES");
+            json_writer.String(this->PROPERTIES.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"SPLITTRANSID") = SPLITTRANSID;
-            row(L"TRANSID") = TRANSID;
-            row(L"CATEGID") = CATEGID;
-            row(L"SUBCATEGID") = SUBCATEGID;
-            row(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
+            row(L"FIELDID") = FIELDID;
+            row(L"REFTYPE") = REFTYPE;
+            row(L"DESCRIPTION") = DESCRIPTION;
+            row(L"TYPE") = TYPE;
+            row(L"PROPERTIES") = PROPERTIES;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"SPLITTRANSID") = SPLITTRANSID;
-            t(L"TRANSID") = TRANSID;
-            t(L"CATEGID") = CATEGID;
-            t(L"SUBCATEGID") = SUBCATEGID;
-            t(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
+            t(L"FIELDID") = FIELDID;
+            t(L"REFTYPE") = REFTYPE;
+            t(L"DESCRIPTION") = DESCRIPTION;
+            t(L"TYPE") = TYPE;
+            t(L"PROPERTIES") = PROPERTIES;
         }
 
         /** Save the record instance in memory to the database. */
@@ -331,7 +327,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save SPLITTRANSACTIONS_V1");
+                wxLogError("can not save CUSTOMFIELD");
                 return false;
             }
 
@@ -343,7 +339,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove SPLITTRANSACTIONS_V1");
+                wxLogError("can not remove CUSTOMFIELD");
                 return false;
             }
             
@@ -364,11 +360,11 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "SPLITTRANSACTIONS_V1"; }
+    wxString name() const { return "CUSTOMFIELD"; }
 
-    DB_Table_SPLITTRANSACTIONS_V1() : fake_(new Data())
+    DB_Table_CUSTOMFIELD() : fake_(new Data())
     {
-        query_ = "SELECT SPLITTRANSID, TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT FROM SPLITTRANSACTIONS_V1 ";
+        query_ = "SELECT FIELDID, REFTYPE, DESCRIPTION, TYPE, PROPERTIES FROM CUSTOMFIELD ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -398,23 +394,23 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO SPLITTRANSACTIONS_V1(TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO CUSTOMFIELD(REFTYPE, DESCRIPTION, TYPE, PROPERTIES) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE SPLITTRANSACTIONS_V1 SET TRANSID = ?, CATEGID = ?, SUBCATEGID = ?, SPLITTRANSAMOUNT = ? WHERE SPLITTRANSID = ?";
+            sql = "UPDATE CUSTOMFIELD SET REFTYPE = ?, DESCRIPTION = ?, TYPE = ?, PROPERTIES = ? WHERE FIELDID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->TRANSID);
-            stmt.Bind(2, entity->CATEGID);
-            stmt.Bind(3, entity->SUBCATEGID);
-            stmt.Bind(4, entity->SPLITTRANSAMOUNT);
+            stmt.Bind(1, entity->REFTYPE);
+            stmt.Bind(2, entity->DESCRIPTION);
+            stmt.Bind(3, entity->TYPE);
+            stmt.Bind(4, entity->PROPERTIES);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->SPLITTRANSID);
+                stmt.Bind(5, entity->FIELDID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -431,7 +427,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SPLITTRANSACTIONS_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("CUSTOMFIELD: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -449,7 +445,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM SPLITTRANSACTIONS_V1 WHERE SPLITTRANSID = ?";
+            wxString sql = "DELETE FROM CUSTOMFIELD WHERE FIELDID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -474,7 +470,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SPLITTRANSACTIONS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

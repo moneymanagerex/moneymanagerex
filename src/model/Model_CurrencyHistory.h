@@ -20,12 +20,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define MODEL_CURRENCYHISTORY_H
 
 #include "Model.h"
-#include "db/DB_Table_Currencyhistory_V1.h"
+#include "db/DB_Table_Currencyhistory.h"
 
-class Model_CurrencyHistory : public Model<DB_Table_CURRENCYHISTORY_V1>
+class Model_CurrencyHistory : public Model<DB_Table_CURRENCYHISTORY>
 {
 public:
-    using Model<DB_Table_CURRENCYHISTORY_V1>::get;
+    using Model<DB_Table_CURRENCYHISTORY>::get;
     enum UPDTYPE { ONLINE = 1, MANUAL };
 
 public:
@@ -51,7 +51,7 @@ public:
     Data* get(const int& currencyID, const wxDate& date);
     static wxDate CURRDATE(const Data& hist);
 
-    static DB_Table_CURRENCYHISTORY_V1::CURRDATE CURRDATE(const wxDate& date, OP op = EQUAL);
+    static DB_Table_CURRENCYHISTORY::CURRDATE CURRDATE(const wxDate& date, OP op = EQUAL);
     
     /** Adds or updates an element in currency history */
     int addUpdate(const int& currencyID, const wxDate& date, double price, UPDTYPE type);

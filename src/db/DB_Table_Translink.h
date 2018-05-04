@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -19,10 +19,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_CATEGORY_V1 : public DB_Table
+struct DB_Table_TRANSLINK : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CATEGORY_V1 Self;
+    typedef DB_Table_TRANSLINK Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CATEGORY_V1() 
+    ~DB_Table_TRANSLINK() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CATEGORY_V1(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE)");
+                db->ExecuteUpdate("CREATE TABLE TRANSLINK (TRANSLINKID  integer NOT NULL primary key, CHECKINGACCOUNTID integer NOT NULL, LINKTYPE TEXT NOT NULL /* Asset, Stock */, LINKRECORDID integer NOT NULL)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("TRANSLINK: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,12 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CATEGORY_CATEGNAME ON CATEGORY_V1(CATEGNAME)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CHECKINGACCOUNT ON TRANSLINK (CHECKINGACCOUNTID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_LINKRECORD ON TRANSLINK (LINKTYPE, LINKRECORDID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("TRANSLINK: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -108,42 +109,40 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('1', '%s')", wxTRANSLATE("Bills")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('2', '%s')", wxTRANSLATE("Food")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('3', '%s')", wxTRANSLATE("Leisure")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('4', '%s')", wxTRANSLATE("Automobile")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('5', '%s')", wxTRANSLATE("Education")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('6', '%s')", wxTRANSLATE("Homeneeds")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('7', '%s')", wxTRANSLATE("Healthcare")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('8', '%s')", wxTRANSLATE("Insurance")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('9', '%s')", wxTRANSLATE("Vacation")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('10', '%s')", wxTRANSLATE("Taxes")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('11', '%s')", wxTRANSLATE("Miscellaneous")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('12', '%s')", wxTRANSLATE("Gifts")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('13', '%s')", wxTRANSLATE("Income")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('14', '%s')", wxTRANSLATE("Other Income")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('15', '%s')", wxTRANSLATE("Other Expenses")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('16', '%s')", wxTRANSLATE("Transfer")));
         db->Commit();
     }
     
-    struct CATEGID : public DB_Column<int>
+    struct TRANSLINKID : public DB_Column<int>
     { 
-        static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "TRANSLINKID"; } 
+        explicit TRANSLINKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct CATEGNAME : public DB_Column<wxString>
+    struct CHECKINGACCOUNTID : public DB_Column<int>
     { 
-        static wxString name() { return "CATEGNAME"; } 
-        explicit CATEGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "CHECKINGACCOUNTID"; } 
+        explicit CHECKINGACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    typedef CATEGID PRIMARY;
+    struct LINKTYPE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "LINKTYPE"; } 
+        explicit LINKTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
+    struct LINKRECORDID : public DB_Column<int>
+    { 
+        static wxString name() { return "LINKRECORDID"; } 
+        explicit LINKRECORDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    
+    typedef TRANSLINKID PRIMARY;
     enum COLUMN
     {
-        COL_CATEGID = 0
-        , COL_CATEGNAME = 1
+        COL_TRANSLINKID = 0
+        , COL_CHECKINGACCOUNTID = 1
+        , COL_LINKTYPE = 2
+        , COL_LINKRECORDID = 3
     };
 
     /** Returns the column name as a string*/
@@ -151,8 +150,10 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_CATEGID: return "CATEGID";
-            case COL_CATEGNAME: return "CATEGNAME";
+            case COL_TRANSLINKID: return "TRANSLINKID";
+            case COL_CHECKINGACCOUNTID: return "CHECKINGACCOUNTID";
+            case COL_LINKTYPE: return "LINKTYPE";
+            case COL_LINKRECORDID: return "LINKRECORDID";
             default: break;
         }
         
@@ -162,8 +163,10 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("CATEGID" == name) return COL_CATEGID;
-        else if ("CATEGNAME" == name) return COL_CATEGNAME;
+        if ("TRANSLINKID" == name) return COL_TRANSLINKID;
+        else if ("CHECKINGACCOUNTID" == name) return COL_CHECKINGACCOUNTID;
+        else if ("LINKTYPE" == name) return COL_LINKTYPE;
+        else if ("LINKRECORDID" == name) return COL_LINKRECORDID;
 
         return COLUMN(-1);
     }
@@ -171,21 +174,23 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CATEGORY_V1;
+        friend struct DB_Table_TRANSLINK;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int CATEGID;//  primary key
-        wxString CATEGNAME;
+        int TRANSLINKID;//  primary key
+        int CHECKINGACCOUNTID;
+        wxString LINKTYPE;
+        int LINKRECORDID;
 
         int id() const
         {
-            return CATEGID;
+            return TRANSLINKID;
         }
 
         void id(int id)
         {
-            CATEGID = id;
+            TRANSLINKID = id;
         }
 
         bool operator < (const Data& r) const
@@ -202,23 +207,29 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             table_ = table;
         
-            CATEGID = -1;
+            TRANSLINKID = -1;
+            CHECKINGACCOUNTID = -1;
+            LINKRECORDID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            CATEGID = q.GetInt(0); // CATEGID
-            CATEGNAME = q.GetString(1); // CATEGNAME
+            TRANSLINKID = q.GetInt(0); // TRANSLINKID
+            CHECKINGACCOUNTID = q.GetInt(1); // CHECKINGACCOUNTID
+            LINKTYPE = q.GetString(2); // LINKTYPE
+            LINKRECORDID = q.GetInt(3); // LINKRECORDID
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            CATEGID = other.CATEGID;
-            CATEGNAME = other.CATEGNAME;
+            TRANSLINKID = other.TRANSLINKID;
+            CHECKINGACCOUNTID = other.CHECKINGACCOUNTID;
+            LINKTYPE = other.LINKTYPE;
+            LINKRECORDID = other.LINKRECORDID;
             return *this;
         }
 
@@ -228,14 +239,24 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::CATEGID &in) const
+        bool match(const Self::TRANSLINKID &in) const
         {
-            return this->CATEGID == in.v_;
+            return this->TRANSLINKID == in.v_;
         }
 
-        bool match(const Self::CATEGNAME &in) const
+        bool match(const Self::CHECKINGACCOUNTID &in) const
         {
-            return this->CATEGNAME.CmpNoCase(in.v_) == 0;
+            return this->CHECKINGACCOUNTID == in.v_;
+        }
+
+        bool match(const Self::LINKTYPE &in) const
+        {
+            return this->LINKTYPE.CmpNoCase(in.v_) == 0;
+        }
+
+        bool match(const Self::LINKRECORDID &in) const
+        {
+            return this->LINKRECORDID == in.v_;
         }
 
         // Return the data record as a json string
@@ -254,24 +275,32 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
-            json_writer.Key("CATEGNAME");
-            json_writer.String(this->CATEGNAME.c_str());
+            json_writer.Key("TRANSLINKID");
+            json_writer.Int(this->TRANSLINKID);
+            json_writer.Key("CHECKINGACCOUNTID");
+            json_writer.Int(this->CHECKINGACCOUNTID);
+            json_writer.Key("LINKTYPE");
+            json_writer.String(this->LINKTYPE.c_str());
+            json_writer.Key("LINKRECORDID");
+            json_writer.Int(this->LINKRECORDID);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"CATEGID") = CATEGID;
-            row(L"CATEGNAME") = CATEGNAME;
+            row(L"TRANSLINKID") = TRANSLINKID;
+            row(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
+            row(L"LINKTYPE") = LINKTYPE;
+            row(L"LINKRECORDID") = LINKRECORDID;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"CATEGID") = CATEGID;
-            t(L"CATEGNAME") = CATEGNAME;
+            t(L"TRANSLINKID") = TRANSLINKID;
+            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
+            t(L"LINKTYPE") = LINKTYPE;
+            t(L"LINKRECORDID") = LINKRECORDID;
         }
 
         /** Save the record instance in memory to the database. */
@@ -280,7 +309,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save CATEGORY_V1");
+                wxLogError("can not save TRANSLINK");
                 return false;
             }
 
@@ -292,7 +321,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove CATEGORY_V1");
+                wxLogError("can not remove TRANSLINK");
                 return false;
             }
             
@@ -307,17 +336,17 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 2
+        NUM_COLUMNS = 4
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "CATEGORY_V1"; }
+    wxString name() const { return "TRANSLINK"; }
 
-    DB_Table_CATEGORY_V1() : fake_(new Data())
+    DB_Table_TRANSLINK() : fake_(new Data())
     {
-        query_ = "SELECT CATEGID, CATEGNAME FROM CATEGORY_V1 ";
+        query_ = "SELECT TRANSLINKID, CHECKINGACCOUNTID, LINKTYPE, LINKRECORDID FROM TRANSLINK ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -347,20 +376,22 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CATEGORY_V1(CATEGNAME) VALUES(?)";
+            sql = "INSERT INTO TRANSLINK(CHECKINGACCOUNTID, LINKTYPE, LINKRECORDID) VALUES(?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CATEGORY_V1 SET CATEGNAME = ? WHERE CATEGID = ?";
+            sql = "UPDATE TRANSLINK SET CHECKINGACCOUNTID = ?, LINKTYPE = ?, LINKRECORDID = ? WHERE TRANSLINKID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->CATEGNAME);
+            stmt.Bind(1, entity->CHECKINGACCOUNTID);
+            stmt.Bind(2, entity->LINKTYPE);
+            stmt.Bind(3, entity->LINKRECORDID);
             if (entity->id() > 0)
-                stmt.Bind(2, entity->CATEGID);
+                stmt.Bind(4, entity->TRANSLINKID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -377,7 +408,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CATEGORY_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("TRANSLINK: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -395,7 +426,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CATEGORY_V1 WHERE CATEGID = ?";
+            wxString sql = "DELETE FROM TRANSLINK WHERE TRANSLINKID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -420,7 +451,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("TRANSLINK: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

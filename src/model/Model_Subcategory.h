@@ -20,12 +20,12 @@
 #define MODEL_SUBCATEGORY_H
 
 #include "Model.h"
-#include "db/DB_Table_Subcategory_V1.h"
+#include "db/DB_Table_Subcategory.h"
 
-class Model_Subcategory : public Model<DB_Table_SUBCATEGORY_V1>
+class Model_Subcategory : public Model<DB_Table_SUBCATEGORY>
 {
 public:
-    using Model<DB_Table_SUBCATEGORY_V1>::get;
+    using Model<DB_Table_SUBCATEGORY>::get;
 
 public:
     Model_Subcategory();

@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -19,10 +19,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_ASSETCLASS_V1 : public DB_Table
+struct DB_Table_INFOTABLE : public DB_Table
 {
     struct Data;
-    typedef DB_Table_ASSETCLASS_V1 Self;
+    typedef DB_Table_INFOTABLE Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_ASSETCLASS_V1() 
+    ~DB_Table_INFOTABLE() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE ASSETCLASS_V1 (ID INTEGER primary key, PARENTID INTEGER, NAME TEXT COLLATE NOCASE NOT NULL, ALLOCATION REAL, SORTORDER INTEGER)");
+                db->ExecuteUpdate("CREATE TABLE INFOTABLE(INFOID integer not null primary key, INFONAME TEXT COLLATE NOCASE NOT NULL UNIQUE, INFOVALUE TEXT NOT NULL)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("ASSETCLASS_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("INFOTABLE: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,10 +94,11 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
     {
         try
         {
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_INFOTABLE_INFONAME ON INFOTABLE(INFONAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETCLASS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("INFOTABLE: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -107,47 +108,34 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
+        db->ExecuteUpdate("INSERT INTO INFOTABLE VALUES ('1', 'DATAVERSION', '3')");
         db->Commit();
     }
     
-    struct ID : public DB_Column<int>
+    struct INFOID : public DB_Column<int>
     { 
-        static wxString name() { return "ID"; } 
-        explicit ID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "INFOID"; } 
+        explicit INFOID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct PARENTID : public DB_Column<int>
+    struct INFONAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "PARENTID"; } 
-        explicit PARENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "INFONAME"; } 
+        explicit INFONAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct NAME : public DB_Column<wxString>
+    struct INFOVALUE : public DB_Column<wxString>
     { 
-        static wxString name() { return "NAME"; } 
-        explicit NAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "INFOVALUE"; } 
+        explicit INFOVALUE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct ALLOCATION : public DB_Column<double>
-    { 
-        static wxString name() { return "ALLOCATION"; } 
-        explicit ALLOCATION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
-    };
-    
-    struct SORTORDER : public DB_Column<int>
-    { 
-        static wxString name() { return "SORTORDER"; } 
-        explicit SORTORDER(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    typedef ID PRIMARY;
+    typedef INFOID PRIMARY;
     enum COLUMN
     {
-        COL_ID = 0
-        , COL_PARENTID = 1
-        , COL_NAME = 2
-        , COL_ALLOCATION = 3
-        , COL_SORTORDER = 4
+        COL_INFOID = 0
+        , COL_INFONAME = 1
+        , COL_INFOVALUE = 2
     };
 
     /** Returns the column name as a string*/
@@ -155,11 +143,9 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_ID: return "ID";
-            case COL_PARENTID: return "PARENTID";
-            case COL_NAME: return "NAME";
-            case COL_ALLOCATION: return "ALLOCATION";
-            case COL_SORTORDER: return "SORTORDER";
+            case COL_INFOID: return "INFOID";
+            case COL_INFONAME: return "INFONAME";
+            case COL_INFOVALUE: return "INFOVALUE";
             default: break;
         }
         
@@ -169,11 +155,9 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("ID" == name) return COL_ID;
-        else if ("PARENTID" == name) return COL_PARENTID;
-        else if ("NAME" == name) return COL_NAME;
-        else if ("ALLOCATION" == name) return COL_ALLOCATION;
-        else if ("SORTORDER" == name) return COL_SORTORDER;
+        if ("INFOID" == name) return COL_INFOID;
+        else if ("INFONAME" == name) return COL_INFONAME;
+        else if ("INFOVALUE" == name) return COL_INFOVALUE;
 
         return COLUMN(-1);
     }
@@ -181,24 +165,22 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_ASSETCLASS_V1;
+        friend struct DB_Table_INFOTABLE;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ID;//  primary key
-        int PARENTID;
-        wxString NAME;
-        double ALLOCATION;
-        int SORTORDER;
+        int INFOID;//  primary key
+        wxString INFONAME;
+        wxString INFOVALUE;
 
         int id() const
         {
-            return ID;
+            return INFOID;
         }
 
         void id(int id)
         {
-            ID = id;
+            INFOID = id;
         }
 
         bool operator < (const Data& r) const
@@ -215,32 +197,25 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
         {
             table_ = table;
         
-            ID = -1;
-            PARENTID = -1;
-            ALLOCATION = 0.0;
-            SORTORDER = -1;
+            INFOID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            ID = q.GetInt(0); // ID
-            PARENTID = q.GetInt(1); // PARENTID
-            NAME = q.GetString(2); // NAME
-            ALLOCATION = q.GetDouble(3); // ALLOCATION
-            SORTORDER = q.GetInt(4); // SORTORDER
+            INFOID = q.GetInt(0); // INFOID
+            INFONAME = q.GetString(1); // INFONAME
+            INFOVALUE = q.GetString(2); // INFOVALUE
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            ID = other.ID;
-            PARENTID = other.PARENTID;
-            NAME = other.NAME;
-            ALLOCATION = other.ALLOCATION;
-            SORTORDER = other.SORTORDER;
+            INFOID = other.INFOID;
+            INFONAME = other.INFONAME;
+            INFOVALUE = other.INFOVALUE;
             return *this;
         }
 
@@ -250,29 +225,19 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::ID &in) const
+        bool match(const Self::INFOID &in) const
         {
-            return this->ID == in.v_;
+            return this->INFOID == in.v_;
         }
 
-        bool match(const Self::PARENTID &in) const
+        bool match(const Self::INFONAME &in) const
         {
-            return this->PARENTID == in.v_;
+            return this->INFONAME.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::NAME &in) const
+        bool match(const Self::INFOVALUE &in) const
         {
-            return this->NAME.CmpNoCase(in.v_) == 0;
-        }
-
-        bool match(const Self::ALLOCATION &in) const
-        {
-            return this->ALLOCATION == in.v_;
-        }
-
-        bool match(const Self::SORTORDER &in) const
-        {
-            return this->SORTORDER == in.v_;
+            return this->INFOVALUE.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -291,36 +256,28 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("ID");
-            json_writer.Int(this->ID);
-            json_writer.Key("PARENTID");
-            json_writer.Int(this->PARENTID);
-            json_writer.Key("NAME");
-            json_writer.String(this->NAME.c_str());
-            json_writer.Key("ALLOCATION");
-            json_writer.Double(this->ALLOCATION);
-            json_writer.Key("SORTORDER");
-            json_writer.Int(this->SORTORDER);
+            json_writer.Key("INFOID");
+            json_writer.Int(this->INFOID);
+            json_writer.Key("INFONAME");
+            json_writer.String(this->INFONAME.c_str());
+            json_writer.Key("INFOVALUE");
+            json_writer.String(this->INFOVALUE.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"ID") = ID;
-            row(L"PARENTID") = PARENTID;
-            row(L"NAME") = NAME;
-            row(L"ALLOCATION") = ALLOCATION;
-            row(L"SORTORDER") = SORTORDER;
+            row(L"INFOID") = INFOID;
+            row(L"INFONAME") = INFONAME;
+            row(L"INFOVALUE") = INFOVALUE;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"ID") = ID;
-            t(L"PARENTID") = PARENTID;
-            t(L"NAME") = NAME;
-            t(L"ALLOCATION") = ALLOCATION;
-            t(L"SORTORDER") = SORTORDER;
+            t(L"INFOID") = INFOID;
+            t(L"INFONAME") = INFONAME;
+            t(L"INFOVALUE") = INFOVALUE;
         }
 
         /** Save the record instance in memory to the database. */
@@ -329,7 +286,7 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save ASSETCLASS_V1");
+                wxLogError("can not save INFOTABLE");
                 return false;
             }
 
@@ -341,7 +298,7 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove ASSETCLASS_V1");
+                wxLogError("can not remove INFOTABLE");
                 return false;
             }
             
@@ -356,17 +313,17 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 5
+        NUM_COLUMNS = 3
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "ASSETCLASS_V1"; }
+    wxString name() const { return "INFOTABLE"; }
 
-    DB_Table_ASSETCLASS_V1() : fake_(new Data())
+    DB_Table_INFOTABLE() : fake_(new Data())
     {
-        query_ = "SELECT ID, PARENTID, NAME, ALLOCATION, SORTORDER FROM ASSETCLASS_V1 ";
+        query_ = "SELECT INFOID, INFONAME, INFOVALUE FROM INFOTABLE ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -396,23 +353,21 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO ASSETCLASS_V1(PARENTID, NAME, ALLOCATION, SORTORDER) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO INFOTABLE(INFONAME, INFOVALUE) VALUES(?, ?)";
         }
         else
         {
-            sql = "UPDATE ASSETCLASS_V1 SET PARENTID = ?, NAME = ?, ALLOCATION = ?, SORTORDER = ? WHERE ID = ?";
+            sql = "UPDATE INFOTABLE SET INFONAME = ?, INFOVALUE = ? WHERE INFOID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->PARENTID);
-            stmt.Bind(2, entity->NAME);
-            stmt.Bind(3, entity->ALLOCATION);
-            stmt.Bind(4, entity->SORTORDER);
+            stmt.Bind(1, entity->INFONAME);
+            stmt.Bind(2, entity->INFOVALUE);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->ID);
+                stmt.Bind(3, entity->INFOID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -429,7 +384,7 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETCLASS_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("INFOTABLE: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -447,7 +402,7 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM ASSETCLASS_V1 WHERE ID = ?";
+            wxString sql = "DELETE FROM INFOTABLE WHERE INFOID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -472,7 +427,7 @@ struct DB_Table_ASSETCLASS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETCLASS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("INFOTABLE: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

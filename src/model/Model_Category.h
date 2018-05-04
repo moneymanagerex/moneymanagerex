@@ -20,14 +20,14 @@
 #define MODEL_CATEGORY_H
 
 #include "Model.h"
-#include "db/DB_Table_Category_V1.h"
+#include "db/DB_Table_Category.h"
 #include "Model_Subcategory.h"
 
 class mmDateRange;
-class Model_Category : public Model<DB_Table_CATEGORY_V1>
+class Model_Category : public Model<DB_Table_CATEGORY>
 {
 public:
-    using Model<DB_Table_CATEGORY_V1>::get;
+    using Model<DB_Table_CATEGORY>::get;
 
 public:
     Model_Category();

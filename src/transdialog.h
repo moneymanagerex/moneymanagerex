@@ -130,7 +130,7 @@ private:
     int m_account_id;
     TransactionStatus m_status;
 
-    DB_Table_CHECKINGACCOUNT_V1::Data m_trx_data;
+    DB_Table_CHECKINGACCOUNT::Data m_trx_data;
     std::vector<Split> local_splits;
     Model_Currency::Data *m_currency;
     Model_Currency::Data *m_to_currency;

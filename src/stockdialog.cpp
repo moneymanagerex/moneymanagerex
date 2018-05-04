@@ -808,7 +808,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 		if (Model_StockHistory::instance()
 			    .find(
 			        Model_StockHistory::SYMBOL(m_stock->SYMBOL)
-			        , Model_StockHistory::DB_Table_STOCKHISTORY_V1::DATE(date_str)
+			        , Model_StockHistory::DB_Table_STOCKHISTORY::DATE(date_str)
 		        ).size() == 0
 			    && dPrice > 0
 			)

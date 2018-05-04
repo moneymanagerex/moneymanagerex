@@ -10,21 +10,21 @@
             <type label="Real" default="0" length="0" sql="REAL" quote="" color="rgb(238,238,170)"/>
             <type label="None" default="" length="0" sql="NONE" quote="" color="rgb(200,255,200)"/>
         </group>
-    </datatypes><table x="251" y="9" name="checkingaccount_v1">
+    </datatypes><table x="251" y="9" name="checkingaccount">
         <row name="TransID" null="0" autoincrement="1">
             <datatype>NUMERIC</datatype>
             <default>NULL</default></row>
         <row name="AccountID" null="0" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="accountlist_v1" row="AccountID" />
+            <default>NULL</default><relation table="accountlist" row="AccountID" />
         </row>
         <row name="ToAccountID" null="1" autoincrement="0">
             <datatype>NUMERIC</datatype>
-            <default>NULL</default><relation table="accountlist_v1" row="AccountID" />
+            <default>NULL</default><relation table="accountlist" row="AccountID" />
         </row>
         <row name="PayeeID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="payee_v1" row="PayeID" />
+            <default>NULL</default><relation table="payee" row="PayeID" />
         </row>
         <row name="transcode" null="0" autoincrement="0">
             <datatype>TEXT</datatype>
@@ -43,11 +43,11 @@
             <default>NULL</default></row>
         <row name="CategID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="Category_v1" row="CategID" />
+            <default>NULL</default><relation table="Category" row="CategID" />
         </row>
         <row name="SubCategID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="subcagory_v1" row="SubCategID" />
+            <default>NULL</default><relation table="subcagory" row="SubCategID" />
         </row>
         <row name="transdate" null="0" autoincrement="0">
             <datatype>TEXT</datatype>
@@ -62,7 +62,7 @@
             <part>TransID</part>
         </key>
     </table>
-    <table x="537" y="389" name="Category_v1">
+    <table x="537" y="389" name="Category">
         <row name="CategID" null="0" autoincrement="1">
             <datatype>INTEGER</datatype>
             <default>NULL</default></row>
@@ -73,10 +73,10 @@
             <part>CategID</part>
         </key>
     </table>
-    <table x="523" y="558" name="subcagory_v1">
+    <table x="523" y="558" name="subcagory">
         <row name="CategID" null="0" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="Category_v1" row="CategID" />
+            <default>NULL</default><relation table="Category" row="CategID" />
         </row>
         <row name="SubCategID" null="0" autoincrement="1">
             <datatype>INTEGER</datatype>
@@ -88,21 +88,21 @@
             <part>SubCategID</part>
         </key>
     </table>
-    <table x="760" y="12" name="splittransactions_v1">
+    <table x="760" y="12" name="splittransactions">
         <row name="splittransid" null="0" autoincrement="1">
             <datatype>INTEGER</datatype>
             <default>NULL</default></row>
         <row name="TransID" null="1" autoincrement="0">
             <datatype>NUMERIC</datatype>
-            <default>NULL</default><relation table="checkingaccount_v1" row="TransID" />
+            <default>NULL</default><relation table="checkingaccount" row="TransID" />
         </row>
         <row name="CategID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="Category_v1" row="CategID" />
+            <default>NULL</default><relation table="Category" row="CategID" />
         </row>
         <row name="SubCategID" null="0" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="subcagory_v1" row="SubCategID" />
+            <default>NULL</default><relation table="subcagory" row="SubCategID" />
         </row>
         <row name="splittransamount" null="1" autoincrement="0">
             <datatype>NUMERIC</datatype>
@@ -111,7 +111,7 @@
             <part>splittransid</part>
         </key>
     </table>
-    <table x="536" y="213" name="payee_v1">
+    <table x="536" y="213" name="payee">
         <row name="PayeID" null="0" autoincrement="1">
             <datatype>INTEGER</datatype>
             <default>NULL</default></row>
@@ -120,31 +120,31 @@
             <default>'NULL'</default></row>
         <row name="subcategid" null="1" autoincrement="0">
             <datatype>NUMERIC</datatype>
-            <default>NULL</default><relation table="subcagory_v1" row="SubCategID" />
+            <default>NULL</default><relation table="subcagory" row="SubCategID" />
         </row>
         <row name="categid" null="1" autoincrement="0">
             <datatype>NUMERIC</datatype>
-            <default>NULL</default><relation table="Category_v1" row="CategID" />
+            <default>NULL</default><relation table="Category" row="CategID" />
         </row>
         <key type="PRIMARY" name="">
             <part>PayeID</part>
         </key>
     </table>
-    <table x="761" y="172" name="BudgetSplitTransactions_V1">
+    <table x="761" y="172" name="BudgetSplitTransactions">
         <row name="SplitTransID" null="1" autoincrement="0">
             <datatype>NUMERIC</datatype>
             <default>NULL</default></row>
         <row name="TransID" null="1" autoincrement="0">
             <datatype>NUMERIC</datatype>
-            <default>NULL</default><relation table="checkingaccount_v1" row="TransID" />
+            <default>NULL</default><relation table="checkingaccount" row="TransID" />
         </row>
         <row name="CategID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="Category_v1" row="CategID" />
+            <default>NULL</default><relation table="Category" row="CategID" />
         </row>
         <row name="SubCategID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="subcagory_v1" row="SubCategID" />
+            <default>NULL</default><relation table="subcagory" row="SubCategID" />
         </row>
         <row name="SplitTransAmount" null="1" autoincrement="0">
             <datatype>NUMERIC</datatype>
@@ -153,24 +153,24 @@
             <part>SplitTransID</part>
         </key>
     </table>
-    <table x="272" y="472" name="BudgetTable_V1">
+    <table x="272" y="472" name="BudgetTable">
         <row name="BudgetEntryID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
             <default>NULL</default><comment>integer - primary key</comment>
         </row>
         <row name="BudgetYearID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="BudgetYear_V1" row="BudgetYearID" />
+            <default>NULL</default><relation table="BudgetYear" row="BudgetYearID" />
             <comment>integer</comment>
         </row>
         <row name="CategID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="Category_v1" row="CategID" />
+            <default>NULL</default><relation table="Category" row="CategID" />
             <comment>integer</comment>
         </row>
         <row name="SubCategID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="subcagory_v1" row="SubCategID" />
+            <default>NULL</default><relation table="subcagory" row="SubCategID" />
             <comment>integer</comment>
         </row>
         <row name="Period" null="1" autoincrement="0">
@@ -185,7 +185,7 @@
             <part>BudgetEntryID</part>
         </key>
     </table>
-    <table x="42" y="10" name="accountlist_v1">
+    <table x="42" y="10" name="accountlist">
         <row name="AccountID" null="0" autoincrement="1">
             <datatype>INTEGER</datatype>
             <default>NULL</default></row>
@@ -224,13 +224,13 @@
             <default>NULL</default></row>
         <row name="CurrencyID" null="0" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="currencyformats_v1" row="CurrencyID" />
+            <default>NULL</default><relation table="currencyformats" row="CurrencyID" />
         </row>
         <key type="PRIMARY" name="">
             <part>AccountID</part>
         </key>
     </table>
-    <table x="42" y="382" name="currencyformats_v1">
+    <table x="42" y="382" name="currencyformats">
         <row name="CurrencyID" null="0" autoincrement="1">
             <datatype>INTEGER</datatype>
             <default>NULL</default></row>
@@ -262,7 +262,7 @@
             <part>CurrencyID</part>
         </key>
     </table>
-    <table x="252" y="382" name="BudgetYear_V1">
+    <table x="252" y="382" name="BudgetYear">
         <row name="BudgetYearID" null="1" autoincrement="1">
             <datatype>INTEGER</datatype>
             <default>NULL</default><comment>integer - primary key</comment>
@@ -275,7 +275,7 @@
             <part>BudgetYearID</part>
         </key>
     </table>
-    <table x="323" y="691" name="infotable_v1">
+    <table x="323" y="691" name="infotable">
         <row name="InfoID" null="0" autoincrement="1">
             <datatype>INTEGER</datatype>
             <default>NULL</default></row>
@@ -289,13 +289,13 @@
             <part>InfoID</part>
         </key>
     </table>
-    <table x="32" y="690" name="Stock_V1">
+    <table x="32" y="690" name="Stock">
         <row name="StockID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
             <default>NULL</default></row>
         <row name="HeldAt" null="1" autoincrement="0">
             <datatype>NUMERIC</datatype>
-            <default>NULL</default><relation table="accountlist_v1" row="AccountID" />
+            <default>NULL</default><relation table="accountlist" row="AccountID" />
         </row>
         <row name="PurchaseDate" null="1" autoincrement="0">
             <datatype>TEXT</datatype>
@@ -329,7 +329,7 @@
         </key>
         <comment>Used for Stocks</comment>
     </table>
-    <table x="182" y="691" name="Assets_V1">
+    <table x="182" y="691" name="Assets">
         <row name="AssetID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
             <default>NULL</default></row>
@@ -359,7 +359,7 @@
         </key>
         <comment>Used to store Asset information</comment>
     </table>
-    <table x="762" y="333" name="BillDeposit_V1">
+    <table x="762" y="333" name="BillDeposit">
         <row name="BdID" null="1" autoincrement="1">
             <datatype>INTEGER</datatype>
             <default>NULL</default><comment>integer - primary field</comment>
@@ -374,7 +374,7 @@
         </row>
         <row name="PayeeID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="payee_v1" row="PayeID" />
+            <default>NULL</default><relation table="payee" row="PayeID" />
         </row>
         <row name="TransCode" null="1" autoincrement="0">
             <datatype>TEXT</datatype>
@@ -393,11 +393,11 @@
             <default>NULL</default></row>
         <row name="CategID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="Category_v1" row="CategID" />
+            <default>NULL</default><relation table="Category" row="CategID" />
         </row>
         <row name="SubCategID" null="1" autoincrement="0">
             <datatype>INTEGER</datatype>
-            <default>NULL</default><relation table="subcagory_v1" row="SubCategID" />
+            <default>NULL</default><relation table="subcagory" row="SubCategID" />
         </row>
         <row name="TransDate" null="1" autoincrement="0">
             <datatype>TEXT</datatype>
@@ -421,6 +421,6 @@
         <key type="PRIMARY" name="">
             <part>BdID</part>
         </key>
-        <comment>Used for Reoccurring Transactions - Similar to CheckingAccount_V1 table</comment>
+        <comment>Used for Reoccurring Transactions - Similar to CheckingAccount table</comment>
     </table>
 </sql>

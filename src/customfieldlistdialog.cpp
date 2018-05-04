@@ -108,7 +108,7 @@ void mmCustomFieldListDialog::fillControls()
 {    
     fieldListBox_->DeleteAllItems();
 
-    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_RefType));
+    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(m_RefType));
     if (fields.size() == 0) return;
 
     std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());

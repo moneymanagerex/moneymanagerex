@@ -27,6 +27,9 @@ def getFileContent(FileName):
         fp.close()
         return content
 
+def split_string(string, charleng):
+    return [string[i:i+charleng] for i in range(0, len(string), charleng)]
+
 StrHeader = '''//=============================================================================
 /**
  *      Copyright (c) 2016 - %s Gabriele-V
@@ -58,17 +61,14 @@ const std::vector<wxString> dbUpgradeQuery =
 LatestVersion = 0
 folder = sys.argv[1]
 for sqlfile in sorted(glob.glob(os.path.join(folder, 'database_version_*.sql')), key=numericalSort):
-    FileContent = getFileContent(sqlfile).replace('\n','\n        ')
+    FileContent = getFileContent(sqlfile).replace('\n','\n\t\t')
     LatestVersion = getVersion(sqlfile)
-    StrUpgradeQuery += '''    // Upgrade to version %i
-    R"(
-        %s
-    )",
+    StrUpgradeQuery += '''\t// Upgrade to version %i'''%(LatestVersion)
+    for string in split_string(FileContent, 10240):
+        StrUpgradeQuery += '''\n\tR"(%s)"'''% (string)
+    StrUpgradeQuery += ''',\n\n'''
 
-'''% (LatestVersion, FileContent)
-
-StrUpgradeQuery += '''};
-'''
+StrUpgradeQuery += '''};\n'''
 
 StrLatestVersion = '''
 const int dbLatestVersion = %i;

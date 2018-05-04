@@ -20,13 +20,13 @@
 #pragma once
 
 #include "Model.h"
-#include "db/DB_Table_Checkingaccount_V1.h"
+#include "db/DB_Table_Checkingaccount.h"
 #include "Model_Splittransaction.h"
 
-class Model_Checking : public Model<DB_Table_CHECKINGACCOUNT_V1>
+class Model_Checking : public Model<DB_Table_CHECKINGACCOUNT>
 {
 public:
-    using Model<DB_Table_CHECKINGACCOUNT_V1>::remove;
+    using Model<DB_Table_CHECKINGACCOUNT>::remove;
     typedef Model_Splittransaction::Data_Set Split_Data_Set;
 
 public:
@@ -131,10 +131,10 @@ public:
     static const Model_Splittransaction::Data_Set splittransaction(const Data& r);
 
 public:
-    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDate& date, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxString& date, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::TRANSCODE TRANSCODE(TYPE type, OP op = EQUAL);
+    static DB_Table_CHECKINGACCOUNT::TRANSDATE TRANSDATE(const wxDate& date, OP op = EQUAL);
+    static DB_Table_CHECKINGACCOUNT::TRANSDATE TRANSDATE(const wxString& date, OP op = EQUAL);
+    static DB_Table_CHECKINGACCOUNT::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL);
+    static DB_Table_CHECKINGACCOUNT::TRANSCODE TRANSCODE(TYPE type, OP op = EQUAL);
 
 public:
     static wxDate TRANSDATE(const Data* r);
@@ -177,11 +177,11 @@ private:
 
 public:
     TransactionStatus();
-    TransactionStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data);
-    TransactionStatus(const DB_Table_CHECKINGACCOUNT_V1::Data* data);
-    void InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data& data);
-    void InitStatus(const DB_Table_CHECKINGACCOUNT_V1::Data* data);
-    void SetStatus(const wxString& status, int account_id, DB_Table_CHECKINGACCOUNT_V1::Data& data);
+    TransactionStatus(const DB_Table_CHECKINGACCOUNT::Data& data);
+    TransactionStatus(const DB_Table_CHECKINGACCOUNT::Data* data);
+    void InitStatus(const DB_Table_CHECKINGACCOUNT::Data& data);
+    void InitStatus(const DB_Table_CHECKINGACCOUNT::Data* data);
+    void SetStatus(const wxString& status, int account_id, DB_Table_CHECKINGACCOUNT::Data& data);
     void SetStatusA(const wxString& status);
     wxString Status(int account_id);
 };

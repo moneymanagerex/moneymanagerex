@@ -19,13 +19,13 @@
 
 #pragma once
 #include "Model.h"
-#include "db/DB_Table_Translink_V1.h"
+#include "db/DB_Table_Translink.h"
 #include "Model_Checking.h"
 #include "Model_Stock.h"
 #include "Model_Asset.h"
 #include "Model_Attachment.h"
 
-class Model_Translink : public Model<DB_Table_TRANSLINK_V1>
+class Model_Translink : public Model<DB_Table_TRANSLINK>
 {
 public:
     enum CHECKING_TYPE { AS_INCOME_EXPENSE = 32701, AS_TRANSFER }; /* Transfers ignore accounting */
@@ -66,8 +66,8 @@ public:
     /*
     Return a list of translink records for the associated foreign table type.
     Equivalent SQL statements:
-    select * from TRANSLINK_V1 where LINKTYPE = "Asset" AND LINKRECORDID = link_id;
-    select * from TRANSLINK_V1 where LINKTYPE = "Stock" AND LINKRECORDID = link_id;
+    select * from TRANSLINK where LINKTYPE = "Asset" AND LINKRECORDID = link_id;
+    select * from TRANSLINK where LINKTYPE = "Stock" AND LINKRECORDID = link_id;
     */
     static Model_Translink::Data_Set TranslinkList(Model_Attachment::REFTYPE link_table
         , const int link_id);
@@ -77,7 +77,7 @@ public:
     /*
     Return the link record for the checking account 
     Equivalent SQL statements:
-    select * from TRANSLINK_V1 where CHECKINGACCOUNTID = checking_id;
+    select * from TRANSLINK where CHECKINGACCOUNTID = checking_id;
     */
     static Model_Translink::Data TranslinkRecord(const int checking_id);
 

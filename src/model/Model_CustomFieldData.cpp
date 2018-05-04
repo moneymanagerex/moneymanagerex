@@ -21,7 +21,7 @@
 #include <wx/string.h>
 
 Model_CustomFieldData::Model_CustomFieldData()
-: Model<DB_Table_CUSTOMFIELDDATA_V1>()
+: Model<DB_Table_CUSTOMFIELDDATA>()
 {
 }
 
@@ -79,7 +79,7 @@ wxArrayString Model_CustomFieldData::allValue(const int FieldID)
 
 bool Model_CustomFieldData::DeleteAllData(const wxString& RefType, int RefID)
 {
-    const auto& fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
+    const auto& fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(RefType));
 
     this->Savepoint();
     for (const auto& field : fields)

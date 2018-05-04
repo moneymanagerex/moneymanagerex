@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "Model_Currency.h"
 
 Model_CurrencyHistory::Model_CurrencyHistory()
-: Model<DB_Table_CURRENCYHISTORY_V1>()
+: Model<DB_Table_CURRENCYHISTORY>()
 {
 };
 
@@ -49,10 +49,10 @@ Model_CurrencyHistory& Model_CurrencyHistory::instance()
 
 Model_CurrencyHistory::Data* Model_CurrencyHistory::get(const int& currencyID, const wxDate& date)
 {
-    Data* hist = this->get_one(CURRENCYID(currencyID), DB_Table_CURRENCYHISTORY_V1::CURRDATE(date.FormatISODate()));
+    Data* hist = this->get_one(CURRENCYID(currencyID), DB_Table_CURRENCYHISTORY::CURRDATE(date.FormatISODate()));
     if (hist) return hist;
 
-    Data_Set items = this->find(CURRENCYID(currencyID), DB_Table_CURRENCYHISTORY_V1::CURRDATE(date.FormatISODate()));
+    Data_Set items = this->find(CURRENCYID(currencyID), DB_Table_CURRENCYHISTORY::CURRDATE(date.FormatISODate()));
     if (!items.empty()) hist = this->get(items[0].id(), this->db_);
     return hist;
 }
@@ -62,9 +62,9 @@ wxDate Model_CurrencyHistory::CURRDATE(const Data& hist)
     return Model::to_date(hist.CURRDATE);
 }
 
-DB_Table_CURRENCYHISTORY_V1::CURRDATE Model_CurrencyHistory::CURRDATE(const wxDate& date, OP op)
+DB_Table_CURRENCYHISTORY::CURRDATE Model_CurrencyHistory::CURRDATE(const wxDate& date, OP op)
 {
-    return DB_Table_CURRENCYHISTORY_V1::CURRDATE(date.FormatISODate(), op);
+    return DB_Table_CURRENCYHISTORY::CURRDATE(date.FormatISODate(), op);
 }
 
 /**

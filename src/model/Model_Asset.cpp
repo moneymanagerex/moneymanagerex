@@ -37,7 +37,7 @@ const std::vector<std::pair<Model_Asset::TYPE, wxString> > Model_Asset::TYPE_CHO
 };
 
 Model_Asset::Model_Asset()
-: Model<DB_Table_ASSETS_V1>()
+: Model<DB_Table_ASSETS>()
 {
 }
 
@@ -97,14 +97,14 @@ double Model_Asset::balance()
     return balance;
 }
 
-DB_Table_ASSETS_V1::ASSETTYPE Model_Asset::ASSETTYPE(TYPE type, OP op)
+DB_Table_ASSETS::ASSETTYPE Model_Asset::ASSETTYPE(TYPE type, OP op)
 {
-    return DB_Table_ASSETS_V1::ASSETTYPE(all_type()[type], op);
+    return DB_Table_ASSETS::ASSETTYPE(all_type()[type], op);
 }
 
-DB_Table_ASSETS_V1::STARTDATE Model_Asset::STARTDATE(const wxDate& date, OP op)
+DB_Table_ASSETS::STARTDATE Model_Asset::STARTDATE(const wxDate& date, OP op)
 {
-    return DB_Table_ASSETS_V1::STARTDATE(date.FormatISODate(), op);
+    return DB_Table_ASSETS::STARTDATE(date.FormatISODate(), op);
 }
 
 wxDate Model_Asset::STARTDATE(const Data* r)

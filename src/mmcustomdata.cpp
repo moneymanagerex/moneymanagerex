@@ -39,7 +39,7 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
 {
     m_dialog = dialog;
     m_fields = Model_CustomField::instance()
-        .find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
+        .find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(m_ref_type));
     std::sort(m_fields.begin(), m_fields.end(), SorterByDESCRIPTION());
     m_data_changed.clear();
 }
@@ -527,7 +527,7 @@ void mmCustomData::OnCheckBoxChanged(wxCommandEvent& event)
 
 int mmCustomData::GetWidgetType(wxWindowID controlID)
 {
-    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
+    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(m_ref_type));
     int control_id = controlID - GetBaseID();
     for (const auto& entry : fields)
     {

@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -19,10 +19,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_REPORT_V1 : public DB_Table
+struct DB_Table_SPLITTRANSACTIONS : public DB_Table
 {
     struct Data;
-    typedef DB_Table_REPORT_V1 Self;
+    typedef DB_Table_SPLITTRANSACTIONS Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_REPORT_V1() 
+    ~DB_Table_SPLITTRANSACTIONS() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE REPORT_V1(REPORTID integer not null primary key, REPORTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, GROUPNAME TEXT COLLATE NOCASE, SQLCONTENT TEXT, LUACONTENT TEXT, TEMPLATECONTENT TEXT, DESCRIPTION TEXT)");
+                db->ExecuteUpdate("CREATE TABLE SPLITTRANSACTIONS(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("REPORT_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("SPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_REPORT_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS INDEX_REPORT_NAME ON REPORT_V1(REPORTNAME)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_SPLITTRANSACTIONS_TRANSID ON SPLITTRANSACTIONS(TRANSID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("REPORT_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("SPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,58 +111,44 @@ struct DB_Table_REPORT_V1 : public DB_Table
         db->Commit();
     }
     
-    struct REPORTID : public DB_Column<int>
+    struct SPLITTRANSID : public DB_Column<int>
     { 
-        static wxString name() { return "REPORTID"; } 
-        explicit REPORTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "SPLITTRANSID"; } 
+        explicit SPLITTRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct REPORTNAME : public DB_Column<wxString>
+    struct TRANSID : public DB_Column<int>
     { 
-        static wxString name() { return "REPORTNAME"; } 
-        explicit REPORTNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "TRANSID"; } 
+        explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct GROUPNAME : public DB_Column<wxString>
+    struct CATEGID : public DB_Column<int>
     { 
-        static wxString name() { return "GROUPNAME"; } 
-        explicit GROUPNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "CATEGID"; } 
+        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SQLCONTENT : public DB_Column<wxString>
+    struct SUBCATEGID : public DB_Column<int>
     { 
-        static wxString name() { return "SQLCONTENT"; } 
-        explicit SQLCONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "SUBCATEGID"; } 
+        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct LUACONTENT : public DB_Column<wxString>
+    struct SPLITTRANSAMOUNT : public DB_Column<double>
     { 
-        static wxString name() { return "LUACONTENT"; } 
-        explicit LUACONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "SPLITTRANSAMOUNT"; } 
+        explicit SPLITTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
-    struct TEMPLATECONTENT : public DB_Column<wxString>
-    { 
-        static wxString name() { return "TEMPLATECONTENT"; } 
-        explicit TEMPLATECONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    
-    struct DESCRIPTION : public DB_Column<wxString>
-    { 
-        static wxString name() { return "DESCRIPTION"; } 
-        explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    
-    typedef REPORTID PRIMARY;
+    typedef SPLITTRANSID PRIMARY;
     enum COLUMN
     {
-        COL_REPORTID = 0
-        , COL_REPORTNAME = 1
-        , COL_GROUPNAME = 2
-        , COL_SQLCONTENT = 3
-        , COL_LUACONTENT = 4
-        , COL_TEMPLATECONTENT = 5
-        , COL_DESCRIPTION = 6
+        COL_SPLITTRANSID = 0
+        , COL_TRANSID = 1
+        , COL_CATEGID = 2
+        , COL_SUBCATEGID = 3
+        , COL_SPLITTRANSAMOUNT = 4
     };
 
     /** Returns the column name as a string*/
@@ -170,13 +156,11 @@ struct DB_Table_REPORT_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_REPORTID: return "REPORTID";
-            case COL_REPORTNAME: return "REPORTNAME";
-            case COL_GROUPNAME: return "GROUPNAME";
-            case COL_SQLCONTENT: return "SQLCONTENT";
-            case COL_LUACONTENT: return "LUACONTENT";
-            case COL_TEMPLATECONTENT: return "TEMPLATECONTENT";
-            case COL_DESCRIPTION: return "DESCRIPTION";
+            case COL_SPLITTRANSID: return "SPLITTRANSID";
+            case COL_TRANSID: return "TRANSID";
+            case COL_CATEGID: return "CATEGID";
+            case COL_SUBCATEGID: return "SUBCATEGID";
+            case COL_SPLITTRANSAMOUNT: return "SPLITTRANSAMOUNT";
             default: break;
         }
         
@@ -186,13 +170,11 @@ struct DB_Table_REPORT_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("REPORTID" == name) return COL_REPORTID;
-        else if ("REPORTNAME" == name) return COL_REPORTNAME;
-        else if ("GROUPNAME" == name) return COL_GROUPNAME;
-        else if ("SQLCONTENT" == name) return COL_SQLCONTENT;
-        else if ("LUACONTENT" == name) return COL_LUACONTENT;
-        else if ("TEMPLATECONTENT" == name) return COL_TEMPLATECONTENT;
-        else if ("DESCRIPTION" == name) return COL_DESCRIPTION;
+        if ("SPLITTRANSID" == name) return COL_SPLITTRANSID;
+        else if ("TRANSID" == name) return COL_TRANSID;
+        else if ("CATEGID" == name) return COL_CATEGID;
+        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
+        else if ("SPLITTRANSAMOUNT" == name) return COL_SPLITTRANSAMOUNT;
 
         return COLUMN(-1);
     }
@@ -200,26 +182,24 @@ struct DB_Table_REPORT_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_REPORT_V1;
+        friend struct DB_Table_SPLITTRANSACTIONS;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int REPORTID;//  primary key
-        wxString REPORTNAME;
-        wxString GROUPNAME;
-        wxString SQLCONTENT;
-        wxString LUACONTENT;
-        wxString TEMPLATECONTENT;
-        wxString DESCRIPTION;
+        int SPLITTRANSID;//  primary key
+        int TRANSID;
+        int CATEGID;
+        int SUBCATEGID;
+        double SPLITTRANSAMOUNT;
 
         int id() const
         {
-            return REPORTID;
+            return SPLITTRANSID;
         }
 
         void id(int id)
         {
-            REPORTID = id;
+            SPLITTRANSID = id;
         }
 
         bool operator < (const Data& r) const
@@ -236,33 +216,33 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             table_ = table;
         
-            REPORTID = -1;
+            SPLITTRANSID = -1;
+            TRANSID = -1;
+            CATEGID = -1;
+            SUBCATEGID = -1;
+            SPLITTRANSAMOUNT = 0.0;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            REPORTID = q.GetInt(0); // REPORTID
-            REPORTNAME = q.GetString(1); // REPORTNAME
-            GROUPNAME = q.GetString(2); // GROUPNAME
-            SQLCONTENT = q.GetString(3); // SQLCONTENT
-            LUACONTENT = q.GetString(4); // LUACONTENT
-            TEMPLATECONTENT = q.GetString(5); // TEMPLATECONTENT
-            DESCRIPTION = q.GetString(6); // DESCRIPTION
+            SPLITTRANSID = q.GetInt(0); // SPLITTRANSID
+            TRANSID = q.GetInt(1); // TRANSID
+            CATEGID = q.GetInt(2); // CATEGID
+            SUBCATEGID = q.GetInt(3); // SUBCATEGID
+            SPLITTRANSAMOUNT = q.GetDouble(4); // SPLITTRANSAMOUNT
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            REPORTID = other.REPORTID;
-            REPORTNAME = other.REPORTNAME;
-            GROUPNAME = other.GROUPNAME;
-            SQLCONTENT = other.SQLCONTENT;
-            LUACONTENT = other.LUACONTENT;
-            TEMPLATECONTENT = other.TEMPLATECONTENT;
-            DESCRIPTION = other.DESCRIPTION;
+            SPLITTRANSID = other.SPLITTRANSID;
+            TRANSID = other.TRANSID;
+            CATEGID = other.CATEGID;
+            SUBCATEGID = other.SUBCATEGID;
+            SPLITTRANSAMOUNT = other.SPLITTRANSAMOUNT;
             return *this;
         }
 
@@ -272,39 +252,29 @@ struct DB_Table_REPORT_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::REPORTID &in) const
+        bool match(const Self::SPLITTRANSID &in) const
         {
-            return this->REPORTID == in.v_;
+            return this->SPLITTRANSID == in.v_;
         }
 
-        bool match(const Self::REPORTNAME &in) const
+        bool match(const Self::TRANSID &in) const
         {
-            return this->REPORTNAME.CmpNoCase(in.v_) == 0;
+            return this->TRANSID == in.v_;
         }
 
-        bool match(const Self::GROUPNAME &in) const
+        bool match(const Self::CATEGID &in) const
         {
-            return this->GROUPNAME.CmpNoCase(in.v_) == 0;
+            return this->CATEGID == in.v_;
         }
 
-        bool match(const Self::SQLCONTENT &in) const
+        bool match(const Self::SUBCATEGID &in) const
         {
-            return this->SQLCONTENT.CmpNoCase(in.v_) == 0;
+            return this->SUBCATEGID == in.v_;
         }
 
-        bool match(const Self::LUACONTENT &in) const
+        bool match(const Self::SPLITTRANSAMOUNT &in) const
         {
-            return this->LUACONTENT.CmpNoCase(in.v_) == 0;
-        }
-
-        bool match(const Self::TEMPLATECONTENT &in) const
-        {
-            return this->TEMPLATECONTENT.CmpNoCase(in.v_) == 0;
-        }
-
-        bool match(const Self::DESCRIPTION &in) const
-        {
-            return this->DESCRIPTION.CmpNoCase(in.v_) == 0;
+            return this->SPLITTRANSAMOUNT == in.v_;
         }
 
         // Return the data record as a json string
@@ -323,44 +293,36 @@ struct DB_Table_REPORT_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("REPORTID");
-            json_writer.Int(this->REPORTID);
-            json_writer.Key("REPORTNAME");
-            json_writer.String(this->REPORTNAME.c_str());
-            json_writer.Key("GROUPNAME");
-            json_writer.String(this->GROUPNAME.c_str());
-            json_writer.Key("SQLCONTENT");
-            json_writer.String(this->SQLCONTENT.c_str());
-            json_writer.Key("LUACONTENT");
-            json_writer.String(this->LUACONTENT.c_str());
-            json_writer.Key("TEMPLATECONTENT");
-            json_writer.String(this->TEMPLATECONTENT.c_str());
-            json_writer.Key("DESCRIPTION");
-            json_writer.String(this->DESCRIPTION.c_str());
+            json_writer.Key("SPLITTRANSID");
+            json_writer.Int(this->SPLITTRANSID);
+            json_writer.Key("TRANSID");
+            json_writer.Int(this->TRANSID);
+            json_writer.Key("CATEGID");
+            json_writer.Int(this->CATEGID);
+            json_writer.Key("SUBCATEGID");
+            json_writer.Int(this->SUBCATEGID);
+            json_writer.Key("SPLITTRANSAMOUNT");
+            json_writer.Double(this->SPLITTRANSAMOUNT);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"REPORTID") = REPORTID;
-            row(L"REPORTNAME") = REPORTNAME;
-            row(L"GROUPNAME") = GROUPNAME;
-            row(L"SQLCONTENT") = SQLCONTENT;
-            row(L"LUACONTENT") = LUACONTENT;
-            row(L"TEMPLATECONTENT") = TEMPLATECONTENT;
-            row(L"DESCRIPTION") = DESCRIPTION;
+            row(L"SPLITTRANSID") = SPLITTRANSID;
+            row(L"TRANSID") = TRANSID;
+            row(L"CATEGID") = CATEGID;
+            row(L"SUBCATEGID") = SUBCATEGID;
+            row(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"REPORTID") = REPORTID;
-            t(L"REPORTNAME") = REPORTNAME;
-            t(L"GROUPNAME") = GROUPNAME;
-            t(L"SQLCONTENT") = SQLCONTENT;
-            t(L"LUACONTENT") = LUACONTENT;
-            t(L"TEMPLATECONTENT") = TEMPLATECONTENT;
-            t(L"DESCRIPTION") = DESCRIPTION;
+            t(L"SPLITTRANSID") = SPLITTRANSID;
+            t(L"TRANSID") = TRANSID;
+            t(L"CATEGID") = CATEGID;
+            t(L"SUBCATEGID") = SUBCATEGID;
+            t(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
         }
 
         /** Save the record instance in memory to the database. */
@@ -369,7 +331,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save REPORT_V1");
+                wxLogError("can not save SPLITTRANSACTIONS");
                 return false;
             }
 
@@ -381,7 +343,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove REPORT_V1");
+                wxLogError("can not remove SPLITTRANSACTIONS");
                 return false;
             }
             
@@ -396,17 +358,17 @@ struct DB_Table_REPORT_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 7
+        NUM_COLUMNS = 5
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "REPORT_V1"; }
+    wxString name() const { return "SPLITTRANSACTIONS"; }
 
-    DB_Table_REPORT_V1() : fake_(new Data())
+    DB_Table_SPLITTRANSACTIONS() : fake_(new Data())
     {
-        query_ = "SELECT REPORTID, REPORTNAME, GROUPNAME, SQLCONTENT, LUACONTENT, TEMPLATECONTENT, DESCRIPTION FROM REPORT_V1 ";
+        query_ = "SELECT SPLITTRANSID, TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT FROM SPLITTRANSACTIONS ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -436,25 +398,23 @@ struct DB_Table_REPORT_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO REPORT_V1(REPORTNAME, GROUPNAME, SQLCONTENT, LUACONTENT, TEMPLATECONTENT, DESCRIPTION) VALUES(?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO SPLITTRANSACTIONS(TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE REPORT_V1 SET REPORTNAME = ?, GROUPNAME = ?, SQLCONTENT = ?, LUACONTENT = ?, TEMPLATECONTENT = ?, DESCRIPTION = ? WHERE REPORTID = ?";
+            sql = "UPDATE SPLITTRANSACTIONS SET TRANSID = ?, CATEGID = ?, SUBCATEGID = ?, SPLITTRANSAMOUNT = ? WHERE SPLITTRANSID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->REPORTNAME);
-            stmt.Bind(2, entity->GROUPNAME);
-            stmt.Bind(3, entity->SQLCONTENT);
-            stmt.Bind(4, entity->LUACONTENT);
-            stmt.Bind(5, entity->TEMPLATECONTENT);
-            stmt.Bind(6, entity->DESCRIPTION);
+            stmt.Bind(1, entity->TRANSID);
+            stmt.Bind(2, entity->CATEGID);
+            stmt.Bind(3, entity->SUBCATEGID);
+            stmt.Bind(4, entity->SPLITTRANSAMOUNT);
             if (entity->id() > 0)
-                stmt.Bind(7, entity->REPORTID);
+                stmt.Bind(5, entity->SPLITTRANSID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -471,7 +431,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("REPORT_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("SPLITTRANSACTIONS: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -489,7 +449,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM REPORT_V1 WHERE REPORTID = ?";
+            wxString sql = "DELETE FROM SPLITTRANSACTIONS WHERE SPLITTRANSID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -514,7 +474,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("REPORT_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("SPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

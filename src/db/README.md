@@ -4,7 +4,7 @@ Simple ORM to access database
 Creating New Database Tables
 ----------------------------
 1. New database table definitions are addded to the submodule: [database].
-   The definitions are added to the `tables_v1.sql` file.
+   The definitions are added to the `tables.sql` file.
 2. Use the files in the [/util] directory to construct the database files
    that reside in [/src/db]
 

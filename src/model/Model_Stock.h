@@ -20,13 +20,13 @@
 #define MODEL_STOCK_H
 
 #include "Model.h"
-#include "db/DB_Table_Stock_V1.h"
+#include "db/DB_Table_Stock.h"
 #include "Model_Account.h"
 
-class Model_Stock : public Model<DB_Table_STOCK_V1>
+class Model_Stock : public Model<DB_Table_STOCK>
 {
 public:
-    using Model<DB_Table_STOCK_V1>::remove;
+    using Model<DB_Table_STOCK>::remove;
     Model_Stock();
     ~Model_Stock();
 

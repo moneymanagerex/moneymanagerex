@@ -735,7 +735,7 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData("Budgeting"));
     m_nav_tree_ctrl->SetItemBold(budgeting, true);
 
-    const DB_Table_BUDGETYEAR_V1::Data_Set all_budgets 
+    const DB_Table_BUDGETYEAR::Data_Set all_budgets 
         = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
     bool have_budget = (all_budgets.size() > 0);
     for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))

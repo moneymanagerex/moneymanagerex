@@ -19,7 +19,7 @@
 #include "Model_Budgetsplittransaction.h"
 
 Model_Budgetsplittransaction::Model_Budgetsplittransaction()
-: Model<DB_Table_BUDGETSPLITTRANSACTIONS_V1>()
+: Model<DB_Table_BUDGETSPLITTRANSACTIONS>()
 {
 }
 

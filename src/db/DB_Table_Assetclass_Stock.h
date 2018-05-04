@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-03-17 17:54:04.556000.
+ *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -19,10 +19,10 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_BUDGETTABLE_V1 : public DB_Table
+struct DB_Table_ASSETCLASS_STOCK : public DB_Table
 {
     struct Data;
-    typedef DB_Table_BUDGETTABLE_V1 Self;
+    typedef DB_Table_ASSETCLASS_STOCK Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_BUDGETTABLE_V1() 
+    ~DB_Table_ASSETCLASS_STOCK() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE BUDGETTABLE_V1(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, SUBCATEGID integer, PERIOD TEXT NOT NULL /* None, Weekly, Bi-Weekly, Monthly, Monthly, Bi-Monthly, Quarterly, Half-Yearly, Yearly, Daily*/, AMOUNT numeric NOT NULL)");
+                db->ExecuteUpdate("CREATE TABLE ASSETCLASS_STOCK (ID INTEGER primary key, ASSETCLASSID INTEGER NOT NULL, STOCKSYMBOL TEXT UNIQUE)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("BUDGETTABLE_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("ASSETCLASS_STOCK: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,10 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETTABLE_BUDGETYEARID ON BUDGETTABLE_V1(BUDGETYEARID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETTABLE_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("ASSETCLASS_STOCK: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,51 +110,30 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         db->Commit();
     }
     
-    struct BUDGETENTRYID : public DB_Column<int>
+    struct ID : public DB_Column<int>
     { 
-        static wxString name() { return "BUDGETENTRYID"; } 
-        explicit BUDGETENTRYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "ID"; } 
+        explicit ID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct BUDGETYEARID : public DB_Column<int>
+    struct ASSETCLASSID : public DB_Column<int>
     { 
-        static wxString name() { return "BUDGETYEARID"; } 
-        explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "ASSETCLASSID"; } 
+        explicit ASSETCLASSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct STOCKSYMBOL : public DB_Column<wxString>
     { 
-        static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "STOCKSYMBOL"; } 
+        explicit STOCKSYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct SUBCATEGID : public DB_Column<int>
-    { 
-        static wxString name() { return "SUBCATEGID"; } 
-        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    struct PERIOD : public DB_Column<wxString>
-    { 
-        static wxString name() { return "PERIOD"; } 
-        explicit PERIOD(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    
-    struct AMOUNT : public DB_Column<double>
-    { 
-        static wxString name() { return "AMOUNT"; } 
-        explicit AMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
-    };
-    
-    typedef BUDGETENTRYID PRIMARY;
+    typedef ID PRIMARY;
     enum COLUMN
     {
-        COL_BUDGETENTRYID = 0
-        , COL_BUDGETYEARID = 1
-        , COL_CATEGID = 2
-        , COL_SUBCATEGID = 3
-        , COL_PERIOD = 4
-        , COL_AMOUNT = 5
+        COL_ID = 0
+        , COL_ASSETCLASSID = 1
+        , COL_STOCKSYMBOL = 2
     };
 
     /** Returns the column name as a string*/
@@ -163,12 +141,9 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_BUDGETENTRYID: return "BUDGETENTRYID";
-            case COL_BUDGETYEARID: return "BUDGETYEARID";
-            case COL_CATEGID: return "CATEGID";
-            case COL_SUBCATEGID: return "SUBCATEGID";
-            case COL_PERIOD: return "PERIOD";
-            case COL_AMOUNT: return "AMOUNT";
+            case COL_ID: return "ID";
+            case COL_ASSETCLASSID: return "ASSETCLASSID";
+            case COL_STOCKSYMBOL: return "STOCKSYMBOL";
             default: break;
         }
         
@@ -178,12 +153,9 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("BUDGETENTRYID" == name) return COL_BUDGETENTRYID;
-        else if ("BUDGETYEARID" == name) return COL_BUDGETYEARID;
-        else if ("CATEGID" == name) return COL_CATEGID;
-        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
-        else if ("PERIOD" == name) return COL_PERIOD;
-        else if ("AMOUNT" == name) return COL_AMOUNT;
+        if ("ID" == name) return COL_ID;
+        else if ("ASSETCLASSID" == name) return COL_ASSETCLASSID;
+        else if ("STOCKSYMBOL" == name) return COL_STOCKSYMBOL;
 
         return COLUMN(-1);
     }
@@ -191,25 +163,22 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_BUDGETTABLE_V1;
+        friend struct DB_Table_ASSETCLASS_STOCK;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int BUDGETENTRYID;//  primary key
-        int BUDGETYEARID;
-        int CATEGID;
-        int SUBCATEGID;
-        wxString PERIOD;
-        double AMOUNT;
+        int ID;//  primary key
+        int ASSETCLASSID;
+        wxString STOCKSYMBOL;
 
         int id() const
         {
-            return BUDGETENTRYID;
+            return ID;
         }
 
         void id(int id)
         {
-            BUDGETENTRYID = id;
+            ID = id;
         }
 
         bool operator < (const Data& r) const
@@ -226,35 +195,26 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         {
             table_ = table;
         
-            BUDGETENTRYID = -1;
-            BUDGETYEARID = -1;
-            CATEGID = -1;
-            SUBCATEGID = -1;
-            AMOUNT = 0.0;
+            ID = -1;
+            ASSETCLASSID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            BUDGETENTRYID = q.GetInt(0); // BUDGETENTRYID
-            BUDGETYEARID = q.GetInt(1); // BUDGETYEARID
-            CATEGID = q.GetInt(2); // CATEGID
-            SUBCATEGID = q.GetInt(3); // SUBCATEGID
-            PERIOD = q.GetString(4); // PERIOD
-            AMOUNT = q.GetDouble(5); // AMOUNT
+            ID = q.GetInt(0); // ID
+            ASSETCLASSID = q.GetInt(1); // ASSETCLASSID
+            STOCKSYMBOL = q.GetString(2); // STOCKSYMBOL
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            BUDGETENTRYID = other.BUDGETENTRYID;
-            BUDGETYEARID = other.BUDGETYEARID;
-            CATEGID = other.CATEGID;
-            SUBCATEGID = other.SUBCATEGID;
-            PERIOD = other.PERIOD;
-            AMOUNT = other.AMOUNT;
+            ID = other.ID;
+            ASSETCLASSID = other.ASSETCLASSID;
+            STOCKSYMBOL = other.STOCKSYMBOL;
             return *this;
         }
 
@@ -264,34 +224,19 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::BUDGETENTRYID &in) const
+        bool match(const Self::ID &in) const
         {
-            return this->BUDGETENTRYID == in.v_;
+            return this->ID == in.v_;
         }
 
-        bool match(const Self::BUDGETYEARID &in) const
+        bool match(const Self::ASSETCLASSID &in) const
         {
-            return this->BUDGETYEARID == in.v_;
+            return this->ASSETCLASSID == in.v_;
         }
 
-        bool match(const Self::CATEGID &in) const
+        bool match(const Self::STOCKSYMBOL &in) const
         {
-            return this->CATEGID == in.v_;
-        }
-
-        bool match(const Self::SUBCATEGID &in) const
-        {
-            return this->SUBCATEGID == in.v_;
-        }
-
-        bool match(const Self::PERIOD &in) const
-        {
-            return this->PERIOD.CmpNoCase(in.v_) == 0;
-        }
-
-        bool match(const Self::AMOUNT &in) const
-        {
-            return this->AMOUNT == in.v_;
+            return this->STOCKSYMBOL.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -310,40 +255,28 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("BUDGETENTRYID");
-            json_writer.Int(this->BUDGETENTRYID);
-            json_writer.Key("BUDGETYEARID");
-            json_writer.Int(this->BUDGETYEARID);
-            json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
-            json_writer.Key("SUBCATEGID");
-            json_writer.Int(this->SUBCATEGID);
-            json_writer.Key("PERIOD");
-            json_writer.String(this->PERIOD.c_str());
-            json_writer.Key("AMOUNT");
-            json_writer.Double(this->AMOUNT);
+            json_writer.Key("ID");
+            json_writer.Int(this->ID);
+            json_writer.Key("ASSETCLASSID");
+            json_writer.Int(this->ASSETCLASSID);
+            json_writer.Key("STOCKSYMBOL");
+            json_writer.String(this->STOCKSYMBOL.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"BUDGETENTRYID") = BUDGETENTRYID;
-            row(L"BUDGETYEARID") = BUDGETYEARID;
-            row(L"CATEGID") = CATEGID;
-            row(L"SUBCATEGID") = SUBCATEGID;
-            row(L"PERIOD") = PERIOD;
-            row(L"AMOUNT") = AMOUNT;
+            row(L"ID") = ID;
+            row(L"ASSETCLASSID") = ASSETCLASSID;
+            row(L"STOCKSYMBOL") = STOCKSYMBOL;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"BUDGETENTRYID") = BUDGETENTRYID;
-            t(L"BUDGETYEARID") = BUDGETYEARID;
-            t(L"CATEGID") = CATEGID;
-            t(L"SUBCATEGID") = SUBCATEGID;
-            t(L"PERIOD") = PERIOD;
-            t(L"AMOUNT") = AMOUNT;
+            t(L"ID") = ID;
+            t(L"ASSETCLASSID") = ASSETCLASSID;
+            t(L"STOCKSYMBOL") = STOCKSYMBOL;
         }
 
         /** Save the record instance in memory to the database. */
@@ -352,7 +285,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save BUDGETTABLE_V1");
+                wxLogError("can not save ASSETCLASS_STOCK");
                 return false;
             }
 
@@ -364,7 +297,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove BUDGETTABLE_V1");
+                wxLogError("can not remove ASSETCLASS_STOCK");
                 return false;
             }
             
@@ -379,17 +312,17 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 6
+        NUM_COLUMNS = 3
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "BUDGETTABLE_V1"; }
+    wxString name() const { return "ASSETCLASS_STOCK"; }
 
-    DB_Table_BUDGETTABLE_V1() : fake_(new Data())
+    DB_Table_ASSETCLASS_STOCK() : fake_(new Data())
     {
-        query_ = "SELECT BUDGETENTRYID, BUDGETYEARID, CATEGID, SUBCATEGID, PERIOD, AMOUNT FROM BUDGETTABLE_V1 ";
+        query_ = "SELECT ID, ASSETCLASSID, STOCKSYMBOL FROM ASSETCLASS_STOCK ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -419,24 +352,21 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO BUDGETTABLE_V1(BUDGETYEARID, CATEGID, SUBCATEGID, PERIOD, AMOUNT) VALUES(?, ?, ?, ?, ?)";
+            sql = "INSERT INTO ASSETCLASS_STOCK(ASSETCLASSID, STOCKSYMBOL) VALUES(?, ?)";
         }
         else
         {
-            sql = "UPDATE BUDGETTABLE_V1 SET BUDGETYEARID = ?, CATEGID = ?, SUBCATEGID = ?, PERIOD = ?, AMOUNT = ? WHERE BUDGETENTRYID = ?";
+            sql = "UPDATE ASSETCLASS_STOCK SET ASSETCLASSID = ?, STOCKSYMBOL = ? WHERE ID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->BUDGETYEARID);
-            stmt.Bind(2, entity->CATEGID);
-            stmt.Bind(3, entity->SUBCATEGID);
-            stmt.Bind(4, entity->PERIOD);
-            stmt.Bind(5, entity->AMOUNT);
+            stmt.Bind(1, entity->ASSETCLASSID);
+            stmt.Bind(2, entity->STOCKSYMBOL);
             if (entity->id() > 0)
-                stmt.Bind(6, entity->BUDGETENTRYID);
+                stmt.Bind(3, entity->ID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -453,7 +383,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETTABLE_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("ASSETCLASS_STOCK: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -471,7 +401,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM BUDGETTABLE_V1 WHERE BUDGETENTRYID = ?";
+            wxString sql = "DELETE FROM ASSETCLASS_STOCK WHERE ID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -496,7 +426,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETTABLE_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("ASSETCLASS_STOCK: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

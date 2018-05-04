@@ -20,12 +20,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define MODEL_STOCKHISTORY_H
 
 #include "Model.h"
-#include "db/DB_Table_Stockhistory_V1.h"
+#include "db/DB_Table_Stockhistory.h"
 
-class Model_StockHistory : public Model<DB_Table_STOCKHISTORY_V1>
+class Model_StockHistory : public Model<DB_Table_STOCKHISTORY>
 {
 public:
-    using Model<DB_Table_STOCKHISTORY_V1>::get;
+    using Model<DB_Table_STOCKHISTORY>::get;
     enum UPDTYPE { ONLINE = 1, MANUAL };
 
 public:
@@ -51,7 +51,7 @@ public:
     Data* get(const wxString& symbol, const wxDate& date);
     static wxDate DATE(const Data& hist);
 
-    static DB_Table_STOCKHISTORY_V1::DATE DATE(const wxDate& date, OP op = EQUAL);
+    static DB_Table_STOCKHISTORY::DATE DATE(const wxDate& date, OP op = EQUAL);
     /**
     Adds or updates an element in stock history
     */
