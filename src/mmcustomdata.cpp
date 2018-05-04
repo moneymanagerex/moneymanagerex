@@ -124,8 +124,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::DECIMAL:
         {
-            m_data_changed[controlID] = wxEmptyString;
-
             double value;
             if (!fieldData->CONTENT.ToDouble(&value)) {
                 value = 0;
@@ -146,8 +144,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::BOOLEAN:
         {
-            m_data_changed[controlID] = wxEmptyString;
-
             wxCheckBox* CustomBoolean = new wxCheckBox(scrolled_window, controlID
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
@@ -173,8 +169,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::DATE:
         {
-            m_data_changed[controlID] = wxEmptyString;
-
             wxDate value;
             if (!value.ParseDate(fieldData->CONTENT)) {
                 value = wxDate::Today();
@@ -195,8 +189,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case Model_CustomField::TIME:
         {
-            m_data_changed[controlID] = wxEmptyString;
-
             wxDateTime value;
             if (!value.ParseTime(fieldData->CONTENT)) {
                 value.ParseTime("00:00:00");
@@ -230,9 +222,11 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             }
 
             const auto& data = fieldData->CONTENT;
-            CustomChoice->SetStringSelection(data);
-            SetWidgetChanged(controlID, data);
-            
+            if (!data.empty())
+            {
+                CustomChoice->SetStringSelection(data);
+                SetWidgetChanged(controlID, data);
+            }
             
             CustomChoice->Connect(controlID, wxEVT_CHOICE
                 , wxCommandEventHandler(mmCustomData::OnSingleChoice), nullptr, this);
@@ -248,11 +242,11 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             multi_choice_button->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(multi_choice_button, g_flagsExpand);
 
+            if (!content.empty()) {
+                SetWidgetChanged(controlID, content);
+            }
             multi_choice_button->Connect(controlID, wxEVT_COMMAND_BUTTON_CLICKED
                 , wxCommandEventHandler(mmCustomData::OnMultiChoice), nullptr, this);
-
-            SetWidgetChanged(controlID, content);
-
             break;
         }
         default: break;
@@ -479,7 +473,8 @@ void mmCustomData::OnTimeChanged(wxDateEvent& event)
 
 bool mmCustomData::IsWidgetChanged(wxWindowID id)
 {
-    const wxString& value = m_data_changed.at(id);
+    const wxString& value = m_data_changed.find(id) == m_data_changed.end()
+        ? wxEmptyString : m_data_changed.at(id);
     return !value.empty();
 }
 
@@ -499,9 +494,17 @@ void mmCustomData::SetWidgetChanged(wxWindowID id, const wxString& data)
 
 bool mmCustomData::IsDataFound(const Model_Checking::Full_Data &tran)
 {
-    for (const auto& entry : m_data_changed)
+    for (const auto& filter : m_data_changed)
     {
-        wxLogDebug("Values: %s", entry.second);
+        const auto& data_set = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(tran.TRANSID));
+        for (const auto& item : data_set)
+        {
+            if (filter.second != item.CONTENT)
+            {
+                return false;
+            }
+        }
+
     }
     return true;
 }
