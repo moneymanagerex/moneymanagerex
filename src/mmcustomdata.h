@@ -45,6 +45,7 @@ private:
     void OnMultiChoice(wxCommandEvent& event);
     void OnSingleChoice(wxCommandEvent& event);
     void OnCheckBoxChanged(wxCommandEvent& event);
+    void OnCheckBoxActivated(wxCommandEvent& event);
     void OnDoubleChanged(wxCommandEvent& event);
     void OnIntegerChanged(wxCommandEvent& event);
     bool IsWidgetChanged(wxWindowID id);
@@ -55,6 +56,8 @@ public:
     mmCustomData();
     bool FillCustomFields(wxBoxSizer* box_sizer);
     bool SaveCustomValues(int ref_id);
+    const wxString GetWidgetData(int type, wxWindowID controlID);
+    int GetWidgetType(wxWindowID controlID);
     size_t GetCustomFieldsCount() { return m_fields.size(); }
     size_t GetActiveCustomFieldsCount();
     std::map<wxString, wxString> mmCustomData::GetActiveCustomFields();
