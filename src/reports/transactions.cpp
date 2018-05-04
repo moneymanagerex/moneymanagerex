@@ -66,6 +66,7 @@ wxString mmReportTransactions::getHTMLText()
     hb.startThead();
     // Display the data Headings
     hb.startTableRow();
+    hb.addTableHeaderCell(_("ID"));
     hb.addTableHeaderCell(_("Date"));
     hb.addTableHeaderCell(_("Account"));
     hb.addTableHeaderCell(_("Payee"));
@@ -92,6 +93,8 @@ wxString mmReportTransactions::getHTMLText()
     for (auto& transaction : trans_)
     {
         hb.startTableRow();
+        hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
+            , wxString::Format("%i", transaction.TRANSID));
         hb.addTableCellDate(transaction.TRANSDATE);
         hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)
             , transaction.ACCOUNTNAME);
@@ -160,7 +163,7 @@ wxString mmReportTransactions::getHTMLText()
     const wxString totalStr = Model_Currency::toCurrency(grand_total
         , Model_Currency::GetBaseCurrency());
     const std::vector<wxString> v{ totalStr };
-    hb.addTotalRow(_("Grand Total:"), 9, v);
+    hb.addTotalRow(_("Grand Total:"), 10, v);
 
     hb.endTfoot();
     hb.endTable();

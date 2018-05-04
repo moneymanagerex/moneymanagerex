@@ -640,6 +640,7 @@ void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
 void mmFilterTransactionsDialog::clearSettings()
 {
     settings_string_.Clear();
+    m_custom_fields->ResetWidgetsChanged();
     dataToControls();
 
     // Clear the settings for the allocated position

@@ -38,7 +38,6 @@ private:
     int m_ref_id;
     Model_CustomField::Data_Set m_fields;
     std::map<wxWindowID, wxString> m_data_changed;
-    wxWindowID m_init_control_id;
     void OnStringChanged(wxCommandEvent& event);
     void OnDateChanged(wxDateEvent& event);
     void OnTimeChanged(wxDateEvent& event);
@@ -51,6 +50,8 @@ private:
     bool IsWidgetChanged(wxWindowID id);
     void SetWidgetChanged(wxWindowID id, const wxString& data);
     void ResetWidgetChanged(wxWindowID id);
+    wxWindowID m_init_control_id;
+    wxWindowID m_init_label_id;
 
 public:
     mmCustomData();
@@ -62,6 +63,9 @@ public:
     size_t GetActiveCustomFieldsCount();
     std::map<wxString, wxString> mmCustomData::GetActiveCustomFields();
     void SetBaseID(wxWindowID id) { m_init_control_id = id; }
+    wxWindowID GetBaseID() { return m_init_control_id; }
+    void SetLabelID(wxWindowID id) { m_init_label_id = id; }
+    wxWindowID GetLabelID() { return m_init_label_id; }
     bool IsSomeWidgetChanged();
     bool IsDataFound(const Model_Checking::Full_Data &tran);
     void ResetWidgetsChanged();
