@@ -61,7 +61,7 @@ public:
     int GetWidgetType(wxWindowID controlID);
     size_t GetCustomFieldsCount() { return m_fields.size(); }
     size_t GetActiveCustomFieldsCount();
-    std::map<wxString, wxString> mmCustomData::GetActiveCustomFields();
+    std::map<wxString, wxString> GetActiveCustomFields();
     void SetBaseID(wxWindowID id) { m_init_control_id = id; }
     wxWindowID GetBaseID() { return m_init_control_id; }
     void SetLabelID(wxWindowID id) { m_init_label_id = id; }

@@ -572,7 +572,7 @@ void mmCustomData::OnTimeChanged(wxDateEvent& event)
 bool mmCustomData::IsWidgetChanged(wxWindowID id)
 {
     const wxString& value = m_data_changed.find(id) == m_data_changed.end()
-        ? wxEmptyString : m_data_changed.at(id);
+        ? wxString(wxEmptyString) : m_data_changed.at(id);
     return !value.empty();
 }
 
