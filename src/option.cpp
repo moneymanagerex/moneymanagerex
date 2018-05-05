@@ -158,8 +158,6 @@ void Option::LoadOptions(bool include_infotable)
             if (mmMainCurrencyDialog::Execute(m_baseCurrency))
             {
                 BaseCurrency(m_baseCurrency);
-                Model_CurrencyHistory::ResetCurrencyHistory();
-                Model_Currency::ResetBaseConversionRates();
             }
         }
     }

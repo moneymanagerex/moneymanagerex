@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-04-28 01:13:08.914898.
+ *          AUTO GENERATED at 2018-05-05 12:16:40.968000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -18,7 +18,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 10;
+const int dbLatestVersion = 11;
 
 const std::vector<wxString> dbUpgradeQuery =
 {
@@ -199,6 +199,12 @@ const std::vector<wxString> dbUpgradeQuery =
         ALTER TABLE CURRENCYFORMATS_V1_NEW RENAME TO CURRENCYFORMATS_V1;
         CREATE INDEX IDX_CURRENCYFORMATS_SYMBOL ON CURRENCYFORMATS_V1(CURRENCY_SYMBOL);
         PRAGMA user_version = 10;
+    )",
+
+    // Upgrade to version 11
+    R"(
+        UPDATE CURRENCYFORMATS_V1 SET CURRENCY_TYPE = "Fiat" WHERE CURRENCY_TYPE <> "Crypto";
+        PRAGMA user_version = 11;
     )",
 
 };

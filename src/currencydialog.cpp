@@ -37,6 +37,7 @@ wxBEGIN_EVENT_TABLE(mmCurrencyDialog, wxDialog)
 EVT_BUTTON(wxID_OK, mmCurrencyDialog::OnOk)
 EVT_BUTTON(wxID_CANCEL, mmCurrencyDialog::OnCancel)
 EVT_TEXT(ID_DIALOG_CURRENCY, mmCurrencyDialog::OnTextChanged)
+EVT_CHECKBOX(ID_DIALOG_CURRENCY, mmCurrencyDialog::OnTextChanged)
 EVT_TEXT_ENTER(ID_DIALOG_CURRENCY_RATE, mmCurrencyDialog::OnTextEntered)
 wxEND_EVENT_TABLE()
 
@@ -62,6 +63,8 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent
         , decTx_(nullptr)
         , grpTx_(nullptr)
         , scaleTx_(nullptr)
+        , m_historic(nullptr)
+
 {
 
     if (currency)
@@ -118,6 +121,8 @@ void mmCurrencyDialog::fillControls()
 {
     if (m_currency)
     {
+        m_currencyType->SetStringSelection(wxGetTranslation(m_currency->CURRENCY_TYPE));
+
         m_currencyName->ChangeValue(m_currency->CURRENCYNAME);
         m_currencySymbol->ChangeValue(m_currency->CURRENCY_SYMBOL);
 
@@ -136,6 +141,7 @@ void mmCurrencyDialog::fillControls()
         m_base_conv_rate->SetValue((baseCurrency ? 1.00 : m_currency->BASECONVRATE), SCALE);
         m_base_conv_rate->Enable(!baseCurrency);
         m_currencySymbol->ChangeValue(m_currency->CURRENCY_SYMBOL);
+        m_historic->SetValue(Model_Currency::BoolOf(m_currency->HISTORIC));
     }
     else
     {
@@ -153,6 +159,15 @@ void mmCurrencyDialog::CreateControls()
     itemBoxSizer2->Add(itemFlexGridSizer3, g_flagsV);
 
     //--------------------------
+    wxStaticText* type_label = new wxStaticText(this, wxID_STATIC, _("Currency Type"));
+    itemFlexGridSizer3->Add(type_label, g_flagsH);
+    type_label->SetFont(this->GetFont().Bold());
+    m_currencyType = new wxChoice(this, ID_DIALOG_CURRENCY
+        , wxDefaultPosition, wxSize(220, -1));
+    for (const auto& type : Model_Currency::instance().all_currency_types())
+        m_currencyType->Append(wxGetTranslation(type), new wxStringClientData(type));
+    itemFlexGridSizer3->Add(m_currencyType, g_flagsH);
+
     wxStaticText* name_label = new wxStaticText(this, wxID_STATIC, _("Currency Name"));
     itemFlexGridSizer3->Add(name_label, g_flagsH);
     name_label->SetFont(this->GetFont().Bold());
@@ -219,6 +234,12 @@ void mmCurrencyDialog::CreateControls()
         , mmCalcValidator());
     itemFlexGridSizer3->Add(m_base_conv_rate, g_flagsExpand);
 
+    itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC
+        , _("Historic currency")), g_flagsH);
+    m_historic = new wxCheckBox(this, ID_DIALOG_CURRENCY
+        , "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxCHK_2STATE);
+    itemFlexGridSizer3->Add(m_historic, g_flagsExpand);
+
     //--------------------------
     wxStaticBox* sb01 = new wxStaticBox(this, wxID_STATIC
         , _("Value Display Sample:"));
@@ -244,6 +265,10 @@ void mmCurrencyDialog::CreateControls()
 
 void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
 {
+    const int type = m_currencyType->GetSelection();
+    if (type == -1)
+        return mmErrorDialogs::InvalidChoice(m_currencyType);
+
     const wxString name = m_currencyName->GetValue().Trim();
     if (name.empty())
         return mmErrorDialogs::InvalidName(m_currencyName);
@@ -302,6 +327,9 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
     m_currency->SCALE = static_cast<int>(pow(10, scale));
     m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue().Trim().Upper();
     m_currency->CURRENCYNAME = m_currencyName->GetValue();
+    const int type_selection = m_currencyType->GetSelection();
+    m_currency->CURRENCY_TYPE = type_selection != -1 ? Model_Currency::currtype_desc(type_selection) : wxEmptyString;
+    m_currency->HISTORIC = m_historic->GetValue() ? 1 : 0;
 
     double base_amount = 123456.78;
     const wxString& dispAmount = wxString::Format(_("%s Shown As: %s"), wxString::FromCDouble(base_amount, 2)

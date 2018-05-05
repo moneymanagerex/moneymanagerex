@@ -170,7 +170,7 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
     , const wxString base_currency_symbol
     , wxString& output
     , int type);
-bool get_crypto_currency_prices(std::vector<wxString>& symbols
+bool get_crypto_currency_prices(std::vector<wxString>& symbols, double& usd_rate
     , std::map<wxString, double>& out
     , wxString& output);
 

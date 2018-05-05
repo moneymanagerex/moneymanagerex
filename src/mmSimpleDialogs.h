@@ -93,5 +93,6 @@ public:
     static void InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist = false);
     static void ToolTip4Object(wxWindow *object, const wxString &message, const wxString &title, int ico = wxICON_WARNING);
     static void InvalidAmount(wxWindow *object);
+    static void InvalidChoice(wxChoice *choice);
 };
 #endif // MM_EX_MMSIMPLEDIALOGS_H_

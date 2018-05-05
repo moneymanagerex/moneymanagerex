@@ -24,6 +24,13 @@
 #include "option.h"
 #include <wx/numformatter.h>
 
+const std::vector<std::pair<Model_Currency::CURRTYPE, wxString> > Model_Currency::CURRTYPE_CHOICES =
+{
+    { Model_Currency::FIAT, wxString(wxTRANSLATE("Fiat")) },
+    { Model_Currency::CRYPTO, wxString(wxTRANSLATE("Crypto")) }
+};
+
+
 Model_Currency::Model_Currency()
 : Model<DB_Table_CURRENCYFORMATS_V1>()
 {
@@ -69,6 +76,17 @@ wxArrayString Model_Currency::all_currency_symbols()
     return c;
 }
 
+wxArrayString Model_Currency::all_currency_types()
+{
+    static wxArrayString types;
+    if (types.empty())
+    {
+        for (const auto& item : CURRTYPE_CHOICES)
+            types.Add(item.second);
+    }
+    return types;
+}
+
 // Getter
 Model_Currency::Data* Model_Currency::GetBaseCurrency()
 {
@@ -79,28 +97,13 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
 
 bool Model_Currency::GetBaseCurrencySymbol(wxString& base_currency_symbol)
 {
-	const auto base_currency = GetBaseCurrency();
-	if (base_currency)
-	{
+    const auto base_currency = GetBaseCurrency();
+    if (base_currency)
+    {
         base_currency_symbol = base_currency->CURRENCY_SYMBOL.Upper();
         return true;
-	}
-	return false;
-}
-
-bool Model_Currency::GetUSDrate(double& rate)
-{
-    Model_Currency::Data_Set usd = Model_Currency::instance().find(CURRENCY_SYMBOL("USD"));
-    if (!usd.empty())
-    {
-        rate = usd.begin()->BASECONVRATE;
-        return true;
     }
-    else
-    {
-        rate = 1;
-        return false;
-    }
+    return false;
 }
 
 void Model_Currency::ResetBaseConversionRates()
@@ -163,6 +166,14 @@ bool Model_Currency::remove(int id)
         Model_CurrencyHistory::instance().remove(r.id());
     this->ReleaseSavepoint();
     return this->remove(id, db_);
+}
+
+/** Return the description of the choice type */
+wxString Model_Currency::currtype_desc(const int CurrTypeEnum)
+{
+    const auto& item = CURRTYPE_CHOICES[CurrTypeEnum];
+    wxString reftype_desc = item.second;
+    return reftype_desc;
 }
 
 wxString Model_Currency::toCurrency(double value, const Data* currency, int precision)
@@ -250,3 +261,7 @@ int Model_Currency::precision(int account_id)
     else return 2;
 }
 
+bool Model_Currency::BoolOf(int value)
+{
+    return value > 0 ? true : false;
+}

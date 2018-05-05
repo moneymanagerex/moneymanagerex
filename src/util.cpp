@@ -340,8 +340,7 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
             auto currency_symbol = wxString::FromUTF8(v["symbol"].GetString());
             if (pattern.Matches(currency_symbol))
             {
-                if (!v.HasMember("regularMarketPrice")
-                    || !v["regularMarketPrice"].IsFloat())
+                if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
                     continue;
                 const auto price = v["regularMarketPrice"].GetFloat();
                 currency_symbol = pattern.GetMatch(currency_symbol, 1);
@@ -358,8 +357,7 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
             if (!e[i].IsObject()) continue;
             Value v = e[i].GetObject();
 
-            if (!v.HasMember("regularMarketPrice")
-                || !v["regularMarketPrice"].IsFloat())
+            if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
                 continue;
             auto price = v["regularMarketPrice"].GetFloat();
 
@@ -380,10 +378,16 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
     return true;
 }
 
-bool get_crypto_currency_prices(std::vector<wxString>& symbols
+bool get_crypto_currency_prices(std::vector<wxString>& symbols, double& usd_rate
     , std::map<wxString, double>& out
     , wxString& output)
 {
+    if (!usd_rate || usd_rate == 0)
+    {
+        output = _("Wrong base currency to USD rate provided");
+        return false;
+    }
+
     bool ok = false;
     const auto URL = mmex::weblink::CoinCap;
 
@@ -402,9 +406,6 @@ bool get_crypto_currency_prices(std::vector<wxString>& symbols
     if (!json_doc.IsArray())
         return false;
     Value e = json_doc.GetArray();
-
-    double usd_rate;
-    Model_Currency::GetUSDrate(usd_rate); //TODO: if false
 
     std::map<wxString, float> all_crypto_data;
 
