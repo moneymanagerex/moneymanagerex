@@ -159,6 +159,9 @@ private:
     wxString refAccountStr_;
     double m_min_amount;
     double m_max_amount;
+    int m_settings_id;
+    void SetSettingsID(int id) { m_settings_id = id; }
+    int GetSettingsID() { return m_settings_id; }
 
     mmCustomData* m_custom_fields;
 };

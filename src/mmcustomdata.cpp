@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmcustomdata.h"
 #include "constants.h"
 #include "model/Model_CustomFieldData.h"
-#include "model/Model_Attachment.h"
+
 #include <wx/numformatter.h>
 #include <wx/timectrl.h>
 #include <wx/collpane.h>
@@ -45,7 +45,7 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
 
 mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, wxWindowID base_id)
     : mmCustomData(dialog
-        , Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)
+        , "Transaction"
         , ref_id)
 {
     SetBaseID(base_id);
@@ -145,7 +145,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 value = 0;
             }
             else {
-                SetWidgetChanged(controlID, wxString::Format("%d", value));
+                const auto& data = wxString::Format("%.2f", value);
+                SetWidgetChanged(controlID, data);
                 Description->SetValue(true);
             }
             wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(scrolled_window, controlID
@@ -287,8 +288,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
 void mmCustomData::OnMultiChoice(wxCommandEvent& event)
 {
-    long id = event.GetId();
-    wxButton* button = (wxButton*)FindWindow(id);
+    long controlID = event.GetId();
+    wxButton* button = (wxButton*)m_dialog->FindWindow(controlID);
     if (!button) {
         return;
     }
@@ -312,21 +313,22 @@ void mmCustomData::OnMultiChoice(wxCommandEvent& event)
         i++;
     }
 
-    wxString info = label;
+    wxString data = label;
     wxMultiChoiceDialog* MultiChoice = new wxMultiChoiceDialog(this
         , _("Please select"), _("Multi Choice"), all_choices);
     MultiChoice->SetSelections(arr_selections);
 
     if (MultiChoice->ShowModal() == wxID_OK)
     {
-        info.clear();
+        data.clear();
         for (const auto &i : MultiChoice->GetSelections()) {
-            info += all_choices[i] + ";";
+            data += all_choices[i] + ";";
         }
-        info.RemoveLast();
+        data.RemoveLast();
     }
 
-    button->SetLabel(info);
+    button->SetLabel(data);
+    SetWidgetChanged(controlID, data);
 }
 
 size_t mmCustomData::GetActiveCustomFieldsCount()
@@ -433,11 +435,11 @@ bool mmCustomData::SaveCustomValues(int ref_id)
     {
         wxWindowID controlID = GetBaseID() + (wxWindowID)field.FIELDID;
         const auto type = Model_CustomField::type(field);
-        wxString data = GetWidgetData(type, controlID);
+        const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(type, controlID) : "";
 
+        Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, m_ref_id);
         if (!data.empty())
         {
-            Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, m_ref_id);
             if (!fieldData) {
                 fieldData = Model_CustomFieldData::instance().create();
             }
@@ -450,6 +452,10 @@ bool mmCustomData::SaveCustomValues(int ref_id)
                 , Model_CustomField::all_type()[Model_CustomField::type(field)]
                 , data);
             Model_CustomFieldData::instance().save(fieldData);
+        }
+        else if (fieldData)
+        {
+            Model_CustomFieldData::instance().remove(fieldData->FIELDATADID);
         }
     }
 
