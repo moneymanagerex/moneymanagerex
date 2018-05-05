@@ -328,7 +328,7 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
     m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue().Trim().Upper();
     m_currency->CURRENCYNAME = m_currencyName->GetValue();
     const int type_selection = m_currencyType->GetSelection();
-    m_currency->CURRENCY_TYPE = type_selection != -1 ? Model_Currency::currtype_desc(type_selection) : wxEmptyString;
+    m_currency->CURRENCY_TYPE = type_selection != -1 ? Model_Currency::currtype_desc(type_selection) : "";
     m_currency->HISTORIC = m_historic->GetValue() ? 1 : 0;
 
     double base_amount = 123456.78;
