@@ -802,7 +802,8 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
         {
             usd_rate = 0;
             std::map<wxString, double> usd_data;
-            if (!get_yahoo_prices(std::vector<wxString> {"USD"}, usd_data, base_currency_symbol, output, yahoo_price_type::FIAT))
+            std::vector<wxString> usd_sign = { "USD" };
+            if (!get_yahoo_prices(usd_sign, usd_data, base_currency_symbol, output, yahoo_price_type::FIAT))
             {
                 msg = output;
                 mmErrorDialogs::MessageError(this, msg, _("Online update currency rate"));
