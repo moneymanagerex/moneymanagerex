@@ -949,8 +949,8 @@ wxString mmFilterTransactionsDialog::to_json()
 
     for (const auto& entry : m_custom_fields->GetActiveCustomFields())
     {
-        json_writer.Key(entry.first);
-        json_writer.Key(entry.second);
+        json_writer.Key(entry.first.c_str());
+        json_writer.Key(entry.second.c_str());
     }
 
     json_writer.EndObject();
