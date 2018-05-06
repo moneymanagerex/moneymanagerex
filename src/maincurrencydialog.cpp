@@ -152,7 +152,7 @@ void mmMainCurrencyDialog::CreateControls()
     itemBoxSizer22->Add(update_button, g_flagsH);
     update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
-    update_button->SetToolTip(_("Online update rates for all used currencies"));
+    update_button->SetToolTip(_("Update latest rate only for all used currencies"));
 
     itemBoxSizer22->Add(new wxStaticText(this, wxID_STATIC
         , _("Online Update")), g_flagsH);
@@ -216,7 +216,11 @@ void mmMainCurrencyDialog::CreateControls()
 
     wxButton* itemButtonSelect = new wxButton(buttonsPanel, wxID_SELECTALL, _("&Select"));
     itemBoxSizer9->Add(itemButtonSelect, wxSizerFlags(g_flagsExpand).Proportion(4));
-    //itemButtonSelect->SetToolTip(_("Select the currently selected currency as the selected currency for the account"));
+
+    if(Model_Account::instance().all().size() > 0)
+        itemButtonSelect->SetToolTip(_("Select the currently selected currency as the selected currency for the account"));
+    else
+        itemButtonSelect->SetToolTip(_("Select the currently selected currency as base currency"));
 
     if (bEnableSelect_ == false)
         itemButtonSelect->Disable();
@@ -465,15 +469,12 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
     {
         case MENU_ITEM1:
         {
-            //Why unable to update history?
-            if (!SetBaseCurrency(m_currency_id))
-                mmErrorDialogs::MessageError(this
-                    , _("Unable to update history currency rates. "
-                        "Please update them manually!")
-                    , _("Currency history error"));
-            itemButtonDelete_->Disable();
-            fillControls();
-            ShowCurrencyHistory();
+            if (SetBaseCurrency(m_currency_id))
+            {
+                itemButtonDelete_->Disable();
+                fillControls();
+                ShowCurrencyHistory();
+            }
         } break;
         case MENU_ITEM2:
         {
@@ -612,12 +613,13 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
     wxString base_currency_symbol;
     if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
     {
+        wxASSERT(false);
         return mmErrorDialogs::MessageError(this, _("Could not find base currency symbol!"), _("Currency history error"));
     }
 
     wxString msg;
     std::map<wxDateTime, double> historical_rates;
-    bool UpdStatus = GetOnlineHistory(historical_rates, CurrentCurrency->CURRENCY_SYMBOL.Upper(), msg);
+    bool UpdStatus = GetOnlineHistory(historical_rates, CurrentCurrency->CURRENCY_SYMBOL, msg);
 
     if (!UpdStatus)
     {
@@ -732,14 +734,16 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     if (baseCurrencyID == baseCurrencyOLD)
         return true;
 
-    if (wxMessageBox(_("Setting a new base currency will delete all static and historic rates:") + "\n"
-        + _("it's possible to re-download them after setting the new base currency.") + "\n\n"
-        + _("Do you want to continue?")
-        , _("Currency Dialog")
-        , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR)
-        != wxYES)
+    if (Model_CurrencyHistory::instance().all().size() > 0
+        && Model_Currency::instance().find(Model_Currency::BASECONVRATE(1, NOT_EQUAL)).size() > 0)
     {
-        return false;
+        if (wxMessageBox(_("Setting a new base currency will delete all static and historic rates:") + "\n"
+            + _("it's possible to re-download them after setting the new base currency.") + "\n\n"
+            + _("Do you want to continue?"), _("Currency Dialog"), wxYES_NO | wxYES_DEFAULT | wxICON_ERROR)
+            != wxYES)
+        {
+            return false;
+        }
     }
 
     Option::instance().BaseCurrency(baseCurrencyID);
@@ -773,7 +777,7 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
             continue;
         if (curr_id < 0 && !Model_Account::is_used(currency))
             continue;
-        const auto symbol = currency.CURRENCY_SYMBOL.Upper();
+        const auto symbol = currency.CURRENCY_SYMBOL;
         if (symbol.IsEmpty())
             continue;
 
@@ -838,7 +842,7 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
         bool unused_currency = cbShowAll_->IsChecked() && !Model_Account::is_used(currency);
         if (unused_currency) continue;
 
-        const wxString currency_symbol = currency.CURRENCY_SYMBOL.Upper();
+        const wxString currency_symbol = currency.CURRENCY_SYMBOL;
         if (!currency_symbol.IsEmpty())
         {
             if (currency_data.find(currency_symbol) != currency_data.end())

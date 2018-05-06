@@ -164,18 +164,12 @@ void OptionSettingsGeneral::Create()
 void OptionSettingsGeneral::OnCurrency(wxCommandEvent& /*event*/)
 {
     int currencyID = Option::instance().BaseCurrency();
-
-    if (mmMainCurrencyDialog::Execute(this, currencyID) && currencyID != -1)
-    {
-        currencyID = Option::instance().BaseCurrency();
-        Model_Currency::Data* currency = Model_Currency::instance().get(currencyID);
-        wxButton* bn = (wxButton*) FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
-        bn->SetLabelText(wxGetTranslation(currency->CURRENCYNAME));
-        m_currency_id = currencyID;
-
-        //wxMessageDialog msgDlg(this, _("Remember to update currency rate"), _("Important note"));
-        //msgDlg.ShowModal();
-    }
+    mmMainCurrencyDialog(this, currencyID, false).ShowModal();
+    currencyID = Option::instance().BaseCurrency();
+    Model_Currency::Data* currency = Model_Currency::instance().get(currencyID);
+    wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
+    bn->SetLabelText(wxGetTranslation(currency->CURRENCYNAME));
+    m_currency_id = currencyID;
 }
 
 void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& /*event*/)

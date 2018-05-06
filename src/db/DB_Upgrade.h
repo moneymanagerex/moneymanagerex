@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-05 12:16:40.968000.
+ *          AUTO GENERATED at 2018-05-06 13:43:19.960000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -203,7 +203,27 @@ const std::vector<wxString> dbUpgradeQuery =
 
     // Upgrade to version 11
     R"(
-        UPDATE CURRENCYFORMATS_V1 SET CURRENCY_TYPE = "Fiat" WHERE CURRENCY_TYPE <> "Crypto";
+        -- workaround for missing ttable
+        CREATE TABLE IF NOT EXISTS ATTACHMENT_V1 (
+        ATTACHMENTID INTEGER NOT NULL PRIMARY KEY
+        , REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */
+        , REFID INTEGER NOT NULL
+        , DESCRIPTION TEXT COLLATE NOCASE
+        , FILENAME TEXT NOT NULL COLLATE NOCASE
+        );
+        CREATE TABLE IF NOT EXISTS CUSTOMFIELD_V1 (
+        FIELDID INTEGER NOT NULL PRIMARY KEY
+        , REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, BankAccount, RepeatingTransaction, Payee */
+        , DESCRIPTION TEXT COLLATE NOCASE
+        , TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoice, MultiChoice */
+        , PROPERTIES TEXT NOT NULL
+        );
+        
+        UPDATE CURRENCYFORMATS_V1 SET CURRENCY_TYPE = 'Fiat' WHERE CURRENCY_TYPE <> 'Crypto';
+        UPDATE ATTACHMENT_V1 SET REFTYPE = 'Bank Account' WHERE REFTYPE = 'BankAccount';
+        UPDATE ATTACHMENT_V1 SET REFTYPE = 'Recurring Transaction' WHERE REFTYPE = 'RecurringTransaction';
+        UPDATE CUSTOMFIELD_V1 SET REFTYPE = 'Bank Account' WHERE REFTYPE = 'BankAccount';
+        UPDATE CUSTOMFIELD_V1 SET REFTYPE = 'Recurring Transaction' WHERE REFTYPE = 'RecurringTransaction';
         PRAGMA user_version = 11;
     )",
 

@@ -20,7 +20,6 @@
 #include "constants.h"
 #include "paths.h"
 #include "reports/htmlbuilder.h"
-#include "db/DB_Upgrade.h"
 #include <wx/statline.h>
 #include <wx/version.h>
 #include <wx/regex.h>

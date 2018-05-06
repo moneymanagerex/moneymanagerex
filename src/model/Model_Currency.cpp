@@ -100,7 +100,7 @@ bool Model_Currency::GetBaseCurrencySymbol(wxString& base_currency_symbol)
     const auto base_currency = GetBaseCurrency();
     if (base_currency)
     {
-        base_currency_symbol = base_currency->CURRENCY_SYMBOL.Upper();
+        base_currency_symbol = base_currency->CURRENCY_SYMBOL;
         return true;
     }
     return false;
