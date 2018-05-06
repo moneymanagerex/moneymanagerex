@@ -94,17 +94,6 @@ bool dbUpgrade::UpgradeToVersion(wxSQLite3Database * db, int version)
     
     db->ReleaseSavepoint("MMEX_Upgrade");
 
-    try
-    {
-        db->Vacuum();
-    }
-    catch (const wxSQLite3Exception& e)
-    {
-        wxMessageBox(_("MMEX database vacuum failed!") + "\n\n"
-            + _("MMEX still should work, but try to re-optimize it from Tools -> Database -> Optimize") + "\n\n"
-            + e.GetMessage(), _("MMEX database upgrade"), wxOK | wxICON_WARNING);
-    }
-
     return true;
 }
 
@@ -148,6 +137,17 @@ bool dbUpgrade::UpgradeDB(wxSQLite3Database* db, const wxString& DbFileName)
         BackupDB(DbFileName, dbUpgrade::BACKUPTYPE::VERSION_UPGRADE, 999, ver);
         if (!UpgradeToVersion(db, ver + 1))
             return false;
+    }
+
+    try
+    {
+        db->Vacuum();
+    }
+    catch (const wxSQLite3Exception& e)
+    {
+        wxMessageBox(_("MMEX database vacuum failed!") + "\n\n"
+            + _("MMEX still should work, but try to re-optimize it from Tools -> Database -> Optimize") + "\n\n"
+            + e.GetMessage(), _("MMEX database upgrade"), wxOK | wxICON_WARNING);
     }
 
     wxMessageBox(wxString::Format(_("MMEX database successfully upgraded to version %i"), ver), _("MMEX database upgrade"), wxOK | wxICON_INFORMATION);
