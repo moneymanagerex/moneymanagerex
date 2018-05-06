@@ -765,6 +765,7 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
     std::vector<wxString> fiat;
     std::vector<wxString> crypto;
 
+    const auto& crypto_type = Model_Currency::currtype_desc(Model_Currency::CRYPTO);
     auto currencies = Model_Currency::instance().find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
     for (const auto &currency : currencies)
     {
@@ -776,7 +777,7 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
         if (symbol.IsEmpty())
             continue;
 
-        if (currency.CURRENCY_TYPE == Model_Currency::currtype_desc(Model_Currency::CRYPTO))
+        if (currency.CURRENCY_TYPE == crypto_type)
             crypto.push_back(symbol);
         else
             fiat.push_back(symbol);

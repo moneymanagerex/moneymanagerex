@@ -143,9 +143,6 @@ bool dbUpgrade::UpgradeDB(wxSQLite3Database* db, const wxString& DbFileName)
         return false;
     }
 
-    wxProgressDialog progress(_("MMEX database upgrade"), _("Upgrading database..."));
-    progress.Pulse();
-
     for (; ver < dbLatestVersion; ver++)
     {
         BackupDB(DbFileName, dbUpgrade::BACKUPTYPE::VERSION_UPGRADE, 999, ver);
@@ -153,7 +150,6 @@ bool dbUpgrade::UpgradeDB(wxSQLite3Database* db, const wxString& DbFileName)
             return false;
     }
 
-    progress.Destroy();
     wxMessageBox(wxString::Format(_("MMEX database successfully upgraded to version %i"), ver), _("MMEX database upgrade"), wxOK | wxICON_INFORMATION);
 
     return true;

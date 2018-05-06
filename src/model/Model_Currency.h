@@ -29,7 +29,7 @@ class Model_Currency : public Model<DB_Table_CURRENCYFORMATS_V1>
 public:
     using Model<DB_Table_CURRENCYFORMATS_V1>::remove;
 
-    enum CURRTYPE { CRYPTO = 0, FIAT};
+    enum CURRTYPE { FIAT = 0, CRYPTO};
 
     static const std::vector<std::pair<CURRTYPE, wxString> > CURRTYPE_CHOICES;
 
