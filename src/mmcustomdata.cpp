@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmcustomdata.h"
 #include "constants.h"
 #include "model/Model_CustomFieldData.h"
+#include "model/Model_Attachment.h"
 
 #include <wx/numformatter.h>
 #include <wx/timectrl.h>
@@ -45,7 +46,7 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
 
 mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, wxWindowID base_id)
     : mmCustomData(dialog
-        , "Transaction"
+        , Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)
         , ref_id)
 {
     SetBaseID(base_id);
