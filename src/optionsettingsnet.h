@@ -45,7 +45,6 @@ private:
     void Create();
 
     void OnProxyChanged(wxCommandEvent& event);
-    void OnUpdateCheckChanged(wxCommandEvent& event);
     void OnEnableWebserverChanged(wxCommandEvent& event);
 
     void OnWebAppTest(wxCommandEvent& event);
