@@ -823,12 +823,15 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
     {
         m_trans_filter_dlg->setAccountToolTip(_("Select account used in transfer transactions"));
         m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK 
-            && m_trans_filter_dlg->somethingSelected());
+            && m_trans_filter_dlg->SomethingSelected());
     }
     else 
     {
-        if (m_transFilterActive == false) return;
+        if (m_transFilterActive == false) {
+            return;
+        }
         m_transFilterActive = false;
+        m_trans_filter_dlg->ResetFilterStatus();
     }
     
     m_bitmapTransFilter->SetBitmap(m_transFilterActive 

@@ -33,7 +33,7 @@ const std::vector<std::pair<Model_CustomField::FIELDTYPE, wxString> > Model_Cust
 };
 
 Model_CustomField::Model_CustomField()
-: Model<DB_Table_CUSTOMFIELD_V1>()
+    : Model<DB_Table_CUSTOMFIELD_V1>()
 {
 }
 
@@ -173,7 +173,7 @@ wxArrayString Model_CustomField::getChoices(const wxString& Properties)
 {
     wxArrayString choices;
     Document json_doc;
-    if (!json_doc.Parse(Properties.c_str()).HasParseError()) 
+    if (!json_doc.Parse(Properties.c_str()).HasParseError())
     {
         if (json_doc.HasMember("Choice") && json_doc["Choice"].IsArray())
         {

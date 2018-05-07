@@ -561,7 +561,7 @@ void mmTransDialog::CreateControls()
 
     wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel
         , ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROWSIMPLE));
-    itemButtonHide->SetToolTip(_("Open custom fields window"));
+    itemButtonHide->SetToolTip(_("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
         itemButtonHide->Hide();
     }

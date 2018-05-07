@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 #include "defs.h"
 #include "model/Model_CustomField.h"
+#include "model/Model_Checking.h"
 
 
 class wxDatePickerCtrl;
@@ -36,25 +37,39 @@ private:
     const wxString m_ref_type;
     int m_ref_id;
     Model_CustomField::Data_Set m_fields;
-    std::map<wxWindowID, int> m_data_changed;
-    wxWindowID m_init_control_id;
+    std::map<wxWindowID, wxString> m_data_changed;
+    void OnStringChanged(wxCommandEvent& event);
     void OnDateChanged(wxDateEvent& event);
     void OnTimeChanged(wxDateEvent& event);
     void OnMultiChoice(wxCommandEvent& event);
+    void OnSingleChoice(wxCommandEvent& event);
     void OnCheckBoxChanged(wxCommandEvent& event);
+    void OnCheckBoxActivated(wxCommandEvent& event);
     void OnDoubleChanged(wxCommandEvent& event);
     void OnIntegerChanged(wxCommandEvent& event);
     bool IsWidgetChanged(wxWindowID id);
-    void SetWidgetChanged(wxWindowID id);
+    void SetWidgetChanged(wxWindowID id, const wxString& data);
+    void ResetWidgetChanged(wxWindowID id);
+    wxWindowID m_init_control_id;
+    wxWindowID m_init_label_id;
 
 public:
     mmCustomData();
     bool FillCustomFields(wxBoxSizer* box_sizer);
     bool SaveCustomValues(int ref_id);
+    const wxString GetWidgetData(int type, wxWindowID controlID);
+    int GetWidgetType(wxWindowID controlID);
     size_t GetCustomFieldsCount() { return m_fields.size(); }
     size_t GetActiveCustomFieldsCount();
+    std::map<wxString, wxString> GetActiveCustomFields();
     void SetBaseID(wxWindowID id) { m_init_control_id = id; }
-
+    wxWindowID GetBaseID() { return m_init_control_id; }
+    void SetLabelID(wxWindowID id) { m_init_label_id = id; }
+    wxWindowID GetLabelID() { return m_init_label_id; }
+    void SetRefID(int ref_id) { m_ref_id = -1; } //TODO:
+    bool IsSomeWidgetChanged();
+    bool IsDataFound(const Model_Checking::Full_Data &tran);
+    void ResetWidgetsChanged();
 };
 
 class mmCustomDataTransaction : public mmCustomData

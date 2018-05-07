@@ -79,7 +79,7 @@ wxArrayString Model_CustomFieldData::allValue(const int FieldID)
 
 bool Model_CustomFieldData::DeleteAllData(const wxString& RefType, int RefID)
 {
-    const auto& fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(RefType));
+    const auto& fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
 
     this->Savepoint();
     for (const auto& field : fields)

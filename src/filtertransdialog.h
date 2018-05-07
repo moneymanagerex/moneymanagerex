@@ -23,6 +23,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "reports/mmDateRange.h"
 #include "reports/htmlbuilder.h"
+//#include "model/Model_CustomFieldData.h"
+#include "mmcustomdata.h"
 
 #include <wx/dialog.h>
 #include "mmTextCtrl.h"
@@ -36,6 +38,7 @@ class mmFilterTransactionsDialog: public wxDialog
 public:
     /// Constructors
     mmFilterTransactionsDialog();
+    ~mmFilterTransactionsDialog();
     mmFilterTransactionsDialog(wxWindow* parent, int account_id);
 
     virtual int ShowModal();
@@ -43,7 +46,8 @@ public:
     bool checkAll(const Model_Checking::Full_Data &tran, int accountID);
     bool checkAll(const Model_Billsdeposits::Full_Data &tran);
     void getDescription(mmHTMLBuilder &hb);
-    bool somethingSelected();
+    bool SomethingSelected();
+    void ResetFilterStatus();
     void setAccountToolTip(const wxString& tip) const;
     bool getStatusCheckBox();
     bool getAccountCheckBox();
@@ -104,9 +108,10 @@ private:
     void OnButtoncancelClick(wxCommandEvent& event);
     void SaveSettings();
     void OnButtonClearClick(wxCommandEvent& event);
+    void OnMoreFields(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
     void datePresetMenu(wxMouseEvent& event);
-    void datePresetMenuSelected(wxCommandEvent& event);
+    void DatePresetMenuSelected(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
 
@@ -154,4 +159,9 @@ private:
     wxString refAccountStr_;
     double m_min_amount;
     double m_max_amount;
+    int m_settings_id;
+    void SetSettingsID(int id) { m_settings_id = id; }
+    int GetSettingsID() { return m_settings_id; }
+
+    mmCustomData* m_custom_fields;
 };
