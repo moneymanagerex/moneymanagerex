@@ -36,11 +36,11 @@ const wxString mmex::version::generateProgramVersion(int vMajor, int vMinor, int
     if (vAlpha >= 0 || vBeta >= 0 || vRC >= 0)
     {
         if (vAlpha >= 0)
-            suffix = vAlpha < 1 ? "-Alpha" : wxString::Format("-Alpha.%i", vAlpha);
+            suffix += "-alpha" + (vAlpha > 0 ? wxString::Format(".%i", vAlpha) : "");
         if (Beta >= 0)
-            suffix = vBeta < 1 ? "-Beta" : wxString::Format("-Beta.%i", vBeta);
+            suffix += "-beta" + (vBeta < 1 ? wxString::Format(".%i", vBeta) : "");
         if (vRC >= 0)
-            suffix = vRC < 1 ? "-RC" : wxString::Format("-RC.%i", vRC);
+            suffix = "-rc" + (vRC < 1 ? wxString::Format(".%i", vRC) : "");
     }
     return wxString::Format("%i.%i.%i%s", vMajor, vMinor, vPatch, suffix);
 }
@@ -185,10 +185,7 @@ const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wx
 }
 
 const wxString mmex::weblink::WebSite = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org", "Website");
-const wxString mmex::weblink::Update = wxString::Format("http://www.moneymanagerex.org/version.php?Version=%s", mmex::version::string);
-const wxString mmex::weblink::UpdateLinks = wxString::Format("http://www.moneymanagerex.org/version.php?Version=%s&Links=true", mmex::version::string);
-const wxString mmex::weblink::Changelog = wxString::Format("http://www.moneymanagerex.org/version.php?Version=%s&ChangeLog=", mmex::version::string);
-const wxString mmex::weblink::Download = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/download", "Download");
+const wxString mmex::weblink::Releases = "https://api.github.com/repos/moneymanagerex/moneymanagerex/releases";
 const wxString mmex::weblink::News = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/news", "News");
 const wxString mmex::weblink::NewsRSS = "http://www.moneymanagerex.org/news?format=feed";
 const wxString mmex::weblink::Forum = mmex::weblink::addReferralToURL("http://forum.moneymanagerex.org", "Forum");

@@ -19,6 +19,7 @@
 
 #include <wx/wizard.h>
 #include <wx/frame.h>
+#include "rapidjson/document.h"
 #include "option.h"
 
 class mmUpdate
@@ -26,17 +27,15 @@ class mmUpdate
 public:
     static void checkUpdates(const bool bSilent, wxFrame *frame);
 
-private:
-    static const bool IsUpdateAvailable(const bool bSilent, wxString& new_version);
 };
 
 class mmUpdateWizard : public wxWizard
 {
 public:
-    mmUpdateWizard(wxFrame *frame, const wxString& new_version);
+    mmUpdateWizard(wxFrame *frame, const rapidjson::Value& new_version);
     void RunIt(bool modal);
 
-    wxString m_new_version;
+    const rapidjson::Value& m_new_version;
 
 private:
     wxWizardPageSimple* page1;
