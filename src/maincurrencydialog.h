@@ -51,6 +51,7 @@ private:
         CURR_SYMBOL,
         CURR_NAME,
         BASE_RATE,
+        CURR_HIST,
         ID_DIALOG = wxID_HIGHEST + 600,
         HISTORY_ADD,
         HISTORY_DELETE,
@@ -95,8 +96,8 @@ private:
     void OnItemRightClick(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     bool SetBaseCurrency(int& baseCurrencyID);
-	bool GetOnlineRates(wxString &msg, int curr_id = -1);
-	bool GetOnlineHistory(std::map<wxDateTime, double> &historical_rates, const wxString &symbol, wxString &msg);
+    bool GetOnlineRates(wxString &msg, int curr_id = -1);
+    bool GetOnlineHistory(std::map<wxDateTime, double> &historical_rates, const wxString &symbol, wxString &msg);
 
     wxDataViewListCtrl* currencyListBox_;
     std::map<int, wxString> ColName_;
@@ -110,7 +111,7 @@ private:
     mmTextCtrl* valueTextBox_;
     wxStaticBox* historyStaticBox_;
     wxButton* historyButtonAdd_;
-	wxBitmapButton* m_button_download_history;
+    wxBitmapButton* m_button_download_history;
     wxButton* historyButtonDelete_;
 
     int m_currency_id;

@@ -222,3 +222,13 @@ void mmErrorDialogs::InvalidAmount(wxWindow * object)
     tip.SetIcon(wxICON_WARNING);
     tip.ShowFor(object);
 }
+
+void mmErrorDialogs::InvalidChoice(wxChoice *choice)
+{
+    const wxString& errorHeader = _("Invalid Choice");
+    const wxString& errorMessage = _("Please select a valid choice");
+
+    wxRichToolTip tip(errorHeader, errorMessage);
+    tip.SetIcon(wxICON_WARNING);
+    tip.ShowFor(choice);
+}

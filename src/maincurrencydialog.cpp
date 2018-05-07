@@ -65,10 +65,11 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     bEnableSelect_(bEnableSelect),
     m_static_dialog(false)
 {
-    ColName_[CURR_BASE]   = " ";
+    ColName_[CURR_BASE]   = _("Base");
     ColName_[CURR_SYMBOL] = _("Symbol");
     ColName_[CURR_NAME]   = _("Name");
     ColName_[BASE_RATE]   = _("Last Rate");
+    ColName_[CURR_HIST] = _("Hist.");
 
     m_currency_id = currencyID == -1 ? Option::instance().BaseCurrency() : currencyID;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -119,6 +120,7 @@ void mmMainCurrencyDialog::fillControls()
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(wxGetTranslation(currency.CURRENCYNAME)));
         data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID)));
+        data.push_back(wxVariant(currency.HISTORIC == 1));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
         if (m_currency_id == currencyID)
         {
@@ -150,7 +152,7 @@ void mmMainCurrencyDialog::CreateControls()
     itemBoxSizer22->Add(update_button, g_flagsH);
     update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
-    update_button->SetToolTip(_("Online update currency rate"));
+    update_button->SetToolTip(_("Update latest rate only for all used currencies"));
 
     itemBoxSizer22->Add(new wxStaticText(this, wxID_STATIC
         , _("Online Update")), g_flagsH);
@@ -183,9 +185,10 @@ void mmMainCurrencyDialog::CreateControls()
     currencyListBox_->AppendToggleColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
     currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60
         , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
-    currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 170
+    currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 140
         , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
     currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_EDITABLE, 80);
+    currencyListBox_->AppendToggleColumn(ColName_[CURR_HIST], wxDATAVIEW_CELL_INERT, 30);
 
     itemBoxSizer3->Add(currencyListBox_, g_flagsExpand);
 
@@ -213,7 +216,11 @@ void mmMainCurrencyDialog::CreateControls()
 
     wxButton* itemButtonSelect = new wxButton(buttonsPanel, wxID_SELECTALL, _("&Select"));
     itemBoxSizer9->Add(itemButtonSelect, wxSizerFlags(g_flagsExpand).Proportion(4));
-    //itemButtonSelect->SetToolTip(_("Select the currently selected currency as the selected currency for the account"));
+
+    if(Model_Account::instance().all().size() > 0)
+        itemButtonSelect->SetToolTip(_("Select the currently selected currency as the selected currency for the account"));
+    else
+        itemButtonSelect->SetToolTip(_("Select the currently selected currency as base currency"));
 
     if (bEnableSelect_ == false)
         itemButtonSelect->Disable();
@@ -462,14 +469,12 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
     {
         case MENU_ITEM1:
         {
-            if (!SetBaseCurrency(m_currency_id))
-                mmErrorDialogs::MessageError(this
-                    , _("Unable to update history currency rates. "
-                        "Please update them manually!")
-                    , _("Currency history error"));
-            itemButtonDelete_->Disable();
-            fillControls();
-            ShowCurrencyHistory();
+            if (SetBaseCurrency(m_currency_id))
+            {
+                itemButtonDelete_->Disable();
+                fillControls();
+                ShowCurrencyHistory();
+            }
         } break;
         case MENU_ITEM2:
         {
@@ -608,15 +613,13 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
     wxString base_currency_symbol;
     if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
     {
-        return mmErrorDialogs::MessageError(this
-            , _("Could not find base currency symbol!")
-            , _("Currency history error"));
+        wxASSERT(false);
+        return mmErrorDialogs::MessageError(this, _("Could not find base currency symbol!"), _("Currency history error"));
     }
 
     wxString msg;
     std::map<wxDateTime, double> historical_rates;
-    bool UpdStatus = GetOnlineHistory(historical_rates
-        , CurrentCurrency->CURRENCY_SYMBOL.Upper(), msg);
+    bool UpdStatus = GetOnlineHistory(historical_rates, CurrentCurrency->CURRENCY_SYMBOL, msg);
 
     if (!UpdStatus)
     {
@@ -731,27 +734,24 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     if (baseCurrencyID == baseCurrencyOLD)
         return true;
 
+    if (Model_CurrencyHistory::instance().all().size() > 0
+        && Model_Currency::instance().find(Model_Currency::BASECONVRATE(1, NOT_EQUAL)).size() > 0)
+    {
+        if (wxMessageBox(_("Setting a new base currency will delete all static and historic rates:") + "\n"
+            + _("it's possible to re-download them after setting the new base currency.") + "\n\n"
+            + _("Do you want to continue?"), _("Currency Dialog"), wxYES_NO | wxYES_DEFAULT | wxICON_ERROR)
+            != wxYES)
+        {
+            return false;
+        }
+    }
+
     Option::instance().BaseCurrency(baseCurrencyID);
 
-    Model_Currency::Data* BaseCurrency = Model_Currency::instance().get(baseCurrencyID);
-    BaseCurrency->BASECONVRATE = 1;
-    Model_Currency::instance().save(BaseCurrency);
+    Model_Currency::instance().ResetBaseConversionRates();
+    Model_CurrencyHistory::instance().ResetCurrencyHistory();
 
-    Model_Currency::Data* BaseCurrencyOLD = Model_Currency::instance().get(baseCurrencyOLD);
-    if (BaseCurrencyOLD)
-    {
-        BaseCurrencyOLD->BASECONVRATE = 1;
-        Model_Currency::instance().save(BaseCurrencyOLD);
-    }
-
-    Model_CurrencyHistory::instance().Savepoint();
-    for (const auto& r : Model_CurrencyHistory::instance()
-        .find(Model_CurrencyHistory::CURRENCYID(baseCurrencyID)))
-    {
-        Model_CurrencyHistory::instance().remove(r.id());
-    }
-    Model_CurrencyHistory::instance().ReleaseSavepoint();
-
+    ShowCurrencyHistory();
     return true;
 }
 
@@ -769,19 +769,19 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
     std::vector<wxString> fiat;
     std::vector<wxString> crypto;
 
-    auto currencies = Model_Currency::instance()
-        .find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
+    const auto& crypto_type = Model_Currency::currtype_desc(Model_Currency::CRYPTO);
+    auto currencies = Model_Currency::instance().find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
     for (const auto &currency : currencies)
     {
         if (curr_id > 0 && currency.CURRENCYID != curr_id)
             continue;
         if (curr_id < 0 && !Model_Account::is_used(currency))
             continue;
-        const auto symbol = currency.CURRENCY_SYMBOL.Upper();
+        const auto symbol = currency.CURRENCY_SYMBOL;
         if (symbol.IsEmpty())
             continue;
 
-        if (Model_Account::is_crypto(currency))
+        if (currency.CURRENCY_TYPE == crypto_type)
             crypto.push_back(symbol);
         else
             fiat.push_back(symbol);
@@ -793,8 +793,7 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 
     if (!fiat.empty())
     {
-        if (!get_yahoo_prices(fiat, currency_data
-            , base_currency_symbol, output, yahoo_price_type::FIAT))
+        if (!get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::FIAT))
         {
             msg = output;
             mmErrorDialogs::MessageError(this, msg, _("Online update currency rate"));
@@ -803,7 +802,24 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
 
     if (!crypto.empty())
     {
-        if (!get_crypto_currency_prices(crypto, currency_data, output))
+        double usd_rate = 1;
+        if (base_currency_symbol != "USD")
+        {
+            usd_rate = 0;
+            std::map<wxString, double> usd_data;
+            std::vector<wxString> usd_sign = { "USD" };
+            if (!get_yahoo_prices(usd_sign, usd_data, base_currency_symbol, output, yahoo_price_type::FIAT))
+            {
+                msg = output;
+                mmErrorDialogs::MessageError(this, msg, _("Online update currency rate"));
+            }
+            else
+            {
+                usd_rate = usd_data["USD"];
+            }
+        }
+
+        if (!get_crypto_currency_prices(crypto, usd_rate, currency_data, output))
         {
             msg = output;
             mmErrorDialogs::MessageError(this, msg, _("Online update currency rate"));
@@ -826,7 +842,7 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
         bool unused_currency = cbShowAll_->IsChecked() && !Model_Account::is_used(currency);
         if (unused_currency) continue;
 
-        const wxString currency_symbol = currency.CURRENCY_SYMBOL.Upper();
+        const wxString currency_symbol = currency.CURRENCY_SYMBOL;
         if (!currency_symbol.IsEmpty())
         {
             if (currency_data.find(currency_symbol) != currency_data.end())
@@ -842,7 +858,6 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
         }
     }
 
-    //Model_Currency::instance().save(currencies);  BASECONVRATE IS FIXED AND USED IF HISTORY NOT FOUND 
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 
     return true;
@@ -934,9 +949,7 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
         else
         {
             wxDateTime dt = wxDateTime((time_t)timestamp[i].GetInt());
-            wxLogDebug("%s %s"
-                , dt.FormatISODate()
-                , wxDateTime::GetWeekDayName(dt.GetWeekDay()));
+            wxLogDebug("%s %s", dt.FormatISODate(), wxDateTime::GetWeekDayName(dt.GetWeekDay()));
         }
     }
 

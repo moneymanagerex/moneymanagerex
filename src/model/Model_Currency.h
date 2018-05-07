@@ -28,6 +28,11 @@ class Model_Currency : public Model<DB_Table_CURRENCYFORMATS_V1>
 {
 public:
     using Model<DB_Table_CURRENCYFORMATS_V1>::remove;
+
+    enum CURRTYPE { FIAT = 0, CRYPTO};
+
+    static const std::vector<std::pair<CURRTYPE, wxString> > CURRTYPE_CHOICES;
+
     Model_Currency();
     ~Model_Currency();
 
@@ -49,12 +54,11 @@ public:
 public:
     wxArrayString all_currency_names();
     wxArrayString all_currency_symbols();
+    wxArrayString all_currency_types();
 
     /** Return the Data record of the base currency.*/
     static Data* GetBaseCurrency();
-	static bool GetBaseCurrencySymbol(wxString& base_currency_symbol);
-
-    static bool GetUSDrate(double& rate);
+    static bool GetBaseCurrencySymbol(wxString& base_currency_symbol);
 
     /** Resets all BASECONVRATE to 1 */
     static void ResetBaseConversionRates();
@@ -70,9 +74,12 @@ public:
 
     static std::map<wxDateTime,int> DateUsed(int CurrencyID);
 
+    /** Return the description of the choice type */
+    static wxString currtype_desc(const int CurrTypeEnum);
+
     /** Add prefix and suffix characters to string value */
     static wxString toCurrency(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
- 
+
     /** convert value to a string with required precision. Currency is used only for percision */
     static wxString toStringNoFormatting(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
     /** convert value to a currency formatted string with required precision */
@@ -83,5 +90,6 @@ public:
     static int precision(const Data* r);
     static int precision(const Data& r);
     static int precision(int account_id);
+    static bool BoolOf(int value);
 };
 #endif // 

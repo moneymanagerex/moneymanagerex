@@ -83,17 +83,17 @@ bool dbUpgrade::UpgradeToVersion(wxSQLite3Database * db, int version)
         }
         catch (const wxSQLite3Exception& e)
         {
-            wxMessageBox(wxString::Format(_("MMEX database upgrade to version %i failed!"), version) + "\n\n"
-                + _("Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support") + "\n\n"
-                + e.GetMessage(), _("MMEX database upgrade"), wxOK | wxICON_ERROR);
+            UpgradeFailedMessage(e.GetMessage(), _("upgrade"), version);
             db->Rollback("MMEX_Upgrade");
             return false;
         }
     }
+
     if (!InitializeVersion(db, version))
         return false;
     
     db->ReleaseSavepoint("MMEX_Upgrade");
+
     return true;
 }
 
@@ -105,8 +105,10 @@ bool dbUpgrade::InitializeVersion(wxSQLite3Database* db, int version)
         db->ExecuteUpdate("PRAGMA application_id = 0x4d4d4558;");
         return true;
     }
-    catch (const wxSQLite3Exception& /*e*/)
+    catch (const wxSQLite3Exception& e)
     {
+        UpgradeFailedMessage(e.GetMessage(), _("initialization"), version);
+        db->Rollback("MMEX_Upgrade");
         return false;
     }
 }
@@ -137,10 +139,27 @@ bool dbUpgrade::UpgradeDB(wxSQLite3Database* db, const wxString& DbFileName)
             return false;
     }
 
-    wxMessageBox(wxString::Format(_("MMEX database successfully upgraded to version %i"), ver) + "\n\n"
-        + _("We suggest a database optimization under Tools -> Database -> Optimize"), _("MMEX database upgrade"), wxOK | wxICON_INFORMATION);
+    try
+    {
+        db->Vacuum();
+    }
+    catch (const wxSQLite3Exception& e)
+    {
+        wxMessageBox(_("MMEX database vacuum failed!") + "\n\n"
+            + _("MMEX still should work, but try to re-optimize it from Tools -> Database -> Optimize") + "\n\n"
+            + e.GetMessage(), _("MMEX database upgrade"), wxOK | wxICON_WARNING);
+    }
+
+    wxMessageBox(wxString::Format(_("MMEX database successfully upgraded to version %i"), ver), _("MMEX database upgrade"), wxOK | wxICON_INFORMATION);
 
     return true;
+}
+
+void dbUpgrade::UpgradeFailedMessage(const wxString& error, const wxString& step, int version)
+{
+    wxMessageBox(wxString::Format(_("MMEX database %s to version %i failed!"), step, version) + "\n\n"
+        + _("Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support") + "\n\n"
+        + error, _("MMEX database upgrade"), wxOK | wxICON_ERROR);
 }
 
 void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKeep, int UpgradeVersion)
