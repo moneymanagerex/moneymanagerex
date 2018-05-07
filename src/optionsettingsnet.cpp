@@ -29,7 +29,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 wxBEGIN_EVENT_TABLE(OptionSettingsNet, wxPanel)
     EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_PROXY, OptionSettingsNet::OnProxyChanged)
     EVT_CHECKBOX(ID_DIALOG_OPTIONS_ENABLE_WEBSERVER, OptionSettingsNet::OnEnableWebserverChanged)
-    EVT_CHECKBOX(ID_DIALOG_OPTIONS_UPDATES_CHECK, OptionSettingsNet::OnUpdateCheckChanged)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_WEBAPP_TEST, OptionSettingsNet::OnWebAppTest)
 wxEND_EVENT_TABLE()
 /*******************************************************/
@@ -169,13 +168,13 @@ void OptionSettingsNet::Create()
     timeoutStaticBoxSizer->Add(flex_sizer5, g_flagsV);
 
     //Updates check
-    wxStaticBox* updateStaticBox = new wxStaticBox(this, wxID_STATIC, _("Updates"));
+    wxStaticBox* updateStaticBox = new wxStaticBox(this, wxID_STATIC, _("Check for Updates"));
     SetBoldFont(updateStaticBox);
     wxStaticBoxSizer* updateStaticBoxSizer = new wxStaticBoxSizer(updateStaticBox, wxVERTICAL);
     networkPanelSizer->Add(updateStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     m_check_update = new wxCheckBox(this, ID_DIALOG_OPTIONS_UPDATES_CHECK
-        , _("Check for updates at StartUp"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        , _("Check at StartUp"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_check_update->SetValue(GetIniDatabaseCheckboxValue("UPDATECHECK", true));
     m_check_update->SetToolTip(_("Enable to automatically check if new MMEX version is available at StartUp"));
 
@@ -185,17 +184,17 @@ void OptionSettingsNet::Create()
     m_update_source = new wxChoice(this, wxID_ANY
         , wxDefaultPosition, wxSize(150, -1), UpdatesType_);
     m_update_source->SetSelection(Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0));
-    m_update_source->SetToolTip(_("Updates source"));
+    m_update_source->SetToolTip(_("Select updates source channel"));
 
-    wxFlexGridSizer* UpdateSourceStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 0);
-    UpdateSourceStaticBoxSizerGrid->Add(m_check_update, g_flagsH);
+    wxFlexGridSizer* UpdateSourceStaticBoxSizerGrid = new wxFlexGridSizer(0, 3, 0, 0);
+    UpdateSourceStaticBoxSizerGrid->Add(new wxStaticText(this, wxID_STATIC, _("Select preferred version:")), g_flagsH);
     UpdateSourceStaticBoxSizerGrid->Add(m_update_source, g_flagsH);
+    UpdateSourceStaticBoxSizerGrid->Add(m_check_update, g_flagsH);
     updateStaticBoxSizer->Add(UpdateSourceStaticBoxSizerGrid, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxCommandEvent evt;
     OptionSettingsNet::OnProxyChanged(evt);
     OptionSettingsNet::OnEnableWebserverChanged(evt);
-    OptionSettingsNet::OnUpdateCheckChanged(evt);
     SetSizer(networkPanelSizer);
 }
 
@@ -207,11 +206,6 @@ void OptionSettingsNet::OnProxyChanged(wxCommandEvent& event)
 void OptionSettingsNet::OnEnableWebserverChanged(wxCommandEvent& event)
 {
     m_webserver_port->Enable(m_webserver_checkbox->GetValue());
-}
-
-void OptionSettingsNet::OnUpdateCheckChanged(wxCommandEvent& event)
-{
-    m_update_source->Enable(m_check_update->GetValue());
 }
 
 void OptionSettingsNet::OnWebAppTest(wxCommandEvent& /*event*/)
