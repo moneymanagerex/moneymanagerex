@@ -929,11 +929,14 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
         if (quotes_closed[i].IsFloat())
         {
             double rate = quotes_closed[i].GetFloat();
-            history[time] = rate;
-            if (first_date > time)
+            if (rate != 1) // Skip rates = 1 (Yahoo returns 1 with invalid Symbols)
             {
-                first_date = time;
-                first_price = rate;
+                history[time] = rate;
+                if (first_date > time)
+                {
+                    first_date = time;
+                    first_price = rate;
+                }
             }
         }
         else
