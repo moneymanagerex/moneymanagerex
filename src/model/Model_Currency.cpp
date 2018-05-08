@@ -106,17 +106,6 @@ bool Model_Currency::GetBaseCurrencySymbol(wxString& base_currency_symbol)
     return false;
 }
 
-void Model_Currency::ResetBaseConversionRates()
-{
-    Model_Currency::instance().Savepoint();
-    for (auto currency : Model_Currency::instance().all())
-    {
-        currency.BASECONVRATE = 1;
-        Model_Currency::instance().save(&currency);
-    }
-    Model_Currency::instance().ReleaseSavepoint();
-}
-
 Model_Currency::Data* Model_Currency::GetCurrencyRecord(const wxString& currency_symbol)
 {
     Model_Currency::Data* record = this->get_one(CURRENCY_SYMBOL(currency_symbol));

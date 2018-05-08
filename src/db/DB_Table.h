@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-04 19:10:34.963344.
+ *          AUTO GENERATED at 2018-05-08 08:04:22.353000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -262,15 +262,6 @@ struct SorterByATTACHMENTID
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.ATTACHMENTID) < (y.ATTACHMENTID);
-    }
-};
-
-struct SorterByBASECONVRATE
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return (x.BASECONVRATE) < (y.BASECONVRATE);
     }
 };
 

@@ -998,8 +998,8 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
                 Model_Currency::Data* from_currency = Model_Account::currency(acc);
                 Model_Currency::Data* to_currency = Model_Account::currency(to_account);
 
-                double rateFrom = from_currency->BASECONVRATE;
-                double rateTo = to_currency->BASECONVRATE;
+                const double rateFrom = Model_CurrencyHistory::getDayRate(from_currency->CURRENCYID, m_bill_data.TRANSDATE);
+                const double rateTo = Model_CurrencyHistory::getDayRate(to_currency->CURRENCYID, m_bill_data.TRANSDATE);
 
                 double convToBaseFrom = rateFrom * m_bill_data.TRANSAMOUNT;
                 m_bill_data.TOTRANSAMOUNT = convToBaseFrom / rateTo;

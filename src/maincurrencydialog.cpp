@@ -608,14 +608,12 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
 {
     if (m_static_dialog) return;    //Abort when trying to set base currency
     Model_Currency::Data* CurrentCurrency = Model_Currency::instance().get(m_currency_id);
-    if (!CurrentCurrency) return; //No currency selected
+    if (!CurrentCurrency) {
+        return mmErrorDialogs::MessageError(this, _("No currency selected!"), _("Currency history error"));
+    }
 
     wxString base_currency_symbol;
-    if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
-    {
-        wxASSERT(false);
-        return mmErrorDialogs::MessageError(this, _("Could not find base currency symbol!"), _("Currency history error"));
-    }
+    wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Could not find base currency symbol");
 
     wxString msg;
     std::map<wxDateTime, double> historical_rates;
@@ -653,8 +651,7 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
                 {
                     const wxDate date = entry.first;
                     wxLogDebug("%s", date.FormatISODate());
-                    Model_CurrencyHistory::instance().addUpdate(m_currency_id
-                        , date, historical_rates[date], Model_CurrencyHistory::ONLINE);
+                    Model_CurrencyHistory::instance().addUpdate(m_currency_id, date, historical_rates[date], Model_CurrencyHistory::ONLINE);
                 }
 
             }
@@ -663,8 +660,7 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
         {
             for (auto &entry : historical_rates)
             {
-                Model_CurrencyHistory::instance().addUpdate(m_currency_id
-                    , entry.first, entry.second, Model_CurrencyHistory::ONLINE);
+                Model_CurrencyHistory::instance().addUpdate(m_currency_id, entry.first, entry.second, Model_CurrencyHistory::ONLINE);
             }
         }
         Model_CurrencyHistory::instance().ReleaseSavepoint();
@@ -734,10 +730,9 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     if (baseCurrencyID == baseCurrencyOLD)
         return true;
 
-    if (Model_CurrencyHistory::instance().all().size() > 0
-        && Model_Currency::instance().find(Model_Currency::BASECONVRATE(1, NOT_EQUAL)).size() > 0)
+    if (Model_CurrencyHistory::instance().all().size() > 0)
     {
-        if (wxMessageBox(_("Setting a new base currency will delete all static and historic rates:") + "\n"
+        if (wxMessageBox(_("Setting a new base currency will delete all historic rates:") + "\n"
             + _("it's possible to re-download them after setting the new base currency.") + "\n\n"
             + _("Do you want to continue?"), _("Currency Dialog"), wxYES_NO | wxYES_DEFAULT | wxICON_ERROR)
             != wxYES)
@@ -748,7 +743,6 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
 
     Option::instance().BaseCurrency(baseCurrencyID);
 
-    Model_Currency::instance().ResetBaseConversionRates();
     Model_CurrencyHistory::instance().ResetCurrencyHistory();
 
     ShowCurrencyHistory();
@@ -847,13 +841,9 @@ bool mmMainCurrencyDialog::GetOnlineRates(wxString &msg, int curr_id)
         {
             if (currency_data.find(currency_symbol) != currency_data.end())
             {
-                msg << wxString::Format("%s\t: %0.6f -> %0.6f\n"
-                    , currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol]);
-                currency.BASECONVRATE = currency_data[currency_symbol];
-
-                Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID,
-                    today, currency.BASECONVRATE, Model_CurrencyHistory::ONLINE);
-                Model_Currency::instance().save(&currency);
+                const double new_rate = currency_data[currency_symbol];
+                msg << wxString::Format("%s\t -> %0.6f\n", currency_symbol, new_rate);
+                Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID, today, new_rate, Model_CurrencyHistory::ONLINE);
             }
         }
     }
@@ -876,7 +866,7 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
 
     const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
         , wxString::Format("%s%s=X", symbol, base_currency_symbol)
-        , "1y", "1d"); //TODO: ask range and interval
+        , "5y", "1d"); //TODO: ask range and interval
 
     wxString json_data;
     auto err_code = site_content(URL, json_data);

@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-06 14:41:55.477544.
+ *          AUTO GENERATED at 2018-05-08 17:42:48.767000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -18,7 +18,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 12;
+const int dbLatestVersion = 13;
 
 const std::vector<wxString> dbUpgradeQuery =
 {
@@ -1305,6 +1305,42 @@ const std::vector<wxString> dbUpgradeQuery =
 		UPDATE REPORT SET TEMPLATECONTENT = REPLACE(TEMPLATECONTENT, '_V1', '' ) WHERE TEMPLATECONTENT LIKE '%_V1%';
 		
 		-- finish
+		
+		PRAGMA user_version = 12;)",
+
+	// Upgrade to version 13
+	R"(-- remove BASECONVRATE
+		
+		CREATE TABLE CURRENCYFORMATS_NEW(
+		CURRENCYID integer primary key
+		, CURRENCYNAME TEXT COLLATE NOCASE NOT NULL
+		, PFX_SYMBOL TEXT
+		, SFX_SYMBOL TEXT
+		, DECIMAL_POINT TEXT
+		, GROUP_SEPARATOR TEXT
+		, SCALE integer
+		, CURRENCY_SYMBOL TEXT COLLATE NOCASE NOT NULL UNIQUE
+		, CURRENCY_TYPE TEXT /* Fiat, Crypto */
+		, HISTORIC integer DEFAULT 0 /* 1 if no longer official */
+		);
+		
+		INSERT INTO CURRENCYFORMATS_NEW SELECT
+		CURRENCYID
+		, CURRENCYNAME
+		, PFX_SYMBOL
+		, SFX_SYMBOL
+		, DECIMAL_POINT
+		, GROUP_SEPARATOR
+		, SCALE
+		, CURRENCY_SYMBOL
+		, CURRENCY_TYPE
+		, HISTORIC
+		FROM CURRENCYFORMATS;
+		
+		DROP INDEX IDX_CURRENCYFORMATS_SYMBOL;
+		DROP TABLE CURRENCYFORMATS;
+		ALTER TABLE CURRENCYFORMATS_NEW RENAME TO CURRENCYFORMATS;
+		CREATE INDEX IDX_CURRENCYFORMATS_SYMBOL ON CURRENCYFORMATS(CURRENCY_SYMBOL);
 		
 		PRAGMA user_version = 12;)",
 

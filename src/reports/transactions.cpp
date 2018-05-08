@@ -81,7 +81,8 @@ wxString mmReportTransactions::getHTMLText()
 
     hb.startTbody();
 
-    std::map<int, double> total;
+    std::map<int, double> total; //Store transaction amount with original currency
+    std::map<int, double> total_in_base_curr; //Store transactions amount daily converted to base currency
 
     const Model_Currency::Data* currency = account
         ? Model_Account::currency(account)
@@ -122,12 +123,13 @@ wxString mmReportTransactions::getHTMLText()
         //Notes
         hb.addTableCell(AttachmentsLink + transaction.NOTES);
 
-        // Get the exchange rate for the account
         if (monoAcc)
         {
-            double amount = Model_Checking::balance(transaction, account->ACCOUNTID);
+            const double amount = Model_Checking::balance(transaction, account->ACCOUNTID);
+            const double convRate = Model_CurrencyHistory::getDayRate(account->CURRENCYID, transaction.TRANSDATE);
             hb.addCurrencyCell(amount, currency);
             total[currency->CURRENCYID] += amount;
+            total_in_base_curr[currency->CURRENCYID] += amount * convRate;
         }
         else
         {
@@ -135,10 +137,11 @@ wxString mmReportTransactions::getHTMLText()
             if (acc)
             {
                 const Model_Currency::Data* curr = Model_Account::currency(acc);
-                double amount = Model_Checking::balance(transaction
-                    , transaction.ACCOUNTID);
+                const double amount = Model_Checking::balance(transaction, transaction.ACCOUNTID);
+                const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(transaction.ACCOUNTID)->CURRENCYID, transaction.TRANSDATE);
                 hb.addCurrencyCell(amount, curr);
                 total[curr->CURRENCYID] += amount;
+                total_in_base_curr[curr->CURRENCYID] += amount * convRate;
             }
             else
                 hb.addTableCell("");
@@ -154,14 +157,13 @@ wxString mmReportTransactions::getHTMLText()
     {
         const auto curr = Model_Currency::instance().get(curr_total.first);
         const wxString totalStr = Model_Currency::toCurrency(curr_total.second, curr);
-        grand_total += curr_total.second * curr->BASECONVRATE;
+        grand_total += total_in_base_curr[curr_total.first];
         const std::vector<wxString> v{ totalStr };
         if (total.size() > 1 
             || (curr->CURRENCY_SYMBOL != Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL))
             hb.addTotalRow(curr->CURRENCY_SYMBOL, 9, v);
     }
-    const wxString totalStr = Model_Currency::toCurrency(grand_total
-        , Model_Currency::GetBaseCurrency());
+    const wxString totalStr = Model_Currency::toCurrency(grand_total, Model_Currency::GetBaseCurrency());
     const std::vector<wxString> v{ totalStr };
     hb.addTotalRow(_("Grand Total:"), 10, v);
 

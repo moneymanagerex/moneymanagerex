@@ -24,6 +24,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "htmlbuilder.h"
 #include "model/Model_Account.h"
 #include "model/Model_Billsdeposits.h"
+#include "model/Model_CurrencyHistory.h"
 
 static const wxString COLORS [] = {
     ""
@@ -69,17 +70,20 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             if (wxNOT_FOUND == accountArray_->Index(account.ACCOUNTNAME)) continue;
         }
 
-        const Model_Currency::Data* currency = Model_Account::currency(account);
-        tInitialBalance += account.INITIALBAL * currency->BASECONVRATE;
+        // Use account first transaction date for initial balance
+        const auto transactions = Model_Account::transaction(account);
+        const double convRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, transactions[0].TRANSDATE);
+        tInitialBalance += account.INITIALBAL * convRate;
 
         account_id.Add(account.ACCOUNTID);
-        for (const auto& tran : Model_Account::transaction(account))
+        for (const auto& tran : transactions)
         {
             // Do not include asset or stock transfers in income expense calculations.
             if (Model_Checking::foreignTransactionAsTransfer(tran))
                 continue;
 
-            daily_balance[Model_Checking::TRANSDATE(tran)] += Model_Checking::balance(tran, account.ACCOUNTID) * currency->BASECONVRATE;
+            const double convRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, tran.TRANSDATE);
+            daily_balance[Model_Checking::TRANSDATE(tran)] += Model_Checking::balance(tran, account.ACCOUNTID) * convRate;
         }
     }
 
@@ -117,10 +121,8 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
 
-        Model_Account::Data* account = Model_Account::instance().get(entry.ACCOUNTID);
-        double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1.0);
-        Model_Account::Data* to_account = Model_Account::instance().get(entry.TOACCOUNTID);
-        double toConvRate = (to_account ? Model_Account::currency(to_account)->BASECONVRATE : 1.0);
+        const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(entry.ACCOUNTID)->CURRENCYID, entry.TRANSDATE);
+        const double toConvRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(entry.TOACCOUNTID)->CURRENCYID, entry.TRANSDATE);
 
         // Process all possible recurring transactions for this BD
         while (1)
