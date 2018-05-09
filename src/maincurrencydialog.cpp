@@ -107,6 +107,7 @@ void mmMainCurrencyDialog::fillControls()
 
     bool skip_unused = cbShowAll_->IsChecked();
     bool skip_historic = cbHideHistoric_->IsChecked();
+    wxString today = wxDate::Today().FormatISODate();
     for (const auto& currency : Model_Currency::instance().all(Model_Currency::COL_CURRENCYNAME))
     {
         int currencyID = currency.CURRENCYID;
@@ -119,7 +120,7 @@ void mmMainCurrencyDialog::fillControls()
         data.push_back(wxVariant(baseCurrencyID == currencyID));
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(wxGetTranslation(currency.CURRENCYNAME)));
-        data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID)));
+        data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID, today)));
         data.push_back(wxVariant(currency.HISTORIC == 1));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
         if (m_currency_id == currencyID)

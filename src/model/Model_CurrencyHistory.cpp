@@ -166,6 +166,28 @@ double Model_CurrencyHistory::getLastRate(const int& currencyID)
         return 1;
 }
 
+/** Return the last currency rate not after the date */
+double Model_CurrencyHistory::getLastRate(const int& currencyID, const wxString& dateISO)
+{
+    Model_CurrencyHistory::Data_Set histData = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID));
+    if (histData.empty())
+        return 1;
+
+    std::stable_sort(histData.begin(), histData.end(), SorterByCURRDATE());
+    Model_CurrencyHistory::Data date;
+    date.CURRDATE = dateISO;
+    auto lowerb = std::lower_bound(histData.begin(), histData.end(), date, SorterByCURRDATE());
+
+    if (lowerb == histData.end())
+        return histData.back().CURRVALUE;
+    else if (lowerb->CURRDATE == dateISO)
+        return lowerb->CURRVALUE;
+    else if (lowerb==histData.begin())
+        return 1;
+    else
+        return (lowerb-1)->CURRVALUE;
+}
+
 void Model_CurrencyHistory::ResetCurrencyHistory()
 {
     Model_CurrencyHistory::instance().Savepoint();

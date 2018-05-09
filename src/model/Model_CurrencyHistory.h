@@ -62,6 +62,8 @@ public:
 
     /** Return the last rate for a specific currency */
     static double getLastRate(const int& currencyID);
+    /** Return the last currency rate not after the date */
+    static double getLastRate(const int& currencyID, const wxString& dateISO);
     
     /** Clears the currency History table */
     static void ResetCurrencyHistory();
