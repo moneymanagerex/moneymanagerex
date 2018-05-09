@@ -918,10 +918,11 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
         return false;
 
     std::map<wxDate, double> history;
-    const wxDateTime today = wxDateTime::Today().GetDateOnly();
+    const wxDateTime today = wxDateTime::Today();
     wxDateTime first_date = today;
     double first_price = 0;
 
+    bool only_1 = true;
     for (rapidjson::SizeType i = 0; i < timestamp.Size(); i++)
     {
         wxASSERT(timestamp[i].IsInt());
@@ -929,15 +930,13 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
         if (quotes_closed[i].IsFloat())
         {
             double rate = quotes_closed[i].GetFloat();
-            if (rate != 1) // Skip rates = 1 (Yahoo returns 1 with invalid Symbols)
+            history[time] = rate;
+            if (first_date > time)
             {
-                history[time] = rate;
-                if (first_date > time)
-                {
-                    first_date = time;
-                    first_price = rate;
-                }
+                first_date = time;
+                first_price = rate;
             }
+            if (rate != 1) only_1=false;
         }
         else
         {
@@ -945,6 +944,9 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
             wxLogDebug("%s %s", dt.FormatISODate(), wxDateTime::GetWeekDayName(dt.GetWeekDay()));
         }
     }
+
+    // Skip rates = 1 (Yahoo returns 1 with invalid Symbols)
+    if (only_1) return false;
 
     double closed_price = first_price;
     for (wxDateTime i = first_date; i < today; i.Add(wxDateSpan::Days(1)))

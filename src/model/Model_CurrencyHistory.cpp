@@ -163,10 +163,7 @@ double Model_CurrencyHistory::getLastRate(const int& currencyID)
     if (!histData.empty())
         return histData.back().CURRVALUE;
     else
-    {
-        Model_Currency::Data* Currency = Model_Currency::instance().get(currencyID);
         return 1;
-    }
 }
 
 void Model_CurrencyHistory::ResetCurrencyHistory()
