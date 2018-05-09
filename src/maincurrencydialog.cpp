@@ -188,7 +188,7 @@ void mmMainCurrencyDialog::CreateControls()
         , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
     currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 140
         , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
-    currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_EDITABLE, 80);
+    currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_INERT, 80);
     currencyListBox_->AppendToggleColumn(ColName_[CURR_HIST], wxDATAVIEW_CELL_INERT, 30);
 
     itemBoxSizer3->Add(currencyListBox_, g_flagsExpand);
