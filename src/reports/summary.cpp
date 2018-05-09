@@ -179,7 +179,7 @@ wxString mmReportSummaryByDate::getHTMLText()
                 if (date.IsEarlierThan(dateStart))
                     dateStart = date;
             }
-            arBalance[i] = account.INITIALBAL * Model_CurrencyHistory::getDayRate(currency->id(), dateStart.FormatISODate());
+            arBalance[i] = account.INITIALBAL * Model_CurrencyHistory::getDayRate(currency->id(), dateStart);
         }
         else
         {
@@ -258,7 +258,7 @@ wxString mmReportSummaryByDate::getHTMLText()
                 double convRate = 1.0;
                 Model_Currency::Data* currency = Model_Account::currency(account);
                 if (currency)
-                    convRate = Model_CurrencyHistory::getDayRate(currency->id(), dd.FormatISODate());
+                    convRate = Model_CurrencyHistory::getDayRate(currency->id(), dd);
                 arBalance[k] = arHistory.getDailyBalanceAt(&account, dd) * convRate;
             }
             k++;

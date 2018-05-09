@@ -68,7 +68,7 @@ DB_Table_CURRENCYHISTORY::CURRDATE Model_CurrencyHistory::CURRDATE(const wxDate&
 }
 
 /**
-Adds or updates an element in stock history
+Adds or updates an element in currency history
 */
 int Model_CurrencyHistory::addUpdate(const int& currencyID, const wxDate& date, double price, UPDTYPE type)
 {
@@ -85,11 +85,18 @@ int Model_CurrencyHistory::addUpdate(const int& currencyID, const wxDate& date, 
 /** Return the rate for a specific currency in a specific day*/
 double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxString& DateISO)
 {
+    wxDate Date;
+    if (Date.ParseDate(DateISO))
+        return Model_CurrencyHistory::getDayRate(currencyID, Date);
+    else
+        return 1;
+}
+
+double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxDate& Date)
+{
     if (currencyID == Model_Currency::GetBaseCurrency()->CURRENCYID || currencyID == -1)
         return 1;
     
-    wxDateTime Date;
-    Date.ParseDate(DateISO);
     Model_CurrencyHistory::Data_Set Data = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID),Model_CurrencyHistory::CURRDATE(Date));
 
     if (!Data.empty())
@@ -102,6 +109,7 @@ double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxString& 
         //Rate not found for specified day
         //Custom query requested to speed-up performances, no way to obtain it with our ORM
         wxDateTime dFuture, dPast, dNearest;
+        wxString DateISO = Date.FormatISODate();
 
         const wxString sqlPast = wxString::Format("SELECT MAX(currdate) FROM CURRENCYHISTORY WHERE currencyid = '%i' AND currdate <= '%s';", currencyID, DateISO);
         wxSQLite3ResultSet rsPast = Model_CurrencyHistory::instance().db_->ExecuteQuery(sqlPast);

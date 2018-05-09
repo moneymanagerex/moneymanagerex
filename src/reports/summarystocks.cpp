@@ -55,7 +55,7 @@ void  mmReportSummaryStocks::RefreshData()
 
     data_holder line;
     account_holder account;
-    const wxString today = wxDateTime::Today().FormatISODate();
+    const wxDate today = wxDate::Today();
 
     for (const auto& a : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {

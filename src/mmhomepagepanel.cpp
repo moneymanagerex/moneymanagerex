@@ -131,7 +131,7 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
     this->grand_total_ = 0;
     this->grand_gain_lost_ = 0;
     const auto &stocks = Model_Stock::instance().all();
-    const wxString today = wxDateTime::Today().FormatISODate();
+    const wxDate today = wxDate::Today();
     for (const auto& stock : stocks)
     {   
         double today_conv_rate = 1;
@@ -714,7 +714,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
     output += "</tr></thead>\n";
     output += wxString::Format("<tbody id = '%s'>\n", idStr);
 
-    const wxString today = wxDateTime::Today().FormatISODate();
+    const wxDate today = wxDate::Today();
     double total_reconciled = 0.0, total_balance = 0.0;
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
