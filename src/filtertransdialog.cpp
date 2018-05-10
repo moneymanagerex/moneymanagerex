@@ -100,7 +100,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     , bSimilarCategoryStatus_(false)
 {
     SetSettingsID(Model_Infotable::instance().GetIntInfo("TRANSACTIONS_FILTER_VIEW_NO", -1));
-    m_custom_fields = new mmCustomDataTransaction(this, GetSettingsID(), wxID_HIGHEST);
+    m_custom_fields = new mmCustomDataFilter(this, GetSettingsID(), wxID_HIGHEST);
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Transaction Filter"), wxDefaultPosition, wxSize(400, 300), style);
 }

@@ -50,7 +50,14 @@ mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, w
         , ref_id)
 {
     SetBaseID(base_id);
-    SetLabelID(base_id + GetCustomFieldsCount());
+}
+
+mmCustomDataFilter::mmCustomDataFilter(wxDialog* dialog, int ref_id, wxWindowID base_id)
+    : mmCustomData(dialog
+        , Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)
+        , ref_id)
+{
+    SetBaseID(base_id);
 }
 
 bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
@@ -613,4 +620,10 @@ bool mmCustomData::IsDataFound(const Model_Checking::Full_Data &tran)
 
     }
     return false;
+}
+
+void mmCustomData::SetBaseID(wxWindowID id)
+{
+    m_init_control_id = id;
+    m_init_label_id = id + GetCustomFieldsCount();
 }
