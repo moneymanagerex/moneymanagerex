@@ -2,9 +2,9 @@
 Money Manager Ex
 ================
 
-[![stable]][GitHubLatest] [![unstable]][GitHubDL] [![a]][AppVeyor]
-[![t]][Travis] [![s]][SourceForgeDL] [![gha]][GitHubDL] [![ghl]][GitHubLatest]
-[![p]][packagecloud] [![w]][website] [![i]][GitHubIssues] [![cd]][CodeDocs]
+[![stable]][GitHubLatest] [![unstable]][GitHubDL] [![s]][SourceForgeDL]
+[![gha]][GitHubDL] [![ghl]][GitHubLatest] [![p]][packagecloud] [![w]][website]
+[![i]][GitHubIssues] [![resolution time]][isitmaintained] [![cd]][CodeDocs]
 [![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
 
 Money Manager Ex is a free, open-source, cross-platform, easy-to-use personal
@@ -20,9 +20,13 @@ MMEX is mainly written in C++11 and built on:
 | [ChartNew.JS] | [html-template] | [libcurl]
 
 #### Supported platforms ####
-- Windows XP, 2003, Vista, 7, 8 and 10
-- Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x)
-- OS X (10.7 or newer) and macOS using Cocoa
+- Windows XP, 2003, Vista, 7, 8 and 10  
+  [![a]][AppVeyor]
+- Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x)  
+  [![debian] ![ubuntu] ![mint] ![centos] ![fedora] ![opensuse] ![arch]
+  ![slackware]][Travis]
+- OS X (10.7 or newer) and macOS using Cocoa  
+  [![yosemite] ![el capitan] ![sierra] ![high sierra]][Travis]
 
 #### External public resources ####
 [Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [SourceForge] | [GitHub]
@@ -45,6 +49,7 @@ MMEX is mainly written in C++11 and built on:
 [GitHubLatest]: https://github.com/moneymanagerex/moneymanagerex/releases/latest "GitHub latest stable downloads"
 [packagecloud]: https://packagecloud.io/moneymanagerex/ "packagecloud DEB & RPM repository"
 [CodeDocs]: https://codedocs.xyz/moneymanagerex/moneymanagerex/ "doxygen generated source code documentation"
+[isitmaintained]: http://isitmaintained.com/project/moneymanagerex/moneymanagerex "average time to resolve an issue"
 [Slack]: http://slack.moneymanagerex.org/
 [Forum]: http://forum.moneymanagerex.org
 [Wiki]: https://sourceforge.net/p/moneymanagerex/wiki/mmex
@@ -82,3 +87,16 @@ MMEX is mainly written in C++11 and built on:
 <!-- [unstable]: https://img.shields.io/github/release/moneymanagerex/moneymanagerex/all.svg?label=unstable -->
 [st]: https://img.shields.io/github/stars/moneymanagerex/moneymanagerex.svg?&label=GitHub&style=social&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAA50lEQVQoz5XSr0oFQRzF8c%2FuBd0iiCYviHi1GXwABYMugiaLmKw3iF18AetF8B1MNouDb6AICgbfwCqGKf4JrjIse132lGHOnC%2FMnN%2FQoBjMxyDEYN8Y5WP8IbYwisFMF%2FCkWuew2QrGYCIGI%2FQS%2BzQGs3Uwi8EOjrFReZMNN4nIcI9bnGUxeMOUblrJsYevDtAlXrLqbUc4%2F6esX90Upe2%2FcorSBQ5boGvsNrX63AK%2B4rMJXG8Bl9IxpeBaLfhY2y%2Bm%2Bbx2AA84KEqrWMYVPtBP81nya%2FpYwFNRek%2F8HgaYxl1R%2FozuGyXRMhoIJiaoAAAAAElFTkSuQmCC
 [tw]: https://img.shields.io/twitter/follow/MoneyManagerEx.svg?style=social&label=follow
+[ubuntu]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=ubuntu&env=OS=ubuntu
+[centos]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=centos&env=OS=el
+[debian]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=debian&env=OS=debian
+[fedora]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=fedora&env=OS=fedora
+[opensuse]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=opensuse&env=OS=opensuse
+[arch]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=arch&env=OS=archlinux
+[mint]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=mint&env=OS=linuxmint
+[slackware]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=slackware&env=OS=slackware
+[yosemite]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=yosemite&env=DIST=10.10
+[el capitan]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=el%20capitan&env=DIST=10.11
+[sierra]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=sierra&env=DIST=10.12
+[high sierra]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=high%20sierra&env=DIST=10.13
+[resolution time]: http://isitmaintained.com/badge/resolution/moneymanagerex/moneymanagerex.svg
