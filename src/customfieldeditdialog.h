@@ -52,6 +52,7 @@ private:
     void OnCancel(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnChangeType(wxCommandEvent& event);
+    void OnChangeType(wxCommandEvent& event, bool OnDataToControls);
 
     wxString m_fieldRefType;
     wxTextCtrl* m_itemDescription;
@@ -61,6 +62,7 @@ private:
     wxCheckBox* m_itemAutocomplete;
     wxTextCtrl* m_itemDefault;
     wxTextCtrl* m_itemChoices;
+    wxSpinCtrl* m_itemDigitScale;
 
     enum
     {

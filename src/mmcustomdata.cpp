@@ -38,8 +38,7 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
     , m_ref_id(ref_id)
 {
     m_dialog = dialog;
-    m_fields = Model_CustomField::instance()
-        .find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(m_ref_type));
+    m_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(m_ref_type));
     std::sort(m_fields.begin(), m_fields.end(), SorterByDESCRIPTION());
     m_data_changed.clear();
 }
@@ -97,8 +96,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         case Model_CustomField::STRING:
         {
             const auto& data = fieldData->CONTENT;
-            wxTextCtrl* CustomString = new wxTextCtrl(scrolled_window, controlID
-                , data, wxDefaultPosition, wxDefaultSize);
+            wxTextCtrl* CustomString = new wxTextCtrl(scrolled_window, controlID, data, wxDefaultPosition, wxDefaultSize);
             CustomString->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             if (Model_CustomField::getAutocomplete(field.PROPERTIES))
             {
@@ -112,8 +110,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 Description->SetValue(true);
             }
 
-            CustomString->Connect(controlID, wxEVT_TEXT
-                , wxCommandEventHandler(mmCustomData::OnStringChanged), nullptr, this);
+            CustomString->Connect(controlID, wxEVT_TEXT, wxCommandEventHandler(mmCustomData::OnStringChanged), nullptr, this);
             break;
         }
         case Model_CustomField::INTEGER:
@@ -134,8 +131,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             CustomInteger->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomInteger, g_flagsExpand);
 
-            CustomInteger->Connect(controlID, wxEVT_SPINCTRL
-                , wxCommandEventHandler(mmCustomData::OnIntegerChanged), nullptr, this);
+            CustomInteger->Connect(controlID, wxEVT_SPINCTRL, wxCommandEventHandler(mmCustomData::OnIntegerChanged), nullptr, this);
 
             break;
         }
@@ -146,36 +142,31 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 value = 0;
             }
             else {
-                const auto& data = wxString::Format("%.2f", value);
+                const auto& data = wxString::Format("%f", value);
                 SetWidgetChanged(controlID, data);
                 Description->SetValue(true);
             }
+
+            int DigitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
             wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(scrolled_window, controlID
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize
-                , wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 0.01);
+                , wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 1 / pow(10, DigitScale));
+            CustomDecimal->SetDigits(DigitScale);
             CustomDecimal->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDecimal, g_flagsExpand);
 
-            CustomDecimal->Connect(controlID, wxEVT_SPINCTRLDOUBLE
-                , wxCommandEventHandler(mmCustomData::OnDoubleChanged), nullptr, this);
+            CustomDecimal->Connect(controlID, wxEVT_SPINCTRLDOUBLE, wxCommandEventHandler(mmCustomData::OnDoubleChanged), nullptr, this);
 
             break;
         }
         case Model_CustomField::BOOLEAN:
         {
-            wxCheckBox* CustomBoolean = new wxCheckBox(scrolled_window, controlID
-                , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+            wxCheckBox* CustomBoolean = new wxCheckBox(scrolled_window, controlID, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
             const auto& data = fieldData->CONTENT;
-            if ( data == "TRUE")
+            if (!data.empty())
             {
-                CustomBoolean->SetValue(true);
-                SetWidgetChanged(controlID, data);
-                Description->SetValue(true);
-            }
-            else if (data == "FALSE")
-            {
-                CustomBoolean->SetValue(true);
+                CustomBoolean->SetValue(data == "TRUE");
                 SetWidgetChanged(controlID, data);
                 Description->SetValue(true);
             }
@@ -183,8 +174,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             CustomBoolean->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomBoolean, g_flagsExpand);
 
-            CustomBoolean->Connect(controlID, wxEVT_CHECKBOX
-                , wxCommandEventHandler(mmCustomData::OnCheckBoxChanged), nullptr, this);
+            CustomBoolean->Connect(controlID, wxEVT_CHECKBOX, wxCommandEventHandler(mmCustomData::OnCheckBoxChanged), nullptr, this);
 
             break;
         }
@@ -204,8 +194,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             CustomDate->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDate, g_flagsExpand);
 
-            CustomDate->Connect(controlID, wxEVT_DATE_CHANGED
-                , wxDateEventHandler(mmCustomData::OnDateChanged), nullptr, this);
+            CustomDate->Connect(controlID, wxEVT_DATE_CHANGED, wxDateEventHandler(mmCustomData::OnDateChanged), nullptr, this);
 
             break;
         }
@@ -225,8 +214,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             CustomTime->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomTime, g_flagsExpand);
 
-            CustomTime->Connect(controlID, wxEVT_TIME_CHANGED
-                , wxDateEventHandler(mmCustomData::OnTimeChanged), nullptr, this);
+            CustomTime->Connect(controlID, wxEVT_TIME_CHANGED, wxDateEventHandler(mmCustomData::OnTimeChanged), nullptr, this);
 
             break;
         }
@@ -252,8 +240,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 Description->SetValue(true);
             }
             
-            CustomChoice->Connect(controlID, wxEVT_CHOICE
-                , wxCommandEventHandler(mmCustomData::OnSingleChoice), nullptr, this);
+            CustomChoice->Connect(controlID, wxEVT_CHOICE, wxCommandEventHandler(mmCustomData::OnSingleChoice), nullptr, this);
             break;
         }
         case Model_CustomField::MULTICHOICE:
@@ -315,8 +302,7 @@ void mmCustomData::OnMultiChoice(wxCommandEvent& event)
     }
 
     wxString data = label;
-    wxMultiChoiceDialog* MultiChoice = new wxMultiChoiceDialog(this
-        , _("Please select"), _("Multi Choice"), all_choices);
+    wxMultiChoiceDialog* MultiChoice = new wxMultiChoiceDialog(this, _("Please select"), _("Multi Choice"), all_choices);
     MultiChoice->SetSelections(arr_selections);
 
     if (MultiChoice->ShowModal() == wxID_OK)
