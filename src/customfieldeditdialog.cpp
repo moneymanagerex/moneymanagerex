@@ -204,7 +204,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
     {
         this->m_field = Model_CustomField::instance().create();
     }
-    else if (m_field->REFTYPE != m_fieldRefType)
+    else if (m_field->TYPE != Model_CustomField::fieldtype_desc(m_itemType->GetSelection()))
     {
         auto DataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::FIELDID(m_field->FIELDID));
         if (DataSet.size() > 0)
@@ -220,7 +220,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
             Model_CustomFieldData::instance().Savepoint();
             for (auto &data : DataSet)
             {
-                data.CONTENT = wxEmptyString;
+                Model_CustomFieldData::instance().remove(data.id());
             }
             Model_CustomFieldData::instance().save(DataSet);
             Model_CustomFieldData::instance().ReleaseSavepoint();
@@ -243,7 +243,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
             for (auto &data : DataSet)
             {
                 if(ArrChoices.Index(data.CONTENT) == wxNOT_FOUND)
-                data.CONTENT = wxEmptyString;
+                    Model_CustomFieldData::instance().remove(data.id());
             }
             Model_CustomFieldData::instance().save(DataSet);
             Model_CustomFieldData::instance().ReleaseSavepoint();
