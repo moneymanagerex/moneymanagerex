@@ -26,7 +26,7 @@ MMEX is mainly written in C++11 and built on:
 
 #### External public resources ####
 [Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [SourceForge] | [GitHub]
-| [Docker images] | [Twitter] [![tw]][Twitter]
+| [Docker Hub] | [Twitter] [![tw]][Twitter]
 
 #### Tips ####
 * You can open database file (both regular and encrypted) directly
@@ -52,7 +52,7 @@ MMEX is mainly written in C++11 and built on:
 [YouTube]: https://www.youtube.com/channel/UCAqVC0fOt6C5OnGv_DzE0wg
 [SourceForge]: https://sourceforge.net/p/moneymanagerex
 [GitHub]: https://github.com/moneymanagerex
-[Docker images]: https://hub.docker.com/r/moneymanagerex/
+[Docker Hub]: https://hub.docker.com/r/moneymanagerex/
 [Twitter]: https://twitter.com/MoneyManagerEx
 [wxWidgets]: http://wxwidgets.org/
 [wxSqlite3]: https://github.com/utelle/wxsqlite3
@@ -78,6 +78,7 @@ MMEX is mainly written in C++11 and built on:
 [w]: https://img.shields.io/website-up-down-brightgreen-red/http/www.moneymanagerex.org/.svg
 [p]: https://img.shields.io/website-up-down-brightgreen-red/https/packagecloud.io/moneymanagerex/.svg?label=deb%20rpm%20repo
 [stable]: https://img.shields.io/github/release/moneymanagerex/moneymanagerex.svg?label=stable
-[unstable]: https://img.shields.io/github/release/moneymanagerex/moneymanagerex/all.svg?label=unstable
+[unstable]: https://img.shields.io/badge/unstable-v1.4.0--alpha.4-orange.svg
+<!-- [unstable]: https://img.shields.io/github/release/moneymanagerex/moneymanagerex/all.svg?label=unstable -->
 [st]: https://img.shields.io/github/stars/moneymanagerex/moneymanagerex.svg?&label=GitHub&style=social&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAA50lEQVQoz5XSr0oFQRzF8c%2FuBd0iiCYviHi1GXwABYMugiaLmKw3iF18AetF8B1MNouDb6AICgbfwCqGKf4JrjIse132lGHOnC%2FMnN%2FQoBjMxyDEYN8Y5WP8IbYwisFMF%2FCkWuew2QrGYCIGI%2FQS%2BzQGs3Uwi8EOjrFReZMNN4nIcI9bnGUxeMOUblrJsYevDtAlXrLqbUc4%2F6esX90Upe2%2FcorSBQ5boGvsNrX63AK%2B4rMJXG8Bl9IxpeBaLfhY2y%2Bm%2Bbx2AA84KEqrWMYVPtBP81nya%2FpYwFNRek%2F8HgaYxl1R%2FozuGyXRMhoIJiaoAAAAAElFTkSuQmCC
 [tw]: https://img.shields.io/twitter/follow/MoneyManagerEx.svg?style=social&label=follow
