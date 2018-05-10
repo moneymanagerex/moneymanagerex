@@ -23,6 +23,7 @@
 #include "defs.h"
 #include <wx/spinbutt.h>
 #include <wx/dialog.h>
+#include "mmcustomdata.h"
 #include "mmTextCtrl.h"
 #include "splittransactionsdialog.h"
 #include "model/Model_Budgetsplittransaction.h"
@@ -37,6 +38,7 @@ class mmBDDialog : public wxDialog
 
 public:
     mmBDDialog();
+    ~mmBDDialog();
     mmBDDialog(wxWindow* parent, int bdD, bool edit, bool enterOccur);
     int GetTransID()
     {
