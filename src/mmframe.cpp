@@ -1126,7 +1126,7 @@ void mmGUIFrame::OnPopupAccountBaseBalance(wxCommandEvent& WXUNUSED(event))
         Model_Currency::Data* base_currency = Model_Currency::GetBaseCurrency();
 
         double acc_bal = Model_Account::balance(account);
-        double acc_base_bal = acc_bal * acc_currency->BASECONVRATE;
+        double acc_base_bal = acc_bal * Model_CurrencyHistory::getDayRate(acc_currency->CURRENCYID);
 
         wxString message = wxString::Format(
             _("Account: %s\n\n"

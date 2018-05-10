@@ -26,8 +26,7 @@ class mmTextCtrl;
 
 enum
 {
-    ID_DIALOG_CURRENCY = wxID_HIGHEST + 400,
-    ID_DIALOG_CURRENCY_RATE
+    ID_DIALOG_CURRENCY = wxID_HIGHEST + 400
 };
 
 class mmCurrencyDialog : public wxDialog
@@ -55,7 +54,6 @@ private:
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnTextChanged(wxCommandEvent& event);
-    void OnTextEntered(wxCommandEvent& event);
 
     Model_Currency::Data* m_currency;
     int m_scale;
@@ -65,7 +63,6 @@ private:
     mmTextCtrl* m_currencyName;
     wxStaticText* m_sample_text;
     mmTextCtrl* m_currencySymbol;
-    mmTextCtrl* m_base_conv_rate;
     wxTextCtrl* pfxTx_;
     wxTextCtrl* sfxTx_;
     wxTextCtrl* decTx_;

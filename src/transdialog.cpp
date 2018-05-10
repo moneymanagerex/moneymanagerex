@@ -36,6 +36,7 @@
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
+#include "model/Model_CurrencyHistory.h"
 #include "model/Model_CustomFieldData.h"
 #include "model/Model_Subcategory.h"
 
@@ -211,8 +212,16 @@ void mmTransDialog::dataToControls()
             if (!m_advanced)
             {
                 double exch = 1;
-                if (m_to_currency && m_to_currency->BASECONVRATE > 0)
-                    exch = m_currency->BASECONVRATE / m_to_currency->BASECONVRATE;
+                if (m_to_currency)
+                {
+                    const double convRateTo = Model_CurrencyHistory::getDayRate(m_to_currency->CURRENCYID, m_trx_data.TRANSDATE);
+                    if (convRateTo > 0)
+                    {
+                        const double convRate = Model_CurrencyHistory::getDayRate(m_currency->CURRENCYID, m_trx_data.TRANSDATE);
+
+                        exch = convRate / convRateTo;
+                    }
+                }
                 m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT * exch;
             }
             toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT, Model_Currency::precision(m_trx_data.TOACCOUNTID));

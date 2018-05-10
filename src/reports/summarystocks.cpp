@@ -24,6 +24,7 @@
 #include "util.h"
 #include "model/Model_Account.h"
 #include "model/Model_Currency.h"
+#include "model/Model_CurrencyHistory.h"
 #include "model/Model_StockHistory.h"
 #include "budget.h"
 
@@ -54,6 +55,8 @@ void  mmReportSummaryStocks::RefreshData()
 
     data_holder line;
     account_holder account;
+    const wxDate today = wxDate::Today();
+
     for (const auto& a : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(a) != Model_Account::INVESTMENT) continue;
@@ -68,9 +71,11 @@ void  mmReportSummaryStocks::RefreshData()
         for (const auto& stock : Model_Stock::instance().find(Model_Stock::HELDAT(a.ACCOUNTID)))
         {
             const Model_Currency::Data* currency = Model_Account::currency(a);
-            m_stock_balance += currency->BASECONVRATE * Model_Stock::CurrentValue(stock);
+            const double today_rate = Model_CurrencyHistory::getDayRate(currency->CURRENCYID, today);
+            m_stock_balance += today_rate * Model_Stock::CurrentValue(stock);
             account.gainloss += Model_Stock::CurrentValue(stock) - Model_Stock::InvestmentValue(stock);
-            m_gain_loss_sum_total += (Model_Stock::CurrentValue(stock) - Model_Stock::InvestmentValue(stock)) * currency->BASECONVRATE;
+            const double purchase_rate = Model_CurrencyHistory::getDayRate(currency->CURRENCYID, stock.PURCHASEDATE);
+            m_gain_loss_sum_total += (Model_Stock::CurrentValue(stock) * today_rate - Model_Stock::InvestmentValue(stock) * purchase_rate);
 
             line.name = stock.STOCKNAME;
             line.symbol = stock.SYMBOL;

@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "htmlbuilder.h"
 #include "model/Model_Currency.h"
+#include "model/Model_CurrencyHistory.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
 
@@ -155,14 +156,6 @@ wxString mmReportPayeeExpenses::getHTMLText()
 void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats
                                           , mmDateRange* date_range, bool ignoreFuture) const
 {
-    //Get base currency rates for all accounts
-    std::map<int, double> acc_conv_rates;
-    for (const auto& account: Model_Account::instance().all())
-    {
-        Model_Currency::Data* currency = Model_Account::currency(account);
-        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
-    }
-
     const auto &transactions = Model_Checking::instance().find(
         Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
         , Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
@@ -176,7 +169,7 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
         if (Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
 
-        double convRate = acc_conv_rates[trx.ACCOUNTID];
+        const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
 
         Model_Splittransaction::Data_Set splits;
         if (all_splits.count(trx.id())) splits = all_splits.at(trx.id());

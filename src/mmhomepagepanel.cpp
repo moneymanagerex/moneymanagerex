@@ -131,24 +131,26 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
     this->grand_total_ = 0;
     this->grand_gain_lost_ = 0;
     const auto &stocks = Model_Stock::instance().all();
+    const wxDate today = wxDate::Today();
     for (const auto& stock : stocks)
     {   
-        double conv_rate = 1;
+        double today_conv_rate = 1;
+        double purchase_conv_rate = 1;
         Model_Account::Data *account = Model_Account::instance().get(stock.HELDAT);
         if (account)
-        {   
-            Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
-            conv_rate = currency->BASECONVRATE;
+        {
+            today_conv_rate = Model_CurrencyHistory::getDayRate(account->CURRENCYID, today);
+            purchase_conv_rate = Model_CurrencyHistory::getDayRate(account->CURRENCYID, stock.PURCHASEDATE);
         }   
         std::pair<double, double>& values = stockStats[stock.HELDAT];
-        double current_value = Model_Stock::CurrentValue(stock);
-        double gain_lost = (current_value - stock.VALUE - stock.COMMISSION);
+        double current_value = Model_Stock::CurrentValue(stock) * today_conv_rate;
+        double gain_lost = (current_value - stock.VALUE * purchase_conv_rate - stock.COMMISSION * today_conv_rate);
         values.first += gain_lost;
         values.second += current_value;
         if (account && account->STATUS == VIEW_ACCOUNTS_OPEN_STR)
         {   
-            grand_total_ += current_value * conv_rate;
-            grand_gain_lost_ += gain_lost * conv_rate;
+            grand_total_ += current_value;
+            grand_gain_lost_ += gain_lost;
         }   
     }   
 }
@@ -221,13 +223,6 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     std::vector<std::pair<wxString, double> > &categoryStats
     , const mmDateRange* date_range) const
 {
-    //Get base currency rates for all accounts
-    std::map<int, double> acc_conv_rates;
-    for (const auto& account: Model_Account::instance().all())
-    {
-        Model_Currency::Data* currency = Model_Account::currency(account);
-        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
-    }
     //Temporary map
     std::map<std::pair<int /*category*/, int /*sub category*/>, double> stat;
 
@@ -242,23 +237,22 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     {
         bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
         const auto it = splits.find(trx.TRANSID);
+        const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
 
         if (it == splits.end())
         {
             std::pair<int, int> category = std::make_pair(trx.CATEGID, trx.SUBCATEGID);
             if (withdrawal)
-                stat[category] -= trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
+                stat[category] -= trx.TRANSAMOUNT * convRate;
             else
-                stat[category] += trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
+                stat[category] += trx.TRANSAMOUNT * convRate;
         }
         else
         {
             for (const auto& entry : it->second)
             {
                 std::pair<int, int> category = std::make_pair(entry.CATEGID, entry.SUBCATEGID);
-                double val = entry.SPLITTRANSAMOUNT
-                    * (acc_conv_rates[trx.ACCOUNTID])
-                    * (withdrawal ? -1 : 1);
+                double val = entry.SPLITTRANSAMOUNT * convRate * (withdrawal ? -1 : 1);
                 stat[category] += val;
             }
         }
@@ -692,9 +686,7 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
         if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction))
             continue;
 
-        // We got this far, get the currency conversion rate for this account
-        Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);
-        double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);
+        const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(pBankTransaction.ACCOUNTID)->CURRENCYID, pBankTransaction.TRANSDATE);
 
         int idx = pBankTransaction.ACCOUNTID;
         if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
@@ -722,6 +714,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
     output += "</tr></thead>\n";
     output += wxString::Format("<tbody id = '%s'>\n", idStr);
 
+    const wxDate today = wxDate::Today();
     double total_reconciled = 0.0, total_balance = 0.0;
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
@@ -730,11 +723,11 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
 
         Model_Currency::Data* currency = Model_Account::currency(account);
         if (!currency) currency = Model_Currency::GetBaseCurrency();
-        double currency_rate = currency->BASECONVRATE;
+        const double convRate = Model_CurrencyHistory::getDayRate(currency->CURRENCYID, today);
         double acc_bal = account.INITIALBAL + accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
         double reconciledBal = account.INITIALBAL + accountStats[account.ACCOUNTID].first;
-        total_balance += acc_bal * currency_rate;
-        total_reconciled += reconciledBal * currency_rate;
+        total_balance += acc_bal * convRate;
+        total_reconciled += reconciledBal * convRate;
 
         // show the actual amount in that account
         if (((vAccts_ == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status(account) == Model_Account::OPEN) ||

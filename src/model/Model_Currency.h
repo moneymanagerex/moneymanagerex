@@ -60,9 +60,6 @@ public:
     static Data* GetBaseCurrency();
     static bool GetBaseCurrencySymbol(wxString& base_currency_symbol);
 
-    /** Resets all BASECONVRATE to 1 */
-    static void ResetBaseConversionRates();
-
     /** Return the currency Data record for the given symbol */
     Model_Currency::Data* GetCurrencyRecord(const wxString& currency_symbol);
 
