@@ -36,6 +36,7 @@ private:
     wxDialog* m_dialog;
     const wxString m_ref_type;
     int m_ref_id;
+    const wxString m_hideable_panel_name;
     Model_CustomField::Data_Set m_fields;
     std::map<wxWindowID, wxString> m_data_changed;
     void OnStringChanged(wxCommandEvent& event);
@@ -70,6 +71,8 @@ public:
     bool IsSomeWidgetChanged();
     bool IsDataFound(const Model_Checking::Full_Data &tran);
     void ResetWidgetsChanged();
+    bool IsCustomPanelShown();
+    void ShowHideCustomPanel();
 };
 
 class mmCustomDataTransaction : public mmCustomData

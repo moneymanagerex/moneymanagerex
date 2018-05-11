@@ -36,6 +36,7 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
     : wxDialog()
     , m_ref_type(ref_type)
     , m_ref_id(ref_id)
+    , m_hideable_panel_name("CustomPanel")
 {
     m_dialog = dialog;
     m_fields = Model_CustomField::instance()
@@ -55,7 +56,8 @@ mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, w
 
 bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 {
-    wxStaticBox* static_box = new wxStaticBox(m_dialog, wxID_FILEDLGG, _("Custom fields"));
+    wxStaticBox* static_box = new wxStaticBox(m_dialog, wxID_ANY, _("Custom fields")
+        , wxDefaultPosition, wxDefaultSize, 0L, m_hideable_panel_name);
     static_box->Hide();
     wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(static_box, wxVERTICAL);
     box_sizer->Add(box_sizer_right, g_flagsExpand);
@@ -613,4 +615,26 @@ bool mmCustomData::IsDataFound(const Model_Checking::Full_Data &tran)
 
     }
     return false;
+}
+
+bool mmCustomData::IsCustomPanelShown()
+{
+    wxStaticBox* static_box = (wxStaticBox*)m_dialog->FindWindowByName(m_hideable_panel_name);
+    if (static_box) {
+        return static_box->IsShown();
+    }
+    return false;
+}
+
+void mmCustomData::ShowHideCustomPanel()
+{
+    wxStaticBox* static_box = (wxStaticBox*)m_dialog->FindWindowByName(m_hideable_panel_name);
+    if (static_box) {
+        if (static_box->IsShown()) {
+            static_box->Hide();
+        }
+        else {
+            static_box->Show();
+        }
+    }
 }

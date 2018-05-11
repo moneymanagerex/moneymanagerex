@@ -1223,21 +1223,18 @@ void mmTransDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 {
-    wxStaticBox* static_box2 = (wxStaticBox*)FindWindow(wxID_FILEDLGG);
     wxBitmapButton* button = (wxBitmapButton*)FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS);
 
-    if (!static_box2) return;
-
-    if (static_box2->IsShown())
+    if (m_custom_fields->IsCustomPanelShown())
     {
-        static_box2->Hide();
-        button->SetBitmap(mmBitmap(png::RIGHTARROWSIMPLE));
+        if (button) button->SetBitmap(mmBitmap(png::RIGHTARROWSIMPLE));
     }
     else
     {
-        static_box2->Show();
-        button->SetBitmap(mmBitmap(png::LEFTARROWSIMPLE));
+        if (button) button->SetBitmap(mmBitmap(png::LEFTARROWSIMPLE));
     }
+
+    m_custom_fields->ShowHideCustomPanel();
 
     this->SetMinSize(wxSize(0, 0));
     this->Fit();
