@@ -102,7 +102,7 @@ private:
     wxDatePickerCtrl* m_date_due;       // Stored in ::TRANSDATE
     wxBitmapButton* m_apply_due_date;
     wxCalendarCtrl* m_calendar_ctrl;
-    wxChoice* itemRepeats_;
+    wxChoice* m_choice_repeat;
     wxCheckBox* itemCheckBoxAutoExeUserAck_;
     wxCheckBox* itemCheckBoxAutoExeSilent_;
     bool autoExecuteUserAck_;
@@ -139,13 +139,14 @@ private:
 
     wxStaticText* staticTimesRepeat_;
     wxStaticText* staticTextRepeats_;
-    wxButton* m_btn_due_date;
+    wxBitmapButton* m_btn_due_date;
     void OnRepeatTypeChanged(wxCommandEvent& event);
     void OnsetNextRepeatDate(wxCommandEvent& event);
     void OnPeriodChange(wxCommandEvent& event);
     void setRepeatDetails();
 
     void activateSplitTransactionsDlg();
+    static const std::vector<std::pair<int, wxString> > BILLSDEPOSITS_REPEATS;
 
     enum
     {
