@@ -40,6 +40,7 @@ public:
 private:
     wxWizardPageSimple* page1;
     void PageChanged(wxWizardEvent& /*event*/);
+    void LinkClicked(wxHtmlLinkEvent& /*event*/);
 
     wxDECLARE_EVENT_TABLE();
 };

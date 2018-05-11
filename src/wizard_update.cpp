@@ -18,15 +18,18 @@
 
 #include "wizard_update.h"
 #include "constants.h"
-#include "paths.h"
 #include "util.h"
 #include "model/Model_Setting.h"
 #include "rapidjson/error/en.h"
-// #include <wx/progdlg.h>
-// #include <wx/url.h>
+/*
+#include "paths.h"
+#include <wx/progdlg.h>
+#include <wx/url.h>
+*/
 
 wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxWizard)
     EVT_WIZARD_PAGE_CHANGED(wxID_ANY, mmUpdateWizard::PageChanged)
+    EVT_HTML_LINK_CLICKED(wxID_ANY, mmUpdateWizard::LinkClicked)
 wxEND_EVENT_TABLE()
 
 mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Value& new_version)
@@ -44,9 +47,7 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Value& new_version)
         << wxString::Format(_("Your version is %s"), mmex::version::string) << "\n"
         << wxString::Format(_("New version is %s (published at %s)")
             , m_new_version["tag_name"].GetString()+1
-            , pub_date.Format(Option::instance().DateFormat()) ) << "\n\n"
-        << _("Click on finish to open our website and download.") << "\n";
-        //<< _("Click on next to download it now or visit our website to download.") << "\n\n"; //TODO: Download file in wizard page2
+            , pub_date.Format(Option::instance().DateFormat()) ) << "\n";
 
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
     page1->SetSizer(page1_sizer);
@@ -56,19 +57,34 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Value& new_version)
     wxHtmlWindow *changelog = new wxHtmlWindow(page1
         , wxID_ANY, wxDefaultPosition, wxSize(450, 250)
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
+    wxStaticText *instruction = new wxStaticText(page1, wxID_ANY,
+        _("Click on Finish to open our download webpage."));
+        // _("Click on next to download it now or visit our website to download."));
+        // TODO: Download file in wizard page2
 
     page1_sizer->Add(updateText);
     page1_sizer->Add(whatsnew, wxSizerFlags(g_flagsV).Border(wxBOTTOM, 0));
     page1_sizer->Add(changelog, wxSizerFlags(g_flagsExpand).Border(wxTOP,0));
+    page1_sizer->Add(instruction, wxSizerFlags(g_flagsV).Border(wxTOP, 10));
 
     wxString body=m_new_version["body"].GetString();
-    // Convert Markup
+
+    // ---- Convert Markup
+
     // img with link
-    wxRegEx re("\\[!\\[([^]]+)\\]\\(([^)]+)\\)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
+    // skip images hosted via unsupported https
+    wxRegEx re("\\[!\\[([^]]+)\\]\\(([ \t]*https://[^)]+)\\)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
+    re.Replace(&body,"<a href=\"\\3\">\\1</a>");
+    re.Compile("\\[!\\[([^]]+)\\]\\(([^)]+)\\)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
     re.Replace(&body,"<a href=\"\\3\"><img src=\"\\2\" alt=\"\\1\"></a>");
+
     // img
+    // skip images hosted via unsupported https
+    re.Compile("!\\[([^]]+)\\]\\([ \t]*https://[^)]+\\)", wxRE_EXTENDED);
+    re.Replace(&body,"\\1");
     re.Compile("!\\[([^]]+)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
     re.Replace(&body,"<img src=\"\\2\" alt=\"\\1\">");
+
     // link
     re.Compile("\\[([^]]+)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
     re.Replace(&body,"<a href=\"\\2\">\\1</a>");
@@ -108,6 +124,11 @@ void mmUpdateWizard::PageChanged(wxWizardEvent& evt)
 {
     //if (evt.GetDirection && evt.GetPage == mmUpdateWizard.pages[1]) //TODO: Download file in wizard page2
     //self.pages[1].timer.Start(1000) //TODO
+}
+
+void mmUpdateWizard::LinkClicked(wxHtmlLinkEvent& evt)
+{
+    wxLaunchDefaultBrowser(evt.GetLinkInfo().GetHref());
 }
 
 //----------------------------------------------------------------------------
