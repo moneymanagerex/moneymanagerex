@@ -829,14 +829,15 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
     hb.addHorizontalLine();
     hb.addHeader(3, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
-    wxString filterDetails = to_json();
+    wxString filterDetails = to_json(true);
     filterDetails.Replace(",\n", "<br>");
+    filterDetails.Replace("\"", "");
     filterDetails.replace(0, 1, ' ');
     filterDetails.RemoveLast(1);
     hb.addText(filterDetails);
 }
 
-wxString mmFilterTransactionsDialog::to_json()
+wxString mmFilterTransactionsDialog::to_json(bool i18n)
 {
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
@@ -845,7 +846,7 @@ wxString mmFilterTransactionsDialog::to_json()
     const wxString label = m_settingLabel->GetValue().Trim();
     if (!label.empty())
     {
-        json_writer.Key("LABEL");
+        json_writer.Key(wxString(i18n ? _("Label") : "LABEL").c_str());
         json_writer.String(label.c_str());
     }
 
@@ -854,43 +855,46 @@ wxString mmFilterTransactionsDialog::to_json()
         const wxString acc = accountDropDown_->GetStringSelection();
         if (!acc.empty())
         {
-            json_writer.Key("ACCOUNT");
+            json_writer.Key(wxString(i18n ? _("Account") : "ACCOUNT").c_str());
             json_writer.String(acc.c_str());
         }
     }
 
     if (m_dateRangeCheckBox->IsChecked())
     {
-        json_writer.Key("DATE1");
+        json_writer.Key(wxString(i18n ? _("Since") : "DATE1").c_str());
         json_writer.String(m_fromDateCtrl->GetValue().FormatISODate().c_str());
-        json_writer.Key("DATE2");
+        json_writer.Key(wxString(i18n ? _("Before") : "DATE2").c_str());
         json_writer.String(m_toDateControl->GetValue().FormatISODate().c_str());
     }
 
     if (payeeCheckBox_->IsChecked())
     {
-        json_writer.Key("PAYEE");
+        json_writer.Key(wxString(i18n ? _("Payee") : "PAYEE").c_str());
         json_writer.String(cbPayee_->GetValue().c_str());
     }
 
     if (categoryCheckBox_->IsChecked())
     {
-        json_writer.Key("SIMILAR_YN");
+        json_writer.Key(wxString(i18n ? _("Include Similar") : "SIMILAR_YN").c_str());
         json_writer.Bool(bSimilarCategoryStatus_);
-        json_writer.Key("CATEGORY");
+        json_writer.Key(wxString(i18n ? _("Category") : "CATEGORY").c_str());
         json_writer.String(btnCategory_->GetLabel().c_str());
     }
 
     if (statusCheckBox_->IsChecked())
     {
+        wxArrayString s = Model_Checking::all_status();
+        s.Add(wxTRANSLATE("Un-Reconciled"));
+        s.Add(wxTRANSLATE("All Except Reconciled"));
         int item = choiceStatus_->GetSelection();
         wxString status;
-        if (0 <= item && item < (int)Model_Checking::all_status().size())
-            status = Model_Checking::all_status()[item];
+        if (0 <= item && item < (int)s.size())
+            status = s[item];
         if (!status.empty())
         {
-            json_writer.Key("STATUS");
-            json_writer.String(status.c_str());
+            json_writer.Key(wxString(i18n ? _("Status") : "STATUS").c_str());
+            json_writer.String(wxString(i18n ? wxGetTranslation(status) : status).c_str());
         }
     }
 
@@ -903,7 +907,7 @@ wxString mmFilterTransactionsDialog::to_json()
             << (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "");
         if (!type.empty())
         {
-            json_writer.Key("TYPE");
+            json_writer.Key(wxString(i18n ? _("Type") : "TYPE").c_str());
             json_writer.String(type.c_str());
         }
     }
@@ -914,7 +918,7 @@ wxString mmFilterTransactionsDialog::to_json()
         {
             double amount_min;
             amountMinEdit_->GetDouble(amount_min);
-            json_writer.Key("AMOUNT_MIN");
+            json_writer.Key(wxString(i18n ? _("Amount Min.") : "AMOUNT_MIN").c_str());
             json_writer.Double(amount_min);
         }
 
@@ -922,7 +926,7 @@ wxString mmFilterTransactionsDialog::to_json()
         {
             double amount_max;
             amountMaxEdit_->GetDouble(amount_max);
-            json_writer.Key("AMOUNT_MAX");
+            json_writer.Key(wxString(i18n ? _("Amount Max.") : "AMOUNT_MAX").c_str());
             json_writer.Double(amount_max);
         }
     }
@@ -932,7 +936,7 @@ wxString mmFilterTransactionsDialog::to_json()
         const wxString num = transNumberEdit_->GetValue();
         if (!num.empty())
         {
-            json_writer.Key("NUMBER");
+            json_writer.Key(wxString(i18n ? _("Number") : "NUMBER").c_str());
             json_writer.String(num.c_str());
         }
     }
@@ -942,7 +946,7 @@ wxString mmFilterTransactionsDialog::to_json()
         wxString notes = notesEdit_->GetValue();
         if (!notes.empty())
         {
-            json_writer.Key("NOTES");
+            json_writer.Key(wxString(i18n ? _("Notes") : "NOTES").c_str());
             json_writer.String(notes.c_str());
         }
     }
@@ -1048,28 +1052,24 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
 
     //Amounts
-    bool amt1 = (j_doc.HasMember("AMOUNT_MIN") && j_doc["AMOUNT_MIN"].IsBool());
-    bool amt2 = (j_doc.HasMember("AMOUNT_MAX") && j_doc["AMOUNT_MAX"].IsBool());
+    bool amt1 = (j_doc.HasMember("AMOUNT_MIN") && j_doc["AMOUNT_MIN"].IsDouble());
+    bool amt2 = (j_doc.HasMember("AMOUNT_MAX") && j_doc["AMOUNT_MAX"].IsDouble());
 
     amountRangeCheckBox_->SetValue(amt1 || amt2);
-    amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
-    amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
+    amountMinEdit_->Enable(amt1);
+    amountMaxEdit_->Enable(amt2);
 
-    if (amt1 && j_doc.HasMember("AMOUNT_MIN") && j_doc["AMOUNT_MIN"].IsDouble())
-    {
+    if (amt1) {
         amountMinEdit_->SetValue(j_doc["AMOUNT_MIN"].GetDouble());
     }
-    else
-    {
+    else {
         amountMinEdit_->ChangeValue("");
     }
 
-    if (amt2 && j_doc.HasMember("AMOUNT_MAX") && j_doc["AMOUNT_MAX"].IsDouble())
-    {
+    if (amt2) {
         amountMaxEdit_->SetValue(j_doc["AMOUNT_MAX"].GetDouble());
     }
-    else
-    {
+    else {
         amountMaxEdit_->ChangeValue("");
     }
 
