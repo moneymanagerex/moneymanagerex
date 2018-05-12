@@ -335,7 +335,12 @@ void mmFilterTransactionsDialog::CreateControls()
     m_radio_box_->Connect(wxID_APPLY, wxEVT_COMMAND_RADIOBOX_SELECTED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
 
-    m_radio_box_->SetSelection(GetSettingsID());
+    int sel = m_settings_id;
+    int size = m_radio_box_->GetColumnCount();
+    if (sel < 0 || sel >= size) {
+        sel = 0;
+    }
+    m_radio_box_->SetSelection(sel);
     m_radio_box_->Show(true);
 
     box_sizer2->Add(settings_box_sizer, wxSizerFlags(g_flagsV).Center());
