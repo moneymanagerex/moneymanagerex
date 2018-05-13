@@ -22,6 +22,7 @@ Copyright (C) 2013, 2014 Nikolay
 #define MM_EX_CHECKINGPANEL_H_
 //----------------------------------------------------------------------------
 #include "mmpanelbase.h"
+#include "constants.h"
 #include "reports/mmDateRange.h"
 #include "model/Model_Checking.h"
 #include "model/Model_Account.h"

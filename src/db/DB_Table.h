@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-08 08:04:22.353000.
+ *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -23,6 +23,7 @@
 #include <functional>
 #include <wx/wxsqlite3.h>
 #include <wx/intl.h>
+#include <wx/log.h>
 
 #include "rapidjson/document.h"
 #include "rapidjson/pointer.h"
@@ -262,6 +263,15 @@ struct SorterByATTACHMENTID
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.ATTACHMENTID) < (y.ATTACHMENTID);
+    }
+};
+
+struct SorterByBASECONVRATE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return (x.BASECONVRATE) < (y.BASECONVRATE);
     }
 };
 
