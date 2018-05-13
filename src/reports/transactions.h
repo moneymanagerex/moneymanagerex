@@ -20,10 +20,8 @@
 #define MM_EX_REPORTTRANSACT_H_
 
 #include "reportbase.h"
-#include "filtertransdialog.h"
 #include "model/Model_Checking.h"
-
-class mmBankTransaction;
+class mmFilterTransactionsDialog;
 
 class mmReportTransactions : public mmPrintableBase
 {

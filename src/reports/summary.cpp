@@ -20,7 +20,10 @@
 #include "summary.h"
 #include "constants.h"
 #include "htmlbuilder.h"
-#include "model/allmodel.h"
+#include "model/Model_Account.h"
+#include "model/Model_CurrencyHistory.h"
+#include "model/Model_Stock.h"
+#include "model/Model_StockHistory.h"
 #include <algorithm>
 
 class mmHistoryItem

@@ -18,14 +18,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 
-#include "defs.h"
-#include <wx/dataview.h>
+#include <wx/dialog.h>
 #include "model/Model_Checking.h"
-#include "model/Model_Account.h"
-#include "mmpanelbase.h"
-#include "qif_import.h"
-
 class wxDatePickerCtrl;
+class wxDataViewListCtrl;
+class mmQIFImport;
 
 class mmQIFImportDialog : public wxDialog
 {

@@ -70,7 +70,14 @@
 #include "import_export/qif_import_gui.h"
 #include "import_export/univcsvdialog.h"
 
-#include "model/allmodel.h"
+#include "model/Model_Setting.h"
+#include "model/Model_Attachment.h"
+#include "model/Model_Usage.h"
+#include "model/Model_StockHistory.h"
+#include "model/Model_Translink.h"
+#include "model/Model_Budgetyear.h"
+#include "model/Model_Shareinfo.h"
+#include "model/Model_CurrencyHistory.h"
 
 #include <wx/fs_mem.h>
 #include <stack>

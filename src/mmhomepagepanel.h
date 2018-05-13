@@ -27,6 +27,8 @@
 class mmGUIFrame;
 class mmHTMLBuilder;
 class mmDateRange;
+class wxWebView;
+class wxWebViewEvent;
 
 class mmHomePagePanel : public mmPanelBase
 {

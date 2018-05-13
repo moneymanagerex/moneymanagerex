@@ -34,8 +34,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "paths.h"
 #include "util.h"
 #include "validators.h"
+#include "mmcustomdata.h"
+#include "mmTextCtrl.h"
+#include "reports/htmlbuilder.h"
 
-#include "model/allmodel.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Setting.h"
 
 #include <wx/valnum.h>
 

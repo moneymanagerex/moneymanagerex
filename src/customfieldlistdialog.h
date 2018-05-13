@@ -19,9 +19,10 @@
 #ifndef MM_EX_CUSTOMFIELDLISTDIALOG_H_
 #define MM_EX_CUSTOMFIELDLISTDIALOG_H_
 
-#include "defs.h"
-#include <wx/dataview.h>
+#include <wx/dialog.h>
 #include <map>
+class wxDataViewListCtrl;
+class wxDataViewEvent;
 
 class mmCustomFieldListDialog : public wxDialog
 {

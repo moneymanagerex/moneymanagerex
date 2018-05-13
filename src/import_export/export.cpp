@@ -19,7 +19,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "export.h"
 #include "constants.h"
 #include "util.h"
-#include "model/allmodel.h"
+#include "model/Model_Checking.h"
+#include "model/Model_Account.h"
+#include "model/Model_Currency.h"
+#include "model/Model_Category.h"
 
 mmExportTransaction::mmExportTransaction()
 {}

@@ -20,14 +20,12 @@
 #define MM_EX_STOCKSPANEL_H_
 
 #include "mmpanelbase.h"
-#include <wx/tglbtn.h>
 #include "model/Model_Stock.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Account.h"
-#include "mmframe.h"
-
 class wxListEvent;
 class mmStocksPanel;
+class mmGUIFrame;
 
 /* Custom ListCtrl class that implements virtual LC style */
 class StocksListCtrl: public mmListCtrl

@@ -19,11 +19,9 @@
 
 #pragma once
 
-#include "util.h"
-#include "wx/event.h"
-#include <wx/listctrl.h>
-#include <wx/webview.h>
-#include <wx/webviewfshandler.h>
+#include <wx/panel.h>
+#include <wx/listctrl.h> // for wxLIST_AUTOSIZE
+#include <vector>
 //----------------------------------------------------------------------------
 
 struct PANEL_COLUMN

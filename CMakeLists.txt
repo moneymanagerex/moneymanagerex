@@ -245,7 +245,7 @@ ELSE()
         core qa net html xml aui adv stc webview base REQUIRED)
 ENDIF()
 IF(wxWidgets_VERSION_STRING AND wxWidgets_VERSION_STRING VERSION_LESS 2.9.2)
-    MESSAGE(SEND_ERROR "wxWidget version to old.")
+    MESSAGE(SEND_ERROR "wxWidgets version to old.")
 ENDIF()
 IF(APPLE AND wxWidgets_LIBRARIES MATCHES "${CMAKE_STATIC_LIBRARY_PREFIX}wx_baseu-[0-9\\.]+${CMAKE_STATIC_LIBRARY_SUFFIX}")
     # use static libs in place of dynamic if using static wxMac

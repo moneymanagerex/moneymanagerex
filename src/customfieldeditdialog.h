@@ -19,16 +19,11 @@
 #ifndef MM_EX_CUSTOMFIELDEDITDIALOG_H_
 #define MM_EX_CUSTOMFIELDEDITDIALOG_H_
 
-#include "defs.h"
-#include <wx/dataview.h>
-#include <wx/spinctrl.h>
-#include <map>
-
+#include <wx/dialog.h>
 #include "model/Model_CustomField.h"
-#include "model/Model_Currency.h"
-
-class wxDatePickerCtrl;
-class mmTextCtrl;
+class wxChoice;
+class wxCheckBox;
+class wxSpinCtrl;
 
 class mmCustomFieldEditDialog : public wxDialog
 {

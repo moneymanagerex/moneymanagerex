@@ -1,9 +1,9 @@
 /*******************************************************
-Copyright (C) 2006 Madhan Kanagavel
-Copyright (C) 2012 Stefano Giorgio
-Copyright (C) 2013 Nikolay
-Copyright (C) 2014, 2017 James Higley
-Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2012 Stefano Giorgio
+ Copyright (C) 2013 Nikolay
+ Copyright (C) 2014, 2017 James Higley
+ Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -25,12 +25,10 @@ Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 #define MM_FRAME_H_
 //----------------------------------------------------------------------------
 #include <wx/aui/aui.h>
-#include <wx/toolbar.h>
 #include <vector>
 #include "option.h"
 #include "constants.h"
 #include "util.h"
-
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
 class mmPrintableBase;
@@ -38,7 +36,6 @@ class mmPanelBase;
 class mmHomePagePanel;
 class mmTreeItemData;
 class mmCheckingPanel;
-class mmStockPanel;
 class mmBudgetingPanel;
 class mmBillsDepositsPanel;
 class mmFileHistory;
@@ -46,6 +43,7 @@ class CommitCallbackHook;
 class UpdateCallbackHook;
 class ModelBase;
 class mmGUIApp;
+class wxToolBar;
 //----------------------------------------------------------------------------
 
 class mmGUIFrame : public wxFrame

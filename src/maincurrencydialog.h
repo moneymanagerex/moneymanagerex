@@ -20,12 +20,16 @@
 #ifndef MM_EX_MAINCURRENCY_DIALOG_H_
 #define MM_EX_MAINCURRENCY_DIALOG_H_
 
-#include "defs.h"
 #include <map>
-#include <vector>
-#include <wx/dataview.h>
-
+#include <wx/dialog.h>
 class wxDatePickerCtrl;
+class wxDataViewListCtrl;
+class wxDataViewEvent;
+class wxListCtrl;
+class wxListEvent;
+class wxCheckBox;
+class wxStaticBox;
+class wxBitmapButton;
 class mmTextCtrl;
 
 class mmMainCurrencyDialog: public wxDialog

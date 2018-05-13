@@ -22,8 +22,10 @@
 #include "attachmentdialog.h"
 #include "constants.h"
 #include "images_list.h"
+#include "mmframe.h"
 
-#include "model/allmodel.h"
+#include "model/Model_Setting.h"
+#include "model/Model_Usage.h"
 #include <wx/srchctrl.h>
 
 /*******************************************************/

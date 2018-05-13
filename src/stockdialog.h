@@ -19,9 +19,7 @@
 #ifndef MM_EX_STOCKDIALOG_H_
 #define MM_EX_STOCKDIALOG_H_
 
-#include "defs.h"
 #include "model/Model_Stock.h"
-
 class wxDatePickerCtrl;
 class mmTextCtrl;
 class mmGUIFrame;

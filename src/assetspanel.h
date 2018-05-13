@@ -21,10 +21,10 @@
 #include "mmpanelbase.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Account.h"
-#include "mmframe.h"
 
 class wxListEvent;
 class mmAssetsPanel;
+class mmGUIFrame;
 
 /* Custom ListCtrl class that implements virtual LC style */
 class mmAssetsListCtrl: public mmListCtrl

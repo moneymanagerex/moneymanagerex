@@ -23,7 +23,11 @@
 #include "constants.h"
 #include "htmlbuilder.h"
 #include "util.h"
-#include "model/allmodel.h"
+#include "filtertransdialog.h"
+#include "model/Model_Account.h"
+#include "model/Model_Category.h"
+#include "model/Model_CurrencyHistory.h"
+#include "model/Model_Attachment.h"
 #include <algorithm>
 #include <vector>
 

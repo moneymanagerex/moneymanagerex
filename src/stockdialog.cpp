@@ -25,15 +25,10 @@
 #include "paths.h"
 #include "util.h"
 #include "validators.h"
-
-#include "model/allmodel.h"
 #include "accountdialog.h"
 #include "sharetransactiondialog.h"
 #include "mmframe.h"
-
-#include <wx/numdlg.h>
-#include <wx/textdlg.h>
-#include <wx/valnum.h>
+#include "model/Model_StockHistory.h"
 
 IMPLEMENT_DYNAMIC_CLASS(mmStockDialog, wxDialog)
 

@@ -25,8 +25,11 @@
 #include "stockdialog.h"
 #include "sharetransactiondialog.h"
 #include "util.h"
+#include "mmframe.h"
 
-#include "model/allmodel.h"
+#include "model/Model_Setting.h"
+#include "model/Model_Usage.h"
+#include "model/Model_StockHistory.h"
 
 static const wxString STOCKTIPS[] = { 
     wxTRANSLATE("Using MMEX it is possible to track stocks/mutual funds investments."),

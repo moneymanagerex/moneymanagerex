@@ -22,8 +22,10 @@
 
 #include "mmpanelbase.h"
 #include "reports/reportbase.h"
+class wxWebView;
 class mmGUIFrame;
 class mmDateRange;
+
 class mmReportsPanel : public mmPanelBase
 {
     wxDECLARE_EVENT_TABLE();

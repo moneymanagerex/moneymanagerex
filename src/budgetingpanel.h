@@ -23,6 +23,7 @@
 
 class wxListCtrl;
 class wxListEvent;
+class wxStaticText;
 class mmBudgetingPanel;
 class mmGUIFrame;
 

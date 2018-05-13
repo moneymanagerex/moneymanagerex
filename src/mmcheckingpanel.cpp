@@ -18,18 +18,19 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "mmcheckingpanel.h"
 #include "assetdialog.h"
 #include "attachmentdialog.h"
 #include "billsdepositsdialog.h"
 #include "constants.h"
 #include "filtertransdialog.h"
 #include "images_list.h"
-#include "mmcheckingpanel.h"
 #include "mmex.h"
 #include "mmframe.h"
 #include "mmSimpleDialogs.h"
 #include "mmTips.h"
-#include "model/allmodel.h"
+#include "model/Model_Usage.h"
+#include "model/Model_Setting.h"
 #include "paths.h"
 #include "sharetransactiondialog.h"
 #include "splittransactionsdialog.h"
@@ -38,12 +39,10 @@
 #include "util.h"
 #include "validators.h"
 
-#include <wx/clipbrd.h>
-
 //----------------------------------------------------------------------------
-
-#include <wx/srchctrl.h>
 #include <algorithm>
+#include <wx/clipbrd.h>
+#include <wx/srchctrl.h>
 #include <wx/sound.h>
 //----------------------------------------------------------------------------
 

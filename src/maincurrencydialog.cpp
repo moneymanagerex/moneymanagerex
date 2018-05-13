@@ -28,11 +28,10 @@
 #include "paths.h"
 #include "util.h"
 #include "validators.h"
-#include "model/allmodel.h"
+#include "model/Model_CurrencyHistory.h"
 
 #include <vector>
-#include <wx/sstream.h>
-#include <wx/xml/xml.h>
+#include <wx/dataview.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmMainCurrencyDialog, wxDialog);
 

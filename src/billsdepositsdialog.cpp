@@ -29,9 +29,13 @@
 #include "payeedialog.h"
 #include "util.h"
 #include "validators.h"
+#include "mmTextCtrl.h"
+#include "splittransactionsdialog.h"
 
-#include "model/allmodel.h"
-
+#include "model/Model_Payee.h"
+#include "model/Model_Attachment.h"
+#include "model/Model_CurrencyHistory.h"
+#include <wx/spinbutt.h>
 #include <wx/valnum.h>
 
 enum { NONE, WEEKLY, FORTNIGHTLY, MONTHLY

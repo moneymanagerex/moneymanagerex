@@ -27,8 +27,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "payeedialog.h"
 #include "categdialog.h"
 #include "attachmentdialog.h"
+#include "mmTextCtrl.h"
+#include "constants.h"
+#include <wx/spinbutt.h>
 
-#include "model/allmodel.h"
+#include "model/Model_Checking.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Usage.h"
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(UserTransactionPanel, wxPanel)
