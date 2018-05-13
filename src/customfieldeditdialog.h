@@ -21,6 +21,7 @@
 
 #include "defs.h"
 #include <wx/dataview.h>
+#include <wx/spinctrl.h>
 #include <map>
 
 #include "model/Model_CustomField.h"
