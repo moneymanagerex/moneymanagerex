@@ -19,7 +19,7 @@
 
 #include "summary.h"
 #include "constants.h"
-#include "htmlbuilder.h"
+#include "reports/htmlbuilder.h"
 #include "model/Model_Account.h"
 #include "model/Model_CurrencyHistory.h"
 #include "model/Model_Stock.h"

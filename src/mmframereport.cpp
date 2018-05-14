@@ -22,7 +22,7 @@
 
 #include "images_list.h"
 #include "mmframe.h"
-#include "reports/allreport.h"
+#include "reports/reportbase.h"
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Report.h"
 
@@ -186,5 +186,3 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
     }
 
 }
-
-

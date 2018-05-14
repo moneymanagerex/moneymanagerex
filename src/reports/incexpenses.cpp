@@ -19,8 +19,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "incexpenses.h"
 
-#include "htmlbuilder.h"
+#include "reports/htmlbuilder.h"
 #include "util.h"
+#include "reports/mmDateRange.h"
 
 #include "model/Model_Account.h"
 #include "model/Model_Checking.h"

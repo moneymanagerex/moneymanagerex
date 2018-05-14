@@ -194,7 +194,6 @@ ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     db/DB_Table_Translink.h
     db/DB_Table_Usage_V1.h
 
-    reports/allreport.h
     reports/budgetcategorysummary.cpp
     reports/budgetcategorysummary.h
     reports/budget.cpp

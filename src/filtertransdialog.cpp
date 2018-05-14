@@ -36,7 +36,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "validators.h"
 #include "mmcustomdata.h"
 #include "mmTextCtrl.h"
+#include "option.h"
 #include "reports/htmlbuilder.h"
+#include "reports/mmDateRange.h"
 
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"

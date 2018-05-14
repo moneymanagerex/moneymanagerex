@@ -22,11 +22,11 @@
 #ifndef MM_EX_REPORTBASE_H_
 #define MM_EX_REPORTBASE_H_
 //----------------------------------------------------------------------------
-#include "mmDateRange.h"
-#include "option.h"
 #include "model/Model_Report.h"
+#include <html_template.h>
 class wxString;
 class wxArrayString;
+class mmDateRange;
 //----------------------------------------------------------------------------
 
 class mmPrintableBase
@@ -88,7 +88,6 @@ private:
     const Model_Report::Data* m_report;
 };
 
-#include "html_template.h"
 class mm_html_template: public html_template
 {
 public:

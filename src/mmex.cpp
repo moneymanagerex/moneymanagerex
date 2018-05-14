@@ -27,6 +27,7 @@
 
 #include "model/Model_Setting.h"
 #include "model/Model_Usage.h"
+#include "model/Model_Report.h"
 
 #include <wx/cmdline.h>
 #include <wx/fs_arc.h>

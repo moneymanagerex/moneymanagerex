@@ -21,7 +21,7 @@
  Renamed after extensive modifications to original file reportbudgetsetup.cpp
 **************************************************************************/
 #include "budgetcategorysummary.h"
-#include "htmlbuilder.h"
+#include "reports/htmlbuilder.h"
 #include "mmex.h"
 #include "mmframe.h"
 #include "model/Model_Budgetyear.h"

@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmpanelbase.h"
 #include "model/Model_Setting.h"
 #include "mmreportspanel.h"
+#include "reports/reportbase.h"
 #include "util.h"
 #include <wx/webviewfshandler.h>
 

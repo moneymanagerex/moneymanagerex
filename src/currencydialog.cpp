@@ -27,6 +27,7 @@
 #include "validators.h"
 #include "mmTextCtrl.h"
 #include "mmSimpleDialogs.h"
+#include "option.h"
 
 #include <wx/combobox.h>
 #include <wx/valnum.h>

@@ -27,6 +27,7 @@
 #include "paths.h"
 #include "platfdep.h"
 #include "util.h"
+#include "option.h"
 #include "webapp.h"
 #include "parsers.h"
 

@@ -20,7 +20,7 @@
 #include "reportbase.h"
 #include "constants.h"
 #include "mmex.h"
-#include "mmDateRange.h"
+#include "reports/mmDateRange.h"
 #include "model/Model_Account.h"
 #include "mmSimpleDialogs.h"
 #include "util.h"

@@ -64,7 +64,7 @@
 #include "wizard_newaccount.h"
 #include "wizard_update.h"
 
-#include "reports/allreport.h"
+#include "reports/transactions.h"
 
 #include "import_export/qif_export.h"
 #include "import_export/qif_import_gui.h"

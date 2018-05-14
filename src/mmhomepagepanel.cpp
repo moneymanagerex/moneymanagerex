@@ -34,6 +34,7 @@ Copyright (C) 2014 Nikolay
 #include "model/Model_Payee.h"
 #include "model/Model_Stock.h"
 #include "model/Model_Category.h"
+#include "model/Model_Report.h"
 #include <algorithm>
 #include <cmath>
 #include <wx/webviewfshandler.h>

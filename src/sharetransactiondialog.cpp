@@ -25,6 +25,7 @@
 #include "paths.h"
 #include "util.h"
 #include "validators.h"
+#include "option.h"
 
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"

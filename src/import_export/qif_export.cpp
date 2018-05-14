@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "paths.h"
 #include "export.h"
 #include "mmSimpleDialogs.h"
+#include "option.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
 

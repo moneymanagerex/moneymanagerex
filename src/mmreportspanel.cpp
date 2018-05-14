@@ -28,6 +28,7 @@
 #include "util.h"
 #include "webserver.h"
 #include "reports/htmlbuilder.h"
+#include "reports/reportbase.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_Usage.h"
 #include "model/Model_Budgetyear.h"

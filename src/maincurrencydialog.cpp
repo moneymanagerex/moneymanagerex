@@ -27,6 +27,7 @@
 #include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "util.h"
+#include "option.h"
 #include "validators.h"
 #include "model/Model_CurrencyHistory.h"
 

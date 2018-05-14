@@ -21,6 +21,8 @@
 #include "constants.h"
 #include "mmTextCtrl.h"
 #include "validators.h"
+#include "option.h"
+#include "reports/reportbase.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
@@ -29,7 +31,7 @@
 #include <map>
 //----------------------------------------------------------------------------
 
-wxString JSON_PrettyFormated(Document& j_doc)
+wxString JSON_PrettyFormated(rapidjson::Document& j_doc)
 {
     StringBuffer j_buffer;
     PrettyWriter<StringBuffer> j_writer(j_buffer);
@@ -38,7 +40,7 @@ wxString JSON_PrettyFormated(Document& j_doc)
     return j_buffer.GetString();
 }
 
-wxString JSON_Formated(Document& j_doc)
+wxString JSON_Formated(rapidjson::Document& j_doc)
 {
     StringBuffer j_buffer;
     Writer<StringBuffer> j_writer(j_buffer);
@@ -51,6 +53,39 @@ int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
 {
     return s1.CmpNoCase(s2);
 }
+
+//----------------------------------------------------------------------------
+mmTreeItemData::mmTreeItemData(int id, bool isBudget)
+        : id_(id)
+        , isString_(false)
+        , isBudgetingNode_(isBudget)
+        , report_(0)
+    {}
+mmTreeItemData::mmTreeItemData(const wxString& string, mmPrintableBase* report)
+        : id_(0)
+        , isString_(true)
+        , isBudgetingNode_(false)
+        , stringData_("report@" + string)
+        , report_(report)
+    {}
+mmTreeItemData::mmTreeItemData(mmPrintableBase* report)
+        : id_(0)
+        , isString_(true)
+        , isBudgetingNode_(false)
+        , stringData_("report@" + report->title())
+        , report_(report)
+    {}
+mmTreeItemData::mmTreeItemData(const wxString& string)
+        : id_(0)
+        , isString_(true)
+        , isBudgetingNode_(false)
+        , stringData_("item@" + string)
+        , report_(0)
+    {}
+mmTreeItemData::~mmTreeItemData()
+    {
+        if (report_) delete report_;
+    }
 
 //----------------------------------------------------------------------------
 void correctEmptyFileExt(const wxString& ext, wxString & fileName)
@@ -775,4 +810,3 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
         event.Skip();
 
 }
-

@@ -18,7 +18,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "payee.h"
 
-#include "htmlbuilder.h"
+#include "reports/htmlbuilder.h"
+#include "option.h"
+#include "reports/mmDateRange.h"
 #include "model/Model_Currency.h"
 #include "model/Model_CurrencyHistory.h"
 #include "model/Model_Payee.h"

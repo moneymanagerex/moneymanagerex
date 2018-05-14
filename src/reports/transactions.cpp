@@ -21,7 +21,7 @@
 #include "transactions.h"
 #include "attachmentdialog.h"
 #include "constants.h"
-#include "htmlbuilder.h"
+#include "reports/htmlbuilder.h"
 #include "util.h"
 #include "filtertransdialog.h"
 #include "model/Model_Account.h"
