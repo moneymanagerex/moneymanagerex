@@ -34,7 +34,6 @@
 
 #include <wx/numdlg.h>
 #include <wx/textdlg.h>
-#include <wx/valnum.h>
 
 IMPLEMENT_DYNAMIC_CLASS(ShareTransactionDialog, wxDialog)
 

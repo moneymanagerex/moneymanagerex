@@ -32,8 +32,6 @@
 #include "model/Model_Currency.h"
 #include "model/Model_Attachment.h"
 
-#include <wx/valnum.h>
-
 enum {
     ID_DIALOG_NEWACCT_BUTTON_CURRENCY = wxID_HIGHEST + 1000,
     ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNAME,

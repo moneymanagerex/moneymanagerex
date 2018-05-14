@@ -19,7 +19,6 @@
 #ifndef MM_EX_UTIL_H_
 #define MM_EX_UTIL_H_
 
-#include <wx/valnum.h>
 #include <wx/treebase.h>
 #include <rapidjson/document.h>
 #include <curl/curl.h> // for CURLcode

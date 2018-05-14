@@ -29,8 +29,6 @@
 #include "accountdialog.h"
 #include "mmframe.h"
 
-#include <wx/valnum.h>
-
 wxIMPLEMENT_DYNAMIC_CLASS(mmAssetDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE( mmAssetDialog, wxDialog )
