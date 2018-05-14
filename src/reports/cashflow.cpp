@@ -21,10 +21,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmex.h"
 #include "mmframe.h"
 #include "util.h"
-#include "htmlbuilder.h"
-#include "model/Model_Account.h"
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_CurrencyHistory.h"
+#include "reports/htmlbuilder.h"
+#include "Model_Account.h"
+#include "Model_Billsdeposits.h"
+#include "Model_CurrencyHistory.h"
 
 static const wxString COLORS [] = {
     ""

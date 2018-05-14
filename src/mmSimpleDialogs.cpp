@@ -21,11 +21,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmex.h"
 #include "paths.h"
 #include "util.h"
-
-#include "model/Model_Account.h"
-#include "model/Model_Setting.h"
-
+#include "Model_Account.h"
+#include "Model_Setting.h"
 #include <wx/richtooltip.h>
+#include <wx/combobox.h>
 
 //mmSingleChoiceDialog
 mmSingleChoiceDialog::mmSingleChoiceDialog()
@@ -96,6 +95,11 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     GetSizer()->SetSizeHints(this);
     Centre();
     return true;
+}
+
+wxString mmDialogComboBoxAutocomplete::getText()
+{
+    return cbText_->GetValue();
 }
 
 /* Error Messages --------------------------------------------------------*/

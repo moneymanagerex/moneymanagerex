@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "optionsettingsview.h"
 #include "util.h"
+#include "option.h"
 
 #include <wx/colordlg.h>
 

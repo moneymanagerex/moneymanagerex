@@ -18,8 +18,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "mmpanelbase.h"
-#include "model/Model_Setting.h"
+#include "Model_Setting.h"
 #include "mmreportspanel.h"
+#include "reports/reportbase.h"
+#include "util.h"
+#include <wx/webviewfshandler.h>
 
 wxBEGIN_EVENT_TABLE(mmListCtrl, wxListCtrl)
 EVT_LIST_COL_END_DRAG(wxID_ANY, mmListCtrl::OnItemResize)

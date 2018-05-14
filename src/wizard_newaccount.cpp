@@ -19,6 +19,7 @@
 #include "wizard_newaccount.h"
 #include "mmhomepagepanel.h"
 #include "../resources/addacctwiz.xpm"
+#include "option.h"
 //----------------------------------------------------------------------------
 
 mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)

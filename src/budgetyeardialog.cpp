@@ -22,7 +22,7 @@
 #include "util.h"
 #include "paths.h"
 #include "constants.h"
-#include "model/Model_Budgetyear.h"
+#include "Model_Budgetyear.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetYearDialog, wxDialog);
 

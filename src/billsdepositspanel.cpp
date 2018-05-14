@@ -21,8 +21,14 @@
 #include "billsdepositsdialog.h"
 #include "constants.h"
 #include "images_list.h"
-
-#include "model/allmodel.h"
+#include "filtertransdialog.h"
+#include "option.h"
+#include "util.h"
+#include "Model_Setting.h"
+#include "Model_Usage.h"
+#include "Model_Attachment.h"
+#include "Model_Category.h"
+#include "Model_Account.h"
 
 enum
 {

@@ -28,7 +28,12 @@
 #include "util.h"
 #include "webserver.h"
 #include "reports/htmlbuilder.h"
-#include "model/allmodel.h"
+#include "reports/reportbase.h"
+#include "Model_Attachment.h"
+#include "Model_Usage.h"
+#include "Model_Budgetyear.h"
+#include "Model_Infotable.h"
+#include <wx/webviewfshandler.h>
 
 class WebViewHandlerReportsPage : public wxWebViewHandler
 {

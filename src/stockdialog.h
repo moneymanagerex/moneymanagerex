@@ -19,12 +19,16 @@
 #ifndef MM_EX_STOCKDIALOG_H_
 #define MM_EX_STOCKDIALOG_H_
 
-#include "defs.h"
-#include "model/Model_Stock.h"
-
+#include <wx/dialog.h>
+#include "Model_Stock.h"
 class wxDatePickerCtrl;
 class mmTextCtrl;
 class mmGUIFrame;
+class wxListCtrl;
+class wxListEvent;
+class wxDateEvent;
+class wxStaticText;
+class wxBitmapButton;
 
 class mmStockDialog : public wxDialog
 {

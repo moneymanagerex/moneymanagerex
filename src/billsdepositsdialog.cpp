@@ -18,6 +18,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <wx/calctrl.h>
 #include "billsdepositsdialog.h"
 #include "attachmentdialog.h"
 #include "categdialog.h"
@@ -29,9 +30,12 @@
 #include "payeedialog.h"
 #include "util.h"
 #include "validators.h"
-
-#include "model/allmodel.h"
-
+#include "mmTextCtrl.h"
+#include "splittransactionsdialog.h"
+#include "Model_Payee.h"
+#include "Model_Attachment.h"
+#include "Model_CurrencyHistory.h"
+#include <wx/spinbutt.h>
 #include <wx/valnum.h>
 
 enum { NONE, WEEKLY, FORTNIGHTLY, MONTHLY

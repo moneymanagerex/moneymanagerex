@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-08 08:04:22.353000.
+ *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -76,7 +76,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CURRENCYFORMATS(CURRENCYID integer primary key, CURRENCYNAME TEXT COLLATE NOCASE NOT NULL, PFX_SYMBOL TEXT, SFX_SYMBOL TEXT, DECIMAL_POINT TEXT, GROUP_SEPARATOR TEXT, SCALE integer, CURRENCY_SYMBOL TEXT COLLATE NOCASE NOT NULL UNIQUE, CURRENCY_TYPE TEXT /* Fiat, Crypto */, HISTORIC integer DEFAULT 0 /* 1 if no longer official */)");
+                db->ExecuteUpdate("CREATE TABLE CURRENCYFORMATS(CURRENCYID integer primary key, CURRENCYNAME TEXT COLLATE NOCASE NOT NULL, PFX_SYMBOL TEXT, SFX_SYMBOL TEXT, DECIMAL_POINT TEXT, GROUP_SEPARATOR TEXT, SCALE integer, BASECONVRATE numeric, CURRENCY_SYMBOL TEXT COLLATE NOCASE NOT NULL UNIQUE, CURRENCY_TYPE TEXT /* Fiat, Crypto */, HISTORIC integer DEFAULT 0 /* 1 if no longer official */)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
@@ -109,285 +109,285 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('1', '%s', '$', '', '.', ' ', '100', 'USD', 'Fiat', '0')", wxTRANSLATE("US Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('2', '%s', '%s', '', '.', ' ', '100', 'EUR', 'Fiat', '0')", wxTRANSLATE("Euro"), L"€"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('3', '%s', '%s', '', '.', ' ', '100', 'GBP', 'Fiat', '0')", wxTRANSLATE("Pound Sterling"), L"£"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('4', '%s', '', '%s', ',', ' ', '100', 'RUB', 'Fiat', '0')", wxTRANSLATE("Russian Ruble"), L"р"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('5', '%s', '%s', '', ',', ' ', '100', 'UAH', 'Fiat', '0')", wxTRANSLATE("Hryvnia"), L"₴"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('6', '%s', '%s', '', '.', ' ', '100', 'AFN', 'Fiat', '0')", wxTRANSLATE("Afghani"), L"؋"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('7', '%s', '', 'L', '.', ' ', '100', 'ALL', 'Fiat', '0')", wxTRANSLATE("Lek")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('8', '%s', '%s', '', '.', ' ', '100', 'DZD', 'Fiat', '0')", wxTRANSLATE("Algerian Dinar"), L"دج"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('9', '%s', '', 'Kz', '.', ' ', '100', 'AOA', 'Fiat', '0')", wxTRANSLATE("Kwanza")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('10', '%s', 'EC$', '', '.', ' ', '100', 'XCD', 'Fiat', '0')", wxTRANSLATE("East Caribbean Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('11', '%s', 'AR$', '', ',', '.', '100', 'ARS', 'Fiat', '0')", wxTRANSLATE("Argentine Peso")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('12', '%s', '', '', '.', ' ', '100', 'AMD', 'Fiat', '0')", wxTRANSLATE("Armenian Dram")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('13', '%s', '%s', '', '.', ' ', '100', 'AWG', 'Fiat', '0')", wxTRANSLATE("Aruban Florin"), L"ƒ"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('14', '%s', '$', '', '.', ',', '100', 'AUD', 'Fiat', '0')", wxTRANSLATE("Australian Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('15', '%s', '', '', '.', ' ', '100', 'AZN', 'Fiat', '0')", wxTRANSLATE("Azerbaijan Manat")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('16', '%s', 'B$', '', '.', ' ', '100', 'BSD', 'Fiat', '0')", wxTRANSLATE("Bahamian Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('17', '%s', '', '', '.', ' ', '1000', 'BHD', 'Fiat', '0')", wxTRANSLATE("Bahraini Dinar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('18', '%s', '', '', '.', ' ', '100', 'BDT', 'Fiat', '0')", wxTRANSLATE("Taka")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('19', '%s', 'Bds$', '', '.', ' ', '100', 'BBD', 'Fiat', '0')", wxTRANSLATE("Barbados Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('20', '%s', 'Br', '', ',', ' ', '1', 'BYR', 'Fiat', '1')", wxTRANSLATE("Belarusian Ruble (before 2017-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('21', '%s', 'BZ$', '', '.', ' ', '100', 'BZD', 'Fiat', '0')", wxTRANSLATE("Belize Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('22', '%s', 'CFA', '', '.', ' ', '1', 'XOF', 'Fiat', '0')", wxTRANSLATE("CFA Franc BCEAO")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('23', '%s', 'BD$', '', '.', ' ', '100', 'BMD', 'Fiat', '0')", wxTRANSLATE("Bermudian Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('24', '%s', 'Nu.', '', '.', ' ', '100', 'BTN', 'Fiat', '0')", wxTRANSLATE("Ngultrum")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('25', '%s', 'Bs.', '', '.', ' ', '100', 'BOB', 'Fiat', '0')", wxTRANSLATE("Boliviano")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('26', '%s', 'KM', '', ',', '.', '100', 'BAM', 'Fiat', '0')", wxTRANSLATE("Convertible Mark")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('27', '%s', 'P', '', '.', ' ', '100', 'BWP', 'Fiat', '0')", wxTRANSLATE("Pula")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('28', '%s', 'R$', '', '.', ' ', '100', 'BRL', 'Fiat', '0')", wxTRANSLATE("Brazilian Real")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('29', '%s', 'B$', '', '.', ' ', '100', 'BND', 'Fiat', '0')", wxTRANSLATE("Brunei Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('30', '%s', '', '', '.', ' ', '100', 'BGN', 'Fiat', '0')", wxTRANSLATE("Bulgarian Lev")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('31', '%s', 'FBu', '', '.', ' ', '1', 'BIF', 'Fiat', '0')", wxTRANSLATE("Burundi Franc")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('32', '%s', '', '', '.', ' ', '100', 'KHR', 'Fiat', '0')", wxTRANSLATE("Riel")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('33', '%s', 'CFA', '', '.', ' ', '1', 'XAF', 'Fiat', '0')", wxTRANSLATE("CFA Franc BEAC")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('34', '%s', '$', '', '.', ' ', '100', 'CAD', 'Fiat', '0')", wxTRANSLATE("Canadian Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('35', '%s', 'Esc', '', '.', ' ', '100', 'CVE', 'Fiat', '0')", wxTRANSLATE("Cabo Verde Escudo")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('36', '%s', 'KY$', '', '.', ' ', '100', 'KYD', 'Fiat', '0')", wxTRANSLATE("Cayman Islands Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('37', '%s', '$', '', '.', ' ', '1', 'CLP', 'Fiat', '0')", wxTRANSLATE("Chilean Peso")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('38', '%s', '%s', '', '.', ' ', '100', 'CNY', 'Fiat', '0')", wxTRANSLATE("Yuan Renminbi"), L"¥"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('39', '%s', 'Col$', '', '.', ' ', '100', 'COP', 'Fiat', '0')", wxTRANSLATE("Colombian Peso")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('40', '%s', '', '', '.', ' ', '1', 'KMF', 'Fiat', '0')", wxTRANSLATE("Comorian Franc ")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('41', '%s', 'F', '', '.', ' ', '100', 'CDF', 'Fiat', '0')", wxTRANSLATE("Congolese Franc")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('42', '%s', '%s', '', '.', ' ', '100', 'CRC', 'Fiat', '0')", wxTRANSLATE("Costa Rican Colon"), L"₡"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('43', '%s', 'kn', '', '.', ' ', '100', 'HRK', 'Fiat', '0')", wxTRANSLATE("Kuna")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('44', '%s', '%s', '', '.', ' ', '100', 'CZK', 'Fiat', '0')", wxTRANSLATE("Czech Koruna"), L"Kč"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('45', '%s', 'Kr', '', '.', ' ', '100', 'DKK', 'Fiat', '0')", wxTRANSLATE("Danish Krone")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('46', '%s', 'Fdj', '', '.', ' ', '1', 'DJF', 'Fiat', '0')", wxTRANSLATE("Djibouti Franc")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('47', '%s', 'RD$', '', '.', ' ', '100', 'DOP', 'Fiat', '0')", wxTRANSLATE("Dominican Peso")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('48', '%s', '%s', '', '.', ' ', '100', 'EGP', 'Fiat', '0')", wxTRANSLATE("Egyptian Pound"), L"£"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('49', '%s', 'Nfa', '', '.', ' ', '100', 'ERN', 'Fiat', '0')", wxTRANSLATE("Nakfa")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('50', '%s', 'Br', '', '.', ' ', '100', 'ETB', 'Fiat', '0')", wxTRANSLATE("Ethiopian Birr")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('51', '%s', '%s', '', '.', ' ', '100', 'FKP', 'Fiat', '0')", wxTRANSLATE("Falkland Islands Pound"), L"£"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('52', '%s', 'FJ$', '', '.', ' ', '100', 'FJD', 'Fiat', '0')", wxTRANSLATE("Fiji Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('53', '%s', 'F', '', '.', ' ', '1', 'XPF', 'Fiat', '0')", wxTRANSLATE("CFP Franc")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('54', '%s', 'D', '', '.', ' ', '100', 'GMD', 'Fiat', '0')", wxTRANSLATE("Dalasi")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('55', '%s', '', '', '.', ' ', '100', 'GEL', 'Fiat', '0')", wxTRANSLATE("Lari")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('56', '%s', '', '', '.', ' ', '100', 'GHS', 'Fiat', '0')", wxTRANSLATE("Ghana Cedi")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('57', '%s', '%s', '', '.', ' ', '100', 'GIP', 'Fiat', '0')", wxTRANSLATE("Gibraltar Pound"), L"£"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('58', '%s', 'Q', '', '.', ' ', '100', 'GTQ', 'Fiat', '0')", wxTRANSLATE("Quetzal")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('59', '%s', 'FG', '', '.', ' ', '1', 'GNF', 'Fiat', '0')", wxTRANSLATE("Guinean Franc")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('60', '%s', 'GY$', '', '.', ' ', '100', 'GYD', 'Fiat', '0')", wxTRANSLATE("Guyana Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('61', '%s', 'G', '', '.', ' ', '100', 'HTG', 'Fiat', '0')", wxTRANSLATE("Gourde")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('62', '%s', 'L', '', '.', ' ', '100', 'HNL', 'Fiat', '0')", wxTRANSLATE("Lempira")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('63', '%s', 'HK$', '', '.', ' ', '100', 'HKD', 'Fiat', '0')", wxTRANSLATE("Hong Kong Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('64', '%s', 'Ft', '', '.', ' ', '100', 'HUF', 'Fiat', '0')", wxTRANSLATE("Forint")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('65', '%s', 'kr', '', '.', ' ', '1', 'ISK', 'Fiat', '0')", wxTRANSLATE("Iceland Krona")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('66', '%s', '%s', '', '.', ' ', '100', 'INR', 'Fiat', '0')", wxTRANSLATE("Indian Rupee"), L"₹"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('67', '%s', 'Rp', '', '.', ' ', '100', 'IDR', 'Fiat', '0')", wxTRANSLATE("Rupiah")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('68', '%s', 'SDR', '', '.', ' ', '100', 'XDR', 'Fiat', '0')", wxTRANSLATE("Special Drawing Rights")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('69', '%s', '', '', '.', ' ', '100', 'IRR', 'Fiat', '0')", wxTRANSLATE("Iranian Rial")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('70', '%s', '', '', '.', ' ', '1000', 'IQD', 'Fiat', '0')", wxTRANSLATE("Iraqi Dinar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('71', '%s', '%s', '', '.', ' ', '100', 'ILS', 'Fiat', '0')", wxTRANSLATE("New Israeli Sheqel"), L"₪"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('72', '%s', 'J$', '', '.', ' ', '100', 'JMD', 'Fiat', '0')", wxTRANSLATE("Jamaican Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('73', '%s', '%s', '', '.', ' ', '1', 'JPY', 'Fiat', '0')", wxTRANSLATE("Yen"), L"¥"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('74', '%s', '', '', '.', ' ', '1000', 'JOD', 'Fiat', '0')", wxTRANSLATE("Jordanian Dinar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('75', '%s', 'T', '', '.', ' ', '100', 'KZT', 'Fiat', '0')", wxTRANSLATE("Tenge")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('76', '%s', 'KSh', '', '.', ' ', '100', 'KES', 'Fiat', '0')", wxTRANSLATE("Kenyan Shilling")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('77', '%s', 'W', '', '.', ' ', '100', 'KPW', 'Fiat', '0')", wxTRANSLATE("North Korean Won")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('78', '%s', 'W', '', '.', ' ', '1', 'KRW', 'Fiat', '0')", wxTRANSLATE("Won")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('79', '%s', '', '', '.', ' ', '1000', 'KWD', 'Fiat', '0')", wxTRANSLATE("Kuwaiti Dinar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('80', '%s', '', '', '.', ' ', '100', 'KGS', 'Fiat', '0')", wxTRANSLATE("Som")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('81', '%s', 'KN', '', '.', ' ', '100', 'LAK', 'Fiat', '0')", wxTRANSLATE("Lao Kip")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('82', '%s', 'Ls', '', '.', ' ', '100', 'LVL', 'Fiat', '1')", wxTRANSLATE("Latvian Lats (before 2014-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('83', '%s', '', '', '.', ' ', '100', 'LBP', 'Fiat', '0')", wxTRANSLATE("Lebanese Pound")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('84', '%s', 'M', '', '.', ' ', '100', 'LSL', 'Fiat', '0')", wxTRANSLATE("Loti")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('85', '%s', 'L$', '', '.', ' ', '100', 'LRD', 'Fiat', '0')", wxTRANSLATE("Liberian Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('86', '%s', 'LD', '', '.', ' ', '1000', 'LYD', 'Fiat', '0')", wxTRANSLATE("Libyan Dinar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('87', '%s', 'Lt', '', '.', ' ', '100', 'LTL', 'Fiat', '1')", wxTRANSLATE("Lithuanian Litas (before 2014-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('88', '%s', 'P', '', '.', ' ', '100', 'MOP', 'Fiat', '0')", wxTRANSLATE("Pataca")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('89', '%s', '', '', '.', ' ', '100', 'MKD', 'Fiat', '0')", wxTRANSLATE("Denar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('90', '%s', 'FMG', '', '.', ' ', '100', 'MGA', 'Fiat', '0')", wxTRANSLATE("Malagasy Ariary")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('91', '%s', 'MK', '', '.', ' ', '100', 'MWK', 'Fiat', '0')", wxTRANSLATE("Malawi Kwacha")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('92', '%s', 'RM', '', '.', ' ', '100', 'MYR', 'Fiat', '0')", wxTRANSLATE("Malaysian Ringgit")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('93', '%s', 'Rf', '', '.', ' ', '100', 'MVR', 'Fiat', '0')", wxTRANSLATE("Rufiyaa")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('94', '%s', 'UM', '', '.', ' ', '100', 'MRO', 'Fiat', '1')", wxTRANSLATE("Ouguiya (before 2017-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('95', '%s', 'Rs', '', '.', ' ', '100', 'MUR', 'Fiat', '0')", wxTRANSLATE("Mauritius Rupee")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('96', '%s', '$', '', '.', ' ', '100', 'MXN', 'Fiat', '0')", wxTRANSLATE("Mexican Peso")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('97', '%s', '', '', '.', ' ', '100', 'MDL', 'Fiat', '0')", wxTRANSLATE("Moldovan Leu")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('98', '%s', '%s', '', '.', ' ', '100', 'MNT', 'Fiat', '0')", wxTRANSLATE("Tugrik"), L"₮"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('99', '%s', '', '', '.', ' ', '100', 'MAD', 'Fiat', '0')", wxTRANSLATE("Moroccan Dirham")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('100', '%s', 'K', '', '.', ' ', '100', 'MMK', 'Fiat', '0')", wxTRANSLATE("Kyat")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('101', '%s', 'N$', '', '.', ' ', '100', 'NAD', 'Fiat', '0')", wxTRANSLATE("Namibia Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('102', '%s', 'NRs', '', '.', ' ', '100', 'NPR', 'Fiat', '0')", wxTRANSLATE("Nepalese Rupee")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('103', '%s', '%s', '', '.', ' ', '100', 'ANG', 'Fiat', '0')", wxTRANSLATE("Netherlands Antillean Guilder"), L"NAƒ"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('104', '%s', 'NZ$', '', '.', ' ', '100', 'NZD', 'Fiat', '0')", wxTRANSLATE("New Zealand Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('105', '%s', 'C$', '', '.', ' ', '100', 'NIO', 'Fiat', '0')", wxTRANSLATE("Cordoba Oro")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('106', '%s', '%s', '', '.', ' ', '100', 'NGN', 'Fiat', '0')", wxTRANSLATE("Naira"), L"₦"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('107', '%s', 'kr', '', '.', ' ', '100', 'NOK', 'Fiat', '0')", wxTRANSLATE("Norwegian Krone")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('108', '%s', '', '', '.', ' ', '1000', 'OMR', 'Fiat', '0')", wxTRANSLATE("Rial Omani")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('109', '%s', 'Rs.', '', '.', ' ', '100', 'PKR', 'Fiat', '0')", wxTRANSLATE("Pakistan Rupee")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('110', '%s', 'B./', '', '.', ' ', '100', 'PAB', 'Fiat', '0')", wxTRANSLATE("Balboa")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('111', '%s', 'K', '', '.', ' ', '100', 'PGK', 'Fiat', '0')", wxTRANSLATE("Kina")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('112', '%s', '', '', '.', ' ', '1', 'PYG', 'Fiat', '0')", wxTRANSLATE("Guarani")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('113', '%s', 'S/.', '', '.', ' ', '100', 'PEN', 'Fiat', '0')", wxTRANSLATE("Sol")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('114', '%s', '%s', '', '.', ' ', '100', 'PHP', 'Fiat', '0')", wxTRANSLATE("Philippine Piso"), L"₱"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('115', '%s', '', '%s', ',', '.', '100', 'PLN', 'Fiat', '0')", wxTRANSLATE("Zloty"), L"zł"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('116', '%s', 'QR', '', '.', ' ', '100', 'QAR', 'Fiat', '0')", wxTRANSLATE("Qatari Rial")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('117', '%s', 'L', '', '.', ' ', '100', 'RON', 'Fiat', '0')", wxTRANSLATE("Romanian Leu")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('118', '%s', 'RF', '', '.', ' ', '1', 'RWF', 'Fiat', '0')", wxTRANSLATE("Rwanda Franc")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('119', '%s', 'Db', '', '.', ' ', '0', 'STD', 'Fiat', '1')", wxTRANSLATE("Dobra (before 2017-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('120', '%s', 'SR', '', '.', ' ', '100', 'SAR', 'Fiat', '0')", wxTRANSLATE("Saudi Riyal")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('121', '%s', 'din.', '', '.', ' ', '100', 'RSD', 'Fiat', '0')", wxTRANSLATE("Serbian Dinar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('122', '%s', 'SR', '', '.', ' ', '100', 'SCR', 'Fiat', '0')", wxTRANSLATE("Seychelles Rupee")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('123', '%s', 'Le', '', '.', ' ', '100', 'SLL', 'Fiat', '0')", wxTRANSLATE("Leone")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('124', '%s', 'S$', '', '.', ' ', '100', 'SGD', 'Fiat', '0')", wxTRANSLATE("Singapore Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('125', '%s', 'SI$', '', '.', ' ', '100', 'SBD', 'Fiat', '0')", wxTRANSLATE("Solomon Islands Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('126', '%s', 'Sh.', '', '.', ' ', '100', 'SOS', 'Fiat', '0')", wxTRANSLATE("Somali Shilling")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('127', '%s', 'R', '', '.', ' ', '100', 'ZAR', 'Fiat', '0')", wxTRANSLATE("Rand")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('128', '%s', 'Rs', '', '.', ' ', '100', 'LKR', 'Fiat', '0')", wxTRANSLATE("Sri Lanka Rupee")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('129', '%s', '%s', '', '.', ' ', '100', 'SHP', 'Fiat', '0')", wxTRANSLATE("Saint Helena Pound"), L"£"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('130', '%s', '', '', '.', ' ', '100', 'SDG', 'Fiat', '0')", wxTRANSLATE("Sudanese Pound")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('131', '%s', '$', '', '.', ' ', '100', 'SRD', 'Fiat', '0')", wxTRANSLATE("Surinam Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('132', '%s', 'E', '', '.', ' ', '100', 'SZL', 'Fiat', '0')", wxTRANSLATE("Lilangeni")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('133', '%s', 'kr', '', '.', ' ', '100', 'SEK', 'Fiat', '0')", wxTRANSLATE("Swedish Krona")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('134', '%s', 'Fr.', '', '.', ' ', '100', 'CHF', 'Fiat', '0')", wxTRANSLATE("Swiss Franc")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('135', '%s', '', '', '.', ' ', '100', 'SYP', 'Fiat', '0')", wxTRANSLATE("Syrian Pound")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('136', '%s', 'NT$', '', '.', ' ', '100', 'TWD', 'Fiat', '0')", wxTRANSLATE("New Taiwan Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('137', '%s', '', '', '.', ' ', '100', 'TJS', 'Fiat', '0')", wxTRANSLATE("Somoni")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('138', '%s', '', '', '.', ' ', '100', 'TZS', 'Fiat', '0')", wxTRANSLATE("Tanzanian Shilling")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('139', '%s', '%s', '', '.', ' ', '100', 'THB', 'Fiat', '0')", wxTRANSLATE("Baht"), L"฿"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('140', '%s', 'TT$', '', '.', ' ', '100', 'TTD', 'Fiat', '0')", wxTRANSLATE("Trinidad and Tobago Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('141', '%s', 'DT', '', '.', ' ', '1000', 'TND', 'Fiat', '0')", wxTRANSLATE("Tunisian Dinar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('142', '%s', '%s', '', '.', ' ', '100', 'TRY', 'Fiat', '0')", wxTRANSLATE("Turkish Lira"), L"₺"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('143', '%s', 'm', '', '.', ' ', '100', 'TMT', 'Fiat', '0')", wxTRANSLATE("Turkmenistan New Manat")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('144', '%s', 'USh', '', '.', ' ', '1', 'UGX', 'Fiat', '0')", wxTRANSLATE("Uganda Shilling")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('145', '%s', '', '', '.', ' ', '100', 'AED', 'Fiat', '0')", wxTRANSLATE("UAE Dirham")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('146', '%s', '$U', '', '.', ' ', '100', 'UYU', 'Fiat', '0')", wxTRANSLATE("Peso Uruguayo")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('147', '%s', '', '', '.', ' ', '100', 'UZS', 'Fiat', '0')", wxTRANSLATE("Uzbekistan Sum")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('148', '%s', 'VT', '', '.', ' ', '1', 'VUV', 'Fiat', '0')", wxTRANSLATE("Vatu")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('149', '%s', '%s', '', '.', ' ', '1', 'VND', 'Fiat', '0')", wxTRANSLATE("Dong"), L"₫"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('150', '%s', 'WS$', '', '.', ' ', '100', 'WST', 'Fiat', '0')", wxTRANSLATE("Tala")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('151', '%s', '', '', '.', ' ', '100', 'YER', 'Fiat', '0')", wxTRANSLATE("Yemeni Rial")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('152', '%s', 'Bs.', '', '.', ',', '100', 'VEF', 'Fiat', '0')", wxTRANSLATE("Bolívar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('153', '%s', '%s', '', '.', ',', '100000000', 'BTC', 'Crypto', '0')", wxTRANSLATE("Bitcoin"), L"Ƀ"));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('154', '%s', '', '', '.', ',', '100', 'ADP', 'Fiat', '1')", wxTRANSLATE("Andorran Peseta (before 2003-07)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('155', '%s', '', '', '.', ',', '100', 'AFA', 'Fiat', '1')", wxTRANSLATE("Afghani (before 2003-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('156', '%s', '', '', '.', ',', '100', 'ALK', 'Fiat', '1')", wxTRANSLATE("Old Lek (before 1989-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('157', '%s', '', '', '.', ',', '100', 'AOK', 'Fiat', '1')", wxTRANSLATE("Kwanza (before 1991-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('158', '%s', '', '', '.', ',', '100', 'AON', 'Fiat', '1')", wxTRANSLATE("New Kwanza (before 2000-02)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('159', '%s', '', '', '.', ',', '100', 'AOR', 'Fiat', '1')", wxTRANSLATE("Kwanza Reajustado (before 2000-02)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('160', '%s', '', '', '.', ',', '100', 'ARA', 'Fiat', '1')", wxTRANSLATE("Austral (before 1992-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('161', '%s', '', '', '.', ',', '100', 'ARP', 'Fiat', '1')", wxTRANSLATE("Peso Argentino (before 1985-07)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('162', '%s', '', '', '.', ',', '100', 'ARY', 'Fiat', '1')", wxTRANSLATE("Peso (1989 to 1990)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('163', '%s', '', '', '.', ',', '100', 'ATS', 'Fiat', '1')", wxTRANSLATE("Schilling (before 2002-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('164', '%s', '', '', '.', ',', '100', 'AYM', 'Fiat', '1')", wxTRANSLATE("Azerbaijan Manat (before 2005-10)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('165', '%s', '', '', '.', ',', '100', 'AZM', 'Fiat', '1')", wxTRANSLATE("Azerbaijanian Manat (before 2005-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('166', '%s', '', '', '.', ',', '100', 'BAD', 'Fiat', '1')", wxTRANSLATE("Dinar (before 1998-07)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('167', '%s', '', '', '.', ',', '100', 'BEC', 'Fiat', '1')", wxTRANSLATE("Convertible Franc (before 1990-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('168', '%s', '', '', '.', ',', '100', 'BEF', 'Fiat', '1')", wxTRANSLATE("Belgian Franc (before 2002-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('169', '%s', '', '', '.', ',', '100', 'BEL', 'Fiat', '1')", wxTRANSLATE("Financial Franc (before 1990-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('170', '%s', '', '', '.', ',', '100', 'BGJ', 'Fiat', '1')", wxTRANSLATE("Lev A/52 (1989 to 1990)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('171', '%s', '', '', '.', ',', '100', 'BGK', 'Fiat', '1')", wxTRANSLATE("Lev A/62 (1989 to 1990)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('172', '%s', '', '', '.', ',', '100', 'BGL', 'Fiat', '1')", wxTRANSLATE("Lev (before 2003-11)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('173', '%s', '', '', '.', ',', '100', 'BOP', 'Fiat', '1')", wxTRANSLATE("Peso boliviano (before 1987-02)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('174', '%s', '', '', '.', ',', '100', 'BRB', 'Fiat', '1')", wxTRANSLATE("Cruzeiro (before 1986-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('175', '%s', '', '', '.', ',', '100', 'BRC', 'Fiat', '1')", wxTRANSLATE("Cruzado (before 1989-02)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('176', '%s', '', '', '.', ',', '100', 'BRE', 'Fiat', '1')", wxTRANSLATE("Cruzeiro (before 1993-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('177', '%s', '', '', '.', ',', '100', 'BRN', 'Fiat', '1')", wxTRANSLATE("New Cruzado (before 1990-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('178', '%s', '', '', '.', ',', '100', 'BRR', 'Fiat', '1')", wxTRANSLATE("Cruzeiro Real (before 1994-07)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('179', '%s', '', '', '.', ',', '100', 'BUK', 'Fiat', '1')", wxTRANSLATE("Kyat (before 1990-02)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('180', '%s', '', '', '.', ',', '100', 'BYB', 'Fiat', '1')", wxTRANSLATE("Belarusian Ruble (before 2001-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('181', '%s', '', '', '.', ',', '100', 'BYN', 'Fiat', '0')", wxTRANSLATE("Belarusian Ruble")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('182', '%s', '', '', '.', ',', '100', 'CHC', 'Fiat', '1')", wxTRANSLATE("WIR Franc (for electronic) (before 2004-11)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('183', '%s', '', '', '.', ',', '100', 'CSD', 'Fiat', '1')", wxTRANSLATE("Serbian Dinar (before 2006-10)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('184', '%s', '', '', '.', ',', '100', 'CSJ', 'Fiat', '1')", wxTRANSLATE("Krona A/53 (1989 to 1990)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('185', '%s', '', '', '.', ',', '100', 'CSK', 'Fiat', '1')", wxTRANSLATE("Koruna (before 1993-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('186', '%s', '', '', '.', ',', '100', 'CUC', 'Fiat', '0')", wxTRANSLATE("Peso Convertible")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('187', '%s', '', '', '.', ',', '100', 'CUP', 'Fiat', '0')", wxTRANSLATE("Cuban Peso")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('188', '%s', '', '', '.', ',', '100', 'CYP', 'Fiat', '1')", wxTRANSLATE("Cyprus Pound (before 2008-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('189', '%s', '', '', '.', ',', '100', 'DDM', 'Fiat', '1')", wxTRANSLATE("Mark der DDR (1990-07 to 1990-09)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('190', '%s', '', '', '.', ',', '100', 'DEM', 'Fiat', '1')", wxTRANSLATE("Deutsche Mark (before 2002-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('191', '%s', '', '', '.', ',', '100', 'ECS', 'Fiat', '1')", wxTRANSLATE("Sucre (before 2000-09)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('192', '%s', '', '', '.', ',', '100', 'ECV', 'Fiat', '1')", wxTRANSLATE("Unidad de Valor Constante (UVC) (before 2000-09)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('193', '%s', '', '', '.', ',', '100', 'EEK', 'Fiat', '1')", wxTRANSLATE("Kroon (before 2011-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('194', '%s', '', '', '.', ',', '100', 'ESA', 'Fiat', '1')", wxTRANSLATE("Spanish Peseta (1978 to 1981)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('195', '%s', '', '', '.', ',', '100', 'ESB', 'Fiat', '1')", wxTRANSLATE("A Account (convertible Peseta Account) (before 1994-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('196', '%s', '', '', '.', ',', '100', 'ESP', 'Fiat', '1')", wxTRANSLATE("Spanish Peseta (before 2002-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('197', '%s', '', '', '.', ',', '100', 'FIM', 'Fiat', '1')", wxTRANSLATE("Markka (before 2002-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('198', '%s', '', '', '.', ',', '100', 'FRF', 'Fiat', '1')", wxTRANSLATE("French Franc (before 1999-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('199', '%s', '', '', '.', ',', '100', 'GEK', 'Fiat', '1')", wxTRANSLATE("Georgian Coupon (before 1995-10)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('200', '%s', '', '', '.', ',', '100', 'GHC', 'Fiat', '1')", wxTRANSLATE("Cedi (before 2008-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('201', '%s', '', '', '.', ',', '100', 'GHP', 'Fiat', '1')", wxTRANSLATE("Ghana Cedi (before 2007-06)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('202', '%s', '', '', '.', ',', '100', 'GNE', 'Fiat', '1')", wxTRANSLATE("Syli (before 1989-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('203', '%s', '', '', '.', ',', '100', 'GNS', 'Fiat', '1')", wxTRANSLATE("Syli (before 1986-02)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('204', '%s', '', '', '.', ',', '100', 'GQE', 'Fiat', '1')", wxTRANSLATE("Ekwele (before 1986-06)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('205', '%s', '', '', '.', ',', '100', 'GRD', 'Fiat', '1')", wxTRANSLATE("Drachma (before 2002-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('206', '%s', '', '', '.', ',', '100', 'GWE', 'Fiat', '1')", wxTRANSLATE("Guinea Escudo (1978 to 1981)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('207', '%s', '', '', '.', ',', '100', 'GWP', 'Fiat', '1')", wxTRANSLATE("Guinea-Bissau Peso (before 1997-05)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('208', '%s', '', '', '.', ',', '100', 'HRD', 'Fiat', '1')", wxTRANSLATE("Croatian Dinar (before 1995-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('209', '%s', '', '', '.', ',', '100', 'IEP', 'Fiat', '1')", wxTRANSLATE("Irish Pound (before 2002-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('210', '%s', '', '', '.', ',', '100', 'ILP', 'Fiat', '1')", wxTRANSLATE("Pound (1978 to 1981)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('211', '%s', '', '', '.', ',', '100', 'ILR', 'Fiat', '1')", wxTRANSLATE("Old Shekel (1989 to 1990)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('212', '%s', '', '', '.', ',', '100', 'ISJ', 'Fiat', '1')", wxTRANSLATE("Old Krona (1989 to 1990)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('213', '%s', '', '', '.', ',', '100', 'ITL', 'Fiat', '1')", wxTRANSLATE("Italian Lira (before 2002-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('214', '%s', '', '', '.', ',', '100', 'LAJ', 'Fiat', '1')", wxTRANSLATE("Pathet Lao Kip (before 1979-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('215', '%s', '', '', '.', ',', '100', 'LSM', 'Fiat', '1')", wxTRANSLATE("Loti (before 1985-05)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('216', '%s', '', '', '.', ',', '100', 'LTT', 'Fiat', '1')", wxTRANSLATE("Talonas (before 1993-07)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('217', '%s', '', '', '.', ',', '100', 'LUC', 'Fiat', '1')", wxTRANSLATE("Luxembourg Convertible Franc (before 1990-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('218', '%s', '', '', '.', ',', '100', 'LUF', 'Fiat', '1')", wxTRANSLATE("Luxembourg Franc (before 2002-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('219', '%s', '', '', '.', ',', '100', 'LUL', 'Fiat', '1')", wxTRANSLATE("Luxembourg Financial Franc (before 1990-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('220', '%s', '', '', '.', ',', '100', 'LVR', 'Fiat', '1')", wxTRANSLATE("Latvian Ruble (before 1994-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('221', '%s', '', '', '.', ',', '100', 'MGF', 'Fiat', '1')", wxTRANSLATE("Malagasy Franc (before 2004-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('222', '%s', '', '', '.', ',', '100', 'MLF', 'Fiat', '1')", wxTRANSLATE("Mali Franc (before 1984-11)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('223', '%s', '', '', '.', ',', '100', 'MRU', 'Fiat', '0')", wxTRANSLATE("Ouguiya")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('224', '%s', '', '', '.', ',', '100', 'MTL', 'Fiat', '1')", wxTRANSLATE("Maltese Lira (before 2008-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('225', '%s', '', '', '.', ',', '100', 'MTP', 'Fiat', '1')", wxTRANSLATE("Maltese Pound (before 1983-06)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('226', '%s', '', '', '.', ',', '100', 'MVQ', 'Fiat', '1')", wxTRANSLATE("Maldive Rupee (before 1989-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('227', '%s', '', '', '.', ',', '100', 'MXP', 'Fiat', '1')", wxTRANSLATE("Mexican Peso (before 1993-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('228', '%s', '', '', '.', ',', '100', 'MZE', 'Fiat', '1')", wxTRANSLATE("Mozambique Escudo (1978 to 1981)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('229', '%s', '', '', '.', ',', '100', 'MZM', 'Fiat', '1')", wxTRANSLATE("Mozambique Metical (before 2006-06)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('230', '%s', '', '', '.', ',', '100', 'MZN', 'Fiat', '0')", wxTRANSLATE("Mozambique Metical")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('231', '%s', '', '', '.', ',', '100', 'NIC', 'Fiat', '1')", wxTRANSLATE("Cordoba (before 1990-10)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('232', '%s', '', '', '.', ',', '100', 'NLG', 'Fiat', '1')", wxTRANSLATE("Netherlands Guilder (before 2002-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('233', '%s', '', '', '.', ',', '100', 'PEH', 'Fiat', '1')", wxTRANSLATE("Sol (1989 to 1990)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('234', '%s', '', '', '.', ',', '100', 'PEI', 'Fiat', '1')", wxTRANSLATE("Inti (before 1991-07)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('235', '%s', '', '', '.', ',', '100', 'PES', 'Fiat', '1')", wxTRANSLATE("Sol (before 1986-02)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('236', '%s', '', '', '.', ',', '100', 'PLZ', 'Fiat', '1')", wxTRANSLATE("Zloty (before 1997-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('237', '%s', '', '', '.', ',', '100', 'PTE', 'Fiat', '1')", wxTRANSLATE("Portuguese Escudo (before 2002-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('238', '%s', '', '', '.', ',', '100', 'RHD', 'Fiat', '1')", wxTRANSLATE("Rhodesian Dollar (1978 to 1981)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('239', '%s', '', '', '.', ',', '100', 'ROK', 'Fiat', '1')", wxTRANSLATE("Leu A/52 (1989 to 1990)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('240', '%s', '', '', '.', ',', '100', 'ROL', 'Fiat', '1')", wxTRANSLATE("Old Leu (before 2005-06)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('241', '%s', '', '', '.', ',', '100', 'RUR', 'Fiat', '1')", wxTRANSLATE("Russian Ruble (before 1994-07)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('242', '%s', '', '', '.', ',', '100', 'SDD', 'Fiat', '1')", wxTRANSLATE("Sudanese Dinar (before 2007-07)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('243', '%s', '', '', '.', ',', '100', 'SDP', 'Fiat', '1')", wxTRANSLATE("Sudanese Pound (before 1998-06)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('244', '%s', '', '', '.', ',', '100', 'SIT', 'Fiat', '1')", wxTRANSLATE("Tolar (before 2007-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('245', '%s', '', '', '.', ',', '100', 'SKK', 'Fiat', '1')", wxTRANSLATE("Slovak Koruna (before 2009-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('246', '%s', '', '', '.', ',', '100', 'SRG', 'Fiat', '1')", wxTRANSLATE("Surinam Guilder (before 2003-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('247', '%s', '', '', '.', ',', '100', 'SSP', 'Fiat', '0')", wxTRANSLATE("South Sudanese Pound")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('248', '%s', '', '', '.', ',', '100', 'STN', 'Fiat', '0')", wxTRANSLATE("Dobra")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('249', '%s', '', '', '.', ',', '100', 'SUR', 'Fiat', '1')", wxTRANSLATE("Rouble (before 1990-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('250', '%s', '', '', '.', ',', '100', 'SVC', 'Fiat', '0')", wxTRANSLATE("El Salvador Colon")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('251', '%s', '', '', '.', ',', '100', 'TJR', 'Fiat', '1')", wxTRANSLATE("Tajik Ruble (before 2001-04)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('252', '%s', '', '', '.', ',', '100', 'TMM', 'Fiat', '1')", wxTRANSLATE("Turkmenistan Manat (before 2009-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('253', '%s', '', '', '.', ',', '100', 'TOP', 'Fiat', '0')", wxTRANSLATE("Pa’anga")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('254', '%s', '', '', '.', ',', '100', 'TPE', 'Fiat', '1')", wxTRANSLATE("Timor Escudo (before 2002-11)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('255', '%s', '', '', '.', ',', '100', 'TRL', 'Fiat', '1')", wxTRANSLATE("Old Turkish Lira (before 2005-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('256', '%s', '', '', '.', ',', '100', 'UAK', 'Fiat', '1')", wxTRANSLATE("Karbovanet (before 1996-09)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('257', '%s', '', '', '.', ',', '100', 'UGS', 'Fiat', '1')", wxTRANSLATE("Uganda Shilling (before 1987-05)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('258', '%s', '', '', '.', ',', '100', 'UGW', 'Fiat', '1')", wxTRANSLATE("Old Shilling (1989 to 1990)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('259', '%s', '', '', '.', ',', '100', 'USS', 'Fiat', '1')", wxTRANSLATE("US Dollar (Same day) (before 2014-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('260', '%s', '', '', '.', ',', '100', 'UYN', 'Fiat', '1')", wxTRANSLATE("Old Uruguay Peso (before 1989-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('261', '%s', '', '', '.', ',', '100', 'UYP', 'Fiat', '1')", wxTRANSLATE("Uruguayan Peso (before 1993-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('262', '%s', '', '', '.', ',', '100', 'VEB', 'Fiat', '1')", wxTRANSLATE("Bolivar (before 2008-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('263', '%s', '', '', '.', ',', '100', 'VNC', 'Fiat', '1')", wxTRANSLATE("Old Dong (1989-1990)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('264', '%s', '', '', '.', ',', '100', 'XEU', 'Fiat', '1')", wxTRANSLATE("European Currency Unit (E.C.U) (before 1999-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('265', '%s', '', '', '.', ',', '100', 'XFO', 'Fiat', '1')", wxTRANSLATE("Gold-Franc (before 2006-10)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('266', '%s', '', '', '.', ',', '100', 'YDD', 'Fiat', '1')", wxTRANSLATE("Yemeni Dinar (before 1991-09)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('267', '%s', '', '', '.', ',', '100', 'YUD', 'Fiat', '1')", wxTRANSLATE("New Yugoslavian Dinar (before 1990-01)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('268', '%s', '', '', '.', ',', '100', 'YUM', 'Fiat', '1')", wxTRANSLATE("New Dinar (before 2003-07)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('269', '%s', '', '', '.', ',', '100', 'YUN', 'Fiat', '1')", wxTRANSLATE("Yugoslavian Dinar (before 1995-11)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('270', '%s', '', '', '.', ',', '100', 'ZAL', 'Fiat', '1')", wxTRANSLATE("Financial Rand (before 1995-03)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('271', '%s', '', '', '.', ',', '100', 'ZMK', 'Fiat', '1')", wxTRANSLATE("Zambian Kwacha (before 2012-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('272', '%s', '', '', '.', ',', '100', 'ZMW', 'Fiat', '0')", wxTRANSLATE("Zambian Kwacha")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('273', '%s', '', '', '.', ',', '100', 'ZRN', 'Fiat', '1')", wxTRANSLATE("New Zaire (before 1999-06)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('274', '%s', '', '', '.', ',', '100', 'ZRZ', 'Fiat', '1')", wxTRANSLATE("Zaire (before 1994-02)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('275', '%s', '', '', '.', ',', '100', 'ZWC', 'Fiat', '1')", wxTRANSLATE("Rhodesian Dollar (before 1989-12)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('276', '%s', '', '', '.', ',', '100', 'ZWD', 'Fiat', '1')", wxTRANSLATE("Zimbabwe Dollar (before 2008-08)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('277', '%s', '', '', '.', ',', '100', 'ZWL', 'Fiat', '0')", wxTRANSLATE("Zimbabwe Dollar")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('278', '%s', '', '', '.', ',', '100', 'ZWN', 'Fiat', '1')", wxTRANSLATE("Zimbabwe Dollar (new) (before 2006-09)")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('279', '%s', '', '', '.', ',', '100', 'ZWR', 'Fiat', '1')", wxTRANSLATE("Zimbabwe Dollar (before 2009-06)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('1', '%s', '$', '', '.', ' ', '100', '1', 'USD', 'Fiat', '0')", wxTRANSLATE("US Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('2', '%s', '%s', '', '.', ' ', '100', '1', 'EUR', 'Fiat', '0')", wxTRANSLATE("Euro"), L"€"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('3', '%s', '%s', '', '.', ' ', '100', '1', 'GBP', 'Fiat', '0')", wxTRANSLATE("Pound Sterling"), L"£"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('4', '%s', '', '%s', ',', ' ', '100', '1', 'RUB', 'Fiat', '0')", wxTRANSLATE("Russian Ruble"), L"р"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('5', '%s', '%s', '', ',', ' ', '100', '1', 'UAH', 'Fiat', '0')", wxTRANSLATE("Hryvnia"), L"₴"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('6', '%s', '%s', '', '.', ' ', '100', '1', 'AFN', 'Fiat', '0')", wxTRANSLATE("Afghani"), L"؋"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('7', '%s', '', 'L', '.', ' ', '100', '1', 'ALL', 'Fiat', '0')", wxTRANSLATE("Lek")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('8', '%s', '%s', '', '.', ' ', '100', '1', 'DZD', 'Fiat', '0')", wxTRANSLATE("Algerian Dinar"), L"دج"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('9', '%s', '', 'Kz', '.', ' ', '100', '1', 'AOA', 'Fiat', '0')", wxTRANSLATE("Kwanza")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('10', '%s', 'EC$', '', '.', ' ', '100', '1', 'XCD', 'Fiat', '0')", wxTRANSLATE("East Caribbean Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('11', '%s', 'AR$', '', ',', '.', '100', '1', 'ARS', 'Fiat', '0')", wxTRANSLATE("Argentine Peso")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('12', '%s', '', '', '.', ' ', '100', '1', 'AMD', 'Fiat', '0')", wxTRANSLATE("Armenian Dram")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('13', '%s', '%s', '', '.', ' ', '100', '1', 'AWG', 'Fiat', '0')", wxTRANSLATE("Aruban Florin"), L"ƒ"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('14', '%s', '$', '', '.', ',', '100', '1', 'AUD', 'Fiat', '0')", wxTRANSLATE("Australian Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('15', '%s', '', '', '.', ' ', '100', '1', 'AZN', 'Fiat', '0')", wxTRANSLATE("Azerbaijan Manat")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('16', '%s', 'B$', '', '.', ' ', '100', '1', 'BSD', 'Fiat', '0')", wxTRANSLATE("Bahamian Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('17', '%s', '', '', '.', ' ', '1000', '1', 'BHD', 'Fiat', '0')", wxTRANSLATE("Bahraini Dinar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('18', '%s', '', '', '.', ' ', '100', '1', 'BDT', 'Fiat', '0')", wxTRANSLATE("Taka")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('19', '%s', 'Bds$', '', '.', ' ', '100', '1', 'BBD', 'Fiat', '0')", wxTRANSLATE("Barbados Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('20', '%s', 'Br', '', ',', ' ', '1', '1', 'BYR', 'Fiat', '1')", wxTRANSLATE("Belarusian Ruble (before 2017-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('21', '%s', 'BZ$', '', '.', ' ', '100', '1', 'BZD', 'Fiat', '0')", wxTRANSLATE("Belize Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('22', '%s', 'CFA', '', '.', ' ', '1', '1', 'XOF', 'Fiat', '0')", wxTRANSLATE("CFA Franc BCEAO")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('23', '%s', 'BD$', '', '.', ' ', '100', '1', 'BMD', 'Fiat', '0')", wxTRANSLATE("Bermudian Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('24', '%s', 'Nu.', '', '.', ' ', '100', '1', 'BTN', 'Fiat', '0')", wxTRANSLATE("Ngultrum")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('25', '%s', 'Bs.', '', '.', ' ', '100', '1', 'BOB', 'Fiat', '0')", wxTRANSLATE("Boliviano")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('26', '%s', 'KM', '', ',', '.', '100', '1', 'BAM', 'Fiat', '0')", wxTRANSLATE("Convertible Mark")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('27', '%s', 'P', '', '.', ' ', '100', '1', 'BWP', 'Fiat', '0')", wxTRANSLATE("Pula")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('28', '%s', 'R$', '', '.', ' ', '100', '1', 'BRL', 'Fiat', '0')", wxTRANSLATE("Brazilian Real")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('29', '%s', 'B$', '', '.', ' ', '100', '1', 'BND', 'Fiat', '0')", wxTRANSLATE("Brunei Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('30', '%s', '', '', '.', ' ', '100', '1', 'BGN', 'Fiat', '0')", wxTRANSLATE("Bulgarian Lev")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('31', '%s', 'FBu', '', '.', ' ', '1', '1', 'BIF', 'Fiat', '0')", wxTRANSLATE("Burundi Franc")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('32', '%s', '', '', '.', ' ', '100', '1', 'KHR', 'Fiat', '0')", wxTRANSLATE("Riel")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('33', '%s', 'CFA', '', '.', ' ', '1', '1', 'XAF', 'Fiat', '0')", wxTRANSLATE("CFA Franc BEAC")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('34', '%s', '$', '', '.', ' ', '100', '1', 'CAD', 'Fiat', '0')", wxTRANSLATE("Canadian Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('35', '%s', 'Esc', '', '.', ' ', '100', '1', 'CVE', 'Fiat', '0')", wxTRANSLATE("Cabo Verde Escudo")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('36', '%s', 'KY$', '', '.', ' ', '100', '1', 'KYD', 'Fiat', '0')", wxTRANSLATE("Cayman Islands Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('37', '%s', '$', '', '.', ' ', '1', '1', 'CLP', 'Fiat', '0')", wxTRANSLATE("Chilean Peso")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('38', '%s', '%s', '', '.', ' ', '100', '1', 'CNY', 'Fiat', '0')", wxTRANSLATE("Yuan Renminbi"), L"¥"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('39', '%s', 'Col$', '', '.', ' ', '100', '1', 'COP', 'Fiat', '0')", wxTRANSLATE("Colombian Peso")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('40', '%s', '', '', '.', ' ', '1', '1', 'KMF', 'Fiat', '0')", wxTRANSLATE("Comorian Franc ")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('41', '%s', 'F', '', '.', ' ', '100', '1', 'CDF', 'Fiat', '0')", wxTRANSLATE("Congolese Franc")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('42', '%s', '%s', '', '.', ' ', '100', '1', 'CRC', 'Fiat', '0')", wxTRANSLATE("Costa Rican Colon"), L"₡"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('43', '%s', 'kn', '', '.', ' ', '100', '1', 'HRK', 'Fiat', '0')", wxTRANSLATE("Kuna")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('44', '%s', '%s', '', '.', ' ', '100', '1', 'CZK', 'Fiat', '0')", wxTRANSLATE("Czech Koruna"), L"Kč"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('45', '%s', 'Kr', '', '.', ' ', '100', '1', 'DKK', 'Fiat', '0')", wxTRANSLATE("Danish Krone")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('46', '%s', 'Fdj', '', '.', ' ', '1', '1', 'DJF', 'Fiat', '0')", wxTRANSLATE("Djibouti Franc")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('47', '%s', 'RD$', '', '.', ' ', '100', '1', 'DOP', 'Fiat', '0')", wxTRANSLATE("Dominican Peso")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('48', '%s', '%s', '', '.', ' ', '100', '1', 'EGP', 'Fiat', '0')", wxTRANSLATE("Egyptian Pound"), L"£"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('49', '%s', 'Nfa', '', '.', ' ', '100', '1', 'ERN', 'Fiat', '0')", wxTRANSLATE("Nakfa")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('50', '%s', 'Br', '', '.', ' ', '100', '1', 'ETB', 'Fiat', '0')", wxTRANSLATE("Ethiopian Birr")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('51', '%s', '%s', '', '.', ' ', '100', '1', 'FKP', 'Fiat', '0')", wxTRANSLATE("Falkland Islands Pound"), L"£"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('52', '%s', 'FJ$', '', '.', ' ', '100', '1', 'FJD', 'Fiat', '0')", wxTRANSLATE("Fiji Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('53', '%s', 'F', '', '.', ' ', '1', '1', 'XPF', 'Fiat', '0')", wxTRANSLATE("CFP Franc")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('54', '%s', 'D', '', '.', ' ', '100', '1', 'GMD', 'Fiat', '0')", wxTRANSLATE("Dalasi")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('55', '%s', '', '', '.', ' ', '100', '1', 'GEL', 'Fiat', '0')", wxTRANSLATE("Lari")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('56', '%s', '', '', '.', ' ', '100', '1', 'GHS', 'Fiat', '0')", wxTRANSLATE("Ghana Cedi")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('57', '%s', '%s', '', '.', ' ', '100', '1', 'GIP', 'Fiat', '0')", wxTRANSLATE("Gibraltar Pound"), L"£"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('58', '%s', 'Q', '', '.', ' ', '100', '1', 'GTQ', 'Fiat', '0')", wxTRANSLATE("Quetzal")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('59', '%s', 'FG', '', '.', ' ', '1', '1', 'GNF', 'Fiat', '0')", wxTRANSLATE("Guinean Franc")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('60', '%s', 'GY$', '', '.', ' ', '100', '1', 'GYD', 'Fiat', '0')", wxTRANSLATE("Guyana Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('61', '%s', 'G', '', '.', ' ', '100', '1', 'HTG', 'Fiat', '0')", wxTRANSLATE("Gourde")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('62', '%s', 'L', '', '.', ' ', '100', '1', 'HNL', 'Fiat', '0')", wxTRANSLATE("Lempira")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('63', '%s', 'HK$', '', '.', ' ', '100', '1', 'HKD', 'Fiat', '0')", wxTRANSLATE("Hong Kong Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('64', '%s', 'Ft', '', '.', ' ', '100', '1', 'HUF', 'Fiat', '0')", wxTRANSLATE("Forint")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('65', '%s', 'kr', '', '.', ' ', '1', '1', 'ISK', 'Fiat', '0')", wxTRANSLATE("Iceland Krona")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('66', '%s', '%s', '', '.', ' ', '100', '1', 'INR', 'Fiat', '0')", wxTRANSLATE("Indian Rupee"), L"₹"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('67', '%s', 'Rp', '', '.', ' ', '100', '1', 'IDR', 'Fiat', '0')", wxTRANSLATE("Rupiah")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('68', '%s', 'SDR', '', '.', ' ', '100', '1', 'XDR', 'Fiat', '0')", wxTRANSLATE("Special Drawing Rights")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('69', '%s', '', '', '.', ' ', '100', '1', 'IRR', 'Fiat', '0')", wxTRANSLATE("Iranian Rial")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('70', '%s', '', '', '.', ' ', '1000', '1', 'IQD', 'Fiat', '0')", wxTRANSLATE("Iraqi Dinar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('71', '%s', '%s', '', '.', ' ', '100', '1', 'ILS', 'Fiat', '0')", wxTRANSLATE("New Israeli Sheqel"), L"₪"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('72', '%s', 'J$', '', '.', ' ', '100', '1', 'JMD', 'Fiat', '0')", wxTRANSLATE("Jamaican Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('73', '%s', '%s', '', '.', ' ', '1', '1', 'JPY', 'Fiat', '0')", wxTRANSLATE("Yen"), L"¥"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('74', '%s', '', '', '.', ' ', '1000', '1', 'JOD', 'Fiat', '0')", wxTRANSLATE("Jordanian Dinar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('75', '%s', 'T', '', '.', ' ', '100', '1', 'KZT', 'Fiat', '0')", wxTRANSLATE("Tenge")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('76', '%s', 'KSh', '', '.', ' ', '100', '1', 'KES', 'Fiat', '0')", wxTRANSLATE("Kenyan Shilling")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('77', '%s', 'W', '', '.', ' ', '100', '1', 'KPW', 'Fiat', '0')", wxTRANSLATE("North Korean Won")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('78', '%s', 'W', '', '.', ' ', '1', '1', 'KRW', 'Fiat', '0')", wxTRANSLATE("Won")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('79', '%s', '', '', '.', ' ', '1000', '1', 'KWD', 'Fiat', '0')", wxTRANSLATE("Kuwaiti Dinar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('80', '%s', '', '', '.', ' ', '100', '1', 'KGS', 'Fiat', '0')", wxTRANSLATE("Som")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('81', '%s', 'KN', '', '.', ' ', '100', '1', 'LAK', 'Fiat', '0')", wxTRANSLATE("Lao Kip")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('82', '%s', 'Ls', '', '.', ' ', '100', '1', 'LVL', 'Fiat', '1')", wxTRANSLATE("Latvian Lats (before 2014-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('83', '%s', '', '', '.', ' ', '100', '1', 'LBP', 'Fiat', '0')", wxTRANSLATE("Lebanese Pound")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('84', '%s', 'M', '', '.', ' ', '100', '1', 'LSL', 'Fiat', '0')", wxTRANSLATE("Loti")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('85', '%s', 'L$', '', '.', ' ', '100', '1', 'LRD', 'Fiat', '0')", wxTRANSLATE("Liberian Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('86', '%s', 'LD', '', '.', ' ', '1000', '1', 'LYD', 'Fiat', '0')", wxTRANSLATE("Libyan Dinar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('87', '%s', 'Lt', '', '.', ' ', '100', '1', 'LTL', 'Fiat', '1')", wxTRANSLATE("Lithuanian Litas (before 2014-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('88', '%s', 'P', '', '.', ' ', '100', '1', 'MOP', 'Fiat', '0')", wxTRANSLATE("Pataca")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('89', '%s', '', '', '.', ' ', '100', '1', 'MKD', 'Fiat', '0')", wxTRANSLATE("Denar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('90', '%s', 'FMG', '', '.', ' ', '100', '1', 'MGA', 'Fiat', '0')", wxTRANSLATE("Malagasy Ariary")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('91', '%s', 'MK', '', '.', ' ', '100', '1', 'MWK', 'Fiat', '0')", wxTRANSLATE("Malawi Kwacha")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('92', '%s', 'RM', '', '.', ' ', '100', '1', 'MYR', 'Fiat', '0')", wxTRANSLATE("Malaysian Ringgit")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('93', '%s', 'Rf', '', '.', ' ', '100', '1', 'MVR', 'Fiat', '0')", wxTRANSLATE("Rufiyaa")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('94', '%s', 'UM', '', '.', ' ', '100', '1', 'MRO', 'Fiat', '1')", wxTRANSLATE("Ouguiya (before 2017-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('95', '%s', 'Rs', '', '.', ' ', '100', '1', 'MUR', 'Fiat', '0')", wxTRANSLATE("Mauritius Rupee")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('96', '%s', '$', '', '.', ' ', '100', '1', 'MXN', 'Fiat', '0')", wxTRANSLATE("Mexican Peso")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('97', '%s', '', '', '.', ' ', '100', '1', 'MDL', 'Fiat', '0')", wxTRANSLATE("Moldovan Leu")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('98', '%s', '%s', '', '.', ' ', '100', '1', 'MNT', 'Fiat', '0')", wxTRANSLATE("Tugrik"), L"₮"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('99', '%s', '', '', '.', ' ', '100', '1', 'MAD', 'Fiat', '0')", wxTRANSLATE("Moroccan Dirham")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('100', '%s', 'K', '', '.', ' ', '100', '1', 'MMK', 'Fiat', '0')", wxTRANSLATE("Kyat")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('101', '%s', 'N$', '', '.', ' ', '100', '1', 'NAD', 'Fiat', '0')", wxTRANSLATE("Namibia Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('102', '%s', 'NRs', '', '.', ' ', '100', '1', 'NPR', 'Fiat', '0')", wxTRANSLATE("Nepalese Rupee")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('103', '%s', '%s', '', '.', ' ', '100', '1', 'ANG', 'Fiat', '0')", wxTRANSLATE("Netherlands Antillean Guilder"), L"NAƒ"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('104', '%s', 'NZ$', '', '.', ' ', '100', '1', 'NZD', 'Fiat', '0')", wxTRANSLATE("New Zealand Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('105', '%s', 'C$', '', '.', ' ', '100', '1', 'NIO', 'Fiat', '0')", wxTRANSLATE("Cordoba Oro")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('106', '%s', '%s', '', '.', ' ', '100', '1', 'NGN', 'Fiat', '0')", wxTRANSLATE("Naira"), L"₦"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('107', '%s', 'kr', '', '.', ' ', '100', '1', 'NOK', 'Fiat', '0')", wxTRANSLATE("Norwegian Krone")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('108', '%s', '', '', '.', ' ', '1000', '1', 'OMR', 'Fiat', '0')", wxTRANSLATE("Rial Omani")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('109', '%s', 'Rs.', '', '.', ' ', '100', '1', 'PKR', 'Fiat', '0')", wxTRANSLATE("Pakistan Rupee")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('110', '%s', 'B./', '', '.', ' ', '100', '1', 'PAB', 'Fiat', '0')", wxTRANSLATE("Balboa")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('111', '%s', 'K', '', '.', ' ', '100', '1', 'PGK', 'Fiat', '0')", wxTRANSLATE("Kina")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('112', '%s', '', '', '.', ' ', '1', '1', 'PYG', 'Fiat', '0')", wxTRANSLATE("Guarani")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('113', '%s', 'S/.', '', '.', ' ', '100', '1', 'PEN', 'Fiat', '0')", wxTRANSLATE("Sol")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('114', '%s', '%s', '', '.', ' ', '100', '1', 'PHP', 'Fiat', '0')", wxTRANSLATE("Philippine Piso"), L"₱"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('115', '%s', '', '%s', ',', '.', '100', '1', 'PLN', 'Fiat', '0')", wxTRANSLATE("Zloty"), L"zł"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('116', '%s', 'QR', '', '.', ' ', '100', '1', 'QAR', 'Fiat', '0')", wxTRANSLATE("Qatari Rial")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('117', '%s', 'L', '', '.', ' ', '100', '1', 'RON', 'Fiat', '0')", wxTRANSLATE("Romanian Leu")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('118', '%s', 'RF', '', '.', ' ', '1', '1', 'RWF', 'Fiat', '0')", wxTRANSLATE("Rwanda Franc")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('119', '%s', 'Db', '', '.', ' ', '0', '1', 'STD', 'Fiat', '1')", wxTRANSLATE("Dobra (before 2017-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('120', '%s', 'SR', '', '.', ' ', '100', '1', 'SAR', 'Fiat', '0')", wxTRANSLATE("Saudi Riyal")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('121', '%s', 'din.', '', '.', ' ', '100', '1', 'RSD', 'Fiat', '0')", wxTRANSLATE("Serbian Dinar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('122', '%s', 'SR', '', '.', ' ', '100', '1', 'SCR', 'Fiat', '0')", wxTRANSLATE("Seychelles Rupee")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('123', '%s', 'Le', '', '.', ' ', '100', '1', 'SLL', 'Fiat', '0')", wxTRANSLATE("Leone")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('124', '%s', 'S$', '', '.', ' ', '100', '1', 'SGD', 'Fiat', '0')", wxTRANSLATE("Singapore Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('125', '%s', 'SI$', '', '.', ' ', '100', '1', 'SBD', 'Fiat', '0')", wxTRANSLATE("Solomon Islands Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('126', '%s', 'Sh.', '', '.', ' ', '100', '1', 'SOS', 'Fiat', '0')", wxTRANSLATE("Somali Shilling")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('127', '%s', 'R', '', '.', ' ', '100', '1', 'ZAR', 'Fiat', '0')", wxTRANSLATE("Rand")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('128', '%s', 'Rs', '', '.', ' ', '100', '1', 'LKR', 'Fiat', '0')", wxTRANSLATE("Sri Lanka Rupee")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('129', '%s', '%s', '', '.', ' ', '100', '1', 'SHP', 'Fiat', '0')", wxTRANSLATE("Saint Helena Pound"), L"£"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('130', '%s', '', '', '.', ' ', '100', '1', 'SDG', 'Fiat', '0')", wxTRANSLATE("Sudanese Pound")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('131', '%s', '$', '', '.', ' ', '100', '1', 'SRD', 'Fiat', '0')", wxTRANSLATE("Surinam Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('132', '%s', 'E', '', '.', ' ', '100', '1', 'SZL', 'Fiat', '0')", wxTRANSLATE("Lilangeni")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('133', '%s', 'kr', '', '.', ' ', '100', '1', 'SEK', 'Fiat', '0')", wxTRANSLATE("Swedish Krona")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('134', '%s', 'Fr.', '', '.', ' ', '100', '1', 'CHF', 'Fiat', '0')", wxTRANSLATE("Swiss Franc")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('135', '%s', '', '', '.', ' ', '100', '1', 'SYP', 'Fiat', '0')", wxTRANSLATE("Syrian Pound")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('136', '%s', 'NT$', '', '.', ' ', '100', '1', 'TWD', 'Fiat', '0')", wxTRANSLATE("New Taiwan Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('137', '%s', '', '', '.', ' ', '100', '1', 'TJS', 'Fiat', '0')", wxTRANSLATE("Somoni")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('138', '%s', '', '', '.', ' ', '100', '1', 'TZS', 'Fiat', '0')", wxTRANSLATE("Tanzanian Shilling")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('139', '%s', '%s', '', '.', ' ', '100', '1', 'THB', 'Fiat', '0')", wxTRANSLATE("Baht"), L"฿"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('140', '%s', 'TT$', '', '.', ' ', '100', '1', 'TTD', 'Fiat', '0')", wxTRANSLATE("Trinidad and Tobago Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('141', '%s', 'DT', '', '.', ' ', '1000', '1', 'TND', 'Fiat', '0')", wxTRANSLATE("Tunisian Dinar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('142', '%s', '%s', '', '.', ' ', '100', '1', 'TRY', 'Fiat', '0')", wxTRANSLATE("Turkish Lira"), L"₺"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('143', '%s', 'm', '', '.', ' ', '100', '1', 'TMT', 'Fiat', '0')", wxTRANSLATE("Turkmenistan New Manat")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('144', '%s', 'USh', '', '.', ' ', '1', '1', 'UGX', 'Fiat', '0')", wxTRANSLATE("Uganda Shilling")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('145', '%s', '', '', '.', ' ', '100', '1', 'AED', 'Fiat', '0')", wxTRANSLATE("UAE Dirham")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('146', '%s', '$U', '', '.', ' ', '100', '1', 'UYU', 'Fiat', '0')", wxTRANSLATE("Peso Uruguayo")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('147', '%s', '', '', '.', ' ', '100', '1', 'UZS', 'Fiat', '0')", wxTRANSLATE("Uzbekistan Sum")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('148', '%s', 'VT', '', '.', ' ', '1', '1', 'VUV', 'Fiat', '0')", wxTRANSLATE("Vatu")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('149', '%s', '%s', '', '.', ' ', '1', '1', 'VND', 'Fiat', '0')", wxTRANSLATE("Dong"), L"₫"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('150', '%s', 'WS$', '', '.', ' ', '100', '1', 'WST', 'Fiat', '0')", wxTRANSLATE("Tala")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('151', '%s', '', '', '.', ' ', '100', '1', 'YER', 'Fiat', '0')", wxTRANSLATE("Yemeni Rial")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('152', '%s', 'Bs.', '', '.', ',', '100', '1', 'VEF', 'Fiat', '0')", wxTRANSLATE("Bolívar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('153', '%s', '%s', '', '.', ',', '100000000', '1', 'BTC', 'Crypto', '0')", wxTRANSLATE("Bitcoin"), L"Ƀ"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('154', '%s', '', '', '.', ',', '100', '1', 'ADP', 'Fiat', '1')", wxTRANSLATE("Andorran Peseta (before 2003-07)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('155', '%s', '', '', '.', ',', '100', '1', 'AFA', 'Fiat', '1')", wxTRANSLATE("Afghani (before 2003-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('156', '%s', '', '', '.', ',', '100', '1', 'ALK', 'Fiat', '1')", wxTRANSLATE("Old Lek (before 1989-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('157', '%s', '', '', '.', ',', '100', '1', 'AOK', 'Fiat', '1')", wxTRANSLATE("Kwanza (before 1991-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('158', '%s', '', '', '.', ',', '100', '1', 'AON', 'Fiat', '1')", wxTRANSLATE("New Kwanza (before 2000-02)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('159', '%s', '', '', '.', ',', '100', '1', 'AOR', 'Fiat', '1')", wxTRANSLATE("Kwanza Reajustado (before 2000-02)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('160', '%s', '', '', '.', ',', '100', '1', 'ARA', 'Fiat', '1')", wxTRANSLATE("Austral (before 1992-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('161', '%s', '', '', '.', ',', '100', '1', 'ARP', 'Fiat', '1')", wxTRANSLATE("Peso Argentino (before 1985-07)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('162', '%s', '', '', '.', ',', '100', '1', 'ARY', 'Fiat', '1')", wxTRANSLATE("Peso (1989 to 1990)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('163', '%s', '', '', '.', ',', '100', '1', 'ATS', 'Fiat', '1')", wxTRANSLATE("Schilling (before 2002-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('164', '%s', '', '', '.', ',', '100', '1', 'AYM', 'Fiat', '1')", wxTRANSLATE("Azerbaijan Manat (before 2005-10)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('165', '%s', '', '', '.', ',', '100', '1', 'AZM', 'Fiat', '1')", wxTRANSLATE("Azerbaijanian Manat (before 2005-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('166', '%s', '', '', '.', ',', '100', '1', 'BAD', 'Fiat', '1')", wxTRANSLATE("Dinar (before 1998-07)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('167', '%s', '', '', '.', ',', '100', '1', 'BEC', 'Fiat', '1')", wxTRANSLATE("Convertible Franc (before 1990-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('168', '%s', '', '', '.', ',', '100', '1', 'BEF', 'Fiat', '1')", wxTRANSLATE("Belgian Franc (before 2002-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('169', '%s', '', '', '.', ',', '100', '1', 'BEL', 'Fiat', '1')", wxTRANSLATE("Financial Franc (before 1990-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('170', '%s', '', '', '.', ',', '100', '1', 'BGJ', 'Fiat', '1')", wxTRANSLATE("Lev A/52 (1989 to 1990)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('171', '%s', '', '', '.', ',', '100', '1', 'BGK', 'Fiat', '1')", wxTRANSLATE("Lev A/62 (1989 to 1990)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('172', '%s', '', '', '.', ',', '100', '1', 'BGL', 'Fiat', '1')", wxTRANSLATE("Lev (before 2003-11)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('173', '%s', '', '', '.', ',', '100', '1', 'BOP', 'Fiat', '1')", wxTRANSLATE("Peso boliviano (before 1987-02)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('174', '%s', '', '', '.', ',', '100', '1', 'BRB', 'Fiat', '1')", wxTRANSLATE("Cruzeiro (before 1986-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('175', '%s', '', '', '.', ',', '100', '1', 'BRC', 'Fiat', '1')", wxTRANSLATE("Cruzado (before 1989-02)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('176', '%s', '', '', '.', ',', '100', '1', 'BRE', 'Fiat', '1')", wxTRANSLATE("Cruzeiro (before 1993-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('177', '%s', '', '', '.', ',', '100', '1', 'BRN', 'Fiat', '1')", wxTRANSLATE("New Cruzado (before 1990-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('178', '%s', '', '', '.', ',', '100', '1', 'BRR', 'Fiat', '1')", wxTRANSLATE("Cruzeiro Real (before 1994-07)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('179', '%s', '', '', '.', ',', '100', '1', 'BUK', 'Fiat', '1')", wxTRANSLATE("Kyat (before 1990-02)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('180', '%s', '', '', '.', ',', '100', '1', 'BYB', 'Fiat', '1')", wxTRANSLATE("Belarusian Ruble (before 2001-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('181', '%s', '', '', '.', ',', '100', '1', 'BYN', 'Fiat', '0')", wxTRANSLATE("Belarusian Ruble")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('182', '%s', '', '', '.', ',', '100', '1', 'CHC', 'Fiat', '1')", wxTRANSLATE("WIR Franc (for electronic) (before 2004-11)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('183', '%s', '', '', '.', ',', '100', '1', 'CSD', 'Fiat', '1')", wxTRANSLATE("Serbian Dinar (before 2006-10)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('184', '%s', '', '', '.', ',', '100', '1', 'CSJ', 'Fiat', '1')", wxTRANSLATE("Krona A/53 (1989 to 1990)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('185', '%s', '', '', '.', ',', '100', '1', 'CSK', 'Fiat', '1')", wxTRANSLATE("Koruna (before 1993-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('186', '%s', '', '', '.', ',', '100', '1', 'CUC', 'Fiat', '0')", wxTRANSLATE("Peso Convertible")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('187', '%s', '', '', '.', ',', '100', '1', 'CUP', 'Fiat', '0')", wxTRANSLATE("Cuban Peso")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('188', '%s', '', '', '.', ',', '100', '1', 'CYP', 'Fiat', '1')", wxTRANSLATE("Cyprus Pound (before 2008-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('189', '%s', '', '', '.', ',', '100', '1', 'DDM', 'Fiat', '1')", wxTRANSLATE("Mark der DDR (1990-07 to 1990-09)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('190', '%s', '', '', '.', ',', '100', '1', 'DEM', 'Fiat', '1')", wxTRANSLATE("Deutsche Mark (before 2002-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('191', '%s', '', '', '.', ',', '100', '1', 'ECS', 'Fiat', '1')", wxTRANSLATE("Sucre (before 2000-09)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('192', '%s', '', '', '.', ',', '100', '1', 'ECV', 'Fiat', '1')", wxTRANSLATE("Unidad de Valor Constante (UVC) (before 2000-09)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('193', '%s', '', '', '.', ',', '100', '1', 'EEK', 'Fiat', '1')", wxTRANSLATE("Kroon (before 2011-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('194', '%s', '', '', '.', ',', '100', '1', 'ESA', 'Fiat', '1')", wxTRANSLATE("Spanish Peseta (1978 to 1981)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('195', '%s', '', '', '.', ',', '100', '1', 'ESB', 'Fiat', '1')", wxTRANSLATE("A Account (convertible Peseta Account) (before 1994-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('196', '%s', '', '', '.', ',', '100', '1', 'ESP', 'Fiat', '1')", wxTRANSLATE("Spanish Peseta (before 2002-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('197', '%s', '', '', '.', ',', '100', '1', 'FIM', 'Fiat', '1')", wxTRANSLATE("Markka (before 2002-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('198', '%s', '', '', '.', ',', '100', '1', 'FRF', 'Fiat', '1')", wxTRANSLATE("French Franc (before 1999-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('199', '%s', '', '', '.', ',', '100', '1', 'GEK', 'Fiat', '1')", wxTRANSLATE("Georgian Coupon (before 1995-10)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('200', '%s', '', '', '.', ',', '100', '1', 'GHC', 'Fiat', '1')", wxTRANSLATE("Cedi (before 2008-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('201', '%s', '', '', '.', ',', '100', '1', 'GHP', 'Fiat', '1')", wxTRANSLATE("Ghana Cedi (before 2007-06)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('202', '%s', '', '', '.', ',', '100', '1', 'GNE', 'Fiat', '1')", wxTRANSLATE("Syli (before 1989-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('203', '%s', '', '', '.', ',', '100', '1', 'GNS', 'Fiat', '1')", wxTRANSLATE("Syli (before 1986-02)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('204', '%s', '', '', '.', ',', '100', '1', 'GQE', 'Fiat', '1')", wxTRANSLATE("Ekwele (before 1986-06)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('205', '%s', '', '', '.', ',', '100', '1', 'GRD', 'Fiat', '1')", wxTRANSLATE("Drachma (before 2002-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('206', '%s', '', '', '.', ',', '100', '1', 'GWE', 'Fiat', '1')", wxTRANSLATE("Guinea Escudo (1978 to 1981)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('207', '%s', '', '', '.', ',', '100', '1', 'GWP', 'Fiat', '1')", wxTRANSLATE("Guinea-Bissau Peso (before 1997-05)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('208', '%s', '', '', '.', ',', '100', '1', 'HRD', 'Fiat', '1')", wxTRANSLATE("Croatian Dinar (before 1995-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('209', '%s', '', '', '.', ',', '100', '1', 'IEP', 'Fiat', '1')", wxTRANSLATE("Irish Pound (before 2002-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('210', '%s', '', '', '.', ',', '100', '1', 'ILP', 'Fiat', '1')", wxTRANSLATE("Pound (1978 to 1981)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('211', '%s', '', '', '.', ',', '100', '1', 'ILR', 'Fiat', '1')", wxTRANSLATE("Old Shekel (1989 to 1990)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('212', '%s', '', '', '.', ',', '100', '1', 'ISJ', 'Fiat', '1')", wxTRANSLATE("Old Krona (1989 to 1990)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('213', '%s', '', '', '.', ',', '100', '1', 'ITL', 'Fiat', '1')", wxTRANSLATE("Italian Lira (before 2002-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('214', '%s', '', '', '.', ',', '100', '1', 'LAJ', 'Fiat', '1')", wxTRANSLATE("Pathet Lao Kip (before 1979-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('215', '%s', '', '', '.', ',', '100', '1', 'LSM', 'Fiat', '1')", wxTRANSLATE("Loti (before 1985-05)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('216', '%s', '', '', '.', ',', '100', '1', 'LTT', 'Fiat', '1')", wxTRANSLATE("Talonas (before 1993-07)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('217', '%s', '', '', '.', ',', '100', '1', 'LUC', 'Fiat', '1')", wxTRANSLATE("Luxembourg Convertible Franc (before 1990-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('218', '%s', '', '', '.', ',', '100', '1', 'LUF', 'Fiat', '1')", wxTRANSLATE("Luxembourg Franc (before 2002-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('219', '%s', '', '', '.', ',', '100', '1', 'LUL', 'Fiat', '1')", wxTRANSLATE("Luxembourg Financial Franc (before 1990-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('220', '%s', '', '', '.', ',', '100', '1', 'LVR', 'Fiat', '1')", wxTRANSLATE("Latvian Ruble (before 1994-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('221', '%s', '', '', '.', ',', '100', '1', 'MGF', 'Fiat', '1')", wxTRANSLATE("Malagasy Franc (before 2004-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('222', '%s', '', '', '.', ',', '100', '1', 'MLF', 'Fiat', '1')", wxTRANSLATE("Mali Franc (before 1984-11)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('223', '%s', '', '', '.', ',', '100', '1', 'MRU', 'Fiat', '0')", wxTRANSLATE("Ouguiya")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('224', '%s', '', '', '.', ',', '100', '1', 'MTL', 'Fiat', '1')", wxTRANSLATE("Maltese Lira (before 2008-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('225', '%s', '', '', '.', ',', '100', '1', 'MTP', 'Fiat', '1')", wxTRANSLATE("Maltese Pound (before 1983-06)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('226', '%s', '', '', '.', ',', '100', '1', 'MVQ', 'Fiat', '1')", wxTRANSLATE("Maldive Rupee (before 1989-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('227', '%s', '', '', '.', ',', '100', '1', 'MXP', 'Fiat', '1')", wxTRANSLATE("Mexican Peso (before 1993-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('228', '%s', '', '', '.', ',', '100', '1', 'MZE', 'Fiat', '1')", wxTRANSLATE("Mozambique Escudo (1978 to 1981)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('229', '%s', '', '', '.', ',', '100', '1', 'MZM', 'Fiat', '1')", wxTRANSLATE("Mozambique Metical (before 2006-06)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('230', '%s', '', '', '.', ',', '100', '1', 'MZN', 'Fiat', '0')", wxTRANSLATE("Mozambique Metical")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('231', '%s', '', '', '.', ',', '100', '1', 'NIC', 'Fiat', '1')", wxTRANSLATE("Cordoba (before 1990-10)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('232', '%s', '', '', '.', ',', '100', '1', 'NLG', 'Fiat', '1')", wxTRANSLATE("Netherlands Guilder (before 2002-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('233', '%s', '', '', '.', ',', '100', '1', 'PEH', 'Fiat', '1')", wxTRANSLATE("Sol (1989 to 1990)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('234', '%s', '', '', '.', ',', '100', '1', 'PEI', 'Fiat', '1')", wxTRANSLATE("Inti (before 1991-07)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('235', '%s', '', '', '.', ',', '100', '1', 'PES', 'Fiat', '1')", wxTRANSLATE("Sol (before 1986-02)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('236', '%s', '', '', '.', ',', '100', '1', 'PLZ', 'Fiat', '1')", wxTRANSLATE("Zloty (before 1997-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('237', '%s', '', '', '.', ',', '100', '1', 'PTE', 'Fiat', '1')", wxTRANSLATE("Portuguese Escudo (before 2002-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('238', '%s', '', '', '.', ',', '100', '1', 'RHD', 'Fiat', '1')", wxTRANSLATE("Rhodesian Dollar (1978 to 1981)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('239', '%s', '', '', '.', ',', '100', '1', 'ROK', 'Fiat', '1')", wxTRANSLATE("Leu A/52 (1989 to 1990)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('240', '%s', '', '', '.', ',', '100', '1', 'ROL', 'Fiat', '1')", wxTRANSLATE("Old Leu (before 2005-06)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('241', '%s', '', '', '.', ',', '100', '1', 'RUR', 'Fiat', '1')", wxTRANSLATE("Russian Ruble (before 1994-07)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('242', '%s', '', '', '.', ',', '100', '1', 'SDD', 'Fiat', '1')", wxTRANSLATE("Sudanese Dinar (before 2007-07)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('243', '%s', '', '', '.', ',', '100', '1', 'SDP', 'Fiat', '1')", wxTRANSLATE("Sudanese Pound (before 1998-06)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('244', '%s', '', '', '.', ',', '100', '1', 'SIT', 'Fiat', '1')", wxTRANSLATE("Tolar (before 2007-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('245', '%s', '', '', '.', ',', '100', '1', 'SKK', 'Fiat', '1')", wxTRANSLATE("Slovak Koruna (before 2009-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('246', '%s', '', '', '.', ',', '100', '1', 'SRG', 'Fiat', '1')", wxTRANSLATE("Surinam Guilder (before 2003-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('247', '%s', '', '', '.', ',', '100', '1', 'SSP', 'Fiat', '0')", wxTRANSLATE("South Sudanese Pound")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('248', '%s', '', '', '.', ',', '100', '1', 'STN', 'Fiat', '0')", wxTRANSLATE("Dobra")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('249', '%s', '', '', '.', ',', '100', '1', 'SUR', 'Fiat', '1')", wxTRANSLATE("Rouble (before 1990-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('250', '%s', '', '', '.', ',', '100', '1', 'SVC', 'Fiat', '0')", wxTRANSLATE("El Salvador Colon")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('251', '%s', '', '', '.', ',', '100', '1', 'TJR', 'Fiat', '1')", wxTRANSLATE("Tajik Ruble (before 2001-04)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('252', '%s', '', '', '.', ',', '100', '1', 'TMM', 'Fiat', '1')", wxTRANSLATE("Turkmenistan Manat (before 2009-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('253', '%s', '', '', '.', ',', '100', '1', 'TOP', 'Fiat', '0')", wxTRANSLATE("Pa’anga")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('254', '%s', '', '', '.', ',', '100', '1', 'TPE', 'Fiat', '1')", wxTRANSLATE("Timor Escudo (before 2002-11)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('255', '%s', '', '', '.', ',', '100', '1', 'TRL', 'Fiat', '1')", wxTRANSLATE("Old Turkish Lira (before 2005-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('256', '%s', '', '', '.', ',', '100', '1', 'UAK', 'Fiat', '1')", wxTRANSLATE("Karbovanet (before 1996-09)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('257', '%s', '', '', '.', ',', '100', '1', 'UGS', 'Fiat', '1')", wxTRANSLATE("Uganda Shilling (before 1987-05)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('258', '%s', '', '', '.', ',', '100', '1', 'UGW', 'Fiat', '1')", wxTRANSLATE("Old Shilling (1989 to 1990)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('259', '%s', '', '', '.', ',', '100', '1', 'USS', 'Fiat', '1')", wxTRANSLATE("US Dollar (Same day) (before 2014-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('260', '%s', '', '', '.', ',', '100', '1', 'UYN', 'Fiat', '1')", wxTRANSLATE("Old Uruguay Peso (before 1989-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('261', '%s', '', '', '.', ',', '100', '1', 'UYP', 'Fiat', '1')", wxTRANSLATE("Uruguayan Peso (before 1993-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('262', '%s', '', '', '.', ',', '100', '1', 'VEB', 'Fiat', '1')", wxTRANSLATE("Bolivar (before 2008-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('263', '%s', '', '', '.', ',', '100', '1', 'VNC', 'Fiat', '1')", wxTRANSLATE("Old Dong (1989-1990)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('264', '%s', '', '', '.', ',', '100', '1', 'XEU', 'Fiat', '1')", wxTRANSLATE("European Currency Unit (E.C.U) (before 1999-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('265', '%s', '', '', '.', ',', '100', '1', 'XFO', 'Fiat', '1')", wxTRANSLATE("Gold-Franc (before 2006-10)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('266', '%s', '', '', '.', ',', '100', '1', 'YDD', 'Fiat', '1')", wxTRANSLATE("Yemeni Dinar (before 1991-09)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('267', '%s', '', '', '.', ',', '100', '1', 'YUD', 'Fiat', '1')", wxTRANSLATE("New Yugoslavian Dinar (before 1990-01)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('268', '%s', '', '', '.', ',', '100', '1', 'YUM', 'Fiat', '1')", wxTRANSLATE("New Dinar (before 2003-07)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('269', '%s', '', '', '.', ',', '100', '1', 'YUN', 'Fiat', '1')", wxTRANSLATE("Yugoslavian Dinar (before 1995-11)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('270', '%s', '', '', '.', ',', '100', '1', 'ZAL', 'Fiat', '1')", wxTRANSLATE("Financial Rand (before 1995-03)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('271', '%s', '', '', '.', ',', '100', '1', 'ZMK', 'Fiat', '1')", wxTRANSLATE("Zambian Kwacha (before 2012-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('272', '%s', '', '', '.', ',', '100', '1', 'ZMW', 'Fiat', '0')", wxTRANSLATE("Zambian Kwacha")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('273', '%s', '', '', '.', ',', '100', '1', 'ZRN', 'Fiat', '1')", wxTRANSLATE("New Zaire (before 1999-06)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('274', '%s', '', '', '.', ',', '100', '1', 'ZRZ', 'Fiat', '1')", wxTRANSLATE("Zaire (before 1994-02)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('275', '%s', '', '', '.', ',', '100', '1', 'ZWC', 'Fiat', '1')", wxTRANSLATE("Rhodesian Dollar (before 1989-12)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('276', '%s', '', '', '.', ',', '100', '1', 'ZWD', 'Fiat', '1')", wxTRANSLATE("Zimbabwe Dollar (before 2008-08)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('277', '%s', '', '', '.', ',', '100', '1', 'ZWL', 'Fiat', '0')", wxTRANSLATE("Zimbabwe Dollar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('278', '%s', '', '', '.', ',', '100', '1', 'ZWN', 'Fiat', '1')", wxTRANSLATE("Zimbabwe Dollar (new) (before 2006-09)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('279', '%s', '', '', '.', ',', '100', '1', 'ZWR', 'Fiat', '1')", wxTRANSLATE("Zimbabwe Dollar (before 2009-06)")));
         db->Commit();
     }
     
@@ -433,6 +433,12 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         explicit SCALE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
+    struct BASECONVRATE : public DB_Column<double>
+    { 
+        static wxString name() { return "BASECONVRATE"; } 
+        explicit BASECONVRATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    
     struct CURRENCY_SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "CURRENCY_SYMBOL"; } 
@@ -461,9 +467,10 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         , COL_DECIMAL_POINT = 4
         , COL_GROUP_SEPARATOR = 5
         , COL_SCALE = 6
-        , COL_CURRENCY_SYMBOL = 7
-        , COL_CURRENCY_TYPE = 8
-        , COL_HISTORIC = 9
+        , COL_BASECONVRATE = 7
+        , COL_CURRENCY_SYMBOL = 8
+        , COL_CURRENCY_TYPE = 9
+        , COL_HISTORIC = 10
     };
 
     /** Returns the column name as a string*/
@@ -478,6 +485,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
             case COL_DECIMAL_POINT: return "DECIMAL_POINT";
             case COL_GROUP_SEPARATOR: return "GROUP_SEPARATOR";
             case COL_SCALE: return "SCALE";
+            case COL_BASECONVRATE: return "BASECONVRATE";
             case COL_CURRENCY_SYMBOL: return "CURRENCY_SYMBOL";
             case COL_CURRENCY_TYPE: return "CURRENCY_TYPE";
             case COL_HISTORIC: return "HISTORIC";
@@ -497,6 +505,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         else if ("DECIMAL_POINT" == name) return COL_DECIMAL_POINT;
         else if ("GROUP_SEPARATOR" == name) return COL_GROUP_SEPARATOR;
         else if ("SCALE" == name) return COL_SCALE;
+        else if ("BASECONVRATE" == name) return COL_BASECONVRATE;
         else if ("CURRENCY_SYMBOL" == name) return COL_CURRENCY_SYMBOL;
         else if ("CURRENCY_TYPE" == name) return COL_CURRENCY_TYPE;
         else if ("HISTORIC" == name) return COL_HISTORIC;
@@ -518,6 +527,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         wxString DECIMAL_POINT;
         wxString GROUP_SEPARATOR;
         int SCALE;
+        double BASECONVRATE;
         wxString CURRENCY_SYMBOL;
         wxString CURRENCY_TYPE;
         int HISTORIC;
@@ -548,6 +558,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         
             CURRENCYID = -1;
             SCALE = -1;
+            BASECONVRATE = 0.0;
             HISTORIC = -1;
         }
 
@@ -562,9 +573,10 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
             DECIMAL_POINT = q.GetString(4); // DECIMAL_POINT
             GROUP_SEPARATOR = q.GetString(5); // GROUP_SEPARATOR
             SCALE = q.GetInt(6); // SCALE
-            CURRENCY_SYMBOL = q.GetString(7); // CURRENCY_SYMBOL
-            CURRENCY_TYPE = q.GetString(8); // CURRENCY_TYPE
-            HISTORIC = q.GetInt(9); // HISTORIC
+            BASECONVRATE = q.GetDouble(7); // BASECONVRATE
+            CURRENCY_SYMBOL = q.GetString(8); // CURRENCY_SYMBOL
+            CURRENCY_TYPE = q.GetString(9); // CURRENCY_TYPE
+            HISTORIC = q.GetInt(10); // HISTORIC
         }
 
         Data& operator=(const Data& other)
@@ -578,6 +590,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
             DECIMAL_POINT = other.DECIMAL_POINT;
             GROUP_SEPARATOR = other.GROUP_SEPARATOR;
             SCALE = other.SCALE;
+            BASECONVRATE = other.BASECONVRATE;
             CURRENCY_SYMBOL = other.CURRENCY_SYMBOL;
             CURRENCY_TYPE = other.CURRENCY_TYPE;
             HISTORIC = other.HISTORIC;
@@ -625,6 +638,11 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
             return this->SCALE == in.v_;
         }
 
+        bool match(const Self::BASECONVRATE &in) const
+        {
+            return this->BASECONVRATE == in.v_;
+        }
+
         bool match(const Self::CURRENCY_SYMBOL &in) const
         {
             return this->CURRENCY_SYMBOL.CmpNoCase(in.v_) == 0;
@@ -646,8 +664,8 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
             StringBuffer json_buffer;
             PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-			json_writer.StartObject();			
-			this->as_json(json_writer);
+            json_writer.StartObject();
+            this->as_json(json_writer);
             json_writer.EndObject();
 
             return json_buffer.GetString();
@@ -670,6 +688,8 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
             json_writer.String(this->GROUP_SEPARATOR.c_str());
             json_writer.Key("SCALE");
             json_writer.Int(this->SCALE);
+            json_writer.Key("BASECONVRATE");
+            json_writer.Double(this->BASECONVRATE);
             json_writer.Key("CURRENCY_SYMBOL");
             json_writer.String(this->CURRENCY_SYMBOL.c_str());
             json_writer.Key("CURRENCY_TYPE");
@@ -688,6 +708,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
             row(L"DECIMAL_POINT") = DECIMAL_POINT;
             row(L"GROUP_SEPARATOR") = GROUP_SEPARATOR;
             row(L"SCALE") = SCALE;
+            row(L"BASECONVRATE") = BASECONVRATE;
             row(L"CURRENCY_SYMBOL") = CURRENCY_SYMBOL;
             row(L"CURRENCY_TYPE") = CURRENCY_TYPE;
             row(L"HISTORIC") = HISTORIC;
@@ -703,6 +724,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
             t(L"DECIMAL_POINT") = DECIMAL_POINT;
             t(L"GROUP_SEPARATOR") = GROUP_SEPARATOR;
             t(L"SCALE") = SCALE;
+            t(L"BASECONVRATE") = BASECONVRATE;
             t(L"CURRENCY_SYMBOL") = CURRENCY_SYMBOL;
             t(L"CURRENCY_TYPE") = CURRENCY_TYPE;
             t(L"HISTORIC") = HISTORIC;
@@ -741,7 +763,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 10
+        NUM_COLUMNS = 11
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
@@ -751,7 +773,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
 
     DB_Table_CURRENCYFORMATS() : fake_(new Data())
     {
-        query_ = "SELECT CURRENCYID, CURRENCYNAME, PFX_SYMBOL, SFX_SYMBOL, DECIMAL_POINT, GROUP_SEPARATOR, SCALE, CURRENCY_SYMBOL, CURRENCY_TYPE, HISTORIC FROM CURRENCYFORMATS ";
+        query_ = "SELECT CURRENCYID, CURRENCYNAME, PFX_SYMBOL, SFX_SYMBOL, DECIMAL_POINT, GROUP_SEPARATOR, SCALE, BASECONVRATE, CURRENCY_SYMBOL, CURRENCY_TYPE, HISTORIC FROM CURRENCYFORMATS ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -781,11 +803,11 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CURRENCYFORMATS(CURRENCYNAME, PFX_SYMBOL, SFX_SYMBOL, DECIMAL_POINT, GROUP_SEPARATOR, SCALE, CURRENCY_SYMBOL, CURRENCY_TYPE, HISTORIC) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO CURRENCYFORMATS(CURRENCYNAME, PFX_SYMBOL, SFX_SYMBOL, DECIMAL_POINT, GROUP_SEPARATOR, SCALE, BASECONVRATE, CURRENCY_SYMBOL, CURRENCY_TYPE, HISTORIC) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CURRENCYFORMATS SET CURRENCYNAME = ?, PFX_SYMBOL = ?, SFX_SYMBOL = ?, DECIMAL_POINT = ?, GROUP_SEPARATOR = ?, SCALE = ?, CURRENCY_SYMBOL = ?, CURRENCY_TYPE = ?, HISTORIC = ? WHERE CURRENCYID = ?";
+            sql = "UPDATE CURRENCYFORMATS SET CURRENCYNAME = ?, PFX_SYMBOL = ?, SFX_SYMBOL = ?, DECIMAL_POINT = ?, GROUP_SEPARATOR = ?, SCALE = ?, BASECONVRATE = ?, CURRENCY_SYMBOL = ?, CURRENCY_TYPE = ?, HISTORIC = ? WHERE CURRENCYID = ?";
         }
 
         try
@@ -798,11 +820,12 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
             stmt.Bind(4, entity->DECIMAL_POINT);
             stmt.Bind(5, entity->GROUP_SEPARATOR);
             stmt.Bind(6, entity->SCALE);
-            stmt.Bind(7, entity->CURRENCY_SYMBOL);
-            stmt.Bind(8, entity->CURRENCY_TYPE);
-            stmt.Bind(9, entity->HISTORIC);
+            stmt.Bind(7, entity->BASECONVRATE);
+            stmt.Bind(8, entity->CURRENCY_SYMBOL);
+            stmt.Bind(9, entity->CURRENCY_TYPE);
+            stmt.Bind(10, entity->HISTORIC);
             if (entity->id() > 0)
-                stmt.Bind(10, entity->CURRENCYID);
+                stmt.Bind(11, entity->CURRENCYID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

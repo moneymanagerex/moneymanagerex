@@ -18,7 +18,7 @@ ELSEIF (WIN32)
     SET(MMEX_RC "${CMAKE_CURRENT_BINARY_DIR}/mmex.rc")
 ENDIF ()
 
-ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
+ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     aboutdialog.cpp
     aboutdialog.h
     accountdialog.cpp
@@ -75,6 +75,8 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
     mmcombobox.h
     mmcustomdata.cpp
     mmcustomdata.h
+    mmex.cpp
+    mmex.h
     mmframe.cpp
     mmframe.h
     mmframereport.cpp
@@ -192,7 +194,6 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
     db/DB_Table_Translink.h
     db/DB_Table_Usage_V1.h
 
-    reports/allreport.h
     reports/budgetcategorysummary.cpp
     reports/budgetcategorysummary.h
     reports/budget.cpp
@@ -226,7 +227,6 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
     reports/transactions.cpp
     reports/transactions.h
 
-    model/allmodel.h
     model/Model_Account.cpp
     model/Model_Account.h
     model/Model_Asset.cpp
@@ -278,11 +278,7 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
     model/Model_Usage.h
 
     "${CMAKE_CURRENT_BINARY_DIR}/versions.h"
-    "${MMEX_PLAT_DIR}/platfdep.cpp")
-
-ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
-    mmex.cpp
-    mmex.h
+    "${MMEX_PLAT_DIR}/platfdep.cpp"
     "${MACOSX_APP_ICON_FILE}"
     "${MMEX_RC}")
 
@@ -293,31 +289,28 @@ IF(CMAKE_VERSION VERSION_LESS 3.1)
     CHECK_CXX_COMPILER_FLAG("-std=gnu++0x" COMPILER_SUPPORTS_GXX0X)
     CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
     IF(COMPILER_SUPPORTS_GXX11)
-        TARGET_COMPILE_OPTIONS(MMEXLib PUBLIC -std=gnu++11)
+        TARGET_COMPILE_OPTIONS(${MMEX_EXE} PUBLIC -std=gnu++11)
     ELSEIF(COMPILER_SUPPORTS_CXX11)
-        TARGET_COMPILE_OPTIONS(MMEXLib PUBLIC -std=c++11)
+        TARGET_COMPILE_OPTIONS(${MMEX_EXE} PUBLIC -std=c++11)
     ELSEIF(COMPILER_SUPPORTS_GXX0X)
-        TARGET_COMPILE_OPTIONS(MMEXLib PUBLIC -std=gnu++0x)
+        TARGET_COMPILE_OPTIONS(${MMEX_EXE} PUBLIC -std=gnu++0x)
     ELSEIF(COMPILER_SUPPORTS_CXX0X)
-        TARGET_COMPILE_OPTIONS(MMEXLib PUBLIC -std=c++0x)
+        TARGET_COMPILE_OPTIONS(${MMEX_EXE} PUBLIC -std=c++0x)
     ELSE()
         MESSAGE(SEND_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support.")
     ENDIF()
 ELSEIF(CMAKE_VERSION VERSION_LESS 3.8)
-    TARGET_COMPILE_FEATURES(MMEXLib PUBLIC cxx_range_for)
+    TARGET_COMPILE_FEATURES(${MMEX_EXE} PUBLIC cxx_range_for)
 ELSE()
-    TARGET_COMPILE_FEATURES(MMEXLib PUBLIC cxx_std_11)
+    TARGET_COMPILE_FEATURES(${MMEX_EXE} PUBLIC cxx_std_11)
 ENDIF()
 
-TARGET_INCLUDE_DIRECTORIES(MMEXLib PUBLIC .)
-TARGET_LINK_LIBRARIES(${MMEX_EXE} MMEXLib)
-TARGET_LINK_LIBRARIES(MMEXLib
-    PUBLIC
+TARGET_INCLUDE_DIRECTORIES(${MMEX_EXE} PUBLIC . model)
+TARGET_LINK_LIBRARIES(${MMEX_EXE} PUBLIC
         wxSQLite3
         RapidJSON
         HTML-template
         CURL::libcurl
-    PRIVATE
         LuaGlue
         Lua
         csv_parser
@@ -329,7 +322,7 @@ IF(MSVC)
     # conflict between winsock and winsock2
     # Partialy reinvented fix from commit
     # commit 06accae1273e66ced469672151522e45eee685a9
-    TARGET_COMPILE_DEFINITIONS(MMEXLib PRIVATE WIN32_LEAN_AND_MEAN)
+    TARGET_COMPILE_DEFINITIONS(${MMEX_EXE} PRIVATE WIN32_LEAN_AND_MEAN)
 ENDIF()
 
 INSTALL(TARGETS ${MMEX_EXE}

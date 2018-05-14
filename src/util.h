@@ -19,18 +19,21 @@
 #ifndef MM_EX_UTIL_H_
 #define MM_EX_UTIL_H_
 
-#include "defs.h"
-#include "reports/reportbase.h"
-#include <wx/valnum.h>
-#include <curl/curl.h>
+#include <wx/treebase.h>
+#include <rapidjson/document.h>
+#include <curl/curl.h> // for CURLcode
+#include <unordered_map>
+#include <vector>
 #include <map>
-
- //Returns a JSON formatted string in readable form
-wxString JSON_PrettyFormated(Document& j_doc);
-//Returns a JSON formatted string from RapidJson DOM
-wxString JSON_Formated(Document& j_doc);
-
+class mmPrintableBase;
 class mmGUIApp;
+class wxConvAuto;
+
+//Returns a JSON formatted string in readable form
+wxString JSON_PrettyFormated(rapidjson::Document& j_doc);
+//Returns a JSON formatted string from RapidJson DOM
+wxString JSON_Formated(rapidjson::Document& j_doc);
+
 struct ValuePair
 {
     wxString label;
@@ -75,38 +78,11 @@ private:
 class mmTreeItemData : public wxTreeItemData
 {
 public:
-    mmTreeItemData(int id, bool isBudget)
-        : id_(id)
-        , isString_(false)
-        , isBudgetingNode_(isBudget)
-        , report_(0)
-    {}
-    mmTreeItemData(const wxString& string, mmPrintableBase* report)
-        : id_(0)
-        , isString_(true)
-        , isBudgetingNode_(false)
-        , stringData_("report@" + string)
-        , report_(report)
-    {}
-    mmTreeItemData(mmPrintableBase* report)
-        : id_(0)
-        , isString_(true)
-        , isBudgetingNode_(false)
-        , stringData_("report@" + report->title())
-        , report_(report)
-    {}
-    mmTreeItemData(const wxString& string)
-        : id_(0)
-        , isString_(true)
-        , isBudgetingNode_(false)
-        , stringData_("item@" + string)
-        , report_(0)
-    {}
-    ~mmTreeItemData()
-    {
-        if (report_) delete report_;
-    }
-
+    mmTreeItemData(int id, bool isBudget);
+    mmTreeItemData(const wxString& string, mmPrintableBase* report);
+    mmTreeItemData(mmPrintableBase* report);
+    mmTreeItemData(const wxString& string);
+    ~mmTreeItemData();
     int getData() const
     {
         return id_;

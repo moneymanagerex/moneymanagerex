@@ -20,9 +20,9 @@
 #include "relocatepayeedialog.h"
 #include "paths.h"
 #include "constants.h"
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Payee.h"
+#include "Model_Billsdeposits.h"
+#include "Model_Checking.h"
+#include "Model_Payee.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(relocatePayeeDialog, wxDialog);
 

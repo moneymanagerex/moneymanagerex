@@ -19,14 +19,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 
-#include "constants.h"
-#include "defs.h"
-#include <wx/spinbutt.h>
-#include "mmTextCtrl.h"
-#include "model/Model_Translink.h"
-
-class Model_Currency;
-
+#include <wx/panel.h>
+#include "Model_Translink.h"
+class mmTextCtrl;
+class wxDatePickerCtrl;
+class wxSpinButton;
+class wxButton;
+class wxChoice;
+class wxCheckBox;
+class wxStaticText;
+class wxBitmapButton;
 
 class UserTransactionPanel : public wxPanel
 {

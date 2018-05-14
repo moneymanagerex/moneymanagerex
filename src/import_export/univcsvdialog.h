@@ -19,11 +19,17 @@
 #ifndef MM_EX_UNIVCSVDIALOG_H_
 #define MM_EX_UNIVCSVDIALOG_H_
 
-#include "defs.h"
 #include <vector>
 #include <map>
-
-#include <wx/spinctrl.h>
+#include <wx/dialog.h>
+class wxSpinCtrl;
+class wxSpinEvent;
+class wxListBox;
+class wxListCtrl;
+class wxChoice;
+class wxTextCtrl;
+class wxStaticBox;
+class wxCheckBox;
 
 #define ID_MYDIALOG8 10040
 #define SYMBOL_UNIVCSVDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX

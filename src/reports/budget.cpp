@@ -20,7 +20,7 @@
 
 #include "mmex.h"
 #include "mmframe.h"
-#include "htmlbuilder.h"
+#include "reports/htmlbuilder.h"
 
 mmReportBudget::mmReportBudget(): mmPrintableBase("mmReportBudget")
 {}

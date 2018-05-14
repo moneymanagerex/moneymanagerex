@@ -33,12 +33,12 @@
 #include "webapp.h"
 
 #include "option.h"
-#include "model/Model_Account.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Category.h"
-#include "model/Model_CurrencyHistory.h"
-#include "model/Model_CustomFieldData.h"
-#include "model/Model_Subcategory.h"
+#include "Model_Account.h"
+#include "Model_Attachment.h"
+#include "Model_Category.h"
+#include "Model_CurrencyHistory.h"
+#include "Model_CustomFieldData.h"
+#include "Model_Subcategory.h"
 
 #include <wx/numformatter.h>
 #include <wx/timectrl.h>

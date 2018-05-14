@@ -34,10 +34,15 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "paths.h"
 #include "util.h"
 #include "validators.h"
+#include "mmcustomdata.h"
+#include "mmTextCtrl.h"
+#include "option.h"
+#include "reports/htmlbuilder.h"
+#include "reports/mmDateRange.h"
 
-#include "model/allmodel.h"
-
-#include <wx/valnum.h>
+#include "Model_Payee.h"
+#include "Model_Setting.h"
+#include "Model_Infotable.h"
 
 static const wxString TRANSACTION_STATUSES[] =
 {

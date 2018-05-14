@@ -19,9 +19,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #ifndef MM_EX_MMSIMPLEDIALOGS_H_
 #define MM_EX_MMSIMPLEDIALOGS_H_
 
-#include "mmex.h"
-
-#include "model/Model_Account.h"
+#include <wx/choicdlg.h>
+#include <wx/dialog.h>
+#include "Model_Account.h"
+class wxComboBox;
+class wxTextCtrl;
+class wxChoice;
 
 class mmSingleChoiceDialog : public wxSingleChoiceDialog
 {
@@ -60,10 +63,7 @@ public:
     mmDialogComboBoxAutocomplete(wxWindow *parent, const wxString& message, const wxString& caption,
         const wxString& defaultText, const wxArrayString& choices);
 
-    wxString getText()
-    {
-        return cbText_->GetValue();
-    };
+    wxString getText();
 
 private:
     bool Create(wxWindow* parent, wxWindowID id,

@@ -18,7 +18,9 @@
 
 #include "dbwrapper.h"
 #include "util.h"
-#include "sqlite3.h"
+#include <wx/msgdlg.h>
+#include <wx/wxsqlite3.h>
+#include <sqlite3.h> // for SQLITE_OK etc.
 
 wxSharedPtr<wxSQLite3Database> static_db_ptr()
 {

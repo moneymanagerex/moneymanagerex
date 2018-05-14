@@ -19,8 +19,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "mmcustomdata.h"
 #include "constants.h"
-#include "model/Model_CustomFieldData.h"
-#include "model/Model_Attachment.h"
+#include "Model_CustomFieldData.h"
+#include "Model_Attachment.h"
 
 #include <wx/numformatter.h>
 #include <wx/timectrl.h>

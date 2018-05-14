@@ -1,8 +1,8 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
-Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
-Copyright (C) 2015 Nikolay
-Copyright (C) 2015 Yosef
+ Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2015 Nikolay
+ Copyright (C) 2015 Yosef
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -27,15 +27,21 @@ Copyright (C) 2015 Yosef
 #include "paths.h"
 #include "platfdep.h"
 #include "util.h"
+#include "option.h"
 #include "webapp.h"
 #include "parsers.h"
 
-#include "model/allmodel.h"
+#include "Model_Setting.h"
+#include "Model_Payee.h"
+#include "Model_Category.h"
+#include "Model_Subcategory.h"
+#include "Model_Infotable.h"
 
 #include <algorithm>
 
-#include "csv_parser/csv_parser.hpp"
+#include <csv_parser/csv_parser.hpp>
 #include <wx/xml/xml.h>
+#include <wx/spinctrl.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog);
 

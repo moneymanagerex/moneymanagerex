@@ -22,8 +22,8 @@
 #include "paths.h"
 #include "constants.h"
 #include <wx/spinctrl.h>
-#include "model/Model_Budgetyear.h"
-#include "model/Model_Budget.h"
+#include "Model_Budgetyear.h"
+#include "Model_Budget.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetYearEntryDialog, wxDialog);
 

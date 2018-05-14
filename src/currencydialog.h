@@ -20,9 +20,13 @@
 #ifndef MM_EX_CURRENCYDIALOG_H_
 #define MM_EX_CURRENCYDIALOG_H_
 
-#include "model/Model_Currency.h"
-
+#include <wx/dialog.h>
+#include "Model_Currency.h"
+class wxCommandEvent;
 class mmTextCtrl;
+class wxChoice;
+class wxStaticText;
+class wxCheckBox;
 
 enum
 {

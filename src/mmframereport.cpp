@@ -22,9 +22,9 @@
 
 #include "images_list.h"
 #include "mmframe.h"
-#include "reports/allreport.h"
-#include "model/Model_Budgetyear.h"
-#include "model/Model_Report.h"
+#include "reports/reportbase.h"
+#include "Model_Budgetyear.h"
+#include "Model_Report.h"
 
 const char *group_report_template = R"(
 <!DOCTYPE html>
@@ -186,5 +186,3 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
     }
 
 }
-
-

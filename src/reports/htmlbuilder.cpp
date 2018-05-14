@@ -22,8 +22,8 @@
 #include "util.h"
 #include "option.h"
 #include "constants.h"
-#include "model/Model_Currency.h"
-#include "model/Model_Infotable.h"
+#include "Model_Currency.h"
+#include "Model_Infotable.h"
 
 namespace tags
 {

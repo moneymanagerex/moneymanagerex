@@ -25,15 +25,16 @@
 #include "paths.h"
 #include "util.h"
 #include "validators.h"
+#include "option.h"
 
-#include "model/Model_Account.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_StockHistory.h"
+#include "Model_Account.h"
+#include "Model_Attachment.h"
+#include "Model_StockHistory.h"
+#include "Model_Infotable.h"
 #include "usertransactionpanel.h"
 
 #include <wx/numdlg.h>
 #include <wx/textdlg.h>
-#include <wx/valnum.h>
 
 IMPLEMENT_DYNAMIC_CLASS(ShareTransactionDialog, wxDialog)
 

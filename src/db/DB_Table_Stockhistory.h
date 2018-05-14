@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-08 08:04:22.353000.
+ *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -281,8 +281,8 @@ struct DB_Table_STOCKHISTORY : public DB_Table
             StringBuffer json_buffer;
             PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-			json_writer.StartObject();			
-			this->as_json(json_writer);
+            json_writer.StartObject();
+            this->as_json(json_writer);
             json_writer.EndObject();
 
             return json_buffer.GetString();

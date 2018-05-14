@@ -20,7 +20,10 @@
 #ifndef MM_EX_RELOCATECATEGORYDIALOG_H_
 #define MM_EX_RELOCATECATEGORYDIALOG_H_
 
-#include "defs.h"
+#include <wx/dialog.h>
+class wxButton;
+class wxStaticText;
+class wxButton;
 
 class relocateCategoryDialog : public wxDialog
 {

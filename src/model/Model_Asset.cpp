@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "Model_Asset.h"
+#include <cmath>
 
 const std::vector<std::pair<Model_Asset::RATE, wxString> > Model_Asset::RATE_CHOICES = 
 {

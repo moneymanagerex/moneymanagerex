@@ -64,13 +64,21 @@
 #include "wizard_newaccount.h"
 #include "wizard_update.h"
 
-#include "reports/allreport.h"
+#include "reports/transactions.h"
 
 #include "import_export/qif_export.h"
 #include "import_export/qif_import_gui.h"
 #include "import_export/univcsvdialog.h"
 
-#include "model/allmodel.h"
+#include "Model_Setting.h"
+#include "Model_Attachment.h"
+#include "Model_Usage.h"
+#include "Model_StockHistory.h"
+#include "Model_Translink.h"
+#include "Model_Budgetyear.h"
+#include "Model_Shareinfo.h"
+#include "Model_CurrencyHistory.h"
+#include "Model_Infotable.h"
 
 #include <wx/fs_mem.h>
 #include <stack>

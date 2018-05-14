@@ -19,8 +19,14 @@
 #ifndef MM_EX_NEWACCTDIALOG_H_
 #define MM_EX_NEWACCTDIALOG_H_
 
-#include "model/Model_Account.h"
-#include "mmTextCtrl.h"
+#include <wx/dialog.h>
+#include "Model_Account.h"
+class wxImageList;
+class wxBitmapButton;
+class wxCheckBox;
+class wxDatePickerCtrl;
+class wxTextCtrl;
+class mmTextCtrl;
 
 class mmNewAcctDialog : public wxDialog
 {

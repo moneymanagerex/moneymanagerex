@@ -25,9 +25,9 @@
 #include "paths.h"
 #include "constants.h"
 #include "webapp.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Infotable.h"
+#include "Model_Setting.h"
+#include "Model_Payee.h"
+#include "Model_Infotable.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmCategDialog, wxDialog);
 

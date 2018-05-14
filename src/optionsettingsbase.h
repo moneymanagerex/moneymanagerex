@@ -21,8 +21,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "constants.h"
 #include "defs.h"
 
-#include "model/Model_Infotable.h"
-#include "model/Model_Setting.h"
+#include "Model_Infotable.h"
+#include "Model_Setting.h"
 
 class OptionSettingsBase : public wxPanel
 {

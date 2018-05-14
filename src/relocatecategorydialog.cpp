@@ -22,9 +22,12 @@
 #include "categdialog.h"
 #include "constants.h"
 #include "webapp.h"
-#include "wx/statline.h"
 
-#include "model/allmodel.h"
+#include "Model_Checking.h"
+#include "Model_Budgetsplittransaction.h"
+#include "Model_Payee.h"
+#include "Model_Budget.h"
+#include "Model_Billsdeposits.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(relocateCategoryDialog, wxDialog);
 

@@ -18,7 +18,7 @@
  *************************************************************************/
 
 #include "recentfiles.h"
-#include "model/Model_Setting.h"
+#include "Model_Setting.h"
 
 mmFileHistory::mmFileHistory(size_t maxFiles, wxWindowID idBase)
     : wxFileHistory(maxFiles, idBase)
