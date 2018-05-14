@@ -26,15 +26,15 @@ Copyright (C) 2014 Nikolay
 #include "constants.h"
 #include "option.h"
 #include "util.h"
-
-#include "model/Model_CurrencyHistory.h"
-#include "model/Model_Asset.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Usage.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Stock.h"
-#include "model/Model_Category.h"
-#include "model/Model_Report.h"
+#include "Model_CurrencyHistory.h"
+#include "Model_Asset.h"
+#include "Model_Setting.h"
+#include "Model_Usage.h"
+#include "Model_Payee.h"
+#include "Model_Stock.h"
+#include "Model_Category.h"
+#include "Model_Report.h"
+#include "Model_Infotable.h"
 #include <algorithm>
 #include <cmath>
 #include <wx/webviewfshandler.h>

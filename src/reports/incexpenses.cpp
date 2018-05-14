@@ -23,9 +23,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util.h"
 #include "reports/mmDateRange.h"
 
-#include "model/Model_Account.h"
-#include "model/Model_Checking.h"
-#include "model/Model_CurrencyHistory.h"
+#include "Model_Account.h"
+#include "Model_Checking.h"
+#include "Model_CurrencyHistory.h"
 
 
 mmReportIncomeExpenses::mmReportIncomeExpenses()

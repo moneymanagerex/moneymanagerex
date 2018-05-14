@@ -31,9 +31,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "constants.h"
 #include <wx/spinbutt.h>
 
-#include "model/Model_Checking.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Usage.h"
+#include "Model_Checking.h"
+#include "Model_Payee.h"
+#include "Model_Usage.h"
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(UserTransactionPanel, wxPanel)

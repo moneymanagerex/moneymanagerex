@@ -31,17 +31,17 @@
 #include "webapp.h"
 #include "parsers.h"
 
-#include "model/Model_Setting.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Category.h"
-#include "model/Model_Subcategory.h"
+#include "Model_Setting.h"
+#include "Model_Payee.h"
+#include "Model_Category.h"
+#include "Model_Subcategory.h"
+#include "Model_Infotable.h"
 
 #include <algorithm>
 
-#include "csv_parser/csv_parser.hpp"
+#include <csv_parser/csv_parser.hpp>
 #include <wx/xml/xml.h>
 #include <wx/spinctrl.h>
-
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog);
 

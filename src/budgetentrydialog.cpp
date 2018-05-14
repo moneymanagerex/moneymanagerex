@@ -17,10 +17,11 @@
  ********************************************************/
 
 #include "budgetentrydialog.h"
-#include "model/Model_Category.h"
+#include "Model_Category.h"
 #include "validators.h"
 #include "paths.h"
 #include "constants.h"
+#include "mmTextCtrl.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetEntryDialog, wxDialog);
 

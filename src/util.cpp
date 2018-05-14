@@ -23,9 +23,9 @@
 #include "validators.h"
 #include "option.h"
 #include "reports/reportbase.h"
-#include "model/Model_Currency.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Setting.h"
+#include "Model_Currency.h"
+#include "Model_Infotable.h"
+#include "Model_Setting.h"
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
 #include <map>

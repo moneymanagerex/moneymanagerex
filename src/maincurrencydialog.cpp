@@ -29,7 +29,8 @@
 #include "util.h"
 #include "option.h"
 #include "validators.h"
-#include "model/Model_CurrencyHistory.h"
+#include "Model_CurrencyHistory.h"
+#include "Model_Infotable.h"
 
 #include <vector>
 #include <wx/dataview.h>

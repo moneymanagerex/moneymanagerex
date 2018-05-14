@@ -18,7 +18,7 @@
 
 #include "wizard_newdb.h"
 #include "maincurrencydialog.h"
-#include "model/Model_Account.h"
+#include "Model_Account.h"
 #include "../resources/addacctwiz.xpm"
 //----------------------------------------------------------------------------
 

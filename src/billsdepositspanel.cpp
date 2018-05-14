@@ -24,11 +24,11 @@
 #include "filtertransdialog.h"
 #include "option.h"
 #include "util.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Usage.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Category.h"
-#include "model/Model_Account.h"
+#include "Model_Setting.h"
+#include "Model_Usage.h"
+#include "Model_Attachment.h"
+#include "Model_Category.h"
+#include "Model_Account.h"
 
 enum
 {

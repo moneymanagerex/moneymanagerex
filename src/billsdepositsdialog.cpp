@@ -18,6 +18,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <wx/calctrl.h>
 #include "billsdepositsdialog.h"
 #include "attachmentdialog.h"
 #include "categdialog.h"
@@ -31,10 +32,9 @@
 #include "validators.h"
 #include "mmTextCtrl.h"
 #include "splittransactionsdialog.h"
-
-#include "model/Model_Payee.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_CurrencyHistory.h"
+#include "Model_Payee.h"
+#include "Model_Attachment.h"
+#include "Model_CurrencyHistory.h"
 #include <wx/spinbutt.h>
 #include <wx/valnum.h>
 

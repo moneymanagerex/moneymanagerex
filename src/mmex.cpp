@@ -25,9 +25,9 @@
 #include "util.h"
 #include "webserver.h"
 
-#include "model/Model_Setting.h"
-#include "model/Model_Usage.h"
-#include "model/Model_Report.h"
+#include "Model_Setting.h"
+#include "Model_Usage.h"
+#include "Model_Report.h"
 
 #include <wx/cmdline.h>
 #include <wx/fs_arc.h>

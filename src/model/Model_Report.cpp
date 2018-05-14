@@ -24,7 +24,7 @@
 #include "attachmentdialog.h"
 #include "reports/htmlbuilder.h"
 #include "reports/reportbase.h"
-#include "model/Model_Setting.h"
+#include "Model_Setting.h"
 #include <LuaGlue/LuaGlue.h>
 #include "sqlite3.h"
 #include "mmreportspanel.h"

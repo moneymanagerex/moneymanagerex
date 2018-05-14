@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util.h"
 #include "option.h"
 #include "reports/mmDateRange.h"
-#include "model/Model_Category.h"
+#include "Model_Category.h"
 #include <algorithm>
 #include <map>
 

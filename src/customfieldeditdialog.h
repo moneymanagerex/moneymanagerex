@@ -20,7 +20,7 @@
 #define MM_EX_CUSTOMFIELDEDITDIALOG_H_
 
 #include <wx/dialog.h>
-#include "model/Model_CustomField.h"
+#include "Model_CustomField.h"
 class wxChoice;
 class wxCheckBox;
 class wxSpinCtrl;

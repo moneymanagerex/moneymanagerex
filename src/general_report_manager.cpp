@@ -28,8 +28,8 @@
 #include "option.h"
 #include "reports/reportbase.h"
 
-#include "model/Model_Infotable.h"
-#include "model/Model_Report.h"
+#include "Model_Infotable.h"
+#include "Model_Report.h"
 
 #include <memory>
 #include <wx/richtooltip.h>

@@ -18,10 +18,11 @@
  ********************************************************/
 
 #pragma once
-#include "mmpanelbase.h"
-#include "model/Model_Asset.h"
-#include "model/Model_Account.h"
 
+#include "mmpanelbase.h"
+#include "Model_Asset.h"
+#include "Model_Account.h"
+class wxStaticText;
 class wxListEvent;
 class mmAssetsPanel;
 class mmGUIFrame;

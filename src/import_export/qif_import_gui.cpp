@@ -26,9 +26,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "webapp.h"
 #include "option.h"
 
-#include "model/Model_Category.h"
-#include "model/Model_Subcategory.h"
-#include "model/Model_Payee.h"
+#include "Model_Category.h"
+#include "Model_Subcategory.h"
+#include "Model_Payee.h"
 
 #include <wx/progdlg.h>
 #include <wx/dataview.h>

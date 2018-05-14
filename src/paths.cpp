@@ -23,8 +23,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util.h"
 #include "../resources/mmexico.xpm"
 //----------------------------------------------------------------------------
-#include "model/Model_Setting.h"
-#include "model/Model_Infotable.h"
+#include "Model_Setting.h"
+#include "Model_Infotable.h"
 //----------------------------------------------------------------------------
 #include <wx/filename.h>
 #include <wx/stdpaths.h>

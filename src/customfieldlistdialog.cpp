@@ -23,7 +23,7 @@ Copyright (C) 2016 Gabriele-V
 #include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "util.h"
-#include "model/Model_CustomFieldData.h"
+#include "Model_CustomFieldData.h"
 
 #include <wx/dataview.h>
 #include <wx/mimetype.h>

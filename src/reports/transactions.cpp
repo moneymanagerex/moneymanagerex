@@ -24,10 +24,10 @@
 #include "reports/htmlbuilder.h"
 #include "util.h"
 #include "filtertransdialog.h"
-#include "model/Model_Account.h"
-#include "model/Model_Category.h"
-#include "model/Model_CurrencyHistory.h"
-#include "model/Model_Attachment.h"
+#include "Model_Account.h"
+#include "Model_Category.h"
+#include "Model_CurrencyHistory.h"
+#include "Model_Attachment.h"
 #include <algorithm>
 #include <vector>
 

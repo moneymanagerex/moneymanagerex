@@ -28,7 +28,8 @@
 #include "accountdialog.h"
 #include "sharetransactiondialog.h"
 #include "mmframe.h"
-#include "model/Model_StockHistory.h"
+#include "Model_StockHistory.h"
+#include "Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS(mmStockDialog, wxDialog)
 

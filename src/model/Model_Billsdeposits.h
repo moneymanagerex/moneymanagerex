@@ -21,8 +21,9 @@
 
 #include "Model.h"
 #include "db/DB_Table_Billsdeposits.h"
-#include "model/Model_Splittransaction.h"
+#include "Model_Splittransaction.h"
 #include "Model_Budgetsplittransaction.h"
+
 const int BD_REPEATS_MULTIPLEX_BASE = 100;
 
 class Model_Billsdeposits : public Model<DB_Table_BILLSDEPOSITS>

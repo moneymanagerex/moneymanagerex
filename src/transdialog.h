@@ -24,10 +24,10 @@
 #include "mmcustomdata.h"
 #include "defs.h"
 
-#include "model/Model_Checking.h"
-#include "model/Model_Payee.h"
-#include "model/Model_CustomFieldData.h"
-#include "model/Model_Splittransaction.h"
+#include "Model_Checking.h"
+#include "Model_Payee.h"
+#include "Model_CustomFieldData.h"
+#include "Model_Splittransaction.h"
 
 #include <wx/spinbutt.h>
 

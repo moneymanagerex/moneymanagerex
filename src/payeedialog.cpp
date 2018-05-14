@@ -29,8 +29,8 @@ Copyright (C) 2012 Nikolay Akimov
 #include "webapp.h"
 #include <wx/srchctrl.h>
 
-#include "model/Model_Payee.h"
-#include "model/Model_Attachment.h"
+#include "Model_Payee.h"
+#include "Model_Attachment.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmPayeeDialog, wxDialog);
 

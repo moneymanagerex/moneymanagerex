@@ -22,7 +22,7 @@
 #include "constants.h"
 #include "mmex.h"
 #include "mmframe.h"
-#include "model/Model_Usage.h"
+#include "Model_Usage.h"
 #include <wx/webview.h>
 
 BEGIN_EVENT_TABLE(mmHelpPanel, wxPanel)

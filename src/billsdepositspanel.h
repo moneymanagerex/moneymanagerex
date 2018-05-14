@@ -20,11 +20,12 @@
 #define MM_EX_BILLSDEPOSITSPANEL_H_
 
 #include "mmpanelbase.h"
-#include "model/Model_Billsdeposits.h"
-
+#include "Model_Billsdeposits.h"
 class wxListEvent;
 class mmBillsDepositsPanel;
 class mmFilterTransactionsDialog;
+class wxStaticText;
+class wxStaticBitmap;
 
 /* Custom ListCtrl class that implements virtual LC style */
 class billsDepositsListCtrl: public mmListCtrl

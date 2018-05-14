@@ -24,8 +24,8 @@
 #include "images_list.h"
 #include "mmframe.h"
 
-#include "model/Model_Setting.h"
-#include "model/Model_Usage.h"
+#include "Model_Setting.h"
+#include "Model_Usage.h"
 #include <wx/srchctrl.h>
 
 /*******************************************************/

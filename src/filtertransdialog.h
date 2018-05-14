@@ -22,11 +22,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #endif
 
 #include <wx/dialog.h>
-#include "model/Model_Checking.h"
-#include "model/Model_Billsdeposits.h"
+#include "Model_Checking.h"
+#include "Model_Billsdeposits.h"
 class mmTextCtrl;
 class mmCustomData;
 class mmHTMLBuilder;
+class wxCheckBox;
+class wxChoice;
+class wxDatePickerCtrl;
+class wxComboBox;
+class wxRadioBox;
 
 class mmFilterTransactionsDialog: public wxDialog
 {

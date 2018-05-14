@@ -24,9 +24,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util.h"
 #include "validators.h"
 
-#include "model/Model_Category.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Subcategory.h"
+#include "Model_Category.h"
+#include "Model_Checking.h"
+#include "Model_Subcategory.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(SplitDetailDialog, wxDialog);
 

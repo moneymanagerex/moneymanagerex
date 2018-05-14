@@ -21,10 +21,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "reports/htmlbuilder.h"
 #include "option.h"
 #include "reports/mmDateRange.h"
-#include "model/Model_Currency.h"
-#include "model/Model_CurrencyHistory.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Account.h"
+#include "Model_Currency.h"
+#include "Model_CurrencyHistory.h"
+#include "Model_Payee.h"
+#include "Model_Account.h"
 
 #include <algorithm>
 

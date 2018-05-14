@@ -20,14 +20,19 @@
 #ifndef MM_EX_BDDIALOG_H_
 #define MM_EX_BDDIALOG_H_
 
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_Checking.h"
-
+#include <wx/dialog.h>
+#include "Model_Billsdeposits.h"
+#include "Model_Checking.h"
 class wxDatePickerCtrl;
 class wxSpinButton;
 class wxSpinEvent;
+class wxStaticText;
 class mmTextCtrl;
-class wxDialog;
+class wxCalendarCtrl;
+class wxCalendarEvent;
+class wxCheckBox;
+class wxChoice;
+class wxBitmapButton;
 
 class mmBDDialog : public wxDialog
 {

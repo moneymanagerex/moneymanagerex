@@ -19,10 +19,15 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include <wx/dialog.h>
-#include "model/Model_Checking.h"
+#include "Model_Checking.h"
 class wxDatePickerCtrl;
 class wxDataViewListCtrl;
 class mmQIFImport;
+class wxButton;
+class wxTextCtrl;
+class wxChoice;
+class wxCheckBox;
+class wxComboBox;
 
 class mmQIFImportDialog : public wxDialog
 {

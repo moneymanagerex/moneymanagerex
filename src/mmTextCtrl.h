@@ -19,8 +19,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include <wx/textctrl.h>
-#include "model/Model_Currency.h"
-#include "model/Model_Account.h"
+#include "Model_Currency.h"
+#include "Model_Account.h"
 
 class mmTextCtrl : public wxTextCtrl
 {

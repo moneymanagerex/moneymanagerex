@@ -19,7 +19,7 @@
 #include "wizard_update.h"
 #include "constants.h"
 #include "util.h"
-#include "model/Model_Setting.h"
+#include "Model_Setting.h"
 #include "rapidjson/error/en.h"
 /*
 #include "paths.h"

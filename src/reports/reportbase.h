@@ -22,7 +22,7 @@
 #ifndef MM_EX_REPORTBASE_H_
 #define MM_EX_REPORTBASE_H_
 //----------------------------------------------------------------------------
-#include "model/Model_Report.h"
+#include "Model_Report.h"
 #include <html_template.h>
 class wxString;
 class wxArrayString;

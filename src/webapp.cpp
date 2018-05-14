@@ -24,10 +24,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util.h"
 #include <wx/sstream.h>
 #include <wx/protocol/http.h>
-#include "model/Model_Account.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Category.h"
-#include "model/Model_Subcategory.h"
+#include "Model_Account.h"
+#include "Model_Attachment.h"
+#include "Model_Category.h"
+#include "Model_Subcategory.h"
+#include "Model_Infotable.h"
 
 //Expected WebAppVersion
 const wxString WebAppParam::ApiExpectedVersion = "1.0.1";

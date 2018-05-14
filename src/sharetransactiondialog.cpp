@@ -27,9 +27,10 @@
 #include "validators.h"
 #include "option.h"
 
-#include "model/Model_Account.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_StockHistory.h"
+#include "Model_Account.h"
+#include "Model_Attachment.h"
+#include "Model_StockHistory.h"
+#include "Model_Infotable.h"
 #include "usertransactionpanel.h"
 
 #include <wx/numdlg.h>
