@@ -228,8 +228,6 @@ void mmCheckingPanel::filterTable()
         full_tran.AMOUNT = transaction_amount;
         m_filteredBalance += transaction_amount;
 
-        full_tran.UDFC01 = "Test";
-
         if (attachments.count(full_tran.TRANSID))
             full_tran.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
 
@@ -868,8 +866,6 @@ const wxString mmCheckingPanel::getItem(long item, long column)
         return Model_Currency::toString(tran.BALANCE, this->m_currency);
     case TransactionListCtrl::COL_NOTES:
         return tran.NOTES;
-    case TransactionListCtrl::COL_MAX:
-        return tran.UDFC01;
     default:
         return wxEmptyString;
     }
@@ -1049,7 +1045,6 @@ TransactionListCtrl::TransactionListCtrl(
     m_columns.push_back(PANEL_COLUMN(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Test"), 250, wxLIST_FORMAT_LEFT));
 
     m_col_width = "CHECK_COL%d_WIDTH";
 
@@ -1318,7 +1313,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     else
         ColumnNr = m_ColumnHeaderNbr;
 
-    if (0 > ColumnNr || ColumnNr >= m_columns.size() || ColumnNr == COL_IMGSTATUS) return;
+    if (0 > ColumnNr || ColumnNr >= COL_MAX || ColumnNr == COL_IMGSTATUS) return;
 
     /* Clear previous column image */
     if (m_sortCol != ColumnNr) {
