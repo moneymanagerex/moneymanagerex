@@ -73,7 +73,7 @@ public:
     EColumn toEColumn(long col)
     {
         EColumn res = COL_DEF_SORT;
-        if (col >= 0 && col < COL_MAX) res = static_cast<EColumn>(col);
+        if (col >= 0 && col < COL_MAX + 1) res = static_cast<EColumn>(col);
 
         return res;
     }
