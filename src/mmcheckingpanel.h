@@ -59,6 +59,7 @@ public:
         COL_IMGSTATUS = 0,
         COL_ID,
         COL_DATE,
+        COL_DEF_SORT = COL_DATE, 
         COL_NUMBER,
         COL_PAYEE_STR,
         COL_STATUS,
@@ -67,8 +68,8 @@ public:
         COL_DEPOSIT,
         COL_BALANCE,
         COL_NOTES,
-        COL_MAX, // number of columns
-        COL_DEF_SORT = COL_DATE
+        COL_UDFC01,
+        COL_MAX // number of columns
     };
     EColumn toEColumn(long col)
     {

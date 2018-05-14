@@ -50,6 +50,7 @@ public:
         wxString CATEGNAME;
         //Modified Status for a Transfer transaction.
         wxString STATUSFD;
+        wxString UDFC01;
         double AMOUNT;
         double BALANCE;
         Model_Splittransaction::Data_Set m_splits;
