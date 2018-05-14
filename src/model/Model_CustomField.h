@@ -34,15 +34,15 @@ public:
 
 public:
     /**
-    Initialize the global Model_Attachment table on initial call.
+    Initialize the global Model_CustomField table on initial call.
     Resets the global table on subsequent calls.
-    * Return the static instance address for Model_Attachment table
+    * Return the static instance address for Model_CustomField table
     * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_CustomField& instance(wxSQLite3Database* db);
 
     /**
-    * Return the static instance address for Model_Attachment table
+    * Return the static instance address for Model_CustomField table
     * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_CustomField& instance();
@@ -58,5 +58,6 @@ public:
     static bool getAutocomplete(const wxString& Properties);
     static wxString getDefault(const wxString& Properties);
     static wxArrayString getChoices(const wxString& Properties);
-    static wxString formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choices);
+    static int getDigitScale(const wxString& Properties);
+    static wxString formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choices, const int DigitScale);
 };

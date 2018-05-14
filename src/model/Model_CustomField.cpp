@@ -188,7 +188,20 @@ wxArrayString Model_CustomField::getChoices(const wxString& Properties)
     return choices;
 }
 
-wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choices)
+int Model_CustomField::getDigitScale(const wxString& Properties)
+{
+    Document json_doc;
+    if (!json_doc.Parse(Properties.c_str()).HasParseError())
+    {
+        if (json_doc.HasMember("DigitScale") && json_doc["DigitScale"].IsInt()) {
+            Value& s = json_doc["DigitScale"];
+            return s.GetInt();
+        }
+    }
+    return 0;
+}
+
+wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choices, const int DigitScale)
 {
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
@@ -216,6 +229,10 @@ wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxSt
         }
         json_writer.EndArray();
     }
+
+    json_writer.Key("DigitScale");
+    json_writer.Int(DigitScale);
+
     json_writer.EndObject();
 
     return json_buffer.GetString();

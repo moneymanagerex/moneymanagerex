@@ -188,8 +188,9 @@ void mmCustomFieldListDialog::UpdateField()
         return;
 
     int UpdateResponse = wxMessageBox(
-        _("Do you really want to massive update field content?\n"
-            "Please consider that there isn't any validation!")
+        wxString::Format(_("This function will massive search & replace for \"%s\" custom field values\n"
+            "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
+            "Please consider that there isn't any validation!"),field->DESCRIPTION)
         , _("Confirm Custom Field Content Update")
         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if (UpdateResponse != wxYES)
