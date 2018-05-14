@@ -58,7 +58,7 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
     EVT_CHECKBOX(wxID_FORWARD, mmTransDialog::OnSplitChecked)
     EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
-    EVT_SPIN(wxID_ANY,mmTransDialog::OnSpin)
+    EVT_SPIN(ID_DIALOG_TRANS_SPINNER, mmTransDialog::OnSpin)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_COMBOBOX(wxID_ANY, mmTransDialog::OnAccountOrPayeeUpdated)
     EVT_MENU(wxID_ANY, mmTransDialog::OnNoteSelected)
@@ -419,7 +419,7 @@ void mmTransDialog::CreateControls()
     itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "");
     // Display the day of the week
 
-    spinCtrl_ = new wxSpinButton(this, wxID_STATIC
+    spinCtrl_ = new wxSpinButton(this, ID_DIALOG_TRANS_SPINNER
         , wxDefaultPosition, wxSize(18, wxSize(dpc_->GetSize()).GetHeight())
         , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinCtrl_->SetRange (-32768, 32768);

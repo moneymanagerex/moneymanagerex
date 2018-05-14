@@ -91,3 +91,19 @@ bool Model_CustomFieldData::DeleteAllData(const wxString& RefType, int RefID)
     this->ReleaseSavepoint();
     return true;
 }
+
+/** Return a dataset **/
+std::map<int, Model_CustomFieldData::Data_Set> Model_CustomFieldData::get_all(Model_Attachment::REFTYPE reftype)
+{
+    const wxString& reftype_desc = Model_Attachment::reftype_desc(reftype);
+    Model_CustomField::Data_Set data_set = Model_CustomField::instance()
+        .find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(reftype_desc)
+        , Model_CustomField::DB_Table_CUSTOMFIELD::TYPE("String"));
+    std::map<int, Model_CustomFieldData::Data_Set> data;
+    for (const auto & custom_field : this->find(Model_CustomFieldData::FIELDID(data_set.begin()->FIELDID)))
+    {
+        data[custom_field.REFID].push_back(custom_field);
+    }
+
+    return data;
+}

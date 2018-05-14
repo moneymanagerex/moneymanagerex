@@ -148,6 +148,11 @@ bool mmCheckingPanel::Create(
     return true;
 }
 
+bool SorterByUDFC01(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j)
+{
+    return (i.UDFC01 < j.UDFC01);
+}
+
 void mmCheckingPanel::sortTable()
 {
     switch (m_listCtrlAccount->g_sortcol)
@@ -182,7 +187,9 @@ void mmCheckingPanel::sortTable()
     case TransactionListCtrl::COL_DATE:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE());
         break;
-
+    case TransactionListCtrl::COL_UDFC01:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC01);
+        break;
     }
 
     if (!m_listCtrlAccount->g_asc)
@@ -198,6 +205,7 @@ void mmCheckingPanel::filterTable()
 
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
+    const auto custom_fields = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
     for (const auto& tran : Model_Account::transaction(this->m_account))
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
@@ -227,6 +235,12 @@ void mmCheckingPanel::filterTable()
         full_tran.BALANCE = m_account_balance;
         full_tran.AMOUNT = transaction_amount;
         m_filteredBalance += transaction_amount;
+
+        // Find custom fiels type "String" for this transaction
+        if (custom_fields.find(tran.TRANSID) != custom_fields.end())
+        {
+            full_tran.UDFC01 = custom_fields.at(tran.TRANSID).begin()->CONTENT;
+        }
 
         if (attachments.count(full_tran.TRANSID))
             full_tran.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
@@ -866,6 +880,8 @@ const wxString mmCheckingPanel::getItem(long item, long column)
         return Model_Currency::toString(tran.BALANCE, this->m_currency);
     case TransactionListCtrl::COL_NOTES:
         return tran.NOTES;
+    case TransactionListCtrl::COL_UDFC01:
+        return tran.UDFC01;
     default:
         return wxEmptyString;
     }
@@ -1045,6 +1061,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_columns.push_back(PANEL_COLUMN(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("UDFC01"), 50, wxLIST_FORMAT_LEFT));
 
     m_col_width = "CHECK_COL%d_WIDTH";
 
@@ -1313,7 +1330,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     else
         ColumnNr = m_ColumnHeaderNbr;
 
-    if (0 > ColumnNr || ColumnNr >= COL_MAX || ColumnNr == COL_IMGSTATUS) return;
+    if (0 > ColumnNr || ColumnNr >= m_columns.size() || ColumnNr == COL_IMGSTATUS) return;
 
     /* Clear previous column image */
     if (m_sortCol != ColumnNr) {
