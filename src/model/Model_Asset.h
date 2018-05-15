@@ -20,7 +20,7 @@
 #define MODEL_ASSET_H
 
 #include "Model.h"
-#include "db/DB_Table_Assets.h"
+#include "Table_Assets.h"
 #include "Model_Currency.h" // detect base currency
 
 class Model_Asset : public Model<DB_Table_ASSETS>

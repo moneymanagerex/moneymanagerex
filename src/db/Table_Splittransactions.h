@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_INFOTABLE : public DB_Table
+struct DB_Table_SPLITTRANSACTIONS : public DB_Table
 {
     struct Data;
-    typedef DB_Table_INFOTABLE Self;
+    typedef DB_Table_SPLITTRANSACTIONS Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_INFOTABLE : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_INFOTABLE() 
+    ~DB_Table_SPLITTRANSACTIONS() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_INFOTABLE : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE INFOTABLE(INFOID integer not null primary key, INFONAME TEXT COLLATE NOCASE NOT NULL UNIQUE, INFOVALUE TEXT NOT NULL)");
+                db->ExecuteUpdate("CREATE TABLE SPLITTRANSACTIONS(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("INFOTABLE: Exception %s", e.GetMessage().c_str());
+                wxLogError("SPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_INFOTABLE : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_INFOTABLE_INFONAME ON INFOTABLE(INFONAME)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_SPLITTRANSACTIONS_TRANSID ON SPLITTRANSACTIONS(TRANSID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("INFOTABLE: Exception %s", e.GetMessage().c_str());
+            wxLogError("SPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -108,34 +108,47 @@ struct DB_Table_INFOTABLE : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
-        db->ExecuteUpdate("INSERT INTO INFOTABLE VALUES ('1', 'DATAVERSION', '3')");
         db->Commit();
     }
     
-    struct INFOID : public DB_Column<int>
+    struct SPLITTRANSID : public DB_Column<int>
     { 
-        static wxString name() { return "INFOID"; } 
-        explicit INFOID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "SPLITTRANSID"; } 
+        explicit SPLITTRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct INFONAME : public DB_Column<wxString>
+    struct TRANSID : public DB_Column<int>
     { 
-        static wxString name() { return "INFONAME"; } 
-        explicit INFONAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "TRANSID"; } 
+        explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct INFOVALUE : public DB_Column<wxString>
+    struct CATEGID : public DB_Column<int>
     { 
-        static wxString name() { return "INFOVALUE"; } 
-        explicit INFOVALUE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "CATEGID"; } 
+        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    typedef INFOID PRIMARY;
+    struct SUBCATEGID : public DB_Column<int>
+    { 
+        static wxString name() { return "SUBCATEGID"; } 
+        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    
+    struct SPLITTRANSAMOUNT : public DB_Column<double>
+    { 
+        static wxString name() { return "SPLITTRANSAMOUNT"; } 
+        explicit SPLITTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    
+    typedef SPLITTRANSID PRIMARY;
     enum COLUMN
     {
-        COL_INFOID = 0
-        , COL_INFONAME = 1
-        , COL_INFOVALUE = 2
+        COL_SPLITTRANSID = 0
+        , COL_TRANSID = 1
+        , COL_CATEGID = 2
+        , COL_SUBCATEGID = 3
+        , COL_SPLITTRANSAMOUNT = 4
     };
 
     /** Returns the column name as a string*/
@@ -143,9 +156,11 @@ struct DB_Table_INFOTABLE : public DB_Table
     {
         switch(col)
         {
-            case COL_INFOID: return "INFOID";
-            case COL_INFONAME: return "INFONAME";
-            case COL_INFOVALUE: return "INFOVALUE";
+            case COL_SPLITTRANSID: return "SPLITTRANSID";
+            case COL_TRANSID: return "TRANSID";
+            case COL_CATEGID: return "CATEGID";
+            case COL_SUBCATEGID: return "SUBCATEGID";
+            case COL_SPLITTRANSAMOUNT: return "SPLITTRANSAMOUNT";
             default: break;
         }
         
@@ -155,9 +170,11 @@ struct DB_Table_INFOTABLE : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("INFOID" == name) return COL_INFOID;
-        else if ("INFONAME" == name) return COL_INFONAME;
-        else if ("INFOVALUE" == name) return COL_INFOVALUE;
+        if ("SPLITTRANSID" == name) return COL_SPLITTRANSID;
+        else if ("TRANSID" == name) return COL_TRANSID;
+        else if ("CATEGID" == name) return COL_CATEGID;
+        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
+        else if ("SPLITTRANSAMOUNT" == name) return COL_SPLITTRANSAMOUNT;
 
         return COLUMN(-1);
     }
@@ -165,22 +182,24 @@ struct DB_Table_INFOTABLE : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_INFOTABLE;
+        friend struct DB_Table_SPLITTRANSACTIONS;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int INFOID;//  primary key
-        wxString INFONAME;
-        wxString INFOVALUE;
+        int SPLITTRANSID;//  primary key
+        int TRANSID;
+        int CATEGID;
+        int SUBCATEGID;
+        double SPLITTRANSAMOUNT;
 
         int id() const
         {
-            return INFOID;
+            return SPLITTRANSID;
         }
 
         void id(int id)
         {
-            INFOID = id;
+            SPLITTRANSID = id;
         }
 
         bool operator < (const Data& r) const
@@ -197,25 +216,33 @@ struct DB_Table_INFOTABLE : public DB_Table
         {
             table_ = table;
         
-            INFOID = -1;
+            SPLITTRANSID = -1;
+            TRANSID = -1;
+            CATEGID = -1;
+            SUBCATEGID = -1;
+            SPLITTRANSAMOUNT = 0.0;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            INFOID = q.GetInt(0); // INFOID
-            INFONAME = q.GetString(1); // INFONAME
-            INFOVALUE = q.GetString(2); // INFOVALUE
+            SPLITTRANSID = q.GetInt(0); // SPLITTRANSID
+            TRANSID = q.GetInt(1); // TRANSID
+            CATEGID = q.GetInt(2); // CATEGID
+            SUBCATEGID = q.GetInt(3); // SUBCATEGID
+            SPLITTRANSAMOUNT = q.GetDouble(4); // SPLITTRANSAMOUNT
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            INFOID = other.INFOID;
-            INFONAME = other.INFONAME;
-            INFOVALUE = other.INFOVALUE;
+            SPLITTRANSID = other.SPLITTRANSID;
+            TRANSID = other.TRANSID;
+            CATEGID = other.CATEGID;
+            SUBCATEGID = other.SUBCATEGID;
+            SPLITTRANSAMOUNT = other.SPLITTRANSAMOUNT;
             return *this;
         }
 
@@ -225,19 +252,29 @@ struct DB_Table_INFOTABLE : public DB_Table
             return false;
         }
 
-        bool match(const Self::INFOID &in) const
+        bool match(const Self::SPLITTRANSID &in) const
         {
-            return this->INFOID == in.v_;
+            return this->SPLITTRANSID == in.v_;
         }
 
-        bool match(const Self::INFONAME &in) const
+        bool match(const Self::TRANSID &in) const
         {
-            return this->INFONAME.CmpNoCase(in.v_) == 0;
+            return this->TRANSID == in.v_;
         }
 
-        bool match(const Self::INFOVALUE &in) const
+        bool match(const Self::CATEGID &in) const
         {
-            return this->INFOVALUE.CmpNoCase(in.v_) == 0;
+            return this->CATEGID == in.v_;
+        }
+
+        bool match(const Self::SUBCATEGID &in) const
+        {
+            return this->SUBCATEGID == in.v_;
+        }
+
+        bool match(const Self::SPLITTRANSAMOUNT &in) const
+        {
+            return this->SPLITTRANSAMOUNT == in.v_;
         }
 
         // Return the data record as a json string
@@ -256,28 +293,36 @@ struct DB_Table_INFOTABLE : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("INFOID");
-            json_writer.Int(this->INFOID);
-            json_writer.Key("INFONAME");
-            json_writer.String(this->INFONAME.c_str());
-            json_writer.Key("INFOVALUE");
-            json_writer.String(this->INFOVALUE.c_str());
+            json_writer.Key("SPLITTRANSID");
+            json_writer.Int(this->SPLITTRANSID);
+            json_writer.Key("TRANSID");
+            json_writer.Int(this->TRANSID);
+            json_writer.Key("CATEGID");
+            json_writer.Int(this->CATEGID);
+            json_writer.Key("SUBCATEGID");
+            json_writer.Int(this->SUBCATEGID);
+            json_writer.Key("SPLITTRANSAMOUNT");
+            json_writer.Double(this->SPLITTRANSAMOUNT);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"INFOID") = INFOID;
-            row(L"INFONAME") = INFONAME;
-            row(L"INFOVALUE") = INFOVALUE;
+            row(L"SPLITTRANSID") = SPLITTRANSID;
+            row(L"TRANSID") = TRANSID;
+            row(L"CATEGID") = CATEGID;
+            row(L"SUBCATEGID") = SUBCATEGID;
+            row(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"INFOID") = INFOID;
-            t(L"INFONAME") = INFONAME;
-            t(L"INFOVALUE") = INFOVALUE;
+            t(L"SPLITTRANSID") = SPLITTRANSID;
+            t(L"TRANSID") = TRANSID;
+            t(L"CATEGID") = CATEGID;
+            t(L"SUBCATEGID") = SUBCATEGID;
+            t(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
         }
 
         /** Save the record instance in memory to the database. */
@@ -286,7 +331,7 @@ struct DB_Table_INFOTABLE : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save INFOTABLE");
+                wxLogError("can not save SPLITTRANSACTIONS");
                 return false;
             }
 
@@ -298,7 +343,7 @@ struct DB_Table_INFOTABLE : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove INFOTABLE");
+                wxLogError("can not remove SPLITTRANSACTIONS");
                 return false;
             }
             
@@ -313,17 +358,17 @@ struct DB_Table_INFOTABLE : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 3
+        NUM_COLUMNS = 5
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "INFOTABLE"; }
+    wxString name() const { return "SPLITTRANSACTIONS"; }
 
-    DB_Table_INFOTABLE() : fake_(new Data())
+    DB_Table_SPLITTRANSACTIONS() : fake_(new Data())
     {
-        query_ = "SELECT INFOID, INFONAME, INFOVALUE FROM INFOTABLE ";
+        query_ = "SELECT SPLITTRANSID, TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT FROM SPLITTRANSACTIONS ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -353,21 +398,23 @@ struct DB_Table_INFOTABLE : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO INFOTABLE(INFONAME, INFOVALUE) VALUES(?, ?)";
+            sql = "INSERT INTO SPLITTRANSACTIONS(TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE INFOTABLE SET INFONAME = ?, INFOVALUE = ? WHERE INFOID = ?";
+            sql = "UPDATE SPLITTRANSACTIONS SET TRANSID = ?, CATEGID = ?, SUBCATEGID = ?, SPLITTRANSAMOUNT = ? WHERE SPLITTRANSID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->INFONAME);
-            stmt.Bind(2, entity->INFOVALUE);
+            stmt.Bind(1, entity->TRANSID);
+            stmt.Bind(2, entity->CATEGID);
+            stmt.Bind(3, entity->SUBCATEGID);
+            stmt.Bind(4, entity->SPLITTRANSAMOUNT);
             if (entity->id() > 0)
-                stmt.Bind(3, entity->INFOID);
+                stmt.Bind(5, entity->SPLITTRANSID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -384,7 +431,7 @@ struct DB_Table_INFOTABLE : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("INFOTABLE: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("SPLITTRANSACTIONS: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -402,7 +449,7 @@ struct DB_Table_INFOTABLE : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM INFOTABLE WHERE INFOID = ?";
+            wxString sql = "DELETE FROM SPLITTRANSACTIONS WHERE SPLITTRANSID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -427,7 +474,7 @@ struct DB_Table_INFOTABLE : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("INFOTABLE: Exception %s", e.GetMessage().c_str());
+            wxLogError("SPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

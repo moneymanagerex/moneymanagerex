@@ -20,7 +20,7 @@
 #define MODEL_PAYEE_H
 
 #include "Model.h"
-#include "db/DB_Table_Payee.h"
+#include "Table_Payee.h"
 
 class Model_Payee : public Model<DB_Table_PAYEE>
 {

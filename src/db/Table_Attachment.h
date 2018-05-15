@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_SUBCATEGORY : public DB_Table
+struct DB_Table_ATTACHMENT : public DB_Table
 {
     struct Data;
-    typedef DB_Table_SUBCATEGORY Self;
+    typedef DB_Table_ATTACHMENT Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_SUBCATEGORY : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_SUBCATEGORY() 
+    ~DB_Table_ATTACHMENT() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_SUBCATEGORY : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE SUBCATEGORY(SUBCATEGID integer primary key, SUBCATEGNAME TEXT COLLATE NOCASE NOT NULL, CATEGID integer NOT NULL, UNIQUE(CATEGID, SUBCATEGNAME))");
+                db->ExecuteUpdate("CREATE TABLE ATTACHMENT (ATTACHMENTID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, Bank Account, Repeating Transaction, Payee */, REFID INTEGER NOT NULL, DESCRIPTION TEXT COLLATE NOCASE, FILENAME TEXT NOT NULL COLLATE NOCASE)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("SUBCATEGORY: Exception %s", e.GetMessage().c_str());
+                wxLogError("ATTACHMENT: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_SUBCATEGORY : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_SUBCATEGORY_CATEGID ON SUBCATEGORY(CATEGID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_ATTACHMENT_REF ON ATTACHMENT (REFTYPE, REFID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SUBCATEGORY: Exception %s", e.GetMessage().c_str());
+            wxLogError("ATTACHMENT: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -108,74 +108,47 @@ struct DB_Table_SUBCATEGORY : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('1', '%s', '1')", wxTRANSLATE("Telephone")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('2', '%s', '1')", wxTRANSLATE("Electricity")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('3', '%s', '1')", wxTRANSLATE("Gas")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('4', '%s', '1')", wxTRANSLATE("Internet")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('5', '%s', '1')", wxTRANSLATE("Rent")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('6', '%s', '1')", wxTRANSLATE("Cable TV")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('7', '%s', '1')", wxTRANSLATE("Water")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('8', '%s', '2')", wxTRANSLATE("Groceries")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('9', '%s', '2')", wxTRANSLATE("Dining out")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('10', '%s', '3')", wxTRANSLATE("Movies")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('11', '%s', '3')", wxTRANSLATE("Video Rental")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('12', '%s', '3')", wxTRANSLATE("Magazines")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('13', '%s', '4')", wxTRANSLATE("Maintenance")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('14', '%s', '4')", wxTRANSLATE("Gas")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('15', '%s', '4')", wxTRANSLATE("Parking")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('16', '%s', '4')", wxTRANSLATE("Registration")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('17', '%s', '5')", wxTRANSLATE("Books")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('18', '%s', '5')", wxTRANSLATE("Tuition")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('19', '%s', '5')", wxTRANSLATE("Others")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('20', '%s', '6')", wxTRANSLATE("Clothing")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('21', '%s', '6')", wxTRANSLATE("Furnishing")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('22', '%s', '6')", wxTRANSLATE("Others")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('23', '%s', '7')", wxTRANSLATE("Health")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('24', '%s', '7')", wxTRANSLATE("Dental")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('25', '%s', '7')", wxTRANSLATE("Eyecare")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('26', '%s', '7')", wxTRANSLATE("Physician")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('27', '%s', '7')", wxTRANSLATE("Prescriptions")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('28', '%s', '8')", wxTRANSLATE("Auto")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('29', '%s', '8')", wxTRANSLATE("Life")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('30', '%s', '8')", wxTRANSLATE("Home")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('31', '%s', '8')", wxTRANSLATE("Health")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('32', '%s', '9')", wxTRANSLATE("Travel")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('33', '%s', '9')", wxTRANSLATE("Lodging")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('34', '%s', '9')", wxTRANSLATE("Sightseeing")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('35', '%s', '10')", wxTRANSLATE("Income Tax")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('36', '%s', '10')", wxTRANSLATE("House Tax")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('37', '%s', '10')", wxTRANSLATE("Water Tax")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('38', '%s', '10')", wxTRANSLATE("Others")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('39', '%s', '13')", wxTRANSLATE("Salary")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('40', '%s', '13')", wxTRANSLATE("Reimbursement/Refunds")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('41', '%s', '13')", wxTRANSLATE("Investment Income")));
         db->Commit();
     }
     
-    struct SUBCATEGID : public DB_Column<int>
+    struct ATTACHMENTID : public DB_Column<int>
     { 
-        static wxString name() { return "SUBCATEGID"; } 
-        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "ATTACHMENTID"; } 
+        explicit ATTACHMENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SUBCATEGNAME : public DB_Column<wxString>
+    struct REFTYPE : public DB_Column<wxString>
     { 
-        static wxString name() { return "SUBCATEGNAME"; } 
-        explicit SUBCATEGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "REFTYPE"; } 
+        explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct REFID : public DB_Column<int>
     { 
-        static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "REFID"; } 
+        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    typedef SUBCATEGID PRIMARY;
+    struct DESCRIPTION : public DB_Column<wxString>
+    { 
+        static wxString name() { return "DESCRIPTION"; } 
+        explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
+    struct FILENAME : public DB_Column<wxString>
+    { 
+        static wxString name() { return "FILENAME"; } 
+        explicit FILENAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
+    typedef ATTACHMENTID PRIMARY;
     enum COLUMN
     {
-        COL_SUBCATEGID = 0
-        , COL_SUBCATEGNAME = 1
-        , COL_CATEGID = 2
+        COL_ATTACHMENTID = 0
+        , COL_REFTYPE = 1
+        , COL_REFID = 2
+        , COL_DESCRIPTION = 3
+        , COL_FILENAME = 4
     };
 
     /** Returns the column name as a string*/
@@ -183,9 +156,11 @@ struct DB_Table_SUBCATEGORY : public DB_Table
     {
         switch(col)
         {
-            case COL_SUBCATEGID: return "SUBCATEGID";
-            case COL_SUBCATEGNAME: return "SUBCATEGNAME";
-            case COL_CATEGID: return "CATEGID";
+            case COL_ATTACHMENTID: return "ATTACHMENTID";
+            case COL_REFTYPE: return "REFTYPE";
+            case COL_REFID: return "REFID";
+            case COL_DESCRIPTION: return "DESCRIPTION";
+            case COL_FILENAME: return "FILENAME";
             default: break;
         }
         
@@ -195,9 +170,11 @@ struct DB_Table_SUBCATEGORY : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("SUBCATEGID" == name) return COL_SUBCATEGID;
-        else if ("SUBCATEGNAME" == name) return COL_SUBCATEGNAME;
-        else if ("CATEGID" == name) return COL_CATEGID;
+        if ("ATTACHMENTID" == name) return COL_ATTACHMENTID;
+        else if ("REFTYPE" == name) return COL_REFTYPE;
+        else if ("REFID" == name) return COL_REFID;
+        else if ("DESCRIPTION" == name) return COL_DESCRIPTION;
+        else if ("FILENAME" == name) return COL_FILENAME;
 
         return COLUMN(-1);
     }
@@ -205,22 +182,24 @@ struct DB_Table_SUBCATEGORY : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_SUBCATEGORY;
+        friend struct DB_Table_ATTACHMENT;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SUBCATEGID;//  primary key
-        wxString SUBCATEGNAME;
-        int CATEGID;
+        int ATTACHMENTID;//  primary key
+        wxString REFTYPE;
+        int REFID;
+        wxString DESCRIPTION;
+        wxString FILENAME;
 
         int id() const
         {
-            return SUBCATEGID;
+            return ATTACHMENTID;
         }
 
         void id(int id)
         {
-            SUBCATEGID = id;
+            ATTACHMENTID = id;
         }
 
         bool operator < (const Data& r) const
@@ -237,26 +216,30 @@ struct DB_Table_SUBCATEGORY : public DB_Table
         {
             table_ = table;
         
-            SUBCATEGID = -1;
-            CATEGID = -1;
+            ATTACHMENTID = -1;
+            REFID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            SUBCATEGID = q.GetInt(0); // SUBCATEGID
-            SUBCATEGNAME = q.GetString(1); // SUBCATEGNAME
-            CATEGID = q.GetInt(2); // CATEGID
+            ATTACHMENTID = q.GetInt(0); // ATTACHMENTID
+            REFTYPE = q.GetString(1); // REFTYPE
+            REFID = q.GetInt(2); // REFID
+            DESCRIPTION = q.GetString(3); // DESCRIPTION
+            FILENAME = q.GetString(4); // FILENAME
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            SUBCATEGID = other.SUBCATEGID;
-            SUBCATEGNAME = other.SUBCATEGNAME;
-            CATEGID = other.CATEGID;
+            ATTACHMENTID = other.ATTACHMENTID;
+            REFTYPE = other.REFTYPE;
+            REFID = other.REFID;
+            DESCRIPTION = other.DESCRIPTION;
+            FILENAME = other.FILENAME;
             return *this;
         }
 
@@ -266,19 +249,29 @@ struct DB_Table_SUBCATEGORY : public DB_Table
             return false;
         }
 
-        bool match(const Self::SUBCATEGID &in) const
+        bool match(const Self::ATTACHMENTID &in) const
         {
-            return this->SUBCATEGID == in.v_;
+            return this->ATTACHMENTID == in.v_;
         }
 
-        bool match(const Self::SUBCATEGNAME &in) const
+        bool match(const Self::REFTYPE &in) const
         {
-            return this->SUBCATEGNAME.CmpNoCase(in.v_) == 0;
+            return this->REFTYPE.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::CATEGID &in) const
+        bool match(const Self::REFID &in) const
         {
-            return this->CATEGID == in.v_;
+            return this->REFID == in.v_;
+        }
+
+        bool match(const Self::DESCRIPTION &in) const
+        {
+            return this->DESCRIPTION.CmpNoCase(in.v_) == 0;
+        }
+
+        bool match(const Self::FILENAME &in) const
+        {
+            return this->FILENAME.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -297,28 +290,36 @@ struct DB_Table_SUBCATEGORY : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("SUBCATEGID");
-            json_writer.Int(this->SUBCATEGID);
-            json_writer.Key("SUBCATEGNAME");
-            json_writer.String(this->SUBCATEGNAME.c_str());
-            json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
+            json_writer.Key("ATTACHMENTID");
+            json_writer.Int(this->ATTACHMENTID);
+            json_writer.Key("REFTYPE");
+            json_writer.String(this->REFTYPE.c_str());
+            json_writer.Key("REFID");
+            json_writer.Int(this->REFID);
+            json_writer.Key("DESCRIPTION");
+            json_writer.String(this->DESCRIPTION.c_str());
+            json_writer.Key("FILENAME");
+            json_writer.String(this->FILENAME.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"SUBCATEGID") = SUBCATEGID;
-            row(L"SUBCATEGNAME") = SUBCATEGNAME;
-            row(L"CATEGID") = CATEGID;
+            row(L"ATTACHMENTID") = ATTACHMENTID;
+            row(L"REFTYPE") = REFTYPE;
+            row(L"REFID") = REFID;
+            row(L"DESCRIPTION") = DESCRIPTION;
+            row(L"FILENAME") = FILENAME;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"SUBCATEGID") = SUBCATEGID;
-            t(L"SUBCATEGNAME") = SUBCATEGNAME;
-            t(L"CATEGID") = CATEGID;
+            t(L"ATTACHMENTID") = ATTACHMENTID;
+            t(L"REFTYPE") = REFTYPE;
+            t(L"REFID") = REFID;
+            t(L"DESCRIPTION") = DESCRIPTION;
+            t(L"FILENAME") = FILENAME;
         }
 
         /** Save the record instance in memory to the database. */
@@ -327,7 +328,7 @@ struct DB_Table_SUBCATEGORY : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save SUBCATEGORY");
+                wxLogError("can not save ATTACHMENT");
                 return false;
             }
 
@@ -339,7 +340,7 @@ struct DB_Table_SUBCATEGORY : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove SUBCATEGORY");
+                wxLogError("can not remove ATTACHMENT");
                 return false;
             }
             
@@ -354,17 +355,17 @@ struct DB_Table_SUBCATEGORY : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 3
+        NUM_COLUMNS = 5
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "SUBCATEGORY"; }
+    wxString name() const { return "ATTACHMENT"; }
 
-    DB_Table_SUBCATEGORY() : fake_(new Data())
+    DB_Table_ATTACHMENT() : fake_(new Data())
     {
-        query_ = "SELECT SUBCATEGID, SUBCATEGNAME, CATEGID FROM SUBCATEGORY ";
+        query_ = "SELECT ATTACHMENTID, REFTYPE, REFID, DESCRIPTION, FILENAME FROM ATTACHMENT ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -394,21 +395,23 @@ struct DB_Table_SUBCATEGORY : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO SUBCATEGORY(SUBCATEGNAME, CATEGID) VALUES(?, ?)";
+            sql = "INSERT INTO ATTACHMENT(REFTYPE, REFID, DESCRIPTION, FILENAME) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE SUBCATEGORY SET SUBCATEGNAME = ?, CATEGID = ? WHERE SUBCATEGID = ?";
+            sql = "UPDATE ATTACHMENT SET REFTYPE = ?, REFID = ?, DESCRIPTION = ?, FILENAME = ? WHERE ATTACHMENTID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->SUBCATEGNAME);
-            stmt.Bind(2, entity->CATEGID);
+            stmt.Bind(1, entity->REFTYPE);
+            stmt.Bind(2, entity->REFID);
+            stmt.Bind(3, entity->DESCRIPTION);
+            stmt.Bind(4, entity->FILENAME);
             if (entity->id() > 0)
-                stmt.Bind(3, entity->SUBCATEGID);
+                stmt.Bind(5, entity->ATTACHMENTID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -425,7 +428,7 @@ struct DB_Table_SUBCATEGORY : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SUBCATEGORY: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("ATTACHMENT: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -443,7 +446,7 @@ struct DB_Table_SUBCATEGORY : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM SUBCATEGORY WHERE SUBCATEGID = ?";
+            wxString sql = "DELETE FROM ATTACHMENT WHERE ATTACHMENTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -468,7 +471,7 @@ struct DB_Table_SUBCATEGORY : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SUBCATEGORY: Exception %s", e.GetMessage().c_str());
+            wxLogError("ATTACHMENT: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

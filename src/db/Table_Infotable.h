@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_TRANSLINK : public DB_Table
+struct DB_Table_INFOTABLE : public DB_Table
 {
     struct Data;
-    typedef DB_Table_TRANSLINK Self;
+    typedef DB_Table_INFOTABLE Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_TRANSLINK : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_TRANSLINK() 
+    ~DB_Table_INFOTABLE() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_TRANSLINK : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE TRANSLINK (TRANSLINKID  integer NOT NULL primary key, CHECKINGACCOUNTID integer NOT NULL, LINKTYPE TEXT NOT NULL /* Asset, Stock */, LINKRECORDID integer NOT NULL)");
+                db->ExecuteUpdate("CREATE TABLE INFOTABLE(INFOID integer not null primary key, INFONAME TEXT COLLATE NOCASE NOT NULL UNIQUE, INFOVALUE TEXT NOT NULL)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("TRANSLINK: Exception %s", e.GetMessage().c_str());
+                wxLogError("INFOTABLE: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,12 +94,11 @@ struct DB_Table_TRANSLINK : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CHECKINGACCOUNT ON TRANSLINK (CHECKINGACCOUNTID)");
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_LINKRECORD ON TRANSLINK (LINKTYPE, LINKRECORDID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_INFOTABLE_INFONAME ON INFOTABLE(INFONAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("TRANSLINK: Exception %s", e.GetMessage().c_str());
+            wxLogError("INFOTABLE: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -109,40 +108,34 @@ struct DB_Table_TRANSLINK : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
+        db->ExecuteUpdate("INSERT INTO INFOTABLE VALUES ('1', 'DATAVERSION', '3')");
         db->Commit();
     }
     
-    struct TRANSLINKID : public DB_Column<int>
+    struct INFOID : public DB_Column<int>
     { 
-        static wxString name() { return "TRANSLINKID"; } 
-        explicit TRANSLINKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "INFOID"; } 
+        explicit INFOID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct CHECKINGACCOUNTID : public DB_Column<int>
+    struct INFONAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "CHECKINGACCOUNTID"; } 
-        explicit CHECKINGACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "INFONAME"; } 
+        explicit INFONAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct LINKTYPE : public DB_Column<wxString>
+    struct INFOVALUE : public DB_Column<wxString>
     { 
-        static wxString name() { return "LINKTYPE"; } 
-        explicit LINKTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "INFOVALUE"; } 
+        explicit INFOVALUE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct LINKRECORDID : public DB_Column<int>
-    { 
-        static wxString name() { return "LINKRECORDID"; } 
-        explicit LINKRECORDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    typedef TRANSLINKID PRIMARY;
+    typedef INFOID PRIMARY;
     enum COLUMN
     {
-        COL_TRANSLINKID = 0
-        , COL_CHECKINGACCOUNTID = 1
-        , COL_LINKTYPE = 2
-        , COL_LINKRECORDID = 3
+        COL_INFOID = 0
+        , COL_INFONAME = 1
+        , COL_INFOVALUE = 2
     };
 
     /** Returns the column name as a string*/
@@ -150,10 +143,9 @@ struct DB_Table_TRANSLINK : public DB_Table
     {
         switch(col)
         {
-            case COL_TRANSLINKID: return "TRANSLINKID";
-            case COL_CHECKINGACCOUNTID: return "CHECKINGACCOUNTID";
-            case COL_LINKTYPE: return "LINKTYPE";
-            case COL_LINKRECORDID: return "LINKRECORDID";
+            case COL_INFOID: return "INFOID";
+            case COL_INFONAME: return "INFONAME";
+            case COL_INFOVALUE: return "INFOVALUE";
             default: break;
         }
         
@@ -163,10 +155,9 @@ struct DB_Table_TRANSLINK : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("TRANSLINKID" == name) return COL_TRANSLINKID;
-        else if ("CHECKINGACCOUNTID" == name) return COL_CHECKINGACCOUNTID;
-        else if ("LINKTYPE" == name) return COL_LINKTYPE;
-        else if ("LINKRECORDID" == name) return COL_LINKRECORDID;
+        if ("INFOID" == name) return COL_INFOID;
+        else if ("INFONAME" == name) return COL_INFONAME;
+        else if ("INFOVALUE" == name) return COL_INFOVALUE;
 
         return COLUMN(-1);
     }
@@ -174,23 +165,22 @@ struct DB_Table_TRANSLINK : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_TRANSLINK;
+        friend struct DB_Table_INFOTABLE;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int TRANSLINKID;//  primary key
-        int CHECKINGACCOUNTID;
-        wxString LINKTYPE;
-        int LINKRECORDID;
+        int INFOID;//  primary key
+        wxString INFONAME;
+        wxString INFOVALUE;
 
         int id() const
         {
-            return TRANSLINKID;
+            return INFOID;
         }
 
         void id(int id)
         {
-            TRANSLINKID = id;
+            INFOID = id;
         }
 
         bool operator < (const Data& r) const
@@ -207,29 +197,25 @@ struct DB_Table_TRANSLINK : public DB_Table
         {
             table_ = table;
         
-            TRANSLINKID = -1;
-            CHECKINGACCOUNTID = -1;
-            LINKRECORDID = -1;
+            INFOID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            TRANSLINKID = q.GetInt(0); // TRANSLINKID
-            CHECKINGACCOUNTID = q.GetInt(1); // CHECKINGACCOUNTID
-            LINKTYPE = q.GetString(2); // LINKTYPE
-            LINKRECORDID = q.GetInt(3); // LINKRECORDID
+            INFOID = q.GetInt(0); // INFOID
+            INFONAME = q.GetString(1); // INFONAME
+            INFOVALUE = q.GetString(2); // INFOVALUE
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            TRANSLINKID = other.TRANSLINKID;
-            CHECKINGACCOUNTID = other.CHECKINGACCOUNTID;
-            LINKTYPE = other.LINKTYPE;
-            LINKRECORDID = other.LINKRECORDID;
+            INFOID = other.INFOID;
+            INFONAME = other.INFONAME;
+            INFOVALUE = other.INFOVALUE;
             return *this;
         }
 
@@ -239,24 +225,19 @@ struct DB_Table_TRANSLINK : public DB_Table
             return false;
         }
 
-        bool match(const Self::TRANSLINKID &in) const
+        bool match(const Self::INFOID &in) const
         {
-            return this->TRANSLINKID == in.v_;
+            return this->INFOID == in.v_;
         }
 
-        bool match(const Self::CHECKINGACCOUNTID &in) const
+        bool match(const Self::INFONAME &in) const
         {
-            return this->CHECKINGACCOUNTID == in.v_;
+            return this->INFONAME.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::LINKTYPE &in) const
+        bool match(const Self::INFOVALUE &in) const
         {
-            return this->LINKTYPE.CmpNoCase(in.v_) == 0;
-        }
-
-        bool match(const Self::LINKRECORDID &in) const
-        {
-            return this->LINKRECORDID == in.v_;
+            return this->INFOVALUE.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -275,32 +256,28 @@ struct DB_Table_TRANSLINK : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("TRANSLINKID");
-            json_writer.Int(this->TRANSLINKID);
-            json_writer.Key("CHECKINGACCOUNTID");
-            json_writer.Int(this->CHECKINGACCOUNTID);
-            json_writer.Key("LINKTYPE");
-            json_writer.String(this->LINKTYPE.c_str());
-            json_writer.Key("LINKRECORDID");
-            json_writer.Int(this->LINKRECORDID);
+            json_writer.Key("INFOID");
+            json_writer.Int(this->INFOID);
+            json_writer.Key("INFONAME");
+            json_writer.String(this->INFONAME.c_str());
+            json_writer.Key("INFOVALUE");
+            json_writer.String(this->INFOVALUE.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"TRANSLINKID") = TRANSLINKID;
-            row(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
-            row(L"LINKTYPE") = LINKTYPE;
-            row(L"LINKRECORDID") = LINKRECORDID;
+            row(L"INFOID") = INFOID;
+            row(L"INFONAME") = INFONAME;
+            row(L"INFOVALUE") = INFOVALUE;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"TRANSLINKID") = TRANSLINKID;
-            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
-            t(L"LINKTYPE") = LINKTYPE;
-            t(L"LINKRECORDID") = LINKRECORDID;
+            t(L"INFOID") = INFOID;
+            t(L"INFONAME") = INFONAME;
+            t(L"INFOVALUE") = INFOVALUE;
         }
 
         /** Save the record instance in memory to the database. */
@@ -309,7 +286,7 @@ struct DB_Table_TRANSLINK : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save TRANSLINK");
+                wxLogError("can not save INFOTABLE");
                 return false;
             }
 
@@ -321,7 +298,7 @@ struct DB_Table_TRANSLINK : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove TRANSLINK");
+                wxLogError("can not remove INFOTABLE");
                 return false;
             }
             
@@ -336,17 +313,17 @@ struct DB_Table_TRANSLINK : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 4
+        NUM_COLUMNS = 3
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "TRANSLINK"; }
+    wxString name() const { return "INFOTABLE"; }
 
-    DB_Table_TRANSLINK() : fake_(new Data())
+    DB_Table_INFOTABLE() : fake_(new Data())
     {
-        query_ = "SELECT TRANSLINKID, CHECKINGACCOUNTID, LINKTYPE, LINKRECORDID FROM TRANSLINK ";
+        query_ = "SELECT INFOID, INFONAME, INFOVALUE FROM INFOTABLE ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -376,22 +353,21 @@ struct DB_Table_TRANSLINK : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO TRANSLINK(CHECKINGACCOUNTID, LINKTYPE, LINKRECORDID) VALUES(?, ?, ?)";
+            sql = "INSERT INTO INFOTABLE(INFONAME, INFOVALUE) VALUES(?, ?)";
         }
         else
         {
-            sql = "UPDATE TRANSLINK SET CHECKINGACCOUNTID = ?, LINKTYPE = ?, LINKRECORDID = ? WHERE TRANSLINKID = ?";
+            sql = "UPDATE INFOTABLE SET INFONAME = ?, INFOVALUE = ? WHERE INFOID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->CHECKINGACCOUNTID);
-            stmt.Bind(2, entity->LINKTYPE);
-            stmt.Bind(3, entity->LINKRECORDID);
+            stmt.Bind(1, entity->INFONAME);
+            stmt.Bind(2, entity->INFOVALUE);
             if (entity->id() > 0)
-                stmt.Bind(4, entity->TRANSLINKID);
+                stmt.Bind(3, entity->INFOID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -408,7 +384,7 @@ struct DB_Table_TRANSLINK : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("TRANSLINK: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("INFOTABLE: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -426,7 +402,7 @@ struct DB_Table_TRANSLINK : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM TRANSLINK WHERE TRANSLINKID = ?";
+            wxString sql = "DELETE FROM INFOTABLE WHERE INFOID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -451,7 +427,7 @@ struct DB_Table_TRANSLINK : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("TRANSLINK: Exception %s", e.GetMessage().c_str());
+            wxLogError("INFOTABLE: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

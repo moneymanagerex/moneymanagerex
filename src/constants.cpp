@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "lua.h"
 #include "mongoose/mongoose.h"
 #include "rapidjson/rapidjson.h"
-#include "db/DB_Upgrade.h" /* for dbLatestVersion */
+#include "DB_Upgrade.h" /* for dbLatestVersion */
 #include <curl/curl.h>
 #include <sqlite3secure.h>
 

@@ -20,7 +20,7 @@
 #define MODEL_INFOTABLE_H
 
 #include "Model.h"
-#include "db/DB_Table_Infotable.h"
+#include "Table_Infotable.h"
 #include "defs.h"
 
 class Model_Infotable : public Model<DB_Table_INFOTABLE>

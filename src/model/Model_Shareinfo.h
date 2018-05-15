@@ -20,7 +20,7 @@
 #pragma once
 
 #include "Model.h"
-#include "db/DB_Table_Shareinfo.h"
+#include "Table_Shareinfo.h"
 
 class Model_Shareinfo : public Model<DB_Table_SHAREINFO>
 {

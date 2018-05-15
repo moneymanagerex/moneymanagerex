@@ -163,7 +163,7 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
     def generate_class(self, header, sql):
         """ Write the data to the appropriate .h file"""
         print('Generate Table: %s' % self._table)
-        rfp = codecs.open('DB_Table_' + self._table.title() + '.h', 'w', 'utf-8-sig')
+        rfp = codecs.open('Table_' + self._table.title() + '.h', 'w', 'utf-8-sig')
         rfp.write(header + self.to_string(sql))
         rfp.close()
 
@@ -175,7 +175,7 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
 
         s = '''%s#pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
 struct DB_Table_%s : public DB_Table
 {
@@ -974,7 +974,7 @@ struct SorterBy%s
 };
 ''' % (field, transl, field, transl, field)
 
-    rfp = codecs.open('DB_Table.h', 'w', 'utf-8-sig')
+    rfp = codecs.open('Table.h', 'w', 'utf-8-sig')
     rfp.write(code)
     rfp.close()
 

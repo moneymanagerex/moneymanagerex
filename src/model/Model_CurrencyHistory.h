@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define MODEL_CURRENCYHISTORY_H
 
 #include "Model.h"
-#include "db/DB_Table_Currencyhistory.h"
+#include "Table_Currencyhistory.h"
 
 class Model_CurrencyHistory : public Model<DB_Table_CURRENCYHISTORY>
 {

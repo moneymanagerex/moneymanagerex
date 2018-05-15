@@ -20,7 +20,7 @@
 #define MODEL_SETTING_H
 
 #include "Model.h"
-#include "db/DB_Table_Setting_V1.h"
+#include "Table_Setting_V1.h"
 #include "defs.h"
 
 class Model_Setting : public Model<DB_Table_SETTING_V1>

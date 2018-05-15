@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_SETTING_V1 : public DB_Table
+struct DB_Table_USAGE_V1 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_SETTING_V1 Self;
+    typedef DB_Table_USAGE_V1 Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_SETTING_V1() 
+    ~DB_Table_USAGE_V1() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_SETTING_V1 : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE SETTING_V1(SETTINGID integer not null primary key, SETTINGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, SETTINGVALUE TEXT)");
+                db->ExecuteUpdate("CREATE TABLE USAGE_V1 (USAGEID INTEGER NOT NULL PRIMARY KEY, USAGEDATE TEXT NOT NULL, JSONCONTENT TEXT NOT NULL)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("SETTING_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("USAGE_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_SETTING_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_SETTING_SETTINGNAME ON SETTING_V1(SETTINGNAME)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_USAGE_DATE ON USAGE_V1 (USAGEDATE)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SETTING_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("USAGE_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,30 +111,30 @@ struct DB_Table_SETTING_V1 : public DB_Table
         db->Commit();
     }
     
-    struct SETTINGID : public DB_Column<int>
+    struct USAGEID : public DB_Column<int>
     { 
-        static wxString name() { return "SETTINGID"; } 
-        explicit SETTINGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "USAGEID"; } 
+        explicit USAGEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SETTINGNAME : public DB_Column<wxString>
+    struct USAGEDATE : public DB_Column<wxString>
     { 
-        static wxString name() { return "SETTINGNAME"; } 
-        explicit SETTINGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "USAGEDATE"; } 
+        explicit USAGEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct SETTINGVALUE : public DB_Column<wxString>
+    struct JSONCONTENT : public DB_Column<wxString>
     { 
-        static wxString name() { return "SETTINGVALUE"; } 
-        explicit SETTINGVALUE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "JSONCONTENT"; } 
+        explicit JSONCONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    typedef SETTINGID PRIMARY;
+    typedef USAGEID PRIMARY;
     enum COLUMN
     {
-        COL_SETTINGID = 0
-        , COL_SETTINGNAME = 1
-        , COL_SETTINGVALUE = 2
+        COL_USAGEID = 0
+        , COL_USAGEDATE = 1
+        , COL_JSONCONTENT = 2
     };
 
     /** Returns the column name as a string*/
@@ -142,9 +142,9 @@ struct DB_Table_SETTING_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_SETTINGID: return "SETTINGID";
-            case COL_SETTINGNAME: return "SETTINGNAME";
-            case COL_SETTINGVALUE: return "SETTINGVALUE";
+            case COL_USAGEID: return "USAGEID";
+            case COL_USAGEDATE: return "USAGEDATE";
+            case COL_JSONCONTENT: return "JSONCONTENT";
             default: break;
         }
         
@@ -154,9 +154,9 @@ struct DB_Table_SETTING_V1 : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("SETTINGID" == name) return COL_SETTINGID;
-        else if ("SETTINGNAME" == name) return COL_SETTINGNAME;
-        else if ("SETTINGVALUE" == name) return COL_SETTINGVALUE;
+        if ("USAGEID" == name) return COL_USAGEID;
+        else if ("USAGEDATE" == name) return COL_USAGEDATE;
+        else if ("JSONCONTENT" == name) return COL_JSONCONTENT;
 
         return COLUMN(-1);
     }
@@ -164,22 +164,22 @@ struct DB_Table_SETTING_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_SETTING_V1;
+        friend struct DB_Table_USAGE_V1;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SETTINGID;//  primary key
-        wxString SETTINGNAME;
-        wxString SETTINGVALUE;
+        int USAGEID;//  primary key
+        wxString USAGEDATE;
+        wxString JSONCONTENT;
 
         int id() const
         {
-            return SETTINGID;
+            return USAGEID;
         }
 
         void id(int id)
         {
-            SETTINGID = id;
+            USAGEID = id;
         }
 
         bool operator < (const Data& r) const
@@ -196,25 +196,25 @@ struct DB_Table_SETTING_V1 : public DB_Table
         {
             table_ = table;
         
-            SETTINGID = -1;
+            USAGEID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            SETTINGID = q.GetInt(0); // SETTINGID
-            SETTINGNAME = q.GetString(1); // SETTINGNAME
-            SETTINGVALUE = q.GetString(2); // SETTINGVALUE
+            USAGEID = q.GetInt(0); // USAGEID
+            USAGEDATE = q.GetString(1); // USAGEDATE
+            JSONCONTENT = q.GetString(2); // JSONCONTENT
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            SETTINGID = other.SETTINGID;
-            SETTINGNAME = other.SETTINGNAME;
-            SETTINGVALUE = other.SETTINGVALUE;
+            USAGEID = other.USAGEID;
+            USAGEDATE = other.USAGEDATE;
+            JSONCONTENT = other.JSONCONTENT;
             return *this;
         }
 
@@ -224,19 +224,19 @@ struct DB_Table_SETTING_V1 : public DB_Table
             return false;
         }
 
-        bool match(const Self::SETTINGID &in) const
+        bool match(const Self::USAGEID &in) const
         {
-            return this->SETTINGID == in.v_;
+            return this->USAGEID == in.v_;
         }
 
-        bool match(const Self::SETTINGNAME &in) const
+        bool match(const Self::USAGEDATE &in) const
         {
-            return this->SETTINGNAME.CmpNoCase(in.v_) == 0;
+            return this->USAGEDATE.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::SETTINGVALUE &in) const
+        bool match(const Self::JSONCONTENT &in) const
         {
-            return this->SETTINGVALUE.CmpNoCase(in.v_) == 0;
+            return this->JSONCONTENT.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -255,28 +255,28 @@ struct DB_Table_SETTING_V1 : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("SETTINGID");
-            json_writer.Int(this->SETTINGID);
-            json_writer.Key("SETTINGNAME");
-            json_writer.String(this->SETTINGNAME.c_str());
-            json_writer.Key("SETTINGVALUE");
-            json_writer.String(this->SETTINGVALUE.c_str());
+            json_writer.Key("USAGEID");
+            json_writer.Int(this->USAGEID);
+            json_writer.Key("USAGEDATE");
+            json_writer.String(this->USAGEDATE.c_str());
+            json_writer.Key("JSONCONTENT");
+            json_writer.String(this->JSONCONTENT.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"SETTINGID") = SETTINGID;
-            row(L"SETTINGNAME") = SETTINGNAME;
-            row(L"SETTINGVALUE") = SETTINGVALUE;
+            row(L"USAGEID") = USAGEID;
+            row(L"USAGEDATE") = USAGEDATE;
+            row(L"JSONCONTENT") = JSONCONTENT;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"SETTINGID") = SETTINGID;
-            t(L"SETTINGNAME") = SETTINGNAME;
-            t(L"SETTINGVALUE") = SETTINGVALUE;
+            t(L"USAGEID") = USAGEID;
+            t(L"USAGEDATE") = USAGEDATE;
+            t(L"JSONCONTENT") = JSONCONTENT;
         }
 
         /** Save the record instance in memory to the database. */
@@ -285,7 +285,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save SETTING_V1");
+                wxLogError("can not save USAGE_V1");
                 return false;
             }
 
@@ -297,7 +297,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove SETTING_V1");
+                wxLogError("can not remove USAGE_V1");
                 return false;
             }
             
@@ -318,11 +318,11 @@ struct DB_Table_SETTING_V1 : public DB_Table
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "SETTING_V1"; }
+    wxString name() const { return "USAGE_V1"; }
 
-    DB_Table_SETTING_V1() : fake_(new Data())
+    DB_Table_USAGE_V1() : fake_(new Data())
     {
-        query_ = "SELECT SETTINGID, SETTINGNAME, SETTINGVALUE FROM SETTING_V1 ";
+        query_ = "SELECT USAGEID, USAGEDATE, JSONCONTENT FROM USAGE_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -352,21 +352,21 @@ struct DB_Table_SETTING_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO SETTING_V1(SETTINGNAME, SETTINGVALUE) VALUES(?, ?)";
+            sql = "INSERT INTO USAGE_V1(USAGEDATE, JSONCONTENT) VALUES(?, ?)";
         }
         else
         {
-            sql = "UPDATE SETTING_V1 SET SETTINGNAME = ?, SETTINGVALUE = ? WHERE SETTINGID = ?";
+            sql = "UPDATE USAGE_V1 SET USAGEDATE = ?, JSONCONTENT = ? WHERE USAGEID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->SETTINGNAME);
-            stmt.Bind(2, entity->SETTINGVALUE);
+            stmt.Bind(1, entity->USAGEDATE);
+            stmt.Bind(2, entity->JSONCONTENT);
             if (entity->id() > 0)
-                stmt.Bind(3, entity->SETTINGID);
+                stmt.Bind(3, entity->USAGEID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -383,7 +383,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SETTING_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("USAGE_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -401,7 +401,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM SETTING_V1 WHERE SETTINGID = ?";
+            wxString sql = "DELETE FROM USAGE_V1 WHERE USAGEID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -426,7 +426,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SETTING_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("USAGE_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

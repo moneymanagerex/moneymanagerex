@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_BUDGETYEAR : public DB_Table
+struct DB_Table_SHAREINFO : public DB_Table
 {
     struct Data;
-    typedef DB_Table_BUDGETYEAR Self;
+    typedef DB_Table_SHAREINFO Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_BUDGETYEAR : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_BUDGETYEAR() 
+    ~DB_Table_SHAREINFO() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_BUDGETYEAR : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE BUDGETYEAR(BUDGETYEARID integer primary key, BUDGETYEARNAME TEXT NOT NULL UNIQUE)");
+                db->ExecuteUpdate("CREATE TABLE SHAREINFO (SHAREINFOID integer NOT NULL primary key, CHECKINGACCOUNTID integer NOT NULL, SHARENUMBER numeric, SHAREPRICE numeric, SHARECOMMISSION numeric, SHARELOT TEXT)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("BUDGETYEAR: Exception %s", e.GetMessage().c_str());
+                wxLogError("SHAREINFO: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_BUDGETYEAR : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETYEAR_BUDGETYEARNAME ON BUDGETYEAR(BUDGETYEARNAME)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_SHAREINFO ON SHAREINFO (CHECKINGACCOUNTID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETYEAR: Exception %s", e.GetMessage().c_str());
+            wxLogError("SHAREINFO: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,23 +111,51 @@ struct DB_Table_BUDGETYEAR : public DB_Table
         db->Commit();
     }
     
-    struct BUDGETYEARID : public DB_Column<int>
+    struct SHAREINFOID : public DB_Column<int>
     { 
-        static wxString name() { return "BUDGETYEARID"; } 
-        explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "SHAREINFOID"; } 
+        explicit SHAREINFOID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct BUDGETYEARNAME : public DB_Column<wxString>
+    struct CHECKINGACCOUNTID : public DB_Column<int>
     { 
-        static wxString name() { return "BUDGETYEARNAME"; } 
-        explicit BUDGETYEARNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "CHECKINGACCOUNTID"; } 
+        explicit CHECKINGACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    typedef BUDGETYEARID PRIMARY;
+    struct SHARENUMBER : public DB_Column<double>
+    { 
+        static wxString name() { return "SHARENUMBER"; } 
+        explicit SHARENUMBER(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    
+    struct SHAREPRICE : public DB_Column<double>
+    { 
+        static wxString name() { return "SHAREPRICE"; } 
+        explicit SHAREPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    
+    struct SHARECOMMISSION : public DB_Column<double>
+    { 
+        static wxString name() { return "SHARECOMMISSION"; } 
+        explicit SHARECOMMISSION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    
+    struct SHARELOT : public DB_Column<wxString>
+    { 
+        static wxString name() { return "SHARELOT"; } 
+        explicit SHARELOT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
+    typedef SHAREINFOID PRIMARY;
     enum COLUMN
     {
-        COL_BUDGETYEARID = 0
-        , COL_BUDGETYEARNAME = 1
+        COL_SHAREINFOID = 0
+        , COL_CHECKINGACCOUNTID = 1
+        , COL_SHARENUMBER = 2
+        , COL_SHAREPRICE = 3
+        , COL_SHARECOMMISSION = 4
+        , COL_SHARELOT = 5
     };
 
     /** Returns the column name as a string*/
@@ -135,8 +163,12 @@ struct DB_Table_BUDGETYEAR : public DB_Table
     {
         switch(col)
         {
-            case COL_BUDGETYEARID: return "BUDGETYEARID";
-            case COL_BUDGETYEARNAME: return "BUDGETYEARNAME";
+            case COL_SHAREINFOID: return "SHAREINFOID";
+            case COL_CHECKINGACCOUNTID: return "CHECKINGACCOUNTID";
+            case COL_SHARENUMBER: return "SHARENUMBER";
+            case COL_SHAREPRICE: return "SHAREPRICE";
+            case COL_SHARECOMMISSION: return "SHARECOMMISSION";
+            case COL_SHARELOT: return "SHARELOT";
             default: break;
         }
         
@@ -146,8 +178,12 @@ struct DB_Table_BUDGETYEAR : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("BUDGETYEARID" == name) return COL_BUDGETYEARID;
-        else if ("BUDGETYEARNAME" == name) return COL_BUDGETYEARNAME;
+        if ("SHAREINFOID" == name) return COL_SHAREINFOID;
+        else if ("CHECKINGACCOUNTID" == name) return COL_CHECKINGACCOUNTID;
+        else if ("SHARENUMBER" == name) return COL_SHARENUMBER;
+        else if ("SHAREPRICE" == name) return COL_SHAREPRICE;
+        else if ("SHARECOMMISSION" == name) return COL_SHARECOMMISSION;
+        else if ("SHARELOT" == name) return COL_SHARELOT;
 
         return COLUMN(-1);
     }
@@ -155,21 +191,25 @@ struct DB_Table_BUDGETYEAR : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_BUDGETYEAR;
+        friend struct DB_Table_SHAREINFO;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int BUDGETYEARID;//  primary key
-        wxString BUDGETYEARNAME;
+        int SHAREINFOID;//  primary key
+        int CHECKINGACCOUNTID;
+        double SHARENUMBER;
+        double SHAREPRICE;
+        double SHARECOMMISSION;
+        wxString SHARELOT;
 
         int id() const
         {
-            return BUDGETYEARID;
+            return SHAREINFOID;
         }
 
         void id(int id)
         {
-            BUDGETYEARID = id;
+            SHAREINFOID = id;
         }
 
         bool operator < (const Data& r) const
@@ -186,23 +226,35 @@ struct DB_Table_BUDGETYEAR : public DB_Table
         {
             table_ = table;
         
-            BUDGETYEARID = -1;
+            SHAREINFOID = -1;
+            CHECKINGACCOUNTID = -1;
+            SHARENUMBER = 0.0;
+            SHAREPRICE = 0.0;
+            SHARECOMMISSION = 0.0;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            BUDGETYEARID = q.GetInt(0); // BUDGETYEARID
-            BUDGETYEARNAME = q.GetString(1); // BUDGETYEARNAME
+            SHAREINFOID = q.GetInt(0); // SHAREINFOID
+            CHECKINGACCOUNTID = q.GetInt(1); // CHECKINGACCOUNTID
+            SHARENUMBER = q.GetDouble(2); // SHARENUMBER
+            SHAREPRICE = q.GetDouble(3); // SHAREPRICE
+            SHARECOMMISSION = q.GetDouble(4); // SHARECOMMISSION
+            SHARELOT = q.GetString(5); // SHARELOT
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            BUDGETYEARID = other.BUDGETYEARID;
-            BUDGETYEARNAME = other.BUDGETYEARNAME;
+            SHAREINFOID = other.SHAREINFOID;
+            CHECKINGACCOUNTID = other.CHECKINGACCOUNTID;
+            SHARENUMBER = other.SHARENUMBER;
+            SHAREPRICE = other.SHAREPRICE;
+            SHARECOMMISSION = other.SHARECOMMISSION;
+            SHARELOT = other.SHARELOT;
             return *this;
         }
 
@@ -212,14 +264,34 @@ struct DB_Table_BUDGETYEAR : public DB_Table
             return false;
         }
 
-        bool match(const Self::BUDGETYEARID &in) const
+        bool match(const Self::SHAREINFOID &in) const
         {
-            return this->BUDGETYEARID == in.v_;
+            return this->SHAREINFOID == in.v_;
         }
 
-        bool match(const Self::BUDGETYEARNAME &in) const
+        bool match(const Self::CHECKINGACCOUNTID &in) const
         {
-            return this->BUDGETYEARNAME.CmpNoCase(in.v_) == 0;
+            return this->CHECKINGACCOUNTID == in.v_;
+        }
+
+        bool match(const Self::SHARENUMBER &in) const
+        {
+            return this->SHARENUMBER == in.v_;
+        }
+
+        bool match(const Self::SHAREPRICE &in) const
+        {
+            return this->SHAREPRICE == in.v_;
+        }
+
+        bool match(const Self::SHARECOMMISSION &in) const
+        {
+            return this->SHARECOMMISSION == in.v_;
+        }
+
+        bool match(const Self::SHARELOT &in) const
+        {
+            return this->SHARELOT.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -238,24 +310,40 @@ struct DB_Table_BUDGETYEAR : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("BUDGETYEARID");
-            json_writer.Int(this->BUDGETYEARID);
-            json_writer.Key("BUDGETYEARNAME");
-            json_writer.String(this->BUDGETYEARNAME.c_str());
+            json_writer.Key("SHAREINFOID");
+            json_writer.Int(this->SHAREINFOID);
+            json_writer.Key("CHECKINGACCOUNTID");
+            json_writer.Int(this->CHECKINGACCOUNTID);
+            json_writer.Key("SHARENUMBER");
+            json_writer.Double(this->SHARENUMBER);
+            json_writer.Key("SHAREPRICE");
+            json_writer.Double(this->SHAREPRICE);
+            json_writer.Key("SHARECOMMISSION");
+            json_writer.Double(this->SHARECOMMISSION);
+            json_writer.Key("SHARELOT");
+            json_writer.String(this->SHARELOT.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"BUDGETYEARID") = BUDGETYEARID;
-            row(L"BUDGETYEARNAME") = BUDGETYEARNAME;
+            row(L"SHAREINFOID") = SHAREINFOID;
+            row(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
+            row(L"SHARENUMBER") = SHARENUMBER;
+            row(L"SHAREPRICE") = SHAREPRICE;
+            row(L"SHARECOMMISSION") = SHARECOMMISSION;
+            row(L"SHARELOT") = SHARELOT;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"BUDGETYEARID") = BUDGETYEARID;
-            t(L"BUDGETYEARNAME") = BUDGETYEARNAME;
+            t(L"SHAREINFOID") = SHAREINFOID;
+            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
+            t(L"SHARENUMBER") = SHARENUMBER;
+            t(L"SHAREPRICE") = SHAREPRICE;
+            t(L"SHARECOMMISSION") = SHARECOMMISSION;
+            t(L"SHARELOT") = SHARELOT;
         }
 
         /** Save the record instance in memory to the database. */
@@ -264,7 +352,7 @@ struct DB_Table_BUDGETYEAR : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save BUDGETYEAR");
+                wxLogError("can not save SHAREINFO");
                 return false;
             }
 
@@ -276,7 +364,7 @@ struct DB_Table_BUDGETYEAR : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove BUDGETYEAR");
+                wxLogError("can not remove SHAREINFO");
                 return false;
             }
             
@@ -291,17 +379,17 @@ struct DB_Table_BUDGETYEAR : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 2
+        NUM_COLUMNS = 6
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "BUDGETYEAR"; }
+    wxString name() const { return "SHAREINFO"; }
 
-    DB_Table_BUDGETYEAR() : fake_(new Data())
+    DB_Table_SHAREINFO() : fake_(new Data())
     {
-        query_ = "SELECT BUDGETYEARID, BUDGETYEARNAME FROM BUDGETYEAR ";
+        query_ = "SELECT SHAREINFOID, CHECKINGACCOUNTID, SHARENUMBER, SHAREPRICE, SHARECOMMISSION, SHARELOT FROM SHAREINFO ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -331,20 +419,24 @@ struct DB_Table_BUDGETYEAR : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO BUDGETYEAR(BUDGETYEARNAME) VALUES(?)";
+            sql = "INSERT INTO SHAREINFO(CHECKINGACCOUNTID, SHARENUMBER, SHAREPRICE, SHARECOMMISSION, SHARELOT) VALUES(?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE BUDGETYEAR SET BUDGETYEARNAME = ? WHERE BUDGETYEARID = ?";
+            sql = "UPDATE SHAREINFO SET CHECKINGACCOUNTID = ?, SHARENUMBER = ?, SHAREPRICE = ?, SHARECOMMISSION = ?, SHARELOT = ? WHERE SHAREINFOID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->BUDGETYEARNAME);
+            stmt.Bind(1, entity->CHECKINGACCOUNTID);
+            stmt.Bind(2, entity->SHARENUMBER);
+            stmt.Bind(3, entity->SHAREPRICE);
+            stmt.Bind(4, entity->SHARECOMMISSION);
+            stmt.Bind(5, entity->SHARELOT);
             if (entity->id() > 0)
-                stmt.Bind(2, entity->BUDGETYEARID);
+                stmt.Bind(6, entity->SHAREINFOID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -361,7 +453,7 @@ struct DB_Table_BUDGETYEAR : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETYEAR: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("SHAREINFO: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -379,7 +471,7 @@ struct DB_Table_BUDGETYEAR : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM BUDGETYEAR WHERE BUDGETYEARID = ?";
+            wxString sql = "DELETE FROM SHAREINFO WHERE SHAREINFOID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -404,7 +496,7 @@ struct DB_Table_BUDGETYEAR : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETYEAR: Exception %s", e.GetMessage().c_str());
+            wxLogError("SHAREINFO: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

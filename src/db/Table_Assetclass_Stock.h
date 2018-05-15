@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
+struct DB_Table_ASSETCLASS_STOCK : public DB_Table
 {
     struct Data;
-    typedef DB_Table_BUDGETSPLITTRANSACTIONS Self;
+    typedef DB_Table_ASSETCLASS_STOCK Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_BUDGETSPLITTRANSACTIONS() 
+    ~DB_Table_ASSETCLASS_STOCK() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE BUDGETSPLITTRANSACTIONS(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
+                db->ExecuteUpdate("CREATE TABLE ASSETCLASS_STOCK (ID INTEGER primary key, ASSETCLASSID INTEGER NOT NULL, STOCKSYMBOL TEXT UNIQUE)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
+                wxLogError("ASSETCLASS_STOCK: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,10 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETSPLITTRANSACTIONS_TRANSID ON BUDGETSPLITTRANSACTIONS(TRANSID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
+            wxLogError("ASSETCLASS_STOCK: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,44 +110,30 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         db->Commit();
     }
     
-    struct SPLITTRANSID : public DB_Column<int>
+    struct ID : public DB_Column<int>
     { 
-        static wxString name() { return "SPLITTRANSID"; } 
-        explicit SPLITTRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "ID"; } 
+        explicit ID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct TRANSID : public DB_Column<int>
+    struct ASSETCLASSID : public DB_Column<int>
     { 
-        static wxString name() { return "TRANSID"; } 
-        explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "ASSETCLASSID"; } 
+        explicit ASSETCLASSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct STOCKSYMBOL : public DB_Column<wxString>
     { 
-        static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "STOCKSYMBOL"; } 
+        explicit STOCKSYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct SUBCATEGID : public DB_Column<int>
-    { 
-        static wxString name() { return "SUBCATEGID"; } 
-        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    struct SPLITTRANSAMOUNT : public DB_Column<double>
-    { 
-        static wxString name() { return "SPLITTRANSAMOUNT"; } 
-        explicit SPLITTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
-    };
-    
-    typedef SPLITTRANSID PRIMARY;
+    typedef ID PRIMARY;
     enum COLUMN
     {
-        COL_SPLITTRANSID = 0
-        , COL_TRANSID = 1
-        , COL_CATEGID = 2
-        , COL_SUBCATEGID = 3
-        , COL_SPLITTRANSAMOUNT = 4
+        COL_ID = 0
+        , COL_ASSETCLASSID = 1
+        , COL_STOCKSYMBOL = 2
     };
 
     /** Returns the column name as a string*/
@@ -156,11 +141,9 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
     {
         switch(col)
         {
-            case COL_SPLITTRANSID: return "SPLITTRANSID";
-            case COL_TRANSID: return "TRANSID";
-            case COL_CATEGID: return "CATEGID";
-            case COL_SUBCATEGID: return "SUBCATEGID";
-            case COL_SPLITTRANSAMOUNT: return "SPLITTRANSAMOUNT";
+            case COL_ID: return "ID";
+            case COL_ASSETCLASSID: return "ASSETCLASSID";
+            case COL_STOCKSYMBOL: return "STOCKSYMBOL";
             default: break;
         }
         
@@ -170,11 +153,9 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("SPLITTRANSID" == name) return COL_SPLITTRANSID;
-        else if ("TRANSID" == name) return COL_TRANSID;
-        else if ("CATEGID" == name) return COL_CATEGID;
-        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
-        else if ("SPLITTRANSAMOUNT" == name) return COL_SPLITTRANSAMOUNT;
+        if ("ID" == name) return COL_ID;
+        else if ("ASSETCLASSID" == name) return COL_ASSETCLASSID;
+        else if ("STOCKSYMBOL" == name) return COL_STOCKSYMBOL;
 
         return COLUMN(-1);
     }
@@ -182,24 +163,22 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_BUDGETSPLITTRANSACTIONS;
+        friend struct DB_Table_ASSETCLASS_STOCK;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SPLITTRANSID;//  primary key
-        int TRANSID;
-        int CATEGID;
-        int SUBCATEGID;
-        double SPLITTRANSAMOUNT;
+        int ID;//  primary key
+        int ASSETCLASSID;
+        wxString STOCKSYMBOL;
 
         int id() const
         {
-            return SPLITTRANSID;
+            return ID;
         }
 
         void id(int id)
         {
-            SPLITTRANSID = id;
+            ID = id;
         }
 
         bool operator < (const Data& r) const
@@ -216,33 +195,26 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         {
             table_ = table;
         
-            SPLITTRANSID = -1;
-            TRANSID = -1;
-            CATEGID = -1;
-            SUBCATEGID = -1;
-            SPLITTRANSAMOUNT = 0.0;
+            ID = -1;
+            ASSETCLASSID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            SPLITTRANSID = q.GetInt(0); // SPLITTRANSID
-            TRANSID = q.GetInt(1); // TRANSID
-            CATEGID = q.GetInt(2); // CATEGID
-            SUBCATEGID = q.GetInt(3); // SUBCATEGID
-            SPLITTRANSAMOUNT = q.GetDouble(4); // SPLITTRANSAMOUNT
+            ID = q.GetInt(0); // ID
+            ASSETCLASSID = q.GetInt(1); // ASSETCLASSID
+            STOCKSYMBOL = q.GetString(2); // STOCKSYMBOL
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            SPLITTRANSID = other.SPLITTRANSID;
-            TRANSID = other.TRANSID;
-            CATEGID = other.CATEGID;
-            SUBCATEGID = other.SUBCATEGID;
-            SPLITTRANSAMOUNT = other.SPLITTRANSAMOUNT;
+            ID = other.ID;
+            ASSETCLASSID = other.ASSETCLASSID;
+            STOCKSYMBOL = other.STOCKSYMBOL;
             return *this;
         }
 
@@ -252,29 +224,19 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
             return false;
         }
 
-        bool match(const Self::SPLITTRANSID &in) const
+        bool match(const Self::ID &in) const
         {
-            return this->SPLITTRANSID == in.v_;
+            return this->ID == in.v_;
         }
 
-        bool match(const Self::TRANSID &in) const
+        bool match(const Self::ASSETCLASSID &in) const
         {
-            return this->TRANSID == in.v_;
+            return this->ASSETCLASSID == in.v_;
         }
 
-        bool match(const Self::CATEGID &in) const
+        bool match(const Self::STOCKSYMBOL &in) const
         {
-            return this->CATEGID == in.v_;
-        }
-
-        bool match(const Self::SUBCATEGID &in) const
-        {
-            return this->SUBCATEGID == in.v_;
-        }
-
-        bool match(const Self::SPLITTRANSAMOUNT &in) const
-        {
-            return this->SPLITTRANSAMOUNT == in.v_;
+            return this->STOCKSYMBOL.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -293,36 +255,28 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("SPLITTRANSID");
-            json_writer.Int(this->SPLITTRANSID);
-            json_writer.Key("TRANSID");
-            json_writer.Int(this->TRANSID);
-            json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
-            json_writer.Key("SUBCATEGID");
-            json_writer.Int(this->SUBCATEGID);
-            json_writer.Key("SPLITTRANSAMOUNT");
-            json_writer.Double(this->SPLITTRANSAMOUNT);
+            json_writer.Key("ID");
+            json_writer.Int(this->ID);
+            json_writer.Key("ASSETCLASSID");
+            json_writer.Int(this->ASSETCLASSID);
+            json_writer.Key("STOCKSYMBOL");
+            json_writer.String(this->STOCKSYMBOL.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"SPLITTRANSID") = SPLITTRANSID;
-            row(L"TRANSID") = TRANSID;
-            row(L"CATEGID") = CATEGID;
-            row(L"SUBCATEGID") = SUBCATEGID;
-            row(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
+            row(L"ID") = ID;
+            row(L"ASSETCLASSID") = ASSETCLASSID;
+            row(L"STOCKSYMBOL") = STOCKSYMBOL;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"SPLITTRANSID") = SPLITTRANSID;
-            t(L"TRANSID") = TRANSID;
-            t(L"CATEGID") = CATEGID;
-            t(L"SUBCATEGID") = SUBCATEGID;
-            t(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
+            t(L"ID") = ID;
+            t(L"ASSETCLASSID") = ASSETCLASSID;
+            t(L"STOCKSYMBOL") = STOCKSYMBOL;
         }
 
         /** Save the record instance in memory to the database. */
@@ -331,7 +285,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save BUDGETSPLITTRANSACTIONS");
+                wxLogError("can not save ASSETCLASS_STOCK");
                 return false;
             }
 
@@ -343,7 +297,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove BUDGETSPLITTRANSACTIONS");
+                wxLogError("can not remove ASSETCLASS_STOCK");
                 return false;
             }
             
@@ -358,17 +312,17 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 5
+        NUM_COLUMNS = 3
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "BUDGETSPLITTRANSACTIONS"; }
+    wxString name() const { return "ASSETCLASS_STOCK"; }
 
-    DB_Table_BUDGETSPLITTRANSACTIONS() : fake_(new Data())
+    DB_Table_ASSETCLASS_STOCK() : fake_(new Data())
     {
-        query_ = "SELECT SPLITTRANSID, TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT FROM BUDGETSPLITTRANSACTIONS ";
+        query_ = "SELECT ID, ASSETCLASSID, STOCKSYMBOL FROM ASSETCLASS_STOCK ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -398,23 +352,21 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO BUDGETSPLITTRANSACTIONS(TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO ASSETCLASS_STOCK(ASSETCLASSID, STOCKSYMBOL) VALUES(?, ?)";
         }
         else
         {
-            sql = "UPDATE BUDGETSPLITTRANSACTIONS SET TRANSID = ?, CATEGID = ?, SUBCATEGID = ?, SPLITTRANSAMOUNT = ? WHERE SPLITTRANSID = ?";
+            sql = "UPDATE ASSETCLASS_STOCK SET ASSETCLASSID = ?, STOCKSYMBOL = ? WHERE ID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->TRANSID);
-            stmt.Bind(2, entity->CATEGID);
-            stmt.Bind(3, entity->SUBCATEGID);
-            stmt.Bind(4, entity->SPLITTRANSAMOUNT);
+            stmt.Bind(1, entity->ASSETCLASSID);
+            stmt.Bind(2, entity->STOCKSYMBOL);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->SPLITTRANSID);
+                stmt.Bind(3, entity->ID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -431,7 +383,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("ASSETCLASS_STOCK: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -449,7 +401,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM BUDGETSPLITTRANSACTIONS WHERE SPLITTRANSID = ?";
+            wxString sql = "DELETE FROM ASSETCLASS_STOCK WHERE ID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -474,7 +426,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
+            wxLogError("ASSETCLASS_STOCK: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

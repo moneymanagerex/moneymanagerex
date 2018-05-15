@@ -20,7 +20,7 @@
 #define MODEL_REPORT_H
 
 #include "Model.h"
-#include "db/DB_Table_Report.h"
+#include "Table_Report.h"
 
 class Model_Report : public Model<DB_Table_REPORT>
 {

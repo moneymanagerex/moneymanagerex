@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_ATTACHMENT : public DB_Table
+struct DB_Table_STOCK : public DB_Table
 {
     struct Data;
-    typedef DB_Table_ATTACHMENT Self;
+    typedef DB_Table_STOCK Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_ATTACHMENT() 
+    ~DB_Table_STOCK() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_ATTACHMENT : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE ATTACHMENT (ATTACHMENTID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, Bank Account, Repeating Transaction, Payee */, REFID INTEGER NOT NULL, DESCRIPTION TEXT COLLATE NOCASE, FILENAME TEXT NOT NULL COLLATE NOCASE)");
+                db->ExecuteUpdate("CREATE TABLE STOCK(STOCKID integer primary key, HELDAT integer, PURCHASEDATE TEXT NOT NULL, STOCKNAME TEXT COLLATE NOCASE NOT NULL, SYMBOL TEXT, NUMSHARES numeric, PURCHASEPRICE numeric NOT NULL, NOTES TEXT, CURRENTPRICE numeric NOT NULL, VALUE numeric, COMMISSION numeric)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("ATTACHMENT: Exception %s", e.GetMessage().c_str());
+                wxLogError("STOCK: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_ATTACHMENT : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_ATTACHMENT_REF ON ATTACHMENT (REFTYPE, REFID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_STOCK_HELDAT ON STOCK(HELDAT)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ATTACHMENT: Exception %s", e.GetMessage().c_str());
+            wxLogError("STOCK: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,44 +111,86 @@ struct DB_Table_ATTACHMENT : public DB_Table
         db->Commit();
     }
     
-    struct ATTACHMENTID : public DB_Column<int>
+    struct STOCKID : public DB_Column<int>
     { 
-        static wxString name() { return "ATTACHMENTID"; } 
-        explicit ATTACHMENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "STOCKID"; } 
+        explicit STOCKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct REFTYPE : public DB_Column<wxString>
+    struct HELDAT : public DB_Column<int>
     { 
-        static wxString name() { return "REFTYPE"; } 
-        explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "HELDAT"; } 
+        explicit HELDAT(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct REFID : public DB_Column<int>
+    struct PURCHASEDATE : public DB_Column<wxString>
     { 
-        static wxString name() { return "REFID"; } 
-        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "PURCHASEDATE"; } 
+        explicit PURCHASEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct DESCRIPTION : public DB_Column<wxString>
+    struct STOCKNAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "DESCRIPTION"; } 
-        explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "STOCKNAME"; } 
+        explicit STOCKNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct FILENAME : public DB_Column<wxString>
+    struct SYMBOL : public DB_Column<wxString>
     { 
-        static wxString name() { return "FILENAME"; } 
-        explicit FILENAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "SYMBOL"; } 
+        explicit SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    typedef ATTACHMENTID PRIMARY;
+    struct NUMSHARES : public DB_Column<double>
+    { 
+        static wxString name() { return "NUMSHARES"; } 
+        explicit NUMSHARES(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    
+    struct PURCHASEPRICE : public DB_Column<double>
+    { 
+        static wxString name() { return "PURCHASEPRICE"; } 
+        explicit PURCHASEPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    
+    struct NOTES : public DB_Column<wxString>
+    { 
+        static wxString name() { return "NOTES"; } 
+        explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
+    struct CURRENTPRICE : public DB_Column<double>
+    { 
+        static wxString name() { return "CURRENTPRICE"; } 
+        explicit CURRENTPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    
+    struct VALUE : public DB_Column<double>
+    { 
+        static wxString name() { return "VALUE"; } 
+        explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    
+    struct COMMISSION : public DB_Column<double>
+    { 
+        static wxString name() { return "COMMISSION"; } 
+        explicit COMMISSION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    
+    typedef STOCKID PRIMARY;
     enum COLUMN
     {
-        COL_ATTACHMENTID = 0
-        , COL_REFTYPE = 1
-        , COL_REFID = 2
-        , COL_DESCRIPTION = 3
-        , COL_FILENAME = 4
+        COL_STOCKID = 0
+        , COL_HELDAT = 1
+        , COL_PURCHASEDATE = 2
+        , COL_STOCKNAME = 3
+        , COL_SYMBOL = 4
+        , COL_NUMSHARES = 5
+        , COL_PURCHASEPRICE = 6
+        , COL_NOTES = 7
+        , COL_CURRENTPRICE = 8
+        , COL_VALUE = 9
+        , COL_COMMISSION = 10
     };
 
     /** Returns the column name as a string*/
@@ -156,11 +198,17 @@ struct DB_Table_ATTACHMENT : public DB_Table
     {
         switch(col)
         {
-            case COL_ATTACHMENTID: return "ATTACHMENTID";
-            case COL_REFTYPE: return "REFTYPE";
-            case COL_REFID: return "REFID";
-            case COL_DESCRIPTION: return "DESCRIPTION";
-            case COL_FILENAME: return "FILENAME";
+            case COL_STOCKID: return "STOCKID";
+            case COL_HELDAT: return "HELDAT";
+            case COL_PURCHASEDATE: return "PURCHASEDATE";
+            case COL_STOCKNAME: return "STOCKNAME";
+            case COL_SYMBOL: return "SYMBOL";
+            case COL_NUMSHARES: return "NUMSHARES";
+            case COL_PURCHASEPRICE: return "PURCHASEPRICE";
+            case COL_NOTES: return "NOTES";
+            case COL_CURRENTPRICE: return "CURRENTPRICE";
+            case COL_VALUE: return "VALUE";
+            case COL_COMMISSION: return "COMMISSION";
             default: break;
         }
         
@@ -170,11 +218,17 @@ struct DB_Table_ATTACHMENT : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("ATTACHMENTID" == name) return COL_ATTACHMENTID;
-        else if ("REFTYPE" == name) return COL_REFTYPE;
-        else if ("REFID" == name) return COL_REFID;
-        else if ("DESCRIPTION" == name) return COL_DESCRIPTION;
-        else if ("FILENAME" == name) return COL_FILENAME;
+        if ("STOCKID" == name) return COL_STOCKID;
+        else if ("HELDAT" == name) return COL_HELDAT;
+        else if ("PURCHASEDATE" == name) return COL_PURCHASEDATE;
+        else if ("STOCKNAME" == name) return COL_STOCKNAME;
+        else if ("SYMBOL" == name) return COL_SYMBOL;
+        else if ("NUMSHARES" == name) return COL_NUMSHARES;
+        else if ("PURCHASEPRICE" == name) return COL_PURCHASEPRICE;
+        else if ("NOTES" == name) return COL_NOTES;
+        else if ("CURRENTPRICE" == name) return COL_CURRENTPRICE;
+        else if ("VALUE" == name) return COL_VALUE;
+        else if ("COMMISSION" == name) return COL_COMMISSION;
 
         return COLUMN(-1);
     }
@@ -182,24 +236,30 @@ struct DB_Table_ATTACHMENT : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_ATTACHMENT;
+        friend struct DB_Table_STOCK;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ATTACHMENTID;//  primary key
-        wxString REFTYPE;
-        int REFID;
-        wxString DESCRIPTION;
-        wxString FILENAME;
+        int STOCKID;//  primary key
+        int HELDAT;
+        wxString PURCHASEDATE;
+        wxString STOCKNAME;
+        wxString SYMBOL;
+        double NUMSHARES;
+        double PURCHASEPRICE;
+        wxString NOTES;
+        double CURRENTPRICE;
+        double VALUE;
+        double COMMISSION;
 
         int id() const
         {
-            return ATTACHMENTID;
+            return STOCKID;
         }
 
         void id(int id)
         {
-            ATTACHMENTID = id;
+            STOCKID = id;
         }
 
         bool operator < (const Data& r) const
@@ -216,30 +276,47 @@ struct DB_Table_ATTACHMENT : public DB_Table
         {
             table_ = table;
         
-            ATTACHMENTID = -1;
-            REFID = -1;
+            STOCKID = -1;
+            HELDAT = -1;
+            NUMSHARES = 0.0;
+            PURCHASEPRICE = 0.0;
+            CURRENTPRICE = 0.0;
+            VALUE = 0.0;
+            COMMISSION = 0.0;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            ATTACHMENTID = q.GetInt(0); // ATTACHMENTID
-            REFTYPE = q.GetString(1); // REFTYPE
-            REFID = q.GetInt(2); // REFID
-            DESCRIPTION = q.GetString(3); // DESCRIPTION
-            FILENAME = q.GetString(4); // FILENAME
+            STOCKID = q.GetInt(0); // STOCKID
+            HELDAT = q.GetInt(1); // HELDAT
+            PURCHASEDATE = q.GetString(2); // PURCHASEDATE
+            STOCKNAME = q.GetString(3); // STOCKNAME
+            SYMBOL = q.GetString(4); // SYMBOL
+            NUMSHARES = q.GetDouble(5); // NUMSHARES
+            PURCHASEPRICE = q.GetDouble(6); // PURCHASEPRICE
+            NOTES = q.GetString(7); // NOTES
+            CURRENTPRICE = q.GetDouble(8); // CURRENTPRICE
+            VALUE = q.GetDouble(9); // VALUE
+            COMMISSION = q.GetDouble(10); // COMMISSION
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            ATTACHMENTID = other.ATTACHMENTID;
-            REFTYPE = other.REFTYPE;
-            REFID = other.REFID;
-            DESCRIPTION = other.DESCRIPTION;
-            FILENAME = other.FILENAME;
+            STOCKID = other.STOCKID;
+            HELDAT = other.HELDAT;
+            PURCHASEDATE = other.PURCHASEDATE;
+            STOCKNAME = other.STOCKNAME;
+            SYMBOL = other.SYMBOL;
+            NUMSHARES = other.NUMSHARES;
+            PURCHASEPRICE = other.PURCHASEPRICE;
+            NOTES = other.NOTES;
+            CURRENTPRICE = other.CURRENTPRICE;
+            VALUE = other.VALUE;
+            COMMISSION = other.COMMISSION;
             return *this;
         }
 
@@ -249,29 +326,59 @@ struct DB_Table_ATTACHMENT : public DB_Table
             return false;
         }
 
-        bool match(const Self::ATTACHMENTID &in) const
+        bool match(const Self::STOCKID &in) const
         {
-            return this->ATTACHMENTID == in.v_;
+            return this->STOCKID == in.v_;
         }
 
-        bool match(const Self::REFTYPE &in) const
+        bool match(const Self::HELDAT &in) const
         {
-            return this->REFTYPE.CmpNoCase(in.v_) == 0;
+            return this->HELDAT == in.v_;
         }
 
-        bool match(const Self::REFID &in) const
+        bool match(const Self::PURCHASEDATE &in) const
         {
-            return this->REFID == in.v_;
+            return this->PURCHASEDATE.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::DESCRIPTION &in) const
+        bool match(const Self::STOCKNAME &in) const
         {
-            return this->DESCRIPTION.CmpNoCase(in.v_) == 0;
+            return this->STOCKNAME.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::FILENAME &in) const
+        bool match(const Self::SYMBOL &in) const
         {
-            return this->FILENAME.CmpNoCase(in.v_) == 0;
+            return this->SYMBOL.CmpNoCase(in.v_) == 0;
+        }
+
+        bool match(const Self::NUMSHARES &in) const
+        {
+            return this->NUMSHARES == in.v_;
+        }
+
+        bool match(const Self::PURCHASEPRICE &in) const
+        {
+            return this->PURCHASEPRICE == in.v_;
+        }
+
+        bool match(const Self::NOTES &in) const
+        {
+            return this->NOTES.CmpNoCase(in.v_) == 0;
+        }
+
+        bool match(const Self::CURRENTPRICE &in) const
+        {
+            return this->CURRENTPRICE == in.v_;
+        }
+
+        bool match(const Self::VALUE &in) const
+        {
+            return this->VALUE == in.v_;
+        }
+
+        bool match(const Self::COMMISSION &in) const
+        {
+            return this->COMMISSION == in.v_;
         }
 
         // Return the data record as a json string
@@ -290,36 +397,60 @@ struct DB_Table_ATTACHMENT : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("ATTACHMENTID");
-            json_writer.Int(this->ATTACHMENTID);
-            json_writer.Key("REFTYPE");
-            json_writer.String(this->REFTYPE.c_str());
-            json_writer.Key("REFID");
-            json_writer.Int(this->REFID);
-            json_writer.Key("DESCRIPTION");
-            json_writer.String(this->DESCRIPTION.c_str());
-            json_writer.Key("FILENAME");
-            json_writer.String(this->FILENAME.c_str());
+            json_writer.Key("STOCKID");
+            json_writer.Int(this->STOCKID);
+            json_writer.Key("HELDAT");
+            json_writer.Int(this->HELDAT);
+            json_writer.Key("PURCHASEDATE");
+            json_writer.String(this->PURCHASEDATE.c_str());
+            json_writer.Key("STOCKNAME");
+            json_writer.String(this->STOCKNAME.c_str());
+            json_writer.Key("SYMBOL");
+            json_writer.String(this->SYMBOL.c_str());
+            json_writer.Key("NUMSHARES");
+            json_writer.Double(this->NUMSHARES);
+            json_writer.Key("PURCHASEPRICE");
+            json_writer.Double(this->PURCHASEPRICE);
+            json_writer.Key("NOTES");
+            json_writer.String(this->NOTES.c_str());
+            json_writer.Key("CURRENTPRICE");
+            json_writer.Double(this->CURRENTPRICE);
+            json_writer.Key("VALUE");
+            json_writer.Double(this->VALUE);
+            json_writer.Key("COMMISSION");
+            json_writer.Double(this->COMMISSION);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"ATTACHMENTID") = ATTACHMENTID;
-            row(L"REFTYPE") = REFTYPE;
-            row(L"REFID") = REFID;
-            row(L"DESCRIPTION") = DESCRIPTION;
-            row(L"FILENAME") = FILENAME;
+            row(L"STOCKID") = STOCKID;
+            row(L"HELDAT") = HELDAT;
+            row(L"PURCHASEDATE") = PURCHASEDATE;
+            row(L"STOCKNAME") = STOCKNAME;
+            row(L"SYMBOL") = SYMBOL;
+            row(L"NUMSHARES") = NUMSHARES;
+            row(L"PURCHASEPRICE") = PURCHASEPRICE;
+            row(L"NOTES") = NOTES;
+            row(L"CURRENTPRICE") = CURRENTPRICE;
+            row(L"VALUE") = VALUE;
+            row(L"COMMISSION") = COMMISSION;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"ATTACHMENTID") = ATTACHMENTID;
-            t(L"REFTYPE") = REFTYPE;
-            t(L"REFID") = REFID;
-            t(L"DESCRIPTION") = DESCRIPTION;
-            t(L"FILENAME") = FILENAME;
+            t(L"STOCKID") = STOCKID;
+            t(L"HELDAT") = HELDAT;
+            t(L"PURCHASEDATE") = PURCHASEDATE;
+            t(L"STOCKNAME") = STOCKNAME;
+            t(L"SYMBOL") = SYMBOL;
+            t(L"NUMSHARES") = NUMSHARES;
+            t(L"PURCHASEPRICE") = PURCHASEPRICE;
+            t(L"NOTES") = NOTES;
+            t(L"CURRENTPRICE") = CURRENTPRICE;
+            t(L"VALUE") = VALUE;
+            t(L"COMMISSION") = COMMISSION;
         }
 
         /** Save the record instance in memory to the database. */
@@ -328,7 +459,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save ATTACHMENT");
+                wxLogError("can not save STOCK");
                 return false;
             }
 
@@ -340,7 +471,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove ATTACHMENT");
+                wxLogError("can not remove STOCK");
                 return false;
             }
             
@@ -355,17 +486,17 @@ struct DB_Table_ATTACHMENT : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 5
+        NUM_COLUMNS = 11
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "ATTACHMENT"; }
+    wxString name() const { return "STOCK"; }
 
-    DB_Table_ATTACHMENT() : fake_(new Data())
+    DB_Table_STOCK() : fake_(new Data())
     {
-        query_ = "SELECT ATTACHMENTID, REFTYPE, REFID, DESCRIPTION, FILENAME FROM ATTACHMENT ";
+        query_ = "SELECT STOCKID, HELDAT, PURCHASEDATE, STOCKNAME, SYMBOL, NUMSHARES, PURCHASEPRICE, NOTES, CURRENTPRICE, VALUE, COMMISSION FROM STOCK ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -395,23 +526,29 @@ struct DB_Table_ATTACHMENT : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO ATTACHMENT(REFTYPE, REFID, DESCRIPTION, FILENAME) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO STOCK(HELDAT, PURCHASEDATE, STOCKNAME, SYMBOL, NUMSHARES, PURCHASEPRICE, NOTES, CURRENTPRICE, VALUE, COMMISSION) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE ATTACHMENT SET REFTYPE = ?, REFID = ?, DESCRIPTION = ?, FILENAME = ? WHERE ATTACHMENTID = ?";
+            sql = "UPDATE STOCK SET HELDAT = ?, PURCHASEDATE = ?, STOCKNAME = ?, SYMBOL = ?, NUMSHARES = ?, PURCHASEPRICE = ?, NOTES = ?, CURRENTPRICE = ?, VALUE = ?, COMMISSION = ? WHERE STOCKID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->REFTYPE);
-            stmt.Bind(2, entity->REFID);
-            stmt.Bind(3, entity->DESCRIPTION);
-            stmt.Bind(4, entity->FILENAME);
+            stmt.Bind(1, entity->HELDAT);
+            stmt.Bind(2, entity->PURCHASEDATE);
+            stmt.Bind(3, entity->STOCKNAME);
+            stmt.Bind(4, entity->SYMBOL);
+            stmt.Bind(5, entity->NUMSHARES);
+            stmt.Bind(6, entity->PURCHASEPRICE);
+            stmt.Bind(7, entity->NOTES);
+            stmt.Bind(8, entity->CURRENTPRICE);
+            stmt.Bind(9, entity->VALUE);
+            stmt.Bind(10, entity->COMMISSION);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->ATTACHMENTID);
+                stmt.Bind(11, entity->STOCKID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -428,7 +565,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ATTACHMENT: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("STOCK: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -446,7 +583,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM ATTACHMENT WHERE ATTACHMENTID = ?";
+            wxString sql = "DELETE FROM STOCK WHERE STOCKID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -471,7 +608,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ATTACHMENT: Exception %s", e.GetMessage().c_str());
+            wxLogError("STOCK: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

@@ -20,7 +20,7 @@
 #define MODEL_CATEGORY_H
 
 #include "Model.h"
-#include "db/DB_Table_Category.h"
+#include "Table_Category.h"
 #include "Model_Subcategory.h"
 
 class mmDateRange;

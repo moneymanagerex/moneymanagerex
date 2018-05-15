@@ -19,7 +19,7 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #pragma once
 
 #include "Model.h"
-#include "db/DB_Table_Usage_V1.h"
+#include "Table_Usage_V1.h"
 #include <wx/thread.h>
 
 struct mg_connection;

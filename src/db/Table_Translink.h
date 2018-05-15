@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_BUDGETTABLE : public DB_Table
+struct DB_Table_TRANSLINK : public DB_Table
 {
     struct Data;
-    typedef DB_Table_BUDGETTABLE Self;
+    typedef DB_Table_TRANSLINK Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_BUDGETTABLE : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_BUDGETTABLE() 
+    ~DB_Table_TRANSLINK() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE BUDGETTABLE(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, SUBCATEGID integer, PERIOD TEXT NOT NULL /* None, Weekly, Bi-Weekly, Monthly, Monthly, Bi-Monthly, Quarterly, Half-Yearly, Yearly, Daily*/, AMOUNT numeric NOT NULL)");
+                db->ExecuteUpdate("CREATE TABLE TRANSLINK (TRANSLINKID  integer NOT NULL primary key, CHECKINGACCOUNTID integer NOT NULL, LINKTYPE TEXT NOT NULL /* Asset, Stock */, LINKRECORDID integer NOT NULL)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("BUDGETTABLE: Exception %s", e.GetMessage().c_str());
+                wxLogError("TRANSLINK: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,12 @@ struct DB_Table_BUDGETTABLE : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETTABLE_BUDGETYEARID ON BUDGETTABLE(BUDGETYEARID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CHECKINGACCOUNT ON TRANSLINK (CHECKINGACCOUNTID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_LINKRECORD ON TRANSLINK (LINKTYPE, LINKRECORDID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETTABLE: Exception %s", e.GetMessage().c_str());
+            wxLogError("TRANSLINK: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,51 +112,37 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         db->Commit();
     }
     
-    struct BUDGETENTRYID : public DB_Column<int>
+    struct TRANSLINKID : public DB_Column<int>
     { 
-        static wxString name() { return "BUDGETENTRYID"; } 
-        explicit BUDGETENTRYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "TRANSLINKID"; } 
+        explicit TRANSLINKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct BUDGETYEARID : public DB_Column<int>
+    struct CHECKINGACCOUNTID : public DB_Column<int>
     { 
-        static wxString name() { return "BUDGETYEARID"; } 
-        explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CHECKINGACCOUNTID"; } 
+        explicit CHECKINGACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct LINKTYPE : public DB_Column<wxString>
     { 
-        static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "LINKTYPE"; } 
+        explicit LINKTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct SUBCATEGID : public DB_Column<int>
+    struct LINKRECORDID : public DB_Column<int>
     { 
-        static wxString name() { return "SUBCATEGID"; } 
-        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "LINKRECORDID"; } 
+        explicit LINKRECORDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct PERIOD : public DB_Column<wxString>
-    { 
-        static wxString name() { return "PERIOD"; } 
-        explicit PERIOD(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    
-    struct AMOUNT : public DB_Column<double>
-    { 
-        static wxString name() { return "AMOUNT"; } 
-        explicit AMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
-    };
-    
-    typedef BUDGETENTRYID PRIMARY;
+    typedef TRANSLINKID PRIMARY;
     enum COLUMN
     {
-        COL_BUDGETENTRYID = 0
-        , COL_BUDGETYEARID = 1
-        , COL_CATEGID = 2
-        , COL_SUBCATEGID = 3
-        , COL_PERIOD = 4
-        , COL_AMOUNT = 5
+        COL_TRANSLINKID = 0
+        , COL_CHECKINGACCOUNTID = 1
+        , COL_LINKTYPE = 2
+        , COL_LINKRECORDID = 3
     };
 
     /** Returns the column name as a string*/
@@ -163,12 +150,10 @@ struct DB_Table_BUDGETTABLE : public DB_Table
     {
         switch(col)
         {
-            case COL_BUDGETENTRYID: return "BUDGETENTRYID";
-            case COL_BUDGETYEARID: return "BUDGETYEARID";
-            case COL_CATEGID: return "CATEGID";
-            case COL_SUBCATEGID: return "SUBCATEGID";
-            case COL_PERIOD: return "PERIOD";
-            case COL_AMOUNT: return "AMOUNT";
+            case COL_TRANSLINKID: return "TRANSLINKID";
+            case COL_CHECKINGACCOUNTID: return "CHECKINGACCOUNTID";
+            case COL_LINKTYPE: return "LINKTYPE";
+            case COL_LINKRECORDID: return "LINKRECORDID";
             default: break;
         }
         
@@ -178,12 +163,10 @@ struct DB_Table_BUDGETTABLE : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("BUDGETENTRYID" == name) return COL_BUDGETENTRYID;
-        else if ("BUDGETYEARID" == name) return COL_BUDGETYEARID;
-        else if ("CATEGID" == name) return COL_CATEGID;
-        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
-        else if ("PERIOD" == name) return COL_PERIOD;
-        else if ("AMOUNT" == name) return COL_AMOUNT;
+        if ("TRANSLINKID" == name) return COL_TRANSLINKID;
+        else if ("CHECKINGACCOUNTID" == name) return COL_CHECKINGACCOUNTID;
+        else if ("LINKTYPE" == name) return COL_LINKTYPE;
+        else if ("LINKRECORDID" == name) return COL_LINKRECORDID;
 
         return COLUMN(-1);
     }
@@ -191,25 +174,23 @@ struct DB_Table_BUDGETTABLE : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_BUDGETTABLE;
+        friend struct DB_Table_TRANSLINK;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int BUDGETENTRYID;//  primary key
-        int BUDGETYEARID;
-        int CATEGID;
-        int SUBCATEGID;
-        wxString PERIOD;
-        double AMOUNT;
+        int TRANSLINKID;//  primary key
+        int CHECKINGACCOUNTID;
+        wxString LINKTYPE;
+        int LINKRECORDID;
 
         int id() const
         {
-            return BUDGETENTRYID;
+            return TRANSLINKID;
         }
 
         void id(int id)
         {
-            BUDGETENTRYID = id;
+            TRANSLINKID = id;
         }
 
         bool operator < (const Data& r) const
@@ -226,35 +207,29 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         {
             table_ = table;
         
-            BUDGETENTRYID = -1;
-            BUDGETYEARID = -1;
-            CATEGID = -1;
-            SUBCATEGID = -1;
-            AMOUNT = 0.0;
+            TRANSLINKID = -1;
+            CHECKINGACCOUNTID = -1;
+            LINKRECORDID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            BUDGETENTRYID = q.GetInt(0); // BUDGETENTRYID
-            BUDGETYEARID = q.GetInt(1); // BUDGETYEARID
-            CATEGID = q.GetInt(2); // CATEGID
-            SUBCATEGID = q.GetInt(3); // SUBCATEGID
-            PERIOD = q.GetString(4); // PERIOD
-            AMOUNT = q.GetDouble(5); // AMOUNT
+            TRANSLINKID = q.GetInt(0); // TRANSLINKID
+            CHECKINGACCOUNTID = q.GetInt(1); // CHECKINGACCOUNTID
+            LINKTYPE = q.GetString(2); // LINKTYPE
+            LINKRECORDID = q.GetInt(3); // LINKRECORDID
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            BUDGETENTRYID = other.BUDGETENTRYID;
-            BUDGETYEARID = other.BUDGETYEARID;
-            CATEGID = other.CATEGID;
-            SUBCATEGID = other.SUBCATEGID;
-            PERIOD = other.PERIOD;
-            AMOUNT = other.AMOUNT;
+            TRANSLINKID = other.TRANSLINKID;
+            CHECKINGACCOUNTID = other.CHECKINGACCOUNTID;
+            LINKTYPE = other.LINKTYPE;
+            LINKRECORDID = other.LINKRECORDID;
             return *this;
         }
 
@@ -264,34 +239,24 @@ struct DB_Table_BUDGETTABLE : public DB_Table
             return false;
         }
 
-        bool match(const Self::BUDGETENTRYID &in) const
+        bool match(const Self::TRANSLINKID &in) const
         {
-            return this->BUDGETENTRYID == in.v_;
+            return this->TRANSLINKID == in.v_;
         }
 
-        bool match(const Self::BUDGETYEARID &in) const
+        bool match(const Self::CHECKINGACCOUNTID &in) const
         {
-            return this->BUDGETYEARID == in.v_;
+            return this->CHECKINGACCOUNTID == in.v_;
         }
 
-        bool match(const Self::CATEGID &in) const
+        bool match(const Self::LINKTYPE &in) const
         {
-            return this->CATEGID == in.v_;
+            return this->LINKTYPE.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::SUBCATEGID &in) const
+        bool match(const Self::LINKRECORDID &in) const
         {
-            return this->SUBCATEGID == in.v_;
-        }
-
-        bool match(const Self::PERIOD &in) const
-        {
-            return this->PERIOD.CmpNoCase(in.v_) == 0;
-        }
-
-        bool match(const Self::AMOUNT &in) const
-        {
-            return this->AMOUNT == in.v_;
+            return this->LINKRECORDID == in.v_;
         }
 
         // Return the data record as a json string
@@ -310,40 +275,32 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("BUDGETENTRYID");
-            json_writer.Int(this->BUDGETENTRYID);
-            json_writer.Key("BUDGETYEARID");
-            json_writer.Int(this->BUDGETYEARID);
-            json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
-            json_writer.Key("SUBCATEGID");
-            json_writer.Int(this->SUBCATEGID);
-            json_writer.Key("PERIOD");
-            json_writer.String(this->PERIOD.c_str());
-            json_writer.Key("AMOUNT");
-            json_writer.Double(this->AMOUNT);
+            json_writer.Key("TRANSLINKID");
+            json_writer.Int(this->TRANSLINKID);
+            json_writer.Key("CHECKINGACCOUNTID");
+            json_writer.Int(this->CHECKINGACCOUNTID);
+            json_writer.Key("LINKTYPE");
+            json_writer.String(this->LINKTYPE.c_str());
+            json_writer.Key("LINKRECORDID");
+            json_writer.Int(this->LINKRECORDID);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"BUDGETENTRYID") = BUDGETENTRYID;
-            row(L"BUDGETYEARID") = BUDGETYEARID;
-            row(L"CATEGID") = CATEGID;
-            row(L"SUBCATEGID") = SUBCATEGID;
-            row(L"PERIOD") = PERIOD;
-            row(L"AMOUNT") = AMOUNT;
+            row(L"TRANSLINKID") = TRANSLINKID;
+            row(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
+            row(L"LINKTYPE") = LINKTYPE;
+            row(L"LINKRECORDID") = LINKRECORDID;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"BUDGETENTRYID") = BUDGETENTRYID;
-            t(L"BUDGETYEARID") = BUDGETYEARID;
-            t(L"CATEGID") = CATEGID;
-            t(L"SUBCATEGID") = SUBCATEGID;
-            t(L"PERIOD") = PERIOD;
-            t(L"AMOUNT") = AMOUNT;
+            t(L"TRANSLINKID") = TRANSLINKID;
+            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
+            t(L"LINKTYPE") = LINKTYPE;
+            t(L"LINKRECORDID") = LINKRECORDID;
         }
 
         /** Save the record instance in memory to the database. */
@@ -352,7 +309,7 @@ struct DB_Table_BUDGETTABLE : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save BUDGETTABLE");
+                wxLogError("can not save TRANSLINK");
                 return false;
             }
 
@@ -364,7 +321,7 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove BUDGETTABLE");
+                wxLogError("can not remove TRANSLINK");
                 return false;
             }
             
@@ -379,17 +336,17 @@ struct DB_Table_BUDGETTABLE : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 6
+        NUM_COLUMNS = 4
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "BUDGETTABLE"; }
+    wxString name() const { return "TRANSLINK"; }
 
-    DB_Table_BUDGETTABLE() : fake_(new Data())
+    DB_Table_TRANSLINK() : fake_(new Data())
     {
-        query_ = "SELECT BUDGETENTRYID, BUDGETYEARID, CATEGID, SUBCATEGID, PERIOD, AMOUNT FROM BUDGETTABLE ";
+        query_ = "SELECT TRANSLINKID, CHECKINGACCOUNTID, LINKTYPE, LINKRECORDID FROM TRANSLINK ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -419,24 +376,22 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO BUDGETTABLE(BUDGETYEARID, CATEGID, SUBCATEGID, PERIOD, AMOUNT) VALUES(?, ?, ?, ?, ?)";
+            sql = "INSERT INTO TRANSLINK(CHECKINGACCOUNTID, LINKTYPE, LINKRECORDID) VALUES(?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE BUDGETTABLE SET BUDGETYEARID = ?, CATEGID = ?, SUBCATEGID = ?, PERIOD = ?, AMOUNT = ? WHERE BUDGETENTRYID = ?";
+            sql = "UPDATE TRANSLINK SET CHECKINGACCOUNTID = ?, LINKTYPE = ?, LINKRECORDID = ? WHERE TRANSLINKID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->BUDGETYEARID);
-            stmt.Bind(2, entity->CATEGID);
-            stmt.Bind(3, entity->SUBCATEGID);
-            stmt.Bind(4, entity->PERIOD);
-            stmt.Bind(5, entity->AMOUNT);
+            stmt.Bind(1, entity->CHECKINGACCOUNTID);
+            stmt.Bind(2, entity->LINKTYPE);
+            stmt.Bind(3, entity->LINKRECORDID);
             if (entity->id() > 0)
-                stmt.Bind(6, entity->BUDGETENTRYID);
+                stmt.Bind(4, entity->TRANSLINKID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -453,7 +408,7 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETTABLE: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("TRANSLINK: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -471,7 +426,7 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM BUDGETTABLE WHERE BUDGETENTRYID = ?";
+            wxString sql = "DELETE FROM TRANSLINK WHERE TRANSLINKID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -496,7 +451,7 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETTABLE: Exception %s", e.GetMessage().c_str());
+            wxLogError("TRANSLINK: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

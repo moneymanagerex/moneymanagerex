@@ -19,7 +19,6 @@
 #include "Model_Budget.h"
 #include <wx/intl.h>
 #include "Model_Category.h"
-#include "db/DB_Table_Budgettable.h"
 
 Model_Budget::Model_Budget()
 : Model<DB_Table_BUDGETTABLE>()

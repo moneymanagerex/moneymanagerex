@@ -20,7 +20,7 @@
 #define MODEL_ACCOUNT_H
 
 #include "Model.h"
-#include "db/DB_Table_Accountlist.h"
+#include "Table_Accountlist.h"
 #include "Model_Currency.h" // detect base currency
 #include "Model_Checking.h"
 #include "Model_Billsdeposits.h"

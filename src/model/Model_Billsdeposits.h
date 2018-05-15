@@ -20,7 +20,7 @@
 #define MODEL_BILLSDEPOSITS_H
 
 #include "Model.h"
-#include "db/DB_Table_Billsdeposits.h"
+#include "Table_Billsdeposits.h"
 #include "Model_Splittransaction.h"
 #include "Model_Budgetsplittransaction.h"
 
