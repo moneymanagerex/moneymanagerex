@@ -1,20 +1,14 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for INFOTABLE SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
 #include "Table.h"
@@ -27,7 +21,7 @@ struct DB_Table_INFOTABLE : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -169,7 +163,7 @@ struct DB_Table_INFOTABLE : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int INFOID;//  primary key
+        int INFOID; // primary key
         wxString INFONAME;
         wxString INFOVALUE;
 
@@ -204,9 +198,9 @@ struct DB_Table_INFOTABLE : public DB_Table
         {
             table_ = table;
         
-            INFOID = q.GetInt(0); // INFOID
-            INFONAME = q.GetString(1); // INFONAME
-            INFOVALUE = q.GetString(2); // INFOVALUE
+            INFOID = q.GetInt(0);
+            INFONAME = q.GetString(1);
+            INFOVALUE = q.GetString(2);
         }
 
         Data& operator=(const Data& other)
@@ -240,7 +234,7 @@ struct DB_Table_INFOTABLE : public DB_Table
             return this->INFOVALUE.CmpNoCase(in.v_) == 0;
         }
 
-        // Return the data record as a json string
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -253,7 +247,7 @@ struct DB_Table_INFOTABLE : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("INFOID");
@@ -318,7 +312,7 @@ struct DB_Table_INFOTABLE : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
+    /** Name of the table */
     wxString name() const { return "INFOTABLE"; }
 
     DB_Table_INFOTABLE() : fake_(new Data())
@@ -326,7 +320,7 @@ struct DB_Table_INFOTABLE : public DB_Table
         query_ = "SELECT INFOID, INFONAME, INFOVALUE FROM INFOTABLE ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -334,7 +328,7 @@ struct DB_Table_INFOTABLE : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();

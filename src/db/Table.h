@@ -1,20 +1,14 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
- *          DO NOT EDIT!
+/** @file
+ * @brief     Base class for CRUD SQL tables implementation
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
 #include <vector>

@@ -1,20 +1,14 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for SHAREINFO SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
 #include "Table.h"
@@ -27,7 +21,7 @@ struct DB_Table_SHAREINFO : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -195,7 +189,7 @@ struct DB_Table_SHAREINFO : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SHAREINFOID;//  primary key
+        int SHAREINFOID; // primary key
         int CHECKINGACCOUNTID;
         double SHARENUMBER;
         double SHAREPRICE;
@@ -237,12 +231,12 @@ struct DB_Table_SHAREINFO : public DB_Table
         {
             table_ = table;
         
-            SHAREINFOID = q.GetInt(0); // SHAREINFOID
-            CHECKINGACCOUNTID = q.GetInt(1); // CHECKINGACCOUNTID
-            SHARENUMBER = q.GetDouble(2); // SHARENUMBER
-            SHAREPRICE = q.GetDouble(3); // SHAREPRICE
-            SHARECOMMISSION = q.GetDouble(4); // SHARECOMMISSION
-            SHARELOT = q.GetString(5); // SHARELOT
+            SHAREINFOID = q.GetInt(0);
+            CHECKINGACCOUNTID = q.GetInt(1);
+            SHARENUMBER = q.GetDouble(2);
+            SHAREPRICE = q.GetDouble(3);
+            SHARECOMMISSION = q.GetDouble(4);
+            SHARELOT = q.GetString(5);
         }
 
         Data& operator=(const Data& other)
@@ -294,7 +288,7 @@ struct DB_Table_SHAREINFO : public DB_Table
             return this->SHARELOT.CmpNoCase(in.v_) == 0;
         }
 
-        // Return the data record as a json string
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -307,7 +301,7 @@ struct DB_Table_SHAREINFO : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("SHAREINFOID");
@@ -384,7 +378,7 @@ struct DB_Table_SHAREINFO : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
+    /** Name of the table */
     wxString name() const { return "SHAREINFO"; }
 
     DB_Table_SHAREINFO() : fake_(new Data())
@@ -392,7 +386,7 @@ struct DB_Table_SHAREINFO : public DB_Table
         query_ = "SELECT SHAREINFOID, CHECKINGACCOUNTID, SHARENUMBER, SHAREPRICE, SHARECOMMISSION, SHARELOT FROM SHAREINFO ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -400,7 +394,7 @@ struct DB_Table_SHAREINFO : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
