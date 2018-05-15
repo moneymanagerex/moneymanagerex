@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_CUSTOMFIELD : public DB_Table
+struct DB_Table_STOCKHISTORY : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CUSTOMFIELD Self;
+    typedef DB_Table_STOCKHISTORY Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CUSTOMFIELD() 
+    ~DB_Table_STOCKHISTORY() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELD (FIELDID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, Bank Account, Repeating Transaction, Payee */, DESCRIPTION TEXT COLLATE NOCASE, TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoice, MultiChoice */, PROPERTIES TEXT NOT NULL)");
+                db->ExecuteUpdate("CREATE TABLE STOCKHISTORY(HISTID integer primary key, SYMBOL TEXT NOT NULL, DATE TEXT NOT NULL, VALUE numeric NOT NULL, UPDTYPE integer, UNIQUE(SYMBOL, DATE))");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
+                wxLogError("STOCKHISTORY: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELD_REF ON CUSTOMFIELD (REFTYPE)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_STOCKHISTORY_SYMBOL ON STOCKHISTORY(SYMBOL)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
+            wxLogError("STOCKHISTORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,44 +111,44 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         db->Commit();
     }
     
-    struct FIELDID : public DB_Column<int>
+    struct HISTID : public DB_Column<int>
     { 
-        static wxString name() { return "FIELDID"; } 
-        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "HISTID"; } 
+        explicit HISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct REFTYPE : public DB_Column<wxString>
+    struct SYMBOL : public DB_Column<wxString>
     { 
-        static wxString name() { return "REFTYPE"; } 
-        explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "SYMBOL"; } 
+        explicit SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct DESCRIPTION : public DB_Column<wxString>
+    struct DATE : public DB_Column<wxString>
     { 
-        static wxString name() { return "DESCRIPTION"; } 
-        explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "DATE"; } 
+        explicit DATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct TYPE : public DB_Column<wxString>
+    struct VALUE : public DB_Column<double>
     { 
-        static wxString name() { return "TYPE"; } 
-        explicit TYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "VALUE"; } 
+        explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
-    struct PROPERTIES : public DB_Column<wxString>
+    struct UPDTYPE : public DB_Column<int>
     { 
-        static wxString name() { return "PROPERTIES"; } 
-        explicit PROPERTIES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "UPDTYPE"; } 
+        explicit UPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    typedef FIELDID PRIMARY;
+    typedef HISTID PRIMARY;
     enum COLUMN
     {
-        COL_FIELDID = 0
-        , COL_REFTYPE = 1
-        , COL_DESCRIPTION = 2
-        , COL_TYPE = 3
-        , COL_PROPERTIES = 4
+        COL_HISTID = 0
+        , COL_SYMBOL = 1
+        , COL_DATE = 2
+        , COL_VALUE = 3
+        , COL_UPDTYPE = 4
     };
 
     /** Returns the column name as a string*/
@@ -156,11 +156,11 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     {
         switch(col)
         {
-            case COL_FIELDID: return "FIELDID";
-            case COL_REFTYPE: return "REFTYPE";
-            case COL_DESCRIPTION: return "DESCRIPTION";
-            case COL_TYPE: return "TYPE";
-            case COL_PROPERTIES: return "PROPERTIES";
+            case COL_HISTID: return "HISTID";
+            case COL_SYMBOL: return "SYMBOL";
+            case COL_DATE: return "DATE";
+            case COL_VALUE: return "VALUE";
+            case COL_UPDTYPE: return "UPDTYPE";
             default: break;
         }
         
@@ -170,11 +170,11 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("FIELDID" == name) return COL_FIELDID;
-        else if ("REFTYPE" == name) return COL_REFTYPE;
-        else if ("DESCRIPTION" == name) return COL_DESCRIPTION;
-        else if ("TYPE" == name) return COL_TYPE;
-        else if ("PROPERTIES" == name) return COL_PROPERTIES;
+        if ("HISTID" == name) return COL_HISTID;
+        else if ("SYMBOL" == name) return COL_SYMBOL;
+        else if ("DATE" == name) return COL_DATE;
+        else if ("VALUE" == name) return COL_VALUE;
+        else if ("UPDTYPE" == name) return COL_UPDTYPE;
 
         return COLUMN(-1);
     }
@@ -182,24 +182,24 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CUSTOMFIELD;
+        friend struct DB_Table_STOCKHISTORY;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int FIELDID;//  primary key
-        wxString REFTYPE;
-        wxString DESCRIPTION;
-        wxString TYPE;
-        wxString PROPERTIES;
+        int HISTID;//  primary key
+        wxString SYMBOL;
+        wxString DATE;
+        double VALUE;
+        int UPDTYPE;
 
         int id() const
         {
-            return FIELDID;
+            return HISTID;
         }
 
         void id(int id)
         {
-            FIELDID = id;
+            HISTID = id;
         }
 
         bool operator < (const Data& r) const
@@ -216,29 +216,31 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         {
             table_ = table;
         
-            FIELDID = -1;
+            HISTID = -1;
+            VALUE = 0.0;
+            UPDTYPE = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            FIELDID = q.GetInt(0); // FIELDID
-            REFTYPE = q.GetString(1); // REFTYPE
-            DESCRIPTION = q.GetString(2); // DESCRIPTION
-            TYPE = q.GetString(3); // TYPE
-            PROPERTIES = q.GetString(4); // PROPERTIES
+            HISTID = q.GetInt(0); // HISTID
+            SYMBOL = q.GetString(1); // SYMBOL
+            DATE = q.GetString(2); // DATE
+            VALUE = q.GetDouble(3); // VALUE
+            UPDTYPE = q.GetInt(4); // UPDTYPE
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            FIELDID = other.FIELDID;
-            REFTYPE = other.REFTYPE;
-            DESCRIPTION = other.DESCRIPTION;
-            TYPE = other.TYPE;
-            PROPERTIES = other.PROPERTIES;
+            HISTID = other.HISTID;
+            SYMBOL = other.SYMBOL;
+            DATE = other.DATE;
+            VALUE = other.VALUE;
+            UPDTYPE = other.UPDTYPE;
             return *this;
         }
 
@@ -248,29 +250,29 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
             return false;
         }
 
-        bool match(const Self::FIELDID &in) const
+        bool match(const Self::HISTID &in) const
         {
-            return this->FIELDID == in.v_;
+            return this->HISTID == in.v_;
         }
 
-        bool match(const Self::REFTYPE &in) const
+        bool match(const Self::SYMBOL &in) const
         {
-            return this->REFTYPE.CmpNoCase(in.v_) == 0;
+            return this->SYMBOL.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::DESCRIPTION &in) const
+        bool match(const Self::DATE &in) const
         {
-            return this->DESCRIPTION.CmpNoCase(in.v_) == 0;
+            return this->DATE.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::TYPE &in) const
+        bool match(const Self::VALUE &in) const
         {
-            return this->TYPE.CmpNoCase(in.v_) == 0;
+            return this->VALUE == in.v_;
         }
 
-        bool match(const Self::PROPERTIES &in) const
+        bool match(const Self::UPDTYPE &in) const
         {
-            return this->PROPERTIES.CmpNoCase(in.v_) == 0;
+            return this->UPDTYPE == in.v_;
         }
 
         // Return the data record as a json string
@@ -289,36 +291,36 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("FIELDID");
-            json_writer.Int(this->FIELDID);
-            json_writer.Key("REFTYPE");
-            json_writer.String(this->REFTYPE.c_str());
-            json_writer.Key("DESCRIPTION");
-            json_writer.String(this->DESCRIPTION.c_str());
-            json_writer.Key("TYPE");
-            json_writer.String(this->TYPE.c_str());
-            json_writer.Key("PROPERTIES");
-            json_writer.String(this->PROPERTIES.c_str());
+            json_writer.Key("HISTID");
+            json_writer.Int(this->HISTID);
+            json_writer.Key("SYMBOL");
+            json_writer.String(this->SYMBOL.c_str());
+            json_writer.Key("DATE");
+            json_writer.String(this->DATE.c_str());
+            json_writer.Key("VALUE");
+            json_writer.Double(this->VALUE);
+            json_writer.Key("UPDTYPE");
+            json_writer.Int(this->UPDTYPE);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"FIELDID") = FIELDID;
-            row(L"REFTYPE") = REFTYPE;
-            row(L"DESCRIPTION") = DESCRIPTION;
-            row(L"TYPE") = TYPE;
-            row(L"PROPERTIES") = PROPERTIES;
+            row(L"HISTID") = HISTID;
+            row(L"SYMBOL") = SYMBOL;
+            row(L"DATE") = DATE;
+            row(L"VALUE") = VALUE;
+            row(L"UPDTYPE") = UPDTYPE;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"FIELDID") = FIELDID;
-            t(L"REFTYPE") = REFTYPE;
-            t(L"DESCRIPTION") = DESCRIPTION;
-            t(L"TYPE") = TYPE;
-            t(L"PROPERTIES") = PROPERTIES;
+            t(L"HISTID") = HISTID;
+            t(L"SYMBOL") = SYMBOL;
+            t(L"DATE") = DATE;
+            t(L"VALUE") = VALUE;
+            t(L"UPDTYPE") = UPDTYPE;
         }
 
         /** Save the record instance in memory to the database. */
@@ -327,7 +329,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save CUSTOMFIELD");
+                wxLogError("can not save STOCKHISTORY");
                 return false;
             }
 
@@ -339,7 +341,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove CUSTOMFIELD");
+                wxLogError("can not remove STOCKHISTORY");
                 return false;
             }
             
@@ -360,11 +362,11 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "CUSTOMFIELD"; }
+    wxString name() const { return "STOCKHISTORY"; }
 
-    DB_Table_CUSTOMFIELD() : fake_(new Data())
+    DB_Table_STOCKHISTORY() : fake_(new Data())
     {
-        query_ = "SELECT FIELDID, REFTYPE, DESCRIPTION, TYPE, PROPERTIES FROM CUSTOMFIELD ";
+        query_ = "SELECT HISTID, SYMBOL, DATE, VALUE, UPDTYPE FROM STOCKHISTORY ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -394,23 +396,23 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CUSTOMFIELD(REFTYPE, DESCRIPTION, TYPE, PROPERTIES) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO STOCKHISTORY(SYMBOL, DATE, VALUE, UPDTYPE) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CUSTOMFIELD SET REFTYPE = ?, DESCRIPTION = ?, TYPE = ?, PROPERTIES = ? WHERE FIELDID = ?";
+            sql = "UPDATE STOCKHISTORY SET SYMBOL = ?, DATE = ?, VALUE = ?, UPDTYPE = ? WHERE HISTID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->REFTYPE);
-            stmt.Bind(2, entity->DESCRIPTION);
-            stmt.Bind(3, entity->TYPE);
-            stmt.Bind(4, entity->PROPERTIES);
+            stmt.Bind(1, entity->SYMBOL);
+            stmt.Bind(2, entity->DATE);
+            stmt.Bind(3, entity->VALUE);
+            stmt.Bind(4, entity->UPDTYPE);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->FIELDID);
+                stmt.Bind(5, entity->HISTID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -427,7 +429,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELD: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("STOCKHISTORY: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -445,7 +447,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CUSTOMFIELD WHERE FIELDID = ?";
+            wxString sql = "DELETE FROM STOCKHISTORY WHERE HISTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -470,7 +472,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
+            wxLogError("STOCKHISTORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

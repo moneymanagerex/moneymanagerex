@@ -20,7 +20,7 @@
 #define MODEL_STOCK_H
 
 #include "Model.h"
-#include "db/DB_Table_Stock.h"
+#include "Table_Stock.h"
 #include "Model_Account.h"
 
 class Model_Stock : public Model<DB_Table_STOCK>

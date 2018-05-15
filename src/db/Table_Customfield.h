@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_ASSETCLASS : public DB_Table
+struct DB_Table_CUSTOMFIELD : public DB_Table
 {
     struct Data;
-    typedef DB_Table_ASSETCLASS Self;
+    typedef DB_Table_CUSTOMFIELD Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_ASSETCLASS() 
+    ~DB_Table_CUSTOMFIELD() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_ASSETCLASS : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE ASSETCLASS (ID INTEGER primary key, PARENTID INTEGER, NAME TEXT COLLATE NOCASE NOT NULL, ALLOCATION REAL, SORTORDER INTEGER)");
+                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELD (FIELDID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, Bank Account, Repeating Transaction, Payee */, DESCRIPTION TEXT COLLATE NOCASE, TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoice, MultiChoice */, PROPERTIES TEXT NOT NULL)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("ASSETCLASS: Exception %s", e.GetMessage().c_str());
+                wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,10 +94,11 @@ struct DB_Table_ASSETCLASS : public DB_Table
     {
         try
         {
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELD_REF ON CUSTOMFIELD (REFTYPE)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETCLASS: Exception %s", e.GetMessage().c_str());
+            wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -110,44 +111,44 @@ struct DB_Table_ASSETCLASS : public DB_Table
         db->Commit();
     }
     
-    struct ID : public DB_Column<int>
+    struct FIELDID : public DB_Column<int>
     { 
-        static wxString name() { return "ID"; } 
-        explicit ID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "FIELDID"; } 
+        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct PARENTID : public DB_Column<int>
+    struct REFTYPE : public DB_Column<wxString>
     { 
-        static wxString name() { return "PARENTID"; } 
-        explicit PARENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "REFTYPE"; } 
+        explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct NAME : public DB_Column<wxString>
+    struct DESCRIPTION : public DB_Column<wxString>
     { 
-        static wxString name() { return "NAME"; } 
-        explicit NAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "DESCRIPTION"; } 
+        explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct ALLOCATION : public DB_Column<double>
+    struct TYPE : public DB_Column<wxString>
     { 
-        static wxString name() { return "ALLOCATION"; } 
-        explicit ALLOCATION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        static wxString name() { return "TYPE"; } 
+        explicit TYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct SORTORDER : public DB_Column<int>
+    struct PROPERTIES : public DB_Column<wxString>
     { 
-        static wxString name() { return "SORTORDER"; } 
-        explicit SORTORDER(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "PROPERTIES"; } 
+        explicit PROPERTIES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    typedef ID PRIMARY;
+    typedef FIELDID PRIMARY;
     enum COLUMN
     {
-        COL_ID = 0
-        , COL_PARENTID = 1
-        , COL_NAME = 2
-        , COL_ALLOCATION = 3
-        , COL_SORTORDER = 4
+        COL_FIELDID = 0
+        , COL_REFTYPE = 1
+        , COL_DESCRIPTION = 2
+        , COL_TYPE = 3
+        , COL_PROPERTIES = 4
     };
 
     /** Returns the column name as a string*/
@@ -155,11 +156,11 @@ struct DB_Table_ASSETCLASS : public DB_Table
     {
         switch(col)
         {
-            case COL_ID: return "ID";
-            case COL_PARENTID: return "PARENTID";
-            case COL_NAME: return "NAME";
-            case COL_ALLOCATION: return "ALLOCATION";
-            case COL_SORTORDER: return "SORTORDER";
+            case COL_FIELDID: return "FIELDID";
+            case COL_REFTYPE: return "REFTYPE";
+            case COL_DESCRIPTION: return "DESCRIPTION";
+            case COL_TYPE: return "TYPE";
+            case COL_PROPERTIES: return "PROPERTIES";
             default: break;
         }
         
@@ -169,11 +170,11 @@ struct DB_Table_ASSETCLASS : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("ID" == name) return COL_ID;
-        else if ("PARENTID" == name) return COL_PARENTID;
-        else if ("NAME" == name) return COL_NAME;
-        else if ("ALLOCATION" == name) return COL_ALLOCATION;
-        else if ("SORTORDER" == name) return COL_SORTORDER;
+        if ("FIELDID" == name) return COL_FIELDID;
+        else if ("REFTYPE" == name) return COL_REFTYPE;
+        else if ("DESCRIPTION" == name) return COL_DESCRIPTION;
+        else if ("TYPE" == name) return COL_TYPE;
+        else if ("PROPERTIES" == name) return COL_PROPERTIES;
 
         return COLUMN(-1);
     }
@@ -181,24 +182,24 @@ struct DB_Table_ASSETCLASS : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_ASSETCLASS;
+        friend struct DB_Table_CUSTOMFIELD;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ID;//  primary key
-        int PARENTID;
-        wxString NAME;
-        double ALLOCATION;
-        int SORTORDER;
+        int FIELDID;//  primary key
+        wxString REFTYPE;
+        wxString DESCRIPTION;
+        wxString TYPE;
+        wxString PROPERTIES;
 
         int id() const
         {
-            return ID;
+            return FIELDID;
         }
 
         void id(int id)
         {
-            ID = id;
+            FIELDID = id;
         }
 
         bool operator < (const Data& r) const
@@ -215,32 +216,29 @@ struct DB_Table_ASSETCLASS : public DB_Table
         {
             table_ = table;
         
-            ID = -1;
-            PARENTID = -1;
-            ALLOCATION = 0.0;
-            SORTORDER = -1;
+            FIELDID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            ID = q.GetInt(0); // ID
-            PARENTID = q.GetInt(1); // PARENTID
-            NAME = q.GetString(2); // NAME
-            ALLOCATION = q.GetDouble(3); // ALLOCATION
-            SORTORDER = q.GetInt(4); // SORTORDER
+            FIELDID = q.GetInt(0); // FIELDID
+            REFTYPE = q.GetString(1); // REFTYPE
+            DESCRIPTION = q.GetString(2); // DESCRIPTION
+            TYPE = q.GetString(3); // TYPE
+            PROPERTIES = q.GetString(4); // PROPERTIES
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            ID = other.ID;
-            PARENTID = other.PARENTID;
-            NAME = other.NAME;
-            ALLOCATION = other.ALLOCATION;
-            SORTORDER = other.SORTORDER;
+            FIELDID = other.FIELDID;
+            REFTYPE = other.REFTYPE;
+            DESCRIPTION = other.DESCRIPTION;
+            TYPE = other.TYPE;
+            PROPERTIES = other.PROPERTIES;
             return *this;
         }
 
@@ -250,29 +248,29 @@ struct DB_Table_ASSETCLASS : public DB_Table
             return false;
         }
 
-        bool match(const Self::ID &in) const
+        bool match(const Self::FIELDID &in) const
         {
-            return this->ID == in.v_;
+            return this->FIELDID == in.v_;
         }
 
-        bool match(const Self::PARENTID &in) const
+        bool match(const Self::REFTYPE &in) const
         {
-            return this->PARENTID == in.v_;
+            return this->REFTYPE.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::NAME &in) const
+        bool match(const Self::DESCRIPTION &in) const
         {
-            return this->NAME.CmpNoCase(in.v_) == 0;
+            return this->DESCRIPTION.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::ALLOCATION &in) const
+        bool match(const Self::TYPE &in) const
         {
-            return this->ALLOCATION == in.v_;
+            return this->TYPE.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::SORTORDER &in) const
+        bool match(const Self::PROPERTIES &in) const
         {
-            return this->SORTORDER == in.v_;
+            return this->PROPERTIES.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -291,36 +289,36 @@ struct DB_Table_ASSETCLASS : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("ID");
-            json_writer.Int(this->ID);
-            json_writer.Key("PARENTID");
-            json_writer.Int(this->PARENTID);
-            json_writer.Key("NAME");
-            json_writer.String(this->NAME.c_str());
-            json_writer.Key("ALLOCATION");
-            json_writer.Double(this->ALLOCATION);
-            json_writer.Key("SORTORDER");
-            json_writer.Int(this->SORTORDER);
+            json_writer.Key("FIELDID");
+            json_writer.Int(this->FIELDID);
+            json_writer.Key("REFTYPE");
+            json_writer.String(this->REFTYPE.c_str());
+            json_writer.Key("DESCRIPTION");
+            json_writer.String(this->DESCRIPTION.c_str());
+            json_writer.Key("TYPE");
+            json_writer.String(this->TYPE.c_str());
+            json_writer.Key("PROPERTIES");
+            json_writer.String(this->PROPERTIES.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"ID") = ID;
-            row(L"PARENTID") = PARENTID;
-            row(L"NAME") = NAME;
-            row(L"ALLOCATION") = ALLOCATION;
-            row(L"SORTORDER") = SORTORDER;
+            row(L"FIELDID") = FIELDID;
+            row(L"REFTYPE") = REFTYPE;
+            row(L"DESCRIPTION") = DESCRIPTION;
+            row(L"TYPE") = TYPE;
+            row(L"PROPERTIES") = PROPERTIES;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"ID") = ID;
-            t(L"PARENTID") = PARENTID;
-            t(L"NAME") = NAME;
-            t(L"ALLOCATION") = ALLOCATION;
-            t(L"SORTORDER") = SORTORDER;
+            t(L"FIELDID") = FIELDID;
+            t(L"REFTYPE") = REFTYPE;
+            t(L"DESCRIPTION") = DESCRIPTION;
+            t(L"TYPE") = TYPE;
+            t(L"PROPERTIES") = PROPERTIES;
         }
 
         /** Save the record instance in memory to the database. */
@@ -329,7 +327,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save ASSETCLASS");
+                wxLogError("can not save CUSTOMFIELD");
                 return false;
             }
 
@@ -341,7 +339,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove ASSETCLASS");
+                wxLogError("can not remove CUSTOMFIELD");
                 return false;
             }
             
@@ -362,11 +360,11 @@ struct DB_Table_ASSETCLASS : public DB_Table
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "ASSETCLASS"; }
+    wxString name() const { return "CUSTOMFIELD"; }
 
-    DB_Table_ASSETCLASS() : fake_(new Data())
+    DB_Table_CUSTOMFIELD() : fake_(new Data())
     {
-        query_ = "SELECT ID, PARENTID, NAME, ALLOCATION, SORTORDER FROM ASSETCLASS ";
+        query_ = "SELECT FIELDID, REFTYPE, DESCRIPTION, TYPE, PROPERTIES FROM CUSTOMFIELD ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -396,23 +394,23 @@ struct DB_Table_ASSETCLASS : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO ASSETCLASS(PARENTID, NAME, ALLOCATION, SORTORDER) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO CUSTOMFIELD(REFTYPE, DESCRIPTION, TYPE, PROPERTIES) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE ASSETCLASS SET PARENTID = ?, NAME = ?, ALLOCATION = ?, SORTORDER = ? WHERE ID = ?";
+            sql = "UPDATE CUSTOMFIELD SET REFTYPE = ?, DESCRIPTION = ?, TYPE = ?, PROPERTIES = ? WHERE FIELDID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->PARENTID);
-            stmt.Bind(2, entity->NAME);
-            stmt.Bind(3, entity->ALLOCATION);
-            stmt.Bind(4, entity->SORTORDER);
+            stmt.Bind(1, entity->REFTYPE);
+            stmt.Bind(2, entity->DESCRIPTION);
+            stmt.Bind(3, entity->TYPE);
+            stmt.Bind(4, entity->PROPERTIES);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->ID);
+                stmt.Bind(5, entity->FIELDID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -429,7 +427,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETCLASS: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("CUSTOMFIELD: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -447,7 +445,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM ASSETCLASS WHERE ID = ?";
+            wxString sql = "DELETE FROM CUSTOMFIELD WHERE FIELDID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -472,7 +470,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETCLASS: Exception %s", e.GetMessage().c_str());
+            wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

@@ -20,7 +20,7 @@
 #pragma once
 
 #include "Model.h"
-#include "db/DB_Table_Checkingaccount.h"
+#include "Table_Checkingaccount.h"
 #include "Model_Splittransaction.h"
 
 class Model_Checking : public Model<DB_Table_CHECKINGACCOUNT>

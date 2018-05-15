@@ -18,7 +18,7 @@
 #pragma once
 
 #include "Model.h"
-#include "db/DB_Table_Customfield.h"
+#include "Table_Customfield.h"
 
 class Model_CustomField : public Model<DB_Table_CUSTOMFIELD>
 {

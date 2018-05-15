@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_STOCKHISTORY : public DB_Table
+struct DB_Table_SETTING_V1 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_STOCKHISTORY Self;
+    typedef DB_Table_SETTING_V1 Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_STOCKHISTORY : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_STOCKHISTORY() 
+    ~DB_Table_SETTING_V1() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_STOCKHISTORY : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE STOCKHISTORY(HISTID integer primary key, SYMBOL TEXT NOT NULL, DATE TEXT NOT NULL, VALUE numeric NOT NULL, UPDTYPE integer, UNIQUE(SYMBOL, DATE))");
+                db->ExecuteUpdate("CREATE TABLE SETTING_V1(SETTINGID integer not null primary key, SETTINGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, SETTINGVALUE TEXT)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("STOCKHISTORY: Exception %s", e.GetMessage().c_str());
+                wxLogError("SETTING_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_STOCKHISTORY : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_STOCKHISTORY_SYMBOL ON STOCKHISTORY(SYMBOL)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_SETTING_SETTINGNAME ON SETTING_V1(SETTINGNAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCKHISTORY: Exception %s", e.GetMessage().c_str());
+            wxLogError("SETTING_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,44 +111,30 @@ struct DB_Table_STOCKHISTORY : public DB_Table
         db->Commit();
     }
     
-    struct HISTID : public DB_Column<int>
+    struct SETTINGID : public DB_Column<int>
     { 
-        static wxString name() { return "HISTID"; } 
-        explicit HISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "SETTINGID"; } 
+        explicit SETTINGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SYMBOL : public DB_Column<wxString>
+    struct SETTINGNAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "SYMBOL"; } 
-        explicit SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "SETTINGNAME"; } 
+        explicit SETTINGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct DATE : public DB_Column<wxString>
+    struct SETTINGVALUE : public DB_Column<wxString>
     { 
-        static wxString name() { return "DATE"; } 
-        explicit DATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "SETTINGVALUE"; } 
+        explicit SETTINGVALUE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct VALUE : public DB_Column<double>
-    { 
-        static wxString name() { return "VALUE"; } 
-        explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
-    };
-    
-    struct UPDTYPE : public DB_Column<int>
-    { 
-        static wxString name() { return "UPDTYPE"; } 
-        explicit UPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    typedef HISTID PRIMARY;
+    typedef SETTINGID PRIMARY;
     enum COLUMN
     {
-        COL_HISTID = 0
-        , COL_SYMBOL = 1
-        , COL_DATE = 2
-        , COL_VALUE = 3
-        , COL_UPDTYPE = 4
+        COL_SETTINGID = 0
+        , COL_SETTINGNAME = 1
+        , COL_SETTINGVALUE = 2
     };
 
     /** Returns the column name as a string*/
@@ -156,11 +142,9 @@ struct DB_Table_STOCKHISTORY : public DB_Table
     {
         switch(col)
         {
-            case COL_HISTID: return "HISTID";
-            case COL_SYMBOL: return "SYMBOL";
-            case COL_DATE: return "DATE";
-            case COL_VALUE: return "VALUE";
-            case COL_UPDTYPE: return "UPDTYPE";
+            case COL_SETTINGID: return "SETTINGID";
+            case COL_SETTINGNAME: return "SETTINGNAME";
+            case COL_SETTINGVALUE: return "SETTINGVALUE";
             default: break;
         }
         
@@ -170,11 +154,9 @@ struct DB_Table_STOCKHISTORY : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("HISTID" == name) return COL_HISTID;
-        else if ("SYMBOL" == name) return COL_SYMBOL;
-        else if ("DATE" == name) return COL_DATE;
-        else if ("VALUE" == name) return COL_VALUE;
-        else if ("UPDTYPE" == name) return COL_UPDTYPE;
+        if ("SETTINGID" == name) return COL_SETTINGID;
+        else if ("SETTINGNAME" == name) return COL_SETTINGNAME;
+        else if ("SETTINGVALUE" == name) return COL_SETTINGVALUE;
 
         return COLUMN(-1);
     }
@@ -182,24 +164,22 @@ struct DB_Table_STOCKHISTORY : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_STOCKHISTORY;
+        friend struct DB_Table_SETTING_V1;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int HISTID;//  primary key
-        wxString SYMBOL;
-        wxString DATE;
-        double VALUE;
-        int UPDTYPE;
+        int SETTINGID;//  primary key
+        wxString SETTINGNAME;
+        wxString SETTINGVALUE;
 
         int id() const
         {
-            return HISTID;
+            return SETTINGID;
         }
 
         void id(int id)
         {
-            HISTID = id;
+            SETTINGID = id;
         }
 
         bool operator < (const Data& r) const
@@ -216,31 +196,25 @@ struct DB_Table_STOCKHISTORY : public DB_Table
         {
             table_ = table;
         
-            HISTID = -1;
-            VALUE = 0.0;
-            UPDTYPE = -1;
+            SETTINGID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            HISTID = q.GetInt(0); // HISTID
-            SYMBOL = q.GetString(1); // SYMBOL
-            DATE = q.GetString(2); // DATE
-            VALUE = q.GetDouble(3); // VALUE
-            UPDTYPE = q.GetInt(4); // UPDTYPE
+            SETTINGID = q.GetInt(0); // SETTINGID
+            SETTINGNAME = q.GetString(1); // SETTINGNAME
+            SETTINGVALUE = q.GetString(2); // SETTINGVALUE
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            HISTID = other.HISTID;
-            SYMBOL = other.SYMBOL;
-            DATE = other.DATE;
-            VALUE = other.VALUE;
-            UPDTYPE = other.UPDTYPE;
+            SETTINGID = other.SETTINGID;
+            SETTINGNAME = other.SETTINGNAME;
+            SETTINGVALUE = other.SETTINGVALUE;
             return *this;
         }
 
@@ -250,29 +224,19 @@ struct DB_Table_STOCKHISTORY : public DB_Table
             return false;
         }
 
-        bool match(const Self::HISTID &in) const
+        bool match(const Self::SETTINGID &in) const
         {
-            return this->HISTID == in.v_;
+            return this->SETTINGID == in.v_;
         }
 
-        bool match(const Self::SYMBOL &in) const
+        bool match(const Self::SETTINGNAME &in) const
         {
-            return this->SYMBOL.CmpNoCase(in.v_) == 0;
+            return this->SETTINGNAME.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::DATE &in) const
+        bool match(const Self::SETTINGVALUE &in) const
         {
-            return this->DATE.CmpNoCase(in.v_) == 0;
-        }
-
-        bool match(const Self::VALUE &in) const
-        {
-            return this->VALUE == in.v_;
-        }
-
-        bool match(const Self::UPDTYPE &in) const
-        {
-            return this->UPDTYPE == in.v_;
+            return this->SETTINGVALUE.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -291,36 +255,28 @@ struct DB_Table_STOCKHISTORY : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("HISTID");
-            json_writer.Int(this->HISTID);
-            json_writer.Key("SYMBOL");
-            json_writer.String(this->SYMBOL.c_str());
-            json_writer.Key("DATE");
-            json_writer.String(this->DATE.c_str());
-            json_writer.Key("VALUE");
-            json_writer.Double(this->VALUE);
-            json_writer.Key("UPDTYPE");
-            json_writer.Int(this->UPDTYPE);
+            json_writer.Key("SETTINGID");
+            json_writer.Int(this->SETTINGID);
+            json_writer.Key("SETTINGNAME");
+            json_writer.String(this->SETTINGNAME.c_str());
+            json_writer.Key("SETTINGVALUE");
+            json_writer.String(this->SETTINGVALUE.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"HISTID") = HISTID;
-            row(L"SYMBOL") = SYMBOL;
-            row(L"DATE") = DATE;
-            row(L"VALUE") = VALUE;
-            row(L"UPDTYPE") = UPDTYPE;
+            row(L"SETTINGID") = SETTINGID;
+            row(L"SETTINGNAME") = SETTINGNAME;
+            row(L"SETTINGVALUE") = SETTINGVALUE;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"HISTID") = HISTID;
-            t(L"SYMBOL") = SYMBOL;
-            t(L"DATE") = DATE;
-            t(L"VALUE") = VALUE;
-            t(L"UPDTYPE") = UPDTYPE;
+            t(L"SETTINGID") = SETTINGID;
+            t(L"SETTINGNAME") = SETTINGNAME;
+            t(L"SETTINGVALUE") = SETTINGVALUE;
         }
 
         /** Save the record instance in memory to the database. */
@@ -329,7 +285,7 @@ struct DB_Table_STOCKHISTORY : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save STOCKHISTORY");
+                wxLogError("can not save SETTING_V1");
                 return false;
             }
 
@@ -341,7 +297,7 @@ struct DB_Table_STOCKHISTORY : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove STOCKHISTORY");
+                wxLogError("can not remove SETTING_V1");
                 return false;
             }
             
@@ -356,17 +312,17 @@ struct DB_Table_STOCKHISTORY : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 5
+        NUM_COLUMNS = 3
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "STOCKHISTORY"; }
+    wxString name() const { return "SETTING_V1"; }
 
-    DB_Table_STOCKHISTORY() : fake_(new Data())
+    DB_Table_SETTING_V1() : fake_(new Data())
     {
-        query_ = "SELECT HISTID, SYMBOL, DATE, VALUE, UPDTYPE FROM STOCKHISTORY ";
+        query_ = "SELECT SETTINGID, SETTINGNAME, SETTINGVALUE FROM SETTING_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -396,23 +352,21 @@ struct DB_Table_STOCKHISTORY : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO STOCKHISTORY(SYMBOL, DATE, VALUE, UPDTYPE) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO SETTING_V1(SETTINGNAME, SETTINGVALUE) VALUES(?, ?)";
         }
         else
         {
-            sql = "UPDATE STOCKHISTORY SET SYMBOL = ?, DATE = ?, VALUE = ?, UPDTYPE = ? WHERE HISTID = ?";
+            sql = "UPDATE SETTING_V1 SET SETTINGNAME = ?, SETTINGVALUE = ? WHERE SETTINGID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->SYMBOL);
-            stmt.Bind(2, entity->DATE);
-            stmt.Bind(3, entity->VALUE);
-            stmt.Bind(4, entity->UPDTYPE);
+            stmt.Bind(1, entity->SETTINGNAME);
+            stmt.Bind(2, entity->SETTINGVALUE);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->HISTID);
+                stmt.Bind(3, entity->SETTINGID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -429,7 +383,7 @@ struct DB_Table_STOCKHISTORY : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCKHISTORY: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("SETTING_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -447,7 +401,7 @@ struct DB_Table_STOCKHISTORY : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM STOCKHISTORY WHERE HISTID = ?";
+            wxString sql = "DELETE FROM SETTING_V1 WHERE SETTINGID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -472,7 +426,7 @@ struct DB_Table_STOCKHISTORY : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCKHISTORY: Exception %s", e.GetMessage().c_str());
+            wxLogError("SETTING_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

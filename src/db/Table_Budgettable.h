@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_SHAREINFO : public DB_Table
+struct DB_Table_BUDGETTABLE : public DB_Table
 {
     struct Data;
-    typedef DB_Table_SHAREINFO Self;
+    typedef DB_Table_BUDGETTABLE Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_SHAREINFO : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_SHAREINFO() 
+    ~DB_Table_BUDGETTABLE() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_SHAREINFO : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE SHAREINFO (SHAREINFOID integer NOT NULL primary key, CHECKINGACCOUNTID integer NOT NULL, SHARENUMBER numeric, SHAREPRICE numeric, SHARECOMMISSION numeric, SHARELOT TEXT)");
+                db->ExecuteUpdate("CREATE TABLE BUDGETTABLE(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, SUBCATEGID integer, PERIOD TEXT NOT NULL /* None, Weekly, Bi-Weekly, Monthly, Monthly, Bi-Monthly, Quarterly, Half-Yearly, Yearly, Daily*/, AMOUNT numeric NOT NULL)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("SHAREINFO: Exception %s", e.GetMessage().c_str());
+                wxLogError("BUDGETTABLE: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_SHAREINFO : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_SHAREINFO ON SHAREINFO (CHECKINGACCOUNTID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETTABLE_BUDGETYEARID ON BUDGETTABLE(BUDGETYEARID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SHAREINFO: Exception %s", e.GetMessage().c_str());
+            wxLogError("BUDGETTABLE: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,51 +111,51 @@ struct DB_Table_SHAREINFO : public DB_Table
         db->Commit();
     }
     
-    struct SHAREINFOID : public DB_Column<int>
+    struct BUDGETENTRYID : public DB_Column<int>
     { 
-        static wxString name() { return "SHAREINFOID"; } 
-        explicit SHAREINFOID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "BUDGETENTRYID"; } 
+        explicit BUDGETENTRYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct CHECKINGACCOUNTID : public DB_Column<int>
+    struct BUDGETYEARID : public DB_Column<int>
     { 
-        static wxString name() { return "CHECKINGACCOUNTID"; } 
-        explicit CHECKINGACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "BUDGETYEARID"; } 
+        explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SHARENUMBER : public DB_Column<double>
+    struct CATEGID : public DB_Column<int>
     { 
-        static wxString name() { return "SHARENUMBER"; } 
-        explicit SHARENUMBER(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        static wxString name() { return "CATEGID"; } 
+        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SHAREPRICE : public DB_Column<double>
+    struct SUBCATEGID : public DB_Column<int>
     { 
-        static wxString name() { return "SHAREPRICE"; } 
-        explicit SHAREPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        static wxString name() { return "SUBCATEGID"; } 
+        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SHARECOMMISSION : public DB_Column<double>
+    struct PERIOD : public DB_Column<wxString>
     { 
-        static wxString name() { return "SHARECOMMISSION"; } 
-        explicit SHARECOMMISSION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        static wxString name() { return "PERIOD"; } 
+        explicit PERIOD(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct SHARELOT : public DB_Column<wxString>
+    struct AMOUNT : public DB_Column<double>
     { 
-        static wxString name() { return "SHARELOT"; } 
-        explicit SHARELOT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "AMOUNT"; } 
+        explicit AMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
-    typedef SHAREINFOID PRIMARY;
+    typedef BUDGETENTRYID PRIMARY;
     enum COLUMN
     {
-        COL_SHAREINFOID = 0
-        , COL_CHECKINGACCOUNTID = 1
-        , COL_SHARENUMBER = 2
-        , COL_SHAREPRICE = 3
-        , COL_SHARECOMMISSION = 4
-        , COL_SHARELOT = 5
+        COL_BUDGETENTRYID = 0
+        , COL_BUDGETYEARID = 1
+        , COL_CATEGID = 2
+        , COL_SUBCATEGID = 3
+        , COL_PERIOD = 4
+        , COL_AMOUNT = 5
     };
 
     /** Returns the column name as a string*/
@@ -163,12 +163,12 @@ struct DB_Table_SHAREINFO : public DB_Table
     {
         switch(col)
         {
-            case COL_SHAREINFOID: return "SHAREINFOID";
-            case COL_CHECKINGACCOUNTID: return "CHECKINGACCOUNTID";
-            case COL_SHARENUMBER: return "SHARENUMBER";
-            case COL_SHAREPRICE: return "SHAREPRICE";
-            case COL_SHARECOMMISSION: return "SHARECOMMISSION";
-            case COL_SHARELOT: return "SHARELOT";
+            case COL_BUDGETENTRYID: return "BUDGETENTRYID";
+            case COL_BUDGETYEARID: return "BUDGETYEARID";
+            case COL_CATEGID: return "CATEGID";
+            case COL_SUBCATEGID: return "SUBCATEGID";
+            case COL_PERIOD: return "PERIOD";
+            case COL_AMOUNT: return "AMOUNT";
             default: break;
         }
         
@@ -178,12 +178,12 @@ struct DB_Table_SHAREINFO : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("SHAREINFOID" == name) return COL_SHAREINFOID;
-        else if ("CHECKINGACCOUNTID" == name) return COL_CHECKINGACCOUNTID;
-        else if ("SHARENUMBER" == name) return COL_SHARENUMBER;
-        else if ("SHAREPRICE" == name) return COL_SHAREPRICE;
-        else if ("SHARECOMMISSION" == name) return COL_SHARECOMMISSION;
-        else if ("SHARELOT" == name) return COL_SHARELOT;
+        if ("BUDGETENTRYID" == name) return COL_BUDGETENTRYID;
+        else if ("BUDGETYEARID" == name) return COL_BUDGETYEARID;
+        else if ("CATEGID" == name) return COL_CATEGID;
+        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
+        else if ("PERIOD" == name) return COL_PERIOD;
+        else if ("AMOUNT" == name) return COL_AMOUNT;
 
         return COLUMN(-1);
     }
@@ -191,25 +191,25 @@ struct DB_Table_SHAREINFO : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_SHAREINFO;
+        friend struct DB_Table_BUDGETTABLE;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SHAREINFOID;//  primary key
-        int CHECKINGACCOUNTID;
-        double SHARENUMBER;
-        double SHAREPRICE;
-        double SHARECOMMISSION;
-        wxString SHARELOT;
+        int BUDGETENTRYID;//  primary key
+        int BUDGETYEARID;
+        int CATEGID;
+        int SUBCATEGID;
+        wxString PERIOD;
+        double AMOUNT;
 
         int id() const
         {
-            return SHAREINFOID;
+            return BUDGETENTRYID;
         }
 
         void id(int id)
         {
-            SHAREINFOID = id;
+            BUDGETENTRYID = id;
         }
 
         bool operator < (const Data& r) const
@@ -226,35 +226,35 @@ struct DB_Table_SHAREINFO : public DB_Table
         {
             table_ = table;
         
-            SHAREINFOID = -1;
-            CHECKINGACCOUNTID = -1;
-            SHARENUMBER = 0.0;
-            SHAREPRICE = 0.0;
-            SHARECOMMISSION = 0.0;
+            BUDGETENTRYID = -1;
+            BUDGETYEARID = -1;
+            CATEGID = -1;
+            SUBCATEGID = -1;
+            AMOUNT = 0.0;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            SHAREINFOID = q.GetInt(0); // SHAREINFOID
-            CHECKINGACCOUNTID = q.GetInt(1); // CHECKINGACCOUNTID
-            SHARENUMBER = q.GetDouble(2); // SHARENUMBER
-            SHAREPRICE = q.GetDouble(3); // SHAREPRICE
-            SHARECOMMISSION = q.GetDouble(4); // SHARECOMMISSION
-            SHARELOT = q.GetString(5); // SHARELOT
+            BUDGETENTRYID = q.GetInt(0); // BUDGETENTRYID
+            BUDGETYEARID = q.GetInt(1); // BUDGETYEARID
+            CATEGID = q.GetInt(2); // CATEGID
+            SUBCATEGID = q.GetInt(3); // SUBCATEGID
+            PERIOD = q.GetString(4); // PERIOD
+            AMOUNT = q.GetDouble(5); // AMOUNT
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            SHAREINFOID = other.SHAREINFOID;
-            CHECKINGACCOUNTID = other.CHECKINGACCOUNTID;
-            SHARENUMBER = other.SHARENUMBER;
-            SHAREPRICE = other.SHAREPRICE;
-            SHARECOMMISSION = other.SHARECOMMISSION;
-            SHARELOT = other.SHARELOT;
+            BUDGETENTRYID = other.BUDGETENTRYID;
+            BUDGETYEARID = other.BUDGETYEARID;
+            CATEGID = other.CATEGID;
+            SUBCATEGID = other.SUBCATEGID;
+            PERIOD = other.PERIOD;
+            AMOUNT = other.AMOUNT;
             return *this;
         }
 
@@ -264,34 +264,34 @@ struct DB_Table_SHAREINFO : public DB_Table
             return false;
         }
 
-        bool match(const Self::SHAREINFOID &in) const
+        bool match(const Self::BUDGETENTRYID &in) const
         {
-            return this->SHAREINFOID == in.v_;
+            return this->BUDGETENTRYID == in.v_;
         }
 
-        bool match(const Self::CHECKINGACCOUNTID &in) const
+        bool match(const Self::BUDGETYEARID &in) const
         {
-            return this->CHECKINGACCOUNTID == in.v_;
+            return this->BUDGETYEARID == in.v_;
         }
 
-        bool match(const Self::SHARENUMBER &in) const
+        bool match(const Self::CATEGID &in) const
         {
-            return this->SHARENUMBER == in.v_;
+            return this->CATEGID == in.v_;
         }
 
-        bool match(const Self::SHAREPRICE &in) const
+        bool match(const Self::SUBCATEGID &in) const
         {
-            return this->SHAREPRICE == in.v_;
+            return this->SUBCATEGID == in.v_;
         }
 
-        bool match(const Self::SHARECOMMISSION &in) const
+        bool match(const Self::PERIOD &in) const
         {
-            return this->SHARECOMMISSION == in.v_;
+            return this->PERIOD.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::SHARELOT &in) const
+        bool match(const Self::AMOUNT &in) const
         {
-            return this->SHARELOT.CmpNoCase(in.v_) == 0;
+            return this->AMOUNT == in.v_;
         }
 
         // Return the data record as a json string
@@ -310,40 +310,40 @@ struct DB_Table_SHAREINFO : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("SHAREINFOID");
-            json_writer.Int(this->SHAREINFOID);
-            json_writer.Key("CHECKINGACCOUNTID");
-            json_writer.Int(this->CHECKINGACCOUNTID);
-            json_writer.Key("SHARENUMBER");
-            json_writer.Double(this->SHARENUMBER);
-            json_writer.Key("SHAREPRICE");
-            json_writer.Double(this->SHAREPRICE);
-            json_writer.Key("SHARECOMMISSION");
-            json_writer.Double(this->SHARECOMMISSION);
-            json_writer.Key("SHARELOT");
-            json_writer.String(this->SHARELOT.c_str());
+            json_writer.Key("BUDGETENTRYID");
+            json_writer.Int(this->BUDGETENTRYID);
+            json_writer.Key("BUDGETYEARID");
+            json_writer.Int(this->BUDGETYEARID);
+            json_writer.Key("CATEGID");
+            json_writer.Int(this->CATEGID);
+            json_writer.Key("SUBCATEGID");
+            json_writer.Int(this->SUBCATEGID);
+            json_writer.Key("PERIOD");
+            json_writer.String(this->PERIOD.c_str());
+            json_writer.Key("AMOUNT");
+            json_writer.Double(this->AMOUNT);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"SHAREINFOID") = SHAREINFOID;
-            row(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
-            row(L"SHARENUMBER") = SHARENUMBER;
-            row(L"SHAREPRICE") = SHAREPRICE;
-            row(L"SHARECOMMISSION") = SHARECOMMISSION;
-            row(L"SHARELOT") = SHARELOT;
+            row(L"BUDGETENTRYID") = BUDGETENTRYID;
+            row(L"BUDGETYEARID") = BUDGETYEARID;
+            row(L"CATEGID") = CATEGID;
+            row(L"SUBCATEGID") = SUBCATEGID;
+            row(L"PERIOD") = PERIOD;
+            row(L"AMOUNT") = AMOUNT;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"SHAREINFOID") = SHAREINFOID;
-            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
-            t(L"SHARENUMBER") = SHARENUMBER;
-            t(L"SHAREPRICE") = SHAREPRICE;
-            t(L"SHARECOMMISSION") = SHARECOMMISSION;
-            t(L"SHARELOT") = SHARELOT;
+            t(L"BUDGETENTRYID") = BUDGETENTRYID;
+            t(L"BUDGETYEARID") = BUDGETYEARID;
+            t(L"CATEGID") = CATEGID;
+            t(L"SUBCATEGID") = SUBCATEGID;
+            t(L"PERIOD") = PERIOD;
+            t(L"AMOUNT") = AMOUNT;
         }
 
         /** Save the record instance in memory to the database. */
@@ -352,7 +352,7 @@ struct DB_Table_SHAREINFO : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save SHAREINFO");
+                wxLogError("can not save BUDGETTABLE");
                 return false;
             }
 
@@ -364,7 +364,7 @@ struct DB_Table_SHAREINFO : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove SHAREINFO");
+                wxLogError("can not remove BUDGETTABLE");
                 return false;
             }
             
@@ -385,11 +385,11 @@ struct DB_Table_SHAREINFO : public DB_Table
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "SHAREINFO"; }
+    wxString name() const { return "BUDGETTABLE"; }
 
-    DB_Table_SHAREINFO() : fake_(new Data())
+    DB_Table_BUDGETTABLE() : fake_(new Data())
     {
-        query_ = "SELECT SHAREINFOID, CHECKINGACCOUNTID, SHARENUMBER, SHAREPRICE, SHARECOMMISSION, SHARELOT FROM SHAREINFO ";
+        query_ = "SELECT BUDGETENTRYID, BUDGETYEARID, CATEGID, SUBCATEGID, PERIOD, AMOUNT FROM BUDGETTABLE ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -419,24 +419,24 @@ struct DB_Table_SHAREINFO : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO SHAREINFO(CHECKINGACCOUNTID, SHARENUMBER, SHAREPRICE, SHARECOMMISSION, SHARELOT) VALUES(?, ?, ?, ?, ?)";
+            sql = "INSERT INTO BUDGETTABLE(BUDGETYEARID, CATEGID, SUBCATEGID, PERIOD, AMOUNT) VALUES(?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE SHAREINFO SET CHECKINGACCOUNTID = ?, SHARENUMBER = ?, SHAREPRICE = ?, SHARECOMMISSION = ?, SHARELOT = ? WHERE SHAREINFOID = ?";
+            sql = "UPDATE BUDGETTABLE SET BUDGETYEARID = ?, CATEGID = ?, SUBCATEGID = ?, PERIOD = ?, AMOUNT = ? WHERE BUDGETENTRYID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->CHECKINGACCOUNTID);
-            stmt.Bind(2, entity->SHARENUMBER);
-            stmt.Bind(3, entity->SHAREPRICE);
-            stmt.Bind(4, entity->SHARECOMMISSION);
-            stmt.Bind(5, entity->SHARELOT);
+            stmt.Bind(1, entity->BUDGETYEARID);
+            stmt.Bind(2, entity->CATEGID);
+            stmt.Bind(3, entity->SUBCATEGID);
+            stmt.Bind(4, entity->PERIOD);
+            stmt.Bind(5, entity->AMOUNT);
             if (entity->id() > 0)
-                stmt.Bind(6, entity->SHAREINFOID);
+                stmt.Bind(6, entity->BUDGETENTRYID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -453,7 +453,7 @@ struct DB_Table_SHAREINFO : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SHAREINFO: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("BUDGETTABLE: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -471,7 +471,7 @@ struct DB_Table_SHAREINFO : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM SHAREINFO WHERE SHAREINFOID = ?";
+            wxString sql = "DELETE FROM BUDGETTABLE WHERE BUDGETENTRYID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -496,7 +496,7 @@ struct DB_Table_SHAREINFO : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("SHAREINFO: Exception %s", e.GetMessage().c_str());
+            wxLogError("BUDGETTABLE: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

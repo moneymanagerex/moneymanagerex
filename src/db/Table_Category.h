@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_CURRENCYHISTORY : public DB_Table
+struct DB_Table_CATEGORY : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CURRENCYHISTORY Self;
+    typedef DB_Table_CATEGORY Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CURRENCYHISTORY() 
+    ~DB_Table_CATEGORY() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CURRENCYHISTORY(CURRHISTID INTEGER PRIMARY KEY, CURRENCYID INTEGER NOT NULL, CURRDATE TEXT NOT NULL, CURRVALUE NUMERIC NOT NULL, CURRUPDTYPE INTEGER, UNIQUE(CURRENCYID, CURRDATE))");
+                db->ExecuteUpdate("CREATE TABLE CATEGORY(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("CURRENCYHISTORY: Exception %s", e.GetMessage().c_str());
+                wxLogError("CATEGORY: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CURRENCYHISTORY_CURRENCYID_CURRDATE ON CURRENCYHISTORY(CURRENCYID, CURRDATE)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CATEGORY_CATEGNAME ON CATEGORY(CATEGNAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CURRENCYHISTORY: Exception %s", e.GetMessage().c_str());
+            wxLogError("CATEGORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -108,47 +108,42 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('1', '%s')", wxTRANSLATE("Bills")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('2', '%s')", wxTRANSLATE("Food")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('3', '%s')", wxTRANSLATE("Leisure")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('4', '%s')", wxTRANSLATE("Automobile")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('5', '%s')", wxTRANSLATE("Education")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('6', '%s')", wxTRANSLATE("Homeneeds")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('7', '%s')", wxTRANSLATE("Healthcare")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('8', '%s')", wxTRANSLATE("Insurance")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('9', '%s')", wxTRANSLATE("Vacation")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('10', '%s')", wxTRANSLATE("Taxes")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('11', '%s')", wxTRANSLATE("Miscellaneous")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('12', '%s')", wxTRANSLATE("Gifts")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('13', '%s')", wxTRANSLATE("Income")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('14', '%s')", wxTRANSLATE("Other Income")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('15', '%s')", wxTRANSLATE("Other Expenses")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('16', '%s')", wxTRANSLATE("Transfer")));
         db->Commit();
     }
     
-    struct CURRHISTID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int>
     { 
-        static wxString name() { return "CURRHISTID"; } 
-        explicit CURRHISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CATEGID"; } 
+        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct CURRENCYID : public DB_Column<int>
+    struct CATEGNAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "CURRENCYID"; } 
-        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CATEGNAME"; } 
+        explicit CATEGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CURRDATE : public DB_Column<wxString>
-    { 
-        static wxString name() { return "CURRDATE"; } 
-        explicit CURRDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    
-    struct CURRVALUE : public DB_Column<double>
-    { 
-        static wxString name() { return "CURRVALUE"; } 
-        explicit CURRVALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
-    };
-    
-    struct CURRUPDTYPE : public DB_Column<int>
-    { 
-        static wxString name() { return "CURRUPDTYPE"; } 
-        explicit CURRUPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    typedef CURRHISTID PRIMARY;
+    typedef CATEGID PRIMARY;
     enum COLUMN
     {
-        COL_CURRHISTID = 0
-        , COL_CURRENCYID = 1
-        , COL_CURRDATE = 2
-        , COL_CURRVALUE = 3
-        , COL_CURRUPDTYPE = 4
+        COL_CATEGID = 0
+        , COL_CATEGNAME = 1
     };
 
     /** Returns the column name as a string*/
@@ -156,11 +151,8 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
     {
         switch(col)
         {
-            case COL_CURRHISTID: return "CURRHISTID";
-            case COL_CURRENCYID: return "CURRENCYID";
-            case COL_CURRDATE: return "CURRDATE";
-            case COL_CURRVALUE: return "CURRVALUE";
-            case COL_CURRUPDTYPE: return "CURRUPDTYPE";
+            case COL_CATEGID: return "CATEGID";
+            case COL_CATEGNAME: return "CATEGNAME";
             default: break;
         }
         
@@ -170,11 +162,8 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("CURRHISTID" == name) return COL_CURRHISTID;
-        else if ("CURRENCYID" == name) return COL_CURRENCYID;
-        else if ("CURRDATE" == name) return COL_CURRDATE;
-        else if ("CURRVALUE" == name) return COL_CURRVALUE;
-        else if ("CURRUPDTYPE" == name) return COL_CURRUPDTYPE;
+        if ("CATEGID" == name) return COL_CATEGID;
+        else if ("CATEGNAME" == name) return COL_CATEGNAME;
 
         return COLUMN(-1);
     }
@@ -182,24 +171,21 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CURRENCYHISTORY;
+        friend struct DB_Table_CATEGORY;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int CURRHISTID;//  primary key
-        int CURRENCYID;
-        wxString CURRDATE;
-        double CURRVALUE;
-        int CURRUPDTYPE;
+        int CATEGID;//  primary key
+        wxString CATEGNAME;
 
         int id() const
         {
-            return CURRHISTID;
+            return CATEGID;
         }
 
         void id(int id)
         {
-            CURRHISTID = id;
+            CATEGID = id;
         }
 
         bool operator < (const Data& r) const
@@ -216,32 +202,23 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
         {
             table_ = table;
         
-            CURRHISTID = -1;
-            CURRENCYID = -1;
-            CURRVALUE = 0.0;
-            CURRUPDTYPE = -1;
+            CATEGID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            CURRHISTID = q.GetInt(0); // CURRHISTID
-            CURRENCYID = q.GetInt(1); // CURRENCYID
-            CURRDATE = q.GetString(2); // CURRDATE
-            CURRVALUE = q.GetDouble(3); // CURRVALUE
-            CURRUPDTYPE = q.GetInt(4); // CURRUPDTYPE
+            CATEGID = q.GetInt(0); // CATEGID
+            CATEGNAME = q.GetString(1); // CATEGNAME
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            CURRHISTID = other.CURRHISTID;
-            CURRENCYID = other.CURRENCYID;
-            CURRDATE = other.CURRDATE;
-            CURRVALUE = other.CURRVALUE;
-            CURRUPDTYPE = other.CURRUPDTYPE;
+            CATEGID = other.CATEGID;
+            CATEGNAME = other.CATEGNAME;
             return *this;
         }
 
@@ -251,29 +228,14 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
             return false;
         }
 
-        bool match(const Self::CURRHISTID &in) const
+        bool match(const Self::CATEGID &in) const
         {
-            return this->CURRHISTID == in.v_;
+            return this->CATEGID == in.v_;
         }
 
-        bool match(const Self::CURRENCYID &in) const
+        bool match(const Self::CATEGNAME &in) const
         {
-            return this->CURRENCYID == in.v_;
-        }
-
-        bool match(const Self::CURRDATE &in) const
-        {
-            return this->CURRDATE.CmpNoCase(in.v_) == 0;
-        }
-
-        bool match(const Self::CURRVALUE &in) const
-        {
-            return this->CURRVALUE == in.v_;
-        }
-
-        bool match(const Self::CURRUPDTYPE &in) const
-        {
-            return this->CURRUPDTYPE == in.v_;
+            return this->CATEGNAME.CmpNoCase(in.v_) == 0;
         }
 
         // Return the data record as a json string
@@ -292,36 +254,24 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("CURRHISTID");
-            json_writer.Int(this->CURRHISTID);
-            json_writer.Key("CURRENCYID");
-            json_writer.Int(this->CURRENCYID);
-            json_writer.Key("CURRDATE");
-            json_writer.String(this->CURRDATE.c_str());
-            json_writer.Key("CURRVALUE");
-            json_writer.Double(this->CURRVALUE);
-            json_writer.Key("CURRUPDTYPE");
-            json_writer.Int(this->CURRUPDTYPE);
+            json_writer.Key("CATEGID");
+            json_writer.Int(this->CATEGID);
+            json_writer.Key("CATEGNAME");
+            json_writer.String(this->CATEGNAME.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"CURRHISTID") = CURRHISTID;
-            row(L"CURRENCYID") = CURRENCYID;
-            row(L"CURRDATE") = CURRDATE;
-            row(L"CURRVALUE") = CURRVALUE;
-            row(L"CURRUPDTYPE") = CURRUPDTYPE;
+            row(L"CATEGID") = CATEGID;
+            row(L"CATEGNAME") = CATEGNAME;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"CURRHISTID") = CURRHISTID;
-            t(L"CURRENCYID") = CURRENCYID;
-            t(L"CURRDATE") = CURRDATE;
-            t(L"CURRVALUE") = CURRVALUE;
-            t(L"CURRUPDTYPE") = CURRUPDTYPE;
+            t(L"CATEGID") = CATEGID;
+            t(L"CATEGNAME") = CATEGNAME;
         }
 
         /** Save the record instance in memory to the database. */
@@ -330,7 +280,7 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save CURRENCYHISTORY");
+                wxLogError("can not save CATEGORY");
                 return false;
             }
 
@@ -342,7 +292,7 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove CURRENCYHISTORY");
+                wxLogError("can not remove CATEGORY");
                 return false;
             }
             
@@ -357,17 +307,17 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 5
+        NUM_COLUMNS = 2
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "CURRENCYHISTORY"; }
+    wxString name() const { return "CATEGORY"; }
 
-    DB_Table_CURRENCYHISTORY() : fake_(new Data())
+    DB_Table_CATEGORY() : fake_(new Data())
     {
-        query_ = "SELECT CURRHISTID, CURRENCYID, CURRDATE, CURRVALUE, CURRUPDTYPE FROM CURRENCYHISTORY ";
+        query_ = "SELECT CATEGID, CATEGNAME FROM CATEGORY ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -397,23 +347,20 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CURRENCYHISTORY(CURRENCYID, CURRDATE, CURRVALUE, CURRUPDTYPE) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO CATEGORY(CATEGNAME) VALUES(?)";
         }
         else
         {
-            sql = "UPDATE CURRENCYHISTORY SET CURRENCYID = ?, CURRDATE = ?, CURRVALUE = ?, CURRUPDTYPE = ? WHERE CURRHISTID = ?";
+            sql = "UPDATE CATEGORY SET CATEGNAME = ? WHERE CATEGID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->CURRENCYID);
-            stmt.Bind(2, entity->CURRDATE);
-            stmt.Bind(3, entity->CURRVALUE);
-            stmt.Bind(4, entity->CURRUPDTYPE);
+            stmt.Bind(1, entity->CATEGNAME);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->CURRHISTID);
+                stmt.Bind(2, entity->CATEGID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -430,7 +377,7 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CURRENCYHISTORY: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("CATEGORY: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -448,7 +395,7 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CURRENCYHISTORY WHERE CURRHISTID = ?";
+            wxString sql = "DELETE FROM CATEGORY WHERE CATEGID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -473,7 +420,7 @@ struct DB_Table_CURRENCYHISTORY : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CURRENCYHISTORY: Exception %s", e.GetMessage().c_str());
+            wxLogError("CATEGORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

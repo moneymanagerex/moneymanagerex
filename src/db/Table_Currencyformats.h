@@ -11,14 +11,14 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-15 15:51:49.887472.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma execution_character_set("UTF-8")
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
 struct DB_Table_CURRENCYFORMATS : public DB_Table
 {

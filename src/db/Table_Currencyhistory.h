@@ -11,18 +11,18 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_CUSTOMFIELDDATA : public DB_Table
+struct DB_Table_CURRENCYHISTORY : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CUSTOMFIELDDATA Self;
+    typedef DB_Table_CURRENCYHISTORY Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
@@ -54,7 +54,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CUSTOMFIELDDATA() 
+    ~DB_Table_CURRENCYHISTORY() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +75,12 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELDDATA (FIELDATADID INTEGER NOT NULL PRIMARY KEY, FIELDID INTEGER NOT NULL, REFID INTEGER NOT NULL, CONTENT TEXT, UNIQUE(FIELDID, REFID))");
+                db->ExecuteUpdate("CREATE TABLE CURRENCYHISTORY(CURRHISTID INTEGER PRIMARY KEY, CURRENCYID INTEGER NOT NULL, CURRDATE TEXT NOT NULL, CURRVALUE NUMERIC NOT NULL, CURRUPDTYPE INTEGER, UNIQUE(CURRENCYID, CURRDATE))");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("CUSTOMFIELDDATA: Exception %s", e.GetMessage().c_str());
+                wxLogError("CURRENCYHISTORY: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +94,11 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELDDATA_REF ON CUSTOMFIELDDATA (FIELDID, REFID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CURRENCYHISTORY_CURRENCYID_CURRDATE ON CURRENCYHISTORY(CURRENCYID, CURRDATE)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELDDATA: Exception %s", e.GetMessage().c_str());
+            wxLogError("CURRENCYHISTORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,37 +111,44 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         db->Commit();
     }
     
-    struct FIELDATADID : public DB_Column<int>
+    struct CURRHISTID : public DB_Column<int>
     { 
-        static wxString name() { return "FIELDATADID"; } 
-        explicit FIELDATADID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CURRHISTID"; } 
+        explicit CURRHISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct FIELDID : public DB_Column<int>
+    struct CURRENCYID : public DB_Column<int>
     { 
-        static wxString name() { return "FIELDID"; } 
-        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CURRENCYID"; } 
+        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct REFID : public DB_Column<int>
+    struct CURRDATE : public DB_Column<wxString>
     { 
-        static wxString name() { return "REFID"; } 
-        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CURRDATE"; } 
+        explicit CURRDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CONTENT : public DB_Column<wxString>
+    struct CURRVALUE : public DB_Column<double>
     { 
-        static wxString name() { return "CONTENT"; } 
-        explicit CONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "CURRVALUE"; } 
+        explicit CURRVALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
-    typedef FIELDATADID PRIMARY;
+    struct CURRUPDTYPE : public DB_Column<int>
+    { 
+        static wxString name() { return "CURRUPDTYPE"; } 
+        explicit CURRUPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    
+    typedef CURRHISTID PRIMARY;
     enum COLUMN
     {
-        COL_FIELDATADID = 0
-        , COL_FIELDID = 1
-        , COL_REFID = 2
-        , COL_CONTENT = 3
+        COL_CURRHISTID = 0
+        , COL_CURRENCYID = 1
+        , COL_CURRDATE = 2
+        , COL_CURRVALUE = 3
+        , COL_CURRUPDTYPE = 4
     };
 
     /** Returns the column name as a string*/
@@ -149,10 +156,11 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
     {
         switch(col)
         {
-            case COL_FIELDATADID: return "FIELDATADID";
-            case COL_FIELDID: return "FIELDID";
-            case COL_REFID: return "REFID";
-            case COL_CONTENT: return "CONTENT";
+            case COL_CURRHISTID: return "CURRHISTID";
+            case COL_CURRENCYID: return "CURRENCYID";
+            case COL_CURRDATE: return "CURRDATE";
+            case COL_CURRVALUE: return "CURRVALUE";
+            case COL_CURRUPDTYPE: return "CURRUPDTYPE";
             default: break;
         }
         
@@ -162,10 +170,11 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("FIELDATADID" == name) return COL_FIELDATADID;
-        else if ("FIELDID" == name) return COL_FIELDID;
-        else if ("REFID" == name) return COL_REFID;
-        else if ("CONTENT" == name) return COL_CONTENT;
+        if ("CURRHISTID" == name) return COL_CURRHISTID;
+        else if ("CURRENCYID" == name) return COL_CURRENCYID;
+        else if ("CURRDATE" == name) return COL_CURRDATE;
+        else if ("CURRVALUE" == name) return COL_CURRVALUE;
+        else if ("CURRUPDTYPE" == name) return COL_CURRUPDTYPE;
 
         return COLUMN(-1);
     }
@@ -173,23 +182,24 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CUSTOMFIELDDATA;
+        friend struct DB_Table_CURRENCYHISTORY;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int FIELDATADID;//  primary key
-        int FIELDID;
-        int REFID;
-        wxString CONTENT;
+        int CURRHISTID;//  primary key
+        int CURRENCYID;
+        wxString CURRDATE;
+        double CURRVALUE;
+        int CURRUPDTYPE;
 
         int id() const
         {
-            return FIELDATADID;
+            return CURRHISTID;
         }
 
         void id(int id)
         {
-            FIELDATADID = id;
+            CURRHISTID = id;
         }
 
         bool operator < (const Data& r) const
@@ -206,29 +216,32 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         {
             table_ = table;
         
-            FIELDATADID = -1;
-            FIELDID = -1;
-            REFID = -1;
+            CURRHISTID = -1;
+            CURRENCYID = -1;
+            CURRVALUE = 0.0;
+            CURRUPDTYPE = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            FIELDATADID = q.GetInt(0); // FIELDATADID
-            FIELDID = q.GetInt(1); // FIELDID
-            REFID = q.GetInt(2); // REFID
-            CONTENT = q.GetString(3); // CONTENT
+            CURRHISTID = q.GetInt(0); // CURRHISTID
+            CURRENCYID = q.GetInt(1); // CURRENCYID
+            CURRDATE = q.GetString(2); // CURRDATE
+            CURRVALUE = q.GetDouble(3); // CURRVALUE
+            CURRUPDTYPE = q.GetInt(4); // CURRUPDTYPE
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            FIELDATADID = other.FIELDATADID;
-            FIELDID = other.FIELDID;
-            REFID = other.REFID;
-            CONTENT = other.CONTENT;
+            CURRHISTID = other.CURRHISTID;
+            CURRENCYID = other.CURRENCYID;
+            CURRDATE = other.CURRDATE;
+            CURRVALUE = other.CURRVALUE;
+            CURRUPDTYPE = other.CURRUPDTYPE;
             return *this;
         }
 
@@ -238,24 +251,29 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
             return false;
         }
 
-        bool match(const Self::FIELDATADID &in) const
+        bool match(const Self::CURRHISTID &in) const
         {
-            return this->FIELDATADID == in.v_;
+            return this->CURRHISTID == in.v_;
         }
 
-        bool match(const Self::FIELDID &in) const
+        bool match(const Self::CURRENCYID &in) const
         {
-            return this->FIELDID == in.v_;
+            return this->CURRENCYID == in.v_;
         }
 
-        bool match(const Self::REFID &in) const
+        bool match(const Self::CURRDATE &in) const
         {
-            return this->REFID == in.v_;
+            return this->CURRDATE.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::CONTENT &in) const
+        bool match(const Self::CURRVALUE &in) const
         {
-            return this->CONTENT.CmpNoCase(in.v_) == 0;
+            return this->CURRVALUE == in.v_;
+        }
+
+        bool match(const Self::CURRUPDTYPE &in) const
+        {
+            return this->CURRUPDTYPE == in.v_;
         }
 
         // Return the data record as a json string
@@ -274,32 +292,36 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         // Add the field data as json key:value pairs
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("FIELDATADID");
-            json_writer.Int(this->FIELDATADID);
-            json_writer.Key("FIELDID");
-            json_writer.Int(this->FIELDID);
-            json_writer.Key("REFID");
-            json_writer.Int(this->REFID);
-            json_writer.Key("CONTENT");
-            json_writer.String(this->CONTENT.c_str());
+            json_writer.Key("CURRHISTID");
+            json_writer.Int(this->CURRHISTID);
+            json_writer.Key("CURRENCYID");
+            json_writer.Int(this->CURRENCYID);
+            json_writer.Key("CURRDATE");
+            json_writer.String(this->CURRDATE.c_str());
+            json_writer.Key("CURRVALUE");
+            json_writer.Double(this->CURRVALUE);
+            json_writer.Key("CURRUPDTYPE");
+            json_writer.Int(this->CURRUPDTYPE);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"FIELDATADID") = FIELDATADID;
-            row(L"FIELDID") = FIELDID;
-            row(L"REFID") = REFID;
-            row(L"CONTENT") = CONTENT;
+            row(L"CURRHISTID") = CURRHISTID;
+            row(L"CURRENCYID") = CURRENCYID;
+            row(L"CURRDATE") = CURRDATE;
+            row(L"CURRVALUE") = CURRVALUE;
+            row(L"CURRUPDTYPE") = CURRUPDTYPE;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"FIELDATADID") = FIELDATADID;
-            t(L"FIELDID") = FIELDID;
-            t(L"REFID") = REFID;
-            t(L"CONTENT") = CONTENT;
+            t(L"CURRHISTID") = CURRHISTID;
+            t(L"CURRENCYID") = CURRENCYID;
+            t(L"CURRDATE") = CURRDATE;
+            t(L"CURRVALUE") = CURRVALUE;
+            t(L"CURRUPDTYPE") = CURRUPDTYPE;
         }
 
         /** Save the record instance in memory to the database. */
@@ -308,7 +330,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save CUSTOMFIELDDATA");
+                wxLogError("can not save CURRENCYHISTORY");
                 return false;
             }
 
@@ -320,7 +342,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove CUSTOMFIELDDATA");
+                wxLogError("can not remove CURRENCYHISTORY");
                 return false;
             }
             
@@ -335,17 +357,17 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 4
+        NUM_COLUMNS = 5
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "CUSTOMFIELDDATA"; }
+    wxString name() const { return "CURRENCYHISTORY"; }
 
-    DB_Table_CUSTOMFIELDDATA() : fake_(new Data())
+    DB_Table_CURRENCYHISTORY() : fake_(new Data())
     {
-        query_ = "SELECT FIELDATADID, FIELDID, REFID, CONTENT FROM CUSTOMFIELDDATA ";
+        query_ = "SELECT CURRHISTID, CURRENCYID, CURRDATE, CURRVALUE, CURRUPDTYPE FROM CURRENCYHISTORY ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -375,22 +397,23 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CUSTOMFIELDDATA(FIELDID, REFID, CONTENT) VALUES(?, ?, ?)";
+            sql = "INSERT INTO CURRENCYHISTORY(CURRENCYID, CURRDATE, CURRVALUE, CURRUPDTYPE) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CUSTOMFIELDDATA SET FIELDID = ?, REFID = ?, CONTENT = ? WHERE FIELDATADID = ?";
+            sql = "UPDATE CURRENCYHISTORY SET CURRENCYID = ?, CURRDATE = ?, CURRVALUE = ?, CURRUPDTYPE = ? WHERE CURRHISTID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->FIELDID);
-            stmt.Bind(2, entity->REFID);
-            stmt.Bind(3, entity->CONTENT);
+            stmt.Bind(1, entity->CURRENCYID);
+            stmt.Bind(2, entity->CURRDATE);
+            stmt.Bind(3, entity->CURRVALUE);
+            stmt.Bind(4, entity->CURRUPDTYPE);
             if (entity->id() > 0)
-                stmt.Bind(4, entity->FIELDATADID);
+                stmt.Bind(5, entity->CURRHISTID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -407,7 +430,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELDDATA: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("CURRENCYHISTORY: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -425,7 +448,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CUSTOMFIELDDATA WHERE FIELDATADID = ?";
+            wxString sql = "DELETE FROM CURRENCYHISTORY WHERE CURRHISTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -450,7 +473,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELDDATA: Exception %s", e.GetMessage().c_str());
+            wxLogError("CURRENCYHISTORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

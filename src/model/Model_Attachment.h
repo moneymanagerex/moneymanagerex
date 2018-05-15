@@ -20,7 +20,7 @@
 #define MODEL_ATTACHMENT_H
 
 #include "Model.h"
-#include "db/DB_Table_Attachment.h"
+#include "Table_Attachment.h"
 
 class Model_Attachment : public Model<DB_Table_ATTACHMENT>
 {
