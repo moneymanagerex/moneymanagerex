@@ -1,16 +1,9 @@
-//=============================================================================
-/**
- *      Copyright (c) 2016 - 2018 Gabriele-V
- *
- *      @author [sqliteupgrade2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-15 20:01:00.325704.
- *          DO NOT EDIT!
+/** @file
+ * @brief     Compilation of SQL scripts to upgrade MMEX db version
+ * @warning   Auto generated with sqliteupgrade2cpp.py script. DO NOT EDIT!
+ * @copyright © 2016-2018 Gabriele-V
+ * @date      2018-05-16 01:30:26.593396
  */
-//=============================================================================
 
 #ifndef DB_UPGRADE_H_
 #define DB_UPGRADE_H_

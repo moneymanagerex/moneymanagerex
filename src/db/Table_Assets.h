@@ -1,20 +1,14 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for ASSETS SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
 #include "Table.h"
@@ -27,7 +21,7 @@ struct DB_Table_ASSETS : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -213,7 +207,7 @@ struct DB_Table_ASSETS : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ASSETID;//  primary key
+        int ASSETID; // primary key
         wxString STARTDATE;
         wxString ASSETNAME;
         double VALUE;
@@ -255,14 +249,14 @@ struct DB_Table_ASSETS : public DB_Table
         {
             table_ = table;
         
-            ASSETID = q.GetInt(0); // ASSETID
-            STARTDATE = q.GetString(1); // STARTDATE
-            ASSETNAME = q.GetString(2); // ASSETNAME
-            VALUE = q.GetDouble(3); // VALUE
-            VALUECHANGE = q.GetString(4); // VALUECHANGE
-            NOTES = q.GetString(5); // NOTES
-            VALUECHANGERATE = q.GetDouble(6); // VALUECHANGERATE
-            ASSETTYPE = q.GetString(7); // ASSETTYPE
+            ASSETID = q.GetInt(0);
+            STARTDATE = q.GetString(1);
+            ASSETNAME = q.GetString(2);
+            VALUE = q.GetDouble(3);
+            VALUECHANGE = q.GetString(4);
+            NOTES = q.GetString(5);
+            VALUECHANGERATE = q.GetDouble(6);
+            ASSETTYPE = q.GetString(7);
         }
 
         Data& operator=(const Data& other)
@@ -326,7 +320,7 @@ struct DB_Table_ASSETS : public DB_Table
             return this->ASSETTYPE.CmpNoCase(in.v_) == 0;
         }
 
-        // Return the data record as a json string
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -339,7 +333,7 @@ struct DB_Table_ASSETS : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("ASSETID");
@@ -424,7 +418,7 @@ struct DB_Table_ASSETS : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
+    /** Name of the table */
     wxString name() const { return "ASSETS"; }
 
     DB_Table_ASSETS() : fake_(new Data())
@@ -432,7 +426,7 @@ struct DB_Table_ASSETS : public DB_Table
         query_ = "SELECT ASSETID, STARTDATE, ASSETNAME, VALUE, VALUECHANGE, NOTES, VALUECHANGERATE, ASSETTYPE FROM ASSETS ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -440,7 +434,7 @@ struct DB_Table_ASSETS : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();

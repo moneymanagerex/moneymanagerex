@@ -1,20 +1,14 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-15 22:29:44.540938.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for CHECKINGACCOUNT SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
 #include "Table.h"
@@ -27,7 +21,7 @@ struct DB_Table_CHECKINGACCOUNT : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -268,7 +262,7 @@ struct DB_Table_CHECKINGACCOUNT : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int TRANSID;//  primary key
+        int TRANSID; // primary key
         int ACCOUNTID;
         int TOACCOUNTID;
         int PAYEEID;
@@ -322,20 +316,20 @@ struct DB_Table_CHECKINGACCOUNT : public DB_Table
         {
             table_ = table;
         
-            TRANSID = q.GetInt(0); // TRANSID
-            ACCOUNTID = q.GetInt(1); // ACCOUNTID
-            TOACCOUNTID = q.GetInt(2); // TOACCOUNTID
-            PAYEEID = q.GetInt(3); // PAYEEID
-            TRANSCODE = q.GetString(4); // TRANSCODE
-            TRANSAMOUNT = q.GetDouble(5); // TRANSAMOUNT
-            STATUS = q.GetString(6); // STATUS
-            TRANSACTIONNUMBER = q.GetString(7); // TRANSACTIONNUMBER
-            NOTES = q.GetString(8); // NOTES
-            CATEGID = q.GetInt(9); // CATEGID
-            SUBCATEGID = q.GetInt(10); // SUBCATEGID
-            TRANSDATE = q.GetString(11); // TRANSDATE
-            FOLLOWUPID = q.GetInt(12); // FOLLOWUPID
-            TOTRANSAMOUNT = q.GetDouble(13); // TOTRANSAMOUNT
+            TRANSID = q.GetInt(0);
+            ACCOUNTID = q.GetInt(1);
+            TOACCOUNTID = q.GetInt(2);
+            PAYEEID = q.GetInt(3);
+            TRANSCODE = q.GetString(4);
+            TRANSAMOUNT = q.GetDouble(5);
+            STATUS = q.GetString(6);
+            TRANSACTIONNUMBER = q.GetString(7);
+            NOTES = q.GetString(8);
+            CATEGID = q.GetInt(9);
+            SUBCATEGID = q.GetInt(10);
+            TRANSDATE = q.GetString(11);
+            FOLLOWUPID = q.GetInt(12);
+            TOTRANSAMOUNT = q.GetDouble(13);
         }
 
         Data& operator=(const Data& other)
@@ -435,7 +429,7 @@ struct DB_Table_CHECKINGACCOUNT : public DB_Table
             return this->TOTRANSAMOUNT == in.v_;
         }
 
-        // Return the data record as a json string
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -448,7 +442,7 @@ struct DB_Table_CHECKINGACCOUNT : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("TRANSID");
@@ -557,7 +551,7 @@ struct DB_Table_CHECKINGACCOUNT : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
+    /** Name of the table */
     wxString name() const { return "CHECKINGACCOUNT"; }
 
     DB_Table_CHECKINGACCOUNT() : fake_(new Data())
@@ -565,7 +559,7 @@ struct DB_Table_CHECKINGACCOUNT : public DB_Table
         query_ = "SELECT TRANSID, ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT FROM CHECKINGACCOUNT ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -573,7 +567,7 @@ struct DB_Table_CHECKINGACCOUNT : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
