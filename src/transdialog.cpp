@@ -58,7 +58,7 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
     EVT_CHECKBOX(wxID_FORWARD, mmTransDialog::OnSplitChecked)
     EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
-    EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER,mmTransDialog::OnSpin)
+    EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER,mmTransDialog::OnTransDateSpin)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_COMBOBOX(wxID_ANY, mmTransDialog::OnAccountOrPayeeUpdated)
     EVT_MENU(wxID_ANY, mmTransDialog::OnNoteSelected)
@@ -875,7 +875,7 @@ void mmTransDialog::OnDateChanged(wxDateEvent& event)
     }
 }
 
-void mmTransDialog::OnSpin(wxSpinEvent& event)
+void mmTransDialog::OnTransDateSpin(wxSpinEvent& event)
 {
     wxDateTime date = dpc_->GetValue();
     int value = event.GetPosition();

@@ -89,7 +89,7 @@ private:
     void OnFrequentUsedNotes(wxCommandEvent& event);
     void OnNoteSelected(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
-    void OnSpin(wxSpinEvent&);
+    void OnTransDateSpin(wxSpinEvent&);
     void OnDateChanged(wxDateEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
     void OnTextEntered(wxCommandEvent& event);
