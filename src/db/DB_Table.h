@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 //=============================================================================
 /**
  *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
+ *          AUTO GENERATED at 2018-05-15 15:51:49.887472.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -263,15 +263,6 @@ struct SorterByATTACHMENTID
     bool operator()(const DATA& x, const DATA& y)
     {
         return (x.ATTACHMENTID) < (y.ATTACHMENTID);
-    }
-};
-
-struct SorterByBASECONVRATE
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return (x.BASECONVRATE) < (y.BASECONVRATE);
     }
 };
 
