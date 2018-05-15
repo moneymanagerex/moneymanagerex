@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2018-05-08 17:42:48.767000.
+ *          AUTO GENERATED at 2018-05-15 20:01:00.325704.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -1342,7 +1342,7 @@ const std::vector<wxString> dbUpgradeQuery =
 		ALTER TABLE CURRENCYFORMATS_NEW RENAME TO CURRENCYFORMATS;
 		CREATE INDEX IDX_CURRENCYFORMATS_SYMBOL ON CURRENCYFORMATS(CURRENCY_SYMBOL);
 		
-		PRAGMA user_version = 12;)",
+		PRAGMA user_version = 13;)",
 
 };
 
