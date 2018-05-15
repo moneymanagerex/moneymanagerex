@@ -17,8 +17,12 @@ sql_tables_data_filename = 'sql_tables.sql'
 # http://stackoverflow.com/questions/196345/how-to-check-if-a-string-in-python-is-in-ascii
 def is_ascii(s):
     """Class: Check for Ascii String"""
-    if isinstance(s, unicode):
-        return all(ord(c) < 128 for c in s)
+    if sys.version_info < (3,):
+        if isinstance(s, unicode):
+            return all(ord(c) < 128 for c in s)
+    else:
+        if isinstance(s, str):
+            return all(ord(c) < 128 for c in s)
     return False
 
 def is_trans(s):
@@ -136,7 +140,7 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
         """Write database_version data to file
            Only extract unicode data"""
         if self._table.upper() == 'CURRENCYFORMATS':
-            print 'Generate patch file: %s' % currency_unicode_patch_filename
+            print('Generate patch file: %s' % currency_unicode_patch_filename)
             rfp = codecs.open(currency_unicode_patch_filename, 'w', 'utf-8')
             sf1 = '''-- MMEX Debug SQL - Update --
 -- MMEX db version required 10
@@ -148,7 +152,7 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
         """Write currency_table_upgrade_patch file
            Extract all currency data"""
         if self._table.upper() == 'CURRENCYFORMATS':
-            print 'Generate patch file: %s' % currency_table_patch_filename
+            print('Generate patch file: %s' % currency_table_patch_filename)
             rfp = codecs.open(currency_table_patch_filename, 'w', 'utf-8')
             sf1 = '''-- MMEX Debug SQL - Update --
 -- MMEX db version required 10
@@ -158,7 +162,7 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
 
     def generate_class(self, header, sql):
         """ Write the data to the appropriate .h file"""
-        print 'Generate Table: %s' % self._table
+        print('Generate Table: %s' % self._table)
         rfp = codecs.open('DB_Table_' + self._table.title() + '.h', 'w', 'utf-8-sig')
         rfp.write(header + self.to_string(sql))
         rfp.close()
@@ -970,7 +974,7 @@ struct SorterBy%s
 };
 ''' % (field, transl, field, transl, field)
 
-    rfp = open('DB_Table.h', 'w')
+    rfp = codecs.open('DB_Table.h', 'w', 'utf-8-sig')
     rfp.write(code)
     rfp.close()
 
@@ -1001,7 +1005,7 @@ if __name__ == '__main__':
         conn.row_factory = sqlite3.Row
         cur = conn.cursor()
     except:
-        print __doc__
+        print(__doc__)
         sys.exit(1)
 
     sql = ""
@@ -1012,7 +1016,7 @@ if __name__ == '__main__':
 
 '''
 
-    for line in open(sql_file, 'rb'):
+    for line in codecs.open(sql_file, 'r', 'utf-8' ):
         sql = sql + line
 
         if line.find('_tr_') > 0: # Remove _tr_ identifyer for wxTRANSLATE
@@ -1021,8 +1025,8 @@ if __name__ == '__main__':
         sql_txt = sql_txt + line
     
     # Generate a table that does not contain translation code identifyer
-    print 'Generate SQL file: %s that can generate a clean database.' % sql_tables_data_filename
-    file_data = codecs.open(sql_tables_data_filename, 'w')
+    print( 'Generate SQL file: %s that can generate a clean database.' % sql_tables_data_filename)
+    file_data = codecs.open(sql_tables_data_filename, 'w', 'utf-8')
     file_data.write(sql_txt)
     file_data.close()
 
@@ -1043,4 +1047,4 @@ if __name__ == '__main__':
     generate_base_class(header, all_fields)
 
     conn.close()
-    print 'End of Run'
+    print('End of Run')
