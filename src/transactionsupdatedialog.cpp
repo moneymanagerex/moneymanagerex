@@ -22,11 +22,11 @@
 #include "mmTextCtrl.h"
 #include "transactionsupdatedialog.h"
 #include "validators.h"
-#include "wx/statline.h"
 #include "mmSimpleDialogs.h"
-#include "model/Model_Account.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Payee.h"
+#include "Model_Account.h"
+#include "Model_Checking.h"
+#include "Model_Payee.h"
+#include <wx/statline.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(transactionsUpdateDialog, wxDialog);
 

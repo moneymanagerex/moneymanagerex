@@ -21,8 +21,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/textctrl.h>
 #include <wx/combobox.h>
 #include <wx/string.h>
-#include "model/Model_Account.h"
-#include "model/Model_Payee.h"
+#include "Model_Account.h"
+#include "Model_Payee.h"
 #include <wx/richtooltip.h>
 
 

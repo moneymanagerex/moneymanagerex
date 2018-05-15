@@ -19,13 +19,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 #include "dbcheck.h"
 
-#include "model/Model_Account.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_Category.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Stock.h"
-#include "model/Model_Subcategory.h"
+#include "Model_Account.h"
+#include "Model_Checking.h"
+#include "Model_Billsdeposits.h"
+#include "Model_Stock.h"
 
 bool dbCheck::checkDB()
 {

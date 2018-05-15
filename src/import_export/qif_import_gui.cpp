@@ -17,17 +17,21 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "qif_import_gui.h"
+#include "qif_import.h"
 #include "export.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "util.h"
 #include "webapp.h"
-#include "mmSimpleDialogs.h"
+#include "option.h"
 
-#include "model/allmodel.h"
+#include "Model_Category.h"
+#include "Model_Subcategory.h"
+#include "Model_Payee.h"
 
 #include <wx/progdlg.h>
+#include <wx/dataview.h>
 
 enum tab_id {
     LOG_TAB = 0,

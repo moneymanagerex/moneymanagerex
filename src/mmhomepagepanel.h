@@ -22,11 +22,13 @@
 #include "mmpanelbase.h"
 #include "constants.h"
 #include "reports/mmDateRange.h"
-#include "model/Model_Account.h"
+#include "Model_Account.h"
 
 class mmGUIFrame;
 class mmHTMLBuilder;
 class mmDateRange;
+class wxWebView;
+class wxWebViewEvent;
 
 class mmHomePagePanel : public mmPanelBase
 {

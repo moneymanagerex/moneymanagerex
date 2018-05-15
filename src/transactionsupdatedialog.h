@@ -21,6 +21,7 @@
 
 #include "defs.h"
 #include "mmcombobox.h"
+class mmTextCtrl;
 
 class transactionsUpdateDialog : public wxDialog
 {

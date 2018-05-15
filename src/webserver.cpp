@@ -23,10 +23,10 @@
 #include "paths.h"
 #include "mongoose/mongoose.h"
 #include "singleton.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Report.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Infotable.h"
+#include "Model_Setting.h"
+#include "Model_Report.h"
+#include "Model_Setting.h"
+#include "Model_Infotable.h"
 
 static struct mg_serve_http_opts s_http_server_opts;
 

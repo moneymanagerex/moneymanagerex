@@ -20,12 +20,10 @@
 #define _MM_EX_REPORTSUMMARY_H_
 
 #include "reportbase.h"
-#include <vector>
-#include "mmex.h"
-#include "model/Model.h"
-#include "model/Model_Account.h"
 
 #if 0
+#include <vector>
+
 // structure for sorting of data
 struct summary_data_holder { wxString name; wxString link; double balance; };
 

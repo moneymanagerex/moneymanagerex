@@ -18,13 +18,14 @@
 
 #pragma once
 
-#include "model/Model_Stock.h"
-#include "model/Model_Translink.h"
-#include "model/Model_Shareinfo.h"
-
+#include <wx/dialog.h>
+#include "Model_Stock.h"
+#include "Model_Translink.h"
+#include "Model_Shareinfo.h"
 class wxDatePickerCtrl;
 class mmTextCtrl;
 class UserTransactionPanel;
+class wxBitmapButton;
 
 class ShareTransactionDialog : public wxDialog
 {

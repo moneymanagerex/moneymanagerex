@@ -21,7 +21,7 @@
 
 
 #include "defs.h"
-#include "model/Model_Category.h"
+#include "Model_Category.h"
 
 class mmTreeItemCateg : public wxTreeItemData
 {

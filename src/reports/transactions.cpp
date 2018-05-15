@@ -21,9 +21,13 @@
 #include "transactions.h"
 #include "attachmentdialog.h"
 #include "constants.h"
-#include "htmlbuilder.h"
+#include "reports/htmlbuilder.h"
 #include "util.h"
-#include "model/allmodel.h"
+#include "filtertransdialog.h"
+#include "Model_Account.h"
+#include "Model_Category.h"
+#include "Model_CurrencyHistory.h"
+#include "Model_Attachment.h"
 #include <algorithm>
 #include <vector>
 

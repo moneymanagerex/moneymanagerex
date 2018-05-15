@@ -24,13 +24,11 @@ Copyright (C) 2016 Gabriele-V
 #include "mmTextCtrl.h"
 #include "paths.h"
 #include "util.h"
-#include "validators.h"
 
-#include "model/Model_Attachment.h"
-#include "model/Model_CustomField.h"
-#include "model/Model_CustomFieldData.h"
+#include "Model_Attachment.h"
+#include "Model_CustomField.h"
+#include "Model_CustomFieldData.h"
 
-#include <wx/valnum.h>
 #include <wx/spinctrl.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmCustomFieldEditDialog, wxDialog);

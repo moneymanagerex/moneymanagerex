@@ -19,8 +19,10 @@
 #ifndef MM_EX_BUDGETENTRYDIALOG_H_
 #define MM_EX_BUDGETENTRYDIALOG_H_
 
-#include "mmTextCtrl.h"
-#include "model/Model_Budget.h"
+#include <wx/dialog.h>
+#include "Model_Budget.h"
+class mmTextCtrl;
+class wxChoice;
 
 class mmBudgetEntryDialog : public wxDialog
 {

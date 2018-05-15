@@ -21,9 +21,15 @@
 #define MM_EX_REPORTSPANEL_H_
 
 #include "mmpanelbase.h"
-#include "reports/reportbase.h"
+class wxWebView;
 class mmGUIFrame;
 class mmDateRange;
+class wxChoice;
+class wxDatePickerCtrl;
+class wxDateEvent;
+class wxChoice;
+class mmPrintableBase;
+
 class mmReportsPanel : public mmPanelBase
 {
     wxDECLARE_EVENT_TABLE();
@@ -96,4 +102,3 @@ public:
 };
 
 #endif
-

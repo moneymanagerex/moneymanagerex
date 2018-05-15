@@ -16,14 +16,19 @@
 
 #pragma once
 
-#include "model/Model_Asset.h"
-#include "model/Model_Currency.h"
-#include "model/Model_Translink.h"
+#include <wx/dialog.h>
+#include "Model_Asset.h"
+#include "Model_Currency.h"
+#include "Model_Translink.h"
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
 class UserTransactionPanel;
 class mmGUIFrame;
+class wxChoice;
+class wxStaticText;
+class wxBitmapButton;
+class wxStaticBox;
 
 class mmAssetDialog : public wxDialog
 {

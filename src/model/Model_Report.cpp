@@ -19,11 +19,13 @@
 #include "Model_Report.h"
 #include "constants.h"
 #include "paths.h"
+#include "option.h"
 #include "platfdep.h"
 #include "attachmentdialog.h"
 #include "reports/htmlbuilder.h"
-#include "model/Model_Setting.h"
-#include "LuaGlue/LuaGlue.h"
+#include "reports/reportbase.h"
+#include "Model_Setting.h"
+#include <LuaGlue/LuaGlue.h>
 #include "sqlite3.h"
 #include "mmreportspanel.h"
 

@@ -21,17 +21,23 @@ Copyright (C) 2014 Nikolay
 #include "mmex.h"
 #include "mmframe.h"
 #include "paths.h"
-
 #include "html_template.h"
 #include "billsdepositspanel.h"
-#include <algorithm>
-#include <cmath>
-
 #include "constants.h"
 #include "option.h"
 #include "util.h"
-
-#include "model/allmodel.h"
+#include "Model_CurrencyHistory.h"
+#include "Model_Asset.h"
+#include "Model_Setting.h"
+#include "Model_Usage.h"
+#include "Model_Payee.h"
+#include "Model_Stock.h"
+#include "Model_Category.h"
+#include "Model_Report.h"
+#include "Model_Infotable.h"
+#include <algorithm>
+#include <cmath>
+#include <wx/webviewfshandler.h>
 
 static const wxString TOP_CATEGS = R"(
 <table class = 'table'>

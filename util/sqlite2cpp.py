@@ -466,8 +466,8 @@ struct DB_Table_%s : public DB_Table
             StringBuffer json_buffer;
             PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-			json_writer.StartObject();			
-			this->as_json(json_writer);
+            json_writer.StartObject();
+            this->as_json(json_writer);
             json_writer.EndObject();
 
             return json_buffer.GetString();
@@ -822,6 +822,7 @@ def generate_base_class(header, fields=set):
 #include <functional>
 #include <wx/wxsqlite3.h>
 #include <wx/intl.h>
+#include <wx/log.h>
 
 #include "rapidjson/document.h"
 #include "rapidjson/pointer.h"

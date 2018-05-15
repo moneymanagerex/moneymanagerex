@@ -24,12 +24,10 @@
 #include "util.h"
 #include "validators.h"
 
-#include "model/Model_Attachment.h"
+#include "Model_Attachment.h"
 #include "usertransactionpanel.h"
 #include "accountdialog.h"
 #include "mmframe.h"
-
-#include <wx/valnum.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmAssetDialog, wxDialog);
 

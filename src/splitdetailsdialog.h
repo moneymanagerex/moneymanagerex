@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "defs.h"
 #include "mmTextCtrl.h"
-#include "model/Model_Splittransaction.h"
+#include "Model_Splittransaction.h"
 
 #ifndef wxCLOSE_BOX
 #define wxCLOSE_BOX 0x1000

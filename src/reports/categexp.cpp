@@ -19,12 +19,11 @@
 
 #include "categexp.h"
 #include "budget.h"
-#include "htmlbuilder.h"
-
-#include "htmlbuilder.h"
+#include "reports/htmlbuilder.h"
+#include "reports/mmDateRange.h"
 #include "option.h"
 #include <algorithm>
-#include "model/Model_Category.h"
+#include "Model_Category.h"
 
 #define CATEGORY_SORT_BY_NAME        1
 #define CATEGORY_SORT_BY_AMOUNT      2

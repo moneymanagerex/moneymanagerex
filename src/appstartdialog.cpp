@@ -21,7 +21,7 @@
 #include "paths.h"
 #include "constants.h"
 #include "option.h"
-#include "model/Model_Setting.h"
+#include "Model_Setting.h"
 
 #include "../resources/money.xpm"
 

@@ -21,14 +21,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma interface "filtertransdialog.cpp"
 #endif
 
-#include "reports/mmDateRange.h"
-#include "reports/htmlbuilder.h"
-//#include "model/Model_CustomFieldData.h"
-#include "mmcustomdata.h"
-
 #include <wx/dialog.h>
-#include "mmTextCtrl.h"
-
+#include "Model_Checking.h"
+#include "Model_Billsdeposits.h"
+class mmTextCtrl;
+class mmCustomData;
+class mmHTMLBuilder;
+class wxCheckBox;
+class wxChoice;
+class wxDatePickerCtrl;
+class wxComboBox;
+class wxRadioBox;
 
 class mmFilterTransactionsDialog: public wxDialog
 {

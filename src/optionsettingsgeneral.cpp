@@ -20,8 +20,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "maincurrencydialog.h"
 #include "mmSimpleDialogs.h"
 #include "util.h"
+#include "option.h"
 
-#include "model/Model_Currency.h"
+#include "Model_Currency.h"
 
 #include <wx/spinctrl.h>
 

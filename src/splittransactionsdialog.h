@@ -20,7 +20,7 @@
 #define MM_EX_SPLITTRANSACTIONDIALOG_H_
 
 #include "defs.h"
-#include "model/Model_Checking.h"
+#include "Model_Checking.h"
 #include <wx/dataview.h>
 
 class wxListCtrl;

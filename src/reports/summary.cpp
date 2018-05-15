@@ -19,8 +19,11 @@
 
 #include "summary.h"
 #include "constants.h"
-#include "htmlbuilder.h"
-#include "model/allmodel.h"
+#include "reports/htmlbuilder.h"
+#include "Model_Account.h"
+#include "Model_CurrencyHistory.h"
+#include "Model_Stock.h"
+#include "Model_StockHistory.h"
 #include <algorithm>
 
 class mmHistoryItem

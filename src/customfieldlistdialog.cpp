@@ -23,9 +23,9 @@ Copyright (C) 2016 Gabriele-V
 #include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "util.h"
+#include "Model_CustomFieldData.h"
 
-#include "model/allmodel.h"
-
+#include <wx/dataview.h>
 #include <wx/mimetype.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmCustomFieldListDialog, wxDialog);

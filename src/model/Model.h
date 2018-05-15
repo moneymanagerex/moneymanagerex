@@ -19,17 +19,13 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #pragma once
 
 #include <vector>
-#include <map>
 #include <unordered_map>
 #include <algorithm>
 #include <wx/datetime.h>
-#include "singleton.h"
-#include <wx/sharedptr.h>
 #include <wx/log.h>
-#include <wx/string.h>
 #include "db/DB_Table.h"
+#include "singleton.h"
 
-class wxString;
 class wxSQLite3Statement;
 class wxSQLite3Database;
 class wxSQLite3ResultSet;

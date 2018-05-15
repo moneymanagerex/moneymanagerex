@@ -17,7 +17,9 @@
  ********************************************************/
 
 #include "forecast.h"
-#include "model/Model_Checking.h"
+#include "option.h"
+#include "reports/mmDateRange.h"
+#include "Model_Checking.h"
 
 class mm_html_template;
 

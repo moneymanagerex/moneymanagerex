@@ -19,10 +19,11 @@
 #pragma once
 
 #include "mmpanelbase.h"
-#include "model/Model_Budget.h"
+#include "Model_Budget.h"
 
 class wxListCtrl;
 class wxListEvent;
+class wxStaticText;
 class mmBudgetingPanel;
 class mmGUIFrame;
 

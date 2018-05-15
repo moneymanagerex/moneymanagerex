@@ -27,12 +27,13 @@
 #include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "util.h"
+#include "option.h"
 #include "validators.h"
-#include "model/allmodel.h"
+#include "Model_CurrencyHistory.h"
+#include "Model_Infotable.h"
 
 #include <vector>
-#include <wx/sstream.h>
-#include <wx/xml/xml.h>
+#include <wx/dataview.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmMainCurrencyDialog, wxDialog);
 

@@ -1,7 +1,7 @@
 /*******************************************************
-Copyright (C) 2006 Madhan Kanagavel
-Copyright (C) 2011, 2012 Stefano Giorgio
-Copyright (C) 2013, 2014 Nikolay
+ Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2011, 2012 Stefano Giorgio
+ Copyright (C) 2013, 2014 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,10 +22,10 @@ Copyright (C) 2013, 2014 Nikolay
 #define MM_EX_CHECKINGPANEL_H_
 //----------------------------------------------------------------------------
 #include "mmpanelbase.h"
+#include "constants.h"
 #include "reports/mmDateRange.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Account.h"
-#include <map>
+#include "Model_Checking.h"
+#include "Model_Account.h"
 //----------------------------------------------------------------------------
 class mmCheckingPanel;
 class mmFilterTransactionsDialog;
