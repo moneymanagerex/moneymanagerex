@@ -48,6 +48,14 @@ public:
         wxString ACCOUNTNAME, TOACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
+        
+        // Reserved string variables for custom data
+        wxString UDFC01;
+        wxString UDFC02;
+        wxString UDFC03;
+        wxString UDFC04;
+        wxString UDFC05;
+
         //Modified Status for a Transfer transaction.
         wxString STATUSFD;
         double AMOUNT;

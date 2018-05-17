@@ -21,6 +21,7 @@
 
 #include "Model.h"
 #include "db/DB_Table_Customfielddata.h"
+#include "Model_Attachment.h" 
 
 class Model_CustomFieldData : public Model<DB_Table_CUSTOMFIELDDATA>
 {
@@ -47,6 +48,7 @@ public:
     static Model_CustomFieldData& instance();
 
 public:
+    std::map<int, Data_Set> get_all(Model_Attachment::REFTYPE reftype);
     Data* get(int FieldID, int RefID);
     wxArrayString allValue(const int FieldID);
     bool DeleteAllData(const wxString& RefType, int RefID);
