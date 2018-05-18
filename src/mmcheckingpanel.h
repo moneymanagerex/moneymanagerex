@@ -368,8 +368,8 @@ private:
 #endif // MM_EX_CHECKINGPANEL_H_
 //----------------------------------------------------------------------------
 
-inline static bool SorterByUDFC01(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC01 < j.UDFC01); } const
-inline static bool SorterByUDFC02(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC02 < j.UDFC02); } const
-inline static bool SorterByUDFC03(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC03 < j.UDFC03); } const
-inline static bool SorterByUDFC04(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC04 < j.UDFC04); } const
-inline static bool SorterByUDFC05(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC05 < j.UDFC05); } const
+inline static bool SorterByUDFC01(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC01 < j.UDFC01); }
+inline static bool SorterByUDFC02(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC02 < j.UDFC02); }
+inline static bool SorterByUDFC03(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC03 < j.UDFC03); }
+inline static bool SorterByUDFC04(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC04 < j.UDFC04); }
+inline static bool SorterByUDFC05(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC05 < j.UDFC05); }
