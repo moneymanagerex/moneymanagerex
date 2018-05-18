@@ -62,12 +62,7 @@ namespace version
     const int Major = MMEX_VERSION_MAJOR;
     const int Minor = MMEX_VERSION_MINOR;
     const int Patch = MMEX_VERSION_PATCH;
-    const int Alpha = MMEX_VERSION_ALPHA;
-    const int Beta  = MMEX_VERSION_BETA;
-    const int RC    = MMEX_VERSION_RC;
-    extern const wxString string;
-    extern const wxString generateProgramVersion
-        (int vMajor, int vMinor, int vPatch, int vAlpha, int vBeta, int vRC);
+    const wxString string = MMEX_VERSION_FULL;
 }
 
 namespace weblink
