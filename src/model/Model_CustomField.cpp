@@ -219,7 +219,7 @@ int Model_CustomField::getUDFCID(const wxString& ref_type, const wxString& name)
     const auto& a = Model_CustomField::instance().find(REFTYPE(ref_type));
     for (const auto& item : a)
     {
-        if (!json_doc.Parse(item.PROPERTIES).HasParseError())
+        if (!json_doc.Parse(item.PROPERTIES.c_str()).HasParseError())
         {
             if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
             {
@@ -241,7 +241,7 @@ const wxString Model_CustomField::getUDFCName(const wxString& ref_type, const wx
     const auto& a = Model_CustomField::instance().find(REFTYPE(ref_type));
     for (const auto& item : a)
     {
-        if (!json_doc.Parse(item.PROPERTIES).HasParseError())
+        if (!json_doc.Parse(item.PROPERTIES.c_str()).HasParseError())
         {
             if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
             {
@@ -275,7 +275,7 @@ const wxArrayString Model_CustomField::getUDFCList(DB_Table_CUSTOMFIELD::Data* r
     wxArrayString choices = UDFC_FIELDS();
 
     Document json_doc;
-    if (!json_doc.Parse(r->PROPERTIES).HasParseError())
+    if (!json_doc.Parse(r->PROPERTIES.c_str()).HasParseError())
     {
         if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
         {
@@ -286,7 +286,7 @@ const wxArrayString Model_CustomField::getUDFCList(DB_Table_CUSTOMFIELD::Data* r
     const auto& a = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(r->REFTYPE));
     for (const auto& item : a)
     {
-        if (!json_doc.Parse(item.PROPERTIES).HasParseError())
+        if (!json_doc.Parse(item.PROPERTIES.c_str()).HasParseError())
         {
             if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
             {
