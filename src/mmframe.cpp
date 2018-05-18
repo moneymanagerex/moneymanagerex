@@ -2470,7 +2470,7 @@ void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
 
     mmCustomFieldListDialog dlg(this, ref_type);
     dlg.ShowModal();
-
+    createHomePage();
 }
 
 void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)

@@ -176,7 +176,7 @@ void mmCustomFieldEditDialog::CreateControls()
     for (const auto& type : Model_CustomField::getUDFCList(m_field)) {
         m_itemUDFC->Append(wxGetTranslation(type), new wxStringClientData(type));
     }
-    m_itemUDFC->SetToolTip(_("Select soem value to represent item on panel"));
+    m_itemUDFC->SetToolTip(_("Select a value to represent the item on a panel"));
     itemFlexGridSizer6->Add(m_itemUDFC, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
