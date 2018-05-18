@@ -27,26 +27,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <curl/curl.h>
 #include <sqlite3secure.h>
 
-const wxString mmex::version::string = mmex::version::generateProgramVersion(mmex::version::Major, mmex::version::Minor, mmex::version::Patch
-    ,mmex::version::Alpha, mmex::version::Beta, mmex::version::RC);
-
-const wxString mmex::version::generateProgramVersion(int vMajor, int vMinor, int vPatch, int vAlpha, int vBeta, int vRC)
-{
-    wxString suffix = "";
-    if (vAlpha >= 0 || vBeta >= 0 || vRC >= 0)
-    {
-        if (vAlpha >= 0)
-            suffix += "-alpha" + (vAlpha > 0 ? wxString::Format(".%i", vAlpha) : "");
-        if (Beta >= 0)
-            suffix += "-beta" + (vBeta < 1 ? wxString::Format(".%i", vBeta) : "");
-        if (vRC >= 0)
-            suffix = "-rc" + (vRC < 1 ? wxString::Format(".%i", vRC) : "");
-    }
-    return wxString::Format("%i.%i.%i%s", vMajor, vMinor, vPatch, suffix);
-}
-
-/* End version namespace */
-
 const wxSizerFlags g_flagsH = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
 const wxSizerFlags g_flagsV = wxSizerFlags().Align(wxALIGN_LEFT).Border(wxALL, 5);
 const wxSizerFlags g_flagsBorder1H = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 1);

@@ -10,42 +10,24 @@ SET(MMEX_EXE mmex)
 # ---------------------------------------------------------------------------
 # MMEX uses semantic versioning Ref: http://semver.org
 #
-# PROJECT VERSION - Format: MAJOR.MINOR.PATCH
+# PROJECT VERSION - Format: MAJOR.MINOR.PATCH-UNSTABLE
 # Update the version definition for the PROJECT as follows:
 # 1. MAJOR version when incompatible API changes are made.
 # 2. MINOR version adding functionality in a backwards-compatible manner.
 # 3. PATCH version makeing backwards-compatible bug fixes.
-#
-# Alpha, Beta, RC = -1 (Stable) won't add any suffix
-# Alpha, Beta, RC = 0 (Unstable) will add suffix to version without number
-# Alpha, Beta, RC > 0 (Unstable) will add suffix to version with number
+# 4. UNSTABLE = alpha, alpha.1, beta, beta.4, rc, rc.3
+#    - used as additional version suffix, must be unset for stable version
 # ---------------------------------------------------------------------------
 # By setting the application version here, CMake will transfer the variable
 # values to the corresponding variable names in the following files:
 # ./src/versions.h
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
-SET(MMEX_VERSION_ALPHA 4)
-SET(MMEX_VERSION_BETA -1)
-SET(MMEX_VERSION_RC -1)
-
-# Adjusting semantic versioning for alpha/beta/rc version
-IF(MMEX_VERSION_ALPHA EQUAL 0)
-    SET(MMEX_VERSION_UNSTABLE alpha)
-ELSEIF(MMEX_VERSION_ALPHA GREATER 0)
-    SET(MMEX_VERSION_UNSTABLE alpha${MMEX_VERSION_ALPHA})
-ELSEIF(MMEX_VERSION_BETA EQUAL 0)
-    SET(MMEX_VERSION_UNSTABLE beta)
-ELSEIF(MMEX_VERSION_BETA GREATER 0)
-    SET(MMEX_VERSION_UNSTABLE beta${MMEX_VERSION_BETA})
-ELSEIF(MMEX_VERSION_RC EQUAL 0)
-    SET(MMEX_VERSION_UNSTABLE rc)
-ELSEIF(MMEX_VERSION_RC GREATER 0)
-    SET(MMEX_VERSION_UNSTABLE rc${MMEX_VERSION_RC})
-ENDIF()
-SET(MMEX_VERSION_WITH_UNSTABLE ${MMEX_VERSION})
+SET(MMEX_VERSION_UNSTABLE alpha.4)
 IF(MMEX_VERSION_UNSTABLE)
-    SET(MMEX_VERSION_WITH_UNSTABLE "${MMEX_VERSION}~${MMEX_VERSION_UNSTABLE}")
+    SET(MMEX_VERSION_FULL "${MMEX_VERSION}-${MMEX_VERSION_UNSTABLE}")
+ELSE()
+    SET(MMEX_VERSION_FULL ${MMEX_VERSION})
 ENDIF()
 
 # Find Git commit details to put into versions.h later
@@ -464,7 +446,7 @@ ENDIF()
 
 # --------- CPack ---------
 SET(CPACK_PACKAGE_NAME ${MMEX_EXE})
-SET(CPACK_PACKAGE_VERSION ${MMEX_VERSION_WITH_UNSTABLE})
+SET(CPACK_PACKAGE_VERSION ${MMEX_VERSION_FULL})
 SET(CPACK_PACKAGE_VERSION_MAJOR ${MMEX_VERSION_MAJOR})
 SET(CPACK_PACKAGE_VERSION_MINOR ${MMEX_VERSION_MINOR})
 SET(CPACK_PACKAGE_VERSION_PATCH ${MMEX_VERSION_PATCH})
@@ -571,6 +553,7 @@ IF(LINUX_DISTRO STREQUAL "Arch")
     ELSE()
         SET(ARCHLINUX_ARCH i686)
     ENDIF()
+    STRING(REPLACE - . CPACK_PACKAGE_VERSION ${MMEX_VERSION_FULL})
     CONFIGURE_FILE(util/PKGBUILD.in PKGBUILD @ONLY)
 
     # allow use reserved for cpack package target
@@ -615,7 +598,7 @@ ENDIF()
 MESSAGE(STATUS "")
 MESSAGE(STATUS "MMEX configuration summary")
 MESSAGE(STATUS "==========================")
-MESSAGE(STATUS "Version        : ${MMEX_VERSION_WITH_UNSTABLE}")
+MESSAGE(STATUS "Version        : ${MMEX_VERSION_FULL}")
 IF(GIT_COMMIT_HASH)
     MESSAGE(STATUS "Commit         : ${GIT_COMMIT_HASH} (${GIT_COMMIT_DATE})")
 ENDIF()

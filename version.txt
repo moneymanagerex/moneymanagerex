@@ -11,10 +11,10 @@ Version History of Money Manager Ex
 - Fix: (#1311) budget summary variance values
 - Fix: (#1367) Update currency rates using European Central Bank's site as a source
 
-1.4.0-Alpha-3 (Aug 11, 2017)
+1.4.0-alpha.3 (Aug 11, 2017)
 - Fix: CMake build updates
 
-1.4.0-Alpha-2 (Aug 7, 2017)
+1.4.0-alpha.2 (Aug 7, 2017)
 - New: Improved category report charts
 - New: Improved graphs for budget category reports
 - New: Checking panel multiple move support
@@ -26,7 +26,7 @@ Version History of Money Manager Ex
 - Fix: Update various icons
 - Fix: General fixes and updates
   
-1.4.0-Alpha-1 (May 24, 2017)
+1.4.0-alpha.1 (May 24, 2017)
 - Fix: Currency issues #1154 #1155 #1156 #1153
 - Fix: Issue #1120, Set focus
 - Fix: Issue #1099, time for grm
