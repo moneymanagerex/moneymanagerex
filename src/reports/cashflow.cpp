@@ -121,9 +121,6 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
 
-        const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(entry.ACCOUNTID)->CURRENCYID, entry.TRANSDATE);
-        const double toConvRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(entry.TOACCOUNTID)->CURRENCYID, entry.TRANSDATE);
-
         // Process all possible recurring transactions for this BD
         while (1)
         {
@@ -133,6 +130,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             mmRepeatForecast rf;
             rf.date = nextOccurDate;
             rf.amount = 0.0;
+            const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(entry.ACCOUNTID)->CURRENCYID, rf.date);
 
             switch (Model_Billsdeposits::type(entry))
             {
@@ -146,7 +144,10 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
                 if (isAccountFound)
                     rf.amount -= amt * convRate;
                 if (isToAccountFound)
+                {
+                    const double toConvRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(entry.TOACCOUNTID)->CURRENCYID, rf.date);
                     rf.amount += toAmt * toConvRate;
+                }
                 break;
             default:
                 break;
