@@ -1,5 +1,5 @@
 FROM centos:6
-MAINTAINER developers@moneymanagerex.org
+LABEL maintainer="developers@moneymanagerex.org"
 RUN rpm --import https://getfedora.org/static/0608B895.txt \
  && yum -y install http://download.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm \
  && yum -y install centos-release-scl \

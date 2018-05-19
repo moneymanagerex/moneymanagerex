@@ -1,9 +1,9 @@
 FROM centos:7
-MAINTAINER developers@moneymanagerex.org
+LABEL maintainer="developers@moneymanagerex.org"
 RUN yum -y --enablerepo=extras install epel-release \
  && yum -y install --setopt=tsflags=nodocs \
         cmake3 gcc-c++ gettext git make rpm-build redhat-lsb-core ccache \
-        webkitgtk3-devel wxGTK3-devel libcurl-devel \
+        webkitgtk3-devel wxGTK3-devel libcurl-devel rapidjson-devel \
  && yum clean all
 
 # cmake3 installed from EPEL
