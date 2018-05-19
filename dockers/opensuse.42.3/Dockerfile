@@ -1,5 +1,5 @@
 FROM opensuse:42.3
-MAINTAINER developers@moneymanagerex.org
+LABEL maintainer="developers@moneymanagerex.org"
 RUN zypper install -y --no-recommends \
       cmake gettext-tools gcc-c++ git make rpm-build lsb-release ccache \
       wxWidgets-3_0-devel libcurl-devel \

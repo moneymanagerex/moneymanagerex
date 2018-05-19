@@ -1,5 +1,5 @@
 FROM opensuse:tumbleweed
-MAINTAINER developers@moneymanagerex.org
+LABEL maintainer="developers@moneymanagerex.org"
 RUN zypper refresh && zypper install -y --no-recommends \
       cmake gettext-tools gcc-c++ git make rpm-build lsb-release ccache \
       wxWidgets-devel libcurl-devel \
