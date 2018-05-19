@@ -138,9 +138,6 @@ void mmAboutDialog::CreateControls(int TabToOpen)
     wxBoxSizer* itemBoxSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer);
 
-    wxStaticText* itemStaticText88 = new wxStaticText(this
-        , wxID_STATIC, mmex::getProgramCopyright());
-
     //Create tabs
     wxNotebook* about_notebook = new wxNotebook(this
         , wxID_ANY, wxDefaultPosition, wxSize(400, 500), wxNB_MULTILINE);
@@ -196,8 +193,6 @@ void mmAboutDialog::CreateControls(int TabToOpen)
     privacy_sizer->Add(privacy_text_, g_flagsExpand);
 
     itemBoxSizer->Add(about_notebook, g_flagsExpand);
-
-    itemBoxSizer->Add(itemStaticText88, g_flagsCenter);
 
     wxButton* button_OK = new wxButton(this, wxID_OK, _("&OK "));
     button_OK->SetDefault();

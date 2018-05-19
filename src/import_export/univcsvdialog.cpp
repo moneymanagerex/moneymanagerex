@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
- Copyright (C) 2015 Nikolay
+ Copyright (C) 2015 Nikolay Akimov
  Copyright (C) 2015 Yosef
 
  This program is free software; you can redistribute it and/or modify

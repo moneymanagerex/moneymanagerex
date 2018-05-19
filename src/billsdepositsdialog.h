@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2016 Nikolay & Stefano Giorgio
+ Copyright (C) 2016 Stefano Giorgio
+ Copyright (C) 2016 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
