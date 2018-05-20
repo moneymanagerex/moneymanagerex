@@ -1,24 +1,18 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-15 15:51:49.887472.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for CURRENCYFORMATS SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma execution_character_set("UTF-8")
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
 struct DB_Table_CURRENCYFORMATS : public DB_Table
 {
@@ -28,7 +22,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -511,7 +505,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int CURRENCYID;//  primary key
+        int CURRENCYID; // primary key
         wxString CURRENCYNAME;
         wxString PFX_SYMBOL;
         wxString SFX_SYMBOL;
@@ -555,16 +549,16 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         {
             table_ = table;
         
-            CURRENCYID = q.GetInt(0); // CURRENCYID
-            CURRENCYNAME = q.GetString(1); // CURRENCYNAME
-            PFX_SYMBOL = q.GetString(2); // PFX_SYMBOL
-            SFX_SYMBOL = q.GetString(3); // SFX_SYMBOL
-            DECIMAL_POINT = q.GetString(4); // DECIMAL_POINT
-            GROUP_SEPARATOR = q.GetString(5); // GROUP_SEPARATOR
-            SCALE = q.GetInt(6); // SCALE
-            CURRENCY_SYMBOL = q.GetString(7); // CURRENCY_SYMBOL
-            CURRENCY_TYPE = q.GetString(8); // CURRENCY_TYPE
-            HISTORIC = q.GetInt(9); // HISTORIC
+            CURRENCYID = q.GetInt(0);
+            CURRENCYNAME = q.GetString(1);
+            PFX_SYMBOL = q.GetString(2);
+            SFX_SYMBOL = q.GetString(3);
+            DECIMAL_POINT = q.GetString(4);
+            GROUP_SEPARATOR = q.GetString(5);
+            SCALE = q.GetInt(6);
+            CURRENCY_SYMBOL = q.GetString(7);
+            CURRENCY_TYPE = q.GetString(8);
+            HISTORIC = q.GetInt(9);
         }
 
         Data& operator=(const Data& other)
@@ -640,7 +634,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
             return this->HISTORIC == in.v_;
         }
 
-        // Return the data record as a json string
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -653,7 +647,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("CURRENCYID");
@@ -746,7 +740,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
+    /** Name of the table */
     wxString name() const { return "CURRENCYFORMATS"; }
 
     DB_Table_CURRENCYFORMATS() : fake_(new Data())
@@ -754,7 +748,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         query_ = "SELECT CURRENCYID, CURRENCYNAME, PFX_SYMBOL, SFX_SYMBOL, DECIMAL_POINT, GROUP_SEPARATOR, SCALE, CURRENCY_SYMBOL, CURRENCY_TYPE, HISTORIC FROM CURRENCYFORMATS ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -762,7 +756,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();

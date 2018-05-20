@@ -19,7 +19,7 @@
 
 #pragma once
 #include "Model.h"
-#include "db/DB_Table_Translink.h"
+#include "Table_Translink.h"
 #include "Model_Checking.h"
 #include "Model_Stock.h"
 #include "Model_Asset.h"

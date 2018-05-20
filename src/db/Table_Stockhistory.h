@@ -1,33 +1,27 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for STOCKHISTORY SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_STOCK : public DB_Table
+struct DB_Table_STOCKHISTORY : public DB_Table
 {
     struct Data;
-    typedef DB_Table_STOCK Self;
+    typedef DB_Table_STOCKHISTORY Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -54,7 +48,7 @@ struct DB_Table_STOCK : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_STOCK() 
+    ~DB_Table_STOCKHISTORY() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +69,12 @@ struct DB_Table_STOCK : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE STOCK(STOCKID integer primary key, HELDAT integer, PURCHASEDATE TEXT NOT NULL, STOCKNAME TEXT COLLATE NOCASE NOT NULL, SYMBOL TEXT, NUMSHARES numeric, PURCHASEPRICE numeric NOT NULL, NOTES TEXT, CURRENTPRICE numeric NOT NULL, VALUE numeric, COMMISSION numeric)");
+                db->ExecuteUpdate("CREATE TABLE STOCKHISTORY(HISTID integer primary key, SYMBOL TEXT NOT NULL, DATE TEXT NOT NULL, VALUE numeric NOT NULL, UPDTYPE integer, UNIQUE(SYMBOL, DATE))");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("STOCK: Exception %s", e.GetMessage().c_str());
+                wxLogError("STOCKHISTORY: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +88,11 @@ struct DB_Table_STOCK : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_STOCK_HELDAT ON STOCK(HELDAT)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_STOCKHISTORY_SYMBOL ON STOCKHISTORY(SYMBOL)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCK: Exception %s", e.GetMessage().c_str());
+            wxLogError("STOCKHISTORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,28 +105,10 @@ struct DB_Table_STOCK : public DB_Table
         db->Commit();
     }
     
-    struct STOCKID : public DB_Column<int>
+    struct HISTID : public DB_Column<int>
     { 
-        static wxString name() { return "STOCKID"; } 
-        explicit STOCKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    struct HELDAT : public DB_Column<int>
-    { 
-        static wxString name() { return "HELDAT"; } 
-        explicit HELDAT(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    struct PURCHASEDATE : public DB_Column<wxString>
-    { 
-        static wxString name() { return "PURCHASEDATE"; } 
-        explicit PURCHASEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    
-    struct STOCKNAME : public DB_Column<wxString>
-    { 
-        static wxString name() { return "STOCKNAME"; } 
-        explicit STOCKNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "HISTID"; } 
+        explicit HISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
     struct SYMBOL : public DB_Column<wxString>
@@ -141,28 +117,10 @@ struct DB_Table_STOCK : public DB_Table
         explicit SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct NUMSHARES : public DB_Column<double>
+    struct DATE : public DB_Column<wxString>
     { 
-        static wxString name() { return "NUMSHARES"; } 
-        explicit NUMSHARES(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
-    };
-    
-    struct PURCHASEPRICE : public DB_Column<double>
-    { 
-        static wxString name() { return "PURCHASEPRICE"; } 
-        explicit PURCHASEPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
-    };
-    
-    struct NOTES : public DB_Column<wxString>
-    { 
-        static wxString name() { return "NOTES"; } 
-        explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    
-    struct CURRENTPRICE : public DB_Column<double>
-    { 
-        static wxString name() { return "CURRENTPRICE"; } 
-        explicit CURRENTPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        static wxString name() { return "DATE"; } 
+        explicit DATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
     struct VALUE : public DB_Column<double>
@@ -171,26 +129,20 @@ struct DB_Table_STOCK : public DB_Table
         explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
-    struct COMMISSION : public DB_Column<double>
+    struct UPDTYPE : public DB_Column<int>
     { 
-        static wxString name() { return "COMMISSION"; } 
-        explicit COMMISSION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        static wxString name() { return "UPDTYPE"; } 
+        explicit UPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    typedef STOCKID PRIMARY;
+    typedef HISTID PRIMARY;
     enum COLUMN
     {
-        COL_STOCKID = 0
-        , COL_HELDAT = 1
-        , COL_PURCHASEDATE = 2
-        , COL_STOCKNAME = 3
-        , COL_SYMBOL = 4
-        , COL_NUMSHARES = 5
-        , COL_PURCHASEPRICE = 6
-        , COL_NOTES = 7
-        , COL_CURRENTPRICE = 8
-        , COL_VALUE = 9
-        , COL_COMMISSION = 10
+        COL_HISTID = 0
+        , COL_SYMBOL = 1
+        , COL_DATE = 2
+        , COL_VALUE = 3
+        , COL_UPDTYPE = 4
     };
 
     /** Returns the column name as a string*/
@@ -198,17 +150,11 @@ struct DB_Table_STOCK : public DB_Table
     {
         switch(col)
         {
-            case COL_STOCKID: return "STOCKID";
-            case COL_HELDAT: return "HELDAT";
-            case COL_PURCHASEDATE: return "PURCHASEDATE";
-            case COL_STOCKNAME: return "STOCKNAME";
+            case COL_HISTID: return "HISTID";
             case COL_SYMBOL: return "SYMBOL";
-            case COL_NUMSHARES: return "NUMSHARES";
-            case COL_PURCHASEPRICE: return "PURCHASEPRICE";
-            case COL_NOTES: return "NOTES";
-            case COL_CURRENTPRICE: return "CURRENTPRICE";
+            case COL_DATE: return "DATE";
             case COL_VALUE: return "VALUE";
-            case COL_COMMISSION: return "COMMISSION";
+            case COL_UPDTYPE: return "UPDTYPE";
             default: break;
         }
         
@@ -218,17 +164,11 @@ struct DB_Table_STOCK : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("STOCKID" == name) return COL_STOCKID;
-        else if ("HELDAT" == name) return COL_HELDAT;
-        else if ("PURCHASEDATE" == name) return COL_PURCHASEDATE;
-        else if ("STOCKNAME" == name) return COL_STOCKNAME;
+        if ("HISTID" == name) return COL_HISTID;
         else if ("SYMBOL" == name) return COL_SYMBOL;
-        else if ("NUMSHARES" == name) return COL_NUMSHARES;
-        else if ("PURCHASEPRICE" == name) return COL_PURCHASEPRICE;
-        else if ("NOTES" == name) return COL_NOTES;
-        else if ("CURRENTPRICE" == name) return COL_CURRENTPRICE;
+        else if ("DATE" == name) return COL_DATE;
         else if ("VALUE" == name) return COL_VALUE;
-        else if ("COMMISSION" == name) return COL_COMMISSION;
+        else if ("UPDTYPE" == name) return COL_UPDTYPE;
 
         return COLUMN(-1);
     }
@@ -236,30 +176,24 @@ struct DB_Table_STOCK : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_STOCK;
+        friend struct DB_Table_STOCKHISTORY;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int STOCKID;//  primary key
-        int HELDAT;
-        wxString PURCHASEDATE;
-        wxString STOCKNAME;
+        int HISTID; // primary key
         wxString SYMBOL;
-        double NUMSHARES;
-        double PURCHASEPRICE;
-        wxString NOTES;
-        double CURRENTPRICE;
+        wxString DATE;
         double VALUE;
-        double COMMISSION;
+        int UPDTYPE;
 
         int id() const
         {
-            return STOCKID;
+            return HISTID;
         }
 
         void id(int id)
         {
-            STOCKID = id;
+            HISTID = id;
         }
 
         bool operator < (const Data& r) const
@@ -276,47 +210,31 @@ struct DB_Table_STOCK : public DB_Table
         {
             table_ = table;
         
-            STOCKID = -1;
-            HELDAT = -1;
-            NUMSHARES = 0.0;
-            PURCHASEPRICE = 0.0;
-            CURRENTPRICE = 0.0;
+            HISTID = -1;
             VALUE = 0.0;
-            COMMISSION = 0.0;
+            UPDTYPE = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            STOCKID = q.GetInt(0); // STOCKID
-            HELDAT = q.GetInt(1); // HELDAT
-            PURCHASEDATE = q.GetString(2); // PURCHASEDATE
-            STOCKNAME = q.GetString(3); // STOCKNAME
-            SYMBOL = q.GetString(4); // SYMBOL
-            NUMSHARES = q.GetDouble(5); // NUMSHARES
-            PURCHASEPRICE = q.GetDouble(6); // PURCHASEPRICE
-            NOTES = q.GetString(7); // NOTES
-            CURRENTPRICE = q.GetDouble(8); // CURRENTPRICE
-            VALUE = q.GetDouble(9); // VALUE
-            COMMISSION = q.GetDouble(10); // COMMISSION
+            HISTID = q.GetInt(0);
+            SYMBOL = q.GetString(1);
+            DATE = q.GetString(2);
+            VALUE = q.GetDouble(3);
+            UPDTYPE = q.GetInt(4);
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            STOCKID = other.STOCKID;
-            HELDAT = other.HELDAT;
-            PURCHASEDATE = other.PURCHASEDATE;
-            STOCKNAME = other.STOCKNAME;
+            HISTID = other.HISTID;
             SYMBOL = other.SYMBOL;
-            NUMSHARES = other.NUMSHARES;
-            PURCHASEPRICE = other.PURCHASEPRICE;
-            NOTES = other.NOTES;
-            CURRENTPRICE = other.CURRENTPRICE;
+            DATE = other.DATE;
             VALUE = other.VALUE;
-            COMMISSION = other.COMMISSION;
+            UPDTYPE = other.UPDTYPE;
             return *this;
         }
 
@@ -326,24 +244,9 @@ struct DB_Table_STOCK : public DB_Table
             return false;
         }
 
-        bool match(const Self::STOCKID &in) const
+        bool match(const Self::HISTID &in) const
         {
-            return this->STOCKID == in.v_;
-        }
-
-        bool match(const Self::HELDAT &in) const
-        {
-            return this->HELDAT == in.v_;
-        }
-
-        bool match(const Self::PURCHASEDATE &in) const
-        {
-            return this->PURCHASEDATE.CmpNoCase(in.v_) == 0;
-        }
-
-        bool match(const Self::STOCKNAME &in) const
-        {
-            return this->STOCKNAME.CmpNoCase(in.v_) == 0;
+            return this->HISTID == in.v_;
         }
 
         bool match(const Self::SYMBOL &in) const
@@ -351,24 +254,9 @@ struct DB_Table_STOCK : public DB_Table
             return this->SYMBOL.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::NUMSHARES &in) const
+        bool match(const Self::DATE &in) const
         {
-            return this->NUMSHARES == in.v_;
-        }
-
-        bool match(const Self::PURCHASEPRICE &in) const
-        {
-            return this->PURCHASEPRICE == in.v_;
-        }
-
-        bool match(const Self::NOTES &in) const
-        {
-            return this->NOTES.CmpNoCase(in.v_) == 0;
-        }
-
-        bool match(const Self::CURRENTPRICE &in) const
-        {
-            return this->CURRENTPRICE == in.v_;
+            return this->DATE.CmpNoCase(in.v_) == 0;
         }
 
         bool match(const Self::VALUE &in) const
@@ -376,12 +264,12 @@ struct DB_Table_STOCK : public DB_Table
             return this->VALUE == in.v_;
         }
 
-        bool match(const Self::COMMISSION &in) const
+        bool match(const Self::UPDTYPE &in) const
         {
-            return this->COMMISSION == in.v_;
+            return this->UPDTYPE == in.v_;
         }
 
-        // Return the data record as a json string
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -394,63 +282,39 @@ struct DB_Table_STOCK : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("STOCKID");
-            json_writer.Int(this->STOCKID);
-            json_writer.Key("HELDAT");
-            json_writer.Int(this->HELDAT);
-            json_writer.Key("PURCHASEDATE");
-            json_writer.String(this->PURCHASEDATE.c_str());
-            json_writer.Key("STOCKNAME");
-            json_writer.String(this->STOCKNAME.c_str());
+            json_writer.Key("HISTID");
+            json_writer.Int(this->HISTID);
             json_writer.Key("SYMBOL");
             json_writer.String(this->SYMBOL.c_str());
-            json_writer.Key("NUMSHARES");
-            json_writer.Double(this->NUMSHARES);
-            json_writer.Key("PURCHASEPRICE");
-            json_writer.Double(this->PURCHASEPRICE);
-            json_writer.Key("NOTES");
-            json_writer.String(this->NOTES.c_str());
-            json_writer.Key("CURRENTPRICE");
-            json_writer.Double(this->CURRENTPRICE);
+            json_writer.Key("DATE");
+            json_writer.String(this->DATE.c_str());
             json_writer.Key("VALUE");
             json_writer.Double(this->VALUE);
-            json_writer.Key("COMMISSION");
-            json_writer.Double(this->COMMISSION);
+            json_writer.Key("UPDTYPE");
+            json_writer.Int(this->UPDTYPE);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"STOCKID") = STOCKID;
-            row(L"HELDAT") = HELDAT;
-            row(L"PURCHASEDATE") = PURCHASEDATE;
-            row(L"STOCKNAME") = STOCKNAME;
+            row(L"HISTID") = HISTID;
             row(L"SYMBOL") = SYMBOL;
-            row(L"NUMSHARES") = NUMSHARES;
-            row(L"PURCHASEPRICE") = PURCHASEPRICE;
-            row(L"NOTES") = NOTES;
-            row(L"CURRENTPRICE") = CURRENTPRICE;
+            row(L"DATE") = DATE;
             row(L"VALUE") = VALUE;
-            row(L"COMMISSION") = COMMISSION;
+            row(L"UPDTYPE") = UPDTYPE;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"STOCKID") = STOCKID;
-            t(L"HELDAT") = HELDAT;
-            t(L"PURCHASEDATE") = PURCHASEDATE;
-            t(L"STOCKNAME") = STOCKNAME;
+            t(L"HISTID") = HISTID;
             t(L"SYMBOL") = SYMBOL;
-            t(L"NUMSHARES") = NUMSHARES;
-            t(L"PURCHASEPRICE") = PURCHASEPRICE;
-            t(L"NOTES") = NOTES;
-            t(L"CURRENTPRICE") = CURRENTPRICE;
+            t(L"DATE") = DATE;
             t(L"VALUE") = VALUE;
-            t(L"COMMISSION") = COMMISSION;
+            t(L"UPDTYPE") = UPDTYPE;
         }
 
         /** Save the record instance in memory to the database. */
@@ -459,7 +323,7 @@ struct DB_Table_STOCK : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save STOCK");
+                wxLogError("can not save STOCKHISTORY");
                 return false;
             }
 
@@ -471,7 +335,7 @@ struct DB_Table_STOCK : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove STOCK");
+                wxLogError("can not remove STOCKHISTORY");
                 return false;
             }
             
@@ -486,20 +350,20 @@ struct DB_Table_STOCK : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 11
+        NUM_COLUMNS = 5
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
-    wxString name() const { return "STOCK"; }
+    /** Name of the table */
+    wxString name() const { return "STOCKHISTORY"; }
 
-    DB_Table_STOCK() : fake_(new Data())
+    DB_Table_STOCKHISTORY() : fake_(new Data())
     {
-        query_ = "SELECT STOCKID, HELDAT, PURCHASEDATE, STOCKNAME, SYMBOL, NUMSHARES, PURCHASEPRICE, NOTES, CURRENTPRICE, VALUE, COMMISSION FROM STOCK ";
+        query_ = "SELECT HISTID, SYMBOL, DATE, VALUE, UPDTYPE FROM STOCKHISTORY ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -507,7 +371,7 @@ struct DB_Table_STOCK : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
@@ -526,29 +390,23 @@ struct DB_Table_STOCK : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO STOCK(HELDAT, PURCHASEDATE, STOCKNAME, SYMBOL, NUMSHARES, PURCHASEPRICE, NOTES, CURRENTPRICE, VALUE, COMMISSION) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO STOCKHISTORY(SYMBOL, DATE, VALUE, UPDTYPE) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE STOCK SET HELDAT = ?, PURCHASEDATE = ?, STOCKNAME = ?, SYMBOL = ?, NUMSHARES = ?, PURCHASEPRICE = ?, NOTES = ?, CURRENTPRICE = ?, VALUE = ?, COMMISSION = ? WHERE STOCKID = ?";
+            sql = "UPDATE STOCKHISTORY SET SYMBOL = ?, DATE = ?, VALUE = ?, UPDTYPE = ? WHERE HISTID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->HELDAT);
-            stmt.Bind(2, entity->PURCHASEDATE);
-            stmt.Bind(3, entity->STOCKNAME);
-            stmt.Bind(4, entity->SYMBOL);
-            stmt.Bind(5, entity->NUMSHARES);
-            stmt.Bind(6, entity->PURCHASEPRICE);
-            stmt.Bind(7, entity->NOTES);
-            stmt.Bind(8, entity->CURRENTPRICE);
-            stmt.Bind(9, entity->VALUE);
-            stmt.Bind(10, entity->COMMISSION);
+            stmt.Bind(1, entity->SYMBOL);
+            stmt.Bind(2, entity->DATE);
+            stmt.Bind(3, entity->VALUE);
+            stmt.Bind(4, entity->UPDTYPE);
             if (entity->id() > 0)
-                stmt.Bind(11, entity->STOCKID);
+                stmt.Bind(5, entity->HISTID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -565,7 +423,7 @@ struct DB_Table_STOCK : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCK: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("STOCKHISTORY: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -583,7 +441,7 @@ struct DB_Table_STOCK : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM STOCK WHERE STOCKID = ?";
+            wxString sql = "DELETE FROM STOCKHISTORY WHERE HISTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -608,7 +466,7 @@ struct DB_Table_STOCK : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCK: Exception %s", e.GetMessage().c_str());
+            wxLogError("STOCKHISTORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

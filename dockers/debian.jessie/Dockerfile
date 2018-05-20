@@ -1,5 +1,5 @@
 FROM debian:jessie-slim
-MAINTAINER developers@moneymanagerex.org
+LABEL maintainer="developers@moneymanagerex.org"
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       cmake build-essential gettext git pkg-config lsb-release file ccache \

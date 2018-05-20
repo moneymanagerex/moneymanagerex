@@ -21,7 +21,7 @@
 
 #include "Model.h"
 #include "Model_Currency.h"
-#include "db/DB_Table_Splittransactions.h"
+#include "Table_Splittransactions.h"
 
 struct Split
 {

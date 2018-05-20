@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# vi:tabstop=4:expandtab:shiftwidth=4:softtabstop=4:autoindent:smarttab
+# vi:tabstop=4:expandtab:shiftwidth=4:softtabstop=4:autoindent:smarttab:fileencoding=utf-8
 '''
 Usage: python sqliteupgrade2cpp.py path_to_database_folder
 '''
@@ -30,20 +30,13 @@ def getFileContent(FileName):
 def split_string(string, charleng):
     return [string[i:i+charleng] for i in range(0, len(string), charleng)]
 
-StrHeader = '''//=============================================================================
-/**
- *      Copyright (c) 2016 - %s Gabriele-V
- *
- *      @author [%s]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at %s.
- *          DO NOT EDIT!
+StrHeader = '''/** @file
+ * @brief     Compilation of SQL scripts to upgrade MMEX db version
+ * @warning   Auto generated with %s script. DO NOT EDIT!
+ * @copyright © 2016-2018 Gabriele-V
+ * @date      %s
  */
-//=============================================================================
-'''% (datetime.date.today().year, os.path.basename(__file__), str(datetime.datetime.now()))
+'''% (os.path.basename(__file__), str(datetime.datetime.now()))
 
 StrHeader += '''
 #ifndef DB_UPGRADE_H_

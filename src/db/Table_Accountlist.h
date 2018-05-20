@@ -1,23 +1,17 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for ACCOUNTLIST SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
 struct DB_Table_ACCOUNTLIST : public DB_Table
 {
@@ -27,7 +21,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -321,7 +315,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ACCOUNTID;//  primary key
+        int ACCOUNTID; // primary key
         wxString ACCOUNTNAME;
         wxString ACCOUNTTYPE;
         wxString ACCOUNTNUM;
@@ -380,26 +374,26 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         {
             table_ = table;
         
-            ACCOUNTID = q.GetInt(0); // ACCOUNTID
-            ACCOUNTNAME = q.GetString(1); // ACCOUNTNAME
-            ACCOUNTTYPE = q.GetString(2); // ACCOUNTTYPE
-            ACCOUNTNUM = q.GetString(3); // ACCOUNTNUM
-            STATUS = q.GetString(4); // STATUS
-            NOTES = q.GetString(5); // NOTES
-            HELDAT = q.GetString(6); // HELDAT
-            WEBSITE = q.GetString(7); // WEBSITE
-            CONTACTINFO = q.GetString(8); // CONTACTINFO
-            ACCESSINFO = q.GetString(9); // ACCESSINFO
-            INITIALBAL = q.GetDouble(10); // INITIALBAL
-            FAVORITEACCT = q.GetString(11); // FAVORITEACCT
-            CURRENCYID = q.GetInt(12); // CURRENCYID
-            STATEMENTLOCKED = q.GetInt(13); // STATEMENTLOCKED
-            STATEMENTDATE = q.GetString(14); // STATEMENTDATE
-            MINIMUMBALANCE = q.GetDouble(15); // MINIMUMBALANCE
-            CREDITLIMIT = q.GetDouble(16); // CREDITLIMIT
-            INTERESTRATE = q.GetDouble(17); // INTERESTRATE
-            PAYMENTDUEDATE = q.GetString(18); // PAYMENTDUEDATE
-            MINIMUMPAYMENT = q.GetDouble(19); // MINIMUMPAYMENT
+            ACCOUNTID = q.GetInt(0);
+            ACCOUNTNAME = q.GetString(1);
+            ACCOUNTTYPE = q.GetString(2);
+            ACCOUNTNUM = q.GetString(3);
+            STATUS = q.GetString(4);
+            NOTES = q.GetString(5);
+            HELDAT = q.GetString(6);
+            WEBSITE = q.GetString(7);
+            CONTACTINFO = q.GetString(8);
+            ACCESSINFO = q.GetString(9);
+            INITIALBAL = q.GetDouble(10);
+            FAVORITEACCT = q.GetString(11);
+            CURRENCYID = q.GetInt(12);
+            STATEMENTLOCKED = q.GetInt(13);
+            STATEMENTDATE = q.GetString(14);
+            MINIMUMBALANCE = q.GetDouble(15);
+            CREDITLIMIT = q.GetDouble(16);
+            INTERESTRATE = q.GetDouble(17);
+            PAYMENTDUEDATE = q.GetString(18);
+            MINIMUMPAYMENT = q.GetDouble(19);
         }
 
         Data& operator=(const Data& other)
@@ -535,7 +529,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
             return this->MINIMUMPAYMENT == in.v_;
         }
 
-        // Return the data record as a json string
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -548,7 +542,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("ACCOUNTID");
@@ -681,7 +675,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
+    /** Name of the table */
     wxString name() const { return "ACCOUNTLIST"; }
 
     DB_Table_ACCOUNTLIST() : fake_(new Data())
@@ -689,7 +683,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         query_ = "SELECT ACCOUNTID, ACCOUNTNAME, ACCOUNTTYPE, ACCOUNTNUM, STATUS, NOTES, HELDAT, WEBSITE, CONTACTINFO, ACCESSINFO, INITIALBAL, FAVORITEACCT, CURRENCYID, STATEMENTLOCKED, STATEMENTDATE, MINIMUMBALANCE, CREDITLIMIT, INTERESTRATE, PAYMENTDUEDATE, MINIMUMPAYMENT FROM ACCOUNTLIST ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -697,7 +691,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();

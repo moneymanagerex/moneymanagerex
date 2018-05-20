@@ -1,33 +1,27 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for CUSTOMFIELDDATA SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_ASSETCLASS : public DB_Table
+struct DB_Table_CUSTOMFIELDDATA : public DB_Table
 {
     struct Data;
-    typedef DB_Table_ASSETCLASS Self;
+    typedef DB_Table_CUSTOMFIELDDATA Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -54,7 +48,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_ASSETCLASS() 
+    ~DB_Table_CUSTOMFIELDDATA() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +69,12 @@ struct DB_Table_ASSETCLASS : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE ASSETCLASS (ID INTEGER primary key, PARENTID INTEGER, NAME TEXT COLLATE NOCASE NOT NULL, ALLOCATION REAL, SORTORDER INTEGER)");
+                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELDDATA (FIELDATADID INTEGER NOT NULL PRIMARY KEY, FIELDID INTEGER NOT NULL, REFID INTEGER NOT NULL, CONTENT TEXT, UNIQUE(FIELDID, REFID))");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("ASSETCLASS: Exception %s", e.GetMessage().c_str());
+                wxLogError("CUSTOMFIELDDATA: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,10 +88,11 @@ struct DB_Table_ASSETCLASS : public DB_Table
     {
         try
         {
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELDDATA_REF ON CUSTOMFIELDDATA (FIELDID, REFID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETCLASS: Exception %s", e.GetMessage().c_str());
+            wxLogError("CUSTOMFIELDDATA: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -110,44 +105,37 @@ struct DB_Table_ASSETCLASS : public DB_Table
         db->Commit();
     }
     
-    struct ID : public DB_Column<int>
+    struct FIELDATADID : public DB_Column<int>
     { 
-        static wxString name() { return "ID"; } 
-        explicit ID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "FIELDATADID"; } 
+        explicit FIELDATADID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct PARENTID : public DB_Column<int>
+    struct FIELDID : public DB_Column<int>
     { 
-        static wxString name() { return "PARENTID"; } 
-        explicit PARENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "FIELDID"; } 
+        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct NAME : public DB_Column<wxString>
+    struct REFID : public DB_Column<int>
     { 
-        static wxString name() { return "NAME"; } 
-        explicit NAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "REFID"; } 
+        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct ALLOCATION : public DB_Column<double>
+    struct CONTENT : public DB_Column<wxString>
     { 
-        static wxString name() { return "ALLOCATION"; } 
-        explicit ALLOCATION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        static wxString name() { return "CONTENT"; } 
+        explicit CONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct SORTORDER : public DB_Column<int>
-    { 
-        static wxString name() { return "SORTORDER"; } 
-        explicit SORTORDER(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    typedef ID PRIMARY;
+    typedef FIELDATADID PRIMARY;
     enum COLUMN
     {
-        COL_ID = 0
-        , COL_PARENTID = 1
-        , COL_NAME = 2
-        , COL_ALLOCATION = 3
-        , COL_SORTORDER = 4
+        COL_FIELDATADID = 0
+        , COL_FIELDID = 1
+        , COL_REFID = 2
+        , COL_CONTENT = 3
     };
 
     /** Returns the column name as a string*/
@@ -155,11 +143,10 @@ struct DB_Table_ASSETCLASS : public DB_Table
     {
         switch(col)
         {
-            case COL_ID: return "ID";
-            case COL_PARENTID: return "PARENTID";
-            case COL_NAME: return "NAME";
-            case COL_ALLOCATION: return "ALLOCATION";
-            case COL_SORTORDER: return "SORTORDER";
+            case COL_FIELDATADID: return "FIELDATADID";
+            case COL_FIELDID: return "FIELDID";
+            case COL_REFID: return "REFID";
+            case COL_CONTENT: return "CONTENT";
             default: break;
         }
         
@@ -169,11 +156,10 @@ struct DB_Table_ASSETCLASS : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("ID" == name) return COL_ID;
-        else if ("PARENTID" == name) return COL_PARENTID;
-        else if ("NAME" == name) return COL_NAME;
-        else if ("ALLOCATION" == name) return COL_ALLOCATION;
-        else if ("SORTORDER" == name) return COL_SORTORDER;
+        if ("FIELDATADID" == name) return COL_FIELDATADID;
+        else if ("FIELDID" == name) return COL_FIELDID;
+        else if ("REFID" == name) return COL_REFID;
+        else if ("CONTENT" == name) return COL_CONTENT;
 
         return COLUMN(-1);
     }
@@ -181,24 +167,23 @@ struct DB_Table_ASSETCLASS : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_ASSETCLASS;
+        friend struct DB_Table_CUSTOMFIELDDATA;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ID;//  primary key
-        int PARENTID;
-        wxString NAME;
-        double ALLOCATION;
-        int SORTORDER;
+        int FIELDATADID; // primary key
+        int FIELDID;
+        int REFID;
+        wxString CONTENT;
 
         int id() const
         {
-            return ID;
+            return FIELDATADID;
         }
 
         void id(int id)
         {
-            ID = id;
+            FIELDATADID = id;
         }
 
         bool operator < (const Data& r) const
@@ -215,32 +200,29 @@ struct DB_Table_ASSETCLASS : public DB_Table
         {
             table_ = table;
         
-            ID = -1;
-            PARENTID = -1;
-            ALLOCATION = 0.0;
-            SORTORDER = -1;
+            FIELDATADID = -1;
+            FIELDID = -1;
+            REFID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            ID = q.GetInt(0); // ID
-            PARENTID = q.GetInt(1); // PARENTID
-            NAME = q.GetString(2); // NAME
-            ALLOCATION = q.GetDouble(3); // ALLOCATION
-            SORTORDER = q.GetInt(4); // SORTORDER
+            FIELDATADID = q.GetInt(0);
+            FIELDID = q.GetInt(1);
+            REFID = q.GetInt(2);
+            CONTENT = q.GetString(3);
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            ID = other.ID;
-            PARENTID = other.PARENTID;
-            NAME = other.NAME;
-            ALLOCATION = other.ALLOCATION;
-            SORTORDER = other.SORTORDER;
+            FIELDATADID = other.FIELDATADID;
+            FIELDID = other.FIELDID;
+            REFID = other.REFID;
+            CONTENT = other.CONTENT;
             return *this;
         }
 
@@ -250,32 +232,27 @@ struct DB_Table_ASSETCLASS : public DB_Table
             return false;
         }
 
-        bool match(const Self::ID &in) const
+        bool match(const Self::FIELDATADID &in) const
         {
-            return this->ID == in.v_;
+            return this->FIELDATADID == in.v_;
         }
 
-        bool match(const Self::PARENTID &in) const
+        bool match(const Self::FIELDID &in) const
         {
-            return this->PARENTID == in.v_;
+            return this->FIELDID == in.v_;
         }
 
-        bool match(const Self::NAME &in) const
+        bool match(const Self::REFID &in) const
         {
-            return this->NAME.CmpNoCase(in.v_) == 0;
+            return this->REFID == in.v_;
         }
 
-        bool match(const Self::ALLOCATION &in) const
+        bool match(const Self::CONTENT &in) const
         {
-            return this->ALLOCATION == in.v_;
+            return this->CONTENT.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::SORTORDER &in) const
-        {
-            return this->SORTORDER == in.v_;
-        }
-
-        // Return the data record as a json string
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -288,39 +265,35 @@ struct DB_Table_ASSETCLASS : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("ID");
-            json_writer.Int(this->ID);
-            json_writer.Key("PARENTID");
-            json_writer.Int(this->PARENTID);
-            json_writer.Key("NAME");
-            json_writer.String(this->NAME.c_str());
-            json_writer.Key("ALLOCATION");
-            json_writer.Double(this->ALLOCATION);
-            json_writer.Key("SORTORDER");
-            json_writer.Int(this->SORTORDER);
+            json_writer.Key("FIELDATADID");
+            json_writer.Int(this->FIELDATADID);
+            json_writer.Key("FIELDID");
+            json_writer.Int(this->FIELDID);
+            json_writer.Key("REFID");
+            json_writer.Int(this->REFID);
+            json_writer.Key("CONTENT");
+            json_writer.String(this->CONTENT.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"ID") = ID;
-            row(L"PARENTID") = PARENTID;
-            row(L"NAME") = NAME;
-            row(L"ALLOCATION") = ALLOCATION;
-            row(L"SORTORDER") = SORTORDER;
+            row(L"FIELDATADID") = FIELDATADID;
+            row(L"FIELDID") = FIELDID;
+            row(L"REFID") = REFID;
+            row(L"CONTENT") = CONTENT;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"ID") = ID;
-            t(L"PARENTID") = PARENTID;
-            t(L"NAME") = NAME;
-            t(L"ALLOCATION") = ALLOCATION;
-            t(L"SORTORDER") = SORTORDER;
+            t(L"FIELDATADID") = FIELDATADID;
+            t(L"FIELDID") = FIELDID;
+            t(L"REFID") = REFID;
+            t(L"CONTENT") = CONTENT;
         }
 
         /** Save the record instance in memory to the database. */
@@ -329,7 +302,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save ASSETCLASS");
+                wxLogError("can not save CUSTOMFIELDDATA");
                 return false;
             }
 
@@ -341,7 +314,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove ASSETCLASS");
+                wxLogError("can not remove CUSTOMFIELDDATA");
                 return false;
             }
             
@@ -356,20 +329,20 @@ struct DB_Table_ASSETCLASS : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 5
+        NUM_COLUMNS = 4
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
-    wxString name() const { return "ASSETCLASS"; }
+    /** Name of the table */
+    wxString name() const { return "CUSTOMFIELDDATA"; }
 
-    DB_Table_ASSETCLASS() : fake_(new Data())
+    DB_Table_CUSTOMFIELDDATA() : fake_(new Data())
     {
-        query_ = "SELECT ID, PARENTID, NAME, ALLOCATION, SORTORDER FROM ASSETCLASS ";
+        query_ = "SELECT FIELDATADID, FIELDID, REFID, CONTENT FROM CUSTOMFIELDDATA ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -377,7 +350,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
@@ -396,23 +369,22 @@ struct DB_Table_ASSETCLASS : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO ASSETCLASS(PARENTID, NAME, ALLOCATION, SORTORDER) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO CUSTOMFIELDDATA(FIELDID, REFID, CONTENT) VALUES(?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE ASSETCLASS SET PARENTID = ?, NAME = ?, ALLOCATION = ?, SORTORDER = ? WHERE ID = ?";
+            sql = "UPDATE CUSTOMFIELDDATA SET FIELDID = ?, REFID = ?, CONTENT = ? WHERE FIELDATADID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->PARENTID);
-            stmt.Bind(2, entity->NAME);
-            stmt.Bind(3, entity->ALLOCATION);
-            stmt.Bind(4, entity->SORTORDER);
+            stmt.Bind(1, entity->FIELDID);
+            stmt.Bind(2, entity->REFID);
+            stmt.Bind(3, entity->CONTENT);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->ID);
+                stmt.Bind(4, entity->FIELDATADID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -429,7 +401,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETCLASS: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("CUSTOMFIELDDATA: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -447,7 +419,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM ASSETCLASS WHERE ID = ?";
+            wxString sql = "DELETE FROM CUSTOMFIELDDATA WHERE FIELDATADID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -472,7 +444,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETCLASS: Exception %s", e.GetMessage().c_str());
+            wxLogError("CUSTOMFIELDDATA: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

@@ -7,11 +7,11 @@ CONFIGURE_FILE(versions.h.in versions.h @ONLY)
 INCLUDE_DIRECTORIES("${CMAKE_CURRENT_BINARY_DIR}")
 
 IF(APPLE)
-    SET(MMEX_PLAT_DIR mac)
+    SET(MMEX_PLATFDEP mac)
 ELSEIF(UNIX)
-    SET(MMEX_PLAT_DIR unix)
+    SET(MMEX_PLATFDEP unix)
 ELSEIF (WIN32)
-    SET(MMEX_PLAT_DIR win)
+    SET(MMEX_PLATFDEP win)
     CONFIGURE_FILE(
         "${PROJECT_SOURCE_DIR}/resources/mmex.rc.in"
         mmex.rc @ONLY)
@@ -168,31 +168,32 @@ ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     import_export/univcsvdialog.cpp
     import_export/univcsvdialog.h
 
-    db/DB_Table_Accountlist.h
-    db/DB_Table_Assets.h
-    db/DB_Table_Attachment.h
-    db/DB_Table_Billsdeposits.h
-    db/DB_Table_Budgetsplittransactions.h
-    db/DB_Table_Budgettable.h
-    db/DB_Table_Budgetyear.h
-    db/DB_Table_Category.h
-    db/DB_Table_Checkingaccount.h
-    db/DB_Table_Currencyformats.h
-    db/DB_Table_Currencyhistory.h
-    db/DB_Table_Customfielddata.h
-    db/DB_Table_Customfield.h
-    db/DB_Table.h
-    db/DB_Table_Infotable.h
-    db/DB_Table_Payee.h
-    db/DB_Table_Report.h
-    db/DB_Table_Setting_V1.h
-    db/DB_Table_Shareinfo.h
-    db/DB_Table_Splittransactions.h
-    db/DB_Table_Stockhistory.h
-    db/DB_Table_Stock.h
-    db/DB_Table_Subcategory.h
-    db/DB_Table_Translink.h
-    db/DB_Table_Usage_V1.h
+    db/Table_Accountlist.h
+    db/Table_Assets.h
+    db/Table_Attachment.h
+    db/Table_Billsdeposits.h
+    db/Table_Budgetsplittransactions.h
+    db/Table_Budgettable.h
+    db/Table_Budgetyear.h
+    db/Table_Category.h
+    db/Table_Checkingaccount.h
+    db/Table_Currencyformats.h
+    db/Table_Currencyhistory.h
+    db/Table_Customfielddata.h
+    db/Table_Customfield.h
+    db/Table.h
+    db/Table_Infotable.h
+    db/Table_Payee.h
+    db/Table_Report.h
+    db/Table_Setting_V1.h
+    db/Table_Shareinfo.h
+    db/Table_Splittransactions.h
+    db/Table_Stockhistory.h
+    db/Table_Stock.h
+    db/Table_Subcategory.h
+    db/Table_Translink.h
+    db/Table_Usage_V1.h
+    db/DB_Upgrade.h
 
     reports/budgetcategorysummary.cpp
     reports/budgetcategorysummary.h
@@ -278,7 +279,7 @@ ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/Model_Usage.h
 
     "${CMAKE_CURRENT_BINARY_DIR}/versions.h"
-    "${MMEX_PLAT_DIR}/platfdep.cpp"
+    "platfdep_${MMEX_PLATFDEP}.cpp"
     "${MACOSX_APP_ICON_FILE}"
     "${MMEX_RC}")
 
@@ -305,16 +306,16 @@ ELSE()
     TARGET_COMPILE_FEATURES(${MMEX_EXE} PUBLIC cxx_std_11)
 ENDIF()
 
-TARGET_INCLUDE_DIRECTORIES(${MMEX_EXE} PUBLIC . model)
+TARGET_INCLUDE_DIRECTORIES(${MMEX_EXE} PUBLIC . model db)
 TARGET_LINK_LIBRARIES(${MMEX_EXE} PUBLIC
-        wxSQLite3
-        RapidJSON
-        HTML-template
-        CURL::libcurl
-        LuaGlue
-        Lua
-        csv_parser
-        Mongoose)
+    wxSQLite3
+    RapidJSON
+    HTML-template
+    CURL::libcurl
+    LuaGlue
+    Lua
+    csv_parser
+    Mongoose)
 
 IF(MSVC)
     # Based on this http://stackoverflow.com/a/8294669

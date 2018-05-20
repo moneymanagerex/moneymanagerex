@@ -1,33 +1,27 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for BUDGETSPLITTRANSACTIONS SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_ATTACHMENT : public DB_Table
+struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
 {
     struct Data;
-    typedef DB_Table_ATTACHMENT Self;
+    typedef DB_Table_BUDGETSPLITTRANSACTIONS Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -54,7 +48,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_ATTACHMENT() 
+    ~DB_Table_BUDGETSPLITTRANSACTIONS() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +69,12 @@ struct DB_Table_ATTACHMENT : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE ATTACHMENT (ATTACHMENTID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, Bank Account, Repeating Transaction, Payee */, REFID INTEGER NOT NULL, DESCRIPTION TEXT COLLATE NOCASE, FILENAME TEXT NOT NULL COLLATE NOCASE)");
+                db->ExecuteUpdate("CREATE TABLE BUDGETSPLITTRANSACTIONS(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("ATTACHMENT: Exception %s", e.GetMessage().c_str());
+                wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +88,11 @@ struct DB_Table_ATTACHMENT : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_ATTACHMENT_REF ON ATTACHMENT (REFTYPE, REFID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETSPLITTRANSACTIONS_TRANSID ON BUDGETSPLITTRANSACTIONS(TRANSID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ATTACHMENT: Exception %s", e.GetMessage().c_str());
+            wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,44 +105,44 @@ struct DB_Table_ATTACHMENT : public DB_Table
         db->Commit();
     }
     
-    struct ATTACHMENTID : public DB_Column<int>
+    struct SPLITTRANSID : public DB_Column<int>
     { 
-        static wxString name() { return "ATTACHMENTID"; } 
-        explicit ATTACHMENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "SPLITTRANSID"; } 
+        explicit SPLITTRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct REFTYPE : public DB_Column<wxString>
+    struct TRANSID : public DB_Column<int>
     { 
-        static wxString name() { return "REFTYPE"; } 
-        explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "TRANSID"; } 
+        explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct REFID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int>
     { 
-        static wxString name() { return "REFID"; } 
-        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CATEGID"; } 
+        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct DESCRIPTION : public DB_Column<wxString>
+    struct SUBCATEGID : public DB_Column<int>
     { 
-        static wxString name() { return "DESCRIPTION"; } 
-        explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "SUBCATEGID"; } 
+        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct FILENAME : public DB_Column<wxString>
+    struct SPLITTRANSAMOUNT : public DB_Column<double>
     { 
-        static wxString name() { return "FILENAME"; } 
-        explicit FILENAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "SPLITTRANSAMOUNT"; } 
+        explicit SPLITTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
-    typedef ATTACHMENTID PRIMARY;
+    typedef SPLITTRANSID PRIMARY;
     enum COLUMN
     {
-        COL_ATTACHMENTID = 0
-        , COL_REFTYPE = 1
-        , COL_REFID = 2
-        , COL_DESCRIPTION = 3
-        , COL_FILENAME = 4
+        COL_SPLITTRANSID = 0
+        , COL_TRANSID = 1
+        , COL_CATEGID = 2
+        , COL_SUBCATEGID = 3
+        , COL_SPLITTRANSAMOUNT = 4
     };
 
     /** Returns the column name as a string*/
@@ -156,11 +150,11 @@ struct DB_Table_ATTACHMENT : public DB_Table
     {
         switch(col)
         {
-            case COL_ATTACHMENTID: return "ATTACHMENTID";
-            case COL_REFTYPE: return "REFTYPE";
-            case COL_REFID: return "REFID";
-            case COL_DESCRIPTION: return "DESCRIPTION";
-            case COL_FILENAME: return "FILENAME";
+            case COL_SPLITTRANSID: return "SPLITTRANSID";
+            case COL_TRANSID: return "TRANSID";
+            case COL_CATEGID: return "CATEGID";
+            case COL_SUBCATEGID: return "SUBCATEGID";
+            case COL_SPLITTRANSAMOUNT: return "SPLITTRANSAMOUNT";
             default: break;
         }
         
@@ -170,11 +164,11 @@ struct DB_Table_ATTACHMENT : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("ATTACHMENTID" == name) return COL_ATTACHMENTID;
-        else if ("REFTYPE" == name) return COL_REFTYPE;
-        else if ("REFID" == name) return COL_REFID;
-        else if ("DESCRIPTION" == name) return COL_DESCRIPTION;
-        else if ("FILENAME" == name) return COL_FILENAME;
+        if ("SPLITTRANSID" == name) return COL_SPLITTRANSID;
+        else if ("TRANSID" == name) return COL_TRANSID;
+        else if ("CATEGID" == name) return COL_CATEGID;
+        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
+        else if ("SPLITTRANSAMOUNT" == name) return COL_SPLITTRANSAMOUNT;
 
         return COLUMN(-1);
     }
@@ -182,24 +176,24 @@ struct DB_Table_ATTACHMENT : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_ATTACHMENT;
+        friend struct DB_Table_BUDGETSPLITTRANSACTIONS;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ATTACHMENTID;//  primary key
-        wxString REFTYPE;
-        int REFID;
-        wxString DESCRIPTION;
-        wxString FILENAME;
+        int SPLITTRANSID; // primary key
+        int TRANSID;
+        int CATEGID;
+        int SUBCATEGID;
+        double SPLITTRANSAMOUNT;
 
         int id() const
         {
-            return ATTACHMENTID;
+            return SPLITTRANSID;
         }
 
         void id(int id)
         {
-            ATTACHMENTID = id;
+            SPLITTRANSID = id;
         }
 
         bool operator < (const Data& r) const
@@ -216,30 +210,33 @@ struct DB_Table_ATTACHMENT : public DB_Table
         {
             table_ = table;
         
-            ATTACHMENTID = -1;
-            REFID = -1;
+            SPLITTRANSID = -1;
+            TRANSID = -1;
+            CATEGID = -1;
+            SUBCATEGID = -1;
+            SPLITTRANSAMOUNT = 0.0;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            ATTACHMENTID = q.GetInt(0); // ATTACHMENTID
-            REFTYPE = q.GetString(1); // REFTYPE
-            REFID = q.GetInt(2); // REFID
-            DESCRIPTION = q.GetString(3); // DESCRIPTION
-            FILENAME = q.GetString(4); // FILENAME
+            SPLITTRANSID = q.GetInt(0);
+            TRANSID = q.GetInt(1);
+            CATEGID = q.GetInt(2);
+            SUBCATEGID = q.GetInt(3);
+            SPLITTRANSAMOUNT = q.GetDouble(4);
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            ATTACHMENTID = other.ATTACHMENTID;
-            REFTYPE = other.REFTYPE;
-            REFID = other.REFID;
-            DESCRIPTION = other.DESCRIPTION;
-            FILENAME = other.FILENAME;
+            SPLITTRANSID = other.SPLITTRANSID;
+            TRANSID = other.TRANSID;
+            CATEGID = other.CATEGID;
+            SUBCATEGID = other.SUBCATEGID;
+            SPLITTRANSAMOUNT = other.SPLITTRANSAMOUNT;
             return *this;
         }
 
@@ -249,32 +246,32 @@ struct DB_Table_ATTACHMENT : public DB_Table
             return false;
         }
 
-        bool match(const Self::ATTACHMENTID &in) const
+        bool match(const Self::SPLITTRANSID &in) const
         {
-            return this->ATTACHMENTID == in.v_;
+            return this->SPLITTRANSID == in.v_;
         }
 
-        bool match(const Self::REFTYPE &in) const
+        bool match(const Self::TRANSID &in) const
         {
-            return this->REFTYPE.CmpNoCase(in.v_) == 0;
+            return this->TRANSID == in.v_;
         }
 
-        bool match(const Self::REFID &in) const
+        bool match(const Self::CATEGID &in) const
         {
-            return this->REFID == in.v_;
+            return this->CATEGID == in.v_;
         }
 
-        bool match(const Self::DESCRIPTION &in) const
+        bool match(const Self::SUBCATEGID &in) const
         {
-            return this->DESCRIPTION.CmpNoCase(in.v_) == 0;
+            return this->SUBCATEGID == in.v_;
         }
 
-        bool match(const Self::FILENAME &in) const
+        bool match(const Self::SPLITTRANSAMOUNT &in) const
         {
-            return this->FILENAME.CmpNoCase(in.v_) == 0;
+            return this->SPLITTRANSAMOUNT == in.v_;
         }
 
-        // Return the data record as a json string
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -287,39 +284,39 @@ struct DB_Table_ATTACHMENT : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("ATTACHMENTID");
-            json_writer.Int(this->ATTACHMENTID);
-            json_writer.Key("REFTYPE");
-            json_writer.String(this->REFTYPE.c_str());
-            json_writer.Key("REFID");
-            json_writer.Int(this->REFID);
-            json_writer.Key("DESCRIPTION");
-            json_writer.String(this->DESCRIPTION.c_str());
-            json_writer.Key("FILENAME");
-            json_writer.String(this->FILENAME.c_str());
+            json_writer.Key("SPLITTRANSID");
+            json_writer.Int(this->SPLITTRANSID);
+            json_writer.Key("TRANSID");
+            json_writer.Int(this->TRANSID);
+            json_writer.Key("CATEGID");
+            json_writer.Int(this->CATEGID);
+            json_writer.Key("SUBCATEGID");
+            json_writer.Int(this->SUBCATEGID);
+            json_writer.Key("SPLITTRANSAMOUNT");
+            json_writer.Double(this->SPLITTRANSAMOUNT);
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"ATTACHMENTID") = ATTACHMENTID;
-            row(L"REFTYPE") = REFTYPE;
-            row(L"REFID") = REFID;
-            row(L"DESCRIPTION") = DESCRIPTION;
-            row(L"FILENAME") = FILENAME;
+            row(L"SPLITTRANSID") = SPLITTRANSID;
+            row(L"TRANSID") = TRANSID;
+            row(L"CATEGID") = CATEGID;
+            row(L"SUBCATEGID") = SUBCATEGID;
+            row(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"ATTACHMENTID") = ATTACHMENTID;
-            t(L"REFTYPE") = REFTYPE;
-            t(L"REFID") = REFID;
-            t(L"DESCRIPTION") = DESCRIPTION;
-            t(L"FILENAME") = FILENAME;
+            t(L"SPLITTRANSID") = SPLITTRANSID;
+            t(L"TRANSID") = TRANSID;
+            t(L"CATEGID") = CATEGID;
+            t(L"SUBCATEGID") = SUBCATEGID;
+            t(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
         }
 
         /** Save the record instance in memory to the database. */
@@ -328,7 +325,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save ATTACHMENT");
+                wxLogError("can not save BUDGETSPLITTRANSACTIONS");
                 return false;
             }
 
@@ -340,7 +337,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove ATTACHMENT");
+                wxLogError("can not remove BUDGETSPLITTRANSACTIONS");
                 return false;
             }
             
@@ -360,15 +357,15 @@ struct DB_Table_ATTACHMENT : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
-    wxString name() const { return "ATTACHMENT"; }
+    /** Name of the table */
+    wxString name() const { return "BUDGETSPLITTRANSACTIONS"; }
 
-    DB_Table_ATTACHMENT() : fake_(new Data())
+    DB_Table_BUDGETSPLITTRANSACTIONS() : fake_(new Data())
     {
-        query_ = "SELECT ATTACHMENTID, REFTYPE, REFID, DESCRIPTION, FILENAME FROM ATTACHMENT ";
+        query_ = "SELECT SPLITTRANSID, TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT FROM BUDGETSPLITTRANSACTIONS ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -376,7 +373,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
@@ -395,23 +392,23 @@ struct DB_Table_ATTACHMENT : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO ATTACHMENT(REFTYPE, REFID, DESCRIPTION, FILENAME) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO BUDGETSPLITTRANSACTIONS(TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE ATTACHMENT SET REFTYPE = ?, REFID = ?, DESCRIPTION = ?, FILENAME = ? WHERE ATTACHMENTID = ?";
+            sql = "UPDATE BUDGETSPLITTRANSACTIONS SET TRANSID = ?, CATEGID = ?, SUBCATEGID = ?, SPLITTRANSAMOUNT = ? WHERE SPLITTRANSID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->REFTYPE);
-            stmt.Bind(2, entity->REFID);
-            stmt.Bind(3, entity->DESCRIPTION);
-            stmt.Bind(4, entity->FILENAME);
+            stmt.Bind(1, entity->TRANSID);
+            stmt.Bind(2, entity->CATEGID);
+            stmt.Bind(3, entity->SUBCATEGID);
+            stmt.Bind(4, entity->SPLITTRANSAMOUNT);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->ATTACHMENTID);
+                stmt.Bind(5, entity->SPLITTRANSID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -428,7 +425,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ATTACHMENT: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -446,7 +443,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM ATTACHMENT WHERE ATTACHMENTID = ?";
+            wxString sql = "DELETE FROM BUDGETSPLITTRANSACTIONS WHERE SPLITTRANSID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -471,7 +468,7 @@ struct DB_Table_ATTACHMENT : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ATTACHMENT: Exception %s", e.GetMessage().c_str());
+            wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

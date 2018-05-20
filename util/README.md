@@ -16,7 +16,7 @@
 
 + **[build_db_tables.bat]**
 
-  To allow easy installation of `DB_Table_xxx.h` files by using file:
+  To allow easy installation of `Table_xxx.h` files by using file:
   `sqlite2cpp.py`
 
   Running batch file from current location will copy result files to the

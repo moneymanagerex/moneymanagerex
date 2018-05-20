@@ -1,33 +1,27 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for SETTING_V1 SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_CATEGORY : public DB_Table
+struct DB_Table_SETTING_V1 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CATEGORY Self;
+    typedef DB_Table_SETTING_V1 Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -54,7 +48,7 @@ struct DB_Table_CATEGORY : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CATEGORY() 
+    ~DB_Table_SETTING_V1() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +69,12 @@ struct DB_Table_CATEGORY : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CATEGORY(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE)");
+                db->ExecuteUpdate("CREATE TABLE SETTING_V1(SETTINGID integer not null primary key, SETTINGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, SETTINGVALUE TEXT)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("CATEGORY: Exception %s", e.GetMessage().c_str());
+                wxLogError("SETTING_V1: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +88,11 @@ struct DB_Table_CATEGORY : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CATEGORY_CATEGNAME ON CATEGORY(CATEGNAME)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_SETTING_SETTINGNAME ON SETTING_V1(SETTINGNAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CATEGORY: Exception %s", e.GetMessage().c_str());
+            wxLogError("SETTING_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -108,42 +102,33 @@ struct DB_Table_CATEGORY : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('1', '%s')", wxTRANSLATE("Bills")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('2', '%s')", wxTRANSLATE("Food")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('3', '%s')", wxTRANSLATE("Leisure")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('4', '%s')", wxTRANSLATE("Automobile")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('5', '%s')", wxTRANSLATE("Education")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('6', '%s')", wxTRANSLATE("Homeneeds")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('7', '%s')", wxTRANSLATE("Healthcare")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('8', '%s')", wxTRANSLATE("Insurance")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('9', '%s')", wxTRANSLATE("Vacation")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('10', '%s')", wxTRANSLATE("Taxes")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('11', '%s')", wxTRANSLATE("Miscellaneous")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('12', '%s')", wxTRANSLATE("Gifts")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('13', '%s')", wxTRANSLATE("Income")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('14', '%s')", wxTRANSLATE("Other Income")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('15', '%s')", wxTRANSLATE("Other Expenses")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('16', '%s')", wxTRANSLATE("Transfer")));
         db->Commit();
     }
     
-    struct CATEGID : public DB_Column<int>
+    struct SETTINGID : public DB_Column<int>
     { 
-        static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "SETTINGID"; } 
+        explicit SETTINGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct CATEGNAME : public DB_Column<wxString>
+    struct SETTINGNAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "CATEGNAME"; } 
-        explicit CATEGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "SETTINGNAME"; } 
+        explicit SETTINGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    typedef CATEGID PRIMARY;
+    struct SETTINGVALUE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "SETTINGVALUE"; } 
+        explicit SETTINGVALUE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
+    typedef SETTINGID PRIMARY;
     enum COLUMN
     {
-        COL_CATEGID = 0
-        , COL_CATEGNAME = 1
+        COL_SETTINGID = 0
+        , COL_SETTINGNAME = 1
+        , COL_SETTINGVALUE = 2
     };
 
     /** Returns the column name as a string*/
@@ -151,8 +136,9 @@ struct DB_Table_CATEGORY : public DB_Table
     {
         switch(col)
         {
-            case COL_CATEGID: return "CATEGID";
-            case COL_CATEGNAME: return "CATEGNAME";
+            case COL_SETTINGID: return "SETTINGID";
+            case COL_SETTINGNAME: return "SETTINGNAME";
+            case COL_SETTINGVALUE: return "SETTINGVALUE";
             default: break;
         }
         
@@ -162,8 +148,9 @@ struct DB_Table_CATEGORY : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("CATEGID" == name) return COL_CATEGID;
-        else if ("CATEGNAME" == name) return COL_CATEGNAME;
+        if ("SETTINGID" == name) return COL_SETTINGID;
+        else if ("SETTINGNAME" == name) return COL_SETTINGNAME;
+        else if ("SETTINGVALUE" == name) return COL_SETTINGVALUE;
 
         return COLUMN(-1);
     }
@@ -171,21 +158,22 @@ struct DB_Table_CATEGORY : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CATEGORY;
+        friend struct DB_Table_SETTING_V1;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int CATEGID;//  primary key
-        wxString CATEGNAME;
+        int SETTINGID; // primary key
+        wxString SETTINGNAME;
+        wxString SETTINGVALUE;
 
         int id() const
         {
-            return CATEGID;
+            return SETTINGID;
         }
 
         void id(int id)
         {
-            CATEGID = id;
+            SETTINGID = id;
         }
 
         bool operator < (const Data& r) const
@@ -202,23 +190,25 @@ struct DB_Table_CATEGORY : public DB_Table
         {
             table_ = table;
         
-            CATEGID = -1;
+            SETTINGID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            CATEGID = q.GetInt(0); // CATEGID
-            CATEGNAME = q.GetString(1); // CATEGNAME
+            SETTINGID = q.GetInt(0);
+            SETTINGNAME = q.GetString(1);
+            SETTINGVALUE = q.GetString(2);
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            CATEGID = other.CATEGID;
-            CATEGNAME = other.CATEGNAME;
+            SETTINGID = other.SETTINGID;
+            SETTINGNAME = other.SETTINGNAME;
+            SETTINGVALUE = other.SETTINGVALUE;
             return *this;
         }
 
@@ -228,17 +218,22 @@ struct DB_Table_CATEGORY : public DB_Table
             return false;
         }
 
-        bool match(const Self::CATEGID &in) const
+        bool match(const Self::SETTINGID &in) const
         {
-            return this->CATEGID == in.v_;
+            return this->SETTINGID == in.v_;
         }
 
-        bool match(const Self::CATEGNAME &in) const
+        bool match(const Self::SETTINGNAME &in) const
         {
-            return this->CATEGNAME.CmpNoCase(in.v_) == 0;
+            return this->SETTINGNAME.CmpNoCase(in.v_) == 0;
         }
 
-        // Return the data record as a json string
+        bool match(const Self::SETTINGVALUE &in) const
+        {
+            return this->SETTINGVALUE.CmpNoCase(in.v_) == 0;
+        }
+
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -251,27 +246,31 @@ struct DB_Table_CATEGORY : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
-            json_writer.Key("CATEGNAME");
-            json_writer.String(this->CATEGNAME.c_str());
+            json_writer.Key("SETTINGID");
+            json_writer.Int(this->SETTINGID);
+            json_writer.Key("SETTINGNAME");
+            json_writer.String(this->SETTINGNAME.c_str());
+            json_writer.Key("SETTINGVALUE");
+            json_writer.String(this->SETTINGVALUE.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"CATEGID") = CATEGID;
-            row(L"CATEGNAME") = CATEGNAME;
+            row(L"SETTINGID") = SETTINGID;
+            row(L"SETTINGNAME") = SETTINGNAME;
+            row(L"SETTINGVALUE") = SETTINGVALUE;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"CATEGID") = CATEGID;
-            t(L"CATEGNAME") = CATEGNAME;
+            t(L"SETTINGID") = SETTINGID;
+            t(L"SETTINGNAME") = SETTINGNAME;
+            t(L"SETTINGVALUE") = SETTINGVALUE;
         }
 
         /** Save the record instance in memory to the database. */
@@ -280,7 +279,7 @@ struct DB_Table_CATEGORY : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save CATEGORY");
+                wxLogError("can not save SETTING_V1");
                 return false;
             }
 
@@ -292,7 +291,7 @@ struct DB_Table_CATEGORY : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove CATEGORY");
+                wxLogError("can not remove SETTING_V1");
                 return false;
             }
             
@@ -307,20 +306,20 @@ struct DB_Table_CATEGORY : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 2
+        NUM_COLUMNS = 3
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
-    wxString name() const { return "CATEGORY"; }
+    /** Name of the table */
+    wxString name() const { return "SETTING_V1"; }
 
-    DB_Table_CATEGORY() : fake_(new Data())
+    DB_Table_SETTING_V1() : fake_(new Data())
     {
-        query_ = "SELECT CATEGID, CATEGNAME FROM CATEGORY ";
+        query_ = "SELECT SETTINGID, SETTINGNAME, SETTINGVALUE FROM SETTING_V1 ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -328,7 +327,7 @@ struct DB_Table_CATEGORY : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
@@ -347,20 +346,21 @@ struct DB_Table_CATEGORY : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CATEGORY(CATEGNAME) VALUES(?)";
+            sql = "INSERT INTO SETTING_V1(SETTINGNAME, SETTINGVALUE) VALUES(?, ?)";
         }
         else
         {
-            sql = "UPDATE CATEGORY SET CATEGNAME = ? WHERE CATEGID = ?";
+            sql = "UPDATE SETTING_V1 SET SETTINGNAME = ?, SETTINGVALUE = ? WHERE SETTINGID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->CATEGNAME);
+            stmt.Bind(1, entity->SETTINGNAME);
+            stmt.Bind(2, entity->SETTINGVALUE);
             if (entity->id() > 0)
-                stmt.Bind(2, entity->CATEGID);
+                stmt.Bind(3, entity->SETTINGID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -377,7 +377,7 @@ struct DB_Table_CATEGORY : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CATEGORY: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("SETTING_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -395,7 +395,7 @@ struct DB_Table_CATEGORY : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CATEGORY WHERE CATEGID = ?";
+            wxString sql = "DELETE FROM SETTING_V1 WHERE SETTINGID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -420,7 +420,7 @@ struct DB_Table_CATEGORY : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CATEGORY: Exception %s", e.GetMessage().c_str());
+            wxLogError("SETTING_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

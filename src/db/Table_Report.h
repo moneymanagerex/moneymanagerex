@@ -1,33 +1,27 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for REPORT SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_CUSTOMFIELDDATA : public DB_Table
+struct DB_Table_REPORT : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CUSTOMFIELDDATA Self;
+    typedef DB_Table_REPORT Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -54,7 +48,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CUSTOMFIELDDATA() 
+    ~DB_Table_REPORT() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +69,12 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELDDATA (FIELDATADID INTEGER NOT NULL PRIMARY KEY, FIELDID INTEGER NOT NULL, REFID INTEGER NOT NULL, CONTENT TEXT, UNIQUE(FIELDID, REFID))");
+                db->ExecuteUpdate("CREATE TABLE REPORT(REPORTID integer not null primary key, REPORTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, GROUPNAME TEXT COLLATE NOCASE, SQLCONTENT TEXT, LUACONTENT TEXT, TEMPLATECONTENT TEXT, DESCRIPTION TEXT)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("CUSTOMFIELDDATA: Exception %s", e.GetMessage().c_str());
+                wxLogError("REPORT: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +88,11 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELDDATA_REF ON CUSTOMFIELDDATA (FIELDID, REFID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS INDEX_REPORT_NAME ON REPORT(REPORTNAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELDDATA: Exception %s", e.GetMessage().c_str());
+            wxLogError("REPORT: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,37 +105,58 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         db->Commit();
     }
     
-    struct FIELDATADID : public DB_Column<int>
+    struct REPORTID : public DB_Column<int>
     { 
-        static wxString name() { return "FIELDATADID"; } 
-        explicit FIELDATADID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "REPORTID"; } 
+        explicit REPORTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct FIELDID : public DB_Column<int>
+    struct REPORTNAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "FIELDID"; } 
-        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "REPORTNAME"; } 
+        explicit REPORTNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct REFID : public DB_Column<int>
+    struct GROUPNAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "REFID"; } 
-        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "GROUPNAME"; } 
+        explicit GROUPNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CONTENT : public DB_Column<wxString>
+    struct SQLCONTENT : public DB_Column<wxString>
     { 
-        static wxString name() { return "CONTENT"; } 
-        explicit CONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "SQLCONTENT"; } 
+        explicit SQLCONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    typedef FIELDATADID PRIMARY;
+    struct LUACONTENT : public DB_Column<wxString>
+    { 
+        static wxString name() { return "LUACONTENT"; } 
+        explicit LUACONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
+    struct TEMPLATECONTENT : public DB_Column<wxString>
+    { 
+        static wxString name() { return "TEMPLATECONTENT"; } 
+        explicit TEMPLATECONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
+    struct DESCRIPTION : public DB_Column<wxString>
+    { 
+        static wxString name() { return "DESCRIPTION"; } 
+        explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    
+    typedef REPORTID PRIMARY;
     enum COLUMN
     {
-        COL_FIELDATADID = 0
-        , COL_FIELDID = 1
-        , COL_REFID = 2
-        , COL_CONTENT = 3
+        COL_REPORTID = 0
+        , COL_REPORTNAME = 1
+        , COL_GROUPNAME = 2
+        , COL_SQLCONTENT = 3
+        , COL_LUACONTENT = 4
+        , COL_TEMPLATECONTENT = 5
+        , COL_DESCRIPTION = 6
     };
 
     /** Returns the column name as a string*/
@@ -149,10 +164,13 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
     {
         switch(col)
         {
-            case COL_FIELDATADID: return "FIELDATADID";
-            case COL_FIELDID: return "FIELDID";
-            case COL_REFID: return "REFID";
-            case COL_CONTENT: return "CONTENT";
+            case COL_REPORTID: return "REPORTID";
+            case COL_REPORTNAME: return "REPORTNAME";
+            case COL_GROUPNAME: return "GROUPNAME";
+            case COL_SQLCONTENT: return "SQLCONTENT";
+            case COL_LUACONTENT: return "LUACONTENT";
+            case COL_TEMPLATECONTENT: return "TEMPLATECONTENT";
+            case COL_DESCRIPTION: return "DESCRIPTION";
             default: break;
         }
         
@@ -162,10 +180,13 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("FIELDATADID" == name) return COL_FIELDATADID;
-        else if ("FIELDID" == name) return COL_FIELDID;
-        else if ("REFID" == name) return COL_REFID;
-        else if ("CONTENT" == name) return COL_CONTENT;
+        if ("REPORTID" == name) return COL_REPORTID;
+        else if ("REPORTNAME" == name) return COL_REPORTNAME;
+        else if ("GROUPNAME" == name) return COL_GROUPNAME;
+        else if ("SQLCONTENT" == name) return COL_SQLCONTENT;
+        else if ("LUACONTENT" == name) return COL_LUACONTENT;
+        else if ("TEMPLATECONTENT" == name) return COL_TEMPLATECONTENT;
+        else if ("DESCRIPTION" == name) return COL_DESCRIPTION;
 
         return COLUMN(-1);
     }
@@ -173,23 +194,26 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CUSTOMFIELDDATA;
+        friend struct DB_Table_REPORT;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int FIELDATADID;//  primary key
-        int FIELDID;
-        int REFID;
-        wxString CONTENT;
+        int REPORTID; // primary key
+        wxString REPORTNAME;
+        wxString GROUPNAME;
+        wxString SQLCONTENT;
+        wxString LUACONTENT;
+        wxString TEMPLATECONTENT;
+        wxString DESCRIPTION;
 
         int id() const
         {
-            return FIELDATADID;
+            return REPORTID;
         }
 
         void id(int id)
         {
-            FIELDATADID = id;
+            REPORTID = id;
         }
 
         bool operator < (const Data& r) const
@@ -206,29 +230,33 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         {
             table_ = table;
         
-            FIELDATADID = -1;
-            FIELDID = -1;
-            REFID = -1;
+            REPORTID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            FIELDATADID = q.GetInt(0); // FIELDATADID
-            FIELDID = q.GetInt(1); // FIELDID
-            REFID = q.GetInt(2); // REFID
-            CONTENT = q.GetString(3); // CONTENT
+            REPORTID = q.GetInt(0);
+            REPORTNAME = q.GetString(1);
+            GROUPNAME = q.GetString(2);
+            SQLCONTENT = q.GetString(3);
+            LUACONTENT = q.GetString(4);
+            TEMPLATECONTENT = q.GetString(5);
+            DESCRIPTION = q.GetString(6);
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            FIELDATADID = other.FIELDATADID;
-            FIELDID = other.FIELDID;
-            REFID = other.REFID;
-            CONTENT = other.CONTENT;
+            REPORTID = other.REPORTID;
+            REPORTNAME = other.REPORTNAME;
+            GROUPNAME = other.GROUPNAME;
+            SQLCONTENT = other.SQLCONTENT;
+            LUACONTENT = other.LUACONTENT;
+            TEMPLATECONTENT = other.TEMPLATECONTENT;
+            DESCRIPTION = other.DESCRIPTION;
             return *this;
         }
 
@@ -238,27 +266,42 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
             return false;
         }
 
-        bool match(const Self::FIELDATADID &in) const
+        bool match(const Self::REPORTID &in) const
         {
-            return this->FIELDATADID == in.v_;
+            return this->REPORTID == in.v_;
         }
 
-        bool match(const Self::FIELDID &in) const
+        bool match(const Self::REPORTNAME &in) const
         {
-            return this->FIELDID == in.v_;
+            return this->REPORTNAME.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::REFID &in) const
+        bool match(const Self::GROUPNAME &in) const
         {
-            return this->REFID == in.v_;
+            return this->GROUPNAME.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::CONTENT &in) const
+        bool match(const Self::SQLCONTENT &in) const
         {
-            return this->CONTENT.CmpNoCase(in.v_) == 0;
+            return this->SQLCONTENT.CmpNoCase(in.v_) == 0;
         }
 
-        // Return the data record as a json string
+        bool match(const Self::LUACONTENT &in) const
+        {
+            return this->LUACONTENT.CmpNoCase(in.v_) == 0;
+        }
+
+        bool match(const Self::TEMPLATECONTENT &in) const
+        {
+            return this->TEMPLATECONTENT.CmpNoCase(in.v_) == 0;
+        }
+
+        bool match(const Self::DESCRIPTION &in) const
+        {
+            return this->DESCRIPTION.CmpNoCase(in.v_) == 0;
+        }
+
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -271,35 +314,47 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("FIELDATADID");
-            json_writer.Int(this->FIELDATADID);
-            json_writer.Key("FIELDID");
-            json_writer.Int(this->FIELDID);
-            json_writer.Key("REFID");
-            json_writer.Int(this->REFID);
-            json_writer.Key("CONTENT");
-            json_writer.String(this->CONTENT.c_str());
+            json_writer.Key("REPORTID");
+            json_writer.Int(this->REPORTID);
+            json_writer.Key("REPORTNAME");
+            json_writer.String(this->REPORTNAME.c_str());
+            json_writer.Key("GROUPNAME");
+            json_writer.String(this->GROUPNAME.c_str());
+            json_writer.Key("SQLCONTENT");
+            json_writer.String(this->SQLCONTENT.c_str());
+            json_writer.Key("LUACONTENT");
+            json_writer.String(this->LUACONTENT.c_str());
+            json_writer.Key("TEMPLATECONTENT");
+            json_writer.String(this->TEMPLATECONTENT.c_str());
+            json_writer.Key("DESCRIPTION");
+            json_writer.String(this->DESCRIPTION.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"FIELDATADID") = FIELDATADID;
-            row(L"FIELDID") = FIELDID;
-            row(L"REFID") = REFID;
-            row(L"CONTENT") = CONTENT;
+            row(L"REPORTID") = REPORTID;
+            row(L"REPORTNAME") = REPORTNAME;
+            row(L"GROUPNAME") = GROUPNAME;
+            row(L"SQLCONTENT") = SQLCONTENT;
+            row(L"LUACONTENT") = LUACONTENT;
+            row(L"TEMPLATECONTENT") = TEMPLATECONTENT;
+            row(L"DESCRIPTION") = DESCRIPTION;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"FIELDATADID") = FIELDATADID;
-            t(L"FIELDID") = FIELDID;
-            t(L"REFID") = REFID;
-            t(L"CONTENT") = CONTENT;
+            t(L"REPORTID") = REPORTID;
+            t(L"REPORTNAME") = REPORTNAME;
+            t(L"GROUPNAME") = GROUPNAME;
+            t(L"SQLCONTENT") = SQLCONTENT;
+            t(L"LUACONTENT") = LUACONTENT;
+            t(L"TEMPLATECONTENT") = TEMPLATECONTENT;
+            t(L"DESCRIPTION") = DESCRIPTION;
         }
 
         /** Save the record instance in memory to the database. */
@@ -308,7 +363,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save CUSTOMFIELDDATA");
+                wxLogError("can not save REPORT");
                 return false;
             }
 
@@ -320,7 +375,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove CUSTOMFIELDDATA");
+                wxLogError("can not remove REPORT");
                 return false;
             }
             
@@ -335,20 +390,20 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 4
+        NUM_COLUMNS = 7
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
-    wxString name() const { return "CUSTOMFIELDDATA"; }
+    /** Name of the table */
+    wxString name() const { return "REPORT"; }
 
-    DB_Table_CUSTOMFIELDDATA() : fake_(new Data())
+    DB_Table_REPORT() : fake_(new Data())
     {
-        query_ = "SELECT FIELDATADID, FIELDID, REFID, CONTENT FROM CUSTOMFIELDDATA ";
+        query_ = "SELECT REPORTID, REPORTNAME, GROUPNAME, SQLCONTENT, LUACONTENT, TEMPLATECONTENT, DESCRIPTION FROM REPORT ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -356,7 +411,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
@@ -375,22 +430,25 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CUSTOMFIELDDATA(FIELDID, REFID, CONTENT) VALUES(?, ?, ?)";
+            sql = "INSERT INTO REPORT(REPORTNAME, GROUPNAME, SQLCONTENT, LUACONTENT, TEMPLATECONTENT, DESCRIPTION) VALUES(?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CUSTOMFIELDDATA SET FIELDID = ?, REFID = ?, CONTENT = ? WHERE FIELDATADID = ?";
+            sql = "UPDATE REPORT SET REPORTNAME = ?, GROUPNAME = ?, SQLCONTENT = ?, LUACONTENT = ?, TEMPLATECONTENT = ?, DESCRIPTION = ? WHERE REPORTID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->FIELDID);
-            stmt.Bind(2, entity->REFID);
-            stmt.Bind(3, entity->CONTENT);
+            stmt.Bind(1, entity->REPORTNAME);
+            stmt.Bind(2, entity->GROUPNAME);
+            stmt.Bind(3, entity->SQLCONTENT);
+            stmt.Bind(4, entity->LUACONTENT);
+            stmt.Bind(5, entity->TEMPLATECONTENT);
+            stmt.Bind(6, entity->DESCRIPTION);
             if (entity->id() > 0)
-                stmt.Bind(4, entity->FIELDATADID);
+                stmt.Bind(7, entity->REPORTID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -407,7 +465,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELDDATA: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("REPORT: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -425,7 +483,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CUSTOMFIELDDATA WHERE FIELDATADID = ?";
+            wxString sql = "DELETE FROM REPORT WHERE REPORTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -450,7 +508,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELDDATA: Exception %s", e.GetMessage().c_str());
+            wxLogError("REPORT: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

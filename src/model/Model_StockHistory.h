@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define MODEL_STOCKHISTORY_H
 
 #include "Model.h"
-#include "db/DB_Table_Stockhistory.h"
+#include "Table_Stockhistory.h"
 
 class Model_StockHistory : public Model<DB_Table_STOCKHISTORY>
 {

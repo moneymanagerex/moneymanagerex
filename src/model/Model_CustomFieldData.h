@@ -20,8 +20,8 @@
 #define MODEL_CUSTOMFIELDDATA_H
 
 #include "Model.h"
-#include "db/DB_Table_Customfielddata.h"
 #include "Model_Attachment.h" 
+#include "Table_Customfielddata.h"
 
 class Model_CustomFieldData : public Model<DB_Table_CUSTOMFIELDDATA>
 {

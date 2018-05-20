@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# vi:tabstop=4:expandtab:shiftwidth=4:softtabstop=4:autoindent:smarttab
+# vi:tabstop=4:expandtab:shiftwidth=4:softtabstop=4:autoindent:smarttab:fileencoding=utf-8
 '''
 Usage: python sqlite2cpp.py path_to_sql_file
 '''
@@ -17,8 +17,12 @@ sql_tables_data_filename = 'sql_tables.sql'
 # http://stackoverflow.com/questions/196345/how-to-check-if-a-string-in-python-is-in-ascii
 def is_ascii(s):
     """Class: Check for Ascii String"""
-    if isinstance(s, unicode):
-        return all(ord(c) < 128 for c in s)
+    if sys.version_info < (3,):
+        if isinstance(s, unicode):
+            return all(ord(c) < 128 for c in s)
+    else:
+        if isinstance(s, str):
+            return all(ord(c) < 128 for c in s)
     return False
 
 def is_trans(s):
@@ -136,10 +140,10 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
         """Write database_version data to file
            Only extract unicode data"""
         if self._table.upper() == 'CURRENCYFORMATS':
-            print 'Generate patch file: %s' % currency_unicode_patch_filename
+            print('Generate patch file: %s' % currency_unicode_patch_filename)
             rfp = codecs.open(currency_unicode_patch_filename, 'w', 'utf-8')
             sf1 = '''-- MMEX Debug SQL - Update --
--- MMEX db version required 10
+-- MMEX db version required 13
 -- This script will add missing currencies and will overwrite all currencies params containing UTF8 in your database.'''
             rfp.write(self.generate_currency_table_data(sf1, True))
             rfp.close()
@@ -148,19 +152,20 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
         """Write currency_table_upgrade_patch file
            Extract all currency data"""
         if self._table.upper() == 'CURRENCYFORMATS':
-            print 'Generate patch file: %s' % currency_table_patch_filename
+            print('Generate patch file: %s' % currency_table_patch_filename)
             rfp = codecs.open(currency_table_patch_filename, 'w', 'utf-8')
             sf1 = '''-- MMEX Debug SQL - Update --
--- MMEX db version required 10
+-- MMEX db version required 13
 -- This script will add missing currencies and will overwrite all currencies params in your database.'''
             rfp.write(self.generate_currency_table_data(sf1, False))
             rfp.close()
 
     def generate_class(self, header, sql):
         """ Write the data to the appropriate .h file"""
-        print 'Generate Table: %s' % self._table
-        rfp = codecs.open('DB_Table_' + self._table.title() + '.h', 'w', 'utf-8-sig')
-        rfp.write(header + self.to_string(sql))
+        print('Generate Table: %s' % self._table)
+        rfp = codecs.open('Table_%s.h' % self._table.title(), 'w', 'utf-8-sig')
+        rfp.write(header % 'CRUD implementation for %s SQLite table' % self._table)
+        rfp.write(self.to_string(sql))
         rfp.close()
 
     def to_string(self, sql=None):
@@ -171,7 +176,7 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
 
         s = '''%s#pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
 struct DB_Table_%s : public DB_Table
 {
@@ -181,7 +186,7 @@ struct DB_Table_%s : public DB_Table
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -366,7 +371,7 @@ struct DB_Table_%s : public DB_Table
             s += '''
         %s %s;%s''' % (
             base_data_types_reverse[field['type']],
-            field['name'], field['pk'] and '//  primary key' or '')
+            field['name'], field['pk'] and ' // primary key' or '')
 
         s += '''
 
@@ -419,7 +424,7 @@ struct DB_Table_%s : public DB_Table
         for field in self._fields:
             func = base_data_types_function[field['type']]
             s += '''
-            %s = q.%s(%d); // %s''' % (field['name'], func, field['cid'], field['name'])
+            %s = q.%s(%d);''' % (field['name'], func, field['cid'])
 
         s += '''
         }
@@ -460,7 +465,7 @@ struct DB_Table_%s : public DB_Table
 
         s += '''
 
-        // Return the data record as a json string
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -473,7 +478,7 @@ struct DB_Table_%s : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {'''
         for field in self._fields:
@@ -563,7 +568,7 @@ struct DB_Table_%s : public DB_Table
 ''' % len(self._fields)
 
         s += '''
-    /** Name of the table*/    
+    /** Name of the table */
     wxString name() const { return "%s"; }
 ''' % self._table
 
@@ -575,7 +580,7 @@ struct DB_Table_%s : public DB_Table
 ''' % (self._table, ', '.join([field['name'] for field in self._fields]), self._table)
 
         s += '''
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -583,7 +588,7 @@ struct DB_Table_%s : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
@@ -814,7 +819,8 @@ struct DB_Table_%s : public DB_Table
 
 def generate_base_class(header, fields=set):
     """Generate the base class"""
-    code = header + '''#pragma once
+    code = header % 'Base class for CRUD SQL tables implementation'
+    code += '''#pragma once
 
 #include <vector>
 #include <map>
@@ -970,29 +976,23 @@ struct SorterBy%s
 };
 ''' % (field, transl, field, transl, field)
 
-    rfp = open('DB_Table.h', 'w')
+    rfp = codecs.open('Table.h', 'w', 'utf-8-sig')
     rfp.write(code)
     rfp.close()
 
 if __name__ == '__main__':
     header = '''// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - %s Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [%s]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at %s.
- *          DO NOT EDIT!
+/** @file
+ * @brief     %%s
+ * @warning   Auto generated with %s script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      %s
  */
-//=============================================================================
-'''% (datetime.date.today().year, os.path.basename(__file__), str(datetime.datetime.now()))
+'''% (os.path.basename(__file__), str(datetime.datetime.now()))
 
     conn, cur, sql_file = None, None, None
     try:
@@ -1001,7 +1001,7 @@ if __name__ == '__main__':
         conn.row_factory = sqlite3.Row
         cur = conn.cursor()
     except:
-        print __doc__
+        print(__doc__)
         sys.exit(1)
 
     sql = ""
@@ -1012,7 +1012,7 @@ if __name__ == '__main__':
 
 '''
 
-    for line in open(sql_file, 'rb'):
+    for line in codecs.open(sql_file, 'r', 'utf-8' ):
         sql = sql + line
 
         if line.find('_tr_') > 0: # Remove _tr_ identifyer for wxTRANSLATE
@@ -1021,8 +1021,8 @@ if __name__ == '__main__':
         sql_txt = sql_txt + line
     
     # Generate a table that does not contain translation code identifyer
-    print 'Generate SQL file: %s that can generate a clean database.' % sql_tables_data_filename
-    file_data = codecs.open(sql_tables_data_filename, 'w')
+    print( 'Generate SQL file: %s that can generate a clean database.' % sql_tables_data_filename)
+    file_data = codecs.open(sql_tables_data_filename, 'w', 'utf-8')
     file_data.write(sql_txt)
     file_data.close()
 
@@ -1034,13 +1034,13 @@ if __name__ == '__main__':
         index = get_index_list(cur, table)
         data = get_data_initializer_list(cur, table)
         table = DB_Table(table, fields, index, data)
-        table.generate_class(header, sql)
+        table.generate_class(header.decode('utf-8'), sql)
         table.generate_unicode_currency_upgrade_patch()
         table.generate_currency_upgrade_patch()
         for field in fields:
             all_fields.add(field['name'])
 
-    generate_base_class(header, all_fields)
+    generate_base_class(header.decode('utf-8'), all_fields)
 
     conn.close()
-    print 'End of Run'
+    print('End of Run')

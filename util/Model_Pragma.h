@@ -19,7 +19,7 @@
 #pragma once
 
 #include "Model.h"
-#include "db/DB_Table.h"
+#include "Table.h"
 
 class Model_Pragma : public Model<DB_Table>
 {

@@ -20,7 +20,7 @@
 #define MODEL_SUBCATEGORY_H
 
 #include "Model.h"
-#include "db/DB_Table_Subcategory.h"
+#include "Table_Subcategory.h"
 
 class Model_Subcategory : public Model<DB_Table_SUBCATEGORY>
 {

@@ -1,33 +1,27 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for CATEGORY SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
+struct DB_Table_CATEGORY : public DB_Table
 {
     struct Data;
-    typedef DB_Table_BUDGETSPLITTRANSACTIONS Self;
+    typedef DB_Table_CATEGORY Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -54,7 +48,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_BUDGETSPLITTRANSACTIONS() 
+    ~DB_Table_CATEGORY() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +69,12 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE BUDGETSPLITTRANSACTIONS(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
+                db->ExecuteUpdate("CREATE TABLE CATEGORY(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
+                wxLogError("CATEGORY: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +88,11 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETSPLITTRANSACTIONS_TRANSID ON BUDGETSPLITTRANSACTIONS(TRANSID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CATEGORY_CATEGNAME ON CATEGORY(CATEGNAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
+            wxLogError("CATEGORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -108,20 +102,24 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('1', '%s')", wxTRANSLATE("Bills")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('2', '%s')", wxTRANSLATE("Food")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('3', '%s')", wxTRANSLATE("Leisure")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('4', '%s')", wxTRANSLATE("Automobile")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('5', '%s')", wxTRANSLATE("Education")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('6', '%s')", wxTRANSLATE("Homeneeds")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('7', '%s')", wxTRANSLATE("Healthcare")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('8', '%s')", wxTRANSLATE("Insurance")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('9', '%s')", wxTRANSLATE("Vacation")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('10', '%s')", wxTRANSLATE("Taxes")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('11', '%s')", wxTRANSLATE("Miscellaneous")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('12', '%s')", wxTRANSLATE("Gifts")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('13', '%s')", wxTRANSLATE("Income")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('14', '%s')", wxTRANSLATE("Other Income")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('15', '%s')", wxTRANSLATE("Other Expenses")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY VALUES ('16', '%s')", wxTRANSLATE("Transfer")));
         db->Commit();
     }
-    
-    struct SPLITTRANSID : public DB_Column<int>
-    { 
-        static wxString name() { return "SPLITTRANSID"; } 
-        explicit SPLITTRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
-    
-    struct TRANSID : public DB_Column<int>
-    { 
-        static wxString name() { return "TRANSID"; } 
-        explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
-    };
     
     struct CATEGID : public DB_Column<int>
     { 
@@ -129,26 +127,17 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
-    struct SUBCATEGID : public DB_Column<int>
+    struct CATEGNAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "SUBCATEGID"; } 
-        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "CATEGNAME"; } 
+        explicit CATEGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct SPLITTRANSAMOUNT : public DB_Column<double>
-    { 
-        static wxString name() { return "SPLITTRANSAMOUNT"; } 
-        explicit SPLITTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
-    };
-    
-    typedef SPLITTRANSID PRIMARY;
+    typedef CATEGID PRIMARY;
     enum COLUMN
     {
-        COL_SPLITTRANSID = 0
-        , COL_TRANSID = 1
-        , COL_CATEGID = 2
-        , COL_SUBCATEGID = 3
-        , COL_SPLITTRANSAMOUNT = 4
+        COL_CATEGID = 0
+        , COL_CATEGNAME = 1
     };
 
     /** Returns the column name as a string*/
@@ -156,11 +145,8 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
     {
         switch(col)
         {
-            case COL_SPLITTRANSID: return "SPLITTRANSID";
-            case COL_TRANSID: return "TRANSID";
             case COL_CATEGID: return "CATEGID";
-            case COL_SUBCATEGID: return "SUBCATEGID";
-            case COL_SPLITTRANSAMOUNT: return "SPLITTRANSAMOUNT";
+            case COL_CATEGNAME: return "CATEGNAME";
             default: break;
         }
         
@@ -170,11 +156,8 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("SPLITTRANSID" == name) return COL_SPLITTRANSID;
-        else if ("TRANSID" == name) return COL_TRANSID;
-        else if ("CATEGID" == name) return COL_CATEGID;
-        else if ("SUBCATEGID" == name) return COL_SUBCATEGID;
-        else if ("SPLITTRANSAMOUNT" == name) return COL_SPLITTRANSAMOUNT;
+        if ("CATEGID" == name) return COL_CATEGID;
+        else if ("CATEGNAME" == name) return COL_CATEGNAME;
 
         return COLUMN(-1);
     }
@@ -182,24 +165,21 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_BUDGETSPLITTRANSACTIONS;
+        friend struct DB_Table_CATEGORY;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SPLITTRANSID;//  primary key
-        int TRANSID;
-        int CATEGID;
-        int SUBCATEGID;
-        double SPLITTRANSAMOUNT;
+        int CATEGID; // primary key
+        wxString CATEGNAME;
 
         int id() const
         {
-            return SPLITTRANSID;
+            return CATEGID;
         }
 
         void id(int id)
         {
-            SPLITTRANSID = id;
+            CATEGID = id;
         }
 
         bool operator < (const Data& r) const
@@ -216,33 +196,23 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         {
             table_ = table;
         
-            SPLITTRANSID = -1;
-            TRANSID = -1;
             CATEGID = -1;
-            SUBCATEGID = -1;
-            SPLITTRANSAMOUNT = 0.0;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            SPLITTRANSID = q.GetInt(0); // SPLITTRANSID
-            TRANSID = q.GetInt(1); // TRANSID
-            CATEGID = q.GetInt(2); // CATEGID
-            SUBCATEGID = q.GetInt(3); // SUBCATEGID
-            SPLITTRANSAMOUNT = q.GetDouble(4); // SPLITTRANSAMOUNT
+            CATEGID = q.GetInt(0);
+            CATEGNAME = q.GetString(1);
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            SPLITTRANSID = other.SPLITTRANSID;
-            TRANSID = other.TRANSID;
             CATEGID = other.CATEGID;
-            SUBCATEGID = other.SUBCATEGID;
-            SPLITTRANSAMOUNT = other.SPLITTRANSAMOUNT;
+            CATEGNAME = other.CATEGNAME;
             return *this;
         }
 
@@ -252,32 +222,17 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
             return false;
         }
 
-        bool match(const Self::SPLITTRANSID &in) const
-        {
-            return this->SPLITTRANSID == in.v_;
-        }
-
-        bool match(const Self::TRANSID &in) const
-        {
-            return this->TRANSID == in.v_;
-        }
-
         bool match(const Self::CATEGID &in) const
         {
             return this->CATEGID == in.v_;
         }
 
-        bool match(const Self::SUBCATEGID &in) const
+        bool match(const Self::CATEGNAME &in) const
         {
-            return this->SUBCATEGID == in.v_;
+            return this->CATEGNAME.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::SPLITTRANSAMOUNT &in) const
-        {
-            return this->SPLITTRANSAMOUNT == in.v_;
-        }
-
-        // Return the data record as a json string
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -290,39 +245,27 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("SPLITTRANSID");
-            json_writer.Int(this->SPLITTRANSID);
-            json_writer.Key("TRANSID");
-            json_writer.Int(this->TRANSID);
             json_writer.Key("CATEGID");
             json_writer.Int(this->CATEGID);
-            json_writer.Key("SUBCATEGID");
-            json_writer.Int(this->SUBCATEGID);
-            json_writer.Key("SPLITTRANSAMOUNT");
-            json_writer.Double(this->SPLITTRANSAMOUNT);
+            json_writer.Key("CATEGNAME");
+            json_writer.String(this->CATEGNAME.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"SPLITTRANSID") = SPLITTRANSID;
-            row(L"TRANSID") = TRANSID;
             row(L"CATEGID") = CATEGID;
-            row(L"SUBCATEGID") = SUBCATEGID;
-            row(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
+            row(L"CATEGNAME") = CATEGNAME;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"SPLITTRANSID") = SPLITTRANSID;
-            t(L"TRANSID") = TRANSID;
             t(L"CATEGID") = CATEGID;
-            t(L"SUBCATEGID") = SUBCATEGID;
-            t(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
+            t(L"CATEGNAME") = CATEGNAME;
         }
 
         /** Save the record instance in memory to the database. */
@@ -331,7 +274,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save BUDGETSPLITTRANSACTIONS");
+                wxLogError("can not save CATEGORY");
                 return false;
             }
 
@@ -343,7 +286,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove BUDGETSPLITTRANSACTIONS");
+                wxLogError("can not remove CATEGORY");
                 return false;
             }
             
@@ -358,20 +301,20 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 5
+        NUM_COLUMNS = 2
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
-    wxString name() const { return "BUDGETSPLITTRANSACTIONS"; }
+    /** Name of the table */
+    wxString name() const { return "CATEGORY"; }
 
-    DB_Table_BUDGETSPLITTRANSACTIONS() : fake_(new Data())
+    DB_Table_CATEGORY() : fake_(new Data())
     {
-        query_ = "SELECT SPLITTRANSID, TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT FROM BUDGETSPLITTRANSACTIONS ";
+        query_ = "SELECT CATEGID, CATEGNAME FROM CATEGORY ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -379,7 +322,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
@@ -398,23 +341,20 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO BUDGETSPLITTRANSACTIONS(TRANSID, CATEGID, SUBCATEGID, SPLITTRANSAMOUNT) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO CATEGORY(CATEGNAME) VALUES(?)";
         }
         else
         {
-            sql = "UPDATE BUDGETSPLITTRANSACTIONS SET TRANSID = ?, CATEGID = ?, SUBCATEGID = ?, SPLITTRANSAMOUNT = ? WHERE SPLITTRANSID = ?";
+            sql = "UPDATE CATEGORY SET CATEGNAME = ? WHERE CATEGID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->TRANSID);
-            stmt.Bind(2, entity->CATEGID);
-            stmt.Bind(3, entity->SUBCATEGID);
-            stmt.Bind(4, entity->SPLITTRANSAMOUNT);
+            stmt.Bind(1, entity->CATEGNAME);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->SPLITTRANSID);
+                stmt.Bind(2, entity->CATEGID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -431,7 +371,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("CATEGORY: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -449,7 +389,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM BUDGETSPLITTRANSACTIONS WHERE SPLITTRANSID = ?";
+            wxString sql = "DELETE FROM CATEGORY WHERE CATEGID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -474,7 +414,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETSPLITTRANSACTIONS: Exception %s", e.GetMessage().c_str());
+            wxLogError("CATEGORY: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

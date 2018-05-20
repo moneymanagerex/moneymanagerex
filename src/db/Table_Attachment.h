@@ -1,33 +1,27 @@
 ﻿// -*- C++ -*-
-//=============================================================================
-/**
- *      Copyright: (c) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
- *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
- *
- *      @file
- *
- *      @author [sqlite2cpp.py]
- *
- *      @brief
- *
- *      Revision History:
- *          AUTO GENERATED at 2018-05-12 23:05:49.617499.
- *          DO NOT EDIT!
+/** @file
+ * @brief     CRUD implementation for ATTACHMENT SQLite table
+ * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
+ * @copyright © 2013-2018 Guan Lisheng
+ * @copyright © 2017-2018 Stefano Giorgio
+ * @author    Guan Lisheng (guanlisheng@gmail.com)
+ * @author    Stefano Giorgio (stef145g)
+ * @author    Tomasz Słodkowicz
+ * @date      2018-05-16 01:30:37.316867
  */
-//=============================================================================
 #pragma once
 
-#include "DB_Table.h"
+#include "Table.h"
 
-struct DB_Table_CUSTOMFIELD : public DB_Table
+struct DB_Table_ATTACHMENT : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CUSTOMFIELD Self;
+    typedef DB_Table_ATTACHMENT Self;
 
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        /**Return the data records as a json array string */
+        /** Return the data records as a json array string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -54,7 +48,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CUSTOMFIELD() 
+    ~DB_Table_ATTACHMENT() 
     {
         delete this->fake_;
         destroy_cache();
@@ -75,12 +69,12 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         {
             try
             {
-                db->ExecuteUpdate("CREATE TABLE CUSTOMFIELD (FIELDID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, Bank Account, Repeating Transaction, Payee */, DESCRIPTION TEXT COLLATE NOCASE, TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoice, MultiChoice */, PROPERTIES TEXT NOT NULL)");
+                db->ExecuteUpdate("CREATE TABLE ATTACHMENT (ATTACHMENTID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, Bank Account, Repeating Transaction, Payee */, REFID INTEGER NOT NULL, DESCRIPTION TEXT COLLATE NOCASE, FILENAME TEXT NOT NULL COLLATE NOCASE)");
                 this->ensure_data(db);
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
+                wxLogError("ATTACHMENT: Exception %s", e.GetMessage().c_str());
                 return false;
             }
         }
@@ -94,11 +88,11 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELD_REF ON CUSTOMFIELD (REFTYPE)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_ATTACHMENT_REF ON ATTACHMENT (REFTYPE, REFID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
+            wxLogError("ATTACHMENT: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
@@ -111,10 +105,10 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         db->Commit();
     }
     
-    struct FIELDID : public DB_Column<int>
+    struct ATTACHMENTID : public DB_Column<int>
     { 
-        static wxString name() { return "FIELDID"; } 
-        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "ATTACHMENTID"; } 
+        explicit ATTACHMENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     
     struct REFTYPE : public DB_Column<wxString>
@@ -123,32 +117,32 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
+    struct REFID : public DB_Column<int>
+    { 
+        static wxString name() { return "REFID"; } 
+        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    
     struct DESCRIPTION : public DB_Column<wxString>
     { 
         static wxString name() { return "DESCRIPTION"; } 
         explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct TYPE : public DB_Column<wxString>
+    struct FILENAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "TYPE"; } 
-        explicit TYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "FILENAME"; } 
+        explicit FILENAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct PROPERTIES : public DB_Column<wxString>
-    { 
-        static wxString name() { return "PROPERTIES"; } 
-        explicit PROPERTIES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    
-    typedef FIELDID PRIMARY;
+    typedef ATTACHMENTID PRIMARY;
     enum COLUMN
     {
-        COL_FIELDID = 0
+        COL_ATTACHMENTID = 0
         , COL_REFTYPE = 1
-        , COL_DESCRIPTION = 2
-        , COL_TYPE = 3
-        , COL_PROPERTIES = 4
+        , COL_REFID = 2
+        , COL_DESCRIPTION = 3
+        , COL_FILENAME = 4
     };
 
     /** Returns the column name as a string*/
@@ -156,11 +150,11 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     {
         switch(col)
         {
-            case COL_FIELDID: return "FIELDID";
+            case COL_ATTACHMENTID: return "ATTACHMENTID";
             case COL_REFTYPE: return "REFTYPE";
+            case COL_REFID: return "REFID";
             case COL_DESCRIPTION: return "DESCRIPTION";
-            case COL_TYPE: return "TYPE";
-            case COL_PROPERTIES: return "PROPERTIES";
+            case COL_FILENAME: return "FILENAME";
             default: break;
         }
         
@@ -170,11 +164,11 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     /** Returns the column number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("FIELDID" == name) return COL_FIELDID;
+        if ("ATTACHMENTID" == name) return COL_ATTACHMENTID;
         else if ("REFTYPE" == name) return COL_REFTYPE;
+        else if ("REFID" == name) return COL_REFID;
         else if ("DESCRIPTION" == name) return COL_DESCRIPTION;
-        else if ("TYPE" == name) return COL_TYPE;
-        else if ("PROPERTIES" == name) return COL_PROPERTIES;
+        else if ("FILENAME" == name) return COL_FILENAME;
 
         return COLUMN(-1);
     }
@@ -182,24 +176,24 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CUSTOMFIELD;
+        friend struct DB_Table_ATTACHMENT;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int FIELDID;//  primary key
+        int ATTACHMENTID; // primary key
         wxString REFTYPE;
+        int REFID;
         wxString DESCRIPTION;
-        wxString TYPE;
-        wxString PROPERTIES;
+        wxString FILENAME;
 
         int id() const
         {
-            return FIELDID;
+            return ATTACHMENTID;
         }
 
         void id(int id)
         {
-            FIELDID = id;
+            ATTACHMENTID = id;
         }
 
         bool operator < (const Data& r) const
@@ -216,29 +210,30 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         {
             table_ = table;
         
-            FIELDID = -1;
+            ATTACHMENTID = -1;
+            REFID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
         
-            FIELDID = q.GetInt(0); // FIELDID
-            REFTYPE = q.GetString(1); // REFTYPE
-            DESCRIPTION = q.GetString(2); // DESCRIPTION
-            TYPE = q.GetString(3); // TYPE
-            PROPERTIES = q.GetString(4); // PROPERTIES
+            ATTACHMENTID = q.GetInt(0);
+            REFTYPE = q.GetString(1);
+            REFID = q.GetInt(2);
+            DESCRIPTION = q.GetString(3);
+            FILENAME = q.GetString(4);
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            FIELDID = other.FIELDID;
+            ATTACHMENTID = other.ATTACHMENTID;
             REFTYPE = other.REFTYPE;
+            REFID = other.REFID;
             DESCRIPTION = other.DESCRIPTION;
-            TYPE = other.TYPE;
-            PROPERTIES = other.PROPERTIES;
+            FILENAME = other.FILENAME;
             return *this;
         }
 
@@ -248,9 +243,9 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
             return false;
         }
 
-        bool match(const Self::FIELDID &in) const
+        bool match(const Self::ATTACHMENTID &in) const
         {
-            return this->FIELDID == in.v_;
+            return this->ATTACHMENTID == in.v_;
         }
 
         bool match(const Self::REFTYPE &in) const
@@ -258,22 +253,22 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
             return this->REFTYPE.CmpNoCase(in.v_) == 0;
         }
 
+        bool match(const Self::REFID &in) const
+        {
+            return this->REFID == in.v_;
+        }
+
         bool match(const Self::DESCRIPTION &in) const
         {
             return this->DESCRIPTION.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::TYPE &in) const
+        bool match(const Self::FILENAME &in) const
         {
-            return this->TYPE.CmpNoCase(in.v_) == 0;
+            return this->FILENAME.CmpNoCase(in.v_) == 0;
         }
 
-        bool match(const Self::PROPERTIES &in) const
-        {
-            return this->PROPERTIES.CmpNoCase(in.v_) == 0;
-        }
-
-        // Return the data record as a json string
+        /** Return the data record as a json string */
         wxString to_json() const
         {
             StringBuffer json_buffer;
@@ -286,39 +281,39 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
             return json_buffer.GetString();
         }
 
-        // Add the field data as json key:value pairs
+        /** Add the field data as json key:value pairs */
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            json_writer.Key("FIELDID");
-            json_writer.Int(this->FIELDID);
+            json_writer.Key("ATTACHMENTID");
+            json_writer.Int(this->ATTACHMENTID);
             json_writer.Key("REFTYPE");
             json_writer.String(this->REFTYPE.c_str());
+            json_writer.Key("REFID");
+            json_writer.Int(this->REFID);
             json_writer.Key("DESCRIPTION");
             json_writer.String(this->DESCRIPTION.c_str());
-            json_writer.Key("TYPE");
-            json_writer.String(this->TYPE.c_str());
-            json_writer.Key("PROPERTIES");
-            json_writer.String(this->PROPERTIES.c_str());
+            json_writer.Key("FILENAME");
+            json_writer.String(this->FILENAME.c_str());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"FIELDID") = FIELDID;
+            row(L"ATTACHMENTID") = ATTACHMENTID;
             row(L"REFTYPE") = REFTYPE;
+            row(L"REFID") = REFID;
             row(L"DESCRIPTION") = DESCRIPTION;
-            row(L"TYPE") = TYPE;
-            row(L"PROPERTIES") = PROPERTIES;
+            row(L"FILENAME") = FILENAME;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"FIELDID") = FIELDID;
+            t(L"ATTACHMENTID") = ATTACHMENTID;
             t(L"REFTYPE") = REFTYPE;
+            t(L"REFID") = REFID;
             t(L"DESCRIPTION") = DESCRIPTION;
-            t(L"TYPE") = TYPE;
-            t(L"PROPERTIES") = PROPERTIES;
+            t(L"FILENAME") = FILENAME;
         }
 
         /** Save the record instance in memory to the database. */
@@ -327,7 +322,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
             {
-                wxLogError("can not save CUSTOMFIELD");
+                wxLogError("can not save ATTACHMENT");
                 return false;
             }
 
@@ -339,7 +334,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         {
             if (!table_ || !db) 
             {
-                wxLogError("can not remove CUSTOMFIELD");
+                wxLogError("can not remove ATTACHMENT");
                 return false;
             }
             
@@ -359,15 +354,15 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    /** Name of the table*/    
-    wxString name() const { return "CUSTOMFIELD"; }
+    /** Name of the table */
+    wxString name() const { return "ATTACHMENT"; }
 
-    DB_Table_CUSTOMFIELD() : fake_(new Data())
+    DB_Table_ATTACHMENT() : fake_(new Data())
     {
-        query_ = "SELECT FIELDID, REFTYPE, DESCRIPTION, TYPE, PROPERTIES FROM CUSTOMFIELD ";
+        query_ = "SELECT ATTACHMENTID, REFTYPE, REFID, DESCRIPTION, FILENAME FROM ATTACHMENT ";
     }
 
-    /** Create a new Data record and add to memory table (cache)*/
+    /** Create a new Data record and add to memory table (cache) */
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -375,7 +370,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the Data record and add to memory table (cache)*/
+    /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
@@ -394,11 +389,11 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CUSTOMFIELD(REFTYPE, DESCRIPTION, TYPE, PROPERTIES) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO ATTACHMENT(REFTYPE, REFID, DESCRIPTION, FILENAME) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CUSTOMFIELD SET REFTYPE = ?, DESCRIPTION = ?, TYPE = ?, PROPERTIES = ? WHERE FIELDID = ?";
+            sql = "UPDATE ATTACHMENT SET REFTYPE = ?, REFID = ?, DESCRIPTION = ?, FILENAME = ? WHERE ATTACHMENTID = ?";
         }
 
         try
@@ -406,11 +401,11 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
             stmt.Bind(1, entity->REFTYPE);
-            stmt.Bind(2, entity->DESCRIPTION);
-            stmt.Bind(3, entity->TYPE);
-            stmt.Bind(4, entity->PROPERTIES);
+            stmt.Bind(2, entity->REFID);
+            stmt.Bind(3, entity->DESCRIPTION);
+            stmt.Bind(4, entity->FILENAME);
             if (entity->id() > 0)
-                stmt.Bind(5, entity->FIELDID);
+                stmt.Bind(5, entity->ATTACHMENTID);
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
@@ -427,7 +422,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELD: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("ATTACHMENT: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -445,7 +440,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CUSTOMFIELD WHERE FIELDID = ?";
+            wxString sql = "DELETE FROM ATTACHMENT WHERE ATTACHMENTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             stmt.ExecuteUpdate();
@@ -470,7 +465,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
+            wxLogError("ATTACHMENT: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

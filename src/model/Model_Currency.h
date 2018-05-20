@@ -20,7 +20,7 @@
 #define MODEL_CURRENCY_H
 
 #include "Model.h"
-#include "db/DB_Table_Currencyformats.h"
+#include "Table_Currencyformats.h"
 #include <map>
 
 class Model_Currency : public Model<DB_Table_CURRENCYFORMATS>

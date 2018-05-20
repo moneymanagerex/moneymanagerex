@@ -1,5 +1,5 @@
 FROM vbatts/slackware:14.2
-MAINTAINER developers@moneymanagerex.org
+LABEL maintainer="developers@moneymanagerex.org"
 RUN echo -e 'quiet=on\ncheck_certificate=off' >> ~/.wgetrc \
  && wget -O slackpkg+-1.7.0-noarch-5mt.txz \
       https://sourceforge.net/projects/slackpkgplus/files/slackpkg%2B-1.7.0-noarch-5mt.txz/download \
@@ -27,7 +27,7 @@ RUN echo -e 'quiet=on\ncheck_certificate=off' >> ~/.wgetrc \
       >> /etc/slackpkg/slackpkgplus.conf \
  && slackpkg update gpg && slackpkg update \
  && slackpkg -default_answer=y -batch=on -checkgpg=off install \
-      slackonly:libwebp slackonly:webkitgtk slackel:wxGTK3 \
+      slackonly:libwebp slackonly:webkitgtk slackonly:rapidjson slackel:wxGTK3 \
  && rm -rf /var/cache/packages/* /var/lib/slackpkg/* \
            /usr/share/locale/* /usr/man/* \
            /tmp/* ~/.wgetrc slackpkg+*.t?z

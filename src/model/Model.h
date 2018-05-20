@@ -23,7 +23,7 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #include <algorithm>
 #include <wx/datetime.h>
 #include <wx/log.h>
-#include "db/DB_Table.h"
+#include "Table.h"
 #include "singleton.h"
 
 class wxSQLite3Statement;

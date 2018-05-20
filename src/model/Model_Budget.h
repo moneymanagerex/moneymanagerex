@@ -20,7 +20,7 @@
 #define MODEL_BUDGET_H
 
 #include "Model.h"
-#include "db/DB_Table_Budgettable.h"
+#include "Table_Budgettable.h"
 
 class Model_Budget : public Model<DB_Table_BUDGETTABLE>
 {

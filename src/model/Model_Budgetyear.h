@@ -20,7 +20,7 @@
 #define MODEL_BUDGETYEAR_H
 
 #include "Model.h"
-#include "db/DB_Table_Budgetyear.h"
+#include "Table_Budgetyear.h"
 
 class Model_Budgetyear : public Model<DB_Table_BUDGETYEAR>
 {
