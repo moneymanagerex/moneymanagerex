@@ -314,7 +314,6 @@ TARGET_LINK_LIBRARIES(${MMEX_EXE} PUBLIC
     CURL::libcurl
     LuaGlue
     Lua
-    csv_parser
     Mongoose)
 
 IF(MSVC)
