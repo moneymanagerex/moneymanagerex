@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2006-2012
+Copyright (C) 2006-2012 Nikolay Akimov
 Copyright (C) 2017 James Higley
 
 This program is free software; you can redistribute it and/or modify

@@ -1,10 +1,11 @@
 ﻿##Active Developers
-Nikolay          [Nikolay]
-Lisheng          [guanlisheng]
-James            [siena123]
-Stefano          [stef145g]
-Pat              [omalleypat]
-Gabriele         [gabriele-v]
+Nikolay Akimov    [vomikan]
+Lisheng Guan      [guanlisheng]
+Stefano Georgio   [stef145g]
+Gabriele Villa    [gabriele-v]
+Tomasz Słodkowicz [slodki]
+James Higley      [siena123]
+Patrick O'Malley  [omalleypat]
 
 =======================================
 ##Translations
@@ -61,7 +62,7 @@ Portuguese (Portugal)
 Romanian
 -- Munteanu & Florin
 Russian
--- KarmaSV, Nikolay, Churzzz, Vadim
+-- KarmaSV, Nikolay Akimov, Churzzz, Vadim
 Simple Chinese
 -- Liu Ming
 Slovak
@@ -98,7 +99,7 @@ Gernam
 Hungarian
 -- Toroka 	 [Toroka]
 Russian 
--- Nikolay 	 [Nikolay]
+-- Nikolay Akimov 	 [Nikolay]
 Polish
 -- Damian_pl
 Spanish
