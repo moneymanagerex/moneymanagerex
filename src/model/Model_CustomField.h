@@ -18,6 +18,7 @@
 #pragma once
 
 #include "Model.h"
+#include "Model_Attachment.h" 
 #include "Table_Customfield.h"
 
 class Model_CustomField : public Model<DB_Table_CUSTOMFIELD>
@@ -49,15 +50,23 @@ public:
 
 public:
     bool Delete(const int& FieldID);
-    static wxString fieldtype_desc(const int FieldTypeEnum);
+    static const wxString fieldtype_desc(const int FieldTypeEnum);
     static FIELDTYPE type(const Data* r);
     static FIELDTYPE type(const Data& r);
-    static wxArrayString all_type();
-    static wxString getRegEx(const wxString& Properties);
-    static wxString getTooltip(const wxString& Properties);
+    static const wxArrayString all_type();
+    static const wxString getRegEx(const wxString& Properties);
+    static const wxString getTooltip(const wxString& Properties);
     static bool getAutocomplete(const wxString& Properties);
-    static wxString getDefault(const wxString& Properties);
-    static wxArrayString getChoices(const wxString& Properties);
+    static const wxString getDefault(const wxString& Properties);
+    static const wxArrayString getChoices(const wxString& Properties);
+    static const wxArrayString getUDFCList(DB_Table_CUSTOMFIELD::Data* r);
+    static const wxString getUDFC(const wxString& Properties);
+    static const wxString getUDFCName(const wxString& ref_type, const wxString& name);
+    static int getUDFCID(const wxString& ref_type, const wxString& name);
+    static const std::map<wxString, int> getMatrix(Model_Attachment::REFTYPE reftype);
     static int getDigitScale(const wxString& Properties);
-    static wxString formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choices, const int DigitScale);
+    static const wxString formatProperties(const wxString& Tooltip, const wxString& RegEx
+        , bool Autocomplete, const wxString& Default, const wxArrayString& Choices
+        , const int DigitScale, const wxString& udfc_str);
+    static const wxArrayString UDFC_FIELDS();
 };

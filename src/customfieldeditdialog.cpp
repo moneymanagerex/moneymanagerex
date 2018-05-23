@@ -51,6 +51,7 @@ mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomF
     , m_itemDefault(nullptr)
     , m_itemChoices(nullptr)
     , m_itemDigitScale(nullptr)
+    , m_itemUDFC(nullptr)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("New/Edit Custom Field"), wxDefaultPosition, wxSize(400, 300), style);
@@ -89,6 +90,7 @@ void mmCustomFieldEditDialog::dataToControls()
         m_itemAutocomplete->SetValue(Model_CustomField::getAutocomplete(m_field->PROPERTIES));
         m_itemDefault->SetValue(Model_CustomField::getDefault(m_field->PROPERTIES));
         m_itemDigitScale->SetValue(Model_CustomField::getDigitScale(m_field->PROPERTIES));
+        m_itemUDFC->SetStringSelection(Model_CustomField::getUDFC(m_field->PROPERTIES));
 
 
         wxString choices = wxEmptyString;
@@ -169,6 +171,13 @@ void mmCustomFieldEditDialog::CreateControls()
     m_itemDigitScale->SetToolTip(_("Enter the decimal digits scale allowed"));
     itemFlexGridSizer6->Add(m_itemDigitScale, g_flagsExpand);
 
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Panel's column")), g_flagsH);
+    m_itemUDFC = new wxChoice(itemPanel5, wxID_APPLY, wxDefaultPosition, wxSize(150, -1));
+    for (const auto& type : Model_CustomField::getUDFCList(m_field)) {
+        m_itemUDFC->Append(wxGetTranslation(type), new wxStringClientData(type));
+    }
+    m_itemUDFC->SetToolTip(_("Select a value to represent the item on a panel"));
+    itemFlexGridSizer6->Add(m_itemUDFC, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer3->Add(itemPanel27, wxSizerFlags(g_flagsV).Center());
@@ -187,8 +196,9 @@ void mmCustomFieldEditDialog::CreateControls()
 void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
 {
     const wxString name = m_itemDescription->GetValue().Trim();
-    if (name.empty())
+    if (name.empty()) {
         return mmErrorDialogs::InvalidName(m_itemDescription);
+    }
 
     wxArrayString ArrChoices;
     wxString Choices = m_itemChoices->GetValue();
@@ -258,7 +268,8 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
         m_itemAutocomplete->GetValue(),
         m_itemDefault->GetValue(),
         ArrChoices,
-        m_itemDigitScale->GetValue()
+        m_itemDigitScale->GetValue(),
+        m_itemUDFC->GetString(m_itemUDFC->GetSelection())
         );
     
     Model_CustomField::instance().save(m_field);

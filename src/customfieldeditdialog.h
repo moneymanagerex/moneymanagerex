@@ -53,6 +53,7 @@ private:
     wxString m_fieldRefType;
     wxTextCtrl* m_itemDescription;
     wxChoice*  m_itemType;
+    wxChoice*  m_itemUDFC;
     wxTextCtrl* m_itemTooltip;
     wxTextCtrl* m_itemRegEx;
     wxCheckBox* m_itemAutocomplete;

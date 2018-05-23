@@ -344,76 +344,12 @@ std::map<wxString, wxString> mmCustomData::GetActiveCustomFields()
     return values;
 }
 
-const wxString mmCustomData::GetWidgetData(int type, wxWindowID controlID)
+const wxString mmCustomData::GetWidgetData(wxWindowID controlID)
 {
     wxString data;
-    switch (type)
-    {
-    case Model_CustomField::STRING:
-    {
-        wxTextCtrl* CustomString = (wxTextCtrl*)m_dialog->FindWindow(controlID);
-        if (CustomString != nullptr) {
-            data = CustomString->GetValue().Trim();
-        }
-        break;
+    if (m_data_changed.find(controlID) != m_data_changed.end()) {
+        data = m_data_changed.at(controlID);
     }
-    case Model_CustomField::INTEGER:
-    {
-        wxSpinCtrl* CustomInteger = (wxSpinCtrl*)m_dialog->FindWindow(controlID);
-        if (CustomInteger) {
-            data = wxString::Format("%i", CustomInteger->GetValue());
-        }
-        break;
-    }
-    case Model_CustomField::DECIMAL:
-    {
-        wxSpinCtrlDouble* CustomDecimal = (wxSpinCtrlDouble*)m_dialog->FindWindow(controlID);
-        if (CustomDecimal) {
-            data = wxString::Format("%f", CustomDecimal->GetValue());
-        }
-        break;
-    }
-    case Model_CustomField::BOOLEAN:
-    {
-        wxCheckBox* CustomBoolean = (wxCheckBox*)m_dialog->FindWindow(controlID);
-        if (CustomBoolean) {
-            data = (CustomBoolean->GetValue()) ? "TRUE" : "FALSE";
-        }
-        break;
-    }
-    case Model_CustomField::DATE:
-    {
-        wxDatePickerCtrl* CustomDate = (wxDatePickerCtrl*)m_dialog->FindWindow(controlID);
-        if (CustomDate) {
-            data = CustomDate->GetValue().FormatISODate();
-        }
-        break;
-    }
-    case Model_CustomField::TIME:
-    {
-        wxTimePickerCtrl* CustomTime = (wxTimePickerCtrl*)m_dialog->FindWindow(controlID);
-        if (CustomTime) {
-            data = CustomTime->GetValue().FormatISOTime();
-        }
-        break;
-    }
-    case Model_CustomField::SINGLECHOICE:
-    {
-        wxChoice* CustomSingleChoice = (wxChoice*)m_dialog->FindWindow(controlID);
-        if (CustomSingleChoice) data = CustomSingleChoice->GetStringSelection();
-        break;
-    }
-    case Model_CustomField::MULTICHOICE:
-    {
-        wxButton* CustomMultiChoice = (wxButton*)m_dialog->FindWindow(controlID);
-        if (CustomMultiChoice) {
-            data = CustomMultiChoice->GetLabelText();
-        }
-        break;
-    }
-    default: break;
-    }
-    
     return data;
 }
 
@@ -424,8 +360,7 @@ bool mmCustomData::SaveCustomValues(int ref_id)
     for (const auto &field : m_fields)
     {
         wxWindowID controlID = GetBaseID() + (wxWindowID)field.FIELDID;
-        const auto type = Model_CustomField::type(field);
-        const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(type, controlID) : "";
+        const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(controlID) : "";
 
         Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, m_ref_id);
         if (!data.empty())
@@ -456,11 +391,8 @@ bool mmCustomData::SaveCustomValues(int ref_id)
 void mmCustomData::OnStringChanged(wxCommandEvent& event)
 {
     int controlID = event.GetId();
-    wxString data = wxEmptyString;
-    wxTextCtrl* CustomString = (wxTextCtrl*)m_dialog->FindWindow(controlID);
-    if (CustomString != nullptr) {
-        data = CustomString->GetValue().Trim();
-    }
+    wxString data = event.GetString();
+
     if (data.empty()) {
         ResetWidgetChanged(controlID);
     }
@@ -537,8 +469,7 @@ void mmCustomData::OnCheckBoxActivated(wxCommandEvent& event)
     auto checked = event.IsChecked();
 
     if (checked) {
-        auto type = GetWidgetType(widget_id);
-        const auto& data = GetWidgetData(type, widget_id);
+        const auto& data = GetWidgetData(widget_id);
         SetWidgetChanged(widget_id, data);
     }
     else {

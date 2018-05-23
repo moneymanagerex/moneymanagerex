@@ -58,7 +58,7 @@ public:
     mmCustomData();
     bool FillCustomFields(wxBoxSizer* box_sizer);
     bool SaveCustomValues(int ref_id);
-    const wxString GetWidgetData(int type, wxWindowID controlID);
+    const wxString GetWidgetData(wxWindowID controlID);
     int GetWidgetType(wxWindowID controlID);
     size_t GetCustomFieldsCount() { return m_fields.size(); }
     size_t GetActiveCustomFieldsCount();
