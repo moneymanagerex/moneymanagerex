@@ -114,7 +114,7 @@ Option::Option()
     , m_ico_size(16)
     , m_hideReport(0)
 {
-    m_reports.Add(new ReportInfo("", wxTRANSLATE("My Usage"), false, ReportInfo::MyUsage));
+    m_reports.Add(new ReportInfo("", wxTRANSLATE("MMEX Usage Frequency"), false, ReportInfo::MyUsage));
     m_reports.Add(new ReportInfo(wxTRANSLATE("Summary of Accounts"), wxTRANSLATE("Monthly"), false, ReportInfo::MonthlySummaryofAccounts));
     m_reports.Add(new ReportInfo(wxTRANSLATE("Summary of Accounts"), wxTRANSLATE("Yearly"), false, ReportInfo::YearlySummaryofAccounts));
     m_reports.Add(new ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Where the Money Goes"), false, ReportInfo::WheretheMoneyGoes));
