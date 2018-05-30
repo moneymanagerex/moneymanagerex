@@ -274,25 +274,29 @@ const wxArrayString Model_CustomField::getUDFCList(DB_Table_CUSTOMFIELD::Data* r
     wxString i;
     wxArrayString choices = UDFC_FIELDS();
 
-    Document json_doc;
-    if (!json_doc.Parse(r->PROPERTIES.c_str()).HasParseError())
+    if (r)
     {
-        if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
-        {
-            Value& s = json_doc["UDFC"];
-            i = s.GetString();
-        }
-    }
-    const auto& a = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(r->REFTYPE));
-    for (const auto& item : a)
-    {
-        if (!json_doc.Parse(item.PROPERTIES.c_str()).HasParseError())
+        Document json_doc;
+        if (!json_doc.Parse(r->PROPERTIES.c_str()).HasParseError())
         {
             if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
             {
                 Value& s = json_doc["UDFC"];
-                if (choices.Index(s.GetString()) != wxNOT_FOUND && i != s.GetString()) {
-                    choices.Remove(s.GetString());
+                i = s.GetString();
+            }
+        }
+
+        const auto& a = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(r->REFTYPE));
+        for (const auto& item : a)
+        {
+            if (!json_doc.Parse(item.PROPERTIES.c_str()).HasParseError())
+            {
+                if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
+                {
+                    Value& s = json_doc["UDFC"];
+                    if (choices.Index(s.GetString()) != wxNOT_FOUND && i != s.GetString()) {
+                        choices.Remove(s.GetString());
+                    }
                 }
             }
         }
