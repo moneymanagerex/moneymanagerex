@@ -9,17 +9,16 @@ Microsoft Windows
 
 ### Prerequisites
 
-1. Install free [Microsoft Visual Studio] Community 2017. Select following
+1. Install free [Microsoft Visual Studio] Community 2017. Select at least the following
    components during install:
-   * Windows: Desktop development with C++
-     * Visual Studio Core Editor
-     * Desktop development with C++ options
-       * VC++ 2017 v141 toolset (x86,x64)
-       * Windows 10 SDK (10.0.x.x) for Desktop C++ x86 and x64
-       * Visual C++ tools for CMake
+   * Visual Studio Core Editor (already selected)
+   * Windows: Desktop development with C++ options
+         * VC++ 2017 v141 toolset (x86,x64)
+         * Windows 10 SDK (10.0.x.x) for Desktop C++ x86 and x64
+         * Visual C++ tools for CMake
 
    Older versions of Visual Studio should work but some settings must be
-   adjusted. Please remember different VS versions uses different toolsets.
+   adjusted. Please remember that different VS versions use different toolsets.
 
    | Name               | Version | Toolset |
    |--------------------|:-------:|:-------:|
@@ -30,86 +29,103 @@ Microsoft Windows
    | Visual Studio 2015 |  14.0   |   140   |
    | Visual Studio 2017 |  15.0   |   141   |
 
-2. If you use Visual Studio older then 2013 Update 1 download and install
+2. If you use Visual Studio older than 2013 Update 1, download and install
    [Git for Windows] with default options.
 
 3. Download and install [gettext pre-compiled binaries] with default options.
 
-4. Download [wxWidgets 3.x binaries]:
-   - `wxWidgets-3.*.*_Headers.7z`
-   - one of `wxMSW-3.*.*-vc141_Dev.7z` or `wxMSW-3.*.*-vc141_x64_Dev.7z`
-   - one of `wxMSW-3.*.*-vc141_ReleaseDLL.7z`
-     or `wxMSW-3.*.*-vc141_x64_ReleaseDLL.7z`
+4. Download [wxWidgets 3.x binaries] for the architecture that you're going
+   to build for (32-Bit: x86, 64-Bit: x64):
+
+   | x86 | x64 |
+   | --- | --- |
+   | `wxWidgets-3.*.*_Headers.7z` | `wxWidgets-3.*.*_Headers.7z` |
+   | `wxMSW-3.*.*-vc141_Dev.7z` | `wxMSW-3.*.*-vc141_x64_Dev.7z` |
+   | `wxMSW-3.*.*-vc141_ReleaseDLL.7z` | `wxMSW-3.*.*-vc141_x64_ReleaseDLL.7z` |
    
-   Unpack archives to `c:\wxWidgets\` or `c:\Program Files\wxWidgets\`.
+   | arch | files |
+   | --- | --- |
+   | x86 | `wxWidgets-3.*.*_Headers.7z`, `wxMSW-3.*.*-vc141_Dev.7z`, `wxMSW-3.*.*-vc141_ReleaseDLL.7z` |
+   | x64 | `wxWidgets-3.*.*_Headers.7z`, `wxMSW-3.*.*-vc141_x64_Dev.7z`, `wxMSW-3.*.*-vc141_x64_ReleaseDLL.7z` |
+   
+   Unpack the archives to `C:\wxWidgets\` or `C:\Program Files\wxWidgets\`.
 
-   You may select different directory but then `wxwin` environment variable
-   must be set:
-
-       setx wxwin c:\path\to\unpacked\wxwidgets\files
+   Set the environment variable pointing to the wxWidgets folder containing the `include` and `lib` folders:
+   
+       setx WXWIN c:\path\to\wxWidgets\
 
 5. Developer Command Prompt
 
-   Start it from *Start Menu* using *VS2017 x64 Native Tools Command Prompt*
-   or *VS2017 x86 Native Tools Command Prompt* (names my vary in different VS
+   Start it from the *Start Menu* using *x64 Native Tools Command Prompt for VS 2017*
+   or *x86 Native Tools Command Prompt for VS 2017* (names my vary in different VS
    versions).
 
-   Or start the following command from start menu:
+   Or start the following command from the start menu:
+   
+   | arch | command line |
+   | --- | --- |
+   | x86 | `%comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x86` |
+   | x64 | `%comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64` |
+   
+   The following command can be used with older VS versions (change 14.0 with the
+   version number that applies in your case):
 
-       %comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x86
+   | arch | command line |
+   | --- | --- |
+   | x86 | `%comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86` |
+   | x64 | `%comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64` |
 
-   Following command can be used with older VS versions (change 14.0 for
-   correct version number):
-
-       %comspec% /k "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
-
-   Change `x86` parameter to `amd64` for native 64-bit build.
 
 **IMPORTANT**  
-__All following commands must be run from this command prompt!__
+__All the following commands must be run from this command prompt!__
 
-6. Clone [MMEX official Git repository] with submodules using command-line:
+6. Clone [MMEX's official Git repository] with its submodules using this command-line:
 
-       git clone --recursive https://github.com/moneymanagerex/moneymanagerex c:\projects\mmex
+       git clone --recursive https://github.com/moneymanagerex/moneymanagerex c:\path\to\your\projects\mmex
 
-   You can select MMEX version by adding `--branch v1.4.0` parameter.
+   You can select a specific MMEX version by adding for example the `--branch v1.4.0` parameter.
 
-   If git command is not recognized and you want to use git installed with VS
-   you should find `git.exe` file and add its directory to the `PATH` variable
+   If the git command is not recognized, you can either use VS' minimal git client.
+   First find out where git.exe is located and then add its directory to the `PATH` variable
+   (otherwise it will report [missing DLLs]), before trying to run the above line again:
 
-       dir /n/b/s c:\%ProgramFiles(x86)%\git.exe
-       set "PATH=%PATH%;c:\path\to\git\dir"
+       cd \
+       dir /n/b/s git.exe
+       set "PATH=%PATH%;c:\path\to\gits\cmd\dir"
 
-   Or use build-in Visual Studio [IDE Team Services] to clone:
+   Or use the built-in Visual Studio [IDE Team Services] to clone MMEX's repository:
    - Open Team Explorer using `Team`->`Manage Connections...`
    - Select `Clone` under `Local Git Repositories`
-   - Put `https://github.com/moneymanagerex/moneymanagerex.git` into URL field
-   - Select `c:\projects\mmex` directory in field below URL
-   - Select `Recursively Clone Submodule` check-box
-   - Click `Clone` button below
+   - Put `https://github.com/moneymanagerex/moneymanagerex.git` into the URL field
+   - Specify the `c:\path\to\your\projects\mmex` directory in the field below the URL
+   - Select the `Recursively Clone Submodule` check-box
+   - Click the `Clone` button below
 
-7. Apply patches from `util` directory to CMake modules
+7. Apply patches from the `util` directory to the CMake modules
+   (some might not apply and will be omitted automatically).
 
-       cd "%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.8\Modules"
-       for %p in (c:\projects\mmex\util\*.cmake-*.patch) do git apply --ignore-space-change --ignore-whitespace --whitespace=nowarn %p
+       cd "%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\share\"
+       dir cmake*
+       cd cmake-<version>\Modules
+       for %p in (c:\path\to\your\projects\mmex\util\*.cmake-*.patch) do git apply --ignore-space-change --ignore-whitespace --whitespace=nowarn %p
 
-   See previous step for instructions if git command is not recognized.
+   See the previous step for instructions if the git command is not recognized.
 
-8. [Download sources of curl], unpack them to `c:\` and build [libcurl]
-   library with following commands:
+8. [Download sources of curl], unpack them to `c:\` and build the [libcurl]
+   library with the following commands:
 
        mkdir c:\curl-<version>\build
        cd c:\curl-<version>\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
-       cmake -G "Visual Studio 15 2017" -DBUILD_CURL_EXE=OFF -DHTTP_ONLY=ON ^
-         -DENABLE_MANUAL=OFF -DBUILD_TESTING=OFF -DCURL_STATICLIB=ON ^
-         -DCMAKE_USE_WINSSL=ON -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
+       
+   | arch | command line |
+   | --- | --- |
+   | x86 | `cmake -G "Visual Studio 15 2017" -DBUILD_CURL_EXE=OFF -DHTTP_ONLY=ON ^` <br> `-DENABLE_MANUAL=OFF -DBUILD_TESTING=OFF -DCURL_STATICLIB=ON ^` <br> `-DCMAKE_USE_WINSSL=ON -DCMAKE_INSTALL_PREFIX=c:\libcurl ..`
+   | x64 | `cmake -G "Visual Studio 15 2017 Win64" -DBUILD_CURL_EXE=OFF -DHTTP_ONLY=ON ^` <br> `-DENABLE_MANUAL=OFF -DBUILD_TESTING=OFF -DCURL_STATICLIB=ON ^` <br> `-DCMAKE_USE_WINSSL=ON -DCMAKE_INSTALL_PREFIX=c:\libcurl ..`
+       
        set "CL=/MP"
        cmake --build . --target install --config Release --clean-first ^
          -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
-
-   Replace `Visual Studio 15 2017` with `Visual Studio 15 2017 Win64`
-   for 64-bit.
 
 9. Then you should follow one of  
    [Visual Studio project] | [Visual Studio CLI] | [Visual Studio CMake]
@@ -121,28 +137,32 @@ tools to manage projects in VS IDE.
 
 1. Generate build environment using [CMake]
 
-       mkdir c:\projects\mmex\build
-       cd c:\projects\mmex\build
+       mkdir c:\path\to\your\projects\mmex\build
+       cd c:\path\to\your\projects\mmex\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
-       cmake -G "Visual Studio 15 2017" -DCMAKE_PREFIX_PATH=c:\libcurl ..
 
-   Replace `Visual Studio 15 2017` with `Visual Studio 15 2017 Win64`
-   for 64-bit.
+   | arch | command line |
+   | --- | --- |
+   | x86 | `cmake -G "Visual Studio 15 2017" -DCMAKE_PREFIX_PATH=c:\libcurl ..`
+   | x64 | `cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_PREFIX_PATH=c:\libcurl ..`
+   
+   Among other files this produces the VS solution file `c:\path\to\your\projects\mmex\build\MMEX.sln`.
 
-   This produce `c:\projects\mmex\build\MMEX.sln` file ready to be loaded into
-   Visual Studio GUI.
+2. In the Visual Studio GUI, open the above solution file with the `File`->`Open`->`Project/Solution...` menu
+   command (or hit `Ctrl+Shift+O`).
 
-2. Open above solution file with `File`->`Open`->`Project/Solution...` menu
-   command (or `Ctrl+Shift+O`).
+3. Run the `Build`->`Build Solution` menu command (or hit `Ctrl+Shift+B`). This will
+   compile MMEX and propagate needed files into the right directories.
 
-3. Run `Build`->`Build Solution` menu command (or `Ctrl+Shift+B`). This will
-   compile MMEX and propagate support files into right directories.
+4. In order to debug the application, you need to set the path to wxWidgets'
+   development DLLs. Go to `mmex Properties \ Debugging \ Environment` and set
+   it to `PATH=%PATH%;C:\wxwidgets\lib\vc141_x64_dll`.
+   Otherwise the application will [report missing DLLs].
 
-4. Now you can run MMEX with `Debug`->`Start Without Debugging` menu command
-   (`Ctrl+F5`) or start debugging session with `Debug`->`Start Debugging`
-   (`F5`).
+4. Now you can run MMEX with the `Debug`->`Start Without Debugging` menu command
+   (`Ctrl+F5`) or start a debugging session with `Debug`->`Start Debugging` (`F5`).
 
-5. To create binary package (you need to have [NSIS] installed for this) build
+5. To create a binary package (you need to have [NSIS] installed for this), build the
    `PACKAGE` project.
 
 ### Visual Studio command-line
@@ -175,28 +195,33 @@ or static linking).
 ### Visual Studio 2017 GUI with native CMake support
 
 This will work in Visual Studio 2017 or newer with _Visual C++ tools for
-CMake_ option installed.
+CMake_ option installed (gets selected by default).
 
-1. Open `c:\projects\mmex` with `File`->`Open`->`Folder...` menu command
-   (or `Ctrl+Shift+Alt+O`).
+1. Open `c:\path\to\your\projects\mmex` with the `File`->`Open`->`Folder...` menu command
+   (or hit `Ctrl+Shift+Alt+O`).
 
-2. Select target like `x64-Debug` in project settings drop-down.
+2. The very first time VS opens the directory, it will start to run CMake
+   config immediately, which might fail with errors. Ignore this and proceed
+   to the next steps to set up CMake correctly.
 
-3. Set path to libcurl library using `CMake`->`Change CMake Settings` then adding following variables into _CMakeSettings.json_:
+3. Select a target like `x64-Debug` in the `Project Settings` drop-down.
+
+4. Set the path to the libcurl library using the menu item `CMake`->`Change CMake Settings`,
+   then in _CMakeSettings.json_, supplement each of the target configurations
+   that you're going to run with the following variable definition (see the paragraph 
+   _CMakeSettings.json example_ in [this blog post]:
 
        "variables": [
          {
            "name": "CMAKE_PREFIX_PATH",
            "value": "c:\libcurl"
          }
-        
-   See detailed instructions for [configuring CMake projects] from Microsoft _Visual C++ Team Blog_.
 
-4. Run `CMake`->`Install`->`Project MMEX` menu command before debugging
-   session start with `CMake`->`Debug`->`src\mmex.exe`.
+5. Run the `CMake`->`Install`->`Project MMEX` menu command before starting a
+   debugging session with `CMake`->`Debug`->`src\mmex.exe`.
 
-5. Select `src\mmex.exe` in `Select Startup Item` drop-down to unlock commands
-   in Debug menu.
+6. Select `src\mmex.exe` in the `Select Startup Item` drop-down to unlock commands
+   in the Debug menu.
 
 
 macOS with Homebrew
@@ -343,5 +368,7 @@ Same as for [macOS](#3-compile-and-create-package)
     //curl.haxx.se/latest.cgi?curl=zip
 [libcurl]:
     https://curl.haxx.se/libcurl/
-[configuring CMake projects]:
+[this blog post]:
     https://blogs.msdn.microsoft.com/vcblog/2016/10/05/cmake-support-in-visual-studio/#configure-cmake
+[missing DLLs]: https://developercommunity.visualstudio.com/content/problem/26539/vs2017-deployed-gitexe-not-usable.html
+[report missing DLLs]: https://github.com/moneymanagerex/moneymanagerex/issues/1676
