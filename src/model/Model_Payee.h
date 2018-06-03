@@ -59,7 +59,7 @@ public:
 
     bool remove(int id);
 
-    const wxArrayString all_payee_names();
+    const wxArrayString all_payee_names(bool used_only = false);
 
     static bool is_used(int id);
     static bool is_used(const Data* record);

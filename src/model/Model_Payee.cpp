@@ -86,12 +86,15 @@ bool Model_Payee::remove(int id)
     return this->remove(id, db_);
 }
 
-const wxArrayString Model_Payee::all_payee_names()
+const wxArrayString Model_Payee::all_payee_names(bool used_only)
 {
     wxArrayString payees;
     for (const auto &payee: this->all(COL_PAYEENAME))
     {
-        payees.Add(payee.PAYEENAME);
+        if (!used_only || is_used(payee.PAYEEID))
+        {
+            payees.Add(payee.PAYEENAME);
+        }
     }
     return payees;
 }
