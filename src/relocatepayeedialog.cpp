@@ -82,14 +82,14 @@ void relocatePayeeDialog::CreateControls()
 
     cbSourcePayee_ = new wxComboBox(this, wxID_BOTTOM, ""
         , wxDefaultPosition, btnSize
-        , Model_Payee::instance().all_payee_names());
-    cbSourcePayee_->AutoComplete(Model_Payee::instance().all_payee_names());
+        , Model_Payee::instance().used_payee_names());
+    cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
     cbSourcePayee_->Enable();
 
     cbDestPayee_ = new wxComboBox(this, wxID_NEW, ""
         , wxDefaultPosition, btnSize
         , Model_Payee::instance().all_payee_names());
-    cbDestPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
+    cbDestPayee_->AutoComplete(cbDestPayee_->GetStrings());
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
@@ -164,6 +164,7 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
 void relocatePayeeDialog::IsOkOk()
 {
     bool e = true;
+    int trxs_size, bills_size;
     const wxString& destPayeeName = cbDestPayee_->GetValue();
     const wxString& sourcePayeeName = cbSourcePayee_->GetValue();
 
@@ -171,23 +172,21 @@ void relocatePayeeDialog::IsOkOk()
     Model_Payee::Data* dest_payee = Model_Payee::instance().get(destPayeeName);
     if (source_payee) {
         sourcePayeeID_ = source_payee->PAYEEID;
+        trxs_size = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_)).size();
+        bills_size = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_)).size();
+    }
+    else
+    {
+        trxs_size = 0;
+        bills_size = 0;
     }
     if (dest_payee) {
         destPayeeID_ = dest_payee->PAYEEID;
     }
 
-    if (!dest_payee || !source_payee || dest_payee == source_payee) {
-        e = false;
-    }
-
-    auto transactions = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_));
-    auto billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_));
-
-    int trxs_size = transactions.size();
-    int bills_size = billsdeposits.size();
-    int total = trxs_size + bills_size;
-
-    if (total < 1) {
+    if (!dest_payee || !source_payee
+        || dest_payee == source_payee
+        || trxs_size + bills_size == 0) {
         e = false;
     }
 
