@@ -28,6 +28,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(relocatePayeeDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(relocatePayeeDialog, wxDialog)
     EVT_BUTTON(wxID_OK, relocatePayeeDialog::OnOk)
+    EVT_BUTTON(wxID_CANCEL, relocatePayeeDialog::OnCancel)
     EVT_TEXT(wxID_ANY, relocatePayeeDialog::OnPayeeChanged)
 wxEND_EVENT_TABLE()
 
@@ -134,6 +135,11 @@ int relocatePayeeDialog::updatedPayeesCount()
     return m_changed_records;
 }
 
+void relocatePayeeDialog::OnCancel(wxCommandEvent& /*event*/)
+{
+    EndModal(m_changed_records>0 ? wxID_OK : wxID_CANCEL);
+}
+
 void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
 {
     const wxString& info = wxString::Format(_("From %s to %s")
@@ -158,7 +164,16 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
         }
         m_changed_records += Model_Billsdeposits::instance().save(billsdeposits);
 
-        EndModal(wxID_OK);
+        int empty = cbSourcePayee_->FindString(cbSourcePayee_->GetValue());
+        if (empty != wxNOT_FOUND)
+        {
+            cbSourcePayee_->Delete(empty);
+            cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
+        }
+        cbSourcePayee_->SetValue("");
+        cbSourcePayee_->SetSelection(wxNOT_FOUND);
+        sourcePayeeID_ = -1;
+        IsOkOk();
     }
 }
 
