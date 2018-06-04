@@ -321,6 +321,7 @@ void mmPayeeDialog::OnPayeeRelocate()
             << "\n\n";
         wxMessageBox(msgStr, _("Payee Relocation Result"));
         refreshRequested_ = true;
+        fillControls(); // payee can be deleted
     }
 }
 
