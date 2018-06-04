@@ -80,7 +80,8 @@ void relocatePayeeDialog::CreateControls()
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
-    cbSourcePayee_ = new wxComboBox(this, wxID_BOTTOM, ""
+    cbSourcePayee_ = new wxComboBox(this, wxID_BOTTOM
+        , sourcePayeeID_ == -1 ? "" : Model_Payee::get_payee_name(sourcePayeeID_)
         , wxDefaultPosition, btnSize
         , Model_Payee::instance().used_payee_names());
     cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
