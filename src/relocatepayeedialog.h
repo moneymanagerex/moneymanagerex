@@ -54,8 +54,8 @@ private:
     wxComboBox* cbSourcePayee_;
     wxComboBox* cbDestPayee_;
     int m_changed_records;
-    wxString prev_value_;
     wxStaticText* m_info;
+    wxCheckBox* cbDelete_;
 };
 
 #endif

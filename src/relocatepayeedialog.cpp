@@ -18,11 +18,14 @@
  ********************************************************/
 
 #include "relocatepayeedialog.h"
+#include "attachmentdialog.h"
+#include "webapp.h"
 #include "paths.h"
 #include "constants.h"
 #include "Model_Billsdeposits.h"
 #include "Model_Checking.h"
 #include "Model_Payee.h"
+#include "Model_Attachment.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(relocatePayeeDialog, wxDialog);
 
@@ -88,6 +91,9 @@ void relocatePayeeDialog::CreateControls()
     cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
     cbSourcePayee_->Enable();
 
+    cbDelete_ = new wxCheckBox(this, wxID_ANY
+        , _("Delete source payee after relocation"));
+
     cbDestPayee_ = new wxComboBox(this, wxID_NEW, ""
         , wxDefaultPosition, btnSize
         , Model_Payee::instance().all_payee_names());
@@ -106,12 +112,12 @@ void relocatePayeeDialog::CreateControls()
     request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("to:")), flagsH);
     request_sizer->Add(cbSourcePayee_, flagsH);
     request_sizer->Add(cbDestPayee_, flagsH);
-
     
     wxStaticLine* lineMiddle = new wxStaticLine(this, wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
     boxSizer->Add(request_sizer, flagsExpand);
+    boxSizer->Add(cbDelete_, flagsExpand);
     boxSizer->Add(lineMiddle, flagsExpand);
 
     m_info = new wxStaticText(this, wxID_STATIC, "");
@@ -164,6 +170,21 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
         }
         m_changed_records += Model_Billsdeposits::instance().save(billsdeposits);
 
+        if (cbDelete_->IsChecked())
+        {
+            if (Model_Payee::instance().remove(sourcePayeeID_))
+            {
+                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), sourcePayeeID_);
+                mmWebApp::MMEX_WebApp_UpdatePayee();
+                int deleted = cbDestPayee_->FindString(cbSourcePayee_->GetValue());
+                if (deleted != wxNOT_FOUND)
+                {
+                    cbDestPayee_->Delete(deleted);
+                    cbDestPayee_->AutoComplete(cbDestPayee_->GetStrings());
+                }
+
+            }
+        }
         int empty = cbSourcePayee_->FindString(cbSourcePayee_->GetValue());
         if (empty != wxNOT_FOUND)
         {
