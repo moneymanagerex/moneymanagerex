@@ -44,6 +44,7 @@ private:
     void CreateControls();
     void IsOkOk();
     void OnOk(wxCommandEvent& event);
+    void OnCancel(wxCommandEvent& event);
 
     void OnPayeeChanged(wxCommandEvent& event);
 
