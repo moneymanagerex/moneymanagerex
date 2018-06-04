@@ -18,16 +18,20 @@
  ********************************************************/
 
 #include "relocatepayeedialog.h"
+#include "attachmentdialog.h"
+#include "webapp.h"
 #include "paths.h"
 #include "constants.h"
 #include "Model_Billsdeposits.h"
 #include "Model_Checking.h"
 #include "Model_Payee.h"
+#include "Model_Attachment.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(relocatePayeeDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(relocatePayeeDialog, wxDialog)
     EVT_BUTTON(wxID_OK, relocatePayeeDialog::OnOk)
+    EVT_BUTTON(wxID_CANCEL, relocatePayeeDialog::OnCancel)
     EVT_TEXT(wxID_ANY, relocatePayeeDialog::OnPayeeChanged)
 wxEND_EVENT_TABLE()
 
@@ -80,16 +84,20 @@ void relocatePayeeDialog::CreateControls()
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
-    cbSourcePayee_ = new wxComboBox(this, wxID_BOTTOM, ""
+    cbSourcePayee_ = new wxComboBox(this, wxID_BOTTOM
+        , sourcePayeeID_ == -1 ? "" : Model_Payee::get_payee_name(sourcePayeeID_)
         , wxDefaultPosition, btnSize
-        , Model_Payee::instance().all_payee_names());
-    cbSourcePayee_->AutoComplete(Model_Payee::instance().all_payee_names());
+        , Model_Payee::instance().used_payee_names());
+    cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
     cbSourcePayee_->Enable();
+
+    cbDelete_ = new wxCheckBox(this, wxID_ANY
+        , _("Delete source payee after relocation"));
 
     cbDestPayee_ = new wxComboBox(this, wxID_NEW, ""
         , wxDefaultPosition, btnSize
         , Model_Payee::instance().all_payee_names());
-    cbDestPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
+    cbDestPayee_->AutoComplete(cbDestPayee_->GetStrings());
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
@@ -104,12 +112,12 @@ void relocatePayeeDialog::CreateControls()
     request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("to:")), flagsH);
     request_sizer->Add(cbSourcePayee_, flagsH);
     request_sizer->Add(cbDestPayee_, flagsH);
-
     
     wxStaticLine* lineMiddle = new wxStaticLine(this, wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
     boxSizer->Add(request_sizer, flagsExpand);
+    boxSizer->Add(cbDelete_, flagsExpand);
     boxSizer->Add(lineMiddle, flagsExpand);
 
     m_info = new wxStaticText(this, wxID_STATIC, "");
@@ -131,6 +139,11 @@ void relocatePayeeDialog::CreateControls()
 int relocatePayeeDialog::updatedPayeesCount()
 {
     return m_changed_records;
+}
+
+void relocatePayeeDialog::OnCancel(wxCommandEvent& /*event*/)
+{
+    EndModal(m_changed_records>0 ? wxID_OK : wxID_CANCEL);
 }
 
 void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
@@ -157,13 +170,38 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
         }
         m_changed_records += Model_Billsdeposits::instance().save(billsdeposits);
 
-        EndModal(wxID_OK);
+        if (cbDelete_->IsChecked())
+        {
+            if (Model_Payee::instance().remove(sourcePayeeID_))
+            {
+                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), sourcePayeeID_);
+                mmWebApp::MMEX_WebApp_UpdatePayee();
+                int deleted = cbDestPayee_->FindString(cbSourcePayee_->GetValue());
+                if (deleted != wxNOT_FOUND)
+                {
+                    cbDestPayee_->Delete(deleted);
+                    cbDestPayee_->AutoComplete(cbDestPayee_->GetStrings());
+                }
+
+            }
+        }
+        int empty = cbSourcePayee_->FindString(cbSourcePayee_->GetValue());
+        if (empty != wxNOT_FOUND)
+        {
+            cbSourcePayee_->Delete(empty);
+            cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
+        }
+        cbSourcePayee_->SetValue("");
+        cbSourcePayee_->SetSelection(wxNOT_FOUND);
+        sourcePayeeID_ = -1;
+        IsOkOk();
     }
 }
 
 void relocatePayeeDialog::IsOkOk()
 {
     bool e = true;
+    int trxs_size, bills_size;
     const wxString& destPayeeName = cbDestPayee_->GetValue();
     const wxString& sourcePayeeName = cbSourcePayee_->GetValue();
 
@@ -171,23 +209,21 @@ void relocatePayeeDialog::IsOkOk()
     Model_Payee::Data* dest_payee = Model_Payee::instance().get(destPayeeName);
     if (source_payee) {
         sourcePayeeID_ = source_payee->PAYEEID;
+        trxs_size = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_)).size();
+        bills_size = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_)).size();
+    }
+    else
+    {
+        trxs_size = 0;
+        bills_size = 0;
     }
     if (dest_payee) {
         destPayeeID_ = dest_payee->PAYEEID;
     }
 
-    if (!dest_payee || !source_payee || dest_payee == source_payee) {
-        e = false;
-    }
-
-    auto transactions = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_));
-    auto billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_));
-
-    int trxs_size = transactions.size();
-    int bills_size = billsdeposits.size();
-    int total = trxs_size + bills_size;
-
-    if (total < 1) {
+    if (!dest_payee || !source_payee
+        || dest_payee == source_payee
+        || trxs_size + bills_size == 0) {
         e = false;
     }
 

@@ -321,6 +321,7 @@ void mmPayeeDialog::OnPayeeRelocate()
             << "\n\n";
         wxMessageBox(msgStr, _("Payee Relocation Result"));
         refreshRequested_ = true;
+        fillControls(); // payee can be deleted
     }
 }
 
@@ -378,7 +379,9 @@ void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
 
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_RELOCATE_PAYEE, _("Relocate Payee")));
     //SetToolTip(_("Change all transactions using one Payee to another Payee"));
-    if (!payee) mainMenu->Enable(MENU_RELOCATE_PAYEE, false);
+    if (!payee || payeeListBox_->GetItemCount() < 2
+        || !Model_Payee::is_used(m_payee_id))
+            mainMenu->Enable(MENU_RELOCATE_PAYEE, false);
 
     PopupMenu(mainMenu);
     delete mainMenu;
