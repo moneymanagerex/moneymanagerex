@@ -36,7 +36,7 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
     : wxDialog()
     , m_ref_type(ref_type)
     , m_ref_id(ref_id)
-    , m_hideable_panel_name("CustomPanel")
+    , m_static_box(nullptr)
 {
     m_dialog = dialog;
     m_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(m_ref_type));
@@ -55,13 +55,11 @@ mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, w
 
 bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 {
-    wxStaticBox* static_box = new wxStaticBox(m_dialog, wxID_ANY, _("Custom fields")
-        , wxDefaultPosition, wxDefaultSize, 0L, m_hideable_panel_name);
-    static_box->Hide();
-    wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(static_box, wxVERTICAL);
+    m_static_box = new wxStaticBox(m_dialog, wxID_ANY, _("Custom fields"));
+    wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(m_static_box, wxVERTICAL);
     box_sizer->Add(box_sizer_right, g_flagsExpand);
 
-    wxScrolledWindow* scrolled_window = new wxScrolledWindow(static_box, wxID_ANY);
+    wxScrolledWindow* scrolled_window = new wxScrolledWindow(m_static_box, wxID_ANY);
     wxBoxSizer *custom_sizer = new wxBoxSizer(wxVERTICAL);
     scrolled_window->SetScrollbar(wxSB_VERTICAL, wxALIGN_RIGHT, 1, -1);
     scrolled_window->SetSizer(custom_sizer);
@@ -273,6 +271,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
     scrolled_window->FitInside();
     scrolled_window->SetScrollRate(5, 5);
     box_sizer_right->Add(scrolled_window, g_flagsExpand);
+    m_static_box->Hide();
 
     return true;
 }
@@ -537,22 +536,15 @@ bool mmCustomData::IsDataFound(const Model_Checking::Full_Data &tran)
 
 bool mmCustomData::IsCustomPanelShown()
 {
-    wxStaticBox* static_box = (wxStaticBox*)m_dialog->FindWindowByName(m_hideable_panel_name);
-    if (static_box) {
-        return static_box->IsShown();
-    }
-    return false;
+    return m_static_box->IsShown();
 }
 
 void mmCustomData::ShowHideCustomPanel()
 {
-    wxStaticBox* static_box = (wxStaticBox*)m_dialog->FindWindowByName(m_hideable_panel_name);
-    if (static_box) {
-        if (static_box->IsShown()) {
-            static_box->Hide();
-        }
-        else {
-            static_box->Show();
-        }
+    if (IsCustomPanelShown()) {
+        m_static_box->Hide();
+    }
+    else {
+        m_static_box->Show();
     }
 }
