@@ -111,8 +111,8 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     m_all_date_ranges.push_back(new mmLast365Days());
     m_all_date_ranges.push_back(new mmSpecifiedRange(wxDate::Today(), wxDate::Today()));
 
-    SetSettingsID(Model_Infotable::instance().GetIntInfo("TRANSACTIONS_FILTER_VIEW_NO", -1));
-    m_custom_fields = new mmCustomDataTransaction(this, GetSettingsID(), wxID_HIGHEST);
+    SetSettingsID(Model_Infotable::instance().GetIntInfo("TRANSACTIONS_FILTER_VIEW_NO", 0));
+    m_custom_fields = new mmCustomDataTransaction(this, 0, wxID_HIGHEST + 11600);
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Transaction Filter"), wxDefaultPosition, wxSize(400, 300), style);
 }
@@ -514,6 +514,7 @@ void mmFilterTransactionsDialog::OnButtonokClick(wxCommandEvent& /*event*/)
         }
     }
 
+    SaveSettings();
     EndModal(wxID_OK);
 }
 
@@ -669,8 +670,12 @@ void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
 
 void mmFilterTransactionsDialog::clearSettings()
 {
+    int i = m_setting_name->GetSelection();
+    const wxString& label = wxString::Format(_("%i: Empty"), i + 1);
+    m_setting_name->SetString(i, label);
+
     settings_string_.Clear();
-    m_custom_fields->ResetWidgetsChanged();
+    m_custom_fields->ClearSettings();
     dataToControls();
 
     // Clear the settings for the allocated position
@@ -1177,7 +1182,7 @@ void mmFilterTransactionsDialog::OnDateRangeChanged(wxCommandEvent& /*event*/)
             m_fromDateCtrl->SetValue(date_range->start_date());
             m_toDateControl->SetValue(date_range->end_date());
 
-            user_date = date_range->title() == wxString("Custom");
+            user_date = (date_range->title() == wxString("Custom"));
         }
     }
     m_fromDateCtrl->Enable(user_date);
@@ -1186,7 +1191,19 @@ void mmFilterTransactionsDialog::OnDateRangeChanged(wxCommandEvent& /*event*/)
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& /*event*/)
 {
-    // Save the settings for the allocated position
+    int i = m_setting_name->GetSelection();
+    //m_custom_fields->SaveCustomValues(i);
+    const wxString& default_label = wxString::Format(_("%i: Empty"), i + 1);
+    wxString label = m_setting_name->GetStringSelection();
+    label = wxGetTextFromUser(_("Please Enter"), _("Setting Name"), label);
+
+    if (label.empty() || label == default_label) {
+        return mmErrorDialogs::ToolTip4Object(m_setting_name
+            , _("Could not save settings"), _("Empty value"));
+    }
+
+    m_setting_name->SetString(i, label);
+
     SaveSettings();
 
 }
@@ -1194,18 +1211,8 @@ void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& /*event*/)
 void mmFilterTransactionsDialog::SaveSettings()
 {
     int i = m_setting_name->GetSelection();
-    //m_custom_fields->SaveCustomValues(i);
+    m_custom_fields->SaveCustomValues(0); //TODO: how to save it?
     wxString label = m_setting_name->GetStringSelection();
-
-    label = wxGetTextFromUser(_("Please Enter"), _("Setting Name"), label);
-
-
-    if (label.empty()) {
-        return mmErrorDialogs::ToolTip4Object(m_setting_name
-            , _("Could not save settings"), _("Empty value"));
-    }
-
-    m_setting_name->SetString(i, label);
 
     settings_string_ = to_json();
     Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
@@ -1217,6 +1224,6 @@ void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
 {
     int i = event.GetSelection();
     GetStoredSettings(i);
-    //m_custom_fields->SetRefID(i);
+    m_custom_fields->SetRefID(0); //TODO: 
     dataToControls();
 }

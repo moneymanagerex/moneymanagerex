@@ -71,6 +71,7 @@ public:
     bool IsSomeWidgetChanged();
     bool IsDataFound(const Model_Checking::Full_Data &tran);
     void ResetWidgetsChanged();
+    void ClearSettings();
     bool IsCustomPanelShown();
     void ShowHideCustomPanel();
 };

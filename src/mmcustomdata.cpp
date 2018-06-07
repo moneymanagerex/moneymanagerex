@@ -346,8 +346,57 @@ std::map<wxString, wxString> mmCustomData::GetActiveCustomFields()
 const wxString mmCustomData::GetWidgetData(wxWindowID controlID)
 {
     wxString data;
-    if (m_data_changed.find(controlID) != m_data_changed.end()) {
+    if (m_data_changed.find(controlID) != m_data_changed.end()) 
+    {
         data = m_data_changed.at(controlID);
+    }
+    else
+    {
+        wxWindow* w = m_dialog->FindWindowById(controlID);
+        if (w)
+        {
+            const wxString class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
+            if (class_name == "wxDatePickerCtrl")
+            { 
+                wxDatePickerCtrl* d = (wxDatePickerCtrl*)w;
+                data = d->GetValue().FormatISODate();
+            }
+            else if (class_name == "wxTimePickerCtrl")
+            {
+                wxTimePickerCtrl* d = (wxTimePickerCtrl*)w;
+                data = d->GetValue().FormatISOTime();
+            }
+            else if (class_name == "wxSpinCtrlDouble")
+            {
+                wxSpinCtrlDouble* d = (wxSpinCtrlDouble*)w;
+                data = wxString::Format("%f", d->GetValue());
+            }
+            else if (class_name == "wxSpinCtrl")
+            {
+                wxSpinCtrl* d = (wxSpinCtrl*)w;
+                data = wxString::Format("%i", d->GetValue());
+            }
+            else if (class_name == "wxChoice")
+            {
+                wxChoice* d = (wxChoice*)w;
+                data = d->GetStringSelection();
+            }
+            else if (class_name == "wxButton")
+            {
+                wxButton* d = (wxButton*)w;
+                data = d->GetLabel();
+            }
+            else if (class_name == "wxTextCtrl")
+            {
+                wxTextCtrl* d = (wxTextCtrl*)w;
+                data = d->GetValue();
+            }
+            else if (class_name == "wxCheckBox")
+            {
+                wxCheckBox* d = (wxCheckBox*)w;
+                data = (d->GetValue() ? "TRUE" : "FALSE");
+            }
+        }
     }
     return data;
 }
@@ -361,7 +410,7 @@ bool mmCustomData::SaveCustomValues(int ref_id)
         wxWindowID controlID = GetBaseID() + (wxWindowID)field.FIELDID;
         const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(controlID) : "";
 
-        Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, m_ref_id);
+        Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
         if (!data.empty())
         {
             if (!fieldData) {
@@ -421,6 +470,17 @@ void mmCustomData::ResetWidgetsChanged()
     m_data_changed.clear();
 }
 
+void mmCustomData::ClearSettings()
+{
+    for (const auto &field : m_fields)
+    {
+        //wxWindowID controlID = GetBaseID() + (wxWindowID)field.FIELDID;
+        wxWindowID labelID = GetLabelID() + (wxWindowID)field.FIELDID;
+        wxCheckBox* cb = (wxCheckBox*)FindWindowById(labelID);
+        if (cb) cb->SetValue(false);
+    }
+}
+
 void mmCustomData::OnSingleChoice(wxCommandEvent& event)
 {
     const wxString& data = event.GetString();
@@ -468,6 +528,7 @@ void mmCustomData::OnCheckBoxActivated(wxCommandEvent& event)
     auto checked = event.IsChecked();
 
     if (checked) {
+        //TODO: 
         const auto& data = GetWidgetData(widget_id);
         SetWidgetChanged(widget_id, data);
     }
@@ -515,7 +576,7 @@ void mmCustomData::SetWidgetChanged(wxWindowID id, const wxString& data)
         Description->SetValue(true);
         wxLogDebug("Description %i value = %i", label_id, 1);
     }
-};
+}
 
 bool mmCustomData::IsDataFound(const Model_Checking::Full_Data &tran)
 {
