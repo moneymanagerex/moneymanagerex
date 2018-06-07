@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "Model_Checking.h"
 #include "Model_Billsdeposits.h"
 #include "reports/mmDateRange.h"
+#include <wx/bmpbuttn.h>
 
 class mmTextCtrl;
 class mmCustomData;
@@ -113,10 +114,11 @@ private:
     void SaveSettings();
     void OnButtonClearClick(wxCommandEvent& event);
     void OnMoreFields(wxCommandEvent& event);
-    void OnSettingsSelected(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnDateRangeChanged(wxCommandEvent& event);
+    void OnSaveSettings(wxCommandEvent& event);
+    void OnSettingsSelected(wxCommandEvent& event);
 
     void OnCategs(wxCommandEvent& event);
     wxString to_json(bool i18n = false);
@@ -124,7 +126,6 @@ private:
 
     wxString settings_string_;
     wxString prev_value_;
-    wxTextCtrl* m_settingLabel;
     wxCheckBox* accountCheckBox_;
     wxChoice* accountDropDown_;
     wxCheckBox* m_dateRangeCheckBox;
@@ -134,6 +135,8 @@ private:
     wxComboBox* cbPayee_;
     wxCheckBox* categoryCheckBox_;
     wxButton* btnCategory_;
+    wxBitmapButton* m_btnSaveAs;
+    wxChoice* m_setting_name;
     wxCheckBox* similarCategCheckBox_;
     wxCheckBox* statusCheckBox_;
     wxChoice* choiceStatus_;
@@ -147,7 +150,6 @@ private:
     mmTextCtrl* amountMaxEdit_;
     wxCheckBox* notesCheckBox_;
     wxTextCtrl* notesEdit_;
-    wxRadioBox* m_radio_box_;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
     wxChoice* m_date_ranges;

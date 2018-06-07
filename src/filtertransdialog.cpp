@@ -85,7 +85,6 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     , payeeID_(-1)
     , refAccountID_(account_id)
     , refAccountStr_("")
-    , m_settingLabel()
     , m_settings_id(-1)
     , m_min_amount(0)
     , m_max_amount(0)
@@ -345,27 +344,45 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(notesEdit_, g_flagsExpand);
     //--End of Row --------------------------------------------------------
 
-    wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* settings_sizer = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
+    settings_sizer->Add(settings_box_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
+    
+    wxStaticText* settings = new wxStaticText(this, wxID_ANY, _("Settings"));
+    settings_box_sizer->Add(settings, g_flagsH);
+    settings_box_sizer->AddSpacer(5);
+    
+    m_setting_name = new wxChoice(this, wxID_APPLY);
+    settings_box_sizer->Add(m_setting_name, g_flagsExpand);
 
-    m_settingLabel = new wxTextCtrl(this, wxID_INFO, "");
-    wxString choices[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-    int num = sizeof(choices) / sizeof(wxString);
-    m_radio_box_ = new wxRadioBox(this, wxID_APPLY, ""
-        , wxDefaultPosition, wxDefaultSize, num, choices, num, wxRA_SPECIFY_COLS);
-    m_radio_box_->Connect(wxID_APPLY, wxEVT_COMMAND_RADIOBOX_SELECTED
+    for (int i = 0 ; i < 10 ; i++)
+    {
+        const wxString& data = Model_Infotable::instance().GetStringInfo(
+            wxString::Format("TRANSACTIONS_FILTER_%d", i)
+            , "");
+        Document j_doc;
+        if (j_doc.Parse(data.c_str()).HasParseError()) {
+            j_doc.Parse("{}");
+        }
+
+        //Label
+        Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
+        const wxString& s_label = j_label.IsString() ? j_label.GetString() : "";
+
+        m_setting_name->AppendString(s_label.empty() ? wxString::Format(_("%i: Empty"), i + 1) : s_label);
+    }
+
+    m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
 
-    int sel = m_settings_id;
-    int size = m_radio_box_->GetColumnCount();
-    if (sel < 0 || sel >= size) {
-        sel = 0;
-    }
-    m_radio_box_->SetSelection(sel);
-    m_radio_box_->Show(true);
+    settings_box_sizer->AddSpacer(5);
+    m_btnSaveAs = new wxBitmapButton(this, wxID_SAVEAS, mmBitmap(png::SAVE));
+    settings_box_sizer->Add(m_btnSaveAs, g_flagsH);
+    m_btnSaveAs->Connect(wxID_SAVEAS, wxEVT_COMMAND_BUTTON_CLICKED
+        , wxCommandEventHandler(mmFilterTransactionsDialog::OnSaveSettings), nullptr, this);
 
-    box_sizer2->Add(settings_box_sizer, wxSizerFlags(g_flagsV).Center());
-    settings_box_sizer->Add(m_settingLabel, wxSizerFlags(g_flagsExpand).Border(0));
-    settings_box_sizer->Add(m_radio_box_, g_flagsV);
+
+    box_sizer2->Add(settings_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0).Proportion(0));
 
     /******************************************************************************
      Button Panel with OK/Cancel buttons
@@ -497,9 +514,6 @@ void mmFilterTransactionsDialog::OnButtonokClick(wxCommandEvent& /*event*/)
         }
     }
 
-    // Save the settings for the allocated position
-    SaveSettings();
-
     EndModal(wxID_OK);
 }
 
@@ -627,29 +641,11 @@ bool mmFilterTransactionsDialog::checkAmount(const FULL_DATA& tran)
     return ok || split_ok;
 }
 
-void mmFilterTransactionsDialog::SaveSettings()
-{
-    int i = m_radio_box_->GetSelection();
-    m_custom_fields->SaveCustomValues(i);
-    settings_string_ = to_json();
-    Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
-    Model_Infotable::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", i);
-    wxLogDebug("========== Settings Saved to registry %i ==========\n %s", i, settings_string_);
-}
-
 void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
 {
     clearSettings();
     wxCommandEvent evt(/*wxEVT_CHECKBOX*/ wxID_ANY, wxID_ANY);
     OnCheckboxClick(evt);
-}
-
-void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
-{
-    int i = event.GetSelection();
-    GetStoredSettings(i);
-    m_custom_fields->SetRefID(i);
-    dataToControls();
 }
 
 wxString mmFilterTransactionsDialog::GetStoredSettings(int id)
@@ -804,7 +800,7 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
 
-    const wxString label = m_settingLabel->GetValue().Trim();
+    const wxString label = m_setting_name->GetStringSelection();
     if (!label.empty())
     {
         json_writer.Key(wxString(i18n ? _("Label") : "LABEL").c_str());
@@ -940,7 +936,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     //Label
     Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
     const wxString& s_label = j_label.IsString() ? j_label.GetString() : "";
-    m_settingLabel->ChangeValue(s_label);
+    m_setting_name->SetStringSelection(s_label);
 
     //Account
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
@@ -1186,4 +1182,41 @@ void mmFilterTransactionsDialog::OnDateRangeChanged(wxCommandEvent& /*event*/)
     }
     m_fromDateCtrl->Enable(user_date);
     m_toDateControl->Enable(user_date);
+}
+
+void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& /*event*/)
+{
+    // Save the settings for the allocated position
+    SaveSettings();
+
+}
+
+void mmFilterTransactionsDialog::SaveSettings()
+{
+    int i = m_setting_name->GetSelection();
+    //m_custom_fields->SaveCustomValues(i);
+    wxString label = m_setting_name->GetStringSelection();
+
+    label = wxGetTextFromUser(_("Please Enter"), _("Setting Name"), label);
+
+
+    if (label.empty()) {
+        return mmErrorDialogs::ToolTip4Object(m_setting_name
+            , _("Could not save settings"), _("Empty value"));
+    }
+
+    m_setting_name->SetString(i, label);
+
+    settings_string_ = to_json();
+    Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
+    Model_Infotable::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", i);
+    wxLogDebug("========== Settings Saved to registry %i ==========\n %s", i, settings_string_);
+}
+
+void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
+{
+    int i = event.GetSelection();
+    GetStoredSettings(i);
+    //m_custom_fields->SetRefID(i);
+    dataToControls();
 }
