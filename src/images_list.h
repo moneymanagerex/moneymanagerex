@@ -96,6 +96,7 @@ enum png {
     FILTER,
     GRM,
     CUSTOM,
+    CLEAR,
     OPTIONS,
     NEW_TRX,
     LANG,

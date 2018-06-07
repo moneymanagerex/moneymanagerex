@@ -378,9 +378,13 @@ void mmFilterTransactionsDialog::CreateControls()
     settings_box_sizer->AddSpacer(5);
     m_btnSaveAs = new wxBitmapButton(this, wxID_SAVEAS, mmBitmap(png::SAVE));
     settings_box_sizer->Add(m_btnSaveAs, g_flagsH);
+    m_btnSaveAs->SetToolTip(_("Save active values into current Preset selection"));
     m_btnSaveAs->Connect(wxID_SAVEAS, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSaveSettings), nullptr, this);
 
+    wxBitmapButton* itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmap(png::CLEAR));
+    itemButtonClear->SetToolTip(_("Clear all fields for current Preset selection"));
+    settings_box_sizer->Add(itemButtonClear, g_flagsH);
 
     box_sizer2->Add(settings_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0).Proportion(0));
 
@@ -400,9 +404,6 @@ void mmFilterTransactionsDialog::CreateControls()
     itemButtonCancel->SetToolTip(_("Deactivate the filter"));
     itemButtonCancel->SetFocus();
 
-    wxButton* itemButtonClear = new wxButton(buttonPanel, wxID_CLEAR, _("&Clear "));
-    itemButtonClear->SetToolTip(_("Clear the settings for the allocated position"));
-
     wxBitmapButton* itemButtonHide = new wxBitmapButton(buttonPanel
         , wxID_MORE, mmBitmap(png::RIGHTARROWSIMPLE));
     itemButtonHide->SetToolTip(_("Show/Hide custom fields window"));
@@ -412,7 +413,6 @@ void mmFilterTransactionsDialog::CreateControls()
 
     buttonPanelSizer->Add(itemButtonOK, g_flagsH);
     buttonPanelSizer->Add(itemButtonCancel, g_flagsH);
-    buttonPanelSizer->Add(itemButtonClear, g_flagsH);
     buttonPanelSizer->Add(itemButtonHide, g_flagsH);
 
     // Custom fields -----------------------------------
@@ -514,7 +514,7 @@ void mmFilterTransactionsDialog::OnButtonokClick(wxCommandEvent& /*event*/)
         }
     }
 
-    SaveSettings();
+    //SaveSettings();
     EndModal(wxID_OK);
 }
 
