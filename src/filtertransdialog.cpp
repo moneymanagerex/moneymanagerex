@@ -671,8 +671,8 @@ void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
 void mmFilterTransactionsDialog::clearSettings()
 {
     int i = m_setting_name->GetSelection();
-    const wxString& label = wxString::Format(_("%i: Empty"), i + 1);
-    m_setting_name->SetString(i, label);
+    const wxString& default_label = wxString::Format(_("%i: Empty"), i + 1);
+    m_setting_name->SetString(i, default_label);
 
     settings_string_.Clear();
     m_custom_fields->ClearSettings();
@@ -805,13 +805,6 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
 
-    const wxString label = m_setting_name->GetStringSelection();
-    if (!label.empty())
-    {
-        json_writer.Key(wxString(i18n ? _("Label") : "LABEL").c_str());
-        json_writer.String(label.c_str());
-    }
-
     if (accountCheckBox_->IsChecked())
     {
         const wxString acc = accountDropDown_->GetStringSelection();
@@ -924,6 +917,14 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
     {
         json_writer.Key(entry.first.c_str());
         json_writer.Key(entry.second.c_str());
+    }
+
+    const wxString label = m_setting_name->GetStringSelection();
+    const wxString default_label = wxString::Format(_("%i: Empty"), m_setting_name->GetSelection() + 1);
+    if (!label.empty() && label != default_label)
+    {
+        json_writer.Key(wxString(i18n ? _("Label") : "LABEL").c_str());
+        json_writer.String(label.c_str());
     }
 
     json_writer.EndObject();
@@ -1211,13 +1212,12 @@ void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& /*event*/)
 void mmFilterTransactionsDialog::SaveSettings()
 {
     int i = m_setting_name->GetSelection();
-    m_custom_fields->SaveCustomValues(0); //TODO: how to save it?
-    wxString label = m_setting_name->GetStringSelection();
-
     settings_string_ = to_json();
     Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
     Model_Infotable::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", i);
     wxLogDebug("========== Settings Saved to registry %i ==========\n %s", i, settings_string_);
+
+    m_custom_fields->SaveCustomValues(0); //TODO: how to save it?
 }
 
 void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
