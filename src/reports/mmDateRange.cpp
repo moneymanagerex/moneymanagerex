@@ -219,7 +219,7 @@ const bool mmAllTime::is_with_date() const
 mmSpecifiedRange::mmSpecifiedRange(const wxDateTime& start, const wxDateTime& end)
 : mmDateRange()
 {
-    this->title_ = "";
+    this->title_ = wxTRANSLATE("Custom");
     this->start_date_ = start;
     this->end_date_ = end;
 }

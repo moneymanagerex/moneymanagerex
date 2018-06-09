@@ -24,6 +24,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/dialog.h>
 #include "Model_Checking.h"
 #include "Model_Billsdeposits.h"
+#include "reports/mmDateRange.h"
+#include <wx/bmpbuttn.h>
+
 class mmTextCtrl;
 class mmCustomData;
 class mmHTMLBuilder;
@@ -88,7 +91,6 @@ private:
     bool getPayeeCheckBox();
     bool getNumberCheckBox();
     bool getNotesCheckBox();
-    void setPresettings(const wxString& view);
     void clearSettings();
 
     /// Creation
@@ -112,11 +114,11 @@ private:
     void SaveSettings();
     void OnButtonClearClick(wxCommandEvent& event);
     void OnMoreFields(wxCommandEvent& event);
-    void OnSettingsSelected(wxCommandEvent& event);
-    void datePresetMenu(wxMouseEvent& event);
-    void DatePresetMenuSelected(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
+    void OnDateRangeChanged(wxCommandEvent& event);
+    void OnSaveSettings(wxCommandEvent& event);
+    void OnSettingsSelected(wxCommandEvent& event);
 
     void OnCategs(wxCommandEvent& event);
     wxString to_json(bool i18n = false);
@@ -124,7 +126,6 @@ private:
 
     wxString settings_string_;
     wxString prev_value_;
-    wxTextCtrl* m_settingLabel;
     wxCheckBox* accountCheckBox_;
     wxChoice* accountDropDown_;
     wxCheckBox* m_dateRangeCheckBox;
@@ -134,6 +135,8 @@ private:
     wxComboBox* cbPayee_;
     wxCheckBox* categoryCheckBox_;
     wxButton* btnCategory_;
+    wxBitmapButton* m_btnSaveAs;
+    wxChoice* m_setting_name;
     wxCheckBox* similarCategCheckBox_;
     wxCheckBox* statusCheckBox_;
     wxChoice* choiceStatus_;
@@ -147,9 +150,9 @@ private:
     mmTextCtrl* amountMaxEdit_;
     wxCheckBox* notesCheckBox_;
     wxTextCtrl* notesEdit_;
-    wxRadioBox* m_radio_box_;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
+    wxChoice* m_date_ranges;
 
     wxString m_begin_date;
     wxString m_end_date;
@@ -167,4 +170,11 @@ private:
     int GetSettingsID() { return m_settings_id; }
 
     mmCustomData* m_custom_fields;
+    std::vector<mmDateRange*> m_all_date_ranges;
+
+    enum RepPanel
+    {
+        ID_CHOICE_DATE_RANGE = wxID_HIGHEST + 1,
+    };
+
 };

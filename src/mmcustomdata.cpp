@@ -36,7 +36,7 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
     : wxDialog()
     , m_ref_type(ref_type)
     , m_ref_id(ref_id)
-    , m_hideable_panel_name("CustomPanel")
+    , m_static_box(nullptr)
 {
     m_dialog = dialog;
     m_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(m_ref_type));
@@ -55,13 +55,11 @@ mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, w
 
 bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 {
-    wxStaticBox* static_box = new wxStaticBox(m_dialog, wxID_ANY, _("Custom fields")
-        , wxDefaultPosition, wxDefaultSize, 0L, m_hideable_panel_name);
-    static_box->Hide();
-    wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(static_box, wxVERTICAL);
+    m_static_box = new wxStaticBox(m_dialog, wxID_ANY, _("Custom fields"));
+    wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(m_static_box, wxVERTICAL);
     box_sizer->Add(box_sizer_right, g_flagsExpand);
 
-    wxScrolledWindow* scrolled_window = new wxScrolledWindow(static_box, wxID_ANY);
+    wxScrolledWindow* scrolled_window = new wxScrolledWindow(m_static_box, wxID_ANY);
     wxBoxSizer *custom_sizer = new wxBoxSizer(wxVERTICAL);
     scrolled_window->SetScrollbar(wxSB_VERTICAL, wxALIGN_RIGHT, 1, -1);
     scrolled_window->SetSizer(custom_sizer);
@@ -273,6 +271,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
     scrolled_window->FitInside();
     scrolled_window->SetScrollRate(5, 5);
     box_sizer_right->Add(scrolled_window, g_flagsExpand);
+    m_static_box->Hide();
 
     return true;
 }
@@ -347,8 +346,57 @@ std::map<wxString, wxString> mmCustomData::GetActiveCustomFields()
 const wxString mmCustomData::GetWidgetData(wxWindowID controlID)
 {
     wxString data;
-    if (m_data_changed.find(controlID) != m_data_changed.end()) {
+    if (m_data_changed.find(controlID) != m_data_changed.end()) 
+    {
         data = m_data_changed.at(controlID);
+    }
+    else
+    {
+        wxWindow* w = m_dialog->FindWindowById(controlID);
+        if (w)
+        {
+            const wxString class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
+            if (class_name == "wxDatePickerCtrl")
+            { 
+                wxDatePickerCtrl* d = (wxDatePickerCtrl*)w;
+                data = d->GetValue().FormatISODate();
+            }
+            else if (class_name == "wxTimePickerCtrl")
+            {
+                wxTimePickerCtrl* d = (wxTimePickerCtrl*)w;
+                data = d->GetValue().FormatISOTime();
+            }
+            else if (class_name == "wxSpinCtrlDouble")
+            {
+                wxSpinCtrlDouble* d = (wxSpinCtrlDouble*)w;
+                data = wxString::Format("%f", d->GetValue());
+            }
+            else if (class_name == "wxSpinCtrl")
+            {
+                wxSpinCtrl* d = (wxSpinCtrl*)w;
+                data = wxString::Format("%i", d->GetValue());
+            }
+            else if (class_name == "wxChoice")
+            {
+                wxChoice* d = (wxChoice*)w;
+                data = d->GetStringSelection();
+            }
+            else if (class_name == "wxButton")
+            {
+                wxButton* d = (wxButton*)w;
+                data = d->GetLabel();
+            }
+            else if (class_name == "wxTextCtrl")
+            {
+                wxTextCtrl* d = (wxTextCtrl*)w;
+                data = d->GetValue();
+            }
+            else if (class_name == "wxCheckBox")
+            {
+                wxCheckBox* d = (wxCheckBox*)w;
+                data = (d->GetValue() ? "TRUE" : "FALSE");
+            }
+        }
     }
     return data;
 }
@@ -362,7 +410,7 @@ bool mmCustomData::SaveCustomValues(int ref_id)
         wxWindowID controlID = GetBaseID() + (wxWindowID)field.FIELDID;
         const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(controlID) : "";
 
-        Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, m_ref_id);
+        Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
         if (!data.empty())
         {
             if (!fieldData) {
@@ -422,6 +470,17 @@ void mmCustomData::ResetWidgetsChanged()
     m_data_changed.clear();
 }
 
+void mmCustomData::ClearSettings()
+{
+    for (const auto &field : m_fields)
+    {
+        //wxWindowID controlID = GetBaseID() + (wxWindowID)field.FIELDID;
+        wxWindowID labelID = GetLabelID() + (wxWindowID)field.FIELDID;
+        wxCheckBox* cb = (wxCheckBox*)FindWindowById(labelID);
+        if (cb) cb->SetValue(false);
+    }
+}
+
 void mmCustomData::OnSingleChoice(wxCommandEvent& event)
 {
     const wxString& data = event.GetString();
@@ -469,6 +528,7 @@ void mmCustomData::OnCheckBoxActivated(wxCommandEvent& event)
     auto checked = event.IsChecked();
 
     if (checked) {
+        //TODO: 
         const auto& data = GetWidgetData(widget_id);
         SetWidgetChanged(widget_id, data);
     }
@@ -516,7 +576,7 @@ void mmCustomData::SetWidgetChanged(wxWindowID id, const wxString& data)
         Description->SetValue(true);
         wxLogDebug("Description %i value = %i", label_id, 1);
     }
-};
+}
 
 bool mmCustomData::IsDataFound(const Model_Checking::Full_Data &tran)
 {
@@ -537,22 +597,15 @@ bool mmCustomData::IsDataFound(const Model_Checking::Full_Data &tran)
 
 bool mmCustomData::IsCustomPanelShown()
 {
-    wxStaticBox* static_box = (wxStaticBox*)m_dialog->FindWindowByName(m_hideable_panel_name);
-    if (static_box) {
-        return static_box->IsShown();
-    }
-    return false;
+    return m_static_box->IsShown();
 }
 
 void mmCustomData::ShowHideCustomPanel()
 {
-    wxStaticBox* static_box = (wxStaticBox*)m_dialog->FindWindowByName(m_hideable_panel_name);
-    if (static_box) {
-        if (static_box->IsShown()) {
-            static_box->Hide();
-        }
-        else {
-            static_box->Show();
-        }
+    if (IsCustomPanelShown()) {
+        m_static_box->Hide();
+    }
+    else {
+        m_static_box->Show();
     }
 }
