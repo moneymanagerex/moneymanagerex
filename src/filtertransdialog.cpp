@@ -90,6 +90,9 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     , m_max_amount(0)
     , bSimilarCategoryStatus_(false)
 {
+    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
+
     m_all_date_ranges.push_back(new mmCurrentMonth());
     m_all_date_ranges.push_back(new mmCurrentMonthToDate());
     m_all_date_ranges.push_back(new mmLastMonth());
@@ -100,10 +103,6 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     m_all_date_ranges.push_back(new mmCurrentYear());
     m_all_date_ranges.push_back(new mmCurrentYearToDate());
     m_all_date_ranges.push_back(new mmLastYear());
-
-    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
-    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
-
     m_all_date_ranges.push_back(new mmCurrentFinancialYear(day, month));
     m_all_date_ranges.push_back(new mmCurrentFinancialYearToDate(day, month));
     m_all_date_ranges.push_back(new mmLastFinancialYear(day, month));
@@ -371,7 +370,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
         m_setting_name->AppendString(s_label.empty() ? wxString::Format(_("%i: Empty"), i + 1) : s_label);
     }
-
+    m_setting_name->Select(0);
     m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
 
@@ -651,12 +650,8 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
 
 wxString mmFilterTransactionsDialog::GetStoredSettings(int id)
 {
-    if (id < 0) {
-        id = Model_Infotable::instance().GetIntInfo("TRANSACTIONS_FILTER_VIEW_NO", 0);
-    }
-    else {
-        Model_Setting::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", id);
-    }
+    if (id < 0) id = 0;
+    Model_Setting::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", id);
     settings_string_ = Model_Infotable::instance().GetStringInfo(
         wxString::Format("TRANSACTIONS_FILTER_%d", id)
         , "");
