@@ -569,6 +569,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
     if (pattern.Matches(str_date))
     {
         auto date_str = pattern.GetMatch(str_date);
+        date_str.Replace(" ", "");
         wxString::const_iterator end;
         return date.ParseFormat(date_str, sDateMask, &end);
     }
@@ -631,6 +632,7 @@ const std::unordered_map<wxString, wxString> &date_formats_regex()
     date_regex["%d.%m.%Y"] = wxString::Format("^%s\x2E%s\x2E%s*", dd, mm, yyyy);
     date_regex["%d,%m,%y"] = wxString::Format("^%s,%s,%s*", dd, mm, yy);
     date_regex["%d/%m'%Y"] = wxString::Format("^%s/%s'%s*", dd, mm, yyyy);
+    date_regex["%d/%m'%y"] = wxString::Format("^%s/%s'%s*", dd, mm, yy);
     date_regex["%d/%m %Y"] = wxString::Format("^%s/%s %s*", dd, mm, yyyy);
     date_regex["%m/%d/%y"] = wxString::Format("^%s/%s/%s*", mm, dd, yy);
     date_regex["%m/%d/%Y"] = wxString::Format("^%s/%s/%s*", mm, dd, yyyy);
@@ -660,6 +662,7 @@ const std::map<wxString, wxString> g_date_formats_map = {
     , { "%d.%m.%Y", "DD.MM.YYYY" }
     , { "%d,%m,%y", "DD,MM,YY" }
     , { "%d/%m'%Y", "DD/MM'YYYY" }
+    , { "%d/%m'%y", "DD/MM'YY" }
     , { "%d/%m %Y", "DD/MM YYYY" }
     , { "%m/%d/%y", "MM/DD/YY" }
     , { "%m/%d/%Y", "MM/DD/YYYY" }
