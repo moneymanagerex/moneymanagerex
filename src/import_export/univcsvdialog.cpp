@@ -801,18 +801,23 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
     const wxString acctName = m_choice_account_->GetStringSelection();
     Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
-    if (!from_account) { Close(); return; }
+    if (!from_account) 
+    { 
+        return mmErrorDialogs::InvalidAccount(m_choice_account_);
+    }
     fromAccountID_ = from_account->ACCOUNTID;
 
     const wxString fileName = m_text_ctrl_->GetValue();
-    if (fileName.IsEmpty())
+    if (fileName.IsEmpty()) {
         return mmErrorDialogs::InvalidFile(m_text_ctrl_);
+    }
 
     // Open and parse file
     ITransactionsFile *pParser = CreateFileHandler();
     if (!pParser) return; // is this possible?
-    if (!pParser->Load(fileName, m_list_ctrl_->GetColumnCount()))
+    if (!pParser->Load(fileName, m_list_ctrl_->GetColumnCount())) {
         return wxDELETE(pParser);
+    }
 
     wxFileName logFile = mmex::GetLogDir(true);
     logFile.SetFullName(fileName);
@@ -857,8 +862,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
         }
 
         tran_holder holder;
-        for (size_t i = 0; i < csvFieldOrder_.size() && i < numTokens; ++i)
+        for (size_t i = 0; i < csvFieldOrder_.size() && i < numTokens; ++i) {
             parseToken(csvFieldOrder_[i], pParser->GetItem(lineNum, i).Trim(false /*from left*/), holder);
+        }
 
         if (!validateData(holder)) 
         {
@@ -1401,7 +1407,7 @@ void mmUnivCSVDialog::OnDelimiterChange(wxCommandEvent& event)
     }
 }
 
-void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_holder & holder)
+void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_holder& holder)
 {
     wxString token = orig_token;
     if (token.Trim().IsEmpty()) return;
