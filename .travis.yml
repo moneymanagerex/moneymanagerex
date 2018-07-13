@@ -22,10 +22,12 @@ env:
   - OS=ubuntu DIST=zesty
   - OS=ubuntu DIST=artful
   - OS=ubuntu DIST=bionic
+  - OS=ubuntu DIST=cosmic
   - OS=ubuntu DIST=xenial ARCH=x86
   - OS=ubuntu DIST=zesty ARCH=x86
   - OS=ubuntu DIST=artful ARCH=x86
   - OS=ubuntu DIST=bionic ARCH=x86
+  - OS=ubuntu DIST=cosmic ARCH=x86
   - OS=fedora
   - OS=fedora DIST=24
   - OS=fedora DIST=25
@@ -75,10 +77,12 @@ matrix:
   - env: OS=ubuntu DIST=xenial
   - env: OS=ubuntu DIST=zesty
   - env: OS=ubuntu DIST=artful
+  - env: OS=ubuntu DIST=cosmic
   - env: OS=ubuntu DIST=xenial ARCH=x86
   - env: OS=ubuntu DIST=zesty ARCH=x86
   - env: OS=ubuntu DIST=artful ARCH=x86
   - env: OS=ubuntu DIST=bionic ARCH=x86
+  - env: OS=ubuntu DIST=cosmic ARCH=x86
   - env: OS=fedora
   - env: OS=fedora DIST=24
   - env: OS=fedora DIST=25
