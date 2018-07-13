@@ -14,10 +14,10 @@ env:
   matrix: # targets for linux
   - OS=debian DIST=jessie
   - OS=debian DIST=stretch
-  # - OS=debian DIST=buster # see issue #1331 on GitHub
+  - OS=debian DIST=buster
   - OS=debian DIST=jessie ARCH=x86
   - OS=debian DIST=stretch ARCH=x86
-  # - OS=debian DIST=buster ARCH=x86 # see issue #1331 on GitHub
+  - OS=debian DIST=buster ARCH=x86
   - OS=ubuntu DIST=xenial
   - OS=ubuntu DIST=zesty
   - OS=ubuntu DIST=artful
