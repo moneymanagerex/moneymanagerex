@@ -1,13 +1,9 @@
 FROM debian:buster-slim
 LABEL maintainer="developers@moneymanagerex.org"
-ADD https://repos.codelite.org/CodeLite.asc /etc/apt/trusted.gpg.d/
-RUN chown _apt:root /etc/apt/trusted.gpg.d/CodeLite.asc && \
-    echo 'deb http://repos.codelite.org/wx3.1/debian/ buster devel' \
-      >/etc/apt/sources.list.d/CodeLite.list && \
-    dpkg --add-architecture i386 && apt-get update && \
+RUN dpkg --add-architecture i386 && apt-get update && \
     apt-get install -y --no-install-recommends \
       cmake build-essential g++-multilib gettext git pkg-config lsb-release file ccache \
-      libwxgtk-webview3.1-dev:i386 liblua5.3-dev:i386 \
+      libwxgtk-webview3.0-gtk3-dev:i386 liblua5.3-dev:i386 \
       libcurl4-openssl-dev:i386 rapidjson-dev && \
     apt-get clean
 
