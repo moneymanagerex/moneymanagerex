@@ -51,13 +51,13 @@ install MMEX in Linux system.
 Open terminal window and run command from table below to install binary
 package with dependencies.
 
-| Distribution   | Shell command to install MMEX package                |
-|----------------|------------------------------------------------------|
-| Debian, Ubuntu | `sudo apt update; sudo apt install mmex`             |
-| openSUSE       | `sudo zypper refresh; sudo zypper install mmex`      |
-| Fedora         | `sudo dnf --refresh install mmex`                    |
-| CentOS         | `sudo yum clean expire-cache; sudo yum install mmex` |
-| Arch           | `sudo pacman -Syyu mmex`                             |
+| Distribution         | Shell command to install MMEX package                |
+|----------------------|------------------------------------------------------|
+| Debian, Ubuntu, Mint | `sudo apt update; sudo apt install mmex`             |
+| openSUSE             | `sudo zypper refresh; sudo zypper install mmex`      |
+| Fedora               | `sudo dnf --refresh install mmex`                    |
+| CentOS               | `sudo yum clean expire-cache; sudo yum install mmex` |
+| Arch                 | `sudo pacman -Syyu mmex`                             |
 
 MMEX can be started from desktop menu or from terminal window using `mmex`
 command.
@@ -73,10 +73,10 @@ repository for additional packages.
 MMEX developers created dedicated repository for MMEX binary packages for
 multiple Linux distributions at [packagecloud.io] hosting platform.
 New versions are published there automatically (using CI) when they arrive.
-Debian 8/9/10, CentOS 7, Fedora 24/25/26, Mint 18.1, openSUSE Leap 42.2/42.3,
-Ubuntu 16/17 are supported for now.
+Debian 8/9/10, CentOS 7, Fedora 24/25/26, Mint 18/19, openSUSE Leap 42.2/42.3,
+Ubuntu 16/17/18 are supported for now.
 
-> Warning: only unstable 64-bit versions of MMEX are available now.
+> Warning: only unstable versions of MMEX are available now.
 
 You can [add MMEX repository] to your system configuration using following
 commands from terminal window:
@@ -105,8 +105,8 @@ configuration.
 #### From manually downloaded binaries
 
 Download package for your distribution from [GitHub Releases][GitHubDL].
-Arch, Debian 8/9/10, CentOS 7, Fedora 24/25/26/rawhide, Mint 18.1, openSUSE
-Leap 42.2/42.3/tumbleweed, Ubuntu 16/17, Slackware 14.2 are supported for now,
+Arch, Debian 8/9/10, CentOS 7, Fedora 24/25/26/rawhide, Mint 18/19, openSUSE
+Leap 42.2/42.3/tumbleweed, Ubuntu 16/17/18, Slackware 14.2 are supported for now,
 64-bit only.
 
 > Use unstable pre-release version (*alpha*, *beta*, *rc*) at your risk

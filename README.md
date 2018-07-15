@@ -23,7 +23,7 @@ MMEX is mainly written in C++11 and built on:
 - Windows XP, 2003, Vista, 7, 8 and 10  
   [![a]][AppVeyor]
 - Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x)  
-  [![debian] ![ubuntu] ![mint] ![centos] ![fedora] ![opensuse] ![arch]
+  [![debian] ![ubuntu] ![centos] ![fedora] ![opensuse] ![arch]
   ![slackware]][Travis]
 - OS X (10.7 or newer) and macOS using Cocoa  
   [![yosemite] ![el capitan] ![sierra] ![high sierra]][Travis]
@@ -93,7 +93,6 @@ MMEX is mainly written in C++11 and built on:
 [fedora]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=fedora&env=OS=fedora
 [opensuse]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=opensuse&env=OS=opensuse
 [arch]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=arch&env=OS=archlinux
-[mint]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=mint&env=OS=linuxmint
 [slackware]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=slackware&env=OS=slackware
 [yosemite]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=yosemite&env=DIST=10.10
 [el capitan]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=el%20capitan&env=DIST=10.11

@@ -37,12 +37,6 @@ env:
   - OS=opensuse DIST=42.3
   - OS=archlinux
   - OS=el DIST=7 # DIST=6 doesn't provide webview in wxGTK3
-  - OS=linuxmint DIST=serena
-  - OS=linuxmint DIST=sonya
-  - OS=linuxmint DIST=sylvia
-  - OS=linuxmint DIST=tara
-  - OS=linuxmint DIST=sylvia ARCH=x86
-  - OS=linuxmint DIST=tara ARCH=x86
   - OS=slackware DIST=14.2 # DIST=14.1 has cmake 2.x
 
 matrix:
@@ -91,12 +85,6 @@ matrix:
   - env: OS=opensuse DIST=42.2
   - env: OS=opensuse DIST=42.3
   - env: OS=archlinux
-  - env: OS=linuxmint DIST=serena
-  - env: OS=linuxmint DIST=sonya
-  - env: OS=linuxmint DIST=sylvia
-  - env: OS=linuxmint DIST=tara
-  - env: OS=linuxmint DIST=sylvia ARCH=x86
-  - env: OS=linuxmint DIST=tara ARCH=x86
   - env: OS=osx DIST=10.10
   - env: OS=osx DIST=10.11
   - env: OS=macos DIST=10.12
