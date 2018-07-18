@@ -46,21 +46,6 @@ matrix:
   - { os: osx, osx_image: xcode8,   env: OS=osx DIST=10.11 }
   - { os: osx, osx_image: xcode9.2, env: OS=macos DIST=10.12 }
   - { os: osx, osx_image: xcode9.4, env: OS=macos DIST=10.13 }
-  - stage: nightly # used only to tag and trigger nightly build
-    sudo: false
-    cache: false
-    services: [ ]
-    git: { submodules: false, depth: 10 }
-    install: skip
-    before_script:
-    - git config --global credential.helper store
-    - echo "https://$GitHub_auth_token:x-oauth-basic@github.com" >$HOME/.git-credentials
-    - git config --global user.email "nobody@no.mail"
-    - git config --global user.name "Travis CI"
-    script:
-    - git tag -f nightly && git push -f --tags
-    after_success: skip
-    deploy: skip
   allow_failures:
   - env: OS=debian DIST=jessie
   - env: OS=debian DIST=stretch
@@ -89,12 +74,6 @@ matrix:
   - env: OS=osx DIST=10.11
   - env: OS=macos DIST=10.12
   - env: OS=slackware DIST=14.2
-
-stages:
-  - name: nightly
-    if: type IN (api, cron)
-  - name: test
-    if: NOT type IN (api, cron)
 
 install: |-
   DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
