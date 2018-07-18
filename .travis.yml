@@ -1,0 +1,13 @@
+language: shell
+sudo: false
+cache: false
+git: { submodules: false, depth: 10 }
+# if: type IN (api, cron)
+before_script:
+- git config --global credential.helper store
+- echo "https://$GitHub_auth_token:x-oauth-basic@github.com" >$HOME/.git-credentials
+- git config --global user.email "nobody@no.mail"
+- git config --global user.name "Travis CI"
+script:
+- git fetch --depth=1 origin +refs/heads/master:refs/remotes/origin/master
+- git checkout -b master origin/master && git tag -f nightly && git push -f --tags
