@@ -8253,31 +8253,31 @@ msgstr "Okt"
 
 #: src/util.cpp:674
 msgid "Monday"
-msgstr "Mandag"
+msgstr "maandag"
 
 #: src/util.cpp:674
 msgid "Sunday"
-msgstr "Zondag"
+msgstr "zondag"
 
 #: src/util.cpp:674
 msgid "Tuesday"
-msgstr "Dinsdag"
+msgstr "dinsdag"
 
 #: src/util.cpp:675
 msgid "Friday"
-msgstr "Vrijdag"
+msgstr "vrijdag"
 
 #: src/util.cpp:675
 msgid "Thursday"
-msgstr "Donderdag"
+msgstr "donderdag"
 
 #: src/util.cpp:675
 msgid "Wednesday"
-msgstr "Woensdag"
+msgstr "woensdag"
 
 #: src/util.cpp:676
 msgid "Saturday"
-msgstr "Zaterdag"
+msgstr "zaterdag"
 
 #: src/webapp.cpp:110
 msgid "Wrong WebApp GUID:"
