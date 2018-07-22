@@ -18,6 +18,10 @@
 # default build dir
 /build/
 
+#snapcraft build dirs
+/snap/
+/parts/
+
 # JetBrains CLion IDE
 .idea
 
