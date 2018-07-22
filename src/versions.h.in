@@ -4,7 +4,7 @@
 //          versions.h.in and rerun cmake to produce a refreshed
 //          version of versions.h
 //
-// Note:    MMEX version changes are made in the main CMakeLists.txt
+// Note:    MMEX version is read from git repository tags
 //----------------------------------------------------------------------------
 
 #define MMEX_VERSION_MAJOR @MMEX_VERSION_MAJOR@

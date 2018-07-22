@@ -1,12 +1,18 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0 FATAL_ERROR)
 SET(InMMEX TRUE)
 
-PROJECT(MMEX VERSION 1.4.0)
-OPTION(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the Windows installation" ON) 
-
-# Name of the resulted executable binary
-SET(MMEX_EXE mmex)
-
+FIND_PACKAGE(Git)
+IF(GIT_FOUND)
+    # Get the latest version tag
+    EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} describe --match v* --tags --abbrev=0
+        WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}
+        OUTPUT_VARIABLE GIT_TAG_VERSION
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        TIMEOUT 4 ERROR_QUIET)
+    IF(NOT GIT_TAG_VERSION MATCHES "^v([0-9]+\\.[0-9]+\\.[0-9]+)(-([^ ]+))*")
+        MESSAGE(FATAL_ERROR "Unable to determine MMEX version tag from sources!")
+    ENDIF()
+    MESSAGE(STATUS "MMEX sources tagged as ${GIT_TAG_VERSION}")
 # ---------------------------------------------------------------------------
 # MMEX uses semantic versioning Ref: http://semver.org
 #
@@ -23,16 +29,19 @@ SET(MMEX_EXE mmex)
 # ./src/versions.h
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
-SET(MMEX_VERSION_UNSTABLE alpha.4)
-IF(MMEX_VERSION_UNSTABLE)
-    SET(MMEX_VERSION_FULL "${MMEX_VERSION}-${MMEX_VERSION_UNSTABLE}")
-ELSE()
-    SET(MMEX_VERSION_FULL ${MMEX_VERSION})
+    SET(MMEX_VERSION ${CMAKE_MATCH_1})
+    SET(MMEX_VERSION_UNSTABLE ${CMAKE_MATCH_3})
+    SET(MMEX_VERSION_FULL ${CMAKE_MATCH_1}${CMAKE_MATCH_2})
 ENDIF()
 
+PROJECT(MMEX VERSION ${MMEX_VERSION})
+OPTION(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the Windows installation" ON) 
+
+# Name of the resulted executable binary
+SET(MMEX_EXE mmex)
+
 # Find Git commit details to put into versions.h later
-FIND_PACKAGE(Git)
-IF(Git_FOUND)
+IF(GIT_FOUND)
     # Get the current working branch
     EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} symbolic-ref --short -q HEAD
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}

@@ -2,7 +2,7 @@ language: cpp
 dist: trusty
 sudo: required
 services: [ docker ]
-git: { depth: 10 } # don't clone all history from repo, leave 10 for build queue
+git: { depth: false }
 os: linux # default build params for matrix
 compiler: gcc
 cache: ccache

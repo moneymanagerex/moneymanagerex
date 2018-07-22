@@ -1,5 +1,4 @@
 version: '{build}'
-clone_depth: 10 # to allow queued build jobs
 image:
 - Visual Studio 2017
 - Visual Studio 2015
