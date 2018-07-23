@@ -40,7 +40,32 @@ Windows 10 as they are a component of the Windows operating system.
 Linux
 -----
 
-#### From distribution repository
+### From Snap Store
+
+If you are using one of the following Linux distributions: Arch Linux, Debian,
+elementary OS, Fedora, Gentoo, Linux Mint, Manjaro, OpenEmbedded/Yocto,
+openSUSE, OpenWrt, Solus, Raspbian, Ubuntu then you can use snapd to install
+and run MMEX snap package available from [Snap Store].
+
+> Warning: only unstable versions of MMEX are available now.
+
+snapd is the service you need to install to run and manage snaps. Please
+follow [snapd installation instructions] for your distribution.
+
+To install MMEX open terminal window and run `sudo snap install mmex` command.
+Then you can run MMEX from your desktop menu or using `mmex` command.
+Snaps are updated automatically in the background to the latest version,
+every day.
+
+If you want to test unstable version of MMEX you can install with
+`sudo snap install --beta mmex` or upgrade with
+`sudo snap refresh mmex --beta` commands. You can list available MMEX versions
+with `snap info mmex` command.
+
+> Use unstable pre-release version (from *beta* channel) at your risk
+> (work on your database copies!) to check or test newly added functions.
+
+### From distribution repository
 
 > Important: There are no MMEX packages in main repositories of popular Linux
 > distributions so far. Please use different methods described below.
@@ -62,7 +87,7 @@ package with dependencies.
 MMEX can be started from desktop menu or from terminal window using `mmex`
 command.
 
-#### From MMEX repository
+### From MMEX repository
 
 You can configure your Linux distribution to use additional unofficial
 repository for additional packages.
@@ -102,7 +127,7 @@ You can use package manager from your distribution to install MMEX as
 described in previous section above **after** adding MMEX repository to your
 configuration.
 
-#### From manually downloaded binaries
+### From manually downloaded binaries
 
 Download package for your distribution from [GitHub Releases][GitHubDL].
 Arch, Debian 8/9/10, CentOS 7, Fedora 24/25/26/rawhide, Mint 18/19, openSUSE
@@ -155,3 +180,5 @@ Yosemite, OS X 10.11 El Capitan, or macOS 10.12 Sierra.
 [add MMEX repository]: https://packagecloud.io/moneymanagerex/moneymanagerex/install#bash
 [manually add MMEX repo]: https://packagecloud.io/moneymanagerex/moneymanagerex/install#manual
 [slackbuilds.org]: https://slackbuilds.org/
+[Snap Store]: https://snapcraft.io/mmex
+[snapd installation instructions]: https://docs.snapcraft.io/core/install
