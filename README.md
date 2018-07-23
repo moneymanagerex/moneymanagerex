@@ -20,19 +20,24 @@ MMEX is mainly written in C++11 and built on:
 | [ChartNew.JS] | [html-template] | [libcurl]
 
 #### Supported platforms ####
-- Windows XP, 2003, Vista, 7, 8 and 10  
+
+* Windows XP, 2003, Vista, 7, 8 and 10  
   [![a]][AppVeyor]
-- Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x)  
-  [![debian] ![ubuntu] ![centos] ![fedora] ![opensuse] ![arch]
+* Most Unix variants using the GTK+ toolkit (version 2.6 or newer)  
+  [![snap] ![debian] ![ubuntu] ![centos] ![fedora] ![opensuse] ![arch]
   ![slackware]][Travis]
-- OS X (10.7 or newer) and macOS using Cocoa  
+* OS X (10.7 or newer) and macOS using Cocoa  
   [![yosemite] ![el capitan] ![sierra] ![high sierra]][Travis]
 
+Please follow installation instructions from [INSTALL.md] file.
+
 #### External public resources ####
+
 [Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [SourceForge] | [GitHub]
-| [Docker Hub] | [Twitter] [![tw]][Twitter]
+| [Docker Hub] | [Snap Store] | [Twitter] [![tw]][Twitter]
 
 #### Tips ####
+
 * You can open database file (both regular and encrypted) directly
   with [wxsqliteplus]
 * You can download dozen of cool reports from [general report] repository
@@ -58,6 +63,7 @@ MMEX is mainly written in C++11 and built on:
 [SourceForge]: https://sourceforge.net/p/moneymanagerex
 [GitHub]: https://github.com/moneymanagerex
 [Docker Hub]: https://hub.docker.com/r/moneymanagerex/
+[Snap Store]: https://snapcraft.io/mmex
 [Twitter]: https://twitter.com/MoneyManagerEx
 [wxWidgets]: http://wxwidgets.org/
 [wxSqlite3]: https://github.com/utelle/wxsqlite3
@@ -90,6 +96,7 @@ MMEX is mainly written in C++11 and built on:
 [ubuntu]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=ubuntu&env=OS=ubuntu
 [centos]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=centos&env=OS=el
 [debian]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=debian&env=OS=debian
+[snap]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=snap&env=OS=snap
 [fedora]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=fedora&env=OS=fedora
 [opensuse]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=opensuse&env=OS=opensuse
 [arch]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=arch&env=OS=archlinux
@@ -99,3 +106,4 @@ MMEX is mainly written in C++11 and built on:
 [sierra]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=sierra&env=DIST=10.12
 [high sierra]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=high%20sierra&env=DIST=10.13
 [resolution time]: http://isitmaintained.com/badge/resolution/moneymanagerex/moneymanagerex.svg
+[INSTALL.md]: ./INSTALL.md
