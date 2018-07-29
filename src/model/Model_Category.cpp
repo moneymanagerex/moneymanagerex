@@ -171,7 +171,7 @@ void Model_Category::getCategoryStats(
     {
         for (int m = 0; m < columns; m++)
         {
-            const wxDateTime &d = wxDateTime(start_date).Subtract(wxDateSpan::Months(m));
+            const wxDateTime d = start_date.Subtract(wxDateSpan::Months(m));
             int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
             categoryStats[category.CATEGID][-1][idx] = value;
             for (const auto & sub_category : allSubcategories)
